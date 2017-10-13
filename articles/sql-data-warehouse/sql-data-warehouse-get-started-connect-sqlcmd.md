@@ -1,6 +1,6 @@
 ---
-title: aaaConnect tooAzure SQL Data Warehouse sqlcmd |} Microsoft Docs
-description: "[Sqlcmd] [sqlcmd] parancssori segédprogram tooconnect tooand lekérdezés Azure SQL Data Warehouse használata."
+title: "Csatlakozás az Azure SQL Data Warehouse-hoz az sqlcmd használatával | Microsoft Docs"
+description: "Az [sqlcmd][sqlcmd] parancssori segédprogramot az Azure SQL Data Warehouse lekérdezéséhez és az ahhoz való csatlakozáshoz használhatja."
 services: sql-data-warehouse
 documentationcenter: NA
 author: antvgski
@@ -15,13 +15,13 @@ ms.workload: data-services
 ms.custom: connect
 ms.date: 10/31/2016
 ms.author: anvang;barbkess
-ms.openlocfilehash: 0334df7b969da1966ba29c97f835a2dc9e383e29
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5a3fe1046c3417070ba8ff5bd18a0485e2152eff
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="connect-toosql-data-warehouse-with-sqlcmd"></a>Adatraktár tooSQL csatlakozni az Sqlcmd használatával
+# <a name="connect-to-sql-data-warehouse-with-sqlcmd"></a>Csatlakozás az SQL Data Warehouse-hoz az sqlcmd használatával
 > [!div class="op_single_selector"]
 > * [Power BI](sql-data-warehouse-get-started-visualize-with-power-bi.md)
 > * [Azure Machine Learning](sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md)
@@ -31,43 +31,43 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Használjon [sqlcmd] [ sqlcmd] parancssori segédprogram tooconnect tooand lekérdezése az Azure SQL Data Warehouse.  
+Az [sqlcmd][sqlcmd] parancssori segédprogramot az Azure SQL Data Warehouse lekérdezéséhez és az ahhoz való csatlakozáshoz használhatja.  
 
 ## <a name="1-connect"></a>1. Kapcsolódás
-tooget használatába [sqlcmd][sqlcmd], nyissa meg a hello parancssort, és írja be **sqlcmd** hello kapcsolati karakterláncot az SQL Data Warehouse-adatbázis követ. hello kapcsolati karakterlánc a következő paraméterek hello van szükség:
+Az [sqlcmd][sqlcmd] használatának megkezdéséhez nyissa meg a parancssort, és írja be az **sqlcmd** kifejezést, majd a saját SQL Data Warehouse-adatbázisának kapcsolati karakterláncát. A kapcsolati karakterláncban a következő paraméterekre van szükség:
 
-* **Server (-S):** hello kiszolgálónak `<`kiszolgálónév`>`. database.windows.net
+* **Server (-S):** A kiszolgáló neve `<`kiszolgálónév`>`.database.windows.net formátumban.
 * **Database (-d):** Az adatbázis neve.
-* **Enable Quoted Identifiers (-I):** Határolójeles azonosítókat engedélyezett tooconnect tooa SQL Data Warehouse példánynak kell lennie.
+* **Enable Quoted Identifiers (-I):** Az SQL Data Warehouse-példányokhoz való csatlakozáshoz engedélyezni kell a határolójeles azonosítókat.
 
-SQL Server-hitelesítés toouse, kell tooadd hello felhasználónév/jelszó Paraméterek:
+Az SQL Server-hitelesítés használatához meg kell adnia a felhasználónév/jelszó paramétereit:
 
-* **Felhasználó (-U):** kiszolgálói felhasználó hello formában `<`felhasználó`>`
-* **Jelszó (-P):** hello felhasználói társított jelszót.
+* **User (-U):** A kiszolgálói felhasználó neve `<`felhasználó`>` formátumban.
+* **Password (-P):** A felhasználóhoz tartozó jelszó.
 
-A kapcsolati karakterlánc például hello következő látható:
+A kapcsolati karakterlánc például a következőképpen nézhet ki:
 
 ```sql
 C:\>sqlcmd -S MySqlDw.database.windows.net -d Adventure_Works -U myuser -P myP@ssword -I
 ```
 
-toouse Azure Active Directory integrált hitelesítést, tooadd hello Azure Active Directory paraméterek szükségesek:
+Az Azure Active Directory beépített hitelesítés használatához meg kell adnia az Azure Active Directory paramétereit:
 
 * **Azure Active Directory Authentication (-G):** az Azure Active Directory használata a hitelesítéshez
 
-A kapcsolati karakterlánc például hello következő látható:
+A kapcsolati karakterlánc például a következőképpen nézhet ki:
 
 ```sql
 C:\>sqlcmd -S MySqlDw.database.windows.net -d Adventure_Works -G -I
 ```
 
 > [!NOTE]
-> Túl kell[engedélyezése az Azure Active Directory-hitelesítéssel](sql-data-warehouse-authentication.md) tooauthenticate Active Directory használatával.
+> Az Active Directory használatával történő hitelesítéshez [engedélyeznie kell az Azure Active Directory-hitelesítést](sql-data-warehouse-authentication.md).
 > 
 > 
 
 ## <a name="2-query"></a>2. Lekérdezés
-Kapcsolódás után bármely támogatott Transact-SQL utasítások ellenőrzés hello adhat ki.  Ebben a példában a lekérdezések elküldése interaktív módban történik.
+A kapcsolódás után kiadhatók a példányon a támogatott Transact-SQL utasítások.  Ebben a példában a lekérdezések elküldése interaktív módban történik.
 
 ```sql
 C:\>sqlcmd -S MySqlDw.database.windows.net -d Adventure_Works -U myuser -P myP@ssword -I
@@ -76,7 +76,7 @@ C:\>sqlcmd -S MySqlDw.database.windows.net -d Adventure_Works -U myuser -P myP@s
 3> QUIT
 ```
 
-A következő példák azt szemléltetik, hogyan futtathat a lekérdezések hello -Q beállítással, vagy az SQL toosqlcmd ismertetett kötegelt módban.
+A következő példák bemutatják, hogyan lehet a lekérdezéseket kötegelt módban futtatni a -Q kapcsoló használatával vagy az SQL átirányításával az sqlcmd-re.
 
 ```sql
 sqlcmd -S MySqlDw.database.windows.net -d Adventure_Works -U myuser -P myP@ssword -I -Q "SELECT name FROM sys.tables;"
@@ -87,7 +87,7 @@ sqlcmd -S MySqlDw.database.windows.net -d Adventure_Works -U myuser -P myP@sswor
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-Lásd: [sqlcmd dokumentációjában olvashat] [ sqlcmd] további információk az sqlcmd elérhető hello lehetőségeinek részleteit.
+Az sqlcmd-ben elérhető további lehetőségek részleteit az [sqlcmd dokumentációjában][sqlcmd] tekintheti meg.
 
 <!--Image references-->
 

@@ -1,6 +1,6 @@
 ---
-title: aaaWhat az Azure Scheduler? | Microsoft Docs
-description: "Azure Schedulerrel lehetővé teszi a toodeclaratively műveletek toorun hello felhőben írják le. A rendszer ezt követően a műveletek ütemezését és futtatását automatikusan végzi el."
+title: Mi az Azure Scheduler? | Microsoft Docs
+description: "Az Azure Scheduler lehetőséget biztosít a felhőben futtatandó műveletek deklaratív leírására. A rendszer ezt követően a műveletek ütemezését és futtatását automatikusan végzi el."
 services: scheduler
 documentationcenter: .NET
 author: derek1ee
@@ -14,34 +14,34 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 08/18/2016
 ms.author: deli
-ms.openlocfilehash: 062e25ae473510264dc0038198c05e7ac1e86210
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a3bf1aacd6978499d7ef77cbcb451a06b857ac38
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="what-is-azure-scheduler"></a>Mi az Azure Scheduler?
-Azure Schedulerrel lehetővé teszi a toodeclaratively műveletek toorun hello felhőben írják le. A rendszer ezt követően a műveletek ütemezését és futtatását automatikusan végzi el.  A Feladatütemező ezt használatával hajtja végre [hello Azure-portálon](scheduler-get-started-portal.md), kód, [REST API](https://msdn.microsoft.com/library/mt629143.aspx), vagy az Azure PowerShell.
+Az Azure Scheduler lehetőséget biztosít a felhőben futtatandó műveletek deklaratív leírására. A rendszer ezt követően a műveletek ütemezését és futtatását automatikusan végzi el.  A Scheduler ezt [az Azure portál](scheduler-get-started-portal.md), a kód, [a REST API](https://msdn.microsoft.com/library/mt629143.aspx) vagy az Azure PowerShell használatával végzi el.
 
 A Scheduler elvégzi az ütemezett munkák létrehozását, karbantartását és meghívását.  A Scheduler nem futtat számítási feladatokat vagy kódokat. A szolgáltatás csupán *meghívja* a máshol (az Azure-ban, helyszínen vagy másik szolgáltató által) futtatott kódokat. A meghívás a következőkön keresztül történhet: HTTP, HTTPS, tárolási sor, Service Bus-üzenetsor vagy Service Bus-témakör.
 
-A Feladatütemező ütemezések [feladatok](scheduler-concepts-terms.md), tartja a feladat végrehajtásának eredménye előzményeit, hogy egy tekintse át, és deterministically és megbízhatóan ütemezések munkaterhelések toobe fut-e. Azure WebJobs (Azure App Service Web Apps szolgáltatása hello része) és az egyéb Azure ütemezési szolgáltatása használja a Feladatütemező hello háttérben. Hello [Feladatütemező REST API](https://msdn.microsoft.com/library/mt629143.aspx) segít az ilyen műveletek hello kommunikáció kezelése. Ezért a Scheduler támogatja a [komplex és speciális, ismétlődő ütemezések](scheduler-advanced-complexity.md) egyszerű létrehozását.
+A Scheduler elvégzi a [feladatok](scheduler-concepts-terms.md) ütemezését, áttekinthető formában rögzíti a feladat-végrehajtási előzményeket, illetve determinisztikus és megbízható módon ütemezi a futtatandó számítási feladatokat. Az Azure WebJobs (az Azure App Service Web Apps szolgáltatásának része) és az Azure további ütemezési szolgáltatásai a Schedulert a háttérben futtatják. A [Scheduler REST API](https://msdn.microsoft.com/library/mt629143.aspx) megkönnyíti a műveletekkel való kommunikációt. Ezért a Scheduler támogatja a [komplex és speciális, ismétlődő ütemezések](scheduler-advanced-complexity.md) egyszerű létrehozását.
 
-Nincsenek több szolgáltatásokat, amelyek alkalmasak a Feladatütemező toohello használatát. Példa:
+A Scheduler számos különböző helyzetben alkalmazható kiválóan. Példa:
 
 * *Ismétlődő alkalmazásműveletek:* A Twitteren megjelenő adatok hírcsatornába foglalása.
-* *Napi karbantartás*: A naplók naponta történő törlése, biztonsági másolatok készítése és egyéb karbantartási feladatok. Például egy rendszergazda dönthet hello adatbázis tooback 1:00 órakor minden nap hello következő kilenc hónapban.
+* *Napi karbantartás*: A naplók naponta történő törlése, biztonsági másolatok készítése és egyéb karbantartási feladatok. A rendszergazda például megadhatja, hogy hajnali 1 órakor kíván az adatbázisról biztonsági mentést készíteni a következő kilenc hónap minden napján.
 
-A Feladatütemező toocreate lehetővé teszi, frissítése, törlése, megtekintése és feladatok kezelése és [gyűjtemények feladat](scheduler-concepts-terms.md) programozott módon, a parancsfájlok segítségével, és hello portálon.
+A Scheduler segítségével szoftveresen hozhat létre, frissíthet, törölhet, tekinthet meg és felügyelhet feladatokat és [feladatgyűjteményeket](scheduler-concepts-terms.md), parancsprogramok használatával vagy a portálon.
 
 ## <a name="see-also"></a>Lásd még:
  [Az Azure Scheduler alapfogalmai, terminológiája és entitáshierarchiája](scheduler-concepts-terms.md)
 
- [Az ütemező hello Azure-portálon az első lépéseiben](scheduler-get-started-portal.md)
+ [Ismerkedés a Scheduler szolgáltatás Azure Portalon való használatával](scheduler-get-started-portal.md)
 
  [Csomagok és számlázás az Azure Schedulerben](scheduler-plans-billing.md)
 
- [Hogyan ütemezi a toobuild összetett és speciális ismétlődési és Azure-ütemező](scheduler-advanced-complexity.md)
+ [Komplex és speciális, ismétlődő ütemezések létrehozása az Azure Scheduler használatával](scheduler-advanced-complexity.md)
 
  [Az Azure Scheduler REST API-jának leírása](https://msdn.microsoft.com/library/mt629143)
 

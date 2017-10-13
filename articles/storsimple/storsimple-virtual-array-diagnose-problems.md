@@ -1,6 +1,6 @@
 ---
-title: "a StorSimple virtuális tömb aaaTroubleshoot |} Microsoft Docs"
-description: "Ismerteti, hello StorSimple Device Manager funkció diagnosztizálása, és elmagyarázza, hogyan toouse azt tootroubleshoot a StorSimple virtuális tömbjét."
+title: "A StorSimple virtuális tömb hibaelhárítása |} Microsoft Docs"
+description: "Ismerteti a StorSimple Device Manager funkció felderítésére, és ismerteti a StorSimple virtuális tömb hibaelhárítás céljából."
 services: storsimple
 documentationcenter: 
 author: manuaery
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/21/2016
 ms.author: manuaery
-ms.openlocfilehash: 5b8e05d5ce6000424830059db450a0e662d19238
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a75e68c84a50977b162ca4d3a4a02936ca78cb6b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-storsimple-device-manager-service-tootroubleshoot-hello-storsimple-virtual-array"></a>Hello StorSimple Device Manager szolgáltatás tootroubleshoot hello StorSimple virtuális tömb használata
+# <a name="use-the-storsimple-device-manager-service-to-troubleshoot-the-storsimple-virtual-array"></a>A StorSimple Device Manager szolgáltatással a StorSimple virtuális tömb hibaelhárítása
 ## <a name="overview"></a>Áttekintés
 
-hello StorSimple Device Manager biztosít egy **Diagnosztizálás és problémák megoldására** beállítás belül hello szolgáltatás összefoglaló panel, amely kiemeli a hello gyakran előforduló problémák merülhetnek fel az adott virtuális tömb némelyike és hogyan toosolve őket. Ez az oktatóanyag bemutatja a hello önkiszolgáló hibaelhárítási számára biztosított képesség belül hello StorSimple Device Manager szolgáltatás.
+A StorSimple Device Manager biztosít egy **Diagnosztizálás és problémák megoldására** belül a szolgáltatás összefoglaló panel, amelyen néhány gyakran előforduló hibát, ami akkor fordulhat elő, a virtuális tömb és azok megoldási történő beállítását. Ez az oktatóanyag bemutatja a önkiszolgáló hibaelhárítási számára biztosított képesség a StorSimple Device Manager szolgáltatáson belül.
 
 ![Problémák diagnosztizálása és megoldása](./media/storsimple-virtual-array-diagnose-problems/diagnose-problems-main.png)
 
 ## <a name="diagnose-and-solve-issues"></a>Diagnosztizálhatja és a problémák megoldásához
 
-Néhány gyakori problémák hello hello StorSimple virtuális tömb tekintheti meg és tekintse át a hello megoldások toothose problémák közvetlenül a a StorSimple Device Manager szolgáltatás összefoglaló panel.
+Megtekintheti a StorSimple virtuális tömbbel rendelkező gyakori problémák és megoldások a StorSimple Device Manager szolgáltatás összefoglaló panelen tekintse át az jobb ismertetünk.
 
-#### <a name="toodiagnose-an-issue-with-your-virtual-array"></a>a virtuális tömb problémát toodiagnose
+#### <a name="to-diagnose-an-issue-with-your-virtual-array"></a>A virtuális tömb problémát felderítéséhez
 
-1. Kattintson a **Diagnosztizálás és problémák megoldására** hello beállítás bal oldali ablaktábláján a StorSimple Device Manager szolgáltatás összefoglaló panel tooview gyakori problémák listáját.
+1. Kattintson a **Diagnosztizálás és problémák megoldására** beállítása a StorSimple Device Manager szolgáltatás összefoglalás panelről a bal oldali panelen a gyakori problémák listájának megtekintéséhez.
 
-2. **Bontsa ki a** hello tünete hello probléma áll tooreview kapcsolatban **a javasolt lépéseket** tooaid meg hello probléma elhárításához. Ha kívánja, tekintse át hello részletes dokumentációt hivatkozásokat követve további referenciaként.
+2. **Bontsa ki a** meg a probléma áll kapcsolatban tekintse át a tünete **a javasolt lépéseket** támogatási meg a probléma elhárításához. Ha kívánja, tekintse át további hivatkozás részletes dokumentációt hivatkozásokra.
    
     ![A probléma elhárítása](./media/storsimple-virtual-array-diagnose-problems/diagnose-problems-offline.png)
 
-3. Ha nem toofind egy hivatkozás tooyour probléma vagy oldható meg, elérhetők a tooMicrosoft támogatás segítségét.
+3. Nem sikerül, a probléma mutató hivatkozás található vagy nem oldható meg, ha elérhetők a Microsoft Support további segítségért.
 
 ## <a name="next-steps"></a>Következő lépések
-Ismerje meg, hogyan túl[egy támogatási jegy naplózása](storsimple-virtual-array-log-support-ticket.md)
+Megtudhatja, hogyan [egy támogatási jegy naplózása](storsimple-virtual-array-log-support-ticket.md)
 

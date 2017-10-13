@@ -1,6 +1,6 @@
 ---
-title: "egy eszköz Node.js segítségével aaaConnect |} Microsoft Docs"
-description: "Ismerteti, hogyan tooconnect egy eszköz toohello Azure IoT Suite előre konfigurált távoli figyelési megoldást igényelnek Node.js nyelven írt alkalmazás segítségével."
+title: "Csatlakoztassa a Node.js használatával |} Microsoft Docs"
+description: "Eszköz csatlakoztatása az Azure IoT Suite előre konfigurált távoli figyelési megoldást igényelnek olyan alkalmazással Node.js nyelven írt ismerteti."
 services: 
 suite: iot-suite
 documentationcenter: na
@@ -15,31 +15,31 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 80bf2b70f15f539bfce4f135d533c46dd2b3f5a7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6459b6196eb7f4a083b67e5a421bcc0d51d39e5c
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="connect-your-device-toohello-remote-monitoring-preconfigured-solution-nodejs"></a>Csatlakozzon a távoli felügyeleti előkonfigurált megoldás (Node.js) eszköz toohello
+# <a name="connect-your-device-to-the-remote-monitoring-preconfigured-solution-nodejs"></a>Csatlakoztassa az eszközt a távoli felügyeleti előkonfigurált megoldás (Node.js)
 [!INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
 ## <a name="create-a-nodejs-sample-solution"></a>Node.js sample megoldás létrehozása
 
-Győződjön meg arról, hogy Node.js verziót 0.11.5, vagy később a fejlesztői gépen telepítve. Futtathat `node --version` hello parancssori toocheck hello verziójú.
+Győződjön meg arról, hogy Node.js verziót 0.11.5, vagy később a fejlesztői gépen telepítve. Futtathat `node --version` verziójának a parancssorból.
 
-1. Hozzon létre egy nevű **RemoteMonitoring** a fejlesztési számítógépén. Keresse meg a parancssori környezetben toothis mappát.
+1. Hozzon létre egy nevű **RemoteMonitoring** a fejlesztési számítógépén. Keresse meg a mappát a parancssori környezetben.
 
-1. A következő futtatási hello parancsok toodownload és a telepítés hello csomagok toocomplete hello mintaalkalmazás van szüksége:
+1. Futtassa az alábbi parancsokat a végre kell hajtania a mintaalkalmazás letöltése és telepítése a csomagok:
 
     ```
     npm init
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
 
-1. A hello **RemoteMonitoring** mappa, hozzon létre egy nevű fájlt **remote_monitoring.js**. Nyissa meg ezt a fájlt egy szövegszerkesztőben.
+1. Az a **RemoteMonitoring** mappa, hozzon létre egy nevű fájlt **remote_monitoring.js**. Nyissa meg ezt a fájlt egy szövegszerkesztőben.
 
-1. A hello **remote_monitoring.js** fájlt, adja hozzá a következő hello `require` utasításokat:
+1. Az a **remote_monitoring.js** fájlt, adja hozzá a következő `require` utasításokat:
 
     ```nodejs
     'use strict';
@@ -50,14 +50,14 @@ Győződjön meg arról, hogy Node.js verziót 0.11.5, vagy később a fejleszt�
     var Message = require('azure-iot-device').Message;
     ```
 
-1. Adja hozzá a következő változók deklarációja után hello hello `require` utasításokat. Cserélje le a hello helyőrző értékeket [eszközazonosító] és [eszközkulcs] az eszköz a távoli felügyeleti megoldás irányítópultja hello feljegyzett értékekkel. Hello megoldás irányítópult tooreplace [IOT hubbal Name] az IoT Hub állomásnév hello használata. Ha például az IoT Hub gazdaneve **contoso.azure-devices.net**, cserélje le az [IoTHub Name] helyőrzőt a **contoso** értékre:
+1. Adja hozzá a következő változódeklarációkat az `require` utasítások után. Cserélje le a [Device Id] és a [Device Key] helyőrzőértékeket az eszközhöz tartozó értékekre a távoli figyelési megoldás irányítópultja alapján. Cserélje le az [IoTHub Name] értéket a megoldás irányítópultján található IoT Hub gazdanévre. Ha például az IoT Hub gazdaneve **contoso.azure-devices.net**, cserélje le az [IoTHub Name] helyőrzőt a **contoso** értékre:
 
     ```nodejs
     var connectionString = 'HostName=[IoTHub Name].azure-devices.net;DeviceId=[Device Id];SharedAccessKey=[Device Key]';
     var deviceId = ConnectionString.parse(connectionString).DeviceId;
     ```
 
-1. Adja hozzá a következő változók toodefine hello néhány alapvető telemetriai adatokat:
+1. Adja hozzá a következő változók néhány alapvető telemetriai adatok meghatározásához:
 
     ```nodejs
     var temperature = 50;
@@ -65,7 +65,7 @@ Győződjön meg arról, hogy Node.js verziót 0.11.5, vagy később a fejleszt�
     var externalTemperature = 55;
     ```
 
-1. Adja hozzá a következő segítő függvény tooprint művelet eredményeit hello:
+1. Adja hozzá a következő segítő függvény nyomtatni a művelet eredménye:
 
     ```nodejs
     function printErrorFor(op) {
@@ -75,7 +75,7 @@ Győződjön meg arról, hogy Node.js verziót 0.11.5, vagy később a fejleszt�
     }
     ```
 
-1. Adja hozzá a következő segítő függvény toouse toorandomize hello telemetriai értékek hello:
+1. Adja hozzá a következő segítő függvény használatával a telemetriai adatok értékek ügyfélfuttatási:
 
     ```nodejs
     function generateRandomIncrement() {
@@ -83,7 +83,7 @@ Győződjön meg arról, hogy Node.js verziót 0.11.5, vagy később a fejleszt�
     }
     ```
 
-1. Adja hozzá a következő hello definíciója hello **deviceinfo információja** objektum hello eszköz küld indításakor:
+1. Adja hozzá a következő definícióját a **deviceinfo információja** objektum indítási küld az eszköz:
 
     ```nodejs
     var deviceMetaData = {
@@ -97,7 +97,7 @@ Győződjön meg arról, hogy Node.js verziót 0.11.5, vagy később a fejleszt�
     };
     ```
 
-1. Adja hozzá a következő hello hello eszköz iker definíciója jelentett értékek. Ez a definíció hello hello eszköz támogatja a közvetlen módszerek leírását tartalmazza:
+1. Adja hozzá a következő definícióját az eszköz iker jelentett értékek. Ez a definíció tartalmazza az eszköz támogatja a közvetlen módszerek:
 
     ```nodejs
     var reportedProperties = {
@@ -126,62 +126,62 @@ Győződjön meg arról, hogy Node.js verziót 0.11.5, vagy később a fejleszt�
             "Longitude": -122.125497
         },
         "SupportedMethods": {
-            "Reboot": "Reboot hello device",
-            "InitiateFirmwareUpdate--FwPackageURI-string": "Updates device Firmware. Use parameter FwPackageURI toospecifiy hello URI of hello firmware file"
+            "Reboot": "Reboot the device",
+            "InitiateFirmwareUpdate--FwPackageURI-string": "Updates device Firmware. Use parameter FwPackageURI to specifiy the URI of the firmware file"
         },
     }
     ```
 
-1. Adja hozzá a következő függvény toohandle hello hello **újraindítás** közvetlen metódus hívása:
+1. Adja hozzá a következő függvény kezelni a **újraindítás** közvetlen metódus hívása:
 
     ```nodejs
     function onReboot(request, response) {
         // Implement actual logic here.
         console.log('Simulated reboot...');
 
-        // Complete hello response
+        // Complete the response
         response.send(200, "Rebooting device", function(err) {
             if(!!err) {
                 console.error('An error occurred when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.' );
+                console.log('Response to method \'' + request.methodName + '\' sent successfully.' );
             }
         });
     }
     ```
 
-1. Adja hozzá a következő függvény toohandle hello hello **InitiateFirmwareUpdate** közvetlen metódus hívása. Ez a közvetlen módszer használja az hello belső vezérlőprogram kép toodownload paraméter toospecify hello helyre, és kezdeményezi aszinkron módon hello hello eszköz belső vezérlőprogram frissítése:
+1. Adja hozzá a következő függvény kezelni a **InitiateFirmwareUpdate** közvetlen metódus hívása. Ez a közvetlen módszer egy paraméter használatával adja meg a belső vezérlőprogram kép helyét, és kezdeményezi a belső vezérlőprogram frissítése az eszközön aszinkron módon:
 
     ```nodejs
     function onInitiateFirmwareUpdate(request, response) {
         console.log('Simulated firmware update initiated, using: ' + request.payload.FwPackageURI);
 
-        // Complete hello response
+        // Complete the response
         response.send(200, "Firmware update initiated", function(err) {
             if(!!err) {
                 console.error('An error occurred when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.' );
+                console.log('Response to method \'' + request.methodName + '\' sent successfully.' );
             }
         });
 
-        // Add logic here tooperform hello firmware update asynchronously
+        // Add logic here to perform the firmware update asynchronously
     }
     ```
 
-1. Adja hozzá a következő kód toocreate egy ügyfél példány hello:
+1. Adja hozzá az ügyfél-példány létrehozása a következő kódot:
 
     ```nodejs
     var client = Client.fromConnectionString(connectionString, Protocol);
     ```
 
-1. Adja hozzá a következő kódot a hello:
+1. Adja hozzá a következő kódot:
 
-    * Hello kapcsolat megnyitásához.
-    * Hello küldése **deviceinfo információja** objektum.
+    * Nyissa meg a kapcsolatot.
+    * Küldjön a **deviceinfo információja** objektum.
     * A kezelő kívánt tulajdonságok beállítása.
     * Jelentett tulajdonságok küldése.
-    * Regisztrálja a kezelők hello közvetlen módszer.
+    * A közvetlen módszer kezelők regisztrálni.
     * Indítsa el a telemetriai adatok küldését.
 
     ```nodejs
@@ -242,9 +242,9 @@ Győződjön meg arról, hogy Node.js verziót 0.11.5, vagy később a fejleszt�
     });
     ```
 
-1. Mentse a módosításokat toohello hello **remote_monitoring.js** fájlt.
+1. A módosítások mentése a **remote_monitoring.js** fájlt.
 
-1. Futtassa a következő parancsot a következő parancssor toolaunch hello mintaalkalmazás hello:
+1. A következő parancsot egy parancssorból indítsa el a mintaalkalmazást:
    
     ```
     node remote_monitoring.js

@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate Hadoop-fürtök használata a .NET - Azure HDInsight |} Microsoft Docs"
-description: "Ismerje meg, hogyan toocreate Hadoop, HBase, Storm vagy Spark fürtök a Linuxon HDInsight használatának hello HDInsight .NET SDK-val."
+title: ".NET - Azure HDInsight Hadoop-fürtök létrehozása |} Microsoft Docs"
+description: "Útmutató a Hadoop, HBase, Storm vagy Spark-fürtök létrehozása Linux rendszeren a HDInsight a HDInsight .NET SDK használatával."
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -16,21 +16,21 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/17/2017
 ms.author: jgao
-ms.openlocfilehash: 9460b0d27143c97860b3540fcec26851d755aa28
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ccd3a0c777510e0694170b2f9acc8da0e7dcde9b
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="create-linux-based-clusters-in-hdinsight-using-hello-net-sdk"></a>Linux-alapú fürtök létrehozása a Hdinsightban hello .NET SDK használatával
+# <a name="create-linux-based-clusters-in-hdinsight-using-the-net-sdk"></a>Linux-alapú fürtök létrehozása a HDInsight .NET SDK használatával
 
 [!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
 
 
-Ismerje meg, hogyan toocreate Hadoop-fürthöz az Azure HDInsight fürt használt hello .NET SDK-val.
+Ismerje meg, a Hadoop-fürt létrehozása az Azure HDInsight-fürt a .NET SDK használatával.
 
 > [!IMPORTANT]
-> hello jelen dokumentumban leírt lépések egy munkavégző csomóponton hozzon létre egy fürtöt. Ha azt tervezi, több mint 32 munkavégző csomópont, vagy a fürt létrehozásakor, vagy a létrehozás után hello fürt skálázással kell tooselect egy átjárócsomóponttal mérete legalább 8 maggal és 14GB RAM-mal.
+> A jelen dokumentumban leírt lépések egy munkavégző csomóponton hozzon létre egy fürtöt. Ha azt tervezi, több mint 32 munkavégző csomópont, vagy a fürt létrehozásakor, vagy a fürt létrehozása után skálázással szüksége legalább 8 maggal és 14GB ram átjárócsomópont kiválasztásához.
 >
 > A csomópont-méretek és a társuló költségeket további információkért lásd: [HDInsight árképzési](https://azure.microsoft.com/pricing/details/hdinsight/).
 
@@ -46,8 +46,8 @@ Ismerje meg, hogyan toocreate Hadoop-fürthöz az Azure HDInsight fürt használ
 
 1. Nyissa meg a Visual Studio 2017.
 2. Hozzon létre egy új Visual C# konzolalkalmazást.
-3. A hello **eszközök** menüben kattintson a **NuGet-Csomagkezelő**, és kattintson a **Csomagkezelő konzol**.
-4. Futtassa a következő parancs a hello konzol tooinstall hello csomagok hello:
+3. Az a **eszközök** menüben kattintson a **NuGet-Csomagkezelő**, és kattintson a **Csomagkezelő konzol**.
+4. A konzolon a csomagok telepítéséhez futtassa a következő parancsot:
 
     ```powershell
     Install-Package Microsoft.Rest.ClientRuntime.Azure.Authentication -Pre
@@ -55,8 +55,8 @@ Ismerje meg, hogyan toocreate Hadoop-fürthöz az Azure HDInsight fürt használ
     Install-Package Microsoft.Azure.Management.HDInsight
     ```
 
-    Ezek a parancsok .NET kódtárak és hivatkozások toothem toohello jelenlegi Visual Studio-projekt hozzáadása.
-5. A Megoldáskezelőben kattintson duplán a **Program.cs** tooopen, illessze be a kódját a következő hello, és adjon meg értékeket hello változók:
+    Ezek a parancsok .NET-kódtárakra és azok mutató hivatkozások hozzáadása a jelenlegi Visual Studio-projekt.
+5. A Megoldáskezelőben kattintson duplán a **Program.cs** való megnyitásához, az alábbi kódot, és adjon meg értékeket a változók:
 
     ```csharp
     using System;
@@ -77,7 +77,7 @@ Ismerje meg, hogyan toocreate Hadoop-fürthöz az Azure HDInsight fürt használ
             private const string SubscriptionId = "<Your Azure Subscription ID>";
             // Replace with your AAD tenant ID if necessary
             private const string TenantId = UserTokenProvider.CommonTenantId; 
-            // This is hello GUID for hello PowerShell client. Used for interactive logins in this example.
+            // This is the GUID for the PowerShell client. Used for interactive logins in this example.
             private const string ClientId = "1950a258-227b-4e31-a9cf-717495945fc2";
 
             private const string ExistingResourceGroupName = "<Enter Resource Group Name>";
@@ -87,7 +87,7 @@ Ismerje meg, hogyan toocreate Hadoop-fürthöz az Azure HDInsight fürt használ
 
             private const string NewClusterName = "<Enter HDInsight Cluster Name>";
             private const int NewClusterNumNodes = 2;
-            private const string NewClusterLocation = "EAST US 2";     // Must be hello same as hello default Storage account
+            private const string NewClusterLocation = "EAST US 2";     // Must be the same as the default Storage account
             private const OSType NewClusterOSType = OSType.Linux;
             private const string NewClusterType = "Hadoop";
             private const string NewClusterVersion = "3.5";
@@ -105,11 +105,11 @@ Ismerje meg, hogyan toocreate Hadoop-fürthöz az Azure HDInsight fürt használ
                 WVfu15kKyY8YAiynVbdV51EB0SZaSLdMZkZQ81xi4DDtCZD7qvdtWEFwLa+EHdkd
                 pzO36Mtev5XvseLQqzXzZ6aVBdlXoppGHXkoGHAMNOtEWRXpAUtEccjpATsaZhQR
                 zZdZlzHduhM10ofS4YOYBADt9JohporbQVHM5w6qUhIgyiPo7w==
-                ---- END SSH2 PUBLIC KEY ----"; //replace hello public key with your own
+                ---- END SSH2 PUBLIC KEY ----"; //replace the public key with your own
 
             static void Main(string[] args)
             {
-                System.Console.WriteLine("Creating a cluster.  hello process takes 10 too20 minutes ...");
+                System.Console.WriteLine("Creating a cluster.  The process takes 10 to 20 minutes ...");
 
                 // Authenticate and get a token
                 var authToken = GetTokenCloudCredentials(TenantId, ClientId, SubscriptionId);
@@ -118,7 +118,7 @@ Ismerje meg, hogyan toocreate Hadoop-fürthöz az Azure HDInsight fürt használ
                 // Get an HDInsight management client
                 _hdiManagementClient = new HDInsightManagementClient(authToken);
 
-                // Set parameters for hello new cluster
+                // Set parameters for the new cluster
                 var parameters = new ClusterCreateParameters
                 {
                     ClusterSizeInNodes = NewClusterNumNodes,
@@ -127,11 +127,11 @@ Ismerje meg, hogyan toocreate Hadoop-fürthöz az Azure HDInsight fürt használ
                     OSType = NewClusterOSType,
                     Version = NewClusterVersion,
 
-                    // Use an Azure storage account as hello default storage
+                    // Use an Azure storage account as the default storage
                     DefaultStorageInfo = new AzureStorageInfo(ExistingStorageName, ExistingStorageKey, ExistingBlobContainer),
 
-                    // Is hello cluster type RServer? If so, you can set hello EdgeNodeSize.
-                    // Otherwise, hello default VM size is used.
+                    // Is the cluster type RServer? If so, you can set the EdgeNodeSize.
+                    // Otherwise, the default VM size is used.
                     //EdgeNodeSize = "Standard_D12_v2",
 
                     Password = NewClusterPassword,
@@ -142,7 +142,7 @@ Ismerje meg, hogyan toocreate Hadoop-fürthöz az Azure HDInsight fürt használ
                     //SshPublicKey = NewClusterSshPublicKey
                 };
 
-                // Is hello cluster type RServer? If so, add hello RStudio configuration option.
+                // Is the cluster type RServer? If so, add the RStudio configuration option.
                 /*
                 parameters.Configurations.Add(
                     "rserver",
@@ -153,15 +153,15 @@ Ismerje meg, hogyan toocreate Hadoop-fürthöz az Azure HDInsight fürt használ
                 );
                 */
 
-                // Create hello cluster
+                // Create the cluster
                 _hdiManagementClient.Clusters.Create(ExistingResourceGroupName, NewClusterName, parameters);
 
-                System.Console.WriteLine("hello cluster has been created. Press ENTER toocontinue ...");
+                System.Console.WriteLine("The cluster has been created. Press ENTER to continue ...");
                 System.Console.ReadLine();
             }
 
             /// <summary>
-            /// Authenticate tooan Azure subscription and retrieve an authentication token
+            /// Authenticate to an Azure subscription and retrieve an authentication token
             /// </summary>
             static TokenCloudCredentials GetTokenCloudCredentials(string TenantId, string ClientId, string SubscriptionId)
             {
@@ -181,29 +181,29 @@ Ismerje meg, hogyan toocreate Hadoop-fürthöz az Azure HDInsight fürt használ
             /// <param name="authToken">An authentication token for your Azure subscription</param>
             static void EnableHDInsight(TokenCloudCredentials authToken)
             {
-                // Create a client for hello Resource manager and set hello subscription ID
+                // Create a client for the Resource manager and set the subscription ID
                 var resourceManagementClient = new ResourceManagementClient(new TokenCredentials(authToken.Token));
                 resourceManagementClient.SubscriptionId = SubscriptionId;
-                // Register hello HDInsight provider
+                // Register the HDInsight provider
                 var rpResult = resourceManagementClient.Providers.Register("Microsoft.HDInsight");
             }
         }
     }
     ```
 
-6. Cserélje le a hello osztály kombinálását.
-7. Nyomja le az **F5** toorun hello alkalmazás. A konzolablakban nyissa meg kell, és hello alkalmazás hello állapotának megjelenítése. Meg vannak felszólító tooenter a Azure-fiók hitelesítő adatait. Is igénybe vehet néhány percet toocreate HDInsight-fürtöt, általában körülbelül 15.
+6. Cserélje le a osztály kombinálását.
+7. Az alkalmazás futtatásához nyomja le az **F5** billentyűt. A konzolablakban nyissa meg kell, és az alkalmazás állapotának megjelenítése. Az Azure-fiók hitelesítő adatainak megadását kéri. Hozzon létre egy HDInsight-fürtjéhez, általában körülbelül 15 több percet is igénybe vehet.
 
 ## <a name="use-bootstrap"></a>Használja a rendszerindítás
 
-Rendszerindítási használja, beállíthatja továbbá beállítások hello fürt létrehozása során.  További információkért lásd: [testreszabása HDInsight-fürtök használata rendszerindítási](hdinsight-hadoop-customize-cluster-bootstrap.md).
+Rendszerindítási használva állíthatja hozzáadása a fürt létrehozása során.  További információkért lásd: [testreszabása HDInsight-fürtök használata rendszerindítási](hdinsight-hadoop-customize-cluster-bootstrap.md).
 
-Módosítsa a hello minta [fürtöket létrehozni](#create-clusters) tooconfigure egy Hive-beállítás:
+Módosítsa a minta [fürtöket létrehozni](#create-clusters) a Hive beállításainak:
 
 ```csharp
 static void Main(string[] args)
 {
-    System.Console.WriteLine("Creating a cluster.  hello process takes 10 too20 minutes ...");
+    System.Console.WriteLine("Creating a cluster.  The process takes 10 to 20 minutes ...");
 
     // Authenticate and get a token
     var authToken = GetTokenCloudCredentials(TenantId, ClientId, SubscriptionId);
@@ -212,7 +212,7 @@ static void Main(string[] args)
     // Get an HDInsight management client
     _hdiManagementClient = new HDInsightManagementClient(authToken);
 
-    // Set parameters for hello new cluster
+    // Set parameters for the new cluster
     var extendedParameters = new ClusterCreateParametersExtended
     {
         Location = NewClusterLocation,
@@ -281,7 +281,7 @@ static void Main(string[] args)
             {
                 UserName = NewClusterSshUserName,
                 Password = NewClusterSshPassword //,
-                // When use a SSH pulbic key, make sure tooremove comments, headers and trailers, and concatenate hello key into one line 
+                // When use a SSH pulbic key, make sure to remove comments, headers and trailers, and concatenate the key into one line 
                 //SshProfile = new SshProfile
                 //{
                 //    SshPublicKeys = sshPublicKeys
@@ -318,7 +318,7 @@ static void Main(string[] args)
 
     _hdiManagementClient.Clusters.Create(ExistingResourceGroupName, NewClusterName, extendedParameters);
 
-    System.Console.WriteLine("hello cluster has been created. Press ENTER toocontinue ...");
+    System.Console.WriteLine("The cluster has been created. Press ENTER to continue ...");
     System.Console.ReadLine();
 }
 ```
@@ -327,12 +327,12 @@ static void Main(string[] args)
 
 Parancsfájlművelet használja, beállíthatja a további beállítások fürt létrehozása során.  További információkért lásd: [testreszabása Linux-alapú HDInsight-fürtök használata parancsfájlművelet](hdinsight-hadoop-customize-cluster-linux.md).
 
-Módosítsa a hello minta [fürtöket létrehozni](#create-clusters) toocall egy parancsfájlművelet tooinstall R:
+Módosítsa a minta [fürtöket létrehozni](#create-clusters) hívni egy parancsfájlművelet r telepítéséhez
 
 ```csharp
 static void Main(string[] args)
 {
-    System.Console.WriteLine("Creating a cluster.  hello process takes 10 too20 minutes ...");
+    System.Console.WriteLine("Creating a cluster.  The process takes 10 to 20 minutes ...");
 
     // Authenticate and get a token
     var authToken = GetTokenCloudCredentials(TenantId, ClientId, SubscriptionId);
@@ -341,7 +341,7 @@ static void Main(string[] args)
     // Get an HDInsight management client
     _hdiManagementClient = new HDInsightManagementClient(authToken);
 
-    // Set parameters for hello new cluster
+    // Set parameters for the new cluster
     var parameters = new ClusterCreateParameters
     {
         ClusterSizeInNodes = NewClusterNumNodes,
@@ -366,7 +366,7 @@ static void Main(string[] args)
 
     _hdiManagementClient.Clusters.Create(ExistingResourceGroupName, NewClusterName, parameters);
 
-    System.Console.WriteLine("hello cluster has been created. Press ENTER toocontinue ...");
+    System.Console.WriteLine("The cluster has been created. Press ENTER to continue ...");
     System.Console.ReadLine();
 }
 ```
@@ -376,7 +376,7 @@ static void Main(string[] args)
 Ha problémába ütközik a HDInsight-fürtök létrehozása során, tekintse meg [a hozzáférés-vezérlésre vonatkozó követelményeket](hdinsight-administer-use-portal-linux.md#create-clusters).
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy sikeresen létrehozott egy HDInsight-fürtre, használja a következő toolearn hogyan hello toowork a fürthöz. 
+Most, hogy sikeresen létrehozott egy HDInsight-fürtre, használja a következő megtudhatja, hogyan működnek a fürthöz. 
 
 ### <a name="hadoop-clusters"></a>Hadoop-fürtök
 * [A Hive használata a HDInsightban](hdinsight-use-hive.md)
@@ -396,7 +396,7 @@ Most, hogy sikeresen létrehozott egy HDInsight-fürtre, használja a következ�
 * [Önálló alkalmazás létrehozása a Scala használatával](hdinsight-apache-spark-create-standalone-application.md)
 * [Feladatok távoli futtatása Spark-fürtön a Livy használatával](hdinsight-apache-spark-livy-rest-interface.md)
 * [Spark és BI: Interaktív adatelemzés végrehajtása a Spark on HDInsight használatával, BI-eszközökkel](hdinsight-apache-spark-use-bi-tools.md)
-* [Spark és Machine Learning: használja a Spark on HDInsight toopredict élelmiszervizsgálati eredmények](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [Spark és Machine Learning: A Spark on HDInsight használata az élelmiszervizsgálati eredmények előrejelzésére](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Spark Streaming: A Spark on HDInsight használata valós idejű streamelési alkalmazások összeállítására](hdinsight-apache-spark-eventhub-streaming.md)
 
 ### <a name="run-jobs"></a>Feladatok futtatása

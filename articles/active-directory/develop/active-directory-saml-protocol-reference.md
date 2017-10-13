@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure AD SAML protokoll referenciája |} Microsoft Docs"
-description: "Ez a cikk áttekintést hello egyszeri bejelentkezéshez, és egyetlen Sign-Out SAML profilok az Azure Active Directoryban."
+title: "Az Azure AD SAML protokoll referenciája |} Microsoft Docs"
+description: "Ez a cikk áttekintést nyújt az Azure Active Directoryban egyszeri bejelentkezéshez, és egyetlen Sign-Out SAML-profil."
 services: active-directory
 documentationcenter: .net
 author: priyamohanram
@@ -16,25 +16,25 @@ ms.date: 07/21/2017
 ms.author: priyamo
 ms.custom: aaddev
 ms.reviewer: dastrock
-ms.openlocfilehash: d712289b16dc40a6b43a96fadef729c55cdaac47
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d5ffba5d0c409fe9de7a9e82c6faa4ca2702ab95
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# Hogyan használja az Azure Active Directory a hello SAML protokoll
-Az Azure Active Directory (Azure AD) használja a SAML 2.0 protokoll tooenable alkalmazások egyszeri bejelentkezés tooprovide élmény tootheir felhasználók hello. Hello [egyszeri bejelentkezés](active-directory-single-sign-on-protocol-reference.md) és [kijelentkezési egyetlen](active-directory-single-sign-out-protocol-reference.md) SAML-profilok az Azure AD azt ismertetik, hogyan helyességi feltételek, a protokollok és a kötések SAML használt hello identity provider szolgáltatás.
+# Hogyan használja az Azure Active Directory a az SAML protokoll
+Az Azure Active Directory (Azure AD) használja a SAML 2.0 protokoll egy egyszeri bejelentkezéses élményt biztosíthat a felhasználók alkalmazások esetén. A [egyszeri bejelentkezés](active-directory-single-sign-on-protocol-reference.md) és [kijelentkezési egyetlen](active-directory-single-sign-out-protocol-reference.md) SAML-profilok az Azure AD azt ismertetik, hogyan SAML helyességi feltételek, protokollok és kötések fogja használni az identitás-szolgáltató szolgáltatás.
 
-SAML protokoll hello identitásszolgáltató (az Azure AD) és hello szolgáltató (hello alkalmazás) tooexchange adatainak magukról igényel.
+SAML protokoll megköveteli az identitásszolgáltató (az Azure AD) és a szolgáltató (az alkalmazás) maguk vonatkozó adatokat.
 
-Amikor egy alkalmazás regisztrálása az Azure AD hello alkalmazás fejlesztőjének az Azure AD összevonási kapcsolatos információk regisztrálja. Ez magában foglalja a hello **átirányítási URI-** és **metaadatok URI** hello alkalmazás.
+Egy alkalmazás regisztrálása az Azure ad-val esetén az alkalmazás fejlesztőjének összevonási kapcsolatos információk az Azure ad-val regisztrálja. Ez magában foglalja a **átirányítási URI-** és **metaadatok URI** az alkalmazás.
 
-Az Azure AD használ hello **metaadatok URI** a hello cloud service tooretrieve hello aláírási kulcs és hello kijelentkezési hello felhőalapú szolgáltatás URI. Ha hello az alkalmazás nem támogatja a metaadatok URI, hello fejlesztői kell forduljon a Microsoft támogatási tooprovide hello kijelentkezési URI és az aláírási kulcs.
+Az Azure AD használja a **metaadatok URI** a felhőalapú szolgáltatás, az aláírási kulcs és a jelentkezzen ki a felhőalapú szolgáltatás URI beolvasása. Ha az alkalmazás nem támogatja a metaadatok URI, a fejlesztőnek kell-e arra, hogy a kijelentkezési URI a Microsoft támogatási szolgálatához, és az aláírási kulcs.
 
-Az Azure Active Directory bérlői-specifikus és közös (bérlői független) egy bejelentkezés és az egyetlen kijelentkezési végpontok mutatja. URL-címmel rendelkező helyek képviselő – nincsenek csak egy azonosítók – így elvégezheti a toohello végpont tooread hello metaadatok.
+Az Azure Active Directory bérlői-specifikus és közös (bérlői független) egy bejelentkezés és az egyetlen kijelentkezési végpontok mutatja. URL-címmel rendelkező helyek képviselő – nincsenek csak egy azonosítók--, nyissa meg a végpont metaadatainak olvasásához.
 
-* Itt található: hello bérlői-specifikus végpont `https://login.microsoftonline.com/<TenantDomainName>/FederationMetadata/2007-06/FederationMetadata.xml`.  Hello <TenantDomainName> helyőrző egy regisztrált tartománynév vagy a TenantID GUID Azonosítóját az Azure AD-bérlő. Például hello összevonási metaadatok hello contoso.com bérlő jelenleg: https://login.microsoftonline.com/contoso.com/FederationMetadata/2007-06/FederationMetadata.xml
+* A bérlő-specifikus végpont itt található: `https://login.microsoftonline.com/<TenantDomainName>/FederationMetadata/2007-06/FederationMetadata.xml`.  A <TenantDomainName> helyőrző egy regisztrált tartománynév vagy a TenantID GUID Azonosítóját az Azure AD-bérlő. Például az összevonási metaadatok a contoso.com bérlő jelenleg: https://login.microsoftonline.com/contoso.com/FederationMetadata/2007-06/FederationMetadata.xml
 
-* Itt található: hello bérlői független végpont `https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml`. A végpont címét **közös** megjelenik, helyett egy bérlői tartomány neve vagy azonosítója.
+* A bérlői független végpont itt található: `https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml`. A végpont címét **közös** megjelenik, helyett egy bérlői tartomány neve vagy azonosítója.
 
-Az Azure AD-közzétevő hello összevonási metaadatok dokumentumok kapcsolatos információkért lásd: [összevonási metaadatok](active-directory-federation-metadata.md).
+Az Azure AD-közzétevő összevonási metaadatok dokumentumok kapcsolatos információkért lásd: [összevonási metaadatok](active-directory-federation-metadata.md).

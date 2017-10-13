@@ -1,9 +1,9 @@
 ---
-title: "egy belső terheléselosztó - sablon Azure aaaCreate |} Microsoft Docs"
-description: "Ismerje meg, hogyan toocreate egy belső terheléselosztó sablon az erőforrás-kezelő használatával"
+title: "Belső terheléselosztó létrehozása – Azure-sablon | Microsoft Docs"
+description: "Ismerje meg, hogyan hozható létre belső terheléselosztó sablon használatával a Resource Managerben"
 services: load-balancer
 documentationcenter: na
-author: kumudd
+author: KumudD
 manager: timlt
 tags: azure-resource-manager
 ms.assetid: 64150862-6ced-42de-85dc-89d323257d7c
@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/23/2017
+ms.date: 09/25/2017
 ms.author: kumud
-ms.openlocfilehash: 3ffa8178b863367cd79e2bc2b7ce4e45b23267e5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f3f89bd85e6e91e84b603abc9824a51b54ccee47
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-an-internal-load-balancer-using-a-template"></a>Belső terheléselosztó létrehozása sablon használatával
 
@@ -28,25 +28,27 @@ ms.lasthandoff: 10/06/2017
 > * [Azure CLI](../load-balancer/load-balancer-get-started-ilb-arm-cli.md)
 > * [Sablon](../load-balancer/load-balancer-get-started-ilb-arm-template.md)
 
+[!INCLUDE [load-balancer-basic-sku-include.md](../../includes/load-balancer-basic-sku-include.md)]
+
 [!INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 > [!NOTE]
-> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md).  Ez a cikk ismerteti a használatával a Microsoft azt javasolja, a legtöbb új központi telepítés helyett hello hello Resource Manager üzembe helyezési modellben [klasszikus üzembe helyezési modellel](load-balancer-get-started-ilb-classic-ps.md).
+> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md).  Ez a cikk a Resource Manager-alapú üzemi modell használatát ismerteti, amelyet a Microsoft a legtöbb új telepítéshez a [klasszikus üzemi modell](load-balancer-get-started-ilb-classic-ps.md) helyett javasol.
 
 [!INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
-## <a name="deploy-hello-template-by-using-click-toodeploy"></a>Hello sablon üzembe helyezése a toodeploy kattintson
+## <a name="deploy-the-template-by-using-click-to-deploy"></a>A sablon üzembe helyezése kattintással végrehajtható üzembe helyezéssel
 
-hello mintasablon elérhető hello nyilvános tárházban hello alapértelmezett értékeket használja toogenerate hello forgatókönyv a fent leírt tartalmazó paraméter fájlt használ. toodeploy toodeploy, a sablon használatával kattintson kövesse [erre a hivatkozásra](https://github.com/Azure/azure-quickstart-templates/tree/master/201-2-vms-internal-load-balancer), kattintson a **tooAzure telepítése**, cserélje le a hello alapértelmezett paraméterértékek szükség és hello portal hello utasításait kövesse.
+A nyilvános tárházban elérhető mintasablon a fent leírt forgatókönyv létrehozásához használt alapértelmezett értékeket tartalmazó paraméterfájlt használja. Ha a sablon üzembe helyezését kattintással végrehajtható üzembe helyezéssel szeretné elvégezni, kövesse [ezt a hivatkozást](https://github.com/Azure/azure-quickstart-templates/tree/master/201-2-vms-internal-load-balancer), kattintson az **Üzembe helyezés az Azure-on** lehetőségre, cserélje ki az alapértelmezett paraméterértékeket, ha szükséges, majd kövesse a portálon megjelenő utasításokat.
 
-## <a name="deploy-hello-template-by-using-powershell"></a>Hello sablon üzembe helyezése a PowerShell használatával
+## <a name="deploy-the-template-by-using-powershell"></a>A sablon üzembe helyezése a PowerShell használatával
 
-toodeploy hello sablon PowerShell használatával hajtsa végre az alábbi hello lépéseket.
+A letöltött sablon PowerShell használatával történő üzembe helyezéséhez kövesse az alábbi lépéseket.
 
-1. Ha még sosem használta az Azure PowerShell, lásd: [hogyan tooInstall és konfigurálása az Azure PowerShell](/powershell/azure/overview) és az útmutatás hello összes hello módon toohello toosign befejezése az Azure, és jelölje ki az előfizetését.
-2. Töltse le a hello paraméterek tooyour helyi lemezen.
-3. Hello fájl szerkesztésével, és mentse.
-4. Futtassa a hello **New-AzureRmResourceGroupDeployment** erőforrás csoport használatával parancsmag toocreate hello sablont.
+1. Ha még nem használta az Azure PowerShellt, tekintse meg [How to Install and Configure Azure PowerShell](/powershell/azure/overview) (Az Azure PowerShell telepítése és konfigurálása) című részt, majd kövesse az utasításokat egészen az utolsó lépésig az Azure-ba való bejelentkezéshez és az előfizetése kiválasztásához.
+2. Töltse le a paramétereket tartalmazó fájlt a helyi lemezre.
+3. Szerkessze a fájlt, majd mentse el.
+4. A **New-AzureRmResourceGroupDeployment** parancsmag futtatásával és a sablon használatával hozzon létre egy erőforráscsoportot.
 
     ```azurecli
     New-AzureRmResourceGroupDeployment -Name TestRG -Location westus `
@@ -54,23 +56,23 @@ toodeploy hello sablon PowerShell használatával hajtsa végre az alábbi hello
         -TemplateParameterFile 'C:\temp\azuredeploy.parameters.json'
     ```
 
-## <a name="deploy-hello-template-by-using-hello-azure-cli"></a>Hello sablon üzembe helyezése hello Azure parancssori felület használatával
+## <a name="deploy-the-template-by-using-the-azure-cli"></a>A sablon üzembe helyezése az Azure parancssori felület használatával
 
-toodeploy hello sablon hello Azure parancssori felület használatával kövesse hello lépéseket.
+Az alábbi lépéseket követve hozhatja létre a sablont az Azure parancssori felület használatával.
 
-1. Ha még sosem használta az Azure parancssori felület, lásd: [telepítése és konfigurálása az Azure parancssori felület hello](../cli-install-nodejs.md) hello utasítások mentése toohello pont, ahol ki kell választania az Azure-fiókja és -előfizetést.
-2. Futtassa a hello **azure config mód** tooswitch tooResource Manager üzemmód, alább látható módon.
+1. Ha még sosem használta az Azure CLI-t, akkor tekintse meg [Install and Configure the Azure CLI](../cli-install-nodejs.md) (Az Azure CLI telepítése és konfigurálása) részt, és kövesse az utasításokat addig a pontig, ahol ki kell választania az Azure-fiókot és -előfizetést.
+2. Az **azure config mode** parancs futtatásával váltson az Erőforrás-kezelő módra, a lent látható módon.
 
     ```azurecli
     azure config mode arm
     ```
 
-    Itt egy hello parancs fenti hello várt kimenet:
+    A fenti parancs várható kimenete:
 
         info:    New mode is arm
 
-3. Nyissa meg a hello paraméterfájl, válassza ki annak tartalmát, és mentse azokat a számítógép tooa fájl. Ehhez a példához mentettük hello paraméterfájl túl*parameters.json*.
-4. Futtassa a hello **azure-csoportok központi telepítés** parancs toodeploy új belső terheléselosztó hello hello sablonnal és paraméterfájlokkal használatával, a fent letöltött és módosított fájlok. hello kimenet után látható hello lista hello paramétereket ismerteti.
+3. Nyissa meg a paraméterfájlt, jelölje ki a tartalmát, és mentse el a számítógépén található egyik fájlba. Ennél a példánál a paramétereket tartalmazó fájlt a *parameters.json* fájlba mentettük.
+4. Futtassa az **azure group deployment create** parancsot, hogy a fent letöltött és módosított sablonnal és paraméterfájlokkal üzembe helyezhesse az új belső terheléselosztót. A kimenet után látható lista ismerteti a használt paramétereket.
 
     ```azurecli
     azure group create --name TestRG --location westus --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-2-vms-internal-load-balancer/azuredeploy.json --parameters-file parameters.json

@@ -1,6 +1,6 @@
 ---
-title: "aaaGet .NET segítségével igény szerinti tartalomtovábbítás a használatába |} Microsoft Docs"
-description: "Ez az oktatóanyag végigvezeti hello végrehajtási egy on igény szerinti tartalomtovábbító alkalmazást az Azure Media Services .NET használatával."
+title: "Tartalmak továbbítása igény szerint a .NET használatával | Microsoft Docs"
+description: "Ez az útmutató lépésről lépésre ismerteti, hogyan valósíthat meg egy igény szerinti tartalomtovábbító alkalmazást a .NET-keretrendszert használó Azure Media Services segítségével."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,90 +14,90 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 07/31/2017
 ms.author: juliako
-ms.openlocfilehash: 4ca9394bd581e1d9062e5a008a410b2c058e017e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f0be787ba1ccee067fb1d7e6a6554be32f886089
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-delivering-content-on-demand-using-net-sdk"></a>Tartalmak továbbítása igény szerint a .NET SDK használatával
 [!INCLUDE [media-services-selector-get-started](../../includes/media-services-selector-get-started.md)]
 
-Ez az oktatóanyag végigvezeti hello egy alapszintű Video-on-Demand (VoD) tartalomtovábbító service végrehajtási hello Azure Media Services .NET SDK-t használó Azure Media Services (AMS) alkalmazással.
+Ez az oktatóanyag végigvezeti a lépéseken, amelyek segítségével alapszintű igény szerinti videotartalom-továbbítási szolgáltatást hozhat létre az Azure Media Services .NET SDK segítségével, az Azure Media Services (AMS) alkalmazással.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az alábbiakban hello szükséges toocomplete hello oktatóanyag:
+Az ismertetett eljárás végrehajtásához a következők szükségesek:
 
 * Egy Azure-fiók. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/).
-* Egy Media Services-fiók. egy Media Services-fiók toocreate lásd [hogyan tooCreate Media Services-fiók](media-services-portal-create-account.md).
+* Egy Media Services-fiók. A Media Services-fiók létrehozásáról a [Media Services-fiók létrehozása](media-services-portal-create-account.md) című cikk nyújt tájékoztatást.
 * A .NET-keretrendszer 4.0-s vagy újabb verziója.
 * Visual Studio.
 
-Ez az oktatóanyag hello a következő feladatokat tartalmazza:
+Az oktatóanyag a következő feladatokat tartalmazza:
 
-1. Indítsa el az adatfolyam-továbbítási végpontra (hello Azure-portál használatával).
+1. A streamvégpont elindítása (az Azure Portal használatával).
 2. Egy Visual Studio-projekt létrehozása és konfigurálása.
-3. Csatlakozás a Media Services-fiók toohello.
+3. A Media Services-fiókhoz való csatlakozás.
 2. Videofájl feltöltése
-3. Hello forrásfájl kódolása adaptív sávszélességű MP4-fájlokat alakítja.
-4. Hello objektum közzététele, és a streamelési és a progresszív letöltési URL-cím.  
+3. Forrásfájl kódolása adaptív sávszélességű MP4-fájlokká
+4. Az objektum közzététele, majd a streamelési és a progresszív letöltési URL-cím lekérése  
 5. Tartalom lejátszása
 
 ## <a name="overview"></a>Áttekintés
-Ez az oktatóanyag végigvezeti hello végrehajtási egy Video-on-Demand (VoD) tartalomtovábbító alkalmazást .NET-keretrendszerhez készült Azure Media Services (AMS) SDK használatával.
+Ez az útmutató lépésről lépésre bemutatja, hogyan valósíthat meg egy Video-on-Demand (VoD) tartalomtovábbító alkalmazást a .NET-keretrendszerhez készült Azure Media Services (AMS) SDK segítségével.
 
-hello útmutató bemutatja a Media Services alapvető munkafolyamatait hello és hello leggyakoribb programozási objektumokat és a Media Services-fejlesztés szükséges feladatok. A hello hello az oktatóanyag befejezése után képes toostream kell vagy fokozatosan letölteni egy feltöltött, kódolt és letöltött példa médiafájlt lesz.
+Az útmutató bemutatja a Media Services alapvető munkafolyamatait és a Media Services-fejlesztéshez szükséges leggyakoribb programozási objektumokat és feladatokat. Az oktatóprogram elvégzése után képes lesz adatfolyamot továbbítani vagy fokozatosan letölteni egy saját maga által feltöltött, kódolt és letöltött példa médiafájlt.
 
 ### <a name="ams-model"></a>AMS-modell
 
-hello következő kép bemutatja a leggyakrabban használt hello objektumok hello Media Services OData modellre VoD-alkalmazások fejlesztése során.
+A következő kép a Media Services OData-modellen alapuló VoD-alkalmazásfejlesztések során leggyakrabban használt objektumok közül mutat be néhányat.
 
-Kattintson a hello kép tooview, teljes méret.  
+Kattintson a képre a teljes méretű megjelenítéshez.  
 
 <a href="./media/media-services-dotnet-get-started/media-services-overview-object-model.png" target="_blank"><img src="./media/media-services-dotnet-get-started/media-services-overview-object-model-small.png"></a> 
 
-Megtekintheti a teljes minta hello [Itt](https://media.windows.net/API/$metadata?api-version=2.15).  
+A teljes modellt [itt](https://media.windows.net/API/$metadata?api-version=2.15) tekintheti meg.  
 
-## <a name="start-streaming-endpoints-using-hello-azure-portal"></a>Indítsa el az adatfolyam-végpontok hello Azure-portál használatával
+## <a name="start-streaming-endpoints-using-the-azure-portal"></a>A streamvégpont elindítása az Azure Portal használatával
 
-Ha az Azure Media Services egyik leggyakoribb forgatókönyve hello elkötelezett használatával adatfolyam adaptív sávszélességű streamelést működik. A Media Services dinamikus becsomagolást biztosít, amely lehetővé teszi toodeliver az adaptív sávszélességű MP4-kódolású tartalmak anélkül, hogy előre csomagolt toostore (MPEG DASH, HLS, Smooth Streaming), a Media Services just-in-time, által támogatott streamformátumok Ezekbe a formátumokba egyes verzióit.
+Az Azure Media Services egyik leggyakrabban használt funkciója a videók továbbítása az adaptív sávszélességű streamelés használatával. A Media Services dinamikus csomagolást biztosít, amelynek köszönhetően adaptív sávszélességű, MP4 formátumban kódolt tartalmait a Media Services által támogatott streamformátumok valamelyikében (MPEG DASH, HLS, Smooth Streaming) továbbíthatja igény szerint, mindezt anélkül, hogy az adott formátumban előcsomagolt verziót tárolna.
 
 >[!NOTE]
->Az AMS-fiók létrehozásakor egy **alapértelmezett** adatfolyam-továbbítási végpontra tooyour fiók kerül hello **leállítva** állapotát. a dinamikus csomagolás és a dinamikus titkosítás tartalmat, és hajtsa végre a megfelelő előnyeit streaming toostart hello streamvégpontra, amelyből el kívánja toostream tartalom toobe rendelkezik hello **futtató** állapotát.
+>Az AMS-fiók létrehozásakor a rendszer hozzáad egy **alapértelmezett** streamvégpontot a fiókhoz **Leállítva** állapotban. A tartalom streamelésének megkezdéséhez, valamint a dinamikus csomagolás és a dinamikus titkosítás kihasználásához a tartalomstreameléshez használt streamvégpontnak **Fut** állapotban kell lennie.
 
-toostart hello streamvégpontra, a következő hello:
+A streamvégpont elindításához tegye a következőket:
 
-1. Jelentkezzen be hello [Azure-portálon](https://portal.azure.com/).
-2. Hello-beállítások ablakában kattintson a Streaming végpontok.
-3. Kattintson a hello alapértelmezett streamvégpontra.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com/).
+2. Kattintson a Settings (Beállítások) ablak Streaming endpoints (Streamvégpontok) elemére.
+3. Kattintson az alapértelmezett streamvégpontra.
 
-    hello alapértelmezett STREAMING ENDPOINT részletek ablak.
+    Megjelenik a DEFAULT STREAMING ENDPOINT DETAILS (Alapértelmezett streamvégpont adatai) ablak.
 
-4. Kattintson a hello Start ikonra.
-5. Kattintson a hello Mentés gombra toosave a módosításokat.
+4. Kattintson a Start ikonra.
+5. Mentse a módosításokat a Save (Mentés) gombra kattintva.
 
 ## <a name="create-and-configure-a-visual-studio-project"></a>Egy Visual Studio-projekt létrehozása és konfigurálása
 
-1. A fejlesztési környezet kialakítása és feltöltése hello app.config fájl kapcsolatadatok, a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-use.md). 
-2. Hozzon létre egy új mappát (mappa bárhol lehet a helyi meghajtóról), és szeretné, hogy tooencode és adatfolyam, vagy fokozatosan letölteni egy .mp4 fájlt másolja. Ebben a példában hello "C:\VideoFiles" elérési utat használja.
+1. Állítsa be a fejlesztési környezetet, és töltse fel az app.config fájlt a kapcsolatadatokkal a [.NET-keretrendszerrel történő Media Services-fejlesztést](media-services-dotnet-how-to-use.md) ismertető dokumentumban leírtak szerint. 
+2. Hozzon létre egy új mappát (a mappa a helyi meghajtón bárhol lehet), és másoljon bele egy .mp4-fájlt, amelyet szeretne kódolni vagy fokozatosan letölteni. Ebben a példában a „C:\VideoFiles” elérési utat használjuk.
 
-## <a name="connect-toohello-media-services-account"></a>Csatlakozás a Media Services-fiók toohello
+## <a name="connect-to-the-media-services-account"></a>Csatlakozás a Media Services-fiókhoz
 
-A Media Services használata a .NET, használnia kell a hello **CloudMediaContext** osztály a legtöbb Media Services-programozási feladathoz: tooMedia Services-fiók összekötő; létrehozása, frissítése, elérése és hello következő törlése objektumok: eszközök, eszköz-fájlok, feladatok, hozzáférési házirendek, keresők, stb.
+A .NET-keretrendszerű Media Services-szolgáltatások használatakor a **CloudMediaContext** osztályt kell használnia a legtöbb Media Services-programozási feladathoz – ilyenek például a Media Services-fiókhoz való csatlakozás, továbbá az adategységek, adategységfájlok, feladatok, hozzáférési házirendek, keresők és egyebek létrehozása, frissítése, elérése és törlése.
 
-Hello alapértelmezett Program osztályt felülírása a kódját a következő hello. hello kód bemutatja, hogyan tooread hello csatlakozási érték hello App.config fájlból, és hogyan toocreate hello **CloudMediaContext** rendelés tooconnect tooMedia objektum szolgáltatások. További információkért lásd: [csatlakozás a Media Services API toohello](media-services-use-aad-auth-to-access-ams-api.md).
+Írja felül az alapértelmezett Program osztályt a következő kóddal. A kód bemutatja, hogyan olvashatja be a csatlakozási értékeket az App.config fájlból, és hogyan hozhatja létre a Media Services-csatlakozáshoz szükséges **CloudMediaContext** objektumot. További információ: [Connecting to the Media Services API](media-services-use-aad-auth-to-access-ams-api.md) (Csatlakozás a Media Services API-hoz).
 
-Győződjön meg arról, hogy tooupdate hello fájl neve és elérési toowhere rendelkezik a médiafájl.
+Ne feledje frissíteni a fájl nevét és elérési útvonalát a médiafájl helyének megfelelően.
 
-Hello **fő** függvény olyan módszereket, amelyek később lesznek meghatározva hív további ebben a szakaszban.
+A **Fő** függvény olyan módszereket hív meg, amelyek jelen szakasz során később lesznek meghatározva.
 
 > [!NOTE]
-> Akkor lesz kell első fordítási hibák összes hello funkciók definícióit hozzáadásáig.
+> Amíg nem veszi fel az összes függvénydefinícióit, a rendszer fordítási hibát jelez.
 
     class Program
     {
-        // Read values from hello App.config file.
+        // Read values from the App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -114,8 +114,8 @@ Hello **fő** függvény olyan módszereket, amelyek később lesznek meghatáro
 
             _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
 
-            // Add calls toomethods defined in this section.
-            // Make sure tooupdate hello file name and path toowhere you have your media file.
+            // Add calls to methods defined in this section.
+            // Make sure to update the file name and path to where you have your media file.
             IAsset inputAsset =
             UploadFile(@"C:\VideoFiles\BigBuckBunny.mp4", AssetCreationOptions.None);
 
@@ -126,7 +126,7 @@ Hello **fő** függvény olyan módszereket, amelyek később lesznek meghatáro
         }
         catch (Exception exception)
         {
-            // Parse hello XML error message in hello Media Services response and create a new
+            // Parse the XML error message in the Media Services response and create a new
             // exception with its content.
             exception = MediaServicesExceptionParser.Parse(exception);
 
@@ -141,23 +141,23 @@ Hello **fő** függvény olyan módszereket, amelyek később lesznek meghatáro
 
 ## <a name="create-a-new-asset-and-upload-a-video-file"></a>Új adategység létrehozása és videofájl feltöltése
 
-A Media Services szolgáltatásban a digitális fájlok feltöltése vagy kimenete egy adategységbe történik. Hello **eszköz** entitás tartalmazhat videót, hang, képek, miniatűröket, szöveges nyomon követi, és feliratfájlokat fájlok (és mindezen fájlok metaadatait hello.)  Miután hello fájlok feltöltése után a lesz biztonságosan tárolva a tartalom további feldolgozás és adatfolyam-hello felhő. hello eszköz hello fájlok nevezzük **adategység-fájloknak**.
+A Media Services szolgáltatásban a digitális fájlok feltöltése vagy kimenete egy adategységbe történik. Az **Adategység** entitás tartalmazhat videót, hangot, képeket, miniatűröket, szövegsávokat és feliratfájlokat (valamint mindezen fájlok metaadatait).  A fájlok feltöltése után a tartalom a felhőben lesz biztonságosan tárolva további feldolgozás és adatfolyam-továbbítás céljából. Az adategységben található fájlokat **adategység-fájloknak** nevezzük.
 
-Hello **UploadFile** hívások az alábbiakban meghatározott metódus **CreateFromFile** (.NET SDK-bővítmények meghatározott). **CreateFromFile** létrehoz egy új adategységet, mely hello a megadott forrásfájl fel lesz töltve.
+Az alábbiakban meghatározott **UploadFile** módszer a **CreateFromFile** módszert hívja meg (amely a .NET SDK-bővítmények között van meghatározva). A **CreateFromFile** létrehoz egy új adategységet, amelybe a megadott forrásfájl fel lesz töltve.
 
-Hello **CreateFromFile** metódus **AssetCreationOptions** amellyel meg kell adni hello alábbi adategység-létrehozási lehetőségek egyikét:
+A **CreateFromFile** módszer számára az **AssetCreationOptions** alapján határozhatja meg, hogy az alábbi adategység-létrehozási lehetőségek közül melyiket használja:
 
-* **Nincs** – Nincs titkosítás. Ez az alapértelmezett érték hello. Ügyeljen arra, hogy ezen lehetőség használatakor a tartalom sem átvitel, sem tárolás közben nincs védve.
-  Ha egy MP4 toodeliver fájlt progresszív letöltés útján tervez, használja ezt a beállítást.
-* **StorageEncrypted** -használja ezt a beállítást tooencrypt a tiszta tartalom helyileg titkosítással Advanced Encryption Standard (AES)-256 bit, amely tooAzure helyén tárolás titkosítása feltöltését. Storage-titkosítással védett adategységek automatikusan titkosítás és egy titkosított fájl rendszer előzetes tooencoding, és ha szükséges újra titkosítani előzetes toouploading egy új kimeneti eszközként helyezve. a tárolás titkosítása hello elsődleges használati eset az, amikor toosecure a kiváló minőségű bemeneti médiafájljait erős titkosítással aktívan a lemezen.
+* **Nincs** – Nincs titkosítás. Ez az alapértelmezett érték. Ügyeljen arra, hogy ezen lehetőség használatakor a tartalom sem átvitel, sem tárolás közben nincs védve.
+  Ha egy MP4-fájlt progresszív letöltés útján tervez továbbítani, használja ezt a lehetőséget.
+* **StorageEncrypted** – Ezen lehetőség használatakor a tiszta tartalom helyileg, 256 bites Advanced Encryption Standard (AES) titkosítással lesz titkosítva, és így kerül feltöltésre az Azure Storage tárolóba, ahol titkosítva lesz tárolva. A Storage-titkosítással védett adategységek titkosítása a kódolás előtt automatikusan fel lesz oldva, és egy titkosított fájlrendszerbe kerülnek; az új kimeneti adategységként való újbóli feltöltés előtt pedig lehetőség van az újbóli titkosításukra. A Storage-titkosítás elsősorban akkor hasznos, ha a kiváló minőségű bemeneti médiafájljait erős titkosítással szeretné védeni a lemezen való tároláskor.
 * **CommonEncryptionProtected** – Használja ezt a lehetőséget, ha olyan tartalmat tölt fel, amely már korábban titkosítva és védve lett általános titkosítás vagy a PlayReady DRM által (például egy PlayReady DRM titkosítással védett Smooth Streaming-fájlt).
-* **EnvelopeEncryptionProtected** – Használja ezt a lehetőséget, ha AES által titkosított HLS tartalmakat tölt fel. Vegye figyelembe, hogy hello fájlokat kell kódolni és titkosítani Transform Manager használatával.
+* **EnvelopeEncryptionProtected** – Használja ezt a lehetőséget, ha AES által titkosított HLS tartalmakat tölt fel. Megjegyzés: ehhez a fájlokat a Transform Manager használatával kell kódolni és titkosítani.
 
-Hello **CreateFromFile** módszert is lehetővé válik annak a visszahívás rendelés tooreport hello feltöltési folyamatáról hello fájl.
+A **CreateFromFile** módszer használatával egy visszahívást is megadhat, amely visszajelzést ad a fájl feltöltési folyamatáról.
 
-A következő példa hello, azt adja meg a **nincs** hello eszköz lehetőségek.
+A következő példában az adategység lehetőségei közt a **Nincs** választ adtuk meg.
 
-Adja hozzá a következő metódus toohello Program osztály hello.
+Adja hozzá a Program osztályhoz a következő módszert.
 
     static public IAsset UploadFile(string fileName, AssetCreationOptions options)
     {
@@ -175,23 +175,23 @@ Adja hozzá a következő metódus toohello Program osztály hello.
     }
 
 
-## <a name="encode-hello-source-file-into-a-set-of-adaptive-bitrate-mp4-files"></a>Hello forrásfájl kódolása adaptív sávszélességű MP4-fájlsorozattá készletére
-Miután az adategységek bevitele a Media Services, az adathordozó lehet kódolású transmuxed teljesítményjellemzőit, és így tovább, mielőtt továbbítva lennének tooclients. Ezek a tevékenységek ütemezett, és több háttér szerepkör példányok tooensure nagy teljesítményt és rendelkezésre állás futtatni. Ezeket a tevékenységeket feladatoknak nevezzük, és minden feladat áll hello hello objektumfájlt valódi munkát atomi feladatokhoz.
+## <a name="encode-the-source-file-into-a-set-of-adaptive-bitrate-mp4-files"></a>Forrásfájl kódolása adaptív sávszélességű MP4-fájlsorozattá
+Miután az adategységek bevitele a Media Services szolgáltatásba megtörtént, a médiatartalmak többek között kódolhatók, transzmultiplexálás végezhető rajtuk vagy vízjelezhetők, mielőtt továbbítva lennének az ügyfelek felé. Ezen tevékenységek több háttérbeli szerepkörpéldányhoz képest vannak ütemezve és futtatva a magas teljesítmény és rendelkezésre állás biztosítása érdekében. Ezeket a tevékenységeket feladatoknak nevezzük. Minden egyes feladat több részműveletből áll, ezek végzik el a valódi munkát az adategységfájlon.
 
-Mivel korábban már említettük, az Azure Media Services használatakor, egyik leggyakoribb forgatókönyve hello elkötelezett az adaptív sávszélességű streamelési tooyour ügyfelek. A Media Services tudja dinamikusan csomagolni adaptív sávszélességű MP4-fájlok készlete hello a következő formátumok egyikét: HTTP Live Streaming (HLS), Smooth Streaming vagy MPEG DASH.
+Mint azt korábban már említettük, az Azure Media Services használatának egyik leggyakoribb forgatókönyve az adaptív sávszélességű streamelés az ügyfelek felé. A Media Services az adaptív sávszélességű MP4-fájlokat a következő formátumokba tudja dinamikusan csomagolni: HTTP Live Streaming (HLS), Smooth Streaming és MPEG DASH.
 
-tootake előny dinamikus becsomagolás tooencode vagy szükséges alakítható át a mezzanine (forrás) fájlt az adaptív sávszélességű MP4-vagy adaptív sávszélességű Smooth Streaming-fájlsorozattá.  
+A dinamikus csomagolás kihasználásához kódolja a mezzanine forrásfájlt egy adaptív sávszélességű MP4- vagy Smooth Streaming-fájlsorozattá.  
 
-hello a következő kód bemutatja, hogyan kódolással toosubmit feladat. hello feladat egyetlen műveletet tartalmaz, amely meghatározza a tootranscode hello mezzazine-fájlt használatával adaptív sávszélességű MP4 készletére **Media Encoder Standard**. hello kód elküldi hello feladatot, és vár, amíg az befejeződik.
+A következő kód bemutatja, hogyan küldhet el egy kódolási feladatot. A feladat egyetlen műveletet tartalmaz, amely azért felel, hogy a mezzazine-fájlt egy adaptív sávszélességű MP4-fájlsorozattá kódolódjon át a **Media Encoder Standard** használatával. A kód elküldi a feladatot, és vár, amíg az befejeződik.
 
-Ha hello feladat befejeződött, lenne képes toostream lehet az objektumot, vagy fokozatosan letölteni az átkódolás során létrejött MP4-fájlok.
+Ha a feladat befejeződött, lehetővé válik az adategység továbbítása vagy az átkódolás során létrejött MP4-fájlok progresszív letöltése.
 
-Adja hozzá a következő metódus toohello Program osztály hello.
+Adja hozzá a Program osztályhoz a következő módszert.
 
     static public IAsset EncodeToAdaptiveBitrateMP4s(IAsset asset, AssetCreationOptions options)
     {
 
-        // Prepare a job with a single task tootranscode hello specified asset
+        // Prepare a job with a single task to transcode the specified asset
         // into a multi-bitrate asset.
 
         IJob job = _context.Jobs.CreateWithSingleTask(
@@ -204,7 +204,7 @@ Adja hozzá a következő metódus toohello Program osztály hello.
         Console.WriteLine("Submitting transcoding job...");
 
 
-        // Submit hello job and wait until it is completed.
+        // Submit the job and wait until it is completed.
         job.Submit();
 
         job = job.StartExecutionProgressTask(
@@ -222,40 +222,40 @@ Adja hozzá a következő metódus toohello Program osztály hello.
         return outputAsset;
     }
 
-## <a name="publish-hello-asset-and-get-urls-for-streaming-and-progressive-download"></a>Hello objektum közzététele és az adatfolyam-továbbításhoz és progresszív letöltési URL-címek lekérése
+## <a name="publish-the-asset-and-get-urls-for-streaming-and-progressive-download"></a>Adatkészlet közzététele és az adatfolyam-továbbításhoz és progresszív letöltéshez szükséges URL-címek lekérése
 
-toostream vagy egy eszköz letöltése, akkor először kell túl "közzététele" egy kereső létrehozásával. Lokátorok biztosítanak hozzáférést toofiles hello eszköz szerepel. Media Services két lokátortípust támogat: OnDemandOrigin keresők használt toostream media (például MPEG DASH, HLS vagy Smooth Streaming) és a hozzáférési aláírás (SAS) lokátortípus, használt toodownload médiafájlok (vonatkozó további információ a SAS-keresők lásd: [ez](http://southworks.com/blog/2015/05/27/reusing-azure-media-services-locators-to-avoid-facing-the-5-shared-access-policy-limitation/) blog).
+Egy adategység továbbításához vagy letöltéséhez először a „közzététele” szükséges, egy kereső létrehozásával. Az objektumban található fájlokhoz a lokátorok biztosítanak hozzáférést. A Media Services kétféle keresőtípust támogat: az OnDemandOrigin keresők médiatartalmak továbbításához használatosak (például MPEG DASH, HLS vagy Smooth Streaming), a közös hozzáférésű jogosultságkódos (SAS) keresők pedig médiafájlok letöltéséhez (a SAS-keresőkkel kapcsolatos további információkért lásd [ezt](http://southworks.com/blog/2015/05/27/reusing-azure-media-services-locators-to-avoid-facing-the-5-shared-access-policy-limitation/) a blogot).
 
 ### <a name="some-details-about-url-formats"></a>Néhány információ az URL-formátumokról
 
-Hello keresők létrehozása után hozhat létre hello URL-címeket kell használt toostream vagy töltse le a fájlokat. Ebben az oktatóanyagban hello minta fog kimeneti illessze be a megfelelő böngészőkben URL-címeket. Ez a szakasz néhány rövid példán mutatja be a különféle formátumokat.
+A keresők létrehozása után összeállíthatja a fájlok továbbításához vagy letöltéséhez használandó URL-címeket. Az oktatóanyagban lévő minta kimenetei olyan URL-címek, amelyek a megfelelő böngészőkbe beilleszthetőek. Ez a szakasz néhány rövid példán mutatja be a különféle formátumokat.
 
-#### <a name="a-streaming-url-for-mpeg-dash-has-hello-following-format"></a>MPEG DASH-továbbítási egy URL-formátum a következő hello rendelkezik:
+#### <a name="a-streaming-url-for-mpeg-dash-has-the-following-format"></a>Egy MPEG DASH-továbbítási URL-címnek a következő formátumban kell lennie:
 
 {stream végpontjának neve-Media Services fiók neve}.streaming.mediaservices.windows.net/{kereső azonosítója}/{fájlnév}.ism/Manifest**(format=mpd-time-csf)**
 
-#### <a name="a-streaming-url-for-hls-has-hello-following-format"></a>Egy HLS streamelési URL-címet a következő formátumban hello rendelkezik:
+#### <a name="a-streaming-url-for-hls-has-the-following-format"></a>Egy HLS-továbbítási URL-címnek a következő formátumban kell lennie:
 
 {stream végpontjának neve-Media Services fiók neve}.streaming.mediaservices.windows.net/{kereső azonosítója}/{fájlnév}.ism/Manifest**(format=m3u8-aapl)**
 
-#### <a name="a-streaming-url-for-smooth-streaming-has-hello-following-format"></a>Smooth Streaming egy adatfolyam-továbbítási URL-címnek a hello a következő formátumban:
+#### <a name="a-streaming-url-for-smooth-streaming-has-the-following-format"></a>Egy Smooth Streaming URL-címnek a következő formátumban kell lennie:
 
 {stream végpontjának neve-Media Services fiók neve}.streaming.mediaservices.windows.net/{kereső azonosítója}/{fájlnév}.ism/Manifest
 
 
-#### <a name="a-sas-url-used-toodownload-files-has-hello-following-format"></a>A használt SAS URL-cím toodownload fájlok hello formátuma a következő esetében:
+#### <a name="a-sas-url-used-to-download-files-has-the-following-format"></a>Egy fájlok letöltéséhez használt SAS URL-címnek a következő formátumban kell lennie:
 
 {blob-tároló neve}/{adategység neve}/{fájlnév}/{SAS-aláírás}
 
-Media Services .NET SDK-bővítmények adja meg, hogy visszatérési URL-címek formázva hello kényelmes segédmódszereket közzétett objektumnak.
+A Media Services .NET SDK-bővítmények olyan kényelmes segédmódszereket biztosítanak, amelyek formázott URL-címeket adnak meg a közzétett adategységekhez.
 
-hello következő használ a .NET SDK-bővítmények toocreate keresők és tooget streaming és a progresszív letöltési URL-cím. hello kód azt is bemutatja, hogyan toodownload fájlok tooa helyi mappát.
+A következő kód .NET SDK-bővítmények használatával hoz létre keresőket és kér le adatfolyam-továbbítási és progresszív letöltési URL-címeket. A kód azt is bemutatja, hogyan tölthetők le fájlok egy helyi mappába.
 
-Adja hozzá a következő metódus toohello Program osztály hello.
+Adja hozzá a Program osztályhoz a következő módszert.
 
     static public void PublishAssetGetURLs(IAsset asset)
     {
-        // Publish hello output asset by creating an Origin locator for adaptive streaming,
+        // Publish the output asset by creating an Origin locator for adaptive streaming,
         // and a SAS locator for progressive download.
 
         _context.Locators.Create(
@@ -276,30 +276,30 @@ Adja hozzá a következő metódus toohello Program osztály hello.
                 .ToList()
                 .Where(af => af.Name.EndsWith(".mp4", StringComparison.OrdinalIgnoreCase));
 
-        // Get hello Smooth Streaming, HLS and MPEG-DASH URLs for adaptive streaming,
-        // and hello Progressive Download URL.
+        // Get the Smooth Streaming, HLS and MPEG-DASH URLs for adaptive streaming,
+        // and the Progressive Download URL.
         Uri smoothStreamingUri = asset.GetSmoothStreamingUri();
         Uri hlsUri = asset.GetHlsUri();
         Uri mpegDashUri = asset.GetMpegDashUri();
 
-        // Get hello URls for progressive download for each MP4 file that was generated as a result
+        // Get the URls for progressive download for each MP4 file that was generated as a result
         // of encoding.
         List<Uri> mp4ProgressiveDownloadUris = mp4AssetFiles.Select(af => af.GetSasUri()).ToList();
 
 
-        // Display  hello streaming URLs.
-        Console.WriteLine("Use hello following URLs for adaptive streaming: ");
+        // Display  the streaming URLs.
+        Console.WriteLine("Use the following URLs for adaptive streaming: ");
         Console.WriteLine(smoothStreamingUri);
         Console.WriteLine(hlsUri);
         Console.WriteLine(mpegDashUri);
         Console.WriteLine();
 
-        // Display hello URLs for progressive download.
-        Console.WriteLine("Use hello following URLs for progressive download.");
+        // Display the URLs for progressive download.
+        Console.WriteLine("Use the following URLs for progressive download.");
         mp4ProgressiveDownloadUris.ForEach(uri => Console.WriteLine(uri + "\n"));
         Console.WriteLine();
 
-        // Download hello output asset tooa local folder.
+        // Download the output asset to a local folder.
         string outputFolder = "job-output";
         if (!Directory.Exists(outputFolder))
         {
@@ -307,7 +307,7 @@ Adja hozzá a következő metódus toohello Program osztály hello.
         }
 
         Console.WriteLine();
-        Console.WriteLine("Downloading output asset files tooa local folder...");
+        Console.WriteLine("Downloading output asset files to a local folder...");
         asset.DownloadToFolder(
             outputFolder,
             (af, p) =>
@@ -320,7 +320,7 @@ Adja hozzá a következő metódus toohello Program osztály hello.
 
 ## <a name="test-by-playing-your-content"></a>A tartalom lejátszhatóságának tesztelése
 
-Hello előző szakaszban meghatározott hello program futtatása után hello hasonló toohello következő jelenik meg a konzolablakban hello URL-címeket.
+Az előző szakaszban meghatározott program futtatásakor a konzolablakban a következőkhöz hasonló URL-címek jelennek meg:
 
 Adaptív adatfolyam-továbbítási URL-címek:
 
@@ -355,18 +355,18 @@ Fokozatos letöltési URL-címek (audió és videó).
     https://storagetestaccount001.blob.core.windows.net/asset-38058602-a4b8-4b33-b9f0-6880dc1490ea/BigBuckBunny_AAC_und_ch2_56kbps.mp4?sv=2012-02-12&sr=c&si=166d5154-b801-410b-a226-ee2f8eac1929&sig=P2iNZJAvAWpp%2Bj9yV6TQjoz5DIIaj7ve8ARynmEM6Xk%3D&se=2015-02-14T01:13:05Z
 
 
-toostream a videót, illessze be az URL-cím hello URL-cím textbox hello [Azure Media Services Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html).
+A videótovábbításhoz illessze be az URL-címet az [Azure Media Services Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html) lejátszó URL szövegmezőjébe.
 
-tootest progresszív letöltés, illessze be egy URL-címet a böngészőjébe (például az Internet Explorer, Chrome vagy Safari).
+A progresszív letöltés teszteléséhez másoljon egy URL-címet a böngészőjébe (például az Internet Explorerbe, Chrome-ba vagy Safariba).
 
-További információkért tekintse meg a következő témakörök hello:
+További információkért tekintse át a következők témaköröket:
 
 - [A tartalom lejátszása meglévő lejátszókkal](media-services-playback-content-with-existing-players.md)
 - [Videolejátszó alkalmazások fejlesztése](media-services-develop-video-players.md)
 - [MPEG-DASH adaptív streamelt videók beágyazása DASH.js-sel rendelkező HTML5-alkalmazásba](media-services-embed-mpeg-dash-in-html5.md)
 
 ## <a name="download-sample"></a>Minta letöltése
-hello alábbi kódminta hello kódot tartalmaz, amely ebben az oktatóanyagban létrehozott: [minta](https://azure.microsoft.com/documentation/samples/media-services-dotnet-on-demand-encoding-with-media-encoder-standard/).
+Az oktatóanyagban létrehozott kódot a következő kód tartalmazza: [minta](https://azure.microsoft.com/documentation/samples/media-services-dotnet-on-demand-encoding-with-media-encoder-standard/).
 
 ## <a name="next-steps"></a>Következő lépések
 

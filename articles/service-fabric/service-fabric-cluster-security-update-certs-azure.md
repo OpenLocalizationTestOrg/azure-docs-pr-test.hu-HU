@@ -1,6 +1,6 @@
 ---
-title: "az Azure Service Fabric-fürt aaaManage tanúsítványok |} Microsoft Docs"
-description: "Ismerteti, hogyan tooadd új tanúsítványokat, a helyettesítő tanúsítványt és a remove tanúsítvány tooor a Service Fabric-fürt."
+title: "Azure Service Fabric-fürtben lévő tanúsítványok kezelése |} Microsoft Docs"
+description: "Hozzáadhat új tanúsítványokat, a helyettesítő tanúsítvány, és távolítsa el a tanúsítványt, vagy a Service Fabric-fürt ismerteti."
 services: service-fabric
 documentationcenter: .net
 author: ChackDan
@@ -14,58 +14,58 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/09/2017
 ms.author: chackdan
-ms.openlocfilehash: 8e57bd95dbb800ecc04cf6988047e3abdc2fe56a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c433e8683755e454f9561f094269c3daccf78a62
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="add-or-remove-certificates-for-a-service-fabric-cluster-in-azure"></a>Hozzáadhat és eltávolíthat tanúsítványokat a Service Fabric-fürtök az Azure-ban
-Javasoljuk, hogy megismerje a módját a Service Fabric X.509-tanúsítványokat használ, és hello ismernie kell a [fürtök biztonsági forgatókönyveinek](service-fabric-cluster-security.md). Ismernie kell fürt tanúsítvány és felhasználási területének, mielőtt végrehajtásának folytatásához.
+Javasoljuk, hogy megismerje a módját a Service Fabric X.509-tanúsítványokat használ, és ismernie kell a [fürtök biztonsági forgatókönyveinek](service-fabric-cluster-security.md). Ismernie kell fürt tanúsítvány és felhasználási területének, mielőtt végrehajtásának folytatásához.
 
-Megadja, hogy két fürt tanúsítványok, egy elsődleges és másodlagos, amikor konfigurálja a szolgáltatás háló lehetővé biztonsági tanúsítvány tooclient tanúsítványok hozzáadása a fürt létrehozása során. Tekintse meg a túl[létrehozása egy azure-portálon fürttel](service-fabric-cluster-creation-via-portal.md) vagy [létrehozása az azure-fürttel Azure Resource Manageren keresztül](service-fabric-cluster-creation-via-arm.md) azok beállításával kapcsolatos részleteket létre idő. Ha csak egy fürt tanúsítványt ad meg, létrehozás ideje, majd használt hello elsődleges tanúsítványként. Fürt létrehozása után hozzáadhat egy új tanúsítványt, a egy másodlagos.
+A Service fabric lehetővé teszi az ügyfél-tanúsítványok mellett a fürt létrehozása során tanúsítvány biztonsági konfigurálásakor két fürt tanúsítvány, egy elsődleges és másodlagos, adja meg. Tekintse meg [létrehozása egy azure-portálon fürttel](service-fabric-cluster-creation-via-portal.md) vagy [létrehozása az azure-fürttel Azure Resource Manageren keresztül](service-fabric-cluster-creation-via-arm.md) azok beállításával kapcsolatos részleteket létre idő. Ha csak egy fürt tanúsítványt ad meg, létrehozás ideje, majd használt elsődleges tanúsítványként. Fürt létrehozása után hozzáadhat egy új tanúsítványt, a egy másodlagos.
 
 > [!NOTE]
-> Biztonságos fürt esetén mindig szüksége lesz legalább egy érvényes (a nem visszavont és a nem lejárt) fürtre (elsődleges vagy másodlagos) telepített tanúsítvány (Ha nem, hello fürt leáll a működése). 90 napig minden érvényes tanúsítvány lejárati, elérni hello rendszer állít elő, egy figyelmeztetés nyomkövetést, és egy figyelmeztetés állapotesemény hello csomóponton. Jelenleg nincs e-mail vagy más, ebben a témakörben a küld a service fabric értesítést. 
+> Biztonságos fürt esetén mindig szüksége lesz legalább egy érvényes (a nem visszavont és a nem lejárt) fürt telepített tanúsítvány (elsődleges vagy másodlagos) (Ha nem, a fürt leáll a működése). 90 napig minden érvényes tanúsítvány elérni lejárati, a rendszer létrehoz egy figyelmeztetés nyomkövetést, és egy figyelmeztetés állapotesemény a csomóponton. Jelenleg nincs e-mail vagy más, ebben a témakörben a küld a service fabric értesítést. 
 > 
 > 
 
-## <a name="add-a-secondary-cluster-certificate-using-hello-portal"></a>Hello portálon fürt másodlagos tanúsítvány hozzáadásához
+## <a name="add-a-secondary-cluster-certificate-using-the-portal"></a>A portál használatával a fürt másodlagos tanúsítvány hozzáadásához
 
-Másodlagos fürt tanúsítvány nem adható hozzá hello Azure-portálon keresztül. Toouse Azure rendelkezik, amely a powershell. a dokumentum későbbi szakaszában meghatározott hello folyamat.
+Másodlagos fürt tanúsítvány nem adható hozzá, az Azure portálon keresztül. Az Azure powershell használata, amely rendelkezik. A folyamat a dokumentum későbbi szakaszában meghatározott.
 
-## <a name="swap-hello-cluster-certificates-using-hello-portal"></a>A felcserélendő hello fürt tanúsítványok hello portál használatával
+## <a name="swap-the-cluster-certificates-using-the-portal"></a>A felcserélendő a fürt tanúsítványokat, a portál használatával
 
-Miután sikeresen telepítette a fürt másodlagos tanúsítvány, ha azt szeretné, tooswap hello elsődleges és másodlagos, majd keresse meg a toohello biztonsági panel, és hello "Elsődleges felcserélés" beállítást választva hello helyi menü tooswap hello másodlagos cert a hello elsődleges cert.
+Miután egy másodlagos fürt tanúsítványt, ha szeretne váltani, az elsődleges és másodlagos sikeresen telepített, a biztonsági panelen keresse meg, és felcserélni a másodlagos cert az elsődleges tanúsítvány a helyi menüből válassza a "Elsődleges felcserélés" lehetőséget.
 
 ![Lapozófájl-kapacitás tanúsítvány][Delete_Swap_Cert]
 
-## <a name="remove-a-cluster-certificate-using-hello-portal"></a>Távolítsa el a fürt tanúsítványt hello portál használatával
+## <a name="remove-a-cluster-certificate-using-the-portal"></a>Távolítsa el a fürt tanúsítványt, a portál használatával
 
-Biztonságos fürt esetén mindig szüksége lesz legalább egy érvényes (a nem visszavont és a nem lejárt) (elsődleges vagy másodlagos) telepített tanúsítvány Ha nem, hello fürt megszűnik működni.
+Biztonságos fürt esetén mindig szüksége lesz legalább egy érvényes (a nem visszavont és a nem lejárt) (elsődleges vagy másodlagos) telepített tanúsítvány ellenkező esetben a fürt megszűnik működni.
 
-a fürt biztonsági, Navigálás toohello biztonsági panel és select hello "Delete" kapcsolót hello helyi menüből hello másodlagos tanúsítvány használatát másodlagos tanúsítvány tooremove.
+Távolítsa el a másodlagos tanúsítvány használatát a fürt biztonsági okokból és a biztonsági panel lép, és a másodlagos tanúsítvány a helyi menüből válassza a "Törlés" lehetőséget.
 
-Ha a szándéka az elsődleges, van megjelölve, akkor kell tooswap tooremove hello tanúsítványt a másodlagos hello először, és törölje hello másodlagos, hello frissítés befejeződése után.
+Ha a szándéka az, eltávolítani a tanúsítványt, amely elsődleges van megjelölve, majd szüksége lesz a másodlagos felcserélése, és törölje a másodlagos, a frissítés befejeződése után.
 
 ## <a name="add-a-secondary-certificate-using-resource-manager-powershell"></a>Erőforrás-kezelő Powershell-lel másodlagos tanúsítvány hozzáadásához
 
-Ezek a lépések feltételezik, hogy ismeri a Resource Manager működésével és legalább egy Service Fabric-fürt Resource Manager-sablon használatával telepített, és be lesz szüksége hello fürtöt tooset használt hello sablont. Az Ön számára elfogadható JSON használatával is feltételezzük.
+Ezek a lépések feltételezik, hogy Ön ismeri a Resource Manager működésével és legalább egy Service Fabric-fürt Resource Manager-sablon használatával telepített, és a sablont, amely akkor lesz szüksége a fürt létrehozásakor használt. Az Ön számára elfogadható JSON használatával is feltételezzük.
 
 > [!NOTE]
-> Ha a keresett mintasablon és, hogy toofollow mentén vagy kiindulási pontként használható paramétereket, majd töltse le azt a ez [git-tárház](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample). 
+> Ha a keresett mintasablon és mentén vagy kiindulási pontként használható paramétereket, majd töltse le azt a ez [git-tárház](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample). 
 > 
 > 
 
 ### <a name="edit-your-resource-manager-template"></a>A Resource Manager sablon szerkesztése
 
-A következő mentén megkönnyítése érdekében minta 5-VM-1-NodeType tulajdonságok értéke-Secure_Step2.JSON frissítjük összes hello módosításokat tartalmazza. hello minta érhető el: [git-tárház](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample).
+A következő mentén megkönnyítése érdekében a minta 5-VM-1-NodeType tulajdonságok értéke-Secure_Step2.JSON frissítjük összes szerkesztést tartalmazza. a minta érhető el: [git-tárház](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample).
 
-**Győződjön meg arról, hogy toofollow hello lépéseket**
+**Ügyeljen arra, hogy kövesse a lépéseket**
 
-**1. lépés:** hello Resource Manager sablon, amelyet fürtbe toodeploy nyissa meg. (Ha hello minta letöltötte a fenti tárház hello, majd használja az 5-VM-1-NodeType tulajdonságok értéke-Secure_Step1.JSON toodeploy biztonságos fürt, és nyisson meg, hogy a sablon mentése).
+**1. lépés:** nyissa meg a Resource Manager sablon, amelyet a fürt üzembe. (Ha letöltötte a minta a fenti tárházból, 5-VM-1-NodeType tulajdonságok értéke-Secure_Step1.JSON segítségével biztonságos fürt központi telepítése, és nyissa meg, hogy a sablon mentése).
 
-**2. lépés:** Hozzáadás **két új paraméterrel** "secCertificateThumbprint" és "secCertificateUrlValue" típusú "string" toohello paraméter szakasza a sablont. A következő kódrészletet hello lemásolhatja és toohello sablon hozzáadása. Attól függően, hogy a sablon hello forrását már előfordulhat, hogy ezeknek a definiált, ha így folytassa toohello következő lépésre. 
+**2. lépés:** Hozzáadás **két új paraméterrel** "secCertificateThumbprint" és "secCertificateUrlValue", írja be a "karakterlánc" a sablon paraméter szakaszába. Másolja a következő kódrészletet, és adja hozzá a sablont. Attól függően, hogy a sablon a forráskiszolgálón előfordulhat, hogy már ezek definiált, ha úgy helyezze át a következő lépéssel. 
  
 ```JSON
    "secCertificateThumbprint": {
@@ -77,13 +77,13 @@ A következő mentén megkönnyítése érdekében minta 5-VM-1-NodeType tulajdo
     "secCertificateUrlValue": {
       "type": "string",
       "metadata": {
-        "description": "Refers toohello location URL in your key vault where hello certificate was uploaded, it is should be in hello format of https://<name of hello vault>.vault.azure.net:443/secrets/<exact location>"
+        "description": "Refers to the location URL in your key vault where the certificate was uploaded, it is should be in the format of https://<name of the vault>.vault.azure.net:443/secrets/<exact location>"
       }
     },
 
 ```
 
-**3. lépés:** módosítása toohello **Microsoft.ServiceFabric/clusters** erőforrás - keresse meg a sablon hello "Microsoft.ServiceFabric/clusters" erőforrás-definícióban. Az adott definíció tulajdonságai "Tanúsítvány" JSON található címke, amely a következő JSON részlet hello hasonlóan kell kinéznie:
+**3. lépés:** módosítja a **Microsoft.ServiceFabric/clusters** erőforrás - keresse meg a "Microsoft.ServiceFabric/clusters" erőforrás-definíció a sablonban. Az adott definíció tulajdonságai "Tanúsítvány" JSON található címke, amely a következő JSON-részlet hasonlóan kell kinéznie:
 
    
 ```JSON
@@ -96,7 +96,7 @@ A következő mentén megkönnyítése érdekében minta 5-VM-1-NodeType tulajdo
 
 Új címke "thumbprintSecondary" hozzáadása, és adjon neki egy "[parameters('secCertificateThumbprint')]" értéket.  
 
-Igen, most hello erőforrás-definíció hello hasonlóan kell kinéznie (attól függően, hogy a forrás hello sablon, nem lehet pontosan például az alábbi hello részlet). 
+Igen, most az erőforrás-definíció a következőképpen kell kinéznie (attól függően, hogy a forrás-sablon, nem lehet pontosan például az alábbi részlet). 
 
 ```JSON
       "properties": {
@@ -107,7 +107,7 @@ Igen, most hello erőforrás-definíció hello hasonlóan kell kinéznie (attól
      }
 ``` 
 
-Ha azt szeretné, túl**helyettesítő hello cert**, majd adja meg az új tanúsítvány hello az elsődleges és a mozgási hello aktuális elsődleges, a másodlagos. Ez az aktuális elsődleges tanúsítvány toohello új tanúsítvány egy központi telepítési lépésben hello helyettesítő eredményez.
+Ha azt szeretné, hogy **helyettesítő a cert**, majd adja meg az új tanúsítvány az elsődleges és áthelyezése az aktuális elsődleges, a másodlagos. Ennek eredményeképp az aktuális elsődleges tanúsítvány helyettesítő egy központi telepítési lépésben új tanúsítványt.
 
 ```JSON
       "properties": {
@@ -119,13 +119,13 @@ Ha azt szeretné, túl**helyettesítő hello cert**, majd adja meg az új tanús
 ``` 
 
 
-**4. lépés:** módosítása túl**összes** hello **Microsoft.Compute/virtualMachineScaleSets** erőforrás-definíciókban - hello Microsoft.Compute/virtualMachineScaleSets erőforrás található. definíciója. Görgessen toohello "publisher": "Microsoft.Azure.ServiceFabric", "virtualMachineProfile" alatt.
+**4. lépés:** módosítása **összes** a **Microsoft.Compute/virtualMachineScaleSets** erőforrás-definíciókban - keresse meg a Microsoft.Compute/virtualMachineScaleSets erőforrás definíciója. Görgessen az "publisher": "Microsoft.Azure.ServiceFabric", "virtualMachineProfile" alatt.
 
-A hello szolgáltatás háló publisher beállításaiban megtekintheti az alábbihoz hasonló.
+A service fabric publisher beállításaiban megtekintheti az alábbihoz hasonló.
 
 ![Json_Pub_Setting1][Json_Pub_Setting1]
 
-Új tanúsítvány bejegyzések tooit hello hozzáadása
+Az új tanúsítvány-bejegyzések felvétele
 
 ```JSON
                "certificateSecondary": {
@@ -136,11 +136,11 @@ A hello szolgáltatás háló publisher beállításaiban megtekintheti az aláb
 
 ```
 
-hello tulajdonságok most példához hasonló
+A Tulajdonságok most példához hasonló
 
 ![Json_Pub_Setting2][Json_Pub_Setting2]
 
-Ha azt szeretné, túl**helyettesítő hello cert**, majd adja meg az új tanúsítvány hello az elsődleges és a mozgási hello aktuális elsődleges, a másodlagos. Ez az aktuális tanúsítvány toohello új tanúsítványt egy központi telepítési lépésben hello kapcsolódó kulcsváltást eredményez. 
+Ha azt szeretné, hogy **helyettesítő a cert**, majd adja meg az új tanúsítvány az elsődleges és áthelyezése az aktuális elsődleges, a másodlagos. Ennek eredményeképp az aktuális tanúsítvány helyettesítő egy központi telepítési lépésben új tanúsítványt. 
 
 
 ```JSON
@@ -155,17 +155,17 @@ Ha azt szeretné, túl**helyettesítő hello cert**, majd adja meg az új tanús
                   },
 
 ```
-hello tulajdonságok most példához hasonló
+A Tulajdonságok most példához hasonló
 
 ![Json_Pub_Setting3][Json_Pub_Setting3]
 
 
-**5. lépés:** módosításokat túl**összes** hello **Microsoft.Compute/virtualMachineScaleSets** erőforrás-definíciókban - hello Microsoft.Compute/virtualMachineScaleSets erőforrás található. definíciója. Görgessen toohello "vaultCertificates":, a "OSProfile". akkor kell kinéznie.
+**5. lépés:** módosítása **összes** a **Microsoft.Compute/virtualMachineScaleSets** erőforrás-definíciókban - keresse meg a Microsoft.Compute/virtualMachineScaleSets erőforrás definíciója. A "vaultCertificates" görgessen:, a "OSProfile". akkor kell kinéznie.
 
 
 ![Json_Pub_Setting4][Json_Pub_Setting4]
 
-Adja hozzá a hello secCertificateUrlValue tooit. a következő kódrészletet hello használata:
+Adja hozzá a secCertificateUrlValue azt. a következő kódrészletet használja:
 
 ```Json
                   {
@@ -174,35 +174,35 @@ Adja hozzá a hello secCertificateUrlValue tooit. a következő kódrészletet h
                   }
 
 ```
-Most Json eredő hello kell kinéznie.
+Most már az eredményül kapott Json kell kinéznie.
 ![Json_Pub_Setting5][Json_Pub_Setting5]
 
 
 > [!NOTE]
-> Győződjön meg arról, hogy Ön a következő ismétlődő 4. és 5 Nodetypes/Microsoft.Compute/virtualMachineScaleSets erőforrás-definíciók minden hello a sablonban. Ha kihagyná valamelyik őket, hello tanúsítvány nem az adott VMSS beolvasása telepítve, és hogy előre az eredmény a fürtben, beleértve a hello fürt is (Ha nem érvényes tanúsítványokkal hello fürthöz használható biztonsági végén. Ezért kérjük, ellenőrizze, a folytatás előtt.
+> Győződjön meg arról, hogy Ön a következő ismétlődő 4. és 5 a Nodetypes/Microsoft.Compute/virtualMachineScaleSets erőforrás definíciókat a sablonban. Ha kihagyná valamelyik őket, a tanúsítvány nem beolvasása telepítve az, hogy VMSS, és látható következményekkel járhat a fürtben, beleértve a fürt is (Ha Ön végül nem érvényes tanúsítványokat, a fürt biztonsági is használhat. Ezért kérjük, ellenőrizze, a folytatás előtt.
 > 
 > 
 
 
-### <a name="edit-your-template-file-tooreflect-hello-new-parameters-you-added-above"></a>A fájl tooreflect hello új Sablonparaméterek korábban ismertetett módon hozzáadott szerkesztése
-Ha hello hello mintát használ [git-tárház](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample) toofollow jelszavat, megkezdheti hello minta 5-VM-1-NodeType tulajdonságok értéke-Secure.paramters_Step2.JSON toomake módosítások 
+### <a name="edit-your-template-file-to-reflect-the-new-parameters-you-added-above"></a>A sablonfájl megfelelően a korábban ismertetett módon hozzáadott új paraméterek szerkesztése
+Ha a mintát használ a [git-tárház](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample) követéséhez, megkezdheti az módosítsa a minta 5-VM-1-NodeType tulajdonságok értéke-Secure.paramters_Step2.JSON 
 
-A Resource Manager-sablon paraméter fájl szerkesztése, hello két új secCertificateThumbprint és a paraméterek secCertificateUrlValue hozzáadása. 
+A Resource Manager-sablon paraméter fájl szerkesztése, vegye fel a két új secCertificateThumbprint és paramétereinek secCertificateUrlValue. 
 
 ```JSON
     "secCertificateThumbprint": {
       "value": "thumbprint value"
     },
     "secCertificateUrlValue": {
-      "value": "Refers toohello location URL in your key vault where hello certificate was uploaded, it is should be in hello format of https://<name of hello vault>.vault.azure.net:443/secrets/<exact location>"
+      "value": "Refers to the location URL in your key vault where the certificate was uploaded, it is should be in the format of https://<name of the vault>.vault.azure.net:443/secrets/<exact location>"
      },
 
 ```
 
-### <a name="deploy-hello-template-tooazure"></a>Hello sablon tooAzure telepítése
+### <a name="deploy-the-template-to-azure"></a>A sablon telepítéséhez az Azure-bA
 
-- Ön most már készen áll a toodeploy a sablon tooAzure vannak. Nyisson meg egy Azure PS 1 vagy újabb parancssort.
-- Jelentkezzen be Azure-fiók tooyour, majd válassza a hello adott azure-előfizetés. Ez egy fontos eleme a hozzáférés toomore, mint egy azure-előfizetéssel rendelkező segítsen.
+- Most már készen áll a sablon telepítéséhez az Azure-bA. Nyisson meg egy Azure PS 1 vagy újabb parancssort.
+- Jelentkezzen be az Azure-fiókjába, és válassza ki az adott azure-előfizetés. Ez egy fontos lépés a segítsen, akik hozzáférhetnek a több azure-előfizetés.
 
 ```powershell
 Login-AzureRmAccount
@@ -210,17 +210,17 @@ Select-AzureRmSubscription -SubscriptionId <Subcription ID>
 
 ```
 
-Hello sablon előzetes toodeploying tesztelje azt. Használjon hello ugyanahhoz az erőforráscsoporthoz tartozik, amely a fürt jelenleg a rendszer.
+Tesztelje a sablon üzembe helyezése előtt. Ugyanabban az erőforráscsoportban, amely a fürt jelenleg a rendszer használja.
 
 ```powershell
 Test-AzureRmResourceGroupDeployment -ResourceGroupName <Resource Group that your cluster is currently deployed to> -TemplateFile <PathToTemplate>
 
 ```
 
-Hello sablon tooyour erőforrás-csoport központi telepítését. Használjon hello ugyanahhoz az erőforráscsoporthoz tartozik, amely a fürt jelenleg a rendszer. Hello New-AzureRmResourceGroupDeployment parancsot. Mivel hello alapértelmezett értéke, nem kell toospecify hello mód, **növekményes**.
+Az erőforráscsoport a sablon telepítése Ugyanabban az erőforráscsoportban, amely a fürt jelenleg a rendszer használja. Futtassa a New-AzureRmResourceGroupDeployment parancsot. Nem kell megadnia a a módot, mivel az alapértelmezett érték **növekményes**.
 
 > [!NOTE]
-> Ha mód tooComplete, erőforrásokat, amelyek nem szerepelnek a sablon akaratlanul is törölheti. Ebben a forgatókönyvben azt nem használja.
+> Mód Complete állítja be, ha véletlenül erőforrásokat, amelyek nem szerepelnek a sablon törölheti. Ebben a forgatókönyvben azt nem használja.
 > 
 > 
 
@@ -228,7 +228,7 @@ Hello sablon tooyour erőforrás-csoport központi telepítését. Használjon h
 New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName <Resource Group that your cluster is currently deployed to> -TemplateFile <PathToTemplate>
 ```
 
-Ez egy kitöltött kimenő hello példa azonos powershell.
+Ez az azonos powershell kitöltött példát.
 
 ```powershell
 $ResouceGroup2 = "chackosecure5"
@@ -239,17 +239,17 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $ResouceGroup2 -TemplatePa
 
 ```
 
-Hello központi telepítés befejezése után tooyour fürt használatával kapcsolódó levelezőprogramokkal hello új tanúsítványt, és hajtson végre néhány lekérdezést. Ha tudja toodo. Ezt követően törölheti a régi tanúsítvány hello. 
+Ha a telepítés befejeződött, csatlakozzon a fürthöz, az új tanúsítványt használja, és hajtsa végre az egyes lekérdezések. Ha tudja megtenni. Törölheti a régi tanúsítvány. 
 
-Ha önaláírt tanúsítványt használ, ne feledje tooimport a megbízható személyek nevű helyi tanúsítványtároló őket.
+Ha önaláírt tanúsítványt használ, ne felejtse el a megbízható személyek nevű helyi tanúsítványtároló importálja azokat.
 
 ```powershell
-######## Set up hello certs on your local box
+######## Set up the certs on your local box
 Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\TrustedPeople -FilePath c:\Mycertificates\chackdanTestCertificate9.pfx -Password (ConvertTo-SecureString -String abcd123 -AsPlainText -Force)
 Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\My -FilePath c:\Mycertificates\chackdanTestCertificate9.pfx -Password (ConvertTo-SecureString -String abcd123 -AsPlainText -Force)
 
 ```
-Gyors referenciaként Íme hello parancs tooconnect tooa biztonságos fürt 
+Gyors referenciaként Ez a parancs egy biztonságos fürthöz való kapcsolódás 
 
 ```powershell
 $ClusterName= "chackosecure5.westus.cloudapp.azure.com:19000"
@@ -263,37 +263,37 @@ Connect-serviceFabricCluster -ConnectionEndpoint $ClusterName -KeepAliveInterval
     -StoreLocation CurrentUser `
     -StoreName My
 ```
-Gyors referenciaként Íme hello parancs tooget fürt állapotát
+Gyors referenciaként Ez a parancs használatával beszerezheti a fürt állapota
 
 ```powershell
 Get-ServiceFabricClusterHealth 
 ```
 
-## <a name="deploying-application-certificates-toohello-cluster"></a>Alkalmazás tanúsítványok toohello fürt telepítése.
+## <a name="deploying-application-certificates-to-the-cluster"></a>A fürt alkalmazás tanúsítványok telepítését.
 
-Hello azonos lépések ajánlásait az 5. lépéseket a keyvault toohello csomópontok alapján telepített toohave hello tanúsítványokat is használhat. ugyanúgy kell definiálására és használjon más paramétereket.
+A fenti lépéseket 5 a csomópontra a keyvault alapján telepített tanúsítványok is használhatja ugyanazokat a lépéseket. ugyanúgy kell definiálására és használjon más paramétereket.
 
 
 ## <a name="adding-or-removing-client-certificates"></a>Hozzáadása vagy eltávolítása az ügyfél-tanúsítványok
 
-Toohello fürt tanúsítványok hozzáadását adhat hozzá a service fabric-fürt ügyfél tanúsítványok tooperform felügyeleti műveleteihez.
+A fürt tanúsítvány mellett meg a service fabric-fürt felügyeleti műveletek elvégzéséhez ügyféltanúsítványok is hozzáadhat.
 
-Kétféle ügyféltanúsítványok - rendszergazda adhat hozzá vagy csak olvasható. Ezek ezután lehetnek használt toocontrol hozzáférés toohello felügyeleti műveletek és a lekérdezési műveletek hello fürtön. Alapértelmezés szerint hello fürt hozzáadja a tanúsítványokat toohello engedélyezett felügyeleti tanúsítványok listáját.
+Kétféle ügyféltanúsítványok - rendszergazda adhat hozzá vagy csak olvasható. Ezek ezután használhatók a felügyeleti műveletek és a lekérdezési műveletek a fürthöz való hozzáférés vezérlése érdekében. Alapértelmezés szerint a fürt tanúsítványok hozzáadódnak a megengedett felügyeleti tanúsítványok listája.
 
-megadhatja, hogy minden ügyfél-tanúsítványok száma. Minden egyes és törléséről a konfigurációs frissítés toohello service fabric-fürt eredményez.
+megadhatja, hogy minden ügyfél-tanúsítványok száma. A service fabric-fürt az egy konfigurációs eredmények minden és törléséről
 
 
 ### <a name="adding-client-certificates---admin-or-read-only-via-portal"></a>Ügyféltanúsítványok - rendszergazda felvétele vagy csak olvasható-portálon
 
-1. Navigáljon a toohello biztonsági panelen, majd válassza ki a hello "+ hitelesítési" gomb felett hello biztonsági panel.
-2. A hello hitelesítés hozzáadása panelen válassza a "Hitelesítés típusa" - "Csak olvasható" vagy "Admin ügyfélszámítógépekhez" hello
-3. Most adja hello hitelesítési módját. Ez a tooService háló jelzi, hogy keresi ezt a tanúsítványt hello tulajdonosnévvel vagy ujjlenyomattal hello segítségével. Ez általában nem jó biztonsági gyakorlat toouse hello engedélyezési módszer tulajdonos neve. 
+1. Keresse meg a biztonsági panelt, és válassza ki a "+ hitelesítés" gombra a biztonsági panel felett.
+2. A hitelesítés hozzáadása panelen válassza ki a "hitelesítés" - "Csak olvasható" vagy "Admin ügyfélszámítógépekhez"
+3. Most adja meg a hitelesítési módját. Ez azt jelzi, hogy a Service Fabric e keresi ezt a tanúsítványt a tulajdonos neve vagy az ujjlenyomat használatával. Ez általában nem egy jó biztonsági gyakorlat a tulajdonos neve a hitelesítési módszer használatát. 
 
 ![Ügyfél-tanúsítvány hozzáadása][Add_Client_Cert]
 
-### <a name="deletion-of-client-certificates---admin-or-read-only-using-hello-portal"></a>Az ügyféltanúsítványok - rendszergazdai vagy csak olvasható használatával törlését hello portál
+### <a name="deletion-of-client-certificates---admin-or-read-only-using-the-portal"></a>Ügyféltanúsítványok - rendszergazdai vagy csak olvasható a portál használatával törlése
 
-a fürt biztonsági, Navigálás toohello biztonsági panel és select hello "Delete" kapcsolót hello helyi menüből hello adott tanúsítvány használatát másodlagos tanúsítvány tooremove.
+Távolítsa el a másodlagos tanúsítvány használatát a fürt biztonsági okokból és a biztonsági panel lép, és válassza a "Törlés" lehetőséget az adott tanúsítvány a helyi menüből.
 
 
 

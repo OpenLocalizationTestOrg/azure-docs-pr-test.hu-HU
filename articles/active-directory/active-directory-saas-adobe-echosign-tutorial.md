@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directory-integráció Adobe bejelentkezési |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és az Adobe bejelentkezési között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és az Adobe bejelentkezési között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,111 +13,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/24/2017
 ms.author: jeedes
-ms.openlocfilehash: b4b07907f30a0890003554a02a76d968400b43ba
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b413772de1af1fbb128d29b81e5831cfd6a39ab4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-adobe-sign"></a>Oktatóanyag: Azure Active Directory-integráció Adobe bejelentkezési
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Adobe jelentkezzen az Azure Active Directoryval (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja Adobe bejelentkezési integrálása az Azure Active Directory (Azure AD).
 
-Az Adobe bejelentkezési integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
+Az Adobe bejelentkezési integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
 
-- Megadhatja a hozzáférés tooAdobe bejelentkezési rendelkező Azure AD-ben
-- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooAdobe (egyszeri bejelentkezés) bejelentkezési és az Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
+- Szabályozhatja, aki hozzáfér az Adobe bejelentkezési Azure AD-ben
+- Az Azure AD-fiókok a engedélyezheti a felhasználóknak, hogy automatikusan lekérni bejelentkezett Adobe bejelentkezéshez (egyszeri bejelentkezés)
+- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-az Azure AD-integrációs Adobe bejelentkezési tooconfigure, a következő elemek hello kell:
+Az Azure AD-integráció konfigurálása Adobe bejelentkezési, a következőkre van szükség:
 
 - Az Azure AD szolgáltatásra
 - Az Adobe bejelentkezési egyszeri bejelentkezés engedélyezve van az előfizetés
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. Hello gyűjteményből Adobe bejelentkezési hozzáadása
+1. Az Adobe bejelentkezési hozzáadása a gyűjteményből
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-adobe-sign-from-hello-gallery"></a>Hello gyűjteményből Adobe bejelentkezési hozzáadása
-tooconfigure hello integrációja Adobe bejelentkezés az Azure AD-be, meg kell tooadd Adobe bejelentkezési hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-adobe-sign-from-the-gallery"></a>Az Adobe bejelentkezési hozzáadása a gyűjteményből
+Az Azure AD integrálása a Adobe bejelentkezési konfigurálásához kell hozzáadnia az Adobe bejelentkezési a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
 
-**tooadd Adobe bejelentkezési hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
+**Az Adobe hozzáadása a gyűjteményből, hajtsa végre az alábbi lépéseket:**
 
-1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
+1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
+2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
+3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
 
     ![Alkalmazások][3]
 
-4. Hello keresési mezőbe, írja be a **Adobe bejelentkezési**.
+4. Írja be a keresőmezőbe, **Adobe bejelentkezési**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-adobe-echosign-tutorial/tutorial_adobesign_search.png)
 
-5. A hello eredmények panelen válassza ki a **Adobe bejelentkezési**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
+5. Az eredmények panelen válassza ki a **Adobe bejelentkezési**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-adobe-echosign-tutorial/tutorial_adobesign_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, tesztelése és konfigurálása az Azure AD egyszeri bejelentkezéshez "Britta Simon." nevű tesztfelhasználó alapján Adobe bejelentkezési
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó Adobe bejelentkezési tooa felhasználó az Azure ad-ben. Ez azt jelenti hello kapcsolódó felhasználói az Adobe bejelentkezési és az Azure AD-felhasználó közötti kapcsolat kapcsolatot kell létrehozni toobe.
+Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó Adobe bejelentkezési a felhasználó Azure AD-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó a Adobe bejelentkezési közötti kapcsolat kapcsolatot kell létrehozni.
 
-Az Adobe bejelentkezési rendelje hello hello értékét **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
+Az Adobe bejelentkezési, rendelje az értékét a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
 
-tooconfigure és Adobe bejelentkezési az Azure AD az egyszeri bejelentkezés tesztelése, a következő építőelemeket toocomplete hello szüksége:
+Az Azure AD az egyszeri bejelentkezés Adobe bejelentkezési tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-3. **[Az Adobe bejelentkezési tesztfelhasználó létrehozása](#creating-an-adobe-sign-test-user)**  -toohave egy megfelelője a Britta Simon az Adobe bejelentkezési, amely a felhasználó csatolt toohello az Azure AD ábrázolása.
-4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+3. **[Az Adobe bejelentkezési tesztfelhasználó létrehozása](#creating-an-adobe-sign-test-user)**  - való egy megfelelője a Britta Simon Adobe bejelentkezési, amely csatolva van a felhasználó az Azure AD-ábrázolását.
+4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD az egyszeri bejelentkezés az Azure-portálon hello engedélyezése, és az Adobe bejelentkezési alkalmazásban egyszeri bejelentkezés beállítása.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és az Adobe bejelentkezési alkalmazásban egyszeri bejelentkezés konfigurálása.
 
-**az Azure AD tooconfigure egyszeri bejelentkezés Adobe bejelentkezési, hajtsa végre a lépéseket követve hello:**
+**Az Azure AD az egyszeri bejelentkezés Adobe bejelentkezési megadásához hajtsa végre az alábbi lépéseket:**
 
-1. Az Azure portál, a hello hello **Adobe bejelentkezési** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portálon a a **Adobe bejelentkezési** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
+2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-adobe-echosign-tutorial/tutorial_adobesign_samlbase.png)
 
-3. A hello **Adobe bejelentkezési tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
+3. Az a **Adobe bejelentkezési tartomány és az URL-címek** területen tegye a következőket:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-adobe-echosign-tutorial/tutorial_adobesign_url.png)
 
-    a. A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<companyname>.echosign.com/`
+    a. Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://<companyname>.echosign.com/`
 
-    b. A hello **azonosító** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<companyname>.echosign.com`
+    b. Az a **azonosító** szövegmező, adja meg a következő minta használatával URL-címe:`https://<companyname>.echosign.com`
 
     > [!NOTE] 
-    > Ezek az értékek nincsenek valós. Frissítse a bejelentkezési URL-cím és azonosító a hello tényleges értékek. Ügyfél [Adobe bejelentkezési ügyfél-támogatási csoport](https://helpx.adobe.com/in/contact/support.html) tooget ezeket az értékeket. 
+    > Ezek az értékek nincsenek valós. Frissítheti ezeket az értékeket a tényleges bejelentkezési URL-cím és azonosítója. Ügyfél [Adobe bejelentkezési ügyfél-támogatási csoport](https://helpx.adobe.com/in/contact/support.html) beolvasni ezeket az értékeket. 
  
-4. A hello **SAML-aláíró tanúsítványa** kattintson **Certificate(Base64)** , és mentse a hello tanúsítványfájlt a számítógépen.
+4. Az a **SAML-aláíró tanúsítványa** kattintson **Certificate(Base64)** , és mentse a tanúsítványfájlt, a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-adobe-echosign-tutorial/tutorial_adobesign_certificate.png) 
 
@@ -125,119 +125,119 @@ Ebben a szakaszban az Azure AD az egyszeri bejelentkezés az Azure-portálon hel
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-adobe-echosign-tutorial/tutorial_general_400.png)
 
-6. A hello **Adobe bejelentkezési konfigurációs** kattintson **konfigurálása Adobe bejelentkezési** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **Sign-Out URL-címet, a SAML entitás azonosítója és a SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**
+6. A a **Adobe bejelentkezési konfigurációs** kattintson **konfigurálása Adobe bejelentkezési** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **Sign-Out URL-címet, a SAML entitás azonosítója és a SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-adobe-echosign-tutorial/tutorial_adobesign_configure.png) 
 
 
-7. Egy másik webes böngészőablakban jelentkezzen tooyour Adobe bejelentkezési vállalati hely rendszergazdaként.
+7. Egy másik webes böngészőablakban jelentkezzen be a Adobe bejelentkezési vállalati webhely rendszergazdaként.
 
-8. Hello hello felső menüben kattintson a **fiók**, és a bal oldalon hello hello navigációs ablakában kattintson az **SAML beállítások** alatt **Fiókbeállítások**.
+8. A felső menüben kattintson a **fiók**, és a bal oldali navigációs ablakában kattintson az **SAML beállítások** alatt **Fiókbeállítások**.
    
    ![Fiók](./media/active-directory-saas-adobe-echosign-tutorial/ic789520.png "fiók")
 
-9. Hello SAML beállítások szakaszban, a hajtsa végre a lépéseket követve hello:
+9. A SAML-beállítások területen a következő lépésekkel:
    
    ![SAML-alapú beállítások](./media/active-directory-saas-adobe-echosign-tutorial/ic789521.png "SAML-beállítások")
    
    a. Mint **SAML mód**, jelölje be **SAML kötelező**.
    
-   b. Válassza ki **engedélyezése EchoSign Fiókrendszergazdák toolog a EchoSign hitelesítő adataival**.
+   b. Válassza ki **EchoSign Fiókrendszergazdák engedélyezése a EchoSign hitelesítő adataival bejelentkezni**.
    
    c. Mint **felhasználó létrehozása**, jelölje be **keresztül SAML hitelesített felhasználók automatikus hozzáadása**.
 
-10. Helyezze át, amely, a lépések végrehajtása a következő hello:
+10. Helyezze át, amely, a következő lépések:
 
        ![SAML-alapú beállítások](./media/active-directory-saas-adobe-echosign-tutorial/ic789522.png "SAML-beállítások")
 
-    a. Beillesztés **SAML Entitásazonosító**, amely Azure-portálon való hello másolta **IdP Entitásazonosító** szövegmező.
+    a. Beillesztés **SAML Entitásazonosító**, amely az Azure portálról másolta a **IdP Entitásazonosító** szövegmező.
     
-    b. Beillesztés **SAML-alapú egyszeri bejelentkezési URL-címe**, amely Azure-portálon való hello másolta **IdP bejelentkezési URL-cím** szövegmező.
+    b. Beillesztés **SAML-alapú egyszeri bejelentkezési URL-címe**, amely az Azure portálról másolta a **IdP bejelentkezési URL-cím** szövegmező.
    
-    c. Beillesztés **Sign-Out URL-cím**, amely Azure-portálon való hello másolta **IdP kijelentkezési URL-cím** szövegmező.
+    c. Beillesztés **Sign-Out URL-cím**, amely az Azure portálról másolta a **IdP kijelentkezési URL-cím** szövegmező.
 
-    d. Nyissa meg a letöltött **Certificate(Base64)** fájlt a Jegyzettömbben, a vágólapra tartalmának másolása hello és toohello Beillesztés **IdP tanúsítvány** szövegmező
+    d. Nyissa meg a letöltött **Certificate(Base64)** fájlt a Jegyzettömbben, annak tartalmának másolása a vágólapra és illessze be azt a **IdP tanúsítvány** szövegmező
 
     e. Kattintson a **módosítások mentése**.
 
 > [!TIP]
-> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
+Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
+1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-adobe-echosign-tutorial/create_aaduser_01.png) 
 
-2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
+2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-adobe-echosign-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
+3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-adobe-echosign-tutorial/create_aaduser_03.png) 
 
-4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-adobe-echosign-tutorial/create_aaduser_04.png) 
 
-    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
+    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-an-adobe-sign-test-user"></a>Az Adobe bejelentkezési tesztfelhasználó létrehozása
 
-az Azure AD tooenable felhasználók toolog a bejelentkezési tooAdobe, akkor ki kell építenie Adobe jelentkezzen be. Az Adobe bejelentkezési hello esetben egy kézi tevékenység.
+Ahhoz, hogy az Azure AD-felhasználók Adobe bejelentkezési bejelentkezni, akkor ki kell építenie az Adobe jelentkezzen be. Adobe bejelentkezési, ha egy kézi tevékenység.
 
 >[!NOTE]
->Bármely más Adobe bejelentkezési felhasználói fiók létrehozása eszközök vagy Adobe bejelentkezési tooprovision által nyújtott API-k AAD felhasználói fiókokat. 
+>Bármely más Adobe bejelentkezési felhasználói fiók létrehozása eszközök vagy rendelkezés AAD felhasználói fiókokhoz Adobe bejelentkezési által nyújtott API-k. 
 
-**tooprovision egy felhasználói fiókot, hajtsa végre a következő lépéseket hello:**
+**Felhasználói fiók létrehozásához hajtsa végre az alábbi lépéseket:**
 
-1. Jelentkezzen be tooyour **Adobe bejelentkezési** vállalati hely rendszergazdaként.
+1. Jelentkezzen be a **Adobe bejelentkezési** vállalati hely rendszergazdaként.
 
-2. Hello hello felső menüben kattintson a **fiók**, és a bal oldalon hello hello navigációs ablakában kattintson az **felhasználók és csoportok**, és kattintson a **hozzon létre egy új felhasználót**.
+2. A felső menüben kattintson **fiók**, és a bal oldali navigációs ablakában kattintson az **felhasználók és csoportok**, majd kattintson a **hozzon létre egy új felhasználót**.
    
    ![Fiók](./media/active-directory-saas-adobe-echosign-tutorial/ic789524.png "fiók")
    
-3. A hello **új felhasználó létrehozása** csoportjában hajtsa végre az alábbi lépésekkel hello:
+3. Az a **új felhasználó létrehozása** területen tegye a következőket:
    
    ![Hozzon létre felhasználói](./media/active-directory-saas-adobe-echosign-tutorial/ic789525.png "felhasználó létrehozása")
    
-   a. Típus hello **E-mail cím**, **Utónév**, és **Vezetéknév** a egy érvényes AAD-fiókba, a kívánt tooprovision hello kapcsolódó szövegmezőből.
+   a. Típus a **E-mail cím**, **Utónév**, és **Vezetéknév** szeretné azokat a kapcsolódó szövegmezők rendelkezés érvényes AAD-fiók.
    
    b. Kattintson a **létrehozza a felhasználó**.
 
 >[!NOTE]
->hello Azure Active Directory fióktulajdonos kap egy e-mailt, amely tartalmazza egy hivatkozás tooconfirm hello fiókot, mielőtt aktívvá válik. 
+>Az Azure Active Directory fióktulajdonos kap egy e-mailt, amely tartalmaz egy hivatkozást a fiók megerősítéséhez, mielőtt aktívvá válik. 
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
+### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
 
-Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooAdobe bejelentkezési megadásával engedélyeznie.
+Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés Adobe bejelentkezési Azure egyszeri bejelentkezéshez használandó.
 
 ![Felhasználó hozzárendelése][200] 
 
-**tooassign Britta Simon tooAdobe bejelentkezési, hajtsa végre a következő lépéseket hello:**
+**Az Adobe bejelentkezési Britta Simon rendeléséhez hajtsa végre az alábbi lépéseket:**
 
-1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Hello alkalmazások listában válassza ki a **Adobe bejelentkezési**.
+2. Az alkalmazások listában válassza ki a **Adobe bejelentkezési**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-adobe-echosign-tutorial/tutorial_adobesign_app.png) 
 
-3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -245,7 +245,7 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáfé
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -253,12 +253,12 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáfé
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Hello Adobe bejelentkezési hello hozzáférési Panel csempére kattintva kapja meg automatikusan bejelentkezett tooyour Adobe bejelentkezési alkalmazás.
-További információ a hozzáférési Panel hello: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).
+Ha a hozzáférési panelen Adobe bejelentkezési csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az Adobe bejelentkezési alkalmazáshoz.
+A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>További források
 
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

@@ -1,6 +1,6 @@
 ---
-title: aaaConnect tooAzure SQL Data Warehouse - SSMS |} Microsoft Docs
-description: "Használja az SQL Server Management Studio (SSMS) tooconnect tooand lekérdezést Azure SQL Data warehouse-bA."
+title: "Csatlakozás az Azure SQL Data Warehouse - SSMS |} Microsoft Docs"
+description: "SQL Server Management Studio (SSMS) használatával történő kapcsolódás és lekérdezés az Azure SQL Data Warehouse."
 services: sql-data-warehouse
 documentationcenter: 
 author: antvgski
@@ -15,13 +15,13 @@ ms.workload: data-services
 ms.custom: connect
 ms.date: 10/31/2016
 ms.author: anvang;barbkess
-ms.openlocfilehash: bcbaf7139d2e5183b388b8d58c015cf5ad726722
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 207fb9fd861c66039fbde89681aed3df3a2f4021
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="connect-toosql-data-warehouse-with-sql-server-management-studio-ssms"></a>Csatlakozás tooSQL adatraktár SQL Server Management Studio (SSMS)
+# <a name="connect-to-sql-data-warehouse-with-sql-server-management-studio-ssms"></a>Csatlakozás az SQL Data Warehouse az SQL Server Management Studio (SSMS)
 > [!div class="op_single_selector"]
 > * [Power BI](sql-data-warehouse-get-started-visualize-with-power-bi.md)
 > * [Azure Machine Learning](sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md)
@@ -31,61 +31,61 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Használja az SQL Server Management Studio (SSMS) tooconnect tooand lekérdezést Azure SQL Data warehouse-bA. 
+SQL Server Management Studio (SSMS) használatával történő kapcsolódás és lekérdezés az Azure SQL Data Warehouse. 
 
 ## <a name="prerequisites"></a>Előfeltételek
-toouse ebben az oktatóanyagban szüksége:
+Ehhez az oktatóanyaghoz a következőkre lesz szüksége:
 
-* Egy létező SQL Data Warehouse. toocreate, lásd: [SQL Data Warehouse létrehozása][Create a SQL Data Warehouse].
+* Egy létező SQL Data Warehouse. A létrehozás menetét az [SQL Data Warehouse létrehozását][Create a SQL Data Warehouse] ismertető cikkben találja.
 * SQL Server Management Studio (SSMS) telepítve. [Telepítse az SSMS] [ Install SSMS] szabad, ha már nincs.
-* hello teljesen minősített SQL-kiszolgáló neve. toofind a, lásd: [csatlakozzon az adatraktár tooSQL][Connect tooSQL Data Warehouse].
+* Az Azure SQL-kiszolgáló teljes neve. Ennek megkeresésével kapcsolatban olvassa el [az SQL Data Warehouse-hoz történő csatlakozást][Connect to SQL Data Warehouse] ismertető cikket.
 
-## <a name="1-connect-tooyour-sql-data-warehouse"></a>1. Csatlakozás az SQL Data Warehouse tooyour
+## <a name="1-connect-to-your-sql-data-warehouse"></a>1. Csatlakozás az SQL Data Warehouse-hoz
 1. Nyissa meg a szolgáltatáshoz az SSMS.
-2. Nyissa meg az Object Explorert. toodo a, válassza ki **fájl** > **Object Explorerben csatlakozzon**.
+2. Nyissa meg az Object Explorert. Ehhez az szükséges, válassza ki a **fájl** > **Object Explorerben csatlakozzon**.
    
     ![SQL Server Object Explorer][1]
-3. Hello Connect tooServer ablakban hello mezők kitöltésével.
+3. Töltse ki az összes mezőt a Connect to Server (Csatlakozás a kiszolgálóhoz) ablakban.
    
-    ![Csatlakozás tooServer][2]
+    ![Csatlakozás kiszolgálóhoz][2]
    
-   * **Kiszolgálónév**. Adja meg a hello **kiszolgálónév** korábban azonosított.
+   * **Kiszolgálónév**. Adja meg a korábban azonosított **kiszolgálónevet**.
    * **Hitelesítés**. Válassza az **SQL Server Authentication** (SQL Server-hitelesítés) vagy az **Active Directory Integrated Authentication** (Active Directory beépített hitelesítés) lehetőséget.
    * **Felhasználónév** és **Jelszó**. Amennyiben az SQL Server-hitelesítést választotta, adja meg felhasználónevét és jelszavát.
-   * Kattintson a **Connect** (Csatlakozás) gombra.
-4. tooexplore, bontsa ki az Azure SQL-kiszolgálót. Hello kiszolgálóhoz társított hello adatbázisok tekintheti meg. Bontsa ki az AdventureWorksDW toosee hello táblák a mintaadatbázis.
+   * Kattintson a **Csatlakozás** gombra.
+4. A részletes megtekintéshez bontsa ki az Azure SQL-kiszolgálót. Megtekintheti a kiszolgálóhoz társított adatbázisokat. Bontsa ki az AdventureWorksDW elemet a mintaadatbázis tábláinak megtekintéséhez.
    
     ![Az AdventureWorksDW áttekintése][3]
 
 ## <a name="2-run-a-sample-query"></a>2. Mintalekérdezés futtatása
-Most, hogy a kapcsolat már meglévő tooyour adatbázis, ideje lefuttatni egy lekérdezést.
+Most, hogy létrejött a kapcsolat az adatbázissal, ideje lefuttatni egy lekérdezést.
 
 1. Kattintson a jobb gombbal az adatbázisára az SQL Server Object Explorer alatt.
 2. Válassza a **New Query** (Új lekérdezés) lehetőséget. Megnyílik egy új lekérdezési ablak.
    
     ![Új lekérdezés][4]
-3. Másolja a TSQL-lekérdezést hello lekérdezési ablakba:
+3. Másolja be ezt a TSQL-lekérdezést a lekérdezési ablakba:
    
     ```sql
     SELECT COUNT(*) FROM dbo.FactInternetSales;
     ```
-4. Hello lekérdezés futtatása. toodo, kattintson `Execute` vagy hello használja a következő helyi: `F5`.
+4. Futtassa a lekérdezést. Ehhez kattintson `Execute` vagy használja a következő billentyűparancsot: `F5`.
    
     ![A lekérdezés futtatása][5]
-5. Tekintse meg hello lekérdezés eredményeit. Ebben a példában a hello FactInternetSales táblának 60 398 sora van.
+5. Tekintse meg a lekérdezés eredményeit. Ebben a példában a FactInternetSales táblának 60 398 sora van.
    
     ![Lekérdezés eredményei][6]
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy kapcsolódási, és a lekérdezési, próbálja [megjeleníteni hello adatokat a powerbi-jal][visualizing hello data with PowerBI].
+Most, hogy képes csatlakozni és elvégezni a lekérdezéseket, próbálja [megjeleníteni az adatokat a PowerBI használatával][visualizing the data with PowerBI].
 
-tooconfigure a környezetet az Azure Active Directory-hitelesítés, lásd: [tooSQL adatraktár hitelesítéséhez][Authenticate tooSQL Data Warehouse].
+A környezet Azure Active Directory-hitelesítésre történő konfigurálásával kapcsolatban tekintse meg az [SQL Data Warehouse-zal történő hitelesítést][Authenticate to SQL Data Warehouse] ismertető cikket.
 
 <!--Arcticles-->
-[Connect tooSQL Data Warehouse]: sql-data-warehouse-connect-overview.md
+[Connect to SQL Data Warehouse]: sql-data-warehouse-connect-overview.md
 [Create a SQL Data Warehouse]: sql-data-warehouse-get-started-provision.md
-[Authenticate tooSQL Data Warehouse]: sql-data-warehouse-authentication.md
-[visualizing hello data with PowerBI]: sql-data-warehouse-get-started-visualize-with-power-bi.md 
+[Authenticate to SQL Data Warehouse]: sql-data-warehouse-authentication.md
+[visualizing the data with PowerBI]: sql-data-warehouse-get-started-visualize-with-power-bi.md 
 
 <!--Other-->
 [Azure portal]: https://portal.azure.com

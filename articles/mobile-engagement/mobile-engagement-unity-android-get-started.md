@@ -1,6 +1,6 @@
 ---
-title: "aaaGet elindítva az Azure Mobile Engagement Unity Android üzemelő"
-description: "Megtudhatja, hogyan toouse Azure Mobile Engagement az elemzések és leküldéses értesítések Unity-alkalmazásokhoz tooiOS eszközök telepítése."
+title: "Ismerkedés az Azure Mobile Engagement Unity Android üzemelő példánnyal való használatával"
+description: "Ismerje meg, hogyan használható az Azure Mobile Engagement az iOS-eszközökön üzembe helyezett Unity-alkalmazásokhoz kapcsolódó elemzések és leküldéses értesítések tekintetében."
 services: mobile-engagement
 documentationcenter: unity
 author: piyushjo
@@ -14,73 +14,73 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: c4d34691daeb7544b11c2d6895b2474af0f902b4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: bf0b758159d475b4ed7eadb84227e4824e11ba86
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-azure-mobile-engagement-for-unity-android-deployment"></a>Ismerkedés az Azure Mobile Engagement Unity Android üzemelő példánnyal való használatával
 [!INCLUDE [Hero tutorial switcher](../../includes/mobile-engagement-hero-tutorial-switcher.md)]
 
-Ez a témakör bemutatja, hogyan toouse Azure Mobile Engagement toounderstand az alkalmazás használatának és toosend a leküldéses értesítések toosegmented felhasználók Unity-alkalmazás tooan Android-eszköz telepítése során.
-A oktatóanyag használ hello Unity klasszikus Roll golyó oktatóanyag, hello kiindulási pontjaként. Ezen hello lépéseket kell követnie [oktatóanyag](mobile-engagement-unity-roll-a-ball.md) hello a Mobile Engagement-integrációs oktatóanyaggal az alábbi hello oktatóanyag folytatása előtt. 
+Ebben a témakörben elsajátíthatja, hogy miként használható az Azure Mobile Engagement az alkalmazáshasználat megértéséhez, valamint leküldéses értesítések Unity-alkalmazás szegmentált felhasználói számára való küldéséhez Android-eszközön való üzembe helyezés esetén.
+Ennek az oktatóanyagnak a Unity klasszikus Roll a Ball (Guruló golyó) oktatóanyaga a kiindulási pontja. Végezze el [ennek az oktatóanyagnak](mobile-engagement-unity-roll-a-ball.md) a lépéseit, mielőtt az alábbi Mobile Engagement-integrációs oktatóanyaggal folytatná. 
 
-Ez az oktatóanyag hello következő szükséges:
+Az oktatóanyaghoz az alábbiakra lesz szükség:
 
 * [Unity Editor](http://unity3d.com/get-unity)
 * [Mobile Engagement Unity SDK](https://aka.ms/azmeunitysdk)
 * Google Android SDK
 
 > [!NOTE]
-> toocomplete ebben az oktatóanyagban rendelkeznie kell egy aktív Azure-fiókra. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-unity-android-get-started).
+> Az oktatóanyag elvégzéséhez egy aktív Azure-fiókra lesz szüksége. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-unity-android-get-started).
 > 
 > 
 
 ## <a id="setup-azme"></a>A Mobile Engagement beállítása az Android-alkalmazáshoz
 [!INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-## <a id="connecting-app"></a>Csatlakozás az alkalmazás toohello Mobile Engagement háttérrendszeréhez
-### <a name="import-hello-unity-package"></a>Hello Unity-csomag importálása
-1. Töltse le a hello [Mobile Engagement Unity-csomagot](https://aka.ms/azmeunitysdk) , és mentse tooyour helyi számítógép. 
-2. Nyissa meg túl**eszközök -> csomag importálása -> egyéni csomag** és a fenti lépés hello letöltött válassza hello csomagot. 
+## <a id="connecting-app"></a>Az alkalmazás csatlakoztatása a Mobile Engagement háttérrendszeréhez
+### <a name="import-the-unity-package"></a>A Unity-csomag importálása
+1. Töltse le a [Mobile Engagement Unity-csomagot](https://aka.ms/azmeunitysdk), és mentse a helyi gépére. 
+2. Lépjen az **Assets -> Import Package -> Custom Package** (Eszközök -> Csomag importálása -> Egyéni csomag) lehetőségre, majd válassza ki az előző lépésben letöltött csomagot. 
    
     ![][70] 
 3. Ügyeljen arra, hogy minden fájl ki legyen választva, és kattintson az **Import** (Importálás) gombra. 
    
     ![][71] 
-4. Ha sikeres importálás, látni fogja hello importált SDK-fájlok a projektben.  
+4. Az importálás sikeres elvégzése után az importált SDK-fájlok megjelennek a projektben.  
    
     ![][72] 
 
-### <a name="update-hello-engagementconfiguration"></a>Hello EngagementConfiguration frissítése
-1. Nyissa meg hello **EngagementConfiguration** hello SDK mappából, és frissítse hello parancsfájlt **ANDROID\_kapcsolat\_karakterlánc** kapott hello kapcsolati karakterlánccal korábban a hello Azure-portálon.  
+### <a name="update-the-engagementconfiguration"></a>Az EngagementConfiguration frissítése
+1. Nyissa meg az **EngagementConfiguration** parancsfájlt az SDK mappából, és frissítse az **ANDROID\_CONNECTION\_STRING** elemet az Azure Portalról korábban beszerzett kapcsolati karakterlánccal.  
    
     ![][73]
-2. Hello fájl mentése 
-3. Futtassa a következőt: **File -> Engagement -> Generate Android Manifest** (Fájl -> Engagement -> Android-jegyzék létrehozása). Ez a hello Mobile Engagement SDK által hozzáadott hello beépülő modul, és azt automatikusan frissíti a projektbeállításokat. 
+2. Mentse a fájlt. 
+3. Futtassa a következőt: **File -> Engagement -> Generate Android Manifest** (Fájl -> Engagement -> Android-jegyzék létrehozása). Ez a Mobile Engagement SDK által hozzáadott beépülő modul, amely automatikusan frissíti a projektbeállításokat, miután rákattint. 
    
     ![][74]
 
 > [!IMPORTANT]
-> Győződjön meg arról, hogy tooexecute Ez minden egyes hello frissítése **EngagementConfiguration** fájlból, egyébként pedig a módosítások nem tükröződnek hello alkalmazásban. 
+> Ne felejtse el ezt az **EngagementConfiguration** fájl minden egyes frissítése után elvégezni, különben a módosítások nem fognak megjelenni az alkalmazásban. 
 > 
 > 
 
-### <a name="configure-hello-app-for-basic-tracking"></a>Alapszintű nyomkövetéshez hello alkalmazás konfigurálása
-1. Nyissa meg hello **PlayerController** toohello Player objektum szerkesztésre csatolt parancsprogram. 
-2. Adja hozzá hello következő using utasítást:
+### <a name="configure-the-app-for-basic-tracking"></a>Az alkalmazás konfigurálása alapszintű nyomkövetéshez
+1. Nyissa meg szerkesztésre a lejátszóobjektumhoz csatolt **PlayerController** parancsfájlt. 
+2. Adja hozzá a következő using utasítást:
    
         using Microsoft.Azure.Engagement.Unity;
-3. Adja hozzá a következő toohello hello `Start()` módszer
+3. Adja hozzá a következőt a `Start()` metódushoz:
    
         EngagementAgent.Initialize();
         EngagementAgent.StartActivity("Home");
 
-### <a name="deploy-and-run-hello-app"></a>Regisztrálhat és futtathat hello alkalmazás
-Győződjön meg arról, hogy rendelkezik-e telepítve a számítógépre, mielőtt megpróbálná toodeploy a Unity-alkalmazás tooyour eszköz Android SDK-t. 
+### <a name="deploy-and-run-the-app"></a>Az alkalmazás üzembe helyezése és futtatása
+Ellenőrizze, hogy az Android SDK telepítve van-e a gépén, mielőtt a Unity-alkalmazást megpróbálná üzembe helyezni az eszközén. 
 
-1. Csatlakoztassa az Android-eszköz tooyour gépet. 
+1. Csatlakoztasson a gépéhez egy Android-eszközt. 
 2. Nyissa meg a **File -> Build Settings** (Fájl -> Létrehozási beállítások) menüpontot. 
    
     ![][40]
@@ -95,8 +95,8 @@ Győződjön meg arról, hogy rendelkezik-e telepítve a számítógépre, miel�
 5. Végül kattintson a **Build And Run** (Létrehozás és futtatás) gombra.
    
     ![][54]
-6. Előfordulhat, hogy ismételt tooprovide mappa neve toostore hello Android csomagot. 
-7. Ha minden megfelelően konfigurálva, akkor hello csomag lesz csatlakoztatva telepített tooyour eszközt, és megjelenik a Unity-játék a telefonon! 
+6. Előfordulhat, hogy a rendszer arra kéri, hogy adja meg annak a mappának nevét, ahol az Android-csomag tárolva lesz. 
+7. Ha a művelet sikeres, akkor a csomag üzembe lesz helyezve a csatlakoztatott eszközön, és a Unity-játék megjelenik a telefonon. 
 
 ## <a id="monitor"></a>Az alkalmazás csatlakoztatása a valós idejű megfigyeléshez
 [!INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
@@ -104,21 +104,21 @@ Győződjön meg arról, hogy rendelkezik-e telepítve a számítógépre, miel�
 ## <a id="integrate-push"></a>Leküldéses értesítések és alkalmazáson belüli üzenetek engedélyezése
 [!INCLUDE [Enable Google Cloud Messaging](../../includes/mobile-engagement-enable-google-cloud-messaging.md)]
 
-### <a name="update-hello-engagementconfiguration"></a>Hello EngagementConfiguration frissítése
-1. Hello nyissa meg **EngagementConfiguration** hello SDK mappából, és frissítse hello parancsfájlt **ANDROID\_GOOGLE\_szám** a hello **Google-projekt Szám** hello Google Cloud Developer portálról korábban beszerzett. Ez egy értéket, ezért győződjön meg arról, hogy tooenclose legyen idézőjelek közé foglalt. 
+### <a name="update-the-engagementconfiguration"></a>Az EngagementConfiguration frissítése
+1. Nyissa meg az **EngagementConfiguration** parancsfájlt az SDK mappából, és frissítse az **ANDROID\_GOOGLE\_NUMBER** elemet a Google Cloud Developer portálról korábban beszerzett **Google projektszámmal**. Ez egy karakterláncérték, ezért tegye idézőjelek közé. 
    
     ![][75]
-2. Hello fájl mentéséhez. 
-3. Futtassa a következőt: **File -> Engagement -> Generate Android Manifest** (Fájl -> Engagement -> Android-jegyzék létrehozása). Ez a hello Mobile Engagement SDK által hozzáadott hello beépülő modul, és azt automatikusan frissíti a projektbeállításokat. 
+2. Mentse a fájlt. 
+3. Futtassa a következőt: **File -> Engagement -> Generate Android Manifest** (Fájl -> Engagement -> Android-jegyzék létrehozása). Ez a Mobile Engagement SDK által hozzáadott beépülő modul, amely automatikusan frissíti a projektbeállításokat, miután rákattint. 
    
     ![][74]
 
-### <a name="configure-hello-app-tooreceive-notifications"></a>Hello app tooreceive értesítések konfigurálása
-1. Nyissa meg hello **PlayerController** toohello Player objektum szerkesztésre csatolt parancsprogram. 
-2. Adja hozzá a következő toohello hello `Start()` módszer
+### <a name="configure-the-app-to-receive-notifications"></a>Az alkalmazás konfigurálása értesítések fogadására
+1. Nyissa meg szerkesztésre a lejátszóobjektumhoz csatolt **PlayerController** parancsfájlt. 
+2. Adja hozzá a következőt a `Start()` metódushoz:
    
         EngagementReachAgent.Initialize();
-3. Most, hogy hello app frissül, telepítése és hello alkalmazást futtatják egy eszközön / hello alábbi utasítások szerint. 
+3. Most, hogy frissítette az alkalmazást, helyezze üzembe és futtassa azt egy eszközön az alábbi utasítások szerint. 
 
 [!INCLUDE [Send notification from portal](../../includes/mobile-engagement-android-send-push-from-portal.md)]
 

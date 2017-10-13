@@ -8,9 +8,10 @@
 # Első lépések
 
 ## [Kezdő szintű oktatóanyag](sql-data-warehouse-get-started-tutorial.md)
+## [Rugalmas lekérdezés – Oktatóanyag](tutorial-elastic-query-with-sql-datababase-and-sql-data-warehouse.md)
 ## [Ajánlott eljárások](sql-data-warehouse-best-practices.md)
 ## [Kezelés](sql-data-warehouse-overview-manage.md)
-## [Támogatás kérése](sql-data-warehouse-get-started-create-support-ticket.md)
+
 
 
 # Útmutató
@@ -20,7 +21,7 @@
 ### [A biztonsági mentés áttekintése](sql-data-warehouse-backups.md)
 ### [Visszaállítás áttekintése](sql-data-warehouse-restore-database-overview.md)
 #### [Azure Portal](sql-data-warehouse-restore-database-portal.md)
-#### [PowerShell](sql-data-warehouse-restore-database-powershell.md)
+#### [Azure PowerShell](sql-data-warehouse-restore-database-powershell.md)
 #### [REST](sql-data-warehouse-restore-database-rest-api.md)
 
 ## Kapcsolódás
@@ -34,7 +35,7 @@
 
 ## Létrehozás
 ### [Azure Portal](sql-data-warehouse-get-started-provision.md)
-### [PowerShell](sql-data-warehouse-get-started-provision-powershell.md)
+### [Azure PowerShell](sql-data-warehouse-get-started-provision-powershell.md)
 ### [T-SQL](sql-data-warehouse-get-started-create-database-tsql.md)
 
 ## Fejlesztés
@@ -80,6 +81,8 @@
 ### [Power BI-megjelenítés](sql-data-warehouse-get-started-visualize-with-power-bi.md)
 ### [Stream Analytics](sql-data-warehouse-integrate-azure-stream-analytics.md)
 
+### [Rugalmas lekérdezés az SQL Database és az SQL Data Warehouse használatával](how-to-use-elastic-query-with-sql-data-warehouse.md)
+
 ## Betöltés
 
 ### Alapelvek
@@ -89,7 +92,7 @@
 ### oktatóanyagokat
 #### [PolyBase](sql-data-warehouse-get-started-load-with-polybase.md)
 
-### Hogyan-tooguides
+### Útmutatók
 #### [Mintaadatok](sql-data-warehouse-load-sample-databases.md)
 #### [Azure Data Lake Store](sql-data-warehouse-load-from-azure-data-lake-store.md)
 #### [BCP](sql-data-warehouse-load-with-bcp.md)
@@ -106,7 +109,7 @@
 ### [Séma áttelepítése](sql-data-warehouse-migrate-schema.md)
 ### [Kód áttelepítése](sql-data-warehouse-migrate-code.md)
 ### [Adatok áttelepítése](sql-data-warehouse-migrate-data.md)
-### [Toopremium tároló áttelepítése](sql-data-warehouse-migrate-to-premium-storage.md)
+### [Áttelepítés a Premium Storage-ba](sql-data-warehouse-migrate-to-premium-storage.md)
 
 ## Számítások kezelése
 
@@ -139,18 +142,22 @@
 # Referencia
 
 ## [Kapacitási korlátok](sql-data-warehouse-service-capacity-limits.md)
-## [A T-SQL nyelvi elemei](sql-data-warehouse-reference-tsql-language-elements.md)
-## [T-SQL-utasítások](sql-data-warehouse-reference-tsql-statements.md)
-## [T-SQL-rendszernézetek](sql-data-warehouse-reference-tsql-system-views.md)
+## T-SQL
+### [Teljes referencia](https://docs.microsoft.com/sql/t-sql/language-reference/)
+### [Az SQL DW nyelvi elemei](sql-data-warehouse-reference-tsql-language-elements.md)
+### [Az SQL DW utasításai](sql-data-warehouse-reference-tsql-statements.md)
+## [Rendszernézetek](sql-data-warehouse-reference-tsql-system-views.md)
 ## [PowerShell-parancsmagok](sql-data-warehouse-reference-powershell-cmdlets.md)
 
 # Erőforrások
 ## [Azure-ütemterv](https://azure.microsoft.com/roadmap/?category=databases)
-## [Fórum](https://social.msdn.microsoft.com/Forums/home?forum=AzureSQLDataWarehouse)
+## [Fórum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureSQLDataWarehouse)
 ## [Díjszabás](https://azure.microsoft.com/pricing/details/sql-data-warehouse/)
 ## [Díjkalkulátor](https://azure.microsoft.com/pricing/calculator/)
+## [Funkciókérések](https://feedback.azure.com/forums/307516-sql-data-warehouse/)
 ## [Szolgáltatási hírek](https://azure.microsoft.com/updates/?product=sql-data-warehouse)
 ## [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-sqldw/)
+## [Támogatás](sql-data-warehouse-get-started-create-support-ticket.md)
 ## [Videók](https://azure.microsoft.com/documentation/videos/index/?services=sql-data-warehouse)
 
 ## Partnerek

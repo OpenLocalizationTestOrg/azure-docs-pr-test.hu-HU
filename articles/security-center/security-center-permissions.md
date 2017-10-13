@@ -1,6 +1,6 @@
 ---
-title: az Azure Security Centerben aaaPermissions |} Microsoft Docs
-description: "Ez a cikk azt ismerteti, hogyan használja az Azure Security Center a szerepköralapú hozzáférés-vezérlési tooassign engedélyek toousers, és azonosítja az egyes szerepkörökhöz műveletek engedélyezett hello."
+title: "Engedélyek az Azure Security Centerben |} Microsoft Docs"
+description: "Ez a cikk azt ismerteti, hogyan az Azure Security Center segítségével szerepköralapú hozzáférés-vezérlési engedélyek hozzárendelése a felhasználókhoz, és az egyes szerepkörökhöz engedélyezett műveleteket azonosítja."
 services: security-center
 cloud: na
 documentationcenter: na
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: terrylan
-ms.openlocfilehash: 03e16132dc3d951ef8ad9e86b9970b9e4d15c76b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0aaa99dda44d2020afd3e841e84020eb4ff87a85
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="permissions-in-azure-security-center"></a>Engedélyek az Azure Security Centerben
 
-Az Azure Security Center által használt [szerepköralapú hozzáférés-vezérlést (RBAC)](../active-directory/role-based-access-control-configure.md), amely biztosítja [beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md) , amely a toousers, csoportok és az Azure rendelhetők.
+Az Azure Security Center [szerepköralapú hozzáférés-vezérlést (RBAC)](../active-directory/role-based-access-control-configure.md) használ, amelynek [beépített szerepköreit](../active-directory/role-based-access-built-in-roles.md) az Azure különböző csoportjaihoz, felhasználóihoz és szolgáltatásaihoz rendelheti.
 
-A Security Center értékeli az erőforrások tooidentify biztonsági problémák és biztonsági rések hello konfigurációja. A biztonsági központban, csak akkor jelenik meg információ tooa erőforrás kapcsolatos hello szerepkör tulajdonos, közreműködő vagy olvasó hello előfizetés vagy az erőforrás csoport, amely egy erőforrás tartozik.
+A Security Center értékeli a konfigurációs az erőforrások biztonsági problémák és biztonsági rések azonosítása. A biztonsági központban csak akkor jelenik meg egy erőforrás tulajdonos, közreműködő vagy olvasó szerepkört az előfizetés vagy az erőforráscsoportot, amelyhez tartozik egy erőforrás hozzárendelése esetén kapcsolatos adatokat.
 
-Továbbá toothese szerepkörök szerepkör is létezik két adott Security Center:
+Ezen szerepkörök mellett két speciális Security Center-szerepkör van:
 
-* **Biztonsági olvasó**: toothis szerepkörhöz tartozó felhasználó rendelkezik jogosultságokkal tooSecurity Center megtekintése. hello felhasználó megtekintheti a javaslatok, a riasztások, a biztonsági házirend és a biztonsági állapotok, de nem módosíthatja.
-* **Biztonsági rendszergazda**: egy felhasználó toothis szerepkörhöz tartozó azonos hello biztonsági olvasó, tartalomvédelmi hello rendelkezik és hello biztonsági házirend frissítése, és zárja be a riasztások és javaslatok.
+* **Biztonsági olvasó**: ehhez a szerepkörhöz tartozó felhasználó van jogosultsága ahhoz, hogy a Security Center megtekintése. A felhasználó megtekintheti a javaslatok, a riasztások, a biztonsági házirend és a biztonsági állapotok, de nem módosíthatja.
+* **Biztonsági rendszergazda**: ehhez a szerepkörhöz tartozó felhasználó a biztonsági olvasó megegyező jogokkal rendelkezik és is frissíteni a biztonsági házirendet, és hagyja figyelmen kívül a riasztások és javaslatok.
 
 > [!NOTE]
-> hello biztonsági szerepkörök, biztonsági olvasó és a biztonsági rendszergazda, csak a Security Center rendelkezik hozzáféréssel. hello biztonsági szerepkörök nem rendelkezik hozzáférési tooother szolgáltatás például a tárolóhely & webes, mobil vagy az eszközök internetes hálózatát Azure területéhez.
+> A biztonsági szerepkörök, biztonsági olvasó és a biztonsági rendszergazda, csak a Security Center rendelkezik hozzáféréssel. A biztonsági szerepkörök az Azure tárolási, webes & mobilalkalmazás vagy az eszközök internetes hálózatát más szolgáltatás területéhez nincs hozzáférése.
 >
 >
 
 ## <a name="roles-and-allowed-actions"></a>Szerepkörök és az engedélyezett műveletek
 
-hello következő táblázat megjeleníti a szerepkört, és a Security Center műveletek engedélyezett. Az X jelzi, hogy ez a szerepkör hello művelet engedélyezett.
+A következő táblázat megjeleníti a szerepkört, és a Security Center műveletek engedélyezett. Az X jelzi, hogy a művelet engedélyezett-e az adott szerepkörhöz.
 
 | Szerepkör | Biztonsági házirend szerkesztése | Egy erőforrás biztonsági javaslatok alkalmazása | Hagyja figyelmen kívül a riasztások és javaslatok | Riasztások megtekintése és javaslatok |
 |:--- |:---:|:---:|:---:|:---:|
@@ -51,15 +51,15 @@ hello következő táblázat megjeleníti a szerepkört, és a Security Center m
 | Biztonsági olvasó | -- | -- | -- | X |
 
 > [!NOTE]
-> Azt javasoljuk, hogy rendelje hello legkevésbé megengedő szerepkörre felhasználók toocomplete a feladataik ellátásához szükséges. Például rendeljen hello olvasó szerepkört toousers csak a tooview erőforrás biztonsági állapota hello információra van szüksége, de nem tesznek lépéseket, például a alkalmazhatnak javaslatokat, és módosíthatják a szabályzatokat.
+> Javasoljuk, hogy a felhasználókhoz azt a lehető legalacsonyabb szintű szerepkört rendelje, amellyel még el tudják végezni feladataikat. Például az olvasó szerepkört rendelni felhasználók, akik csak egy erőforrás biztonsági állapotával kapcsolatos információk megtekintése, de nem tesznek lépéseket, például a alkalmazhatnak javaslatokat, és módosíthatják a szabályzatokat.
 >
 >
 
 ## <a name="next-steps"></a>Következő lépések
-Ez a cikk azt, hogyan használja a Security Center az RBAC tooassign engedélyek toousers, és engedélyezett műveletek az egyes szerepkörökhöz hello azonosított. Most, hogy ismeri hello szerepkör-hozzárendelések toomonitor hello szükséges biztonsági állapotát, az előfizetés, szerkesztheti a biztonsági szabályzatokat, és a javaslatok alkalmazni, megtudhatja, hogyan:
+Ez a cikk alapján hogyan Security Center segítségével RBAC engedélyek hozzárendelése a felhasználókhoz, és azonosítja az egyes szerepkörökhöz engedélyezett műveletek. Most, hogy ismeri az előfizetés biztonsági állapotának figyeléséhez szükséges szerepkör-hozzárendelések, szerkesztheti a biztonsági szabályzatokat, és a javaslatok alkalmazni, megtudhatja, hogyan:
 
 - [A Security Center biztonsági házirendek beállítása](security-center-policies.md)
 - [A Security Center biztonsági javaslatok kezelése](security-center-recommendations.md)
-- [Az Azure-erőforrások biztonsági állapotát hello figyelése](security-center-monitoring.md)
-- [Kezelésének és megoldásának toosecurity riasztásokat a Security Center](security-center-managing-and-responding-alerts.md)
+- [Az Azure-erőforrások biztonsági állapotának figyelésére](security-center-monitoring.md)
+- [A biztonsági riasztások kezelése és a riasztásokra való válaszadás a Security Centerben](security-center-managing-and-responding-alerts.md)
 - [Biztonsági partnermegoldások figyelése](security-center-partner-solutions.md)

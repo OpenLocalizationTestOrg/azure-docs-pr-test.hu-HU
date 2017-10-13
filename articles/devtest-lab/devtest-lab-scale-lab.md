@@ -1,6 +1,6 @@
 ---
-title: "aaaScale kvótái és korlátai, a laborban a Azure DevTest Labs szolgáltatásban |} Microsoft Docs"
-description: "Megtudhatja, hogyan tooscale egy tesztkörnyezetet a Azure DevTest Labs szolgáltatásban"
+title: "Kvótái és korlátai méretezni a laborban a Azure DevTest Labs szolgáltatásban |} Microsoft Docs"
+description: "Útmutató egy tesztlabor méretezése a Azure DevTest Labs szolgáltatásban"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: tarcher
-ms.openlocfilehash: 7fb429c0aabdfbce3a4a5aa6d9259daa2ee270d3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f11ed42b474e4f208eac92689bfa33fb188d15a1
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="scale-quotas-and-limits-in-devtest-labs"></a>Skála kvótái és korlátai a DevTest Labs szolgáltatásban
-Munka a DevTest Labs szolgáltatásban, Észreveheti, hogy nincsenek bizonyos alapértelmezett korlátok toosome Azure-erőforrások, ami kihathat a hello DevTest Labs szolgáltatás. A hivatkozott tooas azok **kvóták**.
+Munka a DevTest Labs szolgáltatásban, Észreveheti, hogy nincsenek-e bizonyos bizonyos Azure-erőforrások, ami kihathat a DevTest Labs szolgáltatás alapértelmezett korlátozások. Ezek a korlátozások nevezzük **kvóták**.
 
 > [!NOTE]
-> DevTest Labs szolgáltatás hello nem ugyanazok a kvóták. Bármely kvóták léphetnek fel hello a teljes Azure-előfizetés alapértelmezett korlátai.
+> A DevTest Labs szolgáltatás nem ugyanazok a kvóták. Bármely kvóták léphetnek olyan alapértelmezett tartoznak a teljes Azure-előfizetés.
 
 Minden Azure-erőforrás is használhat, amíg el nem éri a kvótát. Minden előfizetés külön kvóták és a használati előfizetésenként követhető nyomon.
 
 Például az egyes előfizetések rendelkezik 20 magszámra vonatkozó alapértelmezett kvótát. Igen ha virtuális gépeket a tesztlaborban négy magok hoz létre, majd csak létrehozhat öt virtuális gépek. 
 
-[Az Azure előfizetés és szolgáltatásra vonatkozó korlátozások](https://docs.microsoft.com/azure/azure-subscription-service-limits) egy Azure-erőforrások leggyakoribb kvótái hello sorolja fel. egy tesztkörnyezetben leggyakrabban használt erőforrások hello, és amely léphetnek fel a kvótákat, az VM magok, nyilvános IP-címek, hálózati illesztő, kezelt lemezek, RBAC szerepkör-hozzárendelés, és ExpressRoute-Kapcsolatcsoportok.
+[Az Azure előfizetés és szolgáltatásra vonatkozó korlátozások](https://docs.microsoft.com/azure/azure-subscription-service-limits) egy Azure-erőforrások leggyakoribb kvótái sorolja fel. Az erőforrások leggyakrabban használt laborkörnyezetben, és amely léphetnek fel a kvótákat, az tartalmazza az VM mag, nyilvános IP-címek, hálózati adapter, felügyelt lemezek, RBAC szerepkör-hozzárendelés és ExpressRoute-Kapcsolatcsoportok.
 
 ## <a name="view-your-usage-and-quotas"></a>A használati és a kvóták megtekintése
-Ezek a lépések bemutatják, hogyan tooview hello az adott Azure-erőforrások és toosee előfizetésében aktuális kvóták minden kvóta hány százalékát használja.
+Ezeket a lépéseket mutatja be az aktuális kvóták tekintse meg az adott Azure-erőforrások előfizetés, és tekintse meg az egyes hány százalékát használja.
 
-1. Jelentkezzen be toohello [Azure-portálon](http://go.microsoft.com/fwlink/p/?LinkID=525040).
-1. Válassza ki **több szolgáltatások**, majd válassza ki **számlázási** hello listából.
-1. Hello számlázási panelen válassza ki egy előfizetést.
+1. Jelentkezzen be az [Azure Portalra](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Válassza ki **több szolgáltatások**, majd válassza ki **számlázási** a listából.
+1. A számlázási panelen válassza ki egy előfizetést.
 4. Válassza ki **használati + kvóták**.
 
    ![Használati és kvóták gomb](./media/devtest-lab-scale-lab/devtestlab-usage-and-quotas.png)
 
-   Használati + kvóták hello panel listája jelenik különböző erőforrások hello kvóta erőforrásonként használt előfizetés és hello százalékosan érhető el.
+   A használati + kvóták panelen megjelenik, a listaelem különböző erőforrások érhető el, hogy az előfizetés és a kvóta erőforrásonként használt százalékos.
 
    ![Kvóták és használat](./media/devtest-lab-scale-lab/devtestlab-view-quotas.png)
 
 ## <a name="requesting-more-resources-in-your-subscription"></a>A kért további erőforrást az előfizetésében
-Ha eléri a kvóta kap, hello alapértelmezett korlát előfizetés az erőforrások növelhető mentése tooa maximális száma, a [Azure-előfizetés és a szolgáltatásra vonatkozó korlátozások](https://docs.microsoft.com/azure/azure-subscription-service-limits).
+Ha eléri a kvóta kap, az alapértelmezett határérték előfizetés az erőforrások növelhető legfeljebb, a [Azure-előfizetés és a szolgáltatásra vonatkozó korlátozások](https://docs.microsoft.com/azure/azure-subscription-service-limits).
 
-Ezek a lépések bemutatják, hogyan toorequest a kvóta növeléséhez keresztül hello [Azure-portálon](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+Ezeket a lépéseket mutatja be a kvóta növelését keresztül a [Azure-portálon](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
 1. Válassza ki **több szolgáltatások**, jelölje be **számlázási**, majd válassza ki **használati + kvóták**.
-1. A használati hello és kvóták panelen, jelölje ki a hello **kérelem növelése** gombra.
+1. A használati + kvóták panelen válassza a **kérelem növelése** gombra.
 
    ![Kérésgombhoz növelése](./media/devtest-lab-scale-lab/devtestlab-request-increase.png)
 
-1. toocomplete és hello kérés elküldéséhez szükséges hello adatok minden három lapon a hello **új támogatja a kérelem** űrlap.
+1. Végezze el, és küldje el a kérelmet, töltse ki a szükséges adatokat az összes három lap a **új támogatja a kérelem** űrlap.
 
    ![Növelje a kérésűrlapra](./media/devtest-lab-scale-lab/devtestlab-support-form.png)
 
-[Understanding Azure korlátozásai és növekszik](https://azure.microsoft.com/blog/azure-limits-quotas-increase-requests/) lépjen kapcsolatba az Azure támogatási toorequest további információt nyújt a kvóta növelését.
+[Understanding Azure korlátozásai és növekszik](https://azure.microsoft.com/blog/azure-limits-quotas-increase-requests/) további tájékoztatást ad azokról a kvóta növelését az Azure támogatási szolgálatától.
 
 
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
 ### <a name="next-steps"></a>Következő lépések
-* Fedezze fel hello [Office DevTest Labs Azure Resource Manager gyorsindítási sablonok](https://github.com/Azure/azure-devtestlab/tree/master/Samples).
+* Megismerkedhet a [Office DevTest Labs Azure Resource Manager gyorsindítási sablonok](https://github.com/Azure/azure-devtestlab/tree/master/Samples).

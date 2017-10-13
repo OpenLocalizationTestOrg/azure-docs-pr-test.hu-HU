@@ -1,6 +1,6 @@
 ---
-title: "az Azure Kubernetes Helm aaaDeploy tárolók |} Microsoft Docs"
-description: "Az Azure Tárolószolgáltatásban Kubernetes fürtön hello Helm csomagolás eszköz toodeploy tárolók használata"
+title: "Az Azure Kubernetes Helm a tároló üzembe helyezése |} Microsoft Docs"
+description: "Az Azure Tárolószolgáltatásban Kubernetes fürtön tároló üzembe helyezése a Helm csomagolás eszközzel"
 services: container-service
 documentationcenter: 
 author: sauryadas
@@ -16,20 +16,20 @@ ms.workload: na
 ms.date: 04/10/2017
 ms.author: saudas
 ms.custom: mvc
-ms.openlocfilehash: c7bd780afe00084ebe4e3a14873e1e340a29d144
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3cfcc5abbee03ca8fbbec4e4eae711e7c2d9deae
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="use-helm-toodeploy-containers-on-a-kubernetes-cluster"></a>Kubernetes fürt Helm toodeploy tárolók használata 
+# <a name="use-helm-to-deploy-containers-on-a-kubernetes-cluster"></a>Helm segítségével tároló Kubernetes fürt üzembe helyezése 
 
-[Helm](https://github.com/kubernetes/helm/) egy nyílt forráskódú csomagolás eszköz, amelynek segítségével telepítheti és kezelheti a Kubernetes alkalmazások hello életciklusát. Hasonló tooLinux csomag kezelők például Apt-get és Yum Helm használt toomanage Kubernetes diagramok, amelyek az előre konfigurált Kubernetes erőforrások csomagok. Ez a cikk bemutatja, hogyan Kubernetes fürtön a Helm toowork Azure Tárolószolgáltatás telepítve.
+[Helm](https://github.com/kubernetes/helm/) nyílt forráskódú csomagolás eszköz, amely segít telepíteni, és Kubernetes alkalmazások életciklusának kezelését. Linux-csomag kezelői például Apt-get és Yum hasonló, Helm segítségével Kubernetes diagramok, amelyek az előre konfigurált Kubernetes erőforrások-csomagok kezelése. Ez a cikk bemutatja, hogyan Helm dolgozni az Azure Tárolószolgáltatásban telepített Kubernetes fürtön.
 
 Helm két részből áll: 
-* Hello **Helm CLI** helyileg vagy hello felhőben található a számítógépen futó ügyfél  
+* A **Helm CLI** helyileg vagy a felhőben a számítógépen futó ügyfél  
 
-* **Kormányrúd** , amely hello Kubernetes fürtön fut, és a Kubernetes alkalmazások hello életciklusát felügyeli 
+* **Kormányrúd** , amely a Kubernetes fürtön fut, és a Kubernetes alkalmazások életciklusát felügyeli 
  
 ## <a name="prerequisites"></a>Előfeltételek
 
@@ -41,72 +41,72 @@ Helm két részből áll:
 
 ## <a name="helm-basics"></a>Helm alapjai 
 
-tooview információ hello Kubernetes fürt, hogy kormányrúd telepítése, és az alkalmazások telepítése, írja be a következő parancs hello:
+A Kubernetes fürt, hogy kormányrúd telepítése, és az alkalmazások telepítésével kapcsolatos információk megtekintéséhez írja be a következő parancsot:
 
 ```bash
 kubectl cluster-info 
 ```
 ![kubectl fürt-adatai](./media/container-service-kubernetes-helm/clusterinfo.png)
  
-Miután telepítette a Helm, kormányrúd a fürtön telepíteni a Kubernetes hello a következő parancs beírásával:
+Miután telepítette a Helm, kormányrúd a fürtön telepíteni a Kubernetes a következő parancs beírásával:
 
 ```bash
 helm init --upgrade
 ```
-Ha sikeres a végrehajtása, hasonló hello kimenet jelenik meg:
+Sikeresen befejeződött, a következőhöz hasonló kimenetet láthat:
 
 ![Kormányrúd telepítése](./media/container-service-kubernetes-helm/tiller-install.png)
  
  
  
  
-tooview hello Helm diagramjainak elérhető hello tárház, a következő típus hello parancsot:
+A tárházban összes rendelkezésre álló Helm diagramok megtekintéséhez írja be a következő parancsot:
 
 ```bash 
 helm search 
 ```
 
-Hello következő kimenet jelenik meg:
+A következőhöz hasonló kimenetnek jelenik meg:
 
 ![Helm keresése](./media/container-service-kubernetes-helm/helm-search.png)
  
-tooupdate hello diagramok tooget hello legújabb verziója, írja be:
+A diagramok első a legújabb verziók frissítése, írja be:
 
 ```bash 
 helm repo update 
 ```
 ## <a name="deploy-an-nginx-ingress-controller-chart"></a>Egy Nginx érkező vezérlő diagram telepítése 
  
-egy Nginx érkező vezérlő diagram toodeploy egy parancs írja be:
+Egy Nginx érkező vezérlő diagram telepítéséhez írja be egy parancs:
 
 ```bash
 helm install stable/nginx-ingress 
 ```
 ![Érkező tartományvezérlő központi telepítése](./media/container-service-kubernetes-helm/nginx-ingress.png)
 
-Ha `kubectl get svc` tooview hello fürtön futó összes szolgáltatásokat, láthatja, hogy az IP-cím toohello érkező tartományvezérlő van hozzárendelve. (Hello hozzárendelés folyamatban van, amíg megjelenik `<pending>`. Igénybe vehet néhány percet toocomplete.) 
+Ha `kubectl get svc` minden, a fürtön futó szolgáltatások megtekintése, láthatja, hogy egy IP-címet a érkező tartományvezérlő van rendelve. (A hozzárendelés folyamatban van, amíg megjelenik `<pending>`. Igénybe vehet néhány percet.) 
 
-Után hello IP-cím van hozzárendelve, keresse meg a hello külső IP cím toosee hello Nginx háttér futtató toohello értékét. 
+Az IP-cím után cím hozzá van rendelve, keresse meg a futó Nginx háttér megtekintéséhez a külső IP-cím értékét. 
  
 ![Érkező IP-cím](./media/container-service-kubernetes-helm/ingress-ip-address.png)
 
 
-toosee diagramok listája telepítve a fürtben, típus:
+A fürtön telepítve diagramok listájának megtekintéséhez írja be:
 
 ```bash
 helm list 
 ```
 
-Hello parancs túl rövidíthető`helm ls`.
+A parancs futtatásával rövidíthető `helm ls`.
  
  
  
  
 ## <a name="deploy-a-mariadb-chart-and-client"></a>A MariaDB diagram és az ügyfél telepítése
 
-Mostantól telepítheti MariaDB diagram és MariaDB ügyfél tooconnect toohello adatbázis.
+Mostantól telepítheti MariaDB diagram és az adatbázishoz való kapcsolódáshoz MariaDB ügyfél.
 
-toodeploy hello MariaDB diagram, a következő parancs típusa hello:
+A MariaDB diagram telepítéséhez írja be a következő parancsot:
 
 ```bash
 helm install --name v1 stable/mariadb
@@ -115,42 +115,42 @@ helm install --name v1 stable/mariadb
 Ha `--name` kiadásokban használt címke.
 
 > [!TIP]
-> Ha hello telepítése sikertelen, futtassa `helm repo update` , és próbálkozzon újra.
+> Ha nem sikerül a telepítés, futtassa `helm repo update` , és próbálkozzon újra.
 >
  
  
-tooview a fürtben, típus regisztrálva diagramjainak hello:
+A fürt telepített összes diagramok megtekintéséhez írja be:
 
 ```bash 
 helm list
 ```
  
-tooview írja be a fürtben futó összes központi telepítése:
+A fürtben futó összes központi telepítést, írja be:
 
 ```bash
 kubectl get deployments 
 ``` 
  
  
-Végezetül toorun pod tooaccess hello ügyfél, írja be:
+Végezetül futtatásához egy pod az ügyfél eléréséhez írja be:
 
 ```bash
 kubectl run v1-mariadb-client --rm --tty -i --image bitnami/mariadb --command -- bash  
 ``` 
  
  
-tooconnect toohello ügyfél, a következő parancsot, hogy a típus hello `v1-mariadb` hello nevet, a központi telepítés:
+Az ügyfél csatlakozik, írja be a következő parancsot, cseréje `v1-mariadb` nevű, a központi telepítés:
 
 ```bash
 sudo mysql –h v1-mariadb
 ```
  
  
-Most már használhatja a szokásos SQL-parancsok toocreate adatbázisok, táblák, stb. Például `Create DATABASE testdb1;` létrehoz egy üres adatbázist. 
+Használhatja a szokásos SQL-parancsok létrehozása az adatbázisok, táblák, stb. Például `Create DATABASE testdb1;` létrehoz egy üres adatbázist. 
  
  
  
 ## <a name="next-steps"></a>Következő lépések
 
-* Kubernetes diagramok kezelésével kapcsolatos további információkért lásd: hello [Helm dokumentáció](https://github.com/kubernetes/helm/blob/master/docs/index.md). 
+* Kubernetes diagramok kezelésével kapcsolatos további információkért tekintse meg a [Helm dokumentáció](https://github.com/kubernetes/helm/blob/master/docs/index.md). 
 

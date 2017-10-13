@@ -1,16 +1,16 @@
 
 **Objective-C**:
 
-1. A **QSAppDelegate.m**, hello iOS SDK importálása és **QSTodoService.h**:
+1. A **QSAppDelegate.m**, importálja az iOS SDK és **QSTodoService.h**:
    
         #import <MicrosoftAzureMobile/MicrosoftAzureMobile.h>
         #import "QSTodoService.h"
-2. A `didFinishLaunchingWithOptions` a **QSAppDelegate.m**, insert hello következő sorok közvetlenül előtt `return YES;`:
+2. A `didFinishLaunchingWithOptions` a **QSAppDelegate.m**, a következő közvetlenül előtt sor beszúrása `return YES;`:
    
         UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
-3. A **QSAppDelegate.m**, adja hozzá a következő kezelő metódusok hello. Az alkalmazás már frissített toosupport leküldéses értesítéseket. 
+3. A **QSAppDelegate.m**, adja hozzá a következő kezelő metódusokat. Az alkalmazás most frissíteni leküldéses értesítések támogatásához használható. 
    
         // Registration with APNs is successful
         - (void)application:(UIApplication *)application
@@ -26,13 +26,13 @@
             }];
         }
    
-        // Handle any failure tooregister
+        // Handle any failure to register
         - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:
         (NSError *)error {
-            NSLog(@"Failed tooregister for remote notifications: %@", error);
+            NSLog(@"Failed to register for remote notifications: %@", error);
         }
    
-        // Use userInfo in hello payload toodisplay an alert.
+        // Use userInfo in the payload to display an alert.
         - (void)application:(UIApplication *)application
               didReceiveRemoteNotification:(NSDictionary *)userInfo {
             NSLog(@"%@", userInfo);
@@ -79,15 +79,15 @@
 
 **SWIFT**:
 
-1. Adja hozzá a fájl **ClientManager.swift** a tartalom a következő hello. Cserélje le *AppUrl %* hello Azure Mobile Apps-háttéralkalmazás hello URL-címével.
+1. Adja hozzá a fájl **ClientManager.swift** a következő tartalommal. Cserélje le *AppUrl %* az Azure Mobile Apps-háttéralkalmazás URL-címét.
    
         class ClientManager {
             static let sharedClient = MSClient(applicationURLString: "%AppUrl%")
         }
-2. A **ToDoTableViewController.swift**, cserélje le a hello `let client` inicializálja sor egy `MSClient` ehhez a sorhoz:
+2. A **ToDoTableViewController.swift**, cserélje le a `let client` inicializálja sor egy `MSClient` ehhez a sorhoz:
    
         let client = ClientManager.sharedClient
-3. A **AppDelegate.swift**, cserélje le a hello törzsét `func application` az alábbiak szerint:
+3. A **AppDelegate.swift**, cserélje le a törzsét `func application` az alábbiak szerint:
    
         func application(application: UIApplication,
           didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -97,7 +97,7 @@
            application.registerForRemoteNotifications()
            return true
         }
-4. A **AppDelegate.swift**, adja hozzá a következő kezelő metódusok hello. Az alkalmazás már frissített toosupport leküldéses értesítéseket.
+4. A **AppDelegate.swift**, adja hozzá a következő kezelő metódusokat. Az alkalmazás most frissíteni leküldéses értesítések támogatásához használható.
    
         func application(application: UIApplication,
            didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
@@ -108,7 +108,7 @@
    
         func application(application: UIApplication,
            didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-            print("Failed tooregister for remote notifications: ", error.description)
+            print("Failed to register for remote notifications: ", error.description)
         }
    
         func application(application: UIApplication,
@@ -119,11 +119,11 @@
             let apsNotification = userInfo["aps"] as? NSDictionary
             let apsString       = apsNotification?["alert"] as? String
    
-            let alert = UIAlertController(title: aaa"Alert", message: apsString, preferredStyle: .Alert)
-            let okAction = UIAlertAction(title: aaa"OK", style: .Default) { _ in
+            let alert = UIAlertController(title: "Alert", message: apsString, preferredStyle: .Alert)
+            let okAction = UIAlertAction(title: "OK", style: .Default) { _ in
                 print("OK")
             }
-            let cancelAction = UIAlertAction(title: aaa"Cancel", style: .Default) { _ in
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Default) { _ in
                 print("Cancel")
             }
    

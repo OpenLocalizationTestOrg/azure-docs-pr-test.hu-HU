@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure Mobile Engagement Windows univerzális alkalmazások SDK kibocsátási megjegyzései |} Microsoft Docs"
+title: "Az Azure Mobile Engagement Windows univerzális alkalmazások SDK kibocsátási megjegyzések |} Microsoft Docs"
 description: "Az Azure Mobile Engagement - Windows-alkalmazásokat Universal SDK kibocsátási megjegyzései"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 11/03/2016
 ms.author: piyushjo
-ms.openlocfilehash: 280bd064888f69a77d6fe0c31eafd98a0bbf724e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: dc5529a9e8f4eba867732f719ca8fff718c00d5a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="windows-universal-apps-sdk-release-notes"></a>Windows-alkalmazásokat Universal SDK kibocsátási megjegyzései
 ## <a name="341-11032016"></a>3.4.1 (11/03/2016)
@@ -27,8 +27,8 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="340-04192016"></a>3.4.0 (04/19/2016)
 * Átfedő fejlesztései elérni.
-* A hozzáadott "TestLogLevel" API-tooenable vagy tiltsa le vagy szűrőkezelő konzolnaplófájlokban hello SDK által kibocsátott.
-* Rögzített tevékenység értesítések célzó hello első tevékenység nem jelenik meg az alkalmazás elindításához.
+* A hozzáadott "TestLogLevel" API engedélyezése/letiltása/szűrő konzolnaplófájlokban az SDK által kibocsátott.
+* Indítsa el az első tevékenység nem jelenik meg az alkalmazás célzó rögzített tevékenység értesítéseket.
 
 ## <a name="331-02182016"></a>3.3.1 (02/18/2016)
 * Rögzített ütközések webes hirdetmény HTML-tartalmakat és SDK HTML-lapok között.
@@ -42,19 +42,19 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="320-11202015"></a>3.2.0 (11/20/2015)
 * Windows 10 univerzális Windows Platform-alkalmazások támogatása.
-* Hozzáadott leküldéses csatorna megosztása szolgáltatás toofix csatorna ütközések (most kompatibilis az Azure Notification hubs használatával).
-* Rögzített összeomlási hello eszközazonosító csak hello inicializálás után lekérésekor.
+* Hozzáadott leküldéses csatorna megosztása szolgáltatást, hogy javítsa ki a csatorna ütközések (most kompatibilis az Azure Notification hubs használatával).
+* Rögzített összeomlási csak az inicializálás után az eszközazonosítót lekérésekor.
 * -Konzol naplói fejlesztései.
 * Rögzített összeomlási néhány elemzése közben nem kezelt kivételeket.
 
 ## <a name="310-05212015"></a>3.1.0 (05/21/2015)
-* Mobile Engagement-eszközazonosítót hello a telepítéskor létrehozott GUID alapján.
+* A Mobile Engagement-eszközazonosítót a telepítéskor jönnek létre GUID alapján.
 
 ## <a name="301-04292015"></a>3.0.1 (04/29/2015)
-* Rögzített hello SDK inicializálása néhány Windows Phone WinRT alkalmazások érintő hiba.
+* Az egyes Windows Phone WinRT apps SDK inicializálása érintő programhiba rögzített.
 
 ## <a name="300-04032015"></a>3.0.0 (04/03/2015)
-* Bevezeti a Mobile Engagement SDK hello univerzális alkalmazás (Windows és Windows Phone WinRT).
+* A Mobile Engagement SDK univerzális App (Windows és Windows Phone WinRT) bemutatása.
 * Alapértelmezett értesítési ikon frissítése.
 * A rendszer hátsó értesítési művelet visszajelzést küldjön a értesítést kattintáskor.
 * Beépített rendszer értesítést, amelyet néha alkalmazásbeli visszajátszani után kattintanak.

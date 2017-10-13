@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Active Directory naplózási API-referencia |} Microsoft Docs"
-description: "Hogyan tooget használatába hello Azure Active Directory naplózási API"
+title: "Az Azure Active Directory naplózási API-referencia |} Microsoft Docs"
+description: "Ismerkedés az Azure Active Directory naplózási API-hoz"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,22 +15,22 @@ ms.workload: identity
 ms.date: 07/05/2017
 ms.author: dhanyahk;markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 5f33b62ede9be445f35704739e328580dc454368
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 573e940c5390e7b990d889681eb37b73c5b253d9
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-active-directory-audit-api-reference"></a>Az Azure Active Directory naplózási API-referencia
-Ez a témakör hello Azure Active Directoryval kapcsolatos témakörök gyűjteményét része reporting API-val.  
-Az Azure AD jelentéskészítési lehetőséget biztosít, amely lehetővé teszi az API-k tooaccess naplózási adatok használata a kódban, illetve a kapcsolódó eszközök.
-hello ebben a témakörben hatóköre tooprovide kapcsolatos információk hello **API naplózási**.
+Ez a témakör az Azure Active Directory reporting API-val kapcsolatos témakörök gyűjteményét részét képezi.  
+Az Azure AD jelentéskészítési lehetőséget biztosít az API-k, amely lehetővé teszi a kód vagy a kapcsolódó eszközök naplózási adatok eléréséhez.
+Ez a témakör a hatóköre biztosításához kapcsolatos útmutatót a **API naplózási**.
 
 Lásd:
 
 * [A naplók](active-directory-reporting-azure-portal.md#activity-reports) további információ
 
-* [Ismerkedés az Azure Active Directory Reporting API hello](active-directory-reporting-api-getting-started.md) hello reporting API-val kapcsolatos további információk.
+* [Bevezetés az Azure Active Directory Reporting API használatába](active-directory-reporting-api-getting-started.md) a reporting API-val kapcsolatos további információk.
 
 
 Esetén:
@@ -40,32 +40,32 @@ Esetén:
 - Adjon ki [fájlt egy támogatási jegy](active-directory-troubleshooting-support-howto.md) 
 
 
-## <a name="who-can-access-hello-data"></a>Hello adatok hozzáférő felhasználók?
-* Hello biztonsági rendszergazda vagy a biztonsági olvasó szerepet betöltő felhasználók
+## <a name="who-can-access-the-data"></a>Ki férhet hozzá az adatokhoz?
+* A biztonsági rendszergazda vagy biztonsági olvasó szerepkörű felhasználók
 * A globális rendszergazdák
-* Bármely alkalmazás, amely rendelkezik engedélyezési tooaccess hello API (alkalmazás engedélyezési is lehet a telepítő csak a globális rendszergazdai engedély alapján)
+* Bármely alkalmazás, amely rendelkezik hozzáférési az API-t (alkalmazás engedélyezési is lehet a telepítő csak a globális rendszergazdai engedély alapján)
 
 ## <a name="prerequisites"></a>Előfeltételek
-Rendelés tooaccess ezt a jelentést a Reporting API hello, kell rendelkeznie:
+Ez a jelentés eléréséhez a Reporting API-n keresztül, ha rendelkezik:
 
 * Egy [Azure Active Directory ingyenes vagy jobb edition](active-directory-editions.md)
-* Befejezett hello [Előfeltételek tooaccess hello Azure AD jelentéskészítési API](active-directory-reporting-api-prerequisites.md). 
+* Befejeződött a [Előfeltételek az Azure AD reporting API eléréséhez](active-directory-reporting-api-prerequisites.md). 
 
-## <a name="accessing-hello-api"></a>Hello API elérése
-Vagy érheti el az API hello [Graph Explorer](https://graphexplorer2.cloudapp.net) vagy programozott módon, például PowerShell használatával. Ahhoz, a PowerShell toocorrectly értelmezhetők hello AAD Graph REST-hívásokban használt OData-szintaxist kell használnia hello backtick (más néven: aposztróf) karakter túl "karaktert" hello $. hello backtick karakter funkcionál [PowerShell escape-karakter](https://technet.microsoft.com/library/hh847755.aspx), lehetővé téve a PowerShell toodo hello $ karaktert a literális értelmezésének, és elkerülheti a zavaró, a PowerShell változó neveként (ie: $filter).
+## <a name="accessing-the-api"></a>Az API elérése
+Vagy az API keresztül hozzáférhet a [Graph Explorer](https://graphexplorer2.cloudapp.net) vagy programozott módon, például PowerShell használatával. Ahhoz, hogy megfelelően értelmezni az OData-szűrőszintaxisának AAD Graph REST-hívásokban használt PowerShell, a backtick kell használnia (más néven: aposztróf) "karaktert" a $ karaktert. A backtick karakter funkcionál [PowerShell escape-karakter](https://technet.microsoft.com/library/hh847755.aspx), lehetővé téve a $ karaktert a literális értelmezésének, és elkerülheti a PowerShell változó neveként zavaró, PowerShell (ie: $filter).
 
-hello Ez a témakör elsősorban hello Graph Explorer. A PowerShell például megjelenik ez [PowerShell-parancsfájl](active-directory-reporting-api-audit-samples.md#powershell-script).
+A jelen témakör elsősorban a Graph Explorer. A PowerShell például megjelenik ez [PowerShell-parancsfájl](active-directory-reporting-api-audit-samples.md#powershell-script).
 
 ## <a name="api-endpoint"></a>API-végpont
-Ez az API a következő URI hello segítségével érhető el:  
+Ez az API a következő URI használatával érhető el:  
 
     https://graph.windows.net/contoso.com/activities/audit?api-version=beta
 
-Hello hello Azure AD naplózási API (OData tördelési használatával) által visszaadott rekordok száma korlátozva van.
+Az Azure AD naplózási API-t (OData tördelési használatával) által visszaadott rekordok száma korlátozva van.
 A jelentés adatainak megőrzési-korlátok, tekintse meg [adatmegőrzési Reporting](active-directory-reporting-retention.md).
 
-Ez a hívás kötegekben hello adatait jeleníti meg. Minden egyes legfeljebb 1000 rekord rendelkezik.  
-tooget hello következő köteget a rekordok, hello tovább kapcsolat használata. Információk hello skiptoken visszaadott rekordok hello első készletből. hello kihagyási lexikális elem hello eredménykészlet hello végén lesz.  
+Ez a hívás kötegekben adatait jeleníti meg. Minden egyes legfeljebb 1000 rekord rendelkezik.  
+A következő mérési adatköteget a rekordok megtekintéséhez használja a következő hivatkozásra. A skiptoken adatok lehívása az első visszaadott rekordok készletét. A kihagyási lexikális elem az eredmény végén értéke lesz.  
 
     https://graph.windows.net/contoso.com/activities/audit?api-version=beta&%24skiptoken=-1339686058
 
@@ -73,26 +73,26 @@ tooget hello következő köteget a rekordok, hello tovább kapcsolat használat
 
 
 ## <a name="supported-filters"></a>Támogatott szűrők
-Azt jelzi, hogy az API-k által visszaadott hello számának megadásával szűkíthető hívható meg egy szűrő formában.  
-Bejelentkezés az API-hoz kapcsolódó adatokat, a következő szűrők hello támogatottak:
+Az API-k által visszaadott rekordok számának megadásával szűkíthető hívható meg egy szűrő formában.  
+Bejelentkezés az API-hoz kapcsolódó adatok, a következő szűrőket támogatottak:
 
-* **$top =\<visszaadott rekordok toobe száma\>**  -toolimit hello visszaadott rekordok száma. Ez az egy drága művelet. Ha azt szeretné, hogy az objektumok több ezer tooreturn ne használjon a szűrőt.     
-* **$filter =\<a szűrő utasítás\>**  -toospecify, az Ön számára legfontosabb bejegyzés hello típusát, a támogatott szűrő mezők hello alapján
+* **$top =\<visszaadott száma\>**  - visszaadott rekordok számát. Ez az egy drága művelet. Ha szeretne visszaállítani az objektumok több ezer ne használjon a szűrőt.     
+* **$filter =\<a szűrő utasítás\>**  – megadhatja, támogatott szűrő mezők alapján az Önt érdeklő rekordok
 
 ## <a name="supported-filter-fields-and-operators"></a>Támogatott Szűrő mezőket és operátorok
-az Ön számára legfontosabb rekordok toospecify hello típusú hozhat létre egy szűrő utasítást, amely egy vagy a Szűrő mezőket a következő hello kombinációja szerepelhet:
+Adja meg az Önt érdeklő rekordok, egy szűrő utasítást, amely egy vagy a következő szűrő mező tartalmazhat hozhat létre:
 
 * [activityDate](#activitydate) -dátum vagy dátumtartomány meghatározása
-* [kategória](#category) -határozza meg a kívánt toofilter hello kategóriát.
-* [activityStatus](#activitystatus) -tevékenység hello állapotának meghatározása
-* [az activityType](#activitytype) -tevékenység hello típusának definiálása
-* [tevékenység](#activity) -karakterlánc hello tevékenység meghatározása  
-* [aktor/name](#actorname) -hello szereplő név formájában hello szereplő meghatározása
-* [aktor/objectid](#actorobjectid) -hello szereplő képernyőn hello szereplő azonosító meghatározása   
-* [aktor/upn](#actorupn) -hello szereplő meghatározása hello szereplő elv felhasználónév (UPN) formájában 
-* [cél/neve](#targetname) -hello szereplő név formájában hello cél meghatározása
-* [cél/objectid](#targetobjectid) -hello cél azonosítójának formában hello cél meghatározása  
-* [cél/upn](#targetupn) -hello szereplő meghatározása hello szereplő elv felhasználónév (UPN) formájában   
+* [kategória](#category) -határozza meg a szűrni kívánt kategóriát.
+* [activityStatus](#activitystatus) -tevékenység állapotát határozza meg
+* [az activityType](#activitytype) -tevékenység típusát határozza meg.
+* [tevékenység](#activity) -karakterláncot határozza meg a tevékenység  
+* [aktor/name](#actorname) -határozza meg a szereplő a szereplő név formátumban
+* [aktor/objectid](#actorobjectid) -határozza meg a szereplő képernyőn a szereplő azonosító   
+* [aktor/upn](#actorupn) -határozza meg a szereplő a szereplő elv felhasználónév (UPN) formájában 
+* [cél/neve](#targetname) -határozza meg a cél a szereplő név formátumban
+* [cél/objectid](#targetobjectid) -határozza meg a cél a cél azonosítójának formában  
+* [cél/upn](#targetupn) -határozza meg a szereplő a szereplő elv felhasználónév (UPN) formájában   
 
 - - -
 ### <a name="activitydate"></a>activityDate
@@ -213,7 +213,7 @@ Nem betűérzékeny
 **Megjegyzések**:
 
 * Nem betűérzékeny
-* Szüksége van a tooadd hello teljes névtér Microsoft.ActiveDirectory.DataService.PublicApi.Model.Reporting.AuditLog.TargetResourceUserEntity lekérdezésekor
+* Hozzá kell adnia a teljes névtér Microsoft.ActiveDirectory.DataService.PublicApi.Model.Reporting.AuditLog.TargetResourceUserEntity lekérdezésekor
 
 - - -
 ### <a name="targetobjectid"></a>cél/objectId
@@ -234,10 +234,10 @@ Nem betűérzékeny
 **Megjegyzések**:
 
 * Nem betűérzékeny 
-* Szüksége van a tooadd hello teljes névtér Microsoft.ActiveDirectory.DataService.PublicApi.Model.Reporting.AuditLog.ActorUserEntity lekérdezésekor
+* Hozzá kell adnia a teljes névtér Microsoft.ActiveDirectory.DataService.PublicApi.Model.Reporting.AuditLog.ActorUserEntity lekérdezésekor
 
 - - -
 ## <a name="next-steps"></a>Következő lépések
-* Szeretné toosee példák szűrt rendszer tevékenységek? Tekintse meg a hello [Azure Active Directory naplózási API minták](active-directory-reporting-api-audit-samples.md).
-* További információk hello Azure AD jelentéskészítési API tooknow szeretne? Lásd: [Ismerkedés az Azure Active Directory Reporting API hello](active-directory-reporting-api-getting-started.md).
+* Meg szeretné tekinteni a szűrt rendszertevékenységét példák? Tekintse meg a [Azure Active Directory naplózási API minták](active-directory-reporting-api-audit-samples.md).
+* Meg szeretné ismerni az Azure AD reporting API-val kapcsolatos? Lásd: [Bevezetés az Azure Active Directory Reporting API használatába](active-directory-reporting-api-getting-started.md).
 

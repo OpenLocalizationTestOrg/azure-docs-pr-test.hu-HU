@@ -1,5 +1,5 @@
 ---
-title: "aaaTroubleshooting Windows virtuális gép bővítmény hibák |} Microsoft Docs"
+title: "Windows virtuális gép bővítmény hibáinak elhárítása |} Microsoft Docs"
 description: "További tudnivalók az Azure Windows virtuális gép bővítmény hibáinak elhárítása"
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 03/29/2016
 ms.author: kundanap
-ms.openlocfilehash: d24544743d9e0cb1a68ec9ab7718716f918054f8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4dba196e1b838f2092b30972fb070514bd2a4b25
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="troubleshooting-azure-windows-vm-extension-failures"></a>Azure Windows virtuális gép bővítmény hibáinak elhárítása
 [!INCLUDE [virtual-machines-common-extensions-troubleshoot](../../../includes/virtual-machines-common-extensions-troubleshoot.md)]
 
 ## <a name="viewing-extension-status"></a>Bővítmény állapotának megtekintése
-Az Azure Resource Manager-sablonok az Azure PowerShell-lel hajtható végre. Hello sablon végrehajtása, amennyiben az Azure erőforrás-kezelővel vagy hello parancssori eszközök hello bővítmény állapotát tekintheti meg.
+Az Azure Resource Manager-sablonok az Azure PowerShell-lel hajtható végre. A sablon végrehajtása, amennyiben a bővítmény állapotát tekintheti meg az Azure erőforrás-kezelővel vagy a parancssori eszközöket.
 
 Például:
 
@@ -33,7 +33,7 @@ Az Azure PowerShell:
 
       Get-AzureRmVM -ResourceGroupName $RGName -Name $vmName -Status
 
-Itt egy hello minta kimenet:
+Itt látható a minta kimenete:
 
       Extensions:  {
       "ExtensionType": "Microsoft.Compute.CustomScriptExtension",
@@ -59,12 +59,12 @@ Itt egy hello minta kimenet:
   ]
 
 ## <a name="troubleshooting-extension-failures"></a>Bővítmény hibáinak elhárítása
-### <a name="re-running-hello-extension-on-hello-vm"></a>A virtuális gép hello ismételt futtatásával hello bővítmény
-Ha futtatja a parancsfájlokat a virtuális gépet az egyéni parancsprogramok futtatására szolgáló bővítmény hello, néha hiba történt, amikor virtuális gép sikeresen létrejött, de hello parancsfájl nem futtatható. Ezek a feltételek hello ajánlott módja toorecover ezt a hibát a tooremove hello bővítménye, és futtassa újra a hello sablon.
-Megjegyzés: A jövőben ez a funkció lenne továbbfejlesztett tooremove hello hello bővítmény eltávolításához szükséges.
+### <a name="re-running-the-extension-on-the-vm"></a>Ismételt futtatásával a bővítményt a virtuális Gépen
+Ha futtatja parancsfájlok a virtuális Gépre egyéni parancsprogramok futtatására szolgáló bővítmény használatával, néha futtatható hiba történt, amikor a virtuális gép sikeresen létrejött, de a parancsfájl futtatása sikertelen volt. Ezek a feltételek alapján ajánlott módja a hiba helyreállításához, távolítsa el a bővítményt, és futtassa újra a sablont.
+Megjegyzés: A jövőben ez a funkció javítani fogja a szükséges a bővítmény eltávolítása eltávolítja.
 
-#### <a name="remove-hello-extension-from-azure-powershell"></a>Azure PowerShell hello-kiterjesztés eltávolítása
+#### <a name="remove-the-extension-from-azure-powershell"></a>Távolítsa el a kiterjesztés Azure PowerShell
     Remove-AzureRmVMExtension -ResourceGroupName $RGName -VMName $vmName -Name "myCustomScriptExtension"
 
-Miután hello kiterjesztés eltávolításra került, hello sablon lehet az Újrafuttatja toorun hello parancsprogramok hello virtuális gép.
+Ha a kiterjesztés eltávolításra került, a sablon lehet az Újrafuttatja a parancsfájlok futtatásához a virtuális Gépen.
 

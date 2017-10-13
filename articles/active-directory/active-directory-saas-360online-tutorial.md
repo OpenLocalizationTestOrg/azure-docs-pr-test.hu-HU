@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált 360 Online |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és 360 Online között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és 360 Online között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,109 +13,109 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/22/2017
 ms.author: jeedes
-ms.openlocfilehash: 413e4e2c41336f99e1999857c788c5dac15be4c4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 629c7db04b0f9c880da6dfa8eac7fe14ecd8a215
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-360-online"></a>Oktatóanyag: Azure Active Directoryval integrált 360 Online
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate 360 Online az Azure Active Directoryval (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja 360 Online integrálása az Azure Active Directory (Azure AD).
 
-360 Online integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
+360 Online integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
 
-- Megadhatja a hozzáférés too360 Online rendelkező Azure AD-ben
-- Engedélyezheti a felhasználók tooautomatically get bejelentkezett too360 Online (egyszeri bejelentkezés) a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
+- Szabályozhatja, aki hozzáfér a 360 Online Azure AD-ben
+- Engedélyezheti a felhasználóknak, hogy automatikusan lekérni bejelentkezett az Azure AD-fiókok (egyszeri bejelentkezés) 360 online
+- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-360 Online az Azure AD integrálása tooconfigure, a következő elemek hello kell:
+360 Online az Azure AD-integrációs konfigurálásához a következőkre van szükség:
 
 - Az Azure AD szolgáltatásra
 - A 360 Online egyszeri bejelentkezést előfizetés engedélyezve van.
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. 360 Online hozzáadása hello gyűjteményből
+1. 360 Online hozzáadása a gyűjteményből
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-360-online-from-hello-gallery"></a>360 Online hozzáadása hello gyűjteményből
-tooconfigure hello integrációja 360 Online az Azure AD-be, meg kell tooadd 360 Online hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-360-online-from-the-gallery"></a>360 Online hozzáadása a gyűjteményből
+Az Azure AD integrálása a 360 Online konfigurálásához kell hozzáadnia 360 Online a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
 
-**tooadd 360 Online hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
+**360 Online hozzáadása a gyűjteményből, hajtsa végre az alábbi lépéseket:**
 
-1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
+1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
+2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
+3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
 
     ![Alkalmazások][3]
 
-4. Hello keresési mezőbe, írja be a **360 Online**.
+4. Írja be a keresőmezőbe, **360 Online**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-360online-tutorial/tutorial_360online_search.png)
 
-5. A hello eredmények panelen válassza ki a **360 Online**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
+5. Az eredmények panelen válassza ki a **360 Online**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-360online-tutorial/tutorial_360online_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, tesztelése és konfigurálása az Azure AD egyszeri bejelentkezést az úgynevezett "Britta Simon." tesztfelhasználó alapján 360 Online
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó 360 Online tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello 360 hivatkozás kapcsolatának Online kell toobe létrejött.
+Az egyszeri bejelentkezés működéséhez az Azure AD tudnia kell, a partner felhasználó 360 Online Újdonságok egy felhasználó számára az Azure ad-ben. Más szóval egy Azure AD-felhasználó és a kapcsolódó felhasználó a 360 hivatkozás kapcsolatának Online kell létrehozni.
 
-360 Online, rendelje hozzá hello hello értékének **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
+360 Online, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
 
-tooconfigure és 360 Online az Azure AD az egyszeri bejelentkezés teszthez, a következő építőelemeket toocomplete hello szüksége:
+Az Azure AD egyszeri bejelentkezést a 360 Online tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-3. **[360 Online tesztfelhasználó létrehozása](#creating-a-360-online-test-user)**  -toohave egy megfelelője a Britta Simon a 360 Online, amely a felhasználó csatolt toohello az Azure AD ábrázolása.
-4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+3. **[360 Online tesztfelhasználó létrehozása](#creating-a-360-online-test-user)**  - való egy megfelelője a Britta Simon 360 Online, amely csatolva van a felhasználó az Azure AD-ábrázolását.
+4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az 360 Online alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az 360 Online alkalmazásban.
 
-**az Azure AD tooconfigure egyszeri bejelentkezés 360 Online, a hajtsa végre a lépéseket követve hello:**
+**360 Online az Azure AD az egyszeri bejelentkezés konfigurálása, hajtsa végre az alábbi lépéseket:**
 
-1. Az Azure portál, a hello hello **360 Online** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portálon a a **360 Online** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
+2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-360online-tutorial/tutorial_360online_samlbase.png)
 
-3. A hello **360 Online tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
+3. Az a **360 Online tartomány és az URL-címek** területen tegye a következőket:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-360online-tutorial/tutorial_360online_url.png)
 
-    A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<company name>.public360online.com`
+    Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://<company name>.public360online.com`
 
     > [!NOTE] 
-    > hello érték nincs valós. Frissítés hello értékének hello tényleges bejelentkezési URL-CÍMÉT. Ügyfél [360 Online ügyfél-támogatási csoport](mailto:360online@software-innovation.com) tooget hello érték. 
+    > Az érték nincs valós. Frissítse az értéket a tényleges bejelentkezési URL-címet. Ügyfél [360 Online ügyfél-támogatási csoport](mailto:360online@software-innovation.com) az értéket be kell olvasni. 
  
-4. A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello metaadatait tartalmazó fájl a számítógépen.
+4. Az a **SAML-aláíró tanúsítványa** területen kattintson **metaadatainak XML-kódja** és mentse a metaadat-fájlt a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-360online-tutorial/tutorial_360online_certificate.png) 
 
@@ -123,64 +123,64 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálo
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-360online-tutorial/tutorial_general_400.png)
 
-6. tooconfigure egyszeri bejelentkezést a **360 Online** oldalon kell letöltött toosend hello **metaadatainak XML-kódja** túl[360 Online támogatási csoport](mailto:360online@software-innovation.com). 
+6. Egyszeri bejelentkezés konfigurálása **360 Online** oldalon kell küldeniük a letöltött **metaadatainak XML-kódja** való [360 Online támogatási csoport](mailto:360online@software-innovation.com). 
 
 > [!TIP]
-> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
+Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
+1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-360online-tutorial/create_aaduser_01.png) 
 
-2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
+2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-360online-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
+3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-360online-tutorial/create_aaduser_03.png) 
 
-4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-360online-tutorial/create_aaduser_04.png) 
 
-    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
+    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-360-online-test-user"></a>360 Online tesztfelhasználó létrehozása
 
-Ebben a szakaszban egy 360 Online Britta Simon nevű felhasználót hoz létre. toocontact kell [360 Online támogatási csoport](mailto:360online@software-innovation.com).
+Ebben a szakaszban egy 360 Online Britta Simon nevű felhasználót hoz létre. kapcsolatba kell lépnie [360 Online támogatási csoport](mailto:360online@software-innovation.com).
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
+### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
 
-Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés Online hozzáférés too360 megadásával engedélyeznie.
+Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés 360 Online Azure egyszeri bejelentkezéshez használandó.
 
 ![Felhasználó hozzárendelése][200] 
 
-**tooassign Britta Simon too360 Online, hajtsa végre a következő lépéseket hello:**
+**A 360 Online Britta Simon hozzárendeléséhez a következő lépésekkel:**
 
-1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Hello alkalmazások listában válassza ki a **360 Online**.
+2. Az alkalmazások listában válassza ki a **360 Online**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-360online-tutorial/tutorial_360online_app.png) 
 
-3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -188,7 +188,7 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés Online ho
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -196,13 +196,13 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés Online ho
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-hello ebben a szakaszban célja tootest az egyszeri bejelentkezés konfigurációs használatával hello a hozzáférési Panel.
+Ez a szakasz célja tesztelése az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen.
 
-Hello 360 Online kattintáskor csempe hello hozzáférési Panel az Online alkalmazás automatikusan bejelentkezett tooyour 360 szerezheti be. 
+A 360 Online csempe elemre a hozzáférési panelen, meg kell beolvasni automatikusan bejelentkezett az 360 Online alkalmazáshoz. 
 
 ## <a name="additional-resources"></a>További források
 
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

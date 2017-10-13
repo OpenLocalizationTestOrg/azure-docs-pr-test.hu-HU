@@ -1,6 +1,6 @@
 ---
-title: "Csatlakozás egy számítógép tooan Azure virtuális hálózat használatával a pont-pont és a Tanúsítványalapú hitelesítés: PowerShell |} Microsoft Docs"
-description: "Biztonságos kapcsolódás egy számítógép tooyour virtuális hálózatot hozzon létre egy pont – hely típusú VPN gateway-kapcsolatot tanúsítvány alapú hitelesítést használ. Ez a cikk toohello Resource Manager üzembe helyezési modellben vonatkozik, és használja a PowerShell."
+title: "Számítógép csatlakoztatása Azure-beli virtuális hálózathoz pont–hely kapcsolat és az Azure natív tanúsítványalapú hitelesítésének használatával: PowerShell | Microsoft Docs"
+description: "Az Azure natív tanúsítványalapú hitelesítésének használatával biztonságosan csatlakoztathat egy számítógépet a virtuális hálózatához pont–hely VPN Gateway-kapcsolat létrehozásával. Ez a cikk a Resource Manager-alapú üzemi modellre vonatkozik, és a PowerShellt használja."
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -13,17 +13,17 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 08/10/2017
+ms.date: 09/25/2017
 ms.author: cherylmc
-ms.openlocfilehash: b962e4b1946a4ae17d4eb2b920ed54437bc26b61
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8c4b2d578a8a586fc63c972ab5da694b2dd9d571
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="configure-a-point-to-site-connection-tooa-vnet-using-certificate-authentication-powershell"></a>Egy pont – hely kapcsolat tooa virtuális hálózat konfigurálása tanúsítvány hitelesítése: PowerShell
+# <a name="configure-a-point-to-site-connection-to-a-vnet-using-native-azure-certificate-authentication-powershell"></a>Pont–hely kapcsolat konfigurálása virtuális hálózathoz az Azure natív tanúsítványalapú hitelesítésének használatával: PowerShell
 
-Ez a cikk bemutatja, hogyan toocreate egy Vnetet egy pont – hely kapcsolat hello Resource Manager üzembe a modellhez tartozó PowerShell-lel. Ez a konfiguráció tanúsítványok tooauthenticate hello csatlakozó ügyfél használja. Ezt a konfigurációt egy másik lehetőség kijelölésével a következő lista hello különböző központi telepítési eszköz vagy telepítési modell segítségével is létrehozhat:
+Ebből a cikkből megtudhatja, hogyan hozhat létre pont–hely kapcsolattal rendelkező virtuális hálózatot a Resource Manager-alapú üzemi modellben a PowerShell használatával. Ez a konfiguráció tanúsítványokat használ a hitelesítéséhez. Ebben a konfigurációban a RADIUS-kiszolgáló helyett az Azure VPN-átjáró végzi a tanúsítvány ellenőrzését. Ezt a konfigurációt más üzembehelyezési eszközzel vagy üzemi modellel is létrehozhatja, ha egy másik lehetőséget választ az alábbi listáról:
 
 > [!div class="op_single_selector"]
 > * [Azure Portal](vpn-gateway-howto-point-to-site-resource-manager-portal.md)
@@ -32,54 +32,67 @@ Ez a cikk bemutatja, hogyan toocreate egy Vnetet egy pont – hely kapcsolat hel
 >
 >
 
-Pont-pont (P2S) VPN-átjáró lehetővé teszi a biztonságos kapcsolat tooyour virtuális hálózat létrehozása az egyéni ügyfél-számítógépről. Pont-pont VPN-kapcsolatok akkor hasznos, ha azt szeretné, hogy a virtuális hálózat egy távoli helyről, például amikor, amelyek dolgozzon home vagy konferencia tooconnect tooyour. P2S VPN esetén is egy hasznos megoldás toouse helyett a telephelyek közötti VPN tooconnect tooa VNet kell csak néhány ügyféllel.
+A pont–hely (P2S) VPN-átjáró lehetővé teszi biztonságos kapcsolat létesítését a virtuális hálózattal egy különálló ügyfélszámítógépről. A pont–hely VPN-kapcsolat akkor hasznos, ha távoli helyről szeretne csatlakozni a virtuális hálózathoz, például otthonról vagy egy konferenciáról. A pont–hely VPN emellett akkor is hasznos megoldás lehet a helyek közötti VPN helyett, ha csak néhány ügyfelet szeretne egy VNetre csatlakoztatni. A pont–hely VPN-kapcsolat indítása a Windows- és Mac-eszközökről történik. 
 
-P2S használja a Secure Socket Tunneling Protocol (SSTP), amely SSL-alapú VPN-protokoll hello. P2S VPN-kapcsolatot létesít hello ügyfélszámítógépről elindításával.
+A kapcsolódó ügyfelek az alábbi hitelesítési módszereket használhatják:
 
-![Csatlakozás egy számítógép tooan Azure VNet - pont – hely kapcsolat diagramja](./media/vpn-gateway-howto-point-to-site-rm-ps/point-to-site-diagram.png)
+* RADIUS-kiszolgáló – jelenleg előzetes verzióban
+* VPN-átjáró – hitelesítés natív Azure-tanúsítvánnyal
 
-Pont-pont tanúsítvány hitelesítési kapcsolatok hello következő szükséges:
+Ez a cikk bemutatja, hogyan állíthat be hitelesítést pont–hely konfigurációkhoz az Azure natív tanúsítványalapú hitelesítésével. Ha a RADIUS használatával szeretné hitelesíteni a csatlakozó ügyfeleket, tekintse meg a [Pont–hely kapcsolat RADIUS-hitelesítéssel](point-to-site-how-to-radius-ps.md) című részt.
+
+![Számítógép csatlakoztatása Azure-beli virtuális hálózathoz – pont-hely kapcsolati diagram](./media/vpn-gateway-howto-point-to-site-rm-ps/p2snativeps.png)
+
+A pont–hely kapcsolatok nem igényelnek VPN-eszközt vagy nyilvános IP-címet. Pont–hely kapcsolat esetén SSTP (Secure Socket Tunneling Protocol) vagy IKEv2-protokoll használatával jön létre a VPN-kapcsolat.
+
+* Az SSTP egy SSL-alapú VPN-alagút, amely kizárólag Windows-ügyfélplatformokon támogatott. Képes áthatolni a tűzfalakon, ezért ideális megoldás az Azure-hoz való csatlakozáshoz bármilyen tetszőleges. A kiszolgálói oldalon az SSTP 1.0, 1.1 és 1.2 verziója támogatott. Az ügyfél dönti el, hogy melyik verziót használja. Windows 8.1 és újabb kiadások esetén az SSTP alapértelmezés szerint az 1.2 verziót használja.
+
+* IKEv2 VPN, egy szabványalapú IPsec VPN-megoldás. Az IKEv2 VPN segítségével Macről is lehetségessé válik a csatlakozás (OSX 10.11-es vagy újabb verziók használata esetén). Az IKEv2 jelenleg előzetes verzióban érhető el.
+
+>[!NOTE]
+>Az IKEv2 for P2S jelenleg előzetes verzióban érhető el.
+>
+
+A natív Azure-tanúsítvánnyal hitelesített pont–hely kapcsolatokhoz a következőkre van szükség:
 
 * Útvonalalapú VPN-átjáró.
-* hello nyilvános kulcsát (.cer-fájl) egy legfelső szintű tanúsítvány, amely feltöltött tooAzure. Hello tanúsítványt a feltöltést követően megbízható tanúsítvány minősül, és használják a hitelesítéshez.
-* Hello legfelső szintű tanúsítvány által létrehozott és telepített minden egyes ügyfélszámítógépen toohello VNet csatlakozó ügyféltanúsítványt. A rendszer ezt a tanúsítványt használja ügyfélhitelesítéshez.
-* A VPN-ügyfél konfigurációs csomagja. hello VPN-ügyfélcsomag konfigurációs hello ügyfél tooconnect toohello VNet hello szükséges információkat tartalmaz. hello csomag hello meglévő VPN-ügyfél, amely natív toohello Windows operációs rendszer konfigurálja. Minden ügyfél hello konfigurációs csomag használatával kell konfigurálni.
+* A nyilvános kulcs (.cer fájl) egy főtanúsítványhoz, amely az Azure-ba van feltöltve. A tanúsítványt a feltöltését követően megbízható tanúsítványnak tekinti a rendszer, és ezt használja hitelesítéshez.
+* Egy ügyféltanúsítvány, amely a főtanúsítványból jött létre, és települt a virtuális hálózathoz csatlakozó egyes ügyfélszámítógépekre. A rendszer ezt a tanúsítványt használja ügyfélhitelesítéshez.
+* A VPN-ügyfél konfigurációja. A VPN-ügyfélkonfigurációs fájlok azokat az adatokat tartalmazzák, amelyekre az ügyfélnek szüksége van a virtuális hálózathoz való csatlakozáshoz. A csomag konfigurálja az operációs rendszer meglévő, natív VPN-ügyfelét. Minden csatlakozó ügyfelet a konfigurációs fájlokban szereplő beállításokkal kell konfigurálni.
 
-A pont–hely kapcsolatok nem igényelnek VPN-eszközt vagy helyszíni nyilvános IP-címet. hello VPN-kapcsolaton keresztül SSTP (Secure Socket Tunneling Protocol) jön létre. Hello kiszolgáló oldalán 1.0-s, 1.1-es és 1.2-es SSTP verziója támogatott. hello ügyfél úgy dönt, hogy melyik verzió toouse. Windows 8.1 és újabb kiadások esetén az SSTP alapértelmezés szerint az 1.2 verziót használja. 
+További információk a pont–hely kapcsolatokról: [Információk a pont–hely kapcsolatokról](point-to-site-about.md).
 
-Pont – hely kapcsolatok kapcsolatos további információkért lásd: hello [pont-pont – gyakori kérdések](#faq) hello Ez a cikk végén.
-
-## <a name="before-beginning"></a>Mielőtt hozzálát
+## <a name="before-you-begin"></a>Előkészületek
 
 * Győződjön meg arról, hogy rendelkezik Azure-előfizetéssel. Ha még nincs Azure-előfizetése, aktiválhatja [MSDN-előfizetői előnyeit](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details), vagy regisztrálhat egy [ingyenes fiókot](https://azure.microsoft.com/pricing/free-trial).
-* Hello hello Azure Resource Manager PowerShell-parancsmagok legújabb verziójának telepítéséhez. PowerShell-parancsmagok telepítésével kapcsolatos további információkért lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview).
+* Telepítse a Resource Manager PowerShell-parancsmagjainak legújabb verzióját. A PowerShell-parancsmagok telepítéséről további információt a [How to install and configure Azure PowerShell](/powershell/azure/overview) (Az Azure PowerShell telepítése és konfigurálása) című témakörben talál.
 
 ### <a name="example"></a>Példaértékek
 
-Hello példa értékek toocreate egy tesztkörnyezetben használhatja, vagy tekintse meg a toothese értékek toobetter hello jelen cikk példái a megismeréséhez. Hello változók szakaszban hivatott [1](#declare) hello cikk. Hello lépésekkel egy útmutató, és hello értékeket használja őket módosítása nélkül, vagy módosítsa őket tooreflect a környezetben. 
+A példaértékek használatával létrehozhat egy tesztkörnyezetet, vagy a segítségükkel értelmezheti a cikkben szereplő példákat. A változókat a cikk [1](#declare). szakaszában állítjuk be. Megteheti, hogy lépésről lépésre végighalad az eljáráson, és módosítás nélkül ezeket az értékeket használja, de módosíthatja is őket, hogy megfeleljenek a saját környezetének.
 
 * **Név: VNet1**
-* **Címtartomány: 192.168.0.0/16** és **10.254.0.0/16**<br>Az ebben a példában használjuk, amely ezt a konfigurációt az több címterek egynél több címet terület tooillustrate. Azonban nem kötelező több címtartományt megadni ehhez a konfigurációhoz.
+* **Címtartomány: 192.168.0.0/16** és **10.254.0.0/16**<br>Ez a példa egynél több címtartományt használ annak szemléltetésére, hogy ez a konfiguráció több címtartománnyal is működik. Azonban nem kötelező több címtartományt megadni ehhez a konfigurációhoz.
 * **Alhálózat neve: FrontEnd**
   * **Alhálózati címtartomány: 192.168.1.0/24**
 * **Alhálózat neve: BackEnd**
   * **Alhálózati címtartomány: 10.254.1.0/24**
-* **Alhálózat neve: GatewaySubnet**<br>hello alhálózati név *GatewaySubnet* hello VPN gateway toowork esetén kötelező.
+* **Alhálózat neve: GatewaySubnet**<br>Ennek az alhálózatnak kötelező a *GatewaySubnet* nevet adni, ellenkező esetben nem működik a VPN-átjáró.
   * **Átjáró-alhálózat címtartománya: 192.168.200.0/24** 
-* **VPN-ügyfelek címkészlete: 172.16.201.0/24**<br>A VPN-ügyfelek toohello VNet a pont-pont kapcsolattal csatlakozó fogadása hello Magánhálózati ügyfélcímkészlete IP-címet.
-* **Előfizetés:** Ha egynél több előfizetéssel, győződjön meg arról, hogy rendelkezik a megfelelő hello.
+* **VPN-ügyfelek címkészlete: 172.16.201.0/24**<br>Azok a VPN-ügyfelek, amelyek ezzel a pont–hely kapcsolattal csatlakoznak a virtuális hálózathoz, a VPN-ügyfél címkészletből kapnak IP-címet.
+* **Előfizetés:** Ha több előfizetése is van, ellenőrizze, hogy a megfelelőt használja-e.
 * **Erőforráscsoport: TestRG**
 * **Hely: East US**
-* **DNS-kiszolgáló: IP-cím** hello DNS-kiszolgáló, amelyet az toouse a névfeloldáshoz.
+* DNS-kiszolgáló: Annak a DNS-kiszolgálónak az **IP-címe**, amelyet névfeloldásra kíván használni. (nem kötelező)
 * **Átjáró neve: Vnet1GW**
 * **Nyilvános IP-név: VNet1GWPIP**
 * **VPN típusa: RouteBased** 
 
 ## <a name="declare"></a>1. Bejelentkezés és a változók beállítása
 
-Ebben a szakaszban be, és ehhez a konfigurációhoz használt hello értékek deklarálható. hello deklarált értékek hello mintaparancsfájlok használatosak. Hello értékek tooreflect módosítsa a saját környezetben. Vagy használhat deklarált értékek hello és végrehajtania hello lépéseket, mint egy gyakorlatot.
+Ez a szakasz a bejelentkezést és a konfigurációban használt értékek deklarálását ismerteti. A minta parancsprogramok a deklarált értékeket használják. Módosítsa az értékeket úgy, hogy megfeleljenek a saját környezetének. Azt is megteheti, hogy a deklarált értékeket használja, és gyakorlásként halad végig a lépéseken.
 
-1. Nyissa meg a PowerShell-konzolt emelt szintű jogosultságokkal, és jelentkezzen be Azure-fiók tooyour. Ez a parancsmag kéri hello bejelentkezési hitelesítő adatokat. A bejelentkezés után az tölti le a fiókbeállításoknál, hogy-e elérhető tooAzure PowerShell.
+1. Nyissa meg emelt a PowerShell-konzolt szintű jogosultságokkal, és jelentkezzen be az Azure-fiókjába. Ez a parancsmag bejelentkezési hitelesítő adatokat kér be. A bejelentkezés után letölti a fiók beállításait, hogy elérhetők legyenek az Azure PowerShell számára.
 
   ```powershell
   Login-AzureRmAccount
@@ -89,12 +102,12 @@ Ebben a szakaszban be, és ehhez a konfigurációhoz használt hello értékek d
   ```powershell
   Get-AzureRmSubscription
   ```
-3. Adja meg, hogy szeretné-e toouse hello előfizetés.
+3. Válassza ki a használni kívánt előfizetést.
 
   ```powershell
   Select-AzureRmSubscription -SubscriptionName "Name of subscription"
   ```
-4. Deklarálja, hogy szeretné-e toouse hello változók. Hello használja, a következő mintát, és hello értékeket a saját, amikor erre szükség van.
+4. Deklarálja a használni kívánt változókat. Használja a következő példát, és szükség szerint cserélje le az értékeket a sajátjaira.
 
   ```powershell
   $VNetName  = "VNet1"
@@ -109,7 +122,6 @@ Ebben a szakaszban be, és ehhez a konfigurációhoz használt hello értékek d
   $VPNClientAddressPool = "172.16.201.0/24"
   $RG = "TestRG"
   $Location = "East US"
-  $DNS = "10.1.1.3"
   $GWName = "VNet1GW"
   $GWIPName = "VNet1GWPIP"
   $GWIPconfName = "gwipconf"
@@ -122,27 +134,27 @@ Ebben a szakaszban be, és ehhez a konfigurációhoz használt hello értékek d
   ```powershell
   New-AzureRmResourceGroup -Name $RG -Location $Location
   ```
-2. Hozzon létre hello alhálózati beállítások hello virtuális hálózathoz, azok elnevezési *előtér*, *háttér*, és *GatewaySubnet*. Ezeket az előtagokat hello meg deklarált VNet címtér részének kell lennie.
+2. Hozza létre a virtuális hálózat alhálózatainak konfigurációit, névként a következő értékeket adja meg: *FrontEnd*, *BackEnd*, illetve *GatewaySubnet*. Ezek az előtagok a deklarált virtuális hálózati címtér részei kell, hogy legyenek.
 
   ```powershell
   $fesub = New-AzureRmVirtualNetworkSubnetConfig -Name $FESubName -AddressPrefix $FESubPrefix
   $besub = New-AzureRmVirtualNetworkSubnetConfig -Name $BESubName -AddressPrefix $BESubPrefix
   $gwsub = New-AzureRmVirtualNetworkSubnetConfig -Name $GWSubName -AddressPrefix $GWSubPrefix
   ```
-3. Hello virtuális hálózat létrehozása.
+3. Hozza létre a virtuális hálózatot.
 
-  Ebben a példában a hello DNS-kiszolgáló nem kötelező. Az érték megadásával nem jön létre új DNS-kiszolgáló. hello DNS kiszolgáló IP-cím megadott kell egy DNS-kiszolgáló, amely képes névfeloldásra hello hello erőforrásokhoz való kapcsolódás esetén. Ebben a példában a magánhálózati IP-cím használtuk, de valószínű, hogy ez nem hello IP-címet a DNS-kiszolgáló. Lehet, hogy toouse a saját értékeit.
+  Ebben a példában a -DnsServer paramétert nem kötelező megadni. Az érték megadásával nem jön létre új DNS-kiszolgáló. A megadott DNS-kiszolgáló IP-címének olyan DNS-kiszolgálónak kell lennie, amely fel tudja oldani azoknak az erőforrásoknak a nevét, amelyekkel Ön kapcsolatot fog létesíteni a virtuális hálózatról. Ebben a példában egy magánhálózati IP-címet használtunk, de ez valószínűleg nem az Ön DNS-kiszolgálójának IP-címe. Ügyeljen arra, hogy a saját értékeit használja. A megadott értéket a virtuális hálózaton üzembe helyezett erőforrások használják, nem a pont–hely kapcsolat vagy a VPN-ügyfél.
 
   ```powershell
-  New-AzureRmVirtualNetwork -Name $VNetName -ResourceGroupName $RG -Location $Location -AddressPrefix $VNetPrefix1,$VNetPrefix2 -Subnet $fesub, $besub, $gwsub -DnsServer $DNS
+  New-AzureRmVirtualNetwork -Name $VNetName -ResourceGroupName $RG -Location $Location -AddressPrefix $VNetPrefix1,$VNetPrefix2 -Subnet $fesub, $besub, $gwsub -DnsServer 10.2.1.3
   ```
-4. Adja meg a létrehozott virtuális hálózat hello hello változók.
+4. Adja meg a most létrehozott virtuális hálózat változóit.
 
   ```powershell
   $vnet = Get-AzureRmVirtualNetwork -Name $VNetName -ResourceGroupName $RG
   $subnet = Get-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -VirtualNetwork $vnet
   ```
-5. Egy VPN Gateway-nek rendelkeznie kell nyilvános IP-címmel. Először igényelnie hello IP-cím erőforrás, és ezután tooit hivatkozni, a virtuális hálózati átjáró létrehozása során. hello IP-cím dinamikusan toohello erőforrás van hozzárendelve, hello VPN-átjáró létrehozásakor. A VPN Gateway jelenleg csak a *Dinamikus* nyilvános IP-cím lefoglalását támogatja. Nem kérheti statikus IP-cím hozzárendelését. Azonban ez nem jelenti azt, hogy hello IP-cím hozzá van rendelve tooyour VPN-átjáró után módosítja. hello egyetlen alkalom hello nyilvános IP-cím módosításainak mikor van hello átjáró törlődik, és újból létrehozza. Nem módosul átméretezés, alaphelyzetbe állítás, illetve a VPN Gateway belső karbantartása/frissítése során.
+5. Egy VPN Gateway-nek rendelkeznie kell nyilvános IP-címmel. Először az IP-cím típusú erőforrást kell kérnie, majd hivatkoznia kell arra, amikor létrehozza a virtuális hálózati átjárót. Az IP-címet a rendszer dinamikusan rendeli hozzá az erőforráshoz a VPN Gateway létrehozásakor. A VPN Gateway jelenleg csak a *Dinamikus* nyilvános IP-cím lefoglalását támogatja. Nem kérheti statikus IP-cím hozzárendelését. Ez azonban nem jelenti azt, hogy az IP-cím módosul a VPN Gatewayhez való hozzárendelése után. A nyilvános IP-cím kizárólag abban az esetben változik, ha az átjárót törli, majd újra létrehozza. Nem módosul átméretezés, alaphelyzetbe állítás, illetve a VPN Gateway belső karbantartása/frissítése során.
 
   Kérjen egy dinamikusan hozzárendelt nyilvános IP-címet.
 
@@ -151,22 +163,23 @@ Ebben a szakaszban be, és ehhez a konfigurációhoz használt hello értékek d
   $ipconf = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName -Subnet $subnet -PublicIpAddress $pip
   ```
 
-## <a name="creategateway"></a>3. Hello VPN-átjáró létrehozása
+## <a name="creategateway"></a>3. A VPN-átjáró létrehozása
 
-Konfigurálja, és a Vnethez tartozó hello virtuális hálózati átjáró létrehozása.
+Konfigurálja és hozza létre a virtuális hálózati átjárót a virtuális hálózat számára.
 
-* Hello *- GatewayType* kell **Vpn** és hello *– VpnType* kell **RouteBased**.
-* VPN-átjáró is eltarthat, too45 perc toocomplete, attól függően, hogy hello [átjáró-termékváltozat](vpn-gateway-about-vpn-gateway-settings.md) választja.
+* A *-GatewayType* csak **Vpn** lehet, a *-VpnType* pedig csak **RouteBased** lehet.
+* A -VpnClientProtocols paraméterrel adhatja meg az engedélyezni kívánt alagutak típusát. Alagutak esetén **SSTP** és **IKEv2** közül választhat. Engedélyezheti csak az egyiket, vagy egyszerre mindkettőt. Ha mindkettőt engedélyezni szeretné, akkor adja meg mindkét nevet, vesszővel elválasztva. Az Android- és Linux-alapú Strongswan-ügyfél, valamint az iOS- és OS X-alapú natív IKEv2 VPN-ügyfél csak IKEv2-alagutat használ a kapcsolódáshoz. A Windows-ügyfél először az IKEv2-vel próbálkozik, majd ha azzal nem sikerült, visszavált SSTP-re.
+* Egy VPN-átjáró létrehozása akár 45 percet is igénybe vehet a kiválasztott [átjáró termékváltozatától](vpn-gateway-about-vpn-gateway-settings.md) függően. Ebben a példában az IKEv2-t használjuk, amely jelenleg előzetes verzióban érhető el.
 
 ```powershell
 New-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG `
 -Location $Location -IpConfigurations $ipconf -GatewayType Vpn `
--VpnType RouteBased -EnableBgp $false -GatewaySku VpnGw1 `
+-VpnType RouteBased -EnableBgp $false -GatewaySku VpnGw1 -VpnClientProtocols "IKEv2"
 ```
 
-## <a name="addresspool"></a>4. Hello Magánhálózati ügyfélcímkészlete hozzáadása
+## <a name="addresspool"></a>4. A VPN-ügyfélcímkészlet hozzáadása
 
-Miután hello VPN-átjáró végzett a létrehozással, hello Magánhálózati ügyfélcímkészlete is hozzáadhat. hello Magánhálózati ügyfélcímkészlete, amelyből a hello VPN-ügyfelek IP-címet kap, kapcsolódáskor hello tartományon. Használjon egy privát IP-címtartományt, amely nem fedi át hello helyszíni helyre történő csatlakozás vagy hello tooconnect a kívánt virtuális hálózat. Ebben a példában hello Magánhálózati ügyfélcímkészlete van deklarálva, egy [változó](#declare) 1. lépésben.
+Miután befejeződött a VPN-átjáró létrehozása, hozzáadhatja a VPN-ügyfélcímkészletet. A VPN-ügyfélcímkészlet az a tartomány, amelyből a VPN-ügyfelek IP-címet kapnak csatlakozáskor. Olyan magánhálózati IP-címtartományt használjon, amely nincs átfedésben azzal a helyszíni hellyel, amelyről csatlakozik, vagy azzal a virtuális hálózattal, amelyhez csatlakozik. Ebben a példában a VPN-ügyfélcímkészlet [változóként](#declare) lett deklarálva az 1. lépésben.
 
 ```powershell
 $Gateway = Get-AzureRmVirtualNetworkGateway -ResourceGroupName $RG -Name $GWName
@@ -175,11 +188,11 @@ Set-AzureRmVirtualNetworkGateway -VirtualNetworkGateway $Gateway -VpnClientAddre
 
 ## <a name="Certificates"></a>5. Tanúsítványok előállítása
 
-Tanúsítványok pont-pont VPN Azure tooauthenticate VPN-ügyfelek által használt. Hello nyilvánoskulcs-adatokat a hello legfelső szintű tanúsítvány tooAzure feltöltése. nyilvános kulcs hello majd minősül "megbízható". Ügyféltanúsítványok kell kell hello megbízható legfelső szintű tanúsítvány jön létre, és csak utána települ a hello tanúsítványok-aktuális felhasználó/személyes tanúsítványtárolóba minden egyes ügyfélszámítógépre. hello tanúsítvány használt tooauthenticate hello ügyfél, amikor kezdeményezik a kapcsolat toohello virtuális hálózat. 
+A tanúsítványokat az Azure használja a VPN-ügyfelek hitelesítésére a pont–hely VPN-kapcsolatokban. A főtanúsítvány nyilvánoskulcs-adatait feltölti az Azure-ba. A nyilvános kulcs ezután „megbízhatónak” tekinthető. Az ügyféltanúsítványokat a megbízható főtanúsítványból kell létrehozni, majd telepíteni kell az összes számítógépen a Certificates-Current User/Personal tanúsítványtárolóban. A tanúsítványt a rendszer az ügyfél hitelesítésére használja, amikor az a virtuális hálózathoz próbál csatlakozni. 
 
-Önaláírt tanúsítványok használata esetén azokat megadott paraméterekkel kell létrehozni. Létrehozhat egy önaláírt tanúsítványt a hello utasításokat követve [PowerShell és Windows 10](vpn-gateway-certificates-point-to-site.md), vagy ha nincs Windows 10, [MakeCert](vpn-gateway-certificates-point-to-site-makecert.md). Fontos lépéseket hello hello utasítások önaláírt legfelső szintű tanúsítványok és az ügyféltanúsítványok létrehozásakor. Ellenkező esetben létrehozhat hello tanúsítvány nem lesz kompatibilis a P2S-kapcsolatok, és hibaüzenet jelenik meg a kapcsolat.
+Önaláírt tanúsítványok használata esetén azokat megadott paraméterekkel kell létrehozni. Önaláírt tanúsítványt a [PowerShell és Windows 10](vpn-gateway-certificates-point-to-site.md), vagy ha nem rendelkezik Windows 10 rendszerrel, a [MakeCert](vpn-gateway-certificates-point-to-site-makecert.md) című cikkekben leírt utasítások alapján hozhat létre. Fontos, hogy az önaláírt legfelső szintű tanúsítványok és az ügyféltanúsítványok generálása során lépésről lépésre betartsa ezeket az utasításokat. Ellenkező esetben a létrehozott tanúsítványok nem lesznek kompatibilisek a P2S-kapcsolatokkal, és hibaüzenetet eredményeznek kapcsolódáskor.
 
-### <a name="cer"></a>1. Hello .cer fájl hello legfelső szintű tanúsítvány beszerzése
+### <a name="cer"></a>1. A .cer fájl beszerzése a főtanúsítványhoz
 
 [!INCLUDE [vpn-gateway-basic-vnet-rm-portal](../../includes/vpn-gateway-p2s-rootcert-include.md)]
 
@@ -188,16 +201,16 @@ Tanúsítványok pont-pont VPN Azure tooauthenticate VPN-ügyfelek által haszn�
 
 [!INCLUDE [vpn-gateway-basic-vnet-rm-portal](../../includes/vpn-gateway-p2s-clientcert-include.md)]
 
-## <a name="upload"></a>6. Hello legfelső szintű tanúsítvány nyilvános kulcs adatok feltöltése
+## <a name="upload"></a>6. A főtanúsítvány nyilvánoskulcs-adatainak feltöltése
 
-Ellenőrizze, hogy a VPN-átjáró létrehozása befejeződött-e. Miután befejezte, hello .cer fájlját (hello nyilvánoskulcs-adatokat tartalmazó) a megbízható legfelső szintű tanúsítvány tooAzure feltölthet. A.cer fájl a feltöltést követően Azure használható tooauthenticate ügyfelek, amelyek telepítették a hello megbízható legfelső szintű tanúsítvány által létrehozott ügyféltanúsítványt. Szükség esetén további megbízható legfelső szintű tanúsítvány fájlok - tooa összesen 20 - később fel feltölthet.
+Ellenőrizze, hogy a VPN-átjáró létrehozása befejeződött-e. Ha befejeződött, töltse fel a megbízható főtanúsítványhoz tartozó .cer fájlt (amely a nyilvános kulcsot tartalmazza) az Azure-ba. Miután feltöltötte a .cer fájlt, az Azure felhasználhatja azt azon ügyfelek hitelesítéséhez, amelyeken telepítve lett egy, a megbízható főtanúsítványból létrehozott ügyféltanúsítvány. Szükség szerint később további megbízhatófőtanúsítvány-fájlokat is feltölthet (legfeljebb 20-at).
 
-1. A tanúsítvány neve hello érték helyett a saját hello változó deklarálható.
+1. Deklarálja a tanúsítványnév változóját, és cserélje le az értékeket a saját értékeire.
 
   ```powershell
   $P2SRootCertName = "P2SRootCert.cer"
   ```
-2. Cserélje le hello fájl elérési útját a saját, és futtassa a hello parancsmagok.
+2. Helyettesítse a fájl elérési útját a sajátjával, majd futtassa a parancsmagokat.
 
   ```powershell
   $filePathForCert = "C:\cert\P2SRootCert.cer"
@@ -205,52 +218,52 @@ Ellenőrizze, hogy a VPN-átjáró létrehozása befejeződött-e. Miután befej
   $CertBase64 = [system.convert]::ToBase64String($cert.RawData)
   $p2srootcert = New-AzureRmVpnClientRootCertificate -Name $P2SRootCertName -PublicCertData $CertBase64
   ```
-3. Hello nyilvánoskulcs-adatokat tooAzure feltöltése. Hello tanúsítvány adatait a feltöltést követően Azure úgy ítéli meg, ez toobe megbízható főtanúsítványt.
+3. Töltse fel a nyilvánoskulcs-adatokat az Azure-ba. A tanúsítványadatok feltöltését követően az Azure megbízható főtanúsítványnak tekinti ezt.
 
-   ```powershell
+  ```powershell
   Add-AzureRmVpnClientRootCertificate -VpnClientRootCertificateName $P2SRootCertName -VirtualNetworkGatewayname "VNet1GW" -ResourceGroupName "TestRG" -PublicCertData $CertBase64
   ```
 
-## <a name="clientconfig"></a>7. Hello VPN-ügyfélcsomag konfigurációs letöltése
+## <a name="clientcertificate"></a>7. Exportált ügyféltanúsítvány telepítése
 
-tooconnect tooa egy pont – hely VPN hálózatok, minden ügyfél telepítenie kell egy konfigurációs ügyfélcsomagot, amely hello beállításokkal konfigurálja a hello natív VPN-ügyfél és a szükséges tooconnect toohello virtuális hálózati fájlokat. hello VPN-ügyfélcsomag konfigurációs hello natív Windows VPN-ügyfél konfigurálja, egy másik VPN-ügyfél nem telepít. 
+Ha a tanúsítvány létrehozásához használttól eltérő ügyfélszámítógépről szeretne pont–hely kapcsolatot létesíteni, akkor telepítenie kell egy ügyféltanúsítványt. Az ügyféltanúsítvány telepítésekor szükség lesz az ügyféltanúsítvány exportálásakor létrehozott jelszóra.
 
-Minden egyes ügyfélszámítógépre csomag azonos VPN-ügyfél konfigurációja hello mindaddig, amíg hello verzióegyezéseket hello architektúra hello ügyfél használhatja. Ügyfél által támogatott operációs rendszerek hello listájáért lásd: hello [pont – hely kapcsolatok gyakran ismételt kérdések](#faq) hello Ez a cikk végén.
+Győződjön meg arról, hogy az ügyféltanúsítványt .pfx fájlként exportálta a teljes tanúsítványlánccal együtt (ez az alapértelmezett beállítás). Egyéb esetben a főtanúsítvány adatai nem lesznek jelen az ügyfélszámítógépen, és az ügyfél nem fogja tudni megfelelően elvégezni a hitelesítést. 
 
-1. Hello átjáró létrehozása után létrehozhat és hello ügyfél konfigurációs csomag. Ez a példa hello csomagot tölti le a 64 bites ügyfeleken. Ha azt szeretné, hogy toodownload hello 32 bites ügyfél, a "Amd64" lecserélése "x86". Emellett letöltheti hello VPN-ügyfél hello Azure-portál használatával.
+A telepítés lépései az [ügyféltanúsítvány telepítésével](point-to-site-how-to-vpn-client-install-azure-cert.md) foglalkozó részben találhatók.
 
-  ```powershell
-  Get-AzureRmVpnClientPackage -ResourceGroupName $RG `
-  -VirtualNetworkGatewayName $GWName -ProcessorArchitecture Amd64
-  ```
-2. Másolással illessze be a visszaadott tooa webes böngésző toodownload hello csomag, ügyelve tooremove hello ajánlatok hello hivatkozás körülvevő hello hivatkozásra. 
-3. Töltse le, és telepítse a hello csomag hello ügyfélszámítógépen. Ha megjelenik a SmartScreen egy előugró ablaka, kattintson a **További információ**, majd a **Futtatás mindenképpen** elemre. Egyéb ügyfélszámítógépeire hello csomag tooinstall is mentheti.
-4. Hello ügyfélszámítógépen nyissa meg túl**hálózati beállítások** kattintson **VPN**. VPN-kapcsolat hello hello csatlakozó virtuális hálózati hello nevét jeleníti meg.
+## <a name="clientconfig"></a>8. A natív VPN-ügyfél konfigurálása
 
-## <a name="clientcertificate"></a>8. Exportált ügyféltanúsítvány telepítése
+A VPN-ügyfél konfigurációs fájljai tartalmazzák az eszközök azon beállításait, amelyekkel pont–hely kapcsolaton keresztül kapcsolódhatnak egy virtuális hálózathoz. A VPN-ügyfél konfigurációs fájljainak létrehozásához és telepítéséhez szükséges utasításokért lásd:[A VPN-ügyfél konfigurációs fájljainak létrehozása és telepítése az Azure natív tanúsítványalapú hitelesítést használó pont–hely kapcsolatokhoz](point-to-site-vpn-client-configuration-azure-cert.md).
 
-Ha azt szeretné, hogy egy P2S toocreate kapcsolat eltérő hello ügyfélszámítógépről egy használt toogenerate hello ügyféltanúsítványokat, tooinstall ügyféltanúsítvány szükséges. Ügyfél-tanúsítvány telepítése, úgy kell hello jelszó hello ügyfél tanúsítvány exportálása során létrejött. Ez általában csak egy függetlenül attól, hogy duplán hello tanúsítványt, és telepíti azt.
+## <a name="connect"></a>9. Csatlakozás az Azure szolgáltatáshoz
 
-Ellenőrizze, hogy hello ügyféltanúsítvány egy .pfx együtt hello teljes láncát (amely hello alapértelmezett) típusúként lett exportálva. Ellenkező esetben hello legfelső szintű tanúsítvány adatait nincs jelen hello ügyfélszámítógépen, és hello ügyfél megfelelően nem fogja tudni tooauthenticate. További információkért lásd az [exportált ügyféltanúsítványok telepítését](vpn-gateway-certificates-point-to-site.md#install) ismertető cikket. 
+### <a name="to-connect-from-a-windows-vpn-client"></a>Csatlakozás Windows VPN-ügyfélről
 
-## <a name="connect"></a>9. Csatlakozás tooAzure
+1. Csatlakozzon a virtuális hálózathoz. Ehhez navigáljon az ügyfélszámítógépen a VPN-kapcsolatokhoz, és keresse meg a létrehozott VPN-kapcsolatot. Ugyanaz a neve, mint a virtuális hálózatnak. Kattintson a **Connect** (Csatlakozás) gombra. Megjelenhet egy előugró üzenet, amely a tanúsítvány használatára utal. Kattintson a **Folytatás** gombra emelt szintű jogosultságok használatához. 
+2. A csatlakozás megkezdéséhez a **Kapcsolat** állapotlapon kattintson a **Csatlakozás** gombra. Ha megjelenik a **Tanúsítvány kiválasztása** képernyő, ellenőrizze, hogy az a csatlakozáshoz használni kívánt ügyféltanúsítványt mutatja-e. Ha nem, kattintson a legördülő nyílra, válassza ki a helyes tanúsítványt, majd kattintson az **OK** gombra.
 
-1. tooconnect tooyour VNet hello ügyfélszámítógépen nyissa meg a tooVPN kapcsolatok, és keresse meg a létrehozott hello VPN-kapcsolatot. Hello azonos nevet a virtuális hálózatnak nevezik. Kattintson a **Connect** (Csatlakozás) gombra. Előugró üzenet jelenhet meg, hogy toousing hello tanúsítvány hivatkozik. Kattintson a **Folytatás** toouse emelt szintű jogosultságokkal. 
-2. A hello **kapcsolat** állapotlapon, kattintson a **Connect** toostart hello kapcsolat. Ha megjelenik egy **tanúsítvány kiválasztása** képernyőn, győződjön meg arról, hogy hello ügyfél tanúsítvány ábrázoló, amelyet az toouse tooconnect egy hello. Ha nem, hello nyílra tooselect hello megfelelő tanúsítványt használjon, és kattintson a **OK**.
-
-  ![VPN-ügyfél kapcsolódik tooAzure](./media/vpn-gateway-howto-point-to-site-rm-ps/clientconnect.png)
+  ![A VPN-ügyfél az Azure-hoz csatlakozik](./media/vpn-gateway-howto-point-to-site-rm-ps/clientconnect.png)
 3. A kapcsolat létrejött.
 
   ![A kapcsolat létrejött](./media/vpn-gateway-howto-point-to-site-rm-ps/connected.png)
 
-#### <a name="troubleshooting-p2s-connections"></a>Pont–hely kapcsolatok hibaelhárítása
+#### <a name="troubleshooting-windows-client-p2s-connections"></a>Windows-ügyél pont–hely kapcsolatainak hibaelhárítása
 
 [!INCLUDE [client certificates](../../includes/vpn-gateway-certificates-verify-client-cert-include.md)]
 
-## <a name="verify"></a>10. A kapcsolat ellenőrzése
+### <a name="to-connect-from-a-mac-vpn-client"></a>Csatlakozás Mac VPN-ügyfélről
 
-1. tooverify, hogy a VPN-kapcsolatot az aktív, nyisson meg egy rendszergazda jogú parancssort, és futtassa *ipconfig/all*.
-2. Hello eredményeinek megtekintése. Láthatja, hogy hello IP-cím kapott hello hello pont-pont Magánhálózati Ügyfélcímkészlete a konfigurációban megadott címek egyikét. hello eredményei hasonló toothis példa:
+A Hálózat párbeszédpanelen keresse meg a használni kívánt ügyfél profilját, majd kattintson a **Csatlakozás** gombra.
+
+  ![Mac-kapcsolat](./media/vpn-gateway-howto-point-to-site-rm-ps/applyconnect.png)
+
+## <a name="verify"></a>A kapcsolat ellenőrzése
+
+Ezek az utasítások Windows-ügyfelekre érvényesek.
+
+1. Annak ellenőrzéséhez, hogy a VPN-kapcsolat aktív-e, nyisson meg egy rendszergazda jogú parancssort, és futtassa az *ipconfig/all* parancsot.
+2. Tekintse meg az eredményeket. Figyelje meg, hogy a kapott IP-cím azok közül a címek közül való, amelyeket a pont–hely VPN-ügyfél konfigurációjának címkészletében megadott. Az eredmények az alábbi példában szereplőkhöz hasonlóak:
 
   ```
   PPP adapter VNet1:
@@ -265,23 +278,25 @@ Ellenőrizze, hogy hello ügyféltanúsítvány egy .pfx együtt hello teljes l�
       NetBIOS over Tcpip..............: Enabled
   ```
 
-## <a name="connectVM"></a>Csatlakoztassa tooa virtuális gépet
+## <a name="connectVM"></a>Csatlakozás virtuális géphez
 
-[!INCLUDE [Connect tooa VM](../../includes/vpn-gateway-connect-vm-p2s-include.md)]
+Ezek az utasítások Windows-ügyfelekre érvényesek.
+
+[!INCLUDE [Connect to a VM](../../includes/vpn-gateway-connect-vm-p2s-include.md)]
 
 ## <a name="addremovecert"></a>Főtanúsítvány hozzáadása vagy eltávolítása
 
-A megbízható főtanúsítványokat felveheti vagy el is távolíthatja az Azure-ban. Ha eltávolít egy legfelső szintű tanúsítványt, hello legfelső szintű tanúsítványt generált tanúsítvánnyal rendelkező ügyfelek nem tudják hitelesíteni magukat, és nem fogja tudni tooconnect. Ha szeretné, hogy egy ügyfél tooauthenticate, és csatlakozni tud kell tooinstall (feltöltött) tooAzure megbízható legfelső szintű tanúsítványokat létre egy új ügyféltanúsítványt.
+A megbízható főtanúsítványokat felveheti vagy el is távolíthatja az Azure-ban. Főtanúsítvány eltávolításakor a főtanúsítványból létrehozott tanúsítvánnyal rendelkező ügyfelek nem fognak tudni hitelesítést végezni, így csatlakozni sem. Ha azt szeretné, hogy az ügyfelek hitelesítést végezhessenek és csatlakozni tudjanak, telepítenie kell egy olyan új ügyféltanúsítványt, amelyet az Azure által megbízhatónak tartott (feltöltött) főtanúsítványból hoztak létre.
 
-### <a name="addtrustedroot"></a>a megbízható legfelső szintű tanúsítvány tooadd
+### <a name="addtrustedroot"></a>Megbízható főtanúsítvány hozzáadása
 
-Másolatot too20 legfelső szintű tanúsítvány .cer fájlok tooAzure adhat hozzá. hello alábbi lépéseit súgó legfelső szintű tanúsítvány hozzáadása:
+Az Azure-ba legfeljebb 20 főtanúsítványt tölthet fel .cer fájl formájában. A következő lépések segítségével adhat hozzá főtanúsítványt:
 
 #### <a name="certmethod1"></a>1. módszer:
 
-Ez a hello leghatékonyabb módszer tooupload egy legfelső szintű tanúsítványt.
+Ez a főtanúsítvány feltöltésének leghatékonyabb módszere.
 
-1. Hello .cer fájl tooupload előkészítése:
+1. Készítse elő a .cer fájlt feltöltésre:
 
   ```powershell
   $filePathForCert = "C:\cert\P2SRootCert3.cer"
@@ -289,13 +304,13 @@ Ez a hello leghatékonyabb módszer tooupload egy legfelső szintű tanúsítvá
   $CertBase64_3 = [system.convert]::ToBase64String($cert.RawData)
   $p2srootcert = New-AzureRmVpnClientRootCertificate -Name $P2SRootCertName -PublicCertData $CertBase64_3
   ```
-2. Hello-fájl feltöltése. Egyszerre csak egy fájlt tölthet fel.
+2. Töltse fel a fájlt. Egyszerre csak egy fájlt tölthet fel.
 
   ```powershell
   Add-AzureRmVpnClientRootCertificate -VpnClientRootCertificateName $P2SRootCertName -VirtualNetworkGatewayname "VNet1GW" -ResourceGroupName "TestRG" -PublicCertData $CertBase64_3
   ```
 
-3. tooverify adott hello tanúsítványfájl feltöltött:
+3. A tanúsítványfájl sikeres feltöltésének ellenőrzése:
 
   ```powershell
   Get-AzureRmVpnClientRootCertificate -ResourceGroupName "TestRG" `
@@ -304,38 +319,38 @@ Ez a hello leghatékonyabb módszer tooupload egy legfelső szintű tanúsítvá
 
 #### <a name="certmethod2"></a>2. módszer:
 
-Ez a módszer akkor metódus 1-nél több lépésből áll, de van hello ugyanazt az eredményt. Szerepel abban az esetben szüksége tooview hello tanúsítványának adatait.
+Ez a módszer több lépésből áll, mint az 1. módszer, de az eredménye ugyanaz. Arra az esetre szerepel itt, ha meg kellene tekintenie a tanúsítványadatokat.
 
-1. Hozzon létre, és készítse elő a hello új legfelső szintű tanúsítvány tooadd tooAzure. Hello nyilvános kulcsának exportálásához, mint egy Base-64 kódolású X.509 (. CER), majd nyissa meg szövegszerkesztőben. Hello értékek, másolása, ahogy az alábbi példa hello:
+1. Hozza létre és készítse elő az Azure-ba felvenni kívánt új főtanúsítványt. Exportálja a nyilvános kulcsot Base-64-kódolású X.509 (.CER) formátumban, és nyissa meg egy egyszerű szövegszerkesztőben. Másolja a példányokat az alábbi példában látható módon.
 
   ![tanúsítvány](./media/vpn-gateway-howto-point-to-site-rm-ps/copycert.png)
 
   > [!NOTE]
-  > Ha hello Tanúsítványadatok másol, győződjön meg arról, hogy egy folyamatos sorba kocsivissza és soremelés nélkül hello szöveg másolása. Szükség lehet toomodify a nézeten belül hello text editor too'Show szimbólum/megjelenítése összes karakter toosee hello kocsivissza értéket ad vissza, és hírcsatornák sor.
+  > A tanúsítványadatok másolásakor a szöveget egy folyamatos sorként másolja kocsivissza vagy új sor nélkül. A kocsivisszák és az új sorok megjelenítéséhez lehet, hogy módosítania kell a nézetet a szövegszerkesztőben a „Szimbólum megjelenítése/Minden karakter megjelenítése” beállításra.
   >
   >
 
-2. Adja meg a hello tanúsítvány és kulcs adatai változóként. Cserélje le a saját hello az alábbi példa hello információkat:
+2. Adja meg a tanúsítvány nevét és a kulcs adatait egy változóként. Helyettesítse az adatokat a saját adataival az alábbi példában látható módon:
 
   ```powershell
   $P2SRootCertName2 = "ARMP2SRootCert2.cer"
   $MyP2SCertPubKeyBase64_2 = "MIIC/zCCAeugAwIBAgIQKazxzFjMkp9JRiX+tkTfSzAJBgUrDgMCHQUAMBgxFjAUBgNVBAMTDU15UDJTUm9vdENlcnQwHhcNMTUxMjE5MDI1MTIxWhcNMzkxMjMxMjM1OTU5WjAYMRYwFAYDVQQDEw1NeVAyU1Jvb3RDZXJ0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyjIXoWy8xE/GF1OSIvUaA0bxBjZ1PJfcXkMWsHPzvhWc2esOKrVQtgFgDz4ggAnOUFEkFaszjiHdnXv3mjzE2SpmAVIZPf2/yPWqkoHwkmrp6BpOvNVOpKxaGPOuK8+dql1xcL0eCkt69g4lxy0FGRFkBcSIgVTViS9wjuuS7LPo5+OXgyFkAY3pSDiMzQCkRGNFgw5WGMHRDAiruDQF1ciLNojAQCsDdLnI3pDYsvRW73HZEhmOqRRnJQe6VekvBYKLvnKaxUTKhFIYwuymHBB96nMFdRUKCZIiWRIy8Hc8+sQEsAML2EItAjQv4+fqgYiFdSWqnQCPf/7IZbotgQIDAQABo00wSzBJBgNVHQEEQjBAgBAkuVrWvFsCJAdK5pb/eoCNoRowGDEWMBQGA1UEAxMNTXlQMlNSb290Q2VydIIQKazxzFjMkp9JRiX+tkTfSzAJBgUrDgMCHQUAA4IBAQA223veAZEIar9N12ubNH2+HwZASNzDVNqspkPKD97TXfKHlPlIcS43TaYkTz38eVrwI6E0yDk4jAuPaKnPuPYFRj9w540SvY6PdOUwDoEqpIcAVp+b4VYwxPL6oyEQ8wnOYuoAK1hhh20lCbo8h9mMy9ofU+RP6HJ7lTqupLfXdID/XevI8tW6Dm+C/wCeV3EmIlO9KUoblD/e24zlo3YzOtbyXwTIh34T0fO/zQvUuBqZMcIPfM1cDvqcqiEFLWvWKoAnxbzckye2uk1gHO52d8AVL3mGiX8wBJkjc/pMdxrEvvCzJkltBmqxTM6XjDJALuVh16qFlqgTWCIcb7ju"
   ```
-3. Hello új legfelső szintű tanúsítvány hozzáadása. Egyszerre csak egy tanúsítványt adhat hozzá.
+3. Adja hozzá a megbízható főtanúsítványt. Egyszerre csak egy tanúsítványt adhat hozzá.
 
   ```powershell
   Add-AzureRmVpnClientRootCertificate -VpnClientRootCertificateName $P2SRootCertName2 -VirtualNetworkGatewayname "VNet1GW" -ResourceGroupName "TestRG" -PublicCertData $MyP2SCertPubKeyBase64_2
   ```
-4. Hello új tanúsítvány helyesen lett-e hozzáadva a következő példa hello segítségével ellenőrizheti:
+4. A következő példa használatával ellenőrizheti, hogy helyesen ment-e végbe a tanúsítvány hozzáadása:
 
   ```powershell
   Get-AzureRmVpnClientRootCertificate -ResourceGroupName "TestRG" `
   -VirtualNetworkGatewayName "VNet1GW"
   ```
 
-### <a name="removerootcert"></a>egy legfelső szintű tanúsítványt tooremove
+### <a name="removerootcert"></a>Főtanúsítvány eltávolítása
 
-1. Hello változó deklarálható.
+1. Deklarálja a változókat.
 
   ```powershell
   $GWName = "Name_of_virtual_network_gateway"
@@ -343,12 +358,12 @@ Ez a módszer akkor metódus 1-nél több lépésből áll, de van hello ugyanaz
   $P2SRootCertName2 = "ARMP2SRootCert2.cer"
   $MyP2SCertPubKeyBase64_2 = "MIIC/zCCAeugAwIBAgIQKazxzFjMkp9JRiX+tkTfSzAJBgUrDgMCHQUAMBgxFjAUBgNVBAMTDU15UDJTUm9vdENlcnQwHhcNMTUxMjE5MDI1MTIxWhcNMzkxMjMxMjM1OTU5WjAYMRYwFAYDVQQDEw1NeVAyU1Jvb3RDZXJ0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyjIXoWy8xE/GF1OSIvUaA0bxBjZ1PJfcXkMWsHPzvhWc2esOKrVQtgFgDz4ggAnOUFEkFaszjiHdnXv3mjzE2SpmAVIZPf2/yPWqkoHwkmrp6BpOvNVOpKxaGPOuK8+dql1xcL0eCkt69g4lxy0FGRFkBcSIgVTViS9wjuuS7LPo5+OXgyFkAY3pSDiMzQCkRGNFgw5WGMHRDAiruDQF1ciLNojAQCsDdLnI3pDYsvRW73HZEhmOqRRnJQe6VekvBYKLvnKaxUTKhFIYwuymHBB96nMFdRUKCZIiWRIy8Hc8+sQEsAML2EItAjQv4+fqgYiFdSWqnQCPf/7IZbotgQIDAQABo00wSzBJBgNVHQEEQjBAgBAkuVrWvFsCJAdK5pb/eoCNoRowGDEWMBQGA1UEAxMNTXlQMlNSb290Q2VydIIQKazxzFjMkp9JRiX+tkTfSzAJBgUrDgMCHQUAA4IBAQA223veAZEIar9N12ubNH2+HwZASNzDVNqspkPKD97TXfKHlPlIcS43TaYkTz38eVrwI6E0yDk4jAuPaKnPuPYFRj9w540SvY6PdOUwDoEqpIcAVp+b4VYwxPL6oyEQ8wnOYuoAK1hhh20lCbo8h9mMy9ofU+RP6HJ7lTqupLfXdID/XevI8tW6Dm+C/wCeV3EmIlO9KUoblD/e24zlo3YzOtbyXwTIh34T0fO/zQvUuBqZMcIPfM1cDvqcqiEFLWvWKoAnxbzckye2uk1gHO52d8AVL3mGiX8wBJkjc/pMdxrEvvCzJkltBmqxTM6XjDJALuVh16qFlqgTWCIcb7ju"
   ```
-2. Távolítsa el a hello tanúsítványt.
+2. Távolítsa el a tanúsítványt.
 
   ```powershell
   Remove-AzureRmVpnClientRootCertificate -VpnClientRootCertificateName $P2SRootCertName2 -VirtualNetworkGatewayName $GWName -ResourceGroupName $RG -PublicCertData $MyP2SCertPubKeyBase64_2
   ```
-3. A következő példa tooverify, hogy a tanúsítvány hello használata hello sikeresen el lett távolítva.
+3. A következő példával meggyőződhet arról, hogy sikeresen megtörtént a tanúsítvány eltávolítása.
 
   ```powershell
   Get-AzureRmVpnClientRootCertificate -ResourceGroupName "TestRG" `
@@ -357,15 +372,15 @@ Ez a módszer akkor metódus 1-nél több lépésből áll, de van hello ugyanaz
 
 ## <a name="revoke"></a>Ügyféltanúsítvány visszavonása
 
-Az ügyféltanúsítványokat vissza lehet vonni. hello tanúsítvány-visszavonási lista lehetővé teszi a tooselectively visszautasítja a pont – hely kapcsolat egyedi ügyféltanúsítványok alapján. Ez a folyamat eltér a megbízható főtanúsítvány eltávolításától. Ha eltávolítja a megbízható legfelső szintű tanúsítvány .cer az Azure-ból, azt minden tanúsítványt generált/aláírt hello visszavont legfelső szintű tanúsítvány hello hozzáférés visszavonása. Ügyfél-tanúsítvány visszavonásával, ahelyett, hogy a főtanúsítvány hello, lehetővé teszi, hogy hello más is létrehozott, hello legfelső szintű tanúsítvány toocontinue toobe hitelesítéshez használt tanúsítványok.
+Az ügyféltanúsítványokat vissza lehet vonni. A visszavont tanúsítványok listájával az egyes ügyféltanúsítványok alapján, szelektíven tagadhatja meg a pont–hely kapcsolódás lehetőségét. Ez a folyamat eltér a megbízható főtanúsítvány eltávolításától. Ha töröl egy .cer formátumú megbízható főtanúsítványt az Azure-ból, azzal megvonja a hozzáférést minden olyan ügyféltanúsítványtól, amelyet a visszavont főtanúsítvánnyal hoztak létre/írtak alá. A főtanúsítvány helyett az ügyféltanúsítvány visszavonása esetén a főtanúsítványból létrehozott többi tanúsítvány továbbra is használható hitelesítésre.
 
-hello általános gyakorlat toouse hello legfelső szintű tanúsítvány toomanage hozzáférés csapat vagy szervezet szinten egyéni felhasználók számára a minden részletre kiterjedő hozzáférés-vezérléshez visszavont ügyféltanúsítványok használata során.
+A szokásos gyakorlat az, hogy a főtanúsítvánnyal kezelik a hozzáférést a munkacsoport vagy a szervezet szintjén, az egyes felhasználókra vonatkozó részletesebb szabályozást pedig visszavont ügyféltanúsítványokkal oldják meg.
 
-### <a name="revokeclientcert"></a>toorevoke ügyféltanúsítványt
+### <a name="revokeclientcert"></a>Ügyféltanúsítvány visszavonása
 
-1. Hello ügyfél tanúsítványának ujjlenyomata beolvasása. További információkért lásd: [hogyan tooretrieve hello tanúsítvány ujjlenyomata](https://msdn.microsoft.com/library/ms734695.aspx).
-2. Másolja a hello információk tooa szövegszerkesztőben, és úgy, hogy egy folyamatos karakterláncként, távolítsa el az összes szóközöket. Ez a karakterlánc a következő lépésben hello van deklarálva, egy változó.
-3. Hello változó deklarálható. Győződjön meg arról, hogy toodeclare hello ujjlenyomat lekért hello előző lépésben.
+1. Kérje le az ügyféltanúsítvány ujjlenyomatát. További információkat [a tanúsítványok ujjlenyomatának lekérését ismertető útmutatóban](https://msdn.microsoft.com/library/ms734695.aspx) találhat.
+2. Másolja át az adatokat egy szövegszerkesztőbe, és távolítsa el az összes szóközt, hogy egy folyamatos karakterláncot kapjon. Ez a karakterlánc a következő lépésben változóként van deklarálva.
+3. Deklarálja a változókat. Győződjön meg róla, hogy az előző lépésben lekért ujjlenyomatot deklarálja.
 
   ```powershell
   $RevokedClientCert1 = "NameofCertificate"
@@ -373,25 +388,25 @@ hello általános gyakorlat toouse hello legfelső szintű tanúsítvány tooman
   $GWName = "Name_of_virtual_network_gateway"
   $RG = "Name_of_resource_group"
   ```
-4. Adja hozzá a hello ujjlenyomat toohello visszavont tanúsítványok listáját. Megjelenik az "Succeeded" hello ujjlenyomat hozzáadásakor.
+4. Vegye fel az ujjlenyomatot a visszavont tanúsítványok listájára. Az ujjlenyomat hozzáadása után a „Sikeres” üzenet jelenik meg.
 
   ```powershell
   Add-AzureRmVpnClientRevokedCertificate -VpnClientRevokedCertificateName $RevokedClientCert1 `
   -VirtualNetworkGatewayName $GWName -ResourceGroupName $RG `
   -Thumbprint $RevokedThumbprint1
   ```
-5. Győződjön meg arról, hogy hello ujjlenyomat hozzá lett adva toohello visszavont tanúsítványok listáját.
+5. Ellenőrizze, hogy az ujjlenyomat bekerült-e a visszavont tanúsítványok listájába.
 
   ```powershell
   Get-AzureRmVpnClientRevokedCertificate -VirtualNetworkGatewayName $GWName -ResourceGroupName $RG
   ```
-6. Hello ujjlenyomat hozzáadását követően hello tanúsítvány már nem használt tooconnect lehet. Ügyfelek, amelyek ezzel a tanúsítvánnyal tooconnect kap üzenetet kap arról, hogy hello tanúsítvány hatályát veszti.
+6. Az ujjlenyomat hozzáadását követően a tanúsítvány már nem használható csatlakozáshoz. Azok az ügyfelek, akik ezzel a tanúsítvánnyal próbálnak csatlakozni, egy üzenetet kapnak majd arról, hogy a tanúsítvány már nem érvényes.
 
-### <a name="reinstateclientcert"></a>tooreinstate ügyféltanúsítványt
+### <a name="reinstateclientcert"></a>Ügyféltanúsítvány érvényességének visszaállítása
 
-Ügyféltanúsítvány visszaállíthatja hello ujjlenyomat eltávolítása a visszavont ügyféltanúsítványok hello listája.
+Vissza is állíthatja az ügyféltanúsítványok érvényességét. Ehhez törölni kell az ujjlenyomatukat a visszavont ügyféltanúsítványok listájából.
 
-1. Hello változó deklarálható. Ellenőrizze, hogy deklarálhatja hello megfelelő, amelyet az tooreinstate hello-tanúsítványának ujjlenyomata.
+1. Deklarálja a változókat. Győződjön meg arról, hogy a megfelelő, a visszaállítani kívánt tanúsítványhoz tartozó ujjlenyomatot deklarálta.
 
   ```powershell
   $RevokedClientCert1 = "NameofCertificate"
@@ -399,13 +414,13 @@ hello általános gyakorlat toouse hello legfelső szintű tanúsítvány tooman
   $GWName = "Name_of_virtual_network_gateway"
   $RG = "Name_of_resource_group"
   ```
-2. Távolítsa el a hello tanúsítvány ujjlenyomata a hello visszavont tanúsítványok listáját.
+2. Törölje a tanúsítvány ujjlenyomatát a visszavont tanúsítványok listájából.
 
   ```powershell
   Remove-AzureRmVpnClientRevokedCertificate -VpnClientRevokedCertificateName $RevokedClientCert1 `
   -VirtualNetworkGatewayName $GWName -ResourceGroupName $RG -Thumbprint $RevokedThumbprint1
   ```
-3. Ellenőrizze, hogy hello ujjlenyomata a rendszer eltávolítja a hello lista visszavonva.
+3. Ellenőrizze, hogy megtörtént-e az ujjlenyomat eltávolítása a listából.
 
   ```powershell
   Get-AzureRmVpnClientRevokedCertificate -VirtualNetworkGatewayName $GWName -ResourceGroupName $RG
@@ -413,7 +428,7 @@ hello általános gyakorlat toouse hello legfelső szintű tanúsítvány tooman
 
 ## <a name="faq"></a>Pont–hely kapcsolatok – gyakori kérdések
 
-[!INCLUDE [Point-to-Site FAQ](../../includes/vpn-gateway-point-to-site-faq-include.md)]
+[!INCLUDE [Point-to-Site FAQ](../../includes/vpn-gateway-faq-p2s-azurecert-include.md)]
 
 ## <a name="next-steps"></a>Következő lépések
-Ha a kapcsolat befejeződött, a virtuális gépek tooyour virtuális hálózatok is hozzáadhat. További információkért lásd: [Virtuális gépek](https://docs.microsoft.com/azure/#pivot=services&panel=Compute). További információ a hálózati és a virtuális gépek toounderstand lásd: [Azure és a Linux virtuális gép hálózati áttekintés](../virtual-machines/linux/azure-vm-network-overview.md).
+Miután a kapcsolat létrejött, hozzáadhat virtuális gépeket a virtuális hálózataihoz. További információkért lásd: [Virtuális gépek](https://docs.microsoft.com/azure/#pivot=services&panel=Compute). A hálózatok és virtuális gépek ismertetését lásd az [Azure- és Linux-alapú virtuálisgép-hálózatok áttekintésében](../virtual-machines/linux/azure-vm-network-overview.md).

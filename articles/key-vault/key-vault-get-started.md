@@ -1,6 +1,6 @@
 ---
-title: "az Azure Key Vault használatába aaaGet |} Microsoft Docs"
-description: "Használja az oktatóanyag toohelp kap használatába az Azure Key Vault toocreate megerősített tárolókat toostore, az Azure-ban, és kezelheti a titkosítási kulcsok és titkos az Azure-ban."
+title: "Bevezetés az Azure Key Vault használatába | Microsoft Docs"
+description: "Ez az oktatóanyag segítségére lesz az Azure Key Vault szolgáltatás megismerésében, amellyel megerősített tárolókat hozhat létre, valamint kriptográfiai kulcsokat és titkos kódokat tárolhat az Azure-ban."
 services: key-vault
 documentationcenter: 
 author: cabailey
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 07/19/2017
 ms.author: cabailey
-ms.openlocfilehash: 865853b778dec5fca5c7db0d060627554c0a9cb3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0299d931c5bf21775b68069afaa106279270226a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-azure-key-vault"></a>Bevezetés az Azure Key Vault használatába
-Az Azure Key Vault a legtöbb régióban elérhető. További információkért lásd: hello [Key Vault díjszabása](https://azure.microsoft.com/pricing/details/key-vault/).
+Az Azure Key Vault a legtöbb régióban elérhető. További információ: [A Key Vault díjszabása](https://azure.microsoft.com/pricing/details/key-vault/).
 
 ## <a name="introduction"></a>Bevezetés
-Használja az oktatóanyag toohelp kap használatába az Azure Key Vault toocreate megerősített tárolókat (kulcstartókat) toostore, az Azure-ban, és kezelheti a titkosítási kulcsok és titkos az Azure-ban. Azt végigvezeti Azure PowerShell toocreate használatával hello folyamat egy kulcsot vagy jelszót, majd használható az Azure-alkalmazások tartalmazó. Ezután bemutatja, hogyan használhatják az adott kulcsot vagy jelszót az alkalmazásai.
+Ez az oktatóanyag segít megismerni az Azure Key Vault szolgáltatást, amellyel megerősített tárolókat (kulcstartókat) hozhat létre, valamint kriptográfiai kulcsokat és titkos kódokat tárolhat az Azure-ban. A cikk ismerteti az Azure-alkalmazásokkal kompatibilis kulcsokat vagy jelszavakat tartalmazó tárolók létrehozását az Azure PowerShellben. Ezután bemutatja, hogyan használhatják az adott kulcsot vagy jelszót az alkalmazásai.
 
-**Becsült idő toocomplete:** 20 perc
+**Az oktatóanyag áttekintésének várható időtartama:** 20 perc
 
 > [!NOTE]
-> Ez az oktatóanyag nem tartalmazza a hogyan toowrite hello Azure-alkalmazást, amely tartalmazza a hello lépések egyike, nevezetesen hogyan tooauthorize egy alkalmazás toouse kulcsok vagy titkos kulcs hello tároló számára.
+> Ez az oktatóanyag nem tartalmaz arra vonatkozó útmutatást, hogy hogyan kell létrehozni a kulcstartó valamely kulcsa vagy titkos kódja használatának az alkalmazások számára való engedélyezésével foglalkozó lépésben szereplő Azure-alkalmazást.
 >
 > Az oktatóanyag az Azure PowerShellt használja. A platformfüggetlen parancssori felületre vonatkozó utasításokat [ebben az oktatóanyagban](key-vault-manage-with-cli2.md) tekintheti meg.
 >
@@ -38,45 +38,45 @@ Használja az oktatóanyag toohelp kap használatába az Azure Key Vault toocrea
 Áttekintést az Azure Key Vaultról a [What is Azure Key Vault?](key-vault-whatis.md) (Mi az Azure Key Vault?) című cikkben talál.
 
 ## <a name="prerequisites"></a>Előfeltételek
-toocomplete ebben az oktatóanyagban rendelkeznie kell a következő hello:
+Az oktatóanyag teljesítéséhez szüksége lesz:
 
-* Egy előfizetés tooMicrosoft Azure. Ha nem rendelkezik előfizetéssel, regisztrálhat egy [ingyenes fiókkal](https://azure.microsoft.com/pricing/free-trial/).
-* Az Azure PowerShell legalább **1.1.0-ás verziójára**. Azure PowerShell tooinstall és rendelje hozzá azt az Azure-előfizetéssel, lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview). Ha már telepítette az Azure PowerShell, és nem tudja hello verzió hello Azure PowerShell-konzolon, írja be a `(Get-Module azure -ListAvailable).Version`. Ha az Azure PowerShell 0.9.1-től 0.9.8-ig terjedő verziói közül rendelkezik valamelyikkel, néhány apró eltéréstől függetlenül Önre is vonatkozik az útmutató. Például az hello segítségével kell `Switch-AzureMode AzureResourceManager` parancsot, és néhány hello Azure Key Vault parancsok módosultak. Hello 0.9.1 és 0.9.8 verziók Key Vault parancsmagjainak listája: [Azure Key Vault parancsmagjainak](/powershell/module/azurerm.keyvault/#key_vault).
-* Egy alkalmazás, amely konfigurált toouse hello kulcsot vagy jelszót, amely ebben az oktatóanyagban létrehozhat lesz. A mintaalkalmazás érhető el a hello [Microsoft Download Center](http://www.microsoft.com/en-us/download/details.aspx?id=45343). Útmutatásért lásd: hello kísérő információs fájlt.
+* Egy Microsoft Azure-előfizetésre. Ha nem rendelkezik előfizetéssel, regisztrálhat egy [ingyenes fiókkal](https://azure.microsoft.com/pricing/free-trial/).
+* Az Azure PowerShell legalább **1.1.0-ás verziójára**. Az Azure PowerShell telepítésérről és az Azure-előfizetéssel való társításáról további információt [How to install and configure Azure PowerShell](/powershell/azure/overview) (Az Azure PowerShell telepítése és konfigurálása) című cikkben találhat. Ha már telepítette az Azure PowerShellt, de nem tudja, melyik verziót, írja be az Azure PowerShell-konzolon az alábbi parancsot: `(Get-Module azure -ListAvailable).Version`. Ha az Azure PowerShell 0.9.1-től 0.9.8-ig terjedő verziói közül rendelkezik valamelyikkel, néhány apró eltéréstől függetlenül Önre is vonatkozik az útmutató. Például a `Switch-AzureMode AzureResourceManager` parancsot kell használnia, valamint bizonyos Azure Key Vault parancsok módosultak. A 0.9.1 és 0.9.8 közötti verziók Key Vault parancsmagjainak listája az alábbi témakörben található: [Azure Key Vault Cmdlets](/powershell/module/azurerm.keyvault/#key_vault) (Az Azure Key Vault parancsmagjai).
+* Egy, az útmutató során létrehozott kulcs vagy jelszó használatához konfigurált alkalmazásra. Egy mintaalkalmazás elérhető a [Microsoft letöltőközpontból](http://www.microsoft.com/en-us/download/details.aspx?id=45343). Útmutatásért tekintse meg a kísérő információs fájlt.
 
-Ez az oktatóanyag az Azure PowerShell kezdők készült, de azt feltételezi, hogy tudomásul veszi hello alapszintű fogalmakkal, mint a modulok, a parancsmagok és a munkamenetek. További információ: [Getting started with Windows PowerShell](https://technet.microsoft.com/library/hh857337.aspx) (Ismerkedés a Windows PowerShellel).
+Ez az útmutató kezdő Azure PowerShell-felhasználók számára készült, de a követéséhez tisztában kell lennie az olyan alapszintű fogalmakkal, mint a modulok, a parancsmagok és a munkamenetek. További információ: [Getting started with Windows PowerShell](https://technet.microsoft.com/library/hh857337.aspx) (Ismerkedés a Windows PowerShellel).
 
-tooget részletes súgó a jelen oktatóanyag esetében használja hello látni parancsmagokhoz **Get-Help** parancsmag.
+Az útmutatóban található parancsmagokhoz részletes segítséget kérhet a **Get-Help** parancsmaggal.
 
     Get-Help <cmdlet-name> -Detailed
 
-Hello például tooget súgóját **Login-AzureRmAccount** parancsmag, típus:
+Például ha a **Login-AzureRmAccount** parancsmaghoz szeretne segítséget kérni, írja be a következőt:
 
     Get-Help Login-AzureRmAccount -Detailed
 
-A következő oktatóanyagok tooget ismeri az Azure Resource Manager az Azure PowerShell hello is olvasható:
+Az alábbi útmutatókkal megismerkedhet az Azure Resource Manager az Azure PowerShellel való használatával:
 
-* [Hogyan tooinstall Azure PowerShell és konfigurálása](/powershell/azure/overview)
+* [How to install and configure Azure PowerShell (Az Azure PowerShell telepítése és konfigurálása)](/powershell/azure/overview)
 * [Using Azure PowerShell with Resource Manager (Az Azure PowerShell és a Resource Manager együttes használata)](../powershell-azure-resource-manager.md)
 
-## <a id="connect"></a>Csatlakozás tooyour előfizetések
-Indítson el egy Azure PowerShell-munkamenetet, és jelentkezzen be Azure-fiók tooyour hello a következő parancsot:  
+## <a id="connect"></a>Csatlakozás az előfizetésekhez
+Indítson el egy Azure PowerShell-munkamenetet, és jelentkezzen be az Azure-fiókjába az alábbi paranccsal:  
 
     Login-AzureRmAccount
 
-Vegye figyelembe, hogy egy adott példányához Azure, például az Azure Governmentnek használatakor használjon hello - Environment paramétert ezzel a paranccsal. Például:`Login-AzureRmAccount –Environment (Get-AzureRmEnvironment –Name AzureUSGovernment)`
+Vegye figyelembe, hogy az Azure bizonyos példányainak, például az Azure Governmentnek a használatakor az -Environment paramétert kell használni ehhez a parancshoz. Például:`Login-AzureRmAccount –Environment (Get-AzureRmEnvironment –Name AzureUSGovernment)`
 
-Hello előugró böngészőablakban adja meg a Azure-fiók felhasználói nevét és jelszavát. Az Azure PowerShell lekérdezi hello előfizetéseket, amelyek társítva ezzel a fiókkal, és alapértelmezés szerint, használja az elsőt hello.
+Az előugró böngészőablakban adja meg az Azure-fiókja felhasználónevét és jelszavát. Az Azure PowerShell megkeresi az összes olyan előfizetést, amely ehhez a fiókhoz van rendelve, és alapértelmezés szerint kiválasztja az elsőt.
 
-Ha több előfizetéssel rendelkezik, és szeretné, hogy egy adott egy toouse toospecify az Azure Key Vaulthoz, írja be a fiókhoz toosee hello előfizetések a következő hello:
+Ha több előfizetése van, és meg szeretné szabni, hogy melyiket használja az Azure Key Vaulthoz, írja be az alábbi parancsot a fiókhoz tartozó előfizetések megtekintéséhez:
 
     Get-AzureRmSubscription
 
-Ezt követően toospecify hello előfizetés toouse, típus:
+Ezt követően írja be az alábbi parancsot a kívánt előfizetés kiválasztásához:
 
     Set-AzureRmContext -SubscriptionId <subscription ID>
 
-Azure PowerShell konfigurálásával kapcsolatos további információkért lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview).
+További információ az Azure PowerShell konfigurálásáról: [How to install and configure Azure PowerShell](/powershell/azure/overview) (Az Azure PowerShell telepítése és konfigurálása).
 
 ## <a id="resource"></a>Új erőforráscsoport létrehozása
 Az Azure Resource Manager használatakor minden kapcsolódó erőforrás egy erőforráscsoportban jön létre. Ehhez az útmutatóhoz hozzon létre egy új erőforráscsoportot **ContosoResourceGroup** névvel:
@@ -85,133 +85,133 @@ Az Azure Resource Manager használatakor minden kapcsolódó erőforrás egy er�
 
 
 ## <a id="vault"></a>Kulcstartó létrehozása
-Használjon hello [New-AzureRmKeyVault](/powershell/module/azurerm.keyvault/new-azurermkeyvault) parancsmag toocreate kulcstároló. Ez a parancsmag három kötelező paraméterrel rendelkezik: egy **erőforráscsoport-név**, egy **kulcstároló neve**, és hello **földrajzi hely**.
+A[New-AzureRmKeyVault](/powershell/module/azurerm.keyvault/new-azurermkeyvault) parancsmag segítségével hozzon létre egy kulcstartót. Ez a parancsmag három kötelező paraméterrel rendelkezik: egy **erőforráscsoport-név**, egy **kulcstartónév**, és a **földrajzi hely**.
 
-Például, ha a tároló neve hello használata **ContosoKeyVault**, hello erőforráscsoport neve **ContosoResourceGroup**, és hello helyének **Kelet-Ázsia**, típus:
+Ha például a tároló neve **ContosoKeyVault**, az erőforráscsoport neve **ContosoResourceGroup**, a földrajzi hely pedig **Kelet-Ázsia**, írja be az alábbi parancsot:
 
     New-AzureRmKeyVault -VaultName 'ContosoKeyVault' -ResourceGroupName 'ContosoResourceGroup' -Location 'East Asia'
 
-Ez a parancsmag kimenete hello az újonnan létrehozott kulcstartó hello tulajdonságok láthatók. hello két legfontosabb tulajdonságai a következők:
+Ezzel a parancsmaggal megjelenítheti az újonnan létrehozott kulcstartó tulajdonságait. A két legfontosabb tulajdonság:
 
-* **Tároló neve**: hello a példában ez az **ContosoKeyVault**. Ezt a nevet fogja majd más Key Vault parancsmagokban is megadni.
-* **Tároló URI-ja**: hello a példában ez a https://contosokeyvault.vault.azure.net/. A tárolót a REST API-ján keresztül használó alkalmazásoknak ezt az URI-t kell használniuk.
+* **A tároló neve**: A példában ez a **ContosoKeyVault**. Ezt a nevet fogja majd más Key Vault parancsmagokban is megadni.
+* **A tároló URI-ja**: A példában ez a https://contosokeyvault.vault.azure.net/. A tárolót a REST API-ján keresztül használó alkalmazásoknak ezt az URI-t kell használniuk.
 
-Azure-fiókja most engedélyezett tooperform bármilyen műveletet ezt a kulcsot tároló van. Egyelőre senki másnak nincs erre engedélye.
+Azure-fiókja most már engedéllyel rendelkezik arra, hogy bármilyen műveletet végezzen ezen a kulcstartón. Egyelőre senki másnak nincs erre engedélye.
 
 > [!NOTE]
-> Ha hello hibát látja **hello előfizetés nincs regisztrált toouse névtér "Microsoft.KeyVault"** meg toocreate futtassa az új kulcstartó `Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.KeyVault"` és futtassa újból a New-AzureRmKeyVault parancsot. További információ: [Register-AzureRmResourceProvider](/powershell/module/azurerm.resources/register-azurermresourceprovider).
+> Ha a **Az előfizetés nincs regisztrálva a(z) Microsoft.KeyVault névtér használatára** hibaüzenettel találkozik egy új kulcstartó létrehozásakor, futtassa a `Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.KeyVault"` parancsot, majd futtassa újra az New-AzureRmKeyVault parancsot. További információ: [Register-AzureRmResourceProvider](/powershell/module/azurerm.resources/register-azurermresourceprovider).
 >
 >
 
-## <a id="add"></a>Kulcs vagy titkos toohello kulcstároló hozzáadása
-Ha meg szeretné az Azure Key Vault toocreate szoftveres védelemmel ellátott kulcs, használja a hello [Add-AzureKeyVaultKey](/powershell/module/azurerm.keyvault/add-azurekeyvaultkey) parancsmagot, és írja be a következő hello:
+## <a id="add"></a>Kulcs vagy titkos kód hozzáadása a kulcstartóhoz
+Ha azt szeretné, hogy az Azure Key Vault létrehozzon egy szoftveresen védett kulcsot, használja az [Add-AzureKeyVaultKey](/powershell/module/azurerm.keyvault/add-azurekeyvaultkey) parancsmagot, majd írja be a következő parancsot:
 
     $key = Add-AzureKeyVaultKey -VaultName 'ContosoKeyVault' -Name 'ContosoFirstKey' -Destination 'Software'
 
-Azonban ha meglévő szoftveres védelemmel ellátott kulcs rendelkezik egy. PFX-fájl mentése tooyour C:\ meghajtóra, amelyet az tooupload tooAzure Key Vault, tooset hello változó a következő típus hello softkey.pfx nevű fájlt **securepfxpwd** változójának **123** hello számára. PFX-fájlt:
+Azonban ha már rendelkezik egy C:\ meghajtóra mentett, softkey.pfx nevű .PFX-fájlban tárolt kulccsal, azt is feltöltheti az Azure Key Vaultba. Ehhez először írja be az alábbi parancsot a .PFX-fájl **securepfxpwd** változójának **123** értékre állításához:
 
     $securepfxpwd = ConvertTo-SecureString –String '123' –AsPlainText –Force
 
-Írja be a hello tooimport hello kulcsot következő hello. PFX-fájl védetté hello kulcs szoftveres hello Key Vault szolgáltatás:
+Ezután az alábbi paranccsal importálja a kulcsot a .PFX-fájlból, így szoftveres védelmet biztosíthat neki a Key Vault szolgáltatásban:
 
     $key = Add-AzureKeyVaultKey -VaultName 'ContosoKeyVault' -Name 'ContosoFirstKey' -KeyFilePath 'c:\softkey.pfx' -KeyFilePassword $securepfxpwd
 
 
-Ez a kulcs létrehozása vagy tooAzure Key Vaultba feltöltött az URI használatával hivatkozhat. Használjon **https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey** tooalways hello aktuális verzióra, és használjon **https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey/ cgacf4f763ar42ffb0a1gca546aygd87** tooget ezt a verziót.  
+A létrehozott vagy az Azure Key Vaultba feltöltött kulcsra ez után az URI használatával hivatkozhat. A **https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey** oldalról mindig letöltheti a legfrissebb verziót, a **https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey/cgacf4f763ar42ffb0a1gca546aygd87** oldalról pedig ezt a verziót töltheti le.  
 
-toodisplay hello URI ezt a kulcsot, típus:
+A kulcs URI-jának megjelenítéséhez írja be az alábbi parancsot:
 
     $Key.key.kid
 
-tooadd egy titkos toohello tárolóban, amely egy SQLPassword nevű jelszót, és Pa$ $w0rd tooAzure Key Vault hello értékkel rendelkezik, először konvertálja Pa$ $w0rd tooa biztonságos karakterlánc hello értéke hello következő:
+A titkos kód – amely egy SQLPassword nevű, Pa$$w0rd értékű jelszó –, hozzáadásához az Azure Key Vault szolgáltatásbeli tárolóhoz először konvertálja Pa$$w0rdről egy biztonságos karakterláncra az értékét az alábbi paranccsal:
 
     $secretvalue = ConvertTo-SecureString 'Pa$$w0rd' -AsPlainText -Force
 
-Ezután írja be a következő hello:
+Ezután írja be a következő parancsot:
 
     $secret = Set-AzureKeyVaultSecret -VaultName 'ContosoKeyVault' -Name 'SQLPassword' -SecretValue $secretvalue
 
-Ezt a jelszót, hogy tooAzure Key Vault hozzáadta az URI használatával hivatkozhat. Használjon **https://ContosoVault.vault.azure.net/secrets/SQLPassword** tooalways hello aktuális verzióra, és használjon **https://ContosoVault.vault.azure.net/secrets/SQLPassword/ 90018dbb96a84117a0d2847ef8e7189d** tooget ezt a verziót.
+Az Azure Key Vaulthoz hozzáadott jelszóra ez után az URI használatával hivatkozhat. A **https://ContosoVault.vault.azure.net/secrets/SQLPassword** oldalról mindig letöltheti a legfrissebb verziót, a **https://ContosoVault.vault.azure.net/secrets/SQLPassword/90018dbb96a84117a0d2847ef8e7189d** oldalról pedig ezt a verziót töltheti le.
 
-toodisplay hello URI ezt a titkot, típus:
+A titkos kódok URI-jának megjelenítéséhez írja be az alábbi parancsot:
 
     $secret.Id
 
-Tekintse meg hello kulcsok vagy titkos, újonnan létrehozott:
+Tekintse meg az előbb létrehozott kulcsot vagy titkos kódot:
 
-* tooview a, írja be:`Get-AzureKeyVaultKey –VaultName 'ContosoKeyVault'`
-* tooview a titkos, típus:`Get-AzureKeyVaultSecret –VaultName 'ContosoKeyVault'`
+* A kulcs megtekintéséhez írja be az alábbi parancsot:`Get-AzureKeyVaultKey –VaultName 'ContosoKeyVault'`
+* A titkos kód megtekintéséhez írja be az alábbi parancsot:`Get-AzureKeyVaultSecret –VaultName 'ContosoKeyVault'`
 
-Most a kulcstartó és a kulcsok vagy titkos kulcsok készen áll a alkalmazások toouse. Alkalmazások toouse engedélyeznie kell azokat.  
+A kulcstartó és a kulcs vagy a titkos kód mostantól készen áll az alkalmazásokkal való használatra. Használatukat engedélyeznie kell az alkalmazások számára.  
 
 ## <a id="register"></a>Alkalmazás regisztrálása az Azure Active Directory szolgáltatásban
-Ezt a lépést általában egy fejlesztő végzi egy másik számítógépről. Nem adott tooAzure Key Vault, de a teljesség.
+Ezt a lépést általában egy fejlesztő végzi egy másik számítógépről. Nem kifejezetten az Azure Key Vaulthoz kapcsolódik, de a teljes körű tájékoztatás érdekében bemutatjuk.
 
 > [!IMPORTANT]
-> toocomplete hello oktatóanyag, a fiók, hello tárolóban, és ebben a lépésben regisztrálandó hello alkalmazás kell lenniük hello Azure könyvtárába.
+> Az oktatóprogram sikeres befejezéséhez a fiókjának, a tárolónak és az ebben a lépésben regisztrálandó alkalmazásnak ugyanabban az Azure-címtárban kell lenniük.
 >
 >
 
-A kulcstartót használó alkalmazásoknak az Azure Active Directoryból származó jogkivonat használatával kell hitelesítést végezniük. toodo a, hello hello alkalmazás tulajdonosának először regisztrálnia kell a hello alkalmazás az Azure Active Directoryban. A regisztrációs hello végén hello alkalmazás tulajdonosa lekérdezi a következő értékek hello:
+A kulcstartót használó alkalmazásoknak az Azure Active Directoryból származó jogkivonat használatával kell hitelesítést végezniük. Ehhez az alkalmazás tulajdonosának először regisztrálnia kell az alkalmazást az Azure Active Directory szolgáltatásban. A regisztrációt követően az alkalmazás tulajdonosa az alábbi értékeket kapja:
 
-* Egy **Alkalmazásazonosító** (más néven Ügyfélazonosítót) és **hitelesítési kulcs** (más néven hello közös titkos kulcs). hello alkalmazás e mindkét ezen értékek tooAzure Active Directory tooget jogkivonatot. Ez függ hello alkalmazás toodo hogyan hello alkalmazás van konfigurálva. A Key Vault mintaalkalmazás hello hello alkalmazás tulajdonosa adja meg ezeket az értékeket hello app.config fájlban.
+* Egy **alkalmazásazonosítót** (más néven ügyfélazonosítót) és egy **hitelesítési kulcsot** (más néven közös titkos kódot). Az alkalmazásnak mindkét értékkel rendelkeznie kell ahhoz, hogy Azure Active Directory-jogkivonatot kapjon. Az értékek megadásának módja az adott alkalmazástól függ. A Key Vault mintaalkalmazás esetében az alkalmazás tulajdonosa adja meg ezeket az értékeket az app.config fájlban.
 
-tooregister hello alkalmazás Azure Active Directoryban:
+Az alkalmazás regisztrálása az Azure Active Directory szolgáltatásban:
 
-1. Jelentkezzen be toohello a klasszikus Azure portálon.
-2. Hello bal oldalon kattintson **Active Directory**, majd válassza ki az alkalmazást regisztrálni hello directory. <br> <br> **Megjegyzés:** ki kell választania a hello ugyanabban a könyvtárban, amely tartalmazza a kulcstartót létrehozó Azure-előfizetés hello. Ha nem tudja, melyik címtárban ez, kattintson a **beállítások**, a kulcstartót létrehozó hello előfizetés azonosítása és hello utolsó oszlopban megjelenített megjegyzés hello hello könyvtár nevét.
-3. Kattintson az **APPLICATIONS** (ALKALMAZÁSOK) elemre. Nincs alkalmazás tooyour directory lettek hozzáadva, ha ezen a lapon látható csak hello **hozzáadhat egy alkalmazást** hivatkozásra. Hello hivatkozásra, vagy másik lehetőségként kattinthat, és **hozzáadása** hello parancssávon.
-4. A hello **alkalmazás hozzáadása** hello varázsló **miről szeretne toodo?** lapján kattintson **a szerveztem által fejlesztett alkalmazás hozzáadása**.
-5. A hello **adja meg azt az alkalmazás** lapon adja meg az alkalmazás nevét, és válassza ki **WEB APPLICATION AND/OR WEB API** (hello alapértelmezett). Kattintson a hello **következő** ikonra.
-6. A hello **alkalmazás tulajdonságainak** adja meg azokat a hello **SIGN-ON URL** és **APP ID URI** a webalkalmazás. Ha az alkalmazás nem rendelkezik ezekkel az értékekkel, ehhez a lépéshez nem létező értékeket is megadhat (például http://test1.contoso.com mindkét mezőhöz). Nem számít, hogy ezek a webhelyek léteznek-e. A fontos, hogy hello app ID URI mindegyik alkalmazáshoz különböző alkalmazás esetében minden egyes a címtárban. hello directory használja a karakterlánc tooidentify az alkalmazást.
-7. Kattintson a hello **Complete** ikon toosave hello varázslóban a módosítások.
-8. A hello **gyors üzembe helyezés** kattintson **KONFIGURÁLÁSA**.
-9. Görgessen toohello **kulcsok** szakasz, válassza ki a hello időtartama, majd kattintson a **mentése**. hello oldal frissül, és most kijelzi a kulcs értékét. Be kell állítania az alkalmazás a kulcs értékét, és a hello **ügyfél-azonosító** érték. (A konfigurálásra vonatkozó utasítások alkalmazásspecifikusak.)
-10. Ezen a lapon, mert ezzel fogja a következő lépés tooset hello engedélyei a tároló hello Ügyfélazonosító értékét másolja.
+1. Jelentkezzen be a klasszikus Azure portálra.
+2. Kattintson a bal oldalon az **Active Directory** elemre, majd válassza ki azt a címtárat, amelyben regisztrálni kívánja az alkalmazást. <br> <br> **Megjegyzés:** Azt a címtárat kell kiválasztania, amely a kulcstartót létrehozó Azure-előfizetést tartalmazza. Ha nem tudja, hogy melyik ez a címtár, kattintson a **Settings** (Beállítások) lehetőségre, keresse meg a kulcstartót létrehozó előfizetést, és jegyezze fel az utolsó oszlopban megjelenített nevét.
+3. Kattintson az **APPLICATIONS** (ALKALMAZÁSOK) elemre. Ha még nem adott hozzá alkalmazást a címtárhoz, ezen az oldalon csak az **Add an App** (Alkalmazás hozzáadása) hivatkozás jelenik meg. Kattintson a hivatkozásra, vagy kattintson a **ADD** (HOZZÁADÁS) gombra a parancssávban.
+4. Az **ADD APPLICATION** (ALKALMAZÁS HOZZÁADÁSA) varázsló **What do you want to do?** (Mit kíván tenni?) lapján kattintson a **Add an application my organization is developing** (A vállalatom által fejlesztett alkalmazás hozzáadása) lehetőségre.
+5. A **Tell us about your application** (Az alkalmazás bemutatása) oldalon adjon meg egy nevet az alkalmazásnak, majd válassza a **WEB APPLICATION AND/OR WEB API** (WEBALKALMAZÁS ÉS/VAGY WEBES API) (az alapértelmezett beállítás) lehetőséget. Kattintson a **Next** (Tovább) ikonra.
+6. Az **App properties** (Alkalmazás tulajdonságai) oldalon adja meg a webalkalmazás bejelentkezési URL-címét és az alkalmazásazonosító URI-ját a **SIGN-ON URL**, illetve az **APP ID URI** mezőkben. Ha az alkalmazás nem rendelkezik ezekkel az értékekkel, ehhez a lépéshez nem létező értékeket is megadhat (például http://test1.contoso.com mindkét mezőhöz). Nem számít, hogy ezek a webhelyek léteznek-e. Az a fontos, hogy az egyes alkalmazások alkalmazásazonosítójának URI-ja a címtár minden alkalmazásánál más legyen. A címtár ezzel a karakterlánccal azonosítja az alkalmazást.
+7. Kattintson a **Complete** (Befejezés) ikonra a varázslóban a módosítások mentéséhez.
+8. A **Quick Start** (Első lépések) lapon kattintson a **CONFIGURE** (KONFIGURÁLÁS) elemre.
+9. Görgessen a **keys** (kulcsok) szakaszhoz, adja meg az időtartamot, majd kattintson a **SAVE** (MENTÉS) gombra. A lap ekkor frissül, és kijelzi a kulcs értékét. Az alkalmazásban ezt a kulcsértéket, valamint **CLIENT ID** (ÜGYFÉLAZONOSÍTÓ) értéket kell beállítani. (A konfigurálásra vonatkozó utasítások alkalmazásspecifikusak.)
+10. Másolja ki a lapról az ügyfélazonosító értékét, mert ezzel fogja beállítani a tároló engedélyeit a következő lépésben.
 
-## <a id="authorize"></a>Hello alkalmazás toouse hello kulcs vagy titkos kulcs engedélyezése
-tooauthorize hello alkalmazás tooaccess hello kulcsok vagy titkos hello tárolóban, használja a [Set-AzureRmKeyVaultAccessPolicy](/powershell/module/azurerm.keyvault/set-azurermkeyvaultaccesspolicy) parancsmag.
+## <a id="authorize"></a>A kulcs vagy titkos kód használatának engedélyezése az alkalmazás számára
+Az alkalmazás a tároló kulcsához vagy titkos kódjához való hozzáférésének engedélyezéséhez használja a [Set-AzureRmKeyVaultAccessPolicy](/powershell/module/azurerm.keyvault/set-azurermkeyvaultaccesspolicy) parancsmagot.
 
-Például, ha a tároló neve **ContosoKeyVault** és tooauthorize Ügyfélazonosítója 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed, és ezen tooauthorize hello alkalmazás toodecrypt és bejelentkezési kulcsokkal rendelkező kívánt hello-alkalmazás a tároló, futtassa a következő hello:
+Ha például a tároló neve **ContosoKeyVault**, az engedélyezni kívánt alkalmazás ügyfélazonosítója 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed, és engedélyezni szeretné az alkalmazás számára, hogy a tároló kulcsait visszafejtse és használja, futtassa az alábbi parancsot:
 
     Set-AzureRmKeyVaultAccessPolicy -VaultName 'ContosoKeyVault' -ServicePrincipalName 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed -PermissionsToKeys decrypt,sign
 
-Ha azt szeretné tooauthorize, hogy ugyanazon alkalmazás tooread titkokat a tárolóban, futtassa a hello következő:
+Ha engedélyezni szeretné, hogy az alkalmazás megnyithassa a tárolóban lévő titkos kódokat, futtassa az alábbi parancsot:
 
     Set-AzureRmKeyVaultAccessPolicy -VaultName 'ContosoKeyVault' -ServicePrincipalName 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed -PermissionsToSecrets Get
 
-## <a id="HSM"></a>Ha azt szeretné, hogy toouse hardveres biztonsági modul (HSM)
-A nagyobb importálhatja és a hardveres biztonsági modulokkal (HSM), amely sosem hagyják el a HSM határait hello kulcsok létrehozásához. hello hardveres biztonsági modulok FIPS 140-2 2. szintű érvényesítve. Ha ez a követelmény nem érvényes tooyou, hagyja ki ezt a szakaszt, és folytassa túl[hello kulcstartó és a hozzá tartozó kulcsok és titkos kulcsok törlése](#delete).
+## <a id="HSM"></a>Hardveres biztonsági modul (HSM) használata
+A nagyobb biztonság érdekében hardveres biztonsági modulokkal importálhat vagy hozhat létre a HSM határait mindig betartó kulcsokat. A hardveres biztonsági modulok a 2. szintű FIPS 140-2 szerint vannak érvényesítve. Ha ez a követelmény nem vonatkozik Önre, ugorja át ezt a szakaszt, és folytassa a [Kulcsartó és a hozzá tartozó kulcsok és titkos kódok törlése](#delete) szakasszal.
 
-toocreate a HSM által védett kulcsokat hello kell használnia [Key Vault prémium szintű szolgáltatási réteg toosupport HSM által védett kulcsokat](https://azure.microsoft.com/pricing/free-trial/). Emellett felhívjuk figyelmét, hogy ezt a funkciót az Azure China nem támogatja.
+Ezeknek a HSM-védelemmel ellátott kulcsoknak a létrehozásához az [Azure Key Vault Premium szolgáltatási réteget kell használni a HSM-védelemmel ellátott kulcsok támogatására](https://azure.microsoft.com/pricing/free-trial/). Emellett felhívjuk figyelmét, hogy ezt a funkciót az Azure China nem támogatja.
 
-Hello kulcstartó létrehozásakor adja hozzá a hello **- SKU** paraméter:
+A kulcstároló létrehozásakor adja hozzá az alábbi **-SKU** paramétert:
 
     New-AzureRmKeyVault -VaultName 'ContosoKeyVaultHSM' -ResourceGroupName 'ContosoResourceGroup' -Location 'East Asia' -SKU 'Premium'
 
 
 
-Szoftveres védelemmel ellátott kulcs (korábban bemutatva) és HSM által védett kulcsokat toothis kulcstároló is hozzáadhat. toocreate HSM által védett kulcs set hello **-cél** paraméter too'HSM ":
+Ehhez a kulcstárolóhoz a korábbiakban bemutatott szoftveresen védett és HSM által védett kulcsokat is hozzáadhat. HSM által védett kulcs létrehozásához állítsa a **-Destination** paramétert „HSM”-re:
 
     $key = Add-AzureKeyVaultKey -VaultName 'ContosoKeyVaultHSM' -Name 'ContosoFirstHSMKey' -Destination 'HSM'
 
-Használhatja a következő parancs tooimport hello származó kulcsok egy. PFX-fájlt a számítógépen. Ez a parancs hello kulcs importálja a Key Vault szolgáltatás hello a HSM-EK:
+Az alábbi paranccsal egy .PFX-fájlban lévő kulcsot importálhat a számítógépéről. Ez a parancs a hardveres Key Vault szolgáltatás biztonsági moduljaiba importálja a kulcsot:
 
     $key = Add-AzureKeyVaultKey -VaultName 'ContosoKeyVaultHSM' -Name 'ContosoFirstHSMKey' -KeyFilePath 'c:\softkey.pfx' -KeyFilePassword $securepfxpwd -Destination 'HSM'
 
 
-hello a következő paranccsal importálhatók, egy "állapotba hozása a saját kulcs" (BYOK) csomagot. Ebben a forgatókönyvben lehetővé teszi, hogy a kulcs létrehozása a helyi HSM-ben, és hello kulcs elhagyná a HSM határait hello nélkül a Key Vault szolgáltatás hello tooHSMs továbbítható:
+A következő parancs egy „saját kulcs használata” (BYOK-) csomagot importál. Ezzel a forgatókönyvvel a helyi HSM-ben hozhatja létre a kulcsot, majd helyezheti át a Key Vault szolgáltatás HSM-jeibe anélkül, hogy a kulcs elhagyná a HSM határait:
 
     $key = Add-AzureKeyVaultKey -VaultName 'ContosoKeyVaultHSM' -Name 'ContosoFirstHSMKey' -KeyFilePath 'c:\ITByok.byok' -Destination 'HSM'
 
-Leírja, hogyan részletes toogenerate a BYOK-csomag, lásd: [hogyan toogenerate és átviteli HSM által védett kulcsok Azure Key vault](key-vault-hsm-protected-keys.md).
+A BYOK-csomag létrehozásával kapcsolatos részletesebb útmutatásért tekintse meg a [How to generate and transfer HSM-protected keys for Azure Key Vault](key-vault-hsm-protected-keys.md) (HSM által védett kulcsok létrehozása és áthelyezése az Azure Key Vaultban) című témakört.
 
-## <a id="delete"></a>Hello kulcstartó és a hozzá tartozó kulcsok és titkos kulcsok törlése
-Ha már nincs szüksége hello kulcstartó és hello kulcs vagy titkos kódra, törölheti hello segítségével hello kulcstároló [Remove-AzureRmKeyVault](/powershell/module/azurerm.keyvault/remove-azurermkeyvault) parancsmagot:
+## <a id="delete"></a>Kulcstartó és a hozzá tartozó kulcsok és titkos kódok törlése
+Ha már nincs szüksége a kulcstartóra és az ahhoz tartozó kulcsra vagy titkos kódra, eltávolíthatja a kulcstartót a [Remove-AzureRmKeyVault](/powershell/module/azurerm.keyvault/remove-azurermkeyvault) parancsmaggal:
 
     Remove-AzureRmKeyVault -VaultName 'ContosoKeyVault'
 
-Vagy egy teljes Azure erőforráscsoport, ide tartozik az hello kulcstartó és abba a csoportba más erőforrások törlése:
+Lehetősége van a teljes Azure-erőforráscsoport törlésére is, amely magában foglalja a kulcstartót és a csoport összes erőforrását:
 
     Remove-AzureRmResourceGroup -ResourceGroupName 'ContosoResourceGroup'
 
@@ -220,16 +220,16 @@ Vagy egy teljes Azure erőforráscsoport, ide tartozik az hello kulcstartó és 
 Egyéb parancsok, amelyek hasznosak lehetnek az Azure Key Vault kezeléséhez:
 
 * `$Keys = Get-AzureKeyVaultKey -VaultName 'ContosoKeyVault'`: Ez a parancs táblázatos formában jeleníti meg az összes kulcsot és a megadott tulajdonságokat.
-* `$Keys[0]`: Ez a parancs hello megadott kulcs tulajdonságainak teljes listáját jeleníti meg.
+* `$Keys[0]`: Ez a parancs a megadott kulcs tulajdonságainak teljes listáját jeleníti meg
 * `Get-AzureKeyVaultSecret`: Ez a parancs táblázatos formában jeleníti meg az összes titkos kód nevét és a megadott tulajdonságokat.
-* `Remove-AzureKeyVaultKey -VaultName 'ContosoKeyVault' -Name 'ContosoFirstKey'`: Példa hogyan tooremove egy adott kulcs.
-* `Remove-AzureKeyVaultSecret -VaultName 'ContosoKeyVault' -Name 'SQLPassword'`: Példa hogyan tooremove egy adott titkos kód.
+* `Remove-AzureKeyVaultKey -VaultName 'ContosoKeyVault' -Name 'ContosoFirstKey'`: Példa egy adott kulcs eltávolítására.
+* `Remove-AzureKeyVaultSecret -VaultName 'ContosoKeyVault' -Name 'SQLPassword'`: Példa egy adott titkos kód eltávolítására.
 
 ## <a id="next"></a>Következő lépések
 Az Azure Key Vault webalkalmazásban való használatáról a [Use Azure Key Vault from a Web Application](key-vault-use-from-web-application.md) (Az Azure Key Vault webalkalmazással való használata) című témakörben találhat további útmutatást.
 
-toosee hogyan használja a kulcstároló, lásd: [Azure Key Vault naplózása](key-vault-logging.md).
+A kulcstartó használatának módjairól az [Azure Key Vault Logging](key-vault-logging.md) (Az Azure Key Vault naplózása) című témakörben olvashat.
 
-Az Azure Key Vault legújabb hello Azure PowerShell-parancsmagok listáját lásd: [Azure Key Vault parancsmagjainak](/powershell/module/azurerm.keyvault/#key_vault).
+A legújabb Azure Key Vaultra vonatkozó Azure PowerShell-parancsmagok listáját az [Azure Key Vault Cmdlets](/powershell/module/azurerm.keyvault/#key_vault) (Az Azure Key Vault parancsmagjai) című témakörben találja.
 
-Programozási hivatkozások: [hello Azure Key Vault fejlesztői útmutatója](key-vault-developers-guide.md).
+Programozási hivatkozások: [Az Azure Key Vault fejlesztői útmutatója](key-vault-developers-guide.md).

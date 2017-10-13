@@ -1,5 +1,5 @@
 ---
-title: "Virtuális gépek magas rendelkezésre állás a SAP NetWeaver aaaAzure |} Microsoft Docs"
+title: "Az Azure virtuális gépek magas rendelkezésre állás a SAP NetWeaver |} Microsoft Docs"
 description: "Magas rendelkezésre állású útmutatója SAP NetWeaver Azure virtuális gépeken"
 services: virtual-machines-windows,virtual-network,storage
 documentationcenter: saponazure
@@ -17,11 +17,11 @@ ms.workload: infrastructure-services
 ms.date: 12/07/2016
 ms.author: goraco
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 927409830065573248a43427eb382448ca07b6e4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 65236f527b62b4990b062fb6a54ce13b3c182e93
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="high-availability-for-sap-netweaver-on-azure-vms"></a>Magas rendelkezésre állás a SAP NetWeaver Azure virtuális gépeken
 
@@ -438,22 +438,22 @@ ms.lasthandoff: 10/06/2017
 [xplat-cli-azure-resource-manager]:../../../xplat-cli-azure-resource-manager.md
 
 
-Az Azure virtuális gépek egy hello megoldás olyan szervezeteknek, amelyek szükség van a számítási, tárolási és hálózati erőforrásokat, minimális időben, valamint hosszú beszerzési ciklusok nélkül. Azure virtuális gépek toodeploy klasszikus alkalmazások, például SAP NetWeaver alapú ABAP, Java és egy ABAP + Java verem használható. Megbízhatóság és rendelkezésre állás további helyszíni erőforrások nélkül kiterjesztése. Az Azure virtuális gépek közötti kapcsolatot nyújthassanak, támogatja, így a Azure Virtual Machines integrálása a szervezete helyszíni tartományok, magánfelhőket és SAP rendszer fekvő.
+Az Azure virtuális gépek egy a megoldás olyan szervezeteknek, amelyek szükség van a számítási, tárolási és hálózati erőforrásokat, minimális időben, valamint hosszú beszerzési ciklusok nélkül. Azure virtuális gépek például SAP NetWeaver alapú ABAP, Java és egy ABAP + Java verem klasszikus alkalmazások központi telepítéséhez használhatja. Megbízhatóság és rendelkezésre állás további helyszíni erőforrások nélkül kiterjesztése. Az Azure virtuális gépek közötti kapcsolatot nyújthassanak, támogatja, így a Azure Virtual Machines integrálása a szervezete helyszíni tartományok, magánfelhőket és SAP rendszer fekvő.
 
-Ez a cikk azt lépésének hello, hogy elvégezhető toodeploy magas rendelkezésre állású SAP rendszerek az Azure-ban hello Azure Resource Manager telepítési modell használatával. A Microsoft végigvezetik Önt a nagyobb feladatok:
+Ebben a cikkben azt a lépéseket, amelyek tudja telepíteni a magas rendelkezésre állású SAP rendszerek az Azure-ban Azure Resource Manager telepítési modellel fedik le. A Microsoft végigvezetik Önt a nagyobb feladatok:
 
-* Megkeresi a hello hello felsorolt megfelelő SAP megjegyzések és a telepítési útmutatók [erőforrások] [ sap-ha-guide-2] szakasz. Ez a cikk kiegészíti az SAP-dokumentáció és az SAP megjegyzések, amelyek hello elsődleges erőforrásokat, amelyek segítségével telepítse, és az adott platformon SAP szoftver központi telepítése.
-* Ismerje meg, hogy hello különbségei hello Azure Resource Manager üzembe helyezési modellben és hello Azure klasszikus üzembe helyezési modellben.
-* További információk a Windows Server feladatátvételi fürtszolgáltatási kvórummódok, kiválaszthatja az Azure-telepítés számára megfelelő hello modellt.
+* Keresse meg a megfelelő SAP megjegyzések és a telepítési útmutatók, szerepel a [erőforrások] [ sap-ha-guide-2] szakasz. Ez a cikk kiegészíti az SAP-dokumentáció és az SAP megjegyzések, amelyek az elsődleges erőforrások, amelyek segítségével telepítse, és az adott platformon SAP szoftver központi telepítése.
+* További tudnivalók az Azure Resource Manager telepítési modell és az Azure klasszikus üzembe helyezési modellel közötti különbségeket.
+* További információk a Windows Server feladatátvételi fürtszolgáltatási kvórummódok, így kiválaszthatja a modellt az Azure-telepítés számára megfelelő.
 * További információk a Windows Server feladatátvételi fürtszolgáltatási megosztott tár az Azure-szolgáltatásokhoz.
-* Ismerje meg, hogyan toohelp megvédeni egyetlen ponton-az-hibát jelentő összetevők például a fejlett üzleti alkalmazások fejlesztői (ABAP) SAP központi szolgáltatások (ASC) / SAP központi szolgáltatások (SCS) és az adatbázis-kezelő rendszerek (DBMS) és a redundáns összetevők, például SAP Alkalmazáskiszolgáló, az Azure-ban.
+* Ismerje meg, hogyan védheti az egyetlen ponton-az-hibát jelentő összetevők például a fejlett üzleti alkalmazások fejlesztői (ABAP) SAP központi szolgáltatások (ASC) / SAP központi szolgáltatások (SCS) és az adatbázis-kezelő rendszerek (DBMS) és a redundáns összetevők, például SAP-alkalmazás Kiszolgáló, az Azure-ban.
 * Kövesse a részletes példa egy telepítési és a konfiguráció egy magas rendelkezésre állású SAP rendszer Windows Server feladatátvételi fürtszolgáltatási fürtben az Azure-ban Azure Resource Manager használatával.
-* További tudnivalók a toouse szükséges további lépéseket a Windows Server feladatátvételi fürtszolgáltatási az Azure-ban, de amelyek esetén nem szükséges egy helyszíni környezetben.
+* Ismerje meg a Windows Server feladatátvételi fürtszolgáltatási Azure, de amelyek nem szükségesek helyszíni telepítés használatához szükséges további lépéseket.
 
-toosimplify üzembe helyezését és konfigurálását, ebben a cikkben használjuk hello SAP háromrétegű magas rendelkezésre állású Resource Manager-sablonok. hello sablonok automatizálni hello teljes infrastruktúra, amelyekre szüksége van a magas rendelkezésre állású SAP-rendszer telepítését. hello infrastruktúra SAP alkalmazás teljesítmény szabványos (SAP) méretezése a SAP rendszert is támogatja.
+Egyszerűbbé teheti a üzembe helyezését és konfigurálását, ebben a cikkben az SAP háromrétegű magas rendelkezésre állású Resource Manager-sablonok használjuk. A sablonok automatizálni, amelyekre szüksége van a magas rendelkezésre állású SAP rendszert a teljes infrastruktúra telepítését. Az infrastruktúra SAP alkalmazás teljesítmény szabványos (SAP) méretezése a SAP rendszert is támogatja.
 
 ## <a name="217c5479-5595-4cd8-870d-15ab00d4f84c"></a>Előfeltételek
-Mielőtt elkezdené, győződjön meg arról, hogy teljesülnek-e a következő részekben hello ismertetett hello előfeltételek. Is a hello felsorolt összes erőforrást meg arról, hogy toocheck [erőforrások] [ sap-ha-guide-2] szakasz.
+Mielőtt elkezdené, győződjön meg arról, hogy teljesülnek-e az előfeltételeket, amelyeket a következő szakaszok ismertetik. Emellett ügyeljen arra, hogy a felsorolt összes erőforrást ellenőrizze a [erőforrások] [ sap-ha-guide-2] szakasz.
 
 Ebben a cikkben az Azure Resource Manager sablonok használjuk [háromrétegű SAP NetWeaver](https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-marketplace-image/). Sablonok hasznos áttekintéséért lásd: [SAP Azure Resource Manager-sablonok](https://blogs.msdn.microsoft.com/saponsqlserver/2016/05/16/azure-quickstart-templates-for-sap/).
 
@@ -466,11 +466,11 @@ Ezek a cikkek SAP üzemelő példányok Azure terjed ki:
 * [Az Azure virtuális gépek magas rendelkezésre állás a SAP NetWeaver (Ez az útmutató)][sap-ha-guide]
 
 > [!NOTE]
-> Amikor csak lehetséges, amelyben tudatjuk a felhasználókkal, egy hivatkozás toohello utaló SAP telepítési útmutató (lásd: hello [SAP telepítési útmutatók][sap-installation-guides]). Az Előfeltételek és hello telepítésének folyamatát, az a jó ötlet tooread hello SAP NetWeaver telepítési útmutató gondosan kapcsolatos információkat. Ez a cikk ismerteti a SAP NetWeaver-alapú rendszereken használható az Azure virtuális gépek csak meghatározott feladatok.
+> Amikor csak lehetséges – ad a hivatkozás a hivatkozó SAP telepítési útmutatójában (lásd a [SAP telepítési útmutatók][sap-installation-guides]). Az Előfeltételek és a telepítési folyamatra vonatkozó információ célszerű gondosan olvassa el az SAP NetWeaver telepítési útmutatók. Ez a cikk ismerteti a SAP NetWeaver-alapú rendszereken használható az Azure virtuális gépek csak meghatározott feladatok.
 >
 >
 
-Ezek SAP azonban kapcsolódó toohello a témakör az SAP, az Azure-ban:
+Ezek a megjegyzések SAP SAP, az Azure-ban témakör kapcsolódnak:
 
 | Megjegyzés száma | Cím |
 | --- | --- |
@@ -481,90 +481,90 @@ Ezek SAP azonban kapcsolódó toohello a témakör az SAP, az Azure-ban:
 | [1999351] |A Windows virtualizálási: fokozott figyelése |
 | [2243692] |A prémium szintű Azure SSD-tárolón SAP DBMS példány használata |
 
-További tudnivalók hello [korlátozások az Azure-előfizetések][azure-subscription-service-limits-subscription], többek között az általános alapértelmezett korlátozások és a maximális korlátozások.
+További információ a [korlátozások az Azure-előfizetések][azure-subscription-service-limits-subscription], többek között az általános alapértelmezett korlátozások és a maximális korlátozások.
 
-## <a name="42156640c6-01cf-45a9-b225-4baa678b24f1"></a>Magas rendelkezésre állású SAP az Azure Resource Manager és a hello Azure klasszikus telepítési modell
-eltérő módon a következő területeken hello jelennek meg hello Azure Resource Manager és az Azure klasszikus üzembe helyezési modellek:
+## <a name="42156640c6-01cf-45a9-b225-4baa678b24f1"></a>Magas rendelkezésre állású SAP az Azure Resource Manager és az Azure klasszikus telepítési modell
+Az Azure Resource Manager és az Azure klasszikus üzembe helyezési modellek szerepelnek eltérő a következő területeken:
 
 - Erőforráscsoportok
-- Azure belső terheléselosztó függőség hello Azure erőforráscsoport betöltése
+- Az Azure erőforráscsoport Azure belső terheléselosztási terheléselosztó függőség
 - SAP multi-SID forgatókönyvek támogatása
 
 ### <a name="f76af273-1993-4d83-b12d-65deeae23686"></a>Erőforráscsoportok
-Az Azure Resource Manager segítségével is erőforrás csoportok toomanage hello összes alkalmazás-erőforrásokat az Azure-előfizetéshez. Integrált megközelítést, egy erőforráscsoportban található összes erőforrást rendelkezik hello azonos életciklusát. Például minden erőforrások jönnek létre: hello azonos idő és azok törlődnek hello ugyanannyi időt vesz igénybe. További információk az [erőforráscsoportokról](../../../azure-resource-manager/resource-group-overview.md#resource-groups).
+Az Azure Resource Manager erőforráscsoportokat használhatja az alkalmazás-erőforrásokat az Azure-előfizetése kezeléséhez. Integrált megközelítést, egy erőforráscsoportban található összes erőforrást rendelkezik az azonos életciklusát. Például minden erőforrás létrehozása egy időben, és egyszerre kell, akkor azok törlődnek. További információk az [erőforráscsoportokról](../../../azure-resource-manager/resource-group-overview.md#resource-groups).
 
-### <a name="3e85fbe0-84b1-4892-87af-d9b65ff91860"></a>Azure belső terheléselosztó függőség hello Azure erőforráscsoport betöltése
+### <a name="3e85fbe0-84b1-4892-87af-d9b65ff91860"></a>Az Azure erőforráscsoport Azure belső terheléselosztási terheléselosztó függőség
 
-Hello Azure klasszikus üzembe helyezési modellel hello Azure belső terheléselosztó (Azure terheléselosztó szolgáltatás) és hello felhőalapú szolgáltatás csoportja közötti függőség van. Minden belső terheléselosztónak egy felhőalapú szolgáltatás csoportot kell.
+Az Azure klasszikus üzembe helyezési modellel az Azure belső terheléselosztó (Azure terheléselosztó szolgáltatás) és a felhőalapú szolgáltatás csoportja közötti függőség van. Minden belső terheléselosztónak egy felhőalapú szolgáltatás csoportot kell.
 
-Az Azure erőforrás-kezelőben, nem kell egy Azure-erőforrás csoport toouse Azure Load Balancer. egyszerűbb és rugalmasabb hello környezete.
+Az Azure erőforrás-kezelőben, nem kell használni az Azure Load Balancer egy Azure erőforráscsoport. A környezet nem egyszerűbb és rugalmasabb.
 
 ### <a name="support-for-sap-multi-sid-scenarios"></a>SAP multi-SID forgatókönyvek támogatása
 
 Az Azure erőforrás-kezelőben, akkor több példányt is telepíthet SAP rendszer azonosítója (SID) ASC/SCS egy fürt. Minden Azure belső terheléselosztóhoz több IP-cím támogatásának köszönhetően multi-SID-példányok is előfordulhatnak.
 
-toouse hello Azure klasszikus üzembe helyezési modellel, kövesse az ismertetett eljárások hello [SAP NetWeaver az Azure-ban: az Azure-ban SIOS DataKeeper segítségével a Windows Server feladatátvételi fürtszolgáltatási SAP ASC/SCS fürtszolgáltatási példányok](http://go.microsoft.com/fwlink/?LinkId=613056).
+Az Azure klasszikus üzembe helyezési modellel használatához kövesse az ismertetett eljárások [SAP NetWeaver az Azure-ban: az Azure-ban SIOS DataKeeper segítségével a Windows Server feladatátvételi fürtszolgáltatási SAP ASC/SCS fürtszolgáltatási példányok](http://go.microsoft.com/fwlink/?LinkId=613056).
 
 > [!IMPORTANT]
-> Javasoljuk, hogy a SAP telepítések használjon hello Azure Resource Manager üzembe helyezési modellben. Nem érhetők el hello klasszikus üzembe helyezési modellel számos előnyt kínál. További tudnivalók az Azure [üzembe helyezési modellel][virtual-machines-azure-resource-manager-architecture-benefits-arm].   
+> Javasoljuk, hogy az SAP-telepítések az Azure Resource Manager központi telepítési modellt használja. Nem érhetők el a klasszikus üzembe helyezési modellel számos előnyt kínál. További tudnivalók az Azure [üzembe helyezési modellel][virtual-machines-azure-resource-manager-architecture-benefits-arm].   
 >
 >
 
 ## <a name="8ecf3ba0-67c0-4495-9c14-feec1a2255b7"></a>Windows Server feladatátvételi fürtszolgáltatás
-Az egy magas rendelkezésre állású SAP ASC/SCS telepítése és az adatbázis-kezelő, a Windows hello foundation Windows Server feladatátvételi fürtszolgáltatás.
+Windows Server feladatátvételi fürtszolgáltatási az alapja az egy magas rendelkezésre állású SAP ASC/SCS telepítése és a Windows DBMS.
 
-A feladatátvevő fürt egy 1 + n különálló kiszolgálók csoportja (csomópontok), amelyek együttműködése az alkalmazások és szolgáltatások tooincrease hello rendelkezésre állási. Csomópont hiba lép fel, ha a Windows Server feladatátvételi fürtszolgáltatási kiszámítja-e hibák merülnek fel a megfelelő megőrzésével hello számát a fürt tooprovide alkalmazásokhoz és szolgáltatásokhoz. Választhat másik kvórum módok tooachieve Feladatátvételi fürtszolgáltatással.
+A feladatátvevő fürt egy 1 + n különálló kiszolgálók csoportja (csomópontok), amelyek együttműködése az alkalmazások és szolgáltatások rendelkezésre állásának javítása. Ha egy csomópont meghibásodik, Windows Server feladatátvételi fürtszolgáltatási számítja ki a biztosításához az alkalmazások és szolgáltatások kifogástalan fürt megőrzésével előforduló hibák száma. Választhat a különböző kvórummódok feladatátvételi fürtszolgáltatás eléréséhez.
 
 ### <a name="1a3c5408-b168-46d6-99f5-4219ad1b1ff2"></a>Kvórummódok
 Windows Server feladatátvételi fürtszolgáltatási használatakor négy kvórummódok közül választhat:
 
-* **Csomóponttöbbség**. Hello fürt mindegyik csomópontján szavazati is. hello Ez azt jelenti, hogy a fürt működését csak a szavazatot, többsége a több mint fele hello szavazatot. Azt javasoljuk, hogy a csomópontok páratlan számú fürtöknél ezt a beállítást. Például egy hét csomópontos fürtben három csomópont sikertelen lehet, és hello fürt stills többsége éri el, és továbbra is toorun.  
-* **Csomópont- és lemeztöbbség**. Minden csomópont- és a kijelölt (a tanúsító lemez) hello fürttároló is szavazásra, mikor érhetők el, és a kommunikáció. hello fürt működését csak hello többsége a szavazatot, ez azt jelenti, hogy a több mint fele hello szavazatot. Ez a mód környezetben fürt páros számú csomópont teljesen logikus. Ha a csomópontok fele hello és hello lemez online állapotban, hello fürt kifogástalan állapotban marad.
-* **Csomópont- és fájlmegosztás többsége**. Minden csomópont plusz a kijelölt fájlmegosztást (a tanúsító fájlmegosztás), amelyet a rendszergazda hello hoz létre szavazásra, függetlenül hello csomópontok és a fájlmegosztás elérhetők-e, és a kommunikáció. hello fürt működését csak hello többsége a szavazatot, ez azt jelenti, hogy a több mint fele hello szavazatot. Ez a mód környezetben fürt páros számú csomópont teljesen logikus. Hasonló toohello csomópont- és lemeztöbbség módban, de a tanúsító lemez helyett egy tanúsító fájlmegosztást használja. Ebben a módban egyszerűen tooimplement, de ha hello fájlmegosztás maga nem magas rendelkezésre állású, azt válnak a hibaérzékeny pontok kialakulását.
-* **Nincs többség: Csak lemez**. hello fürt rendelkezik egy kvórum, ha egy csomópont elérhető, és hello fürttároló egy meghatározott lemezével kommunikál. Csak hello csomópontok is, hogy a lemez kommunikál hello fürt csatlakozhat. Azt javasoljuk, hogy nem használja ezt a módot.
+* **Csomóponttöbbség**. A fürt mindegyik csomópontján szavazati is. A fürt működik csak a szavazatot, többségét Ez azt jelenti, hogy a több mint fele a szavazatot. Azt javasoljuk, hogy a csomópontok páratlan számú fürtöknél ezt a beállítást. Például egy hét csomópontos fürtben három csomópont sikertelen lehet, és a fürt stills többsége éri el, és továbbra is fut.  
+* **Csomópont- és lemeztöbbség**. Minden csomópont- és a fürttároló egy kijelölt lemezt (a tanúsító lemez) is szavazásra, mikor érhetők el, és a kommunikáció. A fürt működik csak a többsége a szavazatot, ez azt jelenti, hogy a több mint fele a szavazatot. Ez a mód környezetben fürt páros számú csomópont teljesen logikus. Ha a csomópontok fele és a lemez online állapotban, a fürt megfelelő állapotban marad.
+* **Csomópont- és fájlmegosztás többsége**. Minden csomópont és a kijelölt fájlmegosztást (a tanúsító fájlmegosztás), amelyet a rendszergazda létrehoz is szavazásra, függetlenül a csomópontok és a fájlmegosztás elérhetők-e, és a kommunikáció. A fürt működik csak a többsége a szavazatot, ez azt jelenti, hogy a több mint fele a szavazatot. Ez a mód környezetben fürt páros számú csomópont teljesen logikus. A csomópont- és lemeztöbbség mód hasonló, de helyett a tanúsító lemez a tanúsító fájlmegosztás használja. Ebben a módban könnyű, de ha a fájlmegosztás maga nem magas rendelkezésre állású, azt válnak a hibaérzékeny pontok kialakulását.
+* **Nincs többség: Csak lemez**. A fürt rendelkezik egy kvórum, ha egy csomópont elérhető, és a fürttároló egy meghatározott lemezével kommunikál. Csak a csomópontok is, hogy a lemez kommunikál csatlakozhat a fürthöz. Azt javasoljuk, hogy nem használja ezt a módot.
  
 
 ## <a name="fdfee875-6e66-483a-a343-14bbaee33275"></a>Windows Server feladatátvételi fürtszolgáltatás a helyszíni
-1. ábra mutatja a két csomópontból álló fürtben. Ha hello hello csomópontok közötti hálózati kapcsolat hibája esetén, és mindkét csomópont mentése marad, és fut, a kvórum lemez vagy fájlmegosztás meghatározza, hogy melyik csomópont továbbra is tooprovide hello fürt alkalmazásokhoz és szolgáltatásokhoz. hello csomópont, amelynek hozzáférési toohello kvórumlemez vagy fájlmegosztási hello csomópont, amely biztosítja, hogy a szolgáltatások továbbra is.
+1. ábra mutatja a két csomópontból álló fürtben. Ha a hálózati kapcsolatot a csomópontok sikertelen, és mind fel csomópontok marad és futtatását, egy kvórumlemez vagy a fájl határozza meg, melyik csomópontján továbbra is a fürt alkalmazások és szolgáltatások biztosításához. A csomópont a kvórum lemez vagy fájlmegosztás eléréséhez használt a csomópont, amely biztosítja, hogy a szolgáltatások továbbra is.
 
-Ez a példa egy két csomópontot tartalmazó fürtben, mert hello csomópont- és fájlmegosztástöbbség kvórummód használjuk. hello csomópont- és lemeztöbbség is beállítás érvényes. Éles környezetben azt javasoljuk, hogy egy kvórumlemez használjon. Hálózati és tárolási rendszer technológia toomake használhatja azt magas rendelkezésre állású.
+Ez a példa egy két csomópontot tartalmazó fürtben, mert a csomópont- és fájlmegosztástöbbség kvórummód használjuk. A csomópont- és lemeztöbbség is beállítás érvényes. Éles környezetben azt javasoljuk, hogy egy kvórumlemez használjon. Hálózati és tárolási rendszer technológia segítségével magas rendelkezésre állásúvá tenni.
 
 ![1. ábra: Példa egy Windows Server feladatátvételi fürtszolgáltatás konfigurációs az SAP ASC/SCS az Azure-ban][sap-ha-guide-figure-1000]
 
 _**1. ábra:** egy Windows Server feladatátvételi fürtszolgáltatás konfigurációs az SAP ASC/SCS az Azure-ban – példa_
 
 ### <a name="be21cf3e-fb01-402b-9955-54fbecf66592"></a>Megosztott tároló
-1. ábra is mutatja egy két csomópontos megosztott tárolófürt. Egy helyi megosztott tárolási fürt hello fürt összes csomópontjának észleli a megosztott tároló. Zárolási mechanizmus hello adatok sérülés elleni védelmét. Minden csomópont észleli, ha egy másik csomópont meghibásodik. Ha egy csomópont meghibásodik, hello megmaradó csomópontra megkapja a tulajdonjogot hello tárolási erőforrások és szolgáltatások hello rendelkezésre állását biztosítja.
+1. ábra is mutatja egy két csomópontos megosztott tárolófürt. Egy helyi megosztott tárolási fürt a fürt összes csomópontjának észleli a megosztott tároló. Zárolási mechanizmus sérülése védi az adatokat. Minden csomópont észleli, ha egy másik csomópont meghibásodik. Ha egy csomópont meghibásodik, a megmaradó csomópontra megkapja a tulajdonjogot, a tárolási erőforrások és szolgáltatások rendelkezésre állását biztosítja.
 
 > [!NOTE]
-> Például a magas rendelkezésre állás az egyes adatbázis-kezelő alkalmazások, egy megosztott lemez nem kell az SQL Server. SQL Server Always On fájlokat replikálja a DBMS adatainak és naplókönyvtárainak hello helyi lemez egy fürt csomópont toohello helyi lemez egy másik csomópont. Hello Windows fürtkonfiguráció ebben az esetben egy megosztott lemez nem szükséges.
+> Például a magas rendelkezésre állás az egyes adatbázis-kezelő alkalmazások, egy megosztott lemez nem kell az SQL Server. SQL Server Always On DBMS adatainak és naplókönyvtárainak fájlokat replikálja a helyi lemez egy fürtcsomópont a helyi lemez egy másik csomópont. A Windows-fürt konfigurációs ebben az esetben egy megosztott lemez nem szükséges.
 >
 >
 
 ### <a name="ff7a9a06-2bc5-4b20-860a-46cdb44669cd"></a>Hálózati és a névfeloldás
-Ügyfélszámítógépek elérni hello fürt egy virtuális IP-címet és egy virtuális nevet adott hello DNS-kiszolgáló biztosítja. hello helyszíni csomópontok és hello DNS-kiszolgáló kezelni tud a több IP-címet.
+Ügyfélszámítógépek számára a fürt egy virtuális IP-címet és egy virtuális nevet a DNS-kiszolgáló által biztosított keresztül érhető el. A helyszíni csomópontok és a DNS-kiszolgáló képes kezelni a több IP-címet.
 
 A hagyományos telepítés, a két vagy több hálózati kapcsolatot használja:
 
-* Egy dedikált kapcsolat toohello tároló
-* Fürt belső hálózati kapcsolatot a hello szívverés
-* Egy nyilvános hálózat, hogy az ügyfelek tooconnect toohello fürt használatára
+* A tárolási dedikált kapcsolat
+* A szívverés egy fürt belső hálózati kapcsolat
+* Az ügyfelek kapcsolódik a fürthöz használt nyilvános hálózaton
 
 ## <a name="2ddba413-a7f5-4e4e-9a51-87908879c10a"></a>Windows Server feladatátvételi fürtszolgáltatás az Azure-ban
-Képest toobare nélküli vagy saját felhőben történő alkalmazáshoz, Azure virtuális gépek Windows Server feladatátvételi fürtszolgáltatás további lépéseket tooconfigure igényel. Egy megosztott fürtlemez összeállításakor szüksége több IP-címek és virtuális állomás neve tooset hello SAP ASC/SCS példány.
+Operációs rendszer nélküli vagy saját felhőben történő alkalmazáshoz képest, Azure virtuális gépek konfigurálása a Windows Server feladatátvételi fürtszolgáltatás további lépéseket igényel. A megosztott fürtlemez összeállításakor több IP-címek és az SAP ASC/SCS példány virtuális állomásnevek be kell.
 
-Ebben a cikkben azt ismertetik az alapfogalmakat és hello további lépéseket szükséges toobuild egy SAP központi szolgáltatások magas rendelkezésre állású fürthöz az Azure-ban. Megmutatjuk, hogyan tooset hello külső eszköz SIOS DataKeeper fel, és hogyan tooconfigure hello Azure belső terheléselosztó. Ezen eszközök toocreate Windows feladatátvevő fürt egy tanúsító fájlmegosztást az Azure-ban használható.
+Ez a cikk arról lesz szó főbb fogalmakat és az Azure-ban az SAP központi szolgáltatások magas rendelkezésre állású fürt létrehozásához szükséges további lépéseket. Megmutatjuk, hogyan állíthat be a külső eszköz SIOS DataKeeper és konfigurálása az Azure belső terheléselosztót. Ezek az eszközök segítségével hozzon létre egy Windows feladatátvevő fürt egy tanúsító fájlmegosztást az Azure-ban.
 
 ![2. ábra: A Windows Server feladatátvételi fürtszolgáltatás konfigurációs az Azure-ban egy megosztott lemez nélkül][sap-ha-guide-figure-1001]
 
 _**2. ábra:** Windows Server feladatátvételi fürtszolgáltatás konfigurációs az Azure-ban egy megosztott lemez nélkül_
 
 ### <a name="1a464091-922b-48d7-9d08-7cecf757f341"></a>SIOS DataKeeper megosztott lemezt az Azure-ban
-A magas rendelkezésre állású SAP ASC/SCS példányához megosztott tárolót kell fürtbe. 2016 szeptemberétől Azure nem munkaajánlat megosztott tároló, amely szerint a megosztott tárolófürt toocreate is használhatja. Harmadik féltől származó szoftverek SIOS DataKeeper Cluster Edition toocreate tükrözött tárolási funkciókat biztosító, amely a fürt megosztott tárolási szimulálja is használhatja. hello SIOS megoldást biztosít a valós idejű szinkron replikálása. Ez az, hogy hogyan hozhat létre a fürt egy megosztott lemez erőforrás:
+A magas rendelkezésre állású SAP ASC/SCS példányához megosztott tárolót kell fürtbe. 2016 szeptemberétől Azure segítségével hozzon létre egy megosztott tárolófürt megosztott tárhelyet nem kínál. Harmadik féltől származó szoftverek SIOS DataKeeper Cluster Edition hozhat létre tükrözött tárolási funkciókat biztosító, amely a fürt megosztott tárolási szimulálja. A SIOS megoldást biztosít a valós idejű szinkron replikálása. Ez az, hogy hogyan hozhat létre a fürt egy megosztott lemez erőforrás:
 
-1. Rendeljen egy további Azure virtuális merevlemez (VHD) tooeach hello virtuális gépek (VM) a Windows fürtkonfiguráció.
+1. Egy másik Azure virtuális merevlemezt (VHD) csatolni az egyes virtuális gépek (VM) Windows fürtkonfiguráció.
 2. Futtassa a SIOS DataKeeper Cluster Edition mindkét virtuális gép csomóponton.
-3. Konfigurálása SIOS DataKeeper Cluster Edition, így azt tükrözi hello tartalom hello további csatolt virtuális merevlemez kötetének kötetről hello forrás virtuális gép toohello további csatolt virtuális merevlemez hello cél virtuális gép. SIOS DataKeeper kivonatolja hello forrás- és helyi köteteken, és adja őket az tooWindows Server feladatátvételi fürtszolgáltatási egy megosztott lemezként jeleníti.
+3. Konfigurálása SIOS DataKeeper Cluster Edition, hogy azt a tartalmat a további csatolt virtuális merevlemez kötetének a forrás virtuális gép a cél virtuális gép további csatolt virtuális merevlemez méretével tükrözi. SIOS DataKeeper kivonatolja a forrás- és helyi köteteken, és majd megadja azokat a Windows Server feladatátvételi fürtszolgáltatási mint egy megosztott lemez.
 
 További információk [SIOS DataKeeper](http://us.sios.com/products/datakeeper-cluster/).
 
@@ -573,18 +573,18 @@ További információk [SIOS DataKeeper](http://us.sios.com/products/datakeeper-
 _**3. ábra:** Windows Server feladatátvételi fürtszolgáltatás konfigurációs az Azure-ban SIOS DataKeeper_
 
 > [!NOTE]
-> Nincs szükség a megosztott lemez néhány DBMS termékekkel, például az SQL Server magas rendelkezésre állásra. SQL Server Always On fájlokat replikálja a DBMS adatainak és naplókönyvtárainak hello helyi lemez egy fürt csomópont toohello helyi lemez egy másik csomópont. Hello Windows fürtkonfiguráció ebben az esetben egy megosztott lemez nem szükséges.
+> Nincs szükség a megosztott lemez néhány DBMS termékekkel, például az SQL Server magas rendelkezésre állásra. SQL Server Always On DBMS adatainak és naplókönyvtárainak fájlokat replikálja a helyi lemez egy fürtcsomópont a helyi lemez egy másik csomópont. A Windows-fürt konfigurációs ebben az esetben egy megosztott lemez nem szükséges.
 >
 >
 
 ### <a name="44641e18-a94e-431f-95ff-303ab65e0bcb"></a>A névfeloldás az Azure-ban
-hello Azure cloud platform hello beállítás tooconfigure virtuális IP-címek, például csak fix IP-címek nem kínál. Az alternatív megoldások tooset be egy virtuális IP-cím tooreach hello fürt erőforrás hello felhőben van szüksége.
-Azure hello Azure terheléselosztó szolgáltatás egy belső terheléselosztóhoz tartozik. Hello belső terheléselosztóhoz, az ügyfelek elérni hello fürt keresztül hello virtuális IP-címet.
-Toodeploy hello belső terheléselosztó, amely tartalmazza a hello fürtcsomópontok hello erőforráscsoportban van szüksége. Ezt követően konfigurálja a szabályok továbbítási hello mintavételi hello belső terheléselosztó portok az összes szükséges portot.
-hello az ügyfélszámítógépek csatlakozhatnak keresztül hello virtuális állomás neve. hello DNS-kiszolgáló oldja fel a hello IP-címet, és hello belső terheléselosztó leírók port továbbítási toohello hello fürtjének aktív csomópontja.
+Az Azure felhőalapú platform nem teszi lehetővé a virtuális IP-címek, például csak fix IP-címek konfigurálásához. Hozzon létre egy virtuális IP-címet a felhőben fürterőforrás elérni egy másik megoldásra van szüksége.
+Azure az Azure terheléselosztó szolgáltatás belső terheléselosztót tartalmaz. A belső terheléselosztó rendelkező ügyfelek elérni a fürt keresztül a virtuális IP-címet.
+Kell telepítenie a belső terheléselosztó, amely tartalmazza a fürt csomópontjai az erőforráscsoportban. Ezt követően konfigurálja a belső terheléselosztó portok továbbítási szabályok a mintavételi minden szükséges portot.
+Az ügyfelek kapcsolódhatnak az virtuális állomás név. A DNS-kiszolgáló oldja fel a fürt IP-címét, és a belső terheléselosztó leírók port továbbítja a fürt aktív csomópontja.
 
 ## <a name="2e3fec50-241e-441b-8708-0b1864f66dfa"></a>SAP NetWeaver magas rendelkezésre állás érdekében az Azure infrastruktúra,--szolgáltatás (IaaS)
-tooachieve alkalmazás magas rendelkezésre állású, SAP, például SAP szoftver összetevők, a következő összetevők tooprotect hello kell:
+Eléréséhez SAP alkalmazás magas rendelkezésre állású, többek között az SAP szoftverösszetevőket, a következő összetevők védelmére kell:
 
 * SAP Application Server-példány
 * SAP ASC/SCS példány
@@ -593,20 +593,20 @@ tooachieve alkalmazás magas rendelkezésre állású, SAP, például SAP szoftv
 Tudnivalók az SAP-összetevők a magas rendelkezésre állású forgatókönyvek védelméről további információkért lásd: [Azure virtuális gépek tervezési és megvalósítási az SAP NetWeaver](planning-guide.md).
 
 ### <a name="93faa747-907e-440a-b00a-1ae0a89b1c0e"></a>Magas rendelkezésre állású SAP-alkalmazáskiszolgáló
-Általában nem szükséges egy adott magas rendelkezésre állású megoldás hello SAP-kiszolgáló és a párbeszédpanel-példányok. Magas rendelkezésre állású redundancia által érhetők el, és másik példányát az Azure virtuális gépek több párbeszédpanel példánya konfigurálhatja. Két példányban Azure virtuális gépek telepítése legalább két SAP alkalmazáspéldányok kell rendelkeznie.
+Általában nem szükséges egy adott magas rendelkezésre állású megoldás az SAP-kiszolgáló és a párbeszédpanel-példányok. Magas rendelkezésre állású redundancia által érhetők el, és másik példányát az Azure virtuális gépek több párbeszédpanel példánya konfigurálhatja. Két példányban Azure virtuális gépek telepítése legalább két SAP alkalmazáspéldányok kell rendelkeznie.
 
 ![4. ábra: Magas rendelkezésre állású SAP-alkalmazáskiszolgáló][sap-ha-guide-figure-2000]
 
 _**4. ábra:** magas rendelkezésre állású SAP-alkalmazáskiszolgáló_
 
-El kell helyezni, hogy a gazdagép-SAP Application Server példánya hello azonos Azure rendelkezésre állási csoport összes virtuális gépet. Az Azure rendelkezésre állási csoportok biztosítja, hogy:
+Az azonos Azure rendelkezésre állási állomás SAP Application Server-példány beállítása minden virtuális gépnek kell elhelyezni. Az Azure rendelkezésre állási csoportok biztosítja, hogy:
 
-* Az összes virtuális gép hello részét képező azonos frissítési tartományban. Frissítési tartományokhoz, például gondoskodik arról, hogy hello virtuális gépek nem frissített hello karbantartási tervezett leállások során ugyanannyi időt vesz igénybe.
-* Az összes virtuális gép hello részét képező azonos tartalék tartományban. A tartalék tartomány például gondoskodik arról, hogy telepít virtuális gépeket, hogy nincs hibaérzékeny pontok kialakulását hatással van az összes virtuális gép hello rendelkezésre állását.
+* Összes virtuális gépet az azonos frissítési tartomány részét képezik. Frissítési tartományokhoz, például gondoskodik arról, hogy a virtuális gépek tervezett karbantartás leállások során egy időben nem frissíti.
+* Összes virtuális gépet az azonos tartalék tartományban részét képezik. A tartalék tartomány például gondoskodik arról, hogy telepít virtuális gépeket, hogy nincs hibaérzékeny pontok kialakulását hatással van az összes virtuális gép rendelkezésre állását.
 
-További tudnivalók túl[hello virtuális gépek rendelkezésre állásának kezelése][virtual-machines-manage-availability].
+További tudnivalók a [virtuális gépek rendelkezésre állásának kezelése][virtual-machines-manage-availability].
 
-Mivel hello Azure storage-fiók egy potenciális hibaérzékeny pontok kialakulását, fontos toohave is legalább két Azure storage-fiókok, legalább két virtuális gép szétosztva. Az ideális beállítás az egyes virtuális gépek egy SAP párbeszédpanel példányát futtató hello lemezek során eltérő tárfiók volna telepíthetők.
+Mivel az Azure storage-fiók egy potenciális hibaérzékeny pontok kialakulását, fontos, hogy legalább két az Azure storage-fiókot, legalább két virtuális gép szétosztva. Az ideális beállítás a lemezeket, az egyes virtuális gépek egy SAP párbeszédpanel példányát futtató volna helyezhető üzembe egy másik tárolási fiókot.
 
 ### <a name="f559c285-ee68-4eec-add1-f60fe7b978db"></a>Magas rendelkezésre állású SAP ASC/SCS példány
 5. ábra egy példát a magas rendelkezésre állású SAP ASC/SCS példánya.
@@ -616,20 +616,20 @@ Mivel hello Azure storage-fiók egy potenciális hibaérzékeny pontok kialakul�
 _**5. ábra:** magas rendelkezésre állású SAP ASC/SCS példány_
 
 #### <a name="b5b1fd0b-1db4-4d49-9162-de07a0132a51"></a>SAP ASC/SCS példány magas rendelkezésre állását a Windows Server feladatátvételi fürtszolgáltatási az Azure-ban
-Képest toobare nélküli vagy saját felhőben történő alkalmazáshoz, Azure virtuális gépek Windows Server feladatátvételi fürtszolgáltatás további lépéseket tooconfigure igényel. toobuild Windows feladatátvevő fürt, szüksége megosztott fürtlemezre mutat, több IP-címek, több virtuális állomásnevek és az Azure belső terheléselosztót a fürtszolgáltatás egy SAP ASC/SCS példányát. A Microsoft hello cikk későbbi részében részletesebben ismertetik el.
+Operációs rendszer nélküli vagy saját felhőben történő alkalmazáshoz képest, Azure virtuális gépek konfigurálása a Windows Server feladatátvételi fürtszolgáltatás további lépéseket igényel. A Windows feladatátvevő fürtöt hozza létre, szüksége megosztott fürtlemezre mutat, több IP-címek, több virtuális állomásnevek és az Azure belső terheléselosztót a fürtszolgáltatás egy SAP ASC/SCS példányát. Ez a cikk későbbi részében részletesebben azt tárgyalják.
 
 ![6. ábra: A Windows Server feladatátvételi fürtszolgáltatási SIOS DataKeeper használatával az Azure-ban SAP ASC/SCS konfigurációhoz][sap-ha-guide-figure-1002]
 
 _**6. ábra:** Windows Server feladatátvételi fürtszolgáltatási az Azure-ban SIOS DataKeeper SAP ASC/SCS konfigurációhoz_
 
 ### <a name="ddd878a0-9c2f-4b8e-8968-26ce60be1027"></a>Magas rendelkezésre állású DBMS példány
-hello adatbázis-kezelő a rendszer egyetlen pont, forduljon egy SAP rendszerben. Tooprotect kell azt a magas rendelkezésre állású megoldás segítségével. 7. ábra mutatja egy SQL Server Always On magas rendelkezésre állású megoldás az Azure-ban, a Windows Server feladatátvételi fürtszolgáltatási és hello Azure belső terheléselosztó. SQL Server Always On DBMS adatainak és naplókönyvtárainak fájlokat replikálja a saját adatbázis-kezelő replikáció használatával. Ebben az esetben akkor nem kell a fürt megosztott lemezeket, egyszerűbbé teszi a teljes hello beállítása.
+Az adatbázis-kezelő a rendszer egyetlen pont, forduljon egy SAP rendszerben. Azt a magas rendelkezésre állású megoldás használatával védeni kell. 7. ábra mutatja egy SQL Server Always On magas rendelkezésre állású megoldás az Azure-ban, a Windows Server feladatátvételi fürtszolgáltatási és az Azure belső terheléselosztó. SQL Server Always On DBMS adatainak és naplókönyvtárainak fájlokat replikálja a saját adatbázis-kezelő replikáció használatával. Ebben az esetben, nem kell a fürt megosztott lemezt, amely egyszerűbbé teszi az összes beállítást.
 
 ![7. ábra: Példa egy magas rendelkezésre állású SAP DBMS, az SQL Server Always On][sap-ha-guide-figure-2003]
 
 _**7. ábra:** egy magas rendelkezésre állású SAP DBMS, az SQL Server Always On – példa_
 
-Hello Azure Resource Manager telepítési modell segítségével az Azure SQL Server fürtszolgáltatással kapcsolatos további információkért lásd: ezek a cikkek:
+SQL Server az Azure-ban az Azure Resource Manager telepítési modell segítségével fürtszolgáltatással kapcsolatos további információkért lásd: ezek a cikkek:
 
 * [Always On rendelkezésre állási csoport konfigurálásához Azure virtuális gépek manuálisan erőforrás-kezelő használatával][virtual-machines-windows-portal-sql-alwayson-availability-groups-manual]
 * [Egy Azure belső terheléselosztót egy Always On rendelkezésre állási csoport konfigurálása az Azure-ban][virtual-machines-windows-portal-sql-alwayson-int-listener]
@@ -640,8 +640,8 @@ Hello Azure Resource Manager telepítési modell segítségével az Azure SQL Se
 
 8. ábrán egy SAP NetWeaver magas rendelkezésre állású architektúra példáját mutatja be az Azure-ban **egy** SAP rendszer. Ebben a forgatókönyvben be van állítva az alábbiak szerint:
 
-- Egy kijelölt fürt hello SAP ASC/SCS példányát használja.
-- Egy kijelölt fürt hello DBMS példányát használja.
+- Az SAP ASC/SCS-példány egy kijelölt fürt használható.
+- Az adatbázis-kezelő példány egy kijelölt fürt használható.
 - SAP alkalmazáskiszolgáló-példányok saját dedikált virtuális gépek vannak telepítve.
 
 ![8. ábra: SAP magas rendelkezésre állású architekturális sablon 1, a kijelölt fürt ASC/SCS és adatbázis-kezelő][sap-ha-guide-figure-2004]
@@ -652,7 +652,7 @@ _**8. ábra:** SAP architekturális sablon 1 magas rendelkezésre állású, ded
 
 9. ábra egy SAP NetWeaver magas rendelkezésre állású architektúra példáját mutatja be az Azure-ban **egy** SAP rendszer. Ebben a forgatókönyvben be van állítva az alábbiak szerint:
 
-- Egy kijelölt fürt használt **mindkét** hello SAP ASC/SCS példányt, és az adatbázis-kezelő hello.
+- Egy kijelölt fürt használt **mindkét** az SAP ASC/SCS példány és az adatbázis-kezelő.
 - SAP alkalmazáskiszolgáló-példányok saját dedikált virtuális gépek vannak telepítve.
 
 ![9. ábra: SAP magas rendelkezésre állású architekturális sablon 2, a dedikált fürtökben ASC/SCS és egy dedikált adatbázis-kezelő fürt][sap-ha-guide-figure-2005]
@@ -663,37 +663,37 @@ _**9. ábra:** SAP magas rendelkezésre állású architekturális sablon 2, a d
 
 10. ábrán látható egy példa egy SAP NetWeaver magas rendelkezésre állású architektúra az Azure-ban **két** rendszerek, a SAP &lt;SID1&gt; és &lt;SID2&gt;. Ebben a forgatókönyvben be van állítva az alábbiak szerint:
 
-- Egy kijelölt fürt használt **mindkét** hello SAP ASC/SCS SID1 példány *és* hello SAP ASC/SCS SID2 példány (egy fürt).
+- Egy kijelölt fürt használt **mindkét** az SAP ASC/SCS SID1 példány *és* az SAP ASC/SCS SID2 példány (egy fürt).
 - Egy kijelölt fürt DBMS SID1 szolgál, és egy másik kijelölt fürt használt adatbázis-kezelő SID2 (fürtök).
-- SAP alkalmazáskiszolgáló példányainak hello SAP rendszer SID1 rendelkezik saját dedikált virtuális gépek.
-- SAP alkalmazáskiszolgáló példányainak hello SAP rendszer SID2 rendelkezik saját dedikált virtuális gépek.
+- Az SAP rendszer SID1 SAP alkalmazáskiszolgáló példányainak rendelkezik saját dedikált virtuális gépek.
+- Az SAP rendszer SID2 SAP alkalmazáskiszolgáló példányainak rendelkezik saját dedikált virtuális gépek.
 
 ![10. ábra: SAP magas rendelkezésre állású architekturális sablon 3, egy dedikált fürttel különböző ASC/SCS-példányok][sap-ha-guide-figure-6003]
 
 _**10. ábra:** SAP magas rendelkezésre állású architekturális sablon 3, egy dedikált fürttel különböző ASC/SCS-példányok_
 
-## <a name="78092dbe-165b-454c-92f5-4972bdbef9bf"></a>Hello infrastruktúra előkészítése
+## <a name="78092dbe-165b-454c-92f5-4972bdbef9bf"></a>Az infrastruktúra előkészítése
 
-### <a name="prepare-hello-infrastructure-for-architectural-template-1"></a>1. sablon architekturális. hello infrastruktúra előkészítése
+### <a name="prepare-the-infrastructure-for-architectural-template-1"></a>Az infrastruktúra előkészítése architekturális sablon 1
 Az SAP Azure Resource Manager-sablonok segítségével egyszerűsítheti a szükséges erőforrások.
 
-hello háromrétegű sablonok az Azure Resource Manager is támogatja a magas rendelkezésre állású forgatókönyvek, például architekturális sablon az 1., amely két fürttel rendelkezik. Minden fürthöz egy SAP hibaérzékeny pontot SAP ASC/SCS és adatbázis-kezelő.
+A háromrétegű sablonok az Azure Resource Manager is támogatja a magas rendelkezésre állású forgatókönyvek, például architekturális sablon az 1., amely két fürttel rendelkezik. Minden fürthöz egy SAP hibaérzékeny pontot SAP ASC/SCS és adatbázis-kezelő.
 
-Itt található, ahol kaphat Azure Resource Manager-sablonok azt írják le, a cikkben hello. példa:
+Itt található, ahol kaphat a példaforgatókönyv azt ismertetik, ez a cikk az Azure Resource Manager-sablonok:
 
 * [Kép: Azure piactér](https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-marketplace-image)  
 * [Kép: egyéni](https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-user-image)
 
-hello infrastruktúra tooprepare architekturális sablon 1:
+Az infrastruktúra előkészítése architekturális sablon 1:
 
-- Az Azure portál, a hello hello **paraméterek** paneljén, hello **SYSTEMAVAILABILITY** mezőben válassza **magas rendelkezésre ÁLLÁSÚ**.
+- Az Azure portálon a a **paraméterek** panelen, a a **SYSTEMAVAILABILITY** mezőben válassza **magas rendelkezésre ÁLLÁSÚ**.
 
   ![11. ábra: Beállítása SAP magas rendelkezésre állású Azure Resource Manager-paraméterek][sap-ha-guide-figure-3000]
 
 _**11. ábra:** beállítása SAP magas rendelkezésre állású Azure Resource Manager-paraméterek_
 
 
-  hello sablonok létrehozása:
+  A sablonok létrehozása:
 
   * **Virtuális gépek**:
     * SAP alkalmazáskiszolgáló virtuális gépek: <*SAPSystemSID*> - di - <*száma*>
@@ -713,41 +713,41 @@ _**11. ábra:** beállítása SAP magas rendelkezésre állású Azure Resource 
     * Adatbázis-kezelő fürt virtuális gépek: <*SAPSystemSID*> - avset - adatbázis
 
   * **Az Azure belső terheléselosztó**:
-    * Az összes port hello ASC/SCS példányhoz, és az IP-cím <*SAPSystemSID*> - lb - ASC
-    * Az összes port hello SQL Server adatbázis-kezelő és az IP-cím <*SAPSystemSID*> - lb - adatbázis
+    * Az összes port a ASC/SCS példányhoz, és az IP-cím <*SAPSystemSID*> - lb - ASC
+    * Az összes port az SQL Server adatbázis-kezelő és az IP-cím <*SAPSystemSID*> - lb - adatbázis
 
   * **Hálózati biztonsági csoport**: <*SAPSystemSID*> - nsg - ASC-0  
-    * Egy nyitott külső Remote Desktop Protocol (RDP) port toohello a <*SAPSystemSID*> virtuálisgép - ASC - 0
+    * Egy nyitott külső Remote Desktop Protocol (RDP) port az a <*SAPSystemSID*> virtuálisgép - ASC - 0
 
 > [!NOTE]
-> Az összes IP-címet oszt hello hálózati kártyák és az Azure belső terheléselosztók **dinamikus** alapértelmezés szerint. Túl módosításukra**statikus** IP-címeket. Azt ismerteti, hogy hogyan toodo ez hello cikk későbbi részében.
+> Az összes IP-címek a hálózati kártyák és az Azure belső terheléselosztók **dinamikus** alapértelmezés szerint. Módosítani őket **statikus** IP-címeket. Azt ismerteti, hogyan ehhez a cikk későbbi részében.
 >
 >
 
-### <a name="c87a8d3f-b1dc-4d2f-b23c-da4b72977489"></a>Virtuális gépek telepítése a vállalati hálózati kapcsolat (létesítmények közötti) toouse éles környezetben
+### <a name="c87a8d3f-b1dc-4d2f-b23c-da4b72977489"></a>A vállalati hálózati kapcsolat hibája (létesítmények közötti) éles környezetben használandó virtuális gépek telepítése
 Éles rendszerek esetén SAP, az Azure virtuális gépek telepítése a [vállalati hálózati kapcsolat (létesítmények közötti)] [ planning-guide-2.2] Azure hely-hely típusú VPN vagy Azure ExpressRoute segítségével.
 
 > [!NOTE]
-> Az Azure Virtual Network-példányt is használhat. hello virtuális hálózat és alhálózat már létrehozott és előkészítése.
+> Az Azure Virtual Network-példányt is használhat. A virtuális hálózat és alhálózat már létrehozott és előkészítése.
 >
 >
 
-1.  Az Azure portál, a hello hello **paraméterek** paneljén, hello **NEWOREXISTINGSUBNET** mezőben válassza **meglévő**.
-2.  A hello **SUBNETID** mezőben adja meg az elkészített Azure hálózati tervezett toodeploy az Azure virtuális gépek SubnetID hello teljes karakterlánc.
-3.  az összes Azure-hálózat alhálózatok listájának tooget futtassa a PowerShell-parancsot:
+1.  Az Azure portálon a a **paraméterek** panelen, a a **NEWOREXISTINGSUBNET** mezőben válassza **meglévő**.
+2.  Az a **SUBNETID** mezőben adja meg az elkészített Azure hálózati SubnetID, ha azt tervezi, hogy az Azure virtuális gépek telepítése a teljes karakterlánc.
+3.  Ahhoz, hogy az összes Azure-hálózat alhálózatok listája, a PowerShell parancsot:
 
   ```PowerShell
   (Get-AzureRmVirtualNetwork -Name <azureVnetName>  -ResourceGroupName <ResourceGroupOfVNET>).Subnets
   ```
 
-  Hello **azonosító** mezőben látható hello **SUBNETID**.
-4. az összes tooget **SUBNETID** értékek, futtassa a PowerShell-parancsot:
+  A **azonosító** mezőben látható a **SUBNETID**.
+4. Az összes listájának **SUBNETID** értékek, futtassa a PowerShell-parancsot:
 
   ```PowerShell
   (Get-AzureRmVirtualNetwork -Name <azureVnetName>  -ResourceGroupName <ResourceGroupOfVNET>).Subnets.Id
   ```
 
-  Hello **SUBNETID** dolgozunk:
+  A **SUBNETID** dolgozunk:
 
   ```
   /subscriptions/<SubscriptionId>/resourceGroups/<VPNName>/providers/Microsoft.Network/virtualNetworks/azureVnet/subnets/<SubnetName>
@@ -756,19 +756,19 @@ _**11. ábra:** beállítása SAP magas rendelkezésre állású Azure Resource 
 ### <a name="7fe9af0e-3cce-495b-a5ec-dcb4d8e0a310"></a>A tesztelési és bemutató csak felhőalapú SAP-példányok telepítése
 Egy kizárólag felhőalapú üzembe helyezési modellben a magas rendelkezésre állású SAP rendszereket telepítheti központilag. Ez a központi telepítési típus elsősorban akkor hasznos, bemutató és tesztelési használatából adódó. Nem alkalmas a termelési használati eseteket.
 
-- Az Azure portál, a hello hello **paraméterek** paneljén, hello **NEWOREXISTINGSUBNET** mezőben válassza **új**. Hagyja hello **SUBNETID** mező üres.
+- Az Azure portálon a a **paraméterek** panelen, a a **NEWOREXISTINGSUBNET** mezőben válassza **új**. Hagyja a **SUBNETID** mező üres.
 
-  hello SAP Azure Resource Manager sablon automatikusan létrehozza a hello Azure virtuális hálózat és alhálózat.
+  Az SAP Azure Resource Manager sablon automatikusan létrehozza az Azure-beli virtuális hálózat és az alhálózatot.
 
 > [!NOTE]
-> Toodeploy is szükség van legalább egy virtuális gép dedikált az Active Directory és DNS-ét hello ugyanazon Azure-beli virtuális hálózathoz. hello sablon nem hoz létre a virtuális gépek.
+> Szükség legalább egy dedikált virtuális gép üzembe helyezéséhez az Active Directory és a DNS az Azure Virtual Network ugyanezen példányában. A sablon nem hoz létre a virtuális gépek.
 >
 >
 
 
-### <a name="prepare-hello-infrastructure-for-architectural-template-2"></a>Hello infrastruktúra előkészítése a 2. sablon architekturális.
+### <a name="prepare-the-infrastructure-for-architectural-template-2"></a>Az infrastruktúra előkészítése a 2. sablon architekturális.
 
-Az Azure Resource Manager sablon használhatja az SAP toohelp egyszerűsítése SAP architekturális sablon 2 álló szükséges infrastruktúra központi telepítését.
+A SAP Azure Resource Manager sablon segítségével leegyszerűsíti az SAP architekturális sablon 2 álló szükséges infrastruktúra központi telepítését.
 
 Itt található, ahol kaphat Azure Resource Manager-sablonok a központi telepítési forgatókönyv:
 
@@ -776,122 +776,122 @@ Itt található, ahol kaphat Azure Resource Manager-sablonok a központi telepí
 * [Kép: egyéni](https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-user-image-converged)
 
 
-### <a name="prepare-hello-infrastructure-for-architectural-template-3"></a>Hello infrastruktúra előkészítése a 3. sablon architekturális.
+### <a name="prepare-the-infrastructure-for-architectural-template-3"></a>Az infrastruktúra előkészítése a 3. sablon architekturális.
 
-Hello infrastruktúra előkészítése, és konfigurálja az SAP **multi-SID**. Például hozzáadhat egy SAP ASC/SCS másodpéldányt be egy *meglévő* fürtkonfiguráció. További információkért lásd: [konfigurálása egy SAP ASC/SCS másodpéldányt be egy meglévő fürt konfigurációs toocreate egy SAP multi-SID-konfigurációját az Azure Resource Manager][sap-ha-multi-sid-guide].
+Készítse elő az infrastruktúrát, és konfigurálja az SAP **multi-SID**. Például hozzáadhat egy SAP ASC/SCS másodpéldányt be egy *meglévő* fürtkonfiguráció. További információkért lásd: [konfigurálása egy SAP ASC/SCS másodpéldányt be egy meglévő fürt konfigurációját, és hozzon létre egy SAP multi-SID-konfigurációját az Azure Resource Manager][sap-ha-multi-sid-guide].
 
-Ha azt szeretné, hogy egy új multi-SID-fürt toocreate, használhatja a hello multi-SID [gyorsindítási sablonok a Githubon](https://github.com/Azure/azure-quickstart-templates).
-toocreate multi-SID új fürt, a következő három sablonok toodeploy hello kell:
+Ha szeretne létrehozni egy új multi-SID-fürtöt, használhatja a multi-SID [gyorsindítási sablonok a Githubon](https://github.com/Azure/azure-quickstart-templates).
+Hozzon létre egy új multi-SID-fürtöt, üzembe helyezheti a következő három sablonokat kell:
 
 * [Asc/SCS sablon](#ASCS-SCS-template)
 * [Adatbázis-sablon](#database-template)
 * [Alkalmazássablon-kiszolgálók](#application-servers-template)
 
-hello alábbiakban rendelkezik hello sablonok és hello paraméterek hello sablonok tooprovide van szüksége további információt.
+A következő szakaszok további információkat a sablonok és a paraméterek meg kell adnia a sablonokban rendelkezik.
 
 #### <a name="ASCS-SCS-template"></a>Asc/SCS sablon
 
-hello ASC/SCS sablon használható a Windows Server feladatátvevő fürt, amelyen több ASC/SCS példány toocreate két virtuális gép telepítését.
+A ASC/SCS sablon segítségével több ASC/SCS-példányt futtató Windows Server feladatátvevő fürt létrehozása két virtuális gépek telepíti.
 
-hello ASC/SCS multi-SID-sablon hello mentése tooset [ASC/SCS multi-SID sablon][sap-templates-3-tier-multisid-xscs-marketplace-image], adja meg a következő paraméterek hello:
+A ASC/SCS multi-SID-sablon beállítása az a [ASC/SCS multi-SID sablon][sap-templates-3-tier-multisid-xscs-marketplace-image], adja meg a következő paraméterekkel:
 
-  - **Erőforrás-előtag**.  Állítsa be a hello erőforrás előtag használt tooprefix hello központi telepítése során létrehozott összes erőforrást. Hello erőforrások nem tartoznak tooonly egy SAP rendszer, mert hello előtag hello erőforrás nincs hello egy SAP rendszer biztonsági azonosítója.  hello előtagnak közé kell esnie **3-6 karakter**.
-  - **A verem típus**. Válassza ki a hello SAP rendszer hello verem típusát. Hello verem típusától függően a Azure Load Balancer egy (ABAP vagy csak a Java), vagy két (ABAP + Java) magánhálózati IP-címek SAP rendszerenként rendelkezik.
-  -  **Operációs rendszer típusa**. Válassza ki a hello virtuális gép operációs rendszerének hello.
-  -  **SAP rendszer száma**. Válassza ki a hello szám SAP rendszerek kívánt tooinstall ennek a fürtnek.
+  - **Erőforrás-előtag**.  Állítsa be az erőforrás előtagja, amelynek segítségével a telepítés során létrehozott összes erőforrás előtag. Mivel az erőforrások csak egy SAP-rendszer nem tartoznak, az előtag, az erőforrás nincs egy SAP rendszer biztonsági azonosítója.  Az előtag között kell lennie **3-6 karakter**.
+  - **A verem típus**. Válassza ki a verem az SAP rendszer típusa. A verem típusától függően a Azure Load Balancer (ABAP vagy csak a Java) egy vagy két (ABAP + Java) magánhálózati IP-címek SAP rendszerenként rendelkezik.
+  -  **Operációs rendszer típusa**. Válassza ki a virtuális gépek operációs rendszerének.
+  -  **SAP rendszer száma**. Válassza ki a fürt telepítendő SAP rendszerek számát.
   -  **Rendelkezésre állására**. Válassza ki **magas rendelkezésre ÁLLÁSÚ**.
-  -  **Rendszergazda felhasználónevét és a rendszergazdai jelszó**. Hozzon létre egy új felhasználót, amely használt toosign toohello gépen.
-  -  **Új vagy meglévő alhálózati**. Állítsa be, hogy egy új virtuális hálózat és alhálózat kell létrehozni, vagy használjon egy létező alhálózatot. Ha már van egy virtuális hálózatot, amely csatlakoztatott tooyour a helyszíni hálózat, válassza ki a **meglévő**.
-  -  **Alhálózati azonosító**. Hello azonosítója hello alhálózati toowhich hello virtuális gépek kell csatlakoztatni. Válassza ki a virtuális magánhálózati (VPN) vagy ExpressRoute virtuális hálózat tooconnect hello virtuális gép tooyour a helyszíni hálózati hello alhálózati. hello azonosítója általában néz ki:
+  -  **Rendszergazda felhasználónevét és a rendszergazdai jelszó**. Hozzon létre egy új felhasználót, amely segítségével jelentkezzen be a gépet.
+  -  **Új vagy meglévő alhálózati**. Állítsa be, hogy egy új virtuális hálózat és alhálózat kell létrehozni, vagy használjon egy létező alhálózatot. Ha már van egy virtuális hálózatot, amely a helyszíni hálózathoz csatlakozik, válassza ki a **meglévő**.
+  -  **Alhálózati azonosító**. Állítsa az azonosító az alhálózat, amelyhez a virtuális gépek kell csatlakoztatni. Jelölje ki az alhálózatot, a virtuális magánhálózati (VPN) vagy ExpressRoute virtuális hálózat a virtuális gép és a helyszíni hálózathoz csatlakozni. Az azonosító általában néz ki:
 
    /Subscriptions/ <*előfizetés-azonosító*> /resourceGroups/ <*erőforráscsoport-név*> /providers/Microsoft.Network/virtualNetworks/ <*virtuálishálózat-név*> /subnets/ <*alhálózat neve*>
 
-hello sablon Azure Load Balancer egy példány, amely támogatja a több SAP rendszer telepíti.
+A sablon egy Azure Load Balancer példány, amely támogatja a több SAP rendszert telepíti.
 
-- hello ASC példányok példányszámának 00, 10, 20 beállítást...
-- hello SCS példányok példányszámának 01, 11, 21 beállítást...
-- hello ASC sorba helyezni replikációs Server (SSZON) (csak Linux) példányok példányszámának 02, 12, 22 beállítást...
-- hello SCS SSZON (csak Linux) példányok példányszámának 03., 13, 23 beállítást...
+- A ASC példányok példányszámának 00, 10, 20 beállítást...
+- A SCS példányok példányszámának 01, 11, 21 beállítást...
+- A ASC sorba helyezni replikációs Server (SSZON) (csak Linux) példányok példányszámának 02, 12, 22 beállítást...
+- A SCS SSZON (csak Linux) példányok példányszámának 03., 13, 23 beállítást...
 
-hello terheléselosztó tartalmazza (Linux 2) 1 VIP(s), a ASC/SCS 1 x-VIP és a SSZON (csak Linux esetén) 1 x-VIP.
+A load balancer tartalmaz 1 (Linux 2) VIP(s), a ASC/SCS 1 x-VIP és a SSZON (csak Linux esetén) 1 x-VIP.
 
-hello alábbi lista tartalmazza-e minden terheléselosztási szabályok (ahol x egy SAP rendszer, például 1, 2, 3... hello hello száma):
+Az alábbi lista tartalmazza az összes terheléselosztási szabályok (ahol x egy SAP rendszer, például 1, 2, 3... száma):
 - Minden SAP rendszerhez a Windows-specifikus portokat: 445-ös, 5985
 - Asc portok (x0 száma): 32 x 0, 36 x 0, 39 x 0, 81-es x 0, 5 x 013, 5 x 014, 5 x 016
 - SCS portok (x1 száma): 32 x 1, 33 x 1, 39 x 1, 81-es x 1, 5 x 113, 5 x 114, 5 x 116
 - Linux (példányszámának x2) portok ASC SSZON: 33 x 2, 5 x 213, 5 x 214, 5 x 216
 - Linux (példányszámának x3) portok SCS SSZON: 33 x 3, 5 x 313, 5 x 314, 5 x 316
 
-hello terheléselosztó konfigurált toouse hello mintavételi portot (ahol x egy SAP rendszer, például 1, 2, 3... hello hello száma) a következő:
+A terheléselosztó a következő (Ha x az a szám az SAP-rendszer, például 1, 2, 3...) mintavételi portok használatára van konfigurálva:
 - Asc/SCS belső terheléselosztó mintavételi portot betölteni: 620 x 0
 - SSZON belső terheléselosztó mintavételi portot (csak Linux) betöltése: 621 x 2
 
 #### <a name="database-template"></a>Adatbázis-sablon
 
-hello adatbázis sablon telepít egy vagy két virtuális gép használható tooinstall hello egy SAP rendszer relációs adatbázis-kezelő rendszerének (RDBMS). Például öt SAP rendszerekhez ASC/SCS sablonná telepíti, ha szüksége toodeploy Ez a sablon ötször.
+Az adatbázis-sablon telepít egy vagy két virtuális gépek, amelyek egy SAP rendszer relációs adatbázis-kezelő rendszerének (RDBMS) telepítéséhez. Például ha telepít egy ASC/SCS sablon öt SAP rendszerekhez, akkor kell telepíteni a sablon ötször.
 
-hello adatbázis multi-SID-sablon, hello mentése tooset [adatbázis multi-SID sablon][sap-templates-3-tier-multisid-db-marketplace-image], adja meg a következő paraméterek hello:
+Az adatbázis-multi-SID sablon beállítása a [adatbázis multi-SID sablon][sap-templates-3-tier-multisid-db-marketplace-image], adja meg a következő paraméterekkel:
 
-  -  **SAP rendszerazonosító**. Adja meg azt szeretné, hogy tooinstall SAP rendszer hello hello SAP rendszer Azonosítóját. hello azonosító használandó előtagjaként hello telepített erőforrások esetén.
-  -  **Operációs rendszer típusa**. Válassza ki a hello virtuális gép operációs rendszerének hello.
-  -  **DbType**. Hello típusának kiválasztása hello adatbázis kívánt tooinstall hello fürtön. Válassza ki **SQL** Ha azt szeretné, hogy a Microsoft SQL Server tooinstall. Válassza ki **HANA** tudás az SAP HANA tooinstall hello virtuális gépeken. Győződjön meg arról, hogy tooselect hello megfelelő operációs rendszer típusa: válassza ki **Windows** SQL, és válasszon egy Linux terjesztési Hana. hello Azure Load Balancer, amely virtuális gépek lesznek csatlakoztatott toohello beállított toosupport kijelölt hello adatbázis típus:
-    * **SQL**. hello terheléselosztó fog terheléselosztásához 1433-as port. Győződjön meg arról, hogy toouse ezt a portot, az SQL Server Always On beállítás.
-    * **HANA**. hello terheléselosztó fog terheléselosztásához 35015 és 35017 portot. Győződjön meg arról, hogy tooinstall SAP HANA rendelkező példányszámának **50**.
-    hello terheléselosztó 62550 mintavételi portot fogja használni.
-  -  **SAP mérete**. SAP hello új rendszer hello számának beállítása ad meg. Ha nem biztos abban, hogy hány SAP hello rendszer igényel, kérje meg a SAP technológia Partner vagy a rendszer integráló.
+  -  **SAP rendszerazonosító**. Adja meg a telepíteni kívánt SAP rendszer SAP rendszer Azonosítóját. Az azonosító az üzembe helyezett erőforrások előtagjaként lesz használható.
+  -  **Operációs rendszer típusa**. Válassza ki a virtuális gépek operációs rendszerének.
+  -  **DbType**. Válassza ki az adatbázist, a fürtön telepíteni kívánt típusát. Válassza ki **SQL** Ha telepíti a Microsoft SQL Server. Válassza ki **HANA** Ha azt tervezi, hogy SAP HANA telepítse a virtuális gépeken. Ügyeljen arra, hogy válassza ki a megfelelő operációs rendszer típusa: válassza ki **Windows** SQL, és válasszon egy Linux terjesztési Hana. A kijelölt adatbázis támogatja az Azure terheléselosztó, amely kapcsolódik a virtuális gépek lesz konfigurálva:
+    * **SQL**. A load balancer fog terheléselosztásához 1433-as port. Győződjön meg arról, hogy ezen a porton az SQL Server Always On beállítás.
+    * **HANA**. A load balancer fog terheléselosztásához 35015 és 35017 portot. Ügyeljen arra, hogy telepítse SAP HANA példányszámának **50**.
+    A load balancer 62550 mintavételi portot fogja használni.
+  -  **SAP mérete**. Adjon meg az új rendszer nyújtják SAP. Ha nem tudja, a rendszer hány SAP, kérje meg a SAP technológia Partner vagy a rendszer integráló.
   -  **Rendelkezésre állására**. Válassza ki **magas rendelkezésre ÁLLÁSÚ**.
-  -  **Rendszergazda felhasználónevét és a rendszergazdai jelszó**. Hozzon létre egy új felhasználót, amely használt toosign toohello gépen.
-  -  **Alhálózati azonosító**. Adja meg a hello hello alhálózat hello hello ASC/SCS sablon telepítése során használt, vagy hello azonosítója hello alhálózat létrehozott hello ASC/SCS sablon telepítésének részeként.
+  -  **Rendszergazda felhasználónevét és a rendszergazdai jelszó**. Hozzon létre egy új felhasználót, amely segítségével jelentkezzen be a gépet.
+  -  **Alhálózati azonosító**. Adja meg az alhálózat ASC/SCS-sablon a telepítés során használt azonosító, vagy az alhálózat létrehozott azonosítója a ASC/SCS sablon központi telepítésének részeként.
 
 #### <a name="application-servers-template"></a>Alkalmazássablon-kiszolgálók
 
-hello kiszolgálók alkalmazássablon SAP alkalmazáskiszolgáló-példányok egy SAP-rendszerhez használható két vagy több virtuális gépek telepíti. Például öt SAP rendszerekhez ASC/SCS sablonná telepíti, ha szüksége toodeploy Ez a sablon ötször.
+A kiszolgálók alkalmazássablon SAP alkalmazáskiszolgáló-példányok egy SAP-rendszerhez használható két vagy több virtuális gépek telepíti. Például ha telepít egy ASC/SCS sablon öt SAP rendszerekhez, akkor kell telepíteni a sablon ötször.
 
-hello alkalmazás kiszolgálók multi-SID-sablon, hello mentése tooset [kiszolgálók multi-SID alkalmazássablon][sap-templates-3-tier-multisid-apps-marketplace-image], adja meg a következő paraméterek hello:
+Az alkalmazás kiszolgálók multi-SID sablon beállítása a [kiszolgálók multi-SID alkalmazássablon][sap-templates-3-tier-multisid-apps-marketplace-image], adja meg a következő paraméterekkel:
 
-  -  **SAP rendszerazonosító**. Adja meg azt szeretné, hogy tooinstall SAP rendszer hello hello SAP rendszer Azonosítóját. hello azonosító használandó előtagjaként hello telepített erőforrások esetén.
-  -  **Operációs rendszer típusa**. Válassza ki a hello virtuális gép operációs rendszerének hello.
-  -  **SAP mérete**. SAP hello új rendszer hello száma ad meg. Ha nem biztos abban, hogy hány SAP hello rendszer igényel, kérje meg a SAP technológia Partner vagy a rendszer integráló.
+  -  **SAP rendszerazonosító**. Adja meg a telepíteni kívánt SAP rendszer SAP rendszer Azonosítóját. Az azonosító az üzembe helyezett erőforrások előtagjaként lesz használható.
+  -  **Operációs rendszer típusa**. Válassza ki a virtuális gépek operációs rendszerének.
+  -  **SAP mérete**. Az új rendszer nyújtják SAP száma. Ha nem tudja, a rendszer hány SAP, kérje meg a SAP technológia Partner vagy a rendszer integráló.
   -  **Rendelkezésre állására**. Válassza ki **magas rendelkezésre ÁLLÁSÚ**.
-  -  **Rendszergazda felhasználónevét és a rendszergazdai jelszó**. Hozzon létre egy új felhasználót, amely használt toosign toohello gépen.
-  -  **Alhálózati azonosító**. Adja meg a hello hello alhálózat hello hello ASC/SCS sablon telepítése során használt, vagy hello azonosítója hello alhálózat létrehozott hello ASC/SCS sablon telepítésének részeként.
+  -  **Rendszergazda felhasználónevét és a rendszergazdai jelszó**. Hozzon létre egy új felhasználót, amely segítségével jelentkezzen be a gépet.
+  -  **Alhálózati azonosító**. Adja meg az alhálózat ASC/SCS-sablon a telepítés során használt azonosító, vagy az alhálózat létrehozott azonosítója a ASC/SCS sablon központi telepítésének részeként.
 
 
 ### <a name="47d5300a-a830-41d4-83dd-1a0d1ffdbe6a"></a>Azure-beli virtuális hálózat
-A jelen példában hello hello Azure-beli virtuális hálózat címtartománya 10.0.0.0/16. Egy alhálózat neve van **alhálózati**, a 10.0.0.0/24 címtartományt. A virtuális hálózaton található virtuális gépek és a belső terheléselosztók vannak telepítve.
+A fenti példában az Azure virtuális hálózat címtartománya 10.0.0.0/16. Egy alhálózat neve van **alhálózati**, a 10.0.0.0/24 címtartományt. A virtuális hálózaton található virtuális gépek és a belső terheléselosztók vannak telepítve.
 
 > [!IMPORTANT]
-> Nem módosításokat belül hello vendég operációs rendszer toohello hálózati beállításokat. Ez magában foglalja az IP-címek, a DNS-kiszolgálók és az alhálózatot. A hálózati beállítások konfigurálása az Azure-ban. hello Dynamic Host Configuration Protocol (DHCP) szolgáltatás tölti ki a beállításokat.
+> Nem módosítja a vendég operációs rendszerében a hálózati beállításokat. Ez magában foglalja az IP-címek, a DNS-kiszolgálók és az alhálózatot. A hálózati beállítások konfigurálása az Azure-ban. A Dynamic Host Configuration Protocol (DHCP) szolgáltatás tölti ki a beállításokat.
 >
 >
 
 ### <a name="b22d7b3b-4343-40ff-a319-097e13f62f9e"></a>DNS-IP-címek
 
-tooset hello szükséges DNS-IP-címek, hello a következő lépéseket.
+Állítsa be a szükséges DNS-IP-címek, tegye a következőket.
 
-1.  Az Azure portál, a hello hello **DNS-kiszolgálók** panelen ellenőrizze, hogy a virtuális hálózat **DNS-kiszolgálók** beállítás értéke túl**egyéni DNS**.
-2.  Válassza ki a hello alapján rendelkezik hálózati beállításait. További információkért tekintse meg a következő erőforrások hello:
-    * [Vállalati hálózati kapcsolat (létesítmények közötti)][planning-guide-2.2]: hello IP-címek hello a helyi DNS-kiszolgálók hozzáadása.  
-    Kibővítheti a helyszíni DNS kiszolgálók toohello virtuális gépek Azure-ban futó. A forgatókönyv, hozzáadhat hello IP-címei hello Azure hello DNS szolgáltatást futtató virtuális gépek.
-    * [Csak felhőalapú telepítési][planning-guide-2.1]: hello tartozó további virtuális gép telepítése virtuális hálózati példányt, amely egy DNS-kiszolgálóként szolgál. Adja hozzá az IP-címei hello hello Azure virtuális gépekhez, amelyek toorun DNS-szolgáltatás beállítása.
+1.  Az Azure portálon a a **DNS-kiszolgálók** panelen ellenőrizze, hogy a virtuális hálózat **DNS-kiszolgálók** beállítás **egyéni DNS**.
+2.  Válassza ki a beállítások alapján a hálózati rendelkezik. További információkért lásd a következőket:
+    * [Vállalati hálózati kapcsolat (létesítmények közötti)][planning-guide-2.2]: hozzáadása a helyi DNS-kiszolgálók IP-címét.  
+    Kiterjesztheti a helyi DNS-kiszolgálók az Azure-ban futó virtuális gépek számára. A forgatókönyv adhat hozzá a DNS szolgáltatást futtató Azure virtuális gépek IP-címét.
+    * [Csak felhőalapú telepítési][planning-guide-2.1]: helyezze üzembe a virtuális hálózati példányt a DNS-kiszolgáló látja, hogy egy további virtuális gépet. Adja hozzá a DNS-szolgáltatás futtatásához beállítása az Azure virtuális gépek IP-címét.
 
     ![12. ábra: DNS-kiszolgálók konfigurálása az Azure-beli virtuális hálózathoz][sap-ha-guide-figure-3001]
 
     _**12. ábra:** DNS konfigurálása az Azure Virtual Network kiszolgálók_
 
   > [!NOTE]
-  > Hello IP-címek hello DNS-kiszolgálók módosítja, ha szüksége van-e toorestart hello Azure virtuális gépek tooapply hello módosítása és terjesztése hello új DNS-kiszolgálók.
+  > Ha módosítja a DNS-kiszolgálók IP-címét, a módosítás alkalmazásához, és az új DNS-kiszolgálók propagálása Azure virtuális gépek újraindítására szeretné.
   >
   >
 
-A fenti példában hello DNS-szolgáltatás telepítve és konfigurálva van a Windows virtuális gépek:
+A fenti példában a DNS-szolgáltatás telepítve és konfigurálva van a Windows virtuális gépek:
 
 | Virtuálisgép-szerepkör | Virtuális gép állomásneve | Hálózati kártya neve | Statikus IP-cím |
 | --- | --- | --- | --- |
 | Első DNS-kiszolgáló |domcontr-0 |PR1-nic-domcontr-0 |10.0.0.10 |
 | Második DNS-kiszolgáló |domcontr-1 |PR1-nic-domcontr-1 |10.0.0.11 |
 
-### <a name="9fbd43c0-5850-4965-9726-2a921d85d73f"></a>Állomásnév és a statikus IP-címek hello SAP ASC/SCS fürtözött példány és az adatbázis-kezelő fürtözött példány
+### <a name="9fbd43c0-5850-4965-9726-2a921d85d73f"></a>Állomásnév és a statikus IP-címet a SAP ASC/SCS fürtözött példány és az adatbázis-kezelő fürtözött példány
 
 A helyszíni telepítéshez szüksége ezek fenntartott állomásneve és IP-címek:
 
@@ -901,26 +901,26 @@ A helyszíni telepítéshez szüksége ezek fenntartott állomásneve és IP-cí
 | SAP ASC/SCS példány virtuális állomás neve |PR1-ASC-sap |10.0.0.43 |
 | SAP DBMS második fürt virtuális állomásnevet (kezelő) |PR1-dbms-vir |10.0.0.32 |
 
-Hello fürt létrehozásakor létrehozása hello virtuális állomásnevek **pr1-ASC-vir** és **pr1-dbms-vir** és hello társított IP-címek, maga hello-fürt kezeléséhez. További információ toodo a, lásd: [fürtcsomópontok fürtkonfiguráció gyűjtése][sap-ha-guide-8.12.1].
+A fürt létrehozásakor hozzon létre a virtuális állomásnevek **pr1-ASC-vir** és **pr1-dbms-vir** és a társított IP-címek, amely egyrészt a fürt kezeléséhez. Ezzel kapcsolatos további információkért lásd: [fürtcsomópontok fürtkonfiguráció gyűjtése][sap-ha-guide-8.12.1].
 
-Manuálisan is létrehozhat hello más két virtuális állomásnevek **pr1-ASC-sap** és **pr1-adatbázis-kezelő – sap**, és hello társított IP-címmel, hello DNS-kiszolgálón. hello fürtözött SAP ASC/SCS-példány és hello fürtözött adatbázis-kezelő példány használja ezeket az erőforrásokat. További információ toodo a, lásd: [hozzon létre egy virtuális nevet egy fürtözött SAP ASC/SCS példány][sap-ha-guide-9.1.1].
+A másik két virtuális állomásnevek, manuálisan is létrehozhat **pr1-ASC-sap** és **pr1-adatbázis-kezelő – sap**, és a társított IP-címek, a DNS-kiszolgálón. A fürtözött SAP ASC/SCS-példány és a fürtözött adatbázis-kezelő példány használja ezeket az erőforrásokat. Ezzel kapcsolatos további információkért lásd: [hozzon létre egy virtuális nevet egy fürtözött SAP ASC/SCS példány][sap-ha-guide-9.1.1].
 
-### <a name="84c019fe-8c58-4dac-9e54-173efd4b2c30"></a>Állítsa be a statikus IP-címek hello SAP virtuális gépekhez
-Után hello virtuális gépek toouse a fürt központi telepítése, az összes virtuális gép szükséges tooset statikus IP-címeket. Ehhez hello Azure virtuális hálózat konfigurálása, és nem hello vendég operációs rendszer.
+### <a name="84c019fe-8c58-4dac-9e54-173efd4b2c30"></a>Állítsa be a statikus IP-címeket az SAP virtuális gépekhez
+Miután telepítette a virtuális gépeket a fürtben használni, az összes virtuális gép statikus IP-címek be kell. Ehhez az Azure virtuális hálózat konfigurálása, és nem a vendég operációs rendszer.
 
-1.  Hello Azure-portálon, válassza ki **erőforráscsoport** > **hálózati kártya** > **beállítások** > **IP-cím** .
-2.  A hello **IP-címek** panel alatt **hozzárendelés**, jelölje be **statikus**. A hello **IP-cím** mezőben adja meg, hogy szeretné-e toouse hello IP-címet.
+1.  Válassza ki az Azure-portálon **erőforráscsoport** > **hálózati kártya** > **beállítások** > **IP-cím**.
+2.  Az a **IP-címek** panel alatt **hozzárendelés**, jelölje be **statikus**. Az a **IP-cím** mezőbe írja be a használni kívánt IP-cím.
 
   > [!NOTE]
-  > Hello IP-cím hello hálózati kártya módosítja, ha szüksége van-e toorestart hello Azure virtuális gépek tooapply hello módosítása.  
+  > Ha módosítja a hálózati kártya IP-címét, indítsa újra az Azure virtuális gépeken, a módosítás alkalmazására van szükség.  
   >
   >
 
-  ![13. ábra: Állítsa be a statikus IP-címeket az egyes virtuális gépek hello hálózati kártya][sap-ha-guide-figure-3002]
+  ![13. ábra: Állítsa be a statikus IP-címek a hálózati kártyát. az egyes virtuális gépek][sap-ha-guide-figure-3002]
 
-  _**13. ábra:** hello hálózati kártya minden virtuális gép statikus IP-címek beállítása_
+  _**13. ábra:** statikus IP-címek a hálózati kártyát. az egyes virtuális gépek beállítása_
 
-  Ismételje meg ezt a lépést minden hálózati interfészen esetén ez azt jelenti, hogy az összes virtuális gép, beleértve a virtuális gépek toouse szeretné az Active Directory és a DNS szolgáltatás.
+  Ismételje meg ezt a lépést minden hálózati interfészen, hogy van, az összes virtuális gép, beleértve az Active Directory és a DNS szolgáltatás használni kívánt virtuális gépek.
 
 A jelen példában vezetünk be a virtuális gépek és a statikus IP-címek:
 
@@ -935,25 +935,25 @@ A jelen példában vezetünk be a virtuális gépek és a statikus IP-címek:
 | Adatbázis-kezelő példány első fürtcsomópontra |PR1-db-0 |PR1-nic-db-0 |10.0.0.30 |
 | Adatbázis-kezelő példány második fürtcsomópont |PR1-db-1 |PR1-nic-db-1 |10.0.0.31 |
 
-### <a name="7a8f3e9b-0624-4051-9e41-b73fff816a9e"></a>Egy statikus IP-cím beállítása hello Azure belső terheléselosztóhoz
+### <a name="7a8f3e9b-0624-4051-9e41-b73fff816a9e"></a>Egy statikus IP-cím beállítása az Azure belső terheléselosztóhoz
 
-hello SAP Azure Resource Manager sablonnal hoz létre az Azure belső terheléselosztó hello SAP ASC/SCS példány és hello DBMS fürtön használt.
+Az SAP Azure Resource Manager sablonnal hoz létre Azure belső terheléselosztót a SAP ASC/SCS példány és az adatbázis-kezelő fürtön használt.
 
 > [!IMPORTANT]
-> hello hello virtuális állomásnevét hello SAP ASC/SCS az IP-címe hello azonos hello IP-címet az SAP ASC/SCS belső terheléselosztó hello: **pr1-lb-ASC**.
-> hello hello virtuális nevét az adatbázis-kezelő rendszer hello IP-címe hello ugyanazt az adatbázis-kezelő belső terheléselosztó hello hello IP-címként: **pr1-lb-dbms**.
+> A virtuális gazdagép neve a SAP ASC/SCS IP-címe megegyezik a SAP ASC/SCS belső terheléselosztó IP-címe: **pr1-lb-ASC**.
+> A DBMS neve virtuális IP-címe megegyezik az IP-cím, az adatbázis-kezelő belső terheléselosztó: **pr1-lb-dbms**.
 >
 >
 
-tooset egy statikus IP-címet hello Azure belső terheléselosztó:
+Egy statikus IP-cím beállítása az Azure belső terheléselosztóhoz:
 
-1.  hello kezdeti telepítési beállítja hello belső terheléselosztó IP-cím túl**dinamikus**. Az Azure portál, a hello hello **IP-címek** panel alatt **hozzárendelés**, jelölje be **statikus**.
-2.  Belső terheléselosztó hello hello IP-cím beállítása **pr1-lb-ASC** hello virtuális állomásnevet hello SAP ASC/SCS példány toohello IP-címét.
-3.  Belső terheléselosztó hello hello IP-cím beállítása **pr1-lb-dbms** hello virtuális állomásnevet hello DBMS példány toohello IP-címét.
+1.  A kezdeti telepítés beállítja a belső terheléselosztó IP-cím **dinamikus**. Az Azure portálon a a **IP-címek** panel alatt **hozzárendelés**, jelölje be **statikus**.
+2.  Állítsa be az IP-cím, a belső terheléselosztó **pr1-lb-ASC** virtuális állomásnevének az SAP ASC/SCS példány IP-címre.
+3.  Állítsa be az IP-cím, a belső terheléselosztó **pr1-lb-dbms** virtuális állomásnevének az adatbázis-kezelő példány IP-címre.
 
-  ![14. ábra: Hello belső terheléselosztóhoz hello SAP ASC/SCS-példány beállítása a statikus IP-címek][sap-ha-guide-figure-3003]
+  ![14. ábra: Az SAP ASC/SCS példány belső terheléselosztót beállítani statikus IP-címek][sap-ha-guide-figure-3003]
 
-  _**14. ábra:** statikus IP-címek hello belső terheléselosztóhoz hello SAP ASC/SCS-példány beállítása_
+  _**14. ábra:** SAP ASC/SCS-példány a belső terheléselosztó statikus IP-címek beállítása_
 
 Ebben a példában két Azure belső terheléselosztók a statikus IP-címmel rendelkező vezetünk be:
 
@@ -963,17 +963,17 @@ Ebben a példában két Azure belső terheléselosztók a statikus IP-címmel re
 | SAP DBMS belső terheléselosztó |PR1-lb-adatbázis-kezelő |10.0.0.33 |
 
 
-### <a name="f19bd997-154d-4583-a46e-7f5a69d0153c"></a>Alapértelmezett ASC/SCS terheléselosztási szabályok hello Azure belső terheléselosztóhoz
+### <a name="f19bd997-154d-4583-a46e-7f5a69d0153c"></a>Alapértelmezett ASC/SCS terheléselosztási szabályok az Azure belső terheléselosztóhoz
 
-hello SAP Azure Resource Manager-sablon létrehozza a hello portok:
-* ABAP ASC példány, hello alapértelmezett példányszámának **00**
-* A Java SCS példány, hello alapértelmezett példányszámának **01**
+A SAP Azure Resource Manager-sablon létrehozza a portok:
+* Az alapértelmezett példányszámának, ABAP ASC példány **00**
+* A Java SCS példány, az alapértelmezett példányszámának **01**
 
-A SAP ASC/SCS példányát telepítésekor használnia kell a hello alapértelmezett példányszámának **00** a ABAP ASC példány és hello alapértelmezett példány számára vonatkozó **01** a Java SCS-példányhoz.
+Ha a SAP ASC/SCS példányát telepíti, az alapértelmezett példányszámának kell használnia **00** ABAP ASC-példány és az alapértelmezett példányszámának **01** a Java SCS-példány.
 
-Ezután hozzon létre a szükséges belső terheléselosztási végpontok hello SAP NetWeaver portok.
+Ezután hozzon létre a szükséges belső terheléselosztási végpontok a SAP NetWeaver portok.
 
-toocreate szükséges belső terheléselosztási végpontok, először hozzon létre a terheléselosztási végpontok hello SAP NetWeaver ABAP ASC portok:
+Szükséges belső terheléselosztási végpontok, először hozzon létre a terheléselosztást a SAP NetWeaver ABAP ASC portok végpontok:
 
 | Szolgáltatás/terheléselosztási szabály neve | Alapértelmezett portszámok | Konkrét portok (példányszámának 00 példány ASC) (SSZON 10) |
 | --- | --- | --- |
@@ -989,9 +989,9 @@ toocreate szükséges belső terheléselosztási végpontok, először hozzon l�
 | Erőforrás-kezelő Win *Lbrule5985* | |5985 |
 | Fájlmegosztás *Lbrule445* | |445 |
 
-_**1. táblázat:** portszámokat hello SAP NetWeaver ABAP ASC példányok_
+_**1. táblázat:** portszámokat SAP NetWeaver ABAP ASC példánya_
 
-Ezután hozzon létre a terheléselosztási végpontok hello SAP NetWeaver Java SCS portok:
+Ezután hozzon létre a terheléselosztást a SAP NetWeaver Java SCS portok végpontok:
 
 | Szolgáltatás/terheléselosztási szabály neve | Alapértelmezett portszámok | Konkrét portok (SCS példány példányszámának 01) (SSZON 11) |
 | --- | --- | --- |
@@ -1007,55 +1007,55 @@ Ezután hozzon létre a terheléselosztási végpontok hello SAP NetWeaver Java 
 | Erőforrás-kezelő Win *Lbrule5985* | |5985 |
 | Fájlmegosztás *Lbrule445* | |445 |
 
-_**2. táblázat:** portszámokat hello SAP NetWeaver Java SCS-példányok_
+_**2. táblázat:** portszámot az SAP NetWeaver Java SCS-példányok_
 
-![15. ábra: Alapértelmezett ASC/SCS terheléselosztási szabályok hello Azure belső terheléselosztóhoz][sap-ha-guide-figure-3004]
+![15. ábra: Az alapértelmezett ASC/SCS betöltése az Azure belső terheléselosztóhoz tartozó terheléselosztási szabályok][sap-ha-guide-figure-3004]
 
-_**15. ábra:** alapértelmezett ASC/SCS terheléselosztási szabályok hello Azure belső terheléselosztóhoz_
+_**15. ábra:** alapértelmezett ASC/SCS terheléselosztási szabályok az Azure belső terheléselosztóhoz_
 
-Hello terheléselosztó hello IP-cím beállítása **pr1-lb-dbms** hello virtuális állomásnevet hello DBMS példány toohello IP-címét.
+A terheléselosztó IP-cím beállítása **pr1-lb-dbms** virtuális állomásnevének az adatbázis-kezelő példány IP-címre.
 
-### <a name="fe0bd8b5-2b43-45e3-8295-80bee5415716"></a>Hello ASC/SCS alapértelmezett terheléselosztási hello Azure belső terheléselosztóhoz tartozó szabályok módosítása
+### <a name="fe0bd8b5-2b43-45e3-8295-80bee5415716"></a>Módosítsa a ASC/SCS alapértelmezett terheléselosztási szabályok az Azure belső terheléselosztóhoz
 
-Ha toouse eltérő számú SAP-ASC hello vagy SCS példányok, meg kell változtatnia hello neveit és értékeit a portok alapértelmezett értékekhez.
+Ha a SAP ASC vagy SCS példányok eltérő számú használni kívánt, módosítania kell a nevek és értékek a portok alapértelmezett értékekhez.
 
-1.  Hello Azure-portálon, válassza ki  **<* SID*> - lb - ASC betöltése terheléselosztó ** > **terheléselosztási szabályok betöltése**.
-2.  Minden terheléselosztási szabályok, amelyek toohello SAP ASC vagy SCS példány tartozik ezek az értékek módosítása:
+1.  Válassza ki az Azure-portálon  **<* SID*> - lb - ASC betöltése terheléselosztó ** > **terheléselosztási szabályok betöltése**.
+2.  Minden terheléselosztási szabályok, amelyek az SAP ASC vagy SCS példányhoz tartozik ezek az értékek módosítása:
 
   * Név
   * Port
   * Háttér-port
 
-  Például ha azt szeretné, hogy toochange hello alapértelmezett ASC példány szám 00 too31, kell toomake hello módosításokat minden porthoz az 1.
+  Például ha szeretné módosítani az alapértelmezett ASC példányszámának a 00 és 31, szeretné hajtsa végre a módosításokat minden porthoz az 1.
 
   Példa port frissítési *lbrule3200*.
 
-  ![16. ábra: Hello ASC/SCS alapértelmezett terheléselosztási hello Azure belső terheléselosztóhoz tartozó szabályok módosítása][sap-ha-guide-figure-3005]
+  ![16. ábra: Módosítsa a ASC/SCS alapértelmezett terheléselosztási szabályok az Azure belső terheléselosztóhoz][sap-ha-guide-figure-3005]
 
-  _**16. ábra:** módosítás hello ASC/SCS alapértelmezett terheléselosztási szabályok hello Azure belső terheléselosztóhoz_
+  _**16. ábra:** ASC/SCS alapértelmezett terheléselosztási az Azure belső terheléselosztóhoz tartozó szabályok módosítása_
 
-### <a name="e69e9a34-4601-47a3-a41c-d2e11c626c0c"></a>Windows virtuális gépek toohello tartomány hozzáadása
+### <a name="e69e9a34-4601-47a3-a41c-d2e11c626c0c"></a>Windows virtuális gépek felvételét a tartományba
 
-Miután hozzárendelt egy statikus IP cím toohello virtuális gépek, hello virtuális gépek toohello tartomány hozzáadása.
+Miután egy statikus IP-címet rendel a virtuális gépek, a virtuális gépek felvételét a tartományba.
 
-![17. ábra: A virtuális gép tooa tartomány hozzáadása][sap-ha-guide-figure-3006]
+![17. ábra: A virtuális gépek hozzáadása a tartományhoz][sap-ha-guide-figure-3006]
 
-_**17. ábra:** tartomány hozzáadása a virtuális gép tooa_
+_**17. ábra:** felvesz egy virtuális gépet egy tartományhoz_
 
-### <a name="661035b2-4d0f-4d31-86f8-dc0a50d78158"></a>Adja hozzá a beállításjegyzék-bejegyzések hello SAP ASC/SCS példány mindkét fürtcsomóponton
+### <a name="661035b2-4d0f-4d31-86f8-dc0a50d78158"></a>Adja hozzá a beállításjegyzék-bejegyzések az SAP ASC/SCS példány mindkét fürtcsomóponton
 
-Az Azure terheléselosztó, hogy a kapcsolatok bezárása, amikor hello kapcsolat üresjáratban a megadott ideig (üresjárati időkorlátot) idő belső terheléselosztót tartalmaz. SAP munkafolyamatok párbeszédpanel példányok nyitott kapcsolatok toohello SAP sorba helyezni a, amint hello első sorba helyezni/created igények toobe küldött kérelmek feldolgozásához. Ezek a kapcsolatok általában marad a meghatározott hello munkahelyi folyamat vagy hello sorba helyezni folyamat újraindítja. Ha a beállított időn hello kapcsolat üresjáratban, hello Azure belső terheléselosztási terheléselosztó bezárása hello kapcsolatok. Ez nem hiba, mert hello SAP munkahelyi folyamat helyreállítja a csatolást hello kapcsolódási toohello sorba helyezni folyamatot, ha már nem létezik. Ezek a tevékenységek hello fejlesztői nyomkövetések SAP folyamatok vannak dokumentálva, de ezeket a nyomkövetéseket a felesleges tartalmat nagy mennyiségű hoznak létre. Egy jó ötlet toochange hello TCP/IP `KeepAliveTime` és `KeepAliveInterval` mindkét fürtcsomóponton. A módosításokat a hello TCP/IP-paraméterek SAP profil paraméterekkel, hello cikk későbbi részében leírt össze.
+Az Azure terheléselosztó a belső terheléselosztók, hogy a kapcsolatok bezárása, amikor a kapcsolat üresjáratban a megadott ideig (üresjárati időkorlátot) időben rendelkezik. SAP munkafolyamatok párbeszédpanel példányok nyitott kapcsolatok az SAP sorba, amint az első sorba helyezni/created küldje kérelem küldésének kell feldolgozni. Ezek a kapcsolatok általában marad a meghatározott a munkahelyi folyamat, vagy a sorba helyezni folyamat újraindítja. Azonban ha a kapcsolat üresjáratban a beállított időn belül, az Azure belső terheléselosztó bezárja a kapcsolatokat. Ez nem probléma, mert a SAP munkahelyi folyamat újra létrehozza a kapcsolatot, a várólistára helyezés folyamatban, ha már nem létezik. Ezek a tevékenységek SAP folyamatok fejlesztői nyomait vannak dokumentálva, de ezeket a nyomkövetéseket a felesleges tartalmat nagy mennyiségű hoznak létre. Jó ötlet módosítása a TCP/IP `KeepAliveTime` és `KeepAliveInterval` mindkét fürtcsomóponton. Ezek a változások, a TCP/IP-paraméterek SAP profil paraméterekkel, a cikk későbbi részében leírt össze.
 
-beállításjegyzék-bejegyzések tooadd mindkét fürtcsomóponton hello SAP ASC/SCS példány, először adja hozzá a Windows beállításjegyzék-bejegyzések mindkét Windows fürtcsomópontokon az SAP ASC/SCS:
+Mindkét fürtcsomópont az SAP ASC/SCS példány beállításjegyzék-bejegyzések hozzáadásához először adja hozzá a Windows beállításjegyzék-bejegyzések mindkét Windows fürtcsomópontokon az SAP ASC/SCS:
 
 | Elérési út | HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters |
 | --- | --- |
 | Változó neve |`KeepAliveTime` |
 | Változó típusa |REG_DWORD (decimális) |
 | Érték |120000 |
-| Hivatkozás toodocumentation |[https://technet.microsoft.com/en-us/library/cc957549.aspx](https://technet.microsoft.com/en-us/library/cc957549.aspx) |
+| Dokumentáció csatolása |[https://technet.microsoft.com/en-us/library/cc957549.aspx](https://technet.microsoft.com/en-us/library/cc957549.aspx) |
 
-_**3. táblázat:** módosítás hello első TCP/IP-paraméter_
+_**3. táblázat:** módosítsa az első TCP/IP-paraméter_
 
 Ezt követően adja hozzá a Windows beállításjegyzék-bejegyzések mindkét Windows fürtcsomópontokon az SAP ASC/SCS:
 
@@ -1064,41 +1064,41 @@ Ezt követően adja hozzá a Windows beállításjegyzék-bejegyzések mindkét 
 | Változó neve |`KeepAliveInterval` |
 | Változó típusa |REG_DWORD (decimális) |
 | Érték |120000 |
-| Hivatkozás toodocumentation |[https://technet.microsoft.com/en-us/library/cc957548.aspx](https://technet.microsoft.com/en-us/library/cc957548.aspx) |
+| Dokumentáció csatolása |[https://technet.microsoft.com/en-us/library/cc957548.aspx](https://technet.microsoft.com/en-us/library/cc957548.aspx) |
 
-_**4. táblázat:** módosítás hello második TCP/IP-paraméter_
+_**4. táblázat:** módosítása a második TCP/IP-paraméter_
 
-**tooapply hello módosításokat, indítsa újra mindkét fürtcsomópontot**.
+**A módosítások alkalmazásához, indítsa újra a mindkét fürtcsomópontot**.
 
 ### <a name="0d67f090-7928-43e0-8772-5ccbf8f59aab"></a>Egy SAP ASC/SCS példánya számára a Windows Server feladatátvételi fürtszolgáltatási fürt beállítása
 
 A Windows Server feladatátvételi fürtszolgáltatási fürt egy SAP ASC/SCS-példány beállítása magában foglalja a ezeket a feladatokat:
 
-- Fürtkonfiguráció hello fürtcsomópontok gyűjtése
+- Fürtözött konfigurációban a fürt csomópontjai gyűjtése
 - A fürt tanúsító fájlmegosztás beállítása
 
-#### <a name="5eecb071-c703-4ccc-ba6d-fe9c6ded9d79"></a>Fürtkonfiguráció hello fürtcsomópontok gyűjtése
+#### <a name="5eecb071-c703-4ccc-ba6d-fe9c6ded9d79"></a>Fürtözött konfigurációban a fürt csomópontjai gyűjtése
 
-1.  Hello szerepkör hozzáadása és szolgáltatások varázsló vegye fel a Feladatátvételi fürtszolgáltatás tooboth fürtcsomóponton.
-2.  Hello feladatátvevő fürt beállítása a Feladatátvevőfürt-kezelő használatával. A Feladatátvevőfürt-kezelőben válasszon **fürt létrehozása**, majd adja hozzá a hello első fürt, csomópont A. csak hello neve Nem hello második csomópont hozzáadása még; hello második csomópont egy későbbi lépésben fogja hozzáadni.
+1.  A szerepkör hozzáadása és szolgáltatások varázsló vegye fel a Feladatátvételi fürtszolgáltatást mindkét fürtcsomóponton.
+2.  A feladatátvevő fürt beállítása a Feladatátvevőfürt-kezelő használatával. A Feladatátvevőfürt-kezelőben válasszon **fürt létrehozása**, és adja meg csak az első fürt, a csomópont A. neve A második csomópont ne adjon hozzá még; a második csomópont egy későbbi lépésben fogja hozzáadni.
 
-  ![18. ábra: Hello kiszolgáló vagy a virtuális gép neve hello első fürtcsomópont hozzáadása][sap-ha-guide-figure-3007]
+  ![18. ábra: A kiszolgáló vagy a virtuális gép nevét, az első fürtcsomópont hozzáadása][sap-ha-guide-figure-3007]
 
-  _**18. ábra:** Hozzáadás hello kiszolgáló vagy a virtuális gép hello első fürtcsomópont nevét_
+  _**18. ábra:** adja hozzá az első fürtcsomópontra a kiszolgáló vagy a virtuális gép neve_
 
-3.  Adja meg a hello hello fürt hálózati neve (virtuális állomás neve).
+3.  Adja meg a fürt hálózati neve (virtuális állomás neve).
 
-  ![19. ábra: Hello fürt nevét adja meg.][sap-ha-guide-figure-3008]
+  ![19. ábra: Adja meg a fürt neve][sap-ha-guide-figure-3008]
 
-  _**19. ábra:** hello fürt nevének megadása_
+  _**19. ábra:** adja meg a fürt neve_
 
-4.  Hello fürt létrehozása után futtassa a fürtellenőrzési tesztet.
+4.  Miután létrehozta a fürthöz, futtassa a fürtellenőrzési tesztet.
 
-  ![20. ábra: Hello fürt érvényesítési-ellenőrzés futtatása][sap-ha-guide-figure-3009]
+  ![20. ábra: A fürt érvényesítése-ellenőrzés futtatása][sap-ha-guide-figure-3009]
 
-  _**20. ábra:** hello fürt eredetiség ellenőrzésének futtatása_
+  _**20. ábra:** a fürt érvényesítése-ellenőrzés futtatása_
 
-  Lemezek ezen a ponton hello folyamat kapcsolatos figyelmeztetéseket figyelmen kívül hagyhatja. A tanúsító fájlmegosztás és hello SIOS megosztott lemezek később fogja hozzáadni. Ebben a szakaszban egy kvórum kapcsolatos tooworry nem szükséges.
+  Ezen a ponton a folyamat lemezek kapcsolatos figyelmeztetéseket figyelmen kívül hagyhatja. Egy tanúsító fájlmegosztást és a SIOS megosztott lemezek később fogja hozzáadni. Ezen a ponton nem kell foglalkoznia a kvórum.
 
   ![21. ábra: Kvórumlemez nem található][sap-ha-guide-figure-3010]
 
@@ -1108,52 +1108,52 @@ A Windows Server feladatátvételi fürtszolgáltatási fürt egy SAP ASC/SCS-p�
 
   _**22. ábra:** Core fürterőforrás kell egy új IP-cím_
 
-5.  Hello core fürtszolgáltatás hello IP-címének módosítása. hello fürt nem indítható el, amíg meg nem változtatja hello IP-cím hello core fürtszolgáltatás, mert hello kiszolgáló IP-címének hello tooone hello virtuális gép csomópontok. Ehhez a hello **tulajdonságok** hello core fürt szolgáltatás IP-erőforrás oldalán.
+5.  A core fürtszolgáltatás az IP-címének módosítása. A fürt nem indítható el, amíg nem módosítja az IP-cím a core fürtszolgáltatás, mert a kiszolgáló IP-címét a virtuális gép csomópontok egyikére. Az ehhez a **tulajdonságok** a core fürtszolgáltatás IP-erőforrás oldalán.
 
-  Például tooassign IP-címet kell (a példánkban **10.0.0.42**) hello fürt virtuális állomás neve **pr1-ASC-vir**.
+  Például IP-címet kell (a példánkban **10.0.0.42**) a fürt virtuális állomás neve **pr1-ASC-vir**.
 
-  ![23. ábra: A hello tulajdonságai párbeszédpanelen hello IP-címének módosítása][sap-ha-guide-figure-3012]
+  ![23. ábra: A Tulajdonságok párbeszédpanelen az IP-címének módosítása][sap-ha-guide-figure-3012]
 
-  _**23. ábra:** a hello **tulajdonságok** párbeszédpanelen, a módosítás hello IP-cím_
+  _**23. ábra:** a a **tulajdonságok** párbeszédpanel változtassa meg az IP-cím_
 
-  ![24. ábra: Hello fürt fenntartott hello IP-cím hozzárendelése][sap-ha-guide-figure-3013]
+  ![24. ábra: Az a fürt számára fenntartott IP-cím hozzárendelése][sap-ha-guide-figure-3013]
 
-  _**24. ábra:** hello fürt fenntartott hello IP-cím hozzárendelése_
+  _**24. ábra:** a fürt számára fenntartott IP-cím hozzárendelése_
 
-6.  Hello fürt virtuális állomás neve online állapotba.
+6.  A fürt virtuális állomásnevet online állapotba.
 
-  ![25. ábra: Core a fürtszolgáltatás működik-e és fut, valamint hello javítsa ki az IP-cím][sap-ha-guide-figure-3014]
+  ![25. ábra: Core a fürtszolgáltatás működik-e és fut, és a megfelelő IP-cím][sap-ha-guide-figure-3014]
 
-  _**25. ábra:** core a fürtszolgáltatás működik-e és fut, és a hello javítsa ki az IP-cím_
+  _**25. ábra:** core a fürtszolgáltatás működik-e és fut, és a megfelelő IP-cím_
 
-7.  Adja hozzá az hello második fürtcsomópontokat.
+7.  Adja hozzá a második fürtcsomópontokat.
 
-  Most, hogy hello core fürtszolgáltatás működik és elérhető, a második fürtcsomópont hello is hozzáadhat.
+  Most, hogy a core fürtszolgáltatás működik és elérhető, a második fürtcsomópont is hozzáadhat.
 
-  ![26. ábra: Hello második fürt csomópont hozzáadása][sap-ha-guide-figure-3015]
+  ![26. ábra: A második csomópont hozzáadása][sap-ha-guide-figure-3015]
 
-  _**26. ábra:** Hozzáadás hello második fürtcsomópont_
+  _**26. ábra:** második csomópont hozzáadása_
 
-8.  Adjon meg egy nevet hello második csomópont gazda.
+8.  Adjon meg egy nevet, a második csomópont gazda esetében.
 
-  ![27. ábra: Adja meg a hello második fürtcsomópont gazdagép neve][sap-ha-guide-figure-3016]
+  ![27. ábra: Adja meg a második fürt csomópont állomásnév][sap-ha-guide-figure-3016]
 
-  _**27. ábra:** hello második fürt csomópont gazdagép nevének megadása_
+  _**27. ábra:** adja meg a második fürt csomópont állomásnév_
 
   > [!IMPORTANT]
-  > Győződjön meg arról, hogy hello **adja hozzá az összes megfelelő tárolót toohello fürtöt** jelölőnégyzet **nem** kijelölt.  
+  > Ügyeljen arra, hogy a **minden megfelelő tároló felvétele a fürt** jelölőnégyzet **nem** kijelölt.  
   >
   >
 
-  ![28. ábra: Jelölje be az hello jelölőnégyzetet][sap-ha-guide-figure-3017]
+  ![28. ábra: Jelölje be a jelölőnégyzetet][sap-ha-guide-figure-3017]
 
-  _**28. ábra:** tegye **nem** válasszon hello jelölőnégyzetet_
+  _**28. ábra:** tegye **nem** jelölje be a jelölőnégyzetet_
 
-  Kvórum és lemezek kapcsolatos figyelmeztetések figyelmen kívül hagyhatja. Hello kvórum és megosztási hello lemez később lesznek állítva, a [telepítése SIOS DataKeeper Cluster Edition SAP ASC/SCS megosztás olyan fürtlemez esetében][sap-ha-guide-8.12.3].
+  Kvórum és lemezek kapcsolatos figyelmeztetések figyelmen kívül hagyhatja. Akkor lesz a kvórum és megosztja a lemez később, a [telepítése SIOS DataKeeper Cluster Edition SAP ASC/SCS megosztás olyan fürtlemez esetében][sap-ha-guide-8.12.3].
 
-  ![29. ábra: Hello lemez kvórumával kapcsolatos figyelmeztetések mellőzése][sap-ha-guide-figure-3018]
+  ![29. ábra: A lemez kvórumával kapcsolatos figyelmeztetések mellőzése][sap-ha-guide-figure-3018]
 
-  _**29. ábra:** hello lemez kvórumával kapcsolatos figyelmeztetések mellőzése_
+  _**29. ábra:** a lemez kvórumával kapcsolatos figyelmeztetések mellőzése_
 
 
 #### <a name="e49a4529-50c9-4dcf-bde7-15a0c21d21ca"></a>A fürt tanúsító fájlmegosztás beállítása
@@ -1161,111 +1161,111 @@ A Windows Server feladatátvételi fürtszolgáltatási fürt egy SAP ASC/SCS-p�
 Ezeket a feladatokat a fürt tanúsító fájlmegosztás beállítása foglal magában:
 
 - Fájlmegosztás létrehozása
-- A beállítás hello fájl megosztási tanúsító kvórum a Feladatátvevőfürt-kezelőben
+- A fájl megosztási tanúsító Kvórum beállítása a Feladatátvevőfürt-kezelőben
 
 ##### <a name="06260b30-d697-4c4d-b1c9-d22c0bd64855"></a>Fájlmegosztás létrehozása
 
 1.  Válassza ki a tanúsító fájlmegosztást egy kvórumlemez helyett. SIOS DataKeeper támogatja ezt a lehetőséget.
 
-  Az ebben a cikkben szereplő példák hello hello tanúsító fájlmegosztás van az Azure-ban futó hello Active Directory és a DNS-kiszolgálón. hello tanúsító fájlmegosztás neve **domcontr-0**. Volna már konfigurált egy VPN-kapcsolat tooAzure (keresztül telephelyek közötti VPN vagy Azure expressroute-ot), mert az Active Directory és a DNS szolgáltatás a helyi, és nem megfelelő toorun fájl megosztása tanúsító.
+  A cikkben szereplő példákban a tanúsító fájlmegosztás az Azure-ban futó Active Directory és a DNS-kiszolgálón. A tanúsító fájlmegosztás neve **domcontr-0**. Volna konfigurálta az Azure-ba (telephelyek közötti VPN vagy Azure ExpressRoute) keresztül VPN-kapcsolat, mert az Active Directory és a DNS szolgáltatás a helyi, és nem megfelelő futtatni egy tanúsító ossza meg.
 
   > [!NOTE]
-  > Ha az Active Directory és a DNS szolgáltatás csak a helyszíni fut, ne állítson be a tanúsító fájlmegosztás hello Active Directory és a DNS a Windows operációs rendszeren, amely a helyszíni fut-e. Előfordulhat, hogy fut az Azure Active Directory és a DNS a helyszíni és a fürtcsomópontok közötti hálózati késés túl nagy, és a csatlakozási problémák miatt. Lehet, hogy tooconfigure hello tanúsító fájlmegosztás Bezárás toohello fürtcsomóponton futó Azure virtuális géphez.  
+  > Ha az Active Directory és a DNS szolgáltatás csak a helyszíni fut, ne állítson be a tanúsító fájlmegosztás fut-e a helyszíni Active Directory és a DNS a Windows operációs rendszeren. Előfordulhat, hogy fut az Azure Active Directory és a DNS a helyszíni és a fürtcsomópontok közötti hálózati késés túl nagy, és a csatlakozási problémák miatt. Ne felejtse el a tanúsító fájlmegosztás beállítása megközelíti a fürtcsomópont futtató Azure virtuális géphez.  
   >
   >
 
-  hello kvórum meghajtó legalább 1024 MB szabad területre van szüksége. Azt javasoljuk, hogy a 2048 MB szabad lemezterületet a hello kvórum meghajtóra.
+  A kvórum meghajtó legalább 1024 MB szabad területre van szüksége. Azt javasoljuk, hogy a 2048 MB szabad lemezterületet a kvórum meghajtót.
 
-2.  Adja hozzá a hello fürtnévobjektum.
+2.  Adja hozzá a fürtnévobjektum.
 
-  ![30. ábra: Hello fürtnévobjektum hello megosztáson hello engedélyek hozzárendelése][sap-ha-guide-figure-3019]
+  ![30. ábra: A megosztást a fürtnévobjektum vonatkozó engedélyek hozzárendelése][sap-ha-guide-figure-3019]
 
-  _**30. ábra:** hello fürtnévobjektum hello megosztáson hello engedélyek hozzárendelése_
+  _**30. ábra:** a megosztást a fürtnévobjektum vonatkozó engedélyek hozzárendelése_
 
-  Ne feledje hello engedélyek hello fürtnévobjektum hello megosztást hello hatóság toochange adatok közé tartozik (a példánkban **pr1-ASC-vir$**).
+  Ne feledje, hogy az engedélyek tartalmazza-e az adatok módosítása a megosztást a fürtnévobjektum-kezelő szolgáltatóként (a példánkban **pr1-ASC-vir$**).
 
-3.  tooadd hello fürt neve objektum toohello listáról válassza ki **Hozzáadás**. Módosítsa a hello szűrő toocheck számítógép-objektumok hozzáadása toothose 31. ábrán látható.
+3.  A fürtnévobjektum felvenni a listára, válassza ki **Hozzáadás**. Módosítsa a szűrőt, hogy ellenőrizze a számítógép-objektumok kívül 31. ábrán látható.
 
-  ![31. ábra: Változás hello objektumtípusok tooinclude számítógépek][sap-ha-guide-figure-3020]
+  ![31. ábra: Változás az Objektumtípusok számítógép felvétele][sap-ha-guide-figure-3020]
 
-  _**31. ábra:** hello objektumtípusok tooinclude számítógépek módosítása_
+  _**31. ábra:** számítógépek felvenni objektumtípusok módosítása_
 
-  ![32. ábra: Jelölje be hello számítógépek][sap-ha-guide-figure-3021]
+  ![32. ábra: Jelölje be a számítógépek][sap-ha-guide-figure-3021]
 
-  _**32. ábra:** válassza hello **számítógépek** jelölőnégyzetet_
+  _**32. ábra:** válassza ki a **számítógépek** jelölőnégyzetet_
 
-4.  Adja meg a hello fürtnévobjektum 31. ábrán látható módon. Hello rekord már létrejött, mert hello engedélyek, módosíthatja, ahogy az ábra 30.
+4.  Adja meg a fürtnévobjektum, ahogy az ábra 31. A bejegyzést már létrejött, mert az engedélyek módosíthatja, ahogy az ábra 30.
 
-5.  Jelölje be hello **biztonsági** hello megosztást, és majd lapján részletesebb hello fürtnévobjektum engedélyeit.
+5.  Válassza ki a **biztonsági** a megosztást, és majd lapján részletesebb a fürtnévobjektum engedélyeit.
 
-  ![33. ábra: Hello biztonsági attribútumainak hello fürtnévobjektum a hello fájl megosztási Kvórum beállítása.][sap-ha-guide-figure-3022]
+  ![33. ábra: A fájl megosztási kvórum a fürt neve objektum biztonsági attribútumainak beállítása][sap-ha-guide-figure-3022]
 
-  _**33. ábra:** hello biztonsági attribútumainak hello fürtnévobjektum a hello fájl megosztási Kvórum beállítása_
+  _**33. ábra:** a a fájl megosztási kvórum a fürt neve objektum biztonsági attribútumainak beállítása_
 
-##### <a name="4c08c387-78a0-46b1-9d27-b497b08cac3d"></a>Hello fájl megosztási tanúsító Kvórum beállítása a Feladatátvevőfürt-kezelőben
+##### <a name="4c08c387-78a0-46b1-9d27-b497b08cac3d"></a>Állítsa be a fájl megosztási tanúsító kvórum a Feladatátvevőfürt-kezelőben
 
-1.  Nyissa meg a hello konfigurálása fürtkvórum beállítása varázslót.
+1.  Nyissa meg a fürtkvórum beállítása varázsló konfigurálja.
 
-  ![34. ábra: Hello konfigurálása fürtkvórum beállítása varázsló indítása][sap-ha-guide-figure-3023]
+  ![34. ábra: A konfigurálás fürtkvórum beállítása varázsló indítása][sap-ha-guide-figure-3023]
 
-  _**34. ábra:** Start hello konfigurálása fürtkvórum beállítása varázsló_
+  _**34. ábra:** a konfigurálás fürtkvórum beállítása varázsló indítása_
 
-2.  A hello **kvórumkonfiguráció kiválasztása** lapon, hogy melyik **hello kvórum tanúsítójának kijelölése**.
+2.  Az a **kvórumkonfiguráció kiválasztása** lapon, hogy melyik **a kvórum tanúsítójának kijelölése**.
 
   ![35. ábra: Választhat kvórumkonfigurációinak][sap-ha-guide-figure-3024]
 
   _**35. ábra:** választhat kvórumkonfigurációinak_
 
-3.  A hello **kvórum Tanúsítójának kijelölése** lapon, hogy melyik **konfigurálása egy tanúsító fájlmegosztást**.
+3.  Az a **kvórum Tanúsítójának kijelölése** lapon, hogy melyik **konfigurálása egy tanúsító fájlmegosztást**.
 
-  ![36. ábra: Select hello tanúsító fájlmegosztás][sap-ha-guide-figure-3025]
+  ![36. ábra: Válassza ki a tanúsító fájlmegosztás][sap-ha-guide-figure-3025]
 
-  _**36. ábra:** hello tanúsító fájlmegosztás kiválasztása_
+  _**36. ábra:** válassza ki a tanúsító fájlmegosztás_
 
-4.  Adja meg a hello UNC elérési út toohello fájlmegosztást (a példánkban \\domcontr-0\FSW). hello módosításokat végezhet, válassza ki a listáját toosee **következő**.
+4.  Adja meg az UNC elérési útnak a fájlmegosztásra (a példánkban \\domcontr-0\FSW). A módosításokat végezhet listájának megtekintéséhez válasszon **következő**.
 
-  ![37. ábra: Hello fájlmegosztási helyet hello tanúsító fájlmegosztás meghatározása][sap-ha-guide-figure-3026]
+  ![37. ábra: A fájlmegosztási helyet a tanúsító fájlmegosztás meghatározása][sap-ha-guide-figure-3026]
 
-  _**37. ábra:** hello fájlmegosztási helyet hello tanúsító fájlmegosztás meghatározása_
+  _**37. ábra:** határozza meg a fájlmegosztás helyét a tanúsító fájlmegosztás_
 
-5.  Válassza ki a hello módosításokat, és válassza **következő**. Toosuccessfully kell konfigurálnia a hello fürtkonfiguráció ahogy az ábra 38.  
+5.  Válassza ki a megfelelő módosításokat, majd válassza ki **következő**. Sikeresen konfigurálja újra a fürtkonfiguráció ahogy az ábra 38 kell.  
 
-  ![38. ábra: Megerősítése, hogy Ön már újrakonfigurálása hello fürt][sap-ha-guide-figure-3027]
+  ![38. ábra: Megerősítése, hogy a fürt már újra konfigurálni][sap-ha-guide-figure-3027]
 
-  _**38. ábra:** , hogy Ön már újrakonfigurálása hello fürt megerősítése_
+  _**38. ábra:** , hogy a fürt már újra konfigurálni megerősítése_
 
-Windows feladatátvevő fürt hello sikeres telepítését követően a módosításokat kell toobe toosome küszöbértékek tooadapt feladatátvételi észlelési tooconditions tett az Azure-ban. hello megváltozott paraméterek toobe szerepelnek a blog: https://blogs.msdn.microsoft.com/clustering/2012/11/21/tuning-failover-cluster-network-thresholds/. Feltételezve, hogy a két virtuális gépekre, amelyek build hello fürtkonfiguráció Windows ASC/SCS a szerepelnek hello ugyanazon az alhálózaton, hello következő paramétereket kell módosítani toobe toothese értékeket:
+A Windows feladatátvevő fürt sikeres telepítését követően módosítások szükség lehet néhány küszöbértékek való igazításának lehetősége feladatátvételi észlelési feltételeket az Azure-ban. Módosítani kell a paraméterei dokumentálva vannak ebben a blogban: https://blogs.msdn.microsoft.com/clustering/2012/11/21/tuning-failover-cluster-network-thresholds/. Feltételezve, hogy a két virtuális gépekre, amelyek a Windows-fürt konfigurációs építése ASC/SCS ugyanazon az alhálózaton találhatók, a következő paramétereket kell módosítani ezeket az értékeket:
 - SameSubNetDelay = 2
 - SameSubNetThreshold = 15
 
-Ezeket a beállításokat felhasználók tesztelése és egy jó biztonsági sérülés toobe elég rugalmas megadott hello egy oldalán. A hello ugyanakkor ezek a beállítások volt biztosítása gyors elég feladatátvételi valós hibaüzenet feltételekben az SAP-szoftver vagy a csomópont vagy Virtuálisgép-hiba. 
+Ezeket a beállításokat felhasználók tesztelése és megadott kell lennie, elég rugalmas az egyik oldalon a helyes biztonsági sérülése. Másfelől ezeket a beállításokat volt biztosítása gyors elég feladatátvételi valós hibaüzenet feltételekben az SAP-szoftver vagy a csomópont vagy Virtuálisgép-hiba. 
 
-### <a name="5c8e5482-841e-45e1-a89d-a05c0907c868"></a>Hello SAP ASC/SCS fürtlemez megosztás SIOS DataKeeper Cluster Edition telepítése
+### <a name="5c8e5482-841e-45e1-a89d-a05c0907c868"></a>Az SAP ASC/SCS fürtlemez-megosztás SIOS DataKeeper Cluster Edition telepítése
 
-Most már rendelkezik egy működő Windows Server feladatátvételi fürtszolgáltatás konfigurációs az Azure-ban. De tooinstall SAP ASC/SCS példánya egy megosztott lemez erőforrás van szüksége. Nem hozható létre megosztott hello lemezerőforrásokat van szüksége az Azure-ban. SIOS DataKeeper Cluster Edition egy olyan külső megoldás, megosztott toocreate lemezerőforrásokat is használhatja.
+Most már rendelkezik egy működő Windows Server feladatátvételi fürtszolgáltatás konfigurációs az Azure-ban. De egy SAP ASC/SCS példányát telepítenie kell egy megosztott lemez erőforrás. Nem hozható létre a szükséges megosztott lemez erőforrások az Azure-ban. SIOS DataKeeper Cluster Edition egy olyan külső megoldás, megosztott lemez erőforrások létrehozására használhatja.
 
-Az SAP ASC/SCS hello SIOS DataKeeper Cluster Edition telepítését a megosztás fürtlemez ezeket a feladatokat foglalja magában:
+Ezeket a feladatokat az SAP ASC/SCS megosztás fürtlemezt SIOS DataKeeper Cluster Edition telepítését foglalja magában:
 
-- .NET-keretrendszer 3.5 hello hozzáadása
+- A .NET-keretrendszer 3.5-ös hozzáadása
 - SIOS DataKeeper telepítése
 - SIOS DataKeeper beállítása
 
-#### <a name="1c2788c3-3648-4e82-9e0d-e058e475e2a3"></a>.NET-keretrendszer 3.5 hello hozzáadása
-hello Microsoft .NET-keretrendszer 3.5-ös verzióját nem automatikusan aktiválva, vagy Windows Server 2012 R2 rendszeren telepítve. SIOS DataKeeper használatához hello .NET-keretrendszer toobe telepíthető DataKeeper minden csomóponton, telepítenie kell hello .NET-keretrendszer 3.5 hello vendég operációs rendszeren az hello fürt összes virtuális gépet.
+#### <a name="1c2788c3-3648-4e82-9e0d-e058e475e2a3"></a>Adja hozzá a .NET-keretrendszer 3.5-ös verzióját
+A Microsoft .NET-keretrendszer 3.5-ös verzióját nem automatikusan aktiválva, vagy Windows Server 2012 R2 rendszeren telepítve. Mivel SIOS DataKeeper szüksége van a .NET-keretrendszer telepíthető DataKeeper minden csomóponton, telepítenie kell a .NET-keretrendszer 3.5 az összes virtuális gépet a fürt a vendég operációs rendszeren.
 
-Két módon tooadd hello .NET-keretrendszer 3.5 van:
+A .NET-keretrendszer 3.5 hozzáadandó két módja van:
 
-- Hello-szerepkörök hozzáadása és szolgáltatások varázsló használata a Windows ahogy az ábra 39.
+- A szerepkörök hozzáadása és szolgáltatások varázsló használata a Windows ahogy az ábra 39.
 
-  ![39. ábra: Hello .NET-keretrendszer 3.5 telepítése hello hozzáadása szerepkörök és szolgáltatások varázsló segítségével][sap-ha-guide-figure-3028]
+  ![39. ábra: A .NET-keretrendszer 3.5 telepítése a szerepkörök hozzáadása és szolgáltatások varázsló segítségével][sap-ha-guide-figure-3028]
 
-  _**39. ábra:** telepítés hello .NET-keretrendszer 3.5 hello hozzáadása szerepkörök és szolgáltatások varázsló segítségével_
+  _**39. ábra:** a .NET-keretrendszer 3.5 telepítése a szerepkörök hozzáadása és szolgáltatások varázsló_
 
-  ![40. ábra: Telepítés folyamatjelző hello .NET-keretrendszer 3.5 telepítése hello hozzáadása szerepkörök és szolgáltatások varázsló segítségével][sap-ha-guide-figure-3029]
+  ![40. ábra: Telepítés folyamatjelző, amikor telepíti a .NET-keretrendszer 3.5-szerepkörök hozzáadása és szolgáltatások varázsló segítségével][sap-ha-guide-figure-3029]
 
-  _**40. ábra:** sáv hello hozzáadása szerepkörök és szolgáltatások varázsló segítségével hello .NET-keretrendszer 3.5 telepítésekor a telepítési folyamat_
+  _**40. ábra:** telepítés folyamatjelző, amikor telepíti a .NET-keretrendszer 3.5-szerepkörök hozzáadása és szolgáltatások varázsló segítségével_
 
-- Hello parancssori eszköz a dism.exe használata szükséges. Az ilyen típusú telepítés tooaccess hello SxS könyvtár a telepítési adathordozó Windows hello kell. Egy rendszergazda jogú parancssort írja be:
+- A parancssori eszköz a dism.exe használata szükséges. Az ilyen típusú telepítést kell a Windows-telepítési adathordozón lévő SxS könyvtár eléréséhez. Egy rendszergazda jogú parancssort írja be:
 
   ```
   Dism /online /enable-feature /featurename:NetFx3 /All /Source:installation_media_drive:\sources\sxs /LimitAccess
@@ -1273,209 +1273,209 @@ Két módon tooadd hello .NET-keretrendszer 3.5 van:
 
 #### <a name="dd41d5a2-8083-415b-9878-839652812102"></a>SIOS DataKeeper telepítése
 
-Telepítse a SIOS DataKeeper Cluster Edition hello fürt mindegyik csomópontján. SIOS DataKeeper, a megosztott tároló virtuális toocreate hozzon létre egy szinkronizált tükrözött, és majd szimulálása a fürt megosztott tároló.
+A fürt minden csomópontja SIOS DataKeeper Cluster Edition telepítését. Hozzon létre virtuális megosztott tárolási SIOS DataKeeper hozzon létre egy szinkronizált tükrözött, és ezután szimulálni a fürt megosztott tárhelye.
 
-Hello SIOS szoftver telepítése előtt hozzon létre hello tartományi felhasználó **DataKeeperSvc**.
+A SIOS szoftver telepítése előtt hozza létre a tartományi felhasználót **DataKeeperSvc**.
 
 > [!NOTE]
-> Adja hozzá a hello **DataKeeperSvc** felhasználói toohello **helyi rendszergazdai** csoport mindkét fürtcsomóponton.
+> Adja hozzá a **DataKeeperSvc** felhasználót, hogy a **helyi rendszergazdai** csoport mindkét fürtcsomóponton.
 >
 >
 
-tooinstall SIOS DataKeeper:
+SIOS DataKeeper telepítése:
 
-1.  Szoftvertelepítés hello SIOS mindkét fürtcsomóponton.
+1.  Telepíti a SIOS mindkét fürtcsomóponton.
 
   ![SIOS telepítő][sap-ha-guide-figure-3030]
 
-  ![. Ábra 41: Hello SIOS DataKeeper telepítési első oldalán][sap-ha-guide-figure-3031]
+  ![. Ábra 41: A SIOS DataKeeper telepítés első oldalán][sap-ha-guide-figure-3031]
 
-  _**41. ábra:** hello SIOS DataKeeper telepítési első oldalára_
+  _**41. ábra:** SIOS DataKeeper telepítésének első oldalára_
 
-2.  A megjelenő ábra 42 hello párbeszédpanelen válassza ki a **Igen**.
+2.  A megjelenő ábra 42 párbeszédpanelen válassza ki **Igen**.
 
   ![42. ábra: DataKeeper arról tájékoztatja, hogy a szolgáltatás le lesz tiltva][sap-ha-guide-figure-3032]
 
   _**42. ábra:** DataKeeper arról tájékoztatja, hogy a szolgáltatás le lesz tiltva_
 
-3.  Hello párbeszédpanelen megjelenő ábra 43, azt javasoljuk, hogy kiválassza **tartomány vagy a kiszolgáló fiók**.
+3.  A párbeszédpanelen megjelenő ábra 43, azt javasoljuk, hogy kiválassza **tartomány vagy a kiszolgáló fiók**.
 
   ![43. ábra: A SIOS DataKeeper felhasználó kiválasztása][sap-ha-guide-figure-3033]
 
   _**43. ábra:** SIOS DataKeeper a felhasználó kiválasztása_
 
-4.  Adja meg a hello tartományi fiók felhasználói nevét és SIOS DataKeeper létrehozott jelszavakat.
+4.  Adja meg a tartományi fiók felhasználói nevét és a jelszavak SIOS DataKeeper létrehozott.
 
-  ![44. ábra: Hello tartományi felhasználónév és jelszó megadása hello SIOS DataKeeper telepítése][sap-ha-guide-figure-3034]
+  ![44. ábra: Adja meg a tartományi felhasználónevet és jelszót a SIOS DataKeeper telepítés][sap-ha-guide-figure-3034]
 
-  _**44. ábra:** hello SIOS DataKeeper telepítési hello tartományi felhasználónevet és jelszót adjon meg_
+  _**44. ábra:** adja meg a tartományi felhasználónevet és jelszót a SIOS DataKeeper telepítés_
 
-5.  Telepítse a SIOS DataKeeper példány, ahogy az ábra 45 hello Licenckulcs.
+5.  Telepítse a SIOS DataKeeper példány licenckulcs, ahogy az ábra 45.
 
   ![45. ábra: Adja meg a SIOS DataKeeper licenckulcs][sap-ha-guide-figure-3035]
 
   _**45. ábra:** adja meg a SIOS DataKeeper licenckulcs_
 
-6.  Amikor a rendszer kéri, indítsa újra a hello virtuális gépet.
+6.  Amikor a rendszer kéri, indítsa újra a virtuális gép.
 
 #### <a name="d9c1fc8e-8710-4dff-bec2-1f535db7b006"></a>SIOS DataKeeper beállítása
 
-Telepítése után SIOS DataKeeper mindkét csomóponton, toostart hello konfigurációs szüksége. hello hello konfigurációs célja toohave szinkron replikálása hello további csatlakoztatott virtuális merevlemezek tooeach hello virtuális gépek között.
+Miután mindkét csomópont SIOS DataKeeper telepítette, akkor indítsa el a konfigurációs. A konfigurációs célja van csatolva a virtuális gépek mindegyikének további virtuális merevlemezeknek között szinkron replikálása.
 
-1.  Indítsa el a hello DataKeeper felügyeleti és a konfigurációs eszközt, és válassza ki **Connect kiszolgáló**. (Az ábrán 46, ez a beállítás van körben piros.)
+1.  Indítsa el a DataKeeper kezelési és konfigurációs eszközt, és válassza **Connect kiszolgáló**. (Az ábrán 46, ez a beállítás van körben piros.)
 
   ![46. ábra: SIOS DataKeeper kezelési és konfigurációs eszköz][sap-ha-guide-figure-3036]
 
   _**46. ábra:** SIOS DataKeeper felügyelete és konfigurálása eszköz_
 
-2.  Adja meg hello nevét, vagy a TCP/IP-cím hello első csomópont hello felügyelete és konfigurálása eszköz kell csatlakoztatja, és, a második lépésben hello második csomópontra.
+2.  Adja meg a nevét vagy IP-címét az első csomópontot a felügyeleti és konfigurációs eszköz számára, és egy második lépésben, a második csomópont kapcsolódnia kell.
 
-  ![47. ábra: Hello neve vagy a TCP/IP-cím hello első csomópont hello felügyelete és konfigurálása eszköz kell csatlakoztatja, és egy második lépésben hello második csomópont][sap-ha-guide-figure-3037]
+  ![47. ábra: Helyezze be a nevet, vagy a TCP/IP-cím, az első csomópontot a felügyeleti és a konfigurációs eszközt kell csatlakoztatja, és egy második lépésben, a második csomópont][sap-ha-guide-figure-3037]
 
-  _**47. ábra:** hello neve vagy a TCP/IP-cím hello első csomópont hello felügyelete és konfigurálása eszköz kell csatlakoztatja, és egy második lépésben hello második csomópont_
+  _**47. ábra:** helyezze be a nevet vagy az első csomópontot a felügyeleti és a konfigurációs eszközt kell csatlakoztatja, és egy második lépésben, a második csomópont TCP/IP-címe_
 
-3.  Hozzon létre hello fájlreplikálási feladat hello két csomópont között.
+3.  Hozzon létre a replikációs feladatot, a két csomópont között.
 
   ![48. ábra: A replikáció feladat létrehozása][sap-ha-guide-figure-3038]
 
   _**48. ábra:** replikációs feladat létrehozása_
 
-  A varázsló végigvezeti egy fájlreplikálási feladat létrehozásának folyamatán hello.
-4.  Adja meg a hello nevét, az TCP/IP-cím és a hello forráscsomópont lemezköteten.
+  A varázsló végigvezeti egy fájlreplikálási feladat létrehozásának folyamatán.
+4.  Adja meg a nevét, az TCP/IP-cím és a a forráscsomópont lemezkötetet.
 
-  ![49. ábra: Hello replikációs feladat hello nevének meghatározása][sap-ha-guide-figure-3039]
+  ![49. ábra: Adja meg a nevét, a replikációs feladat][sap-ha-guide-figure-3039]
 
-  _**49. ábra:** Define hello hello replikációs feladat neve_
+  _**49. ábra:** adja meg a nevét, a replikációs feladat_
 
-  ![50. ábra: Hello alap adatok hello csomópont, hogy hello aktuális forráscsomópont alkalmazandó meghatározása][sap-ha-guide-figure-3040]
+  ![50. ábra: A csomópont, amely az aktuális adatforrás-csomópontnak kell lennie az alap adatok meghatározásához][sap-ha-guide-figure-3040]
 
-  _**50. ábra:** hello csomópont, hogy hello aktuális forráscsomópont alkalmazandó hello adatainak megadása_
+  _**50. ábra:** a csomóponthoz, amely az aktuális adatforrás-csomópontnak kell lennie az alap adatok meghatározásához_
 
-5.  Hello nevét, a TCP/IP-cím és a hello célcsomóponttal lemezkötetének megadása.
+5.  Adja meg a nevét, az TCP/IP-cím és a célcsomóponton lemezkötetének.
 
-  ![51. ábra: Hello alap adatok hello csomópont, hogy hello aktuális célcsomóponttal alkalmazandó meghatározása][sap-ha-guide-figure-3041]
+  ![51. ábra: A csomópont, hogy az aktuális célcsomóponttal alkalmazandó alap adatok meghatározásához][sap-ha-guide-figure-3041]
 
-  _**51. ábra:** hello csomópont, hogy hello aktuális célcsomóponttal alkalmazandó hello adatainak megadása_
+  _**51. ábra:** határozza meg a kell lennie az aktuális célcsomóponttal csomópont adatait_
 
-6.  Hello tömörítési algoritmust határozza meg. Ebben a példában azt javasoljuk, hogy a tömörítés hello replikálási adatfolyamból. Különösen abban az esetben az újraszinkronizálás hello replikálási adatfolyamból hello tömörítésének jelentősen csökkenti az újraszinkronizálás idő. Vegye figyelembe, hogy a tömörítési hello Processzor és memória szempontjából erőforrásokat egy virtuális gép használ. A hello tömörítési arány növekedése, hello használt CPU-erőforrások mennyiségét. Is módosíthatja ezt a beállítást később.
+6.  A tömörítési algoritmust határozza meg. Ebben a példában azt javasoljuk, hogy a tömörítés a replikálási adatfolyamból. Különösen abban az esetben az újraszinkronizálás a tömörítés a replikációs adatfolyam jelentősen csökkenti az újraszinkronizálás idő. Vegye figyelembe, hogy a tömörítés a Processzor és memória szempontjából erőforrásokat egy virtuális gép használja. A tömörítési arány növekszik, ezért nem használt CPU-erőforrások mennyiségét. Is módosíthatja ezt a beállítást később.
 
-7.  Egy másik beállítás kell toocheck e hello replikáció aszinkron vagy szinkron módon történik-e. *Ha a SAP ASC/SCS konfigurációk, használnia kell a szinkron replikáció*.  
+7.  Egy másik beállítást kell ellenőrizni, hogy a replikáció aszinkron vagy szinkron módon történik-e. *Ha a SAP ASC/SCS konfigurációk, használnia kell a szinkron replikáció*.  
 
   ![52. ábra: A replikáció adatainak megadása][sap-ha-guide-figure-3042]
 
   _**52. ábra:** replikációs adatainak megadása_
 
-8.  Határozza meg, hogy legyen-e az hello kötet replikált hello replikációs feladat által képviselt tooa Windows Server feladatátvételi fürtszolgáltatási fürtkonfiguráció egy megosztott lemezt. Hello SAP ASC/SCS konfigurációs, válassza a **Igen** , hogy a fürt látja hello Windows hello replikált a kötet olyan megosztott lemezzel, amelyet a fürt kötetként használhat.
+8.  Határozza meg, hogy a kötet a replikációs feladat által replikált kell magát egy Windows Server feladatátvételi fürtszolgáltatási fürtkonfiguráció, mint egy megosztott lemez számára. Az SAP ASC/SCS konfigurációs kiválasztása **Igen** , hogy a Windows fürtszolgáltatás látja a replikált kötet egy megosztott lemezt, amely egy fürt kötetként használhat.
 
-  ![53. ábra: Kattintson az Igen tooset hello replikált kötet egy fürtkötetként][sap-ha-guide-figure-3043]
+  ![53. ábra: Válassza az Igen, a replikált kötet beállítása a fürt kötetként][sap-ha-guide-figure-3043]
 
-  _**53. ábra:** válasszon **Igen** tooset hello egy fürt kötet replikálása_
+  _**53. ábra:** válasszon **Igen** a replikált kötet beállítása a fürt kötetként_
 
-  Hello kötet létrehozása után hello DataKeeper felügyelete és konfigurálása eszköz látható, hogy hello fájlreplikálási feladat aktív.
+  A kötet létrehozása után a DataKeeper felügyelete és konfigurálása eszköz mutatja, hogy a replikációs feladat aktív.
 
-  ![Ábra 54: DataKeeper szinkron tükrözés hello SAP ASC/SCS megosztás lemez a jelenleg aktív][sap-ha-guide-figure-3044]
+  ![Ábra 54: DataKeeper szinkron tükrözés az SAP ASC/SCS megosztás lemez jelenleg aktív][sap-ha-guide-figure-3044]
 
-  _**Ábra 54:** DataKeeper szinkron tükrözés hello SAP ASC/SCS osztozhat lemezen a jelenleg aktív_
+  _**Ábra 54:** DataKeeper szinkron tükrözés az SAP ASC/SCS a lemez megosztása a jelenleg aktív_
 
-  Ahogy az ábra 55 a Feladatátvevőfürt-kezelő most hello lemez DataKeeper lemezként jeleníti meg.
+  Feladatátvevőfürt-kezelő most már a lemez DataKeeper lemezként jeleníti meg, ahogy az ábra 55.
 
-  ![55. ábra: A Feladatátvevőfürt-kezelő hello lemez DataKeeper replikált jeleníti meg][sap-ha-guide-figure-3045]
+  ![55. ábra: A Feladatátvevőfürt-kezelő a lemez DataKeeper replikált jeleníti meg][sap-ha-guide-figure-3045]
 
-  _**Ábra 55:** Feladatátvevőfürt-kezelő látható hello lemez adott replikált DataKeeper_
+  _**Ábra 55:** Feladatátvevőfürt-kezelő jeleníti meg a lemezt, a replikált DataKeeper_
 
-## <a name="a06f0b49-8a7a-42bf-8b0d-c12026c5746b"></a>Hello SAP NetWeaver rendszer telepítése
+## <a name="a06f0b49-8a7a-42bf-8b0d-c12026c5746b"></a>Az SAP NetWeaver rendszer telepítése
 
-Mert beállítások változhatnak attól függően hello használt adatbázis-kezelő rendszer azt nem leírják hello DBMS beállítása. Azonban feltételezzük, hogy magas rendelkezésre állású kérdéseket hello DBMS hello különböző DBMS szállítóktól támogatja az Azure-hello funkciókkal rendelkező tárgyalja. Például mindig bekapcsolva vagy adatbázis-tükrözést az SQL Server és Oracle Data Guard az Oracle-adatbázisok. Ebben a cikkben használjuk hello esetben azt további védelmi toohello adatbázis-kezelő nem vett fel.
+Az adatbázis-kezelő a telepítő azt nem ismertetik, mert beállítások eltérők lehetnek, attól függően, hogy az adatbázis-kezelő rendszert használ. Azonban feltételezzük, hogy az adatbázis-kezelő magas rendelkezésre állású kérdéseket a különböző DBMS forgalmazójával támogatja az Azure-funkciókkal rendelkező tárgyalja. Például mindig bekapcsolva vagy adatbázis-tükrözést az SQL Server és Oracle Data Guard az Oracle-adatbázisok. A forgatókönyvben a cikkben használjuk, azt nem további védelem bekapcsolása a az adatbázis-kezelő.
 
 Nincsenek semmilyen külön odafigyelést különböző adatbázis-kezelő szolgáltatásokat fürtözött SAP ASC/SCS konfigurálása az Azure-ban az ilyen kommunikál.
 
 > [!NOTE]
-> hello telepítési eljárásokat az SAP NetWeaver ABAP rendszerek, Java, és a ABAP + Java rendszerek csaknem azonosak. hello legfontosabb különbség, hogy rendelkezik-e az SAP ABAP rendszer ASC egy példánya. SAP Java rendszer hello egy SCS példány van. hello SAP ABAP + Java rendszer egy ASC példányával rendelkezik, és fut egy SCS példány hello ugyanazt a Microsoft feladatátvevő fürt csoport. Összes telepítési különbséget minden SAP NetWeaver telepítési verem explicit módon szerepelnek. Feltételezzük, hogy minden egyéb részeinek vannak hello azonos.  
+> A telepítési eljárásokat az SAP NetWeaver ABAP rendszerek, Java, és a ABAP + Java rendszerek csaknem azonosak. A legfontosabb különbség, hogy rendelkezik-e az SAP ABAP rendszer ASC egy példánya. Az SAP Java rendszer egy SCS példány van. Az SAP ABAP + Java rendszer rendelkezik egy ASC példány és egy SCS példány fut a Microsoft feladatátvevő fürt csoporton belül. Összes telepítési különbséget minden SAP NetWeaver telepítési verem explicit módon szerepelnek. Feltételezzük, hogy minden egyéb részeinek megegyeznek.  
 >
 >
 
 ### <a name="31c6bd4f-51df-4057-9fdf-3fcbc619c170"></a>Telepítse a SAP, ha a magas rendelkezésre állású ASC/SCS példánya
 
 > [!IMPORTANT]
-> Győződjön meg a lap DataKeeper fájlja nem a tooplace tükrözött kötetek. DataKeeper nem támogatja a tükrözött kötetek. A lapozófájl hello ideiglenes D meghajtó egy Azure virtuális gép hello alapértelmezett hagyhatja. Ha még nem szerepel ott, helyezze át a hello Windows lap fájl toodrive D az Azure virtuális gép.
+> Győződjön meg arról, hogy nem helyezhető el a lapozófájl DataKeeper tükrözött köteteken. DataKeeper nem támogatja a tükrözött kötetek. A lapozófájl az ideiglenes meghajtón D egy Azure virtuális gép, az alapértelmezett hagyhatja. Ha még nincs hiba, a Windows lapozófájlja áthelyezése az Azure virtuális gép D meghajtó.
 >
 >
 
 Ezeket a feladatokat, ha a magas rendelkezésre állású ASC/SCS példánya SAP telepítése foglal magában:
 
-- Virtuális állomásnevet fürtözött hello SAP ASC/SCS példány létrehozása
-- Hello SAP első fürtcsomópontra telepítése
-- Hello SAP profil hello ASC/SCS példány módosítása
+- Egy virtuális nevet az SAP ASC/SCS fürtözött példány létrehozása
+- Az SAP első fürtcsomópontra telepítése
+- Az SAP-profilnak ASC/SCS-példány módosítása
 - A mintavétel a port hozzáadása
-- Hello Windows tűzfal mintavételi port megnyitása
+- A Windows tűzfal mintavételi port megnyitása
 
-#### <a name="a97ad604-9094-44fe-a364-f89cb39bf097"></a>Hozzon létre egy virtuális nevet fürtözött hello SAP ASC/SCS példány
+#### <a name="a97ad604-9094-44fe-a364-f89cb39bf097"></a>Hozzon létre egy virtuális nevet az SAP ASC/SCS fürtözött példány
 
-1.  Hello Windows DNS-kezelőben hozzon létre egy DNS-bejegyzést hello ASC/SCS példányának hello virtuális állomás neve.
+1.  A Windows DNS-kezelőben hozzon létre egy DNS-bejegyzést a ASC/SCS példányának virtuális állomás neve.
 
   > [!IMPORTANT]
-  > hello toohello virtuális állomásnevét ASC/SCS-példány neve lehet hello hozzárendelt IP-cím hello azonos tooAzure terheléselosztóhoz rendelt hello IP-címként (**<*SID*> - lb - ASC **).  
+  > Az IP-cím, amikor hozzárendeli a ASC/SCS példányának virtuális állomás neve lehet ugyanaz, mint az Azure Load Balancer rendelt IP-cím (**<*SID*> - lb - ASC **).  
   >
   >
 
-  IP-cím hello virtuális SAP ASC/SCS állomásnév hello (**pr1-ASC-sap**) van hello azonos Azure terheléselosztó hello IP-címként (**pr1-lb-ASC**).
+  Az SAP ASC/SCS állomásnév virtuális IP-címe (**pr1-ASC-sap**) ugyanaz, mint az IP-cím az Azure Load Balancer (**pr1-lb-ASC**).
 
-  ![Ábra 56: Hello DNS-bejegyzés hello SAP ASC/SCS fürt virtuális nevét és a TCP/IP-cím megadása][sap-ha-guide-figure-3046]
+  ![56. ábra: A DNS-bejegyzést a SAP ASC/SCS fürt virtuális nevét és a TCP/IP-cím megadása][sap-ha-guide-figure-3046]
 
-  _**Ábra 56:** hello DNS-bejegyzés hello SAP ASC/SCS fürt virtuális nevét és a TCP/IP-cím megadása_
+  _**Ábra 56:** a DNS-bejegyzést a SAP ASC/SCS fürt virtuális nevét és a TCP/IP-cím megadása_
 
-2.  toodefine hello IP-hozzárendelt toohello virtuális állomás nevét, jelölje be **DNS-kezelő** > **tartomány**.
+2.  A virtuális állomásneve rendelt IP-cím megadásához válassza ki a **DNS-kezelő** > **tartomány**.
 
   ![57. ábra: Új virtuális nevét és TCP/IP-cím SAP ASC/SCS fürtnek megfelelő konfiguráció][sap-ha-guide-figure-3047]
 
   _**57. ábra:** új virtuális nevét és a TCP/IP-címtartományok SAP ASC/SCS fürtnek megfelelő konfiguráció_
 
-#### <a name="eb5af918-b42f-4803-bb50-eff41f84b0b0"></a>Hello SAP első fürtcsomópontra telepítése
+#### <a name="eb5af918-b42f-4803-bb50-eff41f84b0b0"></a>Az SAP első fürtcsomópontra telepítése
 
-1.  Hello első fürt csomópont lehetőség fürtcsomóponton A. végrehajtása Például a hello **pr1-ASC-0** állomás.
-2.  tookeep hello alapértelmezett portok hello Azure belső terheléselosztót, válasszon:
+1.  Az első fürt csomópont lehetőség fürtcsomóponton A. végrehajtása Ha például a **pr1-ASC-0** állomás.
+2.  Az alapértelmezett portok az Azure belső terheléselosztóhoz, jelölje be:
 
   * **ABAP rendszer**: **ASC** szám példány **00**
   * **Java-rendszer**: **SCS** szám példány **01**
   * **ABAP + Java rendszer**: **ASC** szám példány **00** és **SCS** szám példány **01**
 
-  toouse példány számok eltérő 00 hello ABAP ASC a példány és hello Java SCS példány 01, először szüksége toochange hello Azure belső alapértelmezett terheléselosztási szabályok, leírt [módosítás hello ASC/SCS alapértelmezett betöltése terheléselosztási szabályok hello Azure belső terheléselosztóhoz][sap-ha-guide-8.9].
+  A ABAP ASC példányhoz, és a Java SCS példány 01 példány 00 eltérő számú portok használatához először módosítani szeretné az Azure belső alapértelmezett terheléselosztási szabályok, leírt [ASC/SCS alapértelmezett terheléselosztási szabályok módosítása az Azure belső terheléselosztó][sap-ha-guide-8.9].
 
-hello tovább néhány feladatot nem hello szabványos SAP telepítési dokumentációjában leírt.
+A következő néhány feladatot a szabványos SAP-dokumentáció nem ismerteti.
 
 > [!NOTE]
-> hello SAP dokumentáció ismerteti, hogyan tooinstall hello ASC/SCS fürt első csomópontjára.
+> Az SAP-dokumentáció ASC/SCS fürt első csomópontjára telepítését ismerteti.
 >
 >
 
-#### <a name="e4caaab2-e90f-4f2c-bc84-2cd2e12a9556"></a>Hello SAP profil hello ASC/SCS példány módosítása
+#### <a name="e4caaab2-e90f-4f2c-bc84-2cd2e12a9556"></a>Az SAP-profil ASC/SCS-példány módosítása
 
-Egy új profil paraméter tooadd van szüksége. hello-profil paraméter megakadályozza, hogy a SAP-munkafolyamatok és hello sorba helyezni kiszolgáló közötti kapcsolat bezárása, ha túl sokáig üresjáratban. A Microsoft hello probléma esetén említett [adja hozzá a beállításjegyzék-bejegyzések mindkét fürtcsomóponton hello SAP ASC/SCS példány][sap-ha-guide-8.11]. A szakaszt azt is bevezette a két módosítások toosome Alapszintű TCP/IP kapcsolat paramétereit. A második lépésben tooset hello sorba helyezni server toosend szükség van egy `keep_alive` jelezze, hogy hello kapcsolatok nem találati hello Azure belső elosztott terhelésű üresjárati küszöbértéket.
+Akkor hozzon létre egy új profil paraméter. A profil paraméter megakadályozza, hogy az SAP-munkafolyamatok és a sorba helyezni kiszolgáló közötti kapcsolat bezárása, ha túl sokáig üresjáratban. Jelenleg a probléma esetén említett [beállításjegyzék-bejegyzések hozzáadása az SAP ASC/SCS példány mindkét fürtcsomóponton][sap-ha-guide-8.11]. A szakaszt azt is vezette be két módosítások néhány alapvető TCP/IP-kapcsolat paraméterekhez. Egy második lépésben be kell állítani a sorba helyezni kiszolgáló küld egy `keep_alive` jelezze, hogy a kapcsolatok nem elérte az Azure belső elosztott terhelésű üresjárati küszöbértéket.
 
-toomodify hello SAP profil hello ASC/SCS példány:
+Az SAP-profil ASC/SCS-példány módosítása:
 
-1.  A profil paraméter toohello SAP ASC/SCS példány profil hozzáadása:
+1.  Ez a profil paraméter hozzáadása az SAP ASC/SCS példány profilhoz:
 
   ```
   enque/encni/set_so_keepalive = true
   ```
-  A jelen példában hello elérési út:
+  A fenti példában az elérési út:
 
   `<ShareDisk>:\usr\sap\PR1\SYS\profile\PR1_ASCS00_pr1-ascs-sap`
 
-  Például SAP SCS toohello példány profil és a megfelelő elérési út:
+  Például, hogy a SAP SCS példány profil és a megfelelő elérési út:
 
   `<ShareDisk>:\usr\sap\PR1\SYS\profile\PR1_SCS01_pr1-ascs-sap`
 
-2.  tooapply hello módosításokat, indítsa újra a hello SAP ASC /SCS példányt.
+2.  A módosítások alkalmazásához, indítsa újra az SAP ASC /SCS példányt.
 
 #### <a name="10822f4f-32e7-4871-b63a-9b86c76ce761"></a>Adjon hozzá egy mintavételi portot
 
-Toomake hello fürtözési konfigurációs működnek hello belső elosztott terhelésű mintavételi használata Azure terheléselosztó. hello Azure belső terheléselosztó általában hello bejövő munkaterhelés részt vevő virtuális gépek között egyenlően osztja el. Azonban ez nem fog működni az egyes fürtkonfigurációk mert csak egy példány aktív. hello más példány passzív, hello munkaterhelés nem tudja elfogadni. A mintavétel funkció segítségével hello Azure belső load balancer rendel csak tooan aktív példány végzett munka során. Hello mintavételi funkciójú hello belső terheléselosztó előfordulások aktív, és majd cél hello munkaterhelés csak hello példány képes észlelni.
+A belső terheléselosztó mintavételi funkció segítségével a teljes fürt konfigurációs Azure terheléselosztó dolgozni. Az Azure belső terheléselosztó általában a bejövő terhelés részt vevő virtuális gépek között egyenlően osztja el. Azonban ez nem fog működni az egyes fürtkonfigurációk mert csak egy példány aktív. A többi példány passzív, és a munkaterhelés nem tudja elfogadni. A mintavételi funkció segít, amikor az Azure belső terheléselosztó munkahelyi csak egy aktív példány számára. A mintavétel-szolgáltatásával a belső terheléselosztó előfordulások aktív, és ezután célpéldányának csak a munkaterheléssel képes észlelni.
 
-a mintavételi portot tooadd:
+A mintavételi portot hozzáadása:
 
-1.  Ellenőrizze a hello aktuális **ProbePort** hello a következő PowerShell-parancs futtatásával beállítása. Végrehajtja a hello virtuális gépek egyik hello fürt konfigurációban.
+1.  Ellenőrizze az aktuális **ProbePort** beállítása a következő PowerShell-parancs futtatásával. A fürtkonfiguráció le a virtuális gépek egyik végrehajtást.
 
   ```PowerShell
   $SAPSID = "PR1"     # SAP <SID>
@@ -1484,19 +1484,19 @@ a mintavételi portot tooadd:
   Get-ClusterResource $SAPNetworkIPClusterName | Get-ClusterParameter
   ```
 
-2.  A mintavételi portot határozza meg. hello alapértelmezett mintavételi portszám **0**. A jelen példában használjuk a mintavételi portot **62000**.
+2.  A mintavételi portot határozza meg. Az alapértelmezett mintavételi portszám **0**. A jelen példában használjuk a mintavételi portot **62000**.
 
-  ![58. ábra: hello fürt konfigurációs mintavételi portot pedig 0 alapértelmezés szerint][sap-ha-guide-figure-3048]
+  ![58. ábra: A fürt konfigurációs mintavételi portot pedig 0 alapértelmezés szerint][sap-ha-guide-figure-3048]
 
-  _**58. ábra:** hello alapértelmezett fürt konfigurációs mintavételi portot: 0_
+  _**58. ábra:** fürt konfigurációs mintavételi törölve: 0_
 
-  hello portszámot az SAP Azure Resource Manager-sablonok van meghatározva. PowerShell hello portszámát rendelhet hozzá.
+  A portszám SAP Azure Resource Manager-sablonok van meghatározva. A port számát a PowerShellben rendelhet hozzá.
 
-  hello új ProbePort értéket tooset  **SAP <*SID*> IP ** fürterőforrás, futtassa a következő PowerShell-parancsfájl hello. Hello PowerShell változók a környezet frissítése. Hello parancsfájl futtatása után lesz felszólító toorestart hello SAP fürt csoport tooactivate hello változásait.
+  Egy új ProbePort értéket az a  **SAP <*SID*> IP ** fürterőforrás, futtassa a következő PowerShell-parancsfájlt. A környezet PowerShell változói frissítése. A parancsfájl futtatása után a rendszer kérni fogja újraindítja a SAP fürtcsoport a változások életbe lépjenek.
 
   ```PowerShell
   $SAPSID = "PR1"      # SAP <SID>
-  $ProbePort = 62000   # ProbePort of hello Azure Internal Load Balancer
+  $ProbePort = 62000   # ProbePort of the Azure Internal Load Balancer
 
   Clear-Host
   $SAPClusterRoleName = "SAP $SAPSID"
@@ -1515,16 +1515,16 @@ a mintavételi portot tooadd:
   Get-ClusterResource -Name $SAPIPresourceName | Get-ClusterParameter
 
   Write-Host
-  Write-Host "Current probe port property of hello SAP cluster resource '$SAPIPresourceName' is '$OldProbePort'." -ForegroundColor Cyan
+  Write-Host "Current probe port property of the SAP cluster resource '$SAPIPresourceName' is '$OldProbePort'." -ForegroundColor Cyan
   Write-Host
-  Write-Host "Setting hello new probe port property of hello SAP cluster resource '$SAPIPresourceName' too'$ProbePort' ..." -ForegroundColor Cyan
+  Write-Host "Setting the new probe port property of the SAP cluster resource '$SAPIPresourceName' to '$ProbePort' ..." -ForegroundColor Cyan
   Write-Host
 
   $var | Set-ClusterParameter -Multiple @{"Address"=$IPAddress;"ProbePort"=$ProbePort;"Subnetmask"=$SubnetMask;"Network"=$NetworkName;"OverrideAddressMatch"=$OverrideAddressMatch;"EnableDhcp"=$EnableDhcp}
 
   Write-Host
 
-  $ActivateChanges = Read-Host "Do you want tootake restart SAP cluster role '$SAPClusterRoleName', tooactivate hello changes (yes/no)?"
+  $ActivateChanges = Read-Host "Do you want to take restart SAP cluster role '$SAPClusterRoleName', to activate the changes (yes/no)?"
 
   if($ActivateChanges -eq "yes"){
   Write-Host
@@ -1550,7 +1550,7 @@ a mintavételi portot tooadd:
   }
   ```
 
-  Miután hello kapcsolása  **SAP <*SID*> ** fürtön a szerepkör hálózatra, ellenőrizze, hogy **ProbePort** toohello új érték van beállítva.
+  Miután kapcsolása a  **SAP <*SID*> ** fürtön a szerepkör hálózatra, ellenőrizze, hogy **ProbePort** az új értékre van beállítva.
 
   ```PowerShell
   $SAPSID = "PR1"     # SAP <SID>
@@ -1560,71 +1560,71 @@ a mintavételi portot tooadd:
 
   ```
 
-  ![59. ábra: Mintavételi hello fürt port hello új érték beállítása után][sap-ha-guide-figure-3049]
+  ![59. ábra: Miután beállította az új érték mintavétel-a fürt port][sap-ha-guide-figure-3049]
 
-  _**59. ábra:** hello új érték beállítása után, mintavételi modulja hello fürt port_
+  _**59. ábra:** az új érték beállítása után, mintavételi modulja a fürt port_
 
-#### <a name="4498c707-86c0-4cde-9c69-058a7ab8c3ac"></a>Nyissa meg a hello Windows tűzfal mintavételi portot
+#### <a name="4498c707-86c0-4cde-9c69-058a7ab8c3ac"></a>Nyissa meg a Windows tűzfal mintavételi portot
 
-A Windows tűzfal mintavételi portot mindkét fürtcsomóponton tooopen van szüksége. A következő parancsfájl tooopen a Windows tűzfal mintavételi portot hello használata. Hello PowerShell változók a környezet frissítése.
+Nyissa meg a Windows tűzfal mintavételi portot mindkét fürtcsomóponton kell. A következő parancsfájl segítségével nyissa meg a Windows tűzfal mintavételi portot. A környezet PowerShell változói frissítése.
 
   ```PowerShell
-  $ProbePort = 62000   # ProbePort of hello Azure Internal Load Balancer
+  $ProbePort = 62000   # ProbePort of the Azure Internal Load Balancer
 
   New-NetFirewallRule -Name AzureProbePort -DisplayName "Rule for Azure Probe Port" -Direction Inbound -Action Allow -Protocol TCP -LocalPort $ProbePort
   ```
 
-Hello **ProbePort** értéke túl**62000**. Most már hozzáférhet a fájlmegosztáshoz hello  **\\\ascsha-clsap\sapmnt** a többi, például mert a **ascsha-dbas**.
+A **ProbePort** értéke **62000**. Most már hozzáférhet a fájlmegosztáshoz  **\\\ascsha-clsap\sapmnt** a többi, például mert a **ascsha-dbas**.
 
-### <a name="85d78414-b21d-4097-92b6-34d8bcb724b7"></a>Hello adatbázis-példány telepítése
+### <a name="85d78414-b21d-4097-92b6-34d8bcb724b7"></a>Az adatbázis-példány telepítése
 
-tooinstall hello adatbázis-példány, hajtsa végre az SAP-dokumentáció hello ismertetett hello folyamatot.
+Az adatbázispéldány fölött telepítéséhez kövesse a SAP dokumentáció ismertetett folyamatot.
 
-### <a name="8a276e16-f507-4071-b829-cdc0a4d36748"></a>Hello második fürtcsomópont telepítése
+### <a name="8a276e16-f507-4071-b829-cdc0a4d36748"></a>A második fürt csomópont telepítése
 
-tooinstall hello második fürt, hello SAP telepítési útmutató hello lépéseit kövesse.
+A második fürt telepítéséhez kövesse az SAP telepítési útmutatóban.
 
-### <a name="094bc895-31d4-4471-91cc-1513b64e406a"></a>Hello indítási típust hello SAP SSZON Windows szolgáltatáspéldány módosítása
+### <a name="094bc895-31d4-4471-91cc-1513b64e406a"></a>Módosítsa a SAP SSZON Windows szolgáltatáspéldány indítási típusa
 
-Hello SAP SSZON Windows-szolgáltatás indítási típusát hello túl módosítása**automatikus (Késleltetett indítás)** mindkét fürtcsomóponton.
+A SAP SSZON Windows szolgáltatás indítási típusának módosítása **automatikus (Késleltetett indítás)** mindkét fürtcsomóponton.
 
-![60. ábra: Módosítani hello SAP SSZON példány toodelayed automatikus hello szolgáltatás típusát][sap-ha-guide-figure-3050]
+![60. ábra: Az SAP SSZON példány szolgáltatás típusának módosítása késleltetett automatikusra][sap-ha-guide-figure-3050]
 
-_**60. ábra:** módosítani hello SAP SSZON példány toodelayed automatikus hello szolgáltatás típusát_
+_**60. ábra:** az SAP SSZON példányt késleltetett automatikus módosíthatja a szolgáltatás típusa_
 
-### <a name="2477e58f-c5a7-4a5d-9ae3-7b91022cafb5"></a>Hello SAP elsődleges kiszolgáló telepítése
+### <a name="2477e58f-c5a7-4a5d-9ae3-7b91022cafb5"></a>Az SAP elsődleges alkalmazáskiszolgáló telepítése
 
-Hello elsődleges Application Server (szolgáltatói)-példány telepítése <*SID*> - di - 0 hello virtuális gépen, amely már a kijelölt toohost hello szolgáltatói CÍMEI. Nincsenek függőségek a Azure vagy DataKeeper-specifikus beállításokat.
+Az elsődleges alkalmazás kiszolgáló (szolgáltatói)-példány telepítése <*SID*> - di - 0-fiókjához kijelölt üzemeltetéséhez a szolgáltatói CÍMEK a virtuális gépen. Nincsenek függőségek a Azure vagy DataKeeper-specifikus beállításokat.
 
-### <a name="0ba4a6c1-cc37-4bcf-a8dc-025de4263772"></a>Hello SAP további alkalmazáskiszolgáló telepítése
+### <a name="0ba4a6c1-cc37-4bcf-a8dc-025de4263772"></a>Az SAP további alkalmazáskiszolgáló telepítése
 
-Egy SAP további Application Server (AAS) telepítse az összes hello virtuális gépekre, hogy már kijelölve toohost SAP Application Server-példány. Például a <*SID*> - di - 1 túl <*SID*> - di -&lt;n&gt;.
+Telepítse az SAP további Application Server (AAS) üzemeltetésére SAP Application Server-példány már a kijelölt virtuális gépek. Például a <*SID*> - di - 1 a <*SID*> - di -&lt;n&gt;.
 
 > [!NOTE]
-> Ez befejezi a magas rendelkezésre állású SAP NetWeaver rendszer hello telepítését. A következő folytatásához feladatátvételi tesztelése.
+> Ez befejezi a magas rendelkezésre állású SAP NetWeaver rendszer telepítését. A következő folytatásához feladatátvételi tesztelése.
 >
 
 
-## <a name="18aa2b9d-92d2-4c0e-8ddd-5acaabda99e9"></a>Hello SAP ASC/SCS példány feladatátvétel és SIOS replikációs tesztelése
-Könnyen tootest, és figyelje az SAP ASC/SCS-példány feladatátvevő és SIOS lemez replikációs Feladatátvevőfürt-kezelő és hello SIOS DataKeeper felügyelete és konfigurálása eszköz.
+## <a name="18aa2b9d-92d2-4c0e-8ddd-5acaabda99e9"></a>Az SAP ASC/SCS példány feladatátvétel és SIOS replikációs tesztelése
+Akkor is könnyen a tesztelése egy SAP ASC/SCS-példány feladatátvevő és SIOS lemez replikációs Feladatátvevőfürt-kezelő és a SIOS DataKeeper kezelési és konfigurációs eszköz használatával.
 
 ### <a name="65fdef0f-9f94-41f9-b314-ea45bbfea445"></a>A fürtcsomóponton SAP ASC/SCS-példány fut.
 
-Hello **SAP PR1** fürtcsoport fürtcsomóponton A. fut. Például a **pr1-ASC-0**. Rendelje hozzá a megosztott hello meghajtó S, amely része hello **SAP PR1** fürterőforrás-csoport, és melyik hello ASC/SCS példányt használ, toocluster csomópont azonosítójához.
+A **SAP PR1** fürtcsoport fürtcsomóponton A. fut. Például a **pr1-ASC-0**. Rendelje hozzá a megosztott lemezmeghajtó S, amely része a a **SAP PR1** fürtcsoportot, és az ASC/SCS-példány használja, a fürt csomópont azonosítójához.
 
-![61. ábra: Feladatátvevőfürt-kezelő: hello SAP < SID > fürtcsoport A csomóponton fut.][sap-ha-guide-figure-5000]
+![61. ábra: Feladatátvevőfürt-kezelő: < SID > a SAP fürtcsoport A csomóponton fut.][sap-ha-guide-figure-5000]
 
-_**61. ábra:** Feladatátvevőfürt-kezelő: hello SAP <*SID*> fürtcsoport A csomóponton fut._
+_**61. ábra:** Feladatátvevőfürt-kezelő: az SAP <*SID*> fürtcsoport A csomóponton fut._
 
-A hello SIOS DataKeeper felügyeleti és a konfigurációs eszközt hogy adatokat a rendszer szinkron módon replikálja a hello forrás kötet meghajtó fürtcsomóponton egy toohello kötet célmeghajtó S fürtcsomóponton b hello megosztott lemezt Például, hogy a rendszer replikálja a **pr1-ASC-0 [10.0.0.40]** túl**pr1-ASC-1 [10.0.0.41]**.
+A SIOS DataKeeper felügyelete és konfigurálása eszköz megtekintheti, hogy a megosztott lemez adatainak rendszer szinkron módon replikálja a csomóponton A forrás-kötet meghajtó S a kötet célmeghajtó S fürtcsomópontra a b kiszolgálóra. Például, hogy a rendszer replikálja a **pr1-ASC-0 [10.0.0.40]** való **pr1-ASC-1 [10.0.0.41]**.
 
-![62. ábra: SIOS DataKeeper replikálja hello helyi kötet fürtcsomópontból B toocluster csomópont][sap-ha-guide-figure-5001]
+![62. ábra: SIOS DataKeeper replikálja a helyi kötet fürtcsomópontról A B-fürt csomópontjának][sap-ha-guide-figure-5001]
 
-_**62. ábra:** SIOS DataKeeper, a fürtcsomópont toocluster csomópont B hello helyi kötet replikálásához_
+_**62. ábra:** SIOS DataKeeper replikálja a helyi kötet fürtcsomópontról A B-fürt csomópontjának_
 
-### <a name="5e959fa9-8fcd-49e5-a12c-37f6ba07b916"></a>Feladatátvételt az A csomópont toonode B
+### <a name="5e959fa9-8fcd-49e5-a12c-37f6ba07b916"></a>B csomópont-csomópont A feladatátvétel
 
-1.  Válasszon egyet az alábbi beállítások tooinitiate feladatátvételét hello SAP, <*SID*> csomópont toocluster fürtcsomópontból b fürtcsoport
+1.  Válasszon egyet ezek közül a SAP a feladatátvétel kezdeményezése <*SID*> fürtcsoport fürtcsomópontról A b-fürt csomópontjának
   - Feladatátvevőfürt-kezelővel  
   - Feladatátvevő fürt PowerShell használata
 
@@ -1635,18 +1635,18 @@ _**62. ábra:** SIOS DataKeeper, a fürtcsomópont toocluster csomópont B hello
   Move-ClusterGroup -Name $SAPClusterGroup
 
   ```
-2.  Indítsa újra a fürt csomópont A hello Windows vendég operációs rendszerben (hello SAP, az automatikus feladatátvételt kezdeményez <*SID*> csomópont toonode B fürt csoportot).  
-3.  Indítsa újra a fürt csomópont A hello Azure-portálon való (hello SAP, az automatikus feladatátvételt kezdeményez <*SID*> csomópont toonode B fürt csoportot).  
-4.  Indítsa újra a fürt csomópont A Azure PowerShell használatával (ez elindít egy hello SAP automatikus átvétele <*SID*> csomópont toonode B fürt csoportot).
+2.  Indítsa újra a fürt csomópont A a Windows vendég operációs rendszerben (a SAP, az automatikus feladatátvételt kezdeményez <*SID*> fürtcsoport csomópontból A csomópont B).  
+3.  Indítsa újra a fürt csomópont A Azure-portálról (egy, a SAP automatikus feladatátvételt kezdeményez <*SID*> fürtcsoport csomópontból A csomópont B).  
+4.  Indítsa újra a fürt csomópont A Azure PowerShell használatával (ez elindít egy automatikus feladatátvétel, a SAP <*SID*> fürtcsoport csomópontból A csomópont B).
 
-  A feladatátvétel után hello SAP <*SID*> fürtcsoport fürtcsomóponton b fut. Futó például **pr1-ASC-1**.
+  Feladatátvétel után a SAP <*SID*> fürtcsoport fürtcsomóponton b fut. Futó például **pr1-ASC-1**.
 
-  ![63. ábra: A Feladatátvevőfürt-kezelőben, hello SAP < SID > fürtcsoport van fürtcsomóponton futó B][sap-ha-guide-figure-5002]
+  ![63. ábra: A Feladatátvevőfürt-kezelő, a SAP < SID > fürtcsoport van fürtcsomóponton futó B][sap-ha-guide-figure-5002]
 
-  _**Ábra 63**: A Feladatátvevőfürt-kezelőben, hello SAP <*SID*> fürtcsoport fürtcsomóponton B fut._
+  _**Ábra 63**: A Feladatátvevőfürt-kezelő, a SAP <*SID*> fürtcsoport fürtcsomóponton B fut._
 
-  hello megosztott lemez már csatlakoztatva van a fürt csomópont b SIOS DataKeeper replikálódik adatok forrás kötet meghajtóról S fürt csomópont B tootarget kötet meghajtó fürtcsomóponton A. A replikáló például **pr1-ASC-1 [10.0.0.41]** túl**pr1-ASC-0 [10.0.0.40]**.
+  A megosztott lemez már csatlakoztatva van a fürt csomópont b SIOS DataKeeper replikálódik adatok forrás kötet meghajtóról S fürtcsomóponton B célmeghajtó kötet, S fürtcsomóponton A. A replikáló például **pr1-ASC-1 [10.0.0.41]** való **pr1-ASC-0 [10.0.0.40]**.
 
-  ![Ábra 64: SIOS DataKeeper replikálja hello helyi kötet csomópont B toocluster fürtcsomópontról A][sap-ha-guide-figure-5003]
+  ![Ábra 64: SIOS DataKeeper replikálja a helyi kötet fürtcsomópontból B csomópont A fürt][sap-ha-guide-figure-5003]
 
-  _**Ábra 64:** SIOS DataKeeper hello helyi kötet csomópont B toocluster fürtcsomópontról A replikálja._
+  _**Ábra 64:** SIOS DataKeeper replikálja a helyi kötet fürtcsomópontból B csomópont A fürt_

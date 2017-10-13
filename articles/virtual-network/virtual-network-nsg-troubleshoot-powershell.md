@@ -1,6 +1,6 @@
 ---
-title: "Hálózati biztonsági csoport – aaaTroubleshoot PowerShell |} Microsoft Docs"
-description: "Ismerje meg, hogyan tootroubleshoot hálózati biztonsági csoportok hello Azure Resource Manager telepítési modell Azure PowerShell használatával."
+title: "Hálózati biztonsági csoport – PowerShell hibaelhárítása |} Microsoft Docs"
+description: "Ismerje meg a hálózati biztonsági csoportok hibaelhárítása az Azure PowerShell használata Azure Resource Manager üzembe helyezési modellben."
 services: virtual-network
 documentationcenter: na
 author: AnithaAdusumilli
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/23/2016
 ms.author: anithaa
-ms.openlocfilehash: 95fd60fa72cf6d17fa990e3c3eb7d980878f7c15
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5edaf7197576ac1c0bd1fc6bed21fd65ed135106
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="troubleshoot-network-security-groups-using-azure-powershell"></a>Hálózati biztonsági csoportok az Azure PowerShell hibaelhárítása
 > [!div class="op_single_selector"]
@@ -28,35 +28,35 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Ha konfigurálva a hálózati biztonsági csoportokkal (NSG-k) a virtuális gépen (VM), és virtuális gép kapcsolódási problémákat tapasztal, ez a cikk áttekintést diagnosztikai képességek az NSG-k toohelp további hibaelhárítást kell végeznie.
+Ha konfigurálva a hálózati biztonsági csoportokkal (NSG-k) a virtuális gépen (VM), és virtuális gép kapcsolódási problémákat tapasztal, ez a cikk áttekintést diagnosztika képességet biztosít a További hibaelhárítás elősegítése érdekében az NSG-ket.
 
-Az NSG-k lehetővé teszik a toocontrol hello típusú forgalom, hogy a virtuális gépek (VM) mindkét folyamata. NSG-ket lehet alkalmazott toosubnets egy Azure virtuális hálózatot (VNet), hálózati adapterek (NIC) vagy mindkettőt. hello hatékony szabályokat tooa hálózati adapter létező hello alkalmazott NSG-k tooa hálózati adapter és hello alhálózaton van csatlakoztatva hello szabály összesítést. Ezek az NSG-k között szabályok néha ütköznek egymással, és hatással lehet a virtuális gépek hálózati kapcsolattal.  
+Az NSG-k lehetővé teszik a típusú forgalom, hogy a virtuális gépek (VM) mindkét folyamata. NSG-ket alhálózatokra egy Azure virtuális hálózatot (VNet), hálózati adapterek (NIC) vagy mindkettőt alkalmazhatók. A hatékony szabályokat egy hálózati adapter egyszerűsítése érdekében a szabályokat, amelyek szerepelnek az NSG-ket egy hálózati adapterre alkalmazza, és az alhálózat van csatlakoztatva. Ezek az NSG-k között szabályok néha ütköznek egymással, és hatással lehet a virtuális gépek hálózati kapcsolattal.  
 
-Az NSG-k, az összes hello hatékony biztonsági szabály tekintheti meg a virtuális gép hálózati adapterek alkalmazott. Ez a cikk bemutatja, hogyan tootroubleshoot VM ezeket szabályok használata a problémák hello Azure Resource Manager üzembe helyezési modellben. Ha még nem ismeri a virtuális hálózat és NSG fogalmakat, olvassa el a hello [virtuális hálózati](virtual-networks-overview.md) és [hálózati biztonsági csoportok](virtual-networks-nsg.md) áttekintése cikkeket.
+Az NSG-k, az összes hatékony biztonsági szabály tekintheti meg a virtuális gép hálózati adapterek alkalmazott. Ez a cikk bemutatja, hogyan VM csatlakozási problémák ezek a szabályok használatával az Azure Resource Manager üzembe helyezési modellben. Ha még nem ismeri a virtuális hálózat és NSG fogalmakat, olvassa el a [virtuális hálózati](virtual-networks-overview.md) és [hálózati biztonsági csoportok](virtual-networks-nsg.md) áttekintése cikkeket.
 
-## <a name="using-effective-security-rules-tootroubleshoot-vm-traffic-flow"></a>Hatékony biztonsági szabályok tootroubleshoot VM adatforgalmat használatával
-hello-forgatókönyvekben, amelyek a következő gyakori kapcsolati probléma példája:
+## <a name="using-effective-security-rules-to-troubleshoot-vm-traffic-flow"></a>Hatékony biztonsági szabályok használata hibák elhárításához a virtuális gép forgalom áramlását
+A következő forgatókönyv gyakori kapcsolati probléma példája:
 
-A virtuális gépek nevű *VM1* nevű alhálózat része *Alhalozat_1* nevű egy Vneten belül *WestUS-VNet1*. Sikertelen a virtuális gépet RDP a 3389-es TCP-porton keresztül egy kísérlet tooconnect toohello. Az NSG-k mindkét hello NIC szintjén alkalmazhatóak *VM1-NIC1* és alhálózati hello *Alhalozat_1*. Forgalom tooTCP 3389-es port használata engedélyezett hello hello hálózati interfészhez társított NSG *VM1-NIC1*, azonban a TCP Pingelje meg tooVM1 port 3389 sikertelen.
+A virtuális gépek nevű *VM1* nevű alhálózat része *Alhalozat_1* nevű egy Vneten belül *WestUS-VNet1*. A virtuális gép RDP Funkciót használnak a 3389-es TCP-porton keresztül történő csatlakozásra tett kísérlet sikertelen lesz. Az NSG-k két hálózati adapter szintjén alkalmazhatóak *VM1-NIC1* és az alhálózati *Alhalozat_1*. Forgalom 3389-es TCP-port engedélyezve van a hálózati interfészhez társított NSG *VM1-NIC1*, azonban a TCP ping VM1 a következőre port 3389 meghiúsul.
 
-Ebben a példában a 3389-es portot használja, amíg hello lépéseket követve lehet használt toodetermine bejövő és kimenő kapcsolódási hibák bármely porton keresztül.
+Ebben a példában a 3389-es portot használja, amíg az alábbi lépések segítségével határozza meg a bejövő és kimenő kapcsolódási hibák bármely porton keresztül.
 
 ## <a name="detailed-troubleshooting-steps"></a>Részletes hibaelhárítási lépéseket
-Hajtsa végre a következő lépések tootroubleshoot NSG-ket a virtuális gépek hello:
+Az alábbi lépésekkel hibáinak elhárítása az NSG-ket a virtuális gépek:
 
-1. Indítsa el az Azure PowerShell-munkamenet és bejelentkezési tooAzure. Ha nem ismeri az Azure PowerShell használatával, olvassa el a hello [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview) cikk.
-2. Adja meg a következő parancs tooreturn minden NSG-szabályok alkalmazása tooa nevű hálózati hello *VM1-NIC1* hello erőforráscsoportban *RG1*:
+1. Indítsa el az Azure PowerShell-munkamenetet és a bejelentkezés az Azure-bA. Ha nem ismeri az Azure PowerShell használatával, olvassa el a [telepítése és konfigurálása az Azure PowerShell](/powershell/azure/overview) cikk.
+2. Adja meg a következő parancs sikeresen lefut egy nevű hálózati adapterre alkalmazza minden NSG-szabályok *VM1-NIC1* erőforráscsoportban *RG1*:
    
         Get-AzureRmEffectiveNetworkSecurityGroup -NetworkInterfaceName VM1-NIC1 -ResourceGroupName RG1
    
    > [!TIP]
-   > Ha egy hálózati adapter hello neve nem tudja, adja meg a következő parancs tooretrieve hello nevét egy erőforráscsoportban található hálózati adapterek összes hello: 
+   > Ha egy hálózati adapter neve nem tudja, adjon meg egy erőforráscsoportot az összes hálózati adapter nevének beolvasása a következő parancsot: 
    > 
    > `Get-AzureRmNetworkInterface -ResourceGroupName RG1 | Format-Table Name`
    > 
    > 
    
-    hello következő szövege minta hello hatékony szabályok kimenete hello vissza *VM1-NIC1* NIC:
+    A következő szöveg látható egy minta vissza hatékony szabályok kimenetét a *VM1-NIC1* NIC:
    
         NetworkSecurityGroup   : {
                                    "Id": "/subscriptions/[Subscription ID]/resourceGroups/RG1/providers/Microsoft.Network/networkSecurityGroups/VM1-NIC1-NSG"
@@ -155,46 +155,46 @@ Hajtsa végre a következő lépések tootroubleshoot NSG-ket a virtuális gépe
                                 },...
                                 ]
    
-    Vegye figyelembe a következő információ hello kimenet hello:
+    Vegye figyelembe a kimenete a következő információkat:
    
-   * Két **hálózati biztonsági csoporthoz tartozik** szakaszok: tartozik hozzá egy alhálózat (*Alhalozat_1*) és egy hálózati Adapterhez társított (*VM1-NIC1*). Ebben a példában egy NSG alkalmazott tooeach volt.
-   * **Társítás** hello erőforrás (alhálózati vagy hálózati adapter) jeleníti meg egy adott NSG társítva. Ha hello NSG-erőforrás áthelyezése vagy hozzárendelésének megszüntetése a parancs futtatása előtt azonnal, szükséges toowait néhány másodpercen belül hello módosítása tooreflect hello parancs kimenetében. 
-   * hello vannak végrehajtásával kerüli meg a szabály neve *defaultSecurityRules*: amikor egy NSG jön létre, néhány alapértelmezett biztonsági szabályok jönnek létre benne. Alapértelmezett szabályok nem távolítható el, de magasabb prioritású szabályokkal felülbírálható lesz.
-     Olvasási hello [NSG áttekintése](virtual-networks-nsg.md#default-rules) NSG kapcsolatos további információkért a cikk toolearn alapértelmezett biztonsági szabályokat.
-   * **ExpandedAddressPrefix** hello címelőtagokat NSG alapértelmezett címkék bővíti. Címkék több címelőtagokat jelölik. Hello címkék bővítése akkor lehet hasznos, ha adott címelőtagokat és a virtuális gép hibaelhárítása. A VNETBEN társviszony-létesítést, hogy VIRTUAL_NETWORK címke például bővíti tooshow társviszonyban VNet-előtagok hello előző kimenet.
+   * Két **hálózati biztonsági csoporthoz tartozik** szakaszok: tartozik hozzá egy alhálózat (*Alhalozat_1*) és egy hálózati Adapterhez társított (*VM1-NIC1*). Ebben a példában egy NSG-t az egyes telepítve van.
+   * **Társítás** jeleníti meg az erőforrás (alhálózati vagy hálózati), egy adott NSG társítva. Ha az NSG-erőforrás áthelyezése vagy hozzárendelésének megszüntetése a parancs futtatása előtt azonnal, szükség lehet Várjon néhány másodpercet, hogy tükrözze a parancs kimenetében a változtatás. 
+   * A szabály nevét, amelyek végrehajtásával kerüli meg a *defaultSecurityRules*: amikor egy NSG jön létre, néhány alapértelmezett biztonsági szabályok jönnek létre benne. Alapértelmezett szabályok nem távolítható el, de magasabb prioritású szabályokkal felülbírálható lesz.
+     Olvassa el a [NSG áttekintése](virtual-networks-nsg.md#default-rules) cikk további NSG bővebben alapértelmezett biztonsági szabályokat.
+   * **ExpandedAddressPrefix** bővíti a címelőtagokat NSG alapértelmezett címkék. Címkék több címelőtagokat jelölik. A címkék bővítése akkor lehet hasznos, amikor adott címelőtagokat és a virtuális gép hibaelhárítása. Például a VNETBEN társviszony-létesítést, VIRTUAL_NETWORK címke bontja ki társviszonyban VNet-előtagok az előző kimenet megjelenítése.
      
      > [!NOTE]
-     > hello parancs csak látható hatékony szabályokat, ha az NSG tartozik alhálózat, egy hálózati Adaptert, vagy mindkettőt. Előfordulhat, hogy a virtuális gépek több hálózati adapterrel alkalmazott különböző NSG. Hibaelhárításához, hello parancs futtatása az egyes hálózati adapterhez.
+     > A parancs csak azt mutatja be hatékony szabályokat Ha egy NSG tartozik alhálózat, egy hálózati Adaptert, vagy mindkettőt. Előfordulhat, hogy a virtuális gépek több hálózati adapterrel alkalmazott különböző NSG. Hibaelhárításához, futtassa a parancsot az egyes hálózati adapterhez.
      > 
      > 
-3. NSG-szabályok, hogy a nagyobb számú szűrés tooease adja meg a következő további parancsok tootroubleshoot hello: 
+3. Megkönnyítése érdekében NSG-szabályok nagyobb számú szűrés, adja meg a további hibaelhárítást kell végeznie a következő parancsokat: 
    
         $NSGs = Get-AzureRmEffectiveNetworkSecurityGroup -NetworkInterfaceName VM1-NIC1 -ResourceGroupName RG1
         $NSGs.EffectiveSecurityRules | Sort-Object Direction, Access, Priority | Out-GridView
    
-    Az RDP-forgalmát (TCP-port 3389-es), a szűrő alkalmazása toohello rácsnézete, ahogy az alábbi képen hello:
+    Az RDP-forgalmát (TCP-port 3389-es), a szűrő alkalmazása a Rács nézet, az alábbi ábrán látható módon:
    
     ![Szabályok listája](./media/virtual-network-nsg-troubleshoot-powershell/rules.png)
-4. Ahogy látja, hello táblázatos nézetben, vannak-e mindkét engedélyezése és megtagadási szabályoknak RDP. hello kimenetét a 2. lépés bemutatja, hogy hello *DenyRDP* szabály hello alkalmazott NSG toohello alhálózat szerepel. A bejövő szabályok esetében alkalmazott NSG-k toohello alhálózati feldolgozása először. Ha van egyezés, hello alkalmazott NSG toohello hálózati illesztő nem lett feldolgozva. Ebben az esetben hello *DenyRDP* hello alhálózatból szabály blokkolja a virtuális gép RDP-toohello (**VM1**).
+4. Ahogy látja, a táblázatos nézetben, vannak-e mindkét engedélyezése és megtagadási szabályoknak RDP. A kimenet a 2. lépésben azt mutatja, hogy a *DenyRDP* szabály van alkalmazva az NSG. A bejövő szabályok NSG-ket alkalmazva először dolgoznak. Ha a program egyezést talál, a hálózati illesztő alkalmazott NSG nem lett feldolgozva. Ebben az esetben a *DenyRDP* az alhálózatból szabály blokkolja a virtuális gép RDP (**VM1**).
    
    > [!NOTE]
-   > Előfordulhat, hogy a virtuális gépek több hálózati adapter csatolt tooit. Minden egyes lehet csatlakoztatott tooa alhálózaton. Mivel hello parancs hello előző lépésekben futtatása ellen egy hálózati Adaptert, fontos megadott tooensure hello hálózati adapter a hello csatlakozási hiba lépett fel. Ha nem biztos benne, is minden esetben futtathatók hello parancsok minden csatlakoztatott hálózati toohello virtuális gép.
+   > Előfordulhat, hogy a virtuális gépek több hálózati adapter nem csatlakoztatható. Minden egyes lehet, hogy kapcsolódik egy másik alhálózat. Mivel a parancs az előző lépésben futtatása ellen egy hálózati Adaptert, fontos győződjön meg arról, hogy megadja a hálózati kapcsolat kapcsolatos hibát tapasztal. Ha nem biztos benne, mindig a parancsok alapján futtathatók egyes hálózati adapterek, a virtuális Géphez csatlakozik.
    > 
    > 
-5. a VM1, módosítás hello tooRDP *megtagadása RDP (3389-es)* szabály túl*RDP(3389) engedélyezése* a hello **Alhalozat_1-NSG** NSG. Győződjön meg arról, hogy 3389-es TCP-port meg nyitva egy RDP-kapcsolat toohello VM megnyitásával, vagy hello PsPing eszköz használata. Terhelésekről további információt a PsPing által olvasása hello [PsPing letöltési oldala](https://technet.microsoft.com/sysinternals/psping.aspx)
+5. Távoli asztali eléréséhez VM1, módosítsa a *megtagadása RDP (3389-es)* történő *engedélyezése RDP(3389)* a a **Alhalozat_1-NSG** NSG. Győződjön meg arról, hogy a virtuális gép egy RDP-kapcsolat megnyitásával, vagy a PsPing eszköz használata nyitva-e 3389-es TCP-port. További tudnivalók a PsPing olvasásával a [PsPing letöltési oldala](https://technet.microsoft.com/sysinternals/psping.aspx)
    
-    Lehet, vagy távolítsa el a szabályok egy NSG-t a használatával a következő parancs hello hello kimenete hello információi alapján:
+    Lehet, vagy a szabályok eltávolítása egy NSG-t a következő parancs kimenetében található információk segítségével:
    
         Get-Help *-AzureRmNetworkSecurityRuleConfig
 
 ## <a name="considerations"></a>Megfontolandó szempontok
-Vegye figyelembe a következő pontok csatlakozási problémák elhárításakor hello:
+Kapcsolódási problémák elhárításakor, vegye figyelembe a következő szempontokat:
 
-* Alapértelmezett NSG-szabályok blokkolja a bejövő hello hozzáférést internet és a virtuális hálózat engedély csak a bejövő forgalom. Szabályok kell adható hozzá közvetlen módon tooallow bejövő Internet, a szükséges hozzáférést.
-* Ha nincsenek, amely a virtuális gép hálózati kapcsolat toofail NSG biztonsági szabályok, hello a probléma oka a következő lehet:
-  * Hello virtuális gép operációs rendszerben futó tűzfal szoftver
-  * A virtuális készülékek vagy a helyszíni forgalmi útvonalak. Internetes forgalom átirányított tooon helyszíni kényszerített bújtatás keresztül lehet. Az RDP/SSH-kapcsolat a hello Internet tooyour VM nem feltétlenül ezt a beállítást, attól függően, hogy miként hello a helyszíni hálózati hardver kezeli a forgalmat. Olvasási hello [hibaelhárítási útvonalak](virtual-network-routes-troubleshoot-powershell.md) cikk toolearn hogyan toodiagnose útvonal is lehet akadályozó problémákat hello és bezárja a forgalom hello virtuális gép. 
-* Vnetek, alapértelmezés szerint rendelkezik társviszonyban, ha a hello VIRTUAL_NETWORK címke automatikusan tooinclude előtagok bontsa a társviszonyban Vnetek esetében. Ezeket az előtagokat megtekintheti a hello **ExpandedAddressPrefix** listájában, tootroubleshoot bármely társviszony-létesítés kapcsolódási problémák kapcsolódó tooVNet. 
-* Hatékony biztonsági szabályok csak jelennek-e hello VM hálózati adapter és, vagy alhálózat társított egy NSG. 
-* Ha nincs hálózati hello társított NSG-ket, vagy alhálózat és rendelkezik a nyilvános IP-cím hozzárendelése a virtuális gép tooyour, minden port nyissa meg a bejövő és kimenő hozzáférést lesz. Ha hello VM egy nyilvános IP-címmel rendelkezik, alkalmazza az NSG-k toohello hálózati adapter vagy az alhálózat erősen ajánlott.  
+* Alapértelmezett NSG-szabályok lesz az internetről bejövő hozzáférésének letiltására, és csak a virtuális hálózat engedélyezése érkező bejövő forgalmat. Szabályok explicit módon meg kell adni a bejövő hozzáférés engedélyezése az internetről, szükség szerint.
+* Ha nincs NSG biztonsági szabály, amely a virtuális gépek hálózati kapcsolattal sikertelen lesz, a probléma oka a következő lehet:
+  * A virtuális gép operációs rendszerben futó tűzfal szoftver
+  * A virtuális készülékek vagy a helyszíni forgalmi útvonalak. Internetes forgalmat a helyszíni kényszerített bújtatás keresztül lehet átirányítani. Az RDP/SSH-kapcsolatot az internetről a virtuális gép nem feltétlenül ezt a beállítást, attól függően, hogy miként kezeli a helyszíni hálózati hardver a forgalmat. Olvassa el a [hibaelhárítási útvonalak](virtual-network-routes-troubleshoot-powershell.md) cikk áttekintésével megismerheti, hogyan, előfordulhat, hogy a forgalmat a virtuális Gépet a bejövő és kimenő adatforgalma kell akadályozó útvonal problémák diagnosztizálásához. 
+* Ha Vnetek, alapértelmezés szerint rendelkezik társviszonyban, VIRTUAL_NETWORK címke automatikusan bővített előtagok tartalmazza az társviszonyban Vnetek. Ezeket az előtagok megtekintheti a **ExpandedAddressPrefix** lista bármely Vnetben társviszony-létesítési kapcsolat kapcsolatos problémák elhárítása. 
+* Hatékony biztonsági szabályok csak jelennek-e a virtuális hálózati adapter és vagy alhálózat társított NSG-t. 
+* Ha nincs hálózati adapter társított NSG-k, vagy alhálózat és rendelkezik a nyilvános IP-cím, a virtuális Géphez rendelt, minden port nyissa meg a bejövő és kimenő hozzáférést lesz. Ha a virtuális gép egy nyilvános IP-címmel rendelkezik, erősen ajánlott NSG-ket alkalmaz a hálózati adapter vagy az alhálózatot.  
 

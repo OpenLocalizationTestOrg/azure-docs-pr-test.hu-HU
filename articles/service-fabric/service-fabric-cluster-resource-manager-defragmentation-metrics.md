@@ -1,5 +1,5 @@
 ---
-title: "az Azure Service Fabric a metrikák aaaDefragmentation |} Microsoft Docs"
+title: "Az Azure Service Fabric a metrikák töredezettségmentesítését |} Microsoft Docs"
 description: "Lemeztöredezettség-mentesítés használatával, vagy a Service Fabric metrikák stratégiáját, csomagolási áttekintése"
 services: service-fabric
 documentationcenter: .net
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: d09045a6cf196d2771f1a0794637f4579d3eb96b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b253cc07066092aa82d218c9c82c8aac502245a8
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="defragmentation-of-metrics-and-load-in-service-fabric"></a>A metrikák és a Service Fabric terheléselosztási töredezettségmentesítését
-hello Service Fabric fürt erőforrás-kezelő alapértelmezett stratégia terhelés metrikák hello fürt kezeléséhez toodistribute hello terhelés. Győződjön meg arról, hogy a csomópontok egyenletesen felhasználtuk elkerülhető és meleg tesztüzeméhez tooboth versenyt és feleslegesen erőforrások vezet. Hello fürt terhelésének elosztása egyben hello legbiztonságosabb tekintetében a még működő sikertelen, mert biztosítja, hogy a hibát az egy adott munkaterhelés nagy része, nem veszi. 
+A Service Fabric fürt Resource Manager alapértelmezett stratégia terhelési metrika a fürt felügyeletéhez, hogy a terhelés elosztása. Győződjön meg arról, hogy a csomópontok egyenletesen felhasználtuk elkerülhető és meleg tesztüzeméhez, amely a versengés és feleslegesen erőforrásokat is vezethet. A fürt munkaterhelések terjesztése egyben tekintetében a még működő sikertelen, mert biztosítja, hogy a hibát az egy adott munkaterhelés nagy része, nem veszi a legbiztonságosabb. 
 
-Service Fabric fürt erőforrás-kezelő hello egy másik stratégia támogatása terhelés, amely töredezettségmentesítés kezelése. Lemeztöredezettség-mentesítés azt jelenti, hogy nem próbálja toodistribute hello kihasználtságot metrika hello fürtön, hogy konszolidált. Összevonás csak egy terheléselosztási stratégia – minimalizálja a hello metrika terhelés átlagos szórás helyett hello alapértelmezett invertálásának, a fürt erőforrás-kezelő hello megpróbál tooincrease azt.
+A Service Fabric fürt erőforrás-kezelő egy másik stratégia támogatása a terhelés, amely töredezettségmentesítés kezelése. Lemeztöredezettség-mentesítés azt jelenti, hogy nem próbálja a metrika használata az szét a fürt, akkor egyesíti. Összevonás csak egy terheléselosztási stratégia – minimalizálja a terhelési metrika átlagos szórását helyett az alapértelmezett invertálásának, a fürt erőforrás-kezelő megpróbálja mivel.
 
-## <a name="when-toouse-defragmentation"></a>Amikor toouse töredezettségmentesítés
-Hello fürt a terhelés elosztása igényel minden egyes csomóponton hello forrásokhoz. Bizonyos alkalmazások és szolgáltatások létrehozása szolgáltatásokról, amelyek rendkívül nagy, és felhasználhatják a legtöbb vagy az összes csomópont. Ebben az esetben is lehet, hogy ha nincsenek a nagy munkaterheléseket első létrehozása, amely nem áll rendelkezésre elegendő lemezterület a minden csomópont toorun őket. Nagy munkaterhelések nem egy problémát a Service Fabric; az alábbi esetekben hello fürt erőforrás-kezelő határozza meg, hogy kell-e tooreorganize hello fürt toomake hely a nagy terhelés. Azonban a hello addig munkaterhelés rendelkezik toowait toobe hello fürt ütemezve.
+## <a name="when-to-use-defragmentation"></a>Mikor érdemes használni a lemeztöredezettség-mentesítés
+A fürt a terhelés elosztása használ fel az erőforrások minden egyes csomóponton. Bizonyos alkalmazások és szolgáltatások létrehozása szolgáltatásokról, amelyek rendkívül nagy, és felhasználhatják a legtöbb vagy az összes csomópont. Ebben az esetben is lehet, hogy első létre, amely nagy munkaterhelések esetén nincs elég hely bármely csomópontján futtatni azokat. Nagy munkaterhelések nem egy problémát a Service Fabric; Ezekben az esetekben a fürt erőforrás-kezelő azt határozza meg, hogy a fürt, így ez nagy terhelést átszervezése kell. Azonban a munkaterhelés rendelkezik vár arra, hogy a fürt ütemezhető.
 
-Ha sok szolgáltatás és állapot toomove körül, majd eltarthat hello nagy munkaterhelést toobe hello fürt helyezett hosszú ideig. Ez az nagyobb a valószínűsége, ha más munkaterheléseket hello fürt is nagy, és ezért a hosszabb tooreorganize tegye. hello Service Fabric-csoport létrehozása az ebben a forgatókönyvben szimulációja alkalommal mérése történik. Észleltünk, hogy nagy szolgáltatások létrehozása sokkal több időt vesz igénybe, amint 50 %-a 30 % feletti kapott fürtkihasználtság. toohandle ebben a forgatókönyvben azt bevezetett mint stratégiáról terheléselosztási töredezettségmentesítés. Észleltünk, hogy nagy munkaterhelések esetén, főleg azokat, ahol létrehozásának ideje volt fontos töredezettségmentesítés valóban segített azokat a munkaterheléseket ütemezhetők hello fürtben.
+Ha sok szolgáltatás és állapotba lép, majd eltarthat, el kell helyezni a fürt nagy terheléshez hosszú ideig. Ez az nagyobb a valószínűsége, ha a fürt többi munkaterhelését is nagy, és így a átrendezésével tovább tart. A Service Fabric-csoport létrehozása az ebben a forgatókönyvben szimulációja alkalommal mérése történik. Észleltünk, hogy nagy szolgáltatások létrehozása sokkal több időt vesz igénybe, amint 50 %-a 30 % feletti kapott fürtkihasználtság. Ebben a forgatókönyvben kezelésére, egy terheléselosztási stratégia töredezettségmentesítés bevezetett azt. Észleltünk, hogy nagy munkaterhelések esetén, főleg azokat, ahol létrehozásának ideje volt fontos töredezettségmentesítés valóban segített azokat a munkaterheléseket ütemezhetők a fürtben.
 
-Lemeztöredezettség-mentesítés metrikák toohave hello fürt erőforrás-kezelő tooproactively próbálja toocondense hello terhelés hello szolgáltatások kevesebb csomópontot az konfigurálhatja. Ezzel biztosíthatja, hogy van-e szinte mindig hely nagy szolgáltatások hello fürt átrendezése nélkül. Nem rendelkezik tooreorganize hello fürt lehetővé teszi a nagy munkaterheléseket gyors létrehozása.
+Szeretné, hogy a fürt erőforrás-kezelő arra, hogy a terhelés a szolgáltatások kondenzálására kevesebb csomópontot az proaktív próbáljon töredezettségmentesítés metrikák konfigurálhatja. Ezzel biztosíthatja, hogy van-e minden esetben a fürt átrendezése nélkül nagy szolgáltatások hely. Nem rendelkezik a fürt átszervezése lehetővé teszi a nagy munkaterheléseket gyors létrehozása.
 
-A legtöbben töredezettségmentesítés nem szükséges. Szolgáltatások vannak általában kicsi legyen, így nem rögzített toofind hely számukra hello fürt. Ha átszervezési lehetséges, a tartományvezérlő végrehajtja gyorsan, újra, mert a legtöbb szolgáltatások kicsi, és gyorsan és párhuzamosan lehet áthelyezni. Azonban ha használatával nagy szolgáltatások és szüksége van rájuk gyorsan létre hello töredezettségmentesítés stratégia van meg. A lemeztöredezettség-mentesítés mellett hello mellékhatásokkal mutatjuk be. 
+A legtöbben töredezettségmentesítés nem szükséges. Szolgáltatások vannak általában lehet kicsi, ezért nincs rögzített számukra hely található a fürt. Ha átszervezési lehetséges, a tartományvezérlő végrehajtja gyorsan, újra, mert a legtöbb szolgáltatások kicsi, és gyorsan és párhuzamosan lehet áthelyezni. Azonban ha nagy szolgáltatások, és szüksége van rájuk létrehozott majd gyorsan a lemeztöredezettség-mentesítés stratégia van meg. A lemeztöredezettség-mentesítés mellett mellékhatásokkal mutatjuk be. 
 
 ## <a name="defragmentation-tradeoffs"></a>Lemeztöredezettség-mentesítés mellékhatásokkal
-Lemeztöredezettség-mentesítés növelheti impactfulness sikertelen, mivel több szolgáltatás eleget nem tevő csomópontokon futnak. Lemeztöredezettség-mentesítés növelje költségek, mivel hello fürterőforrások kell tárolható tartalék értékét, a nagy munkaterheléseket hello létrehozására vár.
+Lemeztöredezettség-mentesítés növelheti impactfulness sikertelen, mivel több szolgáltatás eleget nem tevő csomópontokon futnak. Lemeztöredezettség-mentesítés növelje költségek, mivel a fürterőforrások kell tárolható tartalék értékét, a nagy munkaterheléseket létrehozására vár.
 
-hello következő diagram átfogó két fürt vizuális ábrázolását, egy, a rendszer töredezettségmentesíteni, a másik nem. 
+Az alábbi ábrán két fürt vizuális ábrázolását, amelyet töredezettségmentesíteni van, és, amely nem biztosít. 
 
 <center>
 ![Elosztott terhelésű, és fürtök töredezettségmentesíteni összehasonlítása][Image1]
 </center>
 
-Elosztott terhelésű hello esetben fontolja meg, amely egy hello legnagyobb szolgáltatás objektum szükséges tooplace lenne áthelyezések száma hello. Hello töredezettségmentesített fürtben hello nagy terhelés sikerült elhelyezni a csomópontok négy vagy öt anélkül, hogy az egyéb szolgáltatások toomove toowait.
+Az elosztott terhelésű esetében vegye figyelembe a típusú áthelyezések helyezhető el egy legnagyobb szolgáltatás objektum szükséges. A töredezettségmentesített fürtben a nagy terhelés sikerült elhelyezni csomópontok négy vagy öt áthelyezése más szolgáltatásokkal várakozás nélkül.
 
 ## <a name="defragmentation-pros-and-cons"></a>Lemeztöredezettség-mentesítés előnyei és hátrányai
-Ezért Mik ezek más fogalmi mellékhatásokkal? Itt tárgya dolgot toothink gyors táblázatát:
+Ezért Mik ezek más fogalmi mellékhatásokkal? Ez gyors táblázatát gondolja át a következőkre:
 
 | Lemeztöredezettség-mentesítés szakemberek számára | Lemeztöredezettség-mentesítés hátrányait |
 | --- | --- |
@@ -54,16 +54,16 @@ Ezért Mik ezek más fogalmi mellékhatásokkal? Itt tárgya dolgot toothink gyo
 | Lehetővé teszi, hogy alacsonyabb adatmozgás létrehozása során |Hibák hatással lehet a további szolgáltatásokat, és további forgalom miatt |
 | Lehetővé teszi, hogy a követelmények részletes leírását és a hely visszanyerése |Összetettebb teljes erőforrás-kezelés konfigurálása |
 
-Töredezettségmentesített kombinálhatja, és a normál metrikák hello ugyanabban a fürtben. hello fürt erőforrás-kezelő záma tooconsolidate hello töredezettségmentesítés metrikák terjednek, miközben lehetőség szerint hello másoknak. hello eredmények töredezettségmentesítés és terheléselosztási stratégiák számos tényezőtől függ:
-  - terheléselosztás töredezettségmentesítés metrikák hello száma és metrikákat hello száma
+Ugyanazon fürt töredezettségmentesített és normál metrikák lehet összekeveri. A fürt erőforrás-kezelő megpróbálja a lehető legnagyobb mértékben közben terjednek ki, a többi töredezettségmentesítés metrikák összesítése. Az eredmények töredezettségmentesítés és terheléselosztási stratégiák számos tényezőtől függ:
+  - a töredezettségmentesítés metrikák száma és metrikákat terheléselosztás száma
   - E bármely szolgáltatás használ a metrikák mindkét típusú 
-  - hello metrika súlyozás
+  - a metrika súlyozás
   - aktuális metrika tölt be
   
-Kísérletezhet a szükséges toodetermine hello pontos konfiguráció szükséges. A munkaterhelések alapos mérése azt javasoljuk, mielőtt engedélyezné a lemeztöredezettség-mentesítés metrikák éles környezetben. Ez akkor különösen igaz olyan esetben, ha keverése töredezettségmentesítése és az elosztott terhelésű metrikák hello belül ugyanazt a szolgáltatást. 
+Kísérletezhet szükség van a pontos konfiguráció szükséges. A munkaterhelések alapos mérése azt javasoljuk, mielőtt engedélyezné a lemeztöredezettség-mentesítés metrikák éles környezetben. Ez akkor különösen igaz olyan esetben, ha keverése töredezettségmentesítése és az elosztott terhelésű metrikák belül ugyanazt a szolgáltatást. 
 
 ## <a name="configuring-defragmentation-metrics"></a>Lemeztöredezettség-mentesítés metrikák konfigurálása
-Lemeztöredezettség-mentesítés metrikák konfigurálása hello fürt globális döntést, és egyéni metrikák töredezettségmentesítés választhatók. a következő konfigurációs részletek hello megjelenítése, hogyan tooconfigure metrikáját töredezettségmentesítés. Ebben az esetben "Metric1" van konfigurálva egy töredezettségmentesítési metrika, amíg a "Metric2" toobe elosztott terhelésű a szokásos módon folytatódik. 
+Töredezettségmentesítés metrikák konfigurálása a fürt globális döntést, és egyéni metrikák választhatók töredezettségmentesítés. A következő konfigurációs kódtöredékek bemutatják, hogyan töredezettségmentesítés metrikáját konfigurálásához. Ebben az esetben "Metric1" van konfigurálva egy töredezettségmentesítési metrika közben "Metric2" egyenletesen eloszlik a szokásos módon folytatódik. 
 
 ClusterManifest.xml:
 
@@ -96,7 +96,7 @@ az önálló verziója telepítéseinek művelet vagy az Azure-Template.json üz
 
 
 ## <a name="next-steps"></a>Következő lépések
-- hello fürt erőforrás-kezelő program man hello fürt leíró. toofind további információk a őket, tekintse meg a cikk a [leíró a Service Fabric-fürt](service-fabric-cluster-resource-manager-cluster-description.md)
-- Adatok gyűjtése le hogyan kezeli a Service Fabric fürt erőforrás-kezelő hello használat és a kapacitás hello fürtben. További információk a metrikák toolearn, valamint hogyan tooconfigure őket, [Ez a cikk](service-fabric-cluster-resource-manager-metrics.md)
+- A fürt erőforrás-kezelő program man a fürtöt leíró. További információkért róluk, tekintse meg a cikk a [leíró a Service Fabric-fürt](service-fabric-cluster-resource-manager-cluster-description.md)
+- Adatok gyűjtése le hogyan kezeli a Service Fabric fürt erőforrás-kezelő a használati és a fürt teljes kapacitását. A metrikák és konfigurálásuk módját kapcsolatos további tudnivalókért tekintse meg [Ez a cikk](service-fabric-cluster-resource-manager-metrics.md)
 
 [Image1]:./media/service-fabric-cluster-resource-manager-defragmentation-metrics/balancing-defrag-compared.png

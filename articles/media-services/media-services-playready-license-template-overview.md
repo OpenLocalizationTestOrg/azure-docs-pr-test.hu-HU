@@ -1,6 +1,6 @@
 ---
-title: "aaaMedia szolgáltatások PlayReady licenc sablon – áttekintés"
-description: "Ez a témakör áttekintést a PlayReady-licencsablon tooconfigure PlayReady-licencek használt."
+title: "Media Services PlayReady licenc sablon – áttekintés"
+description: "Ez a témakör áttekintést nyújt a PlayReady licenc sablonból, amely a PlayReady-licencek konfigurálásához használt."
 author: juliako
 manager: cfowler
 editor: 
@@ -14,33 +14,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: juliako
-ms.openlocfilehash: 5a5ba930c56f70038db204681486ebc4308199fa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: be19f616e36916655390cd05e738e93c08dcdf68
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="media-services-playready-license-template-overview"></a>Media Services PlayReady licenc sablon – áttekintés
-Az Azure Media Services most már tartalmaz egy szolgáltatás, amelynek segítségével a Microsoft PlayReady-licencek. Amikor hello végfelhasználói player (például Silverlight) tooplay a PlayReady védett tartalmakat, egy kérelem elküldött toohello licenc kézbesítési szolgáltatás tooobtain licencet. Hello licencszolgáltatás hello kérelmet jóváhagyja, ha hello licenc, amely elküldött toohello ügyfél kapcsolatos, és képes lehet használt toodecrypt és play hello megadott tartalom.
+Az Azure Media Services most már tartalmaz egy szolgáltatás, amelynek segítségével a Microsoft PlayReady-licencek. Ha a végfelhasználó player (például Silverlight) próbál PlayReady védett tartalom lejátszása, a licenc beszerzésével kérelmet küldött a licenctovábbítási szolgáltatásra. Ha a szolgáltatás a kérelem jóváhagyása, a licenc, amely az ügyfélnek küldött és fejti vissza és a megadott tartalom lejátszásához használható ad ki.
 
-Media Services Ezenfelül API-k, amelyek lehetővé teszik a PlayReady-licencek konfigurálása. Licencek hello jogokat tartalmaznak, és korlátozások, amelyet a hello PlayReady DRM futásidejű tooenforce amikor egy felhasználó megpróbál tooplayback a védett tartalmak.
+Media Services Ezenfelül API-k, amelyek lehetővé teszik a PlayReady-licencek konfigurálása. Licencek tartalmazzák a jogokat és korlátozásokat, amelyeket szeretne a PlayReady DRM futási időben t a lejátszás védett tartalmat próbál egy felhasználó.
 Az alábbiakban néhány példa a PlayReady licenckorlátozások megadása:
 
-* hello DateTime mely hello licenc nem érvényes.
-* hello hello licenc lejártakor DateTime típusú érték. 
-* A hello licenc toobe hello ügyfélen az állandó tároló mentve. Állandó licenc általánosan használt tooallow offline lejátszás hello tartalom.
-* hello minimális biztonsági szintjét, hogy egy player meg kell adni tooplay a tartalmat. 
-* hello kimeneti védelmi szint hello kimeneti vezérlők audio\video tartalom. 
-* További információkért lásd: hello kimeneti vezérlők szakasz (3.5) a hello [PlayReady megfelelőségi szabályok](https://www.microsoft.com/playready/licensing/compliance/) dokumentum.
+* A dátumot/időt, amelyből a licenc érvénytelen.
+* A DateTime típusú érték, ha a licenc lejárati. 
+* Az állandó tároló menteni az ügyfélen a licenc. Állandó licencek engedélyezése a tartalom lejátszását offline általában használhatók.
+* A minimális biztonsági szintet, hogy az egy player számára, hogy a tartalmat. 
+* A kimeneti védelmi szint a kimeneti vezérlők audio\video tartalom. 
+* További információk: a kimeneti vezérlők szakasz (3.5) az a [PlayReady megfelelőségi szabályok](https://www.microsoft.com/playready/licensing/compliance/) dokumentum.
 
 > [!NOTE]
-> Jelenleg csak is beállíthatja hello PlayRight hello PlayReady-licenc (Ez a jogosultság szükség). hello PlayRight ad hello ügyfél hello képességét tooplayback hello tartalmat. hello PlayRight is lehetővé teszi korlátozások adott tooplayback konfigurálása. További információkért lásd: [PlayReadyPlayRight](media-services-playready-license-template-overview.md#PlayReadyPlayRight).
+> Jelenleg csak is beállíthatja a PlayRight a PlayReady-licenc (Ez a jogosultság szükség). A PlayRight lehetővé teszi az ügyfél a tartalmak lejátszásához. A PlayRight is lehetővé teszi a lejátszás vonatkozó korlátozások konfigurálása. További információkért lásd: [PlayReadyPlayRight](media-services-playready-license-template-overview.md#PlayReadyPlayRight).
 > 
 > 
 
-tooconfigure PlayReady-licencek Media Services használatával, konfigurálnia kell a hello Media Services PlayReady licenc sablonja. hello sablon az XML-Fájlban van meghatározva.
+PlayReady-licencek Media Services használatával konfigurálja, konfigurálnia kell a Media Services PlayReady licenc sablonja. A sablon az XML-Fájlban van meghatározva.
 
-hello következő példa bemutatja hello legegyszerűbb (és általános) sablont, amely egy adatfolyam-továbbítási alaplicenc konfigurálja. A licenccel rendelkező az ügyfelek képesek tooplayback lenne a PlayReady védett tartalmakat.
+A következő példa bemutatja a legegyszerűbb (és általános) sablont, amely egy adatfolyam-továbbítási alaplicenc konfigurálja. A licenccel rendelkező az ügyfelek számára a lejátszás képes lenne a PlayReady védett tartalmakat.
 
     <?xml version="1.0" encoding="utf-8"?>
     <PlayReadyLicenseResponseTemplate xmlns:i="http://www.w3.org/2001/XMLSchema-instance" 
@@ -53,30 +53,30 @@ hello következő példa bemutatja hello legegyszerűbb (és általános) sablon
       </LicenseTemplates>
     </PlayReadyLicenseResponseTemplate>
 
-hello XML toohello PlayReady licenc sablon XML-séma hello PlayReady licencsablon XML-séma szakaszban meghatározott megfelel.
+Az XML-kód megfelel-e a PlayReady licenc sablon XML-séma a PlayReady-licencsablon XML-séma szakaszban meghatározott.
 
-A Media Services is meghatároz egy .NET-osztályok használt tooserialized és hello XML a deszerializált tooand ellenőrizhető. A fő osztályok ismertetését lásd: [Media Services .NET-osztályok](media-services-playready-license-template-overview.md#classes). a rendszer a használt tooconfigure licenc sablonok.
+A Media Services is meghatároz egy .NET-osztályok használható szerializált és irányuló és onnan az XML deszerializálása. A fő osztályok ismertetését lásd: [Media Services .NET-osztályok](media-services-playready-license-template-overview.md#classes). licenc sablonok konfigurálásához használt.
 
-Használja a .NET-végpontok közötti példa tooconfigure hello PlayReady licencsablon osztályok, lásd: [használatával dinamikus PlayReady-titkosítás és Licenctovábbítási szolgáltatása](media-services-protect-with-drm.md).
+Végpontok közötti például, hogy a .NET-osztályokat használja a PlayReady licencsablon konfigurálása, [használatával dinamikus PlayReady-titkosítás és Licenctovábbítási szolgáltatása](media-services-protect-with-drm.md).
 
-## <a id="classes"></a>Media Services .NET-osztályok, amelyek használt tooconfigure licenc sablonok
-hello az alábbiakban hello fő .NET osztályokat használt tooconfigure Media Services PlayReady licenc sablonok. Ezeket az osztályokat leképezése definiált toohello típusok [PlayReady licenc sablon XML-séma](media-services-playready-license-template-overview.md#schema).
+## <a id="classes"></a>Media Services .NET-osztályok használandó licenc sablonok konfigurálása
+Az alábbi táblázat a fő .NET-osztályok Media Services PlayReady licenc sablonok konfigurálására szolgálnak. Ezeket az osztályokat a megadott típus beolvasása leképezése [PlayReady licenc sablon XML-séma](media-services-playready-license-template-overview.md#schema).
 
-Hello [MediaServicesLicenseTemplateSerializer](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.contentkeyauthorization.mediaserviceslicensetemplateserializer.aspx) osztály használt tooserialize és tooand sablonból hello Media Services licenc XML deszerializálása.
+A [MediaServicesLicenseTemplateSerializer](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.contentkeyauthorization.mediaserviceslicensetemplateserializer.aspx) osztály szerializálása és deszerializálása irányuló és onnan a Media Services licencsablon XML szolgál.
 
 ### <a name="playreadylicenseresponsetemplate"></a>PlayReadyLicenseResponseTemplate
-[PlayReadyLicenseResponseTemplate](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.contentkeyauthorization.playreadylicenseresponsetemplate.aspx) -Ez az osztály az hello választ küldött vissza toohello végfelhasználói hello sablon jelenti. Egyéni adatok karakterlánc hello licenckiszolgáló hello alkalmazás (hasznos lehet az egyéni alkalmazás logika), valamint egy vagy több licenc sablonok listájának között egy mezőt tartalmaz.
+[PlayReadyLicenseResponseTemplate](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.contentkeyauthorization.playreadylicenseresponsetemplate.aspx) -Ez az osztály a sablon a választ küld vissza a végfelhasználó jelenti. Egy egyéni karakterláncot kell megadnia a licenckiszolgáló és az alkalmazás (hasznos lehet az egyéni alkalmazás logika), valamint egy vagy több licenc sablonok listájának közötti egy mezőt tartalmaz.
 
-Ez az hello "legfelső szintű" osztály hello sablon hierarchiában. Amely hello válasz sablon licenc sablonok listáját tartalmazza, és hello licenc-sablonjai tartalmazzák a (közvetlenül vagy közvetetten) összes hello hello sablon adatok toobe szerializált alkotó más osztályok.
+Ez az "legfelső szintű" a sablon hierarchiában. Ami azt jelenti, hogy a válasz sablon licenc sablonok listáját tartalmazza, és a licenc-sablonjai tartalmazzák a (közvetlenül vagy közvetetten) a sablon adatokat alkotó szerializálandó más osztályok.
 
 ### <a name="playreadylicensetemplate"></a>PlayReadyLicenseTemplate
-[PlayReadyLicenseTemplate](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.contentkeyauthorization.playreadylicensetemplate.aspx) -hello osztály jelöli egy licencsablon a PlayReady-licencek toobe toohello végfelhasználók számára visszaadott létrehozásához. A tartalomkulcs hello hello licenc hello adatokat tartalmaz, és bármely jogokat vagy korlátozásokat toobe kikényszeríti a hello PlayReady DRM futásidejű hello tartalomkulcsot használatakor.
+[PlayReadyLicenseTemplate](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.contentkeyauthorization.playreadylicensetemplate.aspx) -az osztály a végfelhasználók számára a visszaadandó PlayReady-licencek létrehozására szolgáló licenc sablont jelöli. A tartalomkulcsot a licenc és bármely jogokat és korlátozásokat a tartalomkulcs használatakor a PlayReady DRM-futtatókörnyezet kikényszerítendő az adatokat tartalmazza.
 
 ### <a id="PlayReadyPlayRight"></a>PlayReadyPlayRight
-[PlayReadyPlayRight](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.contentkeyauthorization.playreadyplayright.aspx) -Ez az osztály a PlayReady-licenc PlayRight hello jelenti. Tartalom tulajdonos toohello nulla hello, vagy további korlátozásokat konfigurált hello licenccel, valamint hello (a lejátszás adott házirend) maga PlayRight hello felhasználói hello képességét tooplayback ad. Vezérelheti lejátszható hello tartalom keresztül kimenetek hello típusú kimeneti korlátozások és kell kell bevezetni a megadott kimeneti használatakor korlátozások toodo nagy részét a hello PlayRight hello házirend tartozik. Például ha hello DigitalVideoOnlyContentRestriction engedélyezve van, majd hello DRM futásidejű csak akkor engedélyezi hello videó toobe (analóg videó kimenetek szakember toopass hello tartalom) digitális kimenetek felett jelenik meg.
+[PlayReadyPlayRight](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.contentkeyauthorization.playreadyplayright.aspx) -Ez az osztály a PlayReady-licenc PlayRight jelenti. Ez a felhasználó számára lehetőséget ad a lejátszás a tartalmat a konfigurált, a licenc, valamint magának a PlayRight (a lejátszás adott házirend) nulla vagy több korlátozások érvényesek. Nagy részét a házirendet a PlayRight a van elvégezni a segítségével vezérelheti, amelyet a tartalom még keresztül kimeneti korlátozások és korlátozások kell kell bevezetni a megadott kimeneti használatakor. Például ha a DigitalVideoOnlyContentRestriction engedélyezve van, majd a DRM-futtatókörnyezet csak lehetővé teszi (analóg videó kimenetek való kapcsolódásuk nem engedélyezett a tartalmat továbbítani) digitális kimenetek felett megjelenő videó.
 
 > [!IMPORTANT]
-> Ezek a típusok korlátozások nagyon hatékonyak lehetnek, de hello felhasználói élmény is hatással lehet. Ha hello kimeneti védelmet túl szigorú vannak konfigurálva, előfordulhat, hogy hello tartalmát az egyes ügyfelek játsszák le. További információkért lásd: hello [PlayReady megfelelőségi szabályok](https://www.microsoft.com/playready/licensing/compliance/) dokumentum.
+> Ezek a típusok korlátozások nagyon hatékonyak lehetnek, de is hatással lehet a felhasználói élmény. Ha a kimeneti védelmet túl szigorú vannak konfigurálva, előfordulhat, hogy a tartalmat az egyes ügyfelek játsszák le. További információkért lásd: a [PlayReady megfelelőségi szabályok](https://www.microsoft.com/playready/licensing/compliance/) dokumentum.
 > 
 > 
 

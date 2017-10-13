@@ -1,24 +1,24 @@
-Használata előtt a Resource Manager parancsok és sablonok toodeploy Azure hello Azure CLI és munkaterhelés erőforráscsoportok, erőforrások szüksége lesz egy fiókra a Azure-ban. Ha nem rendelkezik fiókkal, [itt feliratkozhat az ingyenes Azure-próbaidőszakra](https://azure.microsoft.com/pricing/free-trial/).
+Mielőtt az Azure CLI-t Resource Manager-parancsokkal és -sablonokkal használhatná az Azure-erőforrások és számítási feladatok erőforráscsoportokkal való üzembe helyezéséhez, szüksége lesz egy Azure-fiókra. Ha nem rendelkezik fiókkal, [itt feliratkozhat az ingyenes Azure-próbaidőszakra](https://azure.microsoft.com/pricing/free-trial/).
 
-Ha még nem telepítette a hello Azure CLI és a csatlakoztatott tooyour előfizetéssel, lásd: [telepítés hello Azure CLI](../articles/cli-install-nodejs.md) hello mód beállítása túl`arm` a `azure config mode arm`, és tooAzure hello `azure login` parancsot.
+Ha még nem telepítette az Azure CLI-t, és nem csatlakoztatta az előfizetéséhez, tekintse meg az [Azure CLI telepítéséről szóló](../articles/cli-install-nodejs.md) részt, állítsa a módot `arm`-re az `azure config mode arm` paranccsal, és csatlakozzon az Azure-hoz az `azure login` paranccsal.
 
-## <a name="cli-versions-toocomplete-hello-task"></a>Parancssori felület verziók toocomplete hello feladat
-Hello feladat a következő parancssori felület verziók hello egyikével hajthatja végre:
+## <a name="cli-versions-to-complete-the-task"></a>A feladat befejezéséhez használható CLI-verziók
+A következő CLI-verziók egyikével elvégezheti a feladatot:
 
-- Az Azure CLI 10 – a parancssori felületen hello klasszikus és resource management üzembe helyezési modellel (a cikk)
-- [Az Azure CLI 2.0](../articles/virtual-machines/linux/cli-manage.md) -a következő generációs CLI hello erőforrás felügyeleti telepítési modell
+- Azure CLI 10 – parancssori felületünk a klasszikus és a Resource Management üzemi modellekhez (a jelen cikkben)
+- [Azure CLI 2.0](../articles/virtual-machines/linux/cli-manage.md) – a Resource Management üzemi modellhez tartozó parancssori felületek következő generációját képviseli.
 
 ## <a name="basic-azure-resource-manager-commands-in-azure-cli"></a>Alapszintű Azure Resource Manager-parancsok az Azure CLI-ben
-Ez a cikk foglalkozik alapvető parancsok fog szeretné, hogy az Azure CLI toomanage toouse és az erőforrások (elsősorban a virtuális gépek) kommunikálni az Azure-előfizetésben.  Segítségért adott parancssori kapcsolók és a lehetőségek részletes, használhat hello online utasítás segítséget és beállítások beírásával `azure <command> <subcommand> --help` vagy `azure help <command> <subcommand>`.
+Ez a cikk ismerteti az alapszintű parancsokat, amelyeket az Azure CLI-vel használhat az erőforrások (elsősorban virtuális gépek) kezeléséhez és használatához az Azure-előfizetésben.  Az adott parancssori kapcsolókkal és beállításokkal kapcsolatos részletesebb segítségért használja az online parancsok súgóját és lehetőségeit az `azure <command> <subcommand> --help` vagy `azure help <command> <subcommand>` beírását követően.
 
 > [!NOTE]
-> Ezek a példák nem tartalmazzák a sablonalapú műveleteket, amelyek általában ajánlottak a virtuális gépek a Resource Managerben történő üzembe helyezéséhez. További információ: [használata hello Azure CLI-t az Azure Resource Manager](../articles/xplat-cli-azure-resource-manager.md) és [központi telepítése és virtuális gépek Azure Resource Manager-sablonok segítségével kezel, és az Azure parancssori felület hello](../articles/virtual-machines/linux/create-ssh-secured-vm-from-template.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+> Ezek a példák nem tartalmazzák a sablonalapú műveleteket, amelyek általában ajánlottak a virtuális gépek a Resource Managerben történő üzembe helyezéséhez. További információt [az Azure CLI az Azure Resource Managerrel történő használatát](../articles/xplat-cli-azure-resource-manager.md) és a [virtuális gépek Azure Resource Manager-sablonokkal és az Azure CLI-vel történő üzembe helyezését és kezelését](../articles/virtual-machines/linux/create-ssh-secured-vm-from-template.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) ismertető cikkben talál.
 > 
 > 
 
 | Tevékenység | Resource Manager |
 | --- | --- | --- |
-| Hozzon létre hello legalapvetőbb VM |`azure vm quick-create [options] <resource-group> <name> <location> <os-type> <image-urn> <admin-username> <admin-password>`<br/><br/>(Hello beszerzése `image-urn` a hello `azure vm image list` parancsot. Példákért tekintse meg [ezt a cikket](../articles/virtual-machines/linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).) |
+| Legalapvetőbb virtuális gép létrehozása |`azure vm quick-create [options] <resource-group> <name> <location> <os-type> <image-urn> <admin-username> <admin-password>`<br/><br/>(Az `image-urn` az `azure vm image list` parancs használatával szerezhető be. Példákért tekintse meg [ezt a cikket](../articles/virtual-machines/linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).) |
 | Linux rendszerű virtuális gép létrehozása |`azure  vm create [options] <resource-group> <name> <location> -y "Linux"` |
 | Windows rendszerű virtuális gép létrehozása |`azure  vm create [options] <resource-group> <name> <location> -y "Windows"` |
 | Virtuális gépek felsorolása |`azure  vm list [options]` |
@@ -31,14 +31,14 @@ Ez a cikk foglalkozik alapvető parancsok fog szeretné, hogy az Azure CLI tooma
 | Virtuális gép rögzítése |`azure vm capture [options] <resource_group> <name>` |
 | Virtuális gép létrehozása felhasználói rendszerképből |`azure  vm create [options] –q <image-name> <resource-group> <name> <location> <os-type>` |
 | Virtuális gép létrehozása specializált lemezből |`azue  vm create [options] –d <os-disk-vhd> <resource-group> <name> <location> <os-type>` |
-| Adja hozzá a adatok lemez tooa méretű VM |`azure  vm disk attach-new [options] <resource-group> <vm-name> <size-in-gb> [vhd-name]` |
+| Adatlemez hozzáadása egy virtuális géphez |`azure  vm disk attach-new [options] <resource-group> <vm-name> <size-in-gb> [vhd-name]` |
 | Adatlemez eltávolítása egy virtuális gépből |`azure  vm disk detach [options] <resource-group> <vm-name> <lun>` |
-| Egy általános bővítmény tooa VM hozzáadása |`azure  vm extension set [options] <resource-group> <vm-name> <name> <publisher-name> <version>` |
-| Adja hozzá a virtuális gép hozzáférés bővítmény tooa VM |`azure vm reset-access [options] <resource-group> <name>` |
-| Adja hozzá a Docker bővítmény tooa méretű VM |`azure  vm docker create [options] <resource-group> <name> <location> <os-type>` |
+| Általános bővítmény hozzáadása egy virtuális géphez |`azure  vm extension set [options] <resource-group> <vm-name> <name> <publisher-name> <version>` |
+| Virtuálisgép-hozzáférési bővítmény hozzáadása egy virtuális géphez |`azure vm reset-access [options] <resource-group> <name>` |
+| Docker-bővítmény hozzáadása egy virtuális géphez |`azure  vm docker create [options] <resource-group> <name> <location> <os-type>` |
 | Virtuálisgép-bővítmény eltávolítása |`azure  vm extension set [options] –u <resource-group> <vm-name> <name> <publisher-name> <version>` |
 | A virtuálisgép-erőforrások használatának megtekintése |`azure vm list-usage [options] <location>` |
 | Minden elérhető virtuálisgép-méret megtekintése |`azure vm sizes [options]` |
 
 ## <a name="next-steps"></a>Következő lépések
-* Alapszintű VM-felügyeleti túllépnek hello parancssori felület parancsait további példákért lásd [Using hello Azure CLI-t az Azure Resource Manager](../articles/virtual-machines/azure-cli-arm-commands.md).
+* Az alapszintű virtuálisgép-kezelésen túlmutató CLI-parancsok további példáit [az Aure CLI az Azure Resource Managerrel történő használatát](../articles/virtual-machines/azure-cli-arm-commands.md) ismertető cikkből ismerheti meg.

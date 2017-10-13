@@ -1,6 +1,6 @@
 ---
-title: "aaaRemote asztali tooa Linux virtuális gép |} Microsoft Docs"
-description: "Megtudhatja, hogyan tooinstall, és konfigurálja a távoli asztal tooconnect tooa Microsoft Azure Linux virtuális gép hello klasszikus telepítési modell"
+title: "A Linux virtuális gép távoli asztal |} Microsoft Docs"
+description: "Megtudhatja, hogyan telepítse és konfigurálja a klasszikus telepítési modell a Microsoft Azure Linux virtuális gép kapcsolódni a távoli asztal"
 services: virtual-machines-linux
 documentationcenter: 
 author: SuperScottz
@@ -15,37 +15,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/30/2017
 ms.author: mingzhan
-ms.openlocfilehash: aadd6e87883cf9cacf9d198b680669d594206e61
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 68031d548bdbeda9a83d1bceaaea7c5bbcab3188
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="using-remote-desktop-tooconnect-tooa-microsoft-azure-linux-vm"></a>A távoli asztal tooconnect tooa Microsoft Azure Linux virtuális gép használata
+# <a name="using-remote-desktop-to-connect-to-a-microsoft-azure-linux-vm"></a>Kapcsolódás Microsoft Azure-beli linuxos VM-hez a Távoli asztal használatával
 > [!IMPORTANT] 
-> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../resource-manager-deployment-model.md). Ez a cikk hello klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén hello Resource Manager modellt használja. Hello frissítése a cikk Resource Manager verziója, a következő témakörben: [Itt](../use-remote-desktop.md).
+> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../resource-manager-deployment-model.md). Ez a cikk a klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén a Resource Manager modellt használja. Ez a cikk frissített Resource Manager verziója, lásd: [Itt](../use-remote-desktop.md).
 
 ## <a name="overview"></a>Áttekintés
-RDP (Remote Desktop Protocol) a saját fejlesztésű protokollja használt Windows. Hogyan használhatjuk RDP tooconnect tooa Linux virtuális gép (virtuális gép) távolról?
+RDP (Remote Desktop Protocol) a saját fejlesztésű protokollja használt Windows. A Microsoft használatát RDP távolról csatlakozni a Linux virtuális gépek (virtuális gép)?
 
-Ez az útmutató kap választ hello! Ez segítséget nyújt a Microsoft Azure Linux virtuális gép meg, amely lehetővé teszi a tooit csatlakozást a távoli asztalról a Windows-gépről a tooinstall és config xrdp. Linux virtuális gép futtatásához használt Ubuntu, OpenSUSE vagy hello példa az ebben az útmutatóban használjuk.
+Ez az útmutató Erre azért van szükség a válasz! Azt, hogy telepítse és a Microsoft Azure Linux virtuális gép meg, amely lehetővé teszi, hogy csatlakozni a távoli asztalról a Windows-gépről a config xrdp segítségével. Ubuntu, OpenSUSE vagy az ebben az útmutatóban példaként futó Linux virtuális gép használjuk.
 
-hello xrdp eszköze a megnyitott forrás, amely lehetővé teszi tooconnect RDP-kiszolgáló a Linux-kiszolgálóra a távoli asztalról a Windows-gépről. RDP (virtuális hálózat számítástechnikai) VNC jobb teljesítményt rendelkezik. VNC Renderelés JPEG minőségű grafikus használatával, és a lassú lehet, mivel az RDP gyors és egyszerű crystal.
+A xrdp eszköze egy nyílt forráskódú RDP-kiszolgáló, amely lehetővé teszi a kapcsolódást a Linux-kiszolgálóra a távoli asztalról a Windows-gépről. RDP (virtuális hálózat számítástechnikai) VNC jobb teljesítményt rendelkezik. VNC Renderelés JPEG minőségű grafikus használatával, és a lassú lehet, mivel az RDP gyors és egyszerű crystal.
 
 > [!NOTE]
-> Már rendelkeznie kell egy Microsoft Azure virtuális gépet. toocreate, és állítsa be a Linux virtuális gép, lásd: hello [Azure Linux virtuális gép oktatóanyag](createportal.md).
+> Már rendelkeznie kell egy Microsoft Azure virtuális gépet. Hozzon létre, és a Linux virtuális gépet, a [Azure Linux virtuális gép oktatóanyag](createportal.md).
 > 
 > 
 
 ## <a name="create-an-endpoint-for-remote-desktop"></a>Hozzon létre egy végpontot a távoli asztal
-Használjuk hello alapértelmezett végpont 3389-es távoli asztal Ez a dokumentum. Állítsa be, 3389 végpont `Remote Desktop` tooyour Linux virtuális gép alatt, például:
+Használjuk az alapértelmezett végpont 3389-es távoli asztal Ez a dokumentum. Állítsa be, 3389 végpont `Remote Desktop` a Linux virtuális gépekre például alatt:
 
 ![Kép](./media/remote-desktop/endpoint-for-linux-server.png)
 
-Ha nem tudja, hogyan végpont a virtuális gép mentése tooset: [Ez az útmutató](setup-endpoints.md).
+Ha nem tudja, hogyan állíthatja be a végpont a virtuális Gépet, tekintse meg [Ez az útmutató](setup-endpoints.md).
 
 ## <a name="install-gnome-desktop"></a>Gnome asztali telepítése
-Csatlakozzon a Linux virtuális gép tooyour keresztül `putty`, és telepítse `Gnome Desktop`.
+Csatlakoztassa a Linux virtuális Gépet keresztül `putty`, és telepítse `Gnome Desktop`.
 
 Ubuntu használja:
 
@@ -65,7 +65,7 @@ Ubuntu használja:
 OpenSUSE használja:
 
 > [!NOTE]
-> Hello OpenSUSE verzióját használja a következő parancs hello hello verziójával frissíti. az alábbi hello példa `OpenSUSE 13.2`.
+> Frissítse a OpenSUSE a verziójával, az alábbi parancsot használja. Az alábbi példa `OpenSUSE 13.2`.
 > 
 > 
 
@@ -82,9 +82,9 @@ OpenSUSE használja:
 Ubuntu, a xrdp elindul és eanbled: állítja automatikusan a telepítés után.
 
 ## <a name="using-xfce-if-you-are-using-an-ubuntu-version-later-than-ubuntu-1204lts"></a>Ha a Ubuntu 12.04LTS később egy Ubuntu verzióját használja xfce használatával
-Mert hello xrdp jelenlegi verziója nem támogatja a Gnome asztali Ubuntu verzióihoz Ubuntu 12.04LTS később, használjuk `xfce` asztali helyette.
+Mert xrdp jelenlegi verziója nem támogatja a Gnome asztali Ubuntu verzióihoz Ubuntu 12.04LTS később, használjuk `xfce` asztali helyette.
 
-tooinstall `xfce`, használja ezt a parancsot:
+A telepítendő `xfce`, használja ezt a parancsot:
 
     #sudo apt-get install xubuntu-desktop
 
@@ -92,23 +92,23 @@ Engedélyezze a `xfce` használja a következő parancsot:
 
     #echo xfce4-session >~/.xsession
 
-Hello konfigurációs fájl szerkesztésével `/etc/xrdp/startwm.sh`:
+A konfigurációs fájl szerkesztése `/etc/xrdp/startwm.sh`:
 
     #sudo vi /etc/xrdp/startwm.sh   
 
-Adja hozzá a sort hello `xfce4-session` hello sor előtt `/etc/X11/Xsession`.
+Adja hozzá a sort `xfce4-session` sora elé `/etc/X11/Xsession`.
 
-toorestart hello xrdp szolgáltatást, használja ezt:
+Indítsa újra a xrdp szolgáltatást, használja ezt:
 
     #sudo service xrdp restart
 
 
 ## <a name="connect-your-linux-vm-from-a-windows-machine"></a>Csatlakozás a Linux virtuális Gépet egy Windows-gépről
-A Windows-gépen hello távoli asztal ügyfél elindítása, és adjon meg a Linux virtuális gép DNS-nevét. Vagy nyissa meg a virtuális gép az Azure-portálon hello irányítópult toohello, és kattintson `Connect` tooconnect a Linux virtuális Gépet. Ebben az esetben hello bejelentkezés ablak jelenik meg:
+A Windows-gépen a távoli asztal ügyfél elindítása, és adjon meg a Linux virtuális gép DNS-nevét. Vagy a virtuális gép az Azure-portálon az irányítópult megnyitásához, és kattintson a `Connect` a Linux virtuális gép csatlakozni. Ebben az esetben a bejelentkezési ablak jelenik meg:
 
 ![Kép](./media/remote-desktop/no2.png)
 
-Jelentkezzen be a hello felhasználónevét és jelszavát a Linux virtuális gép.
+Jelentkezzen be a felhasználónevet és jelszót a Linux virtuális gép.
 
 ## <a name="next-steps"></a>Következő lépések
 Xrdp használatával kapcsolatos további információkért lásd: [http://www.xrdp.org/](http://www.xrdp.org/).

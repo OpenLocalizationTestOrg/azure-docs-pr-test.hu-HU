@@ -1,6 +1,6 @@
 ---
-title: "Az alkalmazásproxy-alkalmazás létrehozása aaaProblem |} Microsoft Docs"
-description: "Hogyan tootroubleshoot problémák létrehozása alkalmazásproxy alkalmazások hello Azure AD felügyeleti portál"
+title: "A probléma az alkalmazásproxy-alkalmazás létrehozása |} Microsoft Docs"
+description: "Alkalmazásproxy-alkalmazások létrehozása az Azure AD felügyeleti portál kapcsolatos problémák elhárítása"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,39 +13,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 24fab83c38a49a9e5754854acf2f9711e374e559
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fe56f56162ba7186f1b660a5b44fcef38f1dee9d
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="problem-creating-an-application-proxy-application"></a>A probléma az alkalmazásproxy-alkalmazás létrehozása 
 
-Az alábbiakban néhány gyakori problémákat hello személyek arcfelismerési egy új application proxy alkalmazás létrehozásakor.
+Az alábbiakban néhány gyakori problémákat személyek arcfelismerési egy új application proxy alkalmazás létrehozásakor.
 
 ## <a name="recommended-documents"></a>Ajánlott dokumentumok 
 
-További információ az alkalmazásproxy alkalmazások hello felügyeleti portálon keresztül létrehozására toolearn lásd: [alkalmazások közzététele az Azure AD-alkalmazásproxy használatával](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal).
+A felügyeleti portálon keresztül alkalmazásproxy alkalmazás létrehozásával kapcsolatos további tudnivalókért lásd: [alkalmazások közzététele az Azure AD-alkalmazásproxy használatával](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal).
 
-Ha hello dokumentum lépéseit követi, és kihozhatják hello alkalmazás létrehozásakor hiba lépett fel, tekintse meg a hello hiba részletes információkat, és hogyan toofix hello alkalmazás javaslatokat. A legtöbb hiba üzenetekben javasolt javítás. 
+Ha a dokumentum lépéseit követi, és az alkalmazás létrehozásakor hiba lépett fel kap, tekintse meg információt a hiba részletes adatait, és javaslatokat arról, hogyan javítsa ki az alkalmazást. A legtöbb hiba üzenetekben javasolt javítás. 
 
-## <a name="specific-things-toocheck"></a>Konkrét dolgot toocheck
+## <a name="specific-things-to-check"></a>Adott ellenőrizze az alábbiakat
 
-tooavoid gyakori hibákat, ellenőrizze, hogy:
+Gyakori hibák elkerülése érdekében győződjön meg arról:
 
--   Az engedély toocreate proxyval alkalmazás rendszergazda
+-   Alkalmazásproxy alkalmazás létrehozása engedéllyel rendelkező rendszergazdáknak
 
--   hello belső URL-címe egyedi:
+-   A belső URL-címe egyedi:
 
--   hello külső URL-címe egyedi:
+-   A külső URL-címe egyedi:
 
--   hello http vagy https URL-címek kezdődik, és a szöveg végén a "/"
+-   Az URL-címének http vagy https kezdődnie, és végén a "/"
 
--   hello URL-cím a tartomány neve és IP-cím nem kell lennie.
+-   Az URL-cím a tartomány neve és IP-cím nem kell lennie.
 
-hello hibaüzenet jelenik meg hello jobb felső sarokban található hello alkalmazás létrehozásakor. Ehelyett választhatja hello értesítési ikon toosee hello hibaüzenetek.
+A jobb felső sarokban a hibaüzenet a következő megjelenjen-e az alkalmazás létrehozásakor. Igény szerint kiválaszthatja az értesítés ikonra a hibaüzenetekben talál.
 
    ![Értesítési üzenet](./media/application-proxy-config-problem/error-message.png)
 
 ## <a name="next-steps"></a>Következő lépések
-[Alkalmazásproxy engedélyezése az Azure-portálon hello](active-directory-application-proxy-enable.md)
+[Alkalmazásproxy engedélyezése az Azure-portálon](active-directory-application-proxy-enable.md)

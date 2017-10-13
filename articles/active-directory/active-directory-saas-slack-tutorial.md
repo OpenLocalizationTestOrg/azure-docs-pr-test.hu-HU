@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált Slackhez |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és a Slackhez között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és a Slackhez között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,115 +13,115 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2017
 ms.author: jeedes
-ms.openlocfilehash: 7f0151401af4dc63d2f714d4b4f66380c4b51e0d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5aca630b2077d3f7d4ce9273ee668ed6a5f9843d
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-slack"></a>Oktatóanyag: Azure Active Directoryval integrált Slackhez
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Slack-e az Azure Active Directoryval (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja Slackhez integrálása az Azure Active Directory (Azure AD).
 
-Slackhez integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
+Slackhez integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
 
-- Megadhatja a hozzáférés tooSlack rendelkező Azure AD-ben
-- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooSlack (egyszeri bejelentkezés) a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
+- Megadhatja a Slackhez hozzáféréssel rendelkező Azure AD-ben
+- Engedélyezheti a felhasználóknak, hogy automatikusan lekérni bejelentkezett slackhez (egyszeri bejelentkezés) a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-tooconfigure az Azure AD-integráció a Slackhez, a következő elemek hello kell:
+Az Azure AD-integráció konfigurálása a Slackhez, a következőkre van szükség:
 
 - Az Azure AD szolgáltatásra
 - A Slack egyszeri bejelentkezés engedélyezve van az előfizetés
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. Hozzáadás a Slackhez hello gyűjteményből
+1. A gyűjteményből Slackhez hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-slack-from-hello-gallery"></a>Hozzáadás a Slackhez hello gyűjteményből
-tooconfigure hello integrálása az Azure AD-be Slackhez, meg kell tooadd Slackhez hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-slack-from-the-gallery"></a>A gyűjteményből Slackhez hozzáadása
+A Slackhez az Azure AD-integráció konfigurálása, szüksége Slackhez hozzáadása a kezelt SaaS-alkalmazások listáját a gyűjteményből.
 
-**tooadd Slackhez hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
+**Adja hozzá a Slackhez a gyűjteményből, hajtsa végre az alábbi lépéseket:**
 
-1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
+1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
+2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
+3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
 
     ![Alkalmazások][3]
 
-4. Hello keresési mezőbe, írja be a **Slackhez**.
+4. Írja be a keresőmezőbe, **Slackhez**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-slack-tutorial/tutorial_slack_search.png)
 
-5. A hello eredmények panelen válassza ki a **Slackhez**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
+5. Az eredmények panelen válassza ki a **Slackhez**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-slack-tutorial/tutorial_slack_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon" nevű tesztfelhasználó alapján Slackhez.
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello tartozó felhasználói a Slackhez tooa felhasználó az Azure ad-ben. Ez azt jelenti hello kapcsolódó felhasználó a Slackhez és az Azure AD-felhasználó közötti kapcsolat kapcsolatot kell létrehozni toobe.
+Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a Slackhez tartozó felhasználót a felhasználó Azure AD-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó a Slackhez közötti kapcsolat kapcsolatot kell létrehozni.
 
-A Slackhez, rendelje a hello hello értékét **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
+A Slackhez, rendelje az értékét a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
 
-tooconfigure és tesztelése az Azure AD egyszeri bejelentkezést a Slackhez, a következő építőelemeket toocomplete hello szüksége:
+Az Azure AD egyszeri bejelentkezést a Slackhez tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-3. **[Slack tesztfelhasználó létrehozása](#creating-a-slack-test-user)**  -toohave egy megfelelője a Britta Simon a Slackhez, amely a felhasználó csatolt toohello az Azure AD ábrázolása.
-4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+3. **[Slack tesztfelhasználó létrehozása](#creating-a-slack-test-user)**  - való Britta Simon egy megfelelője a Slackhez, amely csatolva van a felhasználó az Azure AD-ábrázolását.
+4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az közzététele a Slack-alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az közzététele a Slack-alkalmazásban.
 
-**az Azure AD tooconfigure egyszeri bejelentkezést a Slackhez, hajtsa végre a lépéseket követve hello:**
+**Konfigurálja az Azure AD egyszeri bejelentkezést a Slackhez, hajtsa végre az alábbi lépéseket:**
 
-1. Az Azure portál, a hello hello **Slackhez** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portálon a a **Slackhez** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
+2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_samlbase.png)
 
-3. A hello **Slackhez tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
+3. Az a **Slackhez tartomány és az URL-címek** területen tegye a következőket:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_url.png)
 
-    a. A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<companyname>.slack.com`
+    a. Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://<companyname>.slack.com`
 
-    b. A hello **azonosító** szövegmezőhöz típus hello URL-címe:`https://slack.com`
+    b. Az a **azonosító** szövegmező, írja be az URL-cím:`https://slack.com`
 
     > [!NOTE] 
-    > hello érték nincs valós. Hogy tooupdate hello értékének hello tényleges bejelentkezési URL-cím. Ügyfél [Slack támogatási csoport](https://slack.com/help/contact) tooget hello érték
+    > Az érték nincs valós. Frissítse az értéket a tényleges bejelentkezési az URL-címmel rendelkezik. Ügyfél [Slack támogatási csoport](https://slack.com/help/contact) a érték
      
-4. Alkalmazás közzététele a Slack hello SAML helyességi feltételek vár egy meghatározott formátumban. Az alkalmazás jogcímek a következő hello konfigurálása. Ezek az attribútumok értékének hello hello kezelése "**felhasználói attribútumok**" szakasz alkalmazás integráció lapján. a következő képernyőkép hello ezen mutat egy példát.
+4. Alkalmazás közzététele a Slack vár a SAML helyességi feltételek egy meghatározott formátumban. A következő jogcímek alkalmazás konfigurálása. Ezek az attribútumok értékének kezelheti a "**felhasználói attribútumok**" szakasz alkalmazás integráció lapján. Az alábbi képernyőfelvételen látható egy példa a.
     
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_attribute.png)
 
-5. A hello **felhasználói attribútumok** hello szakaszt **egyszeri bejelentkezés** párbeszédablakban válassza **user.mail** , **felhasználói azonosító** és minden egyes sorára látható hello az alábbi táblázatban szereplő hajtsa végre a lépéseket követve hello:
+5. Az a **felhasználói attribútumok** a szakasz a **egyszeri bejelentkezés** párbeszédablakban válassza **user.mail** , **felhasználói azonosító** és az alábbi táblázatban szereplő minden egyes sorhoz kapcsolódóan végezze el a következő lépéseket:
     
     | Attribútum neve | Attribútum-érték |
     | --- | --- |
@@ -130,17 +130,17 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálo
     | User.Email | User.mail |  
     | User.Username | User.userPrincipalName |
 
-    a. Kattintson a **attribútum** tooopen **attribútum szerkesztése** párbeszédpanel mezőbe, majd hajtsa végre az alábbi lépésekkel hello:
+    a. Kattintson a **attribútum** megnyitásához **attribútum szerkesztése** párbeszédpanel mezőbe, majd hajtsa végre a következő lépéseket:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_attribute1.png)
 
-    a. A hello **neve** szövegmezőben, az adott sorhoz feltüntetett hello attribútum neve.
+    a. Az a **neve** szövegmező, írja be az adott sorhoz feltüntetett attribútumot nevét.
     
-    b. A hello **érték** listájában, az adott sorhoz feltüntetett válassza hello attribútum értéke.
+    b. Az a **érték** listára, válassza ki a sorhoz látható attribútum értéke.
     
     c. Kattintson az **OK** gombra
 
-6. A hello **SAML-aláíró tanúsítványa** kattintson **tanúsítvány (Base64)** , és mentse a hello tanúsítványfájlt a számítógépen.
+6. A a **SAML-aláíró tanúsítványa** kattintson **tanúsítvány (Base64)** , és mentse a tanúsítványfájlt, a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_certificate.png)
 
@@ -148,101 +148,101 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálo
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_general_400.png)
 
-8. A hello **Slackhez konfigurációs** kattintson **konfigurálása Slackhez** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **SAML Entitásazonosító és SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**
+8. A a **Slackhez konfigurációs** kattintson **konfigurálása Slackhez** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **SAML Entitásazonosító és SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_configure.png) 
 
-9.  Egy másik webes böngészőablakban jelentkezzen tooyour Slack vállalati hely rendszergazdaként.
+9.  Egy másik webes böngészőablakban jelentkezzen be a Slack vállalati webhely rendszergazdaként.
 
-10.  Keresse meg a túl**Microsoft Azure AD** folytassa túl**Team beállításainak**.
+10.  Navigáljon a **Microsoft Azure AD** majd navigáljon **Team beállításainak**.
 
      ![Alkalmazás ügyféloldali egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_001.png)
 
-11.  A hello **Team beállításainak** területen kattintson a hello **hitelesítési** fülre, majd **beállításainak módosítása**.
+11.  Az a **Team beállításainak** területen kattintson a **hitelesítési** fülre, majd **beállításainak módosítása**.
 
      ![Alkalmazás ügyféloldali egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_002.png)
 
-12. A hello **SAML-alapú hitelesítési beállítások** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello:
+12. Az a **SAML-alapú hitelesítési beállítások** párbeszédpanelen hajtsa végre a következő lépéseket:
 
     ![Alkalmazás ügyféloldali egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_003.png)
 
-    a.  A hello **SAML 2.0 végpontot (HTTP)** szövegmezőhöz Beillesztés hello értékének **SAML-alapú egyszeri bejelentkezési URL-címe**, amely az Azure-portálon másolta.
+    a.  Az a **SAML 2.0 végpontot (HTTP)** szövegmezőhöz illessze be az értékét **SAML-alapú egyszeri bejelentkezési URL-címe**, amely az Azure-portálon másolta.
 
-    b.  A hello **Identity Provider kibocsátó** szövegmezőhöz Beillesztés hello értékének **SAML Entitásazonosító**, amely Azure-portálon másolta.
+    b.  A a **Identity Provider kibocsátó** szövegmezőhöz illessze be az értékét **SAML Entitásazonosító**, amely az Azure-portálon másolta.
 
-    c.  Nyissa meg a letöltött fájlt a Jegyzettömbben, a vágólapra tartalmának másolása hello és toohello Beillesztés **nyilvános tanúsítvány** szövegmező.
+    c.  Nyissa meg a letöltött fájlt a Jegyzettömbben, annak tartalmának másolása a vágólapra és illessze be azt a **nyilvános tanúsítvány** szövegmező.
 
-    d. A fenti három beállítások hello beállítása a Slack-csoport nem megfelelő. Hello beállításaival kapcsolatos további információkért kérjük található hello **Slackhez tartozó SSO konfigurációs útmutató** itt. `https://get.slack.help/hc/articles/220403548-Guide-to-single-sign-on-with-Slack%60`
+    d. Állítsa be a fenti három megfelelő beállításokat a Slack-csoport. A beállításokkal kapcsolatos további információkért kérjük található a **Slackhez tartozó SSO konfigurációs útmutató** itt. `https://get.slack.help/hc/articles/220403548-Guide-to-single-sign-on-with-Slack%60`
 
     e.  Kattintson a **konfigurációjának mentéséhez**.
      
-    <!-- Deselect **Allow users toochange their email address**.
+    <!-- Deselect **Allow users to change their email address**.
 
-    e.  Select **Allow users toochoose their own username**.
+    e.  Select **Allow users to choose their own username**.
 
     f.  As **Authentication for your team must be used by**, select **It’s optional**. -->
 
 > [!TIP]
-> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
+Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
+1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-slack-tutorial/create_aaduser_01.png) 
 
-2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
+2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-slack-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
+3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-slack-tutorial/create_aaduser_03.png) 
 
-4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-slack-tutorial/create_aaduser_04.png) 
 
-    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
+    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-slack-test-user"></a>Slack tesztfelhasználó létrehozása
 
-hello ebben a szakaszban célja toocreate a Slackhez Britta Simon nevű felhasználó. Slackhez támogatja just-in-time kiosztást, amely alapértelmezés szerint van engedélyezve.
+Ez a szakasz célja a Slackhez Britta Simon nevű felhasználót létrehozni. Slackhez támogatja just-in-time kiosztást, amely alapértelmezés szerint van engedélyezve.
 
-Nincs ebben a szakaszban az Ön művelet elem. Új felhasználó jön létre egy kísérlet tooaccess Slackhez során, ha még nem létezik.
+Nincs ebben a szakaszban az Ön művelet elem. Új felhasználó jön létre az Ha még nem létezik a Slackhez elérésére tett kísérlet során.
 
 > [!NOTE]
-> A felhasználó toocreate manuálisan kell, ha szüksége van-e tooContact [Slack támogatási csoport](https://slack.com/help/contact).
+> Ha manuálisan hozzon létre egy felhasználó van szüksége, lépjen kapcsolatba kell [Slack támogatási csoport](https://slack.com/help/contact).
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
+### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
 
-Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooSlack megadásával engedélyeznie.
+Ebben a szakaszban Britta Simon hozzáférés biztosítása a slackhez által használandó Azure egyszeri bejelentkezés engedélyezése.
 
 ![Felhasználó hozzárendelése][200] 
 
-**tooassign Britta Simon tooSlack, hajtsa végre a következő lépéseket hello:**
+**Britta Simon hozzárendelése a Slackhez, hajtsa végre a következő lépéseket:**
 
-1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Hello alkalmazások listában válassza ki a **Slackhez**.
+2. Az alkalmazások listában válassza ki a **Slackhez**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_app.png) 
 
-3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -250,7 +250,7 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáfé
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -258,13 +258,13 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáfé
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
 
-Hello Slack csempére kattintva a hozzáférési Panel hello, automatikusan bejelentkezett tooyour Slack alkalmazás kapja meg.
+A Slack csempe elemre a hozzáférési panelen, meg kell beolvasása automatikusan bejelentkezett a Slack alkalmazásba.
 
 ## <a name="additional-resources"></a>További források
 
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

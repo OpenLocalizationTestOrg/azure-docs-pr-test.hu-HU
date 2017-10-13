@@ -1,6 +1,6 @@
 ---
-title: "kódolási feladatok előrehaladásának hello Azure-portálon a aaaMonitor"
-description: "Ez az oktatóanyag végigvezeti hello figyelést, a feladatok előrehaladásának hello Azure-portál használatával."
+title: "Az Azure portálon kódolási feladatok előrehaladásának figyelése"
+description: "Ez az oktatóanyag végigvezeti a figyelést a feladat előrehaladását, az Azure portál használatával."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,15 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 4282553d5dbed65ea6427bcd6de778795f1ff9ed
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 571d222068e92a45b0e37bec298bab7a6825f731
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="monitor-encoding-job-progress-with-hello-azure-portal"></a>Az Azure-portálon hello kódolási feladatok előrehaladásának figyelése
+# <a name="monitor-encoding-job-progress-with-the-azure-portal"></a>Az Azure portálon kódolási feladatok előrehaladásának figyelése
 > [!div class="op_single_selector"]
-> * [Portál](media-services-portal-check-job-progress.md)
+> * [Portal](media-services-portal-check-job-progress.md)
 > * [.NET](media-services-check-job-progress.md)
 > * [REST](media-services-rest-check-job-progress.md)
 > 
@@ -30,17 +30,17 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="overview"></a>Áttekintés
 > [!NOTE]
-> toocomplete ebben az oktatóanyagban egy Azure-fiókra van szüksége. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/). 
+> Az oktatóanyag elvégzéséhez egy Azure-fiókra lesz szüksége. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/). 
 > 
 > 
 
-Feladatok futtatása, ha gyakran van szüksége egy módon tootrack feladat előrehaladását. 
+Feladatok futtatása, ha gyakran kell segítségével nyomon követheti a feladat előrehaladását. 
 
-feladat, kódolás hello toomonitor hello előrehaladását kattintson **beállítások** (hello hello oldal tetején), és válassza **feladatok**.
+A kódolási feladat előrehaladásának figyeléséhez kattintson az oldal tetején található **Settings** (Beállítások), majd a **Jobs** (Feladatok) elemre.
 
 ![Feladatok](./media/media-services-portal-vod-get-started/media-services-jobs.png)
 
-További részletekért kattintson hello feladat toosee.
+Kattintson a feladat további részletek megtekintéséhez.
 
 ![Feladatok](./media/media-services-portal-vod-get-started/media-services-job-progress2.png)
 

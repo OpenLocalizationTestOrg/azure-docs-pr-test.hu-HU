@@ -7,20 +7,20 @@
 ## [A fejlesztési környezet beállítása](media-services-set-up-computer.md)
 ### [.NET](media-services-dotnet-how-to-use.md)
 ### [REST](media-services-rest-how-to-use.md)  
-## [Az AAD auth tooaccess API használata](media-services-use-aad-auth-to-access-ams-api.md)
-### [Portál toomanage AAD-hitelesítés használata](media-services-portal-get-started-with-aad.md)
+## [API-hozzáférés AAD-hitelesítés használatával](media-services-use-aad-auth-to-access-ams-api.md)
+### [AAD-hitelesítés kezelése a portál használatával](media-services-portal-get-started-with-aad.md)
 ### [API-hozzáférés .NET-tel](media-services-dotnet-get-started-with-aad.md)
 ### [API-hozzáférés REST-tel](media-services-rest-connect-with-aad.md)
-### [Parancssori felület toocreate használja, és AAD alkalmazás konfigurálása](media-services-cli-create-and-configure-aad-app.md)
-### [Használjon PowerShell toocreate és AAD alkalmazás konfigurálása](media-services-powershell-create-and-configure-aad-app.md)
+### [AAD-alkalmazás létrehozása és konfigurálása az Azure CLI használatával](media-services-cli-create-and-configure-aad-app.md)
+### [AAD-alkalmazás létrehozása és konfigurálása a Azure PowerShell-lel](media-services-powershell-create-and-configure-aad-app.md)
 
 ## Igény szerinti videó továbbítása
-### [Portál](media-services-portal-vod-get-started.md)
+### [Azure Portal](media-services-portal-vod-get-started.md)
 ### [.NET SDK](media-services-dotnet-get-started.md)
 ### [Java](media-services-java-how-to-use.md)
 ### [REST](media-services-rest-get-started.md)
 ## Élő közvetítés
-### [Portál](media-services-portal-live-passthrough-get-started.md)
+### [Azure Portal](media-services-portal-live-passthrough-get-started.md)
 ### [.NET](media-services-dotnet-live-encode-with-onpremises-encoders.md)
 
 # Útmutató
@@ -29,7 +29,7 @@
 #### [.NET](media-services-dotnet-manage-entities.md)
 #### [REST](media-services-rest-manage-entities.md)
 ### [Streamvégpontok](media-services-streaming-endpoints-overview.md)
-#### [Portál](media-services-portal-manage-streaming-endpoints.md)
+#### [Azure Portal](media-services-portal-manage-streaming-endpoints.md)
 #### [.NET](media-services-dotnet-manage-streaming-endpoints.md)
 ### Tárolás
 #### [A Media Services frissítése tárelérési kulcsok váltása után](media-services-roll-storage-access-keys.md)
@@ -38,7 +38,7 @@
 
 ## Tartalom feltöltése
 ### Fájlok feltöltése egy fiókba
-#### [Portál](media-services-portal-upload-files.md)
+#### [Azure Portal](media-services-portal-upload-files.md)
 #### [.NET](media-services-dotnet-upload-files.md)
 #### [REST](media-services-rest-upload-files.md)
 ### [Nagy fájlok feltöltése az Asperával](media-services-upload-files-with-aspera.md)
@@ -50,14 +50,14 @@
 ### [A kódolás sebességének és egyidejűségének kezelése](media-services-manage-encoding-speed.md)
 ### Media Encoder Standard (MES)
 #### [Media Encoder Standard-formátumok és -kodekek](media-services-media-encoder-standard-formats.md)
-#### [Használja a MES tooauto-egy sávszélességű létra készítése](media-services-autogen-bitrate-ladder-with-mes.md)
+#### [Sávszélességi skála automatikus létrehozása a MES használatával](media-services-autogen-bitrate-ladder-with-mes.md)
 #### Kódolás a Media Encoder Standard használatával
-##### [Portál](media-services-portal-encode.md)
+##### [Azure Portal](media-services-portal-encode.md)
 ##### [.NET](media-services-dotnet-encode-with-media-encoder-standard.md)
 ##### [REST](media-services-rest-encode-asset.md)
 #### [Speciális kódolás a MES használatával](media-services-advanced-encoding-with-mes.md)
 ##### [Media Encoder Standard-beállításkészletek testreszabása](media-services-custom-mes-presets-with-dotnet.md)
-##### [Hogyan toogenerate miniatűrök .NET Media Encoder Standard használatával](media-services-dotnet-generate-thumbnail-with-mes.md)
+##### [Miniatűrök létrehozása a .NET-es Media Encoder Standard használatával](media-services-dotnet-generate-thumbnail-with-mes.md)
 ##### [Videók körülvágása a Media Encoder Standarddel](media-services-crop-video.md)
 #### MES-sémák
 ##### [Media Encoder Standard-séma](media-services-mes-schema.md)
@@ -109,7 +109,7 @@
 #### [Portal](media-services-portal-live-passthrough-get-started.md)
 #### [.NET](media-services-dotnet-live-encode-with-onpremises-encoders.md)
 ### [Élő stream a felhőalapú kódolóval](media-services-manage-live-encoder-enabled-channels.md)
-#### [Portál](media-services-portal-creating-live-encoder-enabled-channel.md)
+#### [Azure Portal](media-services-portal-creating-live-encoder-enabled-channel.md)
 #### [.NET](media-services-dotnet-creating-live-encoder-enabled-channel.md)
 ### [Helyszíni kódolók konfigurálása felhőalapú kódolóval való használatra](media-services-live-encoders-overview.md)
 #### [Elemental Live kódoló](media-services-configure-elemental-live-encoder.md)
@@ -120,15 +120,15 @@
 ### [Specifikáció: darabolt MP4 élő feldolgozása](media-services-fmp4-live-ingest-overview.md)
 
 ## [Védelem](media-services-content-protection-overview.md)
-### [A védett tartalom hello portál konfigurálása](media-services-portal-protect-content.md)
+### [A tartalomvédelem konfigurálása az Azure Portalon](media-services-portal-protect-content.md)
 ### [AES-128 titkosítatlan kulcs konfigurálása a streamhez](media-services-protect-with-aes128.md)
-### [A tartalom REST tooencrypt használatához a tárolás titkosítása](media-services-rest-storage-encryption.md)
+### [A REST használata a tartalmak tárolási titkosításához](media-services-rest-storage-encryption.md)
 ### [A Media Services PlayReady licencsablon áttekintése](media-services-playready-license-template-overview.md)
 ### [A Widevine-licencsablon áttekintése](media-services-widevine-license-template-overview.md)
 ### [DRM-licenckézbesítés](media-services-deliver-keys-and-licenses.md)
-### [Használatával a partnerek toodeliver Widevine licencek tooMedia szolgáltatások](media-services-licenses-partner-integration.md)
-#### [Widevine-licencek tooMedia toodeliver szolgáltatások Axinom használata](media-services-axinom-integration.md)
-#### [Widevine-licencek tooMedia toodeliver szolgáltatások castLabs használata](media-services-castlabs-integration.md)
+### [Partnerek használata a Widevine-licencek Media Servicesbe való kézbesítéséhez](media-services-licenses-partner-integration.md)
+#### [Az Axinom használata a Widevine-licencek Media Servicesbe való kézbesítéséhez  ](media-services-axinom-integration.md)
+#### [A castLabs használata a Widevine-licencek Media Servicesbe való kézbesítéséhez](media-services-castlabs-integration.md)
 ### [A PlayReady és/vagy Widevine Dynamic Common Encryption titkosítás használata](media-services-protect-with-drm.md)
 ### [Az Apple FairPlay által védett HLS-tartalmak streamelése ](media-services-protect-hls-with-fairplay.md)
 ### [DRM-alrendszer vegyes kialakítása](hybrid-design-drm-sybsystem.md)
@@ -140,12 +140,14 @@
 #### [.NET](media-services-dotnet-create-contentkey.md)
 #### [REST](media-services-rest-create-contentkey.md)
 ### Tartalomkulcs-engedélyezési házirend konfigurálása
-#### [Portál](media-services-portal-configure-content-key-auth-policy.md)
+#### [Azure Portal](media-services-portal-configure-content-key-auth-policy.md)
 #### [.NET](media-services-dotnet-configure-content-key-auth-policy.md)
 #### [REST](media-services-rest-configure-content-key-auth-policy.md)
+### [AES-sel titkosított HLS lejátszása a Safariban](https://azure.microsoft.com/blog/how-to-make-token-authorized-aes-encrypted-hls-stream-working-in-safari/)
+### [Hitelesítési jogkivonatok átadása](http://mingfeiy.com/how-client-pass-tokens-to-azure-media-services-key-delivery-services)
 
 ## [Elemzés](media-services-analytics-overview.md)
-### [Adathordozó használatával hello portal elemzése](media-services-portal-analyze.md)
+### [Média elemzése az Azure Portallal](media-services-portal-analyze.md)
 ### [Feldolgozás a 2. indexelővel](media-services-process-content-with-indexer2.md)
 ### [Feldolgozás az indexelővel](media-services-index-content.md)
 #### [Előre beállított feladat](indexer-task-preset.md)
@@ -163,10 +165,10 @@
 
 ## Méretezés
 ### [Médiafeldolgozás](media-services-scale-media-processing-overview.md)
-#### [Portál](media-services-portal-scale-media-processing.md)
+#### [Azure Portal](media-services-portal-scale-media-processing.md)
 #### [.NET](media-services-dotnet-encoding-units.md)
 ### Streamvégpontok
-#### [Portál](media-services-portal-scale-streaming-endpoints.md)
+#### [Azure Portal](media-services-portal-scale-streaming-endpoints.md)
 
 ## [Tartalom továbbítása](media-services-deliver-content-overview.md)
 ### [Dinamikus csomagolás](media-services-dynamic-packaging-overview.md)
@@ -175,7 +177,7 @@
 #### [Szűrők létrehozása REST használatával](media-services-rest-dynamic-manifest.md)
 ### [CDN gyorsítótárazási házirend a Media Services bővítményben](../cdn/cdn-caching-policy.md?toc=%2fazure%2fmedia-services%2ftoc.json)
 ### Tartalom közzététele
-#### [Portál](media-services-portal-publish.md)
+#### [Azure Portal](media-services-portal-publish.md)
 #### [.NET](media-services-deliver-streaming-content.md)
 #### [REST](media-services-rest-deliver-streaming-content.md)
 ### [Továbbítás letöltésen keresztül](media-services-deliver-asset-download.md)
@@ -188,9 +190,8 @@
 #### [Zökkenőmentes streamet biztosító Windows Áruházbeli alkalmazás](media-services-build-smooth-streaming-apps.md)
 #### [HTML5-alkalmazás DASH.js-sel](media-services-embed-mpeg-dash-in-html5.md)
 #### [Adobe Open Source Media Framework-lejátszók](media-services-use-osmf-smooth-streaming-client-plugin.md)
-### [Hello ügyféloldalon ads beszúrása](media-services-inserting-ads-on-client-side.md)
+### [Hirdetések ügyféloldali beillesztése](media-services-inserting-ads-on-client-side.md)
 ### [A Microsoft Smooth Streaming ügyfélportolási készlet licencelése](media-services-sspk.md)
-### [AES-sel titkosított HLS lejátszása a Safariban](https://azure.microsoft.com/blog/how-to-make-token-authorized-aes-encrypted-hls-stream-working-in-safari/)
 
 ## Integrálás
 ### [Az Azure Functions használata a Media Services szolgáltatással](media-services-dotnet-how-to-use-azure-functions.md)
@@ -199,7 +200,7 @@
 ## Figyelés
 ### A feladat előrehaladásának ellenőrzése
 #### [REST](media-services-rest-check-job-progress.md)
-#### [Portál](media-services-portal-check-job-progress.md)
+#### [Azure Portal](media-services-portal-check-job-progress.md)
 #### [.NET](media-services-check-job-progress.md)
 ### [Feladatértesítések figyelése üzenetsor-tárolóval](media-services-dotnet-check-job-progress-with-queues.md)
 ### [Feladatértesítések figyelése webhookokkal](media-services-dotnet-check-job-progress-with-webhooks.md)
@@ -212,8 +213,8 @@
 
 # Referencia
 ## [Kódminták](https://azure.microsoft.com/en-us/resources/samples/?service=media-services)
-## [PowerShell (Resource Manager)](/powershell/module/azurerm.media)
-## [PowerShell (Szolgáltatásfelügyelet)](/powershell/module/azure/?view=azuresmps-3.7.0)
+## [Azure PowerShell (Resource Manager)](/powershell/module/azurerm.media)
+## [Azure PowerShell (Szolgáltatásfelügyelet)](/powershell/module/azure/?view=azuresmps-3.7.0)
 ## [.NET](/dotnet/api/microsoft.windowsazure.mediaservices.client)
 ## [REST](/rest/api/media/mediaservice)  
 

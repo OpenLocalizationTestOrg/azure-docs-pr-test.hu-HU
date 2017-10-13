@@ -1,39 +1,39 @@
 ---
-title: az Azure-on AAA Chef
+title: Chef az Azure-on
 description: "A Chef üzembe helyezése és integrálása az Azure használatával"
 services: multiple
-author: mlearned
-manager: douge
+author: czeumault
+manager: carolz
 layout: LandingPage
 ms.service: multiple
 ms.tgt_pltfrm: na
 ms.devlang: devops
 ms.topic: landing-page
 ms.date: 04/25/2017
-ms.author: mlearned
-ms.openlocfilehash: cf81485dce4995809bb78f851b5dd35da9f4a78f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: carolz
+ms.openlocfilehash: 384597b6a34ba41fb5337d6d42fe2790b138fb83
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 <div class="content">
    <h1>Chef az Azure-on</h1>
     <div class="introHolder" style="justify-content: space-between;">
         <div class="intro" style="min-width: 200px">
-        <img src="media/chef.png" alt="Chef Logo" align="right">Chef egy DevOps automatizálási platform, a Linux és a Windows hello felügyeletre mindkét fizikai és virtuális kiszolgáló konfigurációk. Megtudhatja, hogyan toouse Chef tooautomate szolgáltatott infrastruktúra (IaC) kód receptet és kezelését, és az Azure virtuális gépek telepítését quickstarts és oktatóanyagok.          
+        <img src="media/chef.png" alt="Chef Logo" align="right"> A Chef egy Linux és Windows rendszerhez készült DevOps automatizálási platform, amely lehetővé teszi a fizikai és a virtuális kiszolgálók konfigurációjának kezelését. A rövid útmutatók és oktatóanyagok segítségével megismerheti, hogyan használható a Chef az infrastruktúra kódként való használatára vonatkozó receptek automatizálására, illetve a virtuális gépek kezelésére és üzembe helyezésére az Azure-ban.          
         </div>
         </div>
 <h2>5 perces gyors útmutatók</h2>
-<p>Megtudhatja, hogyan toodeploy Azure Chef:</p> 
+<p>Ismerje meg, hogyan telepíthető a Chef az Azure-ban:</p> 
   <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/chef-software.chef-automate?tab=Overview">A Chef telepítése az Azure-ban</a><br/>
 <h2>Részletes útmutatók</h2>
-<p>Megtudhatja, hogyan toointegrate az Azure-ral Chef eszközökhöz, és szolgáltatások:</p> 
+<p>Ismerje meg, hogyan integrálható a Chef az Azure eszközeivel és szolgáltatásaival:</p> 
 <ol>
 <li><a href="/azure/virtual-machines/windows/chef-automation">Az Azure virtuális gép automatikus üzembe helyezése a Chef segítségével</a></li>
 </ol>
 <h2>Erőforrások</h2>
-<p>Tekintse meg a következő további segédanyagok hivatkozások és az Azure-on Chef való munkához eszközök hello.</p>
+<p>A Chef Azure rendszeren történő használatával kapcsolatos további referenciaanyagokért és eszközökért tekintse meg a következő referenciákat.</p>
 <a href="https://docs.microsoft.com/en-us/powershell/module/azure/get-azurevmchefextension?view=azuresmps-4.0.0">PowerShell Chef-referencia</a><br/>
 <a href="https://github.com/chef-partners/vsts-chef/wiki/Getting-Started">Bevezetés a Chef és a VSTS használatába</a><br/>
 Videó:<a href="https://channel9.msdn.com/Events/TechDaysOnline/UK-TechDays-Online-2016/Release-Management-with-VSTS--integration-with-Azure--Chef-Deployment"> Kiadáskezelés a VSTS, a Chef és az Octopus Deploy használatával</a><br/>

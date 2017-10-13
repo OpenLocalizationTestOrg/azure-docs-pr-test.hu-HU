@@ -1,6 +1,6 @@
 ---
-title: "aaaUnity tudják állítani egy golyó oktatóanyag"
-description: "Lépéseket toocreate hello Unity klasszikus Roll egy golyó játék, amely előzetesen szükséges összes Mobile Engagement Unity-oktatóanyag"
+title: "Unity összegző golyó oktatóanyag"
+description: "Lépések végrehajtásával hozza létre a Unity klasszikus Roll egy golyó játék, amely előzetesen szükséges összes Mobile Engagement Unity-oktatóanyag"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,17 +14,17 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 10d923682432961207594886b08e5db60cf60d9a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6392d1f780b1bc2348fee5947550b05e86ea4de2
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a id="unity-roll-a-ball"></a>Hozzon létre Unity Roll golyó játék
-Ez az oktatóanyag végigvezeti hello fő lépései kis mértékben módosított [Unity visszaállítani egy golyó oktatóanyag](http://unity3d.com/learn/tutorials/projects/roll-ball-tutorial). Ez a minta játék áll hello alkalmazás felhasználói által ellenőrzött gömb "player" objektum és hello hello játék célja too'collect "ütközés hello player objektum ezeket az objektumokat a memóriából kiüríthető memóriából kiüríthető objektumok. Ez azt feltételezi, hogy a Unity-szerkesztő környezet alapszintű ismeretét. Ha probléma merül fel, toohello teljes oktatóanyag kell hivatkoznia. 
+Ez az oktatóanyag végigvezeti egy kis mértékben módosított fő lépései [Unity visszaállítani egy golyó oktatóanyag](http://unity3d.com/learn/tutorials/projects/roll-ball-tutorial). Ez a minta játék egy gömb "player" objektumon, amelynek az alkalmazás felhasználói által szabályozott áll, és a játék célja, hogy a "collect" memóriából kiüríthető objektumok által a memóriából kiüríthető objektumok player objektum ütközés. Ez azt feltételezi, hogy a Unity-szerkesztő környezet alapszintű ismeretét. Ha probléma merül fel, majd tekintse át a teljes útmutató. 
 
-### <a name="setting-up-hello-game"></a>Hello játék beállítása
-hello lépéseket tartoznak, amely hello [Unity oktatóanyag](https://unity3d.com/learn/tutorials/projects/roll-a-ball/set-up?playlist=17141)
+### <a name="setting-up-the-game"></a>A game beállítása
+A rendszer az alábbi lépéseket a [Unity oktatóanyag](https://unity3d.com/learn/tutorials/projects/roll-a-ball/set-up?playlist=17141)
 
 1. Nyissa meg **Unity-szerkesztő** kattintson **új**. 
    
@@ -32,54 +32,54 @@ hello lépéseket tartoznak, amely hello [Unity oktatóanyag](https://unity3d.co
 2. Adjon meg egy **projektnevet** & **hely**, jelölje be **3D** kattintson **Create project**.
    
     ![][52]
-3. Mentés hello alapértelmezett helyszín hello új projekt részeként hello nevét az imént létrehozott **MiniGame** belül egy új  **\_színfalak** mappája **eszközök** mappába:
+3. Mentse a részeként az új projekt nevét az imént létrehozott alapértelmezett helyszín **MiniGame** belül egy új  **\_színfalak** mappát **eszközök** mappába:
    
     ![][53]
-4. Hozzon létre egy **3D objektum -> Vezérlősík** hello játszik mezőben, és nevezze át ezt az vezérlősík objektumot **Ground**
+4. Hozzon létre egy **3D objektum -> Vezérlősík** a játszik mezőben, és nevezze át ezt az vezérlősík objektumot **Ground**
    
     ![][1]
-5. Alaphelyzetbe állítása hello átalakító összetevője a **Ground** objektumot, hogy ez ugyanis azonos hello forrása. 
+5. Az átalakítási összetevő alaphelyzetbe a **Ground** objektumot, hogy a forráson van. 
    
     ![][3]
-6. Törölje a jelet **rácsvonalak megjelenítése** a **Gizmos menü** a hello **Ground** objektum.
+6. Törölje a jelet **rácsvonalak megjelenítése** a **Gizmos menü** a a **Ground** objektum.
    
     ![][4]
-7. Frissítés hello **méretezési** hello a komponens **Ground** object toobe [X = 2, Y = 1, Z = 2]. 
+7. Frissítés a **méretezési** az összetevőt a **Ground** objektumtípus [X = 2, Y = 1, Z = 2]. 
    
     ![][5]
-8. Adjon hozzá egy új **3D objektum -> kapcsolataikat** toohello projektet, és nevezze át az eddigi mint objektum **Player**. 
+8. Adjon hozzá egy új **3D objektum -> kapcsolataikat** a projekt és az eddigi objektum, nevezze át **Player**. 
    
     ![][6]
-9. Jelölje be hello **Player** objektumra, és kattintson a **átalakítás visszaállítása** hasonló toohello Vezérlősík objektum. 
-10. Frissítés **átalakító -> pozíció -> Y koordinátáját** hello Player Y 0,5 az összetevőt.  
+9. Válassza ki a **Player** objektumra, és kattintson a **átalakítás visszaállítása** hasonló, és a Vezérlősík objektum. 
+10. Frissítés **átalakító -> pozíció -> Y koordinátáját** 0,5 Player Y az összetevőt.  
     
     ![][7]
-11. Hozzon létre egy új nevű **anyagok** hello projektben, ahol hello jelentős toocolor hello player létre fogunk hozni. 
+11. Hozzon létre egy új nevű **anyagok** a projektben, ahol az anyag a Windows Media player színes létre fogunk hozni. 
 12. Hozzon létre egy új **anyag** nevű **háttér** ebben a mappában. 
     
     ![][8]
-13. Hello anyagot hello színe frissítése hello frissítésével **Albedo** tulajdonsága azt. Kiválaszthatja a [0,32,64] hello RGB-értékeket. 
+13. Az anyag színének frissítése frissítésével a **Albedo** tulajdonsága azt. Kiválaszthatja a [0,32,64] RGB-értékeket. 
     
     ![][9]
-14. Húzza az anyag hello helyszín nézet tooapply szín toohello **Ground** objektum. 
+14. Húzza a leképezni kívánt jelenetben nézet színnel anyagot a **Ground** objektum. 
     
     ![][10]
-15. Végül frissítse a hello **átalakító -> Elforgatás -> Y** too60 jobb érthetőség kedvéért bizonyos hello irányt világos objektumon. 
+15. Végül frissítse a **átalakító -> Elforgatás -> Y** 60 jobb érthetőség kedvéért bizonyos irányt világos objektumon. 
     
     ![][12]
 
-### <a name="moving-hello-player"></a>Áthelyezése hello player
-hello lépéseket tartoznak, amely hello [Unity oktatóanyag](https://unity3d.com/learn/tutorials/projects/roll-a-ball/moving-the-player?playlist=17141)
+### <a name="moving-the-player"></a>A Windows Media player áthelyezése
+A rendszer az alábbi lépéseket a [Unity oktatóanyag](https://unity3d.com/learn/tutorials/projects/roll-a-ball/moving-the-player?playlist=17141)
 
-1. Adja hozzá a **RigidBody** összetevő toohello **Player** objektum. 
+1. Adja hozzá a **RigidBody** összetevőt, hogy a **Player** objektum. 
    
     ![][13]
-2. Hozzon létre egy új nevű **parancsfájlok** a projekt hello. 
-3. Kattintson a **összetevőt -> Új parancsfájl -> C# parancsfájl**. Nevezze el **PlayerController**, és kattintson a **létrehozása és hozzáadása**. Ezzel a hoz létre, és csatolja a parancsfájl toohello Player objektum.  
+2. Hozzon létre egy új nevű **parancsfájlok** a projektben. 
+3. Kattintson a **összetevőt -> Új parancsfájl -> C# parancsfájl**. Nevezze el **PlayerController**, és kattintson a **létrehozása és hozzáadása**. Ezzel a hoz létre, és egy parancsfájl csatolása a Player objektumhoz.  
    
     ![][14]
-4. Helyezze át a parancsfájlt a hello **parancsfájlok** hello projekt mappájára. 
-5. Nyissa meg szerkesztésre a kedvenc parancsprogram-szerkesztő hello parancsfájl, frissítse a következő kód hello hello parancsfájlkód, és mentse azokat. 
+4. Ezt a parancsfájlt a helyezze át a **parancsfájlok** a projekt mappájára. 
+5. Nyissa meg szerkesztésre a kedvenc parancsprogram-szerkesztő, a script kód frissítése a következő kódra, és mentse azokat. 
    
         using UnityEngine;
         using System.Collections;
@@ -100,22 +100,22 @@ hello lépéseket tartoznak, amely hello [Unity oktatóanyag](https://unity3d.co
                 rb.AddForce (movement * speed);
             }
         }
-6. Vegye figyelembe, hogy hello parancsfájl fent használ egy **sebesség** tulajdonság. Hello Unity-szerkesztőben hello sebesség tulajdonság too10 frissítése.  
+6. Vegye figyelembe, hogy a fenti parancsfájl használ egy **sebesség** tulajdonság. A Unity-szerkesztőben frissítse a sebesség tulajdonság 10.  
    
     ![][15]
-7. Találati **lejátszása** a hello Unity-szerkesztőt. Most már tudja toocontrol hello golyó hello billentyűzet használatával kell lennie, és kell elforgatása, valamint navigálás. 
+7. Találati **lejátszása** a Unity-szerkesztőben. Most kell vezérelhetik a billentyűzettel golyó, és azt kell elforgatás és navigálás. 
 
-### <a name="moving-hello-camera"></a>Kamera. hello áthelyezése.
-hello lépéseket tartoznak, amely hello [Unity oktatóanyag](https://unity3d.com/learn/tutorials/projects/roll-a-ball/moving-the-camera?playlist=17141) és lelassul hello **fő kamera** toohello **Player** objektum. 
+### <a name="moving-the-camera"></a>A kamera áthelyezése
+A rendszer az alábbi lépéseket a [Unity-oktatóanyag](https://unity3d.com/learn/tutorials/projects/roll-a-ball/moving-the-camera?playlist=17141) és lelassul a **fő kamera** számára a **Player** objektum. 
 
-1. Frissítés hello **Transform.Position** toobe X = 0, Y 10.5, Z-= 10 =.  
-2. Frissítés hello **Transform.Rotation** toobe X = 45, I = 0, Z = 0.  
+1. Frissítés a **Transform.Position** X kell = 0, Y 10.5, Z-= 10 =.  
+2. Frissítés a **Transform.Rotation** X kell = 45, I = 0, Z = 0.  
    
     ![][16]
-3. Adja hozzá a nevű új parancsfájl **CameraController** toohello **MainCamera** és hello parancsfájlmappa alá helyezi. 
+3. Nevű új parancsfájl hozzáadása **CameraController** számára a **MainCamera** , és a parancsfájlok mappa alá helyezi. 
    
     ![][17]
-4. Nyissa meg szerkesztésre hello parancsfájlt, és adja hozzá a következő kód azt hello:
+4. Nyissa meg szerkesztésre a parancsfájlt, és adja hozzá a következő kódot:
    
         using UnityEngine;
         using System.Collections;
@@ -136,13 +136,13 @@ hello lépéseket tartoznak, amely hello [Unity oktatóanyag](https://unity3d.co
                 transform.position = player.transform.position + offset;
             }
         }
-5. A környezet Unity - húzza hello Player változó hello Player tárhely hello fő kamera objektum, hello két legyenek társítva van egy másik. 
+5. Környezetben Unity - húzza a Player változó a fő kamera objektum a Player tárhely, hogy a két társítva egy másik. 
    
     ![][18]
-6. Most kattintson a Play hello Unity-szerkesztő és elforgatás hello Player golyó objektum majd látják hello következő hello adatátviteli kamera.  
+6. Most már a Unity-szerkesztőben kattintson a Play és a Player golyó objektum elforgatása majd látják a kamera következő mozgása.  
 
-### <a name="setting-up-hello-play-area"></a>Hello Play terület beállítása
-hello lépéseket tartoznak, amely hello [Unity oktatóanyag](https://unity3d.com/learn/tutorials/projects/roll-a-ball/setting-up-the-play-area?playlist=17141). Létrehozunk hello egységesen határoló hello Ground, így hello Player golyó objektum nem leadásához hello play terület mozgása. 
+### <a name="setting-up-the-play-area"></a>A Play terület beállítása
+A rendszer az alábbi lépéseket a [Unity oktatóanyag](https://unity3d.com/learn/tutorials/projects/roll-a-ball/setting-up-the-play-area?playlist=17141). A körülvevő az alapoktól, így a Player golyó objektum nem leadásához mozgása play területén falakat létre fogunk hozni. 
 
 1. Kattintson a **létrehozás -> hozzon létre üres játék objektum ->** és adjon neki nevet **falvastagságát**
    
@@ -150,30 +150,30 @@ hello lépéseket tartoznak, amely hello [Unity oktatóanyag](https://unity3d.co
 2. Mért falvastagságát objektum - alatt hozzon létre egy új **3D objektum adatkocka ->** "Nyugati fali" néven. 
    
     ![][20]
-3. Frissítés hello **átalakító pozíció ->** és **átalakítási a méretezési ->** nyugati fali objektum. 
+3. Frissítés a **átalakító pozíció ->** és **átalakítási a méretezési ->** nyugati fali objektum. 
    
     ![][21]
-4. Ismétlődő hello nyugati fali toocreate egy **keleti fali** hello frissíteni az átalakítás elhelyezése és méretezése. 
+4. Ismétlődő a nyugati fali létrehozásához egy **keleti fali** a módosított rendelkező átalakítási elhelyezése és méretezése. 
    
     ![][22]
-5. Ismétlődő hello keleti fali toocreate egy **északi fali** hello frissíteni az átalakítás pozíció & skála. 
+5. Ismétlődő a keleti fali létrehozásához egy **északi fali** a módosított rendelkező átalakítási pozíció & skála. 
    
     ![][23]
-6. Ismétlődő hello északi fali, és hozzon létre egy **Dél fali** hello frissíteni az átalakítás pozíció & skála. 
+6. A északi fali duplikált, és hozzon létre egy **Dél fali** a módosított rendelkező átalakítási pozíció & skála. 
    
     ![][24]
 
 ### <a name="creating-collectible-objects"></a>A memóriából kiüríthető objektumok létrehozása
-hello lépéseket tartoznak, amely hello [Unity oktatóanyag](https://unity3d.com/learn/tutorials/projects/roll-a-ball/creating-collectables?playlist=17141). Létre fogunk hozni néhány vonzó, amely kell too'collect mely hello Player golyó objektumot a memóriából kiüríthető objektumok hello készletét objektumok keresése "való ütközés által. 
+A rendszer az alábbi lépéseket a [Unity oktatóanyag](https://unity3d.com/learn/tutorials/projects/roll-a-ball/creating-collectables?playlist=17141). Néhány vonzó kinézetű objektumokat, amely a memóriából kiüríthető objektumokat, amely a Player golyó objektumhoz kell a "collect" való ütközés által készletét alkotó létre fogunk hozni. 
 
 1. Hozzon létre egy új **3D adatkocka-objektum** és nevezze el a felvételi. 
-2. Hello beállítása **átalakító -> Elforgatás** & **átalakítási a méretezési ->** hello felvételi objektum. 
+2. Módosítsa a **átalakító -> Elforgatás** & **átalakítási a méretezési ->** a felvételi objektum. 
    
     ![][25]
-3. Hozzon létre, és csatlakoztassa a **új C# parancsfájl** nevű **Rotator** toohello felvételi objektum. Győződjön meg arról, hogy tooput hello parancsfájl hello parancsfájlok mappában. 
+3. Hozzon létre, és csatlakoztassa a **új C# parancsfájl** nevű **Rotator** felvételi objektumhoz. Ügyeljen arra, hogy a parancsfájlt helyezze a parancsfájlok mappában. 
    
     ![][26]
-4. Nyissa meg szerkesztésre a parancsfájlt, és frissítse a következő toobe hello: 
+4. Nyissa meg szerkesztésre a parancsfájlt, és frissítse úgy, hogy a következő: 
    
         using UnityEngine;
         using System.Collections;
@@ -185,30 +185,30 @@ hello lépéseket tartoznak, amely hello [Unity oktatóanyag](https://unity3d.co
                 transform.Rotate (new Vector3 (15, 30, 45) * Time.deltaTime);
             }
         }
-5. Most találati hello Play mód hello Unity-szerkesztő és a felvételi objektum megjelenítése kell cserélni az tengelyen.
+5. A tengely elforgatása most elérte a Play mód a Unity-szerkesztő és a felvételi objektum megjelenítése.
 6. Hozzon létre egy új nevű **Prefabs** 
    
     ![][27]
-7. A csomóponthúzási hello **a felvételi** objektumra, és hello Prefabs mappába.
+7. Húzza a **a felvételi** objektumra, és a Prefabs mappába.
    
     ![][28]
-8. Hozzon létre egy új **üres játék objektum** nevű **Pickups**. A pozíció tooorigin visszaállítása, és húzza a felvételi objektum hello játék objektum alatt.  
+8. Hozzon létre egy új **üres játék objektum** nevű **Pickups**. Pozícióját visszaáll az eredeti, és húzza a felvételi objektum játék objektum alatt.  
    
     ![][29]
-9. Ismétlődő hello **a felvételi** objektumra, és azt a hello terjednek **Ground** objektum körüli hello **Player** hello frissítésével objektum **Transform.Position tartozó X & Z**  megfelelő értékeket. 
+9. Ismétlődő a **a felvételi** objektumra, és azt a terjednek a **Ground** körül objektum a **Player** objektum frissítésével a **Transform.Position tartozó X & Z** megfelelő értékeket. 
    
     ![][30]
-10. Hozzon létre egy **új anyagokkal** nevű **a felvételi** és frissítheti azt hello frissítésével toobe vörös színnel **Albedo tulajdonság** hasonló toowhat azt adta hello Ground frissítési objektum. 
+10. Hozzon létre egy **új anyagokkal** nevű **a felvételi** és frissítése, hogy piros szín frissítésével a **Albedo tulajdonság** hasonló mi azt az, ami az alapoktól objektum frissítésére. 
     
     ![][31]
-11. Hello jelentős tooall hello 4 felvételi objektumok alkalmazni.
+11. Az anyag alkalmazása 4 felvételi objektumait.
     
     ![][32]
 
-### <a name="collecting-hello-pickup-objects"></a>Hello felvételi objektumok gyűjtése
-hello lépéseket tartoznak, amely hello [Unity oktatóanyag](https://unity3d.com/learn/tutorials/projects/roll-a-ball/collecting-pick-up-objects?playlist=17141). Frissítjük a hello Player úgy, hogy az képes too'collect "hello felvételi objektumok által való ütközés. 
+### <a name="collecting-the-pickup-objects"></a>A felvételi objektumok gyűjtése
+A rendszer az alábbi lépéseket a [Unity oktatóanyag](https://unity3d.com/learn/tutorials/projects/roll-a-ball/collecting-pick-up-objects?playlist=17141). A Windows Media Player frissítjük, hogy tud-e a "collect" a felvételi objektumok által való ütközés. 
 
-1. Nyissa meg hello **PlayerController** csatolt toohello Player objektum szerkesztésre parancsfájl és toohello a következő frissítést:  
+1. Nyissa meg a **PlayerController** parancsfájl a Player objektum szerkesztésre csatolja, és frissíti a következőket:  
    
         using UnityEngine;
         using System.Collections;
@@ -242,29 +242,29 @@ hello lépéseket tartoznak, amely hello [Unity oktatóanyag](https://unity3d.co
                 }
             }
         }
-2. Hozzon létre egy új **címke** nevű **válasszon mentése** (akkor meg kell egyeznie a hello parancsfájl)  
+2. Hozzon létre egy új **címke** nevű **válasszon mentése** (akkor meg kell egyeznie a parancsfájl a)  
    
     ![][33]
    
     ![][34]
-3. Ez alkalmazza **címke** toohello Prefab felvételi objektum. 
+3. Ez alkalmazza **címke** Prefab felvételi objektumhoz. 
    
     ![][35]
-4. Engedélyezése **IsTrigger** hello Prefab objektum jelölőnégyzetét.
+4. Engedélyezése **IsTrigger** a Prefab objektum jelölőnégyzetét.
    
     ![][36]
-5. Adjon hozzá egy kemény tooPickup Prefab törzsobjektum. A teljesítmény optimalizálása, hogy használtuk tooa dinamikus collider hello statikus collider frissítjük. 
+5. Kemény törzs hozzáadni a felvételi Prefab objektumhoz. A teljesítmény optimalizálása frissítjük a statikus collider használt dinamikus collider számára. 
    
     ![][37]
-6. Végül ellenőrizze hello **IsKinematic** hello prefab objektum tulajdonsága. 
+6. Végül ellenőrizze a **IsKinematic** a prefab vonatkozó tulajdonság. 
    
     ![][38]
-7. Találati **lejátszása** hello Unity-szerkesztőt, és nem lesz képes tooplay ez **tudják állítani egy golyó** mozgatásával játék hello a billentyűkkel irány bemeneti Player objektum. 
+7. Találati **lejátszása** a Unity a szerkesztőt, és meg fogja tudni ezt **tudják állítani egy golyó** játék azáltal, hogy az a billentyűkkel irány bemeneti Player objektum. 
 
-### <a name="updating-hello-game-for-mobile-play"></a>Game mobil Play hello frissítése
-hello szakaszok alapszintű oktatóprogram kötött hello Unity fent. Most módosítja a Microsoft hello játék toomake azt mobileszköz rövid. Vegye figyelembe, hogy azt használja, amennyiben a teszteléshez játék hello bevitel a billentyűzetről. Most azt módosítja majd, hogy azt is szabályozhatja a hello player hello mozgásának hello segítségével telefonszám, azaz használatával gyorsulásmérőt hello bemeneti adatként. 
+### <a name="updating-the-game-for-mobile-play"></a>A game mobil Play frissítése
+A fenti szakaszokban a Unity alapvető oktatóprogram kötött. Most már a játék abba, hogy mobileszköz rövid módosítja azt. Vegye figyelembe, hogy azt használja, amennyiben a teszteléshez játék bevitel a billentyűzetről. Most azt módosítja majd, hogy azt a telefonszámot, mozgásérzékelési azaz segítségével szabályozhatják a Windows Media player a bemeneti gyorsulásmérőt használata. 
 
-Nyissa meg hello **PlayerController** parancsfájl szerkesztése és a frissítés hello **FixedUpdate** metódus toouse hello mozgásérzékelési hello gyorsulásmérőt toomove hello Player objektumból. 
+Nyissa meg a **PlayerController** szerkesztésre parancsfájlt, és frissítse a **FixedUpdate** a Player objektum áthelyezése a gyorsulásmérő a mozgásérzékelési használandó módszert. 
 
         void FixedUpdate()
         {
@@ -274,7 +274,7 @@ Nyissa meg hello **PlayerController** parancsfájl szerkesztése és a frissít�
             rb.AddForce(Input.acceleration.x * Speed, 0, -Input.acceleration.z * Speed);
         }
 
-Ebben az oktatóanyagban egy egyszerű játék létrehozását a Unity megjelenik, és ez a választás tooplay hello játék eszközön telepítheti. 
+Ebben az oktatóanyagban egy egyszerű játék létrehozását a Unity megjelenik, és ez a játék tetszőleges eszközön telepítheti. 
 
 <!-- Images -->
 [1]: ./media/mobile-engagement-unity-roll-a-ball/1.png    

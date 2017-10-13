@@ -1,6 +1,6 @@
 ---
-title: "aaaDefine a Mobile Engagement-stratégia |} Microsoft Docs"
-description: "Megtudhatja, hogyan tooonboard és optimalizálható a Mobile Engagement az elemzések és leküldéses értesítéseket."
+title: "A Mobile Engagement-stratégia kidolgozása | Microsoft Docs"
+description: "Ismerje meg, hogyan vezethető be és optimalizálható a Mobile Engagement az elemzések és leküldéses értesítések tekintetében."
 services: mobile-engagement
 documentationcenter: Mobile
 author: piyushjo
@@ -14,114 +14,114 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: afe32cb71019092eb28f2a8557404d60ad48ada4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: db68bd3ebf7efde1d23820445f07c83c8c27dc20
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="define-your-mobile-engagement-strategy"></a>A Mobile Engagement-stratégia kidolgozása
-*Az alkalmazás okokból megírt: toohave a felhasználók használni!*
+*Alkalmazását okkal készítette el: azért, hogy felhasználói használhassák azt!*
 
-Úgy véljük, hogy biztosan put nagyszerű kezelésére toomake fektetett erőfeszítéssel azt nagyszerű alkalmazás legyen, hogy a felhasználók szeretni fognak. Az is valószínű marketing költségvetési tooacquire felhasználók jelentős időt fektetett. Azonban a hello kezdeti szívderítő áradata felhasználók lassan abbahagyják az alkalmazás segítségével láthatja. *Minden szól ez az Azure Mobile Engagement!* : rávenni toostick, és lehetővé teszik tooincrementally keresztül teszt fejleszteni az alkalmazást, és ismerje meg.
+Biztosak vagyunk abban, hogy rengeteg energiát fektetett abba, hogy nagyszerű alkalmazás legyen, amelyet a felhasználók szeretni fognak. Valószínűleg jelentős összeget költött marketingre is, hogy felhasználókat szerezzen. A felhasználók kezdeti szívderítő áradata után azonban esetleg azt látja, hogy a felhasználók lassan abbahagyják az alkalmazás használatát. *Erről szól az Azure Mobile Engagement*: rávenni a felhasználókat a maradásra, és fokozatosan fejleszteni az alkalmazást tesztelés és tanulás útján.
 
-Alkalmazás felhasználói leküldéses értesítésekkel és alkalmazáson belüli üzenetekkel, azonban kifinomult módon, az üzenetek és a különböző kommunikációs toothem, az alkalmazáson belüli egyes függően tootheir viselkedés amikről a megközelítést tooimproving megőrzési és használati alapul. Célunk toolet hello megfelelő időben és helyen hello hello megfelelő célközönség kommunikálni.
+A megtartás és a használat javításának általunk választott megközelítése azon alapul, hogy kapcsolatot teremtünk a felhasználókkal leküldéses értesítésekkel és alkalmazáson belüli üzenetekkel, azonban kifinomult módon, a felhasználókra szabott olyan üzenetekkel és kommunikációval, amelyek mindegyikét az alkalmazáson belüli viselkedésük szerint formálunk. Célunk, hogy a megfelelő célközönséggel tudjon kommunikálni a megfelelő időben és helyen.
 
-De az adott, konfigurálnia kell a toostart *ismernie a felhasználókat*, majd hozzon létre csoportokat tevékenységük vagy jellemzőik (ezért nevezik szegmensek) alapján, és ezután hozzon létre a megfelelő kommunikációs tooeach szegmens.
+Ehhez azonban először *meg kell ismernie a felhasználókat*, majd csoportokat kell létrehoznia a tevékenységük vagy jellemzőik alapján (ezen csoportokat szegmenseknek nevezzük), végül a szegmenseknek szóló kommunikációt kell teremtenie.
 
 ## <a name="mobile-engagement-serves-your-objectives"></a>A Mobile Engagement segítséget nyújt a céljai megvalósításához
 *Beszéltünk megtartásról és használatról, de mi célból?*
 
 A Mobile Engagement-stratégia kidolgozásához először az alkalmazás céljait és fő teljesítménymutatóit (KPI-k) kell szemügyre vennie.
 
-Első lépésként hello célkitűzések és a KPI-k, amelyek segítenek toodefine a bevonási használati eseteket hello megfelelő megvilágításba helyezik.
+Kezdje a célok és a KPI-k meghatározásával, amelyek megfelelő megvilágításba helyezik és segítenek meghatározni a bevonási használati eseteket.
 
-A használati esetek is szeretné a felhasználókkal, kezdve a hello egyszerű üdvözléssel, toohello nagyon toomake toocommunicate speciális az informatikai rendszer által indított segédprogram értesítési kampányok egyszerű listája. Egy jól felépített használati esetnek tartalmaznia kell legalább hello kérdéscsoportra adott válaszok alapján *mit-kinek-mikor*:
+A használati esetek azon kampányok egyszerű listája, amelyeket meg szeretne valósítani a felhasználókkal való kommunikációhoz, kezdve egy egyszerű üdvözléssel az informatikai rendszer által aktivált, nagyon fejlett segítő jellegű értesítésig. Egy jól felépített használati esetnek legalább a *mit-kinek-mikor?* kérdéscsoportra adott válaszok alapján kell felépülnie:
 
 1. Egy nagyon rövid megjelölést (például: „Üdvözlőkampány”).
-2. **Mi**: egy üzenet példa (például "örülünk toohave meg hozzánk! Ne feledje toologin tooget az 1. ingyenes hónap igénybe vételéhez! "). Ez az üzenet nem végleges, be fog tudni toochange eszközökkel, bármikor, de általában segít toostart továbbléphetnek milyen azt szeretné, hogy toosay.
-3. **Aki**: hello (például "minden felhasználó először hello hello alkalmazást elindító 3 nappal ezelőtt, ellátogatott a bejelentkezési oldal hello, de rendelkezik nem jelentkezett be") ezt az üzenetet megkapó szegmens.
+2. **Mit**: Példaüzenet (például: „Örülünk, hogy csatlakozott hozzánk! Ne felejtsen el bejelentkezni az 1. első ingyenes hónap igénybe vételéhez!”). Ez az üzenet semmiképpen sem végleges, bármikor megváltoztathatja, azonban általában segít elindulni a mondanivaló meghatározásakor.
+3. **Kinek**: Az üzenetet megkapó szegmens (például: „Minden felhasználó, aki 3 nappal ezelőtt nyitotta meg először a mobilalkalmazást, ellátogatott a bejelentkezési oldalra, de nem jelentkezett be”).
    * Igen, az Azure Mobile Engagement segítségével ezt nagyon egyszerűen elvégezheti :)
-   * Ebben az esetben ez nincs toobe végleges, bármikor meghatározhatja a szegmenseket, de a szegmentálási feltételeket tooensure a korai fontos toodefine gyűjtött hello megfelelő adatok.
-4. **Amikor**: a kampány időzítése hello. A kampány indulhat adott napon, egy adott művelet után vagy kiválthatja egy eseményindító. A Mobile Engagement számos lehetőséget kínál lehetőségek toorightly idő a kommunikáció.
+   * Ez szintén nem végleges, mint ahogyan a szegmenseket is bármikor meghatározhatja, azonban fontos, hogy a szegmentálási feltételeket hamar meghatározza a megfelelő adatok gyűjtésének a biztosításához.
+4. **Mikor**: A kampány időzítése. A kampány indulhat adott napon, egy adott művelet után vagy kiválthatja egy eseményindító. A Mobile Engagement számos lehetőséget kínál a kommunikáció megfelelő időzítéséhez.
 
-Miután használati esetek és a szegmens meghatározása, biztosít egy toodefine iránymutatás-hello az alkalmazáson belül összegyűjtendő adatok. Ez az hello szerepe a *"címkézési terv"*. A címkézési tervvel, tooensure, amely hello adatgyűjtés megadott toohello fejlesztők számára. Emiatt a fejlesztők képes a Mobile Engagement a hello tooembed jobb beállítása meg toowork a kampányok hello megfelelő adatokkal. Azt is nagyon fontos toorun tesztek tooensure hello integráció helyes-e, és összegyűjti az alábbiakra lesz szüksége.
+Ha definiálta a használati eseteket és a szegmenseket, azok útmutatóként szolgálnak az alkalmazáson belül összegyűjtendő adatok meghatározásához. Ez a *„címkézési terv”* szerepe. A címkézési tervvel biztosíthatja, hogy a fejlesztők ismerjék az adatgyűjtés részleteit. A fejlesztők így beágyazhatják a megfelelően beállított Mobile Engagementet, ami lehetővé teszi, hogy a megfelelő adatokkal dolgozzon a kampányokban. Nagyon fontos tesztek futtatása annak biztosításához, hogy az integráció megfelelő legyen és a szükséges adatokat gyűjtse.
 
-Hello integrációs alapuló alkalmazások közzétételét, akkor forgalmazóként rendszer képes toosee az elemzéseket valós időben, szegmentálhatja a célközönséget, majd indítsa el a toosend intelligens módon célzott leküldéses értesítési tooengage kívül hello alkalmazások vagy végfelhasználók.
+Az integráció alapján, az alkalmazások közzétételét követően már forgalmazóként láthatja az elemzéseket valós időben, szegmentálhatja a célközönséget, továbbá elkezdhet intelligensen célzott leküldéses értesítéseket küldeni a végfelhasználók bevonásához az alkalmazáson kívül vagy belül.
 
-### <a name="use-cases-tooget-started"></a>Használati esetek tooget indítása
-1. Üdvözlési stratégia: hozzon létre több leküldéses értesítéses kampányokkal hello alkalmazás toore megszólítása: D + 2/5/10/15 sorrendben után hello első munkamenet és növelje az első futtatási megőrzési hello indításakor hello végfelhasználói viselkedés alapján.
-2. Népszerűsítsen hello végfelhasználói toosend hello információk csak tooend-felhasználók, akik nagyobb eséllyel tooengage hello viselkedése alapján új tartalmakat (funkció, cikk/videó vagy termék).
-3. Hello alkalmazás aránya: kisebb, mint 1 százalékát, a felhasználói bázis, amely valószínűleg toorate hello 5 csillagos értékelést alkalmazásának hello tárolójában lévő cél.
-4. Előfizetések növelése: előléptetni értékes tartalmakat tooend – a felhasználóknak, amely nem találkoztak még tooincrease előfizetés.
-5. Oktatóanyag: Nincs többé mindenki számára kötelező oktatóanyag. Miért ne hozhatna létre nagyszerű oktatóanyagokat az alkalmazáson belül, és aktiválhatná azokat alkalmazáson belüli üzenetekkel csak akkor, ha a felhasználó hello úgy tűnik, toonot használata révén hello alkalmazást vagy nehézsége támad szolgáltatás segítségével?
+### <a name="use-cases-to-get-started"></a>Használati esetek az első lépésekhez
+1. Üdvözlési stratégia: Hozzon létre több leküldéses értesítési kampányt a végfelhasználók alkalmazásindításkor mutatott viselkedésmintái alapján az első munkamenet utáni ismételt kapcsolatfelvétel céljából D+2/5/10/15 időpontban, és növelje az első futtatáshoz kapcsolódó megtartást.
+2. Népszerűsítsen új tartalmakat (funkció, cikk/videó vagy termék) a végfelhasználók viselkedése alapján úgy, hogy csak azon végfelhasználóknak küld információt, akik nagyobb eséllyel reagálnak arra.
+3. Alkalmazás értékelése: Célozza a felhasználóbázis azon kevesebb mint 1 százalékát, akik a legnagyobb eséllyel adnak 5 csillagos értékelést alkalmazásának az áruházban.
+4. Előfizetések számának növelése: Az előfizetések számának növeléséhez népszerűsítsen olyan értékes tartalmakat a végfelhasználók számára, amelyekkel még nem találkoztak.
+5. Oktatóanyag: Nincs többé mindenki számára kötelező oktatóanyag. Miért ne hozhatna létre nagyszerű oktatóanyagokat az alkalmazáson belül, és aktiválhatná azokat alkalmazáson belüli üzenetekkel csak akkor, ha a felhasználó nem használja az alkalmazást vagy nehézsége támad egy-egy funkció használatával?
 
-## <a name="why-do-you-need-analytics-tooengage"></a>Miért kell analytics tooengage?
-Ezen a ponton talán már rájött, hogy csak leküldéses értesítések létrehozása nem elegendő. a Mobile Engagement hello alapvető fogalma toohelp forgalmazók és fejlesztők hello megfelelő időben hello megfelelő végfelhasználók bevonásához, és a jobb oldali hello helyezze el. tooknow ezen három fő alapelv alapvető toogather analytics az alkalmazásból, és toosegment használni a célközönséget. Ez még sokkal hatékonyabb, ha a viselkedési szegmensek kiegészítik a többi adatbázisból, a CRM-rendszerből vagy a keresztcsatornából származó adatokat. A Mobile Engagement lehetővé teszi, hogy az adatok lekérdezése tetszőleges helyre, és tootarget hello megfelelő célközönség használja.
+## <a name="why-do-you-need-analytics-to-engage"></a>Miért van szüksége elemzésekre a bevonáshoz?
+Ezen a ponton talán már rájött, hogy csak leküldéses értesítések létrehozása nem elegendő. A Mobile Engagement központi elve az, hogy segítsen a forgalmazóknak és a fejlesztőknek a megfelelő végfelhasználókkal felvenni a kapcsolatot a megfelelő időben és helyen. Ezen három fő alapelv ismeretéhez alapvető fontossággal bír az elemzések gyűjtése az alkalmazásból, majd a célközönség szegmentálása azok használatával. Ez még sokkal hatékonyabb, ha a viselkedési szegmensek kiegészítik a többi adatbázisból, a CRM-rendszerből vagy a keresztcsatornából származó adatokat. A Mobile Engagement bárhonnan lehetővé teszi az adatok gyűjtését, és azok felhasználását a megfelelő célközönség megcélzásához.
 
-toobe hello leginkább megfelelő lehetséges módon vegye fel a célközönséget, akkor hello végfelhasználó viselkedésének tooknow ismerete döntő toohave hello az állapotuk valós idejű. Az adatgyűjtés lehetővé teszi a forgalmazók toofocus valóban a mi számít, tooplay használati esetek és a mobilmarketing stratégia célok eléréséhez. Korábban hello célok elérésére egyben hello oka hello ajánlott eljárás tulajdonképpen nem toogather semmi, és mindent hello elemzés, de csak azok, amelyek lehetővé teszik toofocus milyen azt szeretné, hogy toolearn és a használati esetek. Ez hello jó módszer toostart, próbálja, tesztelése és megtudhatja, hogyan toouse hello megoldás és a cím intelligens leküldéses értesítési és egy alkalmazás toobring hello megőrzésére növelje az sikertörténet szinten.
+Ahhoz, hogy a kontextusnak leginkább megfelelő módon vegye fel a kapcsolatot célközönségével, létfontosságú a végfelhasználó viselkedésének és valós idejű állapotának ismerete. Az adatgyűjtés lehetővé teszi a forgalmazók számára, hogy arra összpontosítsanak, ami igazán fontos a használati esetek lejátszásához és mobilmarketing-stratégiájuk céljainak eléréséhez. A korábban meghatározott célok elérése az oka annak is, amiért az ajánlott eljárás tulajdonképpen nem a lehető legtöbb, hanem csak azon információk gyűjtése az elemzésekből, amelyek lehetővé teszik, hogy a használati esetekre és arra összpontosítson, amit meg akar tudni. Ez a jó módszer a kezdéshez, a próbálkozásokhoz, a teszteléshez és annak megismeréséhez, hogyan használható a megoldás, és címezhetők meg az intelligens leküldéses értesítések, illetve hogyan növelhető egy alkalmazás felhasználóinak megtartása, amelyekkel sikertörténet szintjére lehet emelni az alkalmazást.
 
 > [!NOTE]
-> Ne feledje: Túl sok adat használhatatlanná teszi hello adatokat!
+> Emlékezzen erre: A túl sok adat használhatatlanná teszi az adatokat!
 > 
 > 
 
 ### <a name="use-cases-and-best-practices"></a>Használati esetek és ajánlott eljárások
-Hello mutatjuk röviden néhány, a következő szakaszok kulcsban használati esetet, amelyekkel az ügyfelek tooget használatba találkoztunk.
+Az első lépéseket segítendő az alábbi szakaszokban röviden ismertetünk néhány olyan főbb használati esetet, amelyekkel az ügyfeleinkhez kapcsolódóan találkoztunk.
 
 #### <a name="media"></a>Média
-Hello végfelhasználói által fogyasztott tartalmak típusa hello gyűjt, és szegmentálja a hello célközönséget ezen viselkedés tootarget adott típusú tartalom csak tooan célközönség, amely nagy valószínűséggel tooconsume lesz alapján. Ezzel elkerülheti a teljes felhasználói bázis elárasztását levélszeméttel, és jobb megtartást biztosíthat.
+Gyűjtse össze a végfelhasználók által fogyasztott tartalmak típusait, és szegmentálja a célközönséget ezen viselkedésük alapján, így az adott típusú tartalmakat kizárólag olyan célközönségnek juttathatja el, akik nagyobb valószínűséggel fogyasztják azokat. Ezzel elkerülheti a teljes felhasználói bázis elárasztását levélszeméttel, és jobb megtartást biztosíthat.
 
 #### <a name="m-commerce"></a>M-kereskedelem
-Hello hello alkalmazás és a cél a célközönség toopromote belül a legtöbbet megtekintett termékkategóriákat kedvezményes gyűjtése, vagy új terméket, amely a végfelhasználói hello kategória nagy valószínűséggel toopurchase lesz. Tooboost bevételek célja. Újra hello célja nem toospam!
+Gyűjtse össze az alkalmazásban a legtöbbet megtekintett termékkategóriákat, és azon célközönség számára népszerűsítse az adott kategóriába tartozó kedvezményt vagy új terméket, amelynek végfelhasználói nagyobb eséllyel fogják azt megvásárolni. Célozza az árbevétel növelését. A cél most is a levélszemét elkerülése!
 
 #### <a name="gaming"></a>Játékok
-Game hello szintű gyűjtése egy végfelhasználói és hello időt töltött az egy adott időszak tootarget hello célközönségnek juttathatja el, megakadhattak és várhatóan nagy valószínűséggel toojump tooa következő szintű lépnének egy bónuszajánlat segítségével.
+Gyűjtse össze a végfelhasználók játékszintjét és az adott időtartam alatt a játékkal töltött idő mennyiségét, hogy olyan célközönséget célozhasson meg, amely tagjai megakadhattak és várhatóan új szintre lépnének egy bónuszajánlat segítségével.
 
-Kommunikáció különleges eseményekről, már nem játszó bizonyos idő tootry tooencourage őket tooreturn ösztönző toothose felhasználókkal.
+Kommunikáljon olyan ösztönzőkkel járó különleges eseményekről, amelyek az egy ideje már nem játszó felhasználóknak kedveznek, a visszatérésre bátorítva őket.
 
 #### <a name="retail"></a>Kiskereskedelem
-Gyűjtsön hello termékeket és márkákat, amelyeket a közönség a Kedvencek vagy a viselkedést és a meghajtó hello célközönség tooyour tároló tooincrease vásárlási bevételek alapján nagyobb eséllyel tooconsume kell lennie.
+Gyűjtse össze azokat a termékeket és márkákat, amelyeket a közönség a kedvencei és viselkedése alapján nagyobb eséllyel fogyasztana, és irányítsa célközönségét az áruházba a vásárlási bevételek növeléséhez.
 
 #### <a name="banking"></a>Banki szolgáltatások
-Adatgyűjtés a végfelhasználók számára, amelyekkel hello alkalmazás hello első indításakor hoztak létre fiókot. Egy üdvözlési célzott leküldéses értesítésekkel toodeploy célja, és növelje a fiók-előfizetések hello száma.
+Gyűjtsön adatokat azon végfelhasználóktól, akik az alkalmazás első indításakor hoztak létre fiókot. Törekedjen egy üdvözlési kampány indítására célzott leküldéses értesítésekkel, és növelje a fiók-előfizetések számát.
 
-### <a name="how-toocreate-a-great-tag-plan"></a>Hogyan toocreate remek címkézési terv?
-A címkézési tervnek hello felhasználó által megtett út vagy egyfajta munkafolyamatának hello alkalmazás biztosít minden hello szükséges címkét (adatot), amely az összegyűjtött toohave kell lennie, elég analytics toounderstand felhasználói viselkedést és a megfelelő szegmens hello felhasználói bázis leírásának kell lennie. Ez nem műszaki jellegű feladat. Emiatt a forgalmazók képes toospecify hello adatokat toocollect a Mobile Engagement-stratégiájuk alapján kívánja.
+### <a name="how-to-create-a-great-tag-plan"></a>Hogyan hozhatunk létre remek címkézési tervet?
+A címkézési tervnek tulajdonképpen a felhasználó által megtett út leírásának vagy az alkalmazás egyfajta munkafolyamatának kell lennie, meg kell adnia minden szükséges címkét (adatot), amelyek gyűjtésével és elemzésével elég információ áll rendelkezésre a felhasználók viselkedésének megértésére és a felhasználói bázis megfelelő szegmentálására. Ez nem műszaki jellegű feladat. A forgalmazók ezért a Mobile Engagement-stratégiájuk alapján adhatják meg a gyűjteni kívánt adatokat.
 
-hello minimális van tootag legalább összes hello képernyők (nevű *tevékenységek* a Mobile Engagement) az alkalmazás. Ez segít meghatározni, felhasználó által megtett út hello.
+Egy alkalmazásban legalább a képernyőket (a Mobile Engagementben *tevékenységek* néven ismertek) el kell látni címkével. Ez segítséget nyújt a felhasználók által megtett út meghatározásában.
 
-A tevékenység tartalmazhat *eseményeket*, amelyek műveletinformációkat gyűjtenek, ilyen például egy gombra való kattintás. Ez lehetővé teszi, hogy a kapcsolati hello alkalmazáson belül hello gyűjteménye. Ezért a forgalmazók képesek tooknow az milyen képernyő felhasználók, ahol tartózkodik, és milyen tevékenységet folytatnak.
+A tevékenység tartalmazhat *eseményeket*, amelyek műveletinformációkat gyűjtenek, ilyen például egy gombra való kattintás. Ez lehetővé teszi az alkalmazáson belüli interakciók gyűjtését. A forgalmazók így nyomon követhetik, hogy melyik képernyőt látogatják a felhasználók és milyen tevékenységet folytatnak.
 
-`Jobs`időtartammal rendelkező műveletek. Ez nagyon hasznos a forgalmazók toounderstand mennyi idő alatt az a felhasználó toocreate partner vagy toologin példányhoz. Ez is hasznos lehet a fejlesztők toomonitor mennyi ideig tart toocall, egy webszolgáltatás-bővítmény.
+`Jobs`időtartammal rendelkező műveletek. Ez nagyon hasznos a forgalmazók számára annak megértéséhez, hogy mennyi ideig tart a felhasználó számára a felhasználói fiók létrehozása vagy a bejelentkezés. Ez annak megfigyelésére is hasznos lehet a fejlesztők számára, hogy mennyi időt vesz igénybe egy webes szolgáltatás hívása.
 
-`Errors`akkor is figyelt tooknow Ha felhasználó problémát tapasztal az alkalmazásban. Például: gyakran előforduló kapcsolódási problémák.
+`Errors`is megfigyelhetők annak meghatározására, hogy a felhasználók problémákba ütköznek-e az alkalmazással kapcsolatban. Például: gyakran előforduló kapcsolódási problémák.
 
-Az összes ilyen típusú adat kiegészíthető paraméterekkel (*további adatokat* a Mobile Engagement) lehetővé teszi dinamikus adatok toogather hello alkalmazásból. Ez egy fontos tooallow részletes Szegmentálás. Például forgalmazók szegmentálhatják hello általuk fogyasztott tartalmak típusa alapján. hello típusú tartalom lesz hello dinamikus adatokat tevékenységet vagy egy eseményt.
+Az összes ilyen típusú adat kiegészíthető paraméterekkel (a Mobile Engagementben *további információkkal*), ami lehetővé teszi dinamikus adatok gyűjtését az alkalmazásból. Ez a részletes szegmentáláshoz fontos. A forgalmazók szegmentálhatják például a felhasználókat az általuk fogyasztott tartalmak típusa alapján. A tartalom típusa lesz a tevékenység vagy esemény dinamikus információja.
 
-*Alkalmazásadatok* adat, amely lehetővé teszi a valós idejű hello alkalmazás vagy felhasználó hello tooconfirm hello állapotának. Ez is segít toocategorize egy célközönség talál, és gyorsan megcélzását. Használhat például egy igaz/hamis állapotot e hello felhasználó bejelentkezik-e, vagy az előfizetés lejárati dátuma.
+Az *alkalmazásadatok* olyan adatok, amelyek lehetővé teszik az alkalmazás vagy a felhasználó állapotának valós idejű ellenőrzését. Ez segíti a közönségbázis gyors kategorizálását és megcélzását is. Az adatok használhatnak például egy igaz/hamis állapotot annak követésére, hogy a felhasználó bejelentkezik-e vagy sem, vagy mikor jár le az előfizetése.
 
 #### <a name="example-of-tags"></a>Példa címkékre
-*Használati eset: Szegmens célközönség viselkedésének tootarget hello jobb végfelhasználói hello megfelelő leküldéses értesítési tartalommal*
+*Használati eset: A célközönség viselkedésének szegmentálása a megfelelő végfelhasználók megfelelő leküldéses értesítési tartalmakkal való ellátására*
 
-1. Leküldéses értesítési toopromote küldése adott termékkategória: gyűjtsön viselkedés adatok toosegment célközönség tekintettek hello termékkategória alapján termékkategóriát hányszor egy adott időtartam alatt vagy egy adott tételt hányszor adtak hozzá, a kosárhoz. összegyűjtött hello adatok lehetővé teszik toosegment és elküldheti-e a leküldéses értesítési toohello megfelelő célközönség.
-2. Sebesség hello app: hello célközönséget a közösségi hálózat által megosztott hello tartalom alapján adatainak gyűjtéséről. Hello meghatározásával toosegment hello célközönség célja *Nagykövetek* az alkalmazás. Egy leküldéses értesítést az alkalmazáson belüli használ, hello Nagykövetek lesz hello legjobb célközönsége az alkalmazás tooask toorate az alkalmazás 5 csillaggal hello tárolójában.
+1. Leküldéses értesítés küldése egy adott termékkategória népszerűsítéséhez: Gyűjtsön viselkedési adatokat a célközönség szegmentálásához annak alapján, hogy egy bizonyos termékkategóriát hányszor tekintettek meg egy adott időtartam alatt vagy egy adott tételt hányszor adtak hozzá a kosárhoz. Az összegyűjtött adatok lehetővé teszik a szegmentálást, majd leküldéses értesítés küldését a megfelelő célközönségnek.
+2. Alkalmazás értékelése: Gyűjtsön adatokat a célközönség közösségi hálózatokon megosztott tartalmai alapján. Célja a célközönség szegmentálása az alkalmazás *nagyköveteinek* meghatározásával. A nagykövetek az alkalmazás legjobb célközönsége, őket a legcélszerűbb arra kérni leküldéses értesítés küldésével, hogy 5 csillagos értékelést adjanak az alkalmazásnak.
    
    ![][1]
 
 *Használati eset: Deklaratív adatok*
 
-1. Szegmensnek szóló hírek: deklaratív adatok toosegment célközönség preferenciáik alapján gyűjtése. Ez lehetővé teszi leküldéses értesítések küldését egy olyan témával kapcsolatban, amely ténylegesen érdekel egy adott célközönséget.
-2. A célközönség szegmentálása a bejelentkezési állapot alapján. Adatok tooknow gyűjtése, ha a felhasználó van csatlakoztatva, vagy létrehozott-e fiókot. Segítséget nyújt azon végfelhasználókat megcélzásában, akik még nem jelentkeztek a, és elküld egy leküldéses értesítési tooencourage végfelhasználói tooconvert.
+1. Szegmensnek szóló hírek: Gyűjtsön deklaratív adatokat a célközönség szegmentálásához a preferenciáik alapján. Ez lehetővé teszi leküldéses értesítések küldését egy olyan témával kapcsolatban, amely ténylegesen érdekel egy adott célközönséget.
+2. A célközönség szegmentálása a bejelentkezési állapot alapján. Gyűjtsön adatokat annak meghatározására, hogy egy felhasználó csatlakozott-e vagy létrehozott-e fiókot. Ez segítséget nyújt azon végfelhasználókat megcélzásában, akik még nem jelentkeztek be, és leküldéses értesítést küld, amellyel a csatlakozásra bátorítja őket.
    ![][2]
 
 ### <a name="next-steps"></a>Következő lépések
-* Látogasson el [Mobile Engagement fogalmait] további alapfogalmait a Mobile Engagement toolearn.
-* Látogasson el [Mobile Engagement-alkalmazás létrehozása](mobile-engagement-create.md) toocreate egy új Mobile Engagement-Alkalmazásgyűjteménynek az Azure és a start hello Mobile Engagement portálra az alkalmazások kezelését.
-* Látogasson el [ajánlott eljárások](mobile-engagement-getting-started-best-practices.md) részleteinek toogo.
-* Látogasson el [Játékalkalmazásról szóló forgatókönyvet](mobile-engagement-gaming-scenario.md) toolearn kapcsolatos Mobile Engagement minta játékalkalmazással végrehajtására. 
-* Látogasson el [Médiaalkalmazásról szóló forgatókönyvet](mobile-engagement-media-scenario.md) toolearn kapcsolatos Mobile Engagement minta médiaalkalmazással végrehajtására. 
-* Látogasson el [oktatóanyagok] hello megvalósításával kapcsolatos további toolearn.
+* A Mobile Engagement fogalmait a [Mobile Engagement fogalmait] ismertető cikkben ismerheti meg bővebben.
+* Keresse fel a [Mobile Engagement-alkalmazás létrehozását](mobile-engagement-create.md) ismertető cikket, amely egy új Mobile Engagement-alkalmazásgyűjteménynek az Azure-ban való létrehozását, valamint azt ismerteti, hogy hogyan kezdheti meg az alkalmazások kezelését a Mobile Engagement portál használatával.
+* A részletekkel kapcsolatban keresse fel az [ajánlott eljárásokkal](mobile-engagement-getting-started-best-practices.md) foglalkozó cikket.
+* Keresse fel a [játékalkalmazásról szóló forgatókönyvet](mobile-engagement-gaming-scenario.md) a Mobile Engagement minta játékalkalmazással való használatával kapcsolatos információkért. 
+* Keresse fel a [médiaalkalmazásról szóló forgatókönyvet](mobile-engagement-media-scenario.md) a Mobile Engagement minta médiaalkalmazással való használatával kapcsolatos információkért. 
+* Tekintse át az [oktatóanyagokat] a megvalósítással kapcsolatos további részletekért.
 
 <!-- Images. -->
 [1]: ./media/mobile-engagement-define-your-mobile-engagement-strategy/use-case1.png
@@ -129,5 +129,5 @@ Az összes ilyen típusú adat kiegészíthető paraméterekkel (*további adato
 
 <!-- URLs. -->
 [Mobile Engagement fogalmait]: http://azure.microsoft.com/documentation/articles/mobile-engagement-concepts/
-[oktatóanyagok]: http://azure.microsoft.com/documentation/articles/mobile-engagement-ios-get-started/
+[oktatóanyagokat]: http://azure.microsoft.com/documentation/articles/mobile-engagement-ios-get-started/
 

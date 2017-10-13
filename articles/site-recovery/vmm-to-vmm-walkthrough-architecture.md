@@ -1,6 +1,6 @@
 ---
-title: "a Hyper-V replikáció tooa másodlagos hely az Azure Site Recovery aaaReview hello architektúra |} Microsoft Docs"
-description: "Ez a cikk áttekintést hello architektúra a helyszíni Hyper-V virtuális gépek tooa System Center VMM rendelkező másodlagos helyről Azure Site Recovery replikálására."
+title: "A Hyper-V-ről az Azure Site Recovery használatával egy másodlagos helyre történő replikáció architektúrájának áttekintése | Microsoft Docs"
+description: "Ez a cikk áttekintést ad a helyszíni Hyper-V virtuális gépek másodlagos System Center VMM-helyre történő, az Azure Site Recoveryvel végzett replikálásakor használt architektúráról."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,53 +14,53 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/30/2017
 ms.author: raynew
-ms.openlocfilehash: 0de4b4e8601116c73e6fd710597ce4e561884368
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b78cd0d5a5395873afaddc8856004775f447e8ea
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="step-1-review-hello-architecture-for-hyper-v-replication-tooa-secondary-site"></a>1. lépés:, Tekintse át a Hyper-V replikáció tooa másodlagos hely hello architektúrája
+# <a name="step-1-review-the-architecture-for-hyper-v-replication-to-a-secondary-site"></a>1. lépés: Az architektúra áttekintése a Hyper-V másodlagos helyre történő replikációjához
 
-Ez a cikk ismerteti a hello összetevők és a folyamatok replikálása esetén a helyszíni Hyper-V virtuális gépek (VM) a System Center Virtual Machine Manager (VMM) felhők, tooa VMM másodlagos hely hello segítségével [Azure Site Recovery](site-recovery-overview.md)szolgáltatással hello Azure-portálon.
+Ez a cikk azokat az összetevőket és folyamatokat ismerteti, amelyek részt vesznek a System Center Virtual Machine Manager- (VMM-) felhőkben lévő helyszíni Hyper-V virtuális gépeknek (VM-eknek) az Azure Portalon elérhető [Azure Site Recovery](site-recovery-overview.md) szolgáltatással egy másodlagos VMM-helyre történő replikációjában.
 
-Ez a cikk vagy hello hello alsó megjegyzések utáni [Azure Recovery Services fórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Megjegyzéseit a cikk alján, vagy az [Azure Recovery Services fórumban](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) teheti közzé.
 
 
 
 ## <a name="architectural-components"></a>Az architektúra összetevői
 
-Ez a Hyper-V virtuális gépek tooa VMM másodlagos hely replikálására kell.
+A Hyper-V-alapú virtuális gépek másodlagos VMM-helyre való replikálásához a következőkre lesz szüksége.
 
 **Összetevő** | **Hely** | **Részletek**
 --- | --- | ---
-**Azure** | Előfizetés az Azure-ban. | Hello Azure-előfizetésre, tooorchestrate a Recovery Services-tároló létrehozása és kezelése a VMM-helyek közötti replikációval.
-**VMM-kiszolgáló** | Szüksége lesz egy elsődleges és egy másodlagos VMM-helyre. | Azt javasoljuk, hogy a VMM-kiszolgáló hello elsődleges hely és egy-egy hello másodlagos helyen 
-**Hyper-V kiszolgáló** |  Egy vagy több Hyper-V gazdakiszolgálók hello elsődleges és másodlagos VMM-felhőkben. | Adatait hello elsődleges és másodlagos Hyper-V gazdakiszolgálók közötti hello LAN-vagy VPN-és a Kerberos- vagy Tanúsítványalapú hitelesítés használatával replikálja a rendszer.  
-**Hyper-V virtuális gépek** | A Hyper-V gazdakiszolgálón. | hello forrás gazdagép-kiszolgálón legalább egy virtuális gép, amelyet az tooreplicate kell rendelkeznie.
+**Azure** | Előfizetés az Azure-ban. | Létre kell hoznia egy Recovery Services-tárolót az Azure-előfizetésében a VMM-helyek közti replikáció vezényléséhez és felügyeletéhez.
+**VMM-kiszolgáló** | Szüksége lesz egy elsődleges és egy másodlagos VMM-helyre. | Javasoljuk, hogy legyen egy VMM-kiszolgáló az elsődleges helyen, és egy a másodlagos helyen 
+**Hyper-V kiszolgáló** |  Legalább egy Hyper-V gazdakiszolgáló az elsődleges és a másodlagos VMM-felhőkben. | A rendszer LAN vagy VPN hálózaton keresztül replikálja az adatokat az elsődleges és másodlagos Hyper-V gazdakiszolgálók között Kerberos vagy tanúsítványalapú hitelesítés használatával.  
+**Hyper-V virtuális gépek** | A Hyper-V gazdakiszolgálón. | A forrás gazdakiszolgálókon legalább egy replikálni kívánt virtuális gépnek kell futnia.
 
 ## <a name="replication-process"></a>Replikációs folyamat
 
-1. Hello Azure-fiók beállítása, a Recovery Services-tároló létrehozása, és határozza meg, hogy tooreplicate.
-2. Beállítások hello forrás és cél replikációs, beleértve a hello Azure Site Recovery Provider telepítése a VMM-kiszolgálókon és hello Microsoft Azure Recovery Services Agent ügynököt minden Hyper-V gazdagépen.
-3. Hello forrás VMM-felhő replikációs házirend létrehozása. hello házirend alkalmazott tooall hello felhőben állomáson található virtuális gépek.
-4. Minden VMM-replikáció engedélyezi, és a virtuális gépek kezdeti replikálást, a kiválasztott hello beállításokat megfelelően.
+1. Az Azure-fiók beállítása, egy Recovery Services-tároló létrehozása, és a replikálni kívánt elemek megadása.
+2. A replikáció forrásának és céljának konfigurálása, ami magában foglalja az Azure Site Recovery Provider telepítését a VMM-kiszolgálókra, valamint a Microsoft Azure Recovery Services-ügynök telepítését a Hyper-V gazdakiszolgálókra.
+3. Egy replikációs házirend létrehozása a forrás VMM-felhőhöz. A házirendet ezután a rendszer minden, a felhőben lévő gazdagépen található virtuális gépre alkalmazza.
+4. Az egyes VMM-ek replikálásának engedélyezése után és a virtuális gépek kezdeti replikációja lezajlik a megadott beállítások szerint.
 5. A kezdeti replikáció után megkezdődik a változáskülönbözetek replikációja. Az elemek nyomon követett módosításait a rendszer .hrl fájlokban tárolja.
 
 
-![A helyszíni tooon helyszíni](./media/vmm-to-vmm-walkthrough-architecture/arch-onprem-onprem.png)
+![Két helyszíni hely közötti replikálás](./media/vmm-to-vmm-walkthrough-architecture/arch-onprem-onprem.png)
 
 ## <a name="failover-and-failback-process"></a>Feladatátvételi és feladat-visszavételi folyamat
 
-1. Futtathat tervezett vagy nem tervezett [feladatátvételt](site-recovery-failover.md) a helyszíni helyek között. Ha a tervezett feladatátvétel végrehajtása, majd a forrás virtuális gépeket állítsa le az tooensure adatvesztés nélküli.
-2. Egyetlen gép feladatátvételt, vagy hozzon létre [helyreállítási tervek](site-recovery-create-recovery-plans.md) tooorchestrate több gép feladatátvétele.
-4. Ha egy nem tervezett feladatátvétel tooa másodlagos hely hello feladatátvevő gépekhez hello másodlagos helyen nincsenek engedélyezve a védelem vagy replikáció után hajtható végre. Ha egy tervezett feladatátvételt hello feladatátvétel után már futott, védett gépek hello másodlagos helyen.
-5. Ezt követően véglegesítse a hello feladatátvételi toostart elérése során hello munkaterhelés VM hello replikából.
-6. Az elsődleges hely újra nem érhető el, akkor hello másodlagos hely toohello elsődleges a visszirányú replikálás tooreplicate kezdeményezni. Visszirányú replikálás során hello virtuális gépek kerülnek egy védett állapotban, de hello másodlagos adatközpontba még mindig aktív hely hello.
-7. toomake hello elsődleges hely aktív helyre hello újra, elindít egy tervezett feladatátvételt a másodlagos tooprimary, egy másik visszirányú replikálás követ.
+1. Futtathat tervezett vagy nem tervezett [feladatátvételt](site-recovery-failover.md) a helyszíni helyek között. Ha tervezett feladatátvételt végez, a forrás virtuális gépek leállnak, így nincs adatvesztés.
+2. Elvégezheti egy gép feladatátadását, de létrehozhat több gép összehangolt feladatátadását tartalmazó [helyreállítási terveket](site-recovery-create-recovery-plans.md) is.
+4. Ha elvégez egy nem tervezett feladatátvételt egy másodlagos helyre, a feladatátvétel után a másodlagos hely gépei nem engedélyezettek védelemhez vagy replikáláshoz. Ha tervezett feladatátvételt futtatott, a feladatátvétel után a másodlagos hely gépei védettek lesznek.
+5. Ekkor véglegesíti a feladatátvételt, hogy hozzáférhessen a replika virtuális gép számítási feladataihoz.
+6. Amikor az elsődleges hely újra elérhetővé válik, fordított replikálást hajt végre a másodlagos helyről az elsődleges helyre való replikáláshoz. A fordított replikáció során a virtuális gépek védett állapotba kerülnek, de a másodlagos adatközpont marad továbbra is az aktív hely.
+7. Ha azt szeretné, hogy újra az elsődleges hely legyen az aktív hely, kezdeményezzen egy tervezett feladatátvételt a másodlagos helyről az elsődleges helyre, majd hajtson végre ismét fordított replikálást.
 
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-Nyissa meg túl[2. lépés: tekintse át a hello Előfeltételek és korlátozások](vmm-to-vmm-walkthrough-prerequisites.md).
+Folytassa a [2. lépés: Az előfeltételek és korlátozások áttekintése](vmm-to-vmm-walkthrough-prerequisites.md) művelettel.

@@ -1,5 +1,5 @@
 ---
-title: "a Mobile Engagement iOS SDK frissítési eljárás aaaAzure |} Microsoft Docs"
+title: "Az Azure Mobile Engagement iOS SDK frissítési eljárás |} Microsoft Docs"
 description: "Legújabb frissítések és az Azure Mobile Engagement SDK iOS eljárásai"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,23 +14,23 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 12/13/2016
 ms.author: piyushjo
-ms.openlocfilehash: 5a81bcaaec72aec665b3334e6400d520454d56a7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 37c7f133d079186f828d58cabce0d2a259efd085
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="upgrade-procedures"></a>Frissítési eljárások
-Ha Ön már rendelkezik integrált Engagement régebbi verzióját az alkalmazásba, hogy tooconsider hello hello SDK frissítéskor a következő pontok.
+Ha Ön már rendelkezik integrált Engagement régebbi verzióját az alkalmazásba, hogy az SDK-val történő frissítése során, vegye figyelembe a következő szempontokat.
 
-Minden egyes új verziójának hello SDK először cserélje le (távolítsa el, és importálja újra az xcode-ban) hello EngagementSDK és EngagementReach mappák.
+Az SDK minden új verziójának először cserélje le (távolítsa el, és importálja újra az xcode-ban) EngagementSDK és EngagementReach mappákat.
 
-## <a name="from-300-too400"></a>A 3.0.0 too4.0.0
+## <a name="from-300-to-400"></a>A 3.0.0 4.0.0 számára
 ### <a name="xcode-8"></a>XCode 8
-XCode 8 megadása kötelező hello SDK 4.0.0 verziójával kezdve.
+XCode 8 megadása kötelező, az SDK 4.0.0 verziójával kezdve.
 
 > [!NOTE]
-> Ha valóban függenek XCode 7, akkor előfordulhat, hogy használja hello [iOS Engagement SDK v3.2.4](https://aka.ms/r6oouh). Nincs egy ismert hiba az előző verzió hello reach-modul iOS 10-eszközök futtatása közben: nincsenek műveletet kiváltó rendszerértesítéseket. toofix ezt követően tooimplement hello elavult API `application:didReceiveRemoteNotification:` az alkalmazás delegálása az alábbiak szerint:
+> Ha valóban függenek XCode 7, akkor előfordulhat, hogy használja a [iOS Engagement SDK v3.2.4](https://aka.ms/r6oouh). Nincs egy ismert hiba az előző verzió a reach-modul iOS 10-eszközök futtatása közben: nincsenek műveletet kiváltó rendszerértesítéseket. A javítás kell megvalósítani a elavult API `application:didReceiveRemoteNotification:` az alkalmazás delegálása az alábbiak szerint:
 > 
 > 
 
@@ -41,22 +41,22 @@ XCode 8 megadása kötelező hello SDK 4.0.0 verziójával kezdve.
     }
 
 > [!IMPORTANT]
-> **Ez a megoldás nem ajánlott** , ez a viselkedés a jövőbeli (még akkor is kisebb) iOS verzió frissítése is módosítható, mivel az iOS API elavult. Amint lehetséges tooXCode 8 kell váltani.
+> **Ez a megoldás nem ajánlott** , ez a viselkedés a jövőbeli (még akkor is kisebb) iOS verzió frissítése is módosítható, mivel az iOS API elavult. Át kell váltania XCode 8 lehető legrövidebb időn belül.
 > 
 > 
 
 ### <a name="usernotifications-framework"></a>UserNotifications keretrendszer
-Tooadd hello kell `UserNotifications` keretrendszer a Build lépésből áll.
+Hozzá kell adnia a `UserNotifications` keretrendszer a Build lépésből áll.
 
-a project explorer hello nyissa meg a projekt ablaktáblán, majd válassza a hello helyes célobjektum. Ezután nyissa meg a hello **"Összeállítási fázisok"** lapon és a hello **"Bináris rendelkező Kódtárakon"** menüben adja hozzá a keretrendszer `UserNotifications.framework` -set hello hivatkozásokat`Optional`
+a project explorer nyissa meg a projekt ablaktáblán, és jelölje ki a megfelelő cél. Ezután nyissa meg a **"Összeállítási fázisok"** lapon és a a **"Bináris rendelkező Kódtárakon"** menüben adja hozzá a keretrendszer `UserNotifications.framework` -állítsa be a hivatkozásokat`Optional`
 
 ### <a name="application-push-capability"></a>Alkalmazás leküldéses funkció
-XCode 8 lehetséges, hogy az alkalmazás alaphelyzetbe leküldéses funkció, ellenőrizze még egyszer a hello `capability` a kiválasztott cél fülre.
+XCode 8 lehetséges, hogy az alkalmazás alaphelyzetbe leküldéses funkció, ellenőrizze még egyszer a `capability` a kiválasztott cél fülre.
 
-### <a name="add-hello-new-ios-10-notification-registration-code"></a>Hello új iOS 10 értesítési regisztrációs kód hozzáadása
-hello régebbi kód részlet tooregister hello app toonotifications továbbra is működik, de a által használt API-k elavult IOS 10 futtatása során.
+### <a name="add-the-new-ios-10-notification-registration-code"></a>Adja hozzá az új iOS 10 értesítési regisztrációs kódot
+A régebbi kódrészletet értesítések az alkalmazás regisztrálásához továbbra is működik, de iOS 10 futtatott elavult API-kat használ.
 
-Importálás hello `User Notification` keretrendszer:
+Importálás a `User Notification` keretrendszer:
 
         #import <UserNotifications/UserNotifications.h> 
 
@@ -93,11 +93,11 @@ szerint:
 
 *Ha az alkalmazás és a harmadik féltől származó tárak egyike nem valósítja meg a `UNUserNotificationCenterDelegate` akkor kihagyhatja ezt a részt.*
 
-A `UNUserNotificationCenter` delegált hello SDK toomonitor hello életciklusa az Engagement értesítések 10 vagy újabb IOS-es eszközökön használják. hello SDK rendelkezik saját hello végrehajtásának `UNUserNotificationCenterDelegate` protokoll, de lehet csak az egyik `UNUserNotificationCenter` alkalmazásonként delegálni. Bármely más delegált hozzáadott toohello `UNUserNotificationCenter` objektum hello egy bevonási ütközik. Ha a hello SDK a vagy bármely más harmadik fél delegált észlel, akkor nem fogja használni a saját megvalósítási toogive, egy alkalommal tooresolve hello ütközések. Hogy tooadd hello bevonási programot tooyour saját sorrendben delegált tooresolve hello ütközések.
+A `UNUserNotificationCenter` delegált az SDK figyelésére szolgál a életciklusának Engagement értesítések IOS 10 vagy újabb rendszert futtató eszközökön. Az SDK-val rendelkezik saját megvalósítása a `UNUserNotificationCenterDelegate` protokoll, de lehet csak az egyik `UNUserNotificationCenter` alkalmazásonként delegálni. Bármely más delegált hozzáadni a `UNUserNotificationCenter` objektum ütközik az egyik Engagement. Ha az SDK-t a vagy bármely más harmadik fél delegált észlel, akkor azt nem használja a saját megvalósítási Önnek arra, hogy oldja fel az ütközéseket. A bevonási logika hozzáadása a saját delegált ahhoz, hogy oldja fel az ütközéseket fog.
 
-Nincsenek két módon tooachieve ez.
+Ennek eléréséhez két módja van.
 
-Javaslat: 1, a delegált működve egyszerűen meghívja toohello SDK:
+Javaslat 1, egyszerűen működve a delegált hívások a SDK-val:
 
     #import <UIKit/UIKit.h>
     #import "EngagementAgent.h"
@@ -124,7 +124,7 @@ Javaslat: 1, a delegált működve egyszerűen meghívja toohello SDK:
     }
     @end
 
-Vagy javaslat 2, hello való öröklődés `AEUserNotificationHandler` osztály
+Vagy javaslat 2, való öröklődés a `AEUserNotificationHandler` osztály
 
     #import "AEUserNotificationHandler.h"
     #import "EngagementAgent.h"
@@ -151,10 +151,10 @@ Vagy javaslat 2, hello való öröklődés `AEUserNotificationHandler` osztály
     @end
 
 > [!NOTE]
-> Azt is meghatározhatja, hogy értesítést az engagement szolgáltatásból, vagy nem úgy, hogy rendelkezik-e a `userInfo` szótár toohello ügynök `isEngagementPushPayload:` metódus osztályban.
+> Azt is meghatározhatja, hogy értesítést az engagement szolgáltatásból, vagy nem úgy, hogy rendelkezik-e a `userInfo` ügynökkel szótár `isEngagementPushPayload:` metódus osztályban.
 
-Győződjön meg arról, hogy hello `UNUserNotificationCenter` objektum delegált tooyour delegált belül vagy hello beállítása `application:willFinishLaunchingWithOptions:` vagy hello `application:didFinishLaunchingWithOptions:` az alkalmazás delegáltjának metódusában.
-Például ha megvalósította a fent javaslat 1 hello:
+Győződjön meg arról, hogy a `UNUserNotificationCenter` objektum delegált belül vagy a meghatalmazott értékre van állítva a `application:willFinishLaunchingWithOptions:` vagy a `application:didFinishLaunchingWithOptions:` az alkalmazás delegáltjának metódusában.
+Például ha megvalósította a fenti 1 javaslat:
 
       - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         // Any other code
@@ -163,30 +163,30 @@ Például ha megvalósította a fent javaslat 1 hello:
         return YES;
       }
 
-## <a name="from-200-too300"></a>A 2.0.0 too3.0.0
-Támogatás az iOS eldobott 4.X. A verzió hello központi telepítés célja az alkalmazás-től kezdődő kell lennie legalább iOS 6.
+## <a name="from-200-to-300"></a>A 2.0.0 3.0.0 számára
+Támogatás az iOS eldobott 4.X. A központi telepítés célja az alkalmazás ebben a verzióban kiindulva kell legalább iOS 6.
 
-Ha az alkalmazás Reach használ, hozzá kell adnia `remote-notification` érték toohello `UIBackgroundModes` tömb rendelés tooreceive távoli értesítések az Info.plist fájlban.
+Ha az alkalmazás Reach használ, hozzá kell adnia `remote-notification` egy érték a `UIBackgroundModes` tömb távoli értesítések fogadásához az Info.plist fájlban.
 
-hello metódus `application:didReceiveRemoteNotification:` helyébe toobe kell `application:didReceiveRemoteNotification:fetchCompletionHandler:` a az alkalmazás delegáltjának.
+A metódus `application:didReceiveRemoteNotification:` által le kell cserélni `application:didReceiveRemoteNotification:fetchCompletionHandler:` a az alkalmazás delegáltjának.
 
-Elavult "AEPushDelegate.h" illesztőfelület, és át kell tooremove összes hivatkozást. Ez magában foglalja eltávolításával `[[EngagementAgent shared] setPushDelegate:self]` és módszerek delegálása a az alkalmazás delegáltjának hello:
+Elavult "AEPushDelegate.h" illesztőfelület, és át kell távolítson el minden hivatkozást. Ez magában foglalja eltávolításával `[[EngagementAgent shared] setPushDelegate:self]` és az alkalmazás delegáltjának delegált metódusait:
 
     -(void)willRetrieveLaunchMessage;
     -(void)didFailToRetrieveLaunchMessage;
     -(void)didReceiveLaunchMessage:(AEPushMessage*)launchMessage;
 
-## <a name="from-1160-too200"></a>A 1.16.0 too2.0.0
-hello következő ismerteti, hogyan toomigrate az SDK-integráció a hello Capptain szolgáltatás által kínált Capptain SAS technológiával az Azure Mobile Engagement az alkalmazásba.
-Ha egy korábbi verziójáról telepít, tekintse át először hello Capptain webhely toomigrate too1.16, majd alkalmazza a következő eljárás hello.
+## <a name="from-1160-to-200"></a>A 1.16.0 2.0.0 számára
+A következő ismerteti, hogyan telepíthetők át az SDK-integráció az alkalmazásba az Azure Mobile Engagement technológiával Capptain SAS által kínált Capptain szolgáltatás.
+Ha egy korábbi verziójáról telepít, tekintse meg a Capptain webhely 1.16 először át, akkor alkalmazza az alábbi eljárást.
 
 > [!IMPORTANT]
-> Capptain és a Mobile Engagement nem hello azonos szolgáltatások és hello alábbi eljárás csak emel ki, hogyan toomigrate hello ügyfélalkalmazást. Áttelepítése hello SDK hello alkalmazásban rendszer nem telepíti át az adatokat a hello Capptain kiszolgálók toohello a Mobile Engagement kiszolgálókról
+> Capptain és a Mobile Engagement nem ugyanazok a szolgáltatások és az alábbi eljárás csak emel ki, hogyan telepítheti át az ügyfélalkalmazás. Az SDK-t az alkalmazás áttelepítése rendszer nem telepíti át az adatok a Capptain kiszolgálókról a Mobile Engagement-kiszolgálókon
 > 
 > 
 
 ### <a name="agent"></a>Ügynök
-hello metódus `registerApp:` hello új metódus lett cserélve `init:`. Az alkalmazás delegáltjának frissíteni kell ennek megfelelően, és használja a kapcsolati karakterlánc:
+A metódus `registerApp:` felváltotta az új módszer `init:`. Az alkalmazás delegáltjának frissíteni kell ennek megfelelően, és használja a kapcsolati karakterlánc:
 
             - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
             {
@@ -195,23 +195,23 @@ hello metódus `registerApp:` hello új metódus lett cserélve `init:`. Az alka
               [...]
             }
 
-SmartAd követési el lett távolítva ugyanúgy lehet tooremove minden példánya SDK `AETrackModule` osztály
+SmartAd követési el lett távolítva csak el kell távolítania az összes példányát SDK `AETrackModule` osztály
 
 ### <a name="class-name-changes"></a>Osztály neve megváltozik
-Hello rebranding részeként nincsenek osztály/fájlnevek toobe módosítani kell néhány.
+A rebranding részeként nincsenek osztály/fájlnevek módosítani kell néhány.
 
 Minden osztály előtagként a "CP" átnevezi "AE" előtaggal.
 
 Példa:
 
-* `CPModule.h`túl a rendszer átnevezi`AEModule.h`.
+* `CPModule.h`a rendszer átnevezi `AEModule.h`.
 
 Minden osztály előtagként a "Capptain" átnevezi "Engagement" előtaggal.
 
 Példák:
 
-* osztály hello `CapptainAgent` túl a rendszer átnevezi`EngagementAgent`.
-* osztály hello `CapptainTableViewController` túl a rendszer átnevezi`EngagementTableViewController`.
-* osztály hello `CapptainUtils` túl a rendszer átnevezi`EngagementUtils`.
-* osztály hello `CapptainViewController` túl a rendszer átnevezi`EngagementViewController`.
+* Az osztály `CapptainAgent` neve módosult az `EngagementAgent`.
+* Az osztály `CapptainTableViewController` neve módosult az `EngagementTableViewController`.
+* Az osztály `CapptainUtils` neve módosult az `EngagementUtils`.
+* Az osztály `CapptainViewController` neve módosult az `EngagementViewController`.
 

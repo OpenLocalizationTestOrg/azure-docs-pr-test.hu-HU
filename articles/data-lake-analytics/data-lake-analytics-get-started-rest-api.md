@@ -1,6 +1,6 @@
 ---
-title: "aaaGet REST API használatával a Data Lake Analytics használatába |} Microsoft Docs"
-description: "A Data Lake Analytics WebHDFS REST API-k tooperform műveletek használata"
+title: "A Data Lake Analytics használatának első lépései a REST API használatával | Microsoft Docs"
+description: "Műveletek végrehajtása a Data Lake Analytics-en WebHDFS REST API-k használatával"
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 02/03/2017
 ms.author: jgao
-ms.openlocfilehash: a0b13d521821fd2d74716cc52485585feb7c51b2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 332d7af2539eea8890745005104ac5b0921c2b7f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-azure-data-lake-analytics-using-rest-apis"></a>Az Azure Data Lake Analytics használatának első lépései REST API-k használatával
 [!INCLUDE [get-started-selector](../../includes/data-lake-analytics-selector-get-started.md)]
 
-Ismerje meg, hogyan toouse WebHDFS REST API-k és a Data Lake Analytics REST API-k toomanage Data Lake Analytics fiókok, feladatok és a katalógus. 
+Útmutató a Data Lake Analytics-fiókoknak, -feladatoknak és -katalógusnak a WebHDFS REST API-k és Data Lake Analytics REST API-k segítségével történő kezeléséhez. 
 
 ## <a name="prerequisites"></a>Előfeltételek
 * **Azure-előfizetés**. Lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/).
-* **Egy Azure Active Directory-alkalmazás létrehozása**. Hello Azure AD alkalmazás tooauthenticate hello Data Lake Analytics-alkalmazást az Azure ad-val használhatja. Nincsenek különböző szempontok tooauthenticate az Azure ad-vel, amelyek **végfelhasználói hitelesítési** vagy **szolgáltatások közötti hitelesítési**. További információt és útmutatást tooauthenticate, lásd: [hitelesítés az Azure Active Directory használatával a Data Lake Analytics](../data-lake-store/data-lake-store-authenticate-using-active-directory.md).
-* [cURL](http://curl.haxx.se/). Ez a cikk a cURL toodemonstrate hogyan toomake REST API meghívja a Data Lake Analytics-fiók ellen használja.
+* **Egy Azure Active Directory-alkalmazás létrehozása**. A Data Lake Analytics alkalmazás Azure AD-val történő hitelesítéséhez az Azure AD alkalmazást kell használni. Az Azure AD-val többféle módon is lehet hitelesíteni. Ezek a következők: **végfelhasználói hitelesítés** vagy **szolgáltatások közötti hitelesítés**. A hitelesítéssel kapcsolatos útmutatást és további információkat lásd: [Authenticate with Data Lake Analytics using Azure Active Directory](../data-lake-store/data-lake-store-authenticate-using-active-directory.md) (Hitelesítés a Data Lake Analytics-szel az Azure Active Directoryt használva).
+* [cURL](http://curl.haxx.se/). Ez a cikk a cURL használatával mutatja be, hogyan lehet REST API-hívásokat indítani a Data Lake Analytics-fiókra.
 
 ## <a name="authenticate-with-azure-active-directory"></a>Hitelesítés az Azure Active Directoryval
 Az Azure Active Directoryval kétféle módon lehet hitelesíteni.
 
 ### <a name="end-user-authentication-interactive"></a>Végfelhasználó hitelesítése (interaktív)
-Ezzel a módszerrel alkalmazás kérni fogja a hello felhasználói toolog, és minden hello műveleteket hello hello felhasználó környezetében. 
+Ezzel a módszerrel az alkalmazás bejelentkezésre kéri a felhasználót, és minden művelet a felhasználó kontextusában lesz végrehajtva. 
 
 Az interaktív hitelesítéshez kövesse az alábbi lépéseket:
 
-1. Az alkalmazáson keresztül átirányítási URL-cím a következő hello felhasználói toohello:
+1. Az alkalmazáson keresztül irányítsa át a felhasználót az alábbi URL-címre:
    
         https://login.microsoftonline.com/<TENANT-ID>/oauth2/authorize?client_id=<CLIENT-ID>&response_type=code&redirect_uri=<REDIRECT-URI>
    
    > [!NOTE]
-   > \<REDIRECT-URI > használható URL-kódolású toobe kell. A https://localhost esetében tehát használja a következőt: `https%3A%2F%2Flocalhost`)
+   > A \<REDIRECT-URI> értéket kódolni kell az URL-ben való használatra. A https://localhost esetében tehát használja a következőt: `https%3A%2F%2Flocalhost`)
    > 
    > 
    
-    Az oktatóanyagban szereplő hello célból cserélje le a hello helyőrző értékeket a fenti hello URL-ben, és beillesztheti egy webböngésző címsorába. Az Azure bejelentkezési azonosítójával átirányított tooauthenticate lesz. Miután sikeresen bejelentkezett, hello válasz hello böngésző címsorában megjelenik. hello válasz hello formátuma a következő lesz:
+    A jelen oktatóanyagban kicserélheti a fenti URL-ben szereplő helyőrző értékeket, és beillesztheti egy webböngésző címsorába. A rendszer átirányítja az Azure bejelentkezési azonosítójával történő hitelesítéshez. Miután sikeresen bejelentkezett, a válasz megjelenik a böngésző címsorában. A válasz az alábbi formátumban jelenik meg:
    
         http://localhost/?code=<AUTHORIZATION-CODE>&session_state=<GUID>
-2. Hello engedélyezési kód a hello válaszban rögzítéséhez. Ebben az oktatóanyagban hello webböngésző címsorába hello hello engedélyezési kód másolását, és adja át hello POST kérelem toohello jogkivonat végpontjához az alább látható módon:
+2. Rögzítse a válaszban szereplő engedélyezési kódot. A jelen oktatóanyagban kimásolhatja a webböngésző címsorában szereplő engedélyezési kódot, majd a POST kérelemben továbbíthatja a jogkivonat végpontjához az alább látható módon:
    
         curl -X POST https://login.microsoftonline.com/<TENANT-ID>/oauth2/token \
         -F redirect_uri=<REDIRECT-URI> \
@@ -60,13 +60,13 @@ Az interaktív hitelesítéshez kövesse az alábbi lépéseket:
         -F code=<AUTHORIZATION-CODE>
    
    > [!NOTE]
-   > Ebben az esetben hello \<REDIRECT-URI > kódolása nem szükséges.
+   > Ebben az esetben a \<REDIRECT-URI> kódolása nem szükséges.
    > 
    > 
-3. a rendszer hello választ, egy JSON-objektum, amely egy hozzáférési jogkivonatot tartalmaz (például `"access_token": "<ACCESS_TOKEN>"`) és egy frissítési (pl. `"refresh_token": "<REFRESH_TOKEN>"`). Az alkalmazás használja hello hozzáférési jogkivonatot az Azure Data Lake Store és hello frissítési jogkivonat tooget való hozzáférés során egy új hozzáférési jogkivonat mikor jár le a hozzáférési tokent.
+3. A válasz egy JSON-objektum, amely egy hozzáférési (pl. `"access_token": "<ACCESS_TOKEN>"`) és egy frissítési (pl. `"refresh_token": "<REFRESH_TOKEN>"`) jogkivonatot tartalmaz. Az alkalmazás a hozzáférési jogkivonatot az Azure Data Lake Store-hoz való hozzáféréshez, a frissítési jogkivonatot pedig egy új hozzáférési jogkivonat beszerzéséhez használja, amikor az előző lejár.
    
         {"token_type":"Bearer","scope":"user_impersonation","expires_in":"3599","expires_on":"1461865782","not_before":    "1461861882","resource":"https://management.core.windows.net/","access_token":"<REDACTED>","refresh_token":"<REDACTED>","id_token":"<REDACTED>"}
-4. Amikor hello hozzáférési jogkivonat lejár, kérhet egy új hozzáférési jogkivonat hello frissítési jogkivonat használatával alább látható módon:
+4. Amikor a hozzáférési jogkivonat lejár, a frissítési jogkivonat használatával kérhet egy újat az alább látható módon:
    
         curl -X POST https://login.microsoftonline.com/<TENANT-ID>/oauth2/token  \
              -F grant_type=refresh_token \
@@ -77,7 +77,7 @@ Az interaktív hitelesítéshez kövesse az alábbi lépéseket:
 További információk az interaktív felhasználói hitelesítéssel kapcsolatban: [Authorization code grant flow](https://msdn.microsoft.com/library/azure/dn645542.aspx) (Az engedélyezési kód engedélyezési folyamata).
 
 ### <a name="service-to-service-authentication-non-interactive"></a>Szolgáltatások közötti hitelesítés (nem interaktív)
-Ezzel a módszerrel alkalmazás maga biztosítja saját hitelesítő adatait tooperform hello műveletek. Ehhez hello az alábbihoz hasonló POST-kérelmet kell kiadnia: 
+Ezzel a módszerrel az alkalmazás maga biztosítja saját hitelesítő adatait a műveletek végrehajtásához. Ehhez egy alábbihoz hasonló POST-kérelmet kell kiadnia: 
 
     curl -X POST https://login.microsoftonline.com/<TENANT-ID>/oauth2/token  \
       -F grant_type=client_credentials \
@@ -85,20 +85,20 @@ Ezzel a módszerrel alkalmazás maga biztosítja saját hitelesítő adatait too
       -F client_id=<CLIENT-ID> \
       -F client_secret=<AUTH-KEY>
 
-a kérelem hello kimenete egy engedélyezési jogkivonatot tartalmazza (kimaradásával `access-token` hello kimenetben alább), amely ezt követően továbbítják a REST API-hívásokat. Mentse ezt az engedélyezési jogkivonatot egy szövegfájlba, mivel később még szüksége lesz rá a cikkben.
+A kérelem kimenete egy engedélyezési jogkivonatot fog tartalmazni (amelyet az alábbi kimenetben `access-token` jelöl), amelyet ezután a REST API-hívásokkal fog átadni. Mentse ezt az engedélyezési jogkivonatot egy szövegfájlba, mivel később még szüksége lesz rá a cikkben.
 
     {"token_type":"Bearer","expires_in":"3599","expires_on":"1458245447","not_before":"1458241547","resource":"https://management.core.windows.net/","access_token":"<REDACTED>"}
 
-Ebben a cikkben az hello **nem interaktív** megközelítést. A nem interaktív (szolgáltatások közötti hívások) további információkért lásd: [tooservice hívások hitelesítő szolgáltatás](https://msdn.microsoft.com/library/azure/dn645543.aspx).
+Ez a cikk a **nem interaktív** módszert alkalmazza. További információk a nem interaktív (szolgáltatások közötti) hívásokról: [Szolgáltatások közötti hívások hitelesítő adatok használatával](https://msdn.microsoft.com/library/azure/dn645543.aspx).
 
 ## <a name="create-a-data-lake-analytics-account"></a>Data Lake Analytics-fiók létrehozása
 Data Lake Analytics-fiók létrehozása előtt létre kell hoznia egy Azure-erőforráscsoportot és egy Data Lake Store-fiókot.  Lásd: [Data Lake Store-fiók létrehozása](../data-lake-store/data-lake-store-get-started-rest-api.md#create-a-data-lake-store-account).
 
-a következő Curl-parancs bemutatja hogyan hello toocreate fiók:
+A következő Curl-parancs egy fiók létrehozását mutatja be:
 
     curl -i -X PUT -H "Authorization: Bearer <REDACTED>" -H "Content-Type: application/json" https://management.azure.com/subscriptions/<AzureSubscriptionID>/resourceGroups/<AzureResourceGroupName>/providers/Microsoft.DataLakeAnalytics/accounts/<NewAzureDataLakeAnalyticsAccountName>?api-version=2016-11-01 -d@"C:\tutorials\adla\CreateDataLakeAnalyticsAccountRequest.json"
 
-Cserélje le \< `REDACTED` \> az hello engedélyezési jogkivonatot, \< `AzureSubscriptionID` \> az előfizetés-Azonosítóval rendelkező \< `AzureResourceGroupName` \> egy meglévő Azure-erőforrás Csoport neve, és \< `NewAzureDataLakeAnalyticsAccountName` \> új Data Lake Analytics-fiók névvel. hello kérelem hasznos adatai ezen parancs hello lévő **CreateDatalakeAnalyticsAccountRequest.json** hello a megadott fájl `-d` fenti paraméter. hello input.json fájl tartalmának hello hello alábbihoz:
+Cserélje le a \<`REDACTED`\> változót az engedélyezési jogkivonatra, az \<`AzureSubscriptionID`\> változót a saját előfizetés-azonosítójára, az \<`AzureResourceGroupName`\> változót egy meglévő Azure-erőforráscsoport nevére és a \<`NewAzureDataLakeAnalyticsAccountName`\> változót egy új Data Lake Analytics-fiók nevére. A kérelem hasznos adatai ezen parancs esetében a **CreateDatalakeAnalyticsAccountRequest.json** fájlban találhatók, amely a fenti `-d` paraméterhez lett megadva. Az input.json fájl tartalmai az alábbiakhoz hasonlók:
 
     {  
         "location": "East US 2",  
@@ -116,11 +116,11 @@ Cserélje le \< `REDACTED` \> az hello engedélyezési jogkivonatot, \< `AzureSu
 
 
 ## <a name="list-data-lake-analytics-accounts-in-a-subscription"></a>A Data Lake Analytics-fiókok felsorolása egy előfizetésben
-a következő Curl-parancsot hello bemutatja, hogyan toolist fiókok egy előfizetésben:
+A következő Curl-parancs bemutatja, hogyan kell felsorolni a fiókokat egy előfizetésben:
 
     curl -i -X GET -H "Authorization: Bearer <REDACTED>" https://management.azure.com/subscriptions/<AzureSubscriptionID>/providers/Microsoft.DataLakeAnalytics/Accounts?api-version=2016-11-01
 
-Cserélje le \< `REDACTED` \> az hello engedélyezési jogkivonatot, \< `AzureSubscriptionID` \> az előfizetés-azonosítóval. hello kimeneti hasonlít:
+Cserélje le a \<`REDACTED`\> változót az engedélyezési jogkivonatra, az \<`AzureSubscriptionID`\> változót pedig a saját előfizetés-azonosítójára. Az eredmény az alábbihoz hasonlóan fog kinézni:
 
     {
         "value": [
@@ -158,11 +158,11 @@ Cserélje le \< `REDACTED` \> az hello engedélyezési jogkivonatot, \< `AzureSu
     }
 
 ## <a name="get-information-about-a-data-lake-analytics-account"></a>Data Lake Analytics-fiókkal kapcsolatos információk beszerzése
-a következő Curl-parancs bemutatja hogyan hello tooget egy fiók adatait:
+A következő Curl-parancs bemutatja, hogyan kell információkat beszerezni egy fiókról:
 
     curl -i -X GET -H "Authorization: Bearer <REDACTED>" https://management.azure.com/subscriptions/<AzureSubscriptionID>/resourceGroups/<AzureResourceGroupName>/providers/Microsoft.DataLakeAnalytics/accounts/<DataLakeAnalyticsAccountName>?api-version=2015-11-01
 
-Cserélje le \< `REDACTED` \> az hello engedélyezési jogkivonatot, \< `AzureSubscriptionID` \> az előfizetés-Azonosítóval rendelkező \< `AzureResourceGroupName` \> egy meglévő Azure-erőforrás Csoport neve, és \< `DataLakeAnalyticsAccountName` \> hello nevet, egy meglévő Data Lake Analytics-fiók. hello kimeneti hasonlít:
+Cserélje le a \<`REDACTED`\> változót az engedélyezési jogkivonatra, az \<`AzureSubscriptionID`\> változót a saját előfizetés-azonosítójára, az \<`AzureResourceGroupName`\> változót egy meglévő Azure-erőforráscsoport nevére és a \<`DataLakeAnalyticsAccountName`\> változót egy meglévő Data Lake Analytics-fiók nevére. Az eredmény az alábbihoz hasonlóan fog kinézni:
 
     {
         "properties": {
@@ -190,11 +190,11 @@ Cserélje le \< `REDACTED` \> az hello engedélyezési jogkivonatot, \< `AzureSu
     }
 
 ## <a name="list-data-lake-stores-of-a-data-lake-analytics-account"></a>Data Lake Analytics-fiókhoz tartozó Data Lake-tárolók felsorolása
-a következő Curl-parancsot hello bemutatja, hogyan toolist Data Lake tárolja egy olyan fiók:
+A következő Curl-parancs bemutatja, hogyan kell felsorolni az egyes fiókokhoz tartozó Data Lake-tárolókat:
 
     curl -i -X GET -H "Authorization: Bearer <REDACTED>" https://management.azure.com/subscriptions/<AzureSubscriptionID>/resourceGroups/<AzureResourceGroupName>/providers/Microsoft.DataLakeAnalytics/accounts/<DataLakeAnalyticsAccountName>/DataLakeStoreAccounts/?api-version=2016-11-01
 
-Cserélje le \< `REDACTED` \> az hello engedélyezési jogkivonatot, \< `AzureSubscriptionID` \> az előfizetés-Azonosítóval rendelkező \< `AzureResourceGroupName` \> egy meglévő Azure-erőforrás Csoport neve, és \< `DataLakeAnalyticsAccountName` \> hello nevet, egy meglévő Data Lake Analytics-fiók. hello kimeneti hasonlít:
+Cserélje le a \<`REDACTED`\> változót az engedélyezési jogkivonatra, az \<`AzureSubscriptionID`\> változót a saját előfizetés-azonosítójára, az \<`AzureResourceGroupName`\> változót egy meglévő Azure-erőforráscsoport nevére és a \<`DataLakeAnalyticsAccountName`\> változót egy meglévő Data Lake Analytics-fiók nevére. Az eredmény az alábbihoz hasonlóan fog kinézni:
 
     {
         "value": [
@@ -210,11 +210,11 @@ Cserélje le \< `REDACTED` \> az hello engedélyezési jogkivonatot, \< `AzureSu
     }
 
 ## <a name="submit-u-sql-jobs"></a>U-SQL-feladatok küldése
-a következő Curl-parancs bemutatja hogyan hello toosubmit egy U-SQL-feladatot:
+A következő Curl-parancs egy U-SQL-feladat küldését mutatja be:
 
     curl -i -X PUT -H "Authorization: Bearer <REDACTED>" https://<DataLakeAnalyticsAccountName>.azuredatalakeanalytics.net/Jobs/<NewGUID>?api-version=2016-03-20-preview -d@"C:\tutorials\adla\SubmitADLAJob.json"
 
-Cserélje le \< `REDACTED` \> az hello engedélyezési jogkivonatot, \< `DataLakeAnalyticsAccountName` \> hello nevet, egy meglévő Data Lake Analytics-fiók. hello kérelem hasznos adatai ezen parancs hello lévő **SubmitADLAJob.json** hello a megadott fájl `-d` fenti paraméter. hello input.json fájl tartalmának hello hello alábbihoz:
+Cserélje le a \<`REDACTED`\> változót az engedélyezési jogkivonatra, a \<`DataLakeAnalyticsAccountName`\> változót pedig egy meglévő Data Lake Analytics-fiók nevére. A kérelem hasznos adatai ezen parancs esetében a **SubmitADLAJob.json** fájlban találhatók, amely a fenti `-d` paraméterhez lett megadva. Az input.json fájl tartalmai az alábbiakhoz hasonlók:
 
     {
         "jobId": "8f8ebf8c-4b63-428a-ab46-a03d2cc5b65a",
@@ -226,11 +226,11 @@ Cserélje le \< `REDACTED` \> az hello engedélyezési jogkivonatot, \< `DataLak
             "type": "USql",
             "script": "@searchlog =\n    EXTRACT UserId          int,\n            Start           DateTime,\n            Region          string,\n            Query          
         string,\n            Duration        int?,\n            Urls            string,\n            ClickedUrls     string\n    FROM \"/Samples/Data/SearchLog.tsv\"\n    US
-        ING Extractors.Tsv();\n\nOUTPUT @searchlog   \n    too\"/Output/SearchLog-from-Data-Lake.csv\"\nUSING Outputters.Csv();"
+        ING Extractors.Tsv();\n\nOUTPUT @searchlog   \n    TO \"/Output/SearchLog-from-Data-Lake.csv\"\nUSING Outputters.Csv();"
         }
     }
 
-hello kimeneti hasonlít:
+Az eredmény az alábbihoz hasonlóan fog kinézni:
 
     {
         "jobId": "8f8ebf8c-4b63-428a-ab46-a03d2cc5b65a",
@@ -267,13 +267,13 @@ hello kimeneti hasonlít:
 
 
 ## <a name="list-u-sql-jobs"></a>U-SQL-feladatok felsorolása
-a következő Curl-parancs bemutatja hogyan hello toolist U-SQL feladatok:
+A következő Curl-parancs az U-SQL-feladatok felsorolását mutatja be:
 
     curl -i -X GET -H "Authorization: Bearer <REDACTED>" https://<DataLakeAnalyticsAccountName>.azuredatalakeanalytics.net/Jobs?api-version=2016-11-01 
 
-Cserélje le \< `REDACTED` \> az hello engedélyezési jogkivonatot, és \< `DataLakeAnalyticsAccountName` \> hello nevet, egy meglévő Data Lake Analytics-fiók. 
+Cserélje le a \<`REDACTED`\> változót az engedélyezési jogkivonatra, a \<`DataLakeAnalyticsAccountName`\> változót pedig egy meglévő Data Lake Analytics-fiók nevére. 
 
-hello kimeneti hasonlít:
+Az eredmény az alábbihoz hasonlóan fog kinézni:
 
     {
     "value": [
@@ -322,11 +322,11 @@ hello kimeneti hasonlít:
 
 
 ## <a name="get-catalog-items"></a>Katalóguselemek beolvasása
-a következő Curl-parancsot hello bemutatja, hogyan tooget hello adatbázisok hello katalógus:
+A következő Curl-parancs bemutatja, hogyan lehet beolvasni a katalógushoz tartozó adatbázisokat:
 
     curl -i -X GET -H "Authorization: Bearer <REDACTED>" https://<DataLakeAnalyticsAccountName>.azuredatalakeanalytics.net/catalog/usql/databases?api-version=2016-11-01
 
-hello kimeneti hasonlít:
+Az eredmény az alábbihoz hasonlóan fog kinézni:
 
     {
     "@odata.context":"https://myadla0831.azuredatalakeanalytics.net/sqlip/$metadata#databases","value":[
@@ -339,10 +339,10 @@ hello kimeneti hasonlít:
     }
 
 ## <a name="see-also"></a>Lásd még:
-* egy összetettebb lekérdezés toosee lásd [elemzés webhely naplózza az Azure Data Lake Analytics használatával](data-lake-analytics-analyze-weblogs.md).
-* megkezdődött a U-SQL-alkalmazások fejlesztésével tooget lásd [Data Lake Tools for Visual Studio használatával fejlesztése U-SQL-parancsfájlok](data-lake-analytics-data-lake-tools-get-started.md).
-* toolearn U-SQL, lásd: [Ismerkedés az Azure Data Lake Analytics U-SQL nyelv](data-lake-analytics-u-sql-get-started.md).
+* Egy összetettebb lekérdezés megtekintéséhez lásd: [Analyze Website logs using Azure Data Lake Analytics](data-lake-analytics-analyze-weblogs.md) (Webhelyek naplóinak elemzése az Azure Data Lake Analytics használatával).
+* Ismerkedés a U-SQL-alkalmazások fejlesztésével: [Develop U-SQL scripts using Data Lake Tools for Visual Studio](data-lake-analytics-data-lake-tools-get-started.md) (U-SQL-parancsfájlok fejlesztése a Data Lake Tools for Visual Studio használatával).
+* A U-SQL nyelv megismerése: [Get started with Azure Data Lake Analytics U-SQL language](data-lake-analytics-u-sql-get-started.md) (Ismerkedés az Azure Data Lake Analytics U-SQL nyelvével).
 * Felügyeleti feladatok: [Manage Azure Data Lake Analytics using Azure Portal](data-lake-analytics-manage-use-portal.md) (Az Azure Data Lake Analytics kezelése az Azure Portallal).
-* a Data Lake Analytics áttekintésének tooget lásd [Azure Data Lake Analytics áttekintése](data-lake-analytics-overview.md).
-* toosee hello ugyanaz az oktatóanyagot más eszközök használatával hello szeretné a hello hello lap tetején kattintson.
+* A Data Lake Analytics áttekintése: [Azure Data Lake Analytics overview](data-lake-analytics-overview.md) (Az Azure Data Lake Analytics áttekintése).
+* Ha ugyanezt az oktatóanyagot más eszközök használatával szeretné megtekinteni, kattintson az oldal tetején található lapválasztókra.
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaUpgrade PhoneFactor tooAzure MFA kiszolgáló |} Microsoft Docs"
-description: "Ismerkedés az Azure MFA kiszolgáló hello régebbi phonefactor ügynökről történő frissítéskor."
+title: "PhoneFactor frissítése Azure MFA-kiszolgálóra | Microsoft Docs"
+description: "Az Azure MFA-kiszolgálóval kapcsolatos első lépések a régebbi Phonefactor-ügynökről való frissítés után."
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -14,68 +14,68 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 06/06/2017
 ms.author: kgremban
-ms.openlocfilehash: 15b7b8517929c30f66e6a39cd44c69d12d25c6d7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7ab7e693909f807781744ae53eed75d425096590
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="upgrade-hello-phonefactor-agent-tooazure-multi-factor-authentication-server"></a>Hello PhoneFactor ügynökről tooAzure multi-factor Authentication kiszolgáló frissítése
-tooupgrade hello PhoneFactor ügynökről 5.x vagy régebbi tooAzure multi-factor Authentication kiszolgáló, távolítsa el a PhoneFactor-ügynököket hello és a kapcsolt összetevők először. Majd hello a multi-factor Authentication kiszolgálón, és a kapcsolt összetevői telepíthetők.
+# <a name="upgrade-the-phonefactor-agent-to-azure-multi-factor-authentication-server"></a>Frissítés a PhoneFactor ügynökről az Azure Multi-Factor Authentication-kiszolgálóra
+A PhoneFactor-ügynök 5.x verziójáról az Azure Multi-Factor Authentication-kiszolgálóra való frissítéshez először távolítsa el a PhoneFactor-ügynököt és a kapcsolódó összetevőket. A Multi-Factor Authentication-kiszolgáló és kapcsolódó összetevői ezután telepíthetők.
 
-## <a name="uninstall-hello-phonefactor-agent"></a>Hello PhoneFactor-ügynök eltávolítása
+## <a name="uninstall-the-phonefactor-agent"></a>A PhoneFactor-ügynök eltávolítása
 
-1. Először készítsen biztonsági másolatot hello PhoneFactor-adatfájlt. hello alapértelmezett telepítési hely: C:\Program Files\PhoneFactor\Data\Phonefactor.pfdata.
+1. Először készítsen biztonsági másolatot a PhoneFactor-adatfájlokról. Az alapértelmezett telepítési hely a C:\Program Files\PhoneFactor\Data\Phonefactor.pfdata mappa.
 
-2. Ha telepítve van a felhasználói portál hello:
-  1. Keresse meg a telepítési mappa toohello és hello web.config fájlról biztonsági másolatot készíteni. hello alapértelmezett telepítési hely a következő C:\inetpub\wwwroot\PhoneFactor.
+2. Ha a felhasználói portál telepítve van:
+  1. Nyissa meg a telepítési mappát, és készítsen biztonsági másolatot a web.config fájlról. Az alapértelmezett telepítési hely a C:\inetpub\wwwroot\PhoneFactor mappa.
 
-  2. Egyéni témák toohello portal hozzáadott, készítsen biztonsági másolatot az egyéni mappa hello C:\inetpub\wwwroot\PhoneFactor\App_Themes könyvtár alatt.
+  2. Ha hozzáadott egyéni témákat a portálhoz, készítsen biztonsági másolatot az egyéni mappáról a C:\inetpub\wwwroot\PhoneFactor\App_Themes könyvtárban.
 
-  3. Hello felhasználói portálon keresztül hello PhoneFactor-ügynök eltávolítása (csak akkor használható, ha hello telepíthető ugyanarra a kiszolgálóra hello PhoneFactor ügynökről) vagy a Windows-programok és szolgáltatások segítségével történik.
+  3. Távolítsa el a felhasználói portált a PhoneFactor ügynök segítségével (csak akkor érhető el, ha ugyanazon a kiszolgálón telepítette, amelyen a PhoneFactor ügynököt) vagy a Windows Programok és szolgáltatások lapjáról.
 
-3. Ha a mobilalkalmazás webszolgáltatása hello telepítve van:
+3. Ha a Mobile App Web Service telepítve van:
 
-  1. Nyissa meg toohello telepítési mappát, és hello web.config fájlról biztonsági másolatot készíteni. hello alapértelmezett telepítési hely a következő C:\inetpub\wwwroot\PhoneFactorPhoneAppWebService.
+  1. Nyissa meg a telepítési mappát, és készítsen biztonsági másolatot a web.config fájlról. Az alapértelmezett telepítési hely a C:\inetpub\wwwroot\PhoneFactorPhoneAppWebService mappa.
 
-  2. Távolítsa el a hello mobilalkalmazás webszolgáltatásának Windows-programok és szolgáltatások segítségével történik.
+  2. Távolítsa el a Mobile App Web Service-t a Windows Programok és szolgáltatások lapja segítségével.
 
-4. Ha a webszolgáltatási SDK hello telepítve van, távolítsa el azt hello PhoneFactor-ügynök vagy a Windows-programok és szolgáltatások keresztül.
+4. Ha a Web Service SDK telepítve van, távolítsa el a PhoneFactor ügynök vagy a Windows Programok és szolgáltatások lapja segítségével.
 
-5. Távolítsa el a hello PhoneFactor-ügynököket Windows-programok és szolgáltatások segítségével történik.
+5. Távolítsa el a PhoneFactor ügynököt a Windows Programok és szolgáltatások lapja segítségével.
 
-## <a name="install-hello-multi-factor-authentication-server"></a>Hello multi-factor Authentication kiszolgáló telepítése
+## <a name="install-the-multi-factor-authentication-server"></a>A Multi-Factor Authentication-kiszolgáló telepítése
 
-hello telepítési útvonal van felvételre hello korábbi PhoneFactor ügynökről telepítés hello beállításjegyzékből, akkor telepítse a hello azonos helyét (például, C:\Program Files\PhoneFactor). Az új telepítések eltérő alapértelmezett telepítési útvonallal rendelkeznek (pl. C:\Program Files\Multi-Factor Authentication Server). hello hello előző PhoneFactor-ügynök telepítése során kell frissíteni, a felhasználók és a beállítások továbbra is kell nincs telepítése után új multi-factor Authentication kiszolgáló hello által hátrahagyott adatfájlt.
+A rendszer a telepítési útvonalat a korábbi PhoneFactor ügynök telepítése által létrehozott beállításjegyzékből olvassa be, ezért ugyanarra a helyre fogja telepíteni (pl. C:\Program Files\PhoneFactor). Az új telepítések eltérő alapértelmezett telepítési útvonallal rendelkeznek (pl. C:\Program Files\Multi-Factor Authentication Server). Az előző PhoneFactor ügynök által hátrahagyott adatfájlt a rendszer frissíti a telepítés során, ezért a felhasználók és beállítások megmaradnak az új Multi-Factor Authentication-kiszolgáló telepítése után.
 
-1. Ha a rendszer kéri, hello multi-factor Authentication kiszolgáló aktiválása, és győződjön meg arról, toohello megfelelő replikációs csoporthoz van hozzárendelve.
+1. Ha a rendszer kéri, aktiválja a Multi-Factor Authentication-kiszolgálót, és győződjön meg arról, hogy a megfelelő replikációs csoporthoz van hozzárendelve.
 
-2. Ha a webszolgáltatási SDK korábban telepítve lett, hello telepítése hello új webszolgáltatási SDK keresztül hello multi-factor Authentication kiszolgáló felhasználói felületét.
+2. Ha a Web Service SDK-t korábban telepítette, telepítse az új Webszolgáltatás SDK-t a Multi-Factor Authentication-kiszolgáló felhasználói felületén keresztül.
 
-  az alapértelmezett virtuális könyvtár neve most hello **MultiFactorAuthWebServiceSdk** helyett **PhoneFactorWebServiceSdk**. Ha azt szeretné, hogy toouse hello korábbi név, módosítania kell hello virtuális könyvtár nevét hello telepítése során. Ellenkező esetben hello telepítési toouse hello új alapértelmezett neve engedélyezése esetén vannak toochange hello URL-cím olyan alkalmazást, a hivatkozás hello (például a felhasználói portál hello és a mobilalkalmazás webszolgáltatása) webszolgáltatási SDK toopoint hello megfelelő helyen.
+  Az alapértelmezett virtuális címtár neve mostantól **PhoneFactorWebServiceSdk** helyett **MultiFactorAuthWebServiceSdk**. Ha a korábbi nevet szeretné használni, a virtuális címtár nevét a telepítés közben módosítania kell. Ellenkező esetben, ha engedélyezi a telepítés során az új alapértelmezett név használatát, módosítania kell az URL-címet minden alkalmazásban, amely a Web Service SDK-ra hivatkozik, (például a felhasználói portál és a Mobile App Web Service), hogy a megfelelő helyre mutassanak.
 
-3. Ha a felhasználói portál korábban telepítették a PhoneFactor-ügynök kiszolgáló, hello hello telepítése hello új multi-factor Authentication felhasználói portálon keresztül hello multi-factor Authentication kiszolgáló felhasználói felületét.
+3. Ha a felhasználói portált korábban telepítette a PhoneFactor ügynök kiszolgálóján, telepítse az új Multi-Factor Authentication felhasználói portált a Multi-Factor Authentication-kiszolgáló felhasználói felületén keresztül.
 
-  az alapértelmezett virtuális könyvtár neve most hello **MultiFactorAuth** helyett **PhoneFactor**. Ha azt szeretné, hogy toouse hello korábbi név, módosítania kell hello virtuális könyvtár nevét hello telepítése során. Ellenkező esetben hello telepítési toouse hello új alapértelmezett neve engedélyezése esetén meg kell kattintson hello felhasználói portál hello multi-factor Authentication kiszolgáló és frissítse a felhasználói portál URL-CÍMÉT hello hello-beállítások lapon.
+  Az alapértelmezett virtuális címtár neve mostantól **PhoneFactor** helyett **MultiFactorAuth**. Ha a korábbi nevet szeretné használni, a virtuális címtár nevét a telepítés közben módosítania kell. Ellenkező esetben, ha a telepítés során engedélyezi az új alapértelmezett név használatát, kattintson a felhasználói portál ikonra a Multi-Factor Authentication-kiszolgálón és frissítse a felhasználói portál URL-címét a Beállítások lapon.
 
-4. Ha korábban telepítették a másik kiszolgáló hello felhasználói portál és/vagy a mobilalkalmazás webszolgáltatás a PhoneFactor-ügynököket hello:
+4. Ha a felhasználói portál és/vagy a Mobile App Web Service korábban a PhoneFactor ügynöktől eltérő kiszolgálón volt telepítve:
 
-  1. Nyissa meg toohello telepítési helyet (például, C:\Program Files\PhoneFactor), és másolja át egy vagy több telepítők toohello tároló más kiszolgálón. Nincsenek a felhasználói portál hello és a mobilalkalmazás webszolgáltatása 32 bites és 64 bites telepítők. Ezeknek a neve MultiFactorAuthenticationUserPortalSetupXX.msi, illetve MultiFactorAuthenticationMobileAppWebServiceSetupXX.msi.
+  1. Nyissa meg a telepítési helyet (például C:\Program Files\PhoneFactor), és másoljon át egy vagy több telepítőt a másik kiszolgálóra. A felhasználói portál és a Mobile App Web Service is rendelkezik 32 bites és 64 bites telepítővel is. Ezeknek a neve MultiFactorAuthenticationUserPortalSetupXX.msi, illetve MultiFactorAuthenticationMobileAppWebServiceSetupXX.msi.
 
-  2. tooinstall hello felhasználói portál hello webkiszolgálón nyisson meg egy parancssort rendszergazdaként, és futtassa a MultiFactorAuthenticationUserPortalSetupXX.msi.
+  2. A webkiszolgálón a felhasználói portál telepítéséhez nyisson meg egy parancssort rendszergazdaként, és futtassa a MultiFactorAuthenticationUserPortalSetupXX.msi fájlt.
 
-    az alapértelmezett virtuális könyvtár neve most hello **MultiFactorAuth** helyett **PhoneFactor**. Ha azt szeretné, hogy toouse hello korábbi név, módosítania kell hello virtuális könyvtár nevét hello telepítése során. Ellenkező esetben hello telepítési toouse hello új alapértelmezett neve engedélyezése esetén meg kell kattintson hello felhasználói portál hello multi-factor Authentication kiszolgáló és frissítse a felhasználói portál URL-CÍMÉT hello hello-beállítások lapon. A meglévő felhasználók toobe hello új URL-cím tájékoztatni kell.
+    Az alapértelmezett virtuális címtár neve mostantól **PhoneFactor** helyett **MultiFactorAuth**. Ha a korábbi nevet szeretné használni, a virtuális címtár nevét a telepítés közben módosítania kell. Ellenkező esetben, ha a telepítés során engedélyezi az új alapértelmezett név használatát, kattintson a felhasználói portál ikonra a Multi-Factor Authentication-kiszolgálón és frissítse a felhasználói portál URL-címét a Beállítások lapon. A meglévő felhasználókat tájékoztatni kell az új URL-címről.
 
-  3. Nyissa meg toohello felhasználói portál telepítési helyet (például C:\inetpub\wwwroot\MultiFactorAuth), és szerkessze a hello web.config fájlt. Másolja át az eredeti web.config fájl, amely készült biztonsági másolat hello frissítés előtt hello új web.config fájlba hello appSettings és applicationSettings szakaszokat hello értékek. Ha új alapértelmezett virtuális könyvtár nevét hello tartották hello webszolgáltatási SDK telepítésekor, módosítsa a hello URL-címet, hello applicationSettings szakasz toopoint toohello megfelelő helyen. Hello korábbi web.config fájlban módosított többi alapértelmezett értéket, ha alkalmazza ezeket azonos módosítások toohello új web.config fájlt.
+  3. Lépjen a felhasználói portál telepítési helyére (pl. C:\inetpub\wwwroot\MultiFactorAuth), és szerkessze a web.config fájlt. Másolja az appSettings és az applicationSettings szakaszban található értékeket az eredeti web.config fájlból, amelyről a frissítés előtt biztonsági másolatot készített, az új web.config fájlba. Ha a Web Service SDK telepítésekor megtartotta az új alapértelmezett virtuális címtár nevét, módosítsa az URL-címet az applicationSettings szakaszban, hogy a megfelelő helyre mutasson. Ha bármilyen egyéb alapértelmezett értéket módosított a korábbi web.config fájlban, alkalmazza ugyanezeket a módosításokat az új web.config fájlra.
 
-  4. tooinstall hello mobilalkalmazás webszolgáltatásának hello webkiszolgálón nyisson meg egy parancssort rendszergazdaként, és futtassa a hello MultiFactorAuthenticationMobileAppWebServiceSetupXX.msi.
+  4. A Mobile App Web Service a webkiszolgálón való telepítéséhez nyisson meg egy parancssort rendszergazdaként, és futtassa a MultiFactorAuthenticationMobileAppWebServiceSetupXX.msi fájlt.
 
-    az alapértelmezett virtuális könyvtár neve most hello **MultiFactorAuthMobileAppWebService** helyett **PhoneFactorPhoneAppWebService**. Ha azt szeretné, hogy toouse hello korábbi név, módosítania kell hello virtuális könyvtár nevét hello telepítése során. Érdemes lehet egy rövidebb nevet toomake toochoose megkönnyítik a végfelhasználók tootype a mobileszközükről. Ellenkező esetben hello telepítési toouse hello új alapértelmezett neve engedélyezése esetén meg kell kattintson hello mobilalkalmazás hello multi-factor Authentication kiszolgáló és hello Mobile App webes szolgáltatás URL-címet frissíteni.
+    Az alapértelmezett virtuális címtár neve mostantól **PhoneFactorPhoneAppWebService** helyett **MultiFactorAuthMobileAppWebService**. Ha a korábbi nevet szeretné használni, a virtuális címtár nevét a telepítés közben módosítania kell. Érdemes lehet egy rövidebb nevet választani, hogy a végfelhasználók egyszerűbben beírhassák a mobileszközeiken. Ellenkező esetben, ha a telepítés során engedélyezi az új alapértelmezett név használatát, kattintson a Mobile App ikonra a Multi-Factor Authentication-kiszolgálón és frissítse a Mobile App Web Service URL-címét.
 
-  5. Nyissa meg toohello mobilalkalmazás webszolgáltatás telepítési helyet (például C:\inetpub\wwwroot\MultiFactorAuthMobileAppWebService), és szerkessze a hello web.config fájlt. Másolja át az eredeti web.config fájl, amely készült biztonsági másolat hello frissítés előtt hello új web.config fájlba hello appSettings és applicationSettings szakaszokat hello értékek. Ha új alapértelmezett virtuális könyvtár nevét hello tartották hello webszolgáltatási SDK telepítésekor, módosítsa a hello URL-címet, hello applicationSettings szakasz toopoint toohello megfelelő helyen. Hello korábbi web.config fájlban módosított többi alapértelmezett értéket, ha alkalmazza ezeket azonos módosítások toohello új web.config fájlt.
+  5. Nyissa meg a Mobile App Web Service telepítési helyét (pl. C:\inetpub\wwwroot\MultiFactorAuthMobileAppWebService), és szerkessze a web.config fájlt. Másolja az appSettings és az applicationSettings szakaszban található értékeket az eredeti web.config fájlból, amelyről a frissítés előtt biztonsági másolatot készített, az új web.config fájlba. Ha a Web Service SDK telepítésekor megtartotta az új alapértelmezett virtuális címtár nevét, módosítsa az URL-címet az applicationSettings szakaszban, hogy a megfelelő helyre mutasson. Ha bármilyen egyéb alapértelmezett értéket módosított a korábbi web.config fájlban, alkalmazza ugyanezeket a módosításokat az új web.config fájlra.
 
 ## <a name="next-steps"></a>Következő lépések
 
-- [Hello felhasználói portál telepítése](multi-factor-authentication-get-started-portal.md) hello Azure multi-factor Authentication kiszolgáló számára.
+- [Telepítse a felhasználói portált](multi-factor-authentication-get-started-portal.md) az Azure Multi-Factor Authentication-kiszolgálóhoz.
 
 - [Konfigurálja a Windows-hitelesítést](multi-factor-authentication-get-started-server-windows.md) az alkalmazásokhoz. 

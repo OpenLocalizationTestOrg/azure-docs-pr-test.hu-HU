@@ -1,6 +1,6 @@
 ---
-title: a Data Catalog aaaIntroduction tooAzure |} Microsoft Docs
-description: "Ez a cikk áttekintése a Microsoft Azure Data Catalog, beleértve annak szolgáltatásait és hello problémákat tárgyalja. A Data Catalog lehetővé teszi, hogy bármely felhasználó tooregister, felderítését, értelmezését és felhasználását adatforrások."
+title: "Bevezetés az Azure Data Catalog használatába | Microsoft Docs"
+description: "Ez a cikk a Microsoft Azure Data Catalog áttekintését tartalmazza, beleértve a szolgáltatás funkcióit, és azokat a problémákat, amelyeket a szolgáltatás segítségével áthidalhat. A Data Catalog minden felhasználó számára lehetővé teszi adatforrások regisztrálását, felfedezését, értelmezését és felhasználását."
 services: data-catalog
 documentationcenter: 
 author: steelanddata
@@ -15,63 +15,63 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/15/2017
 ms.author: maroche
-ms.openlocfilehash: 82144c440b5692d3608af08208f36ee8e6dfdc93
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a28a7679831201fcf3a9d1c15497ff706c2752a1
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="what-is-azure-data-catalog"></a>Mi az az Azure Data Catalog?
-Az Azure Data Catalog egy teljes körűen felügyelt felhőszolgáltatás, amelynek fedezhetnek hello adatforrások kell, és hello talált adatforrásokat értelmezzék tisztában. Hello, azonos időben, a Data Catalog segítségével a szervezetek get több érték, a meglévő befektetéseikből. 
+Az Azure Data Catalog egy teljes körűen felügyelt felhőszolgáltatás, amely segít a felhasználóknak megtalálni a keresett adatforrásokat és értelmezni őket. Eközben a Data Catalog a vállalatoknak is segít még több értéket kinyerni a meglévő befektetésekből. 
 
-A Data Catalog segítségével bármely felhasználó (elemző, adattudós, vagy fejlesztő) felfedezhet, értelmezhet és felhasználhat adatforrásokat. A Data Catalog tartalmaz egy közösségi modellt is a metaadatok és megjegyzések kiszervezéséhez. A minden szervezet felhasználók toocontribute egyetlen, a központi hely a Tudásbázis, és létre egy közösségi és az adatok kulturális környezet.
+A Data Catalog segítségével bármely felhasználó (elemző, adattudós, vagy fejlesztő) felfedezhet, értelmezhet és felhasználhat adatforrásokat. A Data Catalog tartalmaz egy közösségi modellt is a metaadatok és megjegyzések kiszervezéséhez. A vállalat felhasználói egyetlen központi helyen oszthatják meg ismereteiket egymással és építhetnek közösséget és kultúrát az adatok köré.
 
 ## <a name="discovery-challenges-for-data-consumers"></a>Az adatok felfedezésének kihívásai az adatfelhasználók számára
-A vállalati adatforrások felfedezése hosszú ideje egy organikus, kollektív tudáson alapú folyamat. A vállalatok számára, így tooget hello információs legtöbb érték ez a megközelítés számos kihívást:
+A vállalati adatforrások felfedezése hosszú ideje egy organikus, kollektív tudáson alapú folyamat. Ez számos kihívást gördít azon vállalatok elé, akik az információs adategységeiket a lehető leghatékonyabban szeretnék kihasználni:
 
 * A felhasználók lehet, hogy csak akkor szereznek tudomást egy adatforrás létezéséről, amikor egy másik munkafolyamat során kapcsolatba kerülnek vele. Nincs egyetlen központi hely az adatforrások nyilvántartására.
-* Kivéve, ha a felhasználók ismeri egy adatforrás hello helyét, toohello adatok nem kapcsolódnak egy ügyfél alkalmazás használatával. Adatok-felhasználásának követelménye igényelnek a felhasználók tooknow hello kapcsolati karakterláncot vagy az elérési út.
-* Kivéve, ha a felhasználók tudják, hello helyét egy adatforrás dokumentációjának, ismerniük nem készült hello hello adatok használja. Lehet, hogy az adatforrások és dokumentáció csak különböző helyeken és különböző módokon érhetőek el.
-* Ha a felhasználók egy kérdése van, kell hello szakértővel vagy csapattal, hello adatok felelős keresse meg és offline megszólítása őket. Nincs explicit kapcsolat az adatok és az azok felhasználására szakértői módon rálátó emberek között.
-* Kivéve, ha a felhasználók a hozzáférés toohello adatforrás kérelmezési hello folyamatának megismerése, hello adatforrás és a hozzá tartozó dokumentáció felderítésére még nem segítséget nyújthatnak a támogatási hello adatok eléréséhez.
+* A felhasználók ügyfélalkalmazásaikkal csak akkor tudják elérni az adott adatforrást, ha tudják annak pontos helyét. A hagyományos adatfelhasználási folyamatok során a felhasználóknak tudniuk kell a megfelelő kapcsolati karakterláncot, vagy az elérési utat.
+* Hacsak nem tudják a felhasználók az adott adatforráshoz tartozó dokumentáció helyét, nem fogják tudni pontosan, hogyan is kell az adatokat felhasználni. Lehet, hogy az adatforrások és dokumentáció csak különböző helyeken és különböző módokon érhetőek el.
+* Ha a felhasználóknak kérdése van egy adott információval kapcsolatban, személyesen kell megkeresniük az adatokért felelős szakembert vagy csapatot. Nincs explicit kapcsolat az adatok és az azok felhasználására szakértői módon rálátó emberek között.
+* Hacsak egy felhasználó nincs tisztában az adatforráshoz való hozzáférés kérelmezésének menetével, az adatforrás és a hozzá tartozó dokumentáció felfedezésével még mindig nem fér hozzá a szükséges adatokhoz.
 
 ## <a name="discovery-challenges-for-data-producers"></a>Az adatok felfedezésének kihívásai az adatalkotók számára
-Bár az adatok fogyasztók arcfelismerési hello kihívást azt már korábban említettük, a felhasználókat, akik előállító és információs eszközeinek karbantartásáért felelős a saját kihívásaik szembesülhetnek:
+Miközben az adatfelhasználók mindezekkel az említett kihívásokkal néznek szembe, az információs adategységek létrehozásáért és fenntartásáért felelős felhasználóknak szintén megvannak a saját kihívásaik:
 
-* Az adatforrások felcímkézése tájékoztató jellegű metaadatokkal gyakran hiábavalónak bizonyul. Az ügyfélalkalmazások általában figyelmen kívül hagyása hello adatforrás tárolt leírásokat.
+* Az adatforrások felcímkézése tájékoztató jellegű metaadatokkal gyakran hiábavalónak bizonyul. Az ügyfélalkalmazások általában figyelmen kívül hagyják az adatforrásban tárolt tájékoztatókat.
 * Adatforrásokhoz dokumentációt készíteni gyakran hiábavalónak bizonyul. Szinkronban tartani az adatforrást és annak dokumentációját folyamatos felelősséget jelent, és a felhasználók nem is nagyon bíznak egy elavultnak tűnő dokumentációban.
-* Az adatforrásokhoz tartozó dokumentációk létrehozása és fenntartása összetett és időigényes feladat. Adott dokumentáció azonnal elérhetők legyenek tooeveryone hello adatforrást használ, akik így még inkább lehet.
-* Hozzáférés toodata források korlátozása, és győződjön meg arról, hogy az adatfelhasználók ismerjék a toorequest hozzáférés Mitől egy állandó kihívás.
+* Az adatforrásokhoz tartozó dokumentációk létrehozása és fenntartása összetett és időigényes feladat. A dokumentációkat az adatforrás minden felhasználója számára elérhetővé tenni pedig gyakran még inkább az.
+* Állandó kihívás az adatforrásokhoz való hozzáférés korlátozása, és annak biztosítása, hogy az adatfelhasználók ismerjék a hozzáférések kérelmezésének menetét.
 
-Az ilyen kihívások kombinálva jelentős korlátokat jelentenek a vállalatok számára, aki szeretné, hogy tooencourage, és léptesse elő a hello felhasználását és értelmezését a vállalati adatok.
+Az ilyen kihívások együttesen jelentős korlátokat állítanak a vállalatok elé, akik szorgalmazni kívánják a vállalati adatok felhasználását és értelmezését.
 
 ## <a name="azure-data-catalog-can-help"></a>Az Azure Data Catalog segíthet
-A Data Catalog tervezett tooaddress ezeket a problémákat és toohelp vállalatok get hello legtöbb értékét a meglévő információs eszközeiket. A Data Catalog lehetővé teszi az adatforrások könnyebben feltárhatóvá és értelmezhetővé hello felhasználók hello adatok kezelésére.
+A Data Catalog szolgáltatást arra tervezték, hogy megoldja ezeket a problémákat, és segítsen a vállalatoknak a lehető leghatékonyabban kihasználni a meglévő információs eszközeiket. A Data Catalog az adatforrásokat könnyen felfedezhetővé és értelmezhetővé teszi azon felhasználók számára, akik a bennük foglalt adatokat kezelik.
 
-A Data Catalog egy felhőalapú szolgáltatást biztosít, amelybe az adatforrásokat regisztrálni lehet. hello adatok továbbra is a helyükön, de a metaadatok másolatát kerül tooData katalógus, valamint egy hivatkozást toohello adatforrás helyre. metaadatok hello könnyen felfedezhetők keresési és értelmezhetővé toohello felhasználók, akik tudja azt deríteni minden adatforrás indexelt toomake is van.
+A Data Catalog egy felhőalapú szolgáltatást biztosít, amelybe az adatforrásokat regisztrálni lehet. Az adatok az eredeti helyükön maradnak, de a metaadatok másolatai bekerülnek a Data Catalog katalógusába, az adatforrások helyére mutató hivatkozásokkal együtt. A metaadatok indexelésének köszönhetően az adatforrások egy egyszerű keresés által felfedezhetővé és könnyen értelmezhetővé válnak a felhasználók számára.
 
-Miután egy adatforrás regisztrálva van, a metaadatai bővíthetők, hello regisztrált felhasználó folyamatos, vagy más felhasználók hello vállalaton belül. Bármely felhasználó megjegyzésekkel láthatja el az adatforrásokat, amelyekben leírásokat, címkéket és egyéb metaadatokat, például dokumentációkat és hozzáférés-kérelmezési eljárásokat adhat meg. Ez a leíró metaadatok kiegészítik hello szerkezeti metaadatokat (például oszlop nevét és adattípusok) hello adatforrásból regisztrált.
+Miután egy adatforrás regisztrálva lett, a metaadatai bővíthetők, akár az azt regisztráló felhasználó, akár a vállalaton belüli többi felhasználó által. Bármely felhasználó megjegyzésekkel láthatja el az adatforrásokat, amelyekben leírásokat, címkéket és egyéb metaadatokat, például dokumentációkat és hozzáférés-kérelmezési eljárásokat adhat meg. Ezek a leíró metaadatok kiegészítik az adatforrásból regisztrált szerkezeti metaadatokat (például oszlopneveket és adattípusokat).
 
-Felderítésének, illetve az adatforrások és a használatukat ismertetése célja hello elsődleges hello adatforrások regisztrálása. Vállalati felhasználók adatok módosítania kell az üzleti intelligencia, alkalmazásfejlesztés, adattudomány vagy bármilyen egyéb jellegű feladat ahol hello megfelelő adatokra szükség. Használhatnak hello Data Catalog felderítési élmény tooquickly található adatok igényeiknek, értelmezését hello adatok tooevaluate hello célra való alkalmasságra és hello adatok felhasználását hello adatforrás tetszőleges eszköz általi megnyitásával. 
+Az adatforrások regisztrálásának elsődleges célja, hogy a források felfedezhetők, értelmezhetők és felhasználhatók legyenek. A vállalati felhasználóknak adatokra lehet szükségük az üzleti intelligencia, az alkalmazásfejlesztés, az adattudomány és minden más olyan tevékenység terén, ahol fontos a megfelelő adatok használata. Ők a Data Catalog segítségével könnyedén megtalálhatják a szükségleteiknek megfelelő adatokat, értelmezhetik, hogy mennyire felelnek meg felhasználási szempontjaiknak, és fel is használhatják őket úgy, hogy az adatforrást a választott eszközzel nyitják meg. 
 
-At hello azonos idő, felhasználók által címkézés dokumentálása, és már regisztrált adatforrások ellátása megjegyzésekkel járulhat toohello katalógus. Akkor is regisztrálhatja az új adatforrások, amely majd felderíthető, megértettem, és a katalógus felhasználóinak Közössége hello által felhasznált.
+Ezzel egy időben a regisztrált adatforrások címkézésével, dokumentáció, illetve jegyzetek készítésével a felhasználók közre is tudnak működni a katalógus készítésében. További adatforrásokat is regisztrálni tudnak, amelyeket a katalógus felhasználói közössége szabadon felfedezhet, értelmezhet és felhasználhat.
 
 ![A Data Catalog képességei](./media/data-catalog-what-is-data-catalog/data-catalog-capabilities.png)
 
 ## <a name="learn-more-about-data-catalog"></a>További információ a Data Catalog szolgáltatásról
-További információk a Data Catalog képességeinek hello toolearn lásd:
+A Data Catalog képességeinek bővebb megismeréséhez lásd a következő témaköröket:
 
-* [Hogyan tooregister adatforrások](data-catalog-how-to-register.md)
-* [Hogyan toodiscover adatforrások](data-catalog-how-to-discover.md)
-* [Hogyan tooannotate adatforrások](data-catalog-how-to-annotate.md)
-* [Hogyan toodocument adatforrások](data-catalog-how-to-documentation.md)
-* [Hogyan tooconnect toodata források](data-catalog-how-to-connect.md)
-* [Hogyan toowork a big Data típusú adatok](data-catalog-how-to-big-data.md)
-* [Hogyan toomanage adategységeket](data-catalog-how-to-manage.md)
-* [Hogyan tooset be hello üzleti szószedet](data-catalog-how-to-business-glossary.md)
+* [Adatforrások regisztrálása](data-catalog-how-to-register.md)
+* [Adatforrások felfedezése](data-catalog-how-to-discover.md)
+* [Adatforrások ellátása megjegyzésekkel](data-catalog-how-to-annotate.md)
+* [Adatforrások dokumentálása](data-catalog-how-to-documentation.md)
+* [Kapcsolódás az adatforrásokhoz](data-catalog-how-to-connect.md)
+* [Munkavégzés big data típusú adatokkal](data-catalog-how-to-big-data.md)
+* [Adategységek felügyelete](data-catalog-how-to-manage.md)
+* [Az üzleti szószedet összeállítása](data-catalog-how-to-business-glossary.md)
 * [Gyakori kérdések](data-catalog-frequently-asked-questions.md)
 
 ## <a name="next-steps"></a>Következő lépések
-a Data Catalog használatába tooget Ugrás:
+A Data Catalog használatával itt ismerkedhet meg:
 * [Microsoft Azure Data Catalog](https://www.azuredatacatalog.com)
 * [Ismerkedés az Azure Data Catalog szolgáltatással](data-catalog-get-started.md)

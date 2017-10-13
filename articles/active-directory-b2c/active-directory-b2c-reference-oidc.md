@@ -1,6 +1,6 @@
 ---
 title: "Bejelentkezés az OpenID Connect - Azure AD B2C webes |} Microsoft Docs"
-description: "Épület webalkalmazások OpenID Connect hitelesítési protokoll hello végrehajtásának hello Azure Active Directory használatával"
+description: "Webalkalmazások készítéséhez az Azure Active Directory végrehajtása az OpenID Connect hitelesítési protokoll használatával"
 services: active-directory-b2c
 documentationcenter: 
 author: saeedakhter-msft
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/16/2017
 ms.author: saeedakhter-msft
-ms.openlocfilehash: 89e9cfa28e4e5c34304aea355cca2dd0c4b42abc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b0c33a47dd0cae79eab32ac578448fae8bf59be5
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-active-directory-b2c-web-sign-in-with-openid-connect"></a>Az Azure Active Directory B2C: Webes bejelentkezés az OpenID Connect
-OpenID Connect egy olyan hitelesítési protokoll, OAuth 2.0-s, amely a tooweb alkalmazások használt toosecurely bejelentkezési felhasználói platformra épül. Hello Azure Active Directory B2C (az Azure AD B2C) végrehajtása az OpenID Connect használatával is erőforrás kihelyezése a regisztráció, bejelentkezés, és más Identitáskezelés észlel a a webes alkalmazások tooAzure Active Directory (Azure AD). Ez az útmutató bemutatja, hogyan toodo nyelvtől független módon igen. Leírja, hogyan toosend és HTTP-üzenetek fogadása a nyílt forráskódú kódtárai bármelyikét használata nélkül.
+OpenID Connect egy olyan hitelesítési protokoll, OAuth 2.0, a biztonságos bejelentkezéshez felhasználók webalkalmazásokhoz használható platformra épül. Az Azure Active Directory B2C segítségével OpenID Connect (Azure AD B2C-vel) végrehajtásával, is erőforrás kihelyezése a regisztráció, bejelentkezés és más Identitáskezelés észlel a webalkalmazások Azure Active Directory (Azure AD). Ez az útmutató bemutatja, hogyan nyelvtől független módon. Bemutatja, hogyan lehet üzeneteket küldjön és fogadjon HTTP a nyílt forráskódú kódtárai bármelyikét használata nélkül.
 
-[OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html) kibővíti az OAuth 2.0 hello *engedélyezési* protokollt használni egy *hitelesítési* protokoll. Ez lehetővé teszi tooperform egyszeri bejelentkezés OAuth használatával. Hello fogalma okozna egy *azonosító token*, egy biztonsági jogkivonatot, amely lehetővé teszi, hogy a hello ügyfél tooverify hello hello felhasználó identitását, amely hello felhasználó alapvető profiladataihoz információt szerezni.
+[OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html) kibővíti az OAuth 2.0 *engedélyezési* protokollt használni egy *hitelesítési* protokoll. Ez lehetővé teszi, hogy az egyszeri bejelentkezés használatával OAuth végez. Akkor jelenik meg az egy *azonosító token*, amelyen egy biztonsági jogkivonatot, amely lehetővé teszi a felhasználó identitásának ellenőrzéséhez és a felhasználó alapvető profiladataihoz információt szerezni az ügyfél.
 
-OAuth 2.0 terjeszti ki, mert emellett lehetővé teszi az alkalmazások toosecurely megszerzése *hozzáférési jogkivonatok*. Használhatja a access_tokens tooaccess erőforrások által védett egy [engedélyezési server](active-directory-b2c-reference-protocols.md#the-basics). Ajánlott OpenID Connect, ha a webes alkalmazás, amely a kiszolgálón futtatott és böngészőn keresztül elért most felépítése. Ha az Azure AD B2C segítségével tooadd identity management tooyour hordozható vagy asztali alkalmazásokkal, használjon [OAuth 2.0](active-directory-b2c-reference-oauth-code.md) ahelyett, hogy az OpenID Connect.
+OAuth 2.0 terjeszti ki, mert emellett lehetővé teszi az alkalmazások biztonságos megszerzésére *hozzáférési jogkivonatok*. Access_tokens által védett erőforrások eléréséhez használható egy [engedélyezési server](active-directory-b2c-reference-protocols.md#the-basics). Ajánlott OpenID Connect, ha a webes alkalmazás, amely a kiszolgálón futtatott és böngészőn keresztül elért most felépítése. Ha azt szeretné, az Identitáskezelés hozzáadása a hordozható vagy asztali alkalmazásokhoz az Azure AD B2C használatával, használjon [OAuth 2.0](active-directory-b2c-reference-oauth-code.md) ahelyett, hogy az OpenID Connect.
 
-Az Azure AD B2C hello szabványos OpenID Connect protokoll toodo több mint egyszerű hitelesítési és engedélyezési terjeszti ki. Hello okozna [házirend paraméter](active-directory-b2c-reference-policies.md), amely lehetővé teszi toouse OpenID Connect tooadd felhasználói élményt – például a regisztráció, bejelentkezés és a profilkezelés--tooyour alkalmazást. Itt azt mutatja be toouse ezen észlel, a webalkalmazások OpenID Connect és házirendek tooimplement. Is mutat be, hogyan tooget hozzáférési jogkivonatok eléréséhez webes API-khoz.
+Az Azure AD B2C kibővíti az OpenID Connect protokoll szabványt nagyobb, mint az egyszerű hitelesítéshez és engedélyezéshez. Okozna a [házirend paraméter](active-directory-b2c-reference-policies.md), amely lehetővé teszi az OpenID Connect használatával adhatja hozzá a felhasználói élményt – például a regisztráció, bejelentkezés és a profilkezelés – az alkalmazáshoz. Itt azt mutatja be valósít meg minden olyan ezeket a szolgáltatásokat a webalkalmazások OpenID Connect és házirendek segítségével. Is mutat be, hogyan kérhet hozzáférési jogkivonatok webes API-k eléréséhez.
 
-hello példa HTTP-kérelmek hello a következő szakaszban használja, a minta B2C-címtárban, fabrikamb2c.onmicrosoft.com, valamint a mintaalkalmazást, https://aadb2cplayground.azurewebsites.net és házirendek. Szabad kimenő hello tootry fel a kérelmeket saját kezűleg ezeket az értékeket, vagy lecserélheti őket a saját.
-Ismerje meg, hogyan túl[saját B2C-bérlő, alkalmazások és házirendek](#use-your-own-b2c-directory).
+A példa HTTP-kérelmekre a következő szakaszban használja, a minta B2C-címtárban, fabrikamb2c.onmicrosoft.com, valamint a mintaalkalmazást, https://aadb2cplayground.azurewebsites.net és házirendek. Szabadon próbálja ki a kérelmek saját kezűleg a ezeket az értékeket, vagy lecserélheti őket a saját.
+Megtudhatja, hogyan [saját B2C-bérlő, alkalmazások és házirendek](#use-your-own-b2c-directory).
 
 ## <a name="send-authentication-requests"></a>Hitelesítési kérések küldése
-A webalkalmazás tooauthenticate hello felhasználói kell, és egy házirend hajtható végre, akkor is közvetlen hello felhasználói toohello `/authorize` végpont. Ez az interaktív része hello hello folyamata, ahol a hello felhasználó végrehajtja a műveletet, attól függően, hogy hello házirend.
+Ha a webalkalmazás kell hitelesíteni a felhasználót, majd hajtsa végre egy házirendet, utasíthatja-e a felhasználót, hogy a `/authorize` végpont. Az adatfolyam interaktív része azt, ha a felhasználó végrehajtja a műveletet, attól függően, hogy a házirend.
 
-Ebben a kérelemben hello ügyfél azt jelzi, hogy kell-e a hello hello felhasználótól tooacquire hello engedélyek `scope` paraméter és hello házirend tooexecute a hello `p` paraméter. Három példák találhatók: hello a következő szakaszok (sortöréssel olvashatóság érdekében), minden más házirend segítségével. tooget abba az egyes kérelmek működése, próbálja meg végrehajtani a Beillesztés hello kérelmet egy böngészőt, és azt futtatja.
+A kérelem, az ügyfél azt jelzi, szerzi be a felhasználó a szükséges engedélyekkel a `scope` paraméter és a házirendet, a végrehajtást a `p` paraméter. Három Példák különböző házirend segítségével (sortöréssel olvashatóság érdekében), a következő szakaszban találhatók. Követve betekintést nyerhet abba az egyes kérelmek működése, próbálja meg beilleszteni a kérelem egy böngészőbe, és azt futtatja.
 
 #### <a name="use-a-sign-in-policy"></a>A bejelentkezési házirend
 ```
@@ -76,21 +76,21 @@ client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6
 &p=b2c_1_edit_profile
 ```
 
-| Paraméter | Kötelező? | Leírás |
+| Paraméter | Kötelező megadni? | Leírás |
 | --- | --- | --- |
-| client_id |Szükséges |hello alkalmazás azonosító adott hello [Azure-portálon](https://portal.azure.com/) tooyour app rendelve. |
-| response_type |Szükséges |hello válasz típusát, amely az OpenID Connect tartalmaznia kell egy azonosító jogkivonatot. Ha a webalkalmazásnak is kell jogkivonatok hívásakor webes API-k, `code+id_token`, ahogy azt itt régebben már kötöttek. |
-| redirect_uri |Ajánlott |Hello `redirect_uri` paraméter az alkalmazás, ahol küldött és az alkalmazás által fogadott a hitelesítési válaszokat. Ez pontosan egyeznie kell hello `redirect_uri` paraméterek olyan hello portálon, azzal a különbséggel, hogy az URL-kódolású kell lennie. |
-| Hatókör |Szükséges |Hatókörök szóközökkel elválasztott listája. Egy hatókör érték tooAzure AD mindkét kérnek engedélyeket. Hello `openid` hatókör jelzi egy engedély toosign hello felhasználói és az adatok hello felhasználóról hello azonosító-jogkivonatokat (további toocome ezen hello cikk későbbi részében) formájában. Hello `offline_access` hatókör megadása nem kötelező web Apps. Azt jelzi, hogy az alkalmazás kell egy *frissítési jogkivonat* a hosszú élettartamú hozzáférés tooresources. |
-| response_mode |Ajánlott |hello módszerhez használt toosend hello eredményül kapott engedélyezési kód hátsó tooyour app kell lennie. Ez lehet akár `query`, `form_post`, vagy `fragment`.  Hello `form_post` válasz mód használata ajánlott legjobb biztonsági. |
-| state |Ajánlott |Hello kérelem is hello token válaszként visszaadott szerepel érték. Bármely, a kívánt tartalmat karakterlánc lehet. Egy véletlenszerűen generált egyedi érték webhelyközi kérések hamisításának megakadályozása támadások megelőzése általában szolgál. hello állapota is hello felhasználói állapot hello alkalmazásban használt tooencode információ hello hitelesítési kérelem történt, mint amilyenek korábban voltak a hello lap előtt. |
-| Nonce |Szükséges |Hello kérelem (hello alkalmazás által generált), amely szerepelni fog eredményül kapott Azonosítót jogkivonatban hello jogcímként szerepel érték. hello alkalmazás ezután ellenőrizheti a érték toomitigate hitelesítési karakterláncok ismétlésének támadásokat. hello érték általában egy véletlenszerű egyedi karakterlánc, amely használt tooidentify hello származási hello kérelem. |
-| P |Szükséges |hello házirendet, amely végrehajtja. Olyan házirendet, amely a B2C bérlő létrehozása hello nevét. hello házirend név-érték előtaggal kell kezdődnie `b2c\_1\_`. További információ a házirendek és hello további [bővíthető szabályzat-keretrendszernek](active-directory-b2c-reference-policies.md). |
-| parancssor |Optional |hello típusa a felhasználói beavatkozás szükséges. hello csak érvényes jelenleg értéke `login`, amely kényszeríti hello felhasználói tooenter adott kérelem hitelesítő adataikat. Egyszeri bejelentkezés nem lépnek érvénybe. |
+| client_id |Szükséges |Az alkalmazás azonosítója, amely a [Azure-portálon](https://portal.azure.com/) az alkalmazáshoz hozzárendelni. |
+| response_type |Szükséges |A válasz-típus, az OpenID Connect tartalmaznia kell egy azonosító jogkivonatot. Ha a webalkalmazásnak is kell jogkivonatok hívásakor webes API-k, `code+id_token`, ahogy azt itt régebben már kötöttek. |
+| redirect_uri |Ajánlott |A `redirect_uri` paraméter az alkalmazás, ahol küldött és az alkalmazás által fogadott a hitelesítési válaszokat. Ez pontosan egyeznie kell a `redirect_uri` paramétereket, és regisztrálta a portálon, azzal a különbséggel, hogy az URL-kódolású kell lennie. |
+| Hatókör |Szükséges |Hatókörök szóközökkel elválasztott listája. Egy hatókör érték az Azure AD mindkét kérnek engedélyeket. A `openid` hatókör azt jelzi, a felhasználói azonosító-jogkivonatokat (több, a cikk későbbi részében ezen lesz) formájában adatait, és jelentkezzen be a felhasználó engedélyt. A `offline_access` hatókör megadása nem kötelező web Apps. Azt jelzi, hogy az alkalmazás kell egy *frissítési jogkivonat* hosszú élettartamú erőforrások elérése érdekében. |
+| response_mode |Ajánlott |A módszer, amelynek használatával az eredményül kapott engedélyezési kód küldi vissza az alkalmazást. Ez lehet akár `query`, `form_post`, vagy `fragment`.  A `form_post` válasz mód használata ajánlott legjobb biztonsági. |
+| state |Ajánlott |A kérelem is a biztonságijogkivonat-válaszban visszaadott szerepel érték. Bármely, a kívánt tartalmat karakterlánc lehet. Egy véletlenszerűen generált egyedi érték webhelyközi kérések hamisításának megakadályozása támadások megelőzése általában szolgál. Az állapot az alkalmazás a felhasználói állapot információt kódolásához, előtt a hitelesítési kérést, például a lap, amilyenek korábban voltak a is használatos. |
+| Nonce |Szükséges |A kérelem (az alkalmazás által generált), amely szerepelni fog az eredményül kapott azonosító jogkivonat jogcímként szerepel érték. Az alkalmazás ezután ellenőrizheti a hitelesítési karakterláncok ismétlésének támadások mérséklése ezt az értéket. Az érték egy véletlenszerű egyedi karakterlánc, amely segítségével azonosíthatja a kérelem forrása általában. |
+| P |Szükséges |A házirendet, amely végrehajtja. Olyan házirendet, amely a B2C bérlő létrehozása nevét. A házirend nevének értékét kell kezdődnie `b2c\_1\_`. További információ a házirendek és a [bővíthető szabályzat-keretrendszernek](active-directory-b2c-reference-policies.md). |
+| parancssor |Optional |A típus a felhasználói beavatkozás szükséges. Jelenleg az egyetlen érvényes érték `login`, amely előírja, hogy a felhasználó megadja hitelesítő adataikkal, hogy kérésre. Egyszeri bejelentkezés nem lépnek érvénybe. |
 
-Ezen a ponton hello felhasználónak kapcsolatba toocomplete hello házirend munkafolyamat. Ez lehet, hogy magában hello felhasználói írja be a felhasználónevét és jelszavát, bejelentkezés egy közösségi identitás regisztrál a hello könyvtár, vagy minden más szám lépésből áll, attól függően, hogy hogyan a hello házirend lett meghatározva.
+Ezen a ponton a felhasználónak kapcsolatba a házirend-munkafolyamat végrehajtásához. Ez a felhasználó, írja be a felhasználónevét és jelszavát, bejelentkezés egy közösségi identitás regisztrál a könyvtár, vagy minden más szám lépésből áll, attól függően, hogy hogyan van definiálva a házirend az lehet, hogy magában.
 
-Hello felhasználói hello házirend befejezése után az Azure AD adja vissza egy válasz tooyour alkalmazást jelzett hello `redirect_uri` paraméter módszerrel hello hello megadott `response_mode` paraméter. az egyes esetekben független hello házirend végrehajtott megelőző hello azonos van hello hello válasz.
+Miután a felhasználó teljesítette a szabályzat, az Azure AD adja vissza az alkalmazást a jelzett választ `redirect_uri` paraméter megadott módon a `response_mode` paraméter. A válasz megegyezik a független a házirendet, amely végrehajtja a rendszer a fenti esetek mindegyikét.
 
 A sikeres válasz használatával `response_mode=fragment` alábbihoz hasonlóan fog kinézni:
 
@@ -103,11 +103,11 @@ id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik5HVEZ2ZEstZnl0aEV1Q...
 
 | Paraméter | Leírás |
 | --- | --- |
-| id_token |kért alkalmazás hello Azonosítót jogkivonatban hello. Hello azonosító token tooverify hello felhasználói identitás használatára, és a hello felhasználói munkamenet elindításához. További részleteket a azonosító-jogkivonatokat és azok tartalmát szerepelnek hello [Azure AD B2C-jogkivonatok referenciájából](active-directory-b2c-reference-tokens.md). |
-| Kód |hello engedélyezési kód hello alkalmazáshoz szükség, ha használt `response_type=code+id_token`. hello app hello engedélyezési kód toorequest olyan hozzáférési jogkivonatot használja a cél erőforráson. Hitelesítési kódok nagyon rövid élettartamú. Ezek általában körülbelül 10 perc múlva lejár. |
-| state |Ha egy `state` paraméter szerepel hello ugyanazt az értéket meg kell jelennie a hello válasz hello kérelem. hello app győződjön meg arról, hogy hello `state` hello kérelem-válasz szereplő értékek azonosak. |
+| id_token |Az alkalmazás által kért azonosítója jogkivonat. Az azonosító jogkivonat segítségével ellenőrzi a felhasználó identitását, és a felhasználói munkamenet elindításához. További részleteket a azonosító-jogkivonatokat és azok tartalmát szerepelnek a [Azure AD B2C-jogkivonatok referenciájából](active-directory-b2c-reference-tokens.md). |
+| Kód |Az engedélyezési kód, amely az alkalmazás kéri, ha használt `response_type=code+id_token`. Az alkalmazás az engedélyezési kód segítségével olyan hozzáférési jogkivonatot cél erőforrás igényelhetnek. Hitelesítési kódok nagyon rövid élettartamú. Ezek általában körülbelül 10 perc múlva lejár. |
+| state |Ha egy `state` paraméter szerepel a kérést, ugyanazt az értéket meg kell jelennie a válaszban. Az alkalmazás győződjön meg arról, hogy a `state` a kérelem és a válaszban szereplő értékek azonosak. |
 
-Hibaválaszok is küldhetők toohello `redirect_uri` paraméter, hello alkalmazást is kezeli azokat megfelelően:
+Hibaválaszok is küldhető a `redirect_uri` paramétert, hogy az alkalmazás képes kezelni őket megfelelően:
 
 ```
 GET https://aadb2cplayground.azurewebsites.net/#
@@ -118,48 +118,48 @@ error=access_denied
 
 | Paraméter | Leírás |
 | --- | --- |
-| error |Lehet, amely lehet használt tooreact tooerrors előforduló hibát használt tooclassify típusú hibakód karakterlánc. |
-| error_description |Egy adott hibaüzenet, amelyek segítségével a fejlesztők hello hitelesítési hiba okának azonosításához. |
-| state |Hello teljes leírást az első tábla hello ebben a szakaszban talál. Ha egy `state` paraméter szerepel hello ugyanazt az értéket meg kell jelennie a hello válasz hello kérelem. hello app győződjön meg arról, hogy hello `state` hello kérelem-válasz szereplő értékek azonosak. |
+| error |Egy hibakód karakterlánc típusú hibák előforduló és hibáinak reagálni azokra, amely használható besorolására használható. |
+| error_description |Egy adott hibaüzenet, amelyek segítségével a fejlesztők hitelesítési hiba okának azonosításához. |
+| state |Lásd az ebben a szakaszban az első tábla teljes leírását. Ha egy `state` paraméter szerepel a kérést, ugyanazt az értéket meg kell jelennie a válaszban. Az alkalmazás győződjön meg arról, hogy a `state` a kérelem és a válaszban szereplő értékek azonosak. |
 
-## <a name="validate-hello-id-token"></a>Hello azonosító token ellenőrzése
-Csak fogadó egy azonosító jogkivonat nincs elég tooauthenticate hello felhasználó. Kell hello azonosító jogkivonat-aláírás ellenőrzése és hello jogcímek hello jogkivonat / az alkalmazás követelményeinek ellenőrzése. Használja az Azure AD B2C [JSON Web Tokens (JWTs)](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html) és nyilvános kulcs titkosítás toosign jogkivonatokat, és győződjön meg arról, hogy azok érvényesek.
+## <a name="validate-the-id-token"></a>Az azonosító token ellenőrzése
+Csak fogadása az azonosító tokent elég nem lehet hitelesíteni a felhasználót. Kell a azonosító jogkivonat-aláírás ellenőrzése és ellenőrizze a jogcímek, az alkalmazás követelményeinek / jogkivonat. Használja az Azure AD B2C [JSON Web Tokens (JWTs)](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html) és a jogkivonatok aláírásához, és ellenőrizze, hogy azok érvényes nyilvános kulccsal történő titkosítás.
 
-Nincsenek számos nyílt forráskódú kódtárai elérhető JWTs, attól függően, hogy a nyelvi preferencia szerinti ellenőrzése. Javasoljuk, hogy ezek a lehetőségek felfedezése megvalósító egyéni ellenőrzési logika helyett. Itt hello információk hasznosak bizonyulnak a tudja, hogyan tooproperly használja ezeket a könyvtárakat.
+Nincsenek számos nyílt forráskódú kódtárai elérhető JWTs, attól függően, hogy a nyelvi preferencia szerinti ellenőrzése. Javasoljuk, hogy ezek a lehetőségek felfedezése megvalósító egyéni ellenőrzési logika helyett. Itt az információk hasznosak bizonyulnak a tudja, hogyan megfelelően használhatja a tárak.
 
-Az Azure AD B2C az OpenID Connect metaadat-végpontjához, amely lehetővé teszi egy alkalmazás toofetch kapcsolatos információkat az Azure AD B2C futásidőben rendelkezik. Ezen információk közé tartozik a végpontok, lexikális elem tartalmának és jogkivonat-aláíró kulcsok. Nincs a JSON metaadat-dokumentum-házirendet a B2C-bérlőben. Például hello metaadat-dokumentum a hello `b2c_1_sign_in` -szabályzat `fabrikamb2c.onmicrosoft.com` helyen található:
+Az Azure AD B2C rendelkezik az OpenID Connect metaadat-végpontjához, amely lehetővé teszi egy alkalmazás futásidőben Azure AD B2C-vel kapcsolatos információk beolvasása. Ezen információk közé tartozik a végpontok, lexikális elem tartalmának és jogkivonat-aláíró kulcsok. Nincs a JSON metaadat-dokumentum-házirendet a B2C-bérlőben. Például a metaadat-dokumentum esetében a `b2c_1_sign_in` -szabályzat `fabrikamb2c.onmicrosoft.com` helyen található:
 
 `https://login.microsoftonline.com/fabrikamb2c.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=b2c_1_sign_in`
 
-A konfigurációs dokumentum hello tulajdonságait egyik `jwks_uri`, amelynek az értéke az ugyanabban a házirendben lenne hello:
+A konfigurációs dokumentum tulajdonságainak egyik `jwks_uri`, amelynek értéke lenne ugyanabban a házirendben:
 
 `https://login.microsoftonline.com/fabrikamb2c.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1_sign_in`.
 
-toodetermine mely házirendet használtak egy azonosító tokent aláíró (és az adott toofetch hello metaadatok), két lehetőség közül választhat. Első lépésként hello házirendnév hello megtalálható `acr` jogcím hello Azonosítót jogkivonatban. Hogyan tooparse hello jogcím-azonosító-jogkivonatból információkért lásd: hello [Azure AD B2C-jogkivonatok referenciájából](active-directory-b2c-reference-tokens.md). A másik lehetőség egy tooencode hello házirend hello hello értékének `state` paraméter küldjön hello kérelmet, és milyen házirend lett megadva toodetermine dekódolására. Mindkét módszer esetén érvényes.
+Annak meghatározásához, hogy mely házirendet használt azonosító aláíró jogkivonat (és a metaadatok beolvasása honnan), két lehetősége van. Először a házirend neve szerepel a `acr` jogcím a Azonosítót jogkivonatban. A jogcímek egy azonosító jogkivonat elemzése információkért lásd: a [Azure AD B2C-jogkivonatok referenciájából](active-directory-b2c-reference-tokens.md). A másik lehetőség egy kódolására a házirend az értékét a `state` paraméter küldje a kérelmet, és ezután dekódolni a meghatározásához, hogy mely házirendet lett megadva. Mindkét módszer esetén érvényes.
 
-Hello metaadat-dokumentum hello-metaadatok endpoint OpenID Connect a korábban szerezte be, miután hello RSA 256 nyilvános kulcsok (amelyek a végpont található) használhatja toovalidate hello hello azonosító jogkivonat aláírását. Előfordulhat, hogy több idő álljon a végponti szereplő kulcsok, minden egyes által azonosított egy `kid` jogcímek. hello hello azonosító jogkivonat fejléc is tartalmaz egy `kid` jogcím, ami azt jelenti, hogy ezek a kulcsok eddig használt toosign hello azonosító token. További információkért lásd: hello [Azure AD B2C-jogkivonatok referenciájából](active-directory-b2c-reference-tokens.md) (a szakasz hello [jogkivonatok ellenőrzése](active-directory-b2c-reference-tokens.md#token-validation), különösen).
-<!--TODO: Improve hello information on this-->
+Után jut hozzá a metaadat-dokumentum, az OpenID Connect metaadat-végpontjához, használhatja az RSA 256 nyilvános kulcsot (amely találhatók ezen a végponton) érvényesítése azonosító jogkivonat aláírását. Előfordulhat, hogy több idő álljon a végponti szereplő kulcsok, minden egyes által azonosított egy `kid` jogcímek. A fejléc az azonosító jogkivonat is tartalmaz egy `kid` jogcím, ami azt jelenti, amely ezeket a kulcsokat a Azonosítót jogkivonatban aláírásához használt. További információkért lásd: a [Azure AD B2C-jogkivonatok referenciájából](active-directory-b2c-reference-tokens.md) (szakaszban [jogkivonatok ellenőrzése](active-directory-b2c-reference-tokens.md#token-validation), különösen).
+<!--TODO: Improve the information on this-->
 
-Hello azonosító jogkivonat hello aláírás érvényesítése után vannak, hogy kell-e tooverify több jogcímeket. Például:
+A azonosító jogkivonat aláírása ellenőrzését követően nincsenek vissza kell igazolnia több jogcímeket. Például:
 
-* Ellenőriznie kell a hello `nonce` jogcím tooprevent hitelesítési karakterláncok ismétlésének támadásokat. Az érték lehet hello bejelentkezési kérelemben megadott.
-* Ellenőriznie kell a hello `aud` jogcímek, az alkalmazás, amely azonosító token hello tooensure ki. Az érték lehet hello Alkalmazásazonosító az alkalmazás.
-* Ellenőriznie kell a hello `iat` és `exp` jogcímeket, amely azonosító token hello tooensure nem járt le.
+* Érdemes ellenőrizni a `nonce` jogcím-token ismétléses támadások megelőzése érdekében. Az értékét a bejelentkezési kérelemben megadott kell lennie.
+* Érdemes ellenőrizni a `aud` jogcím győződjön meg arról, hogy a Azonosítót jogkivonatban ki az alkalmazást. Az értéknek kell lennie az alkalmazás Azonosítóját a az alkalmazás.
+* Érdemes ellenőrizni a `iat` és `exp` győződjön meg arról, hogy az azonosító jogkivonat nem járt jogcímeket.
 
-Nincsenek is végre kell hajtania néhány további érvényesítést. Ezekről az alábbi hello részletes [OpenID Connect Core Spec](http://openid.net/specs/openid-connect-core-1_0.html).  Érdemes lehet toovalidate további jogcímeket, a forgatókönyvtől függően. Néhány gyakori érvényesítést a következők:
+Nincsenek is végre kell hajtania néhány további érvényesítést. Ezek a részletes leírása a [OpenID Connect Core Spec](http://openid.net/specs/openid-connect-core-1_0.html).  Érdemes további ellenőrizhesse, a forgatókönyvtől függően is. Néhány gyakori érvényesítést a következők:
 
-* Győződjön meg arról, hogy a felhasználó/szervezeti hello rendelkezik regisztrált hello alkalmazást.
-* Győződjön meg arról, hogy hello felhasználó rendelkezik-e megfelelő engedélyezési vagy jogosultságokkal.
+* Győződjön meg arról, hogy a felhasználó/szervezeti rendelkezik regisztrálta az alkalmazást.
+* Győződjön meg arról, hogy a felhasználó rendelkezik-e a megfelelő engedélyezési vagy jogosultságokkal.
 * Győződjön meg arról, hogy bizonyos erősségével hitelesítési történt, például az Azure multi-factor Authentication.
 
-A hello jogcímek egy Azonosítót jogkivonatban további információkért lásd: hello [Azure AD B2C-jogkivonatok referenciájából](active-directory-b2c-reference-tokens.md).
+A jogcímek egy Azonosítót jogkivonatban további információkért tekintse meg a [Azure AD B2C-jogkivonatok referenciájából](active-directory-b2c-reference-tokens.md).
 
-Hello azonosító token ellenőrzése után megkezdheti a munkamenet hello felhasználóval. Hello jogcímek hello azonosító token tooobtain hello felhasználói adatait az alkalmazás használata. Ezt az információt használja megjelenített rekordok és engedélyezési tartalmazza.
+Az azonosító token ellenőrzése után megkezdheti a munkamenet a felhasználóval. A jogcímek az Azonosítót jogkivonatban segítségével a felhasználó információt szerezni az alkalmazásban. Ezt az információt használja megjelenített rekordok és engedélyezési tartalmazza.
 
 ## <a name="get-a-token"></a>A jogkivonat beolvasása
-Ha a webes alkalmazás tooonly kell végrehajtani a házirendek, továbbléphet hello a következő néhány szakasz. Ezek a szakaszok olyan alkalmazható csak tooweb alkalmazások, amelyek toomake hitelesített hívásokat tooa webes API kell, és az Azure AD B2C is védi.
+Ha csak végrehajtási házirendek webalkalmazás van szüksége, továbbléphet a következő néhány szakasz. Ezek a szakaszok csak webes alkalmazásokat, amelyek kell hitelesített hívásokat egy webes API-hoz, és is védi az Azure AD B2C vonatkoznak.
 
-Hello engedélyezési kód beszerzett is beválthatja (használatával `response_type=code+id_token`) token toohello szükséges erőforrás küldésével egy `POST` toohello kérelem `/token` végpont. Hello csak a kérhet egy token erőforrás jelenleg az alkalmazás saját webes API-t. hello egyezmény token tooyourself kér az alkalmazás ügyfél-azonosítója hello hatóköreként toouse:
+Az engedélyezési kód beszerzett is beválthatja (használatával `response_type=code+id_token`) a kívánt erőforrás elküldésével jogkivonat egy `POST` elküldeni a kérelmet a `/token` végpont. A jogkivonatot kérhet csak erőforrás jelenleg az alkalmazás saját webes API-t. Az a magához jogkivonat kérésével egyezmény, hogy az alkalmazás ügyfél-Azonosítóját használja a hatóköreként:
 
 ```
 POST fabrikamb2c.onmicrosoft.com/oauth2/v2.0/token?p=b2c_1_sign_in HTTP/1.1
@@ -170,15 +170,15 @@ grant_type=authorization_code&client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6&sco
 
 ```
 
-| Paraméter | Kötelező? | Leírás |
+| Paraméter | Kötelező megadni? | Leírás |
 | --- | --- | --- |
-| P |Szükséges |hello házirend, de a használt tooacquire hello engedélyezési kódot. A kérelem nem használhatja másik szabályt. Megjegyzés: a paraméter toohello lekérdezési karakterláncot, nem toohello hozzáadása `POST` törzsében. |
-| client_id |Szükséges |hello alkalmazás azonosító adott hello [Azure-portálon](https://portal.azure.com/) tooyour app rendelve. |
-| grant_type |Szükséges |engedély megadása, amelynek támogatnia kell a típusú hello `authorization_code` a hello hitelesítésikód-folyamata. |
-| Hatókör |Ajánlott |Hatókörök szóközökkel elválasztott listája. Egy hatókör érték tooAzure AD mindkét kérnek engedélyeket. Hello `openid` hatókör jelzi egy engedély toosign hello felhasználói és az adatok hello felhasználóról id_token paraméterek hello formában. Használt tooget jogkivonatok tooyour alkalmazás saját háttér-webes API-t, amely hello által képviselt azok hello ügyfél ugyanazon alkalmazás azonosítója. Hello `offline_access` hatókör azt jelzi, hogy az alkalmazás a hosszú élettartamú hozzáférés tooresources kell egy frissítési jogkivonat. |
-| Kód |Szükséges |hello engedélyezési kód hello folyamat első szakasza hello beszerzett. |
-| redirect_uri |Szükséges |Hello `redirect_uri` paraméter hello alkalmazás, amelyre hello engedélyezési kód kapta. |
-| client_secret |Szükséges |hello létrehozott hello alkalmazáskulcsot [Azure-portálon](https://portal.azure.com/). Ez az alkalmazástitkok fontos biztonsági összetevő. Meg kell tárolja biztonságos helyen a kiszolgálón. Az ügyfélkulcs rendszeres időközönként elforgatása is kell. |
+| P |Szükséges |A házirendet, amely szerepel az engedélyezési kód megszerzésére. A kérelem nem használhatja másik szabályt. Vegye figyelembe, hogy hozzá ezt a paramétert a lekérdezési karakterlánc nem arra a `POST` törzsében. |
+| client_id |Szükséges |Az alkalmazás azonosítója, amely a [Azure-portálon](https://portal.azure.com/) az alkalmazáshoz hozzárendelni. |
+| grant_type |Szükséges |Az engedély megadása, amelynek támogatnia kell a típusú `authorization_code` a a hitelesítésikód-folyamata. |
+| Hatókör |Ajánlott |Hatókörök szóközökkel elválasztott listája. Egy hatókör érték az Azure AD mindkét kérnek engedélyeket. A `openid` hatókör id_token paraméterek formájában a felhasználó adatait, és jelentkezzen be a felhasználó engedélyt jelzi. Az alkalmazás saját webes API, amely alkalmazás azonosítója megegyezik az ügyfél által képviselt-jogkivonat eléréséhez használható. A `offline_access` hatókör azt jelzi, hogy az alkalmazás egy frissítési jogkivonat kell hosszú élettartamú erőforrások elérése érdekében. |
+| Kód |Szükséges |A folyamat első szakasza beszerzett engedélyezési kódot. |
+| redirect_uri |Szükséges |A `redirect_uri` paraméter az alkalmazás, ahol kapott engedélyezési kódot. |
+| client_secret |Szükséges |A létrehozott alkalmazás titkos kulcs a [Azure-portálon](https://portal.azure.com/). Ez az alkalmazástitkok fontos biztonsági összetevő. Meg kell tárolja biztonságos helyen a kiszolgálón. Az ügyfélkulcs rendszeres időközönként elforgatása is kell. |
 
 A sikeres token válasz néz ki:
 
@@ -194,29 +194,29 @@ A sikeres token válasz néz ki:
 ```
 | Paraméter | Leírás |
 | --- | --- |
-| not_before |hello idő, mely hello jogkivonat érvényes, időbeli kortartományon. |
-| token_type |hello token objektumtípus-érték. csak olyan típusú, amely az Azure AD által támogatott hello `Bearer`. |
-| access_token |hello az Ön által kért JWT jogkivonat aláírása. |
-| Hatókör |hello hatókörök mely hello lexikális elem érvénytelen. Ezek használhatók a gyorsítótárazáshoz jogkivonatok későbbi használatra. |
-| expires_in |Hello, hogy mennyi ideig hello hozzáférési jogkivonat érvénytelen (másodpercben). |
-| refresh_token |Az OAuth 2.0-s frissítési jogkivonat. hello app használhatja a token tooacquire további jogkivonatok hello aktuális jogkivonat lejárata után is. Frissítési jogkivonatok hosszú élettartamú, és hosszabb ideig használt tooretain hozzáférés tooresources lehet. További részletekért tekintse meg a toohello [B2C-jogkivonatok referenciájából](active-directory-b2c-reference-tokens.md). Megjegyzés: kell használt hello hatókör `offline_access` hello engedélyezési és token lévő kérelmek rendelés tooreceive egy frissítési jogkivonat. |
+| not_before |Az az idő, amelynél a jogkivonat érvényes, időbeli kortartományon. |
+| token_type |A jogkivonat típusa érték. Az egyetlen típus, amely az Azure AD által támogatott `Bearer`. |
+| access_token |Az aláírt JWT jogkivonat az Ön által kért. |
+| Hatókör |A hatókörök, amelynél a jogkivonat érvényes érték. Ezek használhatók a gyorsítótárazáshoz jogkivonatok későbbi használatra. |
+| expires_in |Mennyi ideig, amely a hozzáférési jogkivonat érvénytelen (másodpercben). |
+| refresh_token |Az OAuth 2.0-s frissítési jogkivonat. Az alkalmazás a jogkivonat segítségével szerezzen be további jogkivonatok a jelenlegi jogkivonat lejárata után is. Frissítési jogkivonatok hosszú élettartamú, és erőforrásokhoz való hozzáférés megőrzése huzamosabb ideig használható. További részletekért tekintse meg a [B2C-jogkivonatok referenciájából](active-directory-b2c-reference-tokens.md). Megjegyzés: kell használt a hatókör `offline_access` az engedélyezési és egy frissítési jogkivonat fogadásához a jogkivonat-kérelmeket. |
 
 Hibaválaszok a következőhöz hasonló:
 
 ```
 {
     "error": "access_denied",
-    "error_description": "hello user revoked access toohello app.",
+    "error_description": "The user revoked access to the app.",
 }
 ```
 
 | Paraméter | Leírás |
 | --- | --- |
-| error |Lehet, amely lehet használt tooreact tooerrors előforduló hibát használt tooclassify típusú hibakód karakterlánc. |
-| error_description |Egy adott hibaüzenet, amelyek segítségével a fejlesztők hello hitelesítési hiba okának azonosításához. |
+| error |Egy hibakód karakterlánc típusú hibák előforduló és hibáinak reagálni azokra, amely használható besorolására használható. |
+| error_description |Egy adott hibaüzenet, amelyek segítségével a fejlesztők hitelesítési hiba okának azonosításához. |
 
-## <a name="use-hello-token"></a>Hello jogkivonat használata
-Most, hogy olyan hozzáférési jogkivonatot már sikeresen szerezte be, használhatja hello token kérelmek tooyour webes API-k belefoglalja azt hello `Authorization` fejléc:
+## <a name="use-the-token"></a>A jogkivonat
+Most, hogy olyan hozzáférési jogkivonatot már sikeresen szerezte be, használhatja a token kérelmek számára a háttérben futó webes API-khoz azzal, hogy belefoglalja azt a a `Authorization` fejléc:
 
 ```
 GET /tasks
@@ -224,8 +224,8 @@ Host: https://mytaskwebapi.com
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik5HVEZ2ZEstZnl0aEV1Q...
 ```
 
-## <a name="refresh-hello-token"></a>Hello token frissítése
-Azonosító-jogkivonatokat rövid élettartamú. Frissítenie kell őket után toocontinue képes tooaccess erőforrások alatt. Megteheti egy másik elküldése `POST` toohello kérelem `/token` végpont. Most, adja meg a hello `refresh_token` paraméter helyett hello `code` paraméter:
+## <a name="refresh-the-token"></a>A token frissítése
+Azonosító-jogkivonatokat rövid élettartamú. Frissítenie kell őket után nem tudnak hozzáférni az erőforrásokhoz a folytatáshoz. Megteheti egy másik elküldése `POST` elküldeni a kérelmet a `/token` végpont. Most, adja meg a `refresh_token` paraméter ahelyett, hogy a `code` paraméter:
 
 ```
 POST fabrikamb2c.onmicrosoft.com/oauth2/v2.0/token?p=b2c_1_sign_in HTTP/1.1
@@ -237,13 +237,13 @@ grant_type=refresh_token&client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6&scope=op
 
 | Paraméter | Szükséges | Leírás |
 | --- | --- | --- |
-| P |Szükséges |hello házirend, de a használt tooacquire hello eredeti frissítési jogkivonat. A kérelem nem használhatja másik szabályt. Vegye figyelembe, hogy hozzáadta a paraméter toohello lekérdezési karakterláncot, nem toohello FELADÁS egy vagy több szervezet. |
-| client_id |Szükséges |hello alkalmazás azonosító adott hello [Azure-portálon](https://portal.azure.com/) tooyour app rendelve. |
-| grant_type |Szükséges |hello típusa engedély megadása, amelynek hello hitelesítésikód-folyamata ezen szakasza a frissítési jogkivonatot kell lennie. |
-| Hatókör |Ajánlott |Hatókörök szóközökkel elválasztott listája. Egy hatókör érték tooAzure AD mindkét kérnek engedélyeket. Hello `openid` hatókör jelzi egy engedély toosign hello felhasználói és az adatok hello felhasználóról azonosító-jogkivonatokat hello formájában. Használt tooget jogkivonatok tooyour alkalmazás saját háttér-webes API-t, amely hello által képviselt azok hello ügyfél ugyanazon alkalmazás azonosítója. Hello `offline_access` hatókör azt jelzi, hogy az alkalmazás a hosszú élettartamú hozzáférés tooresources kell egy frissítési jogkivonat. |
-| redirect_uri |Ajánlott |Hello `redirect_uri` paraméter hello alkalmazás, amelyre hello engedélyezési kód kapta. |
-| refresh_token |Szükséges |hello eredeti frissítési jogkivonat hello folyamat második szakasza hello beszerzett. Megjegyzés: kell használt hello hatókör `offline_access` hello engedélyezési és token lévő kérelmek rendelés tooreceive egy frissítési jogkivonat. |
-| client_secret |Szükséges |hello létrehozott hello alkalmazáskulcsot [Azure-portálon](https://portal.azure.com/). Ez az alkalmazástitkok fontos biztonsági összetevő. Meg kell tárolja biztonságos helyen a kiszolgálón. Az ügyfélkulcs rendszeres időközönként elforgatása is kell. |
+| P |Szükséges |A házirendet, amely az eredeti frissítési jogkivonat használatával. A kérelem nem használhatja másik szabályt. Vegye figyelembe, hogy ez a paraméter hozzáadása, a lekérdezési karakterláncot, nem a FELADÁS egy vagy több szervezet. |
+| client_id |Szükséges |Az alkalmazás azonosítója, amely a [Azure-portálon](https://portal.azure.com/) az alkalmazáshoz hozzárendelni. |
+| grant_type |Szükséges |Az engedély megadása, amelynek kell lennie a hitelesítésikód-folyamata ezen szakasza a frissítési jogkivonat típusa. |
+| Hatókör |Ajánlott |Hatókörök szóközökkel elválasztott listája. Egy hatókör érték az Azure AD mindkét kérnek engedélyeket. A `openid` hatókör azt jelzi, a felhasználói azonosító-jogkivonatokat formájában adatait, és jelentkezzen be a felhasználó engedélyt. Az alkalmazás saját webes API, amely alkalmazás azonosítója megegyezik az ügyfél által képviselt-jogkivonat eléréséhez használható. A `offline_access` hatókör azt jelzi, hogy az alkalmazás egy frissítési jogkivonat kell hosszú élettartamú erőforrások elérése érdekében. |
+| redirect_uri |Ajánlott |A `redirect_uri` paraméter az alkalmazás, ahol kapott engedélyezési kódot. |
+| refresh_token |Szükséges |Az eredeti frissítési jogkivonat a folyamat második szakasza beszerzett. Megjegyzés: kell használt a hatókör `offline_access` az engedélyezési és egy frissítési jogkivonat fogadásához a jogkivonat-kérelmeket. |
+| client_secret |Szükséges |A létrehozott alkalmazás titkos kulcs a [Azure-portálon](https://portal.azure.com/). Ez az alkalmazástitkok fontos biztonsági összetevő. Meg kell tárolja biztonságos helyen a kiszolgálón. Az ügyfélkulcs rendszeres időközönként elforgatása is kell. |
 
 A sikeres token válasz néz ki:
 
@@ -259,31 +259,31 @@ A sikeres token válasz néz ki:
 ```
 | Paraméter | Leírás |
 | --- | --- |
-| not_before |hello idő, mely hello jogkivonat érvényes, időbeli kortartományon. |
-| token_type |hello token objektumtípus-érték. csak olyan típusú, amely az Azure AD által támogatott hello `Bearer`. |
-| access_token |hello az Ön által kért JWT jogkivonat aláírása. |
-| Hatókör |hello hatókör, amely a hello token esetén érvényes, gyorsítótárazás későbbi használatra jogkivonatok használható. |
-| expires_in |Hello, hogy mennyi ideig hello hozzáférési jogkivonat érvénytelen (másodpercben). |
-| refresh_token |Az OAuth 2.0-s frissítési jogkivonat. hello app használhatja a token tooacquire további jogkivonatok hello aktuális jogkivonat lejárata után is.  Frissítési jogkivonatok hosszú élettartamú, és hosszabb ideig használt tooretain hozzáférés tooresources lehet. További részletekért tekintse meg a toohello [B2C-jogkivonatok referenciájából](active-directory-b2c-reference-tokens.md). |
+| not_before |Az az idő, amelynél a jogkivonat érvényes, időbeli kortartományon. |
+| token_type |A jogkivonat típusa érték. Az egyetlen típus, amely az Azure AD által támogatott `Bearer`. |
+| access_token |Az aláírt JWT jogkivonat az Ön által kért. |
+| Hatókör |A hatókör, amely a jogkivonat érvényes, a későbbi használatra jogkivonatok gyorsítótárazás használható. |
+| expires_in |Mennyi ideig, amely a hozzáférési jogkivonat érvénytelen (másodpercben). |
+| refresh_token |Az OAuth 2.0-s frissítési jogkivonat. Az alkalmazás a jogkivonat segítségével szerezzen be további jogkivonatok a jelenlegi jogkivonat lejárata után is.  Frissítési jogkivonatok hosszú élettartamú, és erőforrásokhoz való hozzáférés megőrzése huzamosabb ideig használható. További részletekért tekintse meg a [B2C-jogkivonatok referenciájából](active-directory-b2c-reference-tokens.md). |
 
 Hibaválaszok a következőhöz hasonló:
 
 ```
 {
     "error": "access_denied",
-    "error_description": "hello user revoked access toohello app.",
+    "error_description": "The user revoked access to the app.",
 }
 ```
 
 | Paraméter | Leírás |
 | --- | --- |
-| error |Lehet, amely lehet használt tooreact tooerrors előforduló hibát használt tooclassify típusú hibakód karakterlánc. |
-| error_description |Egy adott hibaüzenet, amelyek segítségével a fejlesztők hello hitelesítési hiba okának azonosításához. |
+| error |Egy hibakód karakterlánc típusú hibák előforduló és hibáinak reagálni azokra, amely használható besorolására használható. |
+| error_description |Egy adott hibaüzenet, amelyek segítségével a fejlesztők hitelesítési hiba okának azonosításához. |
 
 ## <a name="send-a-sign-out-request"></a>Kijelentkezési kérés küldése
-Ha azt szeretné, hogy toosign hello felhasználói hello alkalmazásból, az nem elég tooclear az alkalmazás cookie-k és az egyéb utolsó hello hello felhasználói munkamenetet. Hello felhasználói tooAzure AD toosign ki is irányíthatja át. Ha így sem működik a toodo, hello felhasználói lehet képes tooreauthenticate tooyour app hitelesítő adataikkal ismételt beírása nélkül. Ennek az az oka érvényes egyszeri bejelentkezés munkamenetet az Azure ad-val rendelkeznek.
+Ha meg szeretné beléptetni a felhasználót az alkalmazásból, nincs elég törölni kívánja a felhasználói munkamenet az alkalmazás cookie-k vagy más célból. Az Azure AD-kijelentkezés is kell átirányítja a felhasználót. Ha nem sikerül, a felhasználó lehet újból hitelesítésre az alkalmazásnak, hogy a hitelesítő adataik ismételt beírása nélkül. Ennek az az oka érvényes egyszeri bejelentkezés munkamenetet az Azure ad-val rendelkeznek.
 
-Egyszerűen átirányíthatók hello felhasználói toohello `end_session` hello a korábban ismertetett végpont szerepel-e hello OpenID Connect metaadat-dokumentum "Hello azonosító token ellenőrzése" szakaszában:
+A felhasználó egyszerűen átirányíthatja a `end_session` endpoint OpenID Connect metaadat-dokumentum szereplő korábban az a "Ellenőrizze a Azonosítót jogkivonatban" szakaszban leírt:
 
 ```
 GET https://login.microsoftonline.com/fabrikamb2c.onmicrosoft.com/oauth2/v2.0/logout?
@@ -291,20 +291,20 @@ p=b2c_1_sign_in
 &post_logout_redirect_uri=https%3A%2F%2Faadb2cplayground.azurewebsites.net%2F
 ```
 
-| Paraméter | Kötelező? | Leírás |
+| Paraméter | Kötelező megadni? | Leírás |
 | --- | --- | --- |
-| P |Szükséges |hello házirend, amelyet az toouse toosign hello felhasználói kívül az alkalmazást. |
-| post_logout_redirect_uri |Ajánlott |hello URL hello felhasználó kell átirányított tooafter sikeres kijelentkezési. Ha nincs megadva, az Azure AD B2C hello felhasználói egy általános üzenetet jelenít meg. |
+| P |Szükséges |A felhasználó kívül az alkalmazás aláírásához használt kívánt házirendet. |
+| post_logout_redirect_uri |Ajánlott |Az URL-címet, a felhasználó után a rendszer átirányítja a sikeres kijelentkezési. Ha nincs megadva, az Azure AD B2C a felhasználó egy általános üzenetet jelenít meg. |
 
 > [!NOTE]
-> Bár arra utasíthatja a hello felhasználói toohello `end_session` végpont törölni fogja a néhány hello felhasználó állapotának egyszeri bejelentkezés az Azure AD B2C, nem a hello felhasználói kívül a közösségi identity provider (IDP) munkamenet alá fogja írni. Ha hello kijelölés ugyanahhoz az IDP hello későbbi bejelentkezés során, akkor lesz hitelesíthető, a hitelesítő adatok megadása nélkül. Ha egy felhasználó a B2C alkalmazás kívül toosign azt szeretné, akkor nem feltétlenül jelenti meg kívánják-toosign kívül a Facebook-fiókkal. Azonban a helyi fiókok esetében hello, hello felhasználói munkamenet véget ér megfelelően.
+> Bár irányítja a felhasználót, hogy a `end_session` végpont törölni fogja a néhány, a felhasználó állapotának egyszeri bejelentkezés az Azure AD B2C, nem a kívül a közösségi identity provider (IDP) munkamenet a felhasználó alá fogja írni. Ha a felhasználó kijelöli a azonos IDP későbbi bejelentkezés során, akkor lesz hitelesíthető, a hitelesítő adatok megadása nélkül. Ha egy felhasználó kijelentkezik a B2C alkalmazás azt szeretné, hogy nem feltétlenül jelenti szeretne kijelentkezni a Facebook-fiókkal. Azonban helyi fiókok esetében a felhasználói munkamenet véget ér megfelelően.
 > 
 > 
 
 ## <a name="use-your-own-b2c-tenant"></a>A saját B2C-bérlő használata
-Ha azt szeretné, tootry ezeket a kéréseket a szolgáltatást, először hajtsa végre a fenti három lépést, és az majd cserélje le az Ön által korábban leírt hello példaértékek:
+Ha meg szeretné próbálni az ilyen kérelmeket szolgáltatást, először hajtsa végre a fenti három lépést, és az cserélje a példaértékeket a saját korábban leírt:
 
-1. [A B2C bérlő létrehozása](active-directory-b2c-get-started.md), és a bérlő hello nevét használja hello kérésekben.
-2. [Hozzon létre egy alkalmazást](active-directory-b2c-app-registration.md) tooobtain egy azonosítót. Vegye fel az alkalmazás egy webes vagy webes API-t. Szükség esetén hozzon létre egy alkalmazás titkos kulcs.
-3. [A házirendek létrehozása](active-directory-b2c-reference-policies.md) tooobtain a házirend nevét.
+1. [A B2C bérlő létrehozása](active-directory-b2c-get-started.md), és a bérlő nevét használja a kérelemben.
+2. [Hozzon létre egy alkalmazást](active-directory-b2c-app-registration.md) beszerzése egy azonosítót. Vegye fel az alkalmazás egy webes vagy webes API-t. Szükség esetén hozzon létre egy alkalmazás titkos kulcs.
+3. [A házirendek létrehozása](active-directory-b2c-reference-policies.md) beszerzése a házirend nevét.
 

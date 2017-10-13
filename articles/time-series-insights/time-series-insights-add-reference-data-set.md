@@ -1,6 +1,6 @@
 ---
-title: "aaaAdd hivatkozás adatkészlet tooyour Azure idő adatsorozat Insights környezetben |} Microsoft Docs"
-description: "Ebben az oktatóanyagban hivatkozás adatkészlet tooyour idő adatsorozat Insights környezet hozzáadása"
+title: "Referencia-adatkészlet hozzáadása Azure Time Series Insight-környezethez | Microsoft Docs"
+description: "Ebben az oktatóanyagban referencia-adatkészletet fog hozzáadni az Azure Time Series Insights-környezetéhez"
 keywords: 
 services: time-series-insights
 documentationcenter: 
@@ -8,43 +8,43 @@ author: venkatgct
 manager: almineev
 editor: cgronlun
 ms.assetid: 
-ms.service: time-series-insights
+ms.service: tsi
 ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/29/2017
 ms.author: venkatja
-ms.openlocfilehash: 05e626ed81a22f2a8710b23a931ccd17c0f38ca5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 574f3c5b3a889733f47d729c795ec39009f2ef4a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-a-reference-data-set-for-your-time-series-insights-environment-using-hello-ibiza-portal"></a>Hello Ibiza portálon idő adatsorozat Insights környezetnek hivatkozás adatok készlet létrehozása
+# <a name="create-a-reference-data-set-for-your-time-series-insights-environment-using-the-ibiza-portal"></a>Referencia-adatkészlet létrehozása Azure Time Series Insights-környezethez az Ibiza Portal használatával
 
-A referencia-adatkészlet hello események az esemény forrását a rendszer kiegészítve elemek gyűjteménye. A Time Series Insights bejövő forgalmat kezelő motorja a referencia-adatkészlet egy elemét csatolja egy eseményforrásbeli eseményhez. Ez a kibővített esemény ezután lekérdezhető. Ezt az összekapcsolást hello kulcsok vannak meghatározva a a referencia-adatkészlet alapján történik.
+Egy referencia-adatkészlet az eseményforrásbeli eseményekkel kibővített elemek gyűjteménye. A Time Series Insights bejövő forgalmat kezelő motorja a referencia-adatkészlet egy elemét csatolja egy eseményforrásbeli eseményhez. Ez a kibővített esemény ezután lekérdezhető. A csatolás a referencia-adatkészletben definiált kulcsokon alapul.
 
-## <a name="steps-tooadd-a-reference-data-set-tooyour-environment"></a>Lépéseket tooadd egy referencia-adatkészlet tooyour környezet
+## <a name="steps-to-add-a-reference-data-set-to-your-environment"></a>Referencia-adatkészlet környezethez adása lépésenként
 
-1. Jelentkezzen be toohello [Ibiza portálon](https://portal.azure.com).
-2. Kattintson az "Összes erőforrás" hello menü hello hello Ibiza portálon a bal oldalán.
+1. Jelentkezzen be az [Ibiza Portalra](https://portal.azure.com).
+2. Az Ibiza Portal bal oldali menüjében kattintson a „Minden erőforrás” lehetőségre.
 3. Válassza ki az Azure Time Series Insights-környezetet.
 
-    ![Hozzon létre hello idő adatsorozat Insights referencia-adatkészlet](media/add-reference-data-set/getstarted-create-reference-data-set-1.png)
+    ![A Time Series Insights referencia-adatkészlet létrehozása](media/add-reference-data-set/getstarted-create-reference-data-set-1.png)
 
 4. Válassza a „Referencia-adatkészletek” lehetőséget, majd kattintson a „+ Hozzáadás” gombra.
 
-    ![Hozzon létre hello idő adatsorozat Insights referencia-adatkészlet - részletek](media/add-reference-data-set/getstarted-create-reference-data-set-2.png)
+    ![A Time Series Insights referencia-adatkészlet létrehozása – részletesen](media/add-reference-data-set/getstarted-create-reference-data-set-2.png)
 
-5. Adja meg a referencia-adatkészlet hello hello nevét.
-6. Adja meg a hello kulcsnév és annak típusára. Ilyen nevű és típusú elem használt toopick hello megfelelő tulajdonság az eseményforrás hello eseménytől. Például ha ad meg, mint a "DeviceId" kulcs nevét és a "String" típusú, majd hello idő adatsorozat Insights érkező motor megkeresi a "DeviceId" típus "Karakterlánc" hello bejövő eseményben hello nevű tulajdonságot. Egynél több kulcsfontosságú toojoin hello esemény biztosíthat. hello tulajdonság nevének egyeznie kell az kis-és nagybetűket.
+5. Adja meg a referencia-adatkészlet nevét.
+6. Adja meg a kulcs nevét és típusát. E név és típus alapján lesz kiválasztva a megfelelő tulajdonság az eseményforrásbeli eseményből. Ha kulcsnévként például „EszkozAzon”-t ad meg, típusként pedig karakterláncot („String”), akkor a Time Series Insights bejövő forgalmat kezelő motorja egy „EszkozAzon” nevű, karakterlánc típusú tulajdonságot fog keresni a beérkező eseményben. Az eseményhez csatoláshoz egynél több kulcs is megadható. A tulajdonságnév egyeztetésénél számítanak a kis- és nagybetűk.
 
-     ![Hozzon létre hello idő adatsorozat Insights referencia-adatkészlet - részletek](media/add-reference-data-set/getstarted-create-reference-data-set-3.png)
+     ![A Time Series Insights referencia-adatkészlet létrehozása – részletesen](media/add-reference-data-set/getstarted-create-reference-data-set-3.png)
 
 7. Kattintson a „Létrehozás” elemre.
 
 ## <a name="next-steps"></a>Következő lépések
 
 * [Referencia-adatok kezelése](time-series-insights-manage-reference-data-csharp.md) programozott módon.
-* Hello teljes API referenciáért lásd: [referencia az API](/rest/api/time-series-insights/time-series-insights-reference-reference-data-api) dokumentum.
+* Az alkalmazásprogramozási felület (API) teljes leírását a [Referencia-adatok API](/rest/api/time-series-insights/time-series-insights-reference-reference-data-api) dokumentum tartalmazza.

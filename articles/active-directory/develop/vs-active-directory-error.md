@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toodiagnose hibák hello Azure Active Directory kapcsolat varázsló"
-description: "hello active directory kapcsolat varázsló nem kompatibilis hitelesítési típust észlelt"
+title: "Az Azure Active Directory kapcsolat varázsló hibák diagnosztizálása"
+description: "Az active directory kapcsolat varázsló nem kompatibilis hitelesítési típust észlelt"
 services: active-directory
 documentationcenter: 
 author: kraigb
@@ -15,45 +15,45 @@ ms.topic: article
 ms.date: 03/05/2017
 ms.author: kraigb
 ms.custom: aaddev
-ms.openlocfilehash: f71c5b41457c0c8db05042e8d5f723e58ad11844
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4f29f62b2996cae98b02c1ed5fcb59eca09301ef
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="diagnosing-errors-with-hello-azure-active-directory-connection-wizard"></a>Az Azure Active Directory kapcsolat varázsló hello hibák diagnosztizálása
-Előző hitelesítési kód észlelése, közben hello varázsló észlelte a nem kompatibilis hitelesítési típus.   
+# <a name="diagnosing-errors-with-the-azure-active-directory-connection-wizard"></a>Az Azure Active Directory kapcsolat varázsló hibák diagnosztizálása
+Történt észlelésekor előző hitelesítési kódot, a varázsló nem kompatibilis hitelesítési típust észlelt.   
 
 ## <a name="what-is-being-checked"></a>Mi ellenőrzés?
-**Megjegyzés:** toocorrectly észlelheti az előző hitelesítési kód egy projekt, hello projekt kell kialakítani.  Ha ezt a hibát észlelt, és nem kell egy előző hitelesítési kódot a projektben, építse újra, és próbálkozzon újra.
+**Megjegyzés:** megfelelően azonosíthatók a projekt korábbi hitelesítési kódot, a projekt kell kialakítani.  Ha ezt a hibát észlelt, és nem kell egy előző hitelesítési kódot a projektben, építse újra, és próbálkozzon újra.
 
 ### <a name="project-types"></a>Projekttípusok
-hello varázsló ellenőrzi a projektet, azt is hello megfelelő hitelesítési logikát behelyezése hello projekt kidolgozása hello típusú.  Ha minden tartományvezérlő abból származó `ApiController` hello projektben hello projekt WebAPI projekt számít.  Ha csak azok a tartományvezérlők, amelyek a `MVC.Controller` hello projektben hello projekt egy MVC projekt számít.  Bármi más hello varázsló nem támogatja.
+A varázsló ellenőrzi, így azt a megfelelő hitelesítési logikát is szúrjon be a projekt kidolgozása projekt típusától.  Ha minden tartományvezérlő abból származó `ApiController` a projektben a projekt WebAPI projekt számít.  Ha csak azok a tartományvezérlők, amelyek a `MVC.Controller` a projektben a projekt egy MVC projekt számít.  Bármi más a varázsló által nem támogatott.
 
 ### <a name="compatible-authentication-code"></a>Kompatibilis hitelesítési kód
-hello varázsló hello varázslóval korábban konfigurált vagy hello varázsló kompatibilis hitelesítési beállításait is keres.  Ha minden beállítás találhatók, akkor tekinthető párhuzamosan eset és hello megnyílik hello-beállítások megjelenítése.  Ha csak bizonyos hello beállításait meg adva, hibás esetnek minősül.
+A varázsló is ellenőrzi a hitelesítési beállításokat, amelyek a varázsló a korábban konfigurált vagy kompatibilisek-e a varázslót.  Ha minden beállítás, akkor tekinthető párhuzamosan eset, és megnyílik a varázsló megjeleníti a beállításokat.  Ha csak néhány beállítás találhatók, hibás esetnek minősül.
 
-MVC projekt hello varázsló ellenőrzi a következő beállításokat, amelyeket az előző használatából hello varázsló hello bármelyikét:
+MVC projekt a varázsló ellenőrzi, az alábbi beállításokat, amelyeket a varázsló előző használatából bármelyikéhez:
 
     <add key="ida:ClientId" value="" />
     <add key="ida:Tenant" value="" />
     <add key="ida:AADInstance" value="" />
     <add key="ida:PostLogoutRedirectUri" value="" />
 
-Ezenkívül hello varázsló ellenőrzi, bármely hello Web API-projektet, a beállítást, amellyel előző használatából hello varázsló a következő:
+Emellett a varázsló ellenőrzi a Web API-projektet, a következő beállítások a varázsló előző használatából fakadó:
 
     <add key="ida:ClientId" value="" />
     <add key="ida:Tenant" value="" />
     <add key="ida:Audience" value="" />
 
 ### <a name="incompatible-authentication-code"></a>Nem kompatibilis hitelesítési kód
-Végezetül hello varázsló megpróbál toodetect hitelesítési kódot azon verzióit, amelyek a Visual Studio korábbi verziói vannak konfigurálva. Ha ezt a hibát kapott, az azt jelenti, a projekt nem kompatibilis hitelesítési típust tartalmaz. hello varázsló észleli a következő típusú hitelesítés Visual Studio korábbi verziói hello:
+Végezetül a varázsló megpróbálja észlelni a hitelesítési kód vannak konfigurálva a Visual Studio korábbi verziói-verziók. Ha ezt a hibát kapott, az azt jelenti, a projekt nem kompatibilis hitelesítési típust tartalmaz. A varázsló észleli a következő típusú hitelesítés a Visual Studio korábbi verzióiról:
 
 * Windows-hitelesítés 
 * Egyéni felhasználói fiókok 
 * Munkahelyi és iskolai fiókok 
 
-Windows-hitelesítés toodetect MVC projekt, hello varázsló megkeresi hello `authentication` elem a **web.config** fájlt.
+MVC projekt észleli a Windows-hitelesítést, a varázsló megkeresi a `authentication` elem a **web.config** fájlt.
 
 <pre>
     &lt;configuration&gt;
@@ -63,7 +63,7 @@ Windows-hitelesítés toodetect MVC projekt, hello varázsló megkeresi hello `a
     &lt;/configuration&gt;
 </pre>
 
-Windows-hitelesítés toodetect a Web API-projektet, a hello varázsló megkeresi hello `IISExpressWindowsAuthentication` a projekt elem **.csproj** fájlt:
+Windows-hitelesítés azonosíthatók a Web API-projektet, a varázsló megkeresi a `IISExpressWindowsAuthentication` a projekt elem **.csproj** fájlt:
 
 <pre>
     &lt;Project&gt;
@@ -73,7 +73,7 @@ Windows-hitelesítés toodetect a Web API-projektet, a hello varázsló megkeres
     &lt;/Project&gt;
 </pre>
 
-toodetect egyes felhasználói fiókok hitelesítési, a hello varázsló hello csomag elem keresi a **Packages.config** fájlt.
+Egyes felhasználói fiókok hitelesítési észlelését, a varázsló megkeresi a csomag elem a **Packages.config** fájlt.
 
 <pre>
     &lt;packages&gt;
@@ -81,7 +81,7 @@ toodetect egyes felhasználói fiókok hitelesítési, a hello varázsló hello 
     &lt;/packages&gt;
 </pre>
 
-toodetect egy szervezeti fiók hitelesítése régi formája, hello varázsló megkeresi a következő elem hello **web.config**:
+Egy szervezeti fiók hitelesítése régi formája észlelését, a varázsló megkeresi a következő elem **web.config**:
 
 <pre>
     &lt;configuration&gt;
@@ -91,7 +91,7 @@ toodetect egy szervezeti fiók hitelesítése régi formája, hello varázsló m
     &lt;/configuration&gt;
 </pre>
 
-toochange hello hitelesítés típusa, távolítsa el a hello nem kompatibilis hitelesítés típusa, és futtassa újra hello varázslót.
+A hitelesítési típus módosításához távolítsa el a nem kompatibilis hitelesítés típusát, és futtassa újra a varázslót.
 
 További információkért lásd: [hitelesítési forgatókönyvek az Azure AD](active-directory-authentication-scenarios.md).
 

@@ -1,6 +1,6 @@
 ---
-title: "az ExpressRoute-kapcsolatcsoportot konfigurálása aaaWorkflows |} Microsoft Docs"
-description: "Ezen a lapon bemutatja, hogyan hello munkafolyamatainak ExpressRoute-kapcsolatcsoportot és társviszony konfigurálása"
+title: "Munkafolyamatok konfigurálásához ExpressRoute-kapcsolatcsoportot |} Microsoft Docs"
+description: "Ezen a lapon végigvezeti a munkafolyamatokat a ExpressRoute-kapcsolatcsoportot és társviszony konfigurálása"
 documentationcenter: na
 services: expressroute
 author: cherylmc
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/12/2017
 ms.author: cherylmc
-ms.openlocfilehash: 8e1dfc137401e0d6d53608ae6c8de0085e182eba
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cba1b2cfee379e7d2b079bcb3089981ef1044d66
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="expressroute-workflows-for-circuit-provisioning-and-circuit-states"></a>Az ExpressRoute kapcsolatcsoport-kiépítési munkafolyamatai és a kapcsolatcsoportok állapotai
-Ezen a lapon bemutatja, hogyan hello szolgáltatás üzembe helyezési és útválasztási konfigurációs munkafolyamatok magas szinten.
+Ezen a lapon végigvezeti a szolgáltatás üzembe helyezési és konfigurációs munkafolyamatok útválasztási magas szinten.
 
 ![](./media/expressroute-workflows/expressroute-circuit-workflow.png)
 
-hello alábbi ábra és a hozzá tartozó lépések hello feladatok megjelenítése követni kell rendelés toohave egy ExpressRoute körön kiosztott-végpontok. 
+Az alábbi ábra és a megfelelő lépéseket kell követnie ahhoz, hogy rendelkezik kiépített ExpressRoute-kapcsolatcsoportot feladatokat jeleníti végpontok közötti. 
 
-1. Használjon PowerShell tooconfigure ExpressRoute-kapcsolatcsoportot. Hello hello utasításait követve [létrehozása ExpressRoute-Kapcsolatcsoportok](expressroute-howto-circuit-classic.md) cikkben olvashat.
-2. Rendelés kapcsolat hello-szolgáltatótól. Ez a folyamat függően változik. A kapcsolat szolgáltatójánál kapcsolatos további részletekért forduljon tooorder kapcsolat.
-3. Győződjön meg arról, hogy hello áramkör van kiépítve sikeresen üzembe helyezési állapota a Powershellen keresztül hello ExpressRoute-kapcsolatcsoportot ellenőrzésével. 
-4. Útválasztási tartományok konfigurálása. Ha a kapcsolat szolgáltatójánál, 3. rétegbeli kezeli, a vállalat konfigurálja a kapcsolatcsoport útválasztást. Ha a kapcsolat szolgáltatójánál csak a 2. rétegbeli szolgáltatásokat biztosít, konfigurálnia kell egy hello leírt irányelveket útválasztási [útválasztási követelmények](expressroute-routing.md) és [útválasztási konfigurációja](expressroute-howto-routing-classic.md) lapokat.
+1. PowerShell segítségével konfigurálhatja az ExpressRoute-kapcsolatcsoportot. Kövesse az utasításokat a [létrehozása ExpressRoute-Kapcsolatcsoportok](expressroute-howto-circuit-classic.md) cikkben olvashat.
+2. A szolgáltató közötti kapcsolatot sorrendje. Ez a folyamat függően változik. Kapcsolat rendezése kapcsolatos további részletekért forduljon a kapcsolat szolgáltatóját.
+3. Győződjön meg arról, hogy a kapcsolatcsoport van kiépítve sikeresen üzembe helyezési állapota a Powershellen keresztül ExpressRoute-kapcsolatcsoportot ellenőrzésével. 
+4. Útválasztási tartományok konfigurálása. Ha a kapcsolat szolgáltatójánál, 3. rétegbeli kezeli, a vállalat konfigurálja a kapcsolatcsoport útválasztást. Ha a kapcsolat szolgáltatójánál csak a 2. rétegbeli szolgáltatásokat biztosít, konfigurálnia kell egy leírt irányelveket útválasztási a [útválasztási követelmények](expressroute-routing.md) és [útválasztási konfigurációja](expressroute-howto-routing-classic.md) lapokat.
    
-   * Azure magánhálózati társviszony-létesítés engedélyezése – kell engedélyezni a társviszony-létesítési tooconnect tooVMs / felhőszolgáltatások telepített virtuális hálózatokon belül.
-   * Engedélyezze az Azure nyilvános társviszony - engedélyeznie kell az Azure nyilvános társviszony Ha tooconnect tooAzure alkalmazáskönyvtár nyilvános IP-címeket. Ez az a követelmény tooaccess Azure-erőforrások, ha a kiválasztott tooenable alapértelmezett útválasztást Azure magánhálózati társviszony-létesítés.
-   * Engedélyezze a Microsoft társviszony - engedélyeznie kell az Office 365 és Dynamics 365 tooaccess. 
+   * Azure magánhálózati társviszony-létesítés engedélyezése – engedélyeznie kell a társviszony csatlakozni a virtuális gépek / felhőszolgáltatások telepített virtuális hálózatokon belül.
+   * Engedélyezze az Azure nyilvános társviszony - engedélyeznie kell az Azure nyilvános társviszony-létesítés Ha nyilvános IP-címek futó Azure-szolgáltatásokhoz. Ez a követelmény az Azure-erőforrások eléréséhez, ha úgy döntött, az Azure magánhálózati társviszony-létesítés útválasztás alapértelmezett engedélyezése.
+   * Engedélyezze a Microsoft társviszony - hozzáférés Office 365 és Dynamics 365 engedélyeznie kell ezt. 
      
      > [!IMPORTANT]
-     > Győződjön meg arról, hogy egy külön proxy használata / biztonsági tooconnect tooMicrosoft hello egyikét használja, mint hello Internet. Az ExpressRoute- és hello Internet ugyanazt biztonsági fog okozhat, aszimmetrikus Útválasztás és a kapcsolat üzemszünet korlátozza a hálózat hello segítségével.
+     > Győződjön meg arról, hogy egy külön proxyt használ, / Edge böngésző számára csatlakoztatni a Microsoft a akkor használata az interneten. Az azonos él használ ExpressRoute és az internetről is aszimmetrikus útválasztási okozhat, és következtében a hálózati kapcsolat kimaradások.
      > 
      > 
      
      ![](./media/expressroute-workflows/routing-workflow.png)
-5. TooExpressRoute Kapcsolatcsoportok csatolása a virtuális hálózatok, mert a virtuális hálózatok tooyour ExpressRoute-kapcsolatcsoportot társíthatja. Kövesse az utasításokat [toolink Vnetek](expressroute-howto-linkvnet-arm.md) tooyour körön. A Vnetek lehet a azonos Azure-előfizetéssel, hello ExpressRoute-kapcsolatcsoportot hello, vagy egy másik előfizetésben.
+5. Virtuális hálózatok csatolása az ExpressRoute-Kapcsolatcsoportok - hozzákapcsolhatja virtuális hálózatok az ExpressRoute-kapcsolatcsoportot. Kövesse az utasításokat [Vnetek csatolásához](expressroute-howto-linkvnet-arm.md) a kapcsolatcsoport számára. A Vnetek, ExpressRoute-kapcsolatcsoport Azure ugyanahhoz az előfizetéshez lehet, vagy lehet egy másik előfizetésben.
 
 ## <a name="expressroute-circuit-provisioning-states"></a>Kiépítés állapotok ExpressRoute-kapcsolatcsoportot
 Minden egyes ExpressRoute-kapcsolatcsoportot két állapota van:
@@ -50,62 +50,62 @@ Minden egyes ExpressRoute-kapcsolatcsoportot két állapota van:
 * Szolgáltatás szolgáltató üzembe helyezési állapota
 * status
 
-Állapotát a Microsoft a kiépítési állapotát jeleníti meg. A tulajdonság értéke tooEnabled, amikor az Expressroute-kapcsolatcsoportot létrehozni
+Állapotát a Microsoft a kiépítési állapotát jeleníti meg. Ez a tulajdonság engedélyezve van beállítva, ha Expressroute-kapcsolatcsoportot létrehozni
 
-hello kapcsolati szolgáltató üzembe helyezési állapota hello állapotát hello kapcsolat szolgáltatójánál oldalán jeleníti meg. Ez lehet *NotProvisioned*, *kiépítési*, vagy *kiépítve*. hello ExpressRoute-kapcsolatcsoportot állapotban kell lennie kiépítve az Ön toobe képes toouse azt.
+A kapcsolati szolgáltató üzembe helyezési állapota a kapcsolat szolgáltatójánál oldalon állapotát jeleníti meg. Ez lehet *NotProvisioned*, *kiépítési*, vagy *kiépítve*. Az ExpressRoute-kapcsolatcsoport is használni tudja kiépítve állapotban kell lennie.
 
 ### <a name="possible-states-of-an-expressroute-circuit"></a>Az ExpressRoute-kapcsolatcsoportot lehetséges állapota
-Ez a rész felsorolja a kimenő hello lehetséges állapotok az ExpressRoute-kapcsolatcsoportot.
+Ez a szakasz ki a lehetséges állapotok az ExpressRoute-kapcsolatcsoportot.
 
 **A létrehozás időpontjában**
 
-Hello ExpressRoute-kapcsolatcsoport állapotát, amint azt követő hello a hello PowerShell parancsmag toocreate hello ExpressRoute-kapcsolatcsoportot futtatása jelenik meg.
+A következő állapotot okozta ExpressRoute-kapcsolatcsoportot megjelenik, amint az ExpressRoute-kapcsolatcsoportot létrehozni a PowerShell-parancsmag futtatása.
 
     ServiceProviderProvisioningState : NotProvisioned
     Status                           : Enabled
 
 
-**Amikor kapcsolat szolgáltatójánál hello áramkör kiépítés hello folyamatban van**
+**Amikor kapcsolat szolgáltatójánál éppen a kapcsolatcsoport kiépítése**
 
-Látni fogja a hello ExpressRoute-kapcsolatcsoport állapotát, amint azt követő hello a hello szolgáltató kulcs toohello kapcsolatot adjon át, és azok elindította hello létesítésének folyamatát kell használnia.
+Az ExpressRoute-kapcsolatcsoport a következő állapotban megjelenik, amint a szolgáltatás kulcs átadása a kapcsolat szolgáltatóját, és azok elindította a telepítési folyamatot.
 
     ServiceProviderProvisioningState : Provisioning
     Status                           : Enabled
 
 
-**Ha a kapcsolat szolgáltatójánál befejeződött hello létesítésének folyamatát kell használnia**
+**Ha a kapcsolat szolgáltatóját az üzembe helyezési folyamat befejeződött**
 
-Látni fogja, amint hello kapcsolat szolgáltatójánál hello kiépítési folyamat befejeződött a következő állapotot hello az ExpressRoute-kapcsolatcsoportot hello.
+A következő állapotot okozta ExpressRoute-kapcsolatcsoportot jelenik meg, amint a kapcsolat szolgáltatójánál a kiépítési folyamat befejeződött.
 
     ServiceProviderProvisioningState : Provisioned
     Status                           : Enabled
 
-Üzembe helyezve, és engedélyezve csak hello állapot hello áramkör lehet az Ön toobe képes toouse azt. Ha egy 2. rétegbeli szolgáltatót használja, beállíthatja a kapcsolatcsoport útválasztást csak akkor, ha az ebben az állapotban van.
+Üzembe helyezve, és engedélyezve a kapcsolatcsoport egyetlen állapotát is használni tudja lehet. Ha egy 2. rétegbeli szolgáltatót használja, beállíthatja a kapcsolatcsoport útválasztást csak akkor, ha az ebben az állapotban van.
 
-**Ha a kapcsolat szolgáltatójánál megszüntetés hello áramkör van**
+**Ha a kapcsolat szolgáltatójánál megszüntetés a kapcsolatcsoport van**
 
-A kért hello szolgáltatás szolgáltató toodeprovision hello ExpressRoute-kapcsolatcsoportot látják hello áramkör toohello hello szolgáltató hello megszüntetés folyamat befejeződését követően a következő állapot beállítása.
+A szolgáltató az ExpressRoute-kapcsolatcsoport kiosztásának megszüntetése a kért a következő állapotának beállítása után a szolgáltató a megszüntetési folyamatot a kapcsolatcsoport látják.
 
     ServiceProviderProvisioningState : NotProvisioned
     Status                           : Enabled
 
 
-Kiválaszthatja a toore engedélyezése, ha szükséges, vagy a PowerShell-parancsmagok futtatásához toodelete hello körön.  
+Ha szeretné, engedélyezheti, ha szükséges, vagy a PowerShell-parancsmagok a kapcsolatcsoport törléséhez.  
 
 > [!IMPORTANT]
-> Ha futtatja hello PowerShell parancsmag toodelete hello áramkör hello ServiceProviderProvisioningState kiépítési vagy kiépítve hello művelet sikertelen lesz. Adjon használata a kapcsolat szolgáltató toodeprovision hello ExpressRoute-kapcsolatcsoportot először, és törölje a hello körön. Microsoft toobill hello áramkör folytatódik, amíg nem futtat PowerShell parancsmag toodelete hello áramkör hello.
+> Ha törli a kapcsolatcsoport a ServiceProviderProvisioningState kiépítésekor vagy kiépítve a művelet sikertelen lesz a PowerShell-parancsmagot kell futtatnia. A kapcsolat szolgáltatójánál kiosztásának megszüntetése először az ExpressRoute-kapcsolatcsoport adjon működnek, és törölje a kapcsolatcsoport. A Microsoft továbbra is a kapcsolatcsoport számlázási, amíg nem futtat a kapcsolatcsoport törlése a PowerShell-parancsmagot.
 > 
 > 
 
 ## <a name="routing-session-configuration-state"></a>Munkamenet-konfiguráció útválasztási állapota
-hello BGP üzembe helyezési állapota értesíti Önt arról, ha hello BGP munkamenet engedélyezve van a Microsoft edge hello. hello állapot engedélyezni kell az Ön toobe képes toouse hello társviszony-létesítés.
+A BGP üzembe helyezési állapota értesíti Önt arról, ha a BGP-munkamenetet a Microsoft edge engedélyezve lett. Az állapot meg fogja tudni használni a társviszony-létesítést engedélyezni kell.
 
-Fontos toocheck hello BGP munkamenet-állapot kifejezetten a Microsoft társviszony-létesítést is. Továbbá toohello BGP üzembe helyezési állapota, van egy másik állapothoz nevű *meghirdetett nyilvános előtag állapot*. hello meghirdetett nyilvános előtag állapotban kell lennie a *konfigurált* állapot, mind a hello BGP munkamenet toobe mentése és az útválasztási toowork-végpontok. 
+Fontos, különösen a Microsoft társviszony-létesítés BGP munkamenet-állapot ellenőrzéséhez. Mellett a BGP üzembe helyezési állapota, van egy másik állapothoz nevű *meghirdetett nyilvános előtag állapot*. A meghirdetett nyilvános előtag állapotban kell lennie a *konfigurált* állapot, mind a BGP-munkamenethez be kell, és a végpontok közötti működéséhez irányításához. 
 
-Ha hello meghirdetett nyilvános előtag állapot értéke tooa *szükséges érvényesítési* állapotba kerül, a BGP-munkamenetet hello nincs engedélyezve, hello hirdetett előtagok nem felelt meg a hello hello útválasztási nyilvántartó valamelyikében SZÁMOT. 
+Ha a meghirdetett nyilvános előtag állapot beállítása a *szükséges érvényesítési* állapotba kerül, a BGP-munkamenet nincs engedélyezve, mint a hirdetett előtagok nem egyezik a AS számot sem az útválasztási nyilvántartó. 
 
 > [!IMPORTANT]
-> Hogy hello meghirdetett nyilvános előtag állapotban van-e *manuális érvényesítési* állapotba kerül, meg kell nyitnia a támogatási jegy [Microsoft támogatási szolgálatához](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) , és adja meg a megbizonyosodhat róla, hogy Ön a tulajdonosa mentén meghirdetett hello IP-címek társított hello autonóm rendszer számát.
+> Ha a meghirdetett nyilvános előtag állapota *manuális érvényesítési* állapotba kerül, meg kell nyitnia a támogatási jegy [Microsoft támogatási szolgálatához](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) , és adja meg a megbizonyosodhat róla, hogy Ön a tulajdonosa az IP-címek meghirdetett mentén társított autonóm rendszer számát.
 > 
 > 
 
@@ -114,5 +114,5 @@ Ha hello meghirdetett nyilvános előtag állapot értéke tooa *szükséges ér
   
   * [ExpressRoute-kapcsolatcsoport létrehozása](expressroute-howto-circuit-arm.md)
   * [Útválasztás konfigurálása](expressroute-howto-routing-arm.md)
-  * [Hivatkozásra egy VNet tooan ExpressRoute-kapcsolatcsoportot](expressroute-howto-linkvnet-arm.md)
+  * [VNet csatlakoztatása egy ExpressRoute-kapcsolatcsoporthoz](expressroute-howto-linkvnet-arm.md)
 

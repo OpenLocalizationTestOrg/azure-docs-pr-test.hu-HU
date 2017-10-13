@@ -1,6 +1,6 @@
 ---
-title: "Az Azure AD Connect: További lépések és hogyan toomanage az Azure AD Connect |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooextend hello alapértelmezett konfiguráció és a működtetési feladatok az Azure AD Connect."
+title: "Az Azure AD Connect: További lépések és kezelése az Azure AD Connect |} Microsoft Docs"
+description: "Ismerje meg, hogyan terjeszthető ki az alapértelmezett konfiguráció és a működtetési feladatok az Azure AD Connect."
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -14,61 +14,61 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 4404aaff24d54d76b83baca3b331a6a250ba4c03
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: beace24fa00c85a5038a3c39ae8f76af5fd12111
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="next-steps-and-how-toomanage-azure-ad-connect"></a>További lépések és hogyan toomanage az Azure AD Connect
-Eljárásokkal hello működési Ez a cikk toocustomize Azure Active Directory (Azure AD) Connect toomeet a szervezete igényét.  
+# <a name="next-steps-and-how-to-manage-azure-ad-connect"></a>Következő lépések és az Azure AD Connect kezelése
+Ebben a cikkben a műveleti eljárások segítségével testre szabhatja az Azure Active Directory (Azure AD) Csatlakozás a szervezeti igények és követelmények.  
 
 ## <a name="add-additional-sync-admins"></a>További szinkronizálási rendszergazdák hozzáadása
-Alapértelmezés szerint csak hello felhasználó adott hello telepítési és a helyi rendszergazdák képesek toomanage telepítve hello szinkronizálási motor található. A további személyek toobe képes tooaccess hello szinkronizálási motor kezelése, majd keresse meg az ADSyncAdmins nevű a helyi kiszolgálón hello hello csoport és a toothis csoporthoz adja hozzá.
+Alapértelmezés szerint csak a felhasználó adta meg a telepítési és a helyi rendszergazdák képesek a telepített szinkronizálási motor kezeléséhez. A további személyek férhessen hozzá és felügyelhesse a szinkronizálási motor keresse meg a csoport ADSyncAdmins nevű a helyi kiszolgálón, és adja hozzá ezt a csoportot.
 
-## <a name="assign-licenses-tooazure-ad-premium-and-enterprise-mobility-suite-users"></a>Licencek tooAzure AD Premium és nagyvállalati mobilitási csomag felhasználók hozzárendelése
-Most, hogy a felhasználók lettek toohello felhő szinkronizálva tooassign kell őket, a felhőalapú alkalmazások, például az Office 365 használatbavétele licenccel.
+## <a name="assign-licenses-to-azure-ad-premium-and-enterprise-mobility-suite-users"></a>Licencek hozzárendelése az Azure AD Premium és nagyvállalati mobilitási csomag számára
+Most, hogy a felhő szinkronizálta a felhasználókat, rendeljen hozzájuk licencet, a felhőalapú alkalmazások, például az Office 365 használatbavétele szeretné.
 
-### <a name="tooassign-an-azure-ad-premium-or-enterprise-mobility-suite-license"></a>az Azure AD Premium vagy Enterprise Mobility Suite licenc tooassign
+### <a name="to-assign-an-azure-ad-premium-or-enterprise-mobility-suite-license"></a>Az Azure AD Premium vagy Enterprise Mobility Suite licenc hozzárendelése
 
-1. Jelentkezzen be toohello Azure-portálon, rendszergazdaként
-2. Hello bal oldalon válassza ki a **Active Directory**.
-3. A hello **Active Directory** lapon, kattintson duplán a megegyező tooset akarja hello felhasználók hello könyvtárat.
-4. Hello hello directory oldal tetején, válassza ki a **licencek**.
-5. A hello **licencek** lapon jelölje be **Active Directory Premium** vagy **nagyvállalati mobilitási csomag**, és kattintson a **hozzárendelése**.
-6. A hello párbeszédpanelen válassza ki a hello felhasználók tooassign licenceket szeretne, és kattintson a hello pipa ikon toosave hello módosításokat.
+1. Rendszergazdaként jelentkezzen be az Azure-portálon
+2. A bal oldalon válassza az **Active Directory** elemet.
+3. Az a **Active Directory** lapon, kattintson duplán a könyvtár, amely rendelkezik a beállítani kívánt felhasználókat.
+4. A könyvtárlap tetején válassza a **Licencek** elemet.
+5. Az a **licencek** lapon jelölje be **Active Directory Premium** vagy **nagyvállalati mobilitási csomag**, és kattintson a **hozzárendelése**.
+6. A párbeszédpanelen válassza ki azokat a felhasználókat, akikhez licenceket szeretne rendelni, majd kattintson a pipa ikonra a módosítások mentéséhez.
 
-## <a name="verify-hello-scheduled-synchronization-task"></a>Hello ütemezett szinkronizálás task ellenőrzése.
-A szinkronizálás hello Azure portál toocheck hello állapotát használja.
+## <a name="verify-the-scheduled-synchronization-task"></a>Az ütemezett szinkronizálás task ellenőrzése.
+Az Azure portál segítségével tekintse meg a szinkronizálást.
 
-### <a name="tooverify-hello-scheduled-synchronization-task"></a>tooverify hello beütemezett szinkronizálási feladat
-1. Jelentkezzen be toohello Azure-portálon, rendszergazdaként
-2. Hello bal oldalon válassza ki a **Active Directory**.
-3. A hello **Active Directory** lapon, kattintson duplán a megegyező tooset akarja hello felhasználók hello könyvtárat.
-4. Hello hello directory oldal tetején, válassza ki a **címtár-integráció**.
-5. A **helyi active directory integrációja a**, Megjegyzés hello utolsó szinkronizálás.
+### <a name="to-verify-the-scheduled-synchronization-task"></a>Az ütemezett szinkronizálás task ellenőrzése.
+1. Rendszergazdaként jelentkezzen be az Azure-portálon
+2. A bal oldalon válassza az **Active Directory** elemet.
+3. Az a **Active Directory** lapon, kattintson duplán a könyvtár, amely rendelkezik a beállítani kívánt felhasználókat.
+4. A címtár lap tetején jelölje ki a **címtár-integráció**.
+5. A **helyi active directory integrációja a**, vegye figyelembe a legutóbbi szinkronizálás ideje.
 
 <center>![Címtár-szinkronizálás ideje](./media/active-directory-aadconnect-whats-next/verify.png)</center>
 
 ## <a name="start-a-scheduled-synchronization-task"></a>Egy beütemezett szinkronizálási feladat indítása
-Ha egy szinkronizálási feladat toorun van szüksége, ehhez keresztül hello Azure AD Connect varázsló ismételt futtatásával.  Azure AD hitelesítő adatait kell tooprovide.  Hello varázslóban válassza hello **testre szabhatja a szinkronizálási beállítások** feladat, és kattintson a **következő** toomove hello varázsló használatával. Hello végén győződjön meg arról, hogy hello **hello szinkronizálási folyamat indítása, amint hello kezdeti konfigurálás befejeződik** be van jelölve.
+Ha szeretne futtatni egy szinkronizálási feladat, ehhez az Azure AD Connect varázsló ismételt futtatásával.  Meg kell adnia az Azure AD hitelesítő adatait.  A varázslóban válassza a **testre szabhatja a szinkronizálási beállítások** feladat, és kattintson a **tovább** helyezhető át, a varázsló használatával. A végén győződjön meg arról, hogy a **, amint a kezdeti konfigurálás befejeződik, indítsa el a szinkronizálási folyamat** be van jelölve.
 
 <center>![A szinkronizálás megkezdéséhez](./media/active-directory-aadconnect-whats-next/startsynch.png)</center>
 
-Hello Azure AD Connect szinkronizálási szolgáltatás Feladatütemező további információkért lásd: [az Azure AD Connect Feladatütemező](active-directory-aadconnectsync-feature-scheduler.md).
+Az Azure AD Connect szinkronizálási Feladatütemező további információkért lásd: [az Azure AD Connect Feladatütemező](active-directory-aadconnectsync-feature-scheduler.md).
 
 ## <a name="additional-tasks-available-in-azure-ad-connect"></a>Az Azure AD Connectben elérhető további feladatok
-Az Azure AD Connect a kezdeti telepítés után is mindig hello varázsló ismételt futtatása az Azure AD Connect start lap vagy az asztal helyi hello.  Megfigyelheti, hogy újra áthaladás hello varázsló lehetőségeket is kínál néhány új további feladatok hello formájában.  
+Az Azure AD Connect a kezdeti telepítés után is mindig a varázsló ismételt futtatása a Azure AD Connect start lap vagy az asztal parancsikonnal.  Megfigyelheti, hogy a varázsló újra áthaladás lehetőségeket is kínál néhány új további feladatok formájában.  
 
-hello következő táblázat a feladatok összefoglalása, és minden feladat rövid leírása.
+A következő táblázat a feladatok összefoglalása, és minden feladat rövid leírása.
 
 ![További feladatok listája](./media/active-directory-aadconnect-whats-next/addtasks.png)
 
 | További feladatok | Leírás |
 | --- | --- |
-| **Nézet hello választott forgatókönyv** |A jelenleg az Azure AD Connect megoldás megtekintéséhez.  Ez magában foglalja az általános beállítások szinkronizálása könyvtárak, és a szinkronizálási beállítások. |
-| **Szinkronizálási beállítások testreszabása** |Hello aktuális konfigurációjának módosítása például további Active Directory-erdők toohello konfiguráció hozzáadása, illetve a szinkronizálási beállítások, például felhasználó, csoport, eszköz vagy a jelszóvisszaírás engedélyezése. |
-| **Az átmeneti környezetű üzemmód engedélyezése** |Szakasz információkat, amelyek nem azonnal szinkronizálja, és nem tooAzure AD vagy a helyszíni Active Directory exportált.  Ezzel a szolgáltatással mielőtt bekövetkeznének megtekintheti hello szinkronizálások. |
+| **A választott forgatókönyv megtekintése** |A jelenleg az Azure AD Connect megoldás megtekintéséhez.  Ez magában foglalja az általános beállítások szinkronizálása könyvtárak, és a szinkronizálási beállítások. |
+| **Szinkronizálási beállítások testreszabása** |Például további Active Directory-erdők hozzáadása a konfigurációt, vagy a szinkronizálási beállítások, például felhasználó, csoport, eszköz vagy a jelszóvisszaírás engedélyezése a jelenlegi konfiguráció módosítása. |
+| **Az átmeneti környezetű üzemmód engedélyezése** |Szakasz információkat, amelyek nem azonnal szinkronizálja, és nem az Azure ad Szolgáltatásba exportálni vagy a helyszíni Active Directory.  Ezzel a szolgáltatással mielőtt bekövetkeznének megtekintheti a szinkronizálást. |
 
 ## <a name="next-steps"></a>Következő lépések
 További információ [a helyszíni identitások integrálása az Azure Active Directoryval](active-directory-aadconnect.md).

@@ -1,6 +1,6 @@
 ---
-title: "aaaWeather előrejelzési adatokat az IoT-központ Azure Machine Learning használatával |} Microsoft Docs"
-description: "Használja az Azure Machine Learning hello hőmérséklet és a páratartalom az IoT hub gyűjti össze az érzékelő adatokat alapján eső toopredict hello esélyét."
+title: "Időjárás előrejelzési adatokat az IoT-központ Azure Machine Learning használatával |} Microsoft Docs"
+description: "Használata Azure Machine Learning eső esélyét előre jelezni az IoT hub gyűjti össze az érzékelő hőmérséklet és a páratartalom adatok alapján."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -15,64 +15,64 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/25/2017
 ms.author: xshi
-ms.openlocfilehash: 04abe97558ccfc152bae2e0d435033433c0023dd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 50ae54b9476c49b80236e295c0bf244df8236cff
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="weather-forecast-using-hello-sensor-data-from-your-iot-hub-in-azure-machine-learning"></a>Időjárás: hello érzékelő adatokat az IoT hub használata az Azure Machine Learning
+# <a name="weather-forecast-using-the-sensor-data-from-your-iot-hub-in-azure-machine-learning"></a>Az érzékelő adatokat az IoT hub használata az Azure Machine Learning előrejelzési időjárási
 
 ![Végpontok közötti diagramja](media/iot-hub-get-started-e2e-diagram/6.png)
 
 [!INCLUDE [iot-hub-get-started-note](../../includes/iot-hub-get-started-note.md)]
 
-Gépi tanulás a technika, amely segítségével a meglévő adatok tooforecast jövőbeli történéseket, eredményeket vagy trendeket megtudjuk számítógépek tudományos adatok. Az Azure Machine Learning egy felhőalapú prediktív elemzési szolgáltatás, amely megkönnyíti a lehetséges tooquickly létrehozása és üzembe prediktív modelleket elemzési megoldásként.
+Gépi tanulás a technika, amely segít a számítógépek ismerje meg, az előrejelzési algoritmus jövőbeli történéseket, eredményeket vagy trendeket meglévő adatokból tudományos adatok. Az Azure Machine Learning egy felhőalapú prediktív elemzési szolgáltatás, amely lehetővé teszi elemzési megoldásként használható prediktív modellek gyors létrehozását és üzembe helyezését.
 
 ## <a name="what-you-learn"></a>Ismertetett témák
 
-Megtudhatja, hogyan hello hőmérséklet és a páratartalom adatait az Azure IoT hub toouse Azure Machine Learning toodo időjárás (eső esélyét) használatával. hello esélyét eső egy hello kimenet egy előkészített időjárási előrejelzési modell. hello modell a hőmérséklet és a páratartalom alapján eső régebbi adatok tooforecast esélyét épül.
+Időjárás előrejelzés (eső esélyét) az Azure Machine Learning segítségével megtanulhatja a hőmérséklet és a páratartalom adatokat az Azure IoT hub használatával. Az esélye, eső egy előkészített időjárási előrejelzési modell kimeneti. A modell az előrejelzési algoritmus alapján a hőmérséklet és a páratartalom eső esélyét régebbi adatok épül.
 
 ## <a name="what-you-do"></a>Mit
 
-- Hello időjárási előrejelzési modell rendszerbe állítása webszolgáltatásként.
+- Időjárás előrejelzési modell rendszerbe állítása webszolgáltatásként.
 - Felkészülés az IoT hub adatelérés egy felhasználói csoport hozzáadásával.
-- A Stream Analytics-feladat létrehozása, és a feladat hello konfigurálása:
+- A Stream Analytics-feladat létrehozása, és a feladat konfigurálása:
   - Hőmérséklet és a páratartalom adatokat olvasni az IoT hub.
-  - Hello web service tooget hello eső alkalommal hívja.
-  - Mentse a hello eredmény tooan Azure blob Storage tárolóban.
-- A Microsoft Azure Tártallózó tooview hello időjárás használja.
+  - Eső lehetősége a webszolgáltatás hívására.
+  - Az eredmény mentése az Azure blob Storage tárolóban.
+- A Microsoft Azure Tártallózó segítségével megtekintheti a időjárás.
 
 ## <a name="what-you-need"></a>Mi szükséges
 
-- Az oktatóanyag [beállítani az eszközét](iot-hub-raspberry-pi-kit-node-get-started.md) fejeződött be, amely hozzá van rendelve hello követelményeknek:
+- Az oktatóanyag [beállítani az eszközét](iot-hub-raspberry-pi-kit-node-get-started.md) fejeződött be, amely hozzá van rendelve az alábbi követelményeknek:
   - Aktív Azure-előfizetés.
   - Az előfizetéshez tartozó Azure IoT hub.
-  - Egy ügyfélalkalmazás által küldött üzenetek tooyour Azure IoT-központot.
+  - Egy ügyfélalkalmazást, amely üzeneteket küld az Azure IoT hub.
 - Egy Azure Machine Learning Studio-fiók. ([Machine Learning Studio ingyenes próbálja](https://studio.azureml.net/)).
 
-## <a name="deploy-hello-weather-prediction-model-as-a-web-service"></a>Egy webszolgáltatás hello időjárási előrejelzési modell rendszerbe állítása
+## <a name="deploy-the-weather-prediction-model-as-a-web-service"></a>Időjárás előrejelzési modell rendszerbe állítása egy webszolgáltatás
 
-1. Nyissa meg toohello [időjárási előrejelzési modell lap](https://gallery.cortanaintelligence.com/Experiment/Weather-prediction-model-1).
+1. Lépjen a [időjárási előrejelzési modell lap](https://gallery.cortanaintelligence.com/Experiment/Weather-prediction-model-1).
 1. Kattintson a **Megnyitás a Studióban** a Microsoft Azure Machine Learning Studióban.
-   ![Megnyitás hello időjárási előrejelzési modell oldal a Cortana Intelligence Gallery](media/iot-hub-weather-forecast-machine-learning/2_weather-prediction-model-in-cortana-intelligence-gallery.png)
-1. Kattintson a **futtatása** toovalidate hello lépések hello modellben. Ebben a lépésben toocomplete 2 percet is igénybe vehet.
-   ![Nyissa meg hello időjárási előrejelzési modell az Azure Machine Learning Studióban](media/iot-hub-weather-forecast-machine-learning/3_open-weather-prediction-model-in-azure-machine-learning-studio.png)
+   ![Nyissa meg az időjárási előrejelzési modell oldal a Cortana Intelligence Gallery](media/iot-hub-weather-forecast-machine-learning/2_weather-prediction-model-in-cortana-intelligence-gallery.png)
+1. Kattintson a **futtatása** a lépéseket a modell ellenőrzése. Ez a lépés befejezéséhez 2 percig is eltarthat.
+   ![Nyissa meg a időjárási előrejelzési modellt az Azure Machine Learning Studióban](media/iot-hub-weather-forecast-machine-learning/3_open-weather-prediction-model-in-azure-machine-learning-studio.png)
 1. Kattintson a **WEBSZOLGÁLTATÁS beállítása** > **prediktív webszolgáltatás**.
-   ![Hello időjárási előrejelzési modell Azure Machine Learning Studio telepítése](media/iot-hub-weather-forecast-machine-learning/4-deploy-weather-prediction-model-in-azure-machine-learning-studio.png)
-1. Hello a diagramon, húzza a hello **webszolgáltatás bemenetét** valahol közelében hello modul **Score Model** modul.
-1. Csatlakozás hello **webszolgáltatás bemenetét** modul toohello **Score Model** modul.
+   ![Az Azure Machine Learning Studióban időjárási előrejelzési modell rendszerbe állítása](media/iot-hub-weather-forecast-machine-learning/4-deploy-weather-prediction-model-in-azure-machine-learning-studio.png)
+1. Az ábrán, húzza a **webszolgáltatás bemenetét** modul valahol közelében a **Score Model** modul.
+1. Csatlakozás a **webszolgáltatás bemenetét** modult a **Score Model** modul.
    ![Csatlakozás az Azure Machine Learning Studióban két modulok](media/iot-hub-weather-forecast-machine-learning/13_connect-modules-azure-machine-learning-studio.png)
-1. Kattintson a **futtatása** toovalidate hello lépések hello modellben.
-1. Kattintson a **WEBES szolgáltatás telepítése** toodeploy hello modell webszolgáltatásként.
-1. Hello irányítópult hello modell, töltse le a hello **Excel 2010 vagy korábbi munkafüzet** a **kérelem/válasz**.
+1. Kattintson a **futtatása** a lépéseket a modell ellenőrzése.
+1. Kattintson a **WEBES szolgáltatás telepítése** a modell rendszerbe webszolgáltatásként.
+1. A modell az irányítópulton, töltse le a **Excel 2010 vagy korábbi munkafüzet** a **kérelem/válasz**.
 
    > [!Note]
-   > Győződjön meg arról, hogy töltse le a hello **Excel 2010 vagy korábbi munkafüzet** még akkor is, ha az Excel újabb verziójában futtat a számítógépen.
+   > Győződjön meg arról, hogy töltse le a **Excel 2010 vagy korábbi munkafüzet** még akkor is, ha az Excel újabb verziójában futtat a számítógépen.
 
-   ![Töltse le a hello Excel hello kérelem-válasz végpont](media/iot-hub-weather-forecast-machine-learning/5_download-endpoint-app-excel-for-request-response.png)
+   ![Töltse le az Excel, a kérelem-válasz végpont](media/iot-hub-weather-forecast-machine-learning/5_download-endpoint-app-excel-for-request-response.png)
 
-1. Nyissa meg a hello Excel-munkafüzetben, jegyezze fel a hello **WEBES szolgáltatás URL-címe** és **hozzáférési kulcs**.
+1. Nyissa meg az Excel-munkafüzetben, jegyezze fel a **WEBES szolgáltatás URL-címe** és **hozzáférési kulcs**.
 
 [!INCLUDE [iot-hub-get-started-create-consumer-group](../../includes/iot-hub-get-started-create-consumer-group.md)]
 
@@ -80,60 +80,60 @@ Megtudhatja, hogyan hello hőmérséklet és a páratartalom adatait az Azure Io
 
 ### <a name="create-a-stream-analytics-job"></a>Stream Analytics-feladat létrehozása
 
-1. A hello [Azure-portálon](https://ms.portal.azure.com/), kattintson a **új** > **az eszközök internetes hálózatát** > **Stream Analytics-feladat**.
-1. Adja meg a következő információ hello feladat hello.
+1. Az a [Azure-portálon](https://ms.portal.azure.com/), kattintson a **új** > **az eszközök internetes hálózatát** > **Stream Analytics-feladat**.
+1. Adja meg a feladat a következő információkat.
 
-   **Feladat neve**: hello feladat hello nevét. hello nevének globálisan egyedinek kell lennie.
+   **Feladat neve**: a feladat nevét. A névnek globálisan egyedinek kell lennie.
 
-   **Erőforráscsoport**: használata hello ugyanaz az IoT hub használó erőforráscsoportot.
+   **Erőforráscsoport**: használja ugyanazt az erőforráscsoportot, amely az IoT hub használja.
 
-   **Hely**: használata hello ugyanaz az erőforráscsoport és a helyen.
+   **Hely**: ugyanazt a helyet használja a erőforráscsoportként működnek.
 
-   **PIN-kód toodashboard**: ezt a beállítást egyszerű a hozzáférés tooyour IoT hub hello irányítópulton.
+   **Rögzítés az irányítópulton**: ezt a beállítást, az egyszerű elérés érdekében ellenőrizze, hogy az IoT hub az irányítópultról.
 
    ![A Stream Analytics-feladat létrehozása az Azure-ban](media/iot-hub-weather-forecast-machine-learning/7_create-stream-analytics-job-azure.png)
 
 1. Kattintson a **Create** (Létrehozás) gombra.
 
-### <a name="add-an-input-toohello-stream-analytics-job"></a>Egy bemeneti toohello Stream Analytics-feladat hozzáadása
+### <a name="add-an-input-to-the-stream-analytics-job"></a>A Stream Analytics-feladat bemenete hozzáadása
 
-1. Nyissa meg hello Stream Analytics-feladat.
+1. Nyissa meg a Stream Analytics-feladat.
 1. A **feladat topológia**, kattintson a **bemenetek**.
-1. A hello **bemenetek** ablaktáblában kattintson **Hozzáadás**, majd adja meg a következő információ hello:
+1. Az a **bemenetek** ablaktáblában kattintson **Hozzáadás**, és írja be a következő információkat:
 
-   **A bemeneti alias**: hello egyedi alias hello bemeneti.
+   **A bemeneti alias**: a bemeneti egyedi alias.
 
    **Forrás**: válasszon **IoT-központ**.
 
-   **Felhasználói csoport**: Select hello fogyasztói csoportot hozott létre.
+   **Felhasználói csoport**: válassza ki a létrehozott fogyasztói csoportot.
 
-   ![Egy bemeneti toohello Stream Analytics-feladat felvétele az Azure-ban](media/iot-hub-weather-forecast-machine-learning/8_add-input-stream-analytics-job-azure.png)
+   ![A Stream Analytics-feladat bemenete hozzáadása az Azure-ban](media/iot-hub-weather-forecast-machine-learning/8_add-input-stream-analytics-job-azure.png)
 
 1. Kattintson a **Create** (Létrehozás) gombra.
 
-### <a name="add-an-output-toohello-stream-analytics-job"></a>Adja hozzá egy kimeneti toohello Stream Analytics-feladat
+### <a name="add-an-output-to-the-stream-analytics-job"></a>Adja hozzá egy kimeneti a Stream Analytics-feladat
 
 1. A **feladat topológia**, kattintson a **kimenetek**.
-1. A hello **kimenetek** ablaktáblán kattintson a **Hozzáadás**, majd adja meg a következő információ hello:
+1. Az a **kimenetek** ablaktáblán kattintson a **Hozzáadás**, és írja be a következő információkat:
 
-   **A kimeneti alias**: hello egyedi alias hello kimenet.
+   **A kimeneti alias**: az egyedi alias a kimeneti oldal számára.
 
    **Gyűjtése**: válasszon **Blob-tároló**.
 
-   **A tárfiók**: hello tárfiók a blob Storage. Hozzon létre egy tárfiókot, vagy használjon egy meglévőt.
+   **A tárfiók**: A tárfiók a blob-tároló. Hozzon létre egy tárfiókot, vagy használjon egy meglévőt.
 
-   **Tároló**: hello tároló hello blob menteni. Hozzon létre egy tárolót, vagy használjon egy meglévőt.
+   **Tároló**: A tároló, a blob menteni. Hozzon létre egy tárolót, vagy használjon egy meglévőt.
 
    **Esemény szerializálási formátum**: válasszon **CSV**.
 
-   ![Egy kimeneti toohello Stream Analytics-feladat felvétele az Azure-ban](media/iot-hub-weather-forecast-machine-learning/9_add-output-stream-analytics-job-azure.png)
+   ![Egy kimeneti hozzáadása az Azure Stream Analytics-feladat](media/iot-hub-weather-forecast-machine-learning/9_add-output-stream-analytics-job-azure.png)
 
 1. Kattintson a **Create** (Létrehozás) gombra.
 
-### <a name="add-a-function-toohello-stream-analytics-job-toocall-hello-web-service-you-deployed"></a>Egy függvény toohello Stream Analytics feladat toocall hello webszolgáltatás üzembe helyezett hozzáadása
+### <a name="add-a-function-to-the-stream-analytics-job-to-call-the-web-service-you-deployed"></a>A Stream Analytics-feladat üzembe helyezett webszolgáltatás hívására függvény hozzáadása
 
 1. A **feladat topológia**, kattintson a **funkciók** > **Hozzáadás**.
-1. Adja meg a következő információ hello:
+1. Adja meg a következő információkat:
 
    **Alias működéséhez**: Adjon meg `machinelearning`.
 
@@ -141,18 +141,18 @@ Megtudhatja, hogyan hello hőmérséklet és a páratartalom adatait az Azure Io
 
    **Beállítás importálása**: válasszon **egy másik előfizetésben található Importálás**.
 
-   **URL-cím**: Adja meg a WEBSZOLGÁLTATÁS URL-címe le feljegyzett hello hello Excel-munkafüzetből.
+   **URL-cím**: Adja meg a WEBSZOLGÁLTATÁS URL-címe le feljegyzett az Excel-munkafüzetből.
 
-   **Kulcs**: írja be a hozzáférési kulcs le feljegyzett hello hello Excel-munkafüzetből.
+   **Kulcs**: írja be a hozzáférési kulcs le feljegyzett az Excel-munkafüzetből.
 
-   ![Egy függvény toohello Stream Analytics-feladat hozzáadása az Azure-ban](media/iot-hub-weather-forecast-machine-learning/10_add-function-stream-analytics-job-azure.png)
+   ![Egy függvény hozzáadása az Azure Stream Analytics-feladat](media/iot-hub-weather-forecast-machine-learning/10_add-function-stream-analytics-job-azure.png)
 
 1. Kattintson a **Create** (Létrehozás) gombra.
 
-### <a name="configure-hello-query-of-hello-stream-analytics-job"></a>Hello Stream Analytics-feladat lekérdezése hello konfigurálása
+### <a name="configure-the-query-of-the-stream-analytics-job"></a>A lekérdezést a Stream Analytics-feladat konfigurálása
 
 1. A **feladat topológia**, kattintson a **lekérdezés**.
-1. Cserélje le a következő kód hello hello meglévő kódot:
+1. Cserélje le a meglévő kódot az alábbira:
 
    ```sql
    WITH machinelearning AS (
@@ -163,33 +163,33 @@ Megtudhatja, hogyan hello hőmérséklet és a páratartalom adatait az Azure Io
    From machinelearning
    ```
 
-   Cserélje le `[YourInputAlias]` bemeneti hello aliasnév hello feladat.
+   Cserélje le `[YourInputAlias]` a bemeneti áljel a feladat.
 
-   Cserélje le `[YourOutputAlias]` hello kimeneti aliasnév hello feladat.
+   Cserélje le `[YourOutputAlias]` a kimeneti aliasnév a feladat.
 
 1. Kattintson a **Save** (Mentés) gombra.
 
-### <a name="run-hello-stream-analytics-job"></a>Hello Stream Analytics-feladat futtatása
+### <a name="run-the-stream-analytics-job"></a>A Stream Analytics-feladat futtatása
 
-Hello Stream Analytics-feladat, kattintson **Start** > **most** > **Start**. Miután hello feladat sikeresen elindul, hello feladat állapota a **leállítva** túl**futtató**.
+Kattintson a Stream Analytics-feladat **Start** > **most** > **Start**. Ha a feladat sikeresen elindul, a feladat állapota a **leállítva** való **futtató**.
 
-![Hello Stream Analytics-feladat futtatása](media/iot-hub-weather-forecast-machine-learning/11_run-stream-analytics-job-azure.png)
+![A Stream Analytics-feladat futtatása](media/iot-hub-weather-forecast-machine-learning/11_run-stream-analytics-job-azure.png)
 
-## <a name="use-microsoft-azure-storage-explorer-tooview-hello-weather-forecast"></a>Használja a Microsoft Azure Tártallózó tooview hello időjárás:
+## <a name="use-microsoft-azure-storage-explorer-to-view-the-weather-forecast"></a>A Microsoft Azure Tártallózó segítségével megtekintheti a időjárás:
 
-Hello ügyfél alkalmazás toostart összegyűjtése és elküldését a hőmérséklet és a páratartalom adatok tooyour IoT-központ futtatása. Minden üzenet, amely megkapja az IoT hub hello Stream Analytics-feladat hello időjárás web service tooproduce hello esélyét eső hívja. hello eredmény majd mentett tooyour Azure blob Storage tárolóban. Az Azure Tártallózó egy olyan eszköz, amelyeket felhasználhat tooview hello eredménye.
+Futtassa az ügyfélalkalmazás összegyűjtése és az IoT hub hőmérséklet és a páratartalom adatokat küldi el. Minden üzenet, amely az IoT hub fogad a Stream Analytics-feladat meghívja a időjárás webszolgáltatás eső esélyét létrehozásához. Az eredmény ezután menti az Azure blob storage. Az Azure Tártallózó olyan eszköz, amely segítségével a eredmény.
 
 1. [Töltse le és telepítse a Microsoft Azure Tártallózó](http://storageexplorer.com/).
 1. Nyissa meg az Azure Storage Explorert.
-1. Bejelentkezés tooyour Azure-fiók.
+1. Jelentkezzen be az Azure-fiókjával.
 1. Válassza ki előfizetését.
 1. Kattintson az előfizetés > **Tárfiókok** > a tárfiók > **Blobtárolók** > a tárolóban.
-1. Nyissa meg a .csv fájl toosee hello eredményt. hello utolsó oszlop rekordok hello eső esélyét.
+1. Nyisson meg egy CSV-fájlt az eredményt. Az utolsó oszlopban az esélye, eső rögzíti.
 
    ![Időjárás eredmény Azure Machine Learning segítségével](media/iot-hub-weather-forecast-machine-learning/12_get-weather-forecast-result-azure-machine-learning.png)
 
 ## <a name="summary"></a>Összefoglalás
 
-Sikeresen használta az Azure Machine Learning tooproduce hello hello hőmérséklet és a páratartalom adatot, amely megkapja az IoT hub eső esélyét.
+Már használta sikeresen Azure Machine Learning az esélye, eső, amely az IoT hub megkapja a hőmérséklet és a páratartalom adatok alapján történő létrehozásához.
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]

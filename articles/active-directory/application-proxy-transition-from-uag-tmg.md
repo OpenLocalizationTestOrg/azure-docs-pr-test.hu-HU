@@ -1,5 +1,5 @@
 ---
-title: "aaaUpgrade tooAzure AD alkalmazásproxy |} Microsoft Docs"
+title: "Frissítés az Azure AD-alkalmazásproxy |} Microsoft Docs"
 description: "Válassza ki, melyik proxy megoldás esetén ajánlott, ha frissít, a Microsoft Forefront vagy egységes Access-átjárón."
 services: active-directory
 documentationcenter: 
@@ -15,20 +15,20 @@ ms.date: 07/27/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: 7dc2633140b384e25792470dadbb7f3fa7992a2b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6c9f70493155de6989b26fd4e8bcf1dff01c835c
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="compare-remote-access-solutions"></a>A távelérési megoldások összehasonlítása
 
-Az Azure Active Directory Alkalmazásproxyjával egyike a két távelérési megoldás, amely a Microsoft biztosít. más hello a webalkalmazás-Proxy hello helyszíni verzióira. Ezek a megoldások két cserélje le a korábbi termékek, amelyet a Microsoft kínál: Microsoft Forefront Threat Management Gateway (TMG) és az egységes Access-átjáró (UAG). Ez a cikk toounderstand használja hogyan ezek a megoldások összehasonlítása más tooeach. Azok az Ön továbbra is hello és elavult TMG vagy UAG megoldások, ez a cikk toohelp csomag az áttelepítési tooone az alkalmazásproxy hello használata. 
+Az Azure Active Directory Alkalmazásproxyjával egyike a két távelérési megoldás, amely a Microsoft biztosít. A másik pedig a webalkalmazás-Proxy, a helyszíni verzióira. Ezek a megoldások két cserélje le a korábbi termékek, amelyet a Microsoft kínál: Microsoft Forefront Threat Management Gateway (TMG) és az egységes Access-átjáró (UAG). Ez a cikk használatával megérthetik, hogy hogyan ezek a megoldások összehasonlítása egymáshoz. Azok az Ön továbbra is elavult TMG vagy UAG megoldások segítségével ez a cikk tervezze az áttelepítést az alkalmazásproxy egyikére. 
 
 
 ## <a name="feature-comparison"></a>Funkciók összehasonlítása
 
-Használja a tábla toounderstand hogyan Threat Management Gateway (TMG), a Unified Access-átjáró (UAG), a webalkalmazás-proxykiszolgálóként (WAP) és az Azure AD Application Proxy (AP) összehasonlítása más tooeach.
+Ez a táblázat segítségével azonosíthatja, hogyan hasonlítsa össze a Threat Management Gateway (TMG), a Unified Access-átjáró (UAG), a webalkalmazás-proxykiszolgálóként (WAP) és az Azure AD Application Proxy (AP) egymással.
 
 | Szolgáltatás | TMG | UAG | WAP | AP |
 | ------- | --- | --- | --- | --- |
@@ -45,22 +45,22 @@ Használja a tábla toounderstand hogyan Threat Management Gateway (TMG), a Unif
 | A fejlécek hitelesítés | - | Igen | - | Igen, de PingAccess | 
 | A felhőméretű biztonsági | - | - | - | Igen | 
 | Feltételes hozzáférés | - | Igen | - | Igen |
-| Nincsenek összetevők hello demilitarizált zónában (DMZ) | - | - | - | Igen |
+| A demilitarizált zónában (DMZ) nincsenek összetevők | - | - | - | Igen |
 | Bejövő kapcsolatok nem | - | - | - | Igen |
 
-A legtöbb esetben ajánlott hello modern megoldás az Azure AD-alkalmazást. Webalkalmazás-Proxy proxykiszolgáló szükséges az AD FS Szolgáltatásokhoz csak az előnyben részesített forgatókönyveket, és nem használhat egyéni tartományok az Azure Active Directoryban. 
+A legtöbb esetben ajánlott a modern megoldás az Azure AD-alkalmazást. Webalkalmazás-Proxy proxykiszolgáló szükséges az AD FS Szolgáltatásokhoz csak az előnyben részesített forgatókönyveket, és nem használhat egyéni tartományok az Azure Active Directoryban. 
 
-Az Azure AD-alkalmazásproxy kínál egyedi előnyökkel jár a mikor toosimilar termékek, köztük képest:
+Az Azure AD-alkalmazásproxy előnyökkel egyedi hasonló termékek, köztük a képest:
 
-- Az Azure AD tooon helyszíni erőforrások kiterjesztése
+- Azure AD-be a helyszíni erőforrások kiterjesztése
    - A felhőméretű biztonság és védelem
-   - Például a feltételes hozzáférés és a multi-factor Authentication szolgáltatások is könnyen tooenable
-- Nincs componenet hello demilitarizált zónában
+   - Például a feltételes hozzáférés és a multi-factor Authentication szolgáltatások is könnyen engedélyezése
+- Nincs componenet a demilitarizált zónában
 - Bejövő kapcsolatok nem szükséges
-- Egy hozzáférési panel, hogy a felhasználók folytathatja toofor minden az alkalmazások, beleértve az Office 365, az Azure AD integrált Szolgáltatottszoftver-alkalmazásoknál, és a helyszíni webalkalmazások. 
+- Egy hozzáférési panel, hogy a felhasználók az összes alkalmazásuk kezelésére, beleértve az Office 365 folytathatja, az Azure AD integrált Szolgáltatottszoftver-alkalmazásoknál, és a helyszíni webalkalmazások. 
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-- [Az Azure AD-alkalmazást tooprovide biztonságos távoli hozzáférés tooon helyszíni alkalmazások használata](active-directory-application-proxy-get-started.md)
-- [Forefront TMG és UAG tooApplication proxyval való áttérés](https://blogs.technet.microsoft.com/isablog/2015/06/30/modernizing-microsoft-application-access-with-web-application-proxy-and-azure-active-directory-application-proxy/).
+- [A helyszíni alkalmazások biztonságos távoli hozzáférést biztosítanak az Azure AD-alkalmazás segítségével](active-directory-application-proxy-get-started.md)
+- [Átállás Forefront TMG és alkalmazásproxy UAG](https://blogs.technet.microsoft.com/isablog/2015/06/30/modernizing-microsoft-application-access-with-web-application-proxy-and-azure-active-directory-application-proxy/).

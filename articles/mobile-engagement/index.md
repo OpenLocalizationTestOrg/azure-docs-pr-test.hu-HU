@@ -1,8 +1,8 @@
 ---
-title: "Mobile Engagement-dokumentáció – oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
-description: "Megtudhatja, hogyan mobilalkalmazás használati és a valós idejű felhasználói szegmentálást, és a analitikát tooenable a leküldéses értesítések és alkalmazásbeli üzenetek tooget betekintést."
+title: "Az Azure Mobile Engagement dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogyan nyerhet betekintést a mobilalkalmazások használatába és a valós idejű felhasználószegmentálásba, és hogyan engedélyezheti a környezetfüggő leküldéses értesítéseket és az alkalmazáson belüli üzenetküldést."
 services: mobile-engagement
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: c9d9dd859914d620b6e3c287bbde1906142f4736
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5f682ba16b52b9a084505b8212c4b6f043bb94c9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="mobile-engagement-documentation"></a>Mobile Engagement – dokumentáció
 
-Ismerje meg, hogyan tooincrease hello használati, megőrzés és jeleníthetnek az alkalmazást, ha a Mobile Engagement-e. Oktatóanyagok SDK-k és más dokumentáció mutatja be alkalmazás használatának és a valós idejű felhasználói szegmentálást, és a analitikát tooenable a leküldéses értesítések és alkalmazásbeli üzenetek tooget betekintést.
+Ismerje meg, hogyan javíthatja a Mobile Engagement segítségével a mobilappok használati, felhasználómegtartási és bevételi arányait. Az oktatóanyagok, SDK-k és egyéb dokumentáció bemutatják, hogyan nyerhet betekintést az alkalmazáshasználatba és a valós idejű felhasználószegmentálásba, és hogyan engedélyezheti a környezetfüggő leküldéses értesítéseket és az alkalmazáson belüli üzenetküldést.
 
 <ul class="panelContent cardsFTitle">
     <li>

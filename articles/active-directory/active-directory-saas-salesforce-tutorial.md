@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált Salesforce |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és a Salesforce között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és a Salesforce között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,111 +13,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/19/2017
 ms.author: jeedes
-ms.openlocfilehash: 1d848518ee30910e051cdc4746c599219f3b5a3b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 639e40ca7e406a1726033e9f5c5363c289087589
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-salesforce"></a>Oktatóanyag: Azure Active Directoryval integrált Salesforce
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Salesforce az Azure Active Directoryval (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja Salesforce integrálása az Azure Active Directory (Azure AD).
 
-Salesforce integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
+Salesforce integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
 
-- Megadhatja a hozzáférés tooSalesforce rendelkező Azure AD-ben
-- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooSalesforce (egyszeri bejelentkezés) a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
+- Megadhatja a Salesforce hozzáféréssel rendelkező Azure AD-ben
+- Engedélyezheti a felhasználóknak, hogy automatikusan lekérni aláírt a Salesforce (egyszeri bejelentkezés) a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-az Azure AD-integráció a Salesforce tooconfigure, kell a következő elemek hello:
+Az Azure AD-integráció konfigurálása a Salesforce, a következőkre van szükség:
 
 - Az Azure AD szolgáltatásra
 - A Salesforce egyszeri bejelentkezés engedélyezve van az előfizetésben
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. Salesforce hozzáadása hello gyűjteményből
+1. Salesforce hozzáadása a gyűjteményből
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-salesforce-from-hello-gallery"></a>Salesforce hozzáadása hello gyűjteményből
-tooconfigure hello integrációja Salesforce az Azure AD-be, meg kell tooadd Salesforce hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-salesforce-from-the-gallery"></a>Salesforce hozzáadása a gyűjteményből
+Az Azure AD integrálása a Salesforce konfigurálásához kell hozzáadnia Salesforce a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
 
-**tooadd Salesforce hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
+**Vegye fel a Salesforce a gyűjteményből, hajtsa végre az alábbi lépéseket:**
 
-1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
+1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
+2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Kattintson a **új alkalmazás** hello párbeszédpanel tetején hello gombjára.
+3. Kattintson a **új alkalmazás** gombra a párbeszédpanel tetején.
 
     ![Alkalmazások][3]
 
-4. Hello keresési mezőbe, írja be a **Salesforce**.
+4. Írja be a keresőmezőbe, **Salesforce**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-salesforce-tutorial/tutorial_salesforce_search.png)
 
-5. A hello eredmények panelen válassza ki a **Salesforce**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
+5. Az eredmények panelen válassza ki a **Salesforce**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-salesforce-tutorial/tutorial_salesforce_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, tesztelése és konfigurálása az Azure AD egyszeri bejelentkezést a Salesforce "Britta Simon." nevű tesztfelhasználó alapján
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello tartozó felhasználói a Salesforce-ban az tooa felhasználó, az Azure ad-ben. Ez azt jelenti hello kapcsolódó felhasználó a Salesforce-ban és az Azure AD-felhasználó közötti kapcsolat kapcsolatot kell létrehozni toobe.
+Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó a Salesforce-ban a felhasználók az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó a Salesforce-ban közötti kapcsolat kapcsolatot kell létrehozni.
 
-Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** a Salesforce-ban.
+Ez a hivatkozás kapcsolat létesíti értéket rendeli az **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a Salesforce-ban.
 
-tooconfigure és az Azure AD az egyszeri bejelentkezés Salesforce-teszthez, a következő építőelemeket toocomplete hello szüksége:
+Az Azure AD egyszeri bejelentkezést a Salesforce tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-3. **[A Salesforce tesztfelhasználó létrehozása](#creating-a-salesforce-test-user)**  -toohave egy megfelelője a Britta Simon a Salesforce, amely a felhasználó ábrázolása csatolt toohello az Azure AD-ban.
-4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+3. **[A Salesforce tesztfelhasználó létrehozása](#creating-a-salesforce-test-user)**  - való Britta Simon egy megfelelője a Salesforce, amely csatolva van a felhasználó az Azure AD-ábrázolását.
+4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és a Salesforce alkalmazást az egyszeri bejelentkezés konfigurálása.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és a Salesforce alkalmazást az egyszeri bejelentkezés konfigurálása.
 
-**az Azure AD tooconfigure egyszeri bejelentkezést a Salesforce, hajtsa végre a lépéseket követve hello:**
+**Konfigurálása az Azure AD az egyszeri bejelentkezés Salesforce, hajtsa végre az alábbi lépéseket:**
 
-1. Az Azure portál, a hello hello **Salesforce** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portálon a a **Salesforce** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
+2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-salesforce-tutorial/tutorial_salesforce_samlbase.png)
 
-3. A hello **Salesforce-tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
+3. Az a **Salesforce-tartomány és az URL-címek** területen tegye a következőket:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-salesforce-tutorial/tutorial_salesforce_url.png)
 
-    A hello **bejelentkezési URL-cím** szövegmezőhöz típusú hello érték a következő mintát hello használata: 
+    Az a **bejelentkezési URL-cím** szövegmező, írja be az értéket a következő minta használatával: 
    * Vállalati fiók:`https://<subdomain>.my.salesforce.com`
    * Fejlesztői fiók:`https://<subdomain>-dev-ed.my.salesforce.com`
 
     > [!NOTE] 
-    > Ezek az értékek nincsenek hello valós. Frissítheti ezeket az értékeket hello tényleges bejelentkezési URL-címmel. Ügyfél [Salesforce ügyfél-támogatási csoport](https://help.salesforce.com/support) tooget ezeket az értékeket. 
+    > Ezek az értékek nincsenek tényleges. Frissítheti ezeket az értékeket a tényleges bejelentkezési URL-címet. Ügyfél [Salesforce ügyfél-támogatási csoport](https://help.salesforce.com/support) beolvasni ezeket az értékeket. 
  
-4. A hello **SAML-aláíró tanúsítványa** kattintson **tanúsítvány** , és mentse a hello tanúsítványfájlt a számítógépen.
+4. Az a **SAML-aláíró tanúsítványa** kattintson **tanúsítvány** , és mentse a tanúsítványfájlt, a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-salesforce-tutorial/tutorial_salesforce_certificate.png) 
 
@@ -125,126 +125,126 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálo
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-salesforce-tutorial/tutorial_general_400.png)
 
-6. A hello **Salesforce konfigurációs** kattintson **konfigurálása Salesforce** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **SAML Entitásazonosító és SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.** 
+6. A a **Salesforce konfigurációs** kattintson **konfigurálása Salesforce** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **SAML Entitásazonosító és SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.** 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-salesforce-tutorial/tutorial_salesforce_configure.png) 
 <CS>
-7.  Új lap megnyitása a böngészőben, és jelentkezzen be a Salesforce-rendszergazdai fiók tooyour.
+7.  Új lap megnyitása a böngésző és a Salesforce-rendszergazdai fiókjával való bejelentkezéshez.
 
-8.  A hello **rendszergazda** navigációs ablaktábláján kattintson **biztonsági vezérlők** tooexpand hello kapcsolatos szakasz. Kattintson a **egyszeri bejelentkezési beállítások**.
+8.  Az a **rendszergazda** navigációs ablaktábláján kattintson **biztonsági vezérlők** a kapcsolódó szakasz kibontásához. Kattintson a **egyszeri bejelentkezési beállítások**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-salesforce-tutorial/sf-admin-sso.png)
 
-9.  A hello **egyszeri bejelentkezési beállítások** hello kattintson **szerkesztése** gombra.
+9.  Az a **egyszeri bejelentkezési beállítások** lapján kattintson a **szerkesztése** gombra.
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-salesforce-tutorial/sf-admin-sso-edit.png)
 
       > [!NOTE]
-      > Ha nem tooenable egyszeri bejelentkezés beállításait a Salesforce-fiókhoz, szükség lehet a toocontact [Salesforce ügyfél-támogatási csoport](https://help.salesforce.com/support). 
+      > Ha nem lehet engedélyezni az egyszeri bejelentkezés beállítása a Salesforce-fiókhoz, esetleg forduljon [Salesforce ügyfél-támogatási csoport](https://help.salesforce.com/support). 
 
 10. Válassza ki **SAML engedélyezett**, és kattintson a **mentése**.
 
       ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-salesforce-tutorial/sf-enable-saml.png)
-11. tooconfigure a SAML-alapú egyszeri bejelentkezés beállításait, kattintson a **új**.
+11. A SAML-alapú egyszeri bejelentkezés beállítások konfigurálásához kattintson **új**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-salesforce-tutorial/sf-admin-sso-new.png)
 
-12. A hello **SAML-alapú egyszeri bejelentkezési beállítás szerkesztése** lapján ellenőrizze a következő konfigurációk hello:
+12. Az a **SAML-alapú egyszeri bejelentkezési beállítás szerkesztése** lapon, a következő konfigurációkat:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-salesforce-tutorial/sf-saml-config.png)
 
-    a. A hello **neve** mezőben adjon meg egy felhasználóbarát nevet ehhez a konfigurációhoz. Értéket biztosító **neve** automatikusan feltölti a hello **API-név** szövegmező.
+    a. Az a **neve** mezőben adjon meg egy felhasználóbarát nevet ehhez a konfigurációhoz. Értéket biztosító **neve** automatikusan feltölti a **API-név** szövegmező.
 
-    b. Beillesztés **SMAL Entitásazonosító** hello érték **kibocsátó** mezőjét a Salesforce-ban.
+    b. Beillesztés **SMAL Entitásazonosító** be értéket a **kibocsátó** mezőjét a Salesforce-ban.
 
-    c. A hello **entitásazonosító szövegmező**, adja meg a Salesforce tartomány nevét a következő mintát hello használata:
+    c. Az a **entitásazonosító szövegmező**, írja be a Salesforce-tartománynév, a következő minta használatával:
       
       * Vállalati fiók:`https://<subdomain>.my.salesforce.com`
       * Fejlesztői fiók:`https://<subdomain>-dev-ed.my.salesforce.com`
       
-    d. Kattintson a **Tallózás** vagy **Choose File** tooopen hello **Choose File tooUpload** párbeszédpanelen válassza ki a Salesforce-tanúsítványt, és kattintson **nyissa meg a**tooupload hello tanúsítványt.
+    d. Kattintson **Tallózás** vagy **Choose File** megnyitásához a **válassza ki a feltöltendő fájlt** párbeszédpanelen válassza ki a Salesforce-tanúsítványt, és kattintson **nyissa meg a**töltse fel a tanúsítványt.
 
     e. A **SAML identitástípus**, jelölje be **helyességi feltételt tartalmaz salesforce.com felhasználónév**.
 
-    f. A **SAML-alapú identitás hely**, jelölje be **identitás hello tulajdonos utasítás hello NameIdentifier elemében van**
+    f. A **SAML-alapú identitás hely**, jelölje be **a tulajdonos utasítás NameIdentifier elemében van identitás**
 
-    g. Beillesztés **egyszeri bejelentkezési URL-címe** történő hello **Identity Provider bejelentkezési URL-cím** mezőjét a Salesforce-ban.
+    g. Beillesztés **egyszeri bejelentkezési URL-címe** azokat a **Identity Provider bejelentkezési URL-cím** mezőjét a Salesforce-ban.
     
     h. A **szolgáltató által kezdeményezett kérelem Szolgáltatáskötés**, jelölje be **HTTP-átirányítás**.
     
-    i. Végezetül kattintson **mentése** tooapply a SAML-alapú egyszeri bejelentkezés beállításait.
+    i. Végezetül kattintson **mentése** az SAML-alapú egyszeri bejelentkezés beállítások alkalmazásához.
 
-13. A Salesforce hello bal oldali navigációs panelén kattintson **tartományok** tooexpand hello kapcsolódó szakaszt, és kattintson a **saját tartomány**.
+13. A Salesforce bal oldali navigációs ablaktábláján kattintson **tartományok** bontsa ki a kapcsolódó csomópontot, majd **saját tartomány**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-salesforce-tutorial/sf-my-domain.png)
 
-14. Görgessen lefelé toohello **hitelesítési** szakaszt, és kattintson a hello **szerkesztése** gombra.
+14. Görgessen le a **hitelesítési** szakaszt, és kattintson a **szerkesztése** gombra.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-salesforce-tutorial/sf-edit-auth-config.png)
 
-15. A hello **hitelesítési szolgáltatás** szakaszt, válassza ki a SAML SSO konfigurációs hello rövid nevét, és kattintson a **mentése**.
+15. Az a **hitelesítési szolgáltatás** szakaszt, válassza ki a SAML SSO konfigurációs rövid nevét, és kattintson a **mentése**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-salesforce-tutorial/sf-auth-config.png)
 
     > [!NOTE]
-    > Ha egynél több hitelesítési szolgáltatás be van jelölve, a felhasználók mely hitelesítési szolgáltatás például felszólító tooselect toosign be az egyszeri bejelentkezés tooyour Salesforce környezet elindítása közben. Ha nem szeretné, hogy azt toohappen, akkor meg kell **hagyja bejelölve minden hitelesítési szolgáltatás**.
+    > Ha egynél több hitelesítési szolgáltatás be van jelölve, a rendszer kéri a felhasználóktól mely hitelesítési szolgáltatás, például a bejelentkezéshez egyszeri bejelentkezést a Salesforce-környezet elindítása során használandó kiválasztásához. Ha nem szeretné, hogy megtörténjen-e, majd meg kell **hagyja bejelölve minden hitelesítési szolgáltatás**.
 <CE>    
 > [!TIP]
-> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ez az alkalmazás hozzáadása a hello után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
+Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A bal oldali navigációs ablaktáblája hello hello **Azure-portálon**, kattintson a **Azure Active Directory** ikonra.
+1. A a bal oldali navigációs panelen a **Azure-portálon**, kattintson a **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-salesforce-tutorial/create_aaduser_01.png) 
 
-2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
+2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-salesforce-tutorial/create_aaduser_02.png) 
 
-3. Hello hello párbeszédpanel, kattintson tetején **Hozzáadás** tooopen hello **felhasználói** párbeszédpanel.
+3. Kattintson a párbeszédpanel tetején **Hozzáadás** megnyitásához a **felhasználói** párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-salesforce-tutorial/create_aaduser_03.png) 
 
-4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-salesforce-tutorial/create_aaduser_04.png) 
 
-    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
+    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-salesforce-test-user"></a>A Salesforce tesztfelhasználó létrehozása
 
 Ebben a szakaszban egy Britta Simon nevű felhasználó létrehozása a Salesforce-ban. Salesforce támogatja közvetlenül az időponthoz kötött kiosztást, amely alapértelmezés szerint engedélyezve van.
-Nincs ebben a szakaszban az Ön művelet elem. Ha a felhasználó nem létezik a Salesforce-ban, egy új tooaccess Salesforce tett kísérlet során jön létre.
+Nincs ebben a szakaszban az Ön művelet elem. Ha a felhasználó nem létezik a Salesforce-ban, egy új létrejön a Salesforce elérésére tett kísérlet során.
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
+### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
 
-Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooSalesforce megadásával engedélyeznie.
+Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés Salesforce Azure egyszeri bejelentkezéshez használandó.
 
 ![Felhasználó hozzárendelése][200] 
 
-**tooassign Britta Simon tooSalesforce, hajtsa végre a következő lépéseket hello:**
+**Britta Simon hozzárendelése Salesforce, hajtsa végre az alábbi lépéseket:**
 
-1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Hello alkalmazások listában válassza ki a **Salesforce**.
+2. Az alkalmazások listában válassza ki a **Salesforce**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-salesforce-tutorial/tutorial_salesforce_app.png) 
 
-3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -252,7 +252,7 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáfé
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -260,11 +260,11 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáfé
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-tootest a egyszeri bejelentkezés beállításokat, nyissa meg hello hozzáférési panelre a [https://myapps.microsoft.com](https://myapps.microsoft.com/), majd bejelentkezés a hello teszt fiókba, és kattintson **Salesforce**.
+Az egyszeri bejelentkezés beállításainak ellenőrzéséhez nyissa meg a hozzáférési panelre a [https://myapps.microsoft.com](https://myapps.microsoft.com/), majd jelentkezzen be a fiókot, és kattintson a **Salesforce**.
 
 ## <a name="additional-resources"></a>További források
 
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 * [A felhasználók átadása konfigurálása](active-directory-saas-salesforce-provisioning-tutorial.md)
 

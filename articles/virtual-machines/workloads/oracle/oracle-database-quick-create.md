@@ -1,5 +1,5 @@
 ---
-title: "Oracle-adatbázishoz egy Azure virtuális gép aaaCreate |} Microsoft Docs"
+title: "Oracle-adatbázishoz egy Azure virtuális gép létrehozása |} Microsoft Docs"
 description: "Gyorsan karban lehessen az Oracle-adatbázishoz 12c adatbázis mentése és az Azure környezetben futó."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -15,36 +15,36 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 07/17/2017
 ms.author: rclaus
-ms.openlocfilehash: 83205154c3275d5f57b46c8acfb0cb4e5c68a412
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8683b016c4db2c66fb1dd994405b70c3d137a7fc
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="create-an-oracle-database-in-an-azure-vm"></a>Oracle-adatbázishoz egy Azure virtuális gép létrehozása
 
-Ez az útmutató részletek hello Azure CLI toodeploy hello az Azure virtuális gép használata [Oracle piactér gyűjtemény kép](https://azuremarketplace.microsoft.com/marketplace/apps/Oracle.OracleDatabase12102EnterpriseEdition?tab=Overview) a rendezés toocreate 12 c Oracle-adatbázishoz. Miután hello kiszolgáló van telepítve, kapcsolódni fog SSH-kapcsolaton keresztül a rendelés tooconfigure hello Oracle-adatbázishoz. 
+Ez az útmutató részletek központi telepítése az Azure virtuális gépként az Azure parancssori felület használatával a [Oracle piactér gyűjtemény kép](https://azuremarketplace.microsoft.com/marketplace/apps/Oracle.OracleDatabase12102EnterpriseEdition?tab=Overview) létrehozásához 12 c Oracle-adatbázishoz. Ha a kiszolgáló van telepítve, kapcsolódni fog SSH-kapcsolaton keresztül az Oracle-adatbázishoz való konfigurálásához. 
 
 Ha nem rendelkezik Azure-előfizetéssel, mindössze néhány perc alatt létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) a virtuális gép létrehozásának megkezdése előtt.
 
 [!INCLUDE [cloud-shell-try-it.md](../../../../includes/cloud-shell-try-it.md)]
 
-Ha Ön tooinstall kiválasztása és hello CLI helyileg, a gyors üzembe helyezés van szükség, hogy verzióját hello Azure CLI 2.0.4 vagy újabb. Futtatás `az --version` toofind hello verziója. Ha tooinstall vagy frissítés van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli).
+Ha a CLI helyi telepítését és használatát választja, akkor ehhez a gyorsútmutatóhoz az Azure CLI 2.0.4-es vagy újabb verziójára lesz szükség. A verzió azonosításához futtassa a következőt: `az --version`. Ha telepíteni vagy frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli).
 
 ## <a name="create-a-resource-group"></a>Hozzon létre egy erőforráscsoportot
 
-Hozzon létre egy erőforráscsoportot hello [az csoport létrehozása](/cli/azure/group#create) parancsot. Az Azure-erőforráscsoport olyan logikai tároló, amelybe a rendszer üzembe helyezi és kezeli az Azure-erőforrásokat. 
+Hozzon létre egy erőforráscsoportot az [az group create](/cli/azure/group#create) paranccsal. Az Azure-erőforráscsoport olyan logikai tároló, amelybe a rendszer üzembe helyezi és kezeli az Azure-erőforrásokat. 
 
-hello alábbi példa létrehoz egy erőforráscsoportot *myResourceGroup* a hello *eastus* helyét.
+A következő példában létrehozunk egy *myResourceGroup* nevű erőforráscsoportot az *eastus* helyen.
 
 ```azurecli-interactive 
 az group create --name myResourceGroup --location eastus
 ```
 ## <a name="create-virtual-machine"></a>Virtuális gép létrehozása
 
-egy virtuális gép (VM) toocreate hello használata [az virtuális gép létrehozása](/cli/azure/vm#create) parancsot. 
+Hozzon létre egy virtuális gépet (VM), használja a [az virtuális gép létrehozása](/cli/azure/vm#create) parancsot. 
 
-hello alábbi példakód létrehozza a virtuális gépek nevű `myVM`. SSH-kulcsok, azt is hoz létre, ha még nem léteznek a kulcs alapértelmezett helye. toouse egy adott kulcsok beállításához használja a hello `--ssh-key-value` lehetőséget.  
+Az alábbi példa egy `myVM` nevű virtuális gépet hoz létre. SSH-kulcsok, azt is hoz létre, ha még nem léteznek a kulcs alapértelmezett helye. Ha konkrét kulcsokat szeretné használni, használja az `--ssh-key-value` beállítást.  
 
 ```azurecli-interactive 
 az vm create \
@@ -56,7 +56,7 @@ az vm create \
     --generate-ssh-keys
 ```
 
-Hello virtuális gép létrehozása után az Azure CLI információkat a következő példa hasonló toohello jeleníti meg. Jegyezze fel a hello értékét `publicIpAddress`. A cím tooaccess hello virtuális gép használja.
+A virtuális gép létrehozása után a Azure CLI-t az alábbi példához hasonló információkat jeleníti meg. Vegye figyelembe a következő `publicIpAddress`. Ez a cím a virtuális gép elérésére használhat.
 
 ```azurecli
 {
@@ -71,26 +71,26 @@ Hello virtuális gép létrehozása után az Azure CLI információkat a követk
 }
 ```
 
-## <a name="connect-toohello-vm"></a>Csatlakozás a virtuális gép toohello
+## <a name="connect-to-the-vm"></a>Kapcsolódás a virtuális géphez
 
-az SSH-munkamenetet a virtuális gép, hello toocreate hello a következő parancsot használja. Cserélje le hello IP-cím hello `publicIpAddress` értéket a virtuális gép számára.
+A virtuális gép SSH-munkamenetet létrehozni, használja a következő parancsot. Cserélje le az IP-cím a `publicIpAddress` értéket a virtuális gép számára.
 
 ```bash 
 ssh <publicIpAddress>
 ```
 
-## <a name="create-hello-database"></a>Hello adatbázis létrehozása
+## <a name="create-the-database"></a>Az adatbázis létrehozása
 
-hello Piactéri lemezképhez hello Oracle szoftver már telepítve van. Hozzon létre egy adatbázist az alábbiak szerint. 
+Az Oracle szoftver már telepítve van a Piactéri lemezképhez. Hozzon létre egy adatbázist az alábbiak szerint. 
 
-1.  Váltás toohello *oracle* felügyelő, majd a naplózás inicializálásakor hello figyelő:
+1.  Váltás a *oracle* felügyelő, majd a naplózás a figyelő inicializálása:
 
     ```bash
     $ sudo su - oracle
     $ lsnrctl start
     ```
 
-    hello hasonló toohello következő kimenete:
+    A kimenet a következő példához hasonló:
 
     ```bash
     Copyright (c) 1991, 2014, Oracle.  All rights reserved.
@@ -98,11 +98,11 @@ hello Piactéri lemezképhez hello Oracle szoftver már telepítve van. Hozzon l
     Starting /u01/app/oracle/product/12.1.0/dbhome_1/bin/tnslsnr: please wait...
 
     TNSLSNR for Linux: Version 12.1.0.2.0 - Production
-    Log messages written too/u01/app/oracle/diag/tnslsnr/myVM/listener/alert/log.xml
+    Log messages written to /u01/app/oracle/diag/tnslsnr/myVM/listener/alert/log.xml
     Listening on: (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=myVM.twltkue3xvsujaz1bvlrhfuiwf.dx.internal.cloudapp.net)(PORT=1521)))
 
-    Connecting too(ADDRESS=(PROTOCOL=tcp)(HOST=)(PORT=1521))
-    STATUS of hello LISTENER
+    Connecting to (ADDRESS=(PROTOCOL=tcp)(HOST=)(PORT=1521))
+    STATUS of the LISTENER
     ------------------------
     Alias                     LISTENER
     Version                   TNSLSNR for Linux: Version 12.1.0.2.0 - Production
@@ -114,11 +114,11 @@ hello Piactéri lemezképhez hello Oracle szoftver már telepítve van. Hozzon l
     Listener Log File         /u01/app/oracle/diag/tnslsnr/myVM/listener/alert/log.xml
     Listening Endpoints Summary...
     (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=myVM.twltkue3xvsujaz1bvlrhfuiwf.dx.internal.cloudapp.net)(PORT=1521)))
-    hello listener supports no services
-    hello command completed successfully
+    The listener supports no services
+    The command completed successfully
     ```
 
-2.  hello adatbázis létrehozása:
+2.  Az adatbázis létrehozása:
 
     ```bash
     dbca -silent \
@@ -140,17 +140,17 @@ hello Piactéri lemezképhez hello Oracle szoftver már telepítve van. Hozzon l
            -ignorePreReqs
     ```
 
-    Néhány perc toocreate hello adatbázis vesz igénybe.
+    Az adatbázis létrehozása néhány percet vesz igénybe.
 
 3. Oracle változók megadása
 
-Csatlakozás előtt van szüksége a két tooset környezeti változók: *ORACLE_HOME* és *ORACLE_SID*.
+Csatlakozás előtt be kell állítani a két környezeti változók: *ORACLE_HOME* és *ORACLE_SID*.
 
 ```bash
 ORACLE_HOME=/u01/app/oracle/product/12.1.0/dbhome_1; export ORACLE_HOME
 ORACLE_SID=cdb1; export ORACLE_SID
 ```
-ORACLE_HOME és ORACLE_SID változók toohello .bashrc fájl is adhat hozzá. A környezeti változók hello a későbbi bejelentkezések volna mentse. Erősítse meg a következő hello utasítás hozzá vannak adva toohello `~/.bashrc` a választott szerkesztővel fájlt.
+ORACLE_HOME és ORACLE_SID változók .bashrc fájl adhat hozzá. Ez szeretné menteni a környezeti változók a későbbi bejelentkezések. Győződjön meg arról, a következő utasításokat lettek hozzáadva a `~/.bashrc` a választott szerkesztővel fájlt.
 
 ```bash
 # Add ORACLE_HOME. 
@@ -161,27 +161,27 @@ export ORACLE_SID=cdb1
 
 ## <a name="oracle-em-express-connectivity"></a>Oracle EM Express kapcsolat
 
-Grafikus felügyeleti eszköz használható tooexplore hello adatbázis, az Oracle EM Express beállítása. tooconnect tooOracle EM Express, először be kell állítania az Oracle hello port. 
+A grafikus felhasználói felület segítségével megismerkedhet az adatbázist, és állítsa be az Oracle EM Express felügyeleti eszköz. Szeretne csatlakozni az Oracle EM Express, az Oracle port először meg kell adnia. 
 
-1. Csatlakozás tooyour adatbázist sqlplus használatával:
+1. Kapcsolódás saját adatbázishoz sqlplus használatával:
 
     ```bash
     sqlplus / as sysdba
     ```
 
-2. A csatlakozás után a EM expressz hello port 5502 beállítása
+2. A csatlakozás után állítsa be a port 5502 EM Express
 
     ```bash
     exec DBMS_XDB_CONFIG.SETHTTPSPORT(5502);
     ```
 
-3. Nyissa meg hello tároló PDB1, ha nem már megnyitott, de az első hello állapotát:
+3. Nyissa meg a tároló PDB1, ha nem már megnyitott, de az első ellenőrizze az állapotát:
 
     ```bash
     select con_id, name, open_mode from v$pdbs;
     ```
 
-    hello hasonló toohello következő kimenete:
+    A kimenet a következő példához hasonló:
 
     ```bash
       CON_ID NAME                           OPEN_MODE 
@@ -190,55 +190,55 @@ Grafikus felügyeleti eszköz használható tooexplore hello adatbázis, az Orac
       3           PDB1                      MOUNT
     ```
 
-4. Ha a OPEN_MODE hello `PDB1` nincs OLVASÁSI ÍRNI, majd futtassa a hello következőket parancsok tooopen PDB1:
+4. Ha a OPEN_MODE `PDB1` nincs OLVASÁSI ÍRNI, majd a PDB1 nyissa meg a következőket parancsok futtatásával:
 
    ```bash
     alter session set container=pdb1;
     alter database open;
    ```
 
-Tootype kell `quit` tooend hello sqlplus munkamenet és típus `exit` toologout hello oracle felhasználó.
+Önnek kell beírnia `quit` sqlplus munkamenet és típus befejezéséhez `exit` oracle felhasználó kijelentkezik.
 
 ## <a name="automate-database-startup-and-shutdown"></a>Adatbázis indítási és leállítási automatizálásához
 
-Oracle-adatbázishoz hello alapértelmezés szerint automatikusan hello VM újraindításakor nem indul el. tooset hello Oracle adatbázis toostart fel automatikusan, először bejelentkezik rendszergazdaként. Ezt követően létrehozása, és egyes rendszer fájlok frissítése.
+Alapértelmezés szerint az Oracle-adatbázishoz nem indul el automatikusan a virtuális gép újraindításakor. Az Oracle-adatbázishoz be automatikus indításra, először jelentkezzen be rendszergazdaként. Ezt követően létrehozása, és egyes rendszer fájlok frissítése.
 
 1. Jelentkezzen a legfelső szintű
     ```bash
     sudo su -
     ```
 
-2.  A kedvenc szerkesztővel szerkessze a hello fájlt `/etc/oratab` , és módosítsa a hello alapértelmezett `N` túl`Y`:
+2.  A kedvenc szerkesztővel szerkessze a fájlt `/etc/oratab` , és módosítsa az alapértelmezett `N` való `Y`:
 
     ```bash
     cdb1:/u01/app/oracle/product/12.1.0/dbhome_1:Y
     ```
 
-3.  Hozzon létre egy fájlt `/etc/init.d/dbora` és a Beillesztés hello a következő tartalmát:
+3.  Hozzon létre egy fájlt `/etc/init.d/dbora` , majd illessze be az alábbiakat:
 
     ```
     #!/bin/sh
     # chkconfig: 345 99 10
     # Description: Oracle auto start-stop script.
     #
-    # Set ORA_HOME toobe equivalent too$ORACLE_HOME.
+    # Set ORA_HOME to be equivalent to $ORACLE_HOME.
     ORA_HOME=/u01/app/oracle/product/12.1.0/dbhome_1
     ORA_OWNER=oracle
 
     case "$1" in
     'start')
-        # Start hello Oracle databases:
-        # hello following command assumes that hello Oracle sign-in
-        # will not prompt hello user for any values.
+        # Start the Oracle databases:
+        # The following command assumes that the Oracle sign-in
+        # will not prompt the user for any values.
         # Remove "&" if you don't want startup as a background process.
         su - $ORA_OWNER -c "$ORA_HOME/bin/dbstart $ORA_HOME" &
         touch /var/lock/subsys/dbora
         ;;
 
     'stop')
-        # Stop hello Oracle databases:
-        # hello following command assumes that hello Oracle sign-in
-        # will not prompt hello user for any values.
+        # Stop the Oracle databases:
+        # The following command assumes that the Oracle sign-in
+        # will not prompt the user for any values.
         su - $ORA_OWNER -c "$ORA_HOME/bin/dbshut $ORA_HOME" &
         rm -f /var/lock/subsys/dbora
         ;;
@@ -260,7 +260,7 @@ Oracle-adatbázishoz hello alapértelmezés szerint automatikusan hello VM újra
     ln -s /etc/init.d/dbora /etc/rc.d/rc5.d/S99dbora
     ```
 
-6.  tootest a módosításokat, indítsa újra a virtuális gép hello:
+6.  A módosítások ellenőrzéséhez indítsa újra a virtuális Gépet:
 
     ```bash
     reboot
@@ -268,9 +268,9 @@ Oracle-adatbázishoz hello alapértelmezés szerint automatikusan hello VM újra
 
 ## <a name="open-ports-for-connectivity"></a>A hálózati kapcsolatot megnyitott portok
 
-hello végső feladat tooconfigure van néhány külső végpontok száma. másolatot tooset hello Azure hálózati biztonsági csoportot, amely védi a virtuális gép hello, először lépjen ki a virtuális gép (kell rendelkeznie lett kezdődött SSH kívül ha újraindítás az előző lépésben) hello az SSH-munkamenetet. 
+Az utolsó feladat be nem konfigurálhatja az egyes külső végpontok száma. Az Azure hálózati biztonsági csoport, amely védi a virtuális gép beállításához lépjen ki az SSH-munkamenetet a virtuális gép (kell rendelkeznie lett kezdődött SSH kívül ha újraindítás az előző lépésben). 
 
-1.  tooopen hello végpont tooaccess hello Oracle-adatbázishoz távolról, használja a hálózati biztonsági csoport szabály létrehozása [az hálózati nsg-szabály létrehozása](/cli/azure/network/nsg/rule#create) az alábbiak szerint: 
+1.  Nyissa meg a végpont, amelyekkel távolról fér hozzá az Oracle-adatbázishoz, hozzon létre egy hálózati biztonsági csoport szabály [az hálózati nsg-szabály létrehozása](/cli/azure/network/nsg/rule#create) az alábbiak szerint: 
 
     ```azurecli-interactive
     az network nsg rule create \
@@ -282,7 +282,7 @@ hello végső feladat tooconfigure van néhány külső végpontok száma. máso
         --destination-port-range 1521
     ```
 
-2.  tooopen hello végpont Oracle EM Express tooaccess távolról, használja a hálózati biztonsági csoport szabály létrehozása [az hálózati nsg-szabály létrehozása](/cli/azure/network/nsg/rule#create) az alábbiak szerint:
+2.  Nyissa meg a végpont Oracle EM Express távoli eléréséhez használt, hozzon létre egy hálózati biztonsági csoport szabály [az hálózati nsg-szabály létrehozása](/cli/azure/network/nsg/rule#create) az alábbiak szerint:
 
     ```azurecli-interactive
     az network nsg rule create \
@@ -294,7 +294,7 @@ hello végső feladat tooconfigure van néhány külső végpontok száma. máso
         --destination-port-range 5502
     ```
 
-3. Szükség esetén hello nyilvános IP-címet a virtuális gép újra az beszerzése [az hálózati nyilvános ip-megjelenítése](/cli/azure/network/public-ip#show) az alábbiak szerint:
+3. Ha szükséges, szerezze be a nyilvános IP-címet a virtuális gép újra [az hálózati nyilvános ip-megjelenítése](/cli/azure/network/public-ip#show) az alábbiak szerint:
 
     ```azurecli-interactive
     az network public-ip show \
@@ -310,13 +310,13 @@ hello végső feladat tooconfigure van néhány külső végpontok száma. máso
     https://<VM ip address or hostname>:5502/em
     ```
 
-Hello segítségével bejelentkezhet **SYS** fiókot, és ellenőrizze a hello **SYSDBA csoport szerint** jelölőnégyzetet. Használjon hello jelszó **OraPasswd1** telepítése során beállított. 
+A bejelentkezhet a **SYS** fiókot, és ellenőrizze a **SYSDBA csoport szerint** jelölőnégyzetet. A jelszó használata **OraPasswd1** telepítése során beállított. 
 
-![Képernyőfelvétel a hello Oracle OEM Express bejelentkezési oldal](./media/oracle-quick-start/oracle_oem_express_login.png)
+![Az Oracle OEM Express bejelentkezési oldalát bemutató képernyőkép](./media/oracle-quick-start/oracle_oem_express_login.png)
 
 ## <a name="clean-up-resources"></a>Az erőforrások eltávolítása
 
-Miután befejezte az első Oracle adatbázis fel az Azure-on, és hello virtuális gép már nem szükséges, használhatja a hello [az csoport törlése](/cli/azure/group#delete) tooremove hello erőforráscsoport, virtuális gép és minden kapcsolódó erőforrások parancsot.
+Miután befejezte az első Oracle adatbázis Azure felfedezése és a virtuális gép már nem szükséges, használhatja a [az csoport törlése](/cli/azure/group#delete) parancsot a távolítsa el az erőforráscsoportot, a virtuális gép, és minden kapcsolódó erőforrásokat.
 
 ```azurecli-interactive 
 az group delete --name myResourceGroup
@@ -326,4 +326,4 @@ az group delete --name myResourceGroup
 
 Tudnivalók más [Oracle megoldások Azure](oracle-considerations.md). 
 
-Próbálja meg hello [telepítése és konfigurálása Oracle automatikus tárhely-kezelés](configure-oracle-asm.md) oktatóanyag.
+Próbálja meg a [telepítése és konfigurálása Oracle automatikus tárhely-kezelés](configure-oracle-asm.md) oktatóanyag.

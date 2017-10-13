@@ -1,6 +1,6 @@
 ---
-title: "az Eszközintelligencia Megoldássablonban architektúra az igény szerinti előrejelzési energia aaaCortana |} Microsoft Docs"
-description: "Microsoft Cortana Intelligence Megoldássablonban, hogy a segítséget nyújt egy energia segédprogram vállalat igény szerinti előrejelzési hello architektúrája."
+title: "Az igény szerinti előrejelzési energia Cortana Intelligence Megoldássablonban architektúra |} Microsoft Docs"
+description: "A Microsoft a Cortana Intelligence Megoldássablonban, amelyek segítségével igény szerint egy energia segédprogram vállalat előrejelzési architektúrája."
 keywords: "megoldásgyorsító; cortana analytics; energia előrejelzés"
 services: cortana-analytics
 documentationcenter: 
@@ -15,16 +15,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/19/2015
 ms.author: garye
-ms.openlocfilehash: c56fa5abac6240eb9bb9396205a1b882de77d610
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 87a27dbe9042973dcfa7e9a5a438773d1bbab4d3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="cortana-intelligence-solution-template-architecture-for-demand-forecasting-of-energy"></a>Az igény szerinti előrejelzési energia Cortana Intelligence Megoldássablonban architektúrája
-az alábbi ábrán hello áttekintést architekturális hello [Cortana Intelligence Megoldássablon az igény szerinti előrejelzési energia](cortana-analytics-playbook-demand-forecasting-energy.md).
+Az alábbi ábrán architekturális áttekintést nyújt a [Cortana Intelligence Megoldássablon az igény szerinti előrejelzési energia](cortana-analytics-playbook-demand-forecasting-energy.md).
 
-Itt hello diagram teljes méretű verziója letölthető: [architektúra diagramja: Megoldássablon az igény szerinti előrejelzési energia](http://download.microsoft.com/download/1/9/B/19B815F0-D1B0-4F67-AED3-A40544225FD1/ca-topologies-energy-forecasting.png).
+Itt a diagram teljes méretű verziója letölthető: [architektúra diagramja: Megoldássablon az igény szerinti előrejelzési energia](http://download.microsoft.com/download/1/9/B/19B815F0-D1B0-4F67-AED3-A40544225FD1/ca-topologies-energy-forecasting.png).
 
 ![Microsoft Cortana Intelligence Megoldássablonban architektúra diagramja előrejelzéshez igény szerinti energia][image]
 

@@ -25,42 +25,42 @@
 ### [Szerepkör adatforgalmi szabályainak konfigurálása](cloud-services-enable-communication-role-instances.md)
 ### [Cloud Service-életciklusesemények kezelése](cloud-services-role-lifecycle-dotnet.md)
 ### [Socket.io (Node.js)](cloud-services-nodejs-chat-app-socketio.md)
-### [Használja a Twilio toomake telefonhívást (.NET)](../partner-twilio-cloud-services-dotnet-phone-call-web-role.md)
+### [Telefonhívás indítása Twilióról (.NET)](../partner-twilio-cloud-services-dotnet-phone-call-web-role.md)
 ### [New Relic](../store-new-relic-cloud-services-dotnet-application-performance-management.md)
 
 ### Indítási feladatok konfigurálása
 #### [Indítási feladatok létrehozása](cloud-services-startup-tasks.md)
 #### [Gyakori indítási feladatok](cloud-services-startup-tasks-common.md)
-#### [Egy feladat tooInstall .NET használja a felhőalapú szolgáltatás szerepkör](cloud-services-dotnet-install-dotnet.md)
+#### [A .NET telepítése egy Cloud Service szerepkörre feladat használatával](cloud-services-dotnet-install-dotnet.md)
 
 ### A Távoli asztal konfigurálása
-#### [Portal](cloud-services-role-enable-remote-desktop-new-portal.md)
+#### [Azure Portal](cloud-services-role-enable-remote-desktop-new-portal.md)
 #### [Klasszikus portál](cloud-services-role-enable-remote-desktop.md)
-#### [PowerShell](cloud-services-role-enable-remote-desktop-powershell.md)
+#### [Azure PowerShell](cloud-services-role-enable-remote-desktop-powershell.md)
 
 ## Üzembe helyezés
 ### Felhőszolgáltatás létrehozása és üzembe helyezése a portálon
-#### [Portál](cloud-services-how-to-create-deploy-portal.md)
+#### [Azure Portal](cloud-services-how-to-create-deploy-portal.md)
 #### [Klasszikus portál](cloud-services-how-to-create-deploy.md)
 ### [Üres felhőszolgáltatás-tároló létrehozása PowerShellben](cloud-services-powershell-create-cloud-container.md)
 ### Egyéni tartománynév konfigurálása
 #### [Portál](cloud-services-custom-domain-name-portal.md)
 #### [Klasszikus portál](cloud-services-custom-domain-name.md)
 ### [Felhőszolgáltatás üzembe helyezésének ütemezése (Node.js)](cloud-services-nodejs-stage-application.md)
-### [Csatlakozás tooa egyéni tartományvezérlő](cloud-services-connect-to-custom-domain.md)
+### [Csatlakoztatás egyéni tartományvezérlőhöz](cloud-services-connect-to-custom-domain.md)
 
 ## Szolgáltatás kezelése
 ### Általános kezelési feladatok
-#### [Portál](cloud-services-how-to-manage-portal.md)
+#### [Azure Portal](cloud-services-how-to-manage-portal.md)
 #### [Klasszikus portál](cloud-services-how-to-manage.md)
 ### Felhőszolgáltatás konfigurálása
-#### [Portál](cloud-services-how-to-configure-portal.md)
+#### [Azure Portal](cloud-services-how-to-configure-portal.md)
 #### [Klasszikus portál](cloud-services-how-to-configure.md)
 ### [Egy Cloud Service felügyelete az Azure Automationnel](automation-manage-cloud-services.md)
 ### Az automatikus méretezés konfigurálása
-#### [Portál](cloud-services-how-to-scale-portal.md)
+#### [Azure Portal](cloud-services-how-to-scale-portal.md)
 #### [Klasszikus portál](cloud-services-how-to-scale.md)
-### [Python toomanage Azure-erőforrások használata](cloud-services-python-how-to-use-service-management.md)
+### [Azure-erőforrások felügyelete a Pythonnal](cloud-services-python-how-to-use-service-management.md)
 
 ### [Vendég operációs rendszer javításai](cloud-services-guestos-msrc-releases.md)
 ### Vendég operációs rendszer kivezetése
@@ -80,13 +80,13 @@
 ### [Teljesítmény tesztelése](../vs-azure-tools-performance-profiling-cloud-services.md)
 #### [Tesztelés a Visual Studio Profilerével](cloud-services-performance-testing-visual-studio-profiler.md)
 ### Diagnosztika engedélyezése
-#### [PowerShell](cloud-services-diagnostics-powershell.md)
+#### [Azure PowerShell](cloud-services-diagnostics-powershell.md)
 #### [.NET](cloud-services-dotnet-diagnostics.md)
 #### [Visual Studio](../vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines.md)
 ### [Teljesítményszámlálók használata az Azure Diagnosticsban](cloud-services-dotnet-diagnostics-performance-counters.md)
 ### [Diagnosztikai adatok tárolása és megtekintése az Azure Storage-ban](cloud-services-dotnet-diagnostics-storage.md)
 ### [Felhőszolgáltatás követése a Diagnostics használatával](cloud-services-dotnet-diagnostics-trace-flow.md)
-### [Diagnosztikai adatok tooApp Insights küldése](cloud-services-dotnet-diagnostics-applicationinsights.md)
+### [Diagnosztikai adatok küldése az App Insights-ba](cloud-services-dotnet-diagnostics-applicationinsights.md)
 
 ## Hibaelhárítás
 ### Hibakeresés 
@@ -98,7 +98,7 @@
 ### [A Cloud Service-szerepkörök újrahasznosításának gyakori okai](cloud-services-troubleshoot-common-issues-which-cause-roles-recycle.md)
 ### [Az alapértelmezett TEMP mappa mérete túl kicsi a szerepkörhöz](cloud-services-troubleshoot-default-temp-folder-size-too-small-web-worker-role.md)
 ### [Gyakori üzembe helyezési problémák](cloud-services-troubleshoot-deployment-problems.md)
-### [Nem sikerült szerepkör toostart](cloud-services-troubleshoot-roles-that-fail-start.md)
+### [A szerepkör nem indult el](cloud-services-troubleshoot-roles-that-fail-start.md)
 ### [Helyreállítási útmutató](cloud-services-disaster-recovery-guidance.md)
 ### Cloud Services – gyakori kérdések
 #### [Az alkalmazások és szolgáltatások rendelkezésre állásával kapcsolatos gyakori kérdések](cloud-services-application-and-service-availability-faq.md)
@@ -108,8 +108,14 @@
 
 # Referencia
 ## [Kódminták](https://azure.microsoft.com/en-us/resources/samples/?service=cloud-services)
-## [.csdef XMLSchema](https://msdn.microsoft.com/library/azure/ee758711)
-## [.cscfg XMLSchema](https://msdn.microsoft.com/library/azure/ee758710)
+## [.csdef XML-séma](schema-csdef-file.md)
+### [LoadBalancerProbe séma](schema-csdef-loadbalancerprobe.md)
+### [WebRole séma](schema-csdef-webrole.md)
+### [WorkerRole séma](schema-csdef-workerrole.md)
+### [NetworkTrafficRules séma](schema-csdef-networktrafficrules.md)
+## [.cscfg XML-séma](schema-cscfg-file.md)
+### [Szerepkörséma](schema-cscfg-role.md)
+### [NetworkConfiguration séma](schema-cscfg-networkconfiguration.md)
 ## [REST](https://msdn.microsoft.com/library/azure/ee460812)
 
 # Erőforrások

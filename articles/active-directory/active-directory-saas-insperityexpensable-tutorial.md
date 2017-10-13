@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált Insperity ExpensAble |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és a Insperity ExpensAble között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és a Insperity ExpensAble között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,109 +13,109 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: jeedes
-ms.openlocfilehash: 204d5435c6ba1f23bb98701381e165a9a66add62
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b50e10be54b1fc413be10bee5b58631790629335
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-insperity-expensable"></a>Oktatóanyag: Azure Active Directoryval integrált Insperity ExpensAble
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Insperity ExpensAble az Azure Active Directoryval (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja Insperity ExpensAble integrálása Azure Active Directory (Azure AD).
 
-Insperity ExpensAble integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
+Insperity ExpensAble integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
 
-- Megadhatja a hozzáférés tooInsperity ExpensAble rendelkező Azure AD-ben
-- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooInsperity ExpensAble (egyszeri bejelentkezés) a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
+- Szabályozhatja, aki hozzáférhet Insperity ExpensAble Azure AD-ben
+- Az Azure AD-fiókok a engedélyezheti a felhasználóknak, hogy automatikusan lekérni aláírt a Insperity ExpensAble (egyszeri bejelentkezés)
+- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-tooconfigure Insperity ExpensAble az Azure AD integrálása, a következő elemek hello kell:
+Konfigurálása az Azure AD-integrációs Insperity ExpensAble, a következőkre van szükség:
 
 - Az Azure AD szolgáltatásra
 - Egy Insperity ExpensAble egyszeri bejelentkezés engedélyezve van az előfizetésben
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. Hello gyűjteményből Insperity ExpensAble hozzáadása
+1. A gyűjteményből Insperity ExpensAble hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-insperity-expensable-from-hello-gallery"></a>Hello gyűjteményből Insperity ExpensAble hozzáadása
-tooconfigure hello integrációja Insperity ExpensAble az Azure AD-be, meg kell tooadd Insperity ExpensAble hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-insperity-expensable-from-the-gallery"></a>A gyűjteményből Insperity ExpensAble hozzáadása
+Az Azure AD integrálása a Insperity ExpensAble konfigurálásához kell hozzáadnia Insperity ExpensAble a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
 
-**hello gyűjteményből ExpensAble Insperity tooadd hajtsa végre a lépéseket követve hello:**
+**Adja hozzá a Insperity ExpensAble a gyűjteményből, hajtsa végre az alábbi lépéseket:**
 
-1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
+1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
+2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
+3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
 
     ![Alkalmazások][3]
 
-4. Hello keresési mezőbe, írja be a **Insperity ExpensAble**.
+4. Írja be a keresőmezőbe, **Insperity ExpensAble**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-insperityexpensable-tutorial/tutorial_insperityexpensable_search.png)
 
-5. A hello eredmények panelen válassza ki a **Insperity ExpensAble**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
+5. Az eredmények panelen válassza ki a **Insperity ExpensAble**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-insperityexpensable-tutorial/tutorial_insperityexpensable_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD az egyszeri bejelentkezés Insperity ExpensAble "Britta Simon" nevű tesztfelhasználó alapján.
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó Insperity ExpensAble tooa felhasználó az Azure ad-ben. Ez azt jelenti hello kapcsolódó felhasználó a Insperity ExpensAble és az Azure AD-felhasználó közötti kapcsolat kapcsolatot kell létrehozni toobe.
+Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó Insperity ExpensAble a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a Insperity ExpensAble közötti kapcsolat kapcsolatot kell létrehozni.
 
-A Insperity ExpensAble rendelje hello hello értékét **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
+Insperity ExpensAble, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
 
-tooconfigure és -teszthez az Azure AD az egyszeri bejelentkezés Insperity ExpensAble, a következő építőelemeket toocomplete hello szüksége:
+Az Azure AD egyszeri bejelentkezést a Insperity ExpensAble tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-3. **[Egy Insperity ExpensAble tesztfelhasználó létrehozása](#creating-an-insperity-expensable-test-user)**  -toohave egy megfelelője a Britta Simon a Insperity ExpensAble csatolt toohello az Azure AD felhasználói ábrázolása.
-4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+3. **[Egy Insperity ExpensAble tesztfelhasználó létrehozása](#creating-an-insperity-expensable-test-user)**  - való egy megfelelője a Britta Simon Insperity ExpensAble, amely csatolva van a felhasználó az Azure AD-ábrázolását.
+4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD az egyszeri bejelentkezés az Azure-portálon hello engedélyezése, és az Insperity ExpensAble alkalmazásban egyszeri bejelentkezés beállítása.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az Insperity ExpensAble alkalmazásban.
 
-**tooconfigure az Azure AD egyszeri bejelentkezést a Insperity ExpensAble, hajtsa végre a lépéseket követve hello:**
+**Konfigurálása az Azure AD az egyszeri bejelentkezés Insperity ExpensAble, hajtsa végre az alábbi lépéseket:**
 
-1. Az Azure portál, a hello hello **Insperity ExpensAble** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portálon a a **Insperity ExpensAble** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
+2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-insperityexpensable-tutorial/tutorial_insperityexpensable_samlbase.png)
 
-3. A hello **Insperity ExpensAble tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
+3. Az a **Insperity ExpensAble tartomány és az URL-címek** területen tegye a következőket:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-insperityexpensable-tutorial/tutorial_insperityexpensable_url.png)
 
-    a. A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://server.expensable.com/esapp/Authenticate?companyId=<company ID>`
+    a. Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://server.expensable.com/esapp/Authenticate?companyId=<company ID>`
 
     > [!NOTE] 
-    > Ez az érték nincs valós. Frissítse ezt az értéket hello tényleges bejelentkezési URL-CÍMÉT. Ügyfél [Insperity ExpensAble ügyfél-támogatási csoport](http://expensable.com/support/support-overview) tooget ezt az értéket. 
+    > Ez az érték nincs valós. Frissítse ezt az értéket a tényleges bejelentkezési URL-címet. Ügyfél [Insperity ExpensAble ügyfél-támogatási csoport](http://expensable.com/support/support-overview) lekérni ezt az értéket. 
  
-4. A hello **SAML-aláíró tanúsítványa** kattintson **Certificate(Base64)** , és mentse a hello tanúsítványfájlt a számítógépen.
+4. Az a **SAML-aláíró tanúsítványa** kattintson **Certificate(Base64)** , és mentse a tanúsítványfájlt, a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-insperityexpensable-tutorial/tutorial_insperityexpensable_certificate.png) 
 
@@ -123,68 +123,68 @@ Ebben a szakaszban az Azure AD az egyszeri bejelentkezés az Azure-portálon hel
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-insperityexpensable-tutorial/tutorial_general_400.png)
 
-6. A hello **Insperity ExpensAble konfigurációs** kattintson **Insperity ExpensAble konfigurálása** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **SAML Entitásazonosító és SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**
+6. A a **Insperity ExpensAble konfigurációs** kattintson **Insperity ExpensAble konfigurálása** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **SAML Entitásazonosító és SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-insperityexpensable-tutorial/tutorial_insperityexpensable_configure.png) 
 
-7. tooconfigure egyszeri bejelentkezést a **Insperity ExpensAble** oldalon kell letöltött toosend hello **metaadatainak XML-kódja**, **SAML-alapú egyszeri bejelentkezési URL-címe** és **SAML Entitásazonosító** túl[Insperity ExpensAble támogatási csoport](http://expensable.com/support/support-overview). Maguk állítják be ezt a beállítást toohave hello SAML SSO kapcsolat mindkét oldalán megfelelően beállítva.
+7. Egyszeri bejelentkezés konfigurálása **Insperity ExpensAble** oldalon kell küldeniük a letöltött **metaadatainak XML-kódja**, **SAML-alapú egyszeri bejelentkezési URL-címe** és **SAML Entitásazonosító** való [Insperity ExpensAble támogatási csoport](http://expensable.com/support/support-overview). Akkor állítsa be ezt a beállítást, hogy a SAML SSO kapcsolat mindkét oldalán megfelelően beállítva.
 
 > [!TIP]
-> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
+Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
+1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-insperityexpensable-tutorial/create_aaduser_01.png) 
 
-2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
+2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-insperityexpensable-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
+3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-insperityexpensable-tutorial/create_aaduser_03.png) 
 
-4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-insperityexpensable-tutorial/create_aaduser_04.png) 
 
-    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
+    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-an-insperity-expensable-test-user"></a>Egy Insperity ExpensAble tesztfelhasználó létrehozása
 
-hello ebben a szakaszban célja toocreate Britta Simon Insperity ExpensAble nevű felhasználó. Adjon együttműködve [Insperity ExpensAble támogatási csoport](http://expensable.com/support/support-overview) tooadd hello felhasználók hello Insperity ExpensAble fiók.
+Ez a szakasz célja Britta Simon Insperity ExpensAble nevű felhasználót létrehozni. Adjon együttműködve [Insperity ExpensAble támogatási csoport](http://expensable.com/support/support-overview) a felhasználók hozzáadása a Insperity ExpensAble fiók.
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
+### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
 
-Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooInsperity ExpensAble megadásával engedélyeznie.
+Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés Insperity ExpensAble Azure egyszeri bejelentkezéshez használandó.
 
 ![Felhasználó hozzárendelése][200] 
 
-**tooassign Britta Simon tooInsperity ExpensAble, hajtsa végre a következő lépéseket hello:**
+**Britta Simon hozzárendelése Insperity ExpensAble, hajtsa végre a következő lépéseket:**
 
-1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Hello alkalmazások listában válassza ki a **Insperity ExpensAble**.
+2. Az alkalmazások listában válassza ki a **Insperity ExpensAble**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-insperityexpensable-tutorial/tutorial_insperityexpensable_app.png) 
 
-3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -192,7 +192,7 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáfé
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -200,14 +200,14 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáfé
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
 
-Hello Insperity ExpensAble csempe a hozzáférési Panel hello kattintáskor automatikusan bejelentkezett tooyour Insperity ExpensAble alkalmazás kapja meg.
-További információ a hozzáférési Panel hello: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).
+Ha a hozzáférési panelen Insperity ExpensAble csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az Insperity ExpensAble alkalmazására.
+A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>További források
 
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

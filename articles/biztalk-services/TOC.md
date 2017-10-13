@@ -12,7 +12,7 @@
 ### [Szabályozás](biztalk-throttling-thresholds.md)
 ### [Szolgáltatásbeállítások és figyelés](biztalk-dashboard-monitor-scale-tabs.md)
 ## Migrate (Áttelepítés)
-### [BizTalk Server EDI megoldások tooBizTalk szolgáltatások](biztalk-migrating-to-edi-guide.md)
+### [BizTalk Server-alapú EDI-megoldások áttelepítése a BizTalk Services modulba](biztalk-migrating-to-edi-guide.md)
 ## Figyelés
 ### [Szolgáltatás állapotától függő feladatok](biztalk-service-state-chart.md)
 ## Biztonságos

@@ -1,6 +1,6 @@
 ---
-title: "Media Services eszközök több Tárfiókok között aaaManaging |} Microsoft Docs"
-description: "Ez a cikk útmutatást hogyan toomanage media services több tárfiókok között eszközök biztosítanak."
+title: "Eszközök kezelése a Media Services több Tárfiókok között |} Microsoft Docs"
+description: "Ez a cikk nyújtanak útmutatást a media services eszközök kezelése több tárfiókok között."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,35 +14,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/01/2017
 ms.author: juliako
-ms.openlocfilehash: 812f290d91f8d739be1c88db2b612767fda96220
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0b407c3b092fd2c706775154cee3164a9869315a
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="managing-media-services-assets-across-multiple-storage-accounts"></a>Eszközök kezelése a Media Services több Tárfiókok között
-A Microsoft Azure Media Services 2.2-es verziótól kezdődően csatolhat több tároló fiókok tooa egyetlen Media Services-fiók. Képes tooattach több tároló fiókok tooa Media Services-fiókkal biztosít hello a következő előnyökkel jár:
+A Microsoft Azure Media Services 2.2-es verziótól kezdődően csatolhat több tárfiókot egy Media Services-fiók. Egy Media Services-fiókhoz való csatolására a több tárfiókot a következő előnyöket nyújtja:
 
 * Terheléselosztásának az eszközök több tárfiókot.
 * Méretezési Media szolgáltatási tartalom feldolgozása nagy mennyiségű (jelenleg egyetlen tárfiók van maximális legfeljebb 500 TB). 
 
-Ez a témakör bemutatja, hogyan tooattach több tárfiókot Media Services-fiók használatával tooa [Azure Resource Manager API-k](https://docs.microsoft.com/rest/api/media/mediaservice) és [Powershell](/powershell/module/azurerm.media). Azt is bemutatja, hogyan toospecify különböző tárfiókok hello Media Services SDK-t használó eszközök létrehozásakor. 
+Ez a témakör bemutatja, hogyan kell csatlakoztatni a több tárfiókot a Media Services segítségével [Azure Resource Manager API-k](https://docs.microsoft.com/rest/api/media/mediaservice) és [Powershell](/powershell/module/azurerm.media). Azt is bemutatja, hogyan adhatja meg a különböző storage-fiókok létrehozása a Media Services SDK használatával eszközök esetén. 
 
 ## <a name="considerations"></a>Megfontolandó szempontok
-Több tároló fiókok tooyour Media Services-fiók csatolásához hello következők érvényesek:
+Ha több tárfiókok csatolását a Media Services-fiókkal, a következők érvényesek:
 
-* Csatolt tooa Media Services-fiók szerepelnie kell az összes tárfiók hello ugyanabban az adatközpontban, hello Media Services-fiókkal.
-* Jelenleg Miután a storage-fiók csatlakoztatva van toohello Media Services-fiókhoz megadott, nem választható le.
-* Elsődleges tárfiók egy Media Services-fiók létrehozás közbeni jelzett hello. Hello alapértelmezett tárfiók jelenleg nem módosítható. 
-* Jelenleg Ha azt szeretné, a ritkán használt adatok tárolási fiók toohello AMS-fiók tooadd, hello tárfiók kell Blob típus lehet, és toonon elsődleges.
+* Egy Media Services-fiókhoz csatolva az összes tárfiók ugyanabba az adatközpontba, a Media Services-fiókkal kell lennie.
+* Jelenleg a tárfiók a megadott Media Services-fiókhoz csatolva van, ha azt nem választható le.
+* Elsődleges tárfiók, a Media Services-fiók létrehozás közbeni jelzett egy. Jelenleg nem módosítható az alapértelmezett tárfiók. 
+* Jelenleg Ha azt szeretné, a ritkán használt adatok tárolási fiók hozzáadása az AMS-fiók, a tárfiók kell Blob típus lehet, és nem elsődleges értékre.
 
 Egyéb szempontok:
 
-A Media Services hello hello értékét használja **IAssetFile.Name** tulajdonságot, ha a adatfolyam-tartalmat (például http://{WAMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/ hello URL-címek kiépítéséhez streamingParameters.) Emiatt százalék-kódolás nem engedélyezett. hello hello Name tulajdonság értéke nem lehet hello következő [százalék kódolás-fenntartott karakterek](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters):! *' ();: @& = + $, /? % # [] ". Emellett csak lehet egy "." hello fájlnévkiterjesztés.
+A Media Services értékét használja a **IAssetFile.Name** tulajdonságot, ha az adatfolyam-tartalmak (például http://{WAMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/ a URL-címek kiépítéséhez streamingParameters.) Emiatt százalék-kódolás nem engedélyezett. A Name tulajdonság értéke nem lehet a következő [százalék kódolás-fenntartott karakterek](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters):! *' ();: @& = + $, /? % # [] ". Emellett csak lehet egy "." a fájlnévkiterjesztés.
 
-## <a name="tooattach-storage-accounts"></a>tooattach storage-fiókok  
+## <a name="to-attach-storage-accounts"></a>Tárfiók csatolása  
 
-a tárfiókok tooattach tooyour AMS-fiók, használjon [Azure Resource Manager API-k](https://docs.microsoft.com/rest/api/media/mediaservice) és [Powershell](/powershell/module/azurerm.media), ahogy az alábbi példa hello.
+Storage-fiókok csatolni az AMS-fiók, használja a [Azure Resource Manager API-k](https://docs.microsoft.com/rest/api/media/mediaservice) és [Powershell](/powershell/module/azurerm.media), a következő példában látható módon.
 
     $regionName = "West US"
     $subscriptionId = " xxxxxxxx-xxxx-xxxx-xxxx- xxxxxxxxxxxx "
@@ -60,15 +60,15 @@ a tárfiókok tooattach tooyour AMS-fiók, használjon [Azure Resource Manager A
 
 ### <a name="support-for-cool-storage"></a>Ritkán használt adatok tárolási támogatása
 
-Jelenleg Ha azt szeretné, a ritkán használt adatok tárolási fiók toohello AMS-fiók tooadd, hello tárfiók kell Blob típus lehet, és toonon elsődleges.
+Jelenleg Ha azt szeretné, a ritkán használt adatok tárolási fiók hozzáadása az AMS-fiók, a tárfiók kell Blob típus lehet, és nem elsődleges értékre.
 
-## <a name="toomanage-media-services-assets-across-multiple-storage-accounts"></a>több Tárfiókok között toomanage Media Services eszközök
-a következő kód hello hello legújabb Media Services SDK tooperform hello feladatok a következő használja:
+## <a name="to-manage-media-services-assets-across-multiple-storage-accounts"></a>A Media Services eszközök kezeléséhez több Tárfiókok között
+A következő kódot a Media Services SDK legújabb verzióját használja a következő feladatok végezhetők el:
 
-1. Hello társított összes hello storage-fiók megjelenítendő Media Services-fiókhoz megadott.
-2. Hello alapértelmezett a tárfióknak hello nevének beolvasására.
-3. Hozzon létre egy új eszköz hello alapértelmezett tárfiók.
-4. Hozzon létre egy kimeneti eszköz hello kódolási hello feladat a megadott tárfiók.
+1. Megjeleníti a megadott Media Services-fiókhoz társított összes storage-fiók.
+2. Az alapértelmezett tárfiók nevének beolvasása.
+3. Hozzon létre egy új eszköz az alapértelmezett tárfiók.
+4. Hozzon létre egy kimeneti eszköz a kódolási feladat a megadott tárfiók.
    
 ```
 using Microsoft.WindowsAzure.MediaServices.Client;
@@ -85,11 +85,11 @@ namespace MultipleStorageAccounts
 {
     class Program
     {
-        // Location of hello media file that you want tooencode. 
+        // Location of the media file that you want to encode. 
         private static readonly string _singleInputFilePath =
             Path.GetFullPath(@"../..\supportFiles\multifile\interview2.wmv");
 
-        // Read values from hello App.config file.
+        // Read values from the App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -104,30 +104,30 @@ namespace MultipleStorageAccounts
 
             _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
 
-            // Display hello storage accounts associated with 
-            // hello specified Media Services account:
+            // Display the storage accounts associated with 
+            // the specified Media Services account:
             foreach (var sa in _context.StorageAccounts)
                 Console.WriteLine(sa.Name);
 
-            // Retrieve hello name of hello default storage account.
+            // Retrieve the name of the default storage account.
             var defaultStorageName = _context.StorageAccounts.Where(s => s.IsDefault == true).FirstOrDefault();
             Console.WriteLine("Name: {0}", defaultStorageName.Name);
             Console.WriteLine("IsDefault: {0}", defaultStorageName.IsDefault);
 
-            // Retrieve hello name of a storage account that is not hello default one.
+            // Retrieve the name of a storage account that is not the default one.
             var notDefaultStroageName = _context.StorageAccounts.Where(s => s.IsDefault == false).FirstOrDefault();
             Console.WriteLine("Name: {0}", notDefaultStroageName.Name);
             Console.WriteLine("IsDefault: {0}", notDefaultStroageName.IsDefault);
 
-            // Create hello original asset in hello default storage account.
+            // Create the original asset in the default storage account.
             IAsset asset = CreateAssetAndUploadSingleFile(AssetCreationOptions.None,
                 defaultStorageName.Name, _singleInputFilePath);
-            Console.WriteLine("Created hello asset in hello {0} storage account", asset.StorageAccountName);
+            Console.WriteLine("Created the asset in the {0} storage account", asset.StorageAccountName);
 
-            // Create an output asset of hello encoding job in hello other storage account.
+            // Create an output asset of the encoding job in the other storage account.
             IAsset outputAsset = CreateEncodingJob(asset, notDefaultStroageName.Name, _singleInputFilePath);
             if (outputAsset != null)
-                Console.WriteLine("Created hello output asset in hello {0} storage account", outputAsset.StorageAccountName);
+                Console.WriteLine("Created the output asset in the {0} storage account", outputAsset.StorageAccountName);
 
         }
 
@@ -135,7 +135,7 @@ namespace MultipleStorageAccounts
         {
             var assetName = "UploadSingleFile_" + DateTime.UtcNow.ToString();
 
-            // If you are creating an asset in hello default storage account, you can omit hello StorageName parameter.
+            // If you are creating an asset in the default storage account, you can omit the StorageName parameter.
             var asset = _context.Assets.Create(assetName, storageName, assetCreationOptions);
 
             var fileName = Path.GetFileName(singleFilePath);
@@ -155,48 +155,48 @@ namespace MultipleStorageAccounts
         {
             // Declare a new job.
             IJob job = _context.Jobs.Create("My encoding job");
-            // Get a media processor reference, and pass tooit hello name of hello 
-            // processor toouse for hello specific task.
+            // Get a media processor reference, and pass to it the name of the 
+            // processor to use for the specific task.
             IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-            // Create a task with hello encoding details, using a string preset.
+            // Create a task with the encoding details, using a string preset.
             ITask task = job.Tasks.AddNew("My encoding task",
                 processor,
                 "Adaptive Streaming",
                 Microsoft.WindowsAzure.MediaServices.Client.TaskOptions.ProtectedConfiguration);
 
-            // Specify hello input asset toobe encoded.
+            // Specify the input asset to be encoded.
             task.InputAssets.Add(asset);
-            // Add an output asset toocontain hello results of hello job. 
+            // Add an output asset to contain the results of the job. 
             // This output is specified as AssetCreationOptions.None, which 
-            // means hello output asset is not encrypted. 
+            // means the output asset is not encrypted. 
             task.OutputAssets.AddNew("Output asset", storageName,
                 AssetCreationOptions.None);
 
-            // Use hello following event handler toocheck job progress.  
+            // Use the following event handler to check job progress.  
             job.StateChanged += new
                     EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-            // Launch hello job.
+            // Launch the job.
             job.Submit();
 
-            // Check job execution and wait for job toofinish. 
+            // Check job execution and wait for job to finish. 
             Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
             progressJobTask.Wait();
 
             // Get an updated job reference.
             job = GetJob(job.Id);
 
-            // If job state is Error hello event handling 
+            // If job state is Error the event handling 
             // method for job progress should log errors.  Here we check 
             // for error state and exit if needed.
             if (job.State == JobState.Error)
             {
-                Console.WriteLine("\nExiting method due toojob error.");
+                Console.WriteLine("\nExiting method due to job error.");
                 return null;
             }
 
-            // Get a reference toohello output asset from hello job.
+            // Get a reference to the output asset from the job.
             IAsset outputAsset = job.OutputMediaAssets[0];
 
             return outputAsset;
@@ -250,13 +250,13 @@ namespace MultipleStorageAccounts
 
         static IJob GetJob(string jobId)
         {
-            // Use a Linq select query tooget an updated 
+            // Use a Linq select query to get an updated 
             // reference by Id. 
             var jobInstance =
                 from j in _context.Jobs
                 where j.Id == jobId
                 select j;
-            // Return hello job reference as an Ijob. 
+            // Return the job reference as an Ijob. 
             IJob job = jobInstance.FirstOrDefault();
 
             return job;

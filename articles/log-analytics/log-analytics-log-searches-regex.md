@@ -1,6 +1,6 @@
 ---
-title: "az OMS szolgáltatáshoz aaaRegular kifejezések keresések jelentkezzen |} Microsoft Docs"
-description: "Naplóelemzési napló keresések toohello szűrő hello eredmények tooa reguláris kifejezés szerinti hello RegEx kulcsszó is használhatja.  Ez a cikk hello szintaxis biztosít néhány példa a kifejezést."
+title: "Az OMS szolgáltatáshoz reguláris kifejezések jelentkezzen keresések |} Microsoft Docs"
+description: "A RegEx kulcsszót Naplóelemzési napló kereséseket a szűrő az eredményeket a reguláris kifejezés szerinti használhatja.  Ez a cikk a szintaxis biztosít néhány példa a kifejezést."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -13,17 +13,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/08/2017
 ms.author: bwren
-ms.openlocfilehash: 3033593dac2c50e911fc69054947d40d4a74369b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9746170f157ed5065adc953a31687ff18bd73708
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="using-regular-expressions-toofilter-log-searches-in-log-analytics"></a>Napló keres a reguláris kifejezések toofilter használatával Naplóelemzési
+# <a name="using-regular-expressions-to-filter-log-searches-in-log-analytics"></a>A Naplóelemzési keres reguláris kifejezésekkel napló szűrése
 
-[A keresések jelentkezzen](log-analytics-log-searches.md) adattárból hello Naplóelemzési tooextract információk lehetővé teszik.  [Szűrési kifejezésekben](log-analytics-search-reference.md#filter-expressions) lehetővé teszik toofilter hello találatokat hello toospecific feltételek szerint.  Hello **RegEx** kulcsszó lehetővé teszi egy reguláris kifejezést a szűrő toospecify.  
+[A keresések jelentkezzen](log-analytics-log-searches.md) engedélyezi, hogy az információk kinyerése a Log Analytics-tárházat.  [Szűrési kifejezésekben](log-analytics-search-reference.md#filter-expressions) engedélyezi, hogy a megadott feltételek szerint a keresési eredmények szűréséhez.  A **RegEx** kulcsszó lehetővé teszi egy reguláris kifejezést a szűrő számára.  
 
-Ez a cikk részletesen hello Naplóelemzési által használt reguláris kifejezés szintaxisa adható meg.
+Ez a cikk részletesen a Naplóelemzési által használt reguláris kifejezés szintaxisa adható meg.
 
 > [!NOTE]
 > Csak a kereshető mezők RegEx tudja használni.  További információ a kereshető mezők: **mezőtípusok** a [található adatokat, és napló kereséseket a Naplóelemzési](log-analytics-log-searches.md#use-additional-filters).
@@ -31,21 +31,21 @@ Ez a cikk részletesen hello Naplóelemzési által használt reguláris kifejez
 
 ## <a name="regex-keyword"></a>RegEx kulcsszó
 
-A következő szintaxist toouse hello használata hello **RegEx** naplófájl-keresési kulcsszót.  Használhat más hello reguláris kifejezés ebben a cikkben toodetermine hello szintaxis szakasza hello.
+A következő szintaxissal használja a **RegEx** naplófájl-keresési kulcsszót.  Ez a cikk más részeiben segítségével határozza meg a reguláris kifejezés szintaxisa.
 
     field:Regex("Regular Expression")
     field=Regex("Regular Expression")
 
-A reguláris kifejezés tooreturn riasztások toouse típussal rendelkező rögzíti, például *figyelmeztetés* vagy *hiba*, a következő naplófájl-keresési hello szeretné használni.
+Például reguláris kifejezés használata típussal rendelkező riasztási rekordot *figyelmeztetés* vagy *hiba*, a következő naplófájl-keresési szeretné használni.
 
     Type=Alert AlertSeverity=RegEx("Warning|Error")
 
 ## <a name="partial-matches"></a>Részleges egyezések
-Vegye figyelembe, hogy a hello reguláris kifejezésnek egyeznie kell a teljes szöveges hello hello tulajdonság.  Részleges egyezéseket nem ad vissza rekordok.  Például, ha meg az elérni próbált tooreturn bejegyzéseit srv01.contoso.com nevű számítógépen, hello napló keresése a következő lenne **nem** vissza rekordot.
+Vegye figyelembe, hogy a reguláris kifejezésnek egyeznie kell a tulajdonság a teljes szöveg.  Részleges egyezéseket nem ad vissza rekordok.  Például, ha vissza rekordok srv01.contoso.com nevű számítógép kívánt, a következő naplófájl-keresési volna **nem** vissza rekordot.
 
     Computer=RegEx("srv..")
 
-Ennek oka az, csak hello első név egy részének hello hello reguláris kifejezésre illeszkedik.  hello következő két naplófájl keresések alakítanák vissza rekordok erről a számítógépről, mert azok felel meg a hello teljes nevét.
+Ennek oka az, csak a név első része a reguláris kifejezésre illeszkedik.  A következő két naplófájl keresi alakítanák vissza rekordok erről a számítógépről, mert azok felel meg a teljes nevet.
 
     Computer=RegEx("srv..@")
     Computer=RegEx("srv...contoso.com")
@@ -55,15 +55,15 @@ Adjon meg másik karaktereket.
 
 | Karakter | Leírás | Példa | A minta megfelel |
 |:--|:--|:--|:--|
-| egy | Hello karakter egy előfordulását. | Computer=Regex("Srv01.contoso.com") | Srv01.contoso.com |
+| egy | Egy előfordulást karakter. | Computer=Regex("Srv01.contoso.com") | Srv01.contoso.com |
 | . | Bármely egy karakter. | Computer=Regex("Srv...contoso.com") | Srv01.contoso.com<br>srv02.contoso.com<br>srv03.contoso.com |
-| egy? | Hello karakter nulla vagy egy előfordulását. | Számítógép = RegEx ("Szerv01?. "contoso.com") | srv0.contoso.com<br>Srv01.contoso.com |
-| a * | Hello karakter nulla vagy több előfordulását. | Computer=Regex("Srv01*.contoso.com") | srv0.contoso.com<br>Srv01.contoso.com<br>srv011.contoso.com<br>srv0111.contoso.com |
-| a + | Egy vagy több események hello karakter. | Computer=Regex("Srv01+.contoso.com") | Srv01.contoso.com<br>srv011.contoso.com<br>srv0111.contoso.com |
-| [*abc*] | Hello zárójelben egyetlen karakter | Computer=Regex("srv0[123].contoso.com") | Srv01.contoso.com<br>srv02.contoso.com<br>srv03.contoso.com |
-| [*egy*-*z*] | Hello közé egyetlen karakternek felel meg.  Több tartomány is tartalmazza. | Computer=Regex("srv0[1-3].contoso.com") | Srv01.contoso.com<br>srv02.contoso.com<br>srv03.contoso.com |
-| [^*abc*] | Hello zárójelben hello karakterek egyike sem | Computer=Regex("srv0[^123].contoso.com") | srv05.contoso.com<br>srv06.contoso.com<br>srv07.contoso.com |
-| [^*egy*-*z*] | Hello közé hello karakterek egyike sem. | Computer=Regex("srv0[^1-3].contoso.com") | srv05.contoso.com<br>srv06.contoso.com<br>srv07.contoso.com |
+| egy? | Nulla vagy egy előfordulási karakter. | Számítógép = RegEx ("Szerv01?. "contoso.com") | srv0.contoso.com<br>Srv01.contoso.com |
+| a * | Események nulla vagy több karakter. | Computer=Regex("Srv01*.contoso.com") | srv0.contoso.com<br>Srv01.contoso.com<br>srv011.contoso.com<br>srv0111.contoso.com |
+| a + | Egy vagy több események karakter. | Computer=Regex("Srv01+.contoso.com") | Srv01.contoso.com<br>srv011.contoso.com<br>srv0111.contoso.com |
+| [*abc*] | A szögletes zárójelbe egyetlen karakter | Computer=Regex("srv0[123].contoso.com") | Srv01.contoso.com<br>srv02.contoso.com<br>srv03.contoso.com |
+| [*egy*-*z*] | A tartomány egyetlen karakternek felel meg.  Több tartomány is tartalmazza. | Computer=Regex("srv0[1-3].contoso.com") | Srv01.contoso.com<br>srv02.contoso.com<br>srv03.contoso.com |
+| [^*abc*] | A szögletes zárójelbe karakterek egyike sem | Computer=Regex("srv0[^123].contoso.com") | srv05.contoso.com<br>srv06.contoso.com<br>srv07.contoso.com |
+| [^*egy*-*z*] | A tartomány karakterek egyike sem. | Computer=Regex("srv0[^1-3].contoso.com") | srv05.contoso.com<br>srv06.contoso.com<br>srv07.contoso.com |
 | [*n*-*m*] | Megfelelő numerikus karakterek tartományát. | Computer=Regex("SRV[01-03].contoso.com") | Srv01.contoso.com<br>srv02.contoso.com<br>srv03.contoso.com |
 | @ | Bármilyen karakterlánc. | Számítógép = RegEx ("srv@.contoso.com") | Srv01.contoso.com<br>srv02.contoso.com<br>srv03.contoso.com |
 
@@ -73,9 +73,9 @@ Adjon meg egy adott karaktereket szoftver többször is előfordul.
 
 | Karakter | Leírás | Példa | A minta megfelel |
 |:--|:--|:--|:--|
-| {n} |  *n*hello karakter előfordulását. | Computer=Regex("BW-Win-sc01{3}.bwren.Lab") | sávszélesség-Windows-sc0111.bwren.lab |
-| a {n} |  *n*vagy több példányának hello karakter. | Computer=Regex("BW-Win-sc01{3,}.bwren.Lab") | sávszélesség-Windows-sc0111.bwren.lab<br>sávszélesség-Windows-sc01111.bwren.lab<br>sávszélesség-Windows-sc011111.bwren.lab<br>sávszélesség-Windows-sc0111111.bwren.lab |
-| {n, m} |  *n*túl*m* hello karakter előfordulását. | Computer=Regex("BW-Win-sc01{3,5}.bwren.Lab") | sávszélesség-Windows-sc0111.bwren.lab<br>sávszélesség-Windows-sc01111.bwren.lab<br>sávszélesség-Windows-sc011111.bwren.lab |
+| {n} |  *n*a következő karaktert előfordulását. | Computer=Regex("BW-Win-sc01{3}.bwren.Lab") | sávszélesség-Windows-sc0111.bwren.lab |
+| a {n} |  *n*vagy több példányának a következő karaktert. | Computer=Regex("BW-Win-sc01{3,}.bwren.Lab") | sávszélesség-Windows-sc0111.bwren.lab<br>sávszélesség-Windows-sc01111.bwren.lab<br>sávszélesség-Windows-sc011111.bwren.lab<br>sávszélesség-Windows-sc0111111.bwren.lab |
+| {n, m} |  *n*a *m* előfordulások karakter. | Computer=Regex("BW-Win-sc01{3,5}.bwren.Lab") | sávszélesség-Windows-sc0111.bwren.lab<br>sávszélesség-Windows-sc01111.bwren.lab<br>sávszélesség-Windows-sc011111.bwren.lab |
 
 
 ## <a name="logical-expressions"></a>Logikai kifejezések
@@ -88,13 +88,13 @@ Válasszon ki több érték.
 
 
 ## <a name="literals"></a>Literálok
-Alakítsa át a speciális karakterek tooliteral karaktereket.  Ez magában foglalja a karakterek, amelyek funkciókat biztosítanak tooregular kifejezések például?-\*^\[\]{}\(\)+\|. &.
+Speciális karakterek átalakítása literális karaktereket.  Ez magában foglalja a karakterek, például a reguláris kifejezések funkciókat biztosító?-\*^\[\]{}\(\)+\|. &.
 
 | Karakter | Leírás | Példa | A minta megfelel |
 |:--|:--|:--|:--|
-| \\ | Egy speciális karakter tooa literális alakítja. | Status_CF =\\[hiba\\] @<br>Status_CF hiba =\\-@ | [Hiba] A fájl nem található.<br>Hiba – a fájl nem található. |
+| \\ | Átalakít egy speciális karakter szövegkonstans. | Status_CF =\\[hiba\\] @<br>Status_CF hiba =\\-@ | [Hiba] A fájl nem található.<br>Hiba – a fájl nem található. |
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-* Ismerkedjen meg [keresések jelentkezzen](log-analytics-log-searches.md) tooview és elemezhetik a hello Log Analytics-tárházban.
+* Ismerkedjen meg [keresések jelentkezzen](log-analytics-log-searches.md) megtekintése és elemzése a Log Analyticshez tárházban található adatokat.

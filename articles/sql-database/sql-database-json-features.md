@@ -1,6 +1,6 @@
 ---
-title: "SQL-adatbázis JSON-szolgáltatások aaaAzure |} Microsoft Docs"
-description: "Az Azure SQL Database lehetővé teszi tooparse, a lekérdezés és a JavaScript Object Notation (JSON) jelöléssel adatok formázása."
+title: "Azure SQL adatbázis JSON-funkció |} Microsoft Docs"
+description: "Az Azure SQL Database segítségével elemzési, lekérdezés, és adatok formázása a JavaScript Object Notation (JSON) jelöléssel."
 services: sql-database
 documentationcenter: 
 author: jovanpop-msft
@@ -15,11 +15,11 @@ ms.author: jovanpop
 ms.workload: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
-ms.openlocfilehash: 30a31a1b01482ec276646b6fd6ca0c1f581168d4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 883e661107dd838f5c381cdef2c7f891b9a9389c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="getting-started-with-json-features-in-azure-sql-database"></a>Ismerkedés az Azure SQL Database JSON szolgáltatásai
 Az Azure SQL Database lehetővé teszi elemezni, és JavaScript Object Notation ábrázolt adatok lekérdezése [(JSON)](http://www.json.org/) formázása, és a relációs adatok exportálása JSON-szövegként.
@@ -29,16 +29,16 @@ JSON-ja adatcsere modern webes és mobilalkalmazások használt népszerű adatf
 Azure SQL Database lehetővé teszi a JSON-adatok egyszerűen dolgozhat, és az adatbázis olyan modern-szolgáltatásokkal integrálja.
 
 ## <a name="overview"></a>Áttekintés
-Az Azure SQL-adatbázis a következő funkciók a JSON-adatokkal végzett munka hello biztosítja:
+Az Azure SQL-adatbázis a következő funkciókat biztosít a JSON-adatokkal végzett munka:
 
 ![JSON-funkciók](./media/sql-database-json-features/image_1.png)
 
-Ha JSON-szöveg, JSON kinyeri az adatokat, vagy győződjön meg arról, hogy JSON megfelelően van-e formázva hello beépített funkciókkal [JSON_VALUE](https://msdn.microsoft.com/library/dn921898.aspx), [JSON_QUERY](https://msdn.microsoft.com/library/dn921884.aspx), és [ISJSON](https://msdn.microsoft.com/library/dn921896.aspx) . Hello [JSON_MODIFY](https://msdn.microsoft.com/library/dn921892.aspx) funkció lehetővé teszi, hogy frissítse JSON-szövegben lévő értéket. További speciális lekérdezés és elemzés céljából, [OPENJSON](https://msdn.microsoft.com/library/dn921885.aspx) függvény a sorokra alakíthatja át a JSON-objektumok tömbjét. SQL-lekérdezés eredményhalmazt adott hello hajtható végre. Végül pedig a [FOR JSON](https://msdn.microsoft.com/library/dn921882.aspx) záradékot, amely lehetővé teszi, hogy formázni a JSON-szövegként a relációs táblákban tárolt adatokat.
+Ha JSON-szöveg, JSON kinyeri az adatokat, vagy győződjön meg arról, hogy a beépített funkciókkal megfelelően formázott JSON [JSON_VALUE](https://msdn.microsoft.com/library/dn921898.aspx), [JSON_QUERY](https://msdn.microsoft.com/library/dn921884.aspx), és [ISJSON](https://msdn.microsoft.com/library/dn921896.aspx). A [JSON_MODIFY](https://msdn.microsoft.com/library/dn921892.aspx) funkció lehetővé teszi, hogy frissítse JSON-szövegben lévő értéket. További speciális lekérdezés és elemzés céljából, [OPENJSON](https://msdn.microsoft.com/library/dn921885.aspx) függvény a sorokra alakíthatja át a JSON-objektumok tömbjét. SQL-lekérdezést a visszaadott eredményhalmaz hajtható végre. Végül pedig a [FOR JSON](https://msdn.microsoft.com/library/dn921882.aspx) záradékot, amely lehetővé teszi, hogy formázni a JSON-szövegként a relációs táblákban tárolt adatokat.
 
 ## <a name="formatting-relational-data-in-json-format"></a>Formázási relációs adatok JSON formátumban
-Ha egy webszolgáltatás-bővítmény vesz hello adatbázis réteg és biztosít egy válasz JSON formátumú, vagy JSON-ként formázott ügyféloldali JavaScript-keretrendszerek vagy szalagtár szerepel, amely adatokat fogad, közvetlenül az SQL-lekérdezést az adatbázis-tartalom formázhatók JSON-ként. Ön már nem formázza a JSON-NÁ, mert az Azure SQL Database eredményeinek toowrite alkalmazáskód van vagy néhány JSON szerializálási függvénytár tooconvert táblázatos lekérdezési eredmények belefoglalása, és majd szerializálható objektumok tooJSON formátumban. Ehelyett a JSON záradék tooformat SQL lekérdezési eredmények hello használata az Azure SQL Database JSON, és közvetlenül az alkalmazás használatát.
+Ha egy webszolgáltatás-bővítmény vesz az adatbázis adatait réteg és biztosít egy válasz JSON formátumú, vagy JSON-ként formázott ügyféloldali JavaScript-keretrendszerek vagy szalagtár szerepel, amely adatokat fogad, közvetlenül az SQL-lekérdezést az adatbázis-tartalom formázhatók JSON-ként. Már nem írása, amely az Azure SQL Database JSON-ként eredményeinek formázza alkalmazáskód használ, vagy bizonyos alakítsa át a táblázatos lekérdezési eredményeket, majd a JSON formátumban objektumokat szerializálni a JSON-szerializálási objektumtára tartalmazza. A FOR JSON záradék használatával ehelyett SQL lekérdezési eredmények formázza a JSON-t az Azure SQL Database, és közvetlenül az alkalmazás használatát.
 
-A következő példa hello, hello Sales.Customer tábla azon sorait-ként formázott JSON hello FOR JSON záradék használatával:
+A következő példában a Sales.Customer tábla azon sorait-ként formázott JSON a FOR JSON záradék használatával:
 
 ```
 select CustomerName, PhoneNumber, FaxNumber
@@ -46,7 +46,7 @@ from Sales.Customers
 FOR JSON PATH
 ```
 
-hello FOR JSON Path UTASÍTÁST záradék hello hello lekérdezési eredmények JSON-szövegként formázza. Oszlopnevek használatosak kulcsok, amíg hello cellaértékeket JSON értékként jönnek létre:
+A FOR JSON Path UTASÍTÁST záradék a lekérdezés eredményeinek JSON-szövegként formázza. Oszlopnevek használatosak kulcsok, amíg az értékek JSON értékként jönnek létre:
 
 ```
 [
@@ -56,9 +56,9 @@ hello FOR JSON Path UTASÍTÁST záradék hello hello lekérdezési eredmények 
 ]
 ```
 
-hello eredményhalmaz formátuma egy JSON-tömb, ahol mindegyik sor külön JSON-objektumként van formázva.
+A JSON-tömb, ahol mindegyik sor külön JSON-objektumként van formázva az eredményhalmaz formátuma.
 
-Elérési út, az azt jelenti, hogy testre szabhatja a JSON eredményének hello kimeneti formátum oszlopaliasnévként pontjelöléssel. a következő lekérdezés hello hello "CustomerName" kulcs hello kimeneti JSON formátumban hello neve megváltozik, és a telefon-és faxszáma beteszi hello "Ügyfél" altípusa objektum:
+Elérési út azt jelenti, hogy testre szabhatja a kimeneti formátum a JSON eredményének oszlopaliasnévként pontjelöléssel. A következő lekérdezés módosítja a kimeneti JSON formátumban a "CustomerName" kulcs nevét, és a telefon-és faxszáma helyezi az "Ügyfél" altípusa objektum:
 
 ```
 select CustomerName as Name, PhoneNumber as [Contact.Phone], FaxNumber as [Contact.Fax]
@@ -67,7 +67,7 @@ where CustomerID = 931
 FOR JSON PATH, WITHOUT_ARRAY_WRAPPER
 ```
 
-Ez a lekérdezés eredményének hello így néz ki:
+Ez a lekérdezés eredményének így néz ki:
 
 ```
 {
@@ -79,9 +79,9 @@ Ez a lekérdezés eredményének hello így néz ki:
 }
 ```
 
-Ebben a példában azt vissza egy adott JSON-objektum helyett egy tömb hello megadásával [WITHOUT_ARRAY_WRAPPER](https://msdn.microsoft.com/library/mt631354.aspx) lehetőséget. Ezt a beállítást is használhatja, ha tudja, hogy a lekérdezés egyetlen objektumot ad vissza.
+Ebben a példában azt egy adott JSON-objektum helyett egy tömb által visszaadott megadása a [WITHOUT_ARRAY_WRAPPER](https://msdn.microsoft.com/library/mt631354.aspx) lehetőséget. Ezt a beállítást is használhatja, ha tudja, hogy a lekérdezés egyetlen objektumot ad vissza.
 
-hello fő hello FOR JSON záradék értéke, mellyel vissza összetett hierarchikus adatokat az adatbázisból, beágyazott JSON-objektumok vagy tömbök formázott. a következő példa azt mutatja meg hogyan tooinclude rendelések toohello ügyfél tartozó rendelések beágyazott tömb hello:
+A fő a FOR JSON záradék értéke, mellyel vissza összetett hierarchikus adatokat az adatbázisból, beágyazott JSON-objektumok vagy tömbök formázott. A következő példa bemutatja, hogyan tartalmazza, amelyek az ügyfél rendelések beágyazott tömb rendeléseket:
 
 ```
 select CustomerName as Name, PhoneNumber as Phone, FaxNumber as Fax,
@@ -94,7 +94,7 @@ FOR JSON AUTO, WITHOUT_ARRAY_WRAPPER
 
 ```
 
-Külön lekérdezésekké tooget ügyféladatok és toofetch kapcsolódó rendelések lista küldése helyett minden hello szükséges adatok egyetlen lekérdezéssel, ahogy az alábbi minta kimenet hello szerezheti meg:
+Helyett külön felhasználói adatok lekérdezését, és majd beolvasni a kapcsolódó rendelések, kaphat egyetlen lekérdezést, az összes szükséges adatot küld a következő minta kimenet látható módon:
 
 ```
 {
@@ -110,7 +110,7 @@ Külön lekérdezésekké tooget ügyféladatok és toofetch kapcsolódó rendel
 ```
 
 ## <a name="working-with-json-data"></a>JSON-adatok használata
-Ha nincs szigorúan strukturált adatok, ha olyan alárendelt összetett objektumok, tömbök vagy hierarchikus adatokhoz, vagy ha a adatstruktúrák verzióinformációk hello JSON formátumban segíthet toorepresent bármely összetett adatstruktúra.
+Ha nincs szigorúan strukturált adatok, ha olyan alárendelt összetett objektumok, tömbök vagy hierarchikus adatokhoz, vagy a adatstruktúrák verzióinformációk, a JSON formátum segítségével bármely összetett adatszerkezet képviseli.
 
 JSON-ja a szöveges formátum, mint minden más karakterlánc az Azure SQL Database használható. Küldjön, vagy JSON-adatok tárolót, mint egy normál NVARCHAR:
 
@@ -128,18 +128,18 @@ AS BEGIN
 END
 ```
 
-hello JSON-adatokat ebben a példában használt hello NVARCHAR(MAX) típust jelöli. JSON szúrhatók be ezt a táblázatot, vagy a szabványos Transact-SQL-szintaxis használatával, ahogy az alábbi példa hello hello tárolt eljárás argumentumaként megadott:
+A JSON-adatokat ebben a példában használt jelképezi a NVARCHAR(MAX) típus használatával. JSON szúrhatók be ezt a táblázatot, vagy a tárolt eljárás szabványos Transact-SQL-szintaxis használatával az alábbi példában látható módon argumentumaként megadott:
 
 ```
 EXEC InsertProduct 'Toy car', '{"Price":50,"Color":"White","tags":["toy","children","games"]}'
 ```
 
-Bármely ügyféloldali nyelvi vagy a könyvtárban, amely az Azure SQL-adatbázis karakterlánc-adatokkal is működik a JSON-adatokat. JSON tárolhatja bármilyen, amely támogatja a hello NVARCHAR típus, például egy memóriaoptimalizált vagy tábla rendszerverzióval ellátott tábla. JSON nem vezet be bármilyen korlátozás hello ügyféloldali kódot vagy hello Adatbázisréteg.
+Bármely ügyféloldali nyelvi vagy a könyvtárban, amely az Azure SQL-adatbázis karakterlánc-adatokkal is működik a JSON-adatokat. JSON tárolhatja bármilyen, amely támogatja a NVARCHAR típus, például egy memóriaoptimalizált vagy tábla rendszerverzióval ellátott tábla. JSON nem vezet be bármely megkötés vagy az ügyféloldali kódot, vagy az adatbázis-rétegben.
 
 ## <a name="querying-json-data"></a>JSON-adatok lekérdezése
 Ha az Azure SQL-táblák tárolt JSON-ként formázott adatok, JSON funkciók lehetővé teszik, hogy ezeket az adatokat az SQL-lekérdezésben használni.
 
-JSON-funkciók Azure SQL adatbázis lehetővé teszik a rendelkezésre álló úgy kezelje, mint bármely más SQL adattípus JSON formátumú adatok. Könnyen értékek kinyerése hello JSON-szöveg, és JSON-adatokat a lekérdezésben használni:
+JSON-funkciók Azure SQL adatbázis lehetővé teszik a rendelkezésre álló úgy kezelje, mint bármely más SQL adattípus JSON formátumú adatok. Könnyen értékek kinyerése a JSON-szöveg, és JSON-adatokat a lekérdezésben használni:
 
 ```
 select Id, Title, JSON_VALUE(Data, '$.Color'), JSON_QUERY(Data, '$.tags')
@@ -151,13 +151,13 @@ set Data = JSON_MODIFY(Data, '$.Price', 60)
 where Id = 1
 ```
 
-hello JSON_VALUE függvény értéket kiolvassa a hello adatok oszlopban tárolt JSON-szöveg. Ez a funkció a JavaScript-szerű elérési tooreference értéket a JSON-szöveg tooextract. hello kiolvasott érték használható SQL-lekérdezésben bármely részén.
+A JSON_VALUE függvény értéket kiolvassa a az adatok oszlopban tárolt JSON-szöveg. Ez a funkció a JavaScript-szerű elérési út egy JSON-szövegben kibontásához értékre hivatkoznak. A kiolvasott értékkel használható SQL-lekérdezésben bármely részén.
 
-hello JSON_QUERY függvény hasonló tooJSON_VALUE. Eltérően JSON_VALUE Ez a függvény ki összetett alárendelt objektumot, például a tömb, vagy a JSON-szövegben kerülnek objektumokat.
+A JSON_QUERY függvény JSON_VALUE hasonlít. Eltérően JSON_VALUE Ez a függvény ki összetett alárendelt objektumot, például a tömb, vagy a JSON-szövegben kerülnek objektumokat.
 
-hello JSON_MODIFY függvény hello JSON-szöveg, amely frissíteni kell, valamint egy értéket, amely felülírja a régi hello hello elérési útja hello érték megadását teszi lehetővé. Ily módon egyszerűen frissítheti JSON-szöveg hello egészére reparsing nélkül.
+A JSON_MODIFY funkció lehetővé teszi a JSON-szöveg, amelyet frissíteni kell, valamint egy értéket, amely a régit, azzal felülírja a érték elérési útjának megadása. Ily módon egyszerűen frissítheti JSON-szöveg struktúra reparsing nélkül.
 
-Mivel a JSON egyszerű szövegként tárolódnak, nincsenek nem garantálja, hogy a szöveges oszlop tárolt hello értékek megfelelően formázott. Ellenőrizheti, hogy a szöveg JSON oszlopban tárolt megfelelően van formázva szabványos Azure SQL Database ellenőrző korlátozásokat és hello ISJSON függvény használatával:
+Mivel a JSON egyszerű szövegként tárolódnak, nincsenek nem garantálja, hogy a szöveges oszlop tárolt értékek megfelelően formázott. Ellenőrizheti, hogy a szöveg JSON oszlopban tárolt megfelelően van-e formázva szabványos Azure SQL Database ellenőrzési korlátozásokban, és a ISJSON függvény használatával:
 
 ```
 ALTER TABLE Products
@@ -165,18 +165,18 @@ ALTER TABLE Products
         CHECK (ISJSON(Data) > 0)
 ```
 
-Ha a bemeneti szöveg hello megfelelően van formázva JSON, a hello ISJSON függvény 1 hello értékét adja vissza. Minden Beszúrás vagy frissítés JSON oszlop ennél a határértéknél fog ellenőrizze, hogy új szöveges érték nem nem megfelelően formázott JSON-NÁ.
+Ha a bemeneti szöveg megfelelően formázott JSON-ban, a ISJSON függvény adja vissza az 1. Minden Beszúrás vagy frissítés JSON oszlop ennél a határértéknél fog ellenőrizze, hogy új szöveges érték nem nem megfelelően formázott JSON-NÁ.
 
 ## <a name="transforming-json-into-tabular-format"></a>A táblázatos formátumra JSON átalakítása
 Az Azure SQL Database emellett lehetővé teszi a JSON-gyűjtemények adatokká táblázatos formátumban és a load vagy a lekérdezés JSON átalakító.
 
-OPENJSON elemzi a JSON-szöveg, megkeresi a JSON-objektumok tömbje, hello tömb elemei hello telepítéseket és egy olyan sor visszaadása hello kimeneti eredménye hello tömb egyes elemei a táblázat értékű függvényből.
+OPENJSON JSON-szöveg elemez, megkeresi a JSON-objektumok tömbje, a tömb elemei telepítéseket és több olyan sort adja vissza a kimeneti eredmények a tömb egyes elemei a táblázat értékű függvényből.
 
 ![A táblázatos JSON](./media/sql-database-json-features/image_2.png)
 
-Hello a fenti példában a adható meg ahol toolocate hello JSON-tömb, amelyeket meg kell nyitni (a hello $. Rendelések elérési út), mely oszlopok vissza kell adni az eredményként, és ha toofind hello visszaadott értékek JSON regisztrációja, mivel a cellák.
+A fenti példában hol található a JSON-tömb, amely (az a $ meg kell nyitni adható meg. Rendelések elérési út), az eredmény, hol található a JSON-értékek cellákat visszaadott kell adható vissza oszlopokat.
 
-Azt alakíthatja át a JSON-tömb a hello @orders sorokra, a változó eredménykészlet elemzése, vagy sorok beillesztéséhez egy szabványos táblázatot:
+Egy JSON-tömb, az azt alakíthatja át a @orders sorokra, a változó eredménykészlet elemzése, vagy sorok beillesztéséhez egy szabványos táblázatot:
 
 ```
 CREATE PROCEDURE InsertOrders(@orders nvarchar(max))
@@ -194,14 +194,14 @@ AS BEGIN
 
 END
 ```
-hello gyűjtemény rendelések formázott JSON-tömb, és a megadott paraméter toohello tárolt eljárás elemzése, és hello rendelések táblába.
+A gyűjtemény rendelések formázott JSON-tömb, és a tárolt eljárás paramétere elemzése, és a rendeléseket táblába beszúrt egyikéhez.
 
 ## <a name="next-steps"></a>Következő lépések
-toolearn hogyan toointegrate JSON az alkalmazásba, tekintse meg ezeket az erőforrásokat:
+Megtudhatja, hogyan integrálható a JSON az alkalmazásba, jelölje ki ezeket az erőforrásokat:
 
 * [TechNet Blog](https://blogs.technet.microsoft.com/dataplatforminsider/2016/01/05/json-in-sql-server-2016-part-1-of-4/)
 * [Az MSDN dokumentációját](https://msdn.microsoft.com/library/dn921897.aspx)
 * [A Channel 9 videót](https://channel9.msdn.com/Shows/Data-Exposed/SQL-Server-2016-and-JSON-Support)
 
-a JSON integrálása az alkalmazás különböző forgatókönyvekkel kapcsolatos toolearn lásd: hello bemutatók ezen [Channel 9 videót](https://channel9.msdn.com/Events/DataDriven/SQLServer2016/JSON-as-a-bridge-betwen-NoSQL-and-relational-worlds) vagy olyan forgatókönyvekben, amelyek a használati eset a megfelelő található [JSON blogbejegyzéseket](http://blogs.msdn.com/b/sqlserverstorageengine/archive/tags/json/).
+A JSON integrálása az alkalmazás különböző forgatókönyvekkel kapcsolatos további tudnivalókért lásd: ezen bemutatók [Channel 9 videót](https://channel9.msdn.com/Events/DataDriven/SQLServer2016/JSON-as-a-bridge-betwen-NoSQL-and-relational-worlds) vagy olyan forgatókönyvekben, amelyek a használati eset a megfelelő található [JSON blogbejegyzéseket](http://blogs.msdn.com/b/sqlserverstorageengine/archive/tags/json/).
 

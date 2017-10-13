@@ -1,6 +1,6 @@
 ---
-title: "az iOS-alkalmazásoknak az Azure App Service Mobile Apps aaaCreate |} Microsoft Docs"
-description: "Hajtsa végre az ezen oktatóanyag tooget az iOS-fejlesztésbe Objective-C vagy Swift Azure mobil-háttéralkalmazások használatával"
+title: "iOS-alkalmazás létrehozása az Azure App Service Mobile Apps szolgáltatásban| Microsoft Docs"
+description: "Az útmutató bevezeti Önt az Azure-alapú mobil-háttéralkalmazások használatával megvalósítható, Objective-C vagy Swift nyelven történő iOS-fejlesztésbe."
 services: app-service\mobile
 documentationcenter: ios
 author: ggailey777
@@ -14,27 +14,27 @@ ms.devlang: objective-c
 ms.topic: hero-article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: 869fa971f7b5ab4a7119bbfa92808185d2ecdf8a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 36936ae66c458fcbedeec95cfa2f573a40c8af53
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-an-ios-app"></a>iOS-alkalmazás létrehozása
 [!INCLUDE [app-service-mobile-selector-get-started](../../includes/app-service-mobile-selector-get-started.md)]
 
 ## <a name="overview"></a>Áttekintés
-Ez az oktatóanyag bemutatja, hogyan tooadd [Azure Mobile Apps](app-service-mobile-value-prop.md), a felhőalapú háttérszolgáltatást, tooan iOS-alkalmazás. Először létre kell hoznunk egy új mobil-háttéralkalmazást. Ezt követően fogjuk használni egy egyszerű *teendőlista* iOS app toostore adatokat az Azure-ban.
+Az útmutató azt mutatja be, hogyan adhatja hozzá az [Azure Mobile Apps](app-service-mobile-value-prop.md) felhőalapú háttérszolgáltatást az iOS-alkalmazásokhoz. Először létre kell hoznunk egy új mobil-háttéralkalmazást. Ezt követően egy egyszerű *Tennivalólista* iOS-alkalmazást fogunk használni az adatoknak az Azure-ban való tárolására.
 
-toocomplete ebben az oktatóanyagban egy Mac van szüksége, és [az Azure-fiók](https://azure.microsoft.com/pricing/free-trial/)
+Az oktatóanyag elvégzéséhez egy Mac gépre és [egy Azure-fiókra](https://azure.microsoft.com/pricing/free-trial/) lesz szüksége.
 
 ## <a name="step-i-create-a-new-azure-mobile-app-backend"></a>1. lépés: Új Azure Mobile Apps-háttéralkalmazás létrehozása
 [!INCLUDE [app-service-mobile-dotnet-backend-create-new-service](../../includes/app-service-mobile-dotnet-backend-create-new-service.md)]
 
-## <a name="step-ii-configure-hello-backend-project"></a>II. lépés: Hello háttéralkalmazás-projekt konfigurálása
+## <a name="step-ii-configure-the-backend-project"></a>2. lépés: A háttéralkalmazás-projekt konfigurálása
 [!INCLUDE [app-service-mobile-configure-new-backend.md](../../includes/app-service-mobile-configure-new-backend.md)]
 
-## <a name="step-iii-download-and-run-hello-ios-app"></a>III. lépés: Töltse le és hello iOS-alkalmazás futtatása
+## <a name="step-iii-download-and-run-the-ios-app"></a>3. lépés: Az iOS-alkalmazás letöltése és futtatása
 [!INCLUDE [app-service-mobile-ios-run-app](../../includes/app-service-mobile-ios-run-app.md)]
 
 <!-- URLs -->

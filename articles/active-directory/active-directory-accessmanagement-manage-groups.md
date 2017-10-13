@@ -1,6 +1,6 @@
 ---
-title: az Azure Active Directoryban aaaManaging csoportok |} Microsoft Docs
-description: "Hogyan toocreate és csoportok toomanage Azure kezelése Azure Active Directory használatával felhasználókat."
+title: "Csoportkezelés az Azure Active Directoryban | Microsoft Docs"
+description: "Csoportok létrehozása és kezelése az Azure Active Directoryban az Azure-felhasználók kezeléséhez."
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -12,96 +12,95 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 07/24/2017
+ms.date: 10/10/2017
 ms.author: curtand
 ms.reviewer: kairaz.contractor
 ms.custom: oldportal;it-pro;
 robots: NOINDEX
-ms.openlocfilehash: 9bee224655639740b3dd99983892b30c3c537aa0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a29bc68e966a3706af557af0c626d369d04149aa
+ms.sourcegitcommit: 51ea178c8205726e8772f8c6f53637b0d43259c6
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="managing-groups-in-azure-active-directory"></a>Csoportkezelés az Azure Active Directoryban
 > [!div class="op_single_selector"]
 > * [Azure Portal](active-directory-groups-create-azure-portal.md)
-> * [klasszikus Azure portál](active-directory-accessmanagement-manage-groups.md)
 > * [PowerShell](active-directory-accessmanagement-groups-settings-v2-cmdlets.md)
 >
 >
 
-Hello szolgáltatások az Azure Active Directory (Azure AD) felhasználó felügyeleti egyik hello képességét toocreate felhasználók csoportját. Egy csoport tooperform felügyeleti feladatokhoz, mint az hozzárendelése licenccel, illetve engedélyeket felhasználók száma tooa egyszerre használja. Csoportok tooassign engedéllyel is használható
+Az Azure Active Directory (Azure AD) egyik felhasználó-kezelési szolgáltatása a felhasználói csoportok létrehozásának lehetősége. A csoportokat kezelési feladatok, például licencek hozzárendelése vagy egyszerre több felhasználónak adott engedélyek elvégzésére használhatja. A csoportokkal hozzáférési engedélyeket is hozzárendelhet a következőkhöz:
 
-* Erőforrások, például a hello directory objektumok
-* Erőforrások külső toohello címtár, például az SaaS-alkalmazásokhoz, Azure-szolgáltatásokkal, SharePoint-webhelyek vagy a helyszíni erőforrások
+* erőforrásokhoz, például a címtárban található objektumokhoz;
+* olyan címtáron kívül található erőforrásokhoz, mint például az SaaS-alkalmazások, az Azure-szolgáltatások, a SharePoint-webhelyek vagy a helyszíni erőforrások
 
-Ezenkívül erőforrás tulajdonosa is hozzárendelhetők hozzáférés tooa erőforrás tooan az Azure AD-csoport valaki más a tulajdonosa. Ez a hozzárendelés tagjai hello csoport hozzáférés toohello erőforrás. Ezt követően hello csoport hello tulajdonosa kezeli hello csoport tagjának kell lennie. Gyakorlatilag hello erőforrás tulajdonosa delegáltak toohello hello csoport hello engedély tooassign felhasználók tootheir erőforrás tulajdonosa.
+Ezenkívül az erőforrás tulajdonosa erőforrás-hozzáférési jogosultságot rendelhet egy más tulajdonában álló Azure AD-csoporthoz. Ezzel az adott csoport tagjai számára hozzáférést biztosít az erőforráshoz. Innentől kezdve a csoporttagság kezelését a csoport tulajdonosa végzi. A gyakorlatban az erőforrás tulajdonosa ad jogosultságot a csoport tulajdonosának arra, hogy felhasználókat rendeljen a saját erőforrásához.
 
 > [!IMPORTANT]
-> A Microsoft azt javasolja, hogy a hello használata az Azure AD kezelése [az Azure AD felügyeleti központban](https://aad.portal.azure.com) hello az Azure portál használata helyett hello hivatkozott ebben a cikkben a klasszikus Azure portálon. Hogyan toomanage hello Azure AD felügyeleti központban csoportosítja, lásd: [hozzon létre egy csoportot, és tagokat vehet az Azure Active Directoryban](active-directory-groups-create-azure-portal.md).
+> A Microsoft javasolja, hogy az Azure Portalon található [Azure AD felügyeleti központból](https://aad.portal.azure.com) kezelje az Azure AD-t az ebben a cikkben javasolt klasszikus Azure portál helyett. A csoportok az Azure AD felügyeleti központban való felügyeletével kapcsolatos további információkért lásd [az Azure Active Directoryban csoportok létrehozását és tagok hozzáadását ismertető](active-directory-groups-create-azure-portal.md) cikket.
 
 ## <a name="how-do-i-create-a-group"></a>Hogyan hozható létre csoport?
-Attól függően, hogy hello szolgáltatások toowhich a szervezet kér le létrehozhat egy csoportot a következő hello:
+Attól függően, hogy a szervezet melyik szolgáltatásokra fizetett elő, a következők használatával hozhat létre csoportot:
 
-* hello a klasszikus Azure portálon
-* hello Office 365 fiókportálon
-* hello Windows Intune-fiókportál
+* klasszikus Azure-portál
+* Office 365-fiókportál
+* Windows Intune-fiókportál
 
-Feladatok, a klasszikus Azure portálon hello végre ismerteti. Az Azure AD-címtár nem Azure portálon toomanage használatáról további információk: [az Azure AD-címtár felügyelete](active-directory-administer.md).
+A feladatokat a klasszikus Azure-portál alapján ismertetjük. További információk az Azure Active Directory nem Azure Portalon történő kezeléséről: [Az Azure AD-címtár felügyelete](active-directory-administer.md).
 
-1. A hello [a klasszikus Azure portálon](https://manage.windowsazure.com), jelölje be **Active Directory**, majd válassza ki a szervezet hello hello könyvtár nevét.
-2. Jelölje be hello **csoportok** fülre.
+1. A [klasszikus Azure-portálon](https://manage.windowsazure.com) válassza az **Active Directory** lehetőséget, majd válassza ki a szervezete címtárának nevét.
+2. Válassza ki a **Csoportok** lapot.
 3. Válassza ki a **Csoport hozzáadása** lehetőséget.
-4. A hello **csoport hozzáadása** ablakban hello nevét adja meg, és a csoport leírása hello.
+4. A **Csoport hozzáadása** ablakban adja meg a csoport nevét és leírását.
 
 ## <a name="how-do-i-add-or-remove-individual-users-in-a-security-group"></a>Hogyan lehet adott felhasználókat felvenni egy biztonsági csoportba vagy eltávolítani onnan?
-**egy adott felhasználó tooa csoport tooadd**
+**Adott felhasználó felvétele egy csoportba**
 
-1. A hello [a klasszikus Azure portálon](https://manage.windowsazure.com), jelölje be **Active Directory**, majd válassza ki a szervezet hello hello könyvtár nevét.
-2. Jelölje be hello **csoportok** fülre.
-3. Nyissa meg a kívánt tooadd tagok hello csoport toowhich. Nyissa meg hello **tagok** hello lapján csoport ki, ha azt már nem megjelenítése.
+1. A [klasszikus Azure-portálon](https://manage.windowsazure.com) válassza az **Active Directory** lehetőséget, majd válassza ki a szervezete címtárának nevét.
+2. Válassza ki a **Csoportok** lapot.
+3. Nyissa meg azt a csoportot, amelybe tagokat szeretne felvenni. Nyissa meg a kiválasztott csoporthoz tartozó **Tagok** lapot, ha még nem jelent meg.
 4. Válassza ki a **Tagok hozzáadása** lehetőséget.
-5. A hello **tagok hozzáadása** lap, hello felhasználó vagy egy csoport, amelyet az tooadd, ez a csoport tagjaként válassza hello nevét. Győződjön meg arról, hogy ez a név szerepel-e toohello **kijelölt** ablaktáblán.
+5. A **Tagok hozzáadása** oldalon válassza ki annak a felhasználónak vagy csoportnak a nevét, amelyet tagként fel kíván venni a csoportba. Győződjön meg arról, hogy ez a név a **Kiválasztva** ablaktáblán is szerepel.
 
-**tooremove egy felhasználót egy csoportból**
+**Adott felhasználó eltávolítása egy csoportból**
 
-1. A hello [a klasszikus Azure portálon](https://manage.windowsazure.com), jelölje be **Active Directory**, majd válassza ki a szervezet hello hello könyvtár nevét.
-2. Jelölje be hello **csoportok** fülre.
-3. Nyissa meg a hello csoportot, amelyből el kívánja tooremove tagokat.
-4. Jelölje be hello **tagok** lap, válassza hello neve hello tag szeretné, hogy tooremove ebből a csoportból, és kattintson **eltávolítása**.
-5. Erősítse meg hello parancssorba tooremove a hello csoport tagja.
+1. A [klasszikus Azure-portálon](https://manage.windowsazure.com) válassza az **Active Directory** lehetőséget, majd válassza ki a szervezete címtárának nevét.
+2. Válassza ki a **Csoportok** lapot.
+3. Nyissa meg azt a csoportot, amelyből tagokat szeretne eltávolítani.
+4. Válassza ki a **Tagok** lapot, majd a csoportból eltávolítani kívánt tag nevét, végül kattintson az **Eltávolítás** gombra.
+5. A megjelenő kérdésre válaszul erősítse meg, hogy az adott tagot el szeretné távolítani a csoportból.
 
-## <a name="how-can-i-manage-hello-membership-of-a-group-dynamically"></a>Hogyan kezelhetők a csoportok tagsága hello dinamikusan?
-Az Azure AD-nagyon egyszerűen állíthat be egy egyszerű szabályt toodetermine, mely felhasználók toobe hello csoport tagjai. Az egyszerű szabály egy olyan szabály, amely csak egyszeres összehasonlítást végez. Például ha egy csoport tooa SaaS-alkalmazáshoz van hozzárendelve, állíthatja be a szabály tooadd "Értékesítési Rep." beosztással rendelkező felhasználók Ez a szabály majd hozzáférést toothis SaaS alkalmazás tooall felhasználóinak, hogy a címtárban beosztás.
+## <a name="how-can-i-manage-the-membership-of-a-group-dynamically"></a>Hogyan történik a csoporttagság dinamikus kezelése?
+Az Azure AD-ben könnyen beállíthat egy egyszerű szabályt annak megadásához, hogy melyek a csoporttagságra kijelölt felhasználók. Az egyszerű szabály egy olyan szabály, amely csak egyszeres összehasonlítást végez. Ha például egy csoport egy SaaS-alkalmazáshoz van hozzárendelve, beállíthat egy olyan szabályt, hogy a csoportba az „értékesítési képviselő” beosztású felhasználók legyenek felvéve. Ez a szabály minden ilyen beosztású felhasználó számára hozzáférést biztosít az adott SaaS-alkalmazáshoz.
 
-Amikor egy felhasználó módosítása semmilyen attribútumot hello rendszer kiértékeli egy könyvtár toosee hello attribútum módosítása hello felhasználó bármely csoport kiváltották, ha az összes dinamikus csoport szabály hozzáadása vagy eltávolítása. Ha egy felhasználói csoporton szabály megfelel, hozzáadásuk után tag toothat csoportként. Azok a csoport tagjai hello szabály már nem felel meg, ha eltávolítja a tagjai a csoportból.
+Ha egy felhasználó bármely attribútuma megváltozik, a rendszer kiértékeli a dinamikus csoportokra vonatkozó összes szabályt egy címtárban, és ezáltal ellenőrzi, hogy a felhasználó attribútumának módosulása magával vonja-e bármilyen csoport hozzáadását vagy eltávolítását. Ha egy felhasználó megfelel egy csoportra vonatkozó szabálynak, automatikusan tagként lesz hozzáadva az adott csoporthoz. Amennyiben már nem felel meg az arra a csoportra vonatkozó szabálynak, amelynek tagja, el lesz távolítva az adott csoportból, és a tagsága megszűnik.
 
 > [!NOTE]
-> Biztonsági vagy Office 365-csoportok esetében dinamikustagság-szabály beállítására is lehetőség van. A beágyazott csoporttagság biztonságicsoport-alapú hozzárendelés tooapplications jelenleg nem támogatott.
+> Biztonsági vagy Office 365-csoportok esetében dinamikustagság-szabály beállítására is lehetőség van. A beágyazott csoporttagság az alkalmazásokhoz történő csoportalapú hozzárendeléseknél egyelőre nem támogatott.
 >
-> Dinamikus csoporttagság az Azure AD Premium licenc toobe rendelt
+> Dinamikus csoporttagság hozzárendeléséhez Prémium szintű Azure AD licencet kell hozzárendelni
 >
-> * hello felügyelő rendszergazdához; csoporton hello szabály
-> * Hello csoport minden tagja
+> * a csoportszabályt felügyelő rendszergazdához;
+> * A csoport minden tagja
 >
 >
 
-**tooenable dinamikus csoporttagság**
+**Dinamikus csoporttagság engedélyezése**
 
-1. A hello [a klasszikus Azure portálon](https://manage.windowsazure.com), jelölje be **Active Directory**, majd válassza ki a szervezet hello hello könyvtár nevét.
-2. Jelölje be hello **csoportok** fülre, és azt szeretné, hogy tooedit nyitott hello csoport.
-3. Jelölje be hello **konfigurálása** lapot, és utána állítsa be **dinamikus csoporttagságok engedélyezése** túl**Igen**.
-4. Állítson be egy egyszerű szabályt hello csoport toocontrol dinamikus csoporttagság működését. Győződjön meg arról, hogy hello **felhasználók hozzáadása az adott** beállítás van kiválasztva, majd válassza ki egy felhasználói tulajdonságot (például részleg, beosztás, stb.), hello listából
+1. A [klasszikus Azure-portálon](https://manage.windowsazure.com) válassza az **Active Directory** lehetőséget, majd válassza ki a szervezete címtárának nevét.
+2. A **Csoportok** lapon nyissa meg a szerkeszteni kívánt csoportot.
+3. A **Konfigurálás** lapon állítsa a **Dinamikus csoporttagságok engedélyezése** beállítást **Igen** értékre.
+4. Állítson be egy egyszerű szabályt a csoporthoz a dinamikus csoporttagság működésének szabályozása érdekében. Győződjön meg arról, hogy az **Add users where** (Felhasználók hozzáadása, ahol) beállítás ki van jelölve, majd válasszon ki egy felhasználói tulajdonságot (például részleg, beosztás) a listából.
 5. Ezt követően válasszon ki egy állapotot (nem egyenlő, egyenlő, nem ezzel kezdődik, ezzel kezdődik, nem tartalmazza, tartalmazza, nem egyezik, megegyezik).
-6. Adja meg az összehasonlítási értéket hello kiválasztott felhasználói tulajdonságnak.
+6. Adjon meg egy összehasonlító értéket a kiválasztott felhasználói tulajdonságnál.
 
-arról, hogyan toolearn toocreate *speciális* (szabályok többszörös összehasonlítást is tartalmazó) szabályok dinamikus csoporttagság, lásd: [toocreate attribútumok használata speciális szabályok](active-directory-accessmanagement-groups-with-advanced-rules.md).
+Információk a dinamikus csoporttagsághoz kapcsolódó *speciális* (akár többszörös összehasonlítást is tartalmazó) szabályok létrehozásáról: [Using attributes to create advanced rules](active-directory-accessmanagement-groups-with-advanced-rules.md) (Attribútumok használata speciális szabályok létrehozásához).
 
 ## <a name="additional-information"></a>További információ
 E cikkekben további információk találhatók az Azure Active Directoryval kapcsolatban.
 
-* [Hozzáférés tooresources kezelése az Azure Active Directoryval](active-directory-manage-groups.md)
+* [Erőforráshozzáférés-kezelés Azure Active Directory-csoportokkal](active-directory-manage-groups.md)
 * [Azure Active Directory-parancsmagok csoportbeállítások konfigurálásához](active-directory-accessmanagement-groups-settings-cmdlets.md)
 * [Az Azure Active Directory segítségével végzett alkalmazásfelügyeletre vonatkozó cikkek jegyzéke](active-directory-apps-index.md)
 * [Mi az az Azure Active Directory?](active-directory-whatis.md)

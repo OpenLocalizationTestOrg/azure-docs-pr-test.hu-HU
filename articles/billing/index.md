@@ -1,8 +1,8 @@
 ---
-title: "aaaAzure számlázási dokumentációja – oktatóanyagok API-referencia |} Microsoft Docs"
-description: "Megtudhatja, hogyan toounderstand a számlázási Azure-ban is, mivel a(z) kezelni és megfigyelni a használati és költségek. Oktatóanyagok, gyakori kérdések, API-referenciák és egyéb dokumentáció."
+title: "Az Azure Billing dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg az Azure számlázását, valamint a használat és költségek kezelését és felügyeletét. Oktatóanyagok, gyakori kérdések, API-referenciák és egyéb dokumentáció."
 services: billing
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 663ea1a4526ed897e963d3daa9ed41a7bdbabef0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 70aac3b0544e652ca92219fba9e6bfb405c2eadc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-billing-documentation"></a>Azure Billing – dokumentáció
 
-Megtudhatja, hogyan toounderstand az Azure számlázás, és a figyelő használati és költségek. Oktatóanyagok, gyakran ismételt kérdéseket, az API-hivatkozások, és egyéb dokumentációt mutatja be toomanage fiókját.
+Ismerje meg az Azure számlázását, valamint a használat és költségek felügyeletét. Oktatóanyagok, gyakori kérdések, API-referenciák és egyéb dokumentáció, amelyekből megtudhatja, hogyan kezelheti fiókját.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -125,7 +125,7 @@ Megtudhatja, hogyan toounderstand az Azure számlázás, és a figyelő használ
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>Ismerje meg, toouse hello API-k</h3>
+                        <h3>Útmutató az API-k használatához</h3>
                         <p><a href="/azure/billing-usage-rate-card-overview">API – Áttekintés</a></p>
                         <p><a href="/azure/billing-usage-rate-card-partner-solution-cloudcruiser">Partneri megoldás: Cloud Cruiser</a></p>
                         <p><a href="/azure/billing-usage-rate-card-partner-solution-cloudyn">Partneri megoldás: Cloudyn</a></p>

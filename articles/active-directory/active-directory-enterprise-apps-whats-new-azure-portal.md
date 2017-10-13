@@ -1,5 +1,5 @@
 ---
-title: "What's new in Azure Active Directory vállalati Alkalmazáskezelés aaa |} Microsoft Docs"
+title: "What's new in Azure Active Directory vállalati Alkalmazáskezelés |} Microsoft Docs"
 description: "Ismerje meg a vállalati alkalmazások kezelése az Azure Active Directory újdonságai."
 services: active-directory
 documentationcenter: 
@@ -15,141 +15,141 @@ ms.workload: identity
 ms.date: 07/13/2017
 ms.author: asteen
 ms.reviewer: asteen
-ms.openlocfilehash: 7f4b7b11b256f1e910e557f45f3709d762416f0c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0c32a6719292aa903aa32dfdc4a31114e7a28346
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="whats-new-in-enterprise-application-management-in-azure-active-directory"></a>Vállalati alkalmazások kezelése az Azure Active Directory újdonságai 
 
-Azure Active Directory (Azure AD) továbbfejlesztett vállalati alkalmazás-felügyeleti eszközök, az új szolgáltatásokat és képességeket toomake egyszerűbbé és hatékonyabbá teszi alkalmazások kezelését.
+Azure Active Directory (Azure AD) továbbfejlesztett vállalati alkalmazás felügyeleti eszközöket, az új szolgáltatásokat és képességeket egyszerűbb és hatékony kezelése alkalmazások tételére.
 
-Az alábbiakban néhány olyan hello fejlesztésen esett át az Azure AD-t hello [Azure-portálon](https://portal.azure.com).
+Az alábbiakban néhány olyan a fejlesztésen esett át az Azure AD-t a [Azure-portálon](https://portal.azure.com).
 
-- Egy továbbfejlesztett alkalmazáskatalógusában egy egyszerűsített létrehozása alkalmazásmodell élményt, és minden hello alkalmazástípusok, a használt támogatása. 
+- Egy továbbfejlesztett alkalmazáskatalógusában egy egyszerűsített létrehozása alkalmazásmodell élményt, és a használt összes alkalmazástípusokat támogatja. 
 - Egy vadonatúj gyors üzembe helyezési élményt nyújt segítséget az alkalmazás a próbaüzem az induláshoz. 
 - Néhány kattintással önkiszolgáló-szabályzatok konfigurálása. 
-- Fejlesztések tooapplication proxy, az egyszeri bejelentkezés konfigurációs, és kapcsolja a saját felhasználói élményre, hogy lehetővé teszi a korábbinál több végzett tooget.
+- Az alkalmazásproxy, az egyszeri bejelentkezés konfigurálása és a saját felhasználói élményre, teszi több kész, mint előtt kapcsolja.
 
-## <a name="improvements-toohello-azure-active-directory-application-gallery"></a>Fejlesztések toohello Azure Active Directory Alkalmazáskatalógusában
+## <a name="improvements-to-the-azure-active-directory-application-gallery"></a>Az Azure Active Directory Alkalmazáskatalógusában fejlesztései
 
-Adja hozzá a kedvenc alkalmazások, hogy származó hello [alkalmazáskatalógusában](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery), egyéni alkalmazások most kiterjesztése, toohello felhő, vagy új alkalmazások kidolgozása.  Ismerkedés az új felhasználói élmény a kattintva **Hozzáadás** a hello **vállalati alkalmazások** áttekintése vagy **összes alkalmazás** paneleken.
+Adja hozzá a kedvenc alkalmazások, hogy származó a [alkalmazáskatalógusában](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery), akkor most kiterjesztése a felhőbe egyéni alkalmazások vagy kidolgozása új alkalmazások.  Ismerkedés az új felhasználói élmény a kattintva **Hozzáadás** a a **vállalati alkalmazások** áttekintése vagy **összes alkalmazás** paneleken.
  
   ![Egy alkalmazás hozzáadása](./media/active-directory-enterprise-apps-whats-new-azure-portal/01.png)
 
-Egyszer hello katalógusában, láthatja a kiemelt alkalmazások a felhasználók átadása támogató első középső jelenik meg.  Különböző kategóriákba toodrill kívüli bármilyen típusú megkeresheti az Önt érdeklő hello alkalmazások, vagy hello keresési élményt toorapidly keresés hello alkalmazásokat toointegrate is használhat.
+Egyszer az oldalon láthatja a kiemelt alkalmazások a felhasználók átadása támogató első középső jelenik meg.  Megkeresheti az Önt érdeklő alkalmazások elemezze különböző kategóriákban kívüli bármilyen típusú, vagy használhatja a keresési élményt biztosít az alkalmazásokat, amelyet integrálni szeretne gyorsan kereséséhez.
 
-  ![hello alkalmazáskatalógusában](./media/active-directory-enterprise-apps-whats-new-azure-portal/02.png)
+  ![Az alkalmazás gyűjteménye](./media/active-directory-enterprise-apps-whats-new-azure-portal/02.png)
 
 ## <a name="add-custom-applications-from-one-place"></a>Adja hozzá az egyéni alkalmazások egyetlen helyről
 
-Ezenkívül tooadding előre integrált alkalmazások hello gyűjteményből, és minden hello egyéni konfigurációs felhasználói élményre, hogy a használt tooin hello klasszikus felügyeleti portált volt most hello új portálon lehetséges. Hogy az alkalmazás a helyszíni hello alkalmazásproxy használatával, a saját jelszó vagy összevont egyszeri Bejelentkezéses alkalmazás integrálása kiterjesztése, vagy egy alkalmazás beállításjegyzékkel hello vadonatúj alkalmazás létrehozása, hogy megkaphassa tooit minden a Ez egy egyetlen Helyezze el.
+Mellett előre integrált alkalmazások hozzáadása a gyűjteményből, az egyéni alkalmazás konfigurációjának észlel volt amellyel a klasszikus felügyeleti portálon mindegyike most már az új portálon lehetséges. E kiterjesztése a helyszíni saját jelszó vagy összevont egyszeri Bejelentkezéses alkalmazások integrálása az alkalmazásproxy használatával olyan alkalmazást, vagy egy, az alkalmazás beállításjegyzékkel vadonatúj alkalmazás létrehozása, is elérheti azt minden a Ez egy helyen.
 
   ![Saját alkalmazás hozzáadása](./media/active-directory-enterprise-apps-whats-new-azure-portal/03.png)
 
  
-**tooget lépések hozzáadása a saját alkalmazás**:
+**Első lépések hozzáadása a saját alkalmazás**:
 
-1. Kattintson a hello **saját hivatkozás hozzáadása** hello alkalmazáskatalógusában hello tetején. 
-2. Látni fogja, elé, két lehetőség közül választhat: **telepítsen egy meglévő alkalmazást** vagy **új alkalmazások fejlesztése**. Olvassa el a toolearn hello különbség a két hello-beállítások között, és hogyan toouse őket.
+1. Kattintson a **saját hivatkozás hozzáadása** a alkalmazáskatalógusában tetején. 
+2. Látni fogja, elé, két lehetőség közül választhat: **telepítsen egy meglévő alkalmazást** vagy **új alkalmazások fejlesztése**. Olvassa el a további tudnivalók a különbség a két beállítás és a használatukat.
 
 ### <a name="deploying-existing-applications"></a>Meglévő alkalmazások központi telepítése
 
-1. Ha van egy alkalmazás már fut, és csak toointegrate azt az egyszeri bejelentkezést az Azure AD-be, vagy kiosztása, válassza ki a hello **telepítsen egy meglévő alkalmazást** lehetőséget. Adjon meg egy nevet az alkalmazáshoz, kattintson a **Hozzáadás**.
-2. Ennyi az egész! Helyett tooknow kellene az alkalmazás előre összes hello adatait, most állíthatja be az új alkalmazás hello bal oldali menü nézetre lépne, és hello alkalmazás tooyour tetszőlegesen konfigurálásával bármikor működése.
+1. Ha van egy alkalmazás már fut, és csak szeretné integrálni Azure ad-val egyszeri bejelentkezést a vagy átadása, válassza ki a **telepítsen egy meglévő alkalmazást** lehetőséget. Adjon meg egy nevet az alkalmazáshoz, kattintson a **Hozzáadás**.
+2. Ennyi az egész! Helyett ismerete szükséges előre az alkalmazás adatait, most állíthatja be az új alkalmazás működése a bal oldali menü nézetre lépne, és a kérelem a tetszőlegesen a konfigurálásával bármikor.
 
   ![Egy kattintással egy meglévő alkalmazás hozzáadása](./media/active-directory-enterprise-apps-whats-new-azure-portal/04.png)
  
 ### <a name="developing-new-applications"></a>Új alkalmazások fejlesztése
 
-1. Ha az új alkalmazást, nincs az Ön tooget toohello alkalmazás beállításjegyzék jobb hello gyűjteményből egyszerűen:
-2. Kattintson a hello **hozzáadása a saját** hello Alkalmazáskatalógusában, jelölje be hello kapcsolót **kifejleszthet egy meglévő alkalmazást** választás, és megjelenik egy Gyorshivatkozás jobb toohello alkalmazás hozzáadása a felhasználói élmény.
+1. Ha az új alkalmazást, nincs egyszerűen tehet szert az alkalmazás beállításjegyzék jobb a gyűjteményből:
+2. Kattintson a a **hozzáadása a saját** lehetőséget az alkalmazás gyűjteményből, válassza ki a **kifejleszthet egy meglévő alkalmazást** választás, és megjelenik egy Gyorshivatkozás az alkalmazás hozzáadása élmény való jog.
 
   ![Néhány kattintással egy újonnan által fejlesztett alkalmazás hozzáadása](./media/active-directory-enterprise-apps-whats-new-azure-portal/05.png)
 
 
 >[!NOTE]
->Hello alkalmazás beállításjegyzék használó alkalmazások felvétele után jelenik megjelenítése a vállalati alkalmazások, ahol be fog tudni tooconfigure hello listájának egyszeri bejelentkezés és az új alkalmazás-hozzáférési házirendjeit kezelése.
+>Miután hozzáadta az alkalmazás beállításjegyzék használó alkalmazások, láthatja, ahol képes lesz az egyszeri bejelentkezés konfigurálása és kezelése az új alkalmazás-hozzáférési házirendjeit a vállalati alkalmazások listája jelenik meg.
 
-  ![Access tooyour új alkalmazást a vállalati alkalmazások kezelése](./media/active-directory-enterprise-apps-whats-new-azure-portal/06.png)
+  ![Az új alkalmazást a vállalati alkalmazásokhoz való hozzáférés kezelése](./media/active-directory-enterprise-apps-whats-new-azure-portal/06.png)
 
 
 ## <a name="quick-start-get-going-with-your-new-application-right-away"></a>Gyors üzembe helyezési: azonnal az új alkalmazás használata 
 
-Miután hozzáadott egy alkalmazást, hogy előre integrált kell vagy az alkalmazásba, létrehoztunk Önnek egy gyors üzembe helyezési szabott élmény tooget gyorsan földelve hello új alkalmazások élményt nyújt. Ha rendszeresen kövesse lehetőségekről, azt fogja hello felhasználói felületén keresztül, és mutatja be az új alkalmazás a próbaüzem minél gyorsabban fog tooget. 
+Miután hozzáadott egy alkalmazást, hogy előre integrált kell vagy az alkalmazásba, az első gyorsan földelve az új alkalmazások élményt nyújt a következőkhöz ideális gyors üzembe helyezési élmény nagyságú volt. Ha rendszeresen kövesse a beállításokat, azt fogja a felhasználói felületen keresztül, illetve megmutatja, hogyan induláshoz a próbaüzem az új alkalmazás a lehető leggyorsabban tegye. 
  
-  ![hello új alkalmazások gyors start élmény](./media/active-directory-enterprise-apps-whats-new-azure-portal/07.png)
+  ![Az új alkalmazások gyors start élmény](./media/active-directory-enterprise-apps-whats-new-azure-portal/07.png)
 
- Az új – gyors üzembe helyezési felhasználói élmény tetszőleges időpontban, és bármely alkalmazás, letöltheti kattintva **gyors üzembe helyezési** hello alkalmazás bal oldali navigációs menüjében.
+ Az új – gyors üzembe helyezési felhasználói élmény tetszőleges időpontban, és bármely alkalmazás, letöltheti kattintva **gyors üzembe helyezési** alkalmazás bal oldali navigációs menüjében.
 
 
 ## <a name="updated-application-proxy-configuration"></a>Frissített alkalmazás proxy konfigurációja
-Most, most szóbeli hello hozzáadott új alkalmazások a helyszíni környezetben fut, és azt szeretné, hogy toointegrate az Azure AD-val.  Egyikét hello ritkán használt adatok új tapasztalatairól hello új alkalmazás konfigurációs hello új Azure AD portálon, hogy a felosztás hello alkalmazás bejelentkezés módja az alkalmazás a proxy konfigurációját is most könnyen teszi Egyszeri jelszót, vagy összevont a vállalati hálózat megfelelő toohello felhőalapú, anélkül, hogy toocreate hello alkalmazás több példánya futó alkalmazásokat.
+Most most szóbeli a hozzáadott új alkalmazások közül a helyszíni környezetben fut, és szeretné integrálni az Azure AD-val.  Az új alkalmazás konfigurációs tapasztalatairól a ritkán használt adatok új dolog az új Azure ad portálon, hogy az alkalmazás bejelentkezés módja az alkalmazás proxykonfigurációt a felosztás is most könnyen teszi Egyszeri jelszót, vagy összevont alkalmazásokat, hogy a vállalati hálózat közvetlenül a felhőbe, anélkül, hogy az alkalmazás több példánya létrehozásához.
 
-Továbbá toothis, akkor most is konfigurálhat hello való használathoz az Azure AD alkalmazásproxy hello jobb portálról hello új hozzáadott új alkalmazások, beleértve az alkalmazások, amelyek támogatják a natív Windows-hitelesítés során lép fel.
+Továbbá a is konfigurálhat az új alkalmazások felvett új portálról, beleértve az alkalmazások, amelyek támogatják a natív Windows-hitelesítés lép az Azure AD-alkalmazásproxy jobb való használatra.
 
-  ![Egy alkalmazás toouse hello integrált Windows-hitelesítés bejelentkezési beállítás konfigurálása](./media/active-directory-enterprise-apps-whats-new-azure-portal/08.png)
+  ![Az alkalmazás bejelentkezésre lehetőség integrált Windows-hitelesítés konfigurálása](./media/active-directory-enterprise-apps-whats-new-azure-portal/08.png)
  
 
-tooget elindult, a natív Windows-hitelesítés alkalmazás alkalmazásproxy hello konfigurálása:
-1. Kattintson a hello egyszeri bejelentkezés navigációs elem, és válassza a **integrált Windows-hitelesítés** hello bejelentkezési beállítások panelen és hello beállítások tooyour tetszőlegesen konfigurálása.
-2. Fölött támogató ezek új hitelesítési módok, most már is feltöltheti a tanúsítványokat a biztonságos végpontok a szervezeten belül futó egyéni tartományok toosupport alkalmazásokhoz.  
+A natív Windows-hitelesítés alkalmazás konfigurálása az alkalmazásproxy első lépések:
+1. Kattintson az egyszeri bejelentkezés navigációs elemre, és válassza a **integrált Windows-hitelesítés** a bejelentkezési beállítások panelen, és konfigurálja a tetszőlegesen a beállításokat.
+2. Fölött támogató ezek új hitelesítési módok, most már is feltöltheti a tanúsítványokat a egyéni tartományok biztonságos végpontok a szervezeten belül futó alkalmazásokat támogatja.  
  
-   ![A tanúsítvány toobe hello alkalmazásproxy használt feltöltése](./media/active-directory-enterprise-apps-whats-new-azure-portal/09.png)
+   ![Az alkalmazásproxy használni kívánt tanúsítvány feltöltése](./media/active-directory-enterprise-apps-whats-new-azure-portal/09.png)
 
-3. egy új tanúsítványt a kedvenc helyszíni alkalmazáshoz tooupload kattintson a hello **alkalmazásproxy** hello bal oldali navigációs menü, majd hello **tanúsítvány** választó, és a feltöltése egy a tanúsítványfájl tooencrypt kérelmeket is használhatók. a felhőbeli végpont tooyour alkalmazásból.
+3. Töltse fel a kedvenc a helyszíni alkalmazások új tanúsítványt, kattintson a a **alkalmazásproxy** a bal oldali navigációs menü, majd a **tanúsítvány** választó, és azt használatával titkosítsa tanúsítványfájl kéri le a felhőbeli végpont az alkalmazás feltöltése.
 
 ## <a name="advanced-federated-single-sign-on-configuration"></a>Speciális összevont egyszeri bejelentkezés konfigurálása
 
-Azok a még ma a összevont alkalmazásokat használ nincsenek számos új szolgáltatást hello SAML-alapú bejelentkezés beállítási paneljén. toostart, most már teljes mértékben testreszabható, hozzáadása, eltávolítása és hello kiállítva jogcímekként SAML-jogkivonatokat a meglévő felhasználói attribútumok hozzárendelését.
+Azok a még ma a összevont alkalmazásokat használ nincsenek számos új funkciója a SAML-alapú bejelentkezés beállítási paneljén. Kezdő-és most meg teljesen testreszabása, hozzáadása, távolítsa el, és a meglévő felhasználói attribútumok a SAML-jogkivonatokat jogcímekként kiadott megfeleltetése.
  
-  ![Az átadott tooa összevont alkalmazás hello SAML-jogkivonat felhasználói attribútumok testreszabása](./media/active-directory-enterprise-apps-whats-new-azure-portal/10.png)
+  ![Egy összevont alkalmazás átadott a SAML-jogkivonat felhasználói attribútumok testreszabása](./media/active-directory-enterprise-apps-whats-new-azure-portal/10.png)
 
 
-hello új összevont egyszeri Bejelentkezéses konfigurációs toocheck:
-1. Nyisson meg egy összevont alkalmazás **egyszeri bejelentkezés** hello bal oldali navigációs menü, és győződjön meg arról, hogy hello a panel "*SAML-alapú bejelentkezés** mód van kiválasztva. 
-2. Egyszer, engedélyezze a hello jelölőnégyzet alatti hello **felhasználói attribútumok** hello SAML-jogkivonat tartalmazza összes hello attribútumok címsor toomodify átadott toothat alkalmazás.
+Ellenőrizze, hogy meg az új összevont egyszeri bejelentkezés konfigurálása:
+1. Nyisson meg egy összevont alkalmazás **egyszeri bejelentkezés** panel a bal oldali navigációs menü, és győződjön meg arról, hogy a "*SAML-alapú bejelentkezés** mód van kiválasztva. 
+2. Egyszer, engedélyezze a jelölőnégyzet alatti a **felhasználói attribútumok** módosításához az összes attribútum szerepel a SAML-jogkivonat címsor átadott alkalmazásra.
 
-Akkor is is létrehozása, helyettesítő, és összevont egyszeri bejelentkezéshez használt tanúsítványok kezelése, valamint szerkesztheti, akik lekérdezi értesítést kap, ha a tanúsítvány tooexpire kapcsolatos. Látni fogja az alábbi új beállításait hello **tanúsítványok** címsor a hello azonos egyszeri bejelentkezés panelen.
+Akkor is is létrehozása, helyettesítő, és összevont egyszeri bejelentkezéshez használt tanúsítványok kezelése, valamint szerkesztheti, akik lekérdezi értesíti, ha a tanúsítvány érvényessége hamarosan lejár. Látni fogja az alábbi új beállításait a **tanúsítványok** az azonos egyszeri bejelentkezés panel fejléc.
  
   ![Egy új tanúsítványt, a lejárat értesítő e-mailt és a tanúsítvány-aláírási beállítások testreszabása létrehozása](./media/active-directory-enterprise-apps-whats-new-azure-portal/11.png)
 
 ### <a name="relay-state-paramenter"></a>Továbbítási állapotot paramenter
-Végezetül korábban is kiterjesztettük SAML-alapú URL-cím paraméterek készletét hello tooinclude hello támogatott **továbbítási-State paraméter**, vagyis hello lapot a felhasználók megnyílik a belül egy összevont alkalmazás hello bejelentkezés befejezése után. Ez nagyon fontos tooconfigure beállítást, ha azt szeretné, hogy toosend a felhasználók tooa specifikus elhelyezhetők belül hello alkalmazás tooget melyek gyorsan.
+Végezetül korábban is kiterjesztettük SAML-alapú URL-cím paraméterei közé tartozik a támogatott a **továbbítási-State paraméter**, vagyis a lapon, a felhasználók megnyílik az összevont alkalmazás belül a bejelentkezés befejezése után. Ez az nagyon hasznos beállítással konfigurálható, ha azt szeretné, hogy a felhasználónak egy adott helyre, hogy melyek gyorsan az alkalmazásban.
 
-  ![Hello SAML továbbítási-State paraméter beállítása](./media/active-directory-enterprise-apps-whats-new-azure-portal/12.png)
+  ![A SAML továbbítási-State paraméter beállítása](./media/active-directory-enterprise-apps-whats-new-azure-portal/12.png)
  
-**tooset hello továbbítási-state paraméter**:
+**A relay-state paraméter beállítása**:
 
-1. Hello engedélyezése **megjelenítése speciális URL-beállításainak** hello jelölőnégyzetét **tartomány és az URL-címek** hello egyszeri bejelentkezést konfigurációs panel a fejléc. 
-2. Ezután a, megjelenik egy készletét új URL-címet adjon meg mezőben jelenik meg, amely lehetővé teszi a tooset ezt, és más, SAML-alapú URL-beállításainak.
+1. Engedélyezze a **megjelenítése speciális URL-beállításainak** jelölőnégyzetet, a a **tartomány és az URL-címek** konfigurációs panel egyszeri bejelentkezést a fejléc. 
+2. Ezután a, láthatja, új URL-cím csoportja bemeneti mezőkbe jelenik meg, amely lehetővé teszi a erről és más, SAML-alapú URL-beállításainak beállítása.
 
 ## <a name="bring-your-own-password-sso-applications"></a>Kapcsolja a saját jelszavát SSO alkalmazások
 
-Tudjuk, hogy nem minden alkalmazás támogatja-e az összevonási jobb hello kezdő verzióról. Például lehet, hogy az egyik hello hozzáadott új alkalmazások van egy egyéni bejelentkezési képernyő, a felhasználók által használt egy felhasználónév és jelszó toosign a számára. Ilyen típusú alkalmazások az Azure AD használatával továbbra is integrálhatja a **kapcsolja a saját alkalmazásai** szolgáltatás, amely már Ön tooconfigure hello új portálon.
+Tudjuk, hogy nem minden alkalmazás támogatja-e az összevonási jobb kívül a mezőbe. Például lehet, hogy a hozzáadott új alkalmazások egyike egy egyéni bejelentkezési képernyő, felhasználók által használt felhasználónévvel és jelszóval bejelentkezni. Ilyen típusú alkalmazások az Azure AD használatával továbbra is integrálhatja a **kapcsolja a saját alkalmazásai** szolgáltatás, amely érhető el az új portálon konfigurálható.
  
   ![Egyéni jelszó vaulting alkalmazások az Azure AD integrálása](./media/active-directory-enterprise-apps-whats-new-azure-portal/13.png)
 
-**kimenő hello "Kapcsolja a saját alkalmazásai" funkció toocheck**:
+**A "Kapcsolja a saját alkalmazásai" funkció kivétele**:
 
-1. Miután beállította hello egyszeri bejelentkezés módját egy új egyéni alkalmazás, amely felvett túl**jelszóalapú bejelentkezés**adjon hello URL-cím, ahol hello alkalmazás Ez a beállítás a bejelentkezési képernyő, kattintson **mentése**.  
-2. Teheti meg, amely azt fogja automatikusan scrape URL-címet a felhasználónév és jelszó beviteli mező, és lehetővé teszik toouse az Azure AD toosecurely továbbítja a jelszavakat toothat alkalmazás hello hozzáférési panel bővítmény használatával.
+1. Miután beállította a egyetlen bejelentkezés módját egy új egyéni alkalmazás, amely való felvételét **jelszóalapú bejelentkezés**, adja meg az URL-cím, ahol az alkalmazás Ez a beállítás a bejelentkezési képernyőt, és kattintson a **mentése**.  
+2. Ha így tesz, azt fogja automatikusan scrape a felhasználónévhez URL-címet, és jelszó beviteli mező, és biztonságos átvitelére a jelszavakat, hogy a hozzáférési panel bővítmény használó alkalmazások az Azure AD használatára.
 
 ## <a name="configure-self-service-application-access"></a>Önkiszolgáló alkalmazás-hozzáférés konfigurálása
 
-Nagy mennyiségű új alkalmazások hozzáadása után lehet, hogy meg szeretné, hogy a felhasználók toobrowse tooallow és adja hozzá az ilyen alkalmazások tootheir saját hozzáférési csoportot toobother anélkül, hogy rendszergazdaként. Most ezzel a legújabb verzióval, konfigurálható és kezelhető önkiszolgáló alkalmazás-hozzáférés közvetlenül a hello új portált.
+Nagy mennyiségű új alkalmazások hozzáadása után lehet, hogy engedélyezni szeretné a felhasználókat, keresse meg és adja hozzá ezeket az alkalmazásokat a saját hozzáférés panelek anélkül, hogy rendszergazdaként többet jelzi, hogy. Most ezzel a legújabb verzióval, konfigurálható és kezelhető önkiszolgáló alkalmazás-hozzáférés közvetlenül a az új portál.
 
   ![Önkiszolgáló alkalmazás hozzáférése a jelszót egyszeri bejelentkezési alkalmazás konfigurálása](./media/active-directory-enterprise-apps-whats-new-azure-portal/14.png)
  
-**tooconfigure és önkiszolgáló alkalmazás-hozzáférés kezelése**:
+**Önkiszolgáló alkalmazás-hozzáférés kezelésére és beállítására**:
 
-1. tooget elindult, kiválaszthatja hello **önkiszolgáló** lehetőséget hello alkalmazás a bal oldali navigációs menü és hello beállítása **toorequest access toothis alkalmazás engedélyezése a felhasználók?** túl lehetőséget " **Igen**". 
-2. Ez lehetővé teszi az tooconfigure tooapprove access toothis alkalmazás engedélyezett, és melyik csoport az önkiszolgáló felhasználók hozzáadódnak. Emellett ha a jelszó egyszeri bejelentkezést hello alkalmazás van konfigurálva, azt is megtudhatja lehetősége révén a nem kötelezően engedélyezi ezeket a jóváhagyóknak toomanage hello jelszavak toohello alkalmazás hozzárendelése.
+1. Először jelölje ki a **önkiszolgáló** lehetőséget az alkalmazás a bal oldali navigációs menü és állítsa be a **az alkalmazáshoz való hozzáférés kérését?** lehetőséggel "**Igen**". 
+2. Ez lehetővé teszi ki jogosult az alkalmazáshoz való hozzáférés jóváhagyásához, és megkapja az önkiszolgáló felhasználók csoport konfigurálása. Emellett ha az alkalmazás van konfigurálva, a jelszó egyszeri bejelentkezést, azt is megtudhatja egy másik lehetőség, amely lehetővé teszi, hogy ezek jóváhagyóknak kezelheti a jelszavakat az alkalmazáshoz rendelt opcionálisan engedélyezése.
 
 ##<a name="feedback"></a>Visszajelzés
 
-Reméljük, például a hello használata jobb, az Azure AD élmény. Ne hamarosan hello visszajelzését! Visszajelzését és ötleteket a fejlesztéséhez fel hello **felügyeleti portál** szakasza a [visszajelzési fórumon](https://feedback.azure.com/forums/169401-azure-active-directory/category/162510-admin-portal).  Ritkán használt adatok új dolgai minden nap kiépítésével foglalkozó még érdeklődőbbek és az útmutatás tooshape felhasználása és határozza meg, mi készíteni.
+Reméljük, például a továbbfejlesztett használata az Azure AD felhasználói élmény. Ne hamarosan visszajelzését! Visszajelzését és ötleteket javítására szolgáló utáni a **felügyeleti portál** szakasza a [visszajelzési fórumon](https://feedback.azure.com/forums/169401-azure-active-directory/category/162510-admin-portal).  Ritkán használt adatok új dolgai minden nap kiépítésével foglalkozó még érdeklődőbbek és az útmutató a shape felhasználása és határozza meg, mi készíteni.
 
 ## <a name="next-steps"></a>Következő lépések
 

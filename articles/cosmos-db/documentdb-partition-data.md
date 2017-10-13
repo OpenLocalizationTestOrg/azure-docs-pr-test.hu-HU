@@ -1,6 +1,6 @@
 ---
-title: "aaaPartitioning és az Azure Cosmos Adatbázisba skálázás |} Microsoft Docs"
-description: "Ismerje meg, hogyan particionálási működését az Azure Cosmos Adatbázisba, hogyan tooconfigure particionálás és partíciókulcsok, és hogyan toopick jobb hello partícióazonosító kulcs az alkalmazáshoz."
+title: "Particionálás és az Azure Cosmos Adatbázisba skálázás |} Microsoft Docs"
+description: "Ismerje meg, hogyan particionálási működését Azure Cosmos DB, hogyan lehet konfigurálni a particionálás és kulcsok partícióazonosító és hogyan válassza ki a megfelelő partíciókulcs az alkalmazáshoz."
 services: cosmos-db
 author: arramac
 manager: jhubbard
@@ -15,27 +15,27 @@ ms.topic: article
 ms.date: 05/24/2017
 ms.author: arramac
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 30621d2ba0b89efb72005680d5f3a73998347514
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 81010d91ac7fe8fa7149c52ed56af304cf4e83d9
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="partitioning-in-azure-cosmos-db-using-hello-documentdb-api"></a>Az Azure Cosmos Adatbázisba hello DocumentDB API használatával particionálás
+# <a name="partitioning-in-azure-cosmos-db-using-the-documentdb-api"></a>Az Azure Cosmos Adatbázisba a DocumentDB API használatával particionálás
 
-[A Microsoft Azure Cosmos DB](../cosmos-db/introduction.md) van a globális elosztott, több modellre adatbázis-szolgáltatás, amely toohelp elérni gyors és kiszámítható teljesítmény és méretezhetőség zökkenőmentesen együtt az alkalmazás növekedésével azt. 
+[A Microsoft Azure Cosmos DB](../cosmos-db/introduction.md) egy globális elosztott, több modellre adatbázis szolgáltatás célja, hogy gyors és kiszámítható teljesítmény és méretezhetőség zökkenőmentesen együtt az alkalmazás eléréséhez, növekedésével azt. 
 
-Ez a cikk áttekintést hogyan toowork a Cosmos DB tárolók a particionálás hello DocumentDB API. Lásd: [particionálás és horizontális skálázás](../cosmos-db/partition-data.md) fogalmakat és ajánlott eljárások az Azure Cosmos DB API-k a particionálás áttekintését. 
+Ez a cikk áttekintést Cosmos DB tároló DocumentDB API-val particionálás használata. Lásd: [particionálás és horizontális skálázás](../cosmos-db/partition-data.md) fogalmakat és ajánlott eljárások az Azure Cosmos DB API-k a particionálás áttekintését. 
 
-tooget kód használatába, töltse le a hello projekt [Github](https://github.com/Azure/azure-documentdb-dotnet/tree/a2d61ddb53f8ab2a23d3ce323c77afcf5a608f52/samples/documentdb-benchmark). 
+Első lépésként kóddal, töltse le a projektet a [Github](https://github.com/Azure/azure-documentdb-dotnet/tree/a2d61ddb53f8ab2a23d3ce323c77afcf5a608f52/samples/documentdb-benchmark). 
 
-A cikk elolvasása után fog tudni tooanswer hello a következő kérdéseket:   
+A cikk elolvasása után lesz a következő kérdések megválaszolásához:   
 
 * Hogyan működik az Azure Cosmos Adatbázisba particionálási munkahelyi?
 * Hogyan konfigurálhatók a particionálás az Azure Cosmos Adatbázisba
-* Mik azok a partíciós kulcsok, és hogyan tegye én választom ki hello jobb partíciókulcs az alkalmazáshoz?
+* Mik azok a partíciós kulcsok, és hogyan tegye én választom ki a megfelelő partíciókulcs az alkalmazáshoz?
 
-tooget kód használatába, töltse le a hello projekt [Azure Cosmos DB teljesítményének tesztelése illesztőprogram minta](https://github.com/Azure/azure-documentdb-dotnet/tree/a2d61ddb53f8ab2a23d3ce323c77afcf5a608f52/samples/documentdb-benchmark). 
+Első lépésként kóddal, töltse le a projektet a [Azure Cosmos DB teljesítményének tesztelése illesztőprogram minta](https://github.com/Azure/azure-documentdb-dotnet/tree/a2d61ddb53f8ab2a23d3ce323c77afcf5a608f52/samples/documentdb-benchmark). 
 
 <!-- placeholder until we have a permanent solution-->
 <a name="partition-keys"></a>
@@ -44,7 +44,7 @@ tooget kód használatába, töltse le a hello projekt [Azure Cosmos DB teljesí
 
 ## <a name="partition-keys"></a>Partíciós kulcsok
 
-Hello DocumentDB API hello partíciós kulcs definíciójában egy JSON-útvonal hello formában kell megadni. hello következő táblázatban példák partíció fontos definíciókat és tooeach hello értékeket. hello partíciós kulcs van megadva egy elérési utat, mint pl. `/department` jelöli hello tulajdonság részleg. 
+A DocumentDB API-t a partíciós kulcs definíciójában egy JSON-útvonal formájában kell megadni. Az alábbi táblázat példákat partíció fontos definíciókat és a megfelelő értékeket. A partíciós kulcs van megadva egy elérési utat, mint pl. `/department` jelenti. a tulajdonság részleg. 
 
 <table border="0" cellspacing="0" cellpadding="0">
     <tbody>
@@ -54,43 +54,43 @@ Hello DocumentDB API hello partíciós kulcs definíciójában egy JSON-útvonal
         </tr>
         <tr>
             <td valign="top"><p>/Department</p></td>
-            <td valign="top"><p>Ahol doc az hello elem doc.department toohello értéke megfelel.</p></td>
+            <td valign="top"><p>A cikk esetén a doc doc.department értékének felel meg.</p></td>
         </tr>
         <tr>
             <td valign="top"><p>/ tulajdonságok/neve</p></td>
-            <td valign="top"><p>Ha doc elem hello (beágyazott tulajdonság) doc.properties.name toohello értékének felel meg.</p></td>
+            <td valign="top"><p>Ahol doc-e az elem (beágyazott tulajdonság) doc.properties.name értékének felel meg.</p></td>
         </tr>
         <tr>
             <td valign="top"><p>/ID</p></td>
-            <td valign="top"><p>Doc.id toohello értéke megfelel (azonosító és a partíciós kulcs vannak hello azonos tulajdonság).</p></td>
+            <td valign="top"><p>Doc.id értéke megfelel (azonosító és a partíciós kulcs, amelyek ugyanahhoz a tulajdonsághoz).</p></td>
         </tr>
         <tr>
             <td valign="top"><p>/ "részleg neve"</p></td>
-            <td valign="top"><p>Megfelel a toohello doc ["részleg neve"], ahol doc az hello elem értékét.</p></td>
+            <td valign="top"><p>Megfelel doc ["részleg neve"], ahol doc-e az elem értékét.</p></td>
         </tr>
     </tbody>
 </table>
 
 > [!NOTE]
-> partíciókulcs hello szintaxisának hasonló toohello elérési utat az indexelés házirend elérési utak hello legfontosabb különbség, hogy az elérési út hello felel meg a toohello tulajdonság hello érték helyett, azaz van nem helyettesítő karakter hello végén. Például lehet megadni/részleg /? tooindex hello értékének részleg, de adja meg a /department hello partíciós kulcs definíciójában. hello partíciókulcs implicit módon indexelt, és nem zárható ki indexelő indexelési házirend felülbírálások használatával.
+> A partíciós kulcs szintaxisa a következő elérési útja a legfontosabb különbség, hogy az elérési út a tulajdonság értéke nem felel meg házirend elérési utak indexelő hasonló, azaz nincs nem helyettesítő karakter végén. Például lehet megadni/részleg /? az index részleg alatt az értékeket, de adja meg a /department a partíciós kulcs definíciójában. A partíciós kulcs implicit módon indexelt, és nem zárható ki indexelő indexelési házirend felülbírálások használatával.
 > 
 > 
 
-Nézzük milyen hatással van a partíciós kulcs hello választott hello az alkalmazás teljesítményét.
+Nézzük milyen hatással van a partíciós kulcs kiválasztásakor az alkalmazás teljesítményét.
 
-## <a name="working-with-hello-azure-cosmos-db-sdks"></a>Hello Azure Cosmos DB SDK-k használata
-Az Azure Cosmos DB támogatása az automatikus particionálási [REST API verziója 2015-12-16](/rest/api/documentdb/). Rendelés particionálva toocreate tárolókban, le kell töltenie 1.6.0 SDK-verzió vagy újabb hello valamelyik támogatott SDK-platform (.NET, Node.js, Java, Python, MongoDB). 
+## <a name="working-with-the-azure-cosmos-db-sdks"></a>Az Azure Cosmos DB SDK-k használata
+Az Azure Cosmos DB támogatása az automatikus particionálási [REST API verziója 2015-12-16](/rest/api/documentdb/). Particionált tárolók létrehozásához le kell töltenie 1.6.0 SDK verzió vagy újabb valamelyik támogatott SDK platformon (.NET, Node.js, Java, Python, MongoDB). 
 
 ### <a name="creating-containers"></a>Tárolók létrehozása
-hello következő példa bemutatja a .NET-részlet toocreate egy tároló toostore eszköz telemetriai adatokat a 20 000 kérelemegység / s átviteli. hello SDK egy hello OfferThroughput értéket (amelyek viszont beállítja hello `x-ms-offer-throughput` hello REST API-t a kérelem fejlécében). Itt hivatott hello `/deviceId` hello partíció kulcsként. partíciókulcs hello választott együtt hello részeinek hello tároló metaadatait, például a nevét, és az indexelési házirendet a rendszer menti.
+A következő példában egy .NET-részlet létrehozni egy tárolót a 20 000 kérelemegység / s átviteli eszköz telemetriai adatainak tárolásához. Az SDK-t állítja be a OfferThroughput (amelyek viszont beállítja a `x-ms-offer-throughput` kérelem fejléce a REST API-ban). Itt be van állítva a `/deviceId` partíciókulcsnak. A partíciós kulcs választott mentett a tároló metaadatait, például a nevét, és az indexelési házirendet a többi mellett.
 
-Az ebben a példában azt kivételezett `deviceId` tudjuk, hogy (a) óta eszközök nagy számú, mivel a írások terjeszthető partíciók között egyenlően, és így velünk tooscale hello adatbázis tooingest nagy mennyiségű adatok és (b) számos hello kérések, például hello legújabb olvasási beolvasása eszköz hatókörön belüli tooa egyetlen deviceId, és egyetlen partícióra lekérhetők.
+Az ebben a példában azt kivételezett `deviceId` tudjuk, hogy (a) óta eszközök nagy számú, mivel a írások terjeszthető partíciók között egyenlően, és lehetővé téve, hogy a nagy mennyiségű adatot betöltési adatbázis méretezése és (b) számos a kérések, például egy eszköz a legújabb olvasási beolvasása egyetlen deviceId hatóköre, és egyetlen partícióra lekérhetők.
 
 ```csharp
 DocumentClient client = new DocumentClient(new Uri(endpoint), authKey);
 await client.CreateDatabaseAsync(new Database { Id = "db" });
 
-// Container for device telemetry. Here hello property deviceId will be used as hello partition key too
+// Container for device telemetry. Here the property deviceId will be used as the partition key to 
 // spread across partitions. Configured for 10K RU/s throughput and an indexing policy that supports 
 // sorting against any number or string property.
 DocumentCollection myCollection = new DocumentCollection();
@@ -103,10 +103,10 @@ await client.CreateDocumentCollectionAsync(
     new RequestOptions { OfferThroughput = 20000 });
 ```
 
-Ez a módszer lehetővé teszi a REST API hívása tooCosmos DB, és hello szolgáltatás kiépíti a hello kért átviteli sebesség alapján partíciók száma. A teljesítmény kell fejleszteni a tároló hello átviteli tudja módosítani. 
+Ez a módszer lehetővé teszi a REST API hívása Cosmos DB, és a szolgáltatás kiépíti a kért átviteli sebesség alapján létrehozott partícióknak számos. A teljesítmény kell fejlődnek tudja módosítani az átviteli sebesség a tároló. 
 
 ### <a name="reading-and-writing-items"></a>Olvasott és írt elemek
-Most tegyük beszúrni Cosmos DB adatokat. Íme egy minta tartalmazó osztály egy eszköz olvasásra, és egy hívás tooCreateDocumentAsync tooinsert egy új eszközt egy tárolóba olvasásakor. Íme egy kihasználva hello DocumentDB API:
+Most tegyük beszúrni Cosmos DB adatokat. Íme egy minta osztály, amely tartalmazza egy eszközt, olvasása, és egy tárolóba olvasása új eszköz beszúrása Documentclient hívásakor. Íme egy kihasználva a DocumentDB API:
 
 ```csharp
 public class DeviceReading
@@ -131,7 +131,7 @@ public class DeviceReading
     public double MetricValue;
   }
 
-// Create a document. Here hello partition key is extracted as "XMS-0001" based on hello collection definition
+// Create a document. Here the partition key is extracted as "XMS-0001" based on the collection definition
 await client.CreateDocumentAsync(
     UriFactory.CreateDocumentCollectionUri("db", "coll"),
     new DeviceReading
@@ -145,17 +145,17 @@ await client.CreateDocumentAsync(
     });
 ```
 
-Most hello elem partíciókulcs és azonosító által olvasását, a frissítést, és utolsó lépésként, törölje azt partíciókulcs és azonosító. Vegye figyelembe, hogy a hello olvasások PartitionKey értéket tartalmazza (megfelelő toohello `x-ms-documentdb-partitionkey` hello REST API-t a kérelem fejlécében).
+Most olvassa el a cikk a partíciókulcs és azonosító, a frissítést, és utolsó lépésként, törölje azt partíciókulcs és azonosítója. Vegye figyelembe, hogy az olvasások adni egy PartitionKey (a megfelelő a `x-ms-documentdb-partitionkey` kérelem fejléce a REST API-ban).
 
 ```csharp
-// Read document. Needs hello partition key and hello ID toobe specified
+// Read document. Needs the partition key and the ID to be specified
 Document result = await client.ReadDocumentAsync(
   UriFactory.CreateDocumentUri("db", "coll", "XMS-001-FE24C"), 
   new RequestOptions { PartitionKey = new PartitionKey("XMS-0001") });
 
 DeviceReading reading = (DeviceReading)(dynamic)result;
 
-// Update hello document. Partition key is not required, again extracted from hello document
+// Update the document. Partition key is not required, again extracted from the document
 reading.MetricValue = 104;
 reading.ReadingTime = DateTime.UtcNow;
 
@@ -170,7 +170,7 @@ await client.DeleteDocumentAsync(
 ```
 
 ### <a name="querying-partitioned-containers"></a>A particionált tárolók lekérdezése
-Amikor a adatait particionált-tárolókban, Cosmos DB automatikusan útvonalak hello lekérdezési toohello partíciók megfelelő toohello partíció megadott kulcsértékek hello szűrő (ha vannak ilyenek). Például egy, a lekérdezés nem útválasztásos toojust hello partíció tartalmazó hello partíciós kulcs "XMS-0001".
+A particionált tárolókban lévő adatok lekérdezésekor Cosmos DB automatikusan továbbítja a lekérdezés a partíciókat a partíciókulcs-értékek a szűrőben megadott (ha vannak ilyenek) megfelelő. Ez a lekérdezés például csak a partíciós kulcs "XMS-0001" tartalmazó partíció van átirányítva.
 
 ```csharp
 // Query using partition key
@@ -179,7 +179,7 @@ IQueryable<DeviceReading> query = client.CreateDocumentQuery<DeviceReading>(
     .Where(m => m.MetricType == "Temperature" && m.DeviceId == "XMS-0001");
 ```
     
-hello következő lekérdezés nincs szűrő hello partíciókulcs (DeviceId) és tooall partíciók hol végre hello partíció index alapján van rendezve. Vegye figyelembe, hogy rendelkezik-e toospecify hello EnableCrossPartitionQuery (`x-ms-documentdb-query-enablecrosspartition` a hello REST API-t) toohave hello SDK tooexecute közötti partíciók lekérdezést.
+A következő lekérdezés nem rendelkezik egy szűrőt a partíciós kulcs (DeviceId), és minden olyan partíciónak, ahol hajtotta végre a partíció index alapján történő van rendezve. Vegye figyelembe, hogy meg kell adnia a EnableCrossPartitionQuery (`x-ms-documentdb-query-enablecrosspartition` REST API-ja) kell rendelkeznie az SDK partíciók között a lekérdezés végrehajtásához.
 
 ```csharp
 // Query across partition keys
@@ -189,10 +189,10 @@ IQueryable<DeviceReading> crossPartitionQuery = client.CreateDocumentQuery<Devic
     .Where(m => m.MetricType == "Temperature" && m.MetricValue > 100);
 ```
 
-Támogatja a cosmos DB [aggregátumfüggvények](documentdb-sql-query.md#Aggregates) `COUNT`, `MIN`, `MAX`, `SUM` és `AVG` over particionálva tárolók indítása az SDK-k 1.12.0 és újabb SQL használatával. Lekérdezések tartalmaznia kell egy egyetlen összesítő operátor és hello projekcióban szereplő egyetlen értéket kell adni.
+Támogatja a cosmos DB [aggregátumfüggvények](documentdb-sql-query.md#Aggregates) `COUNT`, `MIN`, `MAX`, `SUM` és `AVG` over particionálva tárolók indítása az SDK-k 1.12.0 és újabb SQL használatával. Lekérdezések tartalmaznia kell egy egyetlen összesítő operátor, és egyetlen értéket kell adni a leképezésben.
 
 ### <a name="parallel-query-execution"></a>Párhuzamos lekérdezés-végrehajtás
-hello Cosmos DB SDK-k 1.9.0 és támogatási fent párhuzamos lekérdezés végrehajtási beállítások, melyek lehetővé teszik tooperform kis késleltetésű lekérdezi a particionált gyűjtemények szemben még akkor is, ha szükségük van tootouch partíciók nagy számú. Például a következő lekérdezés hello partíciók nem konfigurált toorun párhuzamosan.
+A Cosmos DB SDK-k 1.9.0 és hajthat végre a particionált gyűjtemények, lekérdezések kis késés, még akkor is, amikor sok partíciók touch kell támogatási párhuzamos lekérdezés végrehajtási beállítások fent. A következő lekérdezés például több partíció párhuzamosan futó van konfigurálva.
 
 ```csharp
 // Cross-partition Order By Queries
@@ -203,15 +203,15 @@ IQueryable<DeviceReading> crossPartitionQuery = client.CreateDocumentQuery<Devic
     .OrderBy(m => m.MetricValue);
 ```
     
-A következő paraméterek hello hangolása kezelheti párhuzamos lekérdezés-végrehajtás:
+A következő paraméterek hangolása kezelheti párhuzamos lekérdezés-végrehajtás:
 
-* Úgy, hogy `MaxDegreeOfParallelism`, azaz hello egyidejű hálózati kapcsolatok toohello tároló partíciók száma párhuzamos hello fokú szabályozhatja. Ha ez túl-1, párhuzamossági hello fokát hello SDK kezeli. Ha hello `MaxDegreeOfParallelism` értéke nincs megadva, illetve too0, amely hello alapértelmezett érték, egy egyetlen hálózati kapcsolat toohello tároló partíciók lesz.
-* Úgy, hogy `MaxBufferedItemCount`, akkor is kompromisszumot lekérdezés-késleltetés és ügyféloldali memóriahasználata. Ha kihagyja ezt a paramétert, vagy állítsa 1 túl, hello száma párhuzamos lekérdezés-végrehajtás során pufferelt elemek hello SDK kezeli.
+* Úgy, hogy `MaxDegreeOfParallelism`, például a tároló partíciók egyidejű hálózati kapcsolatok maximális száma párhuzamos fokának szabályozhatja. Ha a-1, milyen párhuzamossági az SDK kezeli. Ha a `MaxDegreeOfParallelism` nem megadott vagy kell állítani, 0, amely az alapértelmezett érték, a tároló partíciók egyetlen hálózati kapcsolattal lesz.
+* Úgy, hogy `MaxBufferedItemCount`, akkor is kompromisszumot lekérdezés-késleltetés és ügyféloldali memóriahasználata. Ha kihagyja ezt a paramétert, vagy állítsa-1, párhuzamos lekérdezés-végrehajtás során pufferelt elemek száma. az SDK kezeli.
 
-Hello megadott hello gyűjtemény olyan állapotban, a párhuzamos lekérdezések lesz az eredményeket hello ugyanaz, mint soros végrehajtási sorrendben. A kereszt-partíció lekérdezést, amely tartalmazza a rendezés (ORDER BY és/vagy felső) végrehajtásakor hello Azure Cosmos DB SDK problémák hello párhuzamos lekérdezés partíciók és összevonása részben rendezett eredményez hello ügyfél oldalán tooproduce globálisan rendezett az eredmények között.
+Megadott gyűjtemény olyan állapotban, a párhuzamos lekérdezések lesz az eredményeket ugyanabban a sorrendben, ahogy soros végrehajtása. Rendezés (ORDER BY és/vagy felső) tartalmazó kereszt-partíció lekérdezés végrehajtásakor a az Azure Cosmos DB SDK állít ki a párhuzamos lekérdezés partíciók között, és egyesíti globálisan rendezett eredmények eredményezett ügyféloldali részben rendezett eredményez.
 
 ### <a name="executing-stored-procedures"></a>Tárolt eljárások végrehajtása
-Is végre lehet hajtani a dokumentumokon végzett atomi tranzakciók pl. hello ugyanazon Eszközazonosítót, ha éppen karbantartása összesítések, vagy hello csak egy elemet az eszközök aktuális állapotát. 
+Ilyen azonosítójú eszköz,-dokumentumokon végzett atomi tranzakciók is futtathat, például ha összesítések vagy csak egy elemet az eszközök aktuális állapotát most karbantartása. 
 
 ```csharp
 await client.ExecuteStoredProcedureAsync<DeviceReading>(
@@ -220,12 +220,12 @@ await client.ExecuteStoredProcedureAsync<DeviceReading>(
     "XMS-001-FE24C");
 ```
    
-A következő szakaszban hello úgy tekintünk, hogyan léphet toopartitioned tárolók egypartíciós tárolók.
+A következő szakaszban úgy tekintünk, hogyan viheti át a particionált tárolók egypartíciós tárolókból.
 
 ## <a name="next-steps"></a>Következő lépések
-Ez a cikk azt megadott hogyan rendelkező Azure Cosmos DB tárolók a particionálás toowork hello DocumentDB API áttekintése. Lásd még: [particionálás és horizontális skálázás](../cosmos-db/partition-data.md) fogalmakat és ajánlott eljárások az Azure Cosmos DB API-k a particionálás áttekintését. 
+Ez a cikk azt megadott használata Azure Cosmos DB tároló DocumentDB API-val particionálás áttekintése. Lásd még: [particionálás és horizontális skálázás](../cosmos-db/partition-data.md) fogalmakat és ajánlott eljárások az Azure Cosmos DB API-k a particionálás áttekintését. 
 
 * Hajtsa végre a méretezés és teljesítmény Azure Cosmos DB tesztelték. Lásd: [teljesítmény- és Mérettesztelés az Azure Cosmos DB](performance-testing.md) egy minta.
-* Ismerkedés a hello kódolási [SDK-k](documentdb-sdk-dotnet.md) vagy hello [REST API-n](/rest/api/documentdb/)
+* Ismerkedés a kódolási a [SDK-k](documentdb-sdk-dotnet.md) vagy a [REST API-n](/rest/api/documentdb/)
 * További tudnivalók [Azure Cosmos DB a létesített átviteli sebesség](request-units.md)
 

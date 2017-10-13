@@ -1,14 +1,14 @@
 ### <a name="prerequisites"></a>Előfeltételek
 * Egy [SFTP](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol) fiók  
 
-SFTP-fiókját a logikai alkalmazás használata előtt engedélyeznie kell a hello logic app tooconnect tooyour SFTP fiók. Szerencsére ehhez egyszerűen a a logikai alkalmazásban a hello Azure portálon.  
+SFTP-fiókját a logikai alkalmazás használata előtt engedélyeznie kell a logikai alkalmazás SFTP-fiókjához. Szerencsére ehhez egyszerűen a a logikai alkalmazásban, az Azure portálon.  
 
-Az alábbiakban hello lépéseket tooauthorize logic app tooconnect tooyour SFTP fiókja:  
+A Logic Apps alkalmazást SFTP fiókjához történő engedélyezéséhez lépései a következők:  
 
-1. toocreate egy kapcsolat tooSFTP hello logic app Designer kiválasztása **megjelenítése Microsoft felügyelt API-k** hello a legördülő listából, majd adja meg *SFTP* hello Keresés mezőbe. Jelölje be hello **SFTP - amikor egy fájl hozzáadása vagy módosítása** eseményindító:  
+1. Válassza ki az SFTP, VPN-kapcsolat létrehozásához a logic app tervezőben, **megjelenítése Microsoft felügyelt API-k** a legördülő listában adja meg *SFTP* be a keresőmezőbe. Válassza ki a **SFTP - amikor egy fájl hozzáadása vagy módosítása** eseményindító:  
    ![Kép: SFTP online kapcsolat 1](./media/connectors-create-api-sftp/sftp-1.png)  
-2. A kapcsolatok tooSFTP előtt még nem hozott létre, ha később is lesz rákérdezéses tooprovide SFTP hitelesítő adatait. Ezeket a hitelesítő adatokat kell használt tooauthorize a logic app tooconnect való, és hozzáférési SFTP fiókja adatokat:  
+2. Ha még nem hozott létre a kapcsolatokat az SFTP előtt, a rendszer SFTP hitelesítő adatok megadása fog kérni. Ezeket a hitelesítő adatokat engedélyezése a logikai alkalmazás való kapcsolódáshoz használandó, és az SFTP fiók adatok eléréséhez:  
    ![Kép: SFTP online kapcsolat 2](./media/connectors-create-api-sftp/sftp-2.png)  
-3. Figyelje meg hello kapcsolat létrejött, és most a Logic Apps alkalmazást az egyéb hello szabad tooproceed szükséges lépések:   
+3. Figyelje meg, a kapcsolat létrejött, és szabadon most folytatja a Logic Apps alkalmazást más lépéseket:   
    ![Kép: a 3 SFTP online kapcsolat](./media/connectors-create-api-sftp/sftp-3.png) 
 

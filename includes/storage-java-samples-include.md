@@ -1,6 +1,6 @@
 ## <a name="java-sample-code-repositories"></a>Java-sample adattárakban
 
-Ez egy lista összes a minta-adattárak hello Azure Storage Java ügyféloldali kódtára a.
+Ez egy lista összes a minta-adattárak az Azure Storage Java ügyféloldali kódtár.
 
 * [Első Java Storage-fiókot az Storage - kezelése](https://azure.microsoft.com/resources/samples/storage-java-manage-storage-accounts/)
 * [Ismerkedés az Azure Blob szolgáltatás Java nyelven](https://azure.microsoft.com/resources/samples/storage-blob-java-getting-started/)

@@ -1,6 +1,6 @@
 ---
-title: "Hello forrás környezetet (fizikai kiszolgálók tooAzure) |} Microsoft Docs"
-description: "Ez a cikk ismerteti, hogyan tooset fel a helyszíni környezet toostart az Azure Windows vagy Linux operációs rendszert futtató fizikai kiszolgálók replikálása."
+title: "A forrás (fizikai kiszolgálók Azure-bA) környezet beállítása |} Microsoft Docs"
+description: "A cikkből megtudhatja, hogyan állíthat be a helyszíni környezet az Azure Windows vagy Linux operációs rendszert futtató fizikai kiszolgálók replikálást indítani."
 services: site-recovery
 documentationcenter: 
 author: AnoopVasudavan
@@ -14,63 +14,63 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/29/2017
 ms.author: anoopkv
-ms.openlocfilehash: d4702265bf36910015685d2bba99d6e577531bd0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 49b9d2e21dbcb612828a25f21ed4382327d6f64c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="set-up-hello-source-environment-physical-server-tooazure"></a>Hello forrás környezetet (fizikai kiszolgáló tooAzure)
+# <a name="set-up-the-source-environment-physical-server-to-azure"></a>Állítsa be a forrás-környezetet (az Azure-bA a fizikai kiszolgáló)
 > [!div class="op_single_selector"]
-> * [VMware tooAzure](./site-recovery-set-up-vmware-to-azure.md)
-> * [Fizikai tooAzure](./site-recovery-set-up-physical-to-azure.md)
+> * [VMware – Azure](./site-recovery-set-up-vmware-to-azure.md)
+> * [Fizikai az Azure-bA](./site-recovery-set-up-physical-to-azure.md)
 
-Ez a cikk ismerteti, hogyan tooset fel a helyszíni környezet toostart az Azure Windows vagy Linux operációs rendszert futtató fizikai kiszolgálók replikálása.
+A cikkből megtudhatja, hogyan állíthat be a helyszíni környezet az Azure Windows vagy Linux operációs rendszert futtató fizikai kiszolgálók replikálást indítani.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-hello cikk feltételezi, hogy már rendelkezik:
-1. A Recovery Services-tárolónak a hello [Azure-portálon](http://portal.azure.com "Azure-portálon").
-3. A fizikai számítógép melyik tooinstall hello konfigurációs kiszolgálón.
+A cikk feltételezi, hogy már rendelkezik:
+1. A tároló a Recovery Services a [Azure-portálon](http://portal.azure.com "Azure-portálon").
+3. Egy fizikai számítógépen, amelyre a konfigurációs kiszolgáló telepítése.
 
 ### <a name="configuration-server-minimum-requirements"></a>Konfigurációs kiszolgáló minimális követelményeknek
-hello a következő táblázat felsorolja a hello minimális hardver, szoftverek és hálózati követelményei a konfigurációs kiszolgáló.
+A következő táblázat felsorolja a minimális hardver-, szoftver, és hálózati követelményei a konfigurációs kiszolgáló.
 [!INCLUDE [site-recovery-configuration-server-requirements](../../includes/site-recovery-configuration-and-scaleout-process-server-requirements.md)]
 
 > [!NOTE]
-> Hello konfigurációs kiszolgáló által a HTTPS-alapú proxykiszolgálókat nem támogatottak.
+> A konfigurációs kiszolgáló által a HTTPS-alapú proxykiszolgálókat nem támogatottak.
 
 ## <a name="choose-your-protection-goals"></a>Védelmi célok megválasztása
 
-1. A hello Azure-portálon, válassza a toohello **Recovery Services** -tárolók panelt, és válassza ki a tároló.
-2. A hello **erőforrás** hello tároló menüjében kattintson **bevezetés** > **Site Recovery** > **1. lépés: előkészítése Infrastruktúra** > **védelmi cél**.
+1. Az Azure-portálon lépjen a **Recovery Services** -tárolók panelt, és válassza ki a tároló.
+2. Az a **erőforrás** a tároló menüjében kattintson **bevezetés** > **Site Recovery** > **1. lépés: infrastruktúra előkészítése**   >  **Védelmi cél**.
 
     ![Célok megválasztása](./media/site-recovery-set-up-physical-to-azure/choose-goals.png)
-3. A **védelmi cél**, jelölje be **tooAzure** és **nem virtualizált vagy egyéb**, és kattintson a **OK**.
+3. A **védelmi cél**, jelölje be **az Azure-bA** és **nem virtualizált vagy egyéb**, és kattintson a **OK**.
 
     ![Célok megválasztása](./media/site-recovery-set-up-physical-to-azure/physical-protection-goal.PNG)
 
-## <a name="set-up-hello-source-environment"></a>Hello forráskörnyezet beállítása
+## <a name="set-up-the-source-environment"></a>A forráskörnyezet beállítása
 
-1. A **forrás előkészítése**, ha nem rendelkezik a konfigurációs kiszolgáló, kattintson a **+ konfigurációs kiszolgáló** tooadd egyet.
+1. A **forrás előkészítése**, ha nem rendelkezik a konfigurációs kiszolgáló, kattintson a **+ konfigurációs kiszolgáló** kattintva felvehet egyet.
 
   ![A forrás beállítása](./media/site-recovery-set-up-physical-to-azure/plus-config-srv.png)
-2. A hello **kiszolgáló hozzáadása** panelen ellenőrizze, hogy **konfigurációs kiszolgáló** megjelenik **kiszolgálótípus**.
-4. Töltse le a hello Site Recovery az egységes telepítő telepítőfájlját.
-5. Hello tárolóbeli regisztrációs kulcs letöltése. Az egységes telepítő szüksége hello regisztrációs kulcsot. hello kulcs a generálásától öt napig esetén érvényes.
+2. Az a **kiszolgáló hozzáadása** panelen ellenőrizze, hogy **konfigurációs kiszolgáló** megjelenik **kiszolgálótípus**.
+4. Töltse le a Site Recovery az egységes telepítő telepítőfájlját.
+5. Töltse le a tárolóregisztrációs kulcsot. Az egységes telepítő futtatásakor a regisztrációs kulcsot kell. A kulcs a generálásától számított öt napig érvényes.
 
     ![A forrás beállítása](./media/site-recovery-set-up-physical-to-azure/set-source2.png)
-6. Hello gépen hello kiszolgálóként használ, futtassa **Azure Site Recovery az egységes telepítő** tooinstall hello konfigurációs kiszolgáló, a hello folyamatkiszolgáló és a hello fő célkiszolgáló.
+6. A számítógépen, mint a konfigurációs kiszolgálót használ, futtassa **Azure Site Recovery az egységes telepítő** a konfigurációs kiszolgáló, a folyamatkiszolgáló és a fő célkiszolgáló telepítése.
 
 #### <a name="run-azure-site-recovery-unified-setup"></a>Futtassa az Azure Site Recovery egyesített telepítő
 
 > [!TIP]
-> Konfigurációs kiszolgáló regisztrálása meghiúsul, ha a számítógép rendszerórája hello idő ki a helyi idő több mint öt perc. A rendszer szinkronizálást, és egy [kiszolgálót](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-time-service) hello telepítés megkezdése előtt.
+> Konfigurációs kiszolgáló regisztrálása sikertelen lesz, ha a számítógép rendszer órája a ideje ki a helyi idő több mint öt perc. A rendszer szinkronizálást, és egy [kiszolgálót](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-time-service) a telepítés megkezdése előtt.
 
 [!INCLUDE [site-recovery-add-configuration-server](../../includes/site-recovery-add-configuration-server.md)]
 
 > [!NOTE]
-> hello konfigurációs kiszolgálón a parancssorból is telepíthető. További információkért lásd: [telepítése konfigurációs kiszolgáló parancssori eszközökkel](http://aka.ms/installconfigsrv).
+> A konfigurációs kiszolgáló telepíthető a parancssorból. További információkért lásd: [telepítése konfigurációs kiszolgáló parancssori eszközökkel](http://aka.ms/installconfigsrv).
 
 
 ## <a name="common-issues"></a>Gyakori problémák

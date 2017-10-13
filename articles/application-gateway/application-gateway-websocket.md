@@ -1,6 +1,6 @@
 ---
-title: "Azure Application Gateway aaaWebSocket támogatást |} Microsoft Docs"
-description: "Ezen a lapon hello alkalmazás átjáró WebSocket támogatási áttekintést nyújt."
+title: "Azure Application Gateway WebSocket támogatást |} Microsoft Docs"
+description: "Ezen a lapon a kérelem átjáró WebSocket támogatási áttekintést nyújt."
 documentationcenter: na
 services: application-gateway
 author: amsriva
@@ -14,23 +14,23 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/08/2017
 ms.author: amsriva
-ms.openlocfilehash: 3776117803e8559ad243c2d4c3dd661199c1e48a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 75b06ddd02da231b7813c609c848c75e42116da5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="overview-of-websocket-support-in-application-gateway"></a>Alkalmazásátjáró WebSocket támogatást áttekintése
 
-Alkalmazásátjáró közötti átjáró különböző méretű WebSocket natív támogatást biztosít. Nincs felhasználó által konfigurálható beállítás tooselectively engedélyezése vagy letiltása WebSocket támogatási. 
+Alkalmazásátjáró közötti átjáró különböző méretű WebSocket natív támogatást biztosít. Nem található felhasználó által konfigurálható szelektív letiltása és engedélyezése WebSocket támogatása. 
 
-A szabványos WebSocket protokoll [RFC6455](https://tools.ietf.org/html/rfc6455) lehetővé teszi, hogy a kiszolgáló és az ügyfél között a teljes kétirányú kommunikációs egy hosszú ideig tartó TCP-kapcsolaton keresztül. Ezzel a funkcióval a több interaktív kommunikációhoz hello és hello ügyfél, amely kétirányú anélkül hello a lekérdezéshez, mint a HTTP-alapú megvalósításokhoz lehet. WebSocket alacsony terhelés eltérően a HTTP és a is újbóli hello azonos több kérelem/válasz az erőforrások hatékonyabb kihasználását eredményezi TCP-kapcsolatot. WebSocket protokoll tervezett toowork hagyományos HTTP-port a 80-as és 443-as porton keresztül történik.
+A szabványos WebSocket protokoll [RFC6455](https://tools.ietf.org/html/rfc6455) lehetővé teszi, hogy a kiszolgáló és az ügyfél között a teljes kétirányú kommunikációs egy hosszú ideig tartó TCP-kapcsolaton keresztül. Ez a funkció lehetővé teszi, hogy a webkiszolgáló és az ügyfél, amely kétirányú, mint a HTTP-alapú megvalósításokhoz lekérdezési szükségessége nélkül lehet több interaktív kommunikációját. WebSocket alacsony terhelés eltérően a HTTP és a több kérelem/válasz az erőforrások hatékonyabb kihasználását eredményezi azonos TCP-kapcsolatot is felhasználhatja. WebSocket protokoll tervezték hagyományos HTTP-port a 80-as és 443-as porton keresztül.
 
-A WebSocket-forgalom 80-as vagy 443-as port tooreceive egy szabványos HTTP-figyelő használatának folytatása. WebSocket forgalom nem irányított toohello WebSocket engedélyezett hello megfelelő háttérkészlet használó alkalmazás átjáró szabályok a háttérkiszolgálóra. hello háttérkiszolgáló kell válaszolnia toohello alkalmazás átjáró mintavételek menüpontban, amely ismerteti a hello [állapot-mintavételi áttekintése](application-gateway-probe-overview.md) szakasz. Alkalmazás átjáró állapotfigyelő mintavételt csak olyan HTTP/HTTPS. Minden egyes háttérkiszolgáló alkalmazás tooroute WebSocket forgalom toohello átjárókiszolgáló tooHTTP mintavételt kell válaszolnia.
+Tovább a szabványos HTTP-figyelő használ a 80-as vagy 443-as porton WebSocket forgalom fogadására. WebSocket forgalmat a rendszer ekkor átirányítja a WebSocket engedélyezett háttérkiszolgáló megfelelő háttérkészlet megadott alkalmazás átjáró szabályok használatával. A háttérkiszolgáló az alkalmazás átjáró mintavételek menüpontban, amely ismerteti a válaszolnia kell a [állapot-mintavételi áttekintése](application-gateway-probe-overview.md) szakasz. Alkalmazás átjáró állapotfigyelő mintavételt csak olyan HTTP/HTTPS. Minden egyes háttérkiszolgáló válaszolnia kell a HTTP-mintavételt az Alkalmazásátjáró WebSocket forgalom irányítására a kiszolgálóra.
 
 ## <a name="listener-configuration-element"></a>Figyelő konfigurációs elem
 
-Egy meglévő HTTP-figyelő lehet használt toosupport WebSocket-forgalmat. hello az alábbiakban látható egy minta sablon fájlból httpListeners elem részlet. Ehhez a HTTP és HTTPS figyelői toosupport WebSocket kell, és biztosítják a WebSocket-forgalmát. Hasonló módon használhatja a hello [portal](application-gateway-create-gateway-portal.md) vagy [PowerShell](application-gateway-create-gateway-arm.md) toocreate port 80/443-as toosupport WebSocket forgalom figyelőinek az Alkalmazásátjáró.
+Egy meglévő HTTP-figyelő segítségével WebSocket forgalom támogatásához. A következő egy minta sablon fájlból httpListeners elem egy részlet. Támogatja a WebSocket és WebSocket forgalmának biztonságossá tétele a HTTP és HTTPS figyelői kellene. Hasonló módon használhatja a [portal](application-gateway-create-gateway-portal.md) vagy [PowerShell](application-gateway-create-gateway-arm.md) Alkalmazásátjáró létrehozása a figyelők a porton keresztül 80/443-as WebSocket forgalom támogatásához.
 
 ```json
 "httpListeners": [
@@ -66,7 +66,7 @@ Egy meglévő HTTP-figyelő lehet használt toosupport WebSocket-forgalmat. hell
 
 ## <a name="backendaddresspool-backendhttpsetting-and-routing-rule-configuration"></a>BackendAddressPool BackendHttpSetting és útválasztás szabály konfigurálása
 
-Egy BackendAddressPool használt toodefine engedélyezett WebSocket-kiszolgálókkal háttérkészlet. hello backendHttpSetting a 80-as és 443-as, a háttérportot van meghatározva. az affinitási cookie-alapú és requestTimeouts hello tulajdonságai nincsenek megfelelő tooWebSocket forgalmat. Nincs változás hello útválasztási szabály szükséges, a "Basic" használt tootie hello megfelelő figyelő toohello megfelelő háttér címkészletet. 
+Egy BackendAddressPool engedélyezett WebSocket-kiszolgálókkal háttérkészlet azonosítására szolgál. A backendHttpSetting a 80-as és 443-as, a háttérportot van meghatározva. Az affinitási cookie-alapú és requestTimeouts tulajdonságait, amelyek nem kapcsolódnak a WebSocket-forgalmat. Nincs változás a útválasztási szabály szükséges, a "Basic" szolgál a megfelelő figyelőt, hogy a megfelelő háttér címkészletet kötése. 
 
 ```json
 "requestRoutingRules": [{
@@ -104,7 +104,7 @@ Egy BackendAddressPool használt toodefine engedélyezett WebSocket-kiszolgáló
 
 ## <a name="websocket-enabled-backend"></a>A WebSocket engedélyezett háttér
 
-A háttérrendszer rendelkeznie kell olyan hello konfigurálni a HTTP/HTTPS webkiszolgálóra (általában 80/443-as port) a WebSocket toowork. Ez a követelmény azért van, mert WebSocket protokoll megköveteli hello kezdeti kézfogás toobe HTTP fejléc mezőként frissítési tooWebSocket protokollal. hello az alábbiakban látható egy példa a fejléc:
+A háttér kell rendelkeznie a konfigurált futó HTTP/HTTPS webkiszolgálón (általában 80/443-as port) WebSocket működéséhez a. Ez a követelmény azért van, mert WebSocket protokoll megköveteli a kezdeti kézfogás HTTP kell egy fejlécmező WebSocket protokoll a frissítést. A következő egy példa a fejléc:
 
 ```
     GET /chat HTTP/1.1
@@ -117,9 +117,9 @@ A háttérrendszer rendelkeznie kell olyan hello konfigurálni a HTTP/HTTPS webk
     Sec-WebSocket-Version: 13
 ```
 
-Egy másik ennek oka, hogy alkalmazás átjáró háttér állapotmintáihoz csak a HTTP és HTTPS protokollok támogatja. Ha hello háttérkiszolgáló tooHTTP vagy HTTPS mintavételt nem válaszol, az háttérkészlet kívüli lesz végrehajtva.
+Egy másik ennek oka, hogy alkalmazás átjáró háttér állapotmintáihoz csak a HTTP és HTTPS protokollok támogatja. Ha a háttérkiszolgáló nem válaszol a HTTP vagy HTTPS mintavételek menüpontban, az háttérkészlet kívüli lesz végrehajtva.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Támogatás a WebSocket megismerését követően nyissa meg túl[Alkalmazásátjáró létrehozása](application-gateway-create-gateway.md) WebSocket használatába tooget engedélyezve van a webes alkalmazást.
+Támogatás a WebSocket megismerését követően navigáljon [Alkalmazásátjáró létrehozása](application-gateway-create-gateway.md) WebSocket használatába engedélyezve van a webes alkalmazás.
 

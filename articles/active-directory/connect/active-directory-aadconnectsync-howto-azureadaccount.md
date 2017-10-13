@@ -1,8 +1,8 @@
 ---
-title: "Azure AD Connect szinkronizálása: hogyan toomanage hello Azure AD szolgáltatás fiókja |} Microsoft Docs"
-description: "Ez a témakör dokumentumok hogyan toorestore hello Azure AD szolgáltatás fiókja."
+title: "Azure AD Connect szinkronizálása: az Azure AD-szolgáltatásfiók kezelése |} Microsoft Docs"
+description: "Ez a témakör az Azure AD-szolgáltatásfiók visszaállítása dokumentumokat."
 services: active-directory
-keywords: "AADSTS70002, AADSTS50054, hogyan tooreset hello jelszavát hello Azure AD Connect szinkronizálási szolgáltatás összekötő szolgáltatás fiókja"
+keywords: "AADSTS70002, AADSTS50054, az Azure AD Connect szinkronizálási szolgáltatás Connector-szolgáltatásfióknak a jelszó alaphelyzetbe állítása"
 documentationcenter: 
 author: andkjell
 manager: femila
@@ -15,31 +15,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: e563518eae173de42a1d40bb5a76e63f29f9da42
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8e9e8192ee4fcb636b5be91d2616acbc9120c8c0
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="azure-ad-connect-sync-how-toomanage-hello-azure-ad-service-account"></a>Azure AD Connect szinkronizálása: hogyan toomanage hello Azure AD szolgáltatás fiókja
-hello Azure AD-összekötő által használt szolgáltatásfiók hello toobe szolgáltatás szabad kellene. Ha tooreset a hitelesítő adatok szükségesek, akkor ez a témakör értéke meg. Ha például egy globális rendszergazda által hibát hello jelszó alaphelyzetbe állítása a PowerShell használatával hello szolgáltatásfiók rendelkezik.
+# <a name="azure-ad-connect-sync-how-to-manage-the-azure-ad-service-account"></a>Azure AD Connect szinkronizálása: kezelése az Azure AD-szolgáltatásfiók
+Az Azure AD-összekötő által használt szolgáltatásfiók kellene lennie ingyenes szolgáltatás. Ha a hitelesítő adatok alaphelyzetbe kell, akkor ez a témakör értéke meg. Például ha egy globális rendszergazda által hibát állítsa vissza a PowerShell használatával a szolgáltatásfiók jelszavát.
 
-## <a name="reset-hello-credentials"></a>Hello hitelesítő adatok alaphelyzetbe állítása
-Ha hello szolgáltatásfiók definiált hello Azure AD-összekötő nem tud kapcsolatba lépni az Azure AD tooauthentication problémák miatt, hello vissza tudja állítani.
+## <a name="reset-the-credentials"></a>A hitelesítő adatok alaphelyzetbe állítása
+Ha a fiók az Azure AD Connectoron definiálva az Azure AD hitelesítési problémák miatt nem tud kapcsolatba lépni, a jelszó állítható vissza.
 
-1. Jelentkezzen be toohello az Azure AD Connect szinkronizálási kiszolgálót, és indítsa el a Powershellt.
+1. Jelentkezzen be az Azure AD Connect szinkronizálási kiszolgálót, majd indítsa el a Powershellt.
 2. Futtassa az `Add-ADSyncAADServiceAccount` parancsot.  
    ![PowerShell-parancsmag addadsyncaadserviceaccount](./media/active-directory-aadconnectsync-howto-azureadaccount/addadsyncaadserviceaccount.png)
 3. Adja meg Azure AD globális rendszergazda hitelesítő adatait.
 
-Ez a parancsmag hello szolgáltatásfiók hello jelszavának alaphelyzetbe állítása és az Azure ad-ben és a szinkronizálási motor hello is frissítse.
+Ez a parancsmag állítja vissza a szolgáltatásfiók jelszavát, és frissítse az Azure ad-ben és a szinkronizálási motor.
 
 ## <a name="known-issues-these-steps-can-solve"></a>A lépések segítségével megoldható ismert problémák
-Ez a szakasz a hitelesítő adatok alaphelyzetbe állítása a következőn hello Azure AD-szolgáltatásfiók által kijavított ügyfelei által jelentett hiba.
+Ez a szakasz a hitelesítő adatok alaphelyzetbe állítása a következőn az Azure AD-szolgáltatásfiók által kijavított ügyfelei által jelentett hiba.
 
 - - -
 Esemény 6900  
-hello kiszolgáló váratlan hibába ütközött a jelszó-módosítási értesítés feldolgozása során:  
+A kiszolgáló váratlan hibába ütközött a jelszó-módosítási értesítés feldolgozása során:  
 AADSTS70002: Hiba a érvényesítéséhez hitelesítő adatokat. AADSTS50054: Régi jelszó-hitelesítéshez használt.
 
 - - -

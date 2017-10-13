@@ -1,6 +1,6 @@
 ---
-title: "hálózati biztonsági csoport – Azure PowerShell aaaCreate |} Microsoft Docs"
-description: "Megtudhatja, hogyan toocreate és hálózati biztonsági csoportok PowerShell használatával telepítheti."
+title: "Hozzon létre a hálózati biztonsági csoport – Azure PowerShell |} Microsoft Docs"
+description: "Megtudhatja, hogyan hozhat létre és telepíthet a PowerShell használatával a hálózati biztonsági csoportok."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,11 +16,11 @@ ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 1c8db773febb163d9cb010d23f2913b5ebe0fa94
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 26fe67b43d63c6685d8ae7644dd7df6931a4d2a5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-network-security-groups-using-powershell"></a>Hozza létre a hálózati biztonsági csoportokat PowerShell használatával
 
@@ -28,17 +28,17 @@ ms.lasthandoff: 10/06/2017
 
 [!INCLUDE [virtual-networks-create-nsg-intro-include](../../includes/virtual-networks-create-nsg-intro-include.md)]
 
-Az Azure két üzemi modellel rendelkezik, az Azure Resource Managerrel és a klasszikussal. A Microsoft azt javasolja, hello Resource Manager üzembe helyezési modellben erőforrásoknak létrehozása. hello arról toolearn hello hello két modellek közötti különbséget olvasási [megértéséhez Azure üzembe helyezési modellel](../azure-resource-manager/resource-manager-deployment-model.md) cikk. Ez a cikk ismerteti a hello Resource Manager üzembe helyezési modellben. Emellett [NSG-k létrehozása hello klasszikus üzembe helyezési modellel](virtual-networks-create-nsg-classic-ps.md).
+Az Azure két üzemi modellel rendelkezik, az Azure Resource Managerrel és a klasszikussal. A Microsoft azt javasolja, hogy az erőforrások létrehozásához használja a Resource Manager-alapú üzemi modellt. A két modell közti különbségekkel kapcsolatos további információkért olvassa el [Az Azure üzemi modelljeinek megismerése](../azure-resource-manager/resource-manager-deployment-model.md) című cikket. Ez a cikk a Resource Manager-alapú üzemi modellt ismerteti. Emellett [NSG-k létrehozása a klasszikus üzembe helyezési modellel](virtual-networks-create-nsg-classic-ps.md).
 
 [!INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
-hello minta az alábbi parancsok várt már létrehozott egy egyszerű környezetben PowerShell fenti hello forgatókönyv alapján. Ha toorun hello parancsok ebben a dokumentumban megjelenített, először létre hello tesztkörnyezetben üzembe helyezésével [sablon](http://github.com/telmosampaio/azure-templates/tree/master/201-IaaS-WebFrontEnd-SQLBackEnd), kattintson a **tooAzure telepítése**, cserélje le a hello alapértelmezett paraméterértékek Ha szükséges, és kövesse az utasításokat hello a hello portálon.
+A minta az alábbi parancsok várt már létrehozott egy egyszerű környezetben PowerShell a fenti forgatókönyv alapján. Ha szeretné a parancsokat a jelen dokumentum megjelenített, először összeállítása a tesztkörnyezetben üzembe helyezésével [sablon](http://github.com/telmosampaio/azure-templates/tree/master/201-IaaS-WebFrontEnd-SQLBackEnd), kattintson a **az Azure telepítéséhez**, cserélje le az alapértelmezett paraméterértékek, ha szükséges, és kövesse az utasításokat a portálon.
 
-## <a name="how-toocreate-hello-nsg-for-hello-front-end-subnet"></a>Hogyan toocreate hello hello előtér alhálózat NSG
-az NSG nevű toocreate *NSG-előtérbeli* hello forgatókönyv alapján, végezze el a következő lépéseket hello:
+## <a name="how-to-create-the-nsg-for-the-front-end-subnet"></a>Az NSG az előtér-alhálózat létrehozása
+Az NSG nevű létrehozásához *NSG-előtérbeli* forgatókönyv alapján, kövesse az alábbi lépéseket:
 
-1. Ha még sosem használta az Azure PowerShell, lásd: [hogyan tooInstall és konfigurálása az Azure PowerShell](/powershell/azure/overview) és az útmutatás hello összes hello módon toohello toosign befejezése az Azure, és jelölje ki az előfizetését.
-2. Engedélyezi a hozzáférést a hello Internet tooport 3389-es biztonsági szabály létrehozása.
+1. Ha még nem használta az Azure PowerShellt, tekintse meg [How to Install and Configure Azure PowerShell](/powershell/azure/overview) (Az Azure PowerShell telepítése és konfigurálása) című részt, majd kövesse az utasításokat egészen az utolsó lépésig az Azure-ba való bejelentkezéshez és az előfizetése kiválasztásához.
+2. Hozzon létre egy biztonsági szabályt, amely engedélyezi webtartalmak elérését az internetről 3389-es port.
 
     ```powershell
     $rule1 = New-AzureRmNetworkSecurityRuleConfig -Name rdp-rule -Description "Allow RDP" `
@@ -47,7 +47,7 @@ az NSG nevű toocreate *NSG-előtérbeli* hello forgatókönyv alapján, végezz
     -DestinationAddressPrefix * -DestinationPortRange 3389
     ```
 
-3. Engedélyezi a hozzáférést a hello Internet tooport 80 biztonsági szabály létrehozása.
+3. Hozzáférés engedélyezése az internetről a 80-as port biztonsági szabály létrehozása.
 
     ```powershell
     $rule2 = New-AzureRmNetworkSecurityRuleConfig -Name web-rule -Description "Allow HTTP" `
@@ -56,20 +56,20 @@ az NSG nevű toocreate *NSG-előtérbeli* hello forgatókönyv alapján, végezz
     -DestinationPortRange 80
     ```
 
-4. Adjon hozzá új NSG nevű tooa a fenti létrehozott hello szabályokat **NSG-előtérbeli**.
+4. A fent egy NSG nevű létrehozott szabályok felvétele **NSG-előtérbeli**.
 
     ```powershell
     $nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName TestRG -Location westus `
     -Name "NSG-FrontEnd" -SecurityRules $rule1,$rule2
     ```
 
-5. Ellenőrizze a következő hello hello NSG létrehozott hello szabályok:
+5. Ellenőrizze az NSG létrehozott, írja be a következő szabályokat:
 
     ```powershell
     $nsg
     ```
    
-    Kimeneti ábrázoló csak hello biztonsági szabályokat:
+    Csak a biztonsági szabályok megjelenítő kimenete:
    
         SecurityRules        : [
                                  {
@@ -103,7 +103,7 @@ az NSG nevű toocreate *NSG-előtérbeli* hello forgatókönyv alapján, végezz
                                    "ProvisioningState": "Succeeded"
                                  }
                                ]
-6. A fenti toohello létrehozott NSG társítása hello *előtér* alhálózat.
+6. A létrehozott fenti NSG társítása a *előtér* alhálózat.
 
     ```powershell
     $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName TestRG -Name TestVNet
@@ -111,7 +111,7 @@ az NSG nevű toocreate *NSG-előtérbeli* hello forgatókönyv alapján, végezz
     -AddressPrefix 192.168.1.0/24 -NetworkSecurityGroup $nsg
     ```
 
-    Kimeneti ábrázoló csak hello *előtér* alhálózati beállítások, értesítés hello értéke hello **hálózati biztonsági csoporthoz tartozik** tulajdonság:
+    Kimenet megjelenítése csak a *előtér* alhálózat-beállítások, figyelje meg az értéket a **hálózati biztonsági csoporthoz tartozik** tulajdonság:
    
                     Subnets           : [
                                           {
@@ -135,25 +135,25 @@ az NSG nevű toocreate *NSG-előtérbeli* hello forgatókönyv alapján, végezz
                                           }
    
    > [!WARNING]
-   > hello kimeneti hello parancs a fenti csak létezik PowerShell futtató hello számítógépen hello virtuális hálózati konfiguráció objektum hello tartalmának mutatja. Toorun hello kell `Set-AzureRmVirtualNetwork` parancsmag toosave ezen beállítások tooAzure.
+   > A fenti parancs kimenetét a virtuális hálózati konfiguráció objektumban, amelyet csak megtalálható a számítógépen, ahol a PowerShell futtatja tartalmának mutatja. Futtatnia kell a `Set-AzureRmVirtualNetwork` parancsmagot, hogy ezek a beállítások mentése az Azure-bA.
    > 
    > 
-7. Új virtuális hálózat beállításai tooAzure hello mentéséhez.
+7. Mentse az új VNet beállításait az Azure-bA.
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
     ```
 
-    Kimeneti csak hello NSG részét megjelenítő:
+    A kimeneti megjelenítő csak az NSG részében:
    
         "NetworkSecurityGroup": {
           "Id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/TestRG/providers/Microsoft.Network/networkSecurityGroups/NSG-FrontEnd"
         }
 
-## <a name="how-toocreate-hello-nsg-for-hello-back-end-subnet"></a>Hogyan toocreate hello NSG hello háttér-alhálózat
-az NSG nevű toocreate *NSG-háttérrendszer* a fenti hello forgatókönyv alapján, végezze el a lépéseket követve hello:
+## <a name="how-to-create-the-nsg-for-the-back-end-subnet"></a>Az NSG-t, a háttér-alhálózat létrehozása
+Az NSG nevű létrehozásához *NSG-háttérrendszer* a fenti forgatókönyv alapján, kövesse az alábbi lépéseket:
 
-1. Engedélyezi a hozzáférést a hello előtér alhálózati tooport alapértelmezett 1433-as (SQL Server által használt) biztonsági szabály létrehozása.
+1. Hozzáférés az előtér-alhálózatból az 1433-as port (SQL Server által használt alapértelmezett portot) biztonsági szabály létrehozása.
 
     ```powershell
     $rule1 = New-AzureRmNetworkSecurityRuleConfig -Name frontend-rule `
@@ -163,7 +163,7 @@ az NSG nevű toocreate *NSG-háttérrendszer* a fenti hello forgatókönyv alapj
     -DestinationAddressPrefix * -DestinationPortRange 1433
     ```
 
-2. Blokkolja a hozzáférést toohello internetes biztonsági szabály létrehozása.
+2. Hozzon létre egy biztonsági szabály blokkolja-e az internethez való hozzáférést.
 
     ```powershell
     $rule2 = New-AzureRmNetworkSecurityRuleConfig -Name web-rule `
@@ -173,7 +173,7 @@ az NSG nevű toocreate *NSG-háttérrendszer* a fenti hello forgatókönyv alapj
     -DestinationAddressPrefix Internet -DestinationPortRange *
     ```
 
-3. Adjon hozzá új NSG nevű tooa a fenti létrehozott hello szabályokat **NSG-háttérrendszer**.
+3. A fent egy NSG nevű létrehozott szabályok felvétele **NSG-háttérrendszer**.
 
     ```powershell
     $nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName TestRG `
@@ -181,14 +181,14 @@ az NSG nevű toocreate *NSG-háttérrendszer* a fenti hello forgatókönyv alapj
     -SecurityRules $rule1,$rule2
     ```
 
-4. A fenti toohello létrehozott NSG társítása hello *háttér* alhálózat.
+4. A létrehozott fenti NSG társítása a *háttér* alhálózat.
 
     ```powershell
     Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name BackEnd ` 
     -AddressPrefix 192.168.2.0/24 -NetworkSecurityGroup $nsg
     ```
 
-    Kimeneti ábrázoló csak hello *háttér* alhálózati beállítások, értesítés hello értéke hello **hálózati biztonsági csoporthoz tartozik** tulajdonság:
+    Kimenet megjelenítése csak a *háttér* alhálózat-beállítások, figyelje meg az értéket a **hálózati biztonsági csoporthoz tartozik** tulajdonság:
    
         Subnets           : [
                       {
@@ -203,16 +203,16 @@ az NSG nevű toocreate *NSG-háttérrendszer* a fenti hello forgatókönyv alapj
                         "RouteTable": null,
                         "ProvisioningState": "Succeeded"
                       }
-5. Új virtuális hálózat beállításai tooAzure hello mentéséhez.
+5. Mentse az új VNet beállításait az Azure-bA.
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
     ```
 
-## <a name="how-tooremove-an-nsg"></a>Hogyan tooremove az NSG
-egy meglévő NSG toodelete nevű *NSG-előtérbeli* ebben az esetben kövesse az alábbi hello. lépés:
+## <a name="how-to-remove-an-nsg"></a>Az NSG eltávolítása
+Egy meglévő NSG, úgynevezett törlése *NSG-előtérbeli* ebben az esetben hajtsa végre az alábbi:
 
-Futtassa a hello **Remove-AzureRmNetworkSecurityGroup** alább látható és lehet, hogy tooinclude hello erőforrás csoport hello NSG van.
+Futtassa a **Remove-AzureRmNetworkSecurityGroup** alább látható, és ügyeljen arra, hogy az erőforráscsoport, a rendszer az NSG-t tartalmaz.
 
 ```powershell
 Remove-AzureRmNetworkSecurityGroup -Name "NSG-FrontEnd" -ResourceGroupName "TestRG"

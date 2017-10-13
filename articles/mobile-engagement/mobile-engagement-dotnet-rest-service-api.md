@@ -1,6 +1,6 @@
 ---
-title: aaaUsing hello REST API tooaccess Azure Mobile Engagement Service API-k
-description: Ismerteti, hogyan toouse hello Azure Mobile Engagement Service API-k a Mobile Engagement REST API-k tooaccess
+title: "Azure Mobile Engagement Service API-k elérésére a REST API használatával"
+description: "A Mobile Engagement REST API-k használata az Azure Mobile Engagement Service API-k elérésére"
 services: mobile-engagement
 documentationcenter: mobile
 author: wesmc7777
@@ -14,16 +14,16 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/05/2016
 ms.author: wesmc;ricksal
-ms.openlocfilehash: 315761299a42df6f65e81df20e632f9713844b0b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4b21bca6fee7012ce1dba96950ae075eded414f8
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="using-rest-tooaccess-azure-mobile-engagement-service-apis"></a>REST tooaccess Azure Mobile Engagement Service API-k használatával
-Az Azure Mobile Engagement biztosít hello [Azure Mobile Engagement REST API](https://msdn.microsoft.com/library/azure/mt683754.aspx) meg toomanage eszközök Reach/leküldéses kampányokra stb.
+# <a name="using-rest-to-access-azure-mobile-engagement-service-apis"></a>Azure Mobile Engagement Service API-k elérésére használt többi
+Az Azure Mobile Engagement biztosít a [Azure Mobile Engagement REST API](https://msdn.microsoft.com/library/azure/mt683754.aspx) felügyelheti az eszközöket, Reach/leküldéses kampányokra stb.
 
 > [!NOTE]
-> hello Azure Mobile Engagement szolgáltatás március 2018 rendszerből, és jelenleg csak a rendelkezésre álló tooexisting ügyfelek. További információkért lásd: [Mobile Engagement](https://azure.microsoft.com/en-us/services/mobile-engagement/).
+> Az Azure Mobile Engagement szolgáltatást 2018 márciusától megszüntetjük, és jelenleg csak meglévő ügyfelek számára érhető el. További információkért lásd: [Mobile Engagement](https://azure.microsoft.com/en-us/services/mobile-engagement/).
 
-Ha nem szeretné, hogy toouse hello REST API-k közvetlenül, azt is adja meg a [Swagger-fájl](https://github.com/Azure/azure-rest-api-specs/blob/master/arm-mobileengagement/2014-12-01/swagger/mobile-engagement.json) használható az eszközök toogenerate SDK-k számára a kívánt nyelvet. Azt javasoljuk, hello [AutoRest](https://github.com/Azure/AutoRest) eszköz toogenerate az SDK a Swagger-fájl. A .NET SDK létrehoztunk egy hasonló módon, amely lehetővé teszi a toointeract ezen API-khoz a C# burkoló használatával, és nem kell toodo hello hitelesítési jogkivonat egyeztetése révén, és frissítse magát. Lásd: [API a .NET SDK minta](mobile-engagement-dotnet-sdk-service-api.md) toolearn hogyan toouse hello .net SDK API
+Ha nem szeretné, hogy közvetlenül a REST API-k használatával, azt is adja meg a [Swagger-fájl](https://github.com/Azure/azure-rest-api-specs/blob/master/arm-mobileengagement/2014-12-01/swagger/mobile-engagement.json) használható az eszközök SDK-k létrehozására az a kívánt nyelvet. Azt javasoljuk, a [AutoRest](https://github.com/Azure/AutoRest) eszköz használatával hozzon létre az SDK a Swagger-fájl. A .NET SDK létrehoztunk egy hasonló módon, amely teszi lehetővé ezen API-k együttműködhet egy C# burkoló használatával, és nem kell a hitelesítési jogkivonat egyeztetést és frissítse magát. Lásd: [API a .NET SDK minta](mobile-engagement-dotnet-sdk-service-api.md) megtudhatja, hogyan használhatja a .net SDK API-hoz.

@@ -1,6 +1,6 @@
 ---
-title: "Xamarin IOS-mobilalkalmazások hitelesítéssel elindítva aaaGet"
-description: "Megtudhatja, hogyan toouse Mobile Apps tooauthenticate felhasználói identitás-szolgáltatóktól, beleértve az aad-ben, a Google, a Facebook, a Twitter és a Microsoft számos Xamarin iOS-alkalmazásába."
+title: "Ismerkedés a Mobile Apps Xamarin IOS-hitelesítés"
+description: "Útmutató a Mobile Apps segítségével hitelesíti a felhasználókat identitás-szolgáltatóktól, beleértve az aad-ben, a Google, a Facebook, a Twitter és a Microsoft számos a Xamarin IOS-es alkalmazás."
 services: app-service\mobile
 documentationcenter: xamarin
 author: ggailey777
@@ -14,56 +14,56 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: glenga
-ms.openlocfilehash: 6458e9651b03df61c86b88b11953792e04bfa5b2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 454b2df5a9bf8cfba93befea54370957ab044d95
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="add-authentication-tooyour-xamarinios-app"></a>Hitelesítési tooyour Xamarin.iOS-alkalmazás hozzáadása
+# <a name="add-authentication-to-your-xamarinios-app"></a>Bővítse Xamarin.iOS-alkalmazását hitelesítési funkcióval
 [!INCLUDE [app-service-mobile-selector-get-started-users](../../includes/app-service-mobile-selector-get-started-users.md)]
 
-Ez a témakör bemutatja, hogyan egy App Service Mobile Apps az ügyfélalkalmazás tooauthenticate felhasználója. Ebben az oktatóanyagban hozzáadja hitelesítési toohello Xamarin.iOS gyorsútmutató-projekt App Service által támogatott identitásszolgáltató használatával. Miután sikeresen alatt hitelesítése és engedélyezése a Mobile Apps által, hello felhasználói azonosító érték jelenik meg, és nem fogja korlátozott képes tooaccess tábla adatai.
+Ez a témakör bemutatja, hogyan hitelesítheti egy App Service Mobile Apps az ügyfélalkalmazás felhasználóit. Ebben az oktatóanyagban hozzáadja hitelesítési gyorsútmutató-projekt Xamarin.iOS App Service által támogatott identitásszolgáltató használatával. Miután sikeresen alatt hitelesítése és engedélyezése a Mobile Apps által, a felhasználói azonosító érték jelenik meg, és fogja tudni elérni a korlátozott tábla adatai.
 
-Először el kell végeznie hello oktatóanyag [Xamarin.iOS-alkalmazás létrehozása]. Ha nem használ hello letöltése – első lépések, hello hitelesítési kiegészítő csomag tooyour projekt hozzá kell adnia. Kiszolgáló bővítménycsomagok kapcsolatos további információkért lásd: [használható hello .NET háttérkiszolgáló SDK az Azure Mobile Apps a](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
+Először el kell végeznie az oktatóanyag [Xamarin.iOS-alkalmazás létrehozása]. Ha nem használja a letöltött gyors üzembe helyezési kiszolgálóprojektet, hozzá kell adnia a hitelesítési kiterjesztés csomag fel a projektbe. Kiszolgáló bővítménycsomagok kapcsolatos további információkért lásd: [használható a .NET-háttérrendszer server SDK az Azure Mobile Apps a](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
 
 ## <a name="register-your-app-for-authentication-and-configure-app-services"></a>Regisztrálja az alkalmazást a hitelesítéshez, és konfigurálja az App Service szolgáltatások
 [!INCLUDE [app-service-mobile-register-authentication](../../includes/app-service-mobile-register-authentication.md)]
 
-## <a name="add-your-app-toohello-allowed-external-redirect-urls"></a>A toohello engedélyezett külső átirányítási URL-címek hozzáadása
+## <a name="add-your-app-to-the-allowed-external-redirect-urls"></a>Az alkalmazás hozzáadása az engedélyezett külső átirányítási URL-címek
 
-Biztonságos hitelesítéshez az szükséges, hogy az alkalmazás adja meg egy új URL-sémát. Ez lehetővé teszi, hogy hello authentication rendszer tooredirect hátsó tooyour alkalmazás hello hitelesítési folyamat befejezése után. Ebben az oktatóanyagban hello URL-séma használjuk _appname_ egész. Bármely választja URL-sémát is használhatja. Egyedi tooyour mobilalkalmazás kell lennie. tooenable hello átirányítási hello kiszolgáló oldalán:
+Biztonságos hitelesítéshez az szükséges, hogy az alkalmazás adja meg egy új URL-sémát. Ez lehetővé teszi a hitelesítési rendszer visszairányítja az alkalmazás a hitelesítési folyamat befejezése után. Ebben az oktatóanyagban az URL-séma használjuk _appname_ egész. Bármely választja URL-sémát is használhatja. A mobilalkalmazás egyedinek kell lennie. A kiszolgáló oldalán engedélyezése:
 
-1. Hello [Azure-portálon] válassza ki az App Service.
+1. Válassza ki az App Service az [Azure-portálon].
 
-2. Kattintson a hello **hitelesítési / engedélyezési** menüjét.
+2. Kattintson a **hitelesítési / engedélyezési** menüjét.
 
-3. A hello **engedélyezett külső átirányítási URL-t**, adja meg `url_scheme_of_your_app://easyauth.callback`.  Hello **url_scheme_of_your_app** hello URL-sémát a mobilalkalmazás Ez a karakterlánc.  Akkor érdemes követnie normál URL-cím meghatározása (használata betűket és számokat csak, és betűvel kezdődik) protokoll.  Meg kell győződnie, jegyezze fel az Ön által mivel kell tooadjust hello több helyen URL-sémát a mobilalkalmazás kódot hello karakterlánc.
+3. Az a **engedélyezett külső átirányítási URL-t**, adja meg `url_scheme_of_your_app://easyauth.callback`.  A **url_scheme_of_your_app** ezt a karakterláncot a rendszer az URL-séma, a mobilalkalmazás.  Akkor érdemes követnie normál URL-cím meghatározása (használata betűket és számokat csak, és betűvel kezdődik) protokoll.  Meg kell győződnie, jegyezze fel a karakterláncot, amely úgy dönt, mivel úgy, hogy az URL-séma több helyen a mobilalkalmazás kódot kell.
 
 4. Kattintson az **OK** gombra.
 
 5. Kattintson a **Save** (Mentés) gombra.
 
-## <a name="restrict-permissions-tooauthenticated-users"></a>Engedélyek tooauthenticated felhasználók korlátozása
+## <a name="restrict-permissions-to-authenticated-users"></a>A hitelesített felhasználókhoz jogosultságok korlátozása
 [!INCLUDE [app-service-mobile-restrict-permissions-dotnet-backend](../../includes/app-service-mobile-restrict-permissions-dotnet-backend.md)]
 
-&nbsp;&nbsp;4. A Visual Studio és Xamarin Studio futtatható hello ügyfélprojekt egy eszközt vagy emulátort. Győződjön meg arról, hogy a 401-es (nem engedélyezett) egy állapotkód: nem kezelt kivétel hello alkalmazás indítása után jelenik meg. hello hibája hello hibakereső naplózott toohello konzolja. Ezért a Visual Studio, megtekintheti az hello hiba hello kimeneti ablakban.
+&nbsp;&nbsp;4. A Visual Studio és Xamarin Studio futtatható az ügyfélprojekt egy eszközt vagy emulátort. Győződjön meg arról, hogy egy állapotkód: nem kezelt kivétel a 401-es (nem engedélyezett) jelenik meg, az alkalmazás indítása után. A problémát a hibakereső konzoljába naplózza. Ezért a Visual Studio kell megjelennie a hiba a kimeneti ablakban.
 
-&nbsp;&nbsp;Ez nem engedélyezett a hiba oka az, hogy hello app kísérletek tooaccess a Mobile Apps-háttéralkalmazás nem hitelesített felhasználóként. Hello *TodoItem* tábla most hitelesítést igényel.
+&nbsp;&nbsp;A jogosulatlan hiba akkor fordul elő, mert az alkalmazás megpróbál hozzáférni a mobil-háttéralkalmazást, nem hitelesített felhasználónak. A *TodoItem* tábla most hitelesítést igényel.
 
-A következő hello ügyfél app toorequest erőforrások a Mobile Apps-háttéralkalmazás hello frissíti a hitelesített felhasználók.
+A következő később frissíteni az ügyfélalkalmazás az erőforrásokat a Mobile Apps-háttéralkalmazás a hitelesített felhasználók.
 
-## <a name="add-authentication-toohello-app"></a>Hitelesítési toohello alkalmazás hozzáadása
-Ebben a szakaszban adatok megjelenítése előtt hello app toodisplay bejelentkezési képernyőt fog módosítani. Hello alkalmazás indításakor tooyour App Service nem nem kapcsolódnak, és nem jelenik meg az adatokat. Után első alkalommal hello hello felhasználó hajt végre hello frissítési kézmozdulatának hello bejelentkezési képernyő jelenik meg; sikeres bejelentkezés után hello todo elemeket listája jelenik meg.
+## <a name="add-authentication-to-the-app"></a>Hitelesítés hozzáadása az alkalmazáshoz
+Ebben a szakaszban az alkalmazás egy bejelentkezési képernyőt megjelenítendő adatok megjelenítése előtt fog módosítani. Az alkalmazás indításakor nem nem csatlakoznak az App Service, és nem jelenik meg az adatokat. Az első alkalommal, amikor a felhasználó hajtja végre a frissítési kézmozdulat a bejelentkezési képernyőn megjelenik; sikeres bejelentkezés után a teendőlista elemeinek listája jelenik meg.
 
-1. Hello ügyfél projektben nyissa meg a hello fájlt **QSTodoService.cs** és adja hozzá a következő hello utasítás használatával és `MobileServiceUser` az elérő toohello QSTodoService osztály:
+1. Az ügyfél projektben nyissa meg a fájl **QSTodoService.cs** és adja hozzá a következő utasítás használatával és `MobileServiceUser` az elérő QSTodoService osztályra:
  
         using UIKit;
        
         // Logged in user
         private MobileServiceUser user;
         public MobileServiceUser User { get { return user; } }
-2. Adja hozzá nevű új metódust **hitelesítés** túl**QSTodoService** a definícióját a következő hello:
+2. Adja hozzá nevű új metódust **hitelesítés** való **QSTodoService** a következő definícióját:
 
         public async Task Authenticate(UIViewController view)
         {
@@ -78,9 +78,9 @@ Ebben a szakaszban adatok megjelenítése előtt hello app toodisplay bejelentke
             }
         }
 
-    >[AZURE.NOTE] Ha a Facebook-on kívül identitásszolgáltató használ, módosítsa hello értéket kapott túl**LoginAsync** tooone hello következő fent: _MicrosoftAccount_, _Twitter_, _Google_, vagy _WindowsAzureActiveDirectory_.
+    >[AZURE.NOTE] Ha használja az identitásszolgáltató eltérő a Facebook, módosítsa az értéket, átadott **LoginAsync** fent a következőhöz: _MicrosoftAccount_, _Twitter_,  _Google_, vagy _WindowsAzureActiveDirectory_.
 
-3. Nyissa meg **QSTodoListViewController.cs**. Hello metódus definícióját módosítása **ViewDidLoad** hello hívás túl eltávolítása**RefreshAsync()** hello end közelében:
+3. Nyissa meg **QSTodoListViewController.cs**. Módosítsa a metódus definícióját **ViewDidLoad** hívása eltávolítása **RefreshAsync()** vége:
    
         public override async void ViewDidLoad ()
         {
@@ -93,10 +93,10 @@ Ebben a szakaszban adatok megjelenítése előtt hello app toodisplay bejelentke
                 await RefreshAsync();
             }
    
-            // Comment out hello call tooRefreshAsync
+            // Comment out the call to RefreshAsync
             // await RefreshAsync();
         }
-4. Hello módszer módosításához **RefreshAsync** tooauthenticate Ha hello **felhasználói** tulajdonsága null értékű. Adja hozzá a következő kód hello metódusdefiníciót hello tetején hello:
+4. A módszer módosításához **RefreshAsync** – Ha a **felhasználói** tulajdonsága null értékű. A metódusdefiníciót tetején adja hozzá a következő kódot:
    
         // start of RefreshAsync method
         if (todoService.User == null) {
@@ -107,7 +107,7 @@ Ebben a szakaszban adatok megjelenítése előtt hello app toodisplay bejelentke
             }
         }
         // rest of RefreshAsync method
-5. Nyissa meg **AppDelegate.cs**, adja hozzá a következő metódus hello:
+5. Nyissa meg **AppDelegate.cs**, adja hozzá a következő metódust:
 
         public static Func<NSUrl, bool> ResumeWithURL;
 
@@ -115,10 +115,10 @@ Ebben a szakaszban adatok megjelenítése előtt hello app toodisplay bejelentke
         {
             return ResumeWithURL != null && ResumeWithURL(url);
         }
-6. Nyissa meg **Info.plist** fájlt, keresse meg a túl**URL-cím típusú** a hello **speciális** szakasz. Mostantól konfigurálhatja az hello **azonosító** és hello **URL-sémákat** a URL-típust, és kattintson a **URL-típus hozzáadása**. **URL-sémákat** hello ugyanaz, mint a {url_scheme_of_your_app} kell lennie.
-7. A Visual Studio és Xamarin Studio tooyour Xamarin Build állomás Macintosh, futtassa a célcsoport-kezelési egy eszközt vagy emulátort hello ügyfélprojekt csatlakoztatva. Ellenőrizze, hogy hello alkalmazáshoz nincs adatait jeleníti meg.
+6. Nyissa meg **Info.plist** fájlt, keresse meg **URL-cím típusú** a a **speciális** szakasz. Mostantól konfigurálhatja a **azonosító** és a **URL-sémákat** a URL-típust, és kattintson a **URL-típus hozzáadása**. **URL-sémákat** meg kell egyeznie a {url_scheme_of_your_app}.
+7. A Visual Studio és Xamarin Studio csatlakozott a Xamarin létrehozása a Mac, futtassa a célcsoport-kezelési egy eszközt vagy emulátort ügyfél-projektet. Győződjön meg arról, hogy az alkalmazás nem jelennek meg adatok.
    
-    Hajtsa végre a hello frissítési kézmozdulat modulba húzza lefelé elemek, aminek következtében hello bejelentkezési képernyő tooappear hello listáját. Miután sikeresen megadta az érvényes hitelesítő adatokat, hello app todo elemeket hello listáját jeleníti meg, és a frissítések toohello adatok végezheti el.
+    Hajtsa végre a frissítési kézmozdulat modulba húzza le az elemeket, és emiatt a bejelentkezési képernyő jelenik meg. Miután sikeresen megadta az érvényes hitelesítő adatokat, az alkalmazás a teendőlista elemeinek listáját jeleníti meg, és frissíthetik az adatokat.
 
 <!-- URLs. -->
 [Submit an app page]: http://go.microsoft.com/fwlink/p/?LinkID=266582

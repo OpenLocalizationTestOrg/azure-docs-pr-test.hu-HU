@@ -1,6 +1,6 @@
 ---
-title: "a virtuális gép statikus nyilvános IP-címmel – Azure Resource Manager sablon aaaCreate |} Microsoft Docs"
-description: "Ismerje meg, hogyan toocreate egy virtuális Gépet egy statikus nyilvános IP-cím, egy Azure Resource Manager-sablon használatával."
+title: "Hozzon létre egy virtuális Gépet egy statikus nyilvános IP-cím - Azure Resource Manager-sablon |} Microsoft Docs"
+description: "Útmutató: virtuális gép létrehozása az Azure Resource Manager-sablonnal statikus nyilvános IP-cím."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,11 +16,11 @@ ms.workload: infrastructure-services
 ms.date: 04/27/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 6a8640ed4fad06b0e09820e6114fd6789db73847
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2f503aa60fdd9b7cf66ef482a1041e34c88e5c01
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-a-vm-with-a-static-public-ip-address-using-an-azure-resource-manager-template"></a>Virtuális gép létrehozása az Azure Resource Manager-sablonnal statikus nyilvános IP-cím
 
@@ -34,14 +34,14 @@ ms.lasthandoff: 10/06/2017
 [!INCLUDE [virtual-network-deploy-static-pip-intro-include.md](../../includes/virtual-network-deploy-static-pip-intro-include.md)]
 
 > [!NOTE]
-> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../resource-manager-deployment-model.md). Ez a cikk a Microsoft azt javasolja, a legtöbb új központi telepítés helyett hello klasszikus üzembe helyezési modellel hello Resource Manager telepítési modell használatát bemutatja.
+> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../resource-manager-deployment-model.md). Ez a cikk a Microsoft azt javasolja, hogy a klasszikus üzembe helyezési modellel helyett az új telepítések esetén a Resource Manager telepítési modell használatát bemutatja.
 
 [!INCLUDE [virtual-network-deploy-static-pip-scenario-include.md](../../includes/virtual-network-deploy-static-pip-scenario-include.md)]
 
 ## <a name="public-ip-address-resources-in-a-template-file"></a>Nyilvános IP-cím erőforrás egy sablonfájlban
-Tekintheti meg és töltse le a hello [mintasablon](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/azuredeploy.json).
+Tekintheti meg és töltse le a [mintasablon](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/azuredeploy.json).
 
-hello következő szakasz bemutatja hello nyilvános IP-erőforrás, a fenti hello forgatókönyv alapján hello definíciója:
+A következő szakasz meghatározása a nyilvános IP-erőforrás, a fenti forgatókönyv alapján jeleníti meg:
 
 ```json
 {
@@ -58,9 +58,9 @@ hello következő szakasz bemutatja hello nyilvános IP-erőforrás, a fenti hel
 },
 ```
 
-Értesítés hello **publicIPAllocationMethod** tulajdonságot, amelynek értéke túl*statikus*. Ez a tulajdonság lehet *dinamikus* (alapértelmezett érték) vagy *statikus*. A beállítás azt toostatic biztosítja, hogy az hello nyilvános IP-cím lesz soha ne módosuljanak.
+Figyelje meg a **publicIPAllocationMethod** tulajdonság, melynek értéke *statikus*. Ez a tulajdonság lehet *dinamikus* (alapértelmezett érték) vagy *statikus*. Értékre állítaná statikus biztosítja, hogy az a nyilvános IP-cím lesz soha ne módosuljanak.
 
-hello következő szakasz bemutatja egy adott hálózati csatoló hello nyilvános IP-cím hello társítást:
+A következő szakasz jeleníti meg egy hálózati adapter társítását az nyilvános IP-cím:
 
 ```json
   {
@@ -95,9 +95,9 @@ hello következő szakasz bemutatja egy adott hálózati csatoló hello nyilván
 },
 ```
 
-Értesítés hello **publicIPAddress** toohello mutató tulajdonság **azonosító** nevű erőforrás **variables('webVMSetting').pipName**. Ez az hello hello nyilvános IP-erőforrás nevét fent látható.
+Figyelje meg a **publicIPAddress** mutató tulajdonság a **azonosító** nevű erőforrás **variables('webVMSetting').pipName**. Ez a fenti nyilvános IP-erőforrás nevét.
 
-Végezetül, a fenti hello hálózati illesztő szerepel hello **networkProfile** tulajdonsága hello virtuális gép létrehozása folyamatban.
+Végezetül, a fenti hálózati adapter szerepel-e a **networkProfile** tulajdonság a virtuális gép létrehozása folyamatban.
 
 ```json
       "networkProfile": {
@@ -109,16 +109,16 @@ Végezetül, a fenti hello hálózati illesztő szerepel hello **networkProfile*
       }
 ```
 
-## <a name="deploy-hello-template-by-using-click-toodeploy"></a>Hello sablon üzembe helyezése a toodeploy kattintson
+## <a name="deploy-the-template-by-using-click-to-deploy"></a>A sablon üzembe helyezése kattintással végrehajtható üzembe helyezéssel
 
-hello mintasablon elérhető hello nyilvános tárházban hello alapértelmezett értékeket használja toogenerate hello forgatókönyv a fent leírt tartalmazó paraméter fájlt használ. toodeploy toodeploy, a sablon használatával kattintson kattintson **tooAzure telepítése** hello Readme.md fájl hello [statikus PIP rendelkező virtuális gépet](https://github.com/Azure/azure-quickstart-templates/tree/master/IaaS-Story/03-Static-public-IP) sablont. Cserélje le a hello alapértelmezett paraméterértékek, ha szükséges, és adja meg a hello üres paraméterek.  Kövesse a hello utasításait hello portál toocreate egy virtuális gép egy statikus nyilvános IP-címmel.
+A nyilvános tárházban elérhető mintasablon a fent leírt forgatókönyv létrehozásához használt alapértelmezett értékeket tartalmazó paraméterfájlt használja. Ez a sablon üzembe helyezése kattintással végrehajtható telepítése telepítéséhez kattintson **az Azure telepítéséhez** Readme.md fájljában a [statikus PIP rendelkező virtuális gépet](https://github.com/Azure/azure-quickstart-templates/tree/master/IaaS-Story/03-Static-public-IP) sablont. Cserélje le az alapértelmezett paraméterértékek, ha szükséges, és adja meg az üres paraméterek értékeit.  Kövesse az utasításokat a portálon hozzon létre egy virtuális gépet egy statikus nyilvános IP-cím.
 
-## <a name="deploy-hello-template-by-using-powershell"></a>Hello sablon üzembe helyezése a PowerShell használatával
+## <a name="deploy-the-template-by-using-powershell"></a>A sablon üzembe helyezése a PowerShell használatával
 
-toodeploy hello sablon PowerShell használatával hajtsa végre az alábbi hello lépéseket.
+A letöltött sablon PowerShell használatával történő üzembe helyezéséhez kövesse az alábbi lépéseket.
 
-1. Ha még sosem használta az Azure PowerShell, teljes hello hello szükséges lépések [hogyan tooInstall és konfigurálása az Azure PowerShell](/powershell/azure/overview) cikk.
-2. PowerShell-konzolban, futtassa a hello `New-AzureRmResourceGroup` parancsmag toocreate egy új erőforráscsoportot, ha szükséges. Ha már létrehozott egy erőforráscsoport, folytassa a toostep 3.
+1. Ha még sosem használta az Azure PowerShell, hajtsa végre a a [telepítése és konfigurálása az Azure PowerShell](/powershell/azure/overview) cikk.
+2. A PowerShell-konzolban, futtassa a `New-AzureRmResourceGroup` parancsmag segítségével hozzon létre egy új erőforráscsoportot, ha szükséges. Ha már létrehozott egy erőforráscsoport, folytassa a 3.
 
     ```powershell
     New-AzureRmResourceGroup -Name PIPTEST -Location westus
@@ -132,7 +132,7 @@ toodeploy hello sablon PowerShell használatával hajtsa végre az alábbi hello
         Tags              :
         ResourceId        : /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/StaticPublicIP
 
-3. PowerShell-konzolban, futtassa a hello `New-AzureRmResourceGroupDeployment` parancsmag toodeploy hello sablont.
+3. A PowerShell-konzolban, futtassa a `New-AzureRmResourceGroupDeployment` parancsmagot, hogy a sablon telepítéséhez.
 
     ```powershell
     New-AzureRmResourceGroupDeployment -Name DeployVM -ResourceGroupName PIPTEST `
@@ -167,22 +167,22 @@ toodeploy hello sablon PowerShell használatával hajtsa végre az alábbi hello
    
         Outputs           :
 
-## <a name="deploy-hello-template-by-using-hello-azure-cli"></a>Hello sablon üzembe helyezése hello Azure parancssori felület használatával
-toodeploy hello sablon hello Azure CLI, teljes hello lépések segítségével:
+## <a name="deploy-the-template-by-using-the-azure-cli"></a>A sablon üzembe helyezése az Azure parancssori felület használatával
+A sablon telepítéséhez az Azure parancssori felület használatával, kövesse az alábbi lépéseket:
 
-1. Ha még sosem használta az Azure parancssori felület, kövesse hello hello [telepítése és konfigurálása az Azure parancssori felület hello](../cli-install-nodejs.md) tooinstall a következő cikket, és állítsa be.
-2. Futtassa a hello `azure config mode` tooswitch tooResource Manager üzemmód, alább látható módon.
+1. Ha még sosem használta az Azure parancssori felület, kövesse a lépéseket a [telepítése és konfigurálása az Azure parancssori felület](../cli-install-nodejs.md) cikk telepítéséhez és konfigurálásához.
+2. Futtassa a `azure config mode` parancs futtatásával váltson Resource Manager módra a lent látható módon.
 
     ```azurecli
     azure config mode arm
     ```
 
-    hello várt fenti hello parancs kimenetét:
+    A fenti parancs várható kimenete:
 
         info:    New mode is arm
 
-3. Nyissa meg hello [paraméterfájl](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/azuredeploy.parameters.json), válassza ki annak tartalmát, és mentse azokat a számítógép tooa fájlt. Ehhez a példához hello paraméterek nevű tooa fájl mentett *parameters.json*. Hello paraméterértékek hello fájlban szükség esetén módosítsa, de legalább, javasoljuk, hogy megváltoztatja hello hello adminPassword paraméter tooa egyedi, összetett jelszót.
-4. Futtassa a hello `azure group deployment create` cmd toodeploy hello hello sablonnal és paraméterfájlokkal segítségével új virtuális hálózat fájlokat fent letöltött és módosított. Az alábbi hello parancs, cserélje le <path> hello elérési úttal rendelkező hello fájlt mentette. 
+3. Nyissa meg a [paraméterfájl](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/azuredeploy.parameters.json), válassza ki annak tartalmát, és mentse a fájlt a számítógépen. Az ebben a példában a paraméterek nevű fájlba menti *parameters.json*. Módosítsa a paraméterértékeket a fájlban, ha szükséges, de legalább javasoljuk, hogy egy egyedi, összetett jelszót módosítja a adminPassword paraméter értéke.
+4. Futtassa a `azure group deployment create` cmd telepíteni az új VNet sablonnal és paraméterfájlokkal meg a fent letöltött és módosított fájlok. Az alábbi parancsban cserélje le <path> az elérési úttal rendelkező a fájlt mentette. 
 
     ```azurecli
     azure group create -n PIPTEST2 -l westus --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/azuredeploy.json -e <path>\parameters.json

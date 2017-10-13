@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált IdeaScale |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és IdeaScale között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és IdeaScale között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,115 +13,115 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/16/2017
 ms.author: jeedes
-ms.openlocfilehash: 10722b137e7565ee165e73994fd5a60b994719bf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 88099e942319f16dd721da83e4e69b8fcb836c0d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-ideascale"></a>Oktatóanyag: Azure Active Directoryval integrált IdeaScale
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate IdeaScale az Azure Active Directoryval (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja IdeaScale integrálása az Azure Active Directory (Azure AD).
 
-IdeaScale integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
+IdeaScale integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
 
-- Megadhatja a hozzáférés tooIdeaScale rendelkező Azure AD-ben
-- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooIdeaScale (egyszeri bejelentkezés) a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
+- Megadhatja a IdeaScale hozzáféréssel rendelkező Azure AD-ben
+- Engedélyezheti a felhasználóknak, hogy automatikusan beolvasása bejelentkezett IdeaScale (egyszeri bejelentkezés) számára a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-az Azure AD integrálása IdeaScale tooconfigure, kell a következő elemek hello:
+Konfigurálása az Azure AD-integrációs IdeaScale, a következőkre van szükség:
 
 - Az Azure AD szolgáltatásra
 - Egy IdeaScale egyszeri bejelentkezés engedélyezve van az előfizetésben
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. Hello gyűjteményből IdeaScale hozzáadása
+1. A gyűjteményből IdeaScale hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-ideascale-from-hello-gallery"></a>Hello gyűjteményből IdeaScale hozzáadása
-tooconfigure hello integrációja IdeaScale az Azure AD-be, meg kell tooadd IdeaScale hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-ideascale-from-the-gallery"></a>A gyűjteményből IdeaScale hozzáadása
+Az Azure AD integrálása a IdeaScale konfigurálásához kell hozzáadnia IdeaScale a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
 
-**tooadd IdeaScale hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
+**A gyűjteményből IdeaScale hozzáadásához hajtsa végre az alábbi lépéseket:**
 
-1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
+1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
+2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
+3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
 
     ![Alkalmazások][3]
 
-4. Hello keresési mezőbe, írja be a **IdeaScale**.
+4. Írja be a keresőmezőbe, **IdeaScale**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-ideascale-tutorial/tutorial_ideascale_search.png)
 
-5. A hello eredmények panelen válassza ki a **IdeaScale**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
+5. Az eredmények panelen válassza ki a **IdeaScale**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-ideascale-tutorial/tutorial_ideascale_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban konfigurálása, és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon." nevű tesztfelhasználó alapján IdeaScale
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó IdeaScale tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello IdeaScale közötti kapcsolat kapcsolatot kell létrehozni toobe.
+Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó IdeaScale a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a IdeaScale közötti kapcsolat kapcsolatot kell létrehozni.
 
-IdeaScale, rendelje hozzá hello hello értékének **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
+IdeaScale, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
 
-tooconfigure és az Azure AD az egyszeri bejelentkezés IdeaScale-teszthez, a következő építőelemeket toocomplete hello szüksége:
+Az Azure AD egyszeri bejelentkezést a IdeaScale tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-3. **[Egy IdeaScale tesztfelhasználó létrehozása](#creating-an-ideascale-test-user)**  -toohave egy megfelelője a Britta Simon a IdeaScale, amely a felhasználó csatolt toohello az Azure AD ábrázolása.
-4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+3. **[Egy IdeaScale tesztfelhasználó létrehozása](#creating-an-ideascale-test-user)**  - való Britta Simon valami IdeaScale, amely csatolva van a felhasználó az Azure AD-ábrázolását.
+4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az IdeaScale alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az IdeaScale alkalmazásban.
 
-**az Azure AD tooconfigure egyszeri bejelentkezést a IdeaScale, hajtsa végre a lépéseket követve hello:**
+**Konfigurálása az Azure AD az egyszeri bejelentkezés IdeaScale, hajtsa végre az alábbi lépéseket:**
 
-1. Az Azure portál, a hello hello **IdeaScale** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portálon a a **IdeaScale** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
+2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ideascale-tutorial/tutorial_ideascale_samlbase.png)
 
-3. A hello **IdeaScale tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
+3. Az a **IdeaScale tartomány és az URL-címek** területen tegye a következőket:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ideascale-tutorial/tutorial_ideascale_url.png)
 
-    a. A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<companyname>.ideascale.com`
+    a. Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://<companyname>.ideascale.com`
 
-    b. A hello **azonosító** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:
+    b. Az a **azonosító** szövegmező, adja meg a következő minta használatával URL-címe:
     | |
     |--|
     | `http://<companyname>.ideascale.com`  |
     | `https://<companyname>.ideascale.com` |
 
     > [!NOTE] 
-    > Ezek az értékek nincsenek valós. Frissítse a bejelentkezési URL-cím és azonosító a hello tényleges értékek. Ügyfél [IdeaScale ügyfél-támogatási csoport](http://support.ideascale.com/) tooget ezeket az értékeket. 
+    > Ezek az értékek nincsenek valós. Frissítheti ezeket az értékeket a tényleges bejelentkezési URL-cím és azonosítója. Ügyfél [IdeaScale ügyfél-támogatási csoport](http://support.ideascale.com/) beolvasni ezeket az értékeket. 
  
-4. A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello metaadatait tartalmazó fájl a számítógépen.
+4. Az a **SAML-aláíró tanúsítványa** területen kattintson **metaadatainak XML-kódja** és mentse a metaadat-fájlt a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ideascale-tutorial/tutorial_ideascale_certificate.png) 
 
@@ -129,17 +129,17 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálo
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ideascale-tutorial/tutorial_general_400.png)
 
-6. A hello **IdeaScale konfigurációs** kattintson **konfigurálása IdeaScale** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **Sign-Out URL-címet, és a SAML Entitásazonosító** a hello **rövid összefoglaló szakasz**.
+6. A a **IdeaScale konfigurációs** kattintson **konfigurálása IdeaScale** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **Sign-Out URL-címet, és a SAML Entitásazonosító** a a **rövid összefoglaló szakasz**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ideascale-tutorial/tutorial_ideascale_configure.png) 
 
-7. Egy másik webes böngészőablakban jelentkezzen tooyour IdeaScale vállalati hely rendszergazdaként.
+7. Egy másik webes böngészőablakban jelentkezzen be a IdeaScale vállalati webhely rendszergazdaként.
 
-8. Nyissa meg túl**közösségi beállítások**.
+8. Ugrás a **közösségi beállítások**.
    
     ![Közösségi beállítások](./media/active-directory-saas-ideascale-tutorial/ic790847.png "közösségi beállításai")
 
-9. Nyissa meg túl**biztonsági \> egyszeri bejelentkezés beállítások**.
+9. Ugrás a **biztonsági \> az egyszeri bejelentkezés beállítások**.
    
     ![Az egyszeri bejelentkezés beállítások](./media/active-directory-saas-ideascale-tutorial/ic790848.png "az egyszeri bejelentkezés beállításai")
 
@@ -147,103 +147,103 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálo
    
     ![Az egyszeri bejelentkezés típusa](./media/active-directory-saas-ideascale-tutorial/ic790849.png "az egyszeri bejelentkezés típusa")
 
-11. A hello **egyszeri bejelentkezés beállítások** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello:
+11. Az a **egyszeri bejelentkezés beállítások** párbeszédpanelen hajtsa végre a következő lépéseket:
    
     ![Az egyszeri bejelentkezés beállítások](./media/active-directory-saas-ideascale-tutorial/ic790850.png "az egyszeri bejelentkezés beállításai")
    
-    a. A **SAML IdP Entitásazonosító** szövegmezőhöz Beillesztés hello értékének **SAML Entitásazonosító** ami Azure-portálon másolta.
+    a. A **SAML IdP Entitásazonosító** szövegmezőhöz illessze be az értékét **SAML Entitásazonosító** ami Azure-portálon másolta.
 
-    b. A letöltött metaadatfájl hello tartalmának másolása Azure-portálon, és illessze be hello **SAML IdP metaadatok** szövegmező.
+    b. Másolja a letöltött metaadatfájl Azure-portálon, és illessze be azt a **SAML IdP metaadatok** szövegmező.
 
-    c. A **kijelentkezési sikeres URL-cím** szövegmezőhöz Beillesztés hello értékének **Sign-Out URL-cím** ami Azure-portálon másolta.
+    c. A **kijelentkezési sikeres URL-cím** szövegmezőhöz illessze be az értékét **Sign-Out URL-cím** ami Azure-portálon másolta.
 
     d. Kattintson a **módosítások mentése**.
 
 > [!TIP]
-> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
+Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
+1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-ideascale-tutorial/create_aaduser_01.png) 
 
-2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
+2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-ideascale-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
+3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-ideascale-tutorial/create_aaduser_03.png) 
 
-4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-ideascale-tutorial/create_aaduser_04.png) 
 
-    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
+    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-an-ideascale-test-user"></a>Egy IdeaScale tesztfelhasználó létrehozása
 
-az Azure AD tooenable felhasználók toolog történő IdeaScale, azok ki kell építenie a tooIdeaScale. IdeaScale hello esetben egy kézi tevékenység.
+Ahhoz, hogy az Azure AD-felhasználók IdeaScale bejelentkezni, akkor ki kell építenie a IdeaScale. IdeaScale, ha egy kézi tevékenység.
 
-**tooconfigure felhasználók átadásához, hajtsa végre a lépéseket követve hello:**
+**Adja meg a felhasználók átadása, hajtsa végre az alábbi lépéseket:**
 
-1. Jelentkezzen be tooyour **IdeaScale** vállalati hely rendszergazdaként.
+1. Jelentkezzen be a **IdeaScale** vállalati hely rendszergazdaként.
 
-2. Nyissa meg túl**közösségi beállítások**.
+2. Ugrás a **közösségi beállítások**.
    
     ![Közösségi beállítások](./media/active-directory-saas-ideascale-tutorial/ic790847.png "közösségi beállításai")
 
-3. Nyissa meg túl**alapbeállítások \> tag felügyeleti**.
+3. Ugrás a **alapbeállítások \> tag felügyeleti**.
 
 4. Kattintson a **felvenni abban az esetben**.
    
     ![Tag felügyeleti](./media/active-directory-saas-ideascale-tutorial/ic790852.png "tag felügyeleti")
 
-5. Az új tag hozzáadása szakasz hello hajtsa végre a lépéseket követve hello:
+5. Az új tag hozzáadása a szakaszban a következő lépésekkel:
    
     ![Adja hozzá az új tag](./media/active-directory-saas-ideascale-tutorial/ic790853.png "új tag hozzáadása")
    
-    a. A hello **E-mail címek** szövegmezőhöz típus hello e-mail címe kívánt tooprovision érvényes AAD-fiókba.
+    a. Az a **E-mail címek** szövegmező, írja be egy érvényes AAD-fiókba, azt szeretné, hogy építse ki e-mail címét.
    
     b. Kattintson a **módosítások mentése**. 
    
     >[!NOTE]
-    >hello Azure Active Directory fióktulajdonos lekérdezi az e-mailben található egy hivatkozás tooconfirm hello fiókot, mielőtt aktívvá válik.
+    >Az Azure Active Directory fióktulajdonos beolvassa e-mailben található egy hivatkozás a fiók megerősítéséhez, mielőtt aktívvá válik.
       
 >[!NOTE]
->Bármely más IdeaScale felhasználói fiók létrehozása eszközök vagy IdeaScale tooprovision által nyújtott API-k AAD felhasználói fiókokat.
+>Bármely más IdeaScale felhasználói fiók létrehozása eszközök vagy rendelkezés AAD felhasználói fiókokhoz IdeaScale által nyújtott API-k.
  
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
+### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
 
-Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooIdeaScale megadásával engedélyeznie.
+Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés IdeaScale Azure egyszeri bejelentkezéshez használandó.
 
 ![Felhasználó hozzárendelése][200] 
 
-**tooassign Britta Simon tooIdeaScale, hajtsa végre a következő lépéseket hello:**
+**Britta Simon hozzárendelése IdeaScale, hajtsa végre az alábbi lépéseket:**
 
-1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Hello alkalmazások listában válassza ki a **IdeaScale**.
+2. Az alkalmazások listában válassza ki a **IdeaScale**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ideascale-tutorial/tutorial_ideascale_app.png) 
 
-3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -251,7 +251,7 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáfé
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -260,13 +260,13 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáfé
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
 
-hello ebben a szakaszban célja tootest az egyszeri bejelentkezés konfigurációs használatával hello a hozzáférési Panel.
+Ez a szakasz célja tesztelése az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen.
 
-Ha a hozzáférési Panel hello hello IdeaScale csempe gombra kattint, automatikusan bejelentkezett tooyour IdeaScale alkalmazás szerezheti be.
+Ha a hozzáférési panelen IdeaScale csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az IdeaScale alkalmazására.
 
 ## <a name="additional-resources"></a>További források
 
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

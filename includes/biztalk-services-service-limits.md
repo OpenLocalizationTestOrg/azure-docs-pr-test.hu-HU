@@ -1,7 +1,7 @@
 | ERŐFORRÁS | INGYENES (ELŐZETES VERZIÓ) | FEJLESZTŐI | ALAPSZINTŰ | STANDARD | PRÉMIUM SZINTŰ |
 | --- | --- | --- | --- | --- | --- |
 | Horizontális felskálázás |N/A |N/A |Igen, 1 alapvető egysége lépésekben |Igen, 1 szabványos egység lépésekben |Igen, 1 Premium egység lépésekben |
-| Méretezési korlát |N/A |N/A |Környezet too8 egység |Környezet too8 egység |Környezet too8 egység |
+| Méretezési korlát |N/A |N/A |Legfeljebb 8 egység |Legfeljebb 8 egység |Legfeljebb 8 egység |
 | Egységenkénti EAI hidak |N/A |25 |25 |125 |500 |
 | Egységenkénti EDI szerződések |N/A |10 |50 |250 |1000 |
 | Hibrid kapcsolatok egységenként |5 |5 |10 |50 |100 |

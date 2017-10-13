@@ -1,6 +1,6 @@
 ---
 title: "Az Azure Active Directory B2C: Gyorsműveletek konfigurációs |} Microsoft Docs"
-description: "Adja meg a regisztráció és bejelentkezés tooconsumers Gyorsműveletek fiókokhoz az Azure Active Directory B2C által védett alkalmazások."
+description: "Adja meg a regisztráció és bejelentkezés az Azure Active Directory B2C által védett alkalmazások Gyorsműveletek fiókkal rendelkező felhasználók számára."
 services: active-directory-b2c
 documentationcenter: 
 author: parakhj
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 3/26/2017
 ms.author: parakhj
-ms.openlocfilehash: 896d6221e01d15de1652a5717cf1f65619101e0c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b32e81494b8c84799485f154ae43ad30af394caa
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="azure-active-directory-b2c-provide-sign-up-and-sign-in-tooconsumers-with-qq-accounts"></a>Az Azure Active Directory B2C: Regisztráció és bejelentkezés tooconsumers Gyorsműveletek fiókok adja meg.
+# <a name="azure-active-directory-b2c-provide-sign-up-and-sign-in-to-consumers-with-qq-accounts"></a>Az Azure Active Directory B2C: Regisztráció és bejelentkezés adhat Gyorsműveletek fiókkal rendelkező felhasználók
 
 > [!NOTE]
 > A funkció jelenleg előzetes verzió.
@@ -28,42 +28,42 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="create-a-qq-application"></a>Gyorsműveletek-alkalmazás létrehozása
 
-Gyorsműveletek toouse identitás-szolgáltatóként az Azure Active Directory (Azure AD) B2C, toocreate egy Gyorsműveletek alkalmazást kell, és adja meg azt a hello megfelelő paraméterekkel. Egy Gyorsműveletek fiók toodo ez szükséges. Ha még nincs fiókja, akkor kaphat egyenként [https://ssl.zc.qq.com/en/index.html?type=1&ptlang=1033](https://ssl.zc.qq.com/en/index.html?type=1&ptlang=1033).
+Gyorsműveletek az Azure Active Directory (Azure AD) B2C identitás-szolgáltatóként használatához szüksége Gyorsműveletek-alkalmazás létrehozása, és adja meg azt a megfelelő paraméterekkel. Ehhez Gyorsműveletek fiók szükséges. Ha még nincs fiókja, akkor kaphat egyenként [https://ssl.zc.qq.com/en/index.html?type=1&ptlang=1033](https://ssl.zc.qq.com/en/index.html?type=1&ptlang=1033).
 
-### <a name="register-for-hello-qq-developer-program"></a>Gyorsműveletek fejlesztőprogrambeli hello regisztrálása
+### <a name="register-for-the-qq-developer-program"></a>Regisztrálja a Gyorsműveletek fejlesztői programhoz
 
-1. Nyissa meg toohello [Gyorsműveletek fejlesztői portálján](http://open.qq.com) és jelentkezzen be a Gyorsműveletek fiók hitelesítő adataival.
-2. Történő bejelentkezés után nyissa meg túl[http://open.qq.com/reg](http://open.qq.com/reg) tooregister fejlesztőként saját maga.
-3. Hello menüben válasszon ki**个人**(az egyéni fejlesztői).
-4. Adja meg a szükséges hello adatokat hello formába, és kattintson a**下一步**(Tovább).
-5. Hello e-mail ellenőrzési folyamat befejezéséhez.
+1. Lépjen a [Gyorsműveletek fejlesztői portálján](http://open.qq.com) és jelentkezzen be a Gyorsműveletek fiók hitelesítő adataival.
+2. Lépjen a bejelentkezést követően a [http://open.qq.com/reg](http://open.qq.com/reg) egy fejlesztő el.
+3. A menüben válasszon ki**个人**(az egyéni fejlesztői).
+4. Adja meg a szükséges adatokat az űrlapon, és kattintson a**下一步**(Tovább).
+5. Végezze el az e-mailek ellenőrzési folyamata.
 
 > [!NOTE]
-> Szüksége lesz toowait néhány napon toobe jóváhagyott fejlesztőként a regisztrálás után. 
+> Jóváhagyásra váró fejlesztőként a regisztrálás után néhány napot várni kell. 
 
 ### <a name="register-a-qq-application"></a>Egy Gyorsműveletek alkalmazás regisztrálása
 
-1. Nyissa meg túl[https://connect.qq.com/index.html](https://connect.qq.com/index.html).
+1. Ugrás a [https://connect.qq.com/index.html](https://connect.qq.com/index.html).
 2. Kattintson a**应用管理**(Alkalmazáskezelés).
 3. Kattintson a**创建应用**(az alkalmazás létrehozása).
-4. Adja meg a hello szükséges alkalmazásadatokat.
+4. Adja meg a szükséges alkalmazást.
 5. Kattintson a**创建应用**(az alkalmazás létrehozása).
-6. Adja meg a hello szükséges adatokat.
-7. A hello**授权回调域**(visszahívási URL-címe) mezőbe írja be `https://login.microsoftonline.com/te/{tenant_name}/oauth2/authresp`. Például ha a `tenant_name` contoso.onmicrosoft.com, set hello URL-cím toobe van `https://login.microsoftonline.com/te/contoso.onmicrosoft.com/oauth2/authresp`.
+6. Adja meg a szükséges adatokat.
+7. Az a**授权回调域**(visszahívási URL-címe) mezőbe írja be `https://login.microsoftonline.com/te/{tenant_name}/oauth2/authresp`. Például ha a `tenant_name` van contoso.onmicrosoft.com, állítsa be az URL-címet kell `https://login.microsoftonline.com/te/contoso.onmicrosoft.com/oauth2/authresp`.
 8. Kattintson a**创建应用**(az alkalmazás létrehozása).
-9. A hello megerősítési oldalán kattintson a**应用管理**(Alkalmazáskezelés) tooreturn toohello alkalmazás kezelése lapján.
-10. Kattintson a**查看**(Nézet) imént létrehozott következő toohello alkalmazást.
+9. A jóváhagyó lapon kattintson a**应用管理**(Alkalmazáskezelés) az alkalmazás felügyeleti lapra való visszatéréshez.
+10. Kattintson a**查看**(megtekintése) mellett az imént létrehozott alkalmazást.
 11. Kattintson a**修改**(Szerkesztés).
-12. Hello hello oldal tetejére, másolja a hello **Alkalmazásazonosító** és **ALKALMAZÁSKULCS**.
+12. A lap tetején, másolja a **Alkalmazásazonosító** és **ALKALMAZÁSKULCS**.
 
 ## <a name="configure-qq-as-an-identity-provider-in-your-tenant"></a>Gyorsműveletek az Ön bérlőjében identitás-szolgáltatóként konfigurálása
-1. Kövesse az alábbi lépéseket túl[keresse meg a toohello B2C funkciók panelje](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) a hello Azure-portálon.
-2. A hello B2C funkciók paneljére, kattintson **identitás-szolgáltatóktól**.
-3. Kattintson a **+ Hozzáadás** hello panel hello tetején.
-4. Adjon meg egy rövid **neve** hello identitás szolgáltató a konfigurációhoz. Írja be például a "Gyorsműveletek".
+1. Az alábbi lépéseket követve [lépjen a B2C funkciók panelje](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) az Azure portálon.
+2. Kattintson a B2C funkciók panelje **identitás-szolgáltatóktól**.
+3. A panel tetején kattintson a **+Add** (+Hozzáadás) lehetőségre.
+4. Adjon meg egy rövid **neve** a az identitás-szolgáltató konfigurációját. Írja be például a "Gyorsműveletek".
 5. Kattintson a **identitás szolgáltatótípus**, jelölje be **Gyorsműveletek**, és kattintson a **OK**.
 6. Kattintson a **az identitásszolgáltató beállítása**
-7. Adja meg a hello **Alkalmazáskulcs** korábban kimásolt hello mint **ügyfél-azonosító**.
-8. Adja meg a hello **alkalmazás titkos kulcs** korábban kimásolt hello mint **Ügyfélkulcs**.
-9. Kattintson a **OK** majd **létrehozása** toosave Gyorsműveletek konfigurációjáról.
+7. Adja meg a **Alkalmazáskulcs** korábban kimásolt a **ügyfél-azonosító**.
+8. Adja meg a **alkalmazás titkos kulcs** korábban kimásolt a **Ügyfélkulcs**.
+9. Kattintson a **OK** majd **létrehozása** a Gyorsműveletek konfiguráció mentéséhez.
 

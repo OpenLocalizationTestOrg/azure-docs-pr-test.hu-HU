@@ -1,6 +1,6 @@
 ---
-title: "Hozzáférés-vezérlési szolgáltatásban (Java) hello SAML visszaadott aaaView"
-description: "Ismerje meg, hogyan tooview hello hozzáférés-vezérlési szolgáltatásban a Java-alkalmazások által visszaadott SAML Azure-platformon futó."
+title: "A hozzáférés-vezérlési szolgáltatásban (Java) által visszaadott SAML megtekintése"
+description: "Útmutató: a hozzáférés-vezérlési szolgáltatásban az Azure-platformon futó Java-alkalmazások által visszaadott SAML megtekintése."
 services: active-directory
 documentationcenter: java
 author: rmcmurray
@@ -15,40 +15,40 @@ ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
 ms.custom: aaddev
-ms.openlocfilehash: b6733bc98b505cfa89a4ce456f368ee15da11427
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1552e624a4703138ab82f7133ceaec3dbd04e1db
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooview-saml-returned-by-hello-azure-access-control-service"></a>Hogyan tooview SAML hello Azure Access Control Service által visszaadott
-Ez az útmutató bemutatja, hogyan tooview hello az alapul szolgáló Security Assertion Markup Language (SAML) tooyour alkalmazás által visszaadott hello Azure Access Control Service (ACS). hello útmutató épít, hello [hogyan tooAuthenticate webes felhasználók az Azure Access Control Service használatával Eclipse](active-directory-java-authenticate-users-access-control-eclipse.md) témakör, adja meg a kódot, amely hello SAML-információkat jeleníti meg. befejeződött hello alkalmazás hasonló toohello következő fog kinézni.
+# <a name="how-to-view-saml-returned-by-the-azure-access-control-service"></a>A Azure Access Control szolgáltatás által visszaadott SAML megtekintése
+Ez az útmutató bemutatja, hogyan kell megtekinteni az alapul szolgáló Security Assertion Markup Language (SAML) adott vissza az alkalmazás az Azure Access Control Service (ACS). Az útmutatóban épít, a [webes felhasználók hitelesítéséhez az Azure Access Control Service használatával Eclipse hogyan](active-directory-java-authenticate-users-access-control-eclipse.md) témakör, adja meg a kódot, amely az SAML-információkat jeleníti meg. A kész alkalmazás az alábbihoz hasonlóan fog kinézni.
 
 ![Példa SAML kimenet][saml_output]
 
-Az ACS további információkért lásd: hello [további lépések](#next_steps) szakasz.
+Az ACS további információkért lásd: a [további lépések](#next_steps) szakasz.
 
 > [!NOTE]
-> hello Azure Access Services vezérlő szűrő egy közösségi technológiai előzetes. Kiadás előtti szoftverként azt van hivatalosan Microsoft nem támogatja.
+> Az Azure Access Services vezérlő szűrő egy közösségi technológiai előzetes. Kiadás előtti szoftverként azt van hivatalosan Microsoft nem támogatja.
 > 
 > 
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ebben az útmutatóban teljes toocomplete hello feladatok hello minta a [hogyan tooAuthenticate webes felhasználók az Azure Access Control Service használatával Eclipse](active-directory-java-authenticate-users-access-control-eclipse.md) és hello kiindulási pontjaként ehhez az oktatóanyaghoz használható.
+Ez az útmutató feladatok végrehajtása, végezze el a minta a [webes felhasználók hitelesítéséhez az Azure Access Control Service használatával Eclipse hogyan](active-directory-java-authenticate-users-access-control-eclipse.md) használják a kiindulási pont, ehhez az oktatóanyaghoz.
 
-## <a name="add-hello-jspwriter-library-tooyour-build-path-and-deployment-assembly"></a>Hello JspWriter könyvtár tooyour build elérési útját és a központi telepítés szerelvény hozzáadása
-Hello tartalmazó hello könyvtár hozzáadása **javax.servlet.jsp.JspWriter** osztály tooyour szerelvény elérési útja és a központi telepítés létrehozása. Tomcat használ, hogy van-e a hello könyvtár **jsp-api.jar**, hello Apache található **lib** mappát.
+## <a name="add-the-jspwriter-library-to-your-build-path-and-deployment-assembly"></a>A build elérési útját és a központi telepítés szerelvényre a JspWriter könyvtár hozzáadása
+Adja hozzá a könyvtárban, amely tartalmazza a **javax.servlet.jsp.JspWriter** osztály a build elérési útját és a központi telepítés szerelvényre. Ha Tomcat használ, a könyvtárban van **jsp-api.jar**, az Apache található **lib** mappát.
 
-1. A Project Explorer Eclipse meg, kattintson a jobb gombbal **MyACSHelloWorld**, kattintson **Build elérési**, kattintson **Build elérési konfigurálása**, hello kattintson **szalagtárak** fülre, majd **külső JARs hozzáadása**.
-2. A hello **JAR kijelölés** párbeszédpanelen keresse meg a toohello szükséges JAR, válassza ki azt, és kattintson **nyissa meg**.
-3. A hello **MyACSHelloWorld tulajdonságainak** párbeszédpanelen megnyitva, kattintson **telepítési szerelvény**.
-4. A hello **webes telepítési szerelvény** párbeszédpanel, kattintson a **Hozzáadás**.
-5. A hello **új szerelvény irányelv** párbeszédpanel, kattintson a **Java Build elérési bejegyzések** , majd **következő**.
-6. Válassza ki a megfelelő hello szalagtárat, és kattintson a **Befejezés**.
-7. Kattintson a **OK** tooclose hello **MyACSHelloWorld tulajdonságainak** párbeszédpanel.
+1. A Project Explorer Eclipse meg, kattintson a jobb gombbal **MyACSHelloWorld**, kattintson **Build elérési**, kattintson **Build elérési konfigurálása**, kattintson a **szalagtárak** fülre, majd **külső JARs hozzáadása**.
+2. Az a **JAR kijelölés** párbeszédpanelen keresse meg a szükséges JAR, válassza ki azt, és kattintson **nyitott**.
+3. Az a **MyACSHelloWorld tulajdonságainak** párbeszédpanelen megnyitva, kattintson **telepítési szerelvény**.
+4. A a **webalkalmazás telepítési szerelvény** párbeszédpanel, kattintson a **hozzáadása**.
+5. Az a **új szerelvény irányelv** párbeszédpanel, kattintson a **Java Build elérési bejegyzések** , majd **következő**.
+6. Válassza ki a megfelelő könyvtárban, és kattintson a **Befejezés**.
+7. Kattintson a **OK** bezárásához a **MyACSHelloWorld tulajdonságainak** párbeszédpanel.
 
-## <a name="modify-hello-jsp-file-toodisplay-saml"></a>Hello JSP-fájl toodisplay SAML módosítása
-Módosítsa **index.jsp** toouse hello a következő kódot.
+## <a name="modify-the-jsp-file-to-display-saml"></a>A SAML megjelenítendő JSP-fájl módosítása
+Módosítsa **index.jsp** az alábbi kód használatával.
 
     <%@ page language="java" contentType="text/html; charset=UTF-8"
         pageEncoding="UTF-8"%>
@@ -100,14 +100,14 @@ Módosítsa **index.jsp** toouse hello a következő kódot.
                           if (nChild > 0)
                           {                    
 
-                                 // If it is a text node, just print hello text.
+                                 // If it is a text node, just print the text.
                                  if (list.item(0).getNodeName() == "#text")
                                  {
                                      out.println("Text value: <b>" + list.item(0).getTextContent() + "</b><br>");
                                  }
                                  else
                                  {
-                                     // Print out hello child node names.
+                                     // Print out the child node names.
                                      out.print("Contains " + nChild + " child node(s): ");   
                                         for (i=0; i < nChild; i++)
                                      {
@@ -116,19 +116,19 @@ Módosítsa **index.jsp** toouse hello a következő kódot.
                                         out.print("<b>" + temp.getNodeName() + "</b>");
                                         if (i < nChild - 1)
                                         {
-                                            // Separate hello names.
+                                            // Separate the names.
                                             out.print(", ");
                                         }
                                         else
                                         {
-                                            // Finish hello sentence.
+                                            // Finish the sentence.
                                             out.print(".");
                                         }
 
                                      }
                                      out.println("<br>");
 
-                                     // Process hello child nodes.
+                                     // Process the child nodes.
                                      for (i=0; i < nChild; i++)
                                      {
                                         Node temp = list.item(i);
@@ -162,7 +162,7 @@ Módosítsa **index.jsp** toouse hello a következő kódot.
             doc = docBuilder.parse(in);
             doc.getDocumentElement().normalize();
 
-            // Iterate hello child nodes of hello doc.
+            // Iterate the child nodes of the doc.
             NodeList list = doc.getChildNodes();
 
             for (int i=0; i < list.getLength(); i++)
@@ -180,18 +180,18 @@ Módosítsa **index.jsp** toouse hello a következő kódot.
     </body>
     </html>
 
-## <a name="run-hello-application"></a>Hello alkalmazás futtatása
-1. Futtassa az alkalmazást a hello számítógép emulátor vagy tooAzure leírt lépéseket hello segítségével telepítheti [hogyan tooAuthenticate webes felhasználók az Azure Access Control Service használatával Eclipse](active-directory-java-authenticate-users-access-control-eclipse.md).
-2. Elindít egy böngészőt, és nyissa meg a webes alkalmazás. Tooyour alkalmazás bejelentkezést követően megjelenik a SAML információt, beleértve a hello hello identitásszolgáltató által biztosított biztonsági helyességi feltételt.
+## <a name="run-the-application"></a>Az alkalmazás futtatása
+1. Futtassa az alkalmazást a számítógép-emulátorban, vagy telepítse az Azure-bA leírt lépéseket [webes felhasználók hitelesítéséhez az Azure Access Control Service használatával Eclipse hogyan](active-directory-java-authenticate-users-access-control-eclipse.md).
+2. Elindít egy böngészőt, és nyissa meg a webes alkalmazás. A bejelentkezés után az alkalmazás, látni fogja a SAML információt, beleértve az identitásszolgáltató által biztosított biztonsági helyességi feltételt.
 
 ## <a name="next-steps"></a>Következő lépések
-toofurther ACS azon funkcióit és az összetettebb forgatókönyveket tooexperiment című [Access Control Service 2.0][Access Control Service 2.0].
+További megismerkedhet az ACS azon funkcióit és kifinomultabb forgatókönyvek kísérletezhet, olvassa el [Access Control Service 2.0][Access Control Service 2.0].
 
 [Prerequisites]: #pre
-[Modify hello JSP file toodisplay SAML]: #modify_jsp
-[Add hello JspWriter library tooyour build path and deployment assembly]: #add_library
-[Run hello application]: #run_application
+[Modify the JSP file to display SAML]: #modify_jsp
+[Add the JspWriter library to your build path and deployment assembly]: #add_library
+[Run the application]: #run_application
 [Next steps]: #next_steps
 [Access Control Service 2.0]: http://go.microsoft.com/fwlink/?LinkID=212360
-[How tooAuthenticate Web Users with Azure Access Control Service Using Eclipse]: active-directory-java-authenticate-users-access-control-eclipse
+[How to Authenticate Web Users with Azure Access Control Service Using Eclipse]: active-directory-java-authenticate-users-access-control-eclipse
 [saml_output]: ./media/active-directory-java-view-saml-returned-by-access-control/SAML_Output.png

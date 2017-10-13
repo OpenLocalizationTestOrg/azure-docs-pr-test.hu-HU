@@ -1,6 +1,6 @@
 ---
-title: "Azure StorSimple adatokat kezelő felhasználói felületén aaaMicrosoft |} Microsoft Docs"
-description: "Ismerteti, hogyan toouse StorSimple adatok Manager szolgáltatással felhasználói felület (magán előnézetben)"
+title: "A Microsoft Azure StorSimple adatokat kezelő felhasználói felületén |} Microsoft Docs"
+description: "StorSimple adatok Manager szolgáltatással (magán előnézetben) felhasználói felület használata"
 services: storsimple
 documentationcenter: NA
 author: vidarmsft
@@ -14,98 +14,98 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 11/22/2016
 ms.author: vidarmsft
-ms.openlocfilehash: b0ee12b3e495400b54e48eb1a98c68b1af2e5f7a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 53a8599df2c647613122cd791b680e2e658586b0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="manage-using-hello-storsimple-data-manager-service-ui-private-preview"></a>Kezelheti a hello StorSimple adatkezelő szolgáltatás felhasználói felületi (magán előnézetben)
+# <a name="manage-using-the-storsimple-data-manager-service-ui-private-preview"></a>A StorSimple adatokat kezelő szolgáltatással felhasználói felület (magán előnézetben) kezelése
 
-Ez a cikk ismerteti, hogyan használhatja hello StorSimple adatokat kezelő felhasználói felületén tooperform adatok átalakítása hello StorSimple 8000 sorozat eszközeire levő adatok. hello átalakított adatok lehet majd használni például az Azure Media Services, az Azure HDInsight, az Azure Machine Learning és az Azure Search más Azure-szolgáltatásokkal. 
+Ez a cikk ismerteti, hogyan használhatja a StorSimple adatokat kezelő felhasználói felületén a StorSimple 8000 sorozat eszközeire levő adatok a data transformation végrehajtásához. Az átalakított adatok majd más Azure-szolgáltatások például az Azure Media Services, az Azure HDInsight, az Azure Machine Learning és az Azure Search által igénybe vehető. 
 
 
 ## <a name="use-storsimple-data-transformation"></a>StorSimple adatok átalakítással
 
-StorSimple adatkezelő hello Data Transformation példányosítható hello erőforrás. hello Data Transformation szolgáltatás lehetővé teszi a tárolt adatok mozgatása az Azure storage a StorSimple a helyszíni eszközök tooblobs. Emiatt munkafolyamat kell toospecify hello részletek a StorSimple eszköz és hello adatok részleteit, amelyet az toomove toohello tárfiók iránt.
+A StorSimple-kezelő a Data Transformation példányosítható erőforrás. A Data Transformation szolgáltatás lehetővé teszi az eszközét a helyszíni adatok áthelyezése az Azure-tárfiókba blobok. Emiatt a munkafolyamat meg kell adnia a StorSimple eszköz és a storage-fiók áthelyezése kívánt érdeklő adatok részleteit.
 
 ### <a name="create-a-storsimple-data-manager-service"></a>StorSimple adatkezelő szolgáltatás létrehozása
 
-Hajtsa végre a következő lépéseket toocreate StorSimple adatkezelő szolgáltatás hello.
+A következő lépésekkel StorSimple adatkezelő szolgáltatás létrehozása.
 
-1. túl nyissa meg a StorSimple adatkezelő szolgáltatás toocreate[https://aka.ms/HybridDataManager](https://aka.ms/HybridDataManager)
+1. Hozhatja létre a StorSimple adatok Manager szolgáltatást, [https://aka.ms/HybridDataManager](https://aka.ms/HybridDataManager)
 
-2. Kattintson a hello  **+**  ikonra, és keresse a StorSimple Data Manager. Kattintson a StorSimple adatok Manager szolgáltatást, majd **létrehozása**.
+2. Kattintson a  **+**  ikonra, és keresse a StorSimple Data Manager. Kattintson a StorSimple adatok Manager szolgáltatást, majd **létrehozása**.
 
-3. Az előfizetés engedélyezve van ez a szolgáltatás létrehozása, ha a következő panel hello láthatja.
+3. Ha az előfizetés engedélyezve van ez a szolgáltatás létrehozása, a következő panelen láthatja.
 
     ![StorSimple adatok kezelők erőforrás létrehozása](./media/storsimple-data-manager-ui/create-new-data-manager-service.png)
 
-4. Megadja a hello bemeneti adatokat, majd **létrehozása**. a megadott hello egyet, amely a storage-fiókok és a StorSimple Manager szolgáltatás hello kell lennie. Jelenleg csak az USA nyugati régiója és Nyugat-Európában régiók támogatottak. Emiatt a StorSimple Manager szolgáltatás, kezelő szolgáltatás és hello kapcsolódó tárfiók kell lenniük a fenti hello támogatott régióban. A percben toocreate hello szolgáltatás vesz igénybe.
+4. Adja meg az adatokat, és kattintson a **létrehozása**. A megadott helyen az legyen, amely a storage-fiókok és a StorSimple Manager szolgáltatás. Jelenleg csak az USA nyugati régiója és Nyugat-Európában régiók támogatottak. Emiatt a StorSimple Manager szolgáltatás, kezelő szolgáltatás és a kapcsolódó tárfiók kell lenniük az előző támogatott régióban. A szolgáltatás létrehozásához körülbelül egy perce szükséges.
 
 ### <a name="create-a-data-transformation-job-definition"></a>A data transformation feladatdefiníció létrehozása
 
-A StorSimple adatkezelő szolgáltatáson belül kell toocreate a data transformation feladat definíciójához. A feladatdefiníció érdekli helyezi át a tárfiók hello natív formátumban hello adatok részleteit. 
+A StorSimple adatkezelő szolgáltatásokon belüli létrehozásához szükséges egy adatok átalakítási feladat definíciójához. Olyan feladatdefinícióban határozza meg, hogy érdekli helyezi át a natív formátumban a tárfiók adatok részleteit. 
 
-Hajtsa végre a következő lépéseket toocreate egy új data transformation feladatdefiníció hello.
+A következő lépésekkel hozzon létre egy új adatok átalakítási feladat definíciójához.
 
-1.  Keresse meg a létrehozott toohello szolgáltatásra. Kattintson a **+ Definition feladat**.
+1.  Nyissa meg a létrehozott szolgáltatásra. Kattintson a **+ Definition feladat**.
 
     ![Kattintson a kívánt feladat definíciója](./media/storsimple-data-manager-ui/click-add-job-definition.png)
 
-2. hello új feladat definition panel is megnyílik. Nevezze el a feladat definíciójához, és kattintson a **forrás**. A hello **konfigurálása adatforrás** panelen adja meg a StorSimple eszköz hello adatait, és hello érdeklő adatok.
+2. Az új feladat definition panel is megnyílik. Nevezze el a feladat definíciójához, és kattintson a **forrás**. Az a **konfigurálása adatforrás** panelen adja meg a StorSimple eszköz részleteit és érdeklő adatok.
 
     ![Feladat-definíció létrehozása](./media/storsimple-data-manager-ui//create-new-job-deifnition.png)
 
-3. Mivel ez egy új adatokat kezelő szolgáltatás, nem adattárolók vannak konfigurálva. tooadd adatok tára, mint a StorSimple Manager kattintson **új hozzáadása** a hello adatok tárház legördülő menüből, majd **adattárház hozzáadása**.
+3. Mivel ez egy új adatokat kezelő szolgáltatás, nem adattárolók vannak konfigurálva. A StorSimple Manager hozzáadni a rendszert, kattintson a **új hozzáadása** az adatok tárház legördülő majd **adattárház hozzáadása**.
 
-4. Válasszon **StorSimple 8000 series Manager** hello tárház, írja be, és írja be a hello tulajdonságainak a **StorSimple Manager**. A hello **erőforrás-azonosító** mezőjét, előtt hello tooenter hello számot kell **:** hello regisztrációs kulcs a StorSimple Manager.
+4. Válasszon **StorSimple 8000 series Manager** tárházaként írja be, és adja meg a tulajdonságait a **StorSimple Manager**. Az a **erőforrás-azonosító** mezőben meg kell adnia a száma, mielőtt a **:** a regisztrációs kulcs a StorSimple Manager.
 
     ![Adatforrás létrehozása](./media/storsimple-data-manager-ui/create-new-data-source.png)
 
-5.  Kattintson a **OK** végzett. Ez az adattárház menti, és a StorSimple Manager ezek a paraméterek ismételt beírása nélkül is újrahasznosíthatók lévő más definíciók. Kattintás után néhány másodpercet vesz igénybe **OK** a StorSimple Manager tooshow mentése hello legördülő hello.
+5.  Kattintson a **OK** végzett. Ez az adattárház menti, és a StorSimple Manager ezek a paraméterek ismételt beírása nélkül is újrahasznosíthatók lévő más definíciók. Kattintás után néhány másodpercet vesz igénybe **OK** a StorSimple Manager megjeleníti őket a legördülő listában.
 
-6.  A hello **konfigurálása adatforrás** panelen hello eszköz nevét adja meg, és a fontos adatokat tartalmazó kötet neve hello.
+6.  Az a **konfigurálása adatforrás** panelen adja meg az eszköz nevét és a kötet neve, amely a fontos adatokat tartalmaz.
 
-7.  A hello **szűrő** alszakasz, adja meg az egyik fontos adatokat tartalmazó hello gyökérkönyvtár (ebben a mezőben kell kezdődnie, egy `\`). Bármely fájlszűrők is hozzáadhat.
+7.  Az a **szűrő** alszakasz, adja meg a gyökérkönyvtár egyik fontos adatokat tartalmazó (ebben a mezőben kell kezdődnie, egy `\`). Bármely fájlszűrők is hozzáadhat.
 
-8.  hello data transformation szolgáltatás hello adatokon keresztül pillanatképek be toohello Azure fejlesztőre működik. Ez a feladat futtatásakor választhat tootake biztonsági másolatot minden alkalommal, amikor a feladat fut (a legújabb adatokkal toowork) vagy toouse hello hello felhőben utolsó meglévő biztonsági mentés (ha az egyes archivált adatokat).
+8.  A data transformation szolgáltatás működik-e az adatok az Azure-bA leküldött, a pillanatképek keresztül. Ez a feladat futtatásakor is választja, a biztonsági mentés minden futtatásakor ez a feladat (csak ezen legfrissebb adatokat), vagy ha a legutóbbi meglévő biztonsági mentés a felhőben (ha az egyes archivált adatokat).
 
     ![Új adatforrás részletei](./media/storsimple-data-manager-ui/new-data-source-details.png)
 
-9. A következő hello tárolóbeállítások kell toobe konfigurálva. Támogatott célok – Azure Storage-fiókok és az Azure Media Services-fiókok 2 típusa van. Válassza ki tárfiókok tooput fájlok a fiókhoz tartozó blobokat. Tooput fájlok az media services-fiók kiválasztása a fiókhoz tartozó eszközök. Ebben az esetben kell tooadd tára. Hello legördülő menüben válassza ki **új hozzáadása** , majd **beállításainak**.
+9. Ezután a tárolóbeállítások kell konfigurálni. Támogatott célok – Azure Storage-fiókok és az Azure Media Services-fiókok 2 típusa van. Válassza ki a fájlok kerüljenek a fiókhoz tartozó BLOB storage-fiókok. Válassza ki a media services-fiók fájlok kerüljenek a fiókhoz tartozó eszközök számára. Ebben az esetben kell vegyen fel egy tárházat. A legördülő listában jelölje ki **új hozzáadása** , majd **beállításainak**.
 
     ![Adatokat fogadó létrehozása](./media/storsimple-data-manager-ui/create-new-data-sink.png)
 
-10. Itt kiválaszthatja kívánt tooadd és hello más paramétereket hello tárház társított tárház hello típusa. Mindkét esetben a tároló várólista létrejön hello feladat futtatásakor. A sorba az átalakított blobokkal kapcsolatos üzenetek kerülnek, amint a blobok elkészültek. a várólista nevét hello van hello ugyanaz, mint a hello feladatdefiníció hello nevét. Ha **Media Services** hello tárház típusa, majd is megadhat tárfiók hitelesítő adatainak ahol hello várólista létrejön.
+10. Itt is válassza ki a hozzáadni kívánt tárház és a tárház társított a többi paraméter típusát. Mindkét esetben a tároló várólista létrejön, a feladat futtatásakor. A sorba az átalakított blobokkal kapcsolatos üzenetek kerülnek, amint a blobok elkészültek. A sor neve megegyezik a feladatdefiníció nevével. Ha **Media Services** tárház típusként, majd is megadhat tárfiók hitelesítő adatainak ahol a várólista létrejön.
 
     ![Új adatokat fogadó részletei](./media/storsimple-data-manager-ui/new-data-sink-details.png)
 
-11. A felvett hello adattárház (amely néhány másodpercet vesz igénybe), található hello tárház hello hello legördülő **célfiók neve**.  Válassza ki a hello cél, amelyekre szüksége van.
+11. Miután hozzáadta az adattárház (amely néhány másodpercet vesz igénybe), megtalálja a tárházban meg a legördülő listában a a **célfiók neve**.  Válassza ki a cél, amelyekre szüksége van.
 
-12. Kattintson a **OK** toocreate hello feladat definíciójához. A feladat definíciójához most már be van állítva. A feladat definíciójához hello felhasználói felületén keresztül többször is használhatja.
+12. Kattintson a **OK** létrehozni a feladat definíciójához. A feladat definíciójához most már be van állítva. A feladat definíciójához a felhasználói felületen keresztül többször is használhatja.
 
     ![Új projekt hozzáadása](./media/storsimple-data-manager-ui/add-new-job-definition.png)
 
-### <a name="run-hello-job-definition"></a>Hello feladatdefiníció futtatása
+### <a name="run-the-job-definition"></a>A feladat definíciójához futtatása
 
-StorSimple toohello tárfiók a hello feladatdefinícióban megadott toomove adatait van szüksége, szüksége lesz a tooinvoke azt. Nincs rugalmas hello paraméterek módosítása, minden alkalommal, amikor hello feladatot indít. hello lépései a következők:
+Adatok áthelyezése StorSimple feladatdefinícióban megadott tárfiók van szüksége, szüksége lesz indítsa el. Rugalmas szerepel a paraméterek módosítása, minden alkalommal, amikor a feladat indításakor. A lépések a következők:
 
-1. Válassza ki a StorSimple adatkezelő szolgáltatást, és nyissa meg túl**figyelés**. Kattintson a **futtatása most**.
+1. Válassza ki a StorSimple adatkezelő szolgáltatást, és navigáljon **figyelés**. Kattintson a **futtatása most**.
 
     ![Eseményindító feladatdefiníció](./media/storsimple-data-manager-ui/run-now.png)
 
-2. Válassza ki a hello feladatdefiníció, amelyet az toorun. Kattintson a **futtatási beállítások** toomodify toochange érdemes futtatni a feladatot a beállításokat.
+2. Válassza ki a futtatni kívánt feladat definíciójához. Kattintson a **futtatási beállítások** módosítani a beállításait, előfordulhat, hogy módosítani szeretné a feladat futtatásához.
 
     ![Feladatbeállítások futtatása](./media/storsimple-data-manager-ui/run-settings.png)
 
-3. Kattintson a **OK** majd **futtatása** toolaunch a feladatot. toomonitor ezt a feladatot, nyissa meg toohello **feladatok** a StorSimple adatkezelő lap.
+3. Kattintson a **OK** majd **futtatása** elindítani a feladatot. Ez a feladat figyeléséhez, keresse fel a **feladatok** a StorSimple adatkezelő lap.
 
     ![Feladatok listája és állapota](./media/storsimple-data-manager-ui/jobs-list-and-status.png)
 
-4. A hozzáadása toomonitoring a hello **feladatok** panelen, akkor is figyelheti a hello storage üzenetsorába, ahol egy üzenet jelenik meg minden alkalommal, amikor egy fájl átkerül a StorSimple toohello tárfiók.
+4. A figyelés mellett a **feladatok** panelen, akkor is figyelheti a a tároló várólista, ahol egy üzenet jelenik meg minden alkalommal, amikor egy fájl átkerül a StorSimple a tárfiók.
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-[.NET SDK toolaunch StorSimple adatkezelő feladatok](storsimple-data-manager-dotnet-jobs.md).
+[.NET SDK használatával indítsa el a StorSimple adatkezelő feladatok](storsimple-data-manager-dotnet-jobs.md).

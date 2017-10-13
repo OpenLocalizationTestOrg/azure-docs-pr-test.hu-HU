@@ -1,6 +1,6 @@
 ---
-title: "az Azure Application Insights Stream Analytics segítségével aaaExport |} Microsoft Docs"
-description: "A Stream Analytics folyamatosan alakíthatja át, és a útvonal hello adatok exportálása az Application Insights."
+title: "Exportálja a Stream Analytics az Azure Application Insights segítségével |} Microsoft Docs"
+description: "A Stream Analytics folyamatosan átalakíthatja, szűrésére és az adatok az Application Insights exportálnia útvonalát."
 services: application-insights
 documentationcenter: 
 author: noamben
@@ -13,138 +13,138 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/18/2016
 ms.author: bwren
-ms.openlocfilehash: fda9b64f588c520833b2669eafdf650efc3de6be
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6a84d8ff67c420ce712de905ab1172632502a863
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="use-stream-analytics-tooprocess-exported-data-from-application-insights"></a>Használja a Stream Analytics tooprocess az exportált adatok az Application Insights
-[Az Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/) hello ideális eszköz adatfeldolgozás [Application Insights-ból exportált](app-insights-export-telemetry.md). A Stream Analytics segítségével olvasnak be adatokat különböző forrásokból. Az átalakítási és hello adatok szűrése és tooa különböző nyelő irányításához.
+# <a name="use-stream-analytics-to-process-exported-data-from-application-insights"></a>Az Application Insights exportált adatok feldolgozása a Stream Analytics segítségével
+[Az Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/) adatok feldolgozására ideális eszköz [Application Insights-ból exportált](app-insights-export-telemetry.md). A Stream Analytics segítségével olvasnak be adatokat különböző forrásokból. Az átalakítási és szűrje az adatokat és mosdók számos irányítja.
 
-Ebben a példában mi létrehozunk egy adaptert, amely beolvassa az Application Insights, átnevezése és dolgozza fel néhány hello mező, és kiszolgálókészletéhez azt a Power BI-bA.
+Ebben a példában mi létrehozunk egy adaptert, amely beolvassa az Application Insights, átnevezése és feldolgozza az egyes mezőit és kiszolgálókészletéhez azt a Power BI-bA.
 
 > [!WARNING]
-> Nincsenek sokkal hatékonyabb és könnyebben [javasolt módját toodisplay Application Insights adatokat a Power BI](app-insights-export-power-bi.md). hello bemutatott elérési út csak egy példa tooillustrate hogyan tooprocess exportált adatok.
+> Nincsenek sokkal hatékonyabb és könnyebben [javasolt módját Application Insights adatainak megjelenítése Power BI-ban](app-insights-export-power-bi.md). A bemutatott elérési út csak egy példa az exportált adatok feldolgozása mutatja be.
 > 
 > 
 
-![SA tooPBI keresztül exportálás letiltása diagramja](./media/app-insights-export-stream-analytics/020.png)
+![Az exportált keresztül SA PBI blokk diagramja](./media/app-insights-export-stream-analytics/020.png)
 
 ## <a name="create-storage-in-azure"></a>Tároló létrehozása az Azure-ban
-A folyamatos exportálás adatok tooan Azure Storage-fiók esetén mindig kimenete, ezért először a toocreate hello tárolási kell.
+A folyamatos exportálás mindig kimenete adatokat egy Azure Storage-fiók, ezért meg kell először hozza létre a tárolót.
 
-1. Hozzon létre egy "klasszikus" tárfiókot az előfizetésében szereplő hello [Azure-portálon](https://portal.azure.com).
+1. Az előfizetésben a "klasszikus" storage-fiók létrehozása a [Azure-portálon](https://portal.azure.com).
    
    ![Azure-portálon válassza ki az új, az adatok, a tárolás](./media/app-insights-export-stream-analytics/030.png)
 2. Tároló létrehozása
    
-    ![Az új tárolási hello tárolók kiválasztása, hello tárolók csempére, majd a Hozzáadás gombra](./media/app-insights-export-stream-analytics/040.png)
-3. Hello tárelérési kulcs másolása
+    ![Az új tárterületen található tárolók kiválasztása, kattintson a tárolók csempe, majd a Hozzáadás](./media/app-insights-export-stream-analytics/040.png)
+3. A tárelérési kulcs másolása
    
-    Szüksége lehet rájuk hamarosan tooset hello bemeneti toohello stream analytics szolgáltatás.
+    Kell, hogy hamarosan állítsa be a stream analytics szolgáltatás bemenete.
    
-    ![Hello tárolóban nyissa meg a beállításokat, a kulcsokat, és másolatot hello elsődleges elérési kulcsot](./media/app-insights-export-stream-analytics/045.png)
+    ![A tárolóban nyissa meg a beállításokat, a kulcsokat, és az elsődleges elérési kulcsot másolatot](./media/app-insights-export-stream-analytics/045.png)
 
-## <a name="start-continuous-export-tooazure-storage"></a>Indítsa el a folyamatos exportálás tooAzure tároló
+## <a name="start-continuous-export-to-azure-storage"></a>Indítsa el az Azure storage a folyamatos exportálás
 [A folyamatos exportálás](app-insights-export-telemetry.md) helyezi át az adatokat az Application Insights az Azure storage-be.
 
-1. Hello Azure-portálon keresse meg az alkalmazáshoz létrehozott toohello Application Insights-erőforrást.
+1. Az Azure portálon tallózással keresse meg az Application Insights-erőforrást az alkalmazáshoz létrehozott.
    
     ![A Tallózás, az Application Insights az alkalmazáshoz](./media/app-insights-export-stream-analytics/050.png)
 2. A folyamatos exportálás létrehozása.
    
     ![Válassza a beállítások, folyamatos exportálási hozzáadása](./media/app-insights-export-stream-analytics/060.png)
 
-    Válassza ki a korábban létrehozott hello tárfiókot:
+    Válassza ki a korábban létrehozott tárfiókot:
 
-    ![Hello exportálási cél beállítása](./media/app-insights-export-stream-analytics/070.png)
+    ![Exportálás céljának beállítása](./media/app-insights-export-stream-analytics/070.png)
 
-    Állítsa be a kívánt hello eseménytípusok toosee:
+    Állítsa be a megjeleníteni kívánt típusait:
 
     ![Válassza ki az esemény típusa](./media/app-insights-export-stream-analytics/080.png)
 
 1. Néhány adat gyűlik össze legyen. Elhelyezkedik vissza, és a felhasználók használhassa az alkalmazást egy ideig. Telemetria határozza meg, és látni fogja, statisztikai diagramok [metrika explorer](app-insights-metrics-explorer.md) és az egyes események [diagnosztikai keresési](app-insights-diagnostic-search.md). 
    
-    És is, hello adatok tooyour tárolási exportálja. 
-2. Vizsgálja meg az exportált hello adatokat. A Visual Studio felületén válassza **megtekintése / Cloud Explorer**, és nyissa meg az Azure / tárolási. (Ha még nem rendelkezik a menüpont, tooinstall hello Azure SDK-t kell: hello új projekt párbeszédpanel megnyitásához, és nyissa meg a Visual C# / felhő / Microsoft Azure SDK beolvasása a .NET-hez.)
+    És is, exportálja az adatokat a tárhelyre. 
+2. Vizsgálja meg az exportált adatokat. A Visual Studio felületén válassza **megtekintése / Cloud Explorer**, és nyissa meg az Azure / tárolási. (Ha még nem rendelkezik a menüpont, szeretné-e az Azure SDK telepítése: az új projekt párbeszédpanel megnyitásához, és nyissa meg a Visual C# / felhő / Microsoft Azure SDK beolvasása a .NET-hez.)
    
     ![](./media/app-insights-export-stream-analytics/04-data.png)
    
-    Jegyezze fel a hello közös hello alkalmazás nevét és instrumentation kulcsból származtatott hello elérési út része. 
+    Jegyezze fel az elérési út, az alkalmazás nevét és instrumentation kulcsból származtatott közös részét. 
 
-hello események tooblob fájlok írt JSON formátumban. Minden fájl tartalmazhat egy vagy több esemény. Ezért szeretnénk tooread hello eseményadatok és szűrő ki szeretnénk hello mezőket. Azt sikerült műveletekből hello adatokkal az összes típusú léteznek, de a terv ma toouse Stream Analytics toopipe hello adatok tooPower BI.
+Az események a blob-JSON formátumú fájlok kerülnek. Minden fájl tartalmazhat egy vagy több esemény. Ezért szeretnénk az esemény-adatok olvasása, és azt szeretnénk, ha a mezők szűrik. Nincsenek a különböző dolgok, azt megteheti az adatokat, de a terv ma Stream Analytics segítségével átadhatja az adatokat a Power bi-bA.
 
 ## <a name="create-an-azure-stream-analytics-instance"></a>Hozzon létre egy Azure Stream Analytics-példányt
-A hello [klasszikus Azure portálon](https://manage.windowsazure.com/), válassza ki a hello Azure Stream Analytics szolgáltatás, és hozzon létre egy új Stream Analytics-feladatot:
+Az a [klasszikus Azure portálon](https://manage.windowsazure.com/), válassza ki az Azure Stream Analytics szolgáltatás, és hozzon létre egy új Stream Analytics-feladatot:
 
 ![](./media/app-insights-export-stream-analytics/090.png)
 
 ![](./media/app-insights-export-stream-analytics/100.png)
 
-Amikor hello új feladatot hoz létre, bontsa ki a hozzá tartozó részletek:
+Ha az új feladat jön létre, bontsa ki a hozzá tartozó részletek:
 
 ![](./media/app-insights-export-stream-analytics/110.png)
 
 ### <a name="set-blob-location"></a>A blob hely beállítása
-A folyamatos exportálás blob tootake bemenetének állítsa be:
+Állítsa be úgy, hogy a folyamatos exportálás blobból bemeneti:
 
 ![](./media/app-insights-export-stream-analytics/120.png)
 
-Most importáljon a Tárfiókba, amelyet korábban feljegyzett hello elsődleges elérési kulcsot lesz szüksége. Állítsa be a hello Tárfiók kulcsa.
+Most szüksége lesz az elsődleges elérési kulcsot importáljon a Tárfiókba, amelyet korábban feljegyzett. Állítsa be ezt a Tárfiók kulcsára.
 
 ![](./media/app-insights-export-stream-analytics/130.png)
 
 ### <a name="set-path-prefix-pattern"></a>Set elérési út előtag mintája
 ![](./media/app-insights-export-stream-analytics/140.png)
 
-**Lehet, hogy tooset hello dátumformátum tooYYYY-hh-nn (a szaggatott vonal).**
+**Győződjön meg arról, hogy beállítása a Date formátum éééé-hh-nn-(kötőjel).**
 
-elérési út előtag mintája hello határozza meg, ahol a Stream Analytics hello tárolási hello bemeneti fájlok talál. Tooset kell azt a folyamatos exportálás toocorrespond toohow hello adatokat tárolja. Állítsa be ehhez hasonló:
+Az elérési út előtag mintája határozza meg, ahol a Stream Analytics talál a bemeneti fájlok a tároló. Állítsa be úgy, hogy hogyan tárolja az adatokat folyamatos exportálni kell. Állítsa be ehhez hasonló:
 
     webapplication27_12345678123412341234123456789abcdef0/PageViews/{date}/{time}
 
 Ebben a példában:
 
-* `webapplication27`hello Application Insights-erőforrás neve hello **összes kisbetű**.
-* `1234...`az Application Insights-erőforrást, hello hello instrumentation kulcsa **kötőjelek kihagyásával**. 
-* `PageViews`hello típusú adatok tooanalyze szeretné. rendelkezésre álló típusok hello hello szűrő, beállíthatja a folyamatos exportálás függ. Vizsgálja meg a hello exportált adatok toosee hello más elérhető típusok, és tekintse meg a hello [exportálja az adatokat az adatmodellbe](app-insights-export-data-model.md).
+* `webapplication27`az Application Insights-erőforrás neve **összes kisbetű**.
+* `1234...`az Application Insights-erőforrások instrumentation kulcsa **kötőjelek kihagyásával**. 
+* `PageViews`az elemezni kívánt adatok típusát. A használható típusok a folyamatos exportálás beállítása szűrő függ. Vizsgálja meg az exportált adatok megtekintéséhez a használható típusok, és tekintse meg a [exportálja az adatokat az adatmodellbe](app-insights-export-data-model.md).
 * `/{date}/{time}`a minta írt szó.
 
 > [!NOTE]
-> Vizsgálja meg a hello tárolási toomake meg arról, hogy a megfelelő beolvasni hello elérési útját.
+> Vizsgálja meg a tárolás ellenőrizze, hogy az elérési út jobb beolvasása.
 > 
 > 
 
 ### <a name="finish-initial-setup"></a>Kezdeti telepítés befejezése
-Erősítse meg a hello szerializálási formátum:
+Erősítse meg a szerializálási formátum:
 
 ![Erősítse meg, és zárja be a varázsló](./media/app-insights-export-stream-analytics/150.png)
 
-Hello bezárása, és várjon, amíg a telepítő toocomplete hello.
+Zárja be a varázslót, és várja meg, a telepítés befejezéséhez.
 
 > [!TIP]
-> Hello minta parancs toodownload bizonyos adatok felhasználásával. Legyen, a teszt minta toodebug a lekérdezést.
+> A minta paranccsal bizonyos adatok letöltése. Legyen a lekérdezés hibakeresési teszt mintaként.
 > 
 > 
 
-## <a name="set-hello-output"></a>Set hello kimeneti
-Most jelölje ki a feladatot, és állítsa be a hello kimeneti.
+## <a name="set-the-output"></a>A kimeneti beállítása
+Most jelölje ki a feladatot, és állítsa be a kimenetet.
 
-![Válassza ki a hello új csatorna, kattintson a kimenetek, a Hozzáadás, a Power bi-ban](./media/app-insights-export-stream-analytics/160.png)
+![Jelölje ki az új csatornát, kattintson a kimenetek, a Hozzáadás, a Power bi-ban](./media/app-insights-export-stream-analytics/160.png)
 
-Adja meg a **munkahelyi vagy iskolai fiók** tooauthorize Stream Analytics tooaccess a Power BI-erőforrás. Majd készlet hello kimeneti, és hello cél Power BI DataSet adatkészlet és a tábla nevét.
+Adja meg a **munkahelyi vagy iskolai fiók** engedélyezése a Stream Analytics a Power BI erőforrás elérésére. Majd találjon ki a kimenetet, és a cél a Power BI DataSet adatkészlet és a tábla nevét.
 
 ![A neveket készlet](./media/app-insights-export-stream-analytics/170.png)
 
-## <a name="set-hello-query"></a>Set hello lekérdezés
-hello lekérdezés hello fordítási a bemeneti toooutput szabályozza.
+## <a name="set-the-query"></a>A lekérdezés beállítása
+A lekérdezés fordítása bemeneti, kimeneti szabályozza.
 
-![Jelölje ki a hello feladat, majd kattintson a lekérdezést. Illessze be az alábbi hello minta.](./media/app-insights-export-stream-analytics/180.png)
+![Jelölje ki a feladatot, és kattintson a lekérdezést. Illessze be az alábbi minta.](./media/app-insights-export-stream-analytics/180.png)
 
-Hello teszt függvény toocheck, hogy elérhetővé hello jobb oldali kimeneti használja. Adjon meg hozzá hello bemenetek oldalról lejegyezte hello mintaadatok. 
+A teszt funkció segítségével ellenőrizze, hogy a megfelelő kimeneti kap. A mintaadatok, amely a bemeneti adatok oldalról lejegyezte adjon neki. 
 
-### <a name="query-toodisplay-counts-of-events"></a>Lekérdezés toodisplay számát is események
+### <a name="query-to-display-counts-of-events"></a>Megjelenítendő lekérdezések események száma
 Illessze be a lekérdezést:
 
 ```SQL
@@ -160,11 +160,11 @@ Illessze be a lekérdezést:
     GROUP BY TumblingWindow(minute, 1), flat.ArrayValue.name
 ```
 
-* export-bemeneti érték azt a nevet adott toohello adatfolyam-bemenet hello alias
-* pbi-kimeneti rendszer hello kimeneti alias meghatározott
-* Használjuk [külső alkalmazása GetElements](https://msdn.microsoft.com/library/azure/dn706229.aspx) mert egy beágyazott JSON arrray hello esemény neve. Majd hello válassza kivételezések hello esemény-névvel, hello több példányban található ilyen nevű hello időszak számát. Hello [Group By](https://msdn.microsoft.com/library/azure/dn835023.aspx) záradék hello elemek csoportok 1 perces időszakokra.
+* export-bemeneti érték a jelenleg megadott, a bemeneti adatfolyam alias
+* o-pbi a kimeneti alias meghatározott
+* Használjuk [külső alkalmazása GetElements](https://msdn.microsoft.com/library/azure/dn706229.aspx) mert egy beágyazott JSON arrray az esemény nevét. A Select választja, majd az esemény-névvel, az adott időszakban ilyen nevű példányok számát. A [Group By](https://msdn.microsoft.com/library/azure/dn835023.aspx) záradék csoportosítja az elemek 1 perces időszakokra.
 
-### <a name="query-toodisplay-metric-values"></a>Lekérdezés toodisplay metrika értékek
+### <a name="query-to-display-metric-values"></a>Lekérdezés metrika értékek megjelenítése
 ```SQL
 
     SELECT
@@ -179,9 +179,9 @@ Illessze be a lekérdezést:
 
 ``` 
 
-* Ez a lekérdezés eseményrögzítési hello metrikák telemetriai tooget hello esemény időpontja és hello Átjárómetrika értékeként. hello metrika értékei belül tömb, így hello külső alkalmazása GetElements mintát tooextract hello sorok használjuk. "myMetric" Ebben az esetben az hello metrika hello név. 
+* Ez a lekérdezés eseményrögzítési azokat a metrikák telemetriai adat az esemény időpontja és a Átjárómetrika értékeként. A metrika értékei egy tömb belül, a külső alkalmazása GetElements mintát használjuk a sor kibontásához. "myMetric" Ebben az esetben a mérőszám a neve. 
 
-### <a name="query-tooinclude-values-of-dimension-properties"></a>Lekérdezés tooinclude értékek dimenzió tulajdonságai
+### <a name="query-to-include-values-of-dimension-properties"></a>Lekérdezés dimenzió a tulajdonságokat tartalmazza
 ```SQL
 
     WITH flat AS (
@@ -201,22 +201,22 @@ Illessze be a lekérdezést:
 
 ```
 
-* Ez a lekérdezés hello dimenziótulajdonságok nélkül attól függően, hogy egy adott dimenzió hello dimenzió tömb rögzített indexnél alatt az értékeket tartalmaz.
+* Ez a lekérdezés a dimenzió tulajdonságok nélkül attól függően, hogy egy adott dimenzió alatt a dimenzió tömb rögzített indexnél értékeket tartalmaz.
 
-## <a name="run-hello-job"></a>Hello feladat futtatása
-A múltbeli toostart hello feladatot hello kiválaszthatja a dátumot. 
+## <a name="run-the-job"></a>A feladat futtatása
+A múltban elindítani a feladatot, kiválaszthatja a dátumot. 
 
-![Jelölje ki a hello feladat, majd kattintson a lekérdezést. Illessze be az alábbi hello minta.](./media/app-insights-export-stream-analytics/190.png)
+![Jelölje ki a feladatot, és kattintson a lekérdezést. Illessze be az alábbi minta.](./media/app-insights-export-stream-analytics/190.png)
 
-Várjon, amíg hello feladat fut-e.
+Várjon, amíg a feladat fut-e.
 
 ## <a name="see-results-in-power-bi"></a>A Power BI eredmények megtekintése
 > [!WARNING]
-> Nincsenek sokkal hatékonyabb és könnyebben [javasolt módját toodisplay Application Insights adatokat a Power BI](app-insights-export-power-bi.md). hello bemutatott elérési út csak egy példa tooillustrate hogyan tooprocess exportált adatok.
+> Nincsenek sokkal hatékonyabb és könnyebben [javasolt módját Application Insights adatainak megjelenítése Power BI-ban](app-insights-export-power-bi.md). A bemutatott elérési út csak egy példa az exportált adatok feldolgozása mutatja be.
 > 
 > 
 
-Nyissa meg a munkahelyi vagy iskolai fiókját, és jelölje be hello dataset és tábla, amelyet hello Stream Analytics-feladat eredményének hello Power bi-ban.
+Nyissa meg a Power BI a munkahelyi vagy iskolai fiókkal, majd válassza ki a DataSet adatkészlet és a tábla, amelyet a Stream Analytics-feladat eredményének.
 
 ![A Power bi-ban válassza ki a DataSet adatkészlet és a mezőket.](./media/app-insights-export-stream-analytics/200.png)
 
@@ -225,10 +225,10 @@ Most már használhat ez az adatkészlet a jelentések és irányítópultok a [
 ![A Power bi-ban válassza ki a DataSet adatkészlet és a mezőket.](./media/app-insights-export-stream-analytics/210.png)
 
 ## <a name="no-data"></a>Nincs adat?
-* Ellenőrizze, hogy [set hello dátumformátum](#set-path-prefix-pattern) megfelelően tooYYYY-hh-nn (a szaggatott vonal).
+* Ellenőrizze, hogy [a dátum formátum beállítása](#set-path-prefix-pattern) megfelelően éééé-hh-nn (a kötőjeleket) számára.
 
 ## <a name="video"></a>Videó
-Noam Ben Zeev bemutatja, hogyan tooprocess exportált adatok használatával a Stream Analytics.
+Noam Ben Zeev bemutatja, hogyan használja a Stream Analytics exportált adatok feldolgozása.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Export-to-Power-BI-from-Application-Insights/player]
 > 
@@ -236,6 +236,6 @@ Noam Ben Zeev bemutatja, hogyan tooprocess exportált adatok használatával a S
 
 ## <a name="next-steps"></a>Következő lépések
 * [Folyamatos exportálás](app-insights-export-telemetry.md)
-* [Részletes adatok modellhez tartozó referencia hello Tulajdonságtípusok és értékeket.](app-insights-export-data-model.md)
+* [A részletes adatok modell útmutató a tulajdonság típusát és értékét.](app-insights-export-data-model.md)
 * [Application Insights](app-insights-overview.md)
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure Media Services aaaMicrosoft forgatókönyvek és funkciók üzemeltetésében rendelkezésre állását |} Microsoft Docs"
+title: "Microsoft Azure Media Services-forgatókönyvek és a szolgáltatások rendelkezésre állása az egyes adatközpontokban | Microsoft Docs"
 description: "Ez a témakör a Microsoft Azure Media Services-forgatókönyvek áttekintését és a funkciók és szolgáltatások rendelkezésre állását mutatja be az egyes adatközpontokban."
 services: media-services
 documentationcenter: 
@@ -13,91 +13,91 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 07/10/2017
 ms.author: juliako;anilmur
-ms.openlocfilehash: 3dbab6998ed5da738baf8f1e2fb096dfba336e19
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d9994dd7bfb6b6bf949a7708c07651d667929ae4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="scenarios-and-availability-of-media-services-features-across-datacenters"></a>Forgatókönyvek és a Media Services-szolgáltatások rendelkezésre állása az egyes adatközpontokban
 
-A Microsoft Azure Media Services (AMS) lehetővé teszi a toosecurely feltöltési, tárolásához, kódolása és video- vagy tartalom csomag mind igény szerinti és élő adatfolyam-továbbítási kézbesítési toovarious ügyfelek (például TV, számítógépek és mobileszközök).
+A Microsoft Azure Media Services (AMS) lehetővé teszi különböző videó- és hangtartalmak biztonságos feltöltését, tárolását, kódolását és becsomagolását, majd igény szerinti és élő streamként történő továbbítását különböző ügyfelek részére (például tévékészülékekre, számítógépekre és mobileszközökre).
 
-AMS hello világ több különböző adatközponthoz működik. Ezekben az adatközpontokban toogeographic régiókból, így rugalmasságot helyének kiválasztása vannak csoportosítva toobuild az alkalmazások. Tekintse át hello [régiók és a helyek listáját](https://azure.microsoft.com/regions/). 
+Az AMS világszerte számos adatközpontban működik. Ezek az adatközpontok földrajzi régiók szerint vannak csoportosítva, ami kellő mozgásteret biztosít az alkalmazások létrehozási helyének megválasztásához. [A régiók és a kapcsolódó helyek listáját itt](https://azure.microsoft.com/regions/) tekintheti meg. 
 
-Ezen témakör a tartalmak [élő](#live_scenarios) vagy [igény szerinti](#vod_scenarios) továbbításának leggyakoribb eseteit mutatja be. hello is a témakör az adathordozó-szolgáltatások és szolgáltatások rendelkezésre állási adatait adatközpontok között.
+Ezen témakör a tartalmak [élő](#live_scenarios) vagy [igény szerinti](#vod_scenarios) továbbításának leggyakoribb eseteit mutatja be. Ez a témakör a médiafunkciók és szolgáltatások adatközpontok közötti rendelkezésre állásáról is részleteket nyújt.
 
 ## <a name="overview"></a>Áttekintés
 
 ### <a name="prerequisites"></a>Előfeltételek
 
-az Azure Media Services toostart hello következő szükséges:
+Az Azure Media Services használatának megkezdéséhez rendelkeznie kell a következőkkel:
 
 * Egy Azure-fiók. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com).
 * Egy Azure Media Services-fiók. További információ: [Fiók létrehozása](media-services-portal-create-account.md)
-* adatfolyam-továbbítási végpontra, amelyből el kívánja toostream tartalom hello toobe rendelkezik hello **futtató** állapotát.
+* A tartalom-továbbításhoz használt streamvégpontnak **Fut** állapotban kell lennie.
 
-    Az AMS-fiók létrehozásakor egy **alapértelmezett** adatfolyam-továbbítási végpontra tooyour fiók kerül hello **leállítva** állapotát. a dinamikus csomagolás és a dinamikus titkosítás, az adatfolyam-továbbítási végpontra hello tartalmat, és hajtsa végre a megfelelő előnyeit streaming toostart toobe rendelkezik hello **futtató** állapotát.
+    Az AMS-fiók létrehozásakor a rendszer hozzáad egy **alapértelmezett**, **Leállítva** állapotú streamvégpontot a fiókhoz. A tartalom streamelésének megkezdéséhez, valamint a dinamikus csomagolás és a dinamikus titkosítás kihasználásához a streamvégpontnak **Fut** állapotban kell lennie.
 
-### <a name="commonly-used-objects-when-developing-against-hello-ams-odata-model"></a>Leggyakrabban használt objektumok, ha hello AMS OData modell történő fejlesztésről
+### <a name="commonly-used-objects-when-developing-against-the-ams-odata-model"></a>Az AMS OData-modellen alapuló fejlesztések során leggyakrabban használt objektumok
 
-hello következő kép bemutatja a leggyakrabban használt hello objektumok hello Media Services OData modellre fejlesztése során.
+A következő kép a Media Services OData-modellen alapuló fejlesztések során leggyakrabban használt objektumok közül mutat be néhányat.
 
-Kattintson a hello kép tooview, teljes méret.  
+Kattintson a képre a teljes méretű megjelenítéshez.  
 
 <a href="./media/media-services-overview/media-services-overview-object-model.png" target="_blank"><img src="./media/media-services-overview/media-services-overview-object-model-small.png"></a> 
 
-Megtekintheti a teljes minta hello [Itt](https://media.windows.net/API/$metadata?api-version=2.15).  
+A teljes modellt [itt](https://media.windows.net/API/$metadata?api-version=2.15) tekintheti meg.  
 
-## <a name="protect-content-in-storage-and-deliver-streaming-media-in-hello-clear-non-encrypted"></a>Tartalom védelme a tárolón és kézbesítése adatfolyamokat a hello törlése (titkosítatlan)
+## <a name="protect-content-in-storage-and-deliver-streaming-media-in-the-clear-non-encrypted"></a>Tartalom védelme a tárolón és folyamatos médiatovábbítás tisztán (titkosítatlanul)
 
 ![VoD-munkafolyamat](./media/scenarios-and-availability/scenarios-and-availability01.png)
 
 1. Töltsön fel egy kiváló minőségű médiafájlt egy adategységbe.
 
-    Ajánlott tooapply tooyour tárolási titkosítási beállítás eszköz rendelés tooprotect során a tartalmat feltöltés és tárolás közben során.
-2. Kódolja adaptív sávszélességű MP4-fájlsorozattá tooa készletét.
+    Javasolt az adategységen tárolótitkosítást alkalmazni, ezáltal védve a tartalmat feltöltés és tárolás közben.
+2. A kódolás kimenete egy adaptív sávszélességű MP4-fájlsorozat legyen.
 
-    Ajánlott tooapply tárolási titkosítási beállítás toohello kimeneti rendelés tooprotect az eszköz a tartalmat tárolás közben.
+    Javasolt a kimeneti adategységen tárolótitkosítást alkalmazni, ezáltal védve a tartalmat tárolás közben.
 3. Konfigurálja az adategység továbbítási házirendjét (amelyet a dinamikus csomagolás használ).
 
     Ha az adategységen tárolótitkosítást alkalmaz, konfigurálnia **kell** az adategység továbbítási házirendjét.
-4. Tegye közzé a hello adategységet egy OnDemand-kereső létrehozásával.
+4. Tegye közzé az adategységet egy OnDemand-kereső létrehozásával.
 5. Továbbítsa a közzétett tartalmat.
 
-Rendelkezésre állás biztosításához az adatközpontok kapcsolatos információkért lásd: hello [rendelkezésre állási](#availability) szakasz.
+Az adatközpontokban lévő rendelkezésre állásról információért lásd a [Rendelkezésre állás](#availability) című szakaszt.
 
 ## <a name="protect-content-in-storage-deliver-dynamically-encrypted-streaming-media"></a>Tartalom védelme a tárolón és dinamikusan titkosított folyamatos médiatovábbítás
 
 ![Védelem biztosítása a PlayReadyvel](./media/media-services-content-protection-overview/media-services-content-protection-with-multi-drm.png)
 
-1. Töltsön fel egy kiváló minőségű médiafájlt egy adategységbe. Tárolás titkosítási beállítás toohello eszköz alkalmazni.
-2. Kódolja adaptív sávszélességű MP4-fájlsorozattá tooa készletét. Tárolás titkosítási beállítás toohello kimeneti adategységen alkalmazni.
-3. Titkosítási tartalomkulcsot hello eszköz toobe lejátszás során dinamikusan titkosítani szeretné létrehozni.
+1. Töltsön fel egy kiváló minőségű médiafájlt egy adategységbe. Alkalmazzon az adategységen tárolótitkosítást.
+2. A kódolás kimenete egy adaptív sávszélességű MP4-fájlsorozat legyen. Alkalmazzon a kimeneti adategységen tárolótitkosítást.
+3. Hozzon létre egy titkosítási tartalomkulcsot az adategységhez, amelyet a lejátszás során dinamikusan titkosítani kíván.
 4. Konfigurálja a tartalomkulcs-engedélyezési házirendet.
 5. Konfigurálja az adategység továbbítási házirendjét (amelyet a dinamikus csomagolás és a dinamikus titkosítás használ).
-6. Tegye közzé a hello adategységet egy OnDemand-kereső létrehozásával.
+6. Tegye közzé az adategységet egy OnDemand-kereső létrehozásával.
 7. Továbbítsa a közzétett tartalmat.
 
-Rendelkezésre állás biztosításához az adatközpontok kapcsolatos információkért lásd: hello [rendelkezésre állási](#availability) szakasz.
+Az adatközpontokban lévő rendelkezésre állásról információért lásd a [Rendelkezésre állás](#availability) című szakaszt.
 
-## <a name="use-media-analytics-tooderive-actionable-insights-from-your-videos"></a>Media Analytics tooderive elemzéseket készítsenek videofájljaikból videók használata
+## <a name="use-media-analytics-to-derive-actionable-insights-from-your-videos"></a>Gyakorlatban használható elemzések készítése videófájlokból a Médiaelemzés használatával
 
-Médiaelemzés beszéd- és vizuális összetevők, amelyek megkönnyítik a szervezetek és vállalatok számára tooderive gyakorlatban használható elemzések készítsenek gyűjteménye. További információk: [Az Azure Media Services Elemző áttekintése](media-services-analytics-overview.md)
+A Médiaelemzés beszéd- és vizuális összetevők gyűjteménye, amely egyszerűbbé teszi a szervezetek és vállalatok számára, hogy a gyakorlatban is használható elemzéseket készítsenek videófájljaikból. További információk: [Az Azure Media Services Elemző áttekintése](media-services-analytics-overview.md)
 
 1. Töltsön fel egy kiváló minőségű médiafájlt egy adategységbe.
-2. Hello ismertetett hello Médiaelemzés-szolgáltatások egyikét a videók feldolgozásához [Media Analytics áttekintése](media-services-analytics-overview.md) szakasz.
-3. A Médiaelemzés médiafeldolgozói MP4- vagy JSON-fájlokat hoznak létre. Ha egy media processzor MP4-fájlokat, hello fájl fokozatosan lehet letölteni. Ha egy media processzor egy JSON-fájl, hello fájlt letöltheti hello Azure blob Storage tárolóban.
+2. Feldolgozhatja a videóit [A Media Analytics áttekintése](media-services-analytics-overview.md) szakaszban leírt egyik Media Analytics-szolgáltatással.
+3. A Médiaelemzés médiafeldolgozói MP4- vagy JSON-fájlokat hoznak létre. A médiafeldolgozók által létrehozott MP4-fájlokat fokozatosan lehet letölteni. A médiafeldolgozók által létrehozott JSON-fájlokat az Azure-blobtárolóból lehet letölteni.
 
-Rendelkezésre állás biztosításához az adatközpontok kapcsolatos információkért lásd: hello [rendelkezésre állási](#availability) szakasz.
+Az adatközpontokban lévő rendelkezésre állásról információért lásd a [Rendelkezésre állás](#availability) című szakaszt.
 
 ## <a name="deliver-progressive-download"></a>Progresszív letöltés továbbítása
 
 1. Töltsön fel egy kiváló minőségű médiafájlt egy adategységbe.
-2. A kódolás kimenete egyetlen MP4-fájl tooa.
-3. Tegye közzé a hello adategységet egy OnDemand- vagy SAS-kereső létrehozásával.
+2. A kódolás kimenete egyetlen MP4-fájl legyen.
+3. Tegye közzé az adategységet egy OnDemand- vagy SAS-kereső létrehozásával.
 
-    SAS-kereső használata esetén hello tartalmat letölti hello Azure blob Storage tárolóban. Ebben az esetben nem kell toohave adatfolyam-végpontok elindított állapotban.
+    Az SAS-kereső használata esetén a tartalmat az Azure-blobtárolóból lehet letölteni. Ebben az esetben nincs szükség elindított állapotú streamvégpontokra.
 4. Töltse le fokozatosan a tartalmat.
 
 ## <a id="live_scenarios"></a>Események élő közvetítése 
@@ -105,57 +105,57 @@ Rendelkezésre állás biztosításához az adatközpontok kapcsolatos informác
 1. Élő tartalmakat dolgozhat fel különböző élő streamelési protokollok (például RTMP vagy Smooth Streaming) használatával.
 2. A streamet adaptív sávszélességűvé kódolhatja (opcionális).
 3. Megtekintheti az élő stream előnézetét.
-4. hello tartalom gyakori adatfolyam-továbbítási protokollok (például MPEG DASH, Smooth, HLS) keresztül közvetlenül tooyour ügyfelek vagy a Content Delivery Network (CDN) tooa későbbi terjesztés.
+4. Továbbíthatja a tartalmat gyakori streamelési protokollok (például MPEG DASH, Smooth, HLS) használatával közvetlenül az ügyfelek részére, vagy egy tartalomkézbesítési hálózatra (CDN) későbbi terjesztés céljából.
 
     – vagy –
 
-    Rendelés toobe rekord és a tároló okozhatnak hello tartalma folyamatos átviteli újabb (Video-on-Demand).
+    A feldolgozott tartalmakat rögzítheti és tárolhatja a későbbi streamelés érdekében (Video-on-Demand).
 
-Ennek az élő Stream továbbítása során, beállíthatja irányítja a következő hello:
+Élő streameléskor a következő útvonalak egyikét választhatja:
 
 ### <a name="working-with-channels-that-receive-multi-bitrate-live-stream-from-on-premises-encoders-pass-through"></a>Helyszíni kódolóktól többszörös átviteli sebességű adatfolyamot fogadó (áteresztő) csatornák használata
 
-hello következő diagramon láthatók hello hello AMS platform fontosabb részei, amelyek szerepet játszanak az hello **áteresztő** munkafolyamat.
+A következő diagramon láthatók a AMS platform azon fontosabb részei, amelyek szerepet játszanak az **áteresztő** munkafolyamatban.
 
 ![Élő munkafolyamat](./media/scenarios-and-availability/media-services-live-streaming-current.png)
 
 Tovább információk: [Helyszíni kódolóktól többféle sávszélességű adatfolyamot fogadó csatornák használata](media-services-live-streaming-with-onprem-encoders.md)
 
-### <a name="working-with-channels-that-are-enabled-tooperform-live-encoding-with-azure-media-services"></a>Csatornákat végzett élő kódolás az Azure Media Services tooperform engedélyezve
+### <a name="working-with-channels-that-are-enabled-to-perform-live-encoding-with-azure-media-services"></a>Az Azure Media Services segítségével élő kódolásra képes csatornák használata
 
-hello alábbi ábrán látható fő hello hello AMS platform részei, amelyek szerepet játszanak az élő adatfolyam-továbbítási munkafolyamat ahol a csatorna egy olyan élő kódolás Media Services tooperform engedélyezve van.
+A következő diagramon láthatók a AMS platform azon fontosabb részei, amelyek szerepet játszanak az élő adatfolyam-továbbítási munkafolyamatban, ha a csatorna számára engedélyezett a Media Services használatával végzett élő kódolás.
 
 ![Élő munkafolyamat](./media/scenarios-and-availability/media-services-live-streaming-new.png)
 
-További információkért lásd: [csatornák használata, hogy vannak engedélyezve tooPerform élő kódolás az Azure Media Services](media-services-manage-live-encoder-enabled-channels.md).
+További információk: [Az Azure Media Services segítségével élő kódolásra képes csatornák használata](media-services-manage-live-encoder-enabled-channels.md)
 
-Rendelkezésre állás biztosításához az adatközpontok kapcsolatos információkért lásd: hello [rendelkezésre állási](#availability) szakasz.
+Az adatközpontokban lévő rendelkezésre állásról információért lásd a [Rendelkezésre állás](#availability) című szakaszt.
 
 ## <a name="consuming-content"></a>Tartalmak felhasználása
 
-Azure Media Services biztosította hello eszközök segítségével kell toocreate gazdag, dinamikus ügyféloldali lejátszóalkalmazások a legtöbb platformra, többek között: iOS-eszközök, Android-eszközök, Windows, Windows Phone, Xbox és dekóder jelölőnégyzetéből. hello a következő témakör nyújt hivatkozások tooSDKs és lejátszó-Keretrendszerekhez, amelyeket felhasználhat toodevelop a saját ügyfélalkalmazásait a Media Services médiafolyamot médiafolyamainak fogadására. További információkért lásd a [videólejátszó alkalmazások fejlesztését](media-services-develop-video-players.md) ismertető cikket.
+Az Azure Media Services biztosította eszközökkel részletes, dinamikus ügyféloldali lejátszóalkalmazások hozhatók létre a legtöbb platformra, köztük a következőkre: iOS, Android, Windows, Windows Phone, Xbox és dekóderek. A következő témakor hivatkozásokat tartalmaz azokhoz az SDK-khoz és lejátszó-keretrendszerekhez, amelyekkel kifejlesztheti a saját ügyfélalkalmazásait a Media Services médiafolyamainak fogadására. További információkért lásd a [videólejátszó alkalmazások fejlesztését](media-services-develop-video-players.md) ismertető cikket.
 
 ## <a name="enabling-azure-cdn"></a>Az Azure CDN engedélyezése
 
-A Media Services támogatja az Azure CDN-integrációt. Információ tooenable Azure CDN, lásd: [hogyan tooManage adatfolyam-továbbítási végpontok Media Services-fiók](media-services-portal-manage-streaming-endpoints.md).
+A Media Services támogatja az Azure CDN-integrációt. További információk az Azure CDN engedélyezéséről: [Adatfolyam-továbbítási végpontok kezelése egy Media Services-fiókban](media-services-portal-manage-streaming-endpoints.md)
 
 ## <a id="scaling"></a>Media Services-fiók méretezése
 
 Az AMS-ügyfelek méretezhetik a streamvégpontokat, a médiafeldolgozást és a tárolást az AMS-fiókjukon.
 
-* A Media Services ügyfelei **standard** szintű streamvégpontot vagy **prémium** szintű streamvégpontot választhatnak. A **standard** streamvégpont a legtöbb streamelési feladat ellátására alkalmas. Ugyanaz, mint szolgáltatások hello tartalmaz egy **prémium** automatikusan adatfolyam-végpontok és méretezik kimenő sávszélesség. 
+* A Media Services ügyfelei **standard** szintű streamvégpontot vagy **prémium** szintű streamvégpontot választhatnak. A **standard** streamvégpont a legtöbb streamelési feladat ellátására alkalmas. Ugyanazokkal a jellemzőkkel rendelkezik, mint a **prémium** szintű streamvégpontok, és automatikusan méretezi a kimenő sávszélességet. 
 
-    A **prémium** szintű streamvégpontok a speciális feladatokhoz ideálisak, mert dedikált és méretezhető sávszélesség-kapacitást nyújtanak. A **prémium** streamvégponttal rendelkező ügyfelek alapértelmezés szerint kapnak egy adategységet (SU-t). adatfolyam-továbbítási végpontra hello SUs hozzáadásával is méretezhető. Minden egyes SU további sávszélesség kapacitás toohello alkalmazásokat tartalmaz. További információt a skálázás **prémium szintű** hello adatfolyam-végpontok, lásd: [streamvégpontok skálázás](media-services-portal-scale-streaming-endpoints.md) témakör.
+    A **prémium** szintű streamvégpontok a speciális feladatokhoz ideálisak, mert dedikált és méretezhető sávszélesség-kapacitást nyújtanak. A **prémium** streamvégponttal rendelkező ügyfelek alapértelmezés szerint kapnak egy adategységet (SU-t). A streamvégpont adategységek hozzáadásával méretezhető. Mindegyik adategység további sávszélesség-kapacitást nyújt az alkalmazásnak. A **prémium** szintű streamvégpontok méretezéséről további információt a [streamvégpontok méretezését](media-services-portal-scale-streaming-endpoints.md) ismertető témakörben talál.
 
-* Egy Media Services-fiók fenntartott egység típusú, amely megadja, hogy hello sebesség, amellyel a feladatok feldolgozása media feldolgozása hozzá rendelve. Hello következő közötti választhatja ki a szolgáltatás számára fenntartott egység: **S1**, **S2**, vagy **S3**. Például ugyanazon kódolási feladat fut gyorsabban hello használatakor hello **S2** fenntartott egységnek típus összehasonlítása toohello **S1** típusa.
+* A Media Services-fiókok Fenntartott egység típussal vannak társítva, amely meghatározza a médiafeldolgozási feladatok feldolgozásának sebességét. A következő Fenntartott egység típusok közül választhat: **S1**, **S2** vagy **S3**. Ugyanaz a kódolási feladat például gyorsabban fut, amikor az **S2** Fenntartott egység típust használja az **S1** típus helyett.
 
-    Ezenkívül toospecifying hello fenntartott egység típusát, akkor megadhatja tooprovision fiókját **fenntartott egységek** (RUs). kiépített RUs hello száma határozza meg, egyidejűleg dolgozhatók fel egy adott fiókhoz media feladatok hello száma.
+    A Fenntartott egység típusának meghatározása mellett megadhatja, hogy ellátja-e a fiókot **Fenntartott egységekkel** (RU-kkal). A megadott Fenntartott egységek száma határozza meg az egy adott fiókon egy időben feldolgozható médiafeladatok számát.
 
     >[!NOTE]
     >A Fenntartott egységek az összes médiafeldolgozás párhuzamossá tételéért felelősek, beleértve az Azure Media Indexerrel végzett indexelési feladatokat is. De a kódolással ellentétben az indexelési feladatok feldolgozása nem lesz gyorsabb a gyorsabb Fenntartott egységekkel.
 
     További információkért olvassa el a [médiafeldolgozás méretezését](media-services-portal-scale-media-processing.md) ismertető cikket.
-* A Media Services-fiók storage-fiókok tooit hozzáadásával is méretezheti. Minden tárfiók legfeljebb too500 TB kerül. tooexpand túl hello alapértelmezett korlátozások tárhelyét választhat tooattach több tároló fiókok tooa egyetlen Media Services-fiók. További információkért olvassa el a [tárfiókok kezelését](meda-services-managing-multiple-storage-accounts.md) ismertető cikket.
+* A Media Services-fiókját tárfiókok hozzáadásával is méretezheti. Minden tárfiók legfeljebb 500 TB kapacitású lehet. Ha a tárolót az alapértelmezett határérték fölé szeretné bővíteni, több tárfiókot is társíthat ugyanahhoz a Media Services-fiókhoz. További információkért olvassa el a [tárfiókok kezelését](meda-services-managing-multiple-storage-accounts.md) ismertető cikket.
 
 ##<a id="availability"></a> A Media Services-funkciók rendelkezésre állása az egyes adatközpontokban
 
@@ -165,11 +165,11 @@ Ez a szakasz a Media Services-funkciók az adatközpontok közötti rendelkezés
 
 #### <a name="availability"></a>Rendelkezésre állás
 
-A következő régiókban hello Media Services-fiókot hozhat létre: Észak-Európában, Nyugat-Európa, USA nyugati régiója, USA keleti régiója, Délkelet-Ázsiában, Kelet-Ázsia, Nyugat-japán, kelet-japán, Dél-Brazília, Nyugat-India, Dél-India és közép-India. 
+A következő régiókban hozhat létre Media Services-fiókokat: Észak-Európa, Nyugat-Európa, USA nyugati régiója, USA keleti régiója, Délkelet-Ázsia, Kelet-Ázsia, Nyugat-Japán, Kelet-Japán, Dél-Brazília, Nyugat-India, Dél-India és Közép-India. 
 
 ### <a name="streaming-endpoints"></a>Streamvégpontok 
 
-A Media Services ügyfelei **standard** szintű streamvégpontot vagy **prémium** szintű streamvégpontot választhatnak. További információkért lásd: hello [skálázás](#scaling) szakasz.
+A Media Services ügyfelei **standard** szintű streamvégpontot vagy **prémium** szintű streamvégpontot választhatnak. További információt a [méretezésről](#scaling) szóló szakaszban talál.
 
 #### <a name="availability"></a>Rendelkezésre állás
 
@@ -197,7 +197,7 @@ Az AMS két igény szerinti kódolót nyújt: a **Media Encoder Standard** kódo
 
 ### <a name="analytics-media-processors"></a>Elemzési médiafeldolgozók
 
-Médiaelemzés beszéd- és vizuális összetevők gyűjteménye, amely egyszerűbbé teszi a szervezetek és vállalatok számára tooderive gyakorlatban használható elemzések készítsenek. További információk: [Az Azure Media Services Elemző áttekintése](media-services-analytics-overview.md)
+A Médiaelemzés beszéd- és vizuális összetevők gyűjteménye, amely egyszerűbbé teszi a szervezetek és vállalatok számára, hogy a gyakorlatban is használható elemzéseket készítsenek videófájljaikból. További információk: [Az Azure Media Services Elemző áttekintése](media-services-analytics-overview.md)
 
 #### <a name="availability"></a>Rendelkezésre állás
 
@@ -215,7 +215,7 @@ Médiaelemzés beszéd- és vizuális összetevők gyűjteménye, amely egyszer�
 
 ### <a name="protection"></a>Védelem
 
-Microsoft Azure Media Services lehetővé teszi, hogy Ön toosecure hello idő keresztül tárhely, feldolgozás és kézbesítési elhagyják a adathordozókról. További információért olvassa el az [AMS-tartalmak védelmét](media-services-content-protection-overview.md) ismertető cikket.
+A Microsoft Azure Media Services lehetővé teszi a médiatartalmak védelmét attól a ponttól kezdve, ahogy az elhagyja a számítógépét, egészen a tároláson, a feldolgozáson és a továbbításon át. További információért olvassa el az [AMS-tartalmak védelmét](media-services-content-protection-overview.md) ismertető cikket.
 
 #### <a name="availability"></a>Rendelkezésre állás
 
@@ -229,9 +229,9 @@ Microsoft Azure Media Services lehetővé teszi, hogy Ön toosecure hello idő k
 
 ### <a name="reserved-units-rus"></a>Fenntartott egységek (RU-k)
 
-kiépített fenntartott egységek számának hello hello egyidejűleg dolgozhatók fel egy adott fiókhoz media feladatok száma határozza meg. 
+A megadott Fenntartott egységek száma határozza meg az egy adott fiókon egy időben feldolgozható médiafeladatok számát. 
 
-További információkért lásd: hello [skálázás](#scaling) szakasz.
+További információt a [méretezésről](#scaling) szóló szakaszban talál.
 
 #### <a name="availability"></a>Rendelkezésre állás
 
@@ -239,9 +239,9 @@ Minden adatközpontban elérhető.
 
 ### <a name="reserved-unit-ru-type"></a>Fenntartott egység (RU) típusa
 
-Egy Media Services-fiók fenntartott egységnek típusú, amely megadja, hogy hello sebesség, amellyel a feladatok feldolgozása media feldolgozása hozzá rendelve. Hello következő közötti választhatja ki a szolgáltatás számára fenntartott egység: S1, S2 vagy S3.
+A Media Services-fiókok Fenntartott egység típussal vannak társítva, amely meghatározza a médiafeldolgozási feladatok feldolgozásának sebességét. A következő Fenntartott egység típusok közül választhat: S1, S2 vagy S3.
 
-További információkért lásd: hello [skálázás](#scaling) szakasz.
+További információt a [méretezésről](#scaling) szóló szakaszban talál.
 
 #### <a name="availability"></a>Rendelkezésre állás
 

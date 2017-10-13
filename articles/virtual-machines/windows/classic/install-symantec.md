@@ -1,6 +1,6 @@
 ---
-title: "Symantec Endpoint Protection szolgáltatás a Windows Azure-ban aaaInstall |} Microsoft Docs"
-description: "Megtudhatja, hogyan tooinstall és hello Symantec Endpoint Protection biztonsági kiterjesztés konfigurálása egy új vagy meglévő Azure virtuális Géphez létre hello klasszikus telepítési modellt."
+title: "Symantec Endpoint Protection telepítése a Windows Azure-ban |} Microsoft Docs"
+description: "Megtudhatja, hogyan telepítse és konfigurálja a Symantec Endpoint Protection biztonsági bővítményt a klasszikus telepítési modellel létrehozott egy új vagy meglévő Azure virtuális gépen."
 services: virtual-machines-windows
 documentationcenter: 
 author: iainfoulds
@@ -15,30 +15,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: iainfou
-ms.openlocfilehash: cb6083366185c26c9f43ff94d835cd90725de5b2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1603ebc7ee3c29277f30fbb802bdd8205b92d648
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooinstall-and-configure-symantec-endpoint-protection-on-a-windows-vm"></a>Hogyan tooinstall és a Symantec Endpoint Protection konfigurálása a Windows virtuális gép
+# <a name="how-to-install-and-configure-symantec-endpoint-protection-on-a-windows-vm"></a>A Symantec Endpoint Protection telepítése és konfigurálása windowsos virtuális gépen
 > [!IMPORTANT] 
-> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../resource-manager-deployment-model.md). Ez a cikk hello klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén hello Resource Manager modellt használja.
+> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../resource-manager-deployment-model.md). Ez a cikk a klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén a Resource Manager modellt használja.
 
-Ez a cikk bemutatja, hogyan tooinstall és egy meglévő virtuális gépen (VM) Windows Server rendszert futtató hello Symantec Endpoint Protection-ügyfél konfigurálása. A teljes ügyfél szolgáltatásokat, például vírus- és kémprogram-védelmi-, tűzfal, és behatolás megelőzési tartalmazza. hello ügyfél biztonsági bővítményként segítségével hello Virtuálisgép-ügynök telepítve van.
+Ez a cikk bemutatja, hogyan telepítse és konfigurálja a Symantec Endpoint Protection-ügyfél egy meglévő virtuális gép (VM) Windows Server rendszerű. A teljes ügyfél szolgáltatásokat, például vírus- és kémprogram-védelmi-, tűzfal, és behatolás megelőzési tartalmazza. Az ügyfél biztonsági bővítményként segítségével a Virtuálisgép-ügynök telepítve van.
 
-Ha egy helyszíni megoldás a Symantec egy meglévő előfizetéshez, használhatja tooprotect az Azure virtuális gépeken. Ha nem az ügyfél még, regisztrálhat egy próba-előfizetésre. Információ a megoldásról további információkért lásd: [Symantec Endpoint Protection a Microsoft Azure platformon][Symantec]. Ennek a lapnak a hivatkozások toolicensing információi és útmutatója hello ügyfél telepítése, ha Ön már egy Symantec-ügyfél is van.
+Ha egy helyszíni megoldás a Symantec egy meglévő előfizetéshez, használhatja az Azure virtuális gépek védelmét. Ha nem az ügyfél még, regisztrálhat egy próba-előfizetésre. Információ a megoldásról további információkért lásd: [Symantec Endpoint Protection a Microsoft Azure platformon][Symantec]. Ezen a lapon olyan licencelési információkat és útmutatást az ügyfél telepítéséhez, ha Ön már egy Symantec-ügyfél mutató hivatkozásokat is tartalmaz.
 
 ## <a name="install-symantec-endpoint-protection-on-an-existing-vm"></a>Symantec Endpoint Protection telepítése egy meglévő virtuális gépen
-Mielőtt elkezdené, hello következőkre lesz szüksége:
+Mielőtt elkezdené, a következők szükségesek:
 
-* hello Azure PowerShell modul, a 0.8.2 verzió vagy újabb verzióját, a munkahelyi számítógép. Ellenőrizheti a hello Azure PowerShell hello telepített verziójának **Get-Module azure |} táblázat formázása verzió** parancsot. Útmutatás és egy hivatkozásra toohello legújabb verzió: [hogyan tooInstall és konfigurálása az Azure PowerShell][PS]. Jelentkezzen be tooyour Azure-előfizetés `Add-AzureAccount`.
-* hello futó Virtuálisgép-ügynök hello Azure virtuális gépen.
+* Az Azure PowerShell modul, a 0.8.2 verzió vagy újabb verzióját, a munkahelyi számítógép. Ellenőrizheti, hogy az Azure PowerShell, a telepített verzióját az **Get-Module azure |} táblázat formázása verzió** parancsot. Útmutatás és egy hivatkozást a legújabb verzióra: [telepítése és konfigurálása az Azure PowerShell][PS]. Jelentkezzen be az Azure-előfizetés használata `Add-AzureAccount`.
+* A Virtuálisgép-ügynök az Azure virtuális gépet futtat.
 
-Először győződjön meg arról, hogy hello Virtuálisgép-ügynök már telepítve van a hello virtuális gépen. Adja meg hello felhőszolgáltatás neve és a virtuális gép nevét, és futtassa a parancsokat egy rendszergazda szintű Azure PowerShell parancssorba a következő hello. Cserélje le mindent, ami hello idézőjelek között, beleértve a hello < és > karakter.
+Először is győződjön meg arról, hogy a Virtuálisgép-ügynök már telepítve van a virtuális gépen. Adja meg a felhőszolgáltatás neve és a virtuális gép nevét, és futtassa a következő parancsokat egy rendszergazda szintű Azure PowerShell parancssorban. Cserélje le a mindent, ami az ajánlatokat, beleértve a < és > karakter.
 
 > [!TIP]
-> Ha nem tudja hello felhőszolgáltatás és a virtuális gép nevét, futtassa **Get-AzureVM** toolist hello nevek az összes virtuális gép az aktuális előfizetésben.
+> Ha nem ismeri a felhőszolgáltatás és a virtuális gép nevét, futtassa **Get-AzureVM** listát az összes virtuális gépet a jelenlegi előfizetés nevét.
 
 ```powershell
 $CSName = "<cloud service name>"
@@ -47,9 +47,9 @@ $vm = Get-AzureVM -ServiceName $CSName -Name $VMName
 write-host $vm.VM.ProvisionGuestAgent
 ```
 
-Ha hello **write-host** parancs megjeleníti **igaz**, hello Virtuálisgép-ügynök telepítve van. Ha megjeleníti **hamis**, hello utasításokat, és egy hivatkozásra toohello, töltse le a hello Azure blogbejegyzés [ügynök és Virtuálisgép-bővítmények – 2. rész][Agent].
+Ha a **write-host** parancs megjeleníti **igaz**, a Virtuálisgép-ügynök telepítve van. Ha megjeleníti **hamis**, tekintse meg az utasításokat és az Azure blogbejegyzésben letöltési mutató hivatkozást [ügynök és Virtuálisgép-bővítmények – 2. rész][Agent].
 
-Ha hello Virtuálisgép-ügynök telepítve van, ezek parancsok tooinstall hello Symantec Endpoint Protection-ügynök fut.
+Ha a Virtuálisgép-ügynök telepítve van, futtassa az alábbi parancsokat a Symantec Endpoint Protection-ügynök telepítéséhez.
 
 ```powershell
 $Agent = Get-AzureVMAvailableExtension -Publisher Symantec -ExtensionName SymantecEndpointProtection
@@ -58,14 +58,14 @@ Set-AzureVMExtension -Publisher Symantec –Version $Agent.Version -ExtensionNam
     -VM $vm | Update-AzureVM
 ```
 
-tooverify, amelyek Symantec biztonsági bővítmény hello telepítve van és naprakész:
+Ellenőrizheti, hogy a Symantec biztonsági bővítménye telepítve van-e, és naprakész:
 
-1. Jelentkezzen be a virtuális gép toohello. Útmutatásért lásd: [hogyan tooLog a virtuális gép futó Windows Server tooa][Logon].
-2. A Windows Server 2008 R2, kattintson a **Start > Symantec Endpoint Protection**. Írja be a Windows Server 2012 vagy Windows Server 2012 R2-ben hello kezdőképernyőről **Symantec**, és kattintson a **Symantec Endpoint Protection**.
-3. A hello **állapot** hello lapján **állapot-Symantec Endpoint Protection** ablak, alkalmazza a frissítéseket, vagy szükség esetén indítsa újra.
+1. Jelentkezzen be a virtuális gép. Útmutatásért lásd: [jelentkezzen be a virtuális gép futó Windows Server hogyan][Logon].
+2. A Windows Server 2008 R2, kattintson a **Start > Symantec Endpoint Protection**. Írja be a Windows Server 2012 vagy Windows Server 2012 R2-ben a kezdőképernyőről **Symantec**, és kattintson a **Symantec Endpoint Protection**.
+3. Az a **állapot** lapján a **állapot-Symantec Endpoint Protection** ablak, alkalmazza a frissítéseket, vagy szükség esetén indítsa újra.
 
 ## <a name="additional-resources"></a>További források
-[Hogyan tooLog a virtuális gép futó Windows Server tooa][Logon]
+[Jelentkezzen be a Windows Server rendszerű virtuális gép hogyan][Logon]
 
 [Az Azure Virtuálisgép-bővítmények és szolgáltatások][Ext]
 

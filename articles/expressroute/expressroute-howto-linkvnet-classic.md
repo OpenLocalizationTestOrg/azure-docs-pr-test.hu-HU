@@ -1,6 +1,6 @@
 ---
-title: "A virtuális hálózati tooan ExpressRoute-kapcsolatcsoportot hivatkozás: PowerShell: klasszikus: Azure |} Microsoft Docs"
-description: "Ez a dokumentum áttekintést hogyan toolink virtuális hálózatok hello klasszikus telepítési modell és a PowerShell használatával (Vnetek) tooExpressRoute kapcsolatok."
+title: "Virtuális hálózat csatolása ExpressRoute-kapcsolatcsoportot: PowerShell: klasszikus: Azure |} Microsoft Docs"
+description: "Ez a dokumentum áttekintést csatolása a virtuális hálózatokon (Vnetek) az ExpressRoute-Kapcsolatcsoportok a klasszikus telepítési modell és a PowerShell használatával."
 services: expressroute
 documentationcenter: na
 author: ganesr
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/28/2017
 ms.author: ganesr
-ms.openlocfilehash: 6b8a01dcd4bbb9618ec3dd438cf0107538fb2a7a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8df8a4c6ff0897c821e13248e0494b17e1a4992d
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="connect-a-virtual-network-tooan-expressroute-circuit-using-powershell-classic"></a>Csatlakozás a virtuális hálózati tooan ExpressRoute-kapcsolatcsoportot (klasszikus) PowerShell használatával
+# <a name="connect-a-virtual-network-to-an-expressroute-circuit-using-powershell-classic"></a>Egy virtuális hálózathoz csatlakozni powershellel (klasszikus) ExpressRoute-kapcsolatcsoportot
 > [!div class="op_single_selector"]
 > * [Azure Portal](expressroute-howto-linkvnet-portal-resource-manager.md)
 > * [PowerShell](expressroute-howto-linkvnet-arm.md)
@@ -30,53 +30,53 @@ ms.lasthandoff: 10/06/2017
 > * [PowerShell (klasszikus)](expressroute-howto-linkvnet-classic.md)
 >
 
-Ez a cikk segítséget nyújt a virtuális hálózatokon (Vnetek) tooAzure ExpressRoute-Kapcsolatcsoportok hivatkozás hello klasszikus telepítési modell és a PowerShell használatával. Virtuális hálózatok lehet az ugyanahhoz az előfizetéshez hello vagy egy másik előfizetés része lehet.
+Ez a cikk segítséget nyújt a virtuális hálózatokon (Vnetek) csatolása az Azure ExpressRoute-Kapcsolatcsoportok a klasszikus telepítési modell és a PowerShell használatával. Virtuális hálózatok ugyanahhoz az előfizetéshez lehet, vagy egy másik előfizetés része lehet.
 
 [!INCLUDE [expressroute-classic-end-include](../../includes/expressroute-classic-end-include.md)]
 
-**Tudnivalók az Azure üzembe helyezési modelljeiről**
+**Tudnivalók az Azure üzembehelyezési modellekről**
 
 [!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 ## <a name="configuration-prerequisites"></a>Konfigurációs előfeltételek
-1. Hello Azure PowerShell-modulok hello legújabb verziójára van szüksége. Hello legújabb PowerShell-modulok letölthető hello hello PowerShell szakasza [Azure letöltőoldala](https://azure.microsoft.com/downloads/). Hello utasításait követve [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview) kapcsolatos részletes útmutatás tooconfigure a számítógép toouse hello Azure PowerShell-modulok.
-2. Tooreview hello kell [Előfeltételek](expressroute-prerequisites.md), [útválasztási követelmények](expressroute-routing.md), és [munkafolyamatok](expressroute-workflows.md) konfigurálás elkezdése előtt.
+1. Az Azure PowerShell-modulok legújabb verziójára van szüksége. Letöltheti a legújabb PowerShell-modulok PowerShell szakaszában a [Azure letöltőoldala](https://azure.microsoft.com/downloads/). Kövesse az utasításokat a [telepítése és konfigurálása az Azure PowerShell](/powershell/azure/overview) kapcsolatos részletes útmutatás az Azure PowerShell-modulok használata a számítógép konfigurálása.
+2. Át kell tekintenie a [Előfeltételek](expressroute-prerequisites.md), [útválasztási követelmények](expressroute-routing.md), és [munkafolyamatok](expressroute-workflows.md) konfigurálás elkezdése előtt.
 3. Egy aktív ExpressRoute-kapcsolatcsoportra lesz szüksége.
-   * Útmutatás alapján hello túl[ExpressRoute-kapcsolatcsoportot létrehozni](expressroute-howto-circuit-classic.md) , és a kapcsolat szolgáltatójánál hello áramkör engedélyezése.
-   * Győződjön meg arról, hogy rendelkezik az Azure magánhálózati társviszony-létesítés a kapcsolatcsoport konfigurálva. Lásd: hello [útválasztás konfigurálása](expressroute-howto-routing-classic.md) útválasztási miként.
-   * Győződjön meg arról, hogy az Azure magánhálózati társviszony-létesítés van konfigurálva, és hello BGP társviszony-létesítés a hálózat és a Microsoft között működik-e, hogy engedélyezheti a végpontok közötti kapcsolat.
-   * Rendelkeznie kell egy virtuális hálózat és a virtuális hálózati átjáró létrehozása, és teljesen kiépítve. Útmutatás alapján hello túl[virtuális hálózat konfigurálása ExpressRoute](expressroute-howto-vnet-portal-classic.md).
+   * Kövesse az utasításokat [ExpressRoute-kapcsolatcsoportot létrehozni](expressroute-howto-circuit-classic.md) és a kapcsolat szolgáltatójánál engedélyezése a kapcsolatcsoport rendelkezik.
+   * Győződjön meg arról, hogy rendelkezik az Azure magánhálózati társviszony-létesítés a kapcsolatcsoport konfigurálva. Tekintse meg a [útválasztás konfigurálása](expressroute-howto-routing-classic.md) útválasztási miként.
+   * Győződjön meg arról, hogy az Azure magánhálózati társviszony-létesítés konfigurálva legyen, és a BGP társviszony-létesítés a hálózat és a Microsoft között működik-e, hogy engedélyezheti a végpontok közötti kapcsolat.
+   * Rendelkeznie kell egy virtuális hálózat és a virtuális hálózati átjáró létrehozása, és teljesen kiépítve. Kövesse az utasításokat [virtuális hálózat konfigurálása ExpressRoute](expressroute-howto-vnet-portal-classic.md).
 
-Too10 virtuális hálózatok tooan ExpressRoute-kapcsolatcsoportot is csatolhatja. Az összes virtuális hálózatot kell hello geopolitikai ugyanabban a régióban. Virtuális hálózatok tooyour ExpressRoute-kapcsolatcsoportot nagyobb számú hivatkozásra, vagy virtuális hálózatok, amelyek más geopolitikai régiókban, ha engedélyezte a hello ExpressRoute prémium szintű bővítmény hivatkozásra. Ellenőrizze a hello [– gyakori kérdések](expressroute-faqs.md) hello prémium szintű bővítmény olvashat.
+Legfeljebb 10 virtuális hálózatok ExpressRoute-kapcsolatcsoportot társíthatja. Az összes virtuális hálózatot geopolitikai ugyanabban a régióban kell lennie. Az ExpressRoute-kapcsolatcsoportot virtuális hálózatok, vagy hivatkozás virtuális hálózatok, amelyek más geopolitikai régiókban, ha engedélyezte a prémium szintű ExpressRoute-bővítmény nagyobb számú társíthatja. Ellenőrizze a [gyakran ismételt kérdések](expressroute-faqs.md) a prémium szintű bővítmény olvashat.
 
-## <a name="connect-a-virtual-network-in-hello-same-subscription-tooa-circuit"></a>A virtuális hálózat a hello azonos előfizetés tooa áramkör
-A virtuális hálózati tooan ExpressRoute-kapcsolatcsoportot hozzákapcsolhatja hello a következő parancsmag használatával. Győződjön meg arról, hogy hello virtuális hálózati átjáró jön létre, és készen áll a linking hello parancsmag futtatása előtt.
+## <a name="connect-a-virtual-network-in-the-same-subscription-to-a-circuit"></a>A virtuális hálózati ugyanahhoz az előfizetéshez csatlakozni expressroute-kapcsolatcsoporthoz
+A következő parancsmag használatával egy virtuális hálózatot is kapcsolhat ExpressRoute-kapcsolatcsoportot. Győződjön meg arról, hogy a virtuális hálózati átjáró jön létre, és készen áll a csatolás a parancsmag futtatása előtt.
 
     New-AzureDedicatedCircuitLink -ServiceKey "*****************************" -VNetName "MyVNet"
     Provisioned
 
-## <a name="connect-a-virtual-network-in-a-different-subscription-tooa-circuit"></a>Egy másik előfizetésben található tooa kapcsolat a virtuális hálózatot
-Több előfizetés ExpressRoute-kapcsolatcsoportot lehet megosztani. a következő ábra hello mutatja egy egyszerű sematikus ExpressRoute-Kapcsolatcsoportok megosztási hogyan működik a több előfizetésekhez.
+## <a name="connect-a-virtual-network-in-a-different-subscription-to-a-circuit"></a>Egy másik előfizetéshez tartozó virtuális hálózat bevonása egy kapcsolatcsoportba
+Több előfizetés ExpressRoute-kapcsolatcsoportot lehet megosztani. Az alábbi ábrán egy egyszerű sematikus ExpressRoute-Kapcsolatcsoportok megosztási hogyan működik a több előfizetésekhez.
 
-Hello kisebb felhők hello nagy felhőben egy szervezeten belül toodifferent részlegek tartozó használt toorepresent előfizetések. A szolgáltatások – de hello részlegek telepítése megoszthat egy ExpressRoute körön tooconnect hátsó tooyour a helyszíni hálózaton hello szervezeten belül hello osztályok mindegyikének alkalmazhatja a saját előfizetés. Egy részleghez (ebben a példában: informatikai) is saját hello ExpressRoute-kapcsolatcsoportot. Hello szervezeten belüli más előfizetésekkel használható hello ExpressRoute-kapcsolatcsoportot.
+A nagy felhőben kisebb felhők egyes szervezet különböző részlegei tartozó előfizetések megjelenítésére szolgál. Egyetlen ExpressRoute-kapcsolatcsoportot való kapcsolódáshoz a helyszíni hálózat üzembe helyezése a szolgáltatásból, de a részlegek megoszthatja a szervezeten belüli osztályok mindegyikének alkalmazhatja a saját előfizetés. Egy részleghez (ebben a példában: informatikai) az ExpressRoute-kapcsolatcsoport rendelkezhet. A szervezeten belüli más előfizetések használhatja az ExpressRoute-kapcsolatcsoportot.
 
 > [!NOTE]
-> Kapcsolat és a sávszélesség díjak dedikált hello kör lesz alkalmazott toohello ExpressRoute-kapcsolatcsoport tulajdonosát. Az összes virtuális hálózatot megosztása hello azonos sávszélesség.
+> A dedikált kör kapcsolat és a sávszélesség költségek az ExpressRoute-kapcsolatcsoport tulajdonosát alkalmazandó. Az összes virtuális hálózatot megosztani a azonos sávszélességet.
 > 
 > 
 
 ![Az előfizetések közötti kapcsolathoz](./media/expressroute-howto-linkvnet-classic/cross-subscription.png)
 
 ### <a name="administration"></a>Adminisztráció
-Hello *kapcsolatcsoport tulajdonosát* hello rendszergazda/coadministrator, mely hello ExpressRoute körön létrejött hello előfizetés van. hello kapcsolatcsoport tulajdonosát engedélyezhető a rendszergazdák/coadministrators más előfizetések hivatkozott tooas *felhasználók áramkör*, toouse hello dedikált saját körön. Kör felhasználók számára engedélyezett toouse hello szervezet ExpressRoute körön is hello virtuális hálózatot az előfizetés toohello ExpressRoute-kapcsolatcsoportot a hivatkozásra, után jogosultak.
+A *kapcsolatcsoport tulajdonosát* az előfizetés, amelyben az ExpressRoute-kapcsolatcsoport jön létre, rendszergazdai/coadministrator van. A kapcsolatcsoport tulajdonosát adhatják meg a rendszergazdák/coadministrators más előfizetések néven *felhasználók áramkör*, akkor használja a dedikált áramkör saját. Kör felhasználók, akik jogosultak a szervezet ExpressRoute-kapcsolatcsoportot használatára után jogosultak a virtuális hálózatot az előfizetését a társíthatja az ExpressRoute-kapcsolatcsoportot.
 
-hello kapcsolatcsoport tulajdonosát hello power toomodify és visszavonni az engedélyeket bármikor rendelkezik. Az engedélyt visszavonni törlődnek, amelyek hozzáférését visszavonták hello előfizetésből összes hivatkozást eredményez.
+A kapcsolatcsoport tulajdonosát a rendelkezik módosítja, és bármikor engedélyek visszavonása. Az engedélyt visszavonni azt eredményezi, hogy törli az előfizetést, amelyek hozzáférését visszavonták az összes hivatkozás.
 
 ### <a name="circuit-owner-operations"></a>Kapcsolatcsoport-tulajdonos műveletek
 
 **Az engedély létrehozása**
 
-hello kapcsolatcsoport tulajdonosát engedélyezi hello rendszergazdák más előfizetések toouse hello megadva kapcsolat. Hello rendszergazda hello áramkör (a Contoso informatikai) a következő példa hello, lehetővé teszi a tootwo virtuális hálózatok toohello áramkör be egy másik előfizetés (fejlesztői, tesztelési) toolink hello rendszergazdája. hello Contoso rendszergazda lehetővé teszi, hogy ez megadásával hello fejlesztői-teszt Microsoft azonosítóját. hello parancsmag nem küld e-mailek toohello megadott Microsoft-azonosítót. hello kapcsolatcsoport tulajdonosát kell tooexplicitly értesítés hello más előfizetés tulajdonosa, amely engedélyezési hello befejeződött.
+A kapcsolatcsoport tulajdonosát a megadott expressroute-kapcsolatcsoport használandó másik előfizetés rendszergazdája engedélyezi. A következő példában a rendszergazda a kapcsolat (a Contoso informatikai) lehetővé teszi, hogy a rendszergazda egy másik előfizetés (fejlesztői-teszt) legfeljebb két virtuális hálózatok összekapcsolása a kapcsolatcsoport. A Contoso informatikai rendszergazda lehetővé teszi, hogy ez a fejlesztés-tesztelés Microsoft azonosító megadásával A parancsmag nem e-mailt küld a megadott Microsoft. A kapcsolatcsoport tulajdonosát kell, hogy helyesek-e az engedélyezési explicit módon értesíteni az előfizetés tulajdonosa.
 
     New-AzureDedicatedCircuitLinkAuthorization -ServiceKey "**************************" -Description "Dev-Test Links" -Limit 2 -MicrosoftIds 'devtest@contoso.com'
 
@@ -88,7 +88,7 @@ hello kapcsolatcsoport tulajdonosát engedélyezi hello rendszergazdák más el�
 
 **Engedélyek ellenőrzése**
 
-hello kapcsolatcsoport tulajdonosát hello a következő parancsmag futtatásával egy adott körön kiállított összes engedélyek tekinthetők át:
+A kapcsolatcsoport tulajdonosát tekintse át a következő parancsmag futtatásával egy adott körön kiállított összes engedélyek:
 
     Get-AzureDedicatedCircuitLinkAuthorization -ServiceKey: "**************************"
 
@@ -113,7 +113,7 @@ hello kapcsolatcsoport tulajdonosát hello a következő parancsmag futtatásáv
 
 **Engedélyek frissítése**
 
-hello kapcsolatcsoport tulajdonosát hello a következő parancsmag használatával módosíthatja az engedélyeket:
+A kapcsolatcsoport tulajdonosát a következő parancsmag használatával módosíthatja az engedélyeket:
 
     Set-AzureDedicatedCircuitLinkAuthorization -ServiceKey "**************************" -AuthorizationId "&&&&&&&&&&&&&&&&&&&&&&&&&&&&"-Limit 5
 
@@ -126,7 +126,7 @@ hello kapcsolatcsoport tulajdonosát hello a következő parancsmag használatá
 
 **Engedélyek törlése**
 
-hello kapcsolatcsoport tulajdonosát képes visszavonni vagy törlése engedélyek toohello felhasználói hello a következő parancsmag futtatásával:
+A kapcsolatcsoport tulajdonosát is revoke vagy törlése a felhasználó engedélyek a következő parancsmagot:
 
     Remove-AzureDedicatedCircuitLinkAuthorization -ServiceKey "*****************************" -AuthorizationId "###############################"
 
@@ -135,7 +135,7 @@ hello kapcsolatcsoport tulajdonosát képes visszavonni vagy törlése engedély
 
 **Engedélyek ellenőrzése**
 
-hello áramkör felhasználói engedélyek hello a következő parancsmag használatával tekintse át:
+A kapcsolatcsoport felhasználói engedélyek tekintse át a következő parancsmag használatával:
 
     Get-AzureAuthorizedDedicatedCircuit
 
@@ -151,7 +151,7 @@ hello áramkör felhasználói engedélyek hello a következő parancsmag haszn�
 
 **Hivatkozás engedélyek váltja be**
 
-hello áramkör felhasználó futtathatja a következő parancsmag tooredeem hello egy hivatkozás hitelesítési:
+A kapcsolatcsoport felhasználó futtathatja egy hivatkozás hitelesítési beváltani a következő parancsmagot:
 
     New-AzureDedicatedCircuitLink –servicekey "&&&&&&&&&&&&&&&&&&&&&&&&&&" –VnetName 'SalesVNET1'
 
@@ -159,10 +159,10 @@ hello áramkör felhasználó futtathatja a következő parancsmag tooredeem hel
     ----- --------
     Provisioned SalesVNET1
 
-Futtassa ezt a parancsot az újonnan csatolt hello előfizetésben hello virtuális hálózathoz:
+Futtassa ezt a parancsot az újonnan csatolt előfizetésben található virtuális hálózat:
 
     New-AzureDedicatedCircuitLink -ServiceKey "*****************************" -VNetName "MyVNet"
 
 ## <a name="next-steps"></a>Következő lépések
-ExpressRoute kapcsolatos további információkért lásd: hello [ExpressRoute – gyakori kérdések](expressroute-faqs.md).
+További információ az ExpressRoute-tal kapcsolatban: [ExpressRoute – Gyakori kérdések](expressroute-faqs.md).
 

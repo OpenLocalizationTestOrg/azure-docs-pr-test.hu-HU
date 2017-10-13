@@ -1,10 +1,10 @@
 > [!IMPORTANT] 
-> 2017. március 1.,-től nem hozható létre új ExpressRoute-Kapcsolatcsoportok hello klasszikus üzembe helyezési modellben.
+> 2017. március 1. után nem hozhat létre új ExpressRoute-kapcsolatcsoportot a klasszikus üzemi modellben.
 > 
-> - Áthelyezheti egy meglévő ExpressRoute-kapcsolatcsoportot hello klasszikus üzembe helyezési modell toohello Resource Manager üzembe helyezési modellben a tapasztalnak semmilyen kapcsolatot állásidő nélkül. További információ: [Meglévő kapcsolatcsoport áthelyezése](../articles/expressroute/expressroute-move.md).
-> - Hello klasszikus üzembe helyezési modellel toovirtual hálózatok kapcsolódhatnak beállításával **allowClassicOperations** tooTRUE.
+> - Meglévő ExpressRoute-kapcsolatcsoportot a kapcsolat megszakadása nélkül helyezhet át a klasszikus üzemi modellből a Resource Manager-alapú üzemi modellbe. További információ: [Meglévő kapcsolatcsoport áthelyezése](../articles/expressroute/expressroute-move.md).
+> - A klasszikus üzemi modellben az **allowClassicOperations** TRUE értékűre állításával kapcsolódhat virtuális hálózatokhoz.
 > 
-> A következő hivatkozások toocreate hello használata, és ExpressRoute-Kapcsolatcsoportok hello Resource Manager üzembe helyezési modellel kezelése:
+> Ha a Resource Manager-alapú üzemi modellben szeretne létrehozni és kezelni ExpressRoute-kapcsolatcsoportokat, kövesse az alábbi hivatkozásokat:
 
 > - [ExpressRoute-kapcsolatcsoportok létrehozása és kezelése](../articles/expressroute/expressroute-howto-circuit-portal-resource-manager.md)<br>
 > - [Útválasztás (társviszony-létesítés) konfigurálása ExpressRoute-kapcsolatcsoportok számára](../articles/expressroute/expressroute-howto-routing-portal-resource-manager.md)

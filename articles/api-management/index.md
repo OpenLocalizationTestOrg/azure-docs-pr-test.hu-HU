@@ -1,8 +1,8 @@
 ---
-title: "aaaAzure API Management dokumentációja – oktatóanyagok API-referencia |} Microsoft Docs"
-description: "Megtudhatja, hogyan toouse API Management toopublish API-k biztonságosan és méretekben. Dokumentációja bemutatja hogyan toocreate modern API átjárók meglévő háttér-szolgáltatásokhoz."
+title: "Az Azure API Management dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogy az API Management hogyan használható az API-k biztonságos és skálázott közzétételére. A dokumentáció bemutatja, hogy a modern API-átjárók hogyan hozhatók létre a meglévő háttérrendszerekhez."
 services: api-management
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: c2bd5d7dc7c6df3ad01a704fdd28c9437d39a04b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: de56e8b5fb7866183b0f06c4ac877d7b80a282f9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="api-management-documentation"></a>API Management – dokumentáció
 
-Megtudhatja, hogyan toouse API Management toopublish API-k tooexternal, partnerek és alkalmazottak fejlesztők biztonságosan és méretekben. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt mutatja be toocreate és modern API átjárók kezelni meglévő háttér szolgáltatások üzemeltetett tetszőleges helyre.
+Ismerje meg, hogy az API Management hogyan használható az API-k külső rendszerek, partnerek és belső fejlesztők felé történő biztonságos és skálázott közzétételére. Az oktatóanyagok, API-referenciák és az egyéb dokumentáció bemutatják, hogyan hozhat létre és kezelhet modern API-átjárókat meglévő háttérrendszerekhez, függetlenül azok üzemeltetési helyétől.
 
 <ul class="panelContent cardsFTitle">
     <li>

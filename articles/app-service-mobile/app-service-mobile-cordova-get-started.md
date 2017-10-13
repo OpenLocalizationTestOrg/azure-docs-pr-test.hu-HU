@@ -1,6 +1,6 @@
 ---
-title: "a Cordova-alkalmazás az Azure App Service Mobile Apps aaaCreate |} Microsoft Docs"
-description: "Hajtsa végre az Azure mobil-háttéralkalmazások használatával megvalósítható az Apache Cordova-fejlesztői útmutató tooget"
+title: "Cordova-alkalmazás létrehozása az Azure App Service Mobile Apps szolgáltatásban| Microsoft Docs"
+description: "Az útmutató bevezeti Önt az Azure-alapú mobil-háttéralkalmazások használatával megvalósítható, Apache Cordova keretrendszerben történő fejlesztésbe."
 services: app-service\mobile
 documentationcenter: javascript
 author: ggailey777
@@ -16,46 +16,46 @@ ms.devlang: javascript
 ms.topic: hero-article
 ms.date: 07/07/2017
 ms.author: glenga
-ms.openlocfilehash: 4981cbc0686c15230019ac9f30495f30cbf2c791
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b620465cdc3cfa04933dc6e70163fc32aa9a839b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-an-apache-cordova-app"></a>Apache Cordova-alkalmazás létrehozása
 [!INCLUDE [app-service-mobile-selector-get-started](../../includes/app-service-mobile-selector-get-started.md)]
 
 ## <a name="overview"></a>Áttekintés
-Az oktatóanyag bemutatja, hogyan tooadd felhőalapú háttérkiszolgálón szolgáltatás az Azure mobile Apps-háttéralkalmazás segítségével tooan Apache Cordova-mobilalkalmazás.  A folyamat során létrehoz egy új mobil-háttéralkalmazást, illetve egy egyszerű *Tennivalólista* Apache Cordova-alkalmazást, amely alkalmazásadatokat tárol az Azure-ban.
+Ez az oktatóanyag azt ismerteti, hogyan adhat felhőalapú háttérszolgáltatásokat az Apache Cordova-mobilalkalmazásokhoz egy Azure-alapú mobil-háttéralkalmazás segítségével.  A folyamat során létrehoz egy új mobil-háttéralkalmazást, illetve egy egyszerű *Tennivalólista* Apache Cordova-alkalmazást, amely alkalmazásadatokat tárol az Azure-ban.
 
-Az oktatóanyag végrehajtása feltétele az ismertető többi Apache Cordova-oktatóanyag az Azure App Service hello Mobile Apps szolgáltatás használatáról.
+Az oktatóanyag végrehajtása feltétele az Azure App Service Mobile Apps szolgáltatásának használatát ismertető többi Apache Cordova-oktatóanyag megértésének.
 
 ## <a name="prerequisites"></a>Előfeltételek
-toocomplete ebben az oktatóanyagban a következő előfeltételek hello szüksége:
+Az oktatóanyag teljesítéséhez a következő előfeltételekre lesz szüksége:
 
 * Számítógép, amelyen fut a [Visual Studio Community 2017] vagy újabb verzió.
 * [Visual Studio Tools for Apache Cordova].
 * [Aktív Azure-fiók](https://azure.microsoft.com/pricing/free-trial/).
 
-Is szükség a Visual Studióra, és közvetlenül a hello Apache Cordova parancssorának használata.  Hello parancssorból akkor hasznos, ha egy Mac számítógépen hello az oktatóanyagnak az elvégzése.  Ez az oktatóanyag nem vonatkozik az Apache Cordova-ügyfélalkalmazásokat hello parancssor segítségével lefordítani.
+Közvetlenül az Apache Cordova parancssorának használata esetén nincs szükség a Visual Studióra.  A parancssor használata akkor hasznos, ha az oktatóanyagot Mac gépen szeretné elvégezni.  Az oktatóanyag nem tér ki arra, hogy miképpen lehet az Apache Cordova-ügyfélalkalmazásokat parancssor segítségével lefordítani.
 
 ## <a name="create-an-azure-mobile-app-backend"></a>Azure mobil-háttéralkalmazás létrehozása
 [!INCLUDE [app-service-mobile-dotnet-backend-create-new-service](../../includes/app-service-mobile-dotnet-backend-create-new-service.md)]
 
 [Tekintse meg hasonló lépéseket ismertető videót](https://channel9.msdn.com/series/Azure-connected-services-with-Cordova/Azure-connected-services-task-1-Create-an-Azure-Mobile-App)
 
-## <a name="configure-hello-server-project"></a>Hello server projekt konfigurálása
+## <a name="configure-the-server-project"></a>Kiszolgálóprojekt konfigurálása
 [!INCLUDE [app-service-mobile-configure-new-backend.md](../../includes/app-service-mobile-configure-new-backend.md)]
 
-## <a name="download-and-run-hello-apache-cordova-app"></a>Hello Apache Cordova-alkalmazás letöltése és futtatása
+## <a name="download-and-run-the-apache-cordova-app"></a>Az Apache Cordova-alkalmazás letöltése és futtatása
 [!INCLUDE [app-service-mobile-cordova-run-app](../../includes/app-service-mobile-cordova-run-app.md)]
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy a gyors üzembe helyezési útmutató befejezte, helyezze át, amely az alábbi oktatóanyagok hello tooone:
+Ha elvégezte ezt a bevezető oktatóanyagot, lépjen tovább valamelyik további anyagra:
 
-* [Kapcsolat nélküli adatok hozzáadása a](app-service-mobile-cordova-get-started-offline-data.md) tooyour Apache Cordova-alkalmazáshoz.
-* [Hitelesítés hozzáadása](app-service-mobile-cordova-get-started-users.md) tooyour Apache Cordova-alkalmazáshoz.
-* [Leküldéses értesítések hozzáadása](app-service-mobile-cordova-get-started-push.md) tooyour Apache Cordova-alkalmazáshoz.
+* [Offline adatok hozzáadása](app-service-mobile-cordova-get-started-offline-data.md) az Apache Cordova-alkalmazáshoz.
+* [Hitelesítés hozzáadása](app-service-mobile-cordova-get-started-users.md) az Apache Cordova-alkalmazáshoz.
+* [Leküldéses értesítések hozzáadása](app-service-mobile-cordova-get-started-push.md) az Apache Cordova-alkalmazáshoz.
 
 További információk az Azure App Service alapjairól.
 
@@ -63,7 +63,7 @@ További információk az Azure App Service alapjairól.
 * [Hitelesítés]
 * [Leküldéses értesítések]
 
-Ismerje meg, hogyan toouse hello SDK-k.
+Útmutató az SDK-k használatához.
 
 * [Apache Cordova SDK]
 * [ASP.NET Server SDK]

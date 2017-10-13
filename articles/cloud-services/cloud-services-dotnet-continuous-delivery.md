@@ -1,6 +1,6 @@
 ---
-title: "aaaContinuous kézbesítési felhőalapú szolgáltatások és a TFS az Azure-ban |} Microsoft Docs"
-description: "Megtudhatja, hogyan tooset be folyamatos kézbesítését az Azure felhőalapú alkalmazásokba. Kódminták MSBuild parancssori utasításokat és a PowerShell-parancsfájlokat."
+title: "Az Azure-ban a TFS-sel szolgáltatások folyamatos kézbesítési felhő |} Microsoft Docs"
+description: "Ismerje meg, hogyan állíthat be az Azure felhőalapú alkalmazásokat folyamatos kézbesítési. Kódminták MSBuild parancssori utasításokat és a PowerShell-parancsfájlokat."
 services: cloud-services
 documentationcenter: 
 author: kraigb
@@ -14,141 +14,141 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/12/2017
 ms.author: kraigb
-ms.openlocfilehash: c0e5e72ffbd3c05b84ce1733068e92c528bcc4b9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0979722b9ec715e91825c7aba74657451df6e83f
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="continuous-delivery-for-cloud-services-in-azure"></a>Azure felhőszolgáltatások folyamatos kézbesítés
-hello ebben a cikkben leírt eljárás bemutatja, hogyan tooset be folyamatos kézbesítését az Azure felhőalapú alkalmazásokat. Ez a folyamat automatikusan a csomagok létrehozását és telepítését a hello csomag tooAzure után minden kód be teszi lehetővé. hello csomag felépítési folyamat cikkben leírt egyenértékű toohello **csomag** parancs a Visual Studio és a közzétételi lépéseket is egyenértékű toohello **közzététel** a Visual Studio parancsot.
-hello cikk magában foglalja az hello módszert szeretné használni toocreate build kiszolgáló MSBuild parancssori utasításokat és a Windows PowerShell-parancsfájlok, és azt is bemutatja, hogyan konfigurálja az toooptionally a Visual Studio Team Foundation Server - definíciók csoport létrehozása toouse hello MSBuild parancsok és a PowerShell-parancsfájlokat. hello testre szabható a összeállító környezetet és az Azure környezetekben történik.
+A cikkben leírt eljárás bemutatja, hogyan állíthatja be az Azure felhőalapú alkalmazásokat folyamatos kézbesítési. Ez a folyamat lehetővé teszi csomagok automatikus létrehozását, valamint csomagok Azure-beli telepítését minden kódbeadás után. A jelen cikkben ismertetett csomag felépítési folyamat megegyezik a **csomag** parancs a Visual Studio és a közzétételi lépéseket egyenértékűek legyenek az **közzététel** parancsot a Visual Studio.
+A cikk ismerteti a módszert szeretné használni a build kiszolgáló MSBuild parancssori utasításokat és a Windows PowerShell-parancsfájlok létrehozása, és azt is bemutatja, hogyan kell igény szerint a Visual Studio Team Foundation Server - definíciók Team Build használatára állítsa be a MSBuild parancsok és a PowerShell-parancsfájlokat. A folyamat nem testre szabható a összeállító környezetet és a cél Azure környezetben.
 
-Is használhatja a Visual Studio Team Services, egy, a TFS verziójának Azure szolgáltatásban üzemeltetett, toodo ez könnyebben. 
+Visual Studio Team Services, a könnyebb ehhez az Azure-ban üzemeltetett TFS verziójának is használható. 
 
 Kezdés előtt kell közzé tenni az alkalmazást a Visual Studio eszközből.
-Ezzel biztosíthatja, hogy minden hello erőforrás elérhető-e és inicializálva-e amikor megpróbál tooautomate hello kiadvány folyamat.
+Ezzel biztosíthatja, hogy az összes erőforrás elérhető-e és inicializálva amikor megpróbál a kiadvány folyamat automatizálására.
 
-## <a name="1-configure-hello-build-server"></a>1: hello Build kiszolgáló konfigurálása
-Egy Azure-csomag létrehozása MSBuild használatával, előtt telepítenie kell hello szükséges szoftverek és eszközök hello build kiszolgálón.
+## <a name="1-configure-the-build-server"></a>1: a Build kiszolgáló konfigurálása
+Egy Azure-csomag létrehozása MSBuild használatával, előtt telepítenie kell a szükséges szoftverek és az eszközök a build kiszolgálón.
 
-A Visual Studio nem szükséges toobe hello build kiszolgálón telepítve. Toouse Team Foundation Build Service toomanage build kiszolgálóját, hajtsa végre hello hello utasításait [Team Foundation Build Service] [ Team Foundation Build Service] dokumentációját.
+A Visual Studio nincs szükség a build kiszolgálóra kell telepíteni. Ha a build kiszolgáló kezelését Team Foundation Build szolgáltatás használni kívánt, kövesse az utasításokat a a [Team Foundation Build Service] [ Team Foundation Build Service] dokumentációját.
 
-1. Hello build kiszolgálón telepítse a hello [.NET-keretrendszer 4.5.2-es][.NET Framework 4.5.2], mert az MSBuild tartalmazza.
-2. Telepítse legújabb hello [.NET-keretrendszerhez készült Azure szerzői eszközök](https://azure.microsoft.com/develop/net/).
-3. Telepítse a hello [.NET Azure-könyvtárakban](http://go.microsoft.com/fwlink/?LinkId=623519).
-4. Másolás hello Microsoft.WebApplication.targets fájlt a Visual Studio telepítési toohello kiszolgáló létrehozása.
+1. A build kiszolgálón telepítse a [.NET-keretrendszer 4.5.2-es][.NET Framework 4.5.2], mert az MSBuild tartalmazza.
+2. Telepítse a legújabb [.NET-keretrendszerhez készült Azure szerzői eszközök](https://azure.microsoft.com/develop/net/).
+3. Telepítse a [Azure-könyvtárakban .NET](http://go.microsoft.com/fwlink/?LinkId=623519).
+4. Másolja a Microsoft.WebApplication.targets fájlt a Visual Studio telepítése a build kiszolgáló.
 
-   A telepített Visual Studio számítógépen, a fájl C: hello könyvtárban található\\Program Files(x86)\\MSBuild\\Microsoft\\VisualStudio\\v14.0\\WebApplications. Másolja az toohello hello build kiszolgálón ugyanabban a könyvtárban.
-5. Telepítse a hello [Azure Tools for Visual Studio](https://www.visualstudio.com/features/azure-tools-vs.aspx).
+   A számítógépen telepített Visual Studio ezt a fájlt a C: könyvtárában található\\Program Files(x86)\\MSBuild\\Microsoft\\VisualStudio\\v14.0\\WebApplications. Másolja az ugyanabban a könyvtárban, a build kiszolgálón.
+5. Telepítse a [Azure Tools for Visual Studio](https://www.visualstudio.com/features/azure-tools-vs.aspx).
 
 ## <a name="2-build-a-package-using-msbuild-commands"></a>2: MSBuild parancsokkal csomag létrehozása
-Ez a szakasz ismerteti, hogyan tooconstruct az MSBuild parancsot, amely egy Azure-csomagot hoz létre. Futtassa ezt a lépést a hello build server tooverify, hogy minden helyesen van-e állítva, és hogy hello MSBuild parancs valóban azt toodo. Hello a következő szakaszban leírt módon a parancssor tooexisting fordítási parancsprogramot hello build kiszolgálón, vagy használhatja a TFS Build definícióban hello parancssori vagy hozzáadni. Parancssori paraméterek és MSBuild kapcsolatos további információkért lásd: [MSBuild parancssori hivatkozás](https://msdn.microsoft.com/library/ms164311%28v=vs.140%29.aspx).
+Ez a szakasz ismerteti, hogyan az MSBuild parancs egy Azure-csomag épülő összeállításához. Futtassa ezt a lépést a build kiszolgálón győződjön meg arról, hogy minden megfelelően van konfigurálva, és hogy az MSBuild parancs valóban rá. Ez a parancssor vagy hozzáadása meglévő build parancsfájlok a build kiszolgálón, vagy használhatja a parancssorban a TFS Build definícióban, a következő szakaszban leírtak szerint. Parancssori paraméterek és MSBuild kapcsolatos további információkért lásd: [MSBuild parancssori hivatkozás](https://msdn.microsoft.com/library/ms164311%28v=vs.140%29.aspx).
 
-1. Visual Studio hello build kiszolgálóra van telepítve, keresse meg és válassza a **Visual Studio parancssorból** a hello **Visual Studio eszközök** Windows-mappa.
+1. Visual Studio a build kiszolgálóra van telepítve, keresse meg és válassza a **Visual Studio parancssorból** a a **Visual Studio eszközök** Windows-mappa.
 
-   Ha a Visual Studio hello build kiszolgálón nincs telepítve, nyisson meg egy parancssort, és győződjön meg arról, hogy MSBuild.exe elérhető-e az elérési út. MSBuild telepítve van a .NET-keretrendszer hello hello elérési útja: % WINDIR %\\Microsoft.NET\\keretrendszer\\*verzió*. Például ha .NET Framework 4 telepítve van a MSBuild.exe toohello PATH környezeti változóba hozzáadásához írja be a hello parancs hello parancssorba a következő:
+   Ha a build kiszolgálón nincs telepítve a Visual Studio, nyisson meg egy parancssort, és győződjön meg arról, hogy MSBuild.exe elérhető-e az elérési út. MSBuild van telepítve a .NET-keretrendszer, az elérési út: % WINDIR %\\Microsoft.NET\\keretrendszer\\*verzió*. Például MSBuild.exe hozzáadása a PATH környezeti változóba, ha a .NET Framework 4 telepítve van, írja be a következő parancsot a parancssorba:
 
        set PATH=%PATH%;"C:\Windows\Microsoft.NET\Framework\v4.0.30319"
-2. Hello parancssorban keresse meg a toohello toobuild kívánt Azure-projekt tartalmazó mappára.
-3. Futtassa a MSBuild hello/TARGET: Publish beállítást, mint például a következő hello:
+2. A parancssorban keresse meg a mappát, amely a használni kívánt Azure-projekt fájlt tartalmazó.
+3. MSBuild futtassa a/TARGET: Publish beállítást, az alábbi példában látható módon:
 
        MSBuild /target:Publish
 
-   Ez a beállítás rövidíthető /t: közzététele. MSBuild hello /t:Publish beállítást kell nem keverendő össze a hello közzététel parancsok, amely a Visual Studio Ha hello Azure SDK telepítve van. hello /t: Publish beállítást, csak a buildek hello Azure csomagok. Azt nem kell telepítenie hello csomagok, mint a Visual Studio hello közzététel parancsok.
+   Ez a beállítás rövidíthető /t: közzététele. Az MSBuild /t:Publish beállítást kell nem keverendő össze a Visual Studio Publish parancsai Ha az Azure SDK telepítve van. A /t: a beállítás csak buildek közzététele az Azure csomagokat. Azt nem kell telepítenie a csomagokat, mint a Visual Studio Publish parancsokat.
 
-   Szükség esetén megadhatja az MSBuild paraméter hello projekt nevét. Ha nincs megadva, az aktuális könyvtár hello szolgál. MSBuild parancssori beállításokkal kapcsolatos további információkért lásd: [MSBuild parancssori hivatkozás](https://msdn.microsoft.com/library/ms164311%28v=vs.140%29.aspx).
-4. Keresse meg a hello kimeneti. Alapértelmezés szerint ez a parancs létrehoz egy könyvtárat kapcsolat toohello gyökérmappában hello projekthez, például a *ProjectDir*\\bin\\*konfigurációs* \\ App.publish\\. Azure-projekt összeállításakor létrehozhat két fájlt, a hello csomagfájl és a konfigurációs fájl kísérő hello:
+   Szükség esetén megadhatja az MSBuild paraméter a projekt nevét. Ha nincs megadva, az aktuális könyvtárat használja. MSBuild parancssori beállításokkal kapcsolatos további információkért lásd: [MSBuild parancssori hivatkozás](https://msdn.microsoft.com/library/ms164311%28v=vs.140%29.aspx).
+4. Keresse meg a kimenetet. Alapértelmezés szerint ez a parancs létrehoz egy könyvtárat a projekthez, amely a gyökérmappában található viszonyítva, mint *ProjectDir*\\bin\\*konfigurációs*\\app.publish \\. Azure-projekt összeállításakor létrehozhat két fájlt, a csomagfájl és a hozzá tartozó konfigurációs fájlt:
 
    * Project.cspkg
    * ServiceConfiguration. *TargetProfile*.cscfg
 
-   Alapértelmezés szerint minden Azure-projekt tartalmazza egy szolgáltatás konfigurációs fájljában (.cscfg fájl) (hibakereséshez) helyi buildek és egy másikat a felhő (átmeneti vagy üzemi) buildek, de adhat hozzá vagy távolítsa el a szolgáltatás konfigurációs fájlokat, igény szerint. Visual Studio csomag összeállításakor kérni fogja melyik szolgáltatás konfigurációs fájl tooinclude hello csomag mellett.
-5. Adja meg a hello szolgáltatás konfigurációs fájljában. Ha egy csomag MSBuild hozhat létre, hello helyi szolgáltatás konfigurációs fájlja veszi fel alapértelmezés szerint. egy másik szolgáltatás konfigurációs fájlja tooinclude hello MSBuild parancs, mint például a következő hello TargetProfile tulajdonságának beállítása:
+   Alapértelmezés szerint minden Azure-projekt tartalmazza egy szolgáltatás konfigurációs fájljában (.cscfg fájl) (hibakereséshez) helyi buildek és egy másikat a felhő (átmeneti vagy üzemi) buildek, de adhat hozzá vagy távolítsa el a szolgáltatás konfigurációs fájlokat, igény szerint. Visual Studio csomag összeállításakor kérni fogja melyik szolgáltatás konfigurációs fájlja mellett a csomag tartalmazza.
+5. Adja meg a szolgáltatás konfigurációs fájljában. Ha egy csomag MSBuild hozhat létre, a helyi szolgáltatás konfigurációs fájlja veszi fel alapértelmezés szerint. Egy másik szolgáltatáskonfigurációs fájlt, adja meg a TargetProfile tulajdonság MSBuild parancs az alábbi példában látható módon:
 
        MSBuild /t:Publish /p:TargetProfile=Cloud
-6. Adjon meg hello kimeneti hello helyet. A /p:PublishDir használatával set hello elérési út =*Directory* \\ beállítást, többek között a záró perjelet elválasztó, mint például a következő hello hello:
+6. Adja meg a kimeneti helyét. A /p:PublishDir használatával beállítani az elérési utat =*Directory* \\ beállítást, többek között a záró perjelet elválasztó, a következő példában látható módon:
 
        MSBuild /target:Publish /p:PublishDir=\\myserver\drops\
 
-   Amennyiben az előre összeállított és tesztelt egy megfelelő MSBuild sor toobuild a projektek parancsot, és összefogni azokat az Azure-csomag, a parancssor tooyour build parancsprogramokat is megadhat. Ha a build server egyéni parancsfájlokat használ, ez a folyamat az egyéni létrehozási folyamata során a mintaadatokról függ. Ha a TFS egy összeállító környezetet használ, majd kövesse hello tovább lépés tooadd hello Azure-csomag létrehozási tooyour felépítési folyamat hello utasításait.
+   Miután össze, és egy megfelelő MSBuild parancssort a projekt felépítéséhez és összefogni azokat az Azure-csomag tesztelni, ez a parancssor a build parancsfájlokat is hozzáadhat. Ha a build server egyéni parancsfájlokat használ, ez a folyamat az egyéni létrehozási folyamata során a mintaadatokról függ. Ha TFS egy összeállító környezetet használ, akkor is kövesse az utasításokat a következő lépésben az Azure-csomag létrehozási hozzáadása a felépítési folyamat.
 
 ## <a name="3-build-a-package-using-tfs-team-build"></a>3: build a csomagot, a TFS-csoport létrehozása
-Ha TFS létrehozási gépként beállítása, a build vezérlő és hello készítsen a kiszolgáló beállítása Team Foundation Server (TFS), majd igény szerint állíthatja be az automatikus létrehozási az Azure-csomagnak a. Hogyan tooset be és a Team Foundation server használatát a buildelési rendszer: kapcsolatos [a buildelési rendszer kibővítési][Scale out your build system]. Különösen a következő eljárás feltételezi, hogy konfigurálta a build kiszolgáló leírtak [központi telepítése és build kiszolgálók][Deploy and configure a build server], és létrehozott egy csapatprojekt létrehozott felhő Projekt hello csapatprojektben.
+Ha rendelkezik TFS létrehozási gépként beállítása Team Foundation Server (TFS) állítsa be a build tartományvezérlő és a build kiszolgálóként, majd igény szerint állíthatja be az automatikus létrehozási az Azure-csomagnak a. Állítsa be, és a Team Foundation server használja a buildelési rendszer módjáról további információkért lásd: [a buildelési rendszer kibővítési][Scale out your build system]. Különösen a következő eljárás feltételezi, hogy konfigurálta a build kiszolgáló leírtak [központi telepítése és build kiszolgálók][Deploy and configure a build server], és létrehozott egy csapatprojekt létrehozott felhő a csapatprojekt projektre.
 
-tooconfigure TFS toobuild Azure csomagok, hajtsa végre a következő lépéseket hello:
+Az Azure csomagok TFS konfigurálásához hajtsa végre az alábbi lépéseket:
 
-1. Válassza ki a Visual Studio a fejlesztési számítógépen hello Nézet menü **Team Explorer**, vagy válassza a Ctrl +\\, Ctrl + M. A csapat Explorer-ablakban bontsa ki a hello **buildek** csomópont, vagy válasszon hello **buildek** lapon, és válassza a **új Build Definition**.
+1. Válassza ki a Visual Studio a fejlesztési számítógépen, a Nézet menü **Team Explorer**, vagy válassza a Ctrl +\\, Ctrl + M. A csapat Explorer-ablakban bontsa ki a **buildek** csomópont, vagy válasszon a **buildek** lapon, és válassza a **új Build Definition**.
 
    ![Új beállítás található definíció létrehozása][0]
-2. Válassza ki a hello **eseményindító** lapot, és adja meg a hello szükséges feltételeit, ha azt szeretné hello beépített csomag toobe. Adja meg például **folyamatos integrációt** akkor fordul elő, amikor egy forrás szabályozása be toobuild hello csomag.
-3. Válassza ki a hello **adatforrás-beállítások** lapot, és győződjön meg arról, hogy a projektmappa hello szerepel **vezérlő forrásmappa** oszlop, és hello állapota **Active**.
-4. Válassza ki a hello **Build alapértelmezett** fülre, és a Build vezérlő, ellenőrizze a hello hello build kiszolgáló nevét.  Válassza ki, hello beállítás **másolási build kimeneti toohello következő drop mappa** , és adja meg a szükséges hello eldobott üzenetek helye.
-5. Válassza ki a hello **folyamat** fülre. Hello folyamat lapon válassza a hello alapértelmezett sablon, a **Build**, hello projekt válassza, ha nincs bejelölve, és bontsa ki a hello **speciális** hello szakasz **Build**hello rács szakasza.
-6. Válasszon **MSBuild-argumentumok**, és állítsa be a megfelelő MSBuild parancssori argumentumok hello fenti a 2. lépésben leírtak szerint. Adja meg például **/t: /p:PublishDir közzététele =\\\\myserver\\esik\\**  toobuild egy csomagot, és másolja hello csomag fájlok toohello hely \\ \\myserver\\esik\\:
+2. Válassza ki a **eseményindító** lapot, és adja meg, ha azt szeretné, hogy a csomag létrehozása a kívánt feltételeket. Adja meg például **folyamatos integrációt** a csomag létrehozásához, amikor egy forrás szabályozása be következik be.
+3. Válassza ki a **adatforrás-beállítások** lapot, és győződjön meg arról, hogy a projektmappa szerepel-e a **vezérlő forrásmappa** oszlop, és a állapotát **aktív**.
+4. Válassza ki a **Build alapértelmezett** fülre, és a Build vezérlő, ellenőrizze a build kiszolgáló nevét.  Válassza ki, a beállítás **másolat létrehozása a következő eldobási mappába kimeneti** , és adja meg a kívánt eldobott üzenetek helye.
+5. Válassza ki a **folyamat** fülre. A folyamat lapon válassza ki az alapértelmezett sablon, a **Build**, válassza ki a projekt, ha nincs bejelölve, és bontsa ki a **speciális** szakasz a **Build** szakasz a rács.
+6. Válasszon **MSBuild-argumentumok**, és állítsa be a megfelelő MSBuild parancssori argumentumok fenti a 2. lépésben leírtak szerint. Adja meg például **/t: /p:PublishDir közzététele =\\\\myserver\\esik\\**  csomag létrehozásához, és másolja a csomagfájlok a helyre \\ \\ myserver\\esik\\:
 
    ![MSBuild-argumentumok][2]
 
    > [!NOTE]
-   > Másolás hello fájlok tooa nyilvános megosztás teszi egyszerűbbé toomanually a fejlesztési számítógépen hello csomagok központi telepítése.
-7. A build lépés hello sikeres teszteléséhez módosítása tooyour projektben ellenőrzésével, vagy egy új build sorba. mentése új buildverziót, a csapat Explorer tooqueue kattintson a jobb gombbal **összes Build definíciókat,** majd **várólista új Build**.
+   > A fájlok másolása egy nyilvános megosztás megkönnyíti a csomagot a fejlesztési számítógépen manuális telepítése.
+7. Tesztelje a build lépés sikeres ellenőrzés módosítva lett a projekt, vagy egy új build sorba. Új buildverziót, a csapat Explorer sorba kattintson a jobb gombbal **összes Build definíciók** majd **várólista új Build**.
 
 ## <a name="4-publish-a-package-using-a-powershell-script"></a>4: a PowerShell-parancsfájl használatával csomag közzététele
-Ez a szakasz ismerteti, hogyan tooconstruct hello felhő alkalmazáscsomag közzétehető Windows PowerShell-parancsfájl kimeneti tooAzure opcionális paraméterek használatával. Ez a parancsfájl hello build a build egyéni automatizálás lépés után hívható. Azt a folyamatsablon munkafolyamat tevékenységei a Visual Studio TFS Team Build is hívható.
+Ez a szakasz ismerteti, hogyan közzétehető a Cloud app csomag kimeneti Azure-ban a választható paraméterek: Windows PowerShell-parancsfájl összeállításához. Ezt a parancsfájlt a build a build egyéni automatizálás lépés után hívható. Azt a folyamatsablon munkafolyamat tevékenységei a Visual Studio TFS Team Build is hívható.
 
-1. Telepítse a hello [Azure PowerShell-parancsmagok] [ Azure PowerShell cmdlets] (v0.6.1 vagy újabb).
-   Hello parancsmag telepítési fázis során válassza tooinstall egy beépülő modulként. Vegye figyelembe, hogy a hivatalosan támogatott felváltja hello régebbi kínált a Codeplex webhelyen, bár a korábbi verziók hello volt számozott 2.x.x.
-2. Indítsa el az Azure PowerShell hello Start menüből vagy a kezdőlapot. Ily módon indul el, ha hello Azure PowerShell-parancsmagok lesz betöltve.
-3. Hello PowerShell-parancssorba, győződjön meg arról, hogy a PowerShell-parancsmagok hello hello részleges parancs megadásával vannak betöltve `Get-Azure` és hello majd nyomja le a Tab billentyű utasítás befejezésére.
+1. Telepítse a [Azure PowerShell-parancsmagok] [ Azure PowerShell cmdlets] (v0.6.1 vagy újabb).
+   A parancsmag a telepítés fázisban szeretné telepíteni, a beépülő modulként. Vegye figyelembe, hogy a hivatalosan támogatott verziójú váltja fel a régebbi kínált a Codeplex webhelyen, bár a korábbi verziók volt számozott 2.x.x.
+2. Indítsa el a Start menü használatával Azure PowerShell vagy a Start lap. Ily módon indul el, ha az Azure PowerShell-parancsmagok lesz betöltve.
+3. A PowerShell-parancssorba, győződjön meg arról, hogy a PowerShell-parancsmagok a részleges parancs vannak betöltve `Get-Azure` majd nyomja le a Tab billentyűt a nyilatkozatot befejezésére.
 
-   Ha ismételten hello Tab billentyű lenyomása, különböző Azure PowerShell-parancsokat kell megjelennie.
-4. Győződjön meg arról, hogy Azure-előfizetés tooyour csatlakozhasson ehhez hello .publishsettings fájlt importálja az előfizetési adatokat.
+   Ha ismételten nyomja meg a Tab billentyűt, különböző Azure PowerShell-parancsokat kell megjelennie.
+4. Győződjön meg arról, hogy a ehhez az előfizetési adatai a .publishsettings fájlt importálja az Azure-előfizetéshez csatlakozhat.
 
    `Import-AzurePublishSettingsFile c:\scripts\WindowsAzure\default.publishsettings`
 
-   Majd adja meg a hello parancsot
+   Írja be a parancsot
 
    `Get-AzureSubscription`
 
    Ez az előfizetés információkat jeleníti meg. Győződjön meg arról, hogy minden rendben.
-5. Ez a cikk a parancsfájlok mappába c: hello végén megadott hello parancsfájl sablon mentése\\parancsfájlok\\WindowsAzure\\**PublishCloudService.ps1**.
-6. Tekintse át a hello paraméterek szakaszban hello parancsfájl. Adja hozzá, vagy módosítsa az alapértelmezett értékeket. Sikeres explicit paraméterek mindig felülbírálhatja ezeket az értékeket.
-7. Győződjön meg arról, érvényes felhőalapú szolgáltatás, és az előfizetés, amely telepíthető hello által létrehozott tárfiókok közzététele parancsfájl. A tárfiók (blob-tároló) használt tooupload kell, és a központi telepítési csomag- és konfigurációs fájl hello ideiglenesen tárolja, a központi telepítés létrehozása közben.
+5. Ez a cikk a parancsfájlok mappába c: végéig elérhető parancsfájl-sablon mentése\\parancsfájlok\\WindowsAzure\\**PublishCloudService.ps1**.
+6. Tekintse át a parancsfájl a Paraméterek szakaszban. Adja hozzá, vagy módosítsa az alapértelmezett értékeket. Sikeres explicit paraméterek mindig felülbírálhatja ezeket az értékeket.
+7. Győződjön meg arról nincs érvényes felhőalapú szolgáltatás és a tárolási fiók létrejönnek az előfizetés, amely a közzététel parancsfájl célpontja is lehet. A tárfiók (blob-tároló) feltöltése és a központi telepítési csomag- és konfigurációs fájl ideiglenesen tárolja, a központi telepítés létrehozása közben használható.
 
-   * új felhőalapú szolgáltatás toocreate, hívása a parancsfájl vagy használata hello [Azure-portálon](https://portal.azure.com). egy teljesen minősített tartománynevet az előtag hello felhőszolgáltatás neve lesz, és ezért egyedinek kell lennie.
+   * Új felhőalapú szolgáltatás létrehozása, hívja meg ezt a parancsfájlt vagy használja a [Azure-portálon](https://portal.azure.com). A felhőszolgáltatás neve lesz egy teljesen minősített tartománynevet az előtag, és ezért egyedinek kell lennie.
 
          New-AzureService -ServiceName "mytestcloudservice" -Location "North Central US" -Label "mytestcloudservice"
-   * új tárfiók toocreate, hívása a parancsfájl vagy használata hello [Azure-portálon](https://portal.azure.com). egy teljesen minősített tartománynevet az előtag hello tárfiók neve lesz, és ezért egyedinek kell lennie. Próbálja meg hello ugyanazt a nevet használja, mint a felhőalapú szolgáltatáshoz.
+   * Hozzon létre egy új tárfiókot, hogy a parancsprogram hívása vagy használja a [Azure-portálon](https://portal.azure.com). A tárfiók neve lesz egy teljesen minősített tartománynevet az előtag, és ezért egyedinek kell lennie. Próbálja meg az azonos név használata a felhőalapú szolgáltatás.
 
          New-AzureStorageAccount -ServiceName "mytestcloudservice" -Location "North Central US" -Label "mytestcloudservice"
-8. Hello parancsfájl hívása közvetlenül az Azure PowerShell, illetve a hello csomag build után be a parancsfájl tooyour állomás build automation toooccur vezetékes.
+8. A parancsprogram hívása közvetlenül az Azure PowerShell vagy a gazdagép build automatizálás a csomag létrehozás után a parancsfájl kábelezést.
 
    > [!IMPORTANT]
-   > hello parancsfájl mindig törölje, vagy cserélje le a meglévő telepítések alapértelmezés szerint, ha azokat. Ez akkor szükségesek, hogy lehetővé teszik a folyamatos Automation ahol nincs felhasználói adatkérésekhez lehetséges.
+   > A parancsfájl mindig törölje, vagy cserélje le a meglévő telepítések alapértelmezés szerint, ha azokat. Ez akkor szükségesek, hogy lehetővé teszik a folyamatos Automation ahol nincs felhasználói adatkérésekhez lehetséges.
    >
    >
 
-   **1. példa:** átmeneti környezetben a szolgáltatások folyamatos üzembe helyezés toohello:
+   **1. példa:** a szolgáltatás átmeneti környezet folyamatos üzembe helyezés:
 
        PowerShell c:\scripts\windowsazure\PublishCloudService.ps1 -environment Staging -serviceName mycloudservice -storageAccountName mystoragesaccount -packageLocation c:\drops\app.publish\ContactManager.Azure.cspkg -cloudConfigLocation c:\drops\app.publish\ServiceConfiguration.Cloud.cscfg -subscriptionDataFile c:\scripts\default.publishsettings
 
-   Ez általában következnek teszt futtatásakor ellenőrzési és a virtuális IP-címcsere. hello VIP swap megteheti a hello [Azure-portálon](https://portal.azure.com) vagy hello áthelyezés telepítési parancsmag használatával.
+   Ez általában következnek teszt futtatásakor ellenőrzési és a virtuális IP-címcsere. A virtuális IP-címcsere megteheti a [Azure-portálon](https://portal.azure.com) vagy a Move-üzembe helyezési parancsmagjával.
 
-   **2. példa:** folyamatos üzembe helyezés toohello éles környezetben található dedikált teszt szolgáltatás
+   **2. példa:** folyamatos üzembe helyezést az éles környezetbe, egy dedikált teszt szolgáltatás
 
        PowerShell c:\scripts\windowsazure\PublishCloudService.ps1 -environment Production -enableDeploymentUpgrade 1 -serviceName mycloudservice -storageAccountName mystorageaccount -packageLocation c:\drops\app.publish\ContactManager.Azure.cspkg -cloudConfigLocation c:\drops\app.publish\ServiceConfiguration.Cloud.cscfg -subscriptionDataFile c:\scripts\default.publishsettings
 
    **Távoli asztali:**
 
-   Ha a távoli asztal engedélyezve van az Azure-projekt tooperform további egyszeri lépéseket tooensure hello felhőalapú szolgáltatás megfelelő tanúsítvány van feltöltve. Ez a parancsfájl által megcélzott tooall felhőszolgáltatások szüksége lesz.
+   Ha a távoli asztal engedélyezve van az Azure-projekt további egyszeri lépések végrehajtásával győződjön meg arról, ez a parancsfájl által megcélzott összes felhőszolgáltatás a megfelelő tanúsítványt a felhőalapú szolgáltatás feltöltött kell.
 
-   Keresse meg a szerepkörök által várt hello tanúsítvány ujjlenyomata értékeket. Az ujjlenyomat értékek láthatók a hello tanúsítványok szakasz a felhőalapú konfigurációs fájl (pl. ServiceConfiguration.Cloud.cscfg). Egyben hello távoli asztali konfigurálása párbeszédpanel a Visual Studio alkalmazásban látható beállítások megjelenítése és a nézet hello kiválasztott tanúsítvány.
+   Keresse meg a tanúsítvány ujjlenyomata értékeket, amelyet a szerepkörök várt. Az ujjlenyomat értékei látható a felhő konfigurációs fájl (pl. ServiceConfiguration.Cloud.cscfg) tanúsítványok szakaszában. Célszerű is látható, a távoli asztali konfigurálása párbeszédpanel a Visual Studio megjelenítésekor beállítások és megtekintése a kiválasztott tanúsítvány.
 
        <Certificates>
              <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="C33B6C432C25581601B84C80F86EC2809DC224E8" thumbprintAlgorithm="sha1" />
        </Certificates>
 
-   A távoli asztal-tanúsítványok feltöltésére használja a következő parancsmag parancsfájl hello egyszeri telepítő lépésként:
+   A távoli asztal-tanúsítványok feltöltésére használja a következő parancsmag parancsfájlt egyszeri telepítő lépésként:
 
        Add-AzureCertificate -serviceName <CLOUDSERVICENAME> -certToDeploy (get-item cert:\CurrentUser\MY\<THUMBPRINT>)
 
@@ -156,31 +156,31 @@ Ez a szakasz ismerteti, hogyan tooconstruct hello felhő alkalmazáscsomag közz
 
        Add-AzureCertificate -serviceName 'mytestcloudservice' -certToDeploy (get-item cert:\CurrentUser\MY\C33B6C432C25581601B84C80F86EC2809DC224E8
 
-   Másik lehetőségként exportálhatja hello tanúsítványfájl PFX a titkos kulcs és a feltöltés tanúsítványok tooeach cél felhőalapú szolgáltatás használata a [Azure-portálon](https://portal.azure.com).
+   Másik lehetőségként exportálása a titkos kulcsot tartalmazó PFX tanúsítványfájl és -tanúsítványok feltöltésére minden cél felhőalapú szolgáltatás használata a [Azure-portálon](https://portal.azure.com).
 
    <!---
-   Fixing broken links for Azure content migration from ACOM tooDOCS. I'm unable toofind a replacement links, so I'm commenting out this reference for now. hello author can investigate in hello future. "Read hello following article toolearn more: http://msdn.microsoft.com/library/windowsazure/gg443832.aspx.
+   Fixing broken links for Azure content migration from ACOM to DOCS. I'm unable to find a replacement links, so I'm commenting out this reference for now. The author can investigate in the future. "Read the following article to learn more: http://msdn.microsoft.com/library/windowsazure/gg443832.aspx.
    -->
    **Frissítés a központi telepítés vagy. Törölje a központi telepítés –\> új központi telepítés**
 
-   hello parancsprogrammal alapértelmezés szerint végezheti az frissítés központi telepítése ($enableDeploymentUpgrade = 1) Ha nem paraméter átadott vagy explicit módon átadott 1 érték. Az egyetlen példány Ez azt az előnyt, teljes körű telepítésére rövidebb ideig tart. A példányok hello előnye, hogy bizonyos esetekben fut, míg mások is annak magas rendelkezésre állást igénylő frissítése (a frissítési tartomány érdekében), valamint a VIP nem lesz törölve.
+   A parancsfájl alapértelmezés szerint végrehajtja az frissítés központi telepítése ($enableDeploymentUpgrade = 1) Ha nem paraméter átadott vagy explicit módon átadott 1 érték. Az egyetlen példány Ez azt az előnyt, teljes körű telepítésére rövidebb ideig tart. A magas rendelkezésre állású, ez is azzal az előnnyel jár, hogy bizonyos esetekben, mások pedig futtató igénylő példányok frissítése (a frissítési tartomány érdekében), valamint a VIP nem lesz törölve.
 
-   Frissítés telepítése is le kell tiltani a hello parancsfájl ($enableDeploymentUpgrade = 0), vagy úgy, hogy *- enableDeploymentUpgrade 0* paraméterként, amely megváltoztatja a parancsfájl viselkedés toofirst törölje a meglévő telepítést, és hozzon létre egy Új központi telepítést.
+   Frissítés telepítése le kell tiltani a parancsfájl ($enableDeploymentUpgrade = 0), vagy úgy, hogy *- enableDeploymentUpgrade 0* paraméterként, amely megváltoztatja a parancsfájl viselkedését, először törölje a meglévő telepítést, és ezután hozzon létre egy új központi telepítés.
 
    > [!IMPORTANT]
-   > hello parancsfájl mindig törölje, vagy cserélje le a meglévő telepítések alapértelmezés szerint, ha azokat. Ez az Automation folyamatos kézbesítési ahhoz szükséges, hogy nincs felhasználói/operátor kérdés esetén lehetséges.
+   > A parancsfájl mindig törölje, vagy cserélje le a meglévő telepítések alapértelmezés szerint, ha azokat. Ez az Automation folyamatos kézbesítési ahhoz szükséges, hogy nincs felhasználói/operátor kérdés esetén lehetséges.
    >
    >
 
 ## <a name="5-publish-a-package-using-tfs-team-build"></a>5: közzétenni a csomagot, a TFS-csoport létrehozása
-Ez az opcionális lépés csatlakozik a TFS-csoport létrehozása toohello parancsfájl a 4, amely kezeli a hello csomag build tooAzure közzétételét. Ez a módosítása hello használják a build definition hello végén lévő hello munkafolyamat futtatása egy közzétételi tevékenység folyamatsablon terjed ki. Közzététel tevékenység hello végrehajtja a hello build a paraméterek átadása a PowerShell-parancsot. Hello MSBuild célozza, és tegye közzé a parancsfájl kimenete fog kell adatcsatornán hello szabványos felépítési művelet kimenetében be.
+Ez az opcionális lépés csatlakozik a TFS csoport létrehozása a 4. lépésében létrehozott parancsfájlt, amely a csomag build Azure közzétételi kezeli. Ez terjed ki, hogy fut a közzététel tevékenység a munkafolyamat végén build definition használt folyamat sablon módosításával. A közzététel tevékenység végrehajtása addig a build a paraméterek átadása a PowerShell-parancsot. Az MSBuild kimenete célozza, és parancsfájl közzé lesz a szabványos felépítési művelet kimenetében be kell adatcsatornán.
 
-1. Hello felelős Build definíciójának szerkesztése folyamatos központi telepítése.
-2. Jelölje be hello **folyamat** fülre.
-3. Hajtsa végre a [ezeket az utasításokat](http://msdn.microsoft.com/library/dd647551.aspx) tooadd hello tevékenység projektben folyamatsablon felépítéséhez, töltse le a hello alapértelmezett sablon, adja hozzá a projekthez hello és be. Adjon meg új nevet, például a AzureBuildProcessTemplate hello build folyamatsablon.
-4. Térjen vissza a toohello **folyamat** lapot, és használja **részletek megjelenítése** tooshow érhető el összeállítási folyamat sablonok listájának. Válassza ki a hello **új...**  gombra, és keresse meg a most hozzáadott és be van jelölve, toohello projekt. Keresse meg az imént létrehozott hello sablont, és válassza a **OK**.
-5. Nyissa meg hello folyamatsablon kijelölt szerkesztésre. Úgy is megnyithatja közvetlenül hello munkafolyamat-tervezőben vagy hello XML-szerkesztő toowork a hello XAML-kódot.
-6. Adja hozzá a következő új argumentumok listájának hello argumentumok lapján hello munkafolyamat-Tervező külön sorként hello. Minden argumentum irányba kell rendelkeznie, és írja be a = = karakterlánc. Ezek mely majd get használt toocall hello közzététele parancsfájl hello munkafolyamatba hello build definícióból használt tooflow paraméterek lesz.
+1. Szerkessze a Build definíciót felelős folyamatos központi telepítése.
+2. Válassza ki a **folyamat** fülre.
+3. Hajtsa végre a [ezeket az utasításokat](http://msdn.microsoft.com/library/dd647551.aspx) egy tevékenység-projektjét, amely az összeállítási folyamat sablon hozzáadásához töltse le az alapértelmezett sablon, adja hozzá a projekthez, és jelölje be. A létrehozási folyamat sablon adjon új nevet, például a AzureBuildProcessTemplate.
+4. Lépjen vissza a **folyamat** lapot, és használjon **részletek megjelenítése** elérhető összeállítási folyamat sablonok listájának megjelenítéséhez. Válassza ki a **új...**  gombra, és keresse meg a most hozzáadott és be van jelölve, projekt. Keresse meg az újonnan létrehozott sablont, és válassza a **OK**.
+5. Nyissa meg a kijelölt folyamatsablont szerkesztésre. Úgy is megnyithatja közvetlenül a munkafolyamat-tervezőben vagy a XAML használható az XML-szerkesztőt.
+6. Adja hozzá az alábbi listán szereplő új argumentumok külön sorban elemeket a munkafolyamat-Tervező argumentumok lapján. Minden argumentum irányba kell rendelkeznie, és írja be a = = karakterlánc. Ezek használandó adatfolyam paramétereit a munkafolyamatba build definícióból használt majd beolvasni a közzététel parancsfájl hívni.
 
        SubscriptionName
        StorageAccountName
@@ -193,7 +193,7 @@ Ez az opcionális lépés csatlakozik a TFS-csoport létrehozása toohello paran
 
    ![Argumentumok listájának megjelenítése][3]
 
-   hello megfelelő XAML néz ki:
+   A megfelelő XAML így néz ki:
 
        <Activity  _ />
          <x:Members>
@@ -228,38 +228,38 @@ Ez az opcionális lépés csatlakozik a TFS-csoport létrehozása toohello paran
          </x:Members>
 
          <this:Process.MSBuildArguments>
-7. Felvehet egy új sorozatot futtassa az ügynök hello végén:
+7. Felvehet egy új sorozatot futtassa az ügynök végén:
 
-   1. Először vegyen fel egy Ha utasítás tevékenység toocheck meg egy érvényes parancsfájlt. Hello feltétel toothis érték beállítása:
+   1. Először vegyen fel egy érvényes parancsfájl kereséséhez Ha utasítás tevékenységgel. Erre az értékre állítsa be a következő feltételt:
 
           Not String.IsNullOrEmpty(PublishScriptLocation)
-   2. Hello majd hello Ha utasítás esetében adja hozzá egy új feladatütemezési tevékenységet. Set hello megjelenítési név too'Start közzététele "
-   3. A Start közzététele a kijelölt feladatütemezési hello adja hozzá az alábbi listán szereplő új változók a munkafolyamat-Tervező hello lapján elemeinek külön sorban. Minden változót kell változótípus = karakterlánc és a hatókör = Start közzététele. Ezek a munkafolyamatba, mely majd get használt toocall hello közzététele parancsfájl hello build definícióból használt tooflow paraméterek lesz.
+   2. A Then esetben ha utasítás adjon hozzá egy új feladatütemezési tevékenységet. Állítsa be a kezdő közzététele megjelenített neve
+   3. A kezdő és a kijelölt feladatütemezési közzétételéhez adja hozzá az alábbi listán szereplő új változók a munkafolyamat-Tervező változók lapján külön sorként. Minden változót kell változótípus = karakterlánc és a hatókör = Start közzététele. Ezek használandó adatfolyam paramétereit a munkafolyamatba build definícióból használt majd beolvasni a közzététel parancsfájl hívni.
 
       * SubscriptionDataFilePath, karakterlánc típusú
       * PublishScriptFilePath, karakterlánc típusú
 
         ![Új változók][4]
-   4. Ha a TFS 2012 használ, vagy korábbi, adjon hozzá egy ConvertWorkspaceItem tevékenységet a hello elején hello új feladatütemezési. Ha a TFS 2013, vagy később, adjon hozzá egy GetLocalPath tevékenységet hello új feladatütemezési hello elején. Egy ConvertWorkspaceItem beállítása hello tulajdonságok az alábbiak szerint: irányát ServerToLocal, DisplayName = = 'Convert közzététele parancsfájl fájlnév', bemeneti = "PublishScriptLocation", az eredmény = "PublishScriptFilePath", a munkaterület = "Munkaterület". GetLocalPath tevékenységhez, állítsa be a hello tulajdonság IncomingPath too'PublishScriptLocation ", és az eredmény too'PublishScriptFilePath hello". A tevékenység konvertálja hello elérési toohello közzététele TFS helyekről parancsfájl (ha van ilyen) tooa szabványos helyi lemez elérési útja.
-   5. Ha a TFS 2012 használ, vagy korábbi, adjon hozzá egy másik ConvertWorkspaceItem tevékenységet, hello végén lévő hello új feladatütemezési. Irány ServerToLocal, DisplayName = = "Átalakításáról előfizetés fájlnév" bemeneti = "SubscriptionDataFileLocation", az eredmény = "SubscriptionDataFilePath" munkaterület = "Munkaterület". Ha a TFS 2013, vagy később, a másik GetLocalPath hozzáadása. IncomingPath = "SubscriptionDataFileLocation", és az eredmény = "SubscriptionDataFilePath."
-   6. Hello hello végén InvokeProcess tevékenység hozzáadása új feladatütemezési.
-      Build Definition hello által átadott e tevékenység hívások PowerShell.exe hello argumentumokkal.
+   4. Ha a TFS 2012 vagy régebbi használ, egy ConvertWorkspaceItem tevékenység hozzáadása az új feladatütemezési elején. Ha a TFS 2013 vagy újabb verzió használata esetén egy GetLocalPath tevékenység hozzáadása az új feladatütemezési elején. Egy ConvertWorkspaceItem beállítása a tulajdonságok az alábbiak szerint: irány ServerToLocal, DisplayName = = "Convert közzétételéhez parancsfájl fájlnév" bemeneti = "PublishScriptLocation", az eredmény = "PublishScriptFilePath" munkaterület = "Munkaterület". GetLocalPath tevékenységhez a "PublishScriptLocation" IncomingPath, és az eredményt a "PublishScriptFilePath" tulajdonságának beállítása. Ez a tevékenység az elérési út a közzététel parancsfájlt a kiszolgáló helyét (ha van ilyen) TFS egy normál helyi lemez elérési útja alakítja.
+   5. Ha TFS 2012 vagy régebbi használ, adja hozzá egy másik ConvertWorkspaceItem tevékenység az új feladatütemezési végén. Irány ServerToLocal, DisplayName = = "Átalakításáról előfizetés fájlnév" bemeneti = "SubscriptionDataFileLocation", az eredmény = "SubscriptionDataFilePath" munkaterület = "Munkaterület". Ha a TFS 2013, vagy később, a másik GetLocalPath hozzáadása. IncomingPath = "SubscriptionDataFileLocation", és az eredmény = "SubscriptionDataFilePath."
+   6. InvokeProcess tevékenység hozzáadása az új feladatütemezési végén.
+      Ez a tevékenység PowerShell.exe meghívja a Build definíció által átadott argumentumok.
 
       + Argumentumok = String.Format ("-""{0}" "- szolgáltatásnév {1} - storageAccountName {2} - packageLocation""{3}" "- cloudConfigLocation""{4}" "– subscriptionDataFile""{5}" "– selectedSubscription {6} fájlt-környezet""{7}" "",  PublishScriptFilePath, ServiceName, StorageAccountName, PackageLocation, CloudConfigLocation, SubscriptionDataFilePath, SubscriptionName, környezet)
       + DisplayName = Execute parancsfájl közzététele
-      + FileName = "PowerShell" (a hello idézőjelek között)
+      + FileName = "PowerShell" (idézőjelek között)
       + OutputEncoding = System.Text.Encoding.GetEncoding(System.Globalization.CultureInfo.InstalledUICulture.TextInfo.OEMCodePage)
-   7. A hello **szabványos kimeneti kezelni** a InvokeProcess a szövegmező területen állítsa be a hello szövegmező érték too'data ". Ez az egy változó toostore hello szabványos kimeneti adatokat.
-   8. Adjon hozzá egy WriteBuildMessage tevékenységet hello alatt **szabványos kimeneti kezelni** szakasz. Fontos hello beállítása = "Microsoft.TeamFoundation.Build.Client.BuildMessageImportance.High" és a hello Message = "data". Ez biztosítja a szabványos kimeneti hello parancsfájl fog írása toohello felépítési művelet kimenetében.
-   9. A hello **kezelni hiba kimeneti** a InvokeProcess a szövegmező területen állítsa be a hello szövegmező érték too'data ". Ez az egy változó toostore hello standard hiba adatok.
-   10. Adjon hozzá egy WriteBuildError tevékenységet hello alatt **kezelni hiba kimeneti** szakasz. Állítsa be az üdvözlő üzenet = "data". Ez biztosítja, hogy toohello build hiba kimeneti hello standard hibák hello parancsfájl fog írása.
-   11. Javítsa ki a hibákat, kék felkiáltójel jelek jelölik. Mutasson a felkiáltójel jelek tooget hello hiba vonatkozó javaslat. Törölje a hibák hello munkafolyamat mentése.
+   7. Az a **szabványos kimeneti kezelni** a InvokeProcess a szövegmező területen állítsa a szövegmező "data". Ez a változó a szabványos kimeneti adatok tárolására.
+   8. Adjon hozzá egy WriteBuildMessage tevékenységet, csak az alábbiakban a **szabványos kimeneti kezelni** szakasz. Állítsa be a fontosság = "Microsoft.TeamFoundation.Build.Client.BuildMessageImportance.High" és az üzenet = "data". Ez biztosítja, hogy a normál a kimenetbe a parancsfájl a felépítési művelet kimenetében beolvasása írni.
+   9. Az a **kezelni hiba kimeneti** a InvokeProcess a szövegmező területen állítsa a szövegmező "data". Ez a változó a standard hiba adatok tárolására.
+   10. Adjon hozzá egy WriteBuildError tevékenységet, csak az alábbiakban a **kezelni hiba kimeneti** szakasz. Állítsa be a Message = "data". Ez biztosítja, a standard hibák, a parancsfájl a build hiba kimeneti beolvasása írni.
+   11. Javítsa ki a hibákat, kék felkiáltójel jelek jelölik. A hibával kapcsolatos javaslat lekérni az felkiáltójel közötti mutasson. Törölje a hibákat a munkafolyamat mentése.
 
-   hello végeredményét hello munkafolyamat-tevékenységek fog kinézni hello Designer közzététele:
+   A közzététel munkafolyamat-tevékenység a végeredményt fog kinézni a tervezőben:
 
    ![Munkafolyamat-tevékenységek][5]
 
-   hello végeredményét hello közzététele a munkafolyamat-tevékenységek fog kinézni XAML-kódban:
+   A közzététel munkafolyamat-tevékenység a végeredményt fog kinézni XAML-kódban:
 
        <If Condition="[Not String.IsNullOrEmpty(PublishScriptLocation)]" sap2010:WorkflowViewState.IdRef="If_1">
            <If.Then>
@@ -292,22 +292,22 @@ Ez az opcionális lépés csatlakozik a TFS-csoport létrehozása toohello paran
            </If.Then>
          </If>
        </Sequence>
-8. Hello létrehozási munkafolyamat sablont, és ellenőrizze a fájl mentéséhez.
-9. Hello build definíciójának szerkesztése (lezárhatja, amennyiben már meg nyitva), és jelölje be hello **új** gombra kattint, ha még nem látja hello új sablon folyamatsablonok hello listájában.
-10. Hello paraméter tulajdonságértékei állíthatók hello egyebek szakasz a következőképpen:
+8. Mentse a build munkafolyamat-sablon és a felvétel ezt a fájlt.
+9. Szerkessze a build definíciót (lezárhatja, amennyiben már meg nyitva), és válassza ki a **új** gombra kattint, ha még nem látja az új sablon folyamat sablonok listáján.
+10. A paraméter tulajdonságértékei állíthatók egyebek szakaszában az alábbiak szerint:
 
     1. CloudConfigLocation = "c:\\esik\\app.publish\\ServiceConfiguration.Cloud.cscfg" *ezt az értéket, amelyből származik: ($PublishDir)ServiceConfiguration.Cloud.cscfg*
     2. PackageLocation = "c:\\esik\\app.publish\\ContactManager.Azure.cspkg" *ezt az értéket, amelyből származik: ($PublishDir)($ProjectName) .cspkg*
     3. PublishScriptLocation = "c:\\parancsfájlok\\WindowsAzure\\PublishCloudService.ps1"
-    4. ServiceName = "mycloudservicename" *használata hello megfelelő felhőszolgáltatás neve itt*
+    4. ServiceName = "mycloudservicename" *itt használja a megfelelő felhőszolgáltatás neve*
     5. Környezet = "Átmeneti"
-    6. StorageAccountName = "mystorageaccountname" *használata hello megfelelő tárfióknév Itt*
+    6. StorageAccountName = "mystorageaccountname" *itt használja a megfelelő tárfiók neve*
     7. SubscriptionDataFileLocation = "c:\\parancsfájlok\\WindowsAzure\\Subscription.xml"
     8. SubscriptionName = "alapértelmezett"
 
     ![Tulajdonság értékei][6]
-11. Hello módosítások toohello Build definíció mentése.
-12. Feldolgozási sor egy Build tooexecute mindkét hello csomag létrehozási, és tegye közzé. Ha egy eseményindító tooContinuous integráció beállítása, végrehajtja a Ez a viselkedés a minden egyes bejelentkezéskor.
+11. Menti a módosításokat a Build definíciójához.
+12. Feldolgozási sor végrehajtása mindkét a csomag összeállítása és közzététele Build. Ha egy eseményindító folyamatos integráció beállítása, végrehajtja a Ez a viselkedés a minden egyes bejelentkezéskor.
 
 ### <a name="publishcloudserviceps1-script-template"></a>PublishCloudService.ps1 parancsfájl sablon
 ```
@@ -316,7 +316,7 @@ Param(  $serviceName = "",
         $packageLocation = "",
         $cloudConfigLocation = "",
         $environment = "Staging",
-        $deploymentLabel = "ContinuousDeploy too$servicename",
+        $deploymentLabel = "ContinuousDeploy to $servicename",
         $timeStampFormat = "g",
         $alwaysDeleteExistingDeployments = 1,
         $enableDeploymentUpgrade = 1,
@@ -332,7 +332,7 @@ function Publish()
     {
         Write-Output "$(Get-Date -f $timeStampFormat) - No deployment is detected. Creating a new deployment. "
     }
-    #check for existing deployment and then either upgrade, delete + deploy, or cancel according too$alwaysDeleteExistingDeployments and $enableDeploymentUpgrade boolean variables
+    #check for existing deployment and then either upgrade, delete + deploy, or cancel according to $alwaysDeleteExistingDeployments and $enableDeploymentUpgrade boolean variables
     if ($deployment.Name -ne $null)
     {
         switch ($alwaysDeleteExistingDeployments)
@@ -499,7 +499,7 @@ $subscriptionname = $subscription.subscriptionname
 $subscriptionid = $subscription.subscriptionid
 $slot = $environment
 
-#main driver - publish & write progress tooactivity log
+#main driver - publish & write progress to activity log
 Write-Output "$(Get-Date -f $timeStampFormat) - Azure Cloud Service deploy script started."
 Write-Output "$(Get-Date -f $timeStampFormat) - Preparing deployment of $deploymentLabel for $subscriptionname with Subscription ID $subscriptionid."
 
@@ -513,7 +513,7 @@ Write-Output "$(Get-Date -f $timeStampFormat) - Azure Cloud Service deploy scrip
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-tooenable távoli hibakeresés folyamatos kézbesítés használata esetén lásd: [folyamatos kézbesítési toopublish tooAzure használatakor távoli hibakeresésének engedélyezése](cloud-services-virtual-machines-dotnet-continuous-delivery-remote-debugging.md).
+Engedélyezheti a távoli hibakeresés folyamatos kézbesítés használata esetén [folyamatos kézbesítési közzététele az Azure-bA használatakor távoli hibakeresésének engedélyezése](cloud-services-virtual-machines-dotnet-continuous-delivery-remote-debugging.md).
 
 [Team Foundation Build Service]: https://msdn.microsoft.com/library/ee259687.aspx
 [.NET Framework 4]: https://www.microsoft.com/download/details.aspx?id=17851
@@ -522,7 +522,7 @@ tooenable távoli hibakeresés folyamatos kézbesítés használata esetén lás
 [Scale out your build system]: https://msdn.microsoft.com/library/dd793166.aspx
 [Deploy and configure a build server]: https://msdn.microsoft.com/library/ms181712.aspx
 [Azure PowerShell cmdlets]: /powershell/azureps-cmdlets-docs
-[hello .publishsettings file]: https://manage.windowsazure.com/download/publishprofile.aspx?wa=wsignin1.0
+[the .publishsettings file]: https://manage.windowsazure.com/download/publishprofile.aspx?wa=wsignin1.0
 [0]: ./media/cloud-services-dotnet-continuous-delivery/tfs-01bc.png
 [2]: ./media/cloud-services-dotnet-continuous-delivery/tfs-02.png
 [3]: ./media/cloud-services-dotnet-continuous-delivery/common-task-tfs-03.png

@@ -1,14 +1,14 @@
 ### <a name="prerequisites"></a>Előfeltételek
 * Egy [RSS](https://wikipedia.org/wiki/RSS) fiók  
 
-RSS-fiókját a logikai alkalmazás használata előtt engedélyeznie kell a hello Logic app tooconnect tooyour RSS fiók. Szerencsére ehhez egyszerűen a a logikai alkalmazásban a hello Azure portálon.  
+RSS-fiókját a logikai alkalmazás használata előtt engedélyeznie kell a logikai alkalmazást az RSS-fiókjához. Szerencsére ehhez egyszerűen a a logikai alkalmazásban, az Azure portálon.  
 
-Az alábbiakban hello lépéseket tooauthorize Logic app tooconnect tooyour RSS fiókja:  
+A Logic Apps alkalmazást RSS fiókjához történő engedélyezéséhez lépései a következők:  
 
-1. toocreate egy kapcsolat tooRSS hello Logic app Designer kiválasztása **megjelenítése Microsoft felügyelt API-k** hello a legördülő listából, majd adja meg *RSS* hello Keresés mezőbe. Hello eseményindító vagy lesz, például a toouse művelet kiválasztása:  
+1. RSS-, VPN-kapcsolat létrehozásához a Logic app tervezőben, válassza ki a **megjelenítése Microsoft felügyelt API-k** a legördülő listában adja meg *RSS* be a keresőmezőbe. Válassza ki az eseményindító vagy művelet fogjuk használni kívánt:  
    ![RSS kapcsolat létrehozását lépést](./media/connectors-create-api-rss/rss-1.png)  
 2. Válassza ki **hozható létre kapcsolat** :  
    ![RSS kapcsolat létrehozását lépést](./media/connectors-create-api-rss/rss-2.png)  
-3. Figyelje meg hello kapcsolat létrejött, és most a Logic Apps alkalmazást az egyéb hello szabad tooproceed szükséges lépések:  
+3. Figyelje meg, a kapcsolat létrejött, és szabadon most folytatja a Logic Apps alkalmazást más lépéseket:  
    ![RSS kapcsolat létrehozását lépést](./media/connectors-create-api-rss/rss-3.png)  
 

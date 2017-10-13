@@ -1,6 +1,6 @@
 ---
-title: "aaaHow Azure kapcsolódnak előfizetések az Azure Active Directory |} Microsoft Docs"
-description: "Jelentkezzen be tooMicrosoft Azure és a kapcsolódó problémák, például egy Azure-előfizetés és Azure Active Directory hello kapcsolatát."
+title: "Hogyan kapcsolódnak az Azure-előfizetések az Azure Active Directoryhoz? | Microsoft Docs"
+description: "Bejelentkezés a Microsoft Azure-ba és a kapcsolódó problémák, például az Azure-előfizetések és az Azure Active Directory közötti kapcsolat."
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -16,62 +16,63 @@ ms.date: 08/24/2017
 ms.author: curtand
 ms.reviewer: jeffsta
 ms.custom: oldportal;it-pro;
-ms.openlocfilehash: 4f831cfb972efec57083fcaa63adb43fde7b2faf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 081cf2bde44a0b55508cc7f0197fa7f8e378189b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="how-azure-subscriptions-are-associated-with-azure-active-directory"></a>How Azure subscriptions are associated with Active Directory? (Hogyan kapcsolódnak az Azure-előfizetések az Azure Active Directory-hoz?)
-Ez a cikk ismerteti a hello kapcsolatát egy Azure-előfizetések és Azure Active Directory (Azure AD), és hogyan tooadd meglévő előfizetés tooyour az Azure Active directory.
+Ez a cikk az Azure-előfizetések és az Azure Active Directory (Azure AD) közötti kapcsolatról tartalmaz információt, illetve arról, hogy miként adható hozzá egy meglévő előfizetés az Azure AD-címtárhoz.
 
-## <a name="your-azure-subscriptions-relationship-tooazure-ad"></a>Az Azure-előfizetéshez kapcsolat tooAzure AD
-Az Azure-előfizetéshez az Azure ad szolgáltatással, ami azt jelenti, hogy megbízik hello directory tooauthenticate felhasználók, szolgáltatások és az eszközök megbízhatósági kapcsolatban áll. Több előfizetés is megbízhat hello ugyanabban a könyvtárban, de az egyes előfizetések csak egy címtárban bízhat. 
+## <a name="your-azure-subscriptions-relationship-to-azure-ad"></a>Az Azure-előfizetése és az Azure AD közötti kapcsolat
+Az Azure-előfizetés megbízhatósági kapcsolatban áll az Azure AD-vel, ami azt jelenti, hogy ezt a címtárat megbízhatónak tekinti a felhasználók, szolgáltatások és eszközök hitelesítéséhez. Több előfizetés is megbízhat ugyanabban a címtárban, de egy előfizetés csak egy megbízható címtárral rendelkezhet. 
 
-hello megbízhatósági kapcsolat, amely egy előfizetés tartozik könyvtár nem hello kapcsolat, amely további erőforrások az Azure (webhelyek, adatbázisok és így tovább) áll. Ha egy előfizetés lejár, a hozzáférési toohello más hello előfizetéshez társított erőforrásokat is leáll. Azonban az Azure AD-címtár az Azure-ban marad, és rendelje hozzá egy másik előfizetésben található könyvtárhoz, és új előfizetést hello hello címtár kezelése.
+Az előfizetés és a címtár közötti megbízhatósági kapcsolat nem olyan, mint ami az előfizetés és az Azure összes többi erőforrása (webhelyek, adatbázisok stb.) között áll fenn. Ha egy előfizetés lejár, akkor az előfizetéssel társított egyéb erőforrások hozzáférése is lejár. Az Azure AD-címtár azonban elérhető marad az Azure-ban, így társíthat hozzá egy másik előfizetést, és az új előfizetéssel kezelheti a címtár felhasználóit.
 
 ![az előfizetések társításának módját ábrázoló diagram](./media/active-directory-how-subscriptions-associated-directory/WAAD_OrgAccountSubscription.png)
 
-Minden felhasználó egyetlen saját címtárral rendelkezik, amely hitelesíti őt, de más címtárakban lehet vendég is. Az Azure AD-hello könyvtárak, amelyek a felhasználói fiók pedig a tag vagy Vendég tekintheti meg.
+Minden felhasználó egyetlen saját címtárral rendelkezik, amely hitelesíti őt, de más címtárakban lehet vendég is. Az Azure AD-ben a felhasználó azokat a címtárakat látja, amelyeknek a felhasználói fiókja a tagja vagy vendége.
 
 ## <a name="azure-ad-and-cloud-service-subscriptions"></a>Az Azure AD és a felhőszolgáltatásbeli előfizetések
-Az Azure AD hello core címtár- és identitáskezelési funkciókat biztosít a Microsoft felhőszolgáltatásai, beleértve a legtöbb mögött:
+Az Azure AD alapvető fontosságú címtár- és identitáskezelési funkciókat biztosít a Microsoft olyan felhőszolgáltatásai számára, mint például a következők:
 
 * Azure
 * Microsoft Office 365
 * Microsoft Dynamics CRM Online
 * Microsoft Intune
 
-Ha regisztrál bármelyik fenti Microsoft felhőszolgáltatásra hello Azure AD szolgáltatás szabad kap. Ha azt szeretné, hogy egy további Azure-előfizetés tooan az Azure Active directory tooadd, be kell jelentkeznie be egy Microsoft-fiókkal. Jelentkezzen be tooAzure munkahelyi vagy iskolai fiókkal, ha nem vehet tooan meglévő címtárhoz Azure-előfizetés, mert a munkahelyi vagy iskolai fiókot nem lehet hitelesíteni, közvetlenül az Azure-ban. 
+Az Azure AD szolgáltatáshoz ingyenesen hozzáférhet, ha regisztrál bármelyik fenti Microsoft-felhőszolgáltatásra. Ha további Azure-előfizetéseket kíván hozzáadni egy Azure AD-címtárhoz, be kell jelentkeznie egy Microsoft-fiókkal. Ha munkahelyi vagy iskolai fiókkal jelentkezik be az Azure-ba, nem adhat hozzá Azure-előfizetést a meglévő címtárhoz, mivel a munkahelyi vagy iskolai fiók nem hitelesíthető közvetlenül az Azure-ral. 
 
-## <a name="tooadd-an-existing-subscription-tooyour-azure-ad-directory"></a>meglévő előfizetés tooyour az Azure Active directory tooadd
-Mindkét hello aktuális könyvtárhoz, mely hello előfizetés társítva a fiókkal kell bejelentkeznie, és hello könyvtárban tooadd kívánja azt. 
+## <a name="to-add-an-existing-subscription-to-your-azure-ad-directory"></a>Meglévő előfizetés hozzáadása az Azure AD-címtárhoz
+Egy olyan fiókkal kell bejelentkeznie, amely az előfizetéshez jelenleg társított címtárban és abban a címtárban is létezik, amelyhez az előfizetést hozzá szeretné rendelni. 
 
-1. Jelentkezzen be toohello [Azure Account Center](https://account.windowsazure.com/Home/Index) egy olyan fiókkal, amely van hello Fiókadminisztrátort hello előfizetés amelyek tulajdonjoga tootransfer szeretné.
-2. Győződjön meg arról, hogy hello felhasználóját, aki toobe hello előfizetés tulajdonosa megcélzott hello a könyvtárban van.
+1. Jelentkezzen be az [Azure Account Centerbe](https://account.azure.com/Subscriptions) annak az előfizetésnek a fiókadminisztrátori fiókjával, amelynek a tulajdonjogát át szeretné adni.
+2. Bizonyosodjon meg róla, hogy az előfizetés tulajdonosaként megadni kívánt felhasználó szerepel a megcélzott címtárban.
 3. Kattintson az **Előfizetés átadása** elemre.
-4. Adja meg a hello címzett. hello címzett automatikusan kap egy e-maileket az elfogadási kapcsolaton.
-5. hello címzett hello hivatkozásra kattint, és a következő hello utasításokat, beleértve a fizetési adatok megadása. Hello címzett sikeres, hello előfizetés kerül. 
-6. hello alapértelmezett könyvtár hello előfizetés toohello directory hello felhasználó van.
+4. Adja meg a címzettet. A címzett automatikusan kapni fog egy elfogadási hivatkozást tartalmazó e-mailt.
+5. A címzett a hivatkozásra való kattintás után követnie kell az utasításokat, többek között a fizetési információk megadásával. Ha ez sikeresen befejeződött, a rendszer átadja az előfizetést. 
+6. Az előfizetés alapértelmezett címtára arra módosul, amelyikben a felhasználó szerepel.
 
+További tudnivalókért lásd: [Az Azure-előfizetés tulajdonjogának átadása másik fiók számára](../billing/billing-subscription-transfer.md)
 
-## <a name="suggestions-toomanage-both-a-subscription-and-a-directory"></a>Javaslatok toomanage előfizetés, és a könyvtár
-Azure-előfizetések rendszergazdai szerepkörei hello Azure-előfizetéssel társított erőforrásokat toohello kezelése. Ez a szakasz ismerteti az Azure-előfizetések rendszergazdái és az Azure AD-címtár rendszergazdái hello különbségei. Rendszergazdai szerepkörök és egyéb javaslatok az előfizetéshez tartoznak, toomanage használatuk [rendszergazdai szerepkörök hozzárendelése az Azure Active Directory](active-directory-assign-admin-roles.md).
+## <a name="suggestions-to-manage-both-a-subscription-and-a-directory"></a>Javaslatok az előfizetés és a címtár kezeléséhez
+Az Azure-előfizetések rendszergazdai szerepkörei kezelik az Azure-előfizetéshez társított erőforrásokat. Ez a szakasz ismerteti az Azure-előfizetések rendszergazdái és az Azure AD-címtár rendszergazdái közti különbségeket. A rendszergazdai szerepkörökről és az előfizetés kezelésére való használatukról a [Rendszergazdai szerepkörök hozzárendelése az Azure Active Directoryban](active-directory-assign-admin-roles.md) című szakaszban olvashat.
 
-Alapértelmezés szerint akkor hello szolgáltatás rendszergazdai szerepkörrel feliratkozás. Ha a toosign kell és elérniük a szolgáltatásokat hello ugyanahhoz az előfizetéshez, akkor hozzáadhatja ezeket társadminisztrátorként. 
+Alapértelmezés szerint a Szolgáltatás-rendszergazda szerepkörhöz van rendelve a regisztráláskor. Ha másoknak is ugyanezzel az előfizetéssel kell bejelentkezniük és elérniük a szolgáltatásokat, társadminisztrátorként felveheti őket. 
 
-Az Azure AD rendszergazdai szerepkörei toomanage hello directory és az identitás-kapcsolatos funkciók különböző szabálykészleteket rendelkezik. Például egy címtár globális rendszergazdájának hello hozzáadhat felhasználók és csoportok toohello directory és a felhasználók többtényezős hitelesítését követelheti. A címtárat létrehozó felhasználó toohello globális rendszergazdai szerepkör van rendelve, és rendeljen rendszergazdai szerepkörei tooother felhasználók. Az Azure AD rendszergazdai szerepköreit más szolgáltatások is használják, például az Office 365 és a Microsoft Intune. 
+Az Azure AD különböző rendszergazdai szerepkörökkel rendelkezik a címtárral és az identitással kapcsolatos funkciók kezeléséhez. Egy címtár globális rendszergazdája például felhasználókat és csoportokat adhat a címtárhoz, vagy a felhasználók többtényezős hitelesítését követelheti meg. A címtárat létrehozó felhasználókhoz a globális rendszergazdai szerepkör van rendelve, és ők rendszergazdai szerepköröket rendelhetnek más felhasználókhoz. Az Azure AD rendszergazdai szerepköreit más szolgáltatások is használják, például az Office 365 és a Microsoft Intune. 
 
 Az Azure-előfizetések rendszergazdái és az Azure AD-címtár rendszergazdái két különböző szerepkörnek számítanak. 
-* Azure-előfizetés rendszergazdái kezelhetik az erőforrásokat az Azure-ban, és használhatja az Azure AD hello Azure-portálon (mert hello Azure-portálon magát egy Azure-erőforrás). 
-* Címtár rendszergazdái kezelhetik a tulajdonságok csak az Azure AD-címtár hello.
+* Az Azure-előfizetés rendszergazdái kezelhetik az erőforrásokat az Azure-ban, és használhatják az Azure AD-t az Azure Portalon (mert az Azure portál maga is egy Azure-erőforrás). 
+* A címtár rendszergazdái csak az Azure AD-címtár tulajdonságait kezelhetik.
 
-Egy személy mindkét szerepkörrel rendelkezhet, de erre nincs szükség. Egy címtár globális rendszergazdai fiókját nem lehet hozzárendelni az Azure-előfizetés szolgáltatás-rendszergazdai vagy társadminisztrátori szerepköréhez, sem pedig fordítva. Anélkül, hogy a rendszergazda hello előfizetés, hello felhasználó toohello Azure-portálon bejelentkezhet, de nem tudja kezelni a feliratkozásban hello portálon hello könyvtárak. Azonban ez a felhasználó az egyéb eszközökkel, például Azure AD PowerShell vagy az Office 365 felügyeleti központban hello könyvtárak kezelheti.
+Egy személy mindkét szerepkörrel rendelkezhet, de erre nincs szükség. Egy címtár globális rendszergazdai fiókját nem lehet hozzárendelni az Azure-előfizetés szolgáltatás-rendszergazdai vagy társadminisztrátori szerepköréhez, sem pedig fordítva. Ha a felhasználó nem egy előfizetés rendszergazdája, attól még bejelentkezhet az Azure Portalra, de nem kezelheti a portálon az előfizetéshez tartozó címtárakat. A felhasználó más eszközökkel azonban kezelheti a címtárakat, például az Azure AD PowerShell vagy az Office 365 felügyeleti központ használatával.
 
 ## <a name="next-steps"></a>Következő lépések
-* További részletek toolearn, hogyan toochange rendszergazdák az Azure-előfizetéssel, lásd: [egy Azure-előfizetés tooanother fiók tulajdonjogának átruházása](../billing/billing-subscription-transfer.md)
-* toolearn hogyan szabályozott erőforrások elérése a Microsoft Azure-ban kapcsolatos további információkért lásd: [az az Azure-erőforrások hozzáférésének megismerése](active-directory-understanding-resource-access.md)
-* További információt a tooassign szerepkörök az Azure ad-ben, lásd: [rendszergazdai szerepkörök hozzárendelése az Azure Active Directoryban](active-directory-assign-admin-roles-azure-portal.md)
+* További információ az Azure-előfizetések rendszergazdáinak módosításáról: [Azure-előfizetés tulajdonjogának átruházása másik fiókra](../billing/billing-subscription-transfer.md)
+* Az erőforrások hozzáférésének Microsoft Azure-ban történő kezeléséről további információért lásd: [Az erőforrások hozzáférésének megismerése az Azure-ban](active-directory-understanding-resource-access.md)
+* A szerepkörök Azure AD-ben történő hozzárendeléséről további információért lásd: [Rendszergazdai szerepkörök hozzárendelése az Azure Active Directoryban](active-directory-assign-admin-roles-azure-portal.md).
 
 <!--Image references-->
 [1]: ./media/active-directory-how-subscriptions-associated-directory/WAAD_PassThruAuth.png

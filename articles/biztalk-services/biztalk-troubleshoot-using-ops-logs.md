@@ -1,5 +1,5 @@
 ---
-title: "aaaTroubleshoot BizTalk szolgáltatások műveletnaplók használatával |} Microsoft Docs"
+title: "BizTalk szolgáltatások használatával műveletnaplók hibaelhárítása |} Microsoft Docs"
 description: "Végezzen hibaelhárítást a BizTalk szolgáltatások műveletnaplók használatával. MABS, WABS"
 services: biztalk-services
 documentationcenter: 
@@ -14,51 +14,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/07/2016
 ms.author: mandia
-ms.openlocfilehash: 102779ed6e29784f190c28e4102a7d9670614914
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c0c83361f94ffd9c30d7fcc551ff4b85ad7d6fa5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="biztalk-services-troubleshoot-using-operation-logs"></a>BizTalk szolgáltatások: Műveletnaplók használata – hibaelhárítás
 
 > [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
 
-## <a name="what-are-hello-operation-logs"></a>Mik azok a hello műveletnaplók
-A műveletnaplók rendszerben érhető el, a klasszikus Azure-portál, amely lehetővé teszi tooview korábbi naplók az Azure-szolgáltatásokkal, beleértve a BizTalk szolgáltatások végre műveletek hello szolgáltatások szolgáltatás. Ez lehetővé teszi, hogy tooview előzményadatokat kapcsolódó toomanagement műveleteket végez a BizTalk szolgáltatás előfizetésének kötött 180 nap.
+## <a name="what-are-the-operation-logs"></a>Mik azok a műveleti naplói
+A műveletnaplók szolgáltatások a klasszikus Azure portálon, amely lehetővé teszi az Azure-szolgáltatásokkal, beleértve a BizTalk szolgáltatások végre műveletek korábbi naplók megtekintéséhez. Ez lehetővé teszi, hogy megtekintheti az előzményadatokat a BizTalk szolgáltatás előfizetésének kötött 180 nap alatt a felügyeleti műveleteihez kapcsolódik.
 
 > [!NOTE]
-> Ez a funkció csak rögzíti a naplókat, ha hello szolgáltatás elindult, például a BizTalk szolgáltatások, a felügyeleti műveleteihez biztonsági fel, és így tovább. Függetlenül attól, hogy a klasszikus Azure portálon hello vagy hello segítségével végrehajtandó műveletek követi [BizTalk szolgáltatás REST API-k](http://msdn.microsoft.com/library/azure/dn232347.aspx). Szolgáltatások használatával nyomon követett műveletek teljes listáját lásd: [műveletek nyomon követett Azure felügyeleti szolgáltatások használatával](#bizops).<br/><br/>
-> Ez nem rögzíthető lemezkép a hello naplókat a további tevékenységek kapcsolódó tooBizTalk szolgáltatás futásideje (például hidak, és így tovább által feldolgozott üzenet.). tooview ezek a naplók használata hello követési nézet hello BizTalk szolgáltatások portálról. További információkért lásd: [üzenetek nyomon követése](http://msdn.microsoft.com/library/azure/hh949805.aspx).
+> Ez a funkció csak rögzíti a naplókat, ha a szolgáltatás indítása, például a BizTalk szolgáltatások felügyeleti műveleteihez biztonsági fel, és így tovább. Függetlenül attól, hogy a klasszikus Azure portálon vagy segítségével végrehajtandó műveletek nyomon követi a [BizTalk szolgáltatás REST API-k](http://msdn.microsoft.com/library/azure/dn232347.aspx). Szolgáltatások használatával nyomon követett műveletek teljes listáját lásd: [műveletek nyomon követett Azure felügyeleti szolgáltatások használatával](#bizops).<br/><br/>
+> Ez a nem rögzíthető lemezkép a naplók BizTalk szolgáltatás futásideje (például hidak, és így tovább által feldolgozott üzenet.) kapcsolódó tevékenységekhez. Ezek a naplók megtekintéséhez használja a nyomon követési a BizTalk szolgáltatások portálról. További információkért lásd: [üzenetek nyomon követése](http://msdn.microsoft.com/library/azure/hh949805.aspx).
 > 
 > 
 
 ## <a name="view-biztalk-services-operation-logs"></a>BizTalk szolgáltatások műveletnaplók megtekintése
-1. Hello a klasszikus Azure portálon, válassza ki **szolgáltatások**, majd válassza ki a hello **műveletnaplók** fülre.
-2. Hello naplók előfizetés, dátumtartományt, szolgáltatás típusa (pl. BizTalk szolgáltatások), szolgáltatásnevet vagy hello művelet (sikeres, sikertelen) állapotának különböző paraméterek alapján szűrhetők.
-3. Jelölje be hello pipa tooview hello szűrt listáról. hello következő kép bemutatja tevékenységek kapcsolódó tootestbiztalkservice: ![műveletnaplók megtekintése][ViewLogs] 
-4. További információ az egy adott művelet tooview hello válassza ki, és kattintson a **részletek** hello tálcán hello lap alján.
+1. A klasszikus Azure portálon, válassza ki a **szolgáltatások**, majd válassza ki a **műveletnaplók** fülre.
+2. A naplók előfizetés, a dátumtartományt, a szolgáltatás típusa (pl. BizTalk szolgáltatások), a szolgáltatás neve vagy a (sikeres, sikertelen) a művelet állapotának például különböző paraméterek alapján szűrhetők.
+3. Válassza ki a jelet a szűrt listájának megtekintése. A következő kép bemutatja testbiztalkservice kapcsolódó tevékenységek: ![műveletnaplók megtekintése][ViewLogs] 
+4. Egy adott műveletekre vonatkozó megtekintéséhez több, válassza ki a, és kattintson **részletek** alján a tálcán.
 
 ## <a name="bizops"></a>Az Azure szolgáltatások segítségével nyomon műveletek
-hello következő táblázat hello műveletek nyomon követett hello Azure szolgáltatások használatával.
+A következő táblázat felsorolja a nyomon követett az Azure szolgáltatások használatával műveletek:
 
 | A művelet neve | Tevékenység |
 | --- | --- |
-| CreateBizTalkService |A művelet toocreate új BizTalk szolgáltatás |
-| DeleteBizTalkService |A művelet toodelete BizTalk szolgáltatás |
-| RestartBizTalkService |A művelet toorestart BizTalk szolgáltatás |
-| StartBizTalkService |A művelet toostart BizTalk szolgáltatás |
-| StopBizTalkService |A művelet toostop BizTalk szolgáltatás |
-| DisableBizTalkService |A művelet toodisable BizTalk szolgáltatás |
-| EnableBizTalkService |A művelet tooenable BizTalk szolgáltatás |
-| BackupBizTalkService |A művelet tooback a BizTalk szolgáltatás |
-| RestoreBizTalkService |A művelet toorestore megadott biztonsági másolatból BizTalk szolgáltatás |
-| SuspendBizTalkService |A művelet toosuspend BizTalk szolgáltatás |
-| ResumeBizTalkService |A művelet tooresume BizTalk szolgáltatás |
-| ScaleBizTalkService |A BizTalk szolgáltatása művelet-tooscale feljebb vagy lejjebb |
-| ConfigUpdateBizTalkService |A BizTalk szolgáltatás művelet tooupdate hello konfigurációját |
-| ServiceUpdateBizTalkService |A művelet tooupgrade vagy alacsonyabb szintre való visszalépést BizTalk szolgáltatás tooa eltérő verziójú |
-| PurgeBackupBizTalkService |A művelet toopurge biztonsági mentései hello BizTalk szolgáltatás hello megőrzési időn kívül |
+| CreateBizTalkService |Új BizTalk szolgáltatás létrehozása művelet |
+| DeleteBizTalkService |A művelet egy BizTalk szolgáltatás törlése |
+| RestartBizTalkService |A művelet egy BizTalk szolgáltatás újraindítása |
+| StartBizTalkService |A BizTalk szolgáltatás indítási művelete |
+| StopBizTalkService |A művelet egy BizTalk szolgáltatás leállítása |
+| DisableBizTalkService |A művelet egy BizTalk szolgáltatás letiltása |
+| EnableBizTalkService |A művelet egy BizTalk szolgáltatás engedélyezése |
+| BackupBizTalkService |Készítsen biztonsági másolatot a BizTalk szolgáltatás művelet |
+| RestoreBizTalkService |A BizTalk szolgáltatás biztonsági másolatból történő visszaállítását megadott művelet |
+| SuspendBizTalkService |A művelet felfüggeszti a BizTalk szolgáltatás |
+| ResumeBizTalkService |BizTalk szolgáltatás folytatásához a művelet |
+| ScaleBizTalkService |A BizTalk szolgáltatások méretezéséhez felfelé vagy lefelé művelet |
+| ConfigUpdateBizTalkService |A BizTalk szolgáltatás konfigurációját frissítési művelete |
+| ServiceUpdateBizTalkService |A BizTalk szolgáltatás egy másik verzió visszaminősítését vagy frissítéséhez művelet |
+| PurgeBackupBizTalkService |Biztonsági mentés a megőrzési időn kívül a BizTalk szolgáltatás kiürítése művelet |
 
 ## <a name="see-also"></a>Lásd még:
 * [Biztonsági mentési BizTalk szolgáltatás](http://go.microsoft.com/fwlink/p/?LinkID=325584)
@@ -69,7 +69,7 @@ hello következő táblázat hello műveletek nyomon követett hello Azure szolg
 * [BizTalk Services: Irányítópult, Figyelés és Méret lapok](http://go.microsoft.com/fwlink/p/?LinkID=302281)
 * [BizTalk Services: Szabályozás](http://go.microsoft.com/fwlink/p/?LinkID=302282)
 * [BizTalk Services: Kiállító neve és kiállító kulcsa](http://go.microsoft.com/fwlink/p/?LinkID=303941)
-* [Hogyan tudom használata hello Azure BizTalk szolgáltatások SDK-t](http://go.microsoft.com/fwlink/p/?LinkID=302335)
+* [Hogyan kezdhetem el az Azure BizTalk Services SDK használatát](http://go.microsoft.com/fwlink/p/?LinkID=302335)
 
 [ViewLogs]: ./media/biztalk-troubleshoot-using-ops-logs/Operation-Logs.png
 

@@ -1,6 +1,6 @@
 ---
-title: "egy Azure fájlmegosztás aaaMount és a hozzáférés hello ugyanazt a Windows |} Microsoft Docs"
-description: "Csatlakoztassa egy Azure fájlmegosztás és a Windows hello megosztásra hozzáférést."
+title: "Azure-fájlmegosztás csatlakoztatása és a megosztás elérése Windows rendszeren | Microsoft Docs"
+description: "Azure-fájlmegosztás csatlakoztatása és a megosztás elérése Windows rendszeren."
 services: storage
 documentationcenter: na
 author: RenaShahMSFT
@@ -12,70 +12,73 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 05/27/2017
+ms.date: 09/19/2017
 ms.author: renash
-ms.openlocfilehash: eb6d58ad391adb6c06703ad694150534ccf44ada
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 111b925de9ca2155e2d3631979272170ed614816
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="mount-an-azure-file-share-and-access-hello-share-in-windows"></a>Egy Azure fájlmegosztás és a Windows hello megosztásra hozzáférés csatlakoztatása
-[Az Azure File storage](../storage-dotnet-how-to-use-files.md) a Microsoft easy toouse felhő fájlrendszer. Az Azure-fájlmegosztások Windows és Windows Server rendszeren csatlakoztathatók. Ez a cikk bemutatja három különböző módon toomount egy Azure fájlmegosztás Windows rendszeren: a fájl Explorer felhasználói felületén, és PowerShell keresztül hello parancssor hello. 
+# <a name="mount-an-azure-file-share-and-access-the-share-in-windows"></a>Azure-fájlmegosztás csatlakoztatása és a megosztás elérése Windows rendszeren
+Az [Azure Files](storage-files-introduction.md) a Microsoft könnyen használható felhőalapú fájlrendszere. Az Azure-fájlmegosztások Windows és Windows Server rendszeren csatlakoztathatók. Ez a cikk három különböző módszert mutat be az Azure-fájlmegosztások csatlakoztatására Windows rendszeren: a Fájlkezelő felhasználói felület, a PowerShell és a parancssor használatával. 
 
-Rendelés toomount egy Azure fájlmegosztás hello kívül az Azure-régió, például a helyszínen vagy a különböző Azure-régiót helyezkedik el, a hello az operációs rendszer támogatniuk kell az SMB 3.0-s. 
+Ha egy Azure-fájlmegosztást az üzemeltető Azure-régión kívül kíván csatlakoztatni, például a helyszínen vagy más Azure-régióban, az operációs rendszernek támogatnia kell az SMB 3.0-s verziót. 
 
-Az Azure-fájlmegosztás az operációs rendszer verziójától függően egy helyszíni vagy Azure-beli virtuális gépen lévő Windows-gépen csatlakoztatható. Alábbi táblázat bemutatja a hello 
+Azure-fájlmegosztásokat csatlakoztathat az Azure-beli virtuális gépeken vagy helyszínen futó Windows-telepítésekre. Az alábbi táblázatban látható, hogy melyik operációsrendszer-verzió melyik környezetekben támogatja a fájlmegosztások csatlakoztatását:
 
-| Windows-verzió        | SMB-verzió |Azure-beli virtuális gépen csatlakoztatható|Helyszínen csatlakoztatható|
-|------------------------|-------------|---------------------|---------------------|
-| Windows 7              | SMB 2.1     | Igen                 | Nem                  |
-| Windows Server 2008 R2 | SMB 2.1     | Igen                 | Nem                  |
-| Windows 8              | SMB 3.0     | Igen                 | Igen                 |
-| Windows Server 2012    | SMB 3.0     | Igen                 | Igen                 |
-| Windows Server 2012 R2 | SMB 3.0     | Igen                 | Igen                 |
-| Windows 10             | SMB 3.0     | Igen                 | Igen                 |
+| Windows-verzió        | SMB-verzió | Azure-beli virtuális gépeken csatlakoztatható | Helyszínen csatlakoztatható |
+|------------------------|-------------|-----------------------|----------------------|
+| Windows 10<sup>1</sup>  | SMB 3.0 | Igen | Igen |
+| Windows Server 2016    | SMB 3.0     | Igen                   | Igen                  |
+| Windows 8.1            | SMB 3.0     | Igen                   | Igen                  |
+| Windows Server 2012 R2 | SMB 3.0     | Igen                   | Igen                  |
+| Windows Server 2012    | SMB 3.0     | Igen                   | Igen                  |
+| Windows 7              | SMB 2.1     | Igen                   | Nem                   |
+| Windows Server 2008 R2 | SMB 2.1     | Igen                   | Nem                   |
+
+<sup>1</sup>A Windows 10 1507-es, 1511-es, 1607-es, 1703-as és 1709-es verziói.
 
 > [!Note]  
-> Véve mindig ajánlott legutóbbi KB-os verzióhoz tartozó Windows hello.
+> Javasoljuk, hogy mindig a Windows-verziójához legutóbb kiadott frissítést használja.
 
 ## <a name="aprerequisites-for-mounting-azure-file-share-with-windows"></a></a>Az Azure-fájlmegosztások Windowson történő csatlakoztatásának előfeltételei 
-* **A tárfiók neve**: toomount egy Azure fájlmegosztás, akkor lesz szüksége hello hello tárfiókja nevére.
+* **Tárfiók neve**: Az Azure-fájlmegosztások csatlakoztatásához szüksége lesz a tárfiók nevére.
 
-* **Tárfiók kulcsa**: toomount egy Azure fájlmegosztás, akkor lesz szüksége hello elsődleges (vagy másodlagos) storage-kulcs. Az SAS-kulcsokkal való csatlakoztatás jelenleg nem támogatott.
+* **Tárfiók kulcsa**: Az Azure-fájlmegosztások csatlakoztatásához szüksége lesz az elsődleges (vagy másodlagos) tárkulcsra. Az SAS-kulcsokkal való csatlakoztatás jelenleg nem támogatott.
 
-* **Győződjön meg arról, hogy a 445-ös port nyitva van**: Az Azure File Storage SMB protokollt használ. Toosee SMB 445 - TCP-porton keresztül kommunikál ellenőrizze, hogy a tűzfal nem blokkolja-e az ügyfélszámítógép 445-ös TCP-portok.
+* **Győződjön meg arról, hogy a 445-ös port nyitva van**: Az Azure Files SMB protokollt használ. Az SMB a 445-ös TCP-porton keresztül kommunikál – ellenőrizze, hogy a tűzfal nem blokkolja-e a 445-ös TCP-portot az ügyfél gépéről.
 
-## <a name="mount-hello-azure-file-share-with-file-explorer"></a>Hello Azure fájlmegosztás Fájlkezelőben csatlakoztatása
+## <a name="mount-the-azure-file-share-with-file-explorer"></a>Az Azure-fájlmegosztás csatlakoztatása a Fájlkezelővel
 > [!Note]  
-> Vegye figyelembe, hogy az utasításoknak hello látható a Windows 10 és némileg eltérőek lehetnek a régebbi kiadásokban. 
+> Vegye figyelembe, hogy a következő példák a Windows 10-re vonatkoznak, és a régebbi kiadásokban eltérhetnek. 
 
-1. **Nyissa meg a Fájlkezelőt**: Ez végezhető megnyitása a Start menü hello, vagy Win + E helyi lenyomásával.
+1. **Nyissa meg a Fájlkezelőt**: Ezt a Start menüből vagy a Win+E billentyűkombináció lenyomásával teheti meg.
 
-2. **Keresse meg a hello ablak hello bal oldalon toohello "A számítógép" elemre. Ez a művelet módosítja az hello menük hello szalagon érhető el. Az hello számítógép menüben válassza a "Hálózati meghajtó csatlakoztatása"**.
+2. **Keresse meg az Ez a gép elemet az ablak bal oldalán. Ez módosítja a szalagon elérhető menüket. A Számítógép menüben válassza a Hálózati meghajtó csatlakoztatása**  elemet.
     
-    ![A képernyőfelvétel a hello "Hálózati meghajtó csatlakoztatása" legördülő menü](./media/storage-how-to-use-files-windows/1_MountOnWindows10.png)
+    ![A Hálózati meghajtó csatlakoztatása legördülő menü képernyőképe](./media/storage-how-to-use-files-windows/1_MountOnWindows10.png)
 
-3. **Másolás hello UNC elérési út ablaktáblájáról hello "Csatlakozás" hello Azure-portálon**: hogyan toofind ezt az információt található részletes leírását [Itt](storage-how-to-use-files-portal.md#connect-to-file-share).
+3. **Másolja az Azure Portal Csatlakozás ablaktábláján található UNC-útvonalat**: Az információ megkereséséről [itt](storage-how-to-use-files-portal.md#connect-to-file-share) talál részletes információt.
 
-    ![hello UNC elérési út hello Azure File storage Connect panelről](./media/storage-how-to-use-files-windows/portal_netuse_connect.png)
+    ![Az UNC-útvonal az Azure Files Csatlakozás oldaláról](./media/storage-how-to-use-files-windows/portal_netuse_connect.png)
 
-4. **Válasszon hello meghajtóbetűjelet, és írja be a hello UNC elérési utat.** 
+4. **Válassza ki a meghajtó betűjelét, és írja be az UNC-útvonalat.** 
     
-    ![Egy hello "Hálózati meghajtó csatlakoztatása" párbeszédpanel képernyőképe](./media/storage-how-to-use-files-windows/2_MountOnWindows10.png)
+    ![A Hálózati meghajtó csatlakoztatása párbeszédpanel képernyőképe](./media/storage-how-to-use-files-windows/2_MountOnWindows10.png)
 
-5. **$A a Tárfiók nevét használja hello `Azure\` hello felhasználónév és a Tárfiók kulcsa hello jelszóként.**
+5. **Felhasználónévként használja a tárfiók `Azure\` előtaggal kiegészített nevét, jelszóként pedig egy tárfiókkulcsot.**
     
-    ![Egy hello hálózati hitelesítő párbeszédpanel képernyőképe](./media/storage-how-to-use-files-windows/3_MountOnWindows10.png)
+    ![A hálózati hitelesítő adatok párbeszédpanelének képernyőképe](./media/storage-how-to-use-files-windows/3_MountOnWindows10.png)
 
 6. **Használja az Azure-fájlmegosztást igény szerint**.
     
     ![Az Azure-fájlmegosztás most már csatlakoztatva van](./media/storage-how-to-use-files-windows/4_MountOnWindows10.png)
 
-7. **Készen áll a toodismount (vagy leválasztása) hello Azure fájlmegosztás, ehhez hello bejegyzésre hello megosztás hello "hálózati helyek" a Fájlkezelőben a jobb gombbal kattint rá, majd válassza a "Kapcsolat bontása"**.
+7. **Amikor készen áll az Azure-fájlmegosztás leválasztására, kattintson a jobb gombbal a megosztás bejegyzésére a Fájlkezelő Hálózati helyek területén, és válassza a Leválasztás parancsot**.
 
-## <a name="mount-hello-azure-file-share-with-powershell"></a>Csatlakoztassa a hello Azure fájlmegosztás a PowerShell használatával
-1. **Használjon hello következő parancsot a toomount hello Azure fájlmegosztás**: Ne feledje tooreplace `<storage-account-name>`, `<share-name>`, `<storage-account-key>`, `<desired-drive-letter>` hello megfelelő információkkal.
+## <a name="mount-the-azure-file-share-with-powershell"></a>Az Azure-fájlmegosztás csatlakoztatása a PowerShell-lel
+1. **Az alábbi parancs használatával csatlakoztathatja az Azure-fájlmegosztást**. Ne feledje el kicserélni az alábbi adatokat a megfelelő értékekre: `<storage-account-name>`, `<share-name>`, `<storage-account-key>` és `<desired-drive-letter>`.
 
     ```PowerShell
     $acctKey = ConvertTo-SecureString -String "<storage-account-key>" -AsPlainText -Force
@@ -83,59 +86,59 @@ Az Azure-fájlmegosztás az operációs rendszer verziójától függően egy he
     New-PSDrive -Name <desired-drive-letter> -PSProvider FileSystem -Root "\\<storage-account-name>.file.core.windows.net\<share-name>" -Credential $credential
     ```
 
-2. **Használjon hello Azure fájlmegosztás tetszés szerint**.
+2. **Használja az Azure-fájlmegosztást igény szerint**.
 
-3. **Ha elkészült, válassza le a hello Azure fájlmegosztás használata a következő parancs hello**.
+3. **Ha végzett, válassza le az Azure-fájlmegosztást az alábbi parancs használatával**.
 
     ```PowerShell
     Remove-PSDrive -Name <desired-drive-letter>
     ```
 
 > [!Note]  
-> Hello segítségével `-Persist` paraméter `New-PSDrive` toomake hello Azure File megosztás látható toohello részeinek hello operációs rendszer, amíg csatlakoztatva.
+> A `New-PSDrive` paranccsal és a `-Persist` paraméterrel teheti láthatóvá az Azure-fájlmegosztást az operációs rendszer többi részének, amíg csatlakoztatva van.
 
-## <a name="mount-hello-azure-file-share-with-command-prompt"></a>Csatlakoztassa a hello Azure fájlmegosztás parancssorral
-1. **Használjon hello következő parancsot a toomount hello Azure fájlmegosztás**: Ne feledje tooreplace `<storage-account-name>`, `<share-name>`, `<storage-account-key>`, `<desired-drive-letter>` hello megfelelő információkkal.
+## <a name="mount-the-azure-file-share-with-command-prompt"></a>Az Azure-fájlmegosztás csatlakoztatása a parancssorral
+1. **Az alábbi parancs használatával csatlakoztathatja az Azure-fájlmegosztást**. Ne feledje el kicserélni az alábbi adatokat a megfelelő értékekre: `<storage-account-name>`, `<share-name>`, `<storage-account-key>` és `<desired-drive-letter>`.
 
     ```
     net use <desired-drive-letter>: \\<storage-account-name>.file.core.windows.net\<share-name> <storage-account-key> /user:Azure\<storage-account-name>
     ```
 
-2. **Használjon hello Azure fájlmegosztás tetszés szerint**.
+2. **Használja az Azure-fájlmegosztást igény szerint**.
 
-3. **Ha elkészült, válassza le a hello Azure fájlmegosztás használata a következő parancs hello**.
+3. **Ha végzett, válassza le az Azure-fájlmegosztást az alábbi parancs használatával**.
 
     ```
     net use <desired-drive-letter>: /delete
     ```
 
 > [!Note]  
-> Konfigurálhatja hello Azure File megosztás tooautomatically újracsatlakozás újraindításkor Windows tárolásakor hello hitelesítő adatait. a következő parancs hello megmaradnak hello hitelesítő adatait:
+> A hitelesítő adatok Windowsban való megőrzésével úgy is konfigurálhatja az Azure-fájlmegosztást, hogy automatikusan újracsatlakozzon újraindítás esetén. Az alábbi parancs használatával őrizheti meg a hitelesítő adatokat:
 >   ```
 >   cmdkey /add:<storage-account-name>.file.core.windows.net /user:AZURE\<storage-account-name> /pass:<storage-account-key>
 >   ```
 
 ## <a name="next-steps"></a>Következő lépések
-Az alábbi hivatkozások további információkat tartalmaznak az Azure File Storage-ról.
+Az alábbi hivatkozások további információkat tartalmaznak az Azure Filesról.
 
 * [Gyakori kérdések](../storage-files-faq.md)
 * [Hibaelhárítás a Windows rendszerben](storage-troubleshoot-windows-file-connection-problems.md)      
 
 ### <a name="conceptual-articles-and-videos"></a>Elméleti cikkek és videók
-* [Azure File Storage: zökkenőmentes felhőalapú SMB fájlrendszer Windows és Linux rendszerekhez](https://azure.microsoft.com/documentation/videos/azurecon-2015-azure-files-storage-a-frictionless-cloud-smb-file-system-for-windows-and-linux/)
-* [Hogyan toouse Azure File storage Linux](../storage-how-to-use-files-linux.md)
+* [Azure Files: zökkenőmentes felhőalapú SMB-fájlrendszer Windows és Linux rendszerekhez](https://azure.microsoft.com/documentation/videos/azurecon-2015-azure-files-storage-a-frictionless-cloud-smb-file-system-for-windows-and-linux/)
+* [Az Azure Files használata Linuxszal](../storage-how-to-use-files-linux.md)
 
-### <a name="tooling-support-for-azure-file-storage"></a>Azure File Storage-eszköztámogatás
-* [Hogyan toouse Microsoft Azure Storage AzCopy](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json)
-* [Az Azure Storage hello Azure parancssori felület használatával](../common/storage-azure-cli.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json#create-and-manage-file-shares)
-* [Azure File Storage-problémák hibaelhárítása – Windows](storage-troubleshoot-windows-file-connection-problems.md)
-* [Azure File Storage-problémák hibaelhárítása – Linux](storage-troubleshoot-linux-file-connection-problems.md)
+### <a name="tooling-support-for-azure-files"></a>Azure Files-eszköztámogatás
+* [How to use AzCopy with Microsoft Azure Storage (Az AzCopy használata a Microsoft Azure Storage szolgáltatással)](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json)
+* [Using the Azure CLI with Azure Storage (Az Azure parancssori felülete és az Azure Storage együttes használata)](../common/storage-azure-cli.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json#create-and-manage-file-shares)
+* [Azure Files-problémák hibaelhárítása – Windows](storage-troubleshoot-windows-file-connection-problems.md)
+* [Azure Files-problémák hibaelhárítása – Linux](storage-troubleshoot-linux-file-connection-problems.md)
 
 ### <a name="blog-posts"></a>Blogbejegyzések
-* [Azure File storage is now generally available (Mostantól általánosan elérhető az Azure File Storage)](https://azure.microsoft.com/blog/azure-file-storage-now-generally-available/)
-* [Az Azure File Storage ismertetése](https://azure.microsoft.com/blog/inside-azure-file-storage/)
+* [Mostantól általánosan elérhető az Azure Files](https://azure.microsoft.com/blog/azure-file-storage-now-generally-available/)
+* [Az Azure Files ismertetése](https://azure.microsoft.com/blog/inside-azure-file-storage/)
 * [Introducing Microsoft Azure File Service (A Microsoft Azure File szolgáltatás bemutatása)](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx)
-* [Áttelepítési adatok tooAzure fájl](https://azure.microsoft.com/blog/migrating-data-to-microsoft-azure-files/)
+* [Adatok áttelepítése Azure File szolgáltatásba ](https://azure.microsoft.com/blog/migrating-data-to-microsoft-azure-files/)
 
 ### <a name="reference"></a>Referencia
 * [Az Azure Storage .NET-hez készült ügyféloldali kódtára – referencia](https://msdn.microsoft.com/library/azure/dn261237.aspx)

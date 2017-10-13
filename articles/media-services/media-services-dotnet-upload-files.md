@@ -1,6 +1,6 @@
 ---
-title: "egy Media Services-fiók használata a .NET aaaUpload fájlok |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooget multimédiás tartalom a Media Services létrehozásával és feltöltésével eszközök."
+title: "Fájlok feltöltése a Media Services-fiók használata a .NET |} Microsoft Docs"
+description: "Útmutató a médiatartalom feltölti a Media Services létrehozásával és feltöltésével eszközök."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,53 +14,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/12/2017
 ms.author: juliako
-ms.openlocfilehash: 11c8a359b09efe04b54490fd48ac0cd7c366f8b3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ec8c1da633374ba684f6a0a895c542ee76ef73b8
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="upload-files-into-a-media-services-account-using-net"></a>Fájlok feltöltése a Media Services-fiók .NET használatával
 > [!div class="op_single_selector"]
 > * [.NET](media-services-dotnet-upload-files.md)
 > * [REST](media-services-rest-upload-files.md)
-> * [Portál](media-services-portal-upload-files.md)
+> * [Portal](media-services-portal-upload-files.md)
 > 
 > 
 
-A Media Services szolgáltatásban a digitális fájlok feltöltése vagy kimenete egy adategységbe történik. Hello **eszköz** entitás tartalmazhat videót, hang, képek, miniatűröket, szöveg nyomon követi és feliratfájlokat fájlokat (és mindezen fájlok metaadatait hello.)  Miután hello fájlok feltöltése után a lesz biztonságosan tárolva a tartalom további feldolgozás és adatfolyam-hello felhő.
+A Media Services szolgáltatásban a digitális fájlok feltöltése vagy kimenete egy adategységbe történik. A **eszköz** entitás tartalmazhat videót, hang, képek, miniatűröket, szöveg nyomon követi és feliratfájlokat fájlokat (és a mindezen fájlok metaadatait.)  A fájlok feltöltése után a tartalom a felhőben lesz biztonságosan tárolva további feldolgozás és adatfolyam-továbbítás céljából.
 
-hello eszköz hello fájlok nevezzük **adategység-fájloknak**. Hello **AssetFile** példány és a hello tényleges media fájl is két különböző objektum. hello AssetFile példány hello media fájlról metaadatot tartalmaz, amíg hello médiafájl tartalmaz hello tényleges médiatartalmakat.
+Az adategységben található fájlokat **adategység-fájloknak** nevezzük. A **AssetFile** példány és a tényleges médiafájl két különböző objektum. A AssetFile példány media fájl metaadatainak tartalmaz, míg a médiafájl tartalmazza a tényleges médiatartalmakat.
 
 > [!NOTE]
-> a következő szempontok hello vonatkoznak:
+> A következők érvényesek:
 > 
-> * Media Services hello hello IAssetFile.Name tulajdonság értékét használja, amikor a hello adatfolyam-tartalmat (például http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters.) URL-címek kiépítéséhez Emiatt százalék-kódolás nem engedélyezett. hello értékének hello **neve** tulajdonság nem lehet hello következő [százalék kódolás-fenntartott karakterek](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters):! *' ();: @& = + $, /? % # [] ". Emellett csak lehet egy "." hello fájlnévkiterjesztés.
-> * hello hello nevének hossza nem lehet hosszabb 260 karakternél.
-> * Nincs a Media Services feldolgozás támogatott korlátot toohello fájl maximális méretét. Ellenőrizze a [ez](media-services-quotas-and-limitations.md) témakör hello méretű fájlt választhat vonatkozó további információért.
-> * A különböző AMS-szabályzatok (például a Locator vagy a ContentKeyAuthorizationPolicy) esetében a korlát 1 000 000 szabályzat. Használjon hello azonos házirend-azonosítója mindig használata hello azonos nap / hozzáférési engedélyek, például a lokátorokat, amelyek a helyen tervezett tooremain hosszú ideje (nem feltöltés házirendek) házirendek. További információ [ebben](media-services-dotnet-manage-entities.md#limit-access-policies) a témakörben érhető el.
+> * A Media Services a IAssetFile.Name tulajdonság értékét használja, amikor az adatfolyam-tartalmak (például http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters.) a URL-címek kiépítéséhez Emiatt százalék-kódolás nem engedélyezett. Értékét a **neve** tulajdonság nem lehet a következő [százalék kódolás-fenntartott karakterek](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters):! *' ();: @& = + $, /? % # [] ". Emellett csak lehet egy "." a fájlnévkiterjesztés.
+> * A név hossza nem lehet hosszabb 260 karakternél.
+> * A Media Services által feldolgozható maximális támogatott fájlméret korlátozott. A fájlméretre vonatkozó korlátozással kapcsolatban további információt [ebben](media-services-quotas-and-limitations.md) a témakörben talál.
+> * A különböző AMS-szabályzatok (például a Locator vagy a ContentKeyAuthorizationPolicy) esetében a korlát 1 000 000 szabályzat. Ha mindig ugyanazokat a napokat/hozzáférési engedélyeket használja (például olyan keresők szabályzatait, amelyek hosszú ideig érvényben maradnak, vagyis nem feltöltött szabályzatokat), a szabályzatazonosítónak is ugyanannak kell lennie. További információ [ebben](media-services-dotnet-manage-entities.md#limit-access-policies) a témakörben érhető el.
 > 
 
-Eszközök létrehozásakor az alábbi titkosítási beállítások hello is megadhat. 
+Eszközök létrehozásakor a következő titkosítási beállításokat is megadhat. 
 
-* **Nincs** – Nincs titkosítás. Ez az alapértelmezett érték hello. Vegye figyelembe, hogy ez a beállítás használatakor a tartalom nem védett átvitel, sem tárolás közben.
-  Ha egy MP4 toodeliver fájlt progresszív letöltés útján tervez, használja ezt a beállítást. 
+* **Nincs** – Nincs titkosítás. Ez az alapértelmezett érték. Vegye figyelembe, hogy ez a beállítás használatakor a tartalom nem védett átvitel, sem tárolás közben.
+  Ha egy MP4-fájlt progresszív letöltés útján tervez továbbítani, használja ezt a lehetőséget. 
 * **CommonEncryption** -használja ezt a beállítást, ha már titkosítva és általános titkosítás vagy a PlayReady DRM által (például védett Smooth Streaming egy PlayReady DRM) védett tartalmat.
-* **EnvelopeEncrypted** – használja ezt a beállítást, ha AES által titkosított HLS. Vegye figyelembe, hogy hello fájlokat kell kódolni és titkosítani Transform Manager használatával.
-* **StorageEncrypted** - titkosítja a tiszta tartalom helyileg az AES-256 bites titkosítás használata és tooAzure helyén tárolás titkosítása feltöltését. Storage-titkosítással védett adategységek automatikusan titkosítás és egy titkosított fájl rendszer előzetes tooencoding, és ha szükséges újra titkosítani előzetes toouploading egy új kimeneti eszközként helyezve. hello elsődleges használati eset a tárolás titkosítása akkor, ha azt szeretné, hogy a jó minőségű bemeneti médiafájljait erős titkosítással, rest-lemezen toosecure.
+* **EnvelopeEncrypted** – használja ezt a beállítást, ha AES által titkosított HLS. Megjegyzés: ehhez a fájlokat a Transform Manager használatával kell kódolni és titkosítani.
+* **StorageEncrypted** - titkosítja a tiszta tartalom helyileg az AES-256 bites titkosítás használata, és feltölti azt Azure Storage helyén titkosítása. A Storage-titkosítással védett adategységek titkosítása a kódolás előtt automatikusan fel lesz oldva, és egy titkosított fájlrendszerbe kerülnek; az új kimeneti adategységként való újbóli feltöltés előtt pedig lehetőség van az újbóli titkosításukra. A tárolás titkosítása elsődleges használati eset az, amikor biztonságossá tételéhez a kiváló minőségű bemeneti médiafájljait erős titkosítással aktívan a lemezen.
   
     A Media Services biztosít az eszközök, nem over tömörített digitális Manager (DRM) például a lemezen tárolás titkosítása.
   
     Ha az adategységen tárolótitkosítást alkalmaz, konfigurálnia kell az adategység továbbítási házirendjét. További információ: [objektumtovábbítási szabályzat konfigurálása](media-services-dotnet-configure-asset-delivery-policy.md).
 
-Ha hogy adja meg az eszköz toobe titkosítva egy **CommonEncrypted** lehetőséget, vagy egy **EnvelopeEncypted** lehetőséget, akkor tooassociate az objektum egy **ContentKey**. További információkért lásd: [hogyan toocreate egy ContentKey](media-services-dotnet-create-contentkey.md). 
+Ha az eszköz titkosítva, amelyet megad egy **CommonEncrypted** lehetőséget, vagy egy **EnvelopeEncypted** beállítást, szüksége lesz az objektum hozzárendelése egy **ContentKey**. További információkért lásd: [létrehozása egy ContentKey](media-services-dotnet-create-contentkey.md). 
 
-Ha hogy adja meg az eszköz toobe titkosítva egy **StorageEncrypted** lehetőségre, a Media Services SDK hello a .NET hoz létre egy **StorateEncrypted** **ContentKey** a a eszköz.
+Ha az eszköz titkosítva, amelyet megad egy **StorageEncrypted** beállítás, a Media Services SDK, a .NET hoz létre egy **StorateEncrypted** **ContentKey** a a eszköz.
 
-Ez a témakör bemutatja, hogyan toouse Media Services .NET SDK, valamint a Media Services .NET SDK bővítmények tooupload fájlok egy Media Services-objektumba.
+Ez a témakör bemutatja a Media Services .NET SDK-t, valamint a Media Services .NET SDK-bővítmények használata fájlok feltöltése a Media Services-objektumba.
 
 ## <a name="upload-a-single-file-with-media-services-net-sdk"></a>Media Services .NET SDK-val egy fájl feltöltése
-az alábbi hello mintakód .NET SDK tooupload akár egyetlen fájlt használja. hello AccessPolicy és lokátor létrehozása és hello feltöltés függvény megsemmisül. 
+Az alábbi példakód .NET SDK használatával egyetlen fájl feltöltése. A AccessPolicy és lokátor létrehozása és a feltöltés függvény megsemmisül. 
 
 
         static public IAsset CreateAssetAndUploadSingleFile(AssetCreationOptions assetCreationOptions, string singleFilePath)
@@ -86,19 +86,19 @@ az alábbi hello mintakód .NET SDK tooupload akár egyetlen fájlt használja. 
 
 
 ## <a name="upload-multiple-files-with-media-services-net-sdk"></a>Media Services .NET SDK-val több fájl feltöltése
-a következő kód bemutatja hogyan hello toocreate egy eszköz és a több fájl feltöltése.
+A következő kód bemutatja, hogyan hozzon létre egy eszközt, és több fájl feltöltése.
 
-hello kód hello a következő:
+A kód a következőket teszi:
 
-* Létrehoz egy üres eszköz metódussal hello CreateEmptyAsset hello előző lépésben meghatározott.
-* Létrehoz egy **AccessPolicy** -példányt, hello engedélyekkel és hozzáférési toohello eszköz időtartamát határozza meg.
-* Létrehoz egy **lokátor** toohello eszköz hozzáférést biztosító példány.
-* Létrehoz egy **BlobTransferClient** példány. Ez a típus jelképezi ügyfél, amely az Azure-blobok hello működik. Ebben a példában használjuk hello ügyfél toomonitor hello feltöltési folyamatáról. 
-* Hello megadott könyvtárban található fájlok keresztül enumerálása, és létrehoz egy **AssetFile** -példány minden fájlt.
-* Feltöltések hello fájlok a Media Services segítségével hello **UploadAsync** metódust. 
+* Létrehoz egy üres eszköz az előző lépésben meghatározott CreateEmptyAsset metódussal.
+* Létrehoz egy **AccessPolicy** -példányt, engedélyekkel és hozzáférési időtartama határozza meg az eszközre.
+* Létrehoz egy **lokátor** példánya, amely hozzáférést biztosít az eszközhöz.
+* Létrehoz egy **BlobTransferClient** példány. Ez a típus jelképezi ügyfél, amely az Azure-blobokat működik. Ebben a példában használjuk az ügyfél feltöltési előrehaladásának figyeléséhez. 
+* A megadott könyvtárban található fájlok keresztül enumerálása, és létrehoz egy **AssetFile** -példány minden fájlt.
+* A Media Services segítségével feltölti a fájlokat a **UploadAsync** metódust. 
 
 > [!NOTE]
-> Hello UploadAsync metódus tooensure hello hívások nem korlátozzák, és hello fájlok feltöltése párhuzamosan használható.
+> A UploadAsync módszer segítségével győződjön meg arról, hogy a hívások nem korlátozzák, és a fájlok feltöltése párhuzamosan.
 > 
 > 
 
@@ -134,13 +134,13 @@ hello kód hello a következő:
                 var assetFile = asset.AssetFiles.Create(Path.GetFileName(filePath));
                 Console.WriteLine("Created assetFile {0}", assetFile.Name);
 
-                // It is recommended toovalidate AccestFiles before upload. 
+                // It is recommended to validate AccestFiles before upload. 
                 Console.WriteLine("Start uploading of {0}", assetFile.Name);
                 uploadTasks.Add(assetFile.UploadAsync(filePath, blobTransferClient, locator, CancellationToken.None));
             }
 
             Task.WaitAll(uploadTasks.ToArray());
-            Console.WriteLine("Done uploading hello files");
+            Console.WriteLine("Done uploading the files");
 
             blobTransferClient.TransferProgressChanged -= blobTransferClient_TransferProgressChanged;
 
@@ -152,7 +152,7 @@ hello kód hello a következő:
 
     static void  blobTransferClient_TransferProgressChanged(object sender, BlobTransferProgressChangedEventArgs e)
     {
-        if (e.ProgressPercentage > 4) // Avoid startup jitter, as hello upload tasks are added.
+        if (e.ProgressPercentage > 4) // Avoid startup jitter, as the upload tasks are added.
         {
             Console.WriteLine("{0}% upload competed for {1}.", e.ProgressPercentage, e.LocalFile);
         }
@@ -160,28 +160,28 @@ hello kód hello a következő:
 
 
 
-Eszközök nagy számú feltöltését, vegye figyelembe hello következő.
+Eszközök nagy számú feltöltését, vegye figyelembe a következőket.
 
-* Hozzon létre egy új **CloudMediaContext** szálankénti objektum. Hello **CloudMediaContext** osztály nincs többszálú futtatásra.
-* Növelje a NumberOfConcurrentTransfers hello alapértelmezett érték 2 tooa magasabb érték 5 hasonlóan. A tulajdonság beállítása hatással van az összes példányát **CloudMediaContext**. 
-* Tartsa ParallelTransferThreadCount 10 hello alapértelmezett értéket.
+* Hozzon létre egy új **CloudMediaContext** szálankénti objektum. A **CloudMediaContext** osztály nincs többszálú futtatásra.
+* Az alapértelmezett érték 2 nagyobb értékre mint 5 NumberOfConcurrentTransfers növelése A tulajdonság beállítása hatással van az összes példányát **CloudMediaContext**. 
+* Az alapértelmezett érték 10 ParallelTransferThreadCount megőrizni.
 
 ## <a id="ingest_in_bulk"></a>A Media Services .NET SDK használatával tömeges választásával dolgozhat fel eszközök
-Nagy eszköz fájlok feltöltése lehet a szűk keresztmetszetek eszköz létrehozása során. Választásával dolgozhat fel eszközök tömeges vagy a "tömeges választásával dolgozhat" fel, magában foglalja a leválasztásával eszköz létrehozása hello feltöltési folyamat során. toouse egy tömeges ingesting módszert használja, hozzon létre a jegyzékfájl (IngestManifest), amely hello eszköz és az ahhoz tartozó fájlokat ismerteti. Hello fájlfeltöltési módszer a választott tooupload hello társított fájlokat toohello jegyzék blob tároló használni. A Microsoft Azure Media Services hello blob tároló hello jegyzékfájl társított figyeli. Amikor egy fájl feltöltött toohello blob tároló, a Microsoft Azure Media Services befejezése hello eszköz létrehozása hello konfiguráció hello eszköz hello jegyzékfájlban (IngestManifestAsset) alapján.
+Nagy eszköz fájlok feltöltése lehet a szűk keresztmetszetek eszköz létrehozása során. Választásával dolgozhat fel eszközök tömeges vagy a "tömeges választásával dolgozhat" fel, magában foglalja a leválasztásával eszköz létrehozását a feltöltési folyamat során. A tömeges választásával dolgozhat fel módszer használatához hozzon létre a jegyzékfájl (IngestManifest), amely az eszköz és az ahhoz tartozó fájlokat ismerteti. Az Ön által választott a fájlfeltöltési módszer segítségével a társított fájlok feltöltése a jegyzékfájl blob tárolóhoz. A Microsoft Azure Media Services a blob tároló a jegyzékfájl társított figyeli. Miután egy fájlt tölt fel az a blob-tároló, a Microsoft Azure Media Services befejezte a jegyzékfájlban (IngestManifestAsset) az eszköz konfigurációján alapul eszköz létrehozását.
 
-egy új IngestManifest toocreate metódushívás hello létrehozása hello hello CloudMediaContext IngestManifests gyűjtemény által elérhetővé tett tárolókra. Ezzel a módszerrel hoz létre egy új IngestManifest hello manifest-nevet.
+Hozzon létre egy új IngestManifest hívja meg a Create metódus által a CloudMediaContext az IngestManifests gyűjtemény. Ezzel a módszerrel hoz létre egy új IngestManifest a jegyzékfájl-nevet.
 
     IIngestManifest manifest = context.IngestManifests.Create(name);
 
-Hozzon létre hello eszközök, amelyek az hello tömeges IngestManifest lesz társítva. Konfigurálja a szükséges hello titkosítási beállításokat hello eszköz tömeges választásával dolgozhat fel.
+Az eszközöket, amely a tömeges IngestManifest társítva lesz létrehozni. Az eszköz tömeges választásával dolgozhat fel a kívánt titkosítási beállításainak megadása
 
-    // Create hello assets that will be associated with this bulk ingest manifest
+    // Create the assets that will be associated with this bulk ingest manifest
     IAsset destAsset1 = _context.Assets.Create(name + "_asset_1", AssetCreationOptions.None);
     IAsset destAsset2 = _context.Assets.Create(name + "_asset_2", AssetCreationOptions.None);
 
-Egy IngestManifestAsset egy eszköz társít egy tömeges IngestManifest tömeges választásával dolgozhat fel. Azt is, amelyek minden eszköz AssetFiles hello társítja. egy IngestManifestAsset toocreate módszert hello létrehozás hello kiszolgáló környezetben.
+Egy IngestManifestAsset egy eszköz társít egy tömeges IngestManifest tömeges választásával dolgozhat fel. Azt is, amelyek minden eszköz a AssetFiles társítja. Hozzon létre egy IngestManifestAsset, használja a Create metódussal a kiszolgáló a környezetben.
 
-hello következő példa bemutatja, hozzáadását két új IngestManifestAssets társító hello két eszközök korábban létrehozott toohello tömeges betöltési jegyzékben. Minden IngestManifestAsset is hozzárendeli a minden eszköz lesz feltöltve fájlokat alatt tömeges választásával dolgozhat fel.  
+A következő példa bemutatja, hozzáadását két új IngestManifestAssets, amelyek a két eszközök tömeges korábban létrehozott társítják betöltési jegyzékben. Minden IngestManifestAsset is hozzárendeli a minden eszköz lesz feltöltve fájlokat alatt tömeges választásával dolgozhat fel.  
 
     string filename1 = _singleInputMp4Path;
     string filename2 = _primaryFilePath;
@@ -190,7 +190,7 @@ hello következő példa bemutatja, hozzáadását két új IngestManifestAssets
     IIngestManifestAsset bulkAsset1 =  manifest.IngestManifestAssets.Create(destAsset1, new[] { filename1 });
     IIngestManifestAsset bulkAsset2 =  manifest.IngestManifestAssets.Create(destAsset2, new[] { filename2, filename3 });
 
-Használhatja a nagy sebességű ügyfélalkalmazás képes hello eszköz fájlok toohello blob storage tárolót hello által biztosított URI feltöltése **IIngestManifest.BlobStorageUriForUpload** hello IngestManifest tulajdonsága. Egy figyelmet a jelentősebb nagy sebességű feltöltési szolgáltatás [Aspera igény szerinti Azure alkalmazáshoz](https://datamarket.azure.com/application/2cdbc511-cb12-4715-9871-c7e7fbbb82a6). Is írhat kódot tooupload hello eszközök fájlok ahogy az alábbi kódpéldát hello.
+A nagy sebességű ügyfélalkalmazás képes az eszköz fájlok feltöltése a blob storage tárolók által megadott URI-Azonosítót is használhatja a **IIngestManifest.BlobStorageUriForUpload** a IngestManifest tulajdonsága. Egy figyelmet a jelentősebb nagy sebességű feltöltési szolgáltatás [Aspera igény szerinti Azure alkalmazáshoz](https://datamarket.azure.com/application/2cdbc511-cb12-4715-9871-c7e7fbbb82a6). Ahogy az az alábbi Kódpélda az eszközök fájlok feltöltéséhez kódot is írhat.
 
     static void UploadBlobFile(string destBlobURI, string filename)
     {
@@ -215,16 +215,16 @@ Használhatja a nagy sebességű ügyfélalkalmazás képes hello eszköz fájlo
         copytask.Start();
     }
 
-hello hello adategység-fájloknak a jelen témakörben használt hello minta feltöltése kód az alábbi kódpéldát hello.
+A minta a jelen témakörben használt eszköz fájlok feltöltése a kódját a következő kódrészlet példa látható.
 
     UploadBlobFile(manifest.BlobStorageUriForUpload, filename1);
     UploadBlobFile(manifest.BlobStorageUriForUpload, filename2);
     UploadBlobFile(manifest.BlobStorageUriForUpload, filename3);
 
 
-Azt is meghatározhatja, hello tömeges választásával dolgozhat fel társított összes eszköz hello előrehaladását egy **IngestManifest** hello hello statisztika tulajdonságának lekérdezésével **IngestManifest**. A sorrend tooupdate végrehajtási adatok, kell használnia egy új **CloudMediaContext** minden alkalommal, amikor lekérdezi hello statisztika tulajdonság.
+A tömeges választásával dolgozhat fel társított összes eszköz előrehaladását segítségével meghatározhatja egy **IngestManifest** statisztika tulajdonságának lekérdezésével a **IngestManifest**. Folyamatban lévő információk frissítéséhez kell használnia egy új **CloudMediaContext** minden alkalommal, amikor lekérdezi a statisztika tulajdonság.
 
-hello következő példa bemutatja egy IngestManifest által lekérdezési a **azonosító**.
+A következő példa bemutatja, hogy egy IngestManifest által lekérdezési a **azonosító**.
 
     static void MonitorBulkManifest(string manifestID)
     {
@@ -261,7 +261,7 @@ hello következő példa bemutatja egy IngestManifest által lekérdezési a **a
 
 
 ## <a name="upload-files-using-net-sdk-extensions"></a>Töltse fel a fájlokat a .NET SDK-bővítmények
-hello az alábbi példa bemutatja, hogyan tooupload egy egyetlen fájl .NET SDK-bővítmények használatával. Ebben az esetben hello **CreateFromFile** módszert használ, de hello aszinkron verzióját is rendelkezésre áll (**CreateFromFileAsync**). Hello **CreateFromFile** módszer lehetővé teszi a adja meg a hello fájlnév, a titkosítási beállítás és a sorrend tooreport hello visszahívás feltöltése hello fájl előrehaladását.
+Az alábbi példa bemutatja, hogyan .NET SDK-bővítmények használatával egyetlen fájl feltöltéséhez. Ebben az esetben a **CreateFromFile** módszert használ, de az aszinkron verzióját is rendelkezésre áll (**CreateFromFileAsync**). A **CreateFromFile** módszer lehetővé teszi a adja meg a fájl, a titkosítási beállítással, és egy visszahívási ahhoz, hogy a fájl feltöltési folyamatáról.
 
     static public IAsset UploadFile(string fileName, AssetCreationOptions options)
     {
@@ -278,7 +278,7 @@ hello az alábbi példa bemutatja, hogyan tooupload egy egyetlen fájl .NET SDK-
         return inputAsset;
     }
 
-hello alábbi példa UploadFile függvényt és a tárolás titkosítása hello eszköz létrehozására beállítást adja meg.  
+Az alábbi példa UploadFile függvényt, és adja meg a tárolás titkosítása az eszköz létrehozása beállításként.  
 
     var asset = UploadFile(@"C:\VideoFiles\BigBuckBunny.mp4", AssetCreationOptions.StorageEncrypted);
 
@@ -286,7 +286,7 @@ hello alábbi példa UploadFile függvényt és a tárolás titkosítása hello 
 
 Most már kódolhatja a feltöltött adategységeket. További információ: [Encode Assets](media-services-portal-encode.md) (Adategységek kódolása).
 
-Használhatja az Azure Functions tootrigger egy kódolási feladat, a konfigurált hello tároló érkező fájl alapján. További információkért tekintse meg [ezt a mintát](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ ).
+Emellett az Azure Functions használatával is elindíthatja a kódolási feladatokat a konfigurált tárolóba érkező fájlok alapján. További információkért tekintse meg [ezt a mintát](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ ).
 
 ## <a name="media-services-learning-paths"></a>Media Services képzési tervek
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
@@ -295,7 +295,7 @@ Használhatja az Azure Functions tootrigger egy kódolási feladat, a konfigurá
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="next-step"></a>Következő lépés
-Most, hogy egy eszköz már feltöltött tooMedia szolgáltatások, go toohello [hogyan tooGet Media processzort] [ How tooGet a Media Processor] témakör.
+Most, hogy egy eszköz a Media Services feltöltött, navigáljon a [hogyan kérhet egy adathordozó processzor] [ How to Get a Media Processor] témakör.
 
-[How tooGet a Media Processor]: media-services-get-media-processor.md
+[How to Get a Media Processor]: media-services-get-media-processor.md
 

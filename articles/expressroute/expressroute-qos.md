@@ -1,5 +1,5 @@
 ---
-title: "aaaQoS ExpressRoute követelményei |} Microsoft Docs"
+title: "Az ExpressRoute QoS-követelményei | Microsoft Docs"
 description: "Ez az oldal ExpressRoute-kapcsolatcsoportok QoS-konfigurálásának és -kezelésének részletes követelményeit ismerteti."
 documentationcenter: na
 services: expressroute
@@ -14,23 +14,23 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/25/2017
 ms.author: cherylmc
-ms.openlocfilehash: 46cc81bd38ff50dd9e7a1bfdd0faa457ff7b2fa1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c097a9ccba91f59b323215d42d37e6d85e0981ce
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="expressroute-qos-requirements"></a>Az ExpressRoute QoS-követelményei
-A Skype Vállalati verzió különböző számítási feladatokat tartalmaz, amelyek különböző QoS-kezelést igényelnek. Ha tooconsume szolgáltatások ExpressRoute keresztül, meg kell felelnie toohello követelmények az alábbiakban.
+A Skype Vállalati verzió különböző számítási feladatokat tartalmaz, amelyek különböző QoS-kezelést igényelnek. Ha hangszolgáltatásokat tervez használni az ExpressRoute-on keresztül, teljesítenie kell az alábbiakban ismertetett követelményeket.
 
 ![](./media/expressroute-qos/expressroute-qos.png)
 
 > [!NOTE]
-> A QoS követelményeit toohello Microsoft társviszony-létesítés csak. a hálózati forgalom az Azure nyilvános társviszony és Azure magánhálózati társviszony-létesítés kapott hello DSCP értékkel alaphelyzetbe állítása too0 lesz. 
+> A QoS-követelmények csak a Microsoft társviszony-létesítésre vonatkoznak. Az Azure nyilvános vagy Azure privát társviszony-létesítésen keresztül kapott hálózati forgalom DSCP-értékei 0-ra állnak. 
 > 
 > 
 
-hello következő táblázat felsorolja a DSCP-jelölések Skype vállalati használja. Tekintse meg a túl[QoS kezelése a Skype vállalati verzió](https://technet.microsoft.com/library/gg405409.aspx) további információt.
+A következő táblázat a Skype Vállalati verzió által használt DSCP-jelöléseket sorolja fel. További információkért lásd: [A QoS kezelése a Skype Vállalati verzióhoz](https://technet.microsoft.com/library/gg405409.aspx).
 
 | **Forgalomosztály** | **Kezelés (DSCP-jelölés)** | **Skype Vállalati verzió számítási feladata** |
 | --- | --- | --- |
@@ -40,15 +40,15 @@ hello következő táblázat felsorolja a DSCP-jelölések Skype vállalati hasz
 | **Alapértelmezett** |AF11 (10) |Fájlátvitel |
 | CS0 (0) |Bármi más | |
 
-* Hello munkaterhelések besorolásához kell, és jelölje meg hello jobb DSCP értékkel. Követve hello [Itt](https://technet.microsoft.com/library/gg405409.aspx) hogyan tooset DSCP megjelölés a hálózaton.
-* Több QoS várakozási sort kell konfigurálnia és támogatnia a hálózaton belül. Hangalámondás egy önálló osztály legyen, és RFC 3246 megadott hello EF-kezelés. 
-* Dönthet úgy is hello queuing mechanizmus, torlódás szabályzat és sávszélesség-lefoglalást egyes forgalmi osztálynak. De hello DSCP-jelölés a Skype vállalati munkaterhelések esetén meg kell őrizni. Ha használ, fent nem említett DSCP-jelölés például AF31 (26), meg kell írniuk a DSCP érték too0 hello csomagok tooMicrosoft elküldése előtt. A Microsoft csak akkor csomagok DSCP érték hello táblázat felett megjelenő hello jelölésű küldi el. 
+* Osztályoznia kell a munkaterheléseket, és meg kell jelölnie a megfelelő DSCP-értékeket. A DSCP-jelöléseket az [itt](https://technet.microsoft.com/library/gg405409.aspx) leírt útmutatások alapján állíthatja be a hálózatban.
+* Több QoS várakozási sort kell konfigurálnia és támogatnia a hálózaton belül. A hangnak egy különálló osztálynak kell lennie, és az RFC 3246-ban meghatározott EF-kezelést kell fogadnia. 
+* Forgalomosztályonként meghatározhatja a várakozásisor-kezelési mechanizmust, a torlódásészlelési házirendet és a sávszélesség-kiosztást. Skype Vállalati verzió számítási feladatainak DSCP-jelölését azonban meg kell tartania. Ha a fenti listában nem szereplő DSCP-jelöléseket használ, például az AF31 (26) jelölést, ezt a DSCP-értéket 0 értékre kell felülírnia, mielőtt elküldi a csomagot a Microsoftnak. A Microsoft csak a fenti táblázatban szereplő DSCP-értékkel jelölt csomagokat küld. 
 
 ## <a name="next-steps"></a>Következő lépések
-* Tekintse meg a toohello követelményei [útválasztás](expressroute-routing.md) és [NAT](expressroute-nat.md).
-* Tekintse meg a következő hello hivatkozásait tooconfigure az ExpressRoute-kapcsolatot.
+* Tekintse meg az [Útválasztás](expressroute-routing.md) és a [NAT](expressroute-nat.md) követelményeit.
+* Tekintse meg a következő hivatkozásokat az ExpressRoute-kapcsolat konfigurálásához:
   
   * [ExpressRoute-kapcsolatcsoport létrehozása](expressroute-howto-circuit-classic.md)
   * [Útválasztás konfigurálása](expressroute-howto-routing-classic.md)
-  * [Hivatkozásra egy VNet tooan ExpressRoute-kapcsolatcsoportot](expressroute-howto-linkvnet-classic.md)
+  * [VNet csatlakoztatása egy ExpressRoute-kapcsolatcsoporthoz](expressroute-howto-linkvnet-classic.md)
 

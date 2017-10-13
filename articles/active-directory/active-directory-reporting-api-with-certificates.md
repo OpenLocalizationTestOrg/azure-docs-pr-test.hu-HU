@@ -1,6 +1,6 @@
 ---
-title: "tanúsítványok az Azure AD jelentéskészítési API aaaGet használatával végzett hello |} Microsoft Docs"
-description: "Ismerteti, hogyan toouse hello tanúsítvány hitelesítő adatok tooget származó adatokkal könyvtárak felhasználói beavatkozás nélkül az Azure AD jelentéskészítési API."
+title: "Adatok lekérése az Azure AD Reporting API és tanúsítványok használatával | Microsoft Docs"
+description: "Ismerteti, hogy hogyan kérhetők le adatok címtárakból felhasználói beavatkozás nélkül az Azure AD Reporting API és tanúsítványalapú hitelesítés használatával."
 services: active-directory
 documentationcenter: 
 author: ramical
@@ -12,59 +12,59 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 03/24/2017
+ms.date: 09/08/2017
 ms.author: ramical
-ms.openlocfilehash: 00ddfaefe32ea6ae48f276c974a17ddcf84f7894
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 38c240ed1608b2e99bde78f3633e722f8e2fa30b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-data-using-hello-azure-ad-reporting-api-with-certificates"></a>Adatok és tanúsítványok hello Azure AD jelentéskészítési API segítségével.
-A cikk ismerteti, hogyan toouse hello tanúsítvány hitelesítő adatok tooget származó adatokkal könyvtárak felhasználói beavatkozás nélkül az Azure AD jelentéskészítési API. 
+# <a name="get-data-using-the-azure-ad-reporting-api-with-certificates"></a>Adatok lekérése az Azure AD Reporting API és tanúsítványok használatával
+Ez a cikk azt ismerteti, hogy hogyan kérhetők le adatok címtárakból felhasználói beavatkozás nélkül az Azure AD Reporting API és tanúsítványalapú hitelesítés használatával. 
 
-## <a name="use-hello-azure-ad-reporting-api"></a>Használja az Azure AD jelentéskészítési API hello 
-Azure AD jelentéskészítési API szükséges, végezze el a lépéseket követve hello:
+## <a name="use-the-azure-ad-reporting-api"></a>Az Azure AD Reporting API használata 
+Az Azure AD Reporting API megköveteli a következő lépések elvégzését:
  *  Az előfeltételek telepítése
- *  Az alkalmazás hello tanúsítvány beállítása
+ *  A tanúsítvány beállítása az appban
  *  Hozzáférési jogkivonat lekérése
- *  Hello access token toocall hello Graph API használata
+ *  A Graph API meghívása a hozzáférési jogkivonattal
 
 További információ a forráskódról: [A Report API modul használata](https://github.com/AzureAD/azure-activedirectory-powershell/tree/gh-pages/Modules/AzureADUtils). 
 
 ### <a name="install-prerequisites"></a>Az előfeltételek telepítése
-Azure AD PowerShell V2 toohave és AzureADUtils modul telepítve lesz szüksége.
+Előzőleg telepítenie kell az Azure AD PowerShell V2-t és az AzureADUtils modult.
 
-1. Töltse le és telepítse az Azure AD Powershell V2 hello található utasítások segítségével: a következő [Azure Active Directory PowerShell](https://github.com/Azure/azure-docs-powershell-azuread/blob/master/Azure AD Cmdlets/AzureAD/index.md).
-2. Töltse le a hello Azure AD Utils modulnak a [AzureAD/azure-Active Directoryban-powershell](https://github.com/AzureAD/azure-activedirectory-powershell/blob/gh-pages/Modules/AzureADUtils/AzureADUtils.psm1). 
+1. Az Azure AD PowerShell V2-t az [Azure Active Directory PowerShell](https://github.com/Azure/azure-docs-powershell-azuread/blob/master/Azure AD Cmdlets/AzureAD/index.md) webhelyen található utasításokat követve töltheti le és telepítheti.
+2. Az Azure AD Utils modult az [AzureAD/azure-activedirectory-powershell](https://github.com/AzureAD/azure-activedirectory-powershell/blob/gh-pages/Modules/AzureADUtils/AzureADUtils.psm1) webhelyről töltheti le. 
   Ez a modul számos segédprogramként használható parancsmagot biztosít, többek között:
-   * az adal TÁRAT használó Nuget hello legújabb verziója
+   * a Nugetet használó ADAL legújabb verzióját,
    * a felhasználó, alkalmazáskulcsok és tanúsítványok jogkivonatainak elérését az ADAL használatával,
    * a lapokra bontott eredményeket kezelő Graph API-t.
 
-**tooinstall hello Azure AD Utils modul:**
+**Az Azure AD Utils modul telepítése:**
 
-1. Hozzon létre egy könyvtárat toosave hello segédprogramok modult (például c:\azureAD), és töltse le a hello modul a Githubról.
-2. Nyisson meg egy PowerShell-munkamenetet, és válassza az imént létrehozott toohello könyvtár. 
-3. Hello modul importálásához, majd telepítse hello PowerShell modul elérési útján hello Install-AzureADUtilsModule parancsmag használatával. 
+1. Hozzon létre egy könyvtárat a segédprogramok modul mentéséhez (például c:\azureAD), és töltse le a modult a GitHubról.
+2. Nyisson meg egy PowerShell munkamenetet, és lépjen be a most létrehozott könyvtárba. 
+3. Importálja a modult, és telepítse a PowerShell modulútvonalára az Install-AzureADUtilsModule parancsmaggal. 
 
-hello munkamenet toothis hasonló képernyő kell kinéznie:
+A munkamenetnek ehhez hasonlóan kell kinéznie:
 
   ![Windows PowerShell](./media/active-directory-report-api-with-certificates/windows-powershell.png)
 
-### <a name="set-hello-certificate-in-your-app"></a>Az alkalmazás hello tanúsítvány beállítása
-1. Ha már telepítette az alkalmazást, az objektum Azonosítóját beszerzése hello Azure portálon. 
+### <a name="set-the-certificate-in-your-app"></a>A tanúsítvány beállítása az appban
+1. Ha már van egy appja, kérje le az objektumazonosítóját az Azure Portalról. 
 
   ![Azure Portal](./media/active-directory-report-api-with-certificates/azure-portal.png)
 
-2. Nyisson meg egy PowerShell-munkamenetet, és csatlakozzon a tooAzure AD Connect-AzureAD hello parancsmag használatával.
+2. Nyisson meg egy PowerShell-munkamenetet, és csatlakozzon az Azure-hoz a Connect-AzureAD parancsmaggal.
 
   ![Azure Portal](./media/active-directory-report-api-with-certificates/connect-azuaread-cmdlet.png)
 
-3. A AzureADUtils tooadd egy tanúsítvány credential tooit hello New-AzureADApplicationCertificateCredential parancsmag használható. 
+3. Az AzureADUtils New-AzureADApplicationCertificateCredential parancsmagjával adjon hozzá egy tanúsítványalapú hitelesítő adatot. 
 
 >[!Note]
->Meg kell tooprovide hello alkalmazás Objektumazonosító, korábban rögzített, valamint tanúsítványobjektum hello (beolvasása a használatával hello Cert: meghajtón).
+>A korábban rögzített, alkalmazáshoz tartozó objektumazonosítón kívül a tanúsítványobjektumot is meg kell adnia (ezt a Cert: meghajtóval szerezheti be).
 >
 
 
@@ -72,24 +72,24 @@ hello munkamenet toothis hasonló képernyő kell kinéznie:
   
 ### <a name="get-an-access-token"></a>Hozzáférési jogkivonat lekérése
 
-tooget hozzáférési tokent, AzureADUtils hello Get-AzureADGraphAPIAccessTokenFromCert parancsmag használható. 
+Hozzáférési jogkivonat lekéréséhez használja az AzureADUtils Get-AzureADGraphAPIAccessTokenFromCert parancsmagját. 
 
 >[!NOTE]
->Toouse hello Alkalmazásazonosító helyett hello hello utolsó szakaszban használt Objektumazonosító van szüksége.
+>Az előző szakaszban használt objektumazonosító helyett az alkalmazásazonosítót kell használnia.
 >
 
  ![Azure Portal](./media/active-directory-report-api-with-certificates/application-id.png)
 
-### <a name="use-hello-access-token-toocall-hello-graph-api"></a>Hello access token toocall hello Graph API használata
+### <a name="use-the-access-token-to-call-the-graph-api"></a>A Graph API meghívása a hozzáférési jogkivonattal
 
-Most hello parancsfájlt is létrehozhat. Alább látható egy példa, hello AzureADUtils hello Invoke-AzureADGraphAPIQuery parancsmag használatával. Ez a parancsmag több lapozható eredmények kezeli, és ezután elküldi az adott eredmények toohello PowerShell kimenetátirányításának. 
+Most létrehozhatja a szkriptet. Az alábbi példában az AzureADUtils Invoke-AzureADGraphAPIQuery parancsmagját használjuk. Ez a parancsmag kezeli a többlapos eredményeket, majd elküldi őket a PowerShell-folyamatba. 
 
  ![Azure Portal](./media/active-directory-report-api-with-certificates/script-completed.png)
 
-Most már készen áll a tooexport tooa CSV áll, és mentse a tooa SIEM-rendszerben. Akkor is futtathatja a parancsfájl egy ütemezett feladat tooget az Azure AD-adatok a a bérlőhöz rendszeres időközönként hello forráskód toostore alkalmazás kulcsok nélkül. 
+Most már exportálhatja az eredményeket egy CSV-fájlba, és mentheti egy SIEM-rendszerbe. A szkriptet be is csomagolhatja egy ütemezett feladatba az Azure AD-adatok bérlőtől való időszakos lekérésére úgy is, hogy nem kell a forráskódban tárolnia az alkalmazáskulcsokat. 
 
 ## <a name="next-steps"></a>Következő lépések
-[Azure-identitás felügyeleti hello alapjai](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals-identity)<br>
+[Az Azure-identitáskezelés alapjai](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals-identity)<br>
 
 
 

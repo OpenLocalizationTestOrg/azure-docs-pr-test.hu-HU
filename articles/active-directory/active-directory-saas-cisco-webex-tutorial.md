@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált Cisco Webex |} Microsoft Docs"
-description: "Ismerje meg, hogyan toouse Cisco Webex az Azure Active Directory tooenable egyszeri bejelentkezést, automatizált üzembe helyezést és további!"
+description: "Megtudhatja, hogyan Cisco Webex használata az Azure Active Directoryval az egyszeri bejelentkezés, automatizált üzembe helyezést és további engedélyezéséhez!"
 services: active-directory
 author: jeevansd
 documentationcenter: na
@@ -13,139 +13,139 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 02/10/2017
 ms.author: jeedes
-ms.openlocfilehash: 9fc11e58a7acaa6fbfb32eeccbfbf85984950e67
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b44b1a5b3e988a51db3325ec8a181651fa84e768
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-cisco-webex"></a>Oktatóanyag: Azure Active Directoryval integrált Cisco Webex
-hello Ez az oktatóanyag célja az Azure és a Cisco Webex tooshow hello integrációját.  
-Ebben az oktatóanyagban leírt hello forgatókönyv feltételezi, hogy már rendelkezik a következő elemek hello:
+Ez az oktatóanyag célja az Azure és a Cisco Webex integrálását megjelenítése.  
+Ebben az oktatóanyagban leírt forgatókönyv feltételezi, hogy már rendelkezik a következő elemek:
 
 * Egy érvényes Azure-előfizetés
 * A Cisco Webex bérlő
 
-Ez az oktatóanyag befejezése után a hozzárendelt tooCisco Webex lesz képes toosingle bejelentkezési hello alkalmazásba a Cisco Webex vállalati hely (a szolgáltatás a szolgáltató által kezdeményezett bejelentkezési) Azure AD-felhasználók hello, vagy a hello segítségével [toohello bemutatása Hozzáférési Panel](active-directory-saas-access-panel-introduction.md).
+Ez az oktatóanyag befejezése után a Cisco Webex rendelt Azure AD-felhasználók fog tudni egyetlen jelentkezzen be az alkalmazás a Cisco Webex vállalati hely (a szolgáltatás a szolgáltató által kezdeményezett bejelentkezési), vagy használja a [a hozzáférési Panel bemutatása ](active-directory-saas-access-panel-introduction.md).
 
-Ebben az oktatóanyagban leírt hello forgatókönyv építőelemei következő hello áll:
+Ebben az oktatóanyagban leírt forgatókönyv az alábbi építőelemeket áll:
 
-* Cisco Webex hello alkalmazás-integráció engedélyezése
+* A Cisco Webex alkalmazás-integráció engedélyezése
 * Egyszeri bejelentkezés (SSO) konfigurálása
 * Felhasználók átadására
 * Felhasználók hozzárendelése
 
 ![A forgatókönyv](./media/active-directory-saas-cisco-webex-tutorial/IC777614.png "forgatókönyv")
 
-## <a name="enable-hello-application-integration-for-cisco-webex"></a>Cisco Webex hello alkalmazás-integráció engedélyezése
-hello ebben a szakaszban célja toooutline hogyan tooenable hello alkalmazásintegráció Cisco Webex.
+## <a name="enable-the-application-integration-for-cisco-webex"></a>A Cisco Webex alkalmazás-integráció engedélyezése
+Ez a szakasz célja helyzeteit vázolják fel, a Cisco Webex alkalmazás-integráció engedélyezése.
 
-**tooenable hello alkalmazásintegráció Cisco Webex, hajtsa végre a következő lépéseket hello:**
+**Ahhoz, hogy az alkalmazás-integráció Cisco Webex, hajtsa végre az alábbi lépéseket:**
 
-1. Hello hello bal oldali navigációs ablaktáblán, a klasszikus Azure portálon kattintson **Active Directory**.
+1. A klasszikus Azure portálon, a bal oldali navigációs panelen kattintson a **Active Directory**.
    
    ![Az Active Directory](./media/active-directory-saas-cisco-webex-tutorial/IC700993.png "Active Directory")
-2. A hello **Directory** listában, jelölje be hello directory kívánt tooenable címtár-integráció.
-3. tooopen hello alkalmazások megtekintése, hello könyvtár nézetben kattintson **alkalmazások** hello felső menüjében.
+2. Az a **Directory** listára, válassza ki a könyvtárat, amelyhez a címtár-integrációs engedélyezni szeretné.
+3. A könyvtár nézetben a alkalmazások nézet megnyitásához kattintson **alkalmazások** a felső menüben.
    
    ![Alkalmazások](./media/active-directory-saas-cisco-webex-tutorial/IC700994.png "alkalmazások")
-4. Kattintson a **Hozzáadás** hello lap hello alján.
+4. Kattintson a **Hozzáadás** az oldal alján.
    
    ![Alkalmazás hozzáadása](./media/active-directory-saas-cisco-webex-tutorial/IC749321.png "alkalmazás hozzáadása")
-5. A hello **miről szeretne toodo** párbeszédpanel, kattintson **hello gyűjteményből alkalmazás hozzáadása**.
+5. Az a **mi történjen a teendő** párbeszédpanel, kattintson a **hozzáadhat egy alkalmazást a katalógusból**.
    
    ![Alkalmazás hozzáadása a gallerry](./media/active-directory-saas-cisco-webex-tutorial/IC749322.png "gallerry az alkalmazás hozzáadása")
-6. A hello **keresőmezőbe**, típus **Cisco Webex**.
+6. Az a **keresőmezőbe**, típus **Cisco Webex**.
    
    ![Alkalmazáskatalógusában](./media/active-directory-saas-cisco-webex-tutorial/IC777615.png "Alkalmazáskatalógusában")
-7. Hello eredmények ablaktábláján jelöljön ki **Cisco Webex**, és kattintson a **Complete** tooadd hello alkalmazás.
+7. Az eredmények ablaktáblájában válassza **Cisco Webex**, és kattintson a **Complete** hozzáadása az alkalmazáshoz.
    
    ![Cisco Webex](./media/active-directory-saas-cisco-webex-tutorial/IC777616.png "Cisco Webex")
    
 ## <a name="configure-single-sign-on"></a>Egyszeri bejelentkezés konfigurálása
 
-hello ebben a szakaszban célja toooutline hogyan tooenable felhasználók tooauthenticate tooCisco Webex fiókkal az Azure AD összevonási használatával hello SAML protokoll alapján.  
+Ez a szakasz célja felvázoló engedélyezése a felhasználók hitelesítéséhez Cisco Webex fiókkal az Azure AD összevonási alapján a SAML protokoll használatával.  
 
-Ez az eljárás részeként szükség toocreate base-64 kódolású tanúsítvány. Ha nem ismeri ezt az eljárást, tekintse meg a [hogyan tooconvert bináris tanúsítvány egy szövegfájlba](http://youtu.be/PlgrzUZ-Y1o)
+Ez az eljárás részeként kötelesek base-64 kódolású tanúsítvány létrehozása. Ha nem ismeri ezt az eljárást, tekintse meg a [bináris tanúsítvány szöveg fájlba való konvertálása](http://youtu.be/PlgrzUZ-Y1o)
 
-**tooconfigure egyszeri bejelentkezés, hajtsa végre az alábbi lépésekkel hello:**
+**Egyszeri bejelentkezés konfigurálásához hajtsa végre az alábbi lépéseket:**
 
-1. A klasszikus Azure portálon, a hello hello **Cisco Webex** alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** tooopen hello **konfigurálása egyszeri bejelentkezés** párbeszédpanel.
+1. A klasszikus Azure portálon a a **Cisco Webex** alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** megnyitásához a **konfigurálása egyszeri bejelentkezés** párbeszédpanel.
    
    ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-cisco-webex-tutorial/IC777617.png "egyszeri bejelentkezés konfigurálása")
-2. A hello **hogyan szeretné tooCisco Webex a felhasználók toosign** lapon jelölje be **Microsoft Azure AD az egyszeri bejelentkezés**, és kattintson a **következő**.
+2. Az a **hová felhasználók számára történő bejelentkezést Cisco Webex** lapon jelölje be **Microsoft Azure AD az egyszeri bejelentkezés**, és kattintson a **következő**.
    
    ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-cisco-webex-tutorial/IC777618.png "egyszeri bejelentkezés konfigurálása")
-3. A hello **alkalmazás URL-cím konfigurálása** lapon hajtsa végre az alábbi lépésekkel hello, és kattintson a **következő**.
+3. Az a **alkalmazás URL-cím konfigurálása** lapon hajtsa végre az alábbi lépéseket, és kattintson a **következő**.
    
    ![Alkalmazás URL-CÍMEK konfigurálása](./media/active-directory-saas-cisco-webex-tutorial/IC777619.png "alkalmazás URL-CÍMEK konfigurálása")   
-   1. A hello **Sign URL-cím** szövegmező, írja be a Cisco Webex bérlői URL-cím (pl.: *http://contoso.webex.com*).
-   2. A hello **Cisco Webex válasz URL-CÍMEN** szövegmezőhöz típusa a **Cisco Webex AssertionConsumerService URL-cím** (pl.: *https://company.webex.com/dispatcher/SAML2AuthService?siteurl=company* ).
-4. A hello **konfigurálhatja az egyszeri bejelentkezés Cisco Webex** lap, toodownload a tanúsítványt, kattintson **tanúsítvánnyal letöltés**, és mentse a hello tanúsítványfájlt a számítógépen.
+   1. Az a **Sign URL-cím** szövegmező, írja be a Cisco Webex bérlői URL-cím (pl.: *http://contoso.webex.com*).
+   2. Az a **Cisco Webex válasz URL-CÍMEN** szövegmezőhöz típusa a **Cisco Webex AssertionConsumerService URL-cím** (pl.: *https://company.webex.com/dispatcher/SAML2AuthService?siteurl=company* ).
+4. A a **konfigurálhatja az egyszeri bejelentkezés Cisco Webex** töltse le a tanúsítványt, kattintson **tanúsítvánnyal letöltés**, majd mentse a tanúsítványfájlt, a számítógépen.
    
    ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-cisco-webex-tutorial/IC777620.png "egyszeri bejelentkezés konfigurálása")
 5. Egy másik webes böngészőablakban jelentkezzen be a Cisco Webex vállalati webhely rendszergazdaként.
-6. Hello hello felső menüben kattintson a **helyfelügyelet**.
+6. Kattintson a felső menüben **helyfelügyelet**.
    
    ![Hely felügyelete](./media/active-directory-saas-cisco-webex-tutorial/IC777621.png "hely felügyelete")
-7. A hello **kezelése hely** területén kattintson **SSO konfigurációs**.
+7. Az a **kezelése hely** területén kattintson **SSO konfigurációs**.
    
    ![Egyszeri bejelentkezés konfigurációs](./media/active-directory-saas-cisco-webex-tutorial/IC777622.png "SSO-konfiguráció")
-8. Az összevont webes egyszeri bejelentkezés konfigurációs szakasz hello hajtsa végre a lépéseket követve hello:
+8. Az összevont webes egyszeri bejelentkezés konfigurálása a szakaszban a következő lépésekkel:
    
    ![Összevont egyszeri Bejelentkezéses konfigurációs](./media/active-directory-saas-cisco-webex-tutorial/IC777623.png "összevont egyszeri bejelentkezés konfigurálása")  
-   1. A hello **összevonási protokoll** listáról válassza ki **SAML 2.0**.
+   1. Az a **összevonási protokoll** listáról válassza ki **SAML 2.0**.
    2. Hozzon létre egy **Base-64 kódolású** fájlt a letöltött tanúsítvány.  
     >[!TIP]
-    >További részletekért lásd: [hogyan tooconvert bináris tanúsítvány egy szövegfájlba](http://youtu.be/PlgrzUZ-Y1o)
+    >További részletekért lásd: [bináris tanúsítvány szöveg fájlba való konvertálása](http://youtu.be/PlgrzUZ-Y1o)
     >  
-   3. A base-64 kódolású tanúsítvány megnyitása a Jegyzettömbben, és azt a tartalom másolás hello.
+   3. Nyissa meg a base-64 kódolású tanúsítvány a Jegyzettömbben, és másolja a tartalmát.
    4. Kattintson a **SAML-metaadatok importálása**, majd illessze be a base-64 kódolású tanúsítvány.
-   5. A klasszikus Azure portálon, a hello hello **konfigurálhatja az egyszeri bejelentkezés Cisco Webex** párbeszédpanel lap, a Másolás hello **kiállítójának URL-címe** értékét, és illessze be hello **SAML (IdP ID)kiállító** szövegmező.
-   6. Hello hello a klasszikus Azure portálra a **konfigurálhatja az egyszeri bejelentkezés Cisco Webex** párbeszédpanel lap, a Másolás hello **távoli bejelentkezési URL-cím** értékét, és illessze be hello **ügyfél SSO szolgáltatás bejelentkezési URL-cím** szövegmező.
-   7. A hello **NameID formátum** listáról válassza ki **E-mail cím**.
-   8. A hello **AuthnContextClassRef** szövegmezőhöz típus **urn: oasis: nevek: tc: SAML:2.0:ac:classes:Password**.
-   9. Hello hello a klasszikus Azure portálra a **konfigurálhatja az egyszeri bejelentkezés Cisco Webex** párbeszédpanel lap, a Másolás hello **távoli kijelentkezési URL-cím** értékét, és illessze be hello **ügyfél egyszeri bejelentkezési szolgáltatás jelentkezzen ki URL-cím** szövegmező.
+   5. A klasszikus Azure portálon a a **konfigurálhatja az egyszeri bejelentkezés Cisco Webex** párbeszédpanel lap, a Másolás a **kiállítójának URL-címe** értékét, és illessze be azt a **SAML (IdP ID) kiállító** szövegmező.
+   6. A klasszikus Azure portálon a a **konfigurálhatja az egyszeri bejelentkezés Cisco Webex** párbeszédpanel lap, a Másolás a **távoli bejelentkezési URL-cím** értékét, és illessze be azt a **ügyfél SSO szolgáltatás bejelentkezési URL-címe** szövegmező.
+   7. Az a **NameID formátum** listáról válassza ki **E-mail cím**.
+   8. Az a **AuthnContextClassRef** szövegmezőhöz típus **urn: oasis: nevek: tc: SAML:2.0:ac:classes:Password**.
+   9. A klasszikus Azure portálon a a **konfigurálhatja az egyszeri bejelentkezés Cisco Webex** párbeszédpanel lap, a Másolás a **távoli kijelentkezési URL-cím** értékét, és illessze be azt a **ügyfél egyszeri bejelentkezési szolgáltatás kijelentkezési URL-címe** szövegmező.
    10. Kattintson a **frissítés**.
-9. A klasszikus Azure portálon, a hello hello **konfigurálhatja az egyszeri bejelentkezés Cisco Webex** párbeszédpanel lapon válassza ki a hello egyszeri bejelentkezés konfigurációs megerősítő, és kattintson **Complete**.
+9. A klasszikus Azure portálon a a **konfigurálhatja az egyszeri bejelentkezés Cisco Webex** párbeszédpanel lapon válassza ki az egyszeri bejelentkezés konfigurációs megerősítő, és kattintson **Complete**.
    
    ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-cisco-webex-tutorial/IC777624.png "egyszeri bejelentkezés konfigurálása")
    
 ## <a name="configure-user-provisioning"></a>A felhasználók átadása konfigurálása
 
-A sorrend tooenable az Azure AD felhasználók toolog Cisco Webex be azok ki kell építenie a Cisco Webex.  
+Ahhoz, hogy az Azure AD-felhasználók Cisco Webex bejelentkezni, akkor ki kell építenie a Cisco Webex.  
 
-* Cisco Webex hello esetben egy kézi tevékenység.
+* Cisco Webex, ha egy kézi tevékenység.
 
-**tooprovision felhasználói fiókok, hajtsa végre hello a következő lépéseket:**
+**A felhasználói fiókok létrehozásához hajtsa végre az alábbi lépéseket:**
 
-1. Jelentkezzen be tooyour **Cisco Webex** bérlő.
-2. Nyissa meg túl**felhasználók kezelése \> felhasználó hozzáadása**.
+1. Jelentkezzen be a **Cisco Webex** bérlő.
+2. Ugrás a **felhasználók kezelése \> felhasználó hozzáadása**.
    
    ![Felhasználók hozzáadása az](./media/active-directory-saas-cisco-webex-tutorial/IC777625.png "felhasználók hozzáadása")
-3. Felhasználó hozzáadása szakasz hello hajtsa végre a lépéseket követve hello:
+3. A felhasználó hozzáadása területen hajtsa végre a következő lépéseket:
    
    ![Felhasználó hozzáadása](./media/active-directory-saas-cisco-webex-tutorial/IC777626.png "felhasználó hozzáadása")   
    1. Mint **fióktípus**, jelölje be **állomás**.
-   2. Hello információ egy meglévő Azure AD-felhasználó írja be a következő szövegmezők hello: **utónevét, vezetéknevét**, **felhasználónév**, **E-mail**, **jelszó**, **Jelszó megerősítése**.
+   2. Az adatokat egy meglévő Azure AD-felhasználó írja be a következő szövegmezők: **utónevét, vezetéknevét**, **felhasználónév**, **E-mail**, **jelszó**, **Jelszó megerősítése**.
    3. Kattintson az **Add** (Hozzáadás) parancsra.
 
 >[!NOTE]
->Bármely más Cisco Webex felhasználói fiók létrehozása eszközök vagy Cisco Webex tooprovision által nyújtott API-k AAD felhasználói fiókokat. 
+>Bármely más Cisco Webex felhasználói fiók létrehozása eszközök vagy rendelkezés AAD felhasználói fiókokhoz Cisco Webex által nyújtott API-k. 
 > 
 
 ## <a name="assign-users"></a>Felhasználók hozzárendelése
-tootest a konfigurációs kell azt szeretné, hogy az alkalmazás hozzáférési tooit használatával hozzárendelésével tooallow toogrant hello Azure AD felhasználók.
+A konfiguráció teszteléséhez kell biztosítania az Azure AD-felhasználók számára engedélyezni, használja az alkalmazás elérésére hozzárendelésével.
 
-**tooassign felhasználók tooCisco Webex, hajtsa végre a következő lépéseket hello:**
+**Felhasználók hozzárendelése Cisco Webex, hajtsa végre az alábbi lépéseket:**
 
-1. Hello a klasszikus Azure portálon hozzon létre egy olyan fiókot.
-2. A hello **Cisco Webex** alkalmazás integráció lapján, kattintson a **felhasználók hozzárendelése**.
+1. A klasszikus Azure portálon hozzon létre egy olyan fiókot.
+2. Az a **Cisco Webex** alkalmazás integráció lapján, kattintson a **felhasználók hozzárendelése**.
    
    ![Felhasználók hozzárendelése](./media/active-directory-saas-cisco-webex-tutorial/IC777627.png "felhasználók hozzárendelése")
-3. Adja meg a tesztfelhasználó számára, kattintson **hozzárendelése**, és kattintson a **Igen** tooconfirm a hozzárendelés.
+3. Adja meg a tesztfelhasználó számára, kattintson **hozzárendelése**, és kattintson a **Igen** a hozzárendelés megerősítéséhez.
    
    ![Igen](./media/active-directory-saas-cisco-webex-tutorial/IC767830.png "Igen")
 
-Ha tootest az egyszeri bejelentkezés a beállításokat, nyissa meg a hozzáférési Panel hello. Hozzáférési Panel hello kapcsolatos további tudnivalókért lásd: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).
+Ha azt szeretné, az egyszeri bejelentkezés beállításainak ellenőrzéséhez nyissa meg a hozzáférési Panel. A hozzáférési Panel kapcsolatos további tudnivalókért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
 

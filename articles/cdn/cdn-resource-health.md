@@ -1,6 +1,6 @@
 ---
-title: "Azure CDN erőforrások állapotának aaaMonitor hello |} Microsoft Docs"
-description: "Ismerje meg, hogyan toomonitor hello az Azure CDN-erőforrások az Azure Resource Health állapotát."
+title: "Az Azure CDN-erőforrások állapotfigyelésének |} Microsoft Docs"
+description: "Útmutató az Azure CDN-erőforrások az Azure Resource Health állapotának figyelésére."
 services: cdn
 documentationcenter: .net
 author: zhangmanling
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 0a77e56d2fecae4bde6c83730c05375853a6638a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 37fe208f5087f318e665e76825127854b4a11c98
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="monitor-hello-health-of-azure-cdn-resources"></a>Hello Azure CDN erőforrások állapotának figyelése
+# <a name="monitor-the-health-of-azure-cdn-resources"></a>Az Azure CDN-erőforrások állapotfigyelésének
   
-Az Azure CDN Resource health része a [Azure-erőforrás állapotának](../resource-health/resource-health-overview.md).  Azure-erőforrás állapotának toomonitor hello állapotát CDN erőforrásokat használ, és fogadni végrehajthatóként útmutatást tootroubleshoot problémák.
+Az Azure CDN Resource health része a [Azure-erőforrás állapotának](../resource-health/resource-health-overview.md).  Azure-erőforrás állapotának segítségével CDN erőforrások állapotának figyelésére és fogadására a problémák megoldásához alkalmazható útmutatást.
 
 >[!IMPORTANT] 
->Az Azure CDN-erőforrás állapota jelenleg csak számlák globális CDN kézbesítési és API-képességek hello állapotát.  Az Azure CDN-erőforrás állapota nem ellenőrzi az egyéni CDN-végpontokat.
+>Jelenleg csak fiókok adminisztrátoránál, hogy a globális CDN kézbesítési és API-képességek az Azure CDN erőforrás állapotát.  Az Azure CDN-erőforrás állapota nem ellenőrzi az egyéni CDN-végpontokat.
 >
->hello azt jelzi, hogy az adatcsatorna-Azure CDN erőforrás állapota mentése késleltetett too15 perc lehet.
+>A jelek, amely Azure CDN erőforrás állapota lehet akár 15 percet késik a.
 
-## <a name="how-toofind-azure-cdn-resource-health"></a>Hogyan toofind Azure CDN erőforrás állapota
+## <a name="how-to-find-azure-cdn-resource-health"></a>Hol találhatók az Azure CDN erőforrás állapota
 
-1. A hello [Azure-portálon](https://portal.azure.com), keresse meg a tooyour CDN-profilt.
+1. Az a [Azure-portálon](https://portal.azure.com), keresse meg a CDN-profilt.
 
-2. Kattintson a hello **beállítások** gombra.
+2. Kattintson a **beállítások** gombra.
 
     ![Beállítások gomb](./media/cdn-resource-health/cdn-profile-settings.png)
 
@@ -42,22 +42,22 @@ Az Azure CDN Resource health része a [Azure-erőforrás állapotának](../resou
     ![CDN-erőforrás állapota](./media/cdn-resource-health/cdn-resource-health3.png)
 
 >[!TIP] 
->Hello CDN erőforrás is található *erőforrás állapota* hello csempére *súgó + támogatás* panelen.  Gyorsan kaphat túl*súgó + támogatás* körben hello kattintva **?** hello jobb felső sarkában található hello portál.
+>Felsorolt CDN erőforrást is megkeresheti a *erőforrás állapota* csempére a *súgó + támogatás* panelen.  Is gyorsan elérheti *súgó + támogatás* a bekarikázott kattintva **?** a jobb felső sarokban, a portál.
 >
 > ![Súgó és támogatás](./media/cdn-resource-health/cdn-help-support.png)
 
 ## <a name="azure-cdn-specific-messages"></a>Az Azure CDN-specifikus üzenetek
 
-Állapotok kapcsolódó tooAzure CDN erőforrás állapota alatt található.
+Azure CDN erőforrás állapota kapcsolódó állapotok alatt található.
 
 |Üzenet | Javasolt művelet |
 |---|---|
 |Előfordulhat, hogy leállt, eltávolítva, vagy nincs megfelelően konfigurálva a CDN-végpontok közül legalább egyet | Előfordulhat, hogy leállt, eltávolítva, vagy nincs megfelelően konfigurálva a CDN-végpontok közül legalább egyet.|
-|Sajnáljuk, a hello CDN felügyeleti szolgáltatás jelenleg nem érhető el | Térjen vissza ide az állapotfrissítések; Ha a probléma továbbra is fennáll, hello várt megoldási idő után, forduljon a támogatási szolgálathoz.|
-|Sajnáljuk, a CDN-végpontokat negatív hatással lehet a folyamatban lévő problémák egy részét a CDN-szolgáltatók | Térjen vissza ide az állapotfrissítések; Hogyan használja a hello kapcsolatos problémák elhárítása eszköz toolearn tootest a forrás és a CDN-végpont; Ha a probléma továbbra is fennáll, hello várt megoldási idő után, forduljon a támogatási szolgálathoz. |
-|Sajnáljuk, a CDN-végpont konfigurációs módosítások tapasztal terjesztési késedelmeket | Térjen vissza ide az állapotfrissítések; Ha a konfigurációs módosításokat a rendszer nem propagálja teljesen várt hello időben, forduljon a támogatási szolgálathoz.|
-|Sajnáljuk, betöltése a kiegészítő portálon hello problémák léptek | Térjen vissza ide az állapotfrissítések; Ha a probléma továbbra is fennáll, hello várt megoldási idő után, forduljon a támogatási szolgálathoz.|
-Sajnáljuk, a CDN-szolgáltatók némelyike problémák léptek | Térjen vissza ide az állapotfrissítések; Ha a probléma továbbra is fennáll, hello várt megoldási idő után, forduljon a támogatási szolgálathoz. |
+|Sajnáljuk, a CDN-kezelési szolgáltatás jelenleg nem érhető el | Térjen vissza ide az állapotfrissítések; Ha a probléma továbbra is fennáll, miután a megoldás várható időpontjára, forduljon a támogatási szolgálathoz.|
+|Sajnáljuk, a CDN-végpontokat negatív hatással lehet a folyamatban lévő problémák egy részét a CDN-szolgáltatók | Térjen vissza ide az állapotfrissítések; A hibaelhárító eszköz használatával megtudhatja, hogyan tesztelheti a forrás és a CDN-végpont; Ha a probléma továbbra is fennáll, miután a megoldás várható időpontjára, forduljon a támogatási szolgálathoz. |
+|Sajnáljuk, a CDN-végpont konfigurációs módosítások tapasztal terjesztési késedelmeket | Térjen vissza ide az állapotfrissítések; Ha a konfigurációs módosításokat a rendszer nem propagálja teljes mértékben be a várt időn belül, forduljon a támogatási szolgálathoz.|
+|Sajnáljuk, a kiegészítő portálon betöltése problémák léptek | Térjen vissza ide az állapotfrissítések; Ha a probléma továbbra is fennáll, miután a megoldás várható időpontjára, forduljon a támogatási szolgálathoz.|
+Sajnáljuk, a CDN-szolgáltatók némelyike problémák léptek | Térjen vissza ide az állapotfrissítések; Ha a probléma továbbra is fennáll, miután a megoldás várható időpontjára, forduljon a támogatási szolgálathoz. |
 
 ## <a name="next-steps"></a>Következő lépések
 

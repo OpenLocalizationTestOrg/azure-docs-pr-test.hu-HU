@@ -1,6 +1,6 @@
 ---
-title: aaaList valamennyi Azure Import/Export feladat |} MicrosoftDocs
-description: "Megtudhatja, hogyan toolist hello Azure Import/Export szolgáltatás az összes előfizetés feladat."
+title: "Listázza az összes, az Azure importálási/exportálási feladatok |} MicrosoftDocs"
+description: "Megtudhatja, hogyan listázza az összes előfizetés az Azure Import/Export szolgáltatás feladatok."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 0e12bf3dc3f2084a1987ac362cf8d1041059543c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1977bfc0e516088310f45ecdd960287eeed2c2d8
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="enumerating-jobs-in-hello-azure-importexport-service"></a>Hello Azure Import/Export szolgáltatás feladatok számbavétele
-előfizetés, hívás hello feladat összes tooenumerate [lista feladatok](/rest/api/storageimportexport/jobs#Jobs_List) műveletet. `List Jobs`feladatok, valamint a következő attribútumok hello listáját adja vissza:
+# <a name="enumerating-jobs-in-the-azure-importexport-service"></a>Az Azure Import/Export szolgáltatás feladatok számbavétele
+Felsorolni az előfizetés levő összes feladatnak, hívja meg a [lista feladatok](/rest/api/storageimportexport/jobs#Jobs_List) műveletet. `List Jobs`feladatok, valamint a következő attribútumok listáját adja vissza:
 
--   a feladat (importálása vagy exportálása) hello típusa
+-   A feladat (importálása vagy exportálása) típusa
 
--   hello jelenlegi feladatállapotban
+-   A feladat jelenlegi állapota
 
--   hello feladat kapcsolódó tárfiók
+-   A feladat társított storage-fiók
 
 ## <a name="next-steps"></a>Következő lépések
 
-* [Hello Import/Export szolgáltatás REST API használatával](storage-import-export-using-the-rest-api.md)
+* [Az Import/Export szolgáltatás REST API használatával](storage-import-export-using-the-rest-api.md)

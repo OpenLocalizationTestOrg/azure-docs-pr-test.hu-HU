@@ -1,6 +1,6 @@
 ---
-title: "aaaUsing kívánt állapot konfigurációs rendelkező virtuális gép méretezési csoportok |} Microsoft Docs"
-description: "Hello Azure DSC-bővítményt a virtuálisgép-méretezési készlet használata"
+title: "Használatával Célállapotkonfiguráció a virtuálisgép-méretezési csoportok |} Microsoft Docs"
+description: "Az Azure DSC-bővítményt a virtuálisgép-méretezési használatával beállítása"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: zjalexander
@@ -16,17 +16,17 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: na
 ms.date: 04/05/2017
 ms.author: zachal
-ms.openlocfilehash: a35f1ca6700aa4889978032aa512882db50d6573
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b61b0acf3072569ab733a13defb465c921d26187
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="using-virtual-machine-scale-sets-with-hello-azure-dsc-extension"></a>Hello Azure DSC-bővítményt a virtuálisgép-méretezési készlet használata
-[Virtuálisgép-méretezési csoportok](virtual-machine-scale-sets-overview.md) hello használható [Azure kívánt állapot konfigurációs szolgáltatása (DSC)](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) bővítmény kezelő. Virtuálisgép-méretezési csoportok adjon meg egy módon toodeploy nagyszámú virtuális gépek és a válasz tooload rugalmasan méretezhető növelésére és csökkentésére. DSC használt tooconfigure hello virtuális gépek esetén, mert a azok ismét online elérhető, így hello éles szoftvert futtatnak.
+# <a name="using-virtual-machine-scale-sets-with-the-azure-dsc-extension"></a>Az Azure DSC-bővítményt a virtuálisgép-méretezési használatával beállítása
+[Virtuálisgép-méretezési csoportok](virtual-machine-scale-sets-overview.md) együtt a [Azure kívánt állapot konfigurációs szolgáltatása (DSC)](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) bővítmény kezelő. Virtuálisgép-méretezési csoportok nyújtanak olyan telepíthetnek és kezelhetnek olyan nagy számú virtuális gépet, és rugalmasan méretezhető és betölteni válaszul. A DSC ismét online elérhető, a termelési szoftvert futtatnak, mert a virtuális gépek konfigurálására szolgál.
 
-## <a name="differences-between-deploying-toovirtual-machines-and-virtual-machine-scale-sets"></a>TooVirtual gépek és virtuálisgép-méretezési csoportok telepítése közötti különbségek
-a virtuálisgép-méretezési csoport hello alapjául szolgáló sablon struktúra némileg eltér egy virtuális. Pontosabban egy virtuális telepíti a bővítmények hello "virtuális gép" csomópont alatt. Nincs "kiterjesztésekkel" típusú bejegyzés ahol DSC toohello sablon szerepel-e
+## <a name="differences-between-deploying-to-virtual-machines-and-virtual-machine-scale-sets"></a>Központi telepítése virtuális gépek és virtuálisgép-méretezési csoportok közötti különbségek
+Az alapul szolgáló sablon-szerkezet egy virtuálisgép-méretezési csoport egy egy virtuális némileg eltérő. Egy virtuális pontosabban, a "virtuális gép" csomópontban bővítmények telepíti. Nincs "kiterjesztésekkel" típusú bejegyzés ahol DSC hozzáadódik a sablon
 
 ```
 "resources": [
@@ -65,7 +65,7 @@ a virtuálisgép-méretezési csoport hello alapjául szolgáló sablon struktú
       ]
 ```
 
-A virtuális gép méretezési készlet csomópont "Tulajdonságok" szakasza a hello "VirtualMachineProfile", "extensionProfile" attribútum. A DSC hozzáadása az "kiterjesztésekkel"
+A virtuális gép méretezési készlet csomópont "Tulajdonságok" szakasza az a "VirtualMachineProfile", "extensionProfile" attribútum. A DSC hozzáadása az "kiterjesztésekkel"
 
 ```
 "extensionProfile": {
@@ -97,14 +97,14 @@ A virtuális gép méretezési készlet csomópont "Tulajdonságok" szakasza a h
 ```
 
 ## <a name="behavior-for-a-virtual-machine-scale-set"></a>A virtuálisgép-méretezési csoport működése
-a virtuálisgép-méretezési csoport hello viselkedése azonos toohello működése egy virtuális. Amikor egy új virtuális Gépet hoz létre, azt hello DSC-bővítményt automatikusan ki van építve. WMF hello-kiterjesztés által igényelt hello újabb verzióját, hello VM újraindul, mielőtt online állapotba kerüljön. Amikor online, hello DSC konfigurációs .zip tölti le, és építse ki azt a virtuális gép hello. További részletek találhatók [hello Azure DSC-bővítmény áttekintése](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+A virtuálisgép-méretezési csoport viselkedés megegyezik a működése egy virtuális. Amikor egy új virtuális Gépet hoz létre, akkor a DSC-bővítményt automatikusan ki van építve. A WMF újabb verziója szükséges a bővítmény által, ha a virtuális gép újraindul, mielőtt online állapotba kerüljön. Online állapotban, ha a DSC-konfiguráció .zip tölti le, és építse ki azt a virtuális Gépen. További részletek találhatók [az Azure DSC-bővítmény áttekintése](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 ## <a name="next-steps"></a>Következő lépések
-Vizsgálja meg a hello [Azure Resource Manager sablon hello DSC-bővítmény](../virtual-machines/windows/extensions-dsc-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Vizsgálja meg a [Azure Resource Manager sablon a DSC-bővítmény](../virtual-machines/windows/extensions-dsc-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-Megtudhatja, hogyan hello [DSC-bővítményt biztonságosan kezeli a hitelesítő adatok](../virtual-machines/windows/extensions-dsc-credentials.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
+Ismerje meg, hogy a [DSC-bővítményt biztonságosan kezeli a hitelesítő adatok](../virtual-machines/windows/extensions-dsc-credentials.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
 
-Hello Azure DSC-bővítmény kezelő további információkért lásd: [bemutatása toohello Azure célállapot-konfiguráció bővítmény kezelő](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
+Az Azure DSC-bővítmény kezelő további információkért lásd: [bemutatása az Azure célállapot-konfiguráció bővítmény kezelő](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
 
-További információ a PowerShell DSC [látogasson el a hello PowerShell dokumentációs központban](https://msdn.microsoft.com/powershell/dsc/overview). 
+További információ a PowerShell DSC [látogasson el a PowerShell dokumentációs központban](https://msdn.microsoft.com/powershell/dsc/overview). 
 

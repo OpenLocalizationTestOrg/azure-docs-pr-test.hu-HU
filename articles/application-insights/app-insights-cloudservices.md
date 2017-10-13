@@ -1,5 +1,5 @@
 ---
-title: "Azure-szolgáltatásokhoz Insights aaaApplication |} Microsoft Docs"
+title: Application Insights az Azure Cloud Servicesben | Microsoft Docs
 description: "Webes és feldolgozói szerepkörök hatékony figyelése az Application Insightsszal"
 services: application-insights
 documentationcenter: 
@@ -15,14 +15,14 @@ ms.topic: get-started-article
 ms.workload: tbd
 ms.date: 05/05/2017
 ms.author: bwren
-ms.openlocfilehash: 6956ce423eea1e2cf387bd98250bae32d9501ed0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c12b225aa351d0c272243469550791a6840091e0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="application-insights-for-azure-cloud-services"></a>Application Insights az Azure Cloud Servicesben
-Az [Application Insightsszal][start]monitorozható a [Microsoft Azure felhőszolgáltatásbeli alkalmazások](https://azure.microsoft.com/services/cloud-services/) rendelkezésre állása, teljesítménye, hibái és használata az Application Insights SDK-iból származó adatok és a felhőszolgáltatások [Azure Diagnostics](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/azure-diagnostics)-adatainak kombinálása révén. Hello visszajelzést kap hello teljesítmény és az alkalmazást a hello hatékonyságát helyettesítő minden fejlesztési életciklus során hello tervezési hello irányának kapcsolatos megalapozott döntések tehet.
+Az [Application Insightsszal][start]monitorozható a [Microsoft Azure felhőszolgáltatásbeli alkalmazások](https://azure.microsoft.com/services/cloud-services/) rendelkezésre állása, teljesítménye, hibái és használata az Application Insights SDK-iból származó adatok és a felhőszolgáltatások [Azure Diagnostics](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/azure-diagnostics)-adatainak kombinálása révén. A széles körben elérhető módon működő alkalmazások teljesítményével és hatékonyságával kapcsolatos visszajelzések birtokában tájékozott döntéseket hozhat a fejlesztés irányát illetően az egyes fejlesztési fázisokban.
 
 ![Példa](./media/app-insights-cloudservices/sample.png)
 
@@ -34,153 +34,153 @@ A következők szükségesek:
 * A Developer Analytics Tools 7.10-es vagy újabb verziója
 
 ## <a name="quick-start"></a>Első lépések
-a felhőalapú szolgáltatás, az Application insights szolgáltatással, amely a szolgáltatás tooAzure közzétételekor lehetőséget toochoose leggyorsabb és legegyszerűbb módja toomonitor hello.
+A felhőszolgáltatás Application Insightsszal való figyelésének leggyorsabb és legegyszerűbb módja, ha kiválasztja ezt a lehetőséget, amikor közzéteszi a szolgáltatást az Azure-ban.
 
 ![Példa](./media/app-insights-cloudservices/azure-cloud-application-insights.png)
 
-Ez az alkalmazás futásidőben, felkínálva összes hello telemetriai adat toomonitor kéréseket, kivételeket és a webes szerepkör, valamint a teljesítmény függőségek van szüksége a feldolgozói szerepkörök a teljesítményszámlálók beállítás eszközök. Az alkalmazás által generált bármely diagnosztikai nyomkövetési tooApplication Insights küld.
+Ez a beállítás futásidőben utasítja az alkalmazást, és biztosítja az összes szükséges telemetriát, amely a kérések, kivételek és függőségek figyeléséhez szükséges a webes szerepkörében, valamint a feldolgozói szerepkörökből származó teljesítményszámlálók figyeléséhez. A rendszer az alkalmazás által létrehozott diagnosztikai nyomkövetéseket is továbbítja az Application Insightsnak.
 
-Ha csak ennyire van szüksége, már kész is van! A következő lépések [az alkalmazás mérőszámainak megtekintése](app-insights-metrics-explorer.md), [az adatok lekérdezése az Analytics használatával](app-insights-analytics.md), valamint esetleg egy [irányítópult](app-insights-dashboards.md) beállítása. Érdemes tooset mentése [rendelkezésreállás figyelésére szolgáló tesztek](app-insights-monitor-web-app-availability.md) és [adja hozzá a kódot tooyour weblapok](app-insights-javascript.md) toomonitor teljesítmény hello böngészőben.
+Ha csak ennyire van szüksége, már kész is van! A következő lépések [az alkalmazás mérőszámainak megtekintése](app-insights-metrics-explorer.md), [az adatok lekérdezése az Analytics használatával](app-insights-analytics.md), valamint esetleg egy [irányítópult](app-insights-dashboards.md) beállítása. Esetleg érdemes lehet [rendelkezésre állási teszteket](app-insights-monitor-web-app-availability.md) beállítania, és [kódot hozzáadnia a weboldalakhoz](app-insights-javascript.md) a teljesítmény figyeléséhez a böngészőben.
 
 Azonban további lehetőségeket is elérhet:
 
-* Adatok küldése a különböző összetevőkből, és hozzon létre konfigurációk tooseparate erőforrásokat.
+* Különféle összetevőkből küldhet adatokat, és konfigurációkat készíthet az erőforrások szétválasztásához.
 * Egyéni telemetriát adhat hozzá az alkalmazásból.
 
-Ha ezek a lehetőségek érdeklődési tooyou, olvassa el a.
+Ha ezek a lehetőségek érdekesek lehetnek az Ön számára, olvasson tovább.
 
 ## <a name="sample-application-instrumented-with-application-insights"></a>Az Application Insights révén utasított Alkalmazás minta
-Vessen egy pillantást, ez [mintaalkalmazás](https://github.com/Microsoft/ApplicationInsights-Home/tree/master/Samples/AzureEmailService) , amelyben az Application Insights hozzá tooa felhőszolgáltatás rendelkező Azure-ban üzemeltetett két feldolgozói szerepköröket. 
+Tekintse meg ezt a [mintaalkalmazást](https://github.com/Microsoft/ApplicationInsights-Home/tree/master/Samples/AzureEmailService), amelyben az Application Insights egy, az Azure-ban futó felhőszolgáltatáshoz lett hozzáadva két feldolgozói szerepkörrel. 
 
-Mi a következő megtudhatja, hogyan tooadapt a saját felhőalapú szolgáltatás projekt hello a megszokott módon.
+Az alábbiak bemutatják, hogyan alakíthatja át hasonlóképp a saját felhőszolgáltatás-projektjét.
 
 ## <a name="plan-resources-and-resource-groups"></a>Erőforrások és erőforráscsoportok tervezése
-az alkalmazásból hello telemetriai tárolt, elemzése, és megjelenik egy Azure típus Application Insights-erőforrás. 
+Az alkalmazásból származó telemetria tárolása, elemzése és megjelenítése az Application Insights típusú Azure-erőforrásban valósul meg. 
 
-Minden erőforrás tooa erőforráscsoporthoz tartozik. Erőforráscsoportok tooteam tagok hozzáférés biztosításához a költségek kezelésére használt, és toodeploy frissíti egy koordinált tranzakción belül. Például sikerült [írása egy parancsfájl toodeploy](../azure-resource-manager/resource-group-template-deploy.md) Azure Cloud Service és az Application Insights figyelési erőforrások egy műveletben.
+Mindegyik erőforrás egy erőforráscsoportba tartozik. Az erőforráscsoportok segítségével a költségek kezelése, a csapattagok hozzáférési jogosultságainak kiosztása vagy a frissítések telepítése egyetlen koordinált tranzakció keretében hajtható végre. Például [írható olyan szkript, amellyel egyetlen tevékenység keretében helyezhető üzembe](../azure-resource-manager/resource-group-template-deploy.md) egy Azure Cloud Services felhőszolgáltatás és az azt figyelő Application Insights-erőforrások.
 
 ### <a name="resources-for-components"></a>Az összetevők erőforrásai
-hello ajánlott séma toocreate az egyes összetevők az alkalmazás - Ez azt jelenti, hogy minden webes és feldolgozói szerepkör külön erőforrás. Minden összetevőt külön-külön elemezni tudja, de létrehozhat egy [irányítópult](app-insights-dashboards.md) , amely egyesíti hello kulcs diagramok összes hello összetevői, így összehasonlítása, és figyelheti azokat együtt. 
+Az ajánlott séma egy külön erőforrás létrehozása az alkalmazás mindegyik összetevőjéhez – azaz mindegyik webes és feldolgozói szerepkörhöz. Mindegyik összetevő külön elemezhető, de létrehozható egy [irányítópult](app-insights-dashboards.md) is, amellyel a fő diagramok az összes összetevőből egy felületre hozhatóak, így együtt figyelheti és összevetheti azokat. 
 
-Egy másik program a több szerepkört toohello toosend hello telemetriai ugyanarra az erőforrásra, de [dimenzió tulajdonság tooeach telemetriai elem hozzáadása](app-insights-api-filtering-sampling.md#add-properties-itelemetryinitializer) , amely azonosítja a forrás szerepkör. A séma metrika diagramokat, például a kivételek rendszerint megjelenítése hello számát a hello összesítését különböző szerepkörök, de szükség esetén hello szerepkör-azonosító akkor is szegmentálja hello diagram. A keresések szűrni hello is lehet ugyanazt a dimenziót. Ez a megoldás lehetővé teszi egy kicsit könnyebb tooview mindent: hello azonos időben, de is vezethet toosome zavart hello szerepkörök között.
+Egy másik séma szerint a telemetria küldhető több szerepkörből is ugyanabba az erőforrásba, azonban [hozzá kell adni egy dimenzió tulajdonságot mindegyik telemetriaelemhez](app-insights-api-filtering-sampling.md#add-properties-itelemetryinitializer), amely azonosítja annak forrásszerepkörét. E szerint a séma szerint a mérőszám-diagramok, például a kivételeké, normál esetben a különféle szerepkörök összesített mennyiségeit mutatják, azonban a diagram igény szerint szegmentálható a szerepkör-azonosítók alapján. A keresések ugyanezen dimenziók mentén szűrhetőek. Ebben a változatban valamennyivel könnyebb minden egyszerre áttekinteni, azonban a szerepkörök szintjén adódhatnak kevéssé egyértelmű helyzetek.
 
-Böngésző telemetriai általában megtalálható hello ugyanazt az erőforrást a kiszolgálóoldali webes szerepkörben.
+A böngészőtelemetria általában ugyanabban az erőforrásban jelenik meg, mint a kiszolgálóoldali webes szerepköre.
 
-Application Insights-erőforrások hello hello különböző összetevők be egy erőforráscsoport. Így könnyen toomanage együtt. 
+Foglalja a különféle összetevők Application Insights-erőforrásait egyetlen erőforráscsoportba. Így könnyebben kezelhetőek majd együtt. 
 
 ### <a name="separating-development-test-and-production"></a>A fejlesztési, tesztelési és éles környezetek elkülönítése
-Fejlesztői egyéni események a következő szolgáltatás élő hello előző verzió pedig, ha azt szeretné, toosend hello fejlesztési telemetriai tooa külön Application Insights-erőforrást. Rögzített toofind lesz ellenkező esetben a teszt telemetriai közötti összes forgalom hello élő helyről hello.
+Ha már egy következő funkcióhoz fejleszt egyéni eseményeket, miközben a korábbi verzió még éles üzemben működik, érdemes lehet a fejlesztési telemetriát egy külön Application Insights-erőforrásba küldeni. Máskülönben nehéz lesz megtalálni a teszttelemetriát az élő oldal által beküldött hatalmas adatmennyiségben.
 
-tooavoid ebben a helyzetben minden build konfigurációját vagy a "bélyegző" (fejlesztési, tesztelési, éles,...) a rendszer külön erőforrásokat létrehozni. Erőforrásaikat hello minden build konfigurációját egy külön erőforráscsoportban. 
+Az ilyen helyzetek elkerülése érdekében hozzon létre külön erőforrásokat mindegyik buildkonfigurációhoz vagy „bélyeghez” (fejlesztés, teszt, éles ...) a rendszerben. Helyezze az egyes buildkonfigurációk erőforrásait külön erőforráscsoportokba. 
 
-toosend hello telemetriai toohello megfelelő erőforrásokkal, állíthat be hello Application Insights SDK, hogy azt szerzi be egy másik instrumentation kulcs hello build konfigurációjától függően. 
+Annak érdekében, hogy a telemetria a megfelelő erőforrásokba érkezzen, beállíthatja, hogy az Application Insights SDK különböző kialakítási kulcsokat használjon a buildkonfigurációtól függően. 
 
 ## <a name="create-an-application-insights-resource-for-each-role"></a>Application Insights-erőforrás létrehozása mindegyik szerepkörhöz
-Ha úgy döntött, hogy az egyes szerepkörökhöz - egy külön erőforrás toocreate és lehet, hogy egy külön minden build konfigurációját - állítsa be, majd legegyszerűbb toocreate minden a hello Application Insights portál őket. (Ha erőforrások sokkal hoz létre, akkor [hello folyamat automatizálása](app-insights-powershell.md).
+Ha úgy döntött, hogy külön erőforrást hoz létre mindegyik szerepkörhöz – és esetleg egy külön készletet az egyes buildkonfigurációkhoz is –, a legegyszerűbb, ha mindegyiket az Application Insights portálon hozza létre. (Ha sokszor hoz létre erőforrásokat, [automatizálhatja a folyamatot](app-insights-powershell.md).)
 
-1. A hello [Azure-portálon][portal], hozzon létre egy új Application Insights-erőforrást. Az alkalmazás típusánál válassza az ASP.NET alkalmazás lehetőséget. 
+1. Hozzon létre egy új Application Insights-erőforrást az [Azure Portalon][portal]. Az alkalmazás típusánál válassza az ASP.NET alkalmazás lehetőséget. 
 
     ![Kattintson az Új, majd az Application Insights lehetőségre](./media/app-insights-cloudservices/01-new.png)
-2. Fontos észrevenni, hogy mindegyik erőforrást egy kialakítási kulcs azonosítja. Előfordulhat, hogy később szüksége Ha azt szeretné, hogy toomanually konfigurálja vagy ellenőrizze a hello SDK hello konfigurációját.
+2. Fontos észrevenni, hogy mindegyik erőforrást egy kialakítási kulcs azonosítja. Erre később még szükség lehet majd, ha manuálisan szeretné konfigurálni vagy jóváhagyni az SDK konfigurációját.
 
-    ![Kattintson a Tulajdonságok parancsra, válassza ki a hello kulcs, használja a ctrl + C](./media/app-insights-cloudservices/02-props.png) 
+    ![Kattintson a Tulajdonságok elemre, válassza ki a kulcsot, és nyomja le a ctrl+C billentyűkombinációt.](./media/app-insights-cloudservices/02-props.png) 
 
 ## <a name="set-up-azure-diagnostics-for-each-role"></a>Azure Diagnostics beállítása az egyes szerepkörökhöz
-Ez a beállítás toomonitor állítsa be az alkalmazás az Application insights szolgáltatással. Webes szerepkörök esetében ez biztosítja a teljesítményfigyelést, a riasztásokat és a diagnosztikát, valamint a használat elemzését. Más szerepköreivel kapcsolatban megkeresheti és az Azure diagnostics például újraindítása, a teljesítményszámlálók és a hívások tooSystem.Diagnostics.Trace figyelése. 
+Ezzel a beállítással figyelheti az alkalmazást az Application Insightsszal. Webes szerepkörök esetében ez biztosítja a teljesítményfigyelést, a riasztásokat és a diagnosztikát, valamint a használat elemzését. Más szerepkörök esetében keresheti és figyelheti az Azure diagnosztikai eredményeit, például az újraindításokat, a teljesítményszámlálókat és a System.Diagnostics.Trace meghívásait. 
 
-1. A Visual Studio Solution Explorer alatt &lt;YourCloudService&gt;, szerepkörök, nyissa meg az egyes szerepkörökhöz hello tulajdonságait.
-2. A **konfigurációs**, beállíthatja **elküldeni a diagnosztikai adatok tooApplication Insights** , és válassza ki a korábban létrehozott megfelelő Application Insights-erőforrás hello.
+1. A Visual Studio Solution Explorerben (Megoldáskezelő) a &lt;YourCloudService&gt;, Roles (Szerepkörök) területen nyissa meg az egyes szerepkörök tulajdonságait.
+2. A **Configuration** (Konfiguráció) területen válassza a **Send diagnostics data to Application Insights** (Diagnosztikai adatok küldése az Application Insightsba) beállítást, és válassza ki a korábban létrehozott megfelelő Application Insights-erőforrást.
 
-Ha úgy döntött toouse minden build konfigurációját egy külön Application Insights-erőforrást, először válassza a hello konfigurálását.
+Ha úgy döntött, hogy külön Application Insights-erőforrást használ mindegyik buildkonfigurációhoz, előbb válassza ki a konfigurációt.
 
-![Minden Azure szerepkör hello tulajdonságainak konfigurálja az Application Insights](./media/app-insights-cloudservices/configure-azure-diagnostics.png)
+![Az egyes Azure-szerepkörök tulajdonságaiban konfigurálja az Application Insightsot.](./media/app-insights-cloudservices/configure-azure-diagnostics.png)
 
-Ennek hatása hello az Application Insights instrumentation kulcsok beszúrása hello nevű fájlt a `ServiceConfiguration.*.cscfg`. ([Mintakód](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/AzureEmailService/ServiceConfiguration.Cloud.cscfg)).
+Ennek eredményeképp az Application Insights kialakítási kulcsai be lesznek szúrva a(z) `ServiceConfiguration.*.cscfg` nevű fájlokba. ([Mintakód](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/AzureEmailService/ServiceConfiguration.Cloud.cscfg)).
 
-Ha diagnosztikai adatokat küld tooApplication Insights toovary hello szintjét, ehhez [hello szerkesztésével `.cscfg` közvetlenül fájlok](app-insights-azure-diagnostics.md).
+Ha meg szeretné változtatni az Application Insightsba küldött diagnosztikai információk szintjét, ezt [a `.cscfg` fájlok közvetlen szerkesztésével](app-insights-azure-diagnostics.md) teheti meg.
 
-## <a name="sdk"></a>Minden olyan projekthez hello SDK telepítése
-Ezt a beállítást hozzáad hello képességét tooadd egyéni üzleti telemetriai tooany szerepkört, hogyan az alkalmazás használja, és végez szorosabb elemzése.
+## <a name="sdk"></a>Az SDK telepítése az egyes projektekben
+Ezzel a beállítással megnyílik a lehetőség, hogy egyéni üzleti telemetriát vegyen fel bármely szerepkörbe az alkalmazás használatának és teljesítményének szorosabb elemzése céljából.
 
-A Visual Studio hello Application Insights SDK minden felhő alkalmazás projekt konfigurálása
+A Visual Studióban konfigurálja külön az Application Insights SDK-t az egyes felhőalkalmazás-projektekhez.
 
-1. **Webalkalmazás-szerepkörök**: kattintson a jobb gombbal a hello projektet, és válassza a **konfigurálja az Application Insights** vagy **Hozzáadás > Application Insights telemetria**.
+1. **Webes szerepkörök**: Kattintson jobb gombbal a projektre, és válassza a **Configure Application Insights** (Application Insights konfigurálása) vagy a **Add &gt; Application Insights telemetry** (Hozzáadás &gt; Application Insights Telemetria) lehetőséget.
 
 2. **Feldolgozói szerepkörök**: 
- * Kattintson a jobb gombbal a hello projektet, és válassza ki **Nuget-csomagok kezelése**.
+ * Kattintson a jobb gombbal a projektre, és válassza a **Manage Nuget Packages** (NuGet-csomagok kezelése) lehetőséget.
  * Adja hozzá az [Application Insights a Windows-kiszolgálókon](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) modult.
 
     ![Az „Application Insights” kifejezés keresése](./media/app-insights-cloudservices/04-ai-nuget.png)
 
-3. Hello SDK toosend adatok toohello Application Insights-erőforrás konfigurálása.
+3. Állítsa be az SDK konfigurációját, hogy adatokat küldjön az Application Insights-erőforrásba.
 
-    A megfelelő indítási függvényben, hello instrumentation kulcsát állítsa a hello konfigurációs beállítás hello .cscfg fájlban:
+    Egy megfelelő indítási függvényben állítsa be a .cscfg fájl konfigurációs beállításából származó kialakítási kulcsot:
  
     ```C#
    
      TelemetryConfiguration.Active.InstrumentationKey = RoleEnvironment.GetConfigurationSettingValue("APPINSIGHTS_INSTRUMENTATIONKEY");
     ```
    
-    Ezt tegye meg az alkalmazás minden szerepköre esetében. Hello példát látható:
+    Ezt tegye meg az alkalmazás minden szerepköre esetében. Lásd az alábbi példákat:
    
    * [Webes szerepkör](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/MvcWebRole/Global.asax.cs#L27)
    * [Feldolgozói szerepkör](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/WorkerRoleA/WorkerRoleA.cs#L232)
    * [Weblapok esetében](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/MvcWebRole/Views/Shared/_Layout.cshtml#L13) 
-4. Set hello ApplicationInsights.config fájl toobe másolt mindig toohello kimeneti könyvtár. 
+4. Állítsa be, hogy a rendszer az ApplicationInsights.config fájlt mindig a kimeneti könyvtárba másolja. 
    
-    (Hello .config kiterjesztésű fájl, látni fogja, üzenetben kéri az érintett meg tooplace hello instrumentation kulcs van. Azonban a felhőalapú alkalmazások esetén jobb tooset azt hello .cscfg fájlból. Ez biztosítja, hogy hello szerepkör helyesen azonosítani hello portálon.)
+    (A .config fájlban lévő üzenetek azt tanácsolják majd, hogy ide helyezze a kialakítási kulcsot. A felhőalkalmazások esetében azonban jobb azt a .cscfg fájlból megadni. Ezzel biztosítható, hogy a szerepkör megfelelően legyen azonosítva a portálon.)
 
-#### <a name="run-and-publish-hello-app"></a>Futtassa a és hello alkalmazás közzététele
-Futtassa az alkalmazást, és jelentkezzen be az Azure-ba. Megnyitás hello Application Insights-erőforrások hozott létre, és látni fogja, az egyes adatpontok szereplő [keresési](app-insights-diagnostic-search.md), majd összesíti azokat az adatokat [metrika Explorer](app-insights-metrics-explorer.md). 
+#### <a name="run-and-publish-the-app"></a>Az alkalmazás futtatása és közzététele
+Futtassa az alkalmazást, és jelentkezzen be az Azure-ba. Nyissa meg a létrehozott Application Insights-erőforrásokat, és külön adatpontok jelennek meg a [Keresésben](app-insights-diagnostic-search.md), valamint összesített adatok a [Metrikaböngészőben](app-insights-metrics-explorer.md). 
 
-Adja hozzá a további telemetria - alábbi - hello szakaszban talál, és tegye közzé az alkalmazást tooget élő diagnosztikai és használati visszajelzését. 
+Adjon hozzá további telemetriát (lásd az alábbi szakaszokat), majd tegye közzé az alkalmazást, hogy élő diagnosztikai adatokat és használati visszajelzéseket kapjon. 
 
 #### <a name="no-data"></a>Nincs adat?
-* Nyissa meg hello [keresési] [ diagnostic] csempére, toosee események.
-* Hello alkalmazást, a különböző oldalakhoz megnyitása, hogy néhány telemetriai generál használni.
+* Az egyes események megtekintéséhez nyissa meg a [Keresés][diagnostic] csempét.
+* Az alkalmazás segítségével nyisson meg különböző oldalakat, hogy létrejöjjön némi telemetria.
 * Várjon néhány másodpercet, és kattintson a Frissítés lehetőségre.
 * Lásd: [Hibaelhárítás][qna].
 
 ## <a name="view-azure-diagnostic-events"></a>Azure diagnosztikai események megtekintése
-Ha toofind hello [Azure Diagnostics](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/azure-diagnostics) az Application Insightsban információkat:
+Az [Azure Diagnostics](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/azure-diagnostics) információit itt találja az Application Insightsban:
 
 * A teljesítményszámlálók egyéni mérőszámokként jelennek meg. 
 * A Windows eseménynaplók nyomkövetésekként és egyéni eseményekként jelennek meg.
 * Az alkalmazásnaplók, ETW-naplók és egyéb diagnosztikai infrastruktúra-naplók nyomkövetésként jelennek meg.
 
-toosee teljesítményszámlálók és számát is események, nyissa meg a [Metrikaböngésző](app-insights-metrics-explorer.md) és új diagram hozzáadása:
+A teljesítményszámlálók és az eseményszámok megtekintéséhez nyissa meg a [Metrikaböngészőt](app-insights-metrics-explorer.md), és vegyen fel egy új diagramot:
 
 ![Az Azure diagnosztikai adatai](./media/app-insights-cloudservices/23-wad.png)
 
-Használjon [keresési](app-insights-diagnostic-search.md) vagy egy [Analytics lekérdezési](app-insights-analytics-tour.md) toosearch különböző nyomkövetési naplók Azure Diagnostics által küldött hello között. Tegyük fel például, egy szerepkör toocrash és újrahasznosítást okozó nem kezelt kivétel. Ezt az információt akkor jelenik meg a hello alkalmazások csatorna a Windows eseménynaplójában. Használja a keresési toolook hello Windows eseménynaplóban, és teljes Veremkivonat hello lekérése hello kivétel. Amely segít hello a probléma okának hello található.
+A [Keresés](app-insights-diagnostic-search.md) vagy egy [Analytics-lekérdezés](app-insights-analytics-tour.md) használatával kereshet az Azure Diagnostics által küldött különféle nyomkövetési naplókban. Például tételezzük fel, hogy egy nem kezelt kivétellel rendelkezik, amely egy szerepkör összeomlását és újrahasznosítását okozta. Ezek az információk a Windows eseménynaplójában, az Alkalmazás csatornában jelennek meg. A Keresés használatával megtekintheti a megfelelő hibabejegyzést a Windows eseménynaplójában, és lekérheti a kivétel teljes hívásláncát. Ennek segítségével pedig megtalálhatja a probléma alapvető okát.
 
 ![Azure Diagnostics-keresés](./media/app-insights-cloudservices/25-wad.png)
 
 ## <a name="more-telemetry"></a>További telemetria
-hello megjelenítése szakaszokat hogyan tooget az alkalmazás különböző aspektusainak a további telemetriai adatokat.
+Az alábbi szakaszokban bemutatjuk, hogyan gyűjthető további telemetria az alkalmazás különféle rétegeiből.
 
 ## <a name="track-requests-from-worker-roles"></a>Kérések nyomon követése a feldolgozói szerepkörökből
-A webes szerepkörök hello kérelmek modul automatikusan HTTP-kérelmek adatokat gyűjt. Lásd: hello [MVCWebRole minta](https://github.com/Microsoft/ApplicationInsights-Home/tree/master/Samples/AzureEmailService/MvcWebRole) példákat arra, hogyan lehet felülbírálni hello alapértelmezett gyűjtemény viselkedését. 
+A webes szerepkörökben a kérések modulja automatikusan gyűjti a HTTP-kérésekkel kapcsolatos adatokat. Az alapértelmezett gyűjtési viselkedés felülírásával kapcsolatban lásd: [minta MVCWebRole](https://github.com/Microsoft/ApplicationInsights-Home/tree/master/Samples/AzureEmailService/MvcWebRole). 
 
-Hello teljesítmény hívások tooworker szerepkörök rögzítést hello a nyomon követés ugyanúgy, mint a HTTP-kérelmekre. Az Application Insights telemetria kérelemtípus hello munkaegység elnevezett kiszolgálóoldali is időtúllépés miatt megszakadt, és egymástól függetlenül sikeres vagy sikertelen méri. HTTP-kérelmek hello SDK által automatikusan rögzített, amíg a saját kód tootrack kérelmek tooworker szerepkörök is beszúrhat.
+A feldolgozói szerepkörökhöz intézett hívások teljesítményének rögzítése a HTTP-kérésekkel megegyező módon történő nyomkövetéssel hajtható végre. Az Application Insightsban a Kérés telemetriatípus a megnevezett kiszolgálóoldali műveletek egységeit méri, amelyeknek mérhető az idejük, és külön-külön sikerülhetnek vagy meghiúsulhatnak. Az SDK automatikusan rögzíti a HTTP-kéréseket, de saját kód beszúrásával a feldolgozói szerepkörökhöz intézett hívásokat is nyomon követheti.
 
-Lásd: hello két minta feldolgozói szerepkörök felműszerezett tooreport kérelmek: [WorkerRoleA](https://github.com/Microsoft/ApplicationInsights-Home/tree/master/Samples/AzureEmailService/WorkerRoleA) és [WorkerRoleB](https://github.com/Microsoft/ApplicationInsights-Home/tree/master/Samples/AzureEmailService/WorkerRoleB)
+Lásd a kérések jelentésére kialakított két minta feldolgozói szerepkört: [WorkerRoleA](https://github.com/Microsoft/ApplicationInsights-Home/tree/master/Samples/AzureEmailService/WorkerRoleA) és [WorkerRoleB](https://github.com/Microsoft/ApplicationInsights-Home/tree/master/Samples/AzureEmailService/WorkerRoleB)
 
 ## <a name="exceptions"></a>Kivételek
 A nem kezelt kivételek a különféle webalkalmazás-típusokból való gyűjtésével kapcsolatban lásd: [Kivételek figyelése az Application Insightsban](app-insights-asp-net-exceptions.md).
 
-hello minta webalkalmazás szerepkörhöz MVC5-és a Web API 2. hello hello két a nem kezelt kivételek a rendszer rögzíti a kezelők a következő hello:
+A minta webes szerepkör MVC5 és Web API 2 vezérlőkkel rendelkezik. A két vezérlőtől származó nem kezelt kivételeket a rendszer a következő kezelőkkel rögzíti:
 
 * Az MVC5-vezérlőkhöz az [itt](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/MvcWebRole/App_Start/FilterConfig.cs#L12) beállított [AiHandleErrorAttribute](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/MvcWebRole/Telemetry/AiHandleErrorAttribute.cs)
 * A Web API 2-vezérlőkhöz az [itt](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/MvcWebRole/App_Start/WebApiConfig.cs#L25) beállított [AiWebApiExceptionLogger](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/MvcWebRole/Telemetry/AiWebApiExceptionLogger.cs)
 
-A feldolgozói szerepkörök kétféleképpen tootrack kivételek:
+A feldolgozói szerepkörök esetében a kivételek kétféleképp követhetők nyomon:
 
 * TrackException(ex)
-* Ha hozzáadta hello Application Insights nyomkövetési figyelő NuGet-csomagot, **System.Diagnostics.Trace** toolog kivételek. [Mintakód.](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/WorkerRoleA/WorkerRoleA.cs#L107)
+* Ha hozzáadta az Application Insights nyomkövetés-figyelő NuGet-csomagot, használhatja a **System.Diagnostics.Trace** parancsot a kivételek naplózásához. [Mintakód.](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/WorkerRoleA/WorkerRoleA.cs#L107)
 
 ## <a name="performance-counters"></a>Teljesítményszámlálók
-a következő számlálók hello alapértelmezés szerint gyűjtött a program:
+A rendszer alapértelmezés szerint az alábbi számlálókat gyűjti:
 
     * \Process(??APP_WIN32_PROC??)\% A processzor kihasználtsága
     * \Memory\Available Bytes
@@ -200,33 +200,33 @@ Megadhat további egyéni vagy egyéb Windows-teljesítményszámlálókat is az
   ![Teljesítményszámlálók](./media/app-insights-cloudservices/OLfMo2f.png)
 
 ## <a name="correlated-telemetry-for-worker-roles"></a>A feldolgozói szerepkörök korrelált telemetriája
-Az esetén sorával gazdag diagnosztikai élményt, láthatja, milyen sikertelen következtében tooa vagy nagy késleltetésű kérelem. A webes szerepkörök hello SDK automatikusan beállítja a két kapcsolódó telemetriai. A feldolgozói szerepkörök ezzel egy egyéni telemetria inicializáló tooset egy közös Operation.Id context attribútum az összes hello telemetriai tooachieve. Ez lehetővé teszi toosee e hello késést és sikertelen probléma miatt tooa függőségeknek vagy a kód egy pillantással okozott! 
+Ez részletes diagnosztikai információt biztosít, mivel láthatja, mi vezetett egy kérés hibájához vagy késéséhez. A webes szerepkörök esetében az SDK automatikusan beállítja a korrelációt a vonatkozó telemetriával. A feldolgozói szerepkörök esetében az egyéni telemetriainicializáló használatával megadhat egy közös Operation.Id környezeti attribútumot az összes telemetriához ennek érdekében. Így egy pillantásra láthatja, hogy a késési/meghibásodási problémát egy függőség vagy a kód okozza. 
 
 Ezt a következőképpen teheti meg:
 
-* Hello korrelációs azonosító egy CallContext történő beállítása látható [Itt](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/WorkerRoleA/WorkerRoleA.cs#L36). Ebben az esetben használjuk hello Kérelemazonosító hello korrelációs azonosító
-* Adjon hozzá egy egyéni TelemetryInitializer megvalósításban tooset hello Operation.Id toohello correlationId fent. Íme egy példa: [ItemCorrelationTelemetryInitializer](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/WorkerRoleA/Telemetry/ItemCorrelationTelemetryInitializer.cs#L13)
-* Adja hozzá a hello egyéni telemetria inicializálásakor. Ön tehetné hello ApplicationInsights.config fájlban, vagy a kódban látható módon [Itt](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/WorkerRoleA/WorkerRoleA.cs#L233)
+* Állítsa a korrelációs azonosítót egy CallContext környezetre, ahogy [itt](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/WorkerRoleA/WorkerRoleA.cs#L36) látható. Ebben az esetben a kérés azonosítóját használjuk korrelációs azonosítóként.
+* Adja hozzá a TelemetryInitializer egyéni implementációját az Operation.Id a fent megadott korrelációs azonosítóra történő beállításához. Íme egy példa: [ItemCorrelationTelemetryInitializer](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/WorkerRoleA/Telemetry/ItemCorrelationTelemetryInitializer.cs#L13)
+* Adja hozzá az egyéni telemetriainicializálót. Ezt az ApplicationInsights.config fájlban teheti meg, vagy kódszinten az [itt](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/WorkerRoleA/WorkerRoleA.cs#L233) látható módon.
 
-Ennyi az egész! hello portál élmény van már vezetékes toohelp másolatot minden kapcsolódó telemetriai egy pillanat alatt látható:
+Ennyi az egész! A portál felülete már eleve úgy van kialakítva, hogy az összes kapcsolódó telemetria egy pillantással áttekinthető legyen:
 
 ![Korrelált telemetria](./media/app-insights-cloudservices/bHxuUhd.png)
 
 ## <a name="client-telemetry"></a>Ügyfél-telemetria
-[Adja hozzá a JavaScript SDK tooyour weblapok hello] [ client] tooget böngészőalapú telemetriai például nézet oldalszám, lapbetöltési idők, parancsprogram-kivételei és egyéni telemetriai adatokat ír az oldal parancsfájlok toolet.
+[A JavaScript SDK-t a weboldalaihoz adva][client] böngészőalapú telemetriát gyűjthet, például a lapmegtekintések számát, lapbetöltési időket és szkriptkivételeket, valamint egyéni telemetriát írhat a lapok szkriptjeibe.
 
 ## <a name="availability-tests"></a>Rendelkezésre állási tesztek
-[Webalkalmazás-tesztek beállítása] [ availability] toomake meg arról, hogy az alkalmazás élő és rugalmas marad.
+[Beállíthat webes teszteket][availability] annak biztosításához, hogy az alkalmazás mindig elérhető és válaszkész legyen.
 
 ## <a name="display-everything-together"></a>Az összes elem együttes megjelenítése
-a rendszer átfogó képet tooget, a figyelési diagramok együtt egy hello kulcs helyezheti [irányítópult](app-insights-dashboards.md). Például hello kérést sikerült rögzíteni, és hiba száma az egyes szerepkörökhöz. 
+Annak érdekében, hogy átfogó képet kaphasson a rendszerről, a főbb figyelési diagramokat összegyűjtheti egy [irányítópultra](app-insights-dashboards.md). Például hozzáadhatja az egyes szerepkörök kérés- és hibaszámait. 
 
 Ha a rendszer egyéb Azure-szolgáltatásokat (például Stream Analytics) is tartalmaz, ezeknek a figyelési diagramjait is beillesztheti. 
 
-Ha egy ügyfél mobilalkalmazást, néhány kódot toosend egyéni események legfontosabb felhasználói műveletek beszúrása, és hozzon létre egy [Hockeyappra híd](app-insights-hockeyapp-bridge-app.md). Létrehozhat olyan lekérdezéseket, a [Analytics](app-insights-analytics.md) toodisplay hello esemény számát, és toohello irányítópulton rögzítheti őket.
+Ha rendelkezik ügyfél-mobilalkalmazással, a megfelelő kód beszúrásával egyéni eseményeket küldhet a fő felhasználói műveletekre vonatkozóan, és létrehozhat egy [HockeyApp-hidat](app-insights-hockeyapp-bridge-app.md). [Analytics](app-insights-analytics.md)-lekérdezések létrehozásával megjelenítheti az események számát, és rögzítheti őket az irányítópulton.
 
 ## <a name="example"></a>Példa
-[hello példa](https://github.com/Microsoft/ApplicationInsights-Home/tree/master/Samples/AzureEmailService) olyan szolgáltatás, amely rendelkezik a webes szerepkör és a két feldolgozói szerepkörök figyeli.
+[Ez a példa](https://github.com/Microsoft/ApplicationInsights-Home/tree/master/Samples/AzureEmailService) egy olyan szolgáltatást figyel, amely egy webes és két feldolgozói szerepkörrel rendelkezik.
 
 ## <a name="exception-method-not-found-on-running-in-azure-cloud-services"></a>„A metódus nem található” kivétel az Azure Cloud Servicesben futó rendszeren
 A .NET 4.6-os verziójára készítette el az alkalmazást? Az Azure Cloud Services szerepkörei nem támogatják automatikusan a 4.6-os verziót. [Telepítse a 4.6-os verziót mindegyik szerepkörön](../cloud-services/cloud-services-dotnet-install-dotnet.md), mielőtt futtatná az alkalmazást.
@@ -236,7 +236,7 @@ A .NET 4.6-os verziójára készítette el az alkalmazást? Az Azure Cloud Servi
 > [!VIDEO https://channel9.msdn.com/events/Connect/2016/100/player]
 
 ## <a name="next-steps"></a>Következő lépések
-* [Konfigurálja az Azure Diagnostics tooApplication Insights küldése](app-insights-azure-diagnostics.md)
+* [Azure Diagnostics-diagnosztikák Application Insightsba való küldésének konfigurálása](app-insights-azure-diagnostics.md)
 * [Application Insights-erőforrások létrehozásának automatizálása](app-insights-powershell.md)
 * [Az Azure Diagnostics-diagnosztikák automatizálása](app-insights-powershell-azure-diagnostics.md)
 * [Azure Functions](https://github.com/christopheranderson/azure-functions-app-insights-sample)

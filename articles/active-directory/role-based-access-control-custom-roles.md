@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate egyéni szerepkörök az Azure RBAC |} Microsoft Docs"
-description: "Megtudhatja, hogyan toodefine egyéni szerepkörök-based hozzáférés-vezérléssel pontosabb identitáskezeléshez az Azure-előfizetése."
+title: "Hozzon létre egyéni szerepkörök az Azure RBAC |} Microsoft Docs"
+description: "Megtudhatja, hogyan pontosabb identitáskezeléshez átruházásához hozzáférés-vezérléssel egyéni szerepkörök definiálása az Azure-előfizetésben."
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -15,18 +15,18 @@ ms.date: 07/11/2017
 ms.author: andredm
 ms.reviewer: rqureshi
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 60df12632ef6c086d5feeb1809196d7c4ee5e021
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8e72f2c8095d13c4b6df3c6576bd58806a3c0f2f
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-custom-roles-for-azure-role-based-access-control"></a>Hozzon létre egyéni szerepkörök átruházásához hozzáférés-vezérlés
-Hozzon létre egy egyéni biztonsági szerepkört a átruházásához hozzáférés-vezérlés (RBAC) Ha az adott hozzáférési igényeinek hello beépített szerepkörök egyike. Egyéni szerepkörök segítségével hozhatók létre [Azure PowerShell](role-based-access-control-manage-access-powershell.md), [Azure parancssori felület](role-based-access-control-manage-access-azure-cli.md) (CLI), és hello [REST API](role-based-access-control-manage-access-rest.md). Hasonlóan a beépített szerepkörök rendelhet hozzá egyéni szerepkörök toousers, csoportok és alkalmazások előfizetés, erőforráscsoport és erőforrás-hatókörök. Egyéni szerepkörök az Azure AD-bérlő tárolódnak, és előfizetések között megosztható legyen.
+Hozzon létre egy egyéni biztonsági szerepkört a átruházásához hozzáférés-vezérlés (RBAC) Ha az adott hozzáférési igényeinek a beépített szerepkörök egyike. Egyéni szerepkörök segítségével hozhatók létre [Azure PowerShell](role-based-access-control-manage-access-powershell.md), [Azure parancssori felület](role-based-access-control-manage-access-azure-cli.md) (CLI), és a [REST API](role-based-access-control-manage-access-rest.md). Hasonlóan a beépített szerepkörök egyéni szerepkörök hozzárendelése felhasználók, csoportok és alkalmazások előfizetés, erőforráscsoport és erőforrás-hatókörök. Egyéni szerepkörök az Azure AD-bérlő tárolódnak, és előfizetések között megosztható legyen.
 
-Mindegyik bérlő mentése too2000 egyéni szerepkörök hozhat létre. 
+Mindegyik bérlő legfeljebb 2000 egyéni szerepköröket hozhatnak létre. 
 
-hello alábbi példa bemutatja egy egyéni biztonsági szerepkört a figyelés és a virtuális gépek újraindításával:
+A következő példa bemutatja egy egyéni biztonsági szerepkört a figyelés és a virtuális gépek újraindításával:
 
 ```
 {
@@ -57,15 +57,15 @@ hello alábbi példa bemutatja egy egyéni biztonsági szerepkört a figyelés �
 }
 ```
 ## <a name="actions"></a>Műveletek
-Hello **műveletek** egy egyéni biztonsági szerepkört a tulajdonság határozza meg, hogy hello Azure üzemeltetése toowhich hello szerepkör engedélyezi a hozzáférést. Művelet karakterláncok, amelyek azonosítják az Azure erőforrás-szolgáltatók biztonságos műveletek gyűjteménye. Művelet karakterláncok kövesse hello formátuma `Microsoft.<ProviderName>/<ChildResourceType>/<action>`. Helyettesítő karakterek művelet karakterláncokat (\*) hozzáférést hello művelet karakterláncnak megfelelő tooall műveletek. Például:
+A **műveletek** egy egyéni biztonsági szerepkört a tulajdonság határozza meg, amelyhez a szerepkör hozzáférést biztosít az Azure műveletek. Művelet karakterláncok, amelyek azonosítják az Azure erőforrás-szolgáltatók biztonságos műveletek gyűjteménye. Művelet karakterláncok kövesse formátuma `Microsoft.<ProviderName>/<ChildResourceType>/<action>`. Helyettesítő karakterek művelet karakterláncokat (\*) hozzáférést biztosíthat a művelet karakterláncnak megfelelő összes művelethez. Például:
 
-* `*/read`a hozzáférési tooread műveletek az összes Azure-erőforrás-szolgáltató minden erőforrástípus esetén.
-* `Microsoft.Compute/*`a hozzáférési tooall műveletek hello Microsoft.Compute erőforrás-szolgáltató összes erőforrás típusához.
-* `Microsoft.Network/*/read`a hozzáférési tooread műveletek Azure hello Microsoft.Network erőforrás-szolgáltató az összes erőforrástípus.
-* `Microsoft.Compute/virtualMachines/*`a hozzáférési tooall műveletek a virtuális gépek és a gyermek típusú erőforrások.
-* `Microsoft.Web/sites/restart/Action`a hozzáférési toorestart webhelyeket.
+* `*/read`biztosít hozzáférést az olvasási műveletek az összes Azure-erőforrás-szolgáltató minden erőforrástípus esetén.
+* `Microsoft.Compute/*`engedélyezi a hozzáférést a Microsoft.Compute erőforrás-szolgáltató az összes erőforrástípus összes műveletet.
+* `Microsoft.Network/*/read`olvasási műveletek összes erőforrás típusához a Microsoft.Network erőforrás-szolgáltató az Azure biztosít hozzáférést.
+* `Microsoft.Compute/virtualMachines/*`minden műveletet a virtuális gépek és a gyermek típusú erőforrások hozzáférést biztosít.
+* `Microsoft.Web/sites/restart/Action`a hozzáférési webhely újraindítására.
 
-Használjon `Get-AzureRmProviderOperation` (a PowerShell) vagy `azure provider operations show` (az Azure CLI) toolist műveletek az Azure erőforrás-szolgáltatót. A parancsok tooverify, hogy egy művelet karakterlánc érvénytelen, és a tooexpand helyettesítő művelet sztringek is használhatja.
+Használjon `Get-AzureRmProviderOperation` (a PowerShell) vagy `azure provider operations show` (az Azure CLI) az Azure erőforrás-szolgáltatók műveletek. Ezek a parancsok annak ellenőrzéséhez, hogy egy művelet karakterlánc érvényes, és bontsa ki a helyettesítő művelet karakterláncok is használhatja.
 
 ```
 Get-AzureRMProviderOperation Microsoft.Compute/virtualMachines/*/action | FT Operation, OperationName
@@ -84,21 +84,21 @@ azure provider operations show "Microsoft.Network/*"
 ![Az Azure CLI képernyőfelvétel - azure szolgáltató műveletek megjelenítése "Microsoft.Compute/virtualMachines/ \* /művelet" ](./media/role-based-access-control-configure/1-azure-provider-operations-show.png)
 
 ## <a name="notactions"></a>NotActions
-Használjon hello **NotActions** tulajdonságot, ha hello beállítása, hogy kívánja-e tooallow műveletek könnyebben definiált tiltott operatív kizárásával. hello egy egyéni szerepkör által biztosított hozzáférést számított hello kivonásával **NotActions** hello műveletek **műveletek** műveletek.
+Használja a **NotActions** tulajdonság, ha engedélyezni szeretné műveletek készletét könnyebben definiálva tiltott operatív kizárásával. Egyéni szerepkör által biztosított hozzáférést számított kivonja a **NotActions** műveletek a **műveletek** műveletek.
 
 > [!NOTE]
-> Ha egy felhasználó tartozik, amely nem tartalmazza egy műveletet a szerepkör **NotActions**, és hozzá van rendelve egy második szerepkör, amely hozzáférést biztosít műveletet, hello felhasználói toohello engedélyezett tooperform művelet. **NotActions** nincs megtagadási szabály – Ha az adott műveletek kizárt toobe egyszerűen csak egy kényelmes módszert arra toocreate engedélyezett műveletkészlet.
+> Ha egy felhasználó tartozik, amely nem tartalmazza egy műveletet a szerepkör **NotActions**, és hozzá van rendelve egy második szerepkör, amely hozzáférést biztosít a műveletet, hogy a felhasználó számára engedélyezett a művelet elvégzéséhez. **NotActions** nincs megtagadási szabály – egyszerűen csak egy kényelmes módot nyújt az engedélyezett műveletek készlet létrehozása, ha az adott műveletek ki lesznek zárva.
 >
 >
 
 ## <a name="assignablescopes"></a>AssignableScopes
-Hello **AssignableScopes** hello egyéni szerepkör tulajdonság határozza meg a hello hatókörök (előfizetések, erőforráscsoport-sablonok vagy az erőforrások) belül mely hello egyéni szerepkör érhető el a hozzárendeléshez. Elérhetővé teheti hello egyéni szerepkör hozzárendelés csak hello előfizetésekhez vagy erőforráscsoportokhoz olyan igényli azt, és nem zsúfoltságát felhasználói élményt a hello előfizetések vagy erőforráscsoportok hello részeinek.
+A **AssignableScopes** az egyéni szerepkör tulajdonság határozza meg a hatókörök (előfizetések, erőforráscsoport-sablonok vagy az erőforrások) belül, amely az egyéni szerepkör érhető el a hozzárendeléshez. Az egyéni biztonsági szerepkört csak az előfizetések vagy az azt igénylő erőforráscsoportok hozzárendelés elérhetővé teszi, és nem a felhasználói élmény beállítása a előfizetések és az erőforráscsoportok többi megzavarhatják.
 
 Érvényes hozzárendelhető hatókörök például:
 
-* "/ subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e", "/ subscriptions/e91d47c4-76f3-4271-a796-21b4ecfe3624" - elérhetővé hello szerepkör hozzárendelése két előfizetésekhez.
-* "/ subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e" - hello szerepkör elérhetővé teszi a hozzárendeléshez egyetlen előfizetéssel.
-* "/ előfizetések/c276fc76-9cd4-44c9-99a7-4fd71546436e/resourceGroups/hálózati" - teszi hello szerepkör csak a hello hálózati erőforráscsoport kiosztására használható.
+* "/ subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e", "/ subscriptions/e91d47c4-76f3-4271-a796-21b4ecfe3624" - teszi két előfizetések rendelhető hozzá a szerepkört.
+* "/ subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e" - hoz egy-egy előfizetéshez rendelhető hozzá a szerepkört.
+* "/ előfizetések/c276fc76-9cd4-44c9-99a7-4fd71546436e/resourceGroups/hálózati" - elérhetővé teszi a szerepkör hozzárendelése csak az a hálózati erőforrás csoportba.
 
 > [!NOTE]
 > Segítségével kell legalább egy előfizetést, erőforrás vagy az erőforrás-azonosító.
@@ -106,20 +106,20 @@ Hello **AssignableScopes** hello egyéni szerepkör tulajdonság határozza meg 
 >
 
 ## <a name="custom-roles-access-control"></a>Egyéni szerepkörök hozzáférés-vezérlés
-Hello **AssignableScopes** hello egyéni szerepkör tulajdonság is vezérli, akik megtekintése, módosítása és törlése hello szerepkör.
+A **AssignableScopes** tulajdonsága az egyéni biztonsági szerepkört is vezérli, akik megtekintése, módosítása és törlése a szerepkör.
 
 * Aki hozhat létre egy egyéni biztonsági szerepkört?
     Tulajdonosok (és a felhasználói hozzáférés rendszergazdák) előfizetések, erőforráscsoport-sablonok és erőforrások hozhat létre egyéni szerepkörök használatra ezeket.
-    hello hello szerepkör létrehozó felhasználónak kell toobe képes tooperform `Microsoft.Authorization/roleDefinition/write` összes hello művelet **AssignableScopes** hello szerepkör.
+    A szerepkör létrehozása a felhasználó végezhet kell `Microsoft.Authorization/roleDefinition/write` minden műveletet a **AssignableScopes** a szerepkör.
 * Módosíthatja, akik egy egyéni biztonsági szerepkört?
-    Tulajdonosok (és a felhasználói hozzáférés rendszergazdák) előfizetések, erőforráscsoport-sablonok és erőforrások ezeket az egyéni szerepkörök módosíthatja. A felhasználóknak kell toobe képes tooperform hello `Microsoft.Authorization/roleDefinition/write` összes hello művelet **AssignableScopes** egy egyéni szerepkör.
+    Tulajdonosok (és a felhasználói hozzáférés rendszergazdák) előfizetések, erőforráscsoport-sablonok és erőforrások ezeket az egyéni szerepkörök módosíthatja. Felhasználók kell tudni elvégezni a `Microsoft.Authorization/roleDefinition/write` minden műveletet a **AssignableScopes** egy egyéni szerepkör.
 * Kik tekinthetik meg egyéni szerepkörök?
-    Minden beépített szerepkörök az Azure RBAC kiosztására használható szerepkörtől megtekintésének engedélyezése. Felhasználók, akik végezheti hello `Microsoft.Authorization/roleDefinition/read` hatókörre művelet hello RBAC szerepkörtől érhetők el, hogy a hatókör-hozzárendelés tekintheti meg.
+    Minden beépített szerepkörök az Azure RBAC kiosztására használható szerepkörtől megtekintésének engedélyezése. Felhasználók, akik hajthat végre a `Microsoft.Authorization/roleDefinition/read` hatókörre művelet megtekintheti az adott hatókörben kiosztására használható RBAC szerepköröket.
 
 ## <a name="see-also"></a>Lásd még:
-* [Szerepköralapú hozzáférés-vezérlés](role-based-access-control-configure.md): első lépések az RBAC a hello Azure-portálon.
-* Megtudhatja, hogyan toomanage elérni:
+* [Szerepköralapú hozzáférés-vezérlés](role-based-access-control-configure.md): az RBAC első lépései az Azure portálon.
+* Útmutató: a hozzáférés kezelése:
   * [PowerShell](role-based-access-control-manage-access-powershell.md)
   * [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
   * [REST API](role-based-access-control-manage-access-rest.md)
-* [Beépített szerepkörök](role-based-access-built-in-roles.md): részletes információkat szolgáltatva hello szerepköröket, az RBAC szabványos tartalmazza.
+* [Beépített szerepkörök](role-based-access-built-in-roles.md): részletes információkat szolgáltatva a szerepköröket, az RBAC szabványos tartalmazza.

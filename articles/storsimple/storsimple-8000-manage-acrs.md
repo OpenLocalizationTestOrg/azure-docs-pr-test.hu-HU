@@ -1,6 +1,6 @@
 ---
-title: "a StorSimple aaaManage hozzáférés-vezérlési rekordokat |} Microsoft Docs"
-description: "Ismerteti, hogyan toouse hozzáférés-vezérlés rögzíti, mely állomásokat kapcsolódhatnak tooa kötet hello StorSimple eszköz (ACRs) toodetermine."
+title: "Hozzáférés-vezérlési rekordokat a StorSimple kezelése |} Microsoft Docs"
+description: "Hozzáférés-vezérlési rekordokat (ACRs) használja annak meghatározásához, hogy mely gazdagépek csatlakozhat egy kötetet a StorSimple eszköz ismerteti."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,79 +14,79 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/31/2017
 ms.author: alkohli
-ms.openlocfilehash: cf532206e2c0bc49da853663ba34ae993ec2981d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9173e34f889ce1c082b20bb382cb6ca9a03dd797
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-storsimple-manager-service-toomanage-access-control-records"></a>Hello StorSimple Manager szolgáltatás toomanage access control rekordok használata
+# <a name="use-the-storsimple-manager-service-to-manage-access-control-records"></a>A StorSimple Manager szolgáltatással hozzáférés-vezérlési rekordokat kezelése
 
 ## <a name="overview"></a>Áttekintés
-Hozzáférés-vezérlési rekordokat (ACRs) lehetővé teszik toospecify mely állomásokat kapcsolódhatnak tooa kötet hello StorSimple eszközön. ACRs tooa adott kötet van beállítva, és tartalmazhat hello iSCSI minősített nevét (IQN-nevekre vonatkozóan) hello gazdagépek. Ha egy állomás megpróbál tooconnect tooa kötet, hello eszköz ellenőrzi hello ACR társított hello IQN nevét, és ha egyezést, majd hello kapcsolat jön létre a köteten. hozzáférés-vezérlési rekordokat a hello hello **konfigurációs** a StorSimple Device Manager szolgáltatás panelre szakasza az összes hello hozzáférés-vezérlési rekordokat hello állomás IQN-nevekre vonatkozóan megfelelő hello együtt jelennek meg.
+Hozzáférés-vezérlési rekordokat (ACRs) lehetővé teszik annak megadását, hogy mely gazdagépek csatlakozhat a StorSimple eszközön levő kötet. ACRs vannak beállítva, hogy egy adott kötet, és az iSCSI minősített nevét (IQN-nevekre vonatkozóan), a gazdagépek tartalmaz. Állomás megpróbál egy kötet csatlakozni, amikor az eszköz ellenőrzi, hogy a köteten a IQN-nevének társított az ACR, és ha van egyezés, majd a kapcsolat létrejön. A hozzáférés-vezérlés rögzít a **konfigurációs** a StorSimple Device Manager szolgáltatás panelre szakasza access control rekordok a megfelelő IQN-nevekre vonatkozóan a gazdagépek jeleníti meg.
 
-Ez az oktatóanyag azt ismerteti, a következő ACR kapcsolatos általános feladatok hello:
+Ez az oktatóanyag azt ismerteti, hogy a következő általános ACR kapcsolatos feladatok:
 
 * Egy hozzáférés-vezérlési rekordot hozzáadása
 * Egy hozzáférés-vezérlési rekordot szerkesztése
 * Egy hozzáférés-vezérlési rekordot törlése
 
 > [!IMPORTANT]
-> * Az ACR tooa kötet hozzárendelésekor gondoskodunk, hogy hello kötet nem egyidejűleg hozzáfér egynél több nem fürtözött gazdagép, mert ez hello kötet, megsérülhet.
-> * Ha töröl egy ACR a kötetről, ellenőrizze, hogy adott hello megfelelő gazdagép nem fér hozzá hello kötet mert hello törlését eredményezheti egy írható-olvasható megszakítása.
+> * Amikor egy ACR rendel egy olyan kötetre, gondoskodunk, hogy a kötet nem egyidejűleg hozzáfér egynél több nem fürtözött gazdagépen, mert ez a kötet, megsérülhet.
+> * Ha töröl egy ACR a kötetről, győződjön meg arról, hogy a megfelelő gazdagép nem fér hozzá a kötetet, mert a Törlés a írható-olvasható szüneteltetése eredményezheti.
 
-## <a name="get-hello-iqn"></a>Hello IQN-Nevének lekérése
+## <a name="get-the-iqn"></a>IQN-Nevének lekérése
 
-Hajtsa végre a következő lépéseket tooget hello egy Windows Server 2012 rendszert futtató Windows-állomás IQN-Nevének hello.
+A következő lépésekkel egy Windows Server 2012 rendszert futtató Windows-állomás IQN-Nevének lekérése.
 
 [!INCLUDE [storsimple-get-iqn](../../includes/storsimple-get-iqn.md)]
 
 
 ## <a name="add-an-access-control-record"></a>Egy hozzáférés-vezérlési rekordot hozzáadása
-Hello használata **konfigurációs** hello StorSimple Device Manager szolgáltatás panel tooadd ACRs szakaszában. Általában egy ACR fog társítani egy kötetet.
+Használja a **konfigurációs** szakasz ACRs hozzáadása a StorSimple Device Manager szolgáltatás a panelen. Általában egy ACR fog társítani egy kötetet.
 
-Hajtsa végre a következő lépéseket tooadd egy ACR hello.
+A következő lépésekkel adja hozzá az ACR.
 
-#### <a name="tooadd-an-acr"></a>egy ACR tooadd
+#### <a name="to-add-an-acr"></a>Egy ACR hozzáadása
 
-1. Nyissa meg tooyour StorSimple Device Manager szolgáltatást, kattintson duplán a hello szolgáltatás nevét, és ezután belül hello **konfigurációs** kattintson **hozzáférés-vezérlési rekordokat**.
-2. A hello **hozzáférés-vezérlési rekordokat** panelen kattintson a **+ Hozzáadás ACR**.
+1. Nyissa meg a StorSimple eszköz Manager szolgáltatáshoz, kattintson duplán a szolgáltatás nevére, majd belül a **konfigurációs** kattintson **hozzáférés-vezérlési rekordokat**.
+2. Az a **hozzáférés-vezérlési rekordokat** panelen kattintson a **+ Hozzáadás ACR**.
 
     ![Kattintson a Hozzáadás ACR](./media/storsimple-8000-manage-acrs/createacr1.png)
 
-3. A hello **hozzáadása ACR** panelen hello a következő lépéseket:
+3. Az a **hozzáadása ACR** panelen tegye a következőket:
 
     1. Adja meg az ACR nevét.
     
-    2. Adja meg a Windows Server-állomáson alatt hello IQN nevét **iSCSI kezdeményező nevét (IQN)**.
+    2. Adja meg az a Windows Server-állomás IQN nevét **iSCSI kezdeményező nevét (IQN)**.
 
-    3. Kattintson a **Hozzáadás** toocreate hello ACR.
+    3. Kattintson a **Hozzáadás** a ACR létrehozásához.
 
         ![Kattintson a Hozzáadás ACR](./media/storsimple-8000-manage-acrs/createacr2.png)
 
-4.  hello újonnan hozzáadott ACR hello ACRs táblázatos listáját jeleníti meg.
+4.  Az újonnan hozzáadott ACR ACRs táblázatos listáját jeleníti meg.
 
     ![Kattintson a Hozzáadás ACR](./media/storsimple-8000-manage-acrs/createacr5.png)
 
 
 ## <a name="edit-an-access-control-record"></a>Egy hozzáférés-vezérlési rekordot szerkesztése
-Hello használata **konfigurációs** hello StorSimple Device Manager szolgáltatás panel tooedit ACRs szakaszában.
+Használja a **konfigurációs** szakasz ACRs szerkesztése a StorSimple Device Manager szolgáltatás a panelen.
 
 > [!NOTE]
-> Javasoljuk, hogy csak a jelenleg nem használható ACRs módosítása. tooedit egy ACR társított olyan kötet, amely jelenleg használatban van, először érdemes hello kötet offline állapotba.
+> Javasoljuk, hogy csak a jelenleg nem használható ACRs módosítása. Egy olyan kötet, amely jelenleg használatban van társított ACR szerkesztéséhez először érdemes a kötet offline állapotba.
 
-Hajtsa végre a következő lépéseket tooedit egy ACR hello.
+A következő lépésekkel egy ACR szerkesztése.
 
-#### <a name="tooedit-an-access-control-record"></a>egy hozzáférés-vezérlési rekordot tooedit
-1.  Nyissa meg tooyour StorSimple Device Manager szolgáltatást, kattintson duplán a hello szolgáltatás nevét, és ezután belül hello **konfigurációs** kattintson **hozzáférés-vezérlési rekordokat**.
+#### <a name="to-edit-an-access-control-record"></a>Egy hozzáférés-vezérlési rekordot szerkesztése
+1.  Nyissa meg a StorSimple eszköz Manager szolgáltatáshoz, kattintson duplán a szolgáltatás nevére, majd belül a **konfigurációs** kattintson **hozzáférés-vezérlési rekordokat**.
 
-    ![Nyissa meg tooaccess vezérlésére rekordok](./media/storsimple-8000-manage-acrs/createacr1.png)
+    ![Ugrás a hozzáférés-vezérlési rekordokat](./media/storsimple-8000-manage-acrs/createacr1.png)
 
-2. Kattintson a hello táblázatos felsorolása hello hozzáférés-vezérlési rekordokat, és válassza ki, hogy kívánja-e toomodify ACR hello.
+2. Kattintson a hozzáférés-vezérlési rekordokat táblázatos listája, és válassza ki a módosítani kívánt ACR.
 
     ![Hozzáférés-vezérlési rekordokat szerkesztése](./media/storsimple-8000-manage-acrs/editacr1.png)
 
-3. A hello **Szerkesztés hozzáférés-vezérlési rekordot** panelen adjon meg egy másik IQN-Nevének megfelelő tooanother állomás.
+3. Az a **Szerkesztés hozzáférés-vezérlési rekordot** panelen adjon meg egy másik IQN-Nevének megfelelő egy másik gazdagépre.
 
     ![Hozzáférés-vezérlési rekordokat szerkesztése](./media/storsimple-8000-manage-acrs/editacr2.png)
 
@@ -94,39 +94,39 @@ Hajtsa végre a következő lépéseket tooedit egy ACR hello.
 
     ![Hozzáférés-vezérlési rekordokat szerkesztése](./media/storsimple-8000-manage-acrs/editacr3.png)
 
-5. Értesítést kap hello ACR frissül. hello táblázatos felsorolása tooreflect hello változás is frissíti.
+5. Értesítést kap a ACR frissül. A táblázatos listázása is frissíti a változásnak.
 
    
 ## <a name="delete-an-access-control-record"></a>Egy hozzáférés-vezérlési rekordot törlése
-Hello használata **konfigurációs** hello StorSimple Device Manager szolgáltatás panel toodelete ACRs szakaszában.
+Használja a **konfigurációs** szakasz ACRs törli a StorSimple Device Manager szolgáltatás a panelen.
 
 > [!NOTE]
-> Csak azokat a ACRs, amelyek jelenleg nem törölhetők. toodelete egy ACR társított olyan kötet, amely jelenleg használatban van, először érdemes hello kötet offline állapotba.
+> Csak azokat a ACRs, amelyek jelenleg nem törölhetők. Egy olyan kötet, amely jelenleg használatban van társított ACR törléséhez először érdemes a kötet offline állapotba.
 
-Hajtsa végre a következő lépéseket toodelete egy hozzáférés-vezérlési rekordot hello.
+A következő lépésekkel egy hozzáférés-vezérlési rekordot törlése.
 
-#### <a name="toodelete-an-access-control-record"></a>egy hozzáférés-vezérlési rekordot toodelete
-1.  Nyissa meg tooyour StorSimple Device Manager szolgáltatást, kattintson duplán a hello szolgáltatás nevét, és ezután belül hello **konfigurációs** kattintson **hozzáférés-vezérlési rekordokat**.
+#### <a name="to-delete-an-access-control-record"></a>Egy hozzáférés-vezérlési rekordot törlése
+1.  Nyissa meg a StorSimple eszköz Manager szolgáltatáshoz, kattintson duplán a szolgáltatás nevére, majd belül a **konfigurációs** kattintson **hozzáférés-vezérlési rekordokat**.
 
-    ![Nyissa meg tooaccess vezérlésére rekordok](./media/storsimple-8000-manage-acrs/createacr1.png)
+    ![Ugrás a hozzáférés-vezérlési rekordokat](./media/storsimple-8000-manage-acrs/createacr1.png)
 
-2. Kattintson a hello táblázatos felsorolása hello hozzáférés-vezérlési rekordokat, és válassza ki, hogy kívánja-e toodelete ACR hello.
+2. Kattintson a hozzáférés-vezérlési rekordokat táblázatos listája, és válassza ki a törölni kívánt ACR.
 
-    ![Nyissa meg tooaccess vezérlésére rekordok](./media/storsimple-8000-manage-acrs/deleteacr1.png)
+    ![Ugrás a hozzáférés-vezérlési rekordokat](./media/storsimple-8000-manage-acrs/deleteacr1.png)
 
-3. Kattintson a jobb gombbal a tooinvoke hello helyi menüt, és válassza ki **törlése**.
+3. Kattintson a jobb gombbal a helyi menü el, és válassza ki a **törlése**.
 
-    ![Nyissa meg tooaccess vezérlésére rekordok](./media/storsimple-8000-manage-acrs/deleteacr2.png)
+    ![Ugrás a hozzáférés-vezérlési rekordokat](./media/storsimple-8000-manage-acrs/deleteacr2.png)
 
-4. Megerősítést kér, amikor hello tekintse át, és kattintson a **törlése**.
+4. Amikor felszólítja a megerősítésre, tekintse át az adatokat, és kattintson a **törlése**.
 
-    ![Nyissa meg tooaccess vezérlésére rekordok](./media/storsimple-8000-manage-acrs/deleteacr3.png)
+    ![Ugrás a hozzáférés-vezérlési rekordokat](./media/storsimple-8000-manage-acrs/deleteacr3.png)
 
-5. Hello törlés befejezéséről értesítést kap. hello táblázatos felsorolása frissített tooreflect hello törlésre.
+5. Értesítést kap a törlés befejeződött. A táblázatos felsorolása a törlés frissül.
 
-    ![Nyissa meg tooaccess vezérlésére rekordok](./media/storsimple-8000-manage-acrs/deleteacr5.png)
+    ![Ugrás a hozzáférés-vezérlési rekordokat](./media/storsimple-8000-manage-acrs/deleteacr5.png)
 
 ## <a name="next-steps"></a>Következő lépések
 * További információ [felügyelete a StorSimple-köteteket](storsimple-8000-manage-volumes-u2.md).
-* További információ [használatával hello StorSimple Manager szolgáltatás tooadminister a StorSimple eszköz](storsimple-8000-manager-service-administration.md).
+* További információ [a StorSimple Manager szolgáltatás használata a StorSimple eszköz felügyeletéhez](storsimple-8000-manager-service-administration.md).
 

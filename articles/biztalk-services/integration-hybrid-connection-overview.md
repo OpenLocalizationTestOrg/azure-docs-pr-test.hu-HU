@@ -1,5 +1,5 @@
 ---
-title: "aaaHybrid kapcsolatok áttekintése |} Microsoft Docs"
+title: "A hibrid kapcsolatok áttekintése | Microsoft Docs"
 description: "Ez a cikk a hibrid kapcsolatokat, a biztonságot, a TCP-portokat és a támogatott konfigurációkat ismerteti. MABS, WABS."
 services: biztalk-services
 documentationcenter: 
@@ -14,85 +14,83 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 10/18/2016
 ms.author: ccompy
-ms.openlocfilehash: f092c6019aae761e1e73f13d1af8446a896515c2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 992c438ab2dac8dc20ba284bd095afbcd801a62f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="hybrid-connections-overview"></a>Hibrid kapcsolatok áttekintése
 
 > [!IMPORTANT]
-> A BizTalk Hybrid Connections ki van vezetve, helyét az App Service Hybrid Connections vette át. További információt, beleértve a hogyan toomanage meglévő BizTalk a hibrid kapcsolat: [Azure App Service hibrid kapcsolatok](../app-service/app-service-hybrid-connections.md).
+> A BizTalk Hybrid Connections ki van vezetve, helyét az App Service Hybrid Connections vette át. További tájékoztatást egyebek között a meglévő BizTalk Hybrid Connections-kapcsolatok kezeléséről az [Azure App Service Hybrid Connections](../app-service/app-service-hybrid-connections.md) című cikkben talál.
 
-Bevezetés tooHybrid kapcsolatokat, az hello támogatott konfigurációkat, illetve listák hello szükséges TCP-portok.
+A hibrid kapcsolatok bemutatása a támogatott konfigurációkat és a szükséges TCP-portokat sorolja fel.
 
 ## <a name="what-is-a-hybrid-connection"></a>Mi a hibrid kapcsolat
-A hibrid kapcsolatok az Azure BizTalk Services egyik funkciója. Hibrid kapcsolatok adjon meg egy egyszerű és kényelmesen tooconnect hello Web Apps szolgáltatás az Azure App Service (korábbi nevén webhelyek) és hello Mobile Apps szolgáltatást az Azure App Service (korábban a Mobile Services) tooon helyszíni erőforrások a tűzfal mögött található.
+A hibrid kapcsolatok az Azure BizTalk Services egyik funkciója. A hibrid kapcsolatokkal könnyen és kényelmesen csatlakozhatja az Azure App Service Web Apps (korábban Websites) szolgáltatását és az Azure App Service Mobile Apps (korábban Mobile Services) szolgáltatását a tűzfal mögött található helyszíni erőforrásokhoz.
 
 ![Hibrid kapcsolatok][HCImage]
 
 A hibrid kapcsolatok előnyei például a következők:
 
 * A Web Apps és a Mobile Apps biztonságosan érheti el a meglévő helyszíni adatokat és szolgáltatásokat.
-* Webalkalmazások vagy a Mobile Apps megoszthatja a hibrid kapcsolat tooaccess egy helyszíni erőforrás.
-* Minimális TCP-portok szükséges tooaccess vannak a hálózaton.
-* Hibrid kapcsolatok használó alkalmazások csak hello adott helyszíni erőforrás közzétett hello hibrid kapcsolat keresztül férnek hozzá.
-* A statikus TCP-port, például az SQL Server, a MySQL, a HTTP webes API-k és a legtöbb egyéni webszolgáltatásokat használó tooany helyszíni erőforrás is elérheti.
+* Több Web Apps- vagy Mobile Apps-alkalmazás osztozhat egy hibrid kapcsolaton egy helyszíni erőforrás eléréséhez.
+* Minimális számú TCP-portra van szükség a hálózat eléréséhez.
+* A hibrid kapcsolatokat használó alkalmazások csak a hibrid kapcsolaton keresztül közzétett adott helyszíni erőforrást érik el.
+* Bármely, statikus TCP-portot használó helyszíni erőforráshoz, például SQL Serverhez, MySQL-hez, HTTP Web API-khoz, mobilszolgáltatásokhoz és a legtöbb egyéni webszolgáltatáshoz csatlakozhat.
   
   > [!NOTE]
   > A dinamikus portokat használó TCP-alapú szolgáltatások (például az FTP passzív mód vagy a kiterjesztett paszív mód) jelenleg nem támogatottak. Az LDAP sem támogatott. Az LDAP statikus TCP-portot használ, de UDP-t is használhat. Ennek következtében nem támogatott.
   > 
   > 
 * A Web Apps (.NET, PHP, Java, Python, Node.js) és a Mobile Apps (Node.js, .NET) által támogatott összes keretrendszerrel használható.
-* Webalkalmazások és Mobile Apps érhetik el a helyszíni erőforrások hello pontosan azonos módon, mintha a helyi hálózaton található hello Web vagy mobilalkalmazás. Például hello ugyanabban a kapcsolati karakterláncban használt helyszíni is használható az Azure-on.
+* A Web Apps és a Mobile Apps pontosan ugyanúgy éri el a helyszíni erőforrásokat, mintha a web- vagy mobilalkalmazás a helyi hálózaton lenne. A helyszínen használt kapcsolati karakterlánc például az Azure-ban is használható.
 
-Hibrid kapcsolatok is adja meg a vállalati rendszergazdák és a hibrid alkalmazások, beleértve az elért hello vállalati erőforrás láthatósága:
+A hibrid kapcsolatokkal a vállalati rendszergazdáknak vezérelhetik és elemezhetik is a hibrid alkalmazások által elért vállalati erőforrásokat, beleértve a következőket:
 
-* Using csoportházirend-beállítások, a rendszergazdák hibrid kapcsolatok engedélyezése hello hálózaton és hibrid alkalmazások által elérhető erőforrásokat is kijelölhet.
-* Esemény és naplózási naplók hello a vállalati hálózaton adja meg a hibrid kapcsolatok által elért hello erőforrás láthatósága.
+* A rendszergazdák csoportházirend-beállításokkal engedélyezhetik a hibrid kapcsolatokat a hálózaton, és a hibrid alkalmazások által elérhető erőforrásokat jelölhetnek ki.
+* A vállalati hálózaton az esemény- és vizsgálati naplók nyújtanak betekintést a hibrid kapcsolatok által elért erőforrásokba.
 
 ## <a name="example-scenarios"></a>Példaforgatókönyvek
-Hibrid kapcsolatok támogatja a következő keretrendszer-alkalmazás kombinációkat hello:
+A hibrid kapcsolatok a keretrendszerek és alkalmazások következő kombinációit támogatják:
 
-* .NET framework hozzáférés tooSQL kiszolgáló
-* .NET framework elérési tooHTTP/HTTPS szolgáltatások WebClient
-* A PHP hozzáférés tooSQL kiszolgáló, MySQL
-* Java hozzáférés tooSQL Server, a MySQL és Oracle
-* A Java elérési tooHTTP/HTTPS-szolgáltatások
+* .NET-keretrendszer hozzáférése az SQL Serverhez
+* .NET-keretrendszer hozzáférése HTTP/HTTPS-szolgáltatásokhoz WebClienttel
+* PHP hozzáférése az SQL Serverhez, MySQL-hez
+* Java hozzáférése az SQL Serverhez, MySQL-hez és Oracle-höz
+* Java hozzáférése HTTP/HTTPS-szolgáltatásokhoz
 
-Hibrid kapcsolatok tooaccess használatával a helyszíni SQL Server, vegye figyelembe a következő hello:
+Amikor hibrid kapcsolatokkal éri el a helyszíni SQL Servert, vegye figyelembe a következőket:
 
-* Az SQL Express nevű példány konfigurált toouse statikus portokat kell lennie. Alapértelmezés szerint az SQL Express elnevezett példányai dinamikus portokat használnak.
+* Az SQL Express elnevezett példányait statikus portok használatára kell konfigurálni. Alapértelmezés szerint az SQL Express elnevezett példányai dinamikus portokat használnak.
 * Az SQL Express alapértelmezett példányai statikus portot használnak, de engedélyezni kell a TCP protokollt. Alapértelmezés szerint a TCP nem engedélyezett.
-* Fürtszolgáltatás vagy a rendelkezésre állási csoportok használatakor hello `MultiSubnetFailover=true` mód jelenleg nem támogatott.
-* Hello `ApplicationIntent=ReadOnly` jelenleg nem támogatott.
-* SQL-hitelesítés kérhető hello Azure-alkalmazást és hello a helyszíni SQL server által támogatott hello végpontok közötti hitelesítési módszerként.
+* Fürtszolgáltatási vagy rendelkezésre állási csoportok használatakor a `MultiSubnetFailover=true` mód jelenleg nem támogatott.
+* Az `ApplicationIntent=ReadOnly` jelenleg nem támogatott.
+* SQL-hitelesítésre lehet szükség az Azure-alkalmazás és a helyszíni SQL-kiszolgáló által támogatott végpontok közötti hitelesítési módszerként.
 
 ## <a name="security-and-ports"></a>Biztonság és portok
-Hibrid kapcsolatok közös hozzáférésű Jogosultságkód (SAS) hitelesítési toosecure hello kapcsolatok használata hello Azure származó alkalmazások és hello helyszíni Hybrid Connection Manager toohello a hibrid kapcsolat. Külön kapcsolaton kulcsok hello alkalmazást hoz létre, hello helyszíni Hybrid Connection Manager. Ezek a kapcsolati kulcsok egymástól függetlenül frissíthetők és visszavonhatók.
+A hibrid kapcsolatok közös hozzáférésű jogosultságkódon (SAS) alapuló hitelesítést használnak az Azure-alkalmazások és a helyszíni hibridkapcsolat-kezelő és a hibrid kapcsolatok közötti kapcsolatok védelméhez. A rendszer külön kapcsolati kulcsokat hoz létre az alkalmazás és a helyszíni hibridkapcsolat-kezelő számára. Ezek a kapcsolati kulcsok egymástól függetlenül frissíthetők és visszavonhatók.
 
-Hibrid kapcsolatok nyújtanak hello kulcsok toohello alkalmazások zökkenőmentes és biztonságos terjesztését és hello helyszíni Hybrid Connection Manager.
+A hibrid kapcsolatok a kulcsok zökkenőmentes és biztonságos elosztását biztosítják az alkalmazások és a helyszíni hibridkapcsolat-kezelő számára.
 
 Lásd: [Create and Manage Hybrid Connections](integration-hybrid-connection-create-manage.md) (Hibrid kapcsolatok létrehozása és felügyelete).
 
-*Alkalmazás engedélyezési elkülönül a hibrid kapcsolat hello*. Bármilyen megfelelő hitelesítési módszer használható. hello engedélyezési módszer hello végpont engedélyezési módszer hello Azure felhőalapú és helyszíni összetevők hello támogatott függ. Az Azure-alkalmazás például egy helyszíni SQL Servert ér el. Ebben az esetben SQL engedélyezési hello hitelesítési módszer, amely támogatott-végpont lehet.
+*Az alkalmazások hitelesítése a hibrid kapcsolatoktól elkülönítve történik*. Bármilyen megfelelő hitelesítési módszer használható. A hitelesítési módszer az Azure-felhőben és a helyszíni összetevőkben támogatott végpontok közötti hitelesítési módszerektől függ. Az Azure-alkalmazás például egy helyszíni SQL Servert ér el. Ebben a forgatókönyvben az SQL-hitelesítés lehet a végpontok között támogatott hitelesítési módszer.
 
 #### <a name="tcp-ports"></a>TCP-portok
-A hibrid kapcsolatokhoz csak kimenő TCP- vagy HTTP-kapcsolatra van szükség a magánhálózaton. Nem kell tooopen bármely tűzfalportok, vagy minden bejövő kapcsolat a hálózati szegélyhálózati konfigurációs tooallow váltson át a hálózaton.
+A hibrid kapcsolatokhoz csak kimenő TCP- vagy HTTP-kapcsolatra van szükség a magánhálózaton. Nem kell tűzfalportokat nyitnia, és nem kell módosítania a hálózatperem konfigurációját ahhoz, hogy bemenő kapcsolatot engedélyezzen a hálózat felé.
 
-a következő TCP-portok hello hibrid kapcsolatok használják:
+A hibrid kapcsolatok a következő TCP-portokat használják:
 
 | Port | Miért szükséges |
 | --- | --- |
-| 9350 - 9354 |Ezek a portok adatátvitelre szolgálnak. hello Service Bus relay manager vizsgálat port 9350 toodetermine, ha TCP-kapcsolat érhető el. Ha elérhető, akkor feltételezi, hogy a 9352-es port is elérhető. Az adatforgalom a 9352-es porton halad át. <br/><br/>Kimenő kapcsolatok engedélyezése a toothese portok. |
-| 5671 |Amikor 9352 portot használja az adatforgalmat, port: 5671 hello vezérlőcsatorna lesz. <br/><br/>Kimenő kapcsolatok engedélyezése a toothis port. |
-| 80, 443 |Ezeket a portokat az egyes adatok kérelmek tooAzure használnak. Is, ha a portok 9352 és 5671 nem használható, *majd* 80-as és 443-as portjait hello tartalék adatátvitel és hello vezérlőcsatorna használt portokat.<br/><br/>Kimenő kapcsolatok engedélyezése a toothese portok. <br/><br/>**Megjegyzés:** nem ajánlott toouse ezek helyett hello tartalék portok hello más TCP-portok. az adatok csatornák hello HTTP/WebSocket hello protokoll helyett natív TCP lesz. Ez kisebb teljesítményt eredményezhet. |
+| 9350 - 9354 |Ezek a portok adatátvitelre szolgálnak. A Service Bus Relay kezelője teszteli a 9350-es portot a TCP-kapcsolat rendelkezésre állásának meghatározásához. Ha elérhető, akkor feltételezi, hogy a 9352-es port is elérhető. Az adatforgalom a 9352-es porton halad át. <br/><br/>Engedélyezze a kimenő kapcsolatokat ezeken a portokon. |
+| 5671 |Amikor a 9352-es portot használja az adatforgalomhoz, az 5671-es port szolgál vezérlőcsatornaként. <br/><br/>Engedélyezze a kimenő kapcsolatokat ezen a porton. |
+| 80, 443 |Ezek a portok szolgálnak az Azure felé irányuló egyes adatkérések kezdeményezésére. Ezenkívül, ha a 9352-es és az 5671-es port nem használható, *akkor* a 80-as és a 443-as port az adatátvitelhez és a vezérlőcsatornához használt tartalékport.<br/><br/>Engedélyezze a kimenő kapcsolatokat ezeken a portokon. <br/><br/>**Megjegyezés**: nem ajánlott ezeket tartalékportokként használni más TCP-portok helyett. Adatcsatornák esetén a natív TCP helyett a HTTP/WebSocket protokoll használható. Ez kisebb teljesítményt eredményezhet. |
 
 ## <a name="next-steps"></a>Következő lépések
 [Create and Manage Hybrid Connections (Hibrid kapcsolatok létrehozása és felügyelete)](integration-hybrid-connection-create-manage.md)<br/>
-[Csatlakozás Azure Web Apps tooan helyszíni erőforrás](../app-service-web/web-sites-hybrid-connection-get-started.md)<br/>
-[Csatlakozás tooon helyszíni SQL Server az Azure-webalkalmazás](../app-service-web/web-sites-hybrid-connection-connect-on-premises-sql-server.md)<br/>
 
 ## <a name="see-also"></a>Lásd még:
 [REST API a BizTalk Services felügyeletéhez a Microsoft Azure-ban](http://msdn.microsoft.com/library/azure/dn232347.aspx)
@@ -101,6 +99,3 @@ a következő TCP-portok hello hibrid kapcsolatok használják:
 [BizTalk Services: Irányítópult, Figyelés és Méret lapok](biztalk-dashboard-monitor-scale-tabs.md)<br/>
 
 [HCImage]: ./media/integration-hybrid-connection-overview/WABS_HybridConnectionImage.png
-[HybridConnectionTab]: ./media/integration-hybrid-connection-overview/WABS_HybridConnectionTab.png
-[HCOnPremSetup]: ./media/integration-hybrid-connection-overview/WABS_HybridConnectionOnPremSetup.png
-[HCManageConnection]: ./media/integration-hybrid-connection-overview/WABS_HybridConnectionManageConn.png

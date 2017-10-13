@@ -1,6 +1,6 @@
 ---
 title: "Az Azure Active Directory tartományi szolgáltatások: Felügyeleti útmutató |} Microsoft Docs"
-description: "Csatlakozás a Windows virtuális gép tooa felügyelt tartományhoz Azure PowerShell és a hello klasszikus telepítési modell használatával."
+description: "A Windows rendszerű virtuális gép csatlakoztatása felügyelt tartományhoz Azure PowerShell és a klasszikus telepítési modell használatával."
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
-ms.openlocfilehash: 21bc5930d84c5368a120f9d81f09320e2a0168fb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1bb1546fb616131a1e1868a0d0610c4cad5d73e2
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="join-a-windows-server-virtual-machine-tooa-managed-domain-using-powershell"></a>Csatlakozás a Windows Server virtuális gép tooa felügyelt tartományhoz PowerShell használatával
+# <a name="join-a-windows-server-virtual-machine-to-a-managed-domain-using-powershell"></a>A Windows Server virtuális gép csatlakoztatása felügyelt tartományhoz PowerShell használatával
 > [!div class="op_single_selector"]
 > * [Klasszikus Azure portál – Windows](active-directory-ds-admin-guide-join-windows-vm.md)
 > * [PowerShell - Windows](active-directory-ds-admin-guide-join-windows-vm-classic-powershell.md)
@@ -30,100 +30,100 @@ ms.lasthandoff: 10/06/2017
 <br>
 
 > [!IMPORTANT]
-> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md). Ez a cikk hello klasszikus telepítési modell használatát bemutatja. Azure AD tartományi szolgáltatások jelenleg nem támogatja a hello Resource Manager modellt.
+> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md). Ez a cikk a klasszikus üzembehelyezési modellt ismerteti. Azure AD tartományi szolgáltatások jelenleg nem támogatja a Resource Manager modellt.
 >
 >
 
-Ezen lépések bemutatják, hogyan toocustomize Azure PowerShell készlete parancsok, amelyek létrehozása, és előre konfigurálása a Windows-alapú Azure virtuális gép egy építőelem módszer használatával. Az alábbi lépések segítségével egy Windows-alapú Azure virtuális gép létrehozása és tooan Azure AD tartományi szolgáltatások által kezelt tartomány csatlakozzon hozzá.
+Ezeket a lépéseket mutatja be Azure PowerShell-parancsokat, amelyek létrehozása, és előre konfigurálása a Windows-alapú Azure virtuális gép egy építőelem módszer segítségével testre szabhatja. Az alábbi lépések segítségével a Windows-alapú Azure virtuális gép létrehozása, és csatlakoztassa azt az Azure AD tartományi szolgáltatások által felügyelt tartományokhoz.
 
-Ezeket a lépéseket hajtsa végre az Azure PowerShell-parancs készletek létrehozásához a fill-a-a-üres cellákat megközelítést. Ezt a módszert akkor lehet hasznos, ha új tooPowerShell vagy kívánt tooknow milyen értékeket toospecify sikeres konfigurációhoz. Speciális PowerShell felhasználók hello parancsok igénybe, és a hello változók (hello sorok kezdve a "$") a saját értékeit helyettesítse.
+Ezeket a lépéseket hajtsa végre az Azure PowerShell-parancs készletek létrehozásához a fill-a-a-üres cellákat megközelítést. Ezt a módszert akkor lehet hasznos, ha még nem ismeri a PowerShell vagy meg szeretné ismerni, hogy milyen értékeket adhatja meg a sikeres konfigurációhoz. Speciális PowerShell felhasználók igénybe vehet a parancsokat és helyettesítse a saját a változók értékeit (a "$" kezdődő sorok).
 
-Ha még nem tette meg, használja a hello utasításait [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview) tooinstall Azure PowerShell, a helyi számítógépen. Ezután nyissa meg a Windows PowerShell-parancssort.
+Ha még nem tette meg, kövesse az utasításokat, a [telepítése és konfigurálása az Azure PowerShell](/powershell/azure/overview) Azure PowerShell telepítése a helyi számítógépen. Ezután nyissa meg a Windows PowerShell-parancssort.
 
 ## <a name="step-1-add-your-account"></a>1. lépés: A fiók hozzáadása
-1. Hello PowerShell parancssorába írja be a **Add-AzureAccount** kattintson **Enter**.
-2. Írja be az Azure-előfizetéshez társított hello e-mail címét, és kattintson a **Folytatás**.
-3. Adja meg a fiókhoz tartozó jelszót hello.
+1. A PowerShell-parancssorba írja be a **Add-AzureAccount** kattintson **Enter**.
+2. Írja be az Azure-előfizetéshez társított e-mail címét, és kattintson a **Folytatás**.
+3. Adja meg a fiókhoz tartozó jelszót.
 4. Kattintson a **bejelentkezés**.
 
 ## <a name="step-2-set-your-subscription-and-storage-account"></a>2. lépés: Az előfizetés és a storage-fiók beállítása
-Ezek a parancsok futtatásával hello Windows PowerShell parancssorába állítsa be a Azure-előfizetés és a storage-fiók. Cserélje le mindent, ami hello idézőjelek között, beleértve a hello < és > karakter, helyes nevek hello.
+Az Azure-előfizetés és a storage-fiók beállítása a Windows PowerShell parancssorába a parancsok futtatásával. Cserélje le a mindent, ami az ajánlatokat, beleértve a < és > karakter, helyes nevét.
 
     $subscr="<subscription name>"
     $staccount="<storage account name>"
     Select-AzureSubscription -SubscriptionName $subscr –Current
     Set-AzureSubscription -SubscriptionName $subscr -CurrentStorageAccountName $staccount
 
-Hello megfelelő előfizetés neve letölthető hello hello hello kimenete SubscriptionName tulajdonságának **Get-AzureSubscription** parancsot. Hello helyes-e a tárfiók nevének beolvasása hello hello hello kimenete Label tulajdonságának **Get-AzureStorageAccount** parancsot, miután lefuttatta a hello **válasszon-AzureSubscription** parancsot.
+A megfelelő előfizetés neve lekérheti a kibocsátás SubscriptionName tulajdonság a **Get-AzureSubscription** parancsot. A megfelelő tárfióknév lekérheti a kimenetét Label tulajdonságának a **Get-AzureStorageAccount** parancs futtatása után a **válasszon-AzureSubscription** parancsot.
 
-## <a name="step-3-step-by-step-walkthrough---provision-hello-virtual-machine-and-join-it-toohello-managed-domain"></a>3. lépés: Részletes útmutató - rendszerű hello virtuális gép, és hozzá toohello által felügyelt tartományokhoz
-Ez hello megfelelő Azure PowerShell paranccsal állítsa toocreate a virtuális gépre, az üres sorok közötti valamennyi blokkja olvashatóság érdekében.
+## <a name="step-3-step-by-step-walkthrough---provision-the-virtual-machine-and-join-it-to-the-managed-domain"></a>3. lépés: Részletes útmutató - a virtuális gép kiépítéséhez, és csatlakoztassa azt a felügyelt tartományhoz
+Ez a megfelelő Azure PowerShell-parancsot, állítsa be a virtuális gép létrehozása üres sorok közötti valamennyi blokkja olvashatóság érdekében.
 
-Adjon meg információt hello Windows virtuális gép toobe kiépítve.
+Adjon meg információt a Windows rendszerű virtuális gép úgy kell létrehozni.
 
     $family="Windows Server 2012 R2 Datacenter"
     $vmname="Contoso100-test"
     $vmsize="ExtraSmall"
 
-Hello InstanceSize D-, DS- vagy értékeit G sorozatú virtuális gépek, lásd: [virtuális gépek és Felhőszolgáltatások mérete az Azure-](https://msdn.microsoft.com/library/azure/dn197896.aspx).
+D-, DS- vagy G sorozatú virtuális gépek InstanceSize értékeit, lásd: [virtuális gépek és Felhőszolgáltatások mérete az Azure-](https://msdn.microsoft.com/library/azure/dn197896.aspx).
 
-Hello által kezelt tartomány ismertetik.
+Adja meg a felügyelt tartományra.
 
     $domaindns="contoso100.com"
     $domacctdomain="contoso100"
 
-Adja meg a felhőalapú szolgáltatás hello hello nevét.
+Adja meg a felhőalapú szolgáltatás nevét.
 
     $svcname="Contoso100-test"
 
-Adja meg hello hello virtuális hálózati toowhich hello kell csatlakoztatni a virtuális gép nevét. Győződjön meg arról, hogy hello felügyelt AAD-DS-tartomány érhető el a virtuális hálózaton található.
+Adja meg, amelyhez a virtuális Géphez kell csatlakoztatni a virtuális hálózat nevét. Győződjön meg arról, hogy a felügyelt AAD-DS-tartomány érhető el a virtuális hálózaton található.
 
     $vnetname="MyPreviewVnet"
 
-Válassza ki a virtuális gép lemezképének használt toobe tooprovision hello VM hello.
+Válassza ki a virtuális gép a virtuális gép kiépítéséhez használni kívánt kép.
 
     $image=Get-AzureVMImage | where { $_.ImageFamily -eq $family } | sort PublishedDate -Descending | select -ExpandProperty ImageName -First 1
 
-Konfigurálja a VM - VM neve, hello használt példány méret és a lemezkép toobe.
+Konfigurálja a VM - virtuális gép neve, a példány mérete és a használni kívánt kép.
 
     $vm1=New-AzureVMConfig -Name $vmname -InstanceSize $vmsize -ImageName $image
 
-Szerezze be a virtuális gép hello helyi rendszergazdai hitelesítő adatokat. Írjon be egy erős helyi rendszergazdai jelszót.
+Szerezze be a helyi rendszergazdai hitelesítő adatokat a virtuális gép számára. Írjon be egy erős helyi rendszergazdai jelszót.
 
-    $localadmincred=Get-Credential –Message "Type hello name and password of hello local administrator account."
+    $localadmincred=Get-Credential –Message "Type the name and password of the local administrator account."
 
-Szerezze be tartozó too'AAD DC rendszergazdák csoport toojoin VM toohello kezelt tartományi felhasználói fiók hitelesítő adatait. Ne adjon hello tartománynév - példány, a jelen példában adja meg, hogy "Belinszky" hello felhasználónévként.
+Szerezze be a virtuális gép csatlakoztatása a felügyelt tartományra "AAD DC rendszergazdák" csoportba tartozó felhasználói fiók hitelesítő adatait. Ne adjon meg a tartománynév - példányhoz, a fenti példában, "bob" adtuk meg a felhasználónevet.
 
-    $domainadmincred=Get-Credential –Message "Now type hello name (DO NOT INCLUDE hello DOMAIN) and password of an account in hello AAD DC Administrators group, that has permission tooadd hello machine toohello domain."
+    $domainadmincred=Get-Credential –Message "Now type the name (DO NOT INCLUDE THE DOMAIN) and password of an account in the AAD DC Administrators group, that has permission to add the machine to the domain."
 
-Konfigurálja a virtuális gép hello – adja meg a tartományhoz csatlakoztatás követelmény & szükséges hitelesítő adatokat.
+A virtuális gép konfigurálása, mert a tartományhoz csatlakoztatás követelmény & szükséges hitelesítő adatok megadása.
 
     $vm1 | Add-AzureProvisioningConfig -AdminUsername $localadmincred.Username -Password $localadmincred.GetNetworkCredential().Password -WindowsDomain -Domain $domacctdomain -DomainUserName $domainadmincred.Username -DomainPassword $domainadmincred.GetNetworkCredential().Password -JoinDomain $domaindns
 
-Állítsa be a hello Virtuálisgép-alhálózatot.
+Állítsa be egy alhálózatot a virtuális gép számára.
 
     $vm1 | Set-AzureSubnet -SubnetNames "Subnet-1"
 
-Választható lehetőség: Pont toohello IP-cím hello tartomány. Ha IP-címei hello hello Azure AD tartományi szolgáltatások által kezelt tartomány toobe hello hello virtuális hálózat DNS-kiszolgálók, a lépésre nincs szükség.
+Választható lehetőség: Az IP-cím a tartomány mutasson. Ha az Azure AD tartományi szolgáltatások által felügyelt tartományokhoz kell lennie a virtuális hálózat DNS-kiszolgálók IP-címét, a lépésre nincs szükség.
 
     $dns = New-AzureDns -Name 'contoso100-dc1' -IPAddress '10.0.0.4'
 
-Most kiépítés hello tartományhoz csatlakozó windowsos virtuális gép.
+Most kiépítése a tartományhoz csatlakoztatott Windows virtuális Gépet.
 
     New-AzureVM –ServiceName $svcname -VMs $vm1 -VNetName $vnetname -Location "Central US" -DnsSettings $dns
 
 <br>
 
-## <a name="script-tooprovision-a-windows-vm-and-automatically-join-it-tooan-aad-domain-services-managed-domain"></a>Parancsfájl-tooprovision egy Windows virtuális Gépet, és automatikusan hozzá tooan AAD tartományi szolgáltatásokra által felügyelt tartományokhoz
+## <a name="script-to-provision-a-windows-vm-and-automatically-join-it-to-an-aad-domain-services-managed-domain"></a>Parancsfájl a Windows virtuális gépek ellátásához, majd automatikusan csatlakoztatása az AAD tartományi szolgáltatásokra által felügyelt tartományokhoz
 A PowerShell parancskészlethez létrehoz egy virtuális gépet egy üzleti kiszolgáló, amely:
 
-* Hello Windows Server 2012 R2 Datacenter rendszerképet használja.
+* A Windows Server 2012 R2 Datacenter rendszerképet használja.
 * Ez egy nagyon kicsi virtuális gép.
-* Contoso100-teszt hello névvel rendelkezik.
-* A rendszer automatikusan tartományhoz csatlakoztatott toohello contoso100 által felügyelt tartományokhoz.
-* Toohello hozzáadott hello megegyező virtuális hálózatban felügyelt tartomány.
+* A Contoso100-teszt névvel rendelkezik.
+* Automatikusan tartomány a contoso100 felügyelt tartományhoz csatlakozik.
+* Bekerül a felügyelt tartományra azonos virtuális hálózaton.
 
-Ez a teljes minta parancsprogram toocreate hello Windows rendszerű virtuális gép hello, és automatikusan hozzá toohello Azure AD tartományi szolgáltatások által felügyelt tartományokhoz.
+Ez a teljes minta parancsfájl a Windows rendszerű virtuális gép létrehozásához, és automatikusan csatlakoztatása az Azure AD tartományi szolgáltatások által felügyelt tartományokhoz.
 
     $family="Windows Server 2012 R2 Datacenter"
     $vmname="Contoso100-test"
@@ -139,9 +139,9 @@ Ez a teljes minta parancsprogram toocreate hello Windows rendszerű virtuális g
 
     $vm1=New-AzureVMConfig -Name $vmname -InstanceSize $vmsize -ImageName $image
 
-    $localadmincred=Get-Credential –Message "Type hello name and password of hello local administrator account."
+    $localadmincred=Get-Credential –Message "Type the name and password of the local administrator account."
 
-    $domainadmincred=Get-Credential –Message "Now type hello name (not including hello domain) and password of an account in hello AAD DC Administrators group, that has permission tooadd hello machine toohello domain."
+    $domainadmincred=Get-Credential –Message "Now type the name (not including the domain) and password of an account in the AAD DC Administrators group, that has permission to add the machine to the domain."
 
     $vm1 | Add-AzureProvisioningConfig -AdminUsername $localadmincred.Username -Password $localadmincred.GetNetworkCredential().Password -WindowsDomain -Domain $domacctdomain -DomainUserName $domainadmincred.Username -DomainPassword $domainadmincred.GetNetworkCredential().Password -JoinDomain $domaindns
 

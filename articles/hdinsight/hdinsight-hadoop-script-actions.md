@@ -1,6 +1,6 @@
 ---
-title: "a művelet fejlesztése a HDInsight - Azure aaaScript |} Microsoft Docs"
-description: "Ismerje meg, hogyan toocustomize Hadoop-fürtök parancsfájl művelettel. Parancsfájl művelet lehet használt tooinstall Hadoop fürthöz vagy toochange hello konfigurálása a fürt a telepített alkalmazások futó további szoftvereket."
+title: "Parancsfájl-művelet fejlesztése a HDInsight - Azure |} Microsoft Docs"
+description: "Ismerje meg a parancsfájlművelet Hadoop-fürtök testreszabása. Parancsfájl művelet fut a Hadoop-fürthöz további szoftvereket telepíteni, vagy módosítsa a fürt telepített alkalmazások használható."
 services: hdinsight
 documentationcenter: 
 tags: azure-portal
@@ -16,36 +16,36 @@ ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-ms.openlocfilehash: 4fc3a389df8a003f7129ab00b4cd9bc7ad81a419
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0e182e6b43fd2d17524c1da36cf4c204bb1b865a
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="develop-script-action-scripts-for-hdinsight-windows-based-clusters"></a>A HDInsight-Windows-alapú fürtök parancsfájlművelet-parancsfájlok fejlesztése
-Ismerje meg, hogyan toowrite parancsfájlművelet parancsfájlok, a HDInsight. Parancsfájlművelet-parancsfájlok használatával kapcsolatos információkért lásd: [testreszabása HDInsight-fürtök használata parancsfájlművelet](hdinsight-hadoop-customize-cluster.md). Linux-alapú HDInsight-fürtök esetén írt ugyanabból a cikkből lásd: hello [parancsfájlművelet fejlesztése parancsfájlok a HDInsight](hdinsight-hadoop-script-actions-linux.md).
+A HDInsight parancsfájlművelet parancsfájlok írásának ismertetése. Parancsfájlművelet-parancsfájlok használatával kapcsolatos információkért lásd: [testreszabása HDInsight-fürtök használata parancsfájlművelet](hdinsight-hadoop-customize-cluster.md). A Linux-alapú HDInsight-fürtök írt ugyanazon cikk, lásd: [parancsfájlművelet fejlesztése parancsfájlok a HDInsight](hdinsight-hadoop-script-actions-linux.md).
 
 
 
 > [!IMPORTANT]
-> Ez a dokumentum a Windows-alapú HDInsight-fürtök csak munkahelyi hello szükséges lépések. HDInsight csak érhető el a Windows korábbi, mint a HDInsight 3.4-es verziójához. Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement). A Parancsfájlműveletek használata a Linux-alapú fürtökön információkért lásd: [parancsfájl-művelet fejlesztése a HDInsight (Linux)](hdinsight-hadoop-script-actions-linux.md).
+> Az ebben a dokumentumban csak a lépések Windows-alapú HDInsight-fürtök. HDInsight csak érhető el a Windows korábbi, mint a HDInsight 3.4-es verziójához. A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement). A Parancsfájlműveletek használata a Linux-alapú fürtökön információkért lásd: [parancsfájl-művelet fejlesztése a HDInsight (Linux)](hdinsight-hadoop-script-actions-linux.md).
 >
 >
 
 
 
-Parancsfájl művelet lehet használt tooinstall Hadoop fürthöz vagy toochange hello konfigurálása a fürt a telepített alkalmazások futó további szoftvereket. A Parancsfájlműveletek olyan parancsfájlok, futtathatók a hello fürtcsomópontokon, ha a HDInsight-fürtök vannak telepítve, és végrehajtás hello fürt csomópontja HDInsight konfigurálásának befejezése után. A parancsfájlművelet hajtja végre a fiók rendszergazdai jogosultságokkal, és teljes körű hozzáférési jogosultságokat biztosít toohello fürtcsomópontok. Az egyes fürtökön biztosítható, hogy az abban megadott vannak hello sorrendben hajtja végre a parancsfájl műveletek toobe listáját.
+Parancsfájl művelet fut a Hadoop-fürthöz további szoftvereket telepíteni, vagy módosítsa a fürt telepített alkalmazások használható. A Parancsfájlműveletek olyan parancsfájlok, futtassa a fürtcsomópontokon, a HDInsight-fürtök telepítésekor, és a fürt csomópontjai HDInsight konfigurálásának befejezése után végrehajtás. A parancsfájlművelet hajtja végre a fiók rendszergazdai jogosultságokkal, és teljes hozzáférési jogosultsága ahhoz, hogy a fürt csomópontjai biztosít. Az egyes fürtökön megadható Parancsfájlműveletek hajthatnak végre, amely a megadott sorrendben listáját.
 
 > [!NOTE]
-> Ha hibaüzenet jelenik meg a következő hello:
+> Ha a következő hibaüzenet:
 >
-> System.Management.Automation.CommandNotFoundException; ExceptionMessage: hello kifejezés "Save-HDIFile" nem ismerhető fel egy parancsmag, a függvény, a parancsfájl vagy a futtatható program hello nevét. Hello helyesírás hello neve, vagy ha egy elérési utat megtalálható, győződjön meg arról, hogy hello elérési útja helyes-e, és próbálkozzon újra.
-> Ennek az oka hello segédmódszereket nem tartozik.  Lásd: [segédmódszereket egyéni parancsfájlok](hdinsight-hadoop-script-actions.md#helper-methods-for-custom-scripts).
+> System.Management.Automation.CommandNotFoundException; ExceptionMessage: A kifejezés "Save-HDIFile" nem ismerhető fel egy parancsmag, a függvény, a parancsfájl vagy a futtatható program nevét. Ellenőrizze a helyesírást, a név, vagy ha egy elérési út része, ellenőrizze, hogy az elérési út helyességét, és próbálkozzon újra.
+> Mivel az nem tartozik a segédmódszereket van.  Lásd: [segédmódszereket egyéni parancsfájlok](hdinsight-hadoop-script-actions.md#helper-methods-for-custom-scripts).
 >
 >
 
 ## <a name="sample-scripts"></a>Mintaszkriptek
-A HDInsight-fürtök létrehozása a Windows operációs rendszeren, hello parancsfájlművelet esetén Azure PowerShell-parancsfájlt. hello alábbi parancsfájl a következő egy minta hello hely konfigurációs fájljainak konfigurálásához végrehajtott:
+A HDInsight-fürtök létrehozása a Windows operációs rendszeren, a parancsfájl művelete Azure PowerShell-parancsfájlt. A következő parancsfájlt a hely konfigurációs fájljainak konfigurálásához végrehajtott minta:
 
 [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
@@ -69,7 +69,7 @@ A HDInsight-fürtök létrehozása a Windows operációs rendszeren, hello paran
     }
 
     if (!($hdiConfigFiles[$ConfigFileName])) {
-        Write-HDILog "Unable tooconfigure $ConfigFileName because it is not part of hello HDI configuration files."
+        Write-HDILog "Unable to configure $ConfigFileName because it is not part of the HDI configuration files."
         return
     }
 
@@ -92,15 +92,15 @@ A HDInsight-fürtök létrehozása a Windows operációs rendszeren, hello paran
 
     Write-HDILog "$configFileName has been configured."
 
-hello parancsfájl fogadja el a négy paraméterek, hello konfigurációs fájl nevét, hello tulajdonság kívánt toomodify, hello érték tooset, és egy leírást. Példa:
+A parancsfájl fogadja el a négy paraméter, a konfigurációs fájl nevét, a tulajdonságot kívánja módosítani, az értéket be szeretné állítani, és egy leírást. Példa:
 
     hive-site.xml hive.metastore.client.socket.timeout 90
 
-Ezek a paraméterek beállítása hello hive.metastore.client.socket.timeout érték too90 hello hive-site.xml fájlban.  hello alapértelmezett értéke 60 másodperc.
+Ezeket a paramétereket állítja be a hive.metastore.client.socket.timeout érték 90 a hive-site.xml fájlban.  Az alapértelmezett értéke 60 másodperc.
 
 A parancsfájlpéldát is találhatók [https://hditutorialdata.blob.core.windows.net/customizecluster/editSiteConfig.ps1](https://hditutorialdata.blob.core.windows.net/customizecluster/editSiteConfig.ps1).
 
-HDInsight tooinstall további összetevők biztosít több parancsfájlok a HDInsight-fürtökön:
+HDInsight több parancsfájlok további összetevők telepíthetők a HDInsight-fürtök biztosítja:
 
 | Név | Szkript |
 | --- | --- |
@@ -109,15 +109,15 @@ HDInsight tooinstall további összetevők biztosít több parancsfájlok a HDIn
 | **Solr telepítése** |https://hdiconfigactions.BLOB.Core.Windows.NET/solrconfigactionv01/solr-Installer-v01.ps1. Lásd: [telepítése és használata Solr a HDInsight-fürtök](hdinsight-hadoop-solr-install.md). |
 | - **Giraph telepítése** |https://hdiconfigactions.BLOB.Core.Windows.NET/giraphconfigactionv01/giraph-Installer-v01.ps1. Lásd: [telepítése és használata Giraph a HDInsight-fürtök](hdinsight-hadoop-giraph-install.md). |
 
-Parancsfájlművelet is telepíthető a hello Azure-portálon az Azure PowerShell vagy a HDInsight .NET SDK hello.  További információkért lásd: [testreszabása HDInsight-fürtök használata parancsfájlművelet][hdinsight-cluster-customize].
+Parancsfájlművelet is telepíthető, az Azure-portálon az Azure PowerShell vagy a HDInsight .NET SDK használatával.  További információkért lásd: [testreszabása HDInsight-fürtök használata parancsfájlművelet][hdinsight-cluster-customize].
 
 > [!NOTE]
-> hello mintaparancsfájlok működik, csak a HDInsight-fürt verziószáma 3.1-es vagy újabb. A HDInsight-fürt verziókról további információkért lásd: [HDInsight-fürt verziókról](hdinsight-component-versioning.md).
+> A minta parancsfájlok csak a HDInsight-fürt verziószáma 3.1-es vagy újabb működik. A HDInsight-fürt verziókról további információkért lásd: [HDInsight-fürt verziókról](hdinsight-component-versioning.md).
 >
 >
 
 ## <a name="helper-methods-for-custom-scripts"></a>Egyéni parancsfájlok segítő módszerei
-Parancsfájl művelet segítő módszereket segédprogramok egyéni parancsfájlok írása közben használható. Ezek a módszerek definiált [https://hdiconfigactions.blob.core.windows.net/configactionmodulev05/HDInsightUtilities-v05.psm1](https://hdiconfigactions.blob.core.windows.net/configactionmodulev05/HDInsightUtilities-v05.psm1), és a parancsfájlok használata a következő minta hello tartalmazhat:
+Parancsfájl művelet segítő módszereket segédprogramok egyéni parancsfájlok írása közben használható. Ezek a módszerek definiált [https://hdiconfigactions.blob.core.windows.net/configactionmodulev05/HDInsightUtilities-v05.psm1](https://hdiconfigactions.blob.core.windows.net/configactionmodulev05/HDInsightUtilities-v05.psm1), és a használatával a következő minta parancsfájlokat is szerepelhet:
 
     # Download config action module from a well-known directory.
     $CONFIGACTIONURI = "https://hdiconfigactions.blob.core.windows.net/configactionmodulev05/HDInsightUtilities-v05.psm1";
@@ -125,84 +125,84 @@ Parancsfájl művelet segítő módszereket segédprogramok egyéni parancsfájl
     $webclient = New-Object System.Net.WebClient;
     $webclient.DownloadFile($CONFIGACTIONURI, $CONFIGACTIONMODULE);
 
-    # (TIP) Import config action helper method module toomake writing config action easy.
+    # (TIP) Import config action helper method module to make writing config action easy.
     if (Test-Path ($CONFIGACTIONMODULE))
     {
         Import-Module $CONFIGACTIONMODULE;
     }
     else
     {
-        Write-Output "Failed tooload HDInsightUtilities module, exiting ...";
+        Write-Output "Failed to load HDInsightUtilities module, exiting ...";
         exit;
     }
 
-Az alábbiakban a parancsfájl által biztosított segédmódszereket hello:
+Ez a parancsfájl által biztosított segítő módszerek a következők:
 
 | Segédmetódus | Leírás |
 | --- | --- |
-| **Mentés-HDIFile** |Hello fájl letöltése megadott egységes erőforrás-azonosító (URI) tooa helyét a helyi lemezen hello hello Azure virtuális Géphez hozzárendelt toohello gazdagépfürt társított. |
+| **Mentés-HDIFile** |Töltse le a fájlt a a megadott egységes erőforrás-azonosító (URI) a helyi lemezen, amely az Azure virtuális gép csomópontot a fürthöz rendelt helyre. |
 | **Bontsa ki a HDIZippedFile** |Bontsa ki a tömörített fájlt. |
 | **Invoke-HDICmdScript** |Futtassa a parancsfájlt a cmd.exe. |
-| **Írási-HDILog** |Hello parancsfájl művelethez használt egyéni parancsfájl kimeneti írása |
-| **Get-szolgáltatások** |Ha végrehajtja a hello parancsfájl hello gépen futó szolgáltatásokat listájának lekérése. |
-| **Get-szolgáltatás** |Hello adott szolgáltatás nevű bemeneti adatként, részletes információ egy adott szolgáltatáshoz (a szolgáltatás neve, folyamatazonosító, állapot, stb.) Ha végrehajtja a hello parancsfájl hello gépen. |
-| **Get-HDIServices** |HDInsight szolgáltatások hello számítógépen fut, ahol hello parancsfájl végrehajtása listájának lekérése. |
-| **Get-HDIService** |Hello adott HDInsight szolgáltatásnévvel bemeneti adatként, részletes információ egy adott szolgáltatáshoz (a szolgáltatás neve, folyamatazonosító, állapot, stb.) Ha végrehajtja a hello parancsfájl hello gépen. |
-| **Get-ServicesRunning** |Futó szolgáltatások hello számítógépen ahol hello parancsfájl végrehajtása listájának lekérése. |
-| **Get-ServiceRunning** |Ellenőrizze, hogy egy adott szolgáltatáshoz (a neve szerint) hello számítógépen ahol hello parancsfájl végrehajtása. |
-| **Get-HDIServicesRunning** |HDInsight szolgáltatások hello számítógépen fut, ahol hello parancsfájl végrehajtása listájának lekérése. |
-| **Get-HDIServiceRunning** |Ellenőrizze, hogy egy adott HDInsight-szolgáltatás (név) hello számítógépen ahol hello parancsfájl végrehajtása. |
-| **Get-HDIHadoopVersion** |Hadoop, ahol hello parancsfájl végrehajtása hello számítógépre telepített verzióját hello beolvasása. |
-| **Teszt-IsHDIHeadNode** |Ellenőrizze, hogy hol hello parancsfájl végrehajtása hello számítógép egy átjárócsomóponttal. |
-| **Teszt-IsActiveHDIHeadNode** |Ellenőrizze, hogy ahol hello parancsfájl végrehajtása hello számítógép központi aktív csomópontra. |
-| **Teszt-IsHDIDataNode** |Ellenőrizze, hogy hol hello parancsfájl végrehajtása hello számítógép adatok csomópont. |
-| **Szerkesztés-HDIConfigFile** |Hive-site.xml hello konfigurációs fájlok, a core-site.xml, a hdfs-site.xml, a mapred-site.xml vagy a yarn-site.xml szerkesztéséhez. |
+| **Írási-HDILog** |Kimeneti írása egy parancsfájl műveletéhez használt egyéni parancsfájl. |
+| **Get-szolgáltatások** |Ha a parancsfájl végrehajtása a gépen futó szolgáltatásokat listájának lekérése. |
+| **Get-szolgáltatás** |Az adott szolgáltatás nevű bemeneti adatként, részletes információ egy adott szolgáltatáshoz (a szolgáltatás neve, folyamatazonosító, állapot, stb.) Ha a parancsfájl végrehajtása a gépen. |
+| **Get-HDIServices** |HDInsight services fut a számítógépen, ahol a parancsfájl végrehajtása listájának lekérése. |
+| **Get-HDIService** |Az adott HDInsight szolgáltatásnévvel bemeneti adatként, részletes információ egy adott szolgáltatáshoz (a szolgáltatás neve, folyamatazonosító, állapot, stb.) Ha a parancsfájl végrehajtása a gépen. |
+| **Get-ServicesRunning** |Futó szolgáltatásokat a számítógépen a parancsfájl végrehajtása ahol listájának lekérése. |
+| **Get-ServiceRunning** |Ellenőrizze, hogy egy adott szolgáltatáshoz (a neve szerint) fut a számítógépen ahol a parancsfájl végrehajtása. |
+| **Get-HDIServicesRunning** |HDInsight services fut a számítógépen, ahol a parancsfájl végrehajtása listájának lekérése. |
+| **Get-HDIServiceRunning** |Ellenőrizze, hogy egy adott HDInsight-szolgáltatás (név) a számítógépen. Ha a parancsfájl végrehajtása. |
+| **Get-HDIHadoopVersion** |A verziója telepítve azon a számítógépen, ahol a parancsfájl végrehajtása Hadoop beolvasása. |
+| **Teszt-IsHDIHeadNode** |Ellenőrizze, hogy a számítógépen, ahol a parancsfájl végrehajtása egy átjárócsomóponttal. |
+| **Teszt-IsActiveHDIHeadNode** |Ellenőrizze, hogy a számítógépen, ahol a parancsfájl végrehajtása az aktív központi csomópont. |
+| **Teszt-IsHDIDataNode** |Ellenőrizze, hogy a számítógépen, ahol a parancsfájl végrehajtása egy adatcsomóponton. |
+| **Szerkesztés-HDIConfigFile** |A konfigurációs fájlok hive-site.xml, a core-site.xml, a hdfs-site.xml, a mapred-site.xml vagy a yarn-site.xml szerkesztéséhez. |
 
 ## <a name="best-practices-for-script-development"></a>Parancsfájl fejlesztési ajánlott eljárásai
-A HDInsight-fürtök egyéni parancsfájl fejlesztésekor van néhány ajánlott eljárások tookeep figyelembe vételével:
+A HDInsight-fürtök egyéni parancsfájl fejlesztésekor van több bevált gyakorlatokat, amelyekkel tartsa szem előtt:
 
-* Hello Hadoop verziójának ellenőrzése
+* A Hadoop-verziójának ellenőrzése
 
-    Csak a HDInsight (Hadoop 2.4) 3.1-es verzióját vagy újabb parancsfájlművelet tooinstall egyéni összetevők használatával olyan fürtön támogatása. Az egyéni parancsfájlt kell használnia hello **Get-HDIHadoopVersion** segítő metódus toocheck hello Hadoop verziója más feladatok végrehajtása a hello parancsfájl folytatása előtt.
-* Adja meg a stabil tooscript erőforrások hivatkozásokat tartalmaz.
+    Csak a HDInsight (Hadoop 2.4) 3.1-es verzióját vagy újabb támogatás parancsfájlművelet használatával egyéni összetevőinek telepítése egy fürt. Az egyéni parancsfájlt kell használnia a **Get-HDIHadoopVersion** segédmetódus Hadoop verziójának más feladatok végrehajtása a parancsfájl a folytatása előtt.
+* Tartalmaznak egy stabil parancsfájl erőforrások
 
-    Felhasználók győződjön meg arról, hogy az összes hello parancsfájlok és egyéb összetevők hello testreszabási a fürt szerepel hello fürt hello élettartama során elérhetők maradnak, és, hogy a fájlok verzióinak hello ne változtassa meg hello idejére. Ezeket az erőforrásokat szükség, ha hello különösen hello fürtben található csomópontok szükség. hello célszerű toodownload, és minden eleme egy tárfiókot, amely a felhasználói vezérlők hello archiválja. Hello alapértelmezett tárfiókot, illetve hello további tárfiókok hello testreszabott fürt központi telepítés során megadott is lehet.
-    Hello a Spark- és R testre szabott fürt minták megadott hello dokumentáció, például hajtottunk hello erőforrások helyi másolatát a tárfiók: https://hdiconfigactions.blob.core.windows.net/.
-* Győződjön meg arról, hogy hello fürt testreszabási parancsfájl idempotent
+    Felhasználók győződjön meg arról, hogy a parancsfájlok és egyéb összetevők szerepel a testreszabás, a fürt teljes élettartama alatt a fürt elérhetők maradnak, és, hogy a fájlok verzióinak ne változtassa meg az az időtartam. Ezeket az erőforrásokat szükség, ha a fürtben található csomópontok különösen szükség. Az ajánlott eljárás, hogy töltse le és archiválni egy tárfiókot, amely a felhasználó a tartalmát. Az alapértelmezett tárfiókot, illetve a megadott időpontban a központi telepítés testreszabott fürt további tárfiókok is lehet.
+    A Spark és R testreszabott fürt minták a dokumentáció, például hajtottunk helyi másolat készítése az erőforrások ehhez a tárfiókhoz megadott: https://hdiconfigactions.blob.core.windows.net/.
+* Győződjön meg arról, hogy a fürt testreszabási parancsfájl idempotent
 
-    Várt kell, hogy egy HDInsight-fürt csomópontja hello rendszerképének hello fürt élettartama során. hello fürt testreszabási parancsfájl futtatása minden fürt rendszerképének. Ez a parancsfájl tervezett toobe idempotent hello értelemben, hogy, különösen akkor hello parancsfájl biztosítaniuk kell hello fürt ugyanazt a testreszabott állapotát a után hello parancsfájl lefutott hello az első időpontja hello fürt kezdetben toohello adja vissza kell lennie. létre. Például ha egyéni parancsfájl telepítették az alkalmazást D:\AppLocation első futtassa, és minden későbbi futtatáskor, különösen akkor hello parancsfájl ellenőrizze, hogy hello alkalmazás létezik hello D:\AppLocation hely más a folytatás előtt hello parancsfájlban szereplő lépéseket.
-* Egyéni összetevők telepítéséhez hello optimális helyen
+    Várt kell, hogy a csomópontok egy HDInsight-fürt rendszerképének fürt élettartama során. Amikor a fürt rendszerképének a fürt testreszabási parancsfájl futtatása. Ezt a parancsfájlt kell megtervezni, abban az értelemben, hogy szerepkörpéldány rendszerképét, akkor a parancsfájl győződjön meg arról, hogy a fürt küld vissza a ugyanaz az idempotent testreszabott állapotát az imént, miután a parancsfájl lefutott, a fürt kezdetben létrehozásának első alkalommal kell. Például ha egyéni parancsfájl telepítették az alkalmazást D:\AppLocation első futtassa, és minden ezt követő futtatáskor, különösen, akkor a parancsfájl ellenőrizze, hogy a az alkalmazás D:\AppLocation helyen van, a parancsfájlban szereplő lépések más folytatása előtt.
+* Az optimális helyen egyéni összetevők telepítéséhez
 
-    Ha a fürtcsomópontok vannak lemezképet, hello C:\ erőforrás meghajtót és D:\ rendszermeghajtón is újraformázza, adatokat és alkalmazásokat, amelyek adott meghajtókon telepítette hello elvesztését. Ez is fordulhat, ha egy Azure virtuális gép (VM) csomópont hello fürt részét képező leáll, és olyan új csomópont cseréli le. Összetevők telepítheti a D:\ meghajtóra hello vagy hello C:\apps helyen hello fürtön. A C:\ meghajtó hello más helyeken vannak fenntartva. Adja meg a hol találhatók az alkalmazások és a szalagtárak hello fürt testreszabási parancsfájl telepített toobe hello helyét.
-* Magas rendelkezésre állásának hello fürt architektúrája
+    Ha a fürtcsomópontok vannak lemezképet, a C:\ meghajtó-erőforrás és a D:\ rendszermeghajtón is újraformázza, adatokat és alkalmazásokat, amelyek adott meghajtókon telepítette elvesztését eredményezi. Ez is fordulhat, ha egy Azure virtuális gép (VM) csomópontot, amely a fürt része leáll, és olyan új csomópont cseréli le. Összetevők a D:\ meghajtóra, vagy a fürt C:\apps helyen telepíthető. A C:\ meghajtón más helyeken vannak fenntartva. Adja meg a helyet Ha alkalmazások vagy a könyvtárak a fürt testreszabási parancsfájl telepíteni.
+* Magas rendelkezésre állásának a fürt-architektúra
 
-    HDInsight van egy aktív-passzív architektúra a magas rendelkezésre állású, mely egy átjárócsomópont van aktív módot (ahol hello HDInsight szolgáltatások futnak) és más hello a átjárócsomópont (mely a hdinsight szolgáltatások nem futnak) készenléti üzemmódban. hello csomópontok aktív és passzív módban vált, ha a HDInsight szolgáltatások megszakadnak. Ha egy parancsfájlművelet használt tooinstall szolgáltatások mindkét központi csomópont a magas rendelkezésre állású, vegye figyelembe, hogy hello HDInsight feladatátvételi mechanizmus nem tud tooautomatically sikertelen keresztül a felhasználók által telepített szolgáltatások. Ezért felhasználók által telepített szolgáltatásokat, amelyek magas rendelkezésre állású várt toobe átjárócsomópontokkal HDInsight a kell vagy saját feladatátvételi mechanizmus, ha az aktív-passzív módban van, vagy aktív-aktív módban kell.
+    HDInsight felépítésű egy aktív-passzív a magas rendelkezésre állás érdekében egy átjárócsomóponttal van aktív módot (ahol a HDInsight-szolgáltatás fut) és a más átjárócsomópont (mely a hdinsight szolgáltatások nem futnak) készenléti kiszolgálói módban van. A csomópontok aktív és passzív módban vált, ha a HDInsight szolgáltatások megszakadnak. A parancsfájlművelet kiszolgálók telepítését mindkét központi csomópont a magas rendelkezésre állású használata esetén vegye figyelembe, hogy a HDInsight feladatátvételi mechanizmus nem tudja, hogy automatikusan áthelyezze a feladatokat a felhasználók által telepített szolgáltatások. HDInsight központi csomópontokra, amelyeket várhatóan magas rendelkezésre állású legyen, felhasználók által telepített szolgáltatások vagy a saját feladatátvételi mechanizmus, ha az aktív-passzív módban van vagy kell aktív-aktív módban.
 
-    Egy HDInsight-parancsfájlművelet parancs mindkét központi csomópontján fut, amikor hello átjárócsomópont szerepkör van megadva értékként hello *ClusterRoleCollection* paraméter. Egyéni parancsfájl tervezésekor ügyeljen, hogy, hogy a telepítő tisztában-e a parancsfájlt. A problémák, ahol hello azonos szolgáltatásokra van telepítve, mindkét hello központi csomópont elindult és azok egymással versengő végül nem kell futtatnia. Is vegye figyelembe, hogy adatok nem vesztek el során, különösen, így parancsfájlművelet keresztül telepített szoftverek toobe rugalmas toosuch események. Alkalmazások sok csomópontok között van elosztva, magas rendelkezésre állású adatokkal tervezett toowork kell lennie. Vegye figyelembe, hogy akár 1/5 hello fürtben található csomópontok a is lemezképet: hello ugyanannyi időt vesz igénybe.
-* Hello egyéni összetevők toouse Azure Blob-tároló konfigurálása
+    Egy HDInsight-parancsfájlművelet parancs mindkét központi csomópontján fut, amikor az átjárócsomópont szerepkör van megadva értékként a *ClusterRoleCollection* paraméter. Egyéni parancsfájl tervezésekor ügyeljen, hogy, hogy a telepítő tisztában-e a parancsfájlt. A problémák, ahol ugyanazok a szolgáltatások telepítve, és mindkét központi csomópont elindult és azok egymással versengő végül nem kell futtatnia. Is vegye figyelembe, hogy adatok nem vesztek el során, különösen, tehát parancsfájlművelet keresztül telepített szoftverek ezek az események rugalmasak lehetnek. Alkalmazások úgy kell megtervezni, magas rendelkezésre állású adatait, amely van osztva sok csomópontjai között. Vegye figyelembe, hogy képes-e akár 1/5 egy fürt csomópontja lemezképet egy időben.
+* Az Azure Blob storage használata egyéni összetevők konfigurálása
 
-    Előfordulhat, hogy az egyéni összetevők hello hello fürtcsomópontokon telepített egy alapértelmezett konfigurációs toouse Hadoop elosztott fájlrendszerrel (HDFS) tároló. Ehelyett meg kell változtatni hello konfigurációs toouse Azure Blob Storage tárolóban. A fürt lemezkép alaphelyzetbe hello HDFS fájlrendszer formázott lekérdezi és elveszítik az ott tárolt adatokat. Azure Blob storage használatával helyette biztosítja, hogy az adatok őrződnek meg.
+    Az egyéni összetevők, amelyek telepítése a fürtcsomópontokon előfordulhat, hogy rendelkezik a Hadoop elosztott fájlrendszerrel (HDFS) tárolót használjanak alapértelmezett konfigurációval. Módosítania kell a konfigurációt használja helyette az Azure Blob Storage tárolóban. A fürt lemezkép alaphelyzetbe a HDFS fájlrendszer formázott lekérdezi és elveszítik az ott tárolt adatokat. Azure Blob storage használatával helyette biztosítja, hogy az adatok őrződnek meg.
 
 ## <a name="common-usage-patterns"></a>Gyakori használati minták
-Ez a szakasz néhány hello gyakori használati szokásokról, amelyek a saját egyéni parancsfájl írásakor mutatjuk be végrehajtási nyújt útmutatást.
+Ez a szakasz néhány gyakori használati mintái, amelyek a saját egyéni parancsfájl írásakor mutatjuk be végrehajtási nyújt útmutatást.
 
 ### <a name="configure-environment-variables"></a>Környezeti változók konfigurálása
-Gyakran a parancsfájl művelet fejlesztési, úgy érzi, hogy hello kell tooset környezeti változókat. Például egy legvalószínűbb forgatókönyv esetén bináris egy külső webhelyről töltheti le, telepítse azt hello fürt és hello helye telepített tooyour "PATH" környezeti változó hozzáadása. a következő kódrészletet hello bemutatja, hogyan tooset környezeti változók hello egyéni parancsfájl.
+Gyakran a parancsfájl művelet fejlesztési, úgy érzi, hogy a környezeti változók megadása szükséges. Például legvalószínűbb forgatókönyv esetén bináris egy külső webhelyről töltheti le, telepítse azt a fürt, és adja hozzá a "PATH" környezeti változó a telepítés helyét. Az alábbi kódrészletben bemutatja, hogyan környezeti változókat beállítani az egyéni parancsprogramok futtatására.
 
     Write-HDILog "Starting environment variable setting at: $(Get-Date)";
     [Environment]::SetEnvironmentVariable('MDS_RUNNER_CUSTOM_CLUSTER', 'true', 'Machine');
 
-A jelen nyilatkozat hello környezeti változó beállítása **MDS_RUNNER_CUSTOM_CLUSTER** toohello értéke "true", és beállítja a változó toobe gépre kiterjedő hatókörének hello. Esetenként fontos, hogy a környezeti változók hello megfelelő hatókörben – számítógép vagy felhasználó van beállítva. Tekintse meg a [Itt] [ 1] környezeti változók beállításával kapcsolatos további információt.
+A jelen nyilatkozat beállítja a környezeti változó **MDS_RUNNER_CUSTOM_CLUSTER** értékre a "true", továbbá beállítja ezt a változót kell gépre kiterjedő hatóköre. Esetenként fontos, hogy a környezeti változók a megfelelő hatókörben – számítógép vagy felhasználó van beállítva. Tekintse meg a [Itt] [ 1] környezeti változók beállításával kapcsolatos további információt.
 
-### <a name="access-toolocations-where-hello-custom-scripts-are-stored"></a>Hozzáférés toolocations hello egyéni parancsfájlok tároló
-Használt toocustomize egy fürt igények tooeither hello alapértelmezett tárfiók hello fürt vagy egy nyilvános csak olvasható tároló bármely más tárfiók lennie. Ha a parancsfájl hozzáfér máshol található erőforrások ezeknek kell-e a nyilvánosan elérhető toobe (legalább nyilvános csak olvasható). Például előfordulhat, hogy szeretné, hogy tooaccess egy fájlt, és mentse hello SaveFile-HDI-paranccsal.
+### <a name="access-to-locations-where-the-custom-scripts-are-stored"></a>Hozzáférés az egyéni parancsfájlok tároló helyekhez
+A fürt testreszabásához használt parancsfájlok kell bármelyik kell az alapértelmezett tárfiókot, a fürt vagy egy nyilvános csak olvasható tároló bármely más tárfiók. Ha a parancsfájl máshol található erőforrásokhoz fér hozzá ezek kell lenniük egy nyilvánosan elérhető (legalább nyilvános csak olvasható). Például előfordulhat, hogy szeretne hozzáférni egy fájlhoz, és mentse a SaveFile-HDI-paranccsal.
 
     Save-HDIFile -SrcUri 'https://somestorageaccount.blob.core.windows.net/somecontainer/some-file.jar' -DestFile 'C:\apps\dist\hadoop-2.4.0.2.1.9.0-2196\share\hadoop\mapreduce\some-file.jar'
 
-Ebben a példában meg kell győződnie arról hello tároló "somecontainer" tárfiókban "somestorageaccount" nyilvánosan elérhető. Ellenkező esetben hello parancsfájl "Nem található" kivételt okoz, és sikertelen lesz.
+Ebben a példában meg kell győződnie arról, hogy a tároló "somecontainer" tárfiókban "somestorageaccount" nyilvánosan elérhető. Ellenkező esetben a parancsfájl "Nem található" kivételt okoz, és sikertelen lesz.
 
-### <a name="pass-parameters-toohello-add-azurermhdinsightscriptaction-cmdlet"></a>Paraméterek hozzáadása-AzureRmHDInsightScriptAction toohello parancsmag fázis
-toopass több paraméterek toohello Add-AzureRmHDInsightScriptAction parancsmag kell tooformat hello karakterlánc érték toocontain minden paraméter hello parancsfájlt. Példa:
+### <a name="pass-parameters-to-the-add-azurermhdinsightscriptaction-cmdlet"></a>Az Add-AzureRmHDInsightScriptAction parancsmagnak paraméterekkel
+Az Add-AzureRmHDInsightScriptAction parancsmag több paraméterekkel, magában foglalja a parancsfájl az összes paraméter értékeként karakterlánc formázni kell. Példa:
 
     "-CertifcateUri wasb:///abc.pfx -CertificatePassword 123456 -InstallFolderName MyFolder"
 
@@ -212,7 +212,7 @@ vagy
 
 
 ### <a name="throw-exception-for-failed-cluster-deployment"></a>Sikertelen fürttelepítés kivétel throw
-Ha azt szeretné, hogy a tooget pontosan értesítés hello tényt, hogy a fürt testreszabása sikertelen volt a várt módon, fontos toothrow kivétel és hello fürt létrehozása sikertelen. Például előfordulhat, hogy szeretné tooprocess egy fájlt, ha létezik, és kezelni hello hiba esetet, ahol hello fájl nem létezik. Ez lenne győződjön meg arról, hogy hello parancsfájl kilép szabályosan hello fürt hello állapotának megfelelően ismert. hello alábbi részlet egy példán hogyan tooachieve ezt:
+Ha pontosan értesítés szeretné, hogy a fürt testreszabási sikertelen volt a vártnak, fontos, hogy kivételt jelez, és a fürt létrehozása sikertelen. Például előfordulhat, hogy szeretne feldolgozni egy fájlt, ha létezik, és kezelni a hiba eset, ha a fájl nem létezik. Ez biztosítja, hogy a parancsfájl szabályosan kilép, és a fürt állapota megfelelően van azonosítva. A következő példa bemutatja, hogyan ennek érdekében a következő kódrészletet:
 
     If(Test-Path($SomePath)) {
         #Process file in some way
@@ -222,7 +222,7 @@ Ha azt szeretné, hogy a tooget pontosan értesítés hello tényt, hogy a fürt
     exit
     }
 
-Ezt a kódrészletet a hello fájl nem létezett, ha vezet, ahol hello parancsfájl ténylegesen kilép szabályosan hello hibaüzenet nyomtatás után, és hello fürt eléri futó állapotban, feltéve, hogy a "sikeres" befejeződött a fürt szabásának tooa állapota. Ha azt szeretné, hogy a toobe pontosan értesítés hello tényt, hogy a fürt testreszabási alapvetően nem sikerült egy hiányzó fájlok miatt várt módon, jobban megfelelő toothrow kivétel és hello fürt testreszabási lépés sikertelen lesz. tooachieve ez inkább a következő kódrészlet példa hello kell használnia.
+Ezt a kódrészletet a Ha a fájl nem létezett, vezet, olyan állapotban, ahol a parancsfájl ténylegesen kilép szabályosan a hibaüzenet a következő nyomtatás után, és a fürt eléri futó állapotban, feltéve, hogy a "sikeres" fürt szabásának fejeződött be. Pontosan értesíti arról, hogy a fürt lényegében testreszabási Ha nem sikerült egy hiányzó fájlok miatt várt módon, hogy jobban megfelelő kivételt jelez, és a fürt testreszabási lépés sikertelen lesz. Ennek eléréséhez kell használnia a következő minta kódrészletet.
 
     If(Test-Path($SomePath)) {
         #Process file in some way
@@ -234,27 +234,27 @@ Ezt a kódrészletet a hello fájl nem létezett, ha vezet, ahol hello parancsf�
 
 
 ## <a name="checklist-for-deploying-a-script-action"></a>Ellenőrzőlista a üzembe helyezéséhez egy parancsfájlművelet
-Az alábbiakban azt tartott, ezek a parancsfájlok toodeploy előkészítésekor hello lépéseket:
+Azt a parancsfájlok telepítendő előkészítésekor tartott lépései a következők:
 
-1. Hello egyéni parancsfájlok, amely elérhető a hello fürtcsomópontok üzembe helyezése során helyen tartalmazó hello fájlokat helyezze el. Ez lehet bármely hello alapértelmezett vagy a fürtöt tartalmazó környezetben, vagy bármely más nyilvánosan elérhető tároló hello időpontjában megadott további tárfiókok.
-2. Adja hozzá a parancsfájlok toomake meg arról, hogy azok végrehajtási idempotently, ellenőrzi, így hello parancsfájl hajtható végre több alkalommal hello ugyanahhoz a csomóponthoz.
-3. Használjon hello **Write-Output** Azure PowerShell parancsmag tooprint tooSTDOUT, valamint a stderr-en. Ne használjon **Write-Host**.
-4. Ideiglenes mappát, például a $env: TEMP, tookeep hello hello parancsfájlok által használt letöltött fájlt, majd eltávolítással parancsfájlok rendelkezik végrehajtása után.
-5. Csak a D:\ vagy C:\apps egyéni szoftver telepítése. Más helyein hello C: meghajtó nem használható, azok le foglalva. Vegye figyelembe, hogy hello C:\apps mappán kívüli hello C: meghajtó a fájlok telepítése azt eredményezheti, a telepítő hibákat reimages hello csomópont alatt.
-6. Hello esemény, hogy az operációs rendszer szintű beállításokat vagy Hadoop szolgáltatás konfigurációs fájlok módosultak érdemes lehet toorestart HDInsight szolgáltatások így kiválaszthatja a bármely az operációs rendszer szintű beállításokat, például hello parancsfájlokban beállított hello környezeti változókat.
+1. Helyezze el az egyéni parancsfájlok, amely elérhető a fürt csomópontjai a telepítés során helyen tartalmazó fájlokat. Ez az alapértelmezett vagy a fürtöt tartalmazó környezetben, vagy bármely más nyilvánosan elérhető tároló időpontjában megadott további tárfiókok lehet.
+2. Győződjön meg arról, hogy azok végrehajtási idempotently, így a parancsfájl hajtható végre több alkalommal ugyanazon a csomóponton parancsfájlok ellenőrzést hozzáadása.
+3. Használja a **Write-Output** Azure PowerShell-parancsmag segítségével STDOUT, valamint az STDERR dokumentumokat nyomtassanak azokon. Ne használjon **Write-Host**.
+4. Ideiglenes mappát, például a $env: ideiglenes, tartsa meg a letöltött parancsfájlok által használt, majd eltávolítással parancsfájlok rendelkezik végrehajtása után.
+5. Csak a D:\ vagy C:\apps egyéni szoftver telepítése. A C: meghajtón más helyeken nem használható, azok le foglalva. Vegye figyelembe, hogy a C: meghajtón a C:\apps mappán kívüli fájlok telepítése azt eredményezheti, a telepítő hibákat reimages a csomópont alatt.
+6. Abban az esetben, ha az operációs rendszer szintű beállításokat vagy Hadoop szolgáltatás konfigurációs fájlok módosultak, érdemes lehet indítsa újra a HDInsight-szolgáltatásokat, így kiválaszthatja a bármely az operációs rendszer szintű beállításokat, például a parancsfájlokban beállított környezeti változókat.
 
 ## <a name="debug-custom-scripts"></a>Egyéni parancsfájlok hibakeresése
-hello parancsfájl hibanaplókat más kimeneti hello alapértelmezett tárfiók hello fürt, ahol létrehozták megadott együtt tárolják. hello naplófájljainak tárolása a hello nevű tábla *u < \cluster-name-fragment >< \time-stamp > setuplog*. Ezek a összesített naplófájlokat, amelyek alapján az összes hello csomópontok (átjárócsomópont és munkavégző csomópontokhoz), mely hello a parancsfájl hello fürtben fut a rekordok.
-Egyszerűen toocheck hello naplók toouse HDInsight Visual Studio eszközök. Hello eszközök telepítése, lásd: [első lépések a Visual Studio Hadoop tools for HDInsight használatával](hdinsight-hadoop-visual-studio-tools-get-started.md#install-data-lake-tools-for-visual-studio)
+A parancsfájl hibanaplókat más kimeneti az alapértelmezett tárfiókot, ahol létrehozták a fürthöz megadott együtt tárolják. A naplók tárolódnak a nevű tábla *u < \cluster-name-fragment >< \time-stamp > setuplog*. Ezek a rekordok, az összes, amelyen a parancsprogram lefut a fürtben lévő csomópontok (átjárócsomópont és feldolgozó csomópontokat) összesített naplók.
+Ellenőrizze a naplókat, egyszerűen a HDInsight Tools for Visual Studio használandó. Az eszközök telepítése, lásd: [első lépések a Visual Studio Hadoop tools for HDInsight használatával](hdinsight-hadoop-visual-studio-tools-get-started.md#install-data-lake-tools-for-visual-studio)
 
-**Visual Studio használatával toocheck hello napló**
+**A részletek a naplóban a Visual Studio használatával**
 
 1. Nyissa meg a Visual Studiót.
 2. Kattintson a **nézet**, és kattintson a **Server Explorer**.
-3. Kattintson a jobb gombbal az "Azure", kattintson a kapcsolódás túl**Microsoft Azure-előfizetések**, és írja be a hitelesítő adatait.
-4. Bontsa ki a **tárolási**, bontsa ki a használt hello alapértelmezett fájlrendszer hello Azure storage-fiók, **táblák**, majd kattintson duplán a hello tábla neve.
+3. Kattintson a jobb gombbal az "Azure", kattintson a Csatlakozás gombra **Microsoft Azure-előfizetések**, és írja be a hitelesítő adatait.
+4. Bontsa ki a **tárolási**, bontsa ki a rendszer az alapértelmezett fájlrendszert használja az Azure storage-fiók, **táblák**, majd kattintson duplán a tábla neve.
 
-Is távoli is hello fürt csomópontjai toosee az STDOUT és az STDERR egyéni parancsfájlok. hello naplók minden egyes csomóponton adott csak toothat csomópont és be vannak jelentkezve **C:\HDInsightLogs\DeploymentAgent.log**. Ezekben a naplófájlokban hello egyéni parancsfájl az összes kimenetének rögzíti. A külső parancsfájl művelet egy példa napló részlet így néz ki:
+Akkor is távoli az STDOUT és az STDERR megjelenítéséhez egyéni parancsfájlok a fürt csomópontjai. A naplók minden egyes csomóponton csak ahhoz a csomóponthoz, és be vannak jelentkezve **C:\HDInsightLogs\DeploymentAgent.log**. Ezekben a naplófájlokban rögzíti az egyéni parancsfájl az összes kimenetének. A külső parancsfájl művelet egy példa napló részlet így néz ki:
 
     Microsoft.Hadoop.Deployment.Engine.CustomPowershellScriptCommand; Details : BEGIN: Invoking powershell script https://configactions.blob.core.windows.net/sparkconfigactions/spark-installer.ps1.;
     Version : 2.1.0.0;
@@ -294,9 +294,9 @@ Is távoli is hello fürt csomópontjai toosee az STDOUT és az STDERR egyéni p
     Exception : ;
 
 
-Ez a napló az egyszerű, hogy hello Spark parancsfájl művelet lett végrehajtva a hello HEADNODE0 nevű virtuális gép és, hogy a kivételek fordultak elő hello végrehajtása során is.
+Ez a napló az egyszerű, hogy a külső parancsfájl művelet lett végrehajtva a HEADNODE0 nevű virtuális Gépre, és, hogy a kivételek fordultak elő a végrehajtás során is.
 
-Hello esemény, amely egy végrehajtási hiba történik ez a naplófájl hello kimeneti leíró azt is található. Ezek a naplók található hello információk is segíthetnek megoldani az esetleg felmerülő problémákat parancsfájl.
+Abban az esetben, ha végrehajtási hiba történik, a kimeneti leíró azt is ez a naplófájl tartalmazza. Ezek a naplók található információk is segíthetnek megoldani az esetleg felmerülő problémákat parancsfájl.
 
 ## <a name="see-also"></a>Lásd még:
 * [Parancsfájlművelet HDInsight-fürtök testreszabása][hdinsight-cluster-customize]

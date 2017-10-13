@@ -1,6 +1,6 @@
 ---
-title: "aaaWunderlist összekötő i n Azure logic apps |} Microsoft Docs"
-description: "Hozzon létre egy kapcsolat tooWunderlist, és a kapcsolat toobuild a munkafolyamat a logic Apps alkalmazásokat."
+title: "Wunderlist összekötő i n Azure logic apps |} Microsoft Docs"
+description: "Kapcsolatot létesíthet Wunderlist, és ehhez a kapcsolathoz használni a logic apps a munkafolyamat létrehozásához."
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,32 +15,32 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 08/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 8b960a0bd8a16d51933dfc75e7291c8a0ae0f923
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 899110992cc52ca5edf1706320fd5570473de784
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="get-started-with-hello-wunderlist-connector"></a>Hello Wunderlist összekötő az első lépései
-Wunderlist adja meg a teendőlista és feladat manager toohelp személyek saját dolgai végzett beolvasása.  Megosztja a bevásárlólista loved egy projekten dolgozik, vagy a nyaralás tervezési, Wunderlist megkönnyíti a toocapture, megosztás, majd hajtsa végre a to¬dos. Wunderlist azonnal szinkronizálja a telefon, a tábla és a számítógép, között, hogy bárhonnan hozzáférhessen a feladatok.
+# <a name="get-started-with-the-wunderlist-connector"></a>A Wunderlist összekötő az első lépései
+Wunderlist adja meg a teendőlista lista és a feladat manager személyek saját dolgai végzett beszerzése érdekében.  Egy bevásárlólista loved egy osztunk meg, hogy egy projekten dolgozik, vagy egy szabadsága tervezési Wunderlist egyszerűen rögzítése, megosztás, és végezze el a to¬dos. Wunderlist azonnal szinkronizálja a telefon, a tábla és a számítógép, között, hogy bárhonnan hozzáférhessen a feladatok.
 
 Első lépések egy logikai alkalmazás létrehozása most; Lásd: [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-a-connection-toowunderlist"></a>Egy kapcsolat tooWunderlist létrehozása
-Logikai alkalmazások toocreate Wunderlist, létre kell hoznia egy **kapcsolat** hello részletek adja meg a következő tulajdonságok hello:
+## <a name="create-a-connection-to-wunderlist"></a>Kapcsolatot létesíthet Wunderlist
+A Logic apps Wunderlist létrehozásához, létre kell hoznia egy **kapcsolat** adja meg a részleteket a következő tulajdonságokkal:
 
 | Tulajdonság | Szükséges | Leírás |
 | --- | --- | --- |
 | Token |Igen |Wunderlist hitelesítő adatok |
 
-Hello kapcsolat létrehozása után tooexecute hello műveletek használják, és a hello eseményindítók figyelésére.
+Miután létrehozta a kapcsolatot, a műveletek végrehajtásához, és figyeljen az eseményindítók a használhatja.
 
-> [!INCLUDE [Steps toocreate a connection tooWunderlist](../../includes/connectors-create-api-wunderlist.md)]
+> [!INCLUDE [Steps to create a connection to Wunderlist](../../includes/connectors-create-api-wunderlist.md)]
 > 
 
 ## <a name="connector-specific-details"></a>Összekötő-specifikus részletei
 
-Bármely eseményindítók és hello swagger definiált műveletek megtekintése, és semmilyen határnak hello a Lásd még: [connector részleteket](/connectors/wunderlist/).
+Bármely eseményindítók és a swagger definiált műveletek megtekintése, és semmilyen határnak a Lásd még: a [connector részleteket](/connectors/wunderlist/).
 
 ## <a name="more-connectors"></a>További összekötők
-Lépjen vissza toohello [API-k lista](apis-list.md).
+Lépjen vissza a [API-k lista](apis-list.md).

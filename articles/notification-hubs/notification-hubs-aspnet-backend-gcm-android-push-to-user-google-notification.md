@@ -1,6 +1,6 @@
 ---
-title: "Notification Hubs – felhasználók értesítése Android aaaAzure .NET-háttérrendszerrel"
-description: "Ismerje meg, toosend a leküldéses értesítések toousers az Azure-ban. Androidhoz készült Java nyelven írt mintakódok"
+title: "Az Azure Notification Hubs – felhasználók értesítése .NET-háttérrendszerrel Android rendszerhez"
+description: "Megtudhatja, hogyan küldhetők leküldéses értesítések az Azure-ban a felhasználók számára. Androidhoz készült Java nyelven írt mintakódok"
 documentationcenter: android
 services: notification-hubs
 author: ysxu
@@ -14,17 +14,17 @@ ms.devlang: java
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: b042d2e6fb7f7c861c378526a8a0d59ab75beef9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 418a4b638dfaa3fee33a7a7242433699205c79f7
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-notification-hubs-notify-users-for-android-with-net-backend"></a>Az Azure Notification Hubs – felhasználók értesítése .NET-háttérrendszerrel Android rendszerhez
 [!INCLUDE [notification-hubs-selector-aspnet-backend-notify-users](../../includes/notification-hubs-selector-aspnet-backend-notify-users.md)]
 
 ## <a name="overview"></a>Áttekintés
-Leküldéses értesítési támogatás az Azure-ban lehetővé teszi tooaccess egy könnyen kezelhető, multiplatform és kibővített leküldéses infrastruktúrában, ami jelentősen egyszerűbb a leküldéses értesítések a mobile fogyasztói, valamint a vállalati alkalmazások hello végrehajtása platformok. Ez az oktatóanyag toouse Azure Notification Hubs toosend a leküldéses értesítések tooa adott alkalmazás felhasználói az adott eszközön. ASP.NET WebAPI háttérrendszerből használt tooauthenticate ügyfelek és toogenerate értesítéseket, ahogy hello útmutatást a témakör az [az alkalmazás háttérrendszeréből regisztrálása](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend). Ez az oktatóanyag épít, hello hello létrehozott értesítési központot [Ismerkedés a Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) oktatóanyag.
+Leküldéses értesítési támogatás az Azure-ban lehetővé teszi egy könnyen kezelhető, multiplatform és kibővített leküldéses infrastruktúrában, ami jelentősen egyszerűsíti a leküldéses értesítések mobil platformokhoz fogyasztói, valamint a vállalati alkalmazások eléréséhez. Az oktatóanyag bemutatja, hogyan küldhetők az Azure Notification Hubs használatával leküldéses értesítések adott alkalmazásfelhasználónak, meghatározott eszközre. ASP.NET WebAPI háttérrendszerből használt hitelesíti az ügyfeleket, és értesítéseket, ahogy az az útmutató témakör [az alkalmazás háttérrendszeréből regisztrálása](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend). Ez az oktatóanyag épít, a létrehozott értesítési központot a [Ismerkedés a Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) oktatóanyag.
 
 > [!NOTE]
 > Ez az oktatóanyag feltételezi, hogy létrehozta és leírtak szerint konfigurálta az értesítési központ [Ismerkedés a Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md).
@@ -33,11 +33,11 @@ Leküldéses értesítési támogatás az Azure-ban lehetővé teszi tooaccess e
 
 [!INCLUDE [notification-hubs-aspnet-backend-notifyusers](../../includes/notification-hubs-aspnet-backend-notifyusers.md)]
 
-## <a name="create-hello-android-project"></a>Hello Android-projekt létrehozása
-következő lépés hello toocreate hello Android-alkalmazás.
+## <a name="create-the-android-project"></a>Az Android-projekt létrehozása
+A következő lépés, ha az Android-alkalmazás.
 
-1. Hajtsa végre a hello [Ismerkedés a Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) oktatóanyag toocreate, és konfigurálja az alkalmazás tooreceive leküldéses értesítéseket a gcm-től.
-2. Nyissa meg a **res/layout/activity_main.xml** fájlt, hello cserélje le a következő tartalom definíciók hello.
+1. Kövesse a [Ismerkedés a Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) oktatóanyag létrehozásához, és állítsa be alkalmazását annak leküldéses értesítéseket a gcm-től.
+2. Nyissa meg a **res/layout/activity_main.xml** fájlt, cserélje le a következő tartalom definíciókkal.
    
     Ez biztosítja, hogy új EditText vezérlők felhasználóként van bejelentkezve. Is mező a rendszer ad hozzá egy felhasználónév tag, értesítést küldünk része lesz:
    
@@ -122,7 +122,7 @@ következő lépés hello toocreate hello Android-alkalmazás.
             android:layout_below="@+id/editTextNotificationMessage"
             android:layout_centerHorizontal="true" />
         </RelativeLayout>
-3. Nyissa meg a **res/values/strings.xml** fájlt, és cserélje le a hello `send_button` hello következőre definition sorok hello az újradefiniálás hello karakterláncokat `send_button` és hello karakterláncok más vezérlők hozzáadása:
+3. Nyissa meg a **res/values/strings.xml** fájlt, és cserélje le a `send_button` definícióját a következő sorokat, amely definiálja újra a karakterláncot a `send_button` , és adja hozzá a más vezérlők karakterláncok:
    
         <string name="usernameHint">Username</string>
         <string name="passwordHint">Password</string>
@@ -135,7 +135,7 @@ következő lépés hello toocreate hello Android-alkalmazás.
     A main_activity.xml grafikus elrendezés most példához hasonló:
    
     ![][A1]
-4. Hozzon létre egy új osztályt **RegisterClient** a hello azonos csomag a `MainActivity` osztály. Használja az alábbi hello kódot hello új osztály fájl.
+4. Hozzon létre egy új osztályt **RegisterClient** azonos csomagban található a `MainActivity` osztály. Az alábbi kódot használja az új osztály fájl.
    
         import java.io.IOException;
         import java.io.UnsupportedEncodingException;
@@ -240,15 +240,15 @@ következő lépés hello toocreate hello Android-alkalmazás.
             }
         }
    
-    Ez az összetevő hello REST hívások szükséges toocontact hello háttéralkalmazás, a rendelés tooregister a leküldéses értesítések valósítja meg. Helyileg tárolja a hello *registrationIds* hello által létrehozott értesítési központot, ahogy az az [az alkalmazás háttérrendszeréből regisztrálása](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend). Vegye figyelembe, hogy használja-e egy engedélyezési jogkivonatot hello kattintva helyi storage-ban tárolt **jelentkezzen be** gombra.
-5. Az a `MainActivity` osztály távolítsa el, vagy a privát mezője megjegyzéssé `NotificationHub`, és hello mező felvétele `RegisterClient` osztály és az ASP.NET-háttérrendszerből végpont karakterláncnak. Lehet, hogy tooreplace `<Enter Your Backend Endpoint>` a hello a tényleges háttér-végpontot szerezte be korábban. Például: `http://mybackend.azurewebsites.net`.
+    Ez az összetevő valósítja meg a REST-hívások lépjen kapcsolatba a háttéralkalmazás regisztrálhat a leküldéses értesítések szükséges. Helyileg tárolja a *registrationIds* hozta létre az értesítési központnak a [az alkalmazás háttérrendszeréből regisztrálása](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend). Vegye figyelembe, hogy használja-e egy helyi storage-ban tárolt kattintva engedélyezési jogkivonatot a **jelentkezzen be** gombra.
+5. Az a `MainActivity` osztály távolítsa el, vagy a privát mezője megjegyzéssé `NotificationHub`, és a mező felvétele a `RegisterClient` osztály és az ASP.NET-háttérrendszerből végpont karakterláncnak. Ügyeljen arra, hogy a csere `<Enter Your Backend Endpoint>` az a korábban beszerzett a tényleges háttér-végpontot. Például: `http://mybackend.azurewebsites.net`.
 
         //private NotificationHub hub;
         private RegisterClient registerClient;
         private static final String BACKEND_ENDPOINT = "<Enter Your Backend Endpoint>";
 
 
-1. Az a `MainActivity` osztály hello `onCreate` módszer, távolítsa el vagy hello hello inicializálása megjegyzéssé `hub` mező és hello hívás toohello `registerWithNotificationHubs` metódus. Majd adja hozzá a kódot tooinitialize hello példányának `RegisterClient` osztály. hello metódus hello a következő sorokat kell tartalmaznia:
+1. Az a `MainActivity` osztály a a `onCreate` metódus, távolítsa el vagy megjegyzéssé inicializálása a `hub` mező, és a hívást a `registerWithNotificationHubs` metódus. Majd adja hozzá a kódot példányának inicializálása a `RegisterClient` osztály. A metódus a következő sorokat kell tartalmaznia:
    
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -265,8 +265,8 @@ következő lépés hello toocreate hello Android-alkalmazás.
    
             setContentView(R.layout.activity_main);
         }
-2. Az a `MainActivity` osztály, törölje vagy teljes hello megjegyzéssé `registerWithNotificationHubs` metódust. Ez az oktatóanyag nem használható.
-3. Adja hozzá a következő hello `import` utasítások tooyour **MainActivity.java** fájlt.
+2. Az a `MainActivity` osztály, törlése vagy a teljes megjegyzéssé `registerWithNotificationHubs` metódust. Ez az oktatóanyag nem használható.
+3. Adja hozzá a következő `import` utasítást, hogy a **MainActivity.java** fájlt.
    
         import android.widget.Button;
         import java.io.UnsupportedEncodingException;
@@ -276,7 +276,7 @@ következő lépés hello toocreate hello Android-alkalmazás.
         import org.apache.http.client.ClientProtocolException;
         import java.io.IOException;
         import org.apache.http.HttpStatus;
-4. Adja hozzá a következő módszerek toohandle hello hello **jelentkezzen be** gombra kattintson esemény és leküldéses értesítések küldése.
+4. Adja hozzá az alábbi módszerek kezelni a **jelentkezzen be** gombra kattintson esemény és leküldéses értesítések küldése.
    
         @Override
         protected void onStart() {
@@ -296,7 +296,7 @@ következő lépés hello toocreate hello Android-alkalmazás.
                         String regid = gcm.register(SENDER_ID);
                         registerClient.register(regid, new HashSet<String>());
                     } catch (Exception e) {
-                        DialogNotify("MainActivity - Failed tooregister", e.getMessage());
+                        DialogNotify("MainActivity - Failed to register", e.getMessage());
                         return e;
                     }
                     return null;
@@ -320,15 +320,15 @@ következő lépés hello toocreate hello Android-alkalmazás.
         }
    
         /**
-         * This method calls hello ASP.NET WebAPI backend toosend hello notification message
-         * toohello platform notification service based on hello pns parameter.
+         * This method calls the ASP.NET WebAPI backend to send the notification message
+         * to the platform notification service based on the pns parameter.
          *
-         * @param pns     hello platform notification service toosend hello notification message to. Must
-         *                be one of hello following ("wns", "gcm", "apns").
-         * @param userTag hello tag for hello user who will receive hello notification message. This string
+         * @param pns     The platform notification service to send the notification message to. Must
+         *                be one of the following ("wns", "gcm", "apns").
+         * @param userTag The tag for the user who will receive the notification message. This string
          *                must not contain spaces or special characters.
-         * @param message hello notification message string. This string must include hello double quotes
-         *                toobe used as JSON content.
+         * @param message The notification message string. This string must include the double quotes
+         *                to be used as JSON content.
          */
         public void sendPush(final String pns, final String userTag, final String message)
                 throws ClientProtocolException, IOException {
@@ -354,7 +354,7 @@ következő lépés hello toocreate hello Android-alkalmazás.
                             throw new RuntimeException("Error sending notification");
                         }
                     } catch (Exception e) {
-                        DialogNotify("MainActivity - Failed toosend " + pns + " notification ", e.getMessage());
+                        DialogNotify("MainActivity - Failed to send " + pns + " notification ", e.getMessage());
                         return e;
                     }
    
@@ -363,17 +363,17 @@ következő lépés hello toocreate hello Android-alkalmazás.
             }.execute(null, null, null);
         }
 
-    Hello `login` hello kezelője **jelentkezzen be** gomb létrehoz egy alapszintű hitelesítési jogkivonat használatával hello bemeneti felhasználónevét és jelszavát (vegye figyelembe, hogy a hitelesítési sémát használja bármely jogkivonat jelképez), majd használja `RegisterClient`toocall hello háttér regisztrációjához.
+    A `login` kezelő-a **jelentkezzen be** gomb létrehoz egy egyszerű hitelesítés lexikális elem: a bemeneti felhasználónevét és jelszavát (vegye figyelembe, hogy a hitelesítési sémát használja bármely jogkivonat jelképez) használatával, majd használja `RegisterClient` számára a háttér hívja a regisztrációhoz.
 
-    Hello `sendPush` metódushívások hello háttér tootrigger egy biztonságos értesítési toohello felhasználó hello felhasználói kód alapján. hello platform notification szolgáltatáshoz `sendPush` célok függ hello `pns` az átadott karakterlánc.
+    A `sendPush` metódus meghívja a háttérkiszolgálón való biztonságos értesítést a felhasználót a felhasználói kód alapján. A platform notification szolgáltatáshoz `sendPush` célok függ a `pns` az átadott karakterlánc.
 
-1. Az a `MainActivity` osztály, a frissítés hello `sendNotificationButtonOnClick` metódus toocall hello `sendPush` jelölni platform értesítési szolgáltatások hello felhasználóval módszert az alábbiak szerint.
+1. Az a `MainActivity` osztály, frissítse a `sendNotificationButtonOnClick` metódust kell meghívni a `sendPush` metódust használ a felhasználó kiválasztott platform értesítési szolgáltatások az alábbiak szerint.
    
        /**
-        * Send Notification button click handler. This method sends hello push notification
-        * message tooeach platform selected.
+        * Send Notification button click handler. This method sends the push notification
+        * message to each platform selected.
         *
-        * @param v hello view
+        * @param v The view
         */
        public void sendNotificationButtonOnClick(View v)
                throws ClientProtocolException, IOException {
@@ -400,16 +400,16 @@ következő lépés hello toocreate hello Android-alkalmazás.
            }
        }
 
-## <a name="run-hello-application"></a>Hello alkalmazás futtatása
-1. Egy eszköz vagy az Android Studio segítségével emulátor hello alkalmazás futtatható.
-2. A hello Android-alkalmazás írja be a felhasználónevet és jelszót. Mindkét kell hello azonos karakterláncértéket, és nem a szóközt vagy speciális karaktereket kell tartalmaznia.
-3. Hello Android-alkalmazás, kattintson **jelentkezzen be**. Várjon, amíg egy bejelentési üzenet **naplózva a és a regisztrált**. Ez lehetővé teszi a hello **értesítés küldése** gombra.
+## <a name="run-the-application"></a>Futtassa az alkalmazást
+1. Futtassa az alkalmazást egy eszközön vagy az emulátor Android Studio segítségével.
+2. Az Android-alkalmazás adja meg egy felhasználónevet és jelszót. Mindkét legyen ugyanaz a karakterláncértéke, és azok nem tartalmazhat szóközt vagy speciális karaktereket.
+3. Kattintson az Android-alkalmazás **jelentkezzen be**. Várjon, amíg egy bejelentési üzenet **naplózva a és a regisztrált**. Ez lehetővé teszi a **értesítés küldése** gombra.
    
     ![][A2]
-4. Kattintson a hello váltása gombok tooenable esetében minden platform hello app futott, és a felhasználó regisztrált.
-5. Adja meg a hello felhasználónevet hello értesítési üzenetet fog kapni. Az értesítések hello céleszközökön meg regisztrálni kell, hogy a felhasználó.
-6. Adjon meg egy üzenetet hello felhasználói tooreceive egy leküldéses értesítési üzenetet.
-7. Kattintson a **értesítésküldés**.  Minden eszköz, amely rendelkezik egy regisztrációs hello megfelelő felhasználónév címkével ellátott hello leküldéses értesítést fog kapni.
+4. Kattintson a váltógomb gombok esetében minden platform engedélyezése az alkalmazás futtatása, és a felhasználó regisztrált.
+5. Adja meg a felhasználó nevét, akik szintén megkapják az értesítési üzenet. Az értesítések a céleszközökön meg regisztrálni kell, hogy a felhasználó.
+6. Adja meg a felhasználó számára a leküldéses értesítési üzenet fogadása az üzenetet.
+7. Kattintson a **értesítésküldés**.  Minden eszköz, amely rendelkezik a megfelelő felhasználónév címkével regisztráció a leküldéses értesítést fog kapni.
 
 [A1]: ./media/notification-hubs-aspnet-backend-android-notify-users/android-notify-users.png
 [A2]: ./media/notification-hubs-aspnet-backend-android-notify-users/android-notify-users-enter-password.png

@@ -1,6 +1,6 @@
 ---
-title: "aaaSecure a kulcsot tároló |} Microsoft Docs"
-description: "Kulcstartó-hozzáférési engedélyek kezelése tárolók, kulcsok és titkos kulcsok kezeléséhez. A kulcstároló, és hogyan toosecure a kulcsot tároló hitelesítési és engedélyezési modell"
+title: "Kulcstartó védelme | Microsoft Docs"
+description: "Kulcstartó-hozzáférési engedélyek kezelése tárolók, kulcsok és titkos kulcsok kezeléséhez. Kulcstartó hitelesítési és engedélyezési modellje, illetve a kulcstartó biztosításának módja"
 services: key-vault
 documentationcenter: 
 author: amitbapat
@@ -14,155 +14,155 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 01/07/2017
 ms.author: ambapat
-ms.openlocfilehash: 84f5fc18142a1ad89babbd11f4f65eca105afc32
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b81791f0bce7e6f57782dfe7bc5fb5fc21369e7d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="secure-your-key-vault"></a>Kulcstartó védelme
-Az Azure Key Vault egy felhőszolgáltatás, mely a titkosítási kulcsokat és titkos kulcsokat (pl. tanúsítványok, kapcsolati karakterláncok, jelszavak) védi az Ön felhőalkalmazásainál. Mivel ezek az adatok bizalmas és a kritikus fontosságú üzleti, toosecure hozzáférés tooyour kulcstárolójának szeretné, hogy csak engedélyezett alkalmazások és a felhasználók kulcstároló. Ez a cikk kulcstároló hozzáférési modell áttekintése, hitelesítési és engedélyezési ismerteti, és ismerteti, hogyan toosecure hozzáférés tookey a felhőalapú alkalmazásokhoz, például a tároló.
+Az Azure Key Vault egy felhőszolgáltatás, mely a titkosítási kulcsokat és titkos kulcsokat (pl. tanúsítványok, kapcsolati karakterláncok, jelszavak) védi az Ön felhőalkalmazásainál. Mivel ezek érzékeny és üzleti szempontból kritikus jellegű adatok, fontos, hogy Ön csak jogosult alkalmazások és felhasználók számára engedélyezzen kulcstartó-hozzáférést. Ez a cikk áttekintést ad a kulcstartó-hozzáférési modellről, elmagyarázza, mi a hitelesítés és az engedélyezés, és egy példával szemlélteti, hogyan biztosíthat kulcstartó-hozzáférést felhőalkalmazásai számára.
 
 ## <a name="overview"></a>Áttekintés
-Hozzáférés tooa kulcstároló két külön-felületek segítségével lehet szabályozni: felügyeleti vezérlősík és a vezérlősík adatokat. Mindkét síkok megfelelő hitelesítési és engedélyezési szükség egy hívó (a felhasználó vagy egy alkalmazás) kérheti le a hozzáférési tookey tároló előtt. Hitelesítési hello hívó identitását hello hoz létre, amíg engedélyezési határozza meg, hogy milyen műveletek hello hívó tooperform.
+A kulcstartó-hozzáférés vezérlése két külön felületen, a felügyeleti síkon és az adatsíkon keresztül történik. Mindkét sík esetében megfelelő hitelesítés és engedélyezés szükséges ahhoz, hogy a hívó (felhasználó vagy alkalmazás) kulcstartó-hozzáférést kaphasson. A hitelesítés a hívó azonosítását szolgálja, az engedélyezés pedig meghatározza, milyen műveletek elvégzésére jogosult a hívó.
 
 Hitelesítésre mind a felügyeleti sík, mind az adatsík az Azure Active Directoryt használja. Engedélyezésre a felügyeleti sík szerepköralapú hozzáférés-vezérlést (RBAC) használ, míg az adatsík kulcstartó-hozzáférési házirendet.
 
-Hello témák rövid áttekintését a következő:
+A tárgyalt témakörök rövid áttekintése:
 
-[Hitelesítés az Azure Active Directoryval](#authentication-using-azure-active-directory) -ebből a témakörből megtudhatja, hogyan hívó hitelesítse magát Azure Active Directory tooaccess kulcstároló felügyeleti vezérlősík és adatok vezérlősík keresztül. 
+[Hitelesítés az Azure Active Directory használatával](#authentication-using-azure-active-directory) – Ebből a fejezetből megtudhatja, hogyan végezhet hitelesítést a hívó az Azure Active Directoryval a felügyeleti síkon és az adatsíkon keresztüli kulcstartó-hozzáférés céljából. 
 
-[Felügyeleti sík és adatsík](#management-plane-and-data-plane) – A felügyeleti sík és az adatsík a kulcstartó-hozzáféréséhez használt két hozzáférési síkot jelenti. Minden hozzáférési sík meghatározott műveleteket támogat. Ez a szakasz ismerteti a hello hozzáférés végpontok, műveletek támogatott, és minden vezérlősík vezérlő módszerének eléréséhez. 
+[Felügyeleti sík és adatsík](#management-plane-and-data-plane) – A felügyeleti sík és az adatsík a kulcstartó-hozzáféréséhez használt két hozzáférési síkot jelenti. Minden hozzáférési sík meghatározott műveleteket támogat. Ez a fejezet a hozzáférés végpontjait, a támogatott műveleteket és az egyes síkokon használt hozzáférés-vezérlés módját írja le. 
 
-[Felügyeleti vezérlősík hozzáférés-vezérlés](#management-plane-access-control) – ebben a szakaszban megnézzük, így a hozzáférés toomanagement vezérlősík műveletek szerepköralapú hozzáférés-vezérlés használatával.
+[Felügyeleti sík hozzáférés-vezérlése](#management-plane-access-control) – Ebben a fejezetben megtekintjük, hogyan engedélyezhetünk hozzáférést a felügyeleti sík műveletei számára szerepköralapú hozzáférés-vezérlés útján.
 
-[Adatok vezérlősík hozzáférés-vezérlés](#data-plane-access-control) – Ez a szakasz ismerteti, hogyan toouse kulcstároló hozzáférési házirend toocontrol adatok sík hozzáférést.
+[Adatsík hozzáférés-vezérlése](#data-plane-access-control) – Ez a fejezet leírja, hogyan használható a kulcstartó-hozzáférési házirend az adatsík-hozzáférés vezérléséhez.
 
-[Példa](#example) – Ez a példa bemutatja, hogyan toosetup hozzáférés a kulcstartót tooallow három különböző csoportjai (biztonsági csoport, a fejlesztők/operátorok és auditor) tooperform meghatározott feladatok toodevelop, kezelni és megfigyelni a kérelmet az Azure-ban .
+[Példa](#example) – Ez a példa megmutatja, hogyan állíthat be kulcstartójához hozzáférés-vezérlést, három különböző csapat (biztonsági csapat, fejlesztők/operátorok és ellenőrök) számára engedélyezve meghatározott alkalmazásfejlesztési, -kezelési és -figyelési feladatok végrehajtását az Azure rendszerben.
 
 ## <a name="authentication-using-azure-active-directory"></a>Hitelesítés az Azure Active Directory használatával
-Azure-előfizetés hozzon létre egy kulcstartót esetén automatikusan társított hello előfizetés Azure Active Directory-bérlő. Összes hívó (a felhasználók és az alkalmazások) kell lennie a bérlő tooaccess regisztrált ezen a kulcstartón. Egy alkalmazás vagy a felhasználó Azure Active Directory tooaccess kulcstároló kell hitelesíteni. Ez vonatkozik tooboth felügyeleti vezérlősík és adatok vezérlősík hozzáférést. Mindkét esetben kétféle módon férhet hozzá az alkalmazás a kulcstartóhoz:
+Amikor Azure-előfizetésében kulcstartót hoz létre, az automatikusan az előfizetés Azure Active Directory-bérlőjéhez társul. Valamennyi hívót (felhasználót és alkalmazást) regisztrálni kell ebben a bérlőben, hogy az adott kulcstartóhoz hozzáférhessen. Az alkalmazásnak vagy felhasználónak hitelesítést kell végeznie az Azure Active Directory felé, hogy a kulcstartóhoz hozzáférhessen. Ez mind a felügyeleti síkon, mind pedig az adatsíkon érvényes. Mindkét esetben kétféle módon férhet hozzá az alkalmazás a kulcstartóhoz:
 
-* **felhasználó + alkalmazás-hozzáférés** – ez általában olyan alkalmazások esetén történik, amelyek bejelentkezett felhasználó nevében férnek hozzá a kulcstartóhoz. Ilyen típusú hozzáférés például az Azure PowerShell vagy az Azure Portal. Toogrant hozzáférés toousers két módja van: egyirányú toogrant hozzáférés toousers, melyet bármely alkalmazásból kulcstároló eléréséhez, és más módon hello toogrant a felhasználói hozzáférés tookey tároló csak akkor, amikor egy adott alkalmazás (hivatkozott tooas összetett identitás) használnak. 
-* **csak alkalmazás hozzáférés** – az alkalmazások, hogy démon szolgáltatások futtatása stb hello alkalmazás azonosítóját kapnak a feladatok a háttérben hozzáférési toohello kulcs tárolóban.
+* **felhasználó + alkalmazás-hozzáférés** – ez általában olyan alkalmazások esetén történik, amelyek bejelentkezett felhasználó nevében férnek hozzá a kulcstartóhoz. Ilyen típusú hozzáférés például az Azure PowerShell vagy az Azure Portal. A felhasználóknak kétféle módon adható hozzáférés: az egyik szerint bármilyen alkalmazásból hozzáférhetnek a kulcstartóhoz, a másik mód esetén csak akkor, amikor egy meghatározott alkalmazást használnak (ezt összetett identitásnak nevezik). 
+* **csak alkalmazás hozzáférése** – démonszolgáltatásokat, háttérfeladatokat stb. futtató alkalmazások számára. A kulcstartó-hozzáférés az alkalmazásidentitás számára engedélyezett.
 
-Mindkét típusú alkalmazások hello alkalmazás Azure Active Directoryval bármely hello használatával hitelesíti [támogatott hitelesítési módszerek](../active-directory/active-directory-authentication-scenarios.md) , és beszerzi a jogkivonatot. Használt hitelesítési módszert hello alkalmazás típusától függ. Majd hello alkalmazás használja a jogkivonatot, és elküldi a REST API-kérés tookey tárolóban. Felügyeleti vezérlősík hozzáférés hello esetén kérelmek Azure Resource Manager-végpont rendszer továbbít. Adatok vezérlősík elérésekor hello alkalmazások közvetlenül tooa kulcstároló végpont kiszolgálóhoz. További információt olvashat hello [egész hitelesítési folyamat](../active-directory/active-directory-protocols-oauth-code.md). 
+Az Azure Active Directory-hitelesítés és -tokenbeolvasás az alkalmazás mindkét típusa esetén elvégezhető a [támogatott hitelesítési módszerek](../active-directory/active-directory-authentication-scenarios.md) bármelyikével. A hitelesítés módszere az alkalmazás típusától függ. Az alkalmazás a későbbiekben ezt a tokent használja, amikor REST API-kérelmet küld a kulcstartónak. Felügyeletisík-hozzáférés esetén a kérelmek az Azure Resource Manager végpontjához kerülnek. Adatsík-hozzáférés esetén az alkalmazások közvetlenül a kulcstartó végpontjával kommunikálnak. További részletek a [teljes hitelesítési folyamatról](../active-directory/active-directory-protocols-oauth-code.md). 
 
-hello erőforrás neve, amelynek hello alkalmazás kér egy token eltér attól függően, hogy hello alkalmazás felügyeleti vezérlősík vagy adatok vezérlősík elérése. Ezért hello erőforrás nevének megadása vagy felügyeleti vezérlősík vagy adatok vezérlősík végpont hello táblázatban egy későbbi szakasz ismerteti, attól függően, hogy hello Azure környezetben.
+Annak az erőforrásnak a neve, melyhez az alkalmazás tokent kér, attól függően változik, hogy az alkalmazás felügyeleti vagy adatsíkhoz készül hozzáférni. Így az erőforrásnév vagy felügyeleti sík, vagy adatsík végpontja, amint az egy később szakasz táblázatában szerepel, az Azure-környezettől függően.
 
-A hitelesítési tooboth egy egyetlen mechanizmussal rendelkezik felügyelete és az adatok vezérlősík rendelkezik a saját előnyei:
+Ha mind a felügyeleti síkra, mind az adatsíkra egyetlen hitelesítési mechanizmust alkalmaz, annak megvannak a maga előnyei:
 
-* A szervezetek központilag szabályozhatja a szervezetek hozzáférés tooall kulcstárolójának
-* Ha egy felhasználó kilép, azonnal megszakad a hozzáférési tooall kulcstárolójának hello szervezet
-* A szervezetek szabhatja testre a hitelesítés az Azure Active Directoryban (például, amely lehetővé teszi a többtényezős hitelesítést nagyobb biztonság) hello-beállítások segítségével
+* A szervezetek központilag vezérelhetik valamennyi kulcstartójukat
+* Ha egy felhasználó távozik, azonnal elveszíti a szervezeten belüli összes kulcstartó-hozzáférését
+* A szervezetek az Azure Active Directory beállításain keresztül testre szabhatják a hitelesítést (például Multi-Factor Authentication engedélyezésével fokozhatják a biztonságot)
 
 ## <a name="management-plane-and-data-plane"></a>Felügyeleti sík és adatsík
-Az Azure Key Vault az Azure Resource Manager-alapú üzemi modellen keresztül elérhető Azure-szolgáltatás. Kulcstartó létrehozásakor Ön virtuális tárolóhoz jut, és benne egyéb objektumokat – például kulcsokat, titkos kulcsokat és tanúsítványokat – hozhat létre. Ezután a kulcstartót használó felügyeleti vezérlősík és vezérlősík tooperform adott műveletei érhető el. Felügyeleti vezérlősík objektumfelület használt toomanage a kulcsot tároló magát, például a létrehozása, törlése, kulcstároló tulajdonságainak frissítése és az adatok vezérlősík hozzáférési házirendek beállítása. Adatok vezérlősík adapter használt tooadd, törlése, módosítása, és hello kulcsokat, a titkos kulcsok és a tanúsítványok a key vaultban tárolt használja.
+Az Azure Key Vault az Azure Resource Manager-alapú üzemi modellen keresztül elérhető Azure-szolgáltatás. Kulcstartó létrehozásakor Ön virtuális tárolóhoz jut, és benne egyéb objektumokat – például kulcsokat, titkos kulcsokat és tanúsítványokat – hozhat létre. Ezután felügyeleti és adatsíkokon keresztül férhet hozzá kulcstartójához, és végezhet meghatározott műveleteket. A felügyeleti sík felületén magát a kulcstartót kezelheti, például kulcstartó-attribútumokat hozhat létre, törölhet és frissíthet, illetve hozzáférési házirendeket állíthat be az adatsíkhoz. Az adatsík felületén a kulcstartójában tárolt kulcsok, titkos kulcsok és tanúsítványok felvételére, törlésére, módosítására és használatára van lehetősége.
 
-hello vezérlősík és az adatok vezérlősík felületek (lásd a táblázatot) különböző végpontokon keresztül érhetők el. hello táblázat második oszlopában hello ismerteti ezeket a végpontokat különböző Azure-környezetek hello DNS-neveit. hello harmadik oszlop hello műveletek hajthatók végre a minden egyes hozzáférés vezérlősík ismerteti. Minden hozzáférési síknak megvan a saját hozzáférés-vezérlési mechanizmusa is: a felügyeleti sík hozzáférés-vezérlése az Azure Resource Manager szerepköralapú hozzáférés-vezérlése (RBAC) használatával van beállítva, míg az adatsík hozzáférés-vezérlésének beállítása a kulcstartó hozzáférési házirendjének használatával történik.
+A felügyeleti sík és az adatsík felületei eltérő végpontokon keresztül érhetők el (lásd a táblázatot). A táblázat második oszlopa ismerteti ezen végpontok DNS-neveit különböző Azure-környezetekben. A harmadik oszlop az egyes hozzáférési síkokról elvégezhető műveleteket ismerteti. Minden hozzáférési síknak megvan a saját hozzáférés-vezérlési mechanizmusa is: a felügyeleti sík hozzáférés-vezérlése az Azure Resource Manager szerepköralapú hozzáférés-vezérlése (RBAC) használatával van beállítva, míg az adatsík hozzáférés-vezérlésének beállítása a kulcstartó hozzáférési házirendjének használatával történik.
 
 | Hozzáférési sík | Hozzáférés végpontjai | Műveletek | Hozzáférés-vezérlési mechanizmus |
 | --- | --- | --- | --- |
 | Felügyeleti sík |**Globálisan:**<br> management.azure.com:443<br><br> **Azure China:**<br> management.chinacloudapi.cn:443<br><br> **Amerikai Egyesült Államok kormánya által használt Azure:**<br> management.usgovcloudapi.net:443<br><br> **Azure Germany:**<br> management.microsoftazure.de:443 |Kulcstartó létrehozása/olvasása/frissítése/törlése <br> Kulcstartó hozzáférési házirendjeinek beállítása<br>Címkék beállítása kulcstartóhoz |Az Azure Resource Manager szerepköralapú hozzáférés-vezérlése (RBAC) |
 | Adatsík |**Globálisan:**<br> &lt;tároló-neve&gt;.vault.azure.net:443<br><br> **Azure China:**<br> &lt;tároló-neve&gt;.vault.azure.cn:443<br><br> **Amerikai Egyesült Államok kormánya által használt Azure:**<br> &lt;tároló-neve&gt;.vault.usgovcloudapi.net:443<br><br> **Azure Germany:**<br> &lt;tároló-neve&gt;.vault.microsoftazure.de:443 |Kulcsok: Visszafejtés, Titkosítás, UnwrapKey, WrapKey, Ellenőrzés, Aláírás, Beolvasás, Listázás, Frissítés, Létrehozás, Importálás, Törlés, Biztonsági mentés, Visszaállítás<br><br> Titkos kulcsok: Beolvasás, Listázás, Beállítás, Törlés |Kulcstartó hozzáférési házirendje |
 
-hello felügyeleti vezérlősík és az adatok vezérlősík hozzáférés-vezérlést egymástól függetlenül működnek. Például ha toogrant kulcstároló egy alkalmazás-hozzáférési toouse kulcs, csak kell toogrant adatok vezérlősík hozzáférési engedélyeik kulcstároló hozzáférési szabályzatainak, és nem felügyeleti vezérlősík hozzáférés szükséges ehhez az alkalmazáshoz. És ezzel szemben, ha tudni szeretné egy felhasználó toobe tooread tulajdonságok és címkék tároló, de nem rendelkeznek hozzáféréssel tookeys, titkos kulcsokat, vagy tanúsítványok, is meg lehet adni a felhasználó, "read" hozzáférés RBAC és egyetlen hozzáférési toodata vezérlősík szükség.
+A felügyeleti sík és az adatsík hozzáférés-vezérlése egymástól függetlenül működik. Ha például hozzáférést engedélyez egy alkalmazásnak egy kulcstartóban lévő kulcs használatához, csak adatsík-hozzáférési engedélyt kell adnia a kulcstartó-hozzáférési házirenden keresztül, és nincs szükség felügyeleti síkú hozzáférésre ennél az alkalmazásnál. Ha viszont azt szeretné, hogy a felhasználó olvasni tudja a tároló tulajdonságait és címkéit, de ne férjen hozzá a kulcsokhoz, titkos kulcsokhoz és tanúsítványokhoz, engedélyezhet ennek a felhasználónak „olvasási” hozzáférést RBAC használatával, de nem szükséges hozzáférést biztosítani az adatsíkhoz.
 
 ## <a name="management-plane-access-control"></a>Felügyeleti sík hozzáférés-vezérlése
-hello felügyeleti vezérlősík maga hello kulcstároló-műveletek áll. Például létrehozhat vagy törölhet egy kulcstartót. Előfizetésben megkaphatja a tárolók listáját. Kulcstartó tulajdonságait (például Termékváltozat, a címkék) beolvasása, és állítsa be a kulcstároló hozzáférési házirendeket, amelyek vezérlik hello felhasználók és a kulcsok és titkos hello a key vaultban elérhető alkalmazásokat. A felügyeleti sík hozzáférés-vezérlése RBAC használatával történik. Lásd: hello kulcstároló felügyeleti vezérlősík hello tábla előző szakaszban végezhető műveletek teljes listájának. 
+A felügyelet sík olyan műveleteket tartalmaz, amelyek magára a kulcstartóra vannak hatással. Például létrehozhat vagy törölhet egy kulcstartót. Előfizetésben megkaphatja a tárolók listáját. Lehívhatja a kulcstartó tulajdonságait (például cikkszám, címkék), és beállíthatja a kulcstartóban lévő kulcsokhoz és titkos kulcsokhoz hozzáférő felhasználókat és alkalmazásokat vezérlő kulcstartó-hozzáférési házirendeket. A felügyeleti sík hozzáférés-vezérlése RBAC használatával történik. A felügyeleti síkon keresztül elvégezhető kulcstartó-műveletek teljes listáját az előző fejezet táblázatában találja. 
 
 ### <a name="role-based-access-control-rbac"></a>Szerepköralapú hozzáférés-vezérlés (RBAC)
-Minden Azure-előfizetés Azure Active Directoryval rendelkezik. Felhasználók, csoportok és alkalmazások a könyvtárból toomanage az Azure-erőforrások hello Azure-előfizetés hello Azure Resource Manager üzembe helyezési modellben használó engedélyezhetők. Ez a hozzáférés-vezérlés típus hivatkozott tooas szerepköralapú hozzáférés-vezérlést (RBAC). toomanage ez fér hozzá, használhatja a hello [Azure-portálon](https://portal.azure.com/), hello [Azure CLI-eszközei](../cli-install-nodejs.md), [PowerShell](/powershell/azureps-cmdlets-docs), vagy hello [Azure Resource Manager REST API-k](https://msdn.microsoft.com/library/azure/dn906885.aspx).
+Minden Azure-előfizetés Azure Active Directoryval rendelkezik. Ezen könyvtár valamennyi felhasználója, csoportja és alkalmazása hozzáférést kaphat Azure-előfizetése Azure Resource Manager-alapú üzemi modellt használó erőforrásainak kezeléséhez. Az ilyen típusú hozzáférés-vezérlést szerepköralapú hozzáférés-vezérlésnek (RBAC-nek) nevezzük. A hozzáférés az [Azure Portal](https://portal.azure.com/), az [Azure Parancssorifelület-eszközök](../cli-install-nodejs.md), a [PowerShell](/powershell/azureps-cmdlets-docs) vagy az [Azure Resource Manager REST API-k](https://msdn.microsoft.com/library/azure/dn906885.aspx) használatával kezelhető.
 
-Hello Azure Resource Manager modellt a kulcstartót alkalmazásban létrehozott egy erőforrás csoport és a vezérlés hozzáférési toohello felügyeleti vezérlősík ezen a kulcstartón az Azure Active Directory használatával. Például biztosíthat a felhasználók vagy a csoport lehetőséget toomanage kulcstárolójának egy adott erőforráscsoportban.
+Az Azure Resource Manager modellel kulcstartót hozhat létre erőforráscsoporton belül, és az Azure Active Directory használatával vezérelheti e kulcstartó felügyeleti síkját. Lehetőséget adhat például felhasználóknak vagy egy csoportnak, hogy egy adott erőforráscsoport kulcstartóit kezeljék.
 
-Hozzáférés toousers, csoportok és alkalmazások egy adott hatókörhöz megadásához, megfelelő RBAC-szerepkörök hozzárendelése. Például toogrant tooa felhasználói toomanage kulcstárolójának rendelne egy előre meghatározott szerepkör "key vault közreműködői" toothis felhasználó egy adott hatókörhöz érhető el. hello hatókör ebben az esetben lenne előfizetés, egy erőforráscsoportot, vagy csak adott kulcstároló. Egy előfizetés szintjén szerepkörrel tooall erőforráscsoport-sablonok és erőforrások adott előfizetésen belül érvényes. Egy erőforrás-csoportok szintjén szerepkörrel tooall erőforrások az erőforráscsoport vonatkozik. Egy adott erőforráshoz hozzárendelt szerepkör csak akkor toothat erőforrás. Számos előre meghatározott szerepkör (lásd: [RBAC: beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md)), és ha hello előre definiált szerepkörök nem igényei saját szerepköröket is meghatározhat.
+Megfelelő RBAC-szerepek kiosztásával meghatározott hatáskörrel rendelkező felhasználók, csoportok és alkalmazások számára biztosíthat hozzáférést. Például, ha kulcstartókezelési hozzáférést kíván biztosítani egy felhasználónak, előre meghatározott „kulcstartó-közreműködői” szerepkört rendelhet ehhez a felhasználóhoz egy adott hatókörnél. A hatókör ebben az esetben lehet egy előfizetés, egy erőforráscsoport vagy egyszerűen egy adott kulcstartó. Az előfizetés-szinten hozzárendelt szerepkör az adott előfizetésen belül működő összes erőforráscsoportra és erőforrásra vonatkozik. Az erőforráscsoport-szinten hozzárendelt szerepkör az adott erőforráscsoport valamennyi erőforrására vonatkozik. A meghatározott erőforráshoz rendelt szerepkör csak az adott erőforrásra vonatkozik. Számos előre definiált szerepkör létezik (lásd: [RBAC: Beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md)), ha pedig az előre definiált szerepkörök nem felelnek meg igényeinek, saját szerepköröket is meghatározhat.
 
 > [!IMPORTANT]
-> Vegye figyelembe, hogy ha egy felhasználó közreműködői engedélyekkel (RBAC) tooa kulcstároló felügyeleti vezérlősík, ő biztosíthat közte hozzáférés toodata vezérlősík, kulcstároló hozzáférési házirendet, amely szabályozza a hozzáférést toodata vezérlősík beállításával. Ezért ajánlott tootightly vezérlő rendelkező "Közreműködői" hozzáférési tooyour kulcstárolójának tooensure csak arra jogosult személyek eléréséhez, és a kulcstárolók, a kulcsokat, a titkos kulcsok és a tanúsítványok kezeléséhez.
+> Vegye figyelembe: ha a kulcstartó felügyeleti síkjához a felhasználónak közreműködői engedélye (RBAC) van, hozzáférést engedélyezhet magának az adatsíkhoz is az adatsík-hozzáférést vezérlő kulcstartó-hozzáférési házirend beállításával. Ezért javasoljuk, hogy tartsa szigorú ellenőrzés alatt, ki rendelkezhet „közreműködői” hozzáféréssel kulcstartóihoz, így csak az arra jogosult személyek érhetik el, illetve kezelhetik kulcstartóit, kulcsait, titkos kulcsait és tanúsítványait.
 > 
 > 
 
 ## <a name="data-plane-access-control"></a>Adatsík-hozzáférés vezérlése
-hello kulcstároló adatok vezérlősík-műveletek hatása a kulcstároló, például a kulcsokat, a titkos kulcsok és a tanúsítványok hello objektumok áll.  Olyan, kulcsokkal kapcsolatos műveleteket foglal magába, mint a kulcsok létrehozása, importálása, frissítése, listázása, biztonsági mentése és visszaállítása, valamint kriptográfiai műveleteket, mint például a kulcsok aláírása, ellenőrzése, titkosítása, visszafejtése, be- és kicsomagolása, a kulcsok címkéinek és egyéb attribútumainak beállítása. Hasonlóképpen, titkos kulcsok esetén magába foglalja a beolvasást, beállítást, listázást és törlést.
+A kulcstartó adatsíkja olyan műveletekből épül fel, melyek a kulcstartó objektumaira (például kulcsok, titkos kulcsok és tanúsítványok) vannak hatással.  Olyan, kulcsokkal kapcsolatos műveleteket foglal magába, mint a kulcsok létrehozása, importálása, frissítése, listázása, biztonsági mentése és visszaállítása, valamint kriptográfiai műveleteket, mint például a kulcsok aláírása, ellenőrzése, titkosítása, visszafejtése, be- és kicsomagolása, a kulcsok címkéinek és egyéb attribútumainak beállítása. Hasonlóképpen, titkos kulcsok esetén magába foglalja a beolvasást, beállítást, listázást és törlést.
 
-Az adatsík-hozzáférés a kulcstartó hozzáférési házirendjeinek beállításán keresztül biztosítható. A felhasználó, csoport vagy egy alkalmazás felügyeleti vezérlősík vonatkozó egy kulcstartót toobe képes tooset hozzáférési házirendek adott kulcstároló-közreműködői jogokat (RBAC) kell rendelkeznie. Egy felhasználó, csoport vagy alkalmazás lehet adni a kulcsok vagy titkos kulcsok a kulcstároló hozzáférési tooperform műveleteket. Kulcstároló-támogatás too16 hozzáférés házirend-bejegyzések kulcstároló fel. Hozzon létre egy Azure Active Directory biztonsági csoportot, és adja hozzá a felhasználók toothat csoport toogrant adatok vezérlősík hozzáférés tooseveral felhasználók tooa kulcstároló.
+Az adatsík-hozzáférés a kulcstartó hozzáférési házirendjeinek beállításán keresztül biztosítható. Ahhoz, hogy egy felhasználó, csoport vagy alkalmazás hozzáférési házirendet tudjon beállítani egy adott kulcstartóhoz, rendelkeznie kell a kulcstartó felügyeleti síkjának közreműködői engedélyeivel (RBAC). A felhasználók, csoportok és alkalmazások számára hozzáférés engedélyezhető egy adott kulcstartó kulcsaihoz vagy titkos kulcsaihoz kapcsolódó, meghatározott műveletek elvégzéséhez. Akár 16 hozzáférésiházirend-bejegyzés támogatása kulcstartók esetében. Azure Active Directory biztonsági csoport létrehozásával és felhasználók felvételével a csoportba több felhasználó számára biztosíthat adatsíkszintű kulcstartó-hozzáférést.
 
 ### <a name="key-vault-access-policies"></a>Kulcstartó-hozzáférési házirendek
-Kulcstároló hozzáférési szabályzatainak külön-külön adjon engedélyeket tookeys, a titkos kulcsok és a tanúsítványok. Például adhat egy felhasználói hívóbetűk tooonly, de nincs engedélye a titkos kulcsok. Azonban engedélyek tooaccess kulcsok vagy titkos kulcsokat vagy tanúsítványokat is hello tároló szintjén. Másként megfogalmazva, a kulcstartó-hozzáférési házirend nem támogatja az objektumszintű engedélyeket. Használhat [Azure-portálon](https://portal.azure.com/), hello [Azure CLI-eszközei](../cli-install-nodejs.md), [PowerShell](/powershell/azureps-cmdlets-docs), vagy hello [kulcstároló felügyeleti REST API-k](https://msdn.microsoft.com/library/azure/mt620024.aspx) tooset hozzáférési házirendek a kulcstároló.
+A kulcstartó-hozzáférési házirendekkel külön-külön engedélyezheti a kulcsok, titkos kulcsok és tanúsítványok elérését. Egy adott felhasználó számára hozzáférést engedélyezhet például kizárólag a kulcsokhoz, de a titkos kulcsokhoz nem. A kulcsok, titkos kulcsok és tanúsítványok hozzáférése ugyanakkor tárolószinten engedélyezett. Másként megfogalmazva, a kulcstartó-hozzáférési házirend nem támogatja az objektumszintű engedélyeket. Kulcstartó-hozzáférési házirendeket az [Azure portal](https://portal.azure.com/), az [Azure parancssorifelület-eszközök](../cli-install-nodejs.md), a [PowerShell](/powershell/azureps-cmdlets-docs) vagy a [Kulcstartókezelési REST API-k](https://msdn.microsoft.com/library/azure/mt620024.aspx) használatával állíthat be.
 
 > [!IMPORTANT]
-> Vegye figyelembe, hogy a kulcstároló hozzáférési szabályzatainak hello tároló szintjén alkalmazásra. Például megadásakor a felhasználó engedélye toocreate és a delete billentyűt, ő hajthat végre e műveleteket minden kulcsok, hogy a key vaultban.
+> Vegye figyelembe, hogy a kulcstartó-hozzáférési házirendek tárolószinten érvényesek. Például, ha egy felhasználó engedélyt kap kulcsok létrehozására és törlésére, az adott kulcstartó összes kulcsa esetén végrehajthatja ezeket a műveleteket.
 > 
 > 
 
 ## <a name="example"></a>Példa
-Tegyük fel, hogy Ön egy olyan alkalmazást fejleszt, amely az SSL-hez tanúsítványt használ, adattárolásra Azure-tárolást, az aláírási műveletekhez pedig RSA 2048 bites kulcsot. Tegyük fel azt is, hogy ez az alkalmazás virtuális gépen fut (vagy virtuálisgép-méretezési csoportban). A kulcstároló toostore összes alkalmazás titkok és kulcstároló toostore hello bootstrap tanúsítvány használata az Azure Active Directoryval hello alkalmazás tooauthenticate által használt hello is használhatja.
+Tegyük fel, hogy Ön egy olyan alkalmazást fejleszt, amely az SSL-hez tanúsítványt használ, adattárolásra Azure-tárolást, az aláírási műveletekhez pedig RSA 2048 bites kulcsot. Tegyük fel azt is, hogy ez az alkalmazás virtuális gépen fut (vagy virtuálisgép-méretezési csoportban). Kulcstartót használhat az összes titkos alkalmazáskulcs tárolására, valamint azon rendszerindítási tanúsítvány tárolására, amelyet az alkalmazás az Azure Active Directoryval történő hitelesítéshez használ.
 
-Igen Ez minden hello kulcsok és titkos toobe key vaultban tárolt összegzését.
+Íme egy összegzés arról, mely kulcsok és titkos kulcsok tárolhatók a kulcstartóban.
 
 * **SSL-tanúsítvány** – az SSL-hez használatos
-* **Biztonságitár-kulcs** -tooget hozzáférési tooStorage fiók használható
+* **Tárkulcs** – a tárfiók eléréséhez használatos
 * **RSA 2048 bites kulcs** – az aláírási műveletekhez használatos
-* **A rendszerindítási tanúsítvány** -aláíráshoz használt tooauthenticate tooAzure Active Directory, tooget tookey tároló toofetch hello tárolási hívóbetűt és hello RSA-kulcs használata.
+* **Rendszerindítási tanúsítvány** – az Azure Active Directory-hitelesítéshez, a tárkulcslehíváshoz szükséges kulcstartó-hozzáférés megszerzéséhez, valamint az aláírási RSA-kulcs használatához szükséges.
 
-Most adjuk meg hello személyek kezelését, telepítése és az alkalmazás naplózási. Ebben a példában három szerepkört használunk.
+Most nézzük meg, kik kezelik, helyezik üzembe és naplózzák ezt az alkalmazást. Ebben a példában három szerepkört használunk.
 
-* **Biztonsági csoport** – ezek általában olyan informatikai munkatársak hello CSO (fő biztonsági tisztviselő) hello "részleg", vagy ezzel egyenértékű, felelős hello megfelelő van őrizve a titkos kulcsok, mint az SSL-tanúsítványok, kapcsolati karakterláncainak aláírásra használt RSA-kulcsok adatbázisok, a tárfiók kulcsait.
-* **A fejlesztők/operátorok** -ezek a hello segítsen az alkalmazás fejlesztése és majd telepítenie kell azt az Azure-ban. Általában nincsenek tagja hello biztonsági csoportnak, és ezért azok nem rendelkezhet hozzáférés tooany bizalmas adatokat, például az SSL-tanúsítványokat, RSA-kulcsok, de hello alkalmazás, hogy hozzáférési toothose kell rendelkeznie.
-* **Ellenőrök** – Ez általában olyan személyek, hello fejlesztők és általános informatikai munkatársak különítve különböző készlete. Felelősségi tooreview megfelelő használata és karbantartása a tanúsítványok, a kulcsok, stb., és biztosítsa az adatok biztonsági követelményeket. 
+* **Biztonsági csapat** – ezek rendszerint a CSO (biztonsági vezető) irodájának informatikai munkatársai vagy nekik megfelelő személyek, akik a titkos kulcsok – például SSL-tanúsítványok, aláíráshoz használt RSA-kulcsok, adatbázisok kapcsolati karakterláncai és tárfiókok kulcsai – megfelelő biztonságban tartásáért felelősek.
+* **Fejlesztők/operátorok** – Ezek azok munkatársak, akik az alkalmazást fejlesztik és üzembe helyezik az Azure-ban. Általában nem tagjai a biztonsági csapatnak, így nem javasolt, hogy bármilyen bizalmas adathoz, például SSL-tanúsítványokhoz vagy RSA-kulcsokhoz hozzáférhessenek, de az általuk üzembe helyezett alkalmazásnak hozzá kell férnie azokhoz.
+* **Ellenőrök** – Általában külön csoport, akik a fejlesztőktől és az általános informatikai személyzettől elkülönítve dolgoznak. Felelősségük a tanúsítványok, kulcsok stb. helyes használatának és karbantartásának felügyeletére, illetve az adatbiztonsági szabványoknak való megfelelés biztosítására terjed ki. 
 
-Van egy további szerepkör, amely alkalmazás, de a megfelelő ide toobe említett külső hello hatókörét, és, amely lenne hello előfizetés (vagy az erőforráscsoport) rendszergazdájához. Előfizetési rendszergazda állít be hello biztonsági csoport kezdeti hozzáférési engedélyeit. Itt azt feltételezzük, hogy hello előfizetés rendszergazda adott hozzáférési toohello biztonsági csoport tooa erőforráscsoport, amelyben az összes hello az alkalmazás lakóhelye szükséges erőforrásokat.
+Van még egy, ezen alkalmazás hatáskörén kívül eső szerepkör, amelyet itt fontos megemlíteni, ez pedig az előfizetés- (vagy erőforráscsoport-) rendszergazdai szerepkör. Az előfizetés-rendszergazda beállítja a kezdeti hozzáférési engedélyeket a biztonsági csapat számára. Itt abból indulunk ki, hogy az előfizetés-rendszergazda a biztonsági csapatnak hozzáférést engedélyezett ahhoz az erőforráscsoporthoz, amelyben a jelen alkalmazáshoz szükséges összes erőforrás megtalálható.
 
-Most nézzük meg, milyen műveletek szerepkörönként hajt végre, az alkalmazás hello környezetében.
+Most nézzük meg, milyen műveletet hajtanak végre az egyes szerepkörök a jelen alkalmazás összefüggésében.
 
 * **Biztonsági csapat**
   * Kulcstartók létrehozása
   * Kulcstartónaplózás bekapcsolása
   * Kulcsok/titkos kulcsok hozzáadása
   * Kulcsok biztonsági másolatának létrehozása vészhelyreállításhoz
-  * Kulcstároló hozzáférési házirend toogrant engedélyek toousers és az alkalmazások tooperform műveleteket beállítása
+  * Kulcstartó-hozzáférési házirend beállítása adott műveletek felhasználók és alkalmazások általi végrehajtásának engedélyezéséhez
   * Kulcsok/titkos kulcsok időnkénti összegzése
 * **Fejlesztők/operátorok**
-  * Hivatkozások toobootstrap és SSL Tanúsítványos (ujjlenyomatok) biztonságitár-kulcs (titkos kulcs URI) és az aláírási kulcs (kulcs URI-val) a biztonsági csoportból
+  * Rendszerindítási referenciák és SSL-tanúsítványok (ujjlenyomatok), tárkulcs (titkos URI) és aláírási kulcs (kulcs URI) lekérése a biztonsági csapattól
   * A kulcsokhoz és titkos kulcsokhoz programozott módon hozzáférő alkalmazás fejlesztése és üzembe helyezése
 * **Ellenőrök**
-  * Tekintse át a használati naplók tooconfirm megfelelő kulcs vagy titkos kulcs használatát és az adatok biztonsági előírásoknak való megfelelés
+  * Ellenőrzik a használati naplókat, és megerősítik, a helyes kulcsokat/titkos kulcsokat használták-e az adatbiztonsági szabványoknak megfelelően
 
-Most nézzük meg, milyen hozzáférési engedélyek tookey tároló szükséges szerepköröket (és hello alkalmazás) tooperform hozzárendelt feladataikat. 
+Most nézzük meg, milyen kulcstartó-hozzáférési engedélyek szükségesek az egyes szerepkörökhöz (és az alkalmazáshoz) hozzárendelt feladataik elvégzéséhez. 
 
 | Felhasználói szerepkör | Felügyeleti sík engedélyei | Adatsík engedélyei |
 | --- | --- | --- |
 | Biztonsági csapat |Kulcstartó-közreműködő |Kulcsok: biztonsági mentése, létrehozása, törlése, beolvasása, importálása, listázása, visszaállítása <br> Titkos kulcsok: összes |
-| Fejlesztők/operátor |Kulcstároló telepítése engedéllyel, így hello virtuális gépeket, hogy titkos kulcsok beolvasni a hello kulcstároló |None |
+| Fejlesztők/operátor |kulcstartó-üzembehelyezési engedély, hogy az általuk üzembe helyezett virtuális gépek lehívhassák a kulcstartóból a titkos kulcsokat |None |
 | Ellenőrök |None |Kulcsok: listája<br>Titkos kulcsok: listája |
 | Alkalmazás |None |Kulcsok: aláírása<br>Titkos kulcsok: beolvasása |
 
 > [!NOTE]
-> Ellenőrök kell listában engedély kulcsok és titkos, így azok vizsgálhatja meg attribútumok kulcsok és titkos kulcsok nem kibocsátott hello naplófájlokban, például a címkék, aktiválás és lejárati ideje.
+> Az ellenőröknek listázniuk kell a kulcsok és titkos kulcsok engedélyeit, hogy kivizsgálhassák azon kulcsok és titkos kulcsok attribútumait, amelyek nem kerülnek naplózásra, például címkék, aktiválási és lejárati dátumok.
 > 
 > 
 
-Engedély tookey tárolóban, mellett minden három szerepkört is kell férhetnek hozzá tooother erőforrásokhoz. Például toobe képes toodeploy virtuális gépek (vagy a Web Apps stb.) Fejlesztői/operátorok kell "Közreműködői" hozzáférési toothose erőforrástípusok esetében is. Ellenőrök olvasási hozzáférés toohello tárfiók hello kulcstároló naplóit tároló kell.
+A kulcstartó-engedélyezéseken túl mindhárom szerepkörnek hozzá kell férnie egyéb erőforrásokhoz is. Például azért, hogy üzembe tudják helyezni a virtuális gépeket (vagy webes alkalmazásokat stb.) A fejlesztőknek/operátoroknak is ilyen „közreműködői” hozzáférésre van szükségük az adott erőforrástípusokhoz. Az ellenőröknek ahhoz a tárfiókhoz kell olvasási hozzáféréssel rendelkezniük, ahol a kulcstartónaplók tárolódnak.
 
-Mivel ez a cikk hello fókusz adminisztrálásakor hozzáférés tooyour kulcstároló, azt csak hello toothis témakör vonatkozó megfelelő részei bemutatják, és hagyja ki a tanúsítványok telepítését, a kulcsok és titkos elérése programozott módon stb kapcsolatos részleteket. Ezeket a részleteket máshol már tárgyaltuk. Kulcstároló tooVMs tárolt tanúsítványok telepítésével kapcsolatban lásd a [blogbejegyzés](https://blogs.technet.microsoft.com/kv/2016/09/14/updated-deploy-certificates-to-vms-from-customer-managed-key-vault/), és nincs [példakód](https://www.microsoft.com/download/details.aspx?id=45343) érhető el, amely bemutatja, hogyan toouse bootstrap tanúsítvány tooauthenticate tooAzure AD tooget hozzáférés tookey tárolóban.
+Mivel ebben a cikkben a legfőbb hangsúly az Ön kulcstartófiókjához való biztonságos hozzáférésre esik, csak a témához tartozó fontos részeket szemléltetjük, és nem térünk ki a tanúsítványok üzembe helyezésével, illetve a kulcsokhoz és titkos kulcsokhoz való programozott hozzáféréssel kapcsolatos részletekre. Ezeket a részleteket máshol már tárgyaltuk. A kulcstartóban tárolt tanúsítványok virtuális gépekhez történő üzembe helyezésével egy [blogbejegyzés](https://blogs.technet.microsoft.com/kv/2016/09/14/updated-deploy-certificates-to-vms-from-customer-managed-key-vault/) foglalkozik, és rendelkezésre áll egy [mintakód](https://www.microsoft.com/download/details.aspx?id=45343) annak szemléltetésére, hogyan kell a rendszerindítási tanúsítványt Azure Active Directoryval történő hitelesítésre használni kulcstartó-hozzáférés céljából.
 
-Hello hozzáférési engedélyeket a legtöbb Azure-portálon is meg kell adni, de szükség lehet az Azure PowerShell (vagy Azure CLI) toouse tooachieve hello toogrant részletes engedélyeket szükséges eredménye. 
+A hozzáférési engedélyek nagy része az Azure Portalon is megadható, de előfordulhat, hogy a részletes engedélyezés során Azure PowerShell (vagy Azure parancssori felület) használata szükséges a kívánt eredmények eléréséhez. 
 
-a következő PowerShell-kódtöredékek hello használata:
+A következő PowerShell-kódtöredékek esetén a következőket vesszük alapul:
 
-* hello Azure Active Directory-rendszergazda hozott létre hello három szerepkörök, nevezetesen Contoso biztonsági csoportja, Contoso alkalmazást Devops, Contoso alkalmazást ellenőrök megfelelő biztonsági csoportokat. hello rendszergazda felhasználók toohello csoportok tartoznak is hozzá van adva.
-* **ContosoAppRG** hello erőforráscsoportban van, ahol minden hello erőforrások vannak. **contosologstorage** hello naplók tárolására van. 
-* Kulcstároló **ContosoKeyVault** és a kulcstároló naplóit használt tárfiók **contosologstorage** hello kell lennie ugyanazon Azure-beli hely
+* Az Azure Active Directory-rendszergazda biztonsági csoportokat hozott létre, amelyek a három szerepkört képviselik, nevezetesen: Contoso biztonsági csapat, Contoso alkalmazás fejlesztői és operátorai, illetve a Contoso alkalmazás ellenőrei. A rendszergazda felhasználókat is hozzáadott azokhoz a csoportokhoz, amelyekbe tartoznak.
+* **ContosoAppRG**: az az erőforráscsoport, amelyben minden erőforrás megtalálható. **contosologstorage**: a naplók tárolási helye. 
+* A **ContosoKeyVault** kulcstartónak és a kulcstartónaplókhoz használt **contosologstorage** tárfióknak az Azure rendszer egyazon helyén kell lennie
 
-Első hello előfizetési rendszergazda rendeli hozzá a "kulcsot tároló közreműködői" és "felhasználói hozzáférés adminisztrátora" szerepkörök toohello biztonsági csoportja. Ez lehetővé teszi, hogy a hello biztonsági csoport toomanage tooother erőforrások eléréséhez, és hello erőforráscsoport ContosoAppRG kulcstárolójának kezelése.
+Az előfizetés-rendszergazda először „kulcstartó-közreműködő” és „felhasználóihozzáférés-rendszergazda” szerepkört rendel hozzá a biztonsági csapathoz. Így a biztonsági csapat más erőforrások hozzáférését, valamint a ContosoAppRG erőforráscsoportjában található kulcstartókat is kezelni tudja.
 
 ```
 New-AzureRmRoleAssignment -ObjectId (Get-AzureRmADGroup -SearchString 'Contoso Security Team')[0].Id -RoleDefinitionName "key vault Contributor" -ResourceGroupName ContosoAppRG
 New-AzureRmRoleAssignment -ObjectId (Get-AzureRmADGroup -SearchString 'Contoso Security Team')[0].Id -RoleDefinitionName "User Access Administrator" -ResourceGroupName ContosoAppRG
 ```
 
-hello alábbi parancsfájl bemutatja, hogyan hello biztonsági csoportja is hozzon létre egy kulcstartót naplózás beállítása és egyéb szerepköröket és hello alkalmazás hozzáférési engedélyeinek beállítása. 
+Az alábbi parancsprogram azt szemlélteti, hogyan hozhat létre a biztonsági csapat kulcstartót, hogyan állíthatja be a naplózást, és állíthat be hozzáférési engedélyeket más szerepkörök és az alkalmazás számára. 
 
 ```
 # Create key vault and enable logging
@@ -185,61 +185,61 @@ $devopsrole.AssignableScopes = @("/subscriptions/<SUBSCRIPTION-GUID>")
 $devopsrole.Actions.Add("Microsoft.KeyVault/vaults/deploy/action")
 New-AzureRmRoleDefinition -Role $devopsrole
 
-# Assign this newly defined role tooDev ops security group
+# Assign this newly defined role to Dev ops security group
 New-AzureRmRoleAssignment -ObjectId (Get-AzureRmADGroup -SearchString 'Contoso App Devops')[0].Id -RoleDefinitionName "Contoso App Devops" -ResourceGroupName ContosoAppRG
 
 # Data plane permissions for Auditors
 Set-AzureRmKeyVaultAccessPolicy -VaultName ContosoKeyVault -ObjectId (Get-AzureRmADGroup -SearchString 'Contoso App Auditors')[0].Id -PermissionsToKeys list -PermissionsToSecrets list
 ```
 
-egyéni szerepkör hello definiált, csak hozzárendelhető toohello előfizetés ahol hello ContosoAppRG erőforráscsoportban jön létre. Hello azonos egyéni szerepkörök használandó más projektek más előfizetésekben, ha azok hatókör lehet hozzá legalább egy előfizetésre.
+Az egyéni szerepkör, meghatározása után, csak ahhoz az előfizetéshez rendelhető hozzá, amelyben a ContosoAppRG erőforráscsoportot létrehozták. Ha ugyanazon egyéni szerepköröket más előfizetések más projektekhez használnak, előfordulhat, hogy annak hatóköréhez több előfizetést is hozzáadtak.
 
-egyéni szerepkör-hozzárendelés hello hello fejlesztők/operátorok hello "telepítése/action" engedélyt az hatókörön belüli toohello erőforráscsoportban. Ezzel a módszerrel csak hello virtuális gépek létrehozása "ContosoAppRG" kap hello titkos kulcsokat (SSL-tanúsítványt és a rendszerindítási cert) hello erőforráscsoportban. A fejlesztői/ops csapat egyik tagja egy másik erőforráscsoportban hozható létre virtuális gépek nem lesz képes tooget ezeknek a kulcsoknak akkor is, ha azok tudtak hello titkos kulcs URI-azonosítók.
+A fejlesztők/operátorok egyéniszerep-hozzárendelése „üzembe helyezés/művelet” engedélyezéséhez az erőforráscsoport hatókörén belül van. Így csak a „ContosoAppRG” erőforráscsoportban létrehozott virtuális gépek kapják meg a titkos kulcsokat (SSL-tanúsítványt és a rendszerindítási tanúsítványt). A fejlesztők/operátorok csapatának tagjai által másik erőforráscsoportban létrehozott egyetlen virtuális gép sem olvashatja be ezeket a titkos kulcsokat, még abban az esetben sem, ha ismerték a titkos URI-ket.
 
-Ez a példa egy egyszerű forgatókönyvet mutat be. Lehet, hogy a valós forgatókönyvekben összetettebb és tooadjust engedélyek tooyour kulcstároló a igények alapján szükség lehet. Például a fenti példában feltételezzük, hogy a biztonsági csoport biztosít hello kulcsot és titkos hivatkozik (URI-k és ujjlenyomatok), hogy a fejlesztők/operátorok csoport kell tooreference az alkalmazásokban. Emiatt, nem kell toogrant fejlesztők/operátorok vezérlősík adatok elérését. Fontos megjegyezni, hogy ebben a példában legfőképpen a kulcstartó biztonságossá tételére összpontosítunk. Hasonló figyelembe kell venni toosecure [a virtuális gépek](https://azure.microsoft.com/services/virtual-machines/security/), [tárfiókok](../storage/common/storage-security-guide.md) és más Azure-erőforrások túl.
+Ez a példa egy egyszerű forgatókönyvet mutat be. Előfordulhat, hogy a valós életbeli forgatókönyvek bonyolultabbak, és szükség lehet a kulcstartóengedélyek igényei szerinti módosítására. Példánkban abból indulunk ki, hogy a biztonsági csapat adja azokat a kulcs- és titkoskulcs-referenciákat (URI-k és ujjlenyomatok), amelyekre a fejlesztők/operátorok csapatának hivatkoznia kell alkalmazásaiban. Ezért nem kell semmilyen adatsík-hozzáférést biztosítania a fejlesztők/operátorok számára. Fontos megjegyezni, hogy ebben a példában legfőképpen a kulcstartó biztonságossá tételére összpontosítunk. Hasonló figyelmet kell fordítani [virtuális gépei](https://azure.microsoft.com/services/virtual-machines/security/), [tárfiókjai](../storage/common/storage-security-guide.md) és egyéb Azure-erőforrásai biztosítására is.
 
 > [!NOTE]
-> Megjegyzés: Ez a példa bemutatja, hogyan lesz zárolva a kulcstartó-hozzáférés üzemi környezetben. hello fejlesztők számára a saját előfizetés vagy resourcegroup rendelkezik teljes körű engedélyekkel toomanage a tárolóhoz, a virtuális gépek és a tárfiók amelyen ők fejlesztik ki az alkalmazás hello kell rendelkeznie.
+> Megjegyzés: Ez a példa bemutatja, hogyan lesz zárolva a kulcstartó-hozzáférés üzemi környezetben. A fejlesztőknek saját előfizetéssel vagy erőforráscsoporttal kell rendelkezniük, ahol teljes körű engedélyekkel rendelkeznek kulcstartóik, virtuális gépeik és a tárfiókjuk kezelésére az alkalmazás fejlesztésének helyén.
 > 
 > 
 
 ## <a name="resources"></a>Erőforrások
 * [Azure Active Directory szerepköralapú hozzáférés-vezérlése](../active-directory/role-based-access-control-configure.md)
   
-  Ez a cikk ismerteti a hello Azure Active Directory szerepköralapú hozzáférés-vezérlés és annak működéséről.
+  Ez a cikk az Azure Active Directory szerepkörön alapuló hozzáférés-vezérlését és annak működési módját ismerteti.
 * [RBAC: Beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md)
   
-  Ez a cikk részletek minden hello beépített szerepkörök RBAC érhető el.
+  Ez a cikk az RBAC-ben elérhető összes beépített szerepkört ismerteti.
 * [A Resource Manager-alapú és a klasszikus üzembe helyezés ismertetése](../azure-resource-manager/resource-manager-deployment-model.md)
   
-  Ez a cikk azt ismerteti, hello Resource Manager üzembe helyezési és a klasszikus üzembe helyezési modellel, és hello erőforrás-kezelő és az erőforrás-csoportok használatának előnyei hello ismerteti
+  Ez a cikk a Resource Manager-alapú és a klasszikus üzembe helyezési modelleket ismerteti, és bemutatja az erőforrás-kezelő és az erőforráscsoportok használatának előnyeit
 * [Szerepköralapú hozzáférés-vezérlés kezelése az Azure PowerShell-lel](../active-directory/role-based-access-control-manage-access-powershell.md)
   
-  Ez a cikk azt ismerteti, hogyan toomanage szerepköralapú hozzáférés az Azure PowerShell
-* [Szerepköralapú hozzáférés-vezérlés a REST API hello kezelése](../active-directory/role-based-access-control-manage-access-rest.md)
+  Ez a cikk azt ismerteti, hogyan kezelheti a szerepköralapú hozzáférés-vezérlést Azure PowerShell-lel
+* [Szerepköralapú hozzáférés-vezérlés kezelése REST API-val](../active-directory/role-based-access-control-manage-access-rest.md)
   
-  Ez a cikk bemutatja, hogyan toouse hello REST API toomanage RBAC.
+  Ez a cikk leírja, hogyan használható a REST API az RBAC kezeléséhez.
 * [Szerepköralapú hozzáférés-vezérlés az Ignite-tól a Microsoft Azure számára](https://channel9.msdn.com/events/Ignite/2015/BRK2707)
   
-  Ez az a hivatkozás tooa a hello 2015-ös MS ignite-on konferencia a Channel 9 videót. Ebben a munkamenetben, azok szolgáltatással kapcsolatban hozzáférhet a felügyeleti és jelentéskészítési lehetőségeket az Azure-ban, és vizsgálja meg körül tooAzure előfizetések az Azure Active Directoryval hozzáférés biztosítása érdekében ajánlott eljárások.
-* [Engedélyezi a hozzáférést tooweb alkalmazások OAuth 2.0 és az Azure Active Directory használatával](../active-directory/active-directory-protocols-oauth-code.md)
+  Ez a hivatkozás a Channel 9 2015-ös MS Ignite-konferencia videójára mutat. Ebben a részben arról beszélnek, milyen hozzáférés-kezelési és jelentési képességeket nyújt az Azure, és bemutatják az Azure-előfizetés hozzáférés-biztosításának legjobb gyakorlatait az Azure Active Directory használatával.
+* [Hozzáférés engedélyezése webalkalmazásoknak OAuth 2.0 és az Azure Active Directory használatával](../active-directory/active-directory-protocols-oauth-code.md)
   
   A cikk az Azure Active Directoryval történő hitelesítés teljes OAuth 2.0-s folyamatát ismerteti.
 * [Kulcstartókezelési REST API-k](https://msdn.microsoft.com/library/azure/mt620024.aspx)
   
-  Ez a dokumentum hello referencia hello REST API-k toomanage tároló programozott módon, a kulcs beállítása a kulcstároló hozzáférési házirend.
+  Ez a dokumentum referenciaként szolgál a REST API-k számára a kulcstartó programozott kezeléséhez, a kulcstartó-hozzáférési házirend beállításával együtt.
 * [kulcstartó REST API-k](https://msdn.microsoft.com/library/azure/dn903609.aspx)
   
-  Hivatkozás tookey tárolói REST API referenciadokumentációt tartalmaz.
+  A kulcstartó REST API referenciadokumentációjára mutató hivatkozás.
 * [Kulcshozzáférés-vezérlés](https://msdn.microsoft.com/library/azure/dn903623.aspx#BKMK_KeyAccessControl)
   
-  Hivatkozás tooSecret access control ismertető dokumentációjában.
+  A titkoskulcshozzáférés-vezérlés referenciadokumentációjára mutató hivatkozás.
 * [Titkoskulcs-hozzáférés vezérlése](https://msdn.microsoft.com/library/azure/dn903623.aspx#BKMK_SecretAccessControl)
   
-  Hivatkozás tooKey access control ismertető dokumentációjában.
+  A kulcshozzáférés-vezérlés referenciadokumentációjára mutató hivatkozás.
 * Kulcstartó-hozzáférési házirend [beállítása](https://msdn.microsoft.com/library/mt603625.aspx) és [eltávolítása](https://msdn.microsoft.com/library/mt619427.aspx) PowerShell használatával
   
-  PowerShell parancsmagok toomanage kulcstároló hozzáférési házirend hivatkozások tooreference dokumentációját.
+  PowerShell-parancsmagok kulcstartó-hozzáférési házirend kezeléséhez szükséges referenciadokumentációjára mutató hivatkozások.
 
 ## <a name="next-steps"></a>Következő lépések
 A rendszergazdáknak szóló bevezető oktatóanyag a [Bevezetés az Azure Key Vault használatába](key-vault-get-started.md) című cikkben érhető el.
@@ -248,5 +248,5 @@ A kulcstartó használatának naplózásával kapcsolatos további információk
 
 A kulcsok és a titkos kulcsok Azure Key Vaulttal történő használatával kapcsolatos további információkért tekintse meg az [About Keys and Secrets](https://msdn.microsoft.com/library/azure/dn903623.aspx) (Kulcsok és titkos kulcsok) című cikket.
 
-Ha kérdései a kulcstároló, látogasson el a hello [az Azure key vault fórumok](https://social.msdn.microsoft.com/forums/azure/home?forum=AzureKeyVault)
+Amennyiben a kulcstartóval kapcsolatban kérdése merülne fel, tekintse meg az [Azure Key Vault fórumait](https://social.msdn.microsoft.com/forums/azure/home?forum=AzureKeyVault)
 

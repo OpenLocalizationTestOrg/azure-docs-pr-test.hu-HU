@@ -1,5 +1,5 @@
 ---
-title: "Virtuális gépek magas rendelkezésre állás a SUSE Linux Enterprise Server SAP NetWeaver az SAP-alkalmazásokból aaaAzure |} Microsoft Docs"
+title: "Az Azure virtuális gépek magas rendelkezésre állás a SAP NetWeaver a SUSE Linux Enterprise Server SAP alkalmazásokhoz |} Microsoft Docs"
 description: "Magas rendelkezésre állású útmutatója az SAP NetWeaver a SUSE Linux Enterprise Server SAP-alkalmazásokból"
 services: virtual-machines-windows,virtual-network,storage
 documentationcenter: saponazure
@@ -16,11 +16,11 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 04/27/2017
 ms.author: sedusch
-ms.openlocfilehash: e944103df92d5ffec9196189f138e25972bea79f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 16e09797926f29bc18cb05671c986c74f9c2d4f8
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="high-availability-for-sap-netweaver-on-azure-vms-on-suse-linux-enterprise-server-for-sap-applications"></a>Magas rendelkezésre állás a SAP NetWeaver a SUSE Linux Enterprise Server Azure virtuális gépeken az SAP-alkalmazásokból
 
@@ -50,13 +50,13 @@ ms.lasthandoff: 10/06/2017
 
 [sap-hana-ha]:sap-hana-high-availability.md
 
-Ez a cikk ismerteti, hogyan toodeploy hello virtuális gépek, virtuális gépek hello konfigurálása, hello fürt keretrendszer telepítése és egy magas rendelkezésre állású SAP NetWeaver 7.50 rendszer telepítéséhez.
-Hello például konfigurációk telepítési parancsok stb. Asc példányszámának 00, SSZON példányszámának 02 és SAP rendszer azonosító NWS szolgál. hello nevek hello erőforrások (például virtuális gépek, virtuális hálózatok) hello példa feltételezi hello használt [sablon összevont] [ template-converged] SAP rendszer azonosító NWS toocreate hello erőforrásokkal.
+Ez a cikk ismerteti, hogyan telepítse a virtuális gépeket, a virtuális gépet állíthat be, a fürt-keretrendszer telepítése és magas rendelkezésre állású SAP NetWeaver 7.50 rendszert telepíteni.
+A példa konfigurációkban telepítési parancsok stb. Asc példányszámának 00, SSZON példányszámának 02 és SAP rendszer azonosító NWS szolgál. A példában szereplő erőforrások (például virtuális gépek, virtuális hálózatok) nevei azt feltételezik, használja a [sablon összevont] [ template-converged] SAP rendszer azonosító NWS az erőforrások létrehozásához.
 
-Olvassa el a következő SAP megjegyzések és által írt cikkeket először hello
+Olvassa el a következő SAP megjegyzések és által írt cikkeket először
 
 * SAP Megjegyzés [1928533], amelynek van:
-  * Hello SAP szoftver központi telepítése által támogatott Azure Virtuálisgép-méretek listáját
+  * Az SAP szoftver központi telepítése támogatott Azure Virtuálisgép-méretek listáját
   * Az Azure Virtuálisgép-méretek fontos készletkapacitás információival
   * Támogatott SAP szoftver, és az operációs rendszer és az adatbázis kombinációját
   * A Windows és a Microsoft Azure Linux szükséges SAP kernel verziója
@@ -65,32 +65,32 @@ Olvassa el a következő SAP megjegyzések és által írt cikkeket először he
 * SAP Megjegyzés [2205917] javasolt a SUSE Linux Enterprise Server operációs rendszer beállításait az SAP-alkalmazásokból
 * SAP Megjegyzés [1944799] SUSE Linux Enterprise Server SAP HANA-irányelvek rendelkezik az SAP-alkalmazásokból
 * SAP Megjegyzés [2178632] tartalmaz részletes információkat az Azure-ban SAP jelentett összes figyelési metrikákat.
-* SAP Megjegyzés [2191498] hello szükséges SAP állomás ügynök verziója Linux az Azure-ban.
+* SAP Megjegyzés [2191498] vannak a szükséges SAP gazdagép-ügynök verziója Linux az Azure-ban.
 * SAP Megjegyzés [2243692] SAP Azure Linux licenceléssel kapcsolatos információt tartalmaz.
 * SAP Megjegyzés [1984787] SUSE Linux Enterprise Server 12 vonatkozó általános információkat tartalmaz.
-* SAP Megjegyzés [1999351] hello Azure fokozott Figyelőbővítmény az SAP további információkat.
+* SAP Megjegyzés [1999351] további információkat talál az Azure fokozott Figyelőbővítmény az SAP rendelkezik.
 * [SAP közösségi WIKI](https://wiki.scn.sap.com/wiki/display/HOME/SAPonLinuxNotes) rendelkezik az összes szükséges SAP megjegyzések Linux.
 * [Azure virtuális gépek tervezési és megvalósítási az SAP Linux rendszeren][planning-guide]
 * [Az Azure virtuális gépek telepítése az SAP, Linux (Ez a cikk)][deployment-guide]
 * [Az SAP Linux Azure virtuális gépek DBMS-telepítés][dbms-guide]
 * [SAP HANA SR teljesítményre optimalizált forgatókönyv][suse-hana-ha-guide]  
-  hello útmutató tartalmazza az összes szükséges információk tooset helyszíni SAP HANA replikációs fel. Ez az útmutató használja kiindulópontként.
-* [Magas rendelkezésre álló NFS tár DRBD és támasztja] [ suse-drbd-guide] hello útmutató tartalmazza az összes szükséges információt tooset NFS magas rendelkezésre állású kiszolgáló. Ez az útmutató használja kiindulópontként.
+  Az útmutató a helyszíni SAP HANA replikációs beállítása az összes szükséges információkat tartalmazza. Ez az útmutató használja kiindulópontként.
+* [Magas rendelkezésre álló NFS tár DRBD és támasztja] [ suse-drbd-guide] az útmutató a magas rendelkezésre állású NFS-kiszolgáló beállítása az összes szükséges információkat tartalmazza. Ez az útmutató használja kiindulópontként.
 
 
 ## <a name="overview"></a>Áttekintés
 
-tooachieve magas rendelkezésre állású, SAP NetWeaver az NFS-kiszolgáló szükséges. hello NFS-kiszolgáló egy külön fürtben lett konfigurálva, és több SAP-rendszerek által használható.
+Magas rendelkezésre állás eléréséhez SAP NetWeaver az NFS-kiszolgáló szükséges. Az NFS-kiszolgáló egy külön fürtben lett konfigurálva, és több SAP-rendszerek által használható.
 
 ![SAP NetWeaver magas rendelkezésre állás – Áttekintés](./media/high-availability-guide-suse/img_001.png)
 
-hello NFS-kiszolgáló, a SAP NetWeaver ASC, SAP NetWeaver SCS, SAP NetWeaver SSZON és hello SAP HANA-adatbázisból virtuális állomásnév és a virtuális IP-címek használata. A Azure-ban egy terhelés-kiegyenlítő szükség toouse egy virtuális IP-címet. hello alábbi lista mutatja azokat hello terheléselosztó hello konfigurációja.
+Az NFS-kiszolgáló, a SAP NetWeaver ASC, a SAP NetWeaver SCS, a SAP NetWeaver SSZON és az SAP HANA-adatbázisból virtuális állomásnév és a virtuális IP-címek használata. Az Azure a terheléselosztó virtuális IP-cím szükséges. Az alábbi lista a terheléselosztó-konfiguráció látható.
 
 ### <a name="nfs-server"></a>NFS-kiszolgáló
 * Előtérbeli konfigurációja
   * IP-cím 10.0.0.4
 * Háttérkonfiguráció
-  * Az összes virtuális gépet, amely hello NFS fürt részét kell képezniük tooprimary hálózati adapterek csatlakoztatva
+  * Az összes virtuális gépet, amely az NFS-fürt részét kell képezniük elsődleges hálózati illesztők csatlakozik
 * Mintavételi portot
   * Port 61000
 * Terheléselosztás szabályok
@@ -101,7 +101,7 @@ hello NFS-kiszolgáló, a SAP NetWeaver ASC, SAP NetWeaver SCS, SAP NetWeaver SS
 * Előtérbeli konfigurációja
   * IP-cím 10.0.0.10
 * Háttérkonfiguráció
-  * Az összes virtuális gépet, amely hello (A) SCS/SSZON fürt részét kell képezniük tooprimary csatlakoztatott hálózati illesztők
+  * Az összes virtuális gépet, amely a (A) részét kell képezniük elsődleges hálózati illesztők csatlakozik SCS/SSZON fürt
 * Mintavételi portot
   * Port 620**&lt;nr&gt;**
 * Terheléselosztás szabályok
@@ -117,7 +117,7 @@ hello NFS-kiszolgáló, a SAP NetWeaver ASC, SAP NetWeaver SCS, SAP NetWeaver SS
 * Előtérbeli konfigurációja
   * IP-cím 10.0.0.11
 * Háttérkonfiguráció
-  * Az összes virtuális gépet, amely hello (A) SCS/SSZON fürt részét kell képezniük tooprimary csatlakoztatott hálózati illesztők
+  * Az összes virtuális gépet, amely a (A) részét kell képezniük elsődleges hálózati illesztők csatlakozik SCS/SSZON fürt
 * Mintavételi portot
   * Port 621**&lt;nr&gt;**
 * Terheléselosztás szabályok
@@ -130,7 +130,7 @@ hello NFS-kiszolgáló, a SAP NetWeaver ASC, SAP NetWeaver SCS, SAP NetWeaver SS
 * Előtérbeli konfigurációja
   * 10.0.0.12 IP-cím
 * Háttérkonfiguráció
-  * Az összes virtuális gépet, amely hello HANA fürt részét kell képezniük tooprimary hálózati adapterek csatlakoztatva
+  * Az összes virtuális gépet, amely a HANA fürt részét kell képezniük elsődleges hálózati illesztők csatlakozik
 * Mintavételi portot
   * Port a 625**&lt;nr&gt;**
 * Terheléselosztás szabályok
@@ -141,23 +141,23 @@ hello NFS-kiszolgáló, a SAP NetWeaver ASC, SAP NetWeaver SCS, SAP NetWeaver SS
 
 ### <a name="deploying-linux"></a>Linux telepítése
 
-hello Azure piactér SUSE Linux Enterprise Server SAP alkalmazások 12 használható toodeploy új virtuális gépek a kép tartalmazza.
-Használhat hello gyors üzembe helyezési sablonok a githubon toodeploy minden szükséges erőforrásokat. hello sablon telepíti hello virtuális gépek, a terheléselosztó hello, a rendelkezésre állási csoport stb. Kövesse a lépéseket toodeploy hello sablon:
+Az Azure piactéren SUSE Linux Enterprise Server SAP alkalmazások 12-es segítségével új virtuális gépek telepítése a kép tartalmazza.
+Segítségével a gyors üzembe helyezési sablonok valamelyikét a githubon központi telepítése az összes szükséges erőforrásokat. A sablon telepíti, a virtuális gépek, a terheléselosztó hasonló adataival, a rendelkezésre állási csoport stb. Kövesse az alábbi lépéseket a sablon telepítéséhez:
 
-1. Nyissa meg hello [SAP fájl server sablon] [ template-file-server] a hello Azure-portálon   
-1. Adja meg a következő paraméterek hello
+1. Nyissa meg a [SAP fájl server sablon] [ template-file-server] az Azure-portálon   
+1. Adja meg a következő paraméterek
    1. Erőforrás-előtag  
-      Adja meg a kívánt toouse hello előtag. hello érték előtagjaként hello telepített erőforrások esetén használatos.
+      Adja meg a használni kívánt előtagot. Az érték a telepített erőforrások esetén használatos előtagjaként.
    2. Operációs rendszer típusa  
-      Válasszon ki egy hello Linux terjesztéseket. Ehhez a példához válassza ki a SLES 12 rendszert
+      Válasszon egyet a Linux terjesztéseket. Ehhez a példához válassza ki a SLES 12 rendszert
    3. Rendszergazda felhasználónevét és a rendszergazdai jelszó  
-      Új felhasználó jön létre, amely lehet használt toolog toohello gépen.
+      Új felhasználó jön létre, amely segítségével jelentkezzen be a gépre.
    4. Alhálózati azonosító  
-      hello azonosító hello alhálózati toowhich hello virtuális gépek csatlakoznia kell. Hagyja üresen, ha szeretné, hogy egy új virtuális hálózat toocreate, vagy jelölje ki a VPN- vagy Express Route virtuális hálózati tooconnect hello virtuális gép tooyour a helyszíni hálózat hello alhálózatot. hello azonosítója általában a következőképpen néz következő**&lt;előfizetés-azonosító&gt;**/resourceGroups/**&lt;erőforráscsoport-név&gt;**/providers/ Microsoft.Network/virtualNetworks/**&lt;virtuálishálózat-név&gt;**/subnets/**&lt;alhálózat neve&gt;**
+      Az alhálózat, amelyhez a virtuális gépek csatlakoznia kell az azonosítója. Hagyja üresen, ha azt szeretné, hozzon létre egy új virtuális hálózatot, vagy jelölje ki az alhálózatot, a VPN- vagy Express Route virtuális hálózat a virtuális gép és a helyszíni hálózathoz csatlakozni. Az azonosító általában a következőképpen néz következő**&lt;előfizetés-azonosító&gt;**/resourceGroups/**&lt;erőforráscsoport-név&gt;**/providers/ Microsoft.Network/virtualNetworks/**&lt;virtuálishálózat-név&gt;**/subnets/**&lt;alhálózat neve&gt;**
 
 ### <a name="installation"></a>Telepítés
 
-hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall csomópontok **[1]** -csak a megfelelő toonode 1 vagy **[2]** -csak a megfelelő toonode 2.
+A következő elemek fűzve előtagként vagy **[A]** – az összes csomópont alkalmazandó **[1]** – csak érvényes csomópont 1 vagy **[2]** - csomópont 2 csak érvényes.
 
 1. **[A]**  SLES frissítése
 
@@ -170,11 +170,11 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    <pre><code>
    sudo ssh-keygen -tdsa
    
-   # Enter file in which toosave hello key (/root/.ssh/id_dsa): -> ENTER
+   # Enter file in which to save the key (/root/.ssh/id_dsa): -> ENTER
    # Enter passphrase (empty for no passphrase): -> ENTER
    # Enter same passphrase again: -> ENTER
    
-   # copy hello public key
+   # copy the public key
    sudo cat /root/.ssh/id_dsa.pub
    </code></pre>
 
@@ -183,21 +183,21 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    <pre><code>
    sudo ssh-keygen -tdsa
 
-   # insert hello public key you copied in hello last step into hello authorized keys file on hello second server
+   # insert the public key you copied in the last step into the authorized keys file on the second server
    sudo vi /root/.ssh/authorized_keys
    
-   # Enter file in which toosave hello key (/root/.ssh/id_dsa): -> ENTER
+   # Enter file in which to save the key (/root/.ssh/id_dsa): -> ENTER
    # Enter passphrase (empty for no passphrase): -> ENTER
    # Enter same passphrase again: -> ENTER
    
-   # copy hello public key   
+   # copy the public key   
    sudo cat /root/.ssh/id_dsa.pub
    </code></pre>
 
 1. **[1]**  Ssh hozzáférés engedélyezése
 
    <pre><code>
-   # insert hello public key you copied in hello last step into hello authorized keys file on hello first server
+   # insert the public key you copied in the last step into the authorized keys file on the first server
    sudo vi /root/.ssh/authorized_keys
    </code></pre>
 
@@ -209,17 +209,17 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
 
 1. **[A]**  Állomásnév beállítása   
 
-   DNS-kiszolgálót használjon, vagy módosítsa a hello/etc/hosts minden csomóponton. Ez a példa bemutatja, hogyan toouse hello/Etc/Hosts fájlt.
-   Cserélje le a hello IP-cím és a következő parancsok hello hello állomásnév
+   DNS-kiszolgálót használjon, vagy módosítsa az/etc/hosts minden csomóponton. Ez a példa bemutatja, hogyan használható az/etc/hosts fájlt.
+   Cserélje le az IP-cím és a következő parancsokat az állomásnév
 
    <pre><code>
    sudo vi /etc/hosts
    </code></pre>
    
-   Helyezze be a következő sorokat túl/etc/hosts hello. Hello IP cím és az állomásnév toomatch a környezet módosítása   
+   Helyezze be a következő sorokat/etc/hosts. Az IP-cím és a környezet megfelelő állomásnév módosítása   
    
    <pre><code>
-   # IP address of hello load balancer frontend configuration for NFS
+   # IP address of the load balancer frontend configuration for NFS
    <b>10.0.0.4 nws-nfs</b>
    </code></pre>
 
@@ -228,39 +228,39 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    <pre><code>
    sudo ha-cluster-init
    
-   # Do you want toocontinue anyway? [y/N] -> y
-   # Network address toobind too(for example: 192.168.1.0) [10.79.227.0] -> ENTER
+   # Do you want to continue anyway? [y/N] -> y
+   # Network address to bind to (for example: 192.168.1.0) [10.79.227.0] -> ENTER
    # Multicast address (for example: 239.x.x.x) [239.174.218.125] -> ENTER
    # Multicast port [5405] -> ENTER
-   # Do you wish toouse SBD? [y/N] -> N
-   # Do you wish tooconfigure an administration IP? [y/N] -> N
+   # Do you wish to use SBD? [y/N] -> N
+   # Do you wish to configure an administration IP? [y/N] -> N
    </code></pre>
 
-1. **[2]**  Csomópont toocluster hozzáadása
+1. **[2]**  Csomópont hozzáadása a fürthöz
    
    <pre><code> 
    sudo ha-cluster-join
 
-   # WARNING: NTP is not configured toostart at system boot.
-   # WARNING: No watchdog device found. If SBD is used, hello cluster will be unable toostart without a watchdog.
-   # Do you want toocontinue anyway? [y/N] -> y
+   # WARNING: NTP is not configured to start at system boot.
+   # WARNING: No watchdog device found. If SBD is used, the cluster will be unable to start without a watchdog.
+   # Do you want to continue anyway? [y/N] -> y
    # IP address or hostname of existing node (for example: 192.168.1.1) [] -> IP address of node 1 for example 10.0.0.10
    # /root/.ssh/id_dsa already exists - overwrite? [y/N] N
    </code></pre>
 
-1. **[A]**  Módosítása hacluster jelszó toohello ugyanazt a jelszót
+1. **[A]**  Hacluster ugyanazt a jelszót a jelszó módosítása
 
    <pre><code> 
    sudo passwd hacluster
    </code></pre>
 
-1. **[A]**  Corosync toouse más átviteli konfigurálása, és adja hozzá a csomópontlista. Fürt egyébként nem működik.
+1. **[A]**  Egyéb átvitelt használ, és adja hozzá a csomópontlista corosync konfigurálása. Fürt egyébként nem működik.
    
    <pre><code> 
    sudo vi /etc/corosync/corosync.conf   
    </code></pre>
 
-   Adja hozzá a következő félkövér tartalom toohello fájl hello.
+   Vegye fel a következő félkövér tartalmat a fájlba.
    
    <pre><code> 
    [...]
@@ -283,7 +283,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
      [...]
    </code></pre>
 
-   Indítsa újra hello corosync szolgáltatás
+   Indítsa újra a corosync szolgáltatás
 
    <pre><code>
    sudo service corosync restart
@@ -295,7 +295,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    sudo zypper install drbd drbd-kmp-default drbd-utils
    </code></pre>
 
-1. **[A]**  Hozzon létre egy partíciót hello drbd eszköz
+1. **[A]**  Hozzon létre egy partíciót a drbd eszköz
 
    <pre><code>
    sudo sh -c 'echo -e "n\n\n\n\n\nw\n" | fdisk /dev/sdc'
@@ -309,13 +309,13 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    sudo lvcreate -l 100%FREE -n <b>NWS</b> vg_NFS
    </code></pre>
 
-1. **[A]**  Létrehozása hello NFS drbd eszköz
+1. **[A]**  Az NFS drbd eszköz létrehozása
 
    <pre><code>
    sudo vi /etc/drbd.d/<b>NWS</b>_nfs.res
    </code></pre>
 
-   Helyezze be a hello új drbd eszköz és a kilépési hello konfigurálása
+   Helyezze be az új drbd eszköz és a kilépési konfiguráció
 
    <pre><code>
    resource <b>NWS</b>_nfs {
@@ -338,7 +338,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    }
    </code></pre>
 
-   Hello drbd eszköz létrehozása, és indítsa el
+   Hozzon létre a drbd eszközt, és indítsa el
 
    <pre><code>
    sudo drbdadm create-md <b>NWS</b>_nfs
@@ -351,13 +351,13 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    sudo drbdadm new-current-uuid --clear-bitmap <b>NWS</b>_nfs
    </code></pre>
 
-1. **[1]**  Set hello elsődleges csomópont
+1. **[1]**  Állítsa be az elsődleges csomópont
 
    <pre><code>
    sudo drbdadm primary --force <b>NWS</b>_nfs
    </code></pre>
 
-1. **[1]**  Várjon, amíg a hello új drbd eszköz szinkronizált
+1. **[1]**  Várjon, amíg az új drbd eszköz szinkronizált
 
    <pre><code>
    sudo cat /proc/drbd
@@ -368,7 +368,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    #    ns:0 nr:0 dw:0 dr:912 al:8 bm:0 lo:0 pe:0 ua:0 ap:0 ep:1 wo:f oos:0
    </code></pre>
 
-1. **[1]**  Fájlrendszerek hozható létre hello drbd eszközök
+1. **[1]**  Fájlrendszerek létrehozása a drbd eszközökön
 
    <pre><code>
    sudo mkfs.xfs /dev/drbd0
@@ -377,7 +377,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
 
 ### <a name="configure-cluster-framework"></a>Fürt keretrendszer konfigurálása
 
-1. **[1]**  Hello alapértelmezett beállításainak módosítása
+1. **[1]**  Az alapértelmezett beállítások módosítása
 
    <pre><code>
    sudo crm configure
@@ -388,7 +388,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    crm(live)configure# exit
    </code></pre>
 
-1. **[1]**  Hozzáadás hello NFS drbd eszköz toohello fürtkonfiguráció
+1. **[1]**  NFS drbd eszköz hozzáadása a fürt konfigurálása
 
    <pre><code>
    sudo crm configure
@@ -407,7 +407,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    crm(live)configure# exit
    </code></pre>
 
-1. **[1]**  Létrehozása hello NFS-kiszolgáló
+1. **[1]**  Az NFS-kiszolgáló létrehozása
 
    <pre><code>
    sudo crm configure
@@ -422,7 +422,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    crm(live)configure# exit
    </code></pre>
 
-1. **[1]**  Hello NFS fájlrendszert erőforrások létrehozása
+1. **[1]**  Létrehozása az NFS fájlrendszert erőforrások
 
    <pre><code>
    sudo crm configure
@@ -446,7 +446,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    crm(live)configure# exit
    </code></pre>
 
-1. **[1]**  Hello NFS kivitel létrehozása
+1. **[1]**  Létrehozása az NFS exportálása
 
    <pre><code>
    sudo mkdir /srv/nfs/<b>NWS</b>/sidsys
@@ -469,7 +469,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    crm(live)configure# exit
    </code></pre>
 
-1. **[1]**  Hozzon létre egy virtuális IP- és állapot-mintavételi hello belső terheléselosztóhoz
+1. **[1]**  Hozzon létre egy virtuális IP- és állapot-mintavételi a belső terheléselosztóhoz
 
    <pre><code>
    sudo crm configure
@@ -491,39 +491,39 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
 
 ### <a name="create-stonith-device"></a>STONITH eszköz létrehozása
 
-hello STONITH eszköz által használt egy egyszerű tooauthorize Microsoft Azure ellen. Kövesse ezeket a lépéseket toocreate egy egyszerű szolgáltatást.
+A STONITH eszköz egy egyszerű szolgáltatást használ, szemben a Microsoft Azure engedélyezése. Kövesse az alábbi lépéseket egy egyszerű szolgáltatásnév létrehozásához.
 
-1. Nyissa meg túl<https://portal.azure.com>
-1. Nyissa meg hello Azure Active Directory panel  
-   Nyissa meg tooProperties, és írja le hello Directory azonosítóját. Ez a hello **bérlőazonosító**.
+1. Ugrás a <https://portal.azure.com>
+1. Nyissa meg az Azure Active Directory panelt  
+   Nyissa meg tulajdonságait, és jegyezze fel a könyvtárban. Ez a **bérlőazonosító**.
 1. Kattintson az alkalmazás-regisztráció
 1. Kattintson az Add (Hozzáadás) parancsra
 1. Adjon meg egy nevet, válassza ki a "Web app/API" alkalmazástípus, adja meg a bejelentkezési URL-címet (például http://localhost) és kattintson a Létrehozás gombra
-1. hello bejelentkezési URL-címet nem használja, és bármilyen érvényes URL-CÍMEK lehetnek
-1. Válassza ki az új alkalmazás hello és kattintson a kulcsok hello-beállítások lap
+1. A bejelentkezési URL-címet nem használja, és bármilyen érvényes URL-CÍMEK lehetnek
+1. Válassza ki az új alkalmazást, és a beállítások lapon kattintson a kulcsok
 1. Adja meg egy új kulcs leírását, válassza a "Soha nem jár le", és kattintson a Mentés gombra
-1. Írja le hello érték. Hello használják **jelszó** a hello szolgáltatás egyszerű
-1. Írja le hello azonosítót. Hello felhasználónév, a rendszer (**bejelentkezési azonosító** hello lépéseket a) a hello szolgáltatás egyszerű
+1. Jegyezze fel az értéket. Használják a **jelszó** a szolgáltatás egyszerű
+1. Jegyezze fel az azonosítót. A felhasználónév használják (**bejelentkezési azonosító** az alábbi lépéseket a) a szolgáltatás egyszerű
 
-hello szolgáltatás egyszerű engedélyek tooaccess az Azure-erőforrások alapértelmezés szerint nem rendelkezik. Toogive hello szolgáltatás egyszerű engedélyek toostart van szüksége, és állítsa (felszabadítása) hello fürt összes virtuális gépet.
+A szolgáltatás egyszerű nincs engedélye a alapértelmezés szerint az Azure-erőforrások eléréséhez. Hozzá kell rendelnie a szolgáltatás egyszerű engedélyek indítása és leállítása (felszabadítása) a fürt összes virtuális gépet.
 
-1. Nyissa meg toohttps://portal.azure.com
-1. Nyissa meg az összes erőforrás panel hello
-1. Válassza ki a virtuális gép hello
+1. Ugrás a https://portal.azure.com
+1. Nyissa meg az összes erőforrás panel
+1. Válassza ki a virtuális gépet
 1. Kattintson a hozzáférés-vezérlés (IAM)
 1. Kattintson az Add (Hozzáadás) parancsra
-1. Válassza ki a hello szerepkör tulajdonosa
-1. Adja meg az előbb létrehozott hello alkalmazás hello neve
+1. Válassza ki a szerepkör tulajdonosa
+1. Adja meg az előbb létrehozott alkalmazás nevét
 1. Kattintson az OK gombra
 
-#### <a name="1-create-hello-stonith-devices"></a>**[1]**  Hello STONITH eszközök létrehozása
+#### <a name="1-create-the-stonith-devices"></a>**[1]**  STONITH eszközök létrehozása
 
-Után szerkeszteni hello engedélyek hello virtuális gépekhez, beállíthatja a hello STONITH eszközök hello fürtben.
+Után szerkeszteni a virtuális gépek engedélyeit, beállíthatja a STONITH eszközök a fürtben.
 
 <pre><code>
 sudo crm configure
 
-# replace hello bold string with your subscription id, resource group, tenant id, service principal id and password
+# replace the bold string with your subscription id, resource group, tenant id, service principal id and password
 
 crm(live)configure# primitive rsc_st_azure_1 stonith:fence_azure_arm \
    params subscriptionId="<b>subscription id</b>" resourceGroup="<b>resource group</b>" tenantId="<b>tenant id</b>" login="<b>login id</b>" passwd="<b>password</b>"
@@ -537,7 +537,7 @@ crm(live)configure# commit
 crm(live)configure# exit
 </code></pre>
 
-#### <a name="1-enable-hello-use-of-a-stonith-device"></a>**[1]**  STONITH eszköz hello használatának engedélyezése
+#### <a name="1-enable-the-use-of-a-stonith-device"></a>**[1]**  STONITH eszköz használatának engedélyezése
 
 <pre><code>
 sudo crm configure property stonith-enabled=true 
@@ -547,34 +547,34 @@ sudo crm configure property stonith-enabled=true
 
 ### <a name="deploying-linux"></a>Linux telepítése
 
-hello Azure piactér SUSE Linux Enterprise Server SAP alkalmazások 12 használható toodeploy új virtuális gépek a kép tartalmazza. hello Piactéri lemezképhez hello erőforrás ügynök az SAP NetWeaver tartalmazza.
+Az Azure piactéren SUSE Linux Enterprise Server SAP alkalmazások 12-es segítségével új virtuális gépek telepítése a kép tartalmazza. A Piactéri lemezképhez SAP NetWeaver erőforrás ügynökön tartalmazza.
 
-Használhat hello gyors üzembe helyezési sablonok a githubon toodeploy minden szükséges erőforrásokat. hello sablon telepíti hello virtuális gépek, a terheléselosztó hello, a rendelkezésre állási csoport stb. Kövesse a lépéseket toodeploy hello sablon:
+Segítségével a gyors üzembe helyezési sablonok valamelyikét a githubon központi telepítése az összes szükséges erőforrásokat. A sablon telepíti, a virtuális gépek, a terheléselosztó hasonló adataival, a rendelkezésre állási csoport stb. Kövesse az alábbi lépéseket a sablon telepítéséhez:
 
-1. Nyissa meg hello [ASC/SCS Multi SID sablon] [ template-multisid-xscs] vagy hello [sablon összevont] [ template-converged] hello Azure portál hello ASC/SCS sablon csak hello terheléselosztási szabályok hello SAP NetWeaver ASC/SCS és SSZON (csak Linux) példányok hoz létre, mivel hello átszervezett sablon is (például a Microsoft SQL Server vagy az SAP HANA) adatbázis hello terheléselosztási szabályokat hoz létre. Ha azt tervezi, hogy az SAP NetWeaver-alapú rendszerek tooinstall és tooinstall hello adatbázis is érdemes a hello azonos gépek, használja a hello [sablon összevont][template-converged].
-1. Adja meg a következő paraméterek hello
+1. Nyissa meg a [ASC/SCS Multi SID sablon] [ template-multisid-xscs] vagy a [sablon összevont] [ template-converged] az Azure-portál a SCS/ASC sablon csak hoz létre a terheléselosztási szabályok SAP NetWeaver ASC/SCS és SSZON példányok (csak Linux), míg az átszervezett is létrejön a terheléselosztási szabályok-adatbázis (például a Microsoft SQL Server vagy az SAP HANA). Ha azt tervezi, hogy az SAP NetWeaver alapú rendszert telepíti, és szeretné telepíteni az adatbázis ugyanazon a gépen, használja a [sablon összevont][template-converged].
+1. Adja meg a következő paraméterek
    1. Erőforrás-előtag (csak a sablon ASC/SCS Multi SID)  
-      Adja meg a kívánt toouse hello előtag. hello érték előtagjaként hello telepített erőforrások esetén használatos.
+      Adja meg a használni kívánt előtagot. Az érték a telepített erőforrások esetén használatos előtagjaként.
    3. SAP rendszerazonosító (csak az átszervezett sablon)  
-      Adja meg a hello SAP rendszer azonosító hello tooinstall kívánt SAP rendszer. hello azonosító előtagjaként hello telepített erőforrások esetén használható.
+      Adja meg a telepíteni kívánt SAP rendszer SAP rendszer azonosítója. Az azonosító előtagjaként szolgál a telepített erőforrások esetén.
    4. A készlet típusa  
-      Hello SAP NetWeaver verem típusának kiválasztása
+      Az SAP NetWeaver verem típusának kiválasztása
    5. Operációs rendszer típusa  
-      Válasszon ki egy hello Linux terjesztéseket. Ehhez a példához válassza ki a SLES 12 saját
+      Válasszon egyet a Linux terjesztéseket. Ehhez a példához válassza ki a SLES 12 saját
    6. DB típusa  
       Válassza ki a HANA
    7. SAP mérete  
-      SAP hello új rendszer hello mennyisége biztosít. Ha nem biztos abban, hogy hány SAP hello rendszer igényel, kérje meg a SAP technológia Partner vagy a rendszer integráló
+      Az új rendszer biztosít SAP mennyisége. Ha nem tudja, hogy hány SAP, a rendszer szükséges, kérje meg a SAP technológia Partner vagy a rendszer integráló
    8. Rendszer rendelkezésre állás  
       Válassza ki a magas rendelkezésre ÁLLÁSÚ
    9. Rendszergazda felhasználónevét és a rendszergazdai jelszó  
-      Új felhasználó jön létre, amely lehet használt toolog toohello gépen.
+      Új felhasználó jön létre, amely segítségével jelentkezzen be a gépre.
    10. Alhálózati azonosító  
-   hello azonosító hello alhálózati toowhich hello virtuális gépek csatlakoznia kell.  Hagyja üresen, ha azt szeretné, hogy egy új virtuális hálózat toocreate, vagy válasszon hello ugyanazon az alhálózaton, amely használja, vagy hozza létre hello NFS-kiszolgáló központi telepítésének részeként. hello azonosítója általában a következőképpen néz következő**&lt;előfizetés-azonosító&gt;**/resourceGroups/**&lt;erőforráscsoport-név&gt;**/providers/ Microsoft.Network/virtualNetworks/**&lt;virtuálishálózat-név&gt;**/subnets/**&lt;alhálózat neve&gt;**
+   Az alhálózat, amelyhez a virtuális gépek csatlakoznia kell az azonosítója.  Hagyja üresen, ha azt szeretné, hozzon létre egy új virtuális hálózatot, vagy válasszon ugyanazon az alhálózaton, amely a használni vagy létrehozni az NFS-kiszolgáló központi telepítésének részeként. Az azonosító általában a következőképpen néz következő**&lt;előfizetés-azonosító&gt;**/resourceGroups/**&lt;erőforráscsoport-név&gt;**/providers/ Microsoft.Network/virtualNetworks/**&lt;virtuálishálózat-név&gt;**/subnets/**&lt;alhálózat neve&gt;**
 
 ### <a name="installation"></a>Telepítés
 
-hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall csomópontok **[1]** -csak a megfelelő toonode 1 vagy **[2]** -csak a megfelelő toonode 2.
+A következő elemek fűzve előtagként vagy **[A]** – az összes csomópont alkalmazandó **[1]** – csak érvényes csomópont 1 vagy **[2]** - csomópont 2 csak érvényes.
 
 1. **[A]**  SLES frissítése
 
@@ -587,11 +587,11 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    <pre><code>
    sudo ssh-keygen -tdsa
    
-   # Enter file in which toosave hello key (/root/.ssh/id_dsa): -> ENTER
+   # Enter file in which to save the key (/root/.ssh/id_dsa): -> ENTER
    # Enter passphrase (empty for no passphrase): -> ENTER
    # Enter same passphrase again: -> ENTER
    
-   # copy hello public key
+   # copy the public key
    sudo cat /root/.ssh/id_dsa.pub
    </code></pre>
 
@@ -600,21 +600,21 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    <pre><code>
    sudo ssh-keygen -tdsa
 
-   # insert hello public key you copied in hello last step into hello authorized keys file on hello second server
+   # insert the public key you copied in the last step into the authorized keys file on the second server
    sudo vi /root/.ssh/authorized_keys
    
-   # Enter file in which toosave hello key (/root/.ssh/id_dsa): -> ENTER
+   # Enter file in which to save the key (/root/.ssh/id_dsa): -> ENTER
    # Enter passphrase (empty for no passphrase): -> ENTER
    # Enter same passphrase again: -> ENTER
    
-   # copy hello public key   
+   # copy the public key   
    sudo cat /root/.ssh/id_dsa.pub
    </code></pre>
 
 1. **[1]**  Ssh hozzáférés engedélyezése
 
    <pre><code>
-   # insert hello public key you copied in hello last step into hello authorized keys file on hello first server
+   # insert the public key you copied in the last step into the authorized keys file on the first server
    sudo vi /root/.ssh/authorized_keys
    </code></pre>
 
@@ -626,19 +626,19 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
 
 1. **[A]**  Frissítés SAP erőforrás ügynökök  
    
-   Egy javítást a hello erőforrás-ügynökök csomag szükséges toouse hello új konfigurációt, ebben a cikkben ismertetett. Ellenőrizheti, ha hello javítás már telepítve van a következő parancs hello
+   Az erőforrás-ügynökök csomag javítást kell használnia az új konfigurációt, ebben a cikkben ismertetett. Ellenőrizheti, ha a javítás már telepítve van a következő paranccsal
 
    <pre><code>
    sudo grep 'parameter name="IS_ERS"' /usr/lib/ocf/resource.d/heartbeat/SAPInstance
    </code></pre>
 
-   hello kimeneti hasonlónak kell lennie.
+   A kimeneti hasonlónak kell lennie.
 
    <pre><code>
    &lt;parameter name="IS_ERS" unique="0" required="0"&gt;
    </code></pre>
 
-   Hello grep parancs nem található hello IS_ERS paraméter, ha szüksége van-e a felsorolt tooinstall hello javítás [hello SUSE letöltési oldala](https://download.suse.com/patch/finder/#bu=suse&familyId=&productId=&dateRange=&startDate=&endDate=&priority=&architecture=&keywords=resource-agents)
+   Ha a grep parancs nem található a IS_ERS paraméter, szeretné-e meg a javítás [a SUSE letöltési oldala](https://download.suse.com/patch/finder/#bu=suse&familyId=&productId=&dateRange=&startDate=&endDate=&priority=&architecture=&keywords=resource-agents)
 
    <pre><code>
    # example for patch for SLES 12 SP1
@@ -649,23 +649,23 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
 
 1. **[A]**  Állomásnév beállítása   
 
-   DNS-kiszolgálót használjon, vagy módosítsa a hello/etc/hosts minden csomóponton. Ez a példa bemutatja, hogyan toouse hello/Etc/Hosts fájlt.
-   Cserélje le a hello IP-cím és a következő parancsok hello hello állomásnév
+   DNS-kiszolgálót használjon, vagy módosítsa az/etc/hosts minden csomóponton. Ez a példa bemutatja, hogyan használható az/etc/hosts fájlt.
+   Cserélje le az IP-cím és a következő parancsokat az állomásnév
 
    <pre><code>
    sudo vi /etc/hosts
    </code></pre>
    
-   Helyezze be a következő sorokat túl/etc/hosts hello. Hello IP cím és az állomásnév toomatch a környezet módosítása   
+   Helyezze be a következő sorokat/etc/hosts. Az IP-cím és a környezet megfelelő állomásnév módosítása   
    
    <pre><code>
-   # IP address of hello load balancer frontend configuration for NFS
+   # IP address of the load balancer frontend configuration for NFS
    <b>10.0.0.4 nws-nfs</b>
-   # IP address of hello load balancer frontend configuration for SAP NetWeaver ASCS/SCS
+   # IP address of the load balancer frontend configuration for SAP NetWeaver ASCS/SCS
    <b>10.0.0.10 nws-ascs</b>
-   # IP address of hello load balancer frontend configuration for SAP NetWeaver ERS
+   # IP address of the load balancer frontend configuration for SAP NetWeaver ERS
    <b>10.0.0.11 nws-ers</b>
-   # IP address of hello load balancer frontend configuration for database
+   # IP address of the load balancer frontend configuration for database
    <b>10.0.0.12 nws-db</b>
    </code></pre>
 
@@ -674,39 +674,39 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    <pre><code>
    sudo ha-cluster-init
    
-   # Do you want toocontinue anyway? [y/N] -> y
-   # Network address toobind too(for example: 192.168.1.0) [10.79.227.0] -> ENTER
+   # Do you want to continue anyway? [y/N] -> y
+   # Network address to bind to (for example: 192.168.1.0) [10.79.227.0] -> ENTER
    # Multicast address (for example: 239.x.x.x) [239.174.218.125] -> ENTER
    # Multicast port [5405] -> ENTER
-   # Do you wish toouse SBD? [y/N] -> N
-   # Do you wish tooconfigure an administration IP? [y/N] -> N
+   # Do you wish to use SBD? [y/N] -> N
+   # Do you wish to configure an administration IP? [y/N] -> N
    </code></pre>
 
-1. **[2]**  Csomópont toocluster hozzáadása
+1. **[2]**  Csomópont hozzáadása a fürthöz
    
    <pre><code> 
    sudo ha-cluster-join
 
-   # WARNING: NTP is not configured toostart at system boot.
-   # WARNING: No watchdog device found. If SBD is used, hello cluster will be unable toostart without a watchdog.
-   # Do you want toocontinue anyway? [y/N] -> y
+   # WARNING: NTP is not configured to start at system boot.
+   # WARNING: No watchdog device found. If SBD is used, the cluster will be unable to start without a watchdog.
+   # Do you want to continue anyway? [y/N] -> y
    # IP address or hostname of existing node (for example: 192.168.1.1) [] -> IP address of node 1 for example 10.0.0.10
    # /root/.ssh/id_dsa already exists - overwrite? [y/N] N
    </code></pre>
 
-1. **[A]**  Módosítása hacluster jelszó toohello ugyanazt a jelszót
+1. **[A]**  Hacluster ugyanazt a jelszót a jelszó módosítása
 
    <pre><code> 
    sudo passwd hacluster
    </code></pre>
 
-1. **[A]**  Corosync toouse más átviteli konfigurálása, és adja hozzá a csomópontlista. Fürt egyébként nem működik.
+1. **[A]**  Egyéb átvitelt használ, és adja hozzá a csomópontlista corosync konfigurálása. Fürt egyébként nem működik.
    
    <pre><code> 
    sudo vi /etc/corosync/corosync.conf   
    </code></pre>
 
-   Adja hozzá a következő félkövér tartalom toohello fájl hello.
+   Vegye fel a következő félkövér tartalmat a fájlba.
    
    <pre><code> 
    [...]
@@ -729,7 +729,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
      [...]
    </code></pre>
 
-   Indítsa újra hello corosync szolgáltatás
+   Indítsa újra a corosync szolgáltatás
 
    <pre><code>
    sudo service corosync restart
@@ -741,7 +741,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    sudo zypper install drbd drbd-kmp-default drbd-utils
    </code></pre>
 
-1. **[A]**  Hozzon létre egy partíciót hello drbd eszköz
+1. **[A]**  Hozzon létre egy partíciót a drbd eszköz
 
    <pre><code>
    sudo sh -c 'echo -e "n\n\n\n\n\nw\n" | fdisk /dev/sdc'
@@ -756,13 +756,13 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    sudo lvcreate -l 50%FREE -n <b>NWS</b>_ERS vg_<b>NWS</b>
    </code></pre>
 
-1. **[A]**  Létrehozása hello SCS drbd eszköz
+1. **[A]**  A SCS drbd eszköz létrehozása
 
    <pre><code>
    sudo vi /etc/drbd.d/<b>NWS</b>_ascs.res
    </code></pre>
 
-   Helyezze be a hello új drbd eszköz és a kilépési hello konfigurálása
+   Helyezze be az új drbd eszköz és a kilépési konfiguráció
 
    <pre><code>
    resource <b>NWS</b>_ascs {
@@ -785,20 +785,20 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    }
    </code></pre>
 
-   Hello drbd eszköz létrehozása, és indítsa el
+   Hozzon létre a drbd eszközt, és indítsa el
 
    <pre><code>
    sudo drbdadm create-md <b>NWS</b>_ascs
    sudo drbdadm up <b>NWS</b>_ascs
    </code></pre>
 
-1. **[A]**  Létrehozása hello SSZON drbd eszköz
+1. **[A]**  A SSZON drbd eszköz létrehozása
 
    <pre><code>
    sudo vi /etc/drbd.d/<b>NWS</b>_ers.res
    </code></pre>
 
-   Helyezze be a hello új drbd eszköz és a kilépési hello konfigurálása
+   Helyezze be az új drbd eszköz és a kilépési konfiguráció
 
    <pre><code>
    resource <b>NWS</b>_ers {
@@ -821,7 +821,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    }
    </code></pre>
 
-   Hello drbd eszköz létrehozása, és indítsa el
+   Hozzon létre a drbd eszközt, és indítsa el
 
    <pre><code>
    sudo drbdadm create-md <b>NWS</b>_ers
@@ -835,14 +835,14 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    sudo drbdadm new-current-uuid --clear-bitmap <b>NWS</b>_ers
    </code></pre>
 
-1. **[1]**  Set hello elsődleges csomópont
+1. **[1]**  Állítsa be az elsődleges csomópont
 
    <pre><code>
    sudo drbdadm primary --force <b>NWS</b>_ascs
    sudo drbdadm primary --force <b>NWS</b>_ers
    </code></pre>
 
-1. **[1]**  Várjon, amíg a hello új drbd eszköz szinkronizált
+1. **[1]**  Várjon, amíg az új drbd eszköz szinkronizált
 
    <pre><code>
    sudo cat /proc/drbd
@@ -857,7 +857,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    #     ns:5142732 nr:0 dw:5142732 dr:5133924 al:30 bm:0 lo:0 pe:0 ua:0 ap:0 ep:1 wo:f oos:0
    </code></pre>
 
-1. **[1]**  Fájlrendszerek hozható létre hello drbd eszközök
+1. **[1]**  Fájlrendszerek létrehozása a drbd eszközökön
 
    <pre><code>
    sudo mkfs.xfs /dev/drbd0
@@ -867,7 +867,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
 
 ### <a name="configure-cluster-framework"></a>Fürt keretrendszer konfigurálása
 
-**[1]**  Hello alapértelmezett beállításainak módosítása
+**[1]**  Az alapértelmezett beállítások módosítása
 
    <pre><code>
    sudo crm configure
@@ -880,7 +880,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
 
 ## <a name="prepare-for-sap-netweaver-installation"></a>SAP NetWeaver telepítésének előkészítése
 
-1. **[A]**  Létrehozása hello megosztott könyvtárak
+1. **[A]**  a megosztott könyvtárak létrehozása
 
    <pre><code>
    sudo mkdir -p /sapmnt/<b>NWS</b>
@@ -897,7 +897,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    <pre><code>
    sudo vi /etc/auto.master
 
-   # Add hello following line toohello file, save and exit
+   # Add the following line to the file, save and exit
    +auto.master
    /- /etc/auto.direct
    </code></pre>
@@ -907,13 +907,13 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    <pre><code>
    sudo vi /etc/auto.direct
 
-   # Add hello following lines toohello file, save and exit
+   # Add the following lines to the file, save and exit
    /sapmnt/<b>NWS</b> -nfsvers=4,nosymlink,sync <b>nws-nfs</b>:/sapmntsid
    /usr/sap/trans -nfsvers=4,nosymlink,sync <b>nws-nfs</b>:/trans
    /usr/sap/<b>NWS</b>/SYS -nfsvers=4,nosymlink,sync <b>nws-nfs</b>:/sidsys
    </code></pre>
 
-   Indítsa újra a autofs toomount hello új megosztások
+   Indítsa újra az új fájlmegosztások csatlakoztatása autofs
 
    <pre><code>
    sudo systemctl enable autofs
@@ -925,17 +925,17 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    <pre><code>
    sudo vi /etc/waagent.conf
 
-   # Set hello property ResourceDisk.EnableSwap tooy
+   # Set the property ResourceDisk.EnableSwap to y
    # Create and use swapfile on resource disk.
    ResourceDisk.EnableSwap=<b>y</b>
 
-   # Set hello size of hello SWAP file with property ResourceDisk.SwapSizeMB
-   # hello free space of resource disk varies by virtual machine size. Make sure that you do not set a value that is too big. You can check hello SWAP space with command swapon
-   # Size of hello swapfile.
+   # Set the size of the SWAP file with property ResourceDisk.SwapSizeMB
+   # The free space of resource disk varies by virtual machine size. Make sure that you do not set a value that is too big. You can check the SWAP space with command swapon
+   # Size of the swapfile.
    ResourceDisk.SwapSizeMB=<b>2000</b>
    </code></pre>
 
-   Indítsa újra a hello ügynök tooactivate hello módosítása
+   Indítsa újra az ügynököt, a módosítás aktiválása
 
    <pre><code>
    sudo service waagent restart
@@ -943,7 +943,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
 
 ### <a name="installing-sap-netweaver-ascsers"></a>SAP NetWeaver ASC/SSZON telepítése
 
-1. **[1]**  Hozzon létre egy virtuális IP- és állapot-mintavételi hello belső terheléselosztóhoz
+1. **[1]**  Hozzon létre egy virtuális IP- és állapot-mintavételi a belső terheléselosztóhoz
 
    <pre><code>
    sudo crm node standby <b>nws-cl-1</b>
@@ -987,7 +987,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    crm(live)configure# exit
    </code></pre>
 
-   Győződjön meg arról, hogy hello fürt állapot rendben, és, hogy az összes erőforrás indulnak el. Nem fontos a csomópont hello erőforrások futnak.
+   Győződjön meg arról, hogy a fürt állapota rendben, és, hogy az összes erőforrás indulnak el. Nem fontos, melyik csomópontján, az erőforrások futnak.
 
    <pre><code>
    sudo crm_mon -r
@@ -1008,15 +1008,15 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
 
 1. **[1]**  SAP NetWeaver ASC telepítése  
 
-   SAP NetWeaver ASC telepítse a legfelső szintű használatával egy virtuális állomásnevet, amely hello terheléselosztó előtér-konfiguráció hello ASC toohello IP-címe például hello első csomóponton <b>nws-ASC</b>, <b>10.0.0.10</b>és például használt hello mintavétel hello terheléselosztó hello példányszámának <b>00</b>.
+   SAP NetWeaver ASC telepítse a legfelső szintű használatával egy virtuális állomásnevet, amely a terheléselosztó előtér-konfiguráció a ASC IP-címe például az első csomóponton <b>nws-ASC</b>, <b>10.0.0.10</b> és a példány számát, például használt a mintavétel a terheléselosztó <b>00</b>.
 
-   Hello sapinst paraméter SAPINST_REMOTE_ACCESS_USER tooallow a nem gyökér szintű felhasználó tooconnect toosapinst is használhatja.
+   Használhatja a sapinst paraméter SAPINST_REMOTE_ACCESS_USER sapinst való kapcsolódáshoz nem legfelső szintű felhasználó engedélyezése.
 
    <pre><code>
    sudo &lt;swpm&gt;/sapinst SAPINST_REMOTE_ACCESS_USER=<b>sapadmin</b>
    </code></pre>
 
-1. **[1]**  Hozzon létre egy virtuális IP- és állapot-mintavételi hello belső terheléselosztóhoz
+1. **[1]**  Hozzon létre egy virtuális IP- és állapot-mintavételi a belső terheléselosztóhoz
 
    <pre><code>
    sudo crm node standby <b>nws-cl-0</b>
@@ -1058,13 +1058,13 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    
    crm(live)configure# commit
    # WARNING: Resources nc_NWS_ASCS,nc_NWS_ERS,nc_NWS_nfs violate uniqueness for parameter "binfile": "/usr/bin/nc"
-   # Do you still want toocommit (y/n)? y
+   # Do you still want to commit (y/n)? y
 
    crm(live)configure# exit
    
    </code></pre>
  
-   Győződjön meg arról, hogy hello fürt állapot rendben, és, hogy az összes erőforrás indulnak el. Nem fontos a csomópont hello erőforrások futnak.
+   Győződjön meg arról, hogy a fürt állapota rendben, és, hogy az összes erőforrás indulnak el. Nem fontos, melyik csomópontján, az erőforrások futnak.
 
    <pre><code>
    sudo crm_mon -r
@@ -1092,34 +1092,34 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
 
 1. **[2]**  SAP NetWeaver SSZON telepítése  
 
-   SAP NetWeaver SSZON telepítése hello a második csomópont használatával egy virtuális állomásnevet, amely hello terheléselosztó előtér-konfiguráció hello SSZON toohello IP-címe például a legfelső szintű <b>nws-sszon</b>, <b>10.0.0.11</b> és például használt hello mintavétel hello terheléselosztó hello példányszámának <b>02</b>.
+   SAP NetWeaver SSZON telepítése a második csomópont használatával egy virtuális állomásnevet, amely a terheléselosztó előtér-konfiguráció a SSZON IP-címe például a legfelső szintű <b>nws-sszon</b>, <b>10.0.0.11</b> és a példány számát, például használt a mintavétel a terheléselosztó <b>02</b>.
 
-   Hello sapinst paraméter SAPINST_REMOTE_ACCESS_USER tooallow a nem gyökér szintű felhasználó tooconnect toosapinst is használhatja.
+   Használhatja a sapinst paraméter SAPINST_REMOTE_ACCESS_USER sapinst való kapcsolódáshoz nem legfelső szintű felhasználó engedélyezése.
 
    <pre><code>
    sudo &lt;swpm&gt;/sapinst SAPINST_REMOTE_ACCESS_USER=<b>sapadmin</b>
    </code></pre>
 
    > [!NOTE]
-   > SWPM SP 20 PL 05 vagy újabb verzióját használja. Korábbi verziók nem hello engedélyek helyesen beállítva, és hello telepítése sikertelen lesz.
+   > SWPM SP 20 PL 05 vagy újabb verzióját használja. Alacsonyabb verzió nincs beállítva az engedélyeket, és a telepítés sikertelen lesz.
    > 
 
-1. **[1]**  Hello ASC/SCS és SSZON példány profilok igazítja
+1. **[1]**  Adaptálása a ASC/SCS és SSZON példány profilok
  
    * Asc/SCS profil
 
    <pre><code> 
    sudo vi /sapmnt/<b>NWS</b>/profile/<b>NWS</b>_<b>ASCS00</b>_<b>nws-ascs</b>
 
-   # Change hello restart command tooa start command
+   # Change the restart command to a start command
    #Restart_Program_01 = local $(_EN) pf=$(_PF)
    Start_Program_01 = local $(_EN) pf=$(_PF)
 
-   # Add hello following lines
+   # Add the following lines
    service/halib = $(DIR_CT_RUN)/saphascriptco.so
    service/halib_cluster_connector = /usr/bin/sap_suse_cluster_connector
 
-   # Add hello keep alive parameter
+   # Add the keep alive parameter
    enque/encni/set_so_keepalive = true
    </code></pre>
 
@@ -1128,7 +1128,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    <pre><code> 
    sudo vi /sapmnt/<b>NWS</b>/profile/<b>NWS</b>_ERS<b>02</b>_<b>nws-ers</b>
 
-   # Add hello following lines
+   # Add the following lines
    service/halib = $(DIR_CT_RUN)/saphascriptco.so
    service/halib_cluster_connector = /usr/bin/sap_suse_cluster_connector
    </code></pre>
@@ -1136,32 +1136,32 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
 
 1. **[A]**  Keep-Alive konfigurálása
 
-   SAP NetWeaver alkalmazáskiszolgáló hello és az ASC/SCS hello hello kommunikációját szoftveres terheléselosztóként üzemeljen keresztül történik. hello terheléselosztó inaktív kapcsolatok leválasztása után konfigurálható időtúllépés. tooprevent ez tooset hello SAP NetWeaver ASC/SCS profil egyik paraméterének kell és hello Linux rendszer beállításainak módosítására. Kérjük, olvassa el [SAP Megjegyzés 1410736] [ 1410736] további információt.
+   Az SAP NetWeaver alkalmazáskiszolgáló és az ASC/SCS közötti kommunikáció áthalad szoftveres terheléselosztóként üzemeljen. A load balancer inaktív kapcsolatok leválasztása után konfigurálható időtúllépés. Ennek megelőzése szüksége egy paramétert az SAP NetWeaver ASC/SCS profil és a Linux rendszer beállításainak módosítására. Kérjük, olvassa el [SAP Megjegyzés 1410736] [ 1410736] további információt.
    
-   hello ASC/SCS profil paraméter célzó/encni/set_so_keepalive már felvették hello utolsó lépésében megadja.
+   A ASC/SCS profil paraméter célzó/encni/set_so_keepalive már felvették az előző lépésben.
 
    <pre><code> 
-   # Change hello Linux system configuration
+   # Change the Linux system configuration
    sudo sysctl net.ipv4.tcp_keepalive_time=120
    </code></pre>
 
-1. **[A]**  Hello SAP felhasználók konfigurálása hello telepítése után
+1. **[A]**  Az SAP felhasználók konfigurálásához, a telepítés után
  
    <pre><code>
-   # Add sidadm toohello haclient group
+   # Add sidadm to the haclient group
    sudo usermod -aG haclient <b>nws</b>adm   
    </code></pre>
 
-1. **[1]**  Hello ASC és SSZON SAP szolgáltatások toohello sapservice fájl
+1. **[1]**  A ASC és SSZON SAP-szolgáltatás hozzáadása a sapservice fájlhoz
 
-   Adja hozzá a hello ASC szolgáltatás bejegyzés toohello második csomópontnak, illetve másolási hello SSZON szolgáltatás bejegyzés toohello első csomópontnak.
+   Adja hozzá a ASC bejegyzés a második csomópontra történő szolgáltatást, és másolja a SSZON szolgáltatás bejegyzés az első csomópontot.
 
    <pre><code>
    cat /usr/sap/sapservices | grep ASCS<b>00</b> | sudo ssh <b>nws-cl-1</b> "cat >>/usr/sap/sapservices"
    sudo ssh <b>nws-cl-1</b> "cat /usr/sap/sapservices" | grep ERS<b>02</b> | sudo tee -a /usr/sap/sapservices
    </code></pre>
 
-1. **[1]**  Hello SAP-fürterőforrás létrehozása
+1. **[1]**  Az SAP fürterőforrások létrehozása
 
    <pre><code>
    sudo crm configure property maintenance-mode="true"
@@ -1195,7 +1195,7 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
    sudo crm node online <b>nws-cl-0</b>
    </code></pre>
 
-   Győződjön meg arról, hogy hello fürt állapot rendben, és, hogy az összes erőforrás indulnak el. Nem fontos a csomópont hello erőforrások futnak.
+   Győződjön meg arról, hogy a fürt állapota rendben, és, hogy az összes erőforrás indulnak el. Nem fontos, melyik csomópontján, az erőforrások futnak.
 
    <pre><code>
    sudo crm_mon -r
@@ -1224,39 +1224,39 @@ hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall 
 
 ### <a name="create-stonith-device"></a>STONITH eszköz létrehozása
 
-hello STONITH eszköz által használt egy egyszerű tooauthorize Microsoft Azure ellen. Kövesse ezeket a lépéseket toocreate egy egyszerű szolgáltatást.
+A STONITH eszköz egy egyszerű szolgáltatást használ, szemben a Microsoft Azure engedélyezése. Kövesse az alábbi lépéseket egy egyszerű szolgáltatásnév létrehozásához.
 
-1. Nyissa meg túl<https://portal.azure.com>
-1. Nyissa meg hello Azure Active Directory panel  
-   Nyissa meg tooProperties, és írja le hello Directory azonosítóját. Ez a hello **bérlőazonosító**.
+1. Ugrás a <https://portal.azure.com>
+1. Nyissa meg az Azure Active Directory panelt  
+   Nyissa meg tulajdonságait, és jegyezze fel a könyvtárban. Ez a **bérlőazonosító**.
 1. Kattintson az alkalmazás-regisztráció
 1. Kattintson az Add (Hozzáadás) parancsra
 1. Adjon meg egy nevet, válassza ki a "Web app/API" alkalmazástípus, adja meg a bejelentkezési URL-címet (például http://localhost) és kattintson a Létrehozás gombra
-1. hello bejelentkezési URL-címet nem használja, és bármilyen érvényes URL-CÍMEK lehetnek
-1. Válassza ki az új alkalmazás hello és kattintson a kulcsok hello-beállítások lap
+1. A bejelentkezési URL-címet nem használja, és bármilyen érvényes URL-CÍMEK lehetnek
+1. Válassza ki az új alkalmazást, és a beállítások lapon kattintson a kulcsok
 1. Adja meg egy új kulcs leírását, válassza a "Soha nem jár le", és kattintson a Mentés gombra
-1. Írja le hello érték. Hello használják **jelszó** a hello szolgáltatás egyszerű
-1. Írja le hello azonosítót. Hello felhasználónév, a rendszer (**bejelentkezési azonosító** hello lépéseket a) a hello szolgáltatás egyszerű
+1. Jegyezze fel az értéket. Használják a **jelszó** a szolgáltatás egyszerű
+1. Jegyezze fel az azonosítót. A felhasználónév használják (**bejelentkezési azonosító** az alábbi lépéseket a) a szolgáltatás egyszerű
 
-hello szolgáltatás egyszerű engedélyek tooaccess az Azure-erőforrások alapértelmezés szerint nem rendelkezik. Toogive hello szolgáltatás egyszerű engedélyek toostart van szüksége, és állítsa (felszabadítása) hello fürt összes virtuális gépet.
+A szolgáltatás egyszerű nincs engedélye a alapértelmezés szerint az Azure-erőforrások eléréséhez. Hozzá kell rendelnie a szolgáltatás egyszerű engedélyek indítása és leállítása (felszabadítása) a fürt összes virtuális gépet.
 
-1. Nyissa meg toohttps://portal.azure.com
-1. Nyissa meg az összes erőforrás panel hello
-1. Válassza ki a virtuális gép hello
+1. Ugrás a https://portal.azure.com
+1. Nyissa meg az összes erőforrás panel
+1. Válassza ki a virtuális gépet
 1. Kattintson a hozzáférés-vezérlés (IAM)
 1. Kattintson az Add (Hozzáadás) parancsra
-1. Válassza ki a hello szerepkör tulajdonosa
-1. Adja meg az előbb létrehozott hello alkalmazás hello neve
+1. Válassza ki a szerepkör tulajdonosa
+1. Adja meg az előbb létrehozott alkalmazás nevét
 1. Kattintson az OK gombra
 
-#### <a name="1-create-hello-stonith-devices"></a>**[1]**  Hello STONITH eszközök létrehozása
+#### <a name="1-create-the-stonith-devices"></a>**[1]**  STONITH eszközök létrehozása
 
-Után szerkeszteni hello engedélyek hello virtuális gépekhez, beállíthatja a hello STONITH eszközök hello fürtben.
+Után szerkeszteni a virtuális gépek engedélyeit, beállíthatja a STONITH eszközök a fürtben.
 
 <pre><code>
 sudo crm configure
 
-# replace hello bold string with your subscription id, resource group, tenant id, service principal id and password
+# replace the bold string with your subscription id, resource group, tenant id, service principal id and password
 
 crm(live)configure# primitive rsc_st_azure_1 stonith:fence_azure_arm \
    params subscriptionId="<b>subscription id</b>" resourceGroup="<b>resource group</b>" tenantId="<b>tenant id</b>" login="<b>login id</b>" passwd="<b>password</b>"
@@ -1270,9 +1270,9 @@ crm(live)configure# commit
 crm(live)configure# exit
 </code></pre>
 
-#### <a name="1-enable-hello-use-of-a-stonith-device"></a>**[1]**  STONITH eszköz hello használatának engedélyezése
+#### <a name="1-enable-the-use-of-a-stonith-device"></a>**[1]**  STONITH eszköz használatának engedélyezése
 
-Hello STONITH eszköz használatának engedélyezése
+Egy STONITH eszköz használatának engedélyezése
 
 <pre><code>
 sudo crm configure property stonith-enabled=true 
@@ -1280,16 +1280,16 @@ sudo crm configure property stonith-enabled=true
 
 ## <a name="install-database"></a>A telepítési adatbázis
 
-Ebben a példában egy SAP HANA replikációs telepítve és konfigurálva van. SAP HANA hello azonos hello SAP NetWeaver ASC/SCS és SSZON fürtöt fog futni. SAP HANA egy dedikált fürtön is telepíthet. Lásd: [magas rendelkezésre állás az SAP HANA Azure virtuális gépek (VM)] [ sap-hana-ha] további információt.
+Ebben a példában egy SAP HANA replikációs telepítve és konfigurálva van. A fürtön, amelyen az SAP NetWeaver ASC/SCS és SSZON SAP HANA fog futni. SAP HANA egy dedikált fürtön is telepíthet. Lásd: [magas rendelkezésre állás az SAP HANA Azure virtuális gépek (VM)] [ sap-hana-ha] további információt.
 
 ### <a name="prepare-for-sap-hana-installation"></a>SAP HANA-telepítés előkészítése
 
-Általában javasoljuk LVM kötetek, amelyek adatokat tárolhatnak, és a naplófájlok. Tesztelési célokra toostore hello adatainak és naplókönyvtárainak közvetlenül egy egyszerű lemezen fájl is kiválaszthatja.
+Általában javasoljuk LVM kötetek, amelyek adatokat tárolhatnak, és a naplófájlok. Tesztelési célokra is beállíthatja az adatok tárolásához és a naplófájl közvetlenül egy normál lemezen.
 
 1. **[A]**  LVM  
-   hello az alábbi példa azt feltételezi, hogy hello virtuális gépek rendelkezik-e a négy adatlemezt csatolni, amelyeket használt toocreate két kötet.
+   Az alábbi példa azt feltételezi, hogy, hogy a virtuális gépek rendelkeznek négy adatlemezt csatolni, amelynek használatával hozzon létre két köteteket.
    
-   Az összes lemezt, amelyet az toouse fizikai köteteket hozhat létre.
+   A használni kívánt összes lemez fizikai köteteket hozhat létre.
    
    <pre><code>
    sudo pvcreate /dev/sdd
@@ -1298,7 +1298,7 @@ Ebben a példában egy SAP HANA replikációs telepítve és konfigurálva van. 
    sudo pvcreate /dev/sdg
    </code></pre>
    
-   Hozzon létre egy kötet csoport hello adatfájlok, hello naplófájlok egy kötet csoport és egy hello megosztott könyvtárában SAP HANA
+   Az adatfájlok kötet csoport, a naplófájlok egy kötet csoport és egy SAP HANA a megosztott könyvtár létrehozása
    
    <pre><code>
    sudo vgcreate vg_hana_data /dev/sdd /dev/sde
@@ -1306,7 +1306,7 @@ Ebben a példában egy SAP HANA replikációs telepítve és konfigurálva van. 
    sudo vgcreate vg_hana_shared /dev/sdg
    </code></pre>
    
-   Hello logikai köteteket hozhat létre
+   A logikai köteteket hozhat létre
    
    <pre><code>
    sudo lvcreate -l 100%FREE -n hana_data vg_hana_data
@@ -1317,7 +1317,7 @@ Ebben a példában egy SAP HANA replikációs telepítve és konfigurálva van. 
    sudo mkfs.xfs /dev/vg_hana_shared/hana_shared
    </code></pre>
    
-   Hello csatlakoztatási könyvtárak létrehozása, és másolja az összes logikai kötet UUID hello
+   A csatlakoztatási könyvtárak létrehozása, és másolja az összes logikai kötet UUID
    
    <pre><code>
    sudo mkdir -p /hana/data
@@ -1326,17 +1326,17 @@ Ebben a példában egy SAP HANA replikációs telepítve és konfigurálva van. 
    sudo chattr +i /hana/data
    sudo chattr +i /hana/log
    sudo chattr +i /hana/shared
-   # write down hello id of /dev/vg_hana_data/hana_data, /dev/vg_hana_log/hana_log and /dev/vg_hana_shared/hana_shared
+   # write down the id of /dev/vg_hana_data/hana_data, /dev/vg_hana_log/hana_log and /dev/vg_hana_shared/hana_shared
    sudo blkid
    </code></pre>
    
-   Három logikai kötetek hello autofs bejegyzéseket létrehozni
+   A három logikai kötetek autofs bejegyzéseket létrehozni
    
    <pre><code>
    sudo vi /etc/auto.direct
    </code></pre>
    
-   A sor toosudo vi /etc/auto.direct beszúrása
+   Ez a sudo vi /etc/auto.direct sor beszúrása
    
    <pre><code>
    /hana/data -fstype=xfs :UUID=<b>&lt;UUID of /dev/vg_hana_data/hana_data&gt;</b>
@@ -1344,7 +1344,7 @@ Ebben a példában egy SAP HANA replikációs telepítve és konfigurálva van. 
    /hana/shared -fstype=xfs :UUID=<b>&lt;UUID of /dev/vg_hana_shared/hana_shared&gt;</b>
    </code></pre>
    
-   Csatlakoztassa hello új köteteket
+   Csatlakoztassa az új köteteket
    
    <pre><code>
    sudo service autofs restart 
@@ -1352,22 +1352,22 @@ Ebben a példában egy SAP HANA replikációs telepítve és konfigurálva van. 
 
 1. **[A]**  Egyszerű lemez  
 
-   A kis vagy bemutató rendszerek, elhelyezhet egy lemezt a HANA adatainak és naplókönyvtárainak fájlokat. hello következő parancsok /dev/sdc hozza létre a partíciót, és formázza xfs.
+   A kis vagy bemutató rendszerek, elhelyezhet egy lemezt a HANA adatainak és naplókönyvtárainak fájlokat. A következő parancsok /dev/sdc hozza létre a partíciót, és formázza xfs.
    ```bash
    sudo sh -c 'echo -e "n\n\n\n\n\nw\n" | fdisk /dev/sdd'
    sudo mkfs.xfs /dev/sdd1
    
-   # write down hello id of /dev/sdd1
+   # write down the id of /dev/sdd1
    sudo /sbin/blkid
    sudo vi /etc/auto.direct
    ```
    
-   A sor too/etc/auto.direct beszúrása
+   Ez a /etc/auto.direct sor beszúrása
    <pre><code>
    /hana -fstype=xfs :UUID=<b>&lt;UUID&gt;</b>
    </code></pre>
    
-   Hello célkönyvtár és azt csatlakoztatja a hello lemez.
+   A célkönyvtár létrehozása, és csatlakoztassa a lemezt.
    
    <pre><code>
    sudo mkdir /hana
@@ -1377,9 +1377,9 @@ Ebben a példában egy SAP HANA replikációs telepítve és konfigurálva van. 
 
 ### <a name="installing-sap-hana"></a>SAP HANA telepítése
 
-hello lépések alapuló hello 4 fejezete [SAP HANA SR teljesítmény optimalizált forgatókönyv útmutató] [ suse-hana-ha-guide] tooinstall SAP HANA replikációs. Olvassa el, mielőtt hello telepítés folytatásához.
+Az alábbi lépéseket a fejezete 4 alapulnak a [SAP HANA SR teljesítmény optimalizált forgatókönyv útmutató] [ suse-hana-ha-guide] SAP HANA rendszer replikáció telepítését. Olvassa el, mielőtt folytatja a telepítést.
 
-1. **[A]**  Hdblcm hello HANA DVD-ről futtatva
+1. **[A]**  Hdblcm HANA DVD-ről futtatni
    
    <pre><code>
    sudo hdblcm --sid=<b>HDB</b> --number=<b>03</b> --action=install --batch --password=<b>&lt;password&gt;</b> --system_user_password=<b>&lt;password for system user&gt;</b>
@@ -1389,18 +1389,18 @@ hello lépések alapuló hello 4 fejezete [SAP HANA SR teljesítmény optimaliz�
 
 1. **[A]**  SAP állomás ügynökök frissítése
 
-   Hello legújabb SAP a gazdagép ügynöke archív letöltését hello [SAP Softwarecenter] [ sap-swcenter] és futtatási hello parancs tooupgrade hello ügynök következő. Cserélje le a hello elérési toohello toopoint toohello archívumfájl letöltött.
+   Töltse le a legfrissebb SAP a gazdagép ügynöke archív a a [SAP Softwarecenter] [ sap-swcenter] és az ügynökök frissítése a következő parancsot. Cserélje le az archívum mutasson a letöltött fájl elérési útja.
    <pre><code>
-   sudo /usr/sap/hostctrl/exe/saphostexec -upgrade -archive <b>&lt;path tooSAP Host Agent SAR&gt;</b> 
+   sudo /usr/sap/hostctrl/exe/saphostexec -upgrade -archive <b>&lt;path to SAP Host Agent SAR&gt;</b> 
    </code></pre>
 
 1. **[1]**  Létrehozása HANA replikációs (rendszergazdaként)  
 
-   Futtassa a következő parancs hello. Győződjön meg arról, hogy tooreplace félkövér karakterláncok (HANA rendszer azonosító HDB és példány újrahasznosítása 03) a SAP HANA-telepítés hello értékekkel.
+   A következő parancsot. Ügyeljen arra, hogy félkövér karakterláncok (HANA rendszer azonosító HDB és példány újrahasznosítása 03) cserélje le az értékeket a SAP HANA-telepítés.
    <pre><code>
    PATH="$PATH:/usr/sap/<b>HDB</b>/HDB<b>03</b>/exe"
    hdbsql -u system -i <b>03</b> 'CREATE USER <b>hdb</b>hasync PASSWORD "<b>passwd</b>"' 
-   hdbsql -u system -i <b>03</b> 'GRANT DATA ADMIN too<b>hdb</b>hasync' 
+   hdbsql -u system -i <b>03</b> 'GRANT DATA ADMIN TO <b>hdb</b>hasync' 
    hdbsql -u system -i <b>03</b> 'ALTER USER <b>hdb</b>hasync DISABLE PASSWORD LIFETIME' 
    </code></pre>
 
@@ -1418,14 +1418,14 @@ hello lépések alapuló hello 4 fejezete [SAP HANA SR teljesítmény optimaliz�
    hdbsql -u system -i <b>03</b> "BACKUP DATA USING FILE ('<b>initialbackup</b>')" 
    </code></pre>
 
-1. **[1]**  Toohello HANA sapsid felhasználói váltson, és hozzon létre hello elsődleges hely.
+1. **[1]**  Váltani a HANA sapsid felhasználó és az elsődleges hely létrehozásához.
 
    <pre><code>
    su - <b>hdb</b>adm
    hdbnsutil -sr_enable –-name=<b>SITE1</b>
    </code></pre>
 
-1. **[2]**  Toohello HANA sapsid felhasználói váltson, és hello másodlagos hely létrehozásához.
+1. **[2]**  Váltani a HANA sapsid felhasználó és a másodlagos hely létrehozásához.
 
    <pre><code>
    su - <b>hdb</b>adm
@@ -1435,12 +1435,12 @@ hello lépések alapuló hello 4 fejezete [SAP HANA SR teljesítmény optimaliz�
 
 1. **[1]**  Fürterőforrások SAP HANA létrehozása
 
-   Először hozzon létre hello topológia.
+   Először hozza létre a topológiát.
    
    <pre><code>
    sudo crm configure
 
-   # replace hello bold string with your instance number and HANA system id
+   # replace the bold string with your instance number and HANA system id
    
    crm(live)configure# primitive rsc_SAPHanaTopology_<b>HDB</b>_HDB<b>03</b>   ocf:suse:SAPHanaTopology \
      operations $id="rsc_sap2_<b>HDB</b>_HDB<b>03</b>-operations" \
@@ -1456,12 +1456,12 @@ hello lépések alapuló hello 4 fejezete [SAP HANA SR teljesítmény optimaliz�
    crm(live)configure# exit
    </code></pre>
    
-   Ezután hozzon létre hello HANA erőforrások
+   Ezután hozzon létre a HANA erőforrások
    
    <pre><code>
    sudo crm configure
 
-   # replace hello bold string with your instance number, HANA system id and hello frontend IP address of hello Azure load balancer. 
+   # replace the bold string with your instance number, HANA system id and the frontend IP address of the Azure load balancer. 
     
    crm(live)configure# primitive rsc_SAPHana_<b>HDB</b>_HDB<b>03</b> ocf:suse:SAPHana \
      operations $id="rsc_sap_<b>HDB</b>_HDB<b>03</b>-operations" \
@@ -1499,7 +1499,7 @@ hello lépések alapuló hello 4 fejezete [SAP HANA SR teljesítmény optimaliz�
    crm(live)configure# exit
    </code></pre>
 
-   Győződjön meg arról, hogy hello fürt állapot rendben, és, hogy az összes erőforrás indulnak el. Nem fontos a csomópont hello erőforrások futnak.
+   Győződjön meg arról, hogy a fürt állapota rendben, és, hogy az összes erőforrás indulnak el. Nem fontos, melyik csomópontján, az erőforrások futnak.
 
    <pre><code>
    sudo crm_mon -r
@@ -1536,11 +1536,11 @@ hello lépések alapuló hello 4 fejezete [SAP HANA SR teljesítmény optimaliz�
    # rsc_st_azure_2  (stonith:fence_azure_arm):      <b>Started nws-cl-1</b>
    </code></pre>
 
-1. **[1]**  Telepítés hello SAP NetWeaver adatbázispéldány
+1. **[1]**  Az SAP NetWeaver adatbázis-példány telepítése
 
-   Telepítés hello SAP NetWeaver adatbázispéldány legfelső szintű használatával egy virtuális állomásnevet, amely hello terheléselosztó előtér-konfiguráció hello adatbázis toohello IP-címe például <b>nws-db</b> és <b>10.0.0.12</b>.
+   A SAP NetWeaver adatbázis-példány telepítését a legfelső szintű használatával egy virtuális állomásnevet, amely a terheléselosztó előtér-konfiguráció az adatbázis IP-címe például <b>nws-db</b> és <b>10.0.0.12</b>.
 
-   Hello sapinst paraméter SAPINST_REMOTE_ACCESS_USER tooallow a nem gyökér szintű felhasználó tooconnect toosapinst is használhatja.
+   Használhatja a sapinst paraméter SAPINST_REMOTE_ACCESS_USER sapinst való kapcsolódáshoz nem legfelső szintű felhasználó engedélyezése.
 
    <pre><code>
    sudo &lt;swpm&gt;/sapinst SAPINST_REMOTE_ACCESS_USER=<b>sapadmin</b>
@@ -1548,30 +1548,30 @@ hello lépések alapuló hello 4 fejezete [SAP HANA SR teljesítmény optimaliz�
 
 ## <a name="sap-netweaver-application-server-installation"></a>SAP NetWeaver alkalmazáskiszolgáló telepítése
 
-Kövesse ezeket a lépéseket tooinstall SAP alkalmazáskiszolgáló. hello lépéseket alábbi azt feltételezik, hogy hello alkalmazáskiszolgáló hello ASC/SCS eltérő kiszolgálóra és HANA kiszolgálók telepíteni. Ellenkező esetben egyes (például a gazdagép névfeloldásához konfigurálása) alatt hello lépések nem szükségesek.
+Kövesse az alábbi lépéseket az SAP-alkalmazáskiszolgáló telepítése. A lépések alábbi azt feltételezik, hogy az alkalmazáskiszolgáló egy kiszolgálón telepíti a ASC/SCS és HANA-kiszolgálókról különböző. Ellenkező esetben egyes (például a gazdagép névfeloldásához konfigurálása) az alábbi lépéseket nem szükséges.
 
 1. A telepítő állomásnév    
-   DNS-kiszolgálót használjon, vagy módosítsa a hello/etc/hosts minden csomóponton. Ez a példa bemutatja, hogyan toouse hello/Etc/Hosts fájlt.
-   Cserélje le a hello IP-cím és a következő parancsok hello hello állomásnév
+   DNS-kiszolgálót használjon, vagy módosítsa az/etc/hosts minden csomóponton. Ez a példa bemutatja, hogyan használható az/etc/hosts fájlt.
+   Cserélje le az IP-cím és a következő parancsokat az állomásnév
    ```bash
    sudo vi /etc/hosts
    ```
-   Helyezze be a következő sorokat túl/etc/hosts hello. Hello IP cím és az állomásnév toomatch a környezet módosítása    
+   Helyezze be a következő sorokat/etc/hosts. Az IP-cím és a környezet megfelelő állomásnév módosítása    
     
    <pre><code>
-   # IP address of hello load balancer frontend configuration for NFS
+   # IP address of the load balancer frontend configuration for NFS
    <b>10.0.0.4 nws-nfs</b>
-   # IP address of hello load balancer frontend configuration for SAP NetWeaver ASCS/SCS
+   # IP address of the load balancer frontend configuration for SAP NetWeaver ASCS/SCS
    <b>10.0.0.10 nws-ascs</b>
-   # IP address of hello load balancer frontend configuration for SAP NetWeaver ERS
+   # IP address of the load balancer frontend configuration for SAP NetWeaver ERS
    <b>10.0.0.11 nws-ers</b>
-   # IP address of hello load balancer frontend configuration for database
+   # IP address of the load balancer frontend configuration for database
    <b>10.0.0.12 nws-db</b>
-   # IP address of hello application server
+   # IP address of the application server
    <b>10.0.0.8 nws-di-0</b>
    </code></pre>
 
-1. Hello sapmnt könyvtár létrehozása
+1. A sapmnt könyvtár létrehozása
 
    <pre><code>
    sudo mkdir -p /sapmnt/<b>NWS</b>
@@ -1586,7 +1586,7 @@ Kövesse ezeket a lépéseket tooinstall SAP alkalmazáskiszolgáló. hello lép
    <pre><code>
    sudo vi /etc/auto.master
 
-   # Add hello following line toohello file, save and exit
+   # Add the following line to the file, save and exit
    +auto.master
    /- /etc/auto.direct
    </code></pre>
@@ -1596,12 +1596,12 @@ Kövesse ezeket a lépéseket tooinstall SAP alkalmazáskiszolgáló. hello lép
    <pre><code>
    sudo vi /etc/auto.direct
 
-   # Add hello following lines toohello file, save and exit
+   # Add the following lines to the file, save and exit
    /sapmnt/<b>NWS</b> -nfsvers=4,nosymlink,sync <b>nws-nfs</b>:/sapmntsid
    /usr/sap/trans -nfsvers=4,nosymlink,sync <b>nws-nfs</b>:/trans
    </code></pre>
 
-   Indítsa újra a autofs toomount hello új megosztások
+   Indítsa újra az új fájlmegosztások csatlakoztatása autofs
 
    <pre><code>
    sudo systemctl enable autofs
@@ -1613,17 +1613,17 @@ Kövesse ezeket a lépéseket tooinstall SAP alkalmazáskiszolgáló. hello lép
    <pre><code>
    sudo vi /etc/waagent.conf
 
-   # Set hello property ResourceDisk.EnableSwap tooy
+   # Set the property ResourceDisk.EnableSwap to y
    # Create and use swapfile on resource disk.
    ResourceDisk.EnableSwap=<b>y</b>
 
-   # Set hello size of hello SWAP file with property ResourceDisk.SwapSizeMB
-   # hello free space of resource disk varies by virtual machine size. Make sure that you do not set a value that is too big. You can check hello SWAP space with command swapon
-   # Size of hello swapfile.
+   # Set the size of the SWAP file with property ResourceDisk.SwapSizeMB
+   # The free space of resource disk varies by virtual machine size. Make sure that you do not set a value that is too big. You can check the SWAP space with command swapon
+   # Size of the swapfile.
    ResourceDisk.SwapSizeMB=<b>2000</b>
    </code></pre>
 
-   Indítsa újra a hello ügynök tooactivate hello módosítása
+   Indítsa újra az ügynököt, a módosítás aktiválása
 
    <pre><code>
    sudo service waagent restart
@@ -1633,7 +1633,7 @@ Kövesse ezeket a lépéseket tooinstall SAP alkalmazáskiszolgáló. hello lép
 
    Elsődleges vagy további SAP NetWeaver alkalmazások kiszolgáló telepítése.
 
-   Hello sapinst paraméter SAPINST_REMOTE_ACCESS_USER tooallow a nem gyökér szintű felhasználó tooconnect toosapinst is használhatja.
+   Használhatja a sapinst paraméter SAPINST_REMOTE_ACCESS_USER sapinst való kapcsolódáshoz nem legfelső szintű felhasználó engedélyezése.
 
    <pre><code>
    sudo &lt;swpm&gt;/sapinst SAPINST_REMOTE_ACCESS_USER=<b>sapadmin</b>
@@ -1641,7 +1641,7 @@ Kövesse ezeket a lépéseket tooinstall SAP alkalmazáskiszolgáló. hello lép
 
 1. Biztonságos tár SAP HANA frissítése
 
-   Frissítés hello SAP HANA biztonságos tárolására toopoint toohello virtuális nevét hello SAP HANA replikációs beállítás.
+   Frissítse a SAP HANA biztonságos tár úgy, hogy a virtuális nevét a replikációs SAP HANA-telepítő mutasson.
    <pre><code>
    su - <b>nws</b>adm
    hdbuserstore SET DEFAULT <b>nws-db</b>:3<b>03</b>15 <b>SAPABAP1</b> <b>&lt;password of ABAP schema&gt;</b>
@@ -1651,5 +1651,5 @@ Kövesse ezeket a lépéseket tooinstall SAP alkalmazáskiszolgáló. hello lép
 * [Az Azure virtuális gépek tervezési és megvalósítási az SAP][planning-guide]
 * [Az SAP Azure virtuális gépek telepítése][deployment-guide]
 * [Az SAP Azure virtuális gépek adatbázis-kezelő telepítése][dbms-guide]
-* Hogyan tooestablish magas rendelkezésre állású és az Azure (nagy példányokat), az SAP HANA vész-helyreállítási terv: toolearn [SAP HANA (nagy példányok) magas rendelkezésre állási és vészhelyreállítási helyreállítási Azure](hana-overview-high-availability-disaster-recovery.md).
-* Hogyan tooestablish magas rendelkezésre állású és az Azure virtuális gépeken, a SAP HANA vész-helyreállítási terv: toolearn [magas rendelkezésre állás az SAP HANA Azure virtuális gépek (VM)][sap-hana-ha]
+* Magas rendelkezésre állás és az Azure (nagy példány) az SAP HANA vész-helyreállítási terv létrehozásához, lásd: [SAP HANA (nagy példányok) magas rendelkezésre állási és vészhelyreállítási helyreállítási Azure](hana-overview-high-availability-disaster-recovery.md).
+* Magas rendelkezésre állás és az Azure virtuális gépeken az SAP HANA vész-helyreállítási terv létrehozásához, lásd: [magas rendelkezésre állás az SAP HANA Azure virtuális gépek (VM)][sap-hana-ha]

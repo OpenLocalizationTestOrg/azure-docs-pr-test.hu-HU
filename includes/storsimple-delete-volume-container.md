@@ -1,9 +1,9 @@
 <!--author=SharS last changed: 9/16/15-->
 
-#### <a name="toodelete-a-volume-container"></a>a kötettároló toodelete
-1. A hello **eszközök** lapon, válassza ki azt hello eszközt, kattintson rá duplán, és kattintson a hello **kötettárolók** fülre.
-2. Válassza ki a kívánt toodelete hello kötettároló.
-3. Ha a kötettároló társított kötet, majd akkor is törlődik. Kattintson a **törlése** : hello alsó részén hello lap toodelete ebben a tárolóban. Ha a rendszer megerősítést kér, kattintson az **Igen** gombra. Ezzel a lépéssel törli a hello kötettároló.
+#### <a name="to-delete-a-volume-container"></a>A kötettároló törlése
+1. Az a **eszközök** lapon válassza ki az eszközt, kattintson rá duplán, és kattintson a **kötettárolók** fülre.
+2. Válassza ki a törölni kívánt kötettároló.
+3. Ha a kötettároló társított kötet, majd akkor is törlődik. Kattintson a **törlése** törölni a tárolót a lap alján. Ha a rendszer megerősítést kér, kattintson az **Igen** gombra. A kötettároló törlése.
 
-Hello kötettároló kötetek vannak társítva, ha először tootake ezek a kötetek offline hello utasításait követve [kötet offline állapotba](../articles/storsimple/storsimple-manage-volumes.md#take-a-volume-offline). Miután hello kötetek offline módban, törölhetik azokat. Hello kötettároló nincs társított kötetek, amikor törölni hello kötettároló a fent leírt módon.
+A kötettároló kötetek vannak társítva, ha először a lépéseket követve ezek a kötetek offline érvénybe [kötet offline állapotba](../articles/storsimple/storsimple-manage-volumes.md#take-a-volume-offline). Miután a kötetek offline módban, törölhetik azokat. A kötettároló nincs társított kötetek, ha törli a kötettároló fent leírt módon.
 

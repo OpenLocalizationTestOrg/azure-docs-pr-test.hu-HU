@@ -1,6 +1,6 @@
 ---
-title: "AAA \"(REST API - Azure Search) index létrehozása |} Microsoft dokumentumok\""
-description: "Index létrehozása kódban hello Azure Search HTTP REST API használatával."
+title: "Index létrehozása (REST API – Azure Search) | Microsoft Docs"
+description: "Index létrehozása kódból az Azure Search HTTP REST API használatával."
 services: search
 documentationcenter: 
 author: ashmaka
@@ -15,13 +15,13 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 12/08/2016
 ms.author: ashmaka
-ms.openlocfilehash: 117ab64a9874a443351a8a02a9b959b8f7beb7c1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9a64d1436471e406b7d9b700257d3dd96b5edcde
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-an-azure-search-index-using-hello-rest-api"></a>Hello REST API-t használó Azure Search-index létrehozása
+# <a name="create-an-azure-search-index-using-the-rest-api"></a>Azure Search-index létrehozása REST API használatával
 > [!div class="op_single_selector"]
 >
 > * [Áttekintés](search-what-is-an-index.md)
@@ -31,33 +31,33 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-Ez a cikk végigvezeti az Azure Search létrehozásának folyamatán hello [index](https://docs.microsoft.com/rest/api/searchservice/Create-Index) Azure Search REST API használatával hello.
+Ez a cikk végigvezeti az Azure Search-[index](https://docs.microsoft.com/rest/api/searchservice/Create-Index) Azure Search REST API használatával történő létrehozásának folyamatán.
 
 Már az útmutató követése és az index létrehozása előtt [létre kell hoznia egy Azure Search szolgáltatást](search-create-service-portal.md).
 
-az Azure Search-index hello REST API használatával, állít ki egy egyetlen HTTP POST kérelem tooyour Azure Search szolgáltatás URL-végpontjának toocreate. Az index definícióját hello kérés törzse fogja tartalmazni megfelelően formázott JSON-tartalomként.
+Az Azure Search-index REST API használatával történő létrehozásához egyetlen HTTP POST-kérelmet fog küldeni az Azure Search szolgáltatás URL-végpontjának. Az index definícióját a kérés törzse fogja tartalmazni megfelelően formázott JSON-tartalomként.
 
 ## <a name="identify-your-azure-search-services-admin-api-key"></a>Azonosítsa az Azure Search szolgáltatás rendszergazdai API-kulcsát
-Most, hogy létrehozta az Azure Search szolgáltatást, HTTP-kérelmeket küldhet a szolgáltatás URL-végpontjának hello REST API használatával adhat ki. *Minden* API-kérelemnek tartalmaznia hello api-kulcsot hello keresőszolgáltatáshoz generált. Érvényes kulcs birtokában létesít megbízhatósági, egy kérelem alapon hello küldő hello kérelem és a kezelő hello szolgáltatás között.
+Most, hogy létrehozta az Azure Search szolgáltatást, HTTP-kérelmeket küldhet a szolgáltatás URL-végpontjának a REST API használatával. *Minden* API-kérésnek tartalmaznia kell az Ön által üzembe helyezett Search-szolgáltatáshoz létrehozott API-kulcsot. Érvényes kulcs birtokában kérelmenként létesíthető megbízhatósági kapcsolat a kérést küldő alkalmazás és az azt kezelő szolgáltatás között.
 
-1. toofind a szolgáltatás api-kulcsok be kell jelentkeznie hello [Azure-portálon](https://portal.azure.com/)
-2. Nyissa meg tooyour Azure Search szolgáltatás paneljét
-3. Kattintson a hello "Kulcsok" ikonra
+1. A szolgáltatás API-kulcsainak megkereséséhez be kell jelentkeznie az [Azure Portalra](https://portal.azure.com/).
+2. Nyissa meg az Azure Search szolgáltatáspaneljét
+3. Kattintson a „Kulcsok” ikonra
 
 A szolgáltatás *rendszergazdai kulcsokkal* és *lekérdezési kulcsokkal* fog rendelkezni.
 
-* Az elsődleges és másodlagos *adminisztrációs kulcsok* teljes körű tooall műveleteket, köztük a hello képességét toomanage hello szolgáltatást biztosítania hozzon létre, és törölje az indexek, az indexelők és az adatforrások. Két kulcs van, hogy a Folytatás toouse hello másodlagos kulcsát. Ha úgy dönt, hogy tooregenerate hello elsődleges kulcs, és fordítva.
-* A *lekérdezési kulcsok* adjon olvasási hozzáférést tooindexes és a dokumentumok és keresési kérelmeket kibocsátó általában elosztott tooclient alkalmazások.
+* Az elsődleges és másodlagos *rendszergazdai kulcsok* teljes jogosultságot biztosítanak az összes művelethez, beleértve a szolgáltatás felügyeletének, valamint az indexek, indexelők és adatforrások létrehozásának és törlésének képességét. Két kulcs létezi, tehát ha az elsődleges kulcs újbóli létrehozása mellett dönt, a másodlagos kulcsot továbbra is használhatja (ez fordítva is igaz).
+* A *lekérdezési kulcsok* csak olvasási hozzáférést biztosítanak az indexekhez és dokumentumokhoz, és általában a keresési kérelmeket kibocsátó ügyfélalkalmazások kapják meg őket.
 
-Index létrehozása hello célokra is használhatja az elsődleges vagy másodlagos adminisztrátori kulcsot.
+Index létrehozása céljából az elsődleges és a másodlagos adminisztrációs kulcsot is használhatja.
 
 ## <a name="define-your-azure-search-index-using-well-formed-json"></a>Az Azure Search-index meghatározása megfelelően formázott JSON-tartalommal
-Egyetlen HTTP POST kérelem tooyour szolgáltatás létrehozza az indexet. a HTTP POST kérelem törzse hello egy egyetlen JSON-objektum, amely meghatározza az Azure Search-index fogja tartalmazni.
+A szolgáltatásnak küldött egyetlen HTTP POST-kérelem létrehozza az indexet. A HTTP POST-kérelem törzse egyetlen, az Azure Search-indexet meghatározó JSON-objektumot fog tartalmazni.
 
-1. hello a JSON-objektum első tulajdonsága az index hello neve.
-2. hello a JSON-objektum második tulajdonsága nem nevű JSON-tömb `fields` , amely tartalmazza az index egyes mezőihez külön JSON-objektumokat. A JSON-objektumok mindegyikének több név/érték párok tartalmaznak az egyes hello mező tulajdonságai, például a "name", "típus," stb.
+1. A JSON-objektum első tulajdonsága az index neve.
+2. A JSON-objektum második tulajdonsága egy `fields` nevű JSON-tömb, amely külön JSON-objektumokat tartalmaz az index egyes mezőihez. A JSON-objektumok mindegyike több név-érték párt tartalmaz a mezők minden attribútumához (például a „name”, „type” stb. attribútumokhoz).
 
-Fontos, hogy a keresés felhasználói élményt és az üzleti igényeket figyelembe venni az index tervezésekor, mivel minden egyes mezőt hozzá kell rendelni hello [megfelelő attribútumokhoz](https://docs.microsoft.com/rest/api/searchservice/Create-Index). Ezek az attribútumok határozzák melyik keresési funkciók (szűrés, értékkorlátozás, rendezés, teljes szöveges keresés stb.) alkalmazni toowhich mezőket. Meg nem adott attribútumok hello alapértelmezett hacsak kifejezetten le lesz tooenable hello megfelelő keresési funkciót.
+Az index tervezésekor nagyon fontos figyelembe venni a keresés során tapasztalt felhasználói élményt és az üzleti igényeket, mivel minden egyes mezőt a [megfelelő attribútumokhoz](https://docs.microsoft.com/rest/api/searchservice/Create-Index) kell hozzárendelni. Ezek az attribútumok határozzák meg, hogy melyik mezőkre melyik keresési funkciók (szűrés, értékkorlátozás, rendezés, teljes szöveges keresés stb.) vonatkoznak. A meg nem adott attribútumok esetén az alapértelmezett beállítás a vonatkozó keresési funkció engedélyezése, hacsak kifejezetten le nem tiltja a funkciót.
 
 A fenti példában az indexnek a „hotels” nevet adtuk, és a mezőket az alábbiak szerint definiáltuk:
 
@@ -81,30 +81,30 @@ A fenti példában az indexnek a „hotels” nevet adtuk, és a mezőket az al�
 }
 ```
 
-Hello attribútum minden mezőt, ahogyan szerintünk használni fogják őket egy alkalmazásban alapján választottuk ki. Például `hotelId` egyedi kulcs az adott személyek keresése a szállodák valószínűleg nem fognak ismerni, ezért értékre állításával letiltjuk a teljes szöveges keresés mező `searchable` túl`false`, így helyet takarítunk hello index.
+Minden mező esetében annak alapján választottuk ki az indexattribútumokat, ahogyan szerintünk az alkalmazások használni fogják őket. A `hotelId` például egy olyan egyedi kulcs, amelyet a szállodát kereső emberek valószínűleg nem fognak ismerni, ezért a mező esetén a `searchable` `false` értékre állításával letiltjuk a teljes szöveges keresést, így helyet takarítunk meg az indexben.
 
-Vegye figyelembe, hogy pontosan egy mezőt az indexben típusú `Edm.String` hello kijelölt hello "key" mező.
+Vegye figyelembe, hogy az indexben csakis egy `Edm.String` típusú mező lehet kijelölve „kulcsmezőként”.
 
-a fenti hello Indexdefiníció nyelvi elemzőt használ a hello `description_fr` mezőben, mert az adott toostore francia szöveg. Lásd: [hello nyelvi támogatás című](https://docs.microsoft.com/rest/api/searchservice/Language-support) valamint hello vonatkozó [blogbejegyzés](https://azure.microsoft.com/blog/language-support-in-azure-search/) nyelvi elemzőkkel kapcsolatos további információk.
+A fenti indexdefiníció egy nyelvi elemzőt használ a `description_fr` mező esetében, mivel annak francia nyelvű szöveget kell tartalmaznia. A nyelvi elemzőkkel kapcsolatos további információkért lásd a [Nyelvi támogatás című témakört](https://docs.microsoft.com/rest/api/searchservice/Language-support), valamint a vonatkozó [blogbejegyzést](https://azure.microsoft.com/blog/language-support-in-azure-search/).
 
-## <a name="issue-hello-http-request"></a>A probléma hello HTTP-kérelem
-1. Az index definícióját használatával hello kérelemtörzset, ki egy HTTP POST kérelem tooyour Azure Search szolgáltatás végpont URL-CÍMÉT. Hello URL-címében, lehet, hogy toouse hello állomásnevet, a szolgáltatás neve, és hogy a megfelelő hello `api-version` lekérdezési karakterlánc paraméterként (hello aktuális API-verzió `2016-09-01` dokumentum közzétételének hello időben).
-2. Hello kérelemfejléc, adja meg a hello `Content-Type` , `application/json`. Konfigurálnia kell tooprovide a szolgáltatás hello i. lépésben azonosított adminisztrációs kulcsát `api-key` fejléc.
+## <a name="issue-the-http-request"></a>A HTTP-kérelem küldése
+1. Az indexdefiníció kérelemtörzsként való használatához küldjön egy HTTP POST-kérelmet az Azure Search szolgáltatásvégpontjának URL-címére. Ügyeljen arra, hogy az URL-címben a szolgáltatásnevet használja állomásnévként, és hogy a megfelelő `api-version` szerepeljen a lekérdezési karakterlánc paraméterként (a dokumentum közzétételének időpontjában az aktuális API-verzió a `2016-09-01`).
+2. A kérelem fejlécében a `Content-Type` számára adja meg az `application/json` beállítást. Az `api-key` fejlécben is meg kell adni a szolgáltatás I. lépésben azonosított adminisztrációs kulcsát.
 
-Meg kell tooprovide a saját nevét és api fő tooissue hello szolgáltatáskérés alatt:
+Az alábbi kérelem küldéséhez meg kell adnia a saját szolgáltatásnevét és API-kulcsát:
 
     POST https://[service name].search.windows.net/indexes?api-version=2016-09-01
     Content-Type: application/json
     api-key: [api-key]
 
 
-Ha a kérelem sikeres, a 201-es állapotkód (Létrehozva) jelenik meg. Hello REST API-n keresztül index létrehozásával kapcsolatos további információkért látogasson el a hello [itt API-referencia](https://docs.microsoft.com/rest/api/searchservice/Create-Index). További információk a meghiúsult műveletek esetében visszaadható HTTP-állapotkódokról: [HTTP-állapotkódok (Azure Search)](https://docs.microsoft.com/rest/api/searchservice/HTTP-status-codes).
+Ha a kérelem sikeres, a 201-es állapotkód (Létrehozva) jelenik meg. További információt a REST API-n keresztül végzett indexlétrehozásról az [API-referenciában találhat](https://docs.microsoft.com/rest/api/searchservice/Create-Index). További információk a meghiúsult műveletek esetében visszaadható HTTP-állapotkódokról: [HTTP-állapotkódok (Azure Search)](https://docs.microsoft.com/rest/api/searchservice/HTTP-status-codes).
 
-Amikor végzett az index és a kívánt toodelete azt, csak küldjön egy HTTP DELETE kérelmet. Ez az például hello "Hotels nevű" index következőképpen törölhető:
+Miután végzett az index használatával, és törölni szeretné, csak küldjön egy HTTP DELETE kérelmet. A „hotels” nevű index például a következőképpen törölhető:
 
     DELETE https://[service name].search.windows.net/indexes/hotels?api-version=2016-09-01
     api-key: [api-key]
 
 
 ## <a name="next-steps"></a>Következő lépések
-Miután létrehozta az Azure Search-index, lehetővé válik túl[feltöltse a tartalmát hello indexbe](search-what-is-data-import.md) , és megkezdje az adatok keresését.
+Az Azure Search-index létrehozása után készen áll arra, hogy [feltöltse a tartalmát az indexbe](search-what-is-data-import.md), és megkezdje az adatok keresését.

@@ -1,6 +1,6 @@
 ---
-title: "az Azure Site Recovery replikációs beállítások aaaSet |} Microsoft Docs"
-description: "Ismerteti, hogyan toodeploy Site Recovery tooorchestrate replikációs, feladatátvételével és helyreállításával Hyper-V virtuális gépek a VMM-felhők tooAzure."
+title: "Replikációs beállítások megadása az Azure Site Recoveryhez | Microsoft Docs"
+description: "A cikkből megtudhatja, hogyan helyezze üzembe a Site Recovery-t a VMM-felhőben futó Hyper-V virtuális gépek Azure-ba történő replikálása, feladatátvétele és helyreállítása érdekében."
 services: site-recovery
 documentationcenter: 
 author: sujayt
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 06/05/2017
 ms.author: sutalasi
-ms.openlocfilehash: 618e92e42411732a2a1bb75c5e5ea8a433cd7d58
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 73a1f19177f23441f5f7165cf2bc92ba85e62aa5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="manage-replication-policy-for-vmware-tooazure"></a>A VMware tooAzure replikációs házirend kezelése
+# <a name="manage-replication-policy-for-vmware-to-azure"></a>VMware–Azure replikációs házirend kezelése
 
 
 ## <a name="create-a-replication-policy"></a>Replikációs házirend létrehozása
@@ -31,58 +31,58 @@ ms.lasthandoff: 10/06/2017
 
     ![Replikációs házirend létrehozása](./media/site-recovery-setup-replication-settings-vmware/createpolicy.png)
 
-4. Adja meg a hello házirend nevét.
+4. Adja meg a házirend nevét.
 
-5. A **helyreállítási Időkorlát küszöbértéke**, adja meg a hello RPO korlátot. A rendszer riasztásokat küld, ha a folyamatos replikáció meghaladja ezt a korlátot.
-6. A **helyreállításipont-megőrzést**, adja meg (órában) hello hello megőrzési időszak az egyes helyreállítási pontok időtartama. Védett gépek lehet helyreállítani egy adatmegőrzési időtartam tooany pontot.
+5. Az **RPO küszöbértéke** beállításnál adja meg az RPO-korlátot. A rendszer riasztásokat küld, ha a folyamatos replikáció meghaladja ezt a korlátot.
+6. A **Helyreállítási pont megőrzése** beállításnál azt adhatja meg, hogy milyen hosszú legyen az egyes helyreállítási pontok adatmegőrzési időtartama (a beállítás értéke órákban adható meg). A védelemmel ellátott gépeket az adatmegőrzési időtartamon belüli bármelyik pontra visszaállíthatja.
 
     > [!NOTE]
-    > Adatmegőrzési too24 órában gépek replikált toopremium tárolási támogatott. Adatmegőrzési too72 órában gépek replikált toostandard tárolási támogatott.
+    > A rendszer a prémium tárolóra replikált gépek esetében 24 órás megőrzést támogat. A rendszer a standard tárolóra replikált gépek esetében 72 órás megőrzést támogat.
 
     > [!NOTE]
     > A rendszer automatikusan hoz létre replikációs házirendet a feladat-visszavételhez.
 
 7. Az **Alkalmazáskonzisztens pillanatkép gyakorisága** beállítás azt határozza meg, hogy milyen gyakran hozzon létre a rendszer alkalmazáskonzisztens pillanatképeket tartalmazó helyreállítási pontokat (a beállítás értéke percekben adható meg).
 
-8. Kattintson az **OK** gombra. hello házirend létre kell hozni too60 30 másodperc.
+8. Kattintson az **OK** gombra. A házirend létrehozása 30–60 másodpercet vesz igénybe.
 
 ![Replikációs házirend létrehozása](./media/site-recovery-setup-replication-settings-vmware/Creating-Policy.png)
 
 ## <a name="associate-a-configuration-server-with-a-replication-policy"></a>Konfigurációs kiszolgáló társítása egy replikációs házirenddel
-1. Válassza ki a hello replikációs házirend toowhich tooassociate hello konfigurációs kiszolgálót.
+1. Válassza azt a replikációs házirendet, amelyikhez a konfigurációs kiszolgálót társítani szeretné.
 2. Kattintson a **Társítás** gombra.
 ![Konfigurációs kiszolgáló társítása](./media/site-recovery-setup-replication-settings-vmware/Associate-CS-1.PNG)
 
-3. Válassza ki a hello konfigurációs kiszolgáló hello azon kiszolgálók listájáról.
-4. Kattintson az **OK** gombra. hello konfigurációs kiszolgáló egy tootwo percben kell rendelhetők hozzá.
+3. Válassza ki a konfigurációs kiszolgálót a kiszolgálók listájában.
+4. Kattintson az **OK** gombra. A konfigurációs kiszolgáló társításának végrehajtása átlagosan 1–2 percet vesz igénybe.
 
 ![A konfigurációs kiszolgáló társítása](./media/site-recovery-setup-replication-settings-vmware/Associate-CS-2.png)
 
 ## <a name="edit-a-replication-policy"></a>Replikációs házirend szerkesztése
-1. Válassza ki a kívánt tooedit replikációs beállítások hello replikációs házirend.
+1. Válassza ki azt a replikációs házirendet, amelyiknek a replikációs beállításait módosítani szeretné.
 ![Replikációs házirend szerkesztése](./media/site-recovery-setup-replication-settings-vmware/Select-Policy.png)
 
 2. Kattintson a **Beállítások szerkesztése** lehetőségre.
 ![Replikációs házirend beállításainak szerkesztése](./media/site-recovery-setup-replication-settings-vmware/Edit-Policy.png)
 
-3. Módosítsa a igények alapján hello beállításait.
-4. Kattintson a **Save** (Mentés) gombra. hello házirend mentésére két toofive percben, attól függően, hogy hány virtuális gépeket használ, hogy a replikációs házirend.
+3. Igény szerint módosítsa a beállításokat.
+4. Kattintson a **Save** (Mentés) gombra. A replikációs házirend mentése 2–5 percet vesz igénybe attól függően, hogy hány virtuális gép használja azt.
 
 ![Replikációs házirend mentése](./media/site-recovery-setup-replication-settings-vmware/Save-Policy.png)
 
 ## <a name="dissociate-a-configuration-server-from-a-replication-policy"></a>A konfigurációs kiszolgáló és a replikációs házirend társításának megszüntetése
-1. Válassza ki a hello replikációs házirend toowhich tooassociate hello konfigurációs kiszolgálót.
+1. Válassza azt a replikációs házirendet, amelyikhez a konfigurációs kiszolgálót társítani szeretné.
 2. Kattintson a **Társítás megszüntetése** gombra.
-3. Válassza ki a hello konfigurációs kiszolgáló hello azon kiszolgálók listájáról.
-4. Kattintson az **OK** gombra. hello konfigurációs kiszolgáló egy tootwo percben kell különíthetők el.
+3. Válassza ki a konfigurációs kiszolgálót a kiszolgálók listájában.
+4. Kattintson az **OK** gombra. A konfigurációs kiszolgáló társításának megszüntetése 1–2 percet vesz igénybe.
 
     > [!NOTE]
-    > A konfigurációs kiszolgáló nem lehet leválasztani, ha legalább egy replikált elem hello házirenddel. Ellenőrizze, hogy nincsenek hello házirend használata előtt hello konfigurációs kiszolgáló megszünteti replikált elemek.
+    > Nem szüntetheti meg a konfigurációs kiszolgáló társítását, ha van legalább egy olyan replikált elem, amelyik az adott házirendet használja. A konfigurációs kiszolgáló társításának megszüntetése előtt győződjön meg arról, hogy nincsenek olyan replikált elemek, amelyek a házirendet használják.
 
 ## <a name="delete-a-replication-policy"></a>Replikációs házirend törlése
 
-1. Válassza ki a hello replikációs házirendet, amelyet az toodelete.
-2. Kattintson a **Törlés** gombra. hello házirend törölni kell a too60 30 másodperc.
+1. Válassza ki a törölni kívánt replikációs házirendet.
+2. Kattintson a **Törlés** gombra. A házirend törlése 30–60 másodpercet vesz igénybe.
 
     > [!NOTE]
-    > Replikációs házirend nem törölhető, ha legalább egy konfigurációs kiszolgálóhoz kapcsolódó tooit van. Ellenőrizze, hogy nincsenek hello házirenddel replikált elemek, és törölje az összes hello kapcsolódó konfigurációs kiszolgálók hello házirend törlése előtt.
+    > Nem törölheti a replikációs házirendet, ha legalább egy konfigurációs kiszolgáló társítva van hozzá. A házirend törlése előtt győződjön meg arról, hogy egy replikált elem sem használja azt, továbbá törölje az összes társított konfigurációs kiszolgálót is.

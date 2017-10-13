@@ -1,5 +1,5 @@
 ---
-title: "Több tartomány aaaAzure AD Connect"
+title: "Az Azure AD Connect több tartományban"
 description: "Ez a dokumentum ismerteti, és az Office 365 és az Azure AD több felső szintű tartomány beállításával."
 services: active-directory
 documentationcenter: 
@@ -14,144 +14,144 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 91d87875ceacee4e34f132938e4bb0294fb954e1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8e3f496c2868cc3430e0efd47805aec2205168aa
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="multiple-domain-support-for-federating-with-azure-ad"></a>Többtartományos támogatás az Azure AD összevonási szolgáltatásához
-hello alábbi dokumentáció nyújt útmutatást hogyan toouse több legfelső szintű tartományok és altartományok, ha az Office 365 vagy Azure AD-tartomány összevonását.
+Az alábbi dokumentáció nyújt útmutatást több felső szintű tartományok és altartományok használata, ha az Office 365 vagy az Azure AD-tartomány összevonását.
 
 ## <a name="multiple-top-level-domain-support"></a>Több felső szintű tartomány támogatása
 Összevonását több, az Azure ad-vel a legfelső szintű tartományoknak nincs szükség, amikor egy legfelső szintű tartomány összevonását néhány további konfigurálást igényel.
 
-Amikor egy tartományt az Azure AD össze van vonva, több tulajdonság beállítva hello tartományhoz az Azure-ban.  Egy fontos egyik IssuerUri lesz.  Ez az URI, amely használja az Azure AD tooidentify által hello token hello tartomány társítva.  hello URI tooresolve tooanything nem szükséges, de egy érvényes URI-Azonosítót kell lennie.  Alapértelmezés szerint az Azure AD állítja be a toohello hello összevonási szolgáltatás azonosítóját a helyszíni AD FS konfigurációs.
+Amikor egy tartományt az Azure AD össze van vonva, több tulajdonság a tartományban az Azure-ban beállítva.  Egy fontos egyik IssuerUri lesz.  Ez az URI, amely az Azure ad azonosítására szolgál a tartományhoz, amely a token társítva van.  Az URI nem kell tartoznia semmi, de kell lennie egy érvényes URI.  Alapértelmezés szerint az Azure AD beállítja az összevonási szolgáltatás azonosítóját értékének a helyszíni AD FS konfigurációs.
 
 > [!NOTE]
-> hello összevonási szolgáltatás azonosítója, amely egyedileg azonosítja az összevonási szolgáltatás URI.  hello összevonási szolgáltatás AD FS funkcionáló példányának, mint hello biztonságijogkivonat-szolgáltatás. 
+> Az összevonási szolgáltatás azonosítóját, amely egyedileg azonosítja az összevonási szolgáltatás URI.  Az összevonási szolgáltatás AD FS funkcionáló példányának, mint a biztonsági jogkivonatokkal kapcsolatos szolgáltatástól. 
 > 
 > 
 
-View IssuerUri hello PowerShell-paranccsal is `Get-MsolDomainFederationSettings -DomainName <your domain>`.
+A PowerShell-paranccsal is View IssuerUri `Get-MsolDomainFederationSettings -DomainName <your domain>`.
 
 ![Get-MsolDomainFederationSettings](./media/active-directory-multiple-domains/MsolDomainFederationSettings.png)
 
-A probléma merül fel, ha azt szeretné, hogy tooadd több felső szintű tartomány.  Például tegyük fel, a telepítő összevonási az Azure AD között van, és a helyszíni környezetben.  A dokumentum használok bmcontoso.com.  Most már hozzáadtam egy második felső szintű tartomány bmfabrikam.com.
+A probléma merül fel, ha azt szeretné, egynél több felső szintű tartomány hozzáadása.  Például tegyük fel, a telepítő összevonási az Azure AD között van, és a helyszíni környezetben.  A dokumentum használok bmcontoso.com.  Most már hozzáadtam egy második felső szintű tartomány bmfabrikam.com.
 
 ![Tartományok](./media/active-directory-multiple-domains/domains.png)
 
-Ha azt a bmfabrikam.com tartomány toobe összevont tooconvert, azt hibaüzenetet kap.  hello ennek oka, Azure AD is rendelkezik, amely nem engedélyezi a hello IssuerUri tulajdonság toohave hello értékeként azonos értéket egynél több tartomány korlátozás.  
+Próbálja meg konvertálni a bmfabrikam.com tartomány átalakításakor, ha azt hibaüzenetet kap.  Ennek oka az, Azure AD is rendelkezik, amely nem teszi lehetővé a IssuerUri tulajdonság ugyanazt az értéket egynél több tartomány korlátozás.  
 
 ![Összevonási hiba](./media/active-directory-multiple-domains/error.png)
 
 ### <a name="supportmultipledomain-parameter"></a>SupportMultipleDomain paraméter
-tooworkaround, igazolnia kell, hogy egy másik IssuerUri, amely hello segítségével végezhető tooadd `-SupportMultipleDomain` paraméter.  A paraméter a következő parancsmagok hello használata:
+A megoldás, azt kell adnia egy másik IssuerUri, amelyek segítségével teheti a `-SupportMultipleDomain` paraméter.  Ezt a paramétert a következő parancsmagokat használja:
 
 * `New-MsolFederatedDomain`
 * `Convert-MsolDomaintoFederated`
 * `Update-MsolFederatedDomain`
 
-Ez a paraméter lehetővé teszi az Azure AD hello IssuerUri konfigurálása, hogy hello tartomány nevét hello alapul.  Ez lesz egyedi könyvtárak között az Azure ad-ben.  Hello paraméter használata lehetővé teszi, hogy hello PowerShell-parancs toocomplete sikeresen megtörtént.
+Ez a paraméter lehetővé teszi az Azure AD a IssuerUri konfigurálja, hogy annak a tartománynak a nevét alapul.  Ez lesz egyedi könyvtárak között az Azure ad-ben.  A paraméter használata lehetővé teszi, hogy a PowerShell-parancs végrehajtása sikeres legyen.
 
 ![Összevonási hiba](./media/active-directory-multiple-domains/convert.png)
 
-Az új bmfabrikam.com tartomány hello-beállítások megnézi hello következő látható:
+A beállításokat az új bmfabrikam.com tartomány megnézzük látható a következő:
 
 ![Összevonási hiba](./media/active-directory-multiple-domains/settings.png)
 
-Vegye figyelembe, hogy `-SupportMultipleDomain` hello nem változtatja meg más végpontok, amelyek továbbra is konfigurált toopoint tooour összevonási szolgáltatás adfs.bmcontoso.com.
+Vegye figyelembe, hogy `-SupportMultipleDomain` nem változtatja meg a többi végpont, amely az összevonási szolgáltatás adfs.bmcontoso.com mutasson konfigurálása még folyamatban van.
 
-Egy másik művelet, amely `-SupportMultipleDomain` does, hogy azt biztosítja, hogy hello AD FS rendszer tartalmazza-e az Azure AD kiállított jogkivonatokat a hello kibocsátó értéke. Hello felhasználók egyszerű Felhasználónevük hello tartomány része, és ez hello IssuerUri, azaz https://{upn utótag hello tartomány beállítását tesz} / adfs/services/megbízhatósági. 
+Egy másik művelet, amely `-SupportMultipleDomain` does, biztosítja, hogy az AD FS rendszer tartalmazza a megfelelő kibocsátó érték az Azure AD kiállított jogkivonatokat. A felhasználók egyszerű Felhasználónevük tartomány része, és ezt a tartományt a IssuerUri, azaz https://{upn utótag beállítását tesz} / adfs/services/megbízhatósági. 
 
-Így során hitelesítési tooAzure AD vagy az Office 365, hello IssuerUri hello felhasználói jogkivonat eleme használt toolocate hello tartományhoz az Azure ad-ben.  Ha nem található egyező hello hitelesítése sikertelen lesz. 
+Így az Azure AD-hitelesítés során vagy az Office 365, a felhasználói jogkivonat IssuerUri elemének segítségével keresse meg a tartományt az Azure ad-ben.  Ha nem található egyezés a hitelesítés sikertelen lesz. 
 
-Például, ha a felhasználói UPN van bsimon@bmcontoso.com, toohttp://bmcontoso.com/adfs/services/trust hello token AD FS problémák hello IssuerUri eleme lesz beállítva. Ez fog egyezni a hello Azure Active Directory beállítása, és a hitelesítés sikeres lesz.
+Például, ha a felhasználói UPN van bsimon@bmcontoso.com, http://bmcontoso.com/adfs/services/trust úgy lesz beállítva, a jogkivonatot AD FS problémák IssuerUri elemében. Ez fog egyezni az Azure Active Directory beállítása, és a hitelesítés sikeres lesz.
 
-hello az alábbiakban olvashat a logikát megvalósító hello egyéni jogcímszabályt:
+A következő értéke a testreszabott jogcímszabály, amely megvalósítja ezt a programot:
 
     c:[Type == "http://schemas.xmlsoap.org/claims/UPN"] => issue(Type = "http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid", Value = regexreplace(c.Value, ".+@(?<domain>.+)", "http://${domain}/adfs/services/trust/"));
 
 
 > [!IMPORTANT]
-> A sorrend toouse hello - SupportMultipleDomain kapcsoló új tooadd tett kísérlet során, vagy alakítsa át a már hozzáadott tartomány, toohave kell beállítani az összevont megbízhatósági kapcsolathoz toosupport azokat eredetileg.  
+> A - SupportMultipleDomain kapcsoló használata, amikor új hozzáadása vagy konvertálása már hozzáadott tartomány, van szüksége a telepítő az összevont megbízhatósági kapcsolathoz azokat eredetileg támogatásához.  
 > 
 > 
 
-## <a name="how-tooupdate-hello-trust-between-ad-fs-and-azure-ad"></a>Hogyan tooupdate hello megbízhatóság az AD FS és az Azure AD között
-Ha nem állított be hello összevont megbízhatóság az AD FS és az Azure AD példányával között, szükség lehet a toore-megbízhatóság létrehozása.  Ennek az az oka eredetileg beállítása nélkül hello `-SupportMultipleDomain` paraméter, hello IssuerUri beállítása hello alapértelmezett értékkel.  A hello az alábbi képernyőfelvételen látható hello IssuerUri toohttps://adfs.bmcontoso.com/adfs/services/trust van beállítva.
+## <a name="how-to-update-the-trust-between-ad-fs-and-azure-ad"></a>Az AD FS és az Azure AD közötti megbízhatósági kapcsolat frissítése
+Ha nem állított be az összevont megbízhatósági kapcsolathoz AD FS és az Azure AD példányával között, szükség lehet újból létrehozni a bizalmi kapcsolat.  Ennek az az oka eredetileg beállítása nélkül a `-SupportMultipleDomain` paraméter, a IssuerUri értéke az alapértelmezett értékkel.  Az alábbi képernyőképen látható a IssuerUri https://adfs.bmcontoso.com/adfs/services/trust értékre van állítva.
 
-Így mostantól, ha azt egy új tartomány sikeresen hozzáadta hello Azure AD portálon, majd próbálja meg a tooconvert használatával `Convert-MsolDomaintoFederated -DomainName <your domain>`, azt lekérése a következő hiba hello.
+Így mostantól, ha azt egy új tartomány sikeresen hozzáadta az Azure AD portálon, majd próbálja meg konvertálni használatával `Convert-MsolDomaintoFederated -DomainName <your domain>`, azt a következő hibaüzenet.
 
 ![Összevonási hiba](./media/active-directory-multiple-domains/trust1.png)
 
-Ha megpróbál tooadd hello `-SupportMultipleDomain` kapcsoló azt fog kapni a következő hiba hello:
+Ha megpróbálja felvenni a `-SupportMultipleDomain` azt hibaüzenet jelenik meg a következő kapcsolóhoz:
 
 ![Összevonási hiba](./media/active-directory-multiple-domains/trust2.png)
 
-Egyszerűen próbált toorun `Update-MsolFederatedDomain -DomainName <your domain> -SupportMultipleDomain` hello az eredeti tartomány is jelent hibát.
+Egyszerűen a futtatni kívánt `Update-MsolFederatedDomain -DomainName <your domain> -SupportMultipleDomain` az eredeti tartományon is jelent hibát.
 
 ![Összevonási hiba](./media/active-directory-multiple-domains/trust3.png)
 
-Hello lépésekkel tooadd további felső szintű tartomány alatt.  Ha már hozzáadott egy tartományhoz, és nem használta hello `-SupportMultipleDomain` eltávolítása és frissítése az eredeti tartomány hello lépései paraméter kezdődik.  Ha nem adja hozzá a legfelső szintű tartomány még indítható hello lépései a tartomány PowerShell az Azure AD Connect használatával való hozzáadását.
+Az alábbi lépések segítségével további felső szintű tartomány hozzáadása.  Ha már hozzáadott egy tartományhoz, és nem használja a `-SupportMultipleDomain` eltávolítása és frissítése az eredeti tartomány lépései paraméter kezdődik.  Ha nem adja hozzá a legfelső szintű tartomány még Kezdésként használhatja az PowerShell Azure AD Connect használatával tartomány lépései.
 
-Használja a következő lépéseket tooremove hello Microsoft Online megbízhatósági hello és az eredeti tartomány.
+Az alábbi lépések segítségével a Microsoft Online bizalmi kapcsolatot, és az eredeti tartomány frissítése.
 
 1. Az AD FS összevonási kiszolgálón nyissa meg **AD FS kezelő.** 
-2. Bontsa ki a hello bal oldali **megbízhatósági kapcsolatok** és **függő entitás Megbízhatóságai**
-3. Jobb oldali hello törölje hello **Microsoft Office 365 Identitásplatformmal** bejegyzés.
+2. Bontsa ki a bal oldali **megbízhatósági kapcsolatok** és **függő entitás Megbízhatóságai**
+3. A jobb oldalon törölje a **Microsoft Office 365 Identitásplatformmal** bejegyzés.
    ![Távolítsa el a Microsoft Online](./media/active-directory-multiple-domains/trust4.png)
-4. A gépen, amelyen van [Active Directory modul Windows Powershellhez készült Azure](https://msdn.microsoft.com/library/azure/jj151815.aspx) telepítve van-e futtassa a következő hello: `$cred=Get-Credential`.  
-5. Adja meg a összevonja hello Azure AD-tartomány hello felhasználónevet és jelszót egy globális rendszergazda
+4. A gépen, amelyen van [Active Directory modul Windows Powershellhez készült Azure](https://msdn.microsoft.com/library/azure/jj151815.aspx) telepítve van-e futtassa a következő: `$cred=Get-Credential`.  
+5. Adja meg a felhasználónevet és jelszót egy globális rendszergazda összevonja az Azure AD-tartomány
 6. Adja meg a PowerShellben`Connect-MsolService -Credential $cred`
-7. Adja meg a PowerShell `Update-MSOLFederatedDomain -DomainName <Federated Domain Name> -SupportMultipleDomain`.  Ez a hello eredeti tartomány.  Tartományok lenne a fenti hello használatával:`Update-MsolFederatedDomain -DomainName bmcontoso.com -SupportMultipleDomain`
+7. Adja meg a PowerShell `Update-MSOLFederatedDomain -DomainName <Federated Domain Name> -SupportMultipleDomain`.  Ez az eredeti tartomány esetén.  A fenti tartományok lenne használatával:`Update-MsolFederatedDomain -DomainName bmcontoso.com -SupportMultipleDomain`
 
-A következő lépéseket tooadd hello új legfelső szintű tartomány PowerShell-lel hello használata
+Az alábbi lépések segítségével a PowerShell használatával új legfelső szintű tartomány hozzáadása
 
-1. A gépen, amelyen van [Active Directory modul Windows Powershellhez készült Azure](https://msdn.microsoft.com/library/azure/jj151815.aspx) telepítve van-e futtassa a következő hello: `$cred=Get-Credential`.  
-2. Adja meg a összevonja hello Azure AD-tartomány hello felhasználónevet és jelszót egy globális rendszergazda
+1. A gépen, amelyen van [Active Directory modul Windows Powershellhez készült Azure](https://msdn.microsoft.com/library/azure/jj151815.aspx) telepítve van-e futtassa a következő: `$cred=Get-Credential`.  
+2. Adja meg a felhasználónevet és jelszót egy globális rendszergazda összevonja az Azure AD-tartomány
 3. Adja meg a PowerShellben`Connect-MsolService -Credential $cred`
 4. Adja meg a PowerShellben`New-MsolFederatedDomain –SupportMultipleDomain –DomainName`
 
-A következő lépéseket tooadd hello új legfelső szintű tartomány Azure AD Connect használatával hello használata.
+A következő lépésekkel adja hozzá az új legfelső szintű tartomány, az Azure AD Connect használatával.
 
-1. Indítsa el az Azure AD Connect hello asztalon vagy start menüben
+1. Indítsa el az Azure AD Connect az asztalon vagy start menüben
 2. "Egy további Azure AD-tartomány hozzáadása" Válasszon ![adnia egy további Azure AD-tartomány](./media/active-directory-multiple-domains/add1.png)
 3. Adja meg az Azure AD és az Active Directory hitelesítő adatait.
-4. Válassza ki a hello második tartományt összevonásra tooconfigure kívánja.
+4. Válassza ki a második tartomány szeretne beállítani az összevonáshoz.
    ![Felvesz egy további Azure AD-tartomány](./media/active-directory-multiple-domains/add2.png)
 5. Kattintson a telepítés
 
-### <a name="verify-hello-new-top-level-domain"></a>Új legfelső szintű tartomány hello ellenőrzése
-Hello PowerShell-paranccsal `Get-MsolDomainFederationSettings -DomainName <your domain>`megtekintheti hello IssuerUri frissítése.  hello az alábbi képernyőfelvétel hello összevonási beállítások lettek frissítve az az eredeti tartomány http://bmcontoso.com/adfs/services/trust
+### <a name="verify-the-new-top-level-domain"></a>Ellenőrizze az új legfelső szintű tartomány
+A PowerShell-paranccsal `Get-MsolDomainFederationSettings -DomainName <your domain>`tekintheti meg a frissített IssuerUri.  Az alábbi képernyőfelvételen látható az összevonási beállítások lettek frissítve az az eredeti tartomány http://bmcontoso.com/adfs/services/trust
 
 ![Get-MsolDomainFederationSettings](./media/active-directory-multiple-domains/MsolDomainFederationSettings.png)
 
-Az új tartományon IssuerUri hello toohttps://bmfabrikam.com/adfs/services/trust van beállítva, és
+És az új tartományon IssuerUri https://bmfabrikam.com/adfs/services/trust értékre lett állítva
 
 ![Get-MsolDomainFederationSettings](./media/active-directory-multiple-domains/settings2.png)
 
 ## <a name="support-for-sub-domains"></a>Altartományok támogatása
-Amennyiben altartomány hozzáadásához miatt hello módon az Azure AD tartományok, azt öröklik a szülő hello hello-beállítások.  Ez azt jelenti, hogy hello IssuerUri toomatch hello szülők kell.
+Altartomány, a kezelt módon az Azure AD-tartományok miatt hozzáadásakor azt öröklik a szülő beállításait.  Ez azt jelenti, hogy a IssuerUri a szülők egyezniük kell.
 
-Így lehetővé teszi, hogy tegyük fel például, hogy rendelkezem bmcontoso.com, és adja meg az corp.bmcontoso.com.  Ez azt jelenti, hogy hello IssuerUri, az a felhasználó a corp.bmcontoso.com kell toobe **http://bmcontoso.com/adfs/services/trust.**  Hello szabványos szabály megvalósított felett az Azure AD, azonban hoz létre a jogkivonatot kibocsátó, az **http://corp.bmcontoso.com/adfs/services/trust.** ami nem fog egyezni a hello tartományi szükséges érték, és a hitelesítés sikertelen lesz.
+Így lehetővé teszi, hogy tegyük fel például, hogy rendelkezem bmcontoso.com, és adja meg az corp.bmcontoso.com.  Ez azt jelenti, hogy egy felhasználó a corp.bmcontoso.com IssuerUri kell lennie **http://bmcontoso.com/adfs/services/trust.**  Azonban a standard szabály az Azure AD fent megvalósított hoz létre a jogkivonatot kibocsátó, az **http://corp.bmcontoso.com/adfs/services/trust.** amely nem azonos a tartomány szükséges érték, és a hitelesítés sikertelen lesz.
 
-### <a name="how-tooenable-support-for-sub-domains"></a>Hogyan támogatják a tooenable az altartományok
-Az AD FS megbízható függő entitás a Microsoft Online rendelés toowork a hello körül toobe frissítve van szüksége.  toodo, konfigurálnia kell egyéni jogcímszabályt, így azt szalagok ki bármely altartományok hello felhasználói UPN-utótagot a hello egyéni kibocsátó érték kiszámításakor. 
+### <a name="how-to-enable-support-for-sub-domains"></a>Altartományok támogatásának engedélyezése
+Ahhoz, hogy elkerüléséhez az AD FS függőentitás-megbízhatóságot Microsoft Online frissíteni kell.  Ehhez konfigurálnia kell egyéni jogcímszabályt, hogy azt törli a felhasználói UPN-utótagot a bármely altartományok ki az egyéni kibocsátó érték kiszámításakor. 
 
-a következő jogcím hello fog tegye a következőket:
+A következő jogcím fog tegye a következőket:
 
     c:[Type == "http://schemas.xmlsoap.org/claims/UPN"] => issue(Type = "http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid", Value = regexreplace(c.Value, "^.*@([^.]+\.)*?(?<domain>([^.]+\.?){2})$", "http://${domain}/adfs/services/trust/"));
 
 [!NOTE]
-hello hello reguláris kifejezés utolsó számának beállítása hello hány szülő tartományt a legfelső szintű tartomány van. Itt az i bmcontoso.com rendelkezik, ezért két szülő tartomány szükség. Ha három szülő tartományok volt toobe tartott (vagyis: corp.bmcontoso.com), majd hello szám kellett volna lennie három. Széles Eventualy fel kell tüntetni, hello egyezés mindig lesz toomatch hello tartományok maximálisan engedélyezett. "a(z) {2,3}" fog egyezni a tartományok toothree (pl.: bmfabrikam.com és corp.bmcontoso.com).
+A reguláris kifejezés utolsó számát a hány szülő tartományt, a legfelső szintű tartomány van beállítva. Itt az i bmcontoso.com rendelkezik, ezért két szülő tartomány szükség. Ha három szülő tartományok tartandó volt-e (pl.: corp.bmcontoso.com), majd a szám kellett volna lennie három. Eventualy széles jelezni lehet, az egyeztetés mindig lesz a tartományok maximálisan megengedett kereséséhez. "a(z) {2,3}" fog egyezni a két-három tartományok (pl.: bmfabrikam.com és corp.bmcontoso.com).
 
-A következő lépéseket tooadd hello egyéni jogcím toosupport altartományok használja.
+A következő lépésekkel adja hozzá az altartományok támogatásához egyéni jogcímleírásokat.
 
 1. Nyissa meg az AD FS-Szolgáltatáskezelés
-2. Hello Microsoft Online RP megbízhatósági kattintson jobb gombbal, majd válassza ki a jogcímszabályok szerkesztése
-3. Válassza ki a hello harmadik jogcímszabály, és cserélje le ![jogcímszabályok szerkesztése](./media/active-directory-multiple-domains/sub1.png)
-4. Cserélje le a jelenlegi jogcím hello:
+2. Kattintson jobb gombbal a Microsoft Online függő Entitás megbízhatóságát, majd válassza ki a jogcímszabályok szerkesztése
+3. Válassza ki a harmadik jogcímszabály, és cserélje le ![jogcímszabályok szerkesztése](./media/active-directory-multiple-domains/sub1.png)
+4. Cserélje le a jelenlegi jogcímek:
    
         c:[Type == "http://schemas.xmlsoap.org/claims/UPN"] => issue(Type = "http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid", Value = regexreplace(c.Value, ".+@(?<domain>.+)","http://${domain}/adfs/services/trust/"));
    

@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure-importálási/exportálási metaadatok és a Tulajdonságok fájlformátum |} Microsoft Docs"
-description: "Megtudhatja, hogyan toospecify metaadatok és egy vagy több tulajdonságok blobok, amelyek az importálás során vagy exportálja a feladatot."
+title: "Az Azure Import/Export metaadatok és a Tulajdonságok fájlformátum |} Microsoft Docs"
+description: "Megtudhatja, hogyan adhatja meg a metaadatok és egy vagy több blobot, az importálás során vagy exportálja a feladat tulajdonságait."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: bb13c1f1a27baea77298cb224970cd521d02d8c0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3f728ad94cdcbd32092b677f11a737ae91376720
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-importexport-service-metadata-and-properties-file-format"></a>Az Azure Import/Export szolgáltatás metaadatok és a Tulajdonságok fájlformátum
-Megadhat egy vagy több blobot tulajdonságai és metaadatok egy importálási feladat vagy exportálási feladat részeként. tooset metaadatok vagy egy importálási feladat részeként létrehozott BLOB tulajdonságai, meg kell adnia egy metaadatok vagy tulajdonságai-fájlt tartalmazó hello adatok toobe importált hello merevlemezre. Exportálási feladat metaadatok és a Tulajdonságok írja tooa metaadatok vagy tulajdonságok fájl merevlemez-meghajtón hello tooyou adott vissza.  
+Megadhat egy vagy több blobot tulajdonságai és metaadatok egy importálási feladat vagy exportálási feladat részeként. Metaadatok és az importálási feladat részeként létrehozott BLOB tulajdonságainak beállításához adja meg az importálandó adatokat tartalmazó merevlemez-meghajtóról metaadatok vagy tulajdonságok fájlba. Exportálási feladat metaadatok és a Tulajdonságok írja metaadatok vagy tulajdonságok fájlba, amely tartalmazza a visszaküldött merevlemez-meghajtóra.  
   
 ## <a name="metadata-file-format"></a>Metaadatok fájlformátum  
-hello a metaadatfájl formátuma a következő:  
+A metaadatfájl formátuma a következő:  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -37,11 +37,11 @@ hello a metaadatfájl formátuma a következő:
   
 |XML-elem.|Típus|Leírás|  
 |-----------------|----------|-----------------|  
-|`Metadata`|Legfelső szintű elem|hello hello metaadatait tartalmazó fájl gyökérelemének.|  
-|`metadata-name`|Karakterlánc|Választható. hello XML-elem hello blob hello metaadatok hello nevét határozza meg, és az értékét megadja hello hello metaadatok beállítás értékét.|  
+|`Metadata`|Legfelső szintű elem|A metaadat-fájl gyökérelemének.|  
+|`metadata-name`|Karakterlánc|Választható. Az XML-elem a BLOB metaadatait nevét adja meg, és az értékét a metadata beállítás értékét adja meg.|  
   
 ## <a name="properties-file-format"></a>Tulajdonságok fájlformátum  
-hello tulajdonságok fájl formátuma a következő:  
+A tulajdonságok fájl formátuma a következő:  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -59,15 +59,15 @@ hello tulajdonságok fájl formátuma a következő:
   
 |XML-elem.|Típus|Leírás|  
 |-----------------|----------|-----------------|  
-|`Properties`|Legfelső szintű elem|hello hello tulajdonságok fájl gyökérelemének.|  
-|`Last-Modified`|Karakterlánc|Választható. hello utolsó módosításának ideje hello blob. Az exportálási feladatok csak.|  
-|`Etag`|Karakterlánc|Választható. hello blob ETag érték. Az exportálási feladatok csak.|  
-|`Content-Length`|Karakterlánc|Választható. hello mérete bájtban hello blob. Az exportálási feladatok csak.|  
-|`Content-Type`|Karakterlánc|Választható. hello tartalomtípus hello BLOB.|  
-|`Content-MD5`|Karakterlánc|Választható. blob MD5 kivonatoló hello.|  
-|`Content-Encoding`|Karakterlánc|Választható. hello blob tartalom kódolása.|  
-|`Content-Language`|Karakterlánc|Választható. hello blob a tartalom kívánt nyelvét.|  
-|`Cache-Control`|Karakterlánc|Választható. hello gyorsítótár vezérlő karakterlánc hello BLOB.|  
+|`Properties`|Legfelső szintű elem|A tulajdonságok fájl gyökérelemének.|  
+|`Last-Modified`|Karakterlánc|Választható. Az utolsó módosítás dátuma a BLOB. Az exportálási feladatok csak.|  
+|`Etag`|Karakterlánc|Választható. A blob ETag érték. Az exportálási feladatok csak.|  
+|`Content-Length`|Karakterlánc|Választható. A blob bájtban kifejezett mérete. Az exportálási feladatok csak.|  
+|`Content-Type`|Karakterlánc|Választható. A blob tartalomtípusa.|  
+|`Content-MD5`|Karakterlánc|Választható. A blob MD5 kivonatoló.|  
+|`Content-Encoding`|Karakterlánc|Választható. A blob tartalma kódolást.|  
+|`Content-Language`|Karakterlánc|Választható. A blob tartalom kívánt nyelvét.|  
+|`Cache-Control`|Karakterlánc|Választható. A blob vezérlő gyorsítótár-karakterlánc.|  
 
 ## <a name="next-steps"></a>Következő lépések
 

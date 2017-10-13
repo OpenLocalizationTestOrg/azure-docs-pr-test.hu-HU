@@ -1,6 +1,6 @@
 ---
-title: a Windows Azure-ban aaaEncrypt lemezein |} Microsoft Docs
-description: "Hogyan Windows virtuális gép virtuális lemezein tooencrypt fokozott biztonsági Azure PowerShell használatával"
+title: "A Windows Azure-ban lévő lemezek titkosítása |} Microsoft Docs"
+description: "A fokozott biztonság Azure PowerShell használatával Windows virtuális gép virtuális lemezek titkosítása"
 services: virtual-machines-windows
 documentationcenter: 
 author: iainfoulds
@@ -15,36 +15,36 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 07/10/2017
 ms.author: iainfou
-ms.openlocfilehash: 77c42a67cb57a9dc5fe3159fce0be75e3a965be5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 98b42b252a601af090579e3939f3c7ab91c3803b
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="how-tooencrypt-virtual-disks-on-a-windows-vm"></a>Hogyan tooencrypt virtuális lemezek a Windows virtuális gép
-A bővített virtuális gép (VM) biztonsági és megfelelőségi az Azure-ban virtuális lemezek titkosíthatók. Lemezek titkosítása egy Azure Key Vault a titkosított titkosítási kulcsok használatával. Szabályozhatja a titkosítási kulcsokat, és a használatukat naplózhatók. Ez a következő cikket: részletek hogyan tooencrypt virtuális lemezek a Windows virtuális gép Azure PowerShell használatával. Emellett [Linux virtuális gépet az Azure CLI 2.0 hello titkosítása](../linux/encrypt-disks.md).
+# <a name="how-to-encrypt-virtual-disks-on-a-windows-vm"></a>Virtuális lemezek a Windows virtuális gép titkosítása
+A bővített virtuális gép (VM) biztonsági és megfelelőségi az Azure-ban virtuális lemezek titkosíthatók. Lemezek titkosítása egy Azure Key Vault a titkosított titkosítási kulcsok használatával. Szabályozhatja a titkosítási kulcsokat, és a használatukat naplózhatók. Ez a cikk részletesen a Azure PowerShell használatával Windows virtuális gép virtuális lemezek titkosítása. Emellett [Linux virtuális gépet az Azure CLI 2.0 titkosítása](../linux/encrypt-disks.md).
 
 ## <a name="overview-of-disk-encryption"></a>Lemeztitkosítás áttekintése
-A Windows virtuális gépek virtuális lemezek vannak titkosítása a Bitlocker használatával. Nincs nem kell fizetni az Azure-ban virtuális lemezek titkosítására. Titkosítási kulcsok Azure Key Vault szoftver-védelemmel vannak tárolva, vagy importálhat vagy Kulcslétrehozási a hardveres biztonsági modulokkal (HSM) a hitelesített tooFIPS 140-2 2. szint szabványoknak. A kriptográfiai kulcsokat használt tooencrypt és virtuális lemezek csatolt tooyour VM visszafejtéséhez. A titkosítási kulcsokat a felügyeletet, és naplózhatja a használatukat. Egy egyszerű Azure Active Directory szolgáltatás lehetővé teszi a biztonságos kiadása a titkosítási kulcsokat, a virtuális gépek vannak kapcsolva, és ki.
+A Windows virtuális gépek virtuális lemezek vannak titkosítása a Bitlocker használatával. Nincs nem kell fizetni az Azure-ban virtuális lemezek titkosítására. Titkosítási kulcsok Azure Key Vault szoftver-védelemmel vannak tárolva, vagy importálhat vagy a tanúsított FIPS 140-2 2. szint szabványok hardveres biztonsági modulokkal (HSM) a kulcsok létrehozásához. Ezek a titkosítási kulcsok titkosítására és visszafejtésére a virtuális Géphez csatolt virtuális lemezek segítségével. A titkosítási kulcsokat a felügyeletet, és naplózhatja a használatukat. Egy egyszerű Azure Active Directory szolgáltatás lehetővé teszi a biztonságos kiadása a titkosítási kulcsokat, a virtuális gépek vannak kapcsolva, és ki.
 
-a virtuális gépek titkosításához hello folyamat a következőképpen történik:
+A virtuális gépek titkosításához a folyamat a következőképpen történik:
 
 1. Hozzon létre egy Azure Key Vault egy titkosítási kulcsot.
-2. Konfigurálja a hello kriptográfiai kulcs toobe lemezek titkosítására használható.
-3. tooread hello titkosítási kulcsot az Azure Key Vault hello hozzon létre egy Azure Active Directory szolgáltatás egyszerű hello megfelelő engedélyekkel.
-4. Hello parancs tooencrypt ki a virtuális lemezek, megadva hello Azure Active Directory szolgáltatás egyszerű és a megfelelő titkosítási kulcs toobe használt.
-5. hello Azure Active Directory szolgáltatás egyszerű kérelmek hello szükséges titkosítási kulcsot az Azure Key Vault.
-6. virtuális lemezek hello hello megadott titkosítási kulccsal titkosított.
+2. Állítsa be a titkosítási kulccsal, hogy a lemezek titkosítására használható.
+3. Az Azure Key Vault beolvasni a titkosítási kulcsot, hozzon létre egy Azure Active Directory szolgáltatás egyszerű a megfelelő engedélyekkel.
+4. Adja ki a parancsot, a virtuális lemezek, adja meg az Azure Active Directory szolgáltatás egyszerű és megfelelő titkosítási használandó kulcs titkosításához.
+5. Az Azure Active Directory szolgáltatás egyszerű kér az Azure Key Vault a szükséges titkosítási kulcs.
+6. A virtuális lemezek vannak titkosítva, a megadott titkosítási kulcs használatával.
 
 ## <a name="encryption-process"></a>Titkosítási folyamat
-Adatok titkosítása a következő további összetevők hello támaszkodik:
+Adatok titkosítása a következő további összetevők támaszkodik:
 
-* **Az Azure Key Vault** -használt toosafeguard titkosítási kulcsok és titkos hello lemez titkosítási/visszafejtési folyamat használja. 
-  * Ha van ilyen, használhat egy meglévő Azure Key Vault. Nincs toodedicate a Key Vault tooencrypting lemezek.
-  * tooseparate felügyeleti határokat és kulcs látható, a dedikált kulcstároló is létrehozhat.
-* **Az Azure Active Directory** - leírók hello szükséges titkosítási kulcsok biztonságos cseréjét, és hitelesítési a kért műveleteket. 
+* **Az Azure Key Vault** – a lemez titkosítási/visszafejtési folyamathoz használt titkosítási kulcsok és titkos biztosításához használt. 
+  * Ha van ilyen, használhat egy meglévő Azure Key Vault. Nem jelölt ki a kulcstároló, a lemezek titkosító rendelkeznek.
+  * Külön felügyeleti határokat és a kulcs látható, a dedikált kulcstároló is létrehozhat.
+* **Az Azure Active Directory** -kezeli a szükséges titkosítási kulcsokat és a kért műveletek hitelesítési biztonságos cseréjét. 
   * Az alkalmazás elhelyezésére szolgáló használhat meglévő Azure Active Directory-példány általában.
-  * egyszerű hello szolgáltatás egy biztonságos mechanizmus toorequest és hello megfelelő titkosítási kulcsok adja ki. Nem fejleszt, amely az Azure Active Directory tényleges kérelmet.
+  * Az egyszerű szolgáltatás lehetővé teszi a biztonságos le tudja kérni, és adja ki a megfelelő titkosítási kulcsokat. Nem fejleszt, amely az Azure Active Directory tényleges kérelmet.
 
 ## <a name="requirements-and-limitations"></a>Követelmények és korlátozások
 Támogatott esetek és lemez titkosítására vonatkozó követelményekkel kapcsolatos:
@@ -53,22 +53,22 @@ Támogatott esetek és lemez titkosítására vonatkozó követelményekkel kapc
 * A meglévő Windows virtuális gépeken, az Azure-titkosítás engedélyezése.
 * A Windows virtuális gépeken, a tárolóhelyek szolgáltatással konfigurált titkosítás engedélyezése.
 * Az operációs rendszer és az adatok titkosításának letiltása meghajtók Windows virtuális gépek esetén.
-* Minden erőforrások (például a Key Vault, a tárfiók és a virtuális gép) kell lennie a hello azonos Azure-régió, és az előfizetés.
+* Az azonos Azure-régió, és az előfizetés összes erőforrások (például a Key Vault, a tárfiók és a virtuális gép) kell lennie.
 * Standard szint virtuális gépeket, például egy, virtuális gépek D, DS, G és GS adatsorozat.
 
-Lemeztitkosítás jelenleg nem támogatott a következő forgatókönyvek hello:
+Lemeztitkosítás jelenleg nem támogatott a következő esetekben:
 
 * Az alapszintű csomag virtuális gépeket.
-* A virtuális gépek hello klasszikus telepítési modellel készült.
-* Egy már titkosított virtuális gép hello titkosítási kulcsok frissítése.
+* A virtuális gépek létrehozása a klasszikus telepítési modell használatával.
+* A titkosítási kulcsok egy már titkosított virtuális gép frissítése.
 * Integráció a helyszíni kulcskezelő szolgáltatást.
 
 ## <a name="create-azure-key-vault-and-keys"></a>Az Azure Key Vault és kulcsok létrehozása
-Mielőtt elkezdené, győződjön meg arról, hogy hello legújabb verziójának hello Azure PowerShell modul telepítve van listájában. További információkért lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview). Teljes hello parancspéldákban cserélje le minden példa paraméter a saját nevét, helyét és kulcsértékek. hello alábbi példák szabályt használ a *myResourceGroup*, *myKeyVault*, *myVM*stb.
+A kezdés előtt győződjön meg arról, hogy az Azure PowerShell-modul legújabb verziója telepítve van. További információt [az Azure PowerShell telepítésével és konfigurálásával](/powershell/azure/overview) foglalkozó témakörben talál. Egész a parancspéldákban cserélje le minden példa paraméter a saját nevét, helyét és kulcsértékek. Az alábbi példák a szabályt használ *myResourceGroup*, *myKeyVault*, *myVM*stb.
 
-első lépés hello van egy Azure Key Vault toostore toocreate a titkosítási kulcsokat. Az Azure Key Vault tárolhatja a kulcsokat, a titkos kulcsok, vagy a jelszavak, amelyek lehetővé teszik toosecurely végrehajtja az alkalmazások és szolgáltatások. A virtuális lemez titkosításához hozzon létre egy Key Vault toostore használt tooencrypt a titkosítási kulcs, vagy a virtuális lemezek visszafejtéséhez. 
+Az első lépés, ha az Azure Key Vault a kriptográfiai kulcsok tárolásához. Az Azure Key Vault kulcsok, a titkos kulcsok és a jelszót, amely engedélyezi, hogy biztonságosan végrehajtja az alkalmazások és szolgáltatások a tárolhatja. A virtuális lemez titkosításához hozzon létre egy Key Vault titkosítására vagy visszafejtésére a virtuális lemezek használt kriptográfiai kulcs tárolása. 
 
-Engedélyezi az Azure-előfizetése belül hello Azure Key Vault szolgáltatót [Register-AzureRmResourceProvider](/powershell/module/azurerm.resources/register-azurermresourceprovider), majd hozzon létre egy erőforráscsoportot a [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup). hello alábbi példa létrehoz egy erőforráscsoport neve *myResourceGroup* a hello *USA keleti régiója* helye:
+Engedélyezze az Azure Key Vault-szolgáltató az Azure-előfizetése belül [Register-AzureRmResourceProvider](/powershell/module/azurerm.resources/register-azurermresourceprovider), majd hozzon létre egy erőforráscsoportot a [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup). Az alábbi példa létrehoz egy erőforráscsoport neve *myResourceGroup* a a *USA keleti régiója* helye:
 
 ```powershell
 $rgName = "myResourceGroup"
@@ -78,7 +78,7 @@ Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.KeyVault"
 New-AzureRmResourceGroup -Location $location -Name $rgName
 ```
 
-hello Azure Key Vault tartalmazó hello kriptográfiai kulcsokat és társított számítási erőforrások, például a tárolási és hello virtuális gépért kell lennie, hello ugyanabban a régióban. Hozzon létre egy Azure Key Vault a [New-AzureRmKeyVault](/powershell/module/azurerm.keyvault/new-azurermkeyvault) , és engedélyezze a Key Vault hello lemeztitkosítás való használatra. Adjon meg egy egyedi kulcstároló nevet *keyVaultName* az alábbiak szerint:
+Az Azure Key Vault a kriptográfiai kulcsokat és tartozó számítási erőforrásokat, például a tároló és a virtuális gépért tartalmazó ugyanabban a régióban kell lennie. Hozzon létre egy Azure Key Vault a [New-AzureRmKeyVault](/powershell/module/azurerm.keyvault/new-azurermkeyvault) , és engedélyezze a Key Vault lemeztitkosítás való használatra. Adjon meg egy egyedi kulcstároló nevet *keyVaultName* az alábbiak szerint:
 
 ```powershell
 $keyVaultName = "myUniqueKeyVaultName"
@@ -88,9 +88,9 @@ New-AzureRmKeyVault -Location $location `
     -EnabledForDiskEncryption
 ```
 
-A szoftver vagy a biztonsági modell (HSM) védelmi kriptográfiai kulcsokat is tárolhatja. A Key Vault prémium HSM használata szükséges. Van egy további költség nélkül toocreating szabványos Key Vault szoftveresen védett tároló helyett a Key Vault támogatás. a prémium kulcstároló, megelőző lépés hello a toocreate hozzáadása hello *- Sku "Prémium"* paraméterek. hello alábbi példa szoftveresen védett azt a szabványos kulcstároló létrehozása óta. 
+A szoftver vagy a biztonsági modell (HSM) védelmi kriptográfiai kulcsokat is tárolhatja. A Key Vault prémium HSM használata szükséges. Nincs a prémium szabványos Key Vault szoftveresen védett tároló helyett kulcstároló létrehozásához további költségek. A prémium kulcstároló létrehozásához az előző lépésben adja hozzá a *- Sku "Prémium"* paraméterek. Az alábbi példában szoftveresen védett azt a szabványos kulcstároló létrehozása óta. 
 
-Mindkét védelmi modellek hello Azure platformon kell toobe kap hozzáférést toorequest hello titkosítási kulcsok toodecrypt hello virtuális lemezek hello virtuális gép indításakor. A kulcstároló, a titkosítási kulcs létrehozására [Add-AzureKeyVaultKey](/powershell/module/azurerm.keyvault/add-azurekeyvaultkey). hello alábbi példa létrehoz egy nevű kulcsot *SajátKulcs*:
+Mindkét védelmi modellek esetében az Azure platformon kell hozzáférést kérni a titkosítási kulcsokat a virtuális lemezek visszafejtése a virtuális gép indításakor. A kulcstároló, a titkosítási kulcs létrehozására [Add-AzureKeyVaultKey](/powershell/module/azurerm.keyvault/add-azurekeyvaultkey). Az alábbi példakód létrehozza nevű kulcs *SajátKulcs*:
 
 ```powershell
 Add-AzureKeyVaultKey -VaultName $keyVaultName `
@@ -99,10 +99,10 @@ Add-AzureKeyVaultKey -VaultName $keyVaultName `
 ```
 
 
-## <a name="create-hello-azure-active-directory-service-principal"></a>Hello Azure Active Directory szolgáltatás egyszerű létrehozása
-Amikor a virtuális lemezek vannak titkosított vagy visszafejtett, megadhatja egy toohandle hello hitelesítése és a Key Vault a titkosítási kulcsok cseréjét. Ezt a fiókot, egy Azure Active Directory szolgáltatás egyszerű, lehetővé teszi, hogy hello Azure platformon toorequest hello megfelelő titkosítási kulcsok hello virtuális gép nevében. Azure Active Directory alapértelmezett példányán érhető előfizetését, bár számos szervezet Azure Active Directory-könyvtárak dedikált.
+## <a name="create-the-azure-active-directory-service-principal"></a>Az Azure Active Directory szolgáltatás egyszerű létrehozása
+Ha a virtuális lemezek vannak titkosított vagy visszafejtett, meg kell adnia egy fiókot a hitelesítési és titkosítási kulcsok a Key Vault cseréjét. Ezt a fiókot, egy Azure Active Directory szolgáltatás egyszerű, lehetővé teszi, hogy az Azure platformon, kérje a megfelelő titkosítási kulcsokat a virtuális gép nevében. Azure Active Directory alapértelmezett példányán érhető előfizetését, bár számos szervezet Azure Active Directory-könyvtárak dedikált.
 
-Egy egyszerű szolgáltatás létrehozása az Azure Active Directoryban [New-AzureRmADServicePrincipal](/powershell/module/azurerm.resources/new-azurermadserviceprincipal). a biztonságos jelszó toospecify hello kövesse [jelszóházirendek és -korlátozások az Azure Active Directory](../../active-directory/active-directory-passwords-policy.md):
+Egy egyszerű szolgáltatás létrehozása az Azure Active Directoryban [New-AzureRmADServicePrincipal](/powershell/module/azurerm.resources/new-azurermadserviceprincipal). Biztonságos jelszó megadásához kövesse a [jelszóházirendek és -korlátozások az Azure Active Directory](../../active-directory/active-directory-passwords-policy.md):
 
 ```powershell
 $appName = "My App"
@@ -114,7 +114,7 @@ $app = New-AzureRmADApplication -DisplayName $appName `
 New-AzureRmADServicePrincipal -ApplicationId $app.ApplicationId
 ```
 
-toosuccessfully vagy titkosítására vagy visszafejtésére virtuális lemezek, a Key Vault tárolt titkosítási kulcs hello engedélyeinek beállítása toopermit hello Azure Active Directory szolgáltatás egyszerű tooread hello kulcsok kell lennie. A kulcstároló, az engedélyeket [Set-AzureRmKeyVaultAccessPolicy](/powershell/module/azurerm.keyvault/set-azurermkeyvaultaccesspolicy):
+Sikeresen vagy titkosítására vagy visszafejtésére virtuális lemezek, a Key Vault tárolt titkosítási kulcs engedélyei lehetővé teszik az Azure Active Directory szolgáltatás egyszerű az a kulcsok beolvasása a értékre kell állítani. A kulcstároló, az engedélyeket [Set-AzureRmKeyVaultAccessPolicy](/powershell/module/azurerm.keyvault/set-azurermkeyvaultaccesspolicy):
 
 ```powershell
 Set-AzureRmKeyVaultAccessPolicy -VaultName $keyvaultName `
@@ -125,7 +125,7 @@ Set-AzureRmKeyVaultAccessPolicy -VaultName $keyvaultName `
 
 
 ## <a name="create-virtual-machine"></a>Virtuális gép létrehozása
-tootest hello titkosítási folyamat, hozzon létre egy virtuális Gépet. hello alábbi példakód létrehozza a virtuális gépek nevű *myVM* használatával egy *Windows Server 2016 Datacenter* lemezképet:
+A titkosítási folyamat teszteléséhez hozzon létre egy virtuális Gépet. Az alábbi példakód létrehozza a virtuális gépek nevű *myVM* használatával egy *Windows Server 2016 Datacenter* lemezképet:
 
 ```powershell
 $subnetConfig = New-AzureRmVirtualNetworkSubnetConfig -Name mySubnet -AddressPrefix 192.168.1.0/24
@@ -178,14 +178,14 @@ New-AzureRmVM -ResourceGroupName $rgName -Location $location -VM $vmConfig
 
 
 ## <a name="encrypt-virtual-machine"></a>Virtuális gép titkosítása
-tooencrypt hello virtuális lemezeket, akkor egyesítik összes hello az előző összetevők működését:
+A virtuális lemez titkosításához, kapcsolása együtt minden az előző összetevők működését:
 
-1. Adja meg a hello Azure Active Directory szolgáltatás egyszerű és a jelszót.
-2. Adja meg a hello Key Vault toostore hello metaadatait a titkosított lemezek.
-3. Adja meg a hello titkosítási kulcsok toouse hello tényleges titkosításához és visszafejtéséhez.
-4. Adja meg, hogy tooencrypt hello operációsrendszer-lemez, hello adatlemezek vagy az összes.
+1. Adja meg az Azure Active Directory szolgáltatás egyszerű és a jelszót.
+2. Adja meg a Key Vault a titkosított lemezek metaadatait tárolja.
+3. Adja meg a titkosítási kulcsok használandó tényleges titkosításához és visszafejtéséhez.
+4. Adja meg, hogy az operációsrendszer-lemezképet, az adatlemezek vagy az összes titkosításához.
 
-Az a virtuális gép titkosítása [Set-AzureRmVMDiskEncryptionExtension](/powershell/module/azurerm.compute/set-azurermvmdiskencryptionextension) hello Azure Key Vault kulcs és az Azure Active Directory szolgáltatás egyszerű hitelesítő adatok használatával. hello alábbi példa minden hello kulcs adatainak beolvasása és titkosítja a hello nevű virtuális gép *myVM*:
+Az a virtuális gép titkosítása [Set-AzureRmVMDiskEncryptionExtension](/powershell/module/azurerm.compute/set-azurermvmdiskencryptionextension) használata az Azure Key Vault-kulcsot és az Azure Active Directory szolgáltatás egyszerű hitelesítő adatait. Az alábbi példa lekéri a kulccsal kapcsolatos adatokat, majd titkosítja a virtuális gép nevű *myVM*:
 
 ```powershell
 $keyVault = Get-AzureRmKeyVault -VaultName $keyVaultName -ResourceGroupName $rgName;
@@ -203,13 +203,13 @@ Set-AzureRmVMDiskEncryptionExtension -ResourceGroupName $rgName `
     -KeyEncryptionKeyVaultId $keyVaultResourceId
 ```
 
-Fogadja el a hello Rákérdezés toocontinue hello VM titkosítással. virtuális gép hello hello folyamat során újraindul. Miután hello titkosítási folyamat befejeződött, és hello virtuális gép újraindítása, tekintse át a titkosítási állapot hello [Get-AzureRmVmDiskEncryptionStatus](/powershell/module/azurerm.compute/get-azurermvmdiskencryptionstatus):
+Fogadja el a rendszer a virtuális gép titkosítási folytatásához. A folyamat során a virtuális gép újraindul. Miután a titkosítási folyamat befejeződött, és a virtuális gép újraindítása, tekintse át a titkosítás állapotát az [Get-AzureRmVmDiskEncryptionStatus](/powershell/module/azurerm.compute/get-azurermvmdiskencryptionstatus):
 
 ```powershell
 Get-AzureRmVmDiskEncryptionStatus  -ResourceGroupName $rgName -VMName $vmName
 ```
 
-hello hasonló toohello a következő példa a kimenetre:
+A kimenet a következő példához hasonló:
 
 ```powershell
 OsVolumeEncrypted          : Encrypted
@@ -220,4 +220,4 @@ ProgressMessage            : OsVolume: Encrypted, DataVolumes: Encrypted
 
 ## <a name="next-steps"></a>Következő lépések
 * További információ az Azure Key Vault kezeléséhez: [Key Vault beállítása a virtuális gépek](key-vault-setup.md).
-* További információ a lemez titkosítása például egy titkosított egyéni VM tooupload tooAzure, előkészítése: [Azure Disk Encryption](../../security/azure-security-disk-encryption.md).
+* Lemeztitkosítás, például egy titkosított egyéni virtuális Gépre az Azure-ba, a feltöltendő előkészítése kapcsolatos további információk: [Azure Disk Encryption](../../security/azure-security-disk-encryption.md).

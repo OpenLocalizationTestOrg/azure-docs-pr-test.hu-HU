@@ -1,6 +1,6 @@
 ---
 title: "IOS alkalmazás - Azure AD B2C segítségével tokenbeolvasás |} Microsoft Docs"
-description: "Ez a cikk bemutatja, hogyan toocreate egy iOS-alkalmazást, amely Azure Active Directory B2C toomanage felhasználói identitások AppAuth használ, valamint a felhasználók hitelesítésére."
+description: "Ez a cikk bemutatja, hogyan Azure Active Directory B2C AppAuth használ a felhasználói identitások kezelésére, és hitelesíti a felhasználókat egy iOS-alkalmazás létrehozásához."
 services: active-directory-b2c
 documentationcenter: ios
 author: saeedakhter-msft
@@ -14,86 +14,86 @@ ms.devlang: objectivec
 ms.topic: article
 ms.date: 03/07/2017
 ms.author: saeedakhter-msft
-ms.openlocfilehash: e7cbe2de6e9ae3d45448cdd36292c457a0ef4887
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ebec5d910b8987dcc8155cd4ead00f87d219941c
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-ad-b2c-sign-in-using-an-ios-application"></a>Az Azure AD B2C: Bejelentkezés használata iOS-alkalmazás
 
-hello Microsoft identitásplatformmal például OAuth2 és az OpenID Connect nyitott szabványok használja. További fejlesztői választott egy megnyitott szabványos protokollt használó kínál, a szalagtár toointegrate a szolgáltatások kiválasztása. Nyújtunk a forgatókönyv, míg mások például azt tooaid fejlesztők toohello Microsoft Identity platform csatlakozó alkalmazások írásához. A legtöbb tárak, amelyek megvalósítják az [hello RFC6749 OAuth2 spec](https://tools.ietf.org/html/rfc6749) képes tooconnect toohello Microsoft Identity platform vannak.
+A Microsoft identitásplatformja nyílt szabványokat, többek között OAuth2-t és OpenID Connectet használ. További fejlesztői választott egy megnyitott szabványos protokollt használó kínál, a szalagtár szolgáltatások integrálása kiválasztásakor. Ez a forgatókönyv, míg mások például úgy, hogy segítséget nyújtanak a fejlesztők az alkalmazások a Microsoft Identity platform-hez mellékelt. A legtöbb tárak, amelyek megvalósítják az [a RFC6749 OAuth2 spec](https://tools.ietf.org/html/rfc6749) kapcsolódik a Microsoft Identity platformra.
 
 > [!WARNING]
-> A Microsoft nem biztosít a külső szalagtárak javítások, és nem végrehajtva a tárak áttekintése. Ez a minta, amely tesztelték AppAuth nevű alapszintű forgatókönyvekben kompatibilisek-e az Azure AD B2C hello külső szalagtárat használ. Problémákat és funkciókra vonatkozó kérések irányított toohello könyvtár nyílt forráskódú projekt kell lennie. További információkért tekintse meg [ezt a cikket](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-libraries).
+> A Microsoft nem biztosít a külső szalagtárak javítások, és nem végrehajtva a tárak áttekintése. Ez a minta, amely tesztelték AppAuth nevű alapszintű forgatókönyvekben kompatibilisek-e az Azure AD B2C külső szalagtárat használ. A könyvtár nyílt forráskódú projekt problémákat és funkciókra vonatkozó kérések legyenek irányítva. További információkért tekintse meg [ezt a cikket](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-libraries).
 >
 >
 
-Ha új tooOAuth2 vagy az OpenID Connect, ez a minta konfigurálási nem tehetik sok logika tooyou. Javasoljuk, hogy megnézi rövid [azt korábban itt dokumentált lehetőségektől hello protokoll – áttekintés](active-directory-b2c-reference-protocols.md).
+Ha most ismerkedik az OAuth2 vagy az OpenID Connect, ez a minta konfigurálási nem célszerű sok Önnek. Ebben az esetben javasoljuk, hogy olvassa el [a protokoll áttekintését, amelyet itt talál](active-directory-b2c-reference-protocols.md).
 
 ## <a name="get-an-azure-ad-b2c-directory"></a>Az Azure AD B2C-címtár beszerzése
 Ahhoz, hogy használni tudja az Azure AD B2C-t, előbb létre kell hoznia egy címtárat vagy bérlőt. A könyvtár egy olyan tároló, a felhasználók, alkalmazások, csoportok és több. Ha még nem tette meg, [hozzon létre most egy B2C-címtárat](active-directory-b2c-get-started.md), mielőtt továbblépne.
 
 ## <a name="create-an-application"></a>Alkalmazás létrehozása
-A következő lépésben toocreate egy alkalmazást a B2C-címtárban. hello app regisztrációs biztosítja, hogy kell-e az alkalmazással biztonságosan toocommunicate az Azure AD-információkat. Kövesse a mobilalkalmazások toocreate [ezeket az utasításokat](active-directory-b2c-app-registration.md). Ügyeljen arra, hogy:
+A következő lépésben hozzon létre egy alkalmazást a B2C-címtárban. Az alkalmazás regisztrálása biztosít az alkalmazás biztonságos kommunikációhoz szükséges információkat az Azure AD. A mobilalkalmazások létrehozásához hajtsa végre az [ezeket az utasításokat](active-directory-b2c-app-registration.md). Ügyeljen arra, hogy:
 
-* Tartalmaznak egy **natív ügyfél** hello alkalmazásban.
-* Másolás hello **Alkalmazásazonosító** , amely hozzárendelt tooyour alkalmazást. A GUID később szüksége.
+* Tartalmaznak egy **natív ügyfél** az alkalmazásban.
+* Másolja az alkalmazáshoz rendelt **alkalmazásazonosítót**. A GUID később szüksége.
 * Állítson be egy **átirányítási URI-** egy egyéni séma (például com.onmicrosoft.fabrikamb2c.exampleapp://oauth/redirect). Ezt az URI később szüksége.
 
 [!INCLUDE [active-directory-b2c-devquickstarts-v2-apps](../../includes/active-directory-b2c-devquickstarts-v2-apps.md)]
 
 ## <a name="create-your-policies"></a>Szabályzatok létrehozása
-Az Azure AD B2C-ben a felhasználói élményeket [szabályzatok](active-directory-b2c-reference-policies.md) határozzák meg. Az alkalmazás tartalmaz egy identitás-élmény: egy kombinált bejelentkezési és regisztrációs. A házirend létrehozásához lásd: a [házirendek áttekintésével foglalkozó cikkben](active-directory-b2c-reference-policies.md#create-a-sign-up-policy). Hello házirend létrehozásakor ügyeljen arra, hogy:
+Az Azure AD B2C-ben a felhasználói élményeket [szabályzatok](active-directory-b2c-reference-policies.md) határozzák meg. Az alkalmazás tartalmaz egy identitás-élmény: egy kombinált bejelentkezési és regisztrációs. A házirend létrehozásához lásd: a [házirendek áttekintésével foglalkozó cikkben](active-directory-b2c-reference-policies.md#create-a-sign-up-policy). A szabályzat létrehozásakor ügyeljen arra, hogy:
 
-* A **regisztrációs attribútumokat**, jelölje be hello attribútum **megjelenített név**.  Kiválaszthatja, valamint egyéb attribútumai.
-* A **alkalmazási jogcímet**, hello jogcímek kiválasztására **megjelenített név** és **felhasználó Objektumazonosító**. Kiválaszthatja, hogy más jogcímeket is.
-* Másolás hello **neve** egyes házirendek létrehozása után. A házirend neve a következő előtaggal van `b2c_1_` hello házirend mentésekor.  Később szüksége hello házirend nevét.
+* A **regisztrációs attribútumokat**, válassza ki az attribútum **megjelenített név**.  Kiválaszthatja, valamint egyéb attribútumai.
+* A **alkalmazási jogcímet**, válassza ki a jogcímeket **megjelenített név** és **felhasználó Objektumazonosító**. Kiválaszthatja, hogy más jogcímeket is.
+* Az egyes házirendek létrehozása után másolja a házirend **nevét**. A házirend neve a következő előtaggal van `b2c_1_` amikor menteni a házirendet.  A házirend nevére később szüksége.
 
 [!INCLUDE [active-directory-b2c-devquickstarts-policy](../../includes/active-directory-b2c-devquickstarts-policy.md)]
 
-Miután létrehozta a házirendeket, készen áll a toobuild Ön az alkalmazást.
+A szabályzat létrehozását követően készen áll az alkalmazás elkészítésére.
 
-## <a name="download-hello-sample-code"></a>Hello mintakód letöltése
-Egy Azure AD B2C AppAuth használó minta adtunk [a Githubon](https://github.com/Azure-Samples/active-directory-ios-native-appauth-b2c). Töltse le a hello kódot, és futtassa. a bérlői a saját Azure AD B2C toouse, hello hello utasításait követve [README.md](https://github.com/Azure-Samples/active-directory-ios-native-appauth-b2c/blob/master/README.md).
+## <a name="download-the-sample-code"></a>A mintakód letöltése
+Egy Azure AD B2C AppAuth használó minta adtunk [a Githubon](https://github.com/Azure-Samples/active-directory-ios-native-appauth-b2c). Töltse le a kódot, és futtassa. A saját Azure AD B2C bérlő használatához kövesse az utasításokat a [README.md](https://github.com/Azure-Samples/active-directory-ios-native-appauth-b2c/blob/master/README.md).
 
-Ez a minta hozta létre hello információs utasításai szerint hello [iOS AppAuth-projektre a Githubon](https://github.com/openid/AppAuth-iOS). Hello mintát és hello szalagtár működése a további részletekért lásd hello AppAuth fontos a Githubon.
+Ez a minta információs útmutatásai szerint hozta létre a [iOS AppAuth-projektre a Githubon](https://github.com/openid/AppAuth-iOS). További részletek a minta és a szalagtár működése lásd a AppAuth Readme fájlt a Githubon.
 
-## <a name="modifying-your-app-toouse-azure-ad-b2c-with-appauth"></a>Az alkalmazás toouse Azure AD B2C-vel rendelkező AppAuth módosítása
+## <a name="modifying-your-app-to-use-azure-ad-b2c-with-appauth"></a>Az alkalmazás az Azure AD B2C használata AppAuth módosítása
 
 > [!NOTE]
-> AppAuth támogatja az iOS 7-es vagy újabb verzió.  Azonban azt toosupport közösségi bejelentkezések a Google, SFSafariViewController van szükség, amelyhez iOS 9-es vagy újabb rendszer szükséges.
+> AppAuth támogatja az iOS 7-es vagy újabb verzió.  Azonban Google közösségi bejelentkezések támogatásához SFSafariViewController szükséges ehhez a iOS 9-es vagy újabb verzióját.
 >
 
 ### <a name="configuration"></a>Konfiguráció
 
-Az Azure AD B2C kommunikációs megadva hello engedélyezési végpont és a token-végpont URI-azonosítók konfigurálható.  toogenerate az URI-k kell hello a következő információkat:
+Az Azure AD B2C kommunikációs konfigurálható az engedélyezési végpont és a token-végpont URI-azonosítók megadásával.  Az URI-k létrehozásához szüksége van a következő információkat:
 * Bérlő azonosítója (például contoso.onmicrosoft.com)
 * Házirend neve (például B2C\_1\_SignUpIn)
 
-hello token-végpont URI generálhatók tartományvezérlőkkel történő lecserélésével hello bérlői\_azonosítója és hello házirend\_neve a következő URL-cím hello:
+A token-végpont URI generálhatók azáltal, hogy a bérlő\_azonosítója és a házirend\_neve a következő URL-cím:
 
 ```objc
 static NSString *const tokenEndpoint = @"https://login.microsoftonline.com/te/<Tenant_ID>/<Policy_Name>/oauth2/v2.0/token";
 ```
 
-hello engedélyezési végpont URI generálhatók tartományvezérlőkkel történő lecserélésével hello bérlői\_azonosítója és hello házirend\_neve a következő URL-cím hello:
+Az engedélyezési végpont URI generálhatók azáltal, hogy a bérlő\_azonosítója és a házirend\_neve a következő URL-cím:
 
 ```objc
 static NSString *const authorizationEndpoint = @"https://login.microsoftonline.com/te/<Tenant_ID>/<Policy_Name>/oauth2/v2.0/authorize";
 ```
 
-Futtassa a következő kód toocreate hello a AuthorizationServiceConfiguration objektum:
+Futtassa a következő kódot a AuthorizationServiceConfiguration objektum létrehozásához:
 
 ```objc
 OIDServiceConfiguration *configuration = 
     [[OIDServiceConfiguration alloc] initWithAuthorizationEndpoint:authorizationEndpoint tokenEndpoint:tokenEndpoint];
-// now we are ready tooperform hello auth request...
+// now we are ready to perform the auth request...
 ```
 
 ### <a name="authorizing"></a>Engedélyezése
 
-Konfigurálja, vagy egy engedélyezési szolgáltatás konfigurációjának beolvasása után egy engedélyezési-kérelem lehet létrehozni. kérelem toocreate hello, a következő információk hello van szüksége:  
+Konfigurálja, vagy egy engedélyezési szolgáltatás konfigurációjának beolvasása után egy engedélyezési-kérelem lehet létrehozni. A kérelem létrehozásához szüksége van a következő információkat:  
 * Ügyfél-azonosító (például 00000000-0000-0000-0000-000000000000)
 * Átirányítási URI egy egyéni séma (például com.onmicrosoft.fabrikamb2c.exampleapp://oauth/redirect)
 
@@ -123,16 +123,16 @@ appDelegate.currentAuthorizationFlow =
     }];
 ```
 
-tooset be az alkalmazás toohandle hello átirányítási toohello URI hello egyéni séma, szükséges "URL-sémákat" tooupdate hello listája az Info.pList-ben:
+Az alkalmazás kezelni az egyéni séma URI-ra való beállításához módosítania a Info.pList URL-sémákat listája:
 * Nyissa meg az Info.pList-ben.
-* Például a "Csomag az operációs rendszer típusa Code" sor mutat, majd kattintson a hello \+ szimbólum.
-* Nevezze át a hello új sor "URL-cím types".
-* Kattintson a hello toohello balra nyíl "URL-cím types" tooopen hello fa.
-* Kattintson a hello toohello balra nyíl tooopen hello fa "Konfigurációelem-0".
-* Nevezze át az első elem alatt elem 0 too'URL rendszerek.
-* Kattintson a hello toohello balra nyíl "URL-sémákat" tooopen hello fa.
-* Van egy üres mező toohello bal oldalán hello "Érték" oszlop, "0 elem" "URL-sémákat" alatt.  Állítsa be a hello érték tooyour alkalmazás egyedi séma.  hello értéket meg kell egyeznie a redirectURL hello OIDAuthorizationRequest objektum létrehozásakor használt hello séma.  A mintában szereplő hello séma "com.onmicrosoft.fabrikamb2c.exampleapp" használtuk.
+* Például a "Csomag az operációs rendszer típusa Code" sor mutat, majd kattintson a \+ szimbólum.
+* Nevezze át az új sor "URL-cím types".
+* Kattintson a "URL-cím types" balra mutató nyílra a fa megnyitásához.
+* Kattintson a balra mutató nyílra "elem 0' a fa megnyitásához.
+* Nevezze át az első elem "URL-sémákat" 0 elem alatt.
+* Kattintson a "URL-sémákat" nyissa meg a fa balra mutató nyílra.
+* Az "Érték" oszlop nincs egy üres mező balra "elem 0'"URL-sémákat"alá.  Adja meg az értéket az alkalmazás egyedi séma.  Az értéket meg kell egyeznie a rendszer a OIDAuthorizationRequest objektum létrehozásakor használt redirectURL.  A mintában a rendszer "com.onmicrosoft.fabrikamb2c.exampleapp" használtuk.
 
-Tekintse meg a toohello [AppAuth útmutató](https://openid.github.io/AppAuth-iOS/) a hogyan toocomplete hello ki hello folyamat. Ha tooquickly kell egy működő alkalmazást az első lépései, tekintse meg [a minta](https://github.com/Azure-Samples/active-directory-ios-native-appauth-b2c). Hello kövesse hello [README.md](https://github.com/Azure-Samples/active-directory-ios-native-appauth-b2c/blob/master/README.md) tooenter a saját Azure AD B2C-konfiguráció.
+Tekintse meg a [AppAuth útmutató](https://openid.github.io/AppAuth-iOS/) való fejezze be a folyamatot. Ha egy működő alkalmazást gyorsan megismerkedhet van szüksége, tekintse meg [a minta](https://github.com/Azure-Samples/active-directory-ios-native-appauth-b2c). Kövesse a [README.md](https://github.com/Azure-Samples/active-directory-ios-native-appauth-b2c/blob/master/README.md) a saját Azure AD B2C konfigurációs megadását.
 
-Azt a rendszer mindig megnyitott toofeedback és javaslatok! Ha bármilyen nehézségbe ütközik az ebben a témakörben, vagy az ehhez a tartalomhoz javítására állnak, azt fogadjuk visszajelzéseit hello lap hello alján. A szolgáltatás kéréseket, vegye fel őket túl[UserVoice](https://feedback.azure.com/forums/169401-azure-active-directory/category/160596-b2c).
+Azt mindig nyitva a visszajelzések és tanácsok! Ha bármilyen nehézségbe ütközik az ebben a témakörben, vagy az ehhez a tartalomhoz javítására állnak, azt fogadjuk visszajelzéseit az oldal alján. A szolgáltatás kéréseket, hozzáadhatja őket a [UserVoice](https://feedback.azure.com/forums/169401-azure-active-directory/category/160596-b2c).

@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált PolicyStat |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és PolicyStat között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és PolicyStat között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,139 +13,139 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: jeedes
-ms.openlocfilehash: 868053cd0d37359fd9b4aeb93dba42cbbaa09845
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 704afd5515b02ce2a4fbf35da65fad74dc506271
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-policystat"></a>Oktatóanyag: Azure Active Directoryval integrált PolicyStat
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate PolicyStat az Azure Active Directoryval (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja PolicyStat integrálása az Azure Active Directory (Azure AD).
 
-PolicyStat integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
+PolicyStat integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
 
-- Megadhatja a hozzáférés tooPolicyStat rendelkező Azure AD-ben
-- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooPolicyStat (egyszeri bejelentkezés) a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
+- Megadhatja a PolicyStat hozzáféréssel rendelkező Azure AD-ben
+- Engedélyezheti a felhasználóknak, hogy automatikusan beolvasása bejelentkezett PolicyStat (egyszeri bejelentkezés) számára a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-az Azure AD integrálása PolicyStat tooconfigure, kell a következő elemek hello:
+Konfigurálása az Azure AD-integrációs PolicyStat, a következőkre van szükség:
 
 - Az Azure AD szolgáltatásra
 - Egy PolicyStat egyszeri bejelentkezés engedélyezve van az előfizetés
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. Hello gyűjteményből PolicyStat hozzáadása
+1. A gyűjteményből PolicyStat hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-policystat-from-hello-gallery"></a>Hello gyűjteményből PolicyStat hozzáadása
-tooconfigure hello integrációja PolicyStat az Azure AD-be, meg kell tooadd PolicyStat hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-policystat-from-the-gallery"></a>A gyűjteményből PolicyStat hozzáadása
+Az Azure AD integrálása a PolicyStat konfigurálásához kell hozzáadnia PolicyStat a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
 
-**tooadd PolicyStat hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
+**A gyűjteményből PolicyStat hozzáadásához hajtsa végre az alábbi lépéseket:**
 
-1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
+1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
+2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
+3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
 
     ![Alkalmazások][3]
 
-4. Hello keresési mezőbe, írja be a **PolicyStat**.
+4. Írja be a keresőmezőbe, **PolicyStat**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-policystat-tutorial/tutorial_policystat_search.png)
 
-5. A hello eredmények panelen válassza ki a **PolicyStat**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
+5. Az eredmények panelen válassza ki a **PolicyStat**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-policystat-tutorial/tutorial_policystat_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon" nevű tesztfelhasználó alapján PolicyStat.
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó PolicyStat tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello PolicyStat közötti kapcsolat kapcsolatot kell létrehozni toobe.
+Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó PolicyStat a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a PolicyStat közötti kapcsolat kapcsolatot kell létrehozni.
 
-PolicyStat, rendelje hozzá hello hello értékének **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
+PolicyStat, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
 
-tooconfigure és az Azure AD az egyszeri bejelentkezés PolicyStat-teszthez, a következő építőelemeket toocomplete hello szüksége:
+Az Azure AD egyszeri bejelentkezést a PolicyStat tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-3. **[PolicyStat tesztfelhasználó létrehozása](#creating-a-policystat-test-user)**  -toohave egy megfelelője a Britta Simon a PolicyStat, amely a felhasználó csatolt toohello az Azure AD ábrázolása.
-4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+3. **[PolicyStat tesztfelhasználó létrehozása](#creating-a-policystat-test-user)**  - való Britta Simon valami PolicyStat, amely csatolva van a felhasználó az Azure AD-ábrázolását.
+4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az PolicyStat alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az PolicyStat alkalmazásban.
 
-**az Azure AD tooconfigure egyszeri bejelentkezést a PolicyStat, hajtsa végre a lépéseket követve hello:**
+**Konfigurálása az Azure AD az egyszeri bejelentkezés PolicyStat, hajtsa végre az alábbi lépéseket:**
 
-1. Az Azure portál, a hello hello **PolicyStat** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portálon a a **PolicyStat** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
+2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-policystat-tutorial/tutorial_policystat_samlbase.png)
 
-3. A hello **PolicyStat tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
+3. Az a **PolicyStat tartomány és az URL-címek** területen tegye a következőket:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-policystat-tutorial/tutorial_policystat_url.png)
 
-    a. A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<companyname>.policystat.com`
+    a. Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://<companyname>.policystat.com`
 
-    b. A hello **azonosító** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<companyname>.policystat.com/saml2/metadata/`
+    b. Az a **azonosító** szövegmező, adja meg a következő minta használatával URL-címe:`https://<companyname>.policystat.com/saml2/metadata/`
 
     > [!NOTE] 
-    > Ezek az értékek nincsenek valós. Frissítse a bejelentkezési URL-cím és azonosító a hello tényleges értékek. Ügyfél [PolicyStat ügyfél-támogatási csoport](http://www.policystat.com/support/) tooget ezeket az értékeket. 
+    > Ezek az értékek nincsenek valós. Frissítheti ezeket az értékeket a tényleges bejelentkezési URL-cím és azonosítója. Ügyfél [PolicyStat ügyfél-támogatási csoport](http://www.policystat.com/support/) beolvasni ezeket az értékeket. 
  
-4. A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello metaadatait tartalmazó fájl a számítógépen.
+4. Az a **SAML-aláíró tanúsítványa** területen kattintson **metaadatainak XML-kódja** és mentse a metaadat-fájlt a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-policystat-tutorial/tutorial_policystat_certificate.png) 
 
-5. hello ebben a szakaszban célja toooutline hogyan tooenable felhasználók tooauthenticate tooPolicyStat fiókkal az Azure AD összevonási használatával hello SAML protokoll alapján.
+5. Ez a szakasz célja felvázoló engedélyezése a felhasználók hitelesítéséhez PolicyStat fiókkal az Azure AD összevonási alapján a SAML protokoll használatával.
 
-    hello PolicyStat alkalmazás hello SAML helyességi feltételek vár egy meghatározott formátumban, amelyhez tooadd egyéni attribútum hozzárendelések tooyour **SAML-jogkivonat attribútumok** konfigurációs.  
+    A PolicyStat alkalmazás vár a SAML helyességi feltételek egy meghatározott formátumban, amelyhez egyéni attribútum leképezései hozzáadása a **SAML-jogkivonat attribútumok** konfigurációs.  
 
-     a következő képernyőkép hello ez példáját mutatja be.
+     Az alábbi képernyőfelvételen látható példa erre.
 
      ![Attribútumok](./media/active-directory-saas-policystat-tutorial/tutorial_policystat_attribute.png "attribútumok")
 
-6. tooadd szükséges hello attribútum-leképezésekhez, hajtsa végre a lépéseket követve hello:
+6. A kötelező attribútum-leképezésekhez hozzáadásához hajtsa végre az alábbi lépéseket:
 
     | Attribútum neve    |   Attribútum-érték |
     |------------------- | -------------------- |
     | egyedi azonosítója | ExtractMailPrefix([mail]) |
     
-    a. Kattintson a **Hozzáadás attribútum** tooopen hello **attribútum hozzáadása** párbeszédpanel.
+    a. Kattintson a **Hozzáadás attribútum** megnyitásához a **attribútum hozzáadása** párbeszédpanel.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-policystat-tutorial/tutorial_policystat_04.png)
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-policystat-tutorial/tutorial_policystat_addatribute.png)
     
-    b. A hello **attribútumnév** szövegmezőhöz típus **uid**.
+    b. Az a **attribútumnév** szövegmezőhöz típus **uid**.
 
-    c. A hello **attribútumérték** szövegmező, jelölje be **ExtractMailPrefix()**.    
+    c. Az a **attribútumérték** szövegmező, jelölje be **ExtractMailPrefix()**.    
    
-    d. A hello **Mail** listáról válassza ki **User.mail**.
+    d. Az a **Mail** listáról válassza ki **User.mail**.
     
     e. Kattintson a **Ok**
 
@@ -155,98 +155,98 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálo
 
 8. Egy másik webes böngészőablakban jelentkezzen be a PolicyStat vállalati webhely rendszergazdaként.
 
-9. Hello kattintson **Admin** fülre, majd **egyszeri bejelentkezés konfigurációs** bal oldali navigációs ablaktáblán.
+9. Kattintson a **Admin** fülre, majd **egyszeri bejelentkezés konfigurációs** bal oldali navigációs ablaktáblán.
    
     ![Rendszergazda menü](./media/active-directory-saas-policystat-tutorial/ic808633.png "Rendszergazda menü")
 
-10. A hello **telepítő** szakaszban jelölje be **engedélyezése egyszeri bejelentkezéshez integrációs**.
+10. Az a **telepítő** szakaszban jelölje be **engedélyezése egyszeri bejelentkezéshez integrációs**.
    
     ![Az egyszeri bejelentkezés konfigurációs](./media/active-directory-saas-policystat-tutorial/ic808634.png "az egyszeri bejelentkezés konfigurálása")
 
-11. Kattintson a **attribútumok konfigurálása**, majd a hello **attribútumok konfigurálása** csoportjában hajtsa végre az alábbi lépésekkel hello:
+11. Kattintson a **attribútumok konfigurálása**, majd a a **attribútumok konfigurálása** területen tegye a következőket:
    
     ![Az egyszeri bejelentkezés konfigurációs](./media/active-directory-saas-policystat-tutorial/ic808635.png "az egyszeri bejelentkezés konfigurálása")
    
-    a. A hello **felhasználónév attribútum** szövegmezőhöz típus **uid**.
+    a. Az a **felhasználónév attribútum** szövegmezőhöz típus **uid**.
 
-    b. A hello **Keresztnév attribútum** szövegmezőhöz típus **Keresztnév** felhasználó **Britta**.
+    b. Az a **Keresztnév attribútum** szövegmezőhöz típus **Keresztnév** felhasználó **Britta**.
 
-    c. A hello **utolsó Name attribútum** szövegmezőhöz típus **Vezetéknév** felhasználó **Simon**.
+    c. Az a **utolsó Name attribútum** szövegmezőhöz típus **Vezetéknév** felhasználó **Simon**.
 
-    d. A hello **E-mail attribútum** szövegmezőhöz típus **emailaddress** felhasználó  **BrittaSimon@contoso.com** .
+    d. Az a **E-mail attribútum** szövegmezőhöz típus **emailaddress** felhasználó  **BrittaSimon@contoso.com** .
 
     e. Kattintson a **módosítások mentése**.
 
-12. Kattintson a **a kiállító terjesztési hely metaadatok**, majd a hello **a kiállító terjesztési hely metaadatok** csoportjában hajtsa végre az alábbi lépésekkel hello:
+12. Kattintson a **a kiállító terjesztési hely metaadatok**, majd a a **a kiállító terjesztési hely metaadatok** területen az alábbi lépésekkel:
    
     ![Az egyszeri bejelentkezés konfigurációs](./media/active-directory-saas-policystat-tutorial/ic808636.png "az egyszeri bejelentkezés konfigurálása")
    
-    a. Nyissa meg a letöltött metaadatait tartalmazó fájl, a tartalom másolás hello, és illessze be hello **a Identity Provider metaadatok** szövegmező.
+    a. Nyissa meg a letöltött metaadatfájl, másolja a tartalmat, és illessze be azt a **a Identity Provider metaadatok** szövegmező.
 
     b. Kattintson a **módosítások mentése**.
 
 > [!TIP]
-> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
+Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
+1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-policystat-tutorial/create_aaduser_01.png) 
 
-2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
+2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-policystat-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
+3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-policystat-tutorial/create_aaduser_03.png) 
 
-4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-policystat-tutorial/create_aaduser_04.png) 
 
-    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
+    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-policystat-test-user"></a>PolicyStat tesztfelhasználó létrehozása
 
-A sorrend tooenable az Azure AD felhasználók toolog PolicyStat be azok ki kell építenie PolicyStat be.  
+Ahhoz, hogy az Azure AD-felhasználók PolicyStat bejelentkezni, akkor ki kell építenie PolicyStat be.  
 
-PolicyStat csak az idő a felhasználók átadása támogatja. Ez azt jelenti, tooadd hello felhasználóknak nem kell manuálisan tooPolicyStat. hello felhasználókat a rendszer beolvasása adja hozzá automatikusan az első bejelentkezés SSO keresztül a.
+PolicyStat csak az idő a felhasználók átadása támogatja. Ez azt jelenti, hogy nem kell a felhasználók manuális hozzáadása PolicyStat. A felhasználók automatikusan az első bejelentkezés SSO keresztül a rendszer hozzáadják.
 
 >[!NOTE]
->Bármely más PolicyStat felhasználói fiók létrehozása eszközök vagy PolicyStat tooprovision által nyújtott API-kat az Azure AD felhasználói fiókokat.
+>Bármely más PolicyStat felhasználói fiók létrehozása eszközök vagy PolicyStat kiépíteni az Azure AD-felhasználói fiókok által nyújtott API-k.
 > 
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
+### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
 
-Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooPolicyStat megadásával engedélyeznie.
+Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés PolicyStat Azure egyszeri bejelentkezéshez használandó.
 
 ![Felhasználó hozzárendelése][200] 
 
-**tooassign Britta Simon tooPolicyStat, hajtsa végre a következő lépéseket hello:**
+**Britta Simon hozzárendelése PolicyStat, hajtsa végre az alábbi lépéseket:**
 
-1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Hello alkalmazások listában válassza ki a **PolicyStat**.
+2. Az alkalmazások listában válassza ki a **PolicyStat**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-policystat-tutorial/tutorial_policystat_app.png) 
 
-3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -254,7 +254,7 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáfé
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -262,14 +262,14 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáfé
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
 
-Ha a hozzáférési Panel hello hello PolicyStat csempe gombra kattint, automatikusan bejelentkezett tooyour PolicyStat alkalmazás szerezheti be.
-További információ a hozzáférési Panel hello: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).
+Ha a hozzáférési panelen PolicyStat csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az PolicyStat alkalmazására.
+A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>További források
 
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

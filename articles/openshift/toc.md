@@ -2,7 +2,7 @@
 # Gyors útmutatók
 ## [OpenShift: közösségi sablon](https://azure.microsoft.com/en-us/resources/templates/openshift-origin-rhel/)
 # oktatóanyagokat
-## [TooAzure virtuális gépek telepítése](/azure/virtual-machines/linux/openshift-get-started)
+## [Üzembe helyezés az Azure virtuális gépeken](/azure/virtual-machines/linux/openshift-get-started)
 # Erőforrások
 ## [Azure-ütemterv](https://azure.microsoft.com/roadmap/)
 ## [OpenShift-tárolósablon](https://github.com/Microsoft/openshift-container-platform)

@@ -1,8 +1,8 @@
 ---
-title: "a feltételes hozzáférés az Azure Active Directory használatába aaaGet |} Microsoft Docs"
+title: "Az Azure Active Directoryban feltételes hozzáférés – első lépések |} Microsoft Docs"
 description: "A helyre vonatkozó feltétellel feltételes hozzáférés tesztelése."
 services: active-directory
-keywords: "feltételes hozzáférés tooapps, feltételes hozzáférés az Azure AD-vel biztonságos hozzáférés toocompany erőforrásokat, a feltételes hozzáférési házirendek"
+keywords: "alkalmazások, a feltételes hozzáférés az Azure ad-vel, a biztonságos hozzáférés a vállalati erőforrásokhoz, a feltételes hozzáférési házirendekkel a feltételes hozzáférés"
 documentationcenter: 
 author: MarkusVi
 manager: femila
@@ -15,35 +15,35 @@ ms.workload: identity
 ms.date: 07/31/2017
 ms.author: markvi
 ms.reviewer: calebb
-ms.openlocfilehash: 4521f5a34f5882e026f5e58a7127d8c55cba2f0b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cd53e8be32d1e98aaf9f72177895871dba69df86
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="get-started-with-conditional-access-in-azure-active-directory"></a>Ismerkedés a feltételes hozzáférés az Azure Active Directoryban
 
-Feltételes hozzáférés az Azure Active Directoryban, amely lehetővé teszi, hogy Ön toodefine feltételek alapján, amely engedéllyel rendelkező felhasználók férhetnek hozzá az alkalmazások képesek. 
+Feltételes hozzáférés az Azure Active Directoryban, amely lehetővé teszi a feltételeket, amely alatt engedéllyel rendelkező felhasználók férhetnek hozzá az alkalmazások képesek. 
 
 Ez a témakör nyújt útmutatást a hely feltétel a környezetben a feltételes hozzáférés tesztelése.  
 
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
 
-Számos szervezetben egy közös vonatkozó követelmény akkor tooonly többtényezős hitelesítés megkövetelése, hogy nem történik a vállalati intranethez hello hozzáférés tooapps. Az Azure Active Directoryval könnyen megvalósításához a cél helyalapú feltételes hozzáférési házirend konfigurálása. Ez a témakör részletes útmutatást kapcsolódó házirend beállítása. házirend használja hello [megbízható IP-címek](../multi-factor-authentication/multi-factor-authentication-whats-next.md#trusted-ips) hozzáférés a vállalati hello kísérletek közötti toodistinguish tartozó intranetes és minden egyéb helyek.
+Számos szervezetben egy közös követelmény-hoz csak többtényezős hitelesítés megkövetelése az alkalmazásokhoz való hozzáférés, amely nem történik a vállalati intranethez. Az Azure Active Directoryval könnyen megvalósításához a cél helyalapú feltételes hozzáférési házirend konfigurálása. Ez a témakör részletes útmutatást kapcsolódó házirend beállítása. A házirend használja [megbízható IP-címek](../multi-factor-authentication/multi-factor-authentication-whats-next.md#trusted-ips) kérés érkezett a vállalati hozzáférés kísérletek közötti különbséget tenni a következőre intranetes és minden egyéb helyek.
 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-hello ebben a témakörben ismertetett forgatókönyv feltételezi, hogy Ön ismeri a leírt hello fogalmak [Azure Active Directory feltételes hozzáférés](active-directory-conditional-access-azure-portal.md).
+A témakörben ismertetett forgatókönyv feltételezi, hogy Ön ismeri a ismertetett fogalmakat [Azure Active Directory feltételes hozzáférés](active-directory-conditional-access-azure-portal.md).
 
-tootest ebben az esetben szüksége:
+Ez a forgatókönyv teszteléséhez kell:
 
 - Tesztfelhasználó létrehozása 
 
-- Rendelje hozzá az Azure AD Premium licenc toohello tesztfelhasználó számára
+- Az Azure AD Premium licenc hozzárendelése a tesztfelhasználó számára
 
-- A kezelt alkalmazások konfigurálása és hozzárendelése a teszt felhasználó tooit
+- Konfigurálhatja egy felügyelt alkalmazást, és rendelje hozzá a tesztfelhasználó számára
 
 - Megbízható IP-címek konfigurálása
 
@@ -52,29 +52,29 @@ Ha további információt a megbízható IP-cím van szüksége, tekintse meg [m
 
 ## <a name="policy-configuration-steps"></a>Házirend konfigurációs lépések
 
-**tooconfigure a feltételes hozzáférési házirend tegye:**
+**A feltételes hozzáférési házirend konfigurálásához hajtsa végre:**
 
-1. Hello hello bal oldali navigációs sávja, az Azure-portálon kattintson **Azure Active Directory**. 
+1. Kattintson a bal oldali navigációs sávja, az Azure-portálon **Azure Active Directory**. 
 
     ![Feltételes hozzáférés](./media/active-directory-conditional-access-azure-portal-get-started/01.png)
 
-2. A hello **Azure Active Directory** paneljén, hello **kezelése** kattintson **feltételes hozzáférési**.
+2. A a **Azure Active Directory** panelen, a a **kezelése** kattintson **feltételes hozzáférés**.
 
     ![Feltételes hozzáférés](./media/active-directory-conditional-access-azure-portal-get-started/02.png)
  
-3. A hello **feltételes hozzáférés** panelen, tooopen hello **új** panelen hello legfelül hello eszköztáron kattintson **Hozzáadás**.
+3. Az a **feltételes hozzáférési** panelt, nyissa meg a **új** panelen, a felső eszköztáron kattintson **Hozzáadás**.
 
     ![Feltételes hozzáférés](./media/active-directory-conditional-access-azure-portal-get-started/03.png)
 
-4. A hello **új** paneljén, hello **neve** szövegmező, írja be a házirend nevét.
+4. Az a **új** panelen, a a **neve** szövegmező, írja be a házirend nevét.
 
     ![Feltételes hozzáférés](./media/active-directory-conditional-access-azure-portal-get-started/04.png)
 
-5. A hello **hozzárendelés** kattintson **felhasználók és csoportok**.
+5. Az a **hozzárendelés** kattintson **felhasználók és csoportok**.
 
     ![Feltételes hozzáférés](./media/active-directory-conditional-access-azure-portal-get-started/05.png)
 
-6. A hello **felhasználók és csoportok** panelen, hajtsa végre az alábbi lépésekkel hello:
+6. Az a **felhasználók és csoportok** panelen végezze el a következő lépéseket:
 
     ![Feltételes hozzáférés](./media/active-directory-conditional-access-azure-portal-get-started/06.png)
 
@@ -82,15 +82,15 @@ Ha további információt a megbízható IP-cím van szüksége, tekintse meg [m
 
     b. Kattintson a **Kiválasztás** gombra.
 
-    c. A hello **válasszon** panelen, jelölje be a tesztfelhasználó számára, és kattintson **válasszon**.
+    c. Az a **válasszon** panelen, jelölje be a tesztfelhasználó számára, és kattintson **válasszon**.
 
-    d. A hello **felhasználók és csoportok** panelen kattintson a **végzett**.
+    d. Az a **felhasználók és csoportok** panelen kattintson a **végzett**.
 
-7. A hello **új** panelen, tooopen hello **felhőalapú alkalmazásokba** paneljén, hello **hozzárendelés** területén kattintson **felhőalapú alkalmazásokba**.
+7. Az a **új** panelt, nyissa meg a **felhőalapú alkalmazásokba** panelen, a a **hozzárendelés** területen kattintson **felhőalapú alkalmazásokba**.
 
     ![Feltételes hozzáférés](./media/active-directory-conditional-access-azure-portal-get-started/07.png)
 
-8. A hello **felhőalapú alkalmazásokba** panelen, hajtsa végre az alábbi lépésekkel hello:
+8. Az a **felhőalapú alkalmazásokba** panelen végezze el a következő lépéseket:
 
     ![Feltételes hozzáférés](./media/active-directory-conditional-access-azure-portal-get-started/08.png)
 
@@ -98,19 +98,19 @@ Ha további információt a megbízható IP-cím van szüksége, tekintse meg [m
 
     b. Kattintson a **Kiválasztás** gombra.
 
-    c. A hello **kiválasztása** panelen válassza ki a cloud app, és kattintson a **kiválasztása**.
+    c. A a **válasszon** panelen válassza ki a cloud app, és kattintson a **válasszon**.
 
-    d. A hello **felhőalapú alkalmazásokba** panelen kattintson a **végzett**.
+    d. Az a **felhőalapú alkalmazásokba** panelen kattintson a **végzett**.
 
-9. A hello **új** panelen, tooopen hello **feltételek** paneljén, hello **hozzárendelés** területén kattintson **feltételek**.
+9. Az a **új** panelt, nyissa meg a **feltételek** panelen, a a **hozzárendelés** területen kattintson **feltételek**.
 
     ![Feltételes hozzáférés](./media/active-directory-conditional-access-azure-portal-get-started/09.png)
 
-10. A hello **feltételek** panelen, tooopen hello **helyek** panelen kattintson a **helyek**.
+10. A a **feltételek** panelt, nyissa meg a **helyek** panelen kattintson a **helyek**.
 
     ![Feltételes hozzáférés](./media/active-directory-conditional-access-azure-portal-get-started/10.png)
 
-11. A hello **helyek** panelen, hajtsa végre az alábbi lépésekkel hello:
+11. Az a **helyek** panelen végezze el a következő lépéseket:
 
     ![Feltételes hozzáférés](./media/active-directory-conditional-access-azure-portal-get-started/11.png)
 
@@ -124,13 +124,13 @@ Ha további információt a megbízható IP-cím van szüksége, tekintse meg [m
 
     d. Kattintson a **Done** (Kész) gombra.
 
-12. A hello **feltételek** panelen kattintson a **végzett**.
+12. Az a **feltételek** panelen kattintson a **végzett**.
 
-13. A hello **új** panelen, tooopen hello **Grant** paneljén, hello **vezérlők** területén kattintson **Grant**.
+13. Az a **új** panelt, nyissa meg a **Grant** panelen, a a **vezérlők** területen kattintson **Grant**.
 
     ![Feltételes hozzáférés](./media/active-directory-conditional-access-azure-portal-get-started/13.png)
 
-14. A hello **Grant** panelen, hajtsa végre az alábbi lépésekkel hello:
+14. Az a **Grant** panelen végezze el a következő lépéseket:
 
     ![Feltételes hozzáférés](./media/active-directory-conditional-access-azure-portal-get-started/14.png)
 
@@ -138,16 +138,16 @@ Ha további információt a megbízható IP-cím van szüksége, tekintse meg [m
 
     b. Kattintson a **Kiválasztás** gombra.
 
-15. A hello **új** panel alatt **házirend engedélyezése**, kattintson a **a**.
+15. Az a **új** panel alatt **házirend engedélyezése**, kattintson a **a**.
 
     ![Feltételes hozzáférés](./media/active-directory-conditional-access-azure-portal-get-started/15.png)
 
-16. A hello **új** panelen kattintson a **létrehozása**.
+16. Az a **új** panelen kattintson a **létrehozása**.
 
 
-## <a name="testing-hello-policy"></a>Hello házirend tesztelése
+## <a name="testing-the-policy"></a>A házirendek tesztelésével
 
-tootest a házirendet, hozzá kell férnie az alkalmazást az eszközről, amely: 
+A házirend teszteléséhez az eszközről kell hozzáférést az alkalmazás, amely: 
 
 1. IP-címet tartalmazza, amely megfelel a konfigurált megbízható IP-címek 
 
@@ -158,5 +158,5 @@ A multi-factor authentication csak kell, amely egy eszközről, amely kívül es
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ha szeretne további információ a feltételes hozzáférési toolearn, [Azure Active Directory feltételes hozzáférés](active-directory-conditional-access-azure-portal.md).
+Ha azt szeretné, további információ a feltételes hozzáférési, lásd: [Azure Active Directory feltételes hozzáférés](active-directory-conditional-access-azure-portal.md).
 

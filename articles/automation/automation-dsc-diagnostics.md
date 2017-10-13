@@ -1,6 +1,6 @@
 ---
-title: "Azure Automation DSC jelentési adatok tooOMS Naplóelemzési aaaForward |} Microsoft Docs"
-description: "Ez a cikk bemutatja, hogyan toosend kívánt állapot konfigurációs szolgáltatása (DSC) jelentési adatok tooMicrosoft Operations Management Suite Naplóelemzési toodeliver további betekintést és felügyeleti."
+title: "Továbbítsa az Azure Automation DSC jelentésadatait OMS szolgáltatáshoz |} Microsoft Docs"
+description: "Ez a cikk bemutatja, hogyan elküldeni kívánt konfiguráló (DSC) adatok jelentéskészítés a Microsoft Operations Management Suite Log Analytics képes biztosítani a további betekintést és kezelése."
 services: automation
 documentationcenter: 
 author: eslesar
@@ -13,16 +13,16 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/24/2017
 ms.author: eslesar
-ms.openlocfilehash: 21f78d5549d53ba3d7e237f55d9086f380cf3351
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 316031c5297a0201c8db4a9e177298c78962c673
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="forward-azure-automation-dsc-reporting-data-toooms-log-analytics"></a>Azure Automation DSC jelentési adatok tooOMS Naplóelemzési továbbítsa
+# <a name="forward-azure-automation-dsc-reporting-data-to-oms-log-analytics"></a>Azure Automation DSC OMS szolgáltatáshoz jelentéskészítéshez szükséges adatok továbbítása
 
-Automation DSC csomópont állapota adatok tooyour a Microsoft Operations Management Suite (OMS) Naplóelemzési munkaterület küldhet.  
-Megfelelőségi állapota látható hello Azure-portálon, vagy a PowerShell használatával, a csomópontok számára, és az egyedi DSC erőforrások a csomópont-konfigurációt. Log Analytics segítségével:
+Automation DSC csomópont állapota adatokat küldhet a Microsoft Operations Management Suite (OMS) Naplóelemzési munkaterület.  
+Megfelelőségi állapota látható az Azure portálon, vagy a PowerShell használatával, a csomópontok számára, és az egyedi DSC erőforrások a csomópont-konfigurációt. Log Analytics segítségével:
 
 * A megfelelőségi adatok lekérése a felügyelt csomópontok és az egyes erőforrások
 * Indítás, egy e-mailek vagy a riasztás a megfelelőségi állapot alapján
@@ -32,88 +32,88 @@ Megfelelőségi állapota látható hello Azure-portálon, vagy a PowerShell has
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-az Automation DSC küldése toostart jelentések tooLog elemzés, szükséges:
+Indítsa el az Automation DSC-jelentéseket küld a Naplóelemzési, az alábbiak szükségesek:
 
-* hello November 2016 vagy újabb kiadása [Azure PowerShell](/powershell/azure/overview) (v2.3.0).
-* Egy Azure Automation-fiókra. További információkért lásd: [Ismerkedés az Azure Automation szolgáltatással](automation-offering-get-started.md)
+* A November 2016 vagy újabb kiadása [Azure PowerShell](/powershell/azure/overview) (v2.3.0).
+* Egy Azure Automation-fiók. További információkért lásd: [Ismerkedés az Azure Automation szolgáltatással](automation-offering-get-started.md)
 * A Naplóelemzési munkaterület egy **Automation & vezérlő** szolgáltatásajánlat. További információkért lásd: [Ismerkedés a Naplóelemzési](../log-analytics/log-analytics-get-started.md).
 * Legalább egy Azure Automation DSC-csomópont. További információkért lásd: [bevezetési gépeket Azure Automation DSC általi kezelésre](automation-dsc-onboarding.md) 
 
 ## <a name="set-up-integration-with-log-analytics"></a>Log Analytics-integráció beállítása
 
-adatok importálása az Azure Automation DSC azokat a lépéseket követve teljes hello a Naplóelemzési toobegin:
+Adatok importálása az Azure Automation DSC Log Analyticshez való elindításához kövesse az alábbi lépéseket:
 
-1. Jelentkezzen be tooyour Azure PowerShell-fiókot. Lásd: [jelentkezzen be az Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/authenticate-azureps?view=azurermps-4.0.0)
-1. Hello beolvasása _ResourceId_ az automatizálási fiók hello a következő PowerShell-parancs futtatásával: (Ha egynél több automation-fiók, válassza a hello _ResourceID_ hello fiók tooconfigure).
+1. Jelentkezzen be az Azure PowerShell-fiókjával. Lásd: [jelentkezzen be az Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/authenticate-azureps?view=azurermps-4.0.0)
+1. Beolvasása a _ResourceId_ , az automation-fiók a következő PowerShell-parancs futtatásával: (Ha egynél több automation-fiók, válassza a _ResourceID_ a konfigurálni kívánt fiókhoz).
 
   ```powershell
-  # Find hello ResourceId for hello Automation Account
+  # Find the ResourceId for the Automation Account
   Find-AzureRmResource -ResourceType "Microsoft.Automation/automationAccounts"
   ```
-1. Első hello _ResourceId_ a Naplóelemzési munkaterület hello a következő PowerShell-parancs futtatásával: (Ha egynél több munkaterületen, válassza a hello _ResourceID_ kívánt hello munkaterület tooconfigure).
+1. Beolvasása a _ResourceId_ a Naplóelemzési munkaterület a következő PowerShell-parancs futtatásával: (Ha egynél több munkaterületen, válassza a _ResourceID_ a konfigurálni kívánt munkaterület).
 
   ```powershell
-  # Find hello ResourceId for hello Log Analytics workspace
+  # Find the ResourceId for the Log Analytics workspace
   Find-AzureRmResource -ResourceType "Microsoft.OperationalInsights/workspaces"
   ```
-1. A következő PowerShell-parancsot, hogy futási hello `<AutomationResourceId>` és `<WorkspaceResourceId>` a hello _ResourceId_ értékek az egyes hello előző lépéseket:
+1. Futtassa a következő PowerShell-parancsot cseréje `<AutomationResourceId>` és `<WorkspaceResourceId>` rendelkező a _ResourceId_ értékeit az előző lépéseket:
 
   ```powershell
   Set-AzureRmDiagnosticSetting -ResourceId <AutomationResourceId> -WorkspaceId <WorkspaceResourceId> -Enabled $true -Categories "DscNodeStatus"
   ```
 
-Ha azt szeretné, hogy Azure Automation DSC-ből származó adatok importálása a Naplóelemzési toostop, futtassa a következő PowerShell-paranccsal hello.
+Ha le kívánja állítani a adatok importálását az Azure Automation DSC Log Analyticshez való, futtassa a következő PowerShell-parancsot.
 
 ```powershell
 Set-AzureRmDiagnosticSetting -ResourceId <AutomationResourceId> -WorkspaceId <WorkspaceResourceId> -Enabled $false -Categories "DscNodeStatus"
 ```
 
-## <a name="view-hello-dsc-logs"></a>Hello DSC-naplók megtekintése
+## <a name="view-the-dsc-logs"></a>A DSC-naplók megtekintése
 
-Az Automation DSC adatok Log Analyticshez való integráció beállítása után a **naplófájl-keresési** gomb megjelenik hello **DSC-csomópontok** panelen található az automation-fiók. Kattintson a hello **naplófájl-keresési** tooview hello naplókat a DSC-csomópont adatait gombra.
+Az Automation DSC adatok Log Analyticshez való integráció beállítása után a **naplófájl-keresési** gomb megjelenik a **DSC-csomópontok** panelen található az automation-fiók. Kattintson a **naplófájl-keresési** gombra kattintva megtekintheti a DSC-csomópont adatait a naplókat.
 
 ![Napló Keresés gomb](media/automation-dsc-diagnostics/log-search-button.png)
 
-Hello **naplófájl-keresési** panel nyílik meg, és megjelenik egy **DscNodeStatusData** művelete minden DSC-csomópont, és egy **DscResourceStatusData** minden művelet [DSC erőforrás](https://msdn.microsoft.com/powershell/dsc/resources) hello csomópontok konfigurációs alkalmazott toothat hívása.
+A **naplófájl-keresési** panel nyílik meg, és megjelenik egy **DscNodeStatusData** művelete minden DSC-csomópont, és egy **DscResourceStatusData** minden művelet [DSC erőforrás](https://msdn.microsoft.com/powershell/dsc/resources) adott csomóponton alkalmazott a csomópont-konfigurációnak a neve.
 
-Hello **DscResourceStatusData** művelet nem sikerült DSC erőforrásokat hiba adatait tartalmazza.
+A **DscResourceStatusData** művelet nem sikerült DSC erőforrásokat hiba adatait tartalmazza.
 
-Kattintson az adott műveletre vonatkozó hello toosee hello listaadatai lévő egyes műveletek.
+Kattintson az adott műveletre vonatkozó adatok megjelenítéséhez a listában lévő egyes műveletek.
 
-Megtekintheti a hello naplók [Log Analyticshez a rákeresve. Lásd: [található adatokat, és napló keresések](../log-analytics/log-analytics-log-searches.md).
-Típus hello következő lekérdezés toofind a DSC naplók:`Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION" Category = "DscNodeStatus"`
+A naplók megtekintéséhez által [Log Analyticshez megkeresése. Lásd: [található adatokat, és napló keresések](../log-analytics/log-analytics-log-searches.md).
+Írja be a következő lekérdezés futtatásával a DSC-napló keresése:`Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION" Category = "DscNodeStatus"`
 
-Hello lekérdezés hello műveletnév is szűkítheti. Például: ' típus = AzureDiagnostics ResourceProvider = "MICROSOFT. AUTOMATIZÁLÁSI"kategória ="DscNodeStatus"OperationName ="DscNodeStatusData"
+A művelet neve is szűkítheti a lekérdezést. Például: ' típus = AzureDiagnostics ResourceProvider = "MICROSOFT. AUTOMATIZÁLÁSI"kategória ="DscNodeStatus"OperationName ="DscNodeStatusData"
 
 ### <a name="send-an-email-when-a-dsc-compliance-check-fails"></a>E-mailt küld, ha a DSC-megfelelőségi ellenőrzés sikertelen lesz.
 
-A felső ügyfelek kéréseire egyike hello képességét toosend szöveg vagy egy e-mailt, amikor probléma merül fel a DSC-konfiguráció.   
+A felső ügyfelek kéréseire egyik arra, hogy a szöveg vagy egy e-mailt küldeni, ha probléma merül fel a DSC-konfiguráció.   
 
-szabály toocreate riasztást, akkor először hozzon létre egy napló keresése hello DSC jelentés azt jelzi, hogy hello riasztást kell meghívnia.  Kattintson a hello **riasztás** toocreate gombra, és a riasztási szabály hello konfigurálása.
+A riasztási szabályt létrehozni, akkor először hozzon létre egy napló keressen rá a DSC jelentés azt jelzi, hogy a riasztás kell meghívnia.  Kattintson a **riasztás** gombra kattintva hozza létre és konfigurálja a riasztási szabályt.
 
-1. Hello napló elemzés áttekintése lapon kattintson **naplófájl-keresési**.
-1. A riasztás napló keresési lekérdezés létrehozásához írja be a következő keresési lekérdezés mezőbe hello hello:`Type=AzureDiagnostics Category=DscNodeStatus NodeName_s=DSCTEST1 OperationName=DscNodeStatusData ResultType=Failed`
+1. A napló elemzés áttekintése lapon kattintson **naplófájl-keresési**.
+1. A riasztás napló keresési lekérdezés létrehozásához írja be a következő keresést a lekérdezés mezőbe:`Type=AzureDiagnostics Category=DscNodeStatus NodeName_s=DSCTEST1 OperationName=DscNodeStatusData ResultType=Failed`
 
-  Ha több mint egy automatizálási fiók vagy előfizetés tooyour munkaterületről naplók beállítását követően csoportosíthatók a a riasztások előfizetés és az Automation-fiók.  
-  Automation-fiók neve DscNodeStatusData hello-keresés mezője hello erőforrás származtatható.  
-1. tooopen hello **riasztási szabály hozzáadása** kattintson **riasztási** hello oldal hello tetején. Hello beállítások tooconfigure hello figyelmeztetéssel kapcsolatos további információkért lásd: [Naplóelemzési riasztások](../log-analytics/log-analytics-alerts.md#alert-rules).
+  Ha állított be naplók egynél több Automation-fiók vagy előfizetés a munkaterületet, csoportosíthatók a a riasztások előfizetés és az Automation-fiók.  
+  Automation-fiók nevét a DscNodeStatusData keresése erőforrás mezője származtatható.  
+1. Lehetőségre a **riasztási szabály hozzáadása** kattintson **riasztási** az oldal tetején. A riasztás konfigurálása lehetőségekről további információkért lásd: [Naplóelemzési riasztások](../log-analytics/log-analytics-alerts.md#alert-rules).
 
 ### <a name="find-failed-dsc-resources-across-all-nodes"></a>Sikertelen a DSC-erőforrások található összes csomópont
 
 Egy Naplóelemzési előnye, hogy a csomópontok közötti sikertelen ellenőrzést kereshet.
-toofind DSC-erőforrások, melyeknél nem sikerült az összes példányát.
+Találja DSC-erőforrások, melyeknél nem sikerült az összes példányát.
 
-1. Hello napló elemzés áttekintése lapon kattintson **naplófájl-keresési**.
-1. A riasztás napló keresési lekérdezés létrehozásához írja be a következő keresési lekérdezés mezőbe hello hello:`Type=AzureDiagnostics Category=DscNodeStatus OperationName=DscResourceStatusData ResultType=Failed`
+1. A napló elemzés áttekintése lapon kattintson **naplófájl-keresési**.
+1. A riasztás napló keresési lekérdezés létrehozásához írja be a következő keresést a lekérdezés mezőbe:`Type=AzureDiagnostics Category=DscNodeStatus OperationName=DscResourceStatusData ResultType=Failed`
 
 ### <a name="view-historical-dsc-node-status"></a>Korábbi DSC csomópont állapotának megtekintése
 
-Mindemellett érdemes lehet toovisualize a DSC-csomópont állapotát előzmények adott idő alatt.  
-A lekérdezés toosearch időbeli használhat hello állapotának a DSC-csomópont állapotát.
+Végül érdemes lehet a DSC-csomópont állapotelőzmény megjelenítheti az adott idő alatt.  
+Ez a lekérdezés segítségével keresse meg a DSC-csomópont állapotát állapotának adott idő alatt.
 
 `Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION" Category=DscNodeStatus NOT(ResultType="started") | measure Count() by ResultType interval 1hour`  
 
-Ez megjeleníti hello csomópont állapot diagram adott idő alatt.
+A csomópont állapota a diagram megjeleníti adott idő alatt.
 
 ## <a name="log-analytics-records"></a>Log Analytics-rekordok
 
@@ -123,76 +123,76 @@ Azure Automation diagnosztika rekordok két kategóriába Naplóelemzési hoz l�
 
 | Tulajdonság | Leírás |
 | --- | --- |
-| TimeGenerated |Dátum és idő, amikor hello megfelelőségi ellenőrzés futtatta. |
+| TimeGenerated |Dátum és idő, amikor a megfelelőségi ellenőrzés futtatta. |
 | OperationName |DscNodeStatusData |
-| ResultType |E hello csomópont megfelel. |
-| NodeName_s |hello hello felügyelt csomópont neve. |
-| NodeComplianceStatus_s |E hello csomópont megfelel. |
-| DscReportStatus |E hello megfelelőségi ellenőrzés sikeresen lefutott. |
-| ConfigurationMode | Hello konfigurációs Mitől alkalmazott toohello csomópont. A lehetséges értékek: __"ApplyOnly"__,__"ApplyandMonitior"__, és __"ApplyandAutoCorrect"__. <ul><li>__ApplyOnly__: DSC hello konfigurációjának alkalmazására szolgál, és nincs semmi hatása további, kivéve, ha az új konfiguráció fejlesztőre toohello célcsomóponttal, vagy ha az új konfiguráció lekért egy kiszolgáló. Az új konfiguráció első alkalmazása után DSC nem ellenőrzi a korábban konfigurált állapotból eltéréseket. A DSC kísérletek tooapply hello konfigurációs, amíg az sikeres előtt nem __ApplyOnly__ lép érvénybe. </li><li> __ApplyAndMonitor__: hello alapértelmezett érték. hello LCM alkalmazza minden új konfigurációt. Az új konfiguráció első alkalmazása után a hello célcsomóponttal drifts szükséges hello állapotból, ha DSC jelentések hello ellentmondás az naplókat. A DSC kísérletek tooapply hello konfigurációs, amíg az sikeres előtt nem __ApplyAndMonitor__ lép érvénybe.</li><li>__ApplyAndAutoCorrect__: DSC alkalmazza minden új konfigurációt. Az új konfiguráció első alkalmazása után hello célcsomóponttal drifts szükséges hello állapotból, ha DSC hello ellentmondás naplók az jelentéseket, és majd újra alkalmazza hello aktuális konfigurációja.</li></ul> |
-| HostName_s | hello hello felügyelt csomópont neve. |
-| IP-cím | a felügyelt csomópont hello hello IPv4-címét. |
+| ResultType |Hogy a csomópont nem megfelelő. |
+| NodeName_s |A felügyelt csomópont neve. |
+| NodeComplianceStatus_s |Hogy a csomópont nem megfelelő. |
+| DscReportStatus |Ellenőrizze, hogy a megfelelőségi sikeresen lefutott. |
+| ConfigurationMode | A konfiguráció alkalmazásának a módját a csomópontra. A lehetséges értékek: __"ApplyOnly"__,__"ApplyandMonitior"__, és __"ApplyandAutoCorrect"__. <ul><li>__ApplyOnly__: DSC konfigurációjának alkalmazására szolgál, és nincs semmi hatása további, kivéve, ha az új konfiguráció célcsomóponton, vagy ha egy kiszolgáló új konfigurációt van lekért fejlesztőre. Az új konfiguráció első alkalmazása után DSC nem ellenőrzi a korábban konfigurált állapotból eltéréseket. A konfiguráció alkalmazásához, amíg az nem lesz sikeres, mielőtt megpróbálja DSC __ApplyOnly__ lép érvénybe. </li><li> __ApplyAndMonitor__: Ez az az alapértelmezett érték. A LCM alkalmazza minden új konfigurációt. Az új konfiguráció első alkalmazása után a célcsomóponton drifts kívánt állapotból, ha DSC jelent a naplókban az eltérés. A konfiguráció alkalmazásához, amíg az nem lesz sikeres, mielőtt megpróbálja DSC __ApplyAndMonitor__ lép érvénybe.</li><li>__ApplyAndAutoCorrect__: DSC alkalmazza minden új konfigurációt. Az új konfiguráció első alkalmazása után a célcsomópont drifts kívánt állapotból, ha DSC jelent a naplókban az eltérés, és majd újra alkalmazza a jelenlegi konfiguráció.</li></ul> |
+| HostName_s | A felügyelt csomópont neve. |
+| IP-cím | A felügyelt csomóponthoz IPv4-címét. |
 | Kategória | DscNodeStatus |
-| Erőforrás | hello hello Azure Automation-fiók neve. |
-| Tenant_g | A hívó hello hello bérlői azonosító GUID. |
-| NodeId_g |Hello felügyelt csomópont azonosító GUID. |
-| DscReportId_g |Hello jelentés azonosító GUID. |
-| LastSeenTime_t |Dátum és idő, amikor hello jelentés legutóbbi megtekintése. |
-| ReportStartTime_t |Dátum és idő, amikor hello jelentés elindítása. |
-| ReportEndTime_t |Dátum és idő, amikor hello jelentés befejeződött. |
-| NumberOfResources_d |hello alkalmazott konfiguráció toohello csomópont nevű DSC erőforrások hello száma. |
-| SourceSystem | A Naplóelemzési hogyan hello adatokat gyűjteni. Mindig *Azure* az Azure diagnostics. |
-| ResourceId |Megadja a hello Azure Automation-fiók. |
-| ResultDescription | hello leírást ehhez a művelethez. |
-| SubscriptionId | hello Azure-előfizetéssel azonosítót (GUID) hello Automation-fiók. |
-| ResourceGroup | Az Automation-fiók hello hello erőforráscsoport nevét. |
+| Erőforrás | Az Azure Automation-fiók neve. |
+| Tenant_g | A hívónak a bérlői azonosító GUID. |
+| NodeId_g |A felügyelt csomóponthoz azonosító GUID. |
+| DscReportId_g |A jelentés azonosító GUID. |
+| LastSeenTime_t |Dátum és idő, amikor a jelentés utolsó tekinthetők. |
+| ReportStartTime_t |Dátum és idő, amikor a jelentés elindítása. |
+| ReportEndTime_t |Dátum és idő, amikor a jelentés befejeződött. |
+| NumberOfResources_d |A konfiguráció a csomóponton alkalmazott nevű DSC erőforrások száma. |
+| SourceSystem | Hogyan Naplóelemzési gyűjti az adatokat. Mindig *Azure* az Azure diagnostics. |
+| ResourceId |Adja meg az Azure Automation-fiók. |
+| ResultDescription | Ez a művelet leírását. |
+| SubscriptionId | Az Azure-előfizetés azonosítója (GUID) az Automation-fiókhoz. |
+| ResourceGroup | Az erőforráscsoport neve az Automation-fiók. |
 | ResourceProvider | MICROSOFT. AUTOMATIZÁLÁS |
 | ResourceType | AUTOMATIONACCOUNTS |
-| CorrelationId |Hello hello megfelelőségi jelentés korrelációs azonosító, GUID. |
+| CorrelationId |A megfelelőségi jelentés korrelációs azonosítója GUID. |
 
 ### <a name="dscresourcestatusdata"></a>DscResourceStatusData
 
 | Tulajdonság | Leírás |
 | --- | --- |
-| TimeGenerated |Dátum és idő, amikor hello megfelelőségi ellenőrzés futtatta. |
+| TimeGenerated |Dátum és idő, amikor a megfelelőségi ellenőrzés futtatta. |
 | OperationName |DscResourceStatusData|
-| ResultType |Hello erőforrás-e megfelelő. |
-| NodeName_s |hello hello felügyelt csomópont neve. |
+| ResultType |Az erőforrás-e megfelelő. |
+| NodeName_s |A felügyelt csomópont neve. |
 | Kategória | DscNodeStatus |
-| Erőforrás | hello hello Azure Automation-fiók neve. |
-| Tenant_g | A hívó hello hello bérlői azonosító GUID. |
-| NodeId_g |Hello felügyelt csomópont azonosító GUID. |
-| DscReportId_g |Hello jelentés azonosító GUID. |
-| DscResourceId_s |hello hello DSC erőforráspéldány neve. |
-| DscResourceName_s |hello hello DSC-erőforrás neve. |
-| DscResourceStatus_s |E DSC erőforrás hello megfelel a szabályzatnak. |
-| DscModuleName_s |hello hello PowerShell-modult, amely tartalmazza a hello DSC erőforrás neve. |
-| DscModuleVersion_s |hello PowerShell modul, amely tartalmazza a hello DSC erőforrás hello verziója. |
-| DscConfigurationName_s |hello konfigurációs hello neve toohello csomópont alkalmazza. |
-| ErrorCode_s | hello hibakód, ha hello erőforrás sikertelen volt. |
-| ErrorMessage_s |hello hibaüzenet, ha hello erőforrás nem sikerült. |
-| DscResourceDuration_d |hello időtartamot (másodpercekben), hello DSC erőforrás futott. |
-| SourceSystem | A Naplóelemzési hogyan hello adatokat gyűjteni. Mindig *Azure* az Azure diagnostics. |
-| ResourceId |Megadja a hello Azure Automation-fiók. |
-| ResultDescription | hello leírást ehhez a művelethez. |
-| SubscriptionId | hello Azure-előfizetéssel azonosítót (GUID) hello Automation-fiók. |
-| ResourceGroup | Az Automation-fiók hello hello erőforráscsoport nevét. |
+| Erőforrás | Az Azure Automation-fiók neve. |
+| Tenant_g | A hívónak a bérlői azonosító GUID. |
+| NodeId_g |A felügyelt csomóponthoz azonosító GUID. |
+| DscReportId_g |A jelentés azonosító GUID. |
+| DscResourceId_s |A DSC erőforráspéldány neve. |
+| DscResourceName_s |A DSC-erőforrás nevét. |
+| DscResourceStatus_s |A DSC-erőforrás e megfelel a szabályzatnak. |
+| DscModuleName_s |A PowerShell-modult, amely tartalmazza a DSC-erőforrás neve. |
+| DscModuleVersion_s |A PowerShell-modult, amely tartalmazza a DSC-erőforrás verzióját. |
+| DscConfigurationName_s |A csomóponton alkalmazott konfiguráció neve. |
+| ErrorCode_s | Ha az erőforrás nem sikerült a hibakód. |
+| ErrorMessage_s |A hibaüzenet, ha az erőforrás nem sikerült. |
+| DscResourceDuration_d |Az idő másodpercben, ameddig a DSC-erőforrás futott. |
+| SourceSystem | Hogyan Naplóelemzési gyűjti az adatokat. Mindig *Azure* az Azure diagnostics. |
+| ResourceId |Adja meg az Azure Automation-fiók. |
+| ResultDescription | Ez a művelet leírását. |
+| SubscriptionId | Az Azure-előfizetés azonosítója (GUID) az Automation-fiókhoz. |
+| ResourceGroup | Az erőforráscsoport neve az Automation-fiók. |
 | ResourceProvider | MICROSOFT. AUTOMATIZÁLÁS |
 | ResourceType | AUTOMATIONACCOUNTS |
-| CorrelationId |Hello hello megfelelőségi jelentés korrelációs azonosító, GUID. |
+| CorrelationId |A megfelelőségi jelentés korrelációs azonosítója GUID. |
 
 ## <a name="summary"></a>Összefoglalás
 
-Az Automation DSC adatok tooLog Analytics elküldésével kaphat az Automation DSC-csomópontok által hello állapotának jobb betekintést:
+Az Automation DSC adatokat küld a Naplóelemzési, az Automation DSC-csomópontok által állapotának jobb betekintést kaphat:
 
-* Beállítása riasztások toonotify, ha probléma van a
-* Egyéni nézetek és a keresési lekérdezések toovisualize a eredmények, runbook-feladat állapotát, és egyéb kapcsolódó fő mutatók vagy metrikákat.  
+* Értesítést küldenek, ha probléma van a riasztások beállítása
+* Egyéni nézetei és a keresési lekérdezések segítségével a runbook eredményeinek képi megjelenítése, runbook-feladat állapotát, és egyéb kapcsolódó fő mutatók vagy metrikákat.  
 
-A Naplóelemzési nagyobb működési látható tooyour Automation DSC-adatokat biztosít, és gyorsabban segít a cím incidensek.  
+A Naplóelemzési az Automation DSC adatait működési áttekinthetősége biztosít, és gyorsabban segít a cím incidensek.  
 
 ## <a name="next-steps"></a>Következő lépések
 
-* bővebben a hogyan tooconstruct különböző keresési lekérdezések, és nézze meg hello Automation DSC naplózza a Log Analyticshez toolearn lásd: [Log Analytics-e jelentkezni a keresések](../log-analytics/log-analytics-log-searches.md)
-* További információ az Azure Automation DSC használata toolearn lásd [Ismerkedés az Azure Automation DSC](automation-dsc-getting-started.md)
-* További információ az OMS szolgáltatáshoz és a gyűjtemény adatforrások toolearn lásd [gyűjtése Azure storage adatok a Naplóelemzési – áttekintés](../log-analytics/log-analytics-azure-storage.md)
+* Különböző keresési lekérdezések összeállításához, és tekintse át a Automation DSC a Naplóelemzési kapcsolatos további tudnivalókért lásd: [Log Analytics-e jelentkezni a keresések](../log-analytics/log-analytics-log-searches.md)
+* Azure Automation DSC használatával kapcsolatos további tudnivalókért lásd: [Ismerkedés az Azure Automation DSC](automation-dsc-getting-started.md)
+* Az OMS Log Analytics használatával és adatgyűjtési forrásokkal kapcsolatos további tudnivalókat lásd: az [Azure-tárfiókbeli adatok Log Analytics-ben történő gyűjtésének az áttekintése](../log-analytics/log-analytics-azure-storage.md)
 

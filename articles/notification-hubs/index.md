@@ -1,8 +1,8 @@
 ---
-title: "Notification Hubs dokumentációja – oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
-description: "Ismerje meg, toosend a leküldéses értesítések mobileszközről bármely háttér tooany a Notification hubs használatával. Oktatóanyagok, API-referenciák, és egyéb dokumentációk."
+title: "Az Azure Notification Hubs dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogyan küldhet leküldéses értesítéseket akármilyen háttérrendszerből bármely mobileszközre a Notification Hubs használatával. Oktatóanyagok, API-referenciák, és egyéb dokumentációk."
 services: notification-hubs
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 050c70c32f50eb495cd53a6bfa5549d6ae189d89
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f7b8560d4ce7374e36d5f7e8a5d2056396e4f089
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 #<a name="notification-hubs-documentation"></a>Notification Hubs – dokumentáció
 
-Ismerje meg, hogyan toouse Notification Hubs, többplatformos, méretezhető leküldéses-értesítési motor gyorsan küldéséhez több millió üzenetet. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt is láthat tooset be, majd küldje el a leküldéses értesítések bármely háttér tooany mobil eszközről. 
+Ismerje meg, hogyan küldhet gyorsan akár több millió üzenetet a Notification Hubs többplatformos, méretezhető leküldéses értesítési motor használatával. Az oktatóanyagok, API-referenciák és az egyéb dokumentáció bemutatják, hogyan állíthat be és küldhet leküldéses értesítéseket akármilyen háttérrendszerből bármely mobileszközre. 
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ Ismerje meg, hogyan toouse Notification Hubs, többplatformos, méretezhető lek
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Ismerkedés az Azure Notification Hubs leküldéses értesítések tooAndroid (FCM) küldése</h3>
+                        <h3>Leküldéses értesítések küldése Androidra (FCM) az Azure Notification Hubs használatával – az első lépések</h3>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@ Ismerje meg, hogyan toouse Notification Hubs, többplatformos, méretezhető lek
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Bevezetés a leküldéses értesítések tooChrome alkalmazások az Azure Notification hubs használatával</h3>
+                        <h3>Leküldéses értesítések küldése Chrome-appokba az Azure Notification Hubs használatával – az első lépések</h3>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@ Ismerje meg, hogyan toouse Notification Hubs, többplatformos, méretezhető lek
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Ismerkedés az Azure Notification Hubs leküldéses értesítések tooiOS küldése</h3>
+                        <h3>Leküldéses értesítések küldése iOS-re az Azure Notification Hubs használatával – az első lépések</h3>
                     </div>
                 </div>
             </div>

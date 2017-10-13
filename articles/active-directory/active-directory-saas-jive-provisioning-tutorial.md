@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált Jive |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és Jive között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és Jive között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,89 +13,89 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/19/2017
 ms.author: jeedes
-ms.openlocfilehash: b1c0d0bc2d79427c055f577fe5f9d30d10f1bbdd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 957b152fdd40d08a867e788b0cb9f7d57ed481e4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-configuring-jive-for-user-provisioning"></a>Oktatóanyag: A felhasználók átadása Jive konfigurálása
 
-hello Ez az oktatóanyag célja tooshow meg hello tooperform Jive és az Azure AD tooautomatically kiépítése és deaktiválás rendelkezés lévő felhasználói fiókok Azure AD tooJive a szükséges lépéseket.
+Ez az oktatóanyag célja mutatjuk be, végezze el a Jive és az Azure AD automatikus kiépítés és deaktiválás rendelkezés felhasználói fiókok Azure AD-Jive lépéseket.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Ebben az oktatóanyagban leírt hello forgatókönyv feltételezi, hogy már rendelkezik a következő elemek hello:
+Ebben az oktatóanyagban leírt forgatókönyv feltételezi, hogy már rendelkezik a következő elemek:
 
 *   Az Azure Active directory-bérlő.
 *   Egy Jive egyszeri bejelentkezés engedélyezve van az előfizetésben.
 *   Egy felhasználói fiókot az Jive Team rendszergazdai engedélyekkel.
 
-## <a name="assigning-users-toojive"></a>Felhasználók tooJive hozzárendelése
+## <a name="assigning-users-to-jive"></a>Felhasználók hozzárendelése Jive
 
-Az Azure Active Directory mely felhasználók hozzáférési tooselected alkalmazásokat kell látnia "hozzárendelések" toodetermine nevű elvét használja. Automatikus felhasználói fiók kiépítése hello kontextusában csak hello felhasználók és csoportok "hozzárendelt" tooan alkalmazás Azure Active Directory szinkronizálása.
+Az Azure Active Directory egy fogalom, más néven "hozzárendeléseket" használ annak meghatározásához, hogy mely felhasználók kell kapnia a kiválasztott alkalmazásokhoz való hozzáférés. Automatikus fiók felhasználókiépítése keretében csak a felhasználók és csoportok "hozzárendelt" az Azure AD-alkalmazáshoz való szinkronizálása.
 
-Mielőtt hello szolgáltatás kiépítését engedélyezése és konfigurálása, kell toodecide milyen felhasználói és/vagy az Azure AD-csoportok hello felhasználókkal, akik tooyour Jive app kell meghatároznia. Ha úgy döntött, hozzárendelheti a felhasználók tooyour Jive app itt hello utasításokat követve:
+A létesítési szolgáltatás engedélyezése és konfigurálása, mielőtt szüksége döntse el, hogy mely felhasználók és/vagy az Azure AD-csoportok határoz meg a felhasználók, akik az Jive alkalmazásához való hozzáférést. Ha úgy döntött, itt cikk utasításait követve hozzárendelheti ezeket a felhasználókat az Jive alkalmazás:
 
-[Rendelje hozzá a felhasználó vagy csoport tooan vállalati alkalmazások](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)
+[Egy felhasználó vagy csoport hozzárendelése egy vállalati alkalmazás](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)
 
-### <a name="important-tips-for-assigning-users-toojive"></a>Fontos tippek a felhasználók tooJive hozzárendelése
+### <a name="important-tips-for-assigning-users-to-jive"></a>Felhasználók hozzárendelése Jive fontos tippek
 
-*   Javasoljuk, hogy egyetlen Azure AD-felhasználó tooJive tootest hello konfigurálása kiosztás rendelni. További felhasználók és/vagy csoportok később is rendelhető.
+*   Javasoljuk, hogy egyetlen Azure AD-felhasználó a kiépítési konfigurációjának tesztelése rendelendő Jive. További felhasználók és/vagy csoportok később is rendelhető.
 
-*   Amikor egy felhasználó tooJive rendel, ki kell választania egy érvényes felhasználói szerepkörnek. hello "alapértelmezett" szerepkör nem működik történő üzembe helyezéséhez.
+*   Amikor egy felhasználó hozzárendelése Jive, ki kell választania egy érvényes felhasználói szerepkörnek. A "Default" szerepkör nem működik történő üzembe helyezéséhez.
 
 ## <a name="enable-user-provisioning"></a>Felhasználó-kiépítés engedélyezése
 
-Ez a szakasz végigvezeti a csatlakozás az Azure AD tooJive felhasználói fiók kiépítése API és kiépítése szolgáltatáshoz toocreate hello konfigurálása, frissítése, és tiltsa le a hozzárendelt felhasználói fiókok a Jive alapján a felhasználók és csoportok hozzárendelése az Azure ad-ben.
+Ez a szakasz végigvezeti az Azure AD kapcsolódás Jive a felhasználói fiók kiépítése API és a létesítési szolgáltatás létrehozása, konfigurálása frissítése, és tiltsa le a felhasználók és csoportok hozzárendelése az Azure AD-alapú Jive hozzárendelt felhasználói fiókok.
 
 > [!TIP]
-> Dönthet úgy is SAML-alapú egyszeri bejelentkezés az Jive hello megjelenő utasításokat követve tooenabled [Azure-portálon](https://portal.azure.com). Egyszeri bejelentkezés konfigurálható függetlenül automatikus kiépítés, bár ez a két funkció egészítse ki egymást.
+> Dönthet úgy is, SAML-alapú egyszeri bejelentkezés Jive számára engedélyezni, utasítások megadott [Azure-portálon](https://portal.azure.com). Egyszeri bejelentkezés konfigurálható függetlenül automatikus kiépítés, bár ez a két funkció egészítse ki egymást.
 
-### <a name="tooconfigure-user-account-provisioning"></a>tooconfigure felhasználói fiók kiépítése:
+### <a name="to-configure-user-account-provisioning"></a>Konfigurálhatja a felhasználói fiók kiépítése:
 
-hello ebben a szakaszban célja toooutline hogyan tooJive tooenable a felhasználók átadása az Active Directory felhasználói fiókok.
-Ez az eljárás részeként szükség tooprovide szüksége toorequest Jive.com a felhasználó biztonsági jogkivonatot.
+Ez a szakasz célja engedélyezése a felhasználók átadása, az Active Directory felhasználói fiókoknak az Jive felvázoló.
+Ez az eljárás részeként meg kell beszereznie Jive.com felhasználó biztonsági jogkivonat szükség.
 
-1. A hello [Azure-portálon](https://portal.azure.com), keresse meg a toohello **Azure Active Directory > Vállalati alkalmazások > összes alkalmazás** szakasz.
+1. Az a [Azure-portálon](https://portal.azure.com), keresse meg a **Azure Active Directory > Vállalati alkalmazások > összes alkalmazás** szakasz.
 
-2. Ha már konfigurált Jive egyszeri bejelentkezést, keresse meg a hello keresési mező Jive példányát. Máskülönben válassza **Hozzáadás** keresse meg a **Jive** hello alkalmazás gyűjteményben. Válassza ki a Jive hello keresési eredmények közül, és vegye fel tooyour alkalmazások listáját.
+2. Ha már konfigurált Jive egyszeri bejelentkezést, keresse meg a keresési mező Jive példányát. Máskülönben válassza **Hozzáadás** keresse meg a **Jive** az alkalmazás katalógusában. Válassza ki a Jive a keresési eredmények közül, és adja hozzá az alkalmazások listáját.
 
-3. Jelölje ki a Jive példányát, majd jelölje ki a hello **kiépítési** fülre.
+3. Jelölje ki a Jive példányát, majd válassza ki a **kiépítési** fülre.
 
-4. Set hello **kiépítési üzemmódban** túl**automatikus**. 
+4. Állítsa be a **kiépítési üzemmódját** való **automatikus**. 
 
     ![Kiépítés](./media/active-directory-saas-jive-provisioning-tutorial/provisioning.png)
 
-5. A hello **rendszergazdai hitelesítő adataival** területen adja meg a következő konfigurációs beállítások hello:
+5. Az a **rendszergazdai hitelesítő adataival** területen adja meg a következő konfigurációs beállításokat:
    
-    a. A hello **Jive rendszergazda felhasználóneve** szövegmezőhöz típus egy Jive fióknév rendelkezik hello **rendszergazda** Jive.com rendelt profillal.
+    a. Az a **Jive rendszergazda felhasználóneve** szövegmezőhöz egy Jive a fióknevet, amelynek típusa a **rendszergazda** Jive.com rendelt profillal.
    
-    b. A hello **Jive rendszergazdai jelszó** szövegmezőhöz típus hello fiókhoz tartozó jelszót.
+    b. Az a **Jive rendszergazdai jelszó** szövegmező, írja be a fiókhoz tartozó jelszót.
    
-    c. A hello **Jive bérlői URL-cím** szövegmezőhöz típus hello Jive bérlői URL-cím.
+    c. Az a **Jive bérlői URL-cím** szövegmezőhöz Jive bérlői URL-címét.
       
       > [!NOTE]
-      > hello Jive bérlői URL-cím a szervezet toolog tooJive a által használt URL-cím.  
-      > Általában a hello URL-címnek a hello a következő formátumban: **www.\< szervezet\>. jive.com**.          
+      > A Jive bérlői URL-cím bejelentkezni Jive a szervezet által használt URL-cím.  
+      > Általában az URL-cím formátuma a következő: **www.\< szervezet\>. jive.com**.          
 
-6. Hello Azure-portálon, kattintson **kapcsolat tesztelése** tooensure az Azure AD tooyour Jive alkalmazás képes kapcsolódni.
+6. Az Azure portálon kattintson **kapcsolat tesztelése** biztosításához az Azure AD csatlakozhat az Jive alkalmazást.
 
-7. Adja meg a hello e-mail címet vagy egy csoport létesítési hiba értesítések a hello kapjanak **értesítő e-mailt** mezőben, majd jelölje be az alábbi hello jelölőnégyzetet.
+7. Adja meg az e-mail címet vagy egy csoport, az üzembe helyezési hiba értesítéseket kapjanak a **értesítő e-mailt** mezőben, majd jelölje be az alábbi jelölőnégyzetet.
 
 8. Kattintson a **mentéséhez.**
 
-9. A hello hozzárendelések szakaszt, válassza a **szinkronizálása Azure Active Directory-felhasználók tooJive.**
+9. A hozzárendelések szakaszban válassza ki a **szinkronizálása Azure Active Directory-felhasználókat Jive.**
 
-10. A hello **attribútum-leképezésekhez** szakaszban, tekintse át az Azure AD tooJive szinkronizált hello felhasználói attribútumok. kiválasztott attribútumok hello **egyező** tulajdonságok használt toomatch hello tartozó felhasználói fiókok Jive a frissítési műveletekben. Válassza ki a hello Mentés gombra toocommit módosításokat.
+10. Az a **attribútum-leképezésekhez** szakaszban, tekintse át a felhasználói attribútumok, az Azure AD Jive lettek szinkronizálva. A kiválasztott attribútumok **egyező** tulajdonságok használatával felel meg a felhasználói fiókokat a Jive a frissítési műveleteket. Válassza ki a Mentés gombra a módosítások véglegesítéséhez.
 
-11. tooenable hello Azure AD Jive, módosítás hello a létesítési szolgáltatás **kiépítési állapot** túl**a** hello beállítások szakaszában a
+11. Az Azure AD szolgáltatás Jive kiépítés engedélyezéséhez módosítsa a **kiépítési állapot** való **a** beállításai szakaszában
 
 12. Kattintson a **mentéséhez.**
 
-Hello kezdeti szinkronizálás bármely felhasználói és/vagy csoportok tooJive a hello felhasználók és csoportok szakasz kezdődik. hello kezdeti szinkronizálás hosszabb, mint bekövetkező körülbelül 20 percenként, mindaddig, amíg hello szolgáltatás fut. ezt követő szinkronizálások tooperform vesz igénybe. Használhatja a hello **szinkronizálás részleteivel** toomonitor folyamatban szakaszt, és kövesse az Jive alkalmazásnak szolgáltatás kiépítését hello által végzett összes műveletet írják le hivatkozások tooprovisioning tevékenység jelentéseket.
+A kezdeti szinkronizálás bármely felhasználói és/vagy a felhasználók és csoportok szakaszban Jive rendelt csoportok kezdődik. A kezdeti szinkronizálás végrehajtásához ezt követő szinkronizálások, amely körülbelül 20 percenként történik, amíg a szolgáltatás fut-nál több időt vesz igénybe. Használhatja a **szinkronizálás részleteivel** szakasz figyelemmel az előrehaladást, és hivatkozásokat követve történő rendszerbe állításához tevékenység jelentéseit, amelyek a létesítési szolgáltatás az Jive alkalmazás által végzett összes műveletet írják le.
 
-Mostantól létrehozhat egy olyan fiókot. Várjon, amíg fel hello fiókot töltött tooverify szinkronizált tooJive too20 perc.
+Mostantól létrehozhat egy olyan fiókot. Akár 20 percig várjon győződjön meg arról, hogy a fiók Jive lett-e szinkronizálva.
 
 ## <a name="additional-resources"></a>További források
 

@@ -1,6 +1,6 @@
 ---
-title: "a Spark - Azure HDInsight naplózza Application Insights aaaAnalyze |} Microsoft Docs"
-description: "Ismerje meg, hogy miként naplózza az Application Insights tooexport a tooblob tárolási, és majd elemezheti a Spark on HDInsight hello naplókat."
+title: "Application Insights naplóinak elemzése a Spark - Azure HDInsight |} Microsoft Docs"
+description: "Megtudhatja, hogyan exportálják a blob-tároló, és a naplóinak majd elemzése a Spark on HDInsight az Application Insights-naplókat."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,85 +15,85 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/15/2017
 ms.author: larryfr
-ms.openlocfilehash: 11ed8cf68dba8d5f9d6e4a65eba0d2b5a950cd00
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d98e403683618ef6115372f99e4949af87af4490
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="analyze-application-insights-telemetry-logs-with-spark-on-hdinsight"></a>A Spark on HDInsight az Application Insights telemetria naplóinak elemzése
 
-Megtudhatja, hogyan toouse Spark, a HDInsight tooanalyze Application Insights telemetriai adatokat.
+Megtudhatja, hogyan válassza a Spark on HDInsight Application Insights telemetriai adatok elemzését.
 
-[A Visual Studio Application Insights](../application-insights/app-insights-overview.md) analytics szolgáltatás, amely figyeli a webes alkalmazások. Lehet, hogy az Application Insights által generált telemetriai adatokat exportált tooAzure tároló. Ha hello adatokat az Azure Storage, HDInsight lehet használt tooanalyze azt.
+[A Visual Studio Application Insights](../application-insights/app-insights-overview.md) analytics szolgáltatás, amely figyeli a webes alkalmazások. Az Application Insights által létrehozott telemetriai adatok Azure Storage exportálhatja. Ha az adatokat az Azure Storage, HDInsight segítségével elemezze.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-* Alkalmazás toouse Application Insights konfigurálva.
+* Egy alkalmazás, amely az Application Insights használatára van konfigurálva.
 
 * Linux-alapú HDInsight-fürt létrehozása ismeretét. További információkért lásd: [hozzon létre a Spark on HDInsight](hdinsight-apache-spark-jupyter-spark-sql.md).
 
   > [!IMPORTANT]
-  > hello jelen dokumentumban leírt lépések egy HDInsight-fürt által használt Linux igényelnek. Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+  > A jelen dokumentumban leírt lépések egy HDInsight-fürt által használt Linux igényelnek. A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 * Egy webböngészőben.
 
-hello következőket használták a fejlesztés és tesztelés Ez a dokumentum:
+A következő források a fejlesztés és tesztelés Ez a dokumentum használták:
 
-* Application Insights telemetria adatok generálta egy [Node.js webalkalmazás konfigurált toouse Application Insights](../application-insights/app-insights-nodejs.md).
+* Application Insights telemetria adatok generálta egy [Application Insights használatára konfigurált Node.js webalkalmazás](../application-insights/app-insights-nodejs.md).
 
-* A Linux-alapú a Spark on HDInsight-fürt verziószáma 3.5 használt tooanalyze hello adatok volt.
+* A Linux-alapú a Spark on HDInsight-fürt verziószáma 3.5 használatával elemezheti az adatokat.
 
 ## <a name="architecture-and-planning"></a>Architektúra és tervezése
 
-a következő diagram hello hello szolgáltatás architektúrája ebben a példában mutatja be:
+A következő diagram azt ábrázolja, ebben a példában a service-architektúra:
 
-![az Application Insights tooblob tárolásból áramló adatok jelennek meg, majd a Spark on HDInsight által feldolgozott diagramja](./media/hdinsight-spark-analyze-application-insight-logs/appinsightshdinsight.png)
+![a blob storage az Application Insights áramló adatok jelennek meg, majd a Spark on HDInsight által feldolgozott diagramja](./media/hdinsight-spark-analyze-application-insight-logs/appinsightshdinsight.png)
 
 ### <a name="azure-storage"></a>Azure Storage
 
-Az Application Insights konfigurált toocontinuously exportálás telemetriai adatokat tooblobs lehet. HDInsight majd elolvashatják hello blobok tárolt adatokat. Vannak azonban olyan követelményekkel, amelyeket kell követnie:
+Az Application Insights beállítható úgy, hogy folyamatosan telemetriai adatainak exportálása blobokat. HDInsight majd elolvashatják a blobok tárolt adatokat. Vannak azonban olyan követelményekkel, amelyeket kell követnie:
 
-* **Hely**: Ha hello Tárfiók és a HDInsight különböző helyeken vannak, megnövelheti késés. Költség szempontjából, is vagy kimenő díjak sem régiók közötti áthelyezése alkalmazott toodata növekszik.
+* **Hely**: Ha a Tárfiók és a HDInsight különböző helyeken vannak, megnövelheti késés. Kimenő forgalom díjak adatok régiók közötti áthelyezése is vonatkozik, költség, is növeli.
 
     > [!WARNING]
     > A Storage-fiók egy másik helyen, mint a HDInsight használata nem támogatott.
 
-* **BLOB-típusú**: HDInsight csak blokk blobokat támogat. Az Application Insights toousing blokkblobokat, és a HDInsight együttes alapértelmezés szerint kell működnie, alapértelmezés szerint.
+* **BLOB-típusú**: HDInsight csak blokk blobokat támogat. Alkalmazás Insights alapértelmezés szerint használja a blokkblobok, úgy kell működnie alapértelmezés szerint a HDInsight.
 
-További tárhely tooan meglévő HDInsight-fürt hozzáadására vonatkozó információkért lásd: hello [adja hozzá a további tárfiókok](hdinsight-hadoop-add-storage.md) dokumentum.
+A további tárhely hozzáadása egy meglévő HDInsight-fürt információkért lásd: a [adja hozzá a további tárfiókok](hdinsight-hadoop-add-storage.md) dokumentum.
 
 ### <a name="data-schema"></a>Adatséma
 
-Az Application Insights biztosít [exportálja az adatokat az adatmodellbe](../application-insights/app-insights-export-data-model.md) tooblobs exportálják hello telemetriai adatok formátuma. jelen dokumentumban leírt lépések hello használata Spark SQL toowork hello adatokkal. Spark SQL hello Application Insights által naplózott JSON-adatszerkezet sémát automatikusan elő tud állítani.
+Az Application Insights biztosít [exportálja az adatokat az adatmodellbe](../application-insights/app-insights-export-data-model.md) blobok exportálják a telemetriai adatok formátuma. A jelen dokumentumban leírt lépések Spark SQL használatával az adatokat. Spark SQL automatikusan hozhat létre a JSON-adatszerkezet az Application Insights által naplózott sémát.
 
 ## <a name="export-telemetry-data"></a>Telemetriai adatok exportálása
 
-Hello kövesse [konfigurálása a folyamatos exportálás](../application-insights/app-insights-export-telemetry.md) tooconfigure az Application Insights tooexport telemetriai adatokat tooan az Azure storage-blob.
+Kövesse a [konfigurálása a folyamatos exportálás](../application-insights/app-insights-export-telemetry.md) konfigurálása az Application Insights telemetria adatok exportálása egy Azure storage-blobba.
 
-## <a name="configure-hdinsight-tooaccess-hello-data"></a>HDInsight tooaccess hello adatok konfigurálása
+## <a name="configure-hdinsight-to-access-the-data"></a>Az adatok eléréséhez HDInsight konfigurálása
 
-HDInsight-fürtök létrehozásakor hello tárfiók hozzáadása a fürt létrehozása során.
+HDInsight-fürtöt hoz létre, ha a tárfiók hozzáadása a fürt létrehozása során.
 
-tooadd hello Azure Storage-fiók tooan meglévő fürt használja hello adatokat hello [adja hozzá a további Tárfiókok](hdinsight-hadoop-add-storage.md) dokumentum.
+Az Azure Storage-fiók hozzáadása egy meglévő fürthöz, olvassa el a a [adja hozzá a további Tárfiókok](hdinsight-hadoop-add-storage.md) dokumentum.
 
-## <a name="analyze-hello-data-pyspark"></a>Hello adatok elemzése: PySpark
+## <a name="analyze-the-data-pyspark"></a>Az adatok elemzése: PySpark
 
-1. A hello [Azure-portálon](https://portal.azure.com), válassza ki a Spark on HDInsight-fürt. A hello **Gyorshivatkozások** szakaszban jelölje be **fürt irányítópultok**, majd válassza ki **Jupyter Notebook** hello fürt Dashboard__ paneljén.
+1. Az a [Azure-portálon](https://portal.azure.com), válassza ki a Spark on HDInsight-fürt. Az a **Gyorshivatkozások** szakaszban jelölje be **fürt irányítópultok**, majd válassza ki **Jupyter Notebook** a fürt Dashboard__ paneljéről.
 
-    ![hello fürt irányítópultok](./media/hdinsight-spark-analyze-application-insight-logs/clusterdashboards.png)
+    ![A fürt irányítópultok](./media/hdinsight-spark-analyze-application-insight-logs/clusterdashboards.png)
 
-2. Hello jobb felső sarkában hello Jupyter lapra, válassza ki **új**, majd **PySpark**. A Python-alapú Jupyter Notebook tartalmazó új böngészőlapon nyílik meg.
+2. Válassza ki a Jupyter oldal jobb felső sarkában **új**, majd **PySpark**. A Python-alapú Jupyter Notebook tartalmazó új böngészőlapon nyílik meg.
 
-3. Első mezőben hello (nevű egy **cella**) hello lapon adja meg a következő szöveg hello:
+3. Az első mezőben (nevű egy **cella**) lapon adja meg a következő szöveget:
 
    ```python
    sc._jsc.hadoopConfiguration().set('mapreduce.input.fileinputformat.input.dir.recursive', 'true')
    ```
 
-    Ez a kód Spark toorecursively hozzáférés hello könyvtárstruktúrát hello bemeneti adatok konfigurálja. Application Insights telemetria naplózott tooa directory szerkezete hasonló toohello `/{telemetry type}/YYYY-MM-DD/{##}/`.
+    Ez a kód Spark rekurzív módon hozzáférését a könyvtárstruktúra a bemeneti adatok konfigurálja. Application Insights telemetria kerül a hasonló könyvtárszerkezete a `/{telemetry type}/YYYY-MM-DD/{##}/`.
 
-4. Használjon **SHIFT + ENTER** toorun hello kódot. A bal oldalán található hello cella hello egy "\*" hello zárójeleket tooindicate között jelenik meg, hogy ezt a cellát hello kód végrehajtása zajlik. Amint befejeződött, hello "\*" tooa számát, valamint a következő szöveg hasonló toohello hello cella alább látható kimeneti módosítja:
+4. Használjon **SHIFT + ENTER** futtatja a kódot. A cella bal oldalán egy "\*" annak jelzésére, hogy ezt a cellát a kód végrehajtott zárójelek között jelenik meg. Miután befejeződött, a "\*" módosítását egy számot, és a kimenet az alábbihoz hasonló a cella alább látható:
 
         Creating SparkContext as 'sc'
 
@@ -102,38 +102,38 @@ tooadd hello Azure Storage-fiók tooan meglévő fürt használja hello adatokat
 
         Creating HiveContext as 'sqlContext'
         SparkContext and HiveContext created. Executing user code ...
-5. Egy új cella alatt hello jön létre először egy. Adja meg a következő szöveget: hello új cella hello. Cserélje le `CONTAINER` és `STORAGEACCOUNT` hello az Azure storage-fiók nevét és az Application Insights-adatokat tartalmazó blob-tároló neve.
+5. Egy új cella alatt az elsőt jön létre. Adja meg a következő szöveget a új cellára. Cserélje le `CONTAINER` és `STORAGEACCOUNT` az Azure storage-fiók nevét és az Application Insights-adatokat tartalmazó blob-tároló neve.
 
    ```python
    %%bash
    hdfs dfs -ls wasb://CONTAINER@STORAGEACCOUNT.blob.core.windows.net/
    ```
 
-    Használjon **SHIFT + ENTER** tooexecute ezt a cellát. Egy hasonló toohello eredményt, a következő szöveg jelenik meg:
+    Használjon **SHIFT + ENTER** végrehajtani ezt a cellát. Az alábbi hasonló eredményt látja:
 
         Found 1 items
         drwxrwxrwx   -          0 1970-01-01 00:00 wasb://appinsights@contosostore.blob.core.windows.net/contosoappinsights_2bededa61bc741fbdee6b556571a4831
 
-    hello wasb visszaadott elérési út hello Application Insights telemetria adatok hello helyét. Változás hello `hdfs dfs -ls` sor a hello cella toouse hello wasb visszaadott elérési út, és ezután **SHIFT + ENTER** toorun hello cella újra. Megadott idő hello eredmények megjelenjen-e telemetriai adatokat tartalmazó hello könyvtárak.
+    A wasb visszaadott elérési út az Application Insights telemetria adatok helyét. Módosítsa a `hdfs dfs -ls` visszaadott wasb elérési utat használja a cellában. sor, és ezután **SHIFT + ENTER** újra futtatni a cella. Ebben az esetben az eredmények megjelenjen-e a telemetriai adatokat tartalmazó könyvtárak.
 
    > [!NOTE]
-   > A hello hello maradéka ebben a szakaszban ismertetett visszaállítási lépésekkel, hello `wasb://appinsights@contosostore.blob.core.windows.net/contosoappinsights_{ID}/Requests` directory lett megadva. Lehet, hogy a könyvtárstruktúra különböző.
+   > Az ebben a szakaszban a többi a `wasb://appinsights@contosostore.blob.core.windows.net/contosoappinsights_{ID}/Requests` directory lett megadva. Lehet, hogy a könyvtárstruktúra különböző.
 
-6. A következő cella hello, adja meg a következő kód hello: cserélje le `WASB_PATH` hello előző lépésben hello elérési úttal.
+6. A következő cellában, írja be a következő kódot: cserélje le `WASB_PATH` az előző lépésben elérési úttal.
 
    ```python
    jsonFiles = sc.textFile('WASB_PATH')
    jsonData = sqlContext.read.json(jsonFiles)
    ```
 
-    Ez a kód egy dataframe hello folyamatos exportálási folyamat által exportált hello JSON-fájlokat hoz létre. Használjon **SHIFT + ENTER** toorun ezt a cellát.
-7. Hello következő cellában adja meg, és futtassa a következő tooview hello séma, Spark létrehozott hello JSON-fájlok hello:
+    Ez a kód egy dataframe a folyamatos exportálás folyamat által exportált JSON-fájlokat hoz létre. Használjon **SHIFT + ENTER** ezt a cellát futtatásához.
+7. A következő cellában adja meg, és futtassa a következő, a séma, Spark hozott létre a JSON-fájlok megtekintéséhez:
 
    ```python
    jsonData.printSchema()
    ```
 
-    az egyes telemetriai hello séma nem egyezik. hello következő példája az webes kérelmek létrehozott hello séma (hello tárolt adatok `Requests` alkönyvtár):
+    Az egyes telemetriai adatokat a séma nem egyezik. A következő példa egy a webes kérelmek az létrehozott séma (tárolt adatok a `Requests` alkönyvtár):
 
         root
         |-- context: struct (nullable = true)
@@ -195,7 +195,7 @@ tooadd hello Azure Storage-fiók tooan meglévő fürt használja hello adatokat
         |    |    |    |-- hashTag: string (nullable = true)
         |    |    |    |-- host: string (nullable = true)
         |    |    |    |-- protocol: string (nullable = true)
-8. Használja a következő tooregister hello dataframe ideiglenes táblaként hello és lekérdezésével hello adatokat:
+8. Használja a következő ideiglenes táblából a dataframe regisztrálásához és a lekérdezés futtatása az adatok alapján:
 
    ```python
    jsonData.registerTempTable("requests")
@@ -203,12 +203,12 @@ tooadd hello Azure Storage-fiók tooan meglévő fürt használja hello adatokat
    df.show()
    ```
 
-    A lekérdezés által visszaadott hello Város adatainak hello felső 20 rekordok, ahol context.location.city értéke nem null.
+    Ez a lekérdezés város olyan információkat ad vissza a felső 20 rekordok ahol context.location.city értéke nem null.
 
    > [!NOTE]
-   > hello környezetben struktúra megtalálható-e az Application Insights által naplózott összes telemetriai adat. hello város elem nem lehet megadni a naplókban. Használjon hello séma tooidentify más elemeket lekérdezhető a naplók adatok szerepelhetnek.
+   > A környezet struktúra megtalálható-e az Application Insights által naplózott összes telemetriai adat. A város elem nem lehet megadni a naplókban. A séma segítségével azonosíthatók a más elemeket lekérdezhető a naplók adatok szerepelhetnek.
 
-    A lekérdezés által visszaadott adatokat hasonló toohello a következő szöveget:
+    A lekérdezés által visszaadott adatokat az alábbihoz hasonló:
 
         +---------+
         |     city|
@@ -220,21 +220,21 @@ tooadd hello Azure Storage-fiók tooan meglévő fürt használja hello adatokat
         ...
         +---------+
 
-## <a name="analyze-hello-data-scala"></a>Hello adatok elemzése: Scala
+## <a name="analyze-the-data-scala"></a>Az adatok elemzése: Scala
 
-1. A hello [Azure-portálon](https://portal.azure.com), válassza ki a Spark on HDInsight-fürt. A hello **Gyorshivatkozások** szakaszban jelölje be **fürt irányítópultok**, majd válassza ki **Jupyter Notebook** hello fürt Dashboard__ paneljén.
+1. Az a [Azure-portálon](https://portal.azure.com), válassza ki a Spark on HDInsight-fürt. Az a **Gyorshivatkozások** szakaszban jelölje be **fürt irányítópultok**, majd válassza ki **Jupyter Notebook** a fürt Dashboard__ paneljéről.
 
-    ![hello fürt irányítópultok](./media/hdinsight-spark-analyze-application-insight-logs/clusterdashboards.png)
-2. Hello jobb felső sarkában hello Jupyter lapra, válassza ki **új**, majd **Scala**. Scala-alapú Jupyter Notebook tartalmazó új böngészőlapon jelenik meg.
-3. Első mezőben hello (nevű egy **cella**) hello lapon adja meg a következő szöveg hello:
+    ![A fürt irányítópultok](./media/hdinsight-spark-analyze-application-insight-logs/clusterdashboards.png)
+2. Válassza ki a Jupyter oldal jobb felső sarkában **új**, majd **Scala**. Scala-alapú Jupyter Notebook tartalmazó új böngészőlapon jelenik meg.
+3. Az első mezőben (nevű egy **cella**) lapon adja meg a következő szöveget:
 
    ```scala
    sc.hadoopConfiguration.set("mapreduce.input.fileinputformat.input.dir.recursive", "true")
    ```
 
-    Ez a kód Spark toorecursively hozzáférés hello könyvtárstruktúrát hello bemeneti adatok konfigurálja. Az Application Insights telemetria van naplózva tooa könyvtárstruktúrát hasonló túl`/{telemetry type}/YYYY-MM-DD/{##}/`.
+    Ez a kód Spark rekurzív módon hozzáférését a könyvtárstruktúra a bemeneti adatok konfigurálja. Application Insights telemetria kerül a hasonló könyvtárstruktúra `/{telemetry type}/YYYY-MM-DD/{##}/`.
 
-4. Használjon **SHIFT + ENTER** toorun hello kódot. A bal oldalán található hello cella hello egy "\*" hello zárójeleket tooindicate között jelenik meg, hogy ezt a cellát hello kód végrehajtása zajlik. Amint befejeződött, hello "\*" tooa számát, valamint a következő szöveg hasonló toohello hello cella alább látható kimeneti módosítja:
+4. Használjon **SHIFT + ENTER** futtatja a kódot. A cella bal oldalán egy "\*" annak jelzésére, hogy ezt a cellát a kód végrehajtott zárójelek között jelenik meg. Miután befejeződött, a "\*" módosítását egy számot, és a kimenet az alábbihoz hasonló a cella alább látható:
 
         Creating SparkContext as 'sc'
 
@@ -243,24 +243,24 @@ tooadd hello Azure Storage-fiók tooan meglévő fürt használja hello adatokat
 
         Creating HiveContext as 'sqlContext'
         SparkContext and HiveContext created. Executing user code ...
-5. Egy új cella alatt hello jön létre először egy. Adja meg a következő szöveget: hello új cella hello. Cserélje le `CONTAINER` és `STORAGEACCOUNT` hello az Azure storage-fiók nevét és a blobtároló neve, amely tartalmazza az Application Insights naplózza.
+5. Egy új cella alatt az elsőt jön létre. Adja meg a következő szöveget a új cellára. Cserélje le `CONTAINER` és `STORAGEACCOUNT` naplózza az Azure storage-fiók nevét és az Application Insights tartalmazó blob-tároló neve.
 
    ```scala
    %%bash
    hdfs dfs -ls wasb://CONTAINER@STORAGEACCOUNT.blob.core.windows.net/
    ```
 
-    Használjon **SHIFT + ENTER** tooexecute ezt a cellát. Egy hasonló toohello eredményt, a következő szöveg jelenik meg:
+    Használjon **SHIFT + ENTER** végrehajtani ezt a cellát. Az alábbi hasonló eredményt látja:
 
         Found 1 items
         drwxrwxrwx   -          0 1970-01-01 00:00 wasb://appinsights@contosostore.blob.core.windows.net/contosoappinsights_2bededa61bc741fbdee6b556571a4831
 
-    hello wasb visszaadott elérési út hello Application Insights telemetria adatok hello helyét. Változás hello `hdfs dfs -ls` sor a hello cella toouse hello wasb visszaadott elérési út, és ezután **SHIFT + ENTER** toorun hello cella újra. Megadott idő hello eredmények megjelenjen-e telemetriai adatokat tartalmazó hello könyvtárak.
+    A wasb visszaadott elérési út az Application Insights telemetria adatok helyét. Módosítsa a `hdfs dfs -ls` visszaadott wasb elérési utat használja a cellában. sor, és ezután **SHIFT + ENTER** újra futtatni a cella. Ebben az esetben az eredmények megjelenjen-e a telemetriai adatokat tartalmazó könyvtárak.
 
    > [!NOTE]
-   > A hello hello maradéka ebben a szakaszban ismertetett visszaállítási lépésekkel, hello `wasb://appinsights@contosostore.blob.core.windows.net/contosoappinsights_{ID}/Requests` directory lett megadva. Ez a könyvtár nem létezik, kivéve, ha a telemetriai adatok egy webalkalmazás.
+   > Az ebben a szakaszban a többi a `wasb://appinsights@contosostore.blob.core.windows.net/contosoappinsights_{ID}/Requests` directory lett megadva. Ez a könyvtár nem létezik, kivéve, ha a telemetriai adatok egy webalkalmazás.
 
-6. A következő cella hello, adja meg a következő kód hello: cserélje le `WASB\_PATH` hello előző lépésben hello elérési úttal.
+6. A következő cellában, írja be a következő kódot: cserélje le `WASB\_PATH` az előző lépésben elérési úttal.
 
    ```scala
    var jsonFiles = sc.textFile('WASB_PATH')
@@ -268,15 +268,15 @@ tooadd hello Azure Storage-fiók tooan meglévő fürt használja hello adatokat
    var jsonData = sqlContext.read.json(jsonFiles)
    ```
 
-    Ez a kód egy dataframe hello folyamatos exportálási folyamat által exportált hello JSON-fájlokat hoz létre. Használjon **SHIFT + ENTER** toorun ezt a cellát.
+    Ez a kód egy dataframe a folyamatos exportálás folyamat által exportált JSON-fájlokat hoz létre. Használjon **SHIFT + ENTER** ezt a cellát futtatásához.
 
-7. Hello következő cellában adja meg, és futtassa a következő tooview hello séma, Spark létrehozott hello JSON-fájlok hello:
+7. A következő cellában adja meg, és futtassa a következő, a séma, Spark hozott létre a JSON-fájlok megtekintéséhez:
 
    ```scala
    jsonData.printSchema
    ```
 
-    az egyes telemetriai hello séma nem egyezik. hello következő példája az webes kérelmek létrehozott hello séma (hello tárolt adatok `Requests` alkönyvtár):
+    Az egyes telemetriai adatokat a séma nem egyezik. A következő példa egy a webes kérelmek az létrehozott séma (tárolt adatok a `Requests` alkönyvtár):
 
         root
         |-- context: struct (nullable = true)
@@ -339,21 +339,21 @@ tooadd hello Azure Storage-fiók tooan meglévő fürt használja hello adatokat
         |    |    |    |-- host: string (nullable = true)
         |    |    |    |-- protocol: string (nullable = true)
 
-8. Használja a következő tooregister hello dataframe ideiglenes táblaként hello és lekérdezésével hello adatokat:
+8. Használja a következő ideiglenes táblából a dataframe regisztrálásához és a lekérdezés futtatása az adatok alapján:
 
    ```scala
    jsonData.registerTempTable("requests")
    var city = sqlContext.sql("select context.location.city from requests where context.location.city is not null limit 10").show()
    ```
 
-    A lekérdezés által visszaadott hello Város adatainak hello felső 20 rekordok, ahol context.location.city értéke nem null.
+    Ez a lekérdezés város olyan információkat ad vissza a felső 20 rekordok ahol context.location.city értéke nem null.
 
    > [!NOTE]
-   > hello környezetben struktúra megtalálható-e az Application Insights által naplózott összes telemetriai adat. hello város elem nem lehet megadni a naplókban. Használjon hello séma tooidentify más elemeket lekérdezhető a naplók adatok szerepelhetnek.
+   > A környezet struktúra megtalálható-e az Application Insights által naplózott összes telemetriai adat. A város elem nem lehet megadni a naplókban. A séma segítségével azonosíthatók a más elemeket lekérdezhető a naplók adatok szerepelhetnek.
    >
    >
 
-    A lekérdezés által visszaadott adatokat hasonló toohello a következő szöveget:
+    A lekérdezés által visszaadott adatokat az alábbihoz hasonló:
 
         +---------+
         |     city|
@@ -367,15 +367,15 @@ tooadd hello Azure Storage-fiók tooan meglévő fürt használja hello adatokat
 
 ## <a name="next-steps"></a>Következő lépések
 
-Adatok és az Azure Spark toowork használatával további példákért lásd a következő dokumentumok hello:
+További példák a Spark használata adatokhoz és szolgáltatásokhoz az Azure-ban tekintse meg a következő dokumentumokat:
 
 * [Spark és BI: Interaktív adatelemzés végrehajtása a Spark on HDInsight használatával, BI-eszközökkel](hdinsight-apache-spark-use-bi-tools.md)
 * [Spark és Machine Learning: A Spark on HDInsight használata az épület-hőmérséklet elemzésére HVAC-adatok alapján](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
-* [Spark és Machine Learning: használja a Spark on HDInsight toopredict élelmiszervizsgálati eredmények](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [Spark és Machine Learning: A Spark on HDInsight használata az élelmiszervizsgálati eredmények előrejelzésére](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Spark Streaming: Spark on HDInsight használata az adatfolyam-továbbítási alkalmazások létrehozásához](hdinsight-apache-spark-eventhub-streaming.md)
 * [A webhelynapló elemzése a Spark on HDInsight használatával](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 
-A létrehozása és alkalmazások futtatása Spark információkért lásd: a következő dokumentumok hello:
+Létrehozása és alkalmazások futtatása Spark kapcsolatos tudnivalókat lásd: a következő dokumentumokat:
 
 * [Önálló alkalmazás létrehozása a Scala használatával](hdinsight-apache-spark-create-standalone-application.md)
 * [Feladatok távoli futtatása Spark-fürtön a Livy használatával](hdinsight-apache-spark-livy-rest-interface.md)

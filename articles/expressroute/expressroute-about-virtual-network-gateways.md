@@ -1,5 +1,5 @@
 ---
-title: "aaaAbout ExpressRoute virtuális hálózati átjárók |} Microsoft Docs"
+title: "Kapcsolatos az ExpressRoute virtuális hálózati átjárók |} Microsoft Docs"
 description: "További információk a virtuális hálózati átjárók az ExpressRoute."
 services: expressroute
 documentationcenter: na
@@ -15,38 +15,38 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/05/2017
 ms.author: cherylmc
-ms.openlocfilehash: 4daf4f96b4fadb00683d8e536e51734853008c50
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a6363fa380d0bab05d7500141cc6019d1d3f68b8
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="about-virtual-network-gateways-for-expressroute"></a>Az ExpressRoute virtuális hálózati átjáróinak ismertetése
-A virtuális hálózati átjáró használatos toosend hálózati forgalmat egy Azure virtuális hálózatot és a helyszíni helyek között. Amikor konfigurál egy ExpressRoute-kapcsolatot, hozzon létre és konfigurálnia kell a virtuális hálózati átjáró és a virtuális hálózati átjáró kapcsolat.
+A virtuális hálózati átjáró küldhető Azure virtuális hálózatok közötti hálózati forgalom és a helyszíni helyek. Amikor konfigurál egy ExpressRoute-kapcsolatot, hozzon létre és konfigurálnia kell a virtuális hálózati átjáró és a virtuális hálózati átjáró kapcsolat.
 
-Egy virtuális hálózati átjáró létrehozásakor több beállítást is meg kell adnia. Hello szükséges beállítások egyikének határozza meg, hogy hello átjáró expressroute-on vagy a telephelyek közötti VPN-forgalomhoz használható. Hello Resource Manager üzembe helyezési modellel, hello beállítás "-GatewayType".
+Egy virtuális hálózati átjáró létrehozásakor több beállítást is meg kell adnia. A szükséges beállítások egyikének határozza meg, hogy az átjáró expressroute-on vagy a telephelyek közötti VPN-forgalomhoz használható. A Resource Manager üzembe helyezési modellel, az érték "-GatewayType".
 
-Amikor a hálózati adatforgalom a kapcsolatot, hello átjáró típusa "ExpressRoute" használhatja. Ez a hivatkozott tooas egy ExpressRoute-átjárót is. Ha hálózati adatforgalom titkosított között hello a nyilvános interneten, hello átjáró típusa "Vpn" használhatja. Ez a hivatkozott tooas VPN-átjáró. A hely–hely, pont–hely és a virtuális hálózatok közötti kapcsolat kapcsolatok mind VPN-átjárót használnak.
+Amikor a hálózati adatforgalom a kapcsolatot, az átjáró típusa "ExpressRoute" használhatja. Ezt ExpressRoute-átjárónak is hívják. Amikor a hálózati adatforgalom titkosított a nyilvános interneten keresztül, használhatja az átjáró típusa "Vpn". Ez VPN-átjáróként ismert. A hely–hely, pont–hely és a virtuális hálózatok közötti kapcsolat kapcsolatok mind VPN-átjárót használnak.
 
-Mindegyik virtuális hálózat csak egy virtuális hálózati átjáróval rendelkezhet átjárótípusonként. Rendelkezhet például egy virtuális hálózati átjáróval, amely a -GatewayType Vpn típust, és egy másikkal, amelyik a -GatewayType ExpressRoute típust használja. Ez a cikk hello ExpressRoute virtuális hálózati átjáró összpontosít.
+Mindegyik virtuális hálózat csak egy virtuális hálózati átjáróval rendelkezhet átjárótípusonként. Rendelkezhet például egy virtuális hálózati átjáróval, amely a -GatewayType Vpn típust, és egy másikkal, amelyik a -GatewayType ExpressRoute típust használja. Ez a cikk foglalkozik az ExpressRoute virtuális hálózati átjáróhoz.
 
 ## <a name="gwsku"></a>Átjáró-termékváltozatok
 [!INCLUDE [expressroute-gwsku-include](../../includes/expressroute-gwsku-include.md)]
 
-Ha azt szeretné, tooupgrade az átjáró tooa nagyobb teljesítményű átjáró Termékváltozat, a legtöbb esetben használhatja hello "Átméretezési-AzureRmVirtualNetworkGateway" PowerShell-parancsmagot. Ez a frissítés tooStandard és HighPerformance termékváltozatok fog működni. Azonban tooupgrade toohello UltraPerformance SKU, szüksége lesz toorecreate hello átjáró.
+Ha szeretné frissíteni az átjárót egy nagyobb teljesítményű átjáró SKU, a legtöbb esetben használhatja a "Átméretezési-AzureRmVirtualNetworkGateway" PowerShell-parancsmagot. Ez a Standard és a HighPerformance termékváltozatok frissítésekre fog működni. Azonban a UltraPerformance SKU frissítéséhez, akkor hozza létre újra az átjárót.
 
 ### <a name="aggthroughput"></a>Összesített becsült gateway SKU
-hello következő táblázatban hello átjárótípusok és hello becsült összesített teljesítményt. Ez a táblázat tooboth hello Resource Manager és klasszikus üzembe helyezési modellre vonatkozik.
+Az alábbi táblázatban az átjárótípusok és azok becsült összesített átviteli sebessége tekinthető meg. Ez a tábla a Resource Managerre és a klasszikus üzembe helyezési modellre is érvényes.
 
 [!INCLUDE [expressroute-table-aggthroughput](../../includes/expressroute-table-aggtput-include.md)]
 
 > [!IMPORTANT]
-> Alkalmazás átviteli sebességére több tényezőtől függ, többek között hello végpontok közötti késés, és a forgalom hello száma forgalomáramlás hello elindul. hello tábla jelentik hello felső korlátja, hogy hello alkalmazás is theorectically hello számok elérése ideális környezetben. 
+> Alkalmazás átviteli sebességére több tényezőtől függ, többek között a végpontok közötti késés, és megnyílik az alkalmazás forgalom számát. A táblázatban szereplő számok jelölik a felső korlátja, amely az alkalmazás is theorectically elérése ideális környezetben. 
 > 
 >
 
 ## <a name="resources"></a>REST API-k és a PowerShell-parancsmagok
-További technikai erőforrások és a konkrét szintaxis használatával kapcsolatos követelményeket REST API-k és a PowerShell-parancsmagok a virtuális hálózati átjáró konfigurációjában tekintse meg a következő lapok hello:
+További technikai erőforrások és konkrét szintaxis használatával kapcsolatos követelményeket REST API-k és a PowerShell-parancsmagok a virtuális hálózati átjáró konfigurációjában: a következő lapok:
 
 | **Klasszikus** | **Resource Manager** |
 | --- | --- |

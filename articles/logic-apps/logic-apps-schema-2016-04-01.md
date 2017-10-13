@@ -1,5 +1,5 @@
 ---
-title: "frissítések 2016. június-1-- Azure Logic Apps aaaSchema |} Microsoft Docs"
+title: "Séma frissítések 2016. június-1-- Azure Logic Apps |} Microsoft Docs"
 description: "Az Azure Logic Apps JSON-meghatározások létrehozása séma 2016-06-01-es verziójával"
 author: jeffhollan
 manager: anneta
@@ -15,21 +15,21 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 07/25/2016
 ms.author: LADocs; jehollan
-ms.openlocfilehash: b0347fbbd692a93b63a2f8b741402a225450b35a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 43df04d6478e44c82c88b17d916cfc9fe4afc03e
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="schema-updates-for-azure-logic-apps---june-1-2016"></a>Az Azure Logic Apps – 2016. június 1 sémafrissítések
 
-Az új séma- és API-t az Azure Logic Apps verzió magában foglalja a fontos fejlesztést tartalmaz, amelyek a logic apps több megbízható és egyszerűbb toouse:
+Az új séma- és API-t az Azure Logic Apps verzió magában foglalja a fontos fejlesztést tartalmaz, amelyek a logic apps megbízhatóbb és könnyebben használható:
 
 * [Hatókörök](#scopes) lehetővé teszik, hogy a csoport- vagy beágyazni műveletek műveletek gyűjteményeként.
 * [Feltételek és a hurkok](#conditions-loops) első osztályú műveletek is.
-* Pontosabb rendezést műveletek futtatása a hello `runAfter` tulajdonság, cseréje`dependsOn`
+* Pontosabb rendezést a műveletek futtatása a `runAfter` tulajdonság, cseréje`dependsOn`
 
-az a logic apps 2015. augusztus 1 hello tooupgrade előzetes séma toohello 2016. június 1 séma [tekintse meg a verziófrissítés szakasz hello](##upgrade-your-schema).
+A logic apps a 2015. augusztus 1 preview séma frissítéséhez a 2016. június 1 séma [tekintse meg a verziófrissítés szakasz](##upgrade-your-schema).
 
 <a name="scopes"></a>
 ## <a name="scopes"></a>Hatókörök
@@ -88,9 +88,9 @@ Előző séma verziója, a feltételek és a hurkok voltak egyetlen művelettel 
 <a name="run-after"></a>
 ## <a name="runafter-property"></a>"runAfter" tulajdonság
 
-Hello `runAfter` tulajdonság cserél `dependsOn`, nyújtó pontosabb futtatása hello ahhoz, hogy a műveletek megadásakor korábbi műveletek hello állapota alapján.
+A `runAfter` tulajdonság cserél `dependsOn`, nyújtó további pontosság megadása a futtatási ahhoz, hogy a műveletek előző műveletek állapota alapján.
 
-Hello `dependsOn` tulajdonságának azonos a "hello művelet futtatott és sikeres volt-e" volt, függetlenül attól, hogy hányszor tooexecute művelet, hogy hello előző művelet sikeres volt, alapján nem sikerült, vagy kihagytuk kívánta. Hello `runAfter` tulajdonság olyan objektum, amely megadja az összes hello művelet nevek elteltével hello objektum fut, hogy rugalmasságot biztosít. Ez a tulajdonság is megadja elfogadható eseményindítóként használható állapotait tömbjét. Például ha toorun után lépést A sikeres és is után B lépésben sikeres vagy sikertelen lesz, hozhat létre a `runAfter` tulajdonság:
+A `dependsOn` azonos a "a művelet futtatása és sikeres volt-e" tulajdonsága, nem számít, hány alkalommal szeretné alapján, hogy az előző művelet sikeres volt, a művelet végrehajtása sikertelen volt, vagy kihagyott. A `runAfter` tulajdonság olyan objektum, amely után az objektum fut művelet nevét adja meg, hogy rugalmasságot biztosít. Ez a tulajdonság is megadja elfogadható eseményindítóként használható állapotait tömbjét. Például ha végezze el a lépést A sikeres és is után B lépésben sikeres vagy sikertelen lesz, hozhat létre a `runAfter` tulajdonság:
 
 ```
 {
@@ -104,59 +104,59 @@ Hello `dependsOn` tulajdonságának azonos a "hello művelet futtatott és siker
 
 ## <a name="upgrade-your-schema"></a>A séma frissítése
 
-Toohello frissítése új séma mindössze néhány lépést. hello frissítési folyamat tartalmaz hello frissítési parancsprogram, futtatása mentése új logikai alkalmazás, és ha azt szeretné, valószínűleg felülírja a hello előző logikai alkalmazást.
+Az új séma frissítése csak néhány lépésben vesz igénybe. A frissítési folyamat magában foglalja a frissítési parancsprogram futtatása mentése új logikai alkalmazás, és ha azt szeretné, valószínűleg felülírja az előző logikai alkalmazást.
 
-1. Hello Azure-portálon nyissa meg a Logic Apps alkalmazást.
+1. Nyissa meg a Logic Apps alkalmazást az Azure-portálon.
 
-2. Nyissa meg túl**áttekintése**. Hello logic app eszköztáron válassza **frissítés séma**.
+2. Ugrás a **áttekintése**. A logic app eszköztáron válassza **frissítés séma**.
    
     ![Válassza ki a séma frissítése][1]
    
-    hello frissített definíciós ad vissza, amelyet másolja és illessze be az erőforrás-definíció szükség esetén. 
-    Azonban azt **erősen ajánlott** választja **Mentés másként** toomake meg arról, hogy az összes kapcsolat hivatkozások érvényes hello a logikai alkalmazás frissítése.
+    A frissített definícióban ad vissza, amelyet másolja és illessze be az erőforrás-definíció szükség esetén. 
+    Azonban azt **erősen ajánlott** választja **Mentés másként** győződjön meg arról, hogy az összes kapcsolat érvényesek a frissített logikai alkalmazás.
 
-3. Hello frissítési panel eszköztárán válassza **Mentés másként**.
+3. A frissítési panel eszköztáron válassza **Mentés másként**.
 
-4. Adja meg a hello logika nevét és állapotát. toodeploy a frissített Logic Apps alkalmazást, válassza a **létrehozása**.
+4. Adja meg a logikai nevét és állapotát. A frissített Logic Apps alkalmazást telepíteni, válassza ki a **létrehozása**.
 
 5. Győződjön meg arról, hogy a frissített logikai alkalmazás megfelelően működik-e.
    
    > [!NOTE]
-   > Ha manuális vagy kérelem eseményindítót használ, hello visszahívási URL-címet az új logikai alkalmazás változik. Teszt hello új URL-cím toomake meg arról, hogy hello-végpont működik tapasztalhat. toopreserve előző URL-címek, klónozhat keresztül a meglévő Logic Apps alkalmazást.
+   > Manuális vagy kérelem eseményindítót használ, ha a visszahívás URL-címet az új logikai alkalmazás változik. Teszteléséhez győződjön meg arról, hogy a végpont élmény működik az új URL-címet. Előző URL-címek megőrzéséhez a meglévő Logic Apps alkalmazást keresztül tud klónozni.
 
-6. *Nem kötelező* toooverwrite a korábbi Logic Apps alkalmazást hello új séma verzióra, a hello eszköztárán válassza **Klónozás**, tovább túl**frissítés séma**. Ez a lépés nem szükséges csak akkor, ha azt szeretné, tookeep hello azonos erőforrás azonosítója, vagy kérjen indítási URL-CÍMÉT a Logic Apps alkalmazást.
+6. *Nem kötelező* felülírja az előző logikai alkalmazást az új verzióval séma, az eszköztáron válassza **Klónozás**mellett található **frissítés séma**. Ez a lépés szükség, csak akkor, ha szeretné megtartani a azonos erőforrás-azonosító, vagy kérje meg a Logic Apps alkalmazást indítási URL-CÍMÉT.
 
 ### <a name="upgrade-tool-notes"></a>Frissítési eszköz megjegyzések
 
 #### <a name="mapping-conditions"></a>Leképezési feltételek
 
-Hello frissített definícióban hello eszköz lehetővé teszi egy, a true és false fiókirodai műveletek csoportosítása hatóköreként a lehető legkedvezőbb módon. Pontosabban hello Tervező mintáját `@equals(actions('a').status, 'Skipped')` meg kell jelennie egy `else` művelet. Azonban hello eszköz felismerhetetlen minták észleli, ha hello eszköz előfordulhat, hogy hozzon létre külön feltételek hello IGAZ és hamis ág hello. Műveletek leképezheti a frissítés után is, ha szükséges.
+A frissített definícióban az eszköz lehetővé teszi egy, a true és false fiókirodai műveletek csoportosítása hatóköreként a lehető legkedvezőbb módon. Pontosabban, a Tervező mintáját `@equals(actions('a').status, 'Skipped')` meg kell jelennie egy `else` művelet. Azonban az eszköz felismerhetetlen minták észleli, ha az eszköz lehet, hogy hozzon létre külön feltételek a true és a hamis ág. Műveletek leképezheti a frissítés után is, ha szükséges.
 
 #### <a name="foreach-loop-with-condition"></a>feltételt tartalmazó "foreach" hurok
 
-Hello új sémában, használhatja a hello szűrő művelet tooreplicate hello mintáját a `foreach` elemenként, eltérő feltételt tartalmazó hurok, de ezt a változtatást automatikusan történjen, amikor frissít. hello feltétel előtt hello foreach hurok hello feltételének elemek csak egy tömb visszaküldésére használatos szűrőművelet válik, és, hogy tömb átad a hello foreach művelet. Egy vonatkozó példáért lásd: [hurkok és hatókörök](../logic-apps/logic-apps-loops-and-scopes.md).
+Az új sémával, használhatja a szűrési művelet replikálja a mintát egy `foreach` elemenként, eltérő feltételt tartalmazó hurok, de ezt a változtatást automatikusan történjen, amikor frissít. A feltételnek megfelelő elemek csak egy tömb visszaküldésére használatos a foreach hurok előtt szűrőművelet lesz, és, hogy tömb átad a foreach műveletet. Egy vonatkozó példáért lásd: [hurkok és hatókörök](../logic-apps/logic-apps-loops-and-scopes.md).
 
 #### <a name="resource-tags"></a>Az erőforráscímkék
 
-A frissítés befejezése után az erőforráscímkék eltávolítja, így kell visszaállítani őket frissített hello munkafolyamat.
+A frissítés befejezése után az erőforráscímkék eltávolítja, így azokat a frissített munkafolyamat kell visszaállítani.
 
 ## <a name="other-changes"></a>Az egyéb módosítások
 
-### <a name="renamed-manual-trigger-toorequest-trigger"></a>Átnevezett "manual" eseményindító too'request "eseményindító
+### <a name="renamed-manual-trigger-to-request-trigger"></a>A "kérelem" eseményindító átnevezett "manual" eseményindító
 
-Hello `manual` indítási típus elavult, és a neve túl`request` típusú `http`. Ez a módosítás több konzisztencia hoz létre, a mintát, amely eseményindító hello hello típusú használt toobuild.
+A `manual` indítási típus elavult, és a átnevezésre `request` típusú `http`. Ez a változás hoz létre további konzisztencia mintát típusú, amely az eseményindító segítségével hozhatók létre.
 
 ### <a name="new-filter-action"></a>Új "filter" művelet
 
-egy nagy tömböt le meg tooa kevesebb elemek, új hello toofilter `filter` típusú tömb és egy feltétel fogad, hello feltétel minden elemhez kiértékeli, és hello feltétel értekezlet elemekhez tömböt ad vissza.
+Elemek körét le egy nagy tömböt szűrése az új `filter` típus elfogadja a tömb és egy feltétel, az egyes elemekhez tartozó feltétel eredménye és tömböt ad vissza a feltétel értekezlet elemekhez.
 
 ### <a name="restrictions-for-foreach-and-until-actions"></a>A "foreach" és "csak" műveletek korlátozása
 
-Hello `foreach` és `until` hurok korlátozott tooa egyetlen művelettel vannak.
+A `foreach` és `until` hurok csak egyetlen művelettel.
 
 ### <a name="new-trackedproperties-for-actions"></a>Új "trackedProperties" műveletek
 
-Műveletek is most már rendelkezik egy további tulajdonság nevű `trackedProperties`, vagyis testvér toohello `runAfter` és `type` tulajdonságok. Ezen az objektumon bizonyos művelet bemeneti határozza meg, és kiírja, hogy szeretné-e a hello Azure diagnosztikai telemetriai, egy munkafolyamat részeként kibocsátott tooinclude. Példa:
+Műveletek is most már rendelkezik egy további tulajdonság nevű `trackedProperties`, ez az a testvér a `runAfter` és `type` tulajdonságok. Ezt az objektumot határozza meg az egyes művelet bemeneti vagy kimeneti munkafolyamat részeként kibocsátott Azure diagnosztikai telemetriai adatok szerepeltetni kívánt. Példa:
 
 ```
 {                

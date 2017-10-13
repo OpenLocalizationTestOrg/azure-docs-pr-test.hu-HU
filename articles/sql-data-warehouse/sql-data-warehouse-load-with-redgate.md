@@ -1,6 +1,6 @@
 ---
-title: "aaaUse Redgate tooload tooyour az Azure data adatraktár |} Microsoft Docs"
-description: "Megtudhatja, hogyan toouse Redgate adatok Platform Studio adatraktározási forgatókönyvekben."
+title: "Adatok betöltése az Azure-adattárházba a Redgate használatával | Microsoft Docs"
+description: "Az alábbiakból megismerheti, hogyan használható a Redgate Data Platform Studio az adattárház-forgatókönyvek esetén."
 services: sql-data-warehouse
 documentationcenter: NA
 author: ckarst
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: loading
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
-ms.openlocfilehash: 6082390c07c8ffa73ebd8ab272ace00ba8bb1897
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a38b237d5bfc0450c1ca79b53a5784dbb9bf8602
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="load-data-with-redgate-data-platform-studio"></a>Adatok betöltése a Redgate Data Platform Studióval
 > [!div class="op_single_selector"]
@@ -30,7 +30,7 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Az oktatóanyag bemutatja, hogyan toouse [Redgate tartozó adatok Platform Studio](http://www.red-gate.com/products/azure-development/data-platform-studio/) egy helyi SQL Server tooAzure SQL Data Warehouse toomove adatait (terjesztési pontok). Adatok Platform Studio hello legmegfelelőbb javításai vonatkozik, és leggyorsabban hello optimalizálást, ezért úgy tooget elindítani az SQL Data Warehouse szolgáltatással.
+Ebből az oktatóanyagból megtudhatja, hogyan használható a [Redgate Data Platform Studio](http://www.red-gate.com/products/azure-development/data-platform-studio/) (DPS) az adatok helyszíni SQL Serverről Azure SQL Data Warehouse-ba történő áthelyezésére. A Data Platform Studio a legmegfelelőbb kompatibilitási javításokat és optimalizálásokat alkalmazza, így ez a leggyorsabb mód az SQL Data Warehouse használatának megkezdésére.
 
 > [!NOTE]
 > A [Redgate](http://www.red-gate.com) már régóta a Microsoft partnere, és különböző SQL Server-eszközöket tesz elérhetővé. A Data Platform Studio e funkciója ingyenesen elérhető kereskedelmi és nem kereskedelmi használatra.
@@ -39,102 +39,102 @@ Az oktatóanyag bemutatja, hogyan toouse [Redgate tartozó adatok Platform Studi
 
 ## <a name="before-you-begin"></a>Előkészületek
 ### <a name="create-or-identify-resources"></a>Erőforrások létrehozása és azonosítása
-Az oktatóanyag elindítása előtt kell toohave:
+Az oktatóanyag elindítása előtt a következőkkel kell rendelkeznie:
 
-* **helyszíni SQL Server-adatbázis**: hello tooimport tooSQL adatraktár kell egy helyi SQL Server kiszolgáló toocome kívánt adatokat (2008R2 verzió vagy újabb). A Data Platform Studio nem tud közvetlenül adatokat importálni egy Azure SQL Database-ből vagy szövegfájlokból.
-* **Az Azure Storage-fiók**: adatok Platform Studio hello adatokat az Azure Blob Storage előkészíti azt az SQL Data Warehouse betöltése előtt. hello tárfiók helyett hello "Klasszikus" üzembe helyezési modellel hello "erőforrás-kezelő" üzembe helyezési modellben (hello alapértelmezett) kell használnia. Ha a storage-fiók nem rendelkezik, megtudhatja, hogyan tooCreate egy tárfiókot. 
-* **Az SQL Data Warehouse**: Ez az oktatóanyag helyez hello adatokat a helyszíni SQL Server tooSQL adatraktár, így toohave kell egy online adatraktárral. Ha még nem rendelkezik adatraktárral, megtudhatja, hogyan tooCreate Azure SQL Data Warehouse.
-
-> [!NOTE]
-> A teljesítmény akkor javul, ha hello tárfiókot és hello adatraktár jöttek létre hello azonos régióban.
-> 
-> 
-
-## <a name="step-1-sign-in-toodata-platform-studio-with-your-azure-account"></a>1. lépés: Bejelentkezés tooData Platform Studio az Azure-fiókjába
-Nyissa meg a webböngészőt, és keresse meg a toohello [adatok Platform Studio](https://www.dataplatformstudio.com/) webhelyet. Jelentkezzen be a hello azonos Azure-fiókot adott meg használt toocreate hello tárolási fiók és az adatraktárról. Ha az e-mail címét is munkahelyi vagy iskolai fiókjával és Microsoft-fiókkal társított, hogy meg arról, hogy toochoose hello fiókkal tooyour erőforrások eléréséhez.
+* **helyszíni SQL Server-adatbázis:** Az SQL Data Warehouse-ba importálni kívánt adatoknak egy helyszíni SQL Serverről (2008 R2 vagy újabb verzió) kell származniuk. A Data Platform Studio nem tud közvetlenül adatokat importálni egy Azure SQL Database-ből vagy szövegfájlokból.
+* **Azure-tárfiók:** A Data Platform Studio előkészíti az adatokat az Azure Blob Storage-ban azelőtt, hogy betöltené őket az SQL Data Warehouse-ba. A tárfióknak a „klasszikus” üzemi modell helyett a „Resource Manager”-alapú üzemi modellt (alapértelmezett) kell használnia. Ha még nem rendelkezik tárfiókkal, hozzon létre egyet. 
+* **SQL Data Warehouse**: Az oktatóanyag a helyszíni SQL Serverről az SQL Data Warehouse-ba helyezi át az adatokat, ezért rendelkeznie kell egy online adattárházzal. Ha még nem rendelkezik adattárházzal, hozzon létre egyet.
 
 > [!NOTE]
-> Ha az első alkalommal adatok Platform Studio segítségével, amelyek toogrant hello alkalmazás engedély toomanage kéri az Azure-erőforrások.
+> Ha a tárfiók és az adattárház ugyanabban a régióban található, jobb teljesítményt érhet el.
 > 
 > 
 
-## <a name="step-2-start-hello-import-wizard"></a>2. lépés: Hello importálása varázsló elindítása
-Hello terjesztési pontok fő képernyőn válassza ki hello tooAzure SQL Data Warehouse hivatkozás toostart hello importálás varázslóról.
+## <a name="step-1-sign-in-to-data-platform-studio-with-your-azure-account"></a>1. lépés: Bejelentkezés a Data Platform Studióba az Azure-fiókkal
+Nyissa meg a webböngészőt, majd navigáljon a [Data Platform Studio](https://www.dataplatformstudio.com/) webhelyére. Jelentkezzen be ugyanazzal az Azure-fiókkal, amelyet a tárfiók és az adattárház létrehozásához használt. Ha az e-mail-címe egy munkahelyi vagy iskolai fiókkal és egy Microsoft-fiókkal is társítva van, győződjön meg arról, hogy azt a fiókot választja, amely hozzá tud férni az erőforrásaihoz.
+
+> [!NOTE]
+> Ha most használja először a Data Platform Studiót, a rendszer megkéri, hogy engedélyezze az alkalmazás számára az Azure-erőforrások kezelését.
+> 
+> 
+
+## <a name="step-2-start-the-import-wizard"></a>2. lépés: Az importálási varázsló elindítása
+A DPS főképernyőjén válassza az Import to Azure SQL Data Warehouse (Importálás az Azure SQL Data Warehouse-ba) hivatkozást az importálási varázsló elindításához.
 
 ![][1]
 
-## <a name="step-3-install-hello-data-platform-studio-gateway"></a>3. lépés: Hello adatátjáró Platform Studio telepítése
-tooconnect tooyour a helyszíni SQL Server-adatbázist, tooinstall hello terjesztési pontok átjáró szükséges. hello átjáró egy olyan ügyfélügynök, amelynek hozzáférési tooyour helyszíni környezetben, hello adatok kibontása és feltölti azt tooyour tárfiók. Az adatai soha nem haladnak keresztül a Redgate kiszolgálóin. tooinstall hello átjáró:
+## <a name="step-3-install-the-data-platform-studio-gateway"></a>3. lépés: A Data Platform Studio-átjáró telepítése
+A helyszíni SQL Server-adatbázishoz való csatlakozáshoz telepítenie kell a DPS-átjárót. Az átjáró egy ügyfélügynök, amely hozzáférést biztosít a helyszíni környezethez, kinyeri az adatokat, és feltölti őket a tárfiókba. Az adatai soha nem haladnak keresztül a Redgate kiszolgálóin. Az átjáró telepítése:
 
-1. Kattintson a hello **átjáró létrehozása** hivatkozás
-2. A letöltés és telepítés hello átjáró használatával hello megadott telepítő
+1. Kattintson a **Create Gateway** (Átjáró létrehozása) hivatkozásra.
+2. Töltse le, és telepítse az átjárót a megadott telepítővel.
 
 ![][2]
 
 > [!NOTE]
-> Átjáró hello bármely gépen a hálózati hozzáférés toohello forrás SQL Server-adatbázis telepíthető. Windows-hitelesítés hitelesítő adatokkal rendelkező hello hello aktuális felhasználó hello SQL Server-adatbázist használja.
+> Az átjáró bármely olyan gépre telepíthető, amely hálózati hozzáféréssel rendelkezik az SQL Server-forrásadatbázishoz. Az SQL Server-adatbázishoz a Windows-hitelesítés használatával, az aktuális felhasználó hitelesítő adataival fér hozzá.
 > 
 > 
 
-A telepítést követően hello átjáró állapot módosítások tooConnected, és kiválaszthatja a Tovább gombra.
+A telepítést követően az átjáró Kapcsolatban állapotúra változik, és kiválaszthatja a Next (Tovább) lehetőséget.
 
-## <a name="step-4-identify-hello-source-database"></a>4. lépés: Hello forrásadatbázis azonosítása
-A hello *kiszolgáló nevét adja meg* szövegmező, adja meg az adatbázist tároló hello kiszolgáló hello nevét, és válassza ki **következő**. Ezt követően hello legördülő menüből, válassza ki a kívánt tooimport adatait hello adatbázist.
+## <a name="step-4-identify-the-source-database"></a>4. lépés: A forrásadatbázis azonosítása
+Az *Enter Server Name* (Kiszolgálónév megadása) szövegmezőben adja meg az adatbázist üzemeltető kiszolgáló nevét, majd válassza a **Next** (Tovább) lehetőséget. Ezt követően a legördülő menüből válassza ki azt az adatbázist, amelyből adatot kíván importálni.
 
 ![][3]
 
-Terjesztési pontok megvizsgálja a kijelölt adatbázis hello táblák tooimport. Alapértelmezés szerint a terjesztési pontok hello adatbázis minden hello táblája importálja. Válassza ki, vagy kapcsolja ki a táblák összes tábla hivatkozás hello kibontásával. Válassza ki a hello Tovább gomb toomove előre.
+Majd a DPS importálható táblákat keres a kiválasztott adatbázisban. Alapértelmezés szerint a DPS az adatbázis összes tábláját importálja. Az All Tables (Összes tábla) hivatkozás kibontásával táblákat jelölhet ki, vagy törölheti a jelölésüket. A folytatáshoz válassza a Next (Tovább) gombot.
 
-## <a name="step-5-choose-a-storage-account-toostage-hello-data"></a>5. lépés: A tárolási fiók toostage hello adatok kiválasztásához
-Terjesztési pontok egy helyen toostage hello adatokat kér. Válasszon ki egy meglévő tárfiókot az előfizetéséből, majd válassza a **Next** (Tovább) lehetőséget.
+## <a name="step-5-choose-a-storage-account-to-stage-the-data"></a>5. lépés: Tárfiók kiválasztása az adatok előkészítéséhez
+A DPS felkéri, hogy adjon meg egy helyet az adatok előkészítéséhez. Válasszon ki egy meglévő tárfiókot az előfizetéséből, majd válassza a **Next** (Tovább) lehetőséget.
 
 > [!NOTE]
-> Terjesztési pontok létrehoz egy új blob-tároló az kiválasztott tárfiók hello és minden importálásnak egy külön mappát használja.
+> A DPS létrehoz egy új blobtárolót a kiválasztott tárfiókban, és minden importáláshoz más mappát használ.
 > 
 > 
 
 ![][4]
 
 ## <a name="step-6-select-a-data-warehouse"></a>6. lépés: Adattárház kiválasztása
-Akkor válassza ki, az online [Azure SQL Data Warehouse](http://aka.ms/sqldw) adatbázis-tooimport hello adatokat. Miután az adatbázis kijelölt, tooenter hello hitelesítő adatok tooconnect toohello kell adatbázisról, és válassza ki **következő**.
+Ezután válassza ki azt az online [Azure SQL Data Warehouse](http://aka.ms/sqldw)-adatbázist, amelybe importálni szeretné az adatokat. Az adatbázis kiválasztása után adja meg a hitelesítő adatokat az adatbázishoz való csatlakozáshoz, majd válassza a **Next** (Tovább) lehetőséget.
 
 ![][5]
 
 > [!NOTE]
-> Terjesztési pontok hello forrás adattáblák egyesít hello data warehouse-bA. Terjesztési pontok figyelmezteti, ha hello táblanév írja elő hello adatraktár toooverwrite meglévő táblákat. Opcionálisan törölheti lévő hello adatraktár létező objektumok által Delete önkéntes importálás előtt minden meglévő objektumot.
+> A DPS egyesíti a forrásadattáblákat az adattárházban. A DPS figyelmezteti, ha a tábla neve miatt felül kell írni az adattárház meglévő tábláit. Ha szeretné, törölheti az adattárház meglévő objektumait. Ehhez az importálás előtt jelölje be a Delete all existing objects (Összes meglévő objektum törlése) lehetőséget.
 > 
 > 
 
-## <a name="step-7-import-hello-data"></a>7. lépés: Hello adatok importálása
-Terjesztési pontok megerősíti, hogy szeretné-e tooimport hello adatokat. Egyszerűen kattintson hello Start Importálás gomb toobegin hello adatok importálását.
+## <a name="step-7-import-the-data"></a>7. lépés: Az adatok importálása
+A DPS visszaigazolja, hogy Ön importálni szeretné az adatokat. Az adatok importálásának megkezdéséhez egyszerűen kattintson a Start import (Importálás indítása) gombra.
 
 ![][6]
 
-Terjesztési pontok kinyeréséhez, valamint a hello a helyszíni SQL Server és hello előrehaladását hello importálása az SQL Data Warehouse hello feltöltése hello előrehaladását mutatja a képi megjelenítés jeleníti meg.
+A DPS megjeleníti az adatok helyszíni SQL Serverről történő kinyerésének és feltöltésének állapotát, illetve az SQL Data Warehouse-ba való importálásuk folyamatát.
 
 ![][7]
 
-Hello importálás végrehajtása után az terjesztési pontok hello adatimportálás összefoglalását és hello javításai elvégzett módosítás jelentést jelenít meg.
+Amint befejeződik az importálás, a DPS megjelenít egy összegzést az adatok importálásáról, és egy módosítási jelentést az elvégzett kompatibilitási javításokról.
 
 ![][8]
 
 ## <a name="next-steps"></a>Következő lépések
-tooexplore SQL Data warehouse, az adatok megjelenítése elindításához:
+Ha át szeretné tekinteni az adatait az SQL Data Warehouse-ban, először olvassa el a következőket:
 
 * [Az Azure SQL Data Warehouse lekérdezése (Visual Studio)][Query Azure SQL Data Warehouse (Visual Studio)]
 * [Adatok megjelenítése Power BI használatával][Visualize data with Power BI]
 
-További információk a Redgate tartozó adatok Platform Studio toolearn:
+További információk a Redgate Data Platform Studióról:
 
-* [A Microsoft hello terjesztési pontok kezdőlap](http://www.dataplatformstudio.com/)
+* [A DPS kezdőlapjának felkeresése](http://www.dataplatformstudio.com/)
 * [Egy bemutató megtekintése a DPS-ről a Channel9-on](https://channel9.msdn.com/Blogs/cloud-with-a-silver-lining/Loading-data-into-Azure-SQL-Datawarehouse-with-Redgate-Data-Platform-Studio)
 
-Más módokon toomigrate és a betöltés áttekintése: SQL-adatraktár adatai:
+Az adatok áttelepítésének és SQL Data Warehouse-ba való betöltésének egyéb módjaival kapcsolatban lásd:
 
-* [A megoldás tooSQL adatraktár áttelepítése][Migrate your solution tooSQL Data Warehouse]
+* [Megoldás áttelepítése az SQL Data Warehouse-ba][Migrate your solution to SQL Data Warehouse]
 * [Adatok betöltése az Azure SQL Data Warehouse-ba](sql-data-warehouse-overview-load.md)
 
-További fejlesztési tippek, lásd: hello [SQL Data Warehouse fejlesztői áttekintés](sql-data-warehouse-overview-develop.md).
+További fejlesztési tippek: [SQL Data Warehouse fejlesztői áttekintés](sql-data-warehouse-overview-develop.md).
 
 <!--Image references-->
 [1]: media/sql-data-warehouse-redgate/2016-10-05_15-59-56.png
@@ -149,6 +149,6 @@ További fejlesztési tippek, lásd: hello [SQL Data Warehouse fejlesztői átte
 <!--Article references-->
 [Query Azure SQL Data Warehouse (Visual Studio)]: ./sql-data-warehouse-query-visual-studio.md
 [Visualize data with Power BI]: ./sql-data-warehouse-get-started-visualize-with-power-bi.md
-[Migrate your solution tooSQL Data Warehouse]: ./sql-data-warehouse-overview-migrate.md
+[Migrate your solution to SQL Data Warehouse]: ./sql-data-warehouse-overview-migrate.md
 [Load data into Azure SQL Data Warehouse]: ./sql-data-warehouse-overview-load.md
 [SQL Data Warehouse development overview]: ./sql-data-warehouse-overview-develop.md

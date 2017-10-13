@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Application Insights for Windows server és a feldolgozói szerepkörök |} Microsoft Docs"
-description: "Adja hozzá manuálisan a hello Application Insights SDK tooyour ASP.NET alkalmazások tooanalyze használatát, rendelkezésre állását és teljesítményét."
+title: "Azure Application Insights Windows Serverhez és feldolgozói szerepkörökhöz | Microsoft Docs"
+description: "Adja hozzá manuálisan az Application Insights SDK-t az ASP.NET-alkalmazáshoz a használat, a rendelkezésre állás és a teljesítmény elemzése érdekében."
 services: application-insights
 documentationcenter: .net
 author: CFreemanwa
@@ -13,15 +13,15 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/15/2017
 ms.author: bwren
-ms.openlocfilehash: 64643ef637195d10f87fc6020a77169bca66c1f1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4b9f8c618a69c4c157dafeb7f726aae24efad428
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="manually-configure-application-insights-for-net-applications"></a>Az Application Insights manuális beállítása a .NET-alkalmazásokhoz
 
-Konfigurálható [Application Insights](app-insights-overview.md) toomonitor számos alkalmazások vagy alkalmazás-szerepkörök, összetevők és mikroszolgáltatások létrehozására. A webalkalmazásokhoz és -szolgáltatásokhoz a Visual Studio [egylépéses konfigurációs lehetőséget ](app-insights-asp-net.md) biztosít. Más típusú .NET-alkalmazásokhoz, például a háttérkiszolgálói szerepkörökhöz vagy az asztali alkalmazásokhoz beállíthatja manuálisan az Application Insightsot.
+Konfigurálhatja az [Application Insightsot](app-insights-overview.md) számos különféle alkalmazás vagy alkalmazás-szerepkör, -összetevő vagy mikroszolgáltatás monitorozására. A webalkalmazásokhoz és -szolgáltatásokhoz a Visual Studio [egylépéses konfigurációs lehetőséget ](app-insights-asp-net.md) biztosít. Más típusú .NET-alkalmazásokhoz, például a háttérkiszolgálói szerepkörökhöz vagy az asztali alkalmazásokhoz beállíthatja manuálisan az Application Insightsot.
 
 ![Példa teljesítményfigyelő diagramokra](./media/app-insights-windows-services/10-perf.png)
 
@@ -29,115 +29,115 @@ Konfigurálható [Application Insights](app-insights-overview.md) toomonitor sz�
 
 A következők szükségesek:
 
-* Előfizetés túl[Microsoft Azure](http://azure.com). Ha a csapat vagy szervezet Azure-előfizetéssel, hello tulajdonosa adhat hozzá, tooit, használja a [Microsoft-fiók](http://live.com).
+* Egy [Microsoft Azure](http://azure.com)-előfizetés. Ha a csapata vagy a szervezete rendelkezik Azure-előfizetéssel, a tulajdonosa Önt is hozzáadhatja a [Microsoft-fiókja](http://live.com) segítségével.
 * Visual Studio 2013 vagy újabb.
 
 ## <a name="add"></a>1. Application Insights-erőforrások választása
 
-hello "resource", ahol az adatok gyűjtése és hello Azure-portálon jelenik meg. E szüksége toodecide toocreate egy új, vagy egy meglévő fájlmegosztás.
+Az „erőforrás” az adatok összegyűjtésének és megjelenítésének helye az Azure Portalon. Választhat, hogy újat hoz-e létre, vagy megoszt egy már meglévőt.
 
 ### <a name="part-of-a-larger-app-use-existing-resource"></a>Egy nagyobb alkalmazás része: létező erőforrás használata
 
-Ha a webes alkalmazás több összetevői – például egy előtér-webalkalmazást és egy vagy több háttér-szolgáltatásaihoz - vannak, akkor a telemetriai adatokat küldjön az összes hello összetevők toohello ugyanazt az erőforrást. Ezzel lehetővé teszi egy önálló alkalmazás térképen toobe, és könnyebben lehetséges tootrace egy összetevő tooanother kérése.
+Ha a webalkalmazás több részből áll – például egy előtéri webalkalmazásból és egy vagy több háttérszolgáltatásból –, akkor minden helyről ugyanarra az erőforrásra kell telemetriát küldenie. Ez lehetővé teszi, hogy egyetlen alkalmazástérképen megjeleníthetőek legyenek, valamint nyomon követhetőek legyenek a kérések az egyes összetevők közt.
 
-Tehát ha most már figyelés az alkalmazás más összetevői, majd csak használata hello azonos erőforrás.
+Így ha már monitorozza az alkalmazás más összetevőit is, akkor egyszerűen használhatja ugyanazt az erőforrást.
 
-Nyissa meg a hello erőforrás hello [Azure-portálon](https://portal.azure.com/). 
+Nyissa meg az erőforrást az [Azure Portalon](https://portal.azure.com/). 
 
 ### <a name="self-contained-app-create-a-new-resource"></a>Önálló alkalmazás: Új erőforrás létrehozása
 
-Ha új alkalmazás hello független tooother alkalmazások, azt a saját erőforrás kell rendelkeznie.
+Ha az új alkalmazás nem kapcsolódik más alkalmazásokhoz, akkor saját erőforrása kell, hogy legyen.
 
-Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/), és hozzon létre egy új Application Insights-erőforrást. Válassza ki az ASP.NET hello alkalmazás típusként.
+Jelentkezzen be az [Azure portálra](https://portal.azure.com/), és hozzon létre egy új Application Insights-erőforrást. Az alkalmazás típusának válassza az ASP.NET lehetőséget.
 
 ![Kattintson az Új, majd az Application Insights lehetőségre](./media/app-insights-windows-services/01-new-asp.png)
 
-hello választott alkalmazástípus hello erőforrás paneleken tartalmának hello alapértelmezett beállítása.
+A kiválasztott alkalmazástípus adja meg az erőforráspanelek alapértelmezett tartalmát.
 
-## <a name="2-copy-hello-instrumentation-key"></a>2. Hello Instrumentation kulcs másolása
-hello kulcs hello erőforrás azonosítja. Lesz telepíti, amint az SDK-val hello rendelés toodirect adatok toohello erőforrás.
+## <a name="2-copy-the-instrumentation-key"></a>2. A kialakítási kulcs másolása
+A kulcs azonosítja az erőforrást. Hamarosan telepíteni fogja azt az SDK-ba, hogy az adatokat az erőforrásba irányíthassa.
 
-![Kattintson a Tulajdonságok parancsra, válassza ki a hello kulcs, használja a ctrl + C](./media/app-insights-windows-services/02-props-asp.png)
+![Kattintson a Tulajdonságok elemre, válassza ki a kulcsot, és nyomja le a ctrl+C billentyűkombinációt.](./media/app-insights-windows-services/02-props-asp.png)
 
-## <a name="sdk"></a>3. Az alkalmazás hello Application Insights csomag telepítése
-Telepítése és konfigurálása hello Application Insights csomagot dolgozik hello platform függ. 
+## <a name="sdk"></a>3. Az Application Insights-csomag telepítése az alkalmazásban
+Az Application Insights-csomag telepítése és konfigurálása a használt platformtól függően eltérő lehet. 
 
 1. A Visual Studióban kattintson a jobb gombbal a projektjére, és válassza a **Manage NuGet Packages (NuGet-csomagok kezelése)** lehetőséget.
    
-    ![Kattintson a jobb gombbal a hello projektet, és válassza ki a Nuget-csomagok kezelése](./media/app-insights-windows-services/03-nuget.png)
-2. Telepítse az Application Insights csomagot hello Windows server-alkalmazások esetén "Microsoft.ApplicationInsights.WindowsServer."
+    ![Kattintson a jobb gombbal a projektre, és válassza a Manage Nuget Packages (NuGet-csomagok kezelése) lehetőséget](./media/app-insights-windows-services/03-nuget.png)
+2. Telepítse a Windows Server-alkalmazásokhoz tartozó „Microsoft.ApplicationInsights.WindowsServer” Application Insights-csomagot.
    
     ![Az „Application Insights” kifejezés keresése](./media/app-insights-windows-services/04-ai-nuget.png)
    
     *Melyik verzió?*
 
-    Ellenőrizze **közé tartoznak az előzetes** Ha azt szeretné, tootry a legújabb funkciókat. hello dokumentumokat és blogok vegye figyelembe, hogy szükséges-e előzetes verzióját.
+    Jelölje be az **Include prerelease** (Előzetes verzió belefoglalása) jelölőnégyzetet, ha ki szeretné próbálni a legújabb funkciókat. A megfelelő dokumentumok és blogok jelzik, hogy van-e szüksége előzetes verzióra.
     
     *Használhatok más csomagokat is?*
    
-    Igen. Ha azt szeretné csak toouse hello API toosend saját telemetriai, válassza a "Microsoft.ApplicationInsights". hello Windows Server csomag hello API mellett egyéb csomagok, például a teljesítményszámlálók gyűjteményét a és a függőségi figyelő egy száma is. 
+    Igen. Válassza a „Microsoft.ApplicationInsights” lehetőséget, ha csak a saját telemetriája küldésére kívánja használni az API-t. A Windows Server-csomag tartalmazza az API-t és más csomagokat, például a teljesítményszámlálót és a függőségmonitorozást. 
 
-### <a name="tooupgrade-toofuture-package-versions"></a>tooupgrade toofuture alkalmazáscsomag-verziók
-Azt a kiadási hello SDK idő tootime az új verzióját.
+### <a name="to-upgrade-to-future-package-versions"></a>Frissítés a jövőbeli csomagverziókra
+Időről-időre kiadunk egy új SDK-verziót.
 
-tooupgrade tooa [hello csomag új kiadási](https://github.com/Microsoft/ApplicationInsights-dotnet-server/releases/), nyissa meg újra a NuGet-Csomagkezelőt, és a telepített csomagok szűrésére. Jelölje ki a **Microsoft.ApplicationInsights.WindowsServer** lehetőséget, és válassza az **Upgrade** (Frissítés) lehetőséget.
+Ha frissíteni szeretne egy [új csomagkiadásra](https://github.com/Microsoft/ApplicationInsights-dotnet-server/releases/), nyissa meg ismét a NuGet-csomagkezelőt, és szűréssel keresse meg a telepített csomagokat. Jelölje ki a **Microsoft.ApplicationInsights.WindowsServer** lehetőséget, és válassza az **Upgrade** (Frissítés) lehetőséget.
 
-Ha végzett a testreszabások tooApplicationInsights.config, egy példányának mentése, frissítése, és ezt követően a változtatások egyesítése hello új verzió előtt.
+Ha az ApplicationInsights.config fájlt testreszabta, mentse el egy példányát a frissítés előtt, majd egyesítse a módosításait az új verzióval.
 
 ## <a name="4-send-telemetry"></a>4. Telemetria küldése
-**Ha csak hello API csomag telepítése:**
+**Ha csak az API-csomagot telepítette:**
 
-* Beállíthat hello instrumentation kulcs a kódban, például `main()`: 
+* Állítsa be a rendszerállapotkulcsot a kódban, például `main()`: 
   
     `TelemetryConfiguration.Active.InstrumentationKey = "`*az Ön kulcsa*`";` 
-* [Saját API-jával hello telemetriai írási](app-insights-api-custom-events-metrics.md#ikey).
+* [Írjon saját telemetriát az API-val](app-insights-api-custom-events-metrics.md#ikey).
 
-**Ha telepítette a többi Application Insights csomagot** tetszés szerint használhatja hello .config fájl tooset hello instrumentation kulcs:
+**Ha más Application Insights-csomagokat is telepített,** akkor a .config fájl segítségével igény szerint beállíthatja a rendszerállapotkulcsot:
 
-* Szerkessze az ApplicationInsights.config (amely hello NuGet telepítése felvették). Szúrja be a záró címke hello előtt:
+* Szerkessze az ApplicationInsights.config fájlt (ezt korábban a NuGet telepítése során adta hozzá). A címke zárása elé illessze be a következőt:
   
-    `<InstrumentationKey>`*hello instrumentation kulcs másolt*`</InstrumentationKey>`
-* Győződjön meg arról, hogy túl van-e beállítva a hello tulajdonságait a Solution Explorer ApplicationInsights.config**Build művelet = tartalom másolása tooOutput Directory másolási =**.
+    `<InstrumentationKey>`*a kimásolt kialakítási kulcs*`</InstrumentationKey>`
+* Győződjön meg arról, hogy az ApplicationInsights.config tulajdonságait a következőre állította a Megoldáskezelőben: **Build Action = Content, Copy to Output Directory = Copy**.
 
-Ha azt szeretné, hogy túl hasznos tooset hello instrumentation kulcs kódban[kapcsoló hello kulcs eltérő konfigurációk](app-insights-separate-resources.md). Hello kulcs kód állítja be, ha nincs tooset legyen hello `.config` fájlt.
+Hasznos lehet a kialakítási kulcsot kódból megadni, ha [a különböző felépítéskonfigurációkban váltogatni szeretné a kulcsot](app-insights-separate-resources.md). Ha a kulcsot kódból adja meg, nem kell azt beállítania a `.config` fájlban.
 
 ## <a name="run"></a> A projekt futtatása
-Használjon hello **F5** toorun az alkalmazás, és próbálja ki: különböző nyílt lapok toogenerate néhány telemetriai adatokat.
+Futtassa az **F5** billentyűvel az alkalmazást, és próbálja ki: nyisson meg több oldalt, hogy létrejöjjön valamennyi telemetria.
 
-A Visual Studio látni fogja, az elküldött hello események száma.
+A Visual Studióban láthatja az elküldött események számát.
 
 ![Események száma a Visual Studióban](./media/app-insights-windows-services/appinsights-09eventcount.png)
 
 ## <a name="monitor"></a> A telemetriai adatok megtekintése
-Térjen vissza a toohello [Azure-portálon](https://portal.azure.com/) , és keresse meg a tooyour Application Insights-erőforrást.
+Térjen vissza az [Azure Portalra](https://portal.azure.com/), és keresse meg az Application Insights-erőforrást.
 
-Keresse meg hello áttekintő diagramok adatokat. Először csak egy vagy két pontot lát. Példa:
+Az Áttekintés diagramokon keresse meg az adatot. Először csak egy vagy két pontot lát. Példa:
 
-![Kattintson a toomore adatok](./media/app-insights-windows-services/12-first-perf.png)
+![Kattintson végig rajtuk a további adatokért](./media/app-insights-windows-services/12-first-perf.png)
 
-Kattintson a diagram toosee keresztül metrikák részletes. [További információk a metrikákról.](app-insights-web-monitor-performance.md)
+Részletesebb mérőszámokért kattintson bármelyik diagramra. [További információk a metrikákról.](app-insights-web-monitor-performance.md)
 
 ### <a name="no-data"></a>Nincs adat?
-* Hello alkalmazást, a különböző oldalakhoz megnyitása, hogy néhány telemetriai generál használni.
-* Nyissa meg hello [keresési](app-insights-diagnostic-search.md) csempe, toosee események. Egyes esetekben szükséges események közben hosszabb egy kis tooget hello metrikák-feldolgozási folyamaton keresztül.
-* Várjon néhány másodpercet, és kattintson a **Frissítés** lehetőségre. Diagramok rendszeresen frissítse magát, de is frissítheti manuálisan Ha eredménykészletre várakozik egyes adatok tooshow.
+* Az alkalmazás segítségével nyisson meg különböző oldalakat, hogy létrejöjjön némi telemetria.
+* Az egyes események megtekintéséhez nyissa meg a [Keresés](app-insights-diagnostic-search.md)csempét. Események esetében kicsit tovább is eltarthat a mérőszámok folyamatain való végighaladás.
+* Várjon néhány másodpercet, és kattintson a **Frissítés** lehetőségre. A diagramok rendszeres időközönként frissülnek, de manuálisan is frissítheti őket, ha várja valamilyen adatok megjelenését.
 * Lásd: [Hibaelhárítás](app-insights-troubleshoot-faq.md).
 
 ## <a name="publish-your-app"></a>Az alkalmazás közzététele
-Most már telepítheti az alkalmazáskiszolgáló tooyour, vagy tooAzure és figyelési hello adat gyűlik össze.
+Most telepítse az alkalmazását a kiszolgálóra vagy az Azure-ba, és figyelje meg, hogyan gyűlnek az adatok.
 
-![Visual Studio toopublish az alkalmazás használata](./media/app-insights-windows-services/15-publish.png)
+![Az alkalmazás közzététele a Visual Studio segítségével](./media/app-insights-windows-services/15-publish.png)
 
-Ha hibakeresési módban futtatja, telemetriai végezhető hello-feldolgozási folyamaton keresztül, hogy másodpercen belül szereplő adatokat kell megjelennie. Ha Kiadás konfigurációban telepíti az alkalmazását, az adatok lassabban gyűlnek.
+Ha hibakeresési módban futtatja az alkalmazást, az egész folyamatban szolgáltat telemetriát a rendszer, így másodperceken belül meg kell jelenniük az adatoknak. Ha Kiadás konfigurációban telepíti az alkalmazását, az adatok lassabban gyűlnek.
 
-### <a name="no-data-after-you-publish-tooyour-server"></a>Nincs adat tooyour server közzététele után?
-Nyissa meg a portokat a kimenő forgalom számára a kiszolgáló tűzfalán. Lásd: [ezen a lapon](https://docs.microsoft.com/azure/application-insights/app-insights-ip-addresses) szükséges címek hello listája 
+### <a name="no-data-after-you-publish-to-your-server"></a>Nem lát adatokat a kiszolgálón való közzététel után?
+Nyissa meg a portokat a kimenő forgalom számára a kiszolgáló tűzfalán. A szükséges címek listája [ezen az oldalon](https://docs.microsoft.com/azure/application-insights/app-insights-ip-addresses) tekinthető meg 
 
 ### <a name="trouble-on-your-build-server"></a>Probléma adódott a lemezképfájl-kiszolgálóján?
 Tekintse meg [ezt a Hibaelhárítási cikket](app-insights-asp-net-troubleshoot-no-data.md#NuGetBuild).
 
 > [!NOTE]
-> Az alkalmazás nagy mennyiségű telemetriai adatokat állít elő, ha hello adaptív mintavételi modul automatikusan toohello portal reprezentatív része események küldése által küldött hello kötet csökkenti. Azonban események, amelyek kapcsolódó toohello kérésben lesz kiválasztva vagy nincs kijelölve csoportosan, hogy a kapcsolódó események közti léphet. 
+> Ha az alkalmazása sok telemetriát hoz létre, az adaptív mintavételezési modul automatikusan csökkenti a portálra küldött mennyiséget, és csupán az eseményeket megjelenítő töredékeket küld. Az azonos kéréshez tartozó események azonban csoportosan lesznek kijelölve, illetve így lesz törölve a jelölésük, hogy lehessen mozogni a kapcsolódó események között. 
 > [Ismerkedés a mintavételezéssel](app-insights-sampling.md).
 > 
 > 
@@ -147,5 +147,5 @@ Tekintse meg [ezt a Hibaelhárítási cikket](app-insights-asp-net-troubleshoot-
 > [!VIDEO https://channel9.msdn.com/events/Connect/2016/100/player]
 
 ## <a name="next-steps"></a>Következő lépések
-* [Adja hozzá a további telemetriai](app-insights-asp-net-more.md) tooget hello 360 fok nézet az alkalmazás.
+* [További telemetriák hozzáadásával](app-insights-asp-net-more.md) az alkalmazást teljes körűen megfigyelheti.
 

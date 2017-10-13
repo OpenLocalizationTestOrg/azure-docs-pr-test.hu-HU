@@ -1,6 +1,6 @@
 ---
-title: "aaaSet fel egy replikációs házirendet, a Hyper-V virtuális gép (a VMM-mel) replikációs tooAzure az Azure Site Recovery szolgáltatással |} Microsoft Docs"
-description: "Ismerteti, hogyan tooset fel egy replikációs házirendet (VMM) szolgáltatással a Hyper-V virtuális gép replikációs tooAzure az Azure Site Recovery számára"
+title: "A Hyper-V virtuális gép (a VMM-mel) replikáció az Azure szolgáltatásban az Azure Site Recovery replikációs házirend beállítása |} Microsoft Docs"
+description: "Ismerteti, hogyan lehet a Hyper-V virtuális gép (a VMM-mel) replikáció az Azure szolgáltatásban az Azure Site Recovery replikációs házirend beállítása"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,39 +14,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/23/2017
 ms.author: raynew
-ms.openlocfilehash: e1579fde559ca34eca19a01e740fec28a0df2f9e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 592e1c3f647e5b1f1d9aa776657e8f89b60349e1
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="step-10-set-up-a-replication-policy-for-hyper-v-vm-replication-with-vmm-tooazure"></a>10. lépés: A Hyper-V Virtuálisgép-replikációt (VMM) tooAzure replikációs házirend beállítása
+# <a name="step-10-set-up-a-replication-policy-for-hyper-v-vm-replication-with-vmm-to-azure"></a>10. lépés: Az Azure-ba (VMM) szolgáltatással Hyper-V Virtuálisgép-replikációt a replikációs házirend beállítása
 
 
-Beállítása után [hálózatleképezés](vmm-to-azure-walkthrough-network-mapping.md), ez a cikk tooconfigure T\tooreplicate replikációs házirendet a helyszíni Hyper-V virtuális gépek kezelése a System Center Virtual Machine Manager (VMM) felhők tooAzure használja, a használatával hello [ Az Azure Site Recovery](site-recovery-overview.md) szolgáltatással hello Azure-portálon.
+Beállítása után [hálózatleképezés](vmm-to-azure-walkthrough-network-mapping.md), használja a cikk egy replikációs házirend T\to replikálás konfigurálása a helyszíni Hyper-V virtuális gépek kezelése a System Center Virtual Machine Manager (VMM) felhők az Azure-bA a [Azure Site Recovery](site-recovery-overview.md) szolgáltatás az Azure portálon.
 
-A cikk elolvasása után fűzhetnek bármely hello lap alján, vagy a hello [Azure Recovery Services fórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+A cikk elolvasása után felmerülő megjegyzéseit alul vagy az [Azure Recovery Services fórumban](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) teheti közzé.
 
 
 
 ## <a name="create-a-policy"></a>Házirend létrehozása
 
-1. Kattintson egy új replikációs házirendet toocreate **infrastruktúra előkészítése** > **replikációs beállítások** > **+ létrehozás és társítás**.
+1. Új replikációs szabályzat létrehozásához kattintson az **Infrastruktúra előkészítése** > **Replikációs beállítások** > **+Létrehozás és társítás** elemre.
 
     ![Network (Hálózat)](./media/vmm-to-azure-walkthrough-replication/gs-replication.png)
 2. A **Házirend létrehozása és társítása** beállításnál adja meg a szabályzat nevét.
-3. A **másolás gyakorisága**, adja meg, milyen gyakran tooreplicate különbözeti adatokat hello kezdeti replikálás (30 másodperces, 5 vagy 15 perc) után.
+3. A **Másolás gyakorisága** elemmel meghatározhatja, hogy milyen gyakran szeretné replikálni a módosult adatokat a kezdeti replikációt követően (ez lehet 30 másodperc, 5 perc vagy 15 perc).
 
     > [!NOTE]
-    >  Az 30 második gyakoriságát toopremium tárolási replikálása esetén nem támogatott. hello korlátozás hello pillanatképek számát / (100) blob támogatja prémium szintű storage határozza meg. [További információ](../storage/common/storage-premium-storage.md#snapshots-and-copy-blob)
+    >  Prémium szintű tárterületre replikálás esetén nem támogatott a 30 másodperces gyakoriság. A korlátozás a Prémium szintű Storage által támogatott blobonkénti pillanatképek számától (100) függ. [További információ](../storage/common/storage-premium-storage.md#snapshots-and-copy-blob)
 
-4. A **helyreállításipont-megőrzést**, adja meg, órákban mennyi ideig hello adatmegőrzési időtartam fogja az egyes helyreállítási pontok lehet. Védett gépek lehet helyreállítani egy időszakban tooany pont.
-5. Az **Alkalmazáskonzisztens pillanatkép gyakorisága** beállítás azt határozza meg, hogy milyen gyakran hozzon létre a rendszer alkalmazáskonzisztens pillanatképeket tartalmazó helyreállítási pontokat (a beállítás értéke 1 és 12 óra között változhat). Hyper-V két különböző használ – standard pillanatkép, amely lefedő növekményes pillanatképet hello teljes virtuális gép, és egy alkalmazáskonzisztens pillanatkép, amely időpontban pillanatképet készít a hello alkalmazásadatok hello virtuális gépen belül. Alkalmazáskonzisztens pillanatképek a kötet árnyékmásolata szolgáltatás (VSS) tooensure, amely az alkalmazások konzisztens állapotban legyenek, hello pillanatkép készítésének időpontjában. Vegye figyelembe, hogy ha engedélyezi az alkalmazáskonzisztens pillanatképeket, az hatással hello forrás virtuális gépeken futó alkalmazások teljesítményére. Győződjön meg arról, hogy hello beállított érték kisebb, mint hello további helyreállítási pontok száma.
-6. A **kezdeti replikáció kezdési ideje**, azt jelzi, ha toostart hello kezdeti replikálása. hello replikálást, az internetes sávszélességet, ezért érdemes tooschedule azt a foglalt munkaidőn kívül.
-7. A **az Azure-on tárolt adatok titkosítása**, adja meg, hogy tooencrypt elhelyezett inaktív adatokat az Azure-tárfiókba. Ezután kattintson az **OK** gombra.
+4. A **Helyreállítási pont megőrzése** beállításnál azt adhatja meg, hogy hány órás legyen az egyes helyreállítási pontok adatmegőrzési időtartama. A védelemmel ellátott gépeket az időtartamon belüli bármelyik pontra visszaállíthatja.
+5. Az **Alkalmazáskonzisztens pillanatkép gyakorisága** beállítás azt határozza meg, hogy milyen gyakran hozzon létre a rendszer alkalmazáskonzisztens pillanatképeket tartalmazó helyreállítási pontokat (a beállítás értéke 1 és 12 óra között változhat). A Hyper-V két különböző pillanatképtípust használ: az egyik a standard pillanatkép, amely a virtuális gép egészét lefedő növekményes pillanatképet, a másik pedig az alkalmazáskonzisztens pillanatkép, amely a virtuális gépen futó alkalmazások adatairól készült, időponthoz kötött pillanatképet jelent. Az alkalmazáskonzisztens pillanatképek a kötet árnyékmásolása szolgáltatás (VSS) segítségével garantálják, hogy az alkalmazások konzisztens állapotban legyenek a pillanatkép készítésének időpontjában. Ne feledje, hogy az alkalmazáskonzisztens pillanatképek bekapcsolása negatív hatással lesz a forrás virtuális gépeken futó alkalmazások teljesítményére. Ügyeljen rá, hogy az itt megadott érték kisebb legyen a további beállított helyreállítási pontok számánál.
+6. A **Kezdeti replikáció kezdési ideje** a kezdeti replikáció kezdésének időpontját határozza meg. A replikálási folyamat az internetes sávszélességet használja, így érdemes a műveletet olyankorra ütemezni, amikor kevesen használják az internetet.
+7. **Az Azure-on tárolt adatok titkosítása** beállításnál adhatja meg, hogy szeretné-e titkosítani az Azure-tárfiókban elhelyezett inaktív adatokat. Végül kattintson az **OK** gombra.
 
     ![Replikációs szabályzat](./media/vmm-to-azure-walkthrough-replication/gs-replication2.png)
-8. Ha egy új házirendet hoz létre, automatikusan rendelkezik hello VMM-felhő társítva. Kattintson az **OK** gombra. További VMM-felhőkben (és a bennük foglalt virtuális gépek hello) társíthatja a replikációs házirendet a **replikációs** > szabályzat neve > **VMM-felhő társítása**.
+8. Az újonnan létrehozott szabályzatokat a rendszer automatikusan társítja a VMM-felhővel. Kattintson az **OK** gombra. A további VMM-felhőket (és a rajtuk futó virtuális gépeket) a **Replikáció** > szabályzat neve > **VMM-felhő társítása** menüpontban társíthatja az adott replikációs szabályzathoz.
 
     ![Replikációs szabályzat](./media/vmm-to-azure-walkthrough-replication/policy-associate.png)
 
@@ -54,4 +54,4 @@ A cikk elolvasása után fűzhetnek bármely hello lap alján, vagy a hello [Azu
 
 ## <a name="next-steps"></a>Következő lépések
 
-Nyissa meg túl[11. lépés: replikálás engedélyezése](vmm-to-azure-walkthrough-enable-replication.md)
+Ugrás a [11. lépés: replikálás engedélyezése](vmm-to-azure-walkthrough-enable-replication.md)

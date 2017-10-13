@@ -1,6 +1,6 @@
 ---
-title: "aaaApply teljesítmény ajánlásokkal – az Azure SQL Database |} Microsoft Docs"
-description: "Hello Azure portál toofind teljesítmény javaslatok is optimalizálhatja az Azure SQL Database vagy toocorrect teljesítményét is használhatja a számítási feladatok valamilyen probléma."
+title: "Teljesítmény ajánlásokkal – az Azure SQL Database alkalmazása |} Microsoft Docs"
+description: "Használhatja az Azure portálon található teljesítmény javaslatokat is optimalizálhatja az Azure SQL adatbázis teljesítményét, vagy a számítási feladatok valamilyen probléma megoldására."
 services: sql-database
 documentationcenter: 
 author: stevestein
@@ -15,131 +15,131 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 07/05/2017
 ms.author: sstein
-ms.openlocfilehash: 0b2234840fc3254d235db9e7d18f5bc912851c6d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 018afaa8b08bd001e55693390e80c8e2c4f33a30
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="find-and-apply-performance-recommendations"></a>Keresse meg és teljesítmény javaslatok alkalmazása
 
-Hello Azure portál toofind teljesítmény javaslatok is optimalizálhatja az Azure SQL Database vagy toocorrect teljesítményét is használhatja a számítási feladatok valamilyen probléma. **Teljesítmény ajánlás** Azure-portálon lap lehetővé teszi, hogy toofind hello felső javaslatok potenciális hatásuk alapján. 
+Használhatja az Azure portálon található teljesítmény javaslatokat is optimalizálhatja az Azure SQL adatbázis teljesítményét, vagy a számítási feladatok valamilyen probléma megoldására. **Teljesítmény ajánlás** Azure-portálon lapon áttekintheti a célgyűjtemény meg a felső ajánlásainkat található. 
 
 ## <a name="viewing-recommendations"></a>Javaslatok megtekintése
 
-tooview és alkalmazza a teljesítmény ajánlásokat kell hello megfelelő [szerepköralapú hozzáférés-vezérlés](../active-directory/role-based-access-control-what-is.md) engedélyek az Azure-ban. **Olvasó**, **SQL DB Contributor** engedélyekre szükség tooview javaslatok és **tulajdonos**, **SQL DB Contributor** engedélyekre szükség tooexecute műveletek; Hozzon létre vagy dobjon el indexeket, és indexlétrehozás megszakítását.
+Megtekintheti és teljesítmény ajánlások érvényesek, kell a megfelelő [szerepköralapú hozzáférés-vezérlés](../active-directory/role-based-access-control-what-is.md) engedélyek az Azure-ban. **Olvasó**, **SQL DB Contributor** engedélyekre van szükség a javaslatok, megtekintése és **tulajdonos**, **SQL DB Contributor** végre semmilyen műveletet; hozzon létre vagy dobjon el indexeket és indexlétrehozás megszakítását jogosultságokra van szükség.
 
-Követő lépéseket toofind teljesítmény javaslatok az Azure-portálon hello használata:
+Azure-portál teljesítménye javaslatok kereséséhez tegye a következőket:
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/).
-2. Nyissa meg túl**további szolgáltatások** > **SQL-adatbázisok**, és válassza ki az adatbázist.
-3. Keresse meg a túl**teljesítmény ajánlás** tooview elérhető javaslatok hello kiválasztott adatbázishoz.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com/).
+2. Nyissa meg a **további szolgáltatások** > **SQL-adatbázisok**, és válassza ki az adatbázist.
+3. Navigáljon a **teljesítmény ajánlás** megtekintése a kijelölt adatbázishoz rendelkezésre álló ajánlott.
 
-Teljesítmény javaslatok shonw szerepelnek hello tábla hasonló toohello egy hello a következő ábrán látható:
+Teljesítmény a javaslatok még shonw hasonló jelenik meg az alábbi ábra a táblázatban:
 
 ![Javaslatok](./media/sql-database-advisor-portal/recommendations.png)
 
-Javaslatok a potenciális gyakorolt hatása összességében be a következő kategóriák hello vannak rendezve:
+Javaslatok a potenciális gyakorolt hatása az alábbi kategóriákba vannak rendezve:
 
 | Gyakorolt hatás | Leírás |
 |:--- |:--- |
-| Magas |Nagy jelentőségű javaslatok hello legjelentősebb teljesítményre gyakorolt hatás kell biztosítania. |
+| Magas |Nagy jelentőségű ajánlásokat kell biztosítania a legjelentősebb teljesítményre gyakorolt hatást. |
 | Közepes |Közepes hatás ajánlásokat kell teljesítmény javítása érdekében, de nem jelentősen. |
 | Alacsony |Alacsony hatás ajánlásokat kell biztosítania nélkül jobb teljesítményt, de fejlesztései nem mindig jelentős. |
 
 
 > [!NOTE]
-> Az Azure SQL Database kell toomonitor tevékenységek legalább egy rendelés tooidentify napjára néhány javaslatot. hello Azure SQL Database könnyebben optimalizálható lekérdezés konzisztens mintára, mint a véletlenszerű spotty felszakadásáig tevékenység használhatja. Ha a javaslatok még nem érhető el corrently, hello **teljesítmény ajánlás** lap biztosít egy üzenet, amely ismerteti, hogy miért.
+> Az Azure SQL-adatbázist vissza kell tevékenységek figyelését, legalább egy napig néhány megismerése érdekében. Az Azure SQL Database könnyebben optimalizálható lekérdezés konzisztens mintára, mint a véletlenszerű spotty felszakadásáig tevékenység használhatja. Ha a javaslatok még nem érhető el, corrently a **teljesítmény ajánlás** lap egy üzenet, amely ismerteti, hogy miért biztosít.
 > 
 
-Hello hello múltbeli működési állapotát is megtekintheti. Válassza ki a javaslat vagy állapot toosee további részleteket.
+A múltbeli működési állapotát is megtekintheti. További részletek megtekintéséhez javaslat vagy állapot kiválasztása.
 
-Íme egy példa a ajánlás "Create index" hello Azure-portálon a.
+Íme egy példa a ajánlás "Create index" az Azure portálon.
 
 ![Index létrehozása](./media/sql-database-advisor-portal/sql-database-performance-recommendation.png)
 
 ## <a name="applying-recommendations"></a>Javaslatok alkalmazása
-Az Azure SQL adatbázis teljes szabályozhatják, hogyan a javaslatok még lehetővé teszi engedélyezve van, használja a következő három lehetőség hello valamelyikét: 
+Az Azure SQL adatbázis teljes szabályozhatják, hogyan a javaslatok még lehetővé teszi a következő három beállítások segítségével engedélyezve: 
 
 * Az egyes javaslatok egy alkalmazza egyszerre.
-* Enable hello automatikus hangolási tooautomatically javaslatok érvényesek.
-* tooimplement ajánlást manuálisan, futtassa az adatbázison a T-SQL parancsfájl ajánlott hello.
+* Engedélyezze az automatikus hangolással javaslatok automatikus alkalmazását.
+* A javaslat manuális alkalmazásához futtassa az ajánlott T-SQL parancsfájlt az adatbázis.
 
-Válassza ki a javaslat tooview a részletek, és kattintson a **parancsfájl megtekintése** tooreview hello pontos részleteit hogyan hello javaslat hozták létre.
+Válassza ki a javaslat a részletek megtekintéséhez, majd **parancsfájl megtekintése** áttekintheti a pontos részleteit a javaslat létrehozását.
 
-hello adatbázis online marad, amíg hello javaslat alkalmazása – teljesítmény javasolt vagy automatikus hangolása soha nem fogad egy adatbázis kapcsolat nélküli.
+Az adatbázis online marad, amíg a javaslat alkalmazása--teljesítmény javaslat használatával, vagy automatikus hangolása soha nem fogad egy adatbázis kapcsolat nélküli.
 
 ### <a name="apply-an-individual-recommendation"></a>Az egyes javaslat alkalmazása
 Tekintse át, és fogadja el a javaslatok egy egyszerre.
 
-1. A hello **javaslatok** panelen válassza ki a megfelelő javaslat.
-2. A hello **részletek** panelen kattintson **alkalmaz** gombra.
+1. Az a **javaslatok** panelen válassza ki a megfelelő javaslat.
+2. Az a **részletek** panelen kattintson **alkalmaz** gombra.
    
     ![A javaslat alkalmazása](./media/sql-database-advisor-portal/apply.png)
 
-Kijelölt javaslat hello adatbázison lépnek érvénybe.
+Az adatbázis kijelölt javaslat alkalmazandó.
 
-### <a name="removing-recommendations-from-hello-list"></a>Javaslatok eltávolítása hello listájáról
-Ha a javaslatok listája az, hogy szeretné-e hello listából tooremove elemet tartalmaz, elvetheti hello javaslat:
+### <a name="removing-recommendations-from-the-list"></a>Javaslatok eltávolítása a listáról
+Ha a javaslatok listája az eltávolítani kívánt elemeket tartalmaz, elvetheti a javaslat:
 
-1. Jelöljön ki egy javaslatot hello listája **javaslatok** tooopen hello részleteit.
-2. Kattintson a **elvetése** a hello **részletek** panelen.
+1. Jelölje ki az ajánlás listája **javaslatok** részleteit megnyitásához.
+2. Kattintson a **elvetése** a a **részletek** panelen.
 
-Igény szerint is hozzáadhat az elvetett elemek biztonsági toohello **javaslatok** listája:
+Ha szükséges, hozzáadhat, biztonsági elvetett elemek a **javaslatok** listája:
 
-1. A hello **javaslatok** panelen kattintson **elvetett nézet**.
-2. Válasszon egy eldobott elemet hello lista tooview hozzá tartozó részletek.
-3. Ha úgy gondolja, a **visszavonása elvetése** tooadd hello index vissza toohello fő listája **javaslatok**.
+1. Az a **javaslatok** panelen kattintson **elvetett nézet**.
+2. Válasszon egy eldobott elemet a listából, a részletek megtekintéséhez.
+3. Ha úgy gondolja, a **visszavonása elvetése** vissza a fő listáját az index hozzáadása **javaslatok**.
 
 
 ### <a name="enable-automatic-tuning"></a>Automatikus hangolás engedélyezése
-Hello Azure SQL Database tooimplement javaslatok automatikusan állíthatja be. Amint elérhetővé válnak a javaslatok azokat a rendszer automatikusan alkalmazza. Mint hello által kezelt összes ajánlásokkal szolgáltatás negatív hello javaslat hello teljesítményre gyakorolt hatás esetén vissza lesznek vonva.
+Beállíthatja, hogy az Azure SQL Database javaslatok automatikus végrehajtása érdekében. Amint elérhetővé válnak a javaslatok azokat a rendszer automatikusan alkalmazza. Mint minden, a szolgáltatás által kezelt, ha a teljesítményre gyakorolt hatás negatív ajánlásokkal az ajánlás vissza lesznek vonva.
 
-1. A hello **javaslatok** panelen kattintson a **automatizálás**:
+1. Az a **javaslatok** panelen kattintson a **automatizálás**:
    
     ![Az Advisor-beállítások](./media/sql-database-advisor-portal/settings.png)
-2. Válassza ki a műveletek tooautomate:
+2. Válassza ki az automatikus műveleteket:
    
     ![Ajánlott indexek](./media/sql-database-advisor-portal/automation.png)
 
-### <a name="manually-run-hello-recommended-t-sql-script"></a>Ajánlott a T-SQL parancsfájl hello manuális futtatása
-Válassza ki a javaslat, és kattintson a **parancsfájl megtekintése**. Futtassa a parancsfájlt az adatbázis toomanually alkalmaz hello javaslatot.
+### <a name="manually-run-the-recommended-t-sql-script"></a>Az ajánlott T-SQL parancsfájl manuális futtatása
+Válassza ki a javaslat, és kattintson a **parancsfájl megtekintése**. Futtassa a parancsfájlt az adatbázis a javaslat manuális alkalmazásához.
 
-*Manuálisan végrehajtott indexek nem figyeli, és a teljesítményre gyakorolt hatás hello szolgáltatás érvényesíteni* ezért ajánlatos, hogy nyomon, hogy ezek az indexek létrehozása tooverify után azok biztosít teljesítménynövekedést érhet el és módosítsa vagy törölje azokat, ha szükséges. Indexek létrehozásával kapcsolatos részletekért lásd: [a CREATE INDEX (Transact-SQL)](https://msdn.microsoft.com/library/ms188783.aspx).
+*Manuálisan végrehajtott indexek nem figyeli, és a szolgáltatás által a teljesítményre gyakorolt hatás érvényesíteni* , javasolt, ezek az indexek figyelheti azok biztosít teljesítménynövekedést érhet el és módosítsa vagy törölje azokat, ha szükséges ellenőrzése létrehozása után. Indexek létrehozásával kapcsolatos részletekért lásd: [a CREATE INDEX (Transact-SQL)](https://msdn.microsoft.com/library/ms188783.aspx).
 
 ### <a name="canceling-recommendations"></a>Javaslatok megszakítása
 A javaslatok egy **függőben lévő**, **ellenőrzése**, vagy **sikeres** állapota lehet megszakítani. Javaslatok állapotú **Executing** nem szakítható meg.
 
-1. Jelöljön ki egy javaslatot hello **hangolása előzmények** terület tooopen hello **ajánlások részleteit** panelen.
-2. Kattintson a **Mégse** tooabort hello folyamat hello javaslat alkalmazása.
+1. Válassza ki az ajánlás a **hangolása előzmények** megnyitásához a **ajánlások részleteit** panelen.
+2. Kattintson a **Mégse** megszakítja a folyamatot a javaslat alkalmazását.
 
 ## <a name="monitoring-operations"></a>Figyelési műveletek
-A javaslat alkalmazása nem fordulhat elő, azonnal. hello portal javaslat hello állapotának vonatkozó részletes adatokat biztosít. Az alábbiakban hello index lehet a lehetséges állapotok:
+A javaslat alkalmazása nem fordulhat elő, azonnal. A portál részletesen ajánlás állapotával kapcsolatban. Az index lehet a lehetséges állapotok a következők:
 
 | status | Leírás |
 |:--- |:--- |
 | Függőben |A javaslat parancs érkezett, és a végrehajtásra ütemezett alkalmazni. |
-| Végrehajtása |hello ajánlás vonatkozik. |
-| Ellenőrzése |A javaslat alkalmazása sikeresen és hello szolgáltatás mérés hello előnyeit. |
+| Végrehajtása |A javaslat vonatkozik. |
+| Ellenőrzése |A javaslat alkalmazása sikeresen, és a szolgáltatás a következő előnyöket mérés. |
 | Sikeres |A javaslat alkalmazása sikeresen és előnyök mért lett. |
-| Hiba |Hiba történt a hello folyamat hello javaslat alkalmazása során. Ez lehet átmeneti jellegű probléma, vagy esetleg a séma változástábla toohello és hello parancsfájl már nem érvényes. |
-| Visszaállítás |hello javaslat alkalmazta, de nem performant megállapítása, és automatikusan vissza. |
-| Vissza |hello javaslat vissza lett állítva. |
+| Hiba |Hiba történt az ajánlás alkalmazásának folyamatában. Ez lehet átmeneti jellegű probléma, vagy esetleg a séma módosítsa a táblázat, és a parancsfájl már nem érvényes. |
+| Visszaállítás |A javaslat alkalmazta, de nem performant megállapítása, és automatikusan vissza. |
+| Vissza |A javaslat vissza lett állítva. |
 
-Kattintson egy hello lista toosee folyamaton belüli ajánlása további részletek:
+Kattintson egy folyamaton belüli ajánlott megoldás a listából a további részletek:
 
 ![Ajánlott indexek](./media/sql-database-advisor-portal/operations.png)
 
 ### <a name="reverting-a-recommendation"></a>Azt ajánljuk, akkor a gyermekrekordokra
-Ha hello teljesítmény javaslatok tooapply hello javaslat (azaz a manuális futtatása hello T-SQL parancsfájl) azt automatikusan visszaállítja azt ha hello teljesítmény hatás toobe negatív talál. Ha bármilyen okból kívánt egyszerűen toorevert ajánlást teheti hello következő:
+Ha a teljesítmény ajánlások a javaslat alkalmazása (azaz a manuális futtatása a T-SQL parancsfájl) azt automatikusan visszaáll, ha úgy találja, a teljesítményre gyakorolt hatás negatív. Ha bármilyen okból egyszerűen vissza szeretné azt ajánljuk a következőket teheti:
 
-1. Válassza ki a sikeresen elvégzett javaslat hello **előzmények hangolása** területen.
-2. Kattintson a **visszaállítás** a hello **javaslat részletei** panelen.
+1. Válassza ki a sikeresen elvégzett ajánlást a **előzmények hangolása** területen.
+2. Kattintson a **visszaállítás** a a **javaslat részletei** panelen.
 
 ![Ajánlott indexek](./media/sql-database-advisor-portal/details.png)
 
 ## <a name="monitoring-performance-impact-of-index-recommendations"></a>Ajánlott index teljesítményre gyakorolt hatásának figyelése
-Javaslatok sikeres végrehajtása után (jelenleg műveletek index és csak a lekérdezések javaslatok parametrizálja) kattintva **lekérdezési** a hello javaslat részletei panel tooopen [lekérdezés Teljesítménybe](sql-database-query-performance.md) és tekintse meg a leggyakoribb lekérdezések hello teljesítményre gyakorolt hatást.
+Javaslatok sikeres végrehajtása után (jelenleg műveletek index és csak a lekérdezések javaslatok parametrizálja) kattinthat **lekérdezési** az ajánlás Részletek panel megnyitásához [lekérdezési teljesítmény Insights](sql-database-query-performance.md) és tekintse meg a leggyakoribb lekérdezések a teljesítményre gyakorolt hatást.
 
 ![A figyelő teljesítményre gyakorolt hatás](./media/sql-database-advisor-portal/query-insights.png)
 
@@ -147,11 +147,11 @@ Javaslatok sikeres végrehajtása után (jelenleg műveletek index és csak a le
 Az Azure SQL-adatbázis SQL-adatbázis teljesítményének javítására vonatkozó javaslatokkal szolgál. Adja meg a T-SQL-parancsfájlok, továbbá az egyéni és a teljesen automatikus, az adatbázis optimalizálása, és végül a lekérdezési teljesítmény javítása a hasznos segítséget kap.
 
 ## <a name="next-steps"></a>Következő lépések
-A javaslatok figyelése, és továbbra is tooapply őket toorefine teljesítményét. Adatbázis-terhelések dinamikusak, és folyamatosan módosítása. Azure SQL-adatbázis továbbra is toomonitor, és a ajánlani, amelyek javíthatja az adatbázis teljesítménye. 
+A javaslatok figyelése, és továbbra is alkalmazandó, pontosítsa a teljesítményt. Adatbázis-terhelések dinamikusak, és folyamatosan módosítása. Az Azure SQL-adatbázis továbbra is figyelni, és adja meg a javaslatok, javíthatja az adatbázis teljesítménye. 
 
-* Lásd: [automatikus hangolása](sql-database-automatic-tuning.md) toolearn arról hello Azure SQL adatbázis automatikus hangolása.
+* Lásd: [automatikus hangolása](sql-database-automatic-tuning.md) tudhat meg többet az Azure SQL-adatbázis automatikus hangolása.
 * Lásd: [teljesítmény javaslatok](sql-database-advisor.md) teljesítmény javaslatok az Azure SQL Database áttekintését.
-* Lásd: [lekérdezési teljesítmény Insights](sql-database-query-performance.md) toolearn hello teljesítményre gyakorolt hatását a leggyakoribb lekérdezések megtekintése.
+* Lásd: [lekérdezési teljesítmény Insights](sql-database-query-performance.md) a teljesítményre gyakorolt hatását a leggyakoribb lekérdezések megtekintésének megismerése.
 
 ## <a name="additional-resources"></a>További források
 * [A Lekérdezéstár](https://msdn.microsoft.com/library/dn817826.aspx)

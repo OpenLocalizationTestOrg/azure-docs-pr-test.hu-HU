@@ -1,5 +1,5 @@
 ---
-title: "az Azure Search-index aaaCreate |} A Microsoft Azure |} Üzemeltetett felhőalapú keresőszolgáltatás"
+title: "Azure Search-index létrehozása | Microsoft Azure | Üzemeltetett felhőalapú keresési szolgáltatás"
 description: "Mi az Azure Search-index, és hogyan használható?"
 services: search
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 12/08/2016
 ms.author: ashmaka
-ms.openlocfilehash: c01cc654ff91427c8f1569b2f5b060a0a0f044c6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7fc45273c0f71c727b7087949cc63bbb4111f866
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-an-azure-search-index"></a>Azure Search-index létrehozása
 > [!div class="op_single_selector"]
@@ -28,41 +28,41 @@ ms.lasthandoff: 10/06/2017
 > 
 
 ## <a name="what-is-an-index"></a>Mit jelent az index?
-Az *index* az Azure Search szolgáltatás által használt *dokumentumok* és egyéb szerkezetek állandó tárolója. A dokumentum az indexben lévő kereshető adatok egyedi egysége. Az elektronikus kereskedelemmel foglalkozó ügyfelek például minden egyes értékesített áru, egy hírközlő szervezet pedig minden egyes cikk esetében rendelkezhet dokumentumokkal. Ezen fogalmakat toomore ismerős adatbázis alakokat leképezési: egy *index* fogalmilag hasonló tooa van *tábla*, és *dokumentumok* nagyjából megfelel túl*sorok* egy táblázatban.
+Az *index* az Azure Search szolgáltatás által használt *dokumentumok* és egyéb szerkezetek állandó tárolója. A dokumentum az indexben lévő kereshető adatok egyedi egysége. Az elektronikus kereskedelemmel foglalkozó ügyfelek például minden egyes értékesített áru, egy hírközlő szervezet pedig minden egyes cikk esetében rendelkezhet dokumentumokkal. Ezen fogalmak ismertebb, adatbázisbeli megfelelőivel élve: az *index* koncepcionálisan egy *táblához* hasonlít, a *dokumentumok* pedig nagyjából a tábla *sorainak* felelnek meg.
 
-Ha Ön hozzáadása/feltöltése dokumentumok és küldje el a keresési lekérdezések tooAzure keresési, elküldését a kérelmek tooa egyedi indexet a keresési szolgáltatás.
+Dokumentumok hozzáadásakor/feltöltésekor, illetve keresési lekérdezéseknek az Azure Search szolgáltatásba történő küldésekor a kérések a Search szolgáltatás adott indexének lesznek elküldve.
 
 ## <a name="field-types-and-attributes-in-an-azure-search-index"></a>Mezőtípusok és -attribútumok egy Azure Search-indexben
-Mivel a séma határozza meg, meg kell adnia hello neve, típusa és attribútumok minden mező az indexben. hello mező típusa, a mező tárolt adatok hello osztályozza. Attribútumok állítottak be egyéni mezők toospecify hello mező használatáról. hello táblázatokban hello típusok és számbavétele attribútumokat adhat meg.
+A séma meghatározásakor az index minden egyes mezőjéhez nevet, típust és attribútumokat kell rendelni. Az adott mezőben található adatok osztályozása a mező típusa szerint történik. Az egyes mezők használati módjának megadásához attribútumokat állítunk be. Az itt megadható típusokat és attribútumokat az alábbi tábla sorolja fel.
 
 ### <a name="field-types"></a>Mezőtípusok
 | Típus | Leírás |
 | --- | --- |
 | *Edm.String* |A teljes szöveges keresés (például szóhatároló, származtató) érdekében lehetőség van a szöveg tokenekre bontására. |
-| *Collection(Edm.String)* |A teljes szöveges keresés érdekében lehetőség van a karakterlánclista tokenekre bontására. Nincs a gyűjtemény elemeinek száma hello elméleti felső korlát, de hello 16 MB felső korlát a terhelés méretének toocollections vonatkozik. |
+| *Collection(Edm.String)* |A teljes szöveges keresés érdekében lehetőség van a karakterlánclista tokenekre bontására. Az egyes gyűjteményekben lévő elemek számának nincs elméleti felső korlátja, a 16 MB-os adattartalom-méretkorlát azonban a gyűjteményekre is érvényes. |
 | *Edm.Boolean* |Igaz/hamis értékeket tartalmaz. |
 | *Edm.Int32* |32 bites egész számok. |
 | *Edm.Int64* |64 bites egész számok. |
 | *Edm.Double* |Kétszeres pontosságú numerikus adatok. |
-| *Edm.DateTimeOffset* |Hello OData V4 formátumban idő értékek dátum (pl. `yyyy-MM-ddTHH:mm:ss.fffZ` vagy `yyyy-MM-ddTHH:mm:ss.fff[+/-]HH:mm`). |
-| *Edm.GeographyPoint* |A pont képviselő hello földgömb a földrajzi helyet. |
+| *Edm.DateTimeOffset* |A dátum- és időértékek OData V4 formátumban (például `yyyy-MM-ddTHH:mm:ss.fffZ` vagy `yyyy-MM-ddTHH:mm:ss.fff[+/-]HH:mm`) jelennek meg. |
+| *Edm.GeographyPoint* |A pont egy konkrét földrajzi helyet jelöl. |
 
 Részletesebb információkat az Azure Search által [támogatott adattípusokról itt](https://docs.microsoft.com/rest/api/searchservice/Supported-data-types) talál.
 
 ### <a name="field-attributes"></a>Mezőattribútumok
 | Attribútum | Leírás |
 | --- | --- |
-| *Kulcs* |Hello dokumentum keresse meg a használt egyes dokumentumok egyedi Azonosítóját megadó karakterlánc. Minden egyes indexnek egy kulccsal kell rendelkeznie. Csak egy mező lehet hello kulcs, és a típusa tooEdm.String kell állítani. |
+| *Kulcs* |Az egyes dokumentumok egyedi azonosítóját megadó karakterlánc, amelyet a dokumentumok megkeresésére használunk. Minden egyes indexnek egy kulccsal kell rendelkeznie. A kulcs kizárólag egyetlen mező lehet, annak típusa pedig Edm.String kell legyen. |
 | *Lekérhető* |Megadja, hogy az adott mező visszaadható-e egy keresési eredményben. |
-| *Szűrhető* |Lehetővé teszi, hogy a szűrő lekérdezésekben használt hello mező toobe. |
-| *Rendezhető* |Lehetővé teszi, hogy a lekérdezés toosort eredményt, ezt a mezőt. |
-| *Értékkorlátozó* |Lehetővé teszi, hogy egy mező toobe szerepel egy [jellemzőalapú navigációs](search-faceted-navigation.md) struktúra irányuló szűréséhez. Általában használható toogroup ismétlődő értékeket tartalmazó mezők több dokumentumok együtt (például több dokumentumot, amely egyetlen márka vagy szolgáltatás kategóriája) a legmegfelelőbb, értékkorlátozás. |
-| *Kereshető* |Jelek hello mező, mint a teljes szöveges keresés. |
+| *Szűrhető* |Lehetővé teszi az adott mező szűrőlekérdezésekben történő használatát. |
+| *Rendezhető* |Lehetővé teszi egy lekérdezés számára, hogy az adott mezőt használja egy rendezés alapjaként. |
+| *Értékkorlátozó* |Lehetővé teszi az adott mező [értékkorlátozott navigációs](search-faceted-navigation.md) szerkezetben történő használatát a felhasználó által önállóan irányított szűrések során. Általában olyan ismétlődő értékeket tartalmazó mezők, amelyek dokumentumok csoportosítására használhatók (például adott márkához vagy szolgáltatási kategóriához tartozó dokumentumok esetében). |
+| *Kereshető* |Azt jelzi, hogy az adott mező teljes szöveges keresésre alkalmas. |
 
 Részletesebb információkat az Azure Search [indexattribútumairól itt](https://docs.microsoft.com/rest/api/searchservice/Create-Index) talál.
 
 ## <a name="guidance-for-defining-an-index-schema"></a>Útmutatás az indexsémák meghatározásához
-Az index tervezésekor, a tervezési fázis toothink keresztül minden döntési hello a a időt vehet igénybe. Fontos, hogy a keresés felhasználói élményt és az üzleti igényeket figyelembe venni az index tervezésekor, mivel minden egyes mezőt hozzá kell rendelni hello [megfelelő attribútumokhoz](https://docs.microsoft.com/rest/api/searchservice/Create-Index). Az index módosítása a telepítés után magában foglalja a újraépítése és hello adatok újbóli betöltése.
+Az index kialakításakor szánjon időt a tervezési fázisban az egyes döntések átgondolására. Fontos, hogy az index megtervezésekor a felhasználóként szerzett keresési tapasztalatának és üzleti igényeinek szem előtt tartásával járjon el, és az egyes mezőkhöz a [megfelelő attribútumokat](https://docs.microsoft.com/rest/api/searchservice/Create-Index) rendelje. Az index üzembe helyezést követő módosítása annak újraépítésével és az adatok újbóli feltöltésével jár.
 
 Amennyiben az adattárolási követelmények idővel változnak, a partíciók hozzáadásával vagy eltávolításával növelheti vagy csökkentheti a rendszer kapacitását. Részletes információkat [A Search szolgáltatás kezelése az Azure-ban](search-manage.md) vagy a [Szolgáltatásokra vonatkozó korlátozások](search-limits-quotas-capacity.md) című cikkekben talál.
 

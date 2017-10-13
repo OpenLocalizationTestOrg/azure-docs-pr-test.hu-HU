@@ -1,9 +1,9 @@
 ---
-title: "az internetre irányuló aaaCreate terheléselosztó - klasszikus Azure portálon |} Microsoft Docs"
-description: "Ismerje meg, hogyan toocreate egy Internet felé néző terheléselosztót a klasszikus üzembe helyezési modell használatával hello a klasszikus Azure portálon"
+title: "Internetkapcsolattal rendelkező terheléselosztó létrehozása – klasszikus Azure Portal | Microsoft Docs"
+description: "Ismerje meg, hogyan hozható létre internetkapcsolattal rendelkező terheléselosztó klasszikus üzembehelyezési modellel a klasszikus Azure portál használatával"
 services: load-balancer
 documentationcenter: na
-author: kumudd
+author: KumudD
 manager: timlt
 editor: 
 tags: azure-service-management
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: 27b0d5af6e7b493fa94a9dfbfa260483ae95a2fb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e07b6808f2401ac7b2b21e5f8816bac5a15b50b9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-started-creating-an-internet-facing-load-balancer-classic-in-hello-azure-classic-portal"></a>Internet felé néző terheléselosztó (klasszikus) a klasszikus Azure portálon hello létrehozásához
+# <a name="get-started-creating-an-internet-facing-load-balancer-classic-in-the-azure-classic-portal"></a>Bevezetés az internetkapcsolattal rendelkező terheléselosztó (klasszikus) létrehozásába a klasszikus Azure portál használatával
 
 > [!div class="op_single_selector"]
 > * [klasszikus Azure portál](../load-balancer/load-balancer-get-started-internet-classic-portal.md)
@@ -32,33 +32,33 @@ ms.lasthandoff: 10/06/2017
 [!INCLUDE [load-balancer-get-started-internet-intro-include.md](../../includes/load-balancer-get-started-internet-intro-include.md)]
 
 > [!IMPORTANT]
-> Azure-erőforrások használata előtt-e, hogy Azure jelenleg két üzembe helyezési modellel rendelkezik fontos toounderstand: Azure Resource Manager és klasszikus. Bizonyosodjon meg arról, hogy megfelelő ismeretekkel rendelkezik az [üzembe helyezési modellekről és eszközökről](../azure-classic-rm.md), mielőtt elkezdene dolgozni az Azure-erőforrásokkal. Ez a cikk hello tetején hello fülekre kattintva megtekintheti a különféle eszközök dokumentációit hello. Ez a cikk ismerteti a hello klasszikus üzembe helyezési modellben. Emellett [megtudhatja, hogyan toocreate egy internetre terheléselosztó Azure Resource Manager használatával](load-balancer-get-started-internet-arm-ps.md).
+> Az Azure-erőforrásokkal való munka megkezdése előtt fontos megérteni, hogy az Azure jelenleg két üzembe helyezési modellel rendelkezik, a Resource Managerrel és a klasszikussal. Bizonyosodjon meg arról, hogy megfelelő ismeretekkel rendelkezik az [üzembe helyezési modellekről és eszközökről](../azure-classic-rm.md), mielőtt elkezdene dolgozni az Azure-erőforrásokkal. A különféle eszközök dokumentációit a cikk tetején található fülekre kattintva tekintheti meg. Ez a cikk a klasszikus üzembehelyezési modellt ismerteti. Emellett [azt is megismerheti, hogyan lehet internetkapcsolattal rendelkező terheléselosztót létrehozni az Azure Resource Manager használatával](load-balancer-get-started-internet-arm-ps.md).
 
 [!INCLUDE [load-balancer-get-started-internet-scenario-include.md](../../includes/load-balancer-get-started-internet-scenario-include.md)]
 
 ## <a name="set-up-an-internet-facing-load-balancer-for-virtual-machines"></a>Internetkapcsolattal rendelkező terheléselosztó beállítása virtuális gépekhez
 
-A sorrend tooload egyenleg hálózati forgalmat a hello Internet közötti hello virtuális gépek egy felhőalapú szolgáltatás elosztott terhelésű készletet kell létrehoznia. Ez az eljárás feltételezi, hogy már létrehozta hello virtuális gépek és, hogy azok minden hello belül ugyanaz a felhőalapú szolgáltatás.
+Az internetről érkező hálózati forgalom terheléselosztásának megvalósításához a felhőszolgáltatás virtuális gépei között, létre kell hoznia egy elosztott terhelésű készletet. Ez az eljárás feltételezi, hogy már létrehozta a virtuális gépeket, és az összes ugyanazon a felhőszolgáltatáson belül van.
 
-**a virtuális gépek egy elosztott terhelésű készlet tooconfigure**
+**Virtuális gépek elosztott terhelésű készletének konfigurálása**
 
-1. Hello a klasszikus Azure portálon, kattintson **virtuális gépek**, majd kattintson a virtuális gép elosztott terhelésű készlet hello hello nevére.
+1. A klasszikus Azure portálon kattintson a **Virtuális gépek** lehetőségre, majd kattintson a virtuális gép nevére az elosztott terhelésű készletben.
 2. Kattintson a **Végpontok**, majd a **Hozzáadás** lehetőségre.
-3. A hello **egy végpont tooa virtuális gép felvétele elosztott** lapján hello jobbra mutató nyílra.
-4. A hello **adja meg a hello részleteket hello végpont** lap:
+3. A **Végpont hozzáadása egy virtuális géphez** lapon kattintson a jobbra mutató nyílra.
+4. Az **Adja meg a végpont adatait** lapon:
 
-   * A **neve**hello végpont nevét írja be vagy válassza ki a hello nevét a hello közös protokollok előre definiált végpontok.
-   * A **protokoll**, igény szerint, válassza ki azt, hogy a végponthoz, az TCP vagy UDP, hello típusú által igényelt hello protokollt.
-   * A **nyilvános portot és magánhálózati Port**, írja be a használni kívánt virtuális gép toouse hello igény szerint hello portszámokat. Hello magánhálózati port és a tűzfalszabályok hello virtuális gép tooredirect forgalom oly módon, hogy megfelelő-e az alkalmazás használhat. hello magánhálózati port ugyanaz, mint a nyilvános port hello is hello. Például a webes (HTTP) forgalomnak a végpont, rendelheti port 80 tooboth hello nyilvános és magánhálózati portot.
+   * A **Név** mezőbe írjon be egy nevet a végpont számára, vagy válassza ki a nevet a közös protokollok előre definiált végpontjainak listáján.
+   * A **Protokoll** részben szükség szerint válassza ki a végpont típusa által megkövetelt protokollt (TCP vagy UDP).
+   * A **Nyilvános port és magánhálózati port** részbe írja be azokat a portszámokat, amelyeket a virtuális gépnek kell használnia. A magánhálózati portot és a tűzfalszabályokat a virtuális gépen a forgalomnak az alkalmazása számára megfelelő átirányítására használhatja. A magánhálózati port és a nyilvános port azonos lehet. A webes (HTTP) forgalom egyik végpontjához például hozzárendelhető a 80-as port mind nyilvános, mind magánhálózati portként.
 
-5. Válassza ki **hozzon létre egy elosztott terhelésű készletet**, majd kattintson a hello jobbra mutató nyílra.
-6. A hello **hello elosztott terhelésű készlet konfigurálása** lapon hello elosztott terhelésű készlet nevét, és a mintavételi viselkedését hello Azure terheléselosztó hello értékeket. Terheléselosztó hello mintavételt toodetermine használja, elérhető tooreceive bejövő forgalom hello elosztott terhelésű készlet hello virtuális gépek esetén.
-7. Kattintson a hello pipa toocreate hello elosztott terhelésű végpont. Látni fogja **Igen** a hello **elosztott terhelésű készlet nevét** hello oszlopa **végpontok** lap hello virtuális géphez.
-8. Hello portálon kattintson **virtuális gépek**, kattintson egy további virtuális gép elosztott terhelésű készlet hello hello nevét, majd **végpontok**, és kattintson a **Hozzáadás**.
-9. A hello **egy végpont tooa virtuális gép felvétele elosztott** lapján kattintson **adja hozzá a végpont tooan elosztott terhelésű készlet**, válassza ki az elosztott terhelésű készlet hello hello nevét, és kattintson a hello jobbra mutató nyílra.
-10. A hello **adja meg a hello részleteket hello végpont** lapon, írja be a hello végpont nevét, és kattintson a pipa hello.
+5. Válassza ki az **Elosztott terhelésű készlet létrehozása** lehetőséget, majd kattintson a jobbra mutató nyílra.
+6. Az **Elosztott terhelésű készlet konfigurálása** lapon írja be az elosztott terhelésű készlet nevét, majd rendelje hozzá az Azure Load Balancer mintavételi viselkedésének értékeit. A terheléselosztó a mintavételezők használatával határozza meg, hogy az elosztott terhelésű készlet virtuális gépei rendelkezésre állnak-e bejövő forgalom fogadására.
+7. Kattintson a pipa jelre az elosztott terhelésű végpont létrehozásához. Az **Igen** feliratot fogja látni a virtuális gép **Végpontok** lapjának **Elosztott terhelésű készlet neve** oszlopában.
+8. A portálon kattintson a **Virtuális gépek** lehetőségre, majd kattintson egy további virtuális gép nevére az elosztott terhelésű készletben, kattintson a **Végpontok**, majd a **Hozzáadás** lehetőségre.
+9. A **Végpont hozzáadása egy virtuális géphez** lapon kattintson a **Végpont hozzáadása egy meglévő elosztott terhelésű készlethez** lehetőségre, válassza ki az elosztott terhelésű készlet nevét, majd kattintson a jobbra mutató nyílra.
+10. Az **Adja meg a végpont adatait** lapon írjon be egy nevet a végpont számára, majd kattintson a pipa jelre.
 
-Hello további virtuális gépek hello elosztott terhelésű készlet esetében ismételje meg a 8 – 10.
+Az elosztott terhelésű készlet további virtuális gépeinek esetében ismételje meg a 8–10. lépést.
 
 ## <a name="next-steps"></a>Következő lépések
 

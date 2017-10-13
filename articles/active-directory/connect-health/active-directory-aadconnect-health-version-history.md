@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure AD Connect Health verziójának előzményei"
-description: "Ez a dokumentum ismerteti a hello kiadásokban az Azure AD Connect Health és mi ezeket a kiadásokat szerepel."
+title: "Azure AD Connect Health Version History (Az Azure AD Connect Health verzióelőzményei)"
+description: "Ez a dokumentum ismerteti a kiadások, az Azure AD Connect Health és mi ezeket a kiadásokat szerepel."
 services: active-directory
 documentationcenter: 
 author: karavar
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: a583263e412f5da9af75947f3431de2494042388
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6c990a184d44771c78330f54f518bb4c35a36a35
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-ad-connect-health-version-release-history"></a>Azure AD Connect Health: Version History (Az Azure AD Connect Health verzióelőzményei)
-hello Azure Active Directory csapat rendszeresen frissíti az Azure AD Connect Health új szolgáltatásait és funkcióit. Ez a cikk hello és -funkciókról kiadott sorolja fel.
+Az Azure Active Directory ügyfélszolgálata rendszeresen frissíti az Azure AD Connect Health új szolgáltatásait és funkcióit. Ez a cikk felsorolja a kiadott szolgáltatások és verziókat.
 
 ## <a name="october-2016"></a>2016. október
 **Ügynök frissítése:**
 
 * Az Azure AD Connect Health-ügynök az AD FS \(2.6.408.0 verziója\)
   1. A hitelesítési kérések ügyfél IP-címek kimutatására fejlesztései
-  2. Hibajavítások kapcsolódó tooAlerts
+  2. Hibajavítások kapcsolatos riasztások
 * Az Azure AD Connect Health-ügynök az AD DS (2.6.408.0 verzió)
-  1. A kapcsolódó tooAlerts hibajavításokat tartalmaz.
+  1. Riasztások kapcsolatos hibajavítások.
 * Az Azure AD Connect Health-ügynök (verzió: 2.6.353.0)-szinkronizáláshoz az Azure AD Connect 1.1.281.0 verziója, amely a
-  1. Hello szinkronizálási hibajelentések hello szükséges adatok megadása
-  2. Hibajavítások kapcsolódó tooAlerts
+  1. A szinkronizálás hibajelentések adja meg a szükséges adatokat.
+  2. Riasztások kapcsolatos hibajavítások
 
 **Új előzetes verziójú funkciók:**
 
@@ -41,7 +41,7 @@ hello Azure Active Directory csapat rendszeresen frissíti az Azure AD Connect H
 
 **Új szolgáltatások:**
 
-* Az Azure AD Connect Health AD FS - IP-cím mező érhető hello jelentést készít a rossz felhasználónév/jelszó próbálkozó 50 felhasználó.
+* Az Azure AD Connect Health AD FS - IP-cím mező áll rendelkezésre a rossz felhasználónév/jelszó próbálkozó 50 felhasználó jelentést.
 
 ## <a name="july-2016"></a>2016. július
 **Új előzetes verziójú funkciók:**
@@ -74,9 +74,9 @@ hello Azure Active Directory csapat rendszeresen frissíti az Azure AD Connect H
 **Új szolgáltatások:**
 
 * Helytelen a felhasználónév-jelszó jelentés az AD FS Szolgáltatásokhoz
-* Támogatja a hitelesítés nélküli HTTP Proxy tooconfigure
-* Tooconfigure ügynök támogatja a Server core-on
-* Az AD FS fejlesztései tooAlerts
+* Támogatja a nem hitelesített HTTP-Proxy konfigurálása
+* Ügynök konfigurálása Server core-on a támogatási szolgálathoz
+* Az AD FS riasztások fejlesztései
 * Töltse fel az AD FS Szolgáltatásokhoz a kapcsolat és az Azure AD Connect Health-ügynök javítását.
 
 **Javított problémák:**
@@ -89,11 +89,11 @@ hello Azure Active Directory csapat rendszeresen frissíti az Azure AD Connect H
 **Új szolgáltatások:**
 
 * Riasztások értesítő e-mailek az AD FS és az AD FS-Proxy kiszolgálók figyelésére.
-* Egyszerű a hozzáférés tooAD FS topológia és minták a az AD FS teljesítményszámlálók.
+* Az AD FS topológia és AD FS teljesítményszámlálók minták könnyen elérhetők.
 * Trend a sikeres jogkivonat-kérelmeket az alkalmazásokat, a hitelesítési módszereket, a kérelmek hálózati helye stb szerint csoportosítva AD FS-kiszolgáló.
 * Alkalmazások, hiba típusok stb szerint csoportosítva AD FS-kiszolgáló a sikertelen kérelmek trendeket.
 * Egyszerűbb ügynök központi telepítése az Azure AD globális rendszergazda hitelesítő adataival.  
 
 ## <a name="next-steps"></a>Következő lépések
-További információ [figyelheti a helyszíni identitás infrastruktúra és a szinkronizálási szolgáltatások hello felhő](active-directory-aadconnect-health.md).
+További információ [a helyszíni identitás infrastruktúra és a szinkronizálási szolgáltatások megfigyelése a felhőben](active-directory-aadconnect-health.md).
 

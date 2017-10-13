@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Windows Virtuálisgép-méretek - tároló |} Microsoft Docs"
-description: "Listák hello eltérőek a tárolási Windows virtuális gépek Azure-ban elérhető méretek optimalizált."
+title: "Az Azure Windows Virtuálisgép-méretek - tároló |} Microsoft Docs"
+description: "A Windows virtuális gépek Azure-ban elérhető optimalizált eltérő tárolási méretek sorolja fel."
 services: virtual-machines-windows
 documentationcenter: 
 author: jonbeck7
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 07/28/2017
 ms.author: jonbeck
-ms.openlocfilehash: bbc297671ad40cd4874c6a232e1caee2b444de5e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5d384b3746f62c2ae9c7a484c8d3df9e826ced46
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="storage-optimized"></a>Tárolásra optimalizált
 

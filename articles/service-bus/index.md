@@ -1,8 +1,8 @@
 ---
-title: "Service Bus dokumentációja – oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooset be, amely üzenetküldési csatlakozzon alkalmazások és szolgáltatások a helyszínen, és a felhőalapú környezetben.  Oktatóanyagok, videók, API-referenciák és egyéb anyagok."
+title: "Az Azure Service Bus dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogyan vezethet be olyan üzenetküldési megoldásokat, amelyek alkalmazásokat és szolgáltatásokat kötnek össze helyszíni és felhőalapú környezetekben.  Oktatóanyagok, videók, API-referenciák és egyéb anyagok."
 services: service-bus
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 03/14/2017
 ms.author: carolz
-ms.openlocfilehash: 68df38c39d6f5da112b44025aaf393df542ce01a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9651d93f4d29121e561108845ed48558e46e42f5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 #<a name="service-bus-documentation"></a>Service Bus-dokumentáció
 
-Megtudhatja, hogyan toouse Service Bus és továbbító tooconnect között a helyszíni, mind a felhőalapú környezetben. Oktatóanyagok, videók, API hivatkozásokat és egyéb dokumentációjának megjelenítése hogyan tooset cloud messaging között alkalmazások és szolgáltatások mentése.
+Ismerje meg, hogyan használható a Service Bus és a Relay a helyszíni és a felhőalapú környezetek közötti kapcsolat kiépítésére. Az oktatóanyagok, videók, API-referenciák és az egyéb dokumentáció bemutatják, hogyan építhet ki felhőalapú üzenetküldési megoldásokat alkalmazások és szolgáltatások közt.
 
 <ul class="panelContent cardsFTitle">
     <li>

@@ -1,5 +1,5 @@
 ---
-title: "aaaUpgrade toohello legújabb elastic database ügyféloldali kódtárának |} Microsoft Docs"
+title: "Frissítsen a legújabb elastic database ügyféloldali kódtára a |} Microsoft Docs"
 description: "Frissítse az alkalmazások és a Nuget segítségével könyvtárak"
 services: sql-database
 documentationcenter: 
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: ddove
-ms.openlocfilehash: cc2c9179be4c53ca59cd24d832127cf277c6e695
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7e28d128645e856c0efa6e4f78d8f9f36982a76c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="upgrade-an-app-toouse-hello-latest-elastic-database-client-library"></a>Frissítse az alkalmazás toouse hello legújabb elastic database ügyféloldali kódtár
-Új verzióit hello [Elastic Database ügyféloldali kódtárának](sql-database-elastic-database-client-library.md) NuGetand hello NuGetPackage Manager felületén a Visual Studio elérhető. Frissítések hibajavításokat tartalmaz, és új képességeket hello ügyféloldali kódtár támogatja.
+# <a name="upgrade-an-app-to-use-the-latest-elastic-database-client-library"></a>A legújabb elastic database ügyféloldali kódtár használata az alkalmazások frissítése
+Az új verzióit a [Elastic Database ügyféloldali kódtárának](sql-database-elastic-database-client-library.md) NuGetand a Visual Studio a NuGetPackage Manager felületén keresztül elérhető. Frissítések hibajavításokat tartalmaz, és új képességeket az ügyféloldali kódtár támogatja.
 
-**Hello legújabb verziójához:** túl Ugrás[Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/).
+**A legújabb verzió:** Ugrás [Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/).
 
-Az alkalmazás hello új könyvtárral, valamint módosíthatja a meglévő Shard térkép Manager metaadatok tárolódnak az Azure SQL-adatbázisok toosupport új funkciókat.
+Az alkalmazás az új gyűjteménnyel, valamint módosíthatja a meglévő Shard térkép Manager metaadatok új funkciók támogatásához az Azure SQL-adatbázisban tárolja.
 
-Ezeket a lépéseket hajtja végre sorrendben biztosítja, hogy hello ügyféloldali kódtár régi verziói már nem telepítve legyen a környezetben metaadat-objektum frissítésekor, ami azt jelenti, hogy a régi verziójú metaadat-objektum nem jön létre a frissítés után.   
+Ezeket a lépéseket hajtja végre sorrendben biztosítja, hogy az ügyféloldali kódtár régi verziói már nem telepítve legyen a környezetben metaadat-objektum frissítésekor, ami azt jelenti, hogy a régi verziójú metaadat-objektum nem jön létre a frissítés után.   
 
 ## <a name="upgrade-steps"></a>Frissítési lépések
-**1. Az alkalmazások frissítése.** A Visual Studio, a letöltés és a hivatkozás hello ügyfél könyvtár legújabb be a fejlesztési projektek hello Library; szalagtárat használó összes majd újraépítése, és telepítheti. 
+**1. Az alkalmazások frissítése.** A Visual Studio töltse le, és az ügyfél legújabb könyvtárverzió hivatkozik a fejlesztési projektek; a szalagtárat használó összes majd újraépítése, és telepítheti. 
 
 * Válassza ki a Visual Studio megoldás **eszközök** --> **NuGet-Csomagkezelő** -->  **NuGet-csomagok kezelése megoldáshoz**. 
-* (A visual Studio 2013) Hello bal oldali panelen, jelölje ki a **frissítések**, majd válassza ki a hello **frissítés** hello csomag gombjára **Azure SQL Database rugalmas méretezési ügyféloldali kódtár** hello megjelenő ablak.
-* (A visual Studio 2015) Állítsa be a szűrőmezőbe hello túl**elérhető frissítés**. Jelölje ki a hello csomag tooupdate, majd kattintson a hello **frissítés** gombra.
-* (A visual Studio 2017) Hello felső hello párbeszédpanel, válassza ki a **frissítések**. Jelölje ki a hello csomag tooupdate, majd kattintson a hello **frissítés** gombra.
+* (A visual Studio 2013) A bal oldali panelen válassza ki a **frissítések**, majd válassza ki a **frissítés** gombra a csomag **Azure SQL Database rugalmas méretezési ügyféloldali kódtár** , amely megjelenik az ablakban.
+* (A visual Studio 2015) A Szűrő mezőbe beállítása **elérhető frissítés**. Válassza ki a csomagot, majd kattintson a **frissítése** gombra.
+* (A visual Studio 2017) A párbeszédpanel tetején válassza **frissítések**. Válassza ki a csomagot, majd kattintson a **frissítése** gombra.
 * Hozza létre és telepítheti. 
 
-**2. Frissítse a parancsfájlokat.** Ha használ **PowerShell** toomanage szilánkok, a parancsfájlok [hello új szalagtár verzió letöltéséhez](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/) , és másolja azt hello könyvtárba, amelyből végre parancsfájlokat. 
+**2. Frissítse a parancsfájlokat.** Használata **PowerShell** parancsfájlokat, amelyek kezelik a szilánkok, [töltse le az új szalagtár](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/) , és másolja a könyvtárba, amelyből végre parancsfájlokat. 
 
-**3. Frissítse a felosztás egyesítéses szolgáltatást.** Ha hello rugalmas adatbázis vegyes egyesítéses eszköz tooreorganize horizontálisan skálázott adatok, [töltse le és telepítse a legújabb verziójának hello hello eszköz](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Service.SplitMerge/). Hello szolgáltatás található a frissítési lépések részletes [Itt](sql-database-elastic-scale-overview-split-and-merge.md). 
+**3. Frissítse a felosztás egyesítéses szolgáltatást.** Ha eszközzel a rugalmas adatbázis vegyes egyesítéses horizontálisan skálázott adatok átszervezése [töltse le és telepítse a legfrissebb verziót az eszköz](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Service.SplitMerge/). A szolgáltatás található a frissítési lépések részletes [Itt](sql-database-elastic-scale-overview-split-and-merge.md). 
 
-**4. Frissítse a Shard térkép Manager adatbázisainak**. A szilánkok Maps támogatása az Azure SQL Database hello metaadatok frissítéséhez.  Ez elvégezhető, PowerShell vagy a C# segítségével két módja van. Mindkét lehetőség alább láthatók.
+**4. Frissítse a Shard térkép Manager adatbázisainak**. A metaadatok a Shard Maps támogatása az Azure SQL-adatbázis frissítéséhez.  Ez elvégezhető, PowerShell vagy a C# segítségével két módja van. Mindkét lehetőség alább láthatók.
 
 ***1. lehetőség: A frissítési metaadatok PowerShell használatával***
 
-1. Hello legújabb parancssori segédprogramot letölteni a NuGet [Itt](http://nuget.org/nuget.exe) és tooa mappa mentéséhez. 
-2. Nyisson meg egy parancssort, lépjen a toohello ugyanabban a mappában, és probléma hello parancsot:`nuget install Microsoft.Azure.SqlDatabase.ElasticScale.Client`
-3. Keresse meg a toohello almappa tartalmazó hello új DLL ügyfélverzió imént letöltött, például:`cd .\Microsoft.Azure.SqlDatabase.ElasticScale.Client.1.0.0\lib\net45`
-4. Hello rugalmas adatbázis ügyfél frissítési szkriptlet letöltését hello [Script Center](https://gallery.technet.microsoft.com/scriptcenter/Azure-SQL-Database-Elastic-6442e6a9), és menteni a hello azonos tartalmazó mappa hello dll-Fájljában.
-5. Ebből a könyvtárból futtassa a "PowerShell.\upgrade.ps1" hello parancssorból, és hello útmutatást követve.
+1. A legújabb parancssori segédprogramot letölteni a NuGet [Itt](http://nuget.org/nuget.exe) és egy mappába. 
+2. Nyisson meg egy parancssort, keresse meg az ugyanabban a mappában, és adja ki a parancsot:`nuget install Microsoft.Azure.SqlDatabase.ElasticScale.Client`
+3. Keresse meg az imént letöltött, például új ügyfél DLL-fájl verzióját tartalmazó almappa:`cd .\Microsoft.Azure.SqlDatabase.ElasticScale.Client.1.0.0\lib\net45`
+4. A rugalmas adatbázis ügyfél frissítési szkriptlet a töltse le a [Script Center](https://gallery.technet.microsoft.com/scriptcenter/Azure-SQL-Database-Elastic-6442e6a9), és mentse a dll-fájlt tartalmazó ugyanabba a mappába.
+5. Ebből a könyvtárból "PowerShell.\upgrade.ps1" futtassa a parancssorból, és kövesse az utasításokat.
 
 ***2. lehetőség: A frissítési metaadatok használatával C#***
 
-Alternatív megoldásként hozzon létre egy Visual Studio alkalmazás, amely megnyitja a ShardMapManager elemein végiglépkedve összes szilánkok és hello metaadatok frissítést végez hello metódusok meghívása [UpgradeLocalStore](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.upgradelocalstore.aspx) és [ UpgradeGlobalStore](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.upgradeglobalstore.aspx) ebben a példában látható módon: 
+Alternatív megoldásként hozzon létre egy Visual Studio alkalmazás, amely megnyitja a ShardMapManager elemein végiglépkedve összes szilánkok és a metaadatok frissítést végez a metódusok meghívása [UpgradeLocalStore](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.upgradelocalstore.aspx) és [UpgradeGlobalStore ](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.upgradeglobalstore.aspx) ebben a példában látható módon: 
 
     ShardMapManager smm =
        ShardMapManagerFactory.GetSqlShardMapManager
@@ -67,12 +67,12 @@ Alternatív megoldásként hozzon létre egy Visual Studio alkalmazás, amely me
        smm.UpgradeLocalStore(loc); 
     } 
 
-Ezek a technológiák a metaadatok frissítésekre alkalmazható többször kárt nélkül. Például ha egy régebbi ügyfélverzió véletlenül egy shard hoz létre, miután már frissítette, frissítést futtathatja újra közötti összes szilánkok tooensure adott hello legfrissebb metaadatok megtalálható az infrastruktúra egészében. 
+Ezek a technológiák a metaadatok frissítésekre alkalmazható többször kárt nélkül. Például ha egy régebbi ügyfélverzió véletlenül egy shard hoz létre, miután már frissítette, frissítést futtathatja újra közötti összes szilánkok gondoskodjon arról, hogy a legújabb metaadat az infrastruktúra egészében. 
 
-**Megjegyzés:** új hello ügyféloldali kódtár közzétett-date továbbra is toowork előzetes verzióihoz hello Shard térkép kezelő metaadatainak az Azure SQL Database, és fordítva.   Tootake előnyeit, néhány új szolgáltatását hello hello legújabb ügyfélprogram, metaadatok azonban toobe frissíteni kell.   Vegye figyelembe, hogy metaadat-frissítések nem érinti a felhasználó-adatokat és vonatkozó adatokat, csak objektumok hello Shard térkép Manager által létrehozott és használt.  És alkalmazások továbbra is toooperate hello frissítési sorrend a fent leírt keresztül. 
+**Megjegyzés:** új az ügyféloldali kódtár közzétett-date folytatja a munkát a Shard térkép Manager metaadatok előzetes verziói a Azure SQL Database, és fordítva.   Azonban az előnyeit néhány új szolgáltatását a legújabb ügyfélprogram, metaadatok frissíteni kell.   Vegye figyelembe, hogy metaadat-frissítések nem érinti a felhasználó-adatokat és vonatkozó adatokat, csak objektumok a Shard térkép Manager által létrehozott és használt.  És alkalmazások folytatják működésüket egészen a frissítési sorrend a fent leírt keresztül. 
 
 ## <a name="elastic-database-client-version-history"></a>A rugalmas adatbázis ügyfél verziójának előzményei
-A korábbi verziók go túl[Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)
+Verzióelőzmények, látogasson el [Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 

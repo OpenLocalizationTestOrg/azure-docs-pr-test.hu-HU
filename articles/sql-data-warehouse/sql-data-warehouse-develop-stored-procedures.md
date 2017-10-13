@@ -1,5 +1,5 @@
 ---
-title: "az SQL Data Warehouse aaaStored eljárások |} Microsoft Docs"
+title: "Az SQL Data Warehouse tárolt eljárások |} Microsoft Docs"
 description: "Tippek a tárolt eljárások végrehajtása az Azure SQL Data Warehouse adattárházzal történő, megoldások."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,37 +15,37 @@ ms.workload: data-services
 ms.custom: t-sql
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: 416252dd3dea95c66aa5e886860b933b22578002
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e42d80f0ca35f3fbb67389c66d072bc40d8a8d2c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="stored-procedures-in-sql-data-warehouse"></a>Az SQL Data Warehouse tárolt eljárások
-Az SQL Data Warehouse számos hello Transact-SQL szolgáltatást az SQL Serverben támogatja. Nincsenek ennél is fontosabb, hogy a megoldás tooleverage toomaximize hello teljesítményének fog szeretnénk funkciók kibővítési.
+Az SQL Data Warehouse számos található az SQL Server Transact-SQL funkció támogatja. Nincsenek ennél is fontosabb, hogy a megoldás bővítette ki lesz szeretnénk funkciók kibővítési.
 
-Azonban toomaintain hello méretezés és teljesítmény az SQL Data Warehouse hiba történik is egyes szolgáltatások és funkciók, amelyek viselkedési különbségek és mások által nem támogatott.
+Azonban fenntartásához a méretezés és teljesítmény az SQL Data Warehouse hiba történik is egyes szolgáltatások és funkciók, amelyek viselkedési különbségek és mások által nem támogatott.
 
-Ez a cikk azt ismerteti, hogyan tooimplement tárolt eljárások az SQL Data Warehouse belül.
+Ez a cikk azt ismerteti, hogyan SQL Data warehouse tárolt eljárások végrehajtásához.
 
 ## <a name="introducing-stored-procedures"></a>Tárolt eljárások bemutatása
-Tárolt eljárások nagyszerű módját a és az SQL-kódot; hello adatraktár Bezárás tooyour adatokat tárolja. Által kezelhető egységekbe hello kód és a tárolt eljárások segítségével a fejlesztők modularize megoldásuk; a kód nagyobb re-usability megkönnyítése. Minden tárolt eljárás is fogadhat paraméterek toomake rugalmasabb is azokat.
+Tárolt eljárások nagyszerű módját a és az SQL-kódot; tárolja az adatokat az adatraktárban közelében. A kód és kezelhető egységekbe által a tárolt eljárások segítségével a fejlesztők modularize megoldásuk; a kód nagyobb re-usability megkönnyítése. Minden tárolt eljárás is fogadhat rugalmasabb még így ezek a paraméterek.
 
-Az SQL Data Warehouse egy egyszerűsített és zökkenőmentes tárolt eljárás végrehajtása biztosítja. hello legnagyobb különbség képest tooSQL kiszolgáló, amely a tárolt eljárás hello nincs előre lefordított kódot. Az adatraktárak dolgozunk kevesebb általában érintett hello a fordítás során. Több fontos, hogy a hello tárolt eljárás kódot megfelelően optimalizálni, ha nagy adatmennyiség elleni működik. hello célja toosave óra, perc és másodperc nem ezredmásodperc. Éppen ezért a tárolt eljárások további hasznos toothink SQL logika tárolójaként.     
+Az SQL Data Warehouse egy egyszerűsített és zökkenőmentes tárolt eljárás végrehajtása biztosítja. A legfontosabb különbség az SQL Server képest, győződjön meg arról, hogy a tárolt eljárás nem előre lefordított kódot. Az adatraktárak dolgozunk általában kevésbé fontos szempont a fordítási idő. Több fontos, hogy a tárolt eljárás kódot megfelelően optimalizálni, ha nagy adatmennyiség elleni működik. A cél, óra, perc és másodperc, ezredmásodperc nem menti. Éppen ezért jobban használható SQL logika tárolójaként tárolt eljárások gondol.     
 
-Az SQL Data Warehouse végrehajtásakor a a tárolt eljárás hello SQL-utasítások elemezni, a lefordított és optimalizált futási időben. A folyamat során minden utasításhoz konvertálni az elosztott lekérdezések. hello SQL futtatott kód is ténylegesen hello adatok alapján az különböző toohello lekérdezés elküldése megtörtént.
+A tárolt eljárás végrehajtásakor a SQL Data Warehouse az SQL-utasítások elemzésének, lefordított és optimalizált futási időben. A folyamat során minden utasításhoz konvertálni az elosztott lekérdezések. Az SQL-kódot, amely az adatok alapján végrehajtása nem egyezik az elküldött lekérdezéséhez.
 
 ## <a name="nesting-stored-procedures"></a>A beágyazási tárolt eljárások
-Amikor tárolt eljárások hívás az más tárolt eljárások, vagy dinamikus SQL-utasítás végrehajtása, majd hello belső tárolt eljárás vagy kód hívása, különállónak toobe beágyazott.
+Ha a tárolt eljárások hívás az más tárolt eljárások, vagy dinamikus SQL-utasítás végrehajtása, majd a belső tárolt eljárás vagy a kód hívása, különállónak lehet egymásba ágyazni.
 
-Az SQL Data Warehouse 8 beágyazási szinttel legfeljebb támogat. Ez a kiszolgáló némileg eltérő tooSQL. hello nest az SQL Server szintje 32.
+Az SQL Data Warehouse 8 beágyazási szinttel legfeljebb támogat. Ez kis mértékben eltér az SQL-kiszolgálón. SQL Server szintje kivételblokkokra 32.
 
-hello felső szintű tárolt eljárás hívása csatlakozás toonest szintjét 1
+1. szintű beágyazásához megfelel a legfelső szintű tárolt eljárás hívása
 
 ```sql
 EXEC prc_nesting
 ```
-Ha hello tárolt eljárás is lehetővé teszi egy másik EXEC hívható meg, akkor ez megnöveli a hello nest szintű too2
+Ha a tárolt eljárás is küld egy másik hívás EXEC majd ez megnöveli a nest szint 2
 
 ```sql
 CREATE PROCEDURE prc_nesting
@@ -54,7 +54,7 @@ EXEC prc_nesting_2  -- This call is nest level 2
 GO
 EXEC prc_nesting
 ```
-Ha hello második eljárás végrehajtása során majd néhány dinamikus sql majd ez megnöveli a hello nest szintű too3
+Ha a második eljárás végrehajtása során majd néhány dinamikus sql majd ez megnöveli a nest szint 3
 
 ```sql
 CREATE PROCEDURE prc_nesting_2
@@ -64,12 +64,12 @@ GO
 EXEC prc_nesting
 ```
 
-Megjegyzés: az SQL Data Warehouse jelenleg nem támogatja a@NESTLEVEL. Szüksége lesz a nest szintű nyomon tookeep saját maga. Nem valószínű, akkor elért hello 8 nest szintű korlátot, de ha így tesz, toore-munkahelyi kell a kódot, és "egybesimítására" azt, hogy elférjen ezt a határt.
+Megjegyzés: az SQL Data Warehouse jelenleg nem támogatja a@NESTLEVEL. Nyomon egy a nest szint saját magának kell. Nem valószínű, a 8 nest szintű korlátot elért, de ellenkező esetben szüksége lesz a kódot újra működik, és "egybesimítására" azt, hogy elférjen ezt a határt.
 
 ## <a name="insertexecute"></a>INSERT... VÉGREHAJTÁS
-Az SQL Data Warehouse nem teszi lehetővé az INSERT utasítás tárolt eljárásnak tooconsume hello eredménykészletből. Van azonban egy másik módszert is használhat.
+Az SQL Data Warehouse nem teszi lehetővé az eredményhalmaz egy INSERT utasítás a tárolt eljárás felhasználását. Van azonban egy másik módszert is használhat.
 
-Tekintse meg következő cikket toohello [az ideiglenes táblák] hogyan például toodo ez.
+Tekintse meg az alábbi cikket a [az ideiglenes táblák] ennek példát.
 
 ## <a name="limitations"></a>Korlátozások
 Nincsenek a Transact-SQL tárolt eljárások, amelyeket a rendszer nem az SQL Data Warehouse egyes funkcióit.

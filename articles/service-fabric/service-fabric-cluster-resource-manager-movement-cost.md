@@ -14,23 +14,23 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: 65d4ac73efffcf7b25b1e95da6f9012a9238cb75
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5de07c259d1d327d0211338c2911804445dd6b60
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="service-movement-cost"></a>A mozgás költsége szolgáltatás
-Service Fabric fürt erőforrás-kezelő hello tényezővel úgy ítéli meg, milyen módosítások toomake tooa fürt ezeket a módosításokat hello költsége toodetermine tett kísérlet során. "költség" Hello fogalmát elleni mennyi hello fürt javítható ki forog. Költség Beleszámítja a terheléselosztás, töredezettségmentesítés és egyéb követelmények szolgáltatások áthelyezésekor. hello célja toomeet hello követelményeinek hello legalább zavaró vagy drága módon. 
+A Service Fabric fürt erőforrás-kezelő úgy ítéli meg, amikor megpróbálja megállapítani, hogy milyen módosítások, hogy a fürt tényezővel a költségét és ezeket a módosításokat. A "költség" fogalmát ellen, hogy mekkora a fürt növelhető a forog ki. Költség Beleszámítja a terheléselosztás, töredezettségmentesítés és egyéb követelmények szolgáltatások áthelyezésekor. A cél, hogy legalább zavaró vagy drága módon követelményeinek. 
 
-Helyezze át a szolgáltatások költségek CPU-idő, és a hálózati sávszélesség minimális. Állapotalapú szolgáltatások esetén ehhez szükséges szolgáltatások, ezzel további memóriát és lemez hello állapot másolása. Minimalizálja a megoldások hello költségét, hogy az Azure Service Fabric-fürt erőforrás-kezelő felmerül hello segítségével győződjön meg arról, hogy hello fürt erőforrásait feleslegesen nem fordított. Azonban nem szeretnénk tooignore megoldások, amelyek jelentősen javíthatják a hello fürterőforrások hello kiosztásáért.
+Helyezze át a szolgáltatások költségek CPU-idő, és a hálózati sávszélesség minimális. Állapotalapú szolgáltatások esetén igényel azon szolgáltatásokat, ezzel további memóriát és lemez állapotának másolása. Győződjön meg arról, hogy a fürt erőforrásait feleslegesen nem töltött megoldások, hogy az Azure Service Fabric fürt erőforrás-kezelő a költségek minimalizálása segít. Azonban még nem szeretnénk figyelmen kívül hagyása megoldások, amelyek jelentősen javíthatják a a fürt-erőforrások elosztását.
 
-hello fürt erőforrás-kezelő számítástechnikai költségeket, és korlátozza azokat, amíg toomanage hello fürt megkísérli két lehetősége van. hello első mechanizmus egyszerűen számolása minden elindított áthelyezésre is volna. Ha két megoldások akkor jönnek létre a hello kapcsolatos azonos egyenleg (pontszám), majd hello fürt erőforrás-kezelő egyik hello inkább a hello legalacsonyabb költség (a kurzor teljes száma).
+A fürt erőforrás-kezelő rendelkezik kétféleképpen számítástechnikai költségeket, és korlátozza azokat próbál meg a fürt kezelése közben. Az első eljárás egyszerűen számolása minden elindított áthelyezésre is volna. Ha a két megoldás akkor jönnek létre, az azonos kapcsolatos egyenleg (pontszám), akkor a fürt erőforrás-kezelő inkább egy, a legalacsonyabb költség (a kurzor teljes száma).
 
-Ezt a stratégiát akkor is működik. De az alapértelmezett vagy statikus, nem valószínű, hogy az összes lépés egyenlőek bármely összetett rendszerben. Valószínűleg toobe sokkal több hátránnyal között.
+Ezt a stratégiát akkor is működik. De az alapértelmezett vagy statikus, nem valószínű, hogy az összes lépés egyenlőek bármely összetett rendszerben. Néhány valószínűleg sokkal drága lehet.
 
 ## <a name="setting-move-costs"></a>A beállítás költségek áthelyezése 
-Hello alapértelmezett áthelyezés költség szolgáltatás létrehozásakor adhatók meg:
+Az alapértelmezett áthelyezése költség szolgáltatás létrehozásakor adhatók meg:
 
 PowerShell:
 
@@ -43,12 +43,12 @@ C#:
 ```csharp
 FabricClient fabricClient = new FabricClient();
 StatefulServiceDescription serviceDescription = new StatefulServiceDescription();
-//set up hello rest of hello ServiceDescription
+//set up the rest of the ServiceDescription
 serviceDescription.DefaultMoveCost = MoveCost.Medium;
 await fabricClient.ServiceManager.CreateServiceAsync(serviceDescription);
 ```
 
-Adja meg, vagy frissíteni MoveCost dinamikusan egy szolgáltatáshoz hello szolgáltatás létrehozása után is: 
+Adja meg vagy frissítés MoveCost dinamikusan a szolgáltatás a szolgáltatás létrehozása után is: 
 
 PowerShell: 
 
@@ -66,7 +66,7 @@ await fabricClient.ServiceManager.UpdateServiceAsync(new Uri("fabric:/AppName/Se
 
 ## <a name="dynamically-specifying-move-cost-on-a-per-replica-basis"></a>Dinamikusan adja meg a replika alapon áthelyezés költség
 
-hello előző kódtöredékek segédanyagokra egyszerre egy külső hello szolgáltatás teljes kiszolgálásra MoveCost meghatározásához. Azonban áthelyezése költsége leghasznosabb kell, ha az élettartamot időbeli változásainak hello áthelyezés költségét, egy adott objektumot. Óta hello valószínűleg szolgáltatások maguk hello legjobb meghatározni, hogy hogyan költséges azok toomove egy adott idő alatt van, és van egy API-t, a szolgáltatások tooreport saját egyedi áthelyezés futásidőben költsége. 
+Az előző kódtöredékek segédanyagokra MoveCost megadásának egyszerre a teljes szolgáltatás kívül a szolgáltatást. Azonban áthelyezése költsége leghasznosabb kell, ha az élettartamot időbeli változásainak egy adott szolgáltatás objektum áthelyezése költségét. A szolgáltatásoknak valószínűleg a legjobb meghatározni, hogy hogyan költséges azok helyezze át egy adott idő alatt, mert nincs a jelentés a saját egyéni költség áthelyezése futásidőben szolgáltatásainak API. 
 
 C#:
 
@@ -75,20 +75,20 @@ this.Partition.ReportMoveCost(MoveCost.Medium);
 ```
 
 ## <a name="impact-of-move-cost"></a>Áthelyezési költség hatása
-MoveCost négy szintje van: nulla, alacsony, közepes és magas. MoveCosts más, kivéve a nulla relatív tooeach. Nulla áthelyezés költség azt jelenti, hogy a mozgás szabad, nem kell csökkenti hello pontszám hello megoldás. A beállítás a költségeket, tooHigh áthelyezés does *nem* garantálja, hogy hello replika egy helyen tárolhatja.
+MoveCost négy szintje van: nulla, alacsony, közepes és magas. MoveCosts vannak egymáshoz, kivéve a nulla. Nulla áthelyezés költség azt jelenti, hogy a mozgás szabad, nem kell csökkenti a pontszám megoldás. A magas does költsége move beállítást *nem* biztosítja, hogy a replika egy helyen tárolhatja.
 
 <center>
 ![Helyezze át a költség tényezőként adatátviteli replikák kiválasztása][Image1]
 </center>
 
-MoveCost segít, hogy OK zavartalanul teljes hello és legegyszerűbb tooachieve közben továbbra is egyenértékű egyenleg bejövő hello megoldások keresése. A szolgáltatás fogalmát költség relatív toomany dolog lehet. hello leggyakoribb tényezők az áthelyezés költsége kiszámításakor a következők:
+Keresse meg a a megoldást, amely átfogó zavartalanul okozza, és közben továbbra is érkező egyenértékű egyenleg eléréséhez legegyszerűbb MoveCost segítségével. A szolgáltatás fogalmát költség lehet számos elemet viszonyítva. A leggyakoribb tényezők az áthelyezés költsége kiszámításakor a következők:
 
-- hello az állapot vagy a hello szolgáltatás meglétének toomove adatok mennyisége.
-- ügyfelek leválasztása hello költségét. Helyezze át az elsődleges replika általában költségesebb, mint egy másodlagos másodpéldány hello költségeit.
-- az üzenetsoroktól művelet megszakítása hello költségét. Bizonyos műveleteket hello adatok tárolásához szint vagy válasz tooa ügyfél hívásban végrehajtott műveletek költséges. Egy bizonyos mértékig után nem szeretné, hogy toostop őket, ha nem kell. Ezért amíg hello művelet van folyamatban, növelheti hello áthelyezés költségét, a szolgáltatás objektum tooreduce hello kevésbé valószínű, hogy áthelyezi azt. Amikor hello műveletet hajtja végre, hello költség hátsó toonormal be.
+- Állam vagy olyan adatok, amelyek a szolgáltatás áthelyezése mennyisége.
+- Ügyfelek leválasztása a költségét. Helyezze át az elsődleges replika általában költségesebb, mint a áthelyezi egy másodlagos másodpéldány költségét.
+- Az üzenetsoroktól művelet megszakítása költsége. Bizonyos műveletek, az adatok tárolásához szint, és egy ügyfél hívást végre műveletek esetében költséges. Egy bizonyos mértékig után nem kívánja azokat le, ha nincs. Ezért amíg a művelet van folyamatban, növelheti a move költségek csökkentése érdekében, hogy ez a szolgáltatás-objektum. Amikor a műveletet hajtja végre, a költség be visszaállítása a szokásos módon folytatódik.
 
 ## <a name="enabling-move-cost-in-your-cluster"></a>Áthelyezési költség, a fürt engedélyezése
-Ahhoz, hogy hello részletesebb MoveCosts toobe figyelembe venni, MoveCost engedélyezni kell a fürtben. Ha ez a beállítás hello alapértelmezett mód a kurzor számbavételi MoveCost kiszámításához és MoveCost jelentéseket a rendszer figyelmen kívül hagyja.
+Ahhoz, hogy a részletesebb MoveCosts figyelembe kell venni MoveCost a fürtben engedélyezni kell. Ha ez a beállítás számbavételi helyezi át az alapértelmezett mód MoveCost kiszámításához, és MoveCost jelentéseket a rendszer figyelmen kívül hagyja.
 
 
 ClusterManifest.xml:
@@ -116,7 +116,7 @@ az önálló verziója telepítéseinek művelet vagy az Azure-Template.json üz
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-- Service Fabric fürt erőforrás-kezelő a metrikák toomanage használat és a kapacitás hello fürt használja. További információk a metrikák toolearn és hogyan tooconfigure őket, tekintse meg [hálózatierőforrás-fogyasztás kezelése és a metrikák a Service Fabric terheléselosztási](service-fabric-cluster-resource-manager-metrics.md).
-- toolearn arról, hogyan hello fürt erőforrás-kezelő felügyeli, és elosztja a fürt hello terhelését, tekintse meg [a Service Fabric-fürt terheléselosztási](service-fabric-cluster-resource-manager-balancing.md).
+- Service Fabric fürt erőforrás-kezelő metrikákat használ a használat és a kapacitás, a fürt kezeléséhez. A metrikák és konfigurálásuk módját kapcsolatos további tudnivalókért tekintse meg [hálózatierőforrás-fogyasztás kezelése és a metrikák a Service Fabric terheléselosztási](service-fabric-cluster-resource-manager-metrics.md).
+- Hogyan kezeli a fürt erőforrás-kezelő, és elosztja a terhelést a fürt kapcsolatos információkért tekintse meg [a Service Fabric-fürt terheléselosztási](service-fabric-cluster-resource-manager-balancing.md).
 
 [Image1]:./media/service-fabric-cluster-resource-manager-movement-cost/service-most-cost-example.png

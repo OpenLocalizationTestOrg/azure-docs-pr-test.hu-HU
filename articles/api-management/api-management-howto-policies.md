@@ -1,6 +1,6 @@
 ---
-title: az Azure API Management aaaPolicies |} Microsoft Docs
-description: "Ismerje meg, hogyan toocreate, szerkesztése és API-felügyeleti szabályzatok konfigurálására."
+title: "Házirendek az Azure API Management |} Microsoft Docs"
+description: "Megtudhatja, hogyan létrehozása, szerkesztése és API-felügyeleti szabályzatok konfigurálására."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,58 +14,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 9ab0f884a655004cb10c05085034df1795f512e6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7c1f235343074ec11c635097f2b094a10f3fe781
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="policies-in-azure-api-management"></a>Házirendek az Azure API Management
-Az Azure API Management a házirendek, amelyek lehetővé teszik a hello publisher toochange hello viselkedését hello API konfigurálással hello rendszer hatékony képesség. Házirendek olyan hello kérésre egymás után végrehajtott utasítások gyűjteménye vagy egy API-t adott válaszokat. Népszerű utasítások XML tooJSON formátumú konverzió tartalmazza, és hívja meg a fejlesztők a bejövő hívások toorestrict hello mennyisége sebességével. Számos további házirendeket hello kezdő verzióról érhetők el.
+Az Azure API Management a házirendek olyan egy hatékony képesség, a rendszer, amelyek lehetővé teszik a közzétevőt úgy, hogy az API-t konfigurálással működésének módosításához. Házirendek olyan utasításokat, amelyek egymás után, ha a kérés végrehajtása gyűjteménye vagy egy API-t adott válaszokat. Népszerű utasítások JSON az XML-formátumú átalakítás tartalmazza, és hívja meg egy fejlesztő a bejövő hívások mennyiségének korlátozásához sebességével. Számos további házirendeket nem érhetők el.
 
-Lásd: hello [szabályzataihoz] [ Policy Reference] házirend-utasításoknál és a beállítások teljes listáját.
+Tekintse meg a [szabályzataihoz] [ Policy Reference] házirend-utasításoknál és a beállítások teljes listáját.
 
-Házirendek hello átjárón, amely hello API fogyasztói és felügyelt hello API között helyezkedik el belül érvényesek. hello átjáró összes kéréseket fogad, és általában továbbítja őket a változatlan toohello az alapul szolgáló API. A házirend azonban módosítások tooboth hello bejövő kérés- és kimenő is alkalmazhatja.
+Házirendek az átjárón, amely az API-ügyfél és a felügyelt API között helyezkedik el belül érvényesek. Az átjáró összes kéréseket fogad, és általában továbbítja őket a mögöttes API változatlan. Azonban egy házirend módosításokat is alkalmazhatja a bejövő kérelem és a kimenő válasz.
 
-Házirend-kifejezések használható attribútumértékek vagy szöveges értékek bármely hello API-felügyeleti házirendek, kivéve, ha hello házirend ellenkező esetben adja meg. Egyes házirendek, például a hello [folyamatot szabályozhatja] [ Control flow] és [Set változó] [ Set variable] házirendek a házirend-kifejezések alapulnak. További információkért lásd: [házirendek speciális] [ Advanced policies] és [házirend-kifejezések][Policy expressions].
+A házirend-kifejezéseket attribútumértékekként vagy szövegértékekként lehet használni bármelyik API Management házirendben, hacsak a házirend másként nem rendelkezik. Egyes házirendek, például a [folyamatot szabályozhatja] [ Control flow] és [Set változó] [ Set variable] házirendek a házirend-kifejezések alapulnak. További információkért lásd: [házirendek speciális] [ Advanced policies] és [házirend-kifejezések][Policy expressions].
 
-## <a name="scopes"></a>Hogyan tooconfigure házirendek
-Házirendek úgy is konfigurálhatók, globálisan vagy hello hatókörét egy [termék][Product], [API] [ API] vagy [művelet] [Operation]. tooconfigure egy házirendet, keresse meg a toohello házirendek szerkesztő hello publisher portálon.
+## <a name="scopes"></a>Házirendek konfigurálása
+Házirendek úgy is konfigurálhatók, globálisan vagy a hatókörben egy [termék][Product], [API] [ API] vagy [művelet] [Operation]. Konfigurálja a házirendet, navigáljon a házirendek szerkesztő a közzétevő portálon.
 
 ![Házirendek menü][policies-menu]
 
-hello házirendek szerkesztő három fő részből áll: hello házirend hatókör (felső), hello házirend-definíció ahol házirendek szerkesztése (bal oldali) és hello utasítások listában (jobbra):
+A házirendek szerkesztő három fő részből áll: a házirend-hatókörnek (felső), a házirend-definíció, ahol házirendek szerkesztése (bal oldali) és a kimutatások listában (jobbra):
 
 ![Házirendek szerkesztő][policies-editor]
 
-a toobegin először válassza ki, mely hello házirend vonatkozzon hello hatókör házirend beállítása. Hello képernyőfelvételen látható, alább hello **alapszintű** termék van kiválasztva. Vegye figyelembe, hogy hello négyzetes szimbólum következő toohello házirendnév azt jelzi, hogy egy házirend már alkalmazva van ezen a szinten.
+Egy házirend konfigurálásának a megkezdéséhez ki kell választania a hatókör, ahol a házirendet alkalmazni kell. Az alábbi képernyőképen a **alapszintű** termék van kiválasztva. Vegye figyelembe, hogy a házirend neve melletti négyzet szimbólum azt jelzi, hogy egy házirend már alkalmazva van ezen a szinten.
 
 ![Hatókör][policies-scope]
 
-Egy házirend már telepítve van, mert hello konfigurációs hello típusdefiníció nézet jelenik meg.
+Óta egy házirend már telepítve van, a definíció nézetben jelenik meg a konfigurációt.
 
 ![Konfigurálás][policies-configure]
 
-hello házirend írásvédett jelenik meg először. A sorrend tooedit hello definition kattintson hello **házirend konfigurálása** művelet.
+A házirend csak olvasható jelenik meg először. Kattintson a definíció szerkesztéséhez a **házirend konfigurálása** művelet.
 
 ![Szerkesztés][policies-edit]
 
-hello házirend-definíció egy egyszerű XML-dokumentumban, amely leírja a bejövő és kimenő utasítás sorozata. hello XML közvetlenül hello definition ablak szerkeszthetők. Utasítások a listáját, feltéve toohello jobb utasítások alkalmazható toohello aktuális hatókör engedélyezett és a kiemelt; Amint azt a hello **korlát hívás arány** hello a képernyőfelvételen látható a fenti utasítást.
+A házirend-definíció egy egyszerű XML-dokumentumban, amely leírja a bejövő és kimenő utasítás sorozata. Az XML-fájl közvetlenül a definíció ablakban szerkeszthető. Egy utasítás listája jobbra, és az aktuális hatókör vonatkozó utasítások engedélyezve van, és a kijelölt; ahogy ezt a **korlát hívás arány** utasítás a fenti képernyőfelvételen látható.
 
-Kattintson egy engedélyezett utasítás felveszi hello megfelelő XML hello helyen hello kurzor hello definition nézetben. 
+Egy engedélyezett utasítás gombra kattintva adja hozzá a megfelelő XML a kurzor a definíció nézetben a helyen. 
 
 > [!NOTE]
-> Ha hello házirend, amelyet az tooadd nincs engedélyezve, ellenőrizze, hogy hello a házirendhez tartozó megfelelő hatókörben. Minden egyes házirend-utasítás az egyes hatókörök és házirend szakaszok használatra szolgál. tooreview hello házirend szakaszok és egy házirend hatókörök ellenőrizze hello **használati** hello a házirendhez tartozó szakasz [szabályzataihoz][Policy Reference].
+> Ha hozzá szeretne adni a házirend nincs engedélyezve, ellenőrizze, hogy az adott házirendnek megfelelő hatókörben. Minden egyes házirend-utasítás az egyes hatókörök és házirend szakaszok használatra szolgál. Tekintse át a házirend szakaszok és egy házirend hatókörök, ellenőrizze a **használati** a házirendhez tartozó szakasz a [szabályzataihoz][Policy Reference].
 > 
 > 
 
-A házirend-utasításoknál teljes listáját és a beállítások érhetők el a hello [szabályzataihoz][Policy Reference].
+A házirend-utasításoknál teljes listáját és a beállítások érhetők el a [szabályzataihoz][Policy Reference].
 
-Például tooadd egy új utasítás toorestrict bejövő kérelmek toospecified IP-címek, hello kurzorral hello hello tartalmának belülre `inbound` XML-elem, és kattintson hello **IP-címek korlátozása hívó** utasítást.
+Például a megadott IP-címek korlátozása a bejövő kérelmeket egy új utasítás hozzáadása, vigye a kurzort, belülre tartalmát a `inbound` XML-elemet, és kattintson a **korlátozása hívó IP-címek** utasítás.
 
 ![A szoftverkorlátozó házirendek][policies-restrict]
 
-Ez hozzáadja egy XML-részlet toohello `inbound` elem, hogyan tooconfigure hello utasítás nyújt útmutatást.
+Ez egy XML-részletet, hogy hozzáadja a `inbound` elem, amely az utasítás konfigurálásához nyújt útmutatást.
 
 ```xml
 <ip-filter action="allow | forbid">
@@ -74,7 +74,7 @@ Ez hozzáadja egy XML-részlet toohello `inbound` elem, hogyan tooconfigure hell
 </ip-filter>
 ```
 
-toolimit a bejövő kéréseket, és fogadja el az alábbiak szerint módosítsa 1.2.3.4 IP-cím csak az hello XML:
+Korlátozza a bejövő kéréseket, és fogadja csak azokat az IP-címről 1.2.3.4 módosítsa az XML-fájl az alábbiak szerint:
 
 ```xml
 <ip-filter action="allow">
@@ -84,43 +84,43 @@ toolimit a bejövő kéréseket, és fogadja el az alábbiak szerint módosítsa
 
 ![Mentés][policies-save]
 
-Amikor végzett hello utasítások hello házirend konfigurálásával, kattintson **mentése** és hello módosítások azonnal lesz propagált toohello API adatkezelési átjáró.
+Amikor végzett a kimutatások a házirend konfigurálása, kattintson **mentése** és a módosítások propagálódik az API Management átjáró azonnal.
 
 ## <a name="sections"></a>Ismertetése házirend konfigurálása
-A házirend utasításokat, amelyek ahhoz, hogy egy kérés- és a végrehajtása több. hello konfigurációs oszlik megfelelően `inbound`, `backend`, `outbound`, és `on-error` látható módon hello a következő konfigurációs szakasz.
+A házirend utasításokat, amelyek ahhoz, hogy egy kérés- és a végrehajtása több. A konfigurációs oszlik megfelelően `inbound`, `backend`, `outbound`, és `on-error` látható módon a következő konfigurációs szakasz.
 
 ```xml
 <policies>
   <inbound>
-    <!-- statements toobe applied toohello request go here -->
+    <!-- statements to be applied to the request go here -->
   </inbound>
   <backend>
-    <!-- statements toobe applied before hello request is forwarded too
-         hello backend service go here -->
+    <!-- statements to be applied before the request is forwarded to 
+         the backend service go here -->
   </backend>
   <outbound>
-    <!-- statements toobe applied toohello response go here -->
+    <!-- statements to be applied to the response go here -->
   </outbound>
   <on-error>
-    <!-- statements toobe applied if there is an error condition go here -->
+    <!-- statements to be applied if there is an error condition go here -->
   </on-error>
 </policies> 
 ```
 
-Hello egy kérelem feldolgozása során hiba történik, ha a többi szükséges lépések hello `inbound`, `backend`, vagy `outbound` szakaszok kimarad, és végrehajtási áttérés toohello utasítások a hello `on-error` szakasz. Házirend-utasításoknál hello úgy `on-error` hello segítségével áttekintheti a hello hiba szakasz `context.LastError` tulajdonság, nézze meg, és testre szabhatja a hello hibaválaszba hello használata `set-body` házirend, és konfigurálása, mi történik, ha a hiba akkor fordul elő. Nincsenek hibakódok beépített lépéseket és a házirend-utasításoknál hello feldolgozása során előforduló hibákat. További információkért lásd: [hiba történt az API-felügyeleti házirendek kezelése](https://msdn.microsoft.com/library/azure/mt629506.aspx).
+Ha a kérelem feldolgozása során hiba történt, a többi szükséges lépések a `inbound`, `backend`, vagy `outbound` szakaszok kimarad, és végrehajtási lévő utasítások ugrik a `on-error` szakasz. Úgy, hogy a házirend-utasításoknál a `on-error` tekintse át a hiba a szakasz a `context.LastError` tulajdonság, nézze meg, és testre szabhatja a hiba válasz használatával a `set-body` házirend, és konfigurálása, mi történik, ha a hiba akkor fordul elő. Nincsenek hibakódok beépített lépéseket és a házirend-utasításoknál feldolgozása során előforduló hibákat. További információkért lásd: [hiba történt az API-felügyeleti házirendek kezelése](https://msdn.microsoft.com/library/azure/mt629506.aspx).
 
-Mivel a házirendek (globális, termék, api és művelet) különböző szinteken adható meg hello konfigurációs lehetőséget biztosít az Ön toospecify hello sorrendben, amelyben hello házirend-definíció utasításokat illetően toohello szülő irányelvnek hajtható végre. 
+Mivel a házirendek (globális, termék, api és művelet) különböző szinteken adható meg a konfigurációs módot biztosít a megadhatja a sorrendet, amelyben a házirend-definíció utasítások tekintetében a szülő házirend hajtható végre. 
 
-Házirend hatókörök sorrend hello kiértékelése.
+Házirend hatókörök a következő sorrendben értékeli ki a rendszer.
 
 1. Globális hatókörű
 2. A termék hatókör
 3. API-hatókör
 4. Műveleti hatókör
 
-hello rajtuk utasítás kiértékelése hello toohello elhelyezését szerint `base` elem, ha telepítve. Globális-házirendben engedélyezve van, nincs szülő házirend és hello segítségével `<base>` az elem nincs hatása.
+Azokat a utasítási kiértékelése az elhelyezkedését a `base` elem, ha telepítve. Általános házirend nem szülője házirend és a használatával a `<base>` az elem nincs hatása.
 
-Például ha egy házirend hello globális szinten és az API-k konfigurált házirendek, majd, hogy adott API-t igénybe mindkét házirendeket a rendszer alkalmazza. API-kezelés lehetővé teszi a kombinált házirend kimutatások keresztül hello a(z) determinisztikus rendezéshez. 
+Például, ha a globális szinten és az API-k konfigurált házirendek egy házirendet, majd, hogy adott API-t igénybe mindkét házirendeket a rendszer alkalmazza. API-kezelés lehetővé teszi, hogy az Alap elem keresztül kombinált házirend kimutatások determinisztikus rendezéshez. 
 
 ```xml
 <policies>
@@ -132,9 +132,9 @@ Például ha egy házirend hello globális szinten és az API-k konfigurált há
 </policies>
 ```
 
-A fenti hello példa házirend definíció, hello `cross-domain` utasítás futtatása előtt minden magasabb házirendet, amely viszont hello követi `find-and-replace` házirend. 
+A fenti példa házirend-definíció a `cross-domain` utasítás futtatása előtt minden magasabb házirendet, amely viszont követnie a `find-and-replace` házirend. 
 
-toosee hello házirendek a jelenlegi hatókörben hello hello csoportházirend-szerkesztőben kattintson **számítsa ki újra a kijelölt hatókör hatékony házirend**.
+A házirendek a Helyicsoportházirend-szerkesztő a jelenlegi hatókörben megtekintéséhez kattintson **számítsa ki újra a kijelölt hatókör hatékony házirend**.
 
 ## <a name="next-steps"></a>Következő lépések
 Tekintse meg a következő videót a házirend-kifejezések.

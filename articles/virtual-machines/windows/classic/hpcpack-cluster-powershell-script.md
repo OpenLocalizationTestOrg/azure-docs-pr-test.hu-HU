@@ -1,6 +1,6 @@
 ---
-title: "aaaPowerShell parancsfájl toodeploy Windows HPC-fürt |} Microsoft Docs"
-description: "Az Azure virtuális gépeken a Windows HPC Pack 2012 R2-fürt futtatására a egy PowerShell-parancsfájl toodeploy"
+title: "PowerShell parancsfájl központi telepítése a Windows HPC-fürt |} Microsoft Docs"
+description: "Az Azure virtuális gépeken a Windows HPC Pack 2012 R2-fürt üzembe PowerShell parancsfájl futtatása"
 services: virtual-machines-windows
 documentationcenter: 
 author: dlepow
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 12/29/2016
 ms.author: danlep
-ms.openlocfilehash: 10ce1e9bc4e98954b955549bd72aaaf6106c69fa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 85b125ab19671b61d2541af6378c95feb88bf952
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="create-a-windows-high-performance-computing-hpc-cluster-with-hello-hpc-pack-iaas-deployment-script"></a>Hozzon létre egy Windows nagy teljesítményű számítástechnikai rendszerek (HPC) fürtöt hello HPC Pack IaaS telepítési parancsfájl
-Egy teljes HPC Pack 2012 R2-fürt Windows munkaterhelések az hello HPC Pack IaaS telepítési PowerShell parancsfájl toodeploy futtatása az Azure virtuális gépeken. hello fürt tartalmaz egy Active Directory-tartományhoz átjárócsomópont Windows Server és a Microsoft HPC Pack fut, és további Windows számítási erőforrásokat, akkor adja meg. Ha az Azure HPC Pack fürtöt toodeploy Linux munkaterhelésekhez, lásd: [hozzon létre egy Linux HPC-fürtöt hello HPC Pack IaaS telepítési parancsfájl](../../linux/classic/hpcpack-cluster-powershell-script.md). Az Azure Resource Manager sablon toodeploy egy HPC Pack fürthöz is használható. Tekintse meg a [HPC-fürt létrehozása](https://azure.microsoft.com/documentation/templates/create-hpc-cluster/) és [HPC-fürt létrehozása egyéni számítási csomópont képének](https://azure.microsoft.com/documentation/templates/create-hpc-cluster-custom-image/).
+# <a name="create-a-windows-high-performance-computing-hpc-cluster-with-the-hpc-pack-iaas-deployment-script"></a>Hozzon létre egy Windows-fürt nagy teljesítményű számítástechnikai rendszerek (HPC) a HPC Pack IaaS telepítési parancsfájl
+A HPC Pack IaaS központi telepítés központi telepítése az Azure virtuális gépeken a Windows-munkaterhelések teljes HPC Pack 2012 R2 fürt PowerShell-parancsfájl futtatása. A fürt tartalmaz egy Active Directory-tartományhoz átjárócsomópont Windows Server és a Microsoft HPC Pack fut, és további Windows számítási erőforrásokat, akkor adja meg. Ha szeretné HPC Pack-fürt üzembe helyezése az Azure Linux munkaterhelésekhez, lásd: [hozzon létre egy Linux HPC-fürtöt a HPC Pack IaaS telepítési parancsfájl](../../linux/classic/hpcpack-cluster-powershell-script.md). Az Azure Resource Manager-sablon segítségével is HPC Pack-fürt üzembe helyezése. Tekintse meg a [HPC-fürt létrehozása](https://azure.microsoft.com/documentation/templates/create-hpc-cluster/) és [HPC-fürt létrehozása egyéni számítási csomópont képének](https://azure.microsoft.com/documentation/templates/create-hpc-cluster-custom-image/).
 
 > [!IMPORTANT] 
-> hello ebben a cikkben ismertetett PowerShell-parancsfájl a klasszikus üzembe helyezési modellel hello Azure-ban létrehoz egy Microsoft HPC Pack 2012 R2 fürtöt. A Microsoft azt javasolja, hogy az új telepítések esetén hello Resource Manager modellt használja.
-> Ebben a cikkben ismertetett hello parancsfájl emellett nem támogatja a HPC Pack 2016.
+> A jelen cikkben ismertetett PowerShell-parancsfájl az Azure-ban a klasszikus üzembe helyezési modellel hoz létre a Microsoft HPC Pack 2012 R2-fürt. A Microsoft azt javasolja, hogy az új telepítések esetén a Resource Manager modellt használja.
+> A jelen cikkben ismertetett parancsfájl emellett nem támogatja a HPC Pack 2016.
 
 [!INCLUDE [virtual-machines-common-classic-hpcpack-cluster-powershell-script](../../../../includes/virtual-machines-common-classic-hpcpack-cluster-powershell-script.md)]
 
 ## <a name="example-configuration-files"></a>Példa konfigurációs fájlok
-Hello az alábbi példák a saját értékeit az előfizetés-azonosítóval vagy és hello fiók és a szolgáltatás nevének helyettesítse be.
+A következő példákban helyettesítse a saját értékeit az előfizetés-azonosítóval vagy és a fiók és a szolgáltatás nevének.
 
 ### <a name="example-1"></a>1. példa
-hello következő konfigurációs fájl telepíti egy HPC Pack fürt, amelyen egy helyi adatbázisok átjárócsomópont és öt számítási csomópontok hello Windows Server 2012 R2 operációs rendszert futtat. Összes hello felhőszolgáltatás közvetlenül hello USA nyugati régiója hely jönnek létre. hello átjárócsomópont hello tartomány erdő tartományvezérlőjévé funkcionál.
+A következő konfigurációs fájl egy HPC Pack fürt, amelyen egy helyi adatbázisok átjárócsomópont telepíti, és öt számítási csomópontok a Windows Server 2012 R2 operációs rendszert futtat. A felhőszolgáltatások közvetlenül az USA nyugati régiója hely jönnek létre. Az átjárócsomópont úgy működik, mint a tartomány erdő tartományvezérlőjévé.
 
 ```Xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -71,8 +71,8 @@ hello következő konfigurációs fájl telepíti egy HPC Pack fürt, amelyen eg
 ```
 
 ### <a name="example-2"></a>2. példa
-a következő konfigurációs fájl hello telepíti egy meglévő tartomány erdőben HPC Pack fürt. hello fürt 1 átjárócsomópont helyi adatbázisokkal rendelkezik, és 12 számítási csomópontokat a hello alkalmazott BGInfo Virtuálisgép-bővítmény.
-Windows-frissítések automatikus telepítése a virtuális gépek hello tartomány erdő összes hello le van tiltva. Összes hello felhőszolgáltatás közvetlenül a Kelet-Ázsia hely jönnek létre. hello számítási csomópontok létrehozott három felhőszolgáltatások és három storage-fiókok: *MyHPCCN-0001* túl*MyHPCCN-0005* a *MyHPCCNService01* és  *mycnstorage01*; *MyHPCCN-0006* túl*MyHPCCN0010* a *MyHPCCNService02* és *mycnstorage02*; és  *MyHPCCN-0011* túl*MyHPCCN-0012* a *MyHPCCNService03* és *mycnstorage03*). hello számítási csomópontokat, a számítási csomópont rögzítése meglévő titkos lemezképpel jönnek létre. hello automatikus növelhető vagy csökkenthető az engedélyezve van az alapértelmezett növelhető vagy csökkenthető a időközönként.
+A következő konfigurációs fájl telepíti egy meglévő tartomány erdőben HPC Pack fürt. Helyi adatbázisok 1 központi csomóponttal rendelkező fürt, és 12 számítási csomópontjain alkalmazott BGInfo Virtuálisgép-bővítménnyel.
+A Windows-frissítések automatikus telepítését a virtuális gép esetében a tartomány erdő le van tiltva. A felhőszolgáltatások közvetlenül a Kelet-Ázsia hely jönnek létre. A számítási csomópontok létrehozott három felhőszolgáltatások és három storage-fiókok: *MyHPCCN-0001* való *MyHPCCN-0005* a *MyHPCCNService01* és *mycnstorage01*; *MyHPCCN-0006* való *MyHPCCN0010* a *MyHPCCNService02* és *mycnstorage02*; és *MyHPCCN-0011* való *MyHPCCN-0012* a *MyHPCCNService03* és *mycnstorage03*). A számítási csomópontok jönnek létre, a számítási csomópont rögzítése meglévő titkos lemezképpel. Az automatikus növelhető vagy csökkenthető az engedélyezve van az alapértelmezett növelhető vagy csökkenthető a időközönként.
 
 ```Xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -135,7 +135,7 @@ Windows-frissítések automatikus telepítése a virtuális gépek hello tartom�
 ```
 
 ### <a name="example-3"></a>3. példa
-a következő konfigurációs fájl hello telepíti egy meglévő tartomány erdőben HPC Pack fürt. hello fürt tartalmaz egy átjárócsomópont, egy adatbázis-kiszolgálón, 500 GB adatlemezt, hello Windows Server 2012 R2 operációs rendszer, és öt számítási csomópontok hello Windows Server 2012 R2 operációs rendszert futtató két csomópontok. hello MyHPCCNService hello affinitáscsoportban jön létre a felhőalapú szolgáltatás *MyIBAffinityGroup*, és hello felhőszolgáltatásokra jönnek létre hello affinitáscsoportban *MyAffinityGroup*. hello HPC feladat ütemezési REST API-t és a HPC-webportál hello átjárócsomópont engedélyezve.
+A következő konfigurációs fájl telepíti egy meglévő tartomány erdőben HPC Pack fürt. A fürt egy átjárócsomópont, egy adatbázis-kiszolgálón, 500 GB adatlemezt, a Windows Server 2012 R2 operációs rendszert futtató két csomópontok és a Windows Server 2012 R2 operációs rendszert futtató öt számítási csomópontokat tartalmazza. A felhőszolgáltatás MyHPCCNService létrejön az affinitáscsoport *MyIBAffinityGroup*, és a felhőszolgáltatásokra létrejönnek az affinitáscsoport *MyAffinityGroup*. A HPC feladat ütemezési REST API-t és a HPC-webportál az átjárócsomópont engedélyezve.
 
 ```Xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -190,7 +190,7 @@ a következő konfigurációs fájl hello telepíti egy meglévő tartomány erd
 
 
 ### <a name="example-4"></a>4. példa
-a következő konfigurációs fájl hello telepíti egy meglévő tartomány erdőben HPC Pack fürt. helyi adatbázisok két központi csomóponttal rendelkező hello fürt, két Azure csomópont sablonok létrehozása és három mérete közepes Azure csomópontot hoz létre Azure csomópontsablonhoz *AzureTemplate1*. A parancsfájl futó hello átjárócsomópont hello átjárócsomópont konfigurálása után.
+A következő konfigurációs fájl telepíti egy meglévő tartomány erdőben HPC Pack fürt. Helyi adatbázisok két központi csomóponttal rendelkező fürt, két Azure csomópont sablonok létrehozása és három mérete közepes Azure csomópontot hoz létre Azure csomópontsablonhoz *AzureTemplate1*. Az átjárócsomópont konfigurálása után az átjárócsomópont fut egy parancsfájlt.
 
 ```Xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -257,19 +257,19 @@ a következő konfigurációs fájl hello telepíti egy meglévő tartomány erd
 ```
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
-* **"A virtuális hálózat nem létezik" hiba** -futtatásakor hello parancsfájl toodeploy több fürt az Azure-ban egyszerre egy előfizetéshez tartozó, egy vagy több üzemelő példány hello hiba miatt sikertelen lehet "VNet *VNet\_neve* nem a létező".
-  Ez a hiba akkor fordul elő, ha parancsprogrammal hello újra a sikertelen hello telepítéshez.
-* **Az Azure-beli virtuális hálózat hello Internet probléma elérése hello** – Ha hoz létre egy fürtöt az új tartományvezérlő hello telepítési parancsfájlt, vagy manuálisan főkiszolgálóvá előléptetni egy átjárócsomóponttal VM toodomain vezérlő, problémák hello virtuális gépek toohello internethez kapcsolódik. Ez a probléma akkor fordulhat elő, ha továbbító DNS-kiszolgáló automatikusan hello tartományvezérlőn van konfigurálva, és a továbbító DNS-kiszolgáló nem oldja meg megfelelően.
+* **"A virtuális hálózat nem létezik" hiba** -a parancsfájl futtatása az Azure-ban egy előfizetéshez tartozó egyidejűleg több fürtök üzembe helyezésekor, ha egy vagy több üzemelő példány a hiba miatt sikertelen lehet "VNet *VNet\_neve* nem létezik".
+  Ha ez a hiba akkor fordul elő, futtassa a parancsfájlt újra a sikertelen központi telepítésnél.
+* **Az Internet elérése az Azure virtuális hálózat a probléma** –, ha akkor hozzon létre egy fürtöt egy új tartományvezérlő a telepítési parancsfájl használatával manuálisan főkiszolgálóvá előléptetni egy átjárócsomópont VM tartományvezérlőre, vagy a virtuális gépek csatlakozik az internetre problémák. Ez a probléma akkor fordulhat elő, ha továbbító DNS-kiszolgáló automatikusan konfigurálja a tartományvezérlőn, és a továbbító DNS-kiszolgáló nem oldja meg megfelelően.
   
-    a probléma megoldásához toowork jelentkezzen be a toohello tartományvezérlő és vagy eltávolítása hello továbbító konfigurációs beállítás, vagy egy érvényes továbbító DNS-kiszolgáló konfigurálása. Ezt a beállítást, a Kiszolgálókezelőben kattintson tooconfigure **eszközök** >
-    **DNS** tooopen DNS-kezelőben, majd kattintson duplán **továbbítók**.
-* **RDMA hálózati elérésekor számítási igényű virtuális gépek** –, ha ad hozzá a Windows Server számítási csomópont használja az RDMA-kompatibilisek-e virtuális gépek méretezés például A8 és A9, vagy e virtuális gépek toohello RDMA alkalmazás hálózati csatlakozás problémák. Ez a probléma akkor fordul elő, akkor ha hello HpcVmDrivers kiterjesztése nincs megfelelően telepítve hello virtuális gépek hozzáadásakor toohello fürt. Például a bővítmény előfordulhat, hogy ragadt; ebben az állapotban telepítése hello.
+    Ez a probléma, jelentkezzen be a tartományvezérlő, és vagy távolítsa el a továbbító konfigurációs beállítás, vagy egy érvényes továbbító DNS-kiszolgáló konfigurálása. Ez a beállítás konfigurálása a Kiszolgálókezelőben kattintson **eszközök** >
+    **DNS** nyissa meg a DNS-kezelőben, és kattintson duplán a **továbbítók**.
+* **RDMA hálózati elérésekor számítási igényű virtuális gépek** –, ha ad hozzá a Windows Server számítási csomópont használja az RDMA-kompatibilisek-e virtuális gépek méretezés például A8 és A9, vagy virtuális gépek csatlakoztatása az RDMA-alkalmazás hálózati problémák. Ez a probléma akkor fordul elő, akkor ha a HpcVmDrivers kiterjesztése nincs megfelelően telepítve a virtuális gépek a fürt való hozzáadásakor. A bővítmény például Beragadt telepítése állapotban.
   
-    a probléma megoldásához, első hello állapotának hello virtuális gépek hello bővítmény toowork. Hello bővítmény nem megfelelően van telepítve, ha próbálja meg eltávolítani a hello csomópontok hello HPC-fürtből, és majd újból vegye fel hello csomópontok. Számítási csomópont virtuális gépek például hello átjárócsomópont hello Add-HpcIaaSNode.ps1 parancsfájl futtatásával is hozzáadhat.
+    Ez a probléma megoldása érdekében először ellenőrizze a bővítményt a virtuális gépek állapotát. Ha a kiterjesztés nem megfelelően van telepítve, távolítsa el a csomópontok a HPC-fürtből, és majd újból vegye fel a csomópontok. Például az Add-HpcIaaSNode.ps1 parancsfájl futtatásával az átjárócsomópont számítási csomópont virtuális gépek is hozzáadhat.
 
 ## <a name="next-steps"></a>Következő lépések
-* Futtassa a test-munkaterhelések hello fürtön. Egy vonatkozó példáért lásd: hello HPC Pack [– első lépések útmutató](https://technet.microsoft.com/library/jj884144).
-* Egy oktatóanyag tooscript hello fürttelepítést, és futtassa a HPC-munkaterhelés, a következő témakörben: [Ismerkedés az Azure toorun Excel és a SOA munkaterhelések HPC Pack fürtöt a](../../virtual-machines-windows-excel-cluster-hpcpack.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
-* HPC Pack eszközök toostart próbálja, állítsa le, vegye fel és számítási csomópontok eltávolítása egy fürtről hoz létre. Lásd: [kezelése számítási csomópontok HPC csomagban fürtön, az Azure-ban](hpcpack-cluster-node-manage.md).
-* tooget toosubmit feladatok toohello fürt beállításához a helyi számítógépről, tekintse meg [egy helyi számítógép tooan HPC Pack-feladatok HPC küldje el a fürt az Azure-ban](../../virtual-machines-windows-hpcpack-cluster-submit-jobs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+* Próbálja meg futtatni egy teszt munkaterhelés a fürtön. Egy vonatkozó példáért lásd: a HPC Pack [– első lépések útmutató](https://technet.microsoft.com/library/jj884144).
+* Az oktatóanyagnak, amellyel a parancsfájl a fürtöt tartalmazó környezetben, és futtassa a HPC-munkaterhelés, lásd: [Ismerkedés az Azure-, Excel és SOA alkalmazásokat és szolgáltatásokat futtathatnak HPC Pack fürtöt a](../../virtual-machines-windows-excel-cluster-hpcpack.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+* Próbálja meg a HPC Pack eszközök elindítása, leállítása, adja hozzá, és a számítási csomópontok eltávolítása egy fürtről hoz létre. Lásd: [kezelése számítási csomópontok HPC csomagban fürtön, az Azure-ban](hpcpack-cluster-node-manage.md).
+* Első hozzon létre feladatokat küldhet a fürthöz egy helyi számítógépről, tekintse meg a [nyújt HPC feladatok egy helyi számítógépről egy HPC Pack fürtön, az Azure-ban](../../virtual-machines-windows-hpcpack-cluster-submit-jobs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 

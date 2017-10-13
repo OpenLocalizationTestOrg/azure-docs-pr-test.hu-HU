@@ -1,5 +1,5 @@
 ---
-title: "Kimenő hitelesítési aaaScheduler"
+title: "A Feladatütemező kimenő hitelesítésre"
 description: "A Feladatütemező kimenő hitelesítésre"
 services: scheduler
 documentationcenter: .NET
@@ -14,42 +14,42 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/15/2016
 ms.author: deli
-ms.openlocfilehash: ef713f4770b48d0a9176415e87c1042a823582e5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e345b2e22daae5b24c23645f7d2636f66df630ff
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="scheduler-outbound-authentication"></a>A Feladatütemező kimenő hitelesítésre
-A Feladatütemező szolgáltatás esetleg toocall hitelesítést igénylő tooservices ki. Ezzel a módszerrel a hívott szolgáltatás is meghatározhatja, ha hello Scheduler feladatot az erőforrások eléréséhez. Ezek a szolgáltatások többek között más Azure-szolgáltatások, a Salesforce.com, a Facebook-on és a biztonságos egyéni webhelyeket.
+A Feladatütemező szolgáltatás kell hitelesítést igénylő szolgáltatások hívásához. Ezzel a módszerrel a hívott szolgáltatás is meghatározhatja, ha az ütemezési feladat az erőforrások eléréséhez. Ezek a szolgáltatások többek között más Azure-szolgáltatások, a Salesforce.com, a Facebook-on és a biztonságos egyéni webhelyeket.
 
 ## <a name="adding-and-removing-authentication"></a>Hozzáadása és eltávolítása a hitelesítés
-Hitelesítési tooa ütemezési feladat felettébb egyszerű – vegyen fel egy JSON gyermek hozzáadása `authentication` toohello `request` elem létrehozásakor vagy frissít egy feladatot. Titkos kulcsok megnevezése toohello a Feladatütemező szolgáltatás PUT, a javítás vagy a POST kérelemben – hello `authentication` objektum – soha ne vissza válaszokat. A válaszokat titkos információk toonull vagy előfordulhat, hogy rendelkezik egy nyilvános hitelesített hello entitás jelképező jogkivonatot.
+A Feladatütemező feladathoz a hitelesítés az egyszerű – vegyen fel egy JSON gyermek hozzáadása `authentication` való a `request` elem létrehozásakor vagy frissít egy feladatot. A PUT, a javítás vagy a POST kérelemben – a Feladatütemező szolgáltatás részeként átadott titkokat a `authentication` objektum – soha ne vissza válaszokat. A válaszokat, titkos információk értéke null, vagy nem rendelkezik nyilvános a hitelesített entitás jelképező jogkivonatot.
 
-tooremove hitelesítési, PUT vagy hello feladat explicit módon, javítás hello beállítása `authentication` toonull objektum. Nem jelenik meg a hitelesítési tulajdonságai vissza válaszként.
+Távolítsa el a hitelesítést, PUT, vagy a feladat explicit módon, javítás beállítása a `authentication` objektum null értékű. Nem jelenik meg a hitelesítési tulajdonságai vissza válaszként.
 
-Csak akkor támogatott hello hitelesítési típusok jelenleg hello `ClientCertificate` modellje (hello SSL/TLS ügyféltanúsítványok segítségével), a hello `Basic` modell (az egyszerű hitelesítés), és hello `ActiveDirectoryOAuth` (az Active Directory OAuth modell hitelesítési.)
+Az egyetlen támogatott hitelesítési típusok jelenleg a `ClientCertificate` modell (a "az ügyfél SSL/TLS-tanúsítványok használatával), a `Basic` modell (az egyszerű hitelesítés), és a `ActiveDirectoryOAuth` modell (az Active Directory OAuth hitelesítési.)
 
 ## <a name="request-body-for-clientcertificate-authentication"></a>Kérelem törzse ClientCertificate hitelesítéshez
-Hitelesítés hello hozzáadásakor `ClientCertificate` modell, adja meg a következő további elemek hello kérés törzsében hello.  
+Hitelesítés hozzáadása során a `ClientCertificate` modell, adja meg a következő további elemeket a kérés törzsében.  
 
 | Elem | Leírás |
 |:--- |:--- |
 | *hitelesítési (szülőelem)* |Hitelesítési objektum ügyfél SSL-tanúsítványt használ. |
-| *típusa* |Kötelező. Hitelesítés típusa. Az ügyfél SSL-tanúsítványok, hello értéknek kell lennie `ClientCertificate`. |
-| *PFX* |Kötelező. Base64-kódolású tartalmak hello PFX-fájl. |
-| *jelszó* |Kötelező. Jelszó tooaccess hello PFX-fájlt. |
+| *típusa* |Szükséges. Hitelesítés típusa. Az ügyfél SSL-tanúsítványok, az értéknek kell lennie `ClientCertificate`. |
+| *PFX* |Szükséges. A PFX-fájl Base64-kódolású tartalmát. |
+| *jelszó* |Szükséges. A jelszó megadásával érheti el a PFX-fájlból. |
 
 ## <a name="response-body-for-clientcertificate-authentication"></a>Választörzs ClientCertificate hitelesítéshez
-Egy kérelmet küldött hitelesítési információval, hello válasz tartalmazza a következő hitelesítési kapcsolódó elemeket hello.
+Kérelmet küldött hitelesítési információval, akkor a válasz a következő hitelesítési kapcsolódó elemeket tartalmaz.
 
 | Elem | Leírás |
 |:--- |:--- |
 | *hitelesítési (szülőelem)* |Hitelesítési objektum ügyfél SSL-tanúsítványt használ. |
-| *típusa* |Hitelesítés típusa. Az ügyfél SSL-tanúsítványok, hello értéke `ClientCertificate`. |
-| *certificateThumbprint* |hello hello tanúsítvány ujjlenyomata. |
-| *certificateSubjectName* |hello megkülönböztető hello tanúsítvány tulajdonosnevét. |
-| *certificateExpiration* |hello hello tanúsítvány lejárati dátumát. |
+| *típusa* |Hitelesítés típusa. Az ügyfél SSL-tanúsítványok, a értéke `ClientCertificate`. |
+| *certificateThumbprint* |A tanúsítvány ujjlenyomatát. |
+| *certificateSubjectName* |Tulajdonosának megkülönböztető neve a tanúsítványt. |
+| *certificateExpiration* |A tanúsítvány lejárati dátuma. |
 
 ## <a name="sample-rest-request-for-clientcertificate-authentication"></a>Mintakérelem REST ClientCertificate hitelesítéshez
 ```
@@ -144,23 +144,23 @@ Date: Wed, 16 Mar 2016 19:04:23 GMT
 ```
 
 ## <a name="request-body-for-basic-authentication"></a>Egyszerű hitelesítés esetén a kérelem törzsében
-Hitelesítés hello hozzáadásakor `Basic` modell, adja meg a következő további elemek hello kérés törzsében hello.
+Hitelesítés hozzáadása során a `Basic` modell, adja meg a következő további elemeket a kérés törzsében.
 
 | Elem | Leírás |
 |:--- |:--- |
 | *hitelesítési (szülőelem)* |Hitelesítési objektumot az alapszintű hitelesítést használ. |
-| *típusa* |Kötelező. Hitelesítés típusa. Az egyszerű hitelesítés hello értéknek kell lennie `Basic`. |
-| *felhasználónév* |Kötelező. Felhasználónév tooauthenticate. |
-| *jelszó* |Kötelező. Jelszó tooauthenticate. |
+| *típusa* |Szükséges. Hitelesítés típusa. Az alapszintű hitelesítés, az értéknek kell lennie `Basic`. |
+| *felhasználónév* |Szükséges. Felhasználónév hitelesítéséhez. |
+| *jelszó* |Szükséges. Jelszó a hitelesítéshez. |
 
 ## <a name="response-body-for-basic-authentication"></a>Egyszerű hitelesítés esetén adott válasz törzse
-Egy kérelmet küldött hitelesítési információval, hello válasz tartalmazza a következő hitelesítési kapcsolódó elemeket hello.
+Kérelmet küldött hitelesítési információval, akkor a válasz a következő hitelesítési kapcsolódó elemeket tartalmaz.
 
 | Elem | Leírás |
 |:--- |:--- |
 | *hitelesítési (szülőelem)* |Hitelesítési objektumot az alapszintű hitelesítést használ. |
-| *típusa* |Hitelesítés típusa. Az egyszerű hitelesítés hello értéke `Basic`. |
-| *felhasználónév* |hello hitelesített felhasználónév. |
+| *típusa* |Hitelesítés típusa. Az egyszerű hitelesítés értéke `Basic`. |
+| *felhasználónév* |A hitelesített felhasználónév. |
 
 ## <a name="sample-rest-request-for-basic-authentication"></a>Az egyszerű hitelesítés REST Mintakérelem
 ```
@@ -254,30 +254,30 @@ Date: Wed, 16 Mar 2016 19:05:06 GMT
 ```
 
 ## <a name="request-body-for-activedirectoryoauth-authentication"></a>Kérelem törzse ActiveDirectoryOAuth hitelesítéshez
-Hitelesítés hello hozzáadásakor `ActiveDirectoryOAuth` modell, adja meg a következő további elemek hello kérés törzsében hello.
+Hitelesítés hozzáadása során a `ActiveDirectoryOAuth` modell, adja meg a következő további elemeket a kérés törzsében.
 
 | Elem | Leírás |
 |:--- |:--- |
 | *hitelesítési (szülőelem)* |Hitelesítési objektum ActiveDirectoryOAuth hitelesítéssel. |
-| *típusa* |Kötelező. Hitelesítés típusa. ActiveDirectoryOAuth hitelesítéshez hello értéknek kell lennie `ActiveDirectoryOAuth`. |
-| *Bérlői* |Kötelező. hello Azure AD-bérlő hello a bérlő azonosítója. |
-| *Célközönség* |Kötelező. Toohttps://management.core.windows.net/ értéke. |
-| *clientId* |Kötelező. Adja meg hello ügyfél-azonosítókra hello Azure AD-alkalmazást. |
-| *titkos kulcs* |Kötelező. Titkos kulcs hello jogkivonatot kérő hello ügyfél. |
+| *típusa* |Szükséges. Hitelesítés típusa. A ActiveDirectoryOAuth hitelesítéshez, az értéknek kell lennie `ActiveDirectoryOAuth`. |
+| *Bérlői* |Szükséges. A bérlő azonosítója az Azure AD-bérlő. |
+| *Célközönség* |Szükséges. A beállított érték https://management.core.windows.net/. |
+| *clientId* |Szükséges. Adja meg az ügyfél-azonosító az Azure AD-alkalmazás. |
+| *titkos kulcs* |Szükséges. Az ügyfél a jogkivonatot kérő titkos kulcsot. |
 
 ### <a name="determining-your-tenant-identifier"></a>A bérlői azonosító meghatározása
-Hello bérlői azonosító hello Azure AD-bérlő futtatásával található `Get-AzureAccount` az Azure PowerShell.
+Megtalálhatja a bérlő azonosítóját az Azure AD-bérlő futtatásával `Get-AzureAccount` az Azure PowerShell.
 
 ## <a name="response-body-for-activedirectoryoauth-authentication"></a>Választörzs ActiveDirectoryOAuth hitelesítéshez
-Egy kérelmet küldött hitelesítési információval, hello válasz tartalmazza a következő hitelesítési kapcsolódó elemeket hello.
+Kérelmet küldött hitelesítési információval, akkor a válasz a következő hitelesítési kapcsolódó elemeket tartalmaz.
 
 | Elem | Leírás |
 |:--- |:--- |
 | *hitelesítési (szülőelem)* |Hitelesítési objektum ActiveDirectoryOAuth hitelesítéssel. |
-| *típusa* |Hitelesítés típusa. ActiveDirectoryOAuth hitelesítéshez hello értéke `ActiveDirectoryOAuth`. |
-| *Bérlői* |hello Azure AD-bérlő hello a bérlő azonosítója. |
-| *Célközönség* |Toohttps://management.core.windows.net/ értéke. |
-| *clientId* |hello hello Azure AD alkalmazás ügyfél-azonosítója. |
+| *típusa* |Hitelesítés típusa. ActiveDirectoryOAuth hitelesítéshez értéke `ActiveDirectoryOAuth`. |
+| *Bérlői* |A bérlő azonosítója az Azure AD-bérlő. |
+| *Célközönség* |A beállított érték https://management.core.windows.net/. |
+| *clientId* |Az Azure AD-alkalmazás ügyfél-azonosítókra. |
 
 ## <a name="sample-rest-request-for-activedirectoryoauth-authentication"></a>ActiveDirectoryOAuth hitelesítési REST Mintakérelem
 ```
@@ -380,7 +380,7 @@ Date: Wed, 16 Mar 2016 19:10:02 GMT
 
  [Az Azure Scheduler alapfogalmai, terminológiája és entitáshierarchiája](scheduler-concepts-terms.md)
 
- [Az ütemező hello Azure-portálon az első lépéseiben](scheduler-get-started-portal.md)
+ [Ismerkedés a Scheduler szolgáltatás Azure Portalon való használatával](scheduler-get-started-portal.md)
 
  [Csomagok és számlázás az Azure Schedulerben](scheduler-plans-billing.md)
 

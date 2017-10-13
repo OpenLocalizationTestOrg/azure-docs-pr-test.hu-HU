@@ -1,6 +1,6 @@
 ---
-title: "egy málna Pi tooAzure aaaConnect IoT Suite segítségével C toosupport belső vezérlőprogram frissítése |} Microsoft Docs"
-description: "A Microsoft Azure IoT Starter Kit hello a hello málna Pi 3 és Azure IoT Suite használja. C tooconnect használata a távoli felügyeleti megoldás málna Pi toohello, telemetriai adatokat küldhet az érzékelők toohello felhő, és hajtsa végre a távoli vezérlőprogram-frissítés."
+title: "Csatlakozás egy málna Pi Azure IoT Suite C használatával támogatja a belső vezérlőprogram-frissítésekre |} Microsoft Docs"
+description: "Használja a Microsoft Azure IoT Starter Kit a Raspberry pi 3 és az Azure IoT Suite. A málna Pi kapcsolódni a távoli felügyeleti megoldás használatát C telemetriai adatokat küldhet az érzékelők a felhőbe, és hajtsa végre a távoli vezérlőprogram-frissítés."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -14,143 +14,143 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: dobett
-ms.openlocfilehash: 36d39c6d754ddb025fd3f6b74d7795ed907b754c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f36f6512bb30e4b109b1bd1c3cdab10300f4edc9
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="connect-your-raspberry-pi-3-toohello-remote-monitoring-solution-and-enable-remote-firmware-updates-using-c"></a>Csatlakozzon a távoli felügyeleti megoldás málna Pi 3 toohello, és engedélyezze a távoli belső vezérlőprogram-frissítésekre C használatával
+# <a name="connect-your-raspberry-pi-3-to-the-remote-monitoring-solution-and-enable-remote-firmware-updates-using-c"></a>A málna Pi 3 kapcsolódni a távoli felügyeleti megoldás, és engedélyezze a távoli belső vezérlőprogram-frissítésekre C használatával
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-selector](../../includes/iot-suite-raspberry-pi-kit-selector.md)]
 
-Az oktatóanyag bemutatja, hogyan toouse hello Microsoft Azure IoT Starter Kit málna Pi 3:
+Az oktatóanyag bemutatja, hogyan használható a Microsoft Azure IoT Starter Kit málna Pi 3:
 
-* A hőmérséklet és a páratartalom olvasó, amely képes kommunikálni a hello felhő fejlesztéséhez.
-* Engedélyezi, és végezze el a távoli belső vezérlőprogram frissítési tooupdate hello ügyfélalkalmazás hello málna Pi.
+* Fejlesztés a hőmérséklet és a páratartalom olvasó, amely képes kommunikálni a felhőben.
+* Engedélyezi, és végre a távoli belső vezérlőprogram frissítése a frissítés az ügyfélalkalmazás a málna Pi.
 
-hello oktatóprogram:
+Az oktatóprogram:
 
-* Az operációs rendszer Raspbian, hello C programozási nyelv, és C tooimplement egy minta eszközt a Microsoft Azure IoT SDK hello.
-* mint hello felhőalapú háttér hello IoT Suite távoli megfigyelési előre konfigurált megoldás.
+* Raspbian operációs rendszer, a C programozási nyelv, és a Microsoft Azure IoT SDK C-hez egy minta eszköz végrehajtásához.
+* Az IoT Suite távoli megfigyelési előre konfigurált megoldás, a felhő alapú háttér.
 
 ## <a name="overview"></a>Áttekintés
 
-Az oktatóanyag befejezése hello a következő lépéseket:
+Ebben az oktatóanyagban végezze el a következő lépéseket:
 
-* Hello távoli figyelési előkonfigurált megoldás tooyour Azure-előfizetés-példányt telepítése. Ebben a lépésben automatikusan telepíti és konfigurálja a több Azure-szolgáltatásokhoz.
-* Állítsa be a számítógép és a hello az eszköz és az érzékelők toocommunicate távoli felügyeleti megoldás.
-* Hello eszköz kód tooconnect toohello távoli figyelési megoldást frissítése, és megtekintheti a hello megoldás irányítópultja telemetriát.
-* Hello minta eszköz kód tooupdate hello-ügyfélalkalmazás használata.
+* Telepítse a távoli felügyeleti előkonfigurált megoldás egy példányát az Azure-előfizetéshez. Ebben a lépésben automatikusan telepíti és konfigurálja a több Azure-szolgáltatásokhoz.
+* Állítsa be az eszköz és a érzékelők kommunikáljanak a számítógép és a távoli felügyeleti megoldás.
+* Frissítse a mintakódot eszköz csatlakozni a távoli felügyeleti megoldás, és, amely megtalálható a megoldás irányítópultja telemetriai adatokat küldhet.
+* A mintakód eszköz használatával frissítheti az ügyfélalkalmazás.
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-prerequisites](../../includes/iot-suite-raspberry-pi-kit-prerequisites.md)]
 
 [!INCLUDE [iot-suite-provision-remote-monitoring](../../includes/iot-suite-provision-remote-monitoring.md)]
 
 > [!WARNING]
-> távoli hello figyelési megoldást kiosztja az Azure-előfizetéshez az Azure szolgáltatások. hello központi telepítés által adott jelentéseket tükrözik a valós vállalati architektúra. tooavoid szükségtelen Azure felhasználási díjak, az előre konfigurált hello megoldást a következő azureiotsuite.com példányának törlése, vele befejezése után. Ha újra kell hello előkonfigurált megoldás, egyszerűen létrehozhatja azt. Hello távoli figyelési megoldást futtatása közben felhasználás csökkentése kapcsolatos további információkért lásd: [konfigurálása Azure IoT Suite megoldások bemutató céljára előre konfigurált][lnk-demo-config].
+> A távoli felügyeleti megoldás látja el az Azure-előfizetéshez az Azure szolgáltatások. A központi telepítés által adott jelentéseket tükrözik a valós vállalati architektúra. Szükségtelen Azure felhasználási díjak elkerülése az előre konfigurált megoldást a következő azureiotsuite.com a példányának törlése után vele. Ha újra kell az előkonfigurált megoldás, egyszerűen létrehozhatja azt. További információ a felhasználás csökkentése a távoli felügyeleti megoldás futtatása közben: [konfigurálása Azure IoT Suite megoldások bemutató céljára előre konfigurált][lnk-demo-config].
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-view-solution](../../includes/iot-suite-raspberry-pi-kit-view-solution.md)]
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-prepare-pi](../../includes/iot-suite-raspberry-pi-kit-prepare-pi.md)]
 
-## <a name="download-and-configure-hello-sample"></a>Töltse le és konfigurálja a hello minta
+## <a name="download-and-configure-the-sample"></a>Töltse le és konfigurálja a minta
 
-Most töltse le, és a málna Pi hello távoli figyelési ügyfélalkalmazás konfigurálása.
+Most töltse le és konfigurálja a távoli felügyeleti ügyfélalkalmazás a málna Pi.
 
-### <a name="clone-hello-repositories"></a>Klónozás hello adattárak
+### <a name="clone-the-repositories"></a>A tárolóhelyekkel klónozása
 
-Ha még nem tette meg, a Klónozás hello szükséges futtatásával adattárak hello parancsok követően a Pi:
+Ha még nem tette meg, klónozza a szükséges adattárak a Pi a következő parancsok futtatásával:
 
 ```sh
 cd ~
 git clone --recursive https://github.com/Azure-Samples/iot-remote-monitoring-c-raspberrypi-getstartedkit.git
 ```
 
-### <a name="update-hello-device-connection-string"></a>Hello eszköz kapcsolati karakterlánc frissítése
+### <a name="update-the-device-connection-string"></a>Frissítés az eszköz kapcsolati karakterlánc
 
-Nyissa meg hello minta konfigurációs fájlt a hello **nano** szerkesztő hello a következő parancs használatával:
+Nyissa meg a minta konfigurációs fájlt a **nano** szerkesztő a következő parancsot:
 
 ```sh
 nano ~/iot-remote-monitoring-c-raspberrypi-getstartedkit/advanced/config/deviceinfo
 ```
 
-Cserélje le hello helyőrző értékeket hello azonosító és az IoT-központ eszközadatokat létrehozott és mentett ebben az oktatóanyagban hello elején.
+Cserélje le a helyőrző értékeket az ID és az IoT-központ eszközinformáció létrehozott és mentett Ez az oktatóanyag elején.
 
-Amikor elkészült, hello hello deviceinfo információja fájl tartalmát a következő példa hello hasonlóan kell kinéznie:
+Amikor elkészült, a deviceinfo információja fájl tartalma az alábbihoz hasonlóan kell kinéznie:
 
 ```conf
 yourdeviceid
 HostName=youriothubname.azure-devices.net;DeviceId=yourdeviceid;SharedAccessKey=yourdevicekey
 ```
 
-Menti a módosításokat (**Ctrl-O**, **Enter**) és a kilépési hello editor (**Ctrl-X**).
+Menti a módosításokat (**Ctrl-O**, **Enter**), és zárja be a szerkesztőt (**Ctrl-X**).
 
-## <a name="build-hello-sample"></a>Hello minta
+## <a name="build-the-sample"></a>A minta
 
-Ha még nem tette meg, telepítse hello csomagokat a Microsoft Azure IoT eszköz SDK hello C hello hello málna Pi követően egy terminál-parancsok futtatásával:
+Ha még nem tette meg, telepítse a csomagokat a Microsoft Azure IoT eszköz SDK C-hez a következő parancsok futtatásával parancsot egy terminálban a málna Pi:
 
 ```sh
 sudo apt-get update
 sudo apt-get install g++ make cmake git libcurl4-openssl-dev libssl-dev uuid-dev
 ```
 
-Most már lefordíthatja hello megoldást a hello málna Pi:
+A megoldást a málna Pi a most már lefordíthatja:
 
 ```sh
 chmod +x ~/iot-remote-monitoring-c-raspberrypi-getstartedkit/advanced/1.0/build.sh
 ~/iot-remote-monitoring-c-raspberrypi-getstartedkit/advanced/1.0/build.sh
 ```
 
-Hello minta program hello málna Pi most futtathatja. Adja meg a hello parancsot:
+A minta program most futtathatja a málna Pi. Adja meg a parancsot:
 
   ```sh
   sudo ~/cmake/remote_monitoring/remote_monitoring
   ```
 
-hello következő minta kimenet látható egy példa hello kimeneti hello parancssorba a hello málna Pi látja:
+A következő minta kimenet látható egy példa a kimeneti látja a málna Pi a parancssorba:
 
 ![Raspberry Pi-alkalmazás kimenete][img-raspberry-output]
 
-Nyomja le az **Ctrl-C** tooexit hello program tetszőleges időpontban.
+Nyomja le az **Ctrl-C** kilép a programból bármikor.
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-view-telemetry-advanced](../../includes/iot-suite-raspberry-pi-kit-view-telemetry-advanced.md)]
 
-1. Hello megoldás irányítópulton kattintson **eszközök** toovisit hello **eszközök** lap. Válassza ki a málna Pi hello **eszközlista**. Válassza a **módszerek**:
+1. A megoldás irányítópulton kattintson **eszközök** és látogasson el a **eszközök** lap. Válassza ki a Raspberry Pi a a **eszközlista**. Válassza a **módszerek**:
 
     ![Az irányítópult eszközök][img-list-devices]
 
-1. A hello **metódus meghívása** lapon, válassza ki **InitiateFirmwareUpdate** a hello **metódus** legördülő menüből.
+1. Az a **metódus meghívása** lapon, válassza ki **InitiateFirmwareUpdate** a a **metódus** legördülő menüből.
 
-1. A hello **FWPackageURI** mezőbe írja be **https://github.com/Azure-Samples/iot-remote-monitoring-c-raspberrypi-getstartedkit/raw/master/advanced/2.0/package/remote_monitoring.zip**. Az archívumfájl hello végrehajtásának hello belső vezérlőprogram 2.0-s verzióját tartalmazza.
+1. Az a **FWPackageURI** mezőbe írja be **https://github.com/Azure-Samples/iot-remote-monitoring-c-raspberrypi-getstartedkit/raw/master/advanced/2.0/package/remote_monitoring.zip**. Az archívum 2.0-s verziójának a belső vezérlőprogram végrehajtásának tartalmaz.
 
-1. Válasszon **InvokeMethod**. hello málna Pi hello alkalmazást egy visszaigazoló hátsó toohello megoldás irányítópultja küld. Ezután elindítja a letöltés hello új hello belső vezérlőprogram verziójának hello belső vezérlőprogram frissítési folyamat:
+1. Válasszon **InvokeMethod**. Az alkalmazás a málna Pi nyugtázás visszaküldi a megoldás irányítópultja. Ezután elindítja a belső vezérlőprogram frissítési folyamat által a belső vezérlőprogram az új verzió letöltése:
 
     ![Módszer előzmények megjelenítése][img-method-history]
 
-## <a name="observe-hello-firmware-update-process"></a>Tekintse át az hello belső vezérlőprogram frissítési folyamat
+## <a name="observe-the-firmware-update-process"></a>Figyelje meg a belső vezérlőprogram frissítése folyamatban
 
-Figyelheti a hello belső vezérlőprogram frissítési folyamat hello eszközön futó, és hello megtekintésével jelentett hello megoldás irányítópultjának tulajdonságok:
+Figyelheti a folyamatot nem lehet frissíteni, hogy az eszközön, és a megoldás irányítópultjának jelentett tulajdonságait megtekintve belső vezérlőprogram:
 
-1. Hello előrehaladását a frissítési folyamat hello hello málna Pi tekintheti meg:
+1. A frissítési folyamat előrehaladását a a málna Pi tekintheti meg:
 
     ![Megjeleníti a frissítési folyamatot][img-update-progress]
 
     > [!NOTE]
-    > hello távoli figyelési alkalmazás újraindul csendes hello frissítése befejeződött. Hello paranccsal `ps -ef` tooverify fut-e. Ha azt szeretné, hogy tooterminate hello folyamat, használja a hello `kill` hello folyamatazonosító parancsot.
+    > A távoli figyelési alkalmazás csendes újraindul, ha a frissítés befejezése. A paranccsal `ps -ef` ellenőrzése, hogy fut-e. Ha azt szeretné, a folyamat leáll, használja a `kill` parancsot a folyamat azonosítója.
 
-1. Hello hello belső vezérlőprogram-frissítés állapota a, megtekintheti a hello eszközt, hello megoldás portál által jelentett módon. hello alábbi képernyőfelvételen látható hello állapotát és minden szakaszhoz hello frissítési folyamat, és új belsővezérlőprogram-verziónként hello időtartama:
+1. Megtekintheti a belső vezérlőprogram-frissítés állapota az eszközt, a megoldás portál által jelentett módon. Az alábbi képernyőfelvételen látható állapotát és a frissítési folyamat, és az új belső vezérlőprogram-verziója minden szakaszhoz időtartama:
 
     ![Feladat állapotának megjelenítése][img-job-status]
 
-    Lépjen vissza toohello irányítópult, ellenőrizheti a hello eszköz továbbra is küldi hello belső vezérlőprogram frissítése a következő telemetriai adatokat.
+    Ha, lépjen vissza az irányítópulthoz, ellenőrizheti az eszköz továbbra is küld a frissítést követő telemetriai.
 
 > [!WARNING]
-> Ha nem adja meg hello távoli felügyeleti megoldás az Azure-fiókjával fut, a hello futásakor kell fizetni. Hello távoli figyelési megoldást futtatása közben felhasználás csökkentése kapcsolatos további információkért lásd: [konfigurálása Azure IoT Suite megoldások bemutató céljára előre konfigurált][lnk-demo-config]. Ha befejezte, használja előre konfigurált hello megoldás törlése az Azure-fiókjával.
+> Ha nem adja meg a távoli figyelési megoldást igényelnek fut az Azure-fiókjával, a futtatásakor a kell fizetni. További információ a felhasználás csökkentése a távoli felügyeleti megoldás futtatása közben: [konfigurálása Azure IoT Suite megoldások bemutató céljára előre konfigurált][lnk-demo-config]. Ha befejezte, használja az előkonfigurált megoldás törlése az Azure-fiókjával.
 
 ## <a name="next-steps"></a>Következő lépések
 
-A Microsoft hello [Azure IoT-fejlesztői központhoz](https://azure.microsoft.com/develop/iot/) további mintákat és Azure IoT-dokumentációja.
+Látogasson el a [Azure IoT-fejlesztői központhoz](https://azure.microsoft.com/develop/iot/) további mintákat és Azure IoT-dokumentációja.
 
 
 [img-raspberry-output]: ./media/iot-suite-raspberry-pi-kit-c-get-started-advanced/app-output.png

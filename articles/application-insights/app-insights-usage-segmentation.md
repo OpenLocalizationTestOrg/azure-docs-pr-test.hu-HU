@@ -1,5 +1,5 @@
 ---
-title: "Azure Application Insights aaaUser, munkamenet és esemény elemzése |} Microsoft docs"
+title: "Felhasználói munkamenet és esemény elemzése a Azure Application Insights |} Microsoft docs"
 description: "Webes alkalmazása felhasználóit demográfiai elemzése."
 services: application-insights
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 05/03/2017
 ms.author: bwren
-ms.openlocfilehash: 152ab90e9a25c03087d3ebbde1263ec72acb227e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b154a01d1690bff4950ebc1ff5a5b89894d4d111
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="users-sessions-and-events-analysis-in-application-insights"></a>Az Application Insightsban felhasználók munkamenetek és események elemzés
 
@@ -24,49 +24,49 @@ Ismerje meg a webalkalmazás személyek használatakor, azok még legtöbb érde
 
 ## <a name="get-started"></a>Bevezetés
 
-Ha még nem látja hello felhasználók, munkamenetek vagy események paneleken hello Application Insights portál, az adatok [megtudhatja, hogyan tooget lépések hello használati eszközök](app-insights-usage-overview.md).
+Ha még nem látja a felhasználók, munkamenetek vagy események paneleket az Application Insights portálon adatok [megtudhatja, hogyan lásson a használati eszközök](app-insights-usage-overview.md).
 
-## <a name="hello-users-sessions-and-events-segmentation-tool"></a>hello felhasználók munkamenetek és események Szegmentálás eszköz
+## <a name="the-users-sessions-and-events-segmentation-tool"></a>A felhasználók, a munkamenetek és az események Szegmentálás eszköz
 
-Három paneleken használja hello használati hello azonos eszköz tooslice és feldarabolására használnak telemetriai adatokat a webes alkalmazás három szempontok alapján. Szűrés és hello adatai azonos, hello relatív használatának különböző lapjait és szolgáltatásait észrevételeket fedik le.
+Három a használati paneleken eszközzel a azonos szeletelésére és feldarabolására használnak telemetriai adatokat a webes alkalmazás három szempontok alapján. Szűrés és a felosztás az adatokat, a különböző oldalakhoz és a szolgáltatások relatív használati észrevételeket fedik le.
 
 * **Felhasználó-eszköz**: hányan használt, az alkalmazás és annak szolgáltatásait.  Felhasználók számlálási böngésző cookie-kban tárolt névtelen azonosítók használatával. A különböző böngészők vagy gépek használatával egy személy, egynél több felhasználó beleszámítanak.
 * **Munkamenetek eszköz**: a felhasználói tevékenység hány munkamenetek kiterjed bizonyos lapok és az alkalmazás funkcióit. A munkamenet tétlenség fél óra múlva, vagy használja a folyamatos 24 órás követően számít.
 * **Események eszköz**: milyen gyakran használt bizonyos lapok és az alkalmazás funkcióit. Egy nézet számít Ha egy böngészőben lap betöltésekor az alkalmazásból, feltéve hogy [tagolva azt](app-insights-javascript.md). 
 
-    Egyéni esemény történt az alkalmazásban, gyakran egy felhasználói beavatkozást hasonló gomb kattintson vagy hello bizonyos feladatok végrehajtása történik egy előfordulását jelöli. Beillesztett kódot az alkalmazás túl[egyéni események generálásához](app-insights-api-custom-events-metrics.md#trackevent).
+    Egyéni esemény egy előfordulását valami történik az alkalmazás, gyakran egy felhasználói beavatkozást, például egy gombra kattintson vagy bizonyos feladatok végrehajtása a jelöli. Az alkalmazás kódja szúr be [egyéni események generálásához](app-insights-api-custom-events-metrics.md#trackevent).
 
 ![Használati eszköz](./media/app-insights-usage-segmentation/users.png)
 
 ## <a name="querying-for-certain-users"></a>Az egyes felhasználók lekérdezése 
 
-Megismerkedhet a különböző felhasználói csoportokhoz hello lekérdezési lehetőségek hello felhasználók eszköz hello tetején módosításával: 
+Megismerkedhet a különböző felhasználói csoportokhoz a felhasználók eszköz tetején lekérdezési lehetőségekkel beállításával: 
 
 * Használja ki: válassza ki az egyéni események és lapmegtekintés. 
 * Közben: Egy időtartományt válasszon. 
-* : Válasszon hogyan toobucket hello-e adatokat, vagy egy adott időn belül, vagy egy másik tulajdonságot, mint például a böngésző vagy város. 
-* Felosztása szerint: Mely toosplit vagy szegmens hello adatok válasszon egy tulajdonságot. 
-* Szűrők felvétele: Hello lekérdezés toocertain felhasználók, munkamenetek vagy azok tulajdonságait, például a böngésző vagy a város alapján események korlátozza. 
+* Által: Bucket az adatokat, vagy egy adott időn belül, vagy egy másik tulajdonságot, mint például a böngésző vagy a város módjának kiválasztása. 
+* Felosztott által: Egy tulajdonság amellyel vegyes vagy szegmens kívánt adatok kiválasztásához. 
+* Szűrők felvétele: A lekérdezés egyes felhasználókhoz, munkamenetek vagy azok tulajdonságait, például a böngésző vagy a város alapján események korlátozza. 
  
 ## <a name="saving-and-sharing-reports"></a>És jelentések megosztása 
-Felhasználók jelentéseket, vagy titkos csak tooyou hello a jelentések szakaszban is mentheti, vagy osztottak meg bárki más, hozzáférési toothis Application Insights-erőforrás hello megosztott jelentések szakaszban.  
+Mentheti felhasználók jelentéseket, vagy a saját csak akkor a jelentések szakaszban, vagy megosztott bárki más, a megosztott jelentések szakaszban az Application Insights-erőforráshoz való hozzáférés.  
  
-A jelentés mentése vagy a tulajdonságainak szerkesztése során válassza a "Jelenlegi relatív időtartomány" toosave jelentést fog folyamatosan frissítette az adatokat, ha visszalép néhány rögzített időn.  
+A jelentés mentése vagy a tulajdonságainak szerkesztése során válassza a "Jelenlegi relatív időtartomány" való mentse a jelentést a rendszer folyamatosan frissített adatokat, ha visszalép néhány rögzített időn.  
  
-Válassza ki a "Jelenlegi abszolút időtartomány" toosave egy jelentés ezzel a rögzített adatkészletet. Ne feledje, hogy az Application Insightsban csak tárolja, ha egy jelentés ezzel egy abszolút időtartomány óta eltelt legfeljebb 90 nappal 90 napra vonatkozó, hello jelentés üresen jelenik meg. 
+Válassza ki a "Jelenlegi abszolút időtartomány" jelentés mentése a rögzített adatok vannak beállítva. Ne feledje, hogy az Application Insightsban csak tárolja, ha egy jelentés ezzel egy abszolút időtartomány óta eltelt legfeljebb 90 nappal 90 napra vonatkozó, a jelentés üresen jelenik meg. 
  
 ## <a name="example-instances"></a>Példa példányok
 
-hello példa példányok szakasz néhány olyan egyéni felhasználók számára, munkamenetek vagy események, amelyek megfelelnek az aktuális lekérdezés hello információkat jeleníti meg. Figyelembe véve, és az egyéni felhasználói számára, továbbá tooaggregates hello viselkedések felfedezése ténylegesen használatának az alkalmazás áttekintést biztosít. 
+A példa példányok szakasz néhány olyan egyéni felhasználók számára, munkamenetek vagy eseményeket, amelyek megfelel-e az aktuális lekérdezés információkat jeleníti meg. Figyelembe véve, és az egyéni felhasználók számára, mellett összesítések, viselkedéseinek felfedezése ténylegesen használatának az alkalmazás áttekintést biztosít. 
  
 ## <a name="insights"></a>Insights 
 
-hello Insights oldalsávon jeleníti meg, amelyek közös tulajdonságokkal felhasználók nagy fürtjein. Ezeken a fürtökön felfedhetők meglepő trendeket használatának az alkalmazást. Ha például 40 %-ra az összes hello használata az alkalmazás elérhető lesz a személyek egyetlen szolgáltatás segítségével.  
+Az elemzések oldalsávon jeleníti meg, amelyek közös tulajdonságokkal felhasználók nagy fürtjein. Ezeken a fürtökön felfedhetők meglepő trendeket használatának az alkalmazást. Ha például 40 %-ra az összes, az alkalmazás használatát egy szolgáltatás segítségével személyek származik.  
 
 
 ## <a name="next-steps"></a>Következő lépések
-- tooenable használati észlel, küldésének megkezdése [egyéni események](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-api-custom-events-metrics#trackevent) vagy [lapmegtekintés](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#page-views).
-- Ha már küld egyéni események vagy Lapmegtekintések, így megismerkedhet hello használati eszközök toolearn hogyan felhasználók használhatja a szolgáltatást.
+- Ahhoz, hogy a használati tapasztalatok, küldésének megkezdése [egyéni események](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-api-custom-events-metrics#trackevent) vagy [lapmegtekintés](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#page-views).
+- Ha egyéni események vagy Lapmegtekintések már küld, megismerkedhet a használati eszközök további, a szolgáltatás használatát a felhasználók.
     - [Tölcsérek](usage-funnels.md)
     - [Megőrzés](app-insights-usage-retention.md)
     - [Felhasználói folyamatok](app-insights-usage-flows.md)

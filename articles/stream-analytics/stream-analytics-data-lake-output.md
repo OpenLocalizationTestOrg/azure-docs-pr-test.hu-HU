@@ -1,5 +1,5 @@
 ---
-title: aaaStream Analytics Data Lake Store kimeneti |} Microsoft Docs
+title: Stream Analytics Data Lake Store kimeneti |} Microsoft Docs
 description: "Hitelesítési és engedélyezési egy Azure Data Lake store a Stream Analytics-feladatok konfigurálása"
 keywords: 
 services: stream-analytics
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 03/28/2017
 ms.author: samacha
-ms.openlocfilehash: 183cf51edb2e49ac3e42257e67a8077b95777258
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3d867df3ef875d5cc41de418c3d1d269ff751fda
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="stream-analytics-data-lake-store-output"></a>Stream Analytics Data Lake Store kimeneti
-Stream Analytics-feladatok támogatja több kimeneti módszerek közül az egyik egy [Azure Data Lake Store](https://azure.microsoft.com/services/data-lake-store/). Az Azure Data Lake Store egy vállalati szintű, nagy kapacitású adattár a big data koncepción alapuló adatelemzési célokra. Data Lake Store lehetővé teszi a műveleti és felderítési jellegű bármilyen méretű, típusú és feldolgozási sebességű toostore adatok.
+Stream Analytics-feladatok támogatja több kimeneti módszerek közül az egyik egy [Azure Data Lake Store](https://azure.microsoft.com/services/data-lake-store/). Az Azure Data Lake Store egy vállalati szintű, nagy kapacitású adattár a big data koncepción alapuló adatelemzési célokra. Data Lake Store lehetővé teszi, hogy a műveleti és felderítési jellegű bármilyen méretű, típusú és feldolgozási sebességű adatok.
 
 ## <a name="authorize-a-data-lake-store-account"></a>Data Lake Store-fiók engedélyezése
-1. Data Lake Store az Azure-portálon hello kimenetként kiválasztásakor kérni fogja a meglévő Data Lake Store vagy toorequest tooauthorize használata toohello Data Lake Store elérése hello klasszikus portál eléréséhez.
+1. Data Lake Store az Azure portálon kimenetként kiválasztásakor kérni fogja a meglévő Data Lake Store használatának engedélyezéséhez, vagy kérjen hozzáférést a Data Lake store a klasszikus portálon.
    
    ![](media/stream-analytics-data-lake-output/stream-analytics-data-lake-output-authorization.png)  
    
-2. Ha már rendelkezik tooData Lake áruház eléréséhez kattintson a "Azonnali engedélyezése" és egy rövid ideig lap jelenik meg, amely jelzi, "Átirányítása tooauthorization". hello lap automatikusan bezárul, és lehetővé teszi tooconfigure hello Data Lake Store kimeneti hello lapok választhat.
+2. Ha már van hozzáférésük Data Lake Store-ba, kattintson a "Most engedélyezése", és egy rövid ideig lap jelenik meg "Engedély átirányítása" jelző. A lap automatikusan bezárul, és lehetővé teszi a Data Lake Store kimeneti konfigurálása lap jelennek meg.
 
-Nem feliratkozott a Data Lake Store, esetén hajtsa végre a hello "Feliratkozás most" hivatkozás tooinitiate hello kérelem, vagy hajtsa végre a hello [elindított útmutatást](../data-lake-store/data-lake-store-get-started-portal.md).
+Ha nem feliratkozott a Data Lake Store, kövesse a "Feliratkozás most" hivatkozásra kattintva kezdeményezheti a kérelmet, vagy hajtsa végre a [elindított útmutatást](../data-lake-store/data-lake-store-get-started-portal.md).
 
-## <a name="configure-hello-data-lake-store-output-properties"></a>Hello Data Lake Store kimeneti tulajdonságainak konfigurálása
-Miután hitelesített hello Data Lake Store-fiók, a Data Lake Store kimeneti állíthatja be a hello tulajdonságait. az alábbi táblázat hello tulajdonságnevek és azok leírása tooconfigure a Data Lake Store kimeneti hello listája.
+## <a name="configure-the-data-lake-store-output-properties"></a>A Data Lake Store kimeneti tulajdonságainak konfigurálása
+Miután a Data Lake Store-fiók hitelesítését, a Data Lake Store kimeneti megadhatja a tulajdonságait. Az alábbi táblázat pedig a tulajdonság nevét és azok leírását a Data Lake Store kimeneti konfigurálása.
 
 <table>
 <tbody>
@@ -44,23 +44,23 @@ Miután hitelesített hello Data Lake Store-fiók, a Data Lake Store kimeneti á
 </tr>
 <tr>
 <td>A kimeneti Alias</td>
-<td>Ez az egy rövid nevet használt a lekérdezések toodirect hello lekérdezés kimeneti toothis Data Lake Store.</td>
+<td>Ez az a lekérdezés kimenete a Data Lake Store a lekérdezésekben használt rövid nevét.</td>
 </tr>
 <tr>
 <td>Data Lake Store-fiók</td>
-<td>ahol a kimeneti küldi hello tárfiók hello neve. Választhat hello bejelentkezett felhasználó hozzáféréssel rendelkezik Data Lake Store-fiókok listájával.</td>
+<td>A tárfiók, ahol küldendő a kimeneti neve. Meg fog jelenni a bejelentkezett felhasználó hozzáféréssel rendelkezik Data Lake Store-fiókok listáját.</td>
 </tr>
 <tr>
 <td>Elérési út előtag mintája [<I>választható</I>]</td>
-<td>fájl elérési útja toowrite hello hello található a fájl megadott Data Lake Store-fiók. <BR>a {date}, {time}<BR>1. példa: mappa1/logs / {date} / {time}<BR>2. példa: mappa1/logs / {date}</td>
+<td>A megadott Data Lake Store-fiók található a fájl írásához használt elérési. <BR>a {date}, {time}<BR>1. példa: mappa1/logs / {date} / {time}<BR>2. példa: mappa1/logs / {date}</td>
 </tr>
 <tr>
 <td>Dátum formátumban [<I>választható</I>]</td>
-<td>Hello dátumtokent hello előtag elérési út használata esetén, amelyben a fájlok vannak rendszerezve hello dátumformátum választhatja meg. . Példa: Éééé/hh/nn</td>
+<td>Ha a dátum jogkivonat a előtag elérési útját, válassza a dátumformátum, amelyben a fájlok vannak rendezve. . Példa: Éééé/hh/nn</td>
 </tr>
 <tr>
 <td>Idő formátumot [<I>választható</I>]</td>
-<td>Ha hello idő jogkivonat hello előtag elérési útja, adja meg a hello idő formátumban, amelyben a fájlok vannak rendezve. Jelenleg csak a támogatott hello értéke HH.</td>
+<td>Ha a idő jogkivonat előtag elérési, adja meg az időformátum, amelyben a fájlok vannak rendezve. Jelenleg az egyetlen támogatott érték HH.</td>
 </tr>
 <tr>
 <td>Esemény szerializálási formátum</td>
@@ -68,7 +68,7 @@ Miután hitelesített hello Data Lake Store-fiók, a Data Lake Store kimeneti á
 </tr>
 <tr>
 <td>Encoding</td>
-<td>Ha a fürt megosztott kötetei szolgáltatás- vagy JSON formátumú, kódolással meg kell adni. Az UTF-8 hello csak akkor támogatja a kódolási formátum jelenleg.</td>
+<td>Ha a fürt megosztott kötetei szolgáltatás- vagy JSON formátumú, kódolással meg kell adni. Jelenleg az UTF-8 az egyetlen támogatott kódolási formátum.</td>
 </tr>
 <tr>
 <td>Elválasztó</td>
@@ -76,15 +76,15 @@ Miután hitelesített hello Data Lake Store-fiók, a Data Lake Store kimeneti á
 </tr>
 <tr>
 <td>Formátumban</td>
-<td>Csak a JSON-szerializálás alkalmazható. Sorral elválasztott beállítás megadja, hogy hello kimeneti azzal, hogy minden JSON-objektum sortöréssel elválasztva kell formázni. A tömb határozza meg, hogy hello kimeneti lesznek formázva, egy JSON-objektumok tömbjét.</td>
+<td>Csak a JSON-szerializálás alkalmazható. Sorral elválasztott beállítás megadja, hogy a kimeneti azzal, hogy minden JSON-objektum sortöréssel elválasztva kell formázni. A tömb határozza meg, hogy a kimeneti lesznek formázva, egy JSON-objektumok tömbjét.</td>
 </tr>
 </tbody>
 </table>
 
 ## <a name="renew-data-lake-store-authorization"></a>Újítsa meg a Data Lake Store engedélyezési
-Jelenleg egy korlátozás amikor a hello hitelesítésére szolgáló jogkivonat toobe vonatkozó minden Data Lake Store kimenet 90 naponta manuálisan frissíteni kell. Konfigurálnia kell toore-hitelesítéséhez a Data Lake Store-fiókot, ha sikeresen módosította jelszavát, mert a feladat meg lett létrehozva, vagy utolsó hitelesítése. A probléma tünete nem feladatkiemenetét és újbóli engedélyezése szükségességét jelző hello műveletnaplók a hiba.
+Jelenleg egy korlátozás amikor a hitelesítési jogkivonat kell manuálisan frissíteni kell a Data Lake Store kimenet összes feladat 90 naponta. Szüksége lesz is, ha sikeresen módosította jelszavát, mert a feladat meg lett létrehozva, vagy utolsó hitelesített újra hitelesíteni a Data Lake Store-fiókját. A probléma tünete nincs feladat kimenet és a művelet újbóli engedélyezése szükségességét jelző naplókban hiba.
 
-tooresolve probléma leállítja a futó feladatot, és nyissa meg a kimeneti tooyour Data Lake Store. Hello "Megújítási engedélyezési" hivatkozásra, és egy rövid ideig lap jelenik meg, amely jelzi, "Átirányítása tooauthorization...". hello lap automatikusan bezárul, és ha sikeres, fogja jelezni, "Engedélyezési sikeresen megújítva". Ezután alján hello hello tooclick "Mentés" kell, és indítsa újra a feladatot hello feladat utolsó befejezési időpontja tooavoid adatvesztés lépne.
+A probléma megoldásához állítsa le a futó feladat, és nyissa meg a Data Lake Store a kimenetbe. Kattintson az "Újra a portálon" hivatkozásra, és egy rövid ideig lap jelenik meg "Engedély átirányítása..." jelző. A lap automatikusan bezáródik, és ha sikeres, fogja jelezni, "Engedélyezési sikeresen megújítva". Később, majd az oldal alján kattintson a "Mentés" kell, és indítsa újra a feladatot a feladat utolsó befejezési időpontja adatvesztés elkerülése érdekében csak ezután folytatható.
 
 ![](media/stream-analytics-data-lake-output/stream-analytics-data-lake-output-renew-authorization.png)
 

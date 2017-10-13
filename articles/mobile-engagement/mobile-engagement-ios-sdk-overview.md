@@ -1,5 +1,5 @@
 ---
-title: "a Mobile Engagement iOS SDK – áttekintés aaaAzure |} Microsoft Docs"
+title: "Az Azure Mobile Engagement iOS SDK áttekintése |} Microsoft Docs"
 description: "Legújabb frissítések és az Azure Mobile Engagement SDK iOS eljárásai"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,44 +14,44 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: piyushjo
-ms.openlocfilehash: 38f0da2f84df9c62f8fbca233bfda8b9936fdc0f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6acd343782a3ee07750e27ec3022ff81cedfadee
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="ios-sdk-for-azure-mobile-engagement"></a>iOS SDK for Azure Mobile Engagement (iOS SDK és Azure Mobile Engagement)
-Kezdje itt tooget összes hello részletes hogyan toointegrate Azure Mobile Engagement az iOS-alkalmazás. Ha azt szeretné, hogy toogive azt egy try először győződjön meg arról, hogy szeretne a [15 perc oktatóanyag](mobile-engagement-ios-get-started.md).
+A részletek hozzáférhet integrálása az Azure Mobile Engagement az iOS-alkalmazás, kezdje itt. Ha meg szeretné adni az első egy try, tegye meg a [15 perc oktatóanyag](mobile-engagement-ios-get-started.md).
 
-Kattintson a toosee hello [SDK tartalom](mobile-engagement-ios-sdk-content.md)
+Megtekintéséhez kattintson ide a [SDK tartalom](mobile-engagement-ios-sdk-content.md)
 
 ## <a name="integration-procedures"></a>Integráció eljárások
-1. Kezdje itt: [hogyan toointegrate a Mobile Engagement az iOS-alkalmazás](mobile-engagement-ios-integrate-engagement.md)
-2. Az értesítések: [hogyan toointegrate Reach (értesítések) az iOS-alkalmazás](mobile-engagement-ios-integrate-engagement-reach.md)
-3. Megvalósítási terv címkét: [hogyan toouse hello speciális a Mobile Engagement az iOS-alkalmazás szerinti címkézését API](mobile-engagement-ios-use-engagement-api.md)
+1. Kezdje itt: [integrálása a Mobile Engagement az iOS-alkalmazás](mobile-engagement-ios-integrate-engagement.md)
+2. Az értesítések: [Reach (értesítések) integrálása az iOS-alkalmazás](mobile-engagement-ios-integrate-engagement-reach.md)
+3. Megvalósítási terv címkét: [a speciális a Mobile Engagement az iOS-alkalmazás szerinti címkézését API használata](mobile-engagement-ios-use-engagement-api.md)
 
 ## <a name="release-notes"></a>Kibocsátási megjegyzések
 ### <a name="410-07172017"></a>4.1.0 (07/17/2017)
 * Rögzített jelvények háttérben törölve lett.
 * Rögzített figyelmeztetések a XCode 9 kapcsolatos API-k nem hívja a fő várakozási sorba.
 * Rögzített memóriavesztés Reach lekérdezéseinél.
-* Támogatás az iOS eldobott 6.X. A verzió hello központi telepítés célja az alkalmazás-től kezdődő kell lennie legalább iOS 7-es.
+* Támogatás az iOS eldobott 6.X. A központi telepítés célja az alkalmazás ebben a verzióban kiindulva kell legalább iOS 7-es.
 
-Korábbi verziójához lásd: hello [végezze el a kibocsátási megjegyzések](mobile-engagement-ios-release-notes.md)
+Korábbi verziójához lásd: a [végezze el a kibocsátási megjegyzések](mobile-engagement-ios-release-notes.md)
 
 ## <a name="upgrade-procedures"></a>Frissítési eljárások
-Ha Ön már rendelkezik integrált Engagement régebbi verzióját az alkalmazásba, hogy tooconsider hello hello SDK frissítéskor a következő pontok.
+Ha Ön már rendelkezik integrált Engagement régebbi verzióját az alkalmazásba, hogy az SDK-val történő frissítése során, vegye figyelembe a következő szempontokat.
 
-Előfordulhat, hogy toofollow számos eljárást, ha nem fogadta hello SDK tekintse meg a különböző verzióiban teljes hello [frissítése eljárások](mobile-engagement-ios-upgrade-procedure.md).
+Kövesse a számos eljárást, ha nem fogadta a teljes SDK lásd: a több verzióját is [frissítése eljárások](mobile-engagement-ios-upgrade-procedure.md).
 
-Minden egyes új verziójának hello SDK először cserélje le (távolítsa el, és importálja újra az xcode-ban) hello EngagementSDK és EngagementReach mappák.
+Az SDK minden új verziójának először cserélje le (távolítsa el, és importálja újra az xcode-ban) EngagementSDK és EngagementReach mappákat.
 
-### <a name="from-300-too400"></a>A 3.0.0 too4.0.0
+### <a name="from-300-to-400"></a>A 3.0.0 4.0.0 számára
 ### <a name="xcode-8"></a>XCode 8
-XCode 8 megadása kötelező hello SDK 4.0.0 verziójával kezdve.
+XCode 8 megadása kötelező, az SDK 4.0.0 verziójával kezdve.
 
 > [!NOTE]
-> Ha valóban függenek XCode 7, akkor előfordulhat, hogy használja hello [iOS Engagement SDK v3.2.4](https://aka.ms/r6oouh). Nincs egy ismert hiba az előző verzió hello reach-modul iOS 10-eszközök futtatása közben: nincsenek műveletet kiváltó rendszerértesítéseket. toofix ezt követően tooimplement hello elavult API `application:didReceiveRemoteNotification:` az alkalmazás delegálása az alábbiak szerint:
+> Ha valóban függenek XCode 7, akkor előfordulhat, hogy használja a [iOS Engagement SDK v3.2.4](https://aka.ms/r6oouh). Nincs egy ismert hiba az előző verzió a reach-modul iOS 10-eszközök futtatása közben: nincsenek műveletet kiváltó rendszerértesítéseket. A javítás kell megvalósítani a elavult API `application:didReceiveRemoteNotification:` az alkalmazás delegálása az alábbiak szerint:
 >
 >
 
@@ -62,22 +62,22 @@ XCode 8 megadása kötelező hello SDK 4.0.0 verziójával kezdve.
     }
 
 > [!IMPORTANT]
-> **Ez a megoldás nem ajánlott** , ez a viselkedés a jövőbeli (még akkor is kisebb) iOS verzió frissítése is módosítható, mivel az iOS API elavult. Amint lehetséges tooXCode 8 kell váltani.
+> **Ez a megoldás nem ajánlott** , ez a viselkedés a jövőbeli (még akkor is kisebb) iOS verzió frissítése is módosítható, mivel az iOS API elavult. Át kell váltania XCode 8 lehető legrövidebb időn belül.
 >
 >
 
 #### <a name="usernotifications-framework"></a>UserNotifications keretrendszer
-Tooadd hello kell `UserNotifications` keretrendszer a Build lépésből áll.
+Hozzá kell adnia a `UserNotifications` keretrendszer a Build lépésből áll.
 
-a project explorer hello nyissa meg a projekt ablaktáblán, majd válassza a hello helyes célobjektum. Ezután nyissa meg a hello **"Összeállítási fázisok"** lapon és a hello **"Bináris rendelkező Kódtárakon"** menüben adja hozzá a keretrendszer `UserNotifications.framework` -set hello hivatkozásokat`Optional`
+a project explorer nyissa meg a projekt ablaktáblán, és jelölje ki a megfelelő cél. Ezután nyissa meg a **"Összeállítási fázisok"** lapon és a a **"Bináris rendelkező Kódtárakon"** menüben adja hozzá a keretrendszer `UserNotifications.framework` -állítsa be a hivatkozásokat`Optional`
 
 #### <a name="application-push-capability"></a>Alkalmazás leküldéses funkció
-XCode 8 lehetséges, hogy az alkalmazás alaphelyzetbe leküldéses funkció, ellenőrizze még egyszer a hello `capability` a kiválasztott cél fülre.
+XCode 8 lehetséges, hogy az alkalmazás alaphelyzetbe leküldéses funkció, ellenőrizze még egyszer a `capability` a kiválasztott cél fülre.
 
-#### <a name="add-hello-new-ios-10-notification-registration-code"></a>Hello új iOS 10 értesítési regisztrációs kód hozzáadása
-hello régebbi kód részlet tooregister hello app toonotifications továbbra is működik, de a által használt API-k elavult IOS 10 futtatása során.
+#### <a name="add-the-new-ios-10-notification-registration-code"></a>Adja hozzá az új iOS 10 értesítési regisztrációs kódot
+A régebbi kódrészletet értesítések az alkalmazás regisztrálásához továbbra is működik, de iOS 10 futtatott elavult API-kat használ.
 
-Importálás hello `User Notification` keretrendszer:
+Importálás a `User Notification` keretrendszer:
 
         #import <UserNotifications/UserNotifications.h>
 
@@ -114,11 +114,11 @@ szerint:
 
 *Ha az alkalmazás és a harmadik féltől származó tárak egyike nem valósítja meg a `UNUserNotificationCenterDelegate` akkor kihagyhatja ezt a részt.*
 
-A `UNUserNotificationCenter` delegált hello SDK toomonitor hello életciklusa az Engagement értesítések 10 vagy újabb IOS-es eszközökön használják. hello SDK rendelkezik saját hello végrehajtásának `UNUserNotificationCenterDelegate` protokoll, de lehet csak az egyik `UNUserNotificationCenter` alkalmazásonként delegálni. Bármely más delegált hozzáadott toohello `UNUserNotificationCenter` objektum hello egy bevonási ütközik. Ha a hello SDK a vagy bármely más harmadik fél delegált észlel, akkor nem fogja használni a saját megvalósítási toogive, egy alkalommal tooresolve hello ütközések. Hogy tooadd hello bevonási programot tooyour saját sorrendben delegált tooresolve hello ütközések.
+A `UNUserNotificationCenter` delegált az SDK figyelésére szolgál a életciklusának Engagement értesítések IOS 10 vagy újabb rendszert futtató eszközökön. Az SDK-val rendelkezik saját megvalósítása a `UNUserNotificationCenterDelegate` protokoll, de lehet csak az egyik `UNUserNotificationCenter` alkalmazásonként delegálni. Bármely más delegált hozzáadni a `UNUserNotificationCenter` objektum ütközik az egyik Engagement. Ha az SDK-t a vagy bármely más harmadik fél delegált észlel, akkor azt nem használja a saját megvalósítási Önnek arra, hogy oldja fel az ütközéseket. A bevonási logika hozzáadása a saját delegált ahhoz, hogy oldja fel az ütközéseket fog.
 
-Nincsenek két módon tooachieve ez.
+Ennek eléréséhez két módja van.
 
-Javaslat: 1, a delegált működve egyszerűen meghívja toohello SDK:
+Javaslat 1, egyszerűen működve a delegált hívások a SDK-val:
 
     #import <UIKit/UIKit.h>
     #import "EngagementAgent.h"
@@ -145,7 +145,7 @@ Javaslat: 1, a delegált működve egyszerűen meghívja toohello SDK:
     }
     @end
 
-Vagy javaslat 2, hello való öröklődés `AEUserNotificationHandler` osztály
+Vagy javaslat 2, való öröklődés a `AEUserNotificationHandler` osztály
 
     #import "AEUserNotificationHandler.h"
     #import "EngagementAgent.h"
@@ -172,10 +172,10 @@ Vagy javaslat 2, hello való öröklődés `AEUserNotificationHandler` osztály
     @end
 
 > [!NOTE]
-> Azt is meghatározhatja, hogy értesítést az engagement szolgáltatásból, vagy nem úgy, hogy rendelkezik-e a `userInfo` szótár toohello ügynök `isEngagementPushPayload:` metódus osztályban.
+> Azt is meghatározhatja, hogy értesítést az engagement szolgáltatásból, vagy nem úgy, hogy rendelkezik-e a `userInfo` ügynökkel szótár `isEngagementPushPayload:` metódus osztályban.
 
-Győződjön meg arról, hogy hello `UNUserNotificationCenter` objektum delegált tooyour delegált belül vagy hello beállítása `application:willFinishLaunchingWithOptions:` vagy hello `application:didFinishLaunchingWithOptions:` az alkalmazás delegáltjának metódusában.
-Például ha megvalósította a fent javaslat 1 hello:
+Győződjön meg arról, hogy a `UNUserNotificationCenter` objektum delegált belül vagy a meghatalmazott értékre van állítva a `application:willFinishLaunchingWithOptions:` vagy a `application:didFinishLaunchingWithOptions:` az alkalmazás delegáltjának metódusában.
+Például ha megvalósította a fenti 1 javaslat:
 
       - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         // Any other code

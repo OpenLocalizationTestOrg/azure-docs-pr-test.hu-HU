@@ -1,5 +1,5 @@
 ---
-title: "Service Bus SQLFilter szintaxis hivatkozás aaaAzure |} Microsoft Docs"
+title: Az Azure Service Bus SQLFilter szintaxis referencia |} Microsoft Docs
 description: SQLFilter nyelvtan adatait.
 services: service-bus-messaging
 documentationcenter: na
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/27/2017
 ms.author: sethm
-ms.openlocfilehash: ea49d42e343a6b324eb34c7831ff6be2855346e9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3aaec8f9b6a3bbcf814f771405c3b589de6f7ae0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="sqlfilter-syntax"></a>SQLFilter szintaxis
 
-A *SqlFilter* hello példánya [SqlFilter osztály](/dotnet/api/microsoft.servicebus.messaging.sqlfilter), és egy SQL nyelvi alapú kifejezést kiértékelt jelöli egy [BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage). Egy SqlFilter támogatja az SQL-92 hello standard egy részét.  
+A *SqlFilter* példánya a [SqlFilter osztály](/dotnet/api/microsoft.servicebus.messaging.sqlfilter), és egy SQL nyelvi alapú kifejezést kiértékelt jelöli egy [BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage). Egy SqlFilter támogatja az SQL-92 szabvány egy részét.  
   
  Ez a témakör SqlFilter nyelvtan részleteit sorolja fel.  
   
@@ -59,11 +59,11 @@ A *SqlFilter* hello példánya [SqlFilter osztály](/dotnet/api/microsoft.servic
   
 ## <a name="arguments"></a>Argumentumok  
   
--   `<scope>`egy nem kötelező karakterlánc, amely hello hello hatókörének `<property_name>`. Érvényes értékek a következők `sys` vagy `user`. Hello `sys` érték rendszerek ahol `<property_name>` egy nyilvános tulajdonság neve hello [BrokeredMessage osztály](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage). `user`jelzi a felhasználó hatókör ahol `<property_name>` hello kulcs [BrokeredMessage osztály](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage) szótárban. `user`hatókör hello alapértelmezett hatókörben, ha `<scope>` nincs megadva.  
+-   `<scope>`egy nem kötelező karakterlánc, amely a hatóköre a `<property_name>`. Érvényes értékek a következők `sys` vagy `user`. A `sys` érték rendszerek ahol `<property_name>` egy nyilvános tulajdonság neve a [BrokeredMessage osztály](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage). `user`jelzi a felhasználó hatókör ahol `<property_name>` kulcs a [BrokeredMessage osztály](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage) szótárban. `user`hatókör esetén az alapértelmezett hatókör `<scope>` nincs megadva.  
   
 ## <a name="remarks"></a>Megjegyzések
 
-Egy kísérlet tooaccess egy nem létező rendszer tulajdonság hiba, amíg egy kísérlet tooaccess egy nem létező felhasználó tulajdonság nincs hiba. Ehelyett egy nem létező felhasználói tulajdonságot belsőleg történik ismeretlen érték. Ismeretlen érték kifejezetten operátor kiértékelése közben a rendszer kezeli.  
+Egy nem létező rendszertulajdonság elérésére tett kísérlet hiba, kiszolgáló, míg egy nem létező felhasználói tulajdonságot elérésére tett kísérlet nem hiba. Ehelyett egy nem létező felhasználói tulajdonságot belsőleg történik ismeretlen érték. Ismeretlen érték kifejezetten operátor kiértékelése közben a rendszer kezeli.  
   
 ## <a name="propertyname"></a>property_name  
   
@@ -79,7 +79,7 @@ Egy kísérlet tooaccess egy nem létező rendszer tulajdonság hiba, amíg egy 
   
 ### <a name="arguments"></a>Argumentumok  
 
- `<regular_identifier>`hello által képviselt karakterlánc reguláris kifejezés a következő:  
+ `<regular_identifier>`a karakterlánc a következő reguláris kifejezésnek jelképezi:  
   
 ```  
 [[:IsLetter:]][_[:IsLetter:][:IsDigit:]]*  
@@ -93,7 +93,7 @@ Ebben a nyelvtanban azt jelenti, hogy bármilyen karakterlánc, amely betűvel k
   
 A `<regular_identifier>` nem lehet fenntartott kulcsszó.  
   
-`<delimited_identifier>`van bármilyen karakterlánc, amely szimpla balra vagy jobbra szögletes zárójelek ([]). Záró szögletes zárójel két jobb oldali kapcsos zárójeleket jelzi. hello következő példákban `<delimited_identifier>`:  
+`<delimited_identifier>`van bármilyen karakterlánc, amely szimpla balra vagy jobbra szögletes zárójelek ([]). Záró szögletes zárójel két jobb oldali kapcsos zárójeleket jelzi. A következő példákban `<delimited_identifier>`:  
   
 ```  
 [Property With Space]  
@@ -101,7 +101,7 @@ A `<regular_identifier>` nem lehet fenntartott kulcsszó.
   
 ```  
   
-`<quoted_identifier>`van bármilyen, amelyek dupla idézőjelek közé zárt karakterlánc. Dupla idézőjel azonosítóban ki kettő darab idézőjelre. Nem ajánlott toouse azonosítók idézőjelek között, mert azt egy karakterlánc-konstansra könnyen összetéveszthetők. Ha lehetséges használja a tagolt azonosítója. hello az alábbiakban látható egy példa `<quoted_identifier>`:  
+`<quoted_identifier>`van bármilyen, amelyek dupla idézőjelek közé zárt karakterlánc. Dupla idézőjel azonosítóban ki kettő darab idézőjelre. Nem ajánlott, hogy használja a határolójeles azonosítók, mert azt egy karakterlánc-konstansra könnyen összetéveszthetők. Ha lehetséges használja a tagolt azonosítója. Az alábbiakban egy példát `<quoted_identifier>`:  
   
 ```  
 "Contoso & Northwind"  
@@ -116,7 +116,7 @@ A `<regular_identifier>` nem lehet fenntartott kulcsszó.
   
 ### <a name="remarks"></a>Megjegyzések
   
-`<pattern>`a string típusúként kiértékelt kifejezésnek kell lennie. A LIKE operátor hello mintaként szolgál.      Hello következő helyettesítő karaktereket tartalmazhat:  
+`<pattern>`a string típusúként kiértékelt kifejezésnek kell lennie. A LIKE operátor mintaként szolgál.      A következő helyettesítő karaktereket tartalmazhat:  
   
 -   `%`: Bármilyen karakterlánc nulla vagy több.  
   
@@ -131,7 +131,7 @@ A `<regular_identifier>` nem lehet fenntartott kulcsszó.
   
 ### <a name="remarks"></a>Megjegyzések  
 
-`<escape_char>`1 hosszúságú karakterláncként kiértékelt kifejezésnek kell lennie. A LIKE operátor hello helyettesítő karakterek szolgál.  
+`<escape_char>`1 hosszúságú karakterláncként kiértékelt kifejezésnek kell lennie. A LIKE operátor helyettesítő karakterek szolgál.  
   
  Például `property LIKE 'ABC\%' ESCAPE '\'` megfelelő `ABC%` ahelyett, hogy egy karakterláncot kezdetű `ABC`.  
   
@@ -144,7 +144,7 @@ A `<regular_identifier>` nem lehet fenntartott kulcsszó.
   
 ### <a name="arguments"></a>Argumentumok  
   
--   `<integer_constant>`egy olyan karakterlánc, amely nem az idézőjelek közé zárt, és nem tartalmaz a tizedesjegyek számát. hello értékek tárolt `System.Int64` belső, és hajtsa végre hello azonos tartományon.  
+-   `<integer_constant>`egy olyan karakterlánc, amely nem az idézőjelek közé zárt, és nem tartalmaz a tizedesjegyek számát. Az értékek tárolt `System.Int64` belső, és hajtsa végre ugyanezt a porttartományt.  
   
      Hosszú állandókat az alábbiak:  
   
@@ -153,18 +153,18 @@ A `<regular_identifier>` nem lehet fenntartott kulcsszó.
     2  
     ```  
   
--   `<decimal_constant>`egy olyan karakterlánc, szám, amely nem az idézőjelek közé zárt, és tartalmaz a tizedesvessző. hello értékek tárolt `System.Double` belső, és ugyanazon tartomány/pontosság hello követi.  
+-   `<decimal_constant>`egy olyan karakterlánc, szám, amely nem az idézőjelek közé zárt, és tartalmaz a tizedesvessző. Az értékek tárolt `System.Double` belső, és kövesse a ugyanazon tartomány pontosság.  
   
-     Egy jövőbeli verziójában ez a szám tárolódhat egy másik adatforráshoz típus toosupport pontos szám szemantikáját, így nem igazolható a hello tény hello alapjául szolgáló adattípusa `System.Double` a `<decimal_constant>`.  
+     Egy jövőbeli verziójában ez a szám tárolódhat a különböző adattípusú támogatja a pontos szám szemantikáját, így nem támaszkodhat a tényen az alapul szolgáló adattípusa `System.Double` a `<decimal_constant>`.  
   
-     hello decimális állandókat a következők:  
+     A következő példák decimális állandók:  
   
     ```  
     1894.1204  
     2.0  
     ```  
   
--   `<approximate_number_constant>`egy szám nyelven írt tudományos jelölés van. hello értékek tárolt `System.Double` belső, és ugyanazon tartomány/pontosság hello követi. Az alábbiakban hello állandókat a hozzávetőleges száma:  
+-   `<approximate_number_constant>`egy szám nyelven írt tudományos jelölés van. Az értékek tárolt `System.Double` belső, és kövesse a ugyanazon tartomány pontosság. A következő példák hozzávetőleges száma állandók:  
   
     ```  
     101.5E5  
@@ -180,7 +180,7 @@ A `<regular_identifier>` nem lehet fenntartott kulcsszó.
   
 ### <a name="remarks"></a>Megjegyzések  
 
-Logikai állandók jelölik hello kulcsszavak **igaz** vagy **hamis**. hello értékek tárolt `System.Boolean`.  
+A kulcsszavak jelölik a logikai állandók **igaz** vagy **hamis**. Az értékek tárolt `System.Boolean`.  
   
 ## <a name="stringconstant"></a>string_constant  
   
@@ -202,13 +202,13 @@ A karakterlánckonstansokat egyetlen idézőjelek közé vannak, és a érvénye
   
 ### <a name="remarks"></a>Megjegyzések
   
-Hello `newid()` működéséhez értéket ad vissza egy **System.Guid** hello által generált `System.Guid.NewGuid()` metódust.  
+A `newid()` működéséhez értéket ad vissza egy **System.Guid** állítja elő a `System.Guid.NewGuid()` metódust.  
   
-Hello `property(name)` hello érték hello tulajdonság által hivatkozott `name`. Hello `name` értéke lehet bármely érvényes kifejezés, amely egy karakterláncértéket ad vissza.  
+A `property(name)` függvény által hivatkozott tulajdonságának `name`. A `name` értéke lehet bármely érvényes kifejezés, amely egy karakterláncértéket ad vissza.  
   
 ## <a name="considerations"></a>Megfontolandó szempontok
   
-Vegye figyelembe a következőket hello [SqlFilter](/dotnet/api/microsoft.servicebus.messaging.sqlfilter) szemantika:  
+Vegye figyelembe a következőket [SqlFilter](/dotnet/api/microsoft.servicebus.messaging.sqlfilter) szemantika:  
   
 -   A tulajdonságnevek nem különböztetik meg.  
   
@@ -216,33 +216,33 @@ Vegye figyelembe a következőket hello [SqlFilter](/dotnet/api/microsoft.servic
   
 -   Rendszer olyan nyilvános tulajdonságok felfedett [BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage) példányok.  
   
-    Vegye figyelembe a következőket hello `IS [NOT] NULL` szemantika:  
+    Vegye figyelembe a következőket `IS [NOT] NULL` szemantika:  
   
-    -   `property IS NULL`kiértékelése `true` vagy hello tulajdonság nem létezik, vagy a tulajdonság értékét hello `null`.  
+    -   `property IS NULL`kiértékelése `true` , ha a tulajdonság nem létezik, vagy a tulajdonság értéke `null`.  
   
 ### <a name="property-evaluation-semantics"></a>Tulajdonság értékelési szemantikájának módosítása  
   
--   Egy nem létező rendszer tulajdonság jelez kísérlet tooevaluate egy [FilterException](/dotnet/api/microsoft.servicebus.messaging.filterexception) kivétel.  
+-   Kísérlet egy nem létező rendszer tulajdonságának kiértékelése jelez a [FilterException](/dotnet/api/microsoft.servicebus.messaging.filterexception) kivétel.  
   
 -   Egy nem létező tulajdonságot belsőleg történik **ismeretlen**.  
   
  Ismeretlen értékelése az aritmetikai operátor:  
   
--   A bináris operátor, ha bármelyik hello balra és/vagy operandusok jobb oldalán történik **ismeretlen**, majd hello eredmény **ismeretlen**.  
+-   A bináris operátor, ha a bal vagy jobb oldalán operandusok kiértékelése **ismeretlen**, akkor az eredmény **ismeretlen**.  
   
--   Az egyoperandusú operátorokat, ha egy operandus kiértékelése **ismeretlen**, majd hello eredmény **ismeretlen**.  
+-   Az egyoperandusú operátorokat, ha egy operandus kiértékelése **ismeretlen**, akkor az eredmény **ismeretlen**.  
   
  A bináris összehasonlító operátorok ismeretlen értékelése:  
   
--   Ha bármelyik hello balra és/vagy operandusok jobb oldalán történik **ismeretlen**, majd hello eredmény **ismeretlen**.  
+-   Ha a bal vagy jobb oldalán operandusok kiértékelése **ismeretlen**, akkor az eredmény **ismeretlen**.  
   
  Az ismeretlen értékelési `[NOT] LIKE`:  
   
--   Ha bármely operandus kiértékelése **ismeretlen**, majd hello eredmény **ismeretlen**.  
+-   Ha bármely operandus kiértékelése **ismeretlen**, akkor az eredmény **ismeretlen**.  
   
  Az ismeretlen értékelési `[NOT] IN`:  
   
--   Ha a bal oldali operandusához hello kiértékelése **ismeretlen**, majd hello eredmény **ismeretlen**.  
+-   Ha a bal oldali operandusa kiértékelése **ismeretlen**, akkor az eredmény **ismeretlen**.  
   
  Az ismeretlen értékelési **és** operátor:  
   
@@ -274,9 +274,9 @@ Vegye figyelembe a következőket hello [SqlFilter](/dotnet/api/microsoft.servic
   
 ### <a name="operator-binding-semantics"></a>Operátor kötés szemantikájának módosítása
   
--   Összehasonlító operátorok például `>`, `>=`, `<`, `<=`, `!=`, és `=` kövesse hello azonos szemantikákkal hello C# operátor adatok kötelező, írja be az előléptetések és implicit konverzió.  
+-   Összehasonlító operátorok például `>`, `>=`, `<`, `<=`, `!=`, és `=` hajtsa végre a azonos szemantikákkal, a C# operátor adatok típusa előléptetések és implicit konverzió kötelező.  
   
--   Aritmetikai operátor például `+`, `-`, `*`, `/`, és `%` kövesse hello azonos szemantikákkal hello C# operátor adatok kötelező, írja be az előléptetések és implicit konverzió.
+-   Aritmetikai operátor például `+`, `-`, `*`, `/`, és `%` hajtsa végre a azonos szemantikákkal, a C# operátor adatok típusa előléptetések és implicit konverzió kötelező.
 
 ## <a name="next-steps"></a>Következő lépések
 

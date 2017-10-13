@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Site Recovery telepítési planner VMware-Azure |} Microsoft Docs"
-description: "Ez a hello Azure Site Recovery telepítési planner felhasználói útmutató."
+title: "Azure Site Recovery Deployment Planner – VMware – Azure | Microsoft Docs"
+description: "Ez az Azure Site Recovery Deployment Planner felhasználói útmutatója"
 services: site-recovery
 documentationcenter: 
 author: nsoneji
@@ -14,157 +14,157 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 08/28/2017
 ms.author: nisoneji
-ms.openlocfilehash: a8c13cd47850575769e0186528807bc525bdeec7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 60b0641076c2fa8ed2feb5c64e7b119519f46cf4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-site-recovery-deployment-planner"></a>Azure Site Recovery Deployment Planner
-Ez a cikk a VMware-Azure üzemi környezetek hello Azure Site Recovery telepítési Planner felhasználói útmutatója.
+Ez a cikk az Azure Site Recovery Deployment Planner felhasználói útmutatója a VMware–Azure éles környezetben való üzembe helyezéséhez.
 
 ## <a name="overview"></a>Áttekintés
 
-Mielőtt elkezdené a VMware virtuális gépek (VM) védelme a Site Recovery segítségével, foglaljon le elegendő sávszélesség, a napi adatok-módosítási gyakorisága, toomeet a kívánt helyreállítási időkorlát (RPO) alapján. Kell, hogy toodeploy hello megfelelő konfigurációs kiszolgálók számát és folyamat kiszolgálók helyszíni.
+A VMware virtuális gépek Site Recovery-vel történő védelmének megkezdése előtt elegendő sávszélességet kell kiosztania a napi szintű adatváltozások alapján, hogy elérje a kívánt helyreállítási időkorlátot (RPO). Ügyeljen arra, hogy üzembe helyezze a megfelelő számú helyszíni konfigurációs és folyamatkiszolgálót.
 
-Szükség toocreate hello megfelelő típusú és a cél Azure storage-fiókok számát. Hozzon létre standard vagy prémium szintű tárfiókokat a fokozatosan növekvő használat során megnövekedett éles kiszolgálók miatt. Hello tárolási típus, egy virtuális gép, a munkaterhelés jellemzők (például: olvasási/írási i/o műveletek másodpercenkénti [sec] vagy adatforgalommal) alapján választja, és korlátozza a Site Recovery.
+Létre kell hoznia a megfelelő típusú és számú cél Azure-tárfiókot is. Hozzon létre standard vagy prémium szintű tárfiókokat a fokozatosan növekvő használat során megnövekedett éles kiszolgálók miatt. A tárolási típust virtuális gépenként válassza ki, a számítási feladatok jellemzői (például olvasási és írási, bemeneti és kimeneti műveletek másodpercenként [IOPS], vagy adatváltozás) és Site Recovery-korlátok alapján.
 
-hello Site Recovery telepítési planner nyilvános előnézete funkció a parancssori eszköz, amely jelenleg csak hello VMware-Azure forgatókönyv érhető el. A VMware virtuális gépek profilhoz, sikeres replikáció a eszközt (a nem éles érinti, amely minden) toounderstand hello sávszélesség és az Azure tárolási követelmények segítségével távolról, és feladatátvételi teszt. Hello eszköz a Site Recovery összetevők helyszíni telepítése nélkül is futtathatja. Azonban pontos tooget elért átviteli sebesség eredmények, azt javasoljuk, hogy hello planner hello minimális követelménynek megfelelő hello Site Recovery konfigurációs kiszolgáló, hogy idővel kell toodeploy hello első lépéseket rendelkezésre álló Windows Serveren éles környezetben.
+A Site Recovery Deployment Planner nyilvános előzetes verziója egy parancssori eszköz, amely jelenleg csak a VMware–Azure forgatókönyvhöz érhető el. Az eszközzel (termelési hatás nélkül) távolról készítheti el Vmware virtuális gépeit, hogy megismerhesse a sávszélességet és az Azure Storage követelményeit a sikeres replikálás és feladatátvételi teszt érdekében. Az eszközt helyszíni Site Recovery összetevők telepítése nélkül is futtathatja. Az elért átviteli sebesség pontos meghatározása érdekében azonban ajánlott a tervező futtatása egy olyan Windows Serveren, amely teljesíti annak a Site Recovery konfigurációs kiszolgálónak a minimális követelményeit, amelyet végül telepítenie kell az éles környezetben való üzembe helyezés egyik első lépéseként.
 
-hello eszközt biztosít a következő adatok hello:
+Az eszköz a következő részleteket biztosítja:
 
 **Kompatibilitási felmérés**
 
 * A virtuális gép jogosultságfelmérése a lemezszám, a lemezméretek, az IOPS, a forgalom és a rendszerindítási típus (EFI/BIOS) alapján
-* a különbözeti replikáció szükséges becsült hello hálózati sávszélesség
+* A változásreplikáláshoz szükséges becsült hálózati sávszélesség
 
 **A hálózatisávszélesség-igény és RPO-elemzés**
 
-* a különbözeti replikáció szükséges becsült hello hálózati sávszélesség
-* amely a Site Recovery lekérheti a helyszíni tooAzure hello átviteli sebesség
-* virtuális gépek toobatch hello alapján hello száma becsült sávszélesség toocomplete kezdeti replikáció egy adott időn belül
+* A változásreplikáláshoz szükséges becsült hálózati sávszélesség
+* Átviteli sebesség a Site Recovery számára a helyszíni rendszerek és az Azure között
+* A kötegelendő virtuális gépek száma a becsült sávszélesség alapján a kezdeti replikálás adott időn belüli végrehajtásához
 
 **Azure infrastruktúra-követelmények**
 
-* hello tárolási típusa (standard vagy prémium szintű storage-fiók) követelmények az egyes virtuális gépek
-* standard és prémium szintű storage-fiókok toobe beállítva replikálásra hello száma
+* A tárolótípus (standard vagy prémium szintű tárfiók) követelménye az egyes virtuális gépekhez
+* A replikáláshoz beállítandó standard és prémium szintű tárfiókok teljes száma
 * Tárfiókok elnevezési javaslatai az Azure Storage útmutatója alapján
-* hello tárfiók elhelyezés virtuális gépen
-* feladatátvételi teszt vagy hello előfizetésben feladatátvétel előtt állítsa be az Azure magok toobe hello száma
-* az egyes Azure virtuális gép által ajánlott méret hello a helyszíni virtuális gép
+* Az összes virtuális gép tárfiókjának elhelyezése
+* A feladatátvételi teszt vagy feladatátvétel előtt beállítandó Azure magok száma az előfizetésen
+* Az Azure virtuális gépek javasolt mérete az egyes helyszíni virtuális gépeknél
 
 **Helyszíni infrastruktúra-követelmények**
-* hello szükséges konfigurációs kiszolgálók számát és a folyamat kiszolgálók toobe telepített helyszíni
+* A megfelelő számú helyszíni konfigurációs és folyamatkiszolgáló üzembe helyezése
 
 >[!IMPORTANT]
 >
->Mivel a használati valószínűleg tooincrease adott idő alatt, az összes hello számítás megy végbe, feltéve, hogy egy 30 százalékos növekedési tényező munkaterhelés jellemzők, és minden hello metrikák profilkészítési 95. percentilis értéke előző eszköz (olvasás/írás IOPS, kavarog, ezért oda-). Mindkét elem (a növekedési tényező és a százalékérték is) konfigurálható. bővebben növekedési tényező toolearn hello "növekedési tényezős szempontok" című szakaszában talál. További információ a PERCENTILIS értékének toolearn hello "PERCENTILIS hello kiszámításához használt" című szakaszában talál.
+>Mivel a használat idővel megnövekszik, az eszközben minden számítás a munkaterhelési jellemzők 30%-os növekedési tényezőjével történik, illetve a profilkészítési mérőszámok 95%-át veszi alapul (írási/olvasási IOPS, adatforgalom stb.). Mindkét elem (a növekedési tényező és a százalékérték is) konfigurálható. További információkat a növekedési tényezőről „A növekedési tényezővel kapcsolatos szempontok” szakaszban találhat. További információkat a százalékértékről „A számításhoz használt százalékérték” szakaszban találhat.
 >
 
 ## <a name="requirements"></a>Követelmények
-hello eszköznek két fő szakaszra: profilkészítési és jelentés létrehozásakor. Egy harmadik beállítás toocalculate átviteli csak is van. a következő táblázat hello hello server mely hello a profilkészítési és átviteli mérési kezdeményezett hello követelményei jelenjenek meg:
+Az eszköz két fő fázisból áll: a profil- és jelentéskészítésből. Van egy harmadik lehetőség, amely csak az átviteli sebességet számítja ki. Az alábbi táblázatban láthatók annak a kiszolgálónak a követelményei, ahonnan a profilkészítés/átviteli sebesség mérését kezdeményezi:
 
 | Kiszolgálókövetelmények | Leírás|
 |---|---|
-|Profilkészítés és az átviteli sebesség mérése| <ul><li>Operációs rendszer: Microsoft Windows Server 2012 R2<br>(ideális esetben a megfelelő legalább hello [hello konfigurációs kiszolgáló javaslatok méretezés](https://aka.ms/asr-v2a-on-prem-components))</li><li>Gépkonfiguráció: 8 vCPU, 16 GB RAM, 300 GB HDD</li><li>[Microsoft .NET-keretrendszer 4.5](https://aka.ms/dotnet-framework-45)</li><li>[VMware vSphere PowerCLI 6.0 R3](https://aka.ms/download_powercli)</li><li>[A Visual Studio 2012 szoftverhez készült Microsoft Visual C++ terjeszthető változata](https://aka.ms/vcplusplus-redistributable)</li><li>Internet-hozzáférés tooAzure erről a kiszolgálóról</li><li>Azure Storage-fiók</li><li>Rendszergazdai hozzáférés hello kiszolgálón</li><li>Minimális szabad lemezterület 100 GB (feltéve, hogy 1000 virtuális gépen átlagosan gépenként három lemezről 30 napig készít profilokat)</li><li>VMware vCenter statisztika szint beállításainak too2 vagy a magas szintű állítható be</li><li>Engedélyezze 443 portot: automatikus központi telepítési Planner használja a port tooconnect toovCenter kiszolgálón vagy ESXi-állomáson</ul></ul>|
+|Profilkészítés és az átviteli sebesség mérése| <ul><li>Operációs rendszer: Microsoft Windows Server 2012 R2<br>(ideális esetben legalább a [konfigurációs kiszolgáló javasolt méretével egyezik](https://aka.ms/asr-v2a-on-prem-components))</li><li>Gépkonfiguráció: 8 vCPU, 16 GB RAM, 300 GB HDD</li><li>[Microsoft .NET-keretrendszer 4.5](https://aka.ms/dotnet-framework-45)</li><li>[VMware vSphere PowerCLI 6.0 R3](https://aka.ms/download_powercli)</li><li>[A Visual Studio 2012 szoftverhez készült Microsoft Visual C++ terjeszthető változata](https://aka.ms/vcplusplus-redistributable)</li><li>Internet-hozzáférés az Azure-szolgáltatáshoz erről a kiszolgálóról</li><li>Azure Storage-fiók</li><li>Rendszergazdai hozzáférés a kiszolgálón</li><li>Minimális szabad lemezterület 100 GB (feltéve, hogy 1000 virtuális gépen átlagosan gépenként három lemezről 30 napig készít profilokat)</li><li>A VMware vCenter statisztikaszint-beállításait a 2. vagy magasabb szintre kell állítani</li><li>A 443-as port engedélyezése: Az ASR üzembehelyezés-tervező ezen a porton csatlakozik a vCenter kiszolgálóhoz/ESXi gazdagéphez</ul></ul>|
 | Jelentéskészítés | 2013-as vagy újabb Microsoft Excellel rendelkező Windows PC vagy Windows Server |
-| Felhasználói engedélyek | Csak olvasási jogosultságot hello során profilkészítési tooaccess hello VMware vCenter server/VMware vSphere ESXi-gazdagép által használt felhasználói fiók |
+| Felhasználói engedélyek | Csak olvasási jogosultság a felhasználói fióknak a VMware vCenter/VMware vSphere ESXi kiszolgáló profilkészítés közben való hozzáféréséhez |
 
 > [!NOTE]
 >
->hello eszköz profilt is csak VMDK és az RDM lemezzel rendelkező virtuális gépek számára. Nem képes az iSCSI- vagy NFS-lemezzel rendelkező virtuális gépek profilkészítésére. A Site Recovery támogatja az iSCSI és NFS lemezek VMware-kiszolgálók, de mivel hello telepítési planner nincs hello Vendég, és azt profilokra csak a vCenter teljesítményszámlálók felhasználásával, hello eszköz nem rendelkezik a lemez legyen kijelölve betekintést.
+>Az eszköz csak a VMDK- és RDM-lemezzel rendelkező virtuális gépeknek tud profilt készíteni. Nem képes az iSCSI- vagy NFS-lemezzel rendelkező virtuális gépek profilkészítésére. A Site Recovery támogatja az iSCSI- és NFS-lemezeket a VMware-kiszolgálókon, azonban az üzembe helyezési tervező nem a vendéggépen belül fut, és csak a vCenter teljesítményszámlálók használatával készít profilokat, így az eszköz számára nem láthatók ezek a lemeztípusok.
 >
 
-## <a name="download-and-extract-hello-public-preview"></a>Letöltéséhez és kibontásához hello nyilvános előzetes verzió
-1. Töltse le a legújabb verziójának hello hello [Site Recovery telepítési planner nyilvános előzetes](https://aka.ms/asr-deployment-planner).  
-hello eszköz egy .zip mappa van csomagolva. hello hello eszköz jelenlegi verziója csak a VMware-Azure hello forgatókönyvben támogatja.
+## <a name="download-and-extract-the-public-preview"></a>Nyilvános előzetes verzió letöltése és kibontása
+1. Töltse le a [Site Recovery Deployment Planner legújabb nyilvános előzetes verzióját](https://aka.ms/asr-deployment-planner).  
+Az eszköz .zip-mappába van csomagolva. Az eszköz jelenlegi verziója csak a VMware–Azure forgatókönyvet támogatja.
 
-2. Hello .zip mappa toohello Windows server, amelyből el kívánja toorun hello eszköz másolja.  
-A Windows Server 2012 R2 hello eszköz futtathatja, ha hello kiszolgálón hálózati hozzáférési tooconnect toohello vCenter kiszolgáló vagy vSphere ESXi-állomáson, amely tárolja a hello virtuális gépek toobe csatolást. Azonban azt javasoljuk, hogy a kiszolgáló, amelynek hardverkonfiguráció megfelel-e hello hello eszközt futtatja [konfigurációs kiszolgáló méretezése iránymutatás](https://aka.ms/asr-v2a-on-prem-components). Ha már telepítette a Site Recovery összetevők helyszíni, futtassa a hello eszközt hello konfigurációs kiszolgálóról.
+2. Másolja a zip-fájlt a Windows Serveren belül oda, ahonnan futtatni kívánja az eszközt.  
+Az eszközt futtathatja Windows Server 2012 R2-ről, ha a kiszolgáló hálózati hozzáférésével képes csatlakozni a ahhoz a vCenter kiszolgálóhoz/vSphere ESXi-gazdagéphez, amely a profilkészítéshez használt virtuális gépeket üzemelteti. Ajánlott azonban egy olyan kiszolgálón futtatni az eszközt, amelynek a hardverkonfigurációja megfelel a [konfigurációs kiszolgáló méretezési útmutatójának](https://aka.ms/asr-v2a-on-prem-components). Ha már üzembe helyezte a Site Recovery helyszíni összetevőit, futtassa az eszközt a konfigurációs kiszolgálóról.
 
- Azt javasoljuk, hogy rendelkezik-e hello hello konfigurációs kiszolgálón (amely tartalmaz egy folyamat a épített kiszolgálót) hello hello eszközt futtató hardverkonfigurációja megegyezik. Ilyen konfiguráció biztosítja, hogy hello elért átviteli sebesség adott hello eszköz jelentések egyezések hello tényleges átviteli, hogy a replikáció során a Site Recovery érhető el. hello átviteli számítási rendelkezésre álló hálózati sávszélességet hello kiszolgálón és a hardveres konfigurációjáról (CPU, tárolási és így tovább) hello kiszolgáló függ. Hello eszközt bármely más kiszolgálóról futtatja, ha a kiszolgáló tooMicrosoft Azure hello átviteli kiszámítása. Emellett hello hardverkonfiguráció hello kiszolgáló, a konfigurációs kiszolgáló hello eltérőek lehetnek, mert hello elért átviteli sebesség, amely az eszköz jelentéseket hello pontatlanok lehetnek.
+ A konfigurációs kiszolgálóval megegyező (beépített folyamatkiszolgálóval rendelkező) hardverkonfiguráció ajánlott azon a kiszolgálón, ahol futtatja az eszközt. Az ilyen konfiguráció biztosítja, hogy az eszköz által jelentett elért átviteli sebesség megegyezik a Site Recovery által replikáció közben elért tényleges átviteli sebességgel. Az átviteli sebesség kiszámítása a kiszolgálón elérhető hálózati sávszélességtől és a kiszolgáló hardverkonfigurációjától (processzor, tárterület stb.) függ. Ha az eszközt bármely másik kiszolgálóról futtatja, az arról a kiszolgálóról a Microsoft Azure irányába elérhető átviteli sebesség lesz kiszámítva. Mivel a kiszolgáló hardverkonfigurációja eltérhet a konfigurációs kiszolgálóétól, lehetséges, hogy az eszköz által jelentett elért átviteli sebesség nem lesz pontos.
 
-3. Bontsa ki a hello .zip mappa.  
-hello mappát tartalmaz a több fájlokkal és almappákkal együtt. hello végrehajtható fájl ASRDeploymentPlanner.exe hello szülő mappában.
+3. Csomagolja ki a .zip mappát.  
+A mappa több fájlt és almappát tartalmaz. Az ASRDeploymentPlanner.exe futtatható fájl a szülőmappában található.
 
     Példa:  
-    Másolja a hello .zip fájl tooE: \ meghajtó, és bontsa ki.
+    Másolja a .zip fájlt az E:\ meghajtóra, és csomagolja ki.
    E:\ASR Deployment Planner-Preview_v1.2.zip
 
     E:\ASR Deployment Planner-Preview_v1.2\ ASR Deployment Planner-Preview_v1.2\ ASRDeploymentPlanner.exe
 
 ## <a name="capabilities"></a>Funkciók
-A következő három módot hello valamelyikében hello parancssori eszköz (ASRDeploymentPlanner.exe) is futtathatja:
+A parancssori eszköz (ASRDeploymentPlanner.exe) a következő három mód bármelyikében futtatható:
 
 1. Profilkészítés  
 2. Jelentéskészítés
 3. Átviteli sebesség lekérdezése
 
-Először is futtathatja hello profilkészítési mód toogather VM adatforgalommal és iops-érték. A következő jelentésből hello eszköz toogenerate hello toofind hello hálózati sávszélességet és tárolóhelyet követelményeknek.
+Először futtassa profilkészítési módban az eszközt a virtuális gép adatváltozásának és IOPS-értékének összegyűjtéséhez. Ezután futtassa az eszközt a jelentés létrehozásához, hogy megtudhassa a hálózati sávszélességet és a tárolási követelményeket.
 
 ## <a name="profiling"></a>Profilkészítés
-Profilkészítési módban hello deployment planner eszköz toohello vCenter-kiszolgáló vagy vSphere ESXi állomás toocollect teljesítményadatainak hello Virtuálisgép kapcsolódik.
+Profilkészítési módban a Deployment Planner eszköz a vCenter-kiszolgálóhoz vagy a vSphere ESXi-gazdagéphez csatlakozik, hogy összegyűjtse a virtuális gép teljesítményadatait.
 
-* Profilkészítési nem befolyásolja hello teljesítmény hello az üzemi virtuális gépeket, mert nincs közvetlen kapcsolat toothem. Összes teljesítményadatának összegyűjtése az hello vCenter kiszolgáló vagy vSphere ESXi-állomáson.
-* tooensure, hogy nincs jelentős hatást kiszolgálón hello profilkészítési, hello eszköz lekérdezések hello vCenter kiszolgáló vagy vSphere ESXi-állomáson, 15 percenként egyszer miatt. A lekérdezési időköz nem veszélyeztetheti a profilkészítési pontosságának, mert hello eszköz minden percben teljesítményszámláló adatait tárolja.
+* A profilkészítés nincs hatással az éles virtuális gépek teljesítményére, mivel nem jön létre közvetlen kapcsolat az éles virtuális gépekkel. A rendszer minden teljesítményadatot összegyűjt a vCenter-kiszolgálóról / vSphere ESXi-gazdagépről.
+* Az eszköz 15 percenként lekérdezi a vCenter-kiszolgálót vagy a vSphere ESXi-gazdagépet, hogy a profilkészítés biztosan csak elhanyagolható hatással legyen a kiszolgálóra. A lekérdezési időköz azonban nem veszélyezteti a profilkészítés pontosságát, mivel az eszköz minden percben tárolja a teljesítményszámláló adatait.
 
-### <a name="create-a-list-of-vms-tooprofile"></a>Virtuális gépek tooprofile listájának létrehozása
-Először hello virtuális gépek toobe csatolást listáját. Virtuális gépek összes hello nevét a vCenter kiszolgáló vagy vSphere ESXi-állomáson parancsaival hello VMware vSphere PowerCLI eljárást követő hello beolvasása. Azt is megteheti egy hello rövid fájlnevek listázhatja, vagy az IP-címek hello tooprofile manuálisan kívánt virtuális gépeket.
+### <a name="create-a-list-of-vms-to-profile"></a>A profillal ellátni kívánt virtuális gépek listájának létrehozása
+Először létre kell hoznia a profillal ellátni kívánt virtuális gépek listáját. A következő eljárás VMware vSphere PowerCLI-parancsai használatával a vCenter-kiszolgálón vagy a vSphere ESXi-gazdagépen található összes virtuális gép nevét elérheti. Másik lehetőségként egy fájlba listázhatja azon virtuális gépek rövid nevét vagy IP-címét, amelyeket manuálisan szeretne profillal ellátni.
 
-1. Jelentkezzen be toohello VM adott VMware vSphere PowerCLI telepítve van-e.
-2. Nyissa meg a hello VMware vSphere PowerCLI konzolt.
-3. Győződjön meg arról, hogy hello végrehajtási házirend engedélyezve van-e hello parancsfájlt. Ha le van tiltva, indítsa el a hello VMware vSphere PowerCLI konzol felügyeleti üzemmódban, és engedélyez hello a következő parancs futtatásával:
+1. Jelentkezzen be arra a virtuális gépre, amelyen a VMware vSphere PowerCLI telepítve van.
+2. Nyissa meg a VMware vSphere PowerCLI-konzolt.
+3. Ellenőrizze, hogy a végrehajtási szabályzat engedélyezve van-e a szkript esetében. Ha a szabályzat le van tiltva, indítsa el a VMware vSphere PowerCLI-konzolt rendszergazdai módban, és futtassa a következő parancsot az engedélyezéséhez:
 
             Set-ExecutionPolicy –ExecutionPolicy AllSigned
 
-4. Előfordulhat, hogy ha Connect-VIServer értéke nem értelmezhető parancsmag hello nevét a következő parancs optionly kell toorun hello.
+4. Előfordulhat, hogy a következő parancsot kell futtatnia, ha a rendszer nem ismeri el a Connect-VIServer elemet a parancsmag neveként.
  
             Add-PSSnapin VMware.VimAutomation.Core 
 
-5. tooget összes hello neve a vCenter kiszolgáló vagy vSphere ESXi-alapú virtuális gépek üzemeltetéséhez, és hello listát tárolására egy .txt fájlban, az itt felsorolt futtatási hello két parancsot.
+5. Futtassa az alábbi két parancsot a vCenter-kiszolgálón vagy a vSphere ESXi-gazdagépen található összes virtuális gép nevének lekéréséhez és a nevek egy szöveges dokumentumba (.txt) mentéséhez.
 Cserélje le a &lsaquo;server name&rsaquo; (kiszolgáló neve), a &lsaquo;user name&rsaquo; (felhasználónév), a &lsaquo;password&rsaquo; (jelszó), az &lsaquo;outputfile.txt&rsaquo; (kimenetifájl.txt) paramétereket saját értékeire.
 
             Connect-VIServer -Server <server name> -User <user name> -Password <password>
 
             Get-VM |  Select Name | Sort-Object -Property Name >  <outputfile.txt>
 
-6. Nyissa meg a hello kimeneti fájlt a Jegyzettömbben, és minden virtuális gép, amelyet az tooprofile tooanother fájl (például ProfileVMList.txt), egy virtuális gép nevét egy sorban hello nevei másolja. Ez a fájl a bemeneti toohello vettük *- VMListFile* hello parancssori eszköz paraméter.
+6. Nyissa meg a kimeneti fájlt a Jegyzettömbben, és másolja egy másik fájlba (pl. ProfileVMList.txt) minden olyan virtuális gép nevét, amelyről profilt kíván készíteni. Minden virtuális gép nevét külön sorba írja. A rendszer ezt a fájlt használja majd bemenetként a parancssori eszköz *-VMListFile* paraméteréhez.
 
-    ![Hello telepítési planner a virtuális gép listája](./media/site-recovery-deployment-planner/profile-vm-list.png)
+    ![Virtuálisgép-nevek listája a Deployment Planner eszközben](./media/site-recovery-deployment-planner/profile-vm-list.png)
 
 ### <a name="start-profiling"></a>Profilkészítés indítása
-Miután a virtuális gépek toobe csatolást hello listája, a hello eszköz a profilkészítési módban is futtathatja. Kötelező és választható paramétereit hello eszköz toorun hello listája itt profilkészítési módban van.
+Ha megvan azon virtuális gépek listája, amelyekről profilt szeretne készíteni, futtathatja az eszközt profilkészítési módban. Az alábbi lista az eszköz profilkészítési módjában használható kötelező és választható paramétereket sorolja fel.
 
 ASRDeploymentPlanner.exe -Operation StartProfiling /?
 
 | Paraméter neve | Leírás |
 |---|---|
 | -Művelet | StartProfiling |
-| -Kiszolgáló | hello teljesen minősített tartománynév vagy IP-címét hello vCenter kiszolgáló vagy vSphere ESXi-állomáson, amelynek a virtuális gépek toobe csatolást.|
-| -Felhasználó | hello felhasználói név tooconnect toohello vCenter kiszolgáló vagy vSphere ESXi-állomáson. hello felhasználónak toohave csak olvasási hozzáféréssel, minimum van szüksége.|
-| -VMListFile | hello fájlt, amely virtuális gépek toobe csatolást hello listáját tartalmazza. hello fájl elérési út lehet abszolút vagy relatív. hello fájl soronként egy virtuális gép neve vagy IP-címet kell tartalmaznia. Hello fájlban megadott virtuálisgép-név ugyanaz, mint a Virtuálisgép-nevet hello hello vCenter kiszolgáló vagy vSphere ESXi-állomáson lévő kell hello.<br>Például VMList.txt hello fájl tartalmazza a következő virtuális gépek hello:<ul><li>virtual_machine_A</li><li>10.150.29.110</li><li>virtual_machine_B</li><ul> |
-| -NoOfDaysToProfile | hello hány napig a mely profilkészítési toobe futtatásához. Azt javasoljuk, hogy több mint 15 nappal tooensure, hogy a munkaterhelés mintát környezetében hello hello keresztül a megadott időszak követi, és egy pontos ajánlás tooprovide használt profilkészítés. |
-| -Directory | (Választható) hello univerzális elnevezési konvenció (UNC) vagy a helyi könyvtár elérési útja toostore profilkészítési profilkészítési során létrehozott adatokat. Ha a könyvtár neve nincs megadva, "ProfiledData" nevű hello aktuális elérési úton található hello könyvtár hello alapértelmezett címtár lesz. |
-| -Password | (Választható) hello jelszó toouse tooconnect toohello vCenter kiszolgáló vagy vSphere ESXi-állomáson. Ha nem ad meg egy most, bekéri az hello parancs végrehajtásakor.|
-| -StorageAccountName | (Választható) hello tárfiók nevet használt toofind hello átviteli elérhető adatainak replikálását a helyszíni tooAzure. hello eszköz feltöltések teszt toothis tárolási fiók toocalculate adatátvitelt.|
-| -StorageAccountKey | (Választható) hello tárfiók kulcs által használt tooaccess hello tárfiók. Nyissa meg az Azure portál toohello > Storage-fiókok ><*Tárfiók neve*>> Beállítások > elérési kulcsok > Key1 (vagy a klasszikus tárfiók elsődleges elérési kulcsát). |
-| -Környezet | (nem kötelező) Ez az Ön Azure Storage-fiókjának célkörnyezete. Ez a következő három érték egyike lehet: AzureCloud, AzureUSGovernment, AzureChinaCloud. Az alapértelmezett érték az AzureCloud. Ha a cél Azure-régiót Azure Amerikai Egyesült államokbeli kormányzati vagy Azure Kína felhők, használja a hello paramétert. |
+| -Kiszolgáló | Azon vCenter-kiszolgáló vagy vSphere ESXi-gazdagép teljes tartományneve vagy IP-címe, amelynek virtuális gépeiről profilt szeretne készíteni.|
+| -Felhasználó | A vCenter-kiszolgálóhoz vagy vSphere ESXi-gazdagéphez való csatlakozáshoz használt felhasználónév. A felhasználónak legalább olvasási hozzáféréssel kell rendelkeznie.|
+| -VMListFile | Azon virtuális gépek listáját tartalmazó fájl, amelyekről profilt szeretne készíteni. A fájl elérési útja lehet abszolút vagy relatív. A fájl minden sorában egy virtuális gép nevének vagy IP-címének kell állnia. A fájlban megadott virtuálisgép-neveknek meg kell egyezniük a vCenter-kiszolgálón vagy az ESXi-gazdagépen szereplő nevekkel.<br>A „VMList.txt” fájl például az alábbi virtuális gépeket tartalmazza:<ul><li>virtual_machine_A</li><li>10.150.29.110</li><li>virtual_machine_B</li><ul> |
+| -NoOfDaysToProfile | A napok száma, ameddig a profilkészítést futtatni szeretné. Javasoljuk, hogy legalább 15 napig futtassa a profilkészítést. Ez biztosítja számítási feladatok mintájának megfigyelését a környezetben a meghatározott időtartamon belül, amely alapján pontos javaslat adható |
+| -Directory | (Nem kötelező) Az univerzális elnevezési konvenciónak (UNC) megfelelő elérési út vagy azon helyi könyvtár elérési útja, ahol a profilkészítés során létrehozott adatokat tárolni kívánja. Ha nem adja meg könyvtár nevét, a rendszer az aktuális elérési úton található „ProfiledData” könyvtárat használja alapértelmezett könyvtárként. |
+| -Password | (Nem kötelező) A vCenter-kiszolgálóhoz vagy vSphere ESXi-gazdagéphez való csatlakozáshoz használt jelszó. Ha nem adja meg most, a rendszer a parancs végrehajtásakor rákérdez.|
+| -StorageAccountName | (Nem kötelező) A helyszínről az Azure-ba történő adatreplikáció során elérhető átviteli sebesség azonosításához szükséges tárfiók neve. Az eszköz erre a tárfiókra tölti fel a tesztadatokat az átviteli sebesség kiszámításához.|
+| -StorageAccountKey | (Nem kötelező) A tárfiók eléréséhez használt tárfiókkulcs. Nyissa meg az Azure Portalt, és kattintson a Tárfiókok > *Tárfiók neve* > > Beállítások > Hozzáférési kulcsok > 1. kulcs (vagy klasszikus tárfiók esetén az Elsődleges elérési kulcs) elemre. |
+| -Környezet | (nem kötelező) Ez az Ön Azure Storage-fiókjának célkörnyezete. Ez a következő három érték egyike lehet: AzureCloud, AzureUSGovernment, AzureChinaCloud. Az alapértelmezett érték az AzureCloud. Akkor használja ezt a paramétert, ha Azure-célrégióként Azure US Government- vagy Azure China-beli felhők vannak megadva. |
 
 
-Azt javasoljuk, hogy legalább 15 too30 napig profilját a virtuális gépek. Hello időszak profilkészítési, során ASRDeploymentPlanner.exe folyamatosan működik. hello eszköz profilkészítési idő bemenetből fogad adatokat napban. Ha szeretne tooprofile néhány órában vagy percben hello eszköz, a gyors vizsgálat hello nyilvános előzetes verziójában, szüksége lesz tooconvert hello idő hello egyenértékű mérték nap be. Például: 30 percig tooprofile hello bemeneti 30/(60*24) kell legyen = 0.021 nap. hello minimális idő profilkészítési engedélyezett értéke 30 perc.
+Javasoljuk, hogy legalább 15–30 napig folytassa a virtuális gépek profiljának készítését. A profilkészítés időtartama alatt az ASRDeploymentPlanner.exe alkalmazás folyamatosan fut. A profilkészítés időtartama napokban adható meg az eszközben. Ha csak gyorsan tesztelni kívánja az eszközt, és néhány óráig vagy percig szeretné futtatni a profilkészítést, akkor a nyilvános előzetes verzióban napban kell megadnia az időtartamot. Ha például 30 percig szeretné futtatni a profilkészítést, a bemenet legyen 30/(60*24), azaz 0,021 nap. A minimális profilkészítési idő 30 perc.
 
-Profilkészítési, során opcionálisan átadhatók a storage-fiók nevét és a Site Recovery érhető el a replikálást a konfigurációs kiszolgáló hello vagy folyamat server tooAzure hello időpontjában, a kulcs toofind hello átviteli sebesség. Ha hello storage-fiók nevét és a kulcs nem átadott során profilkészítési, hello eszköz elérhető átviteli sebesség nem számít.
+A profilkészítés során lehetősége van átadni egy tárfióknevet és -kulcsot, amivel megtudhatja, hogy a Site Recovery mekkora átviteli sebességet érhet el a konfigurációs kiszolgálóról vagy a folyamatkiszolgálóról az Azure-ba történő replikáció során. Ha nem ad át tárfióknevet és -kulcsot a profilkészítés során, az eszköz nem számítja ki az elérhető átviteli sebességet.
 
-Hello eszköz különböző csoportjai számára virtuális gépek több példányát is futtathatja. Győződjön meg arról, hogy hello virtuális gép neve nem ismétlődnek hello beállítása profilkészítési valamelyikében. Például, ha Ön rendelkezik csatolást tíz virtuális gépek (VM1 VM10 keresztül), és néhány nap múlva szeretné tooprofile egy másik öt virtuális gépek (VM11 VM15 keresztül), hello eszköz futtatásához egy másik parancssori konzolban a virtuális gépek hello második együttesét a (VM11 VM15 keresztül). Győződjön meg arról, hogy hello második virtuális gépek csoportja nem rendelkezik a virtuális gépek nevénél hello első profilkészítési példányból hello második futtatásához használja a különböző kimeneti könyvtár. Két példányban hello eszköz használata esetén a profilkészítési hello azonos virtuális gépek és -felhasználási hello azonos kimeneti könyvtár, generált hello jelentés pontatlan lehet.
+Az eszköz több példánya is futtatható egyszerre különböző virtuálisgép-csoportokon. Győződjön meg arról, hogy a virtuális gépek neve nem ismétlődik egyik profilkészítési csoportban sem. Ha például profilt készített tíz virtuális gépről (VM1–VM10), és néhány nap elteltével további öt virtuális gépről szeretne profilt készíteni (VM11–VM15), akkor a második csoporton (VM11–VM15) egy másik parancssori konzolról futtathatja az eszközt. Győződjön meg arról, hogy a második virtuálisgép-csoport nem tartalmaz olyan virtuálisgép-nevet, amely szerepel az első profilkészítési példányban, vagy a második futtatás esetében használjon eltérő kimeneti könyvtárat. Ha az eszköz két példánya ugyanazokról a virtuális gépekről készít profilt, és ugyanazt a kimeneti könyvtárat is használják, a létrehozott jelentés helytelen lesz.
 
-Virtuálisgép-konfigurációk művelet profilkészítési hello hello elején egyszer rögzített, és VMDetailList.xml nevű fájlban tárolja. Ez az információ akkor használatos, ha a hello jelentést hoz létre. Minden oldalától hello kezdete toohello profilkészítési (például egy nagyobb számot mag, a lemezek vagy a hálózati adapterek) Virtuálisgép-konfiguráció módosítását nem rögzíti. Ha profilozott Virtuálisgép-konfiguráció megváltozott hello során profilkészítési hello nyilvános előzetes verziójában, itt a következő hello megoldás tooget legújabb VM részletek hello jelentés létrehozásakor:
+A rendszer egyszer, a profilkészítési művelet elején rögzíti virtuálisgép-konfigurációkat, és egy VMDetailList.xml nevű fájlban tárolja őket. Ezeket az adatokat azután a jelentés létrehozásakor használja. Ha a profilkészítés során a virtuális gépek konfigurációjának bármely része módosul (például nő a magok, a lemezek vagy a hálózati adapterek száma), azt a rendszer nem rögzíti. Ha a profilkészítés során módosul az egyik virtuális gép konfigurációja, amelyről profilt készített, akkor a nyilvános előzetes verzióban a következő megkerülő megoldással kérheti le a virtuális gép legfrissebb adatait a jelentés készítésekor:
 
-* Készítsen biztonsági másolatot VMdetailList.xml, és törölje a hello fájlt a jelenlegi helyéről.
-* -Felhasználó és - jelszavát argumentumokat adhat a jelentéskészítésre hello időpontjában.
+* Készítsen biztonsági másolatot a VMdetailList.xml fájlról, és törölje a fájlt a jelenlegi helyéről.
+* Adja meg a -User és -Password argumentumokat a jelentés létrehozásakor.
 
-profilkészítési parancs hello directory profilkészítési hello több fájlt hoz létre. Ne törölje hello fájlokat, mivel ezzel így hatással van a jelentés létrehozásához.
+A profilkészítési parancs számos fájlt létrehoz a profilkészítési könyvtárban. Ezeket ne törölje, mert az hatással lenne a jelentésre.
 
-#### <a name="example-1-profile-vms-for-30-days-and-find-hello-throughput-from-on-premises-tooazure"></a>1. példa: Profil virtuális gépeket 30 nap, és a helyszíni tooAzure keresés hello átviteli sebesség
+#### <a name="example-1-profile-vms-for-30-days-and-find-the-throughput-from-on-premises-to-azure"></a>1. példa: Profilkészítés virtuális gépről 30 napon keresztül, valamint a helyszín és az Azure közötti átviteli sebesség meghatározása
 ```
 ASRDeploymentPlanner.exe -Operation StartProfiling -Directory “E:\vCenter1_ProfiledData” -Server vCenter1.contoso.com -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  -NoOfDaysToProfile  30  -User vCenterUser1 -StorageAccountName  asrspfarm1 -StorageAccountKey Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==
 ```
@@ -175,63 +175,63 @@ ASRDeploymentPlanner.exe -Operation StartProfiling -Directory “E:\vCenter1_Pro
 ASRDeploymentPlanner.exe -Operation StartProfiling -Directory “E:\vCenter1_ProfiledData” -Server vCenter1.contoso.com -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  -NoOfDaysToProfile  15  -User vCenterUser1
 ```
 
-#### <a name="example-3-profile-vms-for-1-hour-for-a-quick-test-of-hello-tool"></a>3. példa: Profil virtuális gépeknek a virtuális eszköz hello gyors vizsgálat 1 óra
+#### <a name="example-3-profile-vms-for-1-hour-for-a-quick-test-of-the-tool"></a>3. példa: Profilkészítés virtuális gépekről 1 órán keresztül az eszköz gyors teszteléséhez
 ```
 ASRDeploymentPlanner.exe -Operation StartProfiling -Directory “E:\vCenter1_ProfiledData” -Server vCenter1.contoso.com -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  -NoOfDaysToProfile  0.04  -User vCenterUser1
 ```
 
 >[!NOTE]
 >
->* Ha hello kiszolgáló hello eszköz futó újraindították vagy összeomlott, vagy ha bezárja hello eszköz a Ctrl + C, csatolást hello adatok megmaradnak. Azonban esély van a hiányzó hello profilozott adatok az elmúlt 15 perc. Ilyen esetben hello kiszolgáló újraindítása után futtassa újra a hello eszköz profilkészítési módban.
->* Ha hello storage-fiók nevét és a kulcs átadott hello eszköz intézkedések hello átviteli sebesség a profilkészítési hello utolsó lépésnél. Ha hello eszköz le van zárva, profilkészítési befejezése előtt, hello átviteli sebesség nem számítható ki. toofind hello átviteli létrehozása előtt hello jelentés, hello GetThroughput művelet hello parancssori konzolról futtatható. Ellenkező esetben generált hello jelentés nem tartalmazza a hello átviteli sebességet.
+>* Ha a kiszolgáló, amelyen az eszköz fut, újraindul vagy összeomlik, vagy ha bezárja az eszközt a Ctrl + C billentyűkombinációval, a rendszer megőrzi a profilkészítés során létrehozott adatokat. Előfordulhat azonban, hogy az utolsó 15 percnyi profilkészítés adatai elvesznek. Ebben az esetben a kiszolgáló újraindítása után ismét futtassa az eszközt profilkészítési módban.
+>* Ha megadja a tárfióknevet és -kulcsot, az eszköz a profilkészítés utolsó lépéseként megméri az átviteli sebességet. Ha bezárja az eszközt, mielőtt a profilkészítés befejeződött volna, a rendszer nem számítja ki az átviteli sebességet. Az átviteli sebesség a jelentés létrehozása előtti lekérdezéséhez futtassa a GetThroughput műveletet a parancssori konzolból. Ellenkező esetben a létrehozott jelentés nem tartalmazza majd az átviteli sebességgel kapcsolatos információkat.
 
 
 ## <a name="generate-a-report"></a>Jelentés létrehozása
-hello hoz létre egy makró engedélyezve van a Microsoft Excel (fájl XLSM) kimenetként hello jelentés, amely összefoglalja az összes hello telepítési javaslatok. hello jelentés DeploymentPlannerReport_ nevű <*egyedi azonosítószáma*> .xlsm és a elhelyezett hello megadott könyvtárban.
+Az eszköz egy makróbarát Microsoft Excel-fájlt (XLSM-fájlt) hoz létre a jelentés kimeneteként, amely összefoglalja az üzembehelyezési javaslatokat. A jelentés neve DeploymentPlannerReport_<*egyéni numerikus azonosító*>.xlsm, és a megadott könyvtárban lesz elérhető.
 
-Profilkészítési befejezése után a hello eszköz jelentéskészítésre módban is futtathatja. a következő táblázat hello kötelező és választható eszköz paraméterek toorun jelentéskészítésre módban listáját tartalmazza.
+A profilkészítés befejezése után futtathatja az eszközt jelentéskészítési módban. A következő táblázat a jelentéskészítési módban futtatandó kötelező és nem kötelező eszközparaméterek listáját tartalmazza.
 
 `ASRDeploymentPlanner.exe -Operation GenerateReport /?`
 
 |Paraméter neve | Leírás |
 |-|-|
 | -Művelet | Jelentés készítése |
-| -Kiszolgáló |  hello vCenter vagy vSphere kiszolgáló teljesen minősített tartománynév vagy IP-cím (használata hello azonos nevét vagy IP-címet, amelyet a profilkészítési hello időpontjában használt) ahol hello csatolást jelentése toobe létrehozott virtuális gépek találhatók. Vegye figyelembe, hogy ha egy vCenter-kiszolgálót a profilkészítési hello időpontjában, server nem használható a vSphere jelentés létrehozásához, és fordítva.|
-| -VMListFile | hello hello listája jelentés hello profilozott virtuális gépeket tartalmazó fájl előállított toobe. hello fájl elérési út lehet abszolút vagy relatív. hello fájlt tartalmaznia kell egy virtuális gép nevét vagy IP-cím soronként. hello virtuális gépek nevénél hello fájlban megadott ugyanaz, mint a hello virtuális gépek nevénél hello vCenter kiszolgáló vagy vSphere ESXi-állomáson, és egyezés profilkészítési során használt kell hello.|
-| -Directory | (Választható) hello UNC vagy helyi könyvtár elérési útja, ahol hello csatolást adatok (profilkészítési folyamán létrehozott fájlokat) tárolja. Ezek az adatok megadása kötelező hello jelentés előállítása érdekében. Ha a név nincs megadva, a rendszer a „ProfiledData” könyvtárat használja. |
-| -GoalToCompleteIR | (Választható) hello óraszámon belül mely hello a kezdeti replikációja, hello csatolást virtuális gépek kell toobe befejeződött. hello jön létre a jelentésben a virtuális gépek, amelynek kezdeti replikáció is elvégezhető a megadott hello hello száma idő. hello alapértelmezés szerint 72 óra. |
-| -Felhasználó | (Választható) hello felhasználói név toouse tooconnect toohello vCenter vagy vSphere kiszolgáló. hello értéke használt toofetch hello legfrissebb konfigurációs adatok a hello virtuális gépeket, például a lemezek hello száma, a magok száma és a hálózati adapterek, hello jelentésben toouse száma. Ha hello neve nincs megadva, hello konfigurációs kickoff profilkészítési hello hello elején gyűjtött adatok. |
-| -Password | (Választható) hello jelszó toouse tooconnect toohello vCenter kiszolgáló vagy vSphere ESXi-állomáson. Ha nincs megadva hello jelszó, bekéri az később hello parancs végrehajtásakor. |
-| -DesiredRPO | (Választható) hello kívánt helyreállításipont-célkitűzést, percben. hello alapértelmezett érték 15 perc.|
-| -Bandwidth | Sávszélesség (Mbps). hello paraméter toouse toocalculate hello hello az elérhető helyreállítási Időkorlát megadott sávszélesség. |
-| -StartDate | (Választható) hello kezdő dátum és időpont a hh-nn-YYYY:HH:MM (24 órás formátumban). A *StartDate* és az *EndDate* paraméter megadása kötelező. A StartDate megadása esetén hello jelentés csatolást hello StartDate és az EndDate közötti gyűjtött adatok létrejön. |
-| -EndDate | (Választható) hello záró dátuma és időpontja a hh-nn-YYYY:HH:MM (24 órás formátumban). Az *EndDate* és a *StartDate* paraméter megadása kötelező. EndDate megadása esetén hello jelentés csatolást hello StartDate és az EndDate közötti begyűjtött adatokból keletkezik. |
-| -GrowthFactor | (Választható) hello növekedési tényező, százalékban kifejezve. hello alapértelmezett értéke 30 százalék. |
-| -UseManagedDisks | (Nem kötelező) UseManagedDisks – Igen/Nem. Az alapértelmezett érték az Igen. virtuális gépek, amelyek felvehetők egy tárfiók hello számát figyelembe véve, hogy helyett a nem felügyelt lemezt felügyelt lemezes virtuális gépeinek feladatátvételi és tesztelési célú feladatátvételi történik kiszámítása. |
+| -Kiszolgáló |  Annak a vCenter- vagy vSphere-kiszolgálónak a teljes tartományneve vagy IP-címe, ahol azon virtuális gépek találhatók, amelyekről profilt készített, és amelyekről most jelentést szeretne készíteni. (Használja a profilkészítéskor használt nevet vagy IP-címet.) Ügyeljen arra, hogy ha vCenter-kiszolgálót használt a profilkészítés során, akkor nem használhat vSphere-kiszolgálót a jelentéskészítéshez, és fordítva.|
+| -VMListFile | Azon virtuális gépek listáját tartalmazó fájl, amelyekről profilt készített, és amelyekről jelentést szeretne készíteni. A fájl elérési útja lehet abszolút vagy relatív. A fájl minden sorában egy virtuális gép nevének vagy IP-címének kell állnia. A fájlban megadott virtuálisgép-neveknek meg kell egyezniük a vCenter-kiszolgálón vagy a vSphere ESXi-gazdagépen szereplő nevekkel, és egyezniük kell a profilkészítés során használt nevekkel.|
+| -Directory | (Nem kötelező) A profilkészítés során létrehozott adatokat tároló mappa UNC vagy helyi elérési útja. Ezekre az adatokra szükség van a jelentés létrehozásához. Ha a név nincs megadva, a rendszer a „ProfiledData” könyvtárat használja. |
+| -GoalToCompleteIR | (Nem kötelező) Ennyi óra alatt kell befejeződnie azon virtuális gépek kezdeti replikációjának, amelyekről profilt kíván készíteni. Az elkészített jelentés tartalmazza azon virtuális gépek számát, amelyeknek a kezdeti replikációja befejezhető a megadott időtartam alatt. Az alapértelmezett érték 72 óra. |
+| -Felhasználó | (Nem kötelező) A vCenter- vagy vSphere-kiszolgálóhoz való csatlakozáshoz használni kívánt felhasználónév. A rendszer a név használatával kéri le a virtuális gépek legutóbbi konfigurációs adatait a jelentéshez (pl. a lemezek, magok, hálózati adapterek száma stb.). Ha a név nincs megadva, a rendszer a profilkészítés indításakor összegyűjtött konfigurációs adatokat használja fel. |
+| -Password | (Nem kötelező) A vCenter-kiszolgálóhoz vagy vSphere ESXi-gazdagéphez való csatlakozáshoz használt jelszó. Ha nem adja meg a jelszót paraméterként, a rendszer később, a parancs végrehajtásakor rákérdez. |
+| -DesiredRPO | (Nem kötelező) A kívánt helyreállítási időkorlát, percben megadva. Az alapértelmezett beállítás 15 perc.|
+| -Bandwidth | Sávszélesség (Mbps). A rendszer ezen paraméter alapján számítja ki az elérhető helyreállítási időkorlátot a megadott sávszélességhez. |
+| -StartDate | (Nem kötelező) Kezdő dátum és idő HH-NN-ÉÉÉÉ:ÓÓ:PP (24 órás) formátumban megadva. A *StartDate* és az *EndDate* paraméter megadása kötelező. Ha a StartDate meg van adva, a rendszer a StartDate és az EndDate paraméter közötti időszakban összegyűjtött, profilkészítéshez használt adatokról állít elő jelentést. |
+| -EndDate | (Nem kötelező) Záró dátum és idő HH-NN-ÉÉÉÉ:ÓÓ:PP (24 órás) formátumban megadva. Az *EndDate* és a *StartDate* paraméter megadása kötelező. Ha az EndDate meg van adva, a rendszer a StartDate és az EndDate paraméter közötti időszakban összegyűjtött, profilkészítéshez használt adatokról állít elő jelentést. |
+| -GrowthFactor | (Nem kötelező) A növekedési tényező százalékértékként megadva. Az alapértelmezett érték 30%. |
+| -UseManagedDisks | (Nem kötelező) UseManagedDisks – Igen/Nem. Az alapértelmezett érték az Igen. Az egy tárfiókban elhelyezhető virtuális gépek számának meghatározáskor a rendszer figyelembe veszi, hogy a virtuális gépek feladatátvétele, illetve feladatátvételi tesztje nem felügyelt lemez helyett felügyelt lemezen történik. |
 
-#### <a name="example-1-generate-a-report-with-default-values-when-hello-profiled-data-is-on-hello-local-drive"></a>1. példa: Az alapértelmezett értékekkel jelentés készítése hello helyi meghajtó a csatolást hello adatok esetén
+#### <a name="example-1-generate-a-report-with-default-values-when-the-profiled-data-is-on-the-local-drive"></a>1. példa: Jelentés készítése az alapértelmezett értékekkel, ha a profilkészítés során létrehozott adatok a helyi meghajtón találhatóak
 ```
 ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com -Directory “\\PS1-W2K12R2\vCenter1_ProfiledData” -VMListFile “\\PS1-W2K12R2\vCenter1_ProfiledData\ProfileVMList1.txt”
 ```
 
-#### <a name="example-2-generate-a-report-when-hello-profiled-data-is-on-a-remote-server"></a>2. példa: Jelentés készítése, amikor egy távoli kiszolgálón csatolást hello adatok
-Hello távoli címtár olvasási/írási hozzáférést kell rendelkeznie.
+#### <a name="example-2-generate-a-report-when-the-profiled-data-is-on-a-remote-server"></a>2. példa: Jelentés készítése, ha a profilkészítés során létrehozott adatok távoli kiszolgálón találhatóak
+A felhasználónak olvasási/írási hozzáféréssel kell rendelkeznie a távoli könyvtárhoz.
 ```
 ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com -Directory “\\PS1-W2K12R2\vCenter1_ProfiledData” -VMListFile “\\PS1-W2K12R2\vCenter1_ProfiledData\ProfileVMList1.txt”
 ```
 
-#### <a name="example-3-generate-a-report-with-a-specific-bandwidth-and-goal-toocomplete-ir-within-specified-time"></a>3. példa: A megadott időn belül az egy adott sávszélesség és a cél toocomplete IR jelentés készítése
+#### <a name="example-3-generate-a-report-with-a-specific-bandwidth-and-goal-to-complete-ir-within-specified-time"></a>3. példa: Jelentés készítése megadott sávszélességgel és a kezdeti replikáció adott határidejű befejezésére vonatkozó céllal
 ```
 ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com -Directory “E:\vCenter1_ProfiledData” -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt” -Bandwidth 100 -GoalToCompleteIR 24
 ```
 
-#### <a name="example-4-generate-a-report-with-a-5-percent-growth-factor-instead-of-hello-default-30-percent"></a>4. példa: Egy 5 százalékos növekedési tényező hello alapértelmezett 30 százalékos helyett a jelentés készítése
+#### <a name="example-4-generate-a-report-with-a-5-percent-growth-factor-instead-of-the-default-30-percent"></a>4. példa: Jelentés készítése 5%-os növekedési tényezővel az alapértelmezett 30% helyett
 ```
 ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com -Directory “E:\vCenter1_ProfiledData” -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt” -GrowthFactor 5
 ```
 
 #### <a name="example-5-generate-a-report-with-a-subset-of-profiled-data"></a>5. példa: Jelentés létrehozása a profilkészítés során használt adatok egy részéből
-Például 30 napnyi adat profilozott rendelkezik, és szeretné, hogy egy jelentés toogenerate csak 20 napra.
+Tegyük fel, hogy van 30 napnyi adata, amelyet a profilkészítés során hozott létre, de csak 20 napról szeretne jelentést készíteni.
 ```
 ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com -Directory “E:\vCenter1_ProfiledData” -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt” -StartDate  01-10-2017:12:30 -EndDate 01-19-2017:12:30
 ```
@@ -241,12 +241,12 @@ ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com 
 ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com -Directory “E:\vCenter1_ProfiledData” -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  -DesiredRPO 5
 ```
 
-## <a name="percentile-value-used-for-hello-calculation"></a>A PERCENTILIS hello kiszámításához használt
-**Milyen alapértelmezett PERCENTILIS hello Teljesítményelemzési mutatón során profilkészítési biztosítja hello eszközt használja, egy jelentést készít az összegyűjtött?**
+## <a name="percentile-value-used-for-the-calculation"></a>A számításhoz használt százalékérték
+**Alapértelmezés szerint a profilkészítés során összegyűjtött teljesítménymetrikák milyen százalékos arányát használja az eszköz jelentések készítésekor?**
 
-hello eszköz alapértelmezett toohello 95. értékek olvasási/írási IOPS, az IOPS, és azok hello a virtuális gépek profilkészítési alatt gyűjtött adatforgalommal írni. Ez a metrika biztosítja, hogy hello 100 PERCENTILIS csúcs ideiglenes események miatt jelenhet meg a virtuális gépek nem használt toodetermine a cél tárfiók és a forrás-sávszélesség követelmények van. Az ideiglenes esemény lehet például egy naponta egyszer futtatott biztonsági mentési feladat, rendszeres időközönként végzett adatbázis-indexelés, elemzésijelentés-készítési tevékenység vagy bármely hasonló, rövid ideig tartó, időpontalapú esemény.
+Az eszköz alapértelmezett értéke az írási/olvasási IOPS, az írási IOPS és az adatváltozás esetén a 95. százalékérték az összes virtuális gép profiljának elkészítése során. Ez a metrika biztosítja, hogy a virtuális gépek által az ideiglenes események miatt esetlegesen észlelt 100. százalékértékes kiugrást a rendszer nem használja fel a cél tárfiók és a forrássávszélesség követelményeinek meghatározásakor. Az ideiglenes esemény lehet például egy naponta egyszer futtatott biztonsági mentési feladat, rendszeres időközönként végzett adatbázis-indexelés, elemzésijelentés-készítési tevékenység vagy bármely hasonló, rövid ideig tartó, időpontalapú esemény.
 
-95. értékek használatával biztosítja az IGAZ képe valós munkaterhelés jellemzőit, és lehetővé teszi az hello lehető legjobb teljesítményt hello munkaterhelések Azure futtatásakor. Nem tervezzük, hogy meg kellene toochange ezt a számot. Ha hello érték (toohello 90. százalékos érték, például) módosítja, frissítheti hello konfigurációs fájl *ASRDeploymentPlanner.exe.config* a hello alapértelmezett mappát, és mentse azt a hello meglévő csatolást toogenerate új jelentés adatok.
+A 95. százalékérték használata valós képet ad a számítási feladatok valódi jellemzőiről, és a lehető legjobb teljesítményt biztosítja, miközben a számítási feladatok futnak az Azure-on. Ezt az értéket valószínűleg nem kell módosítania. Ha úgy dönt, hogy módosítja (például a 90. százalékértékre), akkor az alapértelmezett mappában található *ASRDeploymentPlanner.exe.config* konfigurációs fájl frissítésével és mentésével létrehozhat egy új jelentést a meglévő, profilkészítés során létrehozott adatokról.
 ```
 <add key="WriteIOPSPercentile" value="95" />      
 <add key="ReadWriteIOPSPercentile" value="95" />      
@@ -256,17 +256,17 @@ hello eszköz alapértelmezett toohello 95. értékek olvasási/írási IOPS, az
 ## <a name="growth-factor-considerations"></a>A növekedési tényezővel kapcsolatos szempontok
 **Miért kell figyelembe vennem a növekedési tényezővel kapcsolatos szempontokat a környezetek megtervezésekor?**
 
-A munkaterhelés jellemzőit, feltéve, hogy idővel használata során előforduló esetleges növekedését növekedését kritikus tooaccount. Védelem van beállítva, ha módosítja a munkaterhelés jellemzőit, miután letiltásával és újbóli engedélyezése az üdvözlő védelmi nélkül nem lehet átállítani a tooa eltérő tárfiók védelemre.
+Rendkívül fontos figyelembe venni a növekedést a számítási feladatok jellemzőiben, feltételezve a használat lehetséges növekedését. Ha beállítja a védelmet, és módosulnak a számítási feladatok jellemzői, nincs lehetőség arra, hogy egy másik védett tárfiókra váltson a védelem letiltása és ismételt engedélyezése nélkül.
 
-Tegyük fel például, hogy a virtuális gép jelenleg megfelel egy standard szintű tárreplikációs fiókhoz. Hello keresztül következő három hónapban, több olyan változás is valószínűleg toooccur:
+Tegyük fel például, hogy a virtuális gép jelenleg megfelel egy standard szintű tárreplikációs fiókhoz. A következő néhány hónapban számos változás következhet be:
 
-* hello VM hello alkalmazás felhasználója hello számát növeli.
-* hello eredményül kapott megnövekedett forgalmának kezeléséhez hello VM hello VM toogo toopremium tárolási van szükség, hogy a Site Recovery replikációs tudja tartani.
-* Következésképpen fog toodisable rendelkezik, és engedélyezze újra a védelmi tooa prémium szintű storage-fiók.
+* Nő azoknak a felhasználóknak a száma, akik az alkalmazást a virtuális gépen futtatják.
+* Az így létrejövő megnövekedett adatforgalom miatt a virtuális gépnek prémium szintű tárolóra van szüksége, hogy a Site Recovery replikációja tartani tudja a lépést.
+* Ennek következtében le kell tiltania, majd újra engedélyeznie kell a védelmet egy prémium szintű tárfiókon.
 
-Határozottan javasoljuk, hogy központi telepítésének megtervezése során, és amíg hello alapértelmezett értéke 30 százalékos növekedési tervezése. Az alkalmazás használati mintát és növekedési leképezések szakértői hello, és ennek megfelelően módosíthatja ezt a számot a jelentés készítése során. Ezenkívül jelentéseket is létrehozhat több hello a különböző növekedési tényező az azonos csatolást adatokat, és határozza meg, milyen cél tárolás és a forrás sávszélesség ajánlások működhet a legjobban az Ön.
+Erősen ajánlott, hogy az üzembe helyezés tervezése során számoljon a növekedéssel, amelynek az alapértelmezett értéke 30 százalék. Az alkalmazása használati mintáját és növekedési előrejelzéseit Ön ismeri a legjobban, és a jelentés elkészítése közben igény szerint módosíthatja ezt a számot. Továbbá több jelentést is készíthet különböző növekedési tényezőkkel, de ugyanazokról az adatokról. Így eldöntheti, hogy melyik, a céloldali tárolóra, valamint a forrásoldali sávszélességre vonatkozó javaslatok felelnek meg leginkább Önnek.
 
-hello jön létre a Microsoft Excel jelentés hello a következő információkat tartalmazza:
+Az elkészített Microsoft Excel-jelentés a következő információkat tartalmazza:
 
 * [Input](site-recovery-deployment-planner.md#input) (Bemenet)
 * [Javaslatok](site-recovery-deployment-planner.md#recommendations-with-desired-rpo-as-input)
@@ -279,24 +279,24 @@ hello jön létre a Microsoft Excel jelentés hello a következő információka
 
 ## <a name="get-throughput"></a>Átviteli sebesség lekérdezése
 
-tooestimate hello átviteli-mel a Site Recovery is a helyszíni tooAzure hello eszköz GetThroughput módban fusson a replikáció során. hello eszköz kiszámítja hello átviteli eszköz hello hello kiszolgálóról futó. Ideális esetben ez a kiszolgáló hello konfigurációs kiszolgáló méretezési útmutató alapul. Ha már telepítette a Site Recovery infrastruktúra összetevői a helyszíni, futtassa a hello eszközt hello konfigurációs kiszolgálón.
+Ha meg szeretné becsülni az átviteli sebességet, amelyet a Site Recovery el tud érni helyszínről az Azure-ba történő replikáció során, futtassa az eszközt GetThroughput módban. Az eszköz arról a kiszolgálóról számítja ki az átviteli sebességet, amelyen fut. Ez a kiszolgáló optimális esetben a konfigurációs kiszolgálók méretezési útmutatóján alapul. Ha már üzembe helyezte a Site Recovery infrastruktúra-összetevőit a helyszínen, futtassa az eszközt a konfigurációs kiszolgálón.
 
-Nyisson meg egy parancssori konzolt, és válassza a toohello Site Recovery üzembe helyezése tervezési eszköz mappát. Futtassa az ASRDeploymentPlanner.exe fájlt az alábbi paraméterekkel.
+Nyisson meg egy parancssori konzolt, és keresse meg a Site Recovery üzembehelyezés-tervező eszköz mappáját. Futtassa az ASRDeploymentPlanner.exe fájlt az alábbi paraméterekkel.
 
 `ASRDeploymentPlanner.exe -Operation GetThroughput /?`
 
 |Paraméter neve | Leírás |
 |-|-|
 | -Művelet | Átviteli sebesség lekérdezése |
-| -Directory | (Választható) hello UNC vagy helyi könyvtár elérési útja, ahol hello csatolást adatok (profilkészítési folyamán létrehozott fájlokat) tárolja. Ezek az adatok megadása kötelező hello jelentés előállítása érdekében. Ha a könyvtár neve nincs megadva, a rendszer a „ProfiledData” könyvtárat használja. |
-| -StorageAccountName | hello storage-fiók neve, amely a helyszíni tooAzure adatainak replikálását toofind hello sávszélességre használatban van. hello eszköz feltöltések vizsgálati adatok toothis tárolási fiók toofind hello sávszélességre. |
-| -StorageAccountKey | hello tárfiók kulcs által használt tooaccess hello tárfiók. Nyissa meg az Azure portál toohello > Storage-fiókok ><*Tárfiók neve*>> Beállítások > elérési kulcsok > Key1 (vagy a klasszikus tárfiók elsődleges hívóbetűjét). |
-| -VMListFile | a felhasznált számítási hello sávszélesség csatolást virtuális gépek toobe hello listáját tartalmazó hello fájl. hello fájl elérési út lehet abszolút vagy relatív. hello fájl soronként egy virtuális gép neve vagy IP-címet kell tartalmaznia. hello virtuális gépek nevénél hello fájlban megadott ugyanaz, mint a hello virtuális gépek nevénél hello vCenter kiszolgáló vagy vSphere ESXi-állomáson lévő kell hello.<br>Például VMList.txt hello fájl tartalmazza a következő virtuális gépek hello:<ul><li>VM_A</li><li>10.150.29.110</li><li>VM_B</li></ul>|
-| -Környezet | (nem kötelező) Ez az Ön Azure Storage-fiókjának célkörnyezete. Ez a következő három érték egyike lehet: AzureCloud, AzureUSGovernment, AzureChinaCloud. Az alapértelmezett érték az AzureCloud. Ha a cél Azure-régiót Azure Amerikai Egyesült államokbeli kormányzati vagy Azure Kína felhők, használja a hello paramétert. |
+| -Directory | (Nem kötelező) A profilkészítés során létrehozott adatokat tároló mappa UNC vagy helyi elérési útja. Ezekre az adatokra szükség van a jelentés létrehozásához. Ha a könyvtár neve nincs megadva, a rendszer a „ProfiledData” könyvtárat használja. |
+| -StorageAccountName | A helyszínről az Azure-ba történő adatreplikáció során felhasznált sávszélesség meghatározásához szükséges tárfiók neve. Az eszköz erre a tárfiókra tölti fel a tesztadatokat a felhasznált sávszélesség megállapításához. |
+| -StorageAccountKey | A tárfiók eléréséhez használt tárfiókkulcs. Nyissa meg az Azure Portalt, és kattintson a Tárfiókok > <*Tárfiók neve*> > Beállítások > Hozzáférési kulcsok > 1. kulcs (vagy klasszikus tárfiók esetén az Elsődleges elérési kulcs) elemre. |
+| -VMListFile | Azon virtuális gépek listáját tartalmazó fájl, amelyekről profilt szeretne készíteni a felhasznált sávszélesség kiszámításához. A fájl elérési útja lehet abszolút vagy relatív. A fájl minden sorában egy virtuális gép nevének vagy IP-címének kell állnia. A fájlban megadott virtuálisgép-neveknek meg kell egyezniük a vCenter-kiszolgálón vagy a vSphere ESXi-gazdagépen szereplő névvel.<br>A „VMList.txt” fájl például az alábbi virtuális gépeket tartalmazza:<ul><li>VM_A</li><li>10.150.29.110</li><li>VM_B</li></ul>|
+| -Környezet | (nem kötelező) Ez az Ön Azure Storage-fiókjának célkörnyezete. Ez a következő három érték egyike lehet: AzureCloud, AzureUSGovernment, AzureChinaCloud. Az alapértelmezett érték az AzureCloud. Akkor használja ezt a paramétert, ha Azure-célrégióként Azure US Government- vagy Azure China-beli felhők vannak megadva. |
 
-hello eszköz hoz létre több 64 MB-os asrvhdfile <> # .vhd-fájlokat (ahol a "#" azt hello fájlok száma) hello megadott könyvtárban. hello eszköz hello fájlok toohello tárolási fiók toofind hello teljesítmény feltöltését. Hello átviteli mérik, miután hello eszköz bővítményi hello törli az hello tárfiók és hello helyi kiszolgálóról. Ha hello eszköz bármilyen okból megszakad, miközben átviteli kiszámítja, hello storage vagy a helyi kiszolgáló hello hello fájlok nem törli. Toodelete kell őket manuálisan.
+Az eszköz több 64 MB-os „asrchdfile<#>.vhd” nevű fájlt (a „#” a fájlok számát jelöli) is létrehoz a megadott könyvtárban. Az eszköz feltölti a fájlokat a tárfiókba az átviteli sebesség megállapításához. Az átviteli sebesség mérése után az eszköz törli az összes fájlt a tárfiókból és a helyi kiszolgálóról. Ha az eszköz bármilyen oknál fogva leáll az átviteli sebesség kiszámítása közben, akkor nem törli a fájlokat a tárolóból és a helyi kiszolgálóról. Ezeket manuálisan kell törölnie.
 
-hello átviteli mérik megadott pontján időben, és hello maximális átviteli sebesség replikálás során a Site Recovery érhető el, feltéve, hogy más tényező marad hello azonos. Például, ha bármely alkalmazás indítása, a replikáció során változik ugyanazon a hálózaton, hello tényleges átviteli hello nagyobb sávszélességet. Ha a konfigurációs kiszolgáló hello GetThroughput parancsot futtatja, hello eszköz nem érzékeli a védett virtuális gépek és a folyamatban lévő replikáció. hello hello mért átviteli eredménye eltérő, ha hello GetThroughput művelet fut. Ha hello védett virtuális gépek magas adatot kavarog egyidejűleg. Azt javasoljuk, hogy hello eszköz különböző időpontokban közben toounderstand profilkészítési milyen átviteli szintű különböző időpontokban érhető el. Hello jelentésben hello eszköz hello utolsó mért átviteli jeleníti meg.
+Az eszköz egy meghatározott időpontban méri az átviteli sebességet, és a kapott érték a Site Recovery által a replikáció során elérhető maximális átviteli sebesség, feltéve, hogy a többi tényező sem változik. Ha például valamelyik alkalmazás több sávszélességet kezd el felhasználni ugyanazon a hálózaton belül, a tényleges átviteli sebesség változhat a replikáció során. Ha a GetThroughput parancsot egy konfigurációs kiszolgálóról futtatja, az eszköz nem veszi figyelembe a védett virtuális gépeket és a folyamatban lévő replikációkat. Az átviteli sebesség mérésének eredménye eltérő lesz, ha a védett virtuális gépek adatváltozása magas a GetThroughput művelet végrehajtásakor. Ajánlott az eszközt különböző időpontokban futtatni a profilkészítés során, hogy átláthassa, milyen átviteli sebességi szintek érhetők el a különféle időpontokban. Az eszköz a legutóbb mért átviteli sebességet jeleníti meg a jelentésben.
 
 ### <a name="example"></a>Példa
 ```
@@ -305,98 +305,98 @@ ASRDeploymentPlanner.exe -Operation GetThroughput -Directory  E:\vCenter1_Profil
 
 >[!NOTE]
 >
-> Futtassa a hello eszközt olyan kiszolgálóra, amely rendelkezik hello CPU foglalhatják hello konfigurációs kiszolgáló, és ugyanazt a tárhelyet.
+> Olyan kiszolgálón futtassa az eszközt, amelynek a tároló- és processzorjellemzői megegyeznek a konfigurációs kiszolgálóéval
 >
-> A replikáció hello ajánlott sávszélesség toomeet hello RPO 100 százalék hello idő beállítása. Miután hello jobb sávszélességet, ha nem lát hello eszköz által jelentett hello elért átviteli sebesség növekedése, hello a következő:
+> A replikációhoz a helyreállítási időkorlát 100 százalékos eléréséhez javasolt sávszélességet állítsa be. Ha a megfelelő sávszélesség beállítása után nem nő az eszköz által jelentett elért átviteli sebesség, tegye a következőket:
 >
->  1. Minden hálózati szolgáltatásminőségi (QoS), amely korlátozza az Site Recovery átviteli van-e, ellenőrizze a toodetermine.
+>  1. Ellenőrizze, hogy van-e olyan hálózati szolgáltatásminőség (QoS), amely korlátozná a Site Recovery átviteli sebességét.
 >
->  2. Toodetermine ellenőrizze, hogy fizikailag támogatott Microsoft Azure régióban toominimize hálózati késés a legközelebbi hello van a Site Recovery-tárolóban.
+>  2. Ellenőrizze, hogy a hálózati késés minimalizálása érdekében a Site Recovery-tároló a legközelebbi fizikai támogatott Microsoft Azure-régióban található-e.
 >
->  3. A helyi tároló jellemzők toodetermine ellenőrizze, hogy javítható hello hardver (például HDD tooSSD).
+>  3. Ellenőrizze a helyi tároló jellemzőit, és állapítsa meg, hogy fejleszthető-e a hardver (pl. váltás HDD-ről SSD-re).
 >
->  4. Hello folyamatkiszolgáló hello Site Recovery beállításainak módosítását túl[hello növelje meg a hálózati sávszélesség a replikáláshoz használt](./site-recovery-plan-capacity-vmware.md#control-network-bandwidth).
+>  4. Módosítsa a Site Recovery beállításait a folyamatkiszolgálón [a replikációhoz használt hálózati sávszélesség növelésével](./site-recovery-plan-capacity-vmware.md#control-network-bandwidth).
 
 ## <a name="recommendations-with-desired-rpo-as-input"></a>Javaslatok a kívánt helyreállítási időkorlát (RPO) bemenetként való megadásával
 
 ### <a name="profiled-data"></a>Profilkészítés során létrehozott adatok
 
-![hello telepítési planner hello csatolást adatok nézet](./media/site-recovery-deployment-planner/profiled-data-period.png)
+![A profilkészítés során létrehozott adatok nézete a Deployment Planner eszközben](./media/site-recovery-deployment-planner/profiled-data-period.png)
 
-**Profilozott periódus**: hello időszak során melyik hello profilkészítési futtatták. Alapértelmezés szerint hello eszköz tartalmazza az összes profilozott adatokat hello számítás, kivéve, ha hello jelentés egy adott időszakra StartDate és az EndDate beállításokat használva jelentés létrehozása során létrehozott.
+**Profiled data period** (Profilkészítési adatok létrehozásának időtartama): A profilkészítés futtatásának időtartama. Az eszköz alapértelmezés szerint a profilkészítés során létrehozott minden adatot számításba vesz, kivéve, ha egy adott időszakról készít jelentést, és megadja a StartDate és EndDate beállításokat a jelentéskészítés során.
 
-**Kiszolgálónév**: hello nevét vagy IP-címét hello VMware vCenter vagy ESXi-állomáson, amelynek virtuális gépek jelentést hoz létre.
+**Server Name** (Kiszolgáló neve): Azon VMware vCenter vagy ESXi-gazdagép neve vagy IP-címe, amelynek a virtuális gépeiről a jelentés készül.
 
-**A helyreállítási Időkorlát szükséges**: hello helyreállításipont-célkitűzést a központi telepítés. Alapértelmezés szerint a hello szükséges hálózati sávszélesség kiszámítása a helyreállítási Időkorlát értékei 15, 30 és 60 perc. Hello kijelölés alapján, érintett hello frissülnek hello lapra. Ha hello használt *DesiredRPOinMin* paraméter hello jelentés, megjelenő érték hello szükséges RPO eredmény létrehozása közben.
+**Desired RPO** (Kívánt RPO): Az üzembe helyezés kívánt helyreállítási időkorlátja. Alapértelmezés szerint a szükséges hálózati sávszélesség kiszámítása 15, 30 és 60 perces RPO értékkel történik. A kiválasztástól függően az eszköz frissíti az érintett értékeket a munkalapon. Ha használta a *DesiredRPOinMin* paramétert a jelentés elkészítése közben, akkor az az érték jelenik meg a Kívánt helyreállítási időkorlát eredményei között.
 
 ### <a name="profiling-overview"></a>Profilkészítés áttekintése
 
-![Profilkészítési hello telepítési planner eredményezi](./media/site-recovery-deployment-planner/profiling-overview.png)
+![A profilkészítés eredményei a Deployment Planner eszközben](./media/site-recovery-deployment-planner/profiling-overview.png)
 
-**Virtuális gépek csatolást teljes**: hello virtuális gépek, amelyek profilozott adatok teljes száma. Hello VMListFile bármely virtuális gépek, amelyek nem voltak csatolást nevekkel rendelkezzen, ha a virtuális gépek ezek nem számítanak bele hello jelentéskészítésre és hello teljes profilozott virtuális gépek száma nem tartoznak.
+**Total Profiled Virtual Machines** (Minden virtuális gép, amelyről profil készült): Azon virtuális gépek teljes száma, amelyekről profil készült. Ha a VMListFile olyan virtuális gépek nevét is tartalmazza, amelyekről nem készült profil, a rendszer ezeket figyelmen kívül hagyja a jelentéskészítés során, és nem számítja bele őket a profilkészítésben részt vevő virtuális gépek teljes számába.
 
-**Kompatibilis a virtuális gépek**: hello beállított virtuális gépeket, a Site Recovery védett tooAzure lehet. Kompatibilis a virtuális gépek melyik hello a szükséges hálózati sávszélesség, a storage-fiókok száma, az Azure magok száma és a konfigurációs kiszolgálók számát és további folyamat kiszolgálók számított hello száma is. hello részletek minden kompatibilis virtuális gép hello "Kompatibilis virtuális gépek" szakaszban találhatók.
+**Compatible Virtual Machines** (Kompatibilis virtuális gépek): Azon virtuális gépek száma, amelyek az Azure-ban védhetők a Site Recovery használatával. Ez azon kompatibilis virtuális gépek teljes számát jelöli, amelyekhez a rendszer kiszámolta a szükséges hálózati sávszélességet, a tárfiókok, az Azure-magok, valamint a konfigurációs és további folyamatkiszolgálók számát. Az egyes kompatibilis virtuális gépek részletei elérhetők a „Compatible VMs” (Kompatibilis virtuális gépek) szakaszban.
 
-**Nem kompatibilis a virtuális gépek**: hello, amelyek nem kompatibilisek a Site Recovery szolgáltatással védelem profilozott virtuális gépeinek számával. hello okai kompatibilitási hello "Nem kompatibilis virtuális gépek" szakaszban találhatók. Ha hello VMListFile nevek bármely virtuális gépek, amelyek nem voltak csatolást, virtuális gépek ki vannak zárva hello nem kompatibilis virtuális gépek száma. A virtuális gépek listázott "Adatok nem található" hello "nem kompatibilis virtuális gépek" szakasz hello végén.
+**Incompatible Virtual Machines** (Nem kompatibilis virtuális gépek): Azon virtuális gépek száma, amelyekről profil készült, és amelyek nem védhetők Site Recoveryvel. Az inkompatibilitás okait a „Nem kompatibilis virtuális gépek” című szakaszban olvashatja. Ha a VMListFile olyan virtuális gépek nevét is tartalmazza, amelyekről nem készült profil, a rendszer nem számítja bele őket a nem kompatibilis virtuális gépek számába. Az ilyen virtuális gépek az „Incompatible VMs” (Nem kompatibilis virtuális gépek) szakasz végén, „Data not found” (Nem található adat) megjelöléssel láthatók.
 
-**Desired RPO**(Kívánt RPO): A kívánt helyreállítási időkorlát, percben megadva. hello jelentés létrejön három RPO-érték: 30 és 60 perc (alapértelmezett), 15. hello sávszélesség javaslat hello jelentésben hello lap jobb hello felső hello szükséges RPO legördülő listából alapján módosul. Ha létrehozta a hello jelentés hello segítségével *- DesiredRPO* paraméter egy egyéni értékkel, az egyéni érték jelenik meg: hello alapértelmezett hello szükséges RPO legördülő listában.
+**Desired RPO**(Kívánt RPO): A kívánt helyreállítási időkorlát, percben megadva. Az eszköz három helyreállítási időkorlát értékről készít jelentést: 15 (alapértelmezett érték), 30 és 60 perc. A jelentésben szereplő ajánlott sávszélesség attól függően változik, hogy melyik lehetőséget választja a munkalap jobb felső sarkában található Desired RPO (Kívánt RPO) legördülő listából. Ha egyéni értékű *-DesiredRPO* paraméterrel készítette el a jelentést, ez az egyéni érték jelenik meg alapértelmezett értékként a Kívánt helyreállítási időkorlát legördülő listában.
 
 ### <a name="required-network-bandwidth-mbps"></a>Szükséges hálózati sávszélesség (Mbps)
 
-![Hello telepítési planner szükséges hálózati sávszélesség](./media/site-recovery-deployment-planner/required-network-bandwidth.png)
+![Szükséges hálózati sávszélesség a Deployment Planner eszközben](./media/site-recovery-deployment-planner/required-network-bandwidth.png)
 
-**toomeet RPO 100 százalék hello idő:** hello ajánlott sávszélesség MB/s toobe lefoglalt toomeet a kívánt helyreállítási Időkorlát hello idő 100 százalék. A sávszélesség mennyiségét kell lennie a kompatibilis virtuális gépek tooavoid stabil állapot különbözeti replikálását dedikált bármely RPO megsértésének.
+**To meet RPO 100 percent of the time:** (Az RPO betartása az idő 100 százalékában): Az ajánlott sávszélesség (Mbps), amelyet ki kell osztania, ha mindig garantáltan el kívánja érni a kívánt helyreállítási időkorlátot. Ekkora sávszélességet kell kijelölnie az összes kompatibilis virtuális gép stabil állapotú változásreplikációjához, ha biztosan ki kívánja zárni a helyreállítási időkorlát megszegését.
 
-**hello ideje 90 %-át a helyreállítási Időkorlát toomeet**: szélessávú árképzési miatt, vagy más okból, ha nem állítható be hello szükséges sávszélesség toomeet a kívánt helyreállítási Időkorlát 100 százalék hello idő, választhat toogo egy alacsonyabb sávszélességű beállítástól, amely megfelel a a keresett helyreállítási Időkorlát hello ideje 90 %-át. toounderstand hello következményei beállítása az alacsony sávszélességű, hello jelentés biztosít egy elemzési hello számát és a helyreállítási Időkorlát megsértésének tooexpect időtartamát.
+**To meet RPO 90 percent of the time** (Az RPO betartása az idő 90 százalékában): Ha a szélessávú kapcsolat díjszabása miatt vagy egyéb okból kifolyólag nincs lehetősége arra, hogy akkora sávszélességet állítson be, amellyel a kívánt helyreállítási időkorlát mindig betartható, akkor választhat egy alacsonyabb sávszélesség-beállítást, amellyel az idő 90 százalékában betarthatja a kívánt RPO-t. Az alacsonyabb sávszélesség-beállítás következményeinek áttekintéséhez a jelentés lehetőségelemzést biztosít elemzést a helyreállítási időkorlát várható megszegéseinek számáról és időtartamáról.
 
-**Elért átviteli sebesség:** hello átviteli hello kiszolgálóról, amelyen hello GetThroughput parancs toohello Microsoft Azure terület, ahol hello storage-fiókban található futtatása. Az átviteli sebesség száma azt jelzi, becsült hello szintje, amely kompatibilis a virtuális gépek a Site Recovery segítségével, feltéve, hogy a konfigurációs kiszolgáló, vagy a folyamat kiszolgáló tárolási és hálózati jellemzők maradnak hello ugyanaz legyen, mint hello védelemnél érhető el hello kiszolgáló, amelyből hello eszköz futtatása.
+**Achieved Throughput:** (Elért átviteli sebesség): Az átviteli sebesség a GetThroughput parancs futtatásához használt kiszolgáló és a tárfióknak helyet adó Microsoft Azure-régió között. Ez az átvitelisebesség-érték azt a becsült szintet jelöli, amely akkor érhető el, ha a kompatibilis virtuális gépeket a Site Recoveryvel védi, feltéve, hogy a konfigurációs kiszolgáló vagy folyamatkiszolgáló tárolója és hálózati jellemzői megegyeznek azon kiszolgálóéval, amelyen az eszközt futtatta.
 
-A replikáció célszerű hello ajánlott sávszélesség toomeet hello RPO hello idő 100 százalék. Miután hello sávszélességgel, ha nem látja az elért hello teljesítmény növekedése hello eszköz által jelentett, hajtsa végre a következő hello:
+A replikációhoz a helyreállítási időkorlát 100 százalékos eléréséhez javasolt sávszélességet kell beállítania. Ha a sávszélesség beállítása után nem nő az eszköz által jelentett elért átviteli sebesség, tegye a következőket:
 
-1. Minden hálózati szolgáltatásminőségi (QoS), amely korlátozza az Site Recovery átviteli van-e, ellenőrizze a toosee.
+1. Ellenőrizze, hogy van-e olyan hálózati szolgáltatásminőség (QoS), amely korlátozná a Site Recovery átviteli sebességét.
 
-2. Toosee ellenőrizze, hogy fizikailag támogatott Microsoft Azure régióban toominimize hálózati késés a legközelebbi hello van a Site Recovery-tárolóban.
+2. Ellenőrizze, hogy a hálózati késés minimalizálása érdekében a Site Recovery-tároló a legközelebbi fizikai támogatott Microsoft Azure-régióban található-e.
 
-3. A helyi tároló jellemzők toodetermine ellenőrizze, hogy javítható hello hardver (például HDD tooSSD).
+3. Ellenőrizze a helyi tároló jellemzőit, és állapítsa meg, hogy fejleszthető-e a hardver (pl. váltás HDD-ről SSD-re).
 
-4. Hello folyamatkiszolgáló hello Site Recovery beállításainak módosítását túl[hello összeg hálózati sávszélesség a replikáláshoz használt növelése](./site-recovery-plan-capacity-vmware.md#control-network-bandwidth).
+4. Módosítsa a Site Recovery beállításait a folyamatkiszolgálón [a replikációhoz használt hálózati sávszélesség növelésével](./site-recovery-plan-capacity-vmware.md#control-network-bandwidth).
 
-Ha hello eszköz konfigurációs kiszolgálón vagy a folyamatkiszolgálót, már rendelkezik védett virtuális gépek futnak, futtassa hello eszközt néhány alkalommal. hello attól függően, hogy ezen a ponton az időben feldolgozott forgalom mennyisége hello megváltozása átviteli sebesség érhető el.
+Ha az eszközt olyan konfigurációs kiszolgálón vagy folyamatkiszolgálón futtatja, amely már rendelkezik védett virtuális gépekkel, futtassa többször azt eszközt. Az elért átviteli sebesség eltérő lesz az aktuális adatforgalomtól függően.
 
 A Site Recovery minden vállalati üzemelő példánya esetében az [ExpressRoute](https://aka.ms/expressroute) használata javasolt.
 
 ### <a name="required-storage-accounts"></a>Szükséges tárfiókok
-a következő diagram azt mutatja be hello tárolási teljes száma (standard és premium) fiókok, amelyek minden szükséges tooprotect hello hello kompatibilis virtuális gépeket. milyen tárolási fiók toouse az egyes virtuális gépek toolearn hello "Virtuálisgép-tároló elhelyezési" című szakaszában talál.
+A következő diagram az összes kompatibilis virtuális gép védelméhez szükséges (standard és prémium szintű) tárfiókok teljes számát mutatja. A „VM-storage placement” (Virtuálisgép-tároló elhelyezése) szakaszból megtudhatja, hogy melyik tárfiókot melyik virtuális géphez használhatja.
 
-![Hello telepítési planner szükséges storage-fiók](./media/site-recovery-deployment-planner/required-azure-storage-accounts.png)
+![Szükséges tárfiókok a Deployment Planner eszközben](./media/site-recovery-deployment-planner/required-azure-storage-accounts.png)
 
 ### <a name="required-number-of-azure-cores"></a>Szükséges Azure-magok száma
-Ez a eredménye hello magok toobe előtt az összes feladatátvételi vagy a teszt feladatátvételi hello kompatibilis virtuális gépek száma. Ha túl kevés magok hello előfizetésben elérhető, a Site Recovery hello helyreállításkor toocreate virtuális gépek sikertelen feladatátvételi vagy feladatátvételi tesztelése.
+Ez az eredmény az összes kompatibilis virtuális gép feladatátvétele vagy feladatátvételi tesztje előtt beállítandó magok teljes száma. Ha az előfizetés túl kevés maggal rendelkezik, a Site Recovery nem tudja létrehozni a virtuális gépeket a feladatátvételi teszt vagy a tényleges feladatátvétel alatt.
 
-![A központi telepítés planner hello Azure magszámra vonatkozó követelménynek](./media/site-recovery-deployment-planner/required-number-of-azure-cores.png)
+![Szükséges Azure-magok száma a Deployment Planner eszközben](./media/site-recovery-deployment-planner/required-number-of-azure-cores.png)
 
 ### <a name="required-on-premises-infrastructure"></a>Szükséges helyszíni infrastruktúra
-Ez a szám hello teljes száma érték a konfigurációs kiszolgálók és a további folyamat kiszolgálók toobe konfigurálva, hogy elegendő az tooprotect összes hello kompatibilis virtuális gépeket. Attól függően, hogy támogatott hello [hello konfigurációs kiszolgáló javaslatok méretezés](https://aka.ms/asr-v2a-on-prem-components), hello eszköz javasolhat további kiszolgálókat. hello javaslat alapján hello hello napi forgalom vagy hello (feltéve, hogy a virtuális gépenként három lemezt átlag) védett virtuális gépek maximális száma nagyobb, amelyik találati hello konfigurációs kiszolgálóján vagy hello további folyamat első. Naponta és védett lemezek teljes száma a teljes adatforgalom hello részleteit a hello "Input" szakaszban találhat.
+Ez az adat az összes virtuális gép védelméhez szükséges konfigurálandó konfigurációs kiszolgálók és további folyamatkiszolgálók teljes száma. A [konfigurációs kiszolgáló támogatott méretére vonatkozó javaslatoktól](https://aka.ms/asr-v2a-on-prem-components) függően az eszköz további kiszolgálókat javasolhat. A javaslat a napi adatforgalmon vagy a védett virtuális gépek maximális számán alapul (virtuális gépenként átlagosan három lemezt feltételezve), ha eléri valamelyik korlátot a konfigurációs kiszolgálón vagy a további folyamatkiszolgálón. A napi összes adatforgalom és a védett lemezek teljes számának részletei az „Input” (Bemenet) szakaszban találhatók.
 
-![Hello telepítési planner kötelező a helyszíni infrastruktúra](./media/site-recovery-deployment-planner/required-on-premises-infrastructure.png)
+![Szükséges helyszíni infrastruktúra a Deployment Planner eszközben](./media/site-recovery-deployment-planner/required-on-premises-infrastructure.png)
 
 ### <a name="what-if-analysis"></a>Lehetőségelemzés
-Az elemzés ismerteti, hogy hány megsértésének fordulhat elő, ha időszak profilkészítési hello során a szükséges hello RPO toobe alacsonyabb sávszélességet teljesül hello idő csak 90 %-át. A helyreállítási időkorlát túllépése bármelyik nap egy vagy több alkalommal is előfordulhat. hello grafikon azt ábrázolja, hello csúcs RPO hello nap.
-Az elemzés alapján, megadhatja, hogy ha hello RPO megsértésének összes nap és napi találati RPO maximális száma az elfogadható hello megadott alacsony sávszélességű. Ha elfogadható, a replikáció foglalhatja hello alacsony sávszélességű, ellenkező esetben lefoglalni hello nagyobb sávszélességet javasolt toomeet hello szükséges RPO hello idő 100 százalék.
+Ez az elemzés kiemeli, hogy hányszor szegné meg a helyreállítási időkorlátot a profilkészítés időtartama alatt, ha alacsonyabb sávszélességet állít be, amely az idő 90 százalékában biztosítaná a kívánt RPO betartását. A helyreállítási időkorlát túllépése bármelyik nap egy vagy több alkalommal is előfordulhat. Az ábra a napi RPO-csúcsértéket mutatja.
+Az elemzés alapján eldöntheti, hogy az RPO-túllépések teljes száma az összes nap alatt, valamint a napi RPO-csúcsérték elfogadható-e a megadott alacsonyabb sávszélesség esetén. Ha elfogadható, akkor lefoglalhatja az alacsonyabb sávszélességet a replikációhoz. Ha nem, akkor foglalja le a javasolt magasabb sávszélességet ahhoz, hogy az idő 100 százalékában betarthassa az RPO-t.
 
-![Elemzési a hello telepítési planner](./media/site-recovery-deployment-planner/what-if-analysis.png)
+![Lehetőségelemzés a Deployment Planner eszközben](./media/site-recovery-deployment-planner/what-if-analysis.png)
 
 ### <a name="recommended-vm-batch-size-for-initial-replication"></a>A virtuálisgép-köteg ajánlott mérete a kezdeti replikációhoz
-Ebben a szakaszban ajánlott hello száma párhuzamos toocomplete hello kezdeti replikálás a hello 72 órán belül védhető virtuális gépeken javasolt sávszélesség toomeet szükséges RPO 100 százalék hello idő beállítása. Ezen érték konfigurálható. toochange a jelentés-eseménygenerálás, használjon hello *GoalToCompleteIR* paraméter.
+A szakaszban arra teszünk javaslatot, hogy hány virtuális gép védhető meg egyszerre úgy, hogy a kezdeti replikáció 72 órán belül befejeződjön a javasolt sávszélesség és a kívánt RPO 100 százalékos betartása mellett a beállítás során. Ezen érték konfigurálható. Módosításához használja a *GoalToCompleteIR* paramétert a jelentéskészítés során.
 
-hello itt grafikonon sávszélesség értéktartománya és egy számított VM köteg mérete száma toocomplete kezdeti replikálás 72 óra hello átlagos alapján észlelte virtuális gép mérete összes hello kompatibilis virtuális gépeket.
+A diagram egy sávszélesség-tartományt és azt a virtuálisgép-köteg méretet mutatja, amellyel a kezdeti replikáció 72 órán belüli befejezhető. Ez a szám az összes kompatibilis virtuális gép és a virtuális gépek átlagos észlelt méretén alapul.
 
-Hello nyilvános előzetes verziójában hello jelentés nem adja meg, mely virtuális gépek szerepelnie kell egy kötegben. Hello "kompatibilis virtuális gépek" szakasz toofind látható minden egyes Virtuálisgép-méretet hello lemezméretet használja, és jelölje ki azokat a köteg, vagy választhat a munkaterhelés ismert jellemzők alapján hello virtuális gépeket. hello befejezési idő hello kezdeti replikációs változásokat arányosan, hello tényleges Virtuálisgép-lemez mérete alapján, használt lemezterület és a rendelkezésre álló hálózati teljesítményt.
+A nyilvános előzetes verzióban a jelentés nem határozza meg, hogy melyik virtuális gépeket foglalja bele egy kötegbe. A „Compatible VMs” (Kompatibilis virtuális gépek) szakaszban látható lemezméretek alapján kikeresheti az egyes virtuális gépek méretét, és kiválaszthatja az egyes kötegekhez tartozó virtuális gépeket, vagy választhat a számítási feladatok ismert jellemzői alapján is. A kezdeti replikáció befejezési ideje a virtuális gépek lemezeinek tényleges méretével, a felhasznált lemezterülettel és az elérhető hálózati átviteli sebességgel arányosan változik.
 
 ![A virtuálisgép-köteg ajánlott mérete](./media/site-recovery-deployment-planner/recommended-vm-batch-size.png)
 
 ### <a name="growth-factor-and-percentile-values-used"></a>A használt növekedési tényező és százalékértékek
-Ez a szakasz hello hello alján látható hello PERCENTILIS használt hello teljesítményszámlálók csatolást hello virtuális gépek (alapértelmezett érték 95. százalékos érték) lap, és hello növekedési tényező (alapértelmezett érték 30 százalékos) használt összes hello számításokban.
+A munkalap alján található szakasz a profilkészítésben részt vevő virtuális gépek összes teljesítményszámlálójához használt százalékértéket (az alapértelmezett érték 95 százalék), valamint az összes számításban használt növekedési tényezőt (az alapértelmezett érték 30 százalék) mutatja.
 
 ![A használt növekedési tényező és százalékértékek](./media/site-recovery-deployment-planner/max-iops-and-data-churn-setting.png)
 
@@ -404,129 +404,129 @@ Ez a szakasz hello hello alján látható hello PERCENTILIS használt hello telj
 
 ![Javaslatok az elérhető sávszélesség bemenetként való megadásával](./media/site-recovery-deployment-planner/profiling-overview-bandwidth-input.png)
 
-Előfordulhat olyan helyzet, hogy legfeljebb x Mbps sávszélességet tud beállítani a Site Recovery replikációjára. hello az eszköz lehetővé teszi tooinput rendelkezésre álló sávszélesség (használatával hello - jelentés létrehozása során sávszélesség paraméter) és az elérhető helyreállítási Időkorlát hello perc múlva. Az elérhető RPO-érték a dönthet, hogy e tooset fel további sávszélesség szükséges, vagy OK áll egy vész-helyreállítási megoldást a Helyreállítási időkorláttal áll.
+Előfordulhat olyan helyzet, hogy legfeljebb x Mbps sávszélességet tud beállítani a Site Recovery replikációjára. Az eszközzel megadhatja a rendelkezésre álló sávszélességet (a jelentéskészítés közben, a -Bandwidth paraméterrel), és megkapja az elérhető RPO-t percben megadva. Az elérhető RPO-értéknek ismeretében eldöntheti, hogy további sávszélességet kell beállítania, vagy elfogadja a vészhelyreállítási megoldást ezzel az RPO-val.
 
 ![Elérhető RPO 500 Mbps sávszélességhez](./media/site-recovery-deployment-planner/achievable-rpos.png)
 
 ## <a name="input"></a>Input (Bemenet)
-hello bemeneti munkalap biztosít hello áttekintést csatolást VMware-környezetben.
+Az Input (Bemenet) munkalap áttekintést nyújt arról a VMware-környezetről, amelyről profilt készített.
 
-![Hello áttekintése csatolást VMware-környezetben](./media/site-recovery-deployment-planner/Input.png)
+![Áttekintés arról a VMware-környezetről, amelyről profilt készített](./media/site-recovery-deployment-planner/Input.png)
 
-**Kezdő dátum** és **záró dátum**: hello hello profilkészítési adatok jelentéskészítésre figyelembe venni a kezdő és záró dátumát. Alapértelmezés szerint hello kezdő dátum értéke hello profilkészítési, időpont és hello záró dátum hello dátum, amikor adatgyűjtés leáll. Hello "StartDate" és "EndDate" értékek Ez lehet, ha hello jelentés ezekkel a paraméterekkel jön létre.
+**Start Date** és **End Date** (Kezdő dátum és záró dátum): Azon profilkészítési adatok kezdő és záró dátuma, amelyekről jelentést kíván készíteni. Alapértelmezés szerint a kezdő dátum az a dátum, amikor a profilkészítés megkezdődik, a záró dátum pedig az a dátum, amikor a profilkészítés leáll. Ezek lehetnek a StartDate és EndDate értékek, ha a jelentést ezekkel a paraméterekkel hozza létre.
 
-**Profilkészítési napok száma összesen**: a profilkészítési hello közötti napok számát hello start, és befejezési dátuma az melyik hello jelentés jön létre.
+**Total number of profiling days** (Profilkészítés napjainak teljes száma): A jelentéskészítés kezdő és záró dátuma között eltelt profilkészítési napok teljes száma.
 
-**Kompatibilis a virtuális gépek száma**: hello száma kompatibilis virtuális gépek melyik hello szükséges hálózati sávszélesség, tárolási száma fiókok, a Microsoft Azure mag, konfigurációs kiszolgálók és a további folyamat kiszolgálók számítja ki.
+**Number of compatible virtual machines** (Kompatibilis virtuális gépek száma): Ez azon kompatibilis virtuális gépek teljes számát jelöli, amelyekhez a rendszer kiszámolta szükséges hálózati sávszélességet, valamint a szükséges tárfiókok, Microsoft Azure-magok, illetve konfigurációs és további folyamatkiszolgálók számát.
 
-**Összes kompatibilis virtuális gépén lemezek számától**: hello egyik használt hello száma a bemeneti toodecide hello konfigurációs kiszolgálók számát és további folyamat kiszolgálók toobe hello központi telepítésben használja.
+**Total number of disks across all compatible virtual machines**(Lemezek teljes száma az összes kompatibilis virtuális gépen): Ez a szám az egyik olyan bemenet, amely alapján a rendszer meghatározza az üzemelő példányban használandó konfigurációs kiszolgálók és további folyamatkiszolgálók számát.
 
-**Lemezek kompatibilis virtuális gépenként átlagos száma**: az összes kompatibilis virtuális gépek között számított hello lemezek átlagos száma.
+**Average number of disks per compatible virtual machine** (Lemezek átlagos száma kompatibilis virtuális gépenként): Az összes kompatibilis virtuális gép alapján számított átlagos lemezszám.
 
-**Lemez mérete (GB) átlagos**: hello átlagos mérete számított összes kompatibilis virtuális gépek között.
+**Average disk size (GB)** (Átlagos lemezméret (GB)): Az összes kompatibilis virtuális gép alapján számított átlagos lemezméret.
 
-**Helyreállítási Időkorlát (perc) szükséges**: a jelentés generációs tooestimate szükséges hello időpontjában hello "DesiredRPO" paraméternek átadott vagy hello alapértelmezett helyreállítási cél vagy hello értékét sávszélesség.
+**Desired RPO (minutes)** (Kívánt RPO (perc)): A helyreállításipont-célkitűzés alapértelmezett értéke vagy a jelentéskészítéskor a „DesiredRPO” paraméterhez szükséges sávszélesség becslése érdekében megadott érték.
 
-**Szükséges sávszélesség (Mbps)**: hello érték, amely a jelentés generációs tooestimate hello időpontjában hello "Sávszélesség" paraméternek átadott elérhető helyreállítási Időkorlát.
+**Desired bandwidth (Mbps)** (Kívánt sávszélesség (Mbps)): A jelentéskészítéskor az elérhető RPO becslése érdekében a „Bandwidth” paraméterhez megadott érték.
 
-**Megfigyelt tipikus adatforgalommal naponta (GB)**: hello átlagos adatforgalommal megfigyelt összes profilkészítési napon keresztül. Ez a szám lesz egyik hello bemenetek toodecide hello konfigurációs kiszolgálók számát és további folyamat kiszolgálók toobe hello központi telepítésben használja.
+**Observed typical data churn per day (GB)** (Megfigyelt átlagos napi adatváltozás (GB)): Az összes profilkészítési napon megfigyelt átlagos adatváltozás. Ez a szám az egyik olyan bemenet, amely alapján a rendszer meghatározza az üzemelő példányban használandó konfigurációs kiszolgálók és további folyamatkiszolgálók számát.
 
 
 ## <a name="vm-storage-placement"></a>Virtuálisgép-tároló elhelyezése
 
 ![Virtuálisgép-tároló elhelyezése](./media/site-recovery-deployment-planner/vm-storage-placement.png)
 
-**Lemez tárolási típusa**: vagy egy standard vagy prémium tárfiókot, amely használt tooreplicate összes hello hello szerepel megfelelő virtuális gépek **virtuális gépek tooPlace** oszlop.
+**Disk Storage Type** (Lemezes tárolás típusa): A **VMs to Place**(Elhelyezendő virtuális gépek) oszlopban említett összes virtuális gép replikációjához használt standard vagy prémium szintű tárfiók.
 
-**Javasolt előtag**: hello javasolt három karakteres előtag hello tárfiók elnevezési használható. A saját előtag használható, de hello eszköz javaslat a következő hello [storage-fiókok elnevezési partícióazonosító](https://aka.ms/storage-performance-checklist).
+**Suggested Prefix** (Javasolt előtag): A tárfiók elnevezéséhez javasolt háromkarakteres előtag. Saját előtagot is használhat, de az eszköz által javasolt nevek követik a [tárfiókok partíció-elnevezési szabályait](https://aka.ms/storage-performance-checklist).
 
-**Javasolt a fióknév**: hello storage-fiók neve után is hello javasolt előtag. Cserélje le a belül hello csúcsos zárójel (< és >) a egyéni bevitellel hello nevét.
+**Suggested Account Name** (Javasolt fióknév): A Storage-fiók neve, a javasolt előtag használata után. Cserélje le a csúcsos zárójelben (< és >) lévő nevet a kívánt értékre.
 
-**A Tárfiók jelentkezzen**: minden hello replikálási naplókhoz standard szintű tárfiók vannak tárolva. Virtuális gép esetében, amelyek replikálják tooa prémium szintű storage-fiók beállítása egy további standard szintű tárfiók naplók tárolásához. Egyetlen standard szintű naplótárolási fiókot több prémium szintű replikációs tárfiók is használhat. Virtuális gépek, amelyek replikált toostandard tárolóprotokollok fiókok hello ugyanazt a tárfiókot, a naplók.
+**Log Storage Account**(Naplótárolási fiók): Minden replikációs naplót egy standard szintű tárfiók tárol. A prémium szintű tárfiókokba replikált virtuális gépek esetében be kell állítani egy további standard szintű tárfiókot a naplók tárolására. Egyetlen standard szintű naplótárolási fiókot több prémium szintű replikációs tárfiók is használhat. A standard szintű tárfiókokba replikált virtuális gépek ugyanazt a tárfiókot használják a naplókhoz is.
 
-**Napló fióknév javasolt**: A tárfiók napló neve után is hello javasolt előtag. Cserélje le a belül hello csúcsos zárójel (< és >) a egyéni bevitellel hello nevét.
+**Suggested Log Account Name** (Javasolt naplótárolási fióknév): A naplókat tároló tárfiók neve, a javasolt előtag használata után. Cserélje le a csúcsos zárójelben (< és >) lévő nevet a kívánt értékre.
 
-**Elhelyezési összegzés**: hello összegzését teljes virtuális gép terhelését hello tárfiók hello időpontban replikációs és feladatátvételi vagy a feladatátvételi teszt. Ez magában foglalja a virtuális gépek csatlakoztatott toohello tárfiókot, teljes olvasási/írási iops-érték közötti minden virtuális gép, ezt a tárfiókot, teljes jelennek írási (replikáció) iops-érték, a telepítő teljes mérete összes lemezt, és a lemezek számától hello teljes száma.
+**Placement Summary** (Elhelyezés összegzése): A tárfiókon található virtuális gépeknek a replikáció és feladatátvételi teszt vagy tényleges feladatátvétel során mért teljes terhelésének összegzése. Tartalmazza a tárfiókhoz rendelt virtuális gépek teljes számát, az Azure Storage-fiókba elhelyezni kívánt összes virtuális gép összesített olvasási/írási IOPS-értékét, az összesített írási (replikációs) IOPS-értéket, az összes lemez teljes beállítási méretét, valamint a lemezek teljes számát.
 
-**Virtuális gépek tooPlace**: az összes hello virtuális gépek, amelyek az optimális teljesítmény és használja a tárfiók megadott hello kell elhelyezni.
+**Virtual Machines to Place** (Elhelyezendő virtuális gépek): Az összes olyan virtuális gép listája, amelyet az optimális teljesítmény és használat érdekében az adott tárfiókon ajánlott elhelyezni.
 
 ## <a name="compatible-vms"></a>Kompatibilis virtuális gépek
 ![A kompatibilis virtuális gépek Excel-táblázata](./media/site-recovery-deployment-planner/compatible-vms.png)
 
-**Virtuális gép neve**: hello a virtuális gép nevét vagy IP-cím hello VMListFile a jelentés létrehozásakor használt. Az oszlop megjeleníti a hello lemezeket (VMDKs) toohello csatolt virtuális gépek is. toodistinguish vCenter virtuális gépek ismétlődő nevek vagy IP-címek, hello nevek a következők hello ESXi állomásnevet. hello felsorolt ESXi-állomáson egy hello ahol hello VM elhelyezett hello eszköz észlelt a program hello profilkészítési időszak során.
+**VM Name** (Virtuális gép neve): Jelentés létrehozásakor a VMListFile-ban használt virtuálisgépnév vagy IP-cím. Ez az oszlop a virtuális gépekhez csatolt lemezek (VMDK-k) listáját is megjeleníti. Az ismétlődő nevű vagy IP-című vCenter-beli virtuális gépek megkülönböztetésére a nevek tartalmazzák az ESXi-gazdagépnevet is. A feltüntetett ESXi-gazdagép az a számítógép, ahol a virtuális gép megtalálható volt, amikor az eszköz először felderítette azt a profilkészítés során.
 
-**VM Compatibility** (Virtuálisgép-kompatibilitás): Az érték **Yes** (Igen) és **Yes**\* (Igen) lehet. **Igen** \* szolgál olyan esetekben, mely hello a virtuális gép egy beválik, ha nem [prémium szintű Azure Storage](https://aka.ms/premium-storage-workload). Itt hello csatolást magas-forgalom IOPS lemez beleilleszkedik hello P20 vagy P30 kategória, de hello hello lemez mérete okozza azt toobe le tooa P10 vagy P20 leképezve. hello tárfiók mellett dönt, hogy mely prémium szintű tároló lemez írja be toomap egy lemezt, mérete alapján. Példa:
+**VM Compatibility** (Virtuálisgép-kompatibilitás): Az érték **Yes** (Igen) és **Yes**\* (Igen) lehet. A **Yes**\* (Igen) azon példányokra vonatkozik, ahol a virtuális gép megfelel az [Azure Premium Storage-nak](https://aka.ms/premium-storage-workload). Itt a profilkészítés során megállapított magas adatváltozású vagy IOPS-értékű lemez megfelel a P20-as vagy P30-as kategóriának, de a lemez mérete miatt a rendszer P10-es vagy P20-as kategóriába sorolja be. A tárfiók a lemez mérete alapján dönti el, hogy melyik prémium szintű lemeztípushoz rendelje hozzá a lemezt. Példa:
 * 128 GB alatt P10.
-* 128 GB too512 GB egy P20.
-* 512 GB too1024 GB egy P30.
-* 1025 GB too2048 GB egy P40.
-* 2049 GB too4095 GB egy P50.
+* 128 GB és 512 GB között P20.
+* 512 GB és 1024 GB között P30.
+* 1025 GB és 2048 GB között P40.
+* 2049 GB és 4095 GB között P50.
 
-Ha egy lemezt hello munkaterhelés jellemzői használatba hello P20 vagy P30 kategória, de hello mérete leképezhető tooa alacsonyabb prémium szintű storage lemeztípus le, hello eszköz jelöli meg, hogy virtuális Gépet állítsanak **Igen**\*. hello eszköz azt javasolja, hogy Ön vagy hello forrás lemez mérete toofit váltson át a prémium szintű storage lemeztípus ajánlott hello, vagy módosítsa hello tároló lemez típusa feladatátvételt követően.
+Tehát, ha a számítási feladatok jellemzői alapján egy lemez a P20-as vagy P30-as kategóriába tartozik, de a mérete alapján egy alacsonyabb prémium szintű tárolólemez-típusba kerül, az eszköz **Yes**\* (Igen) megjelöléssel látja el ezeket a virtuális gépeket. Az eszköz azt is javasolja, hogy módosítsa a forráslemez méretét, hogy a lemez megfeleljen az ajánlott prémium szintű tárolólemez-típusnak, vagy hogy módosítsa a céllemez típusát a feladatátvétel után.
 
 **Storage Type** (Tároló típusa): Standard vagy Premium.
 
-**Javasolt előtag**: hello háromkarakteres storage-fiók előtagja.
+**Suggested Prefix** (Javasolt előtag): A tárfiók három karakterből álló előtagja.
 
-**A Tárfiók**: hello neve, amely hello javasolt tárfiók előtagot használja.
+**Storage Account** (Tárfiók): A javasolt tárfiókelőtagot használó név.
 
-**R/W IOPS (a növekedési tényező)**: hello maximális munkaterhelést olvasási/írási IOPS hello lemezen (alapértelmezett érték 95. százalékos érték), beleértve hello jövőbeli növekedési tényező (alapértelmezett érték 30 százalékos). Vegye figyelembe, hogy a teljes olvasási/írási iops-érték a virtuális gépek hello nem mindig hello VM egyes lemezek olvasási/írási IOPS hello összege, mert hello maximális olvasási/írási iops-érték a virtuális gép hello hello csúcs az egyes lemezek hello összegére olvasási/írási IOPS során minden hello perce profilkészítési időszak.
+**R/W IOPS (with Growth Factor)** (Írási/olvasási IOPS (növekedési tényezővel)): A lemez írási/olvasási IOPS-csúcsértéke (alapértelmezés szerint a 95. százalékos érték), beleértve a későbbi növekedési faktort is (az alapértelmezett érték: 30%). Vegye figyelembe, hogy egy virtuális gép teljes írási/olvasási IOPS-értéke nem mindig egyezik meg az egyes virtuálisgép-lemezek írási/olvasási IOPS-értékeinek összegével. Ez azért van, mert a virtuális gép írási/olvasási IOPS-csúcsértéke az egyes lemezeken a profilkészítési időszak alatt percenként mért írási/olvasási IOPS-értékek legmagasabb összege.
 
-**Adatok Kavarog egyidejűleg (a növekedési tényező) MB/s mértékegységben**: hello csúcs változási sebessége a lemezen hello (alapértelmezett érték 95. százalékos érték), beleértve a hello jövőbeli növekedési tényező (alapértelmezett érték 30 százalékos). Vegye figyelembe, hogy hello teljes adatforgalommal a virtuális gép hello nincs mindig hello összege hello VM egyes lemezek adatforgalommal, mert hello csúcs adatforgalommal a virtuális gép hello hello csúcs az egyes lemezek forgalom hello összegére során a profilkészítési időszak hello percenként.
+**Data Churn in Mbps (with Growth Factor)** (Adatváltozás (Mbps) (növekedési tényezővel)): A lemez adatváltozásának csúcsértéke (alapértelmezés szerint a 95. százalékérték), beleértve a későbbi növekedési faktort is (alapértelmezés szerint: 30 százalék). Vegye figyelembe, hogy a virtuális gép teljes adatváltozása nem mindig egyezik meg az egyes lemezek adatváltozásának összegével. Ez azért van, mert a virtuális gép adatváltozásának csúcsértéke az egyes lemezeken a profilkészítési időszak alatt percenként mért adatváltozás-értékek legmagasabb összege.
 
-**Az Azure Virtuálisgép-méretet**: hello ideális leképezése Azure Cloud Services virtuális gép méretét a helyszíni virtuális gép. hello leképezési hello helyszíni Virtuálisgép-memória, lemez/magok/hálózati adaptert, és olvasási/írási IOPS számát alapul. hello ajánljuk, mindig hello legalacsonyabb Azure virtuális gép méretét, amely megfelel az összes hello a helyszíni virtuális gép jellemzővel.
+**Azure VM Size** (Azure-beli virtuális gép mérete): Az Azure Cloud Services-beli hozzárendelt virtuális gép ideális mérete az adott helyszíni virtuális gép esetén. A hozzárendelés a helyszíni virtuális gép memóriáján, a lemezek/magok/hálózati adapterek számán és az olvasási/írási IOPS-értéken alapul. Mindig a legalacsonyabb, a helyszíni virtuális gép összes jellemzőjének megfelelő Azure-beli virtuálisgép-méretet ajánlott használni.
 
-**Lemezek száma**: hello virtuálisgép-lemezeket (VMDKs) a virtuális gép hello teljes száma.
+**Number of Disks** (Lemezek száma): A virtuális gép lemezeinek (VMDK-inak) teljes száma.
 
-**Lemez (GB) méretű**: hello hello virtuális gép összes lemeze a telepítő teljes méretét. hello eszköz hello virtuális gép lemezmérete hello hello egyes lemezek is szerepel.
+**Disk size (GB)** (Lemez mérete (GB)): A virtuális gép összes lemezének teljes beállítási mérete. Az eszköz a virtuális gép egyes lemezeinek méretét is megjeleníti.
 
-**Magok**: hello száma CPU processzormag, a virtuális gép hello.
+**Cores** (Magok): A virtuális gép processzormagjainak száma.
 
-**Memória (MB)**: hello RAM a virtuális gép hello.
+**Memory (MB)** (Memória (MB)): A virtuális gép fizikai memóriája (RAM).
 
-**Hálózati adapter**: hello hello VM a hálózati adapterek száma.
+**NICs** (Hálózati adapterek): A virtuális gép hálózati adaptereinek száma.
 
-**Rendszerindító típus**: hello virtuális gép rendszerindító típusú legyen. Ez BIOS vagy EFI lehet. Az Azure Site Recovery jelenleg csak a BIOS rendszerindítási típust támogatja. Minden hello virtuális gépek EFI rendszerindítási típusa nem kompatibilis a virtuális gépek munkalap láthatók.
+**Rendszerindítás típusa**: a virtuális gép rendszerindítási típusa. Ez BIOS vagy EFI lehet. Az Azure Site Recovery jelenleg csak a BIOS rendszerindítási típust támogatja. Minden EFI rendszerindítási típusú virtuális gép szerepel a Nem kompatibilis virtuális gépek listájában.
 
-**Operációs rendszer típusa**: hello hello virtuális gép operációsrendszer-típus. Ennek értéke Windows, Linux vagy egyéb lehet.
+**Operációs rendszer típusa**: a virtuális gép operációs rendszerének típusa. Ennek értéke Windows, Linux vagy egyéb lehet.
 
 ## <a name="incompatible-vms"></a>Nem kompatibilis virtuális gépek
 
 ![A nem kompatibilis virtuális gépek Excel-táblázata](./media/site-recovery-deployment-planner/incompatible-vms.png)
 
-**Virtuális gép neve**: hello a virtuális gép nevét vagy IP-cím hello VMListFile a jelentés létrehozásakor használt. Az oszlop is megjeleníti, amelyek csatlakoztatott toohello virtuális gépek hello VMDKs. toodistinguish vCenter virtuális gépek ismétlődő nevek vagy IP-címek, hello nevek a következők hello ESXi állomásnevet. hello felsorolt ESXi-állomáson egy hello ahol hello VM elhelyezett hello eszköz észlelt a program hello profilkészítési időszak során.
+**VM Name** (Virtuális gép neve): Jelentés létrehozásakor a VMListFile-ban használt virtuálisgépnév vagy IP-cím. Ez az oszlop a virtuális gépekhez csatolt VMDK-k listáját is megjeleníti. Az ismétlődő nevű vagy IP-című vCenter-beli virtuális gépek megkülönböztetésére a nevek tartalmazzák az ESXi-gazdagépnevet is. A feltüntetett ESXi-gazdagép az a számítógép, ahol a virtuális gép megtalálható volt, amikor az eszköz először felderítette azt a profilkészítés során.
 
-**Virtuális gép kompatibilitási**: azt jelzi, miért kap a virtuális gép hello nem kompatibilis használatra a Site Recovery. hello okokat nem kompatibilis a virtuális gép hello lemezek leírt és, alapú a közzétett [tárhelyet](https://aka.ms/azure-storage-scalbility-performance), hello következő lehet:
+**VM Compatibility** (Virtuális gép kompatibilitása): Azt jelzi, hogy miért nem kompatibilis az adott virtuális gép a Site Recoveryvel való használattal. Az indokok a virtuális gép minden nem kompatibilis lemezénél vannak megadva, és a közzétett [tárhelykorlátok](https://aka.ms/azure-storage-scalbility-performance) alapján a következők lehetnek:
 
 * A lemez mérete nagyobb 4095 GB-nál. Az Azure Storage jelenleg nem támogatja a 4095 GB-nál nagyobb adatlemez-méretet.
 * Az operációsrendszer-lemez mérete nagyobb 2048 GB-nál. Az Azure Storage jelenleg nem támogatja a 2048 GB-nál nagyobb méretű operációsrendszer-lemezeket.
 * A rendszerindítás típusa EFI. Az Azure Site Recovery jelenleg csak a BIOS rendszerindítási típusú virtuális gépeket támogatja.
 
-* Teljes Virtuálisgép-méretet (replikáció + TFO) meghaladja a támogatott hello tárfiók méretkorlát (35 TB). A kompatibilitási általában akkor fordul elő, ha a virtuális gép hello egyetlen lemezén egy jellemző, amelynek hossza meghaladja a hello maximálisan támogatott Azure vagy a Site Recovery érték szabványos tárolására. Ilyen példány hello VM hello a prémium szintű storage zónába leküldéses értesítések. Azonban a hello maximális, a prémium szintű tárfiók támogatott mérete 35 TB, és egy védett virtuális gép nem látható el védelemmel, több tárfiókok között. Vegye figyelembe azt is, hogy ha egy védett virtuális gép feladatátvételi teszt végrehajtása, fusson hello ugyanazt a tárfiókot, ahol elmélyedne a replikáció. Ebben a példában 2 darab hello lemez replikációs tooprogress hello méretének beállítása, és feladatátvételi toosucceed tesztelése párhuzamosan.
+* A virtuális gép teljes mérete (replikáció + TFO) meghaladja a támogatott tárfiók méretkorlátozását (35 TB). Ez a fajta inkompatibilitás általában akkor fordul elő, ha a virtuális gép egy lemezének egyik teljesítményjellemzője meghaladja a támogatott standard szintű tárolóra vonatkozó Azure- vagy Site Recovery-korlátozásokat. Egy ilyen példány a prémium szintű tárolózónába kényszeríti a virtuális gépet. A prémium szintű tárfiókok maximális támogatott mérete azonban 35 TB, és egyetlen védett virtuális gép nem védhető több tárfiókon keresztül. Ügyeljen arra is, hogy amikor a feladatátvételi tesztet védett virtuális gépen hajtja végre, akkor az ugyanazon a tárfiókon fut, ahol a replikáció folyik. Ezen a példányon a lemez méretének kétszeresét kell kiosztani, hogy a replikáció is folytatódhasson, és ezzel párhuzamosan a feladatátvételi teszt is sikeres legyen.
 * A forrás IOPS-érték meghaladja a tároló lemezenkénti 5000-es IOPS-korlátját.
 * A forrás IOPS-érték meghaladja a tároló virtuális gépenkénti 80 000-es IOPS-korlátját.
-* Átlagos adatmennyiség meghaladja a megengedett Site Recovery adatok forgalom értéket a 10 MB/s átlagos hello lemez i/o-mérethez.
-* Teljes adatforgalommal közötti összes lemezt a virtuális gép hello meghaladja hello maximális támogatott Site Recovery adatok forgalom virtuális gépenként 54 Mbit/s.
-* Átlagos hatékony írási IOPS mérete meghaladja a lemez 840 hello támogatott hely helyreállítási IOPS korlátját.
-* Számított pillanatkép-tároláshoz meghaladja a támogatott hello pillanatkép tárolási legfeljebb 10 TB.
+* Az átlagos adatváltozás meghaladja a Site Recovery lemezenkénti átlagos I/O-mérethez megadott 10 MBps értékű adatváltozási korlátját.
+* Total data churn across all disks on the VM exceeds the maximum supported Site Recovery data churn limit of 54 MBps per VM (Az összes virtuális gépre vonatkozó teljes adatváltozás meghaladja a Site Recovery virtuális gépenkénti 54 Mbps-os támogatott adatváltozási korlátját)
+* Az átlagos tényleges írási IOPS-érték meghaladja a Site Recovery lemezenkénti 840-es támogatott IOPS-korlátját.
+* A kiszámított pillanatkép-tároló mérete meghaladja a 10 TB-os támogatott méretet.
 
-**R/W IOPS (a növekedési tényező)**: hello maximális munkaterhelést IOPS hello lemez (alapértelmezett érték 95. százalékos érték), beleértve a hello jövőbeli növekedési tényező (alapértelmezett érték 30 százalékos). Vegye figyelembe, hogy a teljes olvasási/írási iops-érték a virtuális gép hello hello nem mindig hello VM egyes lemezek olvasási/írási IOPS hello összege, mert hello maximális olvasási/írási iops-érték a virtuális gép hello hello csúcs az egyes lemezek hello összegére olvasási/írási IOPS során minden hello perce profilkészítési időszak.
+**R/W IOPS (with Growth Factor)** (Írási/olvasási IOPS (növekedési tényezővel)): A lemez IOPS-csúcsértéke (alapértelmezés szerint a 95. százalékos érték), beleértve a későbbi növekedési faktort is (az alapértelmezett érték: 30%). Vegye figyelembe, hogy a virtuális gép teljes írási/olvasási IOPS-értéke nem mindig egyezik meg az egyes virtuálisgép-lemezek írási/olvasási IOPS-értékeinek összegével. Ez azért van, mert a virtuális gép írási/olvasási IOPS-csúcsértéke az egyes lemezeken a profilkészítési időszak alatt percenként mért írási/olvasási IOPS-értékek legmagasabb összege.
 
-**A MB/s (a növekedési tényező) Kavarog adatok**: hello csúcs változási sebessége hello lemezen (alapértelmezett 95. százalékos érték), beleértve a hello jövőbeli növekedési tényező (alapértelmezett 30 százalék). Vegye figyelembe, hogy hello teljes adatforgalommal a virtuális gép hello nincs mindig hello összege hello VM egyes lemezek adatforgalommal, mert hello csúcs adatforgalommal a virtuális gép hello hello csúcs az egyes lemezek forgalom hello összegére során a profilkészítési időszak hello percenként.
+**Data Churn in Mbps (with Growth Factor)** (Adatváltozás (Mbps) (növekedési tényezővel)): A lemez adatváltozásának csúcsértéke (alapértelmezés szerint a 95. százalékérték), beleértve a későbbi növekedési faktort is (alapértelmezés szerint 30 százalék). Vegye figyelembe, hogy a virtuális gép teljes adatváltozása nem mindig egyezik meg az egyes lemezek adatváltozásának összegével. Ez azért van, mert a virtuális gép adatváltozásának csúcsértéke az egyes lemezeken a profilkészítési időszak alatt percenként mért adatváltozás-értékek legmagasabb összege.
 
-**Lemezek száma**: hello a virtuális gép hello VMDKs teljes száma.
+**Number of Disks** (Lemezek száma): A virtuális gép VMDK-inak teljes száma.
 
-**Lemez (GB) méretű**: hello hello virtuális gép összes lemeze a telepítő teljes méretét. hello eszköz hello virtuális gép lemezmérete hello hello egyes lemezek is szerepel.
+**Disk size (GB)** (Lemez mérete (GB)): A virtuális gép összes lemezének teljes beállítási mérete. Az eszköz a virtuális gép egyes lemezeinek méretét is megjeleníti.
 
-**Magok**: hello száma CPU processzormag, a virtuális gép hello.
+**Cores** (Magok): A virtuális gép processzormagjainak száma.
 
-**Memória (MB)**: hello hello VM a RAM mennyisége.
+**Memory (MB)** (Memória (MB)): A virtuális gép fizikai memóriájának (RAM) mennyisége.
 
-**Hálózati adapter**: hello hello VM a hálózati adapterek száma.
+**NICs** (Hálózati adapterek): A virtuális gép hálózati adaptereinek száma.
 
-**Rendszerindító típus**: hello virtuális gép rendszerindító típusú legyen. Ez BIOS vagy EFI lehet. Az Azure Site Recovery jelenleg csak a BIOS rendszerindítási típust támogatja. Minden hello virtuális gépek EFI rendszerindítási típusa nem kompatibilis a virtuális gépek munkalap láthatók.
+**Rendszerindítás típusa**: a virtuális gép rendszerindítási típusa. Ez BIOS vagy EFI lehet. Az Azure Site Recovery jelenleg csak a BIOS rendszerindítási típust támogatja. Minden EFI rendszerindítási típusú virtuális gép szerepel a Nem kompatibilis virtuális gépek listájában.
 
-**Operációs rendszer típusa**: hello hello virtuális gép operációsrendszer-típus. Ennek értéke Windows, Linux vagy egyéb lehet.
+**Operációs rendszer típusa**: a virtuális gép operációs rendszerének típusa. Ennek értéke Windows, Linux vagy egyéb lehet.
 
 
 ## <a name="site-recovery-limits"></a>A Site Recovery korlátai
@@ -540,28 +540,28 @@ Prémium szintű P10 lemez | 32 KB vagy több | 8 MBps | Lemezenként 672 GB
 Prémium szintű P20 vagy P30 lemez | 8 KB  | 5 MBps | Lemezenként 421 GB
 Prémium szintű P20 vagy P30 lemez | 16 KB vagy több |10 MBps | Lemezenként 842 GB
 
-Ezek átlagos értékek, amelyek 30 százalékos I/O-átfedést feltételeznek. A Site Recovery képes magasabb átviteli sebesség kezelésére az átfedési arány, a nagyobb írási méretek és a számítási feladatok tényleges I/O-viselkedése alapján. hello előző számok feltételezi a tipikus várakozó körülbelül öt percet. Ez azt jelenti, hogy a feltöltést követő öt percben megtörténik az adat feldolgozása, és létrejön egy helyreállítási pont.
+Ezek átlagos értékek, amelyek 30 százalékos I/O-átfedést feltételeznek. A Site Recovery képes magasabb átviteli sebesség kezelésére az átfedési arány, a nagyobb írási méretek és a számítási feladatok tényleges I/O-viselkedése alapján. Az előbbi számok egy általános, körülbelül ötperces várólistát feltételeznek. Ez azt jelenti, hogy a feltöltést követő öt percben megtörténik az adat feldolgozása, és létrejön egy helyreállítási pont.
 
-Ezek a korlátok a saját tesztjeinken alapulnak, de nem fedhetik le az alkalmazások minden lehetséges I/O-kombinációját. A tényleges eredmények a saját alkalmazásának I/O-műveletei alapján változhatnak. A legjobb eredmények elérése érdekében után is üzembe helyezésének tervezése, mindig ajánlott kell végrehajtania a széles körű alkalmazás tesztelése a teszt feladatátvételi tooget hello igaz teljesítmény kép használata.
+Ezek a korlátok a saját tesztjeinken alapulnak, de nem fedhetik le az alkalmazások minden lehetséges I/O-kombinációját. A tényleges eredmények a saját alkalmazásának I/O-műveletei alapján változhatnak. A legjobb eredmények érdekében még az üzembe helyezés megtervezése után is ajánlott az alkalmazás alapos tesztelése feladatátvételi tesztek használatával, így valós képet kaphat a teljesítményről.
 
-## <a name="updating-hello-deployment-planner"></a>Hello telepítési planner frissítése
-tooupdate hello telepítési planner hello a következő:
+## <a name="updating-the-deployment-planner"></a>A Deployment Planner frissítése
+A Deployment Planner frissítéséhez tegye a következőt:
 
-1. Töltse le a legújabb verziójának hello hello [Azure Site Recovery telepítési planner](https://aka.ms/asr-deployment-planner).
+1. Töltse le az [Azure Site Recovery Deployment Planner](https://aka.ms/asr-deployment-planner) legújabb verzióját.
 
-2. Másolás hello .zip mappa tooa kiszolgáló, amelyet az toorun azt meg.
+2. Másolja a .zip mappát arra a kiszolgálóra, amelyen futtatni szeretné.
 
-3. Bontsa ki a hello .zip mappa.
+3. Csomagolja ki a .zip mappát.
 
-4. Hello alábbi módszerekkel:
- * Ha hello legújabb verziója nem tartalmazza a profilkészítési javítás és profilkészítési már folyamatban van a hello planner az aktuális verziójára, továbbra is hello adatainak összegyűjtése.
- * Ha hello legújabb verzióját a profilkészítési javítást tartalmaz, azt javasoljuk, hogy állítsa le a jelenlegi verziót a profilkészítési, és indítsa újra a hello profilkészítési hello új verziójával.
+4. A következő lehetőségek közül választhat:
+ * Ha a legújabb verzió nem tartalmaz profilkészítést érintő javítást, és a profilkészítés már folyamatban van a Planner aktuális verzióján, folytassa a profilkészítést.
+ * Ha a legújabb verzió tartalmaz profilkészítést érintő javítást, javasoljuk, hogy állítsa le az aktuális verzión a profilkészítést, és indítsa újra a profilkészítést az új verzióval.
 
   >[!NOTE]
   >
-  >Hello új verziójára, pass hello azonos kimeneti könyvtár elérési útja, így hello eszköz hozzáfűzi a profiladatok a profilkészítési indításakor hello a meglévő fájlokat. A teljes adatkészletet profilozott lesz toogenerate hello jelentés használt. Ha át egy másik kimeneti könyvtár, új fájlok jönnek létre, és a régi adatok csatolást nem használható toogenerate hello jelentés.
+  >Ha az új verzióval indítja el a profilkészítést, akkor ugyanazt a kimeneti elérési utat kell megadnia ahhoz, hogy az eszköz a már létező fájlokhoz fűzze hozzá a profiladatokat. Ekkor a profiladatok teljes körét felhasználja majd a jelentés létrehozásához. Ha eltérő kimeneti könyvtárat ad meg, akkor új fájlok jönnek létre, és a régi profiladatokat nem lehet majd felhasználni a jelentés létrehozásához.
   >
-  >Minden egyes új központi telepítési planner az összesítő frissítés hello .zip fájl. Nincs szükség a toocopy hello legújabb fájlok toohello előző mappára. Létrehozhat és használhat egy új mappát is.
+  >Minden új Deployment Planner a .zip fájl összegző frissítését jelenti. Ezért nem kell a legújabb fájlokat a korábbi mappába másolnia. Létrehozhat és használhat egy új mappát is.
 
 
 ## <a name="version-history"></a>Verzióelőzmények
@@ -571,7 +571,7 @@ Frissítve: 2017. július 19.
 
 A következő új szolgáltatást tartalmazza:
 
-* Nagy méretű (1 TB-nál nagyobb) lemezek támogatása a jelentéskészítésben. Most már a lemez mérete nagyobb, mint 1 TB-os (legfeljebb 4095 GB) rendelkező virtuális gépek telepítési planner tooplan replikációs is használhatja.
+* Nagy méretű (1 TB-nál nagyobb) lemezek támogatása a jelentéskészítésben. Az üzembehelyezés-tervező most már használható olyan virtuális gépek replikációjának megtervezéséhez, amelyek lemezmérete 1 TB-nál nagyobb (legfeljebb 4095 GB).
 További információ a [Nagyméretű lemezek támogatásáról az Azure Site Recoveryben](https://azure.microsoft.com/en-us/blog/azure-site-recovery-large-disks/)
 
 
@@ -580,7 +580,7 @@ Frissítve: 2017. május 9.
 
 A következő új szolgáltatást tartalmazza:
 
-* Most már elérhető a felügyelt lemezek támogatása a jelentéskészítés során. hello virtuális gépek száma helyezhető tooa egyetlen tárolási fiók, ha a lemez felügyelt alapján számított van kiválasztva a feladatátvételi és tesztelési célú feladatátvevő.        
+* Most már elérhető a felügyelt lemezek támogatása a jelentéskészítés során. A rendszer az alapján számítja ki az egyetlen tárfiókba helyezhető virtuális gépek számát, hogy felügyelt lemez van-e kijelölve feladatátvételre/feladatátvételi tesztre.        
 
 
 ### <a name="12"></a>1.2
@@ -588,26 +588,26 @@ Frissítve: 2017. április 7.
 
 A következő javításokat tartalmazza:
 
-* Hozzáadott rendszerindító minden virtuális gép toodetermine ellenőrzése (a BIOS vagy az EFI) írja be, ha kompatibilis vagy nem kompatibilis hello védelemre hello virtuális gép.
-* Az operációs rendszer hozzáadott hello kompatibilis virtuális gépek mindegyik virtuális gép adatai és a nem kompatibilis a virtuális gépek munkalapok írja be.
-* hello GetThroughput művelet mostantól támogatott a hello Amerikai Egyesült államokbeli kormányzati és Kína Microsoft Azure-régióban.
+* Most már minden virtuális gépen ellenőrizhető a rendszerindítási típus (BIOS vagy EFI) annak megállapítása érdekében, hogy az adott gép kompatibilis-e a védelemmel.
+* Most már minden virtuális gép esetében elérhetőek az operációs rendszer típusára vonatkozó adatok a Kompatibilis virtuális gépek és a Nem kompatibilis virtuális gépek munkalapon.
+* A GetThroughput művelet most már támogatott a US Government és a kínai Microsoft Azure-régióban.
 * A rendszer most már néhány új előfeltételt is ellenőriz a vCenter- és az ESXi-kiszolgálók esetében.
-* Helytelen jelentés készítésének első amikor területi beállítása toonon angol.
+* Hibás jelentéseket eredményezett, ha nem az angol nyelv lett megadva a helyi beállításokban.
 
 
 ### <a name="11"></a>1.1
 Frissítve: 2017. március 9.
 
-A következő problémák rögzített hello:
+Az alábbi problémákat javítja:
 
-* hello eszköz nem profilját a virtuális gépek, ha hello vCenter két vagy több virtuális gépek ugyanazt a nevet vagy IP-cím hello különböző ESXi-gazdagépek közötti.
-* Másolás és a keresési le van tiltva hello kompatibilis virtuális gépek és a nem kompatibilis a virtuális gépek munkalapok tartalmazzák.
+* Az eszköz nem képes profilt készíteni a virtuális gépekről, ha a vCenter-kiszolgáló különböző ESXi-gazdagépein több azonos nevű vagy IP-című virtuális gép található.
+* A Kompatibilis virtuális gépek és a Nem kompatibilis virtuális gépek munkalapján a másolás és a keresés le van tiltva.
 
 ### <a name="10"></a>1.0
 Frissítve: 2017. február 23.
 
-Az Azure Site Recovery telepítési Planner 1.0 nyilvános előzetes hello alábbi ismert problémák (a jövőbeli frissítéseket az érintett toobe) rendelkezik:
+Az Azure Site Recovery Deployment Planner 1.0-s nyilvános előzetes verziója az alábbi ismert hibákat tartalmazza (ezeket az elkövetkező frissítések fogják elhárítani):
 
-* hello eszköz csak VMware-Azure forgatókönyvek, a Hyper-V-az-Azure-telepítésekre nem működik. Hyper-V-az-Azure-bA forgatókönyvek esetén használja a hello [Hyper-V kapacitás planner eszköz](./site-recovery-capacity-planning-for-hyper-v-replication.md).
-* hello GetThroughput művelet nem támogatott a hello Amerikai Egyesült államokbeli kormányzati és Kína Microsoft Azure-régióban.
-* hello eszköz nem profilját a virtuális gépek, ha hello vCenter-kiszolgáló két vagy több virtuális gépek ugyanazt a nevet vagy IP-cím hello különböző ESXi-gazdagépek közötti. Ebben a verzióban hello eszköz kihagyja az ismétlődő virtuális gép nevét vagy IP-címek hello VMListFile profilkészítési. hello megoldás tooprofile hello virtuális gépeket, hello vCenter-kiszolgáló segítségével, az ESXi-állomáson. Minden ESXi-gazdagép esetében futtatnia kell egy példányt.
+* Az eszköz csak a VMware – Azure forgatókönyvek esetén működik, Hyper-V – Azure irányú üzembe helyezések esetében nem. A Hyper-V – Azure forgatókönyvekhez használja a [Hyper-V Capacity Planner eszközt](./site-recovery-capacity-planning-for-hyper-v-replication.md).
+* A GetThroughput művelet nem támogatott az US Government és kínai Microsoft Azure-régiókban.
+* Az eszköz nem képes profilt készíteni a virtuális gépekről, ha a vCenter-kiszolgáló különböző ESXi-gazdagépein több azonos nevű vagy IP-című virtuális gép található. Ebben a verzióban az eszköz kihagyja a profilkészítést abban az esetben, ha a VMListFile fájlban ismétlődik egy virtuális gép neve vagy IP-címe. Ez áthidalható úgy, hogy a vCenter-kiszolgáló helyett az ESXi-gazdagéppel készíti el a virtuális gépek profilját. Minden ESXi-gazdagép esetében futtatnia kell egy példányt.

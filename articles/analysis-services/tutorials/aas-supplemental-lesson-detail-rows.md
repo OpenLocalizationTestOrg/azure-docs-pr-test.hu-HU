@@ -1,46 +1,63 @@
 ---
-cím: aaa "Azure Analysis Services útmutató kiegészítő lecke: sorok |} Microsoft Docs"Leírás: ismerteti, hogyan toocreate a részletes sorok kifejezés hello Azure Analysis Services-oktatóanyag.
-szolgáltatások: analysis-szolgáltatások documentationcenter: "Szerző: minewiskan manager: erikre szerkesztőben:" címkék: "
-
-MS.AssetId: ms.service: analysis-szolgáltatások ms.devlang: NA ms.topic: get-started-article ms.tgt_pltfrm: NA ms.workload: na ms.date: 05/26/2017 ms.author: owend
+title: "Azure Analysis Services oktatóanyag – kiegészítő lecke: Részletsorok | Microsoft Docs"
+description: "Ismerteti a részletsor-kifejezés létrehozását az Azure Analysis Services oktatóanyagban."
+services: analysis-services
+documentationcenter: 
+author: Minewiskan
+manager: erikre
+editor: 
+tags: 
+ms.assetid: 
+ms.service: analysis-services
+ms.devlang: NA
+ms.topic: get-started-article
+ms.tgt_pltfrm: NA
+ms.workload: na
+ms.date: 05/26/2017
+ms.author: owend
+ms.openlocfilehash: 9995ad39d9e3fd1a211c513d4097398e99eefc54
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="supplemental-lesson---detail-rows"></a>Kiegészítő lecke – Részletsorok
 
 [!INCLUDE[analysis-services-appliesto-aas-sql2017-later](../../../includes/analysis-services-appliesto-aas-sql2017-later.md)]
 
-Ez a kiegészítő lecke használhatja hello DAX-szerkesztő toodefine egyéni részletes sorok kifejezés. A részletes sorok kifejezés egyik tulajdonságának egy mérték, és a végfelhasználók hello összesített eredmények mérték további információt nyújt. 
+Ebben a kiegészítő leckében a DAX-szerkesztőt használhatja egy egyéni részletsor-kifejezés megadására. A részletsor-kifejezés egy mérték egy olyan tulajdonsága, amely további információkat nyújt a végfelhasználóknak a mérték aggregált eredményeiről. 
   
-Becsült idő toocomplete Ez a lecke: **10 perc**  
+A lecke elvégzésének várható időtartama: **10 perc**.  
   
 ## <a name="prerequisites"></a>Előfeltételek  
-Ez a kiegészítőlecke-témakör a táblázatos modellezésről szóló oktatóanyag része. Ez a kiegészítő lecke hello feladatok elvégzése előtt kell befejeződött az összes korábbi során tapasztalatokat, vagy egy befejezett Adventure Works Internet értékesítési minta jelentésmodell-projekt.  
+Ez a kiegészítőlecke-témakör a táblázatos modellezésről szóló oktatóanyag része. Az ebben a kiegészítő leckében található feladatok végrehajtása előtt be kell fejeznie minden előző leckét, vagy rendelkeznie kell egy befejezett Adventure Works internetes értékesítési minta modellprojekttel.  
   
-## <a name="what-do-we-need-toosolve"></a>Mit kell toosolve?
-Nézzük hello részleteit a InternetTotalSales mérték, mielőtt hozzáad egy részletes sorok kifejezés.
+## <a name="what-do-we-need-to-solve"></a>Mit kell megoldanunk?
+Vessünk egy pillantást az InternetTotalSales mérték részleteire egy részletsor-kifejezés hozzáadása előtt.
 
-1.  Az SSDT, kattintson a hello **modell** menü > **elemzés az Excelben** tooopen Excel, és hozzon létre egy üres kimutatást.
+1.  Az SSDT-ben kattintson a **Modell** menü > **Elemzés az Excelben** elemére az Excel megnyitásához és egy üres kimutatás létrehozásához.
   
-2.  A **kimutatástábla mezői**, vegye fel a hello **InternetTotalSales** hello FactInternetSales táblának túl mérjük**értékek**, **CalendarYear**hello DimDate a tábla túl**oszlopok**, és **EnglishCountryRegionName** túl**sorok**. A kimutatás most biztosítanak számunkra összesített eredmények hello InternetTotalSales intézkedés régiók és év. 
+2.  A **Kimutatás mezők** részben adja hozzá a **InternetTotalSales** mértéket a FactInternetSales táblából az **Értékekhez**, a **CalendarYear** értéket a DimDate táblából az **Oszlopokhoz**, valamint az **EnglishCountryRegionName** értéket a **Sorokhoz**. A kimutatás mostantól aggregált eredményeket ad az InternetTotalSales mértékről, régiók és év szerint. 
 
     ![aas-lesson-detail-rows-pivottable](../tutorials/media/aas-lesson-detail-rows-pivottable.png)
 
-3. A kimutatás hello kattintson duplán egy összesített értéket év és a terület neve. Itt azt duplán kattint Ausztrália és hello hello érték év 2014. Megnyílik egy új, nem hasznos adatokat tartalmazó lap.
+3. A kimutatásban kattintson duplán egy évhez és régiónévhez tartozó aggregált értékre. Itt duplán kattintottunk az Ausztráliához tartozó értékre és a 2014-es évre. Megnyílik egy új, nem hasznos adatokat tartalmazó lap.
 
     ![aas-lesson-detail-rows-pivottable](../tutorials/media/aas-lesson-detail-rows-sheet.png)
   
-Mi azt kellene itt toosee Ez hozzájárul toohello adatok sorok és oszlopok tartalmazó tábla lesz, mint a InternetTotalSales mérték eredményét összesíti. toodo, hogy hozzá lehessen adni egy részletes sorok kifejezés hello mérték tulajdonságainál.
+Itt egy olyan, adatokból álló oszlopokat és sorokat tartalmazó táblázatot szeretnénk látni, amely hozzájárul az InternetTotalSales mérték aggregált eredményeihez. Ehhez hozzáadhatunk egy részletsor-kifejezést a mérték tulajdonságaként.
 
 ## <a name="add-a-detail-rows-expression"></a>Részletsor-kifejezés hozzáadása
 
-#### <a name="toocreate-a-detail-rows-expression"></a>a részletes sorok kifejezés toocreate 
+#### <a name="to-create-a-detail-rows-expression"></a>Részletsor-kifejezés létrehozása 
   
-1. Az SSDT, hello FactInternetSales táblának mérték rácsban, kattintson a hello **InternetTotalSales** mérték. 
+1. A modelltervezőben kattintson a **FactInternetSales** táblára. 
 
-2. A **tulajdonságok** > **részletes sorok kifejezés**, hello szerkesztő gomb tooopen hello DAX-szerkesztőben kattintson.
+2. A **Tulajdonságok** > **Részletsor-kifejezés** részben kattintson a szerkesztőgombra a DAX-szerkesztő megnyitásához.
 
     ![aas-lesson-detail-rows-ellipse](../tutorials/media/aas-lesson-detail-rows-ellipse.png)
 
-3. A DAX-szerkesztőben, adja meg a kifejezés a következő hello:
+3. Írja be a következő kifejezést a DAX-szerkesztőbe:
 
     ```
     SELECTCOLUMNS(
@@ -55,9 +72,9 @@ Mi azt kellene itt toosee Ez hozzájárul toohello adatok sorok és oszlopok tar
 
     ```
 
-    Ebben a kifejezésben meghatározza a nevét, oszlopok, és a felhasználó duplán kattint egy kimutatás vagy a jelentés egy összesített eredmény hello FactInternetSales táblának és a kapcsolódó táblák mérték eredményeket ad vissza.
+    Ez a kifejezés neveket, oszlopokat és mértékeredményeket ad meg a FactInternetSales táblából, és a kapcsolódó táblázatokat akkor adja vissza a rendszer, amikor a felhasználó duplán rákattint egy összesített eredményre a kimutatásban vagy jelentésben.
 
-4. Vissza az Excel programban a 3. lépésben létrehozott hello lap törölje, majd kattintson duplán egy összesített értéket. Megadott idő definiált hello mérték részletességi sorok kifejezés tulajdonsággal, új lapon nyílik meg sokkal több hasznos adatait tartalmazó.
+4. Az Excelben törölje a 3. lépésben létrehozott lapot, majd kattintson duplán egy aggregált értékre. Ezúttal egy több hasznos információt tartalmazó, a mértékhez meghatározott részletsor-kifejezés tulajdonsággal rendelkező új lap nyílik meg.
 
     ![aas-lesson-detail-rows-detailsheet](../tutorials/media/aas-lesson-detail-rows-detailsheet.png)
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toouse Alkalmazásjelszók az Azure MFA? | Microsoft Docs"
-description: "Ezen a lapon segít megérteni az alkalmazásjelszók és a definíció a felhasználóknak az MFA legutóbb tooAzure használatos."
+title: "Hogyan Alkalmazásjelszók használható az Azure MFA? | Microsoft Docs"
+description: "Ezen a lapon segít megérteni az alkalmazásjelszók és azok szerepét a az Azure MFA figyelembe véve a felhasználóknak."
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -15,79 +15,79 @@ ms.topic: article
 ms.date: 05/15/2017
 ms.author: kgremban
 ms.custom: end-user
-ms.openlocfilehash: 3afa2003d8e87576f035bf9440a1dba67bd85f5b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1ecc2bdef5ff7ef8ed8dded7dc12428ce9657821
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="what-are-app-passwords-in-azure-multi-factor-authentication"></a>Mik a Azure multi-factor Authentication Alkalmazásjelszókat?
-Bizonyos böngészőn kívüli alkalmazások, többek között a hello Apple natív e-mail-ügyfélprogram, amely használja az Exchange Active Sync jelenleg nem támogatják a multi-factor authentication. Többtényezős hitelesítést felhasználónként kell engedélyezni.  Ez azt jelenti, hogy a felhasználó multi-factor Authentication hitelesítés nem használható, ha:
+Bizonyos böngészőn kívüli alkalmazások, például az Apple natív e-mail-ügyfélprogram, amely használja az Exchange Active Sync jelenleg nem támogatják a multi-factor authentication. Többtényezős hitelesítést felhasználónként kell engedélyezni.  Ez azt jelenti, hogy a felhasználó multi-factor Authentication hitelesítés nem használható, ha:
 
-- hello felhasználó engedélyezte a többtényezős hitelesítés
-- hello felhasználó próbál toouse a böngészőn kívüli alkalmazások.
+- A felhasználó engedélyezte a többtényezős hitelesítés
+- A felhasználó próbál a böngészőn kívüli alkalmazások használatához.
 
-Az alkalmazásjelszó lehetővé teszi, hogy a hello felhasználói toouse hello alkalmazást.
+Az alkalmazásjelszó lehetővé teszi, hogy a felhasználó használhatja az alkalmazást.
 
-Miután egy alkalmazásjelszót, használhatja az eredeti jelszóval ezen böngészőn kívüli alkalmazások helyett. Amikor regisztrál a kétlépéses ellenőrzést, akkor még szólítja fel nem toolet bárki aláírására Microsoft be a jelszót még nem végzett hello második ellenőrzési. hello Apple natív e-mail-ügyfélprogram telefonján nem tud bejelentkezni, ha Ön, mert nem a kétlépéses ellenőrzéshez kérje meg. hello megoldás toothis probléma egy biztonságosabb alkalmazásjelszót, amelyek nem használják toocreate napi. Az alkalmazásjelszók csak ezek az alkalmazások, amelyek nem támogatják a kétlépéses ellenőrzést vonatkoznak. Hello alkalmazásjelszót használnak, így alkalmazások multi-factor authentication kihagyásához és toowork folytatni.
+Miután egy alkalmazásjelszót, használhatja az eredeti jelszóval ezen böngészőn kívüli alkalmazások helyett. Amikor regisztrál a kétlépéses ellenőrzést, akkor még szólítja fel a bárki jelentkezzen be a jelszót, ha azok nem is hajtsa végre a második ellenőrzési lehetővé teszik a nem Microsoft. A telefonján Apple natív e-mail-ügyfélprogram nem tud bejelentkezni, ha Ön, mert nem a kétlépéses ellenőrzéshez kérje meg. Ez a probléma megoldása, ha egy biztonságosabb alkalmazásjelszót, amelyek nem használják napi. Az alkalmazásjelszók csak ezek az alkalmazások, amelyek nem támogatják a kétlépéses ellenőrzést vonatkoznak. Használja a jelszót, hogy az alkalmazások multi-factor authentication kihagyásához és továbbra is működnek.
 
 
 > [!NOTE]
 > Office 2013-ügyfelek (például az Outlook) támogatja az új hitelesítési protokollok és a kétlépéses ellenőrzéshez használttal használható. Alkalmazásjelszók esetén nincs szükség Office 2013 ügyfelek való használatra.  További információkért lásd: [Office 2013 modern hitelesítés nyilvános előzetes bejelentette](https://blogs.office.com/2015/03/23/office-2013-modern-authentication-public-preview-announced/).
 
 
-## <a name="how-toouse-app-passwords"></a>Hogyan toouse alkalmazásjelszók
-Az alábbiakban néhány dolgot tooknow alkalmazásjelszókról:
+## <a name="how-to-use-app-passwords"></a>Alkalmazásjelszavak használata
+Az alábbiakban néhány feltétlenül tudni az alkalmazásjelszókról:
 
 * Ne hozzon létre egy saját alkalmazásjelszókat. Ezek automatikusan jönnek létre.
 * Jelenleg csak egy legfeljebb 40 jelszó felhasználónként. 
-* Ha hello korlát elérése után megpróbál toocreate alkalmazásjelszót, akkor kell toodelete egyet a meglévő alkalmazásjelszavak előtt hozzon létre egy újat.
-* Minden eszközhöz, ne alkalmazásonként egy alkalmazásjelszót használni. Például hozzon létre egy alkalmazásjelszót a hordozható számítógép, és azt használja az összes, az alkalmazások adott hordozható számítógépen. Ezután hozzon létre egy második app jelszó toouse az alkalmazások az asztalon. 
-* Lehetősége van egy alkalmazás jelszó hello első alkalommal regisztrál a kétlépéses ellenőrzéshez.  Ha további megfelelően van szüksége, létrehozhat őket.
+* Ha megpróbál létrehozni egy alkalmazásjelszót a határérték elérése után, összekapcsolta törölje az egyik a meglévő alkalmazásjelszavak előtt hozzon létre egy újat.
+* Minden eszközhöz, ne alkalmazásonként egy alkalmazásjelszót használni. Például hozzon létre egy alkalmazásjelszót a hordozható számítógép, és azt használja az összes, az alkalmazások adott hordozható számítógépen. Ezután hozzon létre egy második alkalmazásjelszót az asztalon az alkalmazások használatára. 
+* Lehetősége van egy alkalmazásjelszót az első alkalommal regisztrál a kétlépéses ellenőrzéshez.  Ha további megfelelően van szüksége, létrehozhat őket.
 
 
 
 ## <a name="creating-and-deleting-app-passwords"></a>Létrehozása és törlése alkalmazásjelszók
-Az első bejelentkezés során lehetősége van az alkalmazásjelszó használható.  Hozhat létre, és később törölni alkalmazásjelszókat. Alkalmazásjelszók törlési módja attól függ, hogy többtényezős hitelesítés használatát. A következő válaszfájl hello toomanage alkalmazásjelszók hová kell toodetermine kérdésekre: 
+Az első bejelentkezés során lehetősége van az alkalmazásjelszó használható.  Hozhat létre, és később törölni alkalmazásjelszókat. Alkalmazásjelszók törlési módja attól függ, hogy többtényezős hitelesítés használatát. Annak meghatározásához, ahol kell az alkalmazásjelszók kezeléséhez lépjen a következő kérdések megválaszolása: 
 
-1. Használhatók a kétlépéses ellenőrzést személyes Microsoft-fiókja? Ha igen, akkor olvassa el toohello [alkalmazásjelszók és a kétlépéses ellenőrzést](https://support.microsoft.com/help/12409/microsoft-account-app-passwords-two-step-verification) cikk segítségét. Ha nem, továbbra is két tooquestion.
+1. Használhatók a kétlépéses ellenőrzést személyes Microsoft-fiókja? Ha igen, tekintse át a [alkalmazásjelszók és a kétlépéses ellenőrzést](https://support.microsoft.com/help/12409/microsoft-account-app-passwords-two-step-verification) cikk segítségét. Ha nem, továbbra is két kérdés.
 
-2. OK, hogy a kétlépéses ellenőrzést használni a munkahelyi vagy iskolai fiókját. Használja az toosign tooOffice 365 alkalmazásokban? Ha igen, tekintse át túl[hozza létre az alkalmazásjelszót az Office 365](https://support.office.com/article/Create-an-app-password-for-Office-365-3e7c860f-bda4-4441-a618-b53953ee1183) segítségét. Ha nem, továbbra is három tooquestion. 
+2. OK, hogy a kétlépéses ellenőrzést használni a munkahelyi vagy iskolai fiókját. Használ az Office 365-alkalmazásokhoz való bejelentkezéshez? Ha igen, tekintse át [hozza létre az alkalmazásjelszót az Office 365](https://support.office.com/article/Create-an-app-password-for-Office-365-3e7c860f-bda4-4441-a618-b53953ee1183) segítségét. Ha nem, továbbra is a három kérdést. 
 
-3. Használhatók a kétlépéses ellenőrzésről a Microsoft Azure-ban? Ha igen, akkor folytassa a toohello [hello Azure portálra az alkalmazás-jelszavak kezelése](#manage-app-passwords-in-the-Azure-portal) című szakaszát. Ha nem, továbbra is tooquestion négy.
+3. Használhatók a kétlépéses ellenőrzésről a Microsoft Azure-ban? Ha igen, továbbra is a [kezelése az Azure portálon alkalmazásjelszók](#manage-app-passwords-in-the-Azure-portal) című szakaszát. Ha nem, továbbra is négy kérdés.
 
-4. Nem biztos benne, ahol használhatja a kétlépéses ellenőrzést? Továbbra is toohello [hello MyApps portal szolgáltatással használt alkalmazásjelszók kezelése](#manage-app-passwords-with-the-myapps-portal) című szakaszát. 
+4. Nem biztos benne, ahol használhatja a kétlépéses ellenőrzést? Továbbra is a [MyApps Portal alkalmazás jelszavak kezelése](#manage-app-passwords-with-the-myapps-portal) című szakaszát. 
 
 
-## <a name="manage-app-passwords-in-hello-azure-portal"></a>Hello Azure portálra az alkalmazás-jelszavak kezelése
-Az Azure-ral használhatja a kétlépéses ellenőrzést, ha azt szeretné, toocreate alkalmazásjelszók hello Azure-portálon keresztül.
+## <a name="manage-app-passwords-in-the-azure-portal"></a>Az Azure portálon app jelszavak kezelése
+Az Azure-ral használatakor a kétlépéses ellenőrzést, hozzon létre az Azure portálon keresztül szeretné.
 
-### <a name="toocreate-app-passwords-in-hello-azure-portal"></a>alkalmazásjelszók toocreate a hello Azure-portálon
-1. Jelentkezzen be toohello a klasszikus Azure portálon.
-2. Hello tetején kattintson a jobb gombbal a felhasználónevét, és válassza ki a további biztonsági ellenőrzés.
-3. Hello proofup lapon hello bal felső válassza ki az alkalmazásjelszók
+### <a name="to-create-app-passwords-in-the-azure-portal"></a>Alkalmazásjelszók létrehozása az Azure-portálon
+1. Jelentkezzen be a klasszikus Azure portálra.
+2. A lap tetején kattintson a jobb gombbal a felhasználónevét, és válassza ki a további biztonsági ellenőrzés.
+3. A proofup lapon, a lap tetején jelölje ki az alkalmazásjelszók
 4. Kattintson a **Create** (Létrehozás) gombra.
-5. Adjon meg egy nevet hello alkalmazásjelszót, majd kattintson **tovább**
-6. Hello app jelszó toohello vágólapra másolja és illessze be az alkalmazást.
+5. Adjon meg egy nevet a jelszót, és kattintson a **következő**
+6. A jelszót a vágólapra másolja és illessze be az alkalmazást.
    
    ![Felhő](./media/multi-factor-authentication-end-user-app-passwords/app2.png)
 
 
-### <a name="toodelete-app-passwords-in-hello-azure-portal"></a>alkalmazásjelszók toodelete a hello Azure-portálon
-1. Jelentkezzen be toohello a klasszikus Azure portálon.
-2. Hello tetején kattintson a jobb gombbal a felhasználónevét, és válassza ki a további biztonsági ellenőrzés.
-3. Hello bal felső, tovább tooadditional biztonsági ellenőrzési, válasszon **alkalmazásjelszókat.**
-4. Azt szeretné, hogy toodelete, jelölje be tovább toohello alkalmazásjelszót **törlése**.
-5. Hello törlésének megerősítése kattintva **Igen**.
-6. A törölt hello alkalmazásjelszót kattinthat **bezárása**.
+### <a name="to-delete-app-passwords-in-the-azure-portal"></a>Az Azure portálon alkalmazásjelszók törlése
+1. Jelentkezzen be a klasszikus Azure portálra.
+2. A lap tetején kattintson a jobb gombbal a felhasználónevét, és válassza ki a további biztonsági ellenőrzés.
+3. A lap tetején mellett további biztonsági ellenőrzési, válasszon **alkalmazásjelszókat.**
+4. A törölni kívánt alkalmazásjelszót, mellett válassza ki **törlése**.
+5. Kattintson a törlés jóváhagyásához **Igen**.
+6. Az alkalmazásjelszót a törölt kattinthat **bezárása**.
 
 
-## <a name="manage-app-passwords-with-hello-myapps-portal"></a>Hello MyApps portal szolgáltatással használt alkalmazásjelszók kezelése.
-Ha nem biztos abban, hogy a multi-factor authentication használatát, majd bármikor létrehozása és törlése alkalmazásjelszók hello myapps portálon keresztül.
+## <a name="manage-app-passwords-with-the-myapps-portal"></a>A MyApps portal szolgáltatással használt alkalmazásjelszók kezelése.
+Ha nem biztos abban, hogy a multi-factor authentication használatát, majd bármikor létrehozása és törlése a myapps portálon keresztül alkalmazásjelszókat.
 
-### <a name="toocreate-an-app-password-using-hello-myapps-portal"></a>egy alkalmazás jelszó használatával toocreate hello Myapps portál
-1. Jelentkezzen be a túl[https://myapps.microsoft.com](https://myapps.microsoft.com)
-2. Kattintson a jobb oldali hello tetején nevére, és válassza a **profil**.
+### <a name="to-create-an-app-password-using-the-myapps-portal"></a>A hozza létre az alkalmazásjelszót a Myapps portál használatával
+1. Jelentkezzen be [https://myapps.microsoft.com](https://myapps.microsoft.com)
+2. Kattintson a jobb felső sarokban, és válassza a **profil**.
 3. Válassza ki **további biztonsági ellenőrzés**.
    ![Válassza ki a további biztonsági ellenőrzés – képernyőkép](./media/multi-factor-authentication-end-user-manage/myapps1.png)
 
@@ -95,13 +95,13 @@ Ha nem biztos abban, hogy a multi-factor authentication használatát, majd bár
    ![Válassza ki az alkalmazásjelszók – képernyőkép](./media/multi-factor-authentication-end-user-app-passwords/apppass2.png)
 
 5. Kattintson a **Create** (Létrehozás) gombra.
-6. Adjon meg egy nevet hello alkalmazásjelszót, majd kattintson **következő**.
-7. Hello app jelszó toohello vágólapra másolja és illessze be az alkalmazást.
+6. Adjon meg egy nevet a jelszót, és kattintson a **következő**.
+7. A jelszót a vágólapra másolja és illessze be az alkalmazást.
    ![Hozza létre az alkalmazásjelszót](./media/multi-factor-authentication-end-user-app-passwords/create2.png)
 
-### <a name="toodelete-an-app-password-using-hello-myapps-portal"></a>egy alkalmazás jelszó használatával toodelete hello Myapps portál
-1. Jelentkezzen be a túl[https://myapps.microsoft.com](https://myapps.microsoft.com)
-2. Hello bal felső válassza ki a profilt.
+### <a name="to-delete-an-app-password-using-the-myapps-portal"></a>Törli az alkalmazásjelszó Myapps portál használatával
+1. Jelentkezzen be [https://myapps.microsoft.com](https://myapps.microsoft.com)
+2. A lap tetején jelölje ki a profilt.
 3. Válassza ki **további biztonsági ellenőrzés**.
 
    ![Válassza ki a további biztonsági ellenőrzés – képernyőkép](./media/multi-factor-authentication-end-user-manage/myapps1.png)
@@ -110,15 +110,15 @@ Ha nem biztos abban, hogy a multi-factor authentication használatát, majd bár
 
    ![Válassza ki az alkalmazásjelszók – képernyőkép](./media/multi-factor-authentication-end-user-app-passwords/apppass2.png)
 
-5. Kattintson a kívánt toodelete, tovább toohello alkalmazásjelszót **törlése**.
+5. A törölni kívánt alkalmazásjelszót, mellett kattintson **törlése**.
 
    ![Az alkalmazásjelszó törlése](./media/multi-factor-authentication-end-user-app-passwords/delete1.png)
 
-6. Erősítse meg toodelete, hogy a jelszó kattintva **Igen**.
-7. A törölt hello alkalmazásjelszót kattinthat **bezárása**.
+6. Győződjön meg arról, hogy szeretné-e, hogy a jelszó törlése gombra kattintva **Igen**.
+7. Az alkalmazásjelszót a törölt kattinthat **bezárása**.
 
 ## <a name="next-steps"></a>Következő lépések
 
 - [A kétlépéses ellenőrzés beállításait kezelheti](multi-factor-authentication-end-user-manage-settings.md)
 
-- Próbálja ki hello [Microsoft Authenticator alkalmazás](microsoft-authenticator-app-how-to.md) tooverify a bejelentkezéseket app értesítések szövegek vagy hívások fogadása helyett. 
+- Próbálja ki a [Microsoft Authenticator alkalmazás](microsoft-authenticator-app-how-to.md) ellenőrzése a bejelentkezéseket app értesítések szövegek vagy hívások fogadása helyett. 

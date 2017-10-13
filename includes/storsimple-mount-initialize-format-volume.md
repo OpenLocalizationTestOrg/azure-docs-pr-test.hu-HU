@@ -1,27 +1,27 @@
 <!--author=SharS last changed: 9/17/15-->
 
-#### <a name="toomount-initialize-and-format-a-volume"></a>toomount, inicializálja és formázza a kötetet
-1. Indítsa el a hello Microsoft iSCSI-kezdeményező.
-2. A hello **iSCSI-kezdeményező tulajdonságai** ablakban a hello **felderítési** lapra, majd **kapu felderítése**.
-3. A hello **tárolókapu felderítése** párbeszédpanelen adja meg az iSCSI-kompatibilis hálózati adaptert hello IP-címét, és kattintson **OK**. 
-4. A hello **iSCSI-kezdeményező tulajdonságai** ablakban a hello **célok** lapján keresse meg a hello **Felderített tárolók**. hello eszköz állapotúnak kell lennie **inaktív**.
-5. Válasszon hello céleszközt, majd kattintson **Connect**. Hello eszköz csatlakoztatása után hello kell állapotmódosítási túl**csatlakoztatva**. (Hello Microsoft iSCSI-kezdeményező használatával kapcsolatos további információkért lásd: [telepítése és konfigurálása a Microsoft iSCSI-kezdeményező][1]).
-6. A Windows-gazdagépen, nyomja meg a hello Windows billentyű + X, és kattintson **futtatása**. 
-7. A hello **futtatása** párbeszédpanelen írja be **Diskmgmt.msc**. Kattintson a **OK**, és hello **Lemezkezelés** párbeszédpanel jelenik meg. hello jobb oldali ablaktáblán jelennek meg hello kötetek a gazdagépen.
-8. A hello **Lemezkezelés** ablakban hello csatlakoztatott kötetek fog megjelenni a hello a következő ábrán látható módon. Kattintson a jobb gombbal a hello felderített kötetre (kattintson a hello lemez nevére), és kattintson a **Online**.
+#### <a name="to-mount-initialize-and-format-a-volume"></a>Kötet csatlakoztatása, inicializálása és formázása
+1. Indítsa el a Microsoft iSCSI-kezdeményezőt.
+2. Az **iSCSI-kezdeményező tulajdonságai** ablakban a **Felderítés** lapon kattintson a **Kapu felderítése** elemre.
+3. A **Tárolókapu felderítése** párbeszédablakban adja meg az iSCSI-kompatibilis hálózati adaptert, majd kattintson az **OK** gombra. 
+4. Az **iSCSI-kezdeményező tulajdonságai** ablakban a **Tárolók** lapon keresse meg a **Felderített tárolók** elemet. Az eszköznek **Inaktív** állapotúnak kell lennie.
+5. Válassza ki a céleszközt, majd kattintson a **Csatlakozás** gombra. Az eszköz csatlakoztatása után az állapotnak **Csatlakoztatva** állapotra kell módosulnia. (További információ a Microsoft iSCSI-kezdeményezőről: [A Microsoft iSCSI-kezdeményező telepítése és konfigurálása][1]).
+6. A Windows-gazdagépen nyomja le a Windows és az X billentyűt, majd kattintson a **Futtatás** parancsra. 
+7. A **Futtatás** párbeszédpanelen írja be a **Diskmgmt.msc** karakterláncot. Kattintson az **OK** gombra, és megjelenik a **Lemezkezelés**párbeszédablak. A jobb oldali panel a gazdagépen lévő köteteket jeleníti meg.
+8. A **Lemezkezelés** ablakban a csatlakoztatott kötetek az alábbi ábrán látható módon jelennek meg. Kattintson a jobb gombbal a felderített kötetre (kattintson a lemez nevére), majd kattintson az **Online** elemre.
    
      ![Kötet formázásának inicializálása](./media/storsimple-mount-initialize-format-volume/HCS_InitializeFormatVolume-include.png) 
-9. Kattintson a jobb gombbal a hello kötetre (kattintson a hello lemez nevére) újra, és kattintson a **inicializálása**.
-10. tooformat egyszerű kötet, hajtsa végre a következő lépéseket hello:
+9. Kattintson a jobb gombbal a kötetre (kattintson a lemez nevére), majd kattintson az **Inicializálás** elemre.
+10. Egyszerű kötet formázásához hajtsa végre az alábbi lépéseket:
     
-    1. Hello kötet kiválasztásához kattintson a jobb gombbal az (kattintson a jobb oldali területre hello), és kattintson a **új egyszerű kötet**.
-    2. Hello új egyszerű kötet varázslóban hello kötet méretét és a meghajtó betűjelét adja meg, és az NTFS fájlrendszer hello kötet konfigurálása.
-    3. Adjon meg 64 KB-os lemezfoglalásiegység-méretet. A foglalásiegység-méret jól működik hello StorSimple megoldásban használt hello deduplikációs algoritmusokkal.
+    1. Válassza ki a kötetet, kattintson rá a jobb gombbal (kattintson a jobb oldali területre), majd kattintson az **Új egyszerű kötet** lehetőségre.
+    2. Az Új egyszerű kötet varázslóban adja meg a kötet méretét és a meghajtó betűjelét, majd konfigurálja a kötetet NTFS fájlrendszerűként.
+    3. Adjon meg 64 KB-os lemezfoglalásiegység-méretet. Ez a lemezfoglalásiegység-méret jól működik a StorSimple megoldásban használt deduplikációs algoritmusokkal.
     4. Hajtson végre egy gyorsformázást.
 
 ![Videó elérhető](./media/storsimple-mount-initialize-format-volume/Video_icon.png)**Videó elérhető**
 
-a videó bemutatja, hogyan toomount, inicializálása és formátum a StorSimple-kötet, kattintson az toowatch [Itt](https://azure.microsoft.com/documentation/videos/mount-initialize-and-format-a-storsimple-volume/).
+A StorSimple-kötet csatlakoztatását, inicializálását és formázását bemutató videó megtekintéséhez kattintson [ide](https://azure.microsoft.com/documentation/videos/mount-initialize-and-format-a-storsimple-volume/).
 
 <!--Link references-->
 [1]: https://technet.microsoft.com/library/ee338480(WS.10).aspx

@@ -1,9 +1,9 @@
 ---
-title: "egy Azure belső aaaCreate terheléselosztó - klasszikus PowerShell |} Microsoft Docs"
-description: "Ismerje meg, hogyan toocreate egy belső terheléselosztó hello klasszikus üzembe helyezési modellben a PowerShell használatával"
+title: "Azure-alapú belső terheléselosztó létrehozása – klasszikus PowerShell | Microsoft Docs"
+description: "Ismerje meg, hogyan hozható létre belső terheléselosztó a PowerShell használatával a klasszikus üzembehelyezési modellben"
 services: load-balancer
 documentationcenter: na
-author: kumudd
+author: KumudD
 manager: timlt
 editor: 
 tags: azure-service-management
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: 382db80c42ffab09905513019b72e85a4f9dfeff
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 85fd757bdd6dd9906a23977b760f01bb1f85bf77
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-creating-an-internal-load-balancer-classic-using-powershell"></a>Bevezetés a belső terheléselosztó (klasszikus) PowerShell használatával történő létrehozásába
 
@@ -31,7 +31,7 @@ ms.lasthandoff: 10/06/2017
 [!INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 > [!IMPORTANT]
-> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md).  Ez a cikk hello klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén hello Resource Manager modellt használja. Ismerje meg, hogyan túl[hello Resource Manager modellt használja a következő lépésekkel](load-balancer-get-started-ilb-arm-ps.md).
+> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md).  Ez a cikk a klasszikus üzembehelyezési modellt ismerteti. A Microsoft azt javasolja, hogy az új telepítések esetén a Resource Manager modellt használja. Ismerje meg, [hogyan hajthatja végre ezeket a lépéseket a Resource Manager-modell használatával](load-balancer-get-started-ilb-arm-ps.md).
 
 [!INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
@@ -39,28 +39,28 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="create-an-internal-load-balancer-set-for-virtual-machines"></a>Belső terheléselosztó készlet létrehozása a virtuális gépekhez
 
-belső terheléselosztót beállítani, és szeretne küldeni a forgalom tooit kiszolgálók hello toocreate, toodo hello következő rendelkezik:
+Egy belső terheléselosztó készletnek, illetve azoknak a kiszolgálóknak a létrehozásához, amelyek a forgalmukat küldik rá, a következőket kell tennie:
 
-1. Belső terheléselosztás hello végpont egy elosztott terhelésű készlet hello kiszolgálóin bejövő forgalom toobe terhelés leendő példányt létrehozni.
-2. Hello bejövő forgalmat fog kapni toohello virtuális gépek megfelelő végpont-hozzáadáshoz.
-3. Hello forgalom toobe az elosztott terhelésű toosend a forgalom toohello virtuális IP-cím (VIP) cím hello belső terheléselosztás példány küldi hello kiszolgálók konfigurálása.
+1. Hozzon létre egy belső terheléselosztási példányt, amely annak a bejövő forgalomnak a végpontja lesz, amelynek a terhelését el kell osztani az elosztott terhelésű készlet kiszolgálóin.
+2. Adja hozzá a virtuális gépekhez rendelt végpontokat, amelyek a bejövő forgalmat fogják kapni.
+3. Konfigurálja úgy a kiszolgálókat, amelyek a terheléselosztóra fogják küldeni a forgalmat, hogy azt a belső terheléselosztási példány virtuális IP-címére (VIP) küldjék.
 
 ### <a name="step-1-create-an-internal-load-balancing-instance"></a>1. lépés: Belső terheléselosztási példány létrehozása
 
-Létező felhőalapú szolgáltatást, vagy egy felhőalapú szolgáltatás, a regionális virtuális hálózatot telepített a következő Windows PowerShell-parancsok hello belső terheléselosztás példány hozhatja létre:
+Egy meglévő felhőalapú szolgáltatás vagy egy regionális virtuális hálózat alatt üzembe helyezett felhőalapú szolgáltatás esetében a következő Windows PowerShell-parancsokkal hozhat létre belső terheléselosztási példányt:
 
 ```powershell
 $svc="<Cloud Service Name>"
 $ilb="<Name of your ILB instance>"
-$subnet="<Name of hello subnet within your virtual network>"
-$IP="<hello IPv4 address toouse on hello subnet-optional>"
+$subnet="<Name of the subnet within your virtual network>"
+$IP="<The IPv4 address to use on the subnet-optional>"
 
 Add-AzureInternalLoadBalancer -ServiceName $svc -InternalLoadBalancerName $ilb –SubnetName $subnet –StaticVNetIPAddress $IP
 ```
 
-Vegye figyelembe, hogy a hello használata [Add-AzureEndpoint](https://msdn.microsoft.com/library/dn495300.aspx) Windows PowerShell-parancsmag hello DefaultProbe paraméterhalmaz használja. A további paraméterkészletekkel kapcsolatos további információkért lásd: [Add-AzureEndpoint](https://msdn.microsoft.com/library/dn495300.aspx).
+Vegye figyelembe, hogy az [Add-AzureEndpoint](https://msdn.microsoft.com/library/dn495300.aspx) Windows PowerShell-parancsmag ilyen használata a DefaultProbe paraméterkészletet használja. A további paraméterkészletekkel kapcsolatos további információkért lásd: [Add-AzureEndpoint](https://msdn.microsoft.com/library/dn495300.aspx).
 
-### <a name="step-2-add-endpoints-toohello-internal-load-balancing-instance"></a>2. lépés: Végpontok toohello belső terheléselosztás példány hozzáadása
+### <a name="step-2-add-endpoints-to-the-internal-load-balancing-instance"></a>2. lépés: Végpontok hozzáadása a belső terheléselosztási példányhoz
 
 Például:
 
@@ -76,47 +76,47 @@ $ilb="ilbset"
 Get-AzureVM –ServiceName $svc –Name $vmname | Add-AzureEndpoint -Name $epname -Lbset $lbsetname -Protocol $prot -LocalPort $locport -PublicPort $pubport –DefaultProbe -InternalLoadBalancerName $ilb | Update-AzureVM
 ```
 
-### <a name="step-3-configure-your-servers-toosend-their-traffic-toohello-new-internal-load-balancing-endpoint"></a>3. lépés: Konfigurálja a kiszolgálók toosend a forgalom toohello új belső terheléselosztás végpontot
+### <a name="step-3-configure-your-servers-to-send-their-traffic-to-the-new-internal-load-balancing-endpoint"></a>3. lépés: A kiszolgálók konfigurálása, hogy a forgalmat az új belső terheléselosztási végpontra küldjék
 
-Konfigurálnia kell túl hello kiszolgálók érkező forgalmat folyamatos toobe elosztott terhelésű toouse hello új IP-címét (hello VIP) hello belső terheléselosztás példány. Ez az hello cím melyik belső terheléselosztás hello példány figyel. A legtöbb esetben szüksége toojust hozzáadása vagy módosítása egy DNS-rekordot hello VIP hello belső terheléselosztás példány.
+Azokat a kiszolgálókat, amelyeknek a forgalmán terheléselosztás történik, úgy kell konfigurálni, hogy a belső terheléselosztási példány új IP-címét (a VIP-címet) használják. Ez az a cím, amelyet a belső terheléselosztási példány figyel. A legtöbb esetben csak hozzá kell adnia egy DNS-rekordot a belső terheléselosztási példány VIP-címéhez, vagy módosítania kell a DNS-rekordot.
 
-Hello belső terheléselosztás példány hello létrehozásakor megadott hello IP-címet, ha már rendelkezik hello VIP. Ellenkező esetben a következő parancsok hello hello VIP látható:
+Ha a belső terheléselosztási példány létrehozása során adta meg az IP-címet, már rendelkezik a VIP-címmel. Ellenkező esetben a VIP-cím a következő parancsokkal tekinthető meg:
 
 ```powershell
 $svc="<Cloud Service Name>"
 Get-AzureService -ServiceName $svc | Get-AzureInternalLoadBalancer
 ```
 
-toouse ezek a parancsok, töltse ki a hello értékek és eltávolítás hello < és >. Például:
+A parancsok használatához töltse ki az értékeket, és távolítsa el a < és a > karaktereket. Például:
 
 ```powershell
 $svc="mytestcloud"
 Get-AzureService -ServiceName $svc | Get-AzureInternalLoadBalancer
 ```
 
-A Get-AzureInternalLoadBalancer parancs hello hello megjelenítését jegyezze fel a hello IP-címet, és hello a szükséges módosításokat tooyour kiszolgálók vagy DNS-rekordok tooensure, amely a forgalom toohello VIP küldi el.
+A Get-AzureInternalLoadBalancer parancs kimenetéből írja fel az IP-címet, és végezze el a megfelelő változtatásokat a kiszolgálókon vagy a DNS-rekordokon annak a biztosítására, hogy a rendszer a VIP-címre küldje a forgalmat.
 
 > [!NOTE]
-> hello Microsoft Azure platform különféle felügyeleti forgatókönyvekhez, amik egy nyilvánosan elérhető, statikus IPv4-címet használ. hello IP-cím 168.63.129.16. Ezt az IP-címet nem blokkolhatja egy tűzfal sem, mert ez nem várt viselkedést okozhat.
-> A tekintetben tooAzure belső terheléselosztás az IP-címet használják mintavételt hello load balancer toodetermine hello állapotát a virtuális gépek elosztott terhelésű készlet figyelése. Ha egy hálózati biztonsági csoportot használt toorestrict forgalom tooAzure virtuális gépek egy belső elosztott terhelésű készlet vagy alkalmazott tooa virtuális hálózati alhálózat, győződjön meg arról, hogy a hálózati biztonsági szabály legyen-e adva a 168.63.129.16 tooallow forgalom.
+> A Microsoft Azure platform egy statikus, nyilvánosan irányítható IPv4-címet használ számos különböző felügyeleti forgatókönyvhöz. Az IP-cím a 168.63.129.16. Ezt az IP-címet nem blokkolhatja egy tűzfal sem, mert ez nem várt viselkedést okozhat.
+> Az Azure belső terheléselosztás esetében ezt az IP-címet használják a terheléselosztó figyelési mintavételezői az elosztott terhelésű készlet virtuális gépeinek állapotmeghatározásához. Ha egy belső elosztott terhelésű készletben hálózati biztonsági csoportot használnak az Azure virtuális gépekre irányuló forgalom korlátozásához, vagy egy virtuális alhálózaton alkalmazzák, győződjön meg arról, hogy a 168.63.129.16 címről érkező adatforgalom engedélyezéséhez felvettek egy hálózati biztonsági szabályt.
 
 ## <a name="example-of-internal-load-balancing"></a>Példa a belső terheléselosztásra
 
-toostep le a hello end-tooend létrehozásának folyamatán egy elosztott terhelésű készlet két példa konfigurációk esetén lásd a következő szakaszok hello.
+A következő szakaszok lépésenként mutatják be egy elosztott terhelésű készlet létrehozásának teljes folyamatát két példakonfigurációhoz.
 
 ### <a name="an-internet-facing-multi-tier-application"></a>Az internetről elérhető, több rétegből álló alkalmazás
 
-Azt szeretné, hogy tooprovide Internet felé néző webes kiszolgálók egy csoportja egy elosztott terhelésű dokumentumadatbázis-szolgáltatás. Mindkét kiszolgálókészletet ugyanaz az Azure felhőszolgáltatás üzemelteti. Web server forgalom tooTCP 1433-as port hello adatbázis szinten lévő két virtuális gép között elérhetőnek kell lennie. 1. ábra hello konfiguráció látható.
+Elosztott terhelésű adatbázis-szolgáltatást szeretne biztosítani internetről elérhető webkiszolgálók készlete számára. Mindkét kiszolgálókészletet ugyanaz az Azure felhőszolgáltatás üzemelteti. Az 1433-as TCP-portra irányuló webkiszolgálói forgalmat két virtuális gép között kell elosztani az adatbázisszinten. Az 1. ábra a konfigurációt mutatja.
 
-![Adatbázis-rétegből hello belső elosztott terhelésű készlet](./media/load-balancer-internal-getstarted/IC736321.png)
+![Belső elosztott terhelésű készlet az adatbázisszint számára](./media/load-balancer-internal-getstarted/IC736321.png)
 
-hello konfigurációs hello következő tevődik össze:
+A konfiguráció a következőket tartalmazza:
 
-* hello meglévő felhőszolgáltatás hello virtuális gépeket mytestcloud neve.
-* hello két meglévő adatbázis-kiszolgáló megnevezett D1, DB2.
-* Hello webes réteg webkiszolgálók toohello Helyadatbázis-kiszolgálói adatbázis-rétegből hello hello magánhálózati IP-cím használatával kapcsolódnak. Egy másik lehetőség toouse a saját DNS hello virtuális hálózat, és manuálisan regisztrálni egy A rekordot hello belső terheléselosztó-készlet.
+* A meglévő felhőszolgáltatás neve, amely a virtuális gépeket üzemelteti, a mytestcloud.
+* A két meglévő adatbázis-kiszolgáló neve DB1 és DB2.
+* A webszint webkiszolgálói az adatbázisszint adatbázis-kiszolgálóihoz magánhálózati IP-címek használatával csatlakoznak. Egy másik megoldás saját DNS használata a virtuális hálózathoz, és A-rekord manuális regisztrálása a belső terheléselosztó készlethez.
 
-hello következő parancsok konfigurálása nevű új belső terheléselosztás példány **ILBset** , és adja hozzá a végpontok toohello virtuális gépek megfelelő toohello a két adatbázis-kiszolgálóin:
+A következő parancsok **ILBset** néven egy új belső terheléselosztási példányt konfigurálnak, és a két adatbázis-kiszolgálóra vonatkozóan végpontokat adnak hozzá a virtuális gépekhez:
 
 ```powershell
 $svc="mytestcloud"
@@ -137,16 +137,16 @@ Get-AzureVM –ServiceName $svc –Name $vmname | Add-AzureEndpoint -Name $epnam
 
 ## <a name="remove-an-internal-load-balancing-configuration"></a>Belső terheléselosztási konfiguráció eltávolítása
 
-a virtuális gép egy belső terheléselosztó példányból, a következő parancsok használata hello végpontjaként tooremove:
+Használja a következő parancsokat a virtuális gép végpontként történő eltávolítására a belső terheléselosztási példányról:
 
 ```powershell
 $svc="<Cloud service name>"
-$vmname="<Name of hello VM>"
-$epname="<Name of hello endpoint>"
+$vmname="<Name of the VM>"
+$epname="<Name of the endpoint>"
 Get-AzureVM -ServiceName $svc -Name $vmname | Remove-AzureEndpoint -Name $epname | Update-AzureVM
 ```
 
-toouse ezek a parancsok, töltse ki hello értékek eltávolításával hello < és >.
+A parancsok használatához töltse ki az értékeket, a < és a > karaktert eltávolítva.
 
 Például:
 
@@ -157,14 +157,14 @@ $epname="TCP-1433-1433"
 Get-AzureVM -ServiceName $svc -Name $vmname | Remove-AzureEndpoint -Name $epname | Update-AzureVM
 ```
 
-egy belső terheléselosztó példány egy felhőalapú szolgáltatás, a következő parancsok használata hello tooremove:
+Belső terheléselosztási példány eltávolításához egy felhőszolgáltatásból használja a következő parancsokat:
 
 ```powershell
 $svc="<Cloud service name>"
 Remove-AzureInternalLoadBalancer -ServiceName $svc
 ```
 
-Ezek a parancsok toouse hello érték töltse ki, és távolítsa el a hello < és >.
+A parancsok használatához töltse ki az értékeket, és távolítsa el a < és a > karaktereket.
 
 Például:
 
@@ -175,7 +175,7 @@ Remove-AzureInternalLoadBalancer -ServiceName $svc
 
 ## <a name="additional-information-about-internal-load-balancer-cmdlets"></a>További információ a belső terheléselosztási parancsmagokról
 
-Belső terheléselosztás parancsmagokról, futtassa a következő parancsokat egy Windows PowerShell-parancssorba hello tooobtain további információ:
+A belső terheléselosztási parancsmagokkal kapcsolatos további információkért futtassa a Windows PowerShell parancssorában a következő parancsokat:
 
 ```powershell
 Get-Help New-AzureInternalLoadBalancerConfig -full

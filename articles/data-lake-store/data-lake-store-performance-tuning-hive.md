@@ -1,5 +1,5 @@
 ---
-title: "Data Lake Store Hive teljesítményének hangolása irányelveit aaaAzure |} Microsoft Docs"
+title: "Az Azure Data Lake Store Hive teljesítményének hangolása irányelvek |} Microsoft Docs"
 description: "Az Azure Data Lake Store Hive teljesítményének hangolása irányelvek"
 services: data-lake-store
 documentationcenter: 
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/19/2016
 ms.author: stewu
-ms.openlocfilehash: e44daeb6ad3b64e893c709df63b56444a330729f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e10bf8f7cbae2b81d22823ff74fe652c6bcb2da3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="performance-tuning-guidance-for-hive-on-hdinsight-and-azure-data-lake-store"></a>Útmutatás a Hive HDInsight és az Azure Data Lake Store teljesítményhangolása
 
-hello alapértelmezett beállítások állítani tooprovide a megfelelő teljesítmény számos különféle használati esetek között.  I/o-igényes lekérdezések esetén a Hive bennünket tooget jobb teljesítmény ADLS lehet.  
+Az alapértelmezett beállításokat állították be, hogy a megfelelő teljesítmény számos különféle használati esetek biztosít.  I/o-igényes lekérdezések esetén a rendszer a Hive szabályozható ADLS és nagyobb teljesítményre van szüksége.  
 
 ## <a name="prerequisites"></a>Előfeltételek
 
 * **Azure-előfizetés**. Lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/).
-* **Egy Azure Data Lake Store-fiók**. Útmutatást toocreate egy, lásd: [Ismerkedés az Azure Data Lake Store](data-lake-store-get-started-portal.md)
-* **Az Azure HDInsight-fürt** a Data Lake Store-fiók hozzáférési tooa. Lásd: [HDInsight-fürtök létrehozása a Data Lake Store](data-lake-store-hdinsight-hadoop-use-portal.md). Ellenőrizze, hogy engedélyezte a távoli asztal hello fürt.
-* **HDInsight Hive futó**.  a HDInsight Hive-feladatok futtatásával kapcsolatos toolearn lásd: [használata a HDInsight Hive] (https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-use-hive)
+* **Egy Azure Data Lake Store-fiók**. Hogyan hozhat létre ilyet, lásd: [Ismerkedés az Azure Data Lake Store](data-lake-store-get-started-portal.md)
+* **Az Azure HDInsight-fürt** a Data Lake Store-fiók eléréséhez. Lásd: [HDInsight-fürtök létrehozása a Data Lake Store](data-lake-store-hdinsight-hadoop-use-portal.md). Győződjön meg arról, hogy a fürt számára engedélyezi a távoli asztal.
+* **HDInsight Hive futó**.  A HDInsight Hive-feladatok futtatásával kapcsolatos további tudnivalókért lásd: a [használata a HDInsight Hive] (https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-use-hive)
 * **Teljesítményhangolás ADLS iránymutatást**.  Általános teljesítmény fogalmakat, lásd: [Data Lake Store teljesítmény hangolása útmutató](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-performance-tuning-guidance)
 
 ## <a name="parameters"></a>Paraméterek
 
-Az alábbiakban a legfontosabb beállítások tootune hello jobb ADLS-teljesítmény:
+Az alábbiakban a továbbfejlesztett ADLS-teljesítmény hangolására legfontosabb beállítások:
 
-* **Hive.tez.Container.size** – hello egyes feladatok által használt memória mennyisége
+* **Hive.tez.Container.size** – az egyes feladatok által használt memória mennyisége
 
 * **tez.Grouping.min méretű** – minimális méret minden leképezője
 
@@ -44,27 +44,27 @@ Az alábbiakban a legfontosabb beállítások tootune hello jobb ADLS-teljesítm
 
 * **Hive.Exec.reducer.bytes.per.reducer** – minden nyomáscsökkentő méret
 
-**Hive.tez.Container.size** -hello tároló mérete határozza meg, hogy mennyi memóriát minden feladat számára.  Ez a hello fő a megadott ellenőrző hello párhuzamossági struktúrában.  
+**Hive.tez.Container.size** -tároló mérete határozza meg, hogy mennyi memória érhető el minden feladat esetében.  Ez az a fő bemeneti a Hive párhuzamossági vezérlése.  
 
-**tez.Grouping.min méretű** – Ez a paraméter lehetővé teszi a tooset hello minimális mérete minden leképező.  Ha mappers, amely Tez kiválasztja hello száma kisebb, mint a paraméter hello értékét, majd Tez itt hello értéket fogja használni.  
+**tez.Grouping.min méretű** – Ez a paraméter lehetővé teszi, hogy meg kell adnia minden leképező legkisebb méretét.  Ha, amely Tez kiválasztja mappers száma kisebb, mint ez a paraméter értékét, majd Tez fogja használni az itt beállított érték.  
 
-**tez.Grouping.max méretű** – hello paraméter lehetővé teszi a tooset hello maximális méretét minden leképező.  Ha mappers Tez úgy dönt, hogy hello száma nagyobb, mint a paraméter hello értékét, majd Tez itt hello értéket fogja használni.  
+**tez.Grouping.max méretű** – a paraméter lehetővé teszi, hogy meg kell adnia minden leképező maximális méretét.  Ha, amely Tez kiválasztja mappers száma nagyobb, mint ez a paraméter értékét, majd Tez fogja használni az itt beállított érték.  
 
-**Hive.Exec.reducer.bytes.per.reducer** – Ez a paraméter beállítja az egyes nyomáscsökkentő hello méretét.  Alapértelmezés szerint minden nyomáscsökkentő mérete 256MB.  
+**Hive.Exec.reducer.bytes.per.reducer** – Ez a paraméter minden nyomáscsökkentő méretét állítja be.  Alapértelmezés szerint minden nyomáscsökkentő mérete 256MB.  
 
 ## <a name="guidance"></a>Útmutatás
 
-**Állítsa be a hive.exec.reducer.bytes.per.reducer** – hello alapértelmezett érték tömörítetlen hello adatok esetén is működik.  A tömörített adatok csökkentse hello nyomáscsökkentő hello méretét.  
+**Állítsa be a hive.exec.reducer.bytes.per.reducer** – az alapértelmezett érték az adatok tömörítetlen esetén is működik.  A tömörített adatok csökkentse a nyomáscsökkentő méretét.  
 
-**Állítsa be a hive.tez.container.size** – minden csomóponton, a memória yarn.nodemanager.resource.memory MB-os által megadott és kell megfelelően beállítani a HDI-fürtnek alapértelmezés szerint.  A YARN hello megfelelő memória beállításával kapcsolatos további információkért tekintse meg a [utáni](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-hive-out-of-memory-error-oom).
+**Állítsa be a hive.tez.container.size** – minden csomóponton, a memória yarn.nodemanager.resource.memory MB-os által megadott és kell megfelelően beállítani a HDI-fürtnek alapértelmezés szerint.  A YARN a megfelelő memória beállításával kapcsolatos további információkért tekintse meg a [utáni](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-hive-out-of-memory-error-oom).
 
-I/o-igényes munkaterhelések is kihasználhatja a további párhuzamossági hello Tez tároló méretének csökkentésével. Hello felhasználói így növelve a feldolgozási további tárolókat.  Bizonyos Hive-lekérdezések azonban jelentős mennyiségű memória (pl. MapJoin) szükséges.  Ha hello feladat nem rendelkezik elég memóriával, memória kivétel futásidőben kívüli fog kapni.  Ha memória kivételek kívül, majd növelje hello memória.   
+I/o-igényes munkaterhelések is kihasználhatja a további párhuzamossági Tez tároló méretének csökkentésével. Így a felhasználó további tárolókat, növelve a feldolgozási.  Bizonyos Hive-lekérdezések azonban jelentős mennyiségű memória (pl. MapJoin) szükséges.  Ha a feladat nem rendelkezik elég memóriával, memória kivétel futásidőben kívüli fog kapni.  Ha memória kivételek kívül, majd növelje a memória.   
 
-futó feladatok vagy párhuzamossági egyidejű száma hello fog időpontjaihoz hello a YARN memória teljes mérete.  YARN a tárolók száma hello szabja meg, hogy hány egyidejű feladatok futtathatók.  toofind hello YARN memória mennyisége, tooAmbari lépjen.  Keresse meg a tooYARN és hello Configs lapon.  hello YARN memória ebben az ablakban jelenik meg.  
+A futó feladatok vagy párhuzamossági egyidejű száma a teljes YARN memória fog időpontjaihoz.  A YARN a tárolók száma szabja meg, hogy hány egyidejű feladatok futtathatók.  A YARN memória mennyisége megkereséséhez nyissa meg az Ambari.  A YARN és a Configs lapon.  A YARN memória ebben az ablakban jelenik meg.  
 
         Total YARN memory = nodes * YARN memory per node
         # of YARN containers = Total YARN memory / Tez container size
-hello kulcs tooimproving teljesítményét ADLS tooincrease hello párhuzamossági lehetőség szerint.  Tez automatikusan kiszámítja hello számát feladatokat, így nem kell tooset létre kell azt.   
+A fontos ADLS teljesítményének javítása, hogy a lehető legrövidebb egyidejűségi növeléséhez.  Tez automatikusan számítja ki feladatokat, így nem kell állítsa be úgy kell létrehozni.   
 
 ## <a name="example-calculation"></a>Példa kiszámítása
 
@@ -77,13 +77,13 @@ Tegyük fel, egy 8 csomópont D14 fürt rendelkezik.
 ## <a name="limitations"></a>Korlátozások
 **ADLS-szabályozás** 
 
-Hello kattint UIf korlátozza a sávszélesség megadott által ADLS, toosee feladat hibáihoz kezdenie. Ez azonosítható betartásával szabályozási hibák feladat naplókban által.  Hello párhuzamossági Tez tároló méretének növelésével csökkenthető.  Ha a feladat több egyidejű van szüksége, lépjen kapcsolatba velünk a következő címen.   
+UIf találati ADLS által biztosított sávszélesség határain, hogy feladat hibáihoz kezdenie. Ez azonosítható betartásával szabályozási hibák feladat naplókban által.  A párhuzamos végrehajtás Tez tároló méretének növelésével csökkenthető.  Ha a feladat több egyidejű van szüksége, lépjen kapcsolatba velünk a következő címen.   
 
-Ha Ön első szabályozott toocheck, tooenable hello hibakeresési naplózás hello ügyféloldalon kell. Ez hogyan azt teheti meg:
+Ha Ön első szabályozott ellenőrzéséhez szeretne engedélyezni a hibakeresési naplózás az ügyféloldalon. Ez hogyan azt teheti meg:
 
-1. Helyezze el a következő tulajdonság hello log4j tulajdonságai a Hive-config hello. Ezt megteheti az Ambari nézetben: log4j.logger.com.microsoft.azure.datalake.store=DEBUG indítsa újra az összes hello csomópontok/szolgáltatást hello config tootake hatást.
+1. Helyezze el a következő tulajdonság a Hive-config log4j tulajdonságait. Ezt megteheti az Ambari nézetben: log4j.logger.com.microsoft.azure.datalake.store=DEBUG indítsa újra az összes a csomópontok/szolgáltatást a konfiguráció életbe léptetéséhez.
 
-2. Ha Ön első szabályozott, látni fogja, hello HTTP 429 hibakód hello hive naplófájlban. hello hive naplófájl van /tmp/&lt;felhasználói&gt;/hive.log
+2. Ha Ön első szabályozott, látni fogja, a hive naplófájlban a HTTP 429 hibakód. A hive naplófájl van /tmp/&lt;felhasználói&gt;/hive.log
 
 ## <a name="further-information-on-hive-tuning"></a>További információ a Hive hangolása
 

@@ -1,6 +1,6 @@
 ---
-title: "AAA\"hello Azure-portál használatával Media Services-fiók fájlokat feltöltés |} Microsoft dokumentumok\""
-description: "Ez az oktatóanyag végigvezeti hello fájlok feltöltése a Media Services-fiók hello Azure-portál használatával"
+title: "Fájlok feltöltése Media Services-fiókba az Azure Portalon | Microsoft Docs"
+description: "Ez az oktatóprogram végigvezeti azon lépéseken, amelyek segítségével fájlokat tölthet fel egy Media Services-fiókba az Azure Portalon."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,58 +14,54 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/07/2017
 ms.author: juliako
-ms.openlocfilehash: 4ce1e133c72854532735ba7c72a43c92a75bc240
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7ddfe44918b358a1749640d1c93dba490855cc5a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="upload-files-into-a-media-services-account-using-hello-azure-portal"></a>Fájlok feltöltése a Media Services-fiók hello Azure-portál használatával
+# <a name="upload-files-to-a-media-services-account-in-the-azure-portal"></a>Fájlok feltöltése Media Services-fiókba az Azure Portalon
 > [!div class="op_single_selector"]
 > * [Portál](media-services-portal-upload-files.md)
 > * [.NET](media-services-dotnet-upload-files.md)
 > * [REST](media-services-rest-upload-files.md)
 > 
 > [!NOTE]
-> toocomplete ebben az oktatóanyagban egy Azure-fiókra van szüksége. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/). 
+> Az oktatóanyag elvégzéséhez egy Azure-fiókra lesz szüksége. További részletek: [Ingyenes Azure-próbafiók](https://azure.microsoft.com/pricing/free-trial/). 
 > 
 
+Az Azure Media Services szolgáltatásban a digitális fájlok feltöltése egy objektumba történik. Az objektum tartalmazhat videót, hangot, képeket, miniatűröket, szövegsávokat és feliratfájlokat (valamint mindezen fájlok metaadatait). A fájlok feltöltése után a tartalom a felhőben lesz biztonságosan tárolva további feldolgozás és streamelés céljából.
 
-A Media Services szolgáltatásban a digitális fájlok feltöltése egy adategységbe történik. hello eszköz tartalmazhat videó, hang, képeket, miniatűröket, szöveg nyomon követi és feliratfájlokat fájlokat (és mindezen fájlok metaadatait hello.) Miután hello fájlok feltöltése után a lesz biztonságosan tárolva a tartalom további feldolgozás és adatfolyam-hello felhő.
-
-
-## <a name="upload-files"></a>Fájlok feltöltése
-
->[!NOTE]
->Nincs a Media Services feldolgozás támogatott korlátot toohello fájl maximális méretét. Ellenőrizze a [ez](media-services-quotas-and-limitations.md) témakör hello méretű fájlt választhat vonatkozó további információért.
+> [!NOTE]
+> A Media Services a fájlok feldolgozása esetében felső fájlméret-korlátozást alkalmaz. További részletek a fájlméret-korlátozásokról: [Media Services – Kvóták és korlátozások](media-services-quotas-and-limitations.md).
 >
 
-1. A hello [Azure-portálon](https://portal.azure.com/), válassza ki az Azure Media Services-fiók.
-2. A hello **beállítások** panelen kattintson a **eszközök**.
+## <a name="upload-files"></a>Fájlok feltöltése
+1. Az [Azure-portálon](https://portal.azure.com/) válassza ki Azure Media Services-fiókját.
+2. Válassza a **Settgings (Beállítások)** > **Assets (Objektumok)** lehetőséget. Ezután válassza ki a **Feltöltés** gombot.
    
     ![Fájlok feltöltése](./media/media-services-portal-vod-get-started/media-services-upload.png)
-3. Kattintson a hello **feltöltése** gombra.
    
-    Hello **töltse fel a video asset** ablak jelenik meg.
+    Megjelenik az **Upload a video asset** (Videóobjektum feltöltése) ablak.
    
    > [!NOTE]
-   > Tetszőleges méretű fájlt választhat.
-   > 
-   > 
-4. Keresse meg a szükséges toohello videót a számítógépen, válassza ki azt, és kattintson az OK gombra.  
+   > A Media Services nem korlátozza a feltölteni kívánt videók méretét.
+ 
+3. Keresse meg a számítógépén a feltölteni kívánt videót. Jelölje ki a videót, majd válassza az **OK** lehetőséget.  
    
-    hello feltöltés elindul, és megtekintheti a hello fájlnév hello folyamatban.  
+    Megkezdődik a feltöltés. A folyamat előrehaladását a fájlnév alatt követheti nyomon.  
 
-Hello feltöltése után látni fogja a hello új objektum bekerül hello **eszközök** ablak. 
-
-## <a name="next-steps"></a>Következő lépések
-Most már kódolhatja a feltöltött adategységeket. További információ: [Encode Assets](media-services-portal-encode.md) (Adategységek kódolása).
-
-Használhatja az Azure Functions tootrigger egy kódolási feladat, a konfigurált hello tároló érkező fájl alapján. További információkért tekintse meg [ezt a mintát](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ ).
+A feltöltést követően az új objektum megjelenik az **Objektumok** panelen. 
 
 ## <a name="media-services-learning-paths"></a>Media Services képzési tervek
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
 ## <a name="provide-feedback"></a>Visszajelzés küldése
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
+
+## <a name="next-steps"></a>Következő lépések
+* Ismerkedjen meg a [feltöltött objektumok kódolásának](media-services-portal-encode.md) módjával.
+
+* Emellett az Azure Functions használatával is elindíthatja a kódolási feladatokat a fájloknak a konfigurált tárolóba történő érkezésekor. További információkért tekintse meg a [Media Services: Az Azure Media Services integrálása Azure Functions- és Logic Apps- alkalmazásokkal](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/) cikkben található mintát.
+
 

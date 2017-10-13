@@ -1,5 +1,5 @@
 ---
-title: Azure Redis Cache Python aaaHow toouse |} Microsoft Docs
+title: "Az Azure Redis Cache használata Pythonnal | Microsoft Docs"
 description: "Bevezetés az Azure Redis Cache használatába Python alkalmazásával"
 services: redis-cache
 documentationcenter: 
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: cache-redis
 ms.workload: tbd
 ms.date: 02/10/2017
 ms.author: sdanie
-ms.openlocfilehash: 74c03eb4ce17ff3574595fd2bb37e399d71c6eb4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: cdbee52574d0ffbe82ef3dc98f2848f4d00ba2ff
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toouse-azure-redis-cache-with-python"></a>Hogyan toouse Azure Redis Cache-gyorsítótár Python
+# <a name="how-to-use-azure-redis-cache-with-python"></a>Az Azure Redis Cache használata Pythonnal
 > [!div class="op_single_selector"]
 > * [.NET](cache-dotnet-how-to-use-azure-redis-cache.md)
 > * [ASP.NET](cache-web-app-howto.md)
@@ -30,7 +30,7 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Ez a témakör bemutatja, hogyan tooget el az Azure Redis Cache pythonos környezetekben.
+Ez a témakör segítséget nyújt az első lépések megtételében az Azure Redis Cache és a Python használatakor.
 
 ## <a name="prerequisites"></a>Előfeltételek
 Telepítse a [redis-py](https://github.com/andymccurdy/redis-py) ügyfelet.
@@ -38,15 +38,15 @@ Telepítse a [redis-py](https://github.com/andymccurdy/redis-py) ügyfelet.
 ## <a name="create-a-redis-cache-on-azure"></a>Redis Cache gyorsítótár létrehozása az Azure-ban
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-create.md)]
 
-## <a name="retrieve-hello-host-name-and-access-keys"></a>Hello állomás neve vagy a hozzáférési kulcsok beolvasása
+## <a name="retrieve-the-host-name-and-access-keys"></a>Állomásnév és hívóbetűk lekérése
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-access-keys.md)]
 
-## <a name="enable-hello-non-ssl-endpoint"></a>Hello-SSL végpont engedélyezése
-Néhány Redis-ügyfelek nem rendelkezik SSL-támogatással, és az alapértelmezett hello [nem SSL port le van tiltva, az új Azure Redis Cache példány](cache-configure.md#access-ports). Írásának hello időpontban hello [redis-másolása](https://github.com/andymccurdy/redis-py) ügyfél nem támogatja az SSL. 
+## <a name="enable-the-non-ssl-endpoint"></a>Nem SSL végpont engedélyezése
+Egyes Redis-ügyfelek nem támogatják az SSL-t, és alapértelmezés szerint a [nem SSL port le van tiltva az új Azure Redis Cache-példányokban](cache-configure.md#access-ports). Az oktatóanyag összeállításakor a [redis-py](https://github.com/andymccurdy/redis-py) nem támogatja az SSL-t. 
 
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-non-ssl-port.md)]
 
-## <a name="add-something-toohello-cache-and-retrieve-it"></a>Hozzáadás toohello gyorsítótárazása és lekéréséhez
+## <a name="add-something-to-the-cache-and-retrieve-it"></a>Elemek hozzáadása és lekérése a gyorsítótárból
     >>> import redis
     >>> r = redis.StrictRedis(host='<name>.redis.cache.windows.net',
           port=6380, db=0, password='<key>', ssl=True)

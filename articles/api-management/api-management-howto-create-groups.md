@@ -1,6 +1,6 @@
 ---
-title: "csoportok használata az Azure API Management aaaManage fejlesztői fiókok |} Microsoft Docs"
-description: "Ismerje meg, hogyan toomanage fejlesztői fiókok csoportok az Azure API Management"
+title: "Csoportok használata az Azure API Management fejlesztői fiókok kezelése |} Microsoft Docs"
+description: "Csoportok használata az Azure API Management fejlesztői fiókok kezelése"
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,85 +14,85 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: c46e010e41d9705ae161dcd60d734a76d19c9e93
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b4d71cdfbab535b02542fbb26c7555265e5f9c37
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toocreate-and-use-groups-toomanage-developer-accounts-in-azure-api-management"></a>Hogyan toocreate és -felhasználási csoportok toomanage fejlesztői fiókok az Azure API Management
-Az API Management csoportok olyan termékek toodevelopers használt toomanage hello láthatóságát. Termékek első készült látható toogroups, és ezeket a csoportokat a fejlesztők megtekintheti és toohello termékek hello csoportokhoz társított előfizetés majd. 
+# <a name="how-to-create-and-use-groups-to-manage-developer-accounts-in-azure-api-management"></a>Hozzon létre és csoportoknak a segítségével az Azure API Management fejlesztői fiókok kezelése
+Az API Management szolgáltatásban csoportok használatával szabályozható a fejlesztők hozzáférése a termékhez. Termékek vannak először láthatóvá válnak az csoportok, és ezeket a csoportokat a fejlesztők megtekintheti és a termékek, a csoportokhoz tartozó előfizetés majd. 
 
-Az API Management követően nem módosítható rendszer csoportok hello rendelkezik.
+Az API Management az alábbi megváltoztathatatlan rendszercsoportokkal rendelkezik.
 
-* **Rendszergazdák** – A csoportot Azure-előfizető rendszergazdák alkotják. Rendszergazdák kezelése az API Management szolgáltatáspéldány, API-k, műveletek és a fejlesztők által használt termékek létrehozása hello.
-* **Fejlesztők** – A fejlesztői portál hitelesített felhasználói tartoznak ebbe a csoportba. A fejlesztők olyan alkalmazásokat, az API-k használatával készíthetnek hello ügyfelek. A fejlesztők kapnak hozzáférést toohello fejlesztői portálján, és alkalmazások összeállítását, amelyek hívja az API-k hello működésére.
-* **A vendégek** -hitelesítés nélküli developer portálon a felhasználóknak, például a lehetséges ügyfelek látogató hello fejlesztői portálján az API Management példány alá esik az ebbe a csoportba. Ezek is hozzáférést bizonyos csak olvasható, például a hello képességét tooview API-k, de nem hívható meg őket.
+* **Rendszergazdák** – A csoportot Azure-előfizető rendszergazdák alkotják. A rendszergazdák kezelik az API Management szolgáltatáspéldányokat, valamint ők hozzák létre az API-kat, a műveleteket és a fejlesztők által használt termékeket.
+* **Fejlesztők** – A fejlesztői portál hitelesített felhasználói tartoznak ebbe a csoportba. A fejlesztők olyan ügyfelek, akik alkalmazásokat hoznak létre az API-k segítségével. A fejlesztők hozzáférhetnek a fejlesztői portálhoz, és olyan alkalmazásokat készíthetnek, amelyek egy API műveleteit hívják meg.
+* **Vendégek** – A fejlesztői portál nem hitelesített felhasználói tartoznak ebbe a csoportba, például az egyik API Management példány fejlesztői portálját meglátogató leendő ügyfelek. A vendégek kaphatnak bizonyos szintű, csak olvasási hozzáférést, például megtekinthetnek API-kat, de nem hívhatják meg őket.
 
-Toothese rendszer csoportok hozzáadása, a rendszergazdák egyéni csoportot hozhat létre vagy [kihasználja a társított Azure Active Directory-bérlők külső csoportok][leverage external groups in associated Azure Active Directory tenants]. Egyéni és külső csoportok rendszer csoportok jogosultságot ad a fejlesztők számára látható együtt is használható, és tooAPI terméket. Például létrehozhat egy egyéni csoport tagja-e egy adott fejlesztők fiókpartner szervezetében dolgozó és a hozzáférés engedélyezése csak megfelelő API-k tartalmazó az API-k toohello. Egy felhasználó egyszerre több csoport tagja is lehet.
+A rendszer csoportokban mellett a rendszergazdák egyéni csoportot hozhat létre vagy [kihasználja a társított Azure Active Directory-bérlők külső csoportok][leverage external groups in associated Azure Active Directory tenants]. A fejlesztők mellett az egyéni és külső csoportoknak is lehet adni láthatóságot és hozzáférést az API-termékekhez. Például egy adott partnerszervezet fejlesztői számára létre lehet hozni egy egyéni csoportot, és hozzáférést lehet nekik biztosítani a megfelelő API-kat tartalmazó termék API-jaihoz. Egy felhasználó egyszerre több csoport tagja is lehet.
 
 Ez az útmutató bemutatja, hogyan API Management példány rendszergazdák új csoportok hozzáadása és rendelheti őket hozzá a termékek és a fejlesztők számára.
 
 > [!NOTE]
-> Ezenkívül toocreating és hello publisher portálon csoportok kezelése, akkor hozhat létre és kezelhet a csoportok hello API Management REST API használatával [csoport](https://msdn.microsoft.com/library/azure/dn776329.aspx) entitás.
+> Csoportok létrehozása és kezelése a közzétevő portálon, mellett hozhat létre és az API Management REST API használatával csoportok kezelése [csoport](https://msdn.microsoft.com/library/azure/dn776329.aspx) entitás.
 > 
 > 
 
 ## <a name="create-group"></a>Hozzon létre egy csoportot
-egy új csoport toocreate kattintson **Publisher portal** hello Azure portál, az API-kezelés szolgáltatás a. Ezzel megnyitná toohello API Management publisher portálon.
+Új csoport létrehozásához kattintson a **Publisher portal** az Azure portálon az API Management szolgáltatás. Ezzel továbblép az API Management közzétevő portáljára.
 
 ![Közzétevő portál][api-management-management-console]
 
-> Ha még nem hozott létre az API Management szolgáltatáspéldány, lásd: [hozzon létre egy API-kezelés szolgáltatás példányt] [ Create an API Management service instance] a hello [Ismerkedés az Azure API Management] [ Get started with Azure API Management] oktatóanyag.
+> Ha még nem hozott létre API Management szolgáltatáspéldányt, tekintse meg az [Ismerkedés az Azure API Management szolgáltatással][Get started with Azure API Management] oktatóanyag [API Management szolgáltatáspéldány létrehozása][Create an API Management service instance] című szakaszát.
 > 
 > 
 
-Kattintson a **csoportok** a hello **API Management** hello maradt, és válassza a menü **csoport hozzáadása**.
+Kattintson a **csoportok** a a **API Management** a bal oldali menüben, majd **csoport hozzáadása**.
 
 ![Új csoport hozzáadása][api-management-add-group]
 
-Adjon meg egy egyedi nevet hello csoport és az opcionális leírást, és kattintson a **mentése**.
+Adjon meg egy egyedi nevet a csoport és az opcionális leírást, és kattintson a **mentése**.
 
 ![Új csoport hozzáadása][api-management-add-group-window]
 
-hello új csoport megjelenik a(z) hello csoportok esetén külön-külön tooedit hello **neve** vagy **leírás** hello csoport, kattintson a hello csoport hello listában hello nevét. toodelete hello csoportjában kattintson a **törlése**.
+Az új csoport megjelenik a csoportok lapon. A módosítandó a **neve** vagy **leírás** csoportjában kattintson a listában a csoport nevét. A csoport törléséhez kattintson **törlése**.
 
 ![Csoport hozzáadva][api-management-new-group]
 
-Most, hogy hello csoport jön létre, termékek és a fejlesztők kapcsolódó lehet.
+Most, hogy a csoport jön létre, termékek és a fejlesztők kapcsolódó lehet.
 
 ## <a name="associate-group-product"></a>Társítsa a termék egy csoportot
-a csoportban található, a termék tooassociate kattintson **termékek** a hello **API Management** hello menüjének balra, és kattintson a kívánt termék hello hello nevét.
+Társítsa a termék egy csoportot, kattintson a **termékek** a a **API Management** a bal oldali menü és kattintson a kívánt termék nevét.
 
 ![Láthatóság megadása][api-management-add-group-to-product]
 
-Jelölje be hello **látható** tooadd lapra, és távolítsa el a csoportokból és tooview hello aktuális hello termékhez. tooadd vagy csoportok, ellenőrizze, vagy törölje a hello négyzet jelölését, hello szükségeskonfiguráció-csoportokat, és kattintson a **mentése**.
+Válassza ki a **látható** lap hozzáadása és eltávolítása a csoportok és a termék aktuális csoportok megtekintése. Adja hozzá, vagy távolítsa el a csoportokat, ellenőrizze, vagy törölje a négyzet jelölését, a kívánt csoportok számára, majd kattintson **mentése**.
 
 ![Láthatóság megadása][api-management-add-group-to-product-visibility]
 
 > [!NOTE]
-> Active Directory-csoportok tooadd, lásd: [hogyan tooauthorize fejlesztői fiókok Azure Active Directory, az Azure API Management](api-management-howto-aad.md).
+> Azure Active Directory-csoportok hozzáadása, lásd: [hogyan szeretné engedélyekkel felruházni fejlesztői fiókok Azure Active Directory használatával az Azure API Management](api-management-howto-aad.md).
 > 
-> hello tooconfigure csoportjait **látható** termék lapra, majd **csoportok kezelése**.
+> A csoportok konfigurálásához a **látható** termék lapra, majd **csoportok kezelése**.
 > 
 > 
 
-Ha a termék egy csoporthoz tartozik, fejlesztők csoport megtekintheti és toohello termék előfizetés.
+Ha a termék egy csoporthoz tartozik, fejlesztők csoport megtekintheti és előfizetni a termék.
 
 ## <a name="associate-group-developer"></a>Csoportok társítani a fejlesztők számára
-tooassociate csoportok fejlesztőkkel, kattintson a **felhasználók** a hello **API Management** hello maradt, és hello fejlesztők melletti jelölőnégyzet hello menüjének kívánja tooassociate egy csoportba.
+Csoportok fejlesztőkkel való társításához kattintson **felhasználók** a a **API Management** a bal oldali menüben, majd ellenőrizze a fejlesztők a csoportba felvenni kívánt melletti mezőbe.
 
-![Fejlesztői toogroup hozzáadása][api-management-add-group-to-developer]
+![Fejlesztői hozzáadása csoporthoz][api-management-add-group-to-developer]
 
-Ha hello szükséges, hogy a fejlesztők a rendszer ellenőrzi, kattintson a kívánt csoport hello hello **tooGroup hozzáadása** legördülő listán. Csoportok fejlesztők eltávolítható hello segítségével **távolítsa el a csoportból** legördülő listán. 
+A kívánt fejlesztők is be van jelölve, kattintson a kívánt csoportot a **hozzáadása csoporthoz** legördülő listán. A fejlesztők lehet eltávolítani a csoportok használatával a **távolítsa el a csoportból** legördülő listán. 
 
 ![Fejlesztők][api-management-add-group-to-developer-saved]
 
-Hello fejlesztői és hello csoport közötti hello társítás hozzáadása után megtekintheti az hello **felhasználók** fülre.
+A fejlesztői és a csoport között. a társítás hozzáadása után megtekintheti azokat a **felhasználók** fülre.
 
-## <a name="next-steps"></a>Következő lépések
-* Egy fejlesztő tooa csoport hozzáadása után tekinthet meg és a csoport toohello termékek előfizetés. További információkért lásd: [hogyan létrehozása, és a termék közzététele az Azure API Management][How create and publish a product in Azure API Management],
-* Ezenkívül toocreating és hello publisher portálon csoportok kezelése, akkor hozhat létre és kezelhet a csoportok hello API Management REST API használatával [csoport](https://msdn.microsoft.com/library/azure/dn776329.aspx) entitás.
+## <a name="next-steps"> </a>Következő lépések
+* Egy fejlesztő csoporthoz hozzáadott, tekinthet meg és a termékek, a csoport előfizetni. További információkért lásd: [hogyan létrehozása, és a termék közzététele az Azure API Management][How create and publish a product in Azure API Management],
+* Csoportok létrehozása és kezelése a közzétevő portálon, mellett hozhat létre és az API Management REST API használatával csoportok kezelése [csoport](https://msdn.microsoft.com/library/azure/dn776329.aspx) entitás.
 
 [api-management-management-console]: ./media/api-management-howto-create-groups/api-management-management-console.png
 [api-management-add-group]: ./media/api-management-howto-create-groups/api-management-add-group.png

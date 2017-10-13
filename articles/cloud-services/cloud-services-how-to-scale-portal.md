@@ -1,6 +1,6 @@
 ---
-title: "aaaAuto a felhőalapú szolgáltatások méretezéséhez hello portálon |} Microsoft Docs"
-description: "Ismerje meg, hogyan toouse hello portál tooconfigure automatikus skálázási szabályok felhő szerepkör-szolgáltatás webes vagy feldolgozói szerepkör az Azure-ban."
+title: "Automatikus méretezése a felhőszolgáltatást a portálon |} Microsoft Docs"
+description: "Megtudhatja, hogyan használhatja a portált egy felhőalapú szolgáltatás webes szerepkör vagy a feldolgozói szerepkör automatikus skálázási szabályok konfigurálása az Azure-ban."
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,64 +14,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/18/2017
 ms.author: adegeo
-ms.openlocfilehash: 265f4c8ec5e1ec2f85585df25f18cd0d0c9946a7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e9683d4c5779450fd67fa42ab13095c7f201b4cd
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-tooconfigure-auto-scaling-for-a-cloud-service-in-hello-portal"></a>Hogyan tooconfigure automatikus skálázás egy felhőalapú szolgáltatás hello portálon
+# <a name="how-to-configure-auto-scaling-for-a-cloud-service-in-the-portal"></a>Az automatikus skálázás egy felhőalapú szolgáltatás, a portál konfigurálása
 > [!div class="op_single_selector"]
 > * [Azure Portal](cloud-services-how-to-scale-portal.md)
 > * [klasszikus Azure portál](cloud-services-how-to-scale.md)
 
-Egy felhőalapú szolgáltatás feldolgozói szerepkör terjedő skálán bejövő vagy kimenő műveletet kiváltó feltételek állíthat be. hello szerepkör hello feltételei hello Processzor, lemez vagy hálózati terheléselosztási hello szerepkör alapulhatnak. Egy feltétel alapján néhány más Azure-erőforrás az Ön előfizetéséhez rendelve egy üzenet várólista vagy hello metrikája állíthat be.
+Egy felhőalapú szolgáltatás feldolgozói szerepkör terjedő skálán bejövő vagy kimenő műveletet kiváltó feltételek állíthat be. A feltételek a szerepkör a Processzor, lemez vagy a szerepkör a hálózati terhelést alapulhatnak. Beállíthat egy feltételt, egy üzenet-várólista vagy valamilyen más Azure-erőforrás az Ön előfizetéséhez rendelve metrikája alapján is.
 
 > [!NOTE]
 > Ez a cikk a felhőalapú szolgáltatás webes és feldolgozói szerepkörök összpontosít. A virtuális gép (klasszikus) közvetlenül létrehozásakor tárolja egy felhőalapú szolgáltatás. A normál virtuális gépek méretezheti társítja azt egy [rendelkezésre állási csoport](../virtual-machines/windows/classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) és manuálisan kapcsolja be és ki.
 
 ## <a name="considerations"></a>Megfontolandó szempontok
-A következő információkat az alkalmazás skálázás konfigurálása előtt hello kell figyelembe vennie:
+Az alkalmazás skálázás konfigurálása előtt gondolja át a következő információkat:
 
 * Skálázás alapvető használati van hatással.
 
-    Nagyobb szerepkörpéldányokat több magot használja. Az előfizetéshez tartozó méretezhető hello vonatkozó felső korlátját: belül csak egy alkalmazást. Tegyük fel, hogy előfizetéséhez maximális hossza 20 magok. Ha egy alkalmazás két közepes méretű felhőszolgáltatások (4 mag összesen) futtatja, csak legfeljebb más felhőalapú szolgáltatás telepítések az előfizetésében hello fennmaradó 16 maggal által. Méretek kapcsolatos további információkért lásd: [Felhőszolgáltatások méretével](cloud-services-sizes-specs.md).
+    Nagyobb szerepkörpéldányokat több magot használja. Csak a vonatkozó felső korlátját: belül az előfizetéshez tartozó méretezheti. Tegyük fel, hogy előfizetéséhez maximális hossza 20 magok. Ha egy alkalmazás két közepes méretű felhőszolgáltatások (4 mag összesen) futtatja, csak legfeljebb más felhőalapú szolgáltatás központi az előfizetésben a fennmaradó 16 maggal által. Méretek kapcsolatos további információkért lásd: [Felhőszolgáltatások méretével](cloud-services-sizes-specs.md).
 
-* Méretezheti a várólista állapotüzenet küszöbértéke alapján. További információ toouse sorok, lásd: [hogyan toouse hello Queue Storage szolgáltatás](../storage/queues/storage-dotnet-how-to-use-queues.md).
+* Méretezheti a várólista állapotüzenet küszöbértéke alapján. Üzenetsorok használatával kapcsolatos további információkért lásd: [használata a Queue Storage szolgáltatás](../storage/queues/storage-dotnet-how-to-use-queues.md).
 
 * További erőforrások, az Ön előfizetéséhez rendelve is méretezheti.
 
-* tooenable magas rendelkezésre állás az alkalmazás, akkor győződjön meg arról, hogy két vagy több szerepkör osztályt telepítették. További információkért lásd: [szolgáltatói szerződések](https://azure.microsoft.com/support/legal/sla/).
+* Ahhoz, hogy az alkalmazás magas rendelkezésre állású, akkor győződjön meg arról, hogy két vagy több szerepkör osztályt telepítették. További információkért lásd: [szolgáltatói szerződések](https://azure.microsoft.com/support/legal/sla/).
 
 
 ## <a name="where-scale-is-located"></a>Ahol a méretezési
-Miután kiválasztotta a felhőalapú szolgáltatás, rendelkeznie kell hello cloud service panelen látható.
+Miután kiválasztotta a felhőalapú szolgáltatás, rendelkeznie kell a cloud service panelen látható.
 
-1. Hello cloud service panelen, a hello **szerepkörök és példányok** csempe, jelölje be hello neve hello felhőalapú szolgáltatás.   
-   **FONTOS**: Győződjön meg arról, hogy tooclick hello felhő szerepkör-szolgáltatás, nem hello szerepkörpéldányt, amely hello szerepkör alatt.
+1. A felhőalapú szolgáltatás panelen a a **szerepkörök és példányok** csempére, válassza ki a felhőalapú szolgáltatás nevét.   
+   **FONTOS**: Ügyeljen arra, hogy a felhő szerepkör-szolgáltatás, nem a példányon, amely alatt a szerepkör kattintson.
 
     ![](./media/cloud-services-how-to-scale-portal/roles-instances.png)
-2. Jelölje be hello **méretezési** csempére.
+2. Válassza ki a **méretezési** csempére.
 
     ![](./media/cloud-services-how-to-scale-portal/scale-tile.png)
 
 ## <a name="automatic-scale"></a>Automatikus méretezése
-A szerepkörhöz tartozó skálázási beállítások vagy két mód konfigurálható **manuális** vagy **automatikus**. Manuális módon teheti meg, beállíthatja a hello abszolút példányainak számát. Automatikus azonban lehetővé teszi a tooset meghatározó szabályok és hogyan milyen sokkal meg kell méretezni.
+A szerepkörhöz tartozó skálázási beállítások vagy két mód konfigurálható **manuális** vagy **automatikus**. Manuális módon teheti meg, beállíthatja a példányainak abszolút számát. Automatikus azonban lehetővé teszi, hogy a készlet meghatározó szabályok és hogyan milyen sokkal meg kell méretezni.
 
-Set hello **szerint** beállítás túl**ütemezés és a teljesítmény szabályok**.
+Állítsa be a **szerint** lehetőséggel **ütemezés és a teljesítmény szabályok**.
 
 ![Cloud services skálázási beállításokat a profil és a szabály](./media/cloud-services-how-to-scale-portal/schedule-basics.png)
 
 1. Egy meglévő profilt.
-2. Vegyen fel egy szülő hello-profil.
+2. Vegye fel a szülő profil szabályt.
 3. Egy másik profil hozzáadásához.
 
-Válassza ki **profil hozzáadása**. hello-profil határozza meg, melyik módban toouse kívánt hello bővített: **mindig**, **ismétlődési**, **rögzített dátum**.
+Válassza ki **profil hozzáadása**. A profil határozza meg, melyik skála használni kívánt módot: **mindig**, **ismétlődési**, **rögzített dátum**.
 
-Miután konfigurálta a hello-profil és a szabályokat, válassza ki a hello **mentése** hello felső ikonra.
+Miután konfigurálta a profil és a szabályokat, válassza ki a **mentése** ikonra a bal felső.
 
 #### <a name="profile"></a>Profil
-hello-profil beállítja a minimális és maximális példányainak hello méretezhető, illetve is a tartomány használata aktív.
+A minimális és maximális példányainak a méretezési készlet, és emellett Ha a tartomány active.
 
 * **Mindig**
 
@@ -80,35 +80,35 @@ hello-profil beállítja a minimális és maximális példányainak hello méret
     ![A felhőalapú szolgáltatás, amely mindig](./media/cloud-services-how-to-scale-portal/select-always.png)
 * **Ismétlődés**
 
-    Válasszon olyan hello hét tooscale napon.
+    Válasszon olyan napokat a hét méretezése.
 
     ![Cloud service méretezéssel ismétlődési ütemezés](./media/cloud-services-how-to-scale-portal/select-recurrence.png)
 * **Rögzített dátum**
 
-    Rögzített dátum tartomány tooscale hello szerepkör.
+    Rögzített dátumtartomány méretezése a szerepkört.
 
     ![CLoud service méretezési fix dátummal](./media/cloud-services-how-to-scale-portal/select-fixed.png)
 
-Miután konfigurálta a hello-profil, válassza ki a hello **OK** gomb hello aljához hello-profil panelje.
+Miután konfigurálta a profil, válassza ki a **OK** gombra a profil panel alján.
 
 #### <a name="rule"></a>Szabály
-Szabályok tooa profilt ad hozzá, és hello méretezési kiváltó feltétel képviseli.
+Szabályok profil adnak, és megfelelnek a skála kiváltó feltétel.
 
-hello szabály eseményindító metrika hello felhőszolgáltatás (CPU-használat, lemezre tevékenységi vagy hálózati tevékenységek) alapuló toowhich feltételes értéket adhat hozzá. Továbbá akkor is hello eseményindító néhány más Azure-erőforrás az Ön előfizetéséhez rendelve egy üzenet várólista vagy hello metrikája alapján.
+A szabály eseményindító a felhőszolgáltatás (CPU-használat, lemezre tevékenységi vagy hálózati tevékenységek), amelyhez egy feltételes értéket adhat hozzá metrika alapul. Az üzenet-várólista vagy valamilyen más Azure-erőforrás az Ön előfizetéséhez rendelve metrikája alapján eseményindító továbbá akkor is.
 
 ![](./media/cloud-services-how-to-scale-portal/rule-settings.png)
 
-Miután konfigurálta a hello szabály, válassza ki a hello **OK** hello hello szabály panel alsó részén gombra.
+Miután konfigurálta a szabályt, válassza ki a **OK** gombra a szabály panel alján.
 
-## <a name="back-toomanual-scale"></a>Biztonsági toomanual méretezési
-Keresse meg a toohello [beállítások méretezése](#where-scale-is-located) és set hello **bővítse a** beállítás túl**manuálisan megadott példányszám**.
+## <a name="back-to-manual-scale"></a>Vissza a manuális méretezési
+Keresse meg a [méretezési beállításainak](#where-scale-is-located) és állítsa be a **szerint** lehetőséggel **manuálisan megadott példányszám**.
 
 ![Cloud services skálázási beállításokat a profil és a szabály](./media/cloud-services-how-to-scale-portal/manual-basics.png)
 
-Ez a beállítás eltávolítja az automatikus skálázás hello szerepkörből, és állíthat be hello példányszám közvetlenül.
+Ez a beállítás eltávolítja az automatikus skálázás a szerepkörből, és állíthat be a példányszám közvetlenül.
 
-1. hello méretezési (Manuális vagy automatikus) lehetőséget.
-2. Egy szerepkör példány csúszkát tooset hello példányok tooscale számára.
-3. Hello szerepkör tooscale a példányai.
+1. A skála (Manuális vagy automatikus) lehetőséget.
+2. Egy szerepkör példány csúszkát beállítása a példányok számára.
+3. Méretezhető, hogy a szerepkör példánya.
 
-Miután konfigurálta a hello skálázási beállításokat, válassza ki a hello **mentése** hello felső ikon.
+Miután konfigurálta a skálázási beállításokat, válassza ki a **mentése** ikonra a bal felső.

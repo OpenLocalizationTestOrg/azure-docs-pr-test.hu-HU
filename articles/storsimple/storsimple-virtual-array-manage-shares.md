@@ -1,6 +1,6 @@
 ---
-title: "aaaManage StorSimple virtuális tömb felhőszolgáltatásaival |} Microsoft Docs"
-description: "StorSimple Device Manager hello ismerteti és bemutatja hogyan toouse azt a StorSimple virtuális tömb toomanage megosztásokat."
+title: "A StorSimple virtuális tömb megosztások kezelése |} Microsoft Docs"
+description: "A StorSimple Device Manager és ismerteti a StorSimple virtuális tömb-megosztások kezelése segítségével."
 services: storsimple
 documentationcenter: 
 author: manuaery
@@ -14,30 +14,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/21/2016
 ms.author: manuaery
-ms.openlocfilehash: 9b57d7ec7c0b7de5a22e1b816daa8852d0f32a48
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e5c62689de36baa175001f5f4f70d87568876ef0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-storsimple-device-manager-service-toomanage-shares-on-hello-storsimple-virtual-array"></a>A StorSimple virtuális tömb hello hello StorSimple Device Manager szolgáltatás toomanage megosztásokat használata
+# <a name="use-the-storsimple-device-manager-service-to-manage-shares-on-the-storsimple-virtual-array"></a>A StorSimple Device Manager szolgáltatással a StorSimple virtuális tömb-megosztások kezelése
 
 ## <a name="overview"></a>Áttekintés
 
-Ez az oktatóanyag azt ismerteti, hogyan toouse hello StorSimple Device Manager szolgáltatás toocreate, és a StorSimple virtuális tömb-megosztások kezelése.
+Ez az oktatóanyag ismerteti, hogyan a StorSimple Device Manager szolgáltatás létrehozását és kezelését a StorSimple virtuális tömb megosztásokat.
 
-StorSimple Device Manager szolgáltatás hello egy bővítmény hello Azure-portál, amely lehetővé teszi a StorSimple megoldásban egy egyetlen webes felhasználói felületen keresztüli kezelését. Toomanaging megosztások hozzáadását és a kötetek akkor is hello StorSimple Device Manager szolgáltatás tooview használja és eszközök kezeléséhez, megtekintheti a riasztásokat, biztonsági mentési házirendek, valamint kezelheti és hello biztonságimásolat-katalógus.
+A StorSimple Device Manager szolgáltatás nem egy bővítmény, az Azure portálon, amely lehetővé teszi a StorSimple megoldásban egy egyetlen webes felhasználói felületen keresztüli kezelését. Megosztások és a kötetek kezelése, mellett a StorSimple Device Manager szolgáltatás segítségével megtekintheti és eszközök kezeléséhez, megtekintheti a riasztásokat, biztonsági mentési házirendek kezelése és a biztonságimásolat-katalógus kezelése.
 
 ## <a name="share-types"></a>Megosztás típusok
 
 StorSimple megosztások lehet:
 
-* **Helyileg rögzített**: ezek az adatok mindig hello tömb marad, és nem kerülnek toohello felhő.
-* **Rétegzett**: ezek az adatok toohello felhő is kerülnek. Egy rétegzett megosztás létrehozásakor körülbelül 10 %-a hello terület hello helyi rétegen ki van építve, és 90 % hello terület hello felhőben lett kiépítve. Például ha egy 1 TB-os megosztás létesített, 100 GB hello helyi terület kellene lennie, és 900 GB lesz felhasználva a következőben hello felhő amikor hello adat szintet. Ez viszont azt jelenti, hogy minden hello helyi tárhely fogyjon hello eszközön, ha nem használhatók a rétegzett megosztás (mert hello 10 % szükséges, a helyi hello réteg nem lesz elérhető).
+* **Helyileg rögzített**: ezek az adatok mindig a tömbben marad, és nem kerülnek a felhőbe.
+* **Rétegzett**: ezek az adatok kerülnek a felhőbe is. Amikor létrehoz egy rétegzett megosztást, körülbelül 10 %-a a terület ki van építve a helyi rétegen, és 90 %-tér ki van építve a felhőben. Például ha kiépített egy 1 TB-os megosztást, 100 GB kellene lennie, a helyi terület és 900 GB használni a felhőben során az adatok szinteket. Ez viszont azt jelenti, hogy ha elfogy a helyi terület az eszközön, nem használhatók a rétegzett megosztás (mert a helyi rétegen szükséges 10 % csak akkor érhető el).
 
 ### <a name="provisioned-capacity"></a>Kiosztott kapacitást
 
-Tekintse meg a következő táblázat az egyes megosztás maximális kiosztott kapacitást toohello.
+Tekintse meg a következő táblázat az egyes megosztás maximális kiosztott kapacitást.
 
 | **Korlát azonosítója** | **Korlát** |
 | --- | --- |
@@ -46,25 +46,25 @@ Tekintse meg a következő táblázat az egyes megosztás maximális kiosztott k
 | Egy helyileg rögzített megosztás minimális mérete |50 GB |
 | Egy helyileg rögzített megosztás maximális mérete |2 TB |
 
-## <a name="hello-shares-blade"></a>hello megosztások panel
+## <a name="the-shares-blade"></a>A megosztások panel
 
-Hello **megosztások** menü a StorSimple szolgáltatás összefoglaló panelen megjeleníti egy adott StorSimple tömb storage-megosztásokat hello listát, és lehetővé teszi a toomanage őket.
+A **megosztások** menü a StorSimple szolgáltatás összefoglaló panelen a tároló megosztások megjeleníti egy adott StorSimple-tömb, és kezelheti azokat.
 
 ![Megosztások panel](./media/storsimple-virtual-array-manage-shares/shares-blade.png)
 
 A megosztás sorozatából attribútumok:
 
-* **Megosztási név** – egy leíró nevet, amely egyedinek kell lennie, és azonosíthatja a hello megosztást.
-* **Állapot** – lehet online vagy offline állapotú. Ha egy megosztást offline állapotban, hello megosztás felhasználóira nem lesz képes tooaccess azt.
-* **Típus** – azt jelzi, hogy hello megosztás **rétegzett** (alapértelmezett hello) vagy **helyileg rögzített**.
-* **Kapacitás** – hello megosztáson tárolt adatok teljes mennyiségének összehasonlított toohello használt hello adatmennyiség határozza meg.
-* **Leírás** – választható beállítás, amely segít a hello megosztás leírása.
-* **Engedélyek** -hello NTFS engedélyek toohello megosztást, amelyet a Windows Explorer használatával kezelhetők.
-* **Biztonsági mentési** – abban az esetben a StorSimple virtuális tömb hello, minden megosztás automatikusan engedélyezve vannak a biztonsági mentéshez.
+* **Megosztási név** – egy leíró nevet, amely egyedinek kell lennie, és segít azonosítani a megosztáshoz.
+* **Állapot** – lehet online vagy offline állapotú. Ha egy megosztást offline állapotban, a megosztás felhasználók nem fognak tudni azt elérni.
+* **Típus** – azt jelzi, hogy a megosztás **rétegzett** (alapértelmezés) vagy **helyileg rögzített**.
+* **Kapacitás** – Megadja azt az időt a megosztáson tárolt adatok teljes mennyisége képest használt adatokat.
+* **Leírás** – választható beállítás, amely segít a megosztás leírása.
+* **Engedélyek** -a megosztásra, a Windows Explorer használatával kezelheti az NTFS-engedélyeket.
+* **Biztonsági mentési** – abban az esetben a StorSimple virtuális tömb minden megosztás automatikusan engedélyezve vannak a biztonsági mentéshez.
 
 ![Megosztások részletei](./media/storsimple-virtual-array-manage-shares/share-details.png)
 
-Ez a következő feladatok oktatóanyag tooperform hello használata hello utasításait:
+Kövesse az utasításokat ebben az oktatóanyagban a következő feladatokat:
 
 * Megosztás hozzáadása
 * Egy megosztás módosítása
@@ -73,56 +73,56 @@ Ez a következő feladatok oktatóanyag tooperform hello használata hello utas�
 
 ## <a name="add-a-share"></a>Megosztás hozzáadása
 
-1. Hello StorSimple szolgáltatás összefoglaló panelen, kattintson a **+ Hozzáadás megosztás** hello parancs segítségével. Ezzel megnyílik hello **Hozzáadás megosztás** panelen.
+1. A StorSimple szolgáltatás összefoglaló paneljén kattintson **+ Hozzáadás megosztás** a parancssávon. Ezzel megnyílik a **Hozzáadás megosztás** panelen.
 
     ![Adja hozzá a megosztás](./media/storsimple-virtual-array-manage-shares/add-share.png)
 
-2. A hello **Hozzáadás megosztás** panelen a következő hello:
+2. Az a **Hozzáadás megosztás** panelen tegye a következőket:
    
-    1. A hello **megosztásnevet** mezőben adjon meg egy egyedi nevet a megosztáshoz. hello neve 3 too127 karaktert tartalmazó karakterláncnak kell lennie.
+    1. Az a **megosztásnevet** mezőben adjon meg egy egyedi nevet a megosztáshoz. A név 3 – 127 karaktert tartalmazó karakterláncnak kell lennie.
 
-    2. Egy nem kötelező **leírás** hello megosztás. hello leírás azonosításához hello fájlmegosztás-tulajdonosok.
+    2. Egy nem kötelező **leírás** a megosztáshoz. A leírás segít azonosítani a fájlmegosztás-tulajdonosok.
 
-    3. A hello **típus** legördülő listában, adja meg, hogy toocreate egy **rétegzett** vagy **helyileg rögzített** megosztani. Helyi garanciákat, kis késleltetést és magasabb teljesítményt igénylő munkaterheléseknél válasszon **helyileg rögzített megosztás**. Minden más adathoz válasszon **rétegzett** megosztani.
+    3. Az a **típus** legördülő listában, adja meg, hogy hozzon létre egy **rétegzett** vagy **helyileg rögzített** megosztani. Helyi garanciákat, kis késleltetést és magasabb teljesítményt igénylő munkaterheléseknél válasszon **helyileg rögzített megosztás**. Minden más adathoz válasszon **rétegzett** megosztani.
 
-    4. A hello **kapacitás** mezőben adja meg a hello megosztás hello méretét. A rétegzett megosztás 500 GB és 20 TB között kell lennie, és egy helyileg rögzített megosztás 50 GB-os és a 2 TB közé kell esnie.
+    4. Az a **kapacitás** mezőben adja meg a fájlmegosztás méretét. A rétegzett megosztás 500 GB és 20 TB között kell lennie, és egy helyileg rögzített megosztás 50 GB-os és a 2 TB közé kell esnie.
 
-    5. A hello **értékre alapértelmezett teljes körű engedélyekkel** mezőbe hello engedélyek toohello felhasználói vagy fér hozzá a megosztás hello csoport hozzárendelése. Adja meg a hello felhasználó vagy felhasználói csoport hello hello nevét  _john@contoso.com_  formátumban. Javasoljuk, hogy használjon egy felhasználói csoport (helyett egy-egy felhasználóhoz) tooallow rendszergazdai jogosultságokkal tooaccess megosztást. Miután itt hello engedélyek hozzárendelt, használhatja a Fájlkezelőben toomodify ezeket az engedélyeket.
-3. Amikor elkészült, a megosztás konfigurálására, kattintson a **létrehozása**. A megosztás jön létre a megadott hello beállításait, és megjelenik egy értesítés. Alapértelmezés szerint biztonsági mentés hello megosztás engedélyezve lesz.
-4. tooconfirm, hogy a megosztás hello lett sikeresen létrehozva, lépjen toohello **megosztások** panelen. Megosztás felsorolt hello kell megjelennie.
+    5. Az a **értékre alapértelmezett teljes körű engedélyekkel** mezőben, az engedélyek hozzárendelése a felhasználó vagy a csoportot, amelyhez ez a megosztás fér hozzá. Adja meg a felhasználó vagy a felhasználói csoport nevét  _john@contoso.com_  formátumban. Azt javasoljuk, hogy egy felhasználói csoport (helyett egy-egy felhasználóhoz) használatával biztosíthatja a rendszergazdai jogosultsággal a megosztást. Miután hozzárendelt itt az engedélyeket, majd segítségével Fájlkezelőben módosítani ezeket az engedélyeket.
+3. Amikor elkészült, a megosztás konfigurálására, kattintson a **létrehozása**. A megosztás jön létre a megadott beállításokat, és megjelenik egy értesítés. Alapértelmezés szerint biztonsági mentés a megosztás engedélyezve lesz.
+4. Győződjön meg arról, hogy a fájlmegosztás sikeresen létrejött, keresse fel a **megosztások** panelen. Meg kell jelenniük a felsorolt megosztást.
    
     ![Fájlmegosztás létrehozása sikerült](./media/storsimple-virtual-array-manage-shares/share-success.png)
 
 ## <a name="modify-a-share"></a>Egy megosztás módosítása
 
-A megosztás módosításával hello megosztás toochange hello leírása van szüksége. Nincs más tulajdonságok hello megosztás létrehozása után módosítható.
+Egy megosztás módosítása, ha módosítania kell a megosztás leírása. Nincs más tulajdonságok a megosztás létrehozása után módosítható.
 
-#### <a name="toomodify-a-share"></a>a megosztás toomodify
+#### <a name="to-modify-a-share"></a>Megosztás módosítása
 
-1. A hello **megosztások** válasszon hello beállítása hello StorSimple szolgáltatás összefoglaló panelre, mely hello toomodify kívánja meg megosztás található virtuális tömb.
-2. **Válassza ki** hello megosztás tooview hello aktuális leírása, és módosítsa azt.
-3. A módosítások mentéséhez kattintson a hello **mentése** parancssávon. A megadott beállítások lesznek alkalmazva, és megjelenik egy értesítés.
+1. Az a **megosztások** a StorSimple szolgáltatás összefoglaló panelen beállításnál válassza a virtuális tömb kívánja módosíthatja a megosztás helyezkedik el.
+2. **Válassza ki** aktuális leírás megtekintése és módosítása a megosztáshoz.
+3. A módosítások mentéséhez kattintson a **mentése** parancssávon. A megadott beállítások lesznek alkalmazva, és megjelenik egy értesítés.
    
     ![ Megosztás módosítása](./media/storsimple-virtual-array-manage-shares/share-edit.png)
 
 ## <a name="take-a-share-offline"></a>Egy kapcsolat nélküli üzemmódra állítása
 
-Szükség lehet a megosztás nélküli tootake tervezésekor toomodify vagy törölje azt. Ha egy megosztást offline állapotban, nincs olvasási és írási hozzáférése érhető el. Szüksége lesz tootake hello megosztás nélküli hello állomáson, valamint hello eszközön.
+Szükség lehet egy offline állapotba, ha azt tervezi, hogy módosítsa vagy törölje azt. Ha egy megosztást offline állapotban, nincs olvasási és írási hozzáférése érhető el. Szüksége lesz a megosztás nélküli érvénybe az állomáson, valamint az eszközön.
 
-#### <a name="tootake-a-share-offline"></a>a megosztás nélküli tootake
+#### <a name="to-take-a-share-offline"></a>A megosztás offline állapotba
 
-1. Győződjön meg arról, hogy a szóban forgó hello megosztás nem offline állapotba helyezése előtt használatban van.
-2. Hello megosztás végrehajtása a kapcsolat nélküli hello tömb hello lépések végrehajtásával:
+1. Győződjön meg arról, hogy a szóban forgó megosztás nem offline állapotba helyezése előtt használatban van.
+2. A megosztás végrehajtása a hálózatról a tömb az alábbi lépések elvégzésével:
    
-    1. A hello **megosztások** válasszon hello beállítása hello StorSimple szolgáltatás összefoglaló panelre, mely hello tootake kapcsolat nélkül kívánja azt megosztás található virtuális tömb.
+    1. Az a **megosztások** beállítása a StorSimple szolgáltatás összefoglaló panelen, jelölje ki a virtuális tömb, amelyen a megosztás kívánja, hogy a kapcsolat nélküli üzemmódra található.
 
-    2. **Válassza ki** hello megosztást, és kattintson **...**  (felváltva kattintson a jobb gombbal a sorhoz) hello helyi menüből válassza ki a **offline állapotba**.
+    2. **Válassza ki** a megosztást, majd kattintson **...**  (felváltva kattintson a jobb gombbal a sorhoz), és válassza ki a helyi menü **offline állapotba**.
      
         ![Kapcsolat nélküli megosztás](./media/storsimple-virtual-array-manage-shares/shares-offline.png)
 
-    3. Tekintse át a hello hello információkat **offline állapotba** panel és elfogadta hello műveletet. Kattintson a **offline állapotba** tootake hello offline megosztást. Megjelenik egy értesítés, amely hello művelet folyamatban van.
+    3. Tekintse át az adatokat a **offline állapotba** panel és elfogadta a műveletet. Kattintson a **offline állapotba** offline állapotba a megosztáshoz. Megjelenik egy értesítés, amely a folyamatban lévő művelet.
 
-    4. tooconfirm, hogy a megosztás hello sikeresen készült offline, lépjen toohello **megosztások** panelen. Hello állapotának hello megosztás offline állapotúként kell megjelennie.
+    4. Győződjön meg arról, hogy a megosztás sikeresen offline állapotba kerül, keresse fel a **megosztások** panelen. A megosztás állapotát, a kapcsolat nélküli kell megjelennie.
 
 ## <a name="delete-a-share"></a>Megosztás törlése
 
@@ -130,17 +130,17 @@ Szükség lehet a megosztás nélküli tootake tervezésekor toomodify vagy tör
 > Törölheti a megosztás csak akkor, ha offline állapotban.
 
 
-Hajtsa végre a következő lépéseket toodelete megosztás hello.
+Az alábbi lépésekkel törli a megosztást.
 
-#### <a name="toodelete-a-share"></a>a megosztás toodelete
+#### <a name="to-delete-a-share"></a>A megosztás törlése
 
-1. A hello **megosztások** válasszon hello beállítása hello StorSimple szolgáltatás összefoglaló panelre, mely hello megosztáson kívánja toodelete található virtuális tömb.
-2. **Válassza ki** hello megosztást, és kattintson **...**  (felváltva kattintson a jobb gombbal a sorhoz) hello helyi menüből válassza ki a **törlése**.
+1. Az a **megosztások** a StorSimple szolgáltatás összefoglaló panelen beállításnál válassza a virtuális tömb törli a megosztást helyezkedik el.
+2. **Válassza ki** a megosztást, majd kattintson **...**  (felváltva kattintson a jobb gombbal a sorhoz), és válassza ki a helyi menü **törlése**.
    
     ![Megosztás törlése](./media/storsimple-virtual-array-manage-shares/share-delete.png)
-3. Hello állapotának hello megosztás toodelete szeretné. Ha azt szeretné, hogy toodelete hello megosztás nem offline állapotban, offline állapotba először. Hello kövesse [offline állapotba a megosztás](#take-a-share-offline).
-4. Ha a hello megerősítést kér **törlése** panelen fogadja el a hello megerősítő, majd kattintson **törlése**. a program törli hello megosztás- és hello **megosztások** panel hello virtuális tömbön belüli megosztások hello frissített listáját jeleníti meg.
+3. Törli a megosztást állapotának ellenőrzéséhez. Ha törli a megosztást nem offline állapotban, offline állapotba először. Kövesse a [offline állapotba a megosztás](#take-a-share-offline).
+4. Ha a megerősítést kér a **törlése** panelen fogadja el a megerősítési, majd kattintson **törlése**. Program törli a megosztást és a **megosztások** panel megosztások a virtuális tömbön belüli frissített listáját jeleníti meg.
 
 ## <a name="next-steps"></a>Következő lépések
-Ismerje meg, hogyan túl[klónozza a StorSimple megosztás](storsimple-virtual-array-clone.md).
+Megtudhatja, hogyan [klónozza a StorSimple megosztás](storsimple-virtual-array-clone.md).
 

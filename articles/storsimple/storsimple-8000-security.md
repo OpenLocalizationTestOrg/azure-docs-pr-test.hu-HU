@@ -1,6 +1,6 @@
 ---
-title: "aaaStorSimple 8000 sorozat biztonsági |} Microsoft Docs"
-description: "Hello biztonsági és adatvédelmi funkciói, amely a StorSimple szolgáltatás, eszköz, és az adatok védelme a helyszíni és felhőben hello ismerteti."
+title: "A StorSimple 8000 series biztonsági |} Microsoft Docs"
+description: "A StorSimple szolgáltatás, eszköz, és az adatok védelme a helyszíni és felhőalapú biztonsági és adatvédelmi szolgáltatásait ismerteti."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,191 +14,191 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/02/2017
 ms.author: alkohli
-ms.openlocfilehash: 48dd449d2908c21fe05d0ed37a4dc6f3e306e43b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e4980cdb77650f011d143ed9e86fbe0af6b29d5d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="storsimple-security-and-data-protection"></a>StorSimple-biztonság és adatvédelem
 
 ## <a name="overview"></a>Áttekintés
 
-A biztonság az bárki, aki bevezetni új technológia, különösen akkor, ha a bizalmas vagy szellemi tulajdont képező adatokat hello technológia használt fő szempont. Szerint értékeli a különböző technológiákkal, át kell gondolnia, nagyobb kockázattal és a data protection költségeket. Microsoft Azure StorSimple nyújt egy biztonsági és adatvédelmi megoldás a data protection tooensure segíti:
+A biztonság az fő szempont bárki, aki bevezetni új technológia, különösen akkor, amikor a technológia bizalmas vagy szellemi tulajdont képező adatokat használják. Szerint értékeli a különböző technológiákkal, át kell gondolnia, nagyobb kockázattal és a data protection költségeket. Microsoft Azure StorSimple nyújt egy biztonsági és adatvédelmi megoldás a data protection segítséget nyújt annak biztosításához:
 
 * **Bizalmas** – csak az arra jogosult személyek is megtekintheti az adatokat.
 * **Integritás** – csak a jogosult személyek módosíthatja vagy törölheti az adatokat.
 
-a Microsoft Azure StorSimple megoldáshoz hello kapcsolatba egymással négy fő összetevőből áll:
+A Microsoft Azure StorSimple megoldáshoz kapcsolatba egymással négy fő összetevőből áll:
 
-* **A Microsoft Azure StorSimple Device Manager szolgáltatott** – hello felügyeleti szolgáltatás tooconfigure és a kiépítés használatát hello StorSimple eszközt.
-* **A StorSimple eszköz** – az adatközpontban telepített fizikai eszköz. Összes gazdagép és az ügyfelek, amely adatokat generál csatlakozás toohello StorSimple eszközt, és hello eszköz hello kezeli, és áthelyezi toohello Azure felhőben szükség szerint.
-* **Ügyfelek/állomások toohello eszköz csatlakoztatva** – hello toohello StorSimple eszköz csatlakozó ügyfelek az infrastruktúrában, és hozhat létre, amelyet a védett toobe adatokat.
-* **Felhőbeli tárhely** – hello hello Azure felhőben adatokat tároló helyét.
+* **A Microsoft Azure StorSimple Device Manager szolgáltatott** – a felügyeleti szolgáltatás, amellyel konfigurálhatja, és helyezze üzembe a StorSimple eszköz.
+* **A StorSimple eszköz** – az adatközpontban telepített fizikai eszköz. Összes gazdagép és az ügyfelek, amely adatokat generál a StorSimple eszköz csatlakozhat, és az eszköz kezeli az adatokat, és áthelyezi az Azure felhőalapú szükség szerint.
+* **Az eszközhöz csatlakoztatott ügyfelek/állomások** – az ügyfelek a infrastruktúrában, a StorSimple eszköz csatlakozhat, és hozhat létre, amelyet a védeni kívánt adatokat.
+* **Felhőbeli tárhely** – a hely adatokat tároló Azure felhőben.
 
-hello következő részek a hello StorSimple biztonsági szolgáltatások ezen összetevők és a rajtuk tárolt hello adatok védelme érdekében. Azt is, lehetséges, hogy a Microsoft Azure StorSimple biztonsági és hello válaszokról kapcsolatos kérdések listáját.
+A következő szakaszok ismertetik a StorSimple biztonsági funkciók ezeket az összetevőket, és a rajtuk tárolt adatok védelme érdekében. Azt is, lehetséges, hogy a Microsoft Azure StorSimple biztonsági és a hozzájuk tartozó válaszok kapcsolatos kérdések listáját.
 
 ## <a name="storsimple-device-manager-service-protection"></a>StorSimple Device Manager szolgáltatás védelme
 
-hello StorSimple Device Manager szolgáltatás a felügyeleti szolgáltatás a Microsoft Azure-ban üzemeltetett és toomanage használt összes, a szervezet közvetített StorSimple eszközre. Hello StorSimple Device Manager szolgáltatás a szervezeti hitelesítő adatok toolog toohello webböngészőn keresztül az Azure portál használatával végezheti el.
+A StorSimple Device Manager szolgáltatás nem a Microsoft Azure-ban üzemeltetett, és minden StorSimple eszköz, amely a szervezet közvetített kezelésére szolgáló felügyeleti szolgáltatást. A StorSimple Device Manager szolgáltatás által a szervezeti hitelesítő adataival bejelentkezni az Azure-portálon webböngészőn keresztül végezheti el.
 
-Hozzáférés toohello StorSimple Device Manager szolgáltatás megköveteli, hogy a szervezet Azure-előfizetéssel, amely tartalmazza a StorSimple. Az előfizetés hello Azure-portálon keresztül elérhető hello funkciókra szabályozza. Ha a szervezet nem rendelkezik Azure-előfizetéssel, és azt szeretné, hogy a velük kapcsolatos további toolearn, [regisztráció az Azure-bA szervezetként](../active-directory/sign-up-organization.md).
+A StorSimple Device Manager szolgáltatás használatához, hogy a szervezet rendelkezik-e az Azure-előfizetéssel, amely tartalmazza a StorSimple. Az előfizetés az Azure-portálon keresztül elérhető funkciók szabályozza. Ha a szervezet nem rendelkezik Azure-előfizetés és a velük kapcsolatos tudnivalókért lásd: szeretné [regisztráció az Azure-bA szervezetként](../active-directory/sign-up-organization.md).
 
-Mivel hello StorSimple Device Manager szolgáltatás az Azure-ban üzemel védi hello Azure biztonsági funkciók. A Microsoft Azure által biztosított hello biztonsági funkciókkal kapcsolatos további információkért lásd a toohello [Microsoft Azure Trust Center](https://azure.microsoft.com/support/trust-center/security/).
+Mivel a StorSimple Device Manager szolgáltatás az Azure-ban üzemel védi az Azure biztonsági funkciók. A Microsoft Azure által biztosított biztonsági funkciókkal kapcsolatos további információkért látogasson el a [Microsoft Azure Trust Center](https://azure.microsoft.com/support/trust-center/security/).
 
 ## <a name="storsimple-device-protection"></a>A StorSimple eszköz védelme
 
-hello StorSimple eszköz azonban egy helyszíni hibrid tárolóeszköz, amely tartalmazza (SSD) és a merevlemezes (HDD) meghajtók, redundáns vezérlők és az automatikus feladatátvételi lehetőségeket. hello tartományvezérlők kezelése a tároló rétegezésével, helyezését jelenleg (vagy a használt kiemelt) adatokat (a StorSimple eszköz hello vagy a helyszíni kiszolgálók), a helyi tároló ritkábban használt adatok toohello felhő áthelyezés közben.
+A StorSimple eszköz azonban egy helyszíni hibrid tárolóeszköz, amely tartalmazza (SSD) és a merevlemezes (HDD) meghajtók, redundáns vezérlők és az automatikus feladatátvételi lehetőségeket. A tartományvezérlők kezelése a tároló rétegezésével, elhelyezéséhez jelenleg használt (vagy kiemelt) adatok helyi tárolóban (a StorSimple eszköz vagy a helyszíni kiszolgálók), miközben ritkábban használt adatok áthelyezését a felhőbe.
 
-Kizárólag engedélyezett StorSimple eszközök engedélyezettek toojoin hello az Azure-előfizetéshez létrehozott StorSimple Device Manager szolgáltatást. tooauthorize egy eszközt, regisztrálnia kell azt a StorSimple eszköz Manager szolgáltatás hello hello Szolgáltatásregisztrációs kulcs megadásával. hello Szolgáltatásregisztrációs kulcs Azure-portálon hello hozott létre a 128 bites véletlenszerű kulcsot.
+Kizárólag engedélyezett eszközök számára engedélyezett a StorSimple Device Manager szolgáltatásban, az Azure-előfizetéshez létrehozott StorSimple. Egy eszköz hitelesítése, regisztrálnia kell azt a StorSimple eszköz Manager szolgáltatásban Szolgáltatásregisztrációs kulcs megadásával. A szolgáltatás regisztrációs kulcsának az Azure-portálon létrehozott 128 bites véletlenszerű kulcsot.
 
 ![Szolgáltatásregisztrációs kulcs](./media/storsimple-security/ServiceRegistrationKey.png)
 
-toolearn hogyan elérni, a szolgáltatás regisztrációs kulcs, nyissa meg túl[2. lépés: hello Szolgáltatásregisztrációs kulcs lekérése](storsimple-8000-deployment-walkthrough-u2.md#step-2-get-the-service-registration-key).
+Megtudhatja, hogyan be a szolgáltatás regisztrációs kulcsának, keresse fel [2. lépés: Szolgáltatásregisztrációs kulcs lekérése](storsimple-8000-deployment-walkthrough-u2.md#step-2-get-the-service-registration-key).
 
-hello szolgáltatás regisztrációs kulcsának, mint egy hosszú kulcs 100 + karaktereket tartalmaz. Hello kulcs másolása, és mentse a fájlt biztonságos helyen, így használhatja tooauthorize további eszközöket szükség szerint. Hello szolgáltatás regisztrációs kulcsának elvész, az első eszköz regisztrálása után, ha a StorSimple eszköz Manager szolgáltatás hello hozhat létre egy új kulcsot. Ez nem érinti a meglévő eszközök hello működését.
+A szolgáltatás regisztrációs kulcsának, mint egy hosszú kulcs 100 + karaktereket tartalmaz. Másolja a vágólapra a kulcsot, és mentse egy biztonságos helyre a fájlt, hogy szükség esetén további eszközök engedélyezésére használja. Ha a szolgáltatás regisztrációs kulcsának elveszik, az első eszköz regisztrálása után, létrehozhat egy új kulcsot a StorSimple Device Manager szolgáltatásból. Ez nem érinti a meglévő eszközök működését.
 
-Eszköz regisztrálása után jogkivonatok toocommunicate használja a Microsoft Azure-ban. hello Szolgáltatásregisztrációs kulcs nem használatos eszköz regisztrálása után.
+Eszköz regisztrálása után jogkivonatokat használ a Microsoft Azure folytatott kommunikációhoz. A szolgáltatás regisztrációs kulcsának nem használatos eszköz regisztrálása után.
 
 > [!NOTE]
-> Azt javasoljuk, hogy minden használata után hello Szolgáltatásregisztrációs kulcs újragenerálása.
+> Azt javasoljuk, hogy a szolgáltatás regisztrációs kulcsának követően minden generálja újra.
 
 
 ## <a name="protect-your-storsimple-solution-via-passwords"></a>A StorSimple megoldás a jelszavak védelme
 
-Jelszavak sokan használnak, és olyan fontos szempontja, hogy a számítógép biztonsági hello StorSimple megoldásban toohelp győződjön meg arról, hogy az adatok csak az elérhető tooauthorized felhasználók. StorSimple lehetővé teszi a jelszavak a következő tooconfigure hello:
+Jelszavak segítségével nagymértékben a StorSimple megoldásban győződjön meg arról, hogy az adatok csak az engedéllyel rendelkező felhasználók számára elérhető, és a számítógép biztonsági fontos eleme. StorSimple lehetővé teszi a következő jelszavak beállítása:
 
 * A StorSimple eszköz rendszergazdai jelszava
 * Ellenőrző kérdés kezdeményező és a cél jelszavak Handshake Authentication Protocol (CHAP)
 * StorSimple Snapshot Manager jelszava
 
-### <a name="windows-powershell-for-storsimple-and-hello-storsimple-device-administrator-password"></a>Windows PowerShell a StorSimple és hello StorSimple eszköz rendszergazdai jelszava
+### <a name="windows-powershell-for-storsimple-and-the-storsimple-device-administrator-password"></a>Windows PowerShell a StorSimple és a StorSimple eszköz rendszergazdai jelszava
 
-A Windows PowerShell-lel használható toomanage hello StorSimple eszközt a parancssorból. A Windows PowerShell-lel, amelyek lehetővé teszik tooregister lehetőséggel rendelkezik az eszköz, hálózati illesztő hello konfigurálása az eszközön, bizonyos típusú frissítések telepítése, az eszköz hibaelhárításához hello támogatási munkamenet elérésével és hello eszköz állapotának módosítása . A StorSimple Windows PowerShell csatlakozó toohello soros konzol hello eszköz vagy Windows PowerShell távoli eljáráshívás segítségével érheti el.
+A Windows PowerShell-lel egy parancssori felületet a StorSimple eszköz kezelésére használható. A Windows PowerShell-lel rendelkezik funkciókat, amelyek lehetővé teszik az eszköz regisztrálása, állítsa be a hálózati illesztő az eszközön, bizonyos típusú frissítések telepítése, az eszköz hibaelhárításához a támogatási munkamenet elérésével, és módosítsa az eszköz állapotát. A StorSimple Windows PowerShell az eszköz soros konzoljához való kapcsolódás vagy a Windows PowerShell távoli eljáráshívás segítségével érheti el.
 
-PowerShell távvezérlése HTTPS vagy HTTP keresztül végezhető. Ha engedélyezve van a Rendszerfelügyeleti webszolgáltatások HTTPS protokollon, szüksége lesz a toodownload hello távfelügyeleti tanúsítvány hello eszközről, és telepíteni hello távoli ügyfélhez. A PowerShell-távelérést kapcsolatos további információkért lásd az túl[távoli csatlakozás a StorSimple eszköz tooyour](storsimple-8000-remote-connect.md).
+PowerShell távvezérlése HTTPS vagy HTTP keresztül végezhető. Ha engedélyezve van a Rendszerfelügyeleti webszolgáltatások HTTPS protokollon, szüksége lesz a távfelügyeleti tanúsítvány letöltéséhez az eszközről, és telepítse azt a távoli ügyfél. PowerShell távvezérlése kapcsolatos további információkért látogasson el [távolról csatlakozhat a StorSimple eszköz](storsimple-8000-remote-connect.md).
 
-Miután tooconnect toohello eszközét a Windows PowerShell, szüksége lesz a tooprovide hello eszköz rendszergazdai jelszava toolog toohello eszközön.
+Miután az eszköz csatlakozni a Windows PowerShell-lel, szüksége lesz arra, hogy az eszköz rendszergazdai jelszava bejelentkezni az eszközt.
 
 ![Az eszköz rendszergazdai jelszava](./media/storsimple-security/DeviceAdminPW.png)
 
-Tartsa szem előtt ajánlott eljárások a következő hello:
+Vegye figyelembe az alábbi gyakorlati tanácsokat:
 
-* Távfelügyelet alapértelmezés szerint ki van kapcsolva. Hello StorSimple Device Manager szolgáltatás tooenable használhatja azt. Biztonsági szempontból ajánlott távelérési hello ténylegesen igényelt időszak során csak engedélyezni kell.
-* Hello jelszó módosításakor kell meg arról, hogy toonotify összes távoli felhasználók úgy, hogy azok nem tapasztalnak egy váratlan kapcsolatok megszakadását.
-* hello StorSimple Device Manager szolgáltatás nem tudja beolvasni a meglévő jelszavak: Ez csak alaphelyzetbe állíthatja őket. Azt javasoljuk, hogy minden jelszavak biztonságos helyen tárolja el, így nincs tooreset jelszó Ha elfelejti azt. Ha tooreset jelszót kell, csak meg arról, hogy toonotify minden felhasználó alaphelyzetbe.
+* Távfelügyelet alapértelmezés szerint ki van kapcsolva. A StorSimple Device Manager szolgáltatás segítségével engedélyezheti azt. Biztonsági szempontból ajánlott távelérés csak időszakban a ténylegesen igényelt engedélyezni kell.
+* Ha megváltoztatja a jelszavát, ügyeljen arra, hogy minden távelérési a felhasználók értesítése, így azok nem tapasztalnak egy váratlan kapcsolatok megszakadását.
+* A StorSimple Device Manager szolgáltatás nem tudja beolvasni a meglévő jelszavak: Ez csak alaphelyzetbe állíthatja őket. Azt javasoljuk, jelszavak biztonságos helyen tárolja el, így nem kell állítani a jelszót, ha elfelejti azt. Ha szeretné állítani a jelszót, ügyeljen arra, hogy értesítse az összes felhasználót ahhoz, hogy állítsa alaphelyzetbe.
 
-Windows PowerShell-felületet hello egy soros kapcsolat toohello eszközzel végezheti el. Emellett azt távolról HTTP vagy HTTPS-t, amely további biztonsági használatával. HTTPS vagy egy soros, vagy a HTTP-kapcsolat-nál magasabb szintű biztonságot nyújt. Azonban toouse HTTPS, először telepítenie kell egy tanúsítványt, akik hozzáférhetnek a hello eszköz hello ügyfélszámítógépen. Hello eszköz konfigurációs lapján, a StorSimple eszköz Manager szolgáltatás hello hello távelérési tanúsítvány is letölthető. Távelérési hello tanúsítványa nem vesztek el, ha kell egy új tanúsítvány letöltése és terjesztése az engedélyezett toouse Távfelügyelet tooall-ügyfelek.
+Az eszköz soros kapcsolat használatával végezheti el a Windows PowerShell-felületet. Emellett azt távolról HTTP vagy HTTPS-t, amely további biztonsági használatával. HTTPS vagy egy soros, vagy a HTTP-kapcsolat-nál magasabb szintű biztonságot nyújt. Azonban a HTTPS protokoll használatához először telepítenie kell egy tanúsítványt az ügyfélszámítógépen, az alkalmazást az eszközön. A távelérés tanúsítvány letöltheti az eszköz konfigurációs lapján, a StorSimple Device Manager szolgáltatásban. Ha táveléréshez tanúsítvánnyal elvész, akkor töltsön le egy új tanúsítvány, és terjesztése a távoli felügyeleti használatára jogosult összes ügyfélre.
 
 ### <a name="challenge-handshake-authentication-protocol-chap-initiator-and-target-passwords"></a>Ellenőrző kérdés kezdeményező és a cél jelszavak Handshake Authentication Protocol (CHAP)
 
-A CHAP egy hitelesítési séma hello StorSimple eszköz toovalidate hello identitásának távoli ügyfelek által használt protokoll. hello ellenőrzési megosztott jelszó alapul. Lehet, hogy a CHAP egyirányú (egyirányú) vagy a kölcsönös (kétirányú). Az egyirányú CHAP hello cél (hello StorSimple eszköz) hitelesíti a egy kezdeményező (gazda). Kölcsönös vagy fordított CHAP a hello cél hello kezdeményező hitelesítéséhez, és hello kezdeményező hitelesítse hello cél használatához. A StorSimple lehet konfigurált toouse mindkét módszer.
+A CHAP egy hitelesítési séma érvényesítése a távoli ügyfelek identitása a StorSimple eszköz által használt protokoll. Az ellenőrzés megosztott jelszó alapul. Lehet, hogy a CHAP egyirányú (egyirányú) vagy a kölcsönös (kétirányú). Az egyirányú CHAP a cél (a StorSimple eszköz) hitelesíti a egy kezdeményező (gazda). Kölcsönös vagy fordított CHAP megköveteli, hogy a cél hitelesítéséhez a kezdeményező és a kezdeményező hitelesítse a cél. A StorSimple beállítható úgy, hogy mindkét módszert használja.
 
-Vegye figyelembe a következőket hello CHAP konfigurálásakor:
+Vegye figyelembe a következőket CHAP konfigurálásakor:
 
-* hello CHAP-felhasználónév kevesebb mint 233 karaktert kell tartalmaznia.
-* hello CHAP-jelszó 12 és 16 karakter hosszúságú lehet. Kísérlet toouse hosszabb felhasználónevet vagy jelszót eredményezi egy sikertelen hitelesítési kísérlet, a Windows hello-állomás.
-* Hello nem használhatja ugyanazt a jelszót a hello CHAP-kezdeményező és a hello CHAP céljának.
-* Hello jelszó beállítása után ez módosítható, de az nem olvasható. Hello jelszót módosítják, ha kell, hogy toonotify minden távelérési felhasználók, hogy sikeresen csatlakozhassanak toohello StorSimple eszköz.
+* A CHAP-felhasználónév kevesebb mint 233 karaktereket tartalmazhat.
+* A CHAP-jelszó 12 és 16 karakter hosszúságú lehet. Hosszabb felhasználónév vagy jelszó a Windows-állomás hitelesítési hibát eredményez.
+* A CHAP-kezdeményező mind a CHAP-cél nem használhatja ugyanazt a jelszót.
+* Miután beállította a jelszót, ez módosítható, de az nem olvasható. Ha a jelszót módosítják, ügyeljen arra, hogy az összes távelérési a felhasználók értesítése, hogy azok sikeresen csatlakozott-e a StorSimple eszköz.
 
-További információ a CHAP, és hogyan tooconfigure azt a StorSimple megoldásban túl[CHAP konfigurálása a StorSimple eszköz](storsimple-8000-configure-chap.md).
+A CHAP és a StorSimple megoldás konfigurálásának kapcsolatos további információkért látogasson el [CHAP konfigurálása a StorSimple eszköz](storsimple-8000-configure-chap.md).
 
 ### <a name="storsimple-snapshot-manager-password"></a>StorSimple Snapshot Manager jelszava
 
-StorSimple Snapshot Manager egy Microsoft Management Console (MMC) beépülő modulja által használt kötet csoportok és hello Windows a kötet árnyékmásolata szolgáltatás toogenerate alkalmazáskonzisztens biztonsági mentéseket. Ezenkívül használja a StorSimple Snapshot Manager toocreate biztonsági mentési ütemezés és a Klónozás vagy kötetek visszaállítása.
+StorSimple Snapshot Manager egy Microsoft Management Console (MMC) beépülő modulja által használt kötet csoportok és a Windows kötet árnyékmásolata szolgáltatás alkalmazáskonzisztens biztonsági mentés létrehozásához. Emellett a StorSimple Snapshot Manager segítségével is hozzon létre biztonsági mentési ütemezés és a Klónozás vagy kötetek visszaállítása.
 
-Egy eszköz StorSimple Snapshot Manager toouse konfigurálásakor fogja szükséges tooprovide hello StorSimple Snapshot Manager jelszavát. Ez a jelszó először állítja be a Windows PowerShell StorSimple a regisztráció során. hello jelszó is beállítása és hello StorSimple Device Manager szolgáltatás megváltozott. Ez a jelszó hello eszköz StorSimple Snapshot Manager hitelesíti.
+Ha az eszköz StorSimple Snapshot Manager használatára állítja be, meg kell arra, hogy a StorSimple Snapshot Manager jelszavát. Ez a jelszó először állítja be a Windows PowerShell StorSimple a regisztráció során. A jelszó is beállítása és a StorSimple Device Manager szolgáltatás megváltozott. Ezt a jelszót az eszköz StorSimple Snapshot Manager hitelesíti.
 
 ![StorSimple Snapshot Manager jelszava](./media/storsimple-security/SnapshotMgrPassword.png)
 
-hello StorSimple Snapshot Manager jelszava 14 too15 karakterből kell állnia, és 3 vagy több nagybetű, nagybetűk, numerikus és speciális karakterek kombinációjából kell tartalmaznia. Hello StorSimple Snapshot Manager jelszavának beállítása után ez módosítható, de az nem olvasható. Hello jelszó módosítása, lehet, hogy toonotify összes távoli felhasználót.
+A StorSimple Snapshot Manager jelszava 14 – 15 karakter lehet, és 3 vagy több nagybetű, nagybetűk, numerikus és speciális karakterek kombinációjából kell tartalmaznia. A StorSimple Snapshot Manager jelszavának beállítása után ez módosítható, de az nem olvasható. Ha megváltoztatja a jelszavát, ügyeljen arra, hogy értesítse az összes távoli felhasználót.
 
-StorSimple Snapshot Manager kapcsolatos további információkért lépjen túl[Mi az StorSimple Snapshot Manager?](storsimple-what-is-snapshot-manager.md)
+StorSimple Snapshot Manager kapcsolatos további információkért látogasson el [Mi az StorSimple Snapshot Manager?](storsimple-what-is-snapshot-manager.md)
 
 ### <a name="password-best-practices"></a>Jelszó gyakorlati tanácsok
 
-Azt javasoljuk, hogy használja-e hello következő iránymutatásokat toohelp gondoskodjon arról, hogy a StorSimple-jelszavak erős és jól védett:
+Azt javasoljuk, hogy érdekében győződjön meg arról, hogy a StorSimple-jelszavak erős és jól védett kövesse az alábbi iránymutatásokat:
 
-* A jelszavak módosítása háromhavonta. Hello jelszavak módosítása a évente érvényesül.
-* Erős jelszavakat használjon. További információ: túl[erősebb jelszavak létrehozása és védelmük](http://blogs.microsoft.com/cybertrust/2014/08/25/create-stronger-passwords-and-protect-them/).
-* Mindig használjon különböző jelszót eltérő hozzáférési mechanizmusok; minden egyes megadott hello jelszavak egyedinek kell lennie.
-* Ne ossza meg jelszavak bárki, aki nem jogosult tooaccess hello StorSimple eszközt.
-* Beszéd kapcsolatos elé más jelszót, vagy ne hello formátum jelszó mutatót.
-* Ha azt gyanítja, hogy egy fiók vagy jelszó feltörték, jelentést hello incidens tooyour információk biztonsági részleg.
+* A jelszavak módosítása háromhavonta. A jelszavak módosítása a évente érvényesül.
+* Erős jelszavakat használjon. További információkért látogasson el [erősebb jelszavak létrehozása és védelmük](http://blogs.microsoft.com/cybertrust/2014/08/25/create-stronger-passwords-and-protect-them/).
+* Mindig használjon különböző jelszót eltérő hozzáférési mechanizmusok; a megadott jelszavak mindegyikének egyedinek kell lennie.
+* Ne ossza meg jelszavak bárki, aki nem jogosult a StorSimple eszközhöz való hozzáféréshez.
+* Beszéd kapcsolatos elé más jelszót, vagy ne mutatót a jelszó-formátum.
+* Ha azt gyanítja, hogy egy fiók vagy jelszó feltörték, jelenteni az információ-biztonság osztálynak.
 * Kezelje a jelszó-és nagybetűket, bizalmas információkat. 
 
 ## <a name="storsimple-data-protection"></a>StorSimple-adatok védelme
 
-Ez a szakasz hello StorSimple biztonsági szolgáltatásait ismerteti, az átvitel során az adatok és a tárolt adatok védelme.
+Ez a szakasz ismerteti a StorSimple biztonsági funkciói, amely az átvitel során az adatok és a tárolt adatok védelme.
 
-További fejezeteiben bővebben ismertetjük, jelszavak használt tooauthorize és ahhoz, hogy hozzáférési tooyour StorSimple megoldás a felhasználók hitelesítésére. Egy másik biztonsági szempont védi az adatokat a jogosulatlan felhasználóktól tárolási rendszerek között, és közben az adatok tárolása alatt átvitel közben. hello következő részek a adatbiztonsági funkciók hello StorSimple biztosított.
+További fejezeteiben bővebben ismertetjük, jelszavak használatával kell engedélyeznie, ahhoz, hogy a StorSimple megoldásban a hozzáférést a felhasználók hitelesítésére. Egy másik biztonsági szempont védi az adatokat a jogosulatlan felhasználóktól tárolási rendszerek között, és közben az adatok tárolása alatt átvitel közben. A következő szakaszok ismertetik a StorSimple megadott adatbiztonsági funkciók.
 
 > [!NOTE]
-> A deduplikáció és a Microsoft Azure Storage hello StorSimple eszközön tárolt adatok további védelmet biztosít. Ha a deduplikált adatok, hello adatobjektumainak külön-külön tárolódnak a hello használt metaadatok toomap, és a hozzáférésüket: nincsenek elérhető tárhely szintű környezet tooreconstruct hello adatok kötetek szerkezete, a fájlrendszer vagy a fájl neve alapján.
+> A deduplikáció és a Microsoft Azure Storage a StorSimple eszközön tárolt adatok további védelmet biztosít. Amikor deduplikált adatok, az adatok objektumok hozzárendelését és a hozzáférésüket használt metaadatok alapján külön-külön tárolja: nincs elérhető tárhely szintű környezet a kötetek szerkezete, a fájlrendszer vagy a fájlnév alapján adatok helyreállítására.
 
 
-## <a name="protect-data-flowing-through-hello-service"></a>Hello szolgáltatáson keresztül áramló adatok védelme
+## <a name="protect-data-flowing-through-the-service"></a>A szolgáltatáson keresztül áramló adatok védelme
 
-hello elsődleges célja, hogy a StorSimple Device Manager szolgáltatás hello toomanage és hello StorSimple eszköz konfigurálása. hello StorSimple Device Manager szolgáltatás fut a Microsoft Azure-ban. Hello Azure portál tooenter eszköz konfigurációs adatokat használ, majd a Microsoft Azure hello StorSimple Device Manager szolgáltatás toosend hello adatok toohello eszközt használ. StorSimple használ aszimmetrikus kulcspárokat toohelp rendszert győződjön meg arról, hogy hello Azure szolgáltatás-biztonság sérülését nem eredményez-biztonság sérülését tárolt adatokat.
+A StorSimple Device Manager szolgáltatás elsődleges célja, kezelése és konfigurálása a StorSimple eszközt. A StorSimple Device Manager szolgáltatás fut a Microsoft Azure-ban. Az Azure-portál használatával adja meg az eszköz konfigurációs adatokat, és a Microsoft Azure segítségével a StorSimple Device Manager szolgáltatás elküldi az adatokat az eszközre. StorSimple a rendszer, aszimmetrikus kulcspárokat használatával biztosítható, hogy a biztonsági sérülését jelenti az Azure-szolgáltatás nem lesz tárolt információ-biztonság sérülését.
 
 ![Felé továbbított adatok titkosítása](./media/storsimple-security/DataEncryption.png)
 
-hello aszimmetrikus kulcs rendszer megvédi hello adatok áthaladó hello szolgáltatást az alábbiak szerint:
+Az aszimmetrikus kulcs rendszer megvédi az adatokat, amelyek az alábbiak szerint zajlik a szolgáltatáson keresztül:
 
-1. Egy aszimmetrikus nyilvános és titkos kulcsból álló kulcspárt használó adattitkosítási tanúsítványának hello eszközön jön létre, és a használt tooprotect hello adat. hello kulcsok jönnek létre, amikor regisztrál hello első eszközt.
-2. hello adattitkosítási tanúsítványt kulcsokat hello szolgáltatásadat-titkosítási kulcs, amely hello első eszköz regisztrálása során véletlenszerűen létrehozott erős 128 bites kulccsal védett személyes információcsere (.pfx) fájlba exportált.
-3. hello hello tanúsítvány nyilvános kulcsa biztonságosan történik meg a rendelkezésre álló toohello StorSimple Device Manager szolgáltatás, és titkos kulcs hello hello eszköz marad.
-4. Belépés hello szolgáltatás használatával titkosított adatok hello nyilvános kulcsot, és visszafejteni a hello hello eszközön tárolt titkos kulcsot, győződjön meg arról, hogy hello Azure-szolgáltatás nem tudja visszafejteni toohello eszköz áramló hello adatokat.
+1. Egy adat-titkosítási tanúsítványnak használó aszimmetrikus nyilvános és titkos kulcsok pár történik az eszközön, és az adatok védelmét. A kulcsok akkor jönnek létre, amikor az első eszköz regisztrálva van.
+2. A titkosítási tanúsítvány kulcsokat a szolgáltatásadat-titkosítási kulcs, amely az első eszköz regisztrálása során véletlenszerűen létrehozott erős 128 bites kulccsal védett személyes információcsere (.pfx) fájlba exportált.
+3. A tanúsítvány nyilvános kulcsát biztonságosan szeretné elérhetővé tenni a StorSimple eszköz Manager szolgáltatáshoz, és a titkos kulcs marad az eszközön.
+4. Írja be a szolgáltatás adattitkosítás használata a nyilvános kulcs és visszafejtése a titkos kulcs az eszközön, győződjön meg arról, hogy az Azure-szolgáltatás nem tudja visszafejteni az eszközre áramló adatokat.
 
-szolgáltatásadat-titkosítási kulcs hello eszközön csak hello első hello szolgáltatásban regisztrált jön létre. Hello szolgáltatásban regisztrált összes további eszközöket kell használnia a hello azonos szolgáltatásadat-titkosítási kulcs.
+A szolgáltatásadat-titkosítási kulcs jön létre, csak az első eszköz regisztrálva a szolgáltatásban. A szolgáltatásban regisztrált összes további eszközök kell használnia az azonos szolgáltatásadat-titkosítási kulcs.
 
 > [!IMPORTANT]
-> Ez nagyon fontos toomake hello szolgáltatásadat-titkosítási kulcs másolatát, és mentse egy biztonságos helyre. Hello szolgáltatásadat-titkosítási kulcs biztonsági másolatának oly módon, hogy elérhetők, meghatalmazott, és lehet könnyen közölt toohello eszköz-rendszergazdai kell tárolni.
+> Nagyon fontos másolatot készít a szolgáltatásadat-titkosítási kulcs, és mentse egy biztonságos helyre. A szolgáltatásadat-titkosítási kulcs biztonsági másolatának oly módon, hogy elérhetők, meghatalmazott, és az eszköz-rendszergazdai könnyen továbbítani kell tárolni.
 > 
-> Hello szolgáltatásadat-titkosítási kulcs nem vesztek el, ha a Microsoft támogatási szolgálatnak segítségével tooretrieve, feltéve, hogy rendelkezik-e legalább egy eszköz online állapotban. Ajánlott hello szolgáltatásadat-titkosítási kulcs módosítása után lekéri azt. Útmutatásért lépjen túl[módosítás hello szolgáltatásadat-titkosítási kulcs](storsimple-service-dashboard.md#change-the-service-data-encryption-key).
+> A szolgáltatásadat-titkosítási kulcs nem vesztek el, ha a Microsoft támogatási szolgálatnak segítenek lekéréséhez, feltéve, hogy legalább egy eszköz online állapotban van. Azt javasoljuk, hogy módosítsa a szolgáltatásadat-titkosítási kulcs, miután lekéri azt. Utasításokért ugorjon [módosítása a szolgáltatásadat-titkosítási kulcs](storsimple-service-dashboard.md#change-the-service-data-encryption-key).
 
-Hello választásával módosíthatja hello szolgáltatásadat-titkosítási kulcs és hello megfelelő adattitkosítási tanúsítványának **módosítás szolgáltatásadat-titkosítási kulcs** hello szolgáltatás irányítópulton lehetőséget. adatok biztonsági ne legyenek veszélyben tooensure, a fizikai StorSimple eszköz toochange hello szolgáltatásadat-titkosítási kulcs kell használnia. Hello titkosítási kulcsok módosításához szükséges, hogy minden eszköz frissíteni kell-e hello új kulccsal. Ezért azt javasoljuk, hogy módosítsa hello kulcs, minden eszköz online állapotba kerülnek. Kapcsolat nélküli eszközök esetén a kulcsok egy másik időpontban lehet megváltoztatni. elavult kulcsok hello eszközök továbbra is képes toorun biztonsági mentések, de nem fogja tudni toorestore adatok amíg hello kulcsa nem frissül. További információ: túl[használata hello StorSimple Device Manager szolgáltatás irányítópultját](storsimple-8000-service-dashboard.md).
+Módosíthatja a szolgáltatásadat-titkosítási kulcs és a megfelelő adatok titkosítási tanúsítvány kiválasztása a **módosítás szolgáltatásadat-titkosítási kulcs** lehetőséget a szolgáltatás irányítópultján. Győződjön meg arról, hogy ne legyenek veszélyben adatok biztonsága, egy fizikai StorSimple eszközt kell használnia a szolgáltatásadat-titkosítási kulcs módosításához. A titkosítási kulcsok módosításához szükséges, hogy minden eszköz frissíteni kell-e az új kulccsal. Ezért azt javasoljuk, hogy a kulcs akkor módosul, ha minden eszköz online állapotban. Kapcsolat nélküli eszközök esetén a kulcsok egy másik időpontban lehet megváltoztatni. Az elavult kulccsal rendelkező eszközöket is kíván biztonsági másolatot készíteni, de nem fogják tudni állítsa vissza az adatokat, amíg a kulcsa nem frissül. További információkért látogasson el [a StorSimple Device Manager szolgáltatás irányítópultján](storsimple-8000-service-dashboard.md).
 
-szolgáltatásadat-titkosítási kulcs hello és hello adatok titkosítási tanúsítvány nem jár le. Javasoljuk azonban, hogy módosítsa a hello szolgáltatásadat-titkosítási kulcs évente toohelp megakadályozása kulcs biztonsági sérülése.
+A szolgáltatásadat-titkosítási kulcs és az adatok titkosítási tanúsítvány nem jár le. Azt javasoljuk azonban, hogy módosította-e a szolgáltatásadat-titkosítási kulcs évente, hogy megakadályozza a kulcs biztonsági sérülése.
 
 ## <a name="protect-data-at-rest"></a>Adatok inaktív védelme
 
-hello StorSimple eszközön tárolja őket rétegek helyileg és hello felhőben, attól függően, hogy a használat gyakorisága kezeli az adatokat. Az összes gazdagép gépeket, amelyek csatlakoztatott toohello eszköz send data toohello eszközét, ezzel adatok toohello felhő, szükség szerint helyezi. Adatátvitel hello eszköz toohello felhőből biztonságosan hello interneten keresztül. Minden eszközhöz tartozik egy iSCSI-tároló, amely megjeleníti az összes megosztott kötetek azokon az eszközökön. Összes adata titkosításra kerül toocloud tárolási elküldés előtt. 
+A StorSimple eszköz rétegek tárolja őket helyileg, és a felhőben, attól függően, hogy a használat gyakorisága kezeli az adatokat. Az eszköz csatlakozik az összes állomás gépek adatokat továbbít az eszköz, amely majd mozgatja az adatokat a felhőbe, szükség szerint. Adatátvitel az eszközről a felhőbe biztonságosan az interneten keresztül. Minden eszközhöz tartozik egy iSCSI-tároló, amely megjeleníti az összes megosztott kötetek azokon az eszközökön. Összes adata titkosításra kerül felhőbeli tárhelyén való továbbítás előtt. 
 
 ![Felhőalapú tárolás titkosítási kulcsa](./media/storsimple-security/CloudStorageEncryption.png)
 
-toohelp hello biztonsági és az adatok sértetlenségének toohello felhő áthelyezése érdekében a StorSimple lehetővé teszi a toodefine felhőalapú tárolás titkosítási kulcsokat az alábbiak szerint:
+A biztonságának és integritásának a felhő át adatokat a biztosítása érdekében a StorSimple megadhatja felhőalapú tárolás titkosítási kulcsokat az alábbiak szerint:
 
-* A kötettároló létrehozásakor megadhatja hello felhőalapú tárolás titkosítási kulcsát. hello kulcs nem módosítható, vagy később.
-* Egy kötet tároló megosztáson található összes kötetet hello megegyező titkosítási kulccsal. Ha azt szeretné, hogy egy másik formája, amelyet egy adott kötet titkosítási, azt javasoljuk, hogy hozzon létre egy új kötetet tároló toohost, hogy a köteten.
-* Amikor a StorSimple eszköz Manager szolgáltatás hello hello felhőalapú tárolás titkosítási kulcsa, hello hello szolgáltatásadat-titkosítási kulcs nyilvános részének használatával, és elküldheti a toohello eszköz hello kulcs titkosított.
-* hello felhőalapú tárolás titkosítási kulcsa nem tárolódik a hello szolgáltatásban, és csak toohello eszköz ismert.
-* A felhőalapú tárolás titkosítási kulcsát megadása nem kötelező megadni. Hello állomás toohello eszközön titkosított adatokat küldhet.
+* A kötettároló létrehozásakor megadhatja a felhőalapú tárolás titkosítási kulcsát. A kulcs nem módosítható, vagy később.
+* A kötettároló összes kötet ossza meg ugyanazt a titkosítási kulcsot. Ha azt szeretné, hogy egy másik formája, amelyet egy adott kötet titkosítási, azt javasoljuk, hogy hozzon létre egy új kötettároló üzemeltetéséhez, hogy a köteten.
+* Amikor a felhőalapú tárolás titkosítási kulcsát a StorSimple Device Manager szolgáltatásban, a kulcs titkosított a szolgáltatásadat-titkosítási kulcs nyilvános részének használatával, és elküldheti az eszközre.
+* A felhőalapú tárolás titkosítási kulcsa nem tárolódik a szolgáltatás, amely csak az eszköz.
+* A felhőalapú tárolás titkosítási kulcsát megadása nem kötelező megadni. Az eszköz a kiszolgáló titkosított adatokat küldhet.
 
 ### <a name="additional-security-best-practices"></a>Ajánlott biztonsági eljárások
 
-* Ossza fel a forgalom: különítse el a iSCSI SAN egy vállalati helyi hálózaton felhasználói forgalomnak a telepítése egy teljesen elkülönített hálózatot és VLAN-ok használatával, ahol fizikai elkülönítési lehetőség nem érhető el. Az iSCSI-tárolóhoz egy dedikált hálózaton hello biztonságát és az üzleti szempontból kritikus fontosságú adatok teljesítményt garantálja. Tárolás és a felhasználói forgalom keverése egy vállalati helyi hálózaton keresztül nem ajánlott és is növelheti a késés és hálózati hibákhoz vezethet.
-* Gazdagép-oldali hálózati biztonság érdekében a TCP/IP-kiszervezés motor (TOE) támogató hálózati felületek használatával. TOE csökkenti a CPU-terhelés TCP feldolgozásával hello hálózati adapteren.
+* Ossza fel a forgalom: különítse el a iSCSI SAN egy vállalati helyi hálózaton felhasználói forgalomnak a telepítése egy teljesen elkülönített hálózatot és VLAN-ok használatával, ahol fizikai elkülönítési lehetőség nem érhető el. Az iSCSI-tárolóhoz egy dedikált hálózaton biztonságának és az üzleti szempontból kritikus fontosságú adatok teljesítményt garantálja. Tárolás és a felhasználói forgalom keverése egy vállalati helyi hálózaton keresztül nem ajánlott és is növelheti a késés és hálózati hibákhoz vezethet.
+* Gazdagép-oldali hálózati biztonság érdekében a TCP/IP-kiszervezés motor (TOE) támogató hálózati felületek használatával. TOE CPU-terhelést, csökkenti a hálózati adapteren TCP feldolgozása.
 
 ## <a name="protect-data-via-storage-accounts"></a>Storage-fiókok keresztül az adatok védelme
 
-Minden Microsoft Azure-előfizetés egy vagy több storage-fiókokat hozhat létre. (A storage-fiók egy egyedi névteret biztosít hello Azure felhőben tárolt adatok.) Hozzáférés tooa tárfiók hello előfizetés és a hozzáférési kulcsok tárolási fiókhoz hozzárendelt vezérli.
+Minden Microsoft Azure-előfizetés egy vagy több storage-fiókokat hozhat létre. (A storage-fiók egy egyedi névteret biztosít az Azure felhőben tárolt adatai.) A tárfiók eléréséhez az előfizetés és a hozzáférési kulcs tárolási fiókhoz társított vezérli.
 
-Amikor létrehoz egy tárfiókot, a Microsoft Azure két 512 bites tárelérési kulcsot, amelyek közül az egyik hitelesítéshez használt amikor hello StorSimple eszköz hello tárfiók ér el állít elő. Vegye figyelembe, hogy ezek a kulcsok csak az egyik használatban van. hello más kulcs használatban van-tartalék értékét, akkor toorotate hello kulcsok rendszeres időközönként engedélyezése. hello aktív másodlagos kulcsát, majd törölje hello elsődleges kulcs elvégezte toorotate kulcsok. Ezután létrehozhat új kulcs hello következő Elforgatás során. (Biztonsági okokból sok adatközpontokban van szükség kulcs elforgatás.)
+Amikor létrehoz egy tárfiókot, a Microsoft Azure két 512 bites tárelérési kulcsot, amelyek közül az egyik használatos a hitelesítéshez a StorSimple eszköz fér hozzá a tárfiók állít elő. Vegye figyelembe, hogy ezek a kulcsok csak az egyik használatban van. A más kulcs-tartalék értékét, hogy lehetővé teszi a kulcsok rendszeresen elforgatása használatban van. Kulcsok megváltoztatása, a másodlagos kulcs aktiválásához, és törölje a az elsődleges kulcs. Ezután létrehozhat új kulcs a következő Elforgatás során. (Biztonsági okokból sok adatközpontokban van szükség kulcs elforgatás.)
 
 Azt javasoljuk, hogy kövesse az alábbi gyakorlati tanácsok a kulcs elforgatás:
 
-* Tárfiókkulcsok rendszeresen toohelp győződjön meg arról, hogy a tárfiók jogosulatlan felhasználók nem férhetnek hozzá kell elforgatása.
-* Rendszeres időközönként az Azure rendszergazdai kell módosítani, vagy hello elsődleges vagy másodlagos kulcs újragenerálása hello tárolási szakasza hello Azure portál toodirectly hozzáférés hello storage-fiók használatával.
+* Tárfiókkulcsok rendszeresen segítségével győződjön meg arról, hogy a tárfiók jogosulatlan felhasználók nem férhetnek hozzá kell elforgatása.
+* Rendszeres időközönként az Azure rendszergazdai kell módosítani, vagy újragenerálja az elsődleges vagy másodlagos kulcsot a tároló szakaszban az Azure portál segítségével közvetlenül a tárfiók eléréséhez.
 
 ## <a name="protect-data-via-encryption"></a>Titkosítási keresztül az adatok védelme
 
-StorSimple használja a következő tooprotect adatokat tárolja a titkosítási algoritmusok, vagy a StorSimple megoldásban hello összetevői közötti utazás hello.
+StorSimple használja a következő titkosítási algoritmusok tárolt adatok védelmére vagy a StorSimple megoldásban összetevői közötti utazás.
 
 | Algoritmus | Kulcshossz | Protokollok/applications/megjegyzések |
 | --- | --- | --- |
-| RSA |2048 |Hello Azure portál tooencrypt konfigurációs adatokat küldött toohello eszköz RSA 1-PKCS 1.5-ös verzióját használja: például a tárolási fiók hitelesítő adatait, a StorSimple eszköz konfigurációs, és a felhőalapú tárolás titkosítási kulcsokat. |
-| AES |256 |A CBC AES használt tooencrypt hello nyilvános részében hello szolgáltatásadat-titkosítási kulcs, toohello Azure-portálon hello StorSimple eszközön történő továbbítás előtt. Azt is használják hello StorSimple eszköz tooencrypt adatok toohello a felhőalapú társzolgáltatás fiókja hello adatok elküldése előtt. |
+| RSA |2048 |RSA 1-PKCS 1.5-ös verzióját használják az Azure-portálon az eszközre küldött konfigurációs adatok titkosítása: például a tárolási fiók hitelesítő adatait, a StorSimple eszköz konfigurációs, és a felhőalapú tárolás titkosítási kulcsokat. |
+| AES |256 |A szolgáltatásadat-titkosítási kulcs nyilvános részének titkosítását az Azure portálra a StorSimple-eszközről küldött CBC az AES szolgál. Azt is használják a StorSimple eszköz adattitkosítás az adatok a felhőalapú társzolgáltatás fiókja történő elküldése előtt. |
 
 ## <a name="storsimple-cloud-appliance-security"></a>StorSimple felhő készülék biztonsági
 
@@ -206,67 +206,67 @@ StorSimple használja a következő tooprotect adatokat tárolja a titkosítási
 
 ## <a name="frequently-asked-questions-faq"></a>Gyakori kérdések (GYIK)
 
-hello az alábbiakban néhány kapcsolatos kérdések és válaszok biztonsági és a Microsoft Azure StorSimple.
+Az alábbi táblázat néhány kapcsolatos kérdések és válaszok biztonsági és a Microsoft Azure StorSimple.
 
 **K:** a szolgáltatás biztonsága sérül. Milyen kell összeállításának következő lépései?
 
-**V:** hello szolgáltatásadat-titkosítási kulcs és hello tárfiókkulcsok rétegezési adatok használt tárfiók hello azonnal meg kell változtatni. Útmutatásért tekintse:
+**V:** a szolgáltatásadat-titkosítási kulcs és a tárfiók kulcsait a tárfiók rétegezési adatok használt azonnal meg kell változtatni. Útmutatásért tekintse:
 
-* [Szolgáltatásadat-titkosítási kulcs hello módosítása](storsimple-service-dashboard.md#change-the-service-data-encryption-key)
+* [A szolgáltatásadat-titkosítási kulcs módosítása](storsimple-service-dashboard.md#change-the-service-data-encryption-key)
 * [Kulcs elforgatási szögét storage-fiókok](storsimple-8000-manage-storage-accounts.md#key-rotation-of-storage-accounts)
 
-**K:** új StorSimple eszköz, amely a kért hello szolgáltatás regisztrációs kulcsának. Hogyan azt lekérése?
+**K:** , amely a szolgáltatás regisztrációs kulcsának kért új StorSimple eszköz. Hogyan azt lekérése?
 
-**V:** ezt a kulcsot jött létre, amikor először létrehozott hello StorSimple Device Manager szolgáltatást. Ha hello StorSimple Device Manager szolgáltatás tooconnect toohello eszközzel, hello szolgáltatás – első lépések lap tooview vagy Szolgáltatásregisztrációs kulcs újragenerálása hello is használhatja. Egy új szolgáltatás regisztrációs kulcs hello meglévő regisztrált eszközöket nem érinti. Útmutatásért tekintse:
+**V:** ezt a kulcsot jött létre, amikor a StorSimple Device Manager szolgáltatás létrehozásakor. A StorSimple Device Manager szolgáltatás használatával csatlakozzon az eszközhöz, használhatja a szolgáltatás gyors üzembe helyezési oldal megtekintéséhez, vagy a szolgáltatás regisztrációs kulcsának újragenerálása. Egy új szolgáltatás regisztrációs kulcs nem érinti a meglévő regisztrált eszközöket. Útmutatásért tekintse:
 
-* [Megtekintése vagy hello Szolgáltatásregisztrációs kulcs újragenerálása](storsimple-8000-manage-service.md##regenerate-the-service-registration-key)
+* [Megtekintéséhez vagy a szolgáltatás regisztrációs kulcsának újragenerálása](storsimple-8000-manage-service.md##regenerate-the-service-registration-key)
 
 **K:** a szolgáltatásadat-titkosítási kulcs elvész. Mit tegyek?
 
-**V:** forduljon a Microsoft támogatási szolgálatához. Bejelentkezés tooa támogatási munkamenet az eszközön és a Súgó hello kulcs beolvasása az (feltéve, hogy legalább egy eszköz online állapotban). Miután beszerezte hello szolgáltatásadat-titkosítási kulcs, akkor kell megváltoztatnia tooensure azonnal hello új kulcs csak tooyou ismert. Útmutatásért tekintse:
+**V:** forduljon a Microsoft támogatási szolgálatához. Ezek jelentkezhetnek be az eszközön és a kulcs lekérését (feltéve, hogy legalább egy eszköz online állapotban) Súgó támogatása munkamenethez. A szolgáltatásadat-titkosítási kulcs beszerzése, után azonnal akkor kell megváltoztatnia annak érdekében, hogy az új kulcs csak az Ön is ismert. Útmutatásért tekintse:
 
-* [Szolgáltatásadat-titkosítási kulcs hello módosítása](storsimple-service-dashboard.md#change-the-service-data-encryption-key)
+* [A szolgáltatásadat-titkosítási kulcs módosítása](storsimple-service-dashboard.md#change-the-service-data-encryption-key)
 
-**K:** szeretnék a szolgáltatás titkosítási kulcs változását eszköz engedélyezett, de hello kulcsváltozás folyamat nem indult el. Mit tegyek?
+**K:** szeretnék a szolgáltatás titkosítási kulcs változását eszköz engedélyezett, de nem indult el a fő folyamatot. Mit tegyek?
 
-**V:** hello időkorlát lejárt, ha lesz szüksége tooreauthorize hello eszköz hello szolgáltatás titkosítási kulcs változását és hello folyamat elindításához ismét.
+**V:** Ha lejárt az időkorlát, akkor ismét engedélyezheti az eszköz számára a szolgáltatás titkosítási kulcs változását, és indítsa újra a folyamatot.
 
-**K:** módosítottam hello szolgáltatásadat-titkosítási kulcs, de nem sikerült tooupdate más eszközök hello 4 órán belül. Van toostart újra?
+**K:** módosítottam a szolgáltatásadat-titkosítási kulcs, de nem sikerült frissíteni az egyéb eszközöket 4 órán belül. Indítsa el újból a kell?
 
-**V:** hello 4 órás időszak az az csak a kezdeményező hello módosítása. A hello frissítési folyamat megkezdése után hello StorSimple eszköz engedélyezett, hello engedélyezési érvényes, amíg minden eszköz nem frissítették.
+**V:** 4 órás időszak az az csak a kezdeményező a módosítás. Után a frissítési folyamat elindításához az arra jogosult StorSimple eszközön, akkor az engedélyezési nem érvényes, amíg minden eszköz frissítése.
 
-**K:** a StorSimple rendszergazda hello vállalati kilépett. Mit tegyek?
+**K:** a StorSimple rendszergazda kilépett a vállalattól. Mit tegyek?
 
-**V:** és -visszaállítás hello engedélyezése hozzáférés toohello StorSimple eszközön, és módosítsa a hello szolgáltatás adatok titkosítási kulcs tooensure, hogy hello új adatokat nem ismert toounauthorized személyzet jelszavakat. Útmutatásért tekintse:
+**V:** változás- és a jelszavakat, amely engedélyezi a hozzáférést a StorSimple eszközhöz, és módosítsa a szolgáltatásadat-titkosítási kulcs annak érdekében, hogy az új adatok nem ismert, hogy alaphelyzetbe állítása nem engedélyezett a csoporthoz. Útmutatásért tekintse:
 
-* [Hello StorSimple Device Manager szolgáltatás toochange a storsimple-jelszavak használata](storsimple-8000-change-passwords.md)
-* [Szolgáltatásadat-titkosítási kulcs hello módosítása](storsimple-service-dashboard.md#change-the-service-data-encryption-key)
+* [A StorSimple Device Manager szolgáltatással a storsimple-jelszavak módosítása](storsimple-8000-change-passwords.md)
+* [A szolgáltatásadat-titkosítási kulcs módosítása](storsimple-service-dashboard.md#change-the-service-data-encryption-key)
 * [A CHAP konfigurálása a StorSimple eszköz](storsimple-8000-configure-chap.md)
 
-**K:** szeretném tooprovide hello StorSimple Snapshot Manager jelszavát tooa gazdagépre, amely toohello StorSimple eszköz kapcsolódik, de hello jelszó nem érhető el. Mi a teendő?
+**K:** kívánt adja meg a StorSimple Snapshot Manager jelszavát egy olyan gazdagépre, a StorSimple eszköz csatlakozik, de a jelszó nem érhető el. Mi a teendő?
 
-**V:** Ha elfelejtette hello jelszavát, akkor hozzon létre egy új. Ezt követően lehet meg arról, hogy az összes meglévő felhasználót, hogy a jelszó hello megváltozott tooinform és, hogy azok frissítenie kell az ügyfelek toouse hello új jelszót. Útmutatásért tekintse:
+**V:** Ha elfelejtette a jelszavát, akkor hozzon létre egy újat. Ezt követően lehet arra, hogy az összes meglévő felhasználók tájékoztatja, hogy a jelszó megváltozott, és, hogy azok az ügyfelek számára az új jelszót kell frissítse. Útmutatásért tekintse:
 
-* [Hello StorSimple Snapshot Manager jelszavának módosítása](storsimple-8000-change-passwords.md#set-the-storsimple-snapshot-manager-password)
+* [A StorSimple Snapshot Manager jelszavának módosítása](storsimple-8000-change-passwords.md#set-the-storsimple-snapshot-manager-password)
 * [Egy eszköz hitelesítéséhez](storsimple-snapshot-manager-manage-devices.md#authenticate-a-device)
 
-**K:** távelérési toohello Windows PowerShell-lel hello tanúsítványa megváltozott hello eszközön. Hogyan frissíthetők a távelérési ügyfelek?
+**K:** a StorSimple a Windows PowerShell távoli hozzáférést a tanúsítvány módosítva lett, az eszközön. Hogyan frissíthetők a távelérési ügyfelek?
 
-**V:** hello új tanúsítvány letöltését hello StorSimple Device Manager szolgáltatás, és telepítve hello tanúsítványtárolójába a távoli ügyfelek toobe biztosítanak. Útmutatásért tekintse:
+**V:** töltse le az új tanúsítványt a StorSimple Device Manager szolgáltatásból, és adja meg azt a tanúsítványtárolójába a távoli ügyfelek telepíteni kell. Útmutatásért tekintse:
 
 * [Tanúsítvány importálása parancsmag](https://technet.microsoft.com/library/hh848630.aspx)
 
-**K:** az adatok, ha hello StorSimple Device Manager szolgáltatás sérült védett?
+**K:** az adatok, ha a StorSimple Device Manager szolgáltatás sérült védett?
 
-**V:** szolgáltatás konfigurációs mindig adattitkosítás a nyilvános kulccsal webböngészőben megtekintésekor. Hello szolgáltatás nem rendelkezik hozzáférési toohello titkos kulcsot, mert a hello szolgáltatás nem lesz képes toosee adatot kell. Ha hello StorSimple Device Manager szolgáltatás biztonsága sérül, akkor ennek nincs hatása, mivel nincsenek hello StorSimple Device Manager szolgáltatás tárolt kulcsok.
+**V:** szolgáltatás konfigurációs mindig adattitkosítás a nyilvános kulccsal webböngészőben megtekintésekor. A szolgáltatás nem fér hozzá a titkos kulcsot, mert a szolgáltatás nem lesz képes jelennek meg az adatok. Ha a StorSimple Device Manager szolgáltatás biztonsága sérül, akkor ennek nincs hatása, mivel nincsenek a StorSimple Device Manager szolgáltatásban tárolt kulcsok.
 
-**K:** valaki kap hozzáférést toohello adatok titkosítási tanúsítványt, ha rendszer adataimat megsértik?
+**K:** Ha valaki hozzáfér az adatok titkosítási tanúsítvány, fog adataimat megsértik?
 
-**V:** Microsoft Azure titkosított formátumban tárolja a hello ügyfél adattitkosítási kulcsot (.pfx fájlt). Hello .pfx fájl titkosítva van, és hello StorSimple szolgáltatás nem rendelkezik hello szolgáltatás adatok titkosítási kulcs toodecrypt hello .pfx fájlt, mert egyszerűen első access toohello .pfx fájlt fog nem teszi közzé a titkos kulcsok.
+**V:** Microsoft Azure tárolja az ügyfél adattitkosítási kulcsot (.pfx-fájl), titkosított formában. Mivel a .pfx fájl titkosítva van, és a StorSimple szolgáltatás nem rendelkezik a szolgáltatásadat-titkosítási kulcs visszafejtése a .pfx fájl, egyszerűen fog hozzáférni a .pfx fájlt az nem megmutatják a titkos kulcsok.
 
 **K:** mi történik, ha egy kormányzati entitás Microsoft kéri az adataimat?
 
-**V:** hello adatok titkosított hello szolgáltatásban, mert a titkos kulcs hello tartják hello eszközzel hello kormányzati entitás hello adatok hello ügyfél kell kérnie.
+**V:** az összes adat titkosítva van a szolgáltatásban, és a titkos kulcs megőrzi az eszközzel, mert a kormányzati entitás kérje meg az ügyfél az adatok számára.
 
 ## <a name="next-steps"></a>Következő lépések
 

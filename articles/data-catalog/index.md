@@ -1,8 +1,8 @@
 ---
-title: "aaaAzure Data Catalog dokumentációja – oktatóanyagok API-referencia |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooset be egy adatkatalógus, ahol a szervezet találja, értelmezését és felhasználását adatforrások. Oktatóanyagok, API-referenciák és egyéb dokumentáció."
+title: "Az Azure Data Catalog dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogyan állíthat be egy adatkatalógust, ahol a szervezete megtalálhat, megismerhet és felhasználhat adatforrásokat. Oktatóanyagok, API-referenciák és egyéb dokumentáció."
 services: data-catalog
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 05/25/2017
 ms.author: carolz
-ms.openlocfilehash: eb2decd9e73531890b18497b5f39af77d6411a43
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c901562753be86613ac4ca4dec1e727d1383e626
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 #<a name="data-catalog-documentation"></a>Data Catalog – dokumentáció
 
-Ismerje meg, hogyan toouse Data Catalog toohelp a szervezet és a csoport felderítését, értelmezését és felhasználását az adatforrások. Oktatóanyagok REST API-referenciában és egyéb dokumentációt, megtudhatja, hogyan tooplan, és állítsa be az adattárház, ahol az adatfelhasználók elérhető adatforrások felfedezése és, hogy megismerje által közzétett tudnivalókat sajátíthatnak.
+Ismerje meg, hogyan használhatja a Data Catalog szolgáltatást arra, hogy a cég és a csapat könnyebben deríthesse fel, ismerhesse meg és használhassa fel az adatforrásokat. Az oktatóanyagok, REST API-leírás és egyéb dokumentáció bemutatják, hogyan tervezheti meg és állíthatja be az adattárat, ahol az adatfelhasználók hozzájuthatnak az elérhető adatforrásokhoz, és szakértők által közzétett tudást sajátíthatnak el.
 
 <ul class="panelContent cardsFTitle">
     <li>

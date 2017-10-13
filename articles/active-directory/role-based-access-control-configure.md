@@ -1,6 +1,6 @@
 ---
-title: "Hozzáférés-vezérlés aaaRole alapú hello Azure portálon |} Microsoft Docs"
-description: "Ismerkedés a hozzáférés-kezelés a szerepköralapú hozzáférés-vezérlés az Azure portál hello. Szerepkör hozzárendelések tooassign engedélyek tooyour erőforrások használatára."
+title: "Szerepköralapú hozzáférés-vezérlés az Azure Portalon | Microsoft Docs"
+description: "Megismerheti a hozzáférés kezelését az Azure Portal szerepköralapú hozzáférés-vezérlése segítségével. Szerepkör-hozzárendelésekkel rendelhet engedélyeket az erőforrásokhoz."
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -14,62 +14,62 @@ ms.workload: identity
 ms.date: 07/17/2017
 ms.author: andredm
 ms.reviewer: rqureshi
-ms.openlocfilehash: b87e00089b0fc93fb212b318330a6f22bfbf59e2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9df7f7851ef1fc6b4ed03b981aa5062d6b0913ad
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-role-based-access-control-toomanage-access-tooyour-azure-subscription-resources"></a>Szerepköralapú hozzáférés-vezérlés toomanage hozzáférés tooyour Azure-előfizetés erőforrásainak használatához
+# <a name="use-role-based-access-control-to-manage-access-to-your-azure-subscription-resources"></a>Az Azure-előfizetések erőforrásaihoz való hozzáférés kezelése szerepköralapú hozzáférés-vezérléssel
 > [!div class="op_single_selector"]
 > * [Hozzáférés kezelése felhasználó vagy csoport alapján](role-based-access-control-manage-assignments.md)
 > * [Hozzáférés kezelése erőforrás alapján](role-based-access-control-configure.md)
 
-Az Azure Szerepköralapú hozzáférés-vezérlés (RBAC) részletes hozzáférés-vezérlést biztosít az Azure-hoz. Az RBAC használata, biztosíthat csak hello mértékű hozzáférést a felhasználóknak frissíteniük kell tooperform a munkájukat. Ez a cikk segít, amelyekből megismerheti az RBAC a hello Azure-portálon. Ha további részleteket szeretne arról, hogy hogyan segít az RBAC a hozzáférések kezelésében, tekintse meg [a szerepköralapú hozzáférés-vezérlést](role-based-access-control-what-is.md) ismertető szakaszt.
+Az Azure Szerepköralapú hozzáférés-vezérlés (RBAC) részletes hozzáférés-vezérlést biztosít az Azure-hoz. Az RBAC használata lehetővé teszi, hogy csak olyan mértékű hozzáférést biztosítson, ami a felhasználóknak a feladataik elvégzéséhez szükséges. Ez a cikk segít az RBAC beállításában és használatában az Azure Portalon. Ha további részleteket szeretne arról, hogy hogyan segít az RBAC a hozzáférések kezelésében, tekintse meg [a szerepköralapú hozzáférés-vezérlést](role-based-access-control-what-is.md) ismertető szakaszt.
 
-Minden előfizetésen belül biztosíthat a szerepkör-hozzárendelések too2000 fel. 
+Előfizetésenként 2000 szerepkör-hozzárendelés osztható ki. 
 
 ## <a name="view-access"></a>Hozzáférés megtekintése
-Láthatja, hogy hozzáférési tooa erőforrás, erőforráscsoportból vagy előfizetés fő paneljén kik hello [Azure-portálon](https://portal.azure.com). Például azt szeretnénk, toosee rendelkező hozzáférés tooone erőforráscsoporthoz:
+Az [Azure Portal](https://portal.azure.com) fő paneljén láthatja, hogy kinek van hozzáférése egy adott erőforráshoz, erőforráscsoporthoz vagy előfizetéshez. Tegyük fel, hogy szeretnénk megnézni, hogy kinek van hozzáférése egy erőforráscsoporthoz:
 
-1. Válassza ki **erőforráscsoportok** hello bal oldali navigációs sávján hello.  
+1. Válassza az **Erőforráscsoportok** elemet a bal oldali navigációs sávban.  
     ![Erőforráscsoportok – ikon](./media/role-based-access-control-configure/resourcegroups_icon.png)
-2. Hello hello erőforráscsoport nevét válassza hello **erőforráscsoportok** panelen.
-3. Válassza ki **hozzáférés-vezérlés (IAM)** hello bal oldali menüből.  
-4. hello Access control panel összes felhasználók, csoportok és alkalmazások, amely rendelkezik hozzáférési toohello erőforráscsoport sorolja fel.  
+2. Válassza ki az erőforráscsoport nevét az **Erőforráscsoportok** panelen.
+3. A bal oldali menüben válassza az **Access control (IAM)** lehetőséget.  
+4. Az Access control panel az összes olyan felhasználót, csoportot és alkalmazást felsorolja, amely hozzáféréssel rendelkezik az erőforráscsoporthoz.  
    
     ![Képernyőfelvétel a felhasználók panelről – örökölt vagy hozzárendelt hozzáférés](./media/role-based-access-control-configure/view-access.png)
 
-Figyelje meg, hogy egyes szerepkörök hatóköre túl**ehhez az erőforráshoz** vannak **örökölt** azt egy másik hatókörben. Hozzáférés hozzárendelt kifejezetten toohello erőforráscsoport vagy egy hozzárendelés toohello szülő előfizetés öröklődik.
+Figyelje meg, hogy egyes szerepkör hatóköre **erre az erőforrásra** érvényes, míg mások más hatókörökből **öröklődnek**. A hozzáférés lehet kifejezetten az erőforráscsoporthoz rendelt, vagy a szülő előfizetés egyik hozzárendeléséből örökölt.
 
 > [!NOTE]
-> Hagyományos előfizetés rendszergazdák és a társadminisztrátoroknak minősülnek tulajdonosoknak hello előfizetés hello új RBAC-modellben.
+> Az új RBAC-modellben a hagyományos előfizetés-adminisztrátorok és társadminisztrátorok minősülnek tulajdonosoknak.
 
 ## <a name="add-access"></a>Hozzáférés felvétele
-Megadja a hozzáférés hello erőforrás, erőforráscsoportból vagy hello szerepkör-hozzárendelés hello hatókörében van.
+A hozzáférés a szerepkör-hozzárendelés hatókörébe tartozó erőforrásból, erőforráscsoportból vagy előfizetésből biztosítható.
 
-1. Válassza ki **Hozzáadás** hello Access control panelen.  
-2. Jelölje be hello szerepkör, hogy kívánja-e a hello tooassign **Szerepkörválasztás** panelen.
-3. Válassza ki a hello felhasználó, csoport vagy alkalmazást a címtárában, amely toogrant elérésére kívánja. A megjelenített nevek, e-mail címekre és objektumazonosítókra hello directory kereshet.  
+1. Kattintson a **Hozzáadás** gombra az Access control panelen.  
+2. A **Szerepkör kiválasztása** panelen válassza ki a felvenni kívánt szerepkört.
+3. Válassza ki azt a felhasználót, csoportot vagy alkalmazást a címtárában, amely számára hozzáférést kíván biztosítani. A címtárban rákereshet megjelenítendő nevekre, e-mail-címekre és objektumazonosítókra.  
    
     ![Felhasználók hozzáadása panel – keresés – képernyőfelvétel](./media/role-based-access-control-configure/grant-access2.png)
-4. Válassza ki **OK** toocreate hello hozzárendelés. Hello **felhasználó felvétele** előugró ablak nyomon követi a hello folyamatban van.  
+4. A hozzárendelés létrehozásához kattintson az **OK** gombra. A **Felhasználó felvétele** előugró ablak nyomon követi a folyamatot.  
     ![Felhasználó felvétele folyamatjelző sáv – képernyőfelvétel](./media/role-based-access-control-configure/addinguser_popup.png)
 
-Sikerült a szerepkör-hozzárendelés felvett, az megjelenik hello **felhasználók** panelen.
+A szerepkör-hozzárendelés a sikeres felvétel után megjelenik a **Felhasználók** panelen.
 
 ## <a name="remove-access"></a>Hozzáférés megszüntetése
-1. A kurzorral rámutat hello nevét, amelyet az tooremove hello hozzárendelés. A jelölőnégyzet következő toohello neve.
-2. Hello jelölőnégyzetek tooselect használja egy vagy több szerepkör-hozzárendelések.
+1. Vigye az egérmutatót az eltávolítani kívánt hozzárendelés fölé. Ekkor megjelenik egy jelölőnégyzet a név mellett.
+2. A jelölőnégyzetek segítségével válasszon ki egy vagy több szerepkör-hozzárendelést.
 2. Válassza az **Eltávolítás** lehetőséget.  
-3. Válassza ki **Igen** tooconfirm hello eltávolítása.
+3. Válassza az **Igen** lehetőséget az eltávolítás megerősítéséhez.
 
-Az örökölt hozzárendeléseket nem lehet eltávolítani. Ha tooremove örökölt hozzárendelés van szüksége, meg kell toodo hello a hatókör, ahol a hello szerepkör-hozzárendelés létrehozása történt. A hello **hatókör** oszlop, a következő túl**örökölt** egy hivatkozás, amely toohello erőforrások ahol ezt a szerepkört rendelték. Lépjen az ott szereplő erőforrásra toohello tooremove hello szerepkör-hozzárendelés.
+Az örökölt hozzárendeléseket nem lehet eltávolítani. Ha egy örökölt hozzárendelést kell eltávolítania, azt abban a hatókörben kell megtennie, ahol a szerepkör-hozzárendelés létrejött. A **Hatókör** oszlopban az **Örökölt** elem melletti hivatkozás azokra az erőforrásokra mutat, ahol az adott szerepkör hozzárendelése megtörtént. Lépjen az ott szereplő erőforrásra a szerepkör-hozzárendelés eltávolításához.
 
 ![Felhasználók panel – az örökölt hozzáférés letiltja az eltávolítás gombot – képernyőfelvétel](./media/role-based-access-control-configure/remove-access2.png)
 
-## <a name="other-tools-toomanage-access"></a>Más eszközök toomanage hozzáférés
-Szerepkörök hozzárendelése, és hozzáférés az Azure RBAC-parancsokkal hello Azure-portálon kívül eszközök kezelése.  Hajtsa végre a hello hivatkozások toolearn hello előfeltételeivel kapcsolatos további, valamint Ismerkedés a hello Azure RBAC-parancsokkal.
+## <a name="other-tools-to-manage-access"></a>Más eszközök a hozzáférés kezelésére
+A szerepkörök hozzárendelését és a hozzáférések kezelését más eszközökön is elvégezheti az Azure RBAC-parancsokkal, nem csak az Azure Portalon.  Az alábbi hivatkozásokat követve további információkat szerezhet az előfeltételekről, és megismerkedhet az Azure RBAC-parancsok használatával.
 
 * [Azure PowerShell](role-based-access-control-manage-access-powershell.md)
 * [Azure parancssori felület](role-based-access-control-manage-access-azure-cli.md)
@@ -77,6 +77,6 @@ Szerepkörök hozzárendelése, és hozzáférés az Azure RBAC-parancsokkal hel
 
 ## <a name="next-steps"></a>Következő lépések
 * [Jelentés létrehozása a hozzáférés-módosítások előzményeiről](role-based-access-control-access-change-history-report.md)
-* Lásd: hello [beépített RBAC-szerepkörök](role-based-access-built-in-roles.md)
+* Lásd: [Beépített RBAC-szerepkörök](role-based-access-built-in-roles.md)
 * Saját [egyéni szerepkörök az Azure RBAC-ben](role-based-access-control-custom-roles.md)
 

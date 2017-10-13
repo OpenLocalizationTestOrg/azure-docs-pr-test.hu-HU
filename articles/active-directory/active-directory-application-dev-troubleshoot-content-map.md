@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory-alkalmazásfejlesztés aaaTroubleshoot |} Microsoft Docs"
-description: "Hárítsa el a hello leggyakoribb problémák kapcsolódó tooAzure Active Directory-alkalmazásfejlesztés"
+title: "Az Azure Active Directory alkalmazásfejlesztés hibaelhárítása |} Microsoft Docs"
+description: "Az Azure Active Directory alkalmazásfejlesztésével kapcsolatos leggyakoribb hibák megoldása"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -12,14 +12,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: f1171d19cb9875df51dc0bf3c5e2449fab03bff5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8ec8e150c17fef307a7a60cb19ed776875715606
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="troubleshoot-azure-active-directory-application-development"></a>Az Azure Active Directory alkalmazásfejlesztés hibaelhárítása
-hello következő hivatkozások be fogja hozni, tooa tartalmak térképét amellyel tooresolve néhány hello leggyakoribb problémáinak fejlesztése a hello **alkalmazás beállításjegyzék** az Azure Active Directoryban.
+Az alábbi hivatkozásokkal egy tartalomtérkép érhető el, amely segít az Azure Active Directory **alkalmazásregisztrációs szolgáltatásának** segítségével történő alkalmazásfejlesztés során fellépő leggyakoribb problémák megoldásában.
 
 * [Az alkalmazás konfigurációját és regisztrációs problémák](active-directory-application-dev-config-content-map.md)
 * [Alkalmazásfejlesztés kapcsolatos problémák](active-directory-application-dev-development-content-map.md)

@@ -1,22 +1,24 @@
 # Áttekintés
-## [Kapcsolatos hello Azure-portálon](../azure-portal-overview.md)
+## [Tudnivalók az Azure Portalról](../azure-portal-overview.md)
 # oktatóanyagokat
-## [Az Azure-portálon hello DevOps](tutorial-azureportal-devops.md)
+## [A DevOps és az Azure Portal](tutorial-azureportal-devops.md)
 # Alapelvek
 ## [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md)
 ## [Billentyűparancsok](azure-portal-keyboard-shortcuts.md)
 ## [Támogatott böngészők és eszközök](../azure-preview-portal-supported-browsers-devices.md)
-# Hogyan-tooguides
+## [Az Azure-irányítópultok struktúrája](azure-portal-dashboards-structure.md)
+# Útmutatók
 ## Üzembe helyezés
 ### [Azure Resource Manager-sablonok létrehozása](../azure-resource-manager/resource-group-authoring-templates.md)
 ### [Üzembe helyezés Resource Manager-sablonnal](../azure-resource-manager/resource-group-template-deploy.md)
 ### [Azure-irányítópultok létrehozása és megosztása](azure-portal-dashboards.md)
+### [Azure-irányítópultok szoftveres létrehozása](azure-portal-dashboards-create-programmatically.md)
 ## Kezelés
 ### [Kontrasztos megjelenítés bekapcsolása és téma módosítása](azure-portal-change-theme-high-contrast.md)
-### [Portál toomanage erőforrások használata](../azure-resource-manager/resource-group-portal.md)
+### [Erőforrások kezelése a portálon](../azure-resource-manager/resource-group-portal.md)
 ### [Hozzáférés kezelése szerepköralapú hozzáférés-vezérléssel](../active-directory/role-based-access-control-configure.md)
 ### [Irányítópultok megosztása szerepköralapú hozzáférés-vezérléssel](azure-portal-dashboard-share-access.md)
-### [Címkék tooorganize erőforrások használata](../azure-resource-manager/resource-group-using-tags.md)
+### [Címkék használata az erőforrások rendszerezéséhez](../azure-resource-manager/resource-group-using-tags.md)
 ### [Az erőforrások méretezése](../monitoring-and-diagnostics/insights-how-to-scale.md)
 ### [Egyszerű Azure-szolgáltatás létrehozása](../azure-resource-manager/resource-group-create-service-principal-portal.md)
 ## Figyelés

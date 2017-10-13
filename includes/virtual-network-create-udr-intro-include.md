@@ -1,6 +1,6 @@
-Bár a rendszerútvonalak hello használata elősegíti a forgalom automatikusan az üzembe helyezéshez, vannak esetek használni kívánt toocontrol hello a csomagok útválasztását egy virtuális készüléken keresztül. Úgy, hogy felhasználó által megadott útvonalak létrehozásával megadhatja hello következő ugrás tooa alhálózatot toogo tooyour virtuális készülék helyette áramló csomagok számára, és a továbbítási hello IP-engedélyezése a virtuális gép futtatásához használt hello virtuális készülék.
+Bár a rendszerútvonalak használata automatikusan segíti az üzemelő példány forgalmát, vannak esetek, amikor a csomagok útválasztását érdemesebb egy virtuális készüléken keresztül irányítani. Ezt úgy teheti meg, hogy felhasználó által megadott útvonalakat hoz létre, amelyek úgy határozzák meg a következő ugrást az adott alhálózatra áramló csomagok számára, hogy azok a virtuális készülékre érkezzenek, valamint engedélyezi az IP-továbbítást a virtuális készülékként futó virtuális gép számára.
 
-Virtuális készülékek helyének hello esetek a következők:
+A virtuális készülékek helyének esetek a következők:
 
 * Behatolás-észlelés rendszerrel (Azonosítók) forgalom figyelése
 * A tűzfal forgalom vezérlése

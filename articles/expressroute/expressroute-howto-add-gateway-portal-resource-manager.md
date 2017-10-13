@@ -1,6 +1,6 @@
 ---
-title: "Vegyen fel egy virtuális hálózati átjáró tooa VNet ExpressRoute: Portal: Azure |} Microsoft Docs"
-description: "Ez a cikk végigvezeti a már létrehozott erőforrás-kezelő virtuális hálózaton, ExpressRoute a virtuális hálózati átjáró tooan hozzáadása."
+title: "Vegyen fel egy virtuális hálózat virtuális hálózati átjáró ExpressRoute: Portal: Azure |} Microsoft Docs"
+description: "Ez a cikk bemutatja, hogyan ExpressRoute egy már létrehozott erőforrás-kezelő virtuális hálózatot a virtuális hálózati átjárót ad hozzá."
 documentationcenter: na
 services: expressroute
 author: cherylmc
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/17/2017
 ms.author: cherylmc
-ms.openlocfilehash: 9e922af1f3676eeebc569b57c3ae3a22d4e0b395
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2bd0cf8be87937044ad515a2c6f253b1711bb2bf
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="configure-a-virtual-network-gateway-for-expressroute-using-hello-azure-portal"></a>A virtuális hálózati átjáró konfigurálása ExpressRoute hello Azure-portál használatával
+# <a name="configure-a-virtual-network-gateway-for-expressroute-using-the-azure-portal"></a>A virtuális hálózati átjáró konfigurálása az Azure portál használatával ExpressRoute
 > [!div class="op_single_selector"]
 > * [Resource Manager – Azure Portal](expressroute-howto-add-gateway-portal-resource-manager.md)
 > * [Resource Manager – PowerShell](expressroute-howto-add-gateway-resource-manager.md)
@@ -30,12 +30,12 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Ez a cikk bemutatja, hogyan hello lépéseket tooadd a virtuális hálózati átjáró egy már meglévő vnet. Ez a cikk bemutatja, hogyan hello lépéseket tooadd, méretezze át, és távolítsa el a virtuális hálózathoz (VNet) átjáró egy már meglévő vnet. hello ehhez a konfigurációhoz lépésekre kifejezetten a Vnetek hello Resource Manager telepítési modell ExpressRoute konfigurációban használt használatával létrehozott. További információ a virtuális hálózati átjárók és az átjáró konfigurációs beállításainak ExpressRoute: [kapcsolatos az ExpressRoute virtuális hálózati átjárók](expressroute-about-virtual-network-gateways.md). 
+Ez a cikk végigvezeti a virtuális hálózati átjáró hozzáadása egy meglévő vnet. Ez a cikk végigvezeti a lépéseken hozzáadásához átméretezése, és távolítsa el a virtuális hálózathoz (VNet) átjáró egy már meglévő vnet. Ehhez a konfigurációhoz lépésekre, kifejezetten a Vnetek létrehozott erőforrás-kezelő telepítési modellel, amely egy ExpressRoute-konfigurációt fogja használni. További információ a virtuális hálózati átjárók és az átjáró konfigurációs beállításainak ExpressRoute: [kapcsolatos az ExpressRoute virtuális hálózati átjárók](expressroute-about-virtual-network-gateways.md). 
 
 
 ## <a name="before-beginning"></a>Mielőtt hozzálát
 
-Ez a feladat használható egy Vnetet hello lépéseket a következő konfigurációs hivatkozáslista hello hello értékei alapján. Ebben a listában a példa lépései használjuk. Másolhatja hello lista toouse referenciaként hello értékeket cserélje le a saját.
+Ez a feladat lépéseit a következő konfigurációs hivatkozás listában található értékek alapján a VNet használja. Ebben a listában a példa lépései használjuk. A listában referenciaként, az értékeket cserélje le a saját másolhatja.
 
 **Konfigurációs hivatkozáslista**
 
@@ -54,36 +54,36 @@ Ez a feladat használható egy Vnetet hello lépéseket a következő konfigurá
 
 Megtekintheti a [videó](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-vpn-gateway-for-your-virtual-network) , mielőtt megkezdené a konfigurációs lépéseket.
 
-## <a name="create-hello-gateway-subnet"></a>Hozzon létre hello átjáró-alhálózatot
+## <a name="create-the-gateway-subnet"></a>Az átjáróalhálózat létrehozása
 
-1. A hello [portal](http://portal.azure.com), keresse meg a toohello erőforrás-kezelő virtuális hálózati legyen a virtuális hálózati átjáró toocreate.
-2. A hello **beállítások** szakasz a hálózatok paneljén kattintson **alhálózatok** tooexpand hello (alhálózatok) panel.
-3. A hello **alhálózatok** panelen kattintson a **+ átjáróalhálózatot** tooopen hello **alhálózat hozzáadása** panelen. 
+1. Keresse meg a [portálon](http://portal.azure.com) azt a Resource Manager-alapú virtuális hálózatot, amelyhez létre kíván hozni egy virtuális hálózati átjárót.
+2. A virtuális hálózat paneljének **Beállítások** részén az **Alhálózatok** elemre kattintva bontsa ki az Alhálózatok panelt.
+3. Az **Alhálózatok** panel **+Átjáróalhálózat** elemére kattintva nyissa meg az **Alhálózat hozzáadása** panelt. 
    
-    ![Hello átjáró alhálózatának hozzáadása](./media/expressroute-howto-add-gateway-portal-resource-manager/addgwsubnet.png "hello átjáró alhálózatának hozzáadása")
+    ![Az átjáró alhálózatának hozzáadása](./media/expressroute-howto-add-gateway-portal-resource-manager/addgwsubnet.png "Az átjáró alhálózatának hozzáadása")
 
 
-4. Hello **neve** az alhálózat hello automatikusan felveszi a "GatewaySubnet" értéket. Ezt az értéket ahhoz, hogy az Azure toorecognize hello alhálózati hello átjáró alhálózatának minimális. Állítsa be az automatikusan kitöltött hello **-címtartományt** értékek toomatch a konfigurációs követelmények. Javasoljuk, hogy egy átjáróalhálózat létrehozásához, egy /27 vagy nagyobb (26, / / 25, stb.). Kattintson a **OK** toosave hello értékeket, és hozzon létre hello átjáró-alhálózatot.
+4. Az alhálózat **nevénél** automatikusan megjelenik a „GatewaySubnet” érték. Ez az érték szükséges ahhoz, hogy az Azure felismerje, hogy az alhálózat egy átjáró alhálózata. Módosítsa úgy a **címtartomány** automatikusan kitöltött értékeit, hogy megfeleljenek a konfigurációs követelményeinek. Javasoljuk, hogy egy átjáróalhálózat létrehozásához, egy /27 vagy nagyobb (26, / / 25, stb.). Kattintson a **OK** értékek mentéséhez, és hozza létre az átjáró-alhálózatot.
 
-    ![Hello alhálózat hozzáadása](./media/expressroute-howto-add-gateway-portal-resource-manager/addsubnetgw.png "hello alhálózat hozzáadása")
+    ![Az alhálózat hozzáadása](./media/expressroute-howto-add-gateway-portal-resource-manager/addsubnetgw.png "Az alhálózat hozzáadása")
 
-## <a name="create-hello-virtual-network-gateway"></a>Hello virtuális hálózati átjáró létrehozása
+## <a name="create-the-virtual-network-gateway"></a>Virtuális hálózati átjáró létrehozása
 
-1. Hello portálon hello bal oldalon kattintson ** + ** , és írja be a "Virtuális hálózati átjáró" keresésben. Keresse meg **virtuális hálózati átjáró** hello keresés térjen vissza, és kattintson a hello bejegyzés. A hello **virtuális hálózati átjáró** panelen kattintson a **létrehozása** hello hello panel alsó részén. Ekkor megnyílik a hello **virtuális hálózati átjáró létrehozása** panelen.
-2. A hello **virtuális hálózati átjáró létrehozása** panelen adja meg a hello értékek a virtuális hálózati átjáró.
+1. A portálon a bal oldalon kattintson a **+** gombra, és írja be a „Virtuális hálózati átjáró” kifejezést a keresőmezőbe. A keresési eredmények között keresse meg a **Virtuális hálózati átjáró** elemet, és kattintson a bejegyzésre. A **Virtuális hálózati átjáró** panel alsó részén kattintson a **Létrehozás** gombra. Ez megnyitja a **Virtuális hálózati átjáró létrehozása** panelt.
+2. A **Virtuális hálózati átjáró létrehozása** panelen töltse ki a virtuális hálózati átjáró értékeit.
 
     ![Virtuális hálózati átjáró létrehozása panel mezői](./media/expressroute-howto-add-gateway-portal-resource-manager/gw.png "Virtuális hálózati átjáró létrehozása panel mezői")
-3. **Név**: adjon nevet az átjárónak. A rendszer nem hello ugyanaz, mint egy átjáró alhálózatának elnevezése. Azt a hello átjáró objektum létrehozásakor hello nevét.
+3. **Név**: adjon nevet az átjárónak. Ez nem ugyanaz, mint egy átjáró alhálózatának elnevezése. Ez a létrehozni kívánt átjáróobjektum neve.
 4. **Átjáró típusa**: válasszon **ExpressRoute**.
-5. **SKU**: Select hello gateway SKU hello legördülő menüből.
-6. **Hely**: hello beállítása **hely** mezőben toopoint toohello helyet, ahol a virtuális hálózat található. Hello helye nem mutat toohello régió, ahol a virtuális hálózaton található, ha a virtuális hálózati hello nem jelenik meg a hello "Válasszon egy virtuális hálózati" legördülő lista.
-7. Válassza ki a virtuális hálózati toowhich hello szeretné tooadd ezt az átjárót. Kattintson a **virtuális hálózati** tooopen hello **virtuális hálózatot választ** panelen. Válassza ki a virtuális hálózat hello. Ha nem látja a virtuális hálózat, győződjön meg arról, hogy hello **hely** mező mutat toohello régió, ahol a virtuális hálózat is található.
-9. Válasszon egy nyilvános IP-címet. Kattintson a **nyilvános IP-cím** tooopen hello **nyilvános IP-cím kiválasztása** panelen. Kattintson a **+ új** tooopen hello **létrehozás nyilvános IP-cím panel**. Adjon egy nevet a nyilvános IP-címnek. Ezen a panelen hoz létre egy nyilvános IP cím objektum toowhich egy nyilvános IP-cím dinamikusan rendeli. Kattintson a **OK** toosave a módosítások toothis panelen.
-10. **Előfizetés**: Győződjön meg arról, hogy hello megfelelő előfizetés van kijelölve.
-11. **Erőforráscsoport**: Ezzel a beállítással hello virtuális hálózat határozza meg.
-12. Ne állítsa be a hello **hely** követően hello korábbi beállításokat.
-13. Ellenőrizze a hello beállításait. Ha azt szeretné, hogy az átjáró tooappear hello irányítópultra, válassza **PIN-kód toodashboard** hello hello panel alsó részén.
-14. Kattintson a **létrehozása** toobegin hello átjáró létrehozásához. hello-beállítások érvényesítése és hello átjáró telepíti. Virtuális hálózati átjáró létrehozása akár is igénybe vehet too45 perc toocomplete.
+5. **SKU**: válassza ki az átjáró SKU-ját a legördülő listából.
+6. **Hely**: Állítsa be úgy a **Hely** mezőt, hogy a virtuális hálózat helyére mutasson. Ha a hely nem egyezik meg azzal a régióval, ahol a virtuális hálózat található, a virtuális hálózat nem jelenik meg a Virtuális hálózat választása legördülő menüben.
+7. Válassza ki azt a virtuális hálózatot, amelyhez hozzá kívánja adni az átjárót. Kattintson a **Virtuális hálózat** elemre a **Virtuális hálózat választása** panel megnyitásához. Válassza ki a VNet elemet. Ha a VNet nem jelenik meg, ellenőrizze, hogy a **Hely** mező arra a régióra mutat-e, amelyikben a virtuális hálózata található.
+9. Válasszon egy nyilvános IP-címet. A **Nyilvános IP-cím** elemre kattintva nyissa meg a **Nyilvános IP-cím választása** panelt. Ezután az **+Új létrehozása** elemre kattintva nyissa meg a **Nyilvános IP-cím létrehozása** panelt. Adjon egy nevet a nyilvános IP-címnek. Ez a panel létrehoz egy nyilvános IP-cím-objektumot, amelyhez dinamikusan hozzá lesz rendelve egy nyilvános IP-cím. Kattintson az **OK** gombra a panel módosításainak mentéséhez.
+10. **Előfizetés**: ellenőrizze, hogy a megfelelő előfizetés van-e kiválasztva.
+11. **Erőforráscsoport**: ezt a beállítást a kiválasztott virtuális hálózat határozza meg.
+12. Ne módosítsa a **Helyet** az előbbi beállítások megadása után.
+13. Ellenőrizze a beállításokat. Ha azt szeretné, hogy az átjáró megjelenjen az irányítópulton, válassza a panel alján lévő **Rögzítés az irányítópulton** elemet.
+14. A **Létrehozás** gombra kattintva hozzákezdhet az átjáró létrehozásához. A rendszer érvényesíti a beállításokat, és az átjáró üzembe helyezése megtörténik. Virtuális hálózati átjáró létrehozása akár 45 percet is igénybe vehet.
 
 ## <a name="next-steps"></a>Következő lépések
-Hello hálózatok átjáró létrehozása után a virtuális hálózat tooan ExpressRoute-kapcsolatcsoportot társíthatja. Lásd: [csatolni a virtuális hálózati tooan ExpressRoute-kapcsolatcsoportot](expressroute-howto-linkvnet-portal-resource-manager.md).
+Miután létrehozta a virtuális hálózat átjáró, a virtuális hálózat hozzákapcsolhatja egy ExpressRoute-kapcsolatcsoportot. Lásd: [virtuális hálózat csatolása ExpressRoute-kapcsolatcsoportot](expressroute-howto-linkvnet-portal-resource-manager.md).

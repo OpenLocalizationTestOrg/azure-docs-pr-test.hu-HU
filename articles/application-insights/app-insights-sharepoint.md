@@ -1,5 +1,5 @@
 ---
-title: "aaaMonitor egy SharePoint-webhely, az Application insights szolgáltatással"
+title: "SharePoint-hely megfigyelése az Application Insights segítségével"
 description: "Új alkalmazás figyelésének megkezdése új kialakítási kulccsal"
 services: application-insights
 documentationcenter: 
@@ -13,66 +13,66 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/24/2016
 ms.author: bwren
-ms.openlocfilehash: acfe99c24a4d77daec1017de0442ec952a1faba2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a3b37674469a131016f46af590e1eee3ba4cdc73
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="monitor-a-sharepoint-site-with-application-insights"></a>SharePoint-hely megfigyelése az Application Insights segítségével
-Az Azure Application Insights hello rendelkezésre állási-, teljesítmény- és az alkalmazások használati figyeli. Itt megtudhatja, hogyan tooset azt feliratkozott egy SharePoint-webhelyen.
+Az Azure Application Insights figyeli alkalmazásai rendelkezésre állását, teljesítményét és használatát. Ebből a cikkből megismerheti, hogyan állíthatja be egy SharePoint-helyhez.
 
 ## <a name="create-an-application-insights-resource"></a>Application Insights-erőforrás létrehozása
-A hello [Azure-portálon](https://portal.azure.com), hozzon létre egy új Application Insights-erőforrást. Válassza ki az ASP.NET hello alkalmazás típusként.
+Az [Azure Portalon](https://portal.azure.com) hozzon létre egy új Application Insights-erőforrást. Az alkalmazás típusának válassza az ASP.NET lehetőséget.
 
-![Kattintson a Tulajdonságok parancsra, válassza ki a hello kulcs, használja a ctrl + C](./media/app-insights-sharepoint/01-new.png)
+![Kattintson a Tulajdonságok elemre, válassza ki a kulcsot, és nyomja le a ctrl+C billentyűkombinációt.](./media/app-insights-sharepoint/01-new.png)
 
-hello panel, amely megnyitja a hello hely, ahol látni fogja, teljesítmény- és használati adatokat az alkalmazásra vonatkozó. tooget hátsó tooit tooAzure, következő bejelentkezéskor látnia kell egy csempe az kifejezésre a kezdőképernyőn hello. Másik lehetőségként kattintson a Tallózás toofind azt.
+A megnyíló panelen megtekintheti az alkalmazása teljesítmény- és használati adatait. Amikor legközelebb bejelentkezik az Azure-ba, a kezdőképernyőn található csempére kattintva léphet közvetlenül erre a panelre. Vagy a Tallózás gombra kattintva is megkeresheti.
 
-## <a name="add-our-script-tooyour-web-pages"></a>A parancsfájl tooyour weblapok hozzáadása
-A gyors üzembe helyezés hello parancsfájl weblapok érhető el:
+## <a name="add-our-script-to-your-web-pages"></a>A szkriptünk hozzáadása weblapokhoz
+A Gyors üzembe helyezés területen kérje le a weblapok szkriptjét:
 
 ![](./media/app-insights-sharepoint/02-monitor-web-page.png)
 
-Hello előtt hello parancsprogram beszúrása &lt;/head&gt; címke tootrack kívánt minden oldalon. Ha a webhely mesterlapra, nem adhat meg hello parancsfájl. Egy ASP.NET MVC-projektben a következő helyre helyezné a szkriptet: View\Shared\_Layout.cshtml
+Szúrja be a szkriptet minden olyan lap &lt;/head&gt; címkéje elé, amelyet nyomon szeretne követni. Ha a webhelye mesterlappal rendelkezik, ide helyezheti a szkriptet. Egy ASP.NET MVC-projektben a következő helyre helyezné a szkriptet: View\Shared\_Layout.cshtml
 
-hello hello instrumentation kulcs, amely arra utasítja a hello telemetriai tooyour Application Insights-erőforrást tartalmaz.
+A szkript tartalmazza a kialakítási kulcsot, amely a telemetriát az Application Insights-erőforrásra irányítja.
 
-### <a name="add-hello-code-tooyour-site-pages"></a>Hello kódlapok tooyour webhely hozzáadása
-#### <a name="on-hello-master-page"></a>A hello mesterlap
-Ha hello hely mesterlap szerkesztéséhez, amely szerepel figyelésének hello webhely összes lapjára.
+### <a name="add-the-code-to-your-site-pages"></a>Kód hozzáadása webhely lapjaihoz
+#### <a name="on-the-master-page"></a>A mesterlapon
+Ha szerkeszti webhelye mesterlapját, az biztosítja a webhely összes lapjának figyelését.
 
-Tekintse meg a hello mesterlap és szerkeszthetők a SharePoint Designer vagy bármely más szerkesztő.
+Tekintse át a mesterlapot, és szerkessze a SharePoint Designerrel vagy más szerkesztővel.
 
 ![](./media/app-insights-sharepoint/03-master.png)
 
-Adja hozzá hello kódot hello előtt </head> címke. 
+Adja hozzá a kódot közvetlenül a(z) </head> címke elé. 
 
 ![](./media/app-insights-sharepoint/04-code.png)
 
 #### <a name="or-on-individual-pages"></a>Vagy önálló lapokon
-toomonitor lap van, korlátozott számú hello parancsfájl külön-külön hozzáadása tooeach lap. 
+Adott számú lap figyeléséhez adja hozzá a szkriptet egyesével a lapokhoz. 
 
-Kijelző beszúrása és hello kódrészletet beágyazása.
+Szúrjon be egy kijelzőt, és ágyazza bele a kódrészletet.
 
 ![](./media/app-insights-sharepoint/05-page.png)
 
 ## <a name="view-data-about-your-app"></a>Alkalmazás adatainak megtekintése
 Helyezze ismét üzembe alkalmazását.
 
-Visszatérési tooyour alkalmazás paneljén hello [Azure-portálon](https://portal.azure.com).
+Térjen vissza alkalmazása paneljéhez az [Azure Portalon](https://portal.azure.com).
 
-hello első események keresési fog megjelenni. 
+Az első események megjelennek a keresésben. 
 
 ![](./media/app-insights-sharepoint/09-search.png)
 
 Ha több adatot vár, néhány másodperc elteltével kattintson a Frissítés elemre.
 
-Hello áttekintése paneljén kattintson **használatelemzés** toosee toocharts a felhasználók, a munkamenetek és az oldalmegtekintéseket:
+A felhasználókkal, munkamenetekkel és lapmegtekintésekkel kapcsolatos diagramok megtekintéséhez kattintson a **Használatelemzés** elemre az áttekintési panelen:
 
 ![](./media/app-insights-sharepoint/06-usage.png)
 
-Kattintson a diagram toosee további részletekért – például a lapmegtekintések:
+Bármely diagramra kattintva további részleteket tekinthet meg, például a Lapmegtekintések diagram esetében:
 
 ![](./media/app-insights-sharepoint/07-pages.png)
 
@@ -81,14 +81,14 @@ Vagy a Felhasználók diagram esetében:
 ![](./media/app-insights-sharepoint/08-users.png)
 
 ## <a name="capturing-user-id"></a>Felhasználói azonosító rögzítése
-hello szabványos weblap kódrészletet nem rögzíti a hello felhasználói azonosító a SharePoint, azonban lehetőség van, amely egy kis módosítással.
+A normál weblapkódrészlet nem rögzíti a felhasználói azonosítót a SharePointból, de ez egy apró módosítással elvégezhető.
 
-1. Az alkalmazás instrumentation kulcs másolása hello Essentials legördülő az Application insights szolgáltatással. 
+1. Az Application Insights Alapvető erőforrások legördülő menüjéből másolja ki alkalmazása kialakítási kulcsát. 
 
     ![](./media/app-insights-sharepoint/02-props.png)
 
-1. Az alábbi hello részlet "XXXX" hello instrumentation kulcs helyettesítse be. 
-2. Hello parancsfájl beágyazása a SharePoint-alkalmazásokban beszerzése hello portálról hello részlet helyett.
+1. Az alábbi részletben szereplő „XXXX”-et cserélje le a kialakítási kulcsra. 
+2. Ágyazza be a szkriptet a SharePoint alkalmazásába annak a kódrészletnek a helyére, amelyet a portálról töltött le.
 
 ```
 
@@ -99,26 +99,26 @@ hello szabványos weblap kódrészletet nem rögzíti a hello felhasználói azo
 <script type="text/javascript"> 
 var personProperties; 
 
-// Ensure that hello SP.UserProfiles.js file is loaded before hello custom code runs. 
+// Ensure that the SP.UserProfiles.js file is loaded before the custom code runs. 
 SP.SOD.executeOrDelayUntilScriptLoaded(getUserProperties, 'SP.UserProfiles.js'); 
 
 function getUserProperties() { 
-    // Get hello current client context and PeopleManager instance. 
+    // Get the current client context and PeopleManager instance. 
     var clientContext = new SP.ClientContext.get_current(); 
     var peopleManager = new SP.UserProfiles.PeopleManager(clientContext); 
 
-    // Get user properties for hello target user. 
-    // tooget hello PersonProperties object for hello current user, use hello 
+    // Get user properties for the target user. 
+    // To get the PersonProperties object for the current user, use the 
     // getMyProperties method. 
 
     personProperties = peopleManager.getMyProperties(); 
 
-    // Load hello PersonProperties object and send hello request. 
+    // Load the PersonProperties object and send the request. 
     clientContext.load(personProperties); 
     clientContext.executeQueryAsync(onRequestSuccess, onRequestFail); 
 } 
 
-// This function runs if hello executeQueryAsync call succeeds. 
+// This function runs if the executeQueryAsync call succeeds. 
 function onRequestSuccess() { 
 var appInsights=window.appInsights||function(config){
 function s(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},r=document,f=window,e="script",o=r.createElement(e),i,u;for(o.src=config.url||"//az416426.vo.msecnd.net/scripts/a/ai.0.js",r.getElementsByTagName(e)[0].parentNode.appendChild(o),t.cookie=r.cookie,t.queue=[],i=["Event","Exception","Metric","PageView","Trace"];i.length;)s("track"+i.pop());return config.disableExceptionTracking||(i="onerror",s("_"+i),u=f[i],f[i]=function(config,r,f,e,o){var s=u&&u(config,r,f,e,o);return s!==!0&&t["_"+i](config,r,f,e,o),s}),t
@@ -129,7 +129,7 @@ function s(config){t[config]=function(){var i=arguments;t.queue.push(function(){
     appInsights.trackPageView(document.title,window.location.href, {User: personProperties.get_displayName()});
 } 
 
-// This function runs if hello executeQueryAsync call fails. 
+// This function runs if the executeQueryAsync call fails. 
 function onRequestFail(sender, args) { 
 } 
 </script> 
@@ -140,7 +140,7 @@ function onRequestFail(sender, args) {
 
 
 ## <a name="next-steps"></a>Következő lépések
-* [Webalkalmazás-tesztek](app-insights-monitor-web-app-availability.md) toomonitor hello a hely rendelkezésre állását.
+* [Webes tesztek](app-insights-monitor-web-app-availability.md) webhelye rendelkezésre állásának figyeléséhez.
 * [Application Insights](app-insights-overview.md) más típusú alkalmazásokhoz.
 
 <!--Link references-->

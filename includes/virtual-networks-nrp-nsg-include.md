@@ -1,28 +1,28 @@
 ## <a name="network-security-group"></a>Hálózati biztonsági csoport
-Az NSG-erőforrás lehetővé teszi a munkaterhelések biztonsági határ hello létrehozását, implementálásával engedélyezése, és megtagadási szabályoknak. Ezek a szabályok lehetnek tooa virtuális gép, egy hálózati adapter vagy alhálózat alkalmazza.
+Az NSG-erőforrás létrehozását lehetővé tevő biztonsági határ munkaterhelésekhez, implementálásával engedélyezése, és megtagadási szabályoknak. Ezek a szabályok alkalmazhatók a virtuális gép, egy hálózati adapter vagy egy alhálózatot.
 
 | Tulajdonság | Leírás | Példaértékek |
 | --- | --- | --- |
-| **alhálózatok** |NSG vonatkozik, az alhálózati azonosítók hello listája. |/Subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/TestRG/Providers/Microsoft.Network/virtualNetworks/TestVNet/Subnets/FrontEnd |
-| **securityRules** |Hello NSG alkotó biztonsági szabályok listája |Lásd: [biztonsági szabály](#Security-rule) alatt |
+| **alhálózatok** |Az NSG vonatkozik, az alhálózati azonosítók listáját. |/Subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/TestRG/Providers/Microsoft.Network/virtualNetworks/TestVNet/Subnets/FrontEnd |
+| **securityRules** |Az NSG alkotó biztonsági szabályok listája |Lásd: [biztonsági szabály](#Security-rule) alatt |
 | **defaultSecurityRules** |Minden NSG található alapértelmezett biztonsági szabályok listája |Lásd: [alapértelmezett biztonsági szabályok](#Default-security-rules) alatt |
 
 * **A biztonsági szabály** -egy NSG rendelkezhet több biztonsági szabály lett meghatározva. Minden egyes szabály engedélyezheti vagy tagadhatja különböző típusú forgalom.
 
 ### <a name="security-rule"></a>A biztonsági szabály
-A szabály egy NSG-t az alábbi hello tulajdonságokat tartalmazó gyermek erőforrása.
+A szabály egy NSG-t az alábbi tulajdonságait tartalmazó gyermek erőforrása.
 
 | Tulajdonság | Leírás | Példaértékek |
 | --- | --- | --- |
-| **Leírás** |Hello szabály leírása |Bejövő adatforgalom engedélyezésére X alhálózatban lévő virtuális gépen |
-| **protokoll** |Protokoll toomatch hello szabály |TCP, UDP vagy * |
-| **sourcePortRange** |Source port tartomány toomatch hello szabály |80, 100-200, * |
-| **destinationPortRange** |Cél port tartomány toomatch hello szabály |80, 100-200, * |
-| **sourceAddressPrefix** |Forrás cím előtag toomatch hello szabály |10.10.10.1, 10.10.10.0/24, VirtualNetwork |
-| **destinationAddressPrefix** |Rendeltetési cím előtag toomatch hello szabály |10.10.10.1, 10.10.10.0/24, VirtualNetwork |
-| **iránya** |Forgalom toomatch hello szabály irányának |bejövő vagy kimenő |
-| **prioritás** |Hello szabály prioritását. Szabályok prioritás szerinti sorrendben ellenőrzi, a szabály vonatkozik, ha nincsenek további szabályok kiértékelésének egyeztetéséhez. |10, 100, 65000 |
-| **hozzáférés** |Ha hello szabálynak hozzáférés tooapply típusa |engedélyezés vagy megtagadás |
+| **Leírás** |Egy leírást a szabályhoz |Bejövő adatforgalom engedélyezésére X alhálózatban lévő virtuális gépen |
+| **protokoll** |A szabálynak megfelelő protokoll |TCP, UDP vagy * |
+| **sourcePortRange** |A szabálynak megfelelő forrásporttartomány |80, 100-200, * |
+| **destinationPortRange** |A szabálynak megfelelő célporttartomány |80, 100-200, * |
+| **sourceAddressPrefix** |A szabálynak megfelelő forráscím-előtag |10.10.10.1, 10.10.10.0/24, VirtualNetwork |
+| **destinationAddressPrefix** |A szabálynak megfelelő célcím-előtag |10.10.10.1, 10.10.10.0/24, VirtualNetwork |
+| **iránya** |A forgalom szabálynak megfelelő iránya |bejövő vagy kimenő |
+| **prioritás** |A szabály prioritását. Szabályok prioritás szerinti sorrendben ellenőrzi, a szabály vonatkozik, ha nincsenek további szabályok kiértékelésének egyeztetéséhez. |10, 100, 65000 |
+| **hozzáférés** |Az alkalmazandó hozzáférés típusa, ha a csomag megfelel a szabálynak |engedélyezés vagy megtagadás |
 
 NSG a JSON formátum. minta:
 
@@ -67,11 +67,11 @@ NSG a JSON formátum. minta:
         }
     }
 
-### <a name="default-security-rules"></a>Alapértelmezett biztonsági szabályok
+### <a name="default-security-rules"></a>Alapértelmezett szabályok
 
-Alapértelmezett biztonsági szabály rendelkezik hello ugyanazok a tulajdonságok a biztonsági szabályok érhető el. Hálózati kapcsolat tooprovide alkalmazott NSG-k toothem rendelkező erőforrások között vannak ilyenek. Ellenőrizze, hogy tudja, amely [alapértelmezett biztonsági szabályok](../articles/virtual-network/virtual-networks-nsg.md#default-rules) létezik.
+Alapértelmezett szabályok érhető el a biztonsági szabályok azonos tulajdonságokkal rendelkezik. Adja meg, amelyek az NSG-k vonatkoznak annak biztosítása érdekében erőforrások közötti hálózati kapcsolat léteznek. Ellenőrizze, hogy tudja, amely [alapértelmezett biztonsági szabályok](../articles/virtual-network/virtual-networks-nsg.md#default-rules) létezik.
 
 ### <a name="additional-resources"></a>További források
 * További információk [NSG-k](../articles/virtual-network/virtual-networks-nsg.md).
-* Olvasási hello [REST API referenciadokumentációt](https://msdn.microsoft.com/library/azure/mt163615.aspx) az NSG-ket.
-* Olvasási hello [REST API referenciadokumentációt](https://msdn.microsoft.com/library/azure/mt163580.aspx) a biztonsági szabályok.
+* Olvassa el a [REST API referenciadokumentációt](https://msdn.microsoft.com/library/azure/mt163615.aspx) az NSG-ket.
+* Olvassa el a [REST API referenciadokumentációt](https://msdn.microsoft.com/library/azure/mt163580.aspx) a biztonsági szabályok.

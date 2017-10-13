@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directory-integrációval rendelkező Zscaler személyes hozzáférési (ZPA) |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és Zscaler személyes hozzáférési (ZPA) között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és Zscaler személyes hozzáférési (ZPA) között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,71 +13,71 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/06/2017
 ms.author: jeedes
-ms.openlocfilehash: 0370cff60c8ac15bd1919acccc924da1e50dc45b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5c598bfa5b6725d21a89df54dbcb3314cc631d80
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-zscaler-private-access-zpa"></a>Oktatóanyag: Azure Active Directory-integrációval rendelkező Zscaler személyes hozzáférési (ZPA)
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Zscaler személyes hozzáférési (ZPA) az Azure Active Directoryval (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja Zscaler személyes hozzáférési (ZPA) integrálása az Azure Active Directory (Azure AD).
 
-Zscaler személyes hozzáférési (ZPA) integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
+Zscaler személyes hozzáférési (ZPA) integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
 
-- Megadhatja a hozzáférés tooZscaler titkos (ZPA) rendelkező Azure AD-ben
-- Az Azure AD-fiókok a engedélyezheti a felhasználók tooautomatically get bejelentkezett tooZscaler titkos a hozzáférési (ZPA) a (egyszeri bejelentkezés)
-- Kezelheti a fiókokat, egy központi helyen - hello Azure felügyeleti portálon
+- Szabályozhatja az Azure AD, aki hozzáfér a Zscaler személyes hozzáférési (ZPA)
+- Az Azure AD-fiókok a engedélyezheti a felhasználóknak, hogy automatikusan lekérni bejelentkezett a Zscaler személyes hozzáférési (ZPA) (egyszeri bejelentkezés)
+- Kezelheti a fiókokat, egy központi helyen – az Azure felügyeleti portálon
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-tooconfigure az Azure AD-integrációs rendelkező Zscaler személyes hozzáférési (ZPA), a következő elemek hello kell:
+Az Azure AD-integráció konfigurálása a Zscaler személyes hozzáférési (ZPA), a következőkre van szükség:
 
 - Az Azure AD szolgáltatásra
 - Egy Zscaler személyes hozzáférési (ZPA) egyszeri bejelentkezés engedélyezve van az előfizetésben
 
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 - Ne használja az éles környezetben, ha ez nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. Hello gyűjteményből Zscaler személyes hozzáférési (ZPA) hozzáadása
+1. Zscaler személyes hozzáférési (ZPA) hozzáadása a gyűjteményből
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
 
-## <a name="adding-zscaler-private-access-zpa-from-hello-gallery"></a>Hello gyűjteményből Zscaler személyes hozzáférési (ZPA) hozzáadása
-tooconfigure hello integráció a Zscaler személyes hozzáférési (ZPA) az Azure AD-be, meg kell tooadd Zscaler személyes hozzáférési (ZPA) hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-zscaler-private-access-zpa-from-the-gallery"></a>Zscaler személyes hozzáférési (ZPA) hozzáadása a gyűjteményből
+Az Azure AD integrálása a Zscaler személyes hozzáférési (ZPA) konfigurálásához kell hozzáadnia Zscaler személyes hozzáférési (ZPA) a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
 
-**tooadd Zscaler személyes hozzáférési (ZPA) hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
+**A gyűjteményből Zscaler személyes hozzáférési (ZPA) hozzáadásához hajtsa végre az alábbi lépéseket:**
 
-1. A hello  **[Azure felügyeleti portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
+1. Az a  **[Azure felügyeleti portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
+2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Kattintson a **Hozzáadás** hello párbeszédpanel tetején hello gombjára.
+3. Kattintson a **Hozzáadás** gombra a párbeszédpanel tetején.
 
     ![Alkalmazások][3]
 
-4. Hello keresési mezőbe, írja be a **Zscaler személyes hozzáférési (ZPA)**.
+4. Írja be a keresőmezőbe, **Zscaler személyes hozzáférési (ZPA)**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-zscalerprivateaccess-tutorial/tutorial_zscalerprivateaccess_001.png)
 
-5. A hello eredmények panelen válassza a **Zscaler személyes hozzáférési (ZPA)**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
+5. Az eredmények panelen válassza ki a **Zscaler személyes hozzáférési (ZPA)**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-zscalerprivateaccess-tutorial/tutorial_zscalerprivateaccess_0001.png)
 
@@ -85,74 +85,74 @@ tooconfigure hello integráció a Zscaler személyes hozzáférési (ZPA) az Azu
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, tesztelése és konfigurálása az Azure AD egyszeri bejelentkezést a Zscaler személyes hozzáférési (ZPA) "Britta Simon" nevű tesztfelhasználó alapján.
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello tartozó felhasználói a Zscaler személyes hozzáférési (ZPA) tooa felhasználó az Azure ad-ben. Ez azt jelenti hello kapcsolódó felhasználó a Zscaler személyes hozzáférési (ZPA) és az Azure AD-felhasználó közötti kapcsolat kapcsolatot kell létrehozni toobe.
+Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó a Zscaler személyes hozzáférési (ZPA) a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a Zscaler személyes hozzáférési (ZPA) közötti kapcsolat kapcsolatot kell létrehozni.
 
-Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** a Zscaler személyes hozzáférési (ZPA).
+Ez a hivatkozás kapcsolat létesíti értéket rendeli az **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a Zscaler személyes hozzáférési (ZPA).
 
-tooconfigure és az Azure AD az egyszeri bejelentkezés tesztelése a Zscaler személyes hozzáférési (ZPA), a következő építőelemeket toocomplete hello szüksége:
+Az Azure AD egyszeri bejelentkezést a Zscaler személyes hozzáférési (ZPA) tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-3. **[Zscaler személyes hozzáférési (ZPA) tesztfelhasználó létrehozása](#creating-a-zscaler-private-access-(zpa)-test-user)**  -toohave Britta Simon a Zscaler személyes hozzáférési (ZPA), amely az Azure AD csatolt toohello ábrázolása rá, hogy valami.
-4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+3. **[Zscaler személyes hozzáférési (ZPA) tesztfelhasználó létrehozása](#creating-a-zscaler-private-access-(zpa)-test-user)**  - kell rendelkeznie a megfelelője a Britta Simon a Zscaler személyes hozzáférési (ZPA), amely csatolva van rá, hogy az Azure AD ábrázolása.
+4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel hello Azure felügyeleti portálon, és konfigurálása egyszeri bejelentkezéshez az Zscaler személyes hozzáférési (ZPA) alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure felügyeleti portálon, és konfigurálása egyszeri bejelentkezéshez az Zscaler személyes hozzáférési (ZPA) alkalmazásban.
 
-**tooconfigure az Azure AD egyszeri bejelentkezést a Zscaler személyes hozzáférési (ZPA), hajtsa végre a következő lépéseket hello:**
+**Az Azure AD az egyszeri bejelentkezés beállítása a Zscaler személyes hozzáférési (ZPA), hajtsa végre az alábbi lépéseket:**
 
-1. Hello Azure felügyeleti portálon, a hello **Zscaler személyes hozzáférési (ZPA)** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure felügyeleti portálján a a **Zscaler személyes hozzáférési (ZPA)** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. A hello **egyszeri bejelentkezés** párbeszédpanel, mint **mód** kiválasztása **SAML-alapú bejelentkezés** tooenable az egyszeri bejelentkezés.
+2. A a **egyszeri bejelentkezés** párbeszédpanel, mint **mód** kiválasztása **SAML-alapú bejelentkezés** a engedélyezése az egyszeri bejelentkezéshez.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-zscalerprivateaccess-tutorial/tutorial_general_300.png)
     
-3. A hello **Zscaler személyes hozzáférési (ZPA) tartományhoz és URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
+3. Az a **Zscaler személyes hozzáférési (ZPA) tartományhoz és URL-címek** területen tegye a következőket:
     
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-zscalerprivateaccess-tutorial/tutorial_zscalerprivateaccess_01.png)
 
-    a. A hello **URL-cím bejelentkezési** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://samlsp.private.zscaler.com/auth/login?domain=<your-domain-name>`
+    a. Az a **URL-cím bejelentkezési** szövegmező, adja meg a következő minta használatával URL-címe:`https://samlsp.private.zscaler.com/auth/login?domain=<your-domain-name>`
 
-    b. A hello **azonosító** szövegmező, típus:`https://samlsp.private.zscaler.com/auth/metadata`
+    b. Az a **azonosító** szövegmező, típus:`https://samlsp.private.zscaler.com/auth/metadata`
 
     > [!NOTE] 
-    > Ne feledje, hogy ezek nincsenek hello valódi értékek. Ezeket az értékeket a tényleges hello bejelentkezési URL-cím és azonosító tooupdate rendelkezik. Itt javasoljuk, hogy toouse hello egyedi értéket URL-címének hello azonosítója. Ügyfél [Zscaler személyes hozzáférési (ZPA) támogatási csoport](https://help.zscaler.com/zpa-submit-ticket) tooget ezeket az értékeket.
+    > Ne feledje, hogy ezek nincsenek a valódi értékek. Akkor frissítheti ezeket az értékeket, és a tényleges URL-cím bejelentkezési azonosítója. Itt javasoljuk, hogy az azonosító URL-címe egyedi értékét használja. Ügyfél [Zscaler személyes hozzáférési (ZPA) támogatási csoport](https://help.zscaler.com/zpa-submit-ticket) beolvasni ezeket az értékeket.
 
-4. A hello **SAML-aláíró tanúsítványa** kattintson **hozzon létre új tanúsítvány**.
+4. Az a **SAML-aláíró tanúsítványa** kattintson **hozzon létre új tanúsítvány**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-zscalerprivateaccess-tutorial/tutorial_general_400.png)   
 
-5. A hello **új tanúsítvány létrehozása** párbeszédpanelen hello naptár ikonra, és válassza ki az **lejárati dátum**. Kattintson a **mentése** gombra.
+5. A a **új tanúsítvány létrehozása** párbeszédpanel, kattintson a naptár ikonra, és válasszon egy **lejárati dátum**. Kattintson a **mentése** gombra.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-zscalerprivateaccess-tutorial/tutorial_general_500.png)
 
-6. A hello **SAML-aláíró tanúsítványa** szakaszban jelölje be **új tanúsítvány aktiválásához** kattintson **mentése** gombra.
+6. Az a **SAML-aláíró tanúsítványa** szakaszban jelölje be **új tanúsítvány aktiválásához** kattintson **mentése** gombra.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-zscalerprivateaccess-tutorial/tutorial_zscalerprivateaccess_02.png)
 
-7. A hello előugró ablak **helyettesítő tanúsítvány** ablak, kattintson a **OK**.
+7. Az előugró **helyettesítő tanúsítvány** ablak, kattintson a **OK**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-zscalerprivateaccess-tutorial/tutorial_general_600.png)
 
-8. A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello metaadatait tartalmazó fájl a számítógépen.
+8. Az a **SAML-aláíró tanúsítványa** területen kattintson **metaadatainak XML-kódja** és mentse a metaadat-fájlt a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-zscalerprivateaccess-tutorial/tutorial_zscalerprivateaccess_03.png) 
 
 9. Egy másik webes böngészőablakban jelentkezzen be a Zscaler személyes hozzáférési (ZPA) vállalati webhely rendszergazdaként.
 
-10. Keresse meg a túl**rendszergazda** majd **Idp konfigurációs**.
+10. Navigáljon a **rendszergazda** majd **Idp konfigurációs**.
 
     ![Alkalmazás ügyféloldali egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-zscalerprivateaccess-tutorial/tutorial_zscalerprivateaccess_04.png)
 
-11. A hello **Idp konfigurációs** kattintson **hozzáadása új IDP konfigurációs**.
+11. Az a **Idp konfigurációs** kattintson **hozzáadása új IDP konfigurációs**.
 
     ![Alkalmazás ügyféloldali egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-zscalerprivateaccess-tutorial/tutorial_zscalerprivateaccess_05.png)
 
-12. A hello **új IDP konfigurációs** csoportjában hajtsa végre az alábbi lépésekkel hello:
+12. Az a **új IDP konfigurációs** területen tegye a következőket:
 
     ![Alkalmazás ügyféloldali egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-zscalerprivateaccess-tutorial/tutorial_zscalerprivateaccess_06.png)
 
@@ -163,33 +163,33 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel hello Azure felügyele
 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-hello ebben a szakaszban célja toocreate tesztfelhasználó Britta Simon nevű hello Azure felügyeleti portálon.
+Ez a szakasz célja a tesztfelhasználó létrehozása az Azure felügyeleti portálján Britta Simon nevezik.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello **Azure Management portal**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
+1. Az a **Azure Management portal**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-zscalerprivateaccess-tutorial/create_aaduser_01.png) 
 
-2. Nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó** toodisplay hello azoknak a felhasználóknak.
+2. Ugrás a **felhasználók és csoportok** kattintson **minden felhasználó** azon felhasználók listájának megjelenítéséhez.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-zscalerprivateaccess-tutorial/create_aaduser_02.png) 
 
-3. Hello párbeszédpanel hello tetején kattintson **Hozzáadás** tooopen hello **felhasználói** párbeszédpanel.
+3. Kattintson a párbeszédpanel tetején **Hozzáadás** megnyitásához a **felhasználói** párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-zscalerprivateaccess-tutorial/create_aaduser_03.png) 
 
-4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-zscalerprivateaccess-tutorial/create_aaduser_04.png) 
 
-    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
+    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra. 
 
@@ -197,26 +197,26 @@ hello ebben a szakaszban célja toocreate tesztfelhasználó Britta Simon nevű 
 
 ### <a name="creating-a-zscaler-private-access-zpa-test-user"></a>Zscaler személyes hozzáférési (ZPA) tesztfelhasználó létrehozása
 
-Ebben a szakaszban egy Britta Simon a Zscaler személyes hozzáférési (ZPA) nevű felhasználót hoz létre. Adjon együttműködve [Zscaler személyes hozzáférési (ZPA) támogatási csoport](https://help.zscaler.com/zpa-submit-ticket) tooadd hello felhasználók hello Zscaler személyes hozzáférési (ZPA) platform.
+Ebben a szakaszban egy Britta Simon a Zscaler személyes hozzáférési (ZPA) nevű felhasználót hoz létre. Adjon együttműködve [Zscaler személyes hozzáférési (ZPA) támogatási csoport](https://help.zscaler.com/zpa-submit-ticket) a felhasználók hozzáadása a Zscaler személyes hozzáférési (ZPA) platform.
 
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
+### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
 
-Ebben a szakaszban engedélyezése Britta Simon toouse Azure egyszeri bejelentkezéshez használt hozzáférés tooZscaler titkos (ZPA) megadása.
+Ebben a szakaszban Britta Simon saját hozzáférés biztosítása a Zscaler személyes hozzáférési (ZPA) által használandó Azure egyszeri bejelentkezés engedélyezése.
 
 ![Felhasználó hozzárendelése][200] 
 
-**tooassign Britta Simon tooZscaler személyes hozzáférési (ZPA), hajtsa végre a következő lépéseket hello:**
+**A Zscaler személyes hozzáférési (ZPA) Britta Simon hozzárendeléséhez a következő lépésekkel:**
 
-1. Hello Azure felügyeleti portálján, nyissa meg a hello alkalmazások megtekintése, majd toohello könyvtár nézetben keresse meg, és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Az Azure felügyeleti portálra, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Hello alkalmazások listában válassza ki a **Zscaler személyes hozzáférési (ZPA)**.
+2. Az alkalmazások listában válassza ki a **Zscaler személyes hozzáférési (ZPA)**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-zscalerprivateaccess-tutorial/tutorial_zscalerprivateaccess_50.png) 
 
-3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -224,7 +224,7 @@ Ebben a szakaszban engedélyezése Britta Simon toouse Azure egyszeri bejelentke
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -234,14 +234,14 @@ Ebben a szakaszban engedélyezése Britta Simon toouse Azure egyszeri bejelentke
 
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
 
-A hozzáférési Panel hello hello Zscaler személyes hozzáférési (ZPA) csempére kattintva kapja meg automatikusan bejelentkezett tooyour Zscaler személyes hozzáférési (ZPA) alkalmazást.
+Ha a hozzáférési panelen Zscaler személyes hozzáférési (ZPA) csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az Zscaler személyes hozzáférési (ZPA) alkalmazáshoz.
 
 
 ## <a name="additional-resources"></a>További források
 
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

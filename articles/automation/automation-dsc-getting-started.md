@@ -1,6 +1,6 @@
 ---
-title: "Azure Automation DSC használatába aaaGetting |} Microsoft Docs"
-description: "MAGYARÁZAT és példákat a hello leggyakoribb feladatokat az Azure Automation szükséges konfiguráló (DSC)"
+title: "Ismerkedés az Azure Automation DSC szolgáltatással |} Microsoft Docs"
+description: "MAGYARÁZAT és példákat a leggyakoribb feladatokat az Azure Automation szükséges konfiguráló (DSC)"
 services: automation
 documentationcenter: na
 author: eslesar
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: powershell
 ms.workload: na
 ms.date: 11/21/2016
 ms.author: magoedte;eslesar
-ms.openlocfilehash: 82910c96e928b9264c2e1b52a5c98dc47273dcc5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8a10d961ad7c107c68b57c64ee6c88544ff8832b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="getting-started-with-azure-automation-dsc"></a>Ismerkedés az Azure Automation DSC
-Ez a témakör azt ismerteti, hogyan toodo hello leggyakoribb feladatokat az Azure Automation szükséges konfiguráló (DSC), például a létrehozása, importálása, és konfigurációk, gépek túl kezelése, bevezetési fordítása és jelentések megtekintése. Milyen Azure Automation DSC áttekintést van, a következő témakörben: [Azure Automation DSC – áttekintés](automation-dsc-overview.md). A DSC-dokumentáció, lásd: [Windows PowerShell kívánt állapot beállítása – áttekintés](https://msdn.microsoft.com/PowerShell/dsc/overview).
+Ez a témakör ismerteti a leggyakoribb feladatokat az Azure Automation szükséges konfiguráló (DSC), például a létrehozása, importálása, és konfigurációk, kezeléséhez, a bevezetési gépek fordítása és jelentések megtekintése. Milyen Azure Automation DSC áttekintést van, a következő témakörben: [Azure Automation DSC – áttekintés](automation-dsc-overview.md). A DSC-dokumentáció, lásd: [Windows PowerShell kívánt állapot beállítása – áttekintés](https://msdn.microsoft.com/PowerShell/dsc/overview).
 
-Ez a témakör egy részletes útmutató toousing Azure Automation DSC Szolgáltatásban. Ha azt szeretné, hogy egy minta-környezet, amely már be van állítva a jelen témakörben ismertetett hello lépések nélkül, [ARM-sablon következő hello](https://github.com/azureautomation/automation-packs/tree/master/102-sample-automation-setup). Ez a sablon állít be egy befejezett Azure Automation DSC-környezetben, például egy Azure Automation DSC által felügyelt Azure virtuális Gépen.
+Ez a témakör részletesen ismerteti, Azure Automation DSC használata. Ha azt szeretné, hogy egy minta-környezet, amely már be van állítva a jelen témakörben ismertetett lépések nélkül, [a következő ARM-sablon](https://github.com/azureautomation/automation-packs/tree/master/102-sample-automation-setup). Ez a sablon állít be egy befejezett Azure Automation DSC-környezetben, például egy Azure Automation DSC által felügyelt Azure virtuális Gépen.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ebben a témakörben toocomplete hello példákért hello következők szükségesek:
+Ebben a témakörben szereplő példák elvégzéséhez a következőkre szükség:
 
-* Egy Azure Automation-fiókra. Azure Automation futtató fiók létrehozásával kapcsolatos információkért tekintse meg az [Azure-beli futtató fiókkal](automation-sec-configure-azure-runas-account.md) kapcsolatos részt.
-* Az Azure Resource Manager virtuális gép (klasszikus) Windows Server 2008 R2 rendszerű vagy újabb. Virtuális gép létrehozása, lásd: [hello Azure-portálon az első Windows rendszerű virtuális gép létrehozása](../virtual-machines/virtual-machines-windows-hero-tutorial.md)
+* Egy Azure Automation-fiók. Egy Azure Automation futtató fiók létrehozása, lásd: [Azure futtató fiók](automation-sec-configure-azure-runas-account.md).
+* Az Azure Resource Manager virtuális gép (klasszikus) Windows Server 2008 R2 rendszerű vagy újabb. Virtuális gép létrehozása, lásd: [az első Windows rendszerű virtuális gép létrehozása az Azure portálon](../virtual-machines/virtual-machines-windows-hero-tutorial.md)
 
 ## <a name="creating-a-dsc-configuration"></a>A DSC-konfiguráció létrehozása
-Létre fogunk hozni egy egyszerű [DSC-konfiguráció](https://msdn.microsoft.com/powershell/dsc/configurations) hello jelenléte vagy hiánya hello, ezzel biztosítható **webkiszolgáló** Windows szolgáltatás (IIS), attól függően, hogy hogyan lehet kijelölni csomópontok.
+Létre fogunk hozni egy egyszerű [DSC-konfiguráció](https://msdn.microsoft.com/powershell/dsc/configurations) megléte vagy hiánya, ezzel biztosítható a **webkiszolgáló** Windows szolgáltatás (IIS), attól függően, hogy hogyan lehet kijelölni csomópontok.
 
-1. Indítsa el a Windows PowerShell ISE hello (vagy bármilyen szövegszerkesztővel).
-2. Írja be a következő szöveg hello:
+1. Indítsa el a Windows PowerShell ISE (és bármilyen szövegszerkesztővel).
+2. Írja be a következőket:
    
     ```powershell
     configuration TestConfig
@@ -62,155 +62,155 @@ Létre fogunk hozni egy egyszerű [DSC-konfiguráció](https://msdn.microsoft.co
         }
         }
     ```
-3. Hello fájl mentése másként `TestConfig.ps1`.
+3. Mentse a fájlt `TestConfig.ps1`.
 
-Ez a konfiguráció meghívja egy erőforrást minden egyes csomópont blokkban hello [WindowsFeature erőforrás](https://msdn.microsoft.com/powershell/dsc/windowsfeatureresource), hello jelenléte vagy hiánya hello, ezzel biztosítható **webkiszolgáló** szolgáltatás.
+Ez a konfiguráció minden csomópont blokkban meghívja a egy erőforrást a [WindowsFeature erőforrás](https://msdn.microsoft.com/powershell/dsc/windowsfeatureresource), megléte vagy hiánya, ezzel biztosítható a **webkiszolgáló** szolgáltatás.
 
 ## <a name="importing-a-configuration-into-azure-automation"></a>Azure Automation konfiguráció importálása
-A következő hello konfigurációs, azt fogja importálni hello Automation-fiók.
+Ezután azt fogja importálnia kell a konfiguráció az Automation-fiók.
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
-2. Hello központ menüben kattintson a **összes erőforrás** és majd hello az Automation-fiók nevét.
-3. A hello **Automation-fiók** panelen kattintson a **a DSC-konfigurációk**.
-4. A hello **a DSC-konfigurációk** panelen kattintson a **hozzáadása egy konfigurációs**.
-5. A hello **konfiguráció importálása** panelen, a Tallózás toohello `TestConfig.ps1` fájlt a számítógépen.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+2. A központ menüben kattintson a **összes erőforrás** és majd az Automation-fiók nevét.
+3. Az a **Automation-fiók** panelen kattintson a **a DSC-konfigurációk**.
+4. A a **a DSC-konfigurációk** panelen kattintson a **hozzáadása egy konfigurációs**.
+5. Az a **konfiguráció importálása** panelen keresse meg a `TestConfig.ps1` fájlt a számítógépen.
    
-    ![Képernyőfelvétel a hello ** importálási konfigurációs ** panel](./media/automation-dsc-getting-started/AddConfig.png)
+    ![Képernyőfelvétel a ** importálási konfigurációs ** panel](./media/automation-dsc-getting-started/AddConfig.png)
 6. Kattintson az **OK** gombra.
 
 ## <a name="viewing-a-configuration-in-azure-automation"></a>A beállítások megjelenítése az Azure Automationben
-Miután importálta a konfiguráció, megtekintheti a hello Azure-portálon.
+Miután importálta a konfiguráció, megtekintheti az Azure portálon.
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
-2. Hello központ menüben kattintson a **összes erőforrás** és majd hello az Automation-fiók nevét.
-3. A hello **Automation-fiók** panelen kattintson a **a DSC-konfigurációk**
-4. A hello **a DSC-konfigurációk** panelen kattintson a **TestConfig** (Ez az importált hello konfigurációs hello neve hello előző eljárásban).
-5. A hello **TestConfig konfigurációs** panelen kattintson a **konfigurációs forrás megtekintése**.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+2. A központ menüben kattintson a **összes erőforrás** és majd az Automation-fiók nevét.
+3. Az a **Automation-fiók** panelen kattintson a **a DSC-konfigurációk**
+4. Az a **a DSC-konfigurációk** panelen kattintson a **TestConfig** (azt a nevet, a konfiguráció az előző eljárásban importált).
+5. Az a **TestConfig konfigurációs** panelen kattintson a **konfigurációs forrás megtekintése**.
    
-    ![Hello TestConfig konfigurációs paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/ViewConfigSource.png)
+    ![A TestConfig konfigurációs paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/ViewConfigSource.png)
    
-    A **TestConfig konfigurációs forrás** panel nyílik hello PowerShell-kódjába hello konfigurációs megjelenítése.
+    A **TestConfig konfigurációs forrás** panel jelenik meg, amelyen a PowerShell-kódot, a konfiguráció.
 
 ## <a name="compiling-a-configuration-in-azure-automation"></a>Az Azure Automationben konfiguráció fordítása
-A kívánt állapot tooa csomópont alkalmazása előtt a DSC-konfiguráció meghatározása az állapotban kell egy vagy több csomópont-konfigurációt (MOF dokumentum) lefordítva, és hello Automation DSC lekéréses kiszolgáló helyezve. Azure Automation DSC-konfigurációja összeállításának részletes ismertetését lásd: [Azure Automation DSC-konfigurációja fordítása](automation-dsc-compile.md). Konfiguráció fordítása kapcsolatos további információkért lásd: [a DSC-konfigurációk](https://msdn.microsoft.com/PowerShell/DSC/configurations).
+Alkalmazása előtt ki a kívánt állapot csomóponthoz, a DSC-konfiguráció meghatározása az állapotban kell egy vagy több csomópont-konfigurációt (MOF dokumentum) lefordítva, és a Automation DSC-lekéréses kiszolgálóra. Azure Automation DSC-konfigurációja összeállításának részletes ismertetését lásd: [Azure Automation DSC-konfigurációja fordítása](automation-dsc-compile.md). Konfiguráció fordítása kapcsolatos további információkért lásd: [a DSC-konfigurációk](https://msdn.microsoft.com/PowerShell/DSC/configurations).
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
-2. Hello központ menüben kattintson a **összes erőforrás** és majd hello az Automation-fiók nevét.
-3. A hello **Automation-fiók** panelen kattintson a **a DSC-konfigurációk**
-4. A hello **a DSC-konfigurációk** panelen kattintson a **TestConfig** (korábban importált konfigurációs hello hello neve).
-5. A hello **TestConfig konfigurációs** panelen kattintson a **fordítási**, és kattintson a **Igen**. Egy fordítási feladat elindul.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+2. A központ menüben kattintson a **összes erőforrás** és majd az Automation-fiók nevét.
+3. Az a **Automation-fiók** panelen kattintson a **a DSC-konfigurációk**
+4. Az a **a DSC-konfigurációk** panelen kattintson a **TestConfig** (a korábban importált konfiguráció neve).
+5. Az a **TestConfig konfigurációs** panelen kattintson a **fordítási**, és kattintson a **Igen**. Egy fordítási feladat elindul.
    
-    ![Fordítási gomb kiemelés hello TestConfig konfigurációs paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/CompileConfig.png)
+    ![Fordítási gomb kiemelés TestConfig konfigurációs paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/CompileConfig.png)
 
 > [!NOTE]
-> Ha egy Azure Automation konfigurációs lefordításához bármely létrehozott csomópont konfigurációs MOF-ot toohello lekérési kiszolgálójával automatikusan telepíti.
+> Ha egy Azure Automation konfigurációs lefordításához azt automatikusan telepíti a bármely létrehozott csomópont-konfiguráció MOF-ot a lekérési kiszolgálójával.
 > 
 > 
 
 ## <a name="viewing-a-compilation-job"></a>Egy fordítási feladat megtekintése
-A fordítás megkezdése után megtekintheti az hello **fordítási feladatok** hello csempére **konfigurációs** panelen. Hello **fordítási feladatok** csempe megjeleníti a jelenleg futó, befejeződött, és sikertelen feladatok. Amikor megnyit egy fordítási feladat panelen, azt mutatja, beleértve az esetleges hibákat vagy figyelmeztetéseket észlelt feladatot információt, hello konfigurációja és fordítási használt bemeneti paraméterek naplókat.
+Egy fordítási elindítása után megtekintheti a a **fordítási feladatok** csempére a **konfigurációs** panelen. A **fordítási feladatok** csempe megjeleníti a jelenleg futó, befejeződött, és sikertelen feladatok. Amikor megnyit egy fordítási feladat panelen, azt mutatja, beleértve az esetleges hibákat vagy figyelmeztetéseket észlelt feladatot információt, a bemeneti paramétereket használni a konfigurációs és a fordítás naplók.
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
-2. Hello központ menüben kattintson a **összes erőforrás** és majd hello az Automation-fiók nevét.
-3. A hello **Automation-fiók** panelen kattintson a **a DSC-konfigurációk**.
-4. A hello **a DSC-konfigurációk** panelen kattintson a **TestConfig** (korábban importált konfigurációs hello hello neve).
-5. A hello **fordítási feladatok** hello csempéjéről **TestConfig konfigurációs** panelen kattintson a felsorolt hello feladatok bármelyikét. A **fordítási feladat** panel nyílik fordítási feladat hello hello dátummal feliratú lett elindítva.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+2. A központ menüben kattintson a **összes erőforrás** és majd az Automation-fiók nevét.
+3. Az a **Automation-fiók** panelen kattintson a **a DSC-konfigurációk**.
+4. Az a **a DSC-konfigurációk** panelen kattintson a **TestConfig** (a korábban importált konfiguráció neve).
+5. Az a **fordítási feladatok** csempéjén a **TestConfig konfigurációs** panelen kattintson a felsorolt feladatok bármelyikét. A **fordítási feladat** panelen nyitja meg, a fordítási feladat el lett indítva dátumával.
    
-    ![Hello fordítási feladat paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/CompilationJob.png)
-6. Kattintson az összes csempe hello az **fordítási feladat** panel toosee további hello feladat vonatkozó részletek.
+    ![A fordítási feladat paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/CompilationJob.png)
+6. Kattintson az összes csempe az a **fordítási feladat** panelen tekintse meg a további részleteket a feladat.
 
 ## <a name="viewing-node-configurations"></a>Csomópont-konfigurációt megtekintése
-Egy fordítási feladat sikeres létrehozása után egy vagy több új csomópont-konfigurációkat hoz létre. A csomópont-konfiguráció, amely telepített toohello lekérési kiszolgálójával, és készen áll a toobe lekért és egy vagy több csomópont által alkalmazott MOF dokumentum. Az Automation-fiókban lévő hello meg tudja tekinteni hello csomópont-konfigurációt **DSC-Csomópontkonfigurációk** panelen. A csomópont-konfiguráció van egy hello űrlap nevű *ConfigurationName*. *Csomópontnév*.
+Egy fordítási feladat sikeres létrehozása után egy vagy több új csomópont-konfigurációkat hoz létre. A csomópont-konfiguráció a lekérési kiszolgálójával, és készen áll a lekért és egy vagy több csomópont által alkalmazott telepített MOF dokumentum. Az Automation-fiókban lévő meg tudja tekinteni a csomópont-konfigurációt a **DSC-Csomópontkonfigurációk** panelen. A csomópont-konfiguráció van az űrlap egy nevű *ConfigurationName*. *Csomópontnév*.
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
-2. Hello központ menüben kattintson a **összes erőforrás** és majd hello az Automation-fiók nevét.
-3. A hello **Automation-fiók** panelen kattintson a **DSC-Csomópontkonfigurációk**.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+2. A központ menüben kattintson a **összes erőforrás** és majd az Automation-fiók nevét.
+3. Az a **Automation-fiók** panelen kattintson a **DSC-Csomópontkonfigurációk**.
    
-    ![Hello DSC-Csomópontkonfigurációk paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/NodeConfigs.png)
+    ![A DSC-Csomópontkonfigurációk paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/NodeConfigs.png)
 
 ## <a name="onboarding-an-azure-vm-for-management-with-azure-automation-dsc"></a>Egy Azure virtuális gép Management az Azure Automation DSC Szolgáltatásban
-Azure Automation DSC toomanage Azure virtuális gépeken (klasszikus és Resource Manager), a helyszíni virtuális gépek, Linux rendszerű gépek, AWS virtuális gépek és a helyszíni fizikai gépeket is használhatja. Ebben a témakörben azt fedezi hogyan tooonboard csak a Azure Resource Manager virtuális gépeken. Gépek, más típusú bevezetési kapcsolatos információk: [bevezetési gépeket Azure Automation DSC általi kezelésre](automation-dsc-onboarding.md).
+Azure Automation DSC segítségével kezelheti az Azure virtuális gépeken (klasszikus és Resource Manager), a helyszíni virtuális gépek, Linux rendszerű gépek, AWS virtuális gépek és a helyszíni fizikai gépeket. Ebben a témakörben azt fedezi történő előkészítésére csak Azure Resource Manager virtuális gépeken. Gépek, más típusú bevezetési kapcsolatos információk: [bevezetési gépeket Azure Automation DSC általi kezelésre](automation-dsc-onboarding.md).
 
-### <a name="tooonboard-an-azure-resource-manager-vm-for-management-by-azure-automation-dsc"></a>az Azure Resource Manager virtuális gép Azure Automation DSC általi kezelésre tooonboard
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
-2. Hello központ menüben kattintson a **összes erőforrás** és majd hello az Automation-fiók nevét.
-3. A hello **Automation-fiók** panelen kattintson a **DSC-csomópontok**.
-4. A hello **DSC-csomópontok** panelen kattintson a **adja hozzá az Azure virtuális gép**.
+### <a name="to-onboard-an-azure-resource-manager-vm-for-management-by-azure-automation-dsc"></a>A bevezetni az Azure Resource Manager virtuális gép Azure Automation DSC általi kezelésre
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+2. A központ menüben kattintson a **összes erőforrás** és majd az Automation-fiók nevét.
+3. Az a **Automation-fiók** panelen kattintson a **DSC-csomópontok**.
+4. Az a **DSC-csomópontok** panelen kattintson a **adja hozzá az Azure virtuális gép**.
    
-    ![Hello Azure VM hozzáadása gomb kiemelés hello DSC-csomópontok paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/OnboardVM.png)
-5. A hello **adja hozzá az Azure virtuális gépek** panelen kattintson a **válassza ki a virtuális gépek tooonboard**.
-6. A hello **válassza ki a virtuális gépek** panelen, jelölje be hello tooonboard szeretne, és kattintson a virtuális gép **OK**.
+    ![Az Azure VM hozzáadása gomb kiemelés DSC-csomópontok paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/OnboardVM.png)
+5. Az a **adja hozzá az Azure virtuális gépek** panelen kattintson a **válassza ki a bevezetni kívánt virtuális gépeket**.
+6. Az a **válassza ki a virtuális gépek** panelen, válassza ki a virtuális gép kívánt bevezetésében, és kattintson **OK**.
    
    > [!IMPORTANT]
    > Az értéknek kell lennie az Azure Resource Manager virtuális gép Windows Server 2008 R2 rendszerű vagy újabb.
    > 
    > 
-7. A hello **adja hozzá az Azure virtuális gépek** panelen kattintson a **konfigurálása a regisztrációs adatok**.
-8. A hello **regisztrációs** panelen hello beírása hello csomópont-konfiguráció tooapply toohello VM hello a kívánt **csomópont-konfiguráció neve** mezőbe. A csomópont-konfiguráció a hello Automation-fiók neve hello egyeznie kell. Ezen a ponton biztosító nevét nem kötelező megadni. Csomópont-konfiguráció hozzárendelése hello bevezetési hello csomópont után módosíthatja.
+7. Az a **adja hozzá az Azure virtuális gépek** panelen kattintson a **regisztrációs adatok konfigurálása**.
+8. Az a **regisztrációs** panelen adja meg a virtuális gépre, az alkalmazni kívánt csomópont-konfiguráció nevét a **csomópont-konfiguráció neve** mezőbe. Ez pontosan egyeznie kell a csomópont-konfiguráció az Automation-fiók nevét. Ezen a ponton biztosító nevét nem kötelező megadni. A csomópont bevezetése után a hozzárendelt csomópont-konfiguráció módosítása
    Ellenőrizze **szükség esetén újraindítás csomópont**, és kattintson a **OK**.
    
-    ![Hello regisztrációs paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/RegisterVM.png)
+    ![A regisztrációs paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/RegisterVM.png)
    
-    a megadott csomópont-konfiguráció hello lesz alkalmazott toohello VM hello által meghatározott időközönként **konfigurációs mód gyakoriságának**, és a frissítések toohello csomópont-konfiguráció hello általmeghatározottidőközönkéntellenőrzihelloVM **Frissítési gyakoriság**. Ezek az értékek módjáról további információkért lásd: [konfigurálása hello helyi Configuration Manager](https://msdn.microsoft.com/PowerShell/DSC/metaConfig).
-9. A hello **adja hozzá az Azure virtuális gépek** panelen kattintson a **létrehozása**.
+    A megadott csomópont-konfiguráció által meghatározott időközönként alkalmazzuk a virtuális gép a **konfigurációs mód gyakoriságának**, és a virtuális gép frissítések a csomópont-konfiguráció által meghatározott időközönként ellenőrzi a  **Frissítési gyakoriság**. Ezek az értékek módjáról további információkért lásd: [konfigurálása a helyi Configuration Manager](https://msdn.microsoft.com/PowerShell/DSC/metaConfig).
+9. Az a **adja hozzá az Azure virtuális gépek** panelen kattintson a **létrehozása**.
 
-Azure VM bevezetési hello hello folyamata elindul. Amikor elkészült, hello VM fog megjelenni hello **DSC-csomópontok** hello Automation-fiók panelén.
+Azure indul el a virtuális gép folyamatán. Ha befejeződött, a virtuális Gépet fog megjelenni a **DSC-csomópontok** az Automation-fiók panelén.
 
-## <a name="viewing-hello-list-of-dsc-nodes"></a>A DSC-csomópontok hello listájának megtekintése
-Megtekintheti az összes gép lett előkészítve az Automation-fiókban lévő hello Management hello listája **DSC-csomópontok** panelen.
+## <a name="viewing-the-list-of-dsc-nodes"></a>A DSC-csomópontok listájának megtekintése
+Lett előkészítve felügyeletre a az Automation-fiókban lévő összes gép listáját megtekintheti a **DSC-csomópontok** panelen.
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
-2. Hello központ menüben kattintson a **összes erőforrás** és majd hello az Automation-fiók nevét.
-3. A hello **Automation-fiók** panelen kattintson a **DSC-csomópontok**.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+2. A központ menüben kattintson a **összes erőforrás** és majd az Automation-fiók nevét.
+3. Az a **Automation-fiók** panelen kattintson a **DSC-csomópontok**.
 
 ## <a name="viewing-reports-for-dsc-nodes"></a>A DSC-csomópontok számára jelentések megtekintése
-Minden alkalommal, amikor az Azure Automation DSC a felügyelt csomóponton konzisztencia-ellenőrzést végez hello csomópont állapota hátsó toohello lekéréses jelentéskiszolgáló küld. Az adott csomópont hello panelen megtekintheti ezekre a jelentésekre.
+Minden alkalommal, amikor az Azure Automation DSC a felügyelt csomóponton konzisztencia-ellenőrzést végez a csomópont visszaküldi egy állapotjelentést a lekérési kiszolgálójával. Az adott csomópont a panelen megtekintheti ezeket a jelentéseket.
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
-2. Hello központ menüben kattintson a **összes erőforrás** és majd hello az Automation-fiók nevét.
-3. A hello **Automation-fiók** panelen kattintson a **DSC-csomópontok**.
-4. A hello **jelentések** csempére, az egyes hello jelentések hello listában.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+2. A központ menüben kattintson a **összes erőforrás** és majd az Automation-fiók nevét.
+3. Az a **Automation-fiók** panelen kattintson a **DSC-csomópontok**.
+4. Az a **jelentések** csempére, kattintson a jelentések listájában.
    
-    ![Hello jelentés paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/NodeReport.png)
+    ![A jelentés paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/NodeReport.png)
 
-Egy egyedi jelentés hello paneljén láthatja, ellenőrizze a következő állapotadatokat hello megfelelő konzisztencia hello:
+Egy egyedi jelentés paneljén megtekintheti a következő állapotadatokat a megfelelő konzisztencia-ellenőrzés céljából:
 
-* az állapot jelentése hello – e hello csomópont "Megfelelő", "Sikertelen" hello konfigurációs vagy hello csomópont "Nem megfelelő" (ha hello csomópontjának nem **applyandmonitor** hello és a gép nem szükséges hello állapotban van.).
-* hello kezdési idejét hello konzisztencia-ellenőrzést.
-* hello teljes futási hello konzisztencia-ellenőrzése.
-* hello típusú konzisztencia-ellenőrzése.
-* Hibáit, beleértve a hiba kódja és hiba üdvözlőüzenetére. 
-* Bármely hello konfigurációja és hello állapotát (hogy hello csomópont hello szükséges állapotban van az adott erőforrás) az egyes erőforrások használt DSC-erőforrások – kattinthat a minden egyes erőforrás tooget részletes információkat az adott erőforráshoz.
-* hello nevét, IP-cím és hello csomópont konfigurációs módja.
+* A jelentés állapotának – hogy a csomópont "Megfelelő", a konfiguráció "Sikertelen" vagy a csomópont "Nem megfelelő" (ha van a csomópont **applyandmonitor** mód és a gép nincs a kívánt állapot).
+* A konzisztencia-ellenőrzés kezdési idejét.
+* A teljes futási a konzisztencia-ellenőrzés céljából.
+* A konzisztencia-ellenőrzés típusa.
+* Hibáit, beleértve a hibakódot és a hibaüzenet. 
+* A konfigurációban, és minden egyes (hogy a csomópont állapotban van a kívánt erőforrás) erőforrás állapotának használt DSC erőforrásokat – meg az egyes erőforrások további részletes információk az adott erőforráshoz.
+* A név, IP-cím és a csomópont konfigurációs módja.
 
-Is **nyers jelentés megtekintéséhez** toosee hello tényleges adatokat csomópont hello toohello server küld. Adatok használatával kapcsolatos további információkért lásd: [a DSC-jelentés kiszolgálóval](https://msdn.microsoft.com/powershell/dsc/reportserver).
+Is **nyers jelentés megtekintéséhez** a csomópont küld a kiszolgálónak a tényleges adatokat. Adatok használatával kapcsolatos további információkért lásd: [a DSC-jelentés kiszolgálóval](https://msdn.microsoft.com/powershell/dsc/reportserver).
 
-Miután csomópont előkészítve, mielőtt hello első jelentés érhető el némi időbe telhet. Szükség lehet másolatot too30 perc toowait hello első jelentés követően bevezetésében egy csomópont.
+Miután egy csomópont előkészítve, mielőtt az első jelentés érhető el némi időbe telhet. Várjon, amíg az első jelentés akár 30 percet követően bevezetésében csomópont módosítania.
 
-## <a name="reassigning-a-node-tooa-different-node-configuration"></a>Egy csomópont tooa másik csomópont-konfiguráció újbóli hozzárendelése
-Hozzárendelhet egy csomópont toouse egy másik csomópont-konfiguráció mint hello kezdetben hozzárendelt.
+## <a name="reassigning-a-node-to-a-different-node-configuration"></a>Egy csomópont egy másik csomópont-konfiguráció újbóli hozzárendelése
+Egy csomópont kezdetben rendelve egy másik csomópont-konfiguráció rendelhet hozzá.
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
-2. Hello központ menüben kattintson a **összes erőforrás** és majd hello az Automation-fiók nevét.
-3. A hello **Automation-fiók** panelen kattintson a **DSC-csomópontok**.
-4. A hello **DSC-csomópontok** panelen kattintson a hello neve hello csomópont tooreassign szeretné.
-5. Az adott csomópont hello paneljén kattintson **hozzárendelése csomópont**.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+2. A központ menüben kattintson a **összes erőforrás** és majd az Automation-fiók nevét.
+3. Az a **Automation-fiók** panelen kattintson a **DSC-csomópontok**.
+4. Az a **DSC-csomópontok** panelen kattintson a szeretne rendelni a csomópont neve.
+5. Az adott csomópont paneljén kattintson **hozzárendelése csomópont**.
    
-    ![Hello hozzárendelése csomópont gomb kiemelés hello csomópont paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/AssignNode.png)
-6. A hello **csomópont-konfiguráció hozzárendelése** panelen, jelölje be hello csomópont konfigurációs toowhich szeretné tooassign hello csomópont, és kattintson a **OK**.
+    ![A csomópont hozzárendelése gomb kiemelés csomópont paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/AssignNode.png)
+6. Az a **csomópont-konfiguráció hozzárendelése** panelen válassza ki a kívánt rendelje hozzá a csomópontot, és kattintson a csomópont-konfiguráció **OK**.
    
-    ![Hello csomópont-konfiguráció hozzárendelése paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/AssignNodeConfig.png)
+    ![A csomópont-konfiguráció hozzárendelése paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/AssignNodeConfig.png)
 
 ## <a name="unregistering-a-node"></a>Egy csomópont
-Ha már nincs szüksége egy Azure Automation DSC által kezelt csomópont toobe, regisztrációjának megszüntetésére.
+Ha már nem szeretné, hogy egy csomópont Azure Automation DSC Szolgáltatásban történő kezeléshez, regisztrációjának megszüntetésére.
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
-2. Hello központ menüben kattintson a **összes erőforrás** és majd hello az Automation-fiók nevét.
-3. A hello **Automation-fiók** panelen kattintson a **DSC-csomópontok**.
-4. A hello **DSC-csomópontok** panelen kattintson a hello neve hello csomópont toounregister szeretné.
-5. Az adott csomópont hello paneljén kattintson **Unregister**.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+2. A központ menüben kattintson a **összes erőforrás** és majd az Automation-fiók nevét.
+3. Az a **Automation-fiók** panelen kattintson a **DSC-csomópontok**.
+4. Az a **DSC-csomópontok** panelen kattintson a kívánt regisztrációjának törlése a csomópont neve.
+5. Az adott csomópont paneljén kattintson **Unregister**.
    
-    ![Hello Unregister gomb kiemelés hello csomópont paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/UnregisterNode.png)
+    ![A Unregister gomb kiemelés csomópont paneljét bemutató képernyőkép](./media/automation-dsc-getting-started/UnregisterNode.png)
 
 ## <a name="related-articles"></a>Kapcsolódó cikkek
 * [Azure Automation DSC – áttekintés](automation-dsc-overview.md)

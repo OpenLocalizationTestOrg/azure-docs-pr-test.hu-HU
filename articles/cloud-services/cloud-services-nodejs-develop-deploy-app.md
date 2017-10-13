@@ -1,6 +1,6 @@
 ---
-title: "aaaNode.js – első lépések útmutató |} Microsoft Docs"
-description: "Ismerje meg, hogyan toocreate egy egyszerű Node.js webalkalmazást, majd központilag telepítenie tooan Azure felhőszolgáltatást."
+title: "Node.js – Első lépések útmutató | Microsoft Docs"
+description: "Megtudhatja, hogyan lehet létrehozni egy egyszerű Node.js webalkalmazást, és hogyan telepítheti azt egy Azure-felhőszolgáltatásban."
 services: cloud-services
 documentationcenter: nodejs
 author: TomArcher
@@ -14,65 +14,65 @@ ms.devlang: nodejs
 ms.topic: hero-article
 ms.date: 08/17/2017
 ms.author: tarcher
-ms.openlocfilehash: 22945bfcc1b0e5da2a2d37dc5cc86be013cc0b5c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b1e08e79c7fe2acbdb9c17607641612ffa2934ee
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="build-and-deploy-a-nodejs-application-tooan-azure-cloud-service"></a>Hozza létre, és a Node.js-alkalmazás tooan Azure Cloud Service telepítése
+# <a name="build-and-deploy-a-nodejs-application-to-an-azure-cloud-service"></a>Node.js-alkalmazás létrehozása és telepítése egy Azure-felhőszolgáltatásban
 
-Ez az oktatóanyag bemutatja, hogyan toocreate egy egyszerű Node.js az Azure-Felhőszolgáltatásban futó alkalmazás. Cloud Services csomag építőelemei hello méretezhető felhőalapú alkalmazások az Azure-ban. Hello elkülönítését és egymástól független kezelését és az alkalmazás előtér- és összetevők kibővített lehetővé teszik.  A Cloud Services egy robusztus, dedikált virtuális gépet biztosít az egyes szerepkörök megbízható üzemeltetéséhez.
+Ebből az oktatóanyagból megtudhatja, hogyan hozhat létre egy egyszerű, Azure-felhőszolgáltatásban futó Node.js alkalmazást. A Cloud Services a méretezhető felhőalapú alkalmazások építőeleme az Azure-ban. Lehetővé teszik az alkalmazás előtér- és háttér-összetevőinek elkülönítését, valamint egymástól független kezelését és kibővítését.  A Cloud Services egy robusztus, dedikált virtuális gépet biztosít az egyes szerepkörök megbízható üzemeltetéséhez.
 
-A felhőalapú szolgáltatások, valamint annak összevetése tooAzure webhelyek és a virtuális gépek további információkért lásd: [Azure Websites, a Cloud Services és a virtuális gépek összevetése].
+További információk a Cloud Servicesről, valamint annak összevetése az Azure Websites és a Virtual Machines szolgáltatással: [Az Azure Websites, a Cloud Services és a Virtual Machines összevetése].
 
 > [!TIP]
-> Egy egyszerű webhely toobuild szüksége? Ha csak egy egyszerű webhely előterét kívánja futtatni, fontolja meg egy [egyszerűsített webalkalmazás használatát]. A felhőalapú szolgáltatás tooa könnyedén frissíthet, ha a webalkalmazás növekszik és a követelmények változnak.
+> Egyszerű webhelyet szeretne készíteni? Ha csak egy egyszerű webhely előterét kívánja futtatni, fontolja meg egy [egyszerűsített webalkalmazás használatát]. Könnyedén frissíthet Cloud Service szolgáltatásra, ha a webalkalmazás növekszik és a követelmények változnak.
 
-Az oktatóanyag utasításait követve egy webes szerepkörben lévő egyszerű webalkalmazást fog létrehozni. Ön szolgáltatás hello compute emulator tootest az alkalmazást helyileg, majd PowerShell parancssori eszközök használatával telepítse.
+Az oktatóanyag utasításait követve egy webes szerepkörben lévő egyszerű webalkalmazást fog létrehozni. A Compute Emulator használatával fogja elvégezni az alkalmazás helyi tesztelését, majd PowerShell parancssori eszközökkel a telepítését.
 
-hello alkalmazás egy egyszerű "hello world" alkalmazást:
+Az alkalmazás egy egyszerű „hello world” alkalmazás:
 
-![A webböngészőben Hello World hello weblapot][A web browser displaying hello Hello World web page]
+![A webböngészőben megjelenő „Hello World” weboldal][A web browser displaying the Hello World web page]
 
 ## <a name="prerequisites"></a>Előfeltételek
 > [!NOTE]
 > A jelen oktatóanyagban szereplő Azure PowerShell használatához Windows rendszer szükséges.
 
 * Telepítse és konfigurálja az [Azure PowerShell] eszközt.
-* Töltse le és telepítse a hello [Azure SDK for .NET 2.7]. Hello telepítő telepíti, válassza ki:
+* Az [Azure SDK for .NET 2.7] letöltése és telepítése. A telepítőben válassza a következőket:
   * MicrosoftAzureAuthoringTools
   * MicrosoftAzureComputeEmulator
 
 ## <a name="create-an-azure-cloud-service-project"></a>Azure Cloud Service-projektet létrehozása
-Hajtsa végre a következő feladatok toocreate egy új Azure Cloud Service-projekt alapszintű Node.js szerkezettel hello:
+Hajtsa végre az alábbi feladatokat egy új Azure Cloud Service-projekt létrehozásához alapszintű Node.js szerkezettel:
 
-1. Futtatás **Windows PowerShell** eszközt rendszergazdaként: hello **Start menü** vagy **kezdőképernyőn**, keressen **Windows PowerShell**.
-2. [PowerShell összekapcsolása] tooyour előfizetés.
-3. Adja meg a következő PowerShell parancsmagot toocreate toocreate hello projekt hello:
+1. Futtassa a **Windows PowerShell** eszközt rendszergazdaként: a **Start menüben** vagy a **Kezdőképernyőn** keressen a **Windows PowerShell** kifejezésre.
+2. A [PowerShell összekapcsolása] az előfizetéssel.
+3. A projekt létrehozásához adja meg a következő PowerShell-parancsmagot:
 
         New-AzureServiceProject helloworld
 
-    ![hello hello New-AzureService helloworld parancs eredménye][hello result of hello New-AzureService helloworld command]
+    ![A New-AzureService helloworld parancs eredménye][The result of the New-AzureService helloworld command]
 
-    Hello **New-AzureServiceProject** parancsmag létrehoz egy alapszintű struktúrát egy Node.js-alkalmazás tooa felhőalapú szolgáltatás-közzététel. Közzétételi tooAzure szükséges konfigurációs fájlokat tartalmaz. hello parancsmag módosítja a directory toohello munkakönyvtára hello szolgáltatást is.
+    A **New-AzureServiceProject** parancsmag létrehoz egy alapszintű struktúrát egy Node.js-alkalmazás közzétételéhez egy Cloud Service szolgáltatásban. Az Azure-ban való közzétételhez szükséges konfigurációs fájlokat tartalmaz. A parancsmag emellett a munkakönyvtárat a szolgáltatás könyvtárára módosítja.
 
-    hello parancsmag hozza létre a következő fájlok hello:
+    A parancsmag a következő fájlokat hozza létre:
 
    * **ServiceConfiguration.Cloud.cscfg**, **ServiceConfiguration.Local.cscfg** és **ServiceDefinition.csdef**: az alkalmazás közzétételéhez szükséges Azure-specifikus fájlok. További információkért lásd: [Üzemeltetett szolgáltatás létrehozása az Azure-ban – áttekintés].
-   * **deploymentSettings.json**: hello Azure PowerShell telepítési parancsmagok által használt helyi beállításokat tárolja.
-4. Adja meg a következő parancs tooadd új webes szerepkör hello:
+   * **deploymentSettings.json**: Az Azure PowerShell telepítési parancsmagok által használt helyi beállításokat tárolja.
+4. Új webes szerepkör hozzáadásához adja meg az alábbi parancsot:
 
        Add-AzureNodeWebRole
 
-   ![hello hello Add-AzureNodeWebRole parancs kimenete][hello output of hello Add-AzureNodeWebRole command]
+   ![Az Add-AzureNodeWebRole parancs kimenete][The output of the Add-AzureNodeWebRole command]
 
-   Hello **Add-AzureNodeWebRole** parancsmag létrehoz egy alapszintű Node.js-alkalmazást. Módosítja hello **.csfg** és **.csdef** tooadd konfigurációs bejegyzéseket hello új szerepkör-fájlokat.
+   Az **Add-AzureNodeWebRole** parancsmag létrehoz egy alapszintű Node.js-alkalmazást. Továbbá a **.csfg**- és **.csdef**-fájlok módosításával konfigurációs bejegyzéseket ad hozzá az új szerepkörhöz.
 
    > [!NOTE]
-   > Ha nem ad meg egy nevet a szerepkörhöz, alapértelmezett név lesz használva. Hello első parancsmag paraméterként megadhat egy nevet:`Add-AzureNodeWebRole MyRole`
+   > Ha nem ad meg egy nevet a szerepkörhöz, alapértelmezett név lesz használva. Az első parancsmag-paraméterként megadhat egy nevet: `Add-AzureNodeWebRole MyRole`
 
-Node.js-alkalmazás hello hello fájlban definiált **server.js**, hello hello webes szerepkör könyvtárában található (**WebRole1** alapértelmezés szerint). Íme hello kódot:
+A Node.js-alkalmazás a **server.js**-fájlban van meghatározva, amely a webes szerepkör könyvtárában található (alapértelmezés szerint **WebRole1**). A kód itt látható:
 
     var http = require('http');
     var port = process.env.port || 1337;
@@ -81,90 +81,90 @@ Node.js-alkalmazás hello hello fájlban definiált **server.js**, hello hello w
         res.end('Hello World\n');
     }).listen(port);
 
-Ez a kód alapvetően megegyeznek a "Hello World" hello mintát a hello hello [nodejs.org] webhelyen, azzal a különbséggel hello hello felhőkörnyezet által hozzárendelt portszámot használja.
+Ez a kód lényegében megegyezik a [nodejs.org] webhelyen található „Hello World” példával, azt leszámítva, hogy a felhőkörnyezet által hozzárendelt portszámot használja.
 
-## <a name="deploy-hello-application-tooazure"></a>Hello alkalmazás tooAzure telepítése
+## <a name="deploy-the-application-to-azure"></a>Az alkalmazás központi telepítése az Azure-ban
 
 > [!NOTE]
-> toocomplete ebben az oktatóanyagban egy Azure-fiókra van szüksége. [Aktiválhatja MSDN-előfizetői előnyeit](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A85619ABF), vagy [regisztrálhat egy ingyenes fiókot](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A85619ABF).
+> Az oktatóanyag elvégzéséhez egy Azure-fiókra lesz szüksége. [Aktiválhatja MSDN-előfizetői előnyeit](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A85619ABF), vagy [regisztrálhat egy ingyenes fiókot](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A85619ABF).
 
-### <a name="download-hello-azure-publishing-settings"></a>Töltse le a hello Azure közzétételi beállítások
-toodeploy az alkalmazás tooAzure először le kell töltenie hello közzétételi beállításait az Azure-előfizetéshez.
+### <a name="download-the-azure-publishing-settings"></a>Az Azure közzétételi beállítások letöltése
+Az alkalmazás közzétételéhez az Azure-ban először le kell töltenie a közzétételi beállításokat az Azure-előfizetéséhez.
 
-1. Futtassa a következő Azure PowerShell-parancsmag hello:
+1. Futtassa a következő Azure PowerShell-parancsmagot:
 
        Get-AzurePublishSettingsFile
 
-   A böngésző használata toonavigate toohello közzététele beállítások letöltése oldalt. Előfordulhat, hogy a kért toolog be egy Microsoft Account. Ha igen, használja az Azure-előfizetéshez társított hello fiók.
+   Ezáltal a böngészője megnyitja a közzétételi beállítások letöltése oldalt. A rendszer arra kérheti, hogy jelentkezzen be egy Microsoft-fiókkal. Ebben az esetben használja az Azure-előfizetéséhez társított fiókot.
 
-   Mentse a letöltött hello profil tooa fájl helye könnyen elérhetők.
-2. Futtassa a következő parancsmag tooimport hello közzétételi profil letöltött:
+   Mentse a letöltött profilt egy olyan fájlhelyre, amelyhez könnyen hozzáfér.
+2. Futtassa a következő parancsmagot a letöltött közzétételi profil importálásához:
 
-       Import-AzurePublishSettingsFile [path toofile]
+       Import-AzurePublishSettingsFile [path to file]
 
     > [!NOTE]
-    > Hello importálása után közzétételi beállítások, javasoljuk, hogy hello törlése letöltött .publishSettings-fájlt, mert nem tartalmaz információt, amelyekkel mások tooaccess fiókját.
+    > A közzétételi beállítások importálása után érdemes törölni a letöltött .publishSettings-fájlt, ugyanis olyan információkat tartalmaz, amelyekkel mások hozzáférhetnek a fiókjához.
 
-### <a name="publish-hello-application"></a>Hello alkalmazás közzététele
-Futtassa a következő parancsok hello toopublish:
+### <a name="publish-the-application"></a>Az alkalmazás közzététele
+A közzétételhez futtassa a következő parancsokat:
 
       $ServiceName = "NodeHelloWorld" + $(Get-Date -Format ('ddhhmm'))
     Publish-AzureServiceProject -ServiceName $ServiceName  -Location "East US" -Launch
 
-* **Szolgáltatásnév -** hello telepítési hello nevét határozza meg. Ennek egyedi névnek kell lennie, ellenkező esetben hello közzétételi folyamat meghiúsul. Hello **Get-Date** parancs hozzátold egy dátum/idő karakterláncot, hogy hello neve egyedi.
-* **-Hely** határozza meg az üzemeltetett hello alkalmazás hello datacenter. az elérhető adatközpontok, hello használja listáját toosee **Get-AzureLocation** parancsmag.
-* **-Launch** egy böngészőablakban megnyitja és toohello üzemeltetett szolgáltatás lép a telepítés befejezése után.
+* A **-ServiceName** megadja a központi telepítés nevét. Ennek egyedi névnek kell lennie, máskülönben a közzétételi folyamat meghiúsul. A **Get-Date** parancs hozzátold egy dátum/idő karakterláncot, amely egyedivé teheti a nevet.
+* A **-Location** megadja az adatközpontot, amelyben az alkalmazás üzemel. Az elérhető adatközpontok listájáért használja a **Get-AzureLocation** parancsmagot.
+* A **-Launch** megnyit egy ablakot a böngészőben, majd az üzemeltetett szolgáltatásokra lép a telepítés befejezése után.
 
-Miután a közzététel sikeresen megtörtént, a válasz hasonló toohello következő jelenik meg:
+Miután a közzététel sikeresen megtörtént, a következőhöz hasonló válasz jelenik meg:
 
-![hello hello Publish-AzureService parancs kimenete][hello output of hello Publish-AzureService command]
+![A Publish-AzureService parancs kimenete][The output of the Publish-AzureService command]
 
 > [!NOTE]
-> Ez a hello alkalmazás toodeploy néhány percet igénybe vehet, és válnak elérhetővé, az első közzététel alkalmával.
+> Az első közzététel alkalmával több percet is igénybe vehet, mire az alkalmazás települ, és elérhetővé válik.
 
-Hello központi telepítés befejezése után egy böngészőablakban nyissa meg, és keresse meg a toohello felhőalapú szolgáltatás.
+A telepítés befejezése után megnyílik egy ablak a böngészőben, amely megjeleníti a felhőszolgáltatást.
 
-![Hello hello world oldalt megjelenítő böngészőablak hello URL-cím jelzi hello lap az Azure-on.][A browser window displaying hello hello world page; hello URL indicates hello page is hosted on Azure.]
+![A „hello world” oldalt megjelenítő böngészőablak – az URL-cím azt jelzi, hogy az oldal az Azure-ban üzemel.][A browser window displaying the hello world page; the URL indicates the page is hosted on Azure.]
 
 Az alkalmazás most már az Azure-ban fut.
 
-Hello **Publish-AzureServiceProject** parancsmaggal hello a következő lépéseket:
+A **Publish-AzureServiceProject**-parancsmag az alábbi lépéseket végzi el:
 
-1. Létrehoz egy csomag toodeploy. hello csomag tartalmazza az összes hello fájlt az alkalmazás mappájában.
-2. Létrehoz egy új **tárfiókot**, ha még nem létezik. hello Azure storage-fiók üzembe helyezése során használt toostore hello alkalmazáscsomag. Hello storage-fiók a telepítés befejezése után nyugodtan törölheti.
-3. Létrehoz egy új **felhőszolgáltatást**, ha még nem létezik. A **felhőalapú szolgáltatás** hello tároló, amelyben az alkalmazás üzemel, ha a telepített tooAzure. További információkért lásd: [Üzemeltetett szolgáltatás létrehozása az Azure-ban – áttekintés].
-4. Hello központi telepítési csomag tooAzure közzéteszi.
+1. Létrehoz egy telepítendő csomagot. A csomag az alkalmazás mappájában lévő összes fájlt tartalmazza.
+2. Létrehoz egy új **tárfiókot**, ha még nem létezik. Az Azure-tárfiók az alkalmazáscsomag tárolására szolgál a telepítés során. A telepítés befejezése után nyugodtan törölheti a tárfiókot.
+3. Létrehoz egy új **felhőszolgáltatást**, ha még nem létezik. A **felhőszolgáltatás** az a tároló, amelyben az alkalmazás üzemel az Azure-ba való telepítéskor. További információkért lásd: [Üzemeltetett szolgáltatás létrehozása az Azure-ban – áttekintés].
+4. Közzéteszi a telepítési csomagot az Azure-ban.
 
 ## <a name="stopping-and-deleting-your-application"></a>Az alkalmazás leállítása és törlése
-Miután az alkalmazás telepítéséhez, érdemes lehet a toodisable azt további költségek elkerülése érdekében. Az Azure a webesszerepkör-példányok esetében óránként számol fel díjat a felhasznált kiszolgálóidő után. Kiszolgálói felhasznált után az alkalmazás van telepítve, akkor is, ha hello példányok nem futnak, és hello leállt állapotban van.
+Érdemes lehet letiltani az alkalmazást a telepítést követően a további költségek elkerülése érdekében. Az Azure a webesszerepkör-példányok esetében óránként számol fel díjat a felhasznált kiszolgálóidő után. A kiszolgálóidő felhasználása az alkalmazás üzembe helyezésétől kezdődik, még akkor is, ha a példányok nem futnak, és leállított állapotban vannak.
 
-1. Hello Windows PowerShell-ablakban állítsa le a hello szolgáltatás központi telepítése a következő parancsmag hello hello előző szakaszban létrehozott:
+1. Állítsa le az előző szakaszban létrehozott szolgáltatástelepítést a Windows PowerShell-ablakban az alábbi parancsmag használatával:
 
        Stop-AzureService
 
-   Hello szolgáltatás leállítása eltarthat néhány percig. Hello szolgáltatás leáll, amikor megjelenik egy üzenet, amely azt jelzi, hogy leállt.
+   A szolgáltatás leállítása eltarthat néhány percig. Miután a szolgáltatás leállt, kap egy üzenetet, amely tájékoztatja a leállásról.
 
-   ![hello hello Stop-AzureService parancs állapota][hello status of hello Stop-AzureService command]
-2. toodelete hello szolgáltatást, a következő parancsmag hívás hello:
+   ![A Stop-AzureService parancs állapota][The status of the Stop-AzureService command]
+2. A szolgáltatás törléséhez hívja meg a következő parancsot:
 
        Remove-AzureService
 
-   Amikor a rendszer kéri, adja meg a **Y** toodelete hello szolgáltatást.
+   Ha a rendszer rákérdez, írja be az **Y** karaktert a szolgáltatás törléséhez.
 
-   Hello szolgáltatás törlése eltarthat néhány percig. Hello szolgáltatás törlése után megjelenik egy üzenet, amely azt jelzi, hogy törölve lett-e a hello szolgáltatást.
+   A szolgáltatás törlése eltarthat néhány percig. Miután megtörtént a szolgáltatás törlése, kap egy üzenetet, amely tájékoztatást ad erről.
 
-   ![hello hello Remove-AzureService parancs állapota][hello status of hello Remove-AzureService command]
+   ![A Remove-AzureService parancs állapota][The status of the Remove-AzureService command]
 
    > [!NOTE]
-   > Hello szolgáltatás törlése nem érinti hello szolgáltatás első közzétételekor létrehozott tárfiók hello és, továbbra is fizetnie kell a tárhelyet toobe. Ha nincs más hello tárolót használ, érdemes lehet a toodelete azt.
+   > A szolgáltatás törlésével nem törlődik a szolgáltatás első közzétételekor létrehozott tárfiók, ezért továbbra is fizetnie kell a felhasznált tárterület után. Ha a tárterületet semmi más nem használja, megfontolhatja a törlését.
 
 ## <a name="next-steps"></a>Következő lépések
-További információkért lásd: hello [Node.js fejlesztői központ].
+További információk: [Node.js fejlesztői központ].
 
 <!-- URL List -->
 
-[Azure Websites, a Cloud Services és a virtuális gépek összevetése]: ../app-service-web/choose-web-site-cloud-service-vm.md
-[egyszerűsített webalkalmazás használatát]: ../app-service-web/app-service-web-get-started-nodejs.md
+[Az Azure Websites, a Cloud Services és a Virtual Machines összevetése]: ../app-service/choose-web-site-cloud-service-vm.md
+[egyszerűsített webalkalmazás használatát]: ../app-service/app-service-web-get-started-nodejs.md
 [Azure PowerShell]: /powershell/azureps-cmdlets-docs
 [Azure SDK for .NET 2.7]: http://www.microsoft.com/en-us/download/details.aspx?id=48178
 [PowerShell összekapcsolása]: /powershell/azureps-cmdlets-docs#step-3-connect
@@ -174,10 +174,10 @@ További információkért lásd: hello [Node.js fejlesztői központ].
 
 <!-- IMG List -->
 
-[hello result of hello New-AzureService helloworld command]: ./media/cloud-services-nodejs-develop-deploy-app/node9.png
-[hello output of hello Add-AzureNodeWebRole command]: ./media/cloud-services-nodejs-develop-deploy-app/node11.png
-[A web browser displaying hello Hello World web page]: ./media/cloud-services-nodejs-develop-deploy-app/node14.png
-[hello output of hello Publish-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node19.png
-[A browser window displaying hello hello world page; hello URL indicates hello page is hosted on Azure.]: ./media/cloud-services-nodejs-develop-deploy-app/node21.png
-[hello status of hello Stop-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node48.png
-[hello status of hello Remove-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node49.png
+[The result of the New-AzureService helloworld command]: ./media/cloud-services-nodejs-develop-deploy-app/node9.png
+[The output of the Add-AzureNodeWebRole command]: ./media/cloud-services-nodejs-develop-deploy-app/node11.png
+[A web browser displaying the Hello World web page]: ./media/cloud-services-nodejs-develop-deploy-app/node14.png
+[The output of the Publish-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node19.png
+[A browser window displaying the hello world page; the URL indicates the page is hosted on Azure.]: ./media/cloud-services-nodejs-develop-deploy-app/node21.png
+[The status of the Stop-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node48.png
+[The status of the Remove-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node49.png

@@ -1,6 +1,6 @@
 ---
-title: "aaaStorSimple virtuális tömb webes felhasználói felület felügyeleti |} Microsoft Docs"
-description: "Ismerteti, hogyan tooperform alapvető eszköz felügyeleti feladatok hello StorSimple virtuális tömb webes felhasználói felületen keresztül."
+title: "A StorSimple virtuális tömb webes felhasználói felület felügyeleti |} Microsoft Docs"
+description: "Ismerteti, hogyan hajthat végre alapszintű eszköz felügyeleti feladatokat a StorSimple virtuális tömb webes felhasználói felületen."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,100 +14,100 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 12/1/2016
 ms.author: alkohli
-ms.openlocfilehash: 31a20a587c4302231f027fcf772a50df33b23407
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 989e7b697f9b527df549fb32be18edd1d3c8d224
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-web-ui-tooadminister-your-storsimple-virtual-array"></a>Használja a következő hello webes felhasználói felületén tooadminister a StorSimple virtuális tömböt
+# <a name="use-the-web-ui-to-administer-your-storsimple-virtual-array"></a>A webes felhasználói felület segítségével felügyelheti a StorSimple virtuális tömb
 ![a telepítő folyamatábra](./media/storsimple-ova-web-ui-admin/manage4.png)
 
 ## <a name="overview"></a>Áttekintés
-hello oktatóanyagok ebben a cikkben toohello Microsoft Azure StorSimple virtuális tömb (más néven hello StorSimple helyszíni virtuális eszköz) futó 2016. március általános elérhetőségével (GA) kiadás vonatkoznak. Ez a cikk ismerteti az egyes hello bonyolult munkafolyamatok és a StorSimple virtuális tömb hello végrehajtható felügyeleti feladatokhoz. Kezelheti a StorSimple virtuális tömb hello StorSimple Manager szolgáltatás (hivatkozott tooas hello portál felhasználói felületének) felhasználói felület használatával hello és helyi webes felhasználói felület hello eszköz hello. Ez a cikk foglalkozik hello feladatok végrehajtható hello webes felhasználói felület használatával.
+Ebben a cikkben az oktatóanyagok vonatkoznak a Microsoft Azure StorSimple virtuális tömb (más néven a helyszíni virtuális eszközét) 2016. március általános elérhetőségével (GA) verzióját futtatja. Ez a cikk ismerteti az egyes a bonyolult munkafolyamatok és a feladat, amely a StorSimple virtuális tömb hajtható végre. Kezelheti a StorSimple virtuális tömb, használja a StorSimple Manager szolgáltatás (néven a portál felhasználói felületének) felhasználói felület és az eszköz helyi webes felhasználói Felületét. Ez a cikk összpontosít, hogy a webes felhasználói felületen végrehajtható műveletek.
 
-Ez a cikk a következő oktatóanyagok hello tartalmazza:
+Ez a cikk tartalmazza az alábbi oktatóanyagok:
 
-* Hello szolgáltatásadat-titkosítási kulcs beszerzése
+* A szolgáltatásadat-titkosítási kulcs beszerzése
 * Webes felhasználói felület telepítő hibák elhárítása
 * A napló-csomag létrehozása
 * Állítsa le és indítsa újra az eszközt
 
-## <a name="get-hello-service-data-encryption-key"></a>Hello szolgáltatásadat-titkosítási kulcs beszerzése
-A szolgáltatásadat-titkosítási kulcs jön létre, amikor az első eszköz regisztrálása a StorSimple Manager szolgáltatás hello. Ezt a kulcsot meg kell majd hello szolgáltatás regisztrációs kulcs tooregister további eszközök hello StorSimple Manager szolgáltatás szükséges.
+## <a name="get-the-service-data-encryption-key"></a>A szolgáltatásadat-titkosítási kulcs beszerzése
+A szolgáltatásadat-titkosítási kulcs jön létre, amikor az első eszköz regisztrálása a StorSimple Manager szolgáltatásban. Ezt a kulcsot meg kell majd további eszközök regisztrálása a StorSimple Manager szolgáltatás a szolgáltatás regisztrációs kulcsával szükséges.
 
-Ha rendelkezik a szolgáltatásadat-titkosítási kulcs helytelen, és tooretrieve kell azt, tegye a következőket hello lépéseket hello helyi webes felhasználói felület hello eszköz regisztrálva a szolgáltatásban.
+Ha a szolgáltatásadat-titkosítási kulcs, és ennek lekéréséhez szükséges feljegyezni hajtsa végre a következő lépéseket a helyi webes felhasználói felület az eszköz regisztrálva a szolgáltatásban.
 
-#### <a name="tooget-hello-service-data-encryption-key"></a>tooget hello szolgáltatásadat-titkosítási kulcs
-1. Csatlakozás toohello helyi webes felhasználói felület. Nyissa meg túl**konfigurációs** > **Felhőbeállítások**.
-2. Hello a hello lap alján, kattintson **Get szolgáltatásadat-titkosítási kulcs**. A kulcs jelenik meg. Másolja ki és mentse ezt a kulcsot.
+#### <a name="to-get-the-service-data-encryption-key"></a>A szolgáltatásadat-titkosítási kulcs segítségével
+1. Csatlakozás a helyi webes felhasználói felületen. Ugrás a **konfigurációs** > **Felhőbeállítások**.
+2. Kattintson a lap alján **Get szolgáltatásadat-titkosítási kulcs**. A kulcs jelenik meg. Másolja ki és mentse ezt a kulcsot.
    
     ![szolgáltatásadat-titkosítási kulcs 1 beolvasása](./media/storsimple-ova-web-ui-admin/image27.png)
 
 ## <a name="troubleshoot-web-ui-setup-errors"></a>Webes felhasználói felület telepítő hibák elhárítása
-Bizonyos esetekben hello helyi webes felhasználói felületén keresztül hello eszköz konfigurálásakor mutatjuk be hibák. toodiagnose és ilyen hibák elhárításával kapcsolatos tudnivalókat hello diagnosztikai tesztek futtatása.
+Bizonyos esetekben amikor konfigurálja az eszközt a helyi webes felhasználói felületén keresztül mutatjuk be hibák. A diagnosztikai tesztek diagnosztizálhatja és ilyen hibák elhárítása, futtassa.
 
-#### <a name="toorun-hello-diagnostic-tests"></a>toorun hello diagnosztikai tesztek
-1. Hello helyi webes felhasználói felületén, nyissa meg túl**hibaelhárítás** > **diagnosztikai tesztek**.
+#### <a name="to-run-the-diagnostic-tests"></a>A diagnosztikai tesztek futtatásához
+1. A helyi webes felhasználói felület váltson **hibaelhárítás** > **diagnosztikai tesztek**.
    
     ![1 diagnosztika futtatása](./media/storsimple-ova-web-ui-admin/image29.png)
-2. Hello a hello lap alján, kattintson **diagnosztikai tesztek futtatása**. A szolgáltatás kezdeményez tesztek toodiagnose a hálózati, eszköz, webalkalmazás-proxy, idő vagy felhőbeállítások minden lehetséges problémákat. Értesítést fog kapni, hogy hello eszköz teszteket futtat.
-3. Miután hello teszt befejeződött, hello eredmény jelenik meg. hello következő példa bemutatja hello diagnosztikai tesztek eredményét. Vegye figyelembe, hogy hello webproxy beállításai nem lettek konfigurálva az eszközön, és ezért hello webalkalmazás-proxy teszt nem futott. Minden egyéb hálózati beállítások, a DNS-kiszolgáló tesztek hello és időbeállítást sikeres volt.
+2. Kattintson a lap alján **diagnosztikai tesztek futtatása**. A szolgáltatás kezdeményez a hálózati, az eszköz, a webalkalmazás-proxy, minden lehetséges problémák elemzéséhez tesztek során, és a felhő beállításait. Értesítést fog kapni, hogy az eszköz teszteket futtat.
+3. Miután a teszt befejeződött, az eredmények jelenik meg. A következő példa bemutatja a diagnosztikai tesztek eredményét. Vegye figyelembe, hogy a webproxy beállításai nem lettek konfigurálva az eszközön, és ezért a webalkalmazás-proxy teszt nem futott. Hálózati beállítások, a DNS-kiszolgáló és az időbeállítást minden más vizsgálatok sikeresek voltak.
    
     ![2 diagnosztika futtatása](./media/storsimple-ova-web-ui-admin/image30.png)
 
 ## <a name="generate-a-log-package"></a>A napló-csomag létrehozása
-A napló csomag, amely segíthet a Microsoft Support bármely eszköz problémák elhárítása az összes hello megfelelő napló magában foglalja. Ebben a kiadásban a napló csomag is generálható hello helyi webes felhasználói felületen keresztül.
+Napló csomag magában foglalja a vonatkozó naplókat, hogy bármely eszköz problémák elhárítása a Microsoft Support segít. Ebben a kiadásban a napló csomag hozhatók létre a helyi webes felhasználói felületen keresztül.
 
-#### <a name="toogenerate-hello-log-package"></a>toogenerate hello napló csomag
-1. Hello helyi webes felhasználói felületén, nyissa meg túl**hibaelhárítás** > **rendszernaplókat**.
+#### <a name="to-generate-the-log-package"></a>A napló-csomag létrehozása
+1. A helyi webes felhasználói felület váltson **hibaelhárítás** > **rendszernaplókat**.
    
     ![napló csomagot 1](./media/storsimple-ova-web-ui-admin/image31.png)
-2. Hello a hello lap alján, kattintson **napló-csomag létrehozása**. A csomag hello rendszer naplók jön létre. Ez eltarthat néhány percig.
+2. Kattintson a lap alján **napló-csomag létrehozása**. A rendszer a naplók csomag jön létre. Ez eltarthat néhány percig.
    
     ![napló csomagot 2](./media/storsimple-ova-web-ui-admin/image32.png)
    
-    Értesítést fog kapni után hello csomag sikeresen jön létre, és hello oldal frissül tooindicate hello és hello csomag létrehozásának időpontja.
+    Értesítést fog kapni a csomag sikeresen létre, és az oldal frissül a csomag létrehozásának dátumát és időpontját jelzi.
    
     ![napló csomagot 3](./media/storsimple-ova-web-ui-admin/image33.png)
 3. Kattintson a **napló letöltőcsomag**. A tömörített csomag a rendszeren, tölti le a program.
    
     ![napló csomagot 4](./media/storsimple-ova-web-ui-admin/image34.png)
-4. Bontsa ki a letöltött napló csomag hello tekinthetők meg és hello rendszernapló fájljaiban.
+4. Bontsa ki a letöltött napló csomagot, és megtekintheti a rendszernapló fájljaiban.
 
 ## <a name="shut-down-and-restart-your-device"></a>Állítsa le és indítsa újra az eszközt
-Állítsa le, vagy indítsa újra a virtuális eszköz hello helyi webes felhasználói felület használatával. Javasoljuk, hogy indítsa újra, hello kötetek vagy megosztások offline végrehajtása a hello állomás és az eszköz majd hello előtt. Ezzel minimálisra csökkentheti adatsérülés lehetőségét. 
+Állítsa le, illetve újra is indíthatja a virtuális eszközt a helyi webes felhasználói felületen. Azt javasoljuk, hogy újraindítás előtt a kötetek vagy megosztások offline állapotba a gazdagép és az eszköz. Ezzel minimálisra csökkentheti adatsérülés lehetőségét. 
 
-#### <a name="tooshut-down-your-virtual-device"></a>tooshut le a virtuális eszköz
-1. Hello helyi webes felhasználói felületén, nyissa meg túl**karbantartási** > **energiaellátási beállítások**.
-2. Hello a hello lap alján, kattintson **leállítási**.
+#### <a name="to-shut-down-your-virtual-device"></a>A virtuális eszköz leállítása
+1. A helyi webes felhasználói felület váltson **karbantartási** > **energiaellátási beállítások**.
+2. Kattintson a lap alján **leállítási**.
    
     ![1 eszköz Leállítás](./media/storsimple-ova-web-ui-admin/image36.png)
-3. Megjelenik egy figyelmeztetés, amely meghatározza, hogy, hogy a leállás hello eszköz meg fogja szakítani a bármely IO, amelyek folyamatban volt egy állásidővel. Kattintson a pipa ikonra hello ![pipa ikon](./media/storsimple-ova-web-ui-admin/image3.png).
+3. Megjelenik egy figyelmeztetés, amely meghatározza, hogy, hogy a leállás, az eszköz meg fogja szakítani a bármely IO, amelyek folyamatban volt egy állásidővel. Kattintson a pipa ikonra ![pipa ikon](./media/storsimple-ova-web-ui-admin/image3.png).
    
     ![eszköz leállítás figyelmeztetés](./media/storsimple-ova-web-ui-admin/image37.png)
    
-    Értesítést fog kapni hello leállítás inicializálva lett.
+    Értesítést fog kapni, hogy a leállítási inicializálva lett.
    
     ![eszköz leállítás indítása](./media/storsimple-ova-web-ui-admin/image38.png)
    
-    hello eszköz most leáll. Ha azt szeretné, toostart, szüksége lesz, amely a Hyper-V kezelője hello toodo.
+    Az eszköz most leáll. Ha el szeretné indítani az eszközt, akkor ehhez a Hyper-V kezelője segítségével.
 
-#### <a name="toorestart-your-virtual-device"></a>toorestart a virtuális eszköz
-1. Hello helyi webes felhasználói felületén, nyissa meg túl**karbantartási** > **energiaellátási beállítások**.
-2. Hello a hello lap alján, kattintson **indítsa újra a**.
+#### <a name="to-restart-your-virtual-device"></a>A virtuális eszköz újraindítása
+1. A helyi webes felhasználói felület váltson **karbantartási** > **energiaellátási beállítások**.
+2. Kattintson a lap alján **indítsa újra a**.
    
     ![eszköz újraindítása](./media/storsimple-ova-web-ui-admin/image36.png)
-3. Megjelenik egy figyelmeztetés, amely meghatározza, hogy újraindítás hello eszköz meg fogja szakítani a bármely IOs-, amelyek folyamatban volt egy állásidővel. Kattintson a pipa ikonra hello ![pipa ikon](./media/storsimple-ova-web-ui-admin/image3.png).
+3. Megjelenik egy figyelmeztetés, amely meghatározza, hogy, hogy az eszköz újraindítása meg fogja szakítani a bármely IOs-, amelyek folyamatban volt egy állásidővel. Kattintson a pipa ikonra ![pipa ikon](./media/storsimple-ova-web-ui-admin/image3.png).
    
     ![Indítsa újra a figyelmeztetés](./media/storsimple-ova-web-ui-admin/image37.png)
    
-    Értesítést fog kapni, hogy hello újraindítást kezdeményezett.
+    Értesítést fog kapni az újraindítást kezdeményezett.
    
     ![újraindítást kezdeményezett](./media/storsimple-ova-web-ui-admin/image39.png)
    
-    Hello újraindítása folyamatban van, amíg hello kapcsolat toohello felhasználói felület elvész. Hello újraindítás végezhet figyelést, ha felhasználói felület hello rendszeresen frissíteni. Másik lehetőségként hello eszköz újraindítása állapotát a Hyper-V kezelője hello figyelheti.
+    Az újraindítás folyamatban van, amíg a kapcsolat a felhasználói felület megszűnik. Az újraindítás végezhet figyelést, ha a felhasználói felület rendszeresen frissíteni. Másik lehetőségként az eszköz újraindítása állapotát a Hyper-V kezelője segítségével figyelheti.
 
 ## <a name="next-steps"></a>Következő lépések
-Ismerje meg, hogyan túl[használata hello StorSimple Manager szolgáltatás toomanage az eszköz](storsimple-virtual-array-manager-service-administration.md).
+Megtudhatja, hogyan [a StorSimple Manager szolgáltatás használni az eszköz kezelését](storsimple-virtual-array-manager-service-administration.md).
 

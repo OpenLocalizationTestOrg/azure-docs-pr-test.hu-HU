@@ -1,6 +1,6 @@
 ---
-title: "aaaManage több környezeteknek a Service Fabric |} Microsoft Docs"
-description: "Service Fabric-alkalmazások futtatható fürtökben, amelyek mérete a egy gép toothousands gépek között. Bizonyos esetekben érdemes tooconfigure eltérően az alkalmazását ezen változatos környezetekben. Ez a cikk ismerteti hogyan toodefine különböző alkalmazás paraméterei / környezetben."
+title: "A Service Fabric több környezet kezelése |} Microsoft Docs"
+description: "Service Fabric-alkalmazások futtatható fürtökben, amelyek több ezer gép egyik gépről mérete között. Bizonyos esetekben érdemes állítsa be az alkalmazását eltérően ezeket változatos környezetekben. Ez a cikk bemutatja, hogyan adhat környezet egy másik alkalmazás paramétereit."
 services: service-fabric
 documentationcenter: .net
 author: mikkelhegn
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: mikkelhegn
-ms.openlocfilehash: 2b3327e0e1a3bbd35a50835e720619f308b1b501
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9317b3f0b7984e795c4205360ed58e2c4f3fbcb1
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="manage-application-parameters-for-multiple-environments"></a>Alkalmazás paramétereinek több környezet kezelése
-Azure Service Fabric-fürtök használatával bárhol egy toomany több ezer gépek hozhat létre. Bináris alkalmazásfájlokat módosítás nélkül futtathatja a széles skáláját környezetek között, miközben gyakran szeretné tooconfigure hello alkalmazás másképp, attól függően, hogy a gépek való telepítése esetén hello száma.
+Azure Service Fabric-fürtök hozhat létre egyet a sok ezer gépek bárhol használva. Amíg a bináris alkalmazásfájlokat módosítás nélkül futtathatja a széles skáláját környezetek között, gyakran konfigurálni szeretné az alkalmazás másképp, attól függően, hogy hány számítógépre történő telepítése esetén.
 
-Egy egyszerű példa, fontolja meg a `InstanceCount` az állapotmentes szolgáltatások. Amikor alkalmazásokat futtat az Azure-ban, általában kívánt tooset a toohello különleges paraméterérték a "-"1. Ez a konfiguráció biztosítja, hogy fut-e a szolgáltatás minden egyes csomópontjára hello fürt (vagy minden csomópont hello csomóponttípus, ha egy elhelyezési korlátozás van beállítva). Azonban ez a konfiguráció nem alkalmas egyszámítógépes fürt hello figyel azonos több folyamat nem tartozik végpont egy gépen. Ehelyett általában beállított `InstanceCount` túl "1".
+Egy egyszerű példa, fontolja meg a `InstanceCount` az állapotmentes szolgáltatások. Ha alkalmazások futnak az Azure-ban, általában szeretné a paraméter értéke a speciális érték-1". Ez a konfiguráció biztosítja, hogy fut-e a szolgáltatás minden csomóponton a fürtben (vagy minden csomópont, a csomópont típusban, ha egy elhelyezési korlátozás van beállítva). Azonban ez a konfiguráció nem alkalmas egyszámítógépes fürt figyel egy gépen azonos végponton több folyamat nem tartozik. Ehelyett általában beállított `InstanceCount` "1".
 
 ## <a name="specifying-environment-specific-parameters"></a>Környezetfüggő paramétereinek megadása
-hello megoldás toothis konfigurációs probléma a paraméteres alapértelmezett szolgáltatások és alkalmazásparaméter-fájlokat az adott értékei az adott környezetben. Alapértelmezett szolgáltatások és alkalmazás paraméterei hello alkalmazásban és a szolgáltatás a jegyzékfájlban. hello sémadefiníciót hello ServiceManifest.xml és ApplicationManifest.xml fájlok hello Service Fabric SDK telepítve van és eszközöket túl*C:\Program Files\Microsoft SDKs\Service Fabric\schemas\ServiceFabricServiceModel.xsd*.
+A megoldás a konfigurációs probléma a paraméteres alapértelmezett szolgáltatások és alkalmazásparaméter-fájlokat az adott értékei az adott környezetben. Az alkalmazás és szolgáltatás jegyzékfájlokban alapértelmezett szolgáltatások és alkalmazások paraméterek vannak konfigurálva. A séma meghatározása a ServiceManifest.xml és ApplicationManifest.xml fájlok telepítve van a Service Fabric SDK-val, és az eszközök *C:\Program Files\Microsoft SDKs\Service Fabric\schemas\ServiceFabricServiceModel.xsd*.
 
 ### <a name="default-services"></a>Alapértelmezett szolgáltatások
-Service Fabric-alkalmazások szolgáltatáspéldány gyűjteménye épülnek fel. Toocreate üres alkalmazás lehet, és hozzon létre minden szolgáltatáspéldány dinamikusan, a legtöbb alkalmazás rendelkezik alapvető szolgáltatások mindig jöjjenek létre, amikor hello alkalmazás létrejön. Ezek a hivatkozott tooas "alapértelmezett szolgáltatások". Hello alkalmazásjegyzék szögletes zárójelek között szerepel környezeti konfiguráció helyőrzőkkel vannak megadva:
+Service Fabric-alkalmazások szolgáltatáspéldány gyűjteménye épülnek fel. Is lehetséges, hogy hozzon létre egy üres alkalmazást, majd minden szolgáltatáspéldány dinamikusan, a legtöbb alkalmazás rendelkezik alapvető szolgáltatások mindig jöjjenek létre, amikor az alkalmazás létrejön. Ezek "alapértelmezett szolgáltatások" nevezzük. Az alkalmazás jegyzékében szögletes zárójelek között szerepel környezeti konfiguráció helyőrzőkkel vannak megadva:
 
 ```xml
   <DefaultServices>
@@ -49,7 +49,7 @@ Service Fabric-alkalmazások szolgáltatáspéldány gyűjteménye épülnek fel
   </DefaultServices>
 ```
 
-Egyes paraméterek nevű hello hello paraméterek elem hello az alkalmazás jegyzékének belül kell megadni:
+Az elnevezett paraméterek az alkalmazás jegyzékének paraméterek elemen belül kell megadni:
 
 ```xml
     <Parameters>
@@ -59,24 +59,24 @@ Egyes paraméterek nevű hello hello paraméterek elem hello az alkalmazás jegy
     </Parameters>
 ```
 
-hello DefaultValue attribútumot hello érték toobe egy adott környezetben használt hello hiányában egy több-specifikus paraméter határozza meg.
+A DefaultValue attribútumot egy több-specifikus paraméter hiányában egy adott környezetben használandó értékét adja meg.
 
 > [!NOTE]
-> Nem minden szolgáltatás példány paraméterei megfelelő környezet konfigurációhoz. Hello a fenti példában a hello LowKey és hello szolgáltatás particionálási sémát HighKey értékeinek explicit módon definiálva hello szolgáltatás minden példányának mivel hello partíciótartomány hello adatok tartomány nem hello környezet függvényében.
+> Nem minden szolgáltatás példány paraméterei megfelelő környezet konfigurációhoz. A fenti példában a szolgáltatás particionálási sémát LowKey és HighKey értékeit explicit módon határozzák meg a szolgáltatás minden példányának óta a partíciótartomány feladata az adatok tartományi, nem a környezetben.
 > 
 > 
 
 ### <a name="per-environment-service-configuration-settings"></a>Környezet szolgáltatás konfigurációs beállításai
-Hello [Service Fabric-alkalmazás modell](service-fabric-application-model.md) lehetővé teszi, hogy szolgáltatások futási időben olvasható egyéni kulcs-érték párokat tartalmazó tooinclude konfigurációs csomagokat. Ezek a beállítások értékeit hello is is lehet szerint megkülönböztetett környezet megadásával egy `ConfigOverride` hello alkalmazásjegyzékben.
+A [Service Fabric-alkalmazás modell](service-fabric-application-model.md) lehetővé teszi, hogy a szolgáltatások futási időben olvasható egyéni kulcs-érték párokat tartalmazó konfigurációs csomagokat tartalmazza. Ezek a beállítások értékeit is is lehet szerint megkülönböztetett környezet megadásával egy `ConfigOverride` az alkalmazásjegyzékben.
 
-Tegyük fel, hogy rendelkezik-e a következő fájlban hello Config\Settings.xml hello beállítás hello `Stateful1` szolgáltatás:
+Tegyük fel, hogy rendelkezik-e a következő beállítást Config\Settings.xml fájljában a `Stateful1` szolgáltatás:
 
 ```xml
   <Section Name="MyConfigSection">
      <Parameter Name="MaxQueueSize" Value="25" />
   </Section>
 ```
-toooverride ezt az értéket egy adott alkalmazás-környezet párhoz, hozzon létre egy `ConfigOverride` hello szolgáltatás jegyzékfájl hello alkalmazásjegyzékben importálásakor.
+Bírálja felül ezt az értéket egy adott alkalmazás-környezet párhoz, hozzon létre egy `ConfigOverride` importálásakor a szolgáltatás jegyzékben található az alkalmazás jegyzékében.
 
 ```xml
   <ConfigOverrides>
@@ -89,16 +89,16 @@ toooverride ezt az értéket egy adott alkalmazás-környezet párhoz, hozzon l�
      </ConfigOverride>
   </ConfigOverrides>
 ```
-Ennek a paraméternek, majd konfigurálhatja környezet a fentiek szerint. Ehhez deklaráló azt hello paraméterek szakaszban hello az alkalmazás jegyzékének és környezetfüggő értékek megadása hello alkalmazásparaméter-fájlokat.
+Ennek a paraméternek, majd konfigurálhatja környezet a fentiek szerint. Ehhez a Paraméterek szakaszban az alkalmazás jegyzékének deklaráló azt és környezetfüggő értékek megadása a alkalmazásparaméter-fájlokat.
 
 > [!NOTE]
-> A szolgáltatás konfigurációs beállításainak esetet hello, nincsenek három helyen, ahol a kulcs értékének hello állítható be: hello szolgáltatás konfigurációs csomagot, hello alkalmazásjegyzék és hello alkalmazás paraméterfájl. A Service Fabric fog mindig válasszon hello alkalmazás paraméterfájl először (ha az meg van adva), majd az alkalmazásjegyzék hello, és végül a konfigurációs csomag hello.
+> Szolgáltatás konfigurációs beállításait, ha nincsenek három helyen, ahol a kulcsnak az értéke beállítható: a szolgáltatás konfigurációs csomagot, az alkalmazás jegyzékében és az alkalmazás paraméterfájl. A Service Fabric mindig választhat az paraméter fájl első (ha az meg van adva), majd az alkalmazás jegyzékében, és végül a konfigurációs csomagot.
 > 
 > 
 
 ### <a name="setting-and-using-environment-variables"></a>És környezeti változók használatához 
-Adja meg és állítsa be a környezeti változók hello ServiceManifest.xml fájlban, és ezt felülbírálhatja hello ApplicationManifest.xml fájlba / példány alapon.
-hello az alábbi példában két környezeti változókat, egy-egy értéket állítsa be, és más hello felülbírálja. Használhatja az alkalmazás paraméterei tooset környezeti változók értékei hello azonos módon, hogy azokat config felülbírálások használták.
+Adja meg, és a ServiceManifest.xml fájlt a környezeti változók értékét, és ezt felülbírálhatja a ApplicationManifest.xml fájlba / példány alapon.
+Az alábbi példában látható, két környezeti változókat, egy értéket állítja be, és a másik felülbírálja. Környezeti változók értékeinek beállításához, hogy ezek legyenek érvényben van megadva a felülbírálásokhoz config ugyanúgy használhatja alkalmazás paramétereit.
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -127,7 +127,7 @@ hello az alábbi példában két környezeti változókat, egy-egy értéket ál
   <DataPackage Name="MyData" Version="DataVersion1" />
 </ServiceManifest>
 ```
-toooverride hello környezeti változók hello ApplicationManifest.xml, hivatkozás hello kódcsomag hello ServiceManifest a hello `EnvironmentOverrides` elemet.
+A környezeti változók a ApplicationManifest.xml felülbírálásához a kódcsomag a ServiceManifest a hivatkozik a `EnvironmentOverrides` elemet.
 
 ```xml
   <ServiceManifestImport>
@@ -137,14 +137,14 @@ toooverride hello környezeti változók hello ApplicationManifest.xml, hivatkoz
     </EnvironmentOverrides>
   </ServiceManifestImport>
  ``` 
- Hello nevű szolgáltatáspéldány létrehozása után a hello környezeti változók kódból végezheti el. például a C# teheti hello következő
+ A nevesített szolgáltatáspéldány létrehozását követően érheti el a környezeti változók kódból. például a C# tegye a következőket
 
 ```csharp
     string EnvVariable = Environment.GetEnvironmentVariable("MyEnvVariable");
 ```
 
 ### <a name="service-fabric-environment-variables"></a>A Service Fabric környezeti változók
-A Service Fabric környezeti változók beállítása minden szolgáltatáspéldány létrehozta. hello környezeti változók teljes listáját van az alábbiakban, ahol hello azokat, félkövérrel szedett is hello azokon, szüksége lesz a szolgáltatás hello más alatt Service Fabric-futtatókörnyezet által használt. 
+A Service Fabric környezeti változók beállítása minden szolgáltatáspéldány létrehozta. A teljes listát a környezeti változók nem éri el, ahol az félkövér azok, amelyekre szüksége lesz a szolgáltatás, a másik Service Fabric-futtatókörnyezet által használt. 
 
 * Fabric_ApplicationHostId
 * Fabric_ApplicationHostType
@@ -166,7 +166,7 @@ A Service Fabric környezeti változók beállítása minden szolgáltatáspéld
 * Fabric_ServicePackageVersionInstance
 * FabricPackageFileName
 
-hello kód belows bemutatja, hogyan toolist hello Service Fabric környezeti változók
+A kód belows ismerteti a Service Fabric környezeti változók felsorolása
  ```csharp
     foreach (DictionaryEntry de in Environment.GetEnvironmentVariables())
     {
@@ -176,7 +176,7 @@ hello kód belows bemutatja, hogyan toolist hello Service Fabric környezeti vá
         }
     }
 ```
-hello következő példákban a környezeti változók nevű alkalmazás típusú `GuestExe.Application` egy szolgáltatás típusának neve `FrontEndService` futása közben a helyi fejlesztési számítógépén.
+A következő példákban a környezeti változók nevű alkalmazás típusú `GuestExe.Application` egy szolgáltatás típusának neve `FrontEndService` futása közben a helyi fejlesztési számítógépén.
 
 * **Fabric_ApplicationName = fabric:/GuestExe.Application**
 * **Fabric_CodePackageName kód =**
@@ -185,7 +185,7 @@ hello következő példákban a környezeti változók nevű alkalmazás típus�
 * **Fabric_NodeName = _Node_2**
 
 ### <a name="application-parameter-files"></a>Alkalmazásparaméter-fájlokat
-a Service Fabric-alkalmazás projekt hello tartalmazhat egy vagy több alkalmazásparaméter-fájlokat. Azok meghatározza, hogy hello adott hello alkalmazás jegyzékében definiált hello paraméterek értékeit:
+A Service Fabric-alkalmazás projekt tartalmazhat egy vagy több alkalmazásparaméter-fájlokat. Azok meghatározza, hogy az adott értékekre, az alkalmazás jegyzékében definiált paraméterek:
 
 ```xml
     <!-- ApplicationParameters\Local.xml -->
@@ -202,25 +202,25 @@ a Service Fabric-alkalmazás projekt hello tartalmazhat egy vagy több alkalmaz�
 
 ![A Solution Explorer alkalmazásparaméter-fájlokat][app-parameters-solution-explorer]
 
-a paraméterfájl toocreate egyszerűen másolja és illessze be egy meglévő, és adjon neki egy új nevet.
+Paraméter-fájl létrehozásához egyszerűen másolja és illessze be egy meglévő és új nevet.
 
 ## <a name="identifying-environment-specific-parameters-during-deployment"></a>Azonosító környezetfüggő paraméterek központi telepítése során
-A központi telepítéskor a szükséges toochoose hello megfelelő paraméter fájl tooapply az alkalmazást. Ehhez a Visual Studio hello közzététel párbeszédpaneléről vagy a Powershellen keresztül.
+A központi telepítéskor kell választani a megfelelő paraméterfájl alkalmazni az alkalmazással. Ehhez a Visual Studio Publish párbeszédpaneléről vagy a Powershellen keresztül.
 
 ### <a name="deploy-from-visual-studio"></a>Üzembe helyezés a Visual Studióból
-Az alkalmazást a Visual Studio közzétételekor elérhető paraméter fájlok hello listája közül választhatnak.
+A rendelkezésre álló paraméter fájlok listáját választhat az alkalmazást a Visual Studio közzétételekor.
 
-![Válassza ki a paraméterfájl hello közzététele párbeszédpanelen][publishdialog]
+![Válassza ki a paraméterfájl közzététele párbeszédpanelen][publishdialog]
 
 ### <a name="deploy-from-powershell"></a>A PowerShell telepítése
-Hello `Deploy-FabricApplication.ps1` hello alkalmazás projektsablon szereplő PowerShell-parancsfájl fogad paraméterként közzétételi profilt, és hello PublishProfile toohello alkalmazás referencia paraméterek-fájlt tartalmaz.
+A `Deploy-FabricApplication.ps1` PowerShell-parancsfájlt tartalmazza az alkalmazás projektsablon fogad paraméterként közzétételi profilt, és a PublishProfile az alkalmazás paraméterfájl hivatkozást tartalmaz.
 
   ```PowerShell
     ./Deploy-FabricApplication -ApplicationPackagePath <app_package_path> -PublishProfileFile <publishprofile_path>
   ```
 
 ## <a name="next-steps"></a>Következő lépések
-több azzal kapcsolatban, ebben a témakörben tárgyalt hello alapfogalmak toolearn lásd: hello [Service Fabric a műszaki áttekintés](service-fabric-technical-overview.md). Más elérhető a Visual Studio alkalmazás-felügyeleti képességekkel kapcsolatos információkért lásd: [kezelése a Service Fabric-alkalmazások, a Visual Studio](service-fabric-manage-application-in-visual-studio.md).
+Ebben a témakörben tárgyalt alapfogalmakat némelyike kapcsolatos további tudnivalókért tekintse meg a [Service Fabric a műszaki áttekintés](service-fabric-technical-overview.md). Más elérhető a Visual Studio alkalmazás-felügyeleti képességekkel kapcsolatos információkért lásd: [kezelése a Service Fabric-alkalmazások, a Visual Studio](service-fabric-manage-application-in-visual-studio.md).
 
 <!-- Image references -->
 

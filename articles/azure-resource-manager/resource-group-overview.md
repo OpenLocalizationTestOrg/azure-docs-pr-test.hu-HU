@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Resource Manager áttekintése |} Microsoft Docs"
-description: "Ismerteti, hogyan toouse Azure Resource Manager üzembe helyezését, felügyeleti és az Azure-erőforrások hozzáférés-vezérlés."
+title: "Az Azure Resource Manager áttekintése | Microsoft Docs"
+description: "Ismerteti, hogyan használja az Azure Resource Manager eszközt erőforrások telepítésére, felügyeletére és hozzáférés-vezérlésére az Azure portálon."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,82 +14,82 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/19/2017
 ms.author: tomfitz
-ms.openlocfilehash: a44fccd96d722c006224145d71cc44292255debf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f539931e0704f904f4b942f185f086a790caf4da
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-resource-manager-overview"></a>Az Azure Resource Manager áttekintése
-az alkalmazás hello infrastruktúrája általában számos összetevőből áll – például egy virtuális gépből, tárfiókot, és virtuális hálózati vagy egy webalkalmazást, adatbázis, adatbázis-kiszolgáló és 3. fél szolgáltatások épül fel. Ezeket az összetevőket nem külön entitásokként látja, hanem egyetlen entitás kapcsolódó és egymással összefüggő részeiként. Szeretné, hogy toodeploy, kezelheti és figyelheti azokat csoportként. Az Azure Resource Manager lehetővé teszi a megoldás hello erőforrásokat toowork csoportként. Telepíteni, frissíteni vagy hello összes erőforrást törli a megoldás egyetlen, koordinált műveletben. A telepítéshez egy sablon használatos, amely különböző, például tesztelési, átmeneti és üzemi környezetben is képes működni. A Resource Manager biztosít biztonsági, naplózási és címkézési szolgáltatásokat toohelp, kezelheti az erőforrásokat a telepítés utáni. 
+Az alkalmazás infrastruktúrája általában számos összetevőből áll – például egy virtuális gépből, tárfiókból és virtuális hálózatból, vagy egy webalkalmazásból, adatbázisból, adatbázis-kiszolgálóból és harmadik féltől származó szolgáltatásokból. Ezeket az összetevőket nem külön entitásokként látja, hanem egyetlen entitás kapcsolódó és egymással összefüggő részeiként. Csoportként érdemes telepíteni, kezelni és megfigyelni őket. Az Azure Resource Manager lehetővé teszi, hogy a megoldásában az erőforrásokkal egy csoportként dolgozzon. A megoldás összes erőforrását egyetlen, koordinált műveletben telepítheti, frissítheti vagy törölheti. A telepítéshez egy sablon használatos, amely különböző, például tesztelési, átmeneti és üzemi környezetben is képes működni. A Resource Manager biztonsági, naplózási és címkézési szolgáltatásokat biztosít, hogy segítsen az erőforrások kezelésében a telepítést követően. 
 
 ## <a name="terminology"></a>Terminológia
-Ha új tooAzure erőforrás-kezelő, van néhány nem feltétlenül ismeri a feltételeket.
+Ha új felhasználója az Azure Resource Managernek, találkozhat néhány olyan kifejezéssel, amelyet még nem ismer.
 
 * **erőforrás** – Egy olyan kezelhető elem, amely az Azure-on keresztül érhető el. Általános erőforrás például a következő: virtuális gép, tárfiók, webalkalmazás, adatbázis, virtuális hálózat, de számos további fajtája is létezik.
-* **erőforráscsoport** – Egy olyan tároló, amely egy Azure-megoldáshoz kapcsolódó erőforrásokat tárol. hello erőforráscsoport összes hello erőforrások hello megoldás, és csak azokat az erőforrásokat, amelyet az egy csoportként toomanage tartalmazhatnak. Úgy dönt, hogy hogyan tooallocate erőforrások tooresource csoportok alapján hasznossá hello a legtöbb, a szervezet számára legjobb. Lásd: [erőforráscsoportok](#resource-groups).
-* **erőforrás-szolgáltató** -egy szolgáltatás, amely megadja az erőforrások hello telepítheti és kezelheti a Resource Manageren keresztül. Mindegyik erőforrás-szolgáltató telepített hello erőforrásaival kapcsolatos műveletek kínál. Néhány általános erőforrás-szolgáltatók a következők: Microsoft.Compute, hello virtuálisgép-erőforrás értendők, Microsoft.Storage, hello tárolási fiók erőforrás értendők és Microsoft.Web, amely megadja az erőforrások kapcsolódó tooweb alkalmazásokat. Lásd: [erőforrás-szolgáltatók](#resource-providers).
-* **Resource Manager-sablon** -A JavaScript Object Notation (JSON) fájl, amely egy vagy több erőforrások toodeploy tooa erőforrás csoportját határozza meg. Hello telepített erőforrások közötti hello függőségeket is meghatározza. hello sablon használt toodeploy hello erőforrások csak következetesen és ismételten. Lásd: [sablonalapú telepítés](#template-deployment).
-* **deklaratív szintaxisán** -szintaxis, amely lehetővé teszi állapot "Íme I kíván toocreate" anélkül, hogy a parancsok toocreate programozási toowrite hello feladatütemezési azt. hello Resource Manager-sablonok deklaratív szintaxisán példája. Hello fájlban hello infrastruktúra toodeploy tooAzure hello tulajdonságait határozza meg. 
+* **erőforráscsoport** – Egy olyan tároló, amely egy Azure-megoldáshoz kapcsolódó erőforrásokat tárol. Az erőforráscsoport tartalmazhatja a megoldás összes erőforrását, vagy csak azokat az erőforrásokat, amelyeket Ön egy csoportként szeretne kezelni. A szervezet számára legideálisabb elosztás alapján eldöntheti, hogyan szeretné elosztani az erőforrásokat az erőforráscsoportok között. Lásd: [erőforráscsoportok](#resource-groups).
+* Az **erőforrás-szolgáltató** egy olyan szolgáltatás, amely a Resource Manager eszközön keresztül telepíthető és felügyelhető erőforrásokat biztosítja. Mindegyik erőforrás-szolgáltató műveleteket biztosít a telepített erőforrásokkal folytatott munkához. Gyakori erőforrás-szolgáltató például a virtuális gép típusú erőforrást biztosító Microsoft.Compute, a tárfiók típusú erőforrást biztosító Microsoft.Storage és a webalkalmazásokhoz kapcsolódó erőforrásokat biztosító Microsoft.Web. Lásd: [erőforrás-szolgáltatók](#resource-providers).
+* **Resource Manager-sablon** – Egy JavaScript Object Notation- (JSON-) fájl, amely egy vagy több, az erőforráscsoportra telepítendő erőforrást határoz meg. A telepített erőforrások közti függőségeket is meghatározza. A sablon erőforrások konzisztens és ismétlődő telepítésére használandó. Lásd: [sablonalapú telepítés](#template-deployment).
+* **deklaratív szintaxis** – Egy olyan szintaxis, amellyel anélkül határozhatja meg, mit szeretne létrehozni, hogy ehhez programozási parancsok sorozatát kellene megírnia. A Resource Manager-sablon a deklaratív szintaxis egy példája. A fájlban meghatározhatja az Azure-ra telepíteni kívánt infrastruktúra tulajdonságait. 
 
-## <a name="hello-benefits-of-using-resource-manager"></a>Erőforrás-kezelő használatával hello előnyei
+## <a name="the-benefits-of-using-resource-manager"></a>A Resource Manager használatának előnyei
 A Resource Manager számos előnyt kínál:
 
-* Telepíthetik, felügyelhetik és erőforrások hello figyeli, hogy a megoldás egy csoportot, hanem erőforrások különálló kezelése.
-* Ismételten telepítheti a megoldást hello fejlesztési életciklus során, és lehet abban, hogy az erőforrások telepítése konzisztens lesz.
+* A megoldás összes erőforrását egy csoportként telepítheti, felügyelheti és figyelheti meg az erőforrások különálló kezelése helyett.
+* A megoldást ismételten telepítheti a fejlesztési életciklus során, és biztos lehet abban, hogy az erőforrások telepítése konzisztens lesz.
 * Az infrastruktúrát szkriptek helyett deklaratív sablonok segítségével is kezelheti.
-* Megadhatja, hogy hello függőségek között erőforrásokat, hogy azok hello megfelelő sorrendben legyenek telepítve.
-* Hozzáférés-vezérlési tooall szolgáltatásokat alkalmazhat az erőforráscsoportban, mivel a szerepköralapú hozzáférés-vezérlést (RBAC) natív módon integrálva hello felügyeleti platform.
-* Címkékkel láthatja tooresources toologically rendszerezése összes hello erőforrást az előfizetésében.
-* Tisztázhatja a szervezete erőforrások csoportjának költségeinek megtekintésével megosztása hello azonos címkével.  
+* Meghatározhatja az erőforrások közti függőségeket, hogy azok a megfelelő sorrendben legyenek telepítve.
+* Hozzáférés-vezérlést alkalmazhat az összes szolgáltatásra az erőforráscsoportban, mivel a szerepköralapú hozzáférés-vezérlés (RBAC) natív módon integrálva van a felügyeleti platformba.
+* Címkékkel láthatja el az erőforrásokat, így logikusan rendszerezhető az előfizetés összes erőforrása.
+* Az azonos címkén osztozó erőforrások csoportjának költségeit megtekintve jól átláthatók a szervezet számlái.  
 
-Erőforrás-kezelő egy új módon toodeploy biztosít, és a megoldások kezelése. Ha követte hello korábbi telepítési modellt és toolearn hello változásokról, tekintse meg [Understanding Resource Manager üzembe helyezési és a klasszikus üzembe helyezési](resource-manager-deployment-model.md).
+A Resource Manager egy új módot kínál a megoldások telepítésére és kezelésére. Ha a korábbi telepítési modellt használta, és további információkat kíván megtudni a változásokról, tekintse meg [A Resource Manager telepítés és a hagyományos telepítés ismertetése](resource-manager-deployment-model.md) című cikket.
 
 ## <a name="consistent-management-layer"></a>Konzisztens felügyeleti réteg
-A Resource Manager biztosít egy konzisztens felügyeleti réteg hello Azure PowerShell, az Azure parancssori felület, Azure-portálon, REST API és fejlesztői eszközök segítségével elvégezhető feladatokhoz. Minden hello eszközök forráskészletből műveletek. Érdemes használni, és nélkül használhatják azokat azonos értelemben zavart hello eszközöket használhatja. 
+A Resource Manager konzisztens felügyeleti réteget biztosít az Azure PowerShell, az Azure CLI, az Azure Portal, a REST API és a fejlesztői eszközök segítségével végrehajtott feladatok számára. Minden eszköz egy közös műveletcsoportot használ. Az Ön számára legmegfelelőbb eszközöket használhatja, és ezeket zavartalanul váltogathatja. 
 
-hello következő kép bemutatja hogyan összes hello eszközök interakciót hello azonos Azure Resource Manager API-val. hello API kérelmek toohello erőforrás-kezelő szolgáltatás, amely hitelesíti és engedélyezi a hello kérelmek adja át. Erőforrás-kezelő ezután küldi hello kérelmek toohello megfelelő erőforrás-szolgáltatók.
+Az alábbi kép azt mutatja be, hogyan kommunikál az összes eszköz ugyanazzal az Azure Resource Manager API-val. Az API továbbítja a kérelmeket a Resource Manager szolgáltatásnak, amely hitelesíti és engedélyezi azokat. Ezután a Resource Manager a megfelelő erőforrás-szolgáltatóhoz irányítja a kérelmeket.
 
 ![A Resource Manager kérelmi modellje](./media/resource-group-overview/consistent-management-layer.png)
 
 ## <a name="guidance"></a>Útmutatás
-hello következő javaslatok segítségével teljes körű kihasználása erőforrás-kezelő a megoldásaival való munka során.
+Az alábbi javaslatokat követve teljes mértékben kihasználhatja a Resource Manager előnyeit a megoldásaival végzett munka során.
 
-1. Adja meg, és az infrastruktúra hello a a Resource Manager-sablonok deklaratív szintaxisán keresztül, imperatív parancsok helyett központi telepítéséhez.
-2. Adja meg az összes telepítési és konfigurációs lépést hello sablon. Nem szükséges manuális lépéseket megadnia a megoldás beállításához.
-3. Imperatív parancsok toomanage futtassa az erőforrások, például toostart vagy leállíthat egy alkalmazást vagy gépet.
-4. Erőforrások elrendezése hello az azonos életciklussal erőforráscsoportban. Címkék segítségével tetszés szerint rendezheti az erőforrásokat.
+1. Az infrastruktúrát a Resource Manager-sablonok deklaratív szintaxisán keresztül határozhatja meg és telepítheti imperatív parancsok helyett.
+2. Meghatározhatja az összes telepítési és konfigurációs lépést a sablonban. Nem szükséges manuális lépéseket megadnia a megoldás beállításához.
+3. Imperatív parancsok futtatásával kezelheti az erőforrásokat, például elindíthat vagy leállíthat egy alkalmazást vagy gépet.
+4. Az azonos életciklussal rendelkező erőforrásokat egy erőforráscsoportba rendezheti. Címkék segítségével tetszés szerint rendezheti az erőforrásokat.
 
 A sablonokra vonatkozó javaslatokat talál a [Best practices for creating Azure Resource Manager templates](resource-manager-template-best-practices.md) (Az Azure Resource Manager-sablonok létrehozásának ajánlott eljárásai) című cikkben.
 
-A vállalatok használatát erőforrás-kezelő tooeffectively segítségükkel előfizetések kezelése című [Azure enterprise scaffold - előíró előfizetés irányítás](resource-manager-subscription-governance.md).
+Nagyvállalatoknak az [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md) (Azure nagyvállalati struktúra - előíró előfizetés-irányítás) című cikk nyújt útmutatást az előfizetéseknek a Resource Managerrel való hatékony kezeléséről.
 
 ## <a name="resource-groups"></a>Erőforráscsoportok
-Az erőforráscsoport meghatározásakor, van néhány fontos tényezőt tooconsider:
+Néhány fontos tényezőt érdemes figyelembe venni az erőforráscsoport meghatározásakor:
 
-1. A csoportban található összes hello erőforrások megosztása kell hello azonos életciklussal. Egyszerre fogja őket telepíteni, frissíteni és törölni. Ha egy erőforrásnak, például egy adatbázis-kiszolgálónak különböző fejlesztési ciklusban a tooexist van szüksége az egy másik erőforráscsoportban kell lennie.
+1. A csoportban lévő összes erőforrásnak azonos életciklussal kell rendelkeznie. Egyszerre fogja őket telepíteni, frissíteni és törölni. Ha egy erőforrásnak, például egy adatbázis-kiszolgálónak különböző fejlesztési ciklusban kell léteznie, azt másik erőforráscsoportba kell elhelyezni.
 2. Az egyes erőforrások csak egy erőforráscsoportban létezhetnek.
-3. Adja hozzá, vagy egy erőforrás tooa erőforráscsoport bármikor eltávolíthatja.
-4. Az erőforrásokat áthelyezheti az egyik csoport tooanother erőforráscsoportból. További információkért lásd: [erőforrások toonew erőforráscsoportba vagy előfizetésbe áthelyezése](resource-group-move-resources.md).
+3. Az erőforráscsoporthoz bármikor hozzáadhat, vagy onnan eltávolíthat egy erőforrást.
+4. Az erőforrásokat áthelyezheti az egyik erőforráscsoportból a másikba. További információ: [Erőforrások áthelyezése új erőforráscsoportba vagy előfizetésbe](resource-group-move-resources.md).
 5. Az erőforráscsoportok tartalmazhatnak olyan erőforrásokat, amelyek különböző régiókban találhatók.
-6. Erőforráscsoport lehet tooscope hozzáférés-vezérlés felügyeleti műveletekhez használják.
-7. Egy erőforrás más erőforráscsoportok erőforrásaival is interakcióba tud lépni. Kommunikáció esetén közös hello két erőforrásokat kapcsolódó, de nem ugyanazt a bejövő hello azonos életciklussal (például webalkalmazások tooa adatbázis kapcsolódás).
+6. Az erőforráscsoport segítségével meghatározhatja a hozzáférés-vezérlési hatókört felügyeleti műveletekhez.
+7. Egy erőforrás más erőforráscsoportok erőforrásaival is interakcióba tud lépni. Ez az interakció gyakori, amikor a két erőforrás kapcsolódik, de nem ugyanaz az életciklusuk (például amikor egy webalkalmazás csatlakozik egy adatbázishoz).
 
-Erőforráscsoport létrehozásakor tooprovide egy helyre kell erőforráscsoporthoz. Most felmerülhet Önben a kérdés, hogy „Miért van szüksége egy erőforráscsoportnak helyre? És, ha hello erőforrások lehet különböző helyek mint hello erőforráscsoport, miért nem hello erőforráscsoport helye mindegy minden?" hello erőforráscsoport hello erőforrások metaadatokat tárol. Ezért amikor hello erőforrásnak a helyét adja meg, meg, hogy a metaadatokat tároló. Megfelelőségi okokból, szükség lehet a tooensure, amely az adott tárolja az adatokat.
+Egy erőforráscsoport létrehozásakor meg kell adnia az erőforráscsoport helyét. Most felmerülhet Önben a kérdés, hogy „Miért van szüksége egy erőforráscsoportnak helyre? Ha pedig az erőforrások rendelkezhetnek az erőforrástól eltérő hellyel, akkor miért számít egyáltalán az erőforráscsoport helye?” Az erőforráscsoport erőforrásokra vonatkozó metaadatokat tárol. Ezért ha az erőforráscsoport számára megad egy helyet, akkor a metaadatok tárolási helyét adja meg. Megfelelőségi okokból szükség lehet arra, hogy az adatokat egy adott régióban tárolja.
 
 ## <a name="resource-providers"></a>Erőforrás-szolgáltatók
-Mindegyik erőforrás-szolgáltató erőforrás-készleteket és műveleteket biztosít az Azure-szolgáltatásokkal való együttműködéshez. Például, ha azt szeretné, toostore kulcsok és titkos, akivel együttműködik hello **Microsoft.KeyVault** erőforrás-szolgáltató. Az erőforrás-szolgáltató nevű erőforrástípust biztosít **tárolók** hello kulcstároló létrehozásához. 
+Mindegyik erőforrás-szolgáltató erőforrás-készleteket és műveleteket biztosít az Azure-szolgáltatásokkal való együttműködéshez. Ha például kulcsokat és titkos kulcsokat szeretne tárolni, a **Microsoft.KeyVault** erőforrás-szolgáltatót fogja használni. Ez az erőforrás-szolgáltató egy **vaults** nevű erőforrástípust biztosít a kulcstároló létrehozásához. 
 
-erőforrástípus neve hello hello formátumban van: **{erőforrás-szolgáltató} / {erőforrástípus-}**. Például hello kulcstároló típus **Microsoft.KeyVault/vaults**.
+Az erőforrástípus nevének formátuma: **{erőforrás-szolgáltató}/{erőforrástípus}**. Például a kulcstároló típus elnevezése: **Microsoft.KeyVault/vaults**.
 
-Első lépések az erőforrások telepítésére, mielőtt ettől kezdve hello elérhető erőforrás-szolgáltatók ismeretét. Tudatában hello nevek erőforrás szolgáltatók és erőforrások segítségével meghatározhatja az erőforrások kívánt toodeploy tooAzure. Is kell tooknow hello érvényes helyekre és API-verziók minden erőforrástípus. További információkért lásd az [erőforrás-szolgáltatókat és a típusaikat](resource-manager-supported-services.md) ismertető cikket.
+Mielőtt elkezdi erőforrásai üzembe helyezését, ismerje meg az elérhető erőforrás-szolgáltatókat. Az erőforrások és az erőforrás-szolgáltatók nevének ismerete segíthet az Azure-ban üzembe helyezni kívánt erőforrások meghatározásában. Emellett ismernie kell az egyes erőforrástípusok érvényes helyeit és API-verzióit. További információkért lásd az [erőforrás-szolgáltatókat és a típusaikat](resource-manager-supported-services.md) ismertető cikket.
 
 ## <a name="template-deployment"></a>Sablonalapú telepítés
-A Resource Manager létrehozhat egy sablont (JSON formátumban), amely meghatározza a hello infrastruktúráját és konfigurációját az Azure-megoldás. A sablonok segítségével a megoldás a teljes életciklusa során ismételten üzembe helyezhető, és az erőforrások üzembe helyezése biztosan konzisztens lesz. Amikor létrehoz egy megoldást hello portálról, hello automatikusan tartalmaz egy központi telepítési sablont. Nem rendelkezik toocreate a teljesen új sablont, mert a megoldás hello sablon kezdődnie, és testre szabhatja, toomeet igény szerinti. Meglévő erőforráscsoport sablonjának exportálása hello hello erőforráscsoport aktuális állapotát, vagy az adott példány használt hello sablon megtekintése kérheti le. Megtekintés, hello [exportált sablonok](resource-manager-export-template.md) egy hasznos toolearn hello sablon szintaxissal kapcsolatos van.
+A Resource Managerrel egy olyan sablont hozhat létre (JSON formátumban), amely meghatározza az Azure-megoldás infrastruktúráját és konfigurációját. A sablonok segítségével a megoldás a teljes életciklusa során ismételten üzembe helyezhető, és az erőforrások üzembe helyezése biztosan konzisztens lesz. Amikor létrehoz egy megoldást a portálról, az automatikusan tartalmaz egy telepítési sablont. Nem szükséges teljesen új sablont létrehoznia, mivel kezdetben használhatja a sablont a megoldásához, majd testreszabhatja az adott igényeknek megfelelően. Egy meglévő erőforráscsoport sablonjának lekéréséhez exportálhatja az erőforráscsoport aktuális állapotát, vagy megtekintheti az adott telepítéshez felhasznált sablont. Az [exportált sablon](resource-manager-export-template.md) megtekintése hasznos információkat nyújt a sablon szintaxisáról.
 
-toolearn hello sablont, és hogyan hozható létre, hello formátuma kapcsolatban lásd: [az első Azure Resource Manager-sablon létrehozása](resource-manager-create-first-template.md). tooview hello JSON-szintaxis erőforrások esetében, tekintse meg [meghatározhatja az erőforrásokat az Azure Resource Manager sablonokban](/azure/templates/).
+A sablon formázásával és létrehozásával kapcsolatos információkért lásd: [Az első Azure Resource Manager-sablon létrehozása](resource-manager-create-first-template.md). Az erőforrástípusok JSON-szintaxisának megtekintéséért lásd [az Azure Resource Manager-sablonokban az erőforrások meghatározásával kapcsolatos](/azure/templates/) témakört.
 
-Erőforrás-kezelő hello sablont, például más kérelmet dolgoz fel (lásd: hello kép [konzisztens felügyeleti réteg](#consistent-management-layer)). Hello sablon elemez, és konvertálja a szintaxist hello megfelelő erőforrás-szolgáltató REST API-műveleteket. Például ha erőforrás-kezelő megkapja a sablon az erőforrás-definíció következő hello:
+A Resource Manager épp úgy feldolgozza a sablont, mint bármilyen más kérelmet (lásd a [Konzisztens felügyeleti réteg](#consistent-management-layer) képét). Elemzi a sablont, és a szintaxisát átalakítja a megfelelő erőforrás-szolgáltatók számára szükséges REST API-műveletekké. Például amikor a Resource Manager megkap egy sablont, amely a következő erőforrás-definíciót tartalmazza:
 
 ```json
 "resources": [
@@ -108,7 +108,7 @@ Erőforrás-kezelő hello sablont, például más kérelmet dolgoz fel (lásd: h
 ]
 ```
 
-Átalakítja hello definition toohello következő REST API-művelet, amely toohello Microsoft.Storage erőforrás-szolgáltató zajlik:
+Átalakítja a definíciót a következő REST API-műveletté, amelyet a rendszer elküld a Microsoft.Storage erőforrás-szolgáltatónak:
 
 ```HTTP
 PUT
@@ -125,29 +125,29 @@ REQUEST BODY
 }
 ```
 
-Hogyan adható meg sablonok és -erőforráscsoportok működik teljesen tooyou és toomanage módját a megoldás. Például telepítheti a három réteg alkalmazást keresztül ugyanazt a sablont tooa egyetlen erőforráscsoportként működnek.
+A sablonok és erőforráscsoportok meghatározási módja teljes mértékben Öntől függ, illetve attól, hogyan szeretné kezelni a megoldást. Például egyetlen sablon segítségével üzembe helyezheti a háromszintű alkalmazását egyetlen erőforráscsoportra.
 
 ![háromrétegű sablon](./media/resource-group-overview/3-tier-template.png)
 
-De nincs toodefine a teljes infrastruktúrát egyetlen sablonban. Gyakran így logika toodivide célzott konkrét, Célspecifikus sablonok a telepítési követelményeket. Ezeket a sablonokat egyszerűen újból felhasználhatja különböző megoldásokhoz. a megoldás toodeploy, létrehozhat egy fő sablont, amely összekapcsolja az összes szükséges hello sablonok. hello következő kép bemutatja, hogyan toodeploy tartalmazó szülő sablon három három réteg megoldást beágyazott sablonok.
+Azonban nem kell meghatároznia a teljes infrastruktúrát egyetlen sablonban. Gyakran érdemes felosztani a telepítési követelményeket konkrét, célspecifikus sablonokra. Ezeket a sablonokat egyszerűen újból felhasználhatja különböző megoldásokhoz. Egy adott megoldás telepítéséhez hozzon létre egy fősablont, amely összekapcsolja az összes szükséges sablont. Az alábbi kép bemutatja, hogyan telepíthető egy háromszintű megoldás egy olyan fölérendelt sablon segítségével, amely három beágyazott sablont tartalmaz.
 
 ![beágyazott rétegsablon](./media/resource-group-overview/nested-tiers-template.png)
 
-Ha envision a rétegek, hogy külön életciklusának, telepítheti a három réteg tooseparate erőforráscsoportok. Értesítés hello erőforrások továbbra is történhet a többi erőforráscsoport csatolt tooresources.
+Ha elképzeli, hogy a rétegek külön életciklusokkal rendelkeznek, akkor a három szintet különálló erőforráscsoportokra telepítheti. Ügyeljen rá, hogy az erőforrások továbbra is kapcsolódhatnak egyéb erőforráscsoportok erőforrásaihoz.
 
 ![rétegsablon](./media/resource-group-overview/tier-templates.png)
 
 A sablonok tervezésével kapcsolatos további javaslatokért lásd: [Minták Azure Resource Manager-sablonok tervezéséhez](best-practices-resource-manager-design-templates.md). A beágyazott sablonokkal kapcsolatos további információkért lásd: [Kapcsolt sablonok használata az Azure Resource Manager eszközben](resource-group-linked-templates.md).
 
-Az Azure Resource Manager tooensure erőforrások jönnek létre a megfelelő sorrendben hello függőségek elemzésével. Ha egy erőforrás egy másik erőforráshoz tartozó értéket használ fel (például egy virtuális gép, amely egy tárfiókot igényel a lemezekhez), akkor beállíthat egy függőséget. További információ: [Függőségek meghatározása az Azure Resource Manager sablonokban](resource-group-define-dependencies.md).
+Az Azure Resource Manager a függőségek elemzésével biztosítja, hogy az erőforrások a megfelelő sorrendben jöjjenek létre. Ha egy erőforrás egy másik erőforráshoz tartozó értéket használ fel (például egy virtuális gép, amely egy tárfiókot igényel a lemezekhez), akkor beállíthat egy függőséget. További információ: [Függőségek meghatározása az Azure Resource Manager sablonokban](resource-group-define-dependencies.md).
 
-Hello sablon frissítések toohello infrastruktúra is használható. Például erőforrás tooyour megoldás hozzáadása, és hozzáadhat konfigurációs szabályokat a már telepített hello erőforrások. Ha hello sablont létrehoznia egy erőforrást, de az erőforrás már létezik, az Azure Resource Manager egy új eszköz létrehozása helyett frissítést hajt végre. Az Azure Resource Manager frissítések hello meglévő eszköz toohello azonos, mert állapot mintha új lenne.  
+A sablonokat az infrastruktúra frissítésére is használhatja. Hozzáadhat például egy erőforrást a megoldáshoz, valamint hozzáadhat konfigurációs szabályokat a már telepített erőforrásokhoz. Ha a sablon egy erőforrás létrehozását határozza meg, de az adott erőforrás már létezik, az Azure Resource Manager az új eszköz létrehozása helyett frissítést végez. Az Azure Resource Manager frissíti a meglévő eszközt, hogy az állapota olyan legyen, mintha új lenne.  
 
-Resource Manager bővítményeket forgatókönyvek biztosít, amely nem része a hello beállítása adott szoftver telepítése például további műveletek szükségesek. Ha már használ valamilyen konfigurációfelügyeleti szolgáltatást, mint a DSC, Chef vagy Puppet, bővítmények segítségével folytathatja a munkát az adott szolgáltatással. További információ a virtuális gépi bővítményekről: [A virtuális gépi bővítmények és funkcióik áttekintése](../virtual-machines/windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
+A Resource Manager bővítményeket biztosít olyan forgatókönyvek esetére, amikor további műveletek szükségesek, például egy adott szoftver telepítése, amelyet nem tartalmaz a beállítás. Ha már használ valamilyen konfigurációfelügyeleti szolgáltatást, mint a DSC, Chef vagy Puppet, bővítmények segítségével folytathatja a munkát az adott szolgáltatással. További információ a virtuális gépi bővítményekről: [A virtuális gépi bővítmények és funkcióik áttekintése](../virtual-machines/windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
 
-Végezetül hello sablon hello az alkalmazás forráskódjának részévé válik. Elhelyezheti a forráskódraktárban tooyour, és frissítheti az alkalmazás továbbfejlesztésekor. Visual Studio alkalmazással hello sablon szerkesztése
+Végül a sablon az alkalmazás forráskódjának részévé válik. Elhelyezheti a forráskódraktárban, és frissítheti az alkalmazás továbbfejlesztésekor. A sablont a Visual Studio eszközben szerkesztheti.
 
-Az sablon megadása után készen toodeploy hello erőforrások tooAzure áll. Hello parancsok toodeploy hello erőforrások lásd:
+A sablon meghatározása után készen áll, hogy üzembe helyezze az erőforrásokat az Azure-ban. Az erőforrások üzembe helyezéséhez használható parancsokról lásd:
 
 * [Erőforrások üzembe helyezése Resource Manager-sablonokkal és az Azure PowerShell-lel](resource-group-template-deploy.md)
 * [Erőforrások üzembe helyezése Resource Manager-sablonokkal és az Azure parancssori felületével](resource-group-template-deploy-cli.md)
@@ -155,11 +155,11 @@ Az sablon megadása után készen toodeploy hello erőforrások tooAzure áll. H
 * [Erőforrások üzembe helyezése Resource Manager-sablonokkal és az Azure Manager REST API-val](resource-group-template-deploy-rest.md)
 
 ## <a name="tags"></a>Címkék
-A Resource Manager biztosít egy címkézési funkciót, amely lehetővé teszi toocategorize erőforrások tooyour felügyeleti vagy számlázási követelményeinek megfelelően. Címkék használata, ha összetett erőforráscsoport-sablonok és erőforrások több tartalmaz, és kell toovisualize hello módon hello legtöbb logika tooyou az eszközöket. Például elláthat címkével olyan erőforrásokat, amelyek hasonló szerepet töltenek be a szervezet vagy toohello tartozik részleghez. Nélkül hozhat létre a címkék, a szervezet felhasználói több erőforrást, amely lehet, hogy nehéz toolater azonosításához és kezeléséhez. Például előfordulhat, hogy kívánja toodelete egy adott projekt összes hello erőforrást. Ezeket az erőforrásokat nem hello projekt címkével rendelkeznek, azok megkereséséről toomanually lesz. Címkézés lehet egy módja a felesleges költségek tooreduce az előfizetésben. 
+A Resource Manager biztosít egy címkézési funkciót, amellyel a felügyeleti vagy számlázási követelményeinek megfelelően kategorizálhatja az erőforrásokat. Használjon címkéket, ha összetett erőforráscsoport- és erőforrás-gyűjteménnyel rendelkezik, és egyedi módon szeretné vizuálisan megjeleníteni az eszközöket. Például elláthat címkével olyan erőforrásokat, amelyek hasonló szerepet töltenek be a szervezetben, vagy ugyanahhoz a részleghez tartoznak. Címkék nélkül a szervezet felhasználói létrehozhatnak több olyan erőforrást is, amelyeket később nehéz lehet azonosítani és felügyelni. Előfordulhat például, hogy törölni szeretné egy adott projekt összes erőforrását. Ha ezek az erőforrások nincsenek a projektnek megfelelően megcímkézve, akkor manuálisan kell őket megkeresnie. A címkézés hasznos módja a felesleges költségek csökkentéséhez az előfizetésében. 
 
-Az erőforrásoknak nem kell a hello tooreside azonos erőforrás csoport tooshare egy címkét. Létrehozhat saját címke besorolás tooensure, hogy a szervezete összes felhasználója közös címkék helyett használjon felhasználók ne használjanak véletlenül némileg eltérő címkéket (például "részleg" helyett "osztály").
+Az erőforrásoknak nem kell megegyező erőforráscsoportban lenniük, hogy azonos címkével lássa el őket. Létrehozhat saját címkerendszert, hogy a szervezetben lévő összes felhasználó ugyanolyan címkéket használjon, hogy a felhasználók ne használjanak véletlenül némileg eltérő címkéket (például „részleg” helyett „részl”).
 
-a következő példa hello címkével tooa virtuális gép jeleníti meg.
+A következő példa egy virtuális gép címkével való ellátását mutatja be.
 
 ```json
 "resources": [    
@@ -176,66 +176,66 @@ a következő példa hello címkével tooa virtuális gép jeleníti meg.
 ]
 ```
 
-tooretrieve összes hello erőforrás címke értékkel, használja a következő PowerShell-parancsmag hello:
+A következő PowerShell-parancsmaggal lekérdezheti az összes olyan erőforrást, amely címkeértékkel rendelkezik:
 
 ```powershell
 Find-AzureRmResource -TagName costCenter -TagValue Finance
 ```
 
-Vagy hello Azure CLI 2.0 parancs a következő:
+A következő Azure CLI 2.0-parancsot is használhatja:
 
 ```azurecli
 az resource list --tag costCenter=Finance
 ```
 
-Címkézett erőforrásoknak hello Azure-portálon is megtekintheti.
+A címkézett erőforrásokat az Azure Portalon is megtekintheti.
 
-Hello [használati jelentés](../billing/billing-understand-your-bill.md) számára az előfizetés tartalmazza címke neveit és értékeit, ami lehetővé teszi a címkék alapján toobreak kimenő költségek. Címkékkel kapcsolatos további információkért lásd: [Using címkéket tooorganize az Azure-erőforrások](resource-group-using-tags.md).
+Az előfizetéshez tartozó [használati jelentés](../billing/billing-understand-your-bill.md) tartalmazza a címkék nevét és értékeit, így a címkék alapján részletezheti a költségeket. A címkékkel kapcsolatos további információért tekintse meg [Az Azure-erőforrások rendszerezése címkék használatával](resource-group-using-tags.md) című cikket.
 
 ## <a name="access-control"></a>Hozzáférés-vezérlés
-Erőforrás-kezelő lehetővé teszi toocontrol rendelkező hozzáférés toospecific műveletek a szervezet számára. Natív módon integrálja a szerepköralapú hozzáférés-vezérlést (RBAC) hello kezelési platformra, és alkalmazza a hozzáférés-vezérlési tooall szolgáltatásokat az erőforráscsoportban. 
+A Resource Manager segítségével szabályozhatja, hogy ki rendelkezzen hozzáféréssel egy adott művelethez a szervezetben. Natív módon integrálja a szerepköralapú hozzáférés-vezérlést (RBAC) a felügyeleti platformba, valamint az összes szolgáltatásra alkalmazza az erőforráscsoportban a hozzáférés-vezérlést. 
 
-Nincsenek két fő alapelv toounderstand szerepköralapú hozzáférés-vezérlés az használatakor:
+A szerepköralapú hozzáférés-vezérlés használata során az alábbi két fő fogalmat kell megérteni:
 
 * Szerepkör-definíciók – egy engedélycsoportot írnak le, és számos hozzárendelésnél használhatók.
-* Szerepkör-hozzárendelések – egy definíciót társítanak egy identitáshoz (felhasználóhoz vagy csoporthoz) egy adott hatókörre vonatkozóan (előfizetés, erőforráscsoport vagy erőforrás). hello hozzárendelés alacsonyabb hatókörök örökli.
+* Szerepkör-hozzárendelések – egy definíciót társítanak egy identitáshoz (felhasználóhoz vagy csoporthoz) egy adott hatókörre vonatkozóan (előfizetés, erőforráscsoport vagy erőforrás). Az alacsonyabb hatókörök öröklik a hozzárendelést.
 
-Felhasználók toopre által definiált platform- és erőforrás-specifikus szerepköröket is hozzáadhat. Például hello olvasó, amely lehetővé teszi a felhasználók tooview erőforrások nevű előre meghatározott szerepkör előnyeit, de nem tudnák azokat módosítani. A szervezet hozzáférés toohello olvasó szerepkört az ilyen típusú igénylő felhasználókat ad hozzá, és alkalmazza a hello szerepkör toohello előfizetés, az erőforráscsoportot, vagy az erőforrás.
+Felhasználókat adhat hozzá előre meghatározott platformbeli és erőforrás-specifikus szerepkörökhöz. Az Olvasó nevű előre meghatározott szerepkörrel például engedélyezheti a felhasználóknak az erőforrások megtekintését, de megtilthatja a módosításukat. Adja hozzá azokat a felhasználókat a szervezetben az Olvasó szerepkörhöz, akiknek ilyen típusú hozzáférésre van szükségük, és alkalmazza a szerepkört az előfizetésre, az erőforráscsoportra vagy erőforrásra.
 
-Azure biztosít a következő négy platform szerepkörök hello:
+Az Azure a következő négy platformszerepkört biztosítja:
 
 1. Tulajdonos, aki mindent kezelhet, beleértve a hozzáférést is
 2. Közreműködő, aki a hozzáférés kivételével mindent kezelhet
 3. Olvasó, aki mindent megtekinthet, de módosításokat nem hajthat végre
-4. Felhasználói hozzáférés adminisztrátora - kezelhető a felhasználói hozzáférés tooAzure erőforrások
+4. A felhasználói hozzáférés rendszergazdája, aki kezelheti az Azure-erőforrások felhasználói hozzáférését
 
 Az Azure számos erőforrás-specifikus szerepkört is biztosít. Ilyenek például a következők:
 
-1. Virtuális gép közreműködő - virtuális gépek kezeléséhez, de nem adnak toothem eléréséhez, és nem tudja kezelni a hello virtuális hálózati vagy tárolási fiók toowhich vannak csatlakoztatva
-2. Hálózat közreműködő - az összes hálózati erőforrások kezeléséhez, de nem ad meg hozzáférési toothem
-3. Tárolási fiók közreműködői - storage-fiókok kezeléséhez, de nem ad meg hozzáférési toothem
+1. Virtuális gépek közreműködője – felügyelheti a virtuális gépeket, de nem adhat hozzájuk hozzáférést, és nem felügyelheti a hozzájuk kapcsolódó virtuális hálózatot vagy tárfiókot
+2. Hálózati közreműködő – felügyelheti az összes hálózati erőforrást, de nem biztosíthat hozzáférést
+3. Tárfiók-közreműködő – felügyelheti a tárfiókokat, de nem biztosíthat hozzáférést
 4. SQL Server közreműködője – felügyelheti az SQL-kiszolgálókat és -adatbázisokat, de nem kezelheti a biztonsággal kapcsolatos házirendjeiket
-5. Webhely közreműködői - webhelyek kezeléséhez, de nem hello webes tervek toowhich vannak csatlakoztatva
+5. Webhelyek közreműködője – felügyelheti a webhelyeket, de nem kezelheti a hozzájuk kapcsolódó webes tarifacsomagokat
 
-Hello teljes listája a szerepkörök és az engedélyezett műveletek [RBAC: beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md). A szerepköralapú hozzáférés-vezérléssel kapcsolatos további információk: [Azure szerepköralapú hozzáférés-vezérlés](../active-directory/role-based-access-control-configure.md). 
+A szerepkörök és a hozzájuk kapcsolódó engedélyezett műveletek teljes listáját lásd: [RBAC: Beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md). A szerepköralapú hozzáférés-vezérléssel kapcsolatos további információk: [Azure szerepköralapú hozzáférés-vezérlés](../active-directory/role-based-access-control-configure.md). 
 
-Bizonyos esetekben érdemes toorun kód vagy parancsfájlt, amely hozzáfér az erőforrások, de nem szeretné, hogy toorun e egy felhasználó hitelesítő adatait. Ehelyett szeretné, hogy toocreate szolgáltatás egyszerű neve hello alkalmazás identitást, és rendelje hozzá a megfelelő szerepkört hello hello egyszerű szolgáltatásnév. Erőforrás-kezelő lehetővé teszi a toocreate hello alkalmazás hitelesítő adatait, és a programozott módon hitelesítéshez hello alkalmazás. toolearn szolgáltatásnevekről, létrehozásával kapcsolatban lásd a következő témaköröket:
+Egyes esetekben előfordulhat, hogy olyan kódot vagy szkriptet kíván futtatni, amely hozzáféréssel rendelkezik bizonyos erőforrásokhoz, de nem felhasználói hitelesítő adatokkal kívánja végrehajtani a futtatást. Ehelyett egy szolgáltatásnév nevű identitást hozhat létre az alkalmazásnak, és hozzárendelheti a megfelelő szerepkört a szolgáltatásnévhez. A Resource Manager használatával hitelesítő adatokat hozhat létre az alkalmazáshoz, és programozott módon hitelesítheti az alkalmazást. A szolgáltatásnevek létrehozásáról a következő témakörökben talál további információt:
 
-* [A szolgáltatás egyszerű tooaccess erőforrásainak használatához az Azure PowerShell toocreate](resource-group-authenticate-service-principal.md)
-* [A szolgáltatás egyszerű tooaccess erőforrásainak használatához az Azure CLI toocreate](resource-group-authenticate-service-principal-cli.md)
-* [Portál toocreate Azure Active Directory-alkalmazás és az erőforrások eléréséhez egyszerű szolgáltatás használata](resource-group-create-service-principal-portal.md)
+* [Szolgáltatásnév létrehozása erőforrások eléréséhez az Azure PowerShell használatával](resource-group-authenticate-service-principal.md)
+* [Szolgáltatásnév létrehozása erőforrások eléréséhez az Azure CLI használatával](resource-group-authenticate-service-principal-cli.md)
+* [Azure Active Directory-alkalmazás és -szolgáltatásnév létrehozása a portálon erőforrások eléréséhez](resource-group-create-service-principal-portal.md)
 
-Kifejezetten zárolhatja a kritikus erőforrásokat tooprevent felhasználók törölhessék vagy módosíthassák azokat. További információ: [Erőforrások zárolása az Azure Resource Manager eszközzel](resource-group-lock-resources.md).
+Kifejezetten zárolhatja a kritikus erőforrásokat is, megakadályozva, hogy a felhasználók törölhessék vagy módosíthassák azokat. További információ: [Erőforrások zárolása az Azure Resource Manager eszközzel](resource-group-lock-resources.md).
 
 ## <a name="activity-logs"></a>Tevékenységnaplók
-A Resource Manager naplózza az erőforrásokat létrehozó, módosító és törlő műveleteket. Hello tevékenység naplók toofind hibaelhárítása során hiba vagy toomonitor hogyan a szervezet egy felhasználó módosította a következő erőforrás. toosee hello naplókat, válassza ki **tevékenységi naplóit** a hello **beállítások** erőforráscsoport panel. Számos különböző értékeket, beleértve a felhasználó által kezdeményezett hello művelettől szerint szűrheti hello naplókat. Hello tevékenységi naplóit használatával kapcsolatos információkért lásd: [tevékenység megtekintése naplózza toomanage Azure erőforrások](resource-group-audit.md).
+A Resource Manager naplózza az erőforrásokat létrehozó, módosító és törlő műveleteket. A tevékenységnaplókból hibaelhárításkor megkeresheti a hibákat, vagy nyomon követheti, hogy a szervezete felhasználói hogyan módosították az erőforrásokat. A naplók megtekintéséhez válassza a **Tevékenységnaplók** elemet az erőforráscsoport **Beállítások** paneljén. A naplókat számos érték alapján szűrheti, például aszerint, hogy melyik felhasználó kezdeményezte a műveletet. További információ a vizsgálati naplók használatáról: [Vizsgálati naplók megtekintése az Azure erőforrások kezeléséhez](resource-group-audit.md).
 
 ## <a name="customized-policies"></a>Testreszabott házirendek
-Erőforrás-kezelő lehetővé teszi az erőforrások kezelése testreszabott toocreate házirendeket. házirendek hello típusok között lehetnek különböző forgatókönyveket. Kényszerítheti egy adott elnevezési konvenció használatát az erőforrásokon, korlátozhatja a telepíthető példányok és erőforrások típusát, illetve korlátozhatja azokat az adott típusú erőforrás tárolásához használható régiókat. Erőforrások tooorganize számlázási címkeérték osztályai lehet szükség. Házirendek létrehozása toohelp csökkentheti a költségeket, és biztosítja az egységességet az előfizetésében. 
+A Resource Manager lehetővé teszi, hogy létrehozzon testreszabott házirendeket az erőforrások kezeléséhez. Az Ön által létrehozott házirendek különböző forgatókönyveket tartalmazhatnak. Kényszerítheti egy adott elnevezési konvenció használatát az erőforrásokon, korlátozhatja a telepíthető példányok és erőforrások típusát, illetve korlátozhatja azokat az adott típusú erőforrás tárolásához használható régiókat. A számlázás részlegek szerinti rendszerzéséhez megkövetelheti egy adott címkeérték meglétét az erőforrásokon. A házirendek segítségével csökkentheti a költségeket és biztosíthatja az egységességet az előfizetésében. 
 
-A házirendeket a JSON használatával határozhatja meg, majd alkalmazhatja őket az előfizetésében vagy az erőforráscsoportban. Házirendek eltérnek a szerepköralapú hozzáférés-vezérlés, mivel azok alkalmazott tooresource típusok.
+A házirendeket a JSON használatával határozhatja meg, majd alkalmazhatja őket az előfizetésében vagy az erőforráscsoportban. A házirendek abban különböznek a szerepköralapú hozzáférés-vezérléstől, hogy az erőforrástípusokra érvényesek.
 
-a következő példa hello egy házirendet, amely címke konzisztencia biztosítja, hogy minden erőforrások közé tartoznak a costCenter címke megadásával jeleníti meg.
+A következő példa egy olyan házirendet mutat be, amely annak meghatározásával biztosítja a címkék egységességét, hogy minden erőforrásnak tartalmaznia kell egy costCenter címkét.
 
 ```json
 {
@@ -251,7 +251,7 @@ a következő példa hello egy házirendet, amely címke konzisztencia biztosít
 }
 ```
 
-Rengeteg típusú házirendet hozhat létre. További információkért lásd: [vezérlési hozzáférési és használati feltételei toomanage erőforrások](resource-manager-policy.md).
+Rengeteg típusú házirendet hozhat létre. További információ: [Erőforrások kezelése és hozzáférés szabályozása házirendekkel](resource-manager-policy.md).
 
 ## <a name="sdks"></a>SDK-k
 Az Azure SDK-k több nyelven és többféle platformon elérhetőek. A nyelvi implementációk mindegyike elérhető az ökoszisztéma-csomagkezelőn és a GitHubon keresztül.
@@ -273,14 +273,14 @@ További információ arról, hogyan használhatók ezek a nyelvek a saját erő
 * [Azure Python-fejlesztőknek](/python/azure/)
 
 > [!NOTE]
-> Ha hello SDK hello szükséges funkciók nem biztosít, Ön is meghívhatja toohello [Azure REST API](https://docs.microsoft.com/rest/api/resources/) közvetlenül.
+> Ha az SDK nem biztosítja a szükséges funkciót, hívhatja közvetlenül az [Azure REST API](https://docs.microsoft.com/rest/api/resources/)-t is.
 > 
 > 
 
 ## <a name="next-steps"></a>Következő lépések
-* Egy egyszerű bemutatása tooworking sablonok, lásd: [Azure Resource Manager-sablonok exportálása létező erőforrásokból](resource-manager-export-template.md).
+* A sablonok használatának egyszerű bemutatása: [Azure Resource Manager-sablonok exportálása létező erőforrásokból](resource-manager-export-template.md).
 * A sablonok létrehozásának részletes ismertetése: [Az első Azure Resource Manager-sablon létrehozása](resource-manager-create-first-template.md).
-* toounderstand hello funkciók is használhatja a sablont, lásd: [sablonfüggvények](resource-group-template-functions.md)
+* A sablonokban használható függvények ismertetése: [Sablonfüggvények](resource-group-template-functions.md)
 * A Visual Studio és a Resource Manager együttes használatával kapcsolatos információ: [Azure erőforráscsoport-sablonok létrehozása és telepítése a Visual Studio alkalmazással](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md).
 
 Ismertető videó az áttekintésről:

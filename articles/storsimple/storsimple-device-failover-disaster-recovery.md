@@ -1,6 +1,6 @@
 ---
-title: "aaaStorSimple feladatátvétel és vész-helyreállítási |} Microsoft Docs"
-description: "Megtudhatja, hogyan toofail a StorSimple eszköz tooitself, egy másik fizikai eszköz vagy egy virtuális eszközt."
+title: "StorSimple feladatátvétel és vész-helyreállítási |} Microsoft Docs"
+description: "Útmutató a StorSimple eszköz magát, egy másik fizikai eszköz vagy a virtuális eszköz feladatátvételt."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,168 +14,168 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/16/2016
 ms.author: alkohli
-ms.openlocfilehash: 00ce365f8a9095d1f0292e665d7f9eaa844b44ae
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bf92ffdb16b86c4033cc96ae2abb060d90f9505e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="failover-and-disaster-recovery-for-your-storsimple-device"></a>A StorSimple eszköz feladatátvétel és a katasztrófa utáni helyreállítás
 ## <a name="overview"></a>Áttekintés
-Ez az oktatóanyag leírja hello lépéseket szükséges toofail hello esemény egy olyan vészhelyzet esetén a StorSimple eszköz keresztül. A feladatátvétel lehetővé teszi a toomigrate az adatok egy forrás eszközt hello datacenter tooanother fizikai vagy virtuális eszköz található hello azonos vagy különböző földrajzi elhelyezkedését. 
+Ez az oktatóanyag azt ismerteti, hogyan legyen katasztrófahelyzet esetén a StorSimple eszköz feladatátvételt. A feladatátvétel lehetővé teszi egy forrás eszközt az adatközpontban az adatok áttelepíthetők egy másik fizikai vagy akár ugyanabban vagy egy különböző földrajzi helyen található virtuális eszköz. 
 
-Vészhelyreállítás (DR) keresztül hello eszköz feladatátvételi szolgáltatás vezénylését van, és hello kezdeményezi **eszközök** lap. Ezen a lapon minden hello StorSimple eszközök csatlakoztatott tooyour StorSimple Manager szolgáltatás vannak. Minden eszköz hello rövid nevét, állapotát, kiépített és a maximális kapacitás típus és modell jelenik meg.
+Vészhelyreállítás (DR) van összehangolva. az eszköz feladatátvételi szolgáltatás segítségével, és kezdeményezi a **eszközök** lap. Ezen a lapon minden a StorSimple-eszköz csatlakozik a StorSimple Manager szolgáltatás vannak. Az egyes eszközök rövid nevét, állapotát, kiépített és a maximális kapacitás, típusa és modell jelenik meg.
 
 ![Eszközök oldal](./media/storsimple-device-failover-disaster-recovery/IC740972.png)
 
-Ebben az oktatóanyagban hello útmutatást tooStorSimple fizikai és virtuális eszközökkel érvényes összes szoftver verziója között.
+Az útmutató az oktatóanyag összes szoftver verziója között a StorSimple fizikai és virtuális eszközökre vonatkozik.
 
 ## <a name="disaster-recovery-dr-and-device-failover"></a>Vészhelyreállítás (DR) és az eszköz feladatátvételi
-Egy vész-helyreállítási forgatókönyv szerint hello elsődleges eszköz nem működik. Ebben a helyzetben hello felhőbeli adatát hello sikertelen eszköz tooanother eszközzel társított elsődleges eszköz hello hello segítségével áthelyezheti *forrás* és egy másik eszköz megadásával, hello *cél*. Egy vagy több kötet tárolók toomigrate toohello céleszközön választhatja ki. A folyamat be nem hivatkozott tooas hello *feladatátvételi*. 
+Egy vész-helyreállítási forgatókönyv esetén az elsődleges eszköz nem működik. Ebben a helyzetben helyezze át a sikertelen eszköz egy másik eszközre, az elsődleges eszköz használatával kapcsolódó felhő adatokat a *forrás* megadásával, mint egy másik eszköz a *cél*. Kiválaszthatja a céleszközt át egy vagy több kötet tárolóban. Ezt a folyamatot nevezzük a *feladatátvételi*. 
 
-Hello a feladatátvételi hello forrás eszközről hello kötettárolók tulajdonjogai módosulnak és átvitt toohello céleszközön. Amikor hello kötettárolók módosítja tulajdonjogot, ezeket a rendszer törli hello forrás eszközről. Hello törlés befejezése után hello céleszköz tudja majd sikerült vissza.
+A feladatátvétel során a forráseszközről származó kötettárolók tulajdonjogai módosulnak, és átkerülnek a céleszközt. Amikor a kötettárolók tulajdonosának módosítására, ezeket a rendszer törli a forráseszközről származó. Miután a törlés befejeződött, a céleszközt is majd sikerült vissza.
 
-A vész-Helyreállítási, hello legutóbbi biztonsági mentés általában követő használt toorestore hello adatok toohello céleszközön. Azonban ha több biztonsági mentési házirendjétől hello ugyanazon a köteten, majd a biztonsági mentési házirend hello kötetek legnagyobb számú hello kivételezett lekérdezi és hello házirend a legfrissebb biztonsági másolat használt toorestore hello adatok hello céleszközön.
+Általában követően egy vész-Helyreállítási legfrissebb biztonsági másolat szolgál az adatok helyreállítását a cél-eszközre. Azonban ha ugyanazon a köteten több biztonsági mentési házirendeket, majd a biztonsági mentési házirend kötetek legnagyobb számú kivételezett lekérdezi és, hogy a házirend a legfrissebb biztonsági másolat használatával állítsa vissza az adatokat a céleszközön.
 
-Tegyük fel, ha két biztonsági mentési házirendek (egy alapértelmezett és egy egyéni) *defaultPol*, *customPol* a következő adatok hello:
+Tegyük fel, ha két biztonsági mentési házirendek (egy alapértelmezett és egy egyéni) *defaultPol*, *customPol* az alábbi adatokkal:
 
 * *defaultPol* : egy kötet *vol1*, napi kezdő pozíció: 10:30 PM futtatja.
 * *customPol* : négy kötetek *vol1*, *vol2*, *vol3*, *vol4*, napi kezdő pozíció: 10:00 PM futtatja.
 
-Ebben az esetben *customPol* több köteten van, és összeomlásbiztos rangsoroljuk használható. hello legfrissebb biztonsági másolat a szabályzat az használt toorestore adatai.
+Ebben az esetben *customPol* több köteten van, és összeomlásbiztos rangsoroljuk használható. Ez a házirend a legfrissebb biztonsági másolat adatok visszaállítására használható.
 
 ## <a name="considerations-for-device-failover"></a>Eszköz feladatátvételi szempontjai
-Egy olyan vészhelyzet esetén hello esetben toofail kiválaszthatja a StorSimple eszköz keresztül:
+Legyen katasztrófahelyzet esetén kiválaszthatja, hogy áthelyezze a feladatokat a StorSimple eszköz:
 
-* tooa fizikai eszköz 
-* tooitself
-* virtuális eszköz tooa
+* A fizikai eszköz 
+* Saját magára
+* A virtuális eszközhöz
 
-Minden eszköz feladatátvételi tartsa szem előtt tartva hello következő:
+Minden eszköz feladatátvételi vegye figyelembe a következőket:
 
-* hello Dr-előfeltételeket, hogy hello kötettárolók belül minden hello kötetek offline módban, és hello kötettárolók rendelkeznek a hozzárendelt felhő-pillanatfelvételt. 
-* rendelkezésre álló Céleszközök hello vész-Helyreállítási eszközökre, amelyeken elegendő lemezterület tooaccommodate kijelölt kötettárolók hello. 
-* hello csatlakoztatott tooyour eszközök szolgáltatással, de nem felelnek meg a megfelelő hello feltételeinek lemezterület nem lesz elérhető cél eszközként.
-* Egy korlátozott időtartamra, a vész-Helyreállítási következő hello adatelérési teljesítményét jelentősen érintheti, hello eszközként fog kell tooaccess hello hello felhő adatait és helyileg tárolja.
+* DR az előfeltételeket, hogy a kötettárolók belül a kötetek offline módban, és kötettárolók rendelkeznek a hozzárendelt felhő-pillanatfelvételt. 
+* Az elérhető célkiszolgálók Dr tartoznak eszközökre, amelyeken elegendő hely a lemezen a kijelölt kötettárolók tárolására. 
+* Az eszközöket, amelyek a szolgáltatáshoz való kapcsolódás, de nem felel meg elegendő lemezterület nem lesz elérhető cél eszközként.
+* A vész-Helyreállítási követően egy korlátozott ideig a adatelérési teljesítményét érintheti, jelentősen, az eszköz kell az adatokat a felhőből, és helyileg tárolja.
 
 #### <a name="device-failover-across-software-versions"></a>Eszköz feladatátvételi szoftver verziója között
-Előfordulhat, hogy a StorSimple Manager szolgáltatás a központi telepítésben lévő több eszközön, mind a fizikai, mind a virtuális, az összes futó különböző szoftver verziója. Attól függően, hello szoftverének verziójával, hello kötet típusok hello eszközök is lehetnek. Például egy alkalmazást futtató eszköznek az Update 2-es vagy magasabb volna helyileg rögzített és rétegzett kötet (az archiválás alatt álló részhalmazának Szintezett). A frissítés előtti 2 eszköz a hello ugyanakkor előfordulhat, hogy rendelkezik rétegzett és archiválási kötetek. 
+Előfordulhat, hogy a StorSimple Manager szolgáltatás a központi telepítésben lévő több eszközön, mind a fizikai, mind a virtuális, az összes futó különböző szoftver verziója. Attól függően, a szoftver verziója, a kötet típusok, az eszközök is lehetnek. Például egy alkalmazást futtató eszköznek az Update 2-es vagy magasabb volna helyileg rögzített és rétegzett kötet (az archiválás alatt álló részhalmazának Szintezett). A frissítés előtti 2 eszköz viszont előfordulhat, hogy rendelkezik rétegzett és archiválási kötetek. 
 
-Ha egy másik szoftver verziója és hello probléma kötet típusú futtató során vész-Helyreállítási tooanother eszköz átveheti a következő tábla toodetermine hello használata.
+A következő táblázat segítségével határozza meg, ha a feladatokat átveheti egy másik szoftver verziója és a kötet típusa a Vészhelyreállítás során fut egy másik eszközre.
 
 | A feladatátvételt | Fizikai eszköz számára engedélyezett | Virtuális eszköz számára engedélyezett |
 | --- | --- | --- |
-| 2. frissítés toopre-1 (kiadás, 0,1, 0,2, 0,3) frissítése |Nem |Nem |
-| 2 tooUpdate 1 (1, 1.1-es, 1.2-es) frissítése |Igen <br></br>Ha helyileg rögzített vagy rétegzett kötet vagy kötetek mindig feladatátvételt, két, hello vegyesen rétegzett. |Igen<br></br>Ha használatával helyileg rögzített kötetek, ezek rétegzett feletti sikertelen. |
-| 2. frissítés tooUpdate 2 (újabb verzió) |Igen<br></br>A helyileg rögzített vagy rétegzett kötetek vagy a két kombinációját, ha hello kötetek mindig feladatátvétel történt, hello kötettípus; indítása rétegzett rétegzett és helyileg rögzített, a helyileg rögzített. |Igen<br></br>Ha használatával helyileg rögzített kötetek, ezek rétegzett feletti sikertelen. |
+| A 2. frissítés előtti 1 (kiadás, 0,1, 0,2, 0,3) frissítése |Nem |Nem |
+| Update 2 1 (1, 1.1-es, 1.2-es) frissítése |Igen <br></br>Ha helyileg rögzített vagy rétegzett kötetek vagy vegyesen két, a kötetek mindig feladatátvétel történt, rétegzett. |Igen<br></br>Ha használatával helyileg rögzített kötetek, ezek rétegzett feletti sikertelen. |
+| Update 2 2. frissítést (újabb verzió) |Igen<br></br>Ha helyileg rögzített vagy rétegzett kötetek vagy vegyesen két használ, a kötetek mindig feladatátvétel történt a kiindulási kötet típusként; rétegzett rétegzett és helyileg rögzített, a helyileg rögzített. |Igen<br></br>Ha használatával helyileg rögzített kötetek, ezek rétegzett feletti sikertelen. |
 
 #### <a name="partial-failover-across-software-versions"></a>Részleges feladatátvételi szoftver verziója között
-Ha azt tervezi, tooperform egy részleges frissítés előtti 1 tooa cél-frissítés 1-es vagy újabb rendszerű eszközt a StorSimple forrás feladatátvevő, hajtsa végre ezt az útmutatást. 
+Hajtsa végre ezt az útmutatást, ha azt tervezi, a frissítés előtti 1 egy cél frissítés-1-es vagy újabb rendszert futtató StorSimple forrás eszközt részleges feladatátvétel végrehajtásához. 
 
 | A részleges feladatátvétel | Fizikai eszköz számára engedélyezett | Virtuális eszköz számára engedélyezett |
 | --- | --- | --- |
-| Frissítés előtti 1 (kiadás, 0,1, 0,2, 0,3) tooUpdate 1 vagy újabb verzió |Igen, tekintse meg alább a hello bevált gyakorlat tipp. |Igen, tekintse meg alább a hello bevált gyakorlat tipp. |
+| 1. frissítés vagy újabb frissítés előtti 1 (kiadás, 0,1, 0,2, 0,3) |Igen, tekintse meg alább a bevált gyakorlat tipp. |Igen, tekintse meg alább a bevált gyakorlat tipp. |
 
 > [!TIP]
-> Megváltozott egy felhőalapú metaadatokat és az adatokat formátum az 1. frissítés vagy újabb verzió használható. Ezért nem javasoljuk a részleges feladatátvétel, a frissítés előtti 1 tooUpdate 1 vagy újabb verzió. Ha tooperform részleges feladatátvétel van szüksége, javasoljuk, Update 1 vagy újabb mindkét hello eszközök (a forrás és a cél), és ezután folytathatja a hello feladatátvételi. 
+> Megváltozott egy felhőalapú metaadatokat és az adatokat formátum az 1. frissítés vagy újabb verzió használható. Ezért nem javasoljuk a frissítés előtti 1 részleges feladatátvételt az 1. frissítés vagy újabb verzió. Ha egy részleges feladatátvételre van szüksége, ajánlott Update 1 vagy újabb mindkét az eszközök (a forrás és a cél), és folytathatja a feladatátvételi. 
 > 
 > 
 
-## <a name="fail-over-tooanother-physical-device"></a>Feladatok átadása tooanother fizikai eszköz
-Hajtsa végre a következő lépéseket toorestore hello az eszköz tooa cél fizikai eszköz.
+## <a name="fail-over-to-another-physical-device"></a>Feladatok átadása egy másik fizikai eszköz
+A következő lépésekkel állítsa vissza az eszköz a fizikai céleszközön.
 
-1. Győződjön meg arról, hogy hello kötettároló toofail kívánt felhőalapú pillanatfelvételek vannak társítva.
-2. A hello **eszközök** hello kattintson **Kötettárolók** fülre.
-3. Válassza ki, hogy milyen toofail tooanother eszközön keresztül kötettároló. Kattintson a hello kötet tároló toodisplay hello kötetek listáját a tárolóban. Jelöljön ki egy kötetet, majd **Offline állapotba** tootake hello kötet offline állapotba. Ismételje meg ezt a folyamatot a hello kötettároló összes hello kötetet.
-4. Ismétlődő hello előző lépést az összes hello kötettárolók milyen toofail tooanother eszközön keresztül.
-5. A hello **eszközök** kattintson **feladatátvételi**.
-6. A megnyitott, a varázsló hello **válassza ki a kötet tároló toofail keresztül**:
+1. Győződjön meg arról, hogy a feladatátvétel kívánt kötettároló felhőalapú pillanatfelvételek vannak társítva.
+2. Az a **eszközök** lapján kattintson a **Kötettárolók** fülre.
+3. Válassza ki a kötettároló szeretné, hogy áthelyezze a feladatokat egy másik eszközre. Kattintson a kötettároló található kötetek listájának megjelenítéséhez. Jelöljön ki egy kötetet, majd **Offline állapotba** a kötet offline állapotba. Ismételje meg ezt a folyamatot a a kötettároló összes kötetet.
+4. Ismételje meg az előző lépésben szeretné, hogy áthelyezze a feladatokat egy másik eszközre kötettárolók.
+5. Az a **eszközök** kattintson **feladatátvételi**.
+6. A megnyíló, a varázsló **válasszon kötettároló feladatátvételt**:
    
-   1. Hello kötettárolók, jelölje ki hello kötettárolók milyen toofail keresztül.
-      **Csak a hozzárendelt felhő pillanatképekkel kötettárolók hello és a kötetek offline állapotban jelennek meg.**
-   2. A **válassza ki a céleszközön** hello kötetek kijelölt hello tárolókban, válassza ki a céleszközön az elérhető eszközök hello legördülő listából. Csak az olyan hello eszközökre, amelyeken a rendelkezésre álló kapacitásból hello hello legördülő listában jelennek meg.
-   3. Végül ellenőrizze az összes hello feladatátvételi beállításokat alatt **megerősítéséhez feladatátvétel**. Kattintson a pipa ikonra hello ![pipa ikon](./media/storsimple-device-failover-disaster-recovery/IC740895.png).
-7. A feladatátvételi feladatban hoz létre, amely keresztül hello figyelhető **feladatok** lap. Hello keresztül megbukott kötettároló helyi köteteken, majd látják egyes visszaállítási feladat minden helyi kötet (nem a rétegzett kötetek) hello tárolóban. Ezek a feladatok visszaállítási egy idő toocomplete is igénybe vehet. Valószínű, előfordulhat, hogy korábban végezze el a hello feladatátvételi feladatot. Ne feledje, hogy ezek a kötetek fog helyi garanciákat csak hello visszaállítási feladatok végrehajtását követően. Hello feladatátvétel elvégzése után nyissa meg toohello **eszközök** lap.                                            
+   1. A kötettárolók, jelölje ki a kötettárolók szeretné, hogy áthelyezze a feladatokat.
+      **Csak a hozzárendelt felhő pillanatképek és a kapcsolat nélküli kötetekkel kötettárolók jelennek meg.**
+   2. A **válassza ki a céleszközön** a kijelölt tárolókban lévő kötetekhez, jelöljön ki egy cél eszközt a legördülő listából válassza ki az elérhető eszközök. Csak azokat az eszközöket, amelyek a rendelkezésre álló kapacitásból a legördülő listában jelennek meg.
+   3. Végül tekintse át a feladatátvételi beállítások **megerősítéséhez feladatátvétel**. Kattintson a pipa ikonra ![pipa ikon](./media/storsimple-device-failover-disaster-recovery/IC740895.png).
+7. Feladatátvételi feladat jön létre, amelyek segítségével figyelhető a **feladatok** lap. Az, hogy átadja a kötettároló helyi köteteken, majd látják minden helyi kötet (nem a rétegzett kötetek) a tárolóban levő egyes visszaállítási feladat. A visszaállítási feladatok befejezéséhez meglehetősen hosszabb időt vehet igénybe. Valószínű, hogy a feladatátvételi feladatban korábbi lehet végrehajtani. Vegye figyelembe, hogy az ezeken a köteteken helyi garanciákat kell, csak a visszaállítási feladatok végrehajtását követően. Miután a feladatátvétel befejeződött, lépjen a **eszközök** lap.                                            
    
-   1. Válassza ki a feladatátvételi folyamat hello hello cél eszközként használt hello eszközt.
-   2. Nyissa meg toohello **Kötettárolók** lap. Minden hello kötettárolók, hello kötetek hello régi eszközről, és szerepelnie kell.
+   1. Válassza ki az eszközt, hogy a céleszközt, a feladatátvételi folyamat volt megadva.
+   2. Lépjen a **Kötettárolók** lap. Minden kötettárolók, a köteteket a régi eszközről együtt kell szerepelnie.
 
 ## <a name="failover-using-a-single-device"></a>Egyetlen eszköz használatával a feladatátvételi
-Hajtsa végre a következő lépéseket, ha csak egyetlen eszköz és a szükséges tooperform feladatátvevő hello.
+Hajtsa végre a következő lépéseket, ha csak olyan egyetlen eszközzel rendelkezik, és végezzen el egy feladatátvételt kell.
 
-1. Az összes hello kötet felhőalapú pillanatfelvételek az eszközt a hálózatról.
-2. Az eszköz toofactory Alapértelmezések visszaállítása. Hajtsa végre a hello részletes utasításait [hogyan tooreset a StorSimple eszköz toofactory alapértelmezett beállítások](storsimple-manage-device-controller.md#reset-the-device-to-factory-default-settings).
+1. A kötetek felhőalapú pillanatfelvételek az eszközt a hálózatról.
+2. Az eszköz visszaállítása a gyári beállításokat. Részletes utasításait [a StorSimple eszköz visszaállítása a gyári alapértelmezett beállításokra](storsimple-manage-device-controller.md#reset-the-device-to-factory-default-settings).
 3. Állítsa be az eszközt, és regisztrálja újra a StorSimple Manager szolgáltatásban.
-4. A hello **eszközök** lapon jelennek meg hello régi eszköz **Offline**. hello újonnan regisztrált eszközre kell megjeleníteni **Online**.
-5. Hello új eszközhöz, hello minimális konfigurálásának befejezése hello eszköz először. 
+4. Az a **eszközök** lapon jelennek meg a régi eszköz **Offline**. Az újonnan regisztrált eszközre kell megjeleníteni **Online**.
+5. Az új eszköz minimális konfigurációjának befejezéséhez az eszköz első. 
    
    > [!IMPORTANT]
-   > **Ha hello minimális konfiguráció nem fejeződött be először, a vész-Helyreállítási hello aktuális végrehajtása hiba miatt sikertelen lesz. Ez a viselkedés egy későbbi kiadásban lesz kijavítva.**
+   > **Ha a minimális konfigurációs először nem fejeződött be, a vész-Helyreállítási aktuális végrehajtása egy hiba miatt sikertelen lesz. Ez a viselkedés egy későbbi kiadásban lesz kijavítva.**
    > 
    > 
-6. Jelöljön ki hello régi eszköz (kapcsolat nélküli állapota), majd **feladatátvételi**. Hello varázslóban megjelenő az eszköz feladatátvétele, és adja meg a hello céleszköz hello újonnan regisztrált eszközre. Részletes útmutatásért lásd túl[tooanother fizikai eszköz feladatátvételt](#fail-over-to-another-physical-device).
-7. Egy eszköz-visszaállítási feladat jön létre, hogy hello a figyelheti **feladatok** lap.
-8. Miután hello feladat sikeresen befejeződött, hello új eszközhöz való hozzáféréshez, és keresse meg a toohello **Kötettárolók** lap. Minden hello kötettárolók hello régi eszközről kell áttelepített toohello új eszköz.
+6. Válassza ki azt a régi (kapcsolat nélküli állapota) eszközt, és kattintson a **feladatátvételi**. A varázslóban megjelenő átadja ezt az eszközt, és adja meg a céleszközt az újonnan regisztrált eszközként. Részletes útmutatásért tekintse meg [átveheti egy másik fizikai eszköz](#fail-over-to-another-physical-device).
+7. Egy eszköz-visszaállítási feladat jön létre, hogy a figyelheti a **feladatok** lap.
+8. Miután a feladat sikeresen befejeződött, az új eszközhöz való hozzáféréshez, és keresse meg a **Kötettárolók** lap. A régi eszközről kötettárolók most már az új eszközre telepíthető át.
 
-## <a name="fail-over-tooa-storsimple-virtual-device"></a>Feladatok átadása tooa StorSimple virtuális eszköz
-Rendelkeznie kell egy StorSimple virtuális eszköz létrehozása, és a korábbi toorunning konfigurálása ezt az eljárást. Ha 2. frissítés fut, érdemes egy 8020-as modell virtuális eszköz az hello vész-Helyreállítási 64 TB-os és prémium szintű tárolást használ. 
+## <a name="fail-over-to-a-storsimple-virtual-device"></a>Feladatok átadása a StorSimple virtuális eszköz
+Rendelkeznie kell egy StorSimple virtuális eszköz létrehozása, és ezzel az eljárással futtatása előtt konfigurálása. Ha 2. frissítés fut, érdemes egy 8020-as modell virtuális eszköz az a vész-Helyreállítási 64 TB-os és prémium szintű tárolást használ. 
 
-Hajtsa végre a következő lépéseket toorestore hello eszköz tooa cél StorSimple virtuális eszköz hello.
+A következő lépésekkel visszaállíthatja az eszköz célja a StorSimple virtuális eszköz.
 
-1. Győződjön meg arról, hogy hello kötettároló toofail kívánt felhőalapú pillanatfelvételek vannak társítva.
-2. A hello **eszközök** hello kattintson **Kötettárolók** fülre.
-3. Válassza ki, hogy milyen toofail tooanother eszközön keresztül kötettároló. Kattintson a hello kötet tároló toodisplay hello kötetek listáját a tárolóban. Jelöljön ki egy kötetet, majd **Offline állapotba** tootake hello kötet offline állapotba. Ismételje meg ezt a folyamatot a hello kötettároló összes hello kötetet.
-4. Ismétlődő hello előző lépést az összes hello kötettárolók milyen toofail tooanother eszközön keresztül.
-5. A hello **eszközök** kattintson **feladatátvételi**.
-6. A megnyitott, a varázsló hello **válassza ki a kötet tároló toofailover**, végezze el a következő hello:
+1. Győződjön meg arról, hogy a feladatátvétel kívánt kötettároló felhőalapú pillanatfelvételek vannak társítva.
+2. Az a **eszközök** lapján kattintson a **Kötettárolók** fülre.
+3. Válassza ki a kötettároló szeretné, hogy áthelyezze a feladatokat egy másik eszközre. Kattintson a kötettároló található kötetek listájának megjelenítéséhez. Jelöljön ki egy kötetet, majd **Offline állapotba** a kötet offline állapotba. Ismételje meg ezt a folyamatot a a kötettároló összes kötetet.
+4. Ismételje meg az előző lépésben szeretné, hogy áthelyezze a feladatokat egy másik eszközre kötettárolók.
+5. Az a **eszközök** kattintson **feladatátvételi**.
+6. A megnyíló, a varázsló **válasszon kötettároló feladatátvételre**, adja meg a következőket:
    
-    a. Hello kötettárolók, jelölje ki hello kötettárolók milyen toofail keresztül.
+    a. A kötettárolók, jelölje ki a kötettárolók szeretné, hogy áthelyezze a feladatokat.
    
-    **Csak a hozzárendelt felhő pillanatképekkel kötettárolók hello és a kötetek offline állapotban jelennek meg.**
+    **Csak a hozzárendelt felhő pillanatképek és a kapcsolat nélküli kötetekkel kötettárolók jelennek meg.**
    
-    b. A **válassza ki a céleszközön hello kötetek kijelölt hello tárolókban lévő**, válassza ki az elérhető eszközök hello legördülő listából a StorSimple virtuális eszköz hello. **Csak az olyan hello eszközökre, amelyeken elegendő kapacitással hello legördülő listában jelennek meg.**  
-7. Végül ellenőrizze az összes hello feladatátvételi beállításokat alatt **megerősítéséhez feladatátvétel**. Kattintson a pipa ikonra hello ![pipa ikon](./media/storsimple-device-failover-disaster-recovery/IC740895.png).
-8. Hello feladatátvétel elvégzése után nyissa meg toohello **eszközök** lap.
+    b. A **kötetekhez a céleszközön válassza a kijelölt tárolókban lévő**, válassza ki a StorSimple virtuális eszköz a legördülő listából a rendelkezésre álló eszközök. **Csak azokat az eszközöket, amely rendelkezik elegendő kapacitással a legördülő listában jelennek meg.**  
+7. Végül tekintse át a feladatátvételi beállítások **megerősítéséhez feladatátvétel**. Kattintson a pipa ikonra ![pipa ikon](./media/storsimple-device-failover-disaster-recovery/IC740895.png).
+8. Miután a feladatátvétel befejeződött, lépjen a **eszközök** lap.
    
-    a. Válassza ki a hello StorSimple virtuális eszköz hello feladatátvételi folyamat hello cél eszközként használttal.
+    a. Válassza ki a StorSimple virtuális eszköz, amely a céleszközt, a feladatátvételi folyamat volt megadva.
    
-    b. Nyissa meg toohello **Kötettárolók** lap. Most már minden hello kötettárolók, valamint hello kötetek hello régi eszközről szerepelnie kell.
+    b. Lépjen a **Kötettárolók** lap. Most már minden kötettárolók, együtt a köteteket a régi eszközről szerepelnie kell.
 
-![Videó elérhető](./media/storsimple-device-failover-disaster-recovery/Video_icon.png)**Videó elérhető**
+![Videó elérhető](./media/storsimple-device-failover-disaster-recovery/Video_icon.png) **Videó elérhető**
 
-Hogyan visszaállíthatja egy sikertelen keresztül fizikai eszköz tooa virtuális eszköz hello felhőben videó toowatch kattintson [Itt](https://azure.microsoft.com/documentation/videos/storsimple-and-disaster-recovery/).
+Bemutató videó bemutatja, hogyan visszaállíthatja egy sikertelen a virtuális eszköz a felhőben fizikai eszköz keresztül, kattintson a [Itt](https://azure.microsoft.com/documentation/videos/storsimple-and-disaster-recovery/).
 
 ## <a name="failback"></a>Feladat-visszavétel
-Az Update 3 és újabb verziókban a StorSimple feladat-visszavétel is támogatja. Hello feladatátvételi befejeződése után hello következő műveletek történnek meg:
+Az Update 3 és újabb verziókban a StorSimple feladat-visszavétel is támogatja. A feladatátvétel befejezése után a következő műveletek történnek meg:
 
-* feladatátvétel történt hello kötettárolók megtisztítja hello forrás eszközről.
-* A háttérben futó feladat (feladatátvételt) kötettároló / hello forráseszközt indítható. Ha toofailback kísérletet, amíg hello feladat van folyamatban, egy értesítés toothat hatást fog kapni. Toowait szüksége lesz, amíg hello feladat teljes toostart hello feladat-visszavétel nem. 
+* A forráseszközről származó kötettárolók, amely a feladatátvétel történt megtisztítja.
+* A forráseszközt / kötettároló (feladatátvételt) a háttérben futó feladat indítható. Ha úgy próbálja feladat-visszavétel, amíg a feladat van folyamatban, erről értesítést fog kapni. Várjon, amíg a folyamat befejeződik, a feladat-visszavétel elindításához kell. 
   
-    hello idő toocomplete hello törlésének kötettárolók függő számos tényező befolyásolja, például az adatok mennyiségét, hello adatok, a biztonsági mentések és a rendelkezésre álló hálózati sávszélesség hello száma korát hello a művelethez. Ha a teszt feladatátvétel/visszavételek azt tervezi, azt javasoljuk, hogy tesztelje kötettárolók a kevesebb adat (GB). A legtöbb esetben elindíthatja hello feladat-visszavétel 24 óra hello feladatátvételi befejeződése után. 
+    Az idő kötettárolók törlésének befejezéséhez az számos tényező befolyásolja, például az adatok mennyiségét, a művelet az adatok, a biztonsági másolatok számát és a rendelkezésre álló sávszélesség életkor függ. Ha a teszt feladatátvétel/visszavételek azt tervezi, azt javasoljuk, hogy tesztelje kötettárolók a kevesebb adat (GB). A legtöbb esetben megkezdheti a feladat-visszavétel 24 óra, a feladatátvétel befejezése után. 
 
 ## <a name="frequently-asked-questions"></a>Gyakori kérdések
-Q. **Mi történik, ha a vész-Helyreállítási hello meghibásodik, vagy részleges sikeres rendelkezik?**
+Q. **Mi történik, ha a vész-Helyreállítási meghibásodik, vagy részleges sikeres rendelkezik?**
 
-A. Hello DR sikertelen lesz, azt javasoljuk, hogy újból megpróbálná. hello körül, még egyszer vész-Helyreállítási tudja, hogy mit összes végezhető el, és ha hello folyamat leállását hello első alkalommal. hello vész-Helyreállítási folyamat elindítja az ettől a ponttól kezdve. 
+A. A vész-Helyreállítási sikertelen lesz, azt javasoljuk, hogy újból megpróbálná. A második alkalommal körülbelül, vész-Helyreállítási tudja, hogy mit összes végezhető el, és ha a folyamat leállását először. A vész-Helyreállítási folyamat elindul ettől a ponttól kezdve. 
 
-Q. **Törölhetek egy eszközt, amíg hello eszköz feladatátvétel van folyamatban?**
+Q. **Törölhetek egy eszközt, amíg az eszköz feladatátvétel van folyamatban?**
 
-A. Egy eszköz nem törölhető, amíg folyamatban van egy vész-Helyreállítási. Az eszköz csak a vész-Helyreállítási hello befejezése után törölhetők.
+A. Egy eszköz nem törölhető, amíg folyamatban van egy vész-Helyreállítási. Az eszköz csak akkor törölni, a vész-Helyreállítási befejeződése után.
 
-Q.    **Ha nem hello szemétgyűjtés start hello forrás eszközön, hogy a helyi adatok hello forrás eszköz törlése?**
+Q.    **Ha nem a szemétgyűjtés indítsa el a forrás-eszközön, hogy a forrás-eszközökön a helyi adatok törlése?**
 
-A. A szemétgyűjtés elérhetővé válik hello forráseszközt csak azt követően hello eszköz teljesen karbantartása. hello tisztítás tartalmaz objektumokat, amelyek nem tudták keresztül a hello forrás eszköz, például kötetek, a biztonsági másolat objektumok (adatokat nem), a kötettárolók és a házirendek törléséről.
+A. A szemétgyűjtés elérhetővé válik a forráseszközt csak azt követően az eszköz teljesen karbantartása. A karbantartás tartalmazza, amelyek nem tudták keresztül például kötetek, a biztonsági másolat objektumok (adatokat nem), a kötettárolók és a házirendek a forráseszközről származó objektumok törlése.
 
-Q. **Mi történik, ha hello hello kötettárolók hello forráseszközt a társított feladat törlése sikertelen?**
+Q. **Mi történik, ha a forrás eszköz kötettárolók társított törlése feldolgozás sikertelen?**
 
-A.  Ha hello törlése feladat sikertelen, akkor szüksége lesz hello kötettárolók toomanually eseményindító hello törlését. A hello **eszközök** lapon válassza ki a forrás eszközt, majd kattintson **kötettárolók**. Jelölje be hello kötettárolók keresztül, és a hello lap aljára hello sikertelen kattintson **törlése**. Ha törölt minden hello kötettárolók hello forrás eszközön a feladatátvételt, megkezdheti hello feladat-visszavételre.
+A.  Ha a törlési feladat sikertelen, akkor kell manuálisan elindítani a kötettárolók törlését. Az a **eszközök** lapon válassza ki a forrás eszközt, majd kattintson **kötettárolók**. Jelölje ki azt a kötettárolók keresztül, és a lap alján található sikertelen **törlése**. Ha törölt minden a sikertelen keresztül kötettárolók a forrás-eszközön, indítsa el a feladat-visszavételre.
 
 ## <a name="business-continuity-disaster-recovery-bcdr"></a>Üzleti folytonosság vészhelyreállítási (BCDR)
-Üzleti folytonosság (BCDR) vészhelyreállítás hello teljes Azure-adatközpontban leáll a működése következik be. Ez befolyásolhatja a StorSimple Manager szolgáltatás és hello társított StorSimple eszközökhöz.
+Üzleti folytonossági (BCDR) vészhelyreállítás akkor fordul elő, ha a teljes Azure-adatközpontban leáll a működése. Ez befolyásolhatja a StorSimple Manager szolgáltatás és a kapcsolódó StorSimple eszközökhöz.
 
-Ha StorSimple eszközök regisztrálása előtt történt egy olyan vészhelyzet esetén volt, a StorSimple eszköz egy gyári tooundergo esetleg. Hello katasztrófa utáni hello StorSimple eszköz jelenik meg offline állapotúként. hello StorSimple eszköz törlését hello portálról, és a gyári beállítások visszaállítása el kell végezni, egy friss regisztrációs követ.
+Ha nincsenek StorSimple eszközökhöz regisztrált előtt történt egy olyan vészhelyzet esetén, majd a StorSimple eszköz kell végezni a gyári beállítások visszaállítása. A katasztrófa utáni a StorSimple eszköz jelenik meg offline állapotúként. A StorSimple eszköz törlését a portálról, és a gyári beállítások visszaállítása el kell végezni, egy friss regisztrációs követ.
 
 ## <a name="next-steps"></a>Következő lépések
-* Miután elvégezte a feladatátvételt, esetleg túl[inaktiválja vagy törölje a StorSimple eszköz](storsimple-deactivate-and-delete-device.md).
-* Információ a hogyan toouse hello StorSimple Manager szolgáltatás, nyissa meg túl[használata hello StorSimple Manager szolgáltatás tooadminister a StorSimple eszköz](storsimple-manager-service-administration.md).
+* Miután elvégezte a feladatátvételt, esetleg [inaktiválja vagy törölje a StorSimple eszköz](storsimple-deactivate-and-delete-device.md).
+* A StorSimple Manager szolgáltatással kapcsolatos további információkért látogasson el [felügyelete a StorSimple eszközt a StorSimple Manager szolgáltatás segítségével](storsimple-manager-service-administration.md).
 

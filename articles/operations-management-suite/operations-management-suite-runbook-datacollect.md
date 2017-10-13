@@ -1,6 +1,6 @@
 ---
-title: Log Analytics-adatok egy runbookhoz, az Azure Automationben aaaCollecting |} Microsoft Docs
-description: "Lépésenkénti útmutató, amely végigvezeti egy runbook létrehozása az Azure Automation toocollect adatok történő hello OMS tárházba Naplóelemzési analízis."
+title: "Egy runbookhoz, az Azure Automationben Log Analytics-adatok gyűjtése |} Microsoft Docs"
+description: "Lépésenkénti útmutató, amely végigvezeti egy runbook létrehozása az Azure Automation szolgáltatásban, hogy a OMS tárházba elemzés, Log Analyticshez úgy gyűjthet adatokat."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,77 +14,77 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/27/2017
 ms.author: bwren
-ms.openlocfilehash: e644dc3ef20fb1e930cae02e0fd44ccca31dc13d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 59f674c9c6404da7f5384539189f41a4ba1a939a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="collect-data-in-log-analytics-with-an-azure-automation-runbook"></a>Egy Azure Automation-runbook Naplóelemzési az adatok gyűjtése
-Jelentős mennyiségű Naplóelemzési adatokat gyűjteni különböző forrásokból, beleértve a [adatforrások](../log-analytics/log-analytics-data-sources.md) az ügynökökre és is [adatgyűjtés az Azure-ból](../log-analytics/log-analytics-azure-storage.md).  Vannak olyan helyzetek toocollect adatokat kell, amely nem érhető el a szabványos források keresztül, ha.  Ebben az esetben használhatja hello [HTTP adatait gyűjtője API](../log-analytics/log-analytics-data-collector-api.md) toowrite adatok tooLog Analytics bármely REST API-ügyfél.  Egy általános metódus tooperform ezen adatok gyűjtése az Azure Automationben használ egy runbookot.   
+Jelentős mennyiségű Naplóelemzési adatokat gyűjteni különböző forrásokból, beleértve a [adatforrások](../log-analytics/log-analytics-data-sources.md) az ügynökökre és is [adatgyűjtés az Azure-ból](../log-analytics/log-analytics-azure-storage.md).  Nincsenek olyan forgatókönyvek, ha az adatok gyűjtéséhez kell, amely nem érhető el a szabványos forrásokon keresztül.  Ebben az esetben is használhatja a [HTTP adatait gyűjtője API](../log-analytics/log-analytics-data-collector-api.md) Naplóelemzési bármely REST API-ügyfél adatokat írni.  Az adatgyűjtés elvégzéséhez gyakran használják az Azure Automationben egy runbook használ.   
 
-Ez az oktatóanyag bemutatja, hogyan létrehozásához és az Azure Automation toowrite adatok tooLog Analytics runbook ütemezése hello folyamaton keresztül.
+Ez az oktatóanyag végigvezeti a folyamat létrehozásának és az Azure Automationben adatokat írni a Naplóelemzési runbook ütemezése.
 
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ebben a forgatókönyvben a következő erőforrások az Azure-előfizetéshez konfigurált hello igényel.  Egy ingyenes fiókot is lehet.
+Ebben a forgatókönyvben a következő erőforrások az Azure-előfizetéshez konfigurált igényel.  Egy ingyenes fiókot is lehet.
 
 - [A Naplóelemzési munkaterület jelentkezzen](../log-analytics/log-analytics-get-started.md).
 - [Azure automation-fiók](../automation/automation-offering-get-started.md).
 
 ## <a name="overview-of-scenario"></a>Forgatókönyv áttekintése
-Ebben az oktatóanyagban automatizálási feladatok adatokat gyűjt a runbook fog írni.  Az Azure Automation Runbookjai PowerShell használatával valósíthatók meg, írása, és egy parancsfájl tesztelése hello Azure Automation-szerkesztőben kezdi.  Miután ellenőrizte, hogy hello szükséges információkat gyűjt, fogja, hogy adatokat tooLog Analytics írása, és ellenőrizze, hello egyéni adattípus.  Végezetül a rendszeres időközönként létre fog hozni egy ütemezés toostart hello runbookot.
+Ebben az oktatóanyagban automatizálási feladatok adatokat gyűjt a runbook fog írni.  Az Azure Automation Runbookjai PowerShell használatával valósíthatók meg, írása, és egy parancsfájl tesztelése az Azure Automation-szerkesztőben kezdi.  Miután ellenőrizte, hogy a szükséges adatokat gyűjt, fogja, hogy adatokat írjon Naplóelemzési, és ellenőrizze, az egyéni adattípus.  Végezetül létre fog hozni egy ütemezést, rendszeres időközönként a runbook elindításához.
 
 > [!NOTE]
-> Azure Automation toosend feladat információk tooLog Analytics ezt a runbookot nélkül is konfigurálhat.  Ebben a forgatókönyvben elsősorban a használt toosupport hello oktatóanyag, és javasolt, hogy küldjön hello adatok tooa teszt munkaterületen.  
+> Azure Automation-feladat információinak küldendő Log Analytics ezt a runbookot nélkül is konfigurálhat.  Ebben a forgatókönyvben elsősorban az oktatóanyag támogatásához, és elküldheti az adatokat egy tesztelési munkaterület ajánlott.  
 
 
 ## <a name="1-install-data-collector-api-module"></a>1. Data Collector API-modul telepítése
-Minden [hello HTTP adatait gyűjtője API-kéréseket](../log-analytics/log-analytics-data-collector-api.md#create-a-request) megfelelően formázva, és egy authorization fejlécet tartalmaz.  Ehhez a runbookban, de a kódot, amely leegyszerűsíti ezt a folyamatot modul használatával hello mennyisége csökkenthető.  Egy modul, melyekkel [OMSIngestionAPI modul](https://www.powershellgallery.com/packages/OMSIngestionAPI) a PowerShell-galériában hello.
+Minden [kérelem érkezett a HTTP-adatokat gyűjtő API](../log-analytics/log-analytics-data-collector-api.md#create-a-request) megfelelően formázva, és egy authorization fejlécet tartalmaz.  Ehhez a runbookban, de a kódot, amely leegyszerűsíti ezt a folyamatot modul használatával mennyisége csökkenthető.  Egy modul, melyekkel [OMSIngestionAPI modul](https://www.powershellgallery.com/packages/OMSIngestionAPI) a PowerShell-galériában.
 
-toouse egy [modul](../automation/automation-integration-modules.md) egy runbookban, telepítenie kell az Automation-fiókban.  Minden olyan forgatókönyvben hello ugyanazt a fiókot használhatja a hello funkciók hello modulban.  Új modul választásával telepítheti **eszközök** > **modulok** > **a modul hozzá lesz adva** az Automation-fiókban.  
+Használatához a [modul](../automation/automation-integration-modules.md) egy runbookban, telepítenie kell az Automation-fiókban.  Minden runbook ugyanazt a fiókot használhatja a funkciók a modulban.  Új modul választásával telepítheti **eszközök** > **modulok** > **a modul hozzá lesz adva** az Automation-fiókban.  
 
-PowerShell-galériában hello azonban lehetővé teszi egy gyors beállítás toodeploy modul közvetlen tooyour automatizálási fiókot, hogy használhassa ezt a beállítást a jelen oktatóanyag.  
+A PowerShell-galériában azonban lehetővé teszi a gyors kapcsolóval kell telepítenie egy modul közvetlenül az automation-fiók, hogy használhassa ezt a beállítást a jelen oktatóanyag.  
 
 ![OMSIngestionAPI modul](media/operations-management-suite-runbook-datacollect/OMSIngestionAPI.png)
 
-1. Nyissa meg túl[PowerShell-galériában](https://www.powershellgallery.com/).
+1. Ugrás a [PowerShell-galériában](https://www.powershellgallery.com/).
 2. Keresse meg **OMSIngestionAPI**.
-3. Kattintson a hello **tooAzure automatizálás telepítése** gombra.
-4. Válassza ki az automation-fiók, és kattintson a **OK** tooinstall hello modul.
+3. Kattintson a **központi telepítése az Azure Automation** gombra.
+4. Válassza ki az automation-fiók, és kattintson a **OK** -modul telepítéséhez.
 
 
 ## <a name="2-create-automation-variables"></a>2. Automatizálási változók létrehozása
-[Automatizálási változók](..\automation\automation-variables.md) az Automation-fiók minden forgatókönyve használt értékek tárolásához.  Akkor runbookok több rugalmas lehetővé tételével toochange ezeket az értékeket szerkesztése nélkül hello tényleges runbook. Hello HTTP adatait gyűjtője API származó kérelmek hello azonosítója és kulcsa hello OMS-munkaterület szükséges, és változó eszközök ideális toostore ezt az információt.  
+[Automatizálási változók](..\automation\automation-variables.md) az Automation-fiók minden forgatókönyve használt értékek tárolásához.  Akkor runbookok rugalmasabb azáltal, hogy ezek az értékek módosítása az aktuális runbook szerkesztése nélkül. A HTTP-adatokat gyűjtő API minden kérelemnél szükséges azonosítója és kulcsa az OMS-munkaterület, és a változó eszközök ideálisak ezek az információk tárolására.  
 
 ![Változók](media/operations-management-suite-runbook-datacollect/variables.png)
 
-1. Hello Azure-portálon lépjen a tooyour Automation-fiók.
+1. Az Azure-portálon lépjen az Automation-fiók.
 2. Válassza ki **változók** alatt **megosztott erőforrások**.
-2. Kattintson a **változó hozzáadása** és hello két változó létrehozása a következő táblázat hello.
+2. Kattintson a **változó hozzáadása** , és hozzon létre két változót a következő táblázatban.
 
 | Tulajdonság | Munkaterület-azonosító értéke | Munkaterület-kulcs értéke |
 |:--|:--|:--|
 | Név | WorkspaceId | WorkspaceKey |
 | Típus | Karakterlánc | Karakterlánc |
-| Érték | Illessze be a munkaterület azonosítója a Naplóelemzési munkaterület hello. | Illessze be kell jelentkezniük az hello elsődleges vagy másodlagos kulcsot a Naplóelemzési munkaterületet. |
+| Érték | Illessze be a Naplóelemzési munkaterület a munkaterület azonosítója. | Illessze be kell jelentkezniük az elsődleges vagy másodlagos kulcsot a Naplóelemzési munkaterületet. |
 | Titkosított | Nem | Igen |
 
 
 
 ## <a name="3-create-runbook"></a>3. Runbook létrehozása
 
-Azure Automation szolgáltatásbeli szerkesztővé rendelkezik hello portálon, ahol szerkesztheti, és tesztelje a forgatókönyvet.  A hello beállítás toouse hello parancsfájl szerkesztő toowork van [PowerShell közvetlenül](../automation/automation-edit-textual-runbook.md) vagy [létrehozhat egy grafikus](../automation/automation-graphical-authoring-intro.md).  Ebben az oktatóanyagban a PowerShell-parancsfájllal fog működni. 
+Azure Automation szolgáltatásbeli szerkesztővé rendelkezik a portálon, ahol szerkesztheti, és tesztelje a forgatókönyvet.  Lehetősége van a parancsprogram-szerkesztő segítségével dolgozhat [PowerShell közvetlenül](../automation/automation-edit-textual-runbook.md) vagy [létrehozhat egy grafikus](../automation/automation-graphical-authoring-intro.md).  Ebben az oktatóanyagban a PowerShell-parancsfájllal fog működni. 
 
 ![Forgatókönyv szerkesztése](media/operations-management-suite-runbook-datacollect/edit-runbook.png)
 
-1. Keresse meg a tooyour Automation-fiók.  
+1. Nyissa meg az Automation-fiók.  
 2. Kattintson a **Runbookok** > **hozzáadása egy runbook** > **hozzon létre egy új runbookot**.
-3. Hello runbook neve, írja be a következőt **gyűjtése-Automation-feladat**.  Hello runbooktípusba, válassza a **PowerShell**.
-4. Kattintson a **létrehozása** toocreate hello runbook és kezdő hello szerkesztő.
-5. Másolja és illessze be a következő kódot a hello runbook hello.  Tekintse meg a toohello megjegyzések hello parancsfájlban hello kód ismertetése.
+3. A runbook nevét, írja be a következőt **gyűjtése-Automation-feladat**.  Válassza ki a runbook típusa **PowerShell**.
+4. Kattintson a **létrehozása** hozza létre a runbookot és a szerkesztő elindításához.
+5. Másolja és illessze be a következő kódot a runbookot.  Tekintse meg a megjegyzéseket, a kód ismertetése a parancsfájlban.
     
-        # Get information required for hello automation account from parameter values when hello runbook is started.
+        # Get information required for the automation account from parameter values when the runbook is started.
         Param
         (
             [Parameter(Mandatory = $True)]
@@ -93,8 +93,8 @@ Azure Automation szolgáltatásbeli szerkesztővé rendelkezik hello portálon, 
             [string]$automationAccountName
         )
         
-        # Authenticate toohello Automation account using hello Azure connection created when hello Automation account was created.
-        # Code copied from hello runbook AzureAutomationTutorial.
+        # Authenticate to the Automation account using the Azure connection created when the Automation account was created.
+        # Code copied from the runbook AzureAutomationTutorial.
         $connectionName = "AzureRunAsConnection"
         $servicePrincipalConnection=Get-AutomationConnection -Name $connectionName         
         Add-AzureRmAccount `
@@ -103,116 +103,116 @@ Azure Automation szolgáltatásbeli szerkesztővé rendelkezik hello portálon, 
             -ApplicationId $servicePrincipalConnection.ApplicationId `
             -CertificateThumbprint $servicePrincipalConnection.CertificateThumbprint 
         
-        # Set hello $VerbosePreference variable so that we get verbose output in test environment.
+        # Set the $VerbosePreference variable so that we get verbose output in test environment.
         $VerbosePreference = "Continue"
         
         # Get information required for Log Analytics workspace from Automation variables.
         $customerId = Get-AutomationVariable -Name 'WorkspaceID'
         $sharedKey = Get-AutomationVariable -Name 'WorkspaceKey'
         
-        # Set hello name of hello record type.
+        # Set the name of the record type.
         $logType = "AutomationJob"
         
-        # Get hello jobs from hello past hour.
+        # Get the jobs from the past hour.
         $jobs = Get-AzureRmAutomationJob -ResourceGroupName $resourceGroupName -AutomationAccountName $automationAccountName -StartTime (Get-Date).AddHours(-1)
         
         if ($jobs -ne $null) {
-            # Convert hello job data toojson
+            # Convert the job data to json
             $body = $jobs | ConvertTo-Json
         
-            # Write hello body tooverbose output so we can inspect it if verbose logging is on for hello runbook.
+            # Write the body to verbose output so we can inspect it if verbose logging is on for the runbook.
             Write-Verbose $body
         
-            # Send hello data tooLog Analytics.
+            # Send the data to Log Analytics.
             Send-OMSAPIIngestionFile -customerId $customerId -sharedKey $sharedKey -body $body -logType $logType -TimeStampField CreationTime
         }
 
 
 ## <a name="4-test-runbook"></a>4. Runbook tesztelése
-Azure Automation szolgáltatásbeli tartalmaz egy olyan környezetben túl[tesztelje a forgatókönyvet](../automation/automation-testing-runbook.md) közzététel előtt.  Vizsgálja meg a hello runbook által gyűjtött hello adatokat, és ellenőrizze a közzététel előtt elvárt Analytics tooLog tooproduction azt írja. 
+Azure Automation szolgáltatásbeli tartalmaz egy környezet [tesztelje a forgatókönyvet](../automation/automation-testing-runbook.md) közzététel előtt.  Vizsgálja meg a runbook által gyűjtött adatokat, és győződjön meg arról, hogy ír Naplóelemzési éles történő közzététel előtt várt módon. 
  
 ![Runbook tesztelése](media/operations-management-suite-runbook-datacollect/test-runbook.png)
 
-6. Kattintson a **mentése** toosave hello runbook.
-1. Kattintson a **teszt ablaktábla** tooopen hello runbook hello tesztkörnyezetben.
-3. A runbook paraméterekkel rendelkezik, mivel Ön felszólító tooenter értékeinek őket.  Adja meg a hello hello erőforráscsoport nevét, és hello automatizálási fiókot, amellyel a folyamatos toocollect feladat adatait.
-4. Kattintson a **Start** toohello hello runbook indítása.
-3. hello runbook elindul állapotú **várakozik** előtt túl kerül**futtató**.  
-3. részletes kimenet hello runbook megjelenjen-e a json formátumban gyűjtött hello feladatok.  Ha nincsenek feladatok jelenik meg, majd lépett nincsenek feladatok létrehozott hello automation-fiók hello az elmúlt egy óra.  Indítsa el minden olyan forgatókönyvben hello automation-fiókban, és utána végezze el újra hello tesztelése.
-4. Győződjön meg arról, hello kimeneti hello szereplő hibák utáni elemzés parancs tooLog nem mutatja.  Egy üzenet hasonló toohello következő kell rendelkeznie.
+6. Kattintson a **mentése** menteni a runbookot.
+1. Kattintson a **teszt ablaktábla** való nyissa meg a runbookot a tesztkörnyezetben.
+3. A runbook paraméterekkel rendelkezik, mivel érték megadására kéri.  Adja meg az erőforráscsoport nevét, és az automatizálás figyelembe, hogy a folyamatban lévő feladat adatainak gyűjtéséről.
+4. Kattintson a **Start** a Start a runbookot.
+3. A runbook elindul állapotú **várakozik** előtt kerül **futtató**.  
+3. A runbook részletes kimenet megjelenjen a feladatok gyűjtött json formátumban.  Ha nincsenek feladatok jelenik meg, majd lépett nincsenek feladatok az elmúlt órában az automation-fiókban létrehozni.  Minden olyan forgatókönyvben indítsa el az automation-fiókban, és végezze el ismét a vizsgálatot.
+4. Gondoskodjon arról, hogy a kimeneti szolgáltatáshoz nem mutatja ki a hibákat a post parancsot.  A következőhöz hasonló üzenetet kell rendelkeznie.
 
     ![POST kimeneti](media/operations-management-suite-runbook-datacollect/post-output.png)
 
 ## <a name="5-verify-records-in-log-analytics"></a>5. A Naplóelemzési rekordjainak ellenőrzése
-Miután hello runbook vizsgálat befejeződött, és ellenőrizte, hogy hello kimeneti sikeresen megérkezett, hello rekordok használatával lettek létrehozva ellenőrizheti egy [napló keresés a Naplóelemzési](../log-analytics/log-analytics-log-searches.md).
+Ha a runbook-teszt befejeződött, és ellenőrizte, hogy a kimeneti sikeresen megérkezett, ellenőrizheti, a rekordok használatával lettek létrehozva egy [napló keresés a Naplóelemzési](../log-analytics/log-analytics-log-searches.md).
 
 ![Kimenet](media/operations-management-suite-runbook-datacollect/log-output.png)
 
-1. Hello Azure-portálon válassza ki a Naplóelemzési munkaterület.
+1. Válassza ki a Naplóelemzési munkaterület az Azure-portálon.
 2. Kattintson a **keresési jelentkezzen**.
-3. A következő parancs típusa hello `Type=AutomationJob_CL` hello Keresés gombra. Vegye figyelembe, hogy hello rekordtípus tartalmaz, amely nincs meghatározva hello parancsfájl _CL.  Névutótagot automatikusan hozzáfűzött toohello napló típusa tooindicate, hogy a rendszer egy egyéni napló típusa.
-4. Meg kell jelennie egy vagy több rekordot adott vissza, jelezve, hogy hello runbook a várt módon működik.
+3. Írja be a következő parancsot `Type=AutomationJob_CL` , majd kattintson a Keresés gombra. Vegye figyelembe, hogy a rekordtípust, amely nincs meghatározva a parancsfájl _CL tartalmaz.  Adott utótagot automatikusan fűz hozzá a hibanapló-típus azt jelzi, hogy az egy egyéni napló típusa.
+4. Meg kell jelennie egy vagy több rekordot adott vissza, amely azt jelzi, hogy a várt módon működik-e a runbookot.
 
 
-## <a name="6-publish-hello-runbook"></a>6. Hello runbook közzététele
-Miután ellenőrizte, hogy adott hello runbook megfelelően működik, toopublish kell, így éles környezetben is futtatható.  Tooedit folytatja, és hello runbook tesztelése hello közzétett verzió módosítása nélkül.  
+## <a name="6-publish-the-runbook"></a>6. A runbook közzététele
+Miután ellenőrizte, hogy, hogy a runbook megfelelően működik-e, kell közzétenni ahhoz az éles környezetben futtatható.  Továbbra is szerkesztése és a runbook tesztelése a közzétett változatban módosítása nélkül.  
 
 ![Runbook közzététele](media/operations-management-suite-runbook-datacollect/publish-runbook.png)
 
-1. Térjen vissza a tooyour automation-fiók.
+1. Térjen vissza az automation-fiók.
 2. Kattintson a **Runbookok** válassza **gyűjtése-Automation-feladat**.
 3. Kattintson a **szerkesztése** , majd **közzététele**.
-4. Kattintson a **Igen** verziója, amelyet toooverwrite hello korábban ismételt tooverify közzétételekor.
+4. Kattintson a **Igen** Ha kéri, hogy ellenőrizze, hogy szeretné-e felülírja a korábban közzétett verziót.
 
 ## <a name="7-set-logging-options"></a>7. Naplózási beállítások megadása 
-A teszteket, képes tooview volt [részletes kimenet](../automation/automation-runbook-output-and-messages.md#message-streams) mert hello parancsfájl hello $VerbosePreference változó beállítása.  A végleges kell tooset hello naplózási tulajdonságait: hello runbook Ha azt szeretné, hogy tooview részletes kimenet.  Ebben az oktatóanyagban használt hello runbook hello json küldött adatok mennyisége tooLog Analytics ekkor jelennek meg.
+A vizsgálat sikerült megtekintéséhez [részletes kimenet](../automation/automation-runbook-output-and-messages.md#message-streams) , mert a parancsfájl a $VerbosePreference változó beállítása.  Termelési környezetben a runbook naplózási tulajdonságainak beállításához, ha meg szeretné jeleníteni a részletes kimenet kell.  Az ebben az oktatóanyagban használt runbookot Ez a json-adatokat küldi el a Naplóelemzési jelenik meg.
 
 ![Naplózás és nyomkövetés](media/operations-management-suite-runbook-datacollect/logging.png)
 
-1. Válassza ki a runbook tulajdonságainak hello **naplózás és nyomkövetés** alatt **Runbookbeállítások**.
-2. Hello beállításának módosítása **részletes rekordok naplózására** túl**a**.
+1. Válassza ki a runbook tulajdonságok **naplózás és nyomkövetés** alatt **Runbookbeállítások**.
+2. A beállításának módosítása **részletes rekordok naplózására** való **a**.
 3. Kattintson a **Save** (Mentés) gombra.
 
 ## <a name="8-schedule-runbook"></a>8. Runbook ütemezése
-hello leggyakoribb módja toostart figyelési adatokat összegyűjtő runbook tooschedule azt toorun automatikusan.  Hozzon létre ehhez a [Azure Automation ütemezési](../automation/automation-schedules.md) és tooyour runbook csatlakoztatás.
+A leggyakoribb figyelési adatokat összegyűjtő runbook-indítási módja ütemezése úgy, hogy automatikusan elindul.  Hozzon létre ehhez a [Azure Automation ütemezési](../automation/automation-schedules.md) és a runbookban való csatlakoztatás.
 
 ![Runbook ütemezése](media/operations-management-suite-runbook-datacollect/schedule-runbook.png)
 
-1. Válassza ki a runbook tulajdonságainak hello, **ütemezések** alatt **erőforrások**.
-2. Kattintson a **ütemezés hozzáadása** > **ütemezés tooyour runbook hivatkozás** > **hozzon létre egy új ütemezést**.
-5. A hello értékek hello ütemezést, majd kattintson a következő típus **létrehozása**.
+1. Válassza ki a runbook tulajdonságok, **ütemezések** alatt **erőforrások**.
+2. Kattintson a **ütemezés hozzáadása** > **ütemezés kapcsolása a forgatókönyvhöz** > **hozzon létre egy új ütemezést**.
+5. Adja meg az ütemezés a következő értékeket, és kattintson a **létrehozása**.
 
 | Tulajdonság | Érték |
 |:--|:--|
 | Név | AutomationJobs-óránként |
-| Indítása | Válassza ki a bármikor legalább 5 perccel korábbi hello aktuális idő. |
+| Indítása | Válassza ki, amikor legalább 5 perccel későbbi, mint a jelenlegi időpont. |
 | Ismétlődés | Ismétlődő |
 | Ismétlődik minden | 1 óra |
 | Készlet lejárati | Nem |
 
-Hello ütemezés létrehozása után kell tooset hello paraméter értékeket, amelyeket a rendszer minden alkalommal, amikor az ütemezés hello runbook elindul.
+Az ütemezés létrehozása után kell beállítani, amely minden alkalommal, amikor az ütemezés elindítja a runbookot használjuk paraméterértékek.
 
 6. Kattintson a **konfigurálása paraméterek és futtatási beállítások**.
 7. Adja meg az értékeket a **ResourceGroupName** és **AutomationAccountName**.
 8. Kattintson az **OK** gombra. 
 
 ## <a name="9-verify-runbook-starts-on-schedule"></a>9. Ellenőrizze a runbook elindul az ütemezés szerint
-Egy runbook indítását, Everytime [feladat jön létre](../automation/automation-runbook-execution.md) és a kimenetet a naplóba.  Valójában ezek a hello ugyanazt a feladatot, amely hello runbook gyűjt.  Ellenőrizheti, hogy hello runbook hello feladatok hello runbook ellenőrzésével hello ütemezések kezdő időpontja hello letelte után megfelelően elindul.
+Egy runbook indítását, Everytime [feladat jön létre](../automation/automation-runbook-execution.md) és a kimenetet a naplóba.  Valójában ezek a ugyanazt a feladatot, amely runbook gyűjt.  Ellenőrizheti, hogy a runbook által a runbookhoz tartozó feladatok után az ütemezés kezdési idejét megfelelően elindul-e.
 
 ![Feladatok](media/operations-management-suite-runbook-datacollect/jobs.png)
 
-1. Válassza ki a runbook tulajdonságainak hello, **feladatok** alatt **erőforrások**.
-2. Meg kell jelennie, minden alkalommal hello runbook feladatok listáját lett elindítva.
-3. Kattintson a hello feladatok tooview egyik hozzá tartozó részletek.
-4. Kattintson a **összes napló** tooview hello naplókat, valamint a kimeneti hello runbookból.
-5. Görgessen toohello alsó toofind egy bejegyzés hasonló toohello az alábbi képen.<br>![Részletes](media/operations-management-suite-runbook-datacollect/verbose.png)
-6. Kattintson arra a bejegyzésre tooview hello részletes tooLog Analytics elküldött json-adatokat.
+1. Válassza ki a runbook tulajdonságok, **feladatok** alatt **erőforrások**.
+2. Minden alkalommal, amikor a runbook elindításának feladatok listáját kell megjelennie.
+3. Kattintson az egyik feladatához a részletek megtekintéséhez.
+4. Kattintson a **összes napló** a naplók megtekintéséhez, és kimeneti a runbookból.
+5. Görgessen az alsó hasonló az alábbi képen található bejegyzés.<br>![Részletes](media/operations-management-suite-runbook-datacollect/verbose.png)
+6. Ez a bejegyzés Naplóelemzési küldött json részletes adatainak megtekintéséhez kattintson.
 
 
 
 ## <a name="next-steps"></a>Következő lépések
-- Használjon [adatforrásnézet-tervezőből](../log-analytics/log-analytics-view-designer.md) egy nézet megjelenítése toocreate hello, hogy toohello Naplóelemzési tárház korábban összegyűjtött adatokat.
-- A runbookot a csomag egy [felügyeleti megoldás](operations-management-suite-solutions-creating.md) toodistribute toocustomers.
+- Használjon [adatforrásnézet-tervezőből](../log-analytics/log-analytics-view-designer.md) a Naplóelemzési tárház összegyűjtött adatokat megjelenítő nézet létrehozásához.
+- A runbookot a csomag egy [felügyeleti megoldás](operations-management-suite-solutions-creating.md) terjeszteni az ügyfél számára.
 - További információ [Naplóelemzési](https://docs.microsoft.com/azure/log-analytics/).
 - További információ [Azure Automation](https://docs.microsoft.com/azure/automation/).
-- További tudnivalók hello [HTTP adatait gyűjtője API](../log-analytics/log-analytics-data-collector-api.md).
+- További információ a [HTTP adatait gyűjtője API](../log-analytics/log-analytics-data-collector-api.md).

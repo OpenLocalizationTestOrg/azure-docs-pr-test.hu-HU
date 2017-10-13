@@ -1,6 +1,6 @@
 ---
-title: az Azure Security Center adataiba a Power BI aaaGet insights |} Microsoft Docs
-description: "hello Azure Security Center Power BI-tartalomcsomag segítségével egyszerűen toofind biztonsági riasztásokat, a javaslatokat, megtámadott erőforrásokat és trendeket, a jelentéskészítéshez létrehozott adatkészlet alapján."
+title: "Mélyebb betekintés az Azure Security Center adataiba a Power BI segítségével| Microsoft Docs"
+description: "Az Azure Security Center Power BI tartalomcsomaggal a jelentéskészítéshez létrehozott adatkészlet alapján könnyen megtalálhatja a biztonsági riasztásokat, a javaslatokat, a megtámadott erőforrásokat és a trendeket."
 services: security-center
 documentationcenter: na
 author: YuriDio
@@ -14,49 +14,49 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/09/2017
 ms.author: yurid
-ms.openlocfilehash: af68aef626034fe03d793c36b515a3f26619e5f1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 10f7b8f20cc41a5ebb1b1376e2bf17be02600ae4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-insights-from-azure-security-center-data-with-power-bi"></a>Mélyebb betekintés az Azure Security Center adataiba a Power BI segítségével
-Hello [Power BI-irányítópulton](http://aka.ms/azure-security-center-power-bi) az Azure Security Center lehetővé teszi a toovisualize, elemzését és szűrését javaslatait és biztonsági riasztásait bárhonnan, akár a mobileszközökről. Hello Power BI irányítópult tooreveal trendek használja, és támadási mintákat - erőforrás vagy IP-forráscím biztonsági riasztások megtekintése és szerint biztonsági kockázatokat pedig erőforrás vagy kor szerint.
+Az Azure Security Center [Power BI irányítópultja](http://aka.ms/azure-security-center-power-bi) lehetővé teszi a javaslatok és biztonsági riasztások megjelenítését, elemzését és szűrését bárhonnan, akár a mobileszközökről is. A Power BI irányítópult segítségével feltárhatja a trendeket és támadási mintákat - tekintse meg a biztonsági riasztásokat az erőforrás vagy a forrás IP-címe szerint, a cím nélküli biztonsági kockázatokat pedig erőforrás vagy kor szerint.
 
-A Security Center javaslatainak és a biztonsági riasztásoknak más adatokkal történő összefűzésének is számos érdekes megoldása létezik, így például az [Azure vizsgálati naplók](https://powerbi.microsoft.com/blog/monitor-azure-audit-logs-with-power-bi/) és az [Azure SQL Database Auditing](https://powerbi.microsoft.com/blog/monitor-your-azure-sql-database-auditing-activity-with-power-bi/) adatainak együttes felhasználása. A Power BI-irányítópult nyújtanak, és exportálhatja is az adatok tooExcel vonatkozó a felhőalapú erőforrások biztonsági állapotát hello jelentések egyszerű elkészítése.
+A Security Center javaslatainak és a biztonsági riasztásoknak más adatokkal történő összefűzésének is számos érdekes megoldása létezik, így például az [Azure vizsgálati naplók](https://powerbi.microsoft.com/blog/monitor-azure-audit-logs-with-power-bi/) és az [Azure SQL Database Auditing](https://powerbi.microsoft.com/blog/monitor-your-azure-sql-database-auditing-activity-with-power-bi/) adatainak együttes felhasználása. Mindkettő lehetővé teszi a Power BI-irányítópultok használatát, a felhőerőforrások biztonsági állapotáról történő egyszerű jelentéskészítéshez pedig az adatok Excel formátumba is exportálhatók.
 
-## <a name="using-azure-security-center-dashboard-tooaccess-power-bi"></a>Az Azure Security Center irányítópultján tooaccess Power BI használatával
-Hello Azure Security Center irányítópultján tooaccess Power BI-jelentéseket is használható. Ez a feladat hajtsa végre a hello lépéseket tooperform:
+## <a name="using-azure-security-center-dashboard-to-access-power-bi"></a>Az Azure Security Center irányítópultjának használata a Power BI eléréséhez
+Az Azure Security Center irányítópultjának használatával is elérheti a Power BI jelentéseket. Kövesse az alábbi lépéseket a feladat végrehajtásához:
 
-1. A hello **az Azure Security Center** irányítópultján kattintson **Power BI** gombra.
+1. Az **Azure Security Center** irányítópultján kattintson a **Power BI** gombra.
 
-    ![Csatlakozás tooAzure Security Center Power BI használatával](./media/security-center-powerbi/security-center-powerbi-fig1-1-newUI-2017.png)
-2. Hello **Power BI** panel megnyitása hello jobb oldalán látható módon a következő képernyő hello:
+    ![Csatlakozás az Azure Security Centerhez Power BI használatával](./media/security-center-powerbi/security-center-powerbi-fig1-1-newUI-2017.png)
+2. A **Power BI** panel a jobb oldalon nyílik meg, ahogy az alábbi képernyőn látható:
 
-    ![Csatlakozás tooAzure Security Center Power BI használatával](./media/security-center-powerbi/security-center-powerbi-fig1-new11-2017.png)
-3. Létrehozásakor hello Power BI-irányítópultot hello először, dönthet úgy hello alábbi lehetőségei a hello **Power BI böngészés** panel:
+    ![Csatlakozás az Azure Security Centerhez Power BI használatával](./media/security-center-powerbi/security-center-powerbi-fig1-new11-2017.png)
+3. Ha első alkalommal hoz létre Power BI-irányítópultot, a **Kezelés a Power BI-ban** panelen az alábbi beállítások egyikét választhatja ki:
 
-   * **Biztonság irányítópult**: válassza ezt a beállítást, ha azt szeretné, hogy toocreate egy irányítópultot, amely biztonsági állapotát, a szálakat és az észleléseket tartalmazza. E beállítás használata a DevOps szerepkör esetében gyakoribb, amely a védelmi állapot és az észlelt riasztások előfizetések közötti elemzését végzi.
-   * **Házirend-kezelési irányítópult**: válassza ezt a beállítást, ha azt szeretné, hogy tooexplore kezelési és kényszerítési házirendet.  E beállítás az irányítás-központúbb központi informatikai alkalmazások esetében gyakoribb. Használhatják az irányítópult toogain láthatóságának és elemzések a biztonsági házirend betartása a szervezet.
-   * Ha már rendelkezik Power BI irányítópulttal, kattintson a **Ugrás tooyour aktuális Power BI-irányítópultot**.
-4. E példában kattintson a **Security insights irányítópult** lehetőségre. Ha hello első alkalommal, létrehozásakor egy Power BI-irányítópult a Security Center Ön tooinstall hello tartalomcsomag kéri. Kattintson a **beolvasása** hello gombjára **csomagokat a Power BI-tartalmat** ablakban látható módon a következő képernyő hello:
+   * **Security insights irányítópult**: akkor válassza ezt a beállítást, ha olyan irányítópultot szeretne létrehozni, amely a biztonsági állapotot, a szálakat és az észleléseket tartalmazza. E beállítás használata a DevOps szerepkör esetében gyakoribb, amely a védelmi állapot és az észlelt riasztások előfizetések közötti elemzését végzi.
+   * **Házirend-kezelési irányítópult**: válassza ezt a beállítást, ha a kezelési és kényszerítési házirendet szeretné használni.  E beállítás az irányítás-központúbb központi informatikai alkalmazások esetében gyakoribb. Ezzel az irányítópulttal láthatóvá tehetik és áttekinthetik a biztonsági házirendnek való megfelelést a szervezet egészére nézve.
+   * Ha már rendelkezik Power BI irányítópulttal, kattintson az **Aktuális Power BI irányítópult megnyitása** lehetőségre.
+4. E példában kattintson a **Security insights irányítópult** lehetőségre. Ha először hoz létre Power BI-irányítópultot a Security Center számára, a rendszer felkéri a tartalomcsomag telepítésére. Az alábbi képernyőn látható módon kattintson a **Lekérés** gombra a **Power BI-tartalomcsomagok** ablakban:
 
     ![Azure Security Center Security Insights irányítópult](./media/security-center-powerbi/security-center-powerbi-fig1-new3.png)
-5. Hello **tooAzure Security Center biztonság fokozható csatlakozás** ablak jelenik meg. Győződjön meg arról, hogy hello **hitelesítési** módszer **oAuth2** alább látható módon, és kattintson a **bejelentkezés** gombra.
+5. Megjelenik a **Connect to Azure Security Center Security Insights** (Csatlakozás az Azure Security Center Security Insights irányítópulthoz) ablak. Győződjön meg arról, hogy a beállított **Hitelesítési** módszer az **oAuth2**, majd kattintson a **Bejelentkezés** gombra.
 
     ![Authentication](./media/security-center-powerbi/security-center-powerbi-fig1-new4.png)
-6. Kérheti tooauthenticate újra a Azure hitelesítő adataival. A hitelesítést követően létrejön az irányítópult. Hello irányítópult létrehozása után jelenik meg hello hasonló struktúrájú jelentést a következő képernyő hello ismertetett módon:
+6. A rendszer felkérheti az Azure rendszerre vonatkozó hitelesítő adatok újbóli megadására. A hitelesítést követően létrejön az irányítópult. Az irányítópult létrehozása után egy, az alábbi képernyőn láthatóhoz hasonló szerkezetű jelentés jelenik meg:
 
     ![Power BI-irányítópult](./media/security-center-powerbi/security-center-powerbi-fig1-new5.png)
 
 > [!NOTE]
-> Hello jelentés frissítését a naponta ütemezett tootake-hely. Abban az esetben, ha a frissítésben hibát tapasztal, olvassa el a [frissítésével kapcsolatos potenciális problémák hello Azure Security Center Power BI](https://blogs.msdn.microsoft.com/azuresecurity/2016/04/07/azure-security-center-power-bi-refresh-fails/), további információt a tootroubleshoot.
+> A beállított ütemezés szerint a jelentés naponta frissül. Ha a frissítés meghiúsul, további hibaelhárítási útmutatásért olvassa el a következő cikket: [Az Azure Security Center Power BI lehetséges frissítési problémái](https://blogs.msdn.microsoft.com/azuresecurity/2016/04/07/azure-security-center-power-bi-refresh-fails/).
 >
 >
 
-Itt láthatja a biztonsági riasztások és javaslatok hello száma, valamint a virtuális gépek, az Azure SQL-adatbázisok és a hálózati erőforrások az Azure Security Center által figyelt hello száma.
+Itt láthatja a biztonsági riasztások és javaslatok számát, a virtuális gépek számát, valamint az Azure Security Center által figyelt Azure SQL-adatbázisokat és hálózati erőforrásokat.
 
-A hivatkozás tooAzure Security Center toohello Azure-portálra irányítja át. hello diagramok révén könnyen toovisualize információ a biztonsági javaslatokra és riasztásokra, beleértve:
+Az Azure Security Center-re mutató hivatkozás átirányítja az Azure Portalra. A diagramokkal könnyen megjeleníthetők a biztonsági javaslatokra és riasztásokra vonatkozó információk, beleértve a következőket:
 
 * Erőforrás biztonsági állapota
 * Függőben lévő javaslatok
@@ -65,57 +65,57 @@ A hivatkozás tooAzure Security Center toohello Azure-portálra irányítja át.
 * Megtámadott erőforrások
 * Megtámadott IP-címek
 
-Minden egyes diagram mögött további elemzések találhatók. Válassza ki a csempe toosee további információt. Például hello **erőforrás biztonsági állapota** csempe kiválasztásával további részleteket vonatkozó függőben lévő javaslatokról erőforrásonként látható módon a következő képernyő hello:
+Minden egyes diagram mögött további elemzések találhatók. Válasszon ki egy csempét a további információk megtekintéséhez. Ha például a **Resource Security State** (Erőforrás biztonsági állapota) csempén további részletek láthatóak a függőben lévő erőforrás-javaslatokról, ahogyan az az alábbi képernyőn látható:
 
 ![Javaslatok](./media/security-center-powerbi/security-center-powerbi-fig1-new6.png)
 
-Ha ez a diagram minden sorában kattint, hello mások fogják toogray, és összpontosíthat csak egy kijelölt hello a. tooreturn toohello irányítópultján kattintson **az Azure Security Center** hello alatt **irányítópultok** lehetőség hello bal oldali ablaktáblában a ezen a lapon.
+Ha az ábra bármely vonalára rákattint, a többi vonal kiszürkül, így a kiválasztott vonalra koncentrálhat. Az irányítópultra való visszatéréshez kattintson az **Azure Security Center** lehetőségre az **Irányítópultok** lehetőség alatt az oldal bal oldali ablaktáblájában.
 
 > [!NOTE]
-> Ha azt szeretné, hogy toocustomize a jelentések további mezők hozzáadásával vagy a meglévő látványelemek módosításával, szerkesztheti a hello jelentést. További információkért olvassa el a [Kommunikáció egy jelentéssel a Power BI szerkesztés nézetében](https://powerbi.microsoft.com/documentation/powerbi-service-interact-with-a-report-in-editing-view/) részt.
+> Ha további mezők hozzáadásával vagy a meglévő látványelemek módosításával szeretné jelentéseit testre szabni, szerkesztheti a jelentést. További információkért olvassa el a [Kommunikáció egy jelentéssel a Power BI szerkesztés nézetében](https://powerbi.microsoft.com/documentation/powerbi-service-interact-with-a-report-in-editing-view/) részt.
 >
 >
 
-Hello **riasztások adott idő alatt, megtámadott erőforrások** és **támadó IP-címek** csempék hello hasonló kimenetet fog rendelkezni, minden egyes egyik gombjára kattintva. Ez akkor fordul elő, mert hello jelentés összesíti a három változóra vonatkozó információkat, és meghívja az **támadás alatt lévő erőforrások** látható módon a következő képernyő hello:
+A **Riasztások adott idő alatt, Megtámadott erőforrások** és **Támadó IP-címek** csempékre kattintva is találhat további információkat. Ez azért történik, mert a jelentés mindhárom változóval kapcsolatos információkat összesíti, és **Támadás alatt lévő erőforrások** név alatt jeleníti meg, ahogy a következő képernyőn is látható:
 
 ![Támadás alatt lévő erőforrások](./media/security-center-powerbi/security-center-powerbi-fig1-new7.png)
 
-Ezen a ponton is ez a jelentés másolatának mentése, nyomtassa ki vagy hello elérhető hello-beállítások segítségével közzéteheti hello webes **fájl** menü.
+Ekkor a **Fájl** menü segítségével mentheti, kinyomtathatja vagy közzéteheti a weben a jelentés másolatát.
 
 ![Fájl menü](./media/security-center-powerbi/security-center-powerbi-fig8.png)
 
 ## <a name="exploring-your-azure-security-center-data-with-power-bi-services"></a>Az Azure Security Center adatainak felfedezése Power BI segítségével
-Csatlakozás toohello [Power BI tartalomcsomag szolgáltatásokhoz](https://msit.powerbi.com/groups/me/getdata/services) Power BI-ban, majd hajtsa végre a lépéseket követve hello:
+A Power BI-ban csatlakozzon a [Power BI-tartalomcsomagszolgáltatásokhoz](https://msit.powerbi.com/groups/me/getdata/services), és hajtsa végre a következő lépéseket:
 
-1. A hello **Power BI tartalomcsomag** ablak parancsot érhet el két alább látható módon.
+1. A **Power BI tartalomcsomag** ablakban az alábbi két lehetőség közül választhat.
 
     ![Power BI tartalomcsomag](./media/security-center-powerbi/security-center-powerbi-fig1-new.png)
 
    > [!NOTE]
-   > Ez a cikk első része hello már végre csak egy lehetőség, amely Azure Security Center házirendkezelés látják.
+   > Ha a cikk első részében foglaltakat már végrehajtotta, itt csak egy lehetőséget fog látni, amely az Azure Security Center házirendkezelése.
    >
    >
-2. Ebben a példában a hello célból, kattintson a **beolvasása** hello a **Azure Security Center házirendkezelés** csempére.
-3. A hello **csatlakozzon a Security Center házirendkezelés tooAzure** ablakban, győződjön meg arról, hogy tooselect **oAuth2** alatt **hitelesítési módszer** legördülő menüben, a lent látható módon, és kattintson **Bejelentkezés** gombra.
+2. A jelen példában kattintson a **Lekérés** lehetőségre az **Azure Security Center Házirendkezelés** csempéjén.
+3. A  **Csatlakozás az Azure Security Center Házirendkezeléshez** ablakban a lent látható módon válassza az **oAuth2** lehetőséget a **Hitelesítési módszer** legördülő menüben, majd kattintson a **Bejelentkezés** gombra.
 
     ![Házirendkezelés ablak](./media/security-center-powerbi/security-center-powerbi-fig1-new8.png)
-4. Átirányított tooan hitelesítési lapot, ahol meg kell adnia, hogy azok be tooconnect tooAzure Security Center hello hitelesítő adatok lesznek. Hello hitelesítési folyamat befejezése után, Power BI elindítja toobuild adatok importálása a jelentéseket. Ebben az időszakban a következő üzenet a böngésző jobb sarkában hello hello jelenhetnek meg:
+4. A rendszer egy hitelesítési oldalra irányítja, ahol meg kell adnia a szükséges hitelesítő adatokat az Azure Security Centerhez való kapcsolódáshoz. A hitelesítési folyamat befejezése után a Power BI elindítja az adatok importálását a jelentések készítéséhez. Eközben a böngésző jobb felső sarkában a következő üzenetet láthatja:
 
-    ![Csatlakozás tooAzure Security Center Power BI használatával](./media/security-center-powerbi/security-center-powerbi-fig4.png)
+    ![Csatlakozás az Azure Security Centerhez Power BI használatával](./media/security-center-powerbi/security-center-powerbi-fig4.png)
 
    > [!NOTE]
-   > Amikor hello irányítópult készül hello első alkalommal is igénybe vehet a szokásosnál hosszabb ideig, különösen ha több előfizetése esetében.
+   > Ha első alkalommal hoz létre irányítópultot, akkor ez a szokásosnál tovább tarthat, különösen ha több előfizetése van.
    >
    >
-5. Hello folyamat befejeződése után az Azure Security Center Power BI irányítópultja betölti hello **házirendkezelés** jelentést az alábbihoz hasonló toohello:
+5. Ha a folyamat befejeződött, az Azure Security Center Power BI-irányítópultja a **Házirendkezelés** jelentéssel együtt fog betöltődni, az alábbi képen láthatóhoz hasonló módon:
 
     ![A Házirendkezelés irányítópultja](./media/security-center-powerbi/security-center-powerbi-fig1-new9.png)
 
 ## <a name="see-also"></a>Lásd még:
-Ebben a dokumentumban, megtudta, hogyan toouse az Azure Security Center Power bi-ban. További információ az Azure Security Center toolearn hello következő lásd:
+Ebben a dokumentumban megismerkedhetett az Azure Security Center Power BI irányítópultjának használatával. Az Azure Security Centerrel kapcsolatos további információkért olvassa el a következőket:
 
-* [Azure Security Center tervezéséhez és az üzemeltetési útmutatóban](security-center-planning-and-operations-guide.md) – további hogyan tooplan Azure Security Center bevezetését.
-* [Biztonsági szabályzatok beállítása az Azure Security Center](security-center-policies.md) – további hogyan tooconfigure biztonsági beállításait az Azure Security Centerben
-* [Az Azure Security Centerben riasztások kezelése és válaszol toosecurity](security-center-managing-and-responding-alerts.md) – további hogyan toomanage és válaszoljon toosecurity riasztások
-* [Azure Security Center: GYIK](security-center-faq.md) – gyakran ismételt kérdések hello szolgáltatás használatával kapcsolatban
+* [Útmutató az Azure Security Center tervezéséhez és működtetéséhez](security-center-planning-and-operations-guide.md) – Annak bemutatása, miként tervezheti meg az Azure Security Center bevezetését.
+* [Biztonsági szabályzatok beállítása az Azure Security Centerben](security-center-policies.md) – Ez a cikk bemutatja, hogyan konfigurálhat biztonsági beállításokat az Azure Security Centerben.
+* [Biztonsági riasztások kezelése és válaszadás a riasztásokra az Azure Security Centerben](security-center-managing-and-responding-alerts.md) – A biztonsági riasztások kezelése és az azokra való reagálás.
+* [Azure Security Center FAQ](security-center-faq.md) (Azure Security Center – gyakran ismételt kérdések) – Gyakran ismételt kérdések a szolgáltatás használatával kapcsolatban.
 * [Azure Security blog](http://blogs.msdn.com/b/azuresecurity/) – Blogbejegyzések az Azure biztonsági és megfelelőségi funkcióiról.

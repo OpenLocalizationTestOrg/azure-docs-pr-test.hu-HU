@@ -1,6 +1,6 @@
 ---
-title: "aaaUser által kezdeményezett Azure Automation Runbook műveletet a Naplóelemzési |} Microsoft Docs"
-description: "Ez a cikk ismerteti, hogy egy Automation-runbook a Log Analyticshez való toorun a keresési eredmény igény."
+title: "Azure Automation Runbook műveletet a Naplóelemzési felhasználó által kezdeményezett |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan egy Naplóelemzési keresési eredmény igény egy Automation-runbook futtatását."
 services: log-analytics
 documentationcenter: 
 author: mgoedtel
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/04/2017
 ms.author: magoedte
-ms.openlocfilehash: 53c25431572babd5fd54bf964e4683077e2a4c2d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ff938697add98f3d21b4971175432335ee2e39ba
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="take-action-with-an-automation-runbook-from-a-log-analytics-log-search-result"></a>A Naplóelemzési napló keresési eredmény egy Automation-Runbook a művelet végrehajtása
 
-Az Azure Naplóelemzés napló keresési eredményt, most kiválaszthatja **hajtsa végre a műveletet** toorun egy Automation-runbook.  hello runbook felhasználható tooremediate probléma hello igénybe vehet néhány más művelet, például hibaelhárítási információk gyűjtése, küldjön egy e-mailt vagy szolgáltatási kérelem létrehozása. 
+Az Azure Naplóelemzés napló keresési eredményt, most kiválaszthatja **hajtsa végre a műveletet** egy Automation-runbook futtatásához.  A forgatókönyv segítségével kijavítani a problémát, vagy más műveletet például hibaelhárítási adatokat gyűjthet, egy e-mailek küldése, vagy hozzon létre egy szolgáltatási kérelem igénybe vehet. 
 
 ## <a name="components-and-features-used"></a>Használt összetevők és szolgáltatások
 * [Azure Automation-fiók](../automation/automation-offering-get-started.md)
 * [A Naplóelemzési munkaterület](../log-analytics/log-analytics-overview.md)
 
-## <a name="tooinitiate-runbook-from-log-search"></a>naplófájl-keresési tooinitiate runbookot
+## <a name="to-initiate-runbook-from-log-search"></a>Naplófájl-keresési runbook indítására
 
-tootake művelet egy esemény és a napló a keresési eredmények runbook indítása, akkor először hozzon létre egy naplófájl-keresési, és a hello eredmények hívhat meg a runbook igény.  Ez a napló keresési funkciója hello hello Azure érhető el vagy [OMS-portálon](../log-analytics/log-analytics-log-searches.md).  Ebben a példában a naplófájl-keresési hello Azure portál, amely a szolgáltatás alapvető bemutatója a végezzük.
+Hajtsa végre a műveletet egy olyan eseményre, és a napló a keresési eredmények runbook kezdeményezni, akkor először hozzon létre egy naplófájl-keresési, és az eredmények hívhat meg a runbook igény.  Ez a napló keresési funkció az Azure-ban érhető el vagy [OMS-portálon](../log-analytics/log-analytics-log-searches.md).  Ebben a példában a naplófájl-keresési funkció alapszintű bemutató az Azure-portálról végezzük.
 
-1. Hello Azure-portálon, hello központ menüben kattintson a **további szolgáltatások** válassza **Naplóelemzési**.  
-2. Hello Naplóelemzési paneljén válassza ki a Naplóelemzési munkaterület, majd hello munkaterület panelen **naplófájl-keresési**.  
-3. Hajtsa végre a naplófájl-keresési hello napló keresése panelen.  
-4. Hello napló a keresési eredmények, kattintson a hello ellipszis toohello balra hello mezők és hello előugró ablakban válassza ki az egyik **művelet végrehajtása a**.<br><br> ![Válassza a keresési eredmény érvénybe műveletet](./media/log-analytics-log-search-takeaction/log-search-takeaction-menuoption.png) 
-5. Hello hajtsa végre a megfelelő művelet panelen válassza ki **egy runbook futtatására**, és a hello **egy runbook futtatására** panelen kiválaszthatja, hogy egy runbook toorun.  Igény szerint minden olyan forgatókönyvben a hello csatolt toohello Naplóelemzési munkaterület Automation-fiók.  Vegye figyelembe a következőket hello:
+1. Az Azure portálon, a központ menüben kattintson a **további szolgáltatások** válassza **Naplóelemzési**.  
+2. A Naplóelemzési panelen válassza ki a Naplóelemzési munkaterület, majd a munkaterületen panelen **naplófájl-keresési**.  
+3. A naplófájl-keresési panelen napló keresés végrehajtása.  
+4. A napló a keresési eredmények, kattintson a három pont a mezők és az előugró ablakban válassza ki az egyik balra **művelet végrehajtása a**.<br><br> ![Válassza a keresési eredmény érvénybe műveletet](./media/log-analytics-log-search-takeaction/log-search-takeaction-menuoption.png) 
+5. Hajtsa végre a megfelelő művelet paneljén válassza **egy runbook futtatására**, majd a a **egy runbook futtatására** panelen kiválaszthatja a runbook futtatását.  Az Automation-fiók, amely csatolva van a Naplóelemzési munkaterület minden olyan forgatókönyvben is választhat.  Vegye figyelembe a következőket:
 
     * Runbookok címkék alapján vannak rendezve.
-    * Runbook bemeneti paraméterértékek közvetlenül a hello mezők hello keresési eredmény lehet kiválasztani.  A legördülő lista megjelenik az összes hello választható mezők hello eredmény tooselect a.  
-    * Választhat a toorun hello runbook egy [hibrid forgatókönyv-feldolgozó](../automation/automation-hybrid-runbook-worker.md) hogy hello hibát tartalmaz, ha a megfelelő hibrid forgatókönyv-feldolgozó csoport tagja a gép csak tartalmazó hello gépen telepítve van.  Ha a hibrid feldolgozócsoport hello hello neve megegyezik a hello lévő számítógépet észlel hello napló keresési eredmény hello nevét, majd hello csoport automatikusan ki van választva.    
+    * Közvetlenül a mezőket a keresési eredmények a forgatókönyv bemeneti paraméter értékek választhatók ki.  A legördülő lista megjelenik az eredmény, válassza ki az összes elérhető mezők.  
+    * Ha szeretné a runbook futtatásához egy [hibrid forgatókönyv-feldolgozó](../automation/automation-hybrid-runbook-worker.md) , hogy a számítógépen, amelyen a probléma, ha a megfelelő hibrid forgatókönyv-feldolgozó csoport tagja a gép csak tartalmazó telepítette.  Ha a hibrid feldolgozócsoport megegyezik-e a számítógép, amely a naplófájl-keresési eredmény nevét, majd a csoport automatikusan ki van választva.    
 
-6. Miután rákattintott **futtassa**, megnyílik a hello runbook feladat panel tooallow meg tooreview hello hello feladat állapota.   
+6. Miután rákattintott **futtatása**, a runbook-feladat panelen nyílik meg, hogy tekintse át a feladat állapotának meg.   
 
-Ha egy runbookot, de a beállított toobe [Log Analytics-riasztás alapján nevű](../automation/automation-invoke-runbook-from-omsla-alert.md), van egy bemeneti paraméter, **WebhookData** , amely **objektum** típusa.  Ha hello bemeneti paraméter megadása kötelező, meg kell toopass hello keresési eredmények toohello runbook, akkor átalakíthatja hello JSON-formátumú karakterlánc, amelyre hivatkozhat a runbook-tevékenységek elemeket a toofilter lehetővé objektumtípust.  Ehhez kiválasztásával **keresési eredmények (objektum)** hello legördülő listából.<br><br> ![Válassza ki a Webhook-objektumot a runbook paraméter](media/log-analytics-log-search-takeaction/select-runbook-and-properties.png)   
+Választja, ha egy runbookot, amely úgy lett konfigurálva, hogy [Log Analytics-riasztás alapján nevű](../automation/automation-invoke-runbook-from-omsla-alert.md), van egy bemeneti paraméter, **WebhookData** , amely **objektum** típusa.  Ha a bemeneti paraméter megadása kötelező, akkor adhatók át a runbook a keresési eredmények között, akkor átalakíthatja a JSON-formátumú karakterláncot egy objektumtípust, hogy lehetővé teszi a szűrést végezni, amelyre hivatkozhat a runbook-tevékenységek elemeket.  Ehhez kiválasztásával **keresési eredmények (objektum)** a legördülő listából.<br><br> ![Válassza ki a Webhook-objektumot a runbook paraméter](media/log-analytics-log-search-takeaction/select-runbook-and-properties.png)   
     
 ## <a name="next-steps"></a>Következő lépések
 
-* Felülvizsgálati hello [Naplóelemzési jelentkezzen keresési hivatkozás](log-analytics-search-reference.md) tooview összes hello keresési mezők és facets Naplóelemzési érhető el.
-* Hogyan tooinvoke egy Automation-runbook automatikusan, tekintse át toolearn [egy Azure Automation-runbook hívja az OMS-Log Analytics-riasztás alapján](../automation/automation-invoke-runbook-from-omsla-alert.md).  
+* Tekintse át a [Naplóelemzési jelentkezzen keresési hivatkozás](log-analytics-search-reference.md) megtekintéséhez az összes keresési mezők és facets Naplóelemzési érhető el.
+* Útmutató Automation-runbook meghívása automatikusan, tekintse át [egy Azure Automation-runbook hívja az OMS-Log Analytics-riasztás alapján](../automation/automation-invoke-runbook-from-omsla-alert.md).  

@@ -1,6 +1,6 @@
 ---
-title: "aaaChange hello kulcstároló Bérlőazonosító előfizetés áthelyezése után |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooswitch hello Bérlőazonosító után egy előfizetés kulcstároló áthelyezése tooa különböző bérlői"
+title: "Kulcstartó bérlőazonosítójának módosítása az előfizetés áthelyezése után | Microsoft Docs"
+description: "A cikkből megtudhatja, hogyan módosíthatja a kulcstartó bérlőazonosítóját, miután egy előfizetést másik bérlőhöz helyezett át."
 services: key-vault
 documentationcenter: 
 author: amitbapat
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 01/07/2017
 ms.author: ambapat
-ms.openlocfilehash: 4d0607208c61c57959439d2d0bd8feade4141fee
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2f007dd4f877b48003cddcefa5f4321049853361
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="change-a-key-vault-tenant-id-after-a-subscription-move"></a>Kulcstartó bérlőazonosítójának módosítása az előfizetés áthelyezése után
-### <a name="q-my-subscription-was-moved-from-tenant-a-tootenant-b-how-do-i-change-hello-tenant-id-for-my-existing-key-vault-and-set-correct-acls-for-principals-in-tenant-b"></a>K: az előfizetésem helyezték át a bérlő A tootenant a b kiszolgálóra. Hogyan hello Bérlőazonosító módosítása a meglévő kulcstároló és állítsa be a megfelelő ACL-bérlőben B rendszerbiztonsági tagoknak?
-Egy előfizetést hoz létre egy új kulcstartó, esetén automatikusan kapcsolt toohello alapértelmezett Azure Active Directory Bérlőazonosító feliratkozásban. Minden hozzáférési házirendet a rendszer is kapcsolt toothis bérlő azonosítója. Az Azure-előfizetéshez áthelyezésekor bérlőhöz egy tootenant B, tárolók által érhetők el a meglévő kulcs hello résztvevők (a felhasználók és az alkalmazások) bérlői b toofix a probléma, szükséges:
+### <a name="q-my-subscription-was-moved-from-tenant-a-to-tenant-b-how-do-i-change-the-tenant-id-for-my-existing-key-vault-and-set-correct-acls-for-principals-in-tenant-b"></a>Kérdés: Az előfizetésem átkerült A bérlőtől B bérlőhöz. Hogyan módosíthatom a meglévő kulcstartó bérlőazonosítóját, és hogyan állíthatok be helyes ACL-eket a B bérlő rendszerbiztonsági tagjai számára?
+Amikor új kulcstartót hoz létre egy előfizetésben, az automatikusan annak az előfizetésnek az alapértelmezett Azure Active Directory-bérlőazonosítójához kötődik. A hozzáférési szabályzatok minden bejegyzése is ehhez a bérlőazonosítóhoz kapcsolódik. Ha áthelyezi az Azure előfizetését az A bérlőtől a B bérlőhöz, a meglévő kulcstartók elérhetetlenné válnak a B bérlőhöz tartozó rendszerbiztonsági tagok (felhasználók és alkalmazások) számára. A következőképpen oldhatja meg a problémát:
 
-* Változás hello Bérlőazonosító társított összes meglévő kulcstárolójának az előfizetés tootenant a b kiszolgálóra.
+* Módosítania kell minden ebbe az előfizetésbe tartozó meglévő kulcstartó bérlőazonosítóját a B bérlőre.
 * Törölnie kell minden meglévő hozzáférésiszabályzat-bejegyzést.
 * Új, a B bérlőhöz kapcsolódó hozzáférésiszabályzat-bejegyzéseket kell létrehoznia.
 
-Például ha kulcstároló "myvault" olyan előfizetést, amelyet át lett helyezve a bérlő A tootenant B, itt meg hogyan toochange hello bérlői azonosító az ezen a kulcstartón és távolítsa el a régi hozzáférési házirendeket.
+Ha például a „kucstarto” kulcstartót használja egy olyan előfizetésben, amelyet áthelyezett az A bérlőtől a B bérlőhöz, a következőképpen módosíthatja a kulcs bérlőazonosítóját, és törölheti a régi hozzáférési szabályzatokat.
 
 <pre>
 $Select-AzureRmSubscription -SubscriptionId YourSubscriptionID
@@ -39,10 +39,10 @@ $vault.Properties.AccessPolicies = @()
 Set-AzureRmResource -ResourceId $vaultResourceId -Properties $vault.Properties
 </pre>
 
-Mivel ebben a tárolóban A bérlő hello áthelyezés előtt, hello eredeti értéke **$vault. Properties.TenantId** bérlő a kicsit **(Get-AzureRmContext). Tenant.TenantId** van bérlői a b kiszolgálóra.
+Ez a kulcstartó az áthelyezést megelőzően az A bérlőhöz tartozott, ezért a **$vault.Properties.TenantId** eredeti értéke az A bérlő, a **(Get-AzureRmContext).Tenant.TenantId** értéke pedig B bérlő.
 
-Most, hogy a tároló hello megfelelő Bérlőazonosító és régi hozzáférési házirend bejegyzések törlődnek, állítsa be új hozzáférési házirend bejegyzést, amelyben [Set-AzureRmKeyVaultAccessPolicy](https://msdn.microsoft.com/library/mt603625.aspx).
+A kulcstartó most már a helyes bérlőazonosítóhoz van társítva, a régi hozzáférésiszabályzat-bejegyzések pedig törölve vannak, tehát beállíthatja az új hozzáférésiszabályzat-bejegyzéseket a [Set-AzureRmKeyVaultAccessPolicy](https://msdn.microsoft.com/library/mt603625.aspx) parancsmaggal.
 
 ## <a name="next-steps"></a>Következő lépések
-Ha az Azure Key Vault kapcsolatos kérdésekre, keresse fel a hello [Azure Key Vault fórumok](https://social.msdn.microsoft.com/forums/azure/home?forum=AzureKeyVault).
+Amennyiben az Azure Key Vaulttal kapcsolatban kérdése merülne fel, tekintse meg az [Azure Key Vault fórumait](https://social.msdn.microsoft.com/forums/azure/home?forum=AzureKeyVault).
 

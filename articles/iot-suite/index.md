@@ -1,8 +1,8 @@
 ---
-title: "aaaAzure IoT Suite dokumentációja – oktatóanyagok API-referencia |} Microsoft Docs"
+title: "Az Azure IoT Suite dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
 description: 
 services: iot-suite
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 83b006447e0d06d49ed7feace16b0db7d04d56f9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9726304918cbbc85e32e2095d2f1d4701fb8a71e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="iot-suite-documentation"></a>IoT Suite-dokumentáció
 
-A Microsoft Azure IoT Suite gyorsan használatba vehető. Előkonfigurált megoldások, és a az eszközök internetes hálózatát (IoT) megoldás hello fejlesztése érdekében. Az új eszközök hozzáadását és a meglévő eszközök csatlakoztatását eszközspecifikus SDK-k segítségével végezheti, amelyek több platformon, így Linuxon, Windowson és valós idejű operációs rendszereken is használhatók. Egyszerűen csak néhány érzékelők toomillions egyidejűleg csatlakoztatott eszközök a méretezési, és hello globális rendelkezésre állását Azure támaszkodhat&mdash;függetlenül attól, hogy nagy vagy túl kicsi a projekthez.
+A Microsoft Azure IoT Suite gyorsan használatba vehető. Előre konfigurált megoldásokat használhat, és gyorsabban alakíthat ki IoT-megoldásokat. Az új eszközök hozzáadását és a meglévő eszközök csatlakoztatását eszközspecifikus SDK-k segítségével végezheti, amelyek több platformon, így Linuxon, Windowson és valós idejű operációs rendszereken is használhatók. Rugalmasan méretezést valósíthat meg, akár mindössze néhány érzékelőről, akár több millió egyszerre kapcsolódó eszközről van szó, és kihasználhatja az Azure globális elérhetőségét &mdash; a projekt méretétől függetlenül.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -92,7 +92,7 @@ A Microsoft Azure IoT Suite gyorsan használatba vehető. Előkonfigurált megol
                         <p><a href="/azure/iot-suite/iot-security-architecture">Biztonsági architektúra</a></p>
                         <p><a href="/azure/iot-suite/iot-security-best-practices">Ajánlott biztonsági eljárások</a></p>
                         <p><a href="/azure/iot-suite/iot-suite-security-deployment">Az IoT-környezet biztonságossá tétele</a></p>
-                        <p><a href="/azure/iot-suite/securing-iot-ground-up">Biztonsági szabad hello a</a></p>
+                        <p><a href="/azure/iot-suite/securing-iot-ground-up">Biztonság az alapoktól</a></p>
                    </div>
                 </div>
             </div>

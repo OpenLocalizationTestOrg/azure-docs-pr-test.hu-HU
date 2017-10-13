@@ -1,6 +1,6 @@
 ---
-title: "a klasszikus virtuális gép tooan ARM kezelt lemez VM aaaMigrate |} Microsoft Docs"
-description: "Egy Azure virtuális át hello klasszikus telepítési modell tooManaged lemezek hello Resource Manager üzembe helyezési modellben."
+title: "A klasszikus virtuális gépek áttelepítése egy ARM felügyelt lemezes virtuális gép |} Microsoft Docs"
+description: "Telepítse át egy Azure virtuális a klasszikus telepítési modellből felügyelt lemezeket a Resource Manager üzembe helyezési modellben."
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,37 +15,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/15/2017
 ms.author: cynthn
-ms.openlocfilehash: d8c4b9431f5dd8a071fcbc2ee36581a33f76ba62
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 82389834d85981c0ed71bdcc891fbfdbe1377654
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="manually-migrate-a-classic-vm-tooa-new-arm-managed-disk-vm-from-hello-vhd"></a>Manuálisan telepítse át a klasszikus virtuális gép tooa új ARM kezelt lemez virtuális gép virtuális merevlemez hello 
+# <a name="manually-migrate-a-classic-vm-to-a-new-arm-managed-disk-vm-from-the-vhd"></a>Manuális áttelepítésével egy klasszikus virtuális Gépet egy új ARM kezelt lemez virtuális géphez a virtuális merevlemezről 
 
 
-Ez a szakasz elősegíti, toomigrate a meglévő Azure virtuális gépek hello klasszikus telepítési modellből túl[kezelt lemezek](managed-disks-overview.md) hello Resource Manager üzembe helyezési modellben.
+Ez a szakasz segítséget nyújt a meglévő Azure virtuális gépek áttelepítéséhez a klasszikus telepítési modellből [kezelt lemezek](managed-disks-overview.md) a Resource Manager üzembe helyezési modellben.
 
 
-## <a name="plan-for-hello-migration-toomanaged-disks"></a>Hello áttelepítés tervezése tooManaged lemezek
+## <a name="plan-for-the-migration-to-managed-disks"></a>Felügyelt lemezek az áttelepítés megtervezése
 
-Ez a szakasz segítséget nyújt toomake hello legjobb döntést a virtuális gép és a lemez típusok.
+Ez a szakasz segítséget nyújt a legjobb döntést a virtuális gép és a lemez típusok.
 
 
 ### <a name="location"></a>Hely
 
-Jelölje ki a helyet, ahol Azure felügyelt lemezek érhetőek el. TooPremium kezelt lemezek telepít át, ha is győződjön meg arról, hogy prémium szintű storage elérhető hello régióban, ha azt tervezi, hogy toomigrate. Lásd: [Azure Services byRegion](https://azure.microsoft.com/regions/#services) elérhető helyről naprakész tájékoztatást.
+Jelölje ki a helyet, ahol Azure felügyelt lemezek érhetőek el. Ha az áttelepítés prémium felügyelt lemezekre, is ellenőrizze, hogy prémium szintű storage elérhető a régióban, ahol szeretne áttelepíteni. Lásd: [Azure Services byRegion](https://azure.microsoft.com/regions/#services) elérhető helyről naprakész tájékoztatást.
 
 ### <a name="vm-sizes"></a>A virtuális gépek mérete
 
-TooPremium kezelt lemezek telepít át, ha vannak tooupdate hello mérete hello VM tooPremium képes tárméret elérhető hello régió, ahol a virtuális gép. Tekintse át, amelyek képesek a prémium szintű Storage hello Virtuálisgép-méretek. hello Azure virtuális gép mérete specifikációk szereplő [virtuális gépek méretei](sizes.md).
-Tekintse át a virtuális gépek, amely együttműködik a prémium szintű Storage, és válassza ki a hello leginkább megfelelő virtuális gép méretét, amely a legjobban megfelel a számítási feladatok hello teljesítményétől. Győződjön meg arról, hogy nincs elegendő sávszélesség érhető el a virtuális gép toodrive hello lemez forgalom.
+Ha áttelepítés prémium szintű felügyelt lemez, hogy frissítse a virtuális gép méretét prémium szintű Storage képes a rendelkezésre álló terület a régióban, ahol a virtuális gép. Tekintse át a Virtuálisgép-méretek, amelyek a prémium szintű Storage-kompatibilis. Az Azure virtuális gép mérete paramétereknek szereplő [virtuális gépek méretei](sizes.md).
+Tekintse át a virtuális gépek, amely együttműködik a prémium szintű Storage, és válassza ki a leginkább megfelelő virtuális gép méretét, amely a legjobban megfelel a számítási feladatok teljesítményétől. Győződjön meg arról, hogy nincs elegendő sávszélesség érhető el a virtuális Gépet, a lemez forgalom alapjául.
 
 ### <a name="disk-sizes"></a>Lemezméretek
 
 **Prémium szintű felügyelt lemez**
 
-Hét különböző típusú premium felügyelt lemezek, amelyek együtt a virtuális Gépet, és mindegyik rendelkezik-e adott iops-érték és átviteli korlátok. Vegye figyelembe a működés felső korlátjának hello prémium szintű lemez típusát a virtuális gép alapján az alkalmazás kapacitása, teljesítmény, méretezhetőség hello igényeinek, és a maximális betölti kiválasztása.
+Hét különböző típusú premium felügyelt lemezek, amelyek együtt a virtuális Gépet, és mindegyik rendelkezik-e adott iops-érték és átviteli korlátok. Vegye figyelembe a működés felső korlátjának kiválasztása a prémium szintű lemez a virtuális gép a kapacitás, a teljesítmény, méretezhetőség az alkalmazás igényeinek megfelelően, és maximális tölti be.
 
 | Prémium szintű lemezek típusa  | P4    | P6    | P10   | P20   | P30   | P40   | P50   | 
 |---------------------|-------|-------|-------|-------|-------|-------|-------|
@@ -55,7 +55,7 @@ Hét különböző típusú premium felügyelt lemezek, amelyek együtt a virtu�
 
 **Standard szintű felügyelt lemez**
 
-Standard szintű felügyelt lemez, amely a virtuális gép használható hét típusa van. Azok a különböző kapacitással rendelkeznek, de azonos IOPS és átviteli sebességének korlátai. Válassza ki az alkalmazás hello kapacitásigények alapján standard szintű felügyelt lemez hello típusú.
+Standard szintű felügyelt lemez, amely a virtuális gép használható hét típusa van. Azok a különböző kapacitással rendelkeznek, de azonos IOPS és átviteli sebességének korlátai. Válassza ki a standard szintű felügyelt lemez az alkalmazás a kapacitásigények alapján.
 
 | Standard lemez típusa  | S4               | S6               | S10              | S20              | S30              | S40              | S50              | 
 |---------------------|---------------------|---------------------|------------------|------------------|------------------|------------------|------------------| 
@@ -68,32 +68,32 @@ Standard szintű felügyelt lemez, amely a virtuális gép használható hét t�
 
 **Prémium szintű felügyelt lemez**
 
-Alapértelmezés szerint a gyorsítótárazási házirend lemez van *írásvédett* az összes hello prémium adatlemezek, és *írható-olvasható* hello prémium operációsrendszer-lemez csatolni a virtuális gép toohello. A konfigurációs beállítás ajánlott tooachieve hello optimális teljesítménye az alkalmazás IOs-hez. Írási műveleteket vagy a csak írható adatlemezek (köztük SQL Server) tiltsa le a lemezt gyorsítótárazás, hogy az alkalmazás jobb teljesítményt érhet el.
+Alapértelmezés szerint a gyorsítótárazási házirend lemez van *csak olvasható* prémium adatok lemezein, és *írható-olvasható* az a prémium szintű operációsrendszer-lemez csatolva a virtuális gép. A konfigurációs beállítás ajánlott az alkalmazás IOs rendszerhez az optimális teljesítmény eléréséhez. Írási műveleteket vagy a csak írható adatlemezek (köztük SQL Server) tiltsa le a lemezt gyorsítótárazás, hogy az alkalmazás jobb teljesítményt érhet el.
 
 ### <a name="pricing"></a>Díjszabás
 
-Felülvizsgálati hello [kezelt lemezek árképzési](https://azure.microsoft.com/en-us/pricing/details/managed-disks/). Prémium szintű felügyelt lemez árképzési legyen, mint hello nem felügyelt Premium lemezek. Azonban a standard szintű felügyelt lemez árképzési más nem felügyelt Standard lemezeknél.
+Tekintse át a [kezelt lemezek árképzési](https://azure.microsoft.com/en-us/pricing/details/managed-disks/). Prémium szintű felügyelt lemez árképzési legyen, mint a nem felügyelt Premium lemezek. Azonban a standard szintű felügyelt lemez árképzési más nem felügyelt Standard lemezeknél.
 
 
 ## <a name="checklist"></a>Feladatlista
 
-1.  Ha tooPremium kezelt lemezek telepít át, győződjön meg arról érhető el hello régió telepít át.
+1.  Ha áttelepítés prémium szintű felügyelt lemez, feltétlenül érhető el a régió telepít át.
 
-2.  Döntse el, hello új Virtuálisgép-sorozat fog használni. A prémium szintű Storage képes kell, ha telepít át tooPremium kezelt lemezek.
+2.  Döntse el, az új Virtuálisgép-sorozat fog használni. A prémium szintű Storage képes kell, ha az áttelepítés prémium szintű felügyelt lemez.
 
-3.  Döntse el, hello pontos Virtuálisgép-méretet használandó hello régió telepít át a rendelkezésre álló. Virtuálisgép-méretet kell toobe elég nagy toosupport hello rendelkezik adatlemezek száma. Például ha négy adatlemezek, hello virtuális gép két vagy több maggal kell rendelkeznie. Fontolja meg is, a feldolgozási kapacitása, memória, és a hálózati sávszélesség igényeinek megfelelően.
+3.  Döntse el, a pontos Virtuálisgép-méretet fogja használni a régió telepít át a rendelkezésre álló. Virtuálisgép-méretet kell lennie, elég nagy legyen rendelkezik adatlemezek számának támogatásához. Például ha négy adatlemezek, a virtuális gép két vagy több maggal kell rendelkeznie. Fontolja meg is, a feldolgozási kapacitása, memória, és a hálózati sávszélesség igényeinek megfelelően.
 
-4.  Hello aktuális virtuális gép adatai lesz szüksége, beleértve a lemezek és a megfelelő VHD-blobok hello listája rendelkezik.
+4.  Az aktuális virtuális gép adatai lesz szüksége, beleértve a megfelelő VHD-blobok és lemezek listáját rendelkezik.
 
-Készítse elő az állásidő alkalmazását. egy tiszta áttelepítési toodo, vannak toostop összes hello feldolgozási hello aktuális rendszer. Csak ezután beszerezheti tooconsistent állapotát, amely áttelepíthető toohello új platformon. Állásidő időtartama hello adatmennyiséget a hello lemezek toomigrate függ.
-
-
-## <a name="migrate-hello-vm"></a>Telepítse át a virtuális gép hello
-
-Készítse elő az állásidő alkalmazását. egy tiszta áttelepítési toodo, vannak toostop összes hello feldolgozási hello aktuális rendszer. Csak ezután beszerezheti tooconsistent állapotát, amely áttelepíthető toohello új platformon. Állásidő időtartama hello adatmennyiséget a hello lemezek toomigrate függ.
+Készítse elő az állásidő alkalmazását. Egy tiszta az áttelepítés végrehajtásához, akkor állítsa le a feldolgozás az aktuális rendszerben. Csak ezután beszerezheti a konzisztens állapotú. Ez az új platformon is áttelepíthetők. Állásidő időtartama áttelepítéséhez a lemezeken mennyiségétől függ.
 
 
-1.  Első lépésként állítsa be az általános paraméterek hello:
+## <a name="migrate-the-vm"></a>A virtuális gép áttelepítése
+
+Készítse elő az állásidő alkalmazását. Egy tiszta az áttelepítés végrehajtásához, akkor állítsa le a feldolgozás az aktuális rendszerben. Csak ezután beszerezheti a konzisztens állapotú. Ez az új platformon is áttelepíthetők. Állásidő időtartama áttelepítéséhez a lemezeken mennyiségétől függ.
+
+
+1.  Első lépésként állítsa be a következő általános paramétereket:
 
     ```powershell
     $resourceGroupName = 'yourResourceGroupName'
@@ -119,9 +119,9 @@ Készítse elő az állásidő alkalmazását. egy tiszta áttelepítési toodo,
     $dataDiskName = 'dataDisk1'
     ```
 
-2.  Hozzon létre egy felügyelt operációsrendszer-lemez használatával hello VHD hello a klasszikus virtuális gép.
+2.  Hozzon létre egy felügyelt operációsrendszer-lemez, a klasszikus virtuális gépről a virtuális merevlemez használatával.
 
-    Győződjön meg arról, hogy rendelkezik a megadott hello végezze el az operációs rendszer virtuális merevlemez toohello $osVhdUri paraméter hello URI Azonosítóját. Emellett adja meg **- AccountType** , **PremiumLRS** vagy **StandardLRS** alapú lemezek (prémium és Standard) típusú végzi az áttelepítést.
+    Győződjön meg arról, hogy megadta-e a teljes URI-azonosítója az operációs rendszer VHD-fájlt a $osVhdUri paraméter. Emellett adja meg **- AccountType** , **PremiumLRS** vagy **StandardLRS** alapú lemezek (prémium és Standard) típusú végzi az áttelepítést.
 
     ```powershell
     $osDisk = New-AzureRmDisk -DiskName $osDiskName -Disk (New-AzureRmDiskConfig '
@@ -129,7 +129,7 @@ Készítse elő az állásidő alkalmazását. egy tiszta áttelepítési toodo,
     -ResourceGroupName $resourceGroupName
     ```
 
-3.  Az operációs rendszer hello lemez toohello csatolása új virtuális Gépet.
+3.  Az operációsrendszer-lemezképet csatlakoztatni az új virtuális Gépet.
 
     ```powershell
     $VirtualMachine = New-AzureRmVMConfig -VMName $virtualMachineName -VMSize $virtualMachineSize
@@ -137,7 +137,7 @@ Készítse elő az állásidő alkalmazását. egy tiszta áttelepítési toodo,
     -StorageAccountType PremiumLRS -DiskSizeInGB 128 -CreateOption Attach -Windows
     ```
 
-4.  Felügyelt adatlemezt készíteni hello VHD-fájlt, és adja hozzá toohello új virtuális Gépet.
+4.  Felügyelt adatlemezt készíteni a VHD-fájlt, és adja hozzá az új virtuális Gépet.
 
     ```powershell
     $dataDisk1 = New-AzureRmDisk -DiskName $dataDiskName -Disk (New-AzureRmDiskConfig '
@@ -148,7 +148,7 @@ Készítse elő az állásidő alkalmazását. egy tiszta áttelepítési toodo,
     -CreateOption Attach -ManagedDiskId $dataDisk1.Id -Lun 1
     ```
 
-5.  Hozzon létre új virtuális gép hello úgy, hogy nyilvános IP-, a virtuális hálózat és a hálózati adaptert.
+5.  Az új virtuális gép létrehozása úgy, hogy nyilvános IP-, a virtuális hálózat és a hálózati adaptert.
 
     ```powershell
     $publicIp = New-AzureRmPublicIpAddress -Name ($VirtualMachineName.ToLower()+'_ip') '
@@ -166,11 +166,11 @@ Készítse elő az állásidő alkalmazását. egy tiszta áttelepítési toodo,
     ```
 
 > [!NOTE]
->Előfordulhat, hogy további lépéseket szükséges toosupport az alkalmazás, amely nem elegendő az útmutatóban.
+>További lépésekre lehet szükség az alkalmazás, amely támogatja az útmutató nem vonatkoznak.
 >
 >
 
 ## <a name="next-steps"></a>Következő lépések
 
-- Csatlakoztassa a toohello virtuális gépet. Útmutatásért lásd: [hogyan tooconnect és a bejelentkezés tooan Azure virtuális gépen futó Windows](connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+- Csatlakozzon a virtuális géphez. Útmutatásért lásd: [csatlakoztatása, és jelentkezzen be a Windowst futtató Azure virtuális gép](connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 

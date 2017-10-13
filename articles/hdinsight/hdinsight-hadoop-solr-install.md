@@ -1,6 +1,6 @@
 ---
-title: "a Hadoop-fürt - Azure aaaUse parancsfájlművelet tooinstall Solr |} Microsoft Docs"
-description: "Ismerje meg, hogyan toocustomize HDInsight-fürtöt Solr parancsfájlművelet használatával."
+title: "Hadoop-fürt - Azure Solr telepítendő parancsfájl művelettel |} Microsoft Docs"
+description: "Megtudhatja, hogyan Solr parancsfájlművelet használata a HDInsight-fürtök testreszabása."
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -16,25 +16,25 @@ ms.topic: article
 ms.date: 02/05/2016
 ms.author: nitinme
 ROBOTS: NOINDEX
-ms.openlocfilehash: 022ba56b7499390a91bfe869e5069893e56b6503
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6efb7ea26c3cdf7748fff4b02b5810c85cc41e1a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="install-and-use-solr-on-windows-based-hdinsight-clusters"></a>Telepítheti és használhatja a Windows-alapú HDInsight-fürtök Solr
 
-Megtudhatja, hogyan toocustomize Windows-alapú HDInsight-fürtöt használó parancsfájlművelet Solr, és hogyan toouse Solr toosearch adatokat.
+Útmutató: Windows-alapú HDInsight-fürtök testreszabása a parancsfájl műveletével Solr, és Solr segítségével történő keresés adatokat keressen.
 
 > [!IMPORTANT]
-> Ez a dokumentum csak olyan feladaton végezhető Windows-alapú HDInsight-fürtökkel hello szükséges lépések. HDInsight csak érhető el a Windows korábbi, mint a HDInsight 3.4-es verziójához. Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement). Egy Linux-alapú fürttel Solr használatáról információkért lásd: [telepítése és használata Solr a HDinsight Hadoop-fürtök (Linux)](hdinsight-hadoop-solr-install-linux.md).
+> A jelen dokumentumban leírt lépések csak a Windows-alapú HDInsight-fürtök dolgozhat. HDInsight csak érhető el a Windows korábbi, mint a HDInsight 3.4-es verziójához. A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement). Egy Linux-alapú fürttel Solr használatáról információkért lásd: [telepítése és használata Solr a HDinsight Hadoop-fürtök (Linux)](hdinsight-hadoop-solr-install-linux.md).
 
 
-Telepíthető Solr bármilyen típusú on Azure HDInsight (Hadoop-, Storm, HBase, Spark) fürt segítségével *parancsfájlművelet*. Egy minta parancsfájlt tooinstall Solr egy HDInsight-fürt érhető el, csak olvasható az Azure storage-blobból [https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1](https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1).
+Telepíthető Solr bármilyen típusú on Azure HDInsight (Hadoop-, Storm, HBase, Spark) fürt segítségével *parancsfájlművelet*. Egy minta parancsfájlt a HDInsight-fürtök Solr telepítendő érhető el, csak olvasható az Azure storage-blobból [https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1](https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1).
 
-hello mintaparancsfájl csak HDInsight-fürt verziószáma 3.1-es verziójával működik. A HDInsight-fürt verziókról további információkért lásd: [HDInsight-fürt verziókról](hdinsight-component-versioning.md).
+A parancsfájlpéldát csak HDInsight-fürt verziószáma 3.1-es verziójával működik. A HDInsight-fürt verziókról további információkért lásd: [HDInsight-fürt verziókról](hdinsight-component-versioning.md).
 
-a jelen témakörben használt hello mintaparancsfájl egy Windows-alapú Solr fürtöt hoz létre a adott konfigurációval. Ha azt szeretné, hogy tooconfigure hello Solr fürt különböző gyűjteményeket, szilánkok, sémákat, replikákat, stb., módosítania kell hello parancsfájl és Solr bináris ennek megfelelően.
+A jelen témakörben használt minta parancsfájlt hoz létre a Windows-alapú Solr fürt adott konfigurációval. Ha azt szeretné, a Solr fürt konfigurálásához a különböző gyűjteményekhez, szilánkok, sémákat, replikákat, stb., módosítania kell a parancsfájl és Solr bináris ennek megfelelően.
 
 **Kapcsolódó cikkek**
 
@@ -44,53 +44,53 @@ a jelen témakörben használt hello mintaparancsfájl egy Windows-alapú Solr f
 * [Parancsfájlművelet-parancsfájlok fejlesztése a HDInsight](hdinsight-hadoop-script-actions.md).
 
 ## <a name="what-is-solr"></a>Mi az a Solr?
-<a href="http://lucene.apache.org/solr/features.html" target="_blank">Apache Solr</a> egy vállalati keresési platform, amely lehetővé teszi az adatok hatékony teljes szöveges keresés. Hadoop lehetővé teszi a tárolásához és kezeléséhez az adatok óriási mennyiségben, Apache Solr hello keresési képességeket biztosít tooquickly lekérése hello adatokat.
+<a href="http://lucene.apache.org/solr/features.html" target="_blank">Apache Solr</a> egy vállalati keresési platform, amely lehetővé teszi az adatok hatékony teljes szöveges keresés. Hadoop lehetővé teszi a tárolásához és kezeléséhez az adatok óriási mennyiségben, Apache Solr biztosít a keresési képességek gyorsan az adatok lekéréséhez.
 
 ## <a name="install-solr-using-portal"></a>Telepítse a portál használatával Solr
-1. Indítsa el a fürt létrehozása hello segítségével **egyéni létrehozás** beállítást, a részben ismertetett módon [Hadoop létrehozása a HDInsight-fürtök](hdinsight-provision-clusters.md).
-2. A hello **Parancsfájlműveletek** lap hello varázsló, kattintson a **parancsfájlművelet hozzáadása** tooprovide részleteinek hello parancsfájlművelet, alább látható módon:
+1. Indítsa el a fürt létrehozása a **egyéni létrehozás** beállítást, a részben ismertetett módon [Hadoop létrehozása a HDInsight-fürtök](hdinsight-provision-clusters.md).
+2. A a **Parancsfájlműveletek** lapon kattintson a varázsló **parancsfájlművelet hozzáadása** adni a parancsfájlművelet alább látható módon:
 
-    ![Használja a fürt parancsfájlművelet toocustomize](./media/hdinsight-hadoop-solr-install/hdi-script-action-solr.png "használata parancsfájlművelet toocustomize fürt")
+    ![Parancsfájlművelet használni ahhoz, hogy a fürt](./media/hdinsight-hadoop-solr-install/hdi-script-action-solr.png "parancsfájlművelet használja a fürt testreszabása")
 
     <table border='1'>
         <tr><th>Tulajdonság</th><th>Érték</th></tr>
         <tr><td>Név</td>
-            <td>Adja meg a hello parancsfájlművelet nevét. Például <b>telepítése Solr</b>.</td></tr>
+            <td>Adja meg a parancsfájlművelet nevét. Például <b>telepítése Solr</b>.</td></tr>
         <tr><td>A parancsfájl URI azonosítója</td>
-            <td>Hello egységes erőforrás-azonosító (URI) toohello parancsfájl megadásához, amely meghívott toocustomize hello fürt. Például <i>https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1</i></td></tr>
+            <td>Adja meg az egységes erőforrás-azonosító (URI) a parancsfájlt, amelyet a fürt testreszabásához. Például <i>https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1</i></td></tr>
         <tr><td>Csomóponttípus</td>
-            <td>Adja meg, amelyen hello testreszabási parancsfájl futtatása hello csomópontok. Választhat <b>csomópontjaihoz</b>, <b>csak Átjárócsomópontokat</b>, vagy <b>csak a feldolgozó csomópontok</b>.
+            <td>Adja meg a csomópontok, amelyen fut a testreszabási parancsfájl. Választhat <b>csomópontjaihoz</b>, <b>csak Átjárócsomópontokat</b>, vagy <b>csak a feldolgozó csomópontok</b>.
         <tr><td>Paraméterek</td>
-            <td>Adja meg a hello paraméterek hello parancsfájl által szükség esetén. hello parancsfájl tooinstall Solr kell paramétert, így ez üresen hagyhatja.</td></tr>
+            <td>Adja meg a paraméterek, ha a parancsfájl által igényelt. Solr telepítéséhez a parancsfájlt nem szükséges paramétereket, ezért üresen hagyhatja, ez.</td></tr>
     </table>
 
-    Hello fürtön egynél több parancsprogram művelet tooinstall több összetevőből is hozzáadhat. Miután hozzáadta a hello parancsfájlok, kattintson a hello pipa toostart hello fürtöt hoz létre.
+    Több összetevőinek telepítése a fürt több parancsfájlművelet adhat hozzá. Miután hozzáadta a parancsfájlok, kattintson a pipára a fürt létrehozásához.
 
 ## <a name="use-solr"></a>A Solr használata
-Az indexelő Solr bizonyos adatok fájlokkal kell elindítani. Solr toorun keresési lekérdezések használhatja, ha az indexelt hello adatokon. Hajtsa végre a következő lépéseket toouse Solr a HDInsight-fürtök hello:
+Az indexelő Solr bizonyos adatok fájlokkal kell elindítani. Solr az indexelt adatokat keresési lekérdezések futtatásához használhatja. A következő lépésekkel Solr használata a HDInsight-fürtöt:
 
-1. **Remote Desktop Protocol (RDP) tooremote hello HDInsight-fürthöz történő használata telepített Solr**. Hello Azure-portálon, a távoli asztal engedélyezése Solr telepített, és be, majd távolról hello fürthöz létrehozott hello fürt számára. Útmutatásért lásd: [csatlakozás RDP tooHDInsight-fürtök](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp).
-2. **Fájlok feltöltésével index Solr**. Index Solr, amikor a rendszer, amely toosearch szükség lehet a put dokumentumok. tooindex Solr, használja az RDP tooremote hello fürtbe, keresse meg a toohello asztali, hello Hadoop parancssor megnyitásához, és keresse meg a túl**C:\apps\dist\solr-4.7.2\example\exampledocs**. Futtassa a következő parancs hello:
+1. **Segítségével Remote Desktop Protocol (RDP) távoli a HDInsight-fürthöz a telepített Solr**. Azure-portálról a távoli asztal engedélyezése a fürthöz létrehozott Solr telepítve, és ezután távolról, a fürt számára. Útmutatásért lásd: [csatlakozás RDP Funkciót használnak a HDInsight-fürtök](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp).
+2. **Fájlok feltöltésével index Solr**. Index Solr, amikor a dokumentumok elhelyezése, amely a keresni szeretne. Index Solr, segítségével RDP távoli a fürthöz, keresse meg az asztalon, nyissa meg a Hadoop parancssort, és keresse meg a **C:\apps\dist\solr-4.7.2\example\exampledocs**. Futtassa az alábbi parancsot:
 
         java -jar post.jar solr.xml monitor.xml
 
-    Hello kimeneti hello konzolban, a következő jelenik meg:
+    A következő eredmény jelenik meg a konzolon:
 
         POSTing file solr.xml
         POSTing file monitor.xml
         2 files indexed.
-        COMMITting Solr index changes toohttp://localhost:8983/solr/update..
+        COMMITting Solr index changes to http://localhost:8983/solr/update..
         Time spent: 0:00:01.624
 
-    hello post.jar segédprogram Solr indexeli a két minta dokumentumok **solr.xml** és **monitor.xml**. hello post.jar segédprogram és hello minta dokumentumok Solr telepítés érhetők el.
-3. **Használjon hello Solr irányítópult toosearch belül hello indexelt dokumentumok**. A hello RDP munkamenet toohello HDInsight fürt, nyissa meg az Internet Explorert, indítsa el a következő hello Solr irányítópult **http://headnodehost:8983/solr / #/**. Hello bal oldali ablaktáblán, a hello **Core választó** legördülő listából válassza **collection1**, majd belül, hogy a **lekérdezés**. Egy példa, tooselect és visszatérési összes hello dokumentumok a Solr, adja meg a következő értékek hello:
+    A post.jar segédprogram Solr indexeli a két minta dokumentumok **solr.xml** és **monitor.xml**. A post.jar segédprogram és a minta dokumentumok Solr telepítés érhetők el.
+3. **Az indexelt dokumentumok keresni a Solr Irányítópult segítségével**. A HDInsight-fürthöz RDP-munkamenetet, nyissa meg az Internet Explorert, és indítsa el a következő Solr irányítópult **http://headnodehost:8983/solr / #/**. A bal oldali ablaktáblán az a **Core választó** legördülő listából válassza **collection1**, belül, amely, kattintson **lekérdezés**. Tegyük fel válassza ki, és adja vissza a dokumentumok Solr, adja meg a következő értékeket:
 
-   * A hello **q** szöveget adja meg a  **\*:**\*. Ez visszaállítja az összes hello dokumentumok indexelt a Solr. Ha azt szeretné, toosearch hello dokumentumok belül egy adott karakterláncot, karakterláncokat Itt adhatja meg.
-   * A hello **wt** szövegmezőben, jelölje be hello kimeneti formátum. Alapértelmezett érték a **json**. Kattintson a **lekérdezés végrehajtása**.
+   * Az a **q** szöveget adja meg a  **\*:**\*. Ezzel visszatér a indexelt dokumentumok a Solr. Ha szeretne keresni egy adott karakterláncot belül a dokumentumokhoz, karakterláncokat Itt adhatja meg.
+   * Az a **wt** szöveg mezőben adja meg a kimeneti formátum. Alapértelmezett érték a **json**. Kattintson a **lekérdezés végrehajtása**.
 
-     ![Használja a fürt parancsfájlművelet toocustomize](./media/hdinsight-hadoop-solr-install/hdi-solr-dashboard-query.png "Solr irányítópult-lekérdezés futtatható")
+     ![Parancsfájlművelet használni ahhoz, hogy a fürt](./media/hdinsight-hadoop-solr-install/hdi-solr-dashboard-query.png "Solr irányítópult-lekérdezés futtatható")
 
-     hello kimeneti hello az indexelési Solr használt két docs adja vissza. hello kimeneti hello következőhöz hasonló:
+     A kimenet az indexelés Solr használt két docs adja vissza. A kimenet az alábbihoz hasonló:
 
            "response": {
                "numFound": 2,
@@ -99,7 +99,7 @@ Az indexelő Solr bizonyos adatok fájlokkal kell elindítani. Solr toorun keres
                "docs": [
                  {
                    "id": "SOLR1000",
-                   "name": "Solr, hello Enterprise Search Server",
+                   "name": "Solr, the Enterprise Search Server",
                    "manu": "Apache Software Foundation",
                    "cat": [
                      "software",
@@ -110,9 +110,9 @@ Az indexelő Solr bizonyos adatok fájlokkal kell elindítani. Solr toorun keres
                      "Optimized for High Volume Web Traffic",
                      "Standards Based Open Interfaces - XML and HTTP",
                      "Comprehensive HTML Administration Interfaces",
-                     "Scalability - Efficient Replication tooother Solr Search Servers",
+                     "Scalability - Efficient Replication to other Solr Search Servers",
                      "Flexible and Adaptable with XML configuration and Schema",
-                     "Good unicode support: héllo (hello with an accent over hello e)"
+                     "Good unicode support: héllo (hello with an accent over the e)"
                    ],
                    "price": 0,
                    "price_c": "0,USD",
@@ -143,9 +143,9 @@ Az indexelő Solr bizonyos adatok fájlokkal kell elindítani. Solr toorun keres
                  }
                ]
              }
-4. **Ajánlott: Biztonságimásolat-hello indexelt Solr tooAzure hello HDInsight-fürthöz társított Blob-tároló adatait**. Jó gyakorlat készítsen biztonsági másolatot indexelt hello adatok hello Solr fürt csomópontjának alakzatot Azure Blob Storage tárolóban. Hajtsa végre a következő lépéseket toodo így hello:
+4. **Ajánlott: Az adatok biztonsági mentésének indexelt Solr az Azure Blob Storage a HDInsight-fürthöz társított**. Jó gyakorlat készítsen biztonsági másolatot az indexelt adatokat a Solr fürtcsomópontok alakzatot Azure Blob Storage tárolóban. A következő lépésekkel ehhez:
 
-   1. Hello RDP-munkamenetet nyissa meg az Internet Explorer és a következő URL-cím pont toohello:
+   1. Az RDP-munkamenetet nyissa meg az Internet Explorert, és mutasson a következő URL-címe:
 
            http://localhost:8983/solr/replication?command=backup
 
@@ -159,18 +159,18 @@ Az indexelő Solr bizonyos adatok fájlokkal kell elindítani. Solr toorun keres
              </lst>
              <str name="status">OK</str>
            </response>
-   2. Hello távoli munkamenet, lépjen a túl {SOLR_HOME}\{gyűjtemény} \data. Hello fürthöz létrehozott hello minta parancsfájlt, amely legyen **C:\apps\dist\solr-4.7.2\example\solr\collection1\data**. Ezen a helyen kell megjelennie a pillanatkép mappája létrejön, melynek a neve hasonló túl**pillanatkép.* Timestamp típusú***.
-   3. A ZIP-hello pillanatképmappáját, és töltse fel tooAzure Blob-tároló. Hello Hadoop parancssorban keresse meg a hello pillanatkép mappája helyének toohello hello a következő parancs használatával:
+   2. A távoli munkamenet, lépjen a {SOLR_HOME}\{gyűjtemény} \data. A parancsfájlpéldát létrehozott fürt, amely legyen **C:\apps\dist\solr-4.7.2\example\solr\collection1\data**. Ezen a helyen kell megjelennie a pillanatkép mappája létrehozott hasonló nevű  **pillanatkép.* Timestamp típusú***.
+   3. A ZIP-a pillanatkép mappája, majd töltse fel az Azure Blob Storage tárolóban. A Hadoop parancssorból keresse meg a pillanatkép-mappa helye a következő paranccsal:
 
              hadoop fs -CopyFromLocal snapshot._timestamp_.zip /example/data
 
-       Ez a parancs másolatok túl/példa/pillanatképadatok hello/hello tárolóban belül hello alapértelmezett tárolási hello-fürthöz tartozó fiókot.
+       Ez a parancs másolja át a pillanatkép /example/data/belül az alapértelmezett tárfiók a fürthöz tartozó tárolóban.
 
 ## <a name="install-solr-using-aure-powershell"></a>Telepítse a következőkre PowerShell-lel Solr
-Lásd: [testreszabása HDInsight-fürtök használata parancsfájlművelet](hdinsight-hadoop-customize-cluster.md#call-scripts-using-azure-powershell).  hello minta bemutatja, hogyan tooinstall Spark on Azure PowerShell használatával. Toocustomize hello parancsfájl toouse kell [https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1](https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1).
+Lásd: [testreszabása HDInsight-fürtök használata parancsfájlművelet](hdinsight-hadoop-customize-cluster.md#call-scripts-using-azure-powershell).  A Spark az Azure PowerShell telepítése mutatja be. Meg kell adnia, hogy a használandó parancsfájlt [https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1](https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1).
 
 ## <a name="install-solr-using-net-sdk"></a>Telepítse a .NET SDK használatával Solr
-Lásd: [testreszabása HDInsight-fürtök használata parancsfájlművelet](hdinsight-hadoop-customize-cluster.md#call-scripts-using-azure-powershell). hello minta bemutatja, hogyan tooinstall Spark .NET SDK használatával hello. Toocustomize hello parancsfájl toouse kell [https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1](https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1).
+Lásd: [testreszabása HDInsight-fürtök használata parancsfájlművelet](hdinsight-hadoop-customize-cluster.md#call-scripts-using-azure-powershell). A minta bemutatja, hogyan telepítse a .NET SDK használatával Spark. Meg kell adnia, hogy a használandó parancsfájlt [https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1](https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1).
 
 ## <a name="see-also"></a>Lásd még:
 * [Telepítheti és használhatja Solr HDinsight Hadoop-fürtök (Linux)](hdinsight-hadoop-solr-install-linux.md)

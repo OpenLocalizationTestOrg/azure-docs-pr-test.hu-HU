@@ -1,8 +1,8 @@
 ---
-title: "CDN-dokumentáció – oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
-description: "Ismerje meg, hogyan toouse globális adatok toodeliver tartalmat Content Delivery Network (CDN) szolgáltatásban tooany eszköz. Oktatóanyagok, API-referenciák, és egyéb dokumentációk."
+title: "Az Azure CDN dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogyan használhatja a Content Delivery Network (CDN) szolgáltatást a tartalom globális adatközpontból bármilyen eszközre végzett továbbítására. Oktatóanyagok, API-referenciák, és egyéb dokumentációk."
 services: cdn
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 9d1a26398369233d75f3647a5a68f3e7f8698eb9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: de858f5d3b9af7a36f2a8deab9105a4a61752cdb
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="cdn-documentation"></a>CDN – dokumentáció
 
-Ismerje meg, hogyan toouse Content Delivery Network (CDN) toodeliver nagy sávszélességű tartalomhoz üzemeltetett az Azure rendszerben vagy máshol. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt, megtudhatja, hogyan toouse CDN toodeliver tartalmat a globális adatok adatközpontok tooany eszköz.
+Ismerje meg, hogyan használható Content Delivery Network (CDN) az Azure-ban vagy máshol tárolt tartalmak nagy sávszélességű továbbítására. Oktatóanyagok, API-referenciák és egyéb dokumentációk, amelyekből megtudhatja, hogyan használhatja a CDN-t a tartalom globális adatközpontokból bármilyen eszközre történő továbbítására.
 
 <ul class="panelContent cardsFTitle">
     <li>

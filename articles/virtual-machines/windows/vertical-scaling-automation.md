@@ -1,6 +1,6 @@
 ---
-title: "Azure Automation toovertically aaaUse Windows-alapú virtuális gépek méretezési |} Microsoft Docs"
-description: "Függőleges méretezése a Windows rendszerű virtuális gép válasz toomonitoring értesítések az Azure Automation szolgáltatásban"
+title: "Azure Automation függőleges méretezése a Windows virtuális gépek használata |} Microsoft Docs"
+description: "Függőleges méretezhető figyelési riasztásokhoz adható az Azure Automation szolgáltatásban válaszul egy Windows rendszerű virtuális gép"
 services: virtual-machines-windows
 documentationcenter: 
 author: singhkays
@@ -16,28 +16,28 @@ ms.topic: article
 ms.date: 03/29/2016
 ms.author: kasing
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 24d07f3e2e217668f18676e6d6873be4f9770349
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ea5169c1a95f00e78ae3f5f177812466eb7a0deb
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="vertically-scale-windows-vms-with-azure-automation"></a>Függőleges méretezése a Windows-alapú virtuális gépek az Azure Automation szolgáltatásban
 
-Függőleges skálázás rendszer hello növelésével vagy csökkentésével hello erőforrások a gépek válasz toohello terheléseknél engedélyezett. Az Azure-ban ehhez hello virtuális gép méretét hello módosításával. Ez segítheti a következő forgatókönyvek hello
+Függőleges skálázás bővítése vagy csökkentése az erőforrásokat, a munkaterhelés válaszul gép során a rendszer. Az Azure-ban ehhez a virtuális gép méretének módosításával. Ez segítheti a következő esetekben
 
-* Ha a virtuális gép hello gyakran nincs használatban, átméretezhető tooa kisebb méretű tooreduce le a havi költségeket
-* Ha a virtuális gép hello a csúcsterhelés lát, is lehet átméretezett tooa nagyobb méretű tooincrease a kapacitás
+* Ha a virtuális gép nem gyakran használják, méretét, a havi költségek csökkentése érdekében kis méretben le
+* Ha a virtuális gép egy csúcsterhelés lát, azt is átméretezhetők nagyobb méretűre a kapacitás növelése
 
-hello vázlat hello lépéseket tooaccomplish ez van, mint az alábbi
+Ehhez a lépéseket a Vázlat van, mint alatt
 
-1. Azure Automation tooaccess beállítása a virtuális gépek
-2. Azure Automation függőleges méretezési runbookokat hello importálnia kell az előfizetéshez
-3. A webhook tooyour runbook hozzáadása
-4. Egy riasztás tooyour virtuális gép hozzáadása
+1. A virtuális gépek eléréséhez Azure Automation beállítása
+2. Az Azure Automation függőleges méretezési runbookok importálnia kell az előfizetéshez
+3. A webhook hozzáadása a runbookhoz
+4. Adjon hozzá egy riasztást a virtuális géphez
 
 > [!NOTE]
-> Hello hello mérete miatt korlátozott lehet első virtuális gépen, akkor is méretezhető, hello mérete miatt hello toohello rendelkezésre állását más méretek hello fürt aktuális virtuális gép üzemel. Hello közzé azt ebben az esetben mi gondoskodunk és a virtuális gép mérete párok alatt hello belül csak méret cikkben használt automation-forgatókönyv. Ez azt jelenti, hogy egy Standard_D1v2 virtuális gép lesz nem hirtelen tooStandard_G5 kiterjesztett vagy méretezhető tooBasic_A0 le.
+> Az első virtuális gépen, az azt is méretezhető, méretek mérete miatt előfordulhat, hogy korlátozva lesz, mert a rendelkezésre állási a fürt más méretű aktuális virtuális gép üzemel. A közzétett automatizálási runbookok a cikk ezt használja azt ebben az esetben mi gondoskodunk, és csak méretezése belül a virtuális gép mérete párok alatt. Ez azt jelenti, hogy, hogy egy Standard_D1v2 virtuális gép lesz hirtelen nem standard szintű, G5 akár méretezhető vagy Basic_A0 méretezhető.
 > 
 > | Virtuálisgép-méretek pár skálázás |  |
 > | --- | --- |
@@ -57,38 +57,38 @@ hello vázlat hello lépéseket tooaccomplish ez van, mint az alábbi
 > 
 > 
 
-## <a name="setup-azure-automation-tooaccess-your-virtual-machines"></a>Azure Automation tooaccess beállítása a virtuális gépek
-hello elsőként toodo szüksége egy Azure Automation-fiók hello használt runbookok tooscale üzemeltető virtuális gép létrehozása. Hello Automation szolgáltatás új hello "Futtatás mint fiók" funkció automatikusan futtatása hello runbookokat hello felhasználó nevében nagyon egyszerű szolgáltatásnevet hello beállítása így. További a hello a cikkben az alábbi:
+## <a name="setup-azure-automation-to-access-your-virtual-machines"></a>A virtuális gépek eléréséhez Azure Automation beállítása
+Először is végre kell hajtani, hozzon létre egy Azure Automation-fiók, amely a virtuális gépek méretezési használt runbookok tárolni fogja. Az Automation szolgáltatás új a "Futtatás mint fiók" szolgáltatás, amely lehetővé teszi a beállítás a szolgáltatás egyszerű fel automatikusan a runbookok futtatásáért a felhasználó nevében nagyon egyszerű. További információt az alábbi cikkben:
 
 * [Runbookok hitelesítése Azure-beli futtató fiókkal](../../automation/automation-sec-configure-azure-runas-account.md)
 
-## <a name="import-hello-azure-automation-vertical-scale-runbooks-into-your-subscription"></a>Azure Automation függőleges méretezési runbookokat hello importálnia kell az előfizetéshez
-Függőleges a virtuális gép már közzé hello Azure Automation-Runbook gyűjteménye méretezéshez szükséges runbookokat hello. Tooimport kell őket az előfizetéshez. Megtudhatja, hogyan olvasásával tooimport runbookokat hello következő cikket.
+## <a name="import-the-azure-automation-vertical-scale-runbooks-into-your-subscription"></a>Az Azure Automation függőleges méretezési runbookok importálnia kell az előfizetéshez
+A runbookok, amelyek szükségesek a virtuális gép függőleges skálázás vannak már közzé van téve az Azure Automation-Runbook katalógus. Szüksége lesz az előfizetés importálja azokat. Megismerheti a runbookok importálása a következő cikk elolvasása.
 
 * [Az Azure Automation forgatókönyv- és minták](../../automation/automation-runbook-gallery.md)
 
-importált toobe igénylő runbookokat hello hello az alábbi képen látható
+A runbookokat, importálandók kell az alábbi képen látható
 
 ![Runbookok importálása](./media/vertical-scaling-automation/scale-runbooks.png)
 
-## <a name="add-a-webhook-tooyour-runbook"></a>A webhook tooyour runbook hozzáadása
-Miután importált runbookokat hello szüksége lesz tooadd webhook toohello runbook úgy is elindítható a virtuális gép riasztások alapján. a webhook létrehozása a runbook hello részleteit itt olvasható
+## <a name="add-a-webhook-to-your-runbook"></a>A webhook hozzáadása a runbookhoz
+Miután importált a runbookok kell hozzáadása egy webhook a runbookhoz úgy is elindítható a virtuális gép riasztások alapján. A webhook létrehozása a runbook részleteit itt olvasható
 
 * [Azure Automation-webhook](../../automation/automation-webhooks.md)
 
-Ellenőrizze, hogy hello webhook hello webhook párbeszédpanel bezárása, szüksége lesz a következő szakaszban hello előtt másolja át.
+Ellenőrizze, hogy a webhook másolja át a webhook párbeszédpanel bezárása, szüksége lesz a következő szakaszban előtt.
 
-## <a name="add-an-alert-tooyour-virtual-machine"></a>Egy riasztás tooyour virtuális gép hozzáadása
+## <a name="add-an-alert-to-your-virtual-machine"></a>Adjon hozzá egy riasztást a virtuális géphez
 1. Válassza ki a virtuális gép beállításait
 2. Válassza ki a "Riasztási szabályok"
 3. Válassza a "Riasztás hozzáadása"
-4. Jelölje be a metrika toofire hello riasztások a
-5. Válassza ki azt a feltételt, amely teljesítése lesz hello riasztási toofire okozhat
-6. 5. lépésben válassza ki a hello feltétel küszöbértéket. toobe teljesítése
-7. Lépéseket 5 és 6 hello feltétel és a küszöbérték felett mely hello szolgáltatás ellenőrzi időszak kiválasztása
-8. Illessze be a hello előző szakaszából másolt hello webhook.
+4. Jelöljön ki egy metrikát az érvényesítést a riasztás a
+5. Válassza ki azt a feltételt, amely teljesítése lesz miatt a riasztás az érvényesítést
+6. Válassza ki a feltétel küszöbértéket az 5. lépés. teljesítendő
+7. A feltétel és a küszöbérték felett, amelyek a figyelési szolgáltatás ellenőrzi időszak kiválasztása lépéseket 5 és 6
+8. Illessze be a webhook előző szakaszából másolt.
 
-![Riasztási tooVirtual gép 1 hozzáadása](./media/vertical-scaling-automation/add-alert-webhook-1.png)
+![1 virtuális gép értesítés hozzáadása](./media/vertical-scaling-automation/add-alert-webhook-1.png)
 
-![Riasztási tooVirtual gép 2 hozzáadása](./media/vertical-scaling-automation/add-alert-webhook-2.png)
+![Riasztás hozzáadása a virtuális gép 2](./media/vertical-scaling-automation/add-alert-webhook-2.png)
 

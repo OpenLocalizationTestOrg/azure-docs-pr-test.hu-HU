@@ -1,6 +1,6 @@
 ---
-title: "a házirendek az Azure Linux virtuális gépeken aaaEnforce biztonsági |} Microsoft Docs"
-description: "Hogyan tooapply egy házirend tooan Azure Resource Manager Linux virtuális gép"
+title: "A házirendek az Azure Linux virtuális gépeken biztonság kényszerítése |} Microsoft Docs"
+description: "Egy házirend alkalmazása az Azure Resource Manager Linux virtuális gépeket"
 services: virtual-machines-linux
 documentationcenter: 
 author: singhkays
@@ -15,19 +15,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/02/2017
 ms.author: singhkay
-ms.openlocfilehash: 5abd0c937578aba7e72b62c65b4eef9a9737aa2a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 58eaab4fa03afc1e6a5e38bef691cce62a921ea9
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="apply-policies-toolinux-vms-with-azure-resource-manager"></a>Házirendek tooLinux virtuális gépeket az Azure Resource Manager alkalmazása
-Házirendek segítségével a szervezetek kényszerítheti a különböző egyezmények és szabályok hello vállalaton belül. Szükséges hello viselkedés végrehajtását segítségével mérsékelhetik a kockázatokat toohello sikeres hello szervezet hozzájárul. Ez a cikk azt ismerteti hogyan használható az Azure Resource Manager házirendek toodefine szükséges hello viselkedését a szervezet virtuális gépekhez.
+# <a name="apply-policies-to-linux-vms-with-azure-resource-manager"></a>Linux virtuális gépek az Azure Resource Manager-szabályzatok alkalmazása
+Házirendek segítségével a szervezetek kényszerítheti a különböző egyezmények és szabályok a vállalaton belül. A kívánt viselkedés végrehajtását segítségével mérsékelhetik a kockázatokat hozzájárul a szervezet sikeres. Ez a cikk azt ismerteti használatát Azure Resource Manager-házirendek megadhatók a kívánt viselkedés a szervezet virtuális gépekhez.
 
-Egy bevezető toopolicies, lásd: [vezérlési hozzáférési és használati feltételei toomanage erőforrások](../../azure-resource-manager/resource-manager-policy.md).
+Házirendek bemutatása, lásd: [kezelheti az erőforrásokat, és hozzáférés szabályozása házirendekkel](../../azure-resource-manager/resource-manager-policy.md).
 
 ## <a name="permitted-virtual-machines"></a>Engedélyezett virtuális gépek
-tooensure, hogy egy alkalmazás kompatibilisek legyenek-e a szervezet virtuális gépek, operációs rendszerek engedélyezett hello korlátozhatja. A házirend például a következő hello, csak az Ubuntu 14.04.2-LTS virtuális gépek engedélyezése toobe létrehozni.
+Győződjön meg arról, hogy a szervezet virtuális gépek kompatibilisek egy alkalmazás, korlátozhatja az engedélyezett operációs rendszerek. A következő házirend-példa engedélyezése csak Ubuntu 14.04.2-LTS virtuális gépeket létrehozni.
 
 ```json
 {
@@ -79,7 +79,7 @@ tooensure, hogy egy alkalmazás kompatibilisek legyenek-e a szervezet virtuális
 }
 ```
 
-Egy házirend tooallow megelőző Ubuntu LTS képet helyettesítő toomodify hello használata: 
+Egy helyettesítő karakter használatával módosíthatja az előző házirendben engedélyezze az Ubuntu LTS képet: 
 
 ```json
 {
@@ -92,7 +92,7 @@ Házirend mezőkkel kapcsolatos információkért lásd: [házirend aliasok](../
 
 ## <a name="managed-disks"></a>Felügyelt lemezek
 
-toorequire hello használata felügyelt lemezek használatát hello házirendet a következő:
+Felügyelt lemezek használata szükséges, használja a következő házirendet:
 
 ```json
 {
@@ -140,9 +140,9 @@ toorequire hello használata felügyelt lemezek használatát hello házirendet 
 
 ## <a name="images-for-virtual-machines"></a>A virtuális gépek lemezképek
 
-Biztonsági okokból megkövetelheti, hogy csak a jóváhagyott egyéni lemezképek telepítve vannak-e a környezetében. Hello jóváhagyott lemezképeket tartalmazó erőforráscsoportot hello vagy hello adott jóváhagyott lemezképeket is megadhat.
+Biztonsági okokból megkövetelheti, hogy csak a jóváhagyott egyéni lemezképek telepítve vannak-e a környezetében. Vagy az erőforráscsoport, amely tartalmazza a jóváhagyott lemezképeket is megadhat, vagy a specifikus jóváhagyott lemezképeket.
 
-a következő példa hello jóváhagyott erőforráscsoportból képek van szükség:
+A következő példa egy jóváhagyott erőforráscsoportból képek van szükség:
 
 ```json
 {
@@ -169,7 +169,7 @@ a következő példa hello jóváhagyott erőforráscsoportból képek van szük
 } 
 ```
 
-hello alábbi példa meghatározza, hogy jóvá hello kép azonosítók:
+A következő példa meghatározza, hogy a jóváhagyott lemezkép-azonosítók:
 
 ```json
 {
@@ -180,7 +180,7 @@ hello alábbi példa meghatározza, hogy jóvá hello kép azonosítók:
 
 ## <a name="virtual-machine-extensions"></a>Virtuálisgép-bővítmények
 
-Érdemes lehet tooforbid használati bővítmények bizonyos típusú. Egy bővítmény például nem lehet kompatibilis bizonyos egyéni virtuálisgép-lemezképeket. a következő példa azt mutatja meg hogyan hello tooblock egy adott kiterjesztéssel. Gyártó és típus toodetermine mely bővítmény tooblock használ.
+Érdemes lehet megtiltják bizonyos típusú bővítmények használatát. Egy bővítmény például nem lehet kompatibilis bizonyos egyéni virtuálisgép-lemezképeket. A következő példa bemutatja, hogyan blokkolja egy adott kiterjesztéssel. Gyártó és típus használatával határozza meg, melyik bővítmény letiltása.
 
 ```json
 {
@@ -209,6 +209,6 @@ hello alábbi példa meghatározza, hogy jóvá hello kép azonosítók:
 
 
 ## <a name="next-steps"></a>Következő lépések
-* (A fenti példák hello) házirend szabály megadása után kell toocreate hello házirend-definíció, és rendelje hozzá tooa hatókör. hello hatókör lehet egy előfizetés, az erőforráscsoportot, vagy az erőforrás. hello portálon keresztül tooassign házirendek, lásd: [használata Azure-portál tooassign és erőforrás-házirendek kezeléséhez](../../azure-resource-manager/resource-manager-policy-portal.md). REST API-t, a PowerShell vagy Azure CLI tooassign házirendek, lásd: [meg és kezelheti a parancsfájl-házirendeket](../../azure-resource-manager/resource-manager-policy-create-assign.md).
-* Egy bevezető tooresource házirendek, lásd: [erőforrás házirendek – áttekintés](../../azure-resource-manager/resource-manager-policy.md).
-* A vállalatok használatát erőforrás-kezelő tooeffectively segítségükkel előfizetések kezelése című [Azure enterprise scaffold - előíró előfizetés irányítás](../../azure-resource-manager/resource-manager-subscription-governance.md).
+* (A fenti példákban szerint) házirend szabály megadása után kell a házirend-definíció létrehozása, és rendelje hozzá hatókör. A hatókör lehet egy előfizetés, az erőforráscsoportot, vagy az erőforrás. A portálon keresztül házirendek rendeléséhez lásd: [hozzárendelésére és kezelésére erőforrás-házirendek használata Azure-portálon](../../azure-resource-manager/resource-manager-policy-portal.md). REST API-t, a PowerShell vagy az Azure CLI-házirendeket rendeléséhez lásd: [meg és kezelheti a parancsfájl-házirendeket](../../azure-resource-manager/resource-manager-policy-create-assign.md).
+* Megismerkedhet az erőforrás-házirendek, lásd: [erőforrás házirendek – áttekintés](../../azure-resource-manager/resource-manager-policy.md).
+* Nagyvállalatoknak az [Azure enterprise scaffold - prescriptive subscription governance](../../azure-resource-manager/resource-manager-subscription-governance.md) (Azure nagyvállalati struktúra - előíró előfizetés-irányítás) című cikk nyújt útmutatást az előfizetéseknek a Resource Managerrel való hatékony kezeléséről.

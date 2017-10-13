@@ -1,57 +1,75 @@
 ---
-cím: aaa "Azure Analysis Services-oktatóanyag lecke 10: partíciókat |} Microsoft Docs"Leírás: ismerteti, hogyan toocreate particionálja hello Azure Analysis Services-oktatóanyag projektben. szolgáltatások: analysis-szolgáltatások documentationcenter: "Szerző: minewiskan manager: erikre szerkesztőben:" címkék: "
-
-MS.AssetId: ms.service: analysis-szolgáltatások ms.devlang: NA ms.topic: get-started-article ms.tgt_pltfrm: NA ms.workload: na ms.date: 05/26/2017 ms.author: owend
+title: "Az Azure Analysis Services oktatóanyaga – 10. lecke: Partíciók létrehozása | Microsoft Docs"
+description: "A lecke a partíciók létrehozását ismerteti az Azure Analysis Services oktatóprojektjében."
+services: analysis-services
+documentationcenter: 
+author: Minewiskan
+manager: erikre
+editor: 
+tags: 
+ms.assetid: 
+ms.service: analysis-services
+ms.devlang: NA
+ms.topic: get-started-article
+ms.tgt_pltfrm: NA
+ms.workload: na
+ms.date: 09/20/2017
+ms.author: owend
+ms.openlocfilehash: b6b5bcd1d766376bd0af71e1fa91f8f2f96b9605
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="lesson-10-create-partitions"></a>10. lecke: Partíciók létrehozása
 
 [!INCLUDE[analysis-services-appliesto-aas-sql2017-later](../../../includes/analysis-services-appliesto-aas-sql2017-later.md)]
 
-Ez a lecke partíciók toodivide hello FactInternetSales táblának kisebb logikai részekre feldolgozott (frissítése) független a többi partíció lehet létrehozni. Alapértelmezés szerint minden tábla szerepel a modellben van egy partíciót, amely tartalmazza az összes hello tábla oszlopainak és sorainak. Hello FactInternetSales táblának, az azt szeretnénk toodivide hello adatok évente; egy partíciót az egyes hello tábla öt évet. Ezután mindegyik partíció egymástól függetlenül kezelhető. több, lásd: toolearn [partíciók](https://docs.microsoft.com/sql/analysis-services/tabular-models/partitions-ssas-tabular). 
+Ebben a leckében partíciókat hoz létre a FactInternetSales tábla kisebb logikai részekre való felosztásához, amelyek a többi partíciótól függetlenül dolgozhatók fel (frissíthetők). Alapértelmezés szerint a modellekben foglalt táblák mindegyike egy partícióval rendelkezik, amely az adott tábla összes oszlopát és sorát tartalmazza. A FactInternetSales tábla esetében az adatokat éves bontásban szeretnénk kezelni, a táblában szereplő mind az öt év esetében évenként egy-egy partícióban. Ezután mindegyik partíció egymástól függetlenül kezelhető. További tudnivalókért lásd a [partíciókat](https://docs.microsoft.com/sql/analysis-services/tabular-models/partitions-ssas-tabular) ismertető cikket. 
   
-Becsült idő toocomplete Ez a lecke: **15 perc**  
+A lecke elvégzésének várható időtartama: **15 perc**.  
   
 ## <a name="prerequisites"></a>Előfeltételek  
-Ez a témakör a táblázatos modellezéssel foglalkozó oktatóanyag részét képezi, amelyet a megfelelő sorrendben kell elvégezni. Ez a lecke hello feladatok elvégzése előtt kell befejeződött hello előző lecke: [lecke 9: hozzon létre hierarchiákat](../tutorials/aas-lesson-9-create-hierarchies.md).  
+Ez a témakör a táblázatos modellezéssel foglalkozó oktatóanyag részét képezi, amelyet a megfelelő sorrendben kell elvégezni. A leckében foglalt feladatok végrehajtása előtt el kell végeznie az előző leckét ([9. lecke: Hierarchiák létrehozása](../tutorials/aas-lesson-9-create-hierarchies.md)).  
   
 ## <a name="create-partitions"></a>Partíciók létrehozása  
   
-#### <a name="toocreate-partitions-in-hello-factinternetsales-table"></a>hello FactInternetSales táblának toocreate a partíciók  
+#### <a name="to-create-partitions-in-the-factinternetsales-table"></a>A FactInternetSales tábla partícióinak létrehozása  
   
 1.  A Tabular Model Explorerben bontsa ki a **Táblák** fát, és kattintson a jobb gombbal a **FactInternetSales** > **Partíciók** elemre.  
   
-2.  A partíció-kezelőben kattintson **másolási**, majd módosítsa a hello neve túl**FactInternetSales2010**.
+2.  A partíciókezelőben kattintson a **Másolás** parancsra, és változtassa a nevet **FactInternetSales2010** értékre.
   
-    Mivel hello partíció tooinclude csak azok a sorok adott időszakon belüli, hello év 2010, módosítania kell a hello lekérdezési kifejezésben.
+    Mivel a partícióba csak egy adott időszakhoz (a 2010-es évhez) tartozó sorokat szeretne belefoglalni, módosítania kell a lekérdezés kifejezését.
   
-4.  Kattintson a **tervezési** tooopen szerkesztő lekérdezni, és kattintson a hello **FactInternetSales2010** lekérdezés.
+4.  Kattintson a **Tervezés** gombra a lekérdezésszerkesztő megnyitásához, majd kattintson a **FactInternetSales2010** lekérdezésre.
 
-5.  A képen kattintson a lefelé mutató nyílra a hello hello **orderdate oszlopra** oszlop fejlécére, és kattintson **dátum/idő szűrők** > **közötti**.
+5.  Az előnézetben kattintson az **OrderDate** sor fejlécére, majd a **Dátum-/időszűrők** > **Között** elemére.
 
     ![aas-lesson10-query-editor](../tutorials/media/aas-lesson10-query-editor.png)
 
-6.  Hello sorok szűrése párbeszédpanelen a **szűrési feltételek: orderdate oszlopra**, hagyja **ez utáni vagy egyenlő**, majd a hello dátum mezőben adja meg **1/1/2010**. Hello hagyja **és** operátor kiválasztva, majd válassza ki **előtt**, majd hello dátum mezőjében adja meg **2011-1-1**, és kattintson a **OK**.
+6.  A Sorok szűrése párbeszédpanelen, a **Sorok mutatása, ahol: OrderDate** mezőnél hagyja meg az **ez utáni vagy egyenlő** beállítást, majd a dátummezőben adja meg az **1/1/2010** értéket. Hagyja az **És** operátort kiválasztva, majd válassza a **korábbi a következőnél** beállítást, a dátummezőben adja meg az **1/1/2011** értéket, és kattintson az **OK** gombra.
 
     ![aas-lesson10-filter-rows](../tutorials/media/aas-lesson10-filter-rows.png)
     
-    Észreveheti, hogy a lekérdezésszerkesztőben az ALKALMAZOTT LÉPÉSEK között egy további lépés látható, Szűrt sorok néven. Ez a szűrő csak rendelési dátumokat tooselect 2010.
+    Észreveheti, hogy a lekérdezésszerkesztőben az ALKALMAZOTT LÉPÉSEK között egy további lépés látható, Szűrt sorok néven. Ezzel a szűrővel a 2010-es dátummal rendelkező megrendelésekre lehet szűrni.
 
 8.  Kattintson az **Importálás** gombra.
 
-    A Partíciókezelőben, figyelje meg a kifejezés most már rendelkezik egy további szűrt záradék hello lekérdezés.
+    A partíciókezelőben látható, hogy a lekérdezési kifejezés egy újabb szűrt sorok záradékkal bővült.
 
     ![aas-lesson10-query](../tutorials/media/aas-lesson10-query.png)
   
-    A jelen nyilatkozat határozza meg, ez a partíció ezeket ahol hello orderdate oszlopra van hello 2010 naptári év hello szűrt sorokat záradékban megadott sorok csak hello adatok tartalmaznia kell.  
+    Ez az utasítás meghatározza, hogy a partíció csak olyan sorok adatait tartalmazhatja, ahol az OrderDate a 2010-es naptári évre esik, ahogy azt a szűrt sorok záradék megadja.  
   
   
-#### <a name="toocreate-a-partition-for-hello-2011-year"></a>egy partíció hello 2011 év toocreate  
+#### <a name="to-create-a-partition-for-the-2011-year"></a>Partíció létrehozása a 2011-es évhez  
   
-1.  Hello partíciók listájában kattintson hello **FactInternetSales2010** létrehozott partíció, és kattintson a **másolási**.  Hello szolgáltatáspartíció neve túl módosítása**FactInternetSales2011**. 
+1.  A partíciók listájában kattintson a korábban létrehozott **FactInternetSales2010** partícióra, majd a **Másolás** parancsra.  Módosítsa a partíció nevét a **FactInternetSales2011** értékre. 
 
-    Nem kell toouse Lekérdezésszerkesztő toocreate egy új szűrt záradék. Hello lekérdezés másolatát 2010 hozott létre, mert toodo szüksége olyan módosítást enyhe hello lekérdezésben 2011.
+    A lekérdezésszerkesztőben nem kell új szűrt sorok záradékot létrehoznia. Mivel létrehozta a 2010-es lekérdezés másolatát, csupán minimálisan kell módosítania azt, a 2011-es évre vonatkozóan.
   
-2.  A **lekérdezési kifejezésben**, a-ahhoz, hogy a partíció tooinclude csak a hello sorok 2011 év, cserélje le a szűrt sorok záradékot hello hello éveket **2011** és **2012**, osztályban, például:  
+2.  Annak érdekében, hogy a partíció csak a 2011-es év sorait tartalmazza, a **Lekérdezés kifejezésében** cserélje le a megfelelő évszámokat a Szűrt sorok záradékban a **2011** és **2012** értékre, ahogy az alábbiakban is látható:  
   
     ```  
     let
@@ -64,39 +82,39 @@ Ez a témakör a táblázatos modellezéssel foglalkozó oktatóanyag részét k
    
     ```  
   
-#### <a name="toocreate-partitions-for-2012-2013-and-2014"></a>toocreate partíciók 2012, a 2013-as és a 2014.  
+#### <a name="to-create-partitions-for-2012-2013-and-2014"></a>Partíció létrehozása a 2012-es, 2013-as és 2014-es évhez  
   
-- Hajtsa végre a hello előző lépéseket, partíciók létrehozása 2012, a 2013-as és a 2014, az adott év hello hello szűrt sorok záradék tooinclude csak sorok éveket módosítása. 
+- A fenti lépéseket követve hozzon létre partíciókat a 2012-es, 2013-as és 2014-es évhez, és az évszámokat a Szűrt sorok záradékban a megfelelő évnek megfelelően módosítsa. 
   
 
-## <a name="delete-hello-factinternetsales-partition"></a>Hello FactInternetSales partíció törlése
-Most, hogy partíciók évente, törölheti hello FactInternetSales partíció; Hozzon létre megakadályozza az összes folyamat kiválasztásakor, partíció feldolgozása során.
+## <a name="delete-the-factinternetsales-partition"></a>A FactInternetSales partíció törlése
+Most, hogy minden évhez létrehozott egy partíciót, törölheti a FactInternetSales partíciót, így megelőzi az átfedéseket az Összes feldolgozása parancs a partíciók feldolgozása során történő végrehajtásakor.
 
-#### <a name="toodelete-hello-factinternetsales-partition"></a>toodelete hello FactInternetSales partíció
--  Kattintson a hello FactInternetSales partíciót, majd **törlése**.
+#### <a name="to-delete-the-factinternetsales-partition"></a>A FactInternetSales partíció törlése
+-  Kattintson a FactInternetSales partícióra, majd a **Törlés** parancsra.
 
 
 
 ## <a name="process-partitions"></a>Partíciók feldolgozása  
-A Partíciókezelőben, figyelje meg hello **utolsó feldolgozott** oszlop az egyes hello mutat be, ezek a partíciók soha nem dolgozott létrehozott új partíciók. Partíciók létrehozása kell futtatni egy folyamatot partíciók, sem a folyamat művelet toorefresh hello táblaadatok ezek a partíciók.  
+A partíciókezelőben láthatja, hogy az egyes létrehozott partíciók **Utoljára feldolgozva** oszlopában látható, hogy a partíciók még soha nem lettek feldolgozva. A partíciók létrehozásakor érdemes futtatnia egy Partíciók feldolgozása vagy Tábla feldolgozása műveletet az adott partíciók adatainak frissítéséhez.  
   
-#### <a name="tooprocess-hello-factinternetsales-partitions"></a>tooprocess hello FactInternetSales partíciók  
+#### <a name="to-process-the-factinternetsales-partitions"></a>A FactInternetSales-partíciók feldolgozása  
   
-1.  Kattintson a **OK** tooclose partíciókezelő.  
+1.  A partíciókezelő bezárásához kattintson az **OK** gombra.  
   
-2.  Kattintson a hello **FactInternetSales** tábla, majd kattintson az hello **modell** menü > **folyamat** > **folyamat partíciók**.  
+2.  Kattintson a **FactInternetSales** táblára, majd a **Modell** menü **Feldolgozás** > **Partíciók feldolgozása** elemére.  
   
-3.  A hello folyamat partíciók párbeszédpanelen ellenőrizze **mód** értéke túl**folyamat alapértelmezett**.  
+3.  A Partíciók feldolgozása párbeszédpanelen bizonyosodjon meg róla, hogy a **Mód** **Alapértelmezés feldolgozása** értékre van állítva.  
   
-4.  Jelölje be a hello jelölőnégyzetet a hello **folyamat** oszlop az egyes hello öt particionálja a létrehozott, és kattintson **OK**.  
+4.  Jelölje be a jelölőnégyzetet a **Feldolgozás** oszlopban mind az öt létrehozott partíciónál, majd kattintson az **OK** gombra.  
 
     ![aas-lesson10-process-partitions](../tutorials/media/aas-lesson10-process-partitions.png)
   
-    Ha a megszemélyesítési hitelesítő adatokat kéri, írja be a hello Windows rendszerbeli felhasználónevet és jelszót a megadott a 2.  
+    Ha a rendszer bekéri a megszemélyesítési hitelesítő adatait, adja meg a 2. leckében megadott Windows-felhasználónevet és -jelszót.  
   
-    Hello **adatfeldolgozási** párbeszédpanel jelenik meg, és minden partíció esetében folyamat részleteit jeleníti meg. Láthatja, hogy az egyes partíciók esetében eltérő mennyiségű sor átvitele történik meg. Mindegyik partíció csak azok a sorok hello hello SQL-utasításban lévő WHERE záradéknak megadott hello év magában foglalja. Ha feldolgozása befejeződött, lépjen tovább, és hello adatfeldolgozási párbeszédpanel bezárásához.  
+    Megjelenik az **Adatfeldolgozás** párbeszédpanel, amelyen az egyes partíciók feldolgozásának részletei láthatók. Láthatja, hogy az egyes partíciók esetében eltérő mennyiségű sor átvitele történik meg. Mindegyik partíció csak az SQL-utasítás WHERE záradékában megadott évhez tartozó sorokat tartalmazza. A feldolgozás végeztével nyugodtan zárja be az Adatfeldolgozás párbeszédpanelt.  
   
     ![aas-lesson10-process-complete](../tutorials/media/aas-lesson10-process-complete.png)
   
  ## <a name="whats-next"></a>A következő lépések
-Nyissa meg toohello következő lecke: [lecke 11: szerepkörök létrehozása](../tutorials/aas-lesson-11-create-roles.md). 
+Tovább a következő leckére: [11. lecke: Szerepkörök létrehozása](../tutorials/aas-lesson-11-create-roles.md). 

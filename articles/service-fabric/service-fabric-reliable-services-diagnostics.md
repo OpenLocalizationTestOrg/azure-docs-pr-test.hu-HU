@@ -1,5 +1,5 @@
 ---
-title: aaaStateful Reliable Services diagnosztika |} Microsoft Docs
+title: "Állapotalapú Reliable Services diagnosztika |} Microsoft Docs"
 description: "A Stateful Reliable Services diagnosztikai funkciói"
 services: service-fabric
 documentationcenter: .net
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/30/2017
 ms.author: dekapur
-ms.openlocfilehash: 6200800b858957c06039d9af062633b12a446318
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 63a7707f16bbf037c0c91da1d02093e2314dc06e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="diagnostic-functionality-for-stateful-reliable-services"></a>A Stateful Reliable Services diagnosztikai funkciói
-állapotalapú alkalmazások és szolgáltatások megbízható szolgáltatások StatefulServiceBase osztály hello bocsát ki [EventSource](https://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource.aspx) eseményeket, amelyek lehetnek használt toodebug hello szolgáltatást, hogyan hello futásidejű működik, és segítenek a hibaelhárításban betekintést.
+Az állapotalapú alkalmazások és szolgáltatások megbízható szolgáltatások StatefulServiceBase osztály bocsát ki [EventSource](https://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource.aspx) eseményeket, amelyek segítségével a szolgáltatás hibakeresési módját a futtatókörnyezet működő, és segítenek a hibaelhárításban betekintést.
 
 ## <a name="eventsource-events"></a>EventSource események
-hello EventSource neve hello állapotalapú alkalmazások és szolgáltatások megbízható szolgáltatások StatefulServiceBase osztály: "Microsoft-ServiceFabric-szolgáltatások". Ez az esemény forrásból származó események megjelennek a [diagnosztika események](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md#view-service-fabric-system-events-in-visual-studio) ablakot, ha hello szolgáltatás folyamatban van [indítja a Visual Studio](service-fabric-debugging-your-application.md).
+Az állapotalapú alkalmazások és szolgáltatások megbízható szolgáltatások StatefulServiceBase osztály az EventSource neve: "Microsoft-ServiceFabric-szolgáltatások". Ez az esemény forrásból származó események megjelennek a [diagnosztika események](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md#view-service-fabric-system-events-in-visual-studio) ablakot, ha a szolgáltatás folyamatban van [indítja a Visual Studio](service-fabric-debugging-your-application.md).
 
 Például az eszközök és technológiák segíti a összegyűjtése és/vagy EventSource események megtekintése [PerfView](http://www.microsoft.com/download/details.aspx?id=28567), [Microsoft Azure Diagnostics](../cloud-services/cloud-services-dotnet-diagnostics.md), és a [Microsoft TraceEvent Library](http://www.nuget.org/packages/Microsoft.Diagnostics.Tracing.TraceEvent).
 
@@ -34,17 +34,17 @@ Például az eszközök és technológiák segíti a összegyűjtése és/vagy E
 | StatefulRunAsyncInvocation |1 |Tájékoztató |Amikor a szolgáltatás RunAsync feladat elindítva |
 | StatefulRunAsyncCancellation |2 |Tájékoztató |Amikor a szolgáltatás RunAsync feladat meg lett szakítva |
 | StatefulRunAsyncCompletion |3 |Tájékoztató |Amikor a szolgáltatás RunAsync feladat befejezése |
-| StatefulRunAsyncSlowCancellation |4 |Figyelmeztetés |Amikor a szolgáltatás RunAsync feladat túl hosszú toocomplete cancellation vesz igénybe. |
+| StatefulRunAsyncSlowCancellation |4 |Figyelmeztetés |Amikor a szolgáltatás RunAsync feladat megszakításának befejezéséhez túl sokáig tart |
 | StatefulRunAsyncFailure |5 |Hiba |Amikor a szolgáltatás RunAsync tevékenység kivételt jelez. |
 
 ## <a name="interpret-events"></a>Események értelmezése
-StatefulRunAsyncInvocation StatefulRunAsyncCompletion és StatefulRunAsyncCancellation eseményeket is hasznos toohello szolgáltatás író toounderstand hello életciklus--szolgáltatás, valamint ha a szolgáltatás elindult, megszakítva, vagy befejeződött hello ütemezése . Ez akkor lehet hasznos, ha a kérdések vagy ismertetése hello szolgáltatás életciklus-hibakeresés.
+A szolgáltatás-író szolgáltatás –, valamint ha a szolgáltatás elindult, megszakítva, vagy befejeződött időzítését-felügyeleti életciklus megismerése érdemes StatefulRunAsyncInvocation StatefulRunAsyncCompletion és StatefulRunAsyncCancellation eseményeket is. A következő esetekben lehet hasznos szolgáltatás hibáinak feltárására, vagy a szolgáltatás életciklusának megértése.
 
-Szolgáltatás írók kell fizetnie a elolvassa tooStatefulRunAsyncSlowCancellation és StatefulRunAsyncFailure események, mert hello szolgáltatás problémákat jeleznek.
+Szolgáltatás írók kell figyelmesen elolvassa StatefulRunAsyncSlowCancellation és StatefulRunAsyncFailure események, mert a szolgáltatás problémákat jeleznek.
 
-Amikor hello szolgáltatás RunAsync() tevékenység kivételt StatefulRunAsyncFailure kibocsátott. Egy kivétel lépett fel általában azt jelzi, hibás utasítást vagy hiba hello szolgáltatásban. Emellett hello kivétel hatására hello szolgáltatás toofail, az, hogy áthelyezett tooa másik csomópont. Ez lehet egy drága művelet, és késleltetheti a bejövő kérelmeket, ha hello szolgáltatás áthelyezte. Szolgáltatás írók határozza meg, hello kivétel hello okát és, ha lehetséges, mérsékelni.
+Amikor a RunAsync() feladat kivételt StatefulRunAsyncFailure kibocsátott. Általában egy kivétel lépett fel hiba vagy probléma a szolgáltatás jelzi. Emellett a kivétel hatására a szolgáltatás leállását, ezért egy másik csomópont áthelyezés. Ez lehet egy drága művelet, és késleltetheti bejövő kérelmeket, ha a szolgáltatás áthelyezte. Szolgáltatás írók határozza meg, az okot a kivétel és, ha lehetséges, mérsékelni.
 
-StatefulRunAsyncSlowCancellation kibocsátott amikor hello RunAsync feladat megszakításának kérelem 4 másodpercnél hosszabb időbe telik. A szolgáltatás túl hosszú toocomplete visszavonásra kerül, ha gyorsan újraindítását egy másik csomópontján hello szolgáltatás toobe hello mostantól hatással van. Ez hatással lehet a hello hello szolgáltatás rendelkezésre állását.
+StatefulRunAsyncSlowCancellation kibocsátott, amikor a RunAsync feladat megszakítási kérelmet a 4 másodpercnél hosszabb időbe telik. Amikor egy szolgáltatás túl lassan cancellation befejezéséhez, a szolgáltatás gyors újra kell indítani egy másik csomópontra az képesek hatással van. Ez hatással lehet a szolgáltatás rendelkezésre állását.
 
 ## <a name="next-steps"></a>Következő lépések
 * [A PerfView EventSource szolgáltatók](https://blogs.msdn.microsoft.com/vancem/2012/07/09/introduction-tutorial-logging-etw-events-in-c-system-diagnostics-tracing-eventsource/)

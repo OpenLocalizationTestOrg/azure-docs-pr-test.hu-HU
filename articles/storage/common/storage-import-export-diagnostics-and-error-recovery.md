@@ -1,6 +1,6 @@
 ---
-title: "az Azure importálási/exportálási feladatok aaaDiagnostics és a hiba helyreállítási |} Microsoft Docs"
-description: "Megtudhatja, hogyan tooenable részletes naplózás a Microsoft Azure Import/Export szolgáltatás feladatok."
+title: "Az Azure importálási/exportálási feladatok diagnosztika és a hiba helyreállítási |} Microsoft Docs"
+description: "Megtudhatja, hogyan engedélyezi a részletes naplózás a Microsoft Azure Import/Export szolgáltatás feladatok."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 48164279e7904c78fed802aa3cff66e589c3f12c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0068aae9d6780aa41a070db0eb191d0d5a165d21
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="diagnostics-and-error-recovery-for-azure-importexport-jobs"></a>Diagnosztika és a hiba helyreállítási az Azure importálási/exportálási feladatok
-Minden meghajtó feldolgozott hello Azure Import/Export szolgáltatás hibanaplót hello kapcsolódó tárfiók hoz létre. Is engedélyezheti a részletes naplózás beállítás hello `LogLevel` tulajdonság túl`Verbose` hello meghívásakor [Put feladat](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) vagy [frissítés Feladattulajdonság](/rest/api/storageimportexport/jobs#Jobs_Update) műveletek.
+Minden meghajtó feldolgozott az Azure Import/Export szolgáltatás hibanaplót a kapcsolódó tárfiók hoz létre. Részletes naplózás engedélyezése úgy, hogy a `LogLevel` tulajdonságot `Verbose` meghívásakor a [Put feladat](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) vagy [frissítés Feladattulajdonság](/rest/api/storageimportexport/jobs#Jobs_Update) műveletek.
 
- Alapértelmezés szerint írja a naplókat nevű tooa tárolót `waimportexport`. Egy másik nevet is megadhat hello beállítása használatával `DiagnosticsPath` tulajdonság hello meghívásakor `Put Job` vagy `Update Job Properties` műveletek. hello naplók tárolja blokkblobként hello a következő elnevezési konvenció: `waies/jobname_driveid_timestamp_logtype.xml`.
+ Alapértelmezés szerint írja a naplókat nevű tárolót `waimportexport`. Megadhatja egy másik nevet úgy, hogy a `DiagnosticsPath` tulajdonság meghívásakor a `Put Job` vagy `Update Job Properties` műveletek. A naplók a következő elnevezés szabály szerint blokkblobként tárolja: `waies/jobname_driveid_timestamp_logtype.xml`.
 
- Hello URI hello naplók feladat által hívó hello le [Get Job](/rest/api/storageimportexport/jobs#Jobs_Get) műveletet. hello URI hello részletes napló eredmény abban az esetben hello `VerboseLogUri` minden meghajtó, amíg a hello URI hello hibanapló az eredmény abban az esetben hello tulajdonság `ErrorLogUri` tulajdonság.
+ Az URI-feladat a naplók meghívásával kérheti le a [Get Job](/rest/api/storageimportexport/jobs#Jobs_Get) műveletet. A részletes naplózás URI-JÁNAK eredmény abban az esetben a `VerboseLogUri` tulajdonság minden meghajtó, amíg a hibanapló URI-JÁNAK eredmény abban az esetben a `ErrorLogUri` tulajdonság.
 
-A következő problémák adatok tooidentify hello naplózás hello is használhatja.
+A naplózási adatok segítségével a következő problémák azonosításához.
 
 ## <a name="drive-errors"></a>Meghajtó hibák
 
-a következő elemek hello besorolt meghajtó hibák:
+A következő elemek besorolt meghajtó hibák:
 
--   A jegyzékfájl elérése vagy hello olvasása
+-   Való hozzáférés, vagy a jegyzékfájl olvasása
 
 -   Helytelen a BitLocker-kulcsok
 
@@ -41,7 +41,7 @@ a következő elemek hello besorolt meghajtó hibák:
 
 ## <a name="blob-errors"></a>A BLOB hibák
 
-a következő elemek hello besorolt blob hibák:
+A következő elemek besorolt blob hibák:
 
 -   Hibás vagy ütköző blob vagy -nevek
 
@@ -49,16 +49,16 @@ a következő elemek hello besorolt blob hibák:
 
 -   A BLOB nem található
 
--   Csonkolt fájlok (hello fájlok hello lemezen hello jegyzékben megadott kisebb)
+-   Csonkolt fájlok (a fájlok a lemezen kisebb, mint a jegyzékben megadott)
 
 -   Sérült fájlt tartalom (importálási feladatok észlelt egy MD5 ellenőrzőösszeg eltérése)
 
 -   (Az MD5 ellenőrzőösszeg eltérése az észlelt) sérült blob metaadatait és tulajdonság fájlok
 
--   Hibás sémát hello blob tulajdonságok, illetve a metaadat-fájlok
+-   A blob tulajdonságai és/vagy metaadatfájlokban hibás sémát
 
-Előfordulhat, ha egyes részei egy importálási vagy exportálási feladat nem fejeződött be sikeresen, hello általános feladat még befejezésére. Ebben az esetben feltölteni, vagy töltse le a hello hello adatok hiányoznak a hálózaton keresztül, vagy létrehozhat egy új feladat tootransfer hello adatokat. Lásd: hello [Azure Import/Export eszköz hivatkozás](storage-import-export-tool-how-to-v1.md) toolearn hogyan toorepair hello hálózaton keresztül adatokat.
+Előfordulhat, ha egyes részei egy importálási vagy exportálási feladat nem fejeződött be sikeresen, a teljes feladat még elvégzése közben. Ebben az esetben feltölteni, vagy töltse le a hiányzó rész az adatok hálózaton keresztül, vagy létrehozhat egy új feladatot, amely az adatok átvitelét. Tekintse meg a [Azure Import/Export eszköz hivatkozás](storage-import-export-tool-how-to-v1.md) hogyan javítsa ki az adatok hálózaton keresztül.
 
 ## <a name="next-steps"></a>Következő lépések
 
-* [Hello Import/Export szolgáltatás REST API használatával](storage-import-export-using-the-rest-api.md)
+* [Az Import/Export szolgáltatás REST API használatával](storage-import-export-using-the-rest-api.md)

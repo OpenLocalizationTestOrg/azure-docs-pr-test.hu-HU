@@ -1,6 +1,6 @@
 ---
-title: "Azure Cloud Services Azure Automation segítségével aaaManage |} Microsoft Docs"
-description: "További információk a hello Azure Automation szolgáltatás hogyan lehet használt toomanage Azure felhőszolgáltatások méretekben."
+title: "Azure Automation használatával Azure Cloud Services kezelése |} Microsoft Docs"
+description: "További tudnivalók hogyan az Azure Automation szolgáltatás léptékű Azure felhőszolgáltatások kezelésére használható."
 services: cloud-services, automation
 documentationcenter: 
 author: jodoglevy
@@ -14,32 +14,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2016
 ms.author: timlt
-ms.openlocfilehash: 8e920fb94955466bfec71cc332444f5f0ee497a7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6b5acac1b8647c324988c316cd5602b3dba98a1d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="managing-azure-cloud-services-using-azure-automation"></a>Azure Automation használata Azure Cloud Services kezelése
-Az útmutatóból megismerheti toohello Azure Automation szolgáltatás, és hogyan lehet az Azure felhőszolgáltatások használt toosimplify kezelését.
+Az útmutatóból megismerheti az Azure Automation szolgáltatás, és hogyan használható az Azure felhőalapú szolgáltatások felügyelete leegyszerűsítése érdekében.
 
 ## <a name="what-is-azure-automation"></a>Mi az Azure Automation?
-[Azure Automation szolgáltatásbeli](https://azure.microsoft.com/services/automation/) egy Azure szolgáltatás felhő kezelésüket folyamatok automatizálása révén. Azure Automation használ, hosszan futó, manuális, hibákhoz vezethet, és gyakran ismétlődő feladatokat lehet automatizált tooincrease megbízhatóságát, hatékonyságát és idő toovalue a szervezet számára.
+[Azure Automation szolgáltatásbeli](https://azure.microsoft.com/services/automation/) egy Azure szolgáltatás felhő kezelésüket folyamatok automatizálása révén. Azure Automation használ, hosszan futó, manuális, hibákhoz vezethet, és gyakran ismétlődő feladatok automatizálhatók megbízhatóságát, hatékonyságát és a szervezet hamarabb növelése érdekében.
 
-Azure Automation szolgáltatásbeli biztosít a magas rendelkezésre állású és nagymértékben megbízható munkafolyamat-végrehajtási motorjának, amely méretezi a igényeinek toomeet a szervezet növekedésének megfelelően. Az Azure Automationben folyamatok is lehet kezdődött el manuálisan, a 3. fél rendszerek vagy rendszeres időközönként, hogy a feladatok fordulhat elő, pontosan, ha szükséges.
+Azure Automation szolgáltatásbeli egy magas rendelkezésre állású és nagymértékben megbízható munkafolyamat-végrehajtási motorjának, amely az igényeinek, ha a szervezet növekedésének megfelelően méretezi biztosít. Az Azure Automationben folyamatok is lehet kezdődött el manuálisan, a 3. fél rendszerek vagy rendszeres időközönként, hogy a feladatok fordulhat elő, pontosan, ha szükséges.
 
-Működési munkaterhelés csökkentése és az szabadítson fel informatikai / DevOps személyzet toofocus munka, amely azáltal, hogy a felhő felügyeleti feladatok toobe üzleti értéket hozzáadja az Azure Automation automatikusan futtatásához.
+Működési munkaterhelés csökkentése és az szabadítson fel informatikai / azáltal, hogy a felhő felügyeleti feladatok automatikusan Azure Automation által futtatandó value DevOps személyzet üzleti hozzáadó munkahelyi összpontosíthat.
 
 ## <a name="how-can-azure-automation-help-manage-azure-cloud-services"></a>Hogyan segíthet az Azure Automation Azure cloud services kezelése?
-Azure felhőszolgáltatások által biztosított hello hello PowerShell-parancsmagok használatával kezelhető az Azure Automationben [Azure PowerShell eszközök](https://msdn.microsoft.com/library/azure/jj156055.aspx). Azure Automation a felhőalapú szolgáltatás PowerShell parancsmagok használatával elérhető hello kezdő verzióról rendelkezik, így végezhetők el a cloud service felügyeleti feladatok hello szolgáltatást. Ezeket a parancsmagokat az Azure Automationben más Azure-szolgáltatások, az összetett feladatok tooautomate hello-parancsmagjaival is párosítható az Azure-szolgáltatások és a 3. fél rendszerek között.
+Azure felhőszolgáltatások által biztosított PowerShell-parancsmagok használatával kezelhető az Azure Automationben a [Azure PowerShell eszközök](https://msdn.microsoft.com/library/azure/jj156055.aspx). Azure Automation a felhőalapú szolgáltatás PowerShell parancsmagok használatával elérhető alapesetben rendelkezik, így a felhőalapú szolgáltatás felügyeleti feladatokat a szolgáltatáson belül végezheti el. Ezek a parancsmagok az Azure Automationben más Azure-szolgáltatások, Azure-szolgáltatások és a 3. fél rendszerek között összetett feladatok automatizálása a parancsmagjaival is párosítható.
 
-Néhány példa az Azure felhőalapú szolgáltatások közé tartoznak az Azure Automation toomanage használ:
+Néhány példa használati Azure Automation Azure Cloud Services kezelése, többek között:
 
 * [Egy Felhőszolgáltatás, amikor az Azure Blob storage frissítése a szolgáltatáskonfigurációs séma vagy cspkg folyamatos telepítése](https://gallery.technet.microsoft.com/scriptcenter/Continuous-Deployment-of-A-eeebf3a6)
 * [A felhőalapú szolgáltatás példányok párhuzamosan, egyszerre több frissítési tartományt újraindítása](https://gallery.technet.microsoft.com/scriptcenter/Reboot-Cloud-Service-PaaS-b337a06d)
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy megismerte az Azure Automation, és hogyan lehet Azure felhőszolgáltatások használt toomanage hello alapjait, kövesse az alábbi hivatkozások toolearn Azure automatizálásával kapcsolatos további.
+Most, hogy megismerte az Azure Automation, és hogyan használat Azure cloud services kezelése alapjait, az alábbi hivatkozásokból tudhat meg többet az Azure Automation.
 
 * [Azure Automation – áttekintés](../automation/automation-intro.md)
 * [Az első runbookom](../automation/automation-first-runbook-graphical.md)

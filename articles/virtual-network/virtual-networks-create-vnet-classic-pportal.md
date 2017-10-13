@@ -1,6 +1,6 @@
 ---
-title: "a virtuális hálózat (klasszikus) használatával aaaCreate hello Azure portálon |} Microsoft Docs"
-description: "Ismerje meg, hogyan egy virtuális hálózat (klasszikus) használatával toocreate hello Azure-portálon."
+title: "Hozzon létre egy virtuális hálózatot (klasszikus) Azure portál használatával |} Microsoft Docs"
+description: "Megtudhatja, hogyan hozzon létre egy virtuális hálózatot (klasszikus) Azure portál használatával."
 services: virtual-network
 documentationcenter: 
 author: jimdial
@@ -15,20 +15,20 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
-ms.openlocfilehash: fe98fec59a280aef6ed25bef8ee06da9fe9b4699
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 50d3ff63123a9de0b6c5758761e638dd2977df79
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="create-a-virtual-network-classic-by-using-hello-azure-portal"></a>Hozzon létre egy virtuális hálózat (klasszikus) hello Azure-portál használatával
+# <a name="create-a-virtual-network-classic-by-using-the-azure-portal"></a>Virtuális hálózat létrehozása (klasszikus) Azure portál használatával
 [!INCLUDE [virtual-networks-create-vnet-selectors-classic-include](../../includes/virtual-networks-create-vnet-selectors-classic-include.md)]
 
 [!INCLUDE [virtual-networks-create-vnet-intro](../../includes/virtual-networks-create-vnet-intro-include.md)]
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-Ez a dokumentum ismerteti létre virtuális hálózatok hello klasszikus telepítési modell használatával. Emellett [hello Azure-portál használatával hozzon létre egy virtuális hálózati hello Resource Manager üzembe helyezési modellel](virtual-networks-create-vnet-arm-pportal.md).
+Ez a dokumentum ismerteti a virtuális hálózat létrehozása a klasszikus üzembe helyezési modell használatával. Emellett [virtuális hálózat létrehozása a Resource Manager üzembe helyezési modellben az Azure portál használatával](virtual-networks-create-vnet-arm-pportal.md).
 
 [!INCLUDE [virtual-networks-create-vnet-scenario-include](../../includes/virtual-networks-create-vnet-scenario-include.md)]
 

@@ -1,6 +1,6 @@
 ---
-title: "az OMS szolgáltatáshoz Nézettervező aaaPart referencia |} Microsoft Docs"
-description: "A Naplóelemzési Nézettervező lehetővé teszi a toocreate egyéni nézetek hello OMS hello OMS-tárházban található adatok különböző képi tartalmazó. Ez a cikk ismerteti a hello-beállítások az egyes hello képi megjelenítés részek elérhető toouse az egyéni nézetekben hivatkozást."
+title: "Hivatkozás része az adatforrásnézet-tervezőből az OMS szolgáltatáshoz |} Microsoft Docs"
+description: "A Naplóelemzési adatforrásnézet-tervezőből lehetővé teszi egyéni nézeteket hozhat létre, amelyek tartalmazzák az OMS-tárházban található adatok különböző képi OMS-konzolon. Ez a cikk ismerteti a beállítások az egyes a képi megjelenítés részeket is az egyéni nézetekben használható hivatkozást."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,179 +14,179 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: bwren
-ms.openlocfilehash: 6a19a451cf4cefd2fa5c94e6f61d812c4f820f73
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 40a6101576708936404447576d704a49666143fe
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="log-analytics-view-designer-visualization-part-reference"></a>Napló Analytics Nézettervező képi megjelenítés rész referencia
-hello Naplóelemzési Az adatforrásnézet-tervezőből toocreate egyéni nézetek hello OMS adattárból hello OMS adatok különböző képi tartalmazó lehetővé teszi. Ez a cikk ismerteti a hello-beállítások az egyes hello képi megjelenítés részek elérhető toouse az egyéni nézetekben hivatkozást.
+Az adatforrásnézet-tervezőből a Naplóelemzési lehetővé teszi egyéni nézeteket hozhat létre, amelyek tartalmazzák az OMS-tárházban lévő adatok különböző képi OMS-konzolon. Ez a cikk ismerteti a beállítások az egyes a képi megjelenítés részeket is az egyéni nézetekben használható hivatkozást.
 
 Az adatforrásnézet-tervezőből elérhető további cikkeit a következők:
 
-* [Megtekintheti a tervező](log-analytics-view-designer.md) -hello adatforrásnézet-tervezőből és eljárások létrehozásának és szerkesztésének egyéni nézetek áttekintése.
-* [Hivatkozás csempe](log-analytics-view-designer-tiles.md) -hivatkozás hello-beállítások az egyes hello tartalmazó csempék éppen úgy az egyéni nézetekben elérhető toouse.
+* [Megtekintheti a tervező](log-analytics-view-designer.md) -adatforrásnézet-tervezőből és létrehozásának és szerkesztésének egyéni nézetek eljárások áttekintését.
+* [Hivatkozás csempe](log-analytics-view-designer-tiles.md) -hivatkozás a beállítások az egyes a csempék, hogy az egyéni nézetek használható.
 
 >[!NOTE]
-> Ha a munkaterületet frissített toohello [új Log Analytics lekérdezési nyelv](log-analytics-log-search-upgrade.md), akkor minden nézetben lekérdezések úgy kell megírni, a hello [új lekérdezési nyelv](https://go.microsoft.com/fwlink/?linkid=856078).  Bármely hello munkaterület verziófrissítése előtt létrehozott nézetek lesz konvertálva automtically.
+> Ha a munkaterületet lett frissítve a [új Log Analytics lekérdezési nyelv](log-analytics-log-search-upgrade.md), akkor minden nézetben lekérdezések úgy kell megírni, a [új lekérdezési nyelv](https://go.microsoft.com/fwlink/?linkid=856078).  A munkaterület verziófrissítése előtt készült nézetekkel lesz automtically alakítja át.
 
-hello következő táblázat bemutatja hello különféle csempék hello adatforrásnézet-tervezőből érhető el.  hello az alábbi részekben csempe típusonként részletek és azok tulajdonságait.
+A következő táblázat ismerteti a különböző típusú csempe érhető el az adatforrásnézet-tervezőből.  Az alábbi részek ismertetik a csempe típusonként részletek és azok tulajdonságait.
 
 | A nézettípus | Leírás |
 |:--- |:--- |
-| [A lekérdezések listája](#list-of-queries-part) |A naplófájl-keresési lekérdezések listáját jeleníti meg.  hello felhasználó minden egyes lekérdezés toodisplay rákattinthat az eredményeket. |
-| [Lista és száma](#number-amp-list-part) |Fejléce egyetlen számú ábrázoló bejegyzések száma a napló keresési lekérdezés rendelkezik.  Lista hello felső tíz egy lekérdezés eredményeként előálló az egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének hello jelző grafikon jeleníti meg. |
-| [Két lista és számok](#two-numbers-amp-list-part) |Fejléce rendelkezik két szám megjelenítő érkező saját naplófájlt keresési lekérdezések száma.  Lista hello felső tíz egy lekérdezés eredményeként előálló az egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének hello jelző grafikon jeleníti meg. |
-| [Fánk & lista](#donut-amp-list-part) |Fejléc egy egyetlen napló lekérdezésben érték oszlop összesített számát jeleníti meg.  hello fánk grafikusan hello felső három rekordok eredményeit jeleníti meg. |
-| [Két lista és ütemtervek](#two-timelines-amp-list-part) |Egy érték oszlopból napló lekérdezésben fejléc megjelenítése hello egy megjelenítése egyetlen számnak kihívás az oszlopdiagramok idővel két naplófájl-lekérdezések eredményének foglalja össze.  Lista hello felső tíz egy lekérdezés eredményeként előálló az egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének hello jelző grafikon jeleníti meg. |
+| [A lekérdezések listája](#list-of-queries-part) |A naplófájl-keresési lekérdezések listáját jeleníti meg.  A felhasználó rákattinthat minden egyes lekérdezés az eredmények megtekintése céljából. |
+| [Lista és száma](#number-amp-list-part) |Fejléce egyetlen számú ábrázoló bejegyzések száma a napló keresési lekérdezés rendelkezik.  Lista egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének jelző grafikon az első tíz egy lekérdezés eredményeként előálló megjeleníti. |
+| [Két lista és számok](#two-numbers-amp-list-part) |Fejléce rendelkezik két szám megjelenítő érkező saját naplófájlt keresési lekérdezések száma.  Lista egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének jelző grafikon az első tíz egy lekérdezés eredményeként előálló megjeleníti. |
+| [Fánk & lista](#donut-amp-list-part) |Fejléc egy egyetlen napló lekérdezésben érték oszlop összesített számát jeleníti meg.  A fánk grafikusan felső három rekord eredményeit jeleníti meg. |
+| [Két lista és ütemtervek](#two-timelines-amp-list-part) |Egy kihívás, a napló lekérdezésben érték oszlop összesített egyetlen több megjelenítése a fejléc megjelenítése két naplófájl-lekérdezések eredményének oszlopdiagramok idővel.  Lista egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének jelző grafikon az első tíz egy lekérdezés eredményeként előálló megjeleníti. |
 | [Információ](#information-part) |Fejléc statikus szöveget és egy nem kötelező hivatkozást jeleníti meg.  Lista egy vagy több elem statikus szöveget és címét jeleníti meg. |
-| [Lista, és az vonaldiagram, a kihívás](#line-chart-callout-amp-list-part) |Fejléc egy grafikonon napló lekérdezésből több adatsorozattal időt és az összesített érték egy kihívás keresztül.  Lista hello felső tíz egy lekérdezés eredményeként előálló az egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének hello jelző grafikon jeleníti meg. |
-| [Lista és a vonaldiagram](#line-chart-amp-list-part) |Fejléc egy grafikonon napló lekérdezésből több adatsorozattal adott idő alatt.  Lista hello felső tíz egy lekérdezés eredményeként előálló az egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének hello jelző grafikon jeleníti meg. |
+| [Lista, és az vonaldiagram, a kihívás](#line-chart-callout-amp-list-part) |Fejléc egy grafikonon napló lekérdezésből több adatsorozattal időt és az összesített érték egy kihívás keresztül.  Lista egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének jelző grafikon az első tíz egy lekérdezés eredményeként előálló megjeleníti. |
+| [Lista és a vonaldiagram](#line-chart-amp-list-part) |Fejléc egy grafikonon napló lekérdezésből több adatsorozattal adott idő alatt.  Lista egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének jelző grafikon az első tíz egy lekérdezés eredményeként előálló megjeleníti. |
 | [Sor diagramok rész verem](#stack-of-line-charts-part) |Megjeleníti a napló lekérdezésből több sorozat három különálló vonaldiagramok adott idő alatt. |
 
 ## <a name="list-of-queries-part"></a>Lekérdezések rész listája
-A naplófájl-keresési lekérdezések listáját jeleníti meg.  hello felhasználó minden egyes lekérdezés toodisplay rákattinthat az eredményeket.  hello nézet alapértelmezés szerint egyetlen lekérdezést tartalmazza, és kattintson **+ lekérdezés** tooadd további lekérdezések.
+A naplófájl-keresési lekérdezések listáját jeleníti meg.  A felhasználó rákattinthat minden egyes lekérdezés az eredmények megtekintése céljából.  A nézet alapértelmezés szerint egyetlen lekérdezést tartalmazza, és kattintson **+ lekérdezés** további lekérdezések hozzáadni.
 
 ![Lekérdezések nézet listája](media/log-analytics-view-designer/view-list-queries.png)
 
 | Beállítás | Leírás |
 |:--- |:--- |
 | **Általános** | |
-| Cím |Szöveg toodisplay hello nézet hello tetején. |
-| Új csoport |Válassza ki a toocreate egy új csoportot az hello aktuális nézet kezdődő hello nézetben. |
-| Az előre kijelölt szűrők |Vesszővel elválasztott felsorolása tulajdonságok tooinclude hello szűrő bal oldali ablaktáblán, amikor hello felhasználó kiválaszt egy lekérdezést. |
-| Leképezési módban |Kezdeti nézet jelenik meg, ha a lekérdezés hello van kiválasztva.  hello felhasználó kiválaszthatja a rendelkezésre álló nézetek hello lekérdezés megnyitása után. |
+| Cím |A nézet tetején megjelenő szöveg. |
+| Új csoport |Válassza ki a nézetben az aktuális nézet kezdődő új csoport létrehozásához. |
+| Az előre kijelölt szűrők |Vesszővel tagolt lista a tulajdonságok közé tartoznak a szűrő bal oldali ablaktáblán, amikor a felhasználó kijelöl egy lekérdezést. |
+| Leképezési módban |Kezdeti nézet jelenik meg, ha a lekérdezés van kiválasztva.  A felhasználó kiválaszthatja a rendelkezésre álló nézetek után nyissa meg a lekérdezést. |
 | **Lekérdezések** | |
-| Keresési lekérdezés |Lekérdezés toorun. |
-| Rövid név |Hello lekérdezés toodisplay toohello felhasználói leíró neve. |
+| Keresési lekérdezés |A lekérdezés futtatásához. |
+| Rövid név |A lekérdezés a felhasználó számára megjelenített leíró neve. |
 
 ## <a name="number--list-part"></a>Lista és a szám része
-Fejléce egyetlen számú ábrázoló bejegyzések száma a napló keresési lekérdezés rendelkezik.  Lista hello felső tíz egy lekérdezés eredményeként előálló az egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének hello jelző grafikon jeleníti meg.
+Fejléce egyetlen számú ábrázoló bejegyzések száma a napló keresési lekérdezés rendelkezik.  Lista egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének jelző grafikon az első tíz egy lekérdezés eredményeként előálló megjeleníti.
 
 ![Lekérdezések nézet listája](media/log-analytics-view-designer/view-number-list.png)
 
 | Beállítás | Leírás |
 |:--- |:--- |
 | **Általános** | |
-| Csoport cím |Szöveg toodisplay hello nézet hello tetején. |
-| Új csoport |Válassza ki a toocreate egy új csoportot az hello aktuális nézet kezdődő hello nézetben. |
-| Ikon |Kép fájl toodisplay következő toohello eredmény hello fejlécben. |
-| Ikon használata |Válassza ki a toohave hello ikon megjelenítése. |
+| Csoport cím |A nézet tetején megjelenő szöveg. |
+| Új csoport |Válassza ki a nézetben az aktuális nézet kezdődő új csoport létrehozásához. |
+| Ikon |Mellett az eredmény a fejlécében megjelenítendő kép fájlt. |
+| Ikon használata |Válassza ki, szeretné, hogy a ikon megjelenítése. |
 | **Cím** | |
-| Jelmagyarázat |Szöveg toodisplay hello fejléc hello tetején. |
-| Lekérdezés |Lekérdezés toorun hello fejléc.  hello lekérdezés által visszaadott rekordok számát hello hello száma jelenik meg. |
+| Jelmagyarázat |A fejléc tetején megjelenő szöveg. |
+| Lekérdezés |A lekérdezés futtatásához be az igazítását.  A lekérdezés által visszaadott rekordok számát a száma jelenik meg. |
 | **Lista** | |
-| Lekérdezés |Lekérdezés toorun hello listáját.  első két tulajdonságainak hello hello első tíz eredmények jelennek hello rögzíti.  hello első tulajdonság szöveges érték, és hello második tulajdonság numerikus értéknek kell lennie.  Sávok automatikusan hello relatív hello numerikus oszlop értéke alapján hozzák létre.<br><br>Paranccsal hello rendezési rekordokban hello lekérdezés toosort hello hello listában.  hello felhasználói kattintva tekintse meg az összes toorun hello lekérdezéséhez és az összes rekordot ad vissza. |
-| Graph elrejtése |Válassza ki a toodisable hello graph toohello jobb oldalán hello numerikus oszlopot. |
-| Értékgörbéket engedélyezése |Válassza ki a toodisplay értékgörbe helyett sávot.  Lásd: [általános beállítások](#sparklines) részleteiről. |
-| Szín |Hello sávok vagy értékgörbéket színét. |
-| Név és érték elválasztó |Ha a kívánt tooparse hello text tulajdonságához több érték egyetlen karakter elválasztó.  Lásd: [általános beállítások](#name-value-separator) részleteiről. |
-| Navigációs lekérdezés |Toorun lekérdezik hello felhasználó kiválaszt egy elemet a hello listában.  Lásd: [általános beállítások](#navigation-query) részleteiről. |
+| Lekérdezés |A lekérdezés futtatásához a listát.  Az első két tulajdonságait az első tíz rögzíti az eredmények között megjelenik.  Az első tulajdonság egy szöveges értéket, a második tulajdonság numerikus értéknek kell lennie.  Sávok automatikusan numerikus oszlop relatív érték alapján hozzák létre.<br><br>A lekérdezés rendezési paranccsal rendezheti a rekordokat a listában.  A felhasználó a lekérdezés futtatásához és az összes rekordot ad vissza az összes lásd kattintással. |
+| Graph elrejtése |Válassza ki a diagram jobb oldalán a numerikus oszlopot letiltása. |
+| Értékgörbéket engedélyezése |Válassza ki a értékgörbe helyett vízszintes sáv megjelenítése.  Lásd: [általános beállítások](#sparklines) részleteiről. |
+| Szín |A klasszikus vagy értékgörbéket színét. |
+| Név és érték elválasztó |Elválasztó karaktert, ha text tulajdonságához értelmezhető több értéket szeretne.  Lásd: [általános beállítások](#name-value-separator) részleteiről. |
+| Navigációs lekérdezés |A lekérdezés a futtatást, ha a felhasználó kiválaszt egy elemet a listában.  Lásd: [általános beállítások](#navigation-query) részleteiről. |
 | **Lista** |**> Oszlopfejlécek** |
-| Név |Szöveg toodisplay hello hello listát első oszlopa hello tetején. |
-| Érték |Szöveg toodisplay hello lista hello második oszlopában hello tetején. |
+| Név |Az első oszlopban a lista tetején megjelenő szöveg. |
+| Érték |A második oszlopban a lista tetején megjelenő szöveg. |
 | **Lista** |**> Küszöbértékek** |
-| Küszöbértékek engedélyezése |Válassza ki a tooenable küszöbértékeket.  Lásd: [általános beállítások](#thresholds) részleteiről. |
+| Küszöbértékek engedélyezése |Válassza ki ahhoz, hogy küszöbértékeket.  Lásd: [általános beállítások](#thresholds) részleteiről. |
 
 ## <a name="two-numbers--list-part"></a>Két szám & a lista része
-Fejléce rendelkezik két szám megjelenítő érkező saját naplófájlt keresési lekérdezések száma.  Lista hello felső tíz egy lekérdezés eredményeként előálló az egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének hello jelző grafikon jeleníti meg.
+Fejléce rendelkezik két szám megjelenítő érkező saját naplófájlt keresési lekérdezések száma.  Lista egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének jelző grafikon az első tíz egy lekérdezés eredményeként előálló megjeleníti.
 
 ![Két szám & a listanézet](media/log-analytics-view-designer/view-two-numbers-list.png)
 
 | Beállítás | Leírás |
 |:--- |:--- |
 | **Általános** | |
-| Csoport cím |Szöveg toodisplay hello nézet hello tetején. |
-| Új csoport |Válassza ki a toocreate egy új csoportot az hello aktuális nézet kezdődő hello nézetben. |
-| Ikon |Kép fájl toodisplay következő toohello eredmény hello fejlécben. |
-| Ikon használata |Válassza ki a toohave hello ikon megjelenítése. |
+| Csoport cím |A nézet tetején megjelenő szöveg. |
+| Új csoport |Válassza ki a nézetben az aktuális nézet kezdődő új csoport létrehozásához. |
+| Ikon |Mellett az eredmény a fejlécében megjelenítendő kép fájlt. |
+| Ikon használata |Válassza ki, szeretné, hogy a ikon megjelenítése. |
 | **Cím** | |
-| Jelmagyarázat |Szöveg toodisplay hello fejléc hello tetején. |
-| Lekérdezés |Lekérdezés toorun hello fejléc.  hello lekérdezés által visszaadott rekordok számát hello hello száma jelenik meg. |
+| Jelmagyarázat |A fejléc tetején megjelenő szöveg. |
+| Lekérdezés |A lekérdezés futtatásához be az igazítását.  A lekérdezés által visszaadott rekordok számát a száma jelenik meg. |
 | **Lista** | |
-| Lekérdezés |Lekérdezés toorun hello listáját.  első két tulajdonságainak hello hello első tíz eredmények jelennek hello rögzíti.  hello első tulajdonság szöveges érték, és hello második tulajdonság numerikus értéknek kell lennie.  Sávok automatikusan hello relatív hello numerikus oszlop értéke alapján hozzák létre.<br><br>Paranccsal hello rendezési rekordokban hello lekérdezés toosort hello hello listában.  hello felhasználói kattintva tekintse meg az összes toorun hello lekérdezéséhez és az összes rekordot ad vissza. |
-| Graph elrejtése |Válassza ki a toodisable hello graph toohello jobb oldalán hello numerikus oszlopot. |
-| Értékgörbéket engedélyezése |Válassza ki a toodisplay értékgörbe helyett sávot.  Lásd: [általános beállítások](#sparklines) részleteiről. |
-| Szín |Hello sávok vagy értékgörbéket színét. |
-| Művelet |A hello értékgörbe tooperform műveletet.  Lásd: [általános beállítások](#sparklines) részleteiről. |
-| Név és érték elválasztó |Ha a kívánt tooparse hello text tulajdonságához több érték egyetlen karakter elválasztó.  Lásd: [általános beállítások](#name-value-separator) részleteiről. |
-| Navigációs lekérdezés |Toorun lekérdezik hello felhasználó kiválaszt egy elemet a hello listában.  Lásd: [általános beállítások](#navigation-query) részleteiről. |
+| Lekérdezés |A lekérdezés futtatásához a listát.  Az első két tulajdonságait az első tíz rögzíti az eredmények között megjelenik.  Az első tulajdonság egy szöveges értéket, a második tulajdonság numerikus értéknek kell lennie.  Sávok automatikusan numerikus oszlop relatív érték alapján hozzák létre.<br><br>A lekérdezés rendezési paranccsal rendezheti a rekordokat a listában.  A felhasználó a lekérdezés futtatásához és az összes rekordot ad vissza az összes lásd kattintással. |
+| Graph elrejtése |Válassza ki a diagram jobb oldalán a numerikus oszlopot letiltása. |
+| Értékgörbéket engedélyezése |Válassza ki a értékgörbe helyett vízszintes sáv megjelenítése.  Lásd: [általános beállítások](#sparklines) részleteiről. |
+| Szín |A klasszikus vagy értékgörbéket színét. |
+| Művelet |Az értékgörbe végrehajtani a műveletet.  Lásd: [általános beállítások](#sparklines) részleteiről. |
+| Név és érték elválasztó |Elválasztó karaktert, ha text tulajdonságához értelmezhető több értéket szeretne.  Lásd: [általános beállítások](#name-value-separator) részleteiről. |
+| Navigációs lekérdezés |A lekérdezés a futtatást, ha a felhasználó kiválaszt egy elemet a listában.  Lásd: [általános beállítások](#navigation-query) részleteiről. |
 | **Lista** |**> Oszlopfejlécek** |
-| Név |Szöveg toodisplay hello hello listát első oszlopa hello tetején. |
-| Érték |Szöveg toodisplay hello lista hello második oszlopában hello tetején. |
+| Név |Az első oszlopban a lista tetején megjelenő szöveg. |
+| Érték |A második oszlopban a lista tetején megjelenő szöveg. |
 | **Lista** |**> Küszöbértékek** |
-| Küszöbértékek engedélyezése |Válassza ki a tooenable küszöbértékeket.  Lásd: [általános beállítások](#thresholds) részleteiről. |
+| Küszöbértékek engedélyezése |Válassza ki ahhoz, hogy küszöbértékeket.  Lásd: [általános beállítások](#thresholds) részleteiről. |
 
 ## <a name="donut--list-part"></a>Lista és fánk része
-Fejléc egy egyetlen napló lekérdezésben érték oszlop összesített számát jeleníti meg.  hello fánk grafikusan hello felső három rekordok eredményeit jeleníti meg.
+Fejléc egy egyetlen napló lekérdezésben érték oszlop összesített számát jeleníti meg.  A fánk grafikusan felső három rekord eredményeit jeleníti meg.
 
 ![Fánk & lista megtekintése](media/log-analytics-view-designer/view-donut-list.png)
 
 | Beállítás | Leírás |
 |:--- |:--- |
 | **Általános** | |
-| Csoport cím |Szöveg toodisplay hello hello tetején csempére. |
-| Új csoport |Válassza ki a toocreate egy új csoportot az hello aktuális nézet kezdődő hello nézetben. |
-| Ikon |Kép fájl toodisplay következő toohello eredmény hello fejlécben. |
-| Ikon használata |Válassza ki a toohave hello ikon megjelenítése. |
+| Csoport cím |A csempe tetején megjelenő szöveg. |
+| Új csoport |Válassza ki a nézetben az aktuális nézet kezdődő új csoport létrehozásához. |
+| Ikon |Mellett az eredmény a fejlécében megjelenítendő kép fájlt. |
+| Ikon használata |Válassza ki, szeretné, hogy a ikon megjelenítése. |
 | **Fejléc** | |
-| Cím |Szöveg toodisplay hello fejléc hello tetején. |
-| Felirat |Szöveg toodisplay hello cím hello felső hello fejléc alatt. |
+| Cím |A fejléc tetején megjelenő szöveg. |
+| Felirat |A fejléc tetején a címben megjelenítendő szöveg. |
 | **Fánk** | |
-| Lekérdezés |Lekérdezés toorun hello fánk a.  hello első tulajdonság szöveges érték, és hello második tulajdonság numerikus értéknek kell lennie. |
+| Lekérdezés |Futtassa a fánk a lekérdezést.  Az első tulajdonság egy szöveges értéket, a második tulajdonság numerikus értéknek kell lennie. |
 | **Fánk** |**> Center** |
-| Szöveg |Szöveg toodisplay alatt hello fánk hello értéket. |
-| Művelet |hello művelet tooperform hello érték tulajdonság toosummarize tooa egyetlen értékét.<br><br>-Összeg: Hello értékek összes rekordok hozzáadásához.<br>-Százalékos: Hello értékek által visszaadott hello rekordok százaléka **center művelet során használt értékek eredménye** toohello összes rekord száma hello lekérdezésben. |
-| Center művelet során használt eredményt értékek |Opcionálisan kattintson hello pluszjel tooadd egy vagy több értéket.  hello lekérdezési eredmények hello lesz korlátozott toorecords értékekkel hello tulajdonság.  Ha nincs érték ad hozzá, majd az összes rekord szerepelnek hello lekérdezés. |
+| Szöveg |A fánk értéket alatt megjelenő szöveg. |
+| Művelet |A value tulajdonság egyetlen értéket az összesítendő végrehajtani a műveletet.<br><br>-Összeg: Vegye fel az összes rekord értékeit.<br>-Százalékos: Százalékos értékének által visszaadott rekord **center művelet során használt értékek eredménye** a teljes rekordok a lekérdezésben. |
+| Center művelet során használt eredményt értékek |Opcionálisan kattintson a plusz jelre hozzáadása egy vagy több értéket.  A lekérdezés eredményeit rögzíti a megadott tulajdonságértéket korlátozódik.  Ha nincs érték ad hozzá, majd az összes rekord szerepelnek a lekérdezés. |
 | **További beállítások** |**> Színek** |
-| Szín 1<br>Szín 2<br>Szín 3 |Válassza ki a hello minden hello fánk megjelenő hello értékek hello színét. |
+| Szín 1<br>Szín 2<br>Szín 3 |Minden, a fánk a megjelenített értékek színének kiválasztása. |
 | **További beállítások** |**> Speciális szín leképezése** |
-| Mezőérték |A mező toodisplay hello nevét azt egy másik színét, ha hello fánk szerepel. |
-| Szín |Válassza ki a hello egyedi mező hello színét. |
+| Mezőérték |Írja be azt egy másik színt formátumban jeleníti meg, ha a fánk megtalálható mező. |
+| Szín |Jelölje ki az egyedi mező színét. |
 | **Lista** | |
-| Lekérdezés |Lekérdezés toorun hello listáját.  hello lekérdezés által visszaadott rekordok számát hello hello száma jelenik meg. |
-| Graph elrejtése |Válassza ki a toodisable hello graph toohello jobb oldalán hello numerikus oszlopot. |
-| Értékgörbéket engedélyezése |Válassza ki a toodisplay értékgörbe helyett sávot.  Lásd: [általános beállítások](#sparklines) részleteiről. |
-| Szín |Hello sávok vagy értékgörbéket színét. |
-| Művelet |A hello értékgörbe tooperform műveletet.  Lásd: [általános beállítások](#sparklines) részleteiről. |
-| Név és érték elválasztó |Ha a kívánt tooparse hello text tulajdonságához több érték egyetlen karakter elválasztó.  Lásd: [általános beállítások](#name-value-separator) részleteiről. |
-| Navigációs lekérdezés |Toorun lekérdezik hello felhasználó kiválaszt egy elemet a hello listában.  Lásd: [általános beállítások](#navigation-query) részleteiről. |
+| Lekérdezés |A lekérdezés futtatásához a listát.  A lekérdezés által visszaadott rekordok számát a száma jelenik meg. |
+| Graph elrejtése |Válassza ki a diagram jobb oldalán a numerikus oszlopot letiltása. |
+| Értékgörbéket engedélyezése |Válassza ki a értékgörbe helyett vízszintes sáv megjelenítése.  Lásd: [általános beállítások](#sparklines) részleteiről. |
+| Szín |A klasszikus vagy értékgörbéket színét. |
+| Művelet |Az értékgörbe végrehajtani a műveletet.  Lásd: [általános beállítások](#sparklines) részleteiről. |
+| Név és érték elválasztó |Elválasztó karaktert, ha text tulajdonságához értelmezhető több értéket szeretne.  Lásd: [általános beállítások](#name-value-separator) részleteiről. |
+| Navigációs lekérdezés |A lekérdezés a futtatást, ha a felhasználó kiválaszt egy elemet a listában.  Lásd: [általános beállítások](#navigation-query) részleteiről. |
 | **Lista** |**> Oszlopfejlécek** |
-| Név |Szöveg toodisplay hello hello listát első oszlopa hello tetején. |
-| Érték |Szöveg toodisplay hello lista hello második oszlopában hello tetején. |
+| Név |Az első oszlopban a lista tetején megjelenő szöveg. |
+| Érték |A második oszlopban a lista tetején megjelenő szöveg. |
 | **Lista** |**> Küszöbértékek** |
-| Küszöbértékek engedélyezése |Válassza ki a tooenable küszöbértékeket.  Lásd: [általános beállítások](#thresholds) részleteiről. |
+| Küszöbértékek engedélyezése |Válassza ki ahhoz, hogy küszöbértékeket.  Lásd: [általános beállítások](#thresholds) részleteiről. |
 
 ## <a name="two-timelines--list-part"></a>Két lista és ütemtervek része
-Egy érték oszlopból napló lekérdezésben fejléc megjelenítése hello egy megjelenítése egyetlen számnak kihívás az oszlopdiagramok idővel két naplófájl-lekérdezések eredményének foglalja össze.  Lista hello felső tíz egy lekérdezés eredményeként előálló az egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének hello jelző grafikon jeleníti meg.
+Egy kihívás, a napló lekérdezésben érték oszlop összesített egyetlen több megjelenítése a fejléc megjelenítése két naplófájl-lekérdezések eredményének oszlopdiagramok idővel.  Lista egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének jelző grafikon az első tíz egy lekérdezés eredményeként előálló megjeleníti.
 
 ![Két ütemtervek & lista megtekintése](media/log-analytics-view-designer/view-two-timelines-list.png)
 
 | Beállítás | Leírás |
 |:--- |:--- |
 | **Általános** | |
-| Csoport cím |Szöveg toodisplay hello hello tetején csempére. |
-| Új csoport |Válassza ki a toocreate egy új csoportot az hello aktuális nézet kezdődő hello nézetben. |
-| Ikon |Kép fájl toodisplay következő toohello eredmény hello fejlécben. |
-| Ikon használata |Válassza ki a toohave hello ikon megjelenítése. |
+| Csoport cím |A csempe tetején megjelenő szöveg. |
+| Új csoport |Válassza ki a nézetben az aktuális nézet kezdődő új csoport létrehozásához. |
+| Ikon |Mellett az eredmény a fejlécében megjelenítendő kép fájlt. |
+| Ikon használata |Válassza ki, szeretné, hogy a ikon megjelenítése. |
 | **Először diagram<br>második diagram** | |
-| Jelmagyarázat |Szöveg toodisplay hello kihívás hello első sorozata alapján. |
-| Szín |Hello oszlopokhoz hello sorozat toouse színét. |
-| Lekérdezés |Lekérdezés toorun hello első adatsorozathoz.  hello számát hello rekordok időbeli minden időközhöz hello diagram oszlop szerint fog megjelenni. |
-| Művelet |hello művelet tooperform hello érték toosummarize tooa egyetlen tulajdonságértéket hello kihívás a.<br><br>– Összeg: Az összes rekord hello értéket összege.<br>-Átlagos: Az összes rekord hello értéket átlaga.<br>-Utolsó minta: Hello utolsó időköze hello diagram szereplő értéket.<br>-Első minta: Hello első intervallum hello diagram szereplő értéket.<br>-Számláló: Hello lekérdezés által visszaadott összes rekord száma. |
+| Jelmagyarázat |Az első adatsorozathoz kihívás alatt megjelenő szöveg. |
+| Szín |Az adatsorozatban szereplő oszlopok használandó szín. |
+| Lekérdezés |A lekérdezés futtatásához az első adatsorozathoz.  A diagram oszlopokat meghatározott keresztül minden időközhöz rekordok száma. |
+| Művelet |A value tulajdonság egyetlen értéket a kihívás az összesítendő végrehajtani a műveletet.<br><br>-Összeg: Az értéket az összes rekord összege.<br>-Átlagos: Az értéket az összes rekord átlaga.<br>-Utolsó minta: Az utolsó időköze a diagramban szereplő értéket.<br>-Első minta: Az első intervallum a diagramban szereplő értéket.<br>-Szám: A lekérdezés által visszaadott összes rekord száma. |
 | **Lista** | |
-| Lekérdezés |Lekérdezés toorun hello listáját.  hello lekérdezés által visszaadott rekordok számát hello hello száma jelenik meg. |
-| Graph elrejtése |Válassza ki a toodisable hello graph toohello jobb oldalán hello numerikus oszlopot. |
-| Értékgörbéket engedélyezése |Válassza ki a toodisplay értékgörbe helyett sávot.  Lásd: [általános beállítások](#sparklines) részleteiről. |
-| Szín |Hello sávok vagy értékgörbéket színét. |
-| Művelet |A hello értékgörbe tooperform műveletet.  Lásd: [általános beállítások](#sparklines) részleteiről. |
-| Navigációs lekérdezés |Toorun lekérdezik hello felhasználó kiválaszt egy elemet a hello listában.  Lásd: [általános beállítások](#navigation-query) részleteiről. |
+| Lekérdezés |A lekérdezés futtatásához a listát.  A lekérdezés által visszaadott rekordok számát a száma jelenik meg. |
+| Graph elrejtése |Válassza ki a diagram jobb oldalán a numerikus oszlopot letiltása. |
+| Értékgörbéket engedélyezése |Válassza ki a értékgörbe helyett vízszintes sáv megjelenítése.  Lásd: [általános beállítások](#sparklines) részleteiről. |
+| Szín |A klasszikus vagy értékgörbéket színét. |
+| Művelet |Az értékgörbe végrehajtani a műveletet.  Lásd: [általános beállítások](#sparklines) részleteiről. |
+| Navigációs lekérdezés |A lekérdezés a futtatást, ha a felhasználó kiválaszt egy elemet a listában.  Lásd: [általános beállítások](#navigation-query) részleteiről. |
 | **Lista** |**> Oszlopfejlécek** |
-| Név |Szöveg toodisplay hello hello listát első oszlopa hello tetején. |
-| Érték |Szöveg toodisplay hello lista hello második oszlopában hello tetején. |
+| Név |Az első oszlopban a lista tetején megjelenő szöveg. |
+| Érték |A második oszlopban a lista tetején megjelenő szöveg. |
 | **Lista** |**> Küszöbértékek** |
-| Küszöbértékek engedélyezése |Válassza ki a tooenable küszöbértékeket.  Lásd: [általános beállítások](#thresholds) részleteiről. |
+| Küszöbértékek engedélyezése |Válassza ki ahhoz, hogy küszöbértékeket.  Lásd: [általános beállítások](#thresholds) részleteiről. |
 
 ## <a name="information-part"></a>Információkat
 Fejléc statikus szöveget és egy nem kötelező hivatkozást jeleníti meg.  Lista egy vagy több elem statikus szöveget és címét jeleníti meg.
@@ -196,92 +196,92 @@ Fejléc statikus szöveget és egy nem kötelező hivatkozást jeleníti meg.  L
 | Beállítás | Leírás |
 |:--- |:--- |
 | **Általános** | |
-| Csoport cím |Szöveg toodisplay hello hello tetején csempére. |
-| Új csoport |Válassza ki a toocreate egy új csoportot az hello aktuális nézet kezdődő hello nézetben. |
-| Szín |Hello fejléc háttérszínét. |
+| Csoport cím |A csempe tetején megjelenő szöveg. |
+| Új csoport |Válassza ki a nézetben az aktuális nézet kezdődő új csoport létrehozásához. |
+| Szín |A fejléc háttérszínét. |
 | **Fejléc** | |
-| Kép |Kép fájl toodisplay hello fejlécben. |
-| Címke |Szöveg toodisplay hello fejlécben. |
+| Kép |A fejlécében megjelenítendő kép fájlt. |
+| Címke |A fejlécben megjelenő szöveg. |
 | **Fejléc** |**> Hivatkozás** |
 | Címke |Hivatkozás szövege. |
 | URL-cím |Hivatkozás URL-címe. |
 | **Elemek** | |
-| Cím |Az egyes elemek cím toodisplay szöveg. |
-| Tartalom |Szöveg toodisplay minden elemhez. |
+| Cím |Az egyes elemek címben megjelenítendő szöveg. |
+| Tartalom |Minden elemhez megjelenő szöveg. |
 
 ## <a name="line-chart-callout--list-part"></a>Vonaldiagram, kihívás & lista része
-Fejléc egy grafikonon napló lekérdezésből több adatsorozattal időt és az összesített érték egy kihívás keresztül.  Lista hello felső tíz egy lekérdezés eredményeként előálló az egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének hello jelző grafikon jeleníti meg.
+Fejléc egy grafikonon napló lekérdezésből több adatsorozattal időt és az összesített érték egy kihívás keresztül.  Lista egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének jelző grafikon az első tíz egy lekérdezés eredményeként előálló megjeleníti.
 
 ![Vonaldiagram, kihívás & listanézet](media/log-analytics-view-designer/view-line-chart-callout-list.png)
 
 | Beállítás | Leírás |
 |:--- |:--- |
 | **Általános** | |
-| Csoport cím |Szöveg toodisplay hello hello tetején csempére. |
-| Új csoport |Válassza ki a toocreate egy új csoportot az hello aktuális nézet kezdődő hello nézetben. |
-| Ikon |Kép fájl toodisplay következő toohello eredmény hello fejlécben. |
-| Ikon használata |Válassza ki a toohave hello ikon megjelenítése. |
+| Csoport cím |A csempe tetején megjelenő szöveg. |
+| Új csoport |Válassza ki a nézetben az aktuális nézet kezdődő új csoport létrehozásához. |
+| Ikon |Mellett az eredmény a fejlécében megjelenítendő kép fájlt. |
+| Ikon használata |Válassza ki, szeretné, hogy a ikon megjelenítése. |
 | **Fejléc** | |
-| Cím |Szöveg toodisplay hello fejléc hello tetején. |
-| Felirat |Szöveg toodisplay hello cím hello felső hello fejléc alatt. |
+| Cím |A fejléc tetején megjelenő szöveg. |
+| Felirat |A fejléc tetején a címben megjelenítendő szöveg. |
 | **Vonaldiagram** | |
-| Lekérdezés |Lekérdezés toorun hello sor a diagramon.  hello első tulajdonság szöveges érték, és hello második tulajdonság numerikus értéknek kell lennie.  Ez általában az hello használó lekérdezések **mérték** kulcsszó toosummarize eredmények.  Ha hello lekérdezés használ hello **időköz** kulcsszót, majd hello hello diagram x tengelyéhez fogja használni az adott időszakban.  Ha hello lekérdezés nem tartalmazza a hello **időköz** kulcsszót, majd óránként intervallumok használt x tengely hello. |
+| Lekérdezés |A lekérdezés a vonaldiagram fussanak.  Az első tulajdonság egy szöveges értéket, a második tulajdonság numerikus értéknek kell lennie.  Ez általában az a lekérdezés, amely használja a **mérték** , hogy összesítse a eredmények kulcsszó.  Ha a lekérdezés használ a **időköz** kulcsszót, majd az x tengely a diagram fogja használni az adott időszakban.  Ha a lekérdezés nem tartalmazza a **időköz** kulcsszót, majd óránként intervallumok x tengelyéhez szolgálnak. |
 | **Vonaldiagram** |**> Kihívás** |
-| Kihívás cím |Szöveg toodisplay hello kihívás érték felett. |
-| Az adatsorozat neve |Hello adatsorozat toouse hello kihívás értékhez tulajdonság értéke.  Adatsorozatok valósul meg, ha minden hello lekérdezésből rekordjai. |
-| Művelet |hello művelet tooperform hello érték toosummarize tooa egyetlen tulajdonságértéket hello kihívás a.<br><br>-Átlagos: Az összes rekord hello értéket átlaga.<br>-Hello lekérdezés által visszaadott összes rekord száma száma.<br>-Utolsó minta: Hello utolsó időköze hello diagram szereplő értéket.<br>-Maximális: Hello diagram szereplő hello időközök maximális értéket.<br>-Min: Hello diagram szereplő hello időszakok közül a minimális érték.<br>– Összeg: Az összes rekord hello értéket összege. |
+| Kihívás cím |A képfelirat érték felett megjelenő szöveg. |
+| Az adatsorozat neve |A képfelirat érték használandó adatsorozat tulajdonság értéke.  Adatsorozatok valósul meg, ha a lekérdezés összes rekordot szolgálnak. |
+| Művelet |A value tulajdonság egyetlen értéket a kihívás az összesítendő végrehajtani a műveletet.<br><br>-Átlagos: Az értéket az összes rekord átlaga.<br>-A lekérdezés által visszaadott összes rekord száma száma.<br>-Utolsó minta: Az utolsó időköze a diagramban szereplő értéket.<br>-Maximális: A diagramban szereplő időszakok közül a maximális érték.<br>-Min: A diagramban szereplő időszakok közül a minimális érték.<br>-Összeg: Az értéket az összes rekord összege. |
 | **Vonaldiagram** |**> Y tengely** |
-| A Logaritmikus skála használata |Válassza ki a toouse hello y tengely a Logaritmikus skála. |
-| egység |Hello lekérdezés által visszaadott hello értékek hello egységeket adjon meg.  Ez az információ használt toodisplay címkék hello értéktípusok jelző hello diagram és opcionálisan hello értékek alakításának.  hello egységtípus hello egység hello kategória határozza meg, és elérhető aktuális egységtípus értékek hello határozza meg.  Ha kiválaszthat egy értéket a Convert toothen hello numerikus értékek hello aktuális egység típus toohello Convert tootype konvertálja. |
-| Egyéni felirat |Szöveg toodisplay hello Y tengely következő toohello címke hello egység típushoz.  Ha nincs címke van megadva, akkor csak a hello egységtípus jelenik meg. |
+| A Logaritmikus skála használata |A Logaritmikus skála tengely használata mellett dönt. |
+| egység |Adja meg a lekérdezés által visszaadott értékek használt mértékegységet.  Ezt az információt a diagram, amely jelzi, az értéktípusokat és opcionálisan az értékek alakításának feliratok megjelenítéséhez használatos.  Egységtípus egység kategória határozza meg, és határozza meg az elérhető aktuális egységtípus értékek.  Ha az érték átalakítása, majd a numerikus érték az aktuális egységtípus alakulnak típusúra átalakítása. |
+| Egyéni felirat |Az Y tengely egységtípus felirat mellett megjelenő szöveg.  Ha nincs címke van megadva, akkor csak a egységtípus jelenik meg. |
 | **Lista** | |
-| Lekérdezés |Lekérdezés toorun hello listáját.  hello lekérdezés által visszaadott rekordok számát hello hello száma jelenik meg. |
-| Graph elrejtése |Válassza ki a toodisable hello graph toohello jobb oldalán hello numerikus oszlopot. |
-| Értékgörbéket engedélyezése |Válassza ki a toodisplay értékgörbe helyett sávot.  Lásd: [általános beállítások](#sparklines) részleteiről. |
-| Szín |Hello sávok vagy értékgörbéket színét. |
-| Művelet |A hello értékgörbe tooperform műveletet.  Lásd: [általános beállítások](#sparklines) részleteiről. |
-| Név és érték elválasztó |Ha a kívánt tooparse hello text tulajdonságához több érték egyetlen karakter elválasztó.  Lásd: [általános beállítások](#name-value-separator) részleteiről. |
-| Navigációs lekérdezés |Toorun lekérdezik hello felhasználó kiválaszt egy elemet a hello listában.  Lásd: [általános beállítások](#navigation-query) részleteiről. |
+| Lekérdezés |A lekérdezés futtatásához a listát.  A lekérdezés által visszaadott rekordok számát a száma jelenik meg. |
+| Graph elrejtése |Válassza ki a diagram jobb oldalán a numerikus oszlopot letiltása. |
+| Értékgörbéket engedélyezése |Válassza ki a értékgörbe helyett vízszintes sáv megjelenítése.  Lásd: [általános beállítások](#sparklines) részleteiről. |
+| Szín |A klasszikus vagy értékgörbéket színét. |
+| Művelet |Az értékgörbe végrehajtani a műveletet.  Lásd: [általános beállítások](#sparklines) részleteiről. |
+| Név és érték elválasztó |Elválasztó karaktert, ha text tulajdonságához értelmezhető több értéket szeretne.  Lásd: [általános beállítások](#name-value-separator) részleteiről. |
+| Navigációs lekérdezés |A lekérdezés a futtatást, ha a felhasználó kiválaszt egy elemet a listában.  Lásd: [általános beállítások](#navigation-query) részleteiről. |
 | **Lista** |**> Oszlopfejlécek** |
-| Név |Szöveg toodisplay hello hello listát első oszlopa hello tetején. |
-| Érték |Szöveg toodisplay hello lista hello második oszlopában hello tetején. |
+| Név |Az első oszlopban a lista tetején megjelenő szöveg. |
+| Érték |A második oszlopban a lista tetején megjelenő szöveg. |
 | **Lista** |**> Küszöbértékek** |
-| Küszöbértékek engedélyezése |Válassza ki a tooenable küszöbértékeket.  Lásd: [általános beállítások](#thresholds) részleteiről. |
+| Küszöbértékek engedélyezése |Válassza ki ahhoz, hogy küszöbértékeket.  Lásd: [általános beállítások](#thresholds) részleteiről. |
 
 ## <a name="line-chart--list-part"></a>Sor lista és a diagram része
-Fejléc egy grafikonon napló lekérdezésből több adatsorozattal adott idő alatt.  Lista hello felső tíz egy lekérdezés eredményeként előálló az egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének hello jelző grafikon jeleníti meg.
+Fejléc egy grafikonon napló lekérdezésből több adatsorozattal adott idő alatt.  Lista egy numerikus oszlopot vagy adott idő alatt a módosítás relatív értékének jelző grafikon az első tíz egy lekérdezés eredményeként előálló megjeleníti.
 
 ![Sor lista és a diagram nézet](media/log-analytics-view-designer/view-line-chart-callout-list.png)
 
 | Beállítás | Leírás |
 |:--- |:--- |
 | **Általános** | |
-| Csoport cím |Szöveg toodisplay hello hello tetején csempére. |
-| Új csoport |Válassza ki a toocreate egy új csoportot az hello aktuális nézet kezdődő hello nézetben. |
-| Ikon |Kép fájl toodisplay következő toohello eredmény hello fejlécben. |
-| Ikon használata |Válassza ki a toohave hello ikon megjelenítése. |
+| Csoport cím |A csempe tetején megjelenő szöveg. |
+| Új csoport |Válassza ki a nézetben az aktuális nézet kezdődő új csoport létrehozásához. |
+| Ikon |Mellett az eredmény a fejlécében megjelenítendő kép fájlt. |
+| Ikon használata |Válassza ki, szeretné, hogy a ikon megjelenítése. |
 | **Fejléc** | |
-| Cím |Szöveg toodisplay hello fejléc hello tetején. |
-| Felirat |Szöveg toodisplay hello cím hello felső hello fejléc alatt. |
+| Cím |A fejléc tetején megjelenő szöveg. |
+| Felirat |A fejléc tetején a címben megjelenítendő szöveg. |
 | **Vonaldiagram** | |
-| Lekérdezés |Lekérdezés toorun hello sor a diagramon.  hello első tulajdonság szöveges érték, és hello második tulajdonság numerikus értéknek kell lennie.  Ez általában az hello használó lekérdezések **mérték** kulcsszó toosummarize eredmények.  Ha hello lekérdezés használ hello **időköz** kulcsszót, majd hello hello diagram x tengelyéhez fogja használni az adott időszakban.  Ha hello lekérdezés nem tartalmazza a hello **időköz** kulcsszót, majd óránként intervallumok használt x tengely hello. |
+| Lekérdezés |A lekérdezés a vonaldiagram fussanak.  Az első tulajdonság egy szöveges értéket, a második tulajdonság numerikus értéknek kell lennie.  Ez általában az a lekérdezés, amely használja a **mérték** , hogy összesítse a eredmények kulcsszó.  Ha a lekérdezés használ a **időköz** kulcsszót, majd az x tengely a diagram fogja használni az adott időszakban.  Ha a lekérdezés nem tartalmazza a **időköz** kulcsszót, majd óránként intervallumok x tengelyéhez szolgálnak. |
 | **Vonaldiagram** |**> Y tengely** |
-| A Logaritmikus skála használata |Válassza ki a toouse hello y tengely a Logaritmikus skála. |
-| egység |Hello lekérdezés által visszaadott hello értékek hello egységeket adjon meg.  Ez az információ használt toodisplay címkék hello értéktípusok jelző hello diagram és opcionálisan hello értékek alakításának.  hello egységtípus hello egység hello kategória határozza meg, és elérhető aktuális egységtípus értékek hello határozza meg.  Ha kiválaszthat egy értéket a Convert toothen hello numerikus értékek hello aktuális egység típus toohello Convert tootype konvertálja. |
-| Egyéni felirat |Szöveg toodisplay hello Y tengely következő toohello címke hello egység típushoz.  Ha nincs címke van megadva, akkor csak a hello egységtípus jelenik meg. |
+| A Logaritmikus skála használata |A Logaritmikus skála tengely használata mellett dönt. |
+| egység |Adja meg a lekérdezés által visszaadott értékek használt mértékegységet.  Ezt az információt a diagram, amely jelzi, az értéktípusokat és opcionálisan az értékek alakításának feliratok megjelenítéséhez használatos.  Egységtípus egység kategória határozza meg, és határozza meg az elérhető aktuális egységtípus értékek.  Ha az érték átalakítása, majd a numerikus érték az aktuális egységtípus alakulnak típusúra átalakítása. |
+| Egyéni felirat |Az Y tengely egységtípus felirat mellett megjelenő szöveg.  Ha nincs címke van megadva, akkor csak a egységtípus jelenik meg. |
 | **Lista** | |
-| Lekérdezés |Lekérdezés toorun hello listáját.  hello lekérdezés által visszaadott rekordok számát hello hello száma jelenik meg. |
-| Graph elrejtése |Válassza ki a toodisable hello graph toohello jobb oldalán hello numerikus oszlopot. |
-| Értékgörbéket engedélyezése |Válassza ki a toodisplay értékgörbe helyett sávot.  Lásd: [általános beállítások](#sparklines) részleteiről. |
-| Szín |Hello sávok vagy értékgörbéket színét. |
-| Művelet |A hello értékgörbe tooperform műveletet.  Lásd: [általános beállítások](#sparklines) részleteiről. |
-| Név és érték elválasztó |Ha a kívánt tooparse hello text tulajdonságához több érték egyetlen karakter elválasztó.  Lásd: [általános beállítások](#name-value-separator) részleteiről. |
-| Navigációs lekérdezés |Toorun lekérdezik hello felhasználó kiválaszt egy elemet a hello listában.  Lásd: [általános beállítások](#navigation-query) részleteiről. |
+| Lekérdezés |A lekérdezés futtatásához a listát.  A lekérdezés által visszaadott rekordok számát a száma jelenik meg. |
+| Graph elrejtése |Válassza ki a diagram jobb oldalán a numerikus oszlopot letiltása. |
+| Értékgörbéket engedélyezése |Válassza ki a értékgörbe helyett vízszintes sáv megjelenítése.  Lásd: [általános beállítások](#sparklines) részleteiről. |
+| Szín |A klasszikus vagy értékgörbéket színét. |
+| Művelet |Az értékgörbe végrehajtani a műveletet.  Lásd: [általános beállítások](#sparklines) részleteiről. |
+| Név és érték elválasztó |Elválasztó karaktert, ha text tulajdonságához értelmezhető több értéket szeretne.  Lásd: [általános beállítások](#name-value-separator) részleteiről. |
+| Navigációs lekérdezés |A lekérdezés a futtatást, ha a felhasználó kiválaszt egy elemet a listában.  Lásd: [általános beállítások](#navigation-query) részleteiről. |
 | **Lista** |**> Oszlopfejlécek** |
-| Név |Szöveg toodisplay hello hello listát első oszlopa hello tetején. |
-| Érték |Szöveg toodisplay hello lista hello második oszlopában hello tetején. |
+| Név |Az első oszlopban a lista tetején megjelenő szöveg. |
+| Érték |A második oszlopban a lista tetején megjelenő szöveg. |
 | **Lista** |**> Küszöbértékek** |
-| Küszöbértékek engedélyezése |Válassza ki a tooenable küszöbértékeket.  Lásd: [általános beállítások](#thresholds) részleteiről. |
+| Küszöbértékek engedélyezése |Válassza ki ahhoz, hogy küszöbértékeket.  Lásd: [általános beállítások](#thresholds) részleteiről. |
 
 ## <a name="stack-of-line-charts-part"></a>Sor diagramok rész verem
 Megjeleníti a napló lekérdezésből több sorozat három különálló vonaldiagramok adott idő alatt.
@@ -291,57 +291,57 @@ Megjeleníti a napló lekérdezésből több sorozat három különálló vonald
 | Beállítás | Leírás |
 |:--- |:--- |
 | **Általános** | |
-| Csoport cím |Szöveg toodisplay hello hello tetején csempére. |
-| Új csoport |Válassza ki a toocreate egy új csoportot az hello aktuális nézet kezdődő hello nézetben. |
-| Ikon |Kép fájl toodisplay következő toohello eredmény hello fejlécben. |
+| Csoport cím |A csempe tetején megjelenő szöveg. |
+| Új csoport |Válassza ki a nézetben az aktuális nézet kezdődő új csoport létrehozásához. |
+| Ikon |Mellett az eredmény a fejlécében megjelenítendő kép fájlt. |
 | **Diagram – 1<br>2 diagram<br>3 diagram** |**> Fejléc** |
-| Cím |Szöveg toodisplay hello diagram hello tetején. |
-| Felirat |Szöveg toodisplay hello hello diagram hello tetején cím alatt. |
+| Cím |A diagram tetején megjelenő szöveg. |
+| Felirat |A diagram tetején a címben megjelenítendő szöveg. |
 | **Diagram – 1<br>2 diagram<br>3 diagram** |**Vonaldiagram** |
-| Lekérdezés |Lekérdezés toorun hello sor a diagramon.  hello első tulajdonság szöveges érték, és hello második tulajdonság numerikus értéknek kell lennie.  Ez általában az hello használó lekérdezések **mérték** kulcsszó toosummarize eredmények.  Ha hello lekérdezés használ hello **időköz** kulcsszót, majd hello hello diagram x tengelyéhez fogja használni az adott időszakban.  Ha hello lekérdezés nem tartalmazza a hello **időköz** kulcsszót, majd óránként intervallumok használt x tengely hello. |
+| Lekérdezés |A lekérdezés a vonaldiagram fussanak.  Az első tulajdonság egy szöveges értéket, a második tulajdonság numerikus értéknek kell lennie.  Ez általában az a lekérdezés, amely használja a **mérték** , hogy összesítse a eredmények kulcsszó.  Ha a lekérdezés használ a **időköz** kulcsszót, majd az x tengely a diagram fogja használni az adott időszakban.  Ha a lekérdezés nem tartalmazza a **időköz** kulcsszót, majd óránként intervallumok x tengelyéhez szolgálnak. |
 | **A diagram** |**> Y tengely** |
-| A Logaritmikus skála használata |Válassza ki a toouse hello y tengely a Logaritmikus skála. |
-| egység |Hello lekérdezés által visszaadott hello értékek hello egységeket adjon meg.  Ez az információ használt toodisplay címkék hello értéktípusok jelző hello diagram és opcionálisan hello értékek alakításának.  hello egységtípus hello egység hello kategória határozza meg, és elérhető aktuális egységtípus értékek hello határozza meg.  Ha kiválaszthat egy értéket a Convert toothen hello numerikus értékek hello aktuális egység típus toohello Convert tootype konvertálja. |
-| Egyéni felirat |Szöveg toodisplay hello Y tengely következő toohello címke hello egység típushoz.  Ha nincs címke van megadva, akkor csak a hello egységtípus jelenik meg. |
+| A Logaritmikus skála használata |A Logaritmikus skála tengely használata mellett dönt. |
+| egység |Adja meg a lekérdezés által visszaadott értékek használt mértékegységet.  Ezt az információt a diagram, amely jelzi, az értéktípusokat és opcionálisan az értékek alakításának feliratok megjelenítéséhez használatos.  Egységtípus egység kategória határozza meg, és határozza meg az elérhető aktuális egységtípus értékek.  Ha az érték átalakítása, majd a numerikus érték az aktuális egységtípus alakulnak típusúra átalakítása. |
+| Egyéni felirat |Az Y tengely egységtípus felirat mellett megjelenő szöveg.  Ha nincs címke van megadva, akkor csak a egységtípus jelenik meg. |
 
 ## <a name="common-settings"></a>Általános beállítások
-a következő szakaszok hello beállítások közös tooseveral képi megjelenítés részek ismertetik.
+A következő szakaszok ismertetik a képi megjelenítés több részből vonatkozó beállításokat.
 
 ### <a name="name-value-separator">Név és érték elválasztó</a>
-Egyetlen határolójel Ha tooparse hello text tulajdonságához lista lekérdezésből a kívánt több érték.  Ha megad egy elválasztó, biztosíthat nevét az egyes mezők elválasztott hello azonos elválasztó hello név mezőben.
+Ha a lista lekérdezésből text tulajdonságához értelmezhető több értéket szeretne egy karakter elválasztó.  Ha megad egy elválasztó, megadhatja a név mezőbe azonos elválasztó elválasztott mezők nevei.
 
-Vegyük példaként a tulajdonságot, *hely* például része, amely értékek *Redmond-összeállító 41* és *Bellevue-Building12*.  Megadhatja – hello név és érték elválasztó és *város-összeállító* a hello nevét.  Ez lenne az egyes értékek értelmezhető nevű két tulajdonságok *Város* és *épület*.
+Vegyük példaként a tulajdonságot, *hely* például része, amely értékek *Redmond-összeállító 41* és *Bellevue-Building12*.  Megadhatja – a név és érték elválasztó és *város-összeállító* nevét.  Ez lenne az egyes értékek értelmezhető nevű két tulajdonságok *Város* és *épület*.
 
 ### <a name="navigation-query">Navigációs lekérdezés</a>
-Toorun lekérdezik hello felhasználó kiválaszt egy elemet a hello listában.  Használjon *{kijelölt elem}* tooinclude hello szintaxis elem, amely a kiválasztott felhasználóhoz hello.
+A lekérdezés a futtatást, ha a felhasználó kiválaszt egy elemet a listában.  Használjon *{kijelölt elem}* elem, a felhasználó által kiválasztott szintaxisát tartalmazza.
 
-Például akkor, ha hello lekérdezés tartalmaz egy nevű oszlopot *számítógép* és hello navigációs lekérdezés *{kijelölt elem}*, többek között a lekérdezés *számítógép = "Sajátgép"* akkor futtatható, ha hello felhasználó kiválasztott számítógép.  Ha hello navigációs lekérdezés *típus = {kijelölt elem} esemény* majd hello lekérdezés *típus = esemény számítógép = "Sajátgép"* lesz futtatható.
+Például, ha a lekérdezés tartalmaz egy nevű oszlopot *számítógép* , és a navigációs lekérdezés *{kijelölt elem}*, többek között a lekérdezés *számítógép = "Sajátgép"* futna, amikor a felhasználó egy számítógépet jelölt.  Ha a navigációs lekérdezés *típus = {kijelölt elem} esemény* majd a lekérdezés *típus = esemény számítógép = "Sajátgép"* lesz futtatható.
 
 ### <a name="sparklines">Értékgörbéket</a>
-Értékgörbe kis vonaldiagramról, amely bemutatja a lista bejegyzés hello értékének adott idő alatt.  A képi megjelenítés részei a listájával kiválaszthatja, hogy toodisplay sáv jelző vízszintes hello egy numerikus oszlopot a relatív értéket vagy jelző értéke időbeli értékgörbe.
+Értékgörbe kis vonaldiagramról, amely bemutatja a lista bejegyzés adott idő alatt.  A képi megjelenítés részei a listájával kiválaszthatja egy numerikus oszlopot vagy jelző értéke időbeli értékgörbe relatív értékét sáv vízszintes megjelenjen-e.
 
-a következő táblázat hello értékgörbéket hello beállításait ismerteti.
+Az alábbi táblázat bemutatja a értékgörbéket beállításait.
 
 | Beállítás | Leírás |
 |:--- |:--- |
-| Értékgörbéket engedélyezése |Válassza ki a toodisplay értékgörbe helyett sávot. |
-| Művelet |Ha értékgörbéket engedélyezve vannak, akkor hello művelet tooperform a hello toocalculate hello listaértékek hello értékgörbe az egyes tulajdonságai.<br><br>-Utolsó minta: Utolsó érték hello adatsorozathoz hello időtartam alatt.<br>-Maximális: Maximális érték hello adatsorozathoz hello időtartam alatt.<br>-Min: Minimális érték hello adatsorozathoz hello időtartam alatt.<br>-Összeg: Sum hello adatsorok hello időtartam alatt.<br>-Összegzés: Használ hello hello lekérdezés hello fejlécben azonos mérték parancsot. |
+| Értékgörbéket engedélyezése |Válassza ki a értékgörbe helyett vízszintes sáv megjelenítése. |
+| Művelet |Ha értékgörbéket engedélyezve vannak, akkor minden egyes tulajdonsága az értékgörbe az értékek listában végre a műveletet.<br><br>-Utolsó minta: Legutóbbi értéket az időtartam alatt az adatsorozathoz.<br>-Maximális: Az adatsorozathoz alatt az időtartam alatt a maximális érték.<br>-Min: Az adatsorozathoz alatt az időtartam alatt a minimális érték.<br>-Összeg: Sum az adatsorok alatt az időtartam alatt.<br>-Összegzés: Ugyanaz a mérték parancs használja, mint a lekérdezés a fejlécben. |
 
 ### <a name="thresholds">Küszöbértékek</a>
-Küszöbértékek lehetővé teszik a színes ikon következő tooeach elem toodisplay felkínálva egy gyors visual jelzi, hogy lehet egy adott értéket, vagy egy adott tartományba esnek elemek listájában.  Például egy elfogadható érték, a hello értéke egy tartományba, amely figyelmeztet, ha sárga, és a piros elemek zöld ikonnal lehetett megjeleníteni, ha az érték meghaladja a hibaérték.
+Küszöbértékek lehetővé teszik a színes ikon minden elem mellett megjelenő felkínálva egy gyors visual jelzi, hogy lehet egy adott értéket, vagy egy adott tartományba esnek elemek listáját.  Például egy elfogadható érték, a sárga, ha az érték, amely figyelmeztet, egy tartományon belül, és a piros elemek zöld ikonnal lehetett megjeleníteni, ha az érték meghaladja a hibaérték.
 
-Ha engedélyezi a küszöbértékeket egy részére, meg kell adnia egy vagy több küszöbértékeket.  Ha hello elem értéke nagyobb, mint a küszöbérték és kisebb hello következő küszöbértéknél, szín szolgál.  Ha hello elem nagyobb, mint majd legmagasabb küszöbértéket, szín van beállítva.   
+Ha engedélyezi a küszöbértékeket egy részére, meg kell adnia egy vagy több küszöbértékeket.  Ha egy elem értéke nagyobb, mint a küszöbérték és alacsonyabb, mint a következő küszöbértéket, szín szerepel.  Ha az elem nagyobb, mint majd legmagasabb küszöbértéket, szín van beállítva.   
 
-Minden egyes küszöbérték beállítása rendelkezik egy küszöbértéket értékkel rendelkező **alapértelmezett**.  Ez a hello színét, ha nincs más értékek számát.  Adja hozzá, vagy távolítsa el a küszöbértékek hello kattintva  **+**  vagy **x** gombra.
+Minden egyes küszöbérték beállítása rendelkezik egy küszöbértéket értékkel rendelkező **alapértelmezett**.  Azt állítja be, ha nincs más értékek túllépése színét.  Adja hozzá, vagy távolítsa el a küszöbértékek kattintva a  **+**  vagy **x** gombra.
 
-hello a következő táblázat bemutatja a küszöbértékek hello beállításait.
+Az alábbi táblázat bemutatja a küszöbértékek beállításait.
 
 | Beállítás | Leírás |
 |:--- |:--- |
-| Küszöbértékek engedélyezése |Válassza ki a szín ikon toohello balra minden egyes érték, amely jelzi, az egészségügyi relatív toospecified küszöbértékek toodisplay. |
-| Név |Név tooidentify hello küszöbértéket. |
-| Küszöbérték |Hello küszöb értékét.  hello állapotfigyelő mindegyik listaelemhez beállítás hello legmagasabb küszöbérték; hello elem értéke túllépte toohello színét.  Van egy alapértelmezett küszöböt, akkor hello színét, ha nincs küszöbértéket. |
-| Szín |Hello küszöbérték színét. |
+| Küszöbértékek engedélyezése |Válassza ki a szín ikonjának megjelenítése minden egyes megadott küszöbértékek viszonyítva az állapotát jelző érték balra. |
+| Név |A küszöbérték azonosító nevet. |
+| Küszöbérték |Értéke a küszöbérték.  A legmagasabb küszöbérték túllépte a cikk érték színének beállítása mindegyik listaelemhez állapotfigyelő színét.  Van egy alapértelmezett küszöböt, akkor a szín, ha nincs küszöbértéket. |
+| Szín |A küszöbérték színét. |
 
 ## <a name="next-steps"></a>Következő lépések
-* További tudnivalók [keresések jelentkezzen](log-analytics-log-searches.md) toosupport hello lekérdezések a képi megjelenítés részeit.
+* További tudnivalók [keresések jelentkezzen](log-analytics-log-searches.md) támogatja a képi megjelenítés részből áll.

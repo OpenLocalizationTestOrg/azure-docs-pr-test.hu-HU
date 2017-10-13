@@ -1,6 +1,6 @@
 ---
-title: aaaHow toouse hello Azure Active Directory Power BI tartalomcsomag |} Microsoft Docs
-description: Ismerje meg, hogyan toouse hello Azure Active Directory Power BI tartalomcsomag
+title: "Az Azure Active Directory Power BI-tartalomcsomag használata | Microsoft Docs"
+description: "Útmutató az Azure Active Directory Power BI-tartalomcsomag használatához | Microsoft Docs"
 services: active-directory
 author: MarkusVi
 manager: femila
@@ -13,29 +13,29 @@ ms.workload: identity
 ms.date: 07/15/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: d07d678aedbe3089c4ea5f981f72311bdb389a17
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5c642bb814a279756e8391f12fdc86b6ec0b4a8f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toouse-hello-azure-active-directory-power-bi-content-pack"></a>Hogyan toouse hello Azure Active Directory Power BI tartalomcsomag
+# <a name="how-to-use-the-azure-active-directory-power-bi-content-pack"></a>Az Azure Active Directory Power BI-tartalomcsomag használata
 
-Rendszergazdaként elengedhetetlen, hogy tudja, hogyan használják felhasználói az Azure Active Directory funkcióit. Ez lehetővé teszi az informatikai infrastruktúra és a kommunikáció tooincrease használati és tooget hello legtöbb kívül AAD szolgáltatások tooplan. A Power BI-tartalmakat csomag az Azure Active Directory által biztosított lehetőséget toofurther hello, elemezheti az adatokat toounderstand, hogyan használhatja a adatok toogather mélyebb betekintést az Azure Active Directoryval a hello jelenít meg különböző képességeket, erősen támaszkodnak.  A Power BI-bA az Azure Active Directory API integrációja hello egyszerűen letöltheti hello előre elkészített tartalomcsomagok és dcu tooall hello tevékenységek az Azure Active Directoryban gazdag képi megjelenítés élményt nyújt a Power BI használatával. Létrehozhatja saját irányítópultját, és könnyedén megoszthatja szervezete bármelyik tagjával. 
+Rendszergazdaként elengedhetetlen, hogy tudja, hogyan használják felhasználói az Azure Active Directory funkcióit. Ez lehetővé teszi, hogy úgy tervezze meg az informatikai infrastruktúráját és kommunikációját, hogy növelni tudja annak használatát, és a lehető legtöbbet hozza ki az AAD funkcióiból. Az Azure Active Directory lehetővé teszi adatai részletesebb elemzését, így átláthatja, hogyan használhatja ezeket az adatokat részletesebb betekintések szerzéséhez abba, mi történik az Azure Active Directoryjukban az Ön számára legfontosabb képességek tekintetében.  Az Azure Active Directory API-jainak a Power BI-ba integrálásával könnyedén letöltheti az előre összeállított tartalomcsomagokat, valamint betekintést nyerhet az Azure Active Directoryn belüli tevékenységekbe a Power BI által biztosított részletes megjelenítések használatával. Létrehozhatja saját irányítópultját, és könnyedén megoszthatja szervezete bármelyik tagjával. 
 
-Ez a témakör részletes lépéseit hogyan tooinstall és -felhasználási hello tartalom csomagolja a környezetben.
+Ez a témakör lépésről lépésre bemutatja, hogyan telepítheti és használhatja környezetében a tartalomcsomagot.
 
 ## <a name="installation"></a>Telepítés  
 
-**tooinstall hello Power BI-tartalomcsomag:**
+**A Power BI-tartalomcsomag telepítése:**
 
-1. Jelentkezzen be [Power BI](https://app.powerbi.com/groups/me/getdata/services) a Power BI-fiókjába (Ez az hello ugyanazt a fiókot az Office 365 vagy Azure AD-fiókot).
+1. Jelentkezzen be a [Power BI-ba](https://app.powerbi.com/groups/me/getdata/services) Power BI-fiókjával (ez megegyezik az O365- vagy Azure AD-fiókjával).
 
-2. Alján hello hello bal oldali navigációs panelen, jelölje ki a **adatok beolvasása**.
+2. A bal oldali navigációs panel alján kattintson az **Adatok lekérése** elemre.
 
     ![Azure Active Directory Power BI-tartalomcsomag](./media/active-directory-reporting-power-bi-content-pack-how-to/01.png)
  
-3. A hello **szolgáltatások** kattintson **beolvasása**.
+3. A **Szolgáltatások** panelen kattintson a **Lekérés** gombra.
    
     ![Azure Active Directory Power BI-tartalomcsomag](./media/active-directory-reporting-power-bi-content-pack-how-to/02.png)
 
@@ -46,7 +46,7 @@ Ez a témakör részletes lépéseit hogyan tooinstall és -felhasználási hell
 5.  Amikor a rendszer arra kéri, írja be Azure AD-bérlőazonosítóját, majd kattintson a **Tovább** gombra.
 
     > [!TIP] 
-    > Egy gyorsan tooget hello Bérlőazonosító az Office 365 / Azure AD-bérlő toologin toohello Azure AD-portálhoz, részletekbe menően tárhatják toohello directory, és másolja hello azonosító URL-cím a következő hello: https://manage.windowsazure.com/woodgroveonline.com#Workspaces/ ActiveDirectoryExtension vagykönyvtár/<tenantid>/directoryQuickStart
+    > Gyorsan megszerezheti az Office 365-/Azure AD-bérlőazonosítóját, ha bejelentkezik az Azure AD portálra, megkeresi a könyvtárat, és másolja az azonosítót a következő URL-címről: https://manage.windowsazure.com/woodgroveonline.com#Workspaces/ActiveDirectoryExtension/Directory/<tenantid>/directoryQuickStart
 
     ![Azure Active Directory Power BI-tartalomcsomag](./media/active-directory-reporting-power-bi-content-pack-how-to/04.png) 
 
@@ -60,7 +60,7 @@ Ez a témakör részletes lépéseit hogyan tooinstall és -felhasználási hell
  
     ![Azure Active Directory Power BI-tartalomcsomag](./media/active-directory-reporting-power-bi-content-pack-how-to/06.png) 
 
-8.  A következő párbeszédpanelen: hello app hozzájárulási, kattintson a **elfogadás**.
+8.  Az alkalmazással kapcsolatos beleegyezési párbeszédpanelen kattintson az **Elfogadás** elemre.
  
 9.  Miután létrejött az Azure Active Directory-tevékenységnaplók irányítópultja, kattintson rá.
  
@@ -68,46 +68,46 @@ Ez a témakör részletes lépéseit hogyan tooinstall és -felhasználási hell
 
 ## <a name="what-can-i-do-with-this-content-pack"></a>Mire használhatom ezt a tartalomcsomagot?
 
-Ahhoz, hogy belevágjon mit tehet a tartalomcsomaggal, az alábbiakban rövid áttekintés hello különböző jelentéseket hello tartalmat a csomag. A jelentés adatainak Visszalépés toohello **utolsó 30 nap**.
+Mielőtt mélyebben beleásnánk magunkat, mi mindenre használhatja ezt a tartalomcsomagot, tekintse meg ezt a rövid áttekintést a tartalomcsomagban található különböző jelentésekről. **Az elmúlt 30 nap** jelentésadatai érhetők el.
 
 ### <a name="reports-included-in-this-version-of-azure-active-directory-logs-content-pack"></a>Az Azure Active Directory-naplók tartalomcsomagjának jelen verziójában található jelentések
 
-**Alkalmazás használatának és a Trend jelentés**: hello alkalmazásokba használt nyerhet a szervezet és a munkaterületek használt legtöbb hello és mikor. Ez a jelentés toogather betekintést Ön nemrég megkezdődött a szervezetben az alkalmazások használatának használhatja, vagy megtudhatja, mely alkalmazások állnak népszerű. Ezzel az eljárással használati is javítható, ha megjelenik, ha hello alkalmazás nem használja.
+**Alkalmazáshasználat és -trendek jelentés**: Többet tudhat meg a szervezetében használt alkalmazásokról: melyiket használják a legtöbbet és mikor. Ebből a jelentésből megtudhatja, hogy a szervezetében a közelmúltban kiadott alkalmazásokat hogyan használják, vagy hogy mely alkalmazások népszerűek. Így javíthatja a kihasználtságot, ha azt tapasztalja, hogy az alkalmazást nem használják.
 
-**Hely és a felhasználói bejelentkezéseket**: az összes hello bejelentkezések alapján történik az Azure Identity és hello identitásának hello felhasználók által biztosított betekintést nyerhet. Ennek segítségével részletesebb betekintést nyerhet az egyes bejelentkezésekbe, és választ kaphat többek között a következő kérdésekre:
+**Bejelentkezések hely és felhasználók szerint**: Megtekintheti az összes Azure-identitással végzett bejelentkezést, és láthatja a felhasználók identitását. Ennek segítségével részletesebb betekintést nyerhet az egyes bejelentkezésekbe, és választ kaphat többek között a következő kérdésekre:
 
 - Honnan jelentkezett be ez a felhasználó?
-- Melyik felhasználó van hello legtöbb bejelentkezéseket és ahol tegye azokat jelentkezzen be a? 
-- Hello bejelentkezés sikeres volt?  
+- Melyik felhasználó jelentkezett be a legtöbbször, és honnan jelentkezett be? 
+- Sikeres volt a bejelentkezés?  
  
 Megtekintheti a részleteket is egy konkrét dátumra vagy helyre kattintva.
 
 **Egyedi felhasználók alkalmazásonként**: Egy adott alkalmazás összes egyedi felhasználója. Ebbe csak azok a felhasználók számítanak bele, akik „*sikeresen*” bejelentkeztek az adott alkalmazásba.
 
-**Eszköz bejelentkezések**: egy megtekintheti a hello operációsrendszer-típust, és böngészők hello felhasználók többek között részletes tájékoztatást a szervezethez tartozó felhasználók használnak:
+**Eszközbejelentkezések**: Tekintse meg a szervezete felhasználói által használt operációs rendszereket és böngészőket a felhasználókra vonatkozó részletes információkkal együtt, például a következőkkel:
 
 - Felhasználónév
 - IP-cím
 - Hely 
 - Bejelentkezési állapot 
 
-Ezzel a jelentéssel megismerheti hello különböző eszközprofilok a szervezetén belül, és határozza meg az eszközökre vonatkozó házirendeket használttól alapján
+Ebből a jelentésből megismerheti a szervezetében használt különböző eszközprofilokat, és ez alapján dönthet az eszközházirendekről.
 
-**SSPR tölcsér**: Megismerheti a szervezete jelszó-visszaállítási folyamatait. Egy betekintés bejutni hány jelszó alaphelyzetbe állítását megkísérelte hello SSPR eszköz segítségével, és ezeknek sikerrel járt-e. Feltárva hello jelszó alaphelyzetbe állítása sikertelen hello SSPR tölcsér használatával, és megismerheti a miért bizonyos hibák történtek-e. Ez a jelentés hello SSPR eszköz használatáról a szervezeten belül, hogy jobb döntéseket hello bemutatják tartalmazza.
+**SSPR tölcsér**: Megismerheti a szervezete jelszó-visszaállítási folyamatait. Betekintést nyerhet abba, hány új jelszót igényeltek az SSPR-eszközből, és hány volt ezek közül sikeres. Többet tudhat meg az SSPR tölcsérrel végzett sikertelen jelszó-visszaállításokról, és megvizsgálhatja, mi lehetett a sikertelenség oka. Ez jelentés részletesebb betekintést biztosít az SSPR eszköz szervezeten belüli használatába, és ezáltal segít a helyes döntések meghozatalában.
 
 ## <a name="customizing-azure-ad-activity-content-pack"></a>Az Azure AD-tevékenység tartalomcsomag személyre szabása
 
-**Módosíthatja a képi megjelenítés**: kattintva módosíthatja a képi megjelenítés jelentés **jelentés szerkesztése** válassza ki a kívánt hello képi megjelenítés.
+**Megjelenítés módosítása**: Megváltoztathatja egy jelentés megjelenítését a **Jelentés szerkesztése** elemre kattintással és a kívánt megjelenítés kiválasztásával.
  
 ![Azure Active Directory Power BI-tartalomcsomag](./media/active-directory-reporting-power-bi-content-pack-how-to/09.png) 
  
 ![Azure Active Directory Power BI-tartalomcsomag](./media/active-directory-reporting-power-bi-content-pack-how-to/10.png) 
 
-**További mezők szerepelhetnek,**: mező toohello jelentés hozzáadása, vagy távolítsa el a hello visual toowhich tooadd/eltávolítása hello mező kiválasztásával. Hello az alábbi példában a "bejelentkezés" mező toohello tábla nézet hozzáadott. 
+**További mezők belefoglalása**: Hozzáadhat mezőket a jelentéshez, vagy eltávolíthat mezőket azon vizualizáció kiválasztásával, amelyhez a hozzáadási/eltávolítási műveletet végre kívánja hajtani. A következő példában a „Sign-in status” (Bejelentkezési állapot) mezőt adom hozzá a táblanézethez. 
  
 ![Azure Active Directory Power BI-tartalomcsomag](./media/active-directory-reporting-power-bi-content-pack-how-to/11.png) 
 
-**PIN-kód képi megjelenítések tooyour irányítópult**: testre szabhatja az irányítópultot és a saját képi megjelenítések toohello jelentéssel és toohello irányítópulton rögzítheti. A hello az alábbi példában I "bejelentkezési állapot" nevű új szűrő hozzáadott és hello jelentésben szereplő. I is hello képi megjelenítés változása sávdiagram tooa vonaldiagram, és az új visual toohello irányítópult rögzíthető.
+**Megjelenítések rögzítése az irányítópulton**: Személyre szabhatja irányítópultját, és felveheti saját megjelenítéseit a jelentésbe, amelyet azután az irányítópulton rögzíthet. A következő példában egy új, „Sign-in Status” (Bejelentkezési állapot) nevű szűrőt adtam hozzá és vettem fel a jelentésbe. Ezenkívül megváltoztattam a megjelenítést oszlopdiagramról vonaldiagramra. Ez az új vizualizáció rögzíthető az irányítópulton.
 
 ![Azure Active Directory Power BI-tartalomcsomag](./media/active-directory-reporting-power-bi-content-pack-how-to/12.png) 
 
@@ -117,7 +117,7 @@ Ezzel a jelentéssel megismerheti hello különböző eszközprofilok a szerveze
  
 
 
-**Az irányítópult megosztása**: Miután létrehozta a kívánt hello tartalmat, megoszthatja hello irányítópult hello felhasználókat a szervezetben. Ne feledje, hogy miután hello jelentés megosztásához láthatják hello jelentésben kijelölt hello mezőt.
+**Irányítópult megosztása**: Miután létrehozta a kívánt tartalmat, megoszthatja irányítópultját szervezete felhasználóival. Vegye figyelembe, hogy ha megoszt egy jelentést, azokat a mezőket láthatják, amelyeket a jelentésben kiválasztott.
  
 ![Azure Active Directory Power BI-tartalomcsomag](./media/active-directory-reporting-power-bi-content-pack-how-to/14.png) 
 
@@ -125,21 +125,21 @@ Ezzel a jelentéssel megismerheti hello különböző eszközprofilok a szerveze
 
 ## <a name="scheduling-a-daily-refresh-of-your-power-bi-report"></a>A Power BI-jelentés napi frissítésének ütemezése
 
-túl nyissa meg a Power BI-jelentés napi frissítését tooschedule**adatkészletek > Beállítások > ütemezés frissítése** és állítsa be az alább látható módon.
+A Power BI-jelentés napi frissítésének ütemezéséhez lépjen az **Adatkészletek > Beállítások > Frissítés ütemezése** részbe, és állítsa be az alábbiaknak megfelelően.
  
 ![Azure Active Directory Power BI-tartalomcsomag](./media/active-directory-reporting-power-bi-content-pack-how-to/15.png) 
 
-## <a name="updating-toonewer-version-of-content-pack"></a>Tartalomcsomag toonewer verziójának frissítése
+## <a name="updating-to-newer-version-of-content-pack"></a>Frissítés a tartalomcsomag újabb verziójára
 
-Ha azt szeretné, hogy tooupdate a tartalom pack tooget egy újabb verzióra:
+A tartalomcsomag frissítése új verzió beszerzéséhez:
 
-- Töltse le a hello új csomagot, és állítsa be a cikkben szereplő utasítások szerint.
+- Töltse le az új tartalomcsomagot, és állítsa be az itt szereplő utasításoknak megfelelően.
 
-- Miután állított be, lépjen túl**adatforrás > Beállítások > adatforrás hitelesítő adatait** írja be újra a hitelesítő adatok alább látható módon
+- Ha elkészült a beállítással, lépjen az **Adatforrás > Beállítások > Adatforráshoz tartozó hitelesítő adatok** részbe, és adja meg újra a hitelesítő adatait az alábbiaknak megfelelően.
 
     ![Azure Active Directory Power BI-tartalomcsomag](./media/active-directory-reporting-power-bi-content-pack-how-to/16.png) 
 
-Amint hello hello tartalomcsomag új verziója nem működik, eltávolíthatja hello régi verziója, hello alapul szolgáló jelentések és adatkészletek adott tartalomcsomag társított törlésével szükség esetén.
+Amint a tartalomcsomag új verziója működőképes, a korábbi tartalomcsomag alapjául szolgáló jelentések és a tartalomcsomaghoz tartozó adatkészletek törlésével eltávolíthatja a régi verziót, ha szükséges.
 
 ## <a name="still-having-issues"></a>Továbbra is problémákat tapasztal? 
 
@@ -148,4 +148,4 @@ Tekintse meg a [hibaelhárítási útmutatót](active-directory-reporting-troubl
 
 ## <a name="next-steps"></a>Következő lépések
 
-Jelentéskészítési áttekintését lásd: hello [Azure Active Directory reporting](active-directory-reporting-azure-portal.md).
+A jelentéskészítés áttekintéséért lásd: [Jelentéskészítés az Azure Active Directoryban](active-directory-reporting-azure-portal.md).

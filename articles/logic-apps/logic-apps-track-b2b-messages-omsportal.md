@@ -1,5 +1,5 @@
 ---
-title: "az Operations Management Suite - Azure Logic Apps aaaTrack B2B üzenetek |} Microsoft Docs"
+title: "Az Operations Management Suite - Azure Logic Apps B2B üzenetek nyomon követése |} Microsoft Docs"
 description: "Az integráció fiók és a logikai alkalmazások a műveletek Suite (OMS) az Azure Naplóelemzés B2B kommunikációs nyomon követése"
 author: padmavc
 manager: anneta
@@ -14,15 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: LADocs; padmavc
-ms.openlocfilehash: f385a72008b19408bb45d61c440df0505b688175
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3ef7a4054be80547b0d91ad1f13777d915005f8b
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="track-b2b-communication-in-hello-microsoft-operations-management-suite-oms"></a>A Microsoft Operations Management Suite (OMS) hello B2B kommunikációs nyomon követése
+# <a name="track-b2b-communication-in-the-microsoft-operations-management-suite-oms"></a>A Microsoft Operations Management Suite (OMS) B2B kommunikációs nyomon követése
 
-Miután beállította a B2B kommunikációját két üzleti folyamatok vagy a integrációs fiókon keresztül alkalmazásokat futtató entitásokból tudjon cserélni egymással üzeneteket. toocheck hogy ezek az üzenetek feldolgozása helyesen, AS2, X12, nyomon követheti és EDIFACT üzenetek [Azure Naplóelemzés](../log-analytics/log-analytics-overview.md) a hello [Operations Management Suite (OMS)](../operations-management-suite/operations-management-suite-overview.md). Például a web-alapú nyomkövetési lehetőségeket biztosítanak is használhatja az üzenetek nyomon követése:
+Miután beállította a B2B kommunikációját két üzleti folyamatok vagy a integrációs fiókon keresztül alkalmazásokat futtató entitásokból tudjon cserélni egymással üzeneteket. Ellenőrizze, hogy ezek az üzenetek feldolgozása helyesen, AS2, X12, nyomon követheti és EDIFACT az üzeneteket a [Azure Naplóelemzés](../log-analytics/log-analytics-overview.md) a a [Operations Management Suite (OMS)](../operations-management-suite/operations-management-suite-overview.md). Például a web-alapú nyomkövetési lehetőségeket biztosítanak is használhatja az üzenetek nyomon követése:
 
 * Üzenet számán és állapota
 * Nyugták állapota
@@ -32,22 +32,22 @@ Miután beállította a B2B kommunikációját két üzleti folyamatok vagy a in
 
 ## <a name="requirements"></a>Követelmények
 
-* Egy logikai alkalmazást a diagnosztikai naplózás be van állítva. Ismerje meg, [hogyan toocreate logikai alkalmazás](logic-apps-create-a-logic-app.md) és [hogyan tooset be a naplózást az adott logikai alkalmazás](../logic-apps/logic-apps-monitor-your-logic-apps.md#azure-diagnostics).
+* Egy logikai alkalmazást a diagnosztikai naplózás be van állítva. Ismerje meg, [logikai alkalmazás létrehozása](logic-apps-create-a-logic-app.md) és [adott logikai alkalmazás naplózásának beállítása](../logic-apps/logic-apps-monitor-your-logic-apps.md#azure-diagnostics).
 
-* Integráció fiók be van állítva a figyelés és naplózás. Ismerje meg, [hogyan toocreate integrációs fiók](../logic-apps/logic-apps-enterprise-integration-create-integration-account.md) és [hogyan figyelés és naplózás fiók tooset](../logic-apps/logic-apps-monitor-b2b-message.md).
+* Integráció fiók be van állítva a figyelés és naplózás. Ismerje meg, [integrációs fiók létrehozása](../logic-apps/logic-apps-enterprise-integration-create-integration-account.md) és [figyelés és naplózás fiók beállításával](../logic-apps/logic-apps-monitor-b2b-message.md).
 
-* Ha még nem tette, [diagnosztikai adatok tooLog Analytics közzététele](../logic-apps/logic-apps-track-b2b-messages-omsportal.md) az OMS Szolgáltatáshoz.
+* Ha még nem tette, [diagnosztikai adatok közzétételére Naplóelemzési](../logic-apps/logic-apps-track-b2b-messages-omsportal.md) az OMS Szolgáltatáshoz.
 
 > [!NOTE]
-> Miután teljesítette hello előző követelmények, hello munkaterületeinek rendelkeznie kell [Operations Management Suite (OMS)](../operations-management-suite/operations-management-suite-overview.md). Használjon hello azonos OMS-munkaterület nyomon követése a B2B kommunikáció az OMS Szolgáltatáshoz. 
+> Miután teljesítette az előző követelményeknek, rendelkeznie kell egy munkaterület a [Operations Management Suite (OMS)](../operations-management-suite/operations-management-suite-overview.md). Az azonos OMS-munkaterület nyomon követése a B2B kommunikáció OMS kell használnia. 
 >  
-> Ha még nem rendelkezik az OMS-munkaterület, [hogyan toocreate OMS-munkaterület](../log-analytics/log-analytics-get-started.md).
+> Ha még nem rendelkezik az OMS-munkaterület, [OMS-munkaterület létrehozása](../log-analytics/log-analytics-get-started.md).
 
-## <a name="add-hello-logic-apps-b2b-solution-toohello-operations-management-suite-oms"></a>Adja hozzá a Logic Apps B2B hello megoldás toohello Operations Management Suite (OMS)
+## <a name="add-the-logic-apps-b2b-solution-to-the-operations-management-suite-oms"></a>Adja hozzá a Logic Apps B2B megoldás az Operations Management Suite (OMS)
 
-toohave OMS nyomon B2B messages a Logic Apps alkalmazást, hozzá kell adnia a hello **Logic Apps B2B** megoldás toohello OMS-portálon. További információ [megoldások tooOMS hozzáadása](../log-analytics/log-analytics-get-started.md).
+Ahhoz, hogy a logikai alkalmazás B2B messages nyomon OMS, hozzá kell adnia a **Logic Apps B2B** megoldást jelent az OMS-portálon. További információ [megoldások hozzáadása OMS](../log-analytics/log-analytics-get-started.md).
 
-1. A hello [Azure-portálon](https://portal.azure.com), válassza a **több szolgáltatások**. Keresse meg a "naplóelemzési", és válassza a **Naplóelemzési** itt látható módon:
+1. Az a [Azure-portálon](https://portal.azure.com), válassza a **több szolgáltatások**. Keresse meg a "naplóelemzési", és válassza a **Naplóelemzési** itt látható módon:
 
    ![A Naplóelemzési keresése](media/logic-apps-track-b2b-messages-omsportal/browseloganalytics.png)
 
@@ -59,7 +59,7 @@ toohave OMS nyomon B2B messages a Logic Apps alkalmazást, hozzá kell adnia a h
 
    ![Válassza ki az OMS-portálon](media/logic-apps-track-b2b-messages-omsportal/omsportalpage.png)
 
-4. Ha megnyílt az hello OMS kezdőlapját, válassza ki a **megoldások gyűjtemény**.    
+4. Ha megnyílt az OMS kezdőlapját, válassza ki a **megoldások gyűjtemény**.    
 
    ![Válassza ki a megoldások gyűjteménye](media/logic-apps-track-b2b-messages-omsportal/omshomepage1.png)
 
@@ -71,31 +71,31 @@ toohave OMS nyomon B2B messages a Logic Apps alkalmazást, hozzá kell adnia a h
 
    ![Válasszon hozzáadása](media/logic-apps-track-b2b-messages-omsportal/omshomepage3.png)
 
-   A hello OMS kezdőlapján hello csempéjére a hozzá tartozó **Logic Apps B2B üzenetek** csomópontként jelenik meg. 
-   Ez a csempe frissíti hello üzenetek száma, amikor a B2B üzenetek feldolgozása.
+   A kezdőlapon OMS, a csempe **Logic Apps B2B üzenetek** csomópontként jelenik meg. 
+   Ez a csempe frissíti az üzenetek száma, amikor a B2B üzenetek feldolgozása.
 
    ![Logic Apps B2B üzenetek csempe OMS kezdőlapján](media/logic-apps-track-b2b-messages-omsportal/omshomepage4.png)
 
 <a name="message-status-details"></a>
 
-## <a name="track-message-status-and-details-in-hello-operations-management-suite"></a>Üzenet állapotával és részleteivel kapcsolatban az Operations Management Suite hello nyomon követése
+## <a name="track-message-status-and-details-in-the-operations-management-suite"></a>Nyomon követheti a Messaging-állapot és az Operations Management Suite részletes adatait
 
-1. Után a B2B üzenetek feldolgozása, megtekintheti a hello állapotával és részleteivel kapcsolatban az azokat az üzeneteket. A hello OMS kezdőlapján válassza ki a hello **Logic Apps B2B üzenetek** csempére.
+1. Után a B2B üzenetek feldolgozása, megtekintheti az állapot és az üzenetek adatait. Az OMS kezdőlapján válassza ki a **Logic Apps B2B üzenetek** csempére.
 
    ![Frissített üzenetek száma](media/logic-apps-track-b2b-messages-omsportal/omshomepage6.png)
 
    > [!NOTE]
-   > Alapértelmezés szerint hello **Logic Apps B2B üzenetek** csempe megjeleníti az adatokat egy nap alapján. toochange hello adatok tooa különböző időköz, hatókör hello hatókör vezérlő hello OMS oldal hello tetején válassza:
+   > Alapértelmezés szerint a **Logic Apps B2B üzenetek** csempe megjeleníti az adatokat egy nap alapján. Az adatok hatókör egy másik időköz módosításához válassza ki a hatókör vezérlő az OMS-oldal tetején:
    > 
    > ![Adatok hatókörének módosítása](media/logic-apps-track-b2b-messages-omsportal/change-interval.png)
    >
 
-2. Hello Messaging-állapot irányítópult megjelenése után további részleteket az adott üzenettípus, megjelenítheti az adatokat egy nap alapján. Válassza ki a hello csempéjére a hozzá tartozó **AS2**, **X12**, vagy **EDIFACT**.
+2. Az üzenet állapota irányítópult megjelenése után további részleteket az adott üzenettípus, megjelenítheti az adatokat egy nap alapján. Válassza ki a csempéjére a hozzá tartozó **AS2**, **X12**, vagy **EDIFACT**.
 
    ![Üzenet állapotának megtekintése](media/logic-apps-track-b2b-messages-omsportal/omshomepage5.png)
 
    A kiválasztott csempe jelenik meg az üzenetek listáját. 
-   További információ az egyes üzenettípushoz hello tulajdonságok toolearn üzenet tulajdonság leírások lásd:
+   Az egyes üzenet tulajdonságaival kapcsolatos további tudnivalókért tekintse meg az üzenet tulajdonság leírások:
 
    * [AS2-üzenet tulajdonságai](#as2-message-properties)
    * [X12 üzenet tulajdonságai](#x12-message-properties)
@@ -105,16 +105,16 @@ toohave OMS nyomon B2B messages a Logic Apps alkalmazást, hozzá kell adnia a h
 
    ![AS2-üzenet megtekintése](media/logic-apps-track-b2b-messages-omsportal/as2messagelist.png)
 
-3. tooview vagy exportálási hello bemenetekhez és kimenetekhez adott üzenetek, válassza ki azokat az üzeneteket, és válassza a **letöltése**. Amikor a rendszer kéri, mentés hello .zip fájl tooyour helyi számítógépen, és bontsa ki a fájlt. 
+3. Megtekintéséhez, vagy exportálja a be- és kimenetekkel adott üzenetek, válassza ki azokat az üzeneteket, és válassza a **letöltése**. Amikor a rendszer kéri, mentse a .zip-fájlt a helyi számítógépen, és bontsa ki a fájlt. 
 
-   hello kibontott mappát egy mappát az összes kijelölt üzenet tartalmazza. 
-   Ha beállította a nyugtázásokhoz, hello üzenet mappa is fájlok nyugtázási adatokkal. 
+   A kibontott mappát egy mappát az összes kijelölt üzenet tartalmazza. 
+   A nyugtázás állít be, ha az üzenet mappa is fájlok nyugtázási adatokkal. 
    Minden üzenet mappa van legalább ezeket a fájlokat: 
    
-   * Hello emberek számára olvasható fájlok bemeneti forgalma és a kimeneti hasznos adatait
-   * Hello bemenetekhez és kimenetekhez kódolt fájlok
+   * A bemeneti forgalma és a kimeneti hasznos részletek emberek számára olvasható fájlokat
+   * A be- és kimenetekkel kódolt fájlok
 
-   Az egyes üzenet hello mappa és fájl formátumok itt található:
+   Az egyes üzenet a mappa és fájl formátumok itt található:
 
    * [AS2 mappához és fájlhoz formátumok](#as2-folder-file-names)
    * [X12 mappa és fájl neve formátumok](#x12-folder-file-names)
@@ -122,49 +122,49 @@ toohave OMS nyomon B2B messages a Logic Apps alkalmazást, hozzá kell adnia a h
 
    ![Fájlok letöltése](media/logic-apps-track-b2b-messages-omsportal/download-messages.png)
 
-4. tooview hello azonos lévő műveleteket futtatásához Azonosítóját, hello a **naplófájl-keresési** lapon, válassza ki az üzenet hello üzenet listából.
+4. Megtekintéséhez, amely az összes műveletet futtatásához Azonosítóját, a a **naplófájl-keresési** lapon, az üzenet listájából válasszon ki egy üzenetet.
 
    Ezek a Műveletek oszlop, vagy keresse meg az adott eredmények rendezheti.
 
-   ![Hello műveletek azonos futtatás azonosítója](media/logic-apps-track-b2b-messages-omsportal/logsearch.png)
+   ![Azonos műveletek futtatás azonosítója](media/logic-apps-track-b2b-messages-omsportal/logsearch.png)
 
-   * előre elkészített lekérdezések toosearch eredmények kiválasztása **Kedvencek**.
+   * A keresési eredményekben előre elkészített lekérdezésekkel, válassza a **Kedvencek**.
 
-   * Ismerje meg, [hogyan toobuild lekérdezi szűrők hozzáadásával](logic-apps-track-b2b-messages-omsportal-query-filter-control-number.md). 
-   További információ vagy [hogyan napló toofind adatok keres a Naplóelemzési](../log-analytics/log-analytics-log-searches.md).
+   * Ismerje meg, [lekérdezések létrehozása szűrők hozzáadásával](logic-apps-track-b2b-messages-omsportal-query-filter-control-number.md). 
+   További információ vagy [hogyan napló keresések rendelkező adatok kereséséhez a Naplóelemzési](../log-analytics/log-analytics-log-searches.md).
 
-   * toochange lekérdezés hello keresési mezőbe, a frissítés hello lekérdezés hello oszlopok és értékek, amelyet az toouse szűrőként.
+   * Módosíthatja a lekérdezés a keresési mezőbe, frissítse a lekérdezést az oszlopok és szűrők használni kívánt értékeket.
 
 <a name="message-list-property-descriptions"></a>
 
 ## <a name="property-descriptions-and-name-formats-for-as2-x12-and-edifact-messages"></a>Tulajdonság-leírások és formátumok az AS2, X 12 és EDIFACT-üzenetek
 
-Az egyes üzenet az alábbiakban hello tulajdonságleírások és a letöltött fájlok formátumok.
+Az egyes üzenet az alábbiakban a tulajdonságleírások és a letöltött fájlok formátumok.
 
 <a name="as2-message-properties"></a>
 
 ### <a name="as2-message-property-descriptions"></a>AS2-üzenet tulajdonságleírások
 
-Az alábbiakban hello tulajdonságleírások minden egyes AS2-üzenet esetében.
+Az alábbiakban a tulajdonságleírások minden egyes AS2-üzenet esetében.
 
 | Tulajdonság | Leírás |
 | --- | --- |
-| Feladó | hello Vendég partner megadott **fogadási beállítások**, vagy a megadott hello fogadó partner **küldési beállítások** AS2 megállapodás |
-| Fogadó | hello fogadó partner megadott **fogadási beállítások**, vagy a megadott hello Vendég partner **küldési beállítások** AS2 megállapodás |
-| Logikai alkalmazás | hello logikai alkalmazás hol hello AS2 műveletek beállítása |
-| status | hello AS2 Messaging-állapot <br>Sikeres = fogadott, vagy egy érvényes AS2 üzenetet küldött. Nincs MDN be van állítva. <br>Sikeres = fogadott, vagy egy érvényes AS2 üzenetet küldött. MDN beállítása és kapott, vagy MDN zajlik. <br>Nem sikerült = érvénytelen AS2 üzenetet kapott. Nincs MDN be van állítva. <br>Függőben lévő = fogadott, vagy egy érvényes AS2 üzenetet küldött. MDN be van állítva, és MDN várt. |
-| Nyugtázási | hello MDN Messaging-állapot <br>Elfogadható = fogadott vagy elküldött egy pozitív MDN. <br>Függőben lévő = tooreceive várakozik, vagy egy MDN küldése. <br>Elutasított = fogadott vagy elküldött egy negatív MDN. <br>Nem szükséges = MDN nincs beállítva a hello szerződést. |
-| Irány | AS2-üzenet irányát hello |
-| Korrelációs azonosító | minden hello eseményindítók és műveletek a logikai alkalmazás hibához hello azonosítója |
-| Üzenet azonosítója | az hello AS2 üzenetfejlécek hello AS2-üzenet azonosítója |
-| időbélyeg | hello AS2 művelet feldolgozásának üdvözlőüzenetére hello időpontja |
+| Feladó | A megadott Vendég partner **fogadási beállítások**, vagy a fogadó partner megadott **küldési beállítások** AS2 megállapodás |
+| Fogadó | A megadott fogadó partner **fogadási beállítások**, vagy a Vendég partner megadott **küldési beállítások** AS2 megállapodás |
+| Logikai alkalmazás | A logikai alkalmazást, ahol az AS2 műveletek beállítása |
+| status | Az AS2 üzenet állapota <br>Sikeres = fogadott, vagy egy érvényes AS2 üzenetet küldött. Nincs MDN be van állítva. <br>Sikeres = fogadott, vagy egy érvényes AS2 üzenetet küldött. MDN beállítása és kapott, vagy MDN zajlik. <br>Nem sikerült = érvénytelen AS2 üzenetet kapott. Nincs MDN be van állítva. <br>Függőben lévő = fogadott, vagy egy érvényes AS2 üzenetet küldött. MDN be van állítva, és MDN várt. |
+| Nyugtázási | A MDN Messaging-állapot <br>Elfogadható = fogadott vagy elküldött egy pozitív MDN. <br>Függőben lévő egy MDN küld és fogad váró =. <br>Elutasított = fogadott vagy elküldött egy negatív MDN. <br>Nem szükséges = MDN nincs beállítva a szerződésben. |
+| Irány | Az AS2-üzenet irányát |
+| Korrelációs azonosító | A hibához az eseményindítók és műveletek a logikai alkalmazás azonosítója |
+| Üzenet azonosítója | Az AS2 üzenetfejlécek a AS2 üzenet azonosítója |
+| időbélyeg | Az AS2 művelet feldolgozásának az üzenet időpontja |
 |          |             |
 
 <a name="as2-folder-file-names"></a>
 
 ### <a name="as2-name-formats-for-downloaded-message-files"></a>A letöltött fájlok AS2 formátumok
 
-Az alábbiakban hello formátumok minden letöltött AS2 üzenet mappában és fájlokat.
+Az alábbiakban a formátumok minden letöltött AS2 üzenet mappában és fájlokat.
 
 | Fájl vagy mappa | Nevének formátuma |
 | :------------- | :---------- |
@@ -176,28 +176,28 @@ Az alábbiakban hello formátumok minden letöltött AS2 üzenet mappában és f
 
 ### <a name="x12-message-property-descriptions"></a>X12 tulajdonságleírások üzenet
 
-Az alábbiakban hello tulajdonság leírásainak minden X12 üzenet.
+Az alábbiakban a tulajdonság leírásainak minden X12 üzenet.
 
 | Tulajdonság | Leírás |
 | --- | --- |
-| Feladó | hello Vendég partner megadott **fogadási beállítások**, vagy a megadott hello fogadó partner **küldési beállítások** egy X12 a megállapodás |
-| Fogadó | hello fogadó partner megadott **fogadási beállítások**, vagy a megadott hello Vendég partner **küldési beállítások** egy X12 a megállapodás |
-| Logikai alkalmazás | hello logikai alkalmazás hol hello X12 műveletek beállítása |
-| status | hello X12 Messaging-állapot <br>Sikeres = fogadott, vagy egy érvényes X12 küldött üzenetet. Egyetlen működési nyugtázási be van állítva. <br>Sikeres = fogadott, vagy egy érvényes X12 küldött üzenetet. Működési nyugtázási beállítása és kapott, illetve funkcionális nyugtázási elküldésekor történik. <br>Nem sikerült = fogadott vagy elküldött egy érvénytelen X12 üzenet. <br>Függőben lévő = fogadott, vagy egy érvényes X12 küldött üzenetet. Funkcionális nyugtázási be van állítva, és működési nyugtázási várt. |
-| Nyugtázási | Funkcionális nyugtázási (997) állapota <br>Elfogadható = fogadott, vagy egy pozitív működési nyugtát küldött <br>Elutasított = fogadott, vagy egy negatív működési nyugtát küldött <br>Függőben lévő = működési nyugtázási várt, de nem érkezett meg. <br>Függőben lévő = előállított működési nyugtázási, de nem lehet elküldeni a toopartner. <br>Nem szükséges funkcionális = nyugtázási nincs beállítva. |
-| Irány | hello X12 üzenet iránya |
-| Korrelációs azonosító | minden hello eseményindítók és műveletek a logikai alkalmazás hibához hello azonosítója |
-| Üzenet típusa | hello EDI X 12 üzenet típusa |
-| ICN | hello Interchange ellenőrző szám hello X12 üzenet |
-| TSCN | hello beállítása vezérlő tranzakciószám hello X12 üzenet |
-| időbélyeg | hello X12 művelet feldolgozásának üdvözlőüzenetére hello időpontja |
+| Feladó | A megadott Vendég partner **fogadási beállítások**, vagy a fogadó partner megadott **küldési beállítások** egy X12 a megállapodás |
+| Fogadó | A megadott fogadó partner **fogadási beállítások**, vagy a Vendég partner megadott **küldési beállítások** egy X12 a megállapodás |
+| Logikai alkalmazás | A logikai alkalmazás ahol a X12 műveletek be vannak állítva. |
+| status | A X12 üzenet állapot <br>Sikeres = fogadott, vagy egy érvényes X12 küldött üzenetet. Egyetlen működési nyugtázási be van állítva. <br>Sikeres = fogadott, vagy egy érvényes X12 küldött üzenetet. Működési nyugtázási beállítása és kapott, illetve funkcionális nyugtázási elküldésekor történik. <br>Nem sikerült = fogadott vagy elküldött egy érvénytelen X12 üzenet. <br>Függőben lévő = fogadott, vagy egy érvényes X12 küldött üzenetet. Funkcionális nyugtázási be van állítva, és működési nyugtázási várt. |
+| Nyugtázási | Funkcionális nyugtázási (997) állapota <br>Elfogadható = fogadott, vagy egy pozitív működési nyugtát küldött <br>Elutasított = fogadott, vagy egy negatív működési nyugtát küldött <br>Függőben lévő = működési nyugtázási várt, de nem érkezett meg. <br>Függőben lévő = előállított működési nyugtázási, de nem lehet elküldeni a partnernek. <br>Nem szükséges funkcionális = nyugtázási nincs beállítva. |
+| Irány | A X12 üzenet irányát |
+| Korrelációs azonosító | A hibához az eseményindítók és műveletek a logikai alkalmazás azonosítója |
+| Üzenet típusa | EDI X 12 üzenettípus |
+| ICN | Az a X12 Interchange ellenőrző szám üzenet |
+| TSCN | A tranzakció beállítása vezérlő számot a X12 üzenet |
+| időbélyeg | Az idő során a X12 műveletet az üzenet feldolgozása |
 |          |             |
 
 <a name="x12-folder-file-names"></a>
 
 ### <a name="x12-name-formats-for-downloaded-message-files"></a>X12 formátumok nevet letöltött Üzenetfájl
 
-Az alábbiakban a hello formátumok egyes X12 letölteni az üzenetek mappa és a fájlokat.
+Minden egyes X12 letölteni az alábbiakban a formátumok üzenetek mappa és a fájlokat.
 
 | Fájl vagy mappa | Nevének formátuma |
 | :------------- | :---------- |
@@ -209,28 +209,28 @@ Az alábbiakban a hello formátumok egyes X12 letölteni az üzenetek mappa és 
 
 ### <a name="edifact-message-property-descriptions"></a>EDIFACT üzenet tulajdonságleírások
 
-Az alábbiakban hello tulajdonságleírások minden egyes EDIFACT-üzenet esetében.
+Az alábbiakban a tulajdonságleírások minden egyes EDIFACT-üzenet esetében.
 
 | Tulajdonság | Leírás |
 | --- | --- |
-| Feladó | hello Vendég partner megadott **fogadási beállítások**, vagy a megadott hello fogadó partner **küldési beállítások** EDIFACT megállapodás |
-| Fogadó | hello fogadó partner megadott **fogadási beállítások**, vagy a megadott hello Vendég partner **küldési beállítások** EDIFACT megállapodás |
-| Logikai alkalmazás | hello logikai alkalmazás hol hello EDIFACT műveletek beállítása |
-| status | hello EDIFACT Messaging-állapot <br>Sikeres = fogadott, vagy egy érvényes EDIFACT üzenetet küldött. Egyetlen működési nyugtázási be van állítva. <br>Sikeres = fogadott, vagy egy érvényes EDIFACT üzenetet küldött. Működési nyugtázási beállítása és kapott, illetve funkcionális nyugtázási elküldésekor történik. <br>Nem sikerült fogadott = vagy EDIFACT érvénytelen üzenetet küldött <br>Függőben lévő = fogadott, vagy egy érvényes EDIFACT üzenetet küldött. Funkcionális nyugtázási be van állítva, és működési nyugtázási várt. |
-| Nyugtázási | Funkcionális nyugtázási (997) állapota <br>Elfogadható = fogadott, vagy egy pozitív működési nyugtát küldött <br>Elutasított = fogadott, vagy egy negatív működési nyugtát küldött <br>Függőben lévő = működési nyugtázási várt, de nem érkezett meg. <br>Függőben lévő = előállított működési nyugtázási, de nem lehet elküldeni a toopartner. <br>Nem szükséges = működési nyugtázási nincs beállítva. |
-| Irány | hello EDIFACT üzenet iránya |
-| Korrelációs azonosító | minden hello eseményindítók és műveletek a logikai alkalmazás hibához hello azonosítója |
-| Üzenet típusa | hello EDIFACT-üzenet típusa |
-| ICN | hello Interchange ellenőrző szám hello EDIFACT üzenet |
-| TSCN | hello beállítása vezérlő tranzakciószám hello EDIFACT üzenet |
-| időbélyeg | hello EDIFACT művelet feldolgozásának üdvözlőüzenetére hello időpontja |
+| Feladó | A megadott Vendég partner **fogadási beállítások**, vagy a fogadó partner megadott **küldési beállítások** EDIFACT megállapodás |
+| Fogadó | A megadott fogadó partner **fogadási beállítások**, vagy a Vendég partner megadott **küldési beállítások** EDIFACT megállapodás |
+| Logikai alkalmazás | A logikai alkalmazást, ahol a EDIFACT műveletek beállítása |
+| status | A EDIFACT Messaging-állapot <br>Sikeres = fogadott, vagy egy érvényes EDIFACT üzenetet küldött. Egyetlen működési nyugtázási be van állítva. <br>Sikeres = fogadott, vagy egy érvényes EDIFACT üzenetet küldött. Működési nyugtázási beállítása és kapott, illetve funkcionális nyugtázási elküldésekor történik. <br>Nem sikerült fogadott = vagy EDIFACT érvénytelen üzenetet küldött <br>Függőben lévő = fogadott, vagy egy érvényes EDIFACT üzenetet küldött. Funkcionális nyugtázási be van állítva, és működési nyugtázási várt. |
+| Nyugtázási | Funkcionális nyugtázási (997) állapota <br>Elfogadható = fogadott, vagy egy pozitív működési nyugtát küldött <br>Elutasított = fogadott, vagy egy negatív működési nyugtát küldött <br>Függőben lévő = működési nyugtázási várt, de nem érkezett meg. <br>Függőben lévő = előállított működési nyugtázási, de nem lehet elküldeni a partnernek. <br>Nem szükséges = működési nyugtázási nincs beállítva. |
+| Irány | A EDIFACT-üzenet irányát |
+| Korrelációs azonosító | A hibához az eseményindítók és műveletek a logikai alkalmazás azonosítója |
+| Üzenet típusa | A EDIFACT-üzenet típusa |
+| ICN | Az EDIFACT üzenet Interchange ellenőrző szám |
+| TSCN | A tranzakció beállítása ellenőrző szám az EDIFACT-üzenet |
+| időbélyeg | A EDIFACT művelet feldolgozásának az üzenet időpontja |
 |          |               |
 
 <a name="edifact-folder-file-names"></a>
 
 ### <a name="edifact-name-formats-for-downloaded-message-files"></a>A letöltött fájlok EDIFACT formátumok
 
-Az alábbiakban hello formátumok minden letöltött EDIFACT üzenet mappában és fájlokat.
+Az alábbiakban a formátumok minden letöltött EDIFACT üzenet mappában és fájlokat.
 
 | Fájl vagy mappa | Nevének formátuma |
 | :------------- | :---------- |

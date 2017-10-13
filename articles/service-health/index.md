@@ -1,9 +1,9 @@
 ---
-title: "aaaAzure erőforrásállapot - oktatóanyag |} Microsoft Docs"
-description: 
+title: "Azure Resource Health – oktatóanyagok | Microsoft Docs"
+description: "Az Azure Service Health személyre szabott útmutatást és támogatást nyújt, ha problémák merülnek fel az Azure használata közben, valamint segít felkészülni az ütemezett karbantartási műveletekre. Az Azure Service Health célzott és rugalmas értesítések útján figyelmezteti Önt és az Önhöz tartozó csapatokat."
 services: Resource health
-author: bernardm
-manager: bernardm
+author: czeumault
+manager: carolz
 layout: LandingPage
 ms.assetid: 
 ms.service: service-health
@@ -11,12 +11,12 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: landing-page
 ms.date: 07/07/2017
-ms.author: bernardm
-ms.openlocfilehash: 53a4c26c579a4201965add2117b5437c91fc8793
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: carolz
+ms.openlocfilehash: 17f7d334380032eec4be7d0ce3071a62b04fdc62
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-service-health-documentation"></a>Azure Service Health dokumentációja
 

@@ -1,15 +1,26 @@
 ---
+title: "A Service Bus Relay dokumentációja"
+description: "Megismerheti, hogyan működik az Azure Relay a hibrid felhőben és helyszíni környezetben, valamint többek között a témával kapcsolatos útmutatókat, oktatóanyagokat, videókat és API-referenciákat tekinthet meg."
+services: service-bus
+author: czeumault
+manager: carolz
 layout: LandingPage
-title: "aaaService Bus Relay dokumentáció"
-description: "Ismerje meg, hello Azure továbbítási szolgáltatás működése hibrid felhőalapú és helyszíni környezetben, kész, de hogyan, oktatóanyagok, videók, API hivatkozásokat és több."
-ms.openlocfilehash: c042c82c90fa03e91ee9c1b513e325d7e8d33c08
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.assetid: 
+ms.service: service-bus
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 03/14/2017
+ms.author: carolz
+ms.openlocfilehash: 9305e85ff075e8e7ee3e21315d28f63613ac01f4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
+---
 ---
 # <a name="service-bus-relay-documentation"></a>A Service Bus Relay dokumentációja
-Megtudhatja, hogyan Azure továbbítási szolgáltatás lehetővé teszi hibrid alkalmazások között a helyszíni és felhőalapú környezetek belül a vállalati hálózat és hello nyilvános felhők, anélkül, hogy tooopen egy tűzfalkapcsolatot, vagy zavaró módosításokat tooa vállalati megkövetelése hálózati infrastruktúra.
+Megismerheti, hogyan segíti az Azure Relay szolgáltatás a helyszíni környezet és a felhő közötti hibrid alkalmazásokat egy vállalati hálózaton belül és a nyilvános felhőben anélkül, hogy meg kellene nyitni egy tűzfalkapcsolatot, vagy zavaró módosításokat kellene végrehajtani a vállalati hálózati infrastruktúrán.
 
 <ul class="panelContent cardsFTitle">
     <li>

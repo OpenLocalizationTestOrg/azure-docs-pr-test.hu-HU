@@ -1,6 +1,6 @@
 ---
-title: SQL Server be Azure SQL Data Warehouse (SSIS) aaaLoad adatait |} Microsoft Docs
-description: "Bemutatja, hogyan toocreate egy SQL Server Integration Services (SSIS) csomag toomove adatokat az adatok különböző forrásokból tooSQL Data warehouse-bA."
+title: "Adatok betöltése az SQL Server be Azure SQL Data Warehouse (SSIS) |} Microsoft Docs"
+description: "Bemutatja, hogyan tárolt adatok mozgatása az adatforrások széles SQL-adatraktár SQL Server Integration Services (SSIS) csomag létrehozásához."
 services: sql-data-warehouse
 documentationcenter: NA
 author: ckarst
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: loading
 ms.date: 03/30/2017
 ms.author: cakarst;douglasl;barbkess
-ms.openlocfilehash: bb28a08807a5b07832b85f2f074c2acf912c1dc3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6c9cebdd715b6997d0633bc725a3945ba9e0c357
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="load-data-from-sql-server-into-azure-sql-data-warehouse-ssis"></a>Adatok betöltése az SQL Server be Azure SQL Data Warehouse (SSIS)
 > [!div class="op_single_selector"]
@@ -29,148 +29,148 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Hozzon létre egy SQL Server Integration Services (SSIS) csomag tooload adatok SQL Server az Azure SQL Data Warehouse között. Opcionálisan átalakításának, átalakítási és nagybetűhasználatának hello adatokat, ahogy keresztülhalad hello SSIS-adatfolyam.
+Adatok betöltése az SQL Serverről az Azure SQL Data Warehouse az SQL Server Integration Services (SSIS) csomag létrehozása. Opcionálisan átalakításának, átalakítási és nagybetűhasználatának az adatokat, ahogy keresztülhalad az SSIS-adatfolyam.
 
 Az oktatóanyag során az alábbi lépéseket fogja végrehajtani:
 
 * Az integrációs szolgáltatások új projekt létrehozása a Visual Studióban.
-* Csatlakozás toodata móddal, többek között az SQL Server (mint a forrás-) és az SQL Data Warehouse (célként).
-* Tervezze meg az SSIS-csomagot, amely hello forrásból származó adatokat tölt be hello cél.
-* Futtassa a hello SSIS tooload hello adatait.
+* Kapcsolódás az adatforrásokhoz, beleértve az SQL Server (mint a forrás-) és az SQL Data Warehouse (célként).
+* Tervezze meg az SSIS-csomagot, amely a forrásból származó adatokat tölt a célhelyre történő.
+* Futtassa a SSIS az adatok betöltésére.
 
-Ez az oktatóanyag az SQL Server hello adatforrásként. SQL Server sikerült fut, a helyszíni vagy egy Azure virtuális gépen.
+Ez az oktatóanyag az SQL Server, az adatforrással. SQL Server sikerült fut, a helyszíni vagy egy Azure virtuális gépen.
 
 ## <a name="basic-concepts"></a>Alapfogalmak
-hello csomag hello munkaegysége SSIS. Kapcsolódó csomagok projektek vannak csoportosítva. Projektek és a Tervező csomagok létrehozása a Visual Studio és az SQL Server Data Tools összetevővel. egy visual folyamat, amelyben Ön áthúzása összetevők hello eszközkészlet toohello tervezési felületéhez hello tervezési csatlakoztassa őket, és állítsa be tulajdonságaikat. Ha befejezte a csomag, igény szerint telepítheti azt tooSQL kiszolgáló átfogó kezelési, figyelési és biztonsági.
+A csomag nincs SSIS munkaegysége. Kapcsolódó csomagok projektek vannak csoportosítva. Projektek és a Tervező csomagok létrehozása a Visual Studio és az SQL Server Data Tools összetevővel. A tervezési folyamat az egy visual folyamat, amelyben húzza és összetevők dobja el az eszközkészletből a Tervező felületére, csatlakoztassa őket, és állítsa be tulajdonságaikat. Ha befejezte a csomag, opcionálisan telepítése az SQL Server átfogó kezelési, figyelési és biztonsági.
 
 ## <a name="options-for-loading-data-with-ssis"></a>Beállítások SSIS az adatok betöltése
 SQL Server Integration Services (SSIS), amely számos lehetőséget biztosít csatlakozik, és az adatok betöltése az SQL Data Warehouse rugalmas eszközkészlet.
 
-1. Használjon egy ADO NET cél tooconnect tooSQL Data warehouse-bA. Ez az oktatóanyag egy ADO NET cél használja, mert a hello legkevesebb konfigurációs beállításokat.
-2. Az OLE DB cél tooconnect tooSQL adatraktár használja. Ez a beállítás által biztosított hello ADO NET cél némileg jobb teljesítményt.
-3. Hello Azure Blob feltöltése feladat toostage hello adatokat használja az Azure Blob Storage tárolóban. Ezután használja az hello SSIS SQL végrehajtása a feladat toolaunch hello adatok betöltése az SQL Data Warehouse Polybase parancsfájlból. Ez a beállítás hello három lehetőség az itt felsorolt hello legjobb teljesítményt biztosít. tooget hello Azure Blob feltöltése feladat letöltése hello [Microsoft SQL Server 2016 Integration Services funkciócsomag Azure][Microsoft SQL Server 2016 Integration Services Feature Pack for Azure]. toolearn Polybase kapcsolatos további információkért lásd: [PolyBase-útmutatóban][PolyBase Guide].
+1. Az ADO NET cél használatával csatlakozhat az SQL Data Warehouse. Ez az oktatóanyag egy ADO NET cél használja, mert a legkevesebb konfigurációs beállításokat.
+2. Az OLE DB cél használatával csatlakozhat az SQL Data Warehouse. Ez a beállítás által biztosított ADO NET cél némileg jobb teljesítményt.
+3. Az Azure Blob feltöltése feladat segítségével az adatok az Azure Blob Storage tesztelése. A SSIS SQL végrehajtása a feladat segítségével indítsa el az adatok betöltése az SQL Data Warehouse Polybase parancsfájlból. Ez a beállítás az itt felsorolt három közül a legjobb teljesítményt biztosít. Ahhoz, hogy az Azure Blob feltöltése feladat, töltse le a [Microsoft SQL Server 2016 Integration Services funkciócsomag Azure][Microsoft SQL Server 2016 Integration Services Feature Pack for Azure]. A Polybase kapcsolatos további információkért lásd: [PolyBase-útmutatóban][PolyBase Guide].
 
 ## <a name="before-you-start"></a>Előkészületek
-az oktatóanyag teljesítéséhez toostep, lesz szüksége:
+Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
 
-1. **Az SQL Server Integration Services (SSIS)**. SSIS az SQL Server, és próbaverziójáról vagy az SQL Server licenccel rendelkező verzió szükséges. SQL Server 2016 Preview próbaverzióját tooget lásd [SQL Server értékelések][SQL Server Evaluations].
-2. **Visual Studio**. tooget ingyenes Visual Studio Community Edition hello című [Visual Studio Community][Visual Studio Community].
-3. **SQL Server Data Tools for Visual Studio (SSDT)**. SQL Server Data Tools for Visual Studio tooget lásd [letöltése SQL Server Data Tools (SSDT)][Download SQL Server Data Tools (SSDT)].
-4. **Az adatokat**. Ez az oktatóanyag tárolva az SQL Server hello AdventureWorks mintaadatbázishoz source adatok toobe SQL Data Warehouse-bA betöltött hello mintaadatokat használja. tooget hello AdventureWorks mintaadatbázishoz, lásd: [AdventureWorks 2014 mintaadatbázisokat][AdventureWorks 2014 Sample Databases].
-5. **Egy SQL Data Warehouse-adatbázis és az engedélyek**. Ez az oktatóanyag tooa SQL Data Warehouse-példányhoz csatlakozik, és adatokat tölt be. Toohave engedélyek toocreate egy tábla és tooload adatokkal rendelkeznek.
-6. **Egy tűzfalszabály**. Van toocreate tűzfalszabály SQL Data Warehouse hello IP-cím a helyi számítógép adatok toohello SQL Data Warehouse feltöltéséhez.
+1. **Az SQL Server Integration Services (SSIS)**. SSIS az SQL Server, és próbaverziójáról vagy az SQL Server licenccel rendelkező verzió szükséges. Ahhoz, hogy az SQL Server 2016 Preview próbaverzióját, lásd: [SQL Server értékelések][SQL Server Evaluations].
+2. **Visual Studio**. Az ingyenes Visual Studio Community Edition megtekinteni [Visual Studio Community][Visual Studio Community].
+3. **SQL Server Data Tools for Visual Studio (SSDT)**. Ahhoz, hogy az SQL Server Data Tools for Visual Studio, lásd: [letöltése SQL Server Data Tools (SSDT)][Download SQL Server Data Tools (SSDT)].
+4. **Az adatokat**. Ez az oktatóanyag betöltését az SQL Data Warehouse használja a mintaadatok az SQL Server a forrásadatok az AdventureWorks mintaadatbázishoz tárolja. Az AdventureWorks mintaadatbázishoz megtekinteni [AdventureWorks 2014 mintaadatbázisokat][AdventureWorks 2014 Sample Databases].
+5. **Egy SQL Data Warehouse-adatbázis és az engedélyek**. Ez az oktatóanyag az SQL Data Warehouse-példányhoz, és adatokat tölt be. Van engedélye a tábla létrehozásához és adatok betöltésére.
+6. **Egy tűzfalszabály**. Előtt létre szeretne hozni egy tűzfalszabályt SQL Data warehouse a helyi számítógép IP-címmel feltöltheti az adatait az SQL Data warehouse rendelkezik.
 
 ## <a name="step-1-create-a-new-integration-services-project"></a>1. lépés: Új Integration Services-projekt létrehozása
 1. Indítsa el a Visual Studio.
-2. A hello **fájl** menü **új |} Projekt**.
-3. Keresse meg a toohello **telepített |} Sablonok |} Üzleti intelligencia |} Az integrációs szolgáltatások** projekt típusok.
+2. Az a **fájl** menü **új |} Projekt**.
+3. Keresse meg a **telepítve |} Sablonok |} Üzleti intelligencia |} Az integrációs szolgáltatások** projekt típusok.
 4. Válassza ki **Integration Services-projekt**. Adjon meg értékeket a **neve** és **hely**, majd válassza ki **OK**.
 
-A Visual Studio megnyílik, és létrehoz egy új Integration Services (SSIS) projektet. Majd megnyílik a Visual Studio hello designer hello egyetlen új SSIS-csomag (Package.dtsx) hello projektben. A következő képernyő területek hello jelenik meg:
+A Visual Studio megnyílik, és létrehoz egy új Integration Services (SSIS) projektet. Majd megnyílik a Visual Studio a tervező az egyetlen új SSIS-csomag (Package.dtsx) a projektben. A következő területeken képernyő jelenik meg:
 
-* Hello bal oldali hello **eszközkészlet** SSIS-összetevők.
-* Hello középső hello több lappal a tervezési felülethez. Általában használja legalább hello **vezérlő Flow** és hello **adatfolyam** lapokon.
-* A jobb oldali hello hello **Megoldáskezelőben** és hello **tulajdonságok** ablaktábla.
+* A bal oldali a **eszközkészlet** SSIS-összetevők.
+* A középső, a tervezési felülethez, több lappal. Általában használja legalább az **vezérlő Flow** és a **adatfolyam** lapokon.
+* A jobb oldalon a **Megoldáskezelőben** és a **tulajdonságok** ablaktábla.
   
     ![][01]
 
-## <a name="step-2-create-hello-basic-data-flow"></a>2. lépés: Hello alapszintű adatfolyam létrehozása
-1. Az egérrel húzzon át egy Data Flow feladat hello eszközkészlet toohello közepére hello a tervezési felülethez (a hello **vezérlő Flow** lap).
+## <a name="step-2-create-the-basic-data-flow"></a>2. lépés: Az alapszintű adatfolyam létrehozása
+1. Húzzon Data Flow feladat az eszközkészletből a Tervező felület (a a **vezérlő Flow** lap).
    
     ![][02]
-2. Kattintson duplán a hello Data Flow feladat tooswitch toohello adatfolyam-lapon.
-3. Hello eszközkészlet hello más adatforrások listájában húzza egy ADO.NET forrás toohello a tervezési felülethez. Hello forrás adapter kijelölését, megváltoztathatja a neve túl**SQL Server-adatforrás** a hello **tulajdonságok** ablaktáblán.
-4. Hello eszközkészlet hello más célhelyre listájából húzza az ADO.NET cél toohello tervezési felülethez hello ADO.NET forrás alatt. Hello cél adapter kijelölését, megváltoztathatja a neve túl**SQL DW cél** a hello **tulajdonságok** ablaktáblán.
+2. Kattintson duplán az adatok áramlását feladat váltson át az adatfolyam-lapon.
+3. Az eszközkészlet egyéb adatforrások listájából húzza az ADO.NET forrás a Tervező felületére. A kijelölt adatforrás adapterrel, módosítsa a nevét, hogy **SQL Server-adatforrás** a a **tulajdonságok** ablaktáblán.
+4. Az eszközkészlet egyéb célok listájából húzza az ADO.NET cél ADO.NET forrás alatt a Tervező felületére. A cél adapterrel kijelölését, módosítsa a nevét, hogy **SQL DW cél** a a **tulajdonságok** ablaktáblán.
    
     ![][09]
 
-## <a name="step-3-configure-hello-source-adapter"></a>3. lépés: Hello forrás adapter konfigurálásához.
-1. Kattintson duplán a hello forrás adapter tooopen hello **ADO.NET forrás szerkesztő**.
+## <a name="step-3-configure-the-source-adapter"></a>3. lépés: A forrás-adapter konfigurálásához.
+1. A forrás adapter megnyitásához kattintson duplán a **ADO.NET forrás szerkesztő**.
    
     ![][03]
-2. A hello **Csatlakozáskezelő** hello lapján **ADO.NET forrás szerkesztő**, hello kattintson **új** gomb következő toohello **ADO.NET Csatlakozáskezelő**lista tooopen hello **konfigurálása ADO.NET Csatlakozáskezelő** párbeszédpanel és hozza létre, amelyből ez az oktatóanyag adatokat tölt hello SQL Server adatbázis kapcsolati beállításait.
+2. A a **Csatlakozáskezelő** lapján a **ADO.NET forrás szerkesztő**, kattintson a **új** megjelenítő gombra a **ADO.NET Csatlakozáskezelő** nyissa meg a listában a **konfigurálása ADO.NET Csatlakozáskezelő** párbeszédpanel és hozza létre, amelyből ez az oktatóanyag adatokat tölt az SQL Server-adatbázis biztonságoskapcsolat-beállításainak.
    
     ![][04]
-3. A hello **konfigurálása ADO.NET Csatlakozáskezelő** párbeszédpanel hello kattintson **új** gomb tooopen hello **Csatlakozáskezelő** párbeszédpanel és hozza létre az új kapcsolat.
+3. Az a **konfigurálása ADO.NET Csatlakozáskezelő** párbeszédpanel, kattintson a **új** gombra kattintva nyissa meg a **Csatlakozáskezelő** párbeszédpanel és hozza létre az új kapcsolat.
    
     ![][05]
-4. A hello **Csatlakozáskezelő** párbeszédpanel dolgok következő hello mezőbe.
+4. Az a **Csatlakozáskezelő** párbeszédpanelen tegye a következőket.
    
-   1. A **szolgáltató**, válassza ki a hello SqlClient adatszolgáltatója.
-   2. A **kiszolgálónév**, hello SQL Server nevét adja meg.
-   3. A hello **toohello server bejelentkezés** szakaszban válassza ki vagy adja meg a hitelesítési adatokat.
-   4. A hello **Connect tooa adatbázis** területen válassza ki az AdventureWorks mintaadatbázishoz hello.
+   1. A **szolgáltató**, válassza ki az SqlClient adatszolgáltatója.
+   2. A **kiszolgálónév**, adja meg az SQL Server nevét.
+   3. Az a **jelentkezzen be a kiszolgálóra** szakaszban válassza ki vagy adja meg a hitelesítési adatokat.
+   4. Az a **csatlakozás az adatbázishoz** területen válassza ki az AdventureWorks mintaadatbázishoz.
    5. Kattintson a **tesztkapcsolat**.
       
        ![][06]
-   6. A jelentések hello kapcsolat vizsgálati eredményeket hello hello párbeszédpanel, kattintson **OK** tooreturn toohello **Csatlakozáskezelő** párbeszédpanel megnyitásához.
-   7. A hello **Csatlakozáskezelő** párbeszédpanel, kattintson a **OK** tooreturn toohello **konfigurálása ADO.NET Csatlakozáskezelő** párbeszédpanel.
-5. A hello **konfigurálása ADO.NET Csatlakozáskezelő** párbeszédpanel, kattintson a **OK** tooreturn toohello **ADO.NET forrás szerkesztő**.
-6. A hello **ADO.NET forrás szerkesztő**, a hello **hello tábla vagy nézet hello neve** listában, jelölje be hello **Sales.SalesOrderDetail** tábla.
+   6. Kattintson a párbeszédpanel, amely a kapcsolat vizsgálati eredményeket jelent, **OK** való visszatéréshez a **Csatlakozáskezelő** párbeszédpanel megnyitásához.
+   7. Az a **Csatlakozáskezelő** párbeszédpanel, kattintson a **OK** való visszatéréshez a **konfigurálása ADO.NET Csatlakozáskezelő** párbeszédpanel.
+5. Az a **konfigurálása ADO.NET Csatlakozáskezelő** párbeszédpanel, kattintson a **OK** való visszatéréshez a **ADO.NET adatforrás-szerkesztő**.
+6. Az a **ADO.NET forrás szerkesztő**, a a **a tábla vagy a nézet neve** listáról válassza ki a **Sales.SalesOrderDetail** tábla.
    
     ![][07]
-7. Kattintson a **előzetes** toosee hello hello forrástáblában hello az első 200 adatsorokat **lekérdezés eredményének villámnézete** párbeszédpanel megnyitásához.
+7. Kattintson a **előzetes** az első 200 sorokat a forrás táblázatban szereplő adatok a **lekérdezés eredményének villámnézete** párbeszédpanel megnyitásához.
    
     ![][08]
-8. A hello **lekérdezés eredményének villámnézete** párbeszédpanel, kattintson a **Bezárás** tooreturn toohello **ADO.NET forrás szerkesztő**.
-9. A hello **ADO.NET forrás szerkesztő**, kattintson a **OK** toofinish hello-adatforrás konfigurálásakor.
+8. Az a **lekérdezés eredményének villámnézete** párbeszédpanel, kattintson a **Bezárás** való visszatéréshez a **ADO.NET forrás szerkesztő**.
+9. Az a **ADO.NET forrás szerkesztő**, kattintson a **OK** az adatforrás konfigurálásának befejezéséhez.
 
-## <a name="step-4-connect-hello-source-adapter-toohello-destination-adapter"></a>4. lépés: Csatlakozás hello forrás adapter toohello céladapter
-1. Válassza ki a forrás adapterének hello hello a tervezési felülethez.
-2. Válassza ki, amely kiterjeszti hello forrás adapteréről hello kék nyíl, és húzza toohello cél szerkesztő amíg helyen igazodik.
+## <a name="step-4-connect-the-source-adapter-to-the-destination-adapter"></a>4. lépés: A forrás-adaptert csatlakoztatni a céladapter
+1. Válassza ki a tervezési felülethez a forrás-adapteréből.
+2. Válassza ki a kék nyíl, amely kiterjeszti a forrás-adapternek, és húzza azt a cél-szerkesztő, amíg a helyen igazodik.
    
     ![][10]
    
-    Egy tipikus SSIS-csomag más hello SSIS-eszközkészlet Between hello forrás és cél toorestructure hello, átalakító-összetevőt számos, és az adatok nagybetűhasználatának, ahogy keresztülhalad hello SSIS-adatfolyam. tookeep ebben a példában lehető legegyszerűbb azt kapcsolat hello forrás közvetlenül toohello cél.
+    A tipikus SSIS-csomag segítségével számos más összetevők a forrás- és a cél Between SSIS eszközkészletből átalakításának, átalakítási és nagybetűhasználatának az adatokat, ahogy keresztülhalad az SSIS-adatfolyam. Ez a példa lehető legegyszerűbb megtartásához azt csatlakozik a forrás közvetlenül a cél.
 
-## <a name="step-5-configure-hello-destination-adapter"></a>5. lépés: Hello céladapter konfigurálása
-1. Kattintson duplán a hello cél adapter tooopen hello **ADO.NET cél szerkesztő**.
+## <a name="step-5-configure-the-destination-adapter"></a>5. lépés: Konfigurálja a céladapter
+1. A célként megadott adapter megnyitásához kattintson duplán a **ADO.NET cél szerkesztő**.
    
     ![][11]
-2. A hello **Csatlakozáskezelő** hello lapján **ADO.NET cél szerkesztő**, hello kattintson **új** gomb következő toohello **Csatlakozáskezelő**lista tooopen hello **konfigurálása ADO.NET Csatlakozáskezelő** párbeszédpanel és hozza létre, amelybe ez az oktatóanyag adatokat tölt hello Azure SQL Data Warehouse-adatbázis biztonságoskapcsolat-beállításainak.
-3. A hello **konfigurálása ADO.NET Csatlakozáskezelő** párbeszédpanel hello kattintson **új** gomb tooopen hello **Csatlakozáskezelő** párbeszédpanel és hozza létre az új kapcsolat.
-4. A hello **Csatlakozáskezelő** párbeszédpanel dolgok következő hello mezőbe.
-   1. A **szolgáltató**, válassza ki a hello SqlClient adatszolgáltatója.
-   2. A **kiszolgálónév**, adja meg a hello SQL Data Warehouse neve.
-   3. A hello **toohello server bejelentkezés** szakaszban jelölje be **használja az SQL Server-hitelesítési** , és írja be a hitelesítési adatokat.
-   4. A hello **Connect tooa adatbázis** területen válasszon ki egy létező SQL Data Warehouse-adatbázist.
+2. A a **Csatlakozáskezelő** lapján a **ADO.NET cél szerkesztő**, kattintson a **új** megjelenítő gombra a **Csatlakozáskezelő** nyissa meg a listában a **konfigurálása ADO.NET Csatlakozáskezelő** párbeszédpanel és hozza létre a kapcsolat beállításait az Azure SQL Data Warehouse-adatbázist, amelybe ez az oktatóanyag adatokat tölt.
+3. Az a **konfigurálása ADO.NET Csatlakozáskezelő** párbeszédpanel, kattintson a **új** gombra kattintva nyissa meg a **Csatlakozáskezelő** párbeszédpanel és hozza létre az új kapcsolat.
+4. Az a **Csatlakozáskezelő** párbeszédpanelen tegye a következőket.
+   1. A **szolgáltató**, válassza ki az SqlClient adatszolgáltatója.
+   2. A **kiszolgálónév**, adja meg az SQL Data Warehouse nevét.
+   3. Az a **jelentkezzen be a kiszolgálóra** szakaszban jelölje be **használja az SQL Server-hitelesítési** , és írja be a hitelesítési adatokat.
+   4. Az a **csatlakozás az adatbázishoz** területen válasszon ki egy létező SQL Data Warehouse-adatbázist.
    5. Kattintson a **tesztkapcsolat**.
-   6. A jelentések hello kapcsolat vizsgálati eredményeket hello hello párbeszédpanel, kattintson **OK** tooreturn toohello **Csatlakozáskezelő** párbeszédpanel megnyitásához.
-   7. A hello **Csatlakozáskezelő** párbeszédpanel, kattintson a **OK** tooreturn toohello **konfigurálása ADO.NET Csatlakozáskezelő** párbeszédpanel.
-5. A hello **konfigurálása ADO.NET Csatlakozáskezelő** párbeszédpanel, kattintson a **OK** tooreturn toohello **ADO.NET cél szerkesztő**.
-6. A hello **ADO.NET cél szerkesztő**, kattintson a **új** következő toohello **használni kívánt táblát vagy nézetet** lista tooopen hello **Create Table** párbeszédpanel toocreate utasítást egy oszloplistával hello forrástábla megfelelő új táblát.
+   6. Kattintson a párbeszédpanel, amely a kapcsolat vizsgálati eredményeket jelent, **OK** való visszatéréshez a **Csatlakozáskezelő** párbeszédpanel megnyitásához.
+   7. Az a **Csatlakozáskezelő** párbeszédpanel, kattintson a **OK** való visszatéréshez a **konfigurálása ADO.NET Csatlakozáskezelő** párbeszédpanel.
+5. Az a **konfigurálása ADO.NET Csatlakozáskezelő** párbeszédpanel, kattintson a **OK** való visszatéréshez a **ADO.NET cél szerkesztő**.
+6. Az a **ADO.NET cél szerkesztő**, kattintson a **új** mellett a **használni kívánt táblát vagy nézetet** nyissa meg a listában a **Create Table** párbeszédpanel cél új tábla létrehozása, amely megfelel a forrástábla oszloplistával együtt.
    
     ![][12a]
-7. A hello **Create Table** párbeszédpanel dolgok következő hello mezőbe.
+7. Az a **Create Table** párbeszédpanelen tegye a következőket.
    
-   1. Hello céltábla hello nevének módosítása túl**értékesítési rendelési adatot**.
-   2. Távolítsa el a hello **rowguid** oszlop. Hello **uniqueidentifier** adattípusa nem támogatott az SQL Data Warehouse.
-   3. Hello hello adattípusának módosítása **LineTotal** oszlop túl**pénz**. Hello **decimális** adattípusa nem támogatott az SQL Data Warehouse. További információt a támogatott adattípusok, lásd: [CREATE TABLE (Azure SQL Data Warehouse, Parallel Data Warehouse)][CREATE TABLE (Azure SQL Data Warehouse, Parallel Data Warehouse)].
+   1. A célként megadott tábla nevének módosítása **értékesítési rendelési adatot**.
+   2. Távolítsa el a **rowguid** oszlop. A **uniqueidentifier** adattípusa nem támogatott az SQL Data Warehouse.
+   3. Módosítja az adattípust, a **LineTotal** oszlop **pénz**. A **decimális** adattípusa nem támogatott az SQL Data Warehouse. További információt a támogatott adattípusok, lásd: [CREATE TABLE (Azure SQL Data Warehouse, Parallel Data Warehouse)][CREATE TABLE (Azure SQL Data Warehouse, Parallel Data Warehouse)].
       
        ![][12b]
-   4. Kattintson a **OK** toocreate hello tábla, és térjen vissza toohello **ADO.NET cél szerkesztő**.
-8. A hello **ADO.NET cél szerkesztő**, jelölje be hello **hozzárendelések** toosee lapon hogyan hello forrás oszlopai leképezve toocolumns hello cél.
+   4. Kattintson a **OK** a tábla létrehozásához, és térjen vissza a **ADO.NET cél szerkesztő**.
+8. Az a **ADO.NET cél szerkesztő**, jelölje be a **hozzárendelések** lapon, láthatja, hogyan oszlop szerepel a forrás oszlop szerepel a cél van leképezve.
    
     ![][13]
-9. Kattintson a **OK** toofinish hello-adatforrás konfigurálásakor.
+9. Kattintson a **OK** az adatforrás konfigurálásának befejezéséhez.
 
-## <a name="step-6-run-hello-package-tooload-hello-data"></a>6. lépés: Hello tooload hello csomagadatok futtatása
-Futtatási hello csomag hello kattintva **Start** gombra, vagy egy hello hello eszköztár **futtatása** hello beállítások **Debug** menü.
+## <a name="step-6-run-the-package-to-load-the-data"></a>6. lépés: A csomag az adatok betöltéséhez futtassa
+Futtassa a gombra kattintva a **Start** gomb az eszköztáron vagy egy a **futtatása** a lehetőségek a **Debug** menü.
 
-Hello csomag toorun kezdődik, mivel látni sárga forgó kerekek tooindicate tevékenység, valamint a hello eddig feldolgozott sorok száma.
+A csomag kezdődik el, mivel látni sárga forgó kerekek tevékenység, valamint a feldolgozott eddig sorok számát jelzi.
 
 ![][14]
 
-Hello csomag futása befejeződött, amikor, tekintse meg a zöld jelölését tooindicate sikeres, valamint hello adatok betöltődnek a hello forrás toohello cél sorok maximális számát.
+Ha a csomag futása befejeződött, megjelenik az zöld jelölését annak jelzésére, sikeres, valamint az adatok betöltése a forrásból történő sorainak száma.
 
 ![][15]
 
-Gratulálunk! Az Azure SQL Data Warehouse sikeresen használt SQL Server Integration Services tooload adatokat.
+Gratulálunk! Adatok betöltése az Azure SQL Data Warehouse sikeresen használt SQL Server Integration Services.
 
 ## <a name="next-steps"></a>Következő lépések
-* További tudnivalók hello SSIS-adatfolyam. Kezdje itt: [adatfolyam][Data Flow].
-* Megtudhatja, hogyan toodebug és hibaelhárítása a csomagok jobb hello tervezési környezetben. Kezdje itt: [hibaelhárítási eszközök csomag fejlesztési][Troubleshooting Tools for Package Development].
-* Megtudhatja, hogyan toodeploy a SSIS projektek és csomagok tooIntegration Services-kiszolgáló vagy tooanother tárolási helyét. Kezdje itt: [telepítési a projekt és csomagok][Deployment of Projects and Packages].
+* További tudnivalók az SSIS-adatfolyam. Kezdje itt: [adatfolyam][Data Flow].
+* Útmutató a Hibakeresés és hibaelhárítás a csomagok jobbra a tervezési környezetben. Kezdje itt: [hibaelhárítási eszközök csomag fejlesztési][Troubleshooting Tools for Package Development].
+* Megtudhatja, hogyan telepítheti a SSIS-projektek és csomagok Integration Services-kiszolgáló vagy egy másik tárolóhelyre. Kezdje itt: [telepítési a projekt és csomagok][Deployment of Projects and Packages].
 
 <!-- Image references -->
 [01]:  ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/ssis-designer-01.png

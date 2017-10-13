@@ -1,8 +1,8 @@
 ---
-title: "aaaAzure kulcsot tároló dokumentációja – oktatóanyagok API-referencia |} Microsoft Docs"
-description: "Megtudhatja, hogyan toouse Key Vault toocreate és kulcsok feletti titkosítása a felhőben található erőforrásokat, az alkalmazások és a megoldások karbantartása. Oktatóanyagok, API-referenciák és egyebek."
+title: "Az Azure Key Vault dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogyan hozhatja létre és tarthatja karban a Key Vault használatával a kulcsokat, amelyekkel elérheti és titkosíthatja a felhőalapú erőforrásokat, alkalmazásokat és megoldásokat. Oktatóanyagok, API-referenciák és egyebek."
 services: key-vault
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: a7fbebf94b3f345731ccba0ab788c83efa4c021e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3267373f6db336c34d13709cc0392631531313f4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="key-vault-documentation"></a>Key Vault – dokumentáció
 
-Megtudhatja, hogyan toouse Key Vault toosafeguard és a felhőalapú alkalmazások és szolgáltatások által használt titkosítási kulcsok és titkos kezelése. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt mutatja be toocreate és kulcsok feletti titkosítja az erőforrások és a megoldások karbantartása.
+Ismerje meg, hogyan védheti és felügyelheti a Key Vault használatával a felhőalapú alkalmazások és szolgáltatások által használt titkosítási kulcsokat és titkos kulcsokat. Az oktatóanyagok, API-referenciák és az egyéb dokumentáció bemutatják, hogyan hozhatja létre és tarthatja karban a kulcsokat, amelyekkel elérheti és titkosíthatja erőforrásait és megoldásait.
 
 <ul class="panelContent cardsFTitle">
     <li>

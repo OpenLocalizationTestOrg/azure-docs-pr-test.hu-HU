@@ -1,8 +1,8 @@
 ---
-title: "aaaAzure Logic Apps dokumentációja – oktatóanyagok API-referencia |} Microsoft Docs"
-description: "Ismerje meg, hogyan toodevelop logic Apps alkalmazásokat, amelyek automatizálják és egyszerűsítik üzleti munkafolyamatok a helyszíni és hello felhő. Oktatóanyagok, sablonok és API-referenciák."
+title: "Az Azure Logic Apps dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogyan fejleszthet Logic Apps alkalmazásokat a helyszíni és a felhőben futó üzleti munkafolyamatok automatizálására és egyszerűbbé tételére. Oktatóanyagok, sablonok és API-referenciák."
 services: logic-apps
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 5cc3a730b1b6abcb3ec0132f6e8ebf2e54775836
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ff3f9ba6c225294e7570c5204701dd2f6b927318
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="logic-apps-documentation"></a>Logic Apps – dokumentáció
 
-Ismerje meg, hogyan toodevelop Logic Apps alkalmazásokat, amelyek egyszerűbbé és méretezhető munkafolyamatok hello felhő. Oktatóanyagok, sablonok és API hivatkozik tervezése és telepítése az automatizált üzleti munkafolyamatok biztosíthat a helyi és felhő hello segítik.
+Ismerje meg, hogyan fejleszthet Logic Apps alkalmazásokat, amelyek egyszerűbbé teszik és integrálják a felhőben futó méretezhető munkafolyamatokat. Az oktatóanyagok, sablonok és API-referenciák segítségével automatizált helyszíni és felhőalapú üzleti folyamatokat alakíthat ki és vezethet be.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -106,7 +106,7 @@ Ismerje meg, hogyan toodevelop Logic Apps alkalmazásokat, amelyek egyszerűbbé
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>A Logic Apps egy egyéni API toouse létrehozásához</h3>
+                        <h3>Ismerkedés a Logic Apps-szal használandó egyéni API létrehozásával</h3>
                     </div>
                 </div>
             </div>

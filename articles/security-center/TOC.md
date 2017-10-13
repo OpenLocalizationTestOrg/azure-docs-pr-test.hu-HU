@@ -4,7 +4,7 @@
 ## [Adatbiztonság](security-center-data-security.md)
 ## Forgatókönyvek
 ### [Incidensmegoldás](security-center-incident-response.md)
-### [Javaslatok tooenhance biztonság használatára](security-center-using-recommendations.md)
+### [Javaslatok használata a biztonság növelése érdekében](security-center-using-recommendations.md)
 ## [Platformok migrálása](security-center-platform-migration.md)
 ### [Platformok migrálásával kapcsolatos gyakori kérdések](security-center-platform-migration-faq.md)
 
@@ -18,11 +18,19 @@
 
 # Útmutató
 
-## Megelőzés
-### [Biztonsági szabályzatok beállítása](security-center-policies.md)
-### [Igény szerinti hozzáférés](security-center-just-in-time.md)
-### [Biztonsági ajánlások megvalósítása](security-center-recommendations.md)
+## Biztonsági házirend
+### [Áttekintés](security-center-policies-overview.md)
+### [Adatgyűjtés](security-center-enable-data-collection.md)
+### [Biztonsági szabályzat](security-center-policies.md)
+### [E-mail-értesítések](security-center-provide-security-contact-details.md)
+### [Tarifacsomag](security-center-pricing.md)
 
+## [Előkészítés](security-center-onboarding.md)
+## [Események](security-center-events-dashboard.md)
+## [Search](security-center-search.md)
+
+## Megelőzés
+### [Biztonsági ajánlások megvalósítása](security-center-recommendations.md)
 ### [Alkalmazásokkal kapcsolatos javaslatok](security-center-application-recommendations.md)
 #### [Webalkalmazási tűzfal hozzáadása](security-center-add-web-application-firewall.md)
 #### [Alkalmazásvédelem véglegesítése](security-center-add-web-application-firewall.md#finalize-application-protection)
@@ -41,19 +49,16 @@
 ### [A virtuális gépre vonatkozó javaslatok](security-center-virtual-machine-recommendations.md)
 #### [Lemeztitkosítás alkalmazása](security-center-apply-disk-encryption.md)
 #### [Rendszerfrissítések alkalmazása](security-center-apply-system-updates.md)
-#### [Az adatgyűjtés engedélyezése](security-center-enable-data-collection.md)
 #### [Titkosítás engedélyezése tárfiókokon](security-center-enable-encryption-for-storage-account.md)
 #### [Virtuálisgép-ügynök engedélyezése](security-center-enable-vm-agent.md)
 #### [Endpoint Protection telepítése](security-center-install-endpoint-protection.md)
-#### [Biztonsági kapcsolattartói adatok megadása](security-center-provide-security-contact-details.md)
 #### [Rendszerfrissítések utáni újraindítás](security-center-apply-system-updates.md#reboot-after-system-updates)
 #### [Operációs rendszerek sebezhetőségeinek javítása](security-center-remediate-os-vulnerabilities.md)
-#### [Endpoint Protection-állapotriasztások feloldása](security-center-resolve-endpoint-protection-health-alerts.md)
 #### [Operációs rendszer verziójának frissítése](security-center-update-os-version.md)
 #### [A sebezhetőségi felmérés nincs telepítve](security-center-vulnerability-assessment-recommendations.md)
-
 ### [A biztonsági állapot figyelése](security-center-monitoring.md)
 ### [Partneri megoldások megfigyelése](security-center-partner-solutions.md)
+### [Identitás és hozzáférés](security-center-identity-access.md)
 
 ## Észlelés és válasz
 ### [Észlelési képességek](security-center-detection-capabilities.md)
@@ -62,7 +67,17 @@
 ### [Riasztások érvényesítése](security-center-alert-validation.md)
 ### [Biztonsági incidensek kezelése](security-center-incident.md)
 ### [Azure-naplók integrációja](security-center-integrating-alerts-with-log-integration.md)
+### [Fenyegetésészlelési térkép](security-center-threat-intel.md)
 ### [Fenyegetésfelderítési jelentés](security-center-threat-report.md)
+### [Egyéni riasztások](security-center-custom-alert.md)
+### [Vizsgálat](security-center-investigation.md)
+
+## Felhővédelmi funkciók
+### [Igény szerinti hozzáférés](security-center-just-in-time.md)
+### [Adaptív alkalmazásvezérlők](security-center-adaptive-application.md)
+
+## Automatizálás és vezénylés
+### [Útmutatók](security-center-playbooks.md)
 
 ## Hibaelhárítás
 ### [Hibaelhárítási útmutató](security-center-troubleshooting-guide.md)
@@ -76,7 +91,6 @@
 # Erőforrások
 ## [Azure-ütemterv](https://azure.microsoft.com/roadmap/?category=security-identity)
 ## [Azure biztonsági, adatvédelmi és megfelelőségi blog](http://blogs.msdn.com/b/azuresecurity/)
-## [Díjszabás](security-center-pricing.md)
 ## [Díjkalkulátor](https://azure.microsoft.com/pricing/calculator/)
 ## [Szolgáltatás áttekintése](https://azure.microsoft.com/services/security-center/)
 ## [Szolgáltatási hírek](https://azure.microsoft.com/updates/?product=security-center)

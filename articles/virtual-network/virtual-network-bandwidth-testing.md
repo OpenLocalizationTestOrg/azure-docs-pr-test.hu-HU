@@ -1,6 +1,6 @@
 ---
-title: "aaaTesting Azure virtuális hálózat átbocsátóképességét |} Microsoft Docs"
-description: "Ismerje meg, hogyan tootest Azure virtuális gép hálózati átviteli sebesség."
+title: "Tesztelés Azure virtuális hálózat átbocsátóképességét |} Microsoft Docs"
+description: "Megtudhatja, hogyan tesztelheti az Azure virtuális gép hálózati teljesítményt."
 services: virtual-network
 documentationcenter: na
 author: steveesp
@@ -14,85 +14,85 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/21/2017
 ms.author: steveesp
-ms.openlocfilehash: 2da85c27bc8d16a443b215891f4cd0460f41926f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ccebc722386a19014674d7a59757a3685bd50793
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="bandwidththroughput-testing-ntttcp"></a>Sávszélesség/átvitel (NTTTCP) tesztelése
 
-Hálózat teljesítménye szempontjából tesztelése az Azure-ban, esetén ajánlott toouse olyan eszköz, amely hello hálózati teszteléséhez célozza, és minimálisra csökkenti a teljesítményt befolyásoló egyéb erőforrások hello használata. NTTTCP ajánlott.
+Hálózat teljesítménye szempontjából tesztelése az Azure-ban, célszerű olyan eszköz, amely a tesztelési hálózati célozza, és minimálisra csökkenti a teljesítményt befolyásoló egyéb erőforrások használatára. NTTTCP ajánlott.
 
-Másolja a hello eszköz tootwo hello Azure virtuális gépeinek azonos méretűnek. Egy virtuális gép úgy működik, mint a KÜLDŐ és fogadó, hello.
+Másolja az eszköz két Azure virtuális gépek azonos méretűnek. Egy virtuális gép úgy működik, mint a KÜLDŐ és a többi fogadó.
 
 #### <a name="deploying-vms-for-testing"></a>Virtuális gépek telepítése teszteléshez
-Ebben a tesztben hello célokra két virtuális gépek kell hello vagy hello ugyanazt a felhőalapú szolgáltatás, vagy hello az azonos rendelkezésre állási csoportban, hogy azt használja a belső IP-címek és hello Terheléselosztók kizárása hello teszt. Hello VIP a lehetséges tootest, de az ilyen vizsgálat a dokumentum hello hatókör kívül esik.
+Ez a vizsgálat céljából a két virtuális gépek ugyanazt a felhőalapú szolgáltatást vagy a rendelkezésre állási csoportban kell lennie, hogy azt a belső IP-címet használja, és zárja ki azokat a terheléselosztókat a vizsgálat a. Lehetséges tesztelése a virtuális IP-címre, de az ilyen tesztelés van ez a dokumentum nem terjed.
  
-Jegyezze fel a címzett hello IP-címe. Most hívható meg, hogy IP "a.b.c.r"
+Jegyezze fel a címzett IP-címe. Most hívható meg, hogy IP "a.b.c.r"
 
-Jegyezze fel a hello magok száma a virtuális gép hello. Most hívása a "\#num\_magok"
+Jegyezze fel a magok száma a virtuális Gépen. Most hívása a "\#num\_magok"
  
-Hello NTTTCP teszteléséhez 300 másodperc (azaz 5 perc) virtuális gép hello küldő és fogadó virtuális gép fut.
+A NTTTCP teszt futtatása 300 másodperc (azaz 5 perc) a virtuális gép küldő és fogadó virtuális gép.
 
-Tipp: Beállításakor a hello ellenőrzéséhez először, próbálja meg egy rövidebb tesztelési időszak tooget visszajelzés hamarabb. Miután hello eszköz a várt módon működik, kiterjesztése hello tesztelési időszak too300 másodperc hello legpontosabb eredmények.
+Tipp: Ez a teszt az első alkalommal történő beállításakor próbálja meg egy rövidebb tesztelési időszakra visszajelzés hamarabb eléréséhez. Miután az eszköz a várt módon működik, terjessze ki a tesztelési időszakra 300 másodperc, a legpontosabb eredmény elérése érdekében.
 
 > [!NOTE]
-> hello küldő **és** adjon meg fogadó **hello azonos** időtartam paraméter tesztelése (-t).
+> A küldő **és** adjon meg fogadó **azonos** időtartam paraméter tesztelése (-t).
 
-10 másodperc az egyetlen TCP adatfolyam tootest:
+Ennek teszteléséhez egyetlen TCP-folyam 10 másodperc:
 
 Fogadó paraméterek: ntttcp - r -t 10 - P 1
 
 Küldő paraméterek: ntttcp-s10.27.33.7 -t 10 - n 1 -P 1
 
 > [!NOTE]
-> a minta megelőző hello csak akkor használt tooconfirm a konfigurációt. Érvényes példák a vizsgálat a dokumentum későbbi szakaszában tartoznak.
+> Az előző példa csak használatával ellenőrizze a konfigurációját. Érvényes példák a vizsgálat a dokumentum későbbi szakaszában tartoznak.
 
 ## <a name="testing-vms-running-windows"></a>WINDOWS rendszerű virtuális gépek ellenőrzési:
 
-#### <a name="get-ntttcp-onto-hello-vms"></a>NTTTCP jussanak el a virtuális gépek hello.
+#### <a name="get-ntttcp-onto-the-vms"></a>A virtuális gépek alakzatot NTTTCP beolvasása.
 
-Hello legújabb verzió letöltéséhez: <https://gallery.technet.microsoft.com/NTttcp-Version-528-Now-f8b12769>
+A legújabb verzió letöltéséhez: <https://gallery.technet.microsoft.com/NTttcp-Version-528-Now-f8b12769>
 
 Vagy keresse meg, ha át: <https://www.bing.com/search?q=ntttcp+download> \< --először találati kell lennie
 
 Vegye figyelembe a külön mappába, például a c: NTTTCP üzembe\\eszközök
 
-#### <a name="allow-ntttcp-through-hello-windows-firewall"></a>Hello Windows tűzfalon keresztül NTTTCP engedélyezése
-Hello fogadó hozzon létre egy olyan engedélyezési szabály a Windows tűzfal tooallow hello a NTTTCP forgalom tooarrive. Legegyszerűbb tooallow hello teljes NTTTCP program neve helyett tooallow adott TCP-portot a bejövő.
+#### <a name="allow-ntttcp-through-the-windows-firewall"></a>A Windows tűzfalon keresztül NTTTCP engedélyezése
+A fogadó hozzon létre egy olyan engedélyezési szabály engedélyezi a érkezésére NTTTCP forgalmat a Windows tűzfalon. A legegyszerűbb engedélyezése a teljes NTTTCP program neve, ahelyett, hogy az adott TCP-portok bejövő.
 
-A Windows tűzfal hello keresztül ntttcp engedélyezése:
+Ehhez hasonló a Windows tűzfalon ntttcp engedélyezése:
 
 netsh advfirewall tűzfal program szabály hozzáadása =\<ELÉRÉSI\>\\ntttcp.exe neve = "ntttcp" protokoll bármely dir = művelet = = enable engedélyezése = yes profil = ANY
 
-Például, ha a másolt ntttcp.exe toohello "c:\\eszközök" mappa, hello parancs lenne: 
+Például, ha a ntttcp.exe másolta a "c:\\eszközök" mappa, a parancs lenne: 
 
 netsh advfirewall tűzfal hozzáadása szabály program = c:\\eszközök\\ntttcp.exe neve = "ntttcp" protokoll bármely dir = művelet = = enable engedélyezése = yes profil = bármely
 
 #### <a name="running-ntttcp-tests"></a>Tesztek futtatása NTTTCP
 
-Indítsa el a NTTTCP a fogadó hello (**CMD-ről futtatva**, nem a PowerShell):
+Indítsa el a fogadó NTTTCP (**CMD-ről futtatva**, nem a PowerShell):
 
 ntttcp - r-m [2\*\#num\_magok],\*, a.b.c.r -t 300
 
-Ha virtuális gép hello négy maggal és 10.0.0.4 IP-címét, azt néznek ki:
+Ha a virtuális gép négy maggal és 10.0.0.4 IP-címét, azt néznek ki:
 
 ntttcp - r – m 8,\*, 10.0.0.4 -t 300
 
 
-Indítsa el a NTTTCP a KÜLDŐ hello (**CMD-ről futtatva**, nem a PowerShell):
+Indítsa el a KÜLDŐ NTTTCP (**CMD-ről futtatva**, nem a PowerShell):
 
 ntttcp -s – m 8,\*, 10.0.0.4 -t 300 
 
-Várjon, amíg a hello eredmények elérése érdekében.
+Várjon, amíg az eredményeket.
 
 
 ## <a name="testing-vms-running-linux"></a>Linuxos virtuális gépek ellenőrzési:
 
 Nttcp a linux használja. Az elérhető <https://github.com/Microsoft/ntttcp-for-linux>
 
-A Linux virtuális gépek (KÜLDŐ és fogadó) hello futtassa az alábbi parancsokat ntttcp-az-linux a virtuális gépeken előkészítése:
+A Linux virtuális gépeken (KÜLDŐ és fogadó), futtassa az alábbi parancsokat ntttcp-az-linux a virtuális gépeken előkészítése:
 
 CentOS - telepítés Git:
 ``` bash
@@ -111,27 +111,27 @@ Ellenőrizze, és mindkét telepítéséhez:
  make && make install
 ```
 
-Ahogy hello Windows példában feltételezzük, hogy hello Linux fogadó IP-cím 10.0.0.4
+Hasonlóan a Windows a példában feltételezzük, hogy a Linux fogadó IP-cím 10.0.0.4
 
-Indítsa el a NTTTCP a Linux a fogadó hello:
+A fogadó NTTTCP a Linux Kezdés:
 
 ``` bash
 ntttcp -r -t 300
 ```
 
-És hello KÜLDŐ, futtassa:
+És a feladó futtassa:
 
 ``` bash
 ntttcp -s10.0.0.4 -t 300
 ```
  
-Ha nincs paraméter teszt hossza alapértelmezett too60 másodperc kap
+Teszt hossza az alapértelmezett érték 60 másodperc, ha a paraméter nem kap
 
 ## <a name="testing-between-vms-running-windows-and-linux"></a>Az ellenőrzési Windows és LINUX rendszerű virtuális gépek között:
 
-Ez a forgatókönyv nem kell engedélyezni a hello nem szinkron módban hello vizsgálat futtatható, számára. Hello használata ehhez **-N jelző** Linux, és **-ns jelző** Windows.
+Ez a forgatókönyv nem kell engedélyezni a a nem szinkron módban, a vizsgálat futtatható számára. Ehhez használja a **-N jelző** Linux, és **-ns jelző** Windows.
 
-#### <a name="from-linux-toowindows"></a>A Linux tooWindows:
+#### <a name="from-linux-to-windows"></a>A Linux a Windowsba:
 
 Fogadó <Windows>:
 
@@ -145,7 +145,7 @@ Küldő <Linux> :
 ntttcp -s -m <2 x nr cores>,*,<Windows server IP> -N -t 300
 ```
 
-#### <a name="from-windows-toolinux"></a>A Windows tooLinux:
+#### <a name="from-windows-to-linux"></a>A Windows, Linux –:
 
 Fogadó <Linux>:
 
@@ -160,5 +160,5 @@ ntttcp -s -m <2 x nr cores>,*,<Linux  server IP> -ns -t 300
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-* Attól függően, hogy az eredmények lehet hely túl[optimalizálhatja a hálózati átviteli gépek](virtual-network-optimize-network-bandwidth.md) a forgatókönyvéhez.
+* Attól függően, hogy az eredmények lehet hely [optimalizálhatja a hálózati átviteli gépek](virtual-network-optimize-network-bandwidth.md) a forgatókönyvéhez.
 * Ismerje meg [Azure Virtual Network gyakori kérdések (GYIK)](virtual-networks-faq.md)

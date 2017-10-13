@@ -1,6 +1,6 @@
 ---
-title: "aaaSending leküldéses értesítések az Azure Notification Hubs – Windows Phone |} Microsoft Docs"
-description: "Ebben az oktatóanyagban elsajátíthatja, hogyan toouse Azure Notification Hubs toopush értesítések tooa Windows Phone 8 vagy Windows Phone 8.1 Silverlight-alkalmazást."
+title: "Leküldéses értesítések küldése az Azure Notification Hubs használatával Windows Phone rendszerű eszközökre | Microsoft Docs"
+description: "Ebben az oktatóanyagban elsajátíthatja, hogy hogyan használható az Azure Notification Hubs leküldéses értesítések küldésére Windows Phone 8 és Windows Phone 8.1 rendszeren futó Silverlight-alkalmazásokba."
 services: notification-hubs
 documentationcenter: windows
 keywords: "leküldéses értesítés,leküldéses értesítés,windows phone leküldéses értesítés"
@@ -15,33 +15,33 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: 1a0ad238fe7788ae2e4f47f02d113391af03dd1d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f0bfe81f849813d146d644b32490af657b1071b5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="sending-push-notifications-with-azure-notification-hubs-on-windows-phone"></a>Leküldéses értesítések küldése az Azure Notification Hubs használatával Windows Phone rendszerű eszközökre
 [!INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
 ## <a name="overview"></a>Áttekintés
 > [!NOTE]
-> toocomplete ebben az oktatóanyagban rendelkeznie kell egy aktív Azure-fiókra. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-windows-phone-get-started%2F).
+> Az oktatóanyag elvégzéséhez egy aktív Azure-fiókra lesz szüksége. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-windows-phone-get-started%2F).
 > 
 > 
 
-Az oktatóanyag bemutatja, hogyan toouse Azure Notification Hubs toosend leküldéses értesítések tooa Windows Phone 8 vagy Windows Phone 8.1 Silverlight alkalmazás. Ha a Windows Phone 8.1 (nem Silverlight) céloz meg, majd tekintse meg a toohello [univerzális Windows-](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md) verziója.
-Ebben az oktatóanyagban hozzon létre egy üres Windows Phone 8-alkalmazást, amely leküldéses értesítéseket fogad hello a Microsoft leküldéses értesítési szolgáltatásának (MPNS) használatával. Amikor végzett, képes toouse lesz az értesítési központ toobroadcast leküldéses értesítések tooall hello eszközök az alkalmazást futtató.
+Ez az oktatóanyag azt mutatja be, hogy hogyan használható az Azure Notification Hubs leküldéses értesítések küldésére Windows Phone 8 és Windows Phone 8.1 rendszeren futó Silverlight-alkalmazásokba. A Windows Phone 8.1 (nem Silverlight) rendszerre vonatkozó útmutatásért tekintse meg az [univerzális Windows-alkalmazásokkal kapcsolatos](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md) verziót.
+Az oktatóanyagban létrehoz egy üres Windows Phone 8-alkalmazást, amely leküldéses értesítéseket fogad a Microsoft leküldéses értesítéseket kezelő szolgáltatásának (MPNS) a használatával. Amikor végzett, képes lesz az értesítési központ használatával leküldéses értesítéseket küldeni az alkalmazást futtató összes eszközre.
 
 > [!NOTE]
-> hello Notification Hubs Windows Phone SDK nem támogatja a Windows leküldéses értesítési szolgáltatásának (WNS) hello használata a Windows Phone 8.1 Silverlight-alkalmazásokhoz. Windows Phone 8.1 Silverlight-alkalmazásokkal (az MPNS helyett) WNS toouse kövesse hello [Notification Hubs – Windows Phone Silverlight-oktatóanyagot], amely REST API-kat használ.
+> A Notification Hubs Windows Phone SDK nem támogatja a Windows leküldéses értesítéseket kezelő szolgáltatásának (WNS) használatát Windows Phone 8.1 Silverlight-alkalmazások esetén. Ha a WNS-t szeretné használni (az MPNS helyett) Windows Phone 8.1 Silverlight-alkalmazásokkal kövesse a [Notification Hubs – Windows Phone Silverlight-oktatóanyagot], amely REST API-kat használ.
 > 
 > 
 
-hello az oktatóanyag bemutatja, hogyan hello egyszerű küldési forgatókönyvet a Notification Hubs használatával.
+Ez az oktatóanyag az egyszerű küldési forgatókönyvet mutatja be a Notification Hubs használatával.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ez az oktatóanyag hello következő szükséges:
+Az oktatóanyaghoz az alábbiakra lesz szükség:
 
 * [Windows Phone-hoz készült Visual Studio 2012 Express] vagy újabb verzió.
 
@@ -51,20 +51,20 @@ Ennek az oktatóanyagnak az elvégzése előfeltétel minden további, Windows P
 [!INCLUDE [notification-hubs-portal-create-new-hub](../../includes/notification-hubs-portal-create-new-hub.md)]
 
 <ol start="6">
-<li><p>Hello kattintson <b>értesítési szolgáltatások</b> szakasz (belül <i>beállítások</i>), kattintson a <b>Windows Phone (MPNS)</b> majd hello <b>nem hitelesített leküldés engedélyezése </b> jelölőnégyzetet.</p>
+<li><p>Kattintson a <b>Notification Services</b> (Értesítési szolgáltatások) szakaszra (a <i>Beállítások</i> között), majd a <b>Windows Phone (MPNS)</b> lehetőségre, végül jelölje be az <b>Enable unauthenticated push</b> (Nem hitelesített leküldés engedélyezése) jelölőnégyzetet.</p>
 </li>
 </ol>
 
 &emsp;&emsp;![Azure portál – Nem hitelesített leküldéses értesítések engedélyezése](./media/notification-hubs-windows-phone-get-started/azure-portal-unauth.png)
 
-A központ már létrehozott és beállított toosend nem hitelesített értesítését a Windows Phone.
+A szolgáltatás létrehozza a központot, és nem hitelesített értesítések Windows Phone rendszerű eszközökre való küldésére konfigurálja.
 
 > [!NOTE]
-> Ez az oktatóanyag nem hitelesített módban használja az MPNS-t. MPNS nem hitelesített módja korlátozásokat tartalmaz az, hogy tooeach csatorna küldhet értesítéseket. A Notification Hubs támogatja [MPNS hitelesített módját](http://msdn.microsoft.com/library/windowsphone/develop/ff941099.aspx) tooupload lehetővé a tanúsítványt.
+> Ez az oktatóanyag nem hitelesített módban használja az MPNS-t. Az MPNS nem hitelesített módja korlátozásokat tartalmaz az egyes csatornákra küldhető értesítések tekintetében. A Notification Hubs tanúsítvány feltöltésének lehetővé tételével támogatja az [MPNS hitelesített módját](http://msdn.microsoft.com/library/windowsphone/develop/ff941099.aspx).
 > 
 > 
 
-## <a name="connecting-your-app-toohello-notification-hub"></a>Kapcsolódás az alkalmazás toohello értesítési központ
+## <a name="connecting-your-app-to-the-notification-hub"></a>Az alkalmazás csatlakoztatása az értesítési központhoz
 1. Hozzon létre egy új Windows Phone 8-alkalmazást a Visual Studióban.
    
        ![Visual Studio - New Project - Windows Phone App][13]
@@ -72,19 +72,19 @@ A központ már létrehozott és beállított toosend nem hitelesített értesí
     A Visual Studio 2013 Update 2 vagy újabb verzióban Windows Phone Silverlight-alkalmazást hozzon létre.
    
     ![Visual Studio – Új projekt – Üres alkalmazás – Windows Phone Silverlight][11]
-2. A Visual Studióban, kattintson a jobb gombbal a hello megoldás, és kattintson **NuGet-csomagok kezelése**.
+2. A Visual Studióban kattintson a jobb gombbal a megoldásra, majd kattintson a **Manage NuGet Packages** (NuGet-csomagok kezelése) elemre.
    
-    Ez megjeleníti a hello **NuGet-csomagok kezelése** párbeszédpanel megnyitásához.
-3. Keresse meg `WindowsAzure.Messaging.Managed` kattintson **telepítése**, és fogadja el a használati feltételek hello.
+    Ekkor megjelenik a **Manage NuGet Packages** (NuGet-csomagok kezelése) párbeszédpanel.
+3. Keresse meg a `WindowsAzure.Messaging.Managed` csomagot, kattintson a **Telepítés** gombra, majd fogadja el a használati feltételeket.
    
     ![Visual Studio – NuGet Package Manager (NuGet-csomagkezelő)][20]
    
-    Ez letölti, telepíti, valamint egy hivatkozást toohello Azure üzenetküldési kódtárat hozzáadja a Windows hello segítségével <a href="http://nuget.org/packages/WindowsAzure.Messaging.Managed/">WindowsAzure.Messaging.Managed NuGet-csomag</a>.
-4. Nyissa meg az App.xaml.cs hello fájlt, és adja hozzá a következő hello `using` utasításokat:
+    A <a href="http://nuget.org/packages/WindowsAzure.Messaging.Managed/">WindowsAzure.Messaging.Managed NuGet-csomag</a> használatával a rendszer letölti és telepíti a Windows rendszerhez készült Azure üzenetküldési kódtárat, és hozzáad egy rá mutató hivatkozást is.
+4. Nyissa meg az App.xaml.cs fájlt, majd adja hozzá a következő `using` utasításokat:
    
         using Microsoft.Phone.Notification;
         using Microsoft.WindowsAzure.Messaging;
-5. Adja hozzá a következő kódot a hello felső hello **Application_Launching** metódus App.xaml.cs fájlban:
+5. Adja hozzá a következő kódot az **Application_Launching** metódus tetején az App.xaml.cs fájlban:
    
         var channel = HttpNotificationChannel.Find("MyPushChannel");
         if (channel == null)
@@ -106,56 +106,56 @@ A központ már létrehozott és beállított toosend nem hitelesített értesí
         });
    
    > [!NOTE]
-   > érték hello **MyPushChannel** értéke egy index, amely egy létező csatorna a hello használt toolookup [HttpNotificationChannel](https://msdn.microsoft.com/library/windows/apps/microsoft.phone.notification.httpnotificationchannel.aspx) gyűjtemény. Amennyiben nem létezik ott ilyen, hozzon létre egy bejegyzést ezen a néven.
+   > A **MyPushChannel** értéke egy index, amelynek használatával megkereshető egy létező csatorna a [HttpNotificationChannel](https://msdn.microsoft.com/library/windows/apps/microsoft.phone.notification.httpnotificationchannel.aspx) gyűjteményben. Amennyiben nem létezik ott ilyen, hozzon létre egy bejegyzést ezen a néven.
    > 
    > 
    
-    Ellenőrizze, hogy tooinsert hello nevét a hub és hello kapcsolati karakterlánc neve **DefaultListenSharedAccessSignature** hello előző szakaszban beszerzett.
-    Ezt a kódot hello csatorna URI azonosítóját hello alkalmazás lekéri az mpns-ből, majd regisztrálja a csatorna URI Azonosítóját az értesítési központban. Emellett biztosítja azt, hogy hello csatorna URI azonosítója legyen regisztrálva az értesítési központ minden alkalommal hello alkalmazás lett elindítva.
+    Szúrja be a központ nevét és az előző szakaszban beszerzett, **DefaultListenSharedAccessSignature** nevű kapcsolati karakterláncot.
+    Ez a kód lekéri a csatorna URI azonosítóját az alkalmazás számára az MPNS-ből, majd regisztrálja a csatorna URI azonosítóját az értesítési központban. Emellett biztosítja azt, hogy a csatorna URI azonosítója legyen regisztrálva az értesítési központban az alkalmazás minden indításakor.
    
    > [!NOTE]
-   > Ez az oktatóanyag egy bejelentési értesítés toohello eszköz küld. Amikor csempeértesítést küld kell meghívnia hello **BindToShellTile** hello csatorna metódust. toosupport bejelentési és a csempe értesítések hívható meg mindkét **BindToShellTile** és **BindToShellToast**.
+   > Ez az oktatóanyag egy bejelentési értesítést küld az eszközre. Amikor csempeértesítést küld, a **BindToShellTile** metódust kell meghívnia a csatornán. Ha a bejelentési és a csempeértesítéseket egyaránt támogatni kívánja, hívja meg a **BindToShellTile** és a **BindToShellToast** metódust is.
    > 
    > 
-6. A Megoldáskezelőben bontsa ki a **tulajdonságok**, nyissa meg hello `WMAppManifest.xml` fájlt, kattintson a hello **képességek** lapot, és győződjön meg arról, hogy hello **ID_CAP_PUSH_NOTIFICATION** funkció be van jelölve.
+6. A Megoldáskezelőben bontsa ki a **Tulajdonságok** csomópontot, nyissa meg a `WMAppManifest.xml` fájlt, kattintson a **Képességek** fülre, és jelölje be az **ID_CAP_PUSH_NOTIFICATION** képességet.
    
        ![Visual Studio - Windows Phone App Capabilities][14]
    
-       This ensures that your app can receive push notifications. Without it, any attempt toosend a push notification toohello app will fail.
-7. Nyomja le az hello `F5` kulcs toorun hello alkalmazást.
+       This ensures that your app can receive push notifications. Without it, any attempt to send a push notification to the app will fail.
+7. Nyomja le az `F5` billentyűt az alkalmazás futtatásához.
    
-    Hello app egy regisztrációs üzenet jelenik meg.
-8. Bezárás hello alkalmazást.  
+    Megjelenik egy regisztrációs üzenet az alkalmazásban.
+8. Zárja be az alkalmazást.  
    
    > [!NOTE]
-   > a bejelentési leküldéses értesítések tooreceive, hello alkalmazás nem futhat hello előtérben.
+   > A bejelentési leküldéses értesítések fogadásához az alkalmazás nem futhat az előtérben.
    > 
    > 
 
 ## <a name="send-push-notifications-from-your-backend"></a>Leküldéses értesítések küldése a háttérrendszerből
-Leküldéses értesítéseket küldhet a Notification Hubs használatával bármilyen háttérrendszerből keresztül hello nyilvános <a href="http://msdn.microsoft.com/library/windowsazure/dn223264.aspx">REST-felület</a>. Ebben az oktatóanyagban leküldéses értesítéseket küld egy .NET-konzolalkalmazás használatával. 
+A Notification Hubs használatával bármilyen háttérrendszerből küldhet leküldéses értesítést a nyilvános <a href="http://msdn.microsoft.com/library/windowsazure/dn223264.aspx">REST-felületen</a> keresztül. Ebben az oktatóanyagban leküldéses értesítéseket küld egy .NET-konzolalkalmazás használatával. 
 
-Például egy toosend a leküldéses értesítések a Notification Hubs szolgáltatással integrált ASP.NET WebAPI háttérrendszerből, lásd: [Azure Notification Hubs – felhasználók értesítése .NET-háttérrendszerrel](notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md).  
+Az [Azure Notification Hubs Notify Users with .NET backend](notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md) (Azure Notification Hubs – felhasználók értesítése .NET-háttérrendszerrel) című témakörben találhat példát arra, hogy hogyan küldhetők leküldéses értesítések a Notification Hubs szolgáltatással integrált ASP.NET WebAPI háttérrendszerből.  
 
-Például hogyan toosend leküldéses értesítések segítségével hello [REST API-k](https://msdn.microsoft.com/library/azure/dn223264.aspx), tekintse meg [hogyan toouse Notification Hubs Java](notification-hubs-java-push-notification-tutorial.md) és [hogyan toouse php-ből a Notification Hubs](notification-hubs-php-push-notification-tutorial.md) .
+A [How to use Notification Hubs from Java](notification-hubs-java-push-notification-tutorial.md) (A Notification Hubs használata Javából) és a [How to use Notification Hubs from PHP](notification-hubs-php-push-notification-tutorial.md) (A Notification Hubs használata PHP-ből) című témakörben találhat példát arra, hogy hogyan küldhetők leküldéses értesítések a [REST API-k](https://msdn.microsoft.com/library/azure/dn223264.aspx) használatával.
 
-1. Kattintson a jobb gombbal hello megoldás, jelölje be **Hozzáadás** és **új projekt...** , majd a **Visual C#**, kattintson a **Windows** és **Konzolalkalmazás**, és kattintson a **OK**.
+1. Kattintson a jobb gombbal a megoldásra, válassza a **Hozzáadás** és az **Új projekt…** elemet, majd a **Visual C#** részen kattintson a **Windows** és a **Konzolalkalmazás** elemre, majd az **OK** gombra.
    
        ![Visual Studio - New Project - Console Application][6]
    
-    Ezzel hozzáad egy új Visual C# konzol toohello megoldás. Ezt egy külön megoldásban is megteheti.
+    Ezzel hozzáad egy új Visual C#-konzolalkalmazást a megoldáshoz. Ezt egy külön megoldásban is megteheti.
 2. Kattintson az **Eszközök**, a **Library Package Manager** (Kódtár-csomagkezelő), majd a **Package Manager Console** (Csomagkezelő konzol) elemre.
    
-    Ekkor megjelenik a Package Manager Console hello.
-3. A hello **Csomagkezelő konzol** ablakban, a set hello **alapértelmezett projekt** tooyour új projekt konzolról, és majd hello konzolablakban hajtható végre a következő parancs hello:
+    Megjelenik a Package Manager Console (Csomagkezelő konzol) ablak.
+3. A **Package Manager Console** (Csomagkezelő konzol) ablakban az **Alapértelmezett projekt** értékeként adja meg az új konzolalkalmazás-projektet, majd a konzolablakban hajtsa végre az alábbi parancsot:
    
        Install-Package Microsoft.Azure.NotificationHubs
    
-   Ezzel hozzáad egy hivatkozást toohello Azure Notification Hubs SDK használatával hello <a href="http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/">Microsoft.Azure.Notification Hubs NuGet-csomag</a>.
-4. Nyissa meg hello `Program.cs` fájlt, és adja hozzá a következő hello `using` utasítást:
+   Ezzel hozzáad a <a href="http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/">Microsoft.Azure.Notification Hubs NuGet-csomagot</a> használó Azure Notification Hubs SDK-ra mutató hivatkozást.
+4. Nyissa meg a `Program.cs` fájlt, és adja hozzá a következő `using` utasítást:
    
         using Microsoft.Azure.NotificationHubs;
-5. A hello `Program` osztály, adja hozzá a következő metódus hello:
+5. A `Program` osztályban adja hozzá a következő metódust:
    
         private static async void SendNotificationAsync()
         {
@@ -170,30 +170,30 @@ Például hogyan toosend leküldéses értesítések segítségével hello [REST
             await hub.SendMpnsNativeNotificationAsync(toast);
         }
    
-    Győződjön meg arról, hogy tooreplace hello `<hub name>` helyőrzőt hello hello értesítési központ hello portálon megjelenő nevét. Továbbá cserélje hello kapcsolati karakterlánc helyőrzőjét nevű kapcsolati karakterláncra hello **DefaultFullSharedAccessSignature** beszerzett hello szakasz "Az értesítési központ konfigurálása".
+    A `<hub name>` helyőrzőt cserélje le az értesítési központnak a portálon megjelenő nevére. Továbbá cserélje le a kapcsolati karakterlánc helyőrzőjét „Az értesítési központ konfigurálása” szakaszban beszerzett **DefaultFullSharedAccessSignature** nevű kapcsolati karakterláncra.
    
    > [!NOTE]
-   > Győződjön meg arról, hogy használja-e hello kapcsolati karakterlánc **teljes** fér hozzá, nem **figyelésére** hozzáférést. hello figyelési-hozzáférési karakterlánc nem rendelkezik engedélyekkel toosend leküldéses értesítéseket.
+   > A kapcsolati karakterláncot **Teljes**, és ne **Figyelési** hozzáféréssel használja. A Figyelési hozzáféréssel rendelkező kapcsolati karakterláncok nem rendelkeznek jogosultsággal leküldéses értesítések küldéséhez.
    > 
    > 
-6. Adja hozzá a következő sort a hello a `Main` módszert:
+6. Adja hozzá a következő sort a `Main` metódusban:
    
          SendNotificationAsync();
          Console.ReadLine();
-7. Az a Windows Phone-emulátort, és az alkalmazás lezárt, beállíthatja hello Konzolalkalmazás-projektet, hello alapértelmezett kezdőprojektként, és nyomja hello `F5` kulcs toorun hello alkalmazást.
+7. Futtassa a Windows Phone-emulátort, és zárja be az alkalmazást, majd állítsa be a konzolalkalmazás-projektet az alapértelmezett indulási projektként, végül nyomja le az `F5` billentyűt az alkalmazás futtatásához.
    
-    Egy bejelentési leküldéses értesítést fog kapni. Hello bejelentési szalagcímre kattintva betölti a hello alkalmazást.
+    Egy bejelentési leküldéses értesítést fog kapni. A bejelentési szalagcímre kattintva a rendszer betölti az alkalmazást.
 
-Minden hello lehetséges hasznos adatot megtalálja az hello [bejelentéskatalógussal] és [csempekatalógussal] témakörök az MSDN Webhelyén.
+Az összes lehetséges hasznos adatot megtalálja az MSDN [bejelentéskatalógussal] és [csempekatalógussal] foglalkozó témakörében.
 
 ## <a name="next-steps"></a>Következő lépések
-Ez az egyszerű példában küldött leküldéses értesítések tooall a Windows Phone 8 rendszerű eszközökön. 
+Ebben az egyszerű példában leküldéses értesítéseket küldött az összes Windows Phone 8 rendszerű eszközre. 
 
-A rendezés tootarget adott felhasználókat, tekintse meg a toohello [Notification Hubs használata toopush értesítések toousers] oktatóanyag. 
+Ha adott felhasználóknak szeretne értesítést küldeni, tekintse meg [A Notification Hubs használata leküldéses értesítések küldéséhez felhasználók számára] oktatóanyagot. 
 
-Ha azt szeretné, toosegment a felhasználókat érdeklődési körök, olvasható [legfrissebb hírek Notification Hubs használata toosend]. 
+Ha a felhasználókat érdeklődési körök alapján szeretné szegmentálni, olvassa el a [Use Notification Hubs to send breaking news] (Friss hírek küldése Notification Hubs használatával) című témakört. 
 
-További tudnivalók toouse értesítési központok [Notification Hubs használatával].
+A Notification Hubs használatával kapcsolatban a [Notification Hubs használatával] foglalkozó témakörben tekinthet meg további információt.
 
 <!-- Images. -->
 [6]: ./media/notification-hubs-windows-phone-get-started/notification-hub-create-console-app.png
@@ -218,8 +218,8 @@ További tudnivalók toouse értesítési központok [Notification Hubs használ
 [Windows Phone-hoz készült Visual Studio 2012 Express]: https://go.microsoft.com/fwLink/p/?LinkID=268374
 [Notification Hubs használatával]: http://msdn.microsoft.com/library/jj927170.aspx
 [MPNS authenticated mode]: http://msdn.microsoft.com/library/windowsphone/develop/ff941099(v=vs.105).aspx
-[Notification Hubs használata toopush értesítések toousers]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
-[legfrissebb hírek Notification Hubs használata toosend]: notification-hubs-windows-phone-push-xplat-segmented-mpns-notification.md
+[A Notification Hubs használata leküldéses értesítések küldéséhez felhasználók számára]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
+[Use Notification Hubs to send breaking news]: notification-hubs-windows-phone-push-xplat-segmented-mpns-notification.md
 [bejelentéskatalógussal]: http://msdn.microsoft.com/library/windowsphone/develop/jj662938(v=vs.105).aspx
 [csempekatalógussal]: http://msdn.microsoft.com/library/windowsphone/develop/hh202948(v=vs.105).aspx
 [Notification Hubs – Windows Phone Silverlight-oktatóanyagot]: https://github.com/Azure/azure-notificationhubs-samples/tree/master/PushToSLPhoneApp

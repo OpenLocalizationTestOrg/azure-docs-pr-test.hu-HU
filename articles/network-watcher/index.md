@@ -1,15 +1,26 @@
 ---
+title: "Az Azure Network Watcher dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogyan figyelheti és diagnosztizálhatja a feltételeket a Network Watcher használatával hálózati szinten."
+services: network-watcher
+author: czeumault
+manager: carolz
 layout: LandingPage
-description: "Megtudhatja, hogyan toouse hálózati figyelőt toomonitor és diagnosztizálhatja a hálózati szintű feltételeket."
-ms.openlocfilehash: 6c5fcdb2e5095eaceb759e45ae3d35875a0c3fc7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.assetid: 
+ms.service: network-watcher
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
+ms.openlocfilehash: 897f526801dc94f6f370dfa253f321f7b8f765e9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-network-watcher-documentation"></a>A Network Watcher dokumentációja
 
-Megtudhatja, hogyan toouse hálózati figyelőt, egy szolgáltatás, amely lehetővé teszi, hogy Ön toomonitor és egy hálózati forgatókönyv szintjén feltételek diagnosztizálásához. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt, megtudhatja, hogyan túl nyereség betekintést az Azure hálózati eszközökkel, például csomagrögzítéssel és topológia több.
+Ismerje meg a Network Watcher használatát, amely szolgáltatással a hálózati forgatókönyvek szintjén figyelheti és diagnosztizálhatja a feltételeket. Az oktatóanyagok, API-referenciák és az egyéb dokumentáció bemutatja, hogyan nyerhet betekintést Azure Network-hálózatába többek között olyan eszközök használatával, mint a csomagrögzítés vagy a topológia.
 
 <ul class="panelContent cardsFTitle">
     <li>

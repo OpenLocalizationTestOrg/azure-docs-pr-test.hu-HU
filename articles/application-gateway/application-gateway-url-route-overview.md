@@ -1,9 +1,9 @@
 ---
-title: "aaaURL-alapú tartalom útválasztási áttekintése |} Microsoft Docs"
-description: "Ezen a lapon hello alkalmazás átjáró URL-alapú tartalom útválasztási, UrlPathMap konfigurációs és PathBasedRouting szabály áttekintést nyújt."
+title: "URL-alapú tartalom átirányításának áttekintése | Microsoft Docs"
+description: "Ez az oldal áttekintés nyújt az Application Gateway URL-alapú tartalom-útválasztási lehetőségeiről, az UrlPathMap-konfigurációról és a PathBasedRouting szabályról."
 documentationcenter: na
 services: application-gateway
-author: georgewallace
+author: davidmu1
 manager: timlt
 editor: 
 ms.assetid: 4409159b-e22d-4c9a-a103-f5d32465d163
@@ -13,31 +13,31 @@ ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/09/2017
-ms.author: gwallace
-ms.openlocfilehash: 5094b42625baffeb395beace68db0d269e46080c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: davidmu
+ms.openlocfilehash: b94e879de8136eeaddbf2a277d9634025dc99bc1
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="url-path-based-routing-overview"></a>Az URL-alapú útválasztás áttekintése
 
-Elérési út URL-cím alapú útválasztási lehetővé teszi, hogy Ön tooroute forgalom tooback-a befejezési kiszolgálókészletek a hello kérelem URL-cím elérési útján alapszik. 
+Az URL-alapú útválasztás lehetővé teszi, hogy a kérésben szereplő URL-cím alapján irányítsa a forgalmat a háttér-kiszolgálókészlethez. 
 
-Hello forgatókönyvek egyike különböző tartalomtípusok toodifferent háttérkészletek server tooroute kérelmek.
+Az egyik lehetőség az, hogy a különböző típusú tartalmakra vonatkozó kéréseket a megfelelő háttér-kiszolgálókészlethez irányítja.
 
-A következő példa hello, Alkalmazásátjáró van szolgáltató contoso.com három háttér-kiszolgálófiók készletek az adatforgalmat például: VideoServerPool ImageServerPool és DefaultServerPool.
+Az alábbi példában az alkalmazásátjáró a contoso.com webhelyet szolgálja ki a VideoServerPool, az ImageServerPool és a DefaultServerPool háttér-kiszolgálókészlettel.
 
 ![imageURLroute](./media/application-gateway-url-route-overview/figure1.png)
 
-Kérések a http://contoso.com/video * irányított tooVideoServerPool, és http://contoso.com/images * irányított tooImageServerPool. DefaultServerPool van jelölve, ha hello elérési minták egyike.
+A http://contoso.com/video* URL-hez kapcsolódó kérések a VideoServerPool, a http://contoso.com/images* URL-hez kapcsolódóak pedig az ImageServerPool készlethez lesznek átirányítva. Ha a kérés egyik elérésiút-kategóriába sem sorolható, a DefaultServerPool az alapértelmezett kiszolgáló.
 
 > [!IMPORTANT]
-> Szabályok feldolgozása hello sorrendben hello portálon. Erősen ajánlott tooconfigure többhelyes figyelői első előzetes tooconfiguring egy alapszintű figyelő is.  Ez biztosítja, hogy forgalom lekérdezi irányított toohello jobb vissza végén. Ha előbb egy alapszintű figyelő szerepel a listában, és az megfelel egy bejövő kérésnek, a figyelő feldolgozza azt.
+> A szabályok abban a sorrendben vannak feldolgozva, amelyben a portálon szerepelnek. Alapszintű figyelő konfigurálása előtt határozottan ajánlott többhelyes figyelőket konfigurálni.  Ez biztosítja, hogy a forgalom a megfelelő háttérbe legyen irányítva. Ha előbb egy alapszintű figyelő szerepel a listában, és az megfelel egy bejövő kérésnek, a figyelő feldolgozza azt.
 
 ## <a name="urlpathmap-configuration-element"></a>Az UrlPathMap konfigurációs elem
 
-hello urlPathMap elem használt toospecify elérési minták tooback-end kiszolgáló készlet leképezéseket. hello alábbi Kódpélda az hello részlet urlPathMap elem a sablonfájl.
+Az UrlPathMap elem elérésiút-minták meghatározására szolgál a háttér-kiszolgálókészletek leképezésében. Az alábbi kódpélda a sablonfájlból származó urlPathMap elem kódrészlete.
 
 ```json
 "urlPathMaps": [{
@@ -69,13 +69,13 @@ hello urlPathMap elem használt toospecify elérési minták tooback-end kiszolg
 ```
 
 > [!NOTE]
-> PathPattern: Ez a beállítás akkor elérési minták toomatch listáját. Minden egyes kell kezdődnie / és hello egyetlen hely, ahol a "*" van: hello vége a következő engedélyezett a "/." toohello elérési matcher táplált hello karakterlánc nem tartalmaz sem szöveges hello után először? vagy #, és ezek karakter itt nem engedélyezett.
+> PathPattern: ez a beállítás tartalmazza az elérésiút-minták listáját. Minden mintának a / jellel kell kezdődnie, a „*” jel pedig kizárólag a mintavégi „/” jel után állhat. Az elérésiút-megfeleltetőben megadott sztring nem tartalmaz szöveget az első ? vagy # után, és ezek a karakterek itt nem megengedettek.
 
 További információért tekintse át az [URL-alapú átirányításhoz készült Resource Manager-sablonokat](https://azure.microsoft.com/documentation/templates/201-application-gateway-url-path-based-routing).
 
 ## <a name="pathbasedrouting-rule"></a>PathBasedRouting szabály
 
-PathBasedRouting típusú RequestRoutingRule használt toobind egy figyelő tooa urlPathMap. Minden kérés, amely ehhez a figyelőhöz kapcsolódik, az urlPathMap elemben meghatározott irányelvek alapján lesz átirányítva.
+A PathBasedRouting típusú RequestRoutingRule szabály arra szolgál, hogy egy figyelőt az adott urlPathMap elemhez kössön. Minden kérés, amely ehhez a figyelőhöz kapcsolódik, az urlPathMap elemben meghatározott irányelvek alapján lesz átirányítva.
 A PathBasedRouting szabály kódrészlete:
 
 ```json
@@ -100,4 +100,4 @@ A PathBasedRouting szabály kódrészlete:
 
 ## <a name="next-steps"></a>Következő lépések
 
-Tartalom útválasztási URL-alapú megismerését követően nyissa meg túl[URL-alapú útválasztás használatával Alkalmazásátjáró létrehozása](application-gateway-create-url-route-portal.md) toocreate Alkalmazásátjáró URL-cím útválasztási szabályokat.
+Miután elsajátította az URL-alapú tartalom-átirányításról szóló ismereteket, látogasson el [az URL-alapú átirányítást használó alkalmazásátjáró létrehozását bemutató témakörhöz](application-gateway-create-url-route-portal.md).

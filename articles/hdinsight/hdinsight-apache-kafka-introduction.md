@@ -1,6 +1,6 @@
 ---
-title: "aaaAn bemutatása tooApache a HDInsight - Azure Kafka |} Microsoft Docs"
-description: "További információk a HDInsight Apache Kafka: Mi, működés, és ahol toofind példák és az első lépések információkat."
+title: "Az Azure HDInsight-alapú Apache Kafka bemutatása | Microsoft Docs"
+description: "Ismerje meg a HDInsight-alapú Apache Kafkát: Mi ez, mire való, hol találhat rá példákat, és hol találhatja meg az első lépésekre vonatkozó információt?"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -13,58 +13,67 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 06/15/2017
+ms.date: 09/07/2017
 ms.author: larryfr
-ms.openlocfilehash: 1bc198d4cf93a4682030d4fa5f71030f49ad64be
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 39234ca792983178cfd4304e001271ea30e28ae6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="introducing-apache-kafka-on-hdinsight-preview"></a>A HDInsight alatt futó Apache Kafka (előzetes verzió) bemutatása
 
-[Apache Kafka](https://kafka.apache.org) van egy nyílt forráskódú elosztott adatfolyam platform, amely valós idejű használt toobuild streaming adatok folyamatok és alkalmazások. Kafka emellett üzenet broker funkció hasonló tooa üzenet-várólista, ahol közzététele és előfizetés toonamed adatfolyamokat. A HDInsight Kafka biztosít a felügyelt magas szinten méretezhető és magas rendelkezésre állású szolgáltatás hello Microsoft Azure felhőben.
+Az [Apache Kafka](https://kafka.apache.org) egy nyílt forráskódú elosztott streamelési platform streamadatfolyamatok és -alkalmazások létrehozásához. A Kafka az üzenetsorokhoz hasonló üzenetközvetítő funkciót is biztosít, amellyel adatstreameket tehet közzé, illetve feliratkozhat rájuk. A HDInsight alatt futó Kafka felügyelt, rugalmasan méretezhető és magas rendelkezésre állású szolgáltatást biztosít önnek a Microsoft Azure-felhőben.
 
 ## <a name="why-use-kafka-on-hdinsight"></a>Miért érdemes a HDInsight alatt futó Kafkát használni?
 
-Kafka hello a következő szolgáltatásokat nyújtja:
+A Kafka a következő funkciókat biztosítja:
 
-* Üzenetkezelési minta közzétételi-feliratkozási: Kafka egy gyártó API alkalmazást biztosít rekordok tooa Kafka témakör közzétételéhez. hello fogyasztói API tooa témakör előfizetés használatos.
+* Közzétételi-feliratkozási üzenetkezelési minta: A előállítói API-t biztosít a rekordok Kafka-témakörökbe való közzétételéhez. A fogyasztói API-ra a témakörökre való feliratkozáskor van szükség.
 
-* Streamfeldolgozás: A Kafkát gyakran használják valós idejű streamfeldolgozásra az Apache Stormmal vagy Sparkkal. Kafka 0.10.0.0 (HDInsight 3.5-ös verziója) egy streamelési API-t, amely lehetővé teszi a megoldások anélkül, hogy a Storm vagy Spark streaming toobuild vezette be.
+* Streamfeldolgozás: A Kafkát gyakran használják valós idejű streamfeldolgozásra az Apache Stormmal vagy Sparkkal. A Kafka 0.10.0.0 (HDInsight 3.5-ös verzió) egy olyan streamelési API-t vezetett be, amely lehetővé teszi a streammegoldások Storm vagy Spark nélküli fejlesztését.
 
-* Horizontális skálázhatóságot: Kafka adatfolyamok particionálja hello hello HDInsight-fürt csomópontjai között. Az egyes partíciók tooprovide terheléselosztás amikor rekordok fel fogyasztói folyamatok társítható.
+* Horizontális skálázhatóság: a Kafka szétosztja a streameket a HDInsight-fürtben található csomópontok között. A fogyasztói folyamatok társíthatók az egyes partíciókkal, így biztosítható a terheléselosztás a rekordok használatakor.
 
-* Sorrendben kézbesítési: minden partíción belül rekordok hello adatfolyam hello ahhoz, hogy azok érkezett vannak tárolva. Partíciónként egy fogyasztói folyamat társításával garantálhatja, hogy a rekordok feldolgozása érkezési sorrendben történjen.
+* Érkezési sorrendben történő kézbesítés: a stream minden egyes partíción belül érkezési sorrendben tárolja a rekordokat. Partíciónként egy fogyasztói folyamat társításával garantálhatja, hogy a rekordok feldolgozása érkezési sorrendben történjen.
 
-* Hibatűrő: Partíciók replikálható tooprovide hibatűrést csomópontok között.
+* Hibatűrés: A partíciók replikálhatók a csomópontok között a hibatűrés biztosításához.
 
-* Integráció az Azure Managed lemezek: felügyelt lemezek nagyobb méretezés és teljesítmény biztosít hello virtuális gépek hello HDInsight fürt által használt hello lemezek.
+* Integráció az Azure Managed Disks szolgáltatással: Az Azure Managed Disks jobb méretezést és teljesítményt biztosít a HDInsight-fürt által használt virtuális gépek lemezei számára.
 
-    Felügyelt lemezek alapértelmezés szerint engedélyezve vannak a hdinsight Kafka, és csomópontonként a használt lemezeket hello száma konfigurálható HDInsight létrehozása során. További tudnivalók a felügyelt lemezekről: [Azure Managed Disks](../virtual-machines/windows/managed-disks-overview.md).
+    A felügyelt lemezek alapértelmezés szerint engedélyezettek a HDInsighton futó Kafkához. A csomópontonként használt lemezek száma a HDInsight létrehozása során konfigurálható. További tudnivalók a felügyelt lemezekről: [Azure Managed Disks](../virtual-machines/windows/managed-disks-overview.md).
 
     További tudnivalók a felügyelt lemezek HDInsight-alapú Kafkával való konfigurálásáról: [A HDInsight-alapú Kafka méretezhetőségének javítása](hdinsight-apache-kafka-scalability.md).
 
 ## <a name="use-cases"></a>Használati esetek
 
-* **Üzenetküldési**: mivel hello támogatja üzenet mintát közzétételi-feliratkozási, egy üzenet broker gyakran használt Kafka.
+* **Üzenetkezelés**: sokszor használják a Kafkát üzenetközvetítőként, mivel támogatja a közzétételi-feliratkozási üzenetmintát.
 
-* **Követés tevékenység**: mivel Kafka biztosít sorrendben naplózási bejegyzések, is használt tootrack kell, és hozza létre a tevékenységeket. Ilyen tevékenységek például a felhasználók műveletei egy webhelyen vagy egy alkalmazásban.
+* **Tevékenységkövetés**: mivel a Kafka lehetővé teszi a rekordok érkezési sorrend szerinti naplózását, használható tevékenységek nyomon követésére és ismételt létrehozására. Ilyen tevékenységek például a felhasználók műveletei egy webhelyen vagy egy alkalmazásban.
 
-* **Összesítési**: az adatfolyam-feldolgozást használó összesíteni az adatokat a különböző adatfolyamokba toocombine és központosítása hello adatokat az operatív adatok be.
+* **Összesítés**: streamfeldolgozással összesítheti a különböző streamek információit, hogy működési adatokká egyesítse és központosítsa az információt.
 
 * **Átalakítás**: streamfeldolgozás használatával egyesítheti és bővítheti az adatokat több bemeneti témakörből egy vagy több kimeneti témakörbe.
 
+## <a name="architecture"></a>Architektúra
+
+![Kafka-fürtkonfiguráció](./media/hdinsight-apache-kafka-introduction/kafka-cluster.png)
+
+Ez az ábra egy tipikus Kafka-konfigurációt mutat be, amely felhasználói csoportok, particionálás és replikálás használatával biztosítja az események párhuzamos olvasását hibatűréssel. Az Apache ZooKeeper az egyidejű, rugalmas és kis késleltetésű tranzakciókhoz készült, mivel a Kafka-fürt állapotát kezeli. A Kafka *témakörökben* tárolja a rekordokat. A rekordokat *előállítók* hozzák létre, és *fogyasztók* használják fel. Az előállítók *Kafka-közvetítőktől* kérik le a rekordokat. A HDInsight-fürt mindegyik feldolgozó csomópontja egy Kafka-közvetítő. Minden felhasználóhoz tartozik egy partíció, amely lehetővé teszi a streamadatok párhuzamos feldolgozását. A partíciók csomópontok közötti elosztása érdekében a rendszer replikációt alkalmaz, amely védelmet nyújt a csomópontok (közvetítők) leállásával szemben. Az *(L)* jelölésű partíció az adott partíció vezetője. Az előállítói forgalmat a csomópontok vezetőjéhez irányítja a rendszer a ZooKeeper által kezelt állapot segítségével.
+
+> [!IMPORTANT]
+> A Kafka nem észleli az Azure-adatközpontban lévő alapul szolgáló hardvereket (rackszekrényeket). A partíciók az alapul szolgáló hardverek közötti megfelelő kiegyensúlyozásához lásd: [az adatok magas szintű rendelkezésre állásának konfigurálásával (Kafka)](hdinsight-apache-kafka-high-availability.md) kapcsolatos cikket.
+
 ## <a name="next-steps"></a>Következő lépések
 
-Használjon hello következő hivatkozásait toolearn hogyan toouse Apache Kafka hdinsight:
+A HDInsighton futó Apache Kafka használatának megismeréséhez tekintse meg a következő hivatkozásokat:
 
 * [A HDInsighton futó Kafka használatának első lépései](hdinsight-apache-kafka-get-started.md)
 
-* [A HDInsight MirrorMaker toocreate Kafka másolatának használata](hdinsight-apache-kafka-mirroring.md)
+* [A MirrorMaker használata a Kafka replikájának HDInsighton való létrehozásához](hdinsight-apache-kafka-mirroring.md)
 
 * [Az Apache Storm használata a HDInsighton futó Kafkával](hdinsight-apache-storm-with-kafka.md)
 
 * [Az Apache Spark használata a Kafkával a HDInsighton](hdinsight-apache-spark-with-kafka.md)
 
-* [Csatlakozás tooKafka egy Azure virtuális hálózaton keresztül](hdinsight-apache-kafka-connect-vpn-gateway.md)
+* [Csatlakozás a Kafkához Azure Virtual Networkön keresztül](hdinsight-apache-kafka-connect-vpn-gateway.md)

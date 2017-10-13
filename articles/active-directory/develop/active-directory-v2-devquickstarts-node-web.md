@@ -1,6 +1,6 @@
 ---
-title: "az Active Directory v2.0 aaaAzure a Node.js web app bejelentkezés |} Microsoft Docs"
-description: "Ismerje meg, hogyan toobuild egy Node.js webes alkalmazást, amely a felhasználó bejelentkezik egy személyes Microsoft-fiók és a munkahelyi vagy iskolai fiók használatával."
+title: "Node.js web app bejelentkezés az Azure Active Directory v2.0 |} Microsoft Docs"
+description: "Ismerje meg, hogyan hozhat létre Node.js webalkalmazásokba jelentkezik be egy felhasználó személyes Microsoft-fiókkal és a munkahelyi vagy iskolai fiók használatával."
 services: active-directory
 documentationcenter: nodejs
 author: navyasric
@@ -15,42 +15,42 @@ ms.topic: article
 ms.date: 05/13/2017
 ms.author: nacanuma
 ms.custom: aaddev
-ms.openlocfilehash: f8ce6e2b841c215cb14e82bcf444fe849634cc88
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6d49c742f72440e22830915c90de009d9188db2a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="add-sign-in-tooa-nodejs-web-app"></a>Bejelentkezési tooa Node.js webalkalmazás hozzáadása
+# <a name="add-sign-in-to-a-nodejs-web-app"></a>Bejelentkezés felvétele Node.js webalkalmazásokba
 
 > [!NOTE]
-> Nem minden Azure Active Directory forgatókönyvek és funkciók együttműködve hello v2.0-végponttól. toodetermine kell használnia a v2.0-végponttól hello vagy hello 1.0-s verziójú végpontot, hogy olvassa el [v2.0 korlátozások](active-directory-v2-limitations.md).
+> Nem minden Azure Active Directory forgatókönyvek és funkciók használata a v2.0-végponttól. Annak megállapításához, hogy használja a v2.0-végpontra vagy az 1.0-s verziójú végpont, olvassa el [v2.0 korlátozások](active-directory-v2-limitations.md).
 > 
 
-Ebben az oktatóanyagban használjuk Passport toodo hello a következő feladatokat:
+Ebben az oktatóanyagban Passport használjuk a következő feladatok elvégzéséhez:
 
-* A web app alkalmazásban hello felhasználói bejelentkezés Azure Active Directory (Azure AD) segítségével, és hello v2.0-végponttól.
-* Hello felhasználói információkat jelenítenek meg.
-* Bejelentkezési hello felhasználói hello alkalmazásból.
+* A webalkalmazásban jelentkezzen be a felhasználó Azure Active Directory (Azure AD) és a v2.0-végponttól.
+* A felhasználói információkat jelenítenek meg.
+* Jelentkezzen ki az alkalmazásból a felhasználó.
 
-A **Passport** a Node.js-hez készült közbenső hitelesítési szoftver. Rugalmas és, moduláris Passport diszkréten eldobása minden Express-alapú vagy restify webalkalmazás. Passport stratégiák széles választékát támogatja a hitelesítést egy felhasználónév és jelszó, Facebook-on, Twitter vagy egyéb beállítások használatával. Kidolgoztunk egy stratégiát, amellyel a szoftver az Azure AD esetében is felhasználható. Ebben a cikkben megmutatjuk, hogyan tooinstall hello modul, és adja hozzá az Azure AD hello `passport-azure-ad` beépülő modult.
+A **Passport** a Node.js-hez készült közbenső hitelesítési szoftver. Rugalmas és, moduláris Passport diszkréten eldobása minden Express-alapú vagy restify webalkalmazás. Passport stratégiák széles választékát támogatja a hitelesítést egy felhasználónév és jelszó, Facebook-on, Twitter vagy egyéb beállítások használatával. Kidolgoztunk egy stratégiát, amellyel a szoftver az Azure AD esetében is felhasználható. Ebben a cikkben azt mutatja be a modul telepítése, és adja hozzá a az Azure AD `passport-azure-ad` beépülő modult.
 
 ## <a name="download"></a>Letöltés
-az oktatóanyag kódjának hello kezelt [a Githubon](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs). toofollow hello oktatóanyagban is [hello alkalmazás vázát .zip fájl letöltése](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs/archive/skeleton.zip) vagy a Klónozás hello vázat:
+Az oktatóanyag kódjának [karbantartása a GitHubon történik](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs). Az oktatóanyag ismerteti, hogy is [töltse le az alkalmazás vázát .zip-fájlként](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs/archive/skeleton.zip) vagy klónozza a vázat:
 
 ```git clone --branch skeleton https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs.git```
 
-Ez az oktatóanyag végén hello befejeződött hello alkalmazás is beszerezheti.
+Ez az oktatóanyag végén az elkészült alkalmazás is beszerezheti.
 
 ## <a name="1-register-an-app"></a>1: az alkalmazás regisztrálása
-Hozzon létre egy új alkalmazást [apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), vagy hajtsa végre a [a részletes lépéseket](active-directory-v2-app-registration.md) tooregister egy alkalmazást. Ellenőrizze, hogy:
+Hozzon létre egy új alkalmazást [apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), vagy hajtsa végre a [a részletes lépéseket](active-directory-v2-app-registration.md) regisztrálnia az alkalmazást. Ellenőrizze, hogy:
 
-* Másolás hello **alkalmazásazonosító** tooyour app rendelve. Ebben az oktatóanyagban van szükség.
-* Adja hozzá a hello **webes** platform az alkalmazásra vonatkozóan.
-* Másolás hello **átirányítási URI-** hello portálról. Hello alapértelmezett URI azonosító értékét kell használnia `urn:ietf:wg:oauth:2.0:oob`.
+* Másolás a **alkalmazásazonosító** az alkalmazáshoz hozzárendelni. Ebben az oktatóanyagban van szükség.
+* Adja hozzá a **webes** platform az alkalmazásra vonatkozóan.
+* Másolás a **átirányítási URI-** a portálról. Az alapértelmezett URI értéket kell használnia `urn:ietf:wg:oauth:2.0:oob`.
 
-## <a name="2-add-prerequisities-tooyour-directory"></a>2: prerequisities tooyour könyvtár hozzáadása
-Egy parancssorba módosítása könyvtárak toogo tooyour gyökérmappára, ha nem már létezik. Futtassa a következő parancsok hello:
+## <a name="2-add-prerequisities-to-your-directory"></a>2: prerequisities adni a könyvtárhoz
+Egy parancssorban lépjen nyissa meg a gyökérmappára, ha nem már létezik. Futtassa az alábbi parancsot:
 
 * `npm install express`
 * `npm install ejs`
@@ -65,22 +65,22 @@ Egy parancssorba módosítása könyvtárak toogo tooyour gyökérmappára, ha n
 * `npm install express-session`
 * `npm install cookie-parser`
 
-Ezenkívül használjuk `passport-azure-ad` a hello vázat a hello gyors üzembe helyezés:
+Ezenkívül használjuk `passport-azure-ad` a a vázat is használtuk:
 
 * `npm install passport-azure-ad`
 
-Ezzel telepít hello tárak, amelyek `passport-azure-ad` használja.
+Ez telepíti a könyvtárak, amelyek `passport-azure-ad` használja.
 
-## <a name="3-set-up-your-app-toouse-hello-passport-node-js-strategy"></a>3: állítsa be az alkalmazás toouse hello passport-csomópont-js stratégia
-Hello Express köztes toouse hello OpenID Connect hitelesítési protokoll beállítása. Használjon Passport tooissue be- és kijelentkezési kérések, hello felhasználói munkamenet kezelésére, és többek között a hello felhasználó adatainak beolvasása.
+## <a name="3-set-up-your-app-to-use-the-passport-node-js-strategy"></a>3: az alkalmazás beállítása a passport-csomópont-js stratégia használatára
+Állítsa be az Express közbenső szoftvert az OpenID Connect hitelesítési protokoll használandó. A Passport használatával be- és kijelentkezési kérések kiállítása, a felhasználói munkamenet kezelése és a felhasználó, többek között adatainak beolvasása.
 
-1.  Hello projekt gyökerében hello nyissa meg hello Config.js fájlt. A hello `exports.creds` területen adja meg az alkalmazás konfigurációs értékeit.
+1.  A projekt gyökérkönyvtárában nyissa meg a Config.js fájlt. Az a `exports.creds` területen adja meg az alkalmazás konfigurációs értékeit.
   
-  * `clientID`: hello **alkalmazásazonosító** Ez az alkalmazás hozzárendelt tooyour hello Azure-portálon.
-  * `returnURL`: hello **átirányítási URI-** hello portálon megadott.
-  * `clientSecret`: hello portálon létrehozott hello titkos kulcsot.
+  * `clientID`: A **alkalmazásazonosító** , amely hozzá van rendelve az alkalmazást az Azure portálon.
+  * `returnURL`: A **átirányítási URI-** a portálon megadott.
+  * `clientSecret`: A titkos kulcsot, a portálon létrehozott.
 
-2.  Hello projekt gyökerében hello nyissa meg hello App.js fájlban. a tooinvoke hello OIDCStrategy stratey `passport-azure-ad`, adja hozzá a következő hívást hello:
+2.  A projekt gyökérkönyvtárában nyissa meg az App.js fájlban. A OIDCStrategy stratey, amely a meghívni kívánt `passport-azure-ad`, adja hozzá a következő hívást:
 
   ```JavaScript
   var OIDCStrategy = require('passport-azure-ad').OIDCStrategy;
@@ -91,12 +91,12 @@ Hello Express köztes toouse hello OpenID Connect hitelesítési protokoll beál
   });
   ```
 
-3.  toohandle a bejelentkezési kérelmek, használja a korábban említett stratégiát hello:
+3.  A bejelentkezési kérések kezelésére, használja a korábban említett stratégiát:
 
   ```JavaScript
-  // Use hello OIDCStrategy within Passport (section 2)
+  // Use the OIDCStrategy within Passport (section 2)
   //
-  //   Strategies in Passport require a `validate` function. hello function accepts
+  //   Strategies in Passport require a `validate` function. The function accepts
   //   credentials (in this case, an OpenID identifier), and invokes a callback
   //   with a user object.
   passport.use( new OIDCStrategy({
@@ -131,23 +131,23 @@ Hello Express köztes toouse hello OpenID Connect hitelesítési protokoll beál
   ));
   ```
 
-A Passport hasonló mintát alkalmaz az összes stratégia (Twitter-, Facebook-on, és így tovább). Stratégiafejlesztő toohello mintát. Hello stratégia átadni egy `function()` tokent használ, és `done` paraméterekként. hello stratégia ad vissza, miután a tevékenységeket végez el. Hello felhasználói és stash hello token tárolására, így nem kell tooask azt újra.
+A Passport hasonló mintát alkalmaz az összes stratégia (Twitter-, Facebook-on, és így tovább). Stratégiafejlesztő mintát. A stratégia átadni egy `function()` tokent használ, és `done` paraméterekként. A stratégia ad vissza, miután a tevékenységeket végez el. Tárolni a felhasználót és menteni a jogkivonatot, így Önnek nem kell megismételni.
 
   > [!IMPORTANT]
-  > hello előző kód készít minden olyan felhasználó, amely képes hitelesíteni tooyour kiszolgáló. Ez az úgynevezett automatikus regisztráció. Az üzemi kiszolgálón általában csak akkor érdemes toolet bárki, aki nélkül őket nyissa meg az Ön által regisztrációs folyamatot. Ez általában az, hogy a fogyasztói alkalmazásoknál hello mintát. hello alkalmazást is lehetővé teheti a Facebook tooregister, de majd kéri tooenter további információt. Ha ez az oktatóanyag nem parancssori program alkalmaz, objektumból hello token visszaadott lehetett kibontani a hello e-mail. Ezt követően előfordulhat, hogy kérje meg hello felhasználói tooenter további információt. Mivel ez egy tesztkiszolgálón, hozzáadhat hello felhasználó közvetlenül a toohello memóriában lévő adatbázishoz.
+  > Az előzőekben látható kód minden olyan felhasználó, amely képes hitelesíteni a kiszolgáló vesz igénybe. Ez az úgynevezett automatikus regisztráció. Az üzemi kiszolgálón így engedélyezni kívánja bárki, aki nélkül őket nyissa meg a regisztrációs folyamat az Ön által. Ez általában egy mintát, amely a fogyasztói alkalmazásoknál megjelenik az. Az alkalmazás is lehetővé teheti, regisztrálni a Facebook, de azt kéri, hogy további adatokat. Ha ez az oktatóanyag nem parancssori program alkalmaz, jogkivonat-objektumból visszaadott lehetett kibontani a az e-mailt. Ezután meg lehet, hogy kérnie a felhasználót adhat meg további információt. Mivel ez egy tesztkiszolgálón, hozzáadja a felhasználó közvetlenül a memóriában lévő adatbázishoz.
   > 
   > 
 
-4.  Adja hozzá, hogy használja-e a felhasználók, akik van bejelentkezve, tookeep követése hello metódusokat Passport által előírt. Ez magában foglalja a szerializálása és deszerializálása hello felhasználói adatokat:
+4.  Adja hozzá a metódusokat, amelyek segítségével nyomon követni a felhasználók, akik van bejelentkezve, a Passport által előírt. Ez magában foglalja a szerializálása és deszerializálása során a felhasználó adatait:
 
   ```JavaScript
 
   // Passport session setup (section 2)
 
-  //   toosupport persistent login sessions, Passport needs toobe able to
-  //   serialize users into, and deserialize users out of, hello session. Typically,
-  //   this is as simple as storing hello user ID when serializing, and finding
-  //   hello user by ID when deserializing.
+  //   To support persistent login sessions, Passport needs to be able to
+  //   serialize users into, and deserialize users out of, the session. Typically,
+  //   this is as simple as storing the user ID when serializing, and finding
+  //   the user by ID when deserializing.
   passport.serializeUser(function(user, done) {
     done(null, user.email);
   });
@@ -158,7 +158,7 @@ A Passport hasonló mintát alkalmaz az összes stratégia (Twitter-, Facebook-o
     });
   });
 
-  // Array toohold signed-in users
+  // Array to hold signed-in users
   var users = [];
 
   var findByEmail = function(email, fn) {
@@ -173,7 +173,7 @@ A Passport hasonló mintát alkalmaz az összes stratégia (Twitter-, Facebook-o
   };
   ```
 
-5.  Adja hozzá, amelyek hello Express motor betölti hello kódot. Hello alapértelmezett /views használ, és Express /routes minta biztosítja:
+5.  Adja hozzá a kódot, amely az Express motor betöltése. Az alapértelmezett /views használ, és Express /routes minta biztosítja:
 
   ```JavaScript
 
@@ -189,7 +189,7 @@ A Passport hasonló mintát alkalmaz az összes stratégia (Twitter-, Facebook-o
     app.use(cookieParser());
     app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: false }));
     app.use(bodyParser.urlencoded({ extended : true }));
-    // Initialize Passport!  Also use passport.session() middleware, toosupport
+    // Initialize Passport!  Also use passport.session() middleware, to support
     // persistent login sessions (recommended).
     app.use(passport.initialize());
     app.use(passport.session());
@@ -199,31 +199,31 @@ A Passport hasonló mintát alkalmaz az összes stratégia (Twitter-, Facebook-o
 
   ```
 
-6.  Adja hozzá a hello POST irányítja a hello tényleges bejelentkezési kérelmek toohello ki, hogy az aktuális `passport-azure-ad` motor:
+6.  Adja hozzá a FELADÁS egy vagy több irányítja, hogy a tényleges bejelentkezési kéréseket átadása a `passport-azure-ad` motor:
 
   ```JavaScript
 
   // Auth routes (section 3)
 
   // GET /auth/openid
-  //   Use passport.authenticate() as route middleware tooauthenticate the
-  //   request. hello first step in OpenID authentication involves redirecting
-  //   hello user toohello user's OpenID provider. After authenticating, hello OpenID
-  //   provider redirects hello user back toothis application at
+  //   Use passport.authenticate() as route middleware to authenticate the
+  //   request. The first step in OpenID authentication involves redirecting
+  //   the user to the user's OpenID provider. After authenticating, the OpenID
+  //   provider redirects the user back to this application at
   //   /auth/openid/return.
 
   app.get('/auth/openid',
     passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
     function(req, res) {
-      log.info('Authentication was called in hello sample');
+      log.info('Authentication was called in the sample');
       res.redirect('/');
     });
 
   // GET /auth/openid/return
-  //   Use passport.authenticate() as route middleware tooauthenticate the
-  //   request. If authentication fails, hello user is redirected back toothe
-  //   sign-in page. Otherwise, hello primary route function is called.
-  //   In this example, it redirects hello user toohello home page.
+  //   Use passport.authenticate() as route middleware to authenticate the
+  //   request. If authentication fails, the user is redirected back to the
+  //   sign-in page. Otherwise, the primary route function is called.
+  //   In this example, it redirects the user to the home page.
   app.get('/auth/openid/return',
     passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
     function(req, res) {
@@ -232,10 +232,10 @@ A Passport hasonló mintát alkalmaz az összes stratégia (Twitter-, Facebook-o
     });
 
   // POST /auth/openid/return
-  //   Use passport.authenticate() as route middleware tooauthenticate the
-  //   request. If authentication fails, hello user is redirected back toothe
-  //   sign-in page. Otherwise, hello primary route function is called. 
-  //   In this example, it redirects hello user toohello home page.
+  //   Use passport.authenticate() as route middleware to authenticate the
+  //   request. If authentication fails, the user is redirected back to the
+  //   sign-in page. Otherwise, the primary route function is called. 
+  //   In this example, it redirects the user to the home page.
 
   app.post('/auth/openid/return',
     passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
@@ -245,10 +245,10 @@ A Passport hasonló mintát alkalmaz az összes stratégia (Twitter-, Facebook-o
     });
   ```
 
-## <a name="4-use-passport-tooissue-sign-in-and-sign-out-requests-tooazure-ad"></a>4: használatát a Passport tooissue be- és kijelentkezési kérések tooAzure AD
-Az alkalmazás most már be van állítva hello v2.0-végponttal toocommunicate hello OpenID Connect hitelesítési protokoll használatával. Hello `passport-azure-ad` stratégia gondoskodik hitelesítési üzenetek létrehozásával, ellenőrzése az Azure ad-jogkivonatok és karbantartását hello felhasználói munkamenet összes hello részleteit. Minden toodo hagyott toogive van a felhasználók a módon toosign, és jelentkezzen ki, és toogather hello van bejelentkezett felhasználó további információt.
+## <a name="4-use-passport-to-issue-sign-in-and-sign-out-requests-to-azure-ad"></a>4: a be- és kijelentkezési kérések kiállítása az Azure AD használata a Passport
+Az alkalmazás most már be van állítva az OpenID Connect hitelesítési protokoll használatával kommunikálnak a v2.0-végponttól. A `passport-azure-ad` stratégia gondoskodik hitelesítési üzenetek létrehozásával, ellenőrzése az Azure ad-jogkivonatok és karbantartása a felhasználói munkamenet összes részleteit. Ehhez marad csak a kell biztosítani a felhasználóknak olyan módon, bejelentkezés és kijelentkezés, valamint a bejelentkezett felhasználó további információt gyűjteni.
 
-1.  Adja hozzá a hello **alapértelmezett**, **bejelentkezési**, **fiók**, és **kijelentkezési** módszerek tooyour App.js fájlban:
+1.  Adja hozzá a **alapértelmezett**, **bejelentkezési**, **fiók**, és **kijelentkezési** az App.js fájl módszerek:
 
   ```JavaScript
 
@@ -265,7 +265,7 @@ Az alkalmazás most már be van állítva hello v2.0-végponttal toocommunicate 
   app.get('/login',
     passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
     function(req, res) {
-      log.info('Login was called in hello sample');
+      log.info('Login was called in the sample');
       res.redirect('/');
   });
 
@@ -276,22 +276,22 @@ Az alkalmazás most már be van állítva hello v2.0-végponttal toocommunicate 
 
   ```
 
-  Az alábbiakban hello részletek:
+  Az alábbiak:
     
-    * Hello `/` útvonal átirányítja a felhasználókat toohello index.ejs nézet. Hello felhasználói haladnak hello kérelem (ha van ilyen).
-    * Hello `/account` útvonal először *biztosítja, hogy hitelesítése* (megvalósítása, amely a következő kód hello). Ezt követően átadja hello felhasználói hello kérelemben. Ez a helyzet hello felhasználó további információt kaphat.
-    * Hello `/login` útvonal hívja a `azuread-openidconnect` a hitelesítő `passport-azuread`. Ha, amely nem jár sikerrel, az átirányítja hello felhasználói vissza túl`/login`.
-    * Hello `/logout` útvonal hívja hello logout.ejs megtekintése (és útvonal). Ez törli a cookie-kat, és majd vissza hello felhasználói hátsó tooindex.ejs.
+    * A `/` útvonal átirányítja a felhasználókat a index.ejs nézetet. Átadja a felhasználó a kérés (ha van ilyen).
+    * A `/account` útvonal először *biztosítja, hogy hitelesítése* (megvalósítása, amely a következő kódrészlet). Ezt követően átadja a felhasználó a kérelemben. Ez az, hogy a felhasználó további információt.
+    * A `/login` útvonal hívja a `azuread-openidconnect` a hitelesítő `passport-azuread`. Ha, amely nem jár sikerrel, az átirányítja a felhasználó vissza `/login`.
+    * A `/logout` útvonal meghívja a logout.ejs nézet (és). Ez törli a cookie-kat, és adja vissza a felhasználót vissza index.ejs.
 
-2.  Adja hozzá a hello **EnsureAuthenticated** , amelyet korábban a használt módszer `/account`:
+2.  Adja hozzá a **EnsureAuthenticated** , amelyet korábban a használt módszer `/account`:
 
   ```JavaScript
 
-  // Route middleware tooensure hello user is authenticated (section 4)
+  // Route middleware to ensure the user is authenticated (section 4)
 
-  //   Use this route middleware on any resource that needs toobe protected. If
-  //   hello request is authenticated (typically via a persistent login session),
-  //   hello request proceeds. Otherwise, hello user is redirected toothe
+  //   Use this route middleware on any resource that needs to be protected. If
+  //   the request is authenticated (typically via a persistent login session),
+  //   the request proceeds. Otherwise, the user is redirected to the
   //   sign-in page.
   function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
@@ -300,7 +300,7 @@ Az alkalmazás most már be van állítva hello v2.0-végponttal toocommunicate 
 
   ```
 
-3.  Az App.js hello kiszolgáló létrehozása:
+3.  Az App.js fájl a kiszolgáló létrehozása:
 
   ```JavaScript
 
@@ -309,10 +309,10 @@ Az alkalmazás most már be van állítva hello v2.0-végponttal toocommunicate 
   ```
 
 
-## <a name="5-create-hello-views-and-routes-in-express-that-you-show-your-user-on-hello-website"></a>5: hello nézetek és útvonalak létrehozása az Express a felhasználó hello webhely megjelenítése
-Adja hozzá a hello útvonalakat és nézeteket, amelyek információt toohello felhasználói megjelenítése. hello útvonalakat és nézeteket is kezelni hello `/logout` és `/login` létrehozott útvonalak.
+## <a name="5-create-the-views-and-routes-in-express-that-you-show-your-user-on-the-website"></a>5: a nézetek és útvonalak létrehozása az Express a felhasználó a webhely megjelenítése
+Adja hozzá az útvonalakat és nézeteket, amelyek az adatok megjelenítése a felhasználónak. Az útvonalakat és nézeteket is kezelni a `/logout` és `/login` létrehozott útvonalak.
 
-1. Hello gyökérkönyvtárában, hozzon létre hello `/routes/index.js` útvonal.
+1. Hozzon létre a gyökérkönyvtárban a `/routes/index.js` útvonal.
 
   ```JavaScript
 
@@ -325,7 +325,7 @@ Adja hozzá a hello útvonalakat és nézeteket, amelyek információt toohello 
   };
   ```
 
-2.  Hello gyökérkönyvtárában, hozzon létre hello `/routes/user.js` útvonal.
+2.  Hozzon létre a gyökérkönyvtárban a `/routes/user.js` útvonal.
 
   ```JavaScript
 
@@ -338,9 +338,9 @@ Adja hozzá a hello útvonalakat és nézeteket, amelyek információt toohello 
   };
   ```
 
-  `/routes/index.js`és `/routes/user.js` vannak egyszerű útvonalak adják át a hello kérelem tooyour nézetek, beleértve a hello felhasználói, ha van ilyen.
+  `/routes/index.js`és `/routes/user.js` egyszerű útvonalak adják át a nézetekhez, ha van ilyen, többek között a felhasználó a kérés vannak.
 
-3.  Hello gyökérkönyvtárában, hozzon létre hello `/views/index.ejs` nézet. Ezen a lapon meghívja a **bejelentkezési** és **kijelentkezési** módszerek. Hello is a `/views/index.ejs` toocapture fiók adatainak megtekintése. Használhatja a feltételes hello `if (!user)` hello kérelem beadott keresztül hello felhasználóként. Fontos, hogy rendelkezik-e a bejelentkezett felhasználó bizonyító adatok.
+3.  Hozzon létre a gyökérkönyvtárban a `/views/index.ejs` nézet. Ezen a lapon meghívja a **bejelentkezési** és **kijelentkezési** módszerek. Is használhatja a `/views/index.ejs` nézetre, és a fiók adatait rögzíti. Használhatja a feltételes hozzáférési `if (!user)` átadta-e keresztül a kérelemben szereplő felhasználóként. Fontos, hogy rendelkezik-e a bejelentkezett felhasználó bizonyító adatok.
 
   ```JavaScript
   <% if (!user) { %>
@@ -353,7 +353,7 @@ Adja hozzá a hello útvonalakat és nézeteket, amelyek információt toohello 
   <% } %>
   ```
 
-4.  Hello gyökérkönyvtárában, hozzon létre hello `/views/account.ejs` nézet. Hello `/views/account.ejs` nézet lehetővé teszi tooview további információt, amely `passport-azuread` hello felhasználói kérelem helyezi.
+4.  Hozzon létre a gyökérkönyvtárban a `/views/account.ejs` nézet. A `/views/account.ejs` nézet lehetővé teszi a további információk megjelenítéséhez, amelyek `passport-azuread` a felhasználói kérelem helyezi.
 
   ```Javascript
   <% if (!user) { %>
@@ -372,7 +372,7 @@ Adja hozzá a hello útvonalakat és nézeteket, amelyek információt toohello 
   <% } %>
   ```
 
-5.  Adjon hozzá egy elrendezés. Hello gyökérkönyvtárában, hozzon létre hello `/views/layout.ejs` nézet.
+5.  Adjon hozzá egy elrendezés. Hozzon létre a gyökérkönyvtárban a `/views/layout.ejs` nézet.
 
   ```HTML
 
@@ -399,20 +399,20 @@ Adja hozzá a hello útvonalakat és nézeteket, amelyek információt toohello 
   </html>
   ```
 
-6.  toobuild futtatta az alkalmazását, és futtassa `node app.js`. Ezután térjen túl`http://localhost:3000`.
+6.  Build és az alkalmazás futtatása futtassa `node app.js`. Folytassa a `http://localhost:3000`.
 
-7.  Jelentkezzen be személyes Microsoft-fiókkal vagy egy munkahelyi vagy iskolai fiókkal. Vegye figyelembe, hogy hello felhasználói identitás tükröz hello /account listában. 
+7.  Jelentkezzen be személyes Microsoft-fiókkal vagy egy munkahelyi vagy iskolai fiókkal. Vegye figyelembe, hogy a felhasználó identitását tükröz /account listájában. 
 
 Most már rendelkezik egy webalkalmazást, amelyet az iparági szabványos protokollok használatával. Az alkalmazás a felhasználók a személyes és munkahelyi vagy iskolai fiókok használatával képes hitelesíteni.
 
 ## <a name="next-steps"></a>Következő lépések
-Befejeződött hello mintát (a konfigurációs értékek nélkül) referenciaként biztosított [egy .zip fájl](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs/archive/complete.zip). Akkor is klónozhatja azt a Githubról:
+Az elkészült mintát (a konfigurációs értékek nélkül) referenciaként biztosított [egy .zip fájl](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs/archive/complete.zip). Akkor is klónozhatja azt a Githubról:
 
 ```git clone --branch complete https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs.git```
 
-Továbbléphet a következő témakörök speciális toomore. Érdemes lehet tootry:
+A következő továbbléphet az összetettebb témákra. Előfordulhat, hogy ki szeretné próbálni:
 
-[Node.js webes API biztonságossá hello v2.0-végponttól használatával](active-directory-v2-devquickstarts-node-api.md)
+[Node.js webes API biztonságossá a v2.0-végpontra használatával](active-directory-v2-devquickstarts-node-api.md)
 
 Az alábbiakban néhány további források:
 
@@ -420,5 +420,5 @@ Az alábbiakban néhány további források:
 * [A verem túlcsordulás "azure-active-directory" címke](http://stackoverflow.com/questions/tagged/azure-active-directory)
 
 ### <a name="get-security-updates-for-our-products"></a>Biztonsági frissítések termékeinkhez
-Javasoljuk toosign biztonsági incidensek értesítendő toobe fel. A hello [Microsoft műszaki biztonsági értesítéseket](https://technet.microsoft.com/security/dd252948) előfizetés tooSecurity tanácsadók riasztások lapján.
+Javasoljuk, hogy regisztráljon biztonsági incidensek fordulhat elő, ha értesítést szeretne kapni. Az a [Microsoft műszaki biztonsági értesítéseket](https://technet.microsoft.com/security/dd252948) lapon, a biztonsági tanácsadók riasztást fizessen elő.
 

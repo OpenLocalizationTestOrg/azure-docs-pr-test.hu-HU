@@ -1,13 +1,13 @@
 
-1. Jelentkezzen be tooyour hello lépésekkel felsorolt Azure-előfizetés [tooAzure csatlakoztatja a hello Azure CLI 1.0](../articles/xplat-cli-connect.md).
+1. Jelentkezzen be Azure-előfizetésébe a [Csatlakozás az Azure-hoz az Azure CLI 1.0-s verziójáról](../articles/xplat-cli-connect.md) című cikkben felsorolt lépések végrehajtásával.
 
-2. Gondoskodjon arról, hogy Ön hello klasszikus telepítési módban az alábbiak szerint:
+2. Az alábbiak szerint győződjön meg róla, hogy a klasszikus üzembe helyezési módban van:
 
     ```azurecli
     azure config mode asm
     ```
 
-3. Megtudhatja, hello Linux lemezképet, amelyet a rendelkezésre álló lemezképeinek hello tooload az alábbiak szerint:
+3. Az alábbiak szerint keresse meg az elérhető rendszerképek közül a betölteni kívánt Linux-rendszerképeket:
 
    ```azurecli   
     azure vm image list | grep "Linux"
@@ -15,7 +15,7 @@
    
     Windows-parancsablakokban a grep helyett használja a **find** kifejezést.
    
-4. Használjon `azure vm create` toocreate hello Linux lemezképpel hello előző listában egy virtuális Gépet. Ezzel a lépéssel létrehoz egy felhőszolgáltatást és egy tárfiókot. A virtuális gép tooan meglévő felhőszolgáltatás is kapcsolódhat egy `-c` lehetőséget. Hozzon létre egy SSH-végpont toolog toohello Linux virtuális gép hello `-e` lehetőséget. hello alábbi példa létrehoz egy nevű virtuális gép `myVM` hello segítségével `Ubuntu-14_04_4-LTS` hello lemezképet `West US` helyét, és hozzáad egy felhasználói nevet `ops`:
+4. Az `azure vm create` paranccsal hozzon létre egy virtuális gépet az előző listából kiválasztott Linux-rendszerképpel. Ezzel a lépéssel létrehoz egy felhőszolgáltatást és egy tárfiókot. A `-c` kapcsolóval egy meglévő felhőszolgáltatáshoz is csatlakoztathatja ezt a virtuális gépet. Az `-e` kapcsolóval létrehozhat egy SSH-végpontot a Linux-alapú virtuális gépre való bejelentkezéshez. Az alábbi példa egy `myVM` nevű virtuális gépet hoz létre az `Ubuntu-14_04_4-LTS` rendszerkép használatával a `West US` helyen, és hozzáadja a következő felhasználónevet: `ops`
    
     ```azurecli
     azure vm create myVM \
@@ -23,7 +23,7 @@
         -g ops -p P@ssw0rd! -z "Small" -e -l "West US"
     ```
 
-    hello hasonló toohello a következő példa a kimenetre:
+    A kimenet a következő példához hasonló:
 
     ```azurecli
     info:    Executing command vm create
@@ -37,20 +37,20 @@
     ```
    
    > [!NOTE]
-   > A Linux virtuális gép esetén meg kell adnia hello `-e` beállítást `vm create`. Nincs SSH lehetséges tooenable hello virtuális gép létrehozása után. Az SSH további tudnivalókért olvassa el [hogyan tooUse Azure Linux SSH](../articles/virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+   > Linuxos virtuális gép esetén meg kell adnia az `-e` kapcsolót a `vm create` parancsban. A virtuális gép létrehozása után nem lehet engedélyezni az SSH-t. További részletek az SSH-val kapcsolatban: [SSH használata Linuxon az Azure-on](../articles/virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-5. Hello segítségével ellenőrizheti a hello VM hello attribútumait `azure vm show` parancsot. hello alábbi példa felsorolja hello nevű virtuális gép adatai `myVM`:
+5. Az `azure vm show` parancs használatával ellenőrizheti a virtuális gép attribútumait. Az alábbi példa felsorolja a `myVM` nevű virtuális géppel kapcsolatos információkat:
 
     ```azurecli   
     azure vm show myVM
     ```
 
-6. Indítsa el a virtuális Gépet a hello `azure vm start` parancsot a következőképpen:
+6. Indítsa el a virtuális gépet az `azure vm start` paranccsal a következőképpen:
 
     ```azurecli
     azure vm start myVM
     ```
 
 ## <a name="next-steps"></a>Következő lépések
-Ezek Azure CLI 1.0 virtuális gép parancsok tudnivalókért olvassa el a hello [Using hello Azure CLI 1.0 hello klasszikus telepítés API](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2).
+További részletek az Azure CLI 1.0 virtuális gépekre vonatkozó parancsairól: [Az Azure CLI 1.0 használata a klasszikus üzembehelyezési API-val](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2).
 

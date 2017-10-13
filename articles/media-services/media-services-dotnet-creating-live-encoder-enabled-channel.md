@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooperform élő adatfolyam-Azure Media Services toocreate többféle sávszélességű adatfolyamok használata a .NET |} Microsoft Docs"
-description: "Az oktatóanyag bemutatja, hogyan hello lépéseit egy olyan csatorna létrehozásának egy egyféle sávszélességű élő streamet és a .NET SDK használatával toomulti sávszélességűvé kódolja."
+title: "Élő adatfolyam-továbbítás az Azure Media Services használatával és többféle sávszélességű adatfolyamok létrehozása a .NET-tel | Microsoft Docs"
+description: "Ez az útmutató lépésről lépésre ismerteti, hogyan hozhat létre egy csatornát, amely a fogadott egyféle sávszélességű élő adatfolyamokat a .NET SDK használatával többféle sávszélességűvé kódolja."
 services: media-services
 documentationcenter: 
 author: anilmur
@@ -14,99 +14,99 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/17/2017
 ms.author: juliako;anilmur
-ms.openlocfilehash: 22088e6a78a49bd839575614a7c17a411ae8081c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 22d63ff5e9fd33db8711b0c5125ab0882b9f6a74
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-tooperform-live-streaming-using-azure-media-services-toocreate-multi-bitrate-streams-with-net"></a>A .NET hogyan tooperform élő adatfolyam-használó Azure Media Services toocreate többféle sávszélességű adatfolyamok
+# <a name="how-to-perform-live-streaming-using-azure-media-services-to-create-multi-bitrate-streams-with-net"></a>Élő adatfolyam továbbítása az Azure Media Services használatával és többféle sávszélességű adatfolyamok létrehozása a .NET használatával
 > [!div class="op_single_selector"]
 > * [Portal](media-services-portal-creating-live-encoder-enabled-channel.md)
 > * [.NET](media-services-dotnet-creating-live-encoder-enabled-channel.md)
 > * [REST API](https://docs.microsoft.com/rest/api/media/operations/channel)
 > 
 > [!NOTE]
-> toocomplete ebben az oktatóanyagban egy Azure-fiókra van szüksége. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F).
+> Az oktatóanyag elvégzéséhez egy Azure-fiókra lesz szüksége. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F).
 > 
 > 
 
 ## <a name="overview"></a>Áttekintés
-Ez az oktatóanyag végigvezeti hello létrehozásának egy **csatorna** , amely egy egyszeres sávszélességű élő streamet és toomulti sávszélességűvé kódolja.
+Ez az útmutató lépésről lépésre bemutatja, hogyan hozhat létre egy **csatornát**, amely a fogadott egyféle sávszélességű élő adatfolyamokat többféle sávszélességűvé kódolja.
 
-További információ az élő kódolás engedélyezett kapcsolódó tooChannels lásd [használó Azure Media Services toocreate többféle sávszélességű adatfolyamot élő Stream továbbítása](media-services-manage-live-encoder-enabled-channels.md).
+További elméleti információk a valós idejű kódolásra képes csatornákról: [Élő adatfolyam továbbítása az Azure Media Services használatával, és többféle sávszélességű adatfolyamok létrehozása](media-services-manage-live-encoder-enabled-channels.md)
 
 ## <a name="common-live-streaming-scenario"></a>Gyakori élő adatfolyam-továbbítási forgatókönyv
-a lépéseket követve hello gyakori élő adatfolyam-továbbítási alkalmazások létrehozásához elvégzendő feladatokat írják le.
+A következő lépések a gyakran használt élő adatfolyam-továbbítási alkalmazások létrehozásához elvégzendő feladatokat írják le.
 
 > [!NOTE]
-> Maximális hello élő esemény időtartama ajánlott 8 órára is jelenleg. Ha hosszabb ideig kell toorun egy csatornát, forduljon amslived@Microsoft.com e-mail címen.
+> Jelenleg az élő események maximálisan ajánlott időtartama 8 óra. Ha egy ennél tovább futó csatornára van szüksége, lépjen velünk kapcsolatba az amslived@Microsoft.com e-mail címen.
 > 
 > 
 
-1. Csatlakozás egy videokamerát tooa számítógép. Indítson el és konfiguráljon egy helyszíni élő kódoló, amely a kimenetre küldheti egyféle sávszélességű adatfolyamot hello a következő protokollok valamelyikével: RTMP, Smooth Streaming vagy RTP (MPEG-TS). További tudnivalók: [Azure Media Services RMTP-támogatása és valós idejű kódolók](http://go.microsoft.com/fwlink/?LinkId=532824)
+1. Csatlakoztasson egy videokamerát a számítógéphez. Indítson el és állítson be egy helyszíni valós idejű kódolót, amely képes egy egyféle sávszélességű kimeneti adatfolyam továbbítására a következő protokollok valamelyikével: RTMP, Smooth Streaming vagy RTP (MPEG-TS). További tudnivalók: [Azure Media Services RMTP-támogatása és valós idejű kódolók](http://go.microsoft.com/fwlink/?LinkId=532824)
 
     Ezt a lépést a csatorna létrehozása után is elvégezheti.
 
 2. Hozzon létre és indítson el egy csatornát.
-3. Kérje le hello csatorna feldolgozó URL-CÍMÉT.
+3. Kérje le a csatorna feldolgozó URL-címét.
 
-    hello betöltési URL-cím hello élő kódoló toosend hello adatfolyam toohello csatorna által használt.
+    Az élő kódoló a bemeneti URL-címet használva küldi el a streamet a csatornának.
 
-4. Hello csatorna előnézeti URL-cím beolvasása.
+4. Kérje le a csatorna előnézeti URL-címét.
 
-    Az URL-cím tooverify, hogy a csatornája megfelelően fogadja-hello élő adatfolyam használata.
+    Ezen az URL használatával ellenőrizheti, hogy a csatornája megfelelően fogadja-e az élő adatfolyamot.
 
 5. Hozzon létre egy adategységet.
-6. Ha azt szeretné, a lejátszás során dinamikusan titkosítani hello eszköz toobe, hello a következő:
+6. Ha azt szeretné, hogy az adategység a lejátszás során dinamikusan legyen titkosítva, tegye a következőket:
 7. Hozzon létre egy tartalomkulcsot.
-8. Hello tartalomkulcs hitelesítési szabályzatának konfigurálása.
+8. Konfigurálja a tartalomkulcs engedélyezési házirendjét.
 9. Konfigurálja az adategység továbbítási házirendjét (amelyet a dinamikus csomagolás és a dinamikus titkosítás használ).
-10. Hozzon létre egy programot, és adja meg a létrehozott toouse hello eszköz.
-11. Tegye közzé hello adategységet egy OnDemand-kereső létrehozásával hello programhoz társított.
+10. Hozzon létre egy programot, és állítsa be, hogy az az imént létrehozott adategységet használja.
+11. Tegye közzé a programhoz társított adategységet egy OnDemand-kereső létrehozásával.
 
     >[!NOTE]
-    >Az AMS-fiók létrehozásakor egy **alapértelmezett** adatfolyam-továbbítási végpontra tooyour fiók kerül hello **leállítva** állapotát. adatfolyam-továbbítási végpontra, amelyből el kívánja toostream tartalom hello toobe rendelkezik hello **futtató** állapotát. 
+    >Az AMS-fiók létrehozásakor a rendszer hozzáad egy **alapértelmezett** streamvégpontot a fiókhoz **Leállítva** állapotban. A tartalom-továbbításhoz használt streamvégpontnak **Fut** állapotban kell lennie. 
 
-12. Amikor készen áll a toostart streamelésre és az archiválásra, indítsa el hello programot.
-13. Másik lehetőségként hello élő kódoló jelzett toostart hirdetést is lehet. hello hirdetés bekerül hello kimeneti adatfolyam.
-14. Állítsa le hello programot, ha azt szeretné, hogy toostop streamelésre és az archiválásra hello esemény.
-15. Törli a hello Program (és opcionálisan a hello eszköz törlése).
+12. Indítsa el a programot, ha készen áll az adatfolyam-továbbításra és az archiválásra.
+13. További lehetőségként jelzést adhat a valós idejű kódolónak egy hirdetés elindítására. A hirdetés a kimeneti adatfolyamba lesz beszúrva.
+14. Állítsa le a programot, ha szeretné megállítani az adatfolyam-továbbítást, és archiválni kívánja az eseményt.
+15. Törölje a programot (esetlegesen törölje az adategységet is).
 
 ## <a name="what-youll-learn"></a>Ismertetett témák
-Ez a témakör bemutatja, hogyan tooexecute különböző műveleteket csatornákon és programokon a Media Services .NET SDK használatával. A műveletek között számos hosszú futású művelet található, így hosszú futású műveleteket felügyelő .NET API-kat használunk.
+Ez a témakör bemutatja, hogyan hajthat végre különböző műveleteket csatornákon és programokon a Media Services .NET SDK használatával. A műveletek között számos hosszú futású művelet található, így hosszú futású műveleteket felügyelő .NET API-kat használunk.
 
-a témakör azt mutatja be hello hogyan toodo hello következő:
+Ez a témakör bemutatja, hogyan végezze el a következőket:
 
 1. Csatorna létrehozása és elindítása. Hosszú futású API-k vannak használatban.
-2. Első hello csatorna feldolgozó (bemeneti) végpontjának. Ezt a végpontot kell megadni a toohello egyféle sávszélességű élő adatfolyamot küldő kódolónak.
-3. Hello előnézeti végpont lekérése. Ez a végpont egy használt toopreview az adatfolyam.
-4. Hozzon létre egy eszköz, amely használt toostore lesz a tartalmat. hello adategység továbbítási házirendjeit úgy kell konfigurálni, ahogy az alábbi példa mutatja.
-5. Hozzon létre egy programot, és adja meg a korábban létrehozott toouse hello eszköz. Indítsa el a hello programot. Hosszú futású API-k vannak használatban.
-6. Hello eszköz, egy kereső létrehozása, így hello tartalom közzétételre kerüljön és továbbítható tooyour ügyfelek.
+2. A csatorna feldolgozó (bemeneti) végpontjának lekérése. Ezt a végpontot kell megadni az egyféle sávszélességű élő adatfolyamot küldő kódolónak.
+3. Az előnézeti végpont lekérése. Ez a végpont az adatfolyam előnézetéhez használatos.
+4. A tartalmakat tároló adategység létrehozása. Az adategység továbbítási házirendjeit szintén konfigurálni kell, ahogy az a példában is látható.
+5. Egy program létrehozása, és annak beállítása, hogy az a korábban létrehozott adategységet használja. A program elindítása. Hosszú futású API-k vannak használatban.
+6. Egy kereső létrehozása az adategységhez, hogy a tartalom közzétételre kerüljön és továbbítható legyen az ügyfelek részére.
 7. A befutók megjelenítése és elrejtése. A hirdetések elindítása és leállítása. Hosszú futású API-k vannak használatban.
-8. Számolja fel a csatornát, és minden kapcsolódó erőforrások hello.
+8. A csatornát és a hozzá kapcsolódó erőforrások tisztán tartása.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az alábbiakban hello szükséges toocomplete hello oktatóanyag.
+Az oktatóanyag elvégzésének a következők a feltételei.
 
-* Egy Azure-fiók. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F). Amelyek lehetnek kimenő használt tootry fizetős Azure-szolgáltatások jóváírásokat kap. Hello jóváírásokat el is használta, után is megtarthatja hello fiókot, és ingyenes Azure-szolgáltatások és funkciók, például az Azure App Service Web Apps szolgáltatása hello használata.
-* Egy Media Services-fiók. egy Media Services-fiók toocreate lásd [fiók létrehozása](media-services-portal-create-account.md).
+* Egy Azure-fiók. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F). Jóváírásokat kap, amelyeket fizetős Azure-szolgáltatások kipróbálására használhat fel. Még ha a jóváírásokat el is használta, továbbra is megtarthatja a fiókot és használhatja az ingyenes szolgáltatásokat és lehetőségeket, mint például a Web Apps szolgáltatást az Azure App Service alatt.
+* Egy Media Services-fiók szükséges. Egy Media Services-fiók létrehozásához lásd: [Fiók létrehozása](media-services-portal-create-account.md)
 * Visual Studio 2010 SP1 (Professional, Premium, Ultimate vagy Express) vagy későbbi verzió.
 * A Media Services .NET SDK legalább 3.2.0.0 vagy újabb verziójával kell rendelkeznie.
 * Egy webkamera és egy egyféle sávszélességű élő adatfolyamot küldő kódoló.
 
-## <a name="considerations"></a>Megfontolandó szempontok
-* Maximális hello élő esemény időtartama ajánlott 8 órára is jelenleg. Ha hosszabb ideig kell toorun egy csatornát, forduljon amslived@Microsoft.com e-mail címen.
-* A különböző AMS-szabályzatok (például a Locator vagy a ContentKeyAuthorizationPolicy) esetében a korlát 1 000 000 szabályzat. Használjon hello azonos házirend-azonosítója mindig használata hello azonos nap / hozzáférési engedélyek, például a lokátorokat, amelyek a helyen tervezett tooremain hosszú ideje (nem feltöltés házirendek) házirendek. További információ [ebben](media-services-dotnet-manage-entities.md#limit-access-policies) a témakörben érhető el.
+## <a name="considerations"></a>Megfontolások
+* Jelenleg az élő események maximálisan ajánlott időtartama 8 óra. Ha egy ennél tovább futó csatornára van szüksége, lépjen velünk kapcsolatba az amslived@Microsoft.com e-mail címen.
+* A különböző AMS-szabályzatok (például a Locator vagy a ContentKeyAuthorizationPolicy) esetében a korlát 1 000 000 szabályzat. Ha mindig ugyanazokat a napokat/hozzáférési engedélyeket használja (például olyan keresők szabályzatait, amelyek hosszú ideig érvényben maradnak, vagyis nem feltöltött szabályzatokat), a szabályzatazonosítónak is ugyanannak kell lennie. További információ [ebben](media-services-dotnet-manage-entities.md#limit-access-policies) a témakörben érhető el.
 
 ## <a name="download-sample"></a>Minta letöltése
 
-Letöltheti az ebben a témakörben ismertetett hello minta [Itt](https://azure.microsoft.com/documentation/samples/media-services-dotnet-encode-live-stream-with-ams-clear/).
+Az ebben a témakörben leírt mintát [innen](https://azure.microsoft.com/documentation/samples/media-services-dotnet-encode-live-stream-with-ams-clear/) töltheti le.
 
 ## <a name="set-up-for-development-with-media-services-sdk-for-net"></a>A .NET-keretrendszerhez készült Media Services SDK-val történő fejlesztés előkészítése
 
-A fejlesztési környezet kialakítása és feltöltése hello app.config fájl kapcsolatadatok, a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-use.md). 
+Állítsa be a fejlesztési környezetet, és töltse fel az app.config fájlt a kapcsolatadatokkal a [.NET-keretrendszerrel történő Media Services-fejlesztést](media-services-dotnet-how-to-use.md) ismertető dokumentumban leírtak szerint. 
 
 ## <a name="code-example"></a>Mintakód
 
@@ -127,7 +127,7 @@ A fejlesztési környezet kialakítása és feltöltése hello app.config fájl 
         private const string AssetlName = "asset001";
         private const string ProgramlName = "program001";
 
-        // Read values from hello App.config file.
+        // Read values from the App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -144,21 +144,21 @@ A fejlesztési környezet kialakítása és feltöltése hello app.config fájl 
 
             IChannel channel = CreateAndStartChannel();
 
-            // hello channel's input endpoint:
+            // The channel's input endpoint:
             string ingestUrl = channel.Input.Endpoints.FirstOrDefault().Url.ToString();
 
             Console.WriteLine("Intest URL: {0}", ingestUrl);
 
 
-            // Use hello previewEndpoint toopreview and verify 
-            // that hello input from hello encoder is actually reaching hello Channel. 
+            // Use the previewEndpoint to preview and verify 
+            // that the input from the encoder is actually reaching the Channel. 
             string previewEndpoint = channel.Preview.Endpoints.FirstOrDefault().Url.ToString();
 
             Console.WriteLine("Preview URL: {0}", previewEndpoint);
 
-            // When Live Encoding is enabled, you can now get a preview of hello live feed as it reaches hello Channel. 
-            // This can be a valuable tool toocheck whether your live feed is actually reaching hello Channel. 
-            // hello thumbnail is exposed via hello same end-point as hello Channel Preview URL.
+            // When Live Encoding is enabled, you can now get a preview of the live feed as it reaches the Channel. 
+            // This can be a valuable tool to check whether your live feed is actually reaching the Channel. 
+            // The thumbnail is exposed via the same end-point as the Channel Preview URL.
             string thumbnailUri = new UriBuilder
             {
             Scheme = Uri.UriSchemeHttps,
@@ -176,7 +176,7 @@ A fejlesztési környezet kialakítása és feltöltése hello app.config fájl 
 
             ILocator locator = CreateLocatorForAsset(program.Asset, program.ArchiveWindowLength);
 
-            // You can use slates and ads only if hello channel type is Standard.  
+            // You can use slates and ads only if the channel type is Standard.  
             StartStopAdsSlates(channel);
 
             // Once you are done streaming, clean up your resources.
@@ -269,7 +269,7 @@ A fejlesztési környezet kialakítása és feltöltése hello app.config fájl 
             SystemPreset = "Default720p",
             IgnoreCea708ClosedCaptions = false,
             AdMarkerSource = AdMarkerSource.Api,
-            // You can only set audio if streaming protocol is set tooStreamingProtocol.RTPMPEG2TS.
+            // You can only set audio if streaming protocol is set to StreamingProtocol.RTPMPEG2TS.
             AudioStreams = new List<AudioStream> { new AudioStream { Index = 103, Language = "eng" } }.AsReadOnly()
             };
         }
@@ -293,7 +293,7 @@ A fejlesztési környezet kialakítása és feltöltése hello app.config fájl 
         }
 
         /// <summary>
-        /// Create a Program on hello Channel. You can have multiple Programs that overlap or are sequential;
+        /// Create a Program on the Channel. You can have multiple Programs that overlap or are sequential;
         /// however each Program must have a unique name within your Media Services account.
         /// </summary>
         /// <param name="channel"></param>
@@ -312,7 +312,7 @@ A fejlesztési környezet kialakítása és feltöltése hello app.config fájl 
         }
 
         /// <summary>
-        /// Create locators in order toobe able toopublish and stream hello video.
+        /// Create locators in order to be able to publish and stream the video.
         /// </summary>
         /// <param name="asset"></param>
         /// <param name="ArchiveWindowLength"></param>
@@ -375,7 +375,7 @@ A fejlesztési környezet kialakítása és feltöltése hello app.config fájl 
         }
 
         /// <summary>
-        /// Clean up resources associated with hello channel.
+        /// Clean up resources associated with the channel.
         /// </summary>
         /// <param name="channel"></param>
         public static void Cleanup(IChannel channel)
@@ -426,28 +426,28 @@ A fejlesztési környezet kialakítása és feltöltése hello app.config fájl 
             string entityId = null;
             bool isCompleted = false;
 
-            Log("starting tootrack ", null, operation.Id);
+            Log("starting to track ", null, operation.Id);
             while (isCompleted == false)
             {
             operation = _context.Operations.GetOperation(operation.Id);
             isCompleted = IsCompleted(operation, out entityId);
             System.Threading.Thread.Sleep(TimeSpan.FromSeconds(30));
             }
-            // If we got here, hello operation succeeded.
+            // If we got here, the operation succeeded.
             Log(description + " in completed", operation.TargetEntityId, operation.Id);
 
             return entityId;
         }
 
         /// <summary> 
-        /// Checks if hello operation has been completed. 
-        /// If hello operation succeeded, hello created entity Id is returned in hello out parameter.
+        /// Checks if the operation has been completed. 
+        /// If the operation succeeded, the created entity Id is returned in the out parameter.
         /// </summary> 
-        /// <param name="operationId">hello operation Id.</param> 
+        /// <param name="operationId">The operation Id.</param> 
         /// <param name="channel">
-        /// If hello operation succeeded, 
-        /// hello entity Id associated with hello sucessful operation is returned in hello out parameter.</param>
-        /// <returns>Returns false if hello operation is still in progress; otherwise, true.</returns> 
+        /// If the operation succeeded, 
+        /// the entity Id associated with the sucessful operation is returned in the out parameter.</param>
+        /// <returns>Returns false if the operation is still in progress; otherwise, true.</returns> 
         private static bool IsCompleted(IOperation operation, out string entityId)
         {
             bool completed = false;
@@ -457,9 +457,9 @@ A fejlesztési környezet kialakítása és feltöltése hello app.config fájl 
             switch (operation.State)
             {
             case OperationState.Failed:
-                // Handle hello failure. 
+                // Handle the failure. 
                 // For example, throw an exception. 
-                // Use hello following information in hello exception: operationId, operation.ErrorMessage.
+                // Use the following information in the exception: operationId, operation.ErrorMessage.
                 Log("operation failed", operation.TargetEntityId, operation.Id);
                 break;
             case OperationState.Succeeded:

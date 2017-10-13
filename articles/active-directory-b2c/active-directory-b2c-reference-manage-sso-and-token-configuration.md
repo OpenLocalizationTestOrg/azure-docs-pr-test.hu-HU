@@ -12,17 +12,17 @@ ms.topic: article
 ms.devlang: na
 ms.date: 05/02/2017
 ms.author: sama
-ms.openlocfilehash: b65271a22c77ea41eeec2126e4a3ad24364edd17
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8f5703d15766f221517cd89352d41685652d32d6
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-active-directory-b2c-manage-sso-and-token-customization-with-custom-policies"></a>Az Azure Active Directory B2C: Egyszeri Bejelentkezéssel és token testreszabási egyéni házirendek kezelése
-Egyéni házirendek segítségével biztosítja, azonos vezérelheti a jogkivonatot, munkamenet és egyszeri bejelentkezés (SSO) konfigurációk hello beépített házirendek segítségével.  a beállítások funkciójának, toolearn részletek a dokumentációban hello [Itt](#active-directory-b2c-token-session-sso).
+Egyéni házirendek használatával teszi lehetővé a jogkivonatot, munkamenet és egyszeri bejelentkezés (SSO) konfigurációk ugyanarra a vezérlőre beépített házirendek segítségével.  Ha szeretné megtudni, hogy egyes beállítások funkciója, a dokumentáció [Itt](#active-directory-b2c-token-session-sso).
 
 ## <a name="token-lifetimes-and-claims-configuration"></a>Jogkivonat élettartamát és a jogcímek konfiguráció
-tooadd szüksége toochange hello beállításait a jogkivonat élettartamát, egy `<ClaimsProviders>` elem hello függő entitás fájlban hello házirend tooimpact szeretné.  Hello `<ClaimsProviders>` elem gyermeke hello `<TrustFrameworkPolicy>`.  Belül tooput hello információt, amely befolyásolja a jogkivonat élettartamát lesz szüksége.  hello XML így néz ki:
+A jogkivonat élettartamát a beállítások módosításához meg kell adni egy `<ClaimsProviders>` befolyásolja a kívánt házirendet, a függő entitás fájlban.  A `<ClaimsProviders>` elem gyermeke a `<TrustFrameworkPolicy>`.  Belül, amely befolyásolja a jogkivonat élettartamát helyezni lesz szüksége.  Az XML-fájl így néz ki:
 
 ```XML
 <ClaimsProviders>
@@ -44,28 +44,28 @@ tooadd szüksége toochange hello beállításait a jogkivonat élettartamát, e
 </ClaimsProviders>
 ```
 
-**Hozzáférési jogkivonat élettartamát** hozzáférési jogkivonatok élettartama hello hello értéket módosításával módosítható hello `<Item>` a hello kulcs = "token_lifetime_secs" másodpercben.  hello értéke alapértelmezés szerint beépített 3600 másodperc (60 perc).
+**Hozzáférési jogkivonat élettartamát** értéket módosításával módosíthatja a hozzáférési jogkivonat élettartamát a `<Item>` kulccsal = "token_lifetime_secs" másodpercben.  A beépített alapértelmezett érték 3600 másodperc (60 perc).
 
-**Azonosító a jogkivonatok élettartama** hello azonosítója a jogkivonatok élettartama hello hello értéket módosításával módosítható `<Item>` a hello kulcs = "id_token_lifetime_secs" másodpercben.  hello értéke alapértelmezés szerint beépített 3600 másodperc (60 perc).
+**A jogkivonatok élettartama azonosító** jogkivonat élettartamát az azonosító értéket módosításával módosítható a `<Item>` kulccsal = "id_token_lifetime_secs" másodpercben.  A beépített alapértelmezett érték 3600 másodperc (60 perc).
 
-**Frissítse a jogkivonatok élettartama** hello frissítési jogkivonat élettartamát hello hello értéket módosításával módosítható `<Item>` a hello kulcs = "refresh_token_lifetime_secs" másodpercben.  hello értéke alapértelmezés szerint beépített 1209600 másodperc (14 nap).
+**Frissítse a jogkivonatok élettartama** értéket módosításával módosíthatja a frissítési jogkivonat élettartamát a `<Item>` kulccsal = "refresh_token_lifetime_secs" másodpercben.  A beépített alapértelmezett érték 1209600 másodperc (14 nap).
 
-**Mozgó ablak élettartamot frissítése** Ha szeretné, hogy egy mozgó ablak élettartama tooyour frissítési jogkivonat tooset, módosítsa a hello értéket `<Item>` a hello kulcs = "rolling_refresh_token_lifetime_secs" másodpercben.  hello értéke alapértelmezés szerint beépített 7776000 (90 nap).  Ha nem szeretné, hogy tooenfore egy késleltetett ablak élettartamát, cserélje le a sort:
+**Frissítési jogkivonat mozgó ablak élettartamát** Ha azt szeretné beállítani a mozgó ablak élettartama a frissítési jogkivonat, módosítsa az értéket `<Item>` kulccsal = "rolling_refresh_token_lifetime_secs" másodpercben.  A beépített alapértelmezett érték 7776000 (90 nap).  Ha nem szeretné enfore egy késleltetett ablak élettartamát, cserélje le a sort:
 ```XML
 <Item Key="allow_infinite_rolling_refresh_token">True</Item>
 ```
 
-**Jogcím kiállítója (iss)** toochange hello kibocsátó (iss) jogcím tetszés szerint módosítható hello értéke belül hello `<Item>` a hello kulcs = "IssuanceClaimPattern".  hello vonatkozó értékek a következők `AuthorityAndTenantGuid` és `AuthorityWithTfp`.
+**A jogcím kiállítójának (iss)** Ha a kibocsátó (iss) jogcím módosítani kívánja, módosítsa az értéket a `<Item>` kulccsal = "IssuanceClaimPattern".  A megfelelő értékek `AuthorityAndTenantGuid` és `AuthorityWithTfp`.
 
-**Beállítás jogcím házirend-azonosító képviselő** hello az érték a következők TFP (megbízhatósági keretrendszer házirend) és ACR (hitelesítési környezeti hivatkozás).  
-Azt javasoljuk, hogy a tooTFP toodo állítja, hello biztosítása `<Item>` a hello kulcs = "AuthenticationContextReferenceClaimPattern" létezik, és hello érték `None`.
+**Beállítás jogcím házirend-azonosító képviselő** érték a beállítások a következők TFP (megbízhatósági keretrendszer házirend) és ACR (hitelesítési környezeti hivatkozás).  
+Javasoljuk, hogy ezt a TFP beállítást, ehhez ellenőrizze a `<Item>` és a kulcs = "AuthenticationContextReferenceClaimPattern" létezik, és az érték `None`.
 Az a `<OutputClaims>` cikkhez, ez az elem hozzáadása:
 ```XML
 <OutputClaim ClaimTypeReferenceId="trustFrameworkPolicy" Required="true" DefaultValue="{policy}" />
 ```
-Az ACR, távolítsa el a hello `<Item>` a hello kulcs = "AuthenticationContextReferenceClaimPattern".
+ACR, távolítsa el a `<Item>` kulccsal = "AuthenticationContextReferenceClaimPattern".
 
-**Tulajdonos (rész-) jogcím** Ez a beállítás az alapértelmezett tooObjectID, ha azt szeretné, hogy tooswitch ez túl`Not Supported`, a következő hello:
+**Tulajdonos (rész-) jogcím** ObjectID, hogy alapértelmezett ezt a beállítást, ha azt szeretné, a kapcsolóhoz `Not Supported`, tegye a következőket:
 
 Cserélje le ezt a sort 
 ```XML
@@ -77,7 +77,7 @@ Ehhez a sorhoz:
 ```
 
 ## <a name="session-behavior-and-sso"></a>Munkamenet viselkedést és az egyszeri bejelentkezés
-toochange a munkamenet viselkedést és egyszeri Bejelentkezéssel konfigurációk esetén tooadd van szüksége egy `<UserJourneyBehaviors>` hello elemet `<RelyingParty>` elemet.  Hello `<UserJourneyBehaviors>` elem közvetlenül követnie kell a hello `<DefaultUserJourney>`.  hello található a `<UserJourneyBehavors>` elem kell kinéznie:
+A munkamenet viselkedést és egyszeri Bejelentkezéssel konfigurációk módosítása, meg kell adni egy `<UserJourneyBehaviors>` elemben található a `<RelyingParty>` elemet.  A `<UserJourneyBehaviors>` elem közvetlenül követnie kell a `<DefaultUserJourney>`.  Belső a `<UserJourneyBehavors>` elem kell kinéznie:
 
 ```XML
 <UserJourneyBehaviors>
@@ -86,8 +86,8 @@ toochange a munkamenet viselkedést és egyszeri Bejelentkezéssel konfiguráci�
    <SessionExpiryInSeconds>86400</SessionExpiryInSeconds>
 </UserJourneyBehaviors>
 ```
-**Egyszeri bejelentkezés (SSO) konfigurációs** toochange hello egyszeri bejelentkezés a konfigurációban kell toomodify hello értékének `<SingleSignOn>`.  hello vonatkozó értékek a következők `Tenant`, `Application`, `Policy` és `Disabled`. 
+**Egyszeri bejelentkezés (SSO) konfigurációs** való egyszeri bejelentkezés beállításainak módosítása esetén módosítania kell a értékének `<SingleSignOn>`.  A megfelelő értékek `Tenant`, `Application`, `Policy` és `Disabled`. 
 
-**Webalkalmazás munkamenet élettartama (perc)** toochange hello hello webalkalmazás munkamenetek élettartamát, kell hello toomodify értékének `<SessionExpiryInSeconds>` elemet.  hello alapértelmezett beépített házirendek érték 86400 másodperc (1440 perc).
+**Webalkalmazás munkamenet élettartama (perc)** módosítása a webalkalmazás munkamenetek élettartamát, módosítania kell értékének a `<SessionExpiryInSeconds>` elemet.  Az alapértelmezett beépített házirendek értéke 86400 másodperc (1440 perc).
 
-**Webes alkalmazás munkamenet időkorlátja** toochange hello web app munkamenet időkorlátja kell toomodify hello értékének `<SessionExpiryType>`.  hello vonatkozó értékek a következők `Absolute` és `Rolling`.
+**Webes alkalmazás munkamenet időkorlátja** Ha módosítani szeretné a webes alkalmazás munkamenet időkorlátja, módosítania kell a értékének `<SessionExpiryType>`.  A megfelelő értékek `Absolute` és `Rolling`.

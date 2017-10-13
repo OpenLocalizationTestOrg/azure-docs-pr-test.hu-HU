@@ -1,6 +1,6 @@
 ---
-title: "az importálási feladat az Azure Import/Export aaaCreate |} Microsoft Docs"
-description: "Megtudhatja, hogyan toocreate a Microsoft Azure Import/Export szolgáltatás hello importálásakor."
+title: "Az Azure Import/Export importálási feladat létrehozása |} Microsoft Docs"
+description: "Útmutató a Microsoft Azure Import/Export szolgáltatás importálás létrehozásához."
 author: muralikk
 manager: syadav
 editor: syadav
@@ -14,96 +14,96 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: da974c33a3688bb5e2412c8bfcbeca704096c2fc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d373d2a0e601f2796719fc5efb8761f276ab24d9
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="creating-an-import-job-for-hello-azure-importexport-service"></a>Az importálási feladat hello Azure Import/Export szolgáltatás létrehozása
+# <a name="creating-an-import-job-for-the-azure-importexport-service"></a>Az importálási feladat az Azure Import/Export szolgáltatás létrehozása
 
-Az importálási feladat hello Microsoft Azure Import/Export szolgáltatás REST API hello segítségével létrehozása magában foglalja a hello a következő lépéseket:
+A Microsoft Azure Import/Export szolgáltatás REST API használatával az importálási feladat létrehozása a következő lépésekből áll:
 
--   Az Azure Import/Export eszköz hello meghajtók előkészítése.
+-   Felkészülés az Azure Import/Export eszköz rendelkező meghajtókat.
 
--   Nem sikerült beolvasni hello hely toowhich tooship hello meghajtó.
+-   A helyet, ahová a meghajtó szállítási megszerezni.
 
--   Hello importálási feladat létrehozása.
+-   Az importálási feladat létrehozása.
 
--   TooMicrosoft hello szállítási meghajtók támogatott szolgáltatónként szolgáltatáson keresztül.
+-   A szállítási a Microsoftnak a meghajtók támogatott szolgáltatónként szolgáltatáson keresztül.
 
--   Hello importálási feladat részletei szállítási hello frissítésekor.
+-   Az importálási feladat frissítése a szállítási adatokkal.
 
- Lásd: [hello Microsoft Azure Import/Export szolgáltatás tooTransfer adatok tooBlob Storage használatával](storage-import-export-service.md) hello Import/Export szolgáltatás és mutatja be a áttekintését hogyan toouse hello [Azure-portálon](https://portal.azure.com/) toocreate és kezelése az importálás és exportálni a feladatokat.
+ Lásd: [adatok átviteléhez a Blob Storage a Microsoft Azure Import/Export szolgáltatás használata](storage-import-export-service.md) áttekintését a Import/Export szolgáltatás és egy az oktatóanyag bemutatja, hogyan használható a [Azure-portálon](https://portal.azure.com/) létrehozása Importálás kezeléséhez, és exportálni a feladatokat.
 
-## <a name="preparing-drives-with-hello-azure-importexport-tool"></a>Az Azure Import/Export eszköz hello meghajtók előkészítése
+## <a name="preparing-drives-with-the-azure-importexport-tool"></a>Az Azure Import/Export eszközzel meghajtó előkészítése
 
-hello lépéseket tooprepare meghajtók, hogy az importálás vannak hello azonos e hoz létre jobvia hello portal hello vagy keresztül hello REST API-t.
+A meghajtók előkészítése az importálási feladat lépésekre azonos e hoz létre a jobvia a portálon, vagy a REST API-n keresztül.
 
-Az alábbiakban van meghajtó előkészítése rövid áttekintést. Tekintse meg a toohello [Azure Import-ExportTool hivatkozás](storage-import-export-tool-how-to-v1.md) részletes utasításokért. Hello Azure Import/Export eszközt letöltheti [Itt](http://go.microsoft.com/fwlink/?LinkID=301900).
+Az alábbiakban van meghajtó előkészítése rövid áttekintést. Tekintse meg a [Azure Import-ExportTool hivatkozás](storage-import-export-tool-how-to-v1.md) részletes utasításokért. Az Azure Import/Export eszközt letöltheti [Itt](http://go.microsoft.com/fwlink/?LinkID=301900).
 
 A meghajtó előkészítése foglal magában:
 
--   Azonosító hello adatok toobe importálva.
+-   Az adatok, importálandók azonosítása.
 
--   Hello cél blobot, amely a Windows Azure Storage azonosítása.
+-   A célként megadott blobot, amely a Windows Azure Storage azonosítása.
 
--   Hello Azure Import/Export eszköz toocopy használatával, az adatok tooone vagy további merevlemez-meghajtókat.
+-   Az Azure Import/Export eszköz használatával másolja az adatokat legalább egy merevlemez-meghajtókat.
 
- hello Azure Import/Export eszköz is létrehoz egy jegyzékfájl hello meghajtókhoz előkészítettként van. A jegyzékfájl tartalmazza:
+ Az Azure Import/Export eszköz is létrehoz a jegyzékfájlt a meghajtókhoz előkészítettként van. A jegyzékfájl tartalmazza:
 
--   Egy feltöltési és a fájlok tooblobs hello hozzárendelések szánt fájlok hello enumerálása.
+-   Egy feltöltési és a leképezései ezeket a fájlokat a blobok szánt fájlok felsorolása.
 
--   Az egyes fájlok hello szegmensek ellenőrzőösszegeket.
+-   Az egyes fájlok szegmenst ellenőrzőösszegeket.
 
--   Minden egyes blob a metaadatok és a Tulajdonságok tooassociate hello kapcsolatos információkat.
+-   A metaadatok és a tulajdonságok minden egyes blob társítandó vonatkozó információk.
 
--   Egy listája hello művelet tootake hello éppen feltöltött blob-e azonos nevet, amint egy meglévő blob hello tárolóban. A lehetséges értékek: a) hello blob felülírása hello fájl, a b) megtartani hello meglévő blob és a skip hello fájl feltöltése, a c) fűzzön hozzá utótag toohello nevet úgy, hogy más fájlok nem ütköznek.
+-   A művelet neve megegyezik egy már meglévő blob a tárolóban lévő blob, amely feltöltődik-e listáját. A lehetséges értékek: a) a blob felülírja a fájlt, a b) megtartja a meglévő blob és a skip feltölteni a fájlt, a c) hozzáfűzése egy utótagot a nevét, hogy más fájlok nem ütköznek.
 
 ## <a name="obtaining-your-shipping-location"></a>A szállítási hely beszerzése
 
-Mielőtt létrehozna egy importálási feladat, szükséges tooobtain szállítási hely nevét és címét hívó hello [lista helyek](/rest/api/storageimportexport/listlocations) műveletet. `List Locations`helyek és a levelezési címek listáját adja vissza. Jelöljön ki egy helyet a hello-listát adott vissza, és küldje el a merevlemez-meghajtók toothat címét. Is használhatja a hello `Get Location` művelet tooobtain hello közvetlenül szállítási címeket az adott helyen.
+Mielőtt létrehozna egy importálási feladat, be kell szereznie a szállítási hely nevét és címét meghívásával a [lista helyek](/rest/api/storageimportexport/listlocations) műveletet. `List Locations`helyek és a levelezési címek listáját adja vissza. Jelöljön ki egy helyet a visszaadott listából, és küldje el a merevlemez-meghajtók adott címre. Használhatja a `Get Location` közvetlenül beszerzése a szállítási cím, egy adott helyre vonatkozó műveletet.
 
- Kövesse az alábbi tooobtain hello szállítási hely hello lépéseket:
+ A szállítási raktár beszerzése az alábbi lépésekkel:
 
--   A tárfiók helye hello hello nevének azonosítása. Ez az érték hello alatt található **hely** hello tárolási fiók található **irányítópult** az Azure portál vagy hello service management API-művelet használatával lekérdezett hello [tárolási beolvasása Tulajdonságok fiók](/rest/api/storagerp/storageaccounts#StorageAccounts_GetProperties).
+-   Azonosítsa a tárfiók helyének nevét. Ez az érték található a **hely** található a tárfiók **irányítópult** az Azure portál vagy a service management API művelettel lekérdezett [Storage-fiók beszerzése Tulajdonságok](/rest/api/storagerp/storageaccounts#StorageAccounts_GetProperties).
 
--   Ezt a tárfiókot hello helyre, amely elérhető tooprocess beolvasása hívó hello által `Get Location` műveletet.
+-   A hely, amelyhez feldolgozni ezt a tárfiókot meghívásával beolvasása a `Get Location` műveletet.
 
--   Ha hello `AlternateLocations` hello hely tulajdonsága tartalmazza magát hello helye, akkor célszerű rendben toouse ezen a helyen. Ellenkező esetben hívható hello `Get Location` hello másodlagos helyek egyikén újra a műveletet. hello eredeti helyre ideiglenesen le lehet, hogy a következő karbantartási.
+-   Ha a `AlternateLocations` helyének tulajdonság tartalmaz maga a hely, akkor használja ezt a helyet kapcsolatát. Ellenkező esetben hívható meg a `Get Location` műveletet a másodlagos helyek. Az eredeti helyre ideiglenesen le lehet, hogy a következő karbantartási.
 
-## <a name="creating-hello-import-job"></a>Hello importálási feladat létrehozása
-toocreate hello importálási feladat, hívás hello [Put feladat](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) műveletet. Szüksége lesz a következő információ tooprovide hello:
+## <a name="creating-the-import-job"></a>Az importálási feladat létrehozása
+Az importálási feladat létrehozása, hívja meg a [Put feladat](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) műveletet. Meg kell adnia a következő információkat:
 
--   Hello feladat nevét.
+-   A feladat nevét.
 
--   hello tárfiók neve.
+-   A tárfiók nevét.
 
--   a hely neve, hello előző lépésben beszerzett szállítási hello.
+-   A szállítási hely neve, az előző lépésben beszerzett.
 
 -   A feladat típusa (importálás).
 
--   hello Válaszcím ahol hello meghajtók küldjön hello importálási feladat befejeződése után.
+-   A válaszcím, ahol a meghajtók kell-e küldeni az importálási feladat befejeződése után.
 
--   a meghajtók hello feladat hello listáját. Minden olyan meghajtó meg kell adni a következő információ hello meghajtó előkészítési lépés során kapott hello:
+-   A feladat meghajtók listája. Minden olyan meghajtó meg kell adni a következő adatokat, a meghajtó előkészítési lépés során kapott:
 
-    -   hello meghajtó azonosítója
+    -   A meghajtó azonosítója
 
-    -   hello BitLocker kulcs
+    -   A BitLocker-kulcsot
 
-    -   hello jegyzékfájl relatív elérési út hello merevlemezről.
+    -   Az Alkalmazásjegyzék-fájl relatív elérési út a merevlemez-meghajtón
 
-    -   hello Base16 kódolású jegyzékfájl MD5 kivonatoló
+    -   A Base16 kódolású jegyzékfájl MD5 kivonatoló
 
 ## <a name="shipping-your-drives"></a>A meghajtók szállítási
-Kell küldje el a meghajtók toohello cím hello előző lépésben beszerzett, és meg kell adnia a hello csomag számú követési hello az Import/Export szolgáltatás hello.
+Kell küldje el az előző lépésben beszerzett címre meghajtó, és a csomag követési számának meg kell adnia az Import/Export szolgáltatás.
 
 > [!NOTE]
 >  A meghajtók, amely előállít egy azonosítószám a csomag támogatott szolgáltatónként szolgáltatáson keresztül kell küldje el.
 
-## <a name="updating-hello-import-job-with-your-shipping-information"></a>A szállítási adatokat hello importálási feladat frissítése
-Miután a nyilvántartási szám, hívja hello [frissítés Feladattulajdonság](/api/storageimportexport/jobs#Jobs_Update) művelet tooupdate hello szállítási szolgáltatónként nevét, hello azonosítószám hello feladat és hello szolgáltatónként számát a visszatérési szállításra. Opcionálisan megadhat meghajtók és a szállítási dátumot is hello hello száma.
+## <a name="updating-the-import-job-with-your-shipping-information"></a>Az importálási feladat naplóküldése adatainak frissítése
+Miután a nyilvántartási szám, hívja az [frissítése feladat tulajdonságai](/api/storageimportexport/jobs#Jobs_Update) a szállítási szolgáltatónként nevét, a projekt a nyomon követési száma és a vivőjel-számát visszatérési szállítási frissítési művelete. Opcionálisan megadhat meghajtók és a szállítási dátumot is.
 
 ## <a name="next-steps"></a>Következő lépések
 
-* [Hello Import/Export szolgáltatás REST API használatával](storage-import-export-using-the-rest-api.md)
+* [Az Import/Export szolgáltatás REST API használatával](storage-import-export-using-the-rest-api.md)

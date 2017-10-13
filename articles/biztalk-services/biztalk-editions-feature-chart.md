@@ -1,6 +1,6 @@
 ---
-title: "BizTalk szolgáltatások kiadások szolgáltatásairól aaaLearn |} Microsoft Docs"
-description: "Hasonlítsa össze a hello képességek hello BizTalk szolgáltatások kiadásainak: ingyenes, fejlesztői, Basic, Standard és Premium. MABS, WABS."
+title: "A BizTalk Services-kiadások funkcióinak megismerése | Microsoft Docs"
+description: "Összehasonlíthatja a BizTalk Services-kiadások képességeit: ingyenes, Fejlesztői, Alapszintű, Standard és Prémium. MABS, WABS."
 services: biztalk-services
 documentationcenter: 
 author: MandiOhlinger
@@ -14,41 +14,41 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 11/07/2016
 ms.author: mandia
-ms.openlocfilehash: 81626fa743a7190e7c78a0fd90b3054a08982b02
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 718b57a801a9ba62a0154ae42da2ac0c0741f203
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="biztalk-services-editions-chart"></a>BizTalk Services: Kiadások diagramja
 
 > [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
 
-Az Azure BizTalk Services számos kiadást biztosít. Ez a cikk toodetermine melyik kiadást az a forgatókönyv és üzleti igényeinek megfelelő használja.
+Az Azure BizTalk Services számos kiadást biztosít. A jelen cikk segítségével határozhatja meg, hogy melyik kiadás felel meg a forgatókönyvnek és az üzleti igényeknek.
 
-## <a name="compare-hello-editions"></a>Hello kiadások összehasonlítása
+## <a name="compare-the-editions"></a>A kiadások összehasonlítása
 **Ingyenes (előzetes verzió)**
 
-Hibrid kapcsolatokat hozhat létre és felügyelhet. A hibrid kapcsolat egy egyszerűen tooconnect egy Azure-webhelyen tooan a helyszíni rendszer, például az SQL Server nem.
+Hibrid kapcsolatokat hozhat létre és felügyelhet. A hibrid kapcsolatokkal könnyedén csatlakoztathat Azure-webhelyet egy helyszíni rendszerhez, például az SQL Serverhez.
 
 **Fejlesztői**
 
-Hibrid kapcsolatokat, a kereskedelmi partnerek felügyeletére szolgáló, könnyen használható portállal feldolgozható EAI- és EDI-üzenetfeldolgozást, az általános EDI-sémák támogatását, valamint az X12-n és AS2-n keresztüli részletes EDI-feldolgozást tartalmaz. Létrehozhat hello felhőbeli szolgáltatások összekapcsolása a HTTP/S, a többi, a FTP, a WCF és az SFTP protokoll tooread szabhatják EAI-Összekötők és írásakor.  Kapcsolat tooon helyszíni LOB rendszerek hasznosítani használatra kész SAP, Oracle eBusiness, Oracle adatbázis, Siebel, és az SQL Server-adapterrel. Fejlesztőközpontú környezetet használhat Visual Studio-eszközökkel az egyszerű fejlesztés és üzembe helyezés érdekében. Korlátozott toodevelopment és tesztelési célú csak a nem szolgáltatási szint szerződés (SLA).
+Hibrid kapcsolatokat, a kereskedelmi partnerek felügyeletére szolgáló, könnyen használható portállal feldolgozható EAI- és EDI-üzenetfeldolgozást, az általános EDI-sémák támogatását, valamint az X12-n és AS2-n keresztüli részletes EDI-feldolgozást tartalmaz. A használatával létrehozhat általános EAI-forgatókönyveket, amelyek a felhőbeli szolgáltatásokat csatlakoztatják a HTTP/S, REST, FTP, WCF és SFTP protokollal üzenetek olvasása és írása érdekében.  Kihasználhatja a helyszíni LOB-rendszerekkel létesített kapcsolatok előnyeit a használatra kész SAP-, Oracle eBusiness-, Oracle DB-, Siebel- és SQL Server-adapterekkel. Fejlesztőközpontú környezetet használhat Visual Studio-eszközökkel az egyszerű fejlesztés és üzembe helyezés érdekében. Fejlesztési és tesztelési célokra van korlátozva szolgáltatói szerződés (SLA) nélkül.
 
 **Basic**
 
-Hibrid kapcsolatok, EAI-Összekötők hidak, EDI-szerződések, és a BizTalk Adapter Pack kapcsolatok hello fejlesztői funkciói növeli a legtöbb tartalmazza. Magas rendelkezésre állású, és hello beállítás tooscale egy szolgáltatási szint szerződés (SLA) rendelkező is kínál.
+Tartalmazza a Fejlesztői kiadás legtöbb képességét, de több hibrid kapcsolatot, EAI-hidat, EDI-egyezményt és BizTalk Adapter Pack-kapcsolatot tartalmaz. Magas rendelkezésre állást is kínál, valamint a méretezés lehetőségét szolgáltatói szerződéssel (SLA-val).
 
 **Standard**
 
-Minden hello alapvető funkciói növeli a hibrid kapcsolatok, EAI-Összekötők hidak, EDI-szerződések, és a BizTalk Adapter Pack kapcsolatok tartalmazza. Magas rendelkezésre állású, és hello beállítás tooscale egy szolgáltatási szint szerződés (SLA) rendelkező is kínál.
+Tartalmazza az Alapszintű kiadás összes képességét, de több hibrid kapcsolatot, EAI-hidat, EDI-egyezményt és BizTalk Adapter Pack-kapcsolatot tartalmaz. Magas rendelkezésre állást is kínál, valamint a méretezés lehetőségét szolgáltatói szerződéssel (SLA-val).
 
 **Prémium**
 
-Minden hello szabványos funkciói növeli a hibrid kapcsolatok, EAI-Összekötők hidak, EDI-szerződések, és a BizTalk Adapter Pack kapcsolatok tartalmazza. Archiválás, a magas rendelkezésre állás és a hello beállítás tooscale az egy szolgáltatási szint szerződés (SLA) is tartalmaz.
+Tartalmazza az összes Standard képességet, de több hibrid kapcsolatot, EAI-hidat, EDI-egyezményt és BizTalk Adapter Pack-kapcsolatot tartalmaz. Emellett archiválást, magas rendelkezésre állást is kínál, valamint a méretezés lehetőségét szolgáltatói szerződéssel (SLA-val).
 
 ## <a name="editions-chart"></a>Kiadások diagramja
-hello következő táblázatban hello eltéréseket.
+Az alábbi táblázat tartalmazza a különbségeket.
 
 <table border="1">
 <tr bgcolor="FAF9F9">
@@ -84,9 +84,9 @@ hello következő táblázatban hello eltéréseket.
 <td><strong>Maximális engedélyezett horizontális felskálázás</strong></td>
 <td>Nincs méretezés</td>
 <td>Nincs méretezés</td>
-<td>Környezet too8 egység</td>
-<td>Környezet too8 egység</td>
-<td>Környezet too8 egység</td>
+<td>Legfeljebb 8 egység</td>
+<td>Legfeljebb 8 egység</td>
+<td>Legfeljebb 8 egység</td>
 </tr>
 <tr>
 <td><strong>EAI-hidak egységenként</strong></td>
@@ -123,7 +123,7 @@ TPM-egyezményeket tartalmaz</td>
 <td>500</td>
 </tr>
 <tr>
-<td><strong>BizTalk szolgáltatás kapcsolatok tooon helyszíni LOB rendszerek</strong></td>
+<td><strong>BizTalk Adapter Service kapcsolatai helyszíni LOB-rendszereken</strong></td>
 <td>Nem tartalmazza</td>
 <td>1 kapcsolat</td>
 <td>2 kapcsolat</td>
@@ -210,48 +210,48 @@ Tartalmazza a számla letagadhatatlanságát (NRR) és a követett üzenetek let
 
 ## <a name="faqs"></a>Gyakori kérdések
 #### <a name="what-is-a-biztalk-unit"></a>Mi a BizTalk-egység?
-Egy "egység" hello atomi szint Azure BizTalk szolgáltatások üzembe helyezésének. Mindegyik kiadás egységének számítási kapacitása és memóriája különböző. Az alapszintű egység például több számításra képes, mint a fejlesztői, a standard több számításra képes, mint az alapszintű stb. A BizTalk Service méretezése egységekben történik.
+Az „egység” az Azure BizTalk Services telepítésének atomi szintje. Mindegyik kiadás egységének számítási kapacitása és memóriája különböző. Az alapszintű egység például több számításra képes, mint a fejlesztői, a standard több számításra képes, mint az alapszintű stb. A BizTalk Service méretezése egységekben történik.
 
-#### <a name="what-is-hello-difference-between-biztalk-services-and-azure-biztalk-vm"></a>Mi az a BizTalk szolgáltatások és az Azure BizTalk VM hello különbségének?
-BizTalk szolgáltatások integrációs megoldásokat hello felhőben készítéséhez igaz Platform,--szolgáltatás (PaaS) architektúrát nyújt. Hello PaaS modellel teljesen összpontosítani hello úgy az alkalmazáslogikát, és hagyja meg az összes hello infrastruktúra felügyeleti tooMicrosoft, beleértve:
+#### <a name="what-is-the-difference-between-biztalk-services-and-azure-biztalk-vm"></a>Mi a különbség a BizTalk Services és az Azure BizTalk virtuális gépek között?
+A BizTalk Services valódi PaaS-architektúrát biztosít a felhőben kiépített integrációs megoldásokhoz. A PaaS modellel teljes mértékben az alkalmazás logikájára összpontosíthat, és a Microsoftra hagyhatja az infrastruktúra felügyeletét, beleértve a következőket:
 
-* Nincs szükség toomanage vagy javítás virtuális gépek.
+* Nem kell felügyelnie vagy javítania a virtuális gépeket.
 * A Microsoft biztosítja a rendelkezésre állást.
-* Igény szerinti kérésével egyszerűen több vagy kevesebb kapacitás hello Azure-portálon keresztül méretezési szabályozhatja.
+* A méretet igény szerint szabályozhatja, és egyszerűen több vagy kevesebb kapacitást kérhet az Azure Portalon keresztül.
 
-Az Azure Virtual Machinesben futó BizTalk Server IaaS-architektúrát biztosít. Hozzon létre virtuális gépeket, és úgy konfigurálja azokat, akárcsak a helyszíni környezetben, így könnyebben toorun meglévő alkalmazások hello felhőben kód változtatás nélkül. Az infrastruktúra-szolgáltatási, továbbra is való telepítésért felelős hello a virtuális gépek konfigurálása hello virtuális gépek (például a szoftverek telepítéséhez és az operációsrendszer-javítások), és kezelésére újratervezni a magas rendelkezésre állású hello alkalmazás.
+Az Azure Virtual Machinesben futó BizTalk Server IaaS-architektúrát biztosít. A helyszíni környezethez hasonlóan hozhat létre és konfigurálhat virtuális gépeket, így megkönnyítve a meglévő alkalmazások futtatását a felhőben anélkül, hogy a kódot módosítania kellene. Az IaaS használata esetén továbbra is felelős Ön a virtuális gépek konfigurálásáért, a virtuális gépek felügyeletéért (például a szoftverek és az operációs rendszer javításainak telepítéséért) és az alkalmazás magas rendelkezésre állásához való kialakításáért.
 
-A BizTalk Services segítségével az infrastruktúra kezelését megkönnyítő integrációs megoldásokat készíthet. Ha a tooquickly telepítse át a meglévő BizTalk-megoldásokról vagy egy igény szerinti környezetet toodevelop és a BizTalk Server tesztelési keresése alkalmazások, BizTalk Server az Azure virtuális gép.
+A BizTalk Services segítségével az infrastruktúra kezelését megkönnyítő integrációs megoldásokat készíthet. Ha gyorsan szeretné áttelepíteni a meglévő BizTalk-megoldásokat, vagy igény szerinti környezetet keres a BizTalk Server-alkalmazások fejlesztéséhez és teszteléséhez, Azure virtuális gépen használja a BizTalk Servert.
 
-#### <a name="what-is-hello-difference-between-biztalk-adapter-service-and-hybrid-connections"></a>Mi az a BizTalk szolgáltatás és a hibrid kapcsolatok hello különbségének?
-egy Azure BizTalk szolgáltatás által használt hello BizTalk szolgáltatás. BizTalk szolgáltatás hello hello BizTalk Adapter Pack tooconnect tooan helyszíni sor az üzleti (LOB) rendszert használ. A hibrid kapcsolat biztosít egy egyszerű és kényelmesen tooconnect Azure-alkalmazások, mint az Azure App Service Web Apps-szolgáltatás hello és Azure Mobile Services tooan helyszíni erőforrás.
+#### <a name="what-is-the-difference-between-biztalk-adapter-service-and-hybrid-connections"></a>Mi a különbség a BizTalk Adapter Service és a hibrid kapcsolatok között?
+A BizTalk Adapter Service-t Azure BizTalk Service használja. A BizTalk Adapter Service a BizTalk Adapter Pack használatával csatlakozik egy helyszíni üzletági (LOB) rendszerhez. A hibrid kapcsolattal könnyen és kényelmesen csatlakozhat Azure-alkalmazásokat, például az Azure App Service Web Apps szolgáltatását vagy az Azure Mobile Servicest egy helyszíni erőforráshoz.
 
-#### <a name="what-does-hybrid-connection-data-transfer-gb-per-unit-mean-is-this-per-minutehourdayweekmonth-what-happens-when-hello-limit-is-reached"></a>Mit jelent a „hibrid kapcsolat adatátvitele (GB) egységenként”? Ez percenként/óránként/naponta/hetente/havonta értendő? Mi történik, amikor hello a határt?
-a hibrid kapcsolat egységköltség hello hello BizTalk szolgáltatások edition függ. A költségek egyszerűen attól függnek, hogy mennyi adatot visz át. Napi 10 GB adat átvitele például kevesebbe kerül, mint napi 100 GB adat átvitele. Használjon hello [Díjkalkulátor](https://azure.microsoft.com/pricing/calculator/?scenario=full) BizTalk szolgáltatások toodetermine adott költségek. Általában hello vannak korlátozva naponta. Ha hello korláton bármely túlhasználati díjfizetéssel 1 USD / GB hello sebessége.
+#### <a name="what-does-hybrid-connection-data-transfer-gb-per-unit-mean-is-this-per-minutehourdayweekmonth-what-happens-when-the-limit-is-reached"></a>Mit jelent a „hibrid kapcsolat adatátvitele (GB) egységenként”? Ez percenként/óránként/naponta/hetente/havonta értendő? Mi történik a korlát elérésekor?
+A hibrid kapcsolat egységenkénti költsége a BizTalk Services kiadásától függ. A költségek egyszerűen attól függnek, hogy mennyi adatot visz át. Napi 10 GB adat átvitele például kevesebbe kerül, mint napi 100 GB adat átvitele. A BizTalk Services [díjkalkulátorával](https://azure.microsoft.com/pricing/calculator/?scenario=full) határozhatja meg a pontos költségeket. A korlátok érvényesítése általában naponta történik. A korlát elérése után GB-onként 1 dolláros díjat kell fizetnie a túllépésért.
 
-#### <a name="when-i-create-an-agreement-in-biztalk-services-why-does-hello-number-of-bridges-go-up-by-two-instead-of-just-one"></a>BizTalk szolgáltatások létrehozásakor egy szerződést, miért nem hidak hello száma lépjen két helyett csak egy?
+#### <a name="when-i-create-an-agreement-in-biztalk-services-why-does-the-number-of-bridges-go-up-by-two-instead-of-just-one"></a>Amikor egyezményt hozok létre a BizTalk Servicesben, miért kettővel nő a hidak száma egy helyett?
 Minden egyezmény két különböző hídból áll: egy küldőoldali kommunikációs hídból és egy fogadóoldali kommunikációs hídból.
 
-#### <a name="what-happens-when-i-hit-hello-quota-limit-on-hello-number-of-bridges-or-agreements"></a>Mi történik, ha szeretnék találati hello kvótakorlátot hidak vagy megállapodások hello számára?
-Nem sikerült toodeploy bármely új hidak, vagy hozzon létre új szerződéseket. További toodeploy tooscale toomore egységek hello BizTalk szolgáltatás, vagy a frissítési tooa magasabb edition kell.
+#### <a name="what-happens-when-i-hit-the-quota-limit-on-the-number-of-bridges-or-agreements"></a>Mi történik, amikor elérem a hidak számának vagy az egyezményeknek a kvótakorlátját?
+Nem tud új hidakat üzembe helyezni és új egyezményeket létrehozni. Továbbiak üzembe helyezéséhez a BizTalk szolgáltatás vertikális felskálázásával több egységet kell beszereznie, vagy magasabb kiadásra kell frissítenie.
 
-#### <a name="how-do-i-migrate-from-one-tier-of-biztalk-services-tooanother"></a>Hogyan tooanother BizTalk szolgáltatás egy rétegének át?
-hello ingyenes kiadás nem telepíthető át, és a "kiterjesztett" tooanother réteg, és nem készíthető biztonsági másolat és tooanother szint visszaállítása. Ha egy másik réteghez, hello új réteget használó új BizTalk szolgáltatás létrehozása. Hello ingyenes kiadás, beleértve a hibrid kapcsolatok, újból létre kell toobe használatával létrehozott összetevőihez hello új BizTalk szolgáltatás. 
+#### <a name="how-do-i-migrate-from-one-tier-of-biztalk-services-to-another"></a>Hogyan hajthatok végre áttelepítést át a BizTalk Services egyik szintjéről egy másikra?
+Az ingyenes kiadás nem telepíthető át vagy skálázható fel másik szintre, és nem készíthető róla biztonsági másolat egy másik szinten való visszaállításhoz. Ha másik rétegre van szüksége, hozzon létre egy új BizTalk szolgáltatást az új szinten. Az ingyenes kiadásban létrehozott összes összetevőt, beleértve a hibrid kapcsolatokat is, újra létre kell hozni az új BizTalk szolgáltatásban. 
 
-Hello fennmaradó kiadás esetén hello biztonságimásolat-készítő és az összetevők áttelepítéséhez egy réteg tooanother visszaállítása. Például biztonsági mentését a összetevők hello normál rétegben, és hajtsa végre a visszaállítást toohello prémium csomagban. [BizTalk szolgáltatások: Biztonsági mentése és visszaállítása](biztalk-backup-restore.md) ismerteti a hello támogatott áttelepítési útvonalakat, és felsorolja, milyen összetevőihez készül biztonsági másolat. Vegye figyelembe, hogy a hibrid kapcsolatokról nem készül biztonsági másolat. Miután biztonsági mentése és visszaállítása tooa új réteget, majd ismételt létrehozásakor hello hibrid kapcsolatok.  
+A többi kiadás esetén biztonsági mentéssel és visszaállítással telepítheti át az összetevőket az egyik rétegről a másikra. Készítsen biztonsági másolatot például az összetevőkről a Standard rétegen, majd állítsa vissza azokat a Prémium rétegen. A [BizTalk Services: Backup and Restore](biztalk-backup-restore.md) (BizTalk Services: Biztonsági mentés és visszaállítás) című témakör ismerteti a támogatott áttelepítési útvonalakat, és felsorolja, mely összetevőkről készül biztonsági másolat. Vegye figyelembe, hogy a hibrid kapcsolatokról nem készül biztonsági másolat. Az új szintre készített biztonsági mentés és visszaállítás után újra létre kell hoznia a hibrid kapcsolatokat.  
 
-#### <a name="is-hello-biztalk-adapter-service-included-in-hello-service-how-do-i-receive-hello-software"></a>Hello BizTalk szolgáltatás szerepel hello szolgáltatást? Hogyan jelenik meg hello szoftver?
-Igen, a BizTalk Adapter Pack hello BizTalk szolgáltatás hello érhetők el a hello Azure BizTalk szolgáltatások SDK [letöltése](http://www.microsoft.com/download/details.aspx?id=39087).
+#### <a name="is-the-biztalk-adapter-service-included-in-the-service-how-do-i-receive-the-software"></a>A BizTalk Adapter Service szerepel a szolgáltatásban? Hogyan kapom meg a szoftvert?
+Igen, a BizTalk Adapter Service és a BizTalk Adapter Pack szerepel a Azure BizTalk Services SDK [letöltésben](http://www.microsoft.com/download/details.aspx?id=39087).
 
 ## <a name="next-steps"></a>Következő lépések
-toocreate Azure BizTalk szolgáltatások az Azure portálon lépjen túl hello[BizTalk szolgáltatások: Azure-portálon használó telepítés hello](biztalk-provision-services.md). alkalmazások, lépjen túl létrehozásának toostart[Azure BizTalk szolgáltatások](http://go.microsoft.com/fwlink/p/?LinkID=235197).
+Ha az Azure BizTalk Servicest az Azure Portalon szeretné létrehozni, ugorjon a [BizTalk Services: Provisioning using the Azure portal](biztalk-provision-services.md) (BizTalk Services: Kiépítés az Azure Portallal) című témakörre. Az alkalmazások létrehozásának megkezdéséhez ugorjon az [Azure BizTalk Services](http://go.microsoft.com/fwlink/p/?LinkID=235197) című témakörre.
 
 ## <a name="additional-resources"></a>További források
-* [BizTalk szolgáltatások: Kiépítés hello Azure-portál használatával](biztalk-provision-services.md)<br/>
+* [BizTalk Services: Kiépítés az Azure Portallal](biztalk-provision-services.md)<br/>
 * [BizTalk Services: Kiépítési állapot diagramja](biztalk-service-state-chart.md)<br/>
 * [BizTalk Services: Irányítópult, Figyelés és Méret lapok](biztalk-dashboard-monitor-scale-tabs.md)<br/>
 * [BizTalk Services: Biztonsági mentés és visszaállítás](biztalk-backup-restore.md)<br/>
 * [BizTalk Services: Szabályozás](biztalk-throttling-thresholds.md)<br/>
 * [BizTalk Services: Kiállító neve és kiállító kulcsa](biztalk-issuer-name-issuer-key.md)<br/>
-* [Hogyan tudom használata hello Azure BizTalk szolgáltatások SDK-t](http://go.microsoft.com/fwlink/p/?LinkID=302335)<br/>
+* [Hogyan kezdhetem el az Azure BizTalk Services SDK használatát](http://go.microsoft.com/fwlink/p/?LinkID=302335)<br/>
 

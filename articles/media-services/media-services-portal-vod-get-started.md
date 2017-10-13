@@ -1,6 +1,6 @@
 ---
-title: "aaaGet használatába kézbesítéséhez VoD hello Azure-portál használatával |} Microsoft Docs"
-description: "Ez az oktatóanyag végigvezeti hello egy alapszintű Video-on-Demand (VoD) tartalomtovábbító service végrehajtási hello Azure-portál használatával Azure Media Services (AMS) alkalmazással."
+title: "Igény szerinti videotartalom-továbbítás az Azure Portal használatával | Microsoft Docs"
+description: "Ez az oktatóanyag végigvezeti a lépéseken, amelyek segítségével alapszintű igény szerinti videotartalom-továbbítási szolgáltatást hozhat létre az Azure Portalon egy Azure Media Services alkalmazással."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,156 +14,145 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/07/2017
 ms.author: juliako
-ms.openlocfilehash: 5c1c1b1f74ec1f1301120fe8e5a5ae183fe0338f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: fb981f3240799c924464c828b2c835ac5d9879ed
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-started-with-delivering-content-on-demand-using-hello-azure-portal"></a>Ismerkedés az Azure-portálon hello segítségével igény szerinti tartalomtovábbítás
+# <a name="get-started-with-delivering-content-on-demand-by-using-the-azure-portal"></a>Igény szerinti tartalomtovábbítás az Azure Portal használatával
 [!INCLUDE [media-services-selector-get-started](../../includes/media-services-selector-get-started.md)]
 
-Ez az oktatóanyag végigvezeti hello egy alapszintű Video-on-Demand (VoD) tartalomtovábbító service végrehajtási hello Azure-portál használatával Azure Media Services (AMS) alkalmazással.
+Ez az oktatóanyag végigvezeti a lépéseken, amelyek segítségével alapszintű igény szerinti videotartalom-továbbítási szolgáltatást hozhat létre az Azure Portalon egy Azure Media Services alkalmazással.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az alábbiakban hello szükséges toocomplete hello oktatóanyag:
+Az oktatóanyag elvégzésének feltételei a következők:
 
-* Egy Azure-fiók. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/). 
-* Egy Media Services-fiók. egy Media Services-fiók toocreate lásd [hogyan tooCreate Media Services-fiók](media-services-portal-create-account.md).
+* Egy Azure-fiók. További részletek: [Ingyenes Azure-próbafiók](https://azure.microsoft.com/pricing/free-trial/). 
+* Egy Media Services-fiók. A Media Services-fiók létrehozásáról a [Media Services-fiók létrehozása](media-services-portal-create-account.md) című cikk nyújt tájékoztatást.
 
-Ez az oktatóanyag hello a következő feladatokat tartalmazza:
+Az oktatóanyag a következő feladatokat tartalmazza:
 
 1. Indítsa el a streamvégpontot.
 2. Videofájl feltöltése
-3. Hello forrásfájl kódolása adaptív sávszélességű MP4-fájlokat alakítja.
-4. Hello objektum közzététele, és a streamelési és a progresszív letöltési URL-cím.  
+3. Forrásfájl kódolása adaptív sávszélességű MP4-fájlokká
+4. Végezze el az objektum közzétételét, majd a streamelési és a progresszív letöltési URL-cím lekérését.  
 5. Tartalom lejátszása
 
-## <a name="start-streaming-endpoints"></a>Streamvégpontok elindítása 
+## <a name="start-the-streaming-endpoint"></a>A streamvégpont elindítása
 
-Ha az Azure Media Services egyik leggyakoribb forgatókönyve hello elkötelezett használatával adatfolyam adaptív sávszélességű streamelést működik. A Media Services dinamikus becsomagolást biztosít, amely lehetővé teszi toodeliver az adaptív sávszélességű MP4-kódolású tartalmak anélkül, hogy előre csomagolt toostore (MPEG DASH, HLS, Smooth Streaming), a Media Services just-in-time, által támogatott streamformátumok Ezekbe a formátumokba egyes verzióit.
+Az Azure Media Services egyik leggyakrabban használt funkciója a videók továbbítása az adaptív sávszélességű streamelés használatával. A Media Services biztosítja a dinamikus csomagolás lehetőségét. A dinamikus csomagolás használatával adaptív sávszélességű, MP4 formátumban kódolt tartalmait a Media Services által támogatott streamformátumok valamelyikében továbbíthatja igény szerint. Példák a támogatott formátumokra: Apple HTTP Live Streaming (HLS), Microsoft Smooth Streaming, HTTP protokollon keresztüli dinamikus adaptív streamelés (DASH, más néven MPEG-DASH). A Media Services által biztosított adaptív sávszélességű streamelés segítségével videóit anélkül továbbíthatja, hogy az adott streamformátumban előcsomagolt verziót tárolna.
 
->[!NOTE]
->Az AMS-fiók létrehozásakor egy **alapértelmezett** adatfolyam-továbbítási végpontra tooyour fiók kerül hello **leállítva** állapotát. a dinamikus csomagolás és a dinamikus titkosítás tartalmat, és hajtsa végre a megfelelő előnyeit streaming toostart hello streamvégpontra, amelyből el kívánja toostream tartalom toobe rendelkezik hello **futtató** állapotát. 
+> [!NOTE]
+> A Media Services-fiók létrehozásakor a rendszer hozzáad egy alapértelmezett streamvégpontot a fiókhoz **Leállítva** állapotban. A tartalom streamelésének megkezdéséhez, valamint a dinamikus csomagolás és a dinamikus titkosítás kihasználásához a tartalomstreameléshez használt streamvégpontnak **Fut** állapotban kell lennie. 
 
-toostart hello streamvégpontra, a következő hello:
+A streamvégpont elindítása:
 
-1. Jelentkezzen be hello [Azure-portálon](https://portal.azure.com/).
-2. Hello-beállítások ablakában kattintson a Streaming végpontok. 
-3. Kattintson a hello alapértelmezett streamvégpontra. 
-
-    hello alapértelmezett STREAMING ENDPOINT részletek ablak.
-
-4. Kattintson a hello Start ikonra.
-5. Kattintson a hello Mentés gombra toosave a módosításokat.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com/).
+2. Válassza a **Beállítások** > **Streamvégpontok** lehetőséget. 
+3. Válassza ki az alapértelmezett streamvégpontot. Megjelenik a **DEFAULT STREAMING ENDPOINT DETAILS** (Alapértelmezett streamvégpont adatai) ablak.
+4. Válassza ki a **Start** ikont.
+5. Válassza ki a **Mentés** gombot.
 
 ## <a name="upload-files"></a>Fájlok feltöltése
-toostream tooupload hello forrás videók, kell a videók Azure Media Services használatával, kódolás több bitrates be, és tegye közzé a hello eredménye. Ebben a szakaszban foglalt hello első lépése. 
+Ha a Media Services használatával kíván videókat streamelni, fel kell töltenie a forrásvideókat, különböző bitsebességekre kell kódolnia azokat, majd közzé kell tennie az eredményt. Ez a rész a folyamat első lépését írja le. 
 
-1. A hello **beállítás** ablak, kattintson a **eszközök**.
+1. Az [Azure-portálon](https://portal.azure.com/) válassza ki Azure Media Services-fiókját.
+2. Válassza a **Settgings (Beállítások)** > **Assets (Objektumok)** lehetőséget. Ezután válassza ki a **Feltöltés** gombot.
    
     ![Fájlok feltöltése](./media/media-services-portal-vod-get-started/media-services-upload.png)
-2. Kattintson a hello **feltöltése** gombra.
    
-    Hello **töltse fel a video asset** ablak jelenik meg.
+    Megjelenik az **Upload a video asset** (Videóobjektum feltöltése) ablak.
    
    > [!NOTE]
-   > Tetszőleges méretű fájlt választhat.
+   > A Media Services nem korlátozza a feltölteni kívánt videók méretét.
    > 
    > 
-3. Keresse meg a szükséges toohello videót a számítógépen, válassza ki azt, és kattintson az OK gombra.  
+3. Keresse meg a számítógépén a feltölteni kívánt videót. Jelölje ki a videót, majd válassza az **OK** lehetőséget.  
    
-    hello feltöltés elindul, és megtekintheti a hello fájlnév hello folyamatban.  
+    Megkezdődik a feltöltés. A folyamat előrehaladását a fájlnév alatt követheti nyomon.  
 
-Hello feltöltés befejezését követően megjelenik-e hello új objektum bekerül hello **eszközök** ablak. 
+A feltöltést követően az új objektum megjelenik az **Objektumok** panelen. 
 
 ## <a name="encode-assets"></a>Objektumok kódolása
+Annak érdekében, hogy kihasználhassa a dinamikus csomagolást, kódolja többszörös sávszélességű MP4-fájlokká a forrásfájlt. A kódolás lépéseit ebben a részben találja meg.
 
-Ha az Azure Media Services egyik leggyakoribb forgatókönyve hello elkötelezett az adaptív sávszélességű streamelési tooyour ügyfelek működik. Media Services hello a következő adaptív sávszélességű streamelési technológiákat támogatja: HTTP Live Streaming (HLS), Smooth Streaming, MPEG DASH. tooprepare videók adaptív sávszélességű streamelés esetén meg kell tooencode a forrás videó többszörös sávszélességű fájlokba. Használjon hello **Media Encoder Standard** kódoló tooencode videók.  
+### <a name="encode-assets-in-the-portal"></a>Objektumok kódolása a portálon
+Kódolás a Media Encoder Standard használatával az Azure Portalon:
 
-Media Services dinamikus becsomagolást is biztosít, amely lehetővé teszi toodeliver közvetíteni többszörös sávszélességű MP4 a hello a következő formátumban: MPEG DASH, HLS, Smooth Streaming, anélkül, hogy az ezekbe a formátumokba toorepackage. A dinamikus csomagolás csak akkor kell toostore és hello fájlokat egyetlen tárolási formátumban és a Media Services fizetési alapszik, és betölti az ügyféltől érkező kérésnek megfelelő választ hello.
-
-tootake előny dinamikus becsomagolás kell tooencode a forrásfájlt (hello kódolás lépéseit egy későbbi részében) többszörös sávszélességű MP4-fájlokat alakítja.
-
-### <a name="toouse-hello-portal-tooencode"></a>toouse hello portál tooencode
-Ez a szakasz ismerteti a hello lépéseket, amelyek tooencode a tartalmaknak a Media Encoder Standard.
-
-1. A hello **beállítások** ablakban válassza ki **eszközök**.  
-2. A hello **eszközök** ablakot, hogy szeretné-e tooencode válassza hello eszköz.
-3. Nyomja le az hello **Encode** gombra.
-4. A hello **kódolása egy eszköz** ablak, jelölje be hello "Media Encoder Standard" feldolgozóeszközt, és egy beállításkészletet. A beállításkészletekkel kapcsolatos információkért lásd [a sávszélességi skála automatikus létrehozását](media-services-autogen-bitrate-ladder-with-mes.md) és a [MES előre beállított feladatait](media-services-mes-presets-overview.md) ismertető részeket. Ha azt tervezi, hogy mely kódolási beállításkészlet használt toocontrol, ezt tartsa szem előtt: fontos tooselect hello készlet, amely a legjobban megfelelő a bemeneti videó. Például ha tudja, hogy a bemeneti videó felbontása 1920 x 1080 képpont rendelkezik, akkor használja hello "H264 Multiple Bitrate 1080p" beállításkészletet. Ha például alacsony felbontású (640 x 360) videót szeretne kódolni, ne válassza a „H264 Multiple Bitrate 1080p” beállításkészletet.
+1. Az [Azure-portálon](https://portal.azure.com/) válassza ki Azure Media Services-fiókját.
+2. Válassza a **Settgings (Beállítások)** > **Assets (Objektumok)** lehetőséget. Válassza ki a kódolni kívánt objektumot.
+3. Válassza ki a **Kódolás** gombot.
+4. Az **Objektum kódolása** ablakban válassza a **Media Encoder Standard** feldolgozóeszközt, és egy beállításkészletet. A beállításkészletekkel kapcsolatos információkért lásd a [sávszélességi skála automatikus létrehozását](media-services-autogen-bitrate-ladder-with-mes.md) és a [Media Encoder Standard előre beállított feladatait](media-services-mes-presets-overview.md) ismertető részeket. Fontos, hogy a bemeneti videóhoz legmegfelelőbb beállításkészlet legyen kiválasztva. Ha például tudja, hogy a bemeneti videó felbontása 1920 &#215; 1080 képpont, akkor választhatja a **H264 Multiple Bitrate 1080p** beállításkészletet. Ha a videó alacsony (640 &#215; 360) felbontású, ne használja a **H264 Multiple Bitrate 1080p** beállításkészletet.
    
-   Az egyszerűbb kezelés érdekében lehetősége van a szerkesztési hello hello kimeneti eszköz, és hello nevét hello feladat.
+   Az erőforrások egyszerűbb kezelése érdekében lehetősége van módosítani a kimeneti objektum nevét, illetve a feladat nevét.
    
    ![Objektumok kódolása](./media/media-services-portal-vod-get-started/media-services-encode1.png)
-5. Nyomja meg a **Create** (Létrehozás) gombot.
+5. Kattintson a **Létrehozás** gombra.
 
 ### <a name="monitor-encoding-job-progress"></a>Kódolási feladatok előrehaladásának figyelése
-feladat, kódolás hello toomonitor hello előrehaladását kattintson **beállítások** (hello hello oldal tetején), és válassza **feladatok**.
+A kódolási feladat előrehaladásának nyomon követéséhez válassza az oldal tetején található **Beállítások**, majd pedig a **Feladatok** elemet.
 
 ![Feladatok](./media/media-services-portal-vod-get-started/media-services-jobs.png)
 
 ## <a name="publish-content"></a>Tartalom közzététele
-tooprovide a felhasználó egy URL-cím használt toostream vagy letölteni a tartalmat, akkor először kell túl "közzététele" az eszköz egy kereső létrehozásával. Lokátorok biztosítanak hozzáférést toofiles hello eszköz szerepel. A Media Services két lokátortípust támogat: 
+Ahhoz, hogy átadhassa a tartalmak streamelésére vagy letöltésére használható URL-címet a felhasználónak, először közzé kell tennie az objektumot. Ehhez létre kell hoznia egy lokátort. Az objektumban található fájlokhoz a lokátorok biztosítanak hozzáférést. Az Azure Media Services két lokátortípust támogat: 
 
-* Streamelési (OnDemandOrigin) lokátorokat, amelyek adaptív streameléshez (például toostream MPEG DASH, HLS vagy Smooth Streaming) használt. toocreate a streamelési lokátorok létrehozásához az eszköz tartalmaznia kell egy .ism-fájlt. 
-* Progresszív (SAS-) lokátorokat, amelyek a videó progresszív letöltésen keresztül történő továbbítására használatosak.
+* **Streamelési (OnDemandOrigin) lokátorok**. A streamelési lokátorok adaptív streameléshez használhatók. Példák adaptív streamelésre: HLS, Smooth Streaming és MPEG DASH. A streamelési lokátorok létrehozásához az objektumnak tartalmaznia kell egy .ism fájlt. 
+* **Progresszív (SAS-) lokátorok**. A progresszív lokátorok a videók progresszív letöltésen keresztül történő továbbítására használatosak.
 
-A streamelési URL-cím formátuma a következő hello rendelkezik, és használata tooplay Smooth Streaming-objektumok.
+HLS-streamelési URL-cím létrehozásához fűzze hozzá a *(format=m3u8-aapl)* karakterláncot az URL-címhez:
 
-    {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest
+    {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{file name}.ism/Manifest(format=m3u8-aapl)
 
-toobuild HLS-streamelési URL-cím, egy hozzáfűző (formátum = m3u8-aapl) toohello URL-CÍMÉT.
+A Smooth Streaming-objektumok lejátszására használható streamelési URL-cím formátuma a következő:
 
-    {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=m3u8-aapl)
+    {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{file name}.ism/Manifest
 
-egy streamelési URL-cím, MPEG DASH toobuild hozzáfűzése (formátum mpd-idő-csf =) toohello URL-CÍMÉT.
+MPEG-DASH-streamelési URL-cím létrehozásához fűzze hozzá a *(format=mpd-time-csf)* karakterláncot az URL-címhez:
 
-    {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=mpd-time-csf)
+    {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{file name}.ism/Manifest(format=mpd-time-csf)
 
+A közös hozzáférésű jogosultságkód URL-címének formátuma a következő:
 
-Egy SAS URL-címnek a következő formátumban hello.
-
-    {blob container name}/{asset name}/{file name}/{SAS signature}
+    {blob container name}/{asset name}/{file name}/{shared access signature}
 
 > [!NOTE]
-> Ha korábban használt hello portál toocreate keresők 2015. márciusi, keresők kétéves lejárati dátummal jöttek létre.  
+> Az Azure Portalon 2015 márciusa előtt létrehozott lokátorok lejárati ideje két év.  
 > 
 > 
 
-a lokátor, használja a lejárati dátum tooupdate [REST](https://docs.microsoft.com/rest/api/media/operations/locator#update_a_locator) vagy [.NET](http://go.microsoft.com/fwlink/?LinkID=533259) API-k. Amikor frissíti egy SAS-kereső hello lejárati dátuma, hello URL-cím módosítja.
+A lokátor lejárati idejének módosításához használjon [REST API](https://docs.microsoft.com/rest/api/media/operations/locator#update_a_locator)-t vagy [.NET API](http://go.microsoft.com/fwlink/?LinkID=533259)-t. 
 
-### <a name="toouse-hello-portal-toopublish-an-asset"></a>toouse hello portál toopublish egy eszköz
-toouse hello portál toopublish egy eszköz hello a következő:
+> [!NOTE]
+> Az SAS-lokátorok lejárati dátumának frissítésekor az URL-cím is módosul.
 
-1. Válassza a **Settgings (Beállítások)** > **Assets (Objektumok)** lehetőséget.
-2. Válassza ki a megjeleníteni kívánt toopublish hello eszközt.
-3. Kattintson a hello **közzététel** gombra.
-4. Válassza ki a hello lokátor típusát.
-5. Nyomja meg az **Add** (Hozzáadás) gombot.
+### <a name="to-use-the-portal-to-publish-an-asset"></a>Az objektum portál segítségével történő közzététele
+1. Az [Azure-portálon](https://portal.azure.com/) válassza ki Azure Media Services-fiókját.
+2. Válassza a **Settgings (Beállítások)** > **Assets (Objektumok)** lehetőséget. Válassza ki a közzétenni kívánt objektumot.
+3. Válassza ki a **Közzététel** gombot.
+4. Válassza ki a lokátor típusát.
+5. Válassza a **Hozzáadás** lehetőséget.
    
-    ![Közzététel](./media/media-services-portal-vod-get-started/media-services-publish1.png)
+    ![A videó közzététele](./media/media-services-portal-vod-get-started/media-services-publish1.png)
 
-hello URL-cím kerül toohello listája **közzétett URL-címek**.
+Az URL-cím bekerül a **Közzétett URL-címek** listájába.
 
-## <a name="play-content-from-hello-portal"></a>Hello portálról tartalom lejátszása
-hello Azure-portálon talál egy tartalomlejátszót használható tootest a videót.
+## <a name="play-content-from-the-portal"></a>Tartalom lejátszása a portálról
+Az Azure Portalon talál egy tartalomlejátszót, amellyel tesztelheti a videót.
 
-Kattintson a kívánt hello videó, majd hello **lejátszása** gombra.
+Jelölje ki a videót, majd válassza ki a **Lejátszás** gombot.
 
-![Közzététel](./media/media-services-portal-vod-get-started/media-services-play.png)
+![Videó lejátszása az Azure Portalon](./media/media-services-portal-vod-get-started/media-services-play.png)
 
 Vegye figyelembe a következőket:
 
-* adatfolyam-, toobegin start futó hello **alapértelmezett** streamvégpontra.
-* Ellenőrizze, hogy a videó hello is közzé lett téve.
-* Ez **Media player** hello alapértelmezett streamvégpontból játssza le. Ha azt szeretné, hogy a nem alapértelmezett tooplay az adatfolyam-továbbítási végpontra, kattintson a toocopy hello URL-címet, és használjon másik lejátszót. Például az [Azure Media Services lejátszót](http://amsplayer.azurewebsites.net/azuremediaplayer.html).
-
-## <a name="next-steps"></a>Következő lépések
-Tekintse át a Media Services képzési terveket.
-
-[!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
+* A streamelés megkezdéséhez futtassa az alapértelmezett streamvégpontot.
+* Ellenőrizze, hogy közzétette-e a videót.
+* Az Azure Portal médialejátszója az alapértelmezett streamvégpontból játssza le a fájlokat. Ha egy nem alapértelmezett streamvégpontból szeretne lejátszani valamit, jelölje ki és másolja ki az URL-címet, és illessze be azt egy másik lejátszóba. Az [Azure Media Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html) lejátszón is tesztelheti például a videót.
 
 ## <a name="provide-feedback"></a>Visszajelzés küldése
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
+## <a name="next-steps"></a>Következő lépések
+[!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

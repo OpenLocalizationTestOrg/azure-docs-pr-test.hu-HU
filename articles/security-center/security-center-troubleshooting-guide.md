@@ -1,6 +1,6 @@
 ---
-title: "Biztonsági központ hibaelhárítási útmutató aaaAzure |} Microsoft Docs"
-description: "A dokumentum segítséget nyújt az Azure Security Centerben tootroubleshoot problémákat."
+title: "Azure Security Center – Hibaelhárítási útmutató | Microsoft Docs"
+description: "Ebből a dokumentumból megismerheti az Azure Security Center használatával kapcsolatos problémák elhárításához szükséges lépéseket."
 services: security-center
 documentationcenter: na
 author: YuriDio
@@ -14,62 +14,62 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/11/2017
 ms.author: yurid
-ms.openlocfilehash: 78b3c49eb66fe3a4f80efbba3a47a87b039c07ac
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0e0a0ce5c0795cec0e47cd5f729099f4762381a2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-security-center-troubleshooting-guide"></a>Azure Security Center – Hibaelhárítási útmutató
-Ez az útmutató informatikai (IT) szakemberek, adatbiztonsági elemzők és felhő rendszergazdák, amelynek szervezetek az Azure Security Center használ, és szükség, tootroubleshoot Security Center kapcsolatos hiba lépett fel.
+Ez az útmutató olyan informatikai (IT) szakemberek, információbiztonsági elemzők és felhőrendszergazdák számára készült, akik szervezetei az Azure Security Centert használják, és el kell hárítaniuk a használathoz kapcsolódó problémákat.
 
 >[!NOTE] 
->Korai. június 2017 verziótól kezdve a Security Center hello Microsoft Monitoring Agent toocollect és a tároló adatait használja. Lásd: [Azure Security Center Platform áttelepítési](security-center-platform-migration.md) további toolearn. a cikkben szereplő információkat hello Security Center funkció átmenet toohello Microsoft Monitoring Agent után jelöli.
+>2017. júniusának elejétől kezdve a Security Center a Microsoft Monitoring Agent használatával gyűjti össze és tárolja az adatokat. További információk: [Az Azure Security Center Platform migrálása](security-center-platform-migration.md). A jelen cikkben található információk a Security Center a Microsoft Monitoring Agentre való váltás után elérhető funkcióit ismertetik.
 >
 
 ## <a name="troubleshooting-guide"></a>Hibaelhárítási útmutató
-Ez az útmutató ismerteti, hogyan tootroubleshoot Security Center kapcsolatos hiba lépett fel. Hello hibaelhárítási végezheti el a Security Center legtöbb történik hello első megtekintésével [napló](https://azure.microsoft.com/updates/audit-logs-in-azure-preview-portal/) hello rekordok összetevő nem sikerült. A naplókból a következők állapíthatók meg:
+Ez az útmutató a Security Center használatához kapcsolódó problémák hibaelhárítását mutatja be. A Security Center hibaelhárítása többnyire a meghibásodott összetevőhöz tartozó [auditnapló](https://azure.microsoft.com/updates/audit-logs-in-azure-preview-portal/) bejegyzéseinek áttekintésével kezdődik. A naplókból a következők állapíthatók meg:
 
 * A végrehajtott műveletek
-* Hello művelet korábban kik kezdeményeztek
-* Ha a hello művelet történt
-* hello művelet hello állapotát
-* hello értékek, amelyek segíthetnek tulajdonságokat kutatás hello művelet
+* A művelet kezdeményezője
+* A művelet végrehajtásának időpontja
+* A művelet állapota
+* A művelet felderítése során hasznosítható egyéb tulajdonságok értékei
 
-hello napló tartalmazza az erőforrásokon végrehajtott minden írási műveletek (PUT, POST, Törlés), azonban nem tartalmazza az olvasási műveletek (GET).
+A napló tartalmazza az erőforrásokon végrehajtott összes írási műveletet (PUT, POST, DELETE), nem tartalmazza azonban az olvasási műveleteket (GET).
 
 ## <a name="microsoft-monitoring-agent"></a>Microsoft Monitoring Agent
-A Security Center a Microsoft Monitoring Agent hello használ, – hello ugyanannak az ügynöknek használt hello Operations Management Suite és Naplóelemzési service – az Azure virtuális gépek toocollect biztonsági adatait. Miután adatgyűjtés engedélyezve van, és hello ügynök megfelelően van telepítve a célszámítógépen hello, hello folyamat az alábbi végrehajtása kell lennie:
+A Security Center a Microsoft Monitoring Agent használatával gyűjt biztonsági adatokat az Azure-beli virtuális gépekről. Ez ugyanaz az ügynök, amelyet az Operations Management Suite és a Log Analytics szolgáltatás is használ. Ha az adatgyűjtés engedélyezve van, és az ügynök megfelelően van telepítve a célgépen, elkezdődik az alábbi folyamat végrehajtása:
 
 * HealthService.exe
 
-Ha hello services management console (services.msc) megnyitásához is láthat hello Microsoft Monitoring Agent szolgáltatás fut alább látható módon:
+Ha megnyitja a szolgáltatáskezelő konzolt (services.msc), a Microsoft Monitoring Agent szolgáltatást is láthatja a futó szolgáltatások között az alábbi módon:
 
 ![Szolgáltatások](./media/security-center-troubleshooting-guide/security-center-troubleshooting-guide-fig5.png)
 
-toosee hello ügynök melyik verzióját telepítette, nyissa meg a **Feladatkezelő**, a hello **folyamatok** lapon keresse meg a hello **a Microsoft figyelési ügynök szolgáltatás**, kattintson a jobb gombbal a és Kattintson a **tulajdonságok**. A hello **részletek** fülre, tekintse meg a hello fájlverzió alább látható módon:
+Az ügynök verziójának ellenőrzéséhez nyissa meg a **Feladatkezelőt**, a **Folyamatok** lapon keresse meg a **Microsoft Monitoring Agent szolgáltatást**, kattintson rá a jobb gombbal. és kattintson a **Tulajdonságok** elemre. A **Részletek** lapon keresse meg a fájlverziót az alábbi módon:
 
 ![Fájl](./media/security-center-troubleshooting-guide/security-center-troubleshooting-guide-fig6.png)
    
 
 ## <a name="microsoft-monitoring-agent-installation-scenarios"></a>A Microsoft Monitoring Agent telepítési forgatókönyvei
-Nincsenek két telepítési forgatókönyvek hello Microsoft Monitoring Agent telepítése a számítógép eltérő eredményeket eredményezhetnek. hello támogatott forgatókönyvek a következők:
+Két telepítési forgatókönyv létezik, amelyek különböző eredményeket hozhatnak, amikor telepíti a Microsoft Monitoring Agentet a számítógépére. A támogatott forgatókönyvek:
 
-* **A Security Center által automatikusan telepített ügynök**: Ebben a forgatókönyvben képes tooview hello riasztásokat a helyek, a Security Center és a keresési napló lesz. E-mail értesítések toohello e-mail címet a hello előfizetés hello erőforrás tartozik hello biztonsági házirendben beállított fog kapni.
+* **A Security Center automatikusan telepítette az ügynököt**: ebben a forgatókönyvben a Security Centerben és a naplóbeli kereséssel egyaránt megtekintheti a riasztásokat. Az e-mailes értesítéseket arra az e-mail-címre kapja, amelyet az erőforrást tartalmazó előfizetés biztonsági szabályzatában adott meg.
 .
-* **Az Azure-ban található egy virtuális Gépet manuálisan telepített ügynök**: Ebben a forgatókönyvben, ha használ ügynökök letöltése és telepítése manuálisan előzetes tooFebruary 2017, csak akkor, ha szűrheti a hello képes tooview hello riasztásokat a Security Center portál hello lesz előfizetés hello munkaterület tartozik. Abban az esetben szűrő hello előfizetés hello erőforráshoz tartozik, akkor nem fogja tudni toosee e riasztások. E-mail értesítések toohello e-mail címet a hello előfizetés hello munkaterület tartozik hello biztonsági házirendben beállított fog kapni.
+* **Az ügynök manuálisan lett telepítve az Azure-beli virtuális gépre**: ebben a forgatókönyvben egy 2017 februárja előtt manuálisan letöltött és telepített ügynököt használ. Ebben az esetben csak akkor tekintheti meg a riasztásokat a Security Centerben, ha rászűr az előfizetésre, amelyhez a munkaterület tartozik. Ha arra az előfizetésre szűr, amelyhez az erőforrás tartozik, nem látja a riasztásokat. Az e-mailes értesítéseket arra az e-mail-címre kapja, amelyet a munkaterületet tartalmazó előfizetés biztonsági szabályzatában adott meg.
 
 >[!NOTE]
-> tooavoid hello viselkedését, tekintse meg a hello második, ellenőrizze, hogy hello hello ügynök legújabb verziójának letöltése.
+> A második forgatókönyvben ismertetett viselkedés elkerülése érdekében figyeljen arra, hogy az ügynök legújabb verzióját töltse le.
 > 
 
 ## <a name="troubleshooting-monitoring-agent-network-requirements"></a>A figyelőügynök hibaelhárítása – hálózati követelmények
-Az ügynökök tooconnect tooand regisztrálása a Security Center toonetwork erőforrások eléréséhez, beleértve hello portszámok és a tartomány URL-címek kell rendelkezniük.
+Ahhoz, hogy az ügynökök kapcsolódni és regisztrálni tudjanak a Security Centerben, hozzáféréssel kell rendelkezniük a hálózati erőforrásokhoz, beleértve a portszámokat és a tartományok URL-címét.
 
-- Proxykiszolgálók van szüksége, amely megfelelő proxykiszolgáló erőforrások vannak konfigurálva ügynökbeállítások hello tooensure. Olvassa el ebben a cikkben találhat további információt a [hogyan toochange hello proxybeállítások](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-windows-agents#configure-proxy-settings).
-- A, amelyek korlátozzák a hozzáférést toohello Internet tűzfalak kell tooconfigure a tűzfal toopermit hozzáférés tooOMS. Az ügynök beállításait nem kell módosítania.
+- Proxykiszolgálók esetében biztosítania kell, hogy a megfelelő proxykiszolgáló-erőforrások konfigurálva vannak az ügynök beállításaiban. További információ: [a proxybeállítások módosítása](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-windows-agents#configure-proxy-settings).
+- Ha tűzfal használatával korlátozza az internethez való hozzáférést, akkor a tűzfalat úgy kell beállítani, hogy engedélyezze az OMS hozzáférését. Az ügynök beállításait nem kell módosítania.
 
-a következő táblázat hello látható kommunikációhoz szükséges erőforrásokat.
+Az alábbi táblázat a kommunikációhoz szükséges erőforrásokat tartalmazza.
 
 | Ügynök erőforrása | Portok | HTTPS-ellenőrzés kihagyása |
 |---|---|---|
@@ -78,40 +78,40 @@ a következő táblázat hello látható kommunikációhoz szükséges erőforr�
 | *.blob.core.windows.net | 443 | Igen |
 | *.azure-automation.net | 443 | Igen |
 
-Ha hibát tapasztal bevezetési hello ügynökkel, győződjön meg arról, hogy tooread hello cikk [hogyan tootroubleshoot Operations Management Suite előkészítési problémák](https://support.microsoft.com/en-us/help/3126513/how-to-troubleshoot-operations-management-suite-onboarding-issues).
+Ha problémába ütközik az ügynök előkészítése során, olvassa el a következő cikket: [Az Operations Management Suite előkészítési problémáinak hibaelhárítása](https://support.microsoft.com/en-us/help/3126513/how-to-troubleshoot-operations-management-suite-onboarding-issues).
 
 
 ## <a name="troubleshooting-endpoint-protection-not-working-properly"></a>Az Endpoint Protection hibaelhárítása nem működik megfelelően
 
-a vendégügynök hello hello szülő folyamat minden, a hello [Microsoft Antimalware](../security/azure-security-antimalware.md) bővítmény does. Hello Vendég ügynök folyamat sikertelen lesz, amikor a futtatását, egyik gyermekfolyamata hello Vendég ügynöke a Microsoft Antimalware hello is sikertelen lehet.  A helyzetekben, például, hogy van ajánlott tooverify hello a következő beállításokat:
+A vendégügynök a [Microsoft Antimalware](../security/azure-security-antimalware.md) bővítmény minden műveletének szülőfolyamata. Ha a vendégügynök-folyamat meghibásodik, az annak gyermekfolyamataként futó Microsoft Antimalware is meghibásodhat.  Ilyen esetekben a következők ellenőrzése javasolt:
 
-- Ha hello cél virtuális gép egy egyéni lemezképet, és hello VM hello létrehozója nem telepítve vendégügynök.
-- Ha hello célként megadott helyett egy Windows virtuális Gépet, majd a Windows-verzió hello hello kártevőirtó-bővítmény telepítése Linux virtuális gép Linux virtuális gép sikertelen lesz. Linux-vendégügynök hello virtualizálásra konkrét követelmények vonatkoznak, az operációs rendszer verziója és a szükséges csomagokat, és ezek nem teljesülnek hello Virtuálisgép-ügynök nem fog működni hiba vagy. 
-- Ha hello virtuális gép vendégügynökének egy régi verziója lett létrehozva. Ha igen, vegye figyelembe, hogy az egyes régi ügynökök sikerült nem automatikus frissítés maga toohello újabb verzióra, és a toothis probléma vezethet kell lennie. Mindig használja a vendégügynök hello legújabb verzióját, ha a saját lemezképek létrehozásához.
-- Egyes külső felügyeleti szoftverek a hello vendégügynök letiltása, vagy hozzáférési toocertain fájlhelyek letiltása. Ha külső a virtuális gép telepítve van, gondoskodjon arról, hogy az hello ügynök hello kizárási listához.
-- Bizonyos tűzfal vagy a hálózati biztonsági csoport (NSG) blokkolhatják a hálózati forgalom tooand Vendég ügynöktől.
+- A cél virtuális gép egyéni rendszerkép-e, és a virtuális gép létrehozója nem telepítette-e a vendégügynököt.
+- Ha a cél nem egy Windows-, hanem egy Linux-alapú virtuális gép, a kártevőírtó bővítmény Windows-verziójának telepítése egy Linux-alapú virtuális gépre sikertelen lesz. A Linux-vendégügynöknek meg kell felelnie az operációs rendszer verziójára és a szükséges csomagokra vonatkozó követelményeknek, és ha ezek a követelmények nem teljesülnek, a virtuálisgép-ügynök sem fog működni. 
+- A virtuális gépet nem a vendégügynök egy régebbi verziójával hozták-e létre. Ha azzal hozták létre, vegye figyelembe, hogy néhány régebbi ügynök nem frissül automatikusan az újabb verzióra, és ez ehhez a problémához vezethet. Mindig a vendégügynök legfrissebb verzióját használja saját rendszerképek létrehozásához.
+- Néhány külső felügyeleti szoftver letilthatja a vendégügynököt, vagy blokkolhatja bizonyos fájlhelyek elérését. Ha külső szoftvert telepített a virtuális gépre, ellenőrizze, hogy az ügynök szerepel-e a kizárási listán.
+- Bizonyos tűzfalbeállítások vagy hálózati biztonsági csoportok (NSG) blokkolhatják a vendégügynöktől érkező, illetve az ügynök felé irányuló hálózati forgalmat.
 - Bizonyos hozzáférés-vezérlési listák (ACL) megakadályozhatják a lemezhez való hozzáférést.
-- Kevés a szabad lemezterület akkor képes blokkolni a hello vendégügynök helyes működését. 
+- Ha nincs elég hely a lemezen, az akadályozhatja a vendégügynök megfelelő működését. 
 
-Alapértelmezett hello Microsoft Antimalware felhasználói felület le van tiltva, az olvasási [engedélyezése a Microsoft Antimalware felhasználói felület Azure Resource Manager virtuális gépek feladás egy vagy több központi telepítési](https://blogs.msdn.microsoft.com/azuresecurity/2016/03/09/enabling-microsoft-antimalware-user-interface-post-deployment/) további információt a tooenable, ha van szüksége.
+Alapértelmezés szerint a Microsoft Antimalware felhasználói felülete le van tiltva. További információkat az engedélyezéséről [a Microsoft Antimalware felhasználói felületének az Azure Resource Manager-alapú virtuális gépeken üzembe helyezés utáni engedélyezésével](https://blogs.msdn.microsoft.com/azuresecurity/2016/03/09/enabling-microsoft-antimalware-user-interface-post-deployment/) kapcsolatos cikkben olvashat.
 
-## <a name="troubleshooting-problems-loading-hello-dashboard"></a>Hello irányítópult betöltése hibáinak elhárítása
+## <a name="troubleshooting-problems-loading-the-dashboard"></a>Az irányítópult betöltési hibáinak elhárítása
 
-Ha problémák hello Security Center irányítópultjának betöltése, győződjön meg arról, hogy regisztrálja hello előfizetés tooSecurity Center (azaz hello első felhasználó, aki a Security Center megnyitott hello előfizetés) hello felhasználó és a tooturn szeretné hello felhasználó adatgyűjtés kell *tulajdonos* vagy *közreműködő* hello az előfizetésben. Adott pillanattól is rendelkező felhasználók *olvasó* hello az előfizetés hello-irányítópult és riasztások/ajánlás/házirend látható.
+Ha problémákat tapasztal a Security Center irányítópultjának betöltése során, bizonyosodjon meg róla, hogy az előfizetést a Security Centerre regisztráló felhasználó (azaz az első felhasználó, aki megnyitotta a Security Centert az előfizetéssel) és az adatgyűjtést bekapcsolni kívánó felhasználó *Tulajdonos* vagy *Közreműködő* az előfizetésen. Ettől a pillanattól az előfizetés *Olvasó* jogú felhasználói is látják az irányítópultot/riasztásokat/ajánlásokat/házirendeket.
 
 ## <a name="contacting-microsoft-support"></a>Kapcsolatfelvétel a Microsoft támogatási szolgálatával
-Bizonyos problémák hello útmutatásait, ebben a cikkben használatával azonosíthatók, mások is megkeresheti című cikk dokumentálja hello Security Center nyilvános [fórum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureSecurityCenter). Ha további hibaelhárításra van szüksége, az alábbi képen látható módon nyithat meg új támogatási kérelmet az **Azure Portalon**: 
+Bizonyos problémák a jelen cikk irányelveinek használatával azonosíthatók, a továbbiak leírása pedig a Security Center nyilvános [fórumában](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureSecurityCenter) található meg. Ha további hibaelhárításra van szüksége, az alábbi képen látható módon nyithat meg új támogatási kérelmet az **Azure Portalon**: 
 
 ![Microsoft támogatási szolgálat](./media/security-center-troubleshooting-guide/security-center-troubleshooting-guide-fig2.png)
 
 
 ## <a name="see-also"></a>Lásd még:
-Ebben a dokumentumban, megtudta, hogyan tooconfigure biztonsági házirendek az Azure Security Centerben. További információ az Azure Security Center toolearn hello következő lásd:
+Ebben a dokumentumban megtanulhatta az Azure Security Center biztonsági szabályzatainak konfigurálását. Az Azure Security Centerrel kapcsolatos további információkért olvassa el a következőket:
 
-* [Azure Security Center tervezéséhez és az üzemeltetési útmutatóban](security-center-planning-and-operations-guide.md) – további hogyan tooplan és hello kialakítási szempontok tooadopt az Azure Security Center ismertetése.
-* [Biztonsági állapotfigyelés az Azure Security Center](security-center-monitoring.md) – megtudhatja, hogyan toomonitor hello állapotát az Azure-erőforrások
-* [Az Azure Security Centerben riasztások kezelése és válaszol toosecurity](security-center-managing-and-responding-alerts.md) – további hogyan toomanage és válaszoljon toosecurity riasztások
-* [Partnermegoldások figyelése az Azure Security Center](security-center-partner-solutions.md) – megtudhatja, hogyan toomonitor hello partneri megoldások biztonsági állapotát.
-* [Azure Security Center: GYIK](security-center-faq.md) – gyakran ismételt kérdések hello szolgáltatás használatával kapcsolatban
+* [Útmutató az Azure Security Center tervezéséhez és működtetéséhez](security-center-planning-and-operations-guide.md) – A tervezési szempontokat ismertető és az azokat figyelembe vevő tervezési folyamatokban segítő útmutató, amely megkönnyíti az Azure Security Center használatát.
+* [Biztonsági állapotfigyelés az Azure Security Centerben](security-center-monitoring.md) – Útmutató az Azure-erőforrások állapotának megfigyeléséhez.
+* [Biztonsági riasztások kezelése és válaszadás a riasztásokra az Azure Security Centerben](security-center-managing-and-responding-alerts.md) – A biztonsági riasztások kezelése és az azokra való reagálás.
+* [Partneri megoldások monitorozása az Azure Security Centerrel](security-center-partner-solutions.md) – Útmutató a partneri megoldások biztonsági állapotának monitorozásához.
+* [Azure Security Center FAQ](security-center-faq.md) (Azure Security Center – gyakran ismételt kérdések) – Gyakran ismételt kérdések a szolgáltatás használatával kapcsolatban.
 * [Azure Security blog](http://blogs.msdn.com/b/azuresecurity/) – Blogbejegyzések az Azure biztonsági és megfelelőségi funkcióiról.
 

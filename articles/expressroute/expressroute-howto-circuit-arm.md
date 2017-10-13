@@ -1,6 +1,6 @@
 ---
 title: "Létrehozásához és módosításához ExpressRoute-kapcsolatcsoportot: PowerShell: Azure Resource Manager |} Microsoft Docs"
-description: "Ez a cikk ismerteti, hogyan toocreate, kiépítéséhez, győződjön meg arról, frissítése, törlése és kiosztásának megszüntetése ExpressRoute-kapcsolatcsoportot."
+description: "Ez a cikk ismerteti, hogyan létrehozásához, telepítéséhez, győződjön meg arról, frissítése, törlése és kiosztásának megszüntetése ExpressRoute-kapcsolatcsoportot."
 documentationcenter: na
 services: expressroute
 author: ganesr
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/12/2017
 ms.author: ganesr;cherylmc
-ms.openlocfilehash: 8d76c577a9cffdd393abac1b76cccc27d92e9e62
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8bfae39d84aaac3b9527084df9dcfbd51f591dfe
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="create-and-modify-an-expressroute-circuit-using-powershell"></a>Létrehozása és módosítása a powershellel ExpressRoute-kapcsolatcsoportot
 > [!div class="op_single_selector"]
@@ -30,75 +30,75 @@ ms.lasthandoff: 10/06/2017
 > * [PowerShell (klasszikus)](expressroute-howto-circuit-classic.md)
 >
 
-Ez a cikk ismerteti, hogyan toocreate egy Azure ExpressRoute áramkör PowerShell-parancsmagok és hello Azure Resource Manager telepítési modell használatával. Ez a cikk hogyan hello kapcsolatcsoport állapotának toocheck hello a frissítést, vagy törölje és kiosztásának megszüntetése azt is bemutatja.
+Ez a cikk ismerteti, hogyan hozhat létre Azure ExpressRoute-kapcsolatcsoportot PowerShell-parancsmagok és az Azure Resource Manager telepítési modell használatával. Ez a cikk is bemutatja, hogyan ellenőrizze a kapcsolatcsoport állapotát, a frissítést, vagy törlés és kiosztásának megszüntetése azt.
 
 ## <a name="before-you-begin"></a>Előkészületek
-* Hello hello Azure Resource Manager PowerShell-parancsmagok legújabb verziójának telepítéséhez. További információkért lásd: [áttekintés az Azure PowerShell](/powershell/azure/overview).
-* Felülvizsgálati hello [Előfeltételek](expressroute-prerequisites.md) és [munkafolyamatok](expressroute-workflows.md) konfigurálás elkezdése előtt.
+* Telepítse az Azure Resource Manager PowerShell-parancsmagjainak legújabb verzióját. További információkért lásd: [áttekintés az Azure PowerShell](/powershell/azure/overview).
+* Tekintse át a [Előfeltételek](expressroute-prerequisites.md) és [munkafolyamatok](expressroute-workflows.md) konfigurálás elkezdése előtt.
 
 
 ## <a name="create-and-provision-an-expressroute-circuit"></a>Hozzon létre, és helyezze üzembe az ExpressRoute-kapcsolatcsoportot
-### <a name="1-sign-in-tooyour-azure-account-and-select-your-subscription"></a>1. Jelentkezzen be Azure-fiók tooyour, és jelölje ki az előfizetését
-toobegin a konfigurációt, jelentkezzen be Azure-fiók tooyour. A következő példák toohelp csatlakozás hello használata:
+### <a name="1-sign-in-to-your-azure-account-and-select-your-subscription"></a>1. Jelentkezzen be az Azure-fiókjával, és jelölje ki az előfizetését
+A konfiguráció első lépésként jelentkezzen be az Azure-fiókjával. Az alábbi példák segítségével csatlakozzon:
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-Ellenőrizze a hello előfizetések hello fiók:
+Ellenőrizze a fiókhoz tartozó előfizetések:
 
 ```powershell
 Get-AzureRmSubscription
 ```
 
-Válassza ki egy ExpressRoute-áramkör a toocreate hello előfizetést:
+Válassza ki az előfizetést, az ExpressRoute-kapcsolatcsoportot létrehozni kívánt:
 
 ```powershell
 Select-AzureRmSubscription -SubscriptionId "<subscription ID>"
 ```
 
-### <a name="2-get-hello-list-of-supported-providers-locations-and-bandwidths"></a>2. Támogatott szolgáltatók, a helyek és a sávszélesség hello listájának beolvasása
-ExpressRoute-kapcsolatcsoportot létrehozni, meg kell hello támogatott kapcsolat szolgáltatókat, a helyek és a sávszélesség-beállítások listája.
+### <a name="2-get-the-list-of-supported-providers-locations-and-bandwidths"></a>2. A támogatott szolgáltatók, a helyek és a sávszélesség listájának lekérdezése
+ExpressRoute-kapcsolatcsoportot létrehozni, meg kell támogatott kapcsolat szolgáltatókat, a helyek és a sávszélesség-beállítások listája.
 
-PowerShell-parancsmag hello **Get-AzureRmExpressRouteServiceProvider** adja vissza ezt az információt fogja használni a későbbi lépésekben:
+A PowerShell-parancsmag **Get-AzureRmExpressRouteServiceProvider** adja vissza ezt az információt fogja használni a későbbi lépésekben:
 
 ```powershell
 Get-AzureRmExpressRouteServiceProvider
 ```
 
-Ellenőrizze a toosee, ha a kapcsolat szolgáltatójánál van szó. Jegyezze fel a következő információ hello. Azt később szüksége expressroute-kapcsolatcsoporthoz létrehozásakor.
+Ellenőrizze, hogy ha a kapcsolat szolgáltatójánál nem szerepel-e. Jegyezze fel a következő információkat. Azt később szüksége expressroute-kapcsolatcsoporthoz létrehozásakor.
 
 * Név
 * PeeringLocations
 * BandwidthsOffered
 
-Most már készen áll a toocreate ExpressRoute-kapcsolatcsoportot.   
+Most már készen áll az ExpressRoute-kapcsolatcsoportot létrehozni.   
 
 ### <a name="3-create-an-expressroute-circuit"></a>3. ExpressRoute-kapcsolatcsoport létrehozása
-Ha még nem rendelkezik egy erőforráscsoport, kell létrehoznia egyet az ExpressRoute-kapcsolatcsoportot létrehozása előtt. Ezt hello a következő parancs futtatásával teheti meg:
+Ha még nem rendelkezik egy erőforráscsoport, kell létrehoznia egyet az ExpressRoute-kapcsolatcsoportot létrehozása előtt. Ehhez futtassa a következő parancsot:
 
 ```powershell
 New-AzureRmResourceGroup -Name "ExpressRouteResourceGroup" -Location "West US"
 ```
 
 
-hello a következő példa bemutatja, hogyan toocreate egy 200 MB/s ExpressRoute áramkör a szilícium Valley Equinix keresztül. Különböző szolgáltatók és más beállítások használata, amikor a kérést helyettesítse be ezt az információt. hello az alábbiakban látható egy példa egy kérelem egy új szolgáltatás kulcs:
+A következő példa bemutatja, hogyan szilícium Valley egy 200 MB/s Equinix keresztül ExpressRoute-kapcsolatcsoportot létrehozni. Különböző szolgáltatók és más beállítások használata, amikor a kérést helyettesítse be ezt az információt. A következő egy példa egy kérelem egy új szolgáltatás kulcs:
 
 ```powershell
 New-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup" -Location "West US" -SkuTier Standard -SkuFamily MeteredData -ServiceProviderName "Equinix" -PeeringLocation "Silicon Valley" -BandwidthInMbps 200
 ```
 
-Győződjön meg arról, hogy megadja hello megfelelő SKU réteg és SKU-család:
+Győződjön meg arról, hogy megadja a helyes SKU réteg és SKU-család:
 
-* Termékváltozat szint határozza meg, egy ExpressRoute standard vagy ExpressRoute prémium bővítmény engedélyezve van-e. Megadhat *szabványos* tooget hello standard Termékváltozat vagy *prémium* hello prémium bővítménnyel.
-* SKU-család hello számlázási típusa határozza meg. Megadhat *Metereddata* díjköteles adatforgalom tervhez és *Unlimiteddata* egy adatforgalmi a. Módosíthatja a számlázási típusának hello *Metereddata* túl*Unlimiteddata*, de nem módosíthatja a hello típusát *Unlimiteddata* túl*Metereddata *.
+* Termékváltozat szint határozza meg, egy ExpressRoute standard vagy ExpressRoute prémium bővítmény engedélyezve van-e. Megadhat *szabványos* lekérni a standard Termékváltozat vagy *prémium* a prémium szintű bővítménnyel.
+* SKU-család határozza meg a számlázási. Megadhat *Metereddata* díjköteles adatforgalom tervhez és *Unlimiteddata* egy adatforgalmi a. Módosíthatja a számlázási típusának *Metereddata* való *Unlimiteddata*, de nem módosíthatja a típusát a *Unlimiteddata* való *Metereddata*.
 
 > [!IMPORTANT]
-> Az ExpressRoute-kapcsolatcsoportot jelenik meg a szolgáltatási kulcs hello pillanattól lesz terhelve. Győződjön meg arról, hogy készen áll a tooprovision hello áramkör hello kapcsolat szolgáltatójánál esetén elvégzi ezt a műveletet.
+> Az ExpressRoute-kapcsolatcsoportot abban a pillanatban a szolgáltatási kulcs kiadott lesz terhelve. Győződjön meg arról, hogy a művelet végrehajtása, ha a kapcsolat szolgáltatójánál kiépíteni a kapcsolat készen áll-e.
 > 
 > 
 
-hello válasz hello szolgáltatás kulcsot tartalmaz. Részletes leírását, az összes hello paraméterek kaphat hello a következő parancs futtatásával:
+A válasz tartalmazza a szolgáltatási kulcs. A paraméterek részletes leírását a következő parancs futtatásával szerezheti be:
 
 ```powershell
 get-help New-AzureRmExpressRouteCircuit -detailed
@@ -106,13 +106,13 @@ get-help New-AzureRmExpressRouteCircuit -detailed
 
 
 ### <a name="4-list-all-expressroute-circuits"></a>4. A lista összes ExpressRoute-Kapcsolatcsoportok
-az összes hello hozott létre, ExpressRoute-Kapcsolatcsoportok tooget futtatása hello **Get-AzureRmExpressRouteCircuit** parancs:
+Minden létrehozott ExpressRoute-Kapcsolatcsoportok listájának lekéréséhez futtassa a **Get-AzureRmExpressRouteCircuit** parancs:
 
 ```powershell
 Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
 ```
 
-hello válasz a következő példa hasonló toohello fog kinézni:
+A válasz a következőhöz hasonló fog kinézni:
 
     Name                             : ExpressRouteARMCircuit
     ResourceGroupName                : ExpressRouteResourceGroup
@@ -136,14 +136,14 @@ hello válasz a következő példa hasonló toohello fog kinézni:
     ServiceKey                        : **************************************
     Peerings                          : []
 
-Ezt az információt bármikor hello használatával lekérhető `Get-AzureRmExpressRouteCircuit` parancsmag. Összes hello áramkör paraméter nélküli hívás hello így sorolja fel. A szolgáltatás kulcs megjelenik hello *ServiceKey* mező:
+Ezt az információt bármikor használatával kérheti le a `Get-AzureRmExpressRouteCircuit` parancsmag. A kapcsolatok a következő hívással paraméter nélküli sorolja fel. A szolgáltatás kulcs megjelenik a *ServiceKey* mező:
 
 ```powershell
 Get-AzureRmExpressRouteCircuit
 ```
 
 
-hello válasz a következő példa hasonló toohello fog kinézni:
+A válasz a következőhöz hasonló fog kinézni:
 
     Name                             : ExpressRouteARMCircuit
     ResourceGroupName                : ExpressRouteResourceGroup
@@ -168,41 +168,41 @@ hello válasz a következő példa hasonló toohello fog kinézni:
     Peerings                         : []
 
 
-Részletes leírását, az összes hello paraméterek kaphat hello a következő parancs futtatásával:
+A paraméterek részletes leírását a következő parancs futtatásával szerezheti be:
 
 ```powershell
 get-help Get-AzureRmExpressRouteCircuit -detailed
 ```
 
-### <a name="5-send-hello-service-key-tooyour-connectivity-provider-for-provisioning"></a>5. Kapcsolat kulcs tooyour hello szolgáltató küldése történő üzembe helyezéséhez
-*ServiceProviderProvisioningState* hello aktuális állapotának hello szolgáltatói oldalán kiépítési információkat nyújt. Állapot hello állapot hello Microsoft ügyféloldali biztosít. Kiépítés állapotok áramkör kapcsolatos további információkért lásd: hello [munkafolyamatok](expressroute-workflows.md#expressroute-circuit-provisioning-states) cikk.
+### <a name="5-send-the-service-key-to-your-connectivity-provider-for-provisioning"></a>5. A szolgáltatás kulcs küldése a kapcsolat szolgáltatójánál történő üzembe helyezéséhez
+*ServiceProviderProvisioningState* információkat nyújt azokról a szolgáltatói oldalon kiépítés aktuális állapotával. Állapot állapotát biztosít a Microsoft oldalon. Kiépítés állapotok áramkör kapcsolatos további információkért tekintse meg a [munkafolyamatok](expressroute-workflows.md#expressroute-circuit-provisioning-states) cikk.
 
-Amikor létrehoz egy új ExpressRoute-kapcsolatcsoportot, hello áramkör hello állapota a következő lehet:
+Amikor létrehoz egy új ExpressRoute-kapcsolatcsoportot, a kapcsolatcsoport lesz a következő állapotot okozta:
 
     ServiceProviderProvisioningState : NotProvisioned
     CircuitProvisioningState         : Enabled
 
 
 
-hello áramkör toohello hello folyamatán, amely lehetővé teszi a hello kapcsolat hitelesítésszolgáltató esetén a következő állapota változik:
+A kapcsolatcsoport fogja módosítani a következő állapotot folyamatban van, lehetővé téve, a kapcsolat hitelesítésszolgáltató esetén:
 
     ServiceProviderProvisioningState : Provisioning
     Status                           : Enabled
 
-Az Ön toobe képes toouse ExpressRoute-kapcsolatcsoportot az állapot a következő hello kell lennie:
+Meg kell tudni használni az ExpressRoute-kapcsolatcsoportot a következő állapotban kell lennie:
 
     ServiceProviderProvisioningState : Provisioned
     CircuitProvisioningState         : Enabled
 
-### <a name="6-periodically-check-hello-status-and-hello-state-of-hello-circuit-key"></a>6. Rendszeres időközönként ellenőrizze a hello állapotát és hello áramkör kulcs hello állapota
-Hello állapotát és hello áramkör kulcs hello állapotának ellenőrzése lehetővé teszi a szolgáltató a kapcsolatcsoport engedélyezésekor. Hello áramkör konfigurálása után *ServiceProviderProvisioningState* jelenik meg *kiépítve*, ahogy az alábbi példa hello:
+### <a name="6-periodically-check-the-status-and-the-state-of-the-circuit-key"></a>6. Ellenőrizze rendszeresen a kapcsolatcsoport kulcs állapotát és az állapot
+Az állapot és a kapcsolatcsoport kulcs állapotának ellenőrzése értesíti Önt arról, amikor a szolgáltató a kapcsolatcsoport engedélyezve van. A kapcsolat konfigurálása után *ServiceProviderProvisioningState* jelenik meg *kiépítve*, a következő példában látható módon:
 
 ```powershell
 Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
 ```
 
 
-hello válasz a következő példa hasonló toohello fog kinézni:
+A válasz a következőhöz hasonló fog kinézni:
 
     Name                             : ExpressRouteARMCircuit
     ResourceGroupName                : ExpressRouteResourceGroup
@@ -227,25 +227,25 @@ hello válasz a következő példa hasonló toohello fog kinézni:
     Peerings                         : []
 
 ### <a name="7-create-your-routing-configuration"></a>7. Az útválasztó-konfiguráció létrehozása
-Részletes útmutatásért lásd: hello [ExpressRoute-áramkör útválasztási konfigurációja](expressroute-howto-routing-arm.md) toocreate a következő cikket, és módosítsa a kapcsolatcsoport esetében.
+Részletes útmutatásért lásd: a [ExpressRoute-áramkör útválasztási konfigurációja](expressroute-howto-routing-arm.md) cikk létrehozásához és módosításához a kapcsolatcsoport esetében.
 
 > [!IMPORTANT]
-> Ezek az utasítások csak a szolgáltatók által biztosított réteg 2 internetkapcsolati szolgáltatás használatával létrehozott toocircuits vonatkoznak. A szolgáltató által kezelt használata réteg (általában az IP VPN, például az MPLS) 3 szolgáltatások, a kapcsolat szolgáltatójánál konfigurálása és kezelése az Ön útválasztást.
+> Ezek az utasítások csak a szolgáltatók által biztosított réteg 2 internetkapcsolati szolgáltatás használatával létrehozott kapcsolatok vonatkoznak. A szolgáltató által kezelt használata réteg (általában az IP VPN, például az MPLS) 3 szolgáltatások, a kapcsolat szolgáltatójánál konfigurálása és kezelése az Ön útválasztást.
 > 
 > 
 
-### <a name="8-link-a-virtual-network-tooan-expressroute-circuit"></a>8. Hivatkozásra egy virtuális hálózati tooan ExpressRoute-kapcsolatcsoportot
-A következő hivatkozás egy virtuális hálózati tooyour ExpressRoute-kapcsolatcsoportot. Használjon hello [csatolása a virtuális hálózatok tooExpressRoute Kapcsolatcsoportok](expressroute-howto-linkvnet-arm.md) hello Resource Manager üzembe helyezési modellben való munka során a következő cikket.
+### <a name="8-link-a-virtual-network-to-an-expressroute-circuit"></a>8. Virtuális hálózat összekapcsolása egy ExpressRoute-kapcsolatcsoporttal
+A következő csatolja az ExpressRoute-kapcsolatcsoportot egy virtuális hálózatot. Használja a [virtuális hálózatok összekapcsolása ExpressRoute-Kapcsolatcsoportok](expressroute-howto-linkvnet-arm.md) a Resource Manager üzembe helyezési modellel végzett munka során a következő cikket.
 
-## <a name="getting-hello-status-of-an-expressroute-circuit"></a>Egy ExpressRoute-kapcsolatcsoportot hello állapotának beolvasása
-Ezt az információt bármikor hello használatával lekérhető **Get-AzureRmExpressRouteCircuit** parancsmag. Összes hello áramkör paraméter nélküli hívás hello így sorolja fel.
+## <a name="getting-the-status-of-an-expressroute-circuit"></a>Egy ExpressRoute-kapcsolatcsoport állapotának beolvasása
+Ezt az információt bármikor használatával kérheti le a **Get-AzureRmExpressRouteCircuit** parancsmag. A kapcsolatok a következő hívással paraméter nélküli sorolja fel.
 
 ```powershell
 Get-AzureRmExpressRouteCircuit
 ```
 
 
-hello válasz hasonló toohello, például a következő lesz:
+A válasz a következőhöz hasonló lesz:
 
     Name                             : ExpressRouteARMCircuit
     ResourceGroupName                : ExpressRouteResourceGroup
@@ -270,14 +270,14 @@ hello válasz hasonló toohello, például a következő lesz:
     Peerings                         : []
 
 
-Egy adott ExpressRoute-kapcsolatcsoportot tájékoztatást kaphat a paraméter toohello hívásként hello erőforráscsoport-név és a kapcsolat neve átadásával:
+Egy adott ExpressRoute-kapcsolatcsoportot tájékoztatást kaphat az erőforráscsoport-név és a kapcsolat neve átadott paraméterként a hívást:
 
 ```powershell
 Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
 ```
 
 
-hello válasz a következő példa hasonló toohello fog kinézni:
+A válasz a következőhöz hasonló fog kinézni:
 
     Name                             : ExpressRouteARMCircuit
     ResourceGroupName                : ExpressRouteResourceGroup
@@ -302,7 +302,7 @@ hello válasz a következő példa hasonló toohello fog kinézni:
     Peerings                         : []
 
 
-Részletes leírását, az összes hello paraméterek kaphat hello a következő parancs futtatásával:
+A paraméterek részletes leírását a következő parancs futtatásával szerezheti be:
 
 ```powershell
 get-help get-azurededicatedcircuit -detailed
@@ -311,17 +311,17 @@ get-help get-azurededicatedcircuit -detailed
 ## <a name="modify"></a>Egy ExpressRoute-kapcsolatcsoportot módosítása
 ExpressRoute-kapcsolatcsoportot egyes tulajdonságait módosíthatja kapcsolat befolyásolása nélkül.
 
-Mindent hello állásidő nélkül a következő:
+Állásidő nélkül a következőket teheti:
 
 * Engedélyezi vagy letiltja az ExpressRoute-kapcsolatcsoportot prémium ExpressRoute bővítményt.
-* Az ExpressRoute-kapcsolatcsoportot növekedése hello sávszélesség megadott érhető el kapacitás hello porton. Alacsonyabb verziójúra változtatása hello sávszélesség, a kapcsolat nem támogatott. 
-* Hello mérési adatok díjköteles tooUnlimited adatokat a terv módosítása Korlátlan adatforgalom tooMetered adatok nem támogatott a terv mérési hello módosítása.
+* Növelje a ExpressRoute-kapcsolatcsoportot sávszélességét, feltéve, hogy kapacitás érhető el a port. Alacsonyabb verziójúra változtatása a sávszélességet a kapcsolat nem támogatott. 
+* Díjköteles adatforgalom korlátlan adatokhoz a mérési terv módosítása A mérési terv módosítása az korlátlan adatforgalom díjköteles adatok nem támogatott.
 * Engedélyezheti és letilthatja *klasszikus műveletek engedélyezése*.
 
-További információ a korlátai és korlátozásai, tekintse meg a toohello [ExpressRoute – gyakori kérdések](expressroute-faqs.md).
+Korlátai és korlátozásai további információkért tekintse meg a [ExpressRoute – gyakori kérdések](expressroute-faqs.md).
 
-### <a name="tooenable-hello-expressroute-premium-add-on"></a>tooenable hello ExpressRoute prémium szintű bővítmény
-Hello ExpressRoute prémium szintű bővítmény a következő PowerShell-részlet hello segítségével engedélyezheti a meglévő kapcsolat:
+### <a name="to-enable-the-expressroute-premium-add-on"></a>A prémium szintű ExpressRoute-bővítmény engedélyezése
+A prémium szintű ExpressRoute-bővítmény a következő PowerShell-részlet használatával engedélyezheti a meglévő kapcsolat:
 
 ```powershell
 $ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
@@ -332,21 +332,21 @@ $ckt.sku.Name = "Premium_MeteredData"
 Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 ```
 
-hello áramkör most kell hello ExpressRoute prémium bővítmény szolgáltatások engedélyezve van. Kezdjük el számlázási meg hello prémium bővítmény képességhez, amint hello parancs sikeresen lefutott.
+A kapcsolatcsoport most lesz engedélyezett ExpressRoute prémium bővítmény funkciók. Kezdjük el számlázási, a prémium szintű bővítmény képességhez, amint sikeresen futtatta a parancsot.
 
-### <a name="toodisable-hello-expressroute-premium-add-on"></a>toodisable hello ExpressRoute prémium szintű bővítmény
+### <a name="to-disable-the-expressroute-premium-add-on"></a>A prémium szintű ExpressRoute-bővítmény letiltása
 > [!IMPORTANT]
-> Ez a művelet sikertelen lehet erőforrásokat, amelyek nagyobbak, mint a megengedett hello szabványos kapcsolat használata.
+> A művelet sikertelen lesz, amely nagyobb, mint mi a szabványos kör megengedett erőforrások használata.
 > 
 > 
 
-Vegye figyelembe a következőket hello:
+Vegye figyelembe a következőket:
 
-* Ahhoz, hogy megállapításában, a prémium szintű toostandard, győződjön meg arról, hogy kapcsolt virtuális hálózatok hello száma toohello áramkör érték kisebb, mint 10. Ha nem így tesz, a frissítési kérelem sikertelen lesz, és azt prémium ütemben számlázza meg.
+* Mielőtt visszaminősítését prémiumról szabvány, meg kell győződnie arról, hogy a kapcsolatcsoport csatolt virtuális hálózatok száma kisebb, mint 10. Ha nem így tesz, a frissítési kérelem sikertelen lesz, és azt prémium ütemben számlázza meg.
 * Minden virtuális hálózat más geopolitikai régiókban kell választható. Ha nem így tesz, a frissítési kérelem sikertelen lesz, és azt prémium ütemben számlázza meg.
-* Az útvonaltábla a magánhálózati társviszony-létesítés kisebb, mint 4000 útvonalait kell lennie. Az útvonal tábla mérete nagyobb, mint 4000 útvonalakat, ha a hello BGP-munkamenetet esik, és nem fog újra engedélyezve, amíg a hirdetett hello számához nem 4000 éri el.
+* Az útvonaltábla a magánhálózati társviszony-létesítés kisebb, mint 4000 útvonalait kell lennie. Az útvonal tábla mérete nagyobb, mint 4000 útvonalakat, ha a BGP-munkamenetet esik, és nem fog újra engedélyezve, amíg a hirdetett számához nem 4000 éri el.
 
-Letilthatja a hello ExpressRoute prémium szintű bővítmény hello meglévő kör hello a következő PowerShell-parancsmag segítségével:
+Letilthatja a meglévő kapcsolat az ExpressRoute prémium szintű bővítmény a következő PowerShell-parancsmag segítségével:
 
 ```powershell
 $ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
@@ -357,16 +357,16 @@ $ckt.sku.Name = "Standard_MeteredData"
 Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 ```
 
-### <a name="tooupdate-hello-expressroute-circuit-bandwidth"></a>tooupdate hello ExpressRoute-kapcsolatcsoport sávszélessége
-A támogatott sávszélesség-beállításokat a szolgáltató, ellenőrizze a hello [ExpressRoute – gyakori kérdések](expressroute-faqs.md). Kiválaszthatja a mérete nagyobb, mint a meglévő expressroute hello méretét.
+### <a name="to-update-the-expressroute-circuit-bandwidth"></a>Az ExpressRoute-kapcsolatcsoport sávszélessége frissítése
+Támogatott sávszélesség-beállítások a szolgáltató, ellenőrizze a [ExpressRoute – gyakori kérdések](expressroute-faqs.md). Kiválaszthatja a mérete nagyobb, mint a meglévő expressroute méretét.
 
 > [!IMPORTANT]
-> Előfordulhat, hogy toorecreate hello ExpressRoute-kapcsolatcsoportot esetén nincs elég kapacitás hello meglévő porton. Hello kapcsolatcsoport nem frissíthető, ha nincsenek további kapacitást érhető el az adott helyhez.
+> Előfordulhat, hogy újra létrehozni az ExpressRoute-kapcsolatcsoport, ha nincs elég kapacitás a meglévő porton. A kapcsolat nem frissíthető, ha nincsenek további kapacitást érhető el az adott helyhez.
 >
-> Nem csökken a hello sávszélesség az ExpressRoute-kapcsolatcsoportot megszakítása nélkül. Alacsonyabb verziójúra változtatása sávszélesség toodeprovision hello ExpressRoute-kapcsolatcsoportot meg, és majd építenie az új ExpressRoute-kapcsolatcsoportot.
+> Nem csökkenti a sávszélesség az ExpressRoute-kapcsolatcsoportot megszakítása nélkül. Alacsonyabb verziójúra változtatása a sávszélesség szükséges, hogy az ExpressRoute-kapcsolatcsoport kiosztásának megszüntetése és majd építenie az új ExpressRoute-kapcsolatcsoportot.
 > 
 
-Miután eldöntötte, hogy milyen van szüksége, használja a következő parancs tooresize hello a kapcsolatcsoport mérete:
+Miután eldöntötte, hogy milyen méretű van szüksége, az alábbi parancs segítségével méretezze át a a kapcsolatcsoport:
 
 ```powershell
 $ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
@@ -377,10 +377,10 @@ Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 ```
 
 
-A kapcsolatcsoport fog hello Microsoft oldalán kell méretezni. Ezután vegye fel a kapcsolatot a kapcsolat szolgáltató tooupdate konfigurációit, az ügyféloldali toomatch ezt a módosítást. Miután elvégezte ezt az értesítést, kezdjük el számlázást, a frissített hello sávszélesség beállítást.
+A kapcsolatcsoport lesz a Microsoft oldalon kell méretezni. Majd kérje meg a kapcsolat szolgáltatójánál, ez a módosítás megfelelő a ügyféloldali konfigurációjának frissítése. Miután elvégezte ezt az értesítést, kezdjük el számlázást, a frissített sávszélesség-beállítás.
 
-### <a name="toomove-hello-sku-from-metered-toounlimited"></a>toomove hello SKU a mért toounlimited
-A következő PowerShell-részlet hello segítségével módosíthatja egy ExpressRoute-kapcsolatcsoport Termékváltozata hello:
+### <a name="to-move-the-sku-from-metered-to-unlimited"></a>A Termékváltozat áthelyezése díjköteles korlátlanra
+A következő PowerShell-részlet segítségével módosíthatja egy ExpressRoute-kapcsolatcsoport Termékváltozata:
 
 ```powershell
 $ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
@@ -391,17 +391,17 @@ $ckt.sku.Name = "Premium_UnlimitedData"
 Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 ```
 
-### <a name="toocontrol-access-toohello-classic-and-resource-manager-environments"></a>toocontrol hozzáférés toohello klasszikus és Resource Manager-környezetben
-Tekintse át a hello utasításait [áthelyezése ExpressRoute-Kapcsolatcsoportok hello klasszikus toohello Resource Manager üzembe helyezési modellben a](expressroute-howto-move-arm.md).  
+### <a name="to-control-access-to-the-classic-and-resource-manager-environments"></a>A klasszikus és Resource Manager-környezetben való hozzáférés szabályozása
+Tekintse át a utasításait [a Resource Manager üzembe helyezési modellben a klasszikus áthelyezése ExpressRoute-Kapcsolatcsoportok](expressroute-howto-move-arm.md).  
 
 ## <a name="deprovisioning-and-deleting-an-expressroute-circuit"></a>Megszüntetés és az ExpressRoute-kapcsolatcsoport törlése
-Vegye figyelembe a következőket hello:
+Vegye figyelembe a következőket:
 
-* Az ExpressRoute-kapcsolatcsoportot hello összes virtuális hálózatot kell választható. Ha ez a művelet nem sikerül, ellenőrizze a toosee, ha a virtuális hálózatok kapcsolódó toohello áramkör.
-* Ha hello ExpressRoute körön szolgáltató üzembe helyezési állapota **kiépítési** vagy **kiépítve** együttműködve kell a service provider toodeprovision hello kapcsolatcsoport az oldalon. Rendszer továbbra is tooreserve erőforrások és kiszámlázni Önnek, amíg hello szolgáltató megszüntetési hello áramkör befejeződik, és értesíti a számunkra.
-* Ha hello szolgáltató rendelkezik platformelőfizetés hello áramkör (üzembe helyezési állapota hello szolgáltató értéke túl**nincs kiépítve**) hello áramkör törölhet. Ezzel leállítja a számlázási hello kör
+* Az ExpressRoute-kapcsolatcsoport az összes virtuális hálózatot kell választható. Ha ez a művelet sikertelen, ellenőrizze, hogy ha a virtuális hálózatok a kapcsolatcsoport van csatolva.
+* Ha az ExpressRoute-kapcsolatcsoport szolgáltatás szolgáltató üzembe helyezési állapota **kiépítési** vagy **kiépítve** kiosztásának megszüntetése a kapcsolatcsoport az oldalon, hogy a szolgáltató együttműködve. Folytatjuk erőforrásokat és kiszámlázni Önnek, amíg a szolgáltató befejeződött, a kapcsolat megszüntetés, és értesítést küld nekünk.
+* Ha a szolgáltató rendelkezik platformelőfizetés a kapcsolatcsoport (üzembe helyezési állapota szolgáltató értéke **nincs kiépítve**) a kapcsolatcsoport törölhet. A kör számlázási leállítása
 
-Az ExpressRoute-kapcsolatcsoport törlése hello a következő parancs futtatásával:
+Az ExpressRoute-kapcsolatcsoport törlése a következő parancs futtatásával:
 
 ```powershell
 Remove-AzureRmExpressRouteCircuit -ResourceGroupName "ExpressRouteResourceGroup" -Name "ExpressRouteARMCircuit"
@@ -409,7 +409,7 @@ Remove-AzureRmExpressRouteCircuit -ResourceGroupName "ExpressRouteResourceGroup"
 
 ## <a name="next-steps"></a>Következő lépések
 
-Miután létrehozta a kapcsolatcsoport, győződjön meg arról, hogy Ön hello a következő:
+Miután létrehozta a kapcsolatcsoport, győződjön meg arról, hogy akkor tegye a következőket:
 
 * [Létrehozásához és módosításához az ExpressRoute-kapcsolatcsoport esetében routing](expressroute-howto-routing-arm.md)
-* [A virtuális hálózati tooyour ExpressRoute-kapcsolatcsoportot hivatkozás](expressroute-howto-linkvnet-arm.md)
+* [A virtuális hálózat csatolása az ExpressRoute-kapcsolatcsoportot](expressroute-howto-linkvnet-arm.md)

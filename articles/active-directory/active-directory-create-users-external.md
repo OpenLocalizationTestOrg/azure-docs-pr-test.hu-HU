@@ -1,6 +1,6 @@
 ---
-title: "más címtárakban vagy partnervállalatokban az Azure Active Directoryban aaaAdd felhasználók |} Microsoft Docs"
-description: "Azt ismerteti, hogyan tooadd felhasználók vagy felhasználói adatokat az Azure Active Directoryban, beleértve a külső és vendégfelhasználókat is módosíthatja."
+title: "Más címtárakban vagy partnervállalatokban lévő felhasználók felvétele az Azure Active Directoryba | Microsoft Docs"
+description: "Ez a cikk azt ismerteti, hogyan vehet fel felhasználókat, vagy hogyan módosíthatja a felhasználói adatokat az Azure Active Directoryban, beleértve a külső és vendégfelhasználókat is."
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -12,70 +12,70 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 07/25/2017
+ms.date: 10/10/2017
 ms.author: curtand
 ms.custom: oldportal;it-pro;
 robots: NOINDEX
-ms.openlocfilehash: 92099e5792365c307b0f3d4f2dff5dd8424aeab4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 30dbd21c6d21aa55c2c7e84c315fba098674ddd8
+ms.sourcegitcommit: 51ea178c8205726e8772f8c6f53637b0d43259c6
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="add-users-from-other-directories-or-partner-companies-in-azure-active-directory"></a>Más címtárakban vagy partnervállalatokban lévő felhasználók felvétele az Azure Active Directoryba
 
-Ez a cikk azt ismerteti, hogyan tooadd felhasználókat más címtárakból az Azure Active Directoryban, vagy adja hozzá a felhasználókat a partnervállalatokból. Új felhasználók hozzáadása a szervezetében, és a Microsoft-fiókkal rendelkező felhasználók hozzáadásával kapcsolatos további információkért lásd: [adja hozzá az új felhasználók tooAzure Active Directory](active-directory-create-users.md). 
+Ez a cikk azt ismerteti, hogyan vehet fel felhasználókat más címtárakból az Azure Active Directoryba, illetve hogyan vehet fel felhasználókat a partnervállalatokból. A szervezetben új felhasználók hozzáadásáról és a Microsoft-fiókokkal rendelkező felhasználók hozzáadásáról további információért lásd: [Új felhasználók felvétele az Azure Active Directoryba](active-directory-create-users.md). 
 
 > [!IMPORTANT]
-> A Microsoft azt javasolja, hogy a hello használata az Azure AD kezelése [az Azure AD felügyeleti központban](https://aad.portal.azure.com) hello az Azure portál használata helyett hello hivatkozott ebben a cikkben a klasszikus Azure portálon. Hogyan tooadd B2B együttműködés vendégfelhasználók hello Azure AD felügyeleti központ, lásd: [Mi az az Azure AD B2B együttműködés?](active-directory-b2b-what-is-azure-ad-b2b.md)
+> A Microsoft javasolja, hogy az Azure Portalon található [Azure AD felügyeleti központból](https://aad.portal.azure.com) kezelje az Azure AD-t az ebben a cikkben javasolt klasszikus Azure portál helyett. Az Azure AD felügyeleti központban B2B együttműködési vendégfelhasználók hozzáadásáról további információkért lásd: [Mi az az Azure AD B2B együttműködés?](active-directory-b2b-what-is-azure-ad-b2b.md)
 
-A hozzáadott felhasználók alapértelmezés szerint nem rendelkeznek rendszergazdai engedélyekkel, de bármikor hozzárendelheti a szerepkörökhöz toothem.
+A hozzáadott felhasználók alapértelmezés szerint nem rendelkeznek rendszergazdai engedélyekkel, de bármikor hozzájuk rendelhet szerepköröket.
 
 ## <a name="add-a-user"></a>Felhasználó hozzáadása
-1. Jelentkezzen be toohello [a klasszikus Azure portálon](https://manage.windowsazure.com) egy olyan fiókkal, amely hello címtár globális rendszergazdája.
+1. Jelentkezzen be a [klasszikus Azure portálra](https://manage.windowsazure.com) egy olyan fiókkal, amely a címtár globális rendszergazdája.
 2. Válassza az **Active Directory** lehetőséget, majd nyissa meg a címtárat.
-3. Jelölje be hello **felhasználók** lapot, és ezt követően hello parancssávon válassza **felhasználó hozzáadása**.
-4. A hello **adja meg azt a felhasználó** lap **felhasználó típusa**, a következők közül választhat:
+3. Válassza a **Felhasználók** lapot, majd a parancssávon válassza a **Felhasználó hozzáadása** parancsot.
+4. A **Felhasználó bemutatása** lap **Felhasználó típusa** területén válassza a következők egyikét:
 
-   * **Egy másik Azure AD-címtár felhasználó** – felhasználói fiók tooyour könyvtár megosztásban hozzáadja egy másik Azure AD-címtárból. Csak akkor választhatja ki egy másik címtár felhasználóját, ha azon címtárnak is a tagja.
-   * **Felhasználók partnervállalatokban** -tooinvite és erőforráspartner vállalati felhasználók tooyour directory engedélyezéséhez (lásd: [Azure Active Directory B2B együttműködés](active-directory-b2b-what-is-azure-ad-b2b.md)). Szüksége lesz túl[megadása az e-mail címek CSV-fájl feltöltése](active-directory-b2b-references-csv-file-format.md).
-5. Hello felhasználó **profil** lapján adja meg az első és utolsó nevét, egy felhasználóbarát nevet és egy felhasználói szerepkört hello **szerepkörök** listája. A felhasználói és rendszergazdai szerepkörökről további információért lásd: [Rendszergazdai szerepkörök hozzárendelése az Azure AD-ben](active-directory-assign-admin-roles.md). Adja meg, hogy túl**többtényezős hitelesítés engedélyezése** hello felhasználó számára.
-6. A hello **ideiglenes jelszó beszerzése** lapon jelölje be **létrehozása**.
+   * **Felhasználó egy másik Azure AD-címtárban** – olyan felhasználói fiókot ad a címtárhoz, amely másik Azure AD-címtárból származik. Csak akkor választhatja ki egy másik címtár felhasználóját, ha azon címtárnak is a tagja.
+   * **Felhasználók partnervállalatokban** – a partnervállalatok felhasználóinak meghívásához és engedélyezéséhez (lásd: [Azure Active Directory B2B együttműködés](active-directory-b2b-what-is-azure-ad-b2b.md)). [Fel kell töltenie egy CSV-fájlt, amely megadja az e-mail-címeket](active-directory-b2b-references-csv-file-format.md).
+5. A felhasználói **Profil** oldalon adjon meg egy kereszt- és egy vezetéknevet, egy rövid nevet és egy felhasználói szerepkört a **Szerepkörök** listából. A felhasználói és rendszergazdai szerepkörökről további információért lásd: [Rendszergazdai szerepkörök hozzárendelése az Azure AD-ben](active-directory-assign-admin-roles.md). Adja meg, hogy **engedélyezi-e a többtényezős hitelesítést** a felhasználó számára.
+6. Az **Ideiglenes jelszó beszerzése** oldalon válassza a **Létrehozás** lehetőséget.
 
 > [!IMPORTANT]
-> Ha szervezete több tartományt használ, a felhasználói fiók hozzáadásakor a következő problémák hello kell tudnia:
+> Ha a szervezete több tartományt használ, a következő problémákról kell tudnia a felhasználói fiók hozzáadásakor:
 >
-> * felhasználói fiókok tooadd hello azonos egyszerű felhasználónév (UPN) tartományokban, **első** hozzáadni, például geoffgrisso@contoso.onmicrosoft.com, **követ** geoffgrisso@contoso.com.
+> * Ha azonos egyszerű felhasználónévvel (UPN) szeretne felhasználói fiókokat felvenni több tartományba, **először** adja hozzá például a geoffgrisso@contoso.onmicrosoft.com,  **címet, majd a**  geoffgrisso@contoso.com címet.
 > * **Ne** adja hozzá a geoffgrisso@contoso.com címet a geoffgrisso@contoso.onmicrosoft.com hozzáadása előtt.
 >
 
-Ha módosítja olyan felhasználó, akinek identitása szinkronizálva van a helyszíni Active Directory szolgáltatással adatait, nem módosíthatja a klasszikus Azure portálon hello hello felhasználó adatait. toochange hello felhasználói adatokat, használja a helyszíni Active Directory kezelőeszközöket.
+Ha módosítja olyan felhasználó adatait, akinek identitása szinkronizálva van a helyszíni Active Directory szolgáltatással, nem módosíthatja a felhasználó adatait a klasszikus Azure portálon. A felhasználói adatok módosításához használja a helyszíni Active Directory-felügyeleti eszközöket.
 
 ## <a name="add-external-users"></a>Külső felhasználók felvétele
-Is hozzáadhat felhasználókat egy másik Azure AD directory toowhich Ön is a tagja, vagy a partnervállalatokban CSV-fájl feltöltésével. a külső felhasználó tooadd a **felhasználó típusa**, adja meg **felhasználó egy másik Microsoft Azure AD-címtárban** vagy **felhasználók partnervállalatokban**.
+Másik olyan Azure AD-címtárból is felvehet felhasználókat, amelyeknek a tagja, vagy megteheti ugyanezt egy CSV-fájl feltöltésével, ha a partnervállalatokból vesz fel felhasználókat. Külső felhasználó hozzáadásához a **Felhasználó típusa** alatt adja meg a **Felhasználó egy másik Microsoft Azure AD-címtárban** vagy a **Felhasználók partnervállalatokban** beállítást.
 
-Mindkét felhasználótípust egy másik címtárból adja hozzá **külső felhasználóként**. Külső felhasználók együttműködhetnek más követelmény tooadd új fiókokat és hitelesítő adatok nélkül címtár-felhasználókkal. Külső felhasználók hitelesítéséhez a saját címtárukkal, amikor bejelentkeznek, és más címtárak toowhich vannak adva működik, ha a hitelesítés.
+Mindkét felhasználótípust egy másik címtárból adja hozzá **külső felhasználóként**. A külső felhasználók együttműködhetnek más címtár-felhasználókkal anélkül, hogy új fiókokat és hitelesítő adatokat kellene felvenni. A külső felhasználók a saját címtárukkal végezhetnek hitelesítést amikor bejelentkeznek, és ez a hitelesítés bármely olyan címtárnál működik, amelyhez hozzá lettek adva.
 
 ## <a name="external-user-management-and-limitations"></a>Külső felhasználók kezelése és korlátozásai
-Directory tooyour másik címtárban szereplő hozzáadni egy felhasználót, amikor a felhasználó egy külső felhasználónak számít a címtárában. hello megjelenítési nevet és egy felhasználónév másolta a saját címtárukból, és használt hello külső felhasználónak számít a címtárában. Ettől hello külső felhasználói fiók tulajdonságai teljesen függetlenek. Ha tulajdonság módosításai toohello felhasználói a saját címtárában, ezek a módosítások nem kerülnek toohello külső felhasználói fiókot a címtárban.
+Amikor egy másik címtárból ad hozzá felhasználót a címtárához, ez a felhasználó külső felhasználónak számít a címtárában. A megjelenített nevet és a felhasználónevet a rendszer kimásolja a saját címtárukból, és a külső felhasználóhoz adja a címtárában. Ettől kezdve a külső felhasználói fiók tulajdonságai teljesen függetlenek. Ha a saját címtárban módosulnak a felhasználó tulajdonságai, ezek a módosítások nem tükröződnek majd a címtárában lévő külső felhasználói fiókban.
 
-hello egyetlen kapcsolat hello két fiók között, hogy hello felhasználó mindig hitelesíti magát a saját címtárával vagy a Microsoft-fiókkal. Ezért ne tekintse meg a beállítás tooreset hello jelszavát, vagy külső felhasználó többtényezős hitelesítés engedélyezése. Hello saját címtárával vagy Microsoft-fiók hitelesítési házirendje hello jelenleg csak az egyik hello felhasználó bejelentkezésekor kiértékelt hello.
+A két fiók között az egyetlen kapcsolat, hogy a felhasználó mindig a saját címtárával vagy a Microsoft-fiókjával végzi a hitelesítést. Ezért nem lát olyan lehetőséget, amellyel alaphelyzetbe állíthatná a jelszót, vagy engedélyezhetné a többtényezős hitelesítést a külső felhasználók számára. Jelenleg a saját címtár vagy a Microsoft-fiók hitelesítési házirendje az egyetlen, amelyet a rendszer kiértékel a felhasználó bejelentkezésekor.
 
 > [!NOTE]
-> Külső felhasználói hello hello könyvtárban, amely megakadályozza a hozzáférés a címtárhoz tooyour továbbra is letilthatja.
+> Továbbra is letilthatja a külső felhasználót a címtárban, amivel blokkolja a hozzáférését a címtárhoz.
 >
 >
 
-Ha a felhasználót törlik a saját címtárában, vagy törlik a saját Microsoft-fiókjával, hello külső felhasználó továbbra is létezik a címtárában. Azonban a címtárában lévő hello felhasználó nem tud hozzáférni erőforrások, mert nem tudja hitelesíteni magát a saját címtárával vagy Microsoft-fiókkal.
+Ha a felhasználót törlik a saját címtárában, vagy ha törlik a Microsoft-fiókját, a külső felhasználó továbbra is létezik a címtárában. De a címtárában lévő felhasználó nem éri el az erőforrásokat, mert nem tudja hitelesíteni magát a saját címtárával vagy Microsoft-fiókjával.
 
 ### <a name="services-that-currently-support-access-by-azure-ad-external-users"></a>Az Azure AD külső felhasználóinak hozzáférését jelenleg támogató szolgáltatások
-* **A klasszikus Azure portálon**: egy külső felhasználó, aki rendszergazdai jogosultságokkal rendelkező több könyvtárak toomanage minden ezeket a címtárakat.
-* **SharePoint Online**: Ha a külső megosztás engedélyezve van, lehetővé teszi, hogy egy külső felhasználó tooaccess SharePoint Online engedélyezett erőforrásait.
-* **Dynamics CRM**: hello felhasználói PowerShell licencét szerezte meg, ha lehetővé teszi, hogy egy külső felhasználó tooaccess engedélyezett erőforrásokat a Dynamics CRM-ben.
-* **Dynamics AX**: hello felhasználói PowerShell licencét szerezte meg, ha lehetővé teszi, hogy egy külső felhasználó tooaccess engedélyezett erőforrásokat a Dynamics AX. hello vonatkozó korlátozások [az Azure AD külső felhasználóinak](#known-limitations-of-azure-ad-external-users) tooexternal felhasználókat a Dynamics AX is vonatkoznak.
+* **Klasszikus Azure portál:** lehetővé teszi, hogy egy több címtár rendszergazdájaként eljáró külső felhasználó kezelje ezeket a címtárakat.
+* **SharePoint Online:** ha a külső megosztás engedélyezett, lehetővé teszi, hogy a külső felhasználók elérjék a SharePoint Online engedélyezett erőforrásait.
+* **Dynamics CRM:** ha a felhasználó PowerShellen keresztül kapott licencet, lehetővé teszi, hogy a külső felhasználó elérje az engedélyezett erőforrásokat a Dynamics CRM-ben.
+* **Dynamics AX:** ha a felhasználó PowerShellen keresztül kapott licencet, lehetővé teszi, hogy a külső felhasználó elérje az engedélyezett erőforrásokat a Dynamics AX-ben. Az [Azure AD külső felhasználóira](#known-limitations-of-azure-ad-external-users) vonatkozó korlátozások a Dynamics AX külső felhasználóira is érvényesek.
 
 ## <a name="next-steps"></a>Következő lépések
-* [Adja hozzá az új felhasználók tooAzure Active Directory](active-directory-create-users.md)
+* [Új felhasználók hozzáadása az Azure Active Directoryhoz](active-directory-create-users.md)
 * [Az Azure AD felügyelete](active-directory-administer.md)
 * [Jelszavak kezelése az Azure AD-ben](active-directory-manage-passwords.md)
 * [Csoportok kezelése az Azure AD-ben](active-directory-manage-groups.md)

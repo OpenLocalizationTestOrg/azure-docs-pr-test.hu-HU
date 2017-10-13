@@ -6,7 +6,7 @@
 | **Többhelyes** |Támogatott |Nem támogatott |
 | **S2S és ExpressRoute párhuzamos használata** |Támogatott |Nem támogatott |
 | **Pont-pont** |Támogatott |Nem támogatott |
-| **Klasszikus tooResource Manager** |Támogatott |Nem támogatott |
+| **Klasszikus az erőforrás-kezelő** |Támogatott |Nem támogatott |
 
 #### <a name="vpn-type---classic-deployment-model"></a>VPN-típus - klasszikus telepítési modell
 |  | **Dinamikus** | **Statikus** |
@@ -16,5 +16,5 @@
 | **Többhelyes** |Támogatott |Nem támogatott |
 | **S2S és ExpressRoute párhuzamos használata** |Támogatott |Nem támogatott |
 | **Pont-pont** |Támogatott |Nem támogatott |
-| **Klasszikus tooResource Manager** |Támogatott |Nem támogatott |
+| **Klasszikus az erőforrás-kezelő** |Támogatott |Nem támogatott |
 

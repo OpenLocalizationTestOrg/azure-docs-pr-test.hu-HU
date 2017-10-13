@@ -1,5 +1,5 @@
 ---
-title: "aaaPowerShell parancsfájl toocreate Application Insights-erőforrás |} Microsoft Docs"
+title: "Az Application Insights-erőforrás létrehozása a PowerShell parancsfájl |} Microsoft Docs"
 description: "Application Insights-erőforrások létrehozásának automatizálása."
 services: application-insights
 documentationcenter: windows
@@ -13,28 +13,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/19/2016
 ms.author: bwren
-ms.openlocfilehash: 2ac00376d38026d64c2c5deabfaca60588924510
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a828af9c7d207dd84cc626fc70206018fd67e2dd
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="powershell-script-toocreate-an-application-insights-resource"></a>PowerShell parancsfájl toocreate Application Insights-erőforrás
+# <a name="powershell-script-to-create-an-application-insights-resource"></a>PowerShell-parancsfájl egy Application Insights-erőforrás létrehozásához
 
 
-Ha azt szeretné toomonitor egy új alkalmazás - vagy egy alkalmazás új verziójának – a [Azure Application Insights](https://azure.microsoft.com/services/application-insights/), állít be egy új erőforrást a Microsoft Azure-ban. Ehhez az erőforráshoz, ahol hello telemetriai adatokat a alkalmazás elemzése és jelenik meg. 
+Ha figyelni kívánt új alkalmazás - vagy egy alkalmazás új verziójának – a [Azure Application Insights](https://azure.microsoft.com/services/application-insights/), állít be egy új erőforrást a Microsoft Azure-ban. Ehhez az erőforráshoz, ahol az alkalmazásból a telemetriai adatok elemzése és jelenik meg. 
 
-Hello egy új erőforráscsoport létrehozása a PowerShell segítségével automatizálható.
+Egy új erőforrást a PowerShell segítségével automatizálható.
 
-Például ha egy mobileszköz-alkalmazást fejleszt, valószínű, hogy tetszőleges időpontban lesz közzétett változatának ügyfelei az alábbiakra használhatják az alkalmazást. Nem szeretné, hogy tooget hello telemetriai eredményeinek vegyes különböző verziói. Így az összeállítási folyamat toocreate egy új erőforrást az egyes buildekhez.
+Például ha egy mobileszköz-alkalmazást fejleszt, valószínű, hogy tetszőleges időpontban lesz közzétett változatának ügyfelei az alábbiakra használhatják az alkalmazást. Nem szeretnénk vegyes különböző verzióiból a telemetriai adatok eredményt. Ezért az egyes buildekhez új erőforrás létrehozása a felépítési folyamat kap.
 
 > [!NOTE]
-> Ha azt szeretné, toocreate minden az erőforráscsoport hello azonos időben, javasoljuk, hogy [létrehozása az Azure-sablonnal hello erőforrások](app-insights-powershell.md).
+> Ha szeretne létrehozni az erőforráscsoport összes egyszerre, fontolja meg a [létrehozása az Azure-sablon alapján erőforrások](app-insights-powershell.md).
 > 
 > 
 
-## <a name="script-toocreate-an-application-insights-resource"></a>Az Application Insights-erőforrást parancsprogram toocreate
-Lásd: hello vonatkozó parancsmag specifikációk:
+## <a name="script-to-create-an-application-insights-resource"></a>Hozzon létre egy Application Insights-erőforrást parancsprogram
+Tekintse meg a megfelelő parancsmag specifikációk:
 
 * [Új AzureRmResource](https://msdn.microsoft.com/library/mt652510.aspx)
 * [New-AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt678995.aspx)
@@ -48,31 +48,31 @@ Lásd: hello vonatkozó parancsmag specifikációk:
 # Set Values
 ###########################################
 
-# If running manually, uncomment before hello first 
-# execution toologin toohello Azure Portal:
+# If running manually, uncomment before the first 
+# execution to login to the Azure Portal:
 
 # Add-AzureRmAccount / Login-AzureRmAccount
 
-# Set hello name of hello Application Insights Resource
+# Set the name of the Application Insights Resource
 
 $appInsightsName = "TestApp"
 
-# Set hello application name used for hello value of hello Tag "AppInsightsApp" 
+# Set the application name used for the value of the Tag "AppInsightsApp" 
 
 $applicationTagName = "MyApp"
 
-# Set hello name of hello Resource Group toouse.  
-# Default is hello application name.
+# Set the name of the Resource Group to use.  
+# Default is the application name.
 $resourceGroupName = "MyAppResourceGroup"
 
 ###################################################
-# Create hello Resource and Output hello name and iKey
+# Create the Resource and Output the name and iKey
 ###################################################
 
-# Select hello azure subscription
+# Select the azure subscription
 Select-AzureSubscription -SubscriptionName "MySubscription"
 
-# Create hello App Insights Resource
+# Create the App Insights Resource
 
 
 $resource = New-AzureRmResource `
@@ -84,7 +84,7 @@ $resource = New-AzureRmResource `
   -PropertyObject @{"Application_Type"="web"} `
   -Force
 
-# Give owner access toohello team
+# Give owner access to the team
 
 New-AzureRmRoleAssignment `
   -SignInName "myteam@fabrikam.com" `
@@ -98,10 +98,10 @@ Write-Host "IKey = " $resource.Properties.InstrumentationKey
 
 ```
 
-## <a name="what-toodo-with-hello-ikey"></a>Milyen toodo a hello iKey
-Az egyes erőforrások azonosítja a rendszerállapot-kulcsok (iKey). hello iKey hello erőforrás létrehozása parancsfájl kimenete. A build script hello iKey toohello Application Insights SDK az alkalmazásba ágyazott kell biztosítania.
+## <a name="what-to-do-with-the-ikey"></a>Mi a teendő, ha a iKey
+Az egyes erőforrások azonosítja a rendszerállapot-kulcsok (iKey). A iKey az erőforrás-létrehozási parancsfájl kimenete. A build script kell biztosítania az Application Insights SDK iKey az alkalmazásba ágyazott.
 
-Két módon toomake hello iKey elérhető toohello SDK van:
+Két módon lehet elérhetővé tenni a iKey az SDK-val:
 
 * A [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md): 
   * `<instrumentationkey>`*ikey*`</instrumentationkey>`

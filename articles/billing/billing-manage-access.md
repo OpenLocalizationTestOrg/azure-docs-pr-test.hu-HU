@@ -1,5 +1,5 @@
 ---
-title: "aaaManage hozzáférés tooAzure számlázási szerepkörök használatával |} Microsoft Docs"
+title: "Azure számlázás szerepkörök használatával való hozzáférés kezelése |} Microsoft Docs"
 description: 
 services: 
 documentationcenter: 
@@ -15,67 +15,67 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/22/2017
 ms.author: vikdesai
-ms.openlocfilehash: 5937fac5ffa5ca204eb03a1dcbc5e800b3d5eb74
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c70904097f139bc2178feed83f1cf1274f3c738d
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="manage-access-toobilling-information-for-azure-using-role-based-access-control"></a>Az Azure szerepköralapú hozzáférés-vezérlés használatával hozzáférést toobilling információk kezelése
+# <a name="manage-access-to-billing-information-for-azure-using-role-based-access-control"></a>Számlázási adatokat az Azure szerepköralapú hozzáférés-vezérlés használatával való hozzáférés kezelése
 
-Az Azure számlázási információkat toomembers a csoport hozzáférést biztosíthat a következő felhasználói szerepkörök tooyour előfizetés hello hozzárendelésével: Fiókadminisztrátor, szolgáltatás-rendszergazdát, társadminisztrátoraként, tulajdonos, közreműködő, olvasó és számlázási olvasó. Akkor toobilling adatok eléréséhez a hello [Azure-portálon](https://portal.azure.com/), és használhatják a hello [számlázási API-k](billing-usage-rate-card-overview.md) tooprogrammatically le a számlák (egyszer engedélyezte, bejövő) és a használat részleteiről. További információ szerepkörök adhatnak ki, és mely szerepköröket is mi, olvassa el [szerepkörök az Azure RBAC](../active-directory/role-based-access-built-in-roles.md).
+Ön hozzáférést biztosíthat az Azure számlázási adatokat a csoport tagjai számára úgy egyet az alábbi felhasználói szerepkörök hozzárendelése az előfizetéshez: Fiókadminisztrátor, szolgáltatás-rendszergazdát, társadminisztrátoraként, tulajdonos, közreműködő, olvasó és számlázási olvasó. Férhet számlázási adatokhoz a [Azure-portálon](https://portal.azure.com/), és használhatják a [számlázási API-k](billing-usage-rate-card-overview.md) programozott módon le a számlák (egyszer engedélyezte, bejövő) és a használat részleteiről. További információ szerepkörök adhatnak ki, és mely szerepköröket is mi, olvassa el [szerepkörök az Azure RBAC](../active-directory/role-based-access-built-in-roles.md).
 
-## <a name="opt-in"></a>További felhasználók tooaccess számlák engedélyezése
+## <a name="opt-in"></a>Felhasználó számlák eléréséhez
 
-hello Fiókadminisztrátort bírálhatja felül a hello használatával [Azure-portálon](https://portal.azure.com/) lehetővé teszik a hozzáférést tooinvoices más felhasználók számára, és API-n keresztül.
+A Fiókadminisztrátor használatával bírálhatja felül a [Azure-portálon](https://portal.azure.com/) számlák a hozzáférést, a más felhasználók számára, és API-n keresztül.
 
-1. Hello fiók rendszergazdájához, akkor jelölje ki az előfizetés a hello [előfizetések panel](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade) Azure-portálon.
+1. A fiók rendszergazdaként, válassza ki az előfizetést a [előfizetések panel](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade) Azure-portálon.
 
-1. Válassza ki **számlák** , majd **tooinvoices hozzáférési**.
+1. Válassza ki **számlák** , majd **számlák elérésére**.
 
-    ![Képernyőfelvételen látható, hogyan férhetnek hozzá a toodelegate tooinvoices](./media/billing-manage-access/AA-optin.png)
+    ![Képernyőkép bemutatja, hogyan adhat hozzáférést számlák](./media/billing-manage-access/AA-optin.png)
 
-1. Kapcsolja be **a** hello hozzáférés követ hello változások, az előfizetés hatókörbe tartozó szerepkörök toodownload számlán tooallow felhasználók mentése.
+1. Kapcsolja be **a** a hozzáférés a felhasználó az előfizetéshez, a módosítások mentése után töltse le a számla szerepkörök hatóköre.
 
-    ![Képernyőfelvétel a ki-toodelegate hozzáférés tooinvoice](./media/billing-manage-access/AA-optinAllow.png)
+    ![Képernyőfelvétel a ki-és delegálja a számla elérésére](./media/billing-manage-access/AA-optinAllow.png)
 
-Engedélyezés lehetővé teszi az szolgáltatás-rendszergazdát, társadminisztrátoraként, tulajdonos, közreműködő, olvasó és számlázási olvasó hello előfizetés toodownload PDF számlák hello Azure-portálon. Azonban régebbi, mint a 2016. December számlák egyelőre nem érhető el egyetlen toohello fiók rendszergazdájához.
+Engedélyezés lehetővé teszi, hogy szolgáltatás-rendszergazdát, társadminisztrátoraként, tulajdonos, közreműködő, olvasó és számlázási olvasó letölteni az Azure portálon PDF számlák előfizetésben. Azonban régebbi, mint a 2016. December számlák érhetők el csak az a fiók rendszergazdája most.
 
-hello Fiókadminisztrátort is konfigurálhatja, e-mailben elküldött toohave számlákat. toolearn több, lásd: [e-mailben a számla beolvasása](billing-download-azure-invoice-daily-usage-date.md).
+A Fiókadminisztrátor is konfigurálhatja az e-mailben küldött számlákat. További tudnivalókért lásd: [e-mailben a számla beolvasása](billing-download-azure-invoice-daily-usage-date.md).
 
-## <a name="adding-users-toohello-billing-reader-role"></a>Felhasználók toohello számlázási olvasó szerepkör hozzáadása
+## <a name="adding-users-to-the-billing-reader-role"></a>Felhasználók hozzáadása a számlázási olvasó szerepkört
 
-hello számlázási olvasó szerepkört a csak olvasási hozzáféréssel toosubscription számlázási adatokat az Azure portálon, és nincs hozzáférési tooservices, például a virtuális gépek és tárfiókok rendelkezik. Rendelje hozzá a hello számlázási olvasó szerepkört toosomeone kell toohello előfizetés számlázási adatok eléréséhez, de nem hello képességét toomanage Azure szolgáltatások. Ez a szerepkör azon egy szervezet számára, akik csak Azure-előfizetések végrehajtani a pénzügyi és költség-kezelés megfelelő.
+A számlázási olvasó szerepkört az előfizetés számlázási adatokat az Azure portál csak olvasási hozzáféréssel, és nem érhető el a szolgáltatásokat, például virtuális gépek és tárfiókok rendelkezik. A számlázási olvasó szerepkör hozzárendelése valaki hozzá kell férnie az előfizetés számlázási adatokat, de nem képes kezelni az Azure-szolgáltatásokhoz. Ez a szerepkör azon egy szervezet számára, akik csak Azure-előfizetések végrehajtani a pénzügyi és költség-kezelés megfelelő.
 
-1. Jelölje ki az előfizetését a hello [előfizetések panel](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade) Azure-portálon.
+1. Válassza ki az előfizetést a [előfizetések panel](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade) Azure-portálon.
 
 1. Válassza ki **hozzáférés-vezérlés (IAM)** majd **Hozzáadás**.
 
-    ![Képernyőfelvétel IAM hello előfizetés panelen](./media/billing-manage-access/select-iam.PNG)
+    ![Képernyőfelvétel az előfizetés panelen IAM](./media/billing-manage-access/select-iam.PNG)
 
-1. Válasszon **számlázási olvasó** a hello **Szerepkörválasztás** lap.
+1. Válasszon **számlázási olvasó** a a **Szerepkörválasztás** lap.
 
-    ![Képernyőfelvétel a hello helyi menü Nézet számlázási olvasó](./media/billing-manage-access/select-roles.PNG)
+    ![Képernyőfelvétel a helyi menü Nézet számlázási olvasó](./media/billing-manage-access/select-roles.PNG)
 
-1. Írja be az üdvözlő e-mail hello felhasználói tooinvite szeretné, majd kattintson a **OK** toosend hello meghívó.
+1. Írja be az e-mailt a meghívót, majd kattintson a kívánt felhasználó **OK** a meghívó elküldésére.
 
-    ![Képernyőkép a tooenter e-mail tooinvite valaki](./media/billing-manage-access/add-user.PNG)
+    ![Adja meg e-mail címét meghívni a képernyőkép](./media/billing-manage-access/add-user.PNG)
 
-1. Kövesse a témakör utasításait: hello a meghívás e-mail toolog a, a számlázási olvasó.
+1. Kövesse a meghívott felhasználó e-mailben szereplő utasításokat Jelentkezzen be egy számlázási olvasó.
 
-    ![Képernyőkép a számlázási olvasó hello mit láthatnak a Azure-portálon](./media/billing-manage-access/billing-reader-view.png)
+    ![Képernyőkép a számlázási olvasó csoportszűrést Azure-portálon](./media/billing-manage-access/billing-reader-view.png)
 
 > [!NOTE]
-> hello számlázási olvasó a szolgáltatás jelenleg előzetes verzióban érhető és egyelőre nem támogatják a vállalati (EA) előfizetések vagy nem globális felhők.
+> A számlázási olvasó jelenleg előzetes verzióban érhető vagy szolgáltatás egyelőre nem támogatják a vállalati (EA) előfizetések vagy nem globális felhők.
 
-## <a name="adding-users-tooother-roles"></a>Felhasználók tooother szerepkörök hozzáadása
+## <a name="adding-users-to-other-roles"></a>Felhasználók más szerepkörök hozzáadása
 
-Más szerepkörök, például a tulajdonos vagy közreműködő szerepkörrel, a felhasználók férhetnek hozzá csak számlázási adatokat, de az Azure-szolgáltatásokat is. toomanage ezeket a szerepköröket, lásd: [kezelése hello előfizetés vagy szolgáltatások hozzáadása vagy módosítása Azure-rendszergazdai szerepkörök](billing-add-change-azure-subscription-administrator.md).
+Más szerepkörök, például a tulajdonos vagy közreműködő szerepkörrel, a felhasználók férhetnek hozzá csak számlázási adatokat, de az Azure-szolgáltatásokat is. Ezek a szerepkörök kezeléséhez, tekintse meg a [hozzáadása vagy módosítása, hogy az előfizetés vagy a szolgáltatások kezelése az Azure rendszergazdai szerepkörök](billing-add-change-azure-subscription-administrator.md).
 
-## <a name="who-can-access-hello-account-centerhttpsaccountwindowsazurecom"></a>Hello hozzáférő felhasználók [Account Center](https://account.windowsazure.com)?
+## <a name="who-can-access-the-account-centerhttpsaccountwindowsazurecom"></a>Ki férhet hozzá a [Account Center](https://account.windowsazure.com)?
 
-Csak a Fiókadminisztrátor hello toohello Account center bejelentkezhet. hello Fiókadminisztrátort hello előfizetés hello jogi tulajdonosa. Alapértelmezés szerint a hello személy, aki regisztrált a vagy vásárolt Azure-előfizetés hello hello fiók rendszergazdájához,, kivéve, ha hello [előfizetés tulajdonjogának áthelyezése történt](billing-subscription-transfer.md) toosomebody más. hello Fiókadminisztrátort előfizetések létrehozása, előfizetések megszakíthatja, módosítsa hello számlázási címét az előfizetéshez, és hello előfizetés hozzáférési házirendek kezelése.
+Csak a Fiókadminisztrátor az Account center bejelentkezhet. A Fiókadminisztrátor az előfizetés jogi tulajdonosa. Alapértelmezés szerint a a személy, aki regisztrált a vagy vásárolt Azure-előfizetést a Fiókadminisztrátor, kivéve, ha a [előfizetés tulajdonjogának áthelyezése történt](billing-subscription-transfer.md) valaki másnak. A Fiókadminisztrátor előfizetések létrehozása, előfizetések megszakíthatja, módosítsa az előfizetés számlázási címét, és hozzáférési házirendek az előfizetés kezelése.
 
 ## <a name="need-help-contact-support"></a>Segítség Forduljon a támogatási szolgálathoz.
 
-Ha további kérdései további, [forduljon a támogatási szolgálathoz](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) a probléma megoldódik gyorsan tooget.
+Ha további kérdései további, [forduljon a támogatási szolgálathoz](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) a probléma elhárítva gyors eléréséhez.

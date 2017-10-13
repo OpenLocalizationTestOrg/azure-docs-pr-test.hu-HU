@@ -1,6 +1,6 @@
 ---
-title: "Active Directory-alkalmazást a regisztráció aaaAzure |} Microsoft Docs"
-description: "Ez a cikk ismerteti, hogyan toouse hello Azure portál tooregister egy alkalmazás az Azure Active Directoryval"
+title: "Az Azure Active Directory-alkalmazás regisztrációja |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan használható az Azure-portál alkalmazás regisztrálása az Azure Active Directory"
 services: active-directory
 documentationcenter: .net
 author: priyamohanram
@@ -15,50 +15,50 @@ ms.topic: article
 ms.date: 07/20/2017
 ms.author: priyamo
 ms.reviewer: elisol
-ms.openlocfilehash: 0134e299dcc53919a6f789a0878a1cf64a8e244d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2f2817688beb2028fd0bba8522827d87a0097f21
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="register-your-application-with-your-azure-active-directory-tenant"></a>Az alkalmazás regisztrálása az Azure Active Directory-bérlő
 
-Használható az Azure portál tooregister hello az alkalmazás az Azure Active Directory (Azure AD) bérlő. Hello alkalmazás Azonosítóját hoz létre, és lehetővé teszi a tooreceive jogkivonatokat.
+Az Azure portál segítségével regisztrálhatja alkalmazását az Azure Active Directory (Azure AD) bérlő. Az alkalmazás Azonosítóját hoz létre, és lehetővé válik a jogkivonatokat fogadni.
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
-2. Válassza ki az Azure AD-bérlő fiókja hello jobb felső sarkában hello lap választásával.
-3. Hello bal oldali navigációs ablaktábláján válassza **több szolgáltatások**, kattintson a **App regisztrációk**, és kattintson a **Hozzáadás**.
-4. Hello utasításokat követve, és hozzon létre egy új alkalmazást. Ha szeretné, hogy a webes alkalmazások és natív alkalmazások példák, tekintse meg a [quickstarts](active-directory-developers-guide.md).
-  * A webes alkalmazásokhoz, adja meg a hello **bejelentkezési URL-cím**, hello alap URL-CÍMÉT az alkalmazásához. Ez az adott felhasználó tud egyszerre bejelentkezni például `http://localhost:12345`.
-<!--TODO: add once App ID URI is configurable: hello **App ID URI** is a unique identifier for your application. hello convention is toouse `https://<tenant-domain>/<app-name>`, e.g. `https://contoso.onmicrosoft.com/my-first-aad-app`-->
-  * Natív alkalmazások esetén adja meg a **átirányítási URI-**, mely az Azure AD tooreturn token válaszok használja. Adjon meg egy értéket adott tooyour alkalmazást. például`http://MyFirstAADApp`
-5. Miután végrehajtotta a regisztráció, az Azure AD rendeli hozzá az alkalmazás egy egyedi ügyfél-azonosítókra, hello azonosítót.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+2. Válassza ki az Azure AD-bérlő fiókja kiválasztja az oldal jobb felső sarkában.
+3. A bal oldali navigációs ablaktábláján válassza **több szolgáltatások**, kattintson a **App regisztrációk**, és kattintson a **hozzáadása**.
+4. Kövesse az utasításokat az új alkalmazás létrehozásához. Ha szeretné, hogy a webes alkalmazások és natív alkalmazások példák, tekintse meg a [quickstarts](active-directory-developers-guide.md).
+  * A webes alkalmazásokhoz, adja meg a **bejelentkezési URL-cím**, az alap URL-CÍMÉT az alkalmazásához. Ez az adott felhasználó tud egyszerre bejelentkezni például `http://localhost:12345`.
+<!--TODO: add once App ID URI is configurable: The **App ID URI** is a unique identifier for your application. The convention is to use `https://<tenant-domain>/<app-name>`, e.g. `https://contoso.onmicrosoft.com/my-first-aad-app`-->
+  * Natív alkalmazások esetén adja meg a **átirányítási URI-**, az Azure AD vissza a token válaszok használja. Adjon meg egy, az alkalmazáshoz tartozó értéket, például: `http://MyFirstAADApp`
+5. Miután végrehajtotta a regisztráció, az Azure AD rendeli hozzá az alkalmazás egyedi ügyfél-azonosítókra, az alkalmazás azonosítóját.
 
-## <a name="update-application-settings-from-hello-azure-portal"></a>Hello Azure portálra az alkalmazás beállításainak frissítése
+## <a name="update-application-settings-from-the-azure-portal"></a>Azure-portálról Alkalmazásbeállítások frissítése
 
-Könnyen módosíthatja egy meglévő alkalmazást a beállításokat a hello Azure-portálon. Például érdemes lehet tooconfigure egy válasz URL-CÍMEN, amely van, ahol az Azure AD kibocsát token válaszokat. Akkor is érdemes lehet tooconfigure engedélyek tooother alkalmazások, a példány tooallow az alkalmazás tooaccess hello Microsoft Graph API-val. Ehhez minden keresztül hello alkalmazás beállításait tartalmazó lap.
+Könnyen módosíthatja egy meglévő alkalmazás beállításait az Azure portál használatával. Érdemes lehet például egy válasz URL-CÍMEN, amely van, ahol az Azure AD kibocsát token válaszok konfigurálásához. Is érdemes lehet például konfigurálja az egyéb alkalmazások engedélyei ahhoz, hogy az alkalmazás a Microsoft Graph API eléréséhez. Ez az alkalmazás beállításait tartalmazó lap keresztül teheti meg.
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
-2. Válassza ki az Azure AD-bérlő fiókja hello jobb felső sarkában hello lap választásával.
-3. Hello bal oldali navigációs ablaktábláján válassza **több szolgáltatások**, kattintson a **App regisztrációk**, és válassza ki az alkalmazás hello listáról.
-4. Kattintson a **beállítások** tooopen hello alkalmazás hello beállítások oldalára.
-  * Hello **tulajdonságok** lap lehetővé teszi, hogy módosítsa hello általános adatokat hello alkalmazáshoz. Ide tartoznak hello alkalmazásnév, hello bejelentkezési URL-cím és hello kijelentkezési URL-cím.
-  * Hello **válasz URL-címek** lap lehetővé teszi a tooadd egy válasz URL-CÍMEN, amely ahol küld az Azure AD a token válaszokat.
-  * Hello **tulajdonosok** lap lehetővé teszi a tooadd alkalmazástulajdonosok.
-  * Hello **engedélyek** lap lehetővé teszi a hello app tooconfigure engedélyeit. Például tooaccess hello Microsoft Graph API-t, kattintson **Hozzáadás** válassza **Microsoft Graph** hello API-választó, majd válassza hello engedély szükséges, például **címtáradatok olvasása** .
-  * Hello **kulcsok** lap lehetővé teszi a tooadd alkalmazás titkos kulcsok. hello titkos kulcs csak akkor látható, egyszer a létrehozás után azonnal ezért győződjön meg arról, hogy toocopy azt további használatra.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+2. Válassza ki az Azure AD-bérlő fiókja kiválasztja az oldal jobb felső sarkában.
+3. A bal oldali navigációs ablaktábláján válassza **több szolgáltatások**, kattintson a **App regisztrációk**, és válassza ki az alkalmazást a listából.
+4. Kattintson a **beállítások** kattintva nyissa meg az alkalmazás beállításait tartalmazó oldalt.
+  * A **tulajdonságok** lap lehetővé teszi, hogy módosítsa az alkalmazás általános adatokat. Ez magában foglalja az alkalmazás nevét, a bejelentkezési URL-cím és a kijelentkezési URL-CÍMÉT.
+  * A **válasz URL-címek** lap lehetővé teszi egy válasz URL-CÍMEN, amely ahol küld az Azure AD a token válaszokat.
+  * A **tulajdonosok** lap lehetővé teszi az alkalmazástulajdonosok.
+  * A **engedélyek** lap lehetővé teszi az alkalmazás-engedélyek konfigurálása. Például a Microsoft Graph API eléréséhez kattintson **Hozzáadás** válassza **Microsoft Graph** az API-választó, majd válassza az engedély szükséges, például **címtáradatok olvasása**.
+  * A **kulcsok** lap lehetővé teszi az alkalmazás titkos kulcsok. A titkos kulcs csak jelenik meg, miután a létrehozás után azonnal Igen ügyeljen rá, hogy másolja a további használja.
 
-## <a name="use-hello-inline-manifest-editor"></a>Hello beágyazott jegyzék szerkesztő használata
+## <a name="use-the-inline-manifest-editor"></a>A beágyazott jegyzék szerkesztő használata
 
-Hello beágyazott jegyzék szerkesztő toomodify egyes alkalmazás tulajdonságait, amelyek nem érhetők el közvetlenül hello Azure-portálon is használhatja. Például használhatja toomodify hello alkalmazás App ID URI tooenable hello OAuth2.0 implicit engedélyezési folyamat hello alapértelmezett engedélyezési helyett engedélyezése vagy folyamata.
+A beágyazott jegyzék szerkesztő segítségével bizonyos alkalmazás tulajdonságait, amelyek nem érhetők el közvetlenül az Azure-portálon módosíthatja. Például használhatja az alkalmazás App ID URI módosítására, vagy ahhoz, hogy a OAuth2.0 implicit engedélyezési folyamat helyett az alapértelmezett hitelesítésikód-támogatás folyamata.
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
-2. Válassza ki az Azure AD-bérlő fiókja hello jobb felső sarkában hello lap választásával.
-3. Hello bal oldali navigációs ablaktábláján válassza **több szolgáltatások**, kattintson a **App regisztrációk**, és válassza ki az alkalmazás hello listáról.
-4. Kattintson a **Manifest** a hello alkalmazás tooopen hello beágyazott jegyzék szerkesztő.
-5. Közvetlenül hogy módosítások toohello manifest, és mentse azt, amikor készen áll. Alternatív megoldásként letöltheti a jegyzék tooopen hello azt a kedvenc szerkesztő és a feltöltése hello a jegyzékfájl frissítése.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+2. Válassza ki az Azure AD-bérlő fiókja kiválasztja az oldal jobb felső sarkában.
+3. A bal oldali navigációs ablaktábláján válassza **több szolgáltatások**, kattintson a **App regisztrációk**, és válassza ki az alkalmazást a listából.
+4. Kattintson a **Manifest** az alkalmazás oldalról a jegyzék beágyazott-szerkesztő megnyitásához.
+5. Közvetlenül a jegyzékfájl módosítja, és mentheti, ha készen áll. Alternatív megoldásként letöltheti a a jegyzékfájl nyissa meg a kedvenc szerkesztőben, és a frissített jegyzékfájl feltöltéséhez.
 
 ## <a name="next-steps"></a>Következő lépések
 
-1. Tekintse meg a hello [Quickstarts](active-directory-developers-guide.md) részletes forgatókönyvek végrehajtása az Azure AD hitelesítési kérelmek számára.
+1. Tekintse meg a [Quickstarts](active-directory-developers-guide.md) részletes forgatókönyvek végrehajtása az Azure AD hitelesítési kérelmek számára.
 2. Tekintse meg a teljes listáját a mintakódok [GitHub](https://github.com/azure-samples).

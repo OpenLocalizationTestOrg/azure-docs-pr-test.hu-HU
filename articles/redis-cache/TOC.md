@@ -12,7 +12,6 @@
 # Bevezetés
 ##[ASP.NET](cache-web-app-howto.md)
 ##[.NET](cache-dotnet-how-to-use-azure-redis-cache.md)
-##[WordPress](../app-service-web/web-sites-connect-to-redis-using-memcache-protocol.md?toc=%2fazure%2fredis-cache%2ftoc.json)
 ##[Node](cache-nodejs-get-started.md)
 ##[Java](cache-java-get-started.md)
 ##[Python](cache-python-get-started.md)
@@ -25,7 +24,7 @@
 ###[A gyorsítótár védelme virtuális hálózattal](cache-how-to-premium-vnet.md)
 ###[A gyorsítótár elosztása klaszterezéssel](cache-how-to-premium-clustering.md)
 ## Automatizálás
-###[Üzembe helyezés és kezelés a Powershell-lel](cache-howto-manage-redis-cache-powershell.md)
+###[Üzembe helyezés és kezelés az Azure PowerShell használatával](cache-howto-manage-redis-cache-powershell.md)
 ###[Üzembe helyezés és kezelés az Azure parancssori felület használatával](cli-samples.md)
 ###[Redis Cache gyorsítótár üzembe helyezése](cache-redis-cache-arm-provision.md)
 ###[Webalkalmazás üzembe helyezése a Redis Cache használatával](cache-web-app-arm-with-redis-cache-provision.md)
@@ -33,25 +32,25 @@
 ###[Munkamenetállapot-szolgáltató](cache-aspnet-session-state-provider.md)
 ###[Kimeneti gyorsítótár-szolgáltató](cache-aspnet-output-cache-provider.md)
 ## Kezelés
-###[Hello portál konfigurálása](cache-configure.md)
+###[Konfigurálás az Azure Portalon](cache-configure.md)
 ###[Georeplikáció konfigurálása](cache-how-to-geo-replication.md)
 ###[Adatok importálása és exportálása](cache-how-to-import-export-data.md)
 ###[Újraindítás](cache-administration.md#reboot)
 ###[Frissítések ütemezése](cache-administration.md#schedule-updates)
 ## Figyelés és hibaelhárítás
-###[Hello portálon figyelése](cache-how-to-monitor.md)
+###[Figyelés az Azure Portalon](cache-how-to-monitor.md)
 ###[Gyorsítótárral kapcsolatos problémák megoldása](cache-how-to-troubleshoot.md)
 ###[Riasztások beállítása kivételekhez](cache-how-to-monitor.md#operations-and-alerts)
 ## Méretezés
-###[Frissítés tooa különböző mérete és szint](cache-how-to-scale.md)
-###[A Redis-fürt tooscale be- / kimeneti használata](cache-how-to-premium-clustering.md)
+###[Módosítás más méretre és szintre](cache-how-to-scale.md)
+###[Vertikális és horizontális leskálázás Redis-fürttel](cache-how-to-premium-clustering.md)
 ## Integráció a Spring Boottal
 ###[Spring Boot inicializáló alkalmazás használata Redis Cache-sel](cache-java-spring-boot-initializer-with-redis-cache.md)
 
 # Referencia
 ## [Kódminták](https://azure.microsoft.com/resources/samples/?service=redis-cache)
-## [PowerShell](/powershell/module/azurerm.rediscache)
-## [Azure CLI 2.0 előzetes verzió](/cli/azure/redis)
+## [Azure PowerShell](/powershell/module/azurerm.rediscache)
+## [Azure CLI előzetes verzió](/cli/azure/redis)
 ## [.NET](/dotnet/api/microsoft.azure.management.redis)
 ## [Java](/java/api/com.microsoft.azure.management.redis._redis_cache)
 ## [Redis ügyfelek](http://redis.io/clients)

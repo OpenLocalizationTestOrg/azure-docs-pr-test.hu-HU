@@ -1,6 +1,6 @@
 ---
-title: az Azure Service Bus alapjai aaaOverview |} Microsoft Docs
-description: "Egy bevezető toousing Service Bus tooconnect Azure-alkalmazások tooother szoftver."
+title: "Az Azure Service Bus alapjainak áttekintése | Microsoft Docs"
+description: "Bevezetés a Service Bus használatába az Azure-alkalmazások más szoftverekhez való csatlakoztatásához."
 services: service-bus-messaging
 documentationcenter: .net
 author: sethmanheim
@@ -14,109 +14,109 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 06/15/2017
 ms.author: sethm
-ms.openlocfilehash: 1abd5cf310ef06ba35e1e2489a7c0a07e1797736
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: af8b10f0a460e695a39879718174e81f78934ef8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-service-bus"></a>Azure Service Bus
 
-Hogy egy alkalmazás vagy szolgáltatás hello felhőben vagy helyszínen fut, gyakran kell más alkalmazásokkal vagy szolgáltatásokkal rendelkező toointeract. egy körben használható megoldást toodo tooprovide a, a Microsoft Azure-ajánlatok Service Bus. Ez a cikk ellenőrzi, hogy az ezt a technológiát, mi az, és miért érdemes toouse leíró azt.
+Függetlenül attól, hogy egy alkalmazás vagy szolgáltatás a felhőben vagy a helyszínen fut, gyakran kell más alkalmazásokkal vagy szolgáltatásokkal interakcióba lépnie. A Microsoft Azure ehhez a Service Bus révén kínál széles körben használható megoldást. Ez a témakör áttekintést nyújt erről a technológiáról, ismerteti, mi is ez pontosan, és miért érdemes használni.
 
 ## <a name="service-bus-fundamentals"></a>Service Bus fundamentals (A Service Bus alapjai)
 
-A különféle helyzetekben különféle stílusú kommunikáció lehet szükséges. Előfordulhat Ha az alkalmazások egy egyszerű üzenetsoron keresztül üzeneteket küldjön és fogadjon egy hello legjobb megoldás. Más helyzetekben a hagyományos üzenetsorok nem elegendőek, és a közzétételi-előfizetési mechanizmus a jobb megoldás. Egyes esetekben mindössze kapcsolatra van szükség az alkalmazások között, és nincs szükség üzenetsorokra. A Service Bus mindhárom lehetőséget biztosítja, az alkalmazások toointeract engedélyezése több különböző módon.
+A különféle helyzetekben különféle stílusú kommunikáció lehet szükséges. Néha az a legjobb megoldás, ha az alkalmazások egy egyszerű üzenetsoron keresztül küldik és fogadják az üzeneteket. Más helyzetekben a hagyományos üzenetsorok nem elegendőek, és a közzétételi-előfizetési mechanizmus a jobb megoldás. Egyes esetekben mindössze kapcsolatra van szükség az alkalmazások között, és nincs szükség üzenetsorokra. A Service Bus mindhárom lehetőséget biztosítja, lehető téve az alkalmazások számára a különféle módokon zajló interakciót.
 
-A Service Bus egy több-bérlős felhőszolgáltatás, ami azt jelenti, hogy hello szolgáltatást több felhasználó által közösen. Minden felhasználó, például az alkalmazásfejlesztő, létrehoz egy *névtér*, majd határozza meg az adott névtérben szükséges hello kommunikációs mechanizmus. Az 1. ábra ezt az architektúrát mutatja be.
+A Service Bus egy több-bérlős felhőszolgáltatás, ami azt jelenti, hogy a szolgáltatást több felhasználó megosztva használja. Minden egyes felhasználó, például az alkalmazásfejlesztő, létrehoz egy *névteret*, majd meghatározza a szükséges kommunikációs mechanizmusokat az adott névtérben. Az 1. ábra ezt az architektúrát mutatja be.
 
 ![][1]
 
-**1. ábra: A Service Bus egy több-bérlős szolgáltatást alkalmazások hello felhő keresztül csatlakozó biztosít.**
+**1. ábra: A Service Bus egy több-bérlős szolgáltatást kínál az alkalmazások összekapcsolására a felhőn keresztül.**
 
-Egy adott névtéren belül a négy különböző kommunikációs mechanizmus egy vagy több példányát használhatja, amelyek mindegyike különböző módokon kapcsol össze alkalmazásokat. hello lehetőségek közül választhat:
+Egy adott névtéren belül a négy különböző kommunikációs mechanizmus egy vagy több példányát használhatja, amelyek mindegyike különböző módokon kapcsol össze alkalmazásokat. Az alábbiak közül választhat:
 
 * *Üzenetsorok*, amelyek egyirányú kommunikációt tesznek lehetővé. Az egyes üzenetsorok *közvetítőként* működnek, amely az üzeneteket tárolja a fogadásukig. Mindegyik üzenetet egyetlen fogadó fogadja.
-* *Témakörök*, amelyek egyirányú kommunikációt tesznek lehetővé *előfizetések* segítségével – egy témakör több előfizetéssel is rendelkezhet. Az üzenetsorokhoz hasonlóan a témakörök is közvetítőként, de egyes előfizetések használhatnak, a szűrő tooreceive üzenetek adott feltételeknek.
-* *Továbbítók*, amelyek kétirányú kommunikációt tesznek lehetővé. Az üzenetsoroktól és témaköröktől eltérően a továbbító nem tárolja átvitel közben az üzeneteket, azaz nem működik közvetítőként. Ehelyett egyszerűen továbbítja azokat a cél alkalmazás toohello.
+* *Témakörök*, amelyek egyirányú kommunikációt tesznek lehetővé *előfizetések* segítségével – egy témakör több előfizetéssel is rendelkezhet. Az üzenetsorokhoz hasonlóan a témakörök is közvetítőként szolgálnak, azonban az egyes előfizetések szűrőt használhatnak, amelynek révén csak az adott feltételeknek megfelelő üzenetek fogadása történik meg.
+* *Továbbítók*, amelyek kétirányú kommunikációt tesznek lehetővé. Az üzenetsoroktól és témaköröktől eltérően a továbbító nem tárolja átvitel közben az üzeneteket, azaz nem működik közvetítőként. Ehelyett egyszerűen továbbítja azokat a célalkalmazás számára.
 
-Amikor létrehoz egy üzenetsort, témakört vagy továbbítót, el kell neveznie azt. Kombinálva így a névtér, ez a név egyedi azonosítót hoz létre hello objektum. Alkalmazások adja meg a név tooService Bus, majd az adott várólista, a témakörben vagy a továbbítási toocommunicate egymással. 
+Amikor létrehoz egy üzenetsort, témakört vagy továbbítót, el kell neveznie azt. A névtér nevével kombinálva így egyedi azonosítót hoz létre az objektum számára. Az alkalmazások megadhatják ezt a nevet a Service Bus számára, majd az adott üzenetsor, témakör vagy továbbító használatával kommunikálhatnak egymással. 
 
-Ezek hello továbbítási forgatókönyv objektumokat toouse, a Windows alkalmazások használhatják a Windows Communication Foundation (WCF). Ez a szolgáltatás a [WCF Relay](../service-bus-relay/relay-what-is-it.md). Az üzenetsorok és a témakörök esetében a Windows-alkalmazások a Service Bus által definiált üzenettovábbítási API-kat használhatják. toomake ezeket könnyebb toouse objektumok nem Windows alkalmazásokból, a Microsoft SDK-kat, Java, Node.js és egyéb nyelvek biztosít. Az üzenetsorokat és a témaköröket [REST API-k](/rest/api/servicebus/) használatával is elérheti HTTP(s)-en keresztül. 
+Ezen objektumok valamelyikének a Relay forgatókönyvben történő használatához a Windows-alkalmazások a Windows Communication Foundation (WCF) szolgáltatást használhatják. Ez a szolgáltatás a [WCF Relay](../service-bus-relay/relay-what-is-it.md). Az üzenetsorok és a témakörök esetében a Windows-alkalmazások a Service Bus által definiált üzenettovábbítási API-kat használhatják. Az objektumok nem Windows-alkalmazásokból való használatának egyszerűbbé tétele érdekében a Microsoft SDK-kat biztosít a Java, Node.js és egyéb nyelvekhez. Az üzenetsorokat és a témaköröket [REST API-k](/rest/api/servicebus/) használatával is elérheti HTTP(s)-en keresztül. 
 
-Fontos, még akkor is, ha a Service Bus maga toounderstand hello felhőben fut (Ez azt jelenti, hogy a Microsoft Azure adatközpontjaiban), azt használó alkalmazások bárhol futhatnak. A Service Bus tooconnect alkalmazásokat futtató Azure, például vagy a saját adatközpontjában futó alkalmazásokat is használhat. Is használhatja tooconnect Azure vagy egy másik futó alkalmazást egy helyszíni alkalmazással vagy táblagépek és telefonok felhő platform. Tooconnect akár háztartási készülékeket, érzékelőket, és egyéb eszközök tooa központi alkalmazáshoz vagy más tooone. A Service Bus egy kommunikációs mechanizmus, amely lényegében bárhonnan elérhető hello felhőben. A használatának módja függ milyen a alkalmazásokat kell toodo.
+Fontos megérteni, hogy jóllehet a Service Bus maga a felhőben fut (azaz a Microsoft Azure adatközpontjaiban), a szolgáltatást igénybe vevő alkalmazások bárhol futhatnak. A Service Bus használatával összekapcsolhat például az Azure-ban vagy a saját adatközpontjában futó alkalmazásokat. A szolgáltatással összekapcsolhat az Azure-ban vagy más felhőplatformon futó alkalmazást egy helyszíni alkalmazással vagy táblagépekkel és telefonokkal is. Akár háztartási készülékeket, érzékelőket és egyéb eszközöket is csatlakoztathat egy központi alkalmazáshoz vagy egymáshoz. A Service Bus egy olyan kommunikációs mechanizmus a felhőben, amely lényegében bárhonnan elérhető. A használatának módja attól függ, hogy milyen célt szolgálnak az alkalmazások.
 
 ## <a name="queues"></a>Üzenetsorok
 
-Tegyük fel, hogy úgy dönt, hogy tooconnect két alkalmazás egy Service Bus-üzenetsorba. A 2. ábra ezt a helyzetet mutatja be.
+Tegyük fel, hogy két alkalmazás egy Service Bus-üzenetsorral való csatlakoztatása mellett dönt. A 2. ábra ezt a helyzetet mutatja be.
 
 ![][2]
 
 **2. ábra: A Service Bus-üzenetsorok egyirányú aszinkron sorkezelést biztosítanak.**
 
-hello folyamat felettébb egyszerű: A küldő egy üzenetet tooa Service Bus-üzenetsorba, és a fogadó egy későbbi időpontban fogadja az üzenetet. Az egyes üzenetsorok rendelkezhetnek egyetlen fogadóval, amint az a 2. ábrán látható. Vagy több alkalmazás is olvashat a hello ugyanazon a várólistán. Hello ez utóbbi esetben minden üzenetet csak egyetlen fogadó olvassa. A csoportos küldési szolgáltatáshoz inkább témakört használjon.
+A folyamat egyszerű: A küldő egy üzenetet küld a Service Bus-üzenetsorba, a fogadó pedig egy későbbi időpontban fogadja az üzenetet. Az egyes üzenetsorok rendelkezhetnek egyetlen fogadóval, amint az a 2. ábrán látható. Esetleg több alkalmazás is olvashat ugyanabból az üzenetsorból. Az utóbbi esetben az egyes üzeneteket csak egyetlen fogadó olvassa. A csoportos küldési szolgáltatáshoz inkább témakört használjon.
 
-Mindegyik üzenet két részből áll: egy sor tulajdonságból, amelyek mindegyike egy kulcs/érték pár, valamint az üzenet hasznos adattartalmából. bináris, text vagy még akkor is, XML hello hasznos lehet. Hogyan mire szolgál attól függ, hogy milyen kérelmet próbált toodo. Például a legutóbbi értékesítésről üzenetet küldő alkalmazás tartalmazhat hello tulajdonságok **értékesítő = "Ava"** és **összeg = 10000**. hello üzenettörzs tartalmazhat aláírt hello értékesítési szerződés beolvasott képét, vagy, ha nincs ilyen, üres marad.
+Mindegyik üzenet két részből áll: egy sor tulajdonságból, amelyek mindegyike egy kulcs/érték pár, valamint az üzenet hasznos adattartalmából. A hasznos adattartalom lehet bináris, szöveges vagy akár XML formátumú is. A használatuk módja attól függ, hogy mire szolgál az alkalmazás. A legutóbbi értékesítésről üzenetet küldő alkalmazás például az **Értékesítő="Ava"** és az **Összeg=10000** tulajdonságot tartalmazhatja. Az üzenettörzs tartalmazhatja az aláírt értékesítési szerződés beolvasott képét, vagy ha nincs ilyen, üres is lehet.
 
-A fogadó kétféleképpen olvashatja az üzeneteket a Service Bus-üzenetsorból. első lehetőség, hello  *[ReceiveAndDelete](/dotnet/api/microsoft.servicebus.messaging.receivemode)*, eltávolítja az üzenetet hello várólistából, és azonnal törli. Ez a beállítás nem egyszerű, de ha hello fogadó összeomlik, mielőtt befejezné az üdvözlő üzenet feldolgozása, üdvözlőüzenetére elvesznek. Az hello várólista lett távolítva, mert más fogadó nem férhet hozzá. 
+A fogadó kétféleképpen olvashatja az üzeneteket a Service Bus-üzenetsorból. Az első lehetőség, a *[ReceiveAndDelete](/dotnet/api/microsoft.servicebus.messaging.receivemode)*, eltávolítja az üzenetet a sorból, és azonnal törli. Ez a lehetőség egyszerű, ha azonban a fogadó összeomlik, mielőtt végzett az üzenet feldolgozásával, az üzenet elveszik. Mivel már el lett távolítva az üzenetsorból, más fogadó nem férhet hozzá. 
 
-második lehetőség hello  *[PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode)*, a probléma megoldásához toohelp célja. Például **ReceiveAndDelete**, egy **PeekLock** olvasási hello várólistából eltávolítja az üzenetet. Üdvözlőüzenetére, azonban nem törli. Ehelyett üdvözlőüzenetére, így láthatatlan tooother fogadók zárolja, majd vár az alábbi három esemény valamelyikének:
+A második lehetőség, a *[PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode)*, ezt a problémát hivatott kiküszöbölni. A **ReceiveAndDelete** lehetőséghez hasonlóan a **PeekLock** olvasás is eltávolítja az üzenetet a sorból. Nem törli azonban az üzenetet. Helyette zárolja, és a többi fogadó számára láthatatlanná teszi, majd vár az alábbi három esemény valamelyikének a bekövetkezésére:
 
-* Ha hello fogadó folyamatok sikeresen hello üzenetet, meghívja [Complete()](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Complete), és hello üzenetsor törli üdvözlőüzenetére. 
-* Hello fogadó úgy dönt, hogy nem tud sikeresen is üdvözlőüzenetére feldolgozni, ha meghívja [Abandon()](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Abandon). hello várólista majd hello zárolási eltávolítja üdvözlőüzenetére, és elérhető tooother fogadók teszi.
-* Ha a fogadó hello ezen módszerek nem konfigurálható időn belül (alapértelmezés szerint 60 másodperc), hello üzenetsor feltételezi, hogy hello fogadó meghibásodott. Ebben az esetben úgy viselkedik, mintha hello fogadó meghívta volna **Abandon**, így az üzenet elérhető tooother fogadók hello.
+* Ha a fogadó sikeresen feldolgozza az üzenetet, meghívja a [Complete()](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Complete) metódust, és az üzenetsor törli az üzenetet. 
+* Ha a fogadó úgy dönt, hogy nem tudja sikeresen feldolgozni az üzenetet, meghívja az [Abandon()](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Abandon) metódust. Az üzenetsor ekkor eltávolítja a zárolást az üzenetről, és elérhetővé teszi a többi fogadó számára.
+* Ha a fogadó egyik metódust sem hívja meg a konfigurált időtartamon belül (alapértelmezés szerint 60 másodperc), az üzenetsor feltételezi, hogy a fogadó meghibásodott. Ebben az esetben úgy viselkedik, mintha a fogadó meghívta volna az **Abandon** metódust, és elérhetővé teszi az üzenetet a többi fogadó számára.
 
-Figyelje meg, mi történhet ebben: hello ugyanazon üzenet kézbesítése kétszer is megtörténhet, akár tootwo különböző fogadónak. A Service Bus-üzenetsorokat használó alkalmazásokat fel kell készíteni erre az esetre. toomake kettős észlelés egyszerűbb, mindegyik üzenet rendelkezik egy egyedi [MessageID](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_MessageId) tulajdonság, amely alapértelmezés szerint mindig fennmarad hello azonos, függetlenül attól, hogy hányszor üdvözlőüzenetére olvasható az üzenetsorból. 
+Figyelje meg, mi történhet ebben az esetben: ugyanazon üzenet kézbesítésére kétszer is sor kerülhet, akár két különböző fogadónak is. A Service Bus-üzenetsorokat használó alkalmazásokat fel kell készíteni erre az esetre. A duplikált üzenetek észlelésének megkönnyítésére mindegyik üzenet rendelkezik egy egyedi [MessageID](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_MessageId) tulajdonsággal, amely alapértelmezés szerint változatlan marad, függetlenül attól, hogy hányszor történt meg az adott üzenet olvasása az üzenetsorból. 
 
-Az üzenetsorok számos helyzetben lehetnek hasznosak. Lehetővé teszik az alkalmazások toocommunicate akkor is, ha mindkettő nem futó hello azonos időben, amelyet a kötegelt és mobilalkalmazások különösen hasznos. A több fogadóval rendelkező üzenetsorok emellett automatikus terheléselosztást is biztosítanak, mivel a küldött üzenetek megoszlanak a fogadók között.
+Az üzenetsorok számos helyzetben lehetnek hasznosak. A használatukkal az alkalmazások akkor is kommunikálhatnak, ha nem egy időben futnak, ami különösen a kötegelt és a mobilalkalmazások esetén praktikus. A több fogadóval rendelkező üzenetsorok emellett automatikus terheléselosztást is biztosítanak, mivel a küldött üzenetek megoszlanak a fogadók között.
 
 ## <a name="topics"></a>Témakörök
 
-Bármennyire hasznosak is, az üzenetsorok nem mindig ideális megoldás a hello. Esetenként célszerűbb Service Bus-témaköröket használni. A 3. ábra ezt az elképzelést mutatja be.
+Bármennyire hasznosak is, az üzenetsorok nem minden esetben bizonyulnak a megfelelő megoldásnak. Esetenként célszerűbb Service Bus-témaköröket használni. A 3. ábra ezt az elképzelést mutatja be.
 
 ![][3]
 
-**3. ábra: Az előfizető alkalmazás hello szűrő alapján, megkaphatja a néhány vagy összes köszönőüzenetei tooa Service Bus-témakörbe küldött.**
+**3. ábra: Az előfizető alkalmazás az általa megadott szűrő alapján a Service Bus-témakörbe küldött üzenetek közül csak néhányat vagy mindegyiket is fogadhatja.**
 
-A *témakör* hasonló számos módon tooa várólistában. Feladók küldhetnek üzeneteket tooa témakörében hello azonos módon, hogy az üzenetek tooa várólista elküldenék, és ezek üzenetek megjelenését hello ugyanaz, mint az üzenetsorok. hello különbség az, hogy a témakörök mindegyik fogadó alkalmazás toocreate engedélyezése a saját *előfizetés* meghatározhat egy *szűrő*. Az előfizető látja csak olyan köszönőüzenetei, amelyek megfelelnek a szűrőnek. A 3. ábrán például egy küldő és egy 3 előfizetővel rendelkező témakör látható, mely előfizetők mindegyike saját szűrővel rendelkezik:
+A *témakörök* sok szempontból hasonlóak az üzenetsorokhoz. A küldők ugyanúgy küldik az üzeneteket a témakörökbe, ahogy az üzenetsorokba, és az üzenetek is ugyanúgy néznek ki, mint az üzenetsorok esetén. A különbség az, hogy a témakörök használatával mindegyik fogadó alkalmazás létrehozhatja saját *előfizetését* egy *szűrő* definiálásával. Az előfizető csak azokat az üzeneteket látja majd, amelyek megfelelnek a szűrőnek. A 3. ábrán például egy küldő és egy 3 előfizetővel rendelkező témakör látható, mely előfizetők mindegyike saját szűrővel rendelkezik:
 
-* 1. előfizető csak a hello tulajdonságot tartalmazó üzeneteket fogad *értékesítő = "Ava"*.
-* 2. előfizető fogadja az üzeneteket, hello tulajdonságot tartalmazó *értékesítő = "Ruby"* és/vagy tartalmaznak egy *összeg* tulajdonsága, amelynek értéke nagyobb, mint 100 000. Lehet, hogy Ruby helyzet hello értékesítési igazgató, mind a saját értékesítéseit, és a személyétől függetlenül minden nagy értékesítési toosee szeretné.
-* 3. előfizető a szűrőt túl állított*igaz*, ami azt jelenti, hogy minden üzenetet megkap. Például lehet, hogy az alkalmazás naplózásért felelős, és ezért kell toosee összes köszönőüzenetei.
+* Az 1. előfizető csak azokat az üzeneteket fogadja, amelyek tartalmazzák az *Értékesítő="Ava"* tulajdonságot.
+* Az 2. előfizető csak azokat az üzeneteket fogadja, amelyek tartalmazzák az *Értékesítő="Ruby"* tulajdonságot és/vagy tartalmaznak egy *Összeg* tulajdonságot, amelynek az értéke nagyobb mint 100 000. Lehet, hogy Ruby az értékesítési igazgató, és szeretné látni a saját értékesítéseit, valamint minden nagy értékű értékesítést az értékesítő személyétől függetlenül.
+* A 3. előfizető a szűrőt *Igaz* értékűre állította, ami azt jelenti, hogy minden üzenetet megkap. Ez az alkalmazás például a naplózásért lehet felelős, és ezért minden üzenetet meg kell kapnia.
 
-Mint az üzenetsorok, előfizetők tooa témakörben olvashatja használatával [ReceiveAndDelete és PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode). Az üzenetsoroktól eltérően azonban egyetlen üzenetben küldött tooa témakör több előfizetéssel is fogadhatja. Ezt a módszert, más néven *közzététel és előfizetés* (vagy *pub/sub*), akkor hasznos, amikor több alkalmazás is érdeklődik hello ugyanazon üzenetek. Hello megfelelő szűrő meghatározásával mindegyik előfizető üzenetfolyamnak, hogy kell-e toosee hello üzenetstream csak hello részét.
+Ahogy az üzenetsorok esetében is, az üzenetek olvasásakor a témakörök előfizetői is választhatnak a [ReceiveAndDelete és a PeekLock mód](/dotnet/api/microsoft.servicebus.messaging.receivemode) között. Az üzenetsoroktól eltérően azonban a témakörökbe küldött egyes üzeneteket több előfizetés is fogadhatja. Ez a gyakran *közzététel és előfizetés* (vagy *pub/sub*) néven ismert megközelítés hasznos, ha több alkalmazás is érdeklődik ugyanazon üzenetek iránt. A megfelelő szűrő meghatározásával mindegyik előfizető az üzenetfolyamnak csak azon részét látja, amelyet látnia kell.
 
 ## <a name="relays"></a>Továbbítók
 
-Az üzenetsorok és a témakörök egyaránt egyirányú aszinkron kommunikációt tesznek lehetővé egy közvetítőn keresztül. A forgalom csak egy irányban folyik, és nincs közvetlen kapcsolat a küldők és a fogadók közt. De mi történik, ha nem szeretné ezt a kapcsolatot? Tegyük fel, hogy az alkalmazások kell tooboth üzeneteket küldjön és fogadjon, vagy esetleg közöttük közvetlen hivatkozást szeretne, és nem kell a broker toostore üzeneteket. tooaddress például a Service Bus forgatókönyvek *továbbítja*, mert a 4. ábrán látható.
+Az üzenetsorok és a témakörök egyaránt egyirányú aszinkron kommunikációt tesznek lehetővé egy közvetítőn keresztül. A forgalom csak egy irányban folyik, és nincs közvetlen kapcsolat a küldők és a fogadók közt. De mi történik, ha nem szeretné ezt a kapcsolatot? Tegyük fel, hogy az alkalmazásainak küldenie és fogadnia is kell üzeneteket, vagy talán közvetlen kapcsolatot szeretne közöttük, és nincs szüksége közvetítőre az üzenetek tárolásához. Az ilyen forgatókönyvek kezeléséhez a Service Bus *továbbítókat* biztosít, amint az a 4. ábrán látható.
 
 ![][4]
 
 **4. ábra: A Service Bus Relay kétirányú szinkron kommunikációt tesz lehetővé az alkalmazások között.**
 
-hello kapcsolatban felmerül a nyilvánvaló kérdés tooask ez: Miért használnék ilyet? Akkor is, ha nincs szükségem üzenetsorokra, miért ellenőrizze a közvetlen interakció helyett csak egy felhőszolgáltatáson keresztül kommunikáljanak az alkalmazások? hello választ ki kell, hogy van szó közvetlenül lehet nehezebb, mint érdemes.
+A továbbítókkal kapcsolatban felmerül a nyilvánvaló kérdés: miért használnék ilyet? Annak ellenére, hogy nincs szükségem üzenetsorokra, miért kommunikáljanak az alkalmazások egy felhőszolgáltatáson keresztül a közvetlen interakció helyett? A válasz az, hogy a közvetlen kommunikáció néha nehezebb, mint gondolná.
 
-Tegyük fel, hogy azt szeretné, hogy a két tooconnect a helyszíni alkalmazások, mindkettő vállalati adatközpontban fut. Mindkét alkalmazás egy tűzfal mögött található, és mindkét adatközpont valószínűleg hálózati címfordítást (NAT) használ. hello tűzfal blokkolja néhány portok, valamint NAT kivételével az összes bejövő adatokat azt jelenti, hogy minden alkalmazáshoz futó hello a gép nem rendelkezik rögzített IP-címnek, amely közvetlenül a külső hello datacenter érhető el. Külön segítség nélkül ezeknek az alkalmazásoknak hello keresztül csatlakozó nyilvános internet jelent problémát.
+Tegyük fel, hogy két helyszíni alkalmazást kíván összekapcsolni, és mindkettő vállalati adatközpontban fut. Mindkét alkalmazás egy tűzfal mögött található, és mindkét adatközpont valószínűleg hálózati címfordítást (NAT) használ. A tűzfal néhány port kivételével az összes porton blokkolja a bejövő adatokat, és a NAT miatt az a gép, amelyen az egyes alkalmazások futnak, nem rendelkezik rögzített IP-címmel, amelyet közvetlenül elérhetne az adatközponton kívülről. Külön segítség nélkül ezeknek az alkalmazásoknak az összekapcsolása a nyilvános interneten keresztül problémás lehet.
 
-A Service Bus Relay használata ezt megkönnyítheti. két irányban keresztüli, minden egyes alkalmazás toocommunicate egy kimenő TCP-kapcsolatot létesít a Service Bus, és nyitva tartja azt. Hello két alkalmazás közötti minden kommunikáció ezeken a kapcsolatokon keresztül halad. Mivel mindegyik kapcsolat létesült a hello adatközponton belül hello tűzfala lehetővé teszi a bejövő forgalom tooeach alkalmazás felé új portok megnyitása nélkül. Ez a megközelítés megkerüli hello NAT miatti problémát, mivel mindegyik alkalmazás állandó végponttal rendelkezik hello felhőben hello kommunikáció során. Keresztül hello továbbítási adatok kicserélésével hello alkalmazások volna egyébként megnehezítenék a kommunikációt hello problémák elkerülése érdekében. 
+A Service Bus Relay használata ezt megkönnyítheti. A továbbítón keresztüli kétirányú kommunikációhoz mindegyik alkalmazás létrehoz egy kimenő TCP-kapcsolatot a Service Busszal, és nyitva tartja azt. A két alkalmazás közötti minden kommunikáció ezeken a kapcsolatokon keresztül történik. Mivel mindegyik kapcsolat az adatközponton belül lett létrehozva, a tűzfal engedélyezi a bejövő forgalmat mindegyik alkalmazás felé, új portok megnyitása nélkül. Ez a megközelítés megkerüli a NAT miatti problémát, mivel mindegyik alkalmazás állandó végponttal rendelkezik a felhőben a kommunikáció során. Az adatoknak a továbbítón keresztüli cseréjével az alkalmazások elkerülhetik azokat a problémákat, amelyek egyébként megnehezítenék a kommunikációt. 
 
-toouse Service Bus továbbítja, akkor az alkalmazások hello Windows Communication Foundation (WCF). A Service Bus, melyek a Windows-alkalmazások toointeract keresztül egyszerű WCF-kötéseket biztosít. Alkalmazásokat, amelyek már használják a WCF is általában adja meg az egyik ilyen kötést, majd beszélgetés tooeach más továbbítón keresztül. Az üzenetsoroktól és témaköröktől eltérően a továbbítók használata nem Windows alkalmazásokból – bár lehetséges – némi programozást igényel, mivel nem állnak rendelkezésre szabványos könyvtárak.
+A Service Bus-továbbítók használatához az alkalmazásoknak a Windows Communication Foundation (WCF) szolgáltatásra kell támaszkodniuk. A Service Bus WCF-kötéseket biztosít, amelyek segítségével a Windows-alkalmazások egyszerűen kommunikálhatnak a továbbítókon keresztül. Azon alkalmazásoknak, amelyek már használják a WCF-et, általában elegendő megadniuk az egyik ilyen kötést ahhoz, hogy kommunikálhassanak egymással Relayen keresztül. Az üzenetsoroktól és témaköröktől eltérően a továbbítók használata nem Windows alkalmazásokból – bár lehetséges – némi programozást igényel, mivel nem állnak rendelkezésre szabványos könyvtárak.
 
-Az üzenetsoroktól és témaköröktől eltérően az alkalmazások nem hoznak létre kifejezetten továbbítókat. Ehelyett tooreceive üzenetek szándékozó alkalmazás TCP-kapcsolatot a Service busszal létesít, amikor a továbbító automatikusan létrejön. Ha a hello kapcsolat megszakad, hello továbbítási törlődik. egy adott hallgató, a Service Bus által létrehozott egy alkalmazás toofind hello továbbítási tooenable egy jegyzéket biztosít, amely lehetővé teszi az alkalmazások toolocate megtalálhatják név szerint.
+Az üzenetsoroktól és témaköröktől eltérően az alkalmazások nem hoznak létre kifejezetten továbbítókat. Ehelyett, amikor egy üzeneteket fogadni szándékozó alkalmazás TCP-kapcsolatot létesít a Service Busszal, a rendszer automatikusan létrehoz egy továbbítót. A kapcsolat megszakadásakor a rendszer törli a továbbítót. Annak érdekében, hogy egy alkalmazás megtaláljon egy adott hallgató által létrehozott továbbítót, a Service Bus egy jegyzéket biztosít, amelyben az alkalmazások név alapján megtalálhatják a továbbítót.
 
-Továbbítók is hello ideális megoldás, ha közvetlen kommunikációra az alkalmazások között van szüksége. Vegyük például egy légitársaság foglalási rendszerét, amely egy olyan helyszíni adatközpontban fut, amelynek elérhetőnek kell lennie bejelentkezési pultokról, mobileszközökről és egyéb számítógépekről. Ezek a rendszerek a futó alkalmazások hello felhő toocommunicate, a Service Bus-továbbítók támaszkodhat, amikor csak lehetséges, hogy fut.
+A továbbító a megfelelő megoldás, ha közvetlen kommunikációra van szükség az alkalmazások között. Vegyük például egy légitársaság foglalási rendszerét, amely egy olyan helyszíni adatközpontban fut, amelynek elérhetőnek kell lennie bejelentkezési pultokról, mobileszközökről és egyéb számítógépekről. Az ezeken a rendszereken futó alkalmazások Service Bus Relayeket használhatnak a felhőben a kommunikációhoz, függetlenül attól, hogy hol futnak.
 
 ## <a name="summary"></a>Összefoglalás
 
-Az alkalmazások összekapcsolása mindig az, hogy a teljes megoldások kialakításának része, és hello számos forgatókönyv esetén van szükség az alkalmazások és szolgáltatások toocommunicate egymással értéke tooincrease további alkalmazások és eszközök vannak csatlakoztatott toohello internet. Felhőalapú technológiákat biztosítva elérése érdekében az üzenetsorok, témakörök és továbbítók a kommunikáció, a Service Bus célja toomake az alapvető fontosságú funkciót könnyebben tooimplement és szélesebb körben elérhetővé.
+Az alkalmazások összekapcsolása mindig is részét képezte a teljes megoldások összeállításának, és az olyan forgatókönyvek száma, amelyekben az alkalmazásoknak és szolgáltatásoknak kommunikálniuk kell egymással, óhatatlanul nőni fog, ahogy egyre több alkalmazás és eszköz csatlakozik az internetre. A Service Bus célja az, hogy ezt az alapvető fontosságú funkciót könnyebben implementálhatóvá és szélesebb körben elérhetővé tegye azáltal, hogy felhőalapú technológiákat biztosít a kommunikációhoz az üzenetsorok, témakörök és Relayek révén.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Most, hogy megismerte az Azure Service Bus alapjai hello, kövesse az alábbi hivatkozások további toolearn.
+Most, hogy megismerte az Azure Service Bus alapjait, az alábbi hivatkozásokat követve olvashat további információkat.
 
-* Hogyan toouse [Service Bus-üzenetsorok](service-bus-dotnet-get-started-with-queues.md)
-* Hogyan toouse [Service Bus-témakörök](service-bus-dotnet-how-to-use-topics-subscriptions.md)
-* Hogyan toouse [Service Bus-továbbító](../service-bus-relay/service-bus-dotnet-how-to-use-relay.md)
+* A [Service Bus-üzenetsorok](service-bus-dotnet-get-started-with-queues.md) használata
+* A [Service Bus-témakörök](service-bus-dotnet-how-to-use-topics-subscriptions.md) használata
+* A [Service Bus-továbbító](../service-bus-relay/service-bus-dotnet-how-to-use-relay.md) használata
 * [Service Bus-minták](service-bus-samples.md)
 
 [1]: ./media/service-bus-fundamentals-hybrid-solutions/SvcBus_01_architecture.png

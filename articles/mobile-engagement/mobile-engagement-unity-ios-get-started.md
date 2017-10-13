@@ -1,6 +1,6 @@
 ---
-title: "aaaGet elindítva az Azure Mobile Engagement Unity iOS üzemelő"
-description: "Megtudhatja, hogyan toouse Azure Mobile Engagement az elemzések és leküldéses értesítések Unity-alkalmazásokhoz tooiOS eszközök telepítése."
+title: "Ismerkedés az Azure Mobile Engagement Unity iOS üzemelő példánnyal való használatával"
+description: "Ismerje meg, hogyan használható az Azure Mobile Engagement az iOS-eszközökön üzembe helyezett Unity-alkalmazásokhoz kapcsolódó elemzések és leküldéses értesítések tekintetében."
 services: mobile-engagement
 documentationcenter: unity
 author: piyushjo
@@ -14,63 +14,63 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: f4247b0a9240cbe2bf1a6618388919d3554c07fb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c8f50404771965ec636065346ac04e059d264c3d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-azure-mobile-engagement-for-unity-ios-deployment"></a>Ismerkedés az Azure Mobile Engagement Unity iOS üzemelő példánnyal való használatával
 [!INCLUDE [Hero tutorial switcher](../../includes/mobile-engagement-hero-tutorial-switcher.md)]
 
-Ez a témakör bemutatja, hogyan toouse Azure Mobile Engagement toounderstand az alkalmazás használatának és toosend a leküldéses értesítések toosegmented felhasználók Unity-alkalmazás tooan iOS-eszköz telepítése során.
-A oktatóanyag használ hello Unity klasszikus Roll golyó oktatóanyag, hello kiindulási pontjaként. Ezen hello lépéseket kell követnie [oktatóanyag](mobile-engagement-unity-roll-a-ball.md) hello a Mobile Engagement-integrációs oktatóanyaggal az alábbi hello oktatóanyag folytatása előtt. 
+Ebben a témakörben elsajátíthatja, hogy miként használható az Azure Mobile Engagement az alkalmazáshasználat megértéséhez, valamint leküldéses értesítések Unity-alkalmazás szegmentált felhasználói számára való küldéséhez iOS-eszközön való üzembe helyezés esetén.
+Ennek az oktatóanyagnak a Unity klasszikus Roll a Ball (Guruló golyó) oktatóanyaga a kiindulási pontja. Végezze el [ennek az oktatóanyagnak](mobile-engagement-unity-roll-a-ball.md) a lépéseit, mielőtt az alábbi Mobile Engagement-integrációs oktatóanyaggal folytatná. 
 
-Ez az oktatóanyag hello következő szükséges:
+Az oktatóanyaghoz az alábbiakra lesz szükség:
 
 * [Unity Editor](http://unity3d.com/get-unity)
 * [Mobile Engagement Unity SDK](https://aka.ms/azmeunitysdk)
 * XCode Editor
 
 > [!NOTE]
-> toocomplete ebben az oktatóanyagban rendelkeznie kell egy aktív Azure-fiókra. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-unity-ios-get-started).
+> Az oktatóanyag elvégzéséhez egy aktív Azure-fiókra lesz szüksége. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-unity-ios-get-started).
 > 
 > 
 
 ## <a id="setup-azme"></a>A Mobile Engagement beállítása az iOS-alkalmazáshoz
 [!INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-## <a id="connecting-app"></a>Csatlakozás az alkalmazás toohello Mobile Engagement háttérrendszeréhez
-### <a name="import-hello-unity-package"></a>Hello Unity-csomag importálása
-1. Töltse le a hello [Mobile Engagement Unity-csomagot](https://aka.ms/azmeunitysdk) , és mentse tooyour helyi számítógép. 
-2. Nyissa meg túl**eszközök -> csomag importálása -> egyéni csomag** és a fenti lépés hello letöltött válassza hello csomagot. 
+## <a id="connecting-app"></a>Az alkalmazás csatlakoztatása a Mobile Engagement háttérrendszeréhez
+### <a name="import-the-unity-package"></a>A Unity-csomag importálása
+1. Töltse le a [Mobile Engagement Unity-csomagot](https://aka.ms/azmeunitysdk), és mentse a helyi gépére. 
+2. Lépjen az **Assets -> Import Package -> Custom Package** (Eszközök -> Csomag importálása -> Egyéni csomag) lehetőségre, majd válassza ki az előző lépésben letöltött csomagot. 
    
     ![][70] 
 3. Ügyeljen arra, hogy minden fájl ki legyen választva, és kattintson az **Import** (Importálás) gombra. 
    
     ![][71] 
-4. Ha sikeres importálás, látni fogja hello importált SDK-fájlok a projektben.  
+4. Az importálás sikeres elvégzése után az importált SDK-fájlok megjelennek a projektben.  
    
     ![][72] 
 
-### <a name="update-hello-engagementconfiguration"></a>Hello EngagementConfiguration frissítése
-1. Nyissa meg hello **EngagementConfiguration** hello SDK mappából, és frissítse hello parancsfájlt **IOS\_kapcsolat\_karakterlánc** korábban beszerzett hello kapcsolati karakterlánccal a hello Azure-portálon.  
+### <a name="update-the-engagementconfiguration"></a>Az EngagementConfiguration frissítése
+1. Nyissa meg az **EngagementConfiguration** parancsfájlt az SDK mappából, és frissítse az **IOS\_CONNECTION\_STRING** elemet az Azure Portalról korábban beszerzett kapcsolati karakterlánccal.  
    
     ![][73]
-2. Hello fájl mentéséhez. 
+2. Mentse a fájlt. 
 
-### <a name="configure-hello-app-for-basic-tracking"></a>Alapszintű nyomkövetéshez hello alkalmazás konfigurálása
-1. Nyissa meg hello **PlayerController** toohello Player objektum szerkesztésre csatolt parancsprogram. 
-2. Adja hozzá hello következő using utasítást:
+### <a name="configure-the-app-for-basic-tracking"></a>Az alkalmazás konfigurálása alapszintű nyomkövetéshez
+1. Nyissa meg szerkesztésre a lejátszóobjektumhoz csatolt **PlayerController** parancsfájlt. 
+2. Adja hozzá a következő using utasítást:
    
         using Microsoft.Azure.Engagement.Unity;
-3. Adja hozzá a következő toohello hello `Start()` módszer
+3. Adja hozzá a következőt a `Start()` metódushoz:
    
         EngagementAgent.Initialize();
         EngagementAgent.StartActivity("Home");
 
-### <a name="deploy-and-run-hello-app"></a>Regisztrálhat és futtathat hello alkalmazás
-1. Csatlakoztassa az iOS eszköz tooyour gépet. 
+### <a name="deploy-and-run-the-app"></a>Az alkalmazás üzembe helyezése és futtatása
+1. Csatlakoztasson a gépéhez egy iOS-eszközt. 
 2. Nyissa meg a **File -> Build Settings** (Fájl -> Létrehozási beállítások) menüpontot. 
    
     ![][40]
@@ -85,21 +85,21 @@ Ez az oktatóanyag hello következő szükséges:
 5. Végül kattintson a **Build And Run** (Létrehozás és futtatás) gombra.
    
     ![][54]
-6. Előfordulhat, hogy ismételt tooprovide mappa neve toostore hello iOS csomagot. 
+6. Előfordulhat, hogy a rendszer arra kéri, hogy adja meg annak a mappának nevét, ahol az iOS-csomag tárolva lesz. 
    
     ![][43]
-7. Ha a művelet sikeres, hello projekt le lesz fordítva, és hogy megnyitható az XCode-alkalmazással a. 
-8. Győződjön meg arról, hogy hello **csomagazonosítót** helyes hello projektben.  
+7. Ha a művelet sikeres, akkor a projekt le lesz fordítva, és megnyitható az XCode-alkalmazással. 
+8. Ellenőrizze, hogy a projektben a **Bundle identifier** (Csomagazonosító) helyes-e.  
    
     ![][75]
-9. Most futtassa hello alkalmazást az xcode-ban, hogy hello csomag telepített tooyour csatlakoztatott eszközön, és a Unity-játék megjelenik a telefonon! 
+9. Most futtassa az alkalmazást XCode-ban. Ekkor a csomag üzembe lesz helyezve a csatlakoztatott eszközön, és a Unity-játék megjelenik a telefonon. 
 
 ## <a id="monitor"></a>Az alkalmazás csatlakoztatása a valós idejű megfigyeléshez
 [!INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
 ## <a id="integrate-push"></a>Leküldéses értesítések és alkalmazáson belüli üzenetek engedélyezése
-Mobile Engagement lehetővé teszi a felhasználókkal toointeract és elérése révén a leküldéses értesítések és alkalmazáson belüli üzenetekkel hello kampányok. Ez a modul REACH neve hello a Mobile Engagement portálon.
-Nincs toodo további konfiguráció a alkalmazáson belüli tooreceive értesítések, és már állítva.
+A Mobile Engagement lehetővé teszi a felhasználókkal folytatott interakciót és a felhasználók elérését a kampányok részeként megjelenő leküldéses értesítésekkel és alkalmazáson belüli üzenetekkel. Ez a modul REACH (Elérés) néven érhető el a Mobile Engagement portálon.
+Az alkalmazásban nem kell további konfigurációt elvégezni az értesítések fogadásához, mivel az már be van erre állítva.
 
 [!INCLUDE [mobile-engagement-ios-send-push-push](../../includes/mobile-engagement-ios-send-push.md)]
 

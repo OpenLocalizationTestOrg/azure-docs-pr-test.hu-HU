@@ -1,6 +1,6 @@
 ---
-title: "az Azure Active Directory azonosító adatok védelmét és a Microsoft Graph lépései aaaGet |} Microsoft Docs"
-description: "Egy bevezető tooquery Microsoft Graph biztosít a kockázati eseményekről és a kapcsolódó információk listáját az Azure Active Directoryból."
+title: "Ismerkedés az Azure Active Directory azonosító adatok védelmét és a Microsoft Graph |} Microsoft Docs"
+description: "Bevezető a lekérdezés Microsoft Graph kockázati eseményekről és a kapcsolódó információk listáját az Azure Active Directoryból."
 services: active-directory
 keywords: "az Azure active directory azonosító adatok védelmét, a kockázat esemény, a biztonsági rés, a biztonsági házirendet, a Microsoft Graph"
 documentationcenter: 
@@ -15,60 +15,60 @@ ms.topic: article
 ms.date: 08/17/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: 75b8b7629a0120d8101f6fde0d9163122503d276
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9b01ff86da6a1fd4a439a6ba59ea15ed6480cdad
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="get-started-with-azure-active-directory-identity-protection-and-microsoft-graph"></a>Ismerkedés az Azure Active Directory azonosító adatok védelmét és a Microsoft Graph
-A Microsoft Graph hello Microsoft unified API-végpont és az otthoni hello [Azure Active Directory Identity Protection](active-directory-identityprotection.md) API-k. hello első API, **identityRiskEvents**, lehetővé teszi a Microsoft Graph tooquery listáját a [kockázati események](active-directory-identityprotection-risk-events-types.md) és a kapcsolódó adatokat. Ez a cikk lekérdezi az API lekérdezése lépésekhez. Egy részletes bemutatása, teljes dokumentációját, és hozzáférést toohello Graph Explorer: hello [Microsoft Graph hely](https://graph.microsoft.io/).
+A Microsoft Graph a Microsoft unified API-végpont és az otthoni [Azure Active Directory Identity Protection](active-directory-identityprotection.md) API-k. Az első API **identityRiskEvents**, lehetővé teszi a Microsoft Graph listájának lekérdezési [kockázati események](active-directory-identityprotection-risk-events-types.md) és a kapcsolódó adatokat. Ez a cikk lekérdezi az API lekérdezése lépésekhez. Egy részletes bemutatása, teljes dokumentációját, és a Graph Explorer elérésére, tekintse meg a [Microsoft Graph hely](https://graph.microsoft.io/).
 
 > [!IMPORTANT]
-> A Microsoft azt javasolja, hogy a hello használata az Azure AD kezelése [az Azure AD felügyeleti központban](https://aad.portal.azure.com) hello az Azure portál használata helyett hello hivatkozott ebben a cikkben a klasszikus Azure portálon.
+> A Microsoft javasolja, hogy az Azure Portalon található [Azure AD felügyeleti központból](https://aad.portal.azure.com) kezelje az Azure AD-t az ebben a cikkben javasolt klasszikus Azure portál helyett.
 
-Nincsenek Microsoft Graph három lépést tooaccessing Identity Protection adatokat:
+A Microsoft Graph el az azonosító adatok védelmét az adatok három lépésben történik:
 
 1. Adja hozzá az alkalmazás egy ügyfélkulcsot. 
-2. Használja ezt a titkos kulcsot és egyéb információkat tooauthenticate tooMicrosoft diagramot, amikor egy hitelesítési jogkivonatot kap néhány adatra. 
-3. A token toomake kérelmek toohello API-végpont használja, és vissza Identity Protection-adatok beolvasása.
+2. A Microsoft Graph, amikor egy hitelesítési jogkivonatot kap hitelesítéshez használ a titkos kulcs és néhány egyéb adatot. 
+3. Ez a token használatával kéréseket küld az API-végpontot, és vissza Identity Protection-adatok beolvasása.
 
 Mielőtt hozzáfogna, szüksége lesz:
 
-* Rendszergazdai jogosultságok toocreate hello alkalmazás az Azure ad-ben
-* a bérlői tartomány (például contoso.onmicrosoft.com) hello neve
+* Az alkalmazás létrehozása az Azure AD rendszergazdai jogosultságokat
+* A bérlői tartomány (például contoso.onmicrosoft.com) neve
 
 ## <a name="add-an-application-with-a-client-secret"></a>Egy ügyfél titokkal alkalmazás hozzáadása
-1. [Jelentkezzen be a](https://manage.windowsazure.com) tooyour klasszikus Azure portálra rendszergazdaként. 
-2. A hello bal oldali navigációs panelén kattintson **Active Directory**. 
+1. [Jelentkezzen be a](https://manage.windowsazure.com) rendszergazdaként a klasszikus Azure portálra. 
+2. A bal oldali navigációs panelén kattintson **Active Directory**. 
    
     ![Az alkalmazás létrehozása](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_01.png)
-3. A hello **Directory** listában, jelölje be hello directory kívánt tooenable címtár-integráció.
-4. Hello hello felső menüben kattintson a **alkalmazások**.
+3. Az a **Directory** listára, válassza ki a könyvtárat, amelyhez a címtár-integrációs engedélyezni szeretné.
+4. Kattintson a felső menüben **alkalmazások**.
    
     ![Az alkalmazás létrehozása](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_02.png)
-5. Kattintson a **Hozzáadás** hello lap hello alján.
+5. Kattintson a **Hozzáadás** az oldal alján.
    
     ![Az alkalmazás létrehozása](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_03.png)
-6. A hello **miről szeretne toodo** párbeszédpanel, kattintson **a szerveztem által fejlesztett alkalmazás hozzáadása**.
+6. Az a **mi történjen a teendő** párbeszédpanel, kattintson a **a szerveztem által fejlesztett alkalmazás hozzáadása**.
    
     ![Az alkalmazás létrehozása](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_04.png)
-7. A hello **adja meg azt az alkalmazás** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello:
+7. Az a **adja meg azt az alkalmazás** párbeszédpanelen hajtsa végre a következő lépéseket:
    
     ![Az alkalmazás létrehozása](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_05.png)
    
-    a. A hello **neve** szövegmező, írja be az alkalmazás nevét (pl.: AADIP kockázat esemény API-alkalmazás).
+    a. Az a **neve** szövegmező, írja be az alkalmazás nevét (pl.: AADIP kockázat esemény API-alkalmazás).
    
     b. Mint **típus**, jelölje be **webalkalmazás és / vagy webes API**.
    
     c. Kattintson a **Tovább** gombra.
-8. A hello **alkalmazás tulajdonságainak** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello:
+8. Az a **alkalmazás tulajdonságainak** párbeszédpanelen hajtsa végre a következő lépéseket:
    
     ![Az alkalmazás létrehozása](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_06.png)
    
-    a. A hello **bejelentkezési URL-cím** szövegmezőhöz típus `http://localhost`.
+    a. Az a **bejelentkezési URL-cím** szövegmezőhöz típus `http://localhost`.
    
-    b. A hello **App ID URI** szövegmezőhöz típus `http://localhost`.
+    b. Az a **App ID URI** szövegmezőhöz típus `http://localhost`.
    
     c. Kattintson a **Befejezés** gombra.
 
@@ -76,14 +76,14 @@ Mielőtt hozzáfogna, szüksége lesz:
 
 ![Az alkalmazás létrehozása](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_07.png)
 
-## <a name="grant-your-application-permission-toouse-hello-api"></a>Adja meg az alkalmazás engedélyt toouse hello API
-1. Kattintson az alkalmazás lap hello menüben hello felső részén található **konfigurálása**. 
+## <a name="grant-your-application-permission-to-use-the-api"></a>Adja meg az alkalmazás számára az API-val
+1. Az alkalmazás lapján, a felső menüben kattintson a **konfigurálása**. 
    
     ![Az alkalmazás létrehozása](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_08.png)
-2. A hello **engedélyek tooother alkalmazások** kattintson **alkalmazás hozzáadása**.
+2. Az a **egyéb alkalmazások engedélyei** kattintson **alkalmazás hozzáadása**.
    
     ![Az alkalmazás létrehozása](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_09.png)
-3. A hello **engedélyek tooother alkalmazások** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello:
+3. Az a **egyéb alkalmazások engedélyei** párbeszédpanelen hajtsa végre a következő lépéseket:
    
     ![Az alkalmazás létrehozása](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_10.png)
    
@@ -93,35 +93,35 @@ Mielőtt hozzáfogna, szüksége lesz:
 4. Kattintson a **Alkalmazásengedélyek: 0**, majd válassza ki **olvassa el az összes identity kockázati események adatait**.
    
     ![Az alkalmazás létrehozása](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_11.png)
-5. Kattintson a **mentése** hello lap hello alján.
+5. Kattintson a lap alján található **Mentés** gombra.
    
     ![Az alkalmazás létrehozása](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_12.png)
 
 ## <a name="get-an-access-key"></a>Hívóbetű lekérése
-1. Az alkalmazás lap hello **kulcsok** területen válassza ki a 1 év, időtartam.
+1. Az alkalmazás lapon a a **kulcsok** területen válassza ki a 1 év, időtartam.
    
     ![Az alkalmazás létrehozása](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_13.png)
-2. Kattintson a **mentése** hello lap hello alján.
+2. Kattintson a lap alján található **Mentés** gombra.
    
     ![Az alkalmazás létrehozása](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_12.png)
-3. hello kulcsai című szakaszban másolja az újonnan létrehozott kulcs hello értékét, és illessze be egy biztonságos helyre.
+3. a kulcsok szakaszában másolja az újonnan létrehozott kulcs értékét, és illessze be egy biztonságos helyre.
    
     ![Az alkalmazás létrehozása](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_14.png)
    
    > [!NOTE]
-   > Ha elveszti a kulcs, tooreturn toothis szakasz rendelkezik, és hozzon létre egy új kulcsot. Tartsa a kulcs titkos kulcs: bárki, aki hozzáférhet az adatokhoz.
+   > Ha elveszti a kulcsot, akkor ez a szakasz való visszatéréshez, és hozzon létre egy új kulcsot. Tartsa a kulcs titkos kulcs: bárki, aki hozzáférhet az adatokhoz.
    > 
    > 
-4. A hello **tulajdonságok** szakaszban, a Másolás hello **ügyfél-azonosító**, majd illessze be egy biztonságos helyre. 
+4. Az a **tulajdonságok** szakaszban, másolja a **ügyfél-azonosító**, majd illessze be egy biztonságos helyre. 
 
-## <a name="authenticate-toomicrosoft-graph-and-query-hello-identity-risk-events-api"></a>TooMicrosoft Graph és lekérdezés hello identitás kockázati események API hitelesítéséhez
+## <a name="authenticate-to-microsoft-graph-and-query-the-identity-risk-events-api"></a>Microsoft Graph hitelesítést és az identitás kockázati események API lekérdezése
 Ezen a ponton rendelkeznie kell:
 
-* fent másolt hello ügyfél-azonosító
-* fent másolt hello kulcs
-* a bérlő tartománya hello neve
+* A fenti másolt ügyfél-azonosító
+* A fenti másolt kulcsot
+* A bérlői tartomány neve
 
-tooauthenticate, küldése post kérelem túl`https://login.microsoft.com` a következő paraméterek hello törzsében hello:
+A hitelesítéshez a feladás egy vagy több vonatkozó kérés küldése `https://login.microsoft.com` törzsében a következő paraméterekkel:
 
 * grant_type: "**client_credentials**"
 * erőforrás: "**https://graph.microsoft.com**"
@@ -129,23 +129,23 @@ tooauthenticate, küldése post kérelem túl`https://login.microsoft.com` a kö
 * client_secret:<your key>
 
 > [!NOTE]
-> Hello szüksége tooprovide értékek **client_id** és hello **client_secret** paraméter.
+> Meg kell adni az értékeket a **client_id** és a **client_secret** paraméter.
 > 
 > 
 
 Ha sikeres, ez egy hitelesítési jogkivonatot ad vissza.  
-toocall hello API-t létrehozni hello paraméter a következő fejléc:
+Hívja az API-t, hogy hozzon létre egy fejléc a következő paraméter:
 
     `Authorization`=”<token_type> <access_token>"
 
 
-Hitelesítésekor található hello a jogkivonat típusa és a hozzáférési jogkivonatot adott vissza hello.
+Hitelesítésekor található a jogkivonat típusa és a hozzáférési jogkivonat a visszaküldött jogkivonat.
 
-Ezt a fejlécet küldeni egy kérelem toohello API URL-CÍMÉT a következő:`https://graph.microsoft.com/beta/identityRiskEvents`
+Ezt a fejlécet a kérés küldése a következő API URL-címe:`https://graph.microsoft.com/beta/identityRiskEvents`
 
-hello választ, ha sikeres, gyűjteménye identitás kockázati eseményekről és hello OData JSON formátum, ami elemzése és kezelése, ahogyan az adatok.
+A válasz, ha sikeres, gyűjteménye identitás kockázati eseményekről és kapcsolódó adatait, amely elemzése és kezelése, ahogyan OData JSON formátumban.
 
-Itt látható mintakód a hitelesítés és Powershell használatával hello API felület meghívásakor.  
+Itt látható mintakód a hitelesítés és a Powershell használatával API felület meghívásakor.  
 Az ügyfél-azonosító csak hozzáadása kulcs, és a bérlői tartományhoz.
 
     $ClientID       = "<your client ID here>"        # Should be a ~36 hex character string; insert your info here
@@ -178,10 +178,10 @@ Az ügyfél-azonosító csak hozzáadása kulcs, és a bérlői tartományhoz.
 
 
 ## <a name="next-steps"></a>Következő lépések
-Gratulálunk, az első hívás tooMicrosoft Graph most végzett!  
-Most identitás kockázati események és hello adatokat használni, azonban tetszés szerint.
+Gratulálunk, a Microsoft Graph első hívás most végzett!  
+Most identitás kockázati események és igényei azonban az adatok felhasználásával.
 
-bővebben a Microsoft Graph toolearn, és hogyan toobuild használó alkalmazások hello Graph API-val, tekintse meg hello [dokumentáció](https://graph.microsoft.io/docs) és sok más, a hello [Microsoft Graph hely](https://graph.microsoft.io/). Továbbá győződjön meg arról, hogy toobookmark hello [Azure AD Identity Protection API](https://graph.microsoft.io/docs/api-reference/beta/resources/identityprotection_root) oldal, amely tartalmazza az összes Identity Protection API-kat a Graph hello. Azt adja hozzá az új módon toowork az Identity Protection API-n keresztül, mint adott oldalon láthatja azokat.
+A Microsoft Graph és hogyan hozhat létre alkalmazásokat a Graph API-val kapcsolatos további tudnivalókért tekintse meg a [dokumentáció](https://graph.microsoft.io/docs) és sok más, a a [Microsoft Graph hely](https://graph.microsoft.io/). Bizonyosodjon meg arról, hogy lássa el könyvjelzővel a [Azure AD Identity Protection API](https://graph.microsoft.io/docs/api-reference/beta/resources/identityprotection_root) oldal, amely felsorolja a identitás védelmi API-k gráfban. Azt hozzáadja az új módon történő együttműködésre Identity Protection API-n keresztül, adott oldalon láthatja azokat.
 
 ## <a name="additional-resources"></a>További források
 * [Az Azure Active Directory azonosító adatok védelmét](active-directory-identityprotection.md)

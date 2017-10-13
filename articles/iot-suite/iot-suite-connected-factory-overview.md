@@ -1,6 +1,6 @@
 ---
-title: "az IoT Suite aaaAzure csatlakoztatott gyári áttekintése |} Microsoft Docs"
-description: "Hello Azure IoT Suite leírása előre konfigurált gyári megoldás csatlakoztatva."
+title: "Az Azure IoT Suite csatlakoztatott gyár áttekintése | Microsoft Docs"
+description: "Az Azure IoT Suite előre konfigurált csatlakoztatott gyár megoldásának ismertetése."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,263 +15,263 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/27/2017
 ms.author: dobett
-ms.openlocfilehash: 929b5ed41ef7d82c9b4480d02aa3f0db38931919
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d502c8e2e2715899279f6ebcf7ed89c19a1bb9a6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-started-with-hello-connected-factory-preconfigured-solution"></a>Ismerkedés a csatlakoztatott hello előre konfigurált gyári megoldás
+# <a name="get-started-with-the-connected-factory-preconfigured-solution"></a>Az előre konfigurált csatlakoztatott gyár első lépései
 
-Az Azure IoT Suite [előre konfigurált megoldások] [ lnk-preconfigured-solutions] több Azure IoT szolgáltatások toodeliver végpontok közötti megoldások, amelyek megvalósítják az IoT elterjedt üzleti forgatókönyvek kombinálni. Hello *csatlakoztatott gyári* előkonfigurált megoldás csatlakozik tooand figyelők az ipari eszközök. Használhatja a hello megoldás tooanalyze hello adatfolyamban az adatok az eszközök és a toodrive működési hatékonyság és a nyereségességre nézve.
+Az Azure IoT Suite [előre konfigurált megoldások][lnk-preconfigured-solutions] több Azure IoT-szolgáltatást kombinálnak, hogy általános IoT üzleti forgatókönyveket megvalósító végpontok közötti megoldásokat nyújtsanak. Az előre konfigurált *csatlakoztatott gyár* megoldás csatlakozik ipari eszközeihez, és megfigyeli azokat. Ez a megoldás az eszközökről származó adatstream elemzésére, ezáltal pedig az üzemeltetés hatékonyságának és nyereségességének növelésére használható.
 
-Az oktatóanyag bemutatja, hogyan tooprovision hello csatlakoztatva gyári előre konfigurált megoldás. Azt is bemutatja, hogyan hello alapvető szolgáltatások előre konfigurált hello megoldás. Érheti el ezeket a funkciókat számos hello megoldás *irányítópult* , előre konfigurált hello megoldás részeként telepíti:
+Az oktatóprogram bemutatja, hogyan építheti ki az előre konfigurált csatlakoztatott gyár megoldást. Valamint az előre konfigurált megoldás alapvető funkcióin is végigvezeti. Ezek közül számos funkcióhoz a megoldás *irányítópultján* keresztül férhet hozzá, amelyet a rendszer az előre konfigurált megoldás részeként telepít:
 
 ![Az előre konfigurált csatlakoztatott gyár megoldás irányítópultja][img-cf-home]
 
-toocomplete ebben az oktatóanyagban aktív Azure-előfizetés szükséges.
+Az oktatóanyag elvégzéséhez aktív Azure-előfizetésre lesz szüksége.
 
 > [!NOTE]
 > Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információ: [Ingyenes Azure-fiók létrehozása][lnk_free_trial].
 > 
 > 
 
-## <a name="provision-hello-solution"></a>Kiépítés hello megoldás
+## <a name="provision-the-solution"></a>A megoldás megvalósítása
 
-1. Jelentkezzen be Azure-fiók hitelesítő adataival tooazureiotsuite.com, és kattintson a "**+**" toocreate megoldást.
-2. Kattintson a **válasszon** a hello **csatlakoztatott gyári** csempére.
+1. Jelentkezzen be az azureiotsuite.com címre az Azure-fiókja hitelesítő adataival, majd kattintson a „**+**” elemre egy megoldás létrehozásához.
+2. Kattintson a **Kiválasztás** elemre a **Csatlakoztatott gyár** csempén.
 3. Adja meg a **Megoldásnevet** az előre konfigurált csatlakoztatott gyár megoldáshoz.
-4. Jelölje be hello **előfizetés** és **régió** kívánt toouse tooprovision hello megoldás.
-5. Kattintson a **megoldás létrehozása** toobegin hello létesítésének folyamatát kell használnia. Ez a folyamat általában több percet toorun időt vesz igénybe.
+4. Válassza ki a megoldás kiépítéséhez használni kívánt **Előfizetést** és **Régiót**.
+5. Kattintson a **Megoldás létrehozása** gombra a kiépítés elkezdéséhez. Ez a folyamat általában több percig tart.
 
-### <a name="while-you-wait-for-hello-provisioning-process-toocomplete"></a>A kiépítési folyamat toocomplete hello várakozás közben
+### <a name="while-you-wait-for-the-provisioning-process-to-complete"></a>Amíg a kiépítési folyamat befejeződésére vár
 
-1. Kattintson a megoldás a hello csempe **kiépítési** állapotát.
-2. Értesítés hello **állapotok kiépítés** , Azure-szolgáltatások vannak telepítve az Azure-előfizetéshez.
-3. Miután kiépítése befejeződött, hello állapotmódosítások túl**készen**.
-4. A megoldás hello jobb oldali ablaktáblában hello csempe toosee hello Részletek gombra.
+1. Kattintson a megoldás **Kiépítési** állapotát jelző csempére.
+2. Megtekintheti a **Kiépítési állapotokat**, miközben az Azure-szolgáltatások telepítése megtörténik az Azure-előfizetésben.
+3. A kiépítés befejezése után az állapot **Kész** értékre változik.
+4. Kattintson a csempére, és a jobb oldali panelen láthatja a megoldás részleteit.
 
 > [!NOTE]
-> Ha hibát tapasztal előre konfigurált hello megoldás telepítésének, tekintse át a [hello azureiotsuite.com hely engedélyeinek] [ lnk-permissions] és hello [csatlakoztatott gyári gyakran ismételt kérdések](iot-suite-faq-cf.md). Ha hello problémák továbbra is fennáll, hozzon létre szolgáltatásjegyet a hello [portal][lnk-portal].
+> Ha problémái vannak az előre konfigurált megoldás telepítésekor, tekintse meg az [Engedélyek az azureiotsuite.com webhelyen][lnk-permissions] és a [Csatlakoztatott gyár – GYIK](iot-suite-faq-cf.md) fejezetet. Ha a problémák továbbra is fennállnak, hozzon létre egy szolgáltatásjegyet a [portálon][lnk-portal].
 
-Vannak-e részletek toosee teheti meg, amelyek nem jelennek meg a megoldáshoz? A [felhasználói visszajelzési webhelyen](https://feedback.azure.com/forums/321918-azure-iot) elküldheti a szolgáltatásokkal kapcsolatos javaslatait.
+Hiányol bizonyos részleteket a megoldásával kapcsolatban? A [felhasználói visszajelzési webhelyen](https://feedback.azure.com/forums/321918-azure-iot) elküldheti a szolgáltatásokkal kapcsolatos javaslatait.
 
 ## <a name="scenario-overview"></a>Forgatókönyv áttekintése
 
-Csatlakoztatott hello telepítésekor gyári előre konfigurált megoldás, azt az erőforrásokat, amelyek lehetővé teszik a toostep keresztül ipari forgatókönyve előre feltöltve. Ebben a forgatókönyvben számos előállítók csatlakoztatott toohello megoldás jelentés hello adatok értékek szükséges toocompute berendezések hatékonyságot (OEE) és fő teljesítménymutatók (KPI). hello következő szakaszok bemutatják, hogyan számára:
+Amikor üzembe helyezi az előre konfigurált csatlakoztatott gyár megoldást, az előre fel van töltve olyan erőforrásokkal, amelyekkel elvégezhető egy általános ipari forgatókönyv. Ebben a forgatókönyvben a megoldáshoz csatlakozó több üzem ad le jelentést a teljes eszközhatékonyság (overall equipment efficiency, OEE) és a fő teljesítménymutatók (KPI) kiszámításához szükséges adatértékeket. A következő forgatókönyvek bemutatják, hogyan végezheti el a következőket:
 
 * Gyárakra, gyártósorokra, állomásokra vonatkozó OEE- és KPI-értékek figyelése
-* Ezek az eszközök Azure idő adatsorozat Insights alapján generált hello telemetriai adatainak elemzése
-* A riasztások toofix problémák működésre
+* Az eszközök által létrehozott telemetriaadatok elemzése az Azure Time Series Insights segítségével
+* Reagálás a riasztásokra a problémák felszámolása érdekében
 
-Ebben a forgatókönyvben alapfunkciója, hogy távolról is végrehajtható, ezek a műveletek hello megoldás irányítópulton. Nem kell fizikai hozzáférés toohello eszközök.
+A forgatókönyv fő előnye, hogy az összes műveletet távolról végezheti el, a megoldás irányítópultjáról. Nincs szüksége hozzá az eszközök fizikai címére.
 
-## <a name="view-hello-solution-dashboard"></a>Nézet hello megoldás irányítópultja
+## <a name="view-the-solution-dashboard"></a>A megoldás irányítópultjának megtekintése
 
-hello megoldás irányítópultja toomanage telepített hello megoldás lehetővé teszi. Az irányítópult egy globális gyárkonfiguráció hierarchikus megjelenítése, amelyen megtekintheti például az OEE-ket és KPI-ket, és új csomópontokat tehet közzé a telemetriához és műveleti riasztásokhoz.
+A megoldás irányítópultján kezelheti az üzembe helyezett megoldást. Az irányítópult egy globális gyárkonfiguráció hierarchikus megjelenítése, amelyen megtekintheti például az OEE-ket és KPI-ket, és új csomópontokat tehet közzé a telemetriához és műveleti riasztásokhoz.
 
-1. Hello kiépítés befejeztével, miután az előkonfigurált megoldás hello csempe jelzi **készen áll a**, válassza ki **indítsa el** tooopen a csatlakoztatott gyári megoldás portál új lapon.
+1. Amikor a kiépítés befejeződött, és az előre konfigurált megoldás csempéje **Kész** állapotot jelez, válassza az **Indítás** gombot a csatlakoztatott gyár portál új lapon való megnyitásához.
 
-    ![Indítsa el az előre konfigurált hello megoldás][img-launch-solution]
+    ![Az előre konfigurált megoldás indítása][img-launch-solution]
 
-1. Alapértelmezés szerint hello megoldás portal mutatja hello *irányítópult*. toonavigate tooother területek hello portál hello menü hello bal oldalán található hello használata.
+1. Alapértelmezés szerint a megoldás portálja az *irányítópultot* jeleníti meg. A portál más területeire az oldal bal oldali menüjével navigálhat.
 
     ![Az előre konfigurált csatlakoztatott gyár megoldás irányítópultja][cf-img-menu]
 
-hello irányítópult a következő információ hello jeleníti meg:
+Az irányítópult az alábbi információkat jeleníti meg:
 
-* A **gyári lista** hello állapot, a helyet és a jelenlegi üzemi konfiguráció hello megoldás megjelenítő panelen. Hello megoldás első futtatásakor számos szimulált eszköz. hello termelési sor szimuláció állnak három valós OPC EE kiszolgálók éles soronként, amelyek szimulált feladatokat végeznek megoszthatják az adatokat. OPC EE kapcsolatos további információkért lásd: hello [gyári gyakran ismételt kérdések csatlakoztatott](iot-suite-faq-cf.md).
-* A **térkép** , hogy minden eszköz megjeleníti hello helye csatlakoztatva toohello megoldás. hello megoldás hello a Bing térképek API tooplot információt használhatja hello térképen. Ha az előfizetéshez engedélyezve van a Bing Maps Enterprise API használata, a rendszer automatikusan ezt használja. Ha nem, olvassa el a hello [gyakran ismételt kérdések] [ lnk-faq] toolearn hogyan toomake hello térkép dinamikus.
+* A **Factory list** (Gyárak listája) panelt, amelyen ellenőrizhető a megoldás állapota, helye és aktuális termelési konfigurációja. A megoldás első futtatásakor már rendelkezésre áll néhány szimulált eszköz. A gyártósor-szimuláció három valós OPC UA-kiszolgálót tartalmaz gyártósoronként, amelyek szimulált feladatokat hajtanak végre és adatokat osztanak meg. Az OPC UA architektúráról a [Csatlakoztatott gyár – GYIK](iot-suite-faq-cf.md) fejezetben talál további információt.
+* A megoldáshoz csatlakoztatott egyes eszközök helyét megjelenítő **térképet**. A megoldás a Bing Maps API-val képes megjeleníteni az információkat a térképen. Ha az előfizetéshez engedélyezve van a Bing Maps Enterprise API használata, a rendszer automatikusan ezt használja. Ha nincs engedélyezve, a [gyakori kérdésekből][lnk-faq] megtudhatja, hogyan teheti dinamikussá a térképet.
 * Egy **Alerts** (Riasztások) panelt, amely riasztásokat jelenít meg, ha egy telemetria- vagy OEE/KPI-érték meghalad egy adott küszöbértéket.
-* Egy **berendezések hatékonyságot** panel, amely azt mutatja be a teljes vállalati hello vagy hello gyári/éles hello OEE értékeit sor/állomás, a rendszer azért jelenítette. Ez az érték a hello állomás nézet toohello vállalati szinten összesíti. hello OEE. ábra és a bennük foglalt elemek további elemzése.
-* **A fő teljesítménymutatók** panel, amely előállított egységek és a teljes vállalati hello vagy hello gyári/termelési sor által használt energia hello számát mutatja, /, állomás tekinti meg. Ezek az értékek egy állomás nézet toohello vállalati szint összesítése.
+* Egy **Overall Equipment Efficiency** (Teljes eszközhatékonyság) panelt, amely a teljes vállalat vagy a megtekintett gyár/gyártósor/állomás OEE-értékeit jeleníti meg. Az érték az állomásnézettől a vállalati szintig összesítve van. Az OEE értéke és annak összetevői részletesebben is elemezhetők.
+* Egy **Key Performance Indicators** (Fő teljesítménymutatók) panelt, amely a teljes vállalat vagy a megtekintett gyár/gyártósor/állomás által előállított egységeket és felhasznált energiát mutatja. Az értékek az állomásnézettől a vállalati szintig összesítve vannak.
 
 ## <a name="view-factories"></a>Üzemek megtekintése
 
-Hello *előállítók* panel mutat be, akkor hello összes hello előállítók hello megoldás, az állapot és az üzemi aktuális konfigurációs földrajzi elhelyezkedését. Hello helyek listából navigálhat toohello hello megoldás hierarchiában lévő többi szinten. hello hello lista sorai hivatkozások, amelyek az adott helyhez hello éles sorok részleteit. Akkor majd lehetséges toodrill hello termelési sor részleteinek és lefelé toohello állomás szint nézetében. Szűrő toohello listáját is alkalmazhat.
+A *Factories* (Üzemek) panel a megoldás részét képező összes üzem földrajzi helyét, állapotát és aktuális termelési konfigurációját megjeleníti. A helyek listájából átléphet a megoldáshierarchia más szintjeire. A lista sorai hivatkozások, amelyek az adott helyen található gyártósorok részletes adataira mutatnak, amelyek segítenek feltárni a gyártósorok minden részletét, egészen az állomásszintű nézetig. A listán szűrőt is alkalmazhat.
 
 ![Előre konfigurált csatlakoztatott gyár megoldás – gyárak][cf-img-factories] 
 
-1. Hello **gyári panel** mutat be hello gyári lista ebben a megoldásban.
+1. A **Factory panel** a megoldás részét képező gyárak listáját tartalmazza.
 
-2. hello gyári kezdetben listája hat előállítók hozta létre hello létesítésének folyamatát kell használnia. Hozzáadhat további szimulált és a fizikai eszközök toohello megoldás.
+2. A gyárlistán először a kiépítési folyamat által létrehozott hat gyár látható. Hozzáadhat további szimulált eszközöket és fizikai eszközöket is a megoldáshoz.
 
-3. a gyári tooview hello részleteit kattintson hello sorra hello gyári listában.
+3. Valamely gyár részleteinek megtekintéséhez kattintson az adott sorra a gyárlistában.
 
-4. egy éles sor tooview hello részleteinek hello lista hello sorára kattintson.
+4. Valamely gyártósor részleteinek megtekintéséhez kattintson az adott sorra a listában.
 
-5. tooview hello közzétett hello éles sor állomás OPC EE csomópontjára, kattintson a hello listában hello sort.
+5. Valamely gyártósor állomásához tartozó közzétett OPC UA-csomópontok megtekintéséhez kattintson a vonatkozó sorra a listában.
 
-6. tooview részletekért hello állomás, az adott csomóponton hello lista hello sorára kattintson. Ez a művelet elindítása hello környezetben panel idő adatsorozat Insights megjelenítésekkel. Kattintson a diagramok toodo további elemzés hello idő adatsorozat Insights explorer környezetben.
+6. Valamely állomás adott csomópontjára vonatkozó részletek megtekintéséhez kattintson az adott sorra a listában. Ez a művelet elindítja a helyi panelt a Time Series Insights-vizualizációkkal. A diagramokra kattintva részletesebb elemzéseket is végezhet a Time Series Insights Explorer környezetében.
 
 ## <a name="view-map"></a>Térkép megtekintése
 
-Ha az előfizetés a Bing térképek API access toohello, hello *előállítók* térkép meg hello földrajzi hely és állapotát jeleníti meg az összes hello előállítók hello megoldásban. hello hely részleteinek, toodrill hello térképen hello helyek elemre.
+Ha előfizetésével hozzá tud férni a Bing Maps API-hoz, a *Factories* (Üzemek) térkép a megoldás részét képező összes üzem földrajzi helyét és állapotát megjeleníti. Az adott hely részleteit a térképen megjelenített helyekre kattintva tárhatja fel.
 
 ![Előre konfigurált csatlakoztatott gyár megoldás – térkép][cf-img-map]
 
 ## <a name="view-alerts"></a>Riasztások megtekintése
 
-Hello **riasztási** panelen láthatók miatt előállított riasztások tooa jelentett értékét vagy számított OEE/KPI értéke meghaladja a beállított küszöbértéket. A panel hello felvételekor hello állomás szint nézetében toohello globális nézet egyes szintjein riasztásokat jeleníti meg. hello riasztások hello riasztást, dátum, idő, helyét és előfordulási leírását tartalmazza. Akkor értékes következtetéseket vonhat hello idő adatsorozat Insights adatainak használatával hello riasztást generáló toohello adatokban. hello idő adatsorozat Insights adatok formájában jelenik meg a hello riasztásokat, ha alkalmazható. Ha Ön rendszergazda, alapértelmezett műveletek hajthatók végre hello riasztások többek között:
+Az **Alert** (Riasztások) panel olyan riasztásokat jelenít meg, amelyek arra figyelmeztetnek, ha egy jelentett érték vagy egy kiszámított OEE/KPI meghaladja a hozzá beállított határértéket. A panel a hierarchia minden szintjére vonatkozó riasztásokat megjeleníti, az állomásszinttől egészen a globális nézetig. A riasztások a riasztás leírását, dátumát és időpontját, helyét és előfordulásainak számát tartalmazzák. A Time Series Insights-adatok segítségével mélyebb bepillantást nyerhet a riasztást kiváltó adatokba. Ahol lehetséges, a riasztások Time Series Insights-adatait a rendszer vizualizálja. Ha Ön rendszergazda, a riasztásokon a következő alapértelmezett műveleteket hajthatja végre:
 
-* Bezárás hello riasztás.
-* Tudomásul hello riasztás.
+* Lezárhatja a riasztást.
+* Nyugtázhatja a riasztást.
 
-Igény szerint összetettebb műveleteket is végrehajthat. Például a hello nyomás OPC EE munkaterület hello szerelvény, a következőket teheti:
+Igény szerint összetettebb műveleteket is végrehajthat. Például egy szerelvény nyomási OPC UA-csomópontja esetében a következőket teheti:
 
 * Támogatási információkat jeleníthet meg egy weboldalon egy új böngészőablakban.
-* Enyhíteni hello riasztás hello okait hello eszközön egy OPC EE metódus meghívásával.
-* Ne jelenjen meg többé hello alapértelmezett műveletek hello rendelkezésre állását.
+* A riasztás okának elhárítása érdekében meghívhat egy OPC UA-metódust az eszközön.
+* Felfüggesztheti az alapértelmezett műveletek rendelkezésre állását.
 
     ![Előre konfigurált csatlakoztatott gyár megoldás – riasztások][cf-img-alerts]
 
 > [!NOTE]
-> Ezek a riasztások akkor jönnek létre által előre konfigurált hello megoldásban a konfigurációs fájlban megadott feltételeket. Ezek a szabályok riasztást generál, ha hello OEE vagy KPI számokat vagy OPC EE csomópont érték túllépte a beállított küszöbértéket.
+> Ezek a riasztások az előre konfigurált megoldás egy konfigurációs fájljában megadott szabályok alapján jönnek létre. Ezek a szabályok riasztásokat hoznak létre, ha az OEE- vagy KPI-értékek, vagy az OPC UA-csomópont értékei meghaladják a beállított küszöbértékeket.
 
-1. Hello **riasztások panel** mutat be hello figyelmeztetéseket, ebben a megoldásban.
+1. Az **Alerts panel** (Riasztások) a jelen megoldásban létrehozott riasztásokat mutatja.
 
-2. tooview hello részleteit a riasztást, kattintson a riasztások panelen hello hello riasztásra.
+2. Egy riasztás részleteinek megtekintéséhez kattintson az adott riasztásra a riasztások panelén.
 
-3. toofurther hello riasztási adatok elemzésére, kattintson a hello graph hello riasztási panel tooopen hello idő adatsorozat Insights explorer környezetben.
+3. A riasztás adatainak további elemzéséhez kattintson a diagramra a riasztások panelén a Time Series Insights Explorer környezetének megnyitásához.
 
-4. tooaddress hello riasztást, és számos műveletet hello riasztási panelen elérhető. Válassza ki a hello megfelelő beállítást, és kattintson a hello Akciógomb parancs végrehajtása.
+4. A riasztások kezeléséhez több művelet is elérhető a riasztások panelén. Válassza ki a megfelelő lehetőséget, és kattintson a műveletet végrehajtó parancsgombra.
 
 ## <a name="view-overall-equipment-efficiency"></a>A teljes eszközhatékonyság megtekintése
 
-OEE díjszabás hello hatékonyságát hello gyártási folyamat egy kulcs éles kapcsolatos működési paraméterek használatával. OEE az iparági szabványos mérték szorzásával hello rendelkezésre állási sebessége, teljesítmény sebessége és minőségének: OEE = x x minőségi rendelkezésre állását.
+Az OEE a gyártási folyamat hatékonyságát osztályozza a gyártáshoz kapcsolódó főbb működési paraméterek alapján. Az OEE egy iparági szabvány mérőszám, amely a rendelkezésre állás, a teljesítmény és a minőség besorolásainak szorzata: OEE = rendelkezésre állás x teljesítmény x minőség.
 
 ![Előre konfigurált csatlakoztatott gyár megoldás – OEE][cf-img-oee]
 
-1. tooview OEE bármely szint hello hierarchiában, keresse meg a toohello specifikus nézet van szüksége. hello panel hello OEE százalékos alkotó hello elemmel együtt hello OEE, ha a nézet jeleníti meg.
+1. A hierarchia valamely szintjére vonatkozó OEE megtekintéséhez lépjen az adott nézetre. A nézet OEE mutatója megjelenik a panelen, azon elemekkel együtt, amelyek összesen kiteszik az OEE százalékos értékét.
 
-2. toofurther hello OEE bármely szint hello hierarchia adatok elemzése, kattintson hello OEE, rendelkezésre állási, teljesítmény vagy a minőségi százalékos aránya. A környezet panel jelenik meg, amelyen idő adatsorozat Insights energiaforrással rendelkező képi megjelenítéseket, amelyek az elmúlt egy óra utolsó 24 óra és az elmúlt 7 napban hello adatainak megjelenítése.
+2. Az OEE mélyebb elemzéséhez a hierarchiaadatok valamelyik szintjén kattintson az OEE, a rendelkezésre állás, a teljesítmény vagy a minőség százalékos értékére. Megjelenik egy Time Series Insights-vizualizációkat tartalmazó helyi panel, amelyek az elmúlt óra, az elmúlt 24 óra és az elmúlt 7 nap adatait mutatják.
 
     ![Előre konfigurált csatlakoztatott gyár megoldás – TSI-vizualizáció][cf-img-tsi-visualization]
 
-3. toofurther hello riasztási adatok elemzésére, hello graph hello riasztási panelen kattintson. Ez a művelet megnyitja hello idő adatsorozat Insights explorer környezetben.
+3. A riasztás adatainak további elemzéséhez kattintson a diagramra a riasztások panelén. Ez a művelet megnyitja a Time Series Insights Explorer környezetet.
 
     ![Előre konfigurált csatlakoztatott gyár megoldás – TSI Explorer][cf-img-tsi-explorer]
 
 ## <a name="view-key-performance-indicators"></a>Fő teljesítménymutatók megtekintése
 
-hello megoldás két fő teljesítménymutatók, biztosít *óránként egységek* és *kWh-ban használt energia*.
+A megoldás két fő teljesítménymutatót biztosít: *egységek száma óránként* és *felhasznált energia (kWh)*.
 
 ![Előre konfigurált csatlakoztatott gyár megoldás – KPI][cf-img-kpi]
 
-1. tooview egység / óra vagy energiát minden szint hello hierarchiában, keresse meg a toohello specifikus nézet van szüksége. hello egység / óra és energia hello panelen megjelenített használt.
+1. A hierarchia valamely szintjére vonatkozó óránkénti egységszám vagy felhasznált energia megtekintéséhez lépjen az adott nézetre. Az óránkénti egységszám és a felhasznált energia megjelenik a panelen.
 
-2. tooanalyze egység / óra vagy energiát minden szint hello hierarchia további, kattintson a hello hello mérőműszer **a fő teljesítménymutatók** panel. A környezet panel hello utolsó óra utolsó 24 órában, és a legutóbbi 7 nap hello tooview adatok így már kapcsolva idő adatsorozat Insights megjelenítésekkel jelenik meg.
+2. Az óránkénti egységszám vagy a felhasznált energia elemzéséhez a hierarchia valamely további szintjén kattintson a mutatóra a **Fő teljesítménymutatók** panelen. Megjelenik egy Time Series Insights-vizualizációkat tartalmazó helyi panel, amelyek az elmúlt óra, az elmúlt 24 óra és az elmúlt 7 nap adatait mutatják.
 
 ## <a name="scenario-review"></a>Forgatókönyv áttekintése
 
-Ebben a forgatókönyvben a előállítók OEE és a KPI-k, szereplő értékek hello irányítópult figyeli. Majd használt idő adatsorozat Insights tooprovide további információt toohelp részletek további hello telemetriai adatokat a rendellenességeinek észlelésekor OEE és a KPI-k toohelp. A előállítók hello riasztási panel tooview problémákat is használt, és hello műveletek elérhető tooyou tooresolve hello riasztás használta.
+Ebben a forgatókönyvben megfigyelte az üzemek OEE és KPI mutatóit az irányítópulton. Ezután a Time Series Insights használatával további információkhoz jutott, hogy az OEE-k és KPI-k telemetriaadatainak részletesebb feltárásával segíthesse elő a rendellenességek észlelését. A riasztási panelen megtekintette az üzemekben jelentkező problémákat, és a rendelkezésre műveletekkel orvosolta a riasztásokat.
 
 ## <a name="other-features"></a>Egyéb jellemzők
 
-a következő szakaszok hello csatlakoztatott hello gyári megoldás néhány további szolgáltatásokat, nem ismerteti a fentebbi szituáció hello ismertetik.
+A következő szakaszokban a csatlakoztatott gyár megoldás néhány egyéb jellemzőjéről lesz szó, amelyek nem szerepeltek az előző forgatókönyvben.
 
 ## <a name="apply-filters"></a>Szűrők alkalmazása
 
-1. Kattintson a hello **sávnyíl** toodisplay vagy hello gyári helyek vagy hello riasztások panelen rendelkezésre álló szűrők listája.
+1. Kattintson a **sávnyílra** a gyárhelyek vagy a riasztások panelén elérhető szűrők listájának megjelenítéséhez.
 
-2. az Ön hello szűrők panel jelenik meg. 
+2. Megjelenik a szűrők panelje. 
 
     ![Előre konfigurált csatlakoztatott gyár megoldás – szűrők][cf-img-alert-filter]
 
-3. Válassza ki a szükséges hello szűrő. Akkor is lehetséges tootype szabad szöveg hello szűrő mezőkbe.
+3. Válassza ki a kívánt szűrőt. A szűrőmezőkben szabad szöveget is megadhat.
 
-4. hello majd szűrőhöz meg. hello irányítópulton keresztül a tölcsér hello előállítók jeleníti meg, és riasztást küld a táblák hello szűrő állapota is látható.
+4. A rendszer működésbe lépteti a szűrőt. A szűrő állapota az irányítópulton is megjeleníthető egy tölcsér ikonon keresztül, amely az üzemek és a riasztások tábláiban is elérhető.
 
     ![Előre konfigurált csatlakoztatott gyár megoldás – szűrők][cf-img-alert-filter-funnel]
 
     > [!NOTE]
-    > Aktív szűrő nem befolyásolja a megjelenő hello OEE és KPI értékek, csak szűri hello tartalmának listázása.
+    > Az aktív szűrők nincsenek hatással a megjelenített OEE és KPI mutatókra, csupán a listák tartalmát szűkítik.
 
-5. tooclear szűrőt, kattintson a hello tölcsér, és kattintson a szűrő hello szűrő környezetben panelen. szöveg hello **összes** hello előállítók jelenik meg, és riasztást küld a táblákat.
+5. A szűrő törléséhez kattintson a tölcsér ikonra, majd a szűrőre a szűrő helyi panelén. Ekkor az **All** (Összes) kifejezés jelenik meg az üzemek és a riasztások tábláiban.
 
 ## <a name="browse-an-opc-ua-server"></a>OPC UA-kiszolgáló tallózása
 
-Előre konfigurált hello megoldás telepítésekor automatikusan létesítsen keresztül hello megoldás böngésző tallózással szimulált OPC EE-kiszolgálók. Ezek a kiszolgálók *szimulált OPC UA-kiszolgálók*. Szimulált kiszolgálók könnyítheti meg tooexperiment előre konfigurált hello megoldással hello kell toodeploy valódi, fizikai kiszolgálók nélkül. Ha szeretné, hogy valós OPC EE-kiszolgálói toohello megoldás tooconnect, tekintse meg a hello [kapcsolni a OPC EE eszköz csatlakoztatva toohello előre konfigurált gyári megoldást] [ lnk-connect-cf] oktatóanyag.
+Az előre konfigurált megoldás üzembe helyezésekor automatikusan sor kerül a szimulált OPC UA-kiszolgálók kiosztására, amelyek a megoldás böngészőjében tallózhatóak. Ezek a kiszolgálók *szimulált OPC UA-kiszolgálók*. A szimulált kiszolgálók megkönnyítik az előre konfigurált megoldással történő kísérletezést, anélkül, hogy valódi, fizikai kiszolgálók üzembe helyezésére lenne szükség. Valós OPC UA-kiszolgálóknak a megoldáshoz történő csatlakoztatásáról [az OPC UA-eszköz előre konfigurált csatlakoztatott gyár megoldáshoz történő csatlakoztatásával][lnk-connect-cf] foglalkozó oktatóanyagban olvashat.
 
-1. Kattintson a hello **gyári ikon** hello irányítópult navigációs sávban.
+1. Kattintson a **gyár ikonra** az irányítópult navigációs sávján.
 
     ![Előre konfigurált csatlakoztatott gyár megoldás – kiszolgálótallózó][cf-img-server-browser]
 
-2. Hello előre konfigurált listából válasszon hello kiszolgálók közül. A lista mutatja meg az előre konfigurált hello megoldás telepített hello kiszolgálókat.
+2. Válasszon egyet a kiszolgálók közül az előre konfigurált listában. A lista az előre konfigurált megoldásban üzembe helyezett kiszolgálókat mutatja.
 
     ![Előre konfigurált csatlakoztatott gyár megoldás – kiválasztott kiszolgálók][cf-img-server-choice]
 
-3. Kattintson a **Connect** (Csatlakozás) gombra. Megjelenik egy biztonsági párbeszédablak. Hello szimuláció, biztonságos tooclick **folytatása**
+3. Kattintson a **Connect** (Csatlakozás) gombra. Megjelenik egy biztonsági párbeszédablak. A szimuláció esetében biztonságosan kattinthat a **Proceed** (Folytatás) gombra.
 
-4. tooexpand bármelyik hello csomópontok hello kiszolgáló csomópontjára, kattintson rá. A telemetriaadatokat közzétevő csomópontokat egy pipa jelöli.
+4. Kattintson bármely csomópontra a kiszolgálófán a kibontásához. A telemetriaadatokat közzétevő csomópontokat egy pipa jelöli.
 
     ![Előre konfigurált csatlakoztatott gyár megoldás – kiszolgálófa][cf-img-server-tree]
 
-5. Kattintson a jobb gombbal egy cikk tooread, írása, közzététele és hívható meg, hogy a csomópont. hello műveletek elérhető tooyou az engedélyeit, és hello attribútumok hello csomópont függ. hello olvasható beállítás toodisplays egy adott csomópont hello hello értéket megjelenítő környezetben panel. hello írható beállítást jeleníti meg a környezetben panel, ahol új értéket adhat meg. hello hívás lehetőséget választja, megnyílik egy csomópont be hello paraméterek hello hívásához.
+5. Egy csomópont olvasásához, írásához, közzétételéhez vagy meghívásához kattintson jobb gombbal az adott elemre. Az elérhető műveletek a jogosultságaitól és a csomópont attribútumaitól függnek. Az olvasási lehetőség egy helyi panelt jelenít meg, amelyen az adott csomópont értéke látható. Az írási lehetőség egy olyan helyi panelt jelenít meg, amelyen új értéket adhat meg. A hívási lehetőség egy csomópontot jelenít meg, amelyen megadhatja a hívás paramétereit.
 
 ## <a name="publish-a-node"></a>Csomópont közzététele
 
-Ha megnyitja egy *szimulált OPC EE-kiszolgáló*, dönthet úgy is toopublish új csomópontok. Ezek a csomópontok hello megoldásban a hello telemetriai elemezheti. Ezek *OPC EE-kiszolgálók szimulált* könnyebben előre konfigurált hello megoldással egyszerűen tooexperiment valódi, fizikai eszközök telepítése nélkül.
+Ha egy *szimulált OPC UA-kiszolgálóhoz* tallóz, új csomópontokat is közzétehet, ha szeretne. Ezeknek a csomópontoknak a telemetriáját is elemezheti a megoldásban. Ezek a *szimulált OPC UA-kiszolgálók* megkönnyítik az előre konfigurált megoldással történő kísérletezést, anélkül, hogy valódi, fizikai eszközök üzembe helyezésére lenne szükség.
 
-1. Keresse meg, hogy kívánja-e toopublish OPC EE böngésző fa hello tooa csomópontja.
+1. Lépjen egy közzétenni kívánt csomópontra az OPC UA-kiszolgáló tallózási fáján.
 
-2. Kattintson a jobb gombbal hello csomópont.
+2. Kattintson a jobb gombbal a csomópontra.
 
 3. Válassza a **Publish** (Közzététel) lehetőséget.
 
     ![A csatlakoztatott gyár közzétesz egy csomópontot][cf-img-publish-node]
 
-4. A környezet panel jelenik meg, amely közli, hogy hello közzététele sikeresen befejeződött. hello csomópont hello állomás szint nézetében mellette jelölve jelenik meg.
+4. Megjelenik egy helyi panel, amely tájékoztatja, hogy a közzététel sikeres volt. A csomópont megjelenik az állomásszinten, mellette egy pipával.
 
     ![Előre konfigurált csatlakoztatott gyár megoldás – sikeres közzététel][cf-img-publish-success]
 
 ## <a name="command-and-control"></a>Parancs és vezérlés
 
-hello csatlakoztatott gyári lehetővé teszi a parancsot, és az iparág eszközök közvetlenül a hello felhőből szabályozzák. Ez a szolgáltatás toorespond tooalerts hello eszköz állítja elő is használhatja. Például egy parancs toohello eszköz sikerült elküldeni a hello felhőből. Hello elérhető parancsok az található hello **StationCommands** hello OPC EE kiszolgálók böngésző fa csomópontja. Ebben a forgatókönyvben egy éles sor München hello szerelvény állomáson nyomás kiadás szelep nyissa meg. toouse hello parancs funkciói, kell lennie a hello **rendszergazda** hello szerepkör előre konfigurált megoldás üzembe helyezése.
+A csatlakoztatott gyár segítségével közvetlenül a felhőből irányíthatja és felügyelheti ipari eszközeit. A szolgáltatással az eszközök által létrehozott riasztásokra is reagálhat, például parancsokat küldhet a felhőből egy eszközre. A rendelkezésre álló parancsokat az OPC UA-kiszolgáló tallózási fájának **StationCommands** csomópontján találja. Ebben a forgatókönyvben megnyit egy nyomáskiegyenlítő szelepet egy müncheni gyártósor összeszerelő állomásán. Az irányítási és felügyeleti funkciók használatához **Rendszergazda** szerepkörrel kell rendelkeznie az előre konfigurált megoldás üzemelő példányán.
 
-1. Keresse meg a toohello **StationCommands** hello OPC EE böngésző fa csomópontja.
+1. Lépjen a **StationCommands** csomópontra az OPC UA-kiszolgáló tallózási fáján.
 
-2. Válassza ki, hogy kívánja-e használatban hello parancsot.
+2. Válassza ki a használni kívánt parancsot.
 
-3. Kattintson a jobb gombbal hello csomópont.
+3. Kattintson a jobb gombbal a csomópontra.
 
 4. Válassza a **Call** (Hívás) parancsot.
 
     ![Előre konfigurált csatlakoztatott gyár megoldás – hívás parancs][cf-img-call-command]
 
-5. A környezet panel jelenik meg, tájékoztat módszer toocall, és minden paraméter adatát kell alkalmazni.
+5. Megjelenik egy helyi panel, amely tájékoztatja a meghívni készült metódusról, valamint az esetleges vonatkozó paraméterek részleteiről.
 
 6. Válassza a **Call** (Hívás) parancsot.
 
     ![Előre konfigurált csatlakoztatott gyár megoldás – hívás helyi panelje][cf-img-call-context]
 
-7. hello környezetben panel egy frissített tooinform, hogy a metódus hívása hello sikeres volt. Hello hívás sikeres hello nyomás csomópont hello hívása miatt frissített hello érték beolvasásával ellenőrizheti.
+7. A helyi panel frissül, és tájékoztatja róla, ha a metódus meghívása sikeres volt. A hívás sikerességét ellenőrizheti a hívás eredményeképpen frissített nyomásmérő csomópont értékének leolvasásával.
 
     ![Előre konfigurált csatlakoztatott gyár megoldás – sikeres hívás][cf-img-call-success]
 
 
-## <a name="behind-hello-scenes"></a>Hello háttérben
+## <a name="behind-the-scenes"></a>A színfalak mögött
 
-Amikor telepít egy előre beállított megoldás, hello központi telepítési folyamat több erőforrást hello kijelölt Azure-előfizetés hoz létre. Megtekintheti ezeket az erőforrásokat a hello Azure [portal][lnk-portal]. hello központi telepítési folyamat létrehoz egy **erőforráscsoport** előkonfigurált megoldást választja hello neve alapján néven:
+Előre konfigurált megoldás üzembe helyezésekor az üzembehelyezési folyamat több erőforrást hoz létre a kiválasztott Azure-előfizetésben. Ezeket az erőforrásokat az Azure [Portalon][lnk-portal] tekintheti meg. Az üzembe helyezési folyamat létrehoz egy **erőforráscsoportot** az előre konfigurált megoldáshoz kiválasztott néven alapuló névvel:
 
-![Hello Azure-portálon az előkonfigurált megoldás][img-cf-portal]
+![Előre konfigurált megoldás az Azure Portalon][img-cf-portal]
 
-Megtekintheti a hello-beállítások az egyes erőforrások hello az erőforrások listájához a hello erőforráscsoport lehetőséget.
+Az egyes erőforrások beállításainak megtekintéséhez válassza ki az erőforrást az erőforráscsoport erőforráslistájában.
 
-Előre konfigurált hello megoldás forráskódját hello is megtekintheti. hello előre konfigurált csatlakoztatott gyári megoldás forráskódját van hello [azure iot-csatlakoztatott-gyári] [ lnk-cfgithub] GitHub-tárházban:
+Megtekintheti az előre konfigurált megoldás forráskódját is. Az előre konfigurált csatlakoztatott gyár megoldás forráskódja az [azure-iot-connected-factory][lnk-cfgithub] GitHub-adattárban található:
 
-Amikor elkészült, hogy törli előre konfigurált hello megoldás az Azure-előfizetéshez hello [azureiotsuite.com] [ lnk-azureiotsuite] hely. Ez a hely összes hello előre konfigurált hello megoldás létrehozása után kiépített erőforrások tooeasily törlése lehetővé teszi.
+Amikor elkészült, törölheti az előre konfigurált megoldást az Azure-előfizetésből az [azureiotsuite.com][lnk-azureiotsuite] webhelyen. Így könnyedén törölheti az előre konfigurált megoldás létrehozásakor megkapott összes erőforrást.
 
 > [!NOTE]
-> tooensure törlése minden kapcsolódó előre konfigurált toohello megoldás, törölje a hello [azureiotsuite.com] [ lnk-azureiotsuite] hely. Ne törölje az erőforráscsoportot hello hello portálon.
+> Ahhoz, hogy biztosan törölje az előre konfigurált megoldáshoz kapcsolódó összes elemet, törölje a megoldást az [azureiotsuite.com][lnk-azureiotsuite] webhelyről. Ne törölje az erőforráscsoportot a portálon.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Most, hogy egy előre konfigurált működő megoldást telepítése után, továbbra is a következő cikkek hello olvasásával Ismerkedés az IoT Suite:
+Most, hogy üzembe helyezett egy működő előre konfigurált megoldást, a következő cikkek elolvasásával folytathatja az ismerkedést az IoT Suite használatával:
 
 * [Előre konfigurált csatlakoztatott gyár megoldás – bemutató][lnk-rm-walkthrough]
-* [Csatlakozás a toohello előre konfigurált csatlakoztatott gyári megoldás][lnk-connect-cf]
-* [Engedélyek hello azureiotsuite.com webhelyen][lnk-permissions]
+* [Az eszköz csatlakoztatása az előre konfigurált csatlakoztatott gyár megoldáshoz][lnk-connect-cf]
+* [Engedélyek az azureiotsuite.com webhelyen][lnk-permissions]
 
 [img-cf-home]:media/iot-suite-connected-factory-overview/cf-dashboard.png
 [img-launch-solution]: media/iot-suite-connected-factory-overview/launch-cf.png

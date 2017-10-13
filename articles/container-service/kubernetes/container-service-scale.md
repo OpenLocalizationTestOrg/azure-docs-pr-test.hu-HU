@@ -1,6 +1,6 @@
 ---
-title: "aaaScale Azure Tárolószolgáltatási fürthöz |} Microsoft Docs"
-description: "Hogyan tooscale ügynök be Azure Tárolószolgáltatási DC/OS, Docker Swarm vagy Kubernetes fürt csomópontjai hello Azure CLI-t vagy az Azure-portálon."
+title: "Scale Azure Tárolószolgáltatási fürthöz |} Microsoft Docs"
+description: "Ügynök csomópontok az Azure CLI vagy az Azure portál Azure Tárolószolgáltatási DC/OS, Docker Swarm vagy Kubernetes fürtökkel a méretezési módját."
 services: container-service
 documentationcenter: 
 author: sauryadas
@@ -17,10 +17,10 @@ ms.workload: na
 ms.date: 03/01/2017
 ms.author: saudas
 ms.custom: H1Hack27Feb2017, mvc
-ms.openlocfilehash: 9a0f28f467f95a453078bb2a9498a9033e019645
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3ec2d280188d7cc2eb0b3926cc963b89531b96e5
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 [!INCLUDE [container-service-scale.md](../../../includes/container-service-scale.md)]

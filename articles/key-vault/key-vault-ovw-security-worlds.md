@@ -1,45 +1,45 @@
 ---
 ms.assetid: 
-title: "aaaAzure Key Vault biztonsági világot |} Microsoft Docs"
+title: "Az Azure Key Vault biztonsági világot |} Microsoft Docs"
 ms.service: key-vault
 author: BrucePerlerMS
 ms.author: bruceper
 manager: mbaldwin
 ms.date: 07/03/2017
-ms.openlocfilehash: 1995119c9e9886829d6c50af921f275d10e382f0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 921bbd109c9ea98d8b5c286a7512bed026412d26
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-key-vault-security-worlds-and-geographic-boundaries"></a>Az Azure Key Vault biztonsági világot és földrajzi határok
 
 Az Azure Key Vault egy több-bérlős szolgáltatás, és az egyes Azure-beli hely használja a hardveres biztonsági modulokkal (HSM) készletét. 
 
-Minden HSM-EK a hello Azure helyeken azonos földrajzi régióban megosztás hello ugyanazt a határt kriptográfiai (Thales Biztonságivilág). Például USA keleti régiója és megosztása USA nyugati hello ugyanazt biztonsági világ mert toohello USA földrajzi hely tartoznak. Hasonlóképpen japán megosztáson található összes Azure helyét hello ugyanazt biztonsági világ és Ausztráliában-Indiában, minden Azure helyek, és így tovább. 
+A ugyanabban a földrajzi régióban Azure helyen lévő összes HSM ossza meg az azonos kriptográfiai határ (Thales Biztonságivilág). Például USA keleti régiója, és az USA nyugati régiója megoszthatja a ugyanazt biztonsági világ mert tartoznak az USA földrajzi hely. Ehhez hasonlóan japán minden Azure hely ossza meg a ugyanazt biztonsági világ és az összes Azure helyek Ausztrália, India és így tovább. 
 
 ## <a name="backup-and-restore-behavior"></a>Biztonsági mentés és helyreállítás viselkedése
 
-Egy készült biztonsági másolatok a kulcstároló egy Azure-beli hely lehet kulcs visszaállítása tooa egy másik Azure-beli hely, a kulcstároló, mindaddig, amíg az alábbi két feltétel teljesülése:
+Egy készült biztonsági másolatok a kulcstároló egyetlen Azure helyen kulcs vissza tudja állítani egy másik Azure-beli hely, a kulcstároló, amíg az alábbi két feltétel teljesül:
 
-- Mindkét hello Azure helyek tartozik toohello ugyanazon a földrajzi helyen
-- Mindkét hello kulcstárolójának tartozik toohello azonos Azure-előfizetés
+- Az Azure-hely tartoznak ugyanazon a földrajzi helyen
+- Mind a kulcstárolók az azonos Azure-előfizetés tartozik
 
-Például egy kulcs kulcstároló Nyugat-Indiában, az adott előfizetés által végrehajtott biztonsági csak lehet visszaállított tooanother kulcstároló hello az ugyanahhoz az előfizetéshez és a földrajzi hely; Nyugat-Indiában, közép-Indiában és Dél-India.
+Például egy kulcs kulcstároló Nyugat-Indiában, az adott előfizetés által végrehajtott biztonsági csak vissza tudja állítani az ugyanahhoz az előfizetéshez és a földrajzi hely; egy másik kulcstároló Nyugat-Indiában, közép-Indiában és Dél-India.
 
 ## <a name="regions-and-products"></a>Régiók és termékek
 
 - [Azure-régiók](https://azure.microsoft.com/regions/)
 - [Microsoft-termékek régió szerint](https://azure.microsoft.com/regions/services/)
 
-Csatlakoztatott toosecurity világot hello táblák fő fejlécében megjelenő régiók a következők:
+Régiók biztonsági világot fő fejlécében a táblázatok látható van leképezve:
 
-Hello termékek régió cikkben, például hello **Americas** lap tartalmaz kelet VELÜNK, USA KÖZÉPSŐ RÉGIÓJA, USA nyugati RÉGIÓJA összes leképezési toohello Americas régióban. 
+A termékek régió cikkben, például a **Americas** lap tartalmaz kelet VELÜNK, USA KÖZÉPSŐ RÉGIÓJA, USA nyugati RÉGIÓJA Americas régió összes leképezésére. 
 
 >[!NOTE]
 >Egy kivétel ez alól, Velünk DOD EAST és a US DOD központi rendelkezik-e a saját biztonsági világot. 
 
-Hasonlóképpen, a hello **Európa** lap, Észak-Európa, és Nyugat-Európa toohello Európa régió mindkét képezze le. hello is is igaz a hello **Ázsia Csendes-óceáni** fülre.
+Hasonlóképpen, a a **Európa** lap, Észak-Európa, és Nyugat-Európa, mind a Európa régió van leképezve. Ugyanez érvényes is a a **Ázsia Csendes-óceáni** fülre.
 
 
 

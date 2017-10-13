@@ -1,6 +1,6 @@
 ---
 title: "Mindig titkosítja: SQL-adatbázishoz – az Azure Key Vault |} Microsoft Docs"
-description: "Ez a cikk bemutatja, hogyan toosecure adatok titkosítás használata az SQL-adatbázisban lévő bizalmas adatokat hello mindig titkosítja az SQL Server Management Studio varázsló. Az olyan utasításokat is tartalmaz, amely bemutatja, hogyan toostore minden Azure Key Vault a titkosítási kulcs."
+description: "Ez a cikk bemutatja, hogyan bizalmas adatok védelmének SQL-adatbázisban a varázslóval mindig titkosítja az SQL Server Management Studio adatok titkosításával. Bemutatja, hogyan egyes titkosítási kulcsok tárolására az Azure Key Vault utasításokat is tartalmaz."
 keywords: "adatok titkosítását, a titkosítási kulcs, a felhő titkosítás"
 services: sql-database
 documentationcenter: 
@@ -16,58 +16,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: sstein
-ms.openlocfilehash: 8226bfef584e979643f5bb0747d4df16569f8204
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 61bfd420425b4740f6d4ebc01a403a88ff351382
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="always-encrypted-protect-sensitive-data-in-sql-database-and-store-your-encryption-keys-in-azure-key-vault"></a>Mindig titkosítja: Az SQL-adatbázis bizalmas adatok védelmét, és a titkosítási kulcsok tárolása az Azure Key Vault
 
-Ez a cikk bemutatja, hogyan toosecure bizalmas adatait egy SQL-adatbázis használati ideje az adattitkosítás hello segítségével [varázsló mindig titkosítja](https://msdn.microsoft.com/library/mt459280.aspx) a [SQL Server Management Studio (SSMS)](https://msdn.microsoft.com/library/hh213248.aspx). Az olyan utasításokat is tartalmaz, amely bemutatja, hogyan toostore minden Azure Key Vault a titkosítási kulcs.
+A cikkből megtudhatja, mennyire biztonságos adatok titkosítás használata az SQL-adatbázisban lévő bizalmas adatokat a [varázsló mindig titkosítja](https://msdn.microsoft.com/library/mt459280.aspx) a [SQL Server Management Studio (SSMS)](https://msdn.microsoft.com/library/hh213248.aspx). Bemutatja, hogyan egyes titkosítási kulcsok tárolására az Azure Key Vault utasításokat is tartalmaz.
 
-Titkosított mindig egy új adatok titkosítás technológia az Azure SQL Database, és, amely segít az SQL Server hello kiszolgálón inaktív bizalmas adat védelme adatátviteli ügyfél és kiszolgáló között, és miközben hello adatok használatban van. Mindig titkosított biztosítja, hogy bizalmas adatok soha nem jelenik meg szövegként hello adatbázis rendszerében. Miután konfigurálta az adattitkosítást, csak az ügyfélalkalmazások vagy toohello hívóbetűket alkalmazáskiszolgálókra férhet hozzá egyszerű szöveges adatokhoz. Részletes információkért lásd: [(adatbázismotor) mindig titkosítja](https://msdn.microsoft.com/library/mt163865.aspx).
+Mindig titkosított egy olyan új adatok titkosítás technológia az Azure SQL Database és SQL Server, amely segít megvédeni a bizalmas adatok aktívan a kiszolgálón, ügyfél és kiszolgáló között, és miközben használatban van az adatok mozgása során. Mindig titkosított biztosítja, hogy bizalmas adatok soha nem jelenik meg az adatbázis rendszerében szövegként. Miután konfigurálta az adattitkosítást, csak az ügyfélalkalmazások vagy a kulcsoknak access app kiszolgálók férhet hozzá egyszerű szöveges adatokhoz. Részletes információkért lásd: [(adatbázismotor) mindig titkosítja](https://msdn.microsoft.com/library/mt163865.aspx).
 
-Miután konfigurálta a hello adatbázis toouse mindig titkosítja, C# nyelven íródtak a Visual Studio toowork hello titkosított adatok hoz létre egy ügyfélalkalmazást.
+Miután konfigurálta az adatbázist mindig titkosítja, a C# a Visual Studio, a titkosított adatok hoz létre egy ügyfélalkalmazást.
 
-Kövesse az ebben a cikkben hello lépéseket, és megtudhatja, hogyan tooset mentése mindig titkosítja az Azure SQL-adatbázis. Ebben a cikkben megtudhatja, hogyan tooperform hello a következő feladatokat:
+Kövesse a cikkben leírt lépéseket, és megtudhatja, hogyan állíthat be mindig titkosítja az Azure SQL-adatbázis. Ebben a cikkben megtudhatja, hogyan a következő feladatok végezhetők el:
 
-* Hello mindig titkosítja varázsló használata a szolgáltatáshoz az SSMS toocreate [mindig titkosított kulcsok](https://msdn.microsoft.com/library/mt163865.aspx#Anchor_3).
+* A varázslóval mindig titkosítja az SSMS létrehozásához [mindig titkosított kulcsok](https://msdn.microsoft.com/library/mt163865.aspx#Anchor_3).
   * Hozzon létre egy [oszlop főkulcs (CMK)](https://msdn.microsoft.com/library/mt146393.aspx).
   * Hozzon létre egy [oszlop titkosítási kulcsának (CEK)](https://msdn.microsoft.com/library/mt146372.aspx).
 * Hozzon létre egy adatbázis tábláinak és oszlopok titkosításához.
-* Hozzon létre olyan alkalmazás, amely beszúrja, kiválasztása és hello titkosított oszlopok adatait jeleníti meg.
+* Hozzon létre egy alkalmazást, amely beszúrja, kiválasztása és a titkosított oszlopokban adatait jeleníti meg.
 
 ## <a name="prerequisites"></a>Előfeltételek
 Ebben az oktatóanyagban lesz szüksége:
 
 * Azure-fiók és -előfizetés. Ha még nincs fiókja, regisztráljon egy [ingyenes próbaverzió](https://azure.microsoft.com/pricing/free-trial/).
 * [SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx) 13.0.700.242 verzió vagy újabb.
-* [.NET-keretrendszer 4.6](https://msdn.microsoft.com/library/w0x726c2.aspx) vagy újabb (ügyfélszámítógépen hello).
+* [.NET-keretrendszer 4.6](https://msdn.microsoft.com/library/w0x726c2.aspx) vagy újabb (az ügyfélszámítógépen).
 * [Visual Studio](https://www.visualstudio.com/downloads/download-visual-studio-vs.aspx).
-* [Az Azure PowerShell](/powershell/azure/overview), 1.0-ás vagy újabb verziója. Típus **(Get-Module azure - ListAvailable). Verzió** toosee PowerShell melyik verzióját futtatja.
+* [Az Azure PowerShell](/powershell/azure/overview), 1.0-ás vagy újabb verziója. Típus **(Get-Module azure - ListAvailable). Verzió** futnak PowerShell verziójának megtekintéséhez.
 
-## <a name="enable-your-client-application-tooaccess-hello-sql-database-service"></a>Az ügyfél alkalmazás tooaccess hello SQL Database szolgáltatás engedélyezése
-Engedélyeznie kell az ügyfél alkalmazás tooaccess hello SQL Database szolgáltatás hello szükséges hitelesítés és az hello beállításával *ClientId* és *titkos* , hogy szüksége lesz a tooauthenticate a következő kód hello az alkalmazást.
+## <a name="enable-your-client-application-to-access-the-sql-database-service"></a>Az ügyfélalkalmazás számára az SQL Database szolgáltatás engedélyezése
+Engedélyeznie kell az ügyfélalkalmazás az SQL Database szolgáltatás elérését a szükséges hitelesítés és az beszerzése a *ClientId* és *titkos* hitelesítéséhez szükséges a a következő kódot az alkalmazás.
 
-1. Nyissa meg hello [a klasszikus Azure portálon](http://manage.windowsazure.com).
-2. Válassza ki **Active Directory** , és kattintson az alkalmazás által használt hello Active Directory-példányban.
+1. Nyissa meg a [a klasszikus Azure portálon](http://manage.windowsazure.com).
+2. Válassza ki **Active Directory** , és kattintson az alkalmazás által használt Active Directory-példányban.
 3. Kattintson a **alkalmazások**, és kattintson a **hozzáadása**.
-4. Írja be az alkalmazás nevét (például: *myClientApp*) elemre, jelölje be **WEBALKALMAZÁS**, és kattintson a nyílra toocontinue hello.
-5. A hello **SIGN-ON URL** és **APP ID URI** adhatja meg egy érvényes URL-címet (például *http://myClientApp*) és a folytatáshoz.
+4. Adjon meg egy nevet az alkalmazáshoz (például: *myClientApp*) elemre, jelölje be **WEBALKALMAZÁS**, és kattintson a nyílra, a folytatáshoz.
+5. Az a **SIGN-ON URL** és **APP ID URI** adhatja meg egy érvényes URL-címet (például *http://myClientApp*) és a folytatáshoz.
 6. Kattintson a **KONFIGURÁLÁSA**.
 7. Másolás a **ügyfél-azonosító**. (Később szüksége lesz ezt az értéket a kódban.)
-8. A hello **kulcsok** szakaszban jelölje be **1 év** hello a **időtartam kiválasztása** legördülő listában. (Fogja másolni hello kulcs, miután menti a 13.)
+8. A a **kulcsok** szakaszban jelölje be **1 év** a a **válassza ki a duration** legördülő listából. (Fogja másolni a kulcsot, miután menti a 13.)
 9. Görgessen le, majd kattintson a **alkalmazás hozzáadása**.
-10. Hagyja **megjelenítése** túl beállítása**Microsoft Apps** válassza **Microsoft Azure szolgáltatásfelügyeleti API**. Kattintson a pipa toocontinue hello.
-11. Válassza ki **Azure szolgáltatásfelügyelet eléréséhez...**  a hello **delegált engedélyek** legördülő listából.
+10. Hagyja **megjelenítése** beállítása **Microsoft Apps** válassza **Microsoft Azure szolgáltatásfelügyeleti API**. Kattintson a pipa ikonra, a folytatáshoz.
+11. Válassza ki **Azure szolgáltatásfelügyelet eléréséhez...**  a a **delegált engedélyek** legördülő listából.
 12. Kattintson a **SAVE** (Mentés) gombra.
-13. Hello mentése befejeződik, után másolása hello kulcsérték hello **kulcsok** szakasz. (Később szüksége lesz ezt az értéket a kódban.)
+13. A mentés befejezése után másolja a kulcs értékét a **kulcsok** szakasz. (Később szüksége lesz ezt az értéket a kódban.)
 
-## <a name="create-a-key-vault-toostore-your-keys"></a>A kulcstároló toostore a kulcsok létrehozása
-Most, hogy az ügyfél alkalmazás van konfigurálva, és az ügyfél-Azonosítóval rendelkezik, idő toocreate kulcstároló, és a hozzáférési házirend konfigurálása a szolgáltatást, és az alkalmazás számára hello tároló titkos kulcsokat (hello mindig titkosított kulcsok). Hello *létrehozása*, *beolvasása*, *lista*, *bejelentkezési*, *ellenőrizze*, *wrapKey*, és *unwrapKey* engedélyekre szükség, egy új oszlop főkulcsának létrehozásához és az SQL Server Management Studio titkosítási beállításának.
+## <a name="create-a-key-vault-to-store-your-keys"></a>Hozzon létre egy kulcstartót a kulcsok tárolására
+Most, hogy az ügyfél alkalmazás van konfigurálva, és az ügyfél-Azonosítóval rendelkezik, akkor hozzon létre egy kulcstartót és a hozzáférési házirend konfigurálása a szolgáltatást, és az alkalmazás számára a tároló kulcsait (mindig titkosított kulcsok). A *létrehozása*, *beolvasása*, *lista*, *bejelentkezési*, *ellenőrizze*, *wrapKey*, és *unwrapKey* engedélyekre szükség, egy új oszlop főkulcsának létrehozásához és az SQL Server Management Studio titkosítási beállításának.
 
-Gyorsan létrehozhat egy kulcstartót hello a következő parancsfájl futtatásával. Ezek a parancsmagok és további információ a létrehozásáról és konfigurálásáról a kulcstároló részletes ismertetése [Ismerkedés az Azure Key Vault](../key-vault/key-vault-get-started.md).
+A következő parancsfájl futtatásával gyorsan létrehozhat egy kulcstartót. Ezek a parancsmagok és további információ a létrehozásáról és konfigurálásáról a kulcstároló részletes ismertetése [Ismerkedés az Azure Key Vault](../key-vault/key-vault-get-started.md).
 
     $subscriptionName = '<your Azure subscription name>'
     $userPrincipalName = '<username@domain.com>'
@@ -91,35 +91,35 @@ Gyorsan létrehozhat egy kulcstartót hello a következő parancsfájl futtatás
 
 
 ## <a name="create-a-blank-sql-database"></a>Üres SQL-adatbázis létrehozása
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/).
-2. Nyissa meg túl**új** > **adatok + tárolás** > **SQL-adatbázis**.
-3. Hozzon létre egy **üres** nevű adatbázis **klinikán** egy új vagy meglévő kiszolgálóra. Hogyan toocreate egy adatbázis hello Azure-portálon: kapcsolatos részletes utasításokat a [az első Azure SQL-adatbázis](sql-database-get-started-portal.md).
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com/).
+2. Ugrás a **új** > **adatok + tárolás** > **SQL-adatbázis**.
+3. Hozzon létre egy **üres** nevű adatbázis **klinikán** egy új vagy meglévő kiszolgálóra. Az Azure portálon adatbázis létrehozásával kapcsolatos részletes utasításokat lásd: [az első Azure SQL-adatbázis](sql-database-get-started-portal.md).
    
     ![Hozzon létre egy üres adatbázist](./media/sql-database-always-encrypted-azure-key-vault/create-database.png)
 
-Akkor lesz szüksége hello kapcsolati karakterlánc hello oktatóanyag későbbi részében, hello adatbázis létrehozása után Tallózás toohello új klinikán adatbázis, és másolja hello kapcsolati karakterláncot. Bármikor kaphat a hello kapcsolati karakterláncot, de egyszerű toocopy legyen hello Azure-portálon.
+Szüksége lesz a kapcsolati karakterlánc az oktatóanyag későbbi részében, ezért az adatbázis létrehozása után keresse meg az új klinikán adatbázis, és másolja a kapcsolati karakterláncot. A kapcsolati karakterlánc kaphat bármikor, de könnyen másolja az Azure portálon.
 
-1. Nyissa meg túl**SQL-adatbázisok** > **klinikán** > **adatbázis-kapcsolati karakterláncok megjelenítése**.
-2. Másolja a kapcsolati karakterláncot hello **ADO.NET**.
+1. Ugrás a **SQL-adatbázisok** > **klinikán** > **adatbázis-kapcsolati karakterláncok megjelenítése**.
+2. Másolja a kapcsolati karakterláncot a **ADO.NET**.
    
-    ![Másolja a hello kapcsolati karakterlánc](./media/sql-database-always-encrypted-azure-key-vault/connection-strings.png)
+    ![Másolja a kapcsolati karakterláncot](./media/sql-database-always-encrypted-azure-key-vault/connection-strings.png)
 
-## <a name="connect-toohello-database-with-ssms"></a>Csatlakozás toohello adatbázis ssms alkalmazásával
-Nyissa meg a szolgáltatáshoz az SSMS és toohello kiszolgáló kapcsolódni hello klinikán adatbázishoz.
+## <a name="connect-to-the-database-with-ssms"></a>Kapcsolódni az adatbázishoz ssms alkalmazásával
+Nyissa meg a szolgáltatáshoz az SSMS, és csatlakozzon a kiszolgálóhoz, az egészségügyi ellátó intézmény adatbázissal.
 
-1. Nyissa meg a szolgáltatáshoz az SSMS. (Nyissa meg túl**Connect** > **adatbázismotor** tooopen hello **tooServer csatlakozás** ablakot, ha nem, akkor a megnyitott.)
-2. Adja meg a kiszolgáló nevét és hitelesítő adatait. hello kiszolgálónév hello SQL adatbázis paneljén található, és a kapcsolati karakterláncban hello korábban kimásolt. Hello teljes kiszolgáló neve, beleértve a *database.windows.net*.
+1. Nyissa meg a szolgáltatáshoz az SSMS. (Ugrás **Connect** > **adatbázismotor** megnyitásához a **kapcsolódás a kiszolgálóhoz** ablakot, ha nem, akkor a megnyitott.)
+2. Adja meg a kiszolgáló nevét és hitelesítő adatait. Az SQL-adatbázis paneljén található a kiszolgáló nevét, és a kapcsolati karakterláncban korábban kimásolt. Adja meg a teljes kiszolgálónevet, beleértve a *database.windows.net*.
    
-    ![Másolja a hello kapcsolati karakterlánc](./media/sql-database-always-encrypted-azure-key-vault/ssms-connect.png)
+    ![Másolja a kapcsolati karakterláncot](./media/sql-database-always-encrypted-azure-key-vault/ssms-connect.png)
 
-Ha hello **Új tűzfalszabály** ablak nyílik tooAzure bejelentkezhet, és lehetővé teszik az SSMS, hozzon létre egy új tűzfalszabályt.
+Ha a **Új tűzfalszabály** ablakban nyitja meg, jelentkezzen be Azure, és lehetővé teszik az SSMS, hozzon létre egy új tűzfalszabályt.
 
 ## <a name="create-a-table"></a>Tábla létrehozása
-Ebben a szakaszban egy tábla toohold beteg adatokat hoz létre. Nincs kezdetben titkosított--állít titkosítási hello a következő szakaszban.
+Ebben a szakaszban egy beteg adatokat tároló tábla hoz létre. Nincs kezdetben titkosított – titkosítás fog konfigurálása a következő szakaszban.
 
 1. Bontsa ki a **adatbázisok**.
-2. Kattintson a jobb gombbal hello **klinikán** adatbázis, és kattintson a **új lekérdezés**.
-3. Beillesztés hello Transact-SQL (T-SQL) következő hello új lekérdezési ablakba és **Execute** azt.
+2. Kattintson a jobb gombbal a **klinikán** adatbázis, és kattintson a **új lekérdezés**.
+3. Illessze be a következő Transact-SQL (T-SQL) az új lekérdezési ablakba és **Execute** azt.
 
         CREATE TABLE [dbo].[Patients](
          [PatientId] [int] IDENTITY(1,1),
@@ -137,86 +137,86 @@ Ebben a szakaszban egy tábla toohold beteg adatokat hoz létre. Nincs kezdetben
 
 
 ## <a name="encrypt-columns-configure-always-encrypted"></a>Titkosítani az oszlopok (mindig titkosítja konfigurálása)
-SSMS egy varázsló, amellyel könnyen beállítható mindig titkosítja hello oszlop főkulcs, az oszlop titkosítási kulcsának és a titkosított oszlopokat beállítása az Ön által itt.
+SSMS egy varázsló, amellyel könnyen beállítható mindig titkosítja az oszlop, az oszlop titkosítási kulcsának és a titkosított oszlopok beállítása az Ön által itt.
 
 1. Bontsa ki a **adatbázisok** > **klinikán** > **táblák**.
-2. Kattintson a jobb gombbal hello **betegek** tábla, és válassza ki **titkosítása oszlopok** tooopen hello mindig titkosítja varázsló:
+2. Kattintson a jobb gombbal a **betegek** tábla, és válassza ki **titkosítása oszlopok** mindig titkosítja varázsló megnyitásához:
    
     ![Oszlopok titkosítása](./media/sql-database-always-encrypted-azure-key-vault/encrypt-columns.png)
 
-hello mindig titkosítja varázsló tartalmazza a következő szakaszok hello: **Oszlopválasztás**, **főkulcs konfigurációs**, **érvényesítési**, és **összegzése** .
+A mindig titkosítja varázsló az alábbi szakaszokat tartalmazza: **Oszlopválasztás**, **főkulcs konfigurációs**, **érvényesítési**, és **összegzése**.
 
 ### <a name="column-selection"></a>Oszlop kiválasztása
-Kattintson a **következő** a hello **bemutatása** lap tooopen hello **Oszlopválasztás** lap. Ezen a lapon kiválaszthatja oszlopok tooencrypt, kívánt [hello típusú titkosítást, és milyen oszlop titkosítási kulcsának (CEK)](https://msdn.microsoft.com/library/mt459280.aspx#Anchor_2) toouse.
+Kattintson a **tovább** a a **bemutatása** lapon nyissa meg a **Oszlopválasztás** lap. Ezen a lapon kiválaszthatja titkosítására, oszlopok [a típusú titkosítást, és milyen oszlop titkosítási kulcsának (CEK)](https://msdn.microsoft.com/library/mt459280.aspx#Anchor_2) használatára.
 
-Titkosítani **SSN** és **születési dátumot** minden türelmet adatait. hello SSN oszlop determinisztikus titkosítás, mely támogatja a egyenlőség keresések, társítások és csoportosítás fogja használni. hello születési dátumot oszlop véletlenszerű titkosítás, mely nem támogatja a műveleteket fogja használni.
+Titkosítani **SSN** és **születési dátumot** minden türelmet adatait. A társadalombiztosítási szám oszlop determinisztikus titkosítás, mely támogatja a egyenlőség keresések, társítások és csoportosítás fogja használni. A születési dátumot oszlop véletlenszerű titkosítás, mely nem támogatja a műveleteket fogja használni.
 
-Set hello **titkosítási típus** hello SSN oszlop túl**Deterministic** és születési dátumot oszlop túl hello**Randomized**. Kattintson a **Tovább** gombra.
+Állítsa be a **titkosítási típus** SSN oszlop **Deterministic** és a születési dátumot oszlop **Randomized**. Kattintson a **Tovább** gombra.
 
 ![Oszlopok titkosítása](./media/sql-database-always-encrypted-azure-key-vault/column-selection.png)
 
 ### <a name="master-key-configuration"></a>A főkulcs konfiguráció
-Hello **főkulcs konfigurációs** lap, ahol beállíthatja a CMK és select hello kulcstároló-szolgáltatóval hello CMK tárolásához. Jelenleg egy CMK tárolhatja hello Windows tanúsítványtárolójába, az Azure Key Vault vagy egy hardveres biztonsági modul (HSM).
+A **főkulcs konfigurációs** lap ahol állítsa be a CMK, és válassza ki a kulcstároló-szolgáltatóval a CMK tárolásához. Jelenleg egy CMK tárolhatja a Windows tanúsítványtárolóban, az Azure Key Vault vagy egy hardveres biztonsági modul (HSM).
 
-Ez az oktatóanyag bemutatja, hogyan toostore az Azure Key Vault a kulcsokat.
+Ez az oktatóanyag bemutatja, hogyan tárolja a kulcsokat az Azure Key Vault.
 
 1. Válassza ki **az Azure Key Vault**.
-2. Válassza ki a kívánt kulcstároló hello hello legördülő listából.
+2. A legördülő listából válassza ki a kívánt kulcstároló.
 3. Kattintson a **Tovább** gombra.
 
 ![A főkulcs konfiguráció](./media/sql-database-always-encrypted-azure-key-vault/master-key-configuration.png)
 
 ### <a name="validation"></a>Ellenőrzés
-Hello oszlopok most titkosítására, vagy egy PowerShell-parancsfájl toorun később mentse. A jelen oktatóanyag esetében válassza ki a **toofinish továbblépni** kattintson **következő**.
+Most titkosítani az oszlopokat, vagy mentse később futtatni egy PowerShell-parancsfájlt. A jelen oktatóanyag esetében válassza ki a **Befejezés most már továbbléphet** kattintson **következő**.
 
 ### <a name="summary"></a>Összefoglalás
-Győződjön meg arról, hogy hello beállításainak helyességét, és kattintson a **Befejezés** toocomplete hello beállítása mindig titkosítja.
+Ellenőrizze, hogy a beállítások helyességét, és kattintson a **Befejezés** mindig titkosítja az a telepítés befejezéséhez.
 
 ![Összefoglalás](./media/sql-database-always-encrypted-azure-key-vault/summary.png)
 
-### <a name="verify-hello-wizards-actions"></a>Ellenőrizze a hello varázsló műveletek
-Hello varázsló befejezése után az adatbázis be van állítva mindig titkosítja. hello végre varázsló hello a következő műveleteket:
+### <a name="verify-the-wizards-actions"></a>Ellenőrizze a varázsló műveletek
+A varázsló befejezése után az adatbázis be van állítva mindig titkosítja. A varázsló a következő műveletek végre:
 
 * Egy oszlop főkulcs létrehozva és tárolva az Azure Key Vault.
 * Egy oszlop titkosítási kulcsának létrehozva és tárolva az Azure Key Vault.
-* Konfigurált hello kijelölt oszlopok titkosításhoz. hello betegek tábla jelenleg nem tartalmaz adatokat, de most Titkosított hello a kijelölt oszlopokban szereplő adatokat.
+* A kijelölt oszlopokat a titkosításhoz konfigurálva. A betegek tábla jelenleg nem tartalmaz adatokat, de most a kijelölt oszlopokban szereplő adatokat titkosított.
 
-Ellenőrizheti a szolgáltatáshoz az ssms hello kulcsok hello létrehozását kibontásával **klinikán** > **biztonsági** > **mindig a titkosított kulcsok**.
+Ellenőrizheti a szolgáltatáshoz az ssms kulcsok létrehozásának kibontásával **klinikán** > **biztonsági** > **mindig a titkosított kulcsok**.
 
-## <a name="create-a-client-application-that-works-with-hello-encrypted-data"></a>Hozzon létre egy ügyfélalkalmazást, amely kompatibilis a hello titkosított adatok
-Most, hogy mindig titkosítja be van állítva, egy alkalmazás, amely elvégzi hozhat létre *beszúrása* és *kiválasztja* hello a titkosított oszlopokat.  
+## <a name="create-a-client-application-that-works-with-the-encrypted-data"></a>Hozzon létre egy ügyfélalkalmazást, amely kompatibilis a titkosított adatok
+Most, hogy mindig titkosítja be van állítva, egy alkalmazás, amely elvégzi hozhat létre *beszúrása* és *kiválasztja* a titkosított oszlopok.  
 
 > [!IMPORTANT]
-> Az alkalmazást kell használnia [SqlParameter](https://msdn.microsoft.com/library/system.data.sqlclient.sqlparameter.aspx) történő átadásakor egyszerű szöveges adatok toohello kiszolgáló mindig titkosítja oszlopokkal objektumokat. Értékek szövegkonstansban SqlParameter objektumok használata nélkül átadja azt eredményezi, hogy kivételt.
+> Az alkalmazást kell használnia [SqlParameter](https://msdn.microsoft.com/library/system.data.sqlclient.sqlparameter.aspx) objektumok számára történő átadásakor adatokat egyszerű szöveges oszlopok mindig titkosítja a kiszolgálót. Értékek szövegkonstansban SqlParameter objektumok használata nélkül átadja azt eredményezi, hogy kivételt.
 > 
 > 
 
-1. Nyissa meg a Visual Studio, és hozzon létre egy új C# **Konzolalkalmazás** (Visual Studio 2015-ös vagy korábbi) vagy **Konzolalkalmazás (.NET-keretrendszer)** (Visual Studio 2017 és újabb). Ellenőrizze, hogy túl van-e állítva a projekt**.NET-keretrendszer 4.6** vagy újabb.
-2. Név hello projekt **AlwaysEncryptedConsoleAKVApp** kattintson **OK**.
-3. Telepítse a következő NuGet-csomagok túl címen hello**eszközök** > **NuGet-Csomagkezelő** > **Csomagkezelő konzol**.
+1. Nyissa meg a Visual Studio, és hozzon létre egy új C# **Konzolalkalmazás** (Visual Studio 2015-ös vagy korábbi) vagy **Konzolalkalmazás (.NET-keretrendszer)** (Visual Studio 2017 és újabb). Győződjön meg arról, hogy a projekt értéke **.NET-keretrendszer 4.6** vagy újabb.
+2. Nevet a projektnek **AlwaysEncryptedConsoleAKVApp** kattintson **OK**.
+3. A következő NuGet-csomagok telepítése a **eszközök** > **NuGet-Csomagkezelő** > **Csomagkezelő konzol**.
 
-E két sornyi kód futtatása hello Csomagkezelő konzol.
+A Csomagkezelő konzol futtatása a kód két sort.
 
     Install-Package Microsoft.SqlServer.Management.AlwaysEncrypted.AzureKeyVaultProvider
     Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory
 
 
 
-## <a name="modify-your-connection-string-tooenable-always-encrypted"></a>A kapcsolati karakterlánc tooenable mindig titkosítja módosítása
-Ez a szakasz azt ismerteti, hogyan tooenable mindig titkosítja az adatbázis-kapcsolati karakterláncban.
+## <a name="modify-your-connection-string-to-enable-always-encrypted"></a>Ahhoz, hogy mindig titkosítja a kapcsolati karakterlánc módosítása
+Ez a szakasz azt ismerteti, hogyan is engedélyezhető az mindig titkosítja az adatbázis-kapcsolati karakterlánc.
 
-tooenable mindig titkosítja, kell tooadd hello **Oszloptitkosítási beállítás** kulcsszó tooyour kapcsolati karakterláncot, és állítsa be úgy túl**engedélyezve**.
+Mindig titkosítja engedélyezéséhez kell hozzáadnia a **Oszloptitkosítási beállítás** kulcsszót a kapcsolati karakterláncot, és állítsa az értékét **engedélyezve**.
 
-Közvetlen kapcsolat-karakterláncban hello állíthat, vagy beállíthatja a [SqlConnectionStringBuilder](https://msdn.microsoft.com/library/system.data.sqlclient.sqlconnectionstringbuilder.aspx). Hogyan csak a következő szakasz azt mutatja be hello mintaalkalmazáshoz hello toouse **SqlConnectionStringBuilder**.
+Közvetlenül a kapcsolódási karakterláncban állíthat, vagy beállíthatja a [SqlConnectionStringBuilder](https://msdn.microsoft.com/library/system.data.sqlclient.sqlconnectionstringbuilder.aspx). A mintaalkalmazást a következő szakasz bemutatja, hogyan használható **SqlConnectionStringBuilder**.
 
-### <a name="enable-always-encrypted-in-hello-connection-string"></a>Mindig titkosítja engedélyezése hello kapcsolati karakterlánc
-Adja hozzá a következő kulcsszó tooyour kapcsolati karakterlánc hello.
+### <a name="enable-always-encrypted-in-the-connection-string"></a>Engedélyezze a mindig titkosítja a kapcsolódási karakterláncban
+Adja hozzá a következő kulcsszó a kapcsolati karakterláncot.
 
     Column Encryption Setting=Enabled
 
 
 ### <a name="enable-always-encrypted-with-sqlconnectionstringbuilder"></a>Mindig titkosítja a SqlConnectionStringBuilder engedélyezése
-a következő kód bemutatja hogyan hello úgy, hogy mindig titkosítja tooenable [SqlConnectionStringBuilder.ColumnEncryptionSetting](https://msdn.microsoft.com/library/system.data.sqlclient.sqlconnectionstringbuilder.columnencryptionsetting.aspx) túl[engedélyezve](https://msdn.microsoft.com/library/system.data.sqlclient.sqlconnectioncolumnencryptionsetting.aspx).
+A következő kód bemutatja, hogyan lehet engedélyezni a úgy, hogy mindig titkosítja [SqlConnectionStringBuilder.ColumnEncryptionSetting](https://msdn.microsoft.com/library/system.data.sqlclient.sqlconnectionstringbuilder.columnencryptionsetting.aspx) való [engedélyezve](https://msdn.microsoft.com/library/system.data.sqlclient.sqlconnectioncolumnencryptionsetting.aspx).
 
     // Instantiate a SqlConnectionStringBuilder.
     SqlConnectionStringBuilder connStringBuilder =
@@ -226,8 +226,8 @@ a következő kód bemutatja hogyan hello úgy, hogy mindig titkosítja tooenabl
     connStringBuilder.ColumnEncryptionSetting =
        SqlConnectionColumnEncryptionSetting.Enabled;
 
-## <a name="register-hello-azure-key-vault-provider"></a>Hello Azure Key Vault-szolgáltató regisztrálása
-hello következő kód bemutatja, hogyan tooregister hello Azure Key Vault szolgáltató hello ADO.NET illesztővel.
+## <a name="register-the-azure-key-vault-provider"></a>Az Azure Key Vault-szolgáltató regisztrálása
+A következő kód bemutatja, hogyan regisztrálja az Azure Key Vault-szolgáltató az ADO.NET illesztőprogram.
 
     private static ClientCredential _clientCredential;
 
@@ -250,14 +250,14 @@ hello következő kód bemutatja, hogyan tooregister hello Azure Key Vault szolg
 ## <a name="always-encrypted-sample-console-application"></a>Mindig titkosított minta-Konzolalkalmazás
 Ez a példa bemutatja, hogyan:
 
-* Módosítsa a kapcsolati karakterlánc tooenable mindig titkosítja.
-* Az Azure Key Vault regisztrálása hello alkalmazás kulcstároló-szolgáltatóval.  
-* Adatok beszúrása hello titkosított oszlopokat.
+* Módosítsa a kapcsolati karakterlánc ahhoz, hogy mindig titkosítja.
+* Az Azure Key Vault regisztrálni az alkalmazás kulcstároló-szolgáltatóként.  
+* Adatok beszúrása a titkosított oszlopokat.
 * Válasszon ki egy olyan rekordot szűrést használ a megadott titkosított oszlop az értéket.
 
-Cserélje le a hello tartalmát **Program.cs** a következő kód hello. Cserélje le a kapcsolati karakterlánc hello hello globális connectionString változó hello sorban hello fő metódus az érvénytelen kapcsolati karakterlánccal hello Azure-portálon a közvetlenül megelőző. Ez a hello mindössze annyi a változás toomake toothis kód van szüksége.
+Cserélje le a tartalmát **Program.cs** a következő kóddal. Cserélje le a kapcsolati karakterláncot a globális connectionString változó a közvetlenül megelőző a fő metódus az Azure-portálon a érvényes kapcsolati karakterlánccal sorban. Ez akkor tegye ezt a kódot kell mindössze annyi a változás.
 
-Futtassa a hello app toosee mindig titkosítja a művelet.
+Futtassa az alkalmazást, hogy mindig titkosítja a művelet.
 
     using System;
     using System.Collections.Generic;
@@ -273,8 +273,8 @@ Futtassa a hello app toosee mindig titkosítja a művelet.
     {
     class Program
     {
-        // Update this line with your Clinic database connection string from hello Azure portal.
-        static string connectionString = @"<connection string from hello portal>";
+        // Update this line with your Clinic database connection string from the Azure portal.
+        static string connectionString = @"<connection string from the portal>";
         static string clientId = @"<client id from step 7 above>";
         static string clientSecret = "<key from step 13 above>";
 
@@ -285,35 +285,35 @@ Futtassa a hello app toosee mindig titkosítja a művelet.
 
             Console.WriteLine("Signed in as: " + _clientCredential.ClientId);
 
-            Console.WriteLine("Original connection string copied from hello Azure portal:");
+            Console.WriteLine("Original connection string copied from the Azure portal:");
             Console.WriteLine(connectionString);
 
             // Create a SqlConnectionStringBuilder.
             SqlConnectionStringBuilder connStringBuilder =
                 new SqlConnectionStringBuilder(connectionString);
 
-            // Enable Always Encrypted for hello connection.
-            // This is hello only change specific tooAlways Encrypted
+            // Enable Always Encrypted for the connection.
+            // This is the only change specific to Always Encrypted
             connStringBuilder.ColumnEncryptionSetting =
                 SqlConnectionColumnEncryptionSetting.Enabled;
 
             Console.WriteLine(Environment.NewLine + "Updated connection string with Always Encrypted enabled:");
             Console.WriteLine(connStringBuilder.ConnectionString);
 
-            // Update hello connection string with a password supplied at runtime.
+            // Update the connection string with a password supplied at runtime.
             Console.WriteLine(Environment.NewLine + "Enter server password:");
             connStringBuilder.Password = Console.ReadLine();
 
 
-            // Assign hello updated connection string tooour global variable.
+            // Assign the updated connection string to our global variable.
             connectionString = connStringBuilder.ConnectionString;
 
 
-            // Delete all records toorestart this demo app.
+            // Delete all records to restart this demo app.
             ResetPatientsTable();
 
-            // Add sample data toohello Patients table.
-            Console.Write(Environment.NewLine + "Adding sample patient data toohello database...");
+            // Add sample data to the Patients table.
+            Console.Write(Environment.NewLine + "Adding sample patient data to the database...");
 
             InsertPatient(new Patient()
             {
@@ -353,7 +353,7 @@ Futtassa a hello app toosee mindig titkosítja a művelet.
 
 
             // Fetch and display all patients.
-            Console.WriteLine(Environment.NewLine + "All hello records currently in hello Patients table:");
+            Console.WriteLine(Environment.NewLine + "All the records currently in the Patients table:");
 
             foreach (Patient patient in SelectAllPatients())
             {
@@ -361,20 +361,20 @@ Futtassa a hello app toosee mindig titkosítja a művelet.
             }
 
             // Get patients by SSN.
-            Console.WriteLine(Environment.NewLine + "Now lets locate records by searching hello encrypted SSN column.");
+            Console.WriteLine(Environment.NewLine + "Now lets locate records by searching the encrypted SSN column.");
 
             string ssn;
 
-            // This very simple validation only checks that hello user entered 11 characters.
-            // In production be sure toocheck all user input and use hello best validation for your specific application.
+            // This very simple validation only checks that the user entered 11 characters.
+            // In production be sure to check all user input and use the best validation for your specific application.
             do
             {
                 Console.WriteLine("Please enter a valid SSN (ex. 999-99-0003):");
                 ssn = Console.ReadLine();
             } while (ssn.Length != 11);
 
-            // hello example allows duplicate SSN entries so we will return all records
-            // that match hello provided value and store hello results in selectedPatients.
+            // The example allows duplicate SSN entries so we will return all records
+            // that match the provided value and store the results in selectedPatients.
             Patient selectedPatient = SelectPatientBySSN(ssn);
 
             // Check if any records were returned and display our query results.
@@ -389,7 +389,7 @@ Futtassa a hello app toosee mindig titkosítja a művelet.
                 Console.WriteLine("No patients found with SSN = " + ssn);
             }
 
-            Console.WriteLine("Press Enter tooexit...");
+            Console.WriteLine("Press Enter to exit...");
             Console.ReadLine();
         }
 
@@ -417,7 +417,7 @@ Futtassa a hello app toosee mindig titkosítja a művelet.
             AuthenticationResult result = await authContext.AcquireTokenAsync(resource, _clientCredential);
 
             if (result == null)
-                throw new InvalidOperationException("Failed tooobtain hello access token");
+                throw new InvalidOperationException("Failed to obtain the access token");
             return result.AccessToken;
         }
 
@@ -463,9 +463,9 @@ Futtassa a hello app toosee mindig titkosítja a művelet.
                 catch (Exception ex)
                 {
                     returnValue = 1;
-                    Console.WriteLine("hello following error was encountered: ");
+                    Console.WriteLine("The following error was encountered: ");
                     Console.WriteLine(ex.Message);
-                    Console.WriteLine(Environment.NewLine + "Press Enter key tooexit");
+                    Console.WriteLine(Environment.NewLine + "Press Enter key to exit");
                     Console.ReadLine();
                     Environment.Exit(0);
                 }
@@ -567,7 +567,7 @@ Futtassa a hello app toosee mindig titkosítja a művelet.
         }
 
 
-        // This method simply deletes all records in hello Patients table tooreset our demo.
+        // This method simply deletes all records in the Patients table to reset our demo.
         static int ResetPatientsTable()
         {
             int returnValue = 0;
@@ -601,35 +601,35 @@ Futtassa a hello app toosee mindig titkosítja a művelet.
 
 
 
-## <a name="verify-that-hello-data-is-encrypted"></a>Győződjön meg arról, hogy hello adattitkosítás
-Gyorsan ellenőrizheti, hogy hello tényleges hello kiszolgálón adattitkosítás hello betegek adatok ssms alkalmazásával lekérdezésével (az aktuális keresztül ahol **Oszloptitkosítási beállítás** még nincs engedélyezve).
+## <a name="verify-that-the-data-is-encrypted"></a>Győződjön meg arról, hogy az adatok titkosítása
+Gyorsan ellenőrizheti, hogy a tényleges adatokat a kiszolgáló titkosítja az ssms alkalmazásával betegek adatok lekérdezése (az aktuális keresztül ahol **Oszloptitkosítási beállítás** még nincs engedélyezve).
 
-Futtassa a következő lekérdezés hello klinikán adatbázison hello.
+Futtassa a következő lekérdezést a klinikán adatbázison.
 
     SELECT FirstName, LastName, SSN, BirthDate FROM Patients;
 
-Láthatja, hogy hello titkosított oszlop nem tartalmaz az egyszerű szöveges adatokat.
+Láthatja, hogy a titkosított oszlop nem tartalmaz az egyszerű szöveges adatokat.
 
    ![Új Konzolalkalmazás](./media/sql-database-always-encrypted-azure-key-vault/ssms-encrypted.png)
 
-toouse SSMS tooaccess hello adatok egyszerű szövegként, hozzáadhat hello *Oszloptitkosítási beállítás = engedélyezve* paraméter toohello kapcsolat.
+Az egyszerű szöveges adatok eléréséhez használja az SSMS, adja hozzá a *Oszloptitkosítási beállítás = engedélyezve* paraméter a kapcsolatra.
 
 1. Az SSMS, kattintson a jobb gombbal a kiszolgáló **Object Explorer** válassza **Disconnect**.
-2. Kattintson a **Connect** > **adatbázismotor** tooopen hello **tooServer csatlakozás** ablakot, és kattintson **beállítások**.
+2. Kattintson a **Connect** > **adatbázismotor** megnyitásához a **kapcsolódás a kiszolgálóhoz** ablakot, és kattintson **beállítások**.
 3. Kattintson a **további kapcsolódási paraméterek** és típus **Oszloptitkosítási beállítás = engedélyezve**.
    
     ![Új Konzolalkalmazás](./media/sql-database-always-encrypted-azure-key-vault/ssms-connection-parameter.png)
-4. Futtassa a következő lekérdezés hello klinikán adatbázison hello.
+4. Futtassa a következő lekérdezést a klinikán adatbázison.
    
         SELECT FirstName, LastName, SSN, BirthDate FROM Patients;
    
-     Hello egyszerű szöveges adatok titkosítva hello oszlopban láthatja.
+     Most már megtekintheti a titkosított oszlopokban az egyszerű szöveges adatokat.
 
     ![Új Konzolalkalmazás](./media/sql-database-always-encrypted-azure-key-vault/ssms-plaintext.png)
 
 
 ## <a name="next-steps"></a>Következő lépések
-Miután létrehozott egy adatbázist, amely mindig titkosítja használ, érdemes lehet toodo hello következő:
+Miután létrehozott egy adatbázist, amely mindig titkosítja használ, érdemes lehet tegye a következőket:
 
 * [Forgassa el, és a kulcsok tisztítása](https://msdn.microsoft.com/library/mt607048.aspx).
 * [Már mindig titkosítja a titkosított adatok áttelepítése](https://msdn.microsoft.com/library/mt621539.aspx).

@@ -1,6 +1,6 @@
 ---
-title: "a virtuális gép statikus nyilvános IP-címmel – Azure CLI 2.0 aaaCreate |} Microsoft Docs"
-description: "Ismerje meg, hogyan toocreate virtuális gép és a statikus nyilvános IP cím használatával hello Azure parancssori felület (CLI) 2.0-s."
+title: "Virtuális gép létrehozása egy statikus nyilvános IP-cím - Azure CLI 2.0 |} Microsoft Docs"
+description: "Útmutató: virtuális gép létrehozása az Azure parancssori felület (CLI) 2.0 használatával statikus nyilvános IP-cím."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,13 +16,13 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 486060463486462dd8336734a7ad23c4a2cba452
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a4c32694949880037f01bb2b6b9779d2cbb9809c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="create-a-vm-with-a-static-public-ip-address-using-hello-azure-cli-20"></a>Virtuális gép létrehozása az Azure CLI 2.0 hello segítségével statikus nyilvános IP-cím
+# <a name="create-a-vm-with-a-static-public-ip-address-using-the-azure-cli-20"></a>Virtuális gép létrehozása az Azure CLI 2.0 használatával statikus nyilvános IP-cím
 
 > [!div class="op_single_selector"]
 > * [Azure Portal](virtual-network-deploy-static-pip-arm-portal.md)
@@ -34,18 +34,18 @@ ms.lasthandoff: 10/06/2017
 
 [!INCLUDE [virtual-network-deploy-static-pip-intro-include.md](../../includes/virtual-network-deploy-static-pip-intro-include.md)]
 
-Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-network%2ftoc.json). Ez a cikk a Microsoft azt javasolja, a legtöbb új központi telepítés helyett hello klasszikus üzembe helyezési modellel hello Resource Manager telepítési modell használatát bemutatja.
+Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-network%2ftoc.json). Ez a cikk a Microsoft azt javasolja, hogy a klasszikus üzembe helyezési modellel helyett az új telepítések esetén a Resource Manager telepítési modell használatát bemutatja.
 
 [!INCLUDE [virtual-network-deploy-static-pip-scenario-include.md](../../includes/virtual-network-deploy-static-pip-scenario-include.md)]
 
-## <a name = "create"></a>Hello virtuális gép létrehozása
+## <a name = "create"></a>A virtuális gép létrehozása
 
-Hajthatja végre ezt a feladatot az Azure CLI 2.0 (Ez a cikk) hello vagy hello [Azure CLI 1.0](virtual-network-deploy-static-pip-cli-nodejs.md). az értékek hello "" hello lépések hello változók erőforrások létre hello forgatókönyvet beállításokkal. Hello értékek, a környezetének megfelelő módosítására.
+Hajthatja végre ezt a feladatot az Azure CLI 2.0 (Ez a cikk) vagy a [Azure CLI 1.0](virtual-network-deploy-static-pip-cli-nodejs.md). Az értékeket a "" a következő lépések a változók létre erőforrásokat tudja kihozni a forgatókönyvből beállításokkal. Módosítsa az értékeket, a környezetének megfelelő.
 
-1. Telepítse a hello [Azure CLI 2.0](/cli/azure/install-az-cli2) Ha még nincs telepítve.
-2. Az SSH nyilvános és titkos kulcsból álló kulcspárt létrehozása Linux virtuális gépek hello lépések végrehajtásával a hello [az SSH nyilvános és titkos kulcsból álló kulcspárt létrehozása Linux virtuális gépek](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-network%2ftoc.json).
-3. A bejelentkezési hello paranccsal parancshéj `az login`.
-4. Hozzon létre hello VM hello parancsfájl, amely a következő Linux vagy a Mac számítógépen. az Azure nyilvános IP-cím, a virtuális hálózat, a hálózati illesztő hello, és a Virtuálisgép-erőforrások kell lenniük a hello azonos helyen. Bár a hello erőforrások összes nincs tooexist hello ugyanabban az erőforráscsoportban, a parancsfájl tehetik a következő hello.
+1. Telepítse a [Azure CLI 2.0](/cli/azure/install-az-cli2) Ha még nincs telepítve.
+2. Az SSH nyilvános és titkos kulcsból álló kulcspárt létrehozása Linux virtuális gépek; Ehhez hajtsa végre a lépéseket a [az SSH nyilvános és titkos kulcsból álló kulcspárt létrehozása Linux virtuális gépek](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-network%2ftoc.json).
+3. Jelentkezzen be a parancsot a parancssorba a `az login`.
+4. A virtuális gép létrehozása az alábbi Linux vagy a Mac számítógépen parancsfájl. Az Azure nyilvános IP-cím, a virtuális hálózati, a hálózati adapter és a Virtuálisgép-erőforrások összes léteznie kell a helyre. Bár az erőforrásokat ugyanabban az erőforráscsoportban szerepel a nincs, a következő parancsfájlban tehetik.
 
 ```bash
 RgName="IaaSStory"
@@ -57,11 +57,11 @@ az group create \
 --name $RgName \
 --location $Location
 
-# Create a public IP address resource with a static IP address using hello --allocation-method Static option.
-# If you do not specify this option, hello address is allocated dynamically. hello address is assigned toothe
-# resource from a pool of IP adresses unique tooeach Azure region. hello DnsName must be unique within the
-# Azure location it's created in. Download and view hello file from https://www.microsoft.com/en-us/download/details.aspx?id=41653#
-# that lists hello ranges for each region.
+# Create a public IP address resource with a static IP address using the --allocation-method Static option.
+# If you do not specify this option, the address is allocated dynamically. The address is assigned to the
+# resource from a pool of IP adresses unique to each Azure region. The DnsName must be unique within the
+# Azure location it's created in. Download and view the file from https://www.microsoft.com/en-us/download/details.aspx?id=41653#
+# that lists the ranges for each region.
 
 PipName="PIPWEB1"
 DnsName="iaasstoryws1"
@@ -86,8 +86,8 @@ az network vnet create \
 --subnet-name $SubnetName \
 --subnet-prefix $SubnetPrefix
 
-# Create a network interface connected toohello VNet with a static private IP address and associate hello public IP address
-# resource toohello NIC.
+# Create a network interface connected to the VNet with a static private IP address and associate the public IP address
+# resource to the NIC.
 
 NicName="NICWEB1"
 PrivateIpAddress="192.168.1.101"
@@ -100,21 +100,21 @@ az network nic create \
 --private-ip-address $PrivateIpAddress \
 --public-ip-address $PipName
 
-# Create a new VM with hello NIC
+# Create a new VM with the NIC
 
 VmName="WEB1"
 
-# Replace hello value for hello VmSize variable with a value from the
+# Replace the value for the VmSize variable with a value from the
 # https://docs.microsoft.com/azure/virtual-machines/virtual-machines-linux-sizes article.
 VmSize="Standard_DS1"
 
-# Replace hello value for hello OsImage variable with a value for *urn* from hello output returned by entering
-# hello `az vm image list` command. 
+# Replace the value for the OsImage variable with a value for *urn* from the output returned by entering
+# the `az vm image list` command. 
 
 OsImage="credativ:Debian:8:latest"
 Username='adminuser'
 
-# Replace hello following value with hello path tooyour public key file.
+# Replace the following value with the path to your public key file.
 SshKeyValue="~/.ssh/id_rsa.pub"
 
 az vm create \
@@ -126,27 +126,27 @@ az vm create \
 --nics $NicName \
 --admin-username $Username \
 --ssh-key-value $SshKeyValue
-# If creating a Windows VM, remove hello previous line and you'll be prompted for hello password you want tooconfigure for hello VM.
+# If creating a Windows VM, remove the previous line and you'll be prompted for the password you want to configure for the VM.
 ```
 
-Továbbá a virtuális gépek toocreating, hello parancsfájl hoz létre:
-- Egyszeri támogatás lemez felügyelt alapértelmezés szerint, de más beállítások érhetők el hello lemeztípus hozhat létre. Olvasási hello [Linux virtuális gép létrehozása Azure CLI 2.0 hello](../virtual-machines/linux/quick-create-cli.md?toc=%2fazure%2fvirtual-network%2ftoc.json) cikkben alább.
-- Virtuális hálózati alhálózat, a hálózati adapter és nyilvános IP-cím erőforrás. Másik megoldásként használhatja *meglévő* virtuális hálózat, alhálózat, a hálózati adapter vagy nyilvános IP-cím erőforrás. Hogyan toouse meglévő hálózati erőforrások helyett adjon meg további erőforrások létrehozása toolearn `az vm create -h`.
+Virtuális gép létrehozása mellett a parancsfájl hoz létre:
+- Egyszeri támogatás lemez felügyelt alapértelmezés szerint, de más beállítások érhetők el a lemez típusát is létrehozhat. Olvassa el a [Linux virtuális gép létrehozása az Azure CLI 2.0](../virtual-machines/linux/quick-create-cli.md?toc=%2fazure%2fvirtual-network%2ftoc.json) cikkben alább.
+- Virtuális hálózati alhálózat, a hálózati adapter és nyilvános IP-cím erőforrás. Másik megoldásként használhatja *meglévő* virtuális hálózat, alhálózat, a hálózati adapter vagy nyilvános IP-cím erőforrás. Megtudhatja, hogyan használja a további erőforrások létrehozása helyett a meglévő hálózati erőforrások, írja be a következőt `az vm create -h`.
 
 ## <a name = "validate"></a>Virtuális gép létrehozása és a nyilvános IP-cím ellenőrzése
 
-1. Adja meg a hello parancs `az resource list --resouce-group IaaSStory --output table` toosee hello parancsfájl által létrehozott hello erőforrások listáját. Kell lennie öt erőforrások adott vissza a kimeneti hello: hálózati kapcsolat, lemez, nyilvános IP-cím, virtuális hálózati és a virtuális gép.
-2. Adja meg a hello parancs `az network public-ip show --name PIPWEB1 --resource-group IaaSStory --output table`. Az adott vissza a kimeneti hello, vegye figyelembe a hello értékének **IP-cím** és, hogy hello értékének **PublicIpAllocationMethod** van *statikus*.
-3. Hello a következő parancs végrehajtásakor, előtt távolítsa el a hello <>, cserélje le *felhasználónév* hello használt hello nevű **felhasználónév** hello parancsfájlt, és cserélje ki a változó *IP-cím* a hello **IP-cím** hello előző lépésben. Futtatási hello következő parancsot a virtuális gép tooconnect toohello: `ssh -i ~/.ssh/azure_id_rsa <Username>@<ipAddress>`. 
+1. Adja meg a parancsot `az resource list --resouce-group IaaSStory --output table` hozta létre a parancsfájl erőforrások listájának megjelenítéséhez. Nem kell öt erőforrások visszaadott kimenet: hálózati kapcsolat, lemez, nyilvános IP-cím, virtuális hálózati és a virtuális gép.
+2. Adja meg a parancsot `az network public-ip show --name PIPWEB1 --resource-group IaaSStory --output table`. A visszaadott kimeneti jegyezze fel a értékének **IP-cím** , és hogy értékének **PublicIpAllocationMethod** van *statikus*.
+3. A következő parancs végrehajtása előtt távolítsa el a <>, cserélje le *felhasználónév* használt névvel a **felhasználónév** változó a parancsfájlt, és cserélje le a *IP-cím*rendelkező a **IP-cím** az előző lépésben. A következő parancsot a virtuális Géphez való kapcsolódáshoz: `ssh -i ~/.ssh/azure_id_rsa <Username>@<ipAddress>`. 
 
-## <a name= "clean-up"></a>Távolítsa el a virtuális gép hello és a kapcsolódó erőforrások
+## <a name= "clean-up"></a>Távolítsa el a virtuális gép és a kapcsolódó erőforrások
 
-Javasoljuk, hogy törölje-e ebben a gyakorlatban létrejött, ha nem használja őket éles környezetben hello erőforrásokat. Virtuális gép, a nyilvános IP-cím és a lemezerőforrásokat függő díj terheli, mindaddig, amíg azok van üzembe helyezve. Ebben a gyakorlatban teljes hello lépések során létrejött tooremove hello erőforrásokat:
+Javasoljuk, hogy törölje-e az erőforrások létrehozott ebben a gyakorlatban, ha nem használja őket éles környezetben. Virtuális gép, a nyilvános IP-cím és a lemezerőforrásokat függő díj terheli, mindaddig, amíg azok van üzembe helyezve. A gyakorlat során létrehozott erőforrások eltávolításához kövesse az alábbi lépéseket:
 
-1. tooview hello erőforrások hello erőforráscsoportban, futtassa a hello `az resource list --resource-group IaaSStory` parancsot.
-2. Ellenőrizze, hogy nincsenek erőforrások hello erőforráscsoport nem ebben a cikkben hello parancsfájl által létrehozott hello erőforrások. 
-3. Ebben a gyakorlatban, futtassa a hello létrehozott összes erőforrás toodelete `az group delete -n IaaSStory` parancsot. hello parancs hello erőforráscsoport és a benne található összes hello erőforrás törlése.
+1. Az erőforrások az erőforráscsoportban megtekintéséhez futtassa a `az resource list --resource-group IaaSStory` parancsot.
+2. Ellenőrizze, hogy nincsenek erőforrások az erőforráscsoportban, az ebben a cikkben a parancsfájl által létrehozott erőforrások eltérő. 
+3. Ebben a gyakorlatban létrehozott összes erőforrást törli, futtassa a `az group delete -n IaaSStory` parancsot. A parancs törli az erőforráscsoportot és a benne található összes erőforrást.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Hálózati forgalmat a virtuális gép létrehozása ebben a cikkben hello tooand áramolhasson. Bejövő és kimenő szabályok belül egy NSG áramolhasson hello hálózati adapter vagy hello alhálózati tooand hello forgalom korlátozó adhat meg. További információk az NSG-k, olvassa el a hello toolearn [NSG áttekintése](virtual-networks-nsg.md) cikk.
+A hálózati forgalommal áramolhasson felé és felől a virtuális gép létrehozása az ebben a cikkben. Megadhatja a bejövő és kimenő szabályok belül egy NSG korlátozó áramolhasson az a hálózati adapter vagy az alhálózat érkező vagy oda irányuló forgalmat. Ha többet szeretne megtudni az NSG-k, olvassa el a [NSG áttekintése](virtual-networks-nsg.md) cikk.

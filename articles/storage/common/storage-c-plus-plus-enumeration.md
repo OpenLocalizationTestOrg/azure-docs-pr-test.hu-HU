@@ -1,6 +1,6 @@
 ---
-title: "a Storage ügyféloldali kódtára a C++ hello Azure Storage-erőforrások aaaList |} Microsoft Docs"
-description: "Ismerje meg, hogyan toouse hello listázásakor C++ tooenumerate tárolók, blobok, Microsoft Azure Storage ügyféloldali kódtár API-k várólisták, táblákat és entitásokat."
+title: "Azure Storage-erőforrások a Storage ügyféloldali kódtára a C++ listázása |} Microsoft Docs"
+description: "Ismerje meg, a listaelem API-k használata a Microsoft Azure Storage ügyféloldali kódtára a C++ tárolók, blobok, várólisták, táblákat és entitásokat enumerálása."
 documentationcenter: .net
 services: storage
 author: dineshmurthy
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: dineshm
-ms.openlocfilehash: a76a5ce3cd690f32914f8f0c1f64273f13c5063e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9844412739f4f6f95416f81347f0f2eeeca62bea
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="list-azure-storage-resources-in-c"></a>A c++ Azure Storage-erőforrások felsorolása
-Listaelem műveletek kulcs toomany fejlesztési forgatókönyvek az Azure Storage esetében. Ez a cikk ismerteti, hogyan toomost objektumok az Azure Storage hello listázása megadott hello Microsoft Azure Storage ügyféloldali kódtára a C++ API-k használatával hatékonyan számbavétele.
+Listaelem műveletek kulcsot az Azure Storage számos fejlesztési forgatókönyvek esetében. Ez a cikk ismerteti a leghatékonyabban az Azure Storage az átjáróra a listában megadott a Microsoft Azure Storage ügyféloldali kódtára a C++ API-k használata az objektumok számbavétele.
 
 > [!NOTE]
-> Ez az útmutató célja hello Azure Storage ügyféloldali kódtára a C++ verzió 2.x, amelyik keresztül elérhető [NuGet](http://www.nuget.org/packages/wastorage) vagy [GitHub](https://github.com/Azure/azure-storage-cpp).
+> Ez az útmutató az Azure Storage ügyféloldali kódtára a C++ verzióját célozza 2.x, amelyik keresztül elérhető [NuGet](http://www.nuget.org/packages/wastorage) vagy [GitHub](https://github.com/Azure/azure-storage-cpp).
 > 
 > 
 
-a Storage ügyféloldali kódtára hello módszerek toolist vagy az Azure Storage lekérdezés objektumok különböző biztosít. Ez a cikk a következő forgatókönyvek hello foglalkozik:
+A Storage ügyféloldali kódtára számos módszer az Azure Storage lista vagy a lekérdezés objektumhoz biztosít. Ez a cikk foglalkozik a következő esetekben:
 
 * Egy fiók tárolók listája
 * A tároló vagy virtuális blob directory lista blobok
@@ -39,13 +39,13 @@ a Storage ügyféloldali kódtára hello módszerek toolist vagy az Azure Storag
 Mindkét módszerhez látható osztálypéldányt használatával különböző helyzetek kezelésére.
 
 ## <a name="asynchronous-versus-synchronous"></a>Aszinkron és szinkron
-Mivel a Storage ügyféloldali kódtára a C++ hello épül hello [C++ REST könyvtár](https://github.com/Microsoft/cpprestsdk), azt eleve támogatja az aszinkron műveletek használatával [pplx::task](http://microsoft.github.io/cpprestsdk/classpplx_1_1task.html). Példa:
+Mivel a Storage ügyféloldali kódtára a C++ épül, a a [C++ REST könyvtár](https://github.com/Microsoft/cpprestsdk), azt eleve támogatja az aszinkron műveletek használatával [pplx::task](http://microsoft.github.io/cpprestsdk/classpplx_1_1task.html). Példa:
 
 ```cpp
 pplx::task<list_blob_item_segment> list_blobs_segmented_async(continuation_token& token) const;
 ```
 
-Szinkron műveletek burkolása hello megfelelő aszinkron műveletek:
+Szinkron műveletek burkolja a megfelelő aszinkron műveletek:
 
 ```cpp
 list_blob_item_segment list_blobs_segmented(const continuation_token& token) const
@@ -54,22 +54,22 @@ list_blob_item_segment list_blobs_segmented(const continuation_token& token) con
 }
 ```
 
-Ha több szálkezelési alkalmazáshoz vagy szolgáltatáshoz dolgozik, azt javasoljuk, hogy használja-e hello aszinkron API-k létre szál toocall hello szinkronizálási API-k, amely jelentős hatással van a teljesítményre, hanem közvetlenül.
+Több szálkezelési alkalmazáshoz vagy szolgáltatáshoz dolgozik, azt javasoljuk, hogy az async API-k közvetlenül a szál létrehozása helyett hívására használt a szinkronizálás API-k, amely jelentős hatással van a teljesítményre.
 
 ## <a name="segmented-listing"></a>Szegmentált listázása
-felhőbeli tárolóhely hello méretezési szegmentált listaelem igényel. Lehet például egy millió blobot, amely egy Azure blob-tároló vagy egy Azure-tábla egymilliárd entitások keresztül. Ezek a a nem elméleti számokat, de a tényleges felhasználói használati esetekben.
+A skála felhőbeli tárolóhely szükséges szegmentált listázása. Lehet például egy millió blobot, amely egy Azure blob-tároló vagy egy Azure-tábla egymilliárd entitások keresztül. Ezek a a nem elméleti számokat, de a tényleges felhasználói használati esetekben.
 
-Éppen ezért nem célszerű toolist egyetlen válasz objektumot. Ehelyett az objektumok lapozás listázhatja. API-k listázása hello mindegyike rendelkezik egy *szegmentált* túlterhelést.
+Éppen ezért nem célszerű egyetlen válasz összes objektumok listája. Ehelyett az objektumok lapozás listázhatja. Az átjáróra a listában API-k mindegyike rendelkezik egy *szegmentált* túlterhelést.
 
-hello válasz szegmentált listázási művelet tartalmazza:
+A válasz szegmentált listázási művelet tartalmazza:
 
-* <i>_segment</i>, a hívást toohello API listázása az adott eredmények hello készletét tartalmazó.
-* *continuation_token*, amely átadott toohello következő hívás rendelés tooget hello következő oldalra. Ha nincsenek további eredmények tooreturn, hello folytatási kód értéke null.
+* <i>_segment</i>, amely azokat a egyetlen meghívása a listaelem API-t adott vissza eredményt.
+* *continuation_token*, amely a következő alkalommal meghívja a következő oldalra, hogy átadott. Nincs több eredmény esetén, a folytatási kód értéke null.
 
-Például egy tipikus hívás toolist összes BLOB a tárolóban lévő hasonlíthat hello a következő kódrészletet. hello kód is elérhető a [minták](https://github.com/Azure/azure-storage-cpp/blob/master/Microsoft.WindowsAzure.Storage/samples/BlobsGettingStarted/Application.cpp):
+Például minden, a tárolóban lévő blobok listázásához tipikus hívása a következő kódrészletet hasonlíthat. A kód is elérhető a [minták](https://github.com/Azure/azure-storage-cpp/blob/master/Microsoft.WindowsAzure.Storage/samples/BlobsGettingStarted/Application.cpp):
 
 ```cpp
-// List blobs in hello blob container
+// List blobs in the blob container
 azure::storage::continuation_token token;
 do
 {
@@ -91,7 +91,7 @@ do
 while (!token.empty());
 ```
 
-Vegye figyelembe, hogy egy adott eredmények hello száma szabályozhatók hello paraméter *max_results* a hello túlterhelése minden API-t, például:
+Vegye figyelembe, hogy a paraméter egy visszaadott eredmények száma szabályozhatók *max_results* az egyes API, például a túlterhelési:
 
 ```cpp
 list_blob_item_segment list_blobs_segmented(const utility::string_t& prefix, bool use_flat_blob_listing,
@@ -99,14 +99,14 @@ list_blob_item_segment list_blobs_segmented(const utility::string_t& prefix, boo
     const blob_request_options& options, operation_context context)
 ```
 
-Ha nem adja meg a hello *max_results* paraméter, a hello alapértelmezett mentése too5000 eredmények maximális értékét eredmény abban az esetben egy oldalra.
+Ha nem adja meg a *max_results* paraméter, az alapértelmezett legfeljebb 5000 eredmények maximális értékének eredmény abban az esetben egy oldalra.
 
-Vegye figyelembe azt is, hogy egy Azure Table storage elleni vissza a lekérdezés egyetlen bejegyzést sem, vagy a hello hello értéknél kevesebb bejegyzést *max_results* paraméter, amely a megadott, még akkor is, ha hello folytatási kód nem üres. Egyik oka lehet, hogy hello lekérdezés nem hajtható végre, öt másodpercben. Mindaddig, amíg hello folytatási kód nem üres, hello lekérdezés továbbra is, és a kódot kell feltételezi azt szegmens eredmények hello méretét.
+Vegye figyelembe azt is, hogy egy Azure Table storage elleni vissza a lekérdezés egyetlen bejegyzést sem, vagy az értéknél kevesebb bejegyzést a *max_results* paraméter, amely a megadott, még akkor is, ha a folytatási kód nem üres. Egyik oka lehet, hogy a lekérdezés nem hajtható végre öt másodpercben. Mindaddig, amíg a folytatási kód nem üres, továbbra is a lekérdezés, és a kódot kell feltételezi azt szegmens eredmények méretét.
 
-hello kódolási a legtöbb esetben mintát van szegmentált listázása, amely biztosítja, hogy listázása vagy lekérdezése explicit előrehaladását, és hogyan hello szolgáltatás válaszol-e az tooeach kérelem ajánlott. Különösen a C++-alkalmazások vagy szolgáltatások alacsonyabb szintű ellenőrzése folyamatban listázása hello segíthet vezérlő memória és teljesítmény.
+A legtöbb esetben ajánlott kódolási mintát szegmentált van, listázása, amely biztosítja, hogy listázása vagy kérdez le, és hogyan reagál a a szolgáltatás minden egyes kérelem explicit előrehaladását. Különösen a C++-alkalmazások vagy szolgáltatások a listaelem folyamatban alacsonyabb szintű irányítását segíthet vezérlő memória és teljesítmény.
 
 ## <a name="greedy-listing"></a>Mohó listázása
-A Storage ügyféloldali kódtára a C++ hello korábbi verzióiban (előzetes verzió 0.5.0 és korábbi) nem szegmentált átjáróra a listában API-k táblák és a várólisták, mint például a következő hello tartalmazza:
+A Storage ügyféloldali kódtára a C++ korábbi verzióiban (előzetes verzió 0.5.0 és korábbi) része nem szegmentált átjáróra a listában API-k táblák és a várólisták, az alábbi példában látható módon:
 
 ```cpp
 std::vector<cloud_table> list_tables(const utility::string_t& prefix) const;
@@ -114,11 +114,11 @@ std::vector<table_entity> execute_query(const table_query& query) const;
 std::vector<cloud_queue> list_queues() const;
 ```
 
-Ezek a módszerek, szegmentált API-k burkolók volt megvalósítva. Minden válasz szegmentált listaelem hello kód fűzött hello eredmények tooa vektor, és adott vissza az összes eredményt, miután hello teljes tárolók beolvasásakor.
+Ezek a módszerek, szegmentált API-k burkolók volt megvalósítva. Minden válasz szegmentált listaelem a kódot az eredmények hozzáfűzi a vektor, és adott vissza az összes eredményt, után a teljes tárolók beolvasásakor.
 
-Ez a megközelítés lehet, hogy működik, amikor hello storage-fiók vagy a táblázat tartalmazza a kis számú objektum. Azonban hello objektumok számának növekedése, hello számára szükséges memória nő korlátozás nélkül, mert a memóriában marad minden eredmény. Egy listázási művelet során melyik hello hívó előrehaladásával kapcsolatos információ nem volt nagyon hosszú időt is igénybe vehet.
+Ez a megközelítés előfordulhat, hogy működnek, ha a tárfiók, vagy a tábla tartalmaz a kis számú objektum. Azonban objektumok számának növekedése, a szükséges memória nő korlátozás nélkül, mert a memóriában marad minden eredmény. Egy listázási művelet sok időt, amely alatt a hívó előrehaladásával kapcsolatos információ nem volt is igénybe vehet.
 
-Ezek mohó hello SDK API-k listáját nem létezik a C#, Java, vagy JavaScript Node.js környezet hello. tooavoid hello lehetséges problémák ezen mohó API-k használatával, hogy eltávolította azokat verziójában 0.6.0 előzetes verzió.
+Ezek mohó listázása az SDK API-k nem léteznek a C#, Java, vagy a JavaScript Node.js környezetben. A lehetséges problémák ezen mohó API-k használatának elkerülése azt eltávolította azokat verziójában 0.6.0 előzetes verzió.
 
 Ha a kód hívja meg ezek mohó API-kat:
 
@@ -130,7 +130,7 @@ for (auto it = entities.cbegin(); it != entities.cend(); ++it)
 }
 ```
 
-Módosítania kell a kódot, majd toouse hello szegmentált API-k listázása:
+Majd módosítania kell a kódot a szegmentált listaelem API-k használata:
 
 ```cpp
 azure::storage::continuation_token token;
@@ -146,14 +146,14 @@ do
 } while (!token.empty());
 ```
 
-Hello megadásával *max_results* hello szegmens paraméter, akkor is el tudnak osztani hello kérelmek száma és memória kihasználtsága toomeet teljesítménnyel kapcsolatos szempontok az alkalmazás között.
+Megadja a *max_results* szegmens paraméter, akkor is el tudnak osztani kérések számát és a memóriahasználat felel meg a teljesítménnyel kapcsolatos szempontok az alkalmazás között.
 
-Emellett ha most használ szegmentált listaelem API-kat, de hello adat tárolása egy helyi gyűjtési "mohó" Style, is javasoljuk, hogy refactor-e a kód toohandle adatainak tárolásához egy helyi gyűjtemény gondosan méretekben.
+Emellett ha használ szegmentált listaelem API-kat, de az adatok tárolása a helyi gyűjtés "mohó" Style, is javasoljuk, hogy refactor-e a kód adatainak tárolásához egy helyi gyűjtemény gondosan léptékű kezelésére.
 
 ## <a name="lazy-listing"></a>Lusta listázása
-Bár mohó listaelem lehetséges problémák kezeléséhez következik be, célszerű a Ha nem túl sok objektum hello tárolóban.
+Bár mohó listaelem lehetséges problémák kezeléséhez következik be, célszerű a Ha nem túl sok objektum a tárolóban.
 
-Ha a C# vagy Oracle Java SDK-k is használ, hello enumerálható programozási modellel, a Lusta stílusú listázása, ahol hello adatok bizonyos eltolásnál csak beolvassa szükség esetén kínál, amelyek tisztában kell lennie. A c++-ban hello iterátor alapú sablont is hasonló megközelítését ismerteti.
+Ha a C# vagy Oracle Java SDK-k is használ, a Számbavehető programozási modellel, a Lusta stílusú listázása, ahol az adatok egy bizonyos eltolásnál csak beolvassa szükség esetén kínál, amelyek tisztában kell lennie. A c++-ban a iterátor alapú sablont is hasonló megközelítését ismerteti.
 
 A tipikus Lusta felsorolást API-t használó **list_blobs** például dolgozunk:
 
@@ -161,10 +161,10 @@ A tipikus Lusta felsorolást API-t használó **list_blobs** például dolgozunk
 list_blob_item_iterator list_blobs() const;
 ```
 
-Egy tipikus kódrészletet, amely hello Lusta listaelem mintát használ nézhet ki:
+Egy tipikus kódrészletet, amely a Lusta listaelem mintát használ nézhet ki:
 
 ```cpp
-// List blobs in hello blob container
+// List blobs in the blob container
 azure::storage::list_blob_item_iterator end_of_results;
 for (auto it = container.list_blobs(); it != end_of_results; ++it)
 {
@@ -181,24 +181,24 @@ for (auto it = container.list_blobs(); it != end_of_results; ++it)
 
 Vegye figyelembe, hogy Lusta átjáróra a listában csak a szinkron módban érhető el.
 
-Mohó listaelem képest, Lusta listázása kér le adatokat, csak szükség esetén. Hello színfalak azt kér le adatokat az Azure Storage csak akkor, ha a következő iterátor hello áthelyezi a következő szegmens. Ezért kötött méretű memória használata vezérli, és hello művelet gyors.
+Mohó listaelem képest, Lusta listázása kér le adatokat, csak szükség esetén. A színfalak azt kér le adatokat az Azure Storage csak akkor, ha a következő iterátor áthelyezi a következő szegmens. Ezért kötött méretű memória használata vezérli, és a művelet gyors.
 
-Lusta listaelem API-k szerepelnek hello a Storage ügyféloldali kódtára a C++ 2.2.0 verzióban.
+Lusta listaelem API-k szerepelnek a Storage ügyféloldali kódtára a C++ 2.2.0 verzióban.
 
 ## <a name="conclusion"></a>Összegzés
-Ebben a cikkben tárgyalt API-k felsoroló különböző objektumoknál hello a Storage ügyféloldali kódtára a C++ osztálypéldányt. toosummarize:
+Ebben a cikkben tárgyalt API-k felsoroló különböző objektumoknál a Storage ügyféloldali kódtára a C++ osztálypéldányt. Összefoglalásképpen:
 
 * Aszinkron API-kat is erősen ajánlott több szálkezelési forgatókönyv szerint.
 * Legtöbb esetben ajánlott szegmentált listázása.
-* Lusta listaelem hello könyvtár egy kényelmes burkoló szinkron forgatókönyvekben megadva.
-* Mohó listaelem nem ajánlott, és hello könyvtár el lett távolítva.
+* Lusta listázása a könyvtár egy kényelmes burkoló szinkron forgatókönyvekben megadva.
+* Mohó listaelem nem ajánlott, és a könyvtár el lett távolítva.
 
 ## <a name="next-steps"></a>Következő lépések
-C++ az Azure Storage- és ügyféloldali kódtár kapcsolatos további tudnivalókért tekintse meg a következő erőforrások hello.
+További információ Azure Storage- és ügyféloldali kódtára a C++ a következő forrásanyagokban talál.
 
-* [Hogyan toouse Blob Storage-ának C++](../blobs/storage-c-plus-plus-how-to-use-blobs.md)
-* [Hogyan toouse Table Storage-ának C++](../../cosmos-db/table-storage-how-to-use-c-plus.md)
-* [Hogyan toouse C++ a Queue Storage](../storage-c-plus-plus-how-to-use-queues.md)
+* [A C++ Blob Storage használata](../blobs/storage-c-plus-plus-how-to-use-blobs.md)
+* [A C++ Table Storage használata](../../cosmos-db/table-storage-how-to-use-c-plus.md)
+* [A C++ Queue Storage használata](../storage-c-plus-plus-how-to-use-queues.md)
 * [Az Azure Storage ügyféloldali kódtára a C++ API-JÁNAK dokumentációja esetén.](http://azure.github.io/azure-storage-cpp/)
 * [Az Azure Storage csapat blogja](http://blogs.msdn.com/b/windowsazurestorage/)
 * [Az Azure Storage dokumentációja](https://azure.microsoft.com/documentation/services/storage/)

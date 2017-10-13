@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory-architektúra aaaUnderstand |} Microsoft Docs"
-description: "Ismerteti, mi az Azure AD-bérlő van, és hogyan toomanage Azure Azure Active Directoryn keresztül"
+title: "Az Azure Active Directory architektúrájának ismertetése | Microsoft Docs"
+description: "Ismerteti az Azure AD-bérlő fogalmát, valamint az Azure kezelését az Azure Active Directory felületén keresztül"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,94 +14,94 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/02/2017
 ms.author: markvi
-ms.openlocfilehash: 799943c012dcc309907ed3c36372038a0aad222a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 50dad848cfbdab7f5b1fff0fcec3b5f754e6ae74
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="understand-azure-active-directory-architecture"></a>Az Azure Active Directory architektúrájának ismertetése
-Az Azure Active Directory (Azure AD) lehetővé teszi, hogy Ön toosecurely kezelése elérési tooAzure szolgáltatások és erőforrások a felhasználók számára. Az Azure AD-ben megtalálható az identitáskezelési megoldások teljes palettája. Az Azure AD-funkciókkal kapcsolatos információért lásd: [Mi az az Azure Active Directory?](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-whatis)
+Az Azure Active Directory (Azure AD) lehetővé teszi, hogy biztonságosan kezelje az Azure-szolgáltatások és -erőforrások elérését a felhasználók számára. Az Azure AD-ben megtalálható az identitáskezelési megoldások teljes palettája. Az Azure AD-funkciókkal kapcsolatos információért lásd: [Mi az az Azure Active Directory?](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-whatis)
 
-Az Azure ad-vel hozzon létre és kezelheti a felhasználókat és csoportokat, és engedélyezheti engedélyek tooallow és tooenterprise erőforrások megtagadja a hozzáférést. Identitás-kezeléssel kapcsolatos további információkért lásd: [hello Azure Identitáskezelés alapjai](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals-identity).
+Az Azure AD-vel felhasználókat és csoportokat hozhat létre és kezelhet, valamint engedélyeket adhat meg a vállalati erőforrások hozzáférésének engedélyezéséhez és megtagadásához. Az identitáskezeléssel kapcsolatos információért tekintse meg az [Azure-identitáskezelés alapjait leíró szakaszt](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals-identity).
 
 ## <a name="azure-ad-architecture"></a>Azure AD-architektúra
-Az Azure AD földrajzilag elosztott architektúra egyesíti a széles körű figyelést, automatikus átirányítását, a feladatátvételi és helyreállítási funkciók lehetővé teszik számunkra toodeliver vállalati szintű rendelkezésre állásának és teljesítményének tooour ügyfelek.
+Az Azure AD földrajzilag eltérő helyeken található architektúrája a széles körű megfigyelés, az automatikus átirányítás, a feladatátvétel és a helyreállítási funkciók kombinálásával lehetővé teszi, hogy vállalati szintű rendelkezésre állást és teljesítményt nyújthatunk az ügyfeleink számára.
 
-hello architektúra elemek a következő cikkben ismertetett:
+Ez a cikk a következő architektúraelemeket tárgyalja:
  *  Szolgáltatásarchitektúra kialakítása
  *  Méretezhetőség 
  *  Folyamatos rendelkezésre állás
  *  Adatközpontok
 
 ### <a name="service-architecture-design"></a>Szolgáltatásarchitektúra kialakítása
-hello leggyakoribb módja toobuild egy méretezhető, magas rendelkezésre állású, adatok gazdag rendszer független építőelemeket vagy hello Azure AD adatrétegbeli a méretezési egységek használatával, a méretezési egységek nevezzük *partíciók*. 
+A méretezhető, magas rendelkezésre állású, adatokban gazdag rendszerek felépítésének legáltalánosabb módszere a független építőelemek vagy skálázási egységek alkalmazása. Az Azure AD adatrétege esetében a skálázási egységeket *partícióknak* nevezik. 
 
-hello adatrétegbeli rendelkezik írási és olvasási képességet több előtér-szolgáltatás. az alábbi ábrán hello bemutatja, hogyan egyetlen címtárpartíció hello összetevők teljes földrajzilag distrubuted adatközpontok küld. 
+Az adatréteg több front-end szolgáltatással rendelkezik, amelyek olvasási és írási képességeket nyújtanak. Az alábbi ábra bemutatja, hogyan vannak elosztva egy egy címtárból álló partíció összetevői a földrajzilag elosztott adatközpontokban. 
 
   ![Egy címtárból álló partíciók](./media/active-directory-architecture/active-directory-architecture.png)
 
-az Azure AD-architektúra hello összetevők közé tartoznak, egy elsődleges replika és a másodlagos replikákon.
+Az Azure AD architektúra összetevői között egy elsődleges replika és másodlagos replikák szerepelnek.
 
 **Elsődleges replika**
 
-Hello *elsődleges replika* megkapja az összes *ír* hello partíció tartozik. Bármely az írási művelet azonnal replikált tooa másodlagos másodpéldány egy ugyanabban az adatközpontban sikeres toohello hívó, ami biztosítja az írások georedundáns tartóssági visszatérése előtt.
+Az *elsődleges replika* fogadja azon partíció összes *írását*, amelyhez tartozik. Minden írási művelet azonnal replikálódik egy másik adatközpontban lévő másodlagos replikára, mielőtt a rendszer sikert jelezne a hívónak. Ezáltal biztosítható az írások georedundáns tartóssága.
 
 **Másodlagos replikák**
 
-Minden *címtárolvasás* *másodlagos replikákból* van szolgáltatva, amelyek különböző földrajzi helyeken lévő adatközpontokban találhatók. Sok másodlagos replika van, mivel az adatok replikálása aszinkron módon történik. Directory olvasási műveletek, például a hitelesítési kérelmeket, a rendszer szervizelt adatközpontokban, amelyek Bezárás tooour ügyfelek. hello másodlagos replikák olvasási méretezhetőség felelősek.
+Minden *címtárolvasás* *másodlagos replikákból* van szolgáltatva, amelyek különböző földrajzi helyeken lévő adatközpontokban találhatók. Sok másodlagos replika van, mivel az adatok replikálása aszinkron módon történik. A címtárolvasások, például a hitelesítési kérések az ügyfeleinkhez közeli adatközpontokból vannak szolgáltatva. A másodlagos replikák felelősek az olvasás méretezhetőségéért.
 
 ### <a name="scalability"></a>Méretezhetőség
 
-A méretezhetőség azt hello azon képessége, egy szolgáltatás tooexpand toomeet teljesítményigénye növelését. Az írási méretezhetőség megvalósítani hello adatok particionálása. Olvasási méretezhetőségi adatok replikálásához több partíció toomultiple másodlagos replikák hello world belül terjesztett használatával érhető el.
+A méretezhetőség azon képesség, amellyel a szolgáltatások ki tudnak bővülni a növekvő teljesítményigények kielégítése érdekében. Az írás méretezhetősége az adatok particionálásával érhető el. Az olvasás méretezhetősége az adatok egy partícióról több, a világ számos részén elosztott másodlagos replikákra történő replikálásával érhető el.
 
-A könyvtár alkalmazások kérések használata általában irányított toohello datacenter, amely fizikailag közelebb. Írás transzparens módon átirányított toohello elsődleges replika tooprovide írható-olvasható konzisztencia. Mivel hello könyvtárak általában szolgál olvasások hello legtöbbször ennek a másodlagos replikák jelentősen hello méretezési partíciók terjed ki.
+A címtáralkalmazásokból érkező kérések általában a fizikailag legközelebbi adatközponthoz vannak irányítva. Az írások transzparens módon vannak átirányítva az elsődleges replikához az írás-olvasás konzisztenciájának biztosítása érdekében. A másodlagos replikák jelentősen kibővítik a partíciók méretét, mert a címtárak leginkább olvasásokat szolgáltatnak.
 
-Directory alkalmazások legközelebbi adatközpont toohello csatlakozzon. Ez javítja a teljesítményt, és így lehetséges a felskálázás. Egy lehetnek sok másodlagos replika, mivel a másodlagos replikák szorosabb toohello directory ügyfelek helyezhetők. Csak belső könyvtár szolgáltatás-összetevők, amelyek közvetlenül írási igényű cél hello aktív elsődleges replika.
+A címtáralkalmazások a legközelebbi adatközpontokhoz csatlakoznak. Ez javítja a teljesítményt, és így lehetséges a felskálázás. Mivel egy címtárpartíció sok másodlagos replikával rendelkezhet, a másodlagos replikák közelebb helyezhetők a címtár ügyfeleihez. Csak a belső címtárszolgáltatás írásigényes összetevői célozzák meg közvetlenül az aktív elsődleges replikát.
 
 ### <a name="continuous-availability"></a>Folyamatos rendelkezésre állás
 
-Rendelkezésre állás (vagy hasznos üzemidő) határozza meg a hello azon képessége, a rendszer tooperform megszakítás nélkül. hello kulcs tooAzure AD a magas rendelkezésre állású, hogy a szolgáltatások is gyorsan az eltolás mértékét megadó forgalom között több földrajzilag elosztott adatközpontokban. Mindegyik adatközpont független, ami lehetővé teszi a nem összefüggő hibaállapotokat.
+A rendelkezésre állás (vagy üzemidő) határozza meg, hogy egy rendszer mennyire tud zavartalanul működni. Az Azure AD magas rendelkezésre állásának kulcsa, hogy a szolgáltatásaink gyorsan képesek áthelyezni a forgalmat több, földrajzilag elosztott adatközpont között. Mindegyik adatközpont független, ami lehetővé teszi a nem összefüggő hibaállapotokat.
 
-Az Azure AD partíció kialakítása egyszerűsített összehasonlított toohello vállalati AD-kialakításához, ami létfontosságú a vertikális felskálázásával hello rendszer esetén. Egyetlen főkialakítást alkalmaztunk, amely egy körültekintően összehangolt és determinisztikus feladatátvételi folyamatot is magában foglal az elsődleges replika számára.
+Az Azure AD partíciójának kialakítása a vállalati AD kialakításához képest egyszerű, ami kritikus a rendszer méretezése szempontjából. Egyetlen főkialakítást alkalmaztunk, amely egy körültekintően összehangolt és determinisztikus feladatátvételi folyamatot is magában foglal az elsődleges replika számára.
 
 **Hibatűrés**
 
-A rendszer több elérhető, hibatűrő toohardware, szoftverek és hálózati hibák esetén. Mindegyik partíció hello könyvtár, egy magas rendelkezésre állású fő replika létezik: hello elsődleges másodpéldány. Csak az írási műveletek toohello partíció megy végbe a replika. A replika szorosan és folyamatosan figyeli, és az írás lehet azonnal eltolt tooanother replika (amely hello válik új elsődleges) Ha hiba lép fel. Feladatátvétel esetén általában 1-2 percig megszűnhet az írás rendelkezésre állása. Ez nincs hatással az olvasás rendelkezésre állására.
+A rendszereknek jobb a rendelkezésre állása, ha képesek tűrni a hardveres, hálózati és szoftverhibákat. A címtárban lévő összes partícióhoz tartozik egy magas rendelkezésre állású főreplika. Ez az elsődleges replika. Ezen a replikán csak a partíció írása történik. Ez a replika folyamatos megfigyelés alatt áll, és az írások azonnal egy másik replikára helyezhetők (amely az új elsődleges replikává válik), ha a rendszer hibát észlel. Feladatátvétel esetén általában 1-2 percig megszűnhet az írás rendelkezésre állása. Ez nincs hatással az olvasás rendelkezésre állására.
 
-Olvasási műveletek (amely írások outnumber sok nagyságrenddel szerint) csak Ugrás toosecondary replikákat. Mivel a másodlagos replikákat az idempotent, bármely egy másodpéldány egy adott partíció megszűnését könnyen kompenzálva által általában arra utasíthatja a hello olvasások tooanother replika hello ugyanabban az adatközpontban.
+Az olvasási műveletek (amelyek száma nagyságrendekkel meghaladja az írásokét) csak a másodlagos replikákhoz érkeznek. Mivel a másodlagos replikák idempotensek, egy adott partíció bármely replikájának elvesztése könnyedén orvosolható az olvasások egy másik replikára történő irányításával, általában ugyanabban az adatközpontban.
 
 **Adatok tartóssága**
 
-Az írási véglegesítésére tooat legalább két adatok központok előzetes tooit nyugtázása folyamatban. Ez akkor fordul elő először véglegesítése az elsődleges hello hello az írási és majd azonnal replikálása hello írási tooat legalább egy másik adatközpont. Ez biztosítja, hogy egy lehetséges hello data center üzemeltetési hello elsődleges végzetes adatvesztés adatvesztést eredményez.
+Az írások tartós véglegesítése legalább két adatközpontban megtörténik a nyugtázásuk előtt. Ehhez először véglegesíteni kell az írást az elsődleges replikán, majd azonnal replikálni kell legalább egy másik adatközpontba. Ez biztosítja, hogy az elsődleges replikát üzemeltető adatközpont lehetséges végzetes elvesztése ne eredményezzen adatvesztést.
 
-Az Azure AD fenntartja a nulla [helyreállítási idő célkitűzés (RTO)](https://en.wikipedia.org/wiki/Recovery_time_objective) jogkivonat kibocsátási és directory beolvassa és perc (~ 5 perc) RTO könyvtár hello sorrendben. A [helyreállítási időkorlát (RPO)](https://en.wikipedia.org/wiki/Recovery_point_objective) szintén nulla, így nem veszítünk adatokat a feladatátvételek során.
+Az Azure AD-ben a [helyreállítási időre vonatkozó célkitűzés (RTO)](https://en.wikipedia.org/wiki/Recovery_time_objective) a jogkivonatok kiadása és a címtárolvasások esetében nullával egyenlő, a címtárírások esetében pedig néhány perces nagyságrendű (~5 perc). A [helyreállítási időkorlát (RPO)](https://en.wikipedia.org/wiki/Recovery_point_objective) szintén nulla, így nem veszítünk adatokat a feladatátvételek során.
 
 ### <a name="data-centers"></a>Adatközpontok
 
-Az Azure AD-replikák adatközpontok hello world belül vannak tárolva. További információk: [Azure-adatközpontok](https://azure.microsoft.com/en-us/overview/datacenters).
+Az Azure AD replikái a világ számos részén található adatközpontokban vannak tárolva. További információk: [Azure-adatközpontok](https://azure.microsoft.com/en-us/overview/datacenters).
 
-Az Azure AD, a következő jellemzőkkel hello működik adatközpontok között:
+Az Azure AD a következő jellemzőkkel rendelkező adatközpontokon működik:
 
- * Hitelesítés, a Graph és az egyéb AD szolgáltatások hello átjárószolgáltatás mögött található. Átjáró hello kezeli terheléselosztása, ezeket a szolgáltatásokat. Automatikus feladatátvételt hajt végre, ha a rendszer a tranzakciós állapottesztek során nem megfelelő állapotú kiszolgálókat észlel. Ezek állapotfigyelő mintavételt alapján, hello átjáró dinamikusan irányítja a forgalmat toohealthy adatközpontokban.
- * A *beolvassa*, hello directory van több különböző adatközponthoz működő aktív-aktív konfigurációban másodlagos replikák és a megfelelő előtér-szolgáltatásokat. Ha egy teljes adatközpont leáll a forgalom lesz automatikusan irányított tooa ugyanabban az adatközpontban.
- *  A *ír*, hello directory lesz feladatátvevő (fő) replikáról különböző adatközpontokban keresztül tervezett (új elsődleges kiszolgáló elsődleges szinkronizált tooold) vagy vészhelyzeti feladatátvételi eljárásokat. Adatok tartóssága megvalósítani replikálásához bármely véglegesítési tooat legalább két adatközpontokban.
+ * A hitelesítés, a Graph és a további AD-szolgáltatások az átjárószolgáltatás mögött helyezkednek el. Az átjáró kezeli ezen szolgáltatások terheléselosztását. Automatikus feladatátvételt hajt végre, ha a rendszer a tranzakciós állapottesztek során nem megfelelő állapotú kiszolgálókat észlel. Ezen állapot-mintavételek alapján az átjáró dinamikusan átirányítja a forgalmat a kifogástalan állapotú adatközpontokhoz.
+ * Az *olvasások* esetében a címtár másodlagos replikákkal és megfelelő előtér-szolgáltatásokkal rendelkezik egy több adatközpontban működő aktív-aktív konfigurációban. A teljes adatközpont meghibásodása esetén a rendszer automatikusan átirányítja a forgalmat egy másik adatközpontra.
+ *  Az *írások* esetében a címtár tervezett (az új elsődleges replika szinkronizálása a régi elsődleges replikára) vagy vészhelyzeti feladatátvételi eljárásokon keresztül hajtja végre az elsődleges (fő-) replika feladatátvételét az adatközpontokon. Az adatok tartóssága minden véglegesítés legalább két adatközpontra történő replikálásával valósul meg.
 
 **Adatkonzisztencia**
 
-hello directory modell a végleges konzisztencia egyike. Elosztott, aszinkron módon replikációs rendszerek egy tipikus probléma, hogy a "adott" a replika által visszaadott hello adatokat nem lehet toodate fel. 
+A címtármodell végleges konzisztenciával rendelkezik. Az elosztott aszinkron replikációs rendszerek egyik általános problémája, hogy egy „adott” replikáról lekért adatok nem feltétlenül naprakészek. 
 
-Az Azure AD célcsoport-kezelési egy másodlagos másodpéldány által az írási műveletek toohello elsődleges replika útválasztási alkalmazások írható-olvasható konzisztenciát biztosít, és vissza toohello másodlagos replika szinkron módon húzza hello írja.
+Az Azure AD-ben a másodlagos replikát megcélzó alkalmazások  olvasási és írási konzisztenciája úgy valósul meg, hogy az írásokat a rendszer az elsődleges replikára irányítja, és ezzel egyidejűleg visszahúzza azokat a másodlagos replikára.
 
-Alkalmazás írja a Graph API-t az Azure AD azért affinitás tooa directory replika írható-olvasható konzisztencia tartsanak hello segítségével. Azure AD Graph szolgáltatás hello fenntartja a logikai munkamenetet, amelynek affinitás tooa másodlagos replika használt olvasása; kapcsolat bekerül az "a replika tokenre" hello graph szolgáltatás gyorsítótárát egy elosztott gyorsítótár használatával. Ez a token hello a későbbi műveletek használja ugyanazt a logikai munkamenet. 
+Az Azure AD Graph API-t használó alkalmazások írásai számára nem kötelező az affinitás fenntartása egy címtár replikája felé az olvasási-írási konzisztencia érdekében. Az Azure AD Graph szolgáltatása egy logikai munkamenetet tart fenn, amely affinitással rendelkezik egy olvasáshoz használt másodlagos replikához. Az affinitás egy „replika-jogkivonatban” van rögzítve, amelyet a Graph szolgáltatás egy elosztott gyorsítótár használatával gyorsítótáraz. A jogkivonat ezután a logikai munkamenet következő műveleteihez lesz felhasználva. 
 
  >[!NOTE]
- >Írási műveleteket azonnal replikálódnak toohello másodlagos replika toowhich hello logikai munkamenet olvasások állítottak ki.
+ >Az írásokat a rendszer azonnal replikálja arra a másodlagos replikára, amelyre a logikai munkamenet olvasásai ki lettek adva.
  >
 
 **Biztonsági másolatok védelme**
 
-hello directory véglegesen törli, rögzített törli, a felhasználók és a bérlők könnyen esetén történő helyreállításra vonatkozóan az ügyfél által véletlen törlések helyett valósítja meg. A bérlői rendszergazda véletlenül törli a felhasználókat, ha azok könnyen visszavonása és hello törölt felhasználók visszaállítása. 
+A címtár a végleges törlés helyett helyreállítható törlést valósít meg a felhasználók és bérlők számára, amely lehetővé teszi az egyszerű helyreállítást, ha az ügyfél esetleg véletlenül törölne valamit. Ha a bérlői rendszergazda véletlenül töröl egy felhasználót, könnyedén visszavonhatja azt, és helyreállíthatja a törölt felhasználót. 
 
 Az Azure AD naponta biztonsági másolatot készít az összes adatról, ezért képes az adatok mérvadó visszaállítására bármilyen logikai törlés vagy sérülés esetében. Az adatrétegünk hibajavító kódokat alkalmaz, így ellenőrizni tudja a hibákat, és képes automatikusan kijavítani bizonyos típusú lemezhibákat.
 
@@ -109,11 +109,11 @@ Az Azure AD naponta biztonsági másolatot készít az összes adatról, ezért 
 
 Egy magas rendelkezésre állású szolgáltatás futtatásához világszínvonalú metrikára és monitorozási képességekre van szükség. Az Azure AD folyamatosan elemzi a szolgáltatások állapotával kapcsolatos legfontosabb mérőszámokat és az egyes szolgáltatások sikerességi feltételeit, illetve jelentést készít azokról. Folyamatosan fejlesztjük és hangoljuk az egyes forgatókönyvekhez tartozó mérőszámokat, figyelést és riasztást az egyes Azure AD szolgáltatásokban, illetve az összes szolgáltatásban.
 
-Minden Azure AD szolgáltatás nem a várt módon működik, ha azt azonnal érvénybe művelet toorestore funkció minél gyorsabban. hello legfontosabb mérőszám az Azure AD nyomon követi az milyen gyorsan azt is észleli és csökkenthető az ügyfél vagy élő hely probléma. Azt fektetnek fokozottan a figyelés és riasztás toominimize idő toodetect (TTD cél: < 5 perc) és a működőképesség toominimize idő toomitigate (TTM cél: < 30 perc).
+Ha bármelyik Azure AD szolgáltatás nem a várt módon működik, azonnal munkához látunk a működőképesség lehető leggyorsabb helyreállítása érdekében. Az Azure AD által nyomon követett legfontosabb metrika az, hogy milyen gyorsan tudunk észlelni és elhárítani egy ügyféllel vagy egy webhellyel kapcsolatos problémát. Komoly erőfeszítéseket teszünk a monitoring és a riasztások területén azért, hogy minimalizáljuk az észleléshez szükséges időt (cél: <5 perc). A működőképesség javításával pedig a hiba súlyosságának mérsékléséhez szükséges időt igyekszünk csökkenteni (cél: <30 perc).
 
 **Biztonságos műveletek**
 
-Műveleti vezérlőket, például többtényezős hitelesítést (MFA) alkalmazunk minden művelet esetében, valamint naplózzuk az összes műveletet. Emellett azt egy just-in-time jogosultságszint-emelési rendszer toogrant szükséges ideiglenes hozzáférést használhat bármely működési feladat igény helyezni. További információkért lásd: [megbízható felhő hello](https://azure.microsoft.com/en-us/support/trust-center).
+Műveleti vezérlőket, például többtényezős hitelesítést (MFA) alkalmazunk minden művelet esetében, valamint naplózzuk az összes műveletet. Emellett igényalapú szintemelési rendszert használunk ahhoz, hogy folyamatosan meg tudjuk adni a szükséges ideiglenes hozzáférést bármilyen igény szerinti műveleti feladathoz. További információkért lásd: [A megbízható felhő](https://azure.microsoft.com/en-us/support/trust-center).
 
 ## <a name="next-steps"></a>Következő lépések
 [Az Azure Active Directory fejlesztői útmutatója](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-developers-guide)

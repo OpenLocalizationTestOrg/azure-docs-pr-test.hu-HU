@@ -15,5 +15,5 @@
 | Windows Server 2012 R2 | [376.84](http://us.download.nvidia.com/Windows/Quadro_Certified/376.84/376.84-tesla-desktop-winserver2008-2012r2-64bit-international-whql.exe) (.exe) |
 
 > [!NOTE]
-> A Tesla illesztőprogram letöltési hivatkozásai a kiadás időpontjában aktuálisak. Hello legújabb illesztőprogramokat, a Microsoft hello [NVIDIA](http://www.nvidia.com/) webhelyet.
+> A Tesla illesztőprogram letöltési hivatkozásai a kiadás időpontjában aktuálisak. A legújabb illesztőprogramokért látogasson el az [NVIDIA](http://www.nvidia.com/) webhelyére.
 >

@@ -1,6 +1,6 @@
 ---
-title: "aaaRemote előre konfigurált figyelés megoldás forgatókönyv |} Microsoft Docs"
-description: "Hello Azure IoT előre konfigurált megoldás távoli megfigyelési és az architektúra leírását."
+title: "A távoli figyelési előre konfigurált megoldás bemutatója | Microsoft Docs"
+description: "Az Azure IoT távoli figyelési előre konfigurált megoldás és architektúrájának leírása."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,132 +15,132 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 57a336bd94938c2b9ee5d3456ea8e45446cf3d33
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b28105f300723b542fa6d1aebc569439d5c73dc4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="remote-monitoring-preconfigured-solution-walkthrough"></a>A távoli figyelési előre konfigurált megoldás bemutatója
 
-az IoT Suite távoli megfigyelési hello [előre konfigurált megoldás] [ lnk-preconfigured-solutions] egy-végpontok megvalósítása figyeli a távoli helyeken futó több gépek megoldás. hello megoldás kulcsfontosságú Azure szolgáltatások tooprovide hello üzleti helyzethez általános végrehajtásának egyesíti. Használhat hello megoldás kiindulási pontként a saját megvalósítási és [testreszabása] [ lnk-customize] azt toomeet saját speciális üzleti igényeinek.
+Az IoT Suite [előre konfigurált][lnk-preconfigured-solutions] távoli figyelési megoldással egy teljes körű figyelési megoldást implementálhat, ha több gépet működtetnek távoli helyeken. A megoldás fontos Azure-szolgáltatások kombinációját kínálja az üzleti forgatókönyv általános megvalósítása érdekében. A megoldást kiindulási pontként használhatja a saját implementációjához, és a saját üzleti igényeinek megfelelően [testreszabhatja][lnk-customize] azt.
 
-Ez a cikk bemutatja, hogyan néhány fontosabb elemei hello hello távoli figyelési megoldást tooenable toounderstand, hogyan működik. Ezeknek az ismereteknek a birtokában:
+Ebben a cikkben bemutatjuk a távoli figyelési megoldás néhány fontos elemét, hogy jobban megismerhesse a szolgáltatás működését. Ezeknek az ismereteknek a birtokában:
 
-* Problémamegoldás hello megoldásban.
-* Tervezze meg hogyan toocustomize toohello megoldás toomeet a saját konkrét követelmények. 
+* Elháríthatja a megoldásban felmerülő hibákat.
+* Megtervezheti, hogy miképpen érdemes testre szabni a megoldást úgy, hogy az megfeleljen egyedi igényeinek. 
 * Kialakíthatja saját, Azure-szolgáltatásokat használó IoT-megoldását.
 
 ## <a name="logical-architecture"></a>Logikai architektúra
 
-a következő diagram hello hello logikai összetevőinek előre konfigurált hello megoldás ismerteti:
+A következő diagram az előre konfigurált megoldás logikai összetevőit vázolja fel:
 
 ![Logikai architektúra](media/iot-suite-remote-monitoring-sample-walkthrough/remote-monitoring-architecture.png)
 
 ## <a name="simulated-devices"></a>Szimulált eszközök
 
-A megoldás előre konfigurált hello hello szimulált eszköz egy hűtőeszköz (például épület légkondicionálók vagy létesítmény vezeték nélkül kezelési egység) jelöli. Előre konfigurált hello megoldás telepítésekor automatikusan is kiépítése futó négy szimulált eszköz egy [Azure webjobs-feladat][lnk-webjobs]. Szimulált hello eszközök megkönnyítik a akkor tooexplore hello viselkedését hello megoldás nélkül hello kell toodeploy fizikai eszközöket. toodeploy tényleges fizikai eszközön, lásd: hello [csatlakozzon a távoli felügyeleti előkonfigurált megoldás eszköz toohello] [ lnk-connect-rm] oktatóanyag.
+Az előre konfigurált megoldásban a szimulált eszköz egy hűtőeszközt (például egy épület légkondicionálóját vagy létesítmény légkezelő egységét) jelöl. Amikor üzembe helyezi az előre konfigurált megoldást, egyben négy szimulált eszközt is létrehoz, amelyek egy [Azure WebJob-feladat][lnk-webjobs] részeként működnek. A szimulált eszközök segítségével könnyebben megismerheti a megoldás működését, anélkül, hogy fizikai eszközöket kellene üzembe helyeznie. Valós fizikai eszköz üzembe helyezéséhez lásd [az eszköz az előre konfigurált távoli figyelési megoldáshoz történő csatlakoztatását][lnk-connect-rm] ismertető oktatóanyagot.
 
 ### <a name="device-to-cloud-messages"></a>Az eszközről a felhőbe irányuló üzenetek
 
-Minden egyes szimulált eszköz küldhet a következő üzenet típusok tooIoT Hub hello:
+A szimulált eszközök az alábbi típusú üzeneteket küldhetik az IoT Hubnak:
 
 | Üzenet | Leírás |
 | --- | --- |
-| Indítás |Hello eszköz indításakor elküldi egy **eszközinformáció** adatokat saját magáról toohello háttér tartalmazó üzenetet. Ezen adatok tartalmazzák a hello eszközazonosító és hello parancsok listáját, és módszerek hello eszköz támogatja. |
-| Jelenlét |Egy eszköz rendszeresen küld egy **jelenléte** tooreport üzenet, hogy hello eszköz is értelemben érzékelő hello jelenlétét. |
-| Telemetria |Egy eszköz rendszeresen küld egy **telemetriai** üzenet szimulált értékeinek hello hőmérséklet és a páratartalom hello eszközről összegyűjtött jelentéseket a szimulált érzékelők. |
+| Indítás |Amikor egy eszköz elindul, a magára az eszközre vonatkozó információkat tartalmazó **device-info** (eszközinformációs) üzenetet küld a háttérnek. Ezekbe az adatokba beletartozik az eszköz azonosítója, valamint az eszköz által támogatott parancsok és metódusok listája. |
+| Jelenlét |Az eszközök rendszeres időközönként **presence** (jelenlét) típusú üzenetet küldenek, amely azt jelzi, hogy az eszköz érzékeli az érzékelő jelenlétét. |
+| Telemetria |Az eszközök rendszeres időközönként küldenek **telemetry** (telemetria) típusú üzenetet is, amelyek az eszköz szimulált érzékelői által jelentett szimulált hőmérsékleti és páratartalom-értékeket jelentenek a rendszernek. |
 
 > [!NOTE]
-> hello megoldás tárolja egy Cosmos DB adatbázisban, és nem hello eszköz iker hello eszköz által támogatott parancsok hello listáját.
+> A megoldás az eszköz által támogatott parancsok listáját egy Cosmos DB-adatbázisban tárolja, és nem az ikereszközben.
 
 ### <a name="properties-and-device-twins"></a>Tulajdonságok és ikereszközök
 
-hello szimulált eszközök elküldik a következő eszköz tulajdonságok toohello hello [kettős] [ lnk-device-twins] hello IoT-központ, a *tulajdonságok jelentett*. hello eszköz küld jelentett tulajdonságok indításkor és a válasz tooa **eszköz állapotváltoztatási** parancs vagy a metódus.
+A szimulált eszközök a következő eszköztulajdonságokat küldik el az IoT Hubon lévő [ikernek][lnk-device-twins] *jelentett tulajdonságokként*. Az eszköz az indításakor és **Eszközállapot módosítása** parancsra vagy metódusra válaszul küldi el a jelentett tulajdonságokat.
 
 | Tulajdonság | Cél |
 | --- | --- |
-| Config.TelemetryInterval | Gyakoriság (másodperc) hello eszköz küld telemetriai adat |
-| Config.TemperatureMeanValue | Hello átlagos értéket a szimulált hello hőmérséklet telemetriai adat |
-| Device.DeviceID |Azonosító van megadva, vagy egy eszköz hello megoldásban létrehozásakor hozzárendelt |
-| Device.DeviceState | Hello eszköz által jelzett állapotát |
-| Device.CreatedTime |Hello megoldás idő hello eszköz sikeresen létrehozva |
-| Device.StartupTime |Idő hello eszköz indítása |
-| Device.LastDesiredPropertyChange |hello verziószámát hello utolsó kívánt tulajdonság módosítása |
-| Device.Location.Latitude |A földrajzi hosszúság hello eszköz helye |
-| Device.Location.Longitude |Hello eszköz hosszúság helye |
+| Config.TelemetryInterval | Az eszköz által végzett telemetriaküldés gyakorisága (s) |
+| Config.TemperatureMeanValue | Meghatározza a szimulált hőmérsékleti telemetria középértékét |
+| Device.DeviceID |A megadott vagy a megoldásban az eszköz létrehozásakor hozzárendelt azonosító |
+| Device.DeviceState | Az eszköz által jelentett állapot |
+| Device.CreatedTime |Az eszköz létrehozásának ideje a megoldásban |
+| Device.StartupTime |Az eszköz elindításának ideje |
+| Device.LastDesiredPropertyChange |Az utolsó kívánt tulajdonságmódosítás verziószáma |
+| Device.Location.Latitude |Az eszköz szélességi helye |
+| Device.Location.Longitude |Az eszköz hosszúsági helye |
 | System.Manufacturer |Eszközgyártó |
-| System.ModelNumber |Hello eszköz modell száma |
-| System.SerialNumber |Hello eszköz sorozatszáma |
-| System.FirmwareVersion |Belső vezérlőprogram hello eszköz jelenlegi verziója |
-| System.Platform |Hello eszköz platform architektúrája |
-| System.Processor |Processzor futó hello eszköz |
-| System.InstalledRAM |Hello eszközre telepített, a RAM mennyisége |
+| System.ModelNumber |Az eszköz modellszáma |
+| System.SerialNumber |Az eszköz sorozatszáma |
+| System.FirmwareVersion |Az eszközön lévő belső vezérlőprogram aktuális verziója |
+| System.Platform |Az eszköz platformarchitektúrája |
+| System.Processor |Az eszközt futtató processzor |
+| System.InstalledRAM |Az eszközre telepített RAM mennyisége |
 
-hello szimulátor magok ezeket a tulajdonságokat, a szimulált eszköz minta értékekkel. Minden alkalommal, amikor hello szimulátor inicializálja a szimulált eszköz, hello eszköz jelentett tulajdonságként hello előre definiált metaadatok tooIoT központi jelentés. Jelentett tulajdonságok hello eszköz csak akkor lehet frissíteni. toochange jelentett tulajdonságot, állítsa a kívánt tulajdonság megoldás portálon. Feladata hello hello eszköz:
+A szimulált értékekben a szimulátor mintaértékekkel tölti fel ezeket a tulajdonságokat. Amikor a szimulátor elindít egy szimulált eszközt, az eszköz jelentett tulajdonságokként mindig jelenti az előre definiált metaadatokat az IoT Hubnak. A jelentett tulajdonságokat csak az eszköz frissítheti. A jelentett tulajdonságok módosításához be kell állítania egy kívánt tulajdonságot a megoldásportálon. A következők az eszköz feladatai:
 
-1. Rendszeres időközönként lekérdezni kívánt tulajdonságokkal hello IoT-központot.
-2. Frissítse a konfigurálás szükséges hello tulajdonság értéke.
-3. Hello új érték hátsó toohello hub küldése jelentett tulajdonságainál.
+1. A kívánt tulajdonságok rendszeres időközönkénti lekérése az IoT Hubról.
+2. A konfiguráció frissítése a kívánt tulajdonságértékkel.
+3. Az új érték visszaküldése a IoT Hubra jelentett tulajdonságként.
 
-Hello megoldás irányítópultról használható *szükséges tulajdonságok* tooset tulajdonságok hello segítségével egy eszközön [eszköz iker][lnk-device-twins]. Általában egy eszköz olvassa be az kívánt tulajdonság értéke a jelentett tulajdonságként módosíthatja a belső állapotot és a jelentés hello hello hub tooupdate.
+A megoldás irányítópultján a *kívánt tulajdonságokkal* állíthatja be egy eszköz tulajdonságait az [ikereszközzel][lnk-device-twins]. Általában az eszközök beolvasnak egy kívánt tulajdonságértéket az IoT Hubról a belső állapotuk frissítéséhez, és jelentett tulajdonságként jelentik a módosítást.
 
 > [!NOTE]
-> hello szimulált eszköz kód csak akkor használja, hello **Desired.Config.TemperatureMeanValue** és **Desired.Config.TelemetryInterval** kívánt tulajdonságokkal tooupdate hello jelentett küldött vissza tulajdonságai tooIoT központ. Az összes többi kívánt tulajdonság változáskérések hello szimulált eszköz figyelmen kívül hagyja.
+> A szimulált eszközkód csak a **Desired.Config.TemperatureMeanValue** és a **Desired.Config.TelemetryInterval** kívánt tulajdonságot használja az IoT Hubra visszaküldött jelentett tulajdonságok frissítéséhez. A rendszer figyelmen kívül hagyja az összes többi kívánt tulajdonságmódosítási kérelmet.
 
 ### <a name="methods"></a>Metódusok
 
-hello szimulált eszközöket képes kezelni a következő módszerek hello ([módszerek közvetlen][lnk-direct-methods]) hello megoldás portálon keresztül hello IoT-központ meghívott:
+A szimulált eszközök a következő, az IoT Hubon keresztül a megoldásportálról indított metódusokat ([közvetlen metódusokat][lnk-direct-methods]) tudják kezelni:
 
 | Módszer | Leírás |
 | --- | --- |
-| InitiateFirmwareUpdate |Arra utasítja a hello eszköz tooperform vezérlőprogram-frissítés |
-| Újraindítás |Arra utasítja a hello eszköz tooreboot |
-| FactoryReset |Arra utasítja a gyári hello eszköz tooperform |
+| InitiateFirmwareUpdate |A belső vezérlőprogram frissítésére utasítja az eszközt |
+| Újraindítás |Újraindításra utasítja az eszközt |
+| FactoryReset |A gyári beállítások visszaállítására utasítja az eszközt |
 
-Egyes metódusok használata jelentett tulajdonságok tooreport folyamatban van. Például hello **InitiateFirmwareUpdate** metódus aszinkron módon hello eszközön futó hello frissítés szimulálja. hello metódus azonnal visszaadja hello eszközön, miközben hello aszinkron feladat vissza toosend állapotának frissítése tovább toohello megoldás Irányítópult segítségével jelentett tulajdonságok.
+Néhány metódus jelentett tulajdonságokkal jelenti az állapotot. Az **InitiateFirmwareUpdate** metódus például az eszközön a frissítés aszinkron futtatását szimulálja. A metódus azonnal visszatér az eszközön, míg az aszinkron feladat jelentett tulajdonságokkal folyamatosan állapotfrissítéseket küld vissza a megoldás irányítópultjának.
 
 ### <a name="commands"></a>Parancsok
 
-Szimulált hello eszközök kezelni tud a következő parancsokat (felhő eszközre üzenetek) hello megoldás portálon keresztül hello IoT-központ által küldött hello:
+A szimulált eszközök a következő, az IoT Hubon keresztül a megoldásportálról küldött parancsokat (felhőből egy eszközre irányuló üzeneteket) tudják kezelni:
 
 | Parancs | Leírás |
 | --- | --- |
-| PingDevice |Elküldi a *ping* toohello eszköz toocheck életben |
-| StartTelemetry |Telemetriai adatok küldését indítása hello eszköz |
-| StopTelemetry |Leállítja a telemetriai adatok küldését a faxeszközön hello |
-| ChangeSetPointTemp |Módosítások hello pont beállítása értéket körül mely hello véletlenszerű adatokat |
-| DiagnosticTelemetry |Eseményindítók hello eszköz szimulátor toosend egy további telemetriai értékét (externalTemp) |
-| ChangeDeviceState |Hello eszköz egy kiterjesztett tulajdonság módosítása és hello eszköz tájékoztató üzenet küldi hello eszközről |
+| PingDevice |*Pinget* küld az eszköznek, hogy ellenőrizze, működik-e |
+| StartTelemetry |Elindítja a telemetriát küldő eszközt |
+| StopTelemetry |Leállítja az eszköz telemetriaküldését |
+| ChangeSetPointTemp |Módosítja azt a megadott pontértéket, amely körül a véletlenszerű adatok létrejönnek |
+| DiagnosticTelemetry |Aktiválja az eszközszimulátort, hogy egy további telemetriaértéket küldjön (externalTemp) |
+| ChangeDeviceState |Módosítja az eszköz kiterjesztett állapot tulajdonságát, és elküldi az eszközinformációs üzenetet az eszközről |
 
 > [!NOTE]
 > Ezen parancsok (felhőből egy eszközre irányuló üzenetek) összehasonlításáért lásd a [felhőből egy eszközre irányuló kommunikáció útmutatóját][lnk-c2d-guidance].
 
 ## <a name="iot-hub"></a>IoT Hub
 
-Hello [IoT-központ] [ lnk-iothub] ingests hello eszközökről hello felhőbe küldött adatokat, és lehetővé teszi az elérhető toohello Azure Stream Analytics (ASA) feladatok. Minden egyes adatfolyam ASA feladat külön IoT-központ fogyasztói csoportot tooread hello adatfolyam lévő üzenetek az eszközök használja.
+Az [IoT hub][lnk-iothub] feltölti a felhőbe az eszközök által küldött adatokat, és elérhetővé teszi azokat Azure Stream Analytics (ASA) feladatokban való felhasználásra. Minden Stream ASA-feladat saját IoT Hub-fogyasztói csoportot használ, amelynek segítségével beolvassa az eszközök által küldött üzenetek streamjét.
 
-az IoT-központ hello megoldásban is hello:
+A megoldásban az IoT Hub ezenkívül a következőket teszi:
 
-- Egy tároló hello azonosítók és a hitelesítési kulcsokat tooconnect toohello portal engedélyezett összes hello eszközök identitásjegyzékhez kezeli. Engedélyezi, és tiltsa le az eszközöknek az üdvözlő identitásjegyzékhez.
-- Küld parancsokat tooyour eszközök hello megoldás portal nevében.
-- Módszerek az eszközök nevében hello megoldás portal hív meg.
-- Az összes regisztrált eszközhöz biztosítja a megfelelő ikereszközt. Egy eszköz a két eszköz által jelentett hello tulajdonságértékek tárolja. Egy eszköz iker hello megoldás-portálon, hello eszköz tooretrieve következő csatlakozáskor beállított kívánt tulajdonságok tárolja.
-- Ütemezések feladatok több eszközre tooset tulajdonságait, vagy több eszközön metódusok.
+- Biztosít egy, a portálhoz csatlakoztatható összes eszköz azonosítóját és hitelesítési kulcsát tároló identitásjegyzéket. Az identitásjegyzéken keresztül a felhasználó engedélyezheti és letilthatja az eszközöket.
+- Parancsokat küld az eszközöknek a megoldásportál nevében.
+- Metódusokat indít az eszközökön a megoldásportál nevében.
+- Az összes regisztrált eszközhöz biztosítja a megfelelő ikereszközt. Az ikereszközök tárolják az eszközök által jelentett tulajdonságértékeket. Az ikereszközök a megoldásportálon beállított kívánt tulajdonságokat is tárolják, amelyeket az eszköz a következő csatlakozáskor kérhet le.
+- Feladatokat ütemez, hogy több eszközön is beállíthasson tulajdonságokat vagy meghívhasson metódusokat.
 
 ## <a name="azure-stream-analytics"></a>Azure Stream Analytics
 
-A távoli felügyeleti megoldás, hello [Azure Stream Analytics] [ lnk-asa] (ASA) kiszállítja feldolgozást vagy tárolási hello IoT hub tooother háttér-összetevők által fogadott üzenetek küldési eszköz. Különböző ASA feladatok köszönőüzenetei hello tartalma alapján adott funkció végrehajtására.
+A távoli figyelési megoldásban az [Azure Stream Analytics][lnk-asa] (ASA) továbbítja az IoT Hub által fogadott eszközüzeneteket feldolgozás vagy tárolás céljából a többi háttérkomponensnek. Az üzenet tartalmától függően a különféle ASA-feladatok más-más funkciókat végeznek el.
 
-**1. feladat: Eszközinformáció** eszköz információs üzenetet hello bejövő üzenet adatfolyam-szűrők és tooan Eseményközpont végpont küldése. Egy eszköz eszköz információs üzenetet küld, indításkor és a válasz tooa **SendDeviceInfo** parancsot. Ez a feladat használja a következő lekérdezés definíciója tooidentify hello **eszközinformáció** üzenetek:
+Az **1. feladat: eszközinformáció** szűri a bejövő üzenetstreamből az eszközinformációs üzeneteket, és elküldi őket egy eseményközpont-végpontra. Az eszközök az indításukkor és a **SendDeviceInfo** parancsra adott válaszként küldenek eszközinformációs üzeneteket. Ez a feladat az alábbi lekérdezésdefiníció segítségével azonosítja a **device-info** típusú üzeneteket:
 
 ```
 SELECT * FROM DeviceDataStream Partition By PartitionId WHERE  ObjectType = 'DeviceInfo'
 ```
 
-Ez a feladat elküldi a kimeneti tooan Event Hubs további feldolgozásra.
+Ez a feladat egy eseményközpontba továbbítja kimenetét további feldolgozás céljából.
 
-A **2. feladat: szabályok** kiértékeli a bejövő hőmérséklettel és páratartalommal kapcsolatos telemetriaértékeket az eszközönkénti küszöbértékekhez képest. Hello szabályok szerkesztő hello megoldás portálon elérhető küszöbértékek vannak beállítva. A Blob-tárhelyek időbélyegző szerint rendezve tárolják az eszköz/érték párokat, amelyeket a rendszer **referenciaadatokként** olvas be a Stream Analyticsbe. hello feladat hello beállított küszöbértéket hello eszköz szemben nem üres értéket összehasonlítja. Ha az érték meghaladja a hello ">" feltétel, hello feladat kimenete egy **riasztás** eseményt, amely azt jelzi, hogy hello küszöbérték túllépése és hello eszközök, az érték és az időbélyegző értékei biztosít. Ez a feladat a következő lekérdezés definíciója tooidentify telemetriai üzeneteket, amelyek elindítják a riasztót olyan esetben hello használja:
+A **2. feladat: szabályok** kiértékeli a bejövő hőmérséklettel és páratartalommal kapcsolatos telemetriaértékeket az eszközönkénti küszöbértékekhez képest. A küszöbértékek a megoldásportálon elérhető szabályszerkesztőben vannak beállítva. A Blob-tárhelyek időbélyegző szerint rendezve tárolják az eszköz/érték párokat, amelyeket a rendszer **referenciaadatokként** olvas be a Stream Analyticsbe. A feladat összehasonlítja az összes nem nulla értéket az eszköz beállított küszöbértékével. Ha meghaladja a „>” feltételt, a feladat **riasztási** eseményt küld, amely jelzi a küszöbérték túllépését, és megadja az eszközt, az értéket és az időbélyegző értékét. Ez a feladat az alábbi lekérdezésdefiníció segítségével azonosítja azokat a telemetriai üzeneteket, amelyeknek riasztást kell atktiválniuk:
 
 ```
 WITH AlarmsData AS 
@@ -181,9 +181,9 @@ INTO DeviceRulesHub
 FROM AlarmsData
 ```
 
-hello feladat elküldi a kimeneti tooan Event Hubs további feldolgozásra, és menti minden riasztás tooblob tárolási részleteit a ahol hello megoldás portal hello riasztási információkat olvashatja.
+A feladat egy eseményközpontba továbbítja kimenetét további feldolgozás céljából, majd a blobtárolóba menti a riasztásokat, ahonnan a megoldás portálja be tudja olvasni azok adatait.
 
-**3. feladat: Telemetriai** hello bejövő eszköz telemetriai adatfolyam két módon működik. hello elküldi az összes telemetriai üzenet blobtárolóból hello eszközök toopersistent a hosszú távú tároláshoz. hello második kiszámítja átlagos, minimális és maximális nedvességtartalma keresztül egy 5 perces csúszóablak értéket, majd elküldi a tooblob tárolására. hello megoldás portal hello telemetriai adatokat olvas a blob storage toopopulate hello diagramokat. Ez a feladat a következő lekérdezés definíciója hello használja:
+A **3. feladat: telemetria** kétféleképpen működik a bejövő eszköz telemetriastreamjén. Az első az eszköz által küldött összes telemetriai üzenetet a perzisztens blobtárolóba küldi hosszú távú tárolás céljából. A második kiszámítja az átlagos, minimális és maximális páratartalom-értékeket egy ötperces csúszóablakban, majd elküldi ezeket az adatokat a blobtárolóba. A megoldásportál beolvassa a Blob Storage-ból a telemetriaadatokat a diagramok adatokkal történő feltöltéséhez. Ez a feladat a következő lekérdezésdefiníciót használja:
 
 ```
 WITH 
@@ -228,49 +228,49 @@ GROUP BY
 
 ## <a name="event-hubs"></a>Event Hubs
 
-Hello **eszközinformáció** és **szabályok** ASA feladatok kimeneti az adatok tooEvent hubok tooreliably előre a toohello **Eseményfeldolgozóhoz** hello webjobs-feladat futtatása.
+A **device info** és a **rules** ASA-feladatok az eseményközpontoknak adják át az adataikat, amelyek megbízhatóan továbbítják azokat a WebJob-feladatban futó **eseményfeldolgozónak**.
 
 ## <a name="azure-storage"></a>Azure Storage
 
-hello megoldás hello eszközökről származó összes hello nyers, összesített és telemetriai adatok használ az Azure blob storage toopersist hello megoldásban. hello portal hello telemetriai adatokat olvas a blob storage toopopulate hello diagramokat. toodisplay riasztások hello megoldás portal hello adatokat olvas blob-tároló, hogy a rekordok telemetriai túllépte értékek hello konfigurálásakor küszöbértékeket. hello megoldás a blob storage toorecord hello küszöbértékek hello megoldás portál beállítása is használ.
+A megoldás az Azure Blob Storage segítségével őrzi meg a megoldásba bevont eszközök által küldött nyers és összegzett telemetriai adatokat. A portál beolvassa a Blob Storage-ból a telemetriaadatokat a diagramok adatokkal történő feltöltéséhez. Riasztások megjelenítéséhez a megoldásportál beolvassa a Blob Storage-ból azon adatokat, amelyek akkor lettek rögzítve, amikor a telemetriaértékek túllépték a konfigurált küszöbértékeket. A megoldás a Blob Storage használatával rögzíti a megoldásportálon beállított küszöbértékeket is.
 
 ## <a name="webjobs"></a>WebJobs
 
-Ezenkívül toohosting hello eszköz szimulátoros oktatás módszereiről, hello WebJobs hello megoldásban is állomás hello **Eseményfeldolgozóhoz** egy Azure webjobs-feladat, amely kezeli a parancs válaszok futtatása. A parancs válasz üzenetek tooupdate hello parancs eszközelőzmények (hello Cosmos DB adatbázisban tárolt) használja.
+Az eszközszimulátorok elérhetővé tételén kívül a megoldásban a WebJobs szolgáltatja a parancsválaszokat kezelő Azure WebJobban futó **Eseményfeldolgozót** is. Parancsválasz-üzeneteket használ a (Cosmos DB-adatbázisban tárolt) eszközparancs-előzmények frissítéséhez.
 
 ## <a name="cosmos-db"></a>Cosmos DB
 
-hello megoldás Cosmos DB adatbázis toostore információ a hello eszközök csatlakoztatott toohello megoldást használ. Ezen információk közé tartozik a hello előzmények hello megoldás portálról toodevices küldött parancsokat és hello megoldás portal metódusokra.
+A megoldás egy Cosmos DB-adatbázisban tárolja a megoldáshoz csatlakoztatott eszközökre vonatkozó adatokat. Ezen adatok közé tartoznak a megoldásportálról az eszközökre küldött parancsok és a megoldásportálról indított metódusok előzményei.
 
 ## <a name="solution-portal"></a>Megoldásportál
 
-hello megoldás portál egy webalkalmazást, előre konfigurált hello megoldás részeként. hello kulcs hello megoldás portálon oldalai hello irányítópult és hello eszközök listáját.
+A megoldásportál egy webalkalmazás, amely az előre konfigurált megoldás részeként van üzembe helyezve. A megoldásportál kiemelt oldala az irányítópult és az eszközlista.
 
 ### <a name="dashboard"></a>Irányítópult
 
-Ezen a lapon hello web app alkalmazásban használja a Power bi javascript vezérlők (lásd: [Power bi-látványelemek tárház](https://www.github.com/Microsoft/PowerBI-visuals)) toovisualize hello telemetriai adatokat hello eszközökről. hello megoldás hello ASA telemetriai feladat toowrite hello telemetriai adatok tooblob tárolást használ.
+A webalkalmazás ezen oldala PowerBI javascript-vezérlőket használ (lásd a [PowerBI-vizualizációk tárát](https://www.github.com/Microsoft/PowerBI-visuals)) az eszközök által küldött telemetriai adatok vizualizálásához. A megoldás az ASA telemetriai feladat használatával írja a blobtárolóba a telemetriai adatokat.
 
 ### <a name="device-list"></a>Eszközlista
 
-Ezen a lapon a hello megoldás portál a következőket teheti:
+A megoldásportál ezen oldaláról a következőket teheti:
 
-* Új eszközöket építhet ki. Ez a művelet beállítja a hello az eszköz egyedi azonosítója, és hello hitelesítési kulcsot hoz létre. Hello eszköz tooboth hello IoT Hub identitásjegyzékhez kapcsolatos információkat és hello Megoldásfüggő Cosmos DB adatbázis ír.
+* Új eszközöket építhet ki. Ezzel a művelettel állíthatja be az egyedi eszközazonosítót, valamint hozhatja létre a hitelesítési kulcsot. A művelet mind az IoT Hub-identitásjegyzékébe, mind a megoldásspecifikus Cosmos DB-adatbázisba beírja az eszközadatokat.
 * Felügyelheti az eszköztulajdonságokat. A művelet segítségével megtekintheti a meglévő tulajdonságokat, és új tulajdonságokat hozhat létre.
-* Parancsok tooa eszköz küldése.
-* Egy eszköz hello parancs előzményeinek megtekintése.
+* Parancsokat küldhet eszközökre.
+* Megtekintheti az eszközök parancselőzményeit.
 * Engedélyezheti és letilthatja a különböző eszközöket.
 
 ## <a name="next-steps"></a>Következő lépések
 
-hello TechNet következő blogbejegyzésekben adjon meg több részletet távoli felügyeleti előkonfigurált megoldás hello:
+A következő TechNet-blogbejegyzés további részleteket tartalmaz a távoli figyelési előre konfigurált megoldásról:
 
-* [Az IoT Suite - alatt hello technikai részletek - távoli figyelése](http://social.technet.microsoft.com/wiki/contents/articles/32941.iot-suite-under-the-hood-remote-monitoring.aspx)
+* [IoT Suite – Technikai részletek – Távoli figyelés](http://social.technet.microsoft.com/wiki/contents/articles/32941.iot-suite-under-the-hood-remote-monitoring.aspx)
 * [IIoT Suite – Távoli figyelés – Élő és szimulált eszközök hozzáadása](http://social.technet.microsoft.com/wiki/contents/articles/32975.iot-suite-remote-monitoring-adding-live-and-simulated-devices.aspx)
 
-Továbbra is a következő cikkek hello olvasásával Ismerkedés az IoT Suite:
+Folytassa az IoT Suite megismerését az alábbi cikkek elolvasásával:
 
-* [Csatlakozzon a távoli felügyeleti előkonfigurált megoldás eszköz toohello][lnk-connect-rm]
-* [Engedélyek hello azureiotsuite.com webhelyen][lnk-permissions]
+* [Az eszköz csatlakoztatása az előre konfigurált távoli figyelési megoldáshoz][lnk-connect-rm]
+* [Engedélyek az azureiotsuite.com webhelyen][lnk-permissions]
 
 [lnk-preconfigured-solutions]: iot-suite-what-are-preconfigured-solutions.md
 [lnk-customize]: iot-suite-guidance-on-customizing-preconfigured-solutions.md

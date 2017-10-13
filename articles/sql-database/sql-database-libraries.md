@@ -1,6 +1,6 @@
 ---
-title: "SQL-adatbázis aaaConnection szalagtárak |} Microsoft Docs"
-description: "Hivatkozások a letöltések modulokat, amelyek lehetővé teszik a kapcsolat tooSQL Server és SQL-adatbázis ügyfél programozási nyelvek széles választékában. hello modulok hello Közösség vagy a Microsoft által kiadott."
+title: "SQL-adatbázis adatkapcsolattárak |} Microsoft Docs"
+description: "Hivatkozások a modulokat, amelyek lehetővé teszik az ügyfél programozási nyelvek széles választékában SQL Server és SQL-adatbázis kapcsolati letöltések. A modulok a Közösség által vagy a Microsoft által kiadott."
 services: sql-database
 documentationcenter: 
 author: MightyPen
@@ -15,17 +15,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: genemi
-ms.openlocfilehash: 6ea77670276ad3304c7531f7ffd8f7dffd31af46
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 082abf57b139b9f7d44774dce3a80e20b97f0e3b
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="connectivity-libraries-and-frameworks-for-microsoft-sql-server"></a>Kapcsolat kódtárai és keretrendszerei a Microsoft SQL Server
 
-Tekintse meg a [első lépéseket bemutató Oktatóanyagainkat](http://aka.ms/sqldev) tooquickly Ismerkedés a programozási nyelvek, például a C#, Java, Node.js, PHP és Python, és hozza létre az SQL Server használata a Linux- vagy Windows- vagy Docker macOS alkalmazását.
+Tekintse meg a [első lépéseket bemutató Oktatóanyagainkat](http://aka.ms/sqldev) gyors Ismerkedés a programozási nyelvek, például a C#, Java, Node.js, PHP és Python, és hozza létre az SQL Server használata a Linux- vagy Windows- vagy Docker macOS alkalmazását.
 
-hello az alábbi táblázat kapcsolat tárak vagy *illesztőprogramok* , hogy az ügyfélalkalmazások használhatja-e a különböző nyelvű tooconnect tooand használjon Microsoft SQL Server rendszert futtató helyszíni vagy hello felhőben, Linux, Windows vagy Docker és is tooAzure SQL-adatbázis és az Azure SQL Data warehouse-bA. 
+Az alábbi táblázat felsorolja a kapcsolat tárak vagy *illesztőprogramok* , hogy az ügyfélalkalmazások nyelvi csatlakozhat és a Microsoft SQL Server rendszert futtató helyszíni vagy a felhőben, Linux, Windows vagy Docker és a különböző használhatja Az Azure SQL Database és az Azure SQL Data Warehouse. 
 
 | Nyelv | Platform | További források | Letöltés | Első lépések |
 | :-- | :-- | :-- | :-- | :-- |
@@ -37,7 +37,7 @@ hello az alábbi táblázat kapcsolat tárak vagy *illesztőprogramok* , hogy az
 | Ruby | Windows, Linux, macOS | [Az SQL Server Ruby illesztőprogram](http://msdn.microsoft.com/library/mt691981.aspx) | [Telepítés](https://msdn.microsoft.com/library/mt711041.aspx) | [Első lépések](https://www.microsoft.com/en-us/sql-server/developer-get-started/ruby/ubuntu)
 | C++ | Windows, Linux, macOS | [Az SQL Server Microsoft ODBC-illesztőprogram](https://msdn.microsoft.com/en-us/library/mt654048(v=sql.1).aspx) | [Letöltés](https://msdn.microsoft.com/en-us/library/mt654048(v=sql.1).aspx) |  
 
-hello az alábbi táblázatban néhány példa a objektum relációs leképezési (ORM) keretrendszerek és a webes keretrendszerek, amellyel az ügyfél alkalmazások a Microsoft SQL Server rendszert futtató helyszíni vagy hello felhőben, Linux, Windows vagy Docker és is tooAzure SQL Database és Azure SQL Data Warehouse. 
+Az alábbi táblázatban néhány példa a objektum relációs leképezési (ORM) keretrendszerek és a webes keretrendszerek, amellyel az ügyfél alkalmazások a Microsoft SQL Server rendszert futtató helyszíni vagy a felhőben, Linux, Windows vagy Docker és az Azure SQL Database és Azure Az SQL Data Warehouse. 
 
 | Nyelv | Platform | ORM(s) |
 | :-- | :-- | :-- |
@@ -50,9 +50,9 @@ hello az alábbi táblázatban néhány példa a objektum relációs leképezés
 
 ## <a name="related-links"></a>Kapcsolódó hivatkozások
 - [SQL Server illesztőprogramok](http://msdn.microsoft.com/library/mt654049.aspx) ügyfélalkalmazások való csatlakozáshoz
-- [Csatlakozás tooSQL adatbázis .NET (C#) használatával](sql-database-connect-query-dotnet.md)
-- [A PHP használatával kapcsolódnak a tooSQL adatbázis](sql-database-connect-query-php.md)
-- [Csatlakozás tooSQL adatbázis Node.js segítségével](sql-database-connect-query-nodejs.md)
-- [TooSQL adatbázis csatlakoztatása a Java használatával](sql-database-connect-query-java.md)
-- [Kapcsolódás az tooSQL adatbázis pythonos környezetekben](sql-database-connect-query-python.md)
-- [Csatlakozás tooSQL adatbázis Ruby használatával](sql-database-connect-query-ruby.md)
+- [Csatlakozás az SQL Database-hez a .NET (C#) használatával](sql-database-connect-query-dotnet.md)
+- [Csatlakozás az SQL Database-hez a PHP használatával](sql-database-connect-query-php.md)
+- [Csatlakozás az SQL Database-hez a Node.js használatával](sql-database-connect-query-nodejs.md)
+- [Csatlakozás az SQL Database-hez a Java használatával](sql-database-connect-query-java.md)
+- [Csatlakozás az SQL Database-hez a Python használatával](sql-database-connect-query-python.md)
+- [Csatlakozás az SQL Database-hez a Ruby használatával](sql-database-connect-query-ruby.md)

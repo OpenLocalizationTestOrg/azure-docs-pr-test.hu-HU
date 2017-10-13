@@ -1,6 +1,6 @@
 ---
-title: "az Azure PowerShell használatába aaaGet |} Microsoft Docs"
-description: "Gyors bevezetés toohello toomanage kötegelt erőforrások használható Azure PowerShell-parancsmagokat."
+title: "Az Azure Batch PowerShell használatának első lépései | Microsoft Docs"
+description: "Gyors bevezetés a Batch-erőforrások kezeléséhez használható Azure PowerShell-parancsmagok használatába."
 services: batch
 documentationcenter: 
 author: tamram
@@ -15,48 +15,48 @@ ms.workload: big-compute
 ms.date: 02/27/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 3e4d12e9c1e52a5b2db2dd44346edda93b7ef92b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e33be6ed658e00250ea1e80cd7da4d348fb18296
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="manage-batch-resources-with-powershell-cmdlets"></a>Batch-erőforrások kezelése PowerShell-parancsmagokkal
 
-Az Azure Batch PowerShell-parancsmagok hello, végrehajtása és a parancsfájl-hello számos ugyanazokhoz a feladatokhoz a kötegelt API-k, hello hajthat végre hello Azure-portálon, és hello Azure parancssori felület (CLI). Ez az egy gyors bevezetés toohello parancsmagokat használhatja toomanage a Batch-fiókok és a a kötegelt erőforrásokat, például a készletek, a feladatok és a feladatokat.
+Az Azure Batch PowerShell-parancsmagokkal a Batch API-k, az Azure Portal és az Azure parancssori felület (CLI) használatával végrehajtott műveletek közül sokat elvégezhet. Ez a cikk gyors ismertetést nyújt a Batch-fiókok felügyeletéhez és a Batch-erőforrásokkal, például készletekkel, feladatokkal és tevékenységekkel használható parancsmagokról.
 
-Kötegelt parancsmagok és részletes parancsmag szintaxisát teljes listáját lásd: hello [Azure Batch parancsmag-referencia](/powershell/module/azurerm.batch/#batch).
+A Batch-parancsmagok teljes listájáért és a parancsmagok részletes szintaxisáért lásd: [Azure Batch-parancsmagok referenciája](/powershell/module/azurerm.batch/#batch).
 
-Ez a cikk az Azure PowerShell 3.0.0-s verziójának parancsmagjain alapul. Azt javasoljuk, hogy a frissíteni az Azure PowerShell gyakran tootake előnyeit szolgáltatás frissítéseket és fejlesztéseket.
+Ez a cikk az Azure PowerShell 3.0.0-s verziójának parancsmagjain alapul. Ajánlott gyakran frissíteni az Azure PowerShellt a szolgáltatásfrissítések és -fejlesztések kihasználása érdekében.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Hajtsa végre a következő műveletek toouse Azure PowerShell toomanage hello a kötegelt erőforrásokhoz.
+Az alábbi műveletek segítségével felügyelheti az Azure PowerShell-lel a Batch-erőforrásokat.
 
 * [Telepítse és konfigurálja az Azure PowerShellt](/powershell/azure/overview)
-* Futtassa a hello **Login-AzureRmAccount** parancsmag tooconnect tooyour előfizetés (hello Azure Batch parancsmagok szállítási hello Azure Resource Manager modul):
+* Futtassa a **Login-AzureRmAccount** parancsmagot, hogy csatlakozzon az előfizetéséhez (az Azure Batch-parancsmagok az Azure Resource Manager modulban találhatók):
   
     `Login-AzureRmAccount`
-* **Hello kötegelt szolgáltatójának névtere regisztrálása**. Ez a művelet csak kell végrehajtani toobe **előfizetésenként egyszer**.
+* **Regisztráljon a Batch-szolgáltató névterével**. Ezt a műveletet **előfizetésenként csak egyszer** kell elvégezni.
   
     `Register-AzureRMResourceProvider -ProviderNamespace Microsoft.Batch`
 
 ## <a name="manage-batch-accounts-and-keys"></a>Batch-fiókok és kulcsok felügyelete
 ### <a name="create-a-batch-account"></a>Batch-fiók létrehozása
-A **New-AzureRmBatchAccount** parancs egy Batch-fiókot hoz létre a meghatározott erőforráscsoportban. Ha még nem rendelkezik egy erőforráscsoport, hozzon létre egyet hello futtatásával [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) parancsmag. Adjon meg egy hello Azure régiói hello **hely** paraméter, például az "USA középső RÉGIÓJA". Példa:
+A **New-AzureRmBatchAccount** parancs egy Batch-fiókot hoz létre a meghatározott erőforráscsoportban. Ha még nem rendelkezik erőforráscsoporttal, hozzon létre egyet a [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) parancsmag futtatásával. A **Hely** paraméternél adjon meg egy Azure régiót, például az „USA középső régiója”. Példa:
 
     New-AzureRmResourceGroup –Name MyBatchResourceGroup –location "Central US"
 
-Ezt követően hello erőforráscsoportban hello fióknak a nevét adja meg a Batch-fiók létrehozása <*fióknév*> és hello helyét, és az erőforráscsoport nevét. Hello Batch-fiók létrehozása eltarthat néhány alkalommal toocomplete. Példa:
+Ezután hozzon létre egy Batch-fiókot az erőforráscsoportban, adjon meg egy fióknevet az <*account_name*> helyőrző helyett, és adja meg az erőforráscsoport helyét és nevét. A Batch-fiókok létrehozása eltarthat egy ideig. Példa:
 
     New-AzureRmBatchAccount –AccountName <account_name> –Location "Central US" –ResourceGroupName <res_group_name>
 
 > [!NOTE]
-> hello Batch-fiók nevének kell lennie az Azure-régió hello erőforráscsoport, egyedi toohello csak 3 és 24 karakter közötti lehet, és kisbetűket és számokat tartalmazhat csak.
+> A Batch-fiók nevének egyedinek kell lennie az erőforráscsoport Azure-régiójában, 3–24 karaktert kell tartalmaznia, és csak kisbetűkből és számokból állhat.
 > 
 > 
 
 ### <a name="get-account-access-keys"></a>Fiók hívóbetűinek beszerzése
-**Get-AzureRmBatchAccountKeys** Azure Batch-fiók társított hello hívóbetűk jeleníti meg. Például futtassa a következő tooget hello elsődleges és másodlagos létrehozott hello fiókjának kulcsok hello.
+A **Get-AzureRmBatchAccountKeys** megjeleníti az Azure Batch-fiókkal társított hívóbetűket. Például a következő futtatásával lekérheti a létrehozott fiók elsődleges és másodlagos hívóbetűit.
 
     $Account = Get-AzureRmBatchAccountKeys –AccountName <account_name>
 
@@ -65,12 +65,12 @@ Ezt követően hello erőforráscsoportban hello fióknak a nevét adja meg a Ba
     $Account.SecondaryAccountKey
 
 ### <a name="generate-a-new-access-key"></a>Új hívóbetű létrehozása
-A **New-AzureRmBatchAccountKey** új elsődleges vagy másodlagos hívóbetűt hoz létre az Azure Batch-fiókhoz. Például toogenerate egy új elsődleges kulcsot a Batch-fiókhoz, típus:
+A **New-AzureRmBatchAccountKey** új elsődleges vagy másodlagos hívóbetűt hoz létre az Azure Batch-fiókhoz. Ha például új elsődleges hívóbetűt szeretne létrehozni a Batch-fiókhoz, írja be a következőt:
 
     New-AzureRmBatchAccountKey -AccountName <account_name> -KeyType Primary
 
 > [!NOTE]
-> egy új másodlagos kulcs toogenerate "Másodlagos" megadása hello **KeyType** paraméter. Külön-külön kell tooregenerate hello elsődleges és másodlagos kulcsok.
+> Új másodlagos hívóbetű létrehozásához adja meg a „Másodlagos” szöveget a **KeyType** paraméterhez. Az elsődleges és a másodlagos hívóbetűket külön kell újra létrehoznia.
 > 
 > 
 
@@ -79,69 +79,69 @@ A **Remove-AzureRmBatchAccount** törli a Batch-fiókot. Példa:
 
     Remove-AzureRmBatchAccount -AccountName <account_name>
 
-Amikor a rendszer kéri, erősítse meg tooremove hello fiók. Fiók eltávolításának is igénybe vehet néhány alkalommal toocomplete.
+A felugró kérdésre erősítse meg, hogy valóban el kívánja távolítani a fiókot. A fiókeltávolítás eltarthat egy ideig.
 
 ## <a name="create-a-batchaccountcontext-object"></a>BatchAccountContext objektum létrehozása
-Kötegelt PowerShell-parancsmagok használatával tooauthenticate hello, létrehozása és kezelése a Batch-készletek, feladatok, feladatok, és más erőforrások, először létre kell hoznia egy BatchAccountContext objektum toostore a fiók nevét és a kulcsok:
+Ha a Batch PowerShell-parancsmagokkal szeretne végrehajtani a hitelesítést Batch-készletek, -feladatok, -tevékenységek és más erőforrások létrehozásakor és felügyeletekor, először hozzon létre egy BatchAccountContext objektumot a fióknév és a kulcsok tárolásához:
 
     $context = Get-AzureRmBatchAccountKeys -AccountName <account_name>
 
-Át hello BatchAccountContext objektum parancsmagok be, hogy használjon hello **BatchContext** paraméter.
+A BatchAccountContext objektumot a **BatchContext** paramétert használó parancsmagokba adja át.
 
 > [!NOTE]
-> Alapértelmezés szerint hello fiók elsődleges kulcsot a hitelesítéshez használja, de hello kulcs toouse explicit módon kiválaszthatja a BatchAccountContext objektum módosításával **KeyInUse** tulajdonság: `$context.KeyInUse = "Secondary"`.
+> Alapértelmezés szerint a fiók elsődleges hívóbetűjét használja a hitelesítéshez, de explicit módon kiválaszthatja a használni kívánt betűt, ha módosítja a BatchAccountContext objektum **KeyInUse** tulajdonságát: `$context.KeyInUse = "Secondary"`.
 > 
 > 
 
 ## <a name="create-and-modify-batch-resources"></a>Batch-erőforrások létrehozása és módosítása
-Parancsmagokat használja, mint **New-AzureBatchPool**, **New-AzureBatchJob**, és **New-AzureBatchTask** toocreate erőforrások a Batch-fiók. Megfelelő **Get -** és **Set -** parancsmagok tooupdate hello tulajdonságainak meglévő erőforrásokat, és **Remove -** parancsmagok tooremove erőforrások a Batch-fiók.
+Például a **New-AzureBatchPool**, **New-AzureBatchJob** és **New-AzureBatchTask** parancsmagokkal hozhat létre erőforrásokat a Batch-fiókokban. Megfelelő **Get-** és **Set-** parancsmagokkal frissítheti a meglévő erőforrások tulajdonságait, és a **Remove-** parancsmagokkal távolíthatja el az erőforrásokat a Batch-fiókokról.
 
-Ha ezek a parancsmagok számos a hozzáadása toopassing egy BatchContext objektum, meg kell toocreate, vagy adja át az objektumokat, amelyek részletes erőforrás-beállítások, ahogy az alábbi példa hello. Lásd: hello részletes minden további példákat a parancsmag súgóját.
+Sok parancsmag használatakor egy BatchContext objektum átadása mellett részletes erőforrás-beállításokat tartalmazó objektumok létrehozására vagy átadására is szükség van, ahogyan az a következő példában látható. További példákat az egyes parancsmagok részletes súgójában talál.
 
 ### <a name="create-a-batch-pool"></a>Batch-készlet létrehozása
-Létrehozásakor vagy frissítésekor. a Batch-készlet, akkor válasszon ki hello felhőalapú szolgáltatás konfigurációja vagy a virtuálisgép-konfiguráció hello hello operációs rendszer hello a számítási csomópontok (lásd: [Batch funkcióinak áttekintése](batch-api-basics.md#pool)). Hello felhőalapú szolgáltatás konfigurációja adja meg, ha a számítási csomópontok telepíti egy hello [Azure vendég operációs rendszer feloldja a](../cloud-services/cloud-services-guestos-update-matrix.md#releases). Ha hello virtuálisgép-konfiguráció ad meg, vagy megadhatja hello egyik támogatott Linux vagy a Windows virtuális gép lemezképek szerepel az hello [Azure virtuális gépek piactér][vm_marketplace], vagy adjon meg egy egyéni előkészítette a kép.
+Batch-készlet létrehozásakor vagy frissítésekor kiválaszthatja a felhőszolgáltatás- vagy a virtuálisgép-konfigurációt az operációs rendszerhez a számítási csomópontokon (lásd a [Batch-funkciók áttekintésével](batch-api-basics.md#pool) kapcsolatos témakört). Ha a felhőszolgáltatás-konfigurációt adja meg, a számítási csomópontokról az egyik [Azure vendég operációs rendszer kiadással](../cloud-services/cloud-services-guestos-update-matrix.md#releases) készül rendszerkép. Ha a virtuálisgép-konfigurációt választja, megadhatja az [Azure Virtual Machines Marketplace-en][vm_marketplace] felsorolt támogatott Linux vagy Windows virtuálisgép-rendszerképek egyikét, vagy megadhat egy Ön által előkészített egyéni rendszerképet.
 
-Amikor futtatja **New-AzureBatchPool**, adjon át egy PSCloudServiceConfiguration vagy PSVirtualMachineConfiguration objektum hello operációsrendszer-beállításokat. Például hello következő parancsmag hoz létre egy új Batch-készlet mérete kis számítási csomópontjai hello felhőalapú szolgáltatás konfigurációja, telepíti a legújabb operációs rendszer verziójával hello termékcsalád 3 (Windows Server 2012). Itt hello **CloudServiceConfiguration** paraméterrel hello *$configuration* változó hello PSCloudServiceConfiguration objektumként. Hello **BatchContext** paraméter adja meg egy korábban definiált változó *$context* hello BatchAccountContext objektumként.
+A **New-AzureBatchPool** parancs futtatásakor adja át a PSCloudServiceConfiguration vagy PSVirtualMachineConfiguration objektumban található operációsrendszer-beállításokat. A következő parancsmag például egy új Batch-készletet hoz létre kis méretű számítási csomópontokkal a felhőszolgáltatás konfigurációjában, amely a 3-as család (Windows Server 2012) legújabb operációsrendszer-verziójával van leképezve. Itt a **CloudServiceConfiguration** paraméter a *$configuration* változót a PSCloudServiceConfiguration objektumként határozza meg. A **BatchContext** paraméter egy korábban meghatározott *$context* változót ad meg a BatchAccountContext objektumként.
 
     $configuration = New-Object -TypeName "Microsoft.Azure.Commands.Batch.Models.PSCloudServiceConfiguration" -ArgumentList @(4,"*")
 
     New-AzureBatchPool -Id "AutoScalePool" -VirtualMachineSize "Small" -CloudServiceConfiguration $configuration -AutoScaleFormula '$TargetDedicated=4;' -BatchContext $context
 
-az automatikus skálázás képlet hello új készlet számítási csomópontjai hello cél számát határozza meg. Ebben az esetben hello képlete egyszerűen **$TargetDedicated = 4**, érték 4, legfeljebb hello hello készlet számítási csomópontjainak számát.
+Az új készletben a számítási csomópontok célszámát egy automatikus méretezési képlet határozza meg. Ebben az esetben a képlet egyszerűen a **$TargetDedicated=4**, ami jelzi, hogy a készletben lévő számítási csomópontok száma legfeljebb 4.
 
 ## <a name="query-for-pools-jobs-tasks-and-other-details"></a>Készletek, feladatok, tevékenységek és egyéb részletek lekérdezése
-Használjon például parancsmagok **Get-AzureBatchPool**, **Get-AzureBatchJob**, és **Get-AzureBatchTask** tooquery entitások Batch-fiók alatt hozott létre.
+Például a **Get-AzureBatchPool**, **Get-AzureBatchJob** és **Get-AzureBatchTask** parancsmagokkal kérdezhet le Batch-fiókokon létrehozott entitásokat.
 
 ### <a name="query-for-data"></a>Adatok lekérdezése
-Tegyük fel, használjon **Get-AzureBatchPools** toofind az készletek. Ez a fiók alatt készletekben lekérdezi alapértelmezés szerint tárolja hello BatchAccountContext objektum már feltéve, hogy *$context*:
+Például a **Get-AzureBatchPools** használatával megkeresheti a készleteket. Ez alapértelmezés szerint a fiók összes készletét lekérdezi, ha a BatchAccountContext objektumot már tárolta a *$context* helyen:
 
     Get-AzureBatchPool -BatchContext $context
 
 ### <a name="use-an-odata-filter"></a>OData-szűrő használata
-Megadhat egy OData-szűrő használatával hello **szűrő** paraméter toofind csak hello kíváncsiak vagyunk objektumok. Megkeresheti például az összes olyan készletet, amelynek az azonosítója a „myPool” karakterlánccal kezdődik:
+Megadhat egy OData-szűrőt a **Filter** paraméterrel, ha csak a kívánt objektumokat szeretné megkeresni. Megkeresheti például az összes olyan készletet, amelynek az azonosítója a „myPool” karakterlánccal kezdődik:
 
     $filter = "startswith(id,'myPool')"
 
     Get-AzureBatchPool -Filter $filter -BatchContext $context
 
-Ez a módszer nem olyan rugalmas, mint a „Where-Object” használata a helyi folyamatokban. Azonban hello lekérdezés küldi el toohello Batch szolgáltatás közvetlenül, hogy az összes szűrése történik, az internetes sávszélességet mentése hello kiszolgálóoldali.
+Ez a módszer nem olyan rugalmas, mint a „Where-Object” használata a helyi folyamatokban. A lekérdezést azonban közvetlenül a Batch szolgáltatásnak küldi a rendszer, hogy minden szűrés a kiszolgálói oldalon történjen, így internetes sávszélesség takarítható meg.
 
-### <a name="use-hello-id-parameter"></a>Hello Id paraméter használata
-Egy alternatív tooan OData szűrő toouse hello **azonosító** paraméter. az azonosító "myPool" adott készlet tooquery:
+### <a name="use-the-id-parameter"></a>Az Id paraméter használata
+Az OData-szűrő alternatívája az **Id** paraméter használata. Egy „myPool” azonosítójú adott készlet lekérdezése:
 
     Get-AzureBatchPool -Id "myPool" -BatchContext $context
 
-Hello **azonosító** paraméter csak teljes-id keresési, nem a helyettesítő karakterekkel vagy OData-stílusú szűrők támogatja.
+Az **ID** paraméter csak a teljes azonosítót használó kereséseket támogatja, a helyettesítő karaktereket és az OData stílusú szűrőket nem.
 
-### <a name="use-hello-maxcount-parameter"></a>Hello MaxCount paraméter használata
-Alapértelmezés szerint mindegyik parancsmag maximum 1000 objektumot ad vissza. Ha eléri ezt a határt, pontosítsa a szűrő toobring vissza kevesebb objektumot, vagy beállítással, hello használatával legfeljebb **MaxCount** paraméter. Példa:
+### <a name="use-the-maxcount-parameter"></a>A MaxCount paraméter használata
+Alapértelmezés szerint mindegyik parancsmag maximum 1000 objektumot ad vissza. Ha eléri ezt a korlátot, pontosítsa a szűrőt, hogy kevesebb objektumot adjon vissza, vagy explicit módon állítson be maximális értéket a **MaxCount** paraméterrel. Példa:
 
     Get-AzureBatchTask -MaxCount 2500 -BatchContext $context
 
-tooremove hello felső határa, állítsa be **MaxCount** too0 vagy kisebb.
+A felső határ eltávolításához 0 vagy kisebb értéket adjon meg a **MaxCount** paraméternek.
 
-### <a name="use-hello-powershell-pipeline"></a>Hello PowerShell kimenetátirányításának használata
-Kötegelt parancsmagok kihasználhatják a hello PowerShell adatcsatorna toosend adatok parancsmag között. Ugyanaz, mintha egy paraméter, de használata több entitás egyszerűbbé teszi érvényesíti hello azt.
+### <a name="use-the-powershell-pipeline"></a>A PowerShell-folyamat használata
+A Batch-parancsmagok a PowerShell-folyamattal adatokat tudnak küldeni a folyamatok között. Ennek ugyanaz a hatása, mint a paraméterek megadása, de megkönnyíti a több entitással való munkát.
 
 Például keresse meg és jelenítse meg fiókjában az összes feladatot:
 
@@ -152,7 +152,7 @@ Indítsa újra a készlet összes számítási csomópontját:
     Get-AzureBatchComputeNode -PoolId "myPool" -BatchContext $context | Restart-AzureBatchComputeNode -BatchContext $context
 
 ## <a name="application-package-management"></a>Alkalmazáscsomagok kezelése
-Alkalmazáscsomagok lehetőséget nyújtanak olyan egyszerűsített toodeploy alkalmazások toohello számítási csomópontjain a készletek. A kötegelt PowerShell-parancsmagok hello feltöltése és alkalmazáscsomagok kezelése a Batch-fiókhoz, és telepítse csomag verziók toocompute csomópontokat.
+Az alkalmazáscsomagok egyszerű módot kínálnak az alkalmazások üzembe helyezésére a készletek számítási csomópontjain. A Batch PowerShell-parancsmagjaival feltöltheti és kezelheti az alkalmazáscsomagokat a Batch-fiókban, valamint a számítási csomópontokban üzembe helyezheti a csomagverziókat.
 
 Alkalmazás **létrehozása**:
 
@@ -162,7 +162,7 @@ Alkalmazáscsomag **hozzáadása**:
 
     New-AzureRmBatchApplicationPackage -AccountName <account_name> -ResourceGroupName <res_group_name> -ApplicationId "MyBatchApplication" -ApplicationVersion "1.0" -Format zip -FilePath package001.zip
 
-Set hello **alapértelmezett verzió** hello alkalmazáshoz:
+Állítsa be az alkalmazás **alapértelmezett verzióját** :
 
     Set-AzureRmBatchApplication -AccountName <account_name> -ResourceGroupName <res_group_name> -ApplicationId "MyBatchApplication" -DefaultVersion "1.0"
 
@@ -181,14 +181,14 @@ Alkalmazás **törlése**
     Remove-AzureRmBatchApplication -AccountName <account_name> -ResourceGroupName <res_group_name> -ApplicationId "MyBatchApplication"
 
 > [!NOTE]
-> Előtt törölnie kell minden olyan alkalmazás alkalmazáscsomag-verziók hello alkalmazás törlése. Egy "Ütközés" hibaüzenetet fog kapni, ha egy alkalmazás jelenleg alkalmazáscsomagok toodelete kísérli meg.
+> Az alkalmazás törlése előtt törölnie kell az alkalmazás összes alkalmazáscsomag-verzióját. Ha olyan alkalmazást próbál meg törölni, amely jelenleg rendelkezik alkalmazáscsomaggal, „Ütközés” hibaüzenetet fog kapni.
 > 
 > 
 
 ### <a name="deploy-an-application-package"></a>Alkalmazáscsomag üzembe helyezése
-Készlet létrehozásakor megadhat egy vagy több alkalmazáscsomagot az üzembe helyezéshez. Olyan csomagot adjon meg a készlet létrehozás időpontjában, esetén telepített tooeach csomópont hello csomópont illesztések készlet szerint. A csomagok akkor is üzembe lesznek helyezve, ha a csomópontot újraindítják vagy alaphelyzetbe állítják.
+Készlet létrehozásakor megadhat egy vagy több alkalmazáscsomagot az üzembe helyezéshez. Ha a készlet létrehozásakor megad egy csomagot, az a csomópont készlethez való csatlakoztatásakor minden csomóponton üzembe lesz helyezve. A csomagok akkor is üzembe lesznek helyezve, ha a csomópontot újraindítják vagy alaphelyzetbe állítják.
 
-Adja meg a hello `-ApplicationPackageReference` létrehozásakor egy alkalmazáskészlet toodeploy egy csomag toohello alkalmazáskészlet csomópontok, azok csatlakoztatását hello készlet lehetőséget. Először hozzon létre egy **PSApplicationPackageReference** objektumot, és állítsa be úgy a hello csomagazonosító és csomagnév Alkalmazásverzió kívánt toodeploy toohello készlet számítási csomópontok:
+Adja meg az `-ApplicationPackageReference` kapcsolót, ha készletet hoz létre egy alkalmazáscsomag üzembe helyezéséhez a készlet csomópontjain, amikor azok csatlakoznak a készlethez. Először hozzon létre egy **PSApplicationPackageReference**-objektumot, és konfigurálja a készlet számítási csomópontjain üzembe helyezendő alkalmazás azonosítóval és a csomagverzióval:
 
     $appPackageReference = New-Object Microsoft.Azure.Commands.Batch.Models.PSApplicationPackageReference
 
@@ -196,19 +196,19 @@ Adja meg a hello `-ApplicationPackageReference` létrehozásakor egy alkalmazás
 
     $appPackageReference.Version = "1.0"
 
-Most hello készlet létrehozásához, és adja meg hello csomag referenciaobjektum, mivel argumentum toohello hello `ApplicationPackageReferences` lehetőséget:
+Ezután hozza létre a készletet, majd a csomag-referenciaobjektumot az `ApplicationPackageReferences` beállítás argumentumaként adja meg:
 
     New-AzureBatchPool -Id "PoolWithAppPackage" -VirtualMachineSize "Small" -CloudServiceConfiguration $configuration -BatchContext $context -ApplicationPackageReferences $appPackageReference
 
-További információt az alkalmazáscsomagok a [központi telepítése az alkalmazások toocompute csomópontokat a kötegelt alkalmazáscsomagok](batch-application-packages.md).
+Az alkalmazáscsomagok használatával kapcsolatban további információkat a [Batch-alkalmazáscsomagokkal számítási csomópontokra végzett alkalmazástelepítést](batch-application-packages.md) ismertető cikkben talál.
 
 > [!IMPORTANT]
-> Meg kell [egy Azure Storage-fiók csatolása](#linked-storage-account-autostorage) tooyour Batch-fiók toouse alkalmazáscsomagok.
+> Az alkalmazáscsomagok használatához [hozzá kell kapcsolnia egy Azure Storage-fiókot](#linked-storage-account-autostorage) a Batch-fiókjához.
 > 
 > 
 
 ### <a name="update-a-pools-application-packages"></a>Készlet alkalmazáscsomagjainak frissítése
-tooupdate hello alkalmazások kijelölt tooan meglévő készlet, először létre kell hoznia egy PSApplicationPackageReference objektum szükséges hello tulajdonságokkal (csomagazonosító és csomagnév Alkalmazásverzió):
+A már létező készlethez rendelt alkalmazás frissítéséhez előbb hozzon létre PSApplicationPackageReference-objektumot a kívánt tulajdonságokkal (alkalmazásazonosító és csomagverzió):
 
     $appPackageReference = New-Object Microsoft.Azure.Commands.Batch.Models.PSApplicationPackageReference
 
@@ -216,7 +216,7 @@ tooupdate hello alkalmazások kijelölt tooan meglévő készlet, először lét
 
     $appPackageReference.Version = "2.0"
 
-A következő hello készlet beolvasása kötegben, törölje ki a meglévő csomagokat, az új csomag hivatkozás hozzáadása és hello Batch szolgáltatás hello új alkalmazáskészlet beállításainak frissítése:
+Ezután olvassa be a készletet a Batch-ből, tisztítsa meg a már létező csomagoktól, adja hozzá az új csomagreferenciát, majd az új készletbeállításokkal frissítse a Batch-szolgáltatást:
 
     $pool = Get-AzureBatchPool -BatchContext $context -Id "PoolWithAppPackage"
 
@@ -226,17 +226,17 @@ A következő hello készlet beolvasása kötegben, törölje ki a meglévő cso
 
     Set-AzureBatchPool -BatchContext $context -Pool $pool
 
-Most már frissítette hello készlet tulajdonságok hello Batch szolgáltatásban. tooactually hello új alkalmazás csomag toocompute csomópontok hello készletben, a rendszer azonban kell indítani, vagy újból lemezképet létrehozni azokat a csomópontokat. Az alábbi paranccsal újraindíthatja a készlet összes számítási csomópontját:
+A készlet tulajdonságainak frissítése megtörtént a Batch-szolgáltatásban. Ha azonban a készlet számítási csomópontjain szeretné üzembe helyezni az új alkalmazáscsomagot, újra kell indítania vagy alaphelyzetbe kell állítania az adott csomópontok rendszerképét. Az alábbi paranccsal újraindíthatja a készlet összes számítási csomópontját:
 
     Get-AzureBatchComputeNode -PoolId "PoolWithAppPackage" -BatchContext $context | Restart-AzureBatchComputeNode -BatchContext $context
 
 > [!TIP]
-> Telepíthet több alkalmazás csomagok toohello számítási csomópont a készletben. Ha azt szeretné, túl*hozzáadása* jelenleg telepített hello csomagok felülírása helyett egy alkalmazáscsomagot, hagyja el hello `$pool.ApplicationPackageReferences.Clear()` fenti sor.
+> A készlet számítási csomópontjain több alkalmazáscsomagot is üzembe helyezhet. Ha a jelenleg telepített csomagok cseréje helyett inkább *hozzáadna* egy alkalmazáscsomagot, hagyja ki a felső `$pool.ApplicationPackageReferences.Clear()` sort.
 > 
 > 
 
 ## <a name="next-steps"></a>Következő lépések
 * A parancsmag részletes szintaxisáért és példákért lásd: [Azure Batch-parancsmagok referenciája](/powershell/module/azurerm.batch/#batch).
-* Alkalmazások és az alkalmazáscsomagok kötegben kapcsolatos további információkért lásd: [központi telepítése az alkalmazások toocompute csomópontokat a kötegelt alkalmazáscsomagok](batch-application-packages.md).
+* A Batchben elérhető alkalmazásokkal és alkalmazáscsomagokkal kapcsolatban további információkat a [Batch-alkalmazáscsomagokkal számítási csomópontokra végzett alkalmazástelepítést](batch-application-packages.md) ismertető cikkben talál.
 
 [vm_marketplace]: https://azure.microsoft.com/marketplace/virtual-machines/

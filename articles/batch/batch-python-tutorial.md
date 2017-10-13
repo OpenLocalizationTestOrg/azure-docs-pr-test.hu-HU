@@ -1,6 +1,6 @@
 ---
-title: "aaaTutorial - használata hello Azure Batch Python SDK |} Microsoft Docs"
-description: "Ismerje meg az Azure Batch hello alapvető fogalmait, és egy egyszerű megoldás pythonos környezetekben."
+title: "Oktatóanyag – A Pythonhoz készült Azure Batch SDK használata | Microsoft Docs"
+description: "Megismerheti az Azure Batch alapvető fogalmait és létrehozhat egy egyszerű megoldást a Python használatával."
 services: batch
 documentationcenter: python
 author: tamram
@@ -15,13 +15,13 @@ ms.workload: big-compute
 ms.date: 02/27/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c4d5152aeef31848c50a7f2aae5e7a7e0e1e9535
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: bd5a977c10d3955639beb893cd7a37581b14f7c0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-started-with-hello-batch-sdk-for-python"></a>Python hello kötegelt SDK használatába
+# <a name="get-started-with-the-batch-sdk-for-python"></a>Ismerkedés a Pythonhoz készült Batch SDK-val
 
 > [!div class="op_single_selector"]
 > * [.NET](batch-dotnet-get-started.md)
@@ -30,12 +30,12 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-A hello alapvető [Azure Batch] [ azure_batch] és hello [kötegelt Python] [ py_azure_sdk] ügyfél, a kis Batch-alkalmazások pythonban írt arról lesz szó. Úgy tekintünk, hogyan két minta parancsfájlok használata hello Batch szolgáltatás tooprocess egy párhuzamos munkaterhelés hello felhőben lévő Linux virtuális gépeken, és azok működését a [Azure Storage](../storage/common/storage-introduction.md) fájl átmeneti és lekérése. Kell egy közös kötegelt alkalmazás munkafolyamata bemutatása és szerezzen egy alapszintű hello fő összetevőit kötegelt feladatok, feladatok, készletek megértése és számítási csomópontjain.
+Ebben a cikkben megismerheti az [Azure Batch][azure_batch] alapjait és a [Batch Python][py_azure_sdk]-ügyfelet egy Pythonban írt kisméretű Batch-alkalmazás részletes ismertetésén keresztül. Áttekintjük, hogyan használja ez a két mintául szolgáló parancsfájl a Batch szolgáltatást párhuzamos számítási feladat feldolgozásához Linux virtuális gépeken a felhőben, valamint hogyan használják az [Azure Storage-ot](../storage/common/storage-introduction.md) a fájlok előkészítéséhez és lekéréséhez. Megismerheti a Batch-alkalmazások általános munkafolyamatát, és a Batch fő összetevőivel, például a tevékenységekkel, feladatokkal, készletekkel és számítási csomópontokkal kapcsolatos alapvető ismereteket is elsajátíthatja.
 
 ![Batch-megoldás munkafolyamata (alapszintű)][11]<br/>
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ez a cikk a Python és a Linux gyakorlati ismeretét feltételezi. Azt is feltételezi, hogy Ön képes toosatisfy hello létrehozása követelmények az alább megadott Azure- és hello Batch-és tárolási szolgáltatások.
+Ez a cikk a Python és a Linux gyakorlati ismeretét feltételezi. Azt is feltételezi, hogy az Azure, a Batch és a Storage alábbi fióklétrehozási követelmények teljesülnek.
 
 ### <a name="accounts"></a>Fiókok
 * **Azure-fiók**: Ha még nincs Azure-előfizetése, [hozzon létre egy ingyenes Azure-fiókot][azure_free_account].
@@ -43,16 +43,16 @@ Ez a cikk a Python és a Linux gyakorlati ismeretét feltételezi. Azt is felté
 * **Tárfiók**: Lásd a [Tudnivalók az Azure Storage-fiókokról](../storage/common/storage-create-storage-account.md) cikk [Tárfiók létrehozása](../storage/common/storage-create-storage-account.md#create-a-storage-account) szakaszát.
 
 ### <a name="code-sample"></a>Kódminta
-hello Python oktatóanyag [kódminta] [ github_article_samples] hello sok kötegelt mintakódok hello található egyik [azure-köteg-minták] [ github_samples] tárházából GitHub. Összes hello minta kattintva letöltheti **Klónozás vagy letöltési > töltse le a ZIP-** hello tárház kezdőlapján, vagy kattintson a hello [azure-köteg-minták-master.zip] [ github_samples_zip]közvetlen letöltési hivatkozását. Miután kibontotta már hello hello ZIP-fájl tartalmát, ebben az oktatóanyagban hello két parancsfájlok hello találhatók `article_samples` könyvtár:
+A Python-oktatóprogram [kódmintája][github_article_samples] a GitHubon lévő [azure-batch-samples][github_samples] tárban található számos Batch-kódminta egyike. Az összes minta letöltéséhez kattintson a **Clone or download > Download ZIP** (Klónozás vagy letöltés > ZIP letöltése) elemre a tár kezdőlapján, vagy kattintson az [azure-batch-samples-master.zip][github_samples_zip] közvetlen letöltésére szolgáló hivatkozásra. Amikor kibontotta a ZIP-fájl tartalmát, az oktatóprogram két parancsfájlja található meg az `article_samples` könyvtárban:
 
 `/azure-batch-samples/Python/Batch/article_samples/python_tutorial_client.py`<br/>
 `/azure-batch-samples/Python/Batch/article_samples/python_tutorial_task.py`
 
 ### <a name="python-environment"></a>Python-környezet
-toorun hello *python_tutorial_client.py* kell a helyi munkaállomáson mintaparancsfájl egy **Python parancsértelmező** verziójával kompatibilis **2.7** vagy **3.3 +**. a Linux és a Windows hello parancsfájl tesztelték.
+A *python_tutorial_client.py* minta parancsfájl helyi munkaállomáson való futtatásához a **2.7-es** vagy a **3.3-as vagy újabb** verzióval kompatibilis **Python-fordítóra** lesz szüksége. A parancsfájl Linux és Windows rendszeren is tesztelve lett.
 
 ### <a name="cryptography-dependencies"></a>titkosítási függőségek
-Telepítenie kell a hello hello függőségeinek [titkosítás] [ crypto] könyvtár hello által igényelt `azure-batch` és `azure-storage` Python-csomagokat. Hajtsa végre a következő műveletek a platformhoz megfelelő hello, vagy tekintse meg a toohello [titkosítás telepítési] [ crypto_install] részleteiben talál további információt:
+Telepítenie kell az `azure-batch` és az `azure-storage` Python-csomagokhoz szükséges [titkosítási][crypto] könyvtár függőségeit. Hajtsa végre az alábbiak közül a platformjának megfelelő műveleteket, vagy további információkért tekintse meg a [titkosítás telepítésével][crypto_install] kapcsolatos részleteket:
 
 * Ubuntu
 
@@ -68,61 +68,61 @@ Telepítenie kell a hello hello függőségeinek [titkosítás] [ crypto] könyv
     `pip install cryptography`
 
 > [!NOTE]
-> Ha telepíti a Python 3.3 + Linux, használja a hello python3 alakokat hello Python függőségek. Például az Ubuntu rendszeren: `apt-get update && apt-get install -y build-essential libssl-dev libffi-dev libpython3-dev python3-dev`
+> Ha Python 3.3-as vagy újabb verziója számára Linux rendszeren, a Python-függőségekhez használja a python3-beli megfelelőket. Például az Ubuntu rendszeren: `apt-get update && apt-get install -y build-essential libssl-dev libffi-dev libpython3-dev python3-dev`
 >
 >
 
 ### <a name="azure-packages"></a>Azure-csomagok
-Következő lépésként telepítse a hello **Azure Batch** és **Azure Storage** Python-csomagokat. Mindkét csomagot segítségével telepítheti **pip** és hello *requirements.txt* itt található:
+Ezután telepítse az **Azure Batch** és az **Azure Storage** Python-csomagot. Mindkét csomag az itt található **pip** és a *requirements.txt* fájl segítségével telepíthető:
 
 `/azure-batch-samples/Python/Batch/requirements.txt`
 
-A probléma következő **pip** tooinstall hello kötegelt és a tárolási csomagok parancssori:
+Adja ki a következő **pip** parancsot a Batch- és Storage-csomagok telepítéséhez:
 
 `pip install -r requirements.txt`
 
-Vagy telepítse hello [azure-köteg] [ pypi_batch] és [azure-tároló] [ pypi_storage] Python-csomagok manuálisan:
+Az [azure-batch][pypi_batch] és az [azure-storage][pypi_storage] Python-csomagot manuálisan is telepítheti:
 
 `pip install azure-batch`<br/>
 `pip install azure-storage`
 
 > [!TIP]
-> Ha olyan nem rendszerjogosultságú fiókot használ, szükség lehet tooprefix a utasítással `sudo`. Például: `sudo pip install -r requirements.txt`. Ha további információt szeretne kapni a Python-csomagok telepítésével kapcsolatban, olvassa el a [csomagok telepítését][pypi_install] ismertető cikket a python.org webhelyen.
+> Lehet, hogy a `sudo` előtagot kell hozzáadnia a parancsokhoz, ha megfelelő jogosultságokkal nem rendelkező fiókot használ. Például: `sudo pip install -r requirements.txt`. Ha további információt szeretne kapni a Python-csomagok telepítésével kapcsolatban, olvassa el a [csomagok telepítését][pypi_install] ismertető cikket a python.org webhelyen.
 >
 >
 
 ## <a name="batch-python-tutorial-code-sample"></a>Batch Python-oktatóprogram kódmintája
-hello kötegelt Python oktatóanyag példakód két Python-parancsfájl és néhány adatfájlok áll.
+A Batch Python-oktatóprogram kódmintája két Python-parancsfájlból és néhány adatfájlból áll.
 
-* **python_tutorial_client.PY**: egy párhuzamos munkaterhelés, a számítási csomópontok (virtuális gépek) hello kötegelt és tárolási szolgáltatások tooexecute kommunikál. Hello *python_tutorial_client.py* parancsprogram lefut a helyi munkaállomáson.
-* **python_tutorial_task.PY**: hello futó parancsfájl számítási csomópontok az Azure tooperform hello tényleges munkát. Hello mintában *python_tutorial_task.py* elemez hello (hello bemeneti fájl) Azure Storage-ból letöltött fájlok szöveget. Ezután azt szöveges fájlt hoz létre (hello kimeneti fájl), amely hello a három legfontosabb szereplő szavakkal hello bemeneti fájl listáját tartalmazza. Miután létrehoz hello kimeneti fájlt, *python_tutorial_task.py* feltöltések hello fájl tooAzure tároló. Ez lehetővé teszi a letöltési toohello ügyféloldali parancsprogram futtatása a munkaállomáson. Hello *python_tutorial_task.py* parancsfájl futtatása párhuzamosan több számítási csomópontjain a Batch szolgáltatás hello.
-* **./Data/taskdata\*.txt**: ezek három szövegfájlok hello bemeneti adjon meg, a hello feladatok hello futó számítási csomópontjain.
+* **python_tutorial_client.py**: a Batch és a Storage szolgáltatással együttműködve végez párhuzamos számítási feladatokat a számítási csomópontokon (virtuális gépeken). A *python_tutorial_client.py* parancsfájl a helyi munkaállomáson fut.
+* **python_tutorial_task.py**: Az a parancsfájl, amely az Azure számítási csomópontjain fut a tényleges munka elvégzéséhez. A mintában a *python_tutorial_task.py* elemzi az Azure Storage-ból letöltött fájl (a bemeneti fájl) szövegét. Ezután egy szövegfájlt hoz létre (a kimeneti fájlt), amely a bemeneti fájlban megjelenő első három szó listáját tartalmazza. A kimeneti fájl létrehozása után a *python_tutorial_task.py* feltölti a fájlt az Azure Storage-ba. Így a munkaállomáson futó ügyfélparancsfájl letöltheti azt. A *python_tutorial_task.py* parancsfájl párhuzamosan fut több számítási csomóponton a Batch szolgáltatásban.
+* **./data/taskdata\*.txt**: Ez a három szövegfájl nyújt bemenetet a számítási csomópontokon futó feladatokhoz.
 
-a következő diagram hello hello elsődleges műveletek hello ügyfél és a feladat parancsfájlok által végrehajtott mutatja be. Ez az alapvető munkafolyamat számos, a Batch használatával létrehozott számítási megoldásra jellemző. Minden elérhető, a Batch szolgáltatás hello szolgáltatást nem azt mutatják, amíg a szinte minden kötegelt az eset tartalmazza a munkafolyamat részeit.
+A következő diagram az ügyfél- és a feladatparancsfájlok által végrehajtott elsődleges műveleteket ábrázolja. Ez az alapvető munkafolyamat számos, a Batch használatával létrehozott számítási megoldásra jellemző. Bár nem mutatja be a Batch szolgáltatásban elérhető összes funkciót, majdnem mindegyik Batch-forgatókönyv tartalmazza a munkafolyamat egyes részeit.
 
 ![Példa Batch-munkafolyamat][8]<br/>
 
 [**1. lépés**](#step-1-create-storage-containers) **Tárolók** létrehozása az Azure Blob Storage-ban.<br/>
-[**2. lépés**](#step-2-upload-task-script-and-data-files) A feladat parancsfájlt és a bemeneti fájlok toocontainers feltöltése.<br/>
+[**2. lépés**](#step-2-upload-task-script-and-data-files) Feladatparancsfájlok és bemeneti fájlok feltöltése tárolókba.<br/>
 [**3. lépés**](#step-3-create-batch-pool) Batch-**készlet** létrehozása.<br/>
-  &nbsp;&nbsp;&nbsp;&nbsp;**3a.** készlet hello **StartTask** letöltések hello feladat parancsfájl (python_tutorial_task.py) toonodes, mivel azok csatlakoztatását hello készlet.<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;**3a.** A **StartTask** készlet letölti a feladatparancsfájlt (python_tutorial_task.py) a csomópontokra, amikor azok a készlethez csatlakoznak.<br/>
 [**4. lépés**](#step-4-create-batch-job) Batch-**feladat** létrehozása.<br/>
-[**5. lépés**](#step-5-add-tasks-to-job) Adja hozzá **feladatok** toohello feladat.<br/>
-  &nbsp;&nbsp;&nbsp;&nbsp;**5a.** hello feladatok ütemezett tooexecute csomópontján.<br/>
+[**5. lépés**](#step-5-add-tasks-to-job) Adjon hozzá **tevékenységeket** a feladathoz.<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;**5a.** A feladtok végrehajtásának ütemezése a csomópontokon.<br/>
     &nbsp;&nbsp;&nbsp;&nbsp;**5b.** Mindegyik tevékenység letölti a bemeneti adatait az Azure Storage-ból, majd elkezdi a végrehajtást.<br/>
 [**6. lépés**](#step-6-monitor-tasks) Tevékenységek figyelése.<br/>
-  &nbsp;&nbsp;&nbsp;&nbsp;**6a.** Feladatok befejezésekor, ezek a kimeneti adatok tooAzure tárolási feltöltése.<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;**6a.** A befejezett tevékenységek feltöltik a kimeneti adataikat az Azure Storage-ba.<br/>
 [**7. lépés**](#step-7-download-task-output) Tevékenység kimenetének letöltése a Storage-ból.
 
 Ahogy említettük, nem minden Batch-megoldás végzi el pontosan ezeket a lépéseket, és sok más lépést is tartalmazhatnak, de ez a minta bemutatja a Batch-megoldások általános folyamatait.
 
 ## <a name="prepare-client-script"></a>Az ügyfélparancsfájl előkészítése
-Hello minta futtatása előtt hozzáadása a kötegelt és a tárolási fiók hitelesítő adataival túl*python_tutorial_client.py*. Ha még nem tette meg, nyissa meg a következő sorokat a hitelesítő adataival kedvenc szerkesztő és a frissítés hello hello fájlt.
+A minta futtatása előtt adja hozzá a Batch- és a Storage-fiók hitelesítő adatait a *python_tutorial_client.py* fájlhoz. Ha még nem tette meg, nyissa meg a fájlt a kedvenc szerkesztőjében, és frissítse a következő sorokat a hitelesítő adataival.
 
 ```python
-# Update hello Batch and Storage account credential strings below with hello values
-# unique tooyour accounts. These are used when constructing connection strings
-# for hello Batch and Storage client objects.
+# Update the Batch and Storage account credential strings below with the values
+# unique to your accounts. These are used when constructing connection strings
+# for the Batch and Storage client objects.
 
 # Batch account credentials
 BATCH_ACCOUNT_NAME = ""
@@ -134,14 +134,14 @@ STORAGE_ACCOUNT_NAME = ""
 STORAGE_ACCOUNT_KEY = ""
 ```
 
-A kötegelt és a tárolási fiók hitelesítő adataival belül minden szolgáltatás hello fiók panelen található hello [Azure-portálon][azure_portal]:
+A Batch- és a Storage-fiók hitelesítő adatai a szolgáltatások fiókpaneljein találhatók az [Azure Portalon][azure_portal]:
 
-![A Batch-hitelesítő adatok hello portálon][9]
-![hello portal tároló hitelesítő adatait][10]<br/>
+![Batch hitelesítő adatai a portálon][9]
+![Storage hitelesítő adatai a portálon][10]<br/>
 
-A következő részekben hello, azt elemzése által használt hello lépéseket hello parancsfájlok, a munkaterhelés, a Batch szolgáltatás hello tooprocess. Javasoljuk, toorefer rendszeresen toohello parancsfájlok közben a szerkesztőben hello cikk többi hello útján a módon működnek.
+A következő szakaszokban a parancsfájlok által a számítási feladatok Batch-szolgáltatásban való feldolgozásához használt lépéseket elemezzük. Javasoljuk, hogy rendszeresen tekintse meg a szerkesztőben lévő parancsfájlokat cikk további részének feldolgozása közben.
 
-Keresse meg a következő sort a toohello **python_tutorial_client.py** toostart az 1. lépés:
+Keresse meg a következő sort a **python_tutorial_client.py** fájlban az 1. lépés elkezdéséhez:
 
 ```python
 if __name__ == '__main__':
@@ -151,24 +151,24 @@ if __name__ == '__main__':
 ![Tárolók létrehozása az Azure Storage-ban][1]
 <br/>
 
-A Batch beépített támogatást tartalmaz az Azure Storage használatához. A tárfiók a tárolók hello feladatok futtatása a Batch-fiók szükséges hello fájlokat ad meg. hello tárolók nagy előnye, egy hely toostore hello kimeneti adatok, amelyek hello feladatok egymással. először thing hello hello *python_tutorial_client.py* parancsprogram hozható létre a három tároló [Azure Blob Storage](../storage/common/storage-introduction.md#blob-storage):
+A Batch beépített támogatást tartalmaz az Azure Storage használatához. A Storage-fiókban lévő tárolók biztosítják a Batch-fiókban futó tevékenységekhez szükséges fájlokat. A tárolók a tevékenységek által létrehozott kimeneti adatok tárolásához is helyet biztosítanak. A *python_tutorial_client.py* parancsfájl először három tárolót hoz létre az [Azure Blob Storage](../storage/common/storage-introduction.md#blob-storage)-tárolóban:
 
-* **alkalmazás**: Ebben a tárolóban tárolni fogja hello Python-parancsfájl futtatása hello feladatok, *python_tutorial_task.py*.
-* **bemeneti**: feladatok töltik le hello adatok fájlok tooprocess hello *bemeneti* tároló.
-* **kimeneti**: a bemeneti fájl feldolgozása végeztével a feladatok hello eredmények toohello feltölti *kimeneti* tároló.
+* **application**: Ez a tároló tárolja a feladatok által futtatott, *python_tutorial_task.py* nevű Python-parancsfájlt.
+* **input**: A tevékenységek az *input* tárolóból töltik le a feldolgozni kívánt adatfájlokat.
+* **output**: Amikor a tevékenységek befejezik a bemeneti fájl feldolgozását, feltöltik az eredményeket a *output* tárolóba.
 
-Egy tároló rendelés toointeract a fiókot, és tárolók, hozzon létre hello használjuk [azure-tároló] [ pypi_storage] toocreate csomag egy [BlockBlobService] [ py_blockblobservice] objektum – hello "blob ügyfél." Majd létrehozhatunk három tároló hello tárfiókban hello blob ügyfél használatával.
+A Storage-fiók használatához és a tárolók létrehozásához az [azure-storage][pypi_storage] csomaggal hozunk létre egy [BlockBlobService][py_blockblobservice]-objektumot – a „blob-ügyfelet”. Ezután három tárolót hozunk létre a Storage-fiókban a blob-ügyféllel.
 
 ```python
 import azure.storage.blob as azureblob
 
-# Create hello blob client, for use in obtaining references to
-# blob storage containers and uploading files toocontainers.
+# Create the blob client, for use in obtaining references to
+# blob storage containers and uploading files to containers.
 blob_client = azureblob.BlockBlobService(
     account_name=STORAGE_ACCOUNT_NAME,
     account_key=STORAGE_ACCOUNT_KEY)
 
-# Use hello blob client toocreate hello containers in Azure Storage if they
+# Use the blob client to create the containers in Azure Storage if they
 # don't yet exist.
 APP_CONTAINER_NAME = 'application'
 INPUT_CONTAINER_NAME = 'input'
@@ -178,54 +178,54 @@ blob_client.create_container(INPUT_CONTAINER_NAME, fail_on_exist=False)
 blob_client.create_container(OUTPUT_CONTAINER_NAME, fail_on_exist=False)
 ```
 
-Hello tárolók létrehozása után, hello alkalmazás most már feltöltheti hello feladatok által használt hello fájlokat.
+A tárolók létrehozása után az alkalmazás feltöltheti a tevékenységek által használandó fájlokat.
 
 > [!TIP]
-> [Hogyan toouse Azure Blob storage-ának Python](../storage/blobs/storage-python-how-to-use-blob-storage.md) jó áttekintést nyújt az Azure Storage tárolók és blobok használata. Meg kell az olvasási lista hello tetején, az Batch használatának megkezdése.
+> [How to use Azure Blob storage from Python](../storage/blobs/storage-python-how-to-use-blob-storage.md) (A Blob-tároló használata Pythonból) szakasz jó áttekintést nyújt az Azure Storage-tárolók és blobok használatáról. A Batch használatának elkezdésekor ez az egyik legfontosabb forrásanyag.
 >
 >
 
 ## <a name="step-2-upload-task-script-and-data-files"></a>2. lépés: Feladatparancsfájl és adatfájlok feltöltése
-![Feltöltési feladat alkalmazás- és bemeneti (adatok) fájlok toocontainers][2]
+![Tevékenységalkalmazás- és bemeneti (adat-) fájlok feltöltése tárolókba][2]
 <br/>
 
-Hello fájl feltöltése a művelet, *python_tutorial_client.py* először határozza meg a gyűjteményei **alkalmazás** és **bemeneti** elérési utak fájlt a helyi számítógépen hello léteznek. Majd ezen fájlok toohello tárolók hello előző lépésben létrehozott feltölti azt.
+A fájl feltöltése műveletben a *python_tutorial_client.py* először az **alkalmazás-** és a **bemeneti** fájlok elérési útjainak gyűjteményeit határozza meg a helyi gép alapján. Ezután feltölti ezeket a fájlokat az előző lépésben létrehozott tárolókba.
 
 ```python
-# Paths toohello task script. This script will be executed by hello tasks that
-# run on hello compute nodes.
+# Paths to the task script. This script will be executed by the tasks that
+# run on the compute nodes.
 application_file_paths = [os.path.realpath('python_tutorial_task.py')]
 
-# hello collection of data files that are toobe processed by hello tasks.
+# The collection of data files that are to be processed by the tasks.
 input_file_paths = [os.path.realpath('./data/taskdata1.txt'),
                     os.path.realpath('./data/taskdata2.txt'),
                     os.path.realpath('./data/taskdata3.txt')]
 
-# Upload hello application script tooAzure Storage. This is hello script that
-# will process hello data files, and is executed by each of hello tasks on the
+# Upload the application script to Azure Storage. This is the script that
+# will process the data files, and is executed by each of the tasks on the
 # compute nodes.
 application_files = [
     upload_file_to_container(blob_client, APP_CONTAINER_NAME, file_path)
     for file_path in application_file_paths]
 
-# Upload hello data files. This is hello data that will be processed by each of
-# hello tasks executed on hello compute nodes in hello pool.
+# Upload the data files. This is the data that will be processed by each of
+# the tasks executed on the compute nodes in the pool.
 input_files = [
     upload_file_to_container(blob_client, INPUT_CONTAINER_NAME, file_path)
     for file_path in input_file_paths]
 ```
 
-Lista szövegértést használva hello `upload_file_to_container` függvény hívása esetén hello gyűjtemények lévő összes fájlhoz, és két [ResourceFile] [ py_resource_file] gyűjtemények fel van töltve. Hello `upload_file_to_container` függvény alatt jelenik meg:
+A rendszer listaértelmezéssel hívja meg az `upload_file_to_container` függvényt a gyűjtemények egyes fájljaihoz, és két [ResourceFile][py_resource_file] gyűjteményt tölt fel. Az `upload_file_to_container` függvényt alul láthatja:
 
 ```python
 def upload_file_to_container(block_blob_client, container_name, path):
     """
-    Uploads a local file tooan Azure Blob storage container.
+    Uploads a local file to an Azure Blob storage container.
 
     :param block_blob_client: A blob service client.
     :type block_blob_client: `azure.storage.blob.BlockBlobService`
-    :param str container_name: hello name of hello Azure Blob storage container.
-    :param str file_path: hello local path toohello file.
+    :param str container_name: The name of the Azure Blob storage container.
+    :param str file_path: The local path to the file.
     :rtype: `azure.batch.models.ResourceFile`
     :return: A ResourceFile initialized with a SAS URL appropriate for Batch
     tasks.
@@ -237,7 +237,7 @@ def upload_file_to_container(block_blob_client, container_name, path):
 
     blob_name = os.path.basename(path)
 
-    print('Uploading file {} toocontainer [{}]...'.format(path,
+    print('Uploading file {} to container [{}]...'.format(path,
                                                           container_name))
 
     block_blob_client.create_blob_from_path(container_name,
@@ -259,23 +259,23 @@ def upload_file_to_container(block_blob_client, container_name, path):
 ```
 
 ### <a name="resourcefiles"></a>ResourceFiles
-A [ResourceFile] [ py_resource_file] biztosít hello URL-cím tooa fájl, amely letöltött tooa Azure Storage a kötegelt feladatok számítási csomópont e feladat futása előtt. Hello [ResourceFile][py_resource_file]. **blob_source** tulajdonság hello teljes URL-címet hello fájl határozza meg, az Azure Storage található. hello URL-címet is a közös hozzáférésű jogosultságkód (SAS), amely toohello fájlt biztonságos hozzáférést biztosít. A Batch legtöbb feladattípusa tartalmaz *ResourceFiles* tulajdonságot, beleértve a következőket:
+A [ResourceFile][py_resource_file] tevékenységeket biztosít a Batchben az Azure Storage azon fájljának URL-jével, amely a számítási csomópontra töltődik le a feladat futtatása előtt. A [ResourceFile][py_resource_file].**blob_source** tulajdonság úgy határozza meg a fájl teljes URL-jét, ahogyan az az Azure Storage-ban található. Az URL a fájl biztonságos elérését nyújtó közös hozzáférésű jogosultságkódot (SAS-t) is tartalmazhat. A Batch legtöbb feladattípusa tartalmaz *ResourceFiles* tulajdonságot, beleértve a következőket:
 
 * [CloudTask][py_task]
 * [StartTask][py_starttask]
 * [JobPreparationTask][py_jobpreptask]
 * [JobReleaseTask][py_jobreltask]
 
-Ez a minta hello JobPreparationTask vagy JobReleaseTask tevékenységtípusok nem használható, de további a rájuk vonatkozó [Futtatás feladat előkészítése és a befejezési feladatok Azure Batch számítási csomópontjain](batch-job-prep-release.md).
+Ez a minta nem használja a JobPreparationTask és a JobReleaseTask tevékenységtípust, azonban további információt tekinthet meg ezekkel kapcsolatban a [Run job preparation and completion tasks on Azure Batch compute nodes](batch-job-prep-release.md) (Feladat-előkészítési és -befejezési műveletek futtatása Azure Batch számítási csomópontokon) című témakörben.
 
 ### <a name="shared-access-signature-sas"></a>Közös hozzáférésű jogosultságkód (SAS)
-Közös hozzáférésű jogosultságkód karakterláncok, amelyek biztonságos hozzáférést toocontainers és az Azure Storage blobs. Hello *python_tutorial_client.py* parancsfájl mindkét blob és tároló közös hozzáférésű jogosultságkód, és bemutatja, hogyan ezek megosztott tooobtain elérje aláírás karakterláncok hello tároló szolgáltatást.
+A közös hozzáférésű jogosultságkódok olyan karakterláncok, amelyek biztonságos hozzáférést nyújtanak a tárolókhoz és a blobokhoz az Azure Storage-ban. A *python_tutorial_client.py* parancsfájl a blobok és a tárolók közös hozzáférésű jogosultságkódjait is használja, és bemutatja, hogyan szerezheti be a közös hozzáférésű jogosultságkódok karakterláncait a Storage szolgáltatásból.
 
-* **A BLOB megosztott hozzáférési aláírásokkal**: hello készlet StartTask által használt megosztott hozzáférési aláírásokkal blob-tárolóból hello feladat parancsfájlt és a bemeneti adatok fájlok letöltésekor (lásd: [#3. lépés](#step-3-create-batch-pool) alatt). Hello `upload_file_to_container` működni *python_tutorial_client.py* hello kódot tartalmaz, amely minden egyes blob megosztott hozzáférési aláírást beolvassa. Meghívásával ilyeneket [BlockBlobService.make_blob_url] [ py_make_blob_url] hello tárolási modulban.
-* **Tároló közös hozzáférésű jogosultságkódot**: minden tevékenység befejezése hello számítási csomóponton teendőit, mivel azt feltölti a kimeneti fájl toohello *kimeneti* az Azure Storage tárolóban. toodo, *python_tutorial_task.py* egy tároló közös hozzáférésű jogosultságkódot, amely írási hozzáférés toohello tárolót használ. Hello `get_container_sas_token` működni *python_tutorial_client.py* hello tároló közös hozzáférésű jogosultságkódot, amelyet majd, a parancssori argumentum toohello tevékenységként beolvassa. #5. lépés [Hozzáadás feladatok tooa feladat](#step-5-add-tasks-to-job), hello tároló SAS hello használatát ismerteti.
+* **Blob közös hozzáférésű jogosultságkódjai**: A készlet StartTask tevékenysége blobok közös hozzáférésű jogosultságkódjait használja a feladatparancsfájlnak és a bemeneti adatfájloknak a Storage-ból való letöltéséhez (lásd az alábbi [3. lépést](#step-3-create-batch-pool)). A *python_tutorial_client.py* `upload_file_to_container` függvénye tartalmazza a kódot, amely lekéri az egyes blobok közös hozzáférésű jogosultságkódját. Ezt a [BlockBlobService.make_blob_url][py_make_blob_url] meghívásával végzi el a Storage modulban.
+* **Tároló közös hozzáférésű jogosultságkódja**: Amikor az egyes tevékenységek befejezik a munkájukat a számítási csomóponton, feltöltik a kimeneti fájljukat az Azure Storage *output* tárolójába. Ehhez a *python_tutorial_task.py* tároló közös hozzáférésű jogosultságkódot használ, amely írási hozzáférést nyújt a tárolóhoz. A *python_tutorial_client.py* `get_container_sas_token` függvénye beszerzi a tároló közös hozzáférésű jogosultságkódját, amelyet ezután parancssori argumentumként kapnak meg a feladatok. Az 5. lépés, a [Tevékenységek hozzáadása a feladathoz](#step-5-add-tasks-to-job), a tároló SAS használatát tárgyalja.
 
 > [!TIP]
-> A közös hozzáférésű jogosultságkódokról hello kétrészes adatsorozat kivételének [1. rész: ismertetése hello SAS-modell](../storage/common/storage-dotnet-shared-access-signature-part-1.md) és [2. rész: létrehozása és SAS-kód használata hello Blob szolgáltatás](../storage/blobs/storage-dotnet-shared-access-signature-part-2.md), toolearn további információk a biztonságos hozzáférés biztosítása a tárfiókban lévő toodata.
+> A Storage-fiókban található adatok biztonságos elérésének biztosításával kapcsolatos további információkért tekintse meg a közös hozzáférésű jogosultságkódokkal kapcsolatos, két részből álló sorozatot: [Part 1: Understanding the SAS model](../storage/common/storage-dotnet-shared-access-signature-part-1.md) (1. rész: A SAS-modell ismertetése) és a [Part 2: Create and use a SAS with the Blob service](../storage/blobs/storage-dotnet-shared-access-signature-part-2.md) (2. rész: SAS létrehozása és használata a Blob szolgáltatással).
 >
 >
 
@@ -285,11 +285,11 @@ Közös hozzáférésű jogosultságkód karakterláncok, amelyek biztonságos h
 
 A Batch-**készletek** olyan számítási csomópontok (virtuális gépek) gyűjteményei, amelyeken a Batch a feladatok tevékenységeit végzi el.
 
-Miután feltölti a hello feladat parancsfájl és adatok fájlok toohello tárfiókot, *python_tutorial_client.py* elindítja a Batch szolgáltatás hello interakcióba hello kötegelt Python modul használatával. toodo, egy [BatchServiceClient] [ py_batchserviceclient] jön létre:
+Miután feltölti a feladatparancsfájlt és az adatfájlokat a Storage-fiókba, a *python_tutorial_client.py* a Batch Python-modullal kezdi el a kommunikációt a Batch szolgáltatással. Ehhez létrejön egy [BatchServiceClient][py_batchserviceclient]:
 
 ```python
-# Create a Batch service client. We'll now be interacting with hello Batch
-# service in addition tooStorage.
+# Create a Batch service client. We'll now be interacting with the Batch
+# service in addition to Storage.
 credentials = batchauth.SharedKeyCredentials(BATCH_ACCOUNT_NAME,
                                              BATCH_ACCOUNT_KEY)
 
@@ -298,18 +298,18 @@ batch_client = batch.BatchServiceClient(
     base_url=BATCH_ACCOUNT_URL)
 ```
 
-A következő számítási csomópontok készletét jön létre a Batch-fiók hívással hello túl`create_pool`.
+Ezután a számítási csomópontok készlete jön létre a Batch-fiókban a `create_pool` hívásával.
 
 ```python
 def create_pool(batch_service_client, pool_id,
                 resource_files, publisher, offer, sku):
     """
-    Creates a pool of compute nodes with hello specified OS settings.
+    Creates a pool of compute nodes with the specified OS settings.
 
     :param batch_service_client: A Batch service client.
     :type batch_service_client: `azure.batch.BatchServiceClient`
-    :param str pool_id: An ID for hello new pool.
-    :param list resource_files: A collection of resource files for hello pool's
+    :param str pool_id: An ID for the new pool.
+    :param list resource_files: A collection of resource files for the pool's
     start task.
     :param str publisher: Marketplace image publisher
     :param str offer: Marketplace image offer
@@ -322,24 +322,24 @@ def create_pool(batch_service_client, pool_id,
     # nodes, see:
     # https://azure.microsoft.com/documentation/articles/batch-linux-nodes/
 
-    # Specify hello commands for hello pool's start task. hello start task is run
-    # on each node as it joins hello pool, and when it's rebooted or re-imaged.
-    # We use hello start task tooprep hello node for running our task script.
+    # Specify the commands for the pool's start task. The start task is run
+    # on each node as it joins the pool, and when it's rebooted or re-imaged.
+    # We use the start task to prep the node for running our task script.
     task_commands = [
-        # Copy hello python_tutorial_task.py script toohello "shared" directory
-        # that all tasks that run on hello node have access to.
+        # Copy the python_tutorial_task.py script to the "shared" directory
+        # that all tasks that run on the node have access to.
         'cp -r $AZ_BATCH_TASK_WORKING_DIR/* $AZ_BATCH_NODE_SHARED_DIR',
-        # Install pip and hello dependencies for cryptography
+        # Install pip and the dependencies for cryptography
         'apt-get update',
         'apt-get -y install python-pip',
         'apt-get -y install build-essential libssl-dev libffi-dev python-dev',
-        # Install hello azure-storage module so that hello task script can access
+        # Install the azure-storage module so that the task script can access
         # Azure Blob storage
         'pip install azure-storage']
 
-    # Get hello node agent SKU and image reference for hello virtual machine
+    # Get the node agent SKU and image reference for the virtual machine
     # configuration.
-    # For more information about hello virtual machine configuration, see:
+    # For more information about the virtual machine configuration, see:
     # https://azure.microsoft.com/documentation/articles/batch-linux-nodes/
     sku_to_use, image_ref_to_use = \
         common.helpers.select_latest_verified_vm_image_with_node_agent_sku(
@@ -367,41 +367,41 @@ def create_pool(batch_service_client, pool_id,
         raise
 ```
 
-Egy készlet létrehozásakor megadhatja a [PoolAddParameter] [ py_pooladdparam] , amely megadja, hogy hello készlet több tulajdonságok:
+Készlet létrehozásakor egy [PoolAddParameter][py_pooladdparam] paramétert ad meg, amely a készlet több tulajdonságát meghatározza:
 
-* **Azonosító** hello készlet (*azonosító* - szükséges)<p/>A Batch legtöbb entitásához hasonlóan az új készletnek egyedi azonosítóval kell rendelkeznie a Batch-fiókban. A kódot az azonosítójával toothis készlet hivatkozik, amely hello Azure hello készletébe azonosítására [portal][azure_portal].
-* **Számítási csomópontok száma** (*target_dedicated* – kötelező)<p/>Ez a tulajdonság határozza meg, hány virtuális gépek hello készletben kell telepíteni. Fontos, hogy minden Batch-fiókok esetében az alapértelmezett toonote **kvóta** , hogy a korlátozások száma hello **magok** (és így a számítási csomópontok) a Batch-fiók. Hello alapértelmezett kvóták és találhat útmutatást hogyan túl[a kvóta növeléséhez](batch-quota-limit.md#increase-a-quota) (például hello magok maximális száma a Batch-fiók) a [kvótái és korlátai hello Azure Batch szolgáltatás](batch-quota-limit.md). Ha azt kérdezi magától, hogy „Miért nem ér el a készletem X-nél több csomópontot?”, a core kvóta hello oka lehet.
-* Csomópontok **operációs rendszere** (*virtual_machine_configuration* **vagy** *cloud_service_configuration* – kötelező)<p/>A *python_tutorial_client.py* fájlban létrehozzuk a Linux-csomópontok egy készletét a [VirtualMachineConfiguration][py_vm_config] osztállyal. Hello `select_latest_verified_vm_image_with_node_agent_sku` működni `common.helpers` egyszerűbbé teszi a munkát [Azure virtuális gépek piactér] [ vm_marketplace] képek. További információ a piactérről származó rendszerképek használatával kapcsolatban: [Provision Linux compute nodes in Azure Batch pools](batch-linux-nodes.md) (Linux számítási csomópontok létrehozása Azure Batch-készletekben).
+* A készlet **azonosítója** (*id* – kötelező)<p/>A Batch legtöbb entitásához hasonlóan az új készletnek egyedi azonosítóval kell rendelkeznie a Batch-fiókban. A kód erre a készletre hivatkozik az azonosítót használva, és így azonosítható a készlet az Azure [Portalon][azure_portal].
+* **Számítási csomópontok száma** (*target_dedicated* – kötelező)<p/>Ez a tulajdonság azt határozza meg, hogy hány virtuális gépet kell üzembe helyezni a készletben. Fontos megjegyezni, hogy az összes Batch-fiók alapértelmezett **kvótával** rendelkezik, amely korlátozza a **magok** (és így a számítási csomópontok) számát a Batch-fiókokban. Az alapértelmezett kvótákat és a [kvóták növelésével](batch-quota-limit.md#increase-a-quota) (például a Batch-fiókban lévő magok maximális számának növelésével) kapcsolatos útmutatásokat [Quotas and limits for the Azure Batch service](batch-quota-limit.md) (Az Azure Batch szolgáltatás kvótái és korlátai) című témakörben találja. Ha azt kérdezi magától, hogy „Miért nem ér el a készletem X-nél több csomópontot?”, akkor a magkvóta lehet ennek az oka.
+* Csomópontok **operációs rendszere** (*virtual_machine_configuration* **vagy** *cloud_service_configuration* – kötelező)<p/>A *python_tutorial_client.py* fájlban létrehozzuk a Linux-csomópontok egy készletét a [VirtualMachineConfiguration][py_vm_config] osztállyal. A `common.helpers` `select_latest_verified_vm_image_with_node_agent_sku` függvénye leegyszerűsíti az [Azure Virtual Machines-piactér][vm_marketplace] rendszerképeinek használatát. További információ a piactérről származó rendszerképek használatával kapcsolatban: [Provision Linux compute nodes in Azure Batch pools](batch-linux-nodes.md) (Linux számítási csomópontok létrehozása Azure Batch-készletekben).
 * **Számítási csomópontok mérete** (*vm_size* – kötelező)<p/>Mivel Linux-csomópontokat határozunk meg a [VirtualMachineConfiguration][py_vm_config] számára, megadunk egy virtuálisgép-méretet (`STANDARD_A1` ebben a példában) [az Azure-ban található virtuális gépek méreteivel](../virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) foglalkozó szakaszban. Lásd ismét: [Provision Linux compute nodes in Azure Batch pools](batch-linux-nodes.md) (Linux számítási csomópontok létrehozása Azure Batch-készletekben).
-* **Tevékenység indítása** (*start_task* – nem kötelező)<p/>Hello fent fizikai csomópont tulajdonságait, valamint megadhat egy [StartTask] [ py_starttask] hello készlet (kitöltése nem kötelező). hello StartTask végrehajtása minden egyes csomóponton, hogy a csomópont csatlakozik hello készletet, és minden alkalommal, amikor újraindítja a csomópontot. hello StartTask különösen fontos a számítási csomópontok előkészítése hello végrehajtásának feladatokat, mint például a feladatok futó hello alkalmazások telepítése.<p/>A mintaalkalmazás hello StartTask hello tárolásból tölt le fájlokat másolja át. (amely hello StartTask használatával megadott **resource_files** tulajdonság) a hello StartTask *Munkakönyvtár* toohello *megosztott* hello csomóponton futó összes feladatot hozzáférő könyvtár. Alapvetően, ennek `python_tutorial_task.py` toohello, megosztott directory minden egyes csomóponton hello csomópont csatlakozik hello készlet, mivel így hello csomóponton futó minden feladatot-e hozzáférési engedélye.
+* **Tevékenység indítása** (*start_task* – nem kötelező)<p/>A fenti fizikaicsomópont-tulajdonságok mellett egy [StartTask][py_starttask] is megadható a készlethez (nem kötelező). A StartTask mindegyik csomóponton fut, amikor a csomópont csatlakozik a készlethez, vagy amikor újraindul. A StartTask különösen hasznos a számítási csomópontok tevékenységek végrehajtására való előkészítéséhez, például a tevékenységek által futtatott alkalmazások telepítéséhez.<p/>Ebben a mintaalkalmazásban a StartTask átmásolja a Storage-ból letöltött fájlokat (amelyek a StartTask **resource_files** tulajdonságával határozhatók meg) a StartTask *munkakönyvtárból* abba a *megosztott* könyvtárba, amelyet a csomóponton futó összes tevékenység elér. Ez lényegében mindegyik csomóponton a megosztott könyvtárba másolja a `python_tutorial_task.py` fájlt, amikor a csomópont csatlakozik a készlethez, hogy a csomóponton futó összes tevékenység elérje a fájlt.
 
-Előfordulhat, hogy hello hívás toohello `wrap_commands_in_shell` segítő függvény. Ez a függvény különálló parancsok gyűjteményéből hoz létre a tevékenység parancssori tulajdonságának megfelelő egyetlen parancssort.
+Bizonyára észrevette a `wrap_commands_in_shell` segédfüggvényre irányuló hívást. Ez a függvény különálló parancsok gyűjteményéből hoz létre a tevékenység parancssori tulajdonságának megfelelő egyetlen parancssort.
 
-A fenti hello kódrészletet lényeges hello hello két környezeti változók használatát a rendszer **parancssor** hello StartTask tulajdonsága: `AZ_BATCH_TASK_WORKING_DIR` és `AZ_BATCH_NODE_SHARED_DIR`. A Batch-készlet belül minden számítási csomópont automatikusan a több környezeti változókat, amelyek adott tooBatch van konfigurálva. E feladat által végrehajtott folyamat rendelkezik hozzáférési toothese környezeti változókat.
+A fenti kódrészletben a StartTask **command_line** tulajdonságában lévő két környezeti változó használatát is érdemes kiemelni: az `AZ_BATCH_TASK_WORKING_DIR` és az `AZ_BATCH_NODE_SHARED_DIR` változóét. A Batch-készletben lévő összes számítási csomópont konfigurálása automatikusan történik a Batch-készletre jellemző számos környezeti változóval. A tevékenységek által futtatott összes folyamat hozzáféréssel rendelkezik ezekhez a környezeti változókhoz.
 
 > [!TIP]
-> További információk a Batch-készlet, mint a feladat működő könyvtárak, a számítási csomópontok elérhető hello környezeti változók toofind lásd: **környezeti beállítások feladatok** és **fájlok és könyvtárak**  a hello [Azure Batch funkcióinak áttekintése](batch-api-basics.md).
+> A Batch-készletekben található számítási csomópontokon elérhető környezeti változókkal és a feladatok munkakönyvtárával kapcsolatban [Az Azure Batch szolgáltatásainak áttekintése](batch-api-basics.md) című témakör „**Környezeti beállítások feladatok esetén**” és „**Fájlok és könyvtárak**” szakaszában tekinthet meg további információt.
 >
 >
 
 ## <a name="step-4-create-batch-job"></a>4. lépés: Batch-feladat létrehozása
 ![Batch-feladat létrehozása][4]<br/>
 
-A Batch-**feladatok** számítási csomópontok készletéhez társított tevékenységek gyűjteményei. hello feladatot a feladatok végrehajtása tartozó hello készlet számítási csomópontok.
+A Batch-**feladatok** számítási csomópontok készletéhez társított tevékenységek gyűjteményei. A feladatok tevékenységei a társított készlet számítási csomópontjain futnak.
 
-Egy feladat nem csak rendszerezése és nyomon követni a feladatokat a kapcsolódó munkaterheléseknél, hanem is előíró bizonyos megkötéseknek – például a maximális futási hello hello feladat (és -kiterjesztés, a feladatok által) használhatja, és a kapcsolat tooother feladatok a feladat prioritása hello Batch-fiókhoz. Ebben a példában azonban hello feladat tartozik csak a #3. lépésben létrehozott alkalmazáskészlet hello. Nincsenek konfigurálva további tulajdonságok.
+A feladatokat nemcsak a tevékenységek rendszerezéséhez és nyomon követéséhez használhatja a kapcsolódó számítási feladatokban, hanem bizonyos kényszerek betartatásához is – mint például a feladat (és annak tevékenységei) maximális futásideje, valamint a feladat prioritása a Batch-fiókban lévő egyéb feladatokhoz képest. Ebben a példában azonban a feladat csak a 3. lépésben létrehozott készlettel van társítva. Nincsenek konfigurálva további tulajdonságok.
 
-Mindegyik Batch-feladat egy adott készlettel van társítva. Ezt a társítást azt jelzi, hogy mely csomópontok hello feladat feladatokat hajt végre. Hello használatával megadja a hello készlet [PoolInformation] [ py_poolinfo] tulajdonság, ahogy az alábbi hello kódrészlet.
+Mindegyik Batch-feladat egy adott készlettel van társítva. Ez a társítás jelzi, hogy a feladat tevékenységei melyik csomópontokon futnak. A készletet a [PoolInformation][py_poolinfo] tulajdonsággal határozhatja meg, ahogyan azt az alábbi kódrészlet is mutatja.
 
 ```python
 def create_job(batch_service_client, job_id, pool_id):
     """
-    Creates a job with hello specified ID, associated with hello specified pool.
+    Creates a job with the specified ID, associated with the specified pool.
 
     :param batch_service_client: A Batch service client.
     :type batch_service_client: `azure.batch.BatchServiceClient`
-    :param str job_id: hello ID for hello job.
-    :param str pool_id: hello ID for hello pool.
+    :param str job_id: The ID for the job.
+    :param str pool_id: The ID for the pool.
     """
     print('Creating job [{}]...'.format(job_id))
 
@@ -416,34 +416,34 @@ def create_job(batch_service_client, job_id, pool_id):
         raise
 ```
 
-Most, hogy a feladat létrehozása után feladatok tooperform hello munkahelyi lettek hozzáadva.
+Most, hogy létrejött egy feladat, hozzáadhatók a munka végrehajtásáért felelős feladatok.
 
-## <a name="step-5-add-tasks-toojob"></a>5. lépés: A feladatok toojob hozzáadása
-![Feladatok toojob hozzáadása][5]<br/>
-*(1) feladatok toohello feladat kerülnek, (2) hello feladatok ütemezett toorun csomópontján, és (3) hello feladatok hello adatok fájlok tooprocess letöltése*
+## <a name="step-5-add-tasks-to-job"></a>5. lépés: Tevékenységek hozzáadása a feladathoz
+![Tevékenységek hozzáadása a feladathoz][5]<br/>
+*(1) A feladathoz hozzáadja a tevékenységeket, (2) ütemezi a tevékenységeket a csomópontokon való futáshoz, és (3) a tevékenységek letöltik a feldolgozni kívánt adatfájlokat*
 
-Kötegelt **feladatok** hello egyes Munkaegységek hello hajt végre, a számítási csomópontok. A feladatot a parancssor és hello parancsfájlok vagy végrehajtható fájlok, amely megadja, hogy a parancssor futtatja.
+A Batch-**tevékenységek** a számítási csomópontokon futtatott egyéni munkaegységek. A tevékenységek parancssorral rendelkeznek, és a parancssorban megadott parancsfájlokat vagy futtatható fájlokat futtatnak.
 
-tooactually feladatok végrehajtására, a feladatok tooa feladat hozzá kell adni. Minden egyes [CloudTask] [ py_task] parancssori tulajdonsággal van konfigurálva, és [ResourceFiles] [ py_resource_file] (például hello készlet StartTask), hogy hello a feladat toohello csomópont tölti le, a parancssor automatikusan végrehajtása előtt. Minden tevékenység hello mintában dolgozza fel a csak egy fájl. A ResourceFiles gyűjtemény így egyetlen elemet tartalmaz.
+Egy feladat tényleges elvégzéséhez tevékenységeket kell hozzáadnia a feladathoz. Mindegyik [CloudTask][py_task] egy parancssori tulajdonsággal és [ResourceFiles][py_resource_file] használatával konfigurálható (mint a készlet StartTask tevékenysége is), amelyet a tevékenység letölt a csomópontra a parancssora automatikus futtatása előtt. A mintában mindegyik tevékenység csak egy fájlt dolgoz fel. A ResourceFiles gyűjtemény így egyetlen elemet tartalmaz.
 
 ```python
 def add_tasks(batch_service_client, job_id, input_files,
               output_container_name, output_container_sas_token):
     """
-    Adds a task for each input file in hello collection toohello specified job.
+    Adds a task for each input file in the collection to the specified job.
 
     :param batch_service_client: A Batch service client.
     :type batch_service_client: `azure.batch.BatchServiceClient`
-    :param str job_id: hello ID of hello job toowhich tooadd hello tasks.
+    :param str job_id: The ID of the job to which to add the tasks.
     :param list input_files: A collection of input files. One task will be
      created for each input file.
-    :param output_container_name: hello ID of an Azure Blob storage container to
-    which hello tasks will upload their results.
+    :param output_container_name: The ID of an Azure Blob storage container to
+    which the tasks will upload their results.
     :param output_container_sas_token: A SAS token granting write access to
-    hello specified Azure Blob storage container.
+    the specified Azure Blob storage container.
     """
 
-    print('Adding {} tasks toojob [{}]...'.format(len(input_files), job_id))
+    print('Adding {} tasks to job [{}]...'.format(len(input_files), job_id))
 
     tasks = list()
 
@@ -469,46 +469,46 @@ def add_tasks(batch_service_client, job_id, input_files,
 ```
 
 > [!IMPORTANT]
-> Ha környezeti változók érik, például a `$AZ_BATCH_NODE_SHARED_DIR` vagy egy alkalmazás nem található a hello csomópont végrehajtása `PATH`, feladat parancssorokat kell elindítania a hello héjas explicit módon, mint például a `/bin/sh -c MyTaskApplication $MY_ENV_VAR`. Ez a követelmény nem szükséges, ha a feladatok végrehajtása egy alkalmazás hello csomópontban `PATH` , és nem hivatkozik a környezeti változók.
+> Amikor környezeti változókat érnek el (például az `$AZ_BATCH_NODE_SHARED_DIR` változót) vagy a csomópont `PATH` elemében nem található alkalmazást hajtanak végre, a feladat parancssorainak explicit módon kell meghívnia a rendszerhéjat, például a `/bin/sh -c MyTaskApplication $MY_ENV_VAR` paranccsal. Ez a követelmény nem szükséges, ha a tevékenységek a csomóponti `PATH` helyen futtatják az alkalmazást, és nem hivatkoznak környezeti változókra.
 >
 >
 
-Hello belül `for` hurok a fenti hello kódrészletet, láthatja, hogy az öt túl számára továbbított parancssori argumentumokat hello feladat parancssorának hello összeállított*python_tutorial_task.py*:
+A fenti kódrészletben a `for` hurokban láthatja, hogy a tevékenység parancssora úgy van felépítve, hogy öt parancssori argumentumot továbbítson a *python_tutorial_task.py* számára:
 
-1. **FilePath**: Ez az hello helyi elérési út toohello fájlt, mert létezik hello csomóponton. Ha hello ResourceFile objektum `upload_file_to_container` jött létre ehhez a tulajdonsághoz használt hello fájl nevét a 2, (hello `file_path` paraméter hello ResourceFile konstruktorban). Ez azt jelzi, hogy hello fájl található hello azonos hello csomópontban könyvtárába *python_tutorial_task.py*.
-2. **NUMWORDS**: hello felső *N* szavak toohello kimeneti fájl kell írni.
-3. **storageaccount**: hello hello tároló toowhich hello feladat kimenetének birtokló tárfiók neve hello fel kell tölteni.
-4. **storagecontainer**: hello tárolási tároló toowhich hello hello nevét a kimeneti fájlokat fel kell tölteni.
-5. **sastoken**: hello közös hozzáférésű jogosultságkód (SAS), amely írási toohello **kimeneti** az Azure Storage tárolóban. Hello *python_tutorial_task.py* parancsfájl a következő megosztott hozzáférési aláírást amikor létrehozza a BlockBlobService hivatkozás. Így lehetővé teszi írási toohello tároló anélkül, hogy az elérési kulcs hello tárfiók.
+1. **filepath**: Ez a fájl helyi elérési útja, ahogyan az a csomóponton szerepel. Az `upload_file_to_container` elemben lévő ResourceFile objektumnak a 2. lépésben történő létrehozásakor a fájlnevet használtuk ehhez a tulajdonsághoz (a ResourceFile konstruktor `file_path` paramétere). Ez azt jelzi, hogy a fájl ugyanabban a könyvtárban található a csomóponton, mint a *python_tutorial_task.py*.
+2. **numwords**: Az első *N* szót a kimeneti fájlba kell írni.
+3. **storageaccount**: Azon tárolót birtokló Storage-fiók neve, amelybe a tevékenység kimenetét fel kell tölteni.
+4. **storagecontainer**: Azon Storage-fiók neve, amelybe a kimeneti fájlokat fel kell tölteni.
+5. **sastoken**: Azon közös hozzáférésű jogosultságkód (SAS), amely írási hozzáférést biztosít a **kimeneti** tárolóhoz az Azure Storage-ban. A *python_tutorial_task.py* parancsfájl ezt a közös hozzáférésű jogosultságkódot használja a BlockBlobService-hivatkozás létrehozásakor. Ez írási hozzáférést biztosít a tárolóhoz a tárfiók elérési kulcsának igénylése nélkül.
 
 ```python
 # NOTE: Taken from python_tutorial_task.py
 
-# Create hello blob client using hello container's SAS token.
-# This allows us toocreate a client that provides write
-# access only toohello container.
+# Create the blob client using the container's SAS token.
+# This allows us to create a client that provides write
+# access only to the container.
 blob_client = azureblob.BlockBlobService(account_name=args.storageaccount,
                                          sas_token=args.sastoken)
 ```
 
 ## <a name="step-6-monitor-tasks"></a>6. lépés: Tevékenységek figyelése
 ![Tevékenységek figyelése][6]<br/>
-*hello parancsfájl (1) figyelők hello feladatok befejezési állapotának, és (2) hello feladatok feltöltése eredmény adatok tooAzure tárolási*
+*A parancsfájl (1) megfigyeli a tevékenységek végrehajtása állapotát, és (2) a tevékenységek eredményadatokat töltenek fel az Azure Storage-ba*
 
-Feladatok tooa feladatot ad hozzá, amikor ezeket automatikusan aszinkron és számítási csomóponton belül hello hello feladattal társított végrehajtásra ütemezni. Hello megadott beállítások alapján, kötegelt kezeli az összes feladat queuing, ütemezés, újrapróbálkozás és más tevékenység felügyeleti feladatokat meg.
+A feladatokhoz hozzáadott tevékenységet a rendszer automatikusan várólistára helyezi, és ütemezi a futtatásukat az adott feladathoz társított készleten belüli számítási csomópontokon. A Batch a megadott beállítások alapján elvégzi a tevékenységek várólistára helyezésével, ütemezésével, újrapróbálásával kapcsolatos minden feladatot, valamint a tevékenységekhez kapcsolódó egyéb rendszergazdai teendőket.
 
-Nincsenek számos különböző módszer toomonitoring feladat végrehajtása. Hello `wait_for_tasks_to_complete` működni *python_tutorial_client.py* biztosít egy egyszerű példa felügyeleti feladatok egy bizonyos állapothoz, ebben az esetben az hello [befejeződött] [ py_taskstate] állapot.
+A tevékenységek végrehajtása sokféleképpen megfigyelhető. A *python_tutorial_client.py* `wait_for_tasks_to_complete` függvénye adott állapotra vonatkozó megfigyelési feladatok egyszerű példáját nyújtja, ebben az esetben a [befejezett][py_taskstate] állapotra vonatkozót.
 
 ```python
 def wait_for_tasks_to_complete(batch_service_client, job_id, timeout):
     """
-    Returns when all tasks in hello specified job reach hello Completed state.
+    Returns when all tasks in the specified job reach the Completed state.
 
     :param batch_service_client: A Batch service client.
     :type batch_service_client: `azure.batch.BatchServiceClient`
-    :param str job_id: hello id of hello job whose tasks should be toomonitored.
-    :param timedelta timeout: hello duration toowait for task completion. If all
-    tasks in hello specified job do not reach Completed state within this time
+    :param str job_id: The id of the job whose tasks should be to monitored.
+    :param timedelta timeout: The duration to wait for task completion. If all
+    tasks in the specified job do not reach Completed state within this time
     period, an exception will be raised.
     """
     timeout_expiration = datetime.datetime.now() + timeout
@@ -537,19 +537,19 @@ def wait_for_tasks_to_complete(batch_service_client, job_id, timeout):
 ## <a name="step-7-download-task-output"></a>7. lépés: Feladat kimenetének letöltése
 ![Tevékenység kimenetének letöltése a Storage-ból][7]<br/>
 
-Most, hogy hello feladat befejezését követően hello feladatok kimenete hello Azure Storage-ból letölthető. Ez a lépés hívása túl`download_blobs_from_container` a *python_tutorial_client.py*:
+Most, hogy a feladat befejeződött, a tevékenységek kimenete letölthető az Azure Storage-ból. Ez a `download_blobs_from_container` hívásával végezhető el a *python_tutorial_client.py* fájlban:
 
 ```python
 def download_blobs_from_container(block_blob_client,
                                   container_name, directory_path):
     """
-    Downloads all blobs from hello specified Azure Blob storage container.
+    Downloads all blobs from the specified Azure Blob storage container.
 
     :param block_blob_client: A blob service client.
     :type block_blob_client: `azure.storage.blob.BlockBlobService`
-    :param container_name: hello Azure Blob storage container from which to
+    :param container_name: The Azure Blob storage container from which to
      download files.
-    :param directory_path: hello local directory toowhich toodownload hello files.
+    :param directory_path: The local directory to which to download the files.
     """
     print('Downloading all files from container [{}]...'.format(
         container_name))
@@ -563,7 +563,7 @@ def download_blobs_from_container(block_blob_client,
                                            blob.name,
                                            destination_file_path)
 
-        print('  Downloaded blob [{}] from container [{}] too{}'.format(
+        print('  Downloaded blob [{}] from container [{}] to {}'.format(
             blob.name,
             container_name,
             destination_file_path))
@@ -572,12 +572,12 @@ def download_blobs_from_container(block_blob_client,
 ```
 
 > [!NOTE]
-> hívás túl hello`download_blobs_from_container` a *python_tutorial_client.py* megadhatja, hogy hello fájlok letöltött tooyour kezdőkönyvtárát. Szabad toomodify érzi, hogy a kimeneti helyet.
+> A *python_tutorial_client.py* `download_blobs_from_container` függvényének meghívása határozza meg, hogy a fájlokat a kezdőkönyvtárba kell letölteni. Ezt a kimeneti helyet nyugodtan módosíthatja.
 >
 >
 
 ## <a name="step-8-delete-containers"></a>8. lépés: Tárolók törlése
-Mivel van szó, az Azure-tárolóban lévő adatok, még mindig egy jó ötlet tooremove bármely blobok, amelyek már nem szükséges a kötegelt feladatok. A *python_tutorial_client.py*, ebben az esetben három hívások túl[BlockBlobService.delete_container][py_delete_container]:
+Mivel az Azure Storage-ban lévő adatok díjkötelesek, mindig célszerű eltávolítani azokat a blobokat, amelyekre már nincs szükség a Batch-feladatokhoz. A *python_tutorial_client.py* fájlban ez a [BlockBlobService.delete_container][py_delete_container] három meghívásával végezhető el:
 
 ```python
 # Clean up storage resources
@@ -587,13 +587,13 @@ blob_client.delete_container(input_container_name)
 blob_client.delete_container(output_container_name)
 ```
 
-## <a name="step-9-delete-hello-job-and-hello-pool"></a>9. lépés: Hello feladat és hello készlet törlése
-Hello utolsó lépést, a rendszer felszólító toodelete hello feladat és hello készlet hello által létrehozott *python_tutorial_client.py* parancsfájl. Bár magukért a munkákért és feladatokért nem kell fizetnie, a számítási csomópontokért *igen*. Ezért ajánlott csak szükség szerint lefoglalni a csomópontokat. A nem használt készletek törlése a karbantartási folyamat része lehet.
+## <a name="step-9-delete-the-job-and-the-pool"></a>9. lépés: A feladat és a készlet törlése
+Az utolsó lépésben a rendszer arra kéri, hogy törölje a *python_tutorial_client.py* parancsfájl által létrehozott feladatot és készletet. Bár magukért a munkákért és feladatokért nem kell fizetnie, a számítási csomópontokért *igen*. Ezért ajánlott csak szükség szerint lefoglalni a csomópontokat. A nem használt készletek törlése a karbantartási folyamat része lehet.
 
-hello BatchServiceClient [JobOperations] [ py_job] és [PoolOperations] [ py_pool] egyaránt rendelkezik a megfelelő törlésre, módszerek Ha a törlés jóváhagyásához nevű:
+A BatchServiceClient [JobOperations][py_job] és [PoolOperations][py_pool] művelete is rendelkezik megfelelő törlési metódusokkal, amelyeket a rendszer meghív, ha megerősíti a törlést:
 
 ```python
-# Clean up Batch resources (if hello user so chooses).
+# Clean up Batch resources (if the user so chooses).
 if query_yes_no('Delete job?') == 'yes':
     batch_client.job.delete(_JOB_ID)
 
@@ -602,36 +602,36 @@ if query_yes_no('Delete pool?') == 'yes':
 ```
 
 > [!IMPORTANT]
-> Ne feledje, hogy a számítási erőforrások díjkötelesek – a nem használt készletek törlése minimalizálja a költségeket. Emellett vegye figyelembe, hogy törli a készlet törlése belül, hogy minden számítási csomópontokat, és, hogy bármely hello csomópontok adatainak lesz helyreállíthatatlan hello készlet törlése után.
+> Ne feledje, hogy a számítási erőforrások díjkötelesek – a nem használt készletek törlése minimalizálja a költségeket. Azt is vegye figyelembe, hogy a készletek törlése törli a készleten belüli összes számítási csomópontot, és hogy a csomópontokon lévő adatok nem állíthatók helyre a készlet törlése után.
 >
 >
 
-## <a name="run-hello-sample-script"></a>Hello minta parancsprogram futtatása
-Hello futtatásakor *python_tutorial_client.py* hello oktatóanyagot parancsfájl [kódminta][github_article_samples], hello konzol kimenete hasonló toohello következő. Nincs a szünetelést `Monitoring all tasks for 'Completed' state, timeout in 0:20:00...` hello készlet számítási csomópontok jönnek létre, elindult, és hello készlet kezdő tevékenység hello parancsok végrehajtása. Használjon hello [Azure-portálon] [ azure_portal] toomonitor a készlet, a számítási csomópontok, a feladat és a feladatok során, és végrehajtása után. Használjon hello [Azure-portálon] [ azure_portal] vagy hello [Microsoft Azure Tártallózó] [ storage_explorer] tooview hello tárolási erőforrások (tárolók és blobok) hello alkalmazás által létrehozott.
+## <a name="run-the-sample-script"></a>A minta parancsfájl futtatása
+Amikor a *python_tutorial_client.py* parancsfájlt az oktatóanyag [kódmintájából][github_article_samples] futtatja, a konzol kimenete a következőképpen fog kinézni. Szünet következik be a `Monitoring all tasks for 'Completed' state, timeout in 0:20:00...` részen a készlet számítási csomópontjainak létrehozása, elindítása és a készlet indítási tevékenységében található parancsok futtatása során. Az [Azure Portal][azure_portal] használatával megfigyelheti a készletet, a számítási csomópontokat, a feladatokat és a tevékenységeket a végrehajtás alatt és után. Az [Azure Portallal][azure_portal] vagy a [Microsoft Azure Storage Explorer][storage_explorer] használatával tekintheti meg az alkalmazás által létrehozott Storage-erőforrásokat (tárolókat és blobokat).
 
 > [!TIP]
-> Futtassa a hello *python_tutorial_client.py* belül hello parancsfájl `azure-batch-samples/Python/Batch/article_samples` könyvtár. A hello relatív elérési utat használ `common.helpers` importálás, így előfordulhat, hogy `ImportError: No module named 'common'` Ha hello parancsfájlt a címtáron belül nem lehet futtatni.
+> Futtassa a *python_tutorial_client.py* szkriptet az `azure-batch-samples/Python/Batch/article_samples` könyvtárból. A `common.helpers` modul importálásához relatív elérési utat használ, ezért ha nem ebből a könyvtárból futtatja a szkriptet, előfordulhat, hogy megjelenik a következő hibaüzenet: `ImportError: No module named 'common'`.
 >
 >
 
-Tipikus végrehajtási idő **körülbelül 5 – 7 percet** futtatásakor hello minta alapértelmezett konfigurációval.
+A jellemző végrehajtási idő **körülbelül 5–7 perc**, ha az alapértelmezett konfigurációban futtatja a mintát.
 
 ```
 Sample start: 2016-05-20 22:47:10
 
-Uploading file /home/user/py_tutorial/python_tutorial_task.py toocontainer [application]...
-Uploading file /home/user/py_tutorial/data/taskdata1.txt toocontainer [input]...
-Uploading file /home/user/py_tutorial/data/taskdata2.txt toocontainer [input]...
-Uploading file /home/user/py_tutorial/data/taskdata3.txt toocontainer [input]...
+Uploading file /home/user/py_tutorial/python_tutorial_task.py to container [application]...
+Uploading file /home/user/py_tutorial/data/taskdata1.txt to container [input]...
+Uploading file /home/user/py_tutorial/data/taskdata2.txt to container [input]...
+Uploading file /home/user/py_tutorial/data/taskdata3.txt to container [input]...
 Creating pool [PythonTutorialPool]...
 Creating job [PythonTutorialJob]...
-Adding 3 tasks toojob [PythonTutorialJob]...
+Adding 3 tasks to job [PythonTutorialJob]...
 Monitoring all tasks for 'Completed' state, timeout in 0:20:00..........................................................................
-  Success! All tasks reached hello 'Completed' state within hello specified timeout period.
+  Success! All tasks reached the 'Completed' state within the specified timeout period.
 Downloading all files from container [output]...
-  Downloaded blob [taskdata1_OUTPUT.txt] from container [output] too/home/user/taskdata1_OUTPUT.txt
-  Downloaded blob [taskdata2_OUTPUT.txt] from container [output] too/home/user/taskdata2_OUTPUT.txt
-  Downloaded blob [taskdata3_OUTPUT.txt] from container [output] too/home/user/taskdata3_OUTPUT.txt
+  Downloaded blob [taskdata1_OUTPUT.txt] from container [output] to /home/user/taskdata1_OUTPUT.txt
+  Downloaded blob [taskdata2_OUTPUT.txt] from container [output] to /home/user/taskdata2_OUTPUT.txt
+  Downloaded blob [taskdata3_OUTPUT.txt] from container [output] to /home/user/taskdata3_OUTPUT.txt
   Download complete!
 Deleting containers...
 
@@ -641,17 +641,17 @@ Elapsed time: 0:06:02
 Delete job? [Y/n]
 Delete pool? [Y/n]
 
-Press ENTER tooexit...
+Press ENTER to exit...
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-Szabad toomake módosítások érzi, hogy túl*python_tutorial_client.py* és *python_tutorial_task.py* tooexperiment másik számítási forgatókönyvek. Például, próbálja meg a túl hozzáadni egy végrehajtási késedelem*python_tutorial_task.py* toosimulate hosszan futó feladatokat, és figyelheti azokat hello portálon. Próbálja meg további feladatok hozzáadása vagy módosítása a számítási csomópontok száma hello. Adja hozzá a logikai toocheck, és egy meglévő készlet toospeed végrehajtási idő hello használatának engedélyezése.
+Nyugodtan módosítsa a *python_tutorial_client.py* és a *python_tutorial_task.py* fájlt a különböző számítási forgatókönyvekkel való kísérletezéshez. Próbáljon meg például végrehajtási késleltetést adni a *python_tutorial_task.py* elemhez, így hosszan futó feladatokat szimulálhat, és megfigyelheti őket a portálon. Próbáljon meg több tevékenységet hozzáadni, vagy módosítani a számítási csomópontok számát. Adja hozzá az ellenőrizni kívánt logikát, és engedélyezze meglévő készlet használatát a futtatási idő csökkentéséhez.
 
-Most, hogy ismeri a kötegelt megoldás hello alapvető munkafolyamattal, idő toodig a Batch szolgáltatás hello toohello további szolgáltatásait is.
+Most, hogy megismerte a Batch-megoldások alapvető munkafolyamatát, a Batch szolgáltatás további funkcióit is áttekintheti.
 
-* Felülvizsgálati hello [áttekintés az Azure Batch funkcióinak](batch-api-basics.md) cikk, amely ajánlott, ha még új toohello szolgáltatás.
-* A Start hello egyéb kötegelt fejlesztési cikkek alapján **részletes fejlesztési** a hello [kötegelt képzési terv][batch_learning_path].
-* Tekintse meg a "legfontosabb N szavak" hello munkaterhelés-es hello feldolgozása különböző végrehajtásának [TopNWords] [ github_topnwords] minta.
+* Ha korábban nem használta a szolgáltatást, olvassa el [az Azure Batch szolgáltatásainak áttekintését](batch-api-basics.md) tartalmazó cikket.
+* Kezdje tanulmányozni a többi Batch-fejlesztéssel kapcsolatos cikket a [Batch képzési terv][batch_learning_path] **Fejlesztés részletesebben** részében.
+* Az „első N szó” számítási feladat Batch használatával való feldolgozásának egy másik megvalósítását a [TopNWords][github_topnwords] példában találja.
 
 [azure_batch]: https://azure.microsoft.com/services/batch/
 [azure_free_account]: https://azure.microsoft.com/free/
@@ -705,10 +705,10 @@ Most, hogy ismeri a kötegelt megoldás hello alapvető munkafolyamattal, idő t
 [vm_marketplace]: https://azure.microsoft.com/marketplace/virtual-machines/
 
 [1]: ./media/batch-python-tutorial/batch_workflow_01_sm.png "Tárolók létrehozása az Azure Storage-ban"
-[2]: ./media/batch-python-tutorial/batch_workflow_02_sm.png "Feltöltési feladat alkalmazás- és bemeneti (adatok) fájlok toocontainers"
+[2]: ./media/batch-python-tutorial/batch_workflow_02_sm.png "Tevékenységalkalmazás- és bemeneti (adat-) fájlok feltöltése tárolókba"
 [3]: ./media/batch-python-tutorial/batch_workflow_03_sm.png "Batch-készlet létrehozása"
 [4]: ./media/batch-python-tutorial/batch_workflow_04_sm.png "Batch-feladat létrehozása"
-[5]: ./media/batch-python-tutorial/batch_workflow_05_sm.png "Feladatok toojob hozzáadása"
+[5]: ./media/batch-python-tutorial/batch_workflow_05_sm.png "Tevékenységek hozzáadása a feladathoz"
 [6]: ./media/batch-python-tutorial/batch_workflow_06_sm.png "Tevékenységek figyelése"
 [7]: ./media/batch-python-tutorial/batch_workflow_07_sm.png "Tevékenység kimenetének letöltése a Storage-ból"
 [8]: ./media/batch-python-tutorial/batch_workflow_sm.png "Batch-megoldás munkafolyamata (teljes diagram)"

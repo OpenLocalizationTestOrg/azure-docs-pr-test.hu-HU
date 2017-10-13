@@ -1,6 +1,6 @@
 ---
-title: "aaaUsing helyreállítás-kezelő toofix szilánkok leképezése problémák |} Microsoft Docs"
-description: "Hello RecoveryManager osztály toosolve problémák shard maps használata"
+title: "Helyreállítás-kezelő használatával shard térkép problémák elhárításának |} Microsoft Docs"
+description: "A RecoveryManager osztály használatával shard maps kapcsolatos problémák megoldásához"
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/25/2016
 ms.author: ddove
-ms.openlocfilehash: 2218fb15122f1df466e65483480461e366317f2f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e60e2295484873ea15d52108b7d619319a57827f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="using-hello-recoverymanager-class-toofix-shard-map-problems"></a>Hello RecoveryManager osztály toofix shard térkép problémák használatával
-Hello [RecoveryManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.aspx) osztály lehetővé teszi a ADO.Net hello képességét tooeasily észleli, és kijavíthatja az hello globális shard térkép (GSM) és hello helyi shard térkép (LSM) szilánkos adatbázis környezetben közötti inkonzisztenciákat. 
+# <a name="using-the-recoverymanager-class-to-fix-shard-map-problems"></a>Horizontális skálázási térképek javítása a RecoveryManager osztállyal
+A [RecoveryManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.aspx) osztály teszi lehetővé az ADO.Net alkalmazások felismerését és javítsa ki a globális shard térkép (GSM) és a helyi shard térkép (LSM) szilánkos adatbázis környezetben közötti inkonzisztenciákat. 
 
-hello GSM és LSM követése hello hozzárendelése minden egyes adatbázis szilánkos környezetben. Alkalmanként szünet hello GSM és hello LSM között történik. Ebben az esetben hello RecoveryManager osztály toodetect használja, és javítsa hello sortörés.
+A globális szolgáltatásfigyelő szolgáltatás és a LSM nyomon követheti az egyes adatbázisok szilánkos környezetben leképezése. Alkalmanként szünet a globális szolgáltatásfigyelő szolgáltatás és a LSM között történik. Ebben az esetben használja a RecoveryManager osztály észlelésére, és javítsa ki a szünet.
 
-hello RecoveryManager osztály hello része [Elastic Database ügyféloldali kódtárának](sql-database-elastic-database-client-library.md). 
+A RecoveryManager osztály része a [Elastic Database ügyféloldali kódtárának](sql-database-elastic-database-client-library.md). 
 
 ![A shard térkép][1]
 
-Kifejezés-definíciók, lásd: [rugalmas adatbázis eszközök szószedet](sql-database-elastic-scale-glossary.md). Hogyan hello toounderstand **ShardMapManager** használt toomanage adatok a szilánkos megoldás lásd: [Shard térkép felügyeleti](sql-database-elastic-scale-shard-map-management.md).
+Kifejezés-definíciók, lásd: [rugalmas adatbázis eszközök szószedet](sql-database-elastic-scale-glossary.md). Tudni, hogyan a **ShardMapManager** szolgál a szilánkos megoldás adatok kezelésére, olvassa el [Shard térkép felügyeleti](sql-database-elastic-scale-shard-map-management.md).
 
-## <a name="why-use-hello-recovery-manager"></a>Miért érdemes használni a helyreállítás-kezelő hello?
-Horizontálisan skálázott adatbázis környezetben nincs adatbázisonként egy bérlői, és számos más adatbázis kiszolgálónként. Lehetnek is sok kiszolgálók hello környezetben. Minden egyes adatbázis hozzá van rendelve hello shard leképezés, így hívások lehet irányított toohello megfelelő kiszolgálót és adatbázist. Adatbázisok tooa szerint követi **horizontális kulcs**, és minden shard hozzá van rendelve egy **értékek tartományán**. Például egy horizontális skálázási kulcs képviselhet hello ügyfélnevek "D" túl "F." hello (más néven adatbázisok) összes szilánkok leképezése és hello található a leképezési tartományok **globális shard térkép (GSM)**. Minden adatbázis is tartalmaz hello shard szerint hello tartalmazott hello tartományait térképre **helyi shard térkép (LSM)**. Amikor egy alkalmazás tooa shard csatlakozik, a rendszer gyorsítótárazza a hello leképezési hello alkalmazással a gyors beolvasásához. hello LSM használt toovalidate gyorsítótárazott adatokat. 
+## <a name="why-use-the-recovery-manager"></a>Miért érdemes használni a helyreállítás-kezelő?
+Horizontálisan skálázott adatbázis környezetben nincs adatbázisonként egy bérlői, és számos más adatbázis kiszolgálónként. Lehetnek is kiszolgálók számát a környezetben. Minden egyes adatbázis hozzá van rendelve a shard térkép hívások irányíthassa megfelelő kiszolgálót és adatbázist. Adatbázisok a következők szerint követi nyomon a rendszer egy **horizontális kulcs**, és minden shard hozzá van rendelve egy **értékek tartományán**. "D" az ügyfélnevek a horizontális kulcs képviselhet például, "F" Minden szilánkok (más néven adatbázisok) és a leképezés tartományok leképezése tartalmazza a **globális shard térkép (GSM)**. Az egyes adatbázisok is található a szilánkcímtárban szerint tartományok térképét tartalmazza a **helyi shard térkép (LSM)**. Amikor egy alkalmazás egy shard csatlakozik, a hozzárendelés gyorsítótárazza, és az alkalmazás a gyors beolvasásához. A LSM gyorsítótárazott adatok ellenőrzésére szolgál. 
 
-hello GSM és LSM válhat a következő okok miatt hello szinkronban:
+A globális szolgáltatásfigyelő szolgáltatás és a LSM válhat nincs szinkronban a következők lehetnek az okai:
 
-1. egy amelynek tartomány várakozások toono hosszabb ideig szilánkcímtárban hello törlésének kell használatával, vagy átnevezésének a szilánkcímtárban. Egy shard törlése eredményezi egy **árván maradt a szilánkok leképezése**. Hasonlóképpen a átnevezett adatbázis egy árva szilánkok leképezése okozhat. Attól függően, hogy hello szándékával hello módosítása hello shard eltávolított toobe van szüksége, vagy hello shard hely toobe frissíteni kell. a törölt adatbázisok toorecover lásd [törölt adatbázis visszaállítása](sql-database-recovery-using-backups.md).
-2. A földrajzi-feladatátadási esemény következik be. toocontinue, egy frissítenie kell hello kiszolgáló nevét, és shard térképen az összes szilánkok hello alkalmazást, majd a frissítés hello szilánkok leképezése részletei shard térkép Manager-adatbázis neve. A földrajzi feladatátvétel esetén ilyen helyreállítási logika érdemes automatizálni hello feladatátvételi munkafolyamaton belül. Helyreállítási műveletek automatizálása lehetővé teszi, hogy a frictionless kezelhetőségi adatbázisok földrajzi engedélyezve van, és ezzel elkerülheti a manuális emberi műveletek. egy adatbázist, ha egy adatközpont-meghibásodás után, olvassa el a beállítások toorecover kapcsolatos toolearn [az üzletmenet folytonossága](sql-database-business-continuity.md) és [vész-helyreállítási](sql-database-disaster-recovery.md).
-3. A shard vagy hello ShardMapManager adatbázisa visszaállított tooan korábbi pont idő. toolearn időpontra történő visszaállítás biztonsági mentések használatával kapcsolatban lásd: [biztonsági másolatokból helyreállítási](sql-database-recovery-using-backups.md).
+1. A shard, amelynek tartomány feltételezhető, hogy már nem használja, vagy átnevezésének a shard törlését. Egy shard törlése eredményezi egy **árván maradt a szilánkok leképezése**. Hasonlóképpen a átnevezett adatbázis egy árva szilánkok leképezése okozhat. Attól függően, hogy a módosítás célját a shard esetleg el kell távolítani, vagy frissíteni kell a shard helyét. A törölt adatbázisok helyreállításához, lásd: [törölt adatbázis visszaállítása](sql-database-recovery-using-backups.md).
+2. A földrajzi-feladatátadási esemény következik be. A folytatáshoz egy kell frissíteni, a kiszolgáló nevét, és a shard térkép Manager az alkalmazás nevét, és frissítse a shard térképen az összes szilánkok szilánkok leképezése részleteit. Földrajzi-feladatátvétel esetén az ilyen helyreállítási logika belül a feladatátvételi munkafolyamat érdemes automatizálni. Helyreállítási műveletek automatizálása lehetővé teszi, hogy a frictionless kezelhetőségi adatbázisok földrajzi engedélyezve van, és ezzel elkerülheti a manuális emberi műveletek. Adatbázis helyreállítása, ha egy adatközpont-meghibásodás után beállításokkal kapcsolatos további tudnivalókért lásd: [az üzletmenet folytonossága](sql-database-business-continuity.md) és [vész-helyreállítási](sql-database-disaster-recovery.md).
+3. A szilánkok vagy a ShardMapManager adatbázis egy korábbi pont az időpontra állítottak vissza. Időpontra történő visszaállítás biztonsági mentések használatával kapcsolatos további tudnivalókért lásd: [biztonsági másolatokból helyreállítási](sql-database-recovery-using-backups.md).
 
-Azure SQL Database rugalmas adatbáziseszközöket, georeplikáció és visszaállításával kapcsolatban további információkért lásd: hello következő: 
+Azure SQL Database rugalmas adatbáziseszközöket, georeplikáció és visszaállításával kapcsolatban további információkért tekintse meg a következőket: 
 
 * [Áttekintése: A felhő üzleti folytonossági és az adatbázis katasztrófa utáni helyreállítás az SQL Database](sql-database-business-continuity.md) 
 * [Ismerkedés a rugalmas adatbázis-eszközök](sql-database-elastic-scale-get-started.md)  
 * [ShardMap kezelése](sql-database-elastic-scale-shard-map-management.md)
 
 ## <a name="retrieving-recoverymanager-from-a-shardmapmanager"></a>Egy ShardMapManager RecoveryManager lekérése
-hello első lépéseként toocreate egy RecoveryManager példány. Hello [GetRecoveryManager metódus](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.getrecoverymanager.aspx) értéket ad vissza az aktuális hello helyreállítás-kezelő hello [ShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx) példány. tooaddress esetlegesen bekövetkező Inkonzisztencia a hello szilánkok leképezése, hello RecoveryManager hello adott shard térkép először be kell olvasni. 
+Az első lépés, ha a RecoveryManager példánya. A [GetRecoveryManager metódus](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.getrecoverymanager.aspx) adja vissza az aktuális helyreállítás-kezelő [ShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx) példány. Kezelje a shard térkép inkonzisztenciákat, az adott shard térkép RecoveryManager először be kell olvasni. 
 
    ```
     ShardMapManager smm = ShardMapManagerFactory.GetSqlShardMapManager(smmConnnectionString,  
@@ -55,63 +55,63 @@ hello első lépéseként toocreate egy RecoveryManager példány. Hello [GetRec
              RecoveryManager rm = smm.GetRecoveryManager(); 
    ```
 
-Az ebben a példában az hello RecoveryManager hello ShardMapManager az inicializálása. egy ShardMap tartalmazó ShardMapManager hello is már inicializálva van. 
+Az ebben a példában a RecoveryManager a ShardMapManager az inicializálása. Egy ShardMap tartalmazó ShardMapManager is már inicializálva van. 
 
-Az alkalmazás kódjában hello shard térkép maga kezeli, mivel hello hello gyártómetódussal során használt hitelesítő adatok (az előző példában hello smmConnectionString) hitelesítő adatokat, amelyek hello által hivatkozott hello GSM adatbázis írási / olvasási engedélyeket kell lennie. kapcsolati karakterlánc. Ezek a hitelesítő adatok általában eltérnek a használt hitelesítő adatok tooopen kapcsolatok az adatok függő továbbításához. További információkért lásd: [hello rugalmas adatbázis-ügyfél a hitelesítő adatok használatával](sql-database-elastic-scale-manage-credentials.md).
+Az alkalmazás kódjában a shard térkép maga kezeli, mivel a gyári metódusban (a fenti példában smmConnectionString) használt hitelesítő adatok olvasási és írási jogosultságokkal rendelkezik a kapcsolati karakterlánc által hivatkozott GSM adatbázishoz megadott hitelesítő adatokat kell lennie. Ezek a hitelesítő adatok általában eltérnek a nyitott kapcsolatot az adatok függő továbbításához használt hitelesítő adatokat. További információkért lásd: [hitelesítő adatokkal a rugalmas adatbázis-ügyfélben](sql-database-elastic-scale-manage-credentials.md).
 
-## <a name="removing-a-shard-from-hello-shardmap-after-a-shard-is-deleted"></a>A szilánkok eltávolítása hello ShardMap egy shard törlése után
-Hello [DetachShard metódus](https://msdn.microsoft.com/library/azure/dn842083.aspx) szervezőről a megadott shard hello shard leképezés hello és hello shard társított hozzárendelések törlése.  
+## <a name="removing-a-shard-from-the-shardmap-after-a-shard-is-deleted"></a>A szilánkok eltávolítása a ShardMap egy shard törlése után
+A [DetachShard metódus](https://msdn.microsoft.com/library/azure/dn842083.aspx) szervezőről a megadott shard shard leképezés, és törli a shard társított leképezéseket.  
 
-* hello hely paraméter hello shard helyét, kifejezetten a kiszolgáló neve és az adatbázis nevét, a hello shard leválasztás alatt áll. 
-* hello shardMapName paraméter hello shard leképezés neve. Ez a tulajdonság csak akkor szükséges, ha több shard maps hello által kezelt ugyanazt a shard térkép manager. Választható. 
+* A hely paraméter shard helyét, kifejezetten a kiszolgálónév és a adatbázis nevét, a shard leválasztás alatt áll. 
+* A shardMapName paraméter a shard leképezés neve. Ez csak akkor kötelező, ha több shard maps a ugyanazt a shard térkép manager kezeli. Választható. 
 
 
 > [!IMPORTANT]
-> Ez a módszer akkor használja, csak akkor, ha biztos benne, hogy hello frissítése hello leképezés értéke üres. a fenti hello módszerek hello tartomány áthelyezett adatok ellenőrzése, a legjobb tooinclude ellenőrzi a kódban.
+> Ez a módszer akkor használja, csak ha biztos abban, hogy a frissített leképezése tartománya üres. A fenti módszerek nem ellenőrzi adatokat át, a tartományhoz, így legjobb ellenőrzések szerepeljenek a kódot.
 >
 
-Ez a példa szilánkok hello shard térkép eltávolítja. 
+Ebben a példában a shard térkép szilánkok eltávolítja. 
 
    ```
    rm.DetachShard(s.Location, customerMap);
    ``` 
 
-hello shard térkép tükrözi hello shard helyét hello GSM hello shard hello törlése előtt. Hello shard törölve lett, mert van feltételezi, hogy ez szándékos volt, és hello horizontális kulcs tartomány már nem használja. Ha nem, a visszaállítás egy korábbi időpontra pont a hajthat végre. toorecover hello shard a egy korábbi-időpontban. (Ebben az esetben tekintse át a következő szakasz toodetect shard inkonzisztenciát hello.) toorecover, lásd: [időpontra történő visszaállítás](sql-database-recovery-using-backups.md).
+A szilánkok térkép tükrözi a shard törlése előtt GSM shard helyét. A szilánkok törölve lett, mert van feltételezi, hogy ez szándékos volt, és a horizontális kulcs tartomány már nem használja. Ha nem, a visszaállítás egy korábbi időpontra pont a hajthat végre. a szilánkok helyreállítása egy korábbi-időpontban. (Ebben az esetben ellenőrizze az alábbi szakaszt észleléséhez shard inkonzisztenciákat.) Kíván helyreállítani, lásd: [időpontra történő visszaállítás](sql-database-recovery-using-backups.md).
 
-Feltételezzük, hogy szándékos volt hello adatbázisok törlése, mivel hello végső felügyeleti törlési művelete toodelete hello bejegyzés toohello shard hello shard térkép Manager. Ez megakadályozza, hogy a nem várt információkat tooa tartomány véletlenül írásában hello alkalmazás.
+Feltételezzük, hogy az adatbázisok törlése szándékos volt, mert a végső felügyeleti törlési művelete a shard térkép kezelő shard a bejegyzést törölni. Ez megakadályozza, hogy az alkalmazás véletlenül olyan tartománnyal, amely nem várt adatok írásakor.
 
-## <a name="toodetect-mapping-differences"></a>toodetect leképezési különbségek
-Hello [DetectMappingDifferences metódus](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.detectmappingdifferences.aspx) kiválasztása és igazság hello adatforrásként hello shard maps (helyi vagy globális) egyikét adja vissza, és mindkét shard maps (GSM és LSM) leképezése rendezheti.
+## <a name="to-detect-mapping-differences"></a>Leképezési különbségek észlelése
+A [DetectMappingDifferences metódus](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.detectmappingdifferences.aspx) kiválasztása és igazság forrásaként a shard maps (helyi vagy globális) egyikét adja vissza, és mindkét shard maps (GSM és LSM) leképezése rendezheti.
 
    ```
    rm.DetectMappingDifferences(location, shardMapName);
    ```
 
-* Hello *hely* hello kiszolgáló és a nevét adja meg. 
-* Hello *shardMapName* paraméter hello shard leképezés neve. Erre csak akkor van szükség, ha több shard maps hello által kezelt ugyanazt a shard térkép manager. Választható. 
+* A *hely* határozza meg a kiszolgáló és adatbázis nevét. 
+* A *shardMapName* paramétere a shard leképezés neve. Erre csak akkor van szükség, ha több shard maps a ugyanazt a shard térkép manager kezeli. Választható. 
 
-## <a name="tooresolve-mapping-differences"></a>tooresolve leképezési különbségek
-Hello [ResolveMappingDifferences metódus](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.resolvemappingdifferences.aspx) igazság hello adatforrásként kiválaszt egy hello shard maps (helyi vagy globális), és mindkét shard maps (GSM és LSM) leképezése összehangolja.
+## <a name="to-resolve-mapping-differences"></a>Leképezési különbségek megoldásához
+A [ResolveMappingDifferences metódus](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.resolvemappingdifferences.aspx) igazság forrásaként kiválaszt egy a shard maps (helyi vagy globális), és mindkét shard maps (GSM és LSM) leképezése összehangolja.
 
    ```
    ResolveMappingDifferences (RecoveryToken, MappingDifferenceResolution.KeepShardMapping);
    ```
 
-* Hello *RecoveryToken* paraméter enumerálása hello hello leképezések és közötti különbségeket hello GSM hello LSM a hello adott szilánkcímtárban. 
-* Hello [MappingDifferenceResolution számbavételi](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.mappingdifferenceresolution.aspx) használt tooindicate hello módszer kapcsolatos hello shard hozzárendelések hello különbsége. 
-* **MappingDifferenceResolution.KeepShardMapping** ajánlott, ha hello LSM tartalmazza a hello pontos, ezért hello shard hello leképezését használható. Ez helyzet általában hello feladatátvétel esetén: hello shard mostantól egy új kiszolgálón található. Hello shard először el kell távolítani hello GSM (hello RecoveryManager.DetachShard módszer alkalmazásával), mert a leképezés már nem létezik, a hello GSM. Emiatt hello LSM kell lennie a használt toore-hello shard leképezés létrehozásához.
+* A *RecoveryToken* paraméter enumerálása a leképezéseket a globális szolgáltatásfigyelő szolgáltatás és az adott shard LSM közötti különbségeket. 
+* A [MappingDifferenceResolution számbavételi](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.mappingdifferenceresolution.aspx) jelzi az a különbség a shard leképezések megoldásának módszere. 
+* **MappingDifferenceResolution.KeepShardMapping** ajánlott, ha a LSM tartalmazza a pontos, ezért a a szilánkok leképezése használható. Ez általában az az eset, feladatátvétel esetén: a shard mostantól egy új kiszolgálón található. A szilánkok először el kell távolítani a GSM (a RecoveryManager.DetachShard módszer alkalmazásával), mert a leképezés már nem létezik, a GSM a. Ezért a LSM hozhatók létre újra a szilánkok leképezése.
 
-## <a name="attach-a-shard-toohello-shardmap-after-a-shard-is-restored"></a>A szilánkok toohello ShardMap csatolni egy shard történt visszaállítása után
-Hello [AttachShard metódus](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.attachshard.aspx) rendeli hello adott shard toohello shard leképezés. Ezután shard térkép inkonzisztenciákat észlelt, és hello hozzárendelések toomatch hello shard hello shard visszaállítás hello pontján frissíti. Feltételezzük, hogy hello az adatbázis egyben átnevezett tooreflect hello eredeti adatbázisnév (előtt hello shard vissza lett állítva), mert hello pont ideje visszaállítás alapértelmezés szerint használt érték hozzáíródik hello időbélyeg tooa új adatbázis. 
+## <a name="attach-a-shard-to-the-shardmap-after-a-shard-is-restored"></a>A szilánkok csatolása a ShardMap egy shard történt visszaállítása után
+A [AttachShard metódus](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.attachshard.aspx) az adott shard csatolja a shard leképezés. Ezután shard térkép inkonzisztenciákat észlelt, és frissíti a shard visszaállítását helyén shard kereséséhez. Feltételezzük, hogy az adatbázis is átnevezi az eredeti adatbázis név (előtt a shard vissza lett állítva), mivel az a pont a idő visszaállítás az alapértelmezett hozzáfűzi a Timestamp értékkel rendelkező új adatbázist. 
 
    ```
    rm.AttachShard(location, shardMapName)
    ``` 
 
-* Hello *hely* paraméter hello kiszolgáló és adatbázis nevét, az éppen csatolt hello szilánkcímtárban. 
-* Hello *shardMapName* paraméter hello shard leképezés neve. Ez a tulajdonság csak akkor szükséges, ha több shard maps hello által kezelt ugyanazt a shard térkép manager. Választható. 
+* A *hely* paraméter a kiszolgáló nevét és adatbázis nevét, az éppen csatolt szilánkcímtárban. 
+* A *shardMapName* paramétere a shard leképezés neve. Ez csak akkor kötelező, ha több shard maps a ugyanazt a shard térkép manager kezeli. Választható. 
 
-Ebben a példában a shard toohello shard térképen nemrég helyreállt a pont a korábbi időpontra hozzáadja. Hello shard (azaz a hello LSM hello szilánkok leképezése hello) vissza lett állítva, mert nem potenciálisan következetes hello GSM hello shard bejegyzése. Ez a példa kód kívül hello shard vissza lett állítva, és átnevezett toohello hello adatbázis eredeti neve. Vissza lett állítva, mivel feltételezzük hello LSM hello leképezését hello megbízható leképezés. 
+Ebben a példában a shard hozzáadja a shard leképezés, amely egy korábbi pont óta nemrég helyreállt. A szilánkok (azaz a leképezést a LSM a szilánkok) vissza lett állítva, mert nem a shard bejegyzése a GSM potenciálisan következetes. A példakódot kívül a shard visszaállítani, és az eredeti nevére, az adatbázis neve. Vissza lett állítva, mivel feltételezzük leképezése a LSM a nem megbízható leképezése. 
 
    ```
    rm.AttachShard(s.Location, customerMap); 
@@ -122,24 +122,24 @@ Ebben a példában a shard toohello shard térképen nemrég helyreállt a pont 
        } 
    ```
 
-## <a name="updating-shard-locations-after-a-geo-failover-restore-of-hello-shards"></a>Egy földrajzi-feladatátvételt követően (visszaállítás) a hello szilánkok shard helyek frissítése
-A földrajzi feladatátvétel esetén a hello másodlagos adatbázis írási elérhető lesz, és hello új elsődleges adatbázis válik. hello hello kiszolgálójának nevét, és potenciálisan hello adatbázis (attól függően, hogy a konfiguráció), előfordulhat, hogy különböző hello eredeti elsődleges. Ezért hello hello shard hello GSM a leképezési bejegyzést, és LSM javítani kell. Hasonlóképpen, ha hello adatbázisa visszaállított tooa másik nevet vagy helyet vagy tooan idő korábbi pont, ez lehet, hogy inkonzisztenciát okozhat hello shard leképezések. hello Shard térkép Manager hello terjesztési nyitott kapcsolatok toohello megfelelő adatbázis kezeli. Terjesztési hello shard és hello horizontális kulcs, amely hello cél hello alkalmazások kérelem hello értékének hello adatokon alapul. Egy földrajzi-feladatátvétel után ezek az információk hello pontos kiszolgáló nevét, az adatbázisnév és a szilánkok leképezése hello helyreállított adatbázis frissíteni kell. 
+## <a name="updating-shard-locations-after-a-geo-failover-restore-of-the-shards"></a>Egy földrajzi-feladatátvételt követően (visszaállítás) a a szilánkok shard helyek frissítése
+A földrajzi feladatátvétel esetén a másodlagos adatbázis írási elérhető lesz, és válik az új elsődleges adatbázis. Lehet, hogy a kiszolgáló, és potenciálisan (konfigurációtól függően), az adatbázis neve eltér az eredeti elsődleges. Ezért a leképezési bejegyzéseket a GSM és LSM shard javítani kell. Hasonló módon ha az adatbázis helyreállítása egy másik nevet vagy helyet, vagy egy korábbi időpontbeli időben Ez okozhatja inkonzisztenciát a shard leképezésekben. A szilánkok térkép Manager nyitott kapcsolatot annak a megfelelő adatbázis terjesztési kezeli. Terjesztési a shard és az alkalmazások kérelem céljaként a horizontális kulcsnak az értéke az adatokon alapul. Egy földrajzi-feladatátvétel után ezek az információk frissíteni kell a pontos kiszolgáló neve, az adatbázisnév és a helyreállított adatbázis szilánkok leképezése. 
 
 ## <a name="best-practices"></a>Ajánlott eljárások
-Földrajzi-feladatátvételi és helyreállítási műveletek általában kezeli a felhő rendszergazdájának hello alkalmazás szándékosan okhoz egy Azure SQL-adatbázisok üzleti folytonosságot biztosító szolgáltatásokat, amelyek. Üzleti folytonossági tervezési folyamatok, eljárások és intézkedések tooensure, amely az üzleti tevékenységre megszakítás nélkül továbbra is szükséges. hello módszer használható, mert hello RecoveryManager osztály részét kell használni a munkahelyi folyamat tooensure hello belül GSM és LSM mindig naprakészek alapján hello helyreállítási műveletről. Öt alapvető lépést hello biztosítása tooproperly GSM és LSM tükrözik hello pontos információk lekérdezésének a feladatátadási esemény után. Ezeket a lépéseket integrálható a meglévő eszközök és a munkafolyamat alkalmazás kód tooexecute hello. 
+Földrajzi-feladatátvételi és helyreállítási műveletek általában kezeli a felhő rendszergazdájának az alkalmazás szándékosan okhoz egy Azure SQL-adatbázisok üzleti folytonosságot biztosító szolgáltatásokat, amelyek. Üzleti folytonossági tervezési folyamatok, eljárások és intézkedéseket, győződjön meg arról, hogy üzleti műveletek megszakítás nélkül továbbra is igényel. A módszer áll rendelkezésre, része a RecoveryManager osztálynak kell használni a munkafolyamat győződjön meg arról, a GSM és LSM mindig naprakészek alapján a helyreállítási műveletről. Nincsenek megfelelően biztosítva a GSM és LSM tükrözik a pontos információk lekérdezésének a feladatátadási esemény után öt alapvető lépéseit. Az alkalmazás kódjának a lépések végrehajtása integrálható a meglévő eszközöket és a munkafolyamat. 
 
-1. Hello ShardMapManager hello RecoveryManager lekérni. 
-2. Válassza le a régi shard hello hello shard leképezés.
-3. Rendeljen a hello új shard toohello shard leképezés, többek között a hello shard helyre.
-4. Leképezési közötti hello GSM és LSM hello inkonzisztenciát észlelését. 
-5. Szüntesse meg a globális szolgáltatásfigyelő szolgáltatás hello és hello LSM, megbízó hello LSM közötti különbséget. 
+1. A RecoveryManager lekérése a ShardMapManager. 
+2. Válassza le a régi shard shard leképezés.
+3. Az új shard csatolása a shard térkép, beleértve az új shard helyre.
+4. A globális szolgáltatásfigyelő szolgáltatás és a LSM közötti leképezést inkonzisztenciát észlelését. 
+5. Szüntesse meg a globális szolgáltatásfigyelő szolgáltatás és a LSM, megbízva abban a LSM közötti különbséget. 
 
-Ebben a példában a lépéseket követve hello hajtja végre:
+Ebben a példában a következő lépéseket végzi el:
 
-1. Szilánkok eltávolítása hello Shard térkép, hogy tükrözze a shard helyek hello feladatátvétel megtörténte előtt.
-2. Csatolja a szilánkok toohello Shard térkép tükröző hello shard helyét (hello paraméter "Configuration.SecondaryServer" hello új kiszolgáló neve, de azonos hello adatbázis neve).
-3. Lekéri a hello helyreállítási jogkivonatok hello GSM és hello LSM az egyes szilánkok leképezése különbségei észlelésével. 
-4. Oldja fel a hello inkonzisztenciát által az egyes shard LSM hello megbízó hello-leképezés. 
+1. A szilánkok térkép, hogy tükrözze a feladatátvétel megtörténte előtt shard helyek szilánkok eltávolítja.
+2. A szilánkok térkép az új shard helyek (a "Configuration.SecondaryServer" paramétere az új kiszolgáló nevét, de azonos adatbázisnévvel) tükröző szilánkok csatlakozik.
+3. A helyreállítási jogkivonatok lekéri a globális szolgáltatásfigyelő szolgáltatás és az egyes shard LSM leképezési különbségei észlelésével. 
+4. Oldja fel az inkonzisztenciák által az egyes shard LSM a leképezés a megbízó. 
    
    ```
    var shards = smm.GetShards(); 

@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure erőforrás-szolgáltatók és erőforrástípusok |} Microsoft Docs"
-description: "Erőforrás-kezelő, a sémák és elérhető API-verzió támogató hello erőforrás-szolgáltatók és hello régiók hello erőforrásokat is üzemeltető ismerteti."
+title: "Az Azure erőforrás-szolgáltatók és erőforrástípusok |} Microsoft Docs"
+description: "Az erőforrás-szolgáltató, amely támogatja az erőforrás-kezelő, hogy a sémáikat és elérhető API-verzió és az erőforrásokat is üzemeltető régiók ismerteti."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: tomfitz
-ms.openlocfilehash: 23db1d3808a20166f3b44ec801e1bcc46fbb9bd3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6a9128f45d4199404019cee594842d59c7f1aaf3
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="resource-providers-and-types"></a>Erőforrás-szolgáltatók és típusát
 
-Erőforrások telepítésekor gyakran hello erőforrás-szolgáltatók és típusok tooretrieve információra van szüksége. Ebből a cikkből megismerheti, hogy:
+Erőforrások való telepítésekor, gyakran kell az erőforrás-szolgáltatók és típusok vonatkozó információk lekéréséhez. Ebből a cikkből megismerheti, hogy:
 
 * Megtekintheti az összes erőforrás-szolgáltató az Azure-ban
 * Egy erőforrás-szolgáltató regisztrációs állapotának ellenőrzése
@@ -31,11 +31,11 @@ Erőforrások telepítésekor gyakran hello erőforrás-szolgáltatók és típu
 * Egy erőforrástípus érvényes helyek megtekintése
 * Az erőforrástípus érvénytelen API-verziók megtekintése
 
-Ezeket a lépéseket hello portal, a PowerShell vagy az Azure parancssori felület használatával végezheti el.
+Ezeket a lépéseket a portálon, PowerShell vagy az Azure parancssori felület használatával végezheti el.
 
 ## <a name="powershell"></a>PowerShell
 
-toosee Azure-ban, és hello regisztrációs állapotát az előfizetéshez tartozó összes erőforrás-szolgáltató használata:
+Azure-ban, és a regisztrációs állapotot az előfizetéshez tartozó összes erőforrás-szolgáltató megjelenítéséhez használja:
 
 ```powershell
 Get-AzureRmResourceProvider -ListAvailable | Select-Object ProviderNamespace, RegistrationState
@@ -53,7 +53,7 @@ Microsoft.CognitiveServices      Registered
 ...
 ```
 
-Egy erőforrás-szolgáltató regisztrálása konfigurálja az előfizetés toowork hello erőforrás-szolgáltató. hello regisztrálási hatóköre mindig hello előfizetés. Alapértelmezés szerint sok erőforrás-szolgáltató automatikusan regisztrálva van. Azonban szükség lehet toomanually néhány erőforrás-szolgáltató regisztrálása. egy erőforrás-szolgáltató tooregister, rendelkeznie kell engedéllyel tooperform hello `/register/action` hello erőforrás-szolgáltató a műveletet. Ez a művelet hello közreműködői és tulajdonos szerepkörök tartalmazza.
+Az erőforrás-szolgáltató dolgozni az előfizetés egy erőforrás-szolgáltató regisztrálása konfigurálja. A regisztrálási hatóköre mindig az előfizetést. Alapértelmezés szerint sok erőforrás-szolgáltató automatikusan regisztrálva van. Szükség lehet, hogy manuálisan kell regisztrálni egy erőforrás-szolgáltató. Egy erőforrás-szolgáltató regisztrálása, engedéllyel kell rendelkeznie a `/register/action` műveletet az erőforrás-szolgáltató. A közreműködői és tulajdonos szerepkör tartalmazza ezt a műveletet.
 
 ```powershell
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch
@@ -70,7 +70,7 @@ Locations         : {West Europe, East US, East US 2, West US...}
 
 Egy erőforrás-szolgáltató nem törölhető, ha az előfizetés erőforrástípusok adott erőforrás-szolgáltató továbbra is fennáll.
 
-egy adott erőforrás-szolgáltató, használjon toosee információi:
+Egy adott erőforrás-szolgáltató adatainak megjelenítéséhez használja:
 
 ```powershell
 Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch
@@ -87,7 +87,7 @@ Locations         : {West Europe, East US, East US 2, West US...}
 ...
 ```
 
-toosee hello erőforrástípusai egy erőforrás-szolgáltató használata:
+Erőforrás-szolgáltató az erőforrástípusok megjelenítéséhez használja:
 
 ```powershell
 (Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch).ResourceTypes.ResourceTypeName
@@ -102,9 +102,9 @@ locations
 locations/quotas
 ```
 
-hello API-verzió felel meg a közzétett hello erőforrás-szolgáltató REST API-műveleteket tooa verzióját. Egy erőforrás-szolgáltató lehetővé teszi, hogy az új funkciók, mivel felszabadít hello REST API-t egy új verziója. 
+Az API-verzió felel meg a REST API-műveleteket az erőforrás-szolgáltató által kiadott verzióját. Egy erőforrás-szolgáltató lehetővé teszi, hogy az új funkciók, mivel feloldja a REST API egy új verziója. 
 
-használja a tooget hello elérhető API-verziók egy erőforrás típusa:
+Az elérhető API-verzió az erőforrástípus használatához:
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch).ResourceTypes | Where-Object ResourceTypeName -eq batchAccounts).ApiVersions
@@ -120,9 +120,9 @@ Amely adja vissza:
 2015-07-01
 ```
 
-Erőforrás-kezelő támogatott minden régióban, de előfordulhat, hogy minden régióban nem támogatott hello erőforrások telepítése. Ezenkívül előfordulhat, az előfizetés, amelyek meggátolják, hogy egyes régiókban hello erőforrás-t támogató használatával korlátozásait. 
+Erőforrás-kezelő minden régióban támogatott, de előfordulhat, hogy minden régióban nem támogatott az erőforrások telepítése. Ezenkívül előfordulhat, az előfizetés, amelyek meggátolják, hogy az erőforrás-t támogató egyes régiókban használatával korlátozásait. 
 
-tooget hello támogatott helyek az erőforrás-típust használja.
+A támogatott helyek az erőforrástípus használatához.
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch).ResourceTypes | Where-Object ResourceTypeName -eq batchAccounts).Locations
@@ -139,7 +139,7 @@ West US
 ```
 
 ## <a name="azure-cli"></a>Azure CLI
-toosee Azure-ban, és hello regisztrációs állapotát az előfizetéshez tartozó összes erőforrás-szolgáltató használata:
+Azure-ban, és a regisztrációs állapotot az előfizetéshez tartozó összes erőforrás-szolgáltató megjelenítéséhez használja:
 
 ```azurecli
 az provider list --query "[].{Provider:namespace, Status:registrationState}" --out table
@@ -157,7 +157,7 @@ Microsoft.CognitiveServices      Registered
 ...
 ```
 
-Egy erőforrás-szolgáltató regisztrálása konfigurálja az előfizetés toowork hello erőforrás-szolgáltató. hello regisztrálási hatóköre mindig hello előfizetés. Alapértelmezés szerint sok erőforrás-szolgáltató automatikusan regisztrálva van. Azonban szükség lehet toomanually néhány erőforrás-szolgáltató regisztrálása. egy erőforrás-szolgáltató tooregister, rendelkeznie kell engedéllyel tooperform hello `/register/action` hello erőforrás-szolgáltató a műveletet. Ez a művelet hello közreműködői és tulajdonos szerepkörök tartalmazza.
+Az erőforrás-szolgáltató dolgozni az előfizetés egy erőforrás-szolgáltató regisztrálása konfigurálja. A regisztrálási hatóköre mindig az előfizetést. Alapértelmezés szerint sok erőforrás-szolgáltató automatikusan regisztrálva van. Szükség lehet, hogy manuálisan kell regisztrálni egy erőforrás-szolgáltató. Egy erőforrás-szolgáltató regisztrálása, engedéllyel kell rendelkeznie a `/register/action` műveletet az erőforrás-szolgáltató. A közreműködői és tulajdonos szerepkör tartalmazza ezt a műveletet.
 
 ```azurecli
 az provider register --namespace Microsoft.Batch
@@ -167,7 +167,7 @@ Egy üzenet, hogy a regisztrációs visszaadó folyamatban.
 
 Egy erőforrás-szolgáltató nem törölhető, ha az előfizetés erőforrástípusok adott erőforrás-szolgáltató továbbra is fennáll.
 
-egy adott erőforrás-szolgáltató, használjon toosee információi:
+Egy adott erőforrás-szolgáltató adatainak megjelenítéséhez használja:
 
 ```azurecli
 az provider show --namespace Microsoft.Batch
@@ -186,7 +186,7 @@ Amely hasonló eredményeket ad vissza:
 }
 ```
 
-toosee hello erőforrástípusai egy erőforrás-szolgáltató használata:
+Erőforrás-szolgáltató az erőforrástípusok megjelenítéséhez használja:
 
 ```azurecli
 az provider show --namespace Microsoft.Batch --query "resourceTypes[*].resourceType" --out table
@@ -203,9 +203,9 @@ locations
 locations/quotas
 ```
 
-hello API-verzió felel meg a közzétett hello erőforrás-szolgáltató REST API-műveleteket tooa verzióját. Egy erőforrás-szolgáltató lehetővé teszi, hogy az új funkciók, mivel felszabadít hello REST API-t egy új verziója. 
+Az API-verzió felel meg a REST API-műveleteket az erőforrás-szolgáltató által kiadott verzióját. Egy erőforrás-szolgáltató lehetővé teszi, hogy az új funkciók, mivel feloldja a REST API egy új verziója. 
 
-használja a tooget hello elérhető API-verziók egy erőforrás típusa:
+Az elérhető API-verzió az erőforrástípus használatához:
 
 ```azurecli
 az provider show --namespace Microsoft.Batch --query "resourceTypes[?resourceType=='batchAccounts'].apiVersions | [0]" --out table
@@ -223,9 +223,9 @@ Result
 2015-07-01
 ```
 
-Erőforrás-kezelő támogatott minden régióban, de előfordulhat, hogy minden régióban nem támogatott hello erőforrások telepítése. Ezenkívül előfordulhat, az előfizetés, amelyek meggátolják, hogy egyes régiókban hello erőforrás-t támogató használatával korlátozásait. 
+Erőforrás-kezelő minden régióban támogatott, de előfordulhat, hogy minden régióban nem támogatott az erőforrások telepítése. Ezenkívül előfordulhat, az előfizetés, amelyek meggátolják, hogy az erőforrás-t támogató egyes régiókban használatával korlátozásait. 
 
-tooget hello támogatott helyek az erőforrás-típust használja.
+A támogatott helyek az erőforrástípus használatához.
 
 ```azurecli
 az provider show --namespace Microsoft.Batch --query "resourceTypes[?resourceType=='batchAccounts'].locations | [0]" --out table
@@ -245,29 +245,29 @@ West US
 
 ## <a name="portal"></a>Portál
 
-toosee Azure-ban, és hello regisztrációs állapotát az előfizetéshez tartozó összes erőforrás-szolgáltató kiválasztása **előfizetések**.
+Azure-ban, és a regisztrációs állapotot az előfizetéshez tartozó összes erőforrás-szolgáltató megtekintéséhez válasszon **előfizetések**.
 
 ![az előfizetések kiválasztása](./media/resource-manager-supported-services/select-subscriptions.png)
 
-Válassza ki a hello előfizetés tooview.
+Válassza ki az előfizetés megtekintéséhez.
 
 ![Adja meg az előfizetést](./media/resource-manager-supported-services/subscription.png)
 
-Válassza ki **erőforrás-szolgáltató** és elérhető erőforrás-szolgáltatók hello listájának megtekintése.
+Válassza ki **erőforrás-szolgáltató** és megtekintheti az elérhető erőforrás-szolgáltatók listáját.
 
 ![erőforrás-szolgáltatók megjelenítése](./media/resource-manager-supported-services/show-resource-providers.png)
 
-Egy erőforrás-szolgáltató regisztrálása konfigurálja az előfizetés toowork hello erőforrás-szolgáltató. hello regisztrálási hatóköre mindig hello előfizetés. Alapértelmezés szerint sok erőforrás-szolgáltató automatikusan regisztrálva van. Azonban szükség lehet toomanually néhány erőforrás-szolgáltató regisztrálása. egy erőforrás-szolgáltató tooregister, rendelkeznie kell engedéllyel tooperform hello `/register/action` hello erőforrás-szolgáltató a műveletet. Ez a művelet hello közreműködői és tulajdonos szerepkörök tartalmazza. egy erőforrás-szolgáltató tooregister válasszon **regisztrálása**.
+Az erőforrás-szolgáltató dolgozni az előfizetés egy erőforrás-szolgáltató regisztrálása konfigurálja. A regisztrálási hatóköre mindig az előfizetést. Alapértelmezés szerint sok erőforrás-szolgáltató automatikusan regisztrálva van. Szükség lehet, hogy manuálisan kell regisztrálni egy erőforrás-szolgáltató. Egy erőforrás-szolgáltató regisztrálása, engedéllyel kell rendelkeznie a `/register/action` műveletet az erőforrás-szolgáltató. A közreműködői és tulajdonos szerepkör tartalmazza ezt a műveletet. Válasszon egy erőforrás-szolgáltató regisztrálásához **regisztrálása**.
 
 ![erőforrás-szolgáltató regisztrálása](./media/resource-manager-supported-services/register-provider.png)
 
 Egy erőforrás-szolgáltató nem törölhető, ha az előfizetés erőforrástípusok adott erőforrás-szolgáltató továbbra is fennáll.
 
-toosee adatai egy adott erőforrás-szolgáltató kiválasztása **további szolgáltatások**.
+Megtekintéséhez válasszon egy adott erőforrás-szolgáltató adatait **további szolgáltatások**.
 
 ![Jelölje ki a további szolgáltatások](./media/resource-manager-supported-services/more-services.png)
 
-Keresse meg **erőforrás-kezelő** , és jelölje ki a hello rendelkezésre álló lehetőségek közül.
+Keresse meg **erőforrás-kezelő** , és jelölje ki az elérhető lehetőségek közül.
 
 ![Válassza ki az erőforrás-kezelő](./media/resource-manager-supported-services/select-resource-explorer.png)
 
@@ -275,20 +275,20 @@ Válassza ki **szolgáltatók**.
 
 ![Szolgáltatók kiválasztása](./media/resource-manager-supported-services/select-providers.png)
 
-Jelölje be hello erőforrás-szolgáltató és az erőforrás írja be a megjeleníteni kívánt tooview.
+Válassza ki az erőforrás-szolgáltató és a megtekinteni kívánt erőforrástípust.
 
 ![Válassza ki az erőforrás típusa](./media/resource-manager-supported-services/select-resource-type.png)
 
-Erőforrás-kezelő támogatott minden régióban, de előfordulhat, hogy minden régióban nem támogatott hello erőforrások telepítése. Ezenkívül előfordulhat, az előfizetés, amelyek meggátolják, hogy egyes régiókban hello erőforrás-t támogató használatával korlátozásait. hello erőforrás-kezelő hello erőforrástípus érvényes helyét jeleníti meg.
+Erőforrás-kezelő minden régióban támogatott, de előfordulhat, hogy minden régióban nem támogatott az erőforrások telepítése. Ezenkívül előfordulhat, az előfizetés, amelyek meggátolják, hogy az erőforrás-t támogató egyes régiókban használatával korlátozásait. Az erőforrás-kezelő az erőforrástípushoz érvényes helyek jeleníti meg.
 
 ![Hely megjelenítése](./media/resource-manager-supported-services/show-locations.png)
 
-hello API-verzió felel meg a közzétett hello erőforrás-szolgáltató REST API-műveleteket tooa verzióját. Egy erőforrás-szolgáltató lehetővé teszi, hogy az új funkciók, mivel felszabadít hello REST API-t egy új verziója. az erőforrás-kezelő hello hello erőforrástípus érvénytelen API-verziók jeleníti meg.
+Az API-verzió felel meg a REST API-műveleteket az erőforrás-szolgáltató által kiadott verzióját. Egy erőforrás-szolgáltató lehetővé teszi, hogy az új funkciók, mivel feloldja a REST API egy új verziója. Az erőforrás-kezelő jeleníti meg az erőforrástípus érvénytelen API-verziók.
 
 ![API-verziók megjelenítése](./media/resource-manager-supported-services/show-api-versions.png)
 
 ## <a name="next-steps"></a>Következő lépések
-* toolearn Resource Manager-sablonok létrehozásával kapcsolatban lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).
-* toolearn erőforrások telepítésével kapcsolatban lásd: [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).
-* tooview hello műveletek erőforrás-szolgáltató, lásd: [Azure REST API](/rest/api/).
+* Resource Manager-sablonok létrehozásával kapcsolatos további tudnivalókért lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).
+* Erőforrások telepítésével kapcsolatos további tudnivalókért lásd: [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).
+* Az erőforrás-szolgáltató műveletek megtekintése: [Azure REST API](/rest/api/).
 

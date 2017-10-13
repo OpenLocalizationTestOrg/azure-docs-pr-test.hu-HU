@@ -1,6 +1,6 @@
 ---
-title: "Az Azure AD és az alkalmazások: a felhasználók hozzárendelése tooan alkalmazás |} Microsoft Docs"
-description: "Hogyan tooimplement felhasználói kiosztása az Azure-alkalmazások."
+title: "Az Azure AD és az alkalmazások: az alkalmazás felhasználók hozzárendelése |} Microsoft Docs"
+description: "Útmutató az Azure-alkalmazások felhasználó-hozzárendelés végrehajtásához."
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,23 +15,23 @@ ms.topic: article
 ms.date: 05/12/2017
 ms.author: kgremban
 robots: noindex
-ms.openlocfilehash: e9374cbd106d1bcb302645828a061fe184f9956b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 29d63bd5781dc7ef9e84840dd4b1b70222cf6892
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="azure-ad-and-applications-assigning-users-tooan-application"></a>Az Azure AD és az alkalmazások: a felhasználók hozzárendelése tooan alkalmazás
-Mielőtt hozzárendelheti a felhasználók és csoportok tooan alkalmazás, felhasználó-hozzárendelés követelheti meg.  toolearn hogyan toorequire felhasználói kiosztása adja meg a hello [igénylő felhasználó hozzárendelés](active-directory-applications-guiding-developers-requiring-user-assignment.md) cikk.
+# <a name="azure-ad-and-applications-assigning-users-to-an-application"></a>Az Azure AD és az alkalmazások: az alkalmazás felhasználók hozzárendelése
+Mielőtt a felhasználók és csoportok rendelhet egy alkalmazás, felhasználó-hozzárendelés követelheti meg.  Igénylése felhasználói kiosztása elsajátításához lásd: a [igénylő felhasználó hozzárendelés](active-directory-applications-guiding-developers-requiring-user-assignment.md) cikk.
 
-## <a name="assigning-users-tooan-application"></a>Felhasználók tooan alkalmazás hozzárendelése
-1. Jelentkezzen be toohello Azure portálra rendszergazdaként.
-2. Kattintson a hello **minden elem** hello főmenü elemére.
-3. Válassza ki a hello directory hello alkalmazás használja.
-4. Kattintson a hello **alkalmazások** fülre.
-5. Válassza ki a hello alkalmazást ebben a könyvtárban társított alkalmazások hello listája.
-6. Kattintson a hello **felhasználók és csoportok** fülre.
-7. Válassza ki a kívánt tooassign toohello alkalmazás hello felhasználókat.
+## <a name="assigning-users-to-an-application"></a>Az alkalmazás felhasználók hozzárendelése
+1. Jelentkezzen be rendszergazdai fiókkal az Azure portálon.
+2. Kattintson a **összes elemet** a főmenü elemére.
+3. Adja meg az alkalmazás használja.
+4. Kattintson a **alkalmazások** fülre.
+5. Az ebben a könyvtárban társított alkalmazások listájából válassza ki az alkalmazást.
+6. Kattintson a **felhasználók és csoportok** fülre.
+7. Válassza ki az alkalmazáshoz hozzárendelni kívánt felhasználókat.
 8. Kattintson a **hozzárendelése**.
 9. Kattintson a **Igen** megjelenésekor.
 

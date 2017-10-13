@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directory-integráció Springer hivatkozás |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és Springer hivatkozás között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és Springer hivatkozás között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,196 +14,196 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/03/2017
 ms.author: jeedes
-ms.openlocfilehash: dabd2f72b3a195fc359826a4863a197e5019f5c1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b9aec6f8f293cdd31456a7f50e3efe792804c7c8
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-springer-link"></a>Oktatóanyag: Azure Active Directory-integráció Springer hivatkozás
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Springer hivatkozás az Azure Active Directoryval (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja Springer hivatkozás integrálása az Azure Active Directory (Azure AD).
 
-Springer hivatkozás integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
+Springer hivatkozás integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
 
-- Az Azure AD hozzáférési tooSpringer hivatkozás rendelkező szabályozhatja.
-- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooSpringer (egyszeri bejelentkezés) hivatkozás az Azure AD-fiókok.
-- A fiók egyetlen központi helyen - hello Azure-portálon kezelheti.
+- Azt is szabályozhatja az Azure AD, aki hozzáfér Springer hivatkozásra.
+- Az Azure AD-fiókok a engedélyezheti a felhasználóknak, hogy automatikusan lekérni bejelentkezett Springer hivatkozásra (egyszeri bejelentkezés).
+- A fiók egyetlen központi helyen – az Azure-portálon kezelheti.
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-tooconfigure Springer hivatkozás az Azure AD integrálása, a következő elemek hello kell:
+Az Azure AD-integráció konfigurálása a Springer hivatkozással, a következőkre van szükség:
 
 - Az Azure AD szolgáltatásra
 - Egy Springer hivatkozás egyszeri bejelentkezés engedélyezve van az előfizetés
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, akkor [egy hónapos próbaverzió beszerzése](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. Hello gyűjteményből Springer hivatkozás hozzáadása
+1. A gyűjteményből Springer hivatkozás hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-springer-link-from-hello-gallery"></a>Hello gyűjteményből Springer hivatkozás hozzáadása
-tooconfigure hello integrációs Springer hivatkozás az Azure AD-be, meg kell tooadd Springer hivatkozás hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-springer-link-from-the-gallery"></a>A gyűjteményből Springer hivatkozás hozzáadása
+Az Azure AD integrálása a Springer hivatkozás konfigurálásához kell hozzáadnia Springer hivatkozás a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
 
-**tooadd Springer hivatkozás hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
+**A gyűjteményből Springer hivatkozás hozzáadásához hajtsa végre az alábbi lépéseket:**
 
-1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
+1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
 
-    ![hello Azure Active Directory gomb][1]
+    ![Az Azure Active Directory gomb][1]
 
-2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
+2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
 
-    ![hello vállalati alkalmazások panel][2]
+    ![A vállalati alkalmazások panel][2]
     
-3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
+3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
 
-    ![hello új alkalmazás gomb][3]
+    ![Az új alkalmazás gomb][3]
 
-4. Hello keresési mezőbe, írja be a **Springer hivatkozás**, jelölje be **Springer hivatkozás** eredmény panelen kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
+4. Írja be a keresőmezőbe, **Springer hivatkozás**, jelölje be **Springer hivatkozás** eredmény panelen kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
 
-    ![Hello eredménylistában springer hivatkozás](./media/active-directory-saas-springerlink-tutorial/tutorial_springerlink_addfromgallery.png)
+    ![Az eredménylistában springer hivatkozás](./media/active-directory-saas-springerlink-tutorial/tutorial_springerlink_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés tesztelése és konfigurálása
 
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon" nevű tesztfelhasználó alapján Springer hivatkozásra.
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello tartozó felhasználói Springer hivatkozásban tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználói hello Springer hivatkozás közötti kapcsolat kapcsolatot kell létrehozni toobe.
+Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó Springer hivatkozás a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó Springer hivatkozás közötti kapcsolat kapcsolatot kell létrehozni.
 
-Springer hivatkozásban, rendelje a hello hello értékét **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
+Springer hivatkozásban, rendelje az értékét a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
 
-tooconfigure és Springer hivatkozás az Azure AD az egyszeri bejelentkezés tesztelése, a következő építőelemeket toocomplete hello szüksége:
+Az Azure AD az egyszeri bejelentkezés Springer hivatkozás, tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configure-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Hozzon létre egy Azure AD-teszt felhasználó](#create-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-3. **[Rendelje hozzá az Azure AD hello tesztfelhasználó](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-4. **[Egyszeri bejelentkezés tesztelése](#test-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configure-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Hozzon létre egy Azure AD-teszt felhasználó](#create-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+3. **[Rendelje hozzá az Azure AD-teszt felhasználó](#assign-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+4. **[Egyszeri bejelentkezés tesztelése](#test-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az Springer hivatkozás alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és a Springer kapcsolat alkalmazás egyszeri bejelentkezés konfigurálása.
 
-**az Azure AD tooconfigure egyszeri bejelentkezés Springer hivatkozás, hajtsa végre a lépéseket követve hello:**
+**Konfigurálja az Azure AD az egyszeri bejelentkezés Springer hivatkozás, hajtsa végre az alábbi lépéseket:**
 
-1. Az Azure portál, a hello hello **Springer hivatkozás** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portálon a a **Springer hivatkozás** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés kapcsolat konfigurálása][4]
 
-2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
+2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
  
     ![Egyszeri bejelentkezés párbeszédpanel](./media/active-directory-saas-springerlink-tutorial/tutorial_springerlink_samlbase.png)
 
-3. A hello **Springer hivatkozás tartomány és az URL-címek** szakaszban, ha tooconfigure hello alkalmazás **IDP** kezdeményezett mód:
+3. Az a **Springer hivatkozás tartomány és az URL-címek** szakaszban, ha szeretne beállítani az alkalmazás **IDP** kezdeményezett mód:
 
     ![Az egyszeri bejelentkezés információk springer hivatkozás tartomány és az URL-címek](./media/active-directory-saas-springerlink-tutorial/tutorial_springerlink_url1.png)
 
-    a. A hello **azonosító** szövegmezőhöz típus hello URL-címe:`https://fsso.springer.com`
+    a. Az a **azonosító** szövegmező, írja be az URL-cím:`https://fsso.springer.com`
 
-    b. A hello **válasz URL-CÍMEN** szövegmezőhöz típus hello URL-címe:`https://fsso-qa1.springer.com/federation/Consumer/metaAlias/SpringerServiceProvider`    
+    b. Az a **válasz URL-CÍMEN** szövegmező, írja be az URL-cím:`https://fsso-qa1.springer.com/federation/Consumer/metaAlias/SpringerServiceProvider`    
 
-4. Ellenőrizze **megjelenítése speciális URL-beállításainak**. Ha tooconfigure hello alkalmazás **SP** kezdeményezett mód:
+4. Ellenőrizze **megjelenítése speciális URL-beállításainak**. Ha szeretne beállítani az alkalmazás **SP** kezdeményezett mód:
 
     ![Az egyszeri bejelentkezés információk springer hivatkozás tartomány és az URL-címek](./media/active-directory-saas-springerlink-tutorial/tutorial_springerlink_url.png)
 
-    A hello **bejelentkezési URL-cím** szövegmezőhöz típus hello URL-címe:`https://fsso.springer.com/federation/Consumer/metaAlias/SpringerServiceProvider`    
+    Az a **bejelentkezési URL-cím** szövegmező, írja be az URL-cím:`https://fsso.springer.com/federation/Consumer/metaAlias/SpringerServiceProvider`    
 
 5. Kattintson a **mentése** gombra.
 
     ![Egyszeri bejelentkezés Mentés gombra konfigurálása](./media/active-directory-saas-springerlink-tutorial/tutorial_general_400.png)
 
-6. toogenerate hello **metaadatok** URL-címe, hajtsa végre az alábbi lépésekkel hello:
+6. Létrehozásához a **metaadatok** URL-címe, hajtsa végre a következő lépéseket:
 
     a. Kattintson a **App regisztrációk**.
     
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-springerlink-tutorial/tutorial_springerlink_appregistrations.png)
    
-    b. Kattintson a **végpontok** tooopen **végpontok** párbeszédpanel megnyitásához.  
+    b. Kattintson a **végpontok** megnyitásához **végpontok** párbeszédpanel megnyitásához.  
     
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-springerlink-tutorial/tutorial_springerlink_endpointicon.png)
 
-    c. Kattintson a hello Másolás gombra toocopy **ÖSSZEVONÁSI METAADAT-dokumentum** URL-cím és illessze be a Jegyzettömbbe.
+    c. Kattintson a Másolás gombra másolása **ÖSSZEVONÁSI METAADAT-dokumentum** URL-címet, és illessze be a Jegyzettömbbe.
     
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-springerlink-tutorial/tutorial_springerlink_endpoint.png)
      
-    d. Most lépjen tulajdonságlapján toohello **Springer hivatkozás** és másolási hello **alkalmazásazonosító** használatával **másolási** gombra, majd illessze be a Jegyzettömbbe.
+    d. Most lépjen a tulajdonságlapján **Springer hivatkozás** , és másolja a **alkalmazásazonosító** használatával **másolási** gombra, majd illessze be a Jegyzettömbbe.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-springerlink-tutorial/tutorial_springerlink_appid.png)
 
-    e. Hello készítése **metaadatainak URL-CÍMÉT** hello mintát a következő használatával:`<FEDERATION METADATA DOCUMENT url>?appid=<application id>`
+    e. Készítése a **metaadatainak URL-CÍMÉT** a következő minta használatával:`<FEDERATION METADATA DOCUMENT url>?appid=<application id>`
 
-7. tooconfigure egyszeri bejelentkezést a **Springer hivatkozás** oldalon kell generált toosend hello **metaadatainak URL-CÍMÉT** túl[Springer hivatkozás támogatási csoport](mailto:identity@springernature.com).
+7. Egyszeri bejelentkezés konfigurálása **Springer hivatkozás** oldalon kell küldeniük a létrehozott **metaadatainak URL-CÍMÉT** való [Springer hivatkozás támogatási csoport](mailto:identity@springernature.com).
 
 > [!TIP]
-> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 
 ### <a name="create-an-azure-ad-test-user"></a>Hozzon létre egy Azure AD-teszt felhasználó
 
-hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
+Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
 
    ![Hozzon létre egy Azure AD-teszt felhasználó][100]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello Azure-portálon, hello bal oldali ablaktáblában kattintson a hello **Azure Active Directory** gombra.
+1. Az Azure portálon a bal oldali ablaktáblán kattintson a **Azure Active Directory** gombra.
 
-    ![hello Azure Active Directory gomb](./media/active-directory-saas-springerlink-tutorial/create_aaduser_01.png)
+    ![Az Azure Active Directory gomb](./media/active-directory-saas-springerlink-tutorial/create_aaduser_01.png)
 
-2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok**, és kattintson a **minden felhasználó**.
+2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok**, és kattintson a **minden felhasználó**.
 
-    ![hello "Felhasználók és csoportok" és "Minden felhasználó" hivatkozások](./media/active-directory-saas-springerlink-tutorial/create_aaduser_02.png)
+    ![A "felhasználók és csoportok" és "Minden felhasználó" hivatkozások](./media/active-directory-saas-springerlink-tutorial/create_aaduser_02.png)
 
-3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello hello tetején **minden felhasználó** párbeszédpanel megnyitásához.
+3. Megnyitásához a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** tetején a **minden felhasználó** párbeszédpanel megnyitásához.
 
-    ![hello Hozzáadás gomb](./media/active-directory-saas-springerlink-tutorial/create_aaduser_03.png)
+    ![A Hozzáadás gombra.](./media/active-directory-saas-springerlink-tutorial/create_aaduser_03.png)
 
-4. A hello **felhasználói** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello:
+4. Az a **felhasználói** párbeszédpanelen hajtsa végre az alábbi lépéseket:
 
-    ![hello felhasználó párbeszédpanel](./media/active-directory-saas-springerlink-tutorial/create_aaduser_04.png)
+    ![A felhasználó párbeszédpanel](./media/active-directory-saas-springerlink-tutorial/create_aaduser_04.png)
 
-    a. A hello **neve** mezőbe írja be **BrittaSimon**.
+    a. Az a **neve** mezőbe írja be **BrittaSimon**.
 
-    b. A hello **felhasználónév** mezőben, a felhasználó Britta Simon típus hello e-mail címét.
+    b. Az a **felhasználónév** mezőbe írja be a felhasználó e-mail címe az Britta Simon.
 
-    c. Jelölje be hello **megjelenítése jelszó** jelölje be a jelölőnégyzetet, és jegyezze fel a hello hello érték **jelszó** mezőbe.
+    c. Válassza ki a **megjelenítése jelszó** jelölje be a jelölőnégyzetet, és jegyezze fel a megjelenített érték a **jelszó** mezőbe.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
-### <a name="assign-hello-azure-ad-test-user"></a>Rendelje hozzá az Azure AD hello tesztfelhasználó számára
+### <a name="assign-the-azure-ad-test-user"></a>Rendelje hozzá az Azure AD-teszt felhasználó
 
-Ebben a szakaszban Azure egyszeri bejelentkezés Britta Simon toouse hozzáférés tooSpringer hivatkozás megadásával engedélyezi.
+Ebben a szakaszban engedélyezze Britta Simon használandó Azure egyszeri bejelentkezés által biztosított hozzáférés Springer hivatkozásra.
 
-![Hello felhasználói szerepkör hozzárendelése][200] 
+![A felhasználói szerepkör hozzárendelése][200] 
 
-**tooassign Britta Simon tooSpringer hivatkozás, hajtsa végre a lépéseket követve hello:**
+**Britta Simon hozzárendelése Springer hivatkozás, hajtsa végre az alábbi lépéseket:**
 
-1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Hello alkalmazások listában válassza ki a **Springer hivatkozás**.
+2. Az alkalmazások listában válassza ki a **Springer hivatkozás**.
 
-    ![hello Springer Link hivatkozás hello alkalmazások listájában](./media/active-directory-saas-springerlink-tutorial/tutorial_springerlink_app.png)  
+    ![Az alkalmazások listáját a Springer Link hivatkozás](./media/active-directory-saas-springerlink-tutorial/tutorial_springerlink_app.png)  
 
-3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
 
-    ![hello "Felhasználók és csoportok" hivatkozásra.][202]
+    ![A "Felhasználók és csoportok" hivatkozásra][202]
 
 4. Kattintson a **Hozzáadás** gombra. Válassza ki **felhasználók és csoportok** a **hozzáadása hozzárendelés** párbeszédpanel.
 
-    ![hello hozzárendelés hozzáadása panelen][203]
+    ![A hozzárendelés hozzáadása panelen][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -211,14 +211,14 @@ Ebben a szakaszban Azure egyszeri bejelentkezés Britta Simon toouse hozzáfér�
     
 ### <a name="test-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
 
-Ha a hozzáférési Panel hello hello Springer hivatkozás csempe gombra kattint, automatikusan bejelentkezett tooyour Springer kapcsolat alkalmazás szerezheti be.
-További információ a hozzáférési Panel hello: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).
+Ha a hozzáférési panelen Springer hivatkozás csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az Springer hivatkozás alkalmazáshoz.
+A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>További források
 
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

@@ -1,6 +1,6 @@
 ---
-title: "aaaH264 több sávszélességű 4 x 3 SD |} Microsoft Docs"
-description: "hello a témakör áttekintést hello ** H264 Multiple Bitrate 4 x 3 SD ** feladat készletet."
+title: "H264 Több sávszélességű 4 x 3 SD |} Microsoft Docs"
+description: "A témakör áttekintést a ** H264 Multiple Bitrate 4 x 3 SD ** feladat készletet."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: cc8f42e147f0332acd3bbb91fdb2a866e9a0875e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f8d342b0c317c31af0e02effbf8b8c1849e0bf1a
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="h264-multiple-bitrate-4x3-sd"></a>H264 Több sávszélességű 4 x 3 SD
-`Media Encoder Standard`Meghatározza a kódolási készletek kódolási feladatok létrehozásakor használható. Használhatja a `preset name` mely formátumú fájlba szeretné tooencode toospecify a médiafájl. Másik lehetőségként létrehozhat saját JSON- vagy XML-alapú készletek (UTF-8 vagy UTF-16 kódolás használatával. Majd át kellene hello egyéni előre definiált toohello kódoló. Minden hello hello listáját az adott néven beállítás által támogatott nevek `Media Encoder Standard` kódoló, lásd: [feladat készletek a Media Encoder Standard](media-services-mes-presets-overview.md).  
+`Media Encoder Standard`Meghatározza a kódolási készletek kódolási feladatok létrehozásakor használható. Használhatja a `preset name` adhatja meg, melyik formátumba kódolja a médiafájl szeretné. Másik lehetőségként létrehozhat saját JSON- vagy XML-alapú készletek (UTF-8 vagy UTF-16 kódolás használatával. Az egyéni készletet a kódoló majd át lesz. Ez által támogatott összes előre definiált nevek listája `Media Encoder Standard` kódoló, lásd: [feladat készletek a Media Encoder Standard](media-services-mes-presets-overview.md).  
   
- Ez a témakör bemutatja a hello `H264 Multiple Bitrate 4x3 SD` beállított XML és a JSON formátumban.  
+ Ez a témakör bemutatja a `H264 Multiple Bitrate 4x3 SD` beállított XML és a JSON formátumban.  
   
- Az előre definiált létrejön egy 5 GOP igazított MP4-fájlok közötti 1600 kbps too400 kbit/s és sztereó AAC hang. Profillal kapcsolatos részletes információkért sávszélességű mintavételi arány stb. Ennek az adott néven beállítás esetében vizsgálja meg, XML vagy az alább megadott JSON hello. Az egyes milyen egyes elemei a készletek azt jelenti, és hello az érvényes értékek az egyes elemekhez, lásd: hello [Media Encoder Standard séma](media-services-mes-schema.md) témakör.  
+ Az előre definiált létrejön egy 5 GOP igazított MP4-fájlok 400 kbit/s és sztereó AAC hang 1600 kbps kezdve. Profillal kapcsolatos részletes információkért sávszélességű mintavételi arány stb. a készletet, vizsgálja meg az XML- vagy JSON-ban megadva. Az egyes milyen egyes elemei a készletek azt jelenti, és az érvényes értékek az egyes elemekhez, tekintse meg a [Media Encoder Standard séma](media-services-mes-schema.md) témakör.  
   
 > [!NOTE]
->  Ha módosítja a hello `Width` és `Height` értékek különböző rétegek, győződjön meg arról, hogy hello oldalarányának konzisztensek maradnak. Például: 1920 x 1080, 1280 x 720, 1080 x 576, 640 x 360. Például ne használjon méretarányoknak megfelelően keverékével: 1280 x 720, 720 x 480, 640 x 360.  
+>  Ha módosítja a `Width` és `Height` értékek különböző rétegek, győződjön meg arról, hogy az eredeti oldalarányok konzisztensek maradnak. Például: 1920 x 1080, 1280 x 720, 1080 x 576, 640 x 360. Például ne használjon méretarányoknak megfelelően keverékével: 1280 x 720, 720 x 480, 640 x 360.  
   
  XML  
   

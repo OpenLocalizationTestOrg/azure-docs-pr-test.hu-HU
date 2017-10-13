@@ -1,6 +1,6 @@
 ---
-title: "végrehajtott aaaChanges tooa MVC projekt tooAzure AD csatlakoztatásakor |} Microsoft Docs"
-description: "Ismerteti, mi történik tooyour MVC projekt tooAzure AD Visual Studio kapcsolódó szolgáltatások"
+title: "Változások a MVC projekt csatlakoztatása az Azure AD |} Microsoft Docs"
+description: "Ismerteti, mi történik a MVC projekt, amikor csatlakozik a Visual Studio szolgáltatásainak a használatával az Azure AD connect"
 services: active-directory
 documentationcenter: na
 author: kraigb
@@ -15,13 +15,13 @@ ms.topic: article
 ms.date: 03/01/2017
 ms.author: kraigb
 ms.custom: aaddev
-ms.openlocfilehash: 5e6d4ce5331eacca5fc83429017ae454fadcc8e4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 095411a7fc854f4dce11921adb0f57c5389a8e13
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="what-happened-toomy-mvc-project-visual-studio-azure-active-directory-connected-service"></a>Milyen történt toomy MVC projekt (a Visual Studio Azure Active Directory szolgáltatás csatlakozik)?
+# <a name="what-happened-to-my-mvc-project-visual-studio-azure-active-directory-connected-service"></a>Mi történt a MVC projekt (a Visual Studio Azure Active Directory szolgáltatás csatlakozik)?
 > [!div class="op_single_selector"]
 > * [Első lépések](vs-active-directory-dotnet-getting-started.md)
 > * [mi történt](vs-active-directory-dotnet-what-happened.md)
@@ -52,28 +52,28 @@ ms.lasthandoff: 10/06/2017
 * **System.Runtime.Serialization**
 
 ## <a name="code-has-been-added"></a>Kód hozzá lett adva.
-### <a name="code-files-were-added-tooyour-project"></a>Kód hozzáadott tooyour projekt
-Egy hitelesítési indítási osztály **App_Start/Startup.Auth.cs** tooyour projektet, amely tartalmazza az Azure AD-alapú hitelesítés ügyfélindítási logikája lett hozzáadva. Emellett vezérlőosztály, Controllers/AccountController.cs hozzá lett adva tartalmazó **SignIn()** és **SignOut()** módszerek. Végezetül részleges nézet **Views/Shared/_LoginPartial.cshtml** hozzá lett adva egy művelet hivatkozására tartalmazó SignIn/SignOut.
+### <a name="code-files-were-added-to-your-project"></a>Kód hozzáadott a projekthez
+Egy hitelesítési indítási osztály **App_Start/Startup.Auth.cs** lett hozzáadva a projekthez az Azure AD-alapú hitelesítés ügyfélindítási logikája tartalmazó. Emellett vezérlőosztály, Controllers/AccountController.cs hozzá lett adva tartalmazó **SignIn()** és **SignOut()** módszerek. Végezetül részleges nézet **Views/Shared/_LoginPartial.cshtml** hozzá lett adva egy művelet hivatkozására tartalmazó SignIn/SignOut.
 
-### <a name="startup-code-was-added-tooyour-project"></a>Indítási kóddal tooyour projekt
-Ha előzőleg már egy indítási osztályt a projekthez, hello **konfigurációs** metódus lett frissített tooinclude hívása túl**ConfigureAuth(app)**. Ellenkező esetben indítási osztály tooyour projekt lett hozzáadva.
+### <a name="startup-code-was-added-to-your-project"></a>Indítási kóddal a projekthez
+Ha a projektben már volt indítási osztály a **konfigurációs** metódus hívása lett frissítve **ConfigureAuth(app)**. Ellenkező esetben egy indítási osztályt a projekthez lett adva.
 
 ### <a name="your-appconfig-or-webconfig-has-new-configuration-values"></a>Új konfigurációs értéket tartalmaz a az App.config fájlt vagy a Web.config fájlban
-a következő konfigurációs bejegyzéseket hello hozzá lett adva.
+A következő konfigurációs bejegyzés hozzáadva.
 
     <appSettings>
-        <add key="ida:ClientId" value="ClientId from hello new Azure AD App" />
+        <add key="ida:ClientId" value="ClientId from the new Azure AD App" />
         <add key="ida:AADInstance" value="https://login.microsoftonline.com/" />
-        <add key="ida:Domain" value="hello selected Azure AD Domain" />
-        <add key="ida:TenantId" value="hello Id of your selected Azure AD Tenant" />
+        <add key="ida:Domain" value="The selected Azure AD Domain" />
+        <add key="ida:TenantId" value="The Id of your selected Azure AD Tenant" />
         <add key="ida:PostLogoutRedirectUri" value="Your project start page" />
     </appSettings>
 
 ### <a name="an-azure-active-directory-ad-app-was-created"></a>Egy Azure Active Directory (AD) alkalmazás létrehozása
-Az Azure AD-alkalmazások létrehozásának hello hello varázslóban megadott könyvtárban található.
+Az Azure AD-alkalmazások létrehozásának, a varázslóban megadott könyvtárban található.
 
-## <a name="if-i-checked-disable-individual-user-accounts-authentication-what-additional-changes-were-made-toomy-project"></a>Ha ellenőrizni szeretnék *tiltsa le az egyes felhasználói fiókok hitelesítési*, további változásait toomy projektet?
-Hivatkozások a NuGet csomag eltávolítása, és fájlok lettek eltávolítva, a biztonsági mentése. Attól függően, hogy a projekt hello állapotát előfordulhat, hogy távolítsa el a további hivatkozások vagy fájlokat, vagy módosítsa a megfelelő kód toomanually.
+## <a name="if-i-checked-disable-individual-user-accounts-authentication-what-additional-changes-were-made-to-my-project"></a>Ha ellenőrizni szeretnék *tiltsa le az egyes felhasználói fiókok hitelesítési*, milyen további módosítások történtek a projektben?
+Hivatkozások a NuGet csomag eltávolítása, és fájlok lettek eltávolítva, a biztonsági mentése. A projekt állapotától függően előfordulhat, hogy manuálisan távolítsa el a további hivatkozások vagy fájlokat, vagy szükség szerint kód módosítása.
 
 ### <a name="nuget-package-references-removed-for-those-present"></a>NuGet csomag hivatkozást eltávolítani (a jelen)
 * **Microsoft.AspNet.Identity.Core**
@@ -81,7 +81,7 @@ Hivatkozások a NuGet csomag eltávolítása, és fájlok lettek eltávolítva, 
 * **Microsoft.AspNet.Identity.Owin**
 
 ### <a name="code-files-backed-up-and-removed-for-those-present"></a>Fájlok biztonsági mentése és eltávolítani (a jelen)
-Alábbi fájlok biztonsági mentése és hello projekt távolítva. A biztonságimásolat-fájlok hello gyökerében hello projekt könyvtár "Biztonsági mentés" mappában található.
+Alábbi fájlok biztonsági mentése és a projekt távolítva. A biztonságimásolat-fájlok a "Biztonsági mentés" mappával a gyökérkönyvtárban, a projekt könyvtárában találhatók.
 
 * **App_Start\IdentityConfig.cs**
 * **Controllers\ManageController.cs**
@@ -89,14 +89,14 @@ Alábbi fájlok biztonsági mentése és hello projekt távolítva. A biztonság
 * **Models\ManageViewModels.cs**
 
 ### <a name="code-files-backed-up-for-those-present"></a>Kód fájlok biztonsági mentése (a jelen)
-Alábbi fájlok készült biztonsági másolat cseréje előtt. A biztonságimásolat-fájlok hello gyökerében hello projekt könyvtár "Biztonsági mentés" mappában található.
+Alábbi fájlok készült biztonsági másolat cseréje előtt. A biztonságimásolat-fájlok a "Biztonsági mentés" mappával a gyökérkönyvtárban, a projekt könyvtárában találhatók.
 
 * **Startup.cs**
 * **App_Start\Startup.auth.cs**
 * **Controllers\AccountController.cs**
 * **Views\Shared\_LoginPartial.cshtml**
 
-## <a name="if-i-checked-read-directory-data-what-additional-changes-were-made-toomy-project"></a>Ha ellenőrizni szeretnék *címtáradatok olvasása*, további változásait toomy projektet?
+## <a name="if-i-checked-read-directory-data-what-additional-changes-were-made-to-my-project"></a>Ha ellenőrizni szeretnék *címtáradatok olvasása*, milyen további módosítások történtek a projektben?
 További hivatkozások kerültek.
 
 ### <a name="additional-nuget-package-references"></a>NuGet-csomag további hivatkozások
@@ -119,20 +119,20 @@ További hivatkozások kerültek.
 * **Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms**
 * **System.Spatial**
 
-### <a name="additional-code-files-were-added-tooyour-project"></a>További kód hozzáadott tooyour projekt
-Két hozzáadott toosupport token-gyorsítótárazási: **Models\ADALTokenCache.cs** és **Models\ApplicationDbContext.cs**.  Egy további tartományvezérlő és a nézet hozzáadott tooillustrate fér hozzá a felhasználói profillal kapcsolatos információk az Azure graph API-k használatával.  Ezek a fájlok **Controllers\UserProfileController.cs** és **Views\UserProfile\Index.cshtml**.
+### <a name="additional-code-files-were-added-to-your-project"></a>További kód hozzáadott a projekthez
+Két hozzáadott támogatja a token-gyorsítótárazási: **Models\ADALTokenCache.cs** és **Models\ApplicationDbContext.cs**.  Egy további tartományvezérlő, és tekintse meg a rendszer adott elérése során felhasználói profillal kapcsolatos információk az Azure graph API-k segítségével mutatja be.  Ezek a fájlok **Controllers\UserProfileController.cs** és **Views\UserProfile\Index.cshtml**.
 
-### <a name="additional-startup-code-was-added-tooyour-project"></a>További indítási kóddal tooyour projekt
-A hello **startup.auth.cs** fájlba, egy új **OpenIdConnectAuthenticationNotifications** objektum lett hozzáadva toohello **értesítések** hello tagja  **OpenIdConnectAuthenticationOptions**.  Ez a tooenable hello OAuth kód fogadására, és azt a hozzáférési token cseréjét.
+### <a name="additional-startup-code-was-added-to-your-project"></a>További indítási kóddal a projekthez
+Az a **startup.auth.cs** fájlba, egy új **OpenIdConnectAuthenticationNotifications** objektumot hozzáadni az **értesítések** tagja a  **OpenIdConnectAuthenticationOptions**.  Ez egy, az OAuth-kód fogadása és cseréjét azt a hozzáférési token engedélyezése.
 
-### <a name="additional-changes-were-made-tooyour-appconfig-or-webconfig"></a>További módosítások történtek, tooyour app.config vagy a Web.config fájlban
-hello következő további konfigurációs bejegyzés hozzáadva.
+### <a name="additional-changes-were-made-to-your-appconfig-or-webconfig"></a>További módosítások történtek az App.config fájlt vagy a Web.config fájlban
+A következő további konfigurációs bejegyzés hozzáadva.
 
     <appSettings>
         <add key="ida:ClientSecret" value="Your Azure AD App's new client secret" />
     </appSettings>
 
-hello következő konfigurációs szakaszokat és a kapcsolati karakterlánc bővült.
+A következő konfigurációs szakaszokat és a kapcsolati karakterlánc bővült.
 
     <configSections>
         <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
@@ -154,7 +154,7 @@ hello következő konfigurációs szakaszokat és a kapcsolati karakterlánc bő
 
 
 ### <a name="your-azure-active-directory-app-was-updated"></a>Az Azure Active Directory-alkalmazás frissült
-Az Azure Active Directory-alkalmazás lett frissített tooinclude hello *címtáradatok olvasása* engedéllyel és kulcsot hozták létre, amely majd hello volt megadva *ida: ClientSecret* a hello  **Web.config** fájlt.
+Az Azure Active Directory-alkalmazás lett frissítve a *címtáradatok olvasása* engedéllyel és kulcsot hozták létre, amely majd használata a *ida: ClientSecret* a a  **Web.config** fájlt.
 
 ## <a name="next-steps"></a>Következő lépések
 - [További tudnivalók az Azure Active Directoryban](https://azure.microsoft.com/services/active-directory/)

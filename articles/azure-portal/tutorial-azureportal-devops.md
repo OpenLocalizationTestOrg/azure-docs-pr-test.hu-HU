@@ -1,6 +1,6 @@
 ---
-title: "Oktatóanyag: DevOps a hello Azure portálon |} Microsoft Docs"
-description: "Ismerje meg a hello Azure portál különböző DevOps munkafolyamatok hello."
+title: "Oktatóanyag: A DevOps és az Azure Portal | Microsoft Docs"
+description: "Ismerje meg az Azure Portalon elérhető különböző DevOps-munkafolyamatokat."
 services: azure-portal
 documentationcenter: 
 author: mlearned
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 06/05/2016
 ms.author: mlearned
-ms.openlocfilehash: 4c32dbbd4e4b1c3809ef4b01e1496e350183ebde
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b590fb06a3dba8aec66a380217269e1ca39bb5e7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="tutorial-devops-with-hello-azure-portal"></a>Oktatóanyag: DevOps a hello Azure portál
-hello Azure platformon rugalmas DevOps munkafolyamatok megtelt. Ebben az oktatóanyagban elsajátíthatja, hogyan tooleverage hello képességeit hello Azure Portal toodevelop, teszteléséhez, hibaelhárítása, figyelése, és kezelheti a futó alkalmazások. Ez az oktatóanyag következő hello koncentrál:
+# <a name="tutorial-devops-with-the-azure-portal"></a>Oktatóanyag: A DevOps és az Azure Portal
+Az Azure platform számos rugalmas DevOps-munkafolyamatot tartalmaz. Az oktatóanyagból megtudhatja, hogyan használhatja az Azure Portal funkcióit alkalmazások fejlesztéséhez, teszteléséhez, üzembe helyezéséhez, hibaelhárításához, figyeléséhez és felügyeletéhez. Ez az oktatóanyag a következő témákkal foglalkozik:
 
 1. Webalkalmazás létrehozása és a folyamatos üzembe helyezés engedélyezése
 2. Alkalmazás fejlesztése és tesztelése
@@ -29,119 +29,119 @@ hello Azure platformon rugalmas DevOps munkafolyamatok megtelt. Ebben az oktató
 4. Általános alkalmazásfelügyeleti feladatok
 
 ## <a name="creating-a-web-app-and-enabling-continuous-deployment"></a>Webalkalmazás létrehozása és a folyamatos üzembe helyezés engedélyezése
-A webalkalmazás létrehozása [Azure App Service](https://azure.microsoft.com/services/app-service/), amely ebben az oktatóanyagban hello többi fogja használni. Először engedélyeznie kell a folyamatos üzembe helyezést a forráskód tárházából a futó Azure-környezetbe.
+Hozzon létre egy webalkalmazást az [Azure App Service](https://azure.microsoft.com/services/app-service/) szolgáltatással. Az oktatóanyag további részeiben ezt az alkalmazást fogjuk használni. Először engedélyeznie kell a folyamatos üzembe helyezést a forráskód tárházából a futó Azure-környezetbe.
 
-1. Jelentkezzen be a hello Azure portál
-2. Válasszon **alkalmazásszolgáltatások** &gt; **Hozzáadás ikon** , és adjon meg egy nevet, és válassza ki az előfizetés, hozzon létre egy új erőforrás csoport tooserve hello tárolóként hello szolgáltatás.
+1. Jelentkezzen be az Azure Portalra.
+2. Válassza az **App Services** &gt; **Hozzáadás ikon** lehetőséget, adjon meg egy nevet, válassza ki az előfizetését, és hozzon létre egy új erőforráscsoportot, amely a szolgáltatás tárolója lesz.
    
-   Erőforráscsoportok lehetővé teszik toomanage különféle aspektusaihoz rendelkezésre álló hello megoldás például a számlázást, a központi telepítések és keresztül egyetlen csoportként összes figyelési [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
+   Az erőforráscsoportok segítségével egyetlen csoportként kezelheti az [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) használatával a megoldás különböző részeit, például a számlázást, az üzemelő példányokat és a figyelést.
    
    ![image1][image1]
-3. Pár pillanat múlva létrejön az alkalmazásszolgáltatás. Igénybe vehet néhány percet tooexplore hello hello szolgáltatás különböző menüpontok hello portálon.
+3. Pár pillanat múlva létrejön az alkalmazásszolgáltatás. Szánjon néhány percet arra, hogy a portálon áttekintse a szolgáltatáshoz elérhető különböző menüpontokat.
    
    ![image2][image2]    
-4. Kattintson a hello URL-CÍMÉT. Figyelje meg a rendelkezésre álló lehetőségek a eszközök és a tárolóhelyekkel hello különböző. Hello nyelv és keretrendszer az Ön által választott, beleértve a .NET, Java és Ruby is használható.
+4. Kattintson az URL-címre. Tekintse át az eszközökhöz és a tárházakhoz elérhető különböző lehetőségeket. Kiválaszthatja a használni kívánt nyelveket és keretrendszereket is, ilyen például a .NET, a Java és a Ruby.
    
    ![image3][image3]    
-5. hello Azure-portál lehetővé teszi a folyamatos üzembe helyezés az egyszerű folyamat, amely csak néhány egyszerű lépést foglal magában. Hello Azure-portálon, a hello ikon az imént létrehozott hello app service beállítások választhat.
+5. Az Azure Portal a folyamatos üzembe helyezést egyszerű, néhány rövid lépésből álló folyamattá teszi. Az Azure Portalon válassza ki a kívánt beállításokat az imént létrehozott alkalmazásszolgáltatáshoz tartozó ikonra kattintva.
    
    ![image4][image4]
    
-   Hello panelen jobb hello megnyíló görgessen toohello szakasz közzététele.
+   A jobb oldalon megnyíló panelen görgessen a közzétételi szakaszhoz.
    
    ![image5][image5]
-6. Ezután konfigurálja az egyes beállítások tooenable folyamatos üzembe helyezés hello alkalmazás. Kattintson a Központi telepítés forrása elemre, és kattintson a Forrás kiválasztása elemre. Figyelje meg hello számos tárház adatforrások beállításait.
+6. Ezután adja meg a szükséges beállításokat, hogy engedélyezze az alkalmazás folyamatos üzembe helyezését. Kattintson a Központi telepítés forrása elemre, és kattintson a Forrás kiválasztása elemre. Tekintse át a különböző lehetőségeket a tárházforrásoknál.
    
    ![image6][image6]
-7. Ebben a példában válassza a Githubot. Opcionálisan válassza ki az Ön által választott hello tárház és hello engedélyezési hitelesítő adatok beállítása.
+7. Ebben a példában válassza a Githubot. Ha kívánja, választhat más tárházat is. Ekkor adja meg a szükséges hitelesítő adatokat.
    
    ![image7][image7]
-8. Engedélyezési tooyour tárház, után dönthet a projekt és a fiókiroda toodeploy kívánja. Alább több fiktív mintapéldát láthat.
+8. Miután hitelesítette magát a tárházban, kiválaszthatja az üzembe helyezendő projektet és ágat. Alább több fiktív mintapéldát láthat.
    
    ![image8][image8]
-9. A projekt és az ág kiválasztása után kattintson az OK gombra. A központi telepítés toosee értesítések kell kezdődnie.
+9. A projekt és az ág kiválasztása után kattintson az OK gombra. Meg kell jelenniük az üzembe helyezésre vonatkozó értesítéseknek.
    
    ![image9][image9]
-10. Lépjen vissza tooGitHub toosee hello webhook Azure toointegrate hello forrás vezérlő tárház hoztak létre. hello Azure portál lehetővé teszi az integrációt a Githubon csak néhány egyszerű lépésben.
+10. Lépjen vissza a GitHubra, és tekintse meg a webhookot, amely azért lett létrehozva, hogy integrálja a forrásvezérlő tárházat az Azure-ral. Az Azure Portal segítségével a GitHubbal való integráció néhány lépésben elvégezhető.
     
     ![image10][image10]
-11. toodemonstrate folyamatos üzembe helyezés, gyorsan hozzá néhány tartalom toohello tárházba. Egy egyszerű példa adjon hozzá egy minta szöveges fájl tooa GitHub-tárház. Szabad toouse .NET, Ruby, Python vagy egyéb típusú alkalmazás az App Service áll. Szabad tooadd egy szövegfájlt érzi, hogy az ASP.NET MVC, Java vagy Ruby alkalmazás toohello tárház az Ön által választott.
+11. A folyamatos üzembe helyezés szemléltetéséhez gyorsan vegyen fel valamilyen tartalmat a tárházba. Például vegyen fel egy egyszerű minta szövegfájlt a GitHub-tárházba. Tetszőlegesen használhat .NET, Ruby, Python vagy más típusú alkalmazást az App Service szolgáltatással. Felvehet szövegfájlt, ASP.NET MVC, Java vagy Ruby típusú alkalmazást a kiválasztott tárházba.
     
     ![image11][image11]
-12. Után tooyour tárház módosítások véglegesítése, megjelenik egy új központi telepítési hello portál értesítési területen lévő kezdeményezni. Ha gyorsan jelennek meg módosítások tooyour tárház véglegesítése után, kattintson a szinkronizálás.
+12. Miután véglegesítette a tárház módosításait, a portál értesítési területén megjelenik egy új üzemelő példány jelzése. Ha a tárház változtatásainak véglegesítése után nem jelennek meg hamar a változtatások, kattintson a Szinkronizálás gombra.
     
     ![image12][image12]
-13. Ezen a ponton Ha próbálja és hello app Service hello lap betöltése, a 403-as hiba jelenhet. Ebben a példában ez azért, mert nincs alapértelmezett dokumentum beállítása például egy fájl például index.HTML vagy default.html hello lap. Gyorsan megoldhatja ezt a tooling eszköz az Azure portál hello hello.  A hello Azure portálon válassza a beállítások &gt; alkalmazás beállításait.
+13. Ha ezen a ponton megpróbálja betölteni az alkalmazásszolgáltatás oldalát, 403-as hibát kaphat. Ebben a példában ennek az az oka, hogy az oldalhoz nincs beállítva egy szokásos alapértelmezett oldal, például egy olyan fájl, mint az index.htm vagy a default.html. Ezt a helyzetet gyorsan megoldhatja az Azure Portalon elérhető eszközökkel.  Az Azure Portalon kattintson a Beállítások &gt; Alkalmazásbeállítások elemre.
     
      ![image13][image13]
-14. Megjelenik egy panel az alkalmazásbeállításokkal. Hello lap "SamplePage.html" hello nevét adja meg, és kattintson a Mentés gombra. Igénybe vehet néhány percet tooexplore hello egyéb beállításokat.
+14. Megjelenik egy panel az alkalmazásbeállításokkal. Írja be az oldal „SamplePage.html” nevét, és kattintson a Mentés gombra. Szánjon még pár percet a többi beállítás áttekintésére.
     
     ![image14][image14]
-15. Opcionálisan frissítse a böngésző URL-cím tooensure várt hello módosításokat láthatják. Ebben az esetben van néhány egyszerű szöveg most feltöltése hello lap. Minden további módosítása toohello tárház egy új automatikus központi telepítési eredményezne.
+15. Ha meg szeretne bizonyosodni arról, hogy megjelennek a várt módosítások, frissítheti a böngésző URL-címét. Ebben a példában ekkor egyszerű szöveggel lesz feltöltve az oldal. A tárház minden további módosítása egy új automatikus üzembe helyezést eredményezne.
     
     ![image15][image15]
     
-    Folyamatos üzembe helyezés az Azure portál hello engedélyezése egy egyszerű élményt. Összetettebb kiadás folyamatok létrehozhatja és sok más módszerek használata meglévő verziókezelő és folyamatos integrációt rendszerek toodeploy tooAzure, például az automatikus build és kiadás felügyeleti rendszerekkel is.
+    A folyamatos üzembe helyezés engedélyezése az Azure Portallal nem túl bonyolult feladat. Létrehozhat ennél bonyolultabb kiadási folyamatokat, és sok más módszert is használhat a meglévő forrásvezérlő és folyamatos integrációjú rendszerekkel az Azure-ba való üzembe helyezéshez, például használhat automatikus rendszereket a létrehozás és a kiadás felügyeletéhez.
 
 ## <a name="develop-and-test-an-app"></a>Alkalmazás fejlesztése és tesztelése
-A következő néhány módosítást toohello kód alap, és gyorsan telepítheti ezeket a módosításokat. Rendszer is telepítenie néhány teljesítménytesztelési hello webalkalmazás.
+Ezután hajtson végre néhány módosítást az alapkódban, és gyorsan helyezze üzembe ezeket a módosításokat. Ezenkívül néhány teljesítménytesztet is be fog állítani a webalkalmazáshoz.
 
-1. Az Azure portál hello alkalmazásszolgáltatások hello navigációs ablakból válassza, és keresse meg az App Service.
+1. Az Azure Portalon válassza az App Services elemet a navigációs ablaktáblában, és keresse meg az alkalmazásszolgáltatását.
    
    ![image16][image16]
 2. Kattintson az Eszközök elemre.
    
    ![image17][image17]
-3. Figyelje meg a fejlesztés alatt eszközök kategória hello. Nincsenek számos hasznos eszközök itt, amelyek lehetővé teszik a számunkra alkalmazásokkal toowork hello Azure Portal maradjanak. Kattintson a Konzol elemre.
+3. Figyelje meg az eszközöknél megjelenő Fejlesztés kategóriát. Itt több hasznos eszközt talál, amelyekkel az Azure Portal elhagyása nélkül dolgozhat az alkalmazással. Kattintson a Konzol elemre.
    
    ![image18][image18]
-4. Hello konzolablakban élő parancsok adhat ki az alkalmazásra vonatkozóan. Típus hello dir parancs, és nyomja le a következő adatokat adja meg. Megjegyzendő, hogy az emelt szintű jogosultságokat igénylő parancsok nem működnek.
+4. A konzolablakban élő parancsokat adhat meg a alkalmazáshoz. Írja be a dir parancsot, és nyomja le az Enter billentyűt. Megjegyzendő, hogy az emelt szintű jogosultságokat igénylő parancsok nem működnek.
    
    ![image19][image19]
-5. Helyezze vissza toohello Develop kategória, és válassza ki a Visual Studio online-hoz. Megjegyzés: A Visual Studio Online új neve Visual Studio Team Services.
+5. Lépjen vissza a Fejlesztés kategóriához, és válassza a Visual Studio Online lehetőséget. Megjegyzés: A Visual Studio Online új neve Visual Studio Team Services.
    
    ![image20][image20]
-6. Váltás a hello böngészőn belüli szerkesztési funkciót alkalmazásához.
+6. Váltson át a böngészőbeli szerkesztésre az alkalmazásnál.
    
    ![image21][image21]
-7. Egy webes bővítmény települ az alkalmazáshoz. Bővítmények gyorsan és könnyen egészíthessék funkció tooapps az Azure-ban. Figyelje meg, néhány hello más érhető el az alábbi képernyőképen hello bővítménytípusoknak.
+7. Egy webes bővítmény települ az alkalmazáshoz. A bővítményekkel gyorsan és könnyen egészítheti ki további funkciókkal az alkalmazásokat az Azure-ban. Tekintse át az elérhető egyéb bővítménytípusok példáit az alábbi képernyőfelvételen.
    
    ![image22][image22]
-8. Miután telepíti a Visual Studio Online-bővítmény hello, Ugrás gombra.
+8. A Visual Studio Online bővítmény telepítésének befejeződése után kattintson az Indítás gombra.
    
    ![image23][image23]
-9. Egy böngészőben lapon válaszoknál láthatja a fejlesztési IDE közvetlenül hello böngészőben megnyílik. Értesítés hello az alábbi szolgáltatás a Chrome-ban.
+9. Megnyílik egy böngészőlap, ahol egy fejlesztői IDE környezet jelenik meg magában a böngészőben. Az alábbi példában a Chrome böngésző szerepel.
    
    ![image24][image24]
-10. Hajtsa végre több tevékenységeket, például a Szerkesztés fájlok, fájlok és mappák hozzáadása, és a tartalom letöltése a hello élő webhelyet. Készítsen egy gyors Szerkesztés toohello SamplePage.html fájlt.
+10. Más műveleteket is végrehajthat, például fájlokat szerkeszthet, fájlokat és mappákat vehet fel, és tartalmat tölthet le az élő webhelyről. Végezzen egy gyors szerkesztést a SamplePage.html fájlban.
     
     ![image25][image25]
-11. Néhány perc múlva hello módosítások automatikusan megtörténik. Lépjen vissza toohello lapon, ha hello módosítások tekintheti meg. Ne feledje, hogy az ehhez hasonló élő szerkesztések minden valószínűség szerint nem alkalmazhatók az éles környezetben. Azonban hello eszközök gyors módosításokat végezhet, nagyon könnyen toomake a fejlesztési és tesztelési környezetben.
+11. Néhány pillanat múlva a módosítások automatikusan érvénybe lépnek. Ha visszalép az oldalra, megtekintheti a módosításokat. Ne feledje, hogy az ehhez hasonló élő szerkesztések minden valószínűség szerint nem alkalmazhatók az éles környezetben. Az eszközökkel azonban nagyon könnyen végrehajthatja a fejlesztési és tesztelési környezetek gyors módosításait.
     
     ![image26][image26]
     
     ![image27][image27]
-12. Helyezze vissza toohello Eszközök panelen, majd a hello Develop kategória, kattintson a vizsgálat.
+12. Lépjen vissza az eszközök paneljére, és a Fejlesztés kategóriában kattintson a Teljesítményteszt elemre.
     
     ![image28][image28]
-13. Tooset team services-fiók szükséges. További információt itt talál: [Team Services-fiók létrehozása](https://www.visualstudio.com/docs/setup-admin/team-services/sign-up-for-visual-studio-team-services).
-14. Kattintson az új toocreate teljesítményének teszteléséhez.
+13. Be kell állítania egy Team Services-fiókot. További információt itt talál: [Team Services-fiók létrehozása](https://www.visualstudio.com/docs/setup-admin/team-services/sign-up-for-visual-studio-team-services).
+14. Az Új gombra kattintva hozzon létre egy új teljesítménytesztet.
     
     ![image29][image29]
     
-    Konfigurálása hello különböző értékeket, majd kattintson a hello aljához hello párbeszéd tooinitiate teljesítményének teszteléséhez futtassa tesztelése.
+    Konfigurálja a különböző értékeket, és kattintson a párbeszéd alján található Teszt futtatása gombra a teljesítményteszt elindításához.
     
     ![image30][image30]
     
     ![image31][image31]
-15. Hello teszt futásának indításakor, miután hello állapot figyelheti meg.
+15. A teszt futása közben figyelheti az állapotot.
     
     ![image32][image32]
     
-    Hello teszt befejezése után kattintson a hello eredmény jeleníti meg a további részleteket.
+    A teszt befejeződése után kattintson az eredményekre a további részletek megjelenítéséhez.
     
     ![image33][image33]
-16. Ebben a példában létrehozott egy kis teszt futtatásakor, így korlátozott az tooanalyze, de akkor is tekintse meg a különböző metrikák, valamint futtassa újra a teszt ebben a nézetben. hello Azure Portal létrehozása, végrehajtása és elemzésével webes teljesítménytesztek az egyszerű folyamat teszi. az alábbi képernyőképek hello hello teljesítményadatait jeleníti meg.
+16. Ebben a példában létrehozott egy kisebb tesztfuttatást, korlátozott mennyiségű elemezhető adattal, de így is megtekintheti a különböző mérőszámokat, és újból lefuttathatja a tesztet ebben a nézetben. Az Azure Portal egyszerűvé teszi a webes teljesítménytesztek létrehozását, végrehajtását és elemzését. Az alábbi képernyőfelvételeken a teljesítményadatok láthatók.
     
     ![image34][image34]
     
@@ -152,13 +152,13 @@ A következő néhány módosítást toohello kód alap, és gyorsan telepíthet
 ## <a name="monitoring-and-troubleshooting-an-app"></a>Alkalmazás figyelése és hibaelhárítása
 Az Azure számos funkciót kínál a futó alkalmazások figyeléséhez és hibaelhárításához.
 
-1. Válassza ki a webalkalmazás Azure Portal hello eszközök.
+1. A webalkalmazásunkhoz tartozó Azure Portalon válassza az Eszközök lehetőséget.
    
    ![image37][image37]
-2. A hello kapcsolatos problémák elhárítása kategória futó alkalmazáshoz eszközök tootroubleshoot lehetséges problémák használatára vonatkozó különböző döntések hello figyelje. Lehetőség van például az élő HTTP-forgalom figyelésére, az önjavítás engedélyezésére, a naplók megtekintésére stb.
+2. A Hibaelhárítás kategóriában tekintse át a különböző eszközöket, amelyeket a futó alkalmazások esetleges problémáinak megoldására használhat. Lehetőség van például az élő HTTP-forgalom figyelésére, az önjavítás engedélyezésére, a naplók megtekintésére stb.
    
    ![image38][image38]
-3. Válassza a Webhelymetrikák tooquickly get egy nézet egy HTTP-kódját.
+3. Válassza a Webhelymetrikák lehetőséget bizonyos HTTP-kódrészletek gyors megjelenítéséhez.
    
    ![image39][image39]
 4. Válassza a Diagnosztika lehetőséget szolgáltatásként. Válassza ki az alkalmazás típusát, majd kattintson a Futtatás gombra.
@@ -168,102 +168,102 @@ Az Azure számos funkciót kínál a futó alkalmazások figyeléséhez és hiba
    Elkezdődik az adatgyűjtés.
    
    ![image41][image41]
-5. Úgy is dönthet, hello megfelelő napló toodiagnose lehetséges problémák kezeléséhez. Meg kell tooenable naplózási toosee hello rendelkezésre álló adatok például a HTTP-naplók beállításai közül.
+5. Kiválaszthatja a megfelelő naplót a potenciális problémák diagnosztizálásához. Engedélyeznie kell a naplózást, ha látni szeretné az összes rendelkezésre álló adatot, például a HTTP-naplókat.
    
    ![image42][image42]
    
-   Hello memóriakép fájl letöltése és elemezheti a debugdiag lehetőséget kattintva elemző jelentés toohelp található lehetséges problémák kezeléséhez.
+   Az összeomlási memóriakép fájljára kattintva letöltheti és elemezheti a hibakeresés diagnosztikai elemzési naplóját, amelyben megkeresheti a lehetséges problémákat.
    
    ![image43][image43]
-6. tooview több adatot tooenable további naplózás van szüksége. Az hello Azure portál keresse meg a toohello webalkalmazást, és válassza a beállítások.
+6. Ha még több adatot szeretne megtekinteni, engedélyeznie kell a további naplózási lehetőségeket. Az Azure Portalon lépjen a webalkalmazáshoz, és válassza a Beállítások lehetőséget.
    
    ![image44][image44]
-7. Görgessen lefelé toohello szolgáltatások kategóriát, és válassza a diagnosztikai naplókat.
+7. Görgessen lefelé a Szolgáltatások kategóriához, és válassza a Diagnosztikai naplók elemet.
    
       ![image45][image45]
-8. Figyelje meg, hello különféle naplózási beállításai. Kapcsolja be a webkiszolgálók naplózását, és kattintson a Mentés gombra.
+8. Tekintse át a különböző naplózási lehetőségeket. Kapcsolja be a webkiszolgálók naplózását, és kattintson a Mentés gombra.
    
    ![image46][image46]
-9. Helyezze vissza toohello eszközök terület hello alkalmazáshoz, és válassza ki a diagnosztika szolgáltatásként, és kattintson a Futtatás toorerun hello adatgyűjtés.
+9. Lépjen vissza az alkalmazás eszközeinek területére, és válassza a Diagnosztika lehetőséget szolgáltatásként, majd kattintson a Futtatás gombra az adatgyűjtés újbóli elindításához.
    
    ![image47][image47]
-10. Hello HTTP-naplózás beállítás engedélyezése esetén a HTTP-naplók gyűjtött adatok ekkor megjelenik.
+10. Ha engedélyezve van a HTTP-naplózás, láthatja a HTTP-naplókhoz gyűjtött adatokat.
     
     ![image48][image48]
-11. Hello HTML-fájl napló kattintva további vizsgálatok gazdag böngészőalapú jelentést készít.
+11. Ha rákattint a HTML-naplófájlra, számos további böngészőalapú jelentés jelenik meg a további elemzéshez.
     
     ![image49][image49]
-12. Visszalépés toohello eszközök szakasz hello Azure Portal hello alkalmazás. Görgessen toohello eszközök szakaszban, és válassza ki a Process Explorer.
+12. Lépjen vissza az eszközök szakaszára az alkalmazás Azure Portalján. Görgessen az Eszközök szakaszra, és válassza ki a Process Explorert.
     
     ![image50][image50]
-13. A Process Explorer kiválasztásával megtekintheti a futó folyamatok adatait. Figyelje meg, az alábbi folyamatok elemezze, és még kill minden hello Azure-portál a folyamatokat.
+13. A Process Explorer kiválasztásával megtekintheti a futó folyamatok adatait. Figyelje meg, hogy a folyamatokat kibonthatja, és még le is állíthatja az Azure Portalról.
     
     ![image51][image51]
     
     ![image52][image52]
-14. Visszalépés toohello beállítások panel hello bal oldalon. Kattintson az Új támogatási kérelem elemre.
+14. Lépjen vissza a bal oldalon található Beállítások panelre. Kattintson az Új támogatási kérelem elemre.
     
     ![image53][image53]
-15. Hello panelen a jobb oldali hello töltse ki a hello hibákkal kapcsolatos információkat, adja meg a kapcsolattartási adatokat, és még a diagnosztikai adatok feltöltése. hello Azure Portal lehetővé teszi, hogy a Microsoft támogatási szolgálatához zökkenőmentes élményt használata.
+15. A jobb oldali panelen beírhatja a problémával kapcsolatos adatokat, megadhatja a kapcsolattartási adatokat, és akár fel is töltheti a diagnosztikai adatokat. Az Azure Portal lehetővé teszi, hogy zökkenőmentesen együttműködjön a Microsoft támogatási szolgálatával.
     
     ![image54][image54]
     
     ![image55][image55]
     
-    hello Azure Portal biztosítanak a hatékony és ismerős lép toohelp figyelő tooling eszköz segítségével, és hibaelhárítása a futó alkalmazások. Biztosan is képes tootake művelet gyorsan folyamatok újrahasznosítása, engedélyezése és letiltása különböző adatok gyűjtemények és a Microsoft professzionális támogatás még integrálása feladatok végrehajtásával.
+    Az Azure Portal hatékony és megszokott eszközöket biztosít a futó alkalmazások figyeléséhez és hibaelhárításához. Emellett gyorsan végrehajthatja az olyan műveleteket, mint az újrahasznosítási folyamatok, a különböző adatgyűjtések engedélyezése és letiltása, és akár az integráció a Microsoft szakértő támogatásával.
 
 ## <a name="general-application-management"></a>Általános alkalmazásfelügyelet
-Alkalmazások kezelése, ha gyakran kell tooperform tevékenységek, például a biztonsági mentési stratégia, végrehajtási és identitás-szolgáltatóktól kezelése és a szerepköralapú hozzáférés-vezérlés konfigurálása széles választékában. A hello más DevOps lép, mivel hello Azure platformon integrálódik ezeket a feladatokat közvetlenül hello portálon.
+Amikor alkalmazásokat felügyel, gyakran kell végrehajtania olyan tevékenységeket, mint például a biztonsági mentési stratégiák konfigurálása, az identitásszolgáltatók megvalósítása és kezelése, valamint a szerepköralapú hozzáférés-vezérlés konfigurálása. A DevOps más funkcióihoz hasonlóan az Azure platform integráltan, közvetlenül a portálon teszi elérhetővé ezeket a feladatokat.
 
-1. amelyek megőrzésével tooensure hello webalkalmazás tooconfigure biztonsági mentések szüksége biztonságos adatvesztés ellen. Keresse meg a webalkalmazás toohello beállítások területen.
+1. A webalkalmazás adatvesztés elleni védelméhez biztonsági mentéseket kell konfigurálnia. Lépjen a webalkalmazás Beállítások területére.
    
    ![image56][image56]
-2. Hello panelen a jobb oldali hello görgetve toohello szolgáltatásai kategóriában.
+2. A jobb oldali panelen görgessen le a Szolgáltatások kategóriához.
    
     ![image57][image57]
-3. Válassza ki a biztonsági mentések; a jobb oldali hello megnyílik egy panel.
+3. Válassza ki a Biztonsági másolatok lehetőséget. A jobb oldalon megnyílik egy panel.
    
    ![image58][image58]
-4. Kattintson a Konfigurálás gombra, válasszon tárfiókot hello panelen a jobb oldali hello.
+4. Kattintson a Konfigurálás gombra, és válasszon egy tárfiókot a jobb oldali panelen.
    
    ![image59][image59]
-5. Most hozzon létre, és válassza ki a tárolási tároló toohold a biztonsági másolatok. Kattintson a létrehozás hello hello panel alsó részén. Válassza ki a hello tároló.
+5. Most hozzon létre egy tárolót a biztonsági mentések tárolásához. Kattintson a panel alján található Létrehozás gombra. Ezután válassza ki a tárolót.
    
    ![image60][image60]
-6. Miután kiválasztotta a hello tároló, az adatbázisok a ütemezéseket, valamint a telepítés biztonsági mentések állíthatja be. Ebben az esetben kattintson a mentés ikon hello.
+6. Miután kiválasztotta a tárolót, beállíthatja az ütemezéseket, valamint az adatbázisok biztonsági mentését. Ebben a példában kattintson a Mentés ikonra.
    
     ![image61][image61]
-7. A mentés után görgessen hello bal oldali hátsó toohello panel a biztonsági mentésekhez. Kattintson a biztonsági mentés most tooback hello alkalmazás.
+7. A mentés után görgessen vissza a bal oldali panelre, a Biztonsági másolatok lehetőséghez. Kattintson a Biztonsági mentés gombra az alkalmazás biztonsági mentéséhez.
    
     ![image62][image62]
-8. Rövidesen múlva megjelenik a létrehozott biztonsági másolat. Értesítés hello visszaállítás most az alábbi képernyőfelvételen hello lehetőséget.
+8. Rövidesen múlva megjelenik a létrehozott biztonsági másolat. A képernyőfelvételen láthatja a Visszaállítás lehetőséget.
    
     ![image63][image63]
-9. Kattintson a visszaállítás most, és vizsgálja meg jobb hello hello beállítások toohello paneljét. Lehetősége van egy megfelelő biztonsági mentés és egyszerű visszaállítás tooan korábbi állapot szükség szerint. hello Azure-portálon hozzájárult, könnyen engedélyezheti egy egyszerű vész-helyreállítási stratégiát hello alkalmazást.
+9. Kattintson a Visszaállítás gombra, és tekintse át a jobb oldali panelen található beállításokat. Kiválaszthatja a biztonsági másolatot, és szükség esetén könnyen visszaállíthat egy korábbi állapotot. Az Azure Portal segítségével könnyen létrehoztuk az alkalmazás egyszerű vészhelyreállítási stratégiáját.
    
     ![image64][image64]
-10. Visszalépés toohello beállítások panel hello bal oldali és a szolgáltatások, és válassza ki a hitelesítési/engedélyezési.
+10. Lépjen vissza a bal oldali Beállítások panelre, és a Szolgáltatások elemnél válassza ki a Hitelesítés/engedélyezés lehetőséget.
     
      ![image65][image65]
-11. Hello panelen a jobb oldali hello válassza ki az App Service hitelesítés. Figyelje meg hello a számos népszerű szolgáltatók konfigurálható.
+11. A jobb oldali panelen válassza ki az App Service-hitelesítés lehetőséget. Tekintse át a különböző beállításokat, amelyeket megadhat a népszerű szolgáltatókhoz.
     
      ![image66][image66]
-12. Válassza ki azt az Ön által választott hello szolgáltatót, és figyelje meg hello hatókör hello beállításait. Adjon meg egy alkalmazás Azonosítóját és egy alkalmazás titkos kulcs, és engedélyezheti a Facebook-hitelesítési hello alkalmazás. hello Azure portál lehetővé teszi a hitelesítést az alkalmazások azonnal használható megoldás.
+12. Válassza ki a kívánt szolgáltatót, és tekintse át a hatókör beállításait. Adja meg az alkalmazás azonosítója és az alkalmazás titkos kulcsát, és engedélyezze az alkalmazás Facebook-hitelesítését. Az Azure Portal a hitelesítést kulcsrakész megoldásként biztosítja az alkalmazásokhoz.
     
      ![image67][image67]
-13. Helyezze vissza toohello beállítások panelen, és válassza ki a felhasználók hello erőforrás kezelése kategóriához tartozó.
+13. Lépjen vissza a Beállítások panelre, és válassza ki a Felhasználók elemet az Erőforrás-kezelés kategóriában.
     
      ![image68][image68]
-14. Vizsgálja meg a megfelelő hello hello paneljét hello különböző beállítások a szerepkörök és a felhasználók hozzáadásához. hello Azure portál segítségével szabályozhatja könnyen RBAC (szerepköralapú hozzáférés-vezérlés) hello alkalmazáshoz.
+14. A jobb oldali panelen tekintse át a szerepkörök és a felhasználók hozzáadásának különböző lehetőségeit. Az Azure Portal segítségével egyszerűen meghatározhatja az alkalmazás szerepkörön alapuló hozzáférés-vezérlését.
     
      ![image69][image69]
 
 ## <a name="summary"></a>Összefoglalás
-Ez az oktatóanyag bemutatott egyes hello power hello Azure platformon, gyorsan engedélyezése az webalkalmazáshoz a folyamatos üzembe helyezés, hajt végre a különböző fejlesztési és tesztelési tevékenységeket, figyelés és hibaelhárítás élő app, végül és kezelhet, és kulcs például a vész-helyreállítási, identitáskezelési és szerepköralapú hozzáférés-vezérlés stratégiák. hello Azure platform lehetővé teszi, hogy a DevOps munkafolyamatok integrált megoldást, és dolgozhat hatékonyan által az aktuális hello feladathoz tartozó környezet marad.
+Ez az oktatóanyag bemutatta az Azure platform néhány hatékony funkcióját: a webalkalmazások folyamatos üzembe helyezésének gyors engedélyezését, a különböző fejlesztési és tesztelési tevékenységek végrehajtását, az élő alkalmazások figyelését és hibaelhárítását, és végül a fontos stratégiák, például a vészhelyreállítás, az identitás és a szerepköralapú hozzáférés-vezérlés kezelését. Az Azure platform lehetővé teszi a felsorolt DevOps-munkafolyamatok integrált használatát, így hatékonyan dolgozhat az adott feladatnak megfelelő környezetben.
 
 ## <a name="next-steps"></a>Következő lépések
-* Az Azure Resource Manager fontos DevOps engedélyezését hello Azure platformon.  több látogasson el az toolearn [Azure Resource Manager áttekintése](../azure-resource-manager/resource-group-overview.md).
-* Azure App Service telepítési olvashat toolearn [az alkalmazás tooAzure App Service telepítése](../app-service-web/web-sites-deploy.md)
+* Az Azure Resource Manager fontos szerepet tölt be a fejlesztés és az üzemeltetés lehetővé tételében az Azure platformon.  További tudnivalók: [Az Azure Resource Manager áttekintése](../azure-resource-manager/resource-group-overview.md).
+* Az Azure App Service üzembe helyezésének ismertetését lásd: [Deploy your app to Azure App Service](../app-service/app-service-deploy-local-git.md) (Alkalmazás telepítése az Azure App Service szolgáltatásban).
 
 [image1]: ./media/tutorial-azureportal-devops/image1.png
 [image2]: ./media/tutorial-azureportal-devops/image2.png

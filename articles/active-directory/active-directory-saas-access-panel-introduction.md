@@ -1,6 +1,6 @@
 ---
-title: "aaaWhat hello hozzáférési panel az Azure Active Directoryban? | Microsoft Docs"
-description: "Ismerje meg, hogyan férhetnek hozzá a hello toouse változatait (webböngésző, Android-alkalmazás, iPhone és iPad) panelen tooaccess SaaS-alkalmazásokhoz."
+title: "Mi az a hozzáférési panel az Azure Active Directoryban? | Microsoft Docs"
+description: "Ismerje meg, hogyan használható a hozzáférési panel (webböngésző, Android-alkalmazás, iPhone és iPad) férhetnek hozzá SaaS-alkalmazásokhoz való változatait."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,83 +15,83 @@ ms.date: 07/31/2017
 ms.author: markvi
 ms.reviewer: asteen
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 800be6a69f13978c5b88e2fe28a416d4b763656c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bd9066c251188c0f18fe1a9403baa2beaeeb987c
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="what-is-hello-access-panel"></a>Mi az a hozzáférési panel hello?
+# <a name="what-is-the-access-panel"></a>Mi az a hozzáférési panel?
 
-hello hozzáférési panel egy webes portál. Ez lehetővé teszi, hogy a felhasználó munkahelyi vagy iskolai fiókkal az Azure Active Directory tooview és kezdő felhőalapú alkalmazásokban az Azure AD-rendszergazda engedélyezte őket a hozzáférést. Önkiszolgáló csoportkezelési és kezelési képességeit hello hozzáférési panel keresztül is használható.
+A hozzáférési panel egy webes portál. Lehetővé teszi a felhasználó munkahelyi vagy iskolai fiókkal az Azure Active Directoryban megtekintéséhez, és indítsa el a felhőalapú alkalmazások az Azure AD-rendszergazda rendelkezik hozzáféréssel őket. Önkiszolgáló csoportkezelési és felügyeleti képességeit a hozzáférési panel keresztül is használható.
 
-hello hozzáférési panel elkülönül hello Azure-portálon, és does nem Ön toohave Azure-előfizetéssel.
+A hozzáférési panel elkülönül az Azure-portálon, és nem Ön az Azure-előfizetésre does.
 
 ![Hozzáférési panel][1]
 
-hello hozzáférési panel lehetővé teszi a profil beállításait, beleértve néhány hello lehessen tooedit:
+A hozzáférés lehetővé teszi, hogy bizonyos a profil beállításait, például a szerkesztése:
 
-- A munkahelyi vagy iskolai fiókhoz kapcsolódó hello jelszó módosítása
+- A munkahelyi vagy iskolai fiókhoz tartozó jelszó módosítása
 
 - Jelszó alaphelyzetbe állítása beállításainak szerkesztése
 
-- Ügyfél és a beállításokat szabályozó beállítások kapcsolódó toomulti tényezős hitelesítés szerkesztése (lett volna szükség toouse-fiókok, egy rendszergazda)
+- Többtényezős hitelesítés (a rendszergazda lett rá szükséges fiókok) kapcsolatos ügyfél és a beállításokat szabályozó beállítások szerkesztése
 
 - A fiók adatait, például a felhasználói Azonosítóját, másodlagos e-mail, és a mobil- és office telefonszámokat, és az eszközök megtekintése
 
-- Nézet és kezdő felhőalapú alkalmazások, amelyek az Azure AD rendszergazdai hello rendelkezik őket hozzáférést kap. Hello hozzáférési panel a hello felhasználók szempontjából kapcsolatos további információkért lásd: hello hozzáférési panel használatával. 
+- Megtekintheti, és indítsa el a felhőalapú alkalmazásokat, amelyek az Azure AD-rendszergazda engedélyezte őket a hozzáférést. A hozzáférési panel a a felhasználók szempontjából kapcsolatos további információkért lásd: a hozzáférési panelen. 
 
-- Önálló csoportok kezelése. Pontosabban hello rendszergazda létrehozhat és biztonsági csoportok és a kérelem biztonsági csoporttagságok kezelése az Azure ad-ben. További információkért lásd: [önkiszolgáló csoportkezelési a felhasználók számára az Azure AD](active-directory-accessmanagement-self-service-group-management.md) és [saját csoportjai kezelését](active-directory-manage-groups.md).
-
-
+- Önálló csoportok kezelése. Pontosabban, a rendszergazda létrehozhat és biztonsági csoportok kezelése és az Azure AD biztonsági csoporttagság kérése. További információkért lásd: [önkiszolgáló csoportkezelési a felhasználók számára az Azure AD](active-directory-accessmanagement-self-service-group-management.md) és [saját csoportjai kezelését](active-directory-manage-groups.md).
 
 
-## <a name="accessing-hello-access-panel"></a>Hello hozzáférési panel elérése
 
-Hello hozzáférési panel érhetők el a következő URL-címet egy webböngészőben hello érhető el:`http://myapps.microsoft.com`
 
-Ha a bejelentkezési lapon konfigurált egyéni védjegyek, betöltheti branding a szervezet tartomány toohello hello URL-cím végéhez hozzáfűzésével:`http://myapps.microsoft.com/<your domain>.com`
+## <a name="accessing-the-access-panel"></a>A hozzáférési panel elérése
+
+A következő URL-címet egy webböngészőben felkeresésével érhető el a hozzáférési panel:`http://myapps.microsoft.com`
+
+Ha a bejelentkezési lapon konfigurált egyéni védjegyek, betöltése a védjegyek, az URL-cím végén a szervezet tartományához hozzáfűzésével:`http://myapps.microsoft.com/<your domain>.com`
 
 Ebben az esetben használhatja ki bármely aktív vagy ellenőrzött és érvényes tartománynevet, amely az Azure-portálon lett konfigurálva.
 
 ![A Wingtip Toys tartománynév][2]  
 
-Meg kell toodistribute hello URL-cím tooall felhasználók, akik az Azure AD integrált tooapplications alá fogja írni.
+Minden felhasználó számára lesz jelentkezzen be az Azure AD integrált alkalmazások URL-címét kell.
 
 ## <a name="authentication"></a>Authentication
 
-tooreach hello hozzáférési panelre, akkor kell hitelesíteni keresztül a munkahelyi vagy iskolai fiókkal az Azure ad-ben. Hitelesített tooAzure AD közvetlenül lehet. Azt is megteheti Ha egy szervezet összevonási konfigurált Active Directory összevonási szolgáltatások (AD FS) vagy egyéb technológiák használatával, akkor hitelesítheti a Windows Server Active Directory.
+A hozzáférési panel elérését, keresztül a munkahelyi vagy iskolai fiókkal az Azure AD lehet hitelesíteni. Az Azure AD közvetlenül hitelesíthetők. Azt is megteheti Ha egy szervezet összevonási konfigurált Active Directory összevonási szolgáltatások (AD FS) vagy egyéb technológiák használatával, akkor hitelesítheti a Windows Server Active Directory.
 
-Az Azure vagy Office 365-előfizetéssel rendelkezik, és hello Azure-portálon vagy az Office 365 alkalmazást használja, ha hello alkalmazások listáját láthatja nélkül aláíró újra be. Ha Ön nem hitelesített használatával hello felhasználónevet és jelszót a fiókhoz az Azure ad-ben a kért toosign áll. Ha a szervezet összevonási konfigurált, írja be a hello felhasználónév is használhatók.
+Az Azure vagy Office 365-előfizetéssel rendelkezik, és az Azure-portálon vagy az Office 365 alkalmazás használja, ha az alkalmazások listáját láthatja nélkül aláíró újra be. Ha Ön nem hitelesített jelentkezzen be a felhasználónevet és jelszót a fiókhoz az Azure AD kéri. Ha a szervezet összevonási konfigurált, írja be a felhasználónevet is használhatók.
 
-Megtörténik, amikor a rendszergazda hello Directoryval integrált alkalmazások hello kezelheti. Hogyan toointegrate alkalmazások az Azure AD: toolearn [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval?](active-directory-appssoaccess-whatis.md).
+Amikor megtörténik, kezelheti az alkalmazásokat, amelyek a rendszergazda a könyvtárban van integrálva. Alkalmazások integrálása az Azure ad-vel kapcsolatban a [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="web-browser-requirements"></a>Webböngészőkre vonatkozó követelmények
 
-Legalább a hello hozzáférési panel igényel, amely támogatja a JavaScript egy böngészőt, és CSS engedélyezte. Hello a jelszó-alapú egyszeri bejelentkezést (SSO) keresztül tooapplications bejelentkezett felhasználó toobe hello hozzáférési panel bővítményét kell telepíteni a böngészőben. hello bővítmény le automatikusan, amikor kiválaszt egy alkalmazást, amely jelszóalapú SSO van konfigurálva.
+Legalább a hozzáférési panel igényel, amely támogatja a JavaScript egy böngészőt, és CSS engedélyezte. A felhasználó bejelentkezhet a jelszó-alapú egyszeri bejelentkezést (SSO) alkalmazások a böngésző a hozzáférési panel bővítményét kell telepíteni. A bővítmény le automatikusan, amikor kiválaszt egy alkalmazást, amely jelszóalapú SSO van konfigurálva.
 
-hello hozzáférési panel bővítmény érhető el jelenleg Internet Explorer 8 és újabb verziók, Firefox, biztonsági és Chrome böngésző.
+A hozzáférési panel bővítmény érhető el jelenleg Internet Explorer 8 és újabb verziók, Firefox, biztonsági és Chrome böngésző.
 
 ## <a name="mobile-app-support"></a>Mobilalkalmazás-támogatás
 
-hello Azure Active Directory csapat hello tesz közzé alkalmazásokat a mobilalkalmazás. Hello alkalmazás telepítésekor bejelentkezhet toopassword-alapú egyszeri Bejelentkezést alkalmazások iOS és Android-eszközökön.
+Az Azure Active Directory ügyfélszolgálata közzéteszi az alkalmazásokat a mobilalkalmazás. Az alkalmazás telepítésekor regisztrálhat jelszó alapú egyszeri bejelentkezés alkalmazásokhoz iOS és Android-eszközök.
 
 > [!NOTE]
-> Bejelentkezhet az Azure ad-val (például Salesforce, Google Apps, Dropbox, mezőben, Concur, Workday, Office 365, és több mint 70 mások) összevonási támogató tooapplications szinte bármilyen böngészőben, bármilyen eszközön, anélkül, hogy a beépülő modul vagy mobil alkalmazások. Minden más [hozzáférési panel lép](https://myapps.microsoft.com/) is nem igényelnek az alkalmazások mobilalkalmazás toobe használni a mobileszköz hello.
+> Bejelentkezhet az Azure ad-val (például Salesforce, Google Apps, Dropbox, mezőben, Concur, Workday, Office 365, és több mint 70 mások) összevonási támogató alkalmazások szinte bármilyen böngészőben, bármilyen eszközön, anélkül, hogy a beépülő modul vagy mobil alkalmazások. Minden más [hozzáférési panel lép](https://myapps.microsoft.com/) is nincs szükség a mobileszközökön használandó alkalmazásokat mobilalkalmazáson keresztül.
 >
 >
 
 ### <a name="my-apps-for-android"></a>A saját Android-alkalmazások
 
 A saját Android-alkalmazások számítógépre Android 4.1 Android-verziót futtat és újabb rendszer.  
-Hello elérhető [Google Play áruház](https://play.google.com/store/apps/details?id=com.microsoft.myapps).
+Elérhető a [Google Play áruház](https://play.google.com/store/apps/details?id=com.microsoft.myapps).
 
 ![A saját Android-alkalmazások][3]   
 
 ### <a name="my-apps-for-iphone-and-ipad"></a>IPhone és iPad alkalmazásaimat
 
 Az iOS-alkalmazások bármely iPhone vagy iPad futtató verziója iOS 7 és újabb verziók támogatják.  
-Hello elérhető [Apple App Store](https://itunes.apple.com/us/app/my-apps-azure-active-directory/id824048653?mt=8).
+Elérhető a [Apple App Store](https://itunes.apple.com/us/app/my-apps-azure-active-directory/id824048653?mt=8).
 
 ![Az iOS-alkalmazások][4]    
 
@@ -99,10 +99,10 @@ Hello elérhető [Apple App Store](https://itunes.apple.com/us/app/my-apps-azure
 
 ## <a name="managed-browser-for-my-apps"></a>Felügyelt böngésző saját alkalmazások
 
-Az alkalmazások is integrálva van a hello Intune felügyelt böngészővel. hello Intune Managed Browser iOS és Android-eszközök győződjön meg arról, hogy a mobileszközök adatainak biztonságos marad kulcsfontosságú szerepet játszik. Lehetővé teszi a biztonságosan megtekintheti, és keresse meg, amelyek a vállalati adatokat tartalmazhatnak, és biztonságos webböngésző élményt nyújt.  
-A gyors hozzáférés toomy alkalmazásokat a Managed Browser kezdőlap és a könyvjelzőt, így kevesebb kattint tooreach bármely alkalmazást tooaccess megkeresése
+Az alkalmazások is integrálva van az Intune Managed Browser a. Az Intune Managed Browser iOS és Android-eszközök győződjön meg arról, hogy a mobileszközök adatainak biztonságos marad kulcsfontosságú szerepet játszik. Lehetővé teszi a biztonságosan megtekintheti, és keresse meg, amelyek a vállalati adatokat tartalmazhatnak, és biztonságos webböngésző élményt nyújt.  
+Látni alkalmazásaimat gyors elérését a Managed Browser kezdőlap és a könyvjelzőt, így kevesebb kattint, bármely az elérni kívánt alkalmazás eléréséhez.
 
-Hello elérhető [Apple App Store](https://itunes.apple.com/us/app/microsoft-intune-managed-browser/id943264951?mt=8) és [Google Play áruház](https://play.google.com/store/apps/details?id=com.microsoft.intune.mam.managedbrowser&hl=en).
+Elérhető a [Apple App Store](https://itunes.apple.com/us/app/microsoft-intune-managed-browser/id943264951?mt=8) és [Google Play áruház](https://play.google.com/store/apps/details?id=com.microsoft.intune.mam.managedbrowser&hl=en).
 
 ![Saját alkalmazások Mananged böngésző][5]    
 
@@ -110,81 +110,81 @@ Hello elérhető [Apple App Store](https://itunes.apple.com/us/app/microsoft-int
 
 
 
-## <a name="tips-for-testing-hello-user-experience"></a>Tippek a tesztelési hello felhasználói élmény
+## <a name="tips-for-testing-the-user-experience"></a>A felhasználói élmény tesztelési tippek
 
-Ha egy Azure rendszergazdát, és be van jelentkezve toohello Azure-portálon hello directory egy olyan fiókkal, automatikusan bejelentkeztetjük toohello hozzáférési panelen, a jelenlegi fiókkal. Ebben az esetben tooyou hozzárendelt összes alkalmazás látható.
+Ha egy Azure rendszergazdát és jelentkezett be az Azure portálra egy olyan fiókkal a címtárban, automatikusan jelentkezett a hozzáférési panelre, a jelenlegi fiókkal. Ebben az esetben tekintheti meg, hogy Önhöz rendelt összes alkalmazást.
 
-**mint tootest egy *különböző* felhasználói fiók:**
+**Tesztelésére, mint egy *különböző* felhasználói fiók:**
 
-1. Hello jobb felső sarkában hello Azure-portálon vagy a hozzáférési panel hello hello felhasználói menüre kattint, és válassza **Kijelentkezés**. 
-2. Nyissa meg toohello [hozzáférési panel](http://myapps.microsoft.com).
-3. Hello bejelentkezési oldalára, típus hello felhasználónév és a címtárban hello fiók jelszavát kívánt tootest.
+1. A felhasználó menü, az Azure-portálon vagy a hozzáférési panel jobb felső sarkában kattintson, majd **Kijelentkezés**. 
+2. Lépjen a [hozzáférési panel](http://myapps.microsoft.com).
+3. A bejelentkezési lapon írja be a felhasználónév és a fiók jelszavát a vizsgálni kívánt könyvtárban.
 
 
 ## <a name="starting-applications"></a>Alkalmazások elindítása
 
-Számos különböző típusú alkalmazások hello hozzáférési panel megjelenhet.
+Számos különböző típusú alkalmazások is jelennek meg a hozzáférési panel.
 
 ### <a name="office-365-applications"></a>Office 365-alkalmazások
 
-Ha a szervezet által használt Office 365-alkalmazások és a számukra rendelkezik licenccel, hello Office 365-alkalmazások jelennek meg a hozzáférési panel.
+Ha a szervezet által használt Office 365-alkalmazásokhoz, és rendelkezik licenccel, az Office 365-alkalmazások jelennek meg a hozzáférési panel.
 
-Ha egy alkalmazás csempe az Office 365 alkalmazás gombra kattint, alkalmazás és az automatikus bejelentkezés átirányított toohello áll.
+Ha egy alkalmazás csempe az Office 365 alkalmazás gombra kattint, Ön átirányítja az alkalmazásba, és automatikusan megtörténik a.
 
 ### <a name="microsoft-and-third-party-applications-configured-with-federation-based-sso"></a>Összevonási-alapú egyszeri bejelentkezési modellel konfigurált a Microsoft és külső alkalmazások
 
-A rendszergazda adhat hozzá alkalmazásokat hello hello Azure-portálon az Active Directory szakasza hello SSO módban a túl**az Azure AD az egyszeri bejelentkezés**. Csak megtekintheti ezeket az alkalmazásokat, ha a rendszergazda explicit módon adott hozzáférhessenek az toohello alkalmazásokhoz.
+A rendszergazda adhat hozzá alkalmazásokat az Azure-portálon az Active Directory szakaszában az SSO módban **az Azure AD az egyszeri bejelentkezés**. Csak megtekintheti ezeket az alkalmazásokat, ha a rendszergazda explicit módon adott az alkalmazások elérését.
 
-Ezen alkalmazások egyikét mozaikokra kattintva Ön átirányítva, és automatikusan megtörténik a toohello alkalmazás.
+Ezen alkalmazások egyikét mozaikokra kattintva Ön átirányítva, és automatikusan bejelentkeztetjük az alkalmazást.
 
 ### <a name="password-based-sso-without-identity-provisioning"></a>Egyszeri bejelentkezés jelszó alapú identitás kiépítés nélkül
 
-A rendszergazda adhat hozzá alkalmazásokat hello hello Azure-portálon az Active Directory szakasza hello SSO módban a túl**jelszó-alapú egyszeri bejelentkezést**. Hello címtárban szereplő összes felhasználó láthatja az összes olyan alkalmazások, amelyek ebben a módban vannak konfigurálva.
+A rendszergazda adhat hozzá alkalmazásokat az Azure-portálon az Active Directory szakaszában az SSO módban **jelszó-alapú egyszeri bejelentkezést**. A címtárban szereplő összes felhasználó láthatja az összes olyan alkalmazások, amelyek ebben a módban vannak konfigurálva.
 
-hello először, akkor egy csempére kattint, az alábbi alkalmazások közül, felszólító tooinstall hello jelszó SSO beépülő modul az Internet Explorer vagy a Chrome áll. hello telepítés akkor toorestart lehet szükség a webböngésző. Ha toohello hozzáférési panel vissza, és kattintson hello alkalmazás csempéjére újra, a felhasználónév és jelszó hello alkalmazás kéri. Miután megadta a felhasználónevét és jelszavát, ezeket a hitelesítő adatokat biztonságosan tárolja, és tooyour fiók társított Azure AD-ben.
+Először, kattint egy ezeket az alkalmazásokat, egy csempe kéri a beépülő modul jelszó SSO telepítéséhez az Internet Explorer vagy a Chrome. A telepítés előfordulhat, hogy indítsa újra a webböngészőt. Ha a hozzáférési panelre való visszatéréshez, és kattintson az alkalmazás csempéjére újra, felhasználónevet és jelszót az alkalmazás kéri. Amikor a felhasználónevet és jelszót adta meg, ezek a hitelesítő adatok biztonságos tárolása és kapcsolódik ahhoz a fiókhoz az Azure AD.
 
-hello kattintson hello alkalmazás csempéjére, automatikusan bejelentkezik az toohello alkalmazás következő indításakor.  
-Nem rendelkezik tooenter a hitelesítő adatokkal megismételni és vagy hello jelszó SSO beépülő modul telepítése.
+A következő alkalommal alkalmazás csempére kattintva automatikusan jelentkezett az alkalmazáshoz.  
+Írja be újra a hitelesítő adatait, és vagy a jelszó SSO beépülő modul telepítése nincs.
 
-Ha a hitelesítő adatok hello külső célalkalmazásban módosult, frissíteni kell az Azure AD-ben tárolt hitelesítő adatokat. 
+Ha a hitelesítő adatait a harmadik fél célalkalmazásban módosult, frissíteni kell az Azure AD-ben tárolt hitelesítő adatokat. 
 
-**tooupdate hitelesítő adatait:**
+**Hitelesítő adatainak frissítése:**
 
-1. Válassza ki a hello alkalmazás csempére hello ikon.
-2. Válassza ki **hitelesítő adatainak frissítése** tooreenter hello felhasználónevét és jelszavát hello alkalmazás.
+1. Válassza ki az alkalmazás csempe a ikonra.
+2. Válassza ki **hitelesítő adatainak frissítése** újbóli a felhasználónevet és jelszót az alkalmazáshoz.
 
 
 ### <a name="password-based-sso-with-identity-provisioning"></a>Jelszó-alapú egyszeri bejelentkezés identitás kiépítése
 
-A rendszergazda adhat hozzá alkalmazásokat hello **Active Directory** hello Azure-portálon hello SSO módba állítja túl**jelszó-alapú egyszeri bejelentkezést**, identitás-kiépítés együtt.
+A rendszergazda adhat hozzá alkalmazásokat a **Active Directory** az Azure-portálon az SSO módban szakasza **jelszó-alapú egyszeri bejelentkezést**, identitás kiépítés együtt.
 
-hello első alkalommal kattint az alkalmazás csempéjére a hozzá tartozó egyik ezeket az alkalmazásokat, rákérdezéses tooinstall hello **jelszó SSO beépülő modul az Internet Explorer vagy a Chrome**. hello telepítés akkor toorestart lehet szükség a webböngésző.  
-Ha toohello hozzáférési panel vissza, és gombra hello alkalmazás csempe, automatikusan bejelentkeztetjük toohello alkalmazásban.
+Az első alkalommal kattint, az alkalmazás csempéjére a hozzá tartozó egyik ezeket az alkalmazásokat, telepítendő kéri a **jelszó SSO beépülő modul az Internet Explorer vagy a Chrome**. A telepítés előfordulhat, hogy indítsa újra a webböngészőt.  
+Ha a hozzáférési panelre való visszatéréshez, és kattintson ismét az alkalmazás csempe, automatikusan jelentkezett az alkalmazáshoz.
 
-Egyes alkalmazások előfordulhat, hogy Ön toochange a jelszó kérése a hello első bejelentkezés. Ha a hitelesítő adatok hello külső célalkalmazásban módosult, hello Azure AD-ben tárolt hitelesítő adatok is frissítenie kell. 
+Egyes alkalmazások szükség lehet az első bejelentkezés jelszó módosítása. Ha a hitelesítő adatait a harmadik fél célalkalmazásban módosult, frissíteni kell az Azure AD-ben tárolt hitelesítő adatokat. 
 
-**tooupdate hitelesítő adatait:**
+**Hitelesítő adatainak frissítése:**
 
-1. Válassza ki a hello alkalmazás csempére hello ikon.
-2. Válassza ki **hitelesítő adatainak frissítése** tooreenter hello felhasználónevét és jelszavát hello alkalmazás.
+1. Válassza ki az alkalmazás csempe a ikonra.
+2. Válassza ki **hitelesítő adatainak frissítése** újbóli a felhasználónevet és jelszót az alkalmazáshoz.
 
 
 ### <a name="application-with-existing-sso-solutions"></a>A már meglévő SSO megoldásaival alkalmazás
 
-tooconfigure egyszeri bejelentkezés egy alkalmazás, hello Azure-portálon biztosít a harmadik lehetőség nevű **meglévő egyszeri bejelentkezés**. Ez a beállítás lehetővé teszi, hogy a rendszergazda toocreate egy kapcsolat tooan alkalmazás, és helyezze el a kijelölt felhasználók hello hozzáférési panel.
+Egyszeri bejelentkezés konfigurálása az alkalmazáshoz, az Azure-portálon biztosít a harmadik lehetőség nevű **meglévő egyszeri bejelentkezés**. Ez a beállítás lehetővé teszi, hogy a rendszergazdát, hogy egy alkalmazás mutató hivatkozás létrehozásához, és helyezze el a kiválasztott felhasználók hozzáférési panelje.
 
-Például ha egy alkalmazás konfigurált tooauthenticate felhasználók az AD FS 2.0 használatával, a rendszergazda használható hello **meglévő egyszeri bejelentkezés** beállítás toocreate egy hivatkozás tooit hello hozzáférési panelen. Hello hivatkozás fér hozzá, amikor a rendszer hitelesíti az AD FS 2.0 vagy bármilyen meglévő SSO megoldás hello alkalmazás maga biztosítja.
+Például ha egy alkalmazás a felhasználók hitelesítése az AD FS 2.0 használatával van konfigurálva, a rendszergazda végezheti el a **meglévő egyszeri bejelentkezés** létrehozhat egy hivatkozásra a hozzáférési panelen. A hivatkozás fér hozzá, amikor a rendszer hitelesíti az AD FS 2.0-s vagy bármilyen meglévő egyszeri bejelentkezési megoldással az alkalmazás maga biztosítja.
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-- toosee kapcsolódó tooapplication kezelése, amelyek témakörök listáját lásd: hello [cikk index az Azure Active Directoryban Alkalmazáskezelés](active-directory-apps-index.md).
+- Az Alkalmazáskezelés kapcsolódó témakörök listáját, olvassa el a [cikk index az Azure Active Directoryban Alkalmazáskezelés](active-directory-apps-index.md).
  
-- toolearn hogyan toointegrate egy SaaS-alkalmazás az Azure AD-be: hello [kapcsolatos bemutatók felsorolása toointegrate SaaS-alkalmazások](active-directory-saas-tutorial-list.md).
+- A Szolgáltatottszoftver-alkalmazás integrálja az Azure AD, lásd: a [SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md).
  
-- További információ az alkalmazások kezelése az Azure AD toolearn lásd: hello [bemutatása toosingle bejelentkezés és az Azure Active Directoryval való hozzáférésének kezelése](active-directory-appssoaccess-whatis.md).
+- Alkalmazások kezelése az Azure AD kapcsolatos további tudnivalókért tekintse meg a [bemutatása az Azure Active Directoryval egyszeri bejelentkezés és kezelését alkalmazás eléréséhez](active-directory-appssoaccess-whatis.md).
  
-- toolearn a felhasználók átadása, kapcsolatos további információkért lásd: [felhasználói kiépítésének és megszüntetésének biztosítása tooSaaS alkalmazások automatizálása](active-directory-saas-app-provisioning.md).
+- A felhasználók átadása kapcsolatos további információkért lásd: [automatizálhatja a felhasználó kiépítésének és megszüntetésének biztosítása SaaS-alkalmazásokhoz való](active-directory-saas-app-provisioning.md).
 
 <!--Image references-->
 [1]: ./media/active-directory-saas-access-panel-introduction/01.png

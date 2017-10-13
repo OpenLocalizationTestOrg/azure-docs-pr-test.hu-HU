@@ -1,5 +1,5 @@
 ---
-title: "aaaUse PowerShell toomanage Windows Server biztonsági mentése az Azure-ban |} Microsoft Docs"
+title: "Windows Server biztonsági mentéseit, az Azure PowerShell használatával |} Microsoft Docs"
 description: "Telepítése és kezelése a PowerShell használatával Windows Server biztonsági mentés."
 services: backup
 documentationcenter: 
@@ -14,83 +14,83 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/02/2017
 ms.author: saurse;markgal;nkolli;trinadhk
-ms.openlocfilehash: 72292e510b0f059102440bd49a195be4ef700a6a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a8e20356ae383ee4fa2158ea544d5d0905028124
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="deploy-and-manage-backup-tooazure-for-windows-serverwindows-client-using-powershell"></a>Központi telepítése és kezelése a biztonsági mentési tooAzure Windows Server és Windows-ügyfél PowerShell használatával
+# <a name="deploy-and-manage-backup-to-azure-for-windows-serverwindows-client-using-powershell"></a>Az Azure-ba történő biztonsági mentés üzembe helyezése és kezelése Windows Server vagy Windows-ügyfél rendszereken a PowerShell-lel
 > [!div class="op_single_selector"]
 > * [ARM](backup-client-automation.md)
 > * [Klasszikus](backup-client-automation-classic.md)
 >
 >
 
-Ez a cikk ismerteti, hogyan készíthet a Windows Server és a Windows munkaállomás adatok tooa toouse PowerShell tooback biztonsági mentési tároló. A Microsoft azt javasolja, hogy az összes új központi telepítéseknél Recovery Services-tárolók használatával. Ha egy új Azure biztonságimásolat-felhasználó, és nem hozott létre egy mentési tárolót az előfizetéshez, használja a hello cikk [központi telepítése és kezelése a PowerShell használatával a Data Protection Manager-adatok tooAzure](backup-client-automation.md) , az adatok tárolása a Recovery Services-tároló. 
+Ez a cikk ismerteti, hogyan PowerShell biztonsági mentése a Windows Server vagy Windows munkaállomás-adatok a mentési tárolóban. A Microsoft azt javasolja, hogy az összes új központi telepítéseknél Recovery Services-tárolók használatával. Ha egy új Azure biztonságimásolat-felhasználó, és nem hozott létre egy mentési tárolót az előfizetéshez, használja a cikk [központi telepítése és kezelése az Azure PowerShell használatával a Data Protection Manager adatok](backup-client-automation.md) , az adatok tárolása a Recovery Services-tároló. 
 
 > [!IMPORTANT]
-> Most már frissítheti a mentési tárolók tooRecovery szolgáltatások tárolókban. További információkért lásd: hello cikk [frissíteni a biztonsági mentési tároló tooa Recovery Services-tároló](backup-azure-upgrade-backup-to-recovery-services.md). A Microsoft tooupgrade támogatja a mentési tárolókat tooRecovery szolgáltatások tárolók.<br/> 2017. október 15. után PowerShell toocreate mentési tárolókban nem használható. **2017. november 1-től**:
->- Az összes többi biztonsági mentési tárolók lesz automatikusan frissített tooRecovery szolgáltatások tárolók.
->- Ön nem fogja tudni tooaccess a biztonsági mentési adatok hello a klasszikus portálon. Ehelyett használjon hello Azure portál tooaccess a biztonsági mentési adatok a Recovery Services-tárolók.
+> A biztonsági mentési tárolókról mostantól lehetőség van Recovery Services-tárolókra váltani. A részletekről bővebben az [Váltás biztonsági mentési tárolóról Recovery Services-tárolóra](backup-azure-upgrade-backup-to-recovery-services.md) című cikkben olvashat. A Microsoft azt javasolja, hogy a biztonsági mentési tárolóról váltson Recovery Services-tárolóra.<br/> 2017. október 15-től a PowerShell nem használható Backup-tárolók létrehozására. **2017. november 1-től**:
+>- Minden fennmaradó Backup-tároló automatikusan Recovery Services-tárolóra frissül.
+>- A klasszikus portálon nem lehet majd hozzáférni a biztonsági másolati adatokhoz. Helyette az Azure Portal segítségével férhet hozzá a Recovery Services-tárolókban található biztonsági mentési adatokhoz.
 >
 
 ## <a name="install-azure-powershell"></a>Az Azure PowerShell telepítése
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-include.md)]
 
-2015 október, az Azure PowerShell 1.0-s verziójában jelent meg. Ebben a kiadásban hello 0.9.8-as kiadása sikeresen befejeződött, és néhány jelentős módosításokat, különösen a hello elnevezési hello parancsmagok állapotba. 1.0-ás parancsmagok kövesse hello elnevezési {ige}-AzureRm {főnév}; mivel a hello 0.9.8-as nevek viszont nem tartalmazzák **Rm** (például New-AzureRmResourceGroup New-használják helyett). Ha az Azure PowerShell 0.9.8-as, először engedélyeznie kell hello Resource Manager módra hello futtatásával **Switch-AzureMode AzureResourceManager** parancsot. Ez a parancs nincs szükség az 1.0-s vagy újabb.
+2015 október, az Azure PowerShell 1.0-s verziójában jelent meg. Ebben a kiadásban a 0.9.8-as sikeres szabadítsa fel, és néhány jelentős módosításokat, különösen a parancsmagok elnevezési mintát állapotba. Az 1.0-ás parancsmagok az {ige}-AzureRm{főnév} elnevezési mintát használják; a 0.9.8-as nevek viszont nem tartalmazzák az **Rm** tagot (például New-AzureRmResourceGroup New-AzureResourceGroup helyett). Ha az Azure PowerShell 0.9.8-as verzióját használja, először engedélyeznie kell az erőforrás-kezelői módot a **Switch-AzureMode AzureResourceManager** parancs futtatásával. Ez a parancs nincs szükség az 1.0-s vagy újabb.
 
-Ha azt szeretné, toouse hello 0.9.8-as környezet hello 1.0-s vagy újabb környezetben, a parancsfájlokat körültekintően tesztelje hello parancsfájlok éles üzem előtti környezetben tooavoid éles használat előtt váratlan hatása.
+Ha a parancsfájlok a 0.9.8-as írt használni kívánt környezet, 1.0-s vagy újabb környezetben körültekintően tesztelje a parancsfájlokat egy üzem előtti környezetben váratlan hatás elkerülése érdekében az éles használat előtt.
 
-[Töltse le a legfrissebb verzióját hello a PowerShell](https://github.com/Azure/azure-powershell/releases) (szükséges minimális verziója: 1.0.0)
+[Töltse le a legfrissebb verzióját a PowerShell](https://github.com/Azure/azure-powershell/releases) (szükséges minimális verziója: 1.0.0)
 
 [!INCLUDE [arm-getting-setup-powershell](../../includes/arm-getting-setup-powershell.md)]
 
 ## <a name="create-a-backup-vault"></a>Backup-tároló létrehozása
 > [!WARNING]
-> A felhasználó Azure Backup segítségével hello az első alkalommal esetén tooregister hello Azure biztonsági mentés szolgáltató toobe használja az előfizetéskor kell. Ezt megteheti hello a következő parancs futtatásával: Register-AzureProvider - ProviderNamespace "Microsoft.Backup"
+> Az ügyfelek először az Azure Backup segítségével az Azure Backup-szolgáltató az előfizetéshez használandó regisztrálnia kell. Ezt megteheti a következő parancs futtatásával: Register-AzureProvider - ProviderNamespace "Microsoft.Backup"
 >
 >
 
-Létrehozhat egy új mentési tárolót használó hello **New-AzureRMBackupVault** parancsmag. hello mentési tároló egy ARM-erőforrás, ezért meg kell tooplace az erőforráscsoporton belül. Egy rendszergazda jogú Azure PowerShell-konzolban futtassa a következő parancsok hello:
+Létrehozhat egy új mentési tárolót használ a **New-AzureRMBackupVault** parancsmag. A mentési tároló egy ARM-erőforrás, ezért el kell helyezni az erőforráscsoporton belül. Egy rendszergazda jogú Azure PowerShell-konzolban a következő parancsokat:
 
 ```
 PS C:\> New-AzureResourceGroup –Name “test-rg” -Region “West US”
 PS C:\> $backupvault = New-AzureRMBackupVault –ResourceGroupName “test-rg” –Name “test-vault” –Region “West US” –Storage GeoRedundant
 ```
 
-Használjon hello **Get-AzureRMBackupVault** parancsmag toolist hello mentési tárolókat egy előfizetésben.
+Használja a **Get-AzureRMBackupVault** parancsmagot, hogy a mentési tárolók az előfizetés listában.
 
-## <a name="installing-hello-azure-backup-agent"></a>Hello Azure Backup szolgáltatás ügynökének telepítése
-Hello Azure Backup szolgáltatás ügynökének telepítése előtt kell toohave hello telepítő letöltött és a Windows Server hello megtalálható. Hello installer legújabb verzióját hello letölthető hello [Microsoft Download Center](http://aka.ms/azurebackup_agent) vagy hello mentési tároló irányítópult-oldalon. Mentés hello telepítő tooan könnyen hozzáférhető helyen, például * C:\Downloads\*.
+## <a name="installing-the-azure-backup-agent"></a>Az Azure Backup szolgáltatás ügynökének telepítése
+Az Azure Backup szolgáltatás ügynökének telepítése előtt kell rendelkeznie a telepítő letöltött és található a Windows Server. Kaphat, hogy a telepítő a legújabb verzióját a [Microsoft Download Center](http://aka.ms/azurebackup_agent) vagy a mentési tároló irányítópult-oldalon. A telepítő menteni egy könnyen elérhető helyre, például a * C:\Downloads\*.
 
-tooinstall hello ügynök, futtassa a következő parancsot egy rendszergazda jogú PowerShell-konzolban hello:
+Az ügynök telepítéséhez futtassa a következő parancsot egy emelt szintű PowerShell-konzolon:
 
 ```
 PS C:\> MARSAgentInstaller.exe /q
 ```
 
-Ezzel telepít hello ügynök minden hello alapértelmezett beállításokkal. hello telepítési hello háttérben néhány percet vesz igénybe. Ha nem adja meg a hello */nu* lehetőséget, majd hello **Windows Update** ablak nyílik meg hello telepítési toocheck bármely frissítések hello végén. A telepítést követően hello ügynök hello telepített programok listájában jelennek meg.
+Ezzel telepíti az ügynököt az összes alapértelmezett beállítást. A telepítés néhány percet vesz igénybe a háttérben. Ha nem adja meg a */nu* lehetőséget, majd a **Windows Update** ablak nyílik meg a frissítések keresését a telepítés végén. A telepítést követően az ügynök a telepített programok listájában jelennek meg.
 
-a telepített programok toosee hello listája, nyissa meg túl**Vezérlőpult** > **programok** > **programok és szolgáltatások**.
+A telepített programok listájának megtekintéséhez keresse fel **Vezérlőpult** > **programok** > **programok és szolgáltatások**.
 
 ![Az ügynök telepítve](./media/backup-client-automation/installed-agent-listing.png)
 
 ### <a name="installation-options"></a>Telepítési beállítások
-az összes elérhető beállítások hello toosee hello parancssori, használja a következő parancs hello:
+A parancssori keresztül elérhető lehetőségekről, használja a következő parancsot:
 
 ```
 PS C:\> MARSAgentInstaller.exe /?
 ```
 
-hello elérhető lehetőségek a következők:
+Az elérhető lehetőségek a következők:
 
 | Beállítás | Részletek | Alapértelmezett |
 | --- | --- | --- |
 | /q |Csendes telepítés |- |
-| / p: "hely" |Elérési út toohello telepítési mappáját hello Azure Backup szolgáltatás ügynöke. |C:\Program Files\Microsoft Azure Recovery Services Agent ügynök |
-| / s: "hely" |Elérési út toohello gyorsítótármappája hello Azure Backup szolgáltatás ügynöke. |C:\Program Files\Microsoft Azure Recovery Services Agent\Scratch |
-| /m |Részt tooMicrosoft frissítés |- |
+| / p: "hely" |Az Azure Backup szolgáltatás ügynökének a telepítési mappa elérési útja. |C:\Program Files\Microsoft Azure Recovery Services Agent ügynök |
+| / s: "hely" |Az Azure Backup szolgáltatás ügynökének a gyorsítótár mappájának elérési útja. |C:\Program Files\Microsoft Azure Recovery Services Agent\Scratch |
+| /m |Részvétel a Microsoft Update |- |
 | /Nu |Ne keressen frissítéseket telepítésének befejezése után |- |
 | /d |Eltávolítja a Microsoft Azure Recovery Services Agent ügynök |- |
 | /pH |Állomás proxycím |- |
@@ -98,13 +98,13 @@ hello elérhető lehetőségek a következők:
 | /Pu |Proxy-állomás felhasználónév |- |
 | /pW |Proxy jelszava |- |
 
-## <a name="registering-with-hello-azure-backup-service"></a>Hello Azure Backup szolgáltatás regisztrálása
-Az Azure Backup szolgáltatás hello regisztrálhatja, jóvá kell tooensure adott hello [Előfeltételek](backup-configure-vault.md) teljesülnek. A következők szükségesek:
+## <a name="registering-with-the-azure-backup-service"></a>Az Azure Backup szolgáltatás regisztrálása
+Az Azure Backup szolgáltatással regisztrálhatja, mielőtt kell ahhoz, hogy a [Előfeltételek](backup-configure-vault.md) teljesülnek. A következők szükségesek:
 
 * Egy érvényes Azure-előfizetése
 * Rendelkezik egy biztonsági mentési tárolóval
 
-toodownload hello tárolói hitelesítő adatokat, futtassa a hello **Get-AzureRMBackupVaultCredentials** parancsmag egy Azure PowerShell-konzolban és a tároló azt egy tetszőleges helyen, például a * C:\Downloads\*.
+Töltse le a tárolói hitelesítő adatokat, futtassa a **Get-AzureRMBackupVaultCredentials** parancsmag egy Azure PowerShell-konzolban és a tároló azt egy tetszőleges helyen, például a * C:\Downloads\*.
 
 ```
 PS C:\> $credspath = "C:\"
@@ -113,7 +113,7 @@ PS C:\> $credsfilename
 f5303a0b-fae4-4cdb-b44d-0e4c032dde26_backuprg_backuprn_2015-08-11--06-22-35.VaultCredentials
 ```
 
-Regisztrálásakor hello gép hello tárolóban történik hello segítségével [Start-OBRegistration](https://technet.microsoft.com/library/hh770398%28v=wps.630%29.aspx) parancsmagot:
+A számítógép regisztrálása a tárolóban történik használatával a [Start-OBRegistration](https://technet.microsoft.com/library/hh770398%28v=wps.630%29.aspx) parancsmagot:
 
 ```
 PS C:\> $cred = $credspath + $credsfilename
@@ -128,16 +128,16 @@ Machine registration succeeded.
 ```
 
 > [!IMPORTANT]
-> Ne használjon relatív elérési utak toospecify hello tároló hitelesítési adatait tartalmazó fájlt. Egy bemeneti toohello parancsmagot, abszolút elérési utat kell megadnia.
+> Ne használjon relatív elérési utak adhatja meg a tároló hitelesítési adatait tartalmazó fájlt. A parancsmag bemenetként abszolút elérési utat kell megadnia.
 >
 >
 
 ## <a name="networking-settings"></a>Hálózati beállítások
-Hello hello csatlakoztatásához Windows számítógép-toohello internet proxykiszolgálón keresztül történik, amikor hello proxybeállítások is megadható toohello ügynök. Ebben a példában nincs nincs proxykiszolgáló, explicit módon azt vannak törlésével bármely proxy kapcsolatos információkat.
+Ha a Windows számítógép az internethez csatlakoztatásához proxykiszolgálón keresztül, a proxykiszolgáló beállításait is megadható az ügynököt. Ebben a példában nincs nincs proxykiszolgáló, explicit módon azt vannak törlésével bármely proxy kapcsolatos információkat.
 
-A sávszélesség-használat is szabályozhatja az hello beállításokkal ```work hour bandwidth``` és ```non-work hour bandwidth``` egy adott objektumcsoporthoz hello hét nap.
+Sávszélesség is szabályozható lehetőségét ```work hour bandwidth``` és ```non-work hour bandwidth``` napokat a hét adott számú.
 
-Beállítás hello proxy- és sávszélesség részletei történik hello segítségével [Set-OBMachineSetting](https://technet.microsoft.com/library/hh770409%28v=wps.630%29.aspx) parancsmagot:
+Beállítás a proxy- és sávszélesség részletei történik használatával a [Set-OBMachineSetting](https://technet.microsoft.com/library/hh770409%28v=wps.630%29.aspx) parancsmagot:
 
 ```
 PS C:\> Set-OBMachineSetting -NoProxy
@@ -148,7 +148,7 @@ Server properties updated successfully.
 ```
 
 ## <a name="encryption-settings"></a>Titkosítási beállítások
-hello küldött biztonsági mentési adatok tooAzure biztonsági mentés titkosított tooprotect hello adatok bizalmas mivoltát hello. hello titkosítási jelszó visszaállítása a hello időpontjában az hello "password" toodecrypt hello adatai.
+A biztonsági mentési Azure biztonsági mentési küldött adatok védelmét az adatok bizalmas mivoltát titkosított. A titkosítás jelszava a "password" vissza kell fejtenie az adatokat a visszaállítás időpontjában.
 
 ```
 PS C:\> ConvertTo-SecureString -String "Complex!123_STRING" -AsPlainText -Force | Set-OBMachineSetting
@@ -156,30 +156,30 @@ Server properties updated successfully
 ```
 
 > [!IMPORTANT]
-> Biztosíthatja hello jelszót adatok biztonságos be van állítva. Csak akkor tudja toorestore adatokat az Azure-ból nélkül ezt a jelszót.
+> Jelszó információinak megtartása biztonságos be van állítva. Nem lehet visszaállítani az adatokat az Azure-ból nélkül ezt a jelszót.
 >
 >
 
 ## <a name="back-up-files-and-folders"></a>Fájlok és mappák biztonsági mentése
-Minden a biztonsági mentéseket Windows-kiszolgálók és ügyfelek tooAzure biztonsági mentési házirend vonatkozik. hello házirend három részből áll:
+Összes a biztonsági mentés a Windows-kiszolgálók és ügyfelek az Azure Backup szolgáltatásba a házirend vonatkozik. A házirend három részből áll:
 
-1. A **biztonsági mentés ütemezése** , amely megadja, amikor biztonsági mentést kell toobe venni, és szinkronizálva hello szolgáltatással.
-2. A **adatmegőrzési ütemterv** , amely meghatározza, mennyi ideig tooretain hello helyreállítási pontok az Azure-ban.
+1. A **biztonsági mentés ütemezése** , amely megadja, amikor biztonsági mentést kell venni és szinkronizálása a szolgáltatással.
+2. A **adatmegőrzési ütemterv** , amely megadja, mennyi ideig szeretné megőrizni a helyreállítási pontok az Azure-ban.
 3. A **belefoglalási/kizárási megadására** , amely határozzák meg, hogy mi készüljön biztonsági másolat.
 
-Ebben a dokumentumban mivel azt még automatizálása a biztonsági mentés, feltételezzük, semmi nem konfiguráltak. Hozzon létre egy új biztonsági mentési házirendet hello megkezdjük [New-OBPolicy](https://technet.microsoft.com/library/hh770416.aspx) parancsmag és használja azt.
+Ebben a dokumentumban mivel azt még automatizálása a biztonsági mentés, feltételezzük, semmi nem konfiguráltak. Hozzon létre egy új biztonsági mentési házirend használatával megkezdjük a [New-OBPolicy](https://technet.microsoft.com/library/hh770416.aspx) parancsmag és használja azt.
 
 ```
 PS C:\> $newpolicy = New-OBPolicy
 ```
 
-: Az idő hello házirend üres, és más parancsmagok olyan szükséges toodefine milyen elemek fog kell, illetve tiltani szeretné, ha biztonsági mentések futtatja, és ahol hello biztonsági mentések tárolódik.
+Jelenleg a házirend üres, és más parancsmagok olyan szükséges meghatározásához, hogy mely elemeket kell befoglalt, sem a kizárt, amikor biztonsági mentést fog futni, és egyes esetekben a biztonsági mentések tárolódik.
 
-### <a name="configuring-hello-backup-schedule"></a>Biztonsági mentés ütemezése hello konfigurálása
-először hello hello házirend 3 részből az hello biztonsági mentési ütemezést, amely hello létre [New-OBSchedule](https://technet.microsoft.com/library/hh770401) parancsmag. hello biztonsági mentés ütemezése határozza meg, amikor biztonsági mentést kell venni toobe. Ütemezés létrehozásakor kell toospecify 2 bemeneti paraméterek:
+### <a name="configuring-the-backup-schedule"></a>A biztonsági mentési ütemezés konfigurálása
+Az első 3 részből álló házirend a biztonsági mentési ütemezést, és létre kell hozni a [New-OBSchedule](https://technet.microsoft.com/library/hh770401) parancsmag. A biztonsági mentés ütemezése határozza meg, amikor biztonsági mentést kell tenni. Ütemezés létrehozásakor meg kell adnia 2 bemeneti paraméterek:
 
-* **Hello hét napjai** biztonsági mentését végző hello kell futtatnia. Hello biztonságimásolat-készítő feladat csak egy napon vagy hello hét minden napján, vagy tetszőleges kombinációját a közötti futtatása.
-* **Hello napszakokban** mikor fusson a hello biztonsági mentés. Másolatot too3 különböző napszakokban hello amikor hello biztonsági mentés akkor is kiváltódik adhat meg.
+* **A hét napjai** , amely a biztonsági mentést kell futtatnia. A biztonsági mentési feladat csak egy napon, vagy a hét minden napján, vagy tetszőleges kombinációját a közötti futtatása.
+* **A nap** mikor fusson a biztonsági mentés. Ha a biztonsági mentés akkor is kiváltódik 3 különböző napszakokban adhat meg.
 
 Például konfigurálhatja a biztonsági mentési házirend du. 4: futtat minden szombat és vasárnap.
 
@@ -187,20 +187,20 @@ Például konfigurálhatja a biztonsági mentési házirend du. 4: futtat minden
 PS C:\> $sched = New-OBSchedule -DaysofWeek Saturday, Sunday -TimesofDay 16:00
 ```
 
-hello biztonsági mentés ütemezése a házirendhez társított toobe van szüksége, és ez elérhető hello segítségével [Set-OBSchedule](https://technet.microsoft.com/library/hh770407) parancsmag.
+A biztonsági mentés ütemezése kell lennie a házirendhez társított, és ez használatával érhető el a [Set-OBSchedule](https://technet.microsoft.com/library/hh770407) parancsmag.
 
 ```
 PS C:> Set-OBSchedule -Policy $newpolicy -Schedule $sched
 BackupSchedule : 4:00 PM Saturday, Sunday, Every 1 week(s) DsList : PolicyName : RetentionPolicy : State : New PolicyState : Valid
 ```
 ### <a name="configuring-a-retention-policy"></a>Egy megőrzési házirend konfigurálása
-hello megőrzési házirend határozza meg, hogy mennyi ideig helyreállítási pont biztonsági mentési feladatok alapján létrehozott megmaradnak. Hello segítségével új megőrzési házirend létrehozásakor [New-OBRetentionPolicy](https://technet.microsoft.com/library/hh770425) parancsmaggal, megadhatja hello, hogy hány napig biztonsági mentések helyreállítási pontjait hello kell toobe megőrzi az Azure Backup szolgáltatással. az alábbi példa hello 7 napos adatmegőrzési állítja be.
+A megőrzési házirend határozza meg, mennyi ideig megőrzi a biztonsági mentési feladatok létrehozott helyreállítási pontok. Egy új megőrzési házirend használatával létrehozásakor a [New-OBRetentionPolicy](https://technet.microsoft.com/library/hh770425) parancsmaggal, megadhatja az, hogy hány napig őrzi meg az Azure biztonsági mentési kell a biztonsági mentések helyreállítási pontjait. Az alábbi példában 7 napos adatmegőrzési állítja be.
 
 ```
 PS C:\> $retentionpolicy = New-OBRetentionPolicy -RetentionDays 7
 ```
 
-hello adatmegőrzési hozzá kell rendelni hello parancsmaggal hello fő irányelvnek [Set-OBRetentionPolicy](https://technet.microsoft.com/library/hh770405):
+Az adatmegőrzési hozzá kell rendelni a fő házirend-parancsmag segítségével [Set-OBRetentionPolicy](https://technet.microsoft.com/library/hh770405):
 
 ```
 PS C:\> Set-OBRetentionPolicy -Policy $newpolicy -RetentionPolicy $retentionpolicy
@@ -224,16 +224,16 @@ RetentionPolicy : Retention Days : 7
 State           : New
 PolicyState     : Valid
 ```
-### <a name="including-and-excluding-files-toobe-backed-up"></a>Többek között, és a biztonsági másolatba mentett fájlok toobe kivételével
-Egy ```OBFileSpec``` objektum hello fájlok toobe és a biztonsági másolat nem határoz meg. Ez olyan szabályok, hogy a kimenő hello hatókör védett fájlok és mappák a gépen. Akkor is, számos befoglalási vagy kizárási szabály szükség szerint fájlt, és rendelje hozzá őket egy házirendet. Új OBFileSpec objektum létrehozásakor meg a következőket teheti:
+### <a name="including-and-excluding-files-to-be-backed-up"></a>Többek között, és a fájlok biztonsági mentése nélkül
+Egy ```OBFileSpec``` objektum meghatározása és a biztonsági másolat nem lehet a fájlokat. Ez a szabálykészlet, amely a védett fájlok és mappák gépen kimenő hatókör. Akkor is, számos befoglalási vagy kizárási szabály szükség szerint fájlt, és rendelje hozzá őket egy házirendet. Új OBFileSpec objektum létrehozásakor meg a következőket teheti:
 
-* Adja meg a fájlok és mappák szereplő toobe hello
-* Adja meg a hello kizárt fájlok és mappák toobe
-* Adja meg a rekurzív az adatok biztonsági mentése egy mappában (vagy) e csak hello legfelső szintű mappában lévő fájlok hello megadott biztonsági másolatot kell fel.
+* Adja meg a fájlok és mappák része
+* Adja meg a fájlok és mappák ki lesznek zárva
+* Adja meg a rekurzív az adatok biztonsági mentése egy mappában (vagy) e a megadott mappában csak a legfelső szintű fájlok biztonsági másolatot kell fel.
 
-Ez utóbbi hello hello - nem rekurzív jelzőt a New-OBFileSpec hello parancs használatával érhető el.
+Ez utóbbi használatával érhető el a nem rekurzív - jelzőt a New-OBFileSpec parancsban.
 
-Hello az alábbi példában azt bemutatjuk C: és d. kötet mentésére, hello OS bináris hello Windows-mappában, és ideiglenes mappák kizárása. toodo, hozzon létre két fájl specifikációk hello segítségével [New-OBFileSpec](https://technet.microsoft.com/library/hh770408) parancsmag - befoglalási és kizárási egyet. Létrehozása után a hello fájl specifikációk, fontosságúak társított a hello szabályzatokkal hello [Add-OBFileSpec](https://technet.microsoft.com/library/hh770424) parancsmag.
+Az alábbi példa azt fogja biztonsági mentése kötet C: és D: és a az operációs rendszer bináris ideiglenes mappákat a Windows mappában található fájlok kizárása. Ennek érdekében hozzon létre két fájl használatával specifikációk a [New-OBFileSpec](https://technet.microsoft.com/library/hh770408) parancsmag - befoglalási és kizárási egyet. A fájl specifikációk létrehozása után, fontosságúak a szabályzat használatához a [Add-OBFileSpec](https://technet.microsoft.com/library/hh770424) parancsmag.
 
 ```
 PS C:\> $inclusions = New-OBFileSpec -FileSpec @("C:\", "D:\")
@@ -324,19 +324,19 @@ State           : New
 PolicyState     : Valid
 ```
 
-### <a name="applying-hello-policy"></a>Hello házirend alkalmazása
-Hello csoportházirend-objektum most már befejeződött, és egy társított biztonsági mentés ütemezése, a megőrzési házirend és a fájlok belefoglalási/kizárási lista. Ez a házirend most hajtható végre, az Azure Backup toouse is. Az újonnan létrehozott hello alkalmazása előtt házirend gondoskodjon arról, hogy nincsenek-e hello segítségével hello kiszolgálóhoz tartozó már meglévő biztonsági mentési házirendek [Remove-OBPolicy](https://technet.microsoft.com/library/hh770415) parancsmag. Jóváhagyás eltávolítása hello házirend fogja kérni. tooskip hello megerősítő hello használata ```-Confirm:$false``` jelző hello parancsmaggal.
+### <a name="applying-the-policy"></a>A házirend alkalmazása
+A csoportházirend-objektum most már befejeződött, és egy társított biztonsági mentés ütemezése, a megőrzési házirend és a fájlok belefoglalási/kizárási lista. Ez a házirend most lehet véglegesíteni az Azure Backup használatához. Alkalmazása előtt az újonnan létrehozott házirend gondoskodjon arról, hogy nincsenek-e a kiszolgálóhoz társított használatával meglévő biztonsági mentési házirendek a [Remove-OBPolicy](https://technet.microsoft.com/library/hh770415) parancsmag. A házirend eltávolítása megerősítő fogja kérni. Kihagyja a megerősítő használja a ```-Confirm:$false``` jelzőt mellékel a parancsmagot.
 
 ```
 PS C:> Get-OBPolicy | Remove-OBPolicy
-Microsoft Azure Backup Are you sure you want tooremove this backup policy? This will delete all hello backed up data. [Y] Yes [A] Yes tooAll [N] No [L] No tooAll [S] Suspend [?] Help (default is "Y"):
+Microsoft Azure Backup Are you sure you want to remove this backup policy? This will delete all the backed up data. [Y] Yes [A] Yes to All [N] No [L] No to All [S] Suspend [?] Help (default is "Y"):
 ```
 
-Végrehajtása hello csoportházirend-objektum történik hello segítségével [Set-OBPolicy](https://technet.microsoft.com/library/hh770421) parancsmag. Ez is megerősítést kér. tooskip hello megerősítő hello használata ```-Confirm:$false``` jelző hello parancsmaggal.
+A csoportházirend-objektum életbe léptetése történik használatával a [Set-OBPolicy](https://technet.microsoft.com/library/hh770421) parancsmag. Ez is megerősítést kér. Kihagyja a megerősítő használja a ```-Confirm:$false``` jelzőt mellékel a parancsmagot.
 
 ```
 PS C:> Set-OBPolicy -Policy $newpolicy
-Microsoft Azure Backup Do you want toosave this backup policy ? [Y] Yes [A] Yes tooAll [N] No [L] No tooAll [S] Suspend [?] Help (default is "Y"):
+Microsoft Azure Backup Do you want to save this backup policy ? [Y] Yes [A] Yes to All [N] No [L] No to All [S] Suspend [?] Help (default is "Y"):
 BackupSchedule : 4:00 PM Saturday, Sunday, Every 1 week(s)
 DsList : {DataSource
          DatasourceId:4508156004108672185
@@ -377,7 +377,7 @@ RetentionPolicy : Retention Days : 7
 State : Existing PolicyState : Valid
 ```
 
-Megtekintheti a meglévő biztonsági mentési házirend hello hello segítségével hello adatait [Get-OBPolicy](https://technet.microsoft.com/library/hh770406) parancsmag. Akkor is leásási hello használatával [Get-OBSchedule](https://technet.microsoft.com/library/hh770423) hello biztonsági mentési ütemezést és hello parancsmag [Get-OBRetentionPolicy](https://technet.microsoft.com/library/hh770427) hello adatmegőrzési parancsmaggal
+A részleteket a meglévő biztonsági mentési házirend használatával megtekintheti a [Get-OBPolicy](https://technet.microsoft.com/library/hh770406) parancsmag. Akkor is leásási használatával a [Get-OBSchedule](https://technet.microsoft.com/library/hh770423) parancsmag a biztonsági mentési ütemezés és a [Get-OBRetentionPolicy](https://technet.microsoft.com/library/hh770427) parancsmag az adatmegőrzési házirendek
 
 ```
 PS C:> Get-OBPolicy | Get-OBSchedule
@@ -418,7 +418,7 @@ IsRecursive : True
 ```
 
 ### <a name="performing-an-ad-hoc-backup"></a>Az ad hoc biztonsági mentés
-Miután a biztonsági mentési házirend van beállítva hello biztonsági mentések hello ütemezés / fog létrejönni. Az ad hoc biztonsági mentés indítására esetében is lehetséges hello segítségével [Start-OBBackup](https://technet.microsoft.com/library/hh770426) parancsmagot:
+Miután a biztonsági mentési házirend van beállítva a biztonsági mentések száma az ütemezésben fog létrejönni. Az ad hoc biztonsági mentés indítására az is lehetséges használatával a [Start-OBBackup](https://technet.microsoft.com/library/hh770426) parancsmagot:
 
 ```
 PS C:> Get-OBPolicy | Start-OBBackup
@@ -429,19 +429,19 @@ Estimating size of backup items...
 Transferring data...
 Verifying backup...
 Job completed.
-hello backup operation completed successfully.
+The backup operation completed successfully.
 ```
 
 ## <a name="restore-data-from-azure-backup"></a>Állítsa vissza az adatokat az Azure Backup
-Ez a szakasz végigvezeti Önt hello lépéseket az Azure biztonsági mentés az adatok helyreállítás automatizálása. Ezzel úgy magában foglalja a hello a következő lépéseket:
+Ez a szakasz végigvezeti az Azure biztonsági mentés az adatok helyreállítás automatizálása lépéseit. Ennek során a következő lépésekből áll:
 
-1. Hello forráskötet kiválasztása
-2. Válassza ki a biztonsági mentési pont toorestore
-3. Egy elem toorestore kiválasztása
-4. Eseményindító hello visszaállítási folyamat
+1. Válassza ki a forráskötet
+2. Válassza ki a visszaállítandó biztonsági mentési pontok
+3. Válasszon ki egy elemet visszaállítása
+4. A visszaállítási folyamat eseményindító
 
-### <a name="picking-hello-source-volume"></a>Kiadási hello forráskötet
-A sorrend toorestore egy elemet az Azure Backup először hello elem tooidentify hello forrását. Mivel azt még hello parancsok végrehajtása a Windows Server vagy egy Windows ügyfél hello környezetében, hello gép már azonosítja. hello következő lépése hello forrás azonosítása tooidentify hello kötetet tartalmazó. A kötetek adatforrásokat, illetve biztonsági másolatot készít a számítógépről kérhető hello végrehajtásával listáját [Get-OBRecoverableSource](https://technet.microsoft.com/library/hh770410) parancsmag. Ez a parancs minden hello adatforrások biztonsági mentése a kiszolgáló ügyfél tömbjét adja vissza.
+### <a name="picking-the-source-volume"></a>A forráskötet válassza háttérszínnek.
+Ahhoz, hogy az Azure Backup elem visszaállításához először kell azonosítani a cikk forrását. Azt éppen végrehajtás alatt a parancsokat egy Windows Server vagy egy Windows ügyfél környezetben, mert a gép már azonosítja. A következő lépése a forrás azonosítása, hogy az azt tartalmazó kötet azonosításához. Erről a gépről biztonsági mentés alatt lekérhetők végrehajtása adatforrásokat, illetve kötetek listáját a [Get-OBRecoverableSource](https://technet.microsoft.com/library/hh770410) parancsmag. Ez a parancs minden, a biztonsági másolatot készített a kiszolgáló ügyfél források tömbjét adja vissza.
 
 ```
 PS C:> $source = Get-OBRecoverableSource
@@ -455,8 +455,8 @@ RecoverySourceName : D:\
 ServerName : myserver.microsoft.com
 ```
 
-### <a name="choosing-a-backup-point-toorestore"></a>A biztonsági mentési pont toorestore kiválasztása
-hello biztonsági mentési pontok listájának lekérhetők hello végrehajtása [Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) parancsmag megfelelő paraméterekkel. A jelen példában mutatjuk be a legújabb biztonsági mentési pontok hello hello forráskötet *D:* és toorecover egy adott fájlt használja.
+### <a name="choosing-a-backup-point-to-restore"></a>A visszaállítandó biztonsági mentési pont kiválasztása
+A biztonsági mentési pontok listáját a következő futtatásával lehet beolvasni a [Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) parancsmag megfelelő paraméterekkel. A jelen példában mutatjuk be a legújabb biztonsági mentési pont a forráskötet *D:* , és visszaállít egy adott fájlt.
 
 ```
 PS C:> $rps = Get-OBRecoverableItem -Source $source[1]
@@ -482,12 +482,12 @@ ServerName : myserver.microsoft.com
 ItemSize :
 ItemLastModifiedTime :
 ```
-hello objektum ```$rps``` biztonsági mentési pontok tömbje. hello első eleme hello legutóbbi pontnak és hello n-edik elem hello legrégebbi pont. toochoose hello legújabb pont használjuk ```$rps[0]```.
+Az objektum ```$rps``` biztonsági mentési pontok tömbje. Az első elem a legutóbbi pontnak, az n-edik elemének pedig a legrégebbi pont. Válassza ki a legutóbbi pontnak, hogy használjuk ```$rps[0]```.
 
-### <a name="choosing-an-item-toorestore"></a>Egy elem toorestore kiválasztása
-tooidentify hello pontosan a fájl vagy mappa toorestore, rekurzív módon használja a hello [Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) parancsmag. Adott módon hello mappahierarchia kizárólag a hello segítségével tallózható ```Get-OBRecoverableItem```.
+### <a name="choosing-an-item-to-restore"></a>Visszaállítás elem kiválasztása
+A pontos fájl vagy mappa visszaállításához rekurzív módon használja azonosítására a [Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) parancsmag. A mappahierarchia kizárólag használatával tallózható így a ```Get-OBRecoverableItem```.
 
-Ebben a példában, ha azt szeretné, hogy toorestore hello fájl *finances.xls* azt is hivatkozni lehessen, hogy használatával hello objektum ```$filesFolders[1]```.
+Ebben a példában, ha azt szeretné, hogy állítsa vissza a fájlt *finances.xls* azt hivatkozhat, amely az objektum ```$filesFolders[1]```.
 
 ```
 PS C:> $filesFolders = Get-OBRecoverableItem $rps[0]
@@ -528,20 +528,20 @@ ItemSize : 96256
 ItemLastModifiedTime : 21-Jun-14 6:43:02 AM
 ```
 
-Elemek toorestore hello használatával is kereshet ```Get-OBRecoverableItem``` parancsmag. A példánkban a toosearch *finances.xls* azt lehetett beolvasni a leíró hello fájl a következő parancs futtatásával:
+Az elemek visszaállítás segítségével is kereshet a ```Get-OBRecoverableItem``` parancsmag. A jelen példában keressen rá a *finances.xls* azt sikerült leírót a fájl a következő parancs futtatásával:
 
 ```
 PS C:\> $item = Get-OBRecoverableItem -RecoveryPoint $rps[0] -Location "D:\MyData" -SearchString "finance*"
 ```
 
-### <a name="triggering-hello-restore-process"></a>Eseményindító hello visszaállítási folyamat
-tootrigger hello visszaállítási folyamat, először kell toospecify hello helyreállítási beállítások. Ezt megteheti a hello [New-OBRecoveryOption](https://technet.microsoft.com/library/hh770417.aspx) parancsmag. Ebben a példában tételezzük fel, hogy toorestore hello fájlok túl szeretnénk*C:\temp*. Tegyük is fel, hogy szeretnénk tooskip már megtalálható fájlok hello rendeltetési mappára *C:\temp*. toocreate ilyen egy helyreállítási lehetőség, a következő parancs hello használata:
+### <a name="triggering-the-restore-process"></a>A visszaállítási folyamat időt.
+A visszaállítási folyamat indításához először kell adja meg a helyreállítási beállításokat. Ezt megteheti a a [New-OBRecoveryOption](https://technet.microsoft.com/library/hh770417.aspx) parancsmag. Ehhez a példához tegyük fel, hogy a fájlok visszaállítására szeretnénk *C:\temp*. Tegyük is fel, hogy szeretnénk már megtalálható fájlok kihagyása a rendeltetési mappára *C:\temp*. Hozzon létre egy helyreállítási lehetőség, használja a következő parancsot:
 
 ```
 PS C:\> $recovery_option = New-OBRecoveryOption -DestinationPath "C:\temp" -OverwriteType Skip
 ```
 
-Most hello segítségével a visszaállítás elindítása [Start-OBRecovery](https://technet.microsoft.com/library/hh770402.aspx) kijelölt hello parancs ```$item``` hello hello kimenetét a ```Get-OBRecoverableItem``` parancsmagot:
+Most már a visszaállítás elindítása használatával a [Start-OBRecovery](https://technet.microsoft.com/library/hh770402.aspx) parancs a kiválasztott ```$item``` kimenetében a ```Get-OBRecoverableItem``` parancsmagot:
 
 ```
 PS C:\> Start-OBRecovery -RecoverableItem $item -RecoveryOption $recover_option
@@ -550,29 +550,29 @@ Estimating size of backup items...
 Estimating size of backup items...
 Estimating size of backup items...
 Job completed.
-hello recovery operation completed successfully.
+The recovery operation completed successfully.
 ```
 
 
-## <a name="uninstalling-hello-azure-backup-agent"></a>Hello Azure Backup szolgáltatás ügynökének eltávolítása
-Eltávolítását hello Azure Backup szolgáltatás ügynökének hello a következő parancs használatával teheti meg:
+## <a name="uninstalling-the-azure-backup-agent"></a>Az Azure Backup szolgáltatás ügynökének eltávolítása
+Az Azure Backup-ügynök eltávolítása végezhető a következő paranccsal:
 
 ```
 PS C:\> .\MARSAgentInstaller.exe /d /q
 ```
 
-Néhány következmények tooconsider hello ügynök bináris fájlok eltávolítása a hello gépről rendelkezik:
+Az ügynök bináris fájlok eltávolítása a számítógépről következménnyel néhány kell figyelembe venni:
 
-* Eltávolítja a hello fájlszűrő hello gépről, és az változások követését le van állítva.
-* Hello gépet eltávolítja az összes házirend az adatokat, de hello házirenddel kapcsolatos információk továbbra is toobe hello szolgáltatásban tárolja.
+* A fájl-szűrő eltávolítja a gépet, és a változások követését le van állítva.
+* A gép eltávolítja az összes házirend az adatokat, de a házirenddel kapcsolatos információk továbbra is a szolgáltatásban kell tárolni.
 * A mentési ütemezések törlődnek, és nincs további biztonsági mentés készül.
 
-Azonban hello Azure marad a adataihoz, és megőrzi hello megőrzési házirend beállítása adott meg. Régebbi pontok automatikusan van elavult.
+Azonban az adatok Azure marad tárolja, és megőrzi a megőrzési házirend beállítása adott meg. Régebbi pontok automatikusan van elavult.
 
 ## <a name="remote-management"></a>Távfelügyelet
-Minden hello felügyeleti hello Azure Backup szolgáltatás ügynöke, a házirendek és az adatforrások távolról végezhető el a PowerShell. távolról felügyelt hello gép kell toobe megfelelően előkészítve.
+Az Azure Backup agent, a házirendek és a adatforrások minden felügyeleti távolról végezhető el a PowerShell. A távolról felügyelt számítógép kell megfelelően elő kell készíteni.
 
-Alapértelmezés szerint kézi indítási hello WinRM szolgáltatás van konfigurálva. hello indítási típusa túl be kell állítani*automatikus* és hello szolgáltatást el kell indítani. tooverify, amely hello a WinRM szolgáltatás fut, hello hello állapot tulajdonság értékének meg kell *futtató*.
+Alapértelmezés szerint a WinRM szolgáltatás kézi indításra van konfigurálva. Az indítási típust kell beállítani *automatikus* és kell indítani a szolgáltatást. Győződjön meg arról, hogy a WinRM szolgáltatás fut, az állapot tulajdonság értékének kell *futtató*.
 
 ```
 PS C:\> Get-Service WinRM
@@ -586,14 +586,14 @@ PowerShell távoli eljáráshívás kell konfigurálni.
 
 ```
 PS C:\> Enable-PSRemoting -force
-WinRM is already set up tooreceive requests on this computer.
+WinRM is already set up to receive requests on this computer.
 WinRM has been updated for remote management.
 WinRM firewall exception enabled.
 
 PS C:\> Set-ExecutionPolicy unrestricted -force
 ```
 
-hello gép most távolról felügyelhetők - hello ügynök telepítése hello kezdve. Például a következő parancsfájl hello hello ügynök toohello távoli számítógépre másolja, és telepíti azt.
+A számítógép most távolról felügyelhetők - az ügynök telepítésének indítása. A következő parancsfájl például másolja át az ügynököt a távoli számítógépre, és telepíti azt.
 
 ```
 PS C:\> $dloc = "\\REMOTESERVER01\c$\Windows\Temp"
@@ -608,5 +608,5 @@ PS C:\> Invoke-Command -Session $s -Script { param($d, $a) Start-Process -FilePa
 ## <a name="next-steps"></a>Következő lépések
 További információ az Azure biztonsági mentés a Windows Server vagy Windows-ügyfélen lásd:
 
-* [Bevezetés tooAzure biztonsági mentése](backup-introduction-to-azure-backup.md)
+* [Az Azure Backup bemutatása](backup-introduction-to-azure-backup.md)
 * [Windows-kiszolgálók biztonsági mentését](backup-configure-vault.md)

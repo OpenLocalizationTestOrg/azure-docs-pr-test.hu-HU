@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált EasyTerritory |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és EasyTerritory között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és EasyTerritory között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,187 +14,187 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/26/2017
 ms.author: jeedes
-ms.openlocfilehash: 4f1e9fb4d615325f0d57bebaed955529d5dcd9b1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 46f99496397e2ed39b1d9410453dac7983ced612
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-easyterritory"></a>Oktatóanyag: Azure Active Directoryval integrált EasyTerritory
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate EasyTerritory az Azure Active Directoryval (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja EasyTerritory integrálása az Azure Active Directory (Azure AD).
 
-EasyTerritory integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
+EasyTerritory integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
 
-- Az Azure AD hozzáférési tooEasyTerritory rendelkező szabályozhatja.
-- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooEasyTerritory (egyszeri bejelentkezés) a saját Azure AD-fiókok.
-- A fiók egyetlen központi helyen - hello Azure-portálon kezelheti.
+- Az Azure AD, aki hozzáfér EasyTerritory szabályozhatja.
+- Engedélyezheti a felhasználóknak, hogy automatikusan beolvasása bejelentkezett EasyTerritory (egyszeri bejelentkezés) számára a saját Azure AD-fiókok.
+- A fiók egyetlen központi helyen – az Azure-portálon kezelheti.
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-az Azure AD integrálása EasyTerritory tooconfigure, kell a következő elemek hello:
+Konfigurálása az Azure AD-integrációs EasyTerritory, a következőkre van szükség:
 
 - Az Azure AD szolgáltatásra
 - Egy EasyTerritory egyszeri bejelentkezés engedélyezve van az előfizetésben
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, akkor [egy hónapos próbaverzió beszerzése](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. Hello gyűjteményből EasyTerritory hozzáadása
+1. A gyűjteményből EasyTerritory hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-easyterritory-from-hello-gallery"></a>Hello gyűjteményből EasyTerritory hozzáadása
-tooconfigure hello integrációja EasyTerritory az Azure AD-be, meg kell tooadd EasyTerritory hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-easyterritory-from-the-gallery"></a>A gyűjteményből EasyTerritory hozzáadása
+Az Azure AD integrálása a EasyTerritory konfigurálásához kell hozzáadnia EasyTerritory a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
 
-**tooadd EasyTerritory hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
+**A gyűjteményből EasyTerritory hozzáadásához hajtsa végre az alábbi lépéseket:**
 
-1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
+1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
 
-    ![hello Azure Active Directory gomb][1]
+    ![Az Azure Active Directory gomb][1]
 
-2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
+2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
 
-    ![hello vállalati alkalmazások panel][2]
+    ![A vállalati alkalmazások panel][2]
     
-3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
+3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
 
-    ![hello új alkalmazás gomb][3]
+    ![Az új alkalmazás gomb][3]
 
-4. Hello keresési mezőbe, írja be a **EasyTerritory**, jelölje be **EasyTerritory** eredmény panelen kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
+4. Írja be a keresőmezőbe, **EasyTerritory**, jelölje be **EasyTerritory** eredmény panelen kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
 
-    ![Hello eredménylistában EasyTerritory](./media/active-directory-saas-easyterritory-tutorial/tutorial_easyterritory_addfromgallery.png)
+    ![Az eredménylistában EasyTerritory](./media/active-directory-saas-easyterritory-tutorial/tutorial_easyterritory_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés tesztelése és konfigurálása
 
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon" nevű tesztfelhasználó alapján EasyTerritory.
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó EasyTerritory tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello EasyTerritory közötti kapcsolat kapcsolatot kell létrehozni toobe.
+Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó EasyTerritory a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a EasyTerritory közötti kapcsolat kapcsolatot kell létrehozni.
 
-EasyTerritory, rendelje hozzá hello hello értékének **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
+EasyTerritory, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
 
-tooconfigure és az Azure AD az egyszeri bejelentkezés EasyTerritory-teszthez, a következő építőelemeket toocomplete hello szüksége:
+Az Azure AD egyszeri bejelentkezést a EasyTerritory tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configure-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Hozzon létre egy Azure AD-teszt felhasználó](#create-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-3. **[EasyTerritory tesztfelhasználó létrehozása](#create-a-easyterritory-test-user)**  -toohave egy megfelelője a Britta Simon a EasyTerritory, amely a felhasználó csatolt toohello az Azure AD ábrázolása.
-4. **[Rendelje hozzá az Azure AD hello tesztfelhasználó](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-5. **[Egyszeri bejelentkezés tesztelése](#test-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configure-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Hozzon létre egy Azure AD-teszt felhasználó](#create-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+3. **[EasyTerritory tesztfelhasználó létrehozása](#create-a-easyterritory-test-user)**  - való Britta Simon valami EasyTerritory, amely csatolva van a felhasználó az Azure AD-ábrázolását.
+4. **[Rendelje hozzá az Azure AD-teszt felhasználó](#assign-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+5. **[Egyszeri bejelentkezés tesztelése](#test-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az EasyTerritory alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az EasyTerritory alkalmazásban.
 
-**az Azure AD tooconfigure egyszeri bejelentkezést a EasyTerritory, hajtsa végre a lépéseket követve hello:**
+**Konfigurálása az Azure AD az egyszeri bejelentkezés EasyTerritory, hajtsa végre az alábbi lépéseket:**
 
-1. Az Azure portál, a hello hello **EasyTerritory** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portálon a a **EasyTerritory** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés kapcsolat konfigurálása][4]
 
-2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
+2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
  
     ![Egyszeri bejelentkezés párbeszédpanel](./media/active-directory-saas-easyterritory-tutorial/tutorial_easyterritory_samlbase.png)
 
-3. A hello **EasyTerritory tartomány és az URL-címek** csoportjában hajtsa végre a következő lépéseket, ha tooconfigure hello alkalmazás IDP kezdeményezett mód hello:
+3. Az a **EasyTerritory tartomány és az URL-címek** szakaszban, ha szeretne beállítani az alkalmazás által kezdeményezett IDP módban, hajtsa végre az alábbi lépéseket:
 
     ![Az egyszeri bejelentkezés információk EasyTerritory tartomány és az URL-címek](./media/active-directory-saas-easyterritory-tutorial/tutorial_easyterritory_url.png)
 
-    a. A hello **azonosító** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://apps.easyterritory.com/<tenant id>/dev/`
+    a. Az a **azonosító** szövegmező, adja meg a következő minta használatával URL-címe:`https://apps.easyterritory.com/<tenant id>/dev/`
 
-    b. A hello **válasz URL-CÍMEN** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://apps.easyterritory.com/<tenant id>/dev/authservices/acs`
+    b. Az a **válasz URL-CÍMEN** szövegmező, adja meg a következő minta használatával URL-címe:`https://apps.easyterritory.com/<tenant id>/dev/authservices/acs`
 
-4. Ellenőrizze **megjelenítése speciális URL-beállításainak** , és végezze el a következő lépés, ha tooconfigure hello alkalmazás hello **SP** kezdeményezett mód:
+4. Ellenőrizze **megjelenítése speciális URL-beállításainak** , és végezze el a következő lépés, ha szeretne beállítani az alkalmazás **SP** kezdeményezett mód:
 
     ![Az egyszeri bejelentkezés információk EasyTerritory tartomány és az URL-címek](./media/active-directory-saas-easyterritory-tutorial/tutorial_easyterritory_url1.png)
 
-    A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<company name>.easyterritory.com/`
+    Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://<company name>.easyterritory.com/`
      
     > [!NOTE] 
-    > Ezek az értékek nincsenek valós. Frissítse a azonosító, a válasz URL-CÍMEN és a bejelentkezési URL-cím a tényleges hello értékeket. Ügyfél [EasyTerritory ügyfél-támogatási csoport](mailto:sales@easyterritory.com) tooget ezeket az értékeket. 
+    > Ezek az értékek nincsenek valós. Frissítheti ezeket az értékeket a tényleges azonosítója, válasz URL-CÍMEN és bejelentkezési URL-cím. Ügyfél [EasyTerritory ügyfél-támogatási csoport](mailto:sales@easyterritory.com) beolvasni ezeket az értékeket. 
 
-5. A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello metaadatait tartalmazó fájl a számítógépen.
+5. Az a **SAML-aláíró tanúsítványa** területen kattintson **metaadatainak XML-kódja** és mentse a metaadat-fájlt a számítógépen.
 
-    ![hello tanúsítvány letöltési hivatkozását](./media/active-directory-saas-easyterritory-tutorial/tutorial_easyterritory_certificate.png) 
+    ![A tanúsítvány letöltési hivatkozását](./media/active-directory-saas-easyterritory-tutorial/tutorial_easyterritory_certificate.png) 
 
 6. Kattintson a **mentése** gombra.
 
     ![Egyszeri bejelentkezés Mentés gombra konfigurálása](./media/active-directory-saas-easyterritory-tutorial/tutorial_general_400.png)
 
-7. tooconfigure egyszeri bejelentkezést a **EasyTerritory** oldalon kell letöltött toosend hello **metaadatainak XML-kódja** túl[EasyTerritory támogatási csoport](mailto:sales@easyterritory.com). Maguk állítják be ezt a beállítást toohave hello SAML SSO kapcsolat mindkét oldalán megfelelően beállítva.
+7. Egyszeri bejelentkezés konfigurálása **EasyTerritory** oldalon kell küldeniük a letöltött **metaadatainak XML-kódja** való [EasyTerritory támogatási csoport](mailto:sales@easyterritory.com). Akkor állítsa be ezt a beállítást, hogy a SAML SSO kapcsolat mindkét oldalán megfelelően beállítva.
 
 > [!TIP]
-> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 ### <a name="create-an-azure-ad-test-user"></a>Hozzon létre egy Azure AD-teszt felhasználó
 
-hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
+Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
 
    ![Hozzon létre egy Azure AD-teszt felhasználó][100]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello Azure-portálon, hello bal oldali ablaktáblában kattintson a hello **Azure Active Directory** gombra.
+1. Az Azure portálon a bal oldali ablaktáblán kattintson a **Azure Active Directory** gombra.
 
-    ![hello Azure Active Directory gomb](./media/active-directory-saas-easyterritory-tutorial/create_aaduser_01.png)
+    ![Az Azure Active Directory gomb](./media/active-directory-saas-easyterritory-tutorial/create_aaduser_01.png)
 
-2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok**, és kattintson a **minden felhasználó**.
+2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok**, és kattintson a **minden felhasználó**.
 
-    ![hello "Felhasználók és csoportok" és "Minden felhasználó" hivatkozások](./media/active-directory-saas-easyterritory-tutorial/create_aaduser_02.png)
+    ![A "felhasználók és csoportok" és "Minden felhasználó" hivatkozások](./media/active-directory-saas-easyterritory-tutorial/create_aaduser_02.png)
 
-3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello hello tetején **minden felhasználó** párbeszédpanel megnyitásához.
+3. Megnyitásához a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** tetején a **minden felhasználó** párbeszédpanel megnyitásához.
 
-    ![hello Hozzáadás gomb](./media/active-directory-saas-easyterritory-tutorial/create_aaduser_03.png)
+    ![A Hozzáadás gombra.](./media/active-directory-saas-easyterritory-tutorial/create_aaduser_03.png)
 
-4. A hello **felhasználói** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello:
+4. Az a **felhasználói** párbeszédpanelen hajtsa végre az alábbi lépéseket:
 
-    ![hello felhasználó párbeszédpanel](./media/active-directory-saas-easyterritory-tutorial/create_aaduser_04.png)
+    ![A felhasználó párbeszédpanel](./media/active-directory-saas-easyterritory-tutorial/create_aaduser_04.png)
 
-    a. A hello **neve** mezőbe írja be **BrittaSimon**.
+    a. Az a **neve** mezőbe írja be **BrittaSimon**.
 
-    b. A hello **felhasználónév** mezőben, a felhasználó Britta Simon típus hello e-mail címét.
+    b. Az a **felhasználónév** mezőbe írja be a felhasználó e-mail címe az Britta Simon.
 
-    c. Jelölje be hello **megjelenítése jelszó** jelölje be a jelölőnégyzetet, és jegyezze fel a hello hello érték **jelszó** mezőbe.
+    c. Válassza ki a **megjelenítése jelszó** jelölje be a jelölőnégyzetet, és jegyezze fel a megjelenített érték a **jelszó** mezőbe.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="create-a-easyterritory-test-user"></a>EasyTerritory tesztfelhasználó létrehozása
 
-Ebben a szakaszban egy EasyTerritory Britta Simon nevű felhasználót hoz létre. Adjon együttműködve [EasyTerritory támogatási csoport](mailto:sales@easyterritory.com) tooadd hello felhasználók hello EasyTerritory platform.
+Ebben a szakaszban egy EasyTerritory Britta Simon nevű felhasználót hoz létre. Adjon együttműködve [EasyTerritory támogatási csoport](mailto:sales@easyterritory.com) a felhasználók hozzáadása a EasyTerritory platform.
 
-### <a name="assign-hello-azure-ad-test-user"></a>Rendelje hozzá az Azure AD hello tesztfelhasználó számára
+### <a name="assign-the-azure-ad-test-user"></a>Rendelje hozzá az Azure AD-teszt felhasználó
 
-Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooEasyTerritory megadásával engedélyeznie.
+Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés EasyTerritory Azure egyszeri bejelentkezéshez használandó.
 
-![Hello felhasználói szerepkör hozzárendelése][200] 
+![A felhasználói szerepkör hozzárendelése][200] 
 
-**tooassign Britta Simon tooEasyTerritory, hajtsa végre a következő lépéseket hello:**
+**Britta Simon hozzárendelése EasyTerritory, hajtsa végre az alábbi lépéseket:**
 
-1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Hello alkalmazások listában válassza ki a **EasyTerritory**.
+2. Az alkalmazások listában válassza ki a **EasyTerritory**.
 
-    ![hello EasyTerritory hivatkozásra hello alkalmazások listája](./media/active-directory-saas-easyterritory-tutorial/tutorial_easyterritory_app.png)  
+    ![Az alkalmazások listáját a EasyTerritory hivatkozás](./media/active-directory-saas-easyterritory-tutorial/tutorial_easyterritory_app.png)  
 
-3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
 
-    ![hello "Felhasználók és csoportok" hivatkozásra.][202]
+    ![A "Felhasználók és csoportok" hivatkozásra][202]
 
 4. Kattintson a **Hozzáadás** gombra. Válassza ki **felhasználók és csoportok** a **hozzáadása hozzárendelés** párbeszédpanel.
 
-    ![hello hozzárendelés hozzáadása panelen][203]
+    ![A hozzárendelés hozzáadása panelen][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -202,14 +202,14 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáfé
     
 ### <a name="test-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
 
-Ha a hozzáférési Panel hello hello EasyTerritory csempe gombra kattint, automatikusan bejelentkezett tooyour EasyTerritory alkalmazás szerezheti be.
-A hozzáférési Panel kapcsolatos további információkért lásd: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md). 
+Ha a hozzáférési panelen EasyTerritory csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az EasyTerritory alkalmazására.
+A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>További források
 
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

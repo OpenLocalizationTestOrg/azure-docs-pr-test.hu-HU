@@ -6,11 +6,11 @@
 
 # Útmutató
 ## Integrálás
-### [Web Apps](../app-service-web/app-service-web-tutorial-content-delivery-network.md?toc=%2fazure%2fcdn%2ftoc.json)
+### [Web Apps](../app-service/app-service-web-tutorial-content-delivery-network.md?toc=%2fazure%2fcdn%2ftoc.json)
 ### [Cloud Services](cdn-cloud-service-with-cdn.md)
 ### [Storage](cdn-create-a-storage-account-with-cdn.md)
 ### [Eltérő eredetű erőforrások megosztása](cdn-cors.md)
-### [Egy egyéni tartomány tooCDN leképezése](cdn-map-content-to-custom-domain.md)
+### [Egyéni tartomány leképezése a CDN szolgáltatásba](cdn-map-content-to-custom-domain.md)
 ### [HTTPS engedélyezése egyéni tartományon](cdn-custom-ssl.md)
 ## Tartalom optimalizálása
 ### [Optimalizálás áttekintése](cdn-optimization-overview.md)
@@ -19,7 +19,7 @@
 ####[Dinamikus helygyorsítás](cdn-dynamic-site-acceleration.md)
  
 ## Kezelés
-### [Kezelés a Powershell-lel](cdn-manage-powershell.md)
+### [Kezelés az Azure PowerShell-lel](cdn-manage-powershell.md)
 ### Az élettartam konfigurálása
 #### [Web Apps-/Cloud Services-, ASP.NET- vagy IIS-tartalom](cdn-manage-expiration-of-cloud-service-content.md)
 #### [Tárolási blobszolgáltatás-tartalom](cdn-manage-expiration-of-blob-content.md)
@@ -37,11 +37,13 @@
 ### [HTTP/2-támogatás](cdn-http2.md)
 
 ## Elemzés
-### [Használati minták elemzése](cdn-analyze-usage-patterns.md)
-### [Extra szintű HTTP-jelentések létrehozása](cdn-advanced-http-reports.md)
-### [Valós idejű statisztikák megjelenítése](cdn-real-time-stats.md)
-### [Élcsomópont teljesítményelemzése](cdn-edge-performance.md)
-### [Metrikák exportálása diagnosztikai naplókkal](cdn-log-analysis.md)
+### [Az Azure CDN használati mintáinak elemzése](cdn-log-analysis.md)
+#### [Alapvető jelentések a Verizontól](cdn-analyze-usage-patterns.md)
+#### [Azure-beli diagnosztikai naplók](cdn-azure-diagnostic-logs.md)
+### Elemzési eszközök az Azure CDN-hez a Verizontól
+#### [Extra szintű HTTP-jelentések létrehozása](cdn-advanced-http-reports.md)
+#### [Valós idejű statisztikák megjelenítése](cdn-real-time-stats.md)
+#### [Élcsomópont teljesítményelemzése](cdn-edge-performance.md)
 
 ## Fejlesztés
 ### [.NET](cdn-app-dev-net.md)
@@ -53,7 +55,7 @@
 
 # Referencia
 ## [Kódminták](https://azure.microsoft.com/en-us/resources/samples/?service=cdn)
-## [PowerShell](/powershell/module/azurerm.cdn)
+## [Azure PowerShell](/powershell/module/azurerm.cdn)
 ## [.NET](/dotnet/api/microsoft.azure.management.cdn)
 ## [Java](/java/api/com.microsoft.azure.management.cdn)
 ## [REST](/rest/api/cdn/)

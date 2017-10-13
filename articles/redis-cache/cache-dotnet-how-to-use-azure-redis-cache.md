@@ -1,6 +1,6 @@
 ---
-title: Azure Redis Cache aaaHow tooUse |} Microsoft Docs
-description: "Ismerje meg, hogyan tooimprove hello Azure Redis Cache segítségével az Azure alkalmazások teljesítményének"
+title: "Az Azure Redis Cache használata | Microsoft Docs"
+description: "Információk arról, hogy miként javítható az Azure-alkalmazásai teljesítménye az Azure Redis Cache segítségével"
 services: redis-cache,app-service
 documentationcenter: 
 author: steved0x
@@ -14,13 +14,13 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 07/27/2017
 ms.author: sdanie
-ms.openlocfilehash: 763d70c10972eec9a1885969e8da5bf1c4084727
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3dfc026490093523446650c510dbebdd660e8b6b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toouse-azure-redis-cache"></a>Hogyan tooUse Azure Redis Cache-gyorsítótár
+# <a name="how-to-use-azure-redis-cache"></a>Az Azure Redis Cache használata
 > [!div class="op_single_selector"]
 > * [.NET](cache-dotnet-how-to-use-azure-redis-cache.md)
 > * [ASP.NET](cache-web-app-howto.md)
@@ -30,83 +30,83 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Ez az útmutató bemutatja, hogyan tooget használatának **Azure Redis Cache**. A Microsoft Azure Redis Cache hello népszerű nyílt forráskódú Redis Cache alapul. Ez lehetővé teszi az tooa biztonságos, dedikált Redis gyorsítótár, a Microsoft által felügyelt eléréséhez. Az Azure Redis Cache használatával létrehozott gyorsítótárak a Microsoft Azure összes alkalmazásából elérhetőek.
+Ez az útmutató segítséget nyújt az első lépések megtételéhez az **Azure Redis Cache** használatakor. A Microsoft Azure Redis Cache a nyílt forráskódú és népszerű Redis Cache-re épül. Hozzáférést biztosít egy biztonságos, dedikált Redis Cache gyorsítótárhoz, amelyet a Microsoft felügyel. Az Azure Redis Cache használatával létrehozott gyorsítótárak a Microsoft Azure összes alkalmazásából elérhetőek.
 
-A Microsoft Azure Redis Cache rétegek a következő hello érhető el:
+A Microsoft Azure Redis Cache a következő szinteken érhető el:
 
-* **Alapszintű** – Egyetlen csomópont. Több méretek too53 GB fel.
-* **Standard** – Két csomópontból álló elsődleges/replika. Több méretek too53 GB fel. 99,9%-os SLA.
-* **Prémium szintű** – két csomópontos elsődleges vagy replika too10 szilánkok fel. Több méretek 6 GB too530 GB. Tartalmazza a Standard szint összes szolgáltatását és továbbiakat, beleértve a [Redis-fürtök](cache-how-to-premium-clustering.md), a [Redis-adatmegőrzés](cache-how-to-premium-persistence.md) és az [Azure Virtual Network](cache-how-to-premium-vnet.md) támogatását. 99,9%-os SLA.
+* **Alapszintű** – Egyetlen csomópont. Többféle méret legfeljebb 53 GB-ig.
+* **Standard** – Két csomópontból álló elsődleges/replika. Többféle méret legfeljebb 53 GB-ig. 99,9%-os SLA.
+* **Prémium** – Két csomópontból álló elsődleges/replika, legfeljebb 10 szegmenssel. Többféle méret 6 GB és 530 GB között. Tartalmazza a Standard szint összes szolgáltatását és továbbiakat, beleértve a [Redis-fürtök](cache-how-to-premium-clustering.md), a [Redis-adatmegőrzés](cache-how-to-premium-persistence.md) és az [Azure Virtual Network](cache-how-to-premium-vnet.md) támogatását. 99,9%-os SLA.
 
 Az egyes szintek szolgáltatási feltételei és díjszabása eltérő. További díjszabási információk: [Díjszabás – Redis Cache][Cache Pricing Details].
 
-Ez az útmutató bemutatja, hogyan toouse hello [StackExchange.Redis] [ StackExchange.Redis] ügyfél C használatával\# kódot. hello tárgyalt forgatókönyvekben szerepel a **létrehozásáról és konfigurálásáról a gyorsítótár**, **gyorsítótár-ügyfelek konfigurálása**, és **hozzáadása és eltávolítása az objektumok hello gyorsítótárból**. Az Azure Redis Cache használatával kapcsolatos további információkat a [Következő lépések][Next Steps] című szakaszban talál. ASP.NET MVC webes alkalmazás a Redis Cache létrehozásának részletes oktatóanyaga, lásd: [hogyan toocreate a webes alkalmazás a Redis Cache](cache-web-app-howto.md).
+Ez az útmutató ismerteti, hogyan használhatja a [StackExchange.Redis][StackExchange.Redis] ügyfelet C\# kóddal. Az ismertetett forgatókönyvek között megtalálható **gyorsítótár létrehozása és konfigurálása**, **gyorsítótárügyfelek konfigurálása** és **objektumok hozzáadása és eltávolítása a gyorsítótárból**. Az Azure Redis Cache használatával kapcsolatos további információkat a [Következő lépések][Next Steps] című szakaszban talál. Részletes útmutató ASP.NET MVC webalkalmazás felépítéséhez Redis Cache használatával: [How to create a Web App with Redis Cache](cache-web-app-howto.md) (Webalkalmazás létrehozása Redis Cache használatával).
 
 <a name="getting-started-cache-service"></a>
 
 ## <a name="get-started-with-azure-redis-cache"></a>Bevezetés az Azure Redis Cache használatába
-Az első lépések az Azure Redis Cache-ben egyszerűek. tooget indult el, akkor kiépítéséhez, és állítsa be a gyorsítótárba. A következő hello gyorsítótár-ügyfelek konfigurálása, így hello gyorsítótár eléréséhez. Hello gyorsítótár-ügyfelek konfigurálása után megkezdheti a munkát őket.
+Az első lépések az Azure Redis Cache-ben egyszerűek. Először hozzon létre és konfiguráljon egy gyorsítótárat. Ezután konfigurálja a gyorsítótárügyfeleket, hogy hozzáféréssel rendelkezzenek a gyorsítótárhoz. A gyorsítótárügyfelek konfigurálása után megkezdheti a használatukat.
 
-* [Hello gyorsítótár létrehozása][Create hello cache]
-* [Hello gyorsítótár-ügyfelek konfigurálása][Configure hello cache clients]
+* [A gyorsítótár létrehozása][Create the cache]
+* [A gyorsítótárügyfelek konfigurálása][Configure the cache clients]
 
 <a name="create-cache"></a>
 
 ## <a name="create-a-cache"></a>Gyorsítótár létrehozása
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-create.md)]
 
-### <a name="tooaccess-your-cache-after-its-created"></a>a gyorsítótár azt követően tooaccess jön létre
+### <a name="to-access-your-cache-after-its-created"></a>A gyorsítótár elérése a létrehozás után
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-browse.md)]
 
-A gyorsítótár konfigurálásával kapcsolatos további információkért lásd: [hogyan tooconfigure Azure Redis Cache](cache-configure.md).
+További információk a gyorsítótár konfigurálásáról: [How to configure Azure Redis Cache](cache-configure.md) (Az Azure Redis Cache konfigurálása).
 
 <a name="NuGet"></a>
 
-## <a name="configure-hello-cache-clients"></a>Hello gyorsítótár-ügyfelek konfigurálása
+## <a name="configure-the-cache-clients"></a>A gyorsítótárügyfelek konfigurálása
 [!INCLUDE [redis-cache-configure](../../includes/redis-cache-configure-stackexchange-redis-nuget.md)]
 
-Miután ügyfélprojektbe beállította a gyorsítótár, a következő szakaszok a gyorsítótárhoz való munkához hello ismertetett hello módszerek is használhatja.
+Miután az ügyfélprojektet konfigurálta gyorsítótárazásra, a következő szakaszokban ismertetett módszereket is alkalmazhatja a gyorsítótár használatakor.
 
 <a name="working-with-caches"></a>
 
 ## <a name="working-with-caches"></a>A gyorsítótárak használata
-Ebben a szakaszban hello lépések bemutatják, hogyan tooperform gyakori feladatokat, a gyorsítótár.
+Az ebben a szakaszban szereplő lépések a gyorsítótárral végzett gyakori feladatok végrehajtását mutatják be.
 
-* [Csatlakozás toohello gyorsítótár][Connect toohello cache]
-* [Adja hozzá és hello gyorsítótárból objektumok beolvasása][Add and retrieve objects from hello cache]
-* [.NET-objektumok hello gyorsítótárban](#work-with-net-objects-in-the-cache)
+* [Csatlakozás a gyorsítótárhoz][Connect to the cache]
+* [Objektumok hozzáadása és lekérése a gyorsítótárból][Add and retrieve objects from the cache]
+* [.NET-objektumok használata a gyorsítótárban](#work-with-net-objects-in-the-cache)
 
 <a name="connect-to-cache"></a>
 
-## <a name="connect-toohello-cache"></a>Csatlakozás toohello gyorsítótár
-tooprogrammatically munkahelyi gyorsítótárával, egy hivatkozási toohello gyorsítótár szüksége. Adja hozzá a következő minden olyan fájlt, amelyből kívánt toouse hello StackExchange.Redis ügyfél tooaccess Azure Redis Cache toohello felső hello.
+## <a name="connect-to-the-cache"></a>Csatlakozás a gyorsítótárhoz
+Annak érdekében, hogy programozott módon használja a gyorsítótárat, szüksége van egy, a gyorsítótárra mutató hivatkozásra. Adja a következőt bármely olyan fájl tetejéhez, amelyből a StackExchange.Redis ügyféllel szeretne hozzáférni egy Azure Redis Cache-hez.
 
     using StackExchange.Redis;
 
 > [!NOTE]
-> hello StackExchange.Redis ügyfél .NET-keretrendszer 4-es vagy újabb szükséges.
+> A StackExchange.Redis ügyfél használatához a .NET-keretrendszer 4-es vagy újabb verziója szükséges.
 > 
 > 
 
-Azure Redis Cache hello kezeli kapcsolat toohello hello `ConnectionMultiplexer` osztály. Ez az osztály kell osztható meg, és használja fel újra az ügyfélalkalmazást teljes, és nem kell toobe / művelet alapja létre. 
+Az Azure Redis Cache-sel való kapcsolatot a `ConnectionMultiplexer` osztály kezeli. Ennek az osztálynak megoszthatónak és ismét felhasználhatónak kell lennie az ügyfélalkalmazásban, hogy ne kelljen műveletenként létrehozni. 
 
-Azure Redis Cache tooconnect tooan, és visszahelyezi a csatlakoztatott példányának `ConnectionMultiplexer`, hívás hello statikus `Connect` metódus és hello adjon át a gyorsítótár-végpont és a kulcs. Hello kulcs használata jönnek létre hello Azure-portálon hello jelszó paraméterként.
+Az Azure Redis Cache-hez való csatlakozáshoz, valamint hogy a rendszer egy csatlakoztatott `ConnectionMultiplexer`-példányt adjon vissza, hívja meg a statikus `Connect` metódust, és adja meg a gyorsítótár végpontját és a kulcsot. Használja az Azure Portalon létrehozott kulcsot password paraméterként.
 
     ConnectionMultiplexer connection = ConnectionMultiplexer.Connect("contoso5.redis.cache.windows.net,abortConnect=false,ssl=true,password=...");
 
 > [!IMPORTANT]
-> Figyelmeztetés: Soha ne tároljon hitelesítő adatokat a forráskódban. tookeep a minta egyszerű I vagyok megjelenítő őket hello forráskódot. Lásd: [hogyan alkalmazás karakterláncok és a kapcsolati karakterláncok munkahelyi] [ How Application Strings and Connection Strings Work] kapcsolatos információk toostore hitelesítő adatokat.
+> Figyelmeztetés: Soha ne tároljon hitelesítő adatokat a forráskódban. Annak érdekében, hogy a minta egyszerű maradjon, a forráskódban mutatom meg őket. A hitelesítő adatok tárolásával kapcsolatos információkért tekintse meg [az alkalmazás-karakterláncok és a kapcsolati karakterláncok működését][How Application Strings and Connection Strings Work] ismertető cikket.
 > 
 > 
 
-Ha nem szeretné toouse SSL, vagy állítsa be `ssl=false` , vagy hagyja el a hello `ssl` paraméter.
+Ha nem szeretne SSL-t használni, állítsa be az `ssl=false` értéket, vagy hagyja ki az `ssl` paramétert.
 
 > [!NOTE]
-> hello nem SSL port az új gyorsítótárakhoz alapértelmezés szerint le van tiltva. Hello nem SSL port engedélyezésével kapcsolatos útmutatásért lásd: [hozzáférési portok](cache-configure.md#access-ports).
+> A nem SSL port az új gyorsítótárakhoz alapértelmezés szerint le van tiltva. Útmutató a nem SSL port engedélyezéséhez: [Portok elérése](cache-configure.md#access-ports).
 > 
 > 
 
-Egyik módszer toosharing egy `ConnectionMultiplexer` toohave csatlakoztatott példány, a következő példa hasonló toohello visszaadó statikus tulajdonság példány az alkalmazásban. Ez a megközelítés biztosítja egy szálbiztos módon tooinitialize egyetlen csatlakoztatott `ConnectionMultiplexer` példány. Ezekben a példákban `abortConnect` van beállítva toofalse, ami azt jelenti, hogy hello kötés akkor is, ha a kapcsolat toohello Azure Redis Cache nem jön létre. Egy alapfunkciója `ConnectionMultiplexer` , hogy automatikusan helyreállítja kapcsolat toohello gyorsítótár után hello hálózati hiba vagy más ok megoldották.
+Az alkalmazásban egy `ConnectionMultiplexer` példány megosztására egy lehetséges módszer, ha létrehoz egy statikus tulajdonságot, amely egy csatlakoztatott példányt ad vissza, a következő példához hasonlóan. Ez a megközelítés egy szálbiztos módszert biztosít egyetlen csatlakoztatott `ConnectionMultiplexer`-példány inicializálásához. Ezekben a példákban az `abortConnect` értéke false, ami azt jelenti, hogy a hívás akkor is sikeres lesz, ha nincs kapcsolat az Azure Redis Cache-sel. A `ConnectionMultiplexer` egyik fontos szolgáltatása, hogy automatikusan visszaállítja a kapcsolatot a gyorsítótárral, amint a hálózati problémák vagy egyéb hibák elhárulnak.
 
     private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer>(() =>
     {
@@ -125,50 +125,50 @@ További információt a speciális kapcsolatkonfigurációs lehetőségekről a
 
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-access-keys.md)]
 
-Hello kapcsolat létrejötte után vissza a hivatkozás toohello redis gyorsítótár adatbázisában: hívó hello `ConnectionMultiplexer.GetDatabase` metódust. hello hello által visszaadott `GetDatabase` metódus egy egyszerűsített csatlakoztatott objektum, és nem kell toobe tárolja.
+A kapcsolat létrejötte után küldjön vissza egy hivatkozást a redis cache-adatbázisnak a `ConnectionMultiplexer.GetDatabase` metódus meghívásával. A `GetDatabase` metódussal visszaadott objektum egy egyszerűsített továbbított objektum, amelyet nem kell tárolni.
 
-    // Connection refers tooa property that returns a ConnectionMultiplexer
-    // as shown in hello previous example.
+    // Connection refers to a property that returns a ConnectionMultiplexer
+    // as shown in the previous example.
     IDatabase cache = Connection.GetDatabase();
 
-    // Perform cache operations using hello cache object...
-    // Simple put of integral data types into hello cache
+    // Perform cache operations using the cache object...
+    // Simple put of integral data types into the cache
     cache.StringSet("key1", "value");
     cache.StringSet("key2", 25);
 
-    // Simple get of data types from hello cache
+    // Simple get of data types from the cache
     string key1 = cache.StringGet("key1");
     int key2 = (int)cache.StringGet("key2");
 
-Azure Redis gyorsítótár-adatbázisok (16-os alapértelmezett), amely a Redis gyorsítótár használt toologically külön hello adatainak konfigurálható több van. További információ: [Mik azok a Redis-adatbázisok?](cache-faq.md#what-are-redis-databases) és [A Redis-kiszolgáló alapértelmezett konfigurációja](cache-configure.md#default-redis-server-configuration).
+Az Azure Redis Cache-ek adatbázisainak száma konfigurálható (alapértelmezés szerint 16). Ezek az adatbázisok a Redis Cache-ben található adatok logikai szétválasztására használhatóak. További információ: [Mik azok a Redis-adatbázisok?](cache-faq.md#what-are-redis-databases) és [A Redis-kiszolgáló alapértelmezett konfigurációja](cache-configure.md#default-redis-server-configuration).
 
-Most, hogy tudja, hogyan tooconnect tooan Azure Redis Cache példányt, és térjen vissza a hivatkozás toohello gyorsítótár adatbázis, nézzük hello gyorsítótár használata.
+Most, hogy megismerte, hogyan csatlakozhat egy Azure Redis Cache-példányhoz és küldhet vissza egy hivatkozást a gyorsítótár-adatbázisnak, ismerkedjen meg közelebbről a gyorsítótár használatával.
 
 <a name="add-object"></a>
 
-## <a name="add-and-retrieve-objects-from-hello-cache"></a>Adja hozzá és hello gyorsítótárból objektumok beolvasása
-Elemek tárolja, és a gyorsítótár lekért hello segítségével `StringSet` és `StringGet` módszerek.
+## <a name="add-and-retrieve-objects-from-the-cache"></a>Objektumok hozzáadása és lekérése a gyorsítótárból
+Elemek a `StringSet` és a `StringGet` metódussal tárolhatók a gyorsítótárban, illetve kérhetők le onnan.
 
     // If key1 exists, it is overwritten.
     cache.StringSet("key1", "value1");
 
     string value = cache.StringGet("key1");
 
-Redis Redis karakterláncok, de ezek a karakterláncok legtöbb adatok is szerepelhetnek számos különböző típusú adatok, beleértve a szerializált bináris adatait, amely is használható, ha .NET tárolása objektumokat hello gyorsítótárban tárolja.
+A Redis a legtöbb adatot Redis-karakterláncokként tárolja, azonban ezek a karakterláncok több adattípust is tartalmazhatnak, például szerializált bináris adatokat, amelyek akkor használhatók, ha .NET-objektumokat tárol a gyorsítótárban.
 
-Meghívásakor `StringGet`, ha a hello objektum létezik, akkor adja vissza, és ha nem létezik, `null` adja vissza. Ha `null` lett visszaadva, akkor hello kívánt adatforrás lekérje hello értéket, és a későbbi használatra hello gyorsítótárban tárolja. A használati mód hello gyorsítótár-tartalékoljon mintát néven ismert.
+A `StringGet` hívásakor ha az objektum létezik, a rendszer visszaadja, ha pedig nem létezik, akkor a `null` értéket adja vissza. Ha `null` értéket ad vissza, az értéket lekérheti a kívánt adatforrásból, és a gyorsítótárban tárolhatja későbbi használatra. Ez a használati minta az úgynevezett gyorsítótár-feltöltő mód.
 
     string value = cache.StringGet("key1");
     if (value == null)
     {
-        // hello item keyed by "key1" is not in hello cache. Obtain
-        // it from hello desired data source and add it toohello cache.
+        // The item keyed by "key1" is not in the cache. Obtain
+        // it from the desired data source and add it to the cache.
         value = GetValueFromDataSource();
 
         cache.StringSet("key1", value);
     }
 
-Is `RedisValue`, ahogy az alábbi példa hello. A `RedisValue` implicit operátorokkal rendelkezik az egész szám típusú adatokkal történő munkavégzéshez, ami akkor lehet hasznos, ha a `null` egy gyorsítótárazott elem várt értéke.
+A `RedisValue` is használható az alábbi példában látható módon. A `RedisValue` implicit operátorokkal rendelkezik az egész szám típusú adatokkal történő munkavégzéshez, ami akkor lehet hasznos, ha a `null` egy gyorsítótárazott elem várt értéke.
 
 
     RedisValue value = cache.StringGet("key1");
@@ -179,14 +179,14 @@ Is `RedisValue`, ahogy az alábbi példa hello. A `RedisValue` implicit operáto
     }
 
 
-egy elem gyorsítótárában hello használata hello toospecify hello lejáratának `TimeSpan` paramétere `StringSet`.
+Egy elem lejáratának megadásához a gyorsítótárban használja a `TimeSpan` `StringSet` paraméterét.
 
     cache.StringSet("key1", "value1", TimeSpan.FromMinutes(90));
 
-## <a name="work-with-net-objects-in-hello-cache"></a>.NET-objektumok hello gyorsítótárban
-Az Azure Redis Cache .NET-objektumokat és primitív adattípusokat is képes gyorsítótárazni, de a .NET-objektumokat a gyorsítótárazásuk előtt szerializálni kell. A .NET-objektum szerializálás hello alkalmazásfejlesztő hello felelőssége, és hello fejlesztői rugalmasságot biztosít a hello szerializáló hello választott.
+## <a name="work-with-net-objects-in-the-cache"></a>.NET-objektumok használata a gyorsítótárban
+Az Azure Redis Cache .NET-objektumokat és primitív adattípusokat is képes gyorsítótárazni, de a .NET-objektumokat a gyorsítótárazásuk előtt szerializálni kell. Ez a .NET-objektumszerializálás az alkalmazásfejlesztők feladata, akik így rugalmasan kiválaszthatják a szerializálót.
 
-Egy egyszerű módon tooserialize objektumokat toouse hello `JsonConvert` szerializálási metódusokon [Newtonsoft.Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/8.0.1-beta1) és tooand JSON formátumból szerializálni. hello következő példa bemutatja a get és set használatával egy `Employee` objektumpéldány.
+Az objektumok szerializálásának egy egyszerű módja, ha a [Newtonsoft.Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/8.0.1-beta1) témakörben található `JsonConvert` szerializálási módszereket használja és JSON formátumból JSON formátumba szerializál. Az alábbi példában egy `Employee`-objektumpéldány használatával végrehajtott get és set művelet látható.
 
     class Employee
     {
@@ -200,7 +200,7 @@ Egy egyszerű módon tooserialize objektumokat toouse hello `JsonConvert` szeria
         }
     }
 
-    // Store toocache
+    // Store to cache
     cache.StringSet("e25", JsonConvert.SerializeObject(new Employee(25, "Clayton Gragg")));
 
     // Retrieve from cache
@@ -209,36 +209,36 @@ Egy egyszerű módon tooserialize objektumokat toouse hello `JsonConvert` szeria
 <a name="next-steps"></a>
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy megismerte hello alapjait, kövesse a további információk az Azure Redis Cache hivatkozások toolearn.
+Most, hogy megismerte az alapokat, az alábbi hivatkozásokra kattintva tudhat meg többet az Azure Redis Cache-ről.
 
-* Tekintse meg a hello Azure Redis Cache ASP.NET-szolgáltatók.
+* Tekintse meg az Azure Redis Cache ASP.NET-szolgáltatóit.
   * [Az Azure Redis munkamenetállapot-szolgáltatója](cache-aspnet-session-state-provider.md)
   * [Az Azure Redis Cache ASP.NET kimenetigyorsítótár-szolgáltatója](cache-aspnet-output-cache-provider.md)
-* [Gyorsítótár-diagnosztika engedélyezése](cache-how-to-monitor.md#enable-cache-diagnostics) így [figyelő](cache-how-to-monitor.md) hello a gyorsítótár állapotát. Megtekintheti a hello Azure-portálon, és a metrikák is hello [töltse le, és tekintse át](https://github.com/rustd/RedisSamples/tree/master/CustomMonitoring) őket az Ön által választott hello eszközökkel.
-* Tekintse meg a hello [StackExchange.Redis gyorsítótár ügyfél dokumentáció][StackExchange.Redis cache client documentation].
+* [Engedélyezze a gyorsítótár-diagnosztikát,](cache-how-to-monitor.md#enable-cache-diagnostics) hogy [megfigyelhesse](cache-how-to-monitor.md) a gyorsítótár állapotát. A mérőszámokat megtekintheti az Azure Portalon, illetve többféle eszközzel is [letöltheti és áttekintheti](https://github.com/rustd/RedisSamples/tree/master/CustomMonitoring) őket.
+* Tekintse meg a [StackExchange.Redis gyorsítótárügyfél dokumentációját][StackExchange.Redis cache client documentation].
   * Az Azure Redis Cache számos Redis-ügyfélből és fejlesztési nyelvből elérhető. További információ: [http://redis.io/clients][http://redis.io/clients].
 * Az Azure Redis Cache olyan harmadik féltől származó szolgáltatásokkal és eszközökkel is használható, mint a Redsmin vagy a Redis Destkop Manager.
-  * Redsmin kapcsolatos további információkért lásd: [hogyan tooretrieve az Azure Redis kapcsolódási karakterláncot, és használatához a Redsmin][How tooretrieve an Azure Redis connection string and use it with Redsmin].
+  * További információt a Redsminről [az Azure Redis kapcsolati karakterlánc lekérését és a Redsminnel történő használatát][How to retrieve an Azure Redis connection string and use it with Redsmin] ismertető cikkben talál.
   * Az Azure Redis Cache-ben tárolt adatait a [RedisDesktopManagert](https://github.com/uglide/RedisDesktopManager) használó grafikus felhasználó felületen érheti el és vizsgálhatja meg.
-* Lásd: hello [redis] [ redis] dokumentációk és információk a [adattípusok redis] [ redis data types] és [egy 15 perces bemutatása tooRedis adattípusok][a fifteen minute introduction tooRedis data types].
+* Tekintse meg a [Redis][redis] dokumentációját, ahol olvashat a [Redis-adattípusokról][redis data types], valamint áttekintheti [a Redis-adattípusok tizenöt perces bemutatását][a fifteen minute introduction to Redis data types].
 
 <!-- INTRA-TOPIC LINKS -->
 [Next Steps]: #next-steps
-[Introduction tooAzure Redis Cache (Video)]: #video
+[Introduction to Azure Redis Cache (Video)]: #video
 [What is Azure Redis Cache?]: #what-is
 [Create an Azure Cache]: #create-cache
 [Which type of caching is right for me?]: #choosing-cache
-[Prepare Your Visual Studio Project tooUse Azure Caching]: #prepare-vs
-[Configure Your Application tooUse Caching]: #configure-app
+[Prepare Your Visual Studio Project to Use Azure Caching]: #prepare-vs
+[Configure Your Application to Use Caching]: #configure-app
 [Get Started with Azure Redis Cache]: #getting-started-cache-service
-[Create hello cache]: #create-cache
-[Configure hello cache]: #enable-caching
-[Configure hello cache clients]: #NuGet
+[Create the cache]: #create-cache
+[Configure the cache]: #enable-caching
+[Configure the cache clients]: #NuGet
 [Working with Caches]: #working-with-caches
-[Connect toohello cache]: #connect-to-cache
-[Add and retrieve objects from hello cache]: #add-object
-[Specify hello expiration of an object in hello cache]: #specify-expiration
-[Store ASP.NET session state in hello cache]: #store-session
+[Connect to the cache]: #connect-to-cache
+[Add and retrieve objects from the cache]: #add-object
+[Specify the expiration of an object in the cache]: #specify-expiration
+[Store ASP.NET session state in the cache]: #store-session
 
 
 <!-- IMAGES -->
@@ -267,7 +267,7 @@ Most, hogy megismerte hello alapjait, kövesse a további információk az Azure
 <!-- LINKS -->
 [http://redis.io/clients]: http://redis.io/clients
 [Develop in other languages for Azure Redis Cache]: http://msdn.microsoft.com/library/azure/dn690470.aspx
-[How tooretrieve an Azure Redis connection string and use it with Redsmin]: https://redsmin.uservoice.com/knowledgebase/articles/485711-how-to-connect-redsmin-to-azure-redis-cache
+[How to retrieve an Azure Redis connection string and use it with Redsmin]: https://redsmin.uservoice.com/knowledgebase/articles/485711-how-to-connect-redsmin-to-azure-redis-cache
 [Azure Redis Session State Provider]: http://go.microsoft.com/fwlink/?LinkId=398249
 [How to: Configure a Cache Client Programmatically]: http://msdn.microsoft.com/library/windowsazure/gg618003.aspx
 [Session State Provider for Azure Cache]: http://go.microsoft.com/fwlink/?LinkId=320835
@@ -276,16 +276,16 @@ Most, hogy megismerte hello alapjait, kövesse a további információk az Azure
 [Azure Shared Caching]: http://msdn.microsoft.com/library/windowsazure/gg278356.aspx
 [Team Blog]: http://blogs.msdn.com/b/windowsazure/
 [Azure Caching]: http://www.microsoft.com/showcase/Search.aspx?phrase=azure+caching
-[How tooConfigure Virtual Machine Sizes]: http://go.microsoft.com/fwlink/?LinkId=164387
+[How to Configure Virtual Machine Sizes]: http://go.microsoft.com/fwlink/?LinkId=164387
 [Azure Caching Capacity Planning Considerations]: http://go.microsoft.com/fwlink/?LinkId=320167
 [Azure Caching]: http://go.microsoft.com/fwlink/?LinkId=252658
-[How to: Set hello Cacheability of an ASP.NET Page Declaratively]: http://msdn.microsoft.com/library/zd1ysf1y.aspx
+[How to: Set the Cacheability of an ASP.NET Page Declaratively]: http://msdn.microsoft.com/library/zd1ysf1y.aspx
 [How to: Set a Page's Cacheability Programmatically]: http://msdn.microsoft.com/library/z852zf6b.aspx
 [Configure a cache in Azure Redis Cache]: http://msdn.microsoft.com/library/azure/dn793612.aspx
 
 [StackExchange.Redis configuration model]: https://stackexchange.github.io/StackExchange.Redis/Configuration
 
-[Work with .NET objects in hello cache]: http://msdn.microsoft.com/library/dn690521.aspx#Objects
+[Work with .NET objects in the cache]: http://msdn.microsoft.com/library/dn690521.aspx#Objects
 
 
 [NuGet Package Manager Installation]: http://go.microsoft.com/fwlink/?LinkId=240311
@@ -295,16 +295,16 @@ Most, hogy megismerte hello alapjait, kövesse a további információk az Azure
 [Overview of Azure Redis Cache]: http://go.microsoft.com/fwlink/?LinkId=320830
 [Azure Redis Cache]: http://go.microsoft.com/fwlink/?LinkId=398247
 
-[Migrate tooAzure Redis Cache]: http://go.microsoft.com/fwlink/?LinkId=317347
+[Migrate to Azure Redis Cache]: http://go.microsoft.com/fwlink/?LinkId=317347
 [Azure Redis Cache Samples]: http://go.microsoft.com/fwlink/?LinkId=320840
-[Using Resource groups toomanage your Azure resources]: ../azure-resource-manager/resource-group-overview.md
+[Using Resource groups to manage your Azure resources]: ../azure-resource-manager/resource-group-overview.md
 
 [StackExchange.Redis]: http://github.com/StackExchange/StackExchange.Redis
 [StackExchange.Redis cache client documentation]: http://github.com/StackExchange/StackExchange.Redis#documentation
 
 [Redis]: http://redis.io/documentation
 [Redis data types]: http://redis.io/topics/data-types
-[a fifteen minute introduction tooRedis data types]: http://redis.io/topics/data-types-intro
+[a fifteen minute introduction to Redis data types]: http://redis.io/topics/data-types-intro
 
 [How Application Strings and Connection Strings Work]: http://azure.microsoft.com/blog/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work/
 

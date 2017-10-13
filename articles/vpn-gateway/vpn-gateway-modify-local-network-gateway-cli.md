@@ -1,6 +1,6 @@
 ---
-title: "Hello helyi hálózati átjáró IP-cím előtagokat és hello VPN-átjáró IP-cím módosítása |} Azure |} PARANCSSORI FELÜLETTEL |} Microsoft Docs"
-description: "Ez a cikk bemutatja, hogyan módosítja a helyi hálózati átjáró hello Azure CLI használata IP-cím előtagokat."
+title: "Módosítsa a helyi hálózati átjáró IP-cím előtagokat és a VPN-átjáró IP-címe |} Azure |} PARANCSSORI FELÜLETTEL |} Microsoft Docs"
+description: "Ez a cikk bemutatja, hogyan módosítása a helyi hálózati átjáró, az Azure parancssori felület használatával IP-cím előtagokat."
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/19/2017
 ms.author: cherylmc
-ms.openlocfilehash: 4b8bbf3e9d3d42ac2d12f87360fa0a4134c57a21
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7db1ad970ebb93d46d5a861f9a9b27bf121531a3
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="modify-local-network-gateway-settings-using-hello-azure-cli"></a>Hello Azure parancssori felület használatával a helyi hálózati átjáró beállításainak módosítása
+# <a name="modify-local-network-gateway-settings-using-the-azure-cli"></a>Az Azure parancssori felület használatával a helyi hálózati átjáró beállításainak módosítása
 
-Egyes esetekben a helyi hálózati átjáró címelőtagja vagy az átjáró IP-cím hello beállításait módosíthatja. Ez a cikk bemutatja, hogyan toomodify a helyi hálózati átjáró beállításokat. Ezeket a beállításokat egy másik módszer a következő lista hello egy másik lehetőség kiválasztásával a is módosíthatja:
+Egyes esetekben a helyi hálózati átjáró címelőtagja vagy az átjáró IP-cím beállításainak módosítása Ez a cikk bemutatja, hogyan módosíthatja a helyi hálózati átjáró beállításokat. Emellett módosíthatja ezeket a beállításokat egy másik módszer a egy másik lehetőség kiválasztásával az alábbi listából:
 
 > [!div class="op_single_selector"]
 > * [Azure Portal](vpn-gateway-modify-local-network-gateway-portal.md)
@@ -34,7 +34,7 @@ Egyes esetekben a helyi hálózati átjáró címelőtagja vagy az átjáró IP-
 
 ## <a name="before"></a>Előkészületek
 
-Hello hello parancssori felület parancsait (2.0-s vagy újabb) legújabb verziójának telepítéséhez. Hello parancssori felület parancsait telepítésével kapcsolatos információkért lásd: [Azure CLI 2.0 telepítése](https://docs.microsoft.com/cli/azure/install-azure-cli).
+Telepítse a legújabb verzióját a parancssori felület parancsait (2.0-s vagy újabb). Információk a CLI-parancsok telepítéséről: [Az Azure CLI 2.0-s verziójának telepítése](https://docs.microsoft.com/cli/azure/install-azure-cli).
 
 [!INCLUDE [CLI-login](../../includes/vpn-gateway-cli-login-include.md)]
 
@@ -42,7 +42,7 @@ Hello hello parancssori felület parancsait (2.0-s vagy újabb) legújabb verzi�
 
 [!INCLUDE [modify-prefix](../../includes/vpn-gateway-modify-ip-prefix-cli-include.md)]
 
-## <a name="gwip"></a>Hello átjáró IP-cím módosítása
+## <a name="gwip"></a>Az átjáró IP-cím módosítása
 
 [!INCLUDE [modify-gateway-IP](../../includes/vpn-gateway-modify-lng-gateway-ip-cli-include.md)]
 

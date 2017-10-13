@@ -1,6 +1,6 @@
 ---
-title: "aaaGet Windows univerzális alkalmazások Azure Mobile Engagement használatába"
-description: "Megtudhatja, hogyan toouse Azure Mobile Engagement az univerzális Windows-alkalmazásokhoz kapcsolódó elemzések és leküldéses értesítéseket."
+title: "Ismerkedés az Azure Mobile Engagement univerzális Windows-alkalmazásokkal való használatával"
+description: "Ismerje meg, hogyan használható az Azure Mobile Engagement az univerzális Windows-alkalmazásokhoz kapcsolódó elemzésekkel és leküldéses értesítésekkel."
 services: mobile-engagement
 documentationcenter: windows
 author: piyushjo
@@ -14,20 +14,20 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 08/12/2016
 ms.author: piyushjo;ricksal
-ms.openlocfilehash: 8224a6d3789cfe4784bbc9472005f9eddb94a8b8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 40db7e4dd151ec391c754dc6d4145aeeb8058eca
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-azure-mobile-engagement-for-windows-universal-apps"></a>Ismerkedés az Azure Mobile Engagement univerzális Windows-alkalmazásokkal való használatával
 [!INCLUDE [Hero tutorial switcher](../../includes/mobile-engagement-hero-tutorial-switcher.md)]
 
-Ez a témakör bemutatja, hogyan toouse Azure Mobile Engagement toounderstand az alkalmazás használatának és a küldési leküldéses értesítések toosegmented felhasználók egy univerzális Windows-alkalmazás.
-Ez az oktatóanyag bemutatja, hogyan hello használó egyszerű küldési forgatókönyvet a Mobile Engagement. Ennek során létrehoz egy üres univerzális Windows-alkalmazást, amely alapszintű alkalmazáshasználati adatokat gyűjt, és leküldéses értesítéseket fogad a Windows értesítési szolgáltatása (WNS) használatával.
+Ebben a témakörben elsajátíthatja, hogy miként használható az Azure Mobile Engagement az alkalmazáshasználat megértéséhez, valamint leküldéses értesítések univerzális Windows-alkalmazásba történő küldéséhez szegmentált felhasználók számára.
+Ez az oktatóanyag a Mobile Engagementet használó egyszerű küldési forgatókönyvet mutat be. Ennek során létrehoz egy üres univerzális Windows-alkalmazást, amely alapszintű alkalmazáshasználati adatokat gyűjt, és leküldéses értesítéseket fogad a Windows értesítési szolgáltatása (WNS) használatával.
 
 > [!NOTE]
-> hello Azure Mobile Engagement szolgáltatás március 2018 rendszerből, és jelenleg csak a rendelkezésre álló tooexisting ügyfelek. További információkért lásd: [Mobile Engagement](https://azure.microsoft.com/en-us/services/mobile-engagement/).
+> Az Azure Mobile Engagement szolgáltatást 2018 márciusától megszüntetjük, és jelenleg csak meglévő ügyfelek számára érhető el. További információkért lásd: [Mobile Engagement](https://azure.microsoft.com/en-us/services/mobile-engagement/).
 
 ## <a name="prerequisites"></a>Előfeltételek
 [!INCLUDE [Prereqs](../../includes/mobile-engagement-windows-store-prereqs.md)]
@@ -35,107 +35,107 @@ Ez az oktatóanyag bemutatja, hogyan hello használó egyszerű küldési forgat
 ## <a name="set-up-mobile-engagement-for-your-windows-universal-app"></a>A Mobile Engagement beállítása az univerzális Windows-alkalmazáshoz
 [!INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-## <a id="connecting-app"></a>Csatlakozás az alkalmazás toohello Mobile Engagement háttérrendszeréhez
-Ez az oktatóanyag egy "alapszintű integrációt," hello minimális határozza meg a szükséges toocollect dátumát és leküldéses értesítés küldéséhez mutat. hello teljes integrációs dokumentáció itt található a hello [Mobile Engagement univerzális Windows SDK-integráció](mobile-engagement-windows-store-sdk-overview.md).
+## <a id="connecting-app"></a>Az alkalmazás csatlakoztatása a Mobile Engagement háttérrendszeréhez
+Ez az oktatóanyag egy „alapszintű integrációt” mutat be, ami minimálisan szükséges az adatok gyűjtéséhez és leküldéses értesítés küldéséhez. A teljes integrációs dokumentáció itt található: [Mobile Engagement univerzális Windows SDK-integráció](mobile-engagement-windows-store-sdk-overview.md).
 
-Létrehozhat egy alapszintű alkalmazást a Visual Studio toodemonstrate hello integrációja.
+Létre fog hozni egy alapszintű alkalmazást a Visual Studio segítségével az integráció bemutatásához.
 
 ### <a name="create-a-windows-universal-app-project"></a>Univerzális Windows-alkalmazás projekt létrehozása
-hello következő lépések azt feltételezik hello Visual Studio 2015 használatát, ha hello lépések hasonlóak a Visual Studio korábbi verzióiban.
+A következő lépések a Visual Studio 2015 használatát feltételezik, de a lépések a Visual Studio korábbi verziói esetén is hasonlóak.
 
-1. Indítsa el a Visual Studio és a hello **Home** képernyőn válassza ki **új projekt**.
-2. Hello előugró ablakban válassza **Windows** -> **univerzális** -> **üres alkalmazás (univerzális Windows)**. Töltse ki a hello app **neve** és **megoldásnév**, és kattintson a **OK**.
+1. Indítsa el a Visual Studiót, és a **Kezdőképernyőn** válassza a **New Project** (Új projekt) lehetőséget.
+2. Az előugró ablakban válassza a **Windows** -> **Universal** -> **Blank App (Universal Windows)** (Windows > Univerzális > Üres alkalmazás (Univerzális Windows)) lehetőséget. Adja meg az alkalmazás **nevét** és a **megoldás nevét**, majd kattintson az **OK** gombra.
 
     ![][1]
 
-Most létrehozott egy univerzális Windows-alkalmazás projektet, amelybe mellett integrálása hello Azure Mobile Engagement SDK-t.
+Most létrehozott egy új univerzális Windows-alkalmazás projektet, amelybe integrálni fogjuk az Azure Mobile Engagement SDK-t.
 
-### <a name="connect-your-app-toomobile-engagement-backend"></a>Csatlakozás az alkalmazás tooMobile Engagement háttérrendszeréhez
-1. Telepítse a hello [MicrosoftAzure.MobileEngagement] Nuget-csomagot a projektben. Windows és Windows Phone platformot céloz meg, ha szüksége toodo ezt mindkét projekt. A Windows 8.x és Windows Phone 8.1, hello azonos Nuget csomag helyek hello megfelelő platformspecifikus bináris fájlokat mindkét projektben.
-2. Nyissa meg **Package.appxmanifest** és győződjön meg arról, hogy a következő képességet hello hiba jelenik meg:
+### <a name="connect-your-app-to-mobile-engagement-backend"></a>Az alkalmazás csatlakoztatása a Mobile Engagement háttérrendszeréhez
+1. Telepítse a [MicrosoftAzure.MobileEngagement] NuGet-csomagot a projektben. Ha a Windows és a Windows Phone platformot is célozza, ezt mindkét projekt esetében el kell végeznie. A Windows 8.x és a Windows Phone 8.1 esetében ugyanaz a NuGet-csomag mindkét projektben elhelyezi a megfelelő platformspecifikus bináris fájlokat.
+2. Nyissa meg a **Package.appxmanifest** csomagot, és ellenőrizze, hogy az tartalmazza a következő képességet:
 
         Internet (Client)
 
     ![][2]
-3. Most másolja, amely korábban a Mobile Engagement-alkalmazáshoz kimásolt hello kapcsolati karakterláncot, és illessze be hello `Resources\EngagementConfiguration.xml` fájl közötti hello `<connectionString>` és `</connectionString>` címkék:
+3. Most másolja a korábban a Mobile Engagement-alkalmazáshoz kimásolt kapcsolati karakterláncot, és illessze be a `Resources\EngagementConfiguration.xml` fájlba, a `<connectionString>` és a `</connectionString>` címke közé:
 
     ![][3]
 
     > [!TIP]
-    > Ha az alkalmazása a Windows és a Windows Phone platformot is célozza, hozzon létre két Mobile Engagement-alkalmazást – egyet-egyet mindegyik támogatott platformhoz. Két alkalmazások biztosítja, hogy helyes szegmentálását hello célközönség hozhat létre, és az egyes platformokon megfelelően célzott értesítéseket küldhet.
+    > Ha az alkalmazása a Windows és a Windows Phone platformot is célozza, hozzon létre két Mobile Engagement-alkalmazást – egyet-egyet mindegyik támogatott platformhoz. Ezzel a két alkalmazással biztosítható, hogy megfelelő közönségszegmentálást hozhasson létre, és megfelelően célzott értesítéseket küldhessen mindegyik platformra.
 
     > [!IMPORTANT]
-    > NuGet nem automatikusan hello SDK-erőforrások másolása a Windows 10 UWP-alkalmazásban. Hogy toodo, manuális lépések hello amely jelenik meg (readme.txt), ha hello Nuget-csomagja telepítve van.  
+    > A NuGet nem másolja automatikusan a Windows 10 UWP alkalmazásban található SDK-erőforrásokat. Ezt manuálisan kell megtenni a Nuget csomag telepítésekor megjelenő utasításoknak (readme.txt) megfelelően.  
 
-1. A hello `App.xaml.cs` fájlt:
+1. Az `App.xaml.cs` fájlban:
 
-    a. Adja hozzá a hello `using` utasítást:
+    a. Adja hozzá a következő `using` utasítást:
 
             using Microsoft.Azure.Engagement;
 
-    b. Inicializálja az hello Engagement metódus hozzáadása:
+    b. Adja hozzá az Engagementet inicializáló metódust:
 
            private void InitEngagement(IActivatedEventArgs e)
            {
              EngagementAgent.Instance.Init(e);
 
-             //... rest of hello code
+             //... rest of the code
            }
 
-    c. A hello SDK hello inicializálása **OnLaunched** módszert:
+    c. Inicializálja az SDK-t az **OnLaunched** metódusban:
 
             protected override void OnLaunched(LaunchActivatedEventArgs e)
             {
               InitEngagement(e);
 
-              //... rest of hello code
+              //... rest of the code
             }
 
-    c. Helyezze be a következő hello hello **OnActivated** metódust, és adja hozzá a hello metódust, ha még nincs jelen:
+    c. Szúrja be a következőt az **OnActivated** metódusba (ha a metódus nem található, vegye fel):
 
             protected override void OnActivated(IActivatedEventArgs e)
             {
               InitEngagement(e);
 
-              //... rest of hello code
+              //... rest of the code
             }
 
 ## <a id="monitor"></a>Valós idejű figyelés engedélyezése
-adatküldés, és győződjön meg arról, hogy hello felhasználók aktívak, el kell küldenie a Mobile Engagement háttérrendszeréhez legalább egy képernyőt (tevékenységet) toohello toostart.
+Az adatok küldésének megkezdéséhez és annak biztosításához, hogy a felhasználók aktívak, legalább egy képernyőt (tevékenységet) el kell küldenie a Mobile Engagement háttérrendszere számára.
 
-1. A hello **MainPage.xaml.cs**, adja hozzá a következő hello `using` utasítást:
+1. A **MainPage.xaml.cs** fájlban adja hozzá a következő `using` utasítást:
 
     using Microsoft.Azure.Engagement.Overlay;
-2. Módosítsa az alaposztály alaposztályát hello **MainPage** a **lap** túl**EngagementPageOverlay**:
+2. Cserélje le a **MainPage** alaposztályának eddigi **Page** értékét a következőre: **EngagementPageOverlay**:
 
         class MainPage : EngagementPageOverlay
-3. A hello `MainPage.xaml` fájlt:
+3. Az `MainPage.xaml` fájlban:
 
-    a. Tooyour névtér-deklarációk hozzáadása:
+    a. Adja hozzá a következőt a névtér-deklarációkhoz:
 
         xmlns:engagement="using:Microsoft.Azure.Engagement.Overlay"
 
-    b. Cserélje le a hello **lap** hello XML-címkenév a **engagement: EngagementPageOverlay**
+    b. Az XML-címke nevének **Page** részét cserélje le a következőre: **engagement:EngagementPageOverlay**.
 
 > [!IMPORTANT]
-> Ha az oldala felülírja hello `OnNavigatedTo` módszer, lehet, hogy toocall `base.OnNavigatedTo(e)`. Ellenkező esetben hello tevékenység nem jelentett `EngagementPage` hívások `StartActivity` belül a `OnNavigatedTo` metódus). Ez különösen fontos a Windows Phone-projektben ahol hello alapértelmezett sablon rendelkezik egy `OnNavigatedTo` metódust.
+> Ha az oldala felülírja az `OnNavigatedTo` metódust, hívja meg a következőt: `base.OnNavigatedTo(e)`. Ellenkező esetben a tevékenységről nem készül jelentés (az `EngagementPage` meghívja a `StartActivity` tevékenységet az `OnNavigatedTo` metódusán belül). Ez különösen a Windows Phone-projektek esetében fontos, ahol az alapértelmezett sablonok egy `OnNavigatedTo` metódussal rendelkeznek.
 >
-> A **univerzális Windows 10-alkalmazások**, hello módszer ajánlott a hello "javasolt módszer: a lap osztályok túlterhelés" szakasza [speciális jelentéskészítés hello Windows univerzális alkalmazások Engagement SDK-t a](mobile-engagement-windows-store-advanced-reporting.md) , ahelyett, hogy hello egyet fent említett.
+> **Univerzális Windows 10-alkalmazások** esetében a fent említett módszer helyett használja [a Windows Universal Apps Engagement SDK-val elérhető fejlett jelentéskészítési képességekről szóló](mobile-engagement-windows-store-advanced-reporting.md) cikk „Ajánlott módszer: a laposztályok túlterhelése” című szakaszában javasolt módszert.
 
 ## <a id="monitor"></a>Az alkalmazás csatlakoztatása a valós idejű megfigyeléshez
 [!INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
 ## <a id="integrate-push"></a>Leküldéses értesítések és alkalmazáson belüli üzenetek engedélyezése
-A Mobile Engagement lehetővé teszi a toointeract, és a felhasználók elérését a leküldéses értesítések és alkalmazáson belüli üzenetekkel hello kampányok felhasználókat. Ez a modul REACH neve hello a Mobile Engagement portálon.
-hello alábbi szakaszok állítják be az alkalmazás tooreceive őket.
+A Mobile Engagement lehetővé teszi a felhasználókkal folytatott interakciót és a felhasználók elérését a kampányok részeként megjelenő leküldéses értesítésekkel és alkalmazáson belüli üzenetekkel. Ez a modul REACH (Elérés) néven érhető el a Mobile Engagement portálon.
+Az alábbi szakaszok állítják be az alkalmazást a fogadásukra.
 
-### <a name="enable-your-app-tooreceive-wns-push-notifications"></a>Az alkalmazás tooreceive WNS leküldéses értesítések engedélyezése
-1. A hello `Package.appxmanifest` hello-fájlban **alkalmazás** lap **értesítések**, beállíthatja **képes bejelentési:** túl**Igen**
+### <a name="enable-your-app-to-receive-wns-push-notifications"></a>WNS leküldéses értesítések fogadásának engedélyezése az alkalmazásban
+1. A `Package.appxmanifest` fájlban, az **Application** (Alkalmazás) lap **Notifications** (Értesítések) részében a **Toast capable:** (Bejelentések engedélyezése:) beállításnál adja meg a **Yes** (Igen) értéket.
 
     ![][5]
 
-### <a name="initialize-hello-reach-sdk"></a>Hello REACH SDK inicializálása
-A `App.xaml.cs`, hívja **Initengagement** a hello **Engagementreach.instance.Init(e)** függvény hello ügynök inicializálása után:
+### <a name="initialize-the-reach-sdk"></a>A REACH SDK inicializálása
+Az `App.xaml.cs` fájlban, az **InitEngagement** függvényben hívja meg az **EngagementReach.Instance.Init(e);** elemet közvetlenül az ügynök inicializálása után:
 
         private void InitEngagement(IActivatedEventArgs e)
         {
@@ -143,37 +143,37 @@ A `App.xaml.cs`, hívja **Initengagement** a hello **Engagementreach.instance.In
            EngagementReach.Instance.Init(e);
         }
 
-Most készen áll a toosend egy bejelentési. A következő lépésben ellenőrizni fogjuk, hogy ezt az alapszintű integrációt megfelelően végezte-e el.
+Készen áll a bejelentés elküldésére. A következő lépésben ellenőrizni fogjuk, hogy ezt az alapszintű integrációt megfelelően végezte-e el.
 
-### <a name="grant-access-toomobile-engagement-toosend-notifications"></a>Adjon hozzáférést tooMobile Engagement toosend értesítések
+### <a name="grant-access-to-mobile-engagement-to-send-notifications"></a>Értesítésküldési hozzáférés biztosítása a Mobile Engagement számára
 1. Nyissa meg a [Windows fejlesztői központot] a webböngészőjében, és jelentkezzen be, vagy ha szükséges, hozzon létre egy fiókot.
-2. Kattintson a **irányítópult** : hello jobb felső sarokban, és kattintson a **hozzon létre egy új alkalmazást** hello bal oldali panelmenüben.
+2. Kattintson a jobb felső sarokban lévő **Irányítópult** elemre, majd kattintson a bal oldali panelmenüben az **Új alkalmazás létrehozása** lehetőségre.
 
     ![][9]
 3. Hozza létre az alkalmazást a neve lefoglalásával.
 
     ![][10]
-4. Hello alkalmazás létrehozása után, nyissa meg túl**szolgáltatások -> leküldéses értesítések** hello bal oldali menüből.
+4. Miután létrehozta az alkalmazást, lépjen a bal oldali menü **Szolgáltatások -> Leküldéses értesítések** részébe.
 
     ![][11]
-5. Hello a leküldéses értesítések szakaszban, kattintson a hello **Live Services webhely** hivatkozásra.
+5. A Leküldéses értesítések szakaszban kattintson a **Live Services webhelye** hivatkozásra.
 
     ![][12]
-6. Navigálás toohello leküldési hitelesítő adatok szakasz. Győződjön meg arról, hogy a hello **Alkalmazásbeállítások** szakaszt, és másolja a **CSOMAGAZONOSÍTÓT** és **ügyfélkulcs**
+6. Ezzel a Leküldési hitelesítő adatok részhez lép. Ellenőrizze, hogy az **Alkalmazásbeállítások** szakaszban van-e, majd másolja ki a **Csomag biztonsági azonosítóját** és a **Titkos ügyfélkulcsot**.
 
     ![][13]
-7. Keresse meg a toohello **beállítások** a Mobile Engagement portál hello kattintson **natív leküldés** hello bal oldali szakasz. Kattintson a hello **szerkesztése** gomb tooenter a **csomag biztonsági azonosítóját (SID)** és a **titkos kulcs** látható módon:
+7. Lépjen a **Beállítások** részre a Mobile Engagement portálon, majd kattintson a bal oldalon a **Natív leküldés** szakaszra. Ezután kattintson a **Szerkesztés** gombra, és adja meg a **Csomag biztonsági azonosítója (SID)** és a **Titkos kulcs** értékét az itt látható módon:
 
     ![][6]
-8. Végül győződjön meg arról, hogy ezzel az alkalmazással létrehozott hello App Store-ból a Visual Studio alkalmazás társítva. A Visual Studióban kattintson a következőkre: **Associate app with the store** (Alkalmazás társítása az Áruházzal).
+8. Végül ellenőrizze, hogy a Visual Studio alkalmazás társítva van-e az újonnan létrehozott alkalmazással az alkalmazás-áruházban. A Visual Studióban kattintson a következőkre: **Associate app with the store** (Alkalmazás társítása az Áruházzal).
 
     ![][7]
 
-## <a id="send"></a>Egy értesítési tooyour app küldése
+## <a id="send"></a>Értesítés küldése az alkalmazásnak
 [!INCLUDE [Create Windows Push campaign](../../includes/mobile-engagement-windows-push-campaign.md)]
 
-Hello webalkalmazás működik, ha egy alkalmazásbeli értesítés megjelenik. Ellenkező esetben ha hello app le van zárva, megjelenik egy bejelentési értesítést.
-Ha egy alkalmazásbeli értesítés, de a bejelentési értesítés nem látja, és hello alkalmazást a Visual Studio hibakeresési módban futtatja, majd próbálja meg **életciklus-események -> Suspend** a hello eszköztár tooensure hello alkalmazást fel van függesztve. A Visual Studio hello alkalmazás hibakeresése során hello kezdőképernyő gombra kattintott, majd azt nem mindig lesz felfüggesztve, és alkalmazáson belüli hello értesítési akkor látható, amíg azt nem jelenik a bejelentési értesítés.  
+Ha az alkalmazás fut, egy alkalmazásbeli értesítést kell látnia. Ha azonban az alkalmazás be van zárva, egy bejelentési értesítést fog látni.
+Ha alkalmazásbeli értesítés jelenik meg, és nem bejelentési értesítés, és az alkalmazást hibakeresési módban futtatja a Visual Studióban, akkor kattintson az eszköztár **Lifecycle events -> Suspend** (Életciklus-események -> Felfüggesztés) lehetőségére, hogy az alkalmazás biztosan fel legyen függesztve. Ha akkor kattintott a Kezdőképernyő gombra, miközben az alkalmazás hibakeresését végzi a Visual Studióban, az nem mindig lesz felfüggesztve, és bár egy alkalmazásbeli értesítés megjelenik, bejelentési értesítés nem.  
 
 ![][8]
 

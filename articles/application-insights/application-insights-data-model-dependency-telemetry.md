@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure Application Insights Telemetria adatmodell - függőségi Telemetria |} Microsoft Docs"
+title: "Azure Application Insights Telemetria-adatmodell - függőségi Telemetria |} Microsoft Docs"
 description: "Application Insights – függőségi telemetria tartozó adatmodell"
 services: application-insights
 documentationcenter: .net
@@ -12,23 +12,23 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/17/2017
 ms.author: bwren
-ms.openlocfilehash: cd5ab7c61d3498e4aa2a0aa0c8b0d106a92912e9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2e97c3f951f46c32802aea543b93d5ab1bb76228
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="dependency-telemetry-application-insights-data-model"></a>– Függőségi telemetria: Application Insights adatmodell
 
-– Függőségi Telemetria (a [Application Insights](app-insights-overview.md)) hello figyelt összetevők egy távoli összetevő, például az SQL- vagy HTTP-végponttal való jelöli.
+– Függőségi Telemetria (a [Application Insights](app-insights-overview.md)) a figyelt összetevő egy távoli összetevő, például az SQL- vagy HTTP-végponttal való jelöli.
 
 ## <a name="name"></a>Név
 
-Ez a függőségi hívás értékkel kezdeményezték hello parancs nevét. Alacsony cardinality értéke. Többek között a tárolt eljárás nevét és URL-cím elérési út sablont.
+Ez a függőségi hívás értékkel kezdeményezték a parancs nevét. Alacsony cardinality értéke. Többek között a tárolt eljárás nevét és URL-cím elérési út sablont.
 
 ## <a name="id"></a>ID (Azonosító)
 
-A függőségi hívás példány azonosítója. Hello kérelem telemetriai elemével toothis függőségi hívás megfelelő használható korrelációhoz. További információkért lásd: [korrelációs](application-insights-correlation.md) lap.
+A függőségi hívás példány azonosítója. Ez a függőségi hívás megfelelő kérelem telemetriai elemmel használható korrelációhoz. További információkért lásd: [korrelációs](application-insights-correlation.md) lap.
 
 ## <a name="data"></a>Adatok
 

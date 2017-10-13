@@ -1,5 +1,5 @@
 ---
-title: "aaaIoT ajánlott biztonsági eljárások |} Microsoft Docs"
+title: "Az IoT ajánlott biztonsági eljárások |} Microsoft Docs"
 description: "Ajánlott biztonsági eljárások az IoT-infrastruktúra védelmének biztosítása"
 services: 
 suite: iot-suite
@@ -15,71 +15,71 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/03/2017
 ms.author: yurid
-ms.openlocfilehash: 3a546c67978a519446ab6c83917a0789675f1b52
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: dcab91856bcebb8f3bfab8cc69b63fad487f8ace
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="internet-of-things-security-best-practices"></a>Az eszközök internetes hálózatát ajánlott biztonsági eljárások
-az eszközök internetes hálózatát (IoT) infrastruktúra toosecure egy szigorú biztonsági jellegű stratégiát kell. Ezt a stratégiát adatokra van szüksége, toosecure hello felhőben, az átvitel alatt adatintegritás védelme több mint hello a nyilvános interneten, és biztonságosan ellátja az eszközöket. Minden egyes réteg buildek hello a nagyobb biztonság átfogó infrastruktúra.
+Egy az eszközök internetes hálózatát (IoT) biztonságos infrastruktúra megköveteli a szigorú jellegű biztonsági stratégiájának. Ezt a stratégiát kell biztosítani az adatokat a felhőben, az átvitel alatt adatintegritás a nyilvános interneten keresztül védheti meg és biztonságosan ellátja az eszközöket. Minden egyes réteg hoz létre a nagyobb biztonság a teljes infrastruktúrában.
 
 ## <a name="secure-an-iot-infrastructure"></a>Az IoT-infrastruktúra védelme
-A biztonsági jellegű stratégia fejlesztett, és különféle résztvevői hello gyártási, fejlesztési és az IoT-eszközök és infrastruktúra központi telepítése a szerepet játszó aktív részvétele végrehajtásra. Az alábbiakban az ezeket a magas szintű leírását.  
+E jellegű biztonsági stratégia fejlesztett, és a gyártási, fejlesztési és az IoT-eszközök és infrastruktúra központi telepítése a szerepet játszó különféle résztvevői aktív részvétele végrehajtásra. Az alábbiakban az ezeket a magas szintű leírását.  
 
-* **Az IoT hardver gyártója/integráló**: ezek rendszerint hello gyártók megtörténhetne hardver összeállításakor különböző gyártók vagy hardver kezeléséről egy IoT-telepítés gyártott szállítók kiegészítők IoT hardver vagy más szállítók által integrált.
-* **Az IoT-megoldás fejlesztői**: hello fejlesztési egy IoT-megoldás általában egy megoldás fejlesztő végzi. A fejlesztői is része egy belső fejlesztésű csoport vagy ezzel a tevékenységgel szakosodott rendszert integráló (SI). hello IoT-megoldás fejlesztői fejlesztése hello teljesen új IoT-megoldás különböző összetevői, integrálni vásárolt vagy nyílt forráskódú összetevők vagy elfogadják a kisebb kiigazítása előkonfigurált megoldásokat.
-* **Az IoT-megoldás deployer**: után az IoT-megoldás fejlesztése, toobe hello mezőben telepíteni kell. Ebbe beletartozik a hardverek, eszközök összekapcsolása és hardvereszközök vagy hello felhő megoldások telepítésének központi telepítését.
-* **Az IoT-megoldás operátor**: hello IoT-megoldás telepítése után a hosszú távú működésre, ellenőrzésre, frissítések és karbantartás van szükség. Ez egy belső fejlesztésű csoport, amely magában foglalja az információk informatikai szakemberek számára, a hardver műveletek és a karbantartás csoportok és a tartomány szakembereket alkalmaznak, akik hello helyes működése általános IoT-infrastruktúra figyelése teheti.
+* **Az IoT hardver gyártója/integráló**: ezek rendszerint megtörténhetne hardver összeállításakor különböző gyártók vagy hardver biztosítva az IoT központi telepítésének gyártott vagy más szállítók által integrált szállítók kiegészítők IoT hardver gyártói.
+* **Az IoT-megoldás fejlesztői**: egy IoT-megoldás fejlesztése általában egy megoldás fejlesztő végzi. A fejlesztői is része egy belső fejlesztésű csoport vagy ezzel a tevékenységgel szakosodott rendszert integráló (SI). Az IoT-megoldás fejlesztői fejlesztése teljesen új IoT-megoldás különböző összetevői, integrálni vásárolt vagy nyílt forráskódú összetevők vagy elfogadják a kisebb kiigazítása előkonfigurált megoldásokat.
+* **Az IoT-megoldás deployer**: után az IoT-megoldás fejlesztése, a mezőben telepíteni kell. Ebbe beletartozik a hardverek, eszközök összekapcsolása és központi telepítését a hardvereszközök megoldások vagy a felhőben központi telepítését.
+* **Az IoT-megoldás operátor**: után IoT-megoldás van telepítve, a hosszú távú működésre, ellenőrzésre, frissítések és karbantartás van szükség. Ez egy belső fejlesztésű csoport, amely magában foglalja az információk informatikai szakemberek számára, a hardver műveletek és a karbantartás csoportok és a tartomány szakembereket alkalmaznak, akik a helyes működése általános IoT-infrastruktúra figyelése teheti.
 
-hello szakaszok tartalmazzák a gyakorlati tanácsok az egyes ezek játékosok toohelp fejlesztése, üzembe helyezéséhez, és egy biztonságos IoT-infrastruktúra üzemeltetéséhez.
+A következő szakaszok az egyes ezek játékosok fejlesztése, telepítéséhez és működtetéséhez biztonságos IoT-infrastruktúra segítségével ajánlott eljárások nyújtása.
 
 ## <a name="iot-hardware-manufacturerintegrator"></a>Az IoT hardver gyártója/integráló
-Az alábbiakban hello IoT hardvergyártók és hardver kiegészítők ajánlott eljárásai hello.
+Az alábbiakban a gyakorlati tanácsok az IoT-hardvergyártók és hardver kiegészítők.
 
-* **Hatókör toominimum hardverkövetelmények**: hello hardver tervezési hello hello hardver, és semmi további művelethez szükséges minimális funkciók kell tartalmaznia. Lehet például tooinclude USB-porttal, csak ha az eszköz hello hello működéséhez szükséges. Ezek a kiegészítő funkciók nyissa meg a kerülni kell a nem kívánt támadási hello az eszközön.
-* **Ellenőrizze a hardver igazolása védelmet**: Build a mechanizmusok toodetect fizikai illetéktelen módosítás, például a hello eszköz borítóján megnyitását, vagy távolítsa el a hello eszköz része. Ezek a jelek védelmet hello adatok feltöltése adatfolyam toohello felhő, amelyen ezek az események operátorok sikerült riasztást részét képezhetik.
-* **Biztonságos hardveren körül Build**: Ha ELÁBÉ lehetővé teszi, készíthetnek biztonsági funkciókat, például a biztonságos és titkosított tárolási, vagy rendszerindítási a platformmegbízhatósági modul (TPM) alapú funkciót. Ezen szolgáltatások ellenőrizze eszközök több biztonságos, és ezzel megvédje hello általános IoT-infrastruktúra.
-* **Frissítések biztonságosabbá teheti**: hello eszköz hello élettartama során belső vezérlőprogram frissítési előbb vagy utóbb elkerülhetetlenné. Eszközök biztonságos elérési utak a frissítések és a titkosítási biztosítani kell a belső vezérlőprogram verzióinak létrehozása lehetővé teszi hello eszköz toobe biztonságos alatt és után frissítéseket.
+* **Hatókör hardvereszközeit úgy, hogy a minimális követelmények**: A hardver tervezési tartalmaznia kell a művelethez a hardver, és semmi további szükséges minimális funkciók. Egy példa egy USB-porttal tartalmazza, csak ha az eszköz működéséhez szükséges. Ezek a kiegészítő funkciók az eszköz nem kívánt támadási vektor ismert, hogy el kell kerülni a megnyitásához.
+* **Ellenőrizze a hardver igazolása védelmet**: mechanizmusok észleléséhez fizikai illetéktelen módosítás, például az eszköz borítóján megnyitását, vagy távolítsa el az eszközt egy részét a Build. Ezek a jelek védelmet az adatfolyamot a felhőbe, amely ezeket az eseményeket az operátorok sikerült riasztást feltöltött részét képezhetik.
+* **Biztonságos hardveren körül Build**: Ha ELÁBÉ lehetővé teszi, készíthetnek biztonsági funkciókat, például a biztonságos és titkosított tárolási, vagy rendszerindítási a platformmegbízhatósági modul (TPM) alapú funkciót. Ezek a funkciók tehetik az eszközöket, több biztonságos, és az általános IoT-infrastruktúra védelméhez.
+* **Frissítések biztonságosabbá teheti**: az eszköz élettartama során belső vezérlőprogram frissítési előbb vagy utóbb elkerülhetetlenné. Eszközök biztonságos elérési utak a frissítések és a titkosítási biztosítani kell a belső vezérlőprogram verzióinak létrehozása lehetővé teszi az eszköz biztonságos alatt és után frissítéseket.
 
 ## <a name="iot-solution-developer"></a>Az IoT-megoldás fejlesztői
-Az alábbiakban hello hello gyakorlati tanácsok az IoT-megoldás fejlesztőknek:
+Az IoT-megoldás fejlesztők számára az ajánlott eljárások a következők:
 
-* **Hajtsa végre a biztonságos software development módszert**: biztonságos szoftver fejlesztésének ground up gondolat biztonsági hello kezdetektől hello projekt összes hello módon tooits végrehajtására, tesztelése és telepítése szükséges. hello döntések platformok, a nyelv és az eszközök összes befolyásolja az ezt a módszert. hello Microsoft biztonsági fejlesztési életciklus során egy megközelítésnek toobuilding biztonságos szoftver biztosít.
-* **Válassza ki a nyílt forráskódú szoftvereket körültekintően**: nyílt forráskódú szoftvereket, amely lehetőséget biztosít a tooquickly megoldások fejlesztése. Kidolgozásakor nyílt forráskódú szoftvereket, fontolja meg az egyes nyílt forráskódú összetevők hello közösségi hello tevékenység szintjét. Egy aktív közösségi biztosítja, hogy a szoftver támogatja-e, és hogy problémák felderítése és címzett. Azt is megteheti lehetséges, hogy nem támogatja egy homályos és inaktív nyílt forráskódú szoftvereket, és problémák valószínűleg nem lesz felderítve.
-* **Integrálható, így gondossággal járjanak**: hello határt a könyvtárakat és API-k sok szoftver biztonsági hiányosságokat lehet létrehozni. Funkció, amely nem feltétlenül hello aktuális telepítéséhez szükséges előfordulhat, hogy továbbra is elérhetők az API réteg keresztül. tooensure átfogó biztonsági, győződjön meg arról, hogy toocheck a biztonsági hiányosságokat integrálva összetevők az összes illesztő.      
+* **Hajtsa végre a biztonságos software development módszert**: biztonságos szoftver fejlesztésének biztonsági, egészen a projektet a végrehajtási, a tesztelés és a telepítése a kezdetektől ground felfelé továbbléphetnek igényel. A választási lehetőségek platformok, a nyelv és az eszközök összes befolyásolja az ezt a módszert. A Microsoft biztonsági fejlesztési életciklus során biztonságos szoftver létrehozásának részletes megközelítését ismerteti.
+* **Válassza ki a nyílt forráskódú szoftvereket körültekintően**: gyorsan a megoldások fejlesztése lehetőséget kínál a nyílt forráskódú szoftvereket. Kidolgozásakor nyílt forráskódú szoftvereket, fontolja meg az egyes nyílt forráskódú összetevők közösségi tevékenység szintjét. Egy aktív közösségi biztosítja, hogy a szoftver támogatja-e, és hogy problémák felderítése és címzett. Azt is megteheti lehetséges, hogy nem támogatja egy homályos és inaktív nyílt forráskódú szoftvereket, és problémák valószínűleg nem lesz felderítve.
+* **Integrálható, így gondossággal járjanak**: sok szoftver biztonsági hiányosságokat lehet létrehozni a határ könyvtárakat és API-k. Funkció, amely nem feltétlenül szükséges, a jelenlegi üzemelő példány előfordulhat, hogy továbbra is elérhetők az API réteg keresztül. Ahhoz, hogy a teljes biztonsági, ellenőrizze, hogy a biztonsági hiányosságokat integrálva összetevők az összes illesztő.      
 
 ## <a name="iot-solution-deployer"></a>Az IoT-megoldás deployer
-Az alábbiakban hello ajánlott eljárások az IoT-megoldás telepítőket:
+Ajánlott eljárások az IoT-megoldás telepítőket a következők:
 
-* **Hardver biztonságos telepítése**: IoT-telepítések nem biztonságos helyen, például a nyilvános szóközt vagy felügyeletlen területi telepített hardver toobe lehet szükség. Ilyen helyzetekben gondoskodjon arról, hogy hardver telepítési hamisíthatatlan toohello legnagyobb mértékben. Ha USB vagy más portok a hello hardver érhetők el, győződjön meg arról, biztonságosan jelez. Számos támadási ezek belépési pontként használható.
-* **Hitelesítési kulcsok biztonsága**: a telepítés során minden eszköz eszközazonosítókat igényel, és társított hello felhőalapú szolgáltatás által létrehozott hitelesítési kulcsokat. Tartsa meg ezeket a kulcsokat fizikailag biztonságos hello telepítés után is. Feltört kulcs egy meglévő eszközt egy rosszindulatú eszköz toomasquerade is használhatják.
+* **Hardver biztonságos telepítése**: IoT központi telepítések szükség lehet a hardvert, hogy nem biztonságos helyen, például a nyilvános szóközt vagy felügyeletlen területi telepíthető. Ilyen helyzetekben, győződjön meg arról, hogy hardver telepítési hamisíthatatlan legnagyobb mértékben. Ha USB vagy más portok elérhetők a hardverre, győződjön meg arról, biztonságosan jelez. Számos támadási ezek belépési pontként használható.
+* **Hitelesítési kulcsok biztonsága**: a telepítés során minden egyes eszköz eszközazonosítókat igényel, és hozzárendelt hitelesítési kulcsokat, a felhőalapú szolgáltatás által létrehozott. Ezek a kulcsok fizikailag biztonságos tartsa a telepítés után is. Feltört kulcs segítségével egy rosszindulatú eszköz helyettesítő meglévő eszközként.
 
 ## <a name="iot-solution-operator"></a>Az IoT-megoldás operátor
-Az alábbiakban hello hello gyakorlati tanácsok az IoT-megoldás operátorok:
+Az ajánlott eljárásokat az IoT-megoldás operátorok a következők:
 
-* **Hello rendszer mentése toodate**: Ellenőrizze, hogy eszköz-operációsrendszerek és az összes eszközillesztőt frissített toohello legújabb verziói. Ha bekapcsolja az automatikus frissítések a Windows 10 (IoT vagy más termékváltozatok), a Microsoft tartja azt toodate, másolatot egy biztonságos operációs rendszer biztosítva az IoT-eszközök. Más operációs rendszerek (például a Linux) mentése toodate tartása segít biztosítani, hogy is védve legyenek rosszindulatú támadások ellen.
-* **Rosszindulatú tevékenységhez elleni**: lehetővé teszi a hello operációs rendszer, ha minden eszköz operációs rendszere telepítse hello legújabb a víruskereső és kártevőirtó-funkciókat. Ez segítheti a legtöbb veszélyek mérséklése. A legtöbb modern operációs rendszer ellen megvédheti megfelelő lépéseket.
-* **Naplózási gyakran**: naplózás IoT infrastruktúra biztonsági problémák esetén kulcs toosecurity incidensek válaszol. A legtöbb operációs rendszer adja meg a beépített eseménynaplózás, meg kell vizsgálni gyakran toomake meg arról, hogy nem biztonsági hiba történt. Naplózási információ elküldhető külön telemetriai adatfolyam toohello felhőszolgáltatásként elemzése ahol.
-* **Fizikailag a hello IoT-infrastruktúra védelméhez**: hello legrosszabb IoT infrastruktúra elleni támadások fizikai hozzáférés toodevices indul el. Egy fontos biztonsági gyakorlat az, tooprotect USB-porttal és más fizikai hozzáférés rosszindulatú visszaélések ellen. Egy kulcs toouncovering megszegése fellépő bejelentkezik a fizikai hozzáférés, például az USB-port használatát. Ebben az esetben a Windows 10 (IoT és egyéb SKU) lehetővé teszi, hogy ezek az események részletes naplózás.
-* **Felhő hitelesítő adatok védelme**: Felhő hitelesítő adatok konfigurálása és az IoT központi telepítése operációs valószínűleg hello legegyszerűbb módja toogain hozzáférés, és az IoT-rendszerbe. Hello jelszó módosítása gyakran hello hitelesítő adatok védelméről, és ezek a hitelesítő adatok használata a nyilvános gépeken tartózkodnak.
+* **A rendszer naprakészen tartása**: Győződjön meg arról, hogy a eszköz-operációsrendszerek és az összes eszközillesztőt frissítése a legújabb verzióra. Ha bekapcsolja az automatikus frissítések a Windows 10 (IoT vagy más termékváltozatok), a Microsoft azt naprakészen tartása, és egy biztonságos operációs rendszer biztosít a IoT-eszközök. Más operációs rendszerek (például a Linux) tartása naprakészen segít biztosítani, hogy is védve legyenek rosszindulatú támadások ellen.
+* **Rosszindulatú tevékenységhez elleni**: lehetővé teszi az operációs rendszer, ha minden eszköz operációs rendszere telepítse a legújabb a víruskereső és kártevőirtó funkciókat. Ez segítheti a legtöbb veszélyek mérséklése. A legtöbb modern operációs rendszer ellen megvédheti megfelelő lépéseket.
+* **Naplózási gyakran**: naplózás IoT infrastruktúra biztonsági problémák esetén kulcs-biztonsági incidensekre válaszol. A legtöbb operációs rendszer beépített eseménynaplózás kell vizsgálni a gyakran ellenőrizze, hogy nincs biztonsági szabálysértés történt meg. Naplózási információ elküldhető egy külön telemetriai adatfolyamként a felhőszolgáltatásba elemzése ahol.
+* **Az IoT-infrastruktúra fizikailag védelme**: A legrosszabb biztonsági támadások ellen IoT infrastruktúra fizikai hozzáférés eszközökhöz indul el. Egy fontos biztonsági gyakorlat az USB-porttal rosszindulatú visszaélések és más fizikai hozzáférés elleni védelem érdekében. Egyik kulcsról a fellépő uncovering megszegése bejelentkezik a fizikai hozzáférés, például az USB-port használatát. Ebben az esetben a Windows 10 (IoT és egyéb SKU) lehetővé teszi, hogy ezek az események részletes naplózás.
+* **Felhő hitelesítő adatok védelme**: Felhő hitelesítő adatok konfigurálása és az IoT központi telepítése operációs rendszer valószínűleg a hozzáférést és legegyszerűbben hibát okoz az IoT. A hitelesítő adatok védelméről gyakran megváltoztatta a jelszavát, és ezek a hitelesítő adatok használata a nyilvános gépeken tartózkodnak.
 
-Különböző IoT-eszközök képességei eltérőek lehetnek. Egyes eszközök is közös asztali operációs rendszert futtató számítógépeken, és előfordulhat, hogy a bizonyos eszközök nagyon passzív operációs rendszert futtató. hello ajánlott biztonsági eljárások leírt korábban lehet alkalmazható toothese eszközök különböző mértékben. Ha a megadott, további biztonságot és ajánlott eljárások ezen eszközök hello gyártóktól származó kell követni.
+Különböző IoT-eszközök képességei eltérőek lehetnek. Egyes eszközök is közös asztali operációs rendszert futtató számítógépeken, és előfordulhat, hogy a bizonyos eszközök nagyon passzív operációs rendszert futtató. Az ajánlott biztonsági eljárásokkal leírt korábban előfordulhat, hogy alkalmazhatók a különböző mértékben ezekre az eszközökre. Ha a megadott, további biztonságot és ajánlott eljárások ezen eszközök gyártóktól származó kell követni.
 
-Néhány örökölt és korlátozott eszköz előfordulhat, hogy nem készített kifejezetten az IoT-telepítés. Ezek az eszközök előfordulhat, hogy hello funkció tooencrypt adatok nem rendelkeznek, hello Internet kapcsolattartásnak, vagy adjon meg speciális naplózása. Ezekben az esetekben modern és biztonságos mező átjáró összesíteni az adatokat az örökölt eszközök, és ezek az eszközök hello interneten keresztül csatlakozó szükséges hello biztonsága. Mező átjárók biztosíthat biztonságos hitelesítési, a titkosított munkamenetek egyeztetés, az hello felhő, és számos egyéb biztonsági funkciókról a parancsok fogadását.
+Néhány örökölt és korlátozott eszköz előfordulhat, hogy nem készített kifejezetten az IoT-telepítés. Ezek az eszközök előfordulhat, hogy nem rendelkezik az adatok titkosítása, csatlakozzon az internethez, vagy adjon meg, speciális naplózási képesség. Ezekben az esetekben modern és biztonságos mező átjáró összesíteni az adatokat az örökölt eszközök, és adja meg a biztonsági, ezek az eszközök az interneten keresztül kapcsolódó szükséges. Mező átjárók biztosíthat biztonságos hitelesítési, a titkosított munkamenetek egyeztetés, a felhőhöz, és számos egyéb biztonsági funkciókról a parancsok fogadását.
 
 ## <a name="see-also"></a>Lásd még:
-További információ az biztonságossá tétele az IoT-megoldásból toolearn lásd:
+Az IoT-megoldásból biztosításával kapcsolatos további tudnivalókért lásd:
 
 * [Az IoT-biztonsági architektúrája][lnk-security-architecture]
 * [Az IoT üzembe][lnk-security-deployment]
 
-Akkor is is felfedezheti hello más szolgáltatásokat és képességeket hello előre konfigurált IoT Suite megoldások:
+Megismerheti az IoT Suite előre konfigurált megoldásának egyéb szolgáltatásait és funkcióit is:
 
 * [Előre konfigurált prediktív karbantartási megoldás áttekintése][lnk-predictive-overview]
 * [Gyakori kérdések az Azure IoT Suite][lnk-faq]
 
-Az IoT-központ biztonsági olvashat [vezérlő hozzáférés tooIoT Hub] [ lnk-devguide-security] az IoT Hub fejlesztői útmutató hello.
+Az IoT-központ biztonsági olvashat [IoT-központ való hozzáférés szabályozása] [ lnk-devguide-security] az IoT Hub fejlesztői útmutató.
 
 [lnk-predictive-overview]: iot-suite-predictive-overview.md
 [lnk-faq]: iot-suite-faq.md

@@ -1,6 +1,6 @@
 ---
-title: "Hálózati figyelő ügynök virtuálisgép-bővítmény Linux aaaAzure |} Microsoft Docs"
-description: "Hello hálózati figyelő ügynök a Linux virtuális gépet egy virtuálisgép-bővítmény telepítése."
+title: "Az Azure hálózati figyelő ügynök virtuálisgép-bővítmény Linux |} Microsoft Docs"
+description: "A hálózati figyelő ügynök a Linux virtuális gépet egy virtuálisgép-bővítmény telepítése."
 services: virtual-machines-linux
 documentationcenter: 
 author: dennisg
@@ -15,25 +15,25 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 02/14/2017
 ms.author: dennisg
-ms.openlocfilehash: 84bed132cbda83d0917be490f9a50914578952a1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: eaadd531b9e05a54446e61f98584ae9d75470a5f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="network-watcher-agent-virtual-machine-extension-for-linux"></a>Hálózati figyelő ügynök virtuálisgép-bővítmény Linux
 
 ## <a name="overview"></a>Áttekintés
 
-[Az Azure hálózati figyelőt](https://review.docs.microsoft.com/en-us/azure/network-watcher/) hálózati teljesítmény figyelési, diagnosztikai és elemzési szolgáltatás, amely lehetővé teszi az Azure-hálózatok figyelését. Hálózati figyelő ügynök virtuálisgép-bővítmény hello feltétele néhány hello hálózati figyelőt szolgáltatást az Azure virtuális gépeken. Ez magában foglalja, igény szerint és egyéb speciális funkciók a hálózati forgalom rögzítése.
+[Az Azure hálózati figyelőt](https://review.docs.microsoft.com/en-us/azure/network-watcher/) hálózati teljesítmény figyelési, diagnosztikai és elemzési szolgáltatás, amely lehetővé teszi az Azure-hálózatok figyelését. A hálózati figyelő ügynök virtuálisgép-bővítményt az egyes hálózati figyelőt szolgáltatásokat az Azure virtuális gépeken működik. Ez magában foglalja, igény szerint és egyéb speciális funkciók a hálózati forgalom rögzítése.
 
-Ez a dokumentum részletek hello támogatott platformokat, a központi telepítési beállítások hello hálózati figyelő ügynök virtuálisgép-bővítmény Linux.
+Ez a dokumentum részletesen a támogatott platformokról és a Linux hálózati figyelő ügynök virtuálisgép-bővítmény vonatkozó telepítési lehetőségeket.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
 ### <a name="operating-system"></a>Operációs rendszer
 
-Hálózati figyelő ügynök bővítmény hello is futtathatók a a Linux terjesztéseket:
+A hálózati figyelő ügynök bővítmény is futtathatók a a Linux terjesztéseket:
 
 | Disztribúció | Verzió |
 |---|---|
@@ -49,11 +49,11 @@ Vegye figyelembe, hogy CoreOS jelenleg nem támogatott.
 
 ### <a name="internet-connectivity"></a>Internetkapcsolat
 
-Egyes hálózati figyelő ügynök funkcionalitást hello használatához hello cél virtuális gép csatlakoztatott toohello Internet kell lennie. Hello képességét tooestablish kimenő kapcsolatok nélkül néhány hello hálózati figyelő ügynök szolgáltatást előfordulhat, hogy hibás működését, vagy már nem érhető el. További részletekért lásd: hello [hálózati figyelőt dokumentáció](https://review.docs.microsoft.com/en-us/azure/network-watcher/).
+A hálózati figyelő ügynök funkciók némelyike megköveteli, hogy a cél virtuális gép kapcsolódnia kell az internetre. Kimenő kapcsolatokat képessége nélkül egyes hálózati figyelő ügynök szolgáltatásokat lehet, hogy hibás működését, vagy már nem érhető el. További részletekért lásd: a [hálózati figyelőt dokumentáció](https://review.docs.microsoft.com/en-us/azure/network-watcher/).
 
 ## <a name="extension-schema"></a>A séma kiterjesztése
 
-hello következő JSON látható hello hálózati figyelő ügynök bővítmény hello sémáját. hello bővítmény sem szükséges és nem támogatja a megadott felhasználó által megadott beállításokat jelenleg és az alapértelmezett beállításon támaszkodik.
+A következő JSON jeleníti meg a hálózati figyelő ügynök bővítmény sémáját. A bővítmény sem szükséges és nem támogatja a megadott felhasználó által megadott beállításokat jelenleg és az alapértelmezett beállításon támaszkodik.
 
 ```json
 {
@@ -84,11 +84,11 @@ hello következő JSON látható hello hálózati figyelő ügynök bővítmény
 
 ## <a name="template-deployment"></a>Sablonalapú telepítés
 
-Az Azure Virtuálisgép-bővítmények az Azure Resource Manager-sablonok is telepíthető. hello JSON-séma hello előző szakaszban ismertetett az Azure Resource Manager sablon toorun hello hálózati figyelő ügynöke bővítmény egy Azure Resource Manager sablon telepítése során használható.
+Az Azure Virtuálisgép-bővítmények az Azure Resource Manager-sablonok is telepíthető. Az előző szakaszban ismertetett JSON-séma segítségével az Azure Resource Manager-sablonok az Azure Resource Manager sablon telepítése során a hálózati figyelő ügynök bővítmény futtatása.
 
 ## <a name="azure-cli-deployment"></a>Az Azure CLI-telepítés
 
-hello Azure CLI használt toodeploy hello hálózati figyelő ügynök VM bővítmény tooan meglévő virtuális gép is lehet.
+Az Azure CLI segítségével a hálózati figyelő ügynök Virtuálisgép-bővítmény telepítése egy meglévő virtuális gépre.
 
 ```azurecli
 azure vm extension set myResourceGroup1 myVM1 NetworkWatcherAgentLinux Microsoft.Azure.NetworkWatcher 1.4
@@ -98,13 +98,13 @@ azure vm extension set myResourceGroup1 myVM1 NetworkWatcherAgentLinux Microsoft
 
 ### <a name="troubleshooting"></a>Hibaelhárítás
 
-A bővítmény központi telepítések hello állapotával kapcsolatos információkat lehet adatokat beolvasni a hello Azure-portálon, és hello Azure parancssori felület használatával. egy adott virtuális Gépet, futtassa a következő parancs használatával hello kiterjesztéseinek toosee hello telepítési állapota hello Azure parancssori felület.
+Bővítmény központi telepítések állapotára vonatkozó lehet adatokat beolvasni az Azure-portálon, és az Azure parancssori felület használatával. A megadott virtuális gépek bővítmények központi telepítési állapotának megtekintéséhez a következő parancsot az Azure parancssori felület használatával.
 
 ```azurecli
 azure vm extension get myResourceGroup1 myVM1
 ```
 
-Bővítmény végrehajtási kimeneti naplózott toofiles hello található a következő könyvtár:
+A következő könyvtárban található fájlok kerül a bővítmény végrehajtás kimenetének:
 
 `
 /var/log/azure/Microsoft.Azure.NetworkWatcher.NetworkWatcherAgentLinux/
@@ -112,4 +112,4 @@ Bővítmény végrehajtási kimeneti naplózott toofiles hello található a kö
 
 ### <a name="support"></a>Támogatás
 
-Ha ez a cikk bármely pontján további segítségre van szüksége, tekintse meg a toohello hálózati figyelőt dokumentációját, vagy forduljon hello Azure hello szakértői [MSDN Azure és a Stack Overflow fórumok](https://azure.microsoft.com/en-us/support/forums/). Másik lehetőségként is fájl az Azure támogatási incidens. Nyissa meg toohello [az Azure támogatási webhelyén](https://azure.microsoft.com/en-us/support/options/) válassza ki a Get-támogatást. Támogatja az Azure használatával kapcsolatos információkért olvassa el a hello [Microsoft Azure-támogatás – gyakori kérdések](https://azure.microsoft.com/en-us/support/faq/).
+Ha ez a cikk bármely pontján további segítségre van szüksége, tekintse meg a hálózati figyelőt dokumentációját, vagy lépjen kapcsolatba az Azure-szakértők a a [MSDN Azure és a Stack Overflow fórumok](https://azure.microsoft.com/en-us/support/forums/). Másik lehetőségként is fájl az Azure támogatási incidens. Lépjen a [az Azure támogatási webhelyén](https://azure.microsoft.com/en-us/support/options/) válassza ki a Get-támogatási szolgálathoz. Támogatja az Azure használatával kapcsolatos információkért olvassa el a [Microsoft Azure-támogatás – gyakori kérdések](https://azure.microsoft.com/en-us/support/faq/).

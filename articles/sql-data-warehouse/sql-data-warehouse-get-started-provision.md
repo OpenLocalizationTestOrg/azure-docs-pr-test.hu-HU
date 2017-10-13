@@ -1,6 +1,6 @@
 ---
-title: "hello Azure-portálon az SQL Data Warehouse aaaCreate |} Microsoft Docs"
-description: "Ismerje meg, hogyan toocreate egy Azure SQL Data Warehouse a hello Azure-portálon"
+title: "SQL Data Warehouse létrehozása az Azure Portalon | Microsoft Docs"
+description: "Tudnivalók Azure SQL Data Warehouse létrehozásáról az Azure Portalon"
 services: sql-data-warehouse
 documentationcenter: NA
 author: hirokib
@@ -16,11 +16,11 @@ ms.workload: data-services
 ms.custom: create
 ms.date: 10/31/2016
 ms.author: elbutter;barbkess
-ms.openlocfilehash: f5be6e3f2936e3af9d099854a468f8ce66fd8fbe
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 24ed2d8bad3090e378acf2a42fb909dee0a8517b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-an-azure-sql-data-warehouse"></a>Azure SQL Data Warehouse létrehozása
 > [!div class="op_single_selector"]
@@ -30,13 +30,13 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-Ez az oktatóanyag az Azure portál toocreate, amely egy AdventureWorksDW mintaadatbázist tartalmaz SQL Data Warehouse hello használja.
+Ebben az oktatóanyagban az Azure Portalon létrehoz egy SQL Data Warehouse-t, amely egy AdventureWorksDW mintaadatbázist tartalmaz.
 
 ## <a name="prerequisites"></a>Előfeltételek
-tooget elindult, lesz szüksége:
+A kezdéshez a következők szükségesek:
 
-* **Azure-fiók**: keresse fel [Azure ingyenes próbaverzió] [ Azure Free Trial] vagy [MSDN Azure-Krediteket] [ MSDN Azure Credits] toocreate fiókkal.
-* **Azure SQL-kiszolgáló**: lásd: [hello Azure-portálon hozzon létre egy Azure SQL-adatbázis] [ Create an Azure SQL database in hello Azure portal] további részleteket.
+* **Azure-fiók**: A fiók létrehozásával kapcsolatban lásd: [Ingyenes Azure-fiók létrehozása][Azure Free Trial] vagy [Havi Azure-kredit a Visual Studio-előfizetőknek][MSDN Azure Credits].
+* **Azure SQL-kiszolgáló**: További információ: [Azure SQL-adatbázis létrehozása az Azure Portalon][Create an Azure SQL database in the Azure portal].
 
 > [!NOTE]
 > Egy SQL Data Warehouse létrehozása egy új számlázható szolgáltatás létrejöttét eredményezheti.  További információ: [SQL Data Warehouse díjszabása][SQL Data Warehouse pricing].
@@ -44,51 +44,51 @@ tooget elindult, lesz szüksége:
 >
 
 ## <a name="create-a-sql-data-warehouse"></a>SQL Data Warehouse létrehozása
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+1. Jelentkezzen be az [Azure portálra](https://portal.azure.com).
 2. Kattintson a **+ Új** > **Adatbázisok** > **SQL Data Warehouse** lehetőségre.
 
     ![Létrehozás](./media/sql-data-warehouse-get-started-provision/create-sample.gif)
-3. A hello **SQL Data Warehouse** panelen adja meg a hello fordítás, majd nyomja le az "Létrehozás" toocreate.
+3. Az **SQL Data Warehouse** panelen adja meg a szükséges információkat, majd kattintson a „Létrehozás” gombra az adatraktár létrehozásához.
 
     ![Adatbázis létrehozása](./media/sql-data-warehouse-get-started-provision/create-database.png)
 
    * **Kiszolgáló**: Javasoljuk, hogy először válassza ki a kiszolgálót.  
-   * **Az adatbázisnév**: használt tooreference hello SQL Data Warehouse hello nevet.  Egyedi toohello kiszolgálónak kell lennie.
-   * **Teljesítmény**: Javasoljuk, hogy kiindulásként 400 [DWU][DWU]-t adjon meg. Áthelyezheti hello csúszkát toohello bal vagy jobb létrehozása után a data warehouse-ba, vagy a skála tooadjust hello teljesítményét felfelé vagy lefelé.  toolearn dwu-k, kapcsolatos további információkért olvassa el a dokumentációt a [skálázás](sql-data-warehouse-manage-compute-overview.md) vagy a [árképzést ismertető oldalra][SQL Data Warehouse pricing].
-   * **Előfizetés**: Select hello [előfizetés] , amely az adott SQL Data Warehouse számlázza.
-   * **Erőforráscsoport**: [erőforráscsoportok] [ Resource group] tárolók, amelyek toohelp kezelheti az Azure-erőforrások gyűjteménye van. További információk az [erőforráscsoportokról](../azure-resource-manager/resource-group-overview.md).
-   * **Forrás kiválasztása**: Kattintson a **Forrás kiválasztása** > **Minta** lehetőségre. Azure automatikusan feltölti a hello **minta kiválasztása** beállítást az adventureworksdw elemmel.
+   * **Adatbázis neve**: Az SQL Data Warehouse-ra való hivatkozáshoz használt név.  Ennek a kiszolgálón egyedinek kell lennie.
+   * **Teljesítmény**: Javasoljuk, hogy kiindulásként 400 [DWU][DWU]-t adjon meg. A csúszka jobbra-balra mozgatásával állíthatja az adatraktár teljesítményét, vagy skálázhatja azt vertikálisan le vagy fel a létrehozást követően.  A DWU egységekkel kapcsolatos további információkért tekintse meg [skálázással](sql-data-warehouse-manage-compute-overview.md) kapcsolatos dokumentációnkat vagy [díjszabási oldalunkat][SQL Data Warehouse pricing].
+   * **Előfizetés**: Válassza ki az [előfizetést], amelyikre az adott SQL Data Warehouse díjai számlázva lesznek.
+   * **Erőforráscsoport**: Az [erőforráscsoportok][Resource group] olyan tárolók, amelyekkel Azure-erőforrások gyűjteményét kezelheti. További információk az [erőforráscsoportokról](../azure-resource-manager/resource-group-overview.md).
+   * **Forrás kiválasztása**: Kattintson a **Forrás kiválasztása** > **Minta** lehetőségre. Az Azure automatikusan feltölti a **Minta kiválasztása** beállítást az AdventureWorksDW elemmel.
 
    > [!NOTE]
-   > SQL Data Warehouse hello alapértelmezett rendezését SQL_Latin1_General_CP1_CI_AS. Ha eltérő rendezést van szükség, [T-SQL] [ T-SQL] eltérő rendezést használt toocreate hello adatbázis is lehet.
+   > Az SQL Data Warehouse alapértelmezett rendezése az SQL_Latin1_General_CP1_CI_AS. Ha másik rendezésre van szüksége, a [T-SQL][T-SQL] használatával hozhatja létre az adatbázist másik rendezéssel.
    >
    >
 
-1. Kattintson a **létrehozása** toocreate az SQL Data Warehouse.
-2. Várjon néhány percet. Amikor készen áll az adatraktár, akkor vissza kell adni az toohello [Azure-portálon](https://portal.azure.com). Az SQL Data Warehouse az irányítópulton, az SQL Database adatbázisok listájában található, vagy hello erőforrás csoportosítás, hogy Ön használt toocreate azt.
+1. Kattintson a **Létrehozás** gombra az SQL Data Warehouse létrehozásához.
+2. Várjon néhány percet. Amikor az adatraktár elkészült, a rendszer visszalépteti az [Azure Portal](https://portal.azure.com). Az SQL Data Warehouse az irányítópulton található meg az SQL Database adatbázisok listájában vagy a létrehozásához használt erőforráscsoportban.
 
     ![portál nézet](./media/sql-data-warehouse-get-started-provision/database-portal-view.png)
 
 [!INCLUDE [SQL Database create server](../../includes/sql-database-create-new-server-firewall-portal.md)]
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy az SQL Data Warehouse létrehozott, készen áll túl[Connect](sql-data-warehouse-connect-overview.md) és lekérdezések indítására.
+Miután létrehozta az SQL Data Warehouse-t, készen áll a [Csatlakozásra](sql-data-warehouse-connect-overview.md) és lekérdezések indítására.
 
-az SQL Data Warehouse tooload adatok, lásd: hello [betöltést áttekintő](sql-data-warehouse-overview-load.md).
+Adatok az SQL Data Warehouse-ba való betöltésével kapcsolatban lásd a [betöltést áttekintő](sql-data-warehouse-overview-load.md) cikket.
 
-Ha egy meglévő adatbázis tooSQL adatraktár toomigrate, lásd: hello [áttelepítése – áttekintés](sql-data-warehouse-overview-migrate.md) , vagy használjon [áttelepítő segédprogramot](sql-data-warehouse-migrate-migration-utility.md).
+Ha egy meglévő adatbázist szeretne áttelepíteni az SQL Data Warehouse-ba, tekintse meg az [áttelepítés áttekintését](sql-data-warehouse-overview-migrate.md), vagy használja az [áttelepítő segédprogramot](sql-data-warehouse-migrate-migration-utility.md).
 
 Tűzfalszabályok is a Transact-SQL segítségével konfigurálhatók. További információ: [sp_set_firewall_rule][sp_set_firewall_rule] és [sp_set_database_firewall_rule][sp_set_database_firewall_rule].
 
-Egyúttal a legjobb ötlet toolook: hello [ajánlott eljárások][Best practices].
+Érdemes megtekinteni az [Ajánlott eljárásokat][Best practices] is.
 
 <!--Article references-->
-[Create an Azure SQL database in hello Azure portal]: ../sql-database/sql-database-get-started.md
+[Create an Azure SQL database in the Azure portal]: ../sql-database/sql-database-get-started.md
 [Create an Azure SQL database with PowerShell]: ../sql-database/sql-database-create-and-configure-database-powershell
 [resource groups]: ../azure-resource-manager/resource-group-template-deploy-portal.md
 [Best practices]: sql-data-warehouse-best-practices.md
 [DWU]: sql-data-warehouse-overview-what-is.md
-[előfizetés]: ../azure-glossary-cloud-terminology.md#subscription
+[előfizetést]: ../azure-glossary-cloud-terminology.md#subscription
 [resource group]: ../azure-glossary-cloud-terminology.md#resource-group
 [T-SQL]: ./sql-data-warehouse-get-started-create-database-tsql.md
 

@@ -1,8 +1,8 @@
 ---
-title: "Active Directory B2C-dokumentáció – oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
-description: "Ismerje meg, hogyan toodeploy átfogó felhasználói Identitáskezelés hello a felhő. Dokumentációja bemutatja hogyan tooprotect felhasználók felé néző webes és mobilalkalmazások."
+title: "Az Azure Active Directory B2C dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogyan helyezhet üzembe átfogó felhasználói identitáskezelést a felhőben. A dokumentáció bemutatja, hogyan védheti meg a fogyasztói webes és mobilappokat."
 services: active-directory-b2c
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: f9f6939d4d5bbe49533cad037a9085ce3da63155
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e36baddffd634cb7d601d09ccebaf40b27798c7b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 #<a name="active-directory-b2c-documentation"></a>Active Directory B2C – dokumentáció
 
-Megtudhatja, hogyan tooset és kezelése az Active Directory B2C hello felhőben átfogó felhasználói Identitáskezelés. Oktatóanyagok hivatkozásokat és egyéb dokumentációt, megtudhatja, hogyan tooprotect felhasználók felé néző webes és mobilalkalmazásokhoz a biztonságos bejelentkezés.
+Ismerje meg, hogyan állíthat be és kezelhet összefüggő felhasználói identitáskezelést a felhőben Active Directory B2C használatával. Az oktatóanyagok, referenciák és egyéb dokumentációk bemutatják, hogyan védheti meg a fogyasztói, biztonságos bejelentkezéssel rendelkező webes és mobilalkalmazásokat.
 
 <ul class="panelContent cardsFTitle">
     <li>

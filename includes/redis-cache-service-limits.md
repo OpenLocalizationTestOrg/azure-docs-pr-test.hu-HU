@@ -6,7 +6,7 @@
 | Redis gyorsítótár-replikák (a magas rendelkezésre állás érdekében) |1 |
 | A prémium szintű gyorsítótár fürtözési szilánkok |10 |
 
-Azure Redis Cache korlátozza, és értékek egyes tarifacsomagok különböző. árképzési szinteket, és a kapcsolódó méretek toosee hello lásd [Azure Redis Cache szolgáltatás díjszabása](https://azure.microsoft.com/pricing/details/cache/).
+Azure Redis Cache korlátozza, és értékek egyes tarifacsomagok különböző. A tarifacsomagok és azok kapcsolódó méretek, olvassa el [Azure Redis Cache szolgáltatás díjszabása](https://azure.microsoft.com/pricing/details/cache/).
 
 Azure Redis Cache konfigurációs korlátozások további információkért lásd: [kiszolgálókonfiguráció alapértelmezett Redis](../articles/redis-cache/cache-configure.md#default-redis-server-configuration).
 

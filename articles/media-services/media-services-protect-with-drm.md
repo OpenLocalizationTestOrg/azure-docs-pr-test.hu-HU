@@ -1,6 +1,6 @@
 ---
-title: "aaaUsing PlayReady és/vagy Widevine a dynamic common encryption |} Microsoft Docs"
-description: "A Microsoft Azure Media Services lehetővé teszi, hogy Ön toodeliver MPEG-DASH, Smooth Streaming vagy Http-Live-Streaming (HLS) streamjeit Microsoft PlayReady DRM. Emellett lehetővé teszi a Widevine DRM-Védelemmel ellátott DASH toodelivery. Ez a témakör bemutatja, hogyan toodynamically titkosítása a PlayReady vagy Widevine DRM-Védelemmel."
+title: "PlayReady és/vagy Widevine Dynamic Common Encryption használata | Microsoft Docs"
+description: "A Microsoft Azure Media Services lehetővé teszi, hogy MPEG-DASH, Smooth Streaming vagy HTTP-Live-Streaming (HLS) típusú streamjeit Microsoft PlayReady DRM-védelemmel lássa el. Ezenfelül Widevine DRM-védelemmel ellátott DASH-továbbítást is kínál. Ez a témakör bemutatja, hogyan állíthat be dinamikus titkosítást a PlayReady vagy a Widevine DRM segítségével."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 0475e6ec80dcf39eb4e5c4ad4d17f821502951bd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6cfb7b558b8dce511d517e69c022765feae245fa
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="using-playready-andor-widevine-dynamic-common-encryption"></a>A PlayReady és/vagy Widevine Dynamic Common Encryption titkosítás használata
 
@@ -29,128 +29,128 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-A Microsoft Azure Media Services lehetővé teszi a toodeliver MPEG-DASH, Smooth Streaming vagy HTTP-Live-Streaming (HLS) streamjeit [Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/). Emellett lehetővé teszi a Widevine DRM-licencek toodeliver titkosított DASH-streameket. Mind a PlayReady, mind a Widevine titkosítása hello Common Encryption (ISO/IEC 23001-7 CENC) megadását. Használhat [AMS .NET SDK](https://www.nuget.org/packages/windowsazure.mediaservices/) (3.5.1 hello verziójával kezdődően) vagy a REST API tooconfigure az AssetDeliveryConfiguration toouse Widevine.
+A Microsoft Azure Media Services lehetővé teszi, hogy MPEG-DASH, Smooth Streaming vagy HTTP-Live-Streaming (HLS) típusú streamjeit [Microsoft PlayReady DRM-védelemmel](https://www.microsoft.com/playready/overview/) lássa el. Ezenfelül arra is lehetőséget kínál, hogy titkosított DASH-streameket továbbítson Widevine DRM-licencek segítségével. Mind a PlayReady, mind a Widevine titkosítása a Common Encryption (ISO/IEC 23001-7 CENC) szabvány specifikációi szerint történik. Az AssetDeliveryConfiguration Widevine használatára történő beállításához használja az [AMS .NET SDK-t](https://www.nuget.org/packages/windowsazure.mediaservices/) (a 3.5.1-es vagy újabb verziót), vagy a REST API-t.
 
-A Media Services része egy szolgáltatás, amelynek segítségével PlayReady vagy Widevine DRM-licenceket továbbíthat. A Media Services is biztosít, amelyek lehetővé teszik a hello jogok konfigurálása API-k és korlátozásokat, amelyeket használni szeretne hello PlayReady vagy Widevine DRM futásidejű tooenforce felhasználó lejátssza védett tartalmakat. Ha egy felhasználó egy DRM védett tartalmat igényel, hello lejátszóalkalmazás fog licencet kér hello AMS-licencelési szolgáltatástól. hello AMS-licencelési szolgáltatástól egy licenc toohello player állít ki, ha engedélyezett. A PlayReady vagy Widevine-licencek tartalmazza, amelyek segítségével hello ügyfél player toodecrypt és adatfolyam hello tartalom hello visszafejtési kulcsot.
+A Media Services része egy szolgáltatás, amelynek segítségével PlayReady vagy Widevine DRM-licenceket továbbíthat. A Media Services ezenfelül API-kat is tartalmaz, amelyek segítségével beállíthatja azokat a jogokat és korlátozásokat, amelyeket szeretne betartatni a PlayReady vagy a Widevine DRM-futtatókörnyezettel, amikor egy felhasználó védett tartalmakat játszik le. Amikor a felhasználók DRM-védelemmel rendelkező tartalmat kérnek, a lejátszóalkalmazás licencet kér az AMS-licencelési szolgáltatástól. Az AMS-licencelési szolgáltatás akkor adja meg a licencet, ha a kérelmező felhasználó megkapta a megfelelő jogosultságokat. A PlayReady- vagy Widevine-licencek tartalmazzák a feloldási kulcsot, amelynek segítségével az ügyféllejátszó képes feloldani a titkosítást, majd streamelni a kért tartalmakat.
 
-Használhatja a következő AMS-partnereket toohelp Widevine-licencek átadná hello: [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/). További információk: integráció az [Axinom](media-services-axinom-integration.md) és a [castLabs](media-services-castlabs-integration.md) rendszerekkel.
+A Widevine-licencek továbbításának támogatásához a következő AMS-partnereket is használhatja: [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/) vagy [castLabs](http://castlabs.com/company/partners/azure/). További információk: integráció az [Axinom](media-services-axinom-integration.md) és a [castLabs](media-services-castlabs-integration.md) rendszerekkel.
 
-A Media Services szolgáltatásban több különböző módot is beállíthat, amelyek segítségével a rendszer hitelesítheti a kulcskérelmet küldő felhasználókat. hello tartalomkulcs-hitelesítési házirend rendelkezhet egy vagy több engedélyezési korlátozás: Nyissa meg, vagy a token korlátozás. hello token korlátozott házirend által a Secure Token Service (STS) kiadott tokennek kell csatolni. A Media Services hello támogatja a jogkivonatokat [Simple Web Tokens](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2) (SWT) formátumú és [JSON Web Token](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3) (JWT) formátumú. További információkért lásd: Configure hello tartalomkulcs engedélyezési házirendjét.
+A Media Services szolgáltatásban több különböző módot is beállíthat, amelyek segítségével a rendszer hitelesítheti a kulcskérelmet küldő felhasználókat. A tartalomkulcs-hitelesítési szabályzat egy vagy több hitelesítési korlátozást tartalmazhat: ezek lehetnek nyitott vagy jogkivonat-korlátozások. A tokennel korlátozott szabályzatokhoz a Secure Token Service (Biztonsági jegykiadó szolgáltatás, STS) által kiadott tokennek kell tartoznia. A Media Services a [Simple Web Tokens](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2) (SWT) és a [JSON Web Token](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3) (JWT) formátumú tokeneket támogatja. További információk: A tartalomkulcs hitelesítési szabályzatának konfigurálása.
 
-tootake előnye a dinamikus titkosítás toohave többszörös sávszélességű MP4-fájlok vagy többféle sávszélességű Smooth Streaming-forrásfájlokat tartalmazó objektumot kell. Szükség tooconfigure hello továbbítási házirendjeit hello eszköz (lásd a témakör későbbi részében). Majd a streamelési URL-cím hello hello formátummegadás alapján, hello Igényalapú Streamelési kiszolgáló biztosítja, hogy hello adatfolyam a rendszer a kiválasztott hello protokollal. Ennek eredményeképpen csak akkor kell toostore és fizetési hello fájlokat egy egyetlen tárolási formátumban és a Media Services elkészíti és kiszolgálja hello ügyféltől érkező kéréseknek megfelelő HTTP-válasz.
+A dinamikus titkosítás által nyújtott előnyök kihasználásához többszörös sávszélességű MP4-fájlokat vagy Smooth Streaming-forrásfájlokat tartalmazó objektummal kell rendelkeznie. Ezenfelül be kell állítania az objektumhoz tartozó továbbítási szabályzatokat is (ennek módját a témakör későbbi részében írjuk le). Ezt követően az igényalapú streamelési kiszolgáló a streamelési URL-címben megadott formátumnak megfelelően gondoskodik arról, hogy a rendszer a kiválasztott protokollal továbbítsa a streamet. Így elég egyetlen tárolási formátumban tárolni a fájlokat (és kifizetni a tárhelyüket), a Media Services elkészíti és kiszolgálja az ügyféltől érkező kéréseknek megfelelő HTTP-választ.
 
-Ez a témakör, amely többféle DRM, például PlayReady és Widevine-mel védett médiafájlok továbbításával foglalkoznak hasznos toodevelopers lenne. hello a témakör bemutatja, hogyan tooconfigure hello-e PlayReady-licenctovábbítási szolgáltatásra vonatkozó szabályzatokat úgy, hogy csak arra jogosult ügyfelek kaphassák a PlayReady és Widevine-licenceket. Azt is bemutatja, hogyan toouse dinamikus titkosítás funkciót a PlayReady vagy Widevine DRM-Védelemmel keresztüli kötőjel.
+Ez a témakör azon fejlesztők számára lehet hasznos, akik többféle DRM-mel (például PlayReady és Widevine) védett médiafájlok továbbításával foglalkoznak. A témakör leírja, hogyan konfigurálhatja a PlayReady-licenctovábbítási szolgáltatásra vonatkozó szabályzatokat úgy, hogy csak az arra jogosult ügyfelek kaphassák meg a PlayReady- és Widevine-licenceket. Ezenfelül azt is bemutatja, hogyan használja a dinamikus titkosítás funkciót a PlayReady vagy a Widevine DRM-mel a DASH-en keresztül.
 
 >[!NOTE]
->Az AMS-fiók létrehozásakor egy **alapértelmezett** adatfolyam-továbbítási végpontra tooyour fiók kerül hello **leállítva** állapotát. a dinamikus csomagolás és a dinamikus titkosítás tartalmat, és hajtsa végre a megfelelő előnyeit streaming toostart hello streamvégpontra, amelyből el kívánja toostream tartalom toobe rendelkezik hello **futtató** állapotát. 
+>Az AMS-fiók létrehozásakor a rendszer hozzáad egy **alapértelmezett** streamvégpontot a fiókhoz **Leállítva** állapotban. A tartalom streamelésének megkezdéséhez, valamint a dinamikus csomagolás és a dinamikus titkosítás kihasználásához a tartalomstreameléshez használt streamvégpontnak **Fut** állapotban kell lennie. 
 
 ## <a name="download-sample"></a>Minta letöltése
-Letöltheti a cikkben leírt hello mintát [Itt](https://github.com/Azure-Samples/media-services-dotnet-dynamic-encryption-with-drm).
+A cikkben leírt mintát [innen](https://github.com/Azure-Samples/media-services-dotnet-dynamic-encryption-with-drm) töltheti le.
 
 ## <a name="configuring-dynamic-common-encryption-and-drm-license-delivery-services"></a>A Dynamic Common Encryption és DRM-licenctovábbítási szolgáltatások konfigurálása
 
-Az alábbiakban hello általános lépéseket, hogy kell tooperform a PlayReady, hello Media Services licenctovábbítási szolgáltatása segítségével, és a dinamikus titkosítás használata eszközök védelme esetén.
+A következőkben általános lépéseket olvashat, amelyeket el kell végeznie ahhoz, hogy PlayReady-védelemmel lássa el objektumait a Media Services licenctovábbítási szolgáltatása, valamint a dinamikus titkosítás használata mellett.
 
-1. Hozzon létre egy eszközt, majd fájlok feltöltése hello objektumba.
-2. Hello eszköz tartalmazó hello fájl toohello adaptív sávszélességű MP4 típusú beállításkészlettel kódolása.
-3. Hozzon létre egy tartalomkulcsot, majd társítsa a kódolt hello eszköz. A Media Services szolgáltatásban a hello tartalomkulcs tartalmazza a hello objektum titkosítási kulcsát.
-4. Hello tartalomkulcs hitelesítési szabályzatának konfigurálása. hello tartalomkulcs-hitelesítési szabályzatot kell állította be, és ahhoz, hogy hello tartalom kulcs toobe kézbesített toohello ügyfél hello ügyfél teljesíti.
+1. Hozzon létre egy objektumot, és töltse fel a fájlokat az objektumba.
+2. Kódolja a fájlt tartalmazó objektumot az adaptív sávszélességű MP4 típusú beállításkészlettel.
+3. Hozzon létre egy tartalomkulcsot, majd társítsa a kódolt objektumhoz. A Media Services szolgáltatásban a tartalomkulcs tartalmazza az objektum titkosítási kulcsát.
+4. Konfigurálja a tartalomkulcs hitelesítési szabályzatát. Ahhoz, hogy az ügyfél megkaphassa a tartalomkulcsot, Önnek be kell állítania a tartalomkulcs-hitelesítési szabályzatot, amelynek az ügyfélnek meg kell felelnie.
 
-    Hello tartalomkulcs-hitelesítési házirend létrehozásakor toospecify hello következőkre lesz szüksége: kézbesítési módszer (PlayReady vagy Widevine), korlátozások (nyitott vagy token), és információt adott toohello kulcs kézbesítési típust, amely meghatározza, hogyan kerül hello kulcs toohello ügyfél ([PlayReady](media-services-playready-license-template-overview.md) vagy [Widevine](media-services-widevine-license-template-overview.md) licencsablon).
+    A tartalomkulcs-hitelesítési szabályzat létrehozásakor a következőket kell beállítania: továbbítási módszer (PlayReady vagy Widevine), korlátozások (nyitott vagy token), valamint azon információk, amelyek azt határozzák meg, hogy a rendszer hogyan továbbítja a kulcsot az ügyfélnek ([PlayReady-](media-services-playready-license-template-overview.md) vagy [Widevine-](media-services-widevine-license-template-overview.md)licencsablon).
 
-5. Az objektum továbbítási szabályzatát hello konfigurálása. hello továbbítási szabályzat konfigurációjához tartalmazza: továbbítási protokoll (például MPEG DASH, HLS, Smooth Streaming vagy az összes), a dinamikus titkosítás (például Common Encryption) és a PlayReady vagy Widevine-licenc licenckérési URL-cím típusú hello.
+5. Konfigurálja az objektum továbbítási szabályzatát. A továbbítási szabályzat konfigurációs lehetőségei között a következők találhatók: továbbítási protokoll (pl. MPEG DASH, HLS, Smooth Streaming vagy ezek mindegyike), a dinamikus titkosítás típusa (pl. Common Encryption), a PlayReady- vagy Widevine-licenckérési URL-cím.
 
-    Tudta alkalmazni a különböző házirend tooeach protokollt a következő hello azonos eszköz. Beállíthat például PlayReady titkosítási tooSmooth/DASH és AES Envelope tooHLS. Nincsenek megadva a továbbítási szabályzatban protokollok (például hozzáadhat egy szabályzatban, amely csak HLS hello protokoll) le lesz tiltva streaming. hello kivétel toothis jelent, ha egyáltalán nem állít be objektumtovábbítási szabályzatot egyáltalán. Ezt követően hello törölje a jelet minden protokoll engedélyezett.
+    Az adott objektum különböző protokolljaira akár eltérő szabályzatokat is alkalmazhat. Beállíthatja például, hogy a PlayReady-titkosítás csak a Smooth/DASH-re vonatkozzon, az AES Envelope pedig csak a HLS-re. A továbbítási szabályzatban meg nem határozott protokollok streameléshez való használatát a rendszer nem engedélyezi (ilyen lehet például, ha csupán egyetlen szabályzatot állít be, amely kizárólag a HLS-protokoll használatát tartalmazza). Kivételt jelent, ha egyáltalán nem állít be objektumtovábbítási szabályzatot. Ebben az esetben a rendszer az összes protokollt engedélyezi.
 
-6. Hozzon létre egy OnDemand-kereső rendelés tooget egy adatfolyam-továbbítási URL-címet.
+6. Hozzon létre egy OnDemand-lokátort a streamelési URL-cím lekéréséhez.
 
-Hello hello témakör végén teljes .NET típusú példát talál.
+A témakör végén teljes .NET típusú példát talál.
 
-a következő kép hello hello fentiekben leírt munkafolyamatot mutatja be. Itt hello jogkivonat-hitelesítéshez használt.
+Az alábbi képen a fentiekben leírt munkafolyamatot láthatja. Itt a tokenes hitelesítést használtuk.
 
 ![Védelem biztosítása a PlayReadyvel](./media/media-services-content-protection-overview/media-services-content-protection-with-drm.png)
 
-Ez a témakör többi hello részletes magyarázatokat, kódmintákat és olyan hivatkozásokat tootopics, amelyek bemutatják, hogyan tooachieve hello a fent leírt biztosít.
+A témakör további részében részletes magyarázatokat, kódmintákat és olyan témakörökre mutató hivatkozásokat talál, amelyek segítenek elérni a fent leírt célokat.
 
 ## <a name="current-limitations"></a>Aktuális korlátozások
-Ha hozzáadásakor vagy módosításakor az adategység továbbítási házirendjét, törölnie kell hello tartozó lokátort (ha van ilyen), majd hozzon létre egy új lokátort.
+Objektumtovábbítási szabályzat hozzáadásakor vagy módosításakor törölnie kell az ahhoz tartozó lokátort (ha van), majd létre kell hoznia egy új lokátort.
 
 Az Azure Media Services szolgáltatással végzett Widevine-titkosításra vonatkozó korlátozások: a funkció jelenleg nem támogatja több tartalomkulcs használatát.
 
-## <a name="create-an-asset-and-upload-files-into-hello-asset"></a>Hozzon létre egy eszközt, majd fájlok feltöltése hello objektumba
-A sorrend toomanage, kódolásához és streameléséhez a videók, akkor először fel kell töltenie a tartalom a Microsoft Azure Media Services. A feltöltést követően a lesz biztonságosan tárolva a tartalom további feldolgozás és adatfolyam-hello felhő.
+## <a name="create-an-asset-and-upload-files-into-the-asset"></a>Objektum létrehozása, majd fájlok feltöltése az objektumba
+A videók kezeléséhez, kódolásához és streameléséhez először fel kell töltenie tartalmait a Microsoft Azure Media Services szolgáltatásba. A feltöltést követően tartalmai a biztonságos felhőtárhelyre kerülnek további feldolgozás és streamelés céljából.
 
 További információk: [Upload Files into a Media Services account](media-services-dotnet-upload-files.md) (Fájlok feltöltése a Media Services-fiókba).
 
-## <a name="encode-hello-asset-containing-hello-file-toohello-adaptive-bitrate-mp4-set"></a>Hello eszköz tartalmazó hello fájl toohello adaptív sávszélességű MP4 típusú beállításkészlettel kódolása
-A dinamikus titkosítás szüksége toocreate többszörös sávszélességű MP4-fájlok vagy többféle sávszélességű Smooth Streaming-forrásfájlokat tartalmazó objektumot. Ezt követően hello hello jegyzékben megadott formátumnak alapján és kérelem darabolható, igény szerinti adatfolyam-kiszolgáló biztosítja a megjelenő hello adatfolyam a kiválasztott protokollal hello hello. Ennek eredményeképpen csak akkor kell toostore és fizetési hello fájlokat egyetlen tárolási formátumban és a Media Services szolgáltatás elkészíti és kiszolgálja az ügyféltől érkező kérésnek megfelelő választ hello. További információkért lásd: hello [dinamikus becsomagolás áttekintése](media-services-dynamic-packaging-overview.md) témakör.
+## <a name="encode-the-asset-containing-the-file-to-the-adaptive-bitrate-mp4-set"></a>A fájlt tartalmazó objektum kódolása az adaptív sávszélességű MP4 típusú beállításkészlettel
+A dinamikus titkosítás segítségével mindössze egy többszörös sávszélességű MP4-fájlokat vagy Smooth Streaming-forrásfájlokat tartalmazó objektumot kell létrehoznia. Ezt követően az igényalapú streamelési kiszolgáló a jegyzékfájlban és a töredékkérésben megadott formátumnak megfelelően gondoskodik arról, hogy a rendszer a kiválasztott protokollal biztosítsa a streamet az Ön számára. Így elég egyetlen tárolási formátumban tárolni a fájlokat (és kifizetni a tárhelyüket), a Media Services szolgáltatás elkészíti és kiszolgálja az ügyféltől érkező kérésnek megfelelő választ. További információkért lásd a [Dynamic Packaging Overview](media-services-dynamic-packaging-overview.md) (A dinamikus becsomagolás áttekintése) című témakört.
 
-Útmutatást tooencode, lásd: [hogyan tooencode keresztül Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md).
+A kódolással kapcsolatos utasításokért lásd: [How to encode an asset using Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md) (Objektum kódolása a Media Encoder Standard használatával).
 
-## <a id="create_contentkey"></a>Hozzon létre egy tartalomkulcsot, és azt társítsa a kódolt hello eszköz
-A Media Services szolgáltatásban hello tartalomkulcs tartalmazza, amelyet az eszköz tooencrypt hello kulcs együtt.
+## <a id="create_contentkey"></a>Tartalomkulcs létrehozása és társítása a kódolt objektumhoz
+A Media Services szolgáltatásban a tartalomkulcs tartalmazza az objektum titkosítására használható kulcsot.
 
 További információk: [Create content key](media-services-dotnet-create-contentkey.md) (Tartalomkulcs létrehozása).
 
-## <a id="configure_key_auth_policy"></a>Hello tartalomkulcs hitelesítési szabályzatának konfigurálása
-A Media Services szolgáltatásban több különböző módot is beállíthat, amelynek segítségével a rendszer hitelesítheti a kulcskérelmet küldő felhasználókat. hello tartalomkulcs-hitelesítési szabályzatot kell Ön által konfigurált és érheti el, ha hello ügyfél (a lejátszó) ahhoz, hogy hello kulcs toobe toohello ügyfél kézbesíteni. hello tartalomkulcs-hitelesítési házirend rendelkezhet egy vagy több engedélyezési korlátozás: Nyissa meg, vagy a token korlátozás.
+## <a id="configure_key_auth_policy"></a>A tartalomkulcs engedélyezési házirendjének konfigurálása
+A Media Services szolgáltatásban több különböző módot is beállíthat, amelynek segítségével a rendszer hitelesítheti a kulcskérelmet küldő felhasználókat. Ahhoz, hogy az ügyfél (a lejátszó) megkaphassa a kulcsot, Önnek be kell állítania a tartalomkulcs-hitelesítési szabályzatot, amelynek az ügyfélnek meg kell felelnie. A tartalomkulcs-hitelesítési szabályzat egy vagy több hitelesítési korlátozást tartalmazhat: ezek lehetnek nyitott vagy jogkivonat-korlátozások.
 
 További információk: [A tartalomkulcs hitelesítési szabályzatának létrehozása](media-services-dotnet-configure-content-key-auth-policy.md#playready-dynamic-encryption).
 
 ## <a id="configure_asset_delivery_policy"></a>Objektumtovábbítási szabályzat konfigurálása
-Az objektum továbbítási szabályzatát hello konfigurálása. Néhány dolog, amely az eszköz továbbítási szabályzat konfigurációjához hello tartalmazza:
+Konfigurálja az objektum továbbítási szabályzatát. Az objektumtovábbítási szabályzat konfigurálásához többek között az alábbiak tartoznak:
 
-* hello DRM licenc licenckérési URL-cím.
-* hello objektumtovábbítási protokoll (például MPEG DASH, HLS, Smooth Streaming vagy all).
-* a dinamikus titkosítás (az ebben az esetben Common Encrpytion) hello típusa.
+* A DRM-licenckérési URL-cím.
+* Az adategység-továbbítási protokoll (pl. MPEG DASH, HLS, Smooth Streaming vagy ezek mindegyike).
+* A dinamikus titkosítás típusa (ebben az esetben Common Encrpytion).
 
 További információk: [Objektumtovábbítási szabályzat konfigurálása ](media-services-rest-configure-asset-delivery-policy.md).
 
-## <a id="create_locator"></a>Hozzon létre egy OnDemand-lokátor a rendelés tooget streamelési URL-cím
-Szüksége lesz tooprovide a felhasználó az URL-címe Smooth, DASH vagy HLS streamelési hello.
+## <a id="create_locator"></a>OnDemand-lokátor létrehozása a streamelési URL-cím lekérése érdekében
+A felhasználók rendelkezésére kell bocsátania a Smooth, DASH vagy HLS streamelési URL-címét.
 
 > [!NOTE]
 > Objektumtovábbítási szabályzat hozzáadásakor vagy módosításakor törölnie kell az ahhoz tartozó meglévő lokátort (ha van), majd létre kell hoznia egy új lokátort.
 >
 >
 
-Hogyan toopublish egy eszköz és -buildek a streamelési URL-cím: kapcsolatos utasításokat [streamelési URL-cím összeállítása](media-services-deliver-streaming-content.md).
+További információk az objektumok közzétételéről és a streamelési URL-cím létrehozásáról: [Build a streaming URL](media-services-deliver-streaming-content.md) (Streamelési URL-cím létrehozása).
 
 ## <a name="get-a-test-token"></a>Tesztjogkivonat lekérése
-Tesztjogkivonat lekérése hello hello kulcshitelesítési szabályzatban használt jogkivonat korlátozás alapján.
+Kérje le a kulcshitelesítési szabályzatban használt jogkivonat-korlátozásoknak megfelelő tesztjogkivonatot.
 
     // Deserializes a string containing an Xml representation of a TokenRestrictionTemplate
     // back into a TokenRestrictionTemplate class instance.
     TokenRestrictionTemplate tokenTemplate =
         TokenRestrictionTemplateSerializer.Deserialize(tokenTemplateString);
 
-    // Generate a test token based on hello data in hello given TokenRestrictionTemplate.
-    //hello GenerateTestToken method returns hello token without hello word “Bearer” in front
-    //so you have tooadd it in front of hello token string.
+    // Generate a test token based on the data in the given TokenRestrictionTemplate.
+    //The GenerateTestToken method returns the token without the word “Bearer” in front
+    //so you have to add it in front of the token string.
     string testToken = TokenRestrictionTemplateSerializer.GenerateTestToken(tokenTemplate);
-    Console.WriteLine("hello authorization token is:\nBearer {0}", testToken);
+    Console.WriteLine("The authorization token is:\nBearer {0}", testToken);
 
 
-Használhatja a hello [AMS-lejátszóval](http://amsplayer.azurewebsites.net/azuremediaplayer.html) tootest az adatfolyam.
+A stream kipróbálásához használja az [AMS-lejátszót](http://amsplayer.azurewebsites.net/azuremediaplayer.html).
 
 ## <a name="create-and-configure-a-visual-studio-project"></a>Egy Visual Studio-projekt létrehozása és konfigurálása
 
-1. A fejlesztési környezet kialakítása és feltöltése hello app.config fájl kapcsolatadatok, a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-use.md). 
-2. Adja hozzá a következő elemek túl hello**appSettings** az app.config fájlban meghatározott:
+1. Állítsa be a fejlesztési környezetet, és töltse fel az app.config fájlt a kapcsolatadatokkal a [.NET-keretrendszerrel történő Media Services-fejlesztést](media-services-dotnet-how-to-use.md) ismertető dokumentumban leírtak szerint. 
+2. Adja hozzá a következő elemeket az app.config fájlban megadott **appSettings** szakaszhoz:
 
         <add key="Issuer" value="http://testacs.com"/>
         <add key="Audience" value="urn:test"/>
 
 ## <a name="example"></a>Példa
 
-hello következő mutatja be .NET-keretrendszerhez készült Azure Media Services SDK-ban bevezetett funkcióinak-verzió 3.5.2 (pontosabban hello képességét toodefine egy Widevine sablon licenc és Widevine licencet kér az Azure Media Services).
+Az alábbi mintában azokat a funkciókat mutatjuk be, amelyeket az Azure Media Services SDK for .Net 3.5.2-es verziója vezetett be (azaz a funkciót, amelynek segítségével Widevine-licencsablon állítható be, majd a Widevine-licenc lekérhető az Azure Media Services szolgáltatásból).
 
-Írja felül a Program.cs fájlban hello kód hello kód itt látható.
+Írja felül a Program.cs fájlban található kódot az itt látható kóddal.
 
 >[!NOTE]
->A különböző AMS-szabályzatok (például a Locator vagy a ContentKeyAuthorizationPolicy) esetében a korlát 1 000 000 szabályzat. Használjon hello azonos házirend-azonosítója mindig használata hello azonos nap / hozzáférési engedélyek, például a lokátorokat, amelyek a helyen tervezett tooremain hosszú ideje (nem feltöltés házirendek) házirendek. További információ [ebben](media-services-dotnet-manage-entities.md#limit-access-policies) a témakörben érhető el.
+>A különböző AMS-szabályzatok (például a Locator vagy a ContentKeyAuthorizationPolicy) esetében a korlát 1 000 000 szabályzat. Ha mindig ugyanazokat a napokat/hozzáférési engedélyeket használja (például olyan keresők szabályzatait, amelyek hosszú ideig érvényben maradnak, vagyis nem feltöltött szabályzatokat), a szabályzatazonosítónak is ugyanannak kell lennie. További információ [ebben](media-services-dotnet-manage-entities.md#limit-access-policies) a témakörben érhető el.
 
-Győződjön meg arról, hogy tooupdate változók toopoint toofolders ahol a bemeneti fájlok találhatók.
+Módosítsa úgy a változókat, hogy a bemeneti fájlok tárolásához Ön által használt mappákra mutassanak.
 
     using System;
     using System.Collections.Generic;
@@ -168,7 +168,7 @@ Győződjön meg arról, hogy tooupdate változók toopoint toofolders ahol a be
     {
         class Program
         {
-        // Read values from hello App.config file.
+        // Read values from the App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -205,7 +205,7 @@ Győződjön meg arról, hogy tooupdate változók toopoint toofolders ahol a be
             Console.WriteLine("Encoded asset: {0}", encodedAsset.Id);
 
             IContentKey key = CreateCommonTypeContentKey(encodedAsset);
-            Console.WriteLine("Created key {0} for hello asset {1} ", key.Id, encodedAsset.Id);
+            Console.WriteLine("Created key {0} for the asset {1} ", key.Id, encodedAsset.Id);
             Console.WriteLine("PlayReady License Key delivery URL: {0}", key.GetKeyDeliveryUrl(ContentKeyDeliveryType.PlayReadyLicense));
             Console.WriteLine();
 
@@ -228,17 +228,17 @@ Győződjön meg arról, hogy tooupdate változók toopoint toofolders ahol a be
             TokenRestrictionTemplate tokenTemplate =
                 TokenRestrictionTemplateSerializer.Deserialize(tokenTemplateString);
 
-            // Generate a test token based on hello hello data in hello given TokenRestrictionTemplate.
-            // Note, you need toopass hello key id Guid because we specified
-            // TokenClaim.ContentKeyIdentifierClaim in during hello creation of TokenRestrictionTemplate.
+            // Generate a test token based on the the data in the given TokenRestrictionTemplate.
+            // Note, you need to pass the key id Guid because we specified
+            // TokenClaim.ContentKeyIdentifierClaim in during the creation of TokenRestrictionTemplate.
             Guid rawkey = EncryptionUtils.GetKeyIdAsGuid(key.Id);
             string testToken = TokenRestrictionTemplateSerializer.GenerateTestToken(tokenTemplate, null, rawkey,
                                         DateTime.UtcNow.AddDays(365));
-            Console.WriteLine("hello authorization token is:\nBearer {0}", testToken);
+            Console.WriteLine("The authorization token is:\nBearer {0}", testToken);
             Console.WriteLine();
             }
 
-            // You can use hello http://amsplayer.azurewebsites.net/azuremediaplayer.html player tootest streams.
+            // You can use the http://amsplayer.azurewebsites.net/azuremediaplayer.html player to test streams.
             // Note that DASH works on IE 11 (via PlayReady), Edge (via PlayReady), Chrome (via Widevine).
 
             string url = GetStreamingOriginLocator(encodedAsset);
@@ -274,7 +274,7 @@ Győződjön meg arról, hogy tooupdate változók toopoint toofolders ahol a be
         {
             var encodingPreset = "Adaptive Streaming";
 
-            IJob job = _context.Jobs.Create(String.Format("Encoding into Mp4 {0} too{1}",
+            IJob job = _context.Jobs.Create(String.Format("Encoding into Mp4 {0} to {1}",
                         inputAsset.Name,
                         encodingPreset));
 
@@ -308,7 +308,7 @@ Győződjön meg arról, hogy tooupdate változók toopoint toofolders ahol a be
                         "ContentKey",
                         ContentKeyType.CommonEncryption);
 
-            // Associate hello key with hello asset.
+            // Associate the key with the asset.
             asset.ContentKeys.Add(key);
 
             return key;
@@ -353,7 +353,7 @@ Győződjön meg arról, hogy tooupdate változók toopoint toofolders ahol a be
 
             contentKeyAuthorizationPolicy.Options.Add(PlayReadyPolicy);
             contentKeyAuthorizationPolicy.Options.Add(WidevinePolicy);
-            // Associate hello content key authorization policy with hello content key.
+            // Associate the content key authorization policy with the content key.
             contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
             contentKey = contentKey.UpdateAsync().Result;
         }
@@ -395,7 +395,7 @@ Győződjön meg arról, hogy tooupdate változók toopoint toofolders ahol a be
             contentKeyAuthorizationPolicy.Options.Add(PlayReadyPolicy);
             contentKeyAuthorizationPolicy.Options.Add(WidevinePolicy);
 
-            // Associate hello content key authorization policy with hello content key
+            // Associate the content key authorization policy with the content key
             contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
             contentKey = contentKey.UpdateAsync().Result;
 
@@ -417,41 +417,41 @@ Győződjön meg arról, hogy tooupdate változók toopoint toofolders ahol a be
 
         static private string ConfigurePlayReadyLicenseTemplate()
         {
-            // hello following code configures PlayReady License Template using .NET classes
-            // and returns hello XML string.
+            // The following code configures PlayReady License Template using .NET classes
+            // and returns the XML string.
 
-            //hello PlayReadyLicenseResponseTemplate class represents hello template for hello response sent back toohello end user.
-            //It contains a field for a custom data string between hello license server and hello application
+            //The PlayReadyLicenseResponseTemplate class represents the template for the response sent back to the end user.
+            //It contains a field for a custom data string between the license server and the application
             //(may be useful for custom app logic) as well as a list of one or more license templates.
             PlayReadyLicenseResponseTemplate responseTemplate = new PlayReadyLicenseResponseTemplate();
 
-            // hello PlayReadyLicenseTemplate class represents a license template for creating PlayReady licenses
-            // toobe returned toohello end users.
-            //It contains hello data on hello content key in hello license and any rights or restrictions toobe
-            //enforced by hello PlayReady DRM runtime when using hello content key.
+            // The PlayReadyLicenseTemplate class represents a license template for creating PlayReady licenses
+            // to be returned to the end users.
+            //It contains the data on the content key in the license and any rights or restrictions to be
+            //enforced by the PlayReady DRM runtime when using the content key.
             PlayReadyLicenseTemplate licenseTemplate = new PlayReadyLicenseTemplate();
-            //Configure whether hello license is persistent (saved in persistent storage on hello client)
-            //or non-persistent (only held in memory while hello player is using hello license).  
+            //Configure whether the license is persistent (saved in persistent storage on the client)
+            //or non-persistent (only held in memory while the player is using the license).  
             licenseTemplate.LicenseType = PlayReadyLicenseType.Nonpersistent;
 
-            // AllowTestDevices controls whether test devices can use hello license or not.  
-            // If true, hello MinimumSecurityLevel property of hello license
-            // is set too150.  If false (hello default), hello MinimumSecurityLevel property of hello license is set too2000.
+            // AllowTestDevices controls whether test devices can use the license or not.  
+            // If true, the MinimumSecurityLevel property of the license
+            // is set to 150.  If false (the default), the MinimumSecurityLevel property of the license is set to 2000.
             licenseTemplate.AllowTestDevices = true;
 
-            // You can also configure hello Play Right in hello PlayReady license by using hello PlayReadyPlayRight class.
-            // It grants hello user hello ability tooplayback hello content subject toohello zero or more restrictions
-            // configured in hello license and on hello PlayRight itself (for playback specific policy).
-            // Much of hello policy on hello PlayRight has toodo with output restrictions
-            // which control hello types of outputs that hello content can be played over and
+            // You can also configure the Play Right in the PlayReady license by using the PlayReadyPlayRight class.
+            // It grants the user the ability to playback the content subject to the zero or more restrictions
+            // configured in the license and on the PlayRight itself (for playback specific policy).
+            // Much of the policy on the PlayRight has to do with output restrictions
+            // which control the types of outputs that the content can be played over and
             // any restrictions that must be put in place when using a given output.
-            // For example, if hello DigitalVideoOnlyContentRestriction is enabled,
-            //then hello DRM runtime will only allow hello video toobe displayed over digital outputs
-            //(analog video outputs won’t be allowed toopass hello content).
+            // For example, if the DigitalVideoOnlyContentRestriction is enabled,
+            //then the DRM runtime will only allow the video to be displayed over digital outputs
+            //(analog video outputs won’t be allowed to pass the content).
 
-            //IMPORTANT: These types of restrictions can be very powerful but can also affect hello consumer experience.
-            // If hello output protections are configured too restrictive,
-            // hello content might be unplayable on some clients. For more information, see hello PlayReady Compliance Rules document.
+            //IMPORTANT: These types of restrictions can be very powerful but can also affect the consumer experience.
+            // If the output protections are configured too restrictive,
+            // the content might be unplayable on some clients. For more information, see the PlayReady Compliance Rules document.
 
             // For example:
             //licenseTemplate.PlayRight.AgcAndColorStripeRestriction = new AgcAndColorStripeRestriction(1);
@@ -489,15 +489,15 @@ Győződjön meg arról, hogy tooupdate változók toopoint toofolders ahol a be
 
         static public void CreateAssetDeliveryPolicy(IAsset asset, IContentKey key)
         {
-            // Get hello PlayReady license service URL.
+            // Get the PlayReady license service URL.
             Uri acquisitionUrl = key.GetKeyDeliveryUrl(ContentKeyDeliveryType.PlayReadyLicense);
 
-            // GetKeyDeliveryUrl for Widevine attaches hello KID toohello URL.
+            // GetKeyDeliveryUrl for Widevine attaches the KID to the URL.
             // For example: https://amsaccount1.keydelivery.mediaservices.windows.net/Widevine/?KID=268a6dcb-18c8-4648-8c95-f46429e4927c.  
-            // hello WidevineBaseLicenseAcquisitionUrl (used below) also tells Dynamaic Encryption
-            // tooappend /? KID =< keyId > toohello end of hello url when creating hello manifest.
+            // The WidevineBaseLicenseAcquisitionUrl (used below) also tells Dynamaic Encryption
+            // to append /? KID =< keyId > to the end of the url when creating the manifest.
             // As a result Widevine license acquisition URL will have KID appended twice,
-            // so we need tooremove hello KID that in hello URL when we call GetKeyDeliveryUrl.
+            // so we need to remove the KID that in the URL when we call GetKeyDeliveryUrl.
 
             Uri widevineUrl = key.GetKeyDeliveryUrl(ContentKeyDeliveryType.Widevine);
             UriBuilder uriBuilder = new UriBuilder(widevineUrl);
@@ -512,7 +512,7 @@ Győződjön meg arról, hogy tooupdate változók toopoint toofolders ahol a be
 
             };
 
-            // In this case we only specify Dash streaming protocol in hello delivery policy,
+            // In this case we only specify Dash streaming protocol in the delivery policy,
             // All other protocols will be blocked from streaming.
             var assetDeliveryPolicy = _context.AssetDeliveryPolicies.Create(
                 "AssetDeliveryPolicy",
@@ -521,21 +521,21 @@ Győződjön meg arról, hogy tooupdate változók toopoint toofolders ahol a be
             assetDeliveryPolicyConfiguration);
 
 
-            // Add AssetDelivery Policy toohello asset
+            // Add AssetDelivery Policy to the asset
             asset.DeliveryPolicies.Add(assetDeliveryPolicy);
 
         }
 
         /// <summary>
-        /// Gets hello streaming origin locator.
+        /// Gets the streaming origin locator.
         /// </summary>
         /// <param name="assets"></param>
         /// <returns></returns>
         static public string GetStreamingOriginLocator(IAsset asset)
         {
 
-            // Get a reference toohello streaming manifest file from hello  
-            // collection of files in hello asset.
+            // Get a reference to the streaming manifest file from the  
+            // collection of files in the asset.
 
             var assetFile = asset.AssetFiles.Where(f => f.Name.ToLower().
                          EndsWith(".ism")).
@@ -546,12 +546,12 @@ Győződjön meg arról, hogy tooupdate változók toopoint toofolders ahol a be
             TimeSpan.FromDays(30),
             AccessPermissions.Read);
 
-            // Create a locator toohello streaming content on an origin.
+            // Create a locator to the streaming content on an origin.
             ILocator originLocator = _context.Locators.CreateLocator(LocatorType.OnDemandOrigin, asset,
             policy,
             DateTime.UtcNow.AddMinutes(-5));
 
-            // Create a URL toohello manifest file.
+            // Create a URL to the manifest file.
             return originLocator.Path + assetFile.Name;
         }
 

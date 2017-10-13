@@ -1,5 +1,5 @@
 ---
-title: "BizTalk szolgáltatások a sávszélesség-szabályozási kapcsolatos aaaLearn |} Microsoft Docs"
+title: "BizTalk szolgáltatások szabályozását megismerése |} Microsoft Docs"
 description: "Ismerje meg a sávszélesség-szabályozás küszöbértékeit, és az amiatt végbemenő futtatási viselkedés BizTalk szolgáltatások. Sávszélesség-szabályozás a memóriahasználat és üzenetek száma alapul. MABS, WABS"
 services: biztalk-services
 documentationcenter: 
@@ -14,51 +14,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/07/2016
 ms.author: mandia
-ms.openlocfilehash: 46c8806c3a1f4eeb793f721f849771e0ec155197
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 145e7470bbc01c676a1fb5856c0f9a8726e667fc
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="biztalk-services-throttling"></a>BizTalk Services: Szabályozás
 
 > [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
 
-Az Azure BizTalk szolgáltatások megvalósítja szolgáltatás sávszélesség-szabályozás két feltételek alapján: memória kihasználtsága és hello egyidejű üzenetek száma feldolgozása. Ez a témakör küszöbértékek szabályozás hello és hello működését ismerteti, ha sávszélesség-szabályozási állapot akkor fordul elő.
+Az Azure BizTalk szolgáltatások megvalósítja szolgáltatás sávszélesség-szabályozás két feltételek alapján: a memóriahasználat és feldolgozási egyidejű üzenetek száma. Ez a témakör a szabályozási küszöbértékek, és működését ismerteti, ha sávszélesség-szabályozási állapot akkor fordul elő.
 
 ## <a name="throttling-thresholds"></a>Sávszélesség-szabályozási küszöbértékek
-a következő táblázat hello hello szabályozási forrás- és a küszöbértékek:
+Az alábbi táblázat a sávszélesség-szabályozási forrás- és a küszöbértékek:
 
 |  | Leírás | Alsó küszöbérték | Magas küszöbértéket |
 | --- | --- | --- | --- |
-| Memory (Memória) |%-a teljes rendszer memória rendelkezésre álló/PageFileBytes. <p><p>Teljes rendelkezésre álló PageFileBytes körülbelül 2 alkalommal hello RAM hello rendszer. |60% |70% |
+| Memory (Memória) |%-a teljes rendszer memória rendelkezésre álló/PageFileBytes. <p><p>Teljes rendelkezésre álló PageFileBytes körülbelül 2 alkalommal a RAM Memóriát a rendszer. |60% |70% |
 | Üzenet feldolgozása |Feldolgozott üzenetek száma |40 * magok száma |100 * magok száma |
 
-A magas küszöbérték elérésekor a Azure BizTalk szolgáltatások toothrottle elindul. Sávszélesség-szabályozási leállítja hello alsó küszöbérték elérésekor. A szolgáltatás használata esetén például 65 % rendszermemória. Ebben a helyzetben hello szolgáltatást nem szabályozás. A szolgáltatás elindul, a rendszer memória 70 %. Ebben a helyzetben hello szolgáltatást azelőtt gyorsítja fel, és toothrottle továbbra is fennáll, addig, amíg hello szolgáltatás 60 % (alsó küszöbérték) rendszer memóriát használ.
+A magas küszöbérték elérésekor Azure BizTalk szolgáltatások szabályozása kezdődik. Sávszélesség-szabályozás leállítja az alsó küszöbérték elérésekor. A szolgáltatás használata esetén például 65 % rendszermemória. Ebben a helyzetben a szolgáltatás nem szabályozás. A szolgáltatás elindul, a rendszer memória 70 %. Ebben a helyzetben a szolgáltatást azelőtt gyorsítja fel, és továbbra is fennáll, addig, amíg a szolgáltatás pedig 60 % (alsó küszöbérték) rendszermemória szabályozása.
 
-Azure BizTalk szolgáltatások hello állapot normál szabályozottan halmozott állapotát és szabályozás és a szabályozás időtartama hello követi nyomon.
+Azure BizTalk szolgáltatások nyomon követi a sávszélesség-szabályozási állapota (normál állapotban, és a szabályozottan halmozott állapot) és a sávszélesség-szabályozási időtartama.
 
 ## <a name="runtime-behavior"></a>Futtatási viselkedés
-BizTalk szolgáltatások Azure szabályozási állapotba kerül, ha hello következő történik:
+BizTalk szolgáltatások Azure szabályozási állapotba kerül, amikor az alábbiak történnek:
 
 * Sávszélesség-szabályozás egy szerepkör-példány van. Példa:<br/>
-  A szabályozás RoleInstanceA. RoleInstanceB nem a szabályozás. Ebben a helyzetben a RoleInstanceB üzenetek feldolgozása várt módon. RoleInstanceA üzeneteket a rendszer elveti és hello a következő hiba miatt sikertelen:<br/><br/>
+  A szabályozás RoleInstanceA. RoleInstanceB nem a szabályozás. Ebben a helyzetben a RoleInstanceB üzenetek feldolgozása várt módon. RoleInstanceA üzeneteket a rendszer törli, és a következő hiba miatt sikertelen:<br/><br/>
   **Kiszolgáló túlterhelt. Próbálkozzon újra.**<br/><br/>
 * Egyetlen lekéréses forrás ne kérdezze le, és töltse le az üzenetet. Példa:<br/>
-  Egy folyamat üzenetek FTP külső forrásból kéri le. Ennek során hello lekéréses hello szerepkörpéldányt lekérdezi a sávszélesség-szabályozási állapot. Ebben a helyzetben hello folyamat leáll, letölti a további üzeneteket, amíg hello szerepkörpéldányt leállítja a sávszélesség-szabályozás.
-* Választ küldött toohello ügyfél így hello ügyfél üdvözlőüzenetére is újraküldése.
-* Meg kell várnia, amíg hello sávszélesség-szabályozás nem oldódik. Pontosabban meg kell várnia hello alsó küszöbérték elérésekor.
+  Egy folyamat üzenetek FTP külső forrásból kéri le. A szerepkörpéldányt, ennek során a lekéréses szabályozási állapotának beolvasása. Ebben a helyzetben a folyamat leállítása letöltése a további üzeneteket, amíg a szerepkörpéldányt leállítja a sávszélesség-szabályozás.
+* Választ küldött az ügyfélnek, így az ügyfél is újra elküldeni az üzenetet.
+* Meg kell várnia, amíg a sávszélesség-szabályozás nem oldódik. Pontosabban meg kell várnia az alsó küszöbérték elérésekor.
 
 ## <a name="important-notes"></a>Fontos megjegyzések
 * Sávszélesség-szabályozás nem tiltható le.
 * Sávszélesség-szabályozás küszöbértékek nem módosíthatók.
 * Sávszélesség-szabályozás rendszerszintű valósul meg.
-* hello Azure SQL adatbázis-kiszolgáló is rendelkezik beépített szabályozás.
+* Az Azure SQL adatbázis-kiszolgáló is rendelkezik beépített szabályozás.
 
 ## <a name="additional-azure-biztalk-services-topics"></a>További Azure BizTalk szolgáltatások kapcsolatos témakörök
-* [Hello Azure BizTalk szolgáltatások SDK telepítése](http://go.microsoft.com/fwlink/p/?LinkID=241589)<br/>
+* [Az Azure BizTalk szolgáltatások SDK telepítése](http://go.microsoft.com/fwlink/p/?LinkID=241589)<br/>
 * [Oktatóanyag: Azure BizTalk szolgáltatások](http://go.microsoft.com/fwlink/p/?LinkID=236944)<br/>
-* [Hogyan tudom használata hello Azure BizTalk szolgáltatások SDK-t](http://go.microsoft.com/fwlink/p/?LinkID=302335)<br/>
+* [Hogyan kezdhetem el az Azure BizTalk Services SDK használatát](http://go.microsoft.com/fwlink/p/?LinkID=302335)<br/>
 * [Az Azure BizTalk szolgáltatások](http://go.microsoft.com/fwlink/p/?LinkID=303664)<br/>
 
 ## <a name="see-also"></a>Lásd még:

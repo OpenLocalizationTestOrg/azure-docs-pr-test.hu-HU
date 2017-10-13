@@ -1,6 +1,6 @@
 ## <a name="scenario"></a>Forgatókönyv
 
-A következő forgatókönyv toohello szerint belső terheléselosztót létrehozásakor
+Belső terheléselosztót hoz létre az alábbi forgatókönyv szerint
 
 ![KÉPLEÍRÁS](./media/load-balancer-get-started-ilb-scenario-include/figure1.png)
 

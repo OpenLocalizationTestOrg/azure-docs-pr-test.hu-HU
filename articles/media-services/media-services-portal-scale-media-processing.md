@@ -1,6 +1,6 @@
 ---
-title: "aaaScale adathordozó használatával feldolgozása hello Azure portálon |} Microsoft Docs"
-description: "Ez az oktatóanyag végigvezeti hello méretezési adathordozó feldolgozása hello Azure-portál használatával."
+title: "Skála media feldolgozása az Azure portál használatával |} Microsoft Docs"
+description: "Ez az oktatóanyag végigvezeti a méretezési adathordozó feldolgozása az Azure portál használatával."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/04/2017
 ms.author: juliako
-ms.openlocfilehash: 89240c6f7579b8795e7b47f2b1c398b1d5477e20
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 46ca29d3e66701f2abcb185791089e94761984e8
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="change-hello-reserved-unit-type"></a>Hello szolgáltatás számára fenntartott egység típusának módosítása
+# <a name="change-the-reserved-unit-type"></a>A fenntartott egység típusának módosítása
 > [!div class="op_single_selector"]
 > * [.NET](media-services-dotnet-encoding-units.md)
-> * [Portál](media-services-portal-scale-media-processing.md)
+> * [Portal](media-services-portal-scale-media-processing.md)
 > * [REST](https://docs.microsoft.com/rest/api/media/operations/encodingreservedunittype)
 > * [Java](https://github.com/southworkscom/azure-sdk-for-media-services-java-samples)
 > * [PHP](https://github.com/Azure/azure-sdk-for-php/tree/master/examples/MediaServices)
@@ -32,32 +32,32 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="overview"></a>Áttekintés
 
-Egy Media Services-fiók fenntartott egység típusú, amely megadja, hogy hello sebesség, amellyel a feladatok feldolgozása media feldolgozása hozzá rendelve. Hello következő közötti választhatja ki a szolgáltatás számára fenntartott egység: **S1**, **S2**, vagy **S3**. Például ugyanazon kódolási feladat fut gyorsabban hello használatakor hello **S2** fenntartott egységnek típus összehasonlítása toohello **S1** típusa.
+A Media Services-fiókok Fenntartott egység típussal vannak társítva, amely meghatározza a médiafeldolgozási feladatok feldolgozásának sebességét. A következő Fenntartott egység típusok közül választhat: **S1**, **S2** vagy **S3**. Ugyanaz a kódolási feladat például gyorsabban fut, amikor az **S2** Fenntartott egység típust használja az **S1** típus helyett.
 
-Ezenkívül toospecifying hello fenntartott egység típusát, akkor megadhatja tooprovision fiókját **fenntartott egységek** (RUs). kiépített RUs hello száma határozza meg, egyidejűleg dolgozhatók fel egy adott fiókhoz media feladatok hello száma.
+A Fenntartott egység típusának meghatározása mellett megadhatja, hogy ellátja-e a fiókot **Fenntartott egységekkel** (RU-kkal). A megadott Fenntartott egységek száma határozza meg az egy adott fiókon egy időben feldolgozható médiafeladatok számát.
 
 >[!NOTE]
 >A Fenntartott egységek az összes médiafeldolgozás párhuzamossá tételéért felelősek, beleértve az Azure Media Indexerrel végzett indexelési feladatokat is. De a kódolással ellentétben az indexelési feladatok feldolgozása nem lesz gyorsabb a gyorsabb Fenntartott egységekkel.
 
 > [!IMPORTANT]
-> Győződjön meg arról, hogy tooreview hello [áttekintése](media-services-scale-media-processing-overview.md) témakör tooget témakör feldolgozása media méretezésével kapcsolatos további információk.
+> Mindenképpen tekintse át a [áttekintése](media-services-scale-media-processing-overview.md) témakör feldolgozása media méretezésével kapcsolatos további információkat a témakör.
 > 
 > 
 
 ## <a name="scale-media-processing"></a>Méretezhető médiafeldolgozás
-toochange hello szolgáltatás számára fenntartott egység típusa és hello fenntartott egységek számát, a következő hello:
+A fenntartott egységnek típusát és fenntartott egységek számának megváltoztatásához tegye a következőket:
 
-1. A hello [Azure-portálon](https://portal.azure.com/), válassza ki az Azure Media Services-fiók.
-2. A hello **beállítások** ablakban válassza ki **Media szolgáltatás számára fenntartott egység**.
+1. Az [Azure-portálon](https://portal.azure.com/) válassza ki Azure Media Services-fiókját.
+2. Az a **beállítások** ablakban válassza ki **Media szolgáltatás számára fenntartott egység**.
    
-    hello fenntartott egységek száma toochange hello fenntartott egységnek típust választotta, használja a hello **Media kiszolgált egységek** csúszkát.
+    A kijelölt fenntartott egységnek típus fenntartott egységek számának módosításához használja a **Media kiszolgált egységek** csúszkát.
    
-    toochange hello **FENNTARTOTT EGYSÉGTÍPUS**, nyomja le az S1, S2 vagy S3.
+    Módosíthatja a **FENNTARTOTT EGYSÉGTÍPUS**, nyomja le az S1, S2 vagy S3.
    
     ![Feldolgozók lap](./media/media-services-portal-scale-media-processing/media-services-scale-media-processing.png)
-3. Nyomja le az hello gomb toosave menti a módosításokat.
+3. A módosítások mentéséhez kattintson a SAVE (Mentés) gombra.
    
-    új fenntartott egységek hello MENTÉS megnyomásakor foglal le.
+    Az új fenntartott egységek MENTÉS megnyomásakor foglal le.
 
 ## <a name="next-steps"></a>Következő lépések
 Tekintse át a Media Services képzési terveket.

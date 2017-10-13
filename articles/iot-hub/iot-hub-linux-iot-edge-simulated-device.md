@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT peremhálózati (Linux) rendelkező eszköz aaaSimulate |} Microsoft Docs"
-description: "Hogyan toouse Azure IoT peremhálózati lévő Linux toocreate a szimulált eszköz, amely elküldi telemetriai adatokat az IoT-Edge révén átjáró tooan IoT-központ."
+title: "Egy eszköz szimulálása Azure IoT oldala (Linux) |} Microsoft Docs"
+description: "Hogyan használható az Azure IoT peremhálózati Linux által küldött telemetriai adatokat az IoT-központ az IoT-Edge átjárón keresztül szimulált eszköz létrehozásához."
 services: iot-hub
 documentationcenter: 
 author: chipalost
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/09/2017
 ms.author: andbuc
-ms.openlocfilehash: 168fb8eda8671d02c63073bdf36dfcd88b397fe2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5349960373ae6815862c5f79a69dd6d5d9d624ab
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-azure-iot-edge-toosend-device-to-cloud-messages-with-a-simulated-device-linux"></a>Azure IoT peremhálózati toosend eszközről a felhőbe üzenetek használata a szimulált eszköz (Linux)
+# <a name="use-azure-iot-edge-to-send-device-to-cloud-messages-with-a-simulated-device-linux"></a>Segítségével Azure IoT peremhálózati eszköz-felhő üzenetek a szimulált eszköz (Linux)
 
 [!INCLUDE [iot-hub-iot-edge-simulated-selector](../../includes/iot-hub-iot-edge-simulated-selector.md)]
 
 [!INCLUDE [iot-hub-iot-edge-install-build-linux](../../includes/iot-hub-iot-edge-install-build-linux.md)]
 
-## <a name="how-toorun-hello-sample"></a>Hogyan toorun hello minta
+## <a name="how-to-run-the-sample"></a>A minta futtatása
 
-Hello **build.sh** parancsfájlt hoz létre a kimeneti hello **build** hello helyi példánya mappájában **iot-edge** tárházba. A kimeneti hello a mintában használt négy IoT peremhálózati modulok tartalmazza.
+A **build.sh** szkript a kimenetét a **build** mappában hozza létre, az **iot-edge** adattár helyi példányában. A kimenetet a mintában használt négy IoT peremhálózati modulok tartalmazza.
 
-build script helyek hello a:
+A build script helyek a:
 
-* **liblogger.so** a hello **build/modulok/naplózó** mappát.
-* **libiothub.so** a hello **build/modulok/IOT hubbal** mappát.
-* **lib\_identitás\_map.so** a hello **build/modulok/identitymap** mappa.
-* **libsimulated\_device.so** a hello **build, modulok vagy szimulált\_eszköz** mappát.
+* **liblogger.so** a a **build/modulok/naplózó** mappát.
+* **libiothub.so** a a **build/modulok/IOT hubbal** mappát.
+* **lib\_identitás\_map.so** a a **build/modulok/identitymap** mappa.
+* **libsimulated\_device.so** a a **build, modulok vagy szimulált\_eszköz** mappát.
 
-Az elérési utak használata hello **modul elérési útján** látható módon hello beállításokat JSON-fájlt a következő értékeket:
+Az elérési utak használata a **modul elérési útján** értékeket az alábbi JSON fájlban látható módon:
 
-Szimulált hello\_eszköz\_felhő\_feltöltése\_minta tart hello elérési tooa JSON-konfigurációs fájl parancssori argumentumként. hello alábbi példa JSON-fájl valósul meg a következő SDK-tárházban hello **minták\\szimulált\_eszköz\_felhő\_feltöltése\_minta\\src\\ Szimulált\_eszköz\_felhő\_feltöltése\_minta\_lin.json**. A konfigurációs fájl működik, kivéve, ha módosítja a hello build script tooplace hello IoT peremhálózati modulok, vagy végrehajtható fájlok alapértelmezettől eltérő helyeket a mintát.
+A szimulált\_eszköz\_felhő\_feltöltése\_minta tart az elérési út egy JSON-konfigurációs fájl parancssori argumentumként. A következő példa JSON-fájl megtalálható a következő SDK tárház **minták\\szimulált\_eszköz\_felhő\_feltöltése\_minta\\src\\ Szimulált\_eszköz\_felhő\_feltöltése\_minta\_lin.json**. A konfigurációs fájl, kivéve, ha módosítja a build parancsfájlt helyezze el az IoT peremhálózati modulok vagy a minta végrehajtható fájlok alapértelmezettől eltérő helyeket működik.
 
 > [!NOTE]
-> hello modul elérési útvonalai relatív toohello könyvtárat az szimulált hello futtató\_eszköz\_felhő\_feltöltése\_minta végrehajtható fájl, nem hello könyvtárat, amelyben hello végrehajtható fájl található. hello minta JSON-konfigurációs fájlt toowriting too'deviceCloudUploadGatewaylog.log alapértelmezés szerint "az aktuális munkakönyvtárban a.
+> A modul elérési útvonalai képest a könyvtárat az futtató a szimulált\_eszköz\_felhő\_feltöltése\_minta végrehajtható fájl, nem a könyvtárat, amelyben a végrehajtható fájl található. A minta JSON-konfigurációs fájl az alapértelmezett az aktuális munkakönyvtárban a "deviceCloudUploadGatewaylog.log" írásakor.
 
-Egy szövegszerkesztőben nyissa meg a hello fájlt **minták/szimulált\_eszköz\_felhő\_feltöltése\_minta/src/szimulált\_eszköz\_felhő\_feltöltése\_lin.json** hello helyi példánya a **iot-edge** tárházba. Ez a fájl hello IoT peremhálózati modulok hello minta átjáró konfigurálja:
+Egy szövegszerkesztőben nyissa meg a fájlt **minták/szimulált\_eszköz\_felhő\_feltöltése\_minta/src/szimulált\_eszköz\_felhő\_feltöltése\_lin.json** a helyi példánya a **iot-edge** tárházba. Ez a fájl az IoT-Edge modulok konfigurálja a minta átjáró:
 
-* Hello **IOT hubbal** modul tooyour IoT-központ csatlakozik. Konfigurálja toosend adatok tooyour IoT-központot. Pontosabban, a set hello **IoTHubName** az IoT hub nevét toohello értékét, és állítsa be a hello **IoTHubSuffix** érték túl**azure-devices.net**. Set hello **átviteli** az érték tooone: **HTTP**, **AMQP**, vagy **MQTT**. Jelenleg csak **HTTP** közösen használja az összes eszközre küldött üzenetek egy TCP-kapcsolatot. Ha a hello érték túl**AMQP**, vagy **MQTT**, hello átjáró egy külön TCP kapcsolat tooIoT Hub az egyes eszközök tart fenn.
-* Hello **leképezési** modul leképezi a szimulált eszköz tooyour IoT-központ eszközazonosítókat hello MAC-címeit. Győződjön meg arról, hogy **deviceId** értékek egyeznek hello azonosítói hello két tooyour IoT-központot, és adott hello hozzáadott eszközök **deviceKey** értékeket tartalmaz, a két eszközök hello kulcsokat.
-* Hello **BLE1** és **BLE2** modulokra szimulált hello eszközök. Vegye figyelembe, hogyan a MAC-cím egyezik hello címek hello **leképezési** modul.
-* Hello **naplózó** modul naplózza az átjáró tevékenység tooa fájlt.
-* Hello **modul elérési útján** értékek hello példában látható módon azt feltételezik, hogy futtatja hello minta hello **build** hello helyi példánya mappájában **iot-edge** tárházba.
-* Hello **hivatkozások** hello JSON-fájl hello alján tömb csatlakozik hello **BLE1** és **BLE2** modulok toohello **leképezési** modul, és hello **leképezési** modul toohello **IOT hubbal** modul. Emellett biztosítja, hogy az összes üzenet hello által naplózott **naplózó** modul.
+* A **IOT hubbal** modul csatlakozik az IoT hub. Konfigurálja az IoT hub adatküldéshez. Pontosabban, állítsa be a **IoTHubName** értékre az IoT hub nevét, és állítsa a **IoTHubSuffix** egy érték **azure-devices.net**. Állítsa be a **átviteli** egyik: **HTTP**, **AMQP**, vagy **MQTT**. Jelenleg csak **HTTP** közösen használja az összes eszközre küldött üzenetek egy TCP-kapcsolatot. Ha az érték **AMQP**, vagy **MQTT**, az átjáró egy külön TCP-kapcsolatot az IoT-központ az egyes eszközök tart fenn.
+* A **leképezési** modul szimulált eszköz MAC-címet rendel az IoT Hub eszköz azonosítóját. Győződjön meg arról, hogy **deviceId** megegyeznek a két eszköz az IoT hub, és hogy a hozzáadott azonosítóit a **deviceKey** értékek a kulcsokat, a két eszközök tartalmazzák.
+* A **BLE1** és **BLE2** modulokra a szimulált eszköz. Vegye figyelembe, hogyan a MAC-cím egyezik-e a címeket a **leképezési** modul.
+* A **naplózó** modul fájlban naplózza a átjáró tevékenységeket.
+* A **modul elérési útján** értékek, a példában látható módon azt feltételezik, hogy futtasson-e a mintát a **build** mappa a helyi példánya a **iot-edge** tárház.
+* A **hivatkozások** tömb a JSON-fájl alján csatlakozik a **BLE1** és **BLE2** modulok a **leképezési** modul, és a **leképezési** modult a **IOT hubbal** modul. Emellett biztosítja, hogy az összes üzenet által naplózott a **naplózó** modul.
 
 ```json
 {
@@ -149,17 +149,17 @@ Egy szövegszerkesztőben nyissa meg a hello fájlt **minták/szimulált\_eszkö
 }
 ```
 
-Mentés hello módosításokat végzett toohello konfigurációs fájl.
+A konfigurációs fájl módosításainak mentése.
 
-toorun hello minta:
+A minta futtatásához:
 
-1. A rendszerhéj, lépjen a toohello **létrehozása, az iot-edge** mappát.
-2. Futtassa a következő parancs hello:
+1. A rendszerhéj navigáljon a **létrehozása, az iot-edge** mappát.
+2. Futtassa az alábbi parancsot:
    
     ```sh
     ./samples/simulated_device_cloud_upload/simulated_device_cloud_upload_sample ../samples/simulated_device_cloud_upload/src/simulated_device_cloud_upload_lin.json
     ```
-3. Használhatja a hello [eszköz explorer] [ lnk-device-explorer] vagy [IOT hubbal-explorer] [ lnk-iothub-explorer] IoT-központ fogadja hello toomonitor köszönőüzenetei eszköz átjáró. Például az IOT hubbal-Explorerben figyelheti eszközről a felhőbe üzenetek hello a következő parancs használatával:
+3. Használhatja a [eszköz explorer] [ lnk-device-explorer] vagy [IOT hubbal-explorer] [ lnk-iothub-explorer] az üzeneteket, amelyek az IoT-központ fogadja az átjáró figyelésére. Például az IOT hubbal-Explorerben figyelheti eszköz-a-felhőbe küldött üzeneteket a következő parancsot:
 
     ```sh
     iothub-explorer monitor-events --login "HostName={Your iot hub name}.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey={Your IoT Hub key}"
@@ -167,15 +167,15 @@ toorun hello minta:
 
 ## <a name="next-steps"></a>Következő lépések
 
-toogain tájékozottabbak Azure IoT peremhálózati és kísérlet az egyes kódpéldák hello következő látogasson el fejlesztői oktatóanyagok és erőforrások:
+Azure IoT peremhálózati tájékozottabbak kapnak, és néhány kódpéldák kísérletezhet, látogasson el az alábbi fejlesztői oktatóanyagok és erőforrások:
 
 * [Eszköz-felhő üzeneteket küldeni egy fizikai eszközről Azure IoT oldala][lnk-physical-device]
 * [Az Azure IoT él][lnk-iot-edge]
 
-toofurther megismerkedhet az IoT-központ hello képességeit, lásd:
+Az IoT-központ képességeit további megismeréséhez lásd:
 
 * [IoT Hub fejlesztői útmutató][lnk-devguide]
-* [Az IoT-megoldásból hello szabad a biztonságos][lnk-securing]
+* [Az IoT-megoldásból az alapoktól biztonságos mentése][lnk-securing]
 
 <!-- Links -->
 [lnk-iot-edge]: https://github.com/Azure/iot-edge/

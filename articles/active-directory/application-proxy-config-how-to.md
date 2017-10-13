@@ -1,6 +1,6 @@
 ---
-title: "Az alkalmazásproxy alkalmazás aaaHow tooconfigure |} Microsoft Docs"
-description: "Megtudhatja, hogyan toocreate egy néhány egyszerű lépésben alkalmazásproxy alkalmazás konfigurálása"
+title: "Az alkalmazásproxy alkalmazás konfigurálása |} Microsoft Docs"
+description: "Ismerje meg, hogyan hozhat létre egy konfigurálása az alkalmazásproxy alkalmazást néhány egyszerű lépésben"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,61 +13,61 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: c64019098fc124e4fe10b8288830bcd2b7239d3d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c8f98536048a85ebb3f061d840457130579196d9
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="how-tooconfigure-an-application-proxy-application"></a>Hogyan tooconfigure az alkalmazásproxy-alkalmazás
+# <a name="how-to-configure-an-application-proxy-application"></a>Az alkalmazásproxy alkalmazás konfigurálása
 
-Ez a cikk segítséget toounderstand hogyan tooconfigure belül tooexpose az Azure AD alkalmazásproxy kérelmet a helyszíni alkalmazások toohello a felhő.
+Ez a cikk segít megérteni, hogyan teszi közzé a felhőbe a helyszíni alkalmazások belül az Azure AD alkalmazásproxy alkalmazást konfigurálhatja úgy nyújt segítséget.
 
 ## <a name="recommended-documents"></a>Ajánlott dokumentumok 
 
-hello kezdeti, valamint az alkalmazásproxy alkalmazások hello felügyeleti portálon keresztül létrehozása toolearn kövesse hello [alkalmazások közzététele az Azure AD-alkalmazásproxy használatával](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal).
+További tudnivalók a kezdeti konfigurációt és a felügyeleti portálon keresztül alkalmazásproxy alkalmazás létrehozását, hajtsa végre a [alkalmazások közzététele az Azure AD-alkalmazásproxy használatával](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal).
 
-Az összekötők konfigurálása, lásd: [alkalmazásproxy engedélyezése az Azure portál hello](active-directory-application-proxy-enable.md).
+Az összekötők konfigurálása, lásd: [alkalmazásproxy engedélyezése az Azure-portálon](active-directory-application-proxy-enable.md).
 
 Tanúsítványok feltöltése és egyéni tartomány használatával kapcsolatos tudnivalókat lásd: [egyéni tartományok az Azure AD alkalmazásproxy használata](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains).
 
-## <a name="create-hello-applicationsetting-hello-urls"></a>Hello alkalmazás-beállítás hello URL-címek létrehozása
+## <a name="create-the-applicationsetting-the-urls"></a>Az Alkalmazásbeállítás URL-címek létrehozása
 
-Ha követi hello hello szükséges lépések [alkalmazások közzététele az Azure AD-alkalmazásproxy használatával](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal) és a dokumentáció első hello alkalmazás létrehozásakor hiba lépett fel a hello hiba részletes információkat, és javaslatokat arról, hogyan lásd: toofix hello alkalmazás. A legtöbb hiba üzenetekben javasolt javítás. tooavoid gyakori hibákat, ellenőrizze, hogy:
+Ha a következő lépéseket a [alkalmazások közzététele az Azure AD-alkalmazásproxy használatával](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal) és a dokumentáció első hiba történt az alkalmazás létrehozásakor tekintse meg a hiba részletes adatait információk és javaslatok megoldásával a az alkalmazás. A legtöbb hiba üzenetekben javasolt javítás. Gyakori hibák elkerülése érdekében győződjön meg arról:
 
--   Az engedély toocreate proxyval alkalmazás rendszergazda
+-   Alkalmazásproxy alkalmazás létrehozása engedéllyel rendelkező rendszergazdáknak
 
--   hello belső URL-címe egyedi:
+-   A belső URL-címe egyedi:
 
--   hello külső URL-címe egyedi:
+-   A külső URL-címe egyedi:
 
--   hello http vagy https URL-címek kezdődik, és a szöveg végén a "/"
+-   Az URL-címének http vagy https kezdődnie, és végén a "/"
 
--   hello URL-cím a tartomány nevét, IP-cím nem kell lennie.
+-   Az URL-cím a tartomány nevét, IP-cím nem kell lennie.
 
-hello hibaüzenet jelenik meg hello jobb felső sarokban található hello alkalmazás létrehozásakor. Ehelyett választhatja hello értesítési ikon toosee hello hibaüzenetek.
+A jobb felső sarokban a hibaüzenet a következő megjelenjen-e az alkalmazás létrehozásakor. Igény szerint kiválaszthatja az értesítés ikonra a hibaüzenetekben talál.
 
    ![Értesítési üzenet](./media/application-proxy-config-how-to/error-message.png)
 
 ## <a name="configure-connectorsconnector-groups"></a>Az összekötők/összekötő csoportok beállítása
 
-Ha az alkalmazás beállítása miatt figyelmeztetést jelenít meg hello összekötők és összekötő csoportok probléma, lásd: utasításokat a alkalmazásproxy engedélyezése kapcsolatos részletes tudnivalókért toodownload összekötők. Ha azt szeretné, hogy további információk az összekötők toolearn, tekintse meg a hello [összekötők dokumentációja](https://docs.microsoft.com/azure/active-directory/application-proxy-understand-connectors).
+Ha a rendelkezésre álló összekötők és összekötő csoportok figyelmeztetés miatt az alkalmazás konfigurálása, lásd: utasításokat a letöltési összekötők részletekért alkalmazásproxy engedélyezése. Ha azt szeretné, további információt az összekötők, tekintse meg a [összekötők dokumentációja](https://docs.microsoft.com/azure/active-directory/application-proxy-understand-connectors).
 
-Ha az összekötők nem működnek, ez azt jelenti, hogy azok nem tooreach hello szolgáltatást. Ez gyakran azért van, mert minden szükséges hello port nincs nyitva. toosee szükséges portok listáját a alkalmazásproxy dokumentáció engedélyezése hello hello Előfeltételek című szakaszában talál.
+Ha az összekötők nem működnek, ez azt jelenti, hogy azok nem érhetők el a szolgáltatást. Ez gyakran azért van, mivel nincsenek nyissa meg a szükséges portok. Szükséges portok listájának megtekintéséhez lásd: a szükséges Előfeltételek című részben engedélyezése alkalmazásproxy.
 
 ## <a name="upload-certificates-for-custom-domains"></a>Az egyéni tartományok tanúsítványok feltöltése
 
-Egyéni tartományok toospecify hello tartományának a külső URL-címek engedélyezése. egyéni tartományok toouse, tanúsítványra van szükség tooupload hello ehhez a tartományhoz. Egyéni tartományok és tanúsítványok használatával kapcsolatos információkért lásd: [egyéni tartományok az Azure AD alkalmazásproxy használata](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains). 
+Egyéni tartományok engedélyezi, hogy a külső URL-címek tartományát adja meg. Egyéni tartományok használatához szüksége töltse fel az ehhez a tartományhoz. Egyéni tartományok és tanúsítványok használatával kapcsolatos információkért lásd: [egyéni tartományok az Azure AD alkalmazásproxy használata](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains). 
 
-Ha a tanúsítvány feltöltése problémák adódtak, keresse meg hello hibaüzenetek hello portálon kapcsolatos további információkért hello hello tanúsítványával kapcsolatos problémára. Közös tanúsítvánnyal kapcsolatos problémák a következők:
+Ha a tanúsítvány feltöltése problémák adódtak, keresse meg a hibaüzeneteket, a portálon található további információ a tanúsítvánnyal kapcsolatos problémát. Közös tanúsítvánnyal kapcsolatos problémák a következők:
 
 -   A lejárt tanúsítvány
 
 -   Önaláírt tanúsítvány
 
--   Tanúsítvány hiányzik a hello titkos kulcs
+-   Tanúsítvány hiányzik a titkos kulcs
 
-hello hibaüzenet jelenik meg a hello jobb felső sarokban tooupload hello tanúsítványt próbálja ki. Ehelyett választhatja hello értesítési ikon toosee hello hibaüzenetek.
+A hibaüzenetet jeleníti meg a jobb felső sarokban található megpróbálja feltölteni a tanúsítványt. Igény szerint kiválaszthatja az értesítés ikonra a hibaüzenetekben talál.
 
    ![Értesítési üzenet](./media/application-proxy-config-how-to/error-message2.png)
 

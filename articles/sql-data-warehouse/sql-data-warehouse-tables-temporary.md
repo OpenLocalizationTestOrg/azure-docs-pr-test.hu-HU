@@ -1,5 +1,5 @@
 ---
-title: "az SQL Data Warehouse aaaTemporary táblák |} Microsoft Docs"
+title: "Az SQL Data Warehouse az ideiglenes táblák |} Microsoft Docs"
 description: "Ismerkedés az Azure SQL Data Warehouse ideiglenes táblákat."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: tables
 ms.date: 10/31/2016
 ms.author: shigu;barbkess
-ms.openlocfilehash: 2e8b122eb6d71d5bc0a99ce8a2ecab5dbe2d1b49
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fd8c31a727dae3b011aa8294a81f005bad72a278
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="temporary-tables-in-sql-data-warehouse"></a>Az SQL Data Warehouse az ideiglenes táblák
 > [!div class="op_single_selector"]
@@ -33,9 +33,9 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Az ideiglenes táblák nagyon hasznosak, ahol hello köztes eredmények átmeneti jellegűek átalakítása során különösen - adatok feldolgozásakor. Az SQL Data Warehouse az ideiglenes táblák hello munkamenet szinten található.  Csak látható toohello munkamenet, amelyben hozta létre, és automatikusan eldobott munkamenetben kijelentkezésekor.  Az ideiglenes táblák teljesítmény előnyt kínálnak, mert az eredményeiket írt távtároló helyett toolocal.  Az ideiglenes táblák azok elérhetők tetszőleges belül hello munkamenet, beleértve a belüli és kívüli tárolt eljárás amelyeket kis mértékben eltér az Azure SQL Data Warehouse az Azure SQL Database.
+Az ideiglenes táblák nagyon hasznosak, ha az adatfeldolgozás - különösen ha a köztes eredmények átmeneti jellegűek átalakítása során. Az SQL Data Warehouse ideiglenes táblák léteznek, a munkamenet szintű.  Csak azok a munkamenethez, amelyben hozta létre, és automatikusan eldobott munkamenetben kijelentkezésekor látható.  Az ideiglenes táblák teljesítmény előnyt kínálnak, mert az eredményeiket írt helyi ahelyett, hogy a távoli tároló.  Az ideiglenes táblák azok is bárhonnan elérhetők a munkamenetben, beleértve belül és kívül tárolt eljárás belül amelyeket kis mértékben eltér az Azure SQL Data Warehouse az Azure SQL Database.
 
-Ez a cikk alapvető útmutatást nyújt az ideiglenes táblák használata, és kiemeli a munkamenet szintű ideiglenes táblák hello elveit. Hello információk alapján ez a cikk segítséget nyújt a kódot, újrahasznosításának és a karbantartás a kód egyszerű javítása modularize.
+Ez a cikk alapvető útmutatást nyújt az ideiglenes táblák használata, és kiemeli a munkamenet szintű ideiglenes táblák ezeket az alapelveket. Ebben a cikkben szereplő információk segítségével segítséget nyújt a kódot, újrahasznosításának és a karbantartás a kód egyszerű javítása modularize.
 
 ## <a name="create-a-temporary-table"></a>Hozzon létre egy ideiglenes táblát
 Ideiglenes táblázatok jönnek létre a tábla nevű egyszerűen illesztésével egy `#`.  Példa:
@@ -58,7 +58,7 @@ WITH
 )
 ```
 
-Az ideiglenes táblák is hozhatja létre a `CTAS` használatával pontosan ugyanezt a megközelítést hello:
+Az ideiglenes táblák is hozhatja létre a `CTAS` pontosan ugyanezt a megközelítést használ:
 
 ```sql
 CREATE TABLE #stats_ddl
@@ -112,12 +112,12 @@ FROM    t1
 ``` 
 
 > [!NOTE]
-> `CTAS`egy nagyon hatékony parancs, és hozzáadta hello előnye, hogy nagyon hatékony tranzakciónaplók helyhasználatáról használata során. 
+> `CTAS`egy nagyon hatékony parancs és a hozzáadott előnye, hogy nagyon hatékony tranzakciónaplók helyhasználatáról használata során. 
 > 
 > 
 
 ## <a name="dropping-temporary-tables"></a>Ideiglenes táblák
-Amikor egy új munkamenetet hoz létre, nem ideiglenes táblák léteznie kell.  Azonban hívásakor hello azonos tárolt eljárást, amely hoz létre egy ideiglenes hello ugyanazzal a névvel, tooensure, amely a `CREATE TABLE` kimutatásai sikeres egy egyszerű előtti meglétének ellenőrzése a egy `DROP` is használható, ahogy az alábbi példában hello:
+Amikor egy új munkamenetet hoz létre, nem ideiglenes táblák léteznie kell.  Azonban ha hívásakor az azonos tárolt eljárás, amely létrehoz egy ideiglenes ugyanazzal a névvel, annak érdekében, hogy a `CREATE TABLE` kimutatásai sikeres egy egyszerű előtti meglétének ellenőrzése a egy `DROP` is használható, mint a az alábbi példában:
 
 ```sql
 IF OBJECT_ID('tempdb..#stats_ddl') IS NOT NULL
@@ -126,14 +126,14 @@ BEGIN
 END
 ```
 
-A kódolási konzisztencia, esetén jó gyakorlat toouse ebben a mintában a táblák és a ideiglenes táblákra.  Egyúttal egy jó ötlet toouse `DROP TABLE` tooremove ideiglenes táblák befejezése után, a kódban.  A tárolt eljárás fejlesztési elég általános toosee hello drop utasítást egyetlen kötegbe foglalnak egy eljárás tooensure hello végén ezek az objektumok megtisztítva.
+A kódolási konzisztencia, célszerű használni ezt a mintát táblák és az ideiglenes táblák esetén.  Akkor is érdemes használni `DROP TABLE` eltávolítása az ideiglenes táblák befejezése után, a kódban.  A tárolt eljárás megtisztítva fejlesztési elég általános a drop utasítást egybe kötegelik ahhoz, hogy ezek az objektumok eljárás végén megjelenítéséhez.
 
 ```sql
 DROP TABLE #stats_ddl
 ```
 
 ## <a name="modularizing-code"></a>Modularizing kód
-Az ideiglenes táblák felhasználói munkamenet bármely részén látható, mivel Ön az alkalmazás kódjában modularize kihasznált toohelp is lehet.  Például hello tárolt eljárás az alábbi összegyűjti az ajánlott eljárások promptjai toogenerate DDL, amely frissíti az összes statisztika hello adatbázis statisztika név szerint hello.
+Az ideiglenes táblák felhasználói munkamenet bármely részén látható, mert ez az alkalmazás kódjában modularize segítséget is kihasználható.  Például az alábbi tárolt eljárás egyesíti az ajánlott eljárásokat, a fenti DDL, amely frissíti az adatbázis összes statisztika statisztika nevű létrehozásához.
 
 ```sql
 CREATE PROCEDURE    [dbo].[prc_sqldw_update_stats]
@@ -207,7 +207,7 @@ FROM    t1
 GO
 ```
 
-Ebben a szakaszban hello egyetlen művelet történt hello létrehozása egy tárolt eljárás, amely a rendszer egyszerűen csak generált ideiglenes táblából, #stats_ddl a DDL-utasításokban.  Ez a tárolt eljárás eldobja #stats_ddl, ha nem sikerül a Ha-munkameneten belül csak egyszer futtatnia tooensure már létezik.  Azonban mivel nincs `DROP TABLE` hello tárolt eljárás hello végén hello tárolt eljárás befejezése után bízza hello létrehozott tábla így hello tárolt eljárás kívül tudja olvasni.  Az SQL Data Warehouse szemben a többi SQL Server-adatbázis is lehetséges toouse hello ideiglenes tábla kívül hello eljárás, amely létrehozta.  Az SQL Data Warehouse az ideiglenes táblák használható **bárhol** hello munkamenet belül. Ennek eredményeképpen előfordulhat, ahogy az alábbi példában hello moduláris és kezelhető is legyen kód toomore:
+Ebben a szakaszban az egyetlen művelet történt feladata a tárolt eljárás, amely egyszerűen fog generált ideiglenes táblából, #stats_ddl a DDL-utasításokban.  Ez a tárolt eljárás eldobja #stats_ddl, ha már létezik annak érdekében, hogy nem sikerül a Ha-munkameneten belül csak egyszer futtatnia.  Azonban mivel nincs `DROP TABLE` a tárolt eljárás végén a tárolt eljárás befejeződésekor bízza a létrehozott tábla, hogy a tárolt eljárás kívül tudja olvasni.  Az SQL Data Warehouse szemben a többi SQL Server-adatbázis is lehet az átmeneti táblázat kívül az eljárást, amely létrehozta.  Az SQL Data Warehouse az ideiglenes táblák használható **bárhol** a munkamenet belül. Ez további moduláris és kezelhető is legyen kódot, mint a vezethet az alábbi példában:
 
 ```sql
 EXEC [dbo].[prc_sqldw_update_stats] @update_type = 1, @sample_pct = NULL;
@@ -232,7 +232,7 @@ DROP TABLE #stats_ddl;
 Az SQL Data Warehouse ugyanazok a korlátozások néhány, az ideiglenes táblák végrehajtása során.  Jelenleg csak a munkamenet hatókörű ideiglenes táblák támogatottak.  Globális ideiglenes táblák nem támogatottak.  Emellett nézetek nem hozható létre ideiglenes táblákra.
 
 ## <a name="next-steps"></a>Következő lépések
-toolearn több, lásd: hello cikkeket a [tábla áttekintése][Overview], [tábla adattípusok][Data Types], [táblaterjesztése] [ Distribute], [Tábla indexelő][Index], [tábla particionáló] [ Partition] és [ Tábla statisztikai adatainak karbantartása][Statistics].  Gyakorlati tanácsok kapcsolatban bővebben lásd: [SQL Data Warehouse gyakorlati tanácsok][SQL Data Warehouse Best Practices].
+További tudnivalókért tekintse meg a cikkek [tábla áttekintése][Overview], [tábla adattípusok][Data Types], [terjesztése egy tábla] [ Distribute], [Tábla indexelő][Index], [tábla particionáló] [ Partition] és [Fenntartása a tábla statisztikai adatainak][Statistics].  Gyakorlati tanácsok kapcsolatban bővebben lásd: [SQL Data Warehouse gyakorlati tanácsok][SQL Data Warehouse Best Practices].
 
 <!--Image references-->
 

@@ -1,6 +1,6 @@
 ---
-title: "Első lépések AD Android aaaAzure |} Microsoft Docs"
-description: "Hogyan toobuild egy Android-alkalmazás, amely az Azure AD bejelentkezési és a hívások Azure AD számára az API-k OAuth használatával védett."
+title: "Ismerkedés az Azure AD Android |} Microsoft Docs"
+description: "Hogyan hozhat létre egy Android-alkalmazás, amely az Azure AD bejelentkezési és a hívások Azure AD számára az API-k OAuth használatával védett."
 services: active-directory
 documentationcenter: android
 author: danieldobalian
@@ -15,107 +15,107 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dadobali
 ms.custom: aaddev
-ms.openlocfilehash: 1aedc8ff60874b405a182a4ccbfb2c8b4d9d3704
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 746cad19093fd2a1ad23ddd9412394f8d9da331c
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="integrate-azure-ad-into-an-android-app"></a>Az Azure AD integrálása Android-alkalmazás
 [!INCLUDE [active-directory-devquickstarts-switcher](../../../includes/active-directory-devquickstarts-switcher.md)]
 
 > [!TIP]
-> Próbálja meg az új hello előnézete [fejlesztői portálján](https://identity.microsoft.com/Docs/Android), amely segít, amelyekből megismerheti az Azure AD csak néhány perc múlva. hello fejlesztői portálján végigvezeti hello folyamat regisztrálja az alkalmazást, és az Azure AD integrálása a kódot. Amikor elkészült, akkor kell egy egyszerű alkalmazást, amely képes hitelesíteni a felhasználók számára a bérlő és a háttérből fogadni és-ellenőrzéshez.
+> Az új az előzetes kiadás kipróbálásához [fejlesztői portálján](https://identity.microsoft.com/Docs/Android), amely segít, amelyekből megismerheti az Azure AD csak néhány perc múlva. A fejlesztői portálján végigvezeti a folyamat regisztrálja az alkalmazást, és az Azure AD integrálása a kódot. Amikor elkészült, akkor kell egy egyszerű alkalmazást, amely képes hitelesíteni a felhasználók számára a bérlő és a háttérből fogadni és-ellenőrzéshez.
 >
 >
 
-Ha az asztali alkalmazások, Azure Active Directory (Azure AD) teszi egyszerű és magától értetődő, tooauthenticate a a felhasználók a helyszíni Active Directory-fiókok használatával. Emellett lehetővé teszi az alkalmazás toosecurely használatához minden webes API-t az Azure AD által védett, például Office 365 API-k hello vagy hello Azure API.
+Ha az asztali alkalmazások, Azure Active Directory (Azure AD) segítségével egyszerű és magától értetődő, hogy a felhasználók hitelesítése a helyszíni Active Directory-fiókok használatával. Emellett lehetővé teszi az alkalmazás minden webes API-t az Azure AD, például az Office 365 API-k vagy az Azure API által védett biztonságosan felhasználását.
 
-Android-ügyfelek, amelyeket tooaccess védett erőforrások az Azure AD hello Active Directory Authentication Library (ADAL) biztosít. hello kizárólagos ADAL célja toomake megkönnyítik az alkalmazás tooget hozzáférési jogkivonatok. milyen egyszerűen, azt fogja Android feladatlista alkalmazás létrehozásához, amely toodemonstrate:
+Android-ügyfelek, amelyek a védett erőforrások eléréséhez szükséges az Azure AD az Active Directory Authentication Library (ADAL) biztosít. ADAL kizárólagos célja megkönnyíti a hozzáférési jogkivonatok lekérésére, az alkalmazás. Annak bemutatásához, hogy milyen egyszerűen, azt fogja Android feladatlista alkalmazás létrehozásához, amely:
 
-* Lekérdezi hozzáférési jogkivonatainak egy tennivalók listája API felület meghívásakor hello segítségével [OAuth 2.0 hitelesítési protokoll](https://msdn.microsoft.com/library/azure/dn645545.aspx).
+* Lekérdezi hozzáférési jogkivonatainak egy tennivalók listája API felület meghívásakor használatával a [OAuth 2.0 hitelesítési protokoll](https://msdn.microsoft.com/library/azure/dn645545.aspx).
 * Lekérdezi a felhasználó tennivalók listájára.
 * Felhasználók jeleket.
 
-tooget elindult, amelyben felhasználók létrehozása és egy alkalmazás regisztrálása az Azure AD-bérlő kell. Ha még nem rendelkezik a bérlő [megtudhatja, hogyan egy tooget](active-directory-howto-tenant.md).
+A kezdéshez van szüksége, amelyben felhasználók létrehozása és egy alkalmazás regisztrálása az Azure AD-bérlő. Ha még nem rendelkezik a bérlő [beszerzéséről egy](active-directory-howto-tenant.md).
 
-## <a name="step-1-download-and-run-hello-nodejs-rest-api-todo-sample-server"></a>1. lépés: Töltse le és futtassa a hello Node.js REST API TODO minta kiszolgáló
-hello Node.js REST API TODO minta kifejezetten a meglévő mintát eredményez, amely a single-bérlő tennivaló REST API létrehozása az Azure AD elleni toowork írása. Ez a gyors üzembe helyezés hello előfeltétele.
+## <a name="step-1-download-and-run-the-nodejs-rest-api-todo-sample-server"></a>1. lépés: Töltse le és futtassa a Node.js REST API TODO minta kiszolgáló
+A Node.js REST API TODO minta kifejezetten a meglévő mintát eredményez, amely a single-bérlő tennivaló REST API létrehozása az Azure AD dolgozhat írása. Ennek előfeltétele a gyors üzembe helyezését.
 
-Hogyan tooset ez, tekintse meg a meglévő minták kapcsolatos [Microsoft Azure Active Directory minta REST API szolgáltatás a Node.js](active-directory-devquickstarts-webapi-nodejs.md).
+Beállítására kapcsolatos információkért lásd: a meglévő minták [Microsoft Azure Active Directory minta REST API szolgáltatás a Node.js](active-directory-devquickstarts-webapi-nodejs.md).
 
 
 ## <a name="step-2-register-your-web-api-with-your-azure-ad-tenant"></a>2. lépés: A webes API regisztrálása az Azure AD-bérlő
 Az Active Directory támogatja a két típusú alkalmazások hozzáadása:
 
-- Webes API-k által biztosított szolgáltatások toousers
-- (Hello Web vagy az eszközön futó) alkalmazások, azokat elérő webes API-khoz
+- Webes API-t szolgáltatást kínál a felhasználók számára
+- (A webhely vagy az eszközön futó) alkalmazások, azokat elérő webes API-khoz
 
-Ebben a lépésben regisztrálása most az hello webes API-t, hogy ez a minta tesztelési helyileg futtatja. A webes API-k általában az, hogy szeretné-e egy alkalmazás tooaccess ajánlat funkciók REST-szolgáltatást. Az Azure AD segítségével biztosíthatja a tetszőleges végpontot.
+Ebben a lépésben a webes API-t, hogy ez a minta tesztelési helyben fut éppen regisztrálása. A webes API-k általában egy REST-szolgáltatást, amely az alkalmazások eléréséhez használni kívánt funkciót kínál. Az Azure AD segítségével biztosíthatja a tetszőleges végpontot.
 
-Jelenleg folyamatban feltételezve, hogy van-e regisztrálása hello TODO REST API-t korábban hivatkozott. Azonban ez a webes API-t, Azure Active Directory toohelp védeni kívánt működik.
+Azt még feltéve, hogy van-e regisztrálása a Teendőlista REST API-t korábban hivatkozott. Azonban ez a webes API-k segítségével védheti az Azure Active Directory kívánt működik.
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
-2. Hello felső sávon kattintson a fiókját. A hello **Directory** menüben válassza ki a kívánt tooregister hello Azure AD-bérlő az alkalmazást.
-3. Kattintson a **több szolgáltatások** hello bal oldali ablaktáblán, és válassza ki **Azure Active Directory**.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+2. A felső eszköztáron kattintson a fiókját. Az a **Directory** menüben válassza ki az Azure AD-bérlőt, ahová az alkalmazás regisztrálásához.
+3. Kattintson a **több szolgáltatások** a bal oldali ablaktáblán, és válassza a **Azure Active Directory**.
 4. Kattintson a **App regisztrációk**, majd válassza ki **Hozzáadás**.
-5. Adjon meg egy rövid nevet hello alkalmazás (például **TodoListService**) elemre, jelölje be **webalkalmazás és/vagy webes API**, és kattintson a **következő**.
-6. Bejelentkezési URL-címhez hello hello minta hello alap URL-cím megadása. Alapértelmezés szerint ez a `https://localhost:8080`.
-7. Kattintson a **OK** toocomplete hello regisztrációs.
-8. Hello Azure-portálon, a továbbra is tooyour alkalmazáslap lépjen, hello alkalmazás azonosítóérték található, és másolja azt. Ezt később szüksége az alkalmazás konfigurálásakor.
-9. A hello **beállítások** -> **tulajdonságok** lapon, hello app ID URI frissítése – adja meg `https://<your_tenant_name>/TodoListService`. Cserélje le `<your_tenant_name>` hello nevet, az Azure AD-bérlő.
+5. Adjon egy rövid nevet az alkalmazáshoz (például **TodoListService**) elemre, jelölje be **webalkalmazás és/vagy webes API**, és kattintson a **következő**.
+6. A bejelentkezési URL-címhez adja meg a minta az alap URL-címet. Alapértelmezés szerint ez a `https://localhost:8080`.
+7. Kattintson a **OK** a regisztráció befejezéséhez.
+8. Miközben továbbra is az Azure-portálon, nyissa meg az alkalmazás oldalát, keresse meg az alkalmazás azonosító értéket, és másolja. Ezt később szüksége az alkalmazás konfigurálásakor.
+9. Az a **beállítások** -> **tulajdonságok** lapon, a app ID URI frissítése – adja meg `https://<your_tenant_name>/TodoListService`. Cserélje le `<your_tenant_name>` az Azure AD-bérlő nevét.
 
-## <a name="step-3-register-hello-sample-android-native-client-application"></a>3. lépés: Hello minta Android Native Client alkalmazás regisztrálása
-Ez a példa regisztrálnia kell a webalkalmazást. Ez lehetővé teszi az alkalmazás toocommunicate a hello csak regisztrált web API. Az Azure AD fog megtagadják tooeven lehetővé teszi az alkalmazás tooask a bejelentkezéshez, kivéve regisztrálva van. Az hello biztonsági hello modell, amely része.
+## <a name="step-3-register-the-sample-android-native-client-application"></a>3. lépés: A minta Android Native Client alkalmazás regisztrálása
+Ez a példa regisztrálnia kell a webalkalmazást. Ez lehetővé teszi az alkalmazás a most regisztrált webes API-k folytatott kommunikációhoz. Az Azure AD utasíthatja el lehetővé teszik az alkalmazás kérni a bejelentkezéshez, kivéve, ha regisztrálva van. A biztonsági modell részét képező.
 
-Azt még feltéve, hogy van-e regisztrálása korábban hivatkozott hello mintaalkalmazást. De bármely alkalmazás, amely kidolgozása Ez az eljárás használható.
+Azt még feltéve, hogy van-e regisztrálása korábban hivatkozott mintaalkalmazást. De bármely alkalmazás, amely kidolgozása Ez az eljárás használható.
 
 > [!NOTE]
-> Először talán miért kívánja menteni egy alkalmazás és a webes API-k egy bérlő. Mivel előfordulhat, hogy Ön rendelkezik kitalál, egy alkalmazás olyan külső API-bérlőhöz egy másik Azure AD-ben regisztrált hozzáférő hozhat létre. Ha így tesz, az ügyfelek is hello API hello alkalmazásban tooconsent toohello használatát kéri. Az IOS rendszerhez készült Active Directory Authentication Library gondoskodik a hozzájárulásukat adják meg. Összetettebb funkciók megismeréséhez azt láthatja, hogy ez az hello munkahelyi szükséges tooaccess hello tartalmazó csomag, az Azure és az Office, valamint az egyéb szolgáltató Microsoft APIs fontos része. Most, mert a webes API-t és a hello alatt az alkalmazás regisztrálva azonos bérlői, bármely beleegyezést kér fogja látni. Ez helyzet általában hello Ha az alkalmazás csak a saját vállalati toouse.
+> Először talán miért kívánja menteni egy alkalmazás és a webes API-k egy bérlő. Mivel előfordulhat, hogy Ön rendelkezik kitalál, egy alkalmazás olyan külső API-bérlőhöz egy másik Azure AD-ben regisztrált hozzáférő hozhat létre. Ha így tesz, az ügyfelek az API-nak az alkalmazás használatához beleegyezését kéri. Az IOS rendszerhez készült Active Directory Authentication Library gondoskodik a hozzájárulásukat adják meg. Összetettebb funkciók megismeréséhez azt láthatja, hogy ez az egyik fontos része a munka Azure és az Office, valamint az egyéb szolgáltató a Microsoft APIs programcsomag eléréséhez szükséges. Most mert mind a webes API-t, és ugyanannak a bérlőnek, az alkalmazást regisztrálni nem jelenik meg semmilyen beleegyezést kér. Általában ez a helyzet, ha az alkalmazás csak a saját vállalati használatára.
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
-2. Hello felső sávon kattintson a fiókját. A hello **Directory** menüben válassza ki a kívánt tooregister hello Azure AD-bérlő az alkalmazást.
-3. Kattintson a **több szolgáltatások** hello bal oldali ablaktáblán, és válassza ki **Azure Active Directory**.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+2. A felső eszköztáron kattintson a fiókját. Az a **Directory** menüben válassza ki az Azure AD-bérlőt, ahová az alkalmazás regisztrálásához.
+3. Kattintson a **több szolgáltatások** a bal oldali ablaktáblán, és válassza a **Azure Active Directory**.
 4. Kattintson a **App regisztrációk**, majd válassza ki **Hozzáadás**.
-5. Adjon meg egy rövid nevet hello alkalmazás (például **TodoListClient-Android**) elemre, jelölje be **natív ügyfélalkalmazás**, és kattintson a **következő**.
-6. Hello az átirányítási URI-címe, adja meg `http://TodoListClient`. Kattintson a **Befejezés** gombra.
-7. Hello alkalmazás oldalról hello alkalmazás azonosítóérték található, és másolja azt. Ezt később szüksége az alkalmazás konfigurálásakor.
-8. A hello **beállítások** lapon jelölje be **szükséges engedélyek** válassza **hozzáadása**.  Keresse meg és válassza ki a TodoListService, adja hozzá a hello **hozzáférés TodoListService** engedélyt a **delegált engedélyek**, és kattintson a **végzett**.
+5. Adjon egy rövid nevet az alkalmazáshoz (például **TodoListClient-Android**) elemre, jelölje be **natív ügyfélalkalmazás**, és kattintson a **következő**.
+6. Az átirányítási URI-t, írja be `http://TodoListClient`. Kattintson a **Befejezés** gombra.
+7. Az alkalmazás lapon keresse meg az alkalmazás azonosító értéket, és másolja azt. Ezt később szüksége az alkalmazás konfigurálásakor.
+8. Az a **beállítások** lapon jelölje be **szükséges engedélyek** válassza **hozzáadása**.  Keresse meg és jelölje ki a TodoListService, vegye fel a **hozzáférés TodoListService** engedélyt a **delegált engedélyek**, és kattintson a **végzett**.
 
-a Maven toobuild, pom.xml használhatja hello felső szinten:
+A Maven build, használhatja a legfelső szinten pom.xml:
 
 1. A tárház klónozása egy olyan könyvtárba, az Ön által választott:
 
   `$ git clone git@github.com:AzureADSamples/NativeClient-Android.git`  
-2. Hello kövesse hello [Előfeltételek tooset Android Maven környezet](https://github.com/MSOpenTech/azure-activedirectory-library-for-android/wiki/Setting-up-maven-environment-for-Android).
-3. Az SDK 19 hello emulátor beállítása.
-4. Nyissa meg ahol klónozott tárház hello toohello gyökérmappájába.
+2. Kövesse a [a Maven környezet beállítása Androidhoz készült előfeltételei](https://github.com/MSOpenTech/azure-activedirectory-library-for-android/wiki/Setting-up-maven-environment-for-Android).
+3. Az SDK 19 emulátor beállítása.
+4. Nyissa meg a gyökérmappájába, ahol a tárházban klónozott.
 5. Futtassa ezt a parancsot:`mvn clean install`
-6. Hello directory toohello gyors üzembe helyezési minta módosítása:`cd samples\hello`
+6. Módosítsa a könyvtárat arra a gyors üzembe helyezési minta:`cd samples\hello`
 7. Futtassa ezt a parancsot:`mvn android:deploy android:run`
 
-   Meg kell jelennie a hello alkalmazás indítása.
-8. Adja meg a teszt felhasználói hitelesítő adatok tootry.
+   Meg kell jelennie az alkalmazás elindítása.
+8. Adja meg a teszt felhasználói adatokkal.
 
-JAR csomagok nyújtanak hello AAR csomag mellett.
+JAR csomagok nyújtanak a AAR csomag mellett.
 
-## <a name="step-4-download-hello-android-adal-and-add-it-tooyour-eclipse-workspace"></a>4. lépés: Töltse le az Android ADAL hello, és adja hozzá tooyour Eclipse munkaterület
-Hajtottunk azt Ön toohave egyszerűen több beállítások toouse adal-t a Androidos projekt:
+## <a name="step-4-download-the-android-adal-and-add-it-to-your-eclipse-workspace"></a>4. lépés: Töltse le az Android ADAL, és adja hozzá az Eclipse-munkaterület
+Hajtottunk, könnyen használható adal-t használni az Android-projekt több lehetőség közül választhat:
 
-* Használhat hello forrás kód tooimport tárra eclipse-ben és a hivatkozás tooyour alkalmazásba.
-* Android Studio használata, hello AAR csomag formázása és a hivatkozás hello bináris fájljait is használhatja.
+* A forráskód segítségével ezt a szalagtárat importálása eclipse-ben és a hivatkozás az alkalmazáshoz.
+* Android Studio használata, AAR csomag formátumot használja, és a bináris fájlok hivatkozik.
 
 ### <a name="option-1-source-zip"></a>1. lehetőség: Forrás Zip
-hello forráskódját, másolatának toodownload kattintson **töltse le a ZIP-** hello jobb oldalán található hello. Illetve [töltse le a Githubról](https://github.com/AzureAD/azure-activedirectory-library-for-android/archive/v1.0.9.tar.gz).
+Letöltheti a forráskódot, kattintson a **töltse le a ZIP-** a lap jobb oldalán. Illetve [töltse le a Githubról](https://github.com/AzureAD/azure-activedirectory-library-for-android/archive/v1.0.9.tar.gz).
 
 ### <a name="option-2-source-via-git"></a>2. lehetőség: Forrás Git keresztül
-hello tooget hello forráskódját SDK keresztül Git, írja be:
+Ahhoz, hogy az SDK segítségével Git forráskódját, írja be:
 
     git clone git@github.com:AzureAD/azure-activedirectory-library-for-android.git
     cd ./azure-activedirectory-library-for-android/src
 
 ### <a name="option-3-binaries-via-gradle"></a>3. lehetőség: Bináris Gradle keresztül
-Hello bináris fájljai az hello Maven központi tárházban kérheti le. az alábbiak szerint hello AAR csomagot is tartalmazza a projekt az Android Studio:
+A bináris fájlok lekérheti a Maven központi tárházban. Az alábbiak szerint a AAR csomagot is tartalmazza a projekt az Android Studio:
 
 ```gradle
 repositories {
@@ -136,7 +136,7 @@ dependencies {
 ```
 
 ### <a name="option-4-aar-via-maven"></a>4. lehetőség: AAR Maven keresztül
-Hello M2Eclipse beépülő modul használata, hello függőségi adhat meg a pom.xml fájlt:
+A beépülő modul M2Eclipse használata, a függőség adhat meg a pom.xml fájlt:
 
 ```xml
 <dependency>
@@ -148,13 +148,13 @@ Hello M2Eclipse beépülő modul használata, hello függőségi adhat meg a pom
 ```
 
 
-### <a name="option-5-jar-package-inside-hello-libs-folder"></a>5. lehetőség: JAR csomag hello függvénytárak mappába
-Hello JAR-fájlra beszerezni hello Maven-tárházban, és dobja el, a hello **függvénytárak** a projekt mappájára. Toocopy hello szükséges erőforrások tooyour projekt, valamint kell hello JAR csomagok nem tartalmazza azokat.
+### <a name="option-5-jar-package-inside-the-libs-folder"></a>5. lehetőség: JAR csomag az függvénytárak mappában
+A JAR-fájlra beszerezni a Maven-tárház, és helyezze be a **függvénytárak** a projekt mappájára. Meg kell másolnia a szükséges erőforrások a projekthez, valamint a JAR-csomagok nem tartalmazza azokat.
 
-## <a name="step-5-add-references-tooandroid-adal-tooyour-project"></a>5. lépés: Hivatkozás tooAndroid ADAL tooyour projekt hozzáadása
-1. Egy hivatkozási tooyour projekt hozzáadása, és adja meg azt az Android tárként. Ha nem Ön hogyan toodo, hello további tájékoztatást kaphat [Android Studio hely](http://developer.android.com/tools/projects/projects-eclipse.html).
-2. Adja hozzá azokat a projektbeállításokat hibakeresési hello projektfüggőségek.
-3. A projekt AndroidManifest.xml fájl tooinclude frissítése:
+## <a name="step-5-add-references-to-android-adal-to-your-project"></a>5. lépés: Az Android ADAL mutató hivatkozások hozzáadása a projekthez
+1. Vegye fel a projektbe egy hivatkozást, és adja meg azt az Android tárként. Ha bizonytalan ennek módjáról, kaphat további információt a [Android Studio hely](http://developer.android.com/tools/projects/projects-eclipse.html).
+2. Adja hozzá a projekt függőség a projektbeállításokat a hibakereséshez.
+3. A projekt AndroidManifest.xml fájl frissítése:
 
         <uses-permission android:name="android.permission.INTERNET" />
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -172,11 +172,11 @@ Hello JAR-fájlra beszerezni hello Maven-tárházban, és dobja el, a hello **f�
             ....
         <application/>
 
-4. A fő tevékenységnél AuthenticationContext példányának létrehozása. a hívás hello részleteit Ez a témakör hello terjed, de remek kezdőpont kaphat hello megnézi [Android Native Client minta](https://github.com/AzureADSamples/NativeClient-Android). A következő példa hello, SharedPreferences hello alapértelmezett gyorsítótár, továbbá hatóság hello formájában `https://login.microsoftonline.com/yourtenant.onmicrosoft.com`:
+4. A fő tevékenységnél AuthenticationContext példányának létrehozása. A hívás részleteit túlmutat a jelen témakör, de remek kezdőpont kaphat megnézi a [Android Native Client minta](https://github.com/AzureADSamples/NativeClient-Android). A következő példában SharedPreferences az alapértelmezett gyorsítótár, továbbá hatóság formájában `https://login.microsoftonline.com/yourtenant.onmicrosoft.com`:
 
     `mContext = new AuthenticationContext(MainActivity.this, authority, true); // mContext is a field in your activity`
 
-5. Másolja a kód blokk toohandle hello vége AuthenticationActivity hello felhasználó megadja hitelesítő adatait, és megkapja az engedélyezési kód után:
+5. Másolja a kódblokk AuthenticationActivity végén kezelni, a felhasználó megadja hitelesítő adatait, és megkapja az engedélyezési kód után:
 
         @Override
          protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -186,7 +186,7 @@ Hello JAR-fájlra beszerezni hello Maven-tárházban, és dobja el, a hello **f�
              }
          }
 
-6. a jogkivonat tooask egy visszahívási határozhat meg:
+6. Kérje meg a jogkivonat, definiálni kell egy visszahívási:
 
         private AuthenticationCallback<AuthenticationResult> callback = new AuthenticationCallback<AuthenticationResult>() {
 
@@ -223,91 +223,91 @@ Hello JAR-fájlra beszerezni hello Maven-tárházban, és dobja el, a hello **f�
     `mContext.acquireToken(MainActivity.this, resource, clientId, redirect, user_loginhint, PromptBehavior.Auto, "",
                    callback);`
 
-Hello paraméterek leírását itt található:
+A paraméterek leírását itt található:
 
-* *erőforrás* szükséges, azonban tooaccess próbált hello erőforrás.
+* *erőforrás* szükséges, azonban az erőforrás elérésére tett kísérlet.
 * *ClientID* szükség, és az Azure AD származik.
-* *RedirectUri* nincs szükség toobe hello acquireToken hívás előírt. Állíthat be, mint a csomag neve.
-* *PromptBehavior* tooask a hitelesítő adatok tooskip hello gyorsítótár és a cookie-k segítségével.
-* *a visszahívási* után hello engedélyezési kód cseréje a jogkivonat neve. AuthenticationResult, amelynek hozzáférési jogkivonat objektum rendelkezik, lejárt, és a lexikális elem adatainak azonosító.
-* *acquireTokenSilent* nem kötelező megadni. Hívása akkor toohandle gyorsítótárazás és a frissítési token. Hello Sync szolgáltatás verzióját is tartalmazza. Elfogadja a *userId* paraméterként.
+* *RedirectUri* nincs szükség a acquireToken hívásához meg kell adni. Állíthat be, mint a csomag neve.
+* *PromptBehavior* kérje meg a hitelesítő adatokat hagyja ki a gyorsítótárat, és a cookie-k segítségével.
+* *a visszahívási* után az engedélyezési kód cseréje a jogkivonat neve. AuthenticationResult, amelynek hozzáférési jogkivonat objektum rendelkezik, lejárt, és a lexikális elem adatainak azonosító.
+* *acquireTokenSilent* nem kötelező megadni. Hívása akkor leíró gyorsítótárazás és a token frissítése. A Sync szolgáltatás verzióját is tartalmazza. Elfogadja a *userId* paraméterként.
 
         mContext.acquireTokenSilent(resource, clientid, userId, callback );
 
-Ez a forgatókönyv segítségével kell milyen kell toosuccessfully integrálása az Azure Active Directoryban. További példák a, a Microsoft hello AzureADSamples / GitHub tárházából.
+Ez a forgatókönyv segítségével kell mi sikeresen integrálni kell az Azure Active Directoryban. További példák a, keresse fel a AzureADSamples / GitHub tárházából.
 
 ## <a name="important-information"></a>Fontos információk
 ### <a name="customization"></a>Testreszabás
-Az alkalmazás-erőforrásokat felülírhatnak-e projekt könyvtárerőforrásokat. Ez akkor fordul elő, amikor az alkalmazás éppen készül. Emiatt testre szabhatja a hitelesítési tevékenységet elrendezés hello igényeinek megfelelően. Hello szabályozza, hogy tookeep hello Azonosítóját kell, hogy az adal-t használ a (webes Nézet).
+Az alkalmazás-erőforrásokat felülírhatnak-e projekt könyvtárerőforrásokat. Ez akkor fordul elő, amikor az alkalmazás éppen készül. Emiatt testre hitelesítési tevékenység elrendezés a kívánt módon. Mindenképpen tartsa a vezérlők Azonosítóját, hogy az ADAL által használt (webes Nézet).
 
 ### <a name="broker"></a>Broker
-hello Microsoft Intune vállalati portál alkalmazás hello broker összetevő biztosít. hello fiók AccountManager jön létre. hello fiók típus: "com.microsoft.workaccount." AccountManager lehetővé teszi, hogy csak egyetlen egyszeri bejelentkezési fiók. Az egyszeri bejelentkezési cookie hello felhasználó hello eszköz kihívás az hello alkalmazások befejezése után hoz létre.
+A Microsoft Intune vállalati portál alkalmazást a broker összetevő biztosít. A fiók AccountManager jön létre. A fiók típusa nem "com.microsoft.workaccount." AccountManager lehetővé teszi, hogy csak egyetlen egyszeri bejelentkezési fiók. A felhasználó számára az egyszeri bejelentkezési cookie létrehozza az alkalmazások közül legalább egy eszköz challenge befejezése után.
 
-ADAL hello broker fiókot használja, ha egy felhasználói fiók a hitelesítő jön létre, és nem tooskip azt. Kihagyhatja hello broker felhasználót:
+ADAL használja az átvitelszervező-fiókot, ha egy felhasználói fiók jön létre, és ez a hitelesítő úgy, hogy nem hagyja ki. Kihagyhatja a broker felhasználót:
 
    `AuthenticationSettings.Instance.setSkipBroker(true);`
 
-Egy különös RedirectUri tooregister broker használati van szükség. Hello formátumban van RedirectUri `msauth://packagename/Base64UrlencodedSignature`. A RedirectUri hello parancsfájl brokerRedirectPrint.ps1 vagy hello API-hívás mContext.getBrokerRedirectUri használatával kaphat az alkalmazást. hello aláírás aláíró tanúsítványok kapcsolódó tooyour.
+Egy különös RedirectUri broker használati regisztrálnia kell. RedirectUri formátumban van `msauth://packagename/Base64UrlencodedSignature`. A RedirectUri kaphat az alkalmazás a parancsfájl brokerRedirectPrint.ps1 vagy az API-hívás mContext.getBrokerRedirectUri használatával. Az aláírás nem kapcsolódik az aláírási tanúsítványokat.
 
-hello aktuális broker modell csak egy felhasználóhoz. AuthenticationContext hello API metódus tooget hello broker felhasználói biztosít.
+Az aktuális broker modell csak egy felhasználóhoz. AuthenticationContext biztosít a API-módszer segítségével a broker felhasználó.
 
    `String brokerAccount =  mContext.getBrokerUser(); //Broker user is returned if account is valid.`
 
-Az alkalmazás jegyzékének rendelkeznie kell a következő engedélyek toouse AccountManager fiókok hello. További információkért lásd: hello [hello Android webhelyéről AccountManager információk](http://developer.android.com/reference/android/accounts/AccountManager.html).
+Az alkalmazás jegyzékének AccountManager fiókok használatára a következő engedélyekkel kell rendelkeznie. További információkért lásd: a [AccountManager az információt az Android](http://developer.android.com/reference/android/accounts/AccountManager.html).
 
 * GET_ACCOUNTS
 * USE_CREDENTIALS
 * MANAGE_ACCOUNTS
 
 ### <a name="authority-url-and-ad-fs"></a>Szolgáltató URL-címe és az AD FS
-Active Directory összevonási szolgáltatások (AD FS) értéke nem értelmezhető éles STS, így példány felderítés tooturn kell, és hamis át, hello AuthenticationContext konstruktor.
+Active Directory összevonási szolgáltatások (AD FS) értéke nem értelmezhető éles STS, ezért meg kell példány felderítés kapcsolni, és hamis át, a AuthenticationContext konstruktor.
 
-hello szolgáltató URL-címe van szüksége az STS-példány és egy [bérlő neve](https://login.microsoftonline.com/yourtenant.onmicrosoft.com).
+A szolgáltató URL-címe van szüksége az STS-példány és egy [bérlő neve](https://login.microsoftonline.com/yourtenant.onmicrosoft.com).
 
 ### <a name="querying-cache-items"></a>Gyorsítótár elemek lekérdezése
-Adal-t tartalmaz néhány egyszerű gyorsítótár alapértelmezett gyorsítótár SharedPreferences a lekérdezési funkciók. Hello aktuális gyorsítótár letölthető AuthenticationContext használatával:
+Adal-t tartalmaz néhány egyszerű gyorsítótár alapértelmezett gyorsítótár SharedPreferences a lekérdezési funkciók. A jelenlegi gyorsítótár letölthető AuthenticationContext használatával:
 
     ITokenCacheStore cache = mContext.getCache();
 
-Is megadhatja a gyorsítótár-megvalósítással, ha azt szeretné, hogy toocustomize azt.
+A gyorsítótár-megvalósítással, ha szeretné testre szabni, azt is megadhatja.
 
     mContext = new AuthenticationContext(MainActivity.this, authority, true, yourCache);
 
 ### <a name="prompt-behavior"></a>Parancssor viselkedése
-Adal-t biztosít egy beállítás toospecify parancssor viselkedése. PromptBehavior.Auto hello felhasználói felületén jelennek meg, ha hello frissítési jogkivonat érvénytelen, és felhasználói hitelesítő adatok szükségesek. PromptBehavior.Always fog hello gyorsítótár-használati kihagyhatja, és mindig jelenjen meg hello UI.
+Adal-t Itt adhatja meg a parancssor viselkedése. PromptBehavior.Auto megjelenik a felhasználói felület, ha a frissítési token érvénytelen, és felhasználói hitelesítő adatok szükségesek. PromptBehavior.Always a rendszer kihagyja a gyorsítótár-használati és mindig jelenjen meg a felhasználói felület.
 
 ### <a name="silent-token-request-from-cache-and-refresh"></a>A gyorsítótár és a frissítési csendes jogkivonatkérelem
-Csendes kérés hello előugró felhasználói felület nem használ, és nem szükséges egy tevékenység. A jogkivonat hello gyorsítótárból, ha elérhető adja vissza. Ha hello-token érvényessége lejárt, ez a módszer megpróbál toorefresh azt. Ha hello frissítési jogkivonat lejárt vagy nem sikerült, AuthenticationException adja vissza.
+Beavatkozás nélküli kérelmek nem használja a felhasználói felület előugró, és nem igényli a tevékenységet. Vissza a jogkivonatot a gyorsítótárból érhető el. Ha a jogkivonat érvényessége lejárt, ez a módszer próbálja frissíti. Ha a frissítési jogkivonat lejárt vagy nem sikerült, AuthenticationException adja vissza.
 
     Future<AuthenticationResult> result = mContext.acquireTokenSilent(resource, clientid, userId, callback );
 
-Végezhet szinkronizálást is ez a módszer használatával. Null toocallback beállíthatja vagy acquireTokenSilentSync használja.
+Végezhet szinkronizálást is ez a módszer használatával. Állítsa be a visszahívási null, vagy acquireTokenSilentSync használja.
 
 ### <a name="diagnostics"></a>Diagnosztika
-Hello elsődleges információforrások a problémák diagnosztizálása az alábbiak:
+Az elsődleges információforrások a problémák diagnosztizálása az alábbiak:
 
 * Kivételek
 * Logs
 * Hálózati nyomkövetés
 
-Ne feledje, hogy korrelációs azonosító központi toohello diagnosztika hello könyvtárban. Beállíthatja a korrelációs azonosítók kérelem alapú, ha azt szeretné, hogy az adal-t a kódban az egyéb műveletek kérelem toocorrelate. Ha nem állít egy korrelációs azonosító, a ADAL véletlenszerű egy hoz létre. Az összes üzenetek naplózása és hálózati hívások majd lesz megjelölve hello korrelációs azonosítót. hello a saját azonosító módosításokat minden kérelemnél meg.
+Ne feledje, hogy korrelációs azonosító központi helyet foglalnak el a diagnosztika a könyvtárban. A korrelációs állíthatja be az egyéb műveletek során a kérelem egy kérelem alapon, ha azt szeretné, hogy az adal-t összefüggéseket azonosítók. Ha nem állít egy korrelációs azonosító, a ADAL véletlenszerű egy hoz létre. Az összes üzenetek naplózása és hálózati hívások majd kell jelölni a korrelációs azonosítót. Az önállóan létrehozott azonosítója módosítások minden kérelemnél meg.
 
 #### <a name="exceptions"></a>Kivételek
-Kivételek először diagnosztikai hello vannak. A Microsoft próbálja tooprovide hasznos hibaüzenetek. Ha talál, amely nem lehet hasznos, adjon fájlt az kapcsolatos problémát, és ossza meg velünk. Eszköz információkat, például a modell és SDK számát tartalmazza.
+A felsoroltakat az első diagnosztika. Próbálja meg hasznos hibaüzenetek jelennek meg. Ha talál, amely nem lehet hasznos, adjon fájlt az kapcsolatos problémát, és ossza meg velünk. Eszköz információkat, például a modell és SDK számát tartalmazza.
 
 #### <a name="logs"></a>Logs
-Hello könyvtár toogenerate is beállíthat, amelyeket felhasználhat toohelp naplóüzenetek eseményadatokat. Naplózási azáltal, hogy hello következő tooconfigure, hogy adal-t használja ki a naplóüzenetekben toohand hozza létre a visszahívás hívása.
+Beállíthatja, hogy a szalagtár készítése a naplózási üzenetek problémák diagnosztizálásához használható. Naplózás konfigurálása egy visszahívást, amelyet az adal-t használja kéz ki a naplóüzenetekben hozza létre a következő hívással konfigurálásához.
 
     Logger.getInstance().setExternalLogger(new ILogger() {
         @Override
         public void Log(String tag, String message, String additionalMessage, LogLevel level, ADALError errorCode) {
         ...
-        // You can write this toolog file depending on level or error code.
+        // You can write this to log file depending on level or error code.
         writeToLogFile(getApplicationContext(), tag +":" + message + "-" + additionalMessage);
         }
     }
 
-Üzenetek csak írható tooa egyéni naplófájl, ahogy az a következő kód hello. Sajnos nincs nem szabványos vonható naplók az eszközről. Egyes szolgáltatások, amelyek segítségével a van. A saját, például küldő hello tooa fájlkiszolgáló találjon is ki.
+Üzenetek csak írható egyéni naplófájlt használ, az alábbi kódban látható módon. Sajnos nincs nem szabványos vonható naplók az eszközről. Egyes szolgáltatások, amelyek segítségével a van. Akkor is is találjon ki a saját, például a fájlt küld a kiszolgáló.
 
     private syncronized void writeToLogFile(Context ctx, String msg) {
        File directory = ctx.getDir(ctx.getPackageName(), Context.MODE_PRIVATE);
@@ -319,55 +319,55 @@ Hello könyvtár toogenerate is beállíthat, amelyeket felhasználhat toohelp n
        osw.close();
     }
 
-Hello naplózási szintek a következők:
+A naplózási szintek a következők:
 * Hiba (kivételek)
 * Figyelmeztetés (figyelmeztetés)
 * Info (tájékoztatási céllal)
 * Részletes (További részletekért)
 
-Hello naplózási szint ilyen állíthatja be:
+Beállíthatja a naplózási szint ehhez hasonló:
 
     Logger.getInstance().setLogLevel(Logger.LogLevel.Verbose);
 
- Az összes napló küldés toologcat, továbbá tooany egyéni napló visszahívások.
-Letölthető egy naplófájl tooa logcat az alábbiak szerint:
+ Összes naplózási üzenetek küldése a logcat bármilyen egyéni napló visszahívások mellett.
+Letölthető egy fájlba logcat az alábbiak szerint:
 
     adb logcat > "C:\logmsg\logfile.txt"
 
- Adb parancsokkal kapcsolatos részletekért lásd: hello [hello Android webhelyéről logcat információk](https://developer.android.com/tools/debugging/debugging-log.html#startingLogcat).
+ További adb parancsokkal kapcsolatos további információkért lásd: a [logcat az információt az Android](https://developer.android.com/tools/debugging/debugging-log.html#startingLogcat).
 
 #### <a name="network-traces"></a>Hálózati nyomkövetés
-Használhatja a különböző eszközök toocapture hello HTTP-forgalom, amely az adal-t állít elő.  Ez akkor hasznos, ha jártas a hello OAuth protokollt, vagy ha tooprovide diagnosztikai adatokat tooMicrosoft vagy egyéb támogatási csatornáit van szüksége.
+Különböző eszközök használatával az adal-t állít elő, HTTP-forgalom rögzítése.  Ez akkor hasznos, ha ismeri az OAuth protokollt, vagy ha meg kell adnia a diagnosztikai adatokat a Microsoft vagy egyéb támogatási csatornáit.
 
-Fiddler hello legegyszerűbb HTTP eszköz. Használjon hello következő hivatkozásait tooset toocorrectly rekord ADAL hálózati forgalom fel azt. Olyan eszköz például a Fiddler vagy Charles toobe hasznos konfigurálnia kell az SSL-titkosítás nélkül toorecord forgalom.  
+Fiddler a HTTP legegyszerűbb eszköz. Az alábbi hivatkozások segítségével állítsa be megfelelően rekord ADAL hálózati forgalmat. A nyomkövetés eszköz, például a Fiddler vagy Charles hasznos lehet konfigurálnia kell, hogy titkosítatlan SSL forgalom rögzítése.  
 
 > [!NOTE]
-> Nyomok jön létre, így például a hozzáférési jogkivonatok, felhasználónevek és jelszavak magas szintű jogosultsággal rendelkező adatokat tartalmazhatnak. Éles fiókok használata, ne ossza meg a nyomkövetések harmadik felek számára. Ha toosupply egy nyomkövetési toosomeone rendelés tooget támogatására van szüksége, reprodukálja hello hibát egy ideiglenes fiókot, hogy nincs ellenére megosztása felhasználónevek és jelszavak használatával.
+> Nyomok jön létre, így például a hozzáférési jogkivonatok, felhasználónevek és jelszavak magas szintű jogosultsággal rendelkező adatokat tartalmazhatnak. Éles fiókok használata, ne ossza meg a nyomkövetések harmadik felek számára. Ha szeretne valakinek nyomkövetés megadni ahhoz, hogy segítségre van szüksége, egy ideiglenes fiókot használata a felhasználónevek és jelszavak, amelyek nem mind a megosztás Reprodukálja a hibát.
 
-* Hello Telerik webhelyéről: [beállítás mentése Fiddler az Android](http://docs.telerik.com/fiddler/configure-fiddler/tasks/ConfigureForAndroid)
+* A Telerik webhelyről: [beállítás mentése Fiddler az Android](http://docs.telerik.com/fiddler/configure-fiddler/tasks/ConfigureForAndroid)
 * A Githubból: [ADAL Fiddler szabályainak konfigurálása](https://github.com/AzureAD/azure-activedirectory-library-for-android/wiki/How-to-listen-to-httpUrlConnection-in-Android-app-from-Fiddler)
 
 ### <a name="dialog-mode"></a>Párbeszédpanelen mód
-hello acquireToken metódus tevékenység nélkül támogatja a párbeszédpanel megjelenítése.
+Tevékenység nélkül acquireToken metódus támogatja a párbeszédpanel megjelenítése.
 
 ### <a name="encryption"></a>Titkosítás
-ADAL hello jogkivonatokat és SharedPreferences tárban alapértelmezés szerint titkosítja. Hello StorageHelper toosee hello részleteit is megtekinthetik. Android 4.3 (API 18) biztonságos tárolására titkos kulcsok Android Keystore bevezetni. Adal-t használ, amely az API 18 és az annál magasabb. Ha toouse ADAL SDK alacsonyabb verziójához, a titkos kulcs, AuthenticationSettings.INSTANCE.setSecretKey tooprovide kell.
+Adal-t a jogkivonatokat és SharedPreferences tárban alapértelmezés szerint titkosítja. Megnézheti a StorageHelper osztály a részletek megtekintéséhez. Android 4.3 (API 18) biztonságos tárolására titkos kulcsok Android Keystore bevezetni. Adal-t használ, amely az API 18 és az annál magasabb. Ha szeretne adal-t használó SDK alacsonyabb verziójához, adjon meg egy titkos kulcsot következő AuthenticationSettings.INSTANCE.setSecretKey szeretné.
 
 ### <a name="oauth2-bearer-challenge"></a>Az OAuth2 tulajdonosi kérdés
-hello AuthenticationParameters osztály funkció tooget authorization_uri az OAuth2 tulajdonosi challenge hello biztosít.
+A AuthenticationParameters osztály authorization_uri lekérése az OAuth2 tulajdonosi ellenőrző funkciót biztosít.
 
 ### <a name="session-cookies-in-webview"></a>Webes nézet munkamenet cookie-k
-Android webes nézet nem törli a munkamenetek cookie-jait hello alkalmazás bezárása után. A mintakód használatával, amely kezelheti:
+Android webes nézet nem törli a munkamenetek cookie-jait, az alkalmazás bezárása után. A mintakód használatával, amely kezelheti:
 
     CookieSyncManager.createInstance(getApplicationContext());
     CookieManager cookieManager = CookieManager.getInstance();
     cookieManager.removeSessionCookie();
     CookieSyncManager.getInstance().sync();
 
-A cookie-k, lásd: hello [hello Android webhelyéről CookieSyncManager információk](http://developer.android.com/reference/android/webkit/CookieSyncManager.html).
+A cookie-k kapcsolatos részletekért lásd: a [CookieSyncManager az információt az Android](http://developer.android.com/reference/android/webkit/CookieSyncManager.html).
 
 ### <a name="resource-overrides"></a>Erőforrás-felülbírálások
-hello ADAL-könyvtár ProgressDialog üzenetek angol karakterláncot tartalmaz. Az alkalmazás mindent felülír Ha azt szeretné, hogy a honosított karakterláncok.
+Az ADAL-könyvtár ProgressDialog üzenetek angol karakterláncot tartalmaz. Az alkalmazás mindent felülír Ha azt szeretné, hogy a honosított karakterláncok.
 
      <string name="app_loading">Loading...</string>
      <string name="broker_processing">Broker is processing</string>
@@ -378,9 +378,9 @@ hello ADAL-könyvtár ProgressDialog üzenetek angol karakterláncot tartalmaz. 
      <string name="http_auth_dialog_cancel">Cancel</string>
 
 ### <a name="ntlm-dialog-box"></a>NTLM párbeszédpanel
-1.1.0-ás ADAL-verziót támogatja az NTLM párbeszédpanel, amely WebViewClient hello onReceivedHttpAuthRequest esemény feldolgozása. Testre szabhatja hello elrendezés és karakterláncok hello párbeszédpanel.
+1.1.0-ás ADAL-verziót támogatja az NTLM párbeszédpanel, amely a WebViewClient onReceivedHttpAuthRequest esemény feldolgozása. Az elrendezés és a párbeszédpanel karakterláncok személyre is szabhatja.
 
 ### <a name="cross-app-sso"></a>Alkalmazások közötti SSO
-Ismerje meg, [hogyan tooenable az ADAL használatával Android alkalmazások közötti SSO](active-directory-sso-android.md).  
+Ismerje meg, [az Android alkalmazások közötti SSO engedélyezése az ADAL használatával](active-directory-sso-android.md).  
 
 [!INCLUDE [active-directory-devquickstarts-additional-resources](../../../includes/active-directory-devquickstarts-additional-resources.md)]

@@ -1,6 +1,6 @@
 ---
-title: Data Lake Store az Azure HDInsight Hadoop aaaUse |} Microsoft Docs
-description: "Ismerje meg, hogyan tooquery adatokat az Azure Data Lake Store és toostore eredmények elemzéshez."
+title: "A Data Lake Store és a Hadoop együttes használata az Azure HDInsightban | Microsoft Docs"
+description: "Megtudhatja, hogyan kérdezhet le adatokat az Azure Data Lake Store-ból, és hogyan tárolhatja az elemzésének eredményeit."
 keywords: "blob storage,hdfs,strukturált adatok,strukturálatlan adatok, data lake store"
 services: hdinsight,storage
 documentationcenter: 
@@ -16,17 +16,17 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/03/2017
 ms.author: jgao
-ms.openlocfilehash: 89633218a37a2fe05043e05d61199dcc0252d7f0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 28a836aff65636ef0031ac63f633d746436d7e4a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="use-data-lake-store-with-azure-hdinsight-clusters"></a>A Data Lake Store és az Azure HDInsight-fürtök együttes használata
 
-HDInsight-fürt tooanalyze adatokat, hello adatait tárolhatja vagy a [Azure Storage](../storage/common/storage-introduction.md), [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md), vagy mindkettőt. Mindkét tárolási lehetőségek lehetővé teszik a HDInsight-fürtök toosafely törlése, felhasználói adatok elvesztése nélkül számításhoz használt.
+A HDInsight-fürtben lévő adatok elemzéséhez az adatokat tárolhatja az [Azure Storage](../storage/common/storage-introduction.md)-ban, az [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md)-ban, vagy mindkettőben. Mindkét tárolási lehetőség lehetővé teszi a számításhoz használt HDInsight-fürtök biztonságos törlését a felhasználói adatok elvesztése nélkül.
 
-Ebből a cikkből megtudhatja, hogyan használható a Data Lake Store a HDInsight-fürtökkel. toolearn Azure Storage HDInsight-fürtökkel működése lásd [használata Azure Storage Azure hdinsight-fürtök](hdinsight-hadoop-use-blob-storage.md). További információ a HDInsight-fürtök létrehozásáról: [Hadoop-fürtök létrehozása a HDInsightban](hdinsight-hadoop-provision-linux-clusters.md).
+Ebből a cikkből megtudhatja, hogyan használható a Data Lake Store a HDInsight-fürtökkel. Az Azure Storage és a HDInsight-fürtök együttes használatával kapcsolatos tudnivalókért lásd: [Az Azure Storage és az Azure HDInsight-fürtök együttes használata](hdinsight-hadoop-use-blob-storage.md). További információ a HDInsight-fürtök létrehozásáról: [Hadoop-fürtök létrehozása a HDInsightban](hdinsight-hadoop-provision-linux-clusters.md).
 
 > [!NOTE]
 > A Data Lake Store elérése mindig biztonságos csatornán keresztül történik, így nincs `adls` fájlrendszer-sémanév. Mindig `adl` használandó.
@@ -35,59 +35,59 @@ Ebből a cikkből megtudhatja, hogyan használható a Data Lake Store a HDInsigh
 
 ## <a name="availabilities-for-hdinsight-clusters"></a>Lehetőségek HDInsight-fürtök esetén
 
-A Hadoop hello alapértelmezett fájlrendszer támogatja. hello alapértelmezett fájlrendszer egy alapértelmezett sémát és szolgáltatót jelenti. Használt tooresolve relatív elérési utakat is lehet. Hello HDInsight fürt létrehozási folyamata során az Azure Storage hello alapértelmezett fájlrendszer egy blob-tároló adhat meg, vagy a HDInsight 3.5-ös és újabb verziók, válassza vagy az Azure Storage, vagy az Azure Data Lake Store rendszerként hello alapértelmezett fájlok és a Néhány kivételtől eltekintve. 
+A Hadoop támogatja az alapértelmezett fájlrendszert. Az alapértelmezett fájlrendszer egy alapértelmezett sémát és szolgáltatót is jelent. A relatív elérési utak feloldásához is használható. A HDInsight-fürt létrehozása során egy Azure Storage-blobtároló adható meg az alapértelmezett fájlrendszerként, illetve a 3.5-ös vagy újabb verziójú HDInsight esetében néhány kivételtől eltekintve választhat, hogy az Azure Storage vagy az Azure Data Lake Store legyen az alapértelmezett fájlrendszer. 
 
 A HDInsight-fürtök kétféleképpen használhatják a Data Lake Store-t:
 
-* Hello alapértelmezett tárolóként
+* Az alapértelmezett tárolóként
 * Kiegészítő tárolóként, ahol az Azure Storage Blob az alapértelmezett tároló.
 
-Mostantól típusok/verziók támogatás használatával a Data Lake Store alapértelmezett tároló és a további tárfiókok csak néhány hello HDInsight fürt:
+Jelen pillanatban csak bizonyos típusú, illetve verziójú HDInsight-fürtök támogatják a Data Lake Store alapértelmezett vagy kiegészítő tárfiókként való használatát:
 
 | A HDInsight-fürt típusa | A Data Lake Store az alapértelmezett tároló | A Data Lake Store kiegészítő tároló| Megjegyzések |
 |------------------------|------------------------------------|---------------------------------------|------|
 | A HDInsight 3.6-os verziója | Igen | Igen | |
-| A HDInsight 3.5-ös verziója | Igen | Igen | A HBase hello kivétellel|
+| A HDInsight 3.5-ös verziója | Igen | Igen | A HBase kivételével|
 | A HDInsight 3.4-es verziója | Nem | Igen | |
 | A HDInsight 3.3-as verziója | Nem | Nem | |
 | A HDInsight 3.2-es verziója | Nem | Igen | |
 | Prémium (szintű) HDInsight| Nem | Nem | |
-| Storm | | |A Storm-topológia a Data Lake Store toowrite adatokat is használhatja. A Data Lake Store-ban tárolhatók referenciaadatok is, amelyek olvashatók lesznek egy Storm-topológiából.|
+| Storm | | |A Data Lake Store használható Storm-topológiából származó adatok írására. A Data Lake Store-ban tárolhatók referenciaadatok is, amelyek olvashatók lesznek egy Storm-topológiából.|
 
-További tárhely fiókként használatával a Data Lake Store nem befolyásolhatja a teljesítményt vagy hello képességét tooread vagy írási tooAzure tárolási hello fürtből.
+Ha a Data Lake Store-t kiegészítő tárfiókként használja, az nem befolyásolja a fürtből az Azure-tárba történő írás, illetve olvasás lehetőségét vagy hatékonyságát.
 
 
 ## <a name="use-data-lake-store-as-default-storage"></a>A Data Lake Store használata az alapértelmezett tárolóként
 
-HDInsight a Data Lake Store alapértelmezett tárolóként telepítésekor hello fürt kapcsolatos fájlok találhatók a Data Lake Store hello a következő helyen:
+Ha a HDInsight alapértelmezett tárolójaként a Data Lake Store van beállítva, a fürttel kapcsolatos fájlok a Data Lake Store-ban a következő helyen találhatók:
 
     adl://mydatalakestore/<cluster_root_path>/
 
-Ha `<cluster_root_path>` egy mappát hoz létre a Data Lake Store hello neve. Egy elérési útjának gyökeréhez használatos egyes fürtök megadásával használhatja ugyanazt a Data Lake Store fiókot egynél több fürt hello. Így olyan beállítással rendelkezhet, ahol:
+ahol a `<cluster_root_path>` a Data Lake Store-ban létrehozott mappa neve. Ha mindegyik fürthöz megadja a gyökér elérési útját, ugyanazt a Data Lake Store-fiókot több fürthöz is használhatja. Így olyan beállítással rendelkezhet, ahol:
 
-* Cluster1 használható hello elérési útja`adl://mydatalakestore/cluster1storage`
-* Cluster2 használható hello elérési útja`adl://mydatalakestore/cluster2storage`
+* Az 1. fürt a következő elérési utat használhatja: `adl://mydatalakestore/cluster1storage`
+* A 2. fürt a következő elérési utat használhatja: `adl://mydatalakestore/cluster2storage`
 
-Figyelje meg, hogy mindkét hello fürtök használata hello azonos Data Lake Store-fiók **mydatalakestore**. Az egyes fürtökön saját Data Lake Store a legfelső szintű fájlrendszer hozzáférés tooits rendelkezik. hello Azure portál üzembe helyezését különösen kéri toouse mappanevet például **/clusters/\<clustername >** hello elérési útjának gyökeréhez tartozó.
+Vegye figyelembe, hogy mindét fürt ugyanazt a **mydatalakestore** nevű Data Lake Store-fiókot használja. Mindegyik fürt hozzáféréssel rendelkezik a saját gyökér fájlrendszeréhez a Data Lake Store-ban. Az Azure Portalon végzett üzembe helyezésekor a **/fürtök/\<fürtnév>** mappanevet kell használnia a gyökér elérési úthoz.
 
-toobe képes toouse egy Data Lake Store alapértelmezett tárolóként, engedélyt kell adni a következő elérési utak hello szolgáltatás egyszerű hozzáférés toohello:
+Ahhoz, hogy a Data Lake Store-t alapértelmezett tárolóként használhassa, hozzáférést kell biztosítania a szolgáltatásnév számára a következő elérési utakhoz:
 
-- hello Data Lake Store-fiók gyökere.  Példa: adl://mydatalakestore/.
-- hello mappa a fürt összes mappa.  Példa: adl://mydatalakestore/clusters.
-- hello mappa hello fürthöz.  Példa: adl://mydatalakestore/clusters/cluster1storage.
+- A Data Lake Store-fiók gyökere.  Példa: adl://mydatalakestore/.
+- Az összes fürt mappája.  Példa: adl://mydatalakestore/clusters.
+- Egy adott fürt mappája.  Példa: adl://mydatalakestore/clusters/cluster1storage.
 
 A szolgáltatásnevek létrehozásával és a hozzáférés biztosításával kapcsolatos további információkért lásd: [A Data Lake Store-hoz történő hozzáférés konfigurálása](#configure-data-lake-store-access).
 
 
 ## <a name="use-data-lake-store-as-additional-storage"></a>A Data Lake Store használata kiegészítő tárolóként
 
-Data Lake Store további tárolóként hello fürt is használja. Ilyen esetekben hello alapértelmezett fürttároló lehet egy Azure Storage-Blobba vagy egy Data Lake Store-fiók. Ha futtatja a HDInsight-feladatot a Data Lake Store további tárolóként hello adataihoz ellen, hello teljes elérési útja toohello fájlokat kell használnia. Példa:
+A Data Lake Store a fürt kiegészítő tárolójaként is használható. Ilyen esetekben a fürt alapértelmezett tárolója az Azure Storage Blob vagy egy Data Lake Store-fiók lehet. Ha HDInsight-feladatokat futtat a kiegészítő tárolóként használt Data Lake Store-ban tárolt adatokon, a fájlok teljes elérési útját kell használnia. Példa:
 
     adl://mydatalakestore.azuredatalakestore.net/<file_path>
 
-Vegye figyelembe, hogy nincs nincs **cluster_root_path** most hello URL-címben. Amely az oka Data Lake Store nem alapértelmezett tárolási ebben az esetben, toodo szüksége hello elérési toohello fájlokkal.
+Vegye figyelembe, hogy most nincs **cluster_root_path** az URL-címben. Ez azért van, mert a Data Lake Store ebben az esetben nem alapértelmezett tároló, így csak meg kell adnia a fájok elérési útját.
 
-toobe képes toouse egy Data Lake Store további tárolóként, csak akkor kell toogrant hello szolgáltatás egyszerű hozzáférés toohello elérési utak hol tárolja a fájlokat.  Példa:
+Ahhoz, hogy a Data Lake Store-t kiegészítő tárolóként használhassa, hozzáférést kell biztosítania a szolgáltatásnév számára a tárolt fájlok elérési útjaihoz.  Példa:
 
     adl://mydatalakestore.azuredatalakestore.net/<file_path>
 
@@ -96,39 +96,39 @@ A szolgáltatásnevek létrehozásával és a hozzáférés biztosításával ka
 
 ## <a name="use-more-than-one-data-lake-store-accounts"></a>Több Data Lake Store-fiók használata
 
-További Data Lake Store-fiók hozzáadása, és több mint egy Data Lake Store hozzáadása fiókok kivitelezése hello HDInsight fürt engedélyt adjon egy vagy több Data Lake Store-fiók lévő adatokon. Lásd: [A Data Lake Store-hoz történő hozzáférés konfigurálása](#configure-data-lake-store-access).
+Egy Data Lake Store-fiók kiegészítő fiókként történő hozzáadásához vagy több Data Lake Store-fiók hozzáadásához hozzáférést kell biztosítani a HDInsight-fürt számára egy vagy több Data Lake Store-fiók adataihoz. Lásd: [A Data Lake Store-hoz történő hozzáférés konfigurálása](#configure-data-lake-store-access).
 
 ## <a name="configure-data-lake-store-access"></a>A Data Lake Store-hoz történő hozzáférés konfigurálása
 
-tooconfigure Data Lake store hozzáférést a HDInsight-fürtjéhez, rendelkeznie kell egy Azure Active directory (Azure AD) szolgáltatás egyszerű. Kizárólag Azure AD-rendszergazdák hozhatnak létre szolgáltatásnevet. hello szolgáltatás egyszerű tanúsítvánnyal kell létrehozni. További információkért lásd: [A Data Lake Store-hoz történő hozzáférés konfigurálása](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md#configure-data-lake-store-access), és [Szolgáltatásnév létrehozása önaláírt tanúsítvánnyal](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-self-signed-certificate).
+A Data Lake Store-hoz a HDInsight-fürtből történő hozzáférés konfigurálásához rendelkeznie kell egy Azure Active Directory- (Azure AD-) szolgáltatásnévvel. Kizárólag Azure AD-rendszergazdák hozhatnak létre szolgáltatásnevet. A szolgáltatásnevet egy tanúsítvánnyal kell létrehozni. További információkért lásd: [A Data Lake Store-hoz történő hozzáférés konfigurálása](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md#configure-data-lake-store-access), és [Szolgáltatásnév létrehozása önaláírt tanúsítvánnyal](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-self-signed-certificate).
 
 > [!NOTE]
-> Ha azt tervezi, hogy toouse Azure Data Lake Store további tárolóként HDInsight-fürthöz, javasoljuk, hogy ehhez hello fürt létrehozásakor, a cikkben leírtak szerint. Azure Data Lake Store további tárhely tooan hozzáadása meglévő HDInsight-fürt egy összetett folyamat és hibalehetőségeket rejt magában tooerrors.
+> Ha a Data Lake Store-t a HDInsight-fürt kiegészítő tárolójaként tervezi használni, akkor kifejezetten ezt a megoldást javasoljuk, amikor létrehozza a fürtöt az ebben a cikkben leírtaknak megfelelően. Az Azure Data Lake Store-t kiegészítő tárolóként hozzáadni egy meglévő HDInsight-fürthöz bonyolult folyamat, és sok hibalehetőséggel jár.
 >
 
-## <a name="access-files-from-hello-cluster"></a>Fájlok elérése hello fürtből
+## <a name="access-files-from-the-cluster"></a>Fájlok elérése a fürtből
 
-Számos módon el tudja érni a Data Lake Store hello fájlokat a HDInsight-fürtöt.
+Többféleképpen is elérheti egy HDInsight-fürtből a Data Lake Store-ban tárolt fájlokat.
 
-* **Hello teljesen minősített nevet használó**. Hello teljes elérési útja toohello fájl megadta ezt a módszert, amelyet az tooaccess.
+* **A teljes név használatával**. Ezzel a módszerrel az elérni kívánt fájl teljes elérési útját megadja.
 
         adl://mydatalakestore.azuredatalakestore.net/<cluster_root_path>/<file_path>
 
-* **Hello rövidebb elérési utat formátumban**. Ezt a módszert használja, akkor cserélje le hello elérési út mentése toohello fürt legfelső szintű adl: / / /. Igen, a hello a fenti példában helyettesíthetők `adl://mydatalakestore.azuredatalakestore.net/<cluster_root_path>/` rendelkező `adl:///`.
+* **A rövidített elérésiút-formátum használatával**. Ezzel a módszerrel a fürtgyökér elérési útját az adl:/// karakterláncra cseréli le. Így a fenti példában lecserélheti az `adl://mydatalakestore.azuredatalakestore.net/<cluster_root_path>/` helyett az `adl:///` értéket használhatja.
 
         adl:///<file path>
 
-* **Hello relatív elérési út használatával**. Ezt a módszert csak olyan hello relatív elérési út toohello fájl, amelyet az tooaccess. Például ha hello toohello fájl teljes elérési útja a következő:
+* **A relatív elérési út használatával**. Ezzel a módszerrel csak az elérni kívánt fájl relatív elérési útját adja meg. Ha például a fájl teljes elérési útja a következő:
 
         adl://mydatalakestore.azuredatalakestore.net/<cluster_root_path>/example/data/sample.log
 
-    Van-e hozzáférési hello azonos sample.log fájl helyett a relatív elérési út használatával.
+    Ehelyett a következő relatív elérési úttal is elérheti ugyanazon sample.log fájlt.
 
         /example/data/sample.log
 
-## <a name="create-hdinsight-clusters-with-access-toodata-lake-store"></a>A HDInsight-fürtök létrehozása a lépjen be az tooData Lake Store
+## <a name="create-hdinsight-clusters-with-access-to-data-lake-store"></a>Data Lake Store-hozzáféréssel rendelkező HDInsight-fürtök létrehozása
 
-Használja a következő hivatkozások részletes információkra van szüksége a hogyan férhetnek hozzá a HDInsight-fürtök az toocreate tooData Lake Store hello.
+Az alábbi hivatkozások a Data Lake Store-hozzáféréssel rendelkező HDInsight-fürtök létrehozásának részletes útmutatóira mutatnak.
 
 * [A Portal használata](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)
 * [A PowerShell használata (alapértelmezett tárolóként beállított Data Lake Store-ral)](../data-lake-store/data-lake-store-hdinsight-hadoop-use-powershell-for-default-storage.md)
@@ -137,16 +137,16 @@ Használja a következő hivatkozások részletes információkra van szüksége
 
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben a cikkben megtanulta, hogyan meg toouse HDFS-kompatibilis Azure Data Lake Store a hdinsight eszközzel. Ez lehetővé teszi, hogy toobuild méretezhető, hosszú távú, archiválás beszerzési megoldások kiépítését és -felhasználási HDInsight toounlock hello lévő információkat hello tárolt strukturált és strukturálatlan adatokat.
+Ebből a cikkből megtanulta, hogyan használhatja HDFS-kompatibilis Azure Data Lake Store-tárolót a HDInsighttal. Ez lehetővé teszi a skálázható, hosszú távú adatarchiváló beszerzési megoldások kiépítését, valamint hogy a HDInsighttal kinyerje a strukturált és strukturálatlan tárolt adatokban lévő információkat.
 
 További információkért lásd:
 
 * [Azure HDInsight – első lépések][hdinsight-get-started]
 * [Az Azure Data Lake Store használatának első lépései](../data-lake-store/data-lake-store-get-started-portal.md)
-* [Adatok tooHDInsight feltöltése][hdinsight-upload-data]
+* [Adatok feltöltése a HDInsightba][hdinsight-upload-data]
 * [A Hive használata a HDInsightban][hdinsight-use-hive]
 * [A Pig használata a HDInsightban][hdinsight-use-pig]
-* [Azure Storage megosztott hozzáférési aláírásokkal toorestrict hozzáférés toodata használata a hdinsight eszközzel][hdinsight-use-sas]
+* [Az Azure Storage közös hozzáférésű jogosultságkódok használata az adathozzáférés korlátozásához a HDInsightban][hdinsight-use-sas]
 
 [hdinsight-use-sas]: hdinsight-storage-sharedaccesssignature-permissions.md
 [powershell-install]: /powershell/azureps-cmdlets-docs

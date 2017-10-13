@@ -1,5 +1,5 @@
 ---
-title: "ExpressRoute-Kapcsolatcsoportok aaaNAT követelményei |} Microsoft Docs"
+title: "Az ExpressRoute-kapcsolatcsoportok NAT-követelményei | Microsoft Docs"
 description: "Ez az oldal ExpressRoute-kapcsolatcsoportok NAT-konfigurálásának és -kezelésének részletes követelményeit ismerteti."
 documentationcenter: na
 services: expressroute
@@ -14,64 +14,64 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/12/2017
 ms.author: cherylmc
-ms.openlocfilehash: 09a0e841235de3f6b85e32172d7f99f20b5baf54
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d3de566ff2825ef0c41d88d4a86157dc23d9f46b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="expressroute-nat-requirements"></a>Az ExpressRoute NAT-követelményei
-tooconnect tooMicrosoft felhőszolgáltatások ExpressRoute segítségével, akkor lesz tooset be kell és NAT kezelése. Egyes kapcsolatszolgáltatók felügyelt szolgáltatásként kínálják a NAT beállítását és kezelését. Kérje meg a kapcsolat szolgáltató toosee, ha ilyen szolgáltatás kínálnak. Ha nem, akkor meg kell felelnie az alábbiakban toohello követelményeinek. 
+Ahhoz, hogy az ExpressRoute-tal tudjon csatlakozni a Microsoft-felhőszolgáltatásokhoz, NAT-okat kell beállítania és kezelnie. Egyes kapcsolatszolgáltatók felügyelt szolgáltatásként kínálják a NAT beállítását és kezelését. Ellenőrizze kapcsolatszolgáltatójánál, hogy kínál-e ilyen szolgáltatást. Ha nem, akkor meg kell felelnie az alább ismertetett követelményeknek. 
 
-Felülvizsgálati hello [ExpressRoute Kapcsolatcsoportok és útválasztási tartományok](expressroute-circuit-peerings.md) tooget hello áttekintése lapon a különböző útválasztási tartományok. toomeet hello nyilvános IP-cím követelmények a nyilvános Azure és a Microsoft társviszony-létesítést, azt javasoljuk, hogy beállította NAT a hálózat és a Microsoft között. Ez a szakasz részletesen hello NAT infrastruktúra tooset fel van szüksége.
+A különböző útválasztási tartományok áttekintését az [ExpressRoute-kapcsolatcsoportok és útválasztási tartományok](expressroute-circuit-peerings.md) oldalon tekintheti meg. Az Azure nyilvános és a Microsoft társviszony-létesítés nyilvános IP-cím követelményeinek való megfeleléshez javasoljuk, hogy állítsa be a NAT-ot a hálózata és a Microsoft között. Ez a szakasz a beállítandó NAT-infrastruktúra részletes leírását tartalmazza.
 
 ## <a name="nat-requirements-for-azure-public-peering"></a>Az Azure nyilvános társviszony-létesítés NAT-követelményei
-hello Azure nyilvános társviszony-létesítési elérési lehetővé teszi, hogy Ön tooconnect tooall tárolt szolgáltatások az Azure-ban a nyilvános IP-címek keresztül. Ezek közé tartozik a hello felsorolt szolgáltatások [ExpessRoute gyakran ismételt kérdések](expressroute-faqs.md) és ISV-k, a Microsoft Azure által üzemeltetett szolgáltatások. 
+Az Azure nyilvános társviszony-létesítési útvonal használatával az Azure-ban üzemeltetett összes szolgáltatáshoz csatlakozhat a nyilvános IP-címeiken keresztül. Ezen szolgáltatások közé tartoznak az [ExpressRoute – Gyakori kérdések](expressroute-faqs.md) című dokumentumban felsorolt szolgáltatások, valamint az ISV-k által a Microsoft Azure-ban üzemeltetett szolgáltatások. 
 
 > [!IMPORTANT]
-> Kapcsolat tooMicrosoft Azure Services szolgáltatás nyilvános társviszony-létesítés mindig kezdeményezi a hálózat hello Microsoft hálózatba. Ezért munkamenetek nem kezdeményezhető, Microsoft Azure-szolgáltatások tooyour hálózatról ExpressRoute keresztül. Megkísérelt, ha küldött csomagok toothese meghirdetett IP-címet fogja használni hello internet ExpressRoute helyett.
+> A Microsoft Azure-szolgáltatásokhoz a nyilvános társviszony-létesítéssel létrehozott kapcsolatokat mindig az Ön hálózata kezdeményezi a Microsoft hálózata felé. Ezért a Microsoft Azure-szolgáltatásokból nem indíthatók munkamenetek az Ön hálózatába az ExpressRoute-on keresztül. Ilyen próbálkozás esetén a meghirdetett IP-címekre küldött csomagok az ExpressRoute helyett az internetet használják.
 > 
 
-Adatforgalmat tooMicrosoft Azure nyilvános társviszony nyilvános IPv4-címek előtt hello Microsoft hálózati SNATed toovalid kell lennie. az alábbi ábra hello hello NAT sikerült kell beállítására toomeet hello fent követelmény magas szintű képe biztosít.
+A Microsoft Azure felé a nyilvános társviszony-létesítésen keresztül irányuló forgalmat forrásoldali hálózati címfordítással érvényes nyilvános IPv4-címekké kell alakítani, mielőtt belép a Microsoft hálózatába. Az alábbi ábrán annak magas szintű ábrázolása látható, hogy hogyan kell beállítani a NAT-ot a fenti követelmények teljesítéséhez.
 
 ![](./media/expressroute-nat/expressroute-nat-azure-public.png) 
 
 ### <a name="nat-ip-pool-and-route-advertisements"></a>NAT IP-készlet és útvonalhirdetések
-Győződjön meg arról, hogy a forgalom hello Azure nyilvános társviszony-létesítési elérési út érvényes nyilvános IPv4-címmel rendelkező írja be. A Microsoft képes toovalidate hello tulajdonjogát hello IPv4 NAT-címkészlet egy regionális útválasztási internetcím-kezelőt (RIR) vagy egy útválasztási internetcím-kezelőt (BMR) kell lennie. Egy ellenőrzés fog futni hello alapján, számát az éppen társviszonyban pedig hello IP-címekre vonatkozó hello hálózati címfordítást. Tekintse meg a toohello [ExpressRoute útválasztási követelmények](expressroute-routing.md) lap útválasztási nyilvántartó olvashat.
+Biztosítania kell, hogy a forgalom az Azure nyilvános társviszony-létesítési útvonalra érvényes nyilvános IPv4-címmel lépjen be. A Microsoftnak képesnek kell lennie ellenőriznie az IPv4 NAT-címkészlet tulajdonjogát egy regionális útválasztási internetes jegyzékben (RIR) vagy egy internetes útválasztási jegyzékben (RIR) A rendszer a NAT-tal társviszonyban lévő AS-szám és az ahhoz használt IP-címek alapján ellenőrzést hajt végre. Az útválasztási nyilvántartásokkal kapcsolatos információkért tekintse meg [az ExpressRoute útválasztási követelményeit](expressroute-routing.md) ismertető oldalt.
 
-Nincsenek a hello hálózati Címfordítás IP-előtagja a társviszony keresztül meghirdetett hello hosszát korlátozások. NAT-készlete hello figyelni kell, és győződjön meg arról, hogy Ön nem a NAT-munkamenetek vannak függeszteni.
+A társviszony-létesítésen keresztül hirdetett NAT IP-előtag hosszára nem vonatkoznak korlátozások. Meg kell figyelnie a NAT-készletet, és biztosítania kell, hogy nem fogy ki a NAT-munkamenetekből.
 
 > [!IMPORTANT]
-> hálózati Címfordítás IP-készlet hello meghirdetett tooMicrosoft nem lehet Internet hirdetett toohello. Ezzel megszünteti a kapcsolatot tooother Microsoft-szolgáltatások.
+> A Microsoft számára hirdetett NAT IP-készlet nem hirdethető meg az interneten. Ez megszakítja a más Microsoft-szolgáltatások kapcsolatait.
 > 
 > 
 
 ## <a name="nat-requirements-for-microsoft-peering"></a>A Microsoft társviszony-létesítésre vonatkozó NAT-követelmények
-hello Microsoft társviszony-létesítési elérési lehetővé teszi a csatlakozást a nem támogatott tooMicrosoft felhőszolgáltatások hello Azure nyilvános társviszony-létesítési elérési útján. szolgáltatások hello listája az Office 365-szolgáltatásokhoz, például az Exchange Online, SharePoint online-hoz, a Skype vállalati verzió, és Dynamics 365 tartalmazza. A Microsoft hello Microsoft társviszony toosupport kétirányú kapcsolatot vár. Adatforgalmat tooMicrosoft felhőszolgáltatások nyilvános IPv4-címek előtt hello Microsoft hálózati SNATed toovalid kell lennie. A Microsoft más felhőszolgáltatásaival adatforgalmat tooyour hálózati SNATed el kell érnie az internetes biztonsági tooprevent [aszimmetrikus útválasztási](expressroute-asymmetric-routing.md). az alábbi ábra hello hogyan hello NAT kell lennie a telepítő a Microsoft társviszony-létesítéshez magas szintű képe biztosít.
+A Microsoft társviszony-létesítési útvonal lehetővé teszi, hogy az Azure nyilvános társviszony-létesítési útvonalon keresztül nem támogatott Microsoft-felhőszolgáltatásokhoz csatlakozzon. A szolgáltatások listájába beletartoznak az Office 365 szolgáltatásai, például az Exchange Online, a SharePoint Online, a Skype Vállalati verzió és a Dynamics 365. A Microsoft tervezi a kétirányú kapcsolatok támogatását a Microsoft társviszony-létesítésen keresztül. A Microsoft-felhőszolgáltatások felé irányuló forgalmat forrásoldali hálózati címfordítással érvényes nyilvános IPv4-címekké kell alakítani, mielőtt belép a Microsoft hálózatába. A Microsoft felhőszolgáltatásai felől az Ön hálózata felé irányuló forgalmon forrásoldali hálózati címfordítást kell végrehajtani az internetes peremhálózaton az [aszimmetrikus útválasztás](expressroute-asymmetric-routing.md) megelőzése érdekében. Az alábbi ábrán annak magas szintű ábrázolása látható, hogy hogyan kell beállítani a NAT-ot a Microsoft társviszony-létesítéshez.
 
 ![](./media/expressroute-nat/expressroute-nat-microsoft.png) 
 
-### <a name="traffic-originating-from-your-network-destined-toomicrosoft"></a>A hálózati szánt tooMicrosoft származó forgalmat
-* Győződjön meg arról, hogy a forgalom hello Microsoft társviszony-létesítési elérési útja egy érvényes nyilvános IPv4-címet írja be. A Microsoft hello IPv4 NAT címkészlet elleni hello regionális útválasztási internetcím-kezelőt (RIR) képes toovalidate hello tulajdonosa vagy egy útválasztási internetcím-kezelőt (BMR) kell lennie. Egy ellenőrzés fog futni hello alapján, számát az éppen társviszonyban pedig hello IP-címekre vonatkozó hello hálózati címfordítást. Tekintse meg a toohello [ExpressRoute útválasztási követelmények](expressroute-routing.md) lap útválasztási nyilvántartó olvashat.
-* Az Azure nyilvános társviszony-létesítési beállítása hello használt IP-címek és más ExpressRoute-Kapcsolatcsoportok nem lehet hirdetett tooMicrosoft hello BGP-kapcsolaton keresztül. Hello hálózati Címfordítás IP-előtagja a társviszony keresztül meghirdetett hello hosszát nincs korlátozva van.
+### <a name="traffic-originating-from-your-network-destined-to-microsoft"></a>Az Ön hálózatából eredő, a Microsoft felé irányuló forgalom
+* Biztosítania kell, hogy a forgalom a Microsoft társviszony-létesítési útvonalra érvényes nyilvános IPv4-címmel lépjen be. A Microsoftnak képesnek kell lennie ellenőriznie az IPv4 NAT-címkészlet tulajdonosát egy regionális útválasztási internetes jegyzékben (RIR) vagy egy internetes útválasztási jegyzékben (RIR) A rendszer a NAT-tal társviszonyban lévő AS-szám és az ahhoz használt IP-címek alapján ellenőrzést hajt végre. Az útválasztási nyilvántartásokkal kapcsolatos információkért tekintse meg [az ExpressRoute útválasztási követelményeit](expressroute-routing.md) ismertető oldalt.
+* Az Azure nyilvános társviszony-létesítési beállításhoz és az egyéb ExpressRoute-kapcsolatcsoportokhoz használt IP-címek nem hirdethetők a Microsoft felé a BGP-munkameneten keresztül. A társviszony-létesítésen keresztül hirdetett NAT IP-előtag hosszára nem vonatkoznak korlátozások.
   
   > [!IMPORTANT]
-  > hálózati Címfordítás IP-készlet hello meghirdetett tooMicrosoft nem lehet Internet hirdetett toohello. Ezzel megszünteti a kapcsolatot tooother Microsoft-szolgáltatások.
+  > A Microsoft számára hirdetett NAT IP-készlet nem hirdethető meg az interneten. Ez megszakítja a más Microsoft-szolgáltatások kapcsolatait.
   > 
   > 
 
-### <a name="traffic-originating-from-microsoft-destined-tooyour-network"></a>Tooyour hálózati forgalmat a Microsofttól származó felé.
-* Egyes esetekben szükséges Microsoft tooinitiate kapcsolat tooservice végpontok a hálózaton belül található. Hello forgatókönyvben például a hálózaton lévő Office 365 futtatott kapcsolat tooADFS kiszolgálók lenne. Ebben az esetben meg kell szivárgás lépett fel, megfelelő előtagok a hálózatról való hello Microsoft társviszony-létesítés. 
-* A hálózati tooprevent belül kell SNAT Microsoft-forgalom zárása a hello szolgáltatás végpontok internetes biztonsági [aszimmetrikus útválasztási](expressroute-asymmetric-routing.md). Az ExpressRoute-on keresztül kapott útvonallal megegyező cél IP-címmel ellátott kérelmeket **és válaszokat** a rendszer minden esetben ExpressRoute-on keresztül küldi el. Ha hello kérelem érkezik a hello Internet hello keresztül aszimmetrikus útválasztási létezik ExpressRoute keresztül küldött válasz. SNATing hello bejövő Microsoft-forgalom zárása a hello internetes biztonsági válasz forgalom hátsó toohello Internet peremhálózati hello probléma megoldása kényszeríti.
+### <a name="traffic-originating-from-microsoft-destined-to-your-network"></a>A Microsofttól eredő, az Ön hálózata felé irányuló forgalom
+* Bizonyos forgatókönyvek megkövetelik, hogy a Microsoft kapcsolatot kezdeményezzen az Ön hálózatán üzemeltetett szolgáltatásvégpontokkal. A forgatókönyvre jellemző példa az Ön hálózatában üzemeltetett ADFS-kiszolgálókhoz való csatlakozás az Office 365-ből. Ilyen esetekben a megfelelő előtagokat ki kell szivárogtatnia a hálózatából a Microsoft-társviszonyba. 
+* Az [aszimmetrikus útválasztás](expressroute-asymmetric-routing.md) kiküszöbölése érdekében a Microsoft-adatforgalmon forrásoldali hálózati címfordítást kell végrehajtani az internetes peremhálózaton, a hálózaton belüli szolgáltatásvégpontok számára. Az ExpressRoute-on keresztül kapott útvonallal megegyező cél IP-címmel ellátott kérelmeket **és válaszokat** a rendszer minden esetben ExpressRoute-on keresztül küldi el. Aszimmetrikus útválasztás akkor jön létre, ha a kérelem interneten keresztül érkezik, a választ viszont ExpressRoute-on keresztül küldjük el. A bejövő Microsoft-adatforgalom internetes peremhálózaton történő forrásoldali hálózati címfordítása úgy küszöböli ki ezt a problémát, hogy a válasz adatforgalmát újra az internetes peremhálózatra kényszeríti.
 
 ![Aszimmetrikus útválasztás az ExpressRoute-tal](./media/expressroute-asymmetric-routing/AsymmetricRouting2.png)
 
 ## <a name="next-steps"></a>Következő lépések
-* Tekintse meg a toohello követelményei [útválasztás](expressroute-routing.md) és [QoS](expressroute-qos.md).
+* Tekintse meg az [Útválasztás](expressroute-routing.md) és a [QoS](expressroute-qos.md) követelményeit.
 * További információkért lásd: [ExpressRoute-kapcsolatcsoportok kiépítési munkafolyamatai és kapcsolatcsoport-állapotok](expressroute-workflows.md).
 * Az ExpressRoute-kapcsolat konfigurálása.
   
   * [ExpressRoute-kapcsolatcsoport létrehozása](expressroute-howto-circuit-classic.md)
   * [Útválasztás konfigurálása](expressroute-howto-routing-classic.md)
-  * [Hivatkozásra egy VNet tooan ExpressRoute-kapcsolatcsoportot](expressroute-howto-linkvnet-classic.md)
+  * [VNet csatlakoztatása egy ExpressRoute-kapcsolatcsoporthoz](expressroute-howto-linkvnet-classic.md)
 

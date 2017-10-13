@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toouse Fiddler tooevaluate és az Azure Search REST API-k tesztelése |} Microsoft Docs"
-description: "Fiddler használata a kódolás nélkül tooverifying Azure Search rendelkezésre állását, illetve próbálhatja ki hello REST API-k esetében."
+title: "A Fiddler használata az Azure Search REST API-k értékeléséhez és teszteléséhez | Microsoft Docs"
+description: "A Fiddler használatával kódolás nélkül ellenőrizheti az Azure Search rendelkezésre állását, illetve próbálhatja ki a REST API-kat."
 services: search
 documentationcenter: 
 author: HeidiSteen
@@ -14,13 +14,13 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 10/27/2016
 ms.author: heidist
-ms.openlocfilehash: 2912e1180717d7b40a1e4f7f7f00daf2cc254f0b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c38b73fa69bee34ce2434c6274cb017c99ef3c35
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-fiddler-tooevaluate-and-test-azure-search-rest-apis"></a>Használja a Fiddler tooevaluate és tesztelése az Azure Search REST API-k
+# <a name="use-fiddler-to-evaluate-and-test-azure-search-rest-apis"></a>A Fiddler használata az Azure Search REST API-k értékeléséhez és teszteléséhez
 > [!div class="op_single_selector"]
 >
 > * [Áttekintés](search-query-overview.md)
@@ -31,34 +31,34 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-Ez a cikk azt ismerteti, hogyan toouse Fiddler, valamint egy [Telerik ingyenesen letölthető](http://www.telerik.com/fiddler), tooissue HTTP kérelmeket tooand válaszok megtekintése hello Azure Search REST API használatával anélkül, hogy toowrite összes kódot. Az Azure Search teljes körűen felügyelt, üzemeltetett felhőalapú keresőszolgáltatás, amely egyszerűen programozható .NET és REST API-kon keresztül. hello Azure Search szolgáltatás REST API-jainak dokumentációja a [MSDN](https://msdn.microsoft.com/library/azure/dn798935.aspx).
+Ez a cikk azt ismerteti, hogyan használható a [Telerik által ingyenesen letölthetőként kínált](http://www.telerik.com/fiddler) Fiddler a HTTP-kérelmek Azure Search REST API számára történő küldéséhez, valamint a válaszok API használatával történő megtekintéséhez kód írása nélkül. Az Azure Search teljes körűen felügyelt, üzemeltetett felhőalapú keresőszolgáltatás, amely egyszerűen programozható .NET és REST API-kon keresztül. Az Azure Search szolgáltatás REST API-jainak dokumentációja az [MSDN](https://msdn.microsoft.com/library/azure/dn798935.aspx) webhelyén tekinthető meg.
 
-A lépéseket követve hello lesz index létrehozása, dokumentumok, lekérdezés hello index, majd szolgáltatási adatokat lekérdezés hello rendszer feltöltése.
+Az alábbi lépéseket követve létre fog hozni egy indexet, dokumentumokat fog feltölteni, lekérdezi az indexet, majd szolgáltatási adatokat kérdez le a rendszertől.
 
-Ezek a lépések toocomplete, szüksége lesz egy Azure Search szolgáltatást és `api-key`. Lásd: [Azure Search szolgáltatás létrehozása a portál hello](search-create-service-portal.md) tooget indításának kapcsolatos utasításokat.
+Az alábbi lépések elvégzéséhez szüksége lesz egy Azure Search szolgáltatásra és egy `api-key` elemre. A kezdéssel kapcsolatos útmutatásért tekintse meg az [Azure Search szolgáltatás létrehozása a portálon](search-create-service-portal.md) című cikket.
 
 ## <a name="create-an-index"></a>Index létrehozása
-1. Indítsa el a Fiddlert. A hello **fájl** menüben kapcsolja ki a **forgalom rögzítése** toohide HTTP-tevékenység, amely független toohello aktuális feladatot.
-2. A hello **szerkesztő** lapon állítson össze a kérelmeket, amelyek a következő képernyőfelvétel hello tűnik.
+1. Indítsa el a Fiddlert. A **Fájl** menüben kapcsolja ki a **Forgalom rögzítése** beállítást az aktuális feladathoz nem kapcsolódó HTTP-tevékenység elrejtéséhez.
+2. A **Szerkesztő** lapon állítson össze egy, az alábbi képernyőfelvételen láthatóhoz hasonló kérelmet.
 
       ![][1]
 3. Válassza a **PUT** lehetőséget.
-4. Adjon meg egy URL-címet, amely meghatározza a hello szolgáltatás URL-címe, attribútumainak és hello api-verzió. Néhány mutatók tookeep figyelembe vételével:
+4. Adja meg a szolgáltatás URL-címét, a kérelem attribútumait, valamint az API-verziót meghatározó URL-címet. Ügyeljen az alábbiakra:
 
-   * HTTPS használata hello előtag.
-   * A kérelemattribútum az „/indexes/hotels”. Ez egy "hotels" nevű index alapján keresési toocreate.
-   * Az api-version kisbetűvel van írva, és a következő formában van megadva: „?api-version=2016-09-01”. Az API-verziók azért fontosak, mert az Azure Search rendszeresen telepíti a frissítéseket. Ritka esetekben a szolgáltatás frissítése a legfrissebb módosítása toohello API vezethetnek. Emiatt az Azure Search számára minden kérelemnél meg kell adni az API-verziót, hogy Ön mindig teljes mértékben kézben tudja tartani, hogy melyik verzió van használatban.
+   * A HTTPS előtagot használja.
+   * A kérelemattribútum az „/indexes/hotels”. Ez arra utasítja a Search szolgáltatást, hogy létrehozzon egy „hotels” nevű indexet.
+   * Az api-version kisbetűvel van írva, és a következő formában van megadva: „?api-version=2016-09-01”. Az API-verziók azért fontosak, mert az Azure Search rendszeresen telepíti a frissítéseket. Ritka esetekben a szolgáltatás frissítése az API-t használhatatlanná tévő változást vezethet be. Emiatt az Azure Search számára minden kérelemnél meg kell adni az API-verziót, hogy Ön mindig teljes mértékben kézben tudja tartani, hogy melyik verzió van használatban.
 
-     hello teljes URL-címet a következő példa hasonló toohello kell kinéznie.
+     A teljes URL-címnek az alábbi példához kell hasonlítania.
 
              https://my-app.search.windows.net/indexes/hotels?api-version=2016-09-01
-5. Adja meg a hello kérelemfejléc hello állomás és api-kulcs cseréje, amelyek az Ön szolgáltatásában érvényes értékekkel.
+5. Adja meg a kérelem fejlécét, a „host” és az „api-key” értékét az Ön szolgáltatásában érvényes értékekre cserélve.
 
          User-Agent: Fiddler
          host: my-app.search.windows.net
          content-type: application/json
          api-key: 1111222233334444
-6. A kérelem törzse területre illessze be a hello index definícióját alkotó mezőket hello.
+6. A kérelem törzse területre illessze be az index definícióját alkotó mezőket.
 
           {
          "name": "hotels",  
@@ -76,28 +76,28 @@ Ezek a lépések toocomplete, szüksége lesz egy Azure Search szolgáltatást �
            {"name": "location", "type": "Edm.GeographyPoint"}
           ]
          }
-7. Kattintson az **Execute** (Végrehajtás) parancsra.
+7. Kattintson a **Végrehajtás** parancsra.
 
-Néhány másodpercen belül egy 201-es HTTP-válasz hello munkamenetlistában megjelenik, ami hello index sikeresen létrejött.
+Néhány másodperc múlva a munkamenetlistában megjelenik a 201-es HTTP-válasz, amely azt jelzi, hogy az index sikeresen létrejött.
 
-Ha HTTP 504, ellenőrizze a hello URL-címben a HTTPS PROTOKOLLT. Ha megjelenik a HTTP 400-as vagy 404-es, a szervezet tooverify nem volt-e beillesztési hibák hello kérés ellenőrzéséhez. Egy HTTP 403 általában hello api-kulccsal (Érvénytelen a kulcs vagy szintaktikai hiba van hogyan hello api-kulcs van megadva) kapcsolatos problémát jelez.
+Ha 504-es HTTP-választ kap, ellenőrizze, hogy az URL-címben a HTTPS előtag van-e megadva. Ha 400-as vagy 404-es HTTP-válasz jelenik meg, akkor ellenőrizze, hogy a kérelem törzsében nincsenek-e beillesztési hibák. A 403-as HTTP-válasz általában az API-kulccsal kapcsolatos hibát jelez (érvénytelen a kulcs vagy szintaktikai hiba van az API-kulcs meghatározásában).
 
 ## <a name="load-documents"></a>Dokumentumok betöltése
-A hello **szerkesztő** lapon a kérelem toopost dokumentumok hello következőképpen néznek. hello kérelem törzse hello 4 szállodák hello keresési adatait tartalmazza.
+A **Szerkesztő** lapon a dokumentumok küldésére szolgáló kérelem az alábbihoz hasonlóan jelenik meg. A kérelem törzse négy szálloda keresési adatait tartalmazza.
 
    ![][2]
 
 1. Válassza a **POST** lehetőséget.
-2. Adjon meg egy olyan URL-címet, amely a HTTPS előtaggal kezdődik, amelyet a szolgáltatás URL-címe, majd az „/indexes/<'indexnév'>/docs/index?api-version=2016-09-01” karakterlánc követ. hello teljes URL-címet a következő példa hasonló toohello kell kinéznie.
+2. Adjon meg egy olyan URL-címet, amely a HTTPS előtaggal kezdődik, amelyet a szolgáltatás URL-címe, majd az „/indexes/<'indexnév'>/docs/index?api-version=2016-09-01” karakterlánc követ. A teljes URL-címnek az alábbi példához kell hasonlítania.
 
          https://my-app.search.windows.net/indexes/hotels/docs/index?api-version=2016-09-01
-3. Kérelem fejléce kell lennie hello azonos mint korábban. Ne feledje, hogy Ön helyett hello állomás és api-kulcs értékeket, amelyek az Ön szolgáltatásában érvényes.
+3. A kérelem fejléce azonos az előzővel. Ne feledje, hogy a „host” és az „api-key” értékét az Ön szolgáltatásában érvényes értékekre cserélte.
 
          User-Agent: Fiddler
          host: my-app.search.windows.net
          content-type: application/json
          api-key: 1111222233334444
-4. hello kérelem törzse négy dokumentumok toobe hozzáadott toohello szállodák indexet tartalmaz.
+4. A kérelem törzse négy, a szállodák indexéhez hozzáadandó dokumentumot tartalmaz.
 
          {
          "value": [
@@ -147,7 +147,7 @@ A hello **szerkesztő** lapon a kérelem toopost dokumentumok hello következők
              "@search.action": "upload",
              "hotelId": "4",
              "baseRate": 220.00,
-             "description": "This could be hello one",
+             "description": "This could be the one",
              "hotelName": "A Hotel for Everyone",
              "category": "Basic hotel",
              "tags": ["pool", "wifi"],
@@ -159,33 +159,33 @@ A hello **szerkesztő** lapon a kérelem toopost dokumentumok hello következők
            }
           ]
          }
-5. Kattintson az **Execute** (Végrehajtás) parancsra.
+5. Kattintson a **Végrehajtás** parancsra.
 
-Néhány másodpercen belül meg kell jelennie egy 200-as HTTP-válasz hello munkamenetlistában. Ez azt jelzi, hogy hello dokumentumok sikeresen létrejöttek. Ha a 207-es, legalább egy dokumentum tooupload nem sikerült. Ha a 404-es, hello fejléc vagy a hello kérés törzsében szintaktikai hiba van.
+Néhány másodperc múlva megjelenik a 200-as HTTP-válasz a munkamenetlistában. Ez azt jelenti, hogy a dokumentumok sikeresen létrejöttek. Ha a 207-es HTTP-válasz jelenik meg, legalább egy dokumentumot nem sikerült feltölteni. Ha a 404-es válasz jelenik meg, akkor a kérelem fejlécében vagy törzsében szintaktikai hiba van.
 
-## <a name="query-hello-index"></a>Lekérdezés hello indexe
-Most, hogy az index és a dokumentumok is betöltődtek, lekérdezheti őket.  A hello **szerkesztő** lapon egy **beolvasása** a szolgáltatást lekérdező parancs a következő képernyőfelvétel hasonló toohello fog kinézni.
+## <a name="query-the-index"></a>Az index lekérdezése
+Most, hogy az index és a dokumentumok is betöltődtek, lekérdezheti őket.  A **Szerkesztő** lapon a szolgáltatást lekérdező **GET** parancs az alábbi képernyőfelvételhez hasonló lesz.
 
    ![][3]
 
 1. Válassza a **GET** lehetőséget.
-2. Adjon meg egy olyan URL-címet, amely a HTTPS előtaggal kezdődik, amelyet a szolgáltatási URL, majd az „/indexes/<'indexname'>/docs?” karakterlánc, végül a lekérdezési paraméterek követnek. Példaképpen használja a következő URL-cím, egy, az Ön szolgáltatásában érvényes hello minta állomásnév cseréje hello.
+2. Adjon meg egy olyan URL-címet, amely a HTTPS előtaggal kezdődik, amelyet a szolgáltatási URL, majd az „/indexes/<'indexname'>/docs?” karakterlánc, végül a lekérdezési paraméterek követnek. Példaképpen használja a következő URL-címet, és cserélje le benne a mintaállomásnevet egy, az Ön szolgáltatásában érvényes állomásnévvel.
 
          https://my-app.search.windows.net/indexes/hotels/docs?search=motel&facet=category&facet=rating,values:1|2|3|4|5&api-version=2016-09-01
 
-   Ez a lekérdezés a "motel" hello kifejezés keres, és értékkorlátozó kategóriákat értékelések.
-3. Kérelem fejléce kell lennie hello azonos mint korábban. Ne feledje, hogy Ön helyett hello állomás és api-kulcs értékeket, amelyek az Ön szolgáltatásában érvényes.
+   Ez a lekérdezés a „motel” kifejezést keresi, és értékkorlátozó kategóriákat ad vissza az értékelésekhez.
+3. A kérelem fejléce azonos az előzővel. Ne feledje, hogy a „host” és az „api-key” értékét az Ön szolgáltatásában érvényes értékekre cserélte.
 
          User-Agent: Fiddler
          host: my-app.search.windows.net
          content-type: application/json
          api-key: 1111222233334444
 
-hello válaszkód a 200-as kell lennie, és hello válasz kimenete a következő képernyőfelvétel hasonló toohello kell kinéznie.
+200-as válaszkódnak kell érkeznie, a válasz kimenetének pedig az alábbi képernyőfelvételhez kell hasonlítania.
 
    ![][4]
 
-hello következő példalekérdezés származik hello [Search-Index művelet (Azure Search API)](http://msdn.microsoft.com/library/dn798927.aspx) az MSDN Webhelyén. Ebben a témakörben hello mintalekérdezéseket számos közé tartozik a szóközt tartalmaz, amely a Fiddler nem engedélyezettek. Minden szóközt cseréljen le a + karakterre, mielőtt beillesztené a hello előtt hello lekérdezés Fiddler használatával történő lekérdezés-karakterlánc hossza.
+A következő példalekérdezés az MSDN webhelyén megtekinthető és a [Search Index operation (Azure Search API) ismertető](http://msdn.microsoft.com/library/dn798927.aspx) (Keresési index működését (Azure Search API)) cikkből származik. Az ebben a témakörben szereplő számos példalekérdezés szóközt tartalmaz, amely a Fiddler esetében nem engedélyezett. Minden szóközt cseréljen le + karakterre, mielőtt beillesztené a lekérdezési karakterláncot a lekérdezés Fiddler használatával történő megkísérléséhez.
 
 **A szóközök cseréje előtt:**
 
@@ -195,8 +195,8 @@ hello következő példalekérdezés származik hello [Search-Index művelet (Az
 
         GET /indexes/hotels/docs?search=*&$orderby=lastRenovationDate+desc&api-version=2016-09-01
 
-## <a name="query-hello-system"></a>Lekérdezés hello rendszer
-Hello rendszer tooget számát, valamint a tárolási dokumentumfelhasználás is lekérheti. A hello **szerkesztő** lapon a kérelem hasonló toohello következő jelenik meg, és hello válasz szerepleni fog hello számát a dokumentumok és a felhasznált lemezterület mérete.
+## <a name="query-the-system"></a>A rendszer lekérdezése
+A rendszertől a dokumentumok számát és a tárhelyhasználatot is lekérdezheti. A **Szerkesztő** lapon a kérelem az alábbihoz fog hasonlítani, a válaszban pedig szerepleni fog a dokumentumok száma és a felhasznált lemezterület mérete.
 
  ![][5]
 
@@ -204,18 +204,18 @@ Hello rendszer tooget számát, valamint a tárolási dokumentumfelhasználás i
 2. Adjon meg egy olyan URL-címet, amely tartalmazza a szolgáltatás URL-címét, majd az „/indexes/hotels/stats?api-version=2016-09-01” karakterláncot:
 
          https://my-app.search.windows.net/indexes/hotels/stats?api-version=2016-09-01
-3. Adja meg a hello kérelemfejléc hello állomás és api-kulcs cseréje, amelyek az Ön szolgáltatásában érvényes értékekkel.
+3. Adja meg a kérelem fejlécét, a „host” és az „api-key” értékét az Ön szolgáltatásában érvényes értékekre cserélve.
 
          User-Agent: Fiddler
          host: my-app.search.windows.net
          content-type: application/json
          api-key: 1111222233334444
-4. Hagyja üresen hello kérés törzsében.
-5. Kattintson az **Execute** (Végrehajtás) parancsra. Meg kell jelennie egy hello munkamenetlistában a 200-as HTTP-állapotkód:. Válassza ki a parancshoz közzétett hello bejegyzést.
-6. Kattintson a hello **ellenőrök** lapra, majd hello **fejlécek** fülre, majd jelölje ki hello JSON formátumban. Meg kell jelennie hello dokumentumok száma és a tárhely méretét (kilobájtban).
+4. Hagyja üresen a kérés törzsét.
+5. Kattintson a **Végrehajtás** parancsra. A munkamenetlistában a 200-as HTTP-állapotkódnak kell megjelennie. Válassza ki a parancshoz közzétett bejegyzést.
+6. Kattintson a **Vizsgálók**, majd a **Fejlécek** fülre, végül válassza ki a JSON-formátumot. Ekkor megjelenik a dokumentumok száma és a tárhely mérete (KB).
 
 ## <a name="next-steps"></a>Következő lépések
-Lásd: [Azure a Search szolgáltatás kezelése](search-manage.md) egy kódot nem megközelítés toomanaging és az Azure Search használatával.
+Tekintse meg [A Search szolgáltatás kezelése az Azure rendszerben](search-manage.md) című cikket az Azure Search kód nélküli kezelésével és használatával kapcsolatban.
 
 <!--Image References-->
 [1]: ./media/search-fiddler/AzureSearch_Fiddler1_PutIndex.png

@@ -1,6 +1,6 @@
 ---
-title: "aaaDeploy Azure-erőforrások több példánya |} Microsoft Docs"
-description: "Felhasználhatja a másolási művelet és az Azure Resource Manager sablon tooiterate tömbjei többször erőforrásokat üzembe helyezi."
+title: "Azure-erőforrások több példányának telepítése |} Microsoft Docs"
+description: "Másolási művelet és a tömbök használata Azure Resource Manager sablon felépítésének több alkalommal, amikor erőforrásokat üzembe helyezi."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/26/2017
 ms.author: tomfitz
-ms.openlocfilehash: a3bd42f694053317c30b639c33dc4efae41a9a9b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ed8e3081d2b2e07938d7cf3aa5f95f6dde81bc66
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="deploy-multiple-instances-of-a-resource-or-property-in-azure-resource-manager-templates"></a>Egy erőforrás vagy egy tulajdonság az Azure Resource Manager sablonokban több példányának telepítése
-Ez a témakör bemutatja, hogyan tooiterate az Azure Resource Manager sablon toocreate az erőforrás több példányát, vagy az erőforrás-tulajdonságok több példánya.
+Ez a témakör bemutatja, hogyan felépítésének erőforrás több példányát, vagy egy tulajdonság több példányát erőforrás létrehozása az Azure Resource Manager sablonban.
 
-Ha tooadd logika tooyour sablont, amely lehetővé teszi a toospecify e erőforrás van telepítve, lásd: [feltételesen telepíteni az erőforrás](#conditionally-deploy-resource).
+Ha szeretné logika hozzáadása a sablont, amely lehetővé teszi, hogy adja meg, hogy telepítve van-e a erőforrás című [feltételesen telepíteni az erőforrás](#conditionally-deploy-resource).
 
 ## <a name="resource-iteration"></a>Erőforrás iterációs
-toocreate erőforrástípus, több példányát adja hozzá a `copy` elem toohello erőforrástípus. Hello másolási elemben adja meg az ismétlés és nevezze el a hurok hello számát. hello count értékének pozitív egész számnak kell lennie, és nem haladhatja meg a 800. Erőforrás-kezelő hello erőforrások párhuzamosan hoz létre. Hello sorrendben, amelyben létre, ezért nem garantált. többször is toocreate erőforrások sorrendben, lásd: [soros másolási](#serial-copy). 
+Az erőforrástípus több példányt létrehozni, vegye fel a `copy` elemben, amely az erőforrástípus. A másolási elemben adja meg a számát ismétlési és ez a ciklus nevét. A count értékének pozitív egész számnak kell lennie, és nem haladhatja meg a 800. Erőforrás-kezelő párhuzamosan hoz létre az erőforrásokat. A sorrend, amelyben létre, ezért nem garantált. Feladatütemezési többször is erőforrások létrehozásához lásd: [soros másolási](#serial-copy). 
 
-hello erőforrás toocreate több alkalommal hajtja végre a következő formátumban hello:
+Az erőforrás létrehozása több alkalommal hajtja végre a következő formátumban:
 
 ```json
 {
@@ -55,7 +55,7 @@ hello erőforrás toocreate több alkalommal hajtja végre a következő formát
 }
 ```
 
-Figyelje meg, hogy hello minden erőforrás nevét tartalmazza hello `copyIndex()` függvénynek, amely hello aktuális iterációs hello hurok adja vissza. `copyIndex()`értéke nulla. Igen, a következő példa hello:
+Figyelje meg, hogy mindegyik erőforrás nevét tartalmazza a `copyIndex()` függvénynek, amely az aktuális iteráció adja meg a hurok. `copyIndex()`értéke nulla. Így, az alábbi példa:
 
 ```json
 "name": "[concat('storage', copyIndex())]",
@@ -67,7 +67,7 @@ Hozza létre ezeket a neveket:
 * storage1
 * storage2.
 
-toooffset hello súgóindex-értéket, akkor is adjon át egy értéket hello copyIndex() függvény. hello tooperform ismétlések száma továbbra is megadott hello másolási elem, de copyIndex hello értékének ellensúlyozza hello megadott értéket. Igen, a következő példa hello:
+Eltolás az értéket, adjon át egy értéket a copyIndex() függvény. Végrehajtásához az ismétlések száma továbbra is a másolási elem van megadva, de copyIndex értékének ellensúlyozza a megadott érték. Így, az alábbi példa:
 
 ```json
 "name": "[concat('storage', copyIndex(1))]",
@@ -79,7 +79,7 @@ Hozza létre ezeket a neveket:
 * storage2
 * storage3
 
-hello másolási művelet akkor hasznos, ha olyan tömb, mert az Ön is iterációt hello tömb egyes elemei. Használjon hello `length` hello tömb toospecify hello száma iteráció során, a függvény és `copyIndex` tooretrieve hello aktuális index hello tömbben. Igen, a következő példa hello:
+A másolási művelet akkor hasznos, ha olyan tömb, mert az Ön is iterációt a tömb egyes elemei. Használja a `length` a tömbben, az ismétlések számát adja meg a függvény és `copyIndex` az aktuális index a tömb beolvasása. Így, az alábbi példa:
 
 ```json
 "parameters": { 
@@ -112,9 +112,9 @@ Hozza létre ezeket a neveket:
 
 ## <a name="serial-copy"></a>Soros másolása
 
-Hello másolási elem toocreate használatakor erőforrástípus, erőforrás-kezelő, alapértelmezés szerint több példányát telepíti azokat a példányokat párhuzamosan. Azonban érdemes lehet toospecify adott hello feladatütemezési erőforrások telepítése. Például amikor frissíti az éles környezetben, érdemes lehet toostagger hello frissíti, hogy csak bizonyos számú egyszerre frissülnek.
+Használatakor a másolási elem az erőforrástípus, erőforrás-kezelő, alapértelmezés szerint több példány létrehozásához telepíti azokat a példányokat párhuzamosan. Azonban érdemes lehet adja meg, hogy az erőforrások telepítése feladatütemezési. Például egy éles környezetben frissítésekor érdemes szakaszosan, a frissítések csak egy adott értéket egyszerre frissülnek.
 
-A Resource Manager biztosít, amelyek lehetővé teszik, hogy tooserially tulajdonságok hello másolási elem több példányok telepítése. Hello másolási elem, állítson be `mode` túl**soros** és `batchSize` példányok toodeploy egyszerre toohello száma. A soros üzemmódban erőforrás-kezelő függőséget hoz létre a korábbi hello hurok-példány, nem indul el egy kötegelt hello előző köteg befejezéséig.
+A Resource Manager tulajdonságok biztosít, amelyek lehetővé teszik több példány Feladattervek telepítendő példány elemen. A másolási elem beállítása `mode` való **soros** és `batchSize` egyszerre telepítendő példányok száma. A soros üzemmódban erőforrás-kezelő függőséget hoz létre a korábbi példánya a hurok, nem indul el egy kötegben csak az előző köteg befejeződése után.
 
 ```json
 "copy": {
@@ -125,9 +125,9 @@ A Resource Manager biztosít, amelyek lehetővé teszik, hogy tooserially tulajd
 },
 ```
 
-hello mód tulajdonságot is fogad **párhuzamos**, amely hello alapértelmezett értéke.
+A mód tulajdonságot is fogad **párhuzamos**, az alapértelmezett érték.
 
-tootest soros másolási tényleges erőforrások létrehozása nélkül használja hello sablont, amely üres beágyazott sablonok telepíti a következő:
+Tényleges erőforrások létrehozása nélkül soros példány teszteléséhez a következő sablon használata, amely üres beágyazott sablonok telepíti:
 
 ```json
 {
@@ -170,11 +170,11 @@ tootest soros másolási tényleges erőforrások létrehozása nélkül haszná
 }
 ```
 
-Figyelje meg, hogy a beágyazott központi telepítések hello feldolgozása a hello üzembe helyezési előzményeket, sorrendben történik.
+A központi telepítés előzményei figyelje meg, hogy a beágyazott központi telepítések feldolgozása sorrendben.
 
 ![soros központi telepítés](./media/resource-group-create-multiple/serial-copy.png)
 
-Több reális forgatókönyvek esetében a következő példa hello beágyazott sablonból Linux virtuális gép egyszerre két példányt központilag telepíti:
+Modell forgatókönyvek esetében a következő példa egy beágyazott sablonból Linux virtuális gép egyszerre két példányt központilag telepíti:
 
 ```json
 {
@@ -184,19 +184,19 @@ Több reális forgatókönyvek esetében a következő példa hello beágyazott 
         "adminUsername": {
             "type": "string",
             "metadata": {
-                "description": "User name for hello Virtual Machine."
+                "description": "User name for the Virtual Machine."
             }
         },
         "adminPassword": {
             "type": "securestring",
             "metadata": {
-                "description": "Password for hello Virtual Machine."
+                "description": "Password for the Virtual Machine."
             }
         },
         "dnsLabelPrefix": {
             "type": "string",
             "metadata": {
-                "description": "Unique DNS Name for hello Public IP used tooaccess hello Virtual Machine."
+                "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
             }
         },
         "ubuntuOSVersion": {
@@ -209,7 +209,7 @@ Több reális forgatókönyvek esetében a következő példa hello beágyazott 
                 "16.04.0-LTS"
             ],
             "metadata": {
-                "description": "hello Ubuntu version for hello VM. This will pick a fully patched image of this given Ubuntu version."
+                "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version."
             }
         }
     },
@@ -258,13 +258,13 @@ Több reális forgatókönyvek esetében a következő példa hello beágyazott 
 
 ## <a name="property-iteration"></a>Tulajdonság iterációs
 
-toocreate több érték tartozik egy erőforrás-tulajdonságok hozzáadása egy `copy` tömb hello tulajdonságok elemben. A tömb olyan objektumokat tartalmaz, és minden objektum rendelkezik hello következő tulajdonságai:
+A tulajdonsághoz több érték létrehozására egy erőforrás hozzáadása egy `copy` tömb a Tulajdonságok elemben. A tömb olyan objektumokat tartalmaz, és az egyes objektumok tulajdonságai a következők:
 
-* név – hello hello tulajdonság toocreate a több értékei
-* megadott számú - hello értékek toocreate
-* bemenet – hello értékek tooassign toohello tulajdonságot tartalmazó objektum  
+* név - létrehozása több értéket a tulajdonság neve
+* szám - létrehozásához értékek száma
+* bemenet – olyan objektum, amely a tulajdonság hozzárendelése értékeket tartalmazza.  
 
-a következő példa azt mutatja meg hogyan hello tooapply `copy` toohello dataDisks tulajdonság egy virtuális gépen:
+A következő példa bemutatja, hogyan alkalmazandó `copy` dataDisks tulajdonság egy virtuális gépen:
 
 ```json
 {
@@ -285,9 +285,9 @@ a következő példa azt mutatja meg hogyan hello tooapply `copy` toohello dataD
       ...
 ```
 
-Figyelje meg, hogy használatakor `copyIndex` egy tulajdonság iterációs belül meg kell adnia hello iterációs hello nevét. Nincs tooprovide hello neve erőforrás iteráció használata esetén.
+Figyelje meg, hogy használatakor `copyIndex` egy tulajdonság iterációs belül meg kell adnia a iterációs nevét. Nem kell adnia a nevét, és erőforrás-ismétlés használatakor.
 
-Erőforrás-kezelő bővíti hello `copy` tömb üzembe helyezése során. hello neve hello tömb hello tulajdonság hello neve lesz. hello bemeneti értékek hello objektumtulajdonságokat válik. telepített hello sablon válik:
+Erőforrás-kezelő bontja ki a `copy` tömb üzembe helyezése során. A tömb neve lesz a tulajdonságnevet kell megadni. A bemeneti értékek lesz az objektum tulajdonságait. A telepített sablon válik:
 
 ```json
 {
@@ -316,7 +316,7 @@ Erőforrás-kezelő bővíti hello `copy` tömb üzembe helyezése során. hello
       ...
 ```
 
-Erőforrás- és tulajdonság iterációs együtt használható. Hivatkozás hello tulajdonság iterációs név szerint.
+Erőforrás- és tulajdonság iterációs együtt használható. Hivatkozás a tulajdonság iterációs név szerint.
 
 ```json
 {
@@ -350,7 +350,7 @@ Erőforrás- és tulajdonság iterációs együtt használható. Hivatkozás hel
 }
 ```
 
-Csak akkor szerepelhet egy másolás elem hello tulajdonságai között az egyes erőforrások. egy iteráció hurok egynél több tulajdonság toospecify több objektum hello másolási tömb határozza meg. Az egyes objektumok külön-külön többször is van. Például toocreate több példányát is hello `frontendIPConfigurations` tulajdonság és hello `loadBalancingRules` tulajdonság a terheléselosztóhoz, egyetlen másolatának elemben adja meg mindkét objektumok: 
+Csak akkor szerepelhet egy másolás elem tulajdonságai között az egyes erőforrások. Egy iteráció hurok egynél több tulajdonság megadásához ad meg a másolási tömb több objektum. Az egyes objektumok külön-külön többször is van. Ahhoz például, hogy hozzon létre több példányát is a `frontendIPConfigurations` tulajdonság és a `loadBalancingRules` tulajdonság a terheléselosztóhoz, egyetlen másolatának elemben adja meg mindkét objektumok: 
 
 ```json
 {
@@ -398,7 +398,7 @@ Csak akkor szerepelhet egy másolás elem hello tulajdonságai között az egyes
 ```
 
 ## <a name="depend-on-resources-in-a-loop"></a>Ismétlődő erőforrásokat függ
-Megadja, hogy egy erőforrás használatával központilag telepítenek után egy másik erőforrás hello `dependsOn` elemet. toodeploy egy erőforrást, amelyek elengedhetetlenek az hello erőforrások gyűjteménye, ismétlődő, adja meg a hello másolási ciklust hello dependsOn elemben hello nevét. hello a következő példa bemutatja, hogyan toodeploy üzembe helyezése előtt három tárfiókok hello virtuális gép. hello teljes virtuálisgép-definíció nem jelenik meg. Figyelje meg, hogy hello másolási elemnek túl FormatName`storagecopy` és hello dependsOn elem a virtuális gépek hello is értéke túl`storagecopy`.
+Megadja, hogy egy erőforrás által központilag telepített után egy másik erőforrás használja a `dependsOn` elemet. Egy erőforrást, amelyek elengedhetetlenek az ismétlődő források központi telepítéséhez adja meg a másolási ciklust a dependsOn elem nevét. A következő példa bemutatja, hogyan három storage-fiókok telepítése a virtuális gép üzembe helyezése előtt. A teljes virtuálisgép-definíció nem jelenik meg. Figyelje meg, hogy rendelkezik-e a másolási elem name tulajdonsága `storagecopy` , és a dependsOn elem a virtuális gépek is `storagecopy`.
 
 ```json
 {
@@ -434,7 +434,7 @@ Megadja, hogy egy erőforrás használatával központilag telepítenek után eg
 ```
 
 ## <a name="create-multiple-instances-of-a-child-resource"></a>Hozzon létre egy gyermek erőforrás több példánya
-A másolási ciklust a gyermek-erőforrások esetében nem használható. a erőforrása, amely általában meghatározni, több példánya ágyazva egy másik erőforrás toocreate, kell hozzon létre, hogy az erőforrás egy legfelső szintű erőforrás. Hello kapcsolatban van-e hello szülő erőforrás hello típusa és neve tulajdonságainál megadhatja.
+A másolási ciklust a gyermek-erőforrások esetében nem használható. Hozzon létre egy erőforrást, amely általában határozza meg, mint a beágyazott belül egy másik erőforrás több példánya, ehelyett hozzon létre, hogy erőforrást egy legfelső szintű erőforrás. Megadhatja a kapcsolat a szülő erőforrás típusa és neve tulajdonságai.
 
 Tegyük fel, hogy egy adat-előállító belül gyermek erőforrásként általában meghatározása a DataSet adatkészlet.
 
@@ -456,11 +456,11 @@ Tegyük fel, hogy egy adat-előállító belül gyermek erőforrásként által�
 }]
 ```
 
-toocreate adatkészletek, több példánya helyezze hello adat-előállító kívül. hello dataset hello ugyanaz, mint hello adat-előállító szinten kell lennie, de továbbra is hello adat-előállító gyermek erőforrása. Megőrizheti a hello kapcsolat adatkészlet és adat-előállító hello típusa és neve tulajdonságai között. Mivel már nem lehet következtetni hello sablonban helyéről, meg kell adnia teljesen minősített hello típus hello formátumban: `{resource-provider-namespace}/{parent-resource-type}/{child-resource-type}`.
+Adatkészletek több példány létrehozásához helyezze az adat-előállítóban kívül. A dataset adat-előállító ugyanazon a szinten kell lennie, de továbbra is az adat-előállítóban gyermek erőforrása. Megőrizheti a adatkészlet és adat-előállító típusa és neve tulajdonságai közötti kapcsolat. Óta már nem lehet következtetni a sablonban helyéről, meg kell adnia a teljesen minősített típus a formátumban: `{resource-provider-namespace}/{parent-resource-type}/{child-resource-type}`.
 
-egy szülő-gyermek kapcsolatban hello adat-előállító példányának tooestablish nevezze el a hello adatkészlet hello szülő erőforrás nevét. Hello formátum használata: `{parent-resource-name}/{child-resource-name}`.  
+Az adat-előállítóban példányának a szülő-gyermek kapcsolat létrehozására, nevezze el a készlet, amely a szülő erőforrás nevét tartalmazza. A formátumot használja: `{parent-resource-name}/{child-resource-name}`.  
 
-a következő példa azt mutatja be hello megvalósítási hello:
+Az alábbi példa megvalósítását mutatja be:
 
 ```json
 "resources": [
@@ -485,7 +485,7 @@ a következő példa azt mutatja be hello megvalósítási hello:
 
 ## <a name="conditionally-deploy-resource"></a>Erőforrás feltételesen telepítése
 
-toospecify akár egy erőforráshoz van telepítve, használja az hello `condition` elemet. hello érték ehhez az elemhez oldja fel a tootrue vagy HAMIS eredményt ad. Hello értéke true, ha telepítve van a hello erőforrás. Ha hello értéke HAMIS, hello erőforrás nincs telepítve. Például toospecify egy új tárfiókot van telepítve, vagy egy meglévő tárfiók használata esetén használja:
+Adja meg, hogy telepítve van-e a erőforrás, a `condition` elemet. Ez az elem értéke IGAZ vagy hamis oldja fel. Értéke true, ha az erőforrás van telepítve. Ha értéke HAMIS, az erőforrás nincs telepítve. Például adja meg, hogy egy új tárfiókot telepítve van, vagy egy meglévő tárfiókot használja, használja:
 
 ```json
 {
@@ -504,9 +504,9 @@ toospecify akár egy erőforráshoz van telepítve, használja az hello `conditi
 
 Például egy új vagy meglévő erőforrást használ, tekintse meg a [új vagy meglévő feltétel sablon](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResources.NewOrExisting.json).
 
-Például a jelszóval vagy SSH-kulcs toodeploy virtuális gép, [felhasználónév és SSH feltétel sablon](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResourcesUsernameOrSsh.json).
+Például egy jelszó vagy SSH-kulcs használatával a virtuális gép telepítése, lásd: [felhasználónév és SSH feltétel sablon](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResourcesUsernameOrSsh.json).
 
 ## <a name="next-steps"></a>Következő lépések
-* Ha azt szeretné, hogy a sablon hello szakaszai toolearn, [Azure Resource Manager sablonok készítése](resource-group-authoring-templates.md).
-* toolearn hogyan toodeploy a sablont, lásd: [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).
+* Ha azt szeretné, további információt a szakaszok egy sablon, lásd: [Azure Resource Manager sablonok készítése](resource-group-authoring-templates.md).
+* A sablon telepítéséhez, lásd: [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).
 

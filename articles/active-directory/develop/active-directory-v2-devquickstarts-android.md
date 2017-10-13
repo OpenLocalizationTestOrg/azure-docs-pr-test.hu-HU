@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Active Directory v2.0 Android-alkalmazás |} Microsoft Docs"
-description: "Android-alkalmazás, mely aláírja a felhasználók személyes Microsoft-fiók és a munkahelyi vagy iskolai fiókok és hívások toobuild hogyan Graph API hello harmadik féltől származó könyvtárak használatával."
+title: "Az Azure Active Directory v2.0 Android-alkalmazás |} Microsoft Docs"
+description: "Megtudhatja, hogyan hozhat létre Android-alkalmazás, mely aláírja a felhasználók személyes Microsoft-fiók és a munkahelyi vagy iskolai fiókok és a Graph API hívások harmadik féltől származó könyvtárak használatával."
 services: active-directory
 documentationcenter: 
 author: danieldobalian
@@ -15,58 +15,58 @@ ms.topic: article
 ms.date: 05/07/2017
 ms.author: dadobali
 ms.custom: aaddev
-ms.openlocfilehash: 1dd40bd3bcea28c629abce09abaed66b38774162
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c0a5a818c61f7af7ff04bf890b54e8364f3b21b1
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="add-sign-in-tooan-android-app-using-a-third-party-library-with-graph-api-using-hello-v20-endpoint"></a>Egy külső könyvtár használata a Graph API segítségével hello v2.0-végponttól bejelentkezési tooan Android alkalmazás hozzáadása
-hello Microsoft identitásplatformmal például OAuth2 és az OpenID Connect nyitott szabványok használja. A fejlesztők a kívánják a szolgáltatások toointegrate függvénytárat. toohelp fejlesztők más könyvtárakkal a platformot használ, azt korábban írt néhány forgatókönyvek például a egy toodemonstrate hogyan tooconfigure külső szalagtárak tooconnect toohello Microsoft identitásplatformmal. A legtöbb tárak, amelyek megvalósítják az [hello RFC6749 OAuth2 spec](https://tools.ietf.org/html/rfc6749) toohello Microsoft identitásplatformmal kapcsolódhatnak.
+# <a name="add-sign-in-to-an-android-app-using-a-third-party-library-with-graph-api-using-the-v20-endpoint"></a>Bejelentkezés hozzáadása egy külső könyvtár használatával Graph API-t használ a v2.0-végpontra Android-alkalmazás
+A Microsoft identitásplatformja nyílt szabványokat, többek között OAuth2-t és OpenID Connectet használ. A fejlesztők a függvénytárat, hogy integrálni szeretne a szolgáltatások. Segítségével a fejlesztők a platformot használja a többi könyvtárak, azt korábban írt bemutatják, hogyan lehet kapcsolódni a Microsoft identity platform külső szalagtárak konfigurálása a jelen szoftverhez hasonló néhány forgatókönyvek. A legtöbb tárak, amelyek megvalósítják az [a RFC6749 OAuth2 spec](https://tools.ietf.org/html/rfc6749) csatlakozni tud-e a Microsoft identity platform.
 
-Ez a forgatókönyv létrehozó hello alkalmazást, a felhasználók tootheir szervezet bejelentkezhet és majd keresse meg a magukat a szervezetek hello Graph API segítségével.
+Ez a forgatókönyv hoz létre az alkalmazással felhasználók jelentkezzen be a szervezet és majd keresse meg a magukat a szervezetek a Graph API használatával.
 
-Ha új tooOAuth2 vagy az OpenID Connect, ez a minta konfigurálási nem tehetik logika tooyou. Azt javasoljuk, hogy olvassa el [2.0 protokoll - OAuth 2.0 hitelesítési kód Flow](active-directory-v2-protocols-oauth-code.md) a háttérben.
-
-> [!NOTE]
-> Egyes szolgáltatások, amelyek rendelkeznek egy kifejezés hello OAuth2 vagy OpenID Connect szabványok, például a feltételes hozzáférés és a Csoportházirend kezelése Intune-ban, a platform szükség akkor toouse a Microsoft Azure identitáskezelési szalagtárak nyílt forráskódú.
-> 
-> 
-
-hello v2.0-végpontra nem támogatja az összes Azure Active Directory forgatókönyvek és funkciók.
+Ha most ismerkedik az OAuth2 vagy az OpenID Connect, ez a minta konfigurálási nem célszerű Önnek. Azt javasoljuk, hogy olvassa el [2.0 protokoll - OAuth 2.0 hitelesítési kód Flow](active-directory-v2-protocols-oauth-code.md) a háttérben.
 
 > [!NOTE]
-> toodetermine használatát hello v2.0-végpontra, olvassa el [v2.0 korlátozások](active-directory-v2-limitations.md).
+> Egyes szolgáltatások, amelyek rendelkeznek egy kifejezést a OAuth2 vagy az OpenID Connect szabványok, például a feltételes hozzáférés és a Csoportházirend kezelése Intune-ban, a platform kell használni a Microsoft Azure identitáskezelési szalagtárak nyílt forráskódú.
 > 
 > 
 
-## <a name="download-hello-code-from-github"></a>A Githubból hello kód letöltése
-az oktatóanyag kódjának hello kezelt [a Githubon](https://github.com/Azure-Samples/active-directory-android-native-oidcandroidlib-v2).  toofollow mellett, akkor [töltse le a .zip hello alkalmazás vázát](https://github.com/Azure-Samples/active-directory-android-native-oidcandroidlib-v2/archive/skeleton.zip) vagy a Klónozás hello vázat:
+A v2.0-végpontra nem támogatja az összes Azure Active Directory forgatókönyvek és funkciók.
+
+> [!NOTE]
+> Annak meghatározásához, ha a v2.0-végponttal kell használnia, olvassa el [v2.0 korlátozások](active-directory-v2-limitations.md).
+> 
+> 
+
+## <a name="download-the-code-from-github"></a>Töltse le a kódot a Githubról
+Az oktatóanyag kódjának [karbantartása a GitHubon történik](https://github.com/Azure-Samples/active-directory-android-native-oidcandroidlib-v2).  Követéséhez is [töltse le az alkalmazás vázát egy .zip](https://github.com/Azure-Samples/active-directory-android-native-oidcandroidlib-v2/archive/skeleton.zip) vagy klónozza a vázat:
 
 ```
 git clone --branch skeleton git@github.com:Azure-Samples/active-directory-android-native-oidcandroidlib-v2.git
 ```
 
-Csak is letöltheti hello mintát, és rögtön használatba:
+A minta csak is tölthetik le, és rögtön használatba:
 
 ```
 git@github.com:Azure-Samples/active-directory-android-native-oidcandroidlib-v2.git
 ```
 
 ## <a name="register-an-app"></a>Alkalmazás regisztrálása
-Hozzon létre egy új alkalmazást hello [alkalmazásregisztrációs portálra](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), vagy hajtsa végre a részletes lépésekről hello [hogyan tooregister egy alkalmazást a v2.0-végponttól hello](active-directory-v2-app-registration.md).  Győződjön meg arról, hogy:
+Hozzon létre egy új alkalmazást a [alkalmazásregisztrációs portálra](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), vagy részletes kövesse a [egy alkalmazás regisztrálása a v2.0-végponttal](active-directory-v2-app-registration.md).  Győződjön meg arról, hogy:
 
-* Másolás hello **alkalmazásazonosító** , amely hozzárendelt tooyour app, mert hamarosan kell.
-* Adja hozzá a hello **Mobile** platform az alkalmazásra vonatkozóan.
+* Másolás a **alkalmazásazonosító** , amely hozzá van rendelve az alkalmazás mivel hamarosan lesz szükség.
+* Adja hozzá a **Mobile** platform az alkalmazásra vonatkozóan.
 
-> Megjegyzés: hello alkalmazásregisztrációs portálra biztosít egy **átirányítási URI-** érték. Azonban ez a példa kell használnia hello alapértelmezett értékének `https://login.microsoftonline.com/common/oauth2/nativeclient`.
+> Megjegyzés: Az alkalmazásregisztrációs portálra biztosít egy **átirányítási URI-** érték. Azonban ez a példa kell használnia az alapértelmezett érték `https://login.microsoftonline.com/common/oauth2/nativeclient`.
 > 
 > 
 
-## <a name="download-hello-nxoauth2-third-party-library-and-create-a-workspace"></a>Töltse le a hello NXOAuth2 külső könyvtárban, és egy munkaterület létrehozása
-A forgatókönyv a Githubból, amely alapján hello Google kódját OpenID Connect OAuth2 könyvtár OIDCAndroidLib hello fogja használni. Hello natív alkalmazásprofil valósítja meg, és támogatja a hello engedélyezési végpont hello felhasználó. Az alábbiakban összes hello, konfigurálnia kell toointegrate hello Microsoft identitásplatformmal együttműködve.
+## <a name="download-the-nxoauth2-third-party-library-and-create-a-workspace"></a>Töltse le a NXOAuth2 külső könyvtárban, és egy munkaterület létrehozása
+A forgatókönyv a Githubból, amelyek alapján a Google OpenID Connect kódját OAuth2 könyvtár OIDCAndroidLib fogja használni. A natív alkalmazásprofil valósítja meg, és a felhasználó az engedélyezési végpont támogatja. Az alábbiakban az összes, a Microsoft identitásplatformmal együttműködve integrálni kell.
 
-Hello OIDCAndroidLib tárház tooyour számítógép klónozása.
+A számítógépre a OIDCAndroidLib tárház klónozása.
 
 ```
 git@github.com:kalemontes/OIDCAndroidLib.git
@@ -75,69 +75,69 @@ git@github.com:kalemontes/OIDCAndroidLib.git
 ![androidStudio](../media/active-directory-android-native-oidcandroidlib-v2/emotes-url.png)
 
 ## <a name="set-up-your-android-studio-environment"></a>Az Android Studio környezet beállítása
-1. Hozzon létre egy új Android Studio-projektet, és fogadja el hello alapértelmezett hello varázslóban.
+1. Hozzon létre egy új Android Studio-projektet, és fogadja el az alapértelmezett beállításokat a varázslóban.
    
     ![Az Android Studio új projekt létrehozása](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample1.PNG)
    
     ![Cél Android-eszközök](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample2.PNG)
    
-    ![Egy tevékenység toomobile hozzáadása](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample3.PNG)
-2. tooset be a projekt modulok áthelyezése hello klónozott tárház toohello projekt helyére. Hello projekt is létrehozhat, és ezután klónozza közvetlenül toohello projekt helyére.
+    ![Adjon hozzá olyan tevékenységet Mobile](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample3.PNG)
+2. A projekt modulok beállításához helyezze át a klónozott tárház a projekt helyére. A projekt is létrehozhat, és majd klónozza a projekt helyére a közvetlenül.
    
     ![Projekt modulok](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample4_1.PNG)
-3. Nyissa meg a hello modulok Projektbeállítások hello helyi menü használatával vagy hello Ctrl + Alt + Maj + S parancsikon használatával.
+3. Nyissa meg a projekt modulok beállításait, a helyi menü használatával vagy a Ctrl + Alt + Maj + S parancsikon használatával.
    
     ![Modulok Projektbeállítások](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample4.PNG)
-4. Eltávolít hello alapértelmezett app modult, mivel csak hello Projektbeállítások tároló.
+4. Távolítsa el az alapértelmezett app modul, mivel csak a tároló Projektbeállítások.
    
-    ![hello alapértelmezett app modul](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample5.PNG)
-5. Modul importálása hello klónozott tárház toohello aktuális projektben.
+    ![Az alapértelmezett app modul](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample5.PNG)
+5. Modulok importálása a klónozott tárház az aktuális projektben.
    
     ![Projekt importálása a gradle-lel](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample6.PNG) ![új modul lap](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample7.PNG)
-6. Ismételje meg ezeket a lépéseket hello `oidlib-sample` modul.
-7. Hello oidclib függőség a hello ellenőrzése `oidlib-sample` modul.
+6. Ismételje meg ezeket a lépéseket a `oidlib-sample` modul.
+7. A oidclib függőségek ellenőrzése a `oidlib-sample` modul.
    
-    ![oidclib függőségek hello oidlib-mintavételi modul](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample8.PNG)
+    ![a oidlib-mintavételi modul oidclib függőségek](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample8.PNG)
 8. Kattintson a **OK** és várjon, amíg a gradle-szinkronizálás.
    
     A settings.gradle hasonlóan kell kinéznie:
    
     ![Képernyőkép a settings.gradle](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample8_1.PNG)
-9. Build hello sample app toomake meg arról, hogy megfelelően fut hello minta.
+9. Hozza létre a minta alkalmazását, és győződjön meg arról, hogy megfelelően fut a minta.
    
-    Ön nem fogja tudni toouse Ez az Azure Active Directoryval még. Szükség lesz tooconfigure egyes végpontok először. Ez a tooensure nem rendelkezik az Android Studio problémák előtt először hello mintaalkalmazás testreszabása.
-10. Létrehozása és futtatása `oidlib-sample` Android Studio hello célként.
+    Sem lesz még használhatja az Azure Active Directoryban. Egyes végpontok először konfigurálni kell. Ez azért így az Android Studio problémák nem rendelkezik, először a mintaalkalmazás testreszabása előtt.
+10. Létrehozása és futtatása `oidlib-sample` Android Studio céljaként.
     
     ![A minta oidlib build folyamatban](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample9.png)
-11. Törölje a hello `app ` címtárhoz, amely hagyták, amikor hello modul hello projektből eltávolította, mert a biztonsági Android Studio nem törli.
+11. Törölje a `app ` címtárhoz, amely hagyták, ha a modul a projektből eltávolította, mert a biztonsági Android Studio nem törli.
     
-    ![Hello alkalmazáskönyvtárban tartalmazó fájlstruktúra](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample12.PNG)
-12. Nyissa meg hello **szerkesztése konfigurációk** menü tooremove futtatása hello konfigurációs hello modul hello projekt való eltávolításakor is balra.
+    ![Az alkalmazás könyvtárát tartalmazó fájlstruktúra](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample12.PNG)
+12. Nyissa meg a **szerkesztése konfigurációk** menüből, hogy távolítsa el a futtatási konfigurációját, hogy a modul a projekt való eltávolításakor is balra.
     
     ![Konfigurációk menü szerkesztése](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample10.PNG)
     ![konfigurációs alkalmazás futtatása](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample11.PNG)
 
-## <a name="configure-hello-endpoints-of-hello-sample"></a>Hello minta hello végpontok konfigurálása
-Most, hogy hello `oidlib-sample` fut-e., most szerkesztése egyes végpontok tooget a munkát az Azure Active Directoryban.
+## <a name="configure-the-endpoints-of-the-sample"></a>A minta végpontok konfigurálása
+Most, hogy a `oidlib-sample` fut-e., most szerkesztése egyes végpontok a működéséhez az Azure Active Directoryban.
 
-### <a name="configure-your-client-by-editing-hello-oidcclientconfxml-file"></a>Az ügyfél konfigurálása hello oidc_clientconf.xml fájl szerkesztésével
-1. OAuth2 adatfolyamok csak tooget egy tokent használ, és hello Graph API hívása, mert hello ügyfél toodo OAuth2 csak beállítása Egy újabb példa OIDC származnak.
+### <a name="configure-your-client-by-editing-the-oidcclientconfxml-file"></a>Az ügyfél konfigurálása a oidc_clientconf.xml fájl szerkesztésével
+1. Mivel csak a szolgáltatáshitelesítést egy token és a Graph API hívása OAuth2 adatfolyamok használ, állítsa be az ügyfelet az OAuth2 csak. Egy újabb példa OIDC származnak.
    
     ```xml
         <bool name="oidc_oauth2only">true</bool>
     ```
-2. Az ügyfél-azonosító kapott hello regisztrációs portál konfigurálása
+2. Az ügyfél-azonosító, hogy a regisztrációs portál konfigurálása
    
     ```xml
         <string name="oidc_clientId">86172f9d-a1ae-4348-aafa-7b3e5d1b36f5</string>
         <string name="oidc_clientSecret"></string>
     ```
-3. Konfigurálja az átirányítási URI-t egy hello alatt.
+3. Konfigurálja az átirányítási URI-t a egyet az alábbi.
    
     ```xml
         <string name="oidc_redirectUrl">https://login.microsoftonline.com/common/oauth2/nativeclient</string>
     ```
-4. A hatókörök, hogy meg kell a rendelés tooaccess hello Graph API konfigurálása.
+4. A hatókörök, amelyekre szüksége van ahhoz, hogy hozzáférhessen a Graph API konfigurálása.
    
     ```xml
         <string-array name="oidc_scopes">
@@ -147,13 +147,13 @@ Most, hogy hello `oidlib-sample` fut-e., most szerkesztése egyes végpontok too
         </string-array>
     ```
 
-Hello `User.Read` értéket `oidc_scopes` lehetővé teszi, hogy tooread hello alapvető profiladataihoz hello bejelentkezett felhasználó.
-Minden hello elérhető hatókörök kapcsolatos részletesebb [Microsoft Graph-engedélyhatókörök](https://graph.microsoft.io/docs/authorization/permission_scopes).
+A `User.Read` értéket `oidc_scopes` lehetővé teszi a felhasználó által aláírt az alapvető profil olvasása.
+Ön tudhat meg többet a rendelkezésre álló összes hatókör [Microsoft Graph-engedélyhatókörök](https://graph.microsoft.io/docs/authorization/permission_scopes).
 
 Ha azt szeretné magyarázatokat kapcsolatos `openid` vagy `offline_access` , az OpenID Connect hatókörök, lásd: [2.0 protokoll - OAuth 2.0 hitelesítési kód Flow](active-directory-v2-protocols-oauth-code.md).
 
-### <a name="configure-your-client-endpoints-by-editing-hello-oidcendpointsxml-file"></a>Az ügyfél-végpontok hello oidc_endpoints.xml fájl szerkesztésével konfigurálása
-* Nyissa meg hello `oidc_endpoints.xml` , és győződjön meg a következő módosításokat hello:
+### <a name="configure-your-client-endpoints-by-editing-the-oidcendpointsxml-file"></a>A oidc_endpoints.xml fájl szerkesztésével ügyfél végpontok konfigurálása
+* Nyissa meg a `oidc_endpoints.xml` fájlt, és hajtsa végre a következő módosításokat:
   
     ```xml
     <!-- Stores OpenID Connect provider endpoints. -->
@@ -168,12 +168,12 @@ Ha azt szeretné magyarázatokat kapcsolatos `openid` vagy `offline_access` , az
 Ezeket a végpontokat kell soha ne módosuljanak OAuth2 protokoll használatakor.
 
 > [!NOTE]
-> a végpontok hello `userInfoEndpoint` és `revocationEndpoint` jelenleg nem támogatottak az Azure Active Directoryban. Ha nem adja meg ezen a hello alapértékként example.com, fog emlékezteti, hogy nincsenek elérhető hello mintában :-)
+> A végpontokat a `userInfoEndpoint` és `revocationEndpoint` jelenleg nem támogatottak az Azure Active Directoryban. Ha nem adja meg ezeket az alapértelmezett example.com értékkel, fog emlékezteti, hogy nincsenek elérhető minta :-)
 > 
 > 
 
 ## <a name="configure-a-graph-api-call"></a>A Graph API-hívás konfigurálása
-* Nyissa meg hello `HomeActivity.java` , és győződjön meg a következő módosításokat hello:
+* Nyissa meg a `HomeActivity.java` fájlt, és hajtsa végre a következő módosításokat:
   
     ```Java
        //TODO: set your protected resource url
@@ -182,10 +182,10 @@ Ezeket a végpontokat kell soha ne módosuljanak OAuth2 protokoll használatakor
 
 Egy egyszerű Graph API-hívás itt az adatait adja vissza.
 
-Most már az összes hello módosítását, hogy kell-e toodo. Futtassa a hello `oidlib-sample` alkalmazáshoz, majd kattintson **bejelentkezés**.
+Most már az összes módosítást, végre kell hajtani. Futtassa a `oidlib-sample` alkalmazáshoz, majd kattintson **bejelentkezés**.
 
-Már sikeresen hitelesítése után válassza ki a hello **védett erőforrás kérelem** tootest gombra a hívás toohello Graph API-val.
+Már sikeresen hitelesítése után válassza ki a **védett erőforrás kérelem** gombra kattintva tesztelheti a Graph API hívása.
 
 ## <a name="get-security-updates-for-our-product"></a>A termék biztonsági frissítések beszerzése
-Javasoljuk, biztonsági incidensek tooget értesítések hello felkeresésével [biztonsági TechCenter](https://technet.microsoft.com/security/dd252948) és előfizetés tooSecurity tanácsadói riasztásokra.
+Javasoljuk, hogy a biztonsági események szóló értesítések lekérése látogasson el a [biztonsági TechCenter](https://technet.microsoft.com/security/dd252948) és fizessen elő a biztonsági tanácsadói riasztásokra.
 

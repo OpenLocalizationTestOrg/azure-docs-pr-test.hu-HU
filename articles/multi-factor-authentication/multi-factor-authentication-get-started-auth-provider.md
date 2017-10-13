@@ -1,6 +1,6 @@
 ---
-title: "aaaGet lépések az Azure többtényezős hitelesítésszolgáltató |} Microsoft Docs"
-description: Ismerje meg, hogy az Azure multi-factor Auth Provider toocreate.
+title: "Első lépések az Azure Multi-Factor Auth szolgáltatóval | Microsoft Docs"
+description: "Megtudhatja, hogyan hozhat létre Azure Multi-Factor Auth szolgáltatót."
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -15,38 +15,38 @@ ms.date: 07/28/2017
 ms.author: kgremban
 ms.reviewer: yossib
 ms.custom: it-pro
-ms.openlocfilehash: 00ea967a80b43baff38c1de586c54d95c9abac2c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ed14a5a762bab20a1ccde699504dd21f25009b52
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="getting-started-with-an-azure-multi-factor-auth-provider"></a>Első lépések az Azure Multi-Factor Auth szolgáltatóval
-A kétlépéses ellenőrzés alapértelmezés szerint elérhető az Azure Active Directory- és Office 365-felhasználókkal rendelkező globális adminisztrátorok számára. Azonban ha tootake előnyeit [speciális szolgáltatások](multi-factor-authentication-whats-next.md) majd hello teljes változatát, az Azure multi-factor Authentication (MFA) kell vásárolnia.
+A kétlépéses ellenőrzés alapértelmezés szerint elérhető az Azure Active Directory- és Office 365-felhasználókkal rendelkező globális adminisztrátorok számára. De ha ki szeretné használni a [speciális szolgáltatásokat](multi-factor-authentication-whats-next.md), az Azure Multi-Factor Authentication (MFA) teljes verzióját meg kell vásárolnia.
 
-Az Azure multi-factor Auth Provider használt tootake hello teljes változatát, az Azure MFA által nyújtott szolgáltatások előnyeit. Ez olyan felhasználóknak készült, akik **nem rendelkeznek Azure MFA, Azure AD Prémium vagy Enterprise Mobility + Security (EMS) licenccel**.  Az Azure MFA, prémium szintű Azure AD és az EMS tartalmazza hello teljes verzióját az Azure MFA alapértelmezés szerint. Ha rendelkezik licencekkel, akkor nincs szüksége Azure Multi-Factor Auth szolgáltatóra.
+Az Azure Multi-Factor Auth szolgáltatókkal kihasználhatja az Azure MFA teljes verziója által nyújtott szolgáltatásokat. Ez olyan felhasználóknak készült, akik **nem rendelkeznek Azure MFA, Azure AD Prémium vagy Enterprise Mobility + Security (EMS) licenccel**.  Az Azure MFA, az Azure AD Prémium és az EMS alapértelmezés szerint tartalmazza az Azure MFA teljes verzióját. Ha rendelkezik licencekkel, akkor nincs szüksége Azure Multi-Factor Auth szolgáltatóra.
 
-Az Azure multi-factor Auth provider szükséges toodownload hello SDK.
+Az SDK letöltéséhez egy Azure Multi-Factor Auth szolgáltató szükséges.
 
 > [!IMPORTANT]
-> toodownload hello SDK, kell, hogy az Azure multi-factor Auth Provider toocreate akkor is, ha az Azure MFA-, prémium szintű, vagy az EMS licenccel rendelkezik.  Hozzon létre egy Azure többtényezős hitelesítésszolgáltató erre a célra, és már rendelkezik licenccel, ha kell, hogy toocreate hello szolgáltató a hello **Per Enabled User** modell. Ezt követően kapcsolja hello szolgáltató toohello tartalmazó könyvtár hello Azure MFA, a prémium szintű Azure AD vagy az EMS-licenceket. Ez a konfiguráció biztosítja, hogy Ön csak számlázása Amennyiben több egyedi felhasználók hajt végre a kétlépéses ellenőrzést, mint amennyit vásárolt licencek hello száma.
+> Az SDK letöltéséhez létre kell hoznia egy Azure Multi-Factor Auth szolgáltatót, akkor is, ha rendelkezik Azure MFA, AAD Premium vagy EMS licencekkel.  Ha Azure Multi-Factor Auth szolgáltatót hoz létre erre a célra, és már rendelkezik licencekkel, ügyeljen arra, hogy a szolgáltatót az **Engedélyezett felhasználónként** modellel hozza létre. Ezt követően kapcsolja a szolgáltatót az Azure MFA, Azure AD Premium vagy EMS licenceket tartalmazó könyvtárhoz. Ezzel a konfigurációval biztosíthatja, hogy csak akkor számlázzunk Önnek, amikor több egyedi felhasználója végez kétlépéses ellenőrzést, mint ahány licenccel rendelkezik.
 
 ## <a name="what-is-an-azure-multi-factor-auth-provider"></a>Mi az az Azure Multi-Factor hitelesítési szolgáltató?
 
-Azure multi-factor Authentication szempontjából nincs licencek, ha a felhasználók számára is létrehozhat egy hitelesítési szolgáltató toorequire kétlépéses ellenőrzést. Ha egy egyéni alkalmazást fejleszt, és az Azure MFA tooenable, hozzon létre egy hitelesítésszolgáltató és [hello SDK letöltése](multi-factor-authentication-sdk.md).
+Ha nem rendelkezik licencekkel az Azure Multi-Factor Authentication szolgáltatáshoz, akkor létrehozhat egy hitelesítési szolgáltatót, hogy megkövetelje a felhasználóktól a kétlépéses ellenőrzést. Ha egyéni alkalmazást fejleszt, és szeretné engedélyezni az Azure MFA-t, hozzon létre egy hitelesítési szolgáltatót, és [töltse le az SDK-t](multi-factor-authentication-sdk.md).
 
-Hitelesítésszolgáltatók két típusa van, és hello különbséget körül hogyan az Azure-előfizetés fel van töltve. hello hitelesítési beállítás kiszámítja a bérlő hajt végre a hónap hitelesítések hello számát. Ez a lehetőség akkor a legjobb, ha néhány felhasználó csak alkalmanként végez hitelesítést, mint amikor az MFA-ra egyéni alkalmazáshoz van szüksége. hello felhasználói beállítás kiszámítja az Ön bérelt szolgáltatásának használhatják, akik a kétlépéses ellenőrzést végrehajtani egy hónap hello számát. Ez a beállítás akkor ajánlott, ha néhány licenccel rendelkező felhasználók rendelkezik, de a licencelési korlátozások túl tooextend MFA toomore felhasználók kell.
+A hitelesítésszolgáltatóknak két típusa van, és aszerint lehet megkülönböztetni őket, hogyan történik az Azure-előfizetési díjának a számítása. A hitelesítésenkénti lehetőség választásakor a rendszer kiszámítja a bérlőn havonta végzett hitelesítések számát. Ez a lehetőség akkor a legjobb, ha néhány felhasználó csak alkalmanként végez hitelesítést, mint amikor az MFA-ra egyéni alkalmazáshoz van szüksége. A felhasználónkénti lehetőség választásakor a rendszer kiszámítja a bérlőn egy hónap alatt kétlépéses ellenőrzést végző egyének számát. Ez a lehetőség akkor a legjobb, ha van néhány licenccel rendelkező felhasználója, de ki kell terjesztenie az MFA-t a licenckorlátján túl több felhasználóra.
 
 ## <a name="create-a-multi-factor-auth-provider"></a>Multi-Factor Auth szolgáltató létrehozása
-A következő lépéseket toocreate az Azure multi-factor Auth Provider hello használata. Az Azure többtényezős hitelesítésszolgáltatók csak a klasszikus Azure portálon hello hozhatók létre. Ha nem tud bejelentkezni a klasszikus Azure portálon toohello, ellenőrizze a toomake arról, hogy az Azure AD-bérlő [Azure-előfizetéssel társított](../active-directory/active-directory-how-subscriptions-associated-directory.md). 
+A következő lépésekkel hozhat létre Azure Multi-Factor Auth szolgáltatót. Az Azure Multi-Factor Auth szolgáltatók csak a klasszikus Azure portálon hozhatók létre. Ha nem tud bejelentkezni a klasszikus Azure portálra, ellenőrizze, hogy az Azure AD-bérlője [társítva van-e egy Azure-előfizetéssel](../active-directory/active-directory-how-subscriptions-associated-directory.md). 
 
-1. Jelentkezzen be toohello [a klasszikus Azure portálon](https://manage.windowsazure.com) rendszergazdaként.
-2. Hello bal oldalon válassza ki a **Active Directory**.
-3. Hello Active Directory lap hello lap tetején jelölje be a **többtényezős hitelesítési szolgáltatók**.
+1. Jelentkezzen be a [klasszikus Azure portálra](https://manage.windowsazure.com) rendszergazdaként.
+2. A bal oldalon válassza az **Active Directory** elemet.
+3. Az Active Directory lap tetején válassza a **Multi-Factor Authentication szolgáltatók** elemet.
    
    ![MFA-szolgáltató létrehozása](./media/multi-factor-authentication-get-started-auth-provider/authprovider1.png)
 
-4. Hello alul kattintson **új**.
+4. Alul kattintson az **Új** elemre.
    
    ![MFA-szolgáltató létrehozása](./media/multi-factor-authentication-get-started-auth-provider/authprovider2.png)
 
@@ -58,31 +58,31 @@ A következő lépéseket toocreate az Azure multi-factor Auth Provider hello ha
    
    ![MFA-szolgáltató létrehozása](./media/multi-factor-authentication-get-started-auth-provider/authprovider4.png)
 
-7. Adja meg a következő mezők hello, és válassza ki **létrehozása**.
-   1. **Név** – hello hello többtényezős hitelesítésszolgáltató neve.
+7. Töltse ki az alábbi mezőket, és válassza a **Létrehozás** lehetőséget.
+   1. **Név** – A Multi-Factor Auth szolgáltató neve.
    2. **Használati modell** – Válassza az alábbi két lehetőség egyikét:
       * Hitelesítésenként – Hitelesítésenként díjat felszámító vásárlási modell. Általában ügyfél felől elérhető alkalmazásokban Azure Multi-Factor Authentication hitelesítést használó forgatókönyvekben használják.
-      * Engedélyezett felhasználónként – Felhasználónként díjat felszámító vásárlási modell. Általában alkalmazott hozzáférés tooapplications például az Office 365 esetében használatos. Akkor válassza ezt a beállítást, ha már van néhány Azure MFA-licenccel ellátott felhasználója.
-   3. **Directory** – hello Azure Active Directory-bérlőben adott hello többtényezős hitelesítésszolgáltató társítva. Vegye figyelembe a következőket hello:
-      * Nem kell egy Azure Active directory toocreate a többtényezős hitelesítésszolgáltató. Ezt a jelölőnégyzetet hagyja üresen, ha csak toodownload hello Azure multi-factor Authentication kiszolgáló vagy az SDK-val.
-      * Többtényezős hitelesítésszolgáltató hello egy speciális szolgáltatások hello Azure Active directory tootake előnyeit társítani kell.
+      * Engedélyezett felhasználónként – Felhasználónként díjat felszámító vásárlási modell. Általában az alkalmazottak alkalmazásokhoz (pl. az Office 365-höz) való hozzáféréséhez használják. Akkor válassza ezt a beállítást, ha már van néhány Azure MFA-licenccel ellátott felhasználója.
+   3. **Címtár** – Az Azure Active Directory-bérlő, amelyhez a többtényezős hitelesítésszolgáltató társítva van. Vegye figyelembe a következőket:
+      * Nincs szüksége Azure AD-címtárra Multi-Factor Auth szolgáltató létrehozásához. Ha csak az Azure Multi-Factor Authentication-kiszolgálót vagy az SDK-t szeretné letölteni, hagyja üresen a mezőt.
+      * A Multi-Factor Auth szolgáltatót Azure AD-címtárral kell társítani a speciális szolgáltatások kihasználása érdekében.
       * Egy Azure AD-címtárral csak egyetlen Multi-Factor Auth szolgáltató társítható.  
       ![MFA-szolgáltató létrehozása](./media/multi-factor-authentication-get-started-auth-provider/authprovider5.png)
 
-8. Gombra kattintva hozzon létre, a multi-factor Authentication hitelesítésszolgáltató létrehozása hello és meg kell megjelennie a következő üzenet: **sikeresen létrejött a többtényezős hitelesítésszolgáltató**. Kattintson az **OK** gombra.  
+8. Ha a Létrehozás gombra kattint, létrejön a többtényezős hitelesítésszolgáltató, és megjelenik a következő üzenet: **Sikeresen létrejött a többtényezős hitelesítésszolgáltató**. Kattintson az **OK** gombra.  
    
    ![MFA-szolgáltató létrehozása](./media/multi-factor-authentication-get-started-auth-provider/authprovider6.png)  
 
 ## <a name="manage-your-multi-factor-auth-provider"></a>A Multi-Factor Auth szolgáltató kezelése
 
-Nem módosítható hello használati modell (engedélyezett felhasználónkénti vagy hitelesítésenkénti) az MFA-szolgáltatóra létrehozása után. Azonban hello többtényezős hitelesítési szolgáltató törlése, és ezután létrehozhat egyet a különböző használati modell.
+Az MFA szolgáltató létrehozását követően már nem módosíthatja a használati modellt (engedélyezett felhasználónként vagy hitelesítésenként). Azonban törölheti az MFA szolgáltatót, majd létrehozhat egy újat egy eltérő használati modellel.
 
-Ha hello aktuális többtényezős hitelesítésszolgáltató társítva (más néven Azure AD-bérlő) Azure AD-címtárral, biztonságosan hello többtényezős hitelesítési szolgáltató törlése és hozzon létre egyet csatolt toohello ugyanazt az Azure AD-bérlő. Azt is megteheti Ha vásárolt elég MFA, Azure AD Premium vagy Enterprise Mobility + Security (EMS) licencet toocover minden felhasználó többtényezős hitelesítés engedélyezett, törölheti hello többtényezős hitelesítési szolgáltató regisztrálását.
+Ha az aktuális Multi-Factor Auth szolgáltató Azure AD-címtárral (más néven Azure AD-bérlővel) van társítva, akkor biztonságosan törölheti az MFA szolgáltatót, majd létrehozhat egy újat, amely ugyanahhoz az Azure AD-bérlőhöz van kapcsolva. Másik lehetőségként, ha elegendő MFA, prémium szintű Azure AD vagy Enterprise Mobility + Security (EMS) licencet vásárolt az összes olyan felhasználó lefedésére, akiknél az MFA engedélyezett, akkor teljes egészében törölheti az MFA szolgáltatót.
 
-Ha a többtényezős hitelesítési szolgáltató nem csatolt tooan az Azure AD bérlői, vagy csatolunk hello új többtényezős hitelesítési szolgáltató tooa másik Azure AD bérlői, felhasználói beállítások és a konfigurációs beállítások nem kell másolnia. Is az Azure MFA kiszolgáló meglévő kell újraaktiválni során generált aktiválási hitelesítő adatok használatával toobe hello új MFA-szolgáltató. Hello multi-factor Authentication kiszolgálók toolink újraaktiválhatja azokat toohello új MFA-szolgáltató nem befolyásolja a telefonhívás és a szöveges üzenet hitelesítési, de a mobilalkalmazáson keresztüli értesítések működése leáll az összes felhasználó számára addig, amíg azok újraaktiválása hello mobilalkalmazás.
+Ha az MFA szolgáltató nincs Azure AD-bérlőhöz kapcsolva, vagy új MFA szolgáltatót kapcsol egy másik Azure AD-bérlőhöz, a felhasználói és konfigurációs beállításokat a rendszer nem viszi át. Emellett a meglévő Azure MFA-kiszolgálókat újra aktiválni kell az új MFA szolgáltatón keresztül létrehozott aktiváló hitelesítők adatokkal. Az MFA-kiszolgálók az új MFA szolgáltatóhoz történő kapcsolás céljából történő újbóli aktiválása nincs hatással a telefonhívásban vagy szöveges üzenetben történő hitelesítésekre, a mobilalkalmazás-értesítések viszont minden felhasználó számára megszűnnek működni a mobilalkalmazás újbóli aktiválásáig.
 
 ## <a name="next-steps"></a>Következő lépések
 
-[Hello multi-factor Authentication SDK letöltése](multi-factor-authentication-sdk.md)
+[A Multi-Factor Authentication SDK letöltése](multi-factor-authentication-sdk.md)
 
 [A Multi-Factor Authentication beállításainak konfigurálása](multi-factor-authentication-whats-next.md)

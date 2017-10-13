@@ -1,8 +1,8 @@
 ---
-title: "aaaAzure Analysis Services dokumentációjában - oktatóanyagok API-referencia |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooset hello az Analysis Services modellezés adatok mentése a felhő. Dokumentációja bemutatja, hogyan toocreate egy vállalati BI-megoldás táblázatos adatok felhasználásával."
+title: "Az Azure Analysis Services dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogyan építhet ki adatmodellezési megoldásokat az Analysis Services használatával a felhőben. A dokumentáció bemutatja, hogyan hozhat létre vállalati BI-megoldásokat táblázatos adatok használatával."
 services: analysis-services
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 077b13f9eb6eea87b96833452382b8e019f09a6f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3f66f61651aab5f1cf0850cdbbd069b0a9a65543
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="analysis-services-documentation"></a>Analysis Services – dokumentáció
 
-Megtudhatja, hogyan tooset és az Analysis Services modellezési adatok kezelése. Oktatóanyagok és egyéb dokumentációt mutatja be egy vállalati szintű BI toocreate megoldás használatával hello felhőalapú vagy helyszíni táblázatos adatokat.
+Ismerje meg, hogyan építhet ki és felügyelhet adatmodellezési megoldásokat az Analysis Services használatával. Az oktatóanyagok és az egyéb dokumentációk bemutatják, hogyan hozhat létre vállalati szintű BI-megoldásokat táblázatos adatok használatával felhőalapú vagy helyszíni környezetben.
 
 <ul class="panelContent cardsFTitle">
     <li>

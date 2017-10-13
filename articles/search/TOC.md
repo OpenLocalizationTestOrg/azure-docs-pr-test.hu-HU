@@ -29,8 +29,8 @@
 
 ## Fejlesztés
 ### [API-verziók](search-api-versions.md)
-### [Frissítési hello SDK](search-dotnet-sdk-migration.md)
-### [Frissítési hello REST API-n](search-api-migration.md)
+### [Az SDK frissítése](search-dotnet-sdk-migration.md)
+### [A REST API frissítése](search-api-migration.md)
 ### [Összetett adattípusok modellezése](search-howto-complex-data-types.md)
 ### [Egyidejű frissítések kezelése](search-howto-concurrency.md)
 ### [Kódminták](https://azure.microsoft.com/resources/samples/?service=search)
@@ -38,7 +38,7 @@
 ## Kezelés
 ### Az Azure Search felügyelete
 #### [Azure Portal](search-manage.md)
-#### [PowerShell](search-manage-powershell.md)
+#### Azure [Azure PowerShell](search-manage-powershell.md)
 ### [Használat és statisztikák figyelése](search-monitor-usage.md)
 ### [Forgalmi elemzések keresése](search-traffic-analytics.md)
 ### [Teljesítmény és optimalizálás](search-performance-optimization.md)
@@ -50,7 +50,7 @@
 ### [Azure Cosmos DB-indexelő](search-howto-index-documentdb.md)
 ### [CSV-blobok indexelése](search-howto-index-csv-blobs.md)
 ### [JSON-blobok indexelése](search-howto-index-json-blobs.md)
-### [Az indexelő kapcsolatok tooSQL kiszolgáló konfigurálása Azure virtuális gépen](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md)
+### [Az indexelő az Azure virtuális gépen futó SQL Serverhez való csatlakozásának konfigurálása](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md)
 ### [Mezőleképezések az indexelőkben](search-indexer-field-mappings.md)
 ##  Keresés
 ### [A teljes szöveges keresés működése](search-lucene-query-architecture.md)
@@ -59,7 +59,8 @@
 #### [Lucene lekérdezési szintaxis ](https://docs.microsoft.com/rest/api/searchservice/lucene-query-syntax-in-azure-search)
 #### [Példák Lucene szintaxisú lekérdezésekre](search-query-lucene-examples.md)
 #### [Kifejezési szintaxis szűrése](https://docs.microsoft.com/rest/api/searchservice/odata-expression-syntax-for-azure-search)
-### Egyéni keresés
+### Elemzők az Azure Search szolgáltatásban
+#### [Áttekintés](search-analyzers.md)
 #### [Nyelvi elemzők](https://docs.microsoft.com/rest/api/searchservice/language-support)
 #### [Egyéni elemzők](https://docs.microsoft.com/rest/api/searchservice/custom-analyzers-in-azure-search)
 ### [Lapozás eredményei](search-pagination-page-layout.md)

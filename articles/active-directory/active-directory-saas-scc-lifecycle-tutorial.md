@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directory-integráció SCC életciklusával |} Microsoft Docs"
-description: "Ismerje meg, hogyan toouse SCC életciklusa az Azure Active Directory tooenable egyszeri bejelentkezést, automatizált üzembe helyezést és további!"
+description: "Útmutató SCC életciklusa az Azure Active Directoryval az egyszeri bejelentkezés, automatikus kiépítésének, és több!"
 services: active-directory
 author: jeevansd
 documentationcenter: na
@@ -13,108 +13,108 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 03/23/2017
 ms.author: jeedes
-ms.openlocfilehash: c10c313c5fc157ed70d2ccecfb930a8a765f8444
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9a30bcca720ff135d0180d73f46e78403e9bca43
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-scc-lifecycle"></a>Oktatóanyag: Azure Active Directoryval integrált SCC életciklusa
-hello Ez az oktatóanyag célja az Azure és SCC életciklus tooshow hello integrációját.  
+Ez az oktatóanyag célja az Azure és SCC életciklus integrálása megjelenítése.  
 
-Ebben az oktatóanyagban leírt hello forgatókönyv feltételezi, hogy már rendelkezik a következő elemek hello:
+Ebben az oktatóanyagban leírt forgatókönyv feltételezi, hogy már rendelkezik a következő elemek:
 
 * Egy érvényes Azure-előfizetés
 * Egy SCC életciklusa az egyszeri bejelentkezés (SSO) engedélyezve van az előfizetés
 
-Ez az oktatóanyag befejezése után a hozzárendelt tooSCC életciklus lesz képes toosingle bejelentkezési hello alkalmazásba a SCC életciklus vállalati hely (a szolgáltatás a szolgáltató által kezdeményezett bejelentkezési) Azure AD-felhasználók hello, vagy a hello segítségével [bemutatása Hozzáférési Panel toohello](active-directory-saas-access-panel-introduction.md).
+Ez az oktatóanyag befejezése után az Azure AD-felhasználók SCC életciklus rendelt fog tudni egyetlen jelentkezzen be az alkalmazás a SCC életciklus vállalati hely (a szolgáltatás a szolgáltató által kezdeményezett bejelentkezési), vagy használja a [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
 
-Ebben az oktatóanyagban leírt hello forgatókönyv építőelemei következő hello áll:
+Ebben az oktatóanyagban leírt forgatókönyv az alábbi építőelemeket áll:
 
-1. Hello alkalmazás SCC életciklus-integráció engedélyezése
+1. Az alkalmazás SCC életciklus-integráció engedélyezése
 2. Egyszeri bejelentkezés (SSO) konfigurálása
 3. Felhasználók átadására
 4. Felhasználók hozzárendelése
 
 ![A forgatókönyv](./media/active-directory-saas-scc-lifecycle-tutorial/IC794120.png "forgatókönyv")
 
-## <a name="enable-hello-application-integration-for-scc-lifecycle"></a>Engedélyezze a hello alkalmazás integrációját SCC életciklusa
-hello ebben a szakaszban célja toooutline hogyan tooenable hello alkalmazásintegráció SCC életciklusát.
+## <a name="enable-the-application-integration-for-scc-lifecycle"></a>Az alkalmazás SCC életciklus-integráció engedélyezése
+Ez a szakasz célja felvázoló SCC életciklusa az alkalmazás-integráció engedélyezése.
 
-**tooenable hello alkalmazásintegráció SCC életciklusát, hajtsa végre a lépéseket követve hello:**
+**Ahhoz, hogy az alkalmazás-integráció SCC életciklusát, hajtsa végre az alábbi lépéseket:**
 
-1. Hello hello bal oldali navigációs ablaktáblán, a klasszikus Azure portálon kattintson **Active Directory**.
+1. A klasszikus Azure portálon, a bal oldali navigációs panelen kattintson a **Active Directory**.
    
     ![Az Active Directory](./media/active-directory-saas-scc-lifecycle-tutorial/IC700993.png "Active Directory")
-2. A hello **Directory** listában, jelölje be hello directory kívánt tooenable címtár-integráció.
-3. tooopen hello alkalmazások megtekintése, hello könyvtár nézetben kattintson **alkalmazások** hello felső menüjében.
+2. Az a **Directory** listára, válassza ki a könyvtárat, amelyhez a címtár-integrációs engedélyezni szeretné.
+3. A könyvtár nézetben a alkalmazások nézet megnyitásához kattintson **alkalmazások** a felső menüben.
    
     ![Alkalmazások](./media/active-directory-saas-scc-lifecycle-tutorial/IC700994.png "alkalmazások")
-4. Kattintson a **Hozzáadás** hello lap hello alján.
+4. Kattintson a **Hozzáadás** az oldal alján.
    
     ![Alkalmazás hozzáadása](./media/active-directory-saas-scc-lifecycle-tutorial/IC749321.png "alkalmazás hozzáadása")
-5. A hello **miről szeretne toodo** párbeszédpanel, kattintson **hello gyűjteményből alkalmazás hozzáadása**.
+5. Az a **mi történjen a teendő** párbeszédpanel, kattintson a **hozzáadhat egy alkalmazást a katalógusból**.
    
     ![Alkalmazás hozzáadása a gallerry](./media/active-directory-saas-scc-lifecycle-tutorial/IC749322.png "gallerry az alkalmazás hozzáadása")
-6. A hello **keresőmezőbe**, típus **SCC életciklus**.
+6. Az a **keresőmezőbe**, típus **SCC életciklus**.
    
     ![Alkalmazáskatalógusában](./media/active-directory-saas-scc-lifecycle-tutorial/IC794121.png "Alkalmazáskatalógusában")
-7. Hello eredmények ablaktábláján jelöljön ki **SCC életciklus**, és kattintson a **Complete** tooadd hello alkalmazás.
+7. Az eredmények ablaktáblájában válassza **SCC életciklus**, és kattintson a **Complete** hozzáadása az alkalmazáshoz.
    
     ![SCC életciklus](./media/active-directory-saas-scc-lifecycle-tutorial/IC795082.png "SCC életciklusa")
    
 ## <a name="configure-single-sign-on"></a>Egyszeri bejelentkezés konfigurálása
 
-hello ebben a szakaszban célja toooutline hogyan tooenable felhasználók tooauthenticate tooSCC életciklus fiókkal az Azure AD összevonási használatával hello SAML protokoll alapján.
+Ez a szakasz célja felvázoló engedélyezése a felhasználók hitelesítéséhez SCC életciklus fiókkal az Azure AD összevonási alapján a SAML protokoll használatával.
 
-**tooconfigure egyszeri bejelentkezés, hajtsa végre az alábbi lépésekkel hello:**
+**Egyszeri bejelentkezés konfigurálásához hajtsa végre az alábbi lépéseket:**
 
-1. A klasszikus Azure portálon, a hello hello **SCC életciklus** alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** tooopen hello ** konfigurálása egyszeri bejelentkezés ** párbeszédpanel.
+1. A klasszikus Azure portálon a a **SCC életciklus** alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** megnyitásához a ** konfigurálása egyszeri bejelentkezés ** párbeszédpanel.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-scc-lifecycle-tutorial/IC794122.png "egyszeri bejelentkezés konfigurálása")
-2. A hello **hogyan szeretné tooSCC életciklusa a felhasználók toosign** lapon jelölje be **Microsoft Azure AD az egyszeri bejelentkezés**, és kattintson a **következő**.
+2. A a **hová bejelentkezni SCC életciklus felhasználók** lapon jelölje be **Microsoft Azure AD az egyszeri bejelentkezés**, és kattintson a **következő**.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-scc-lifecycle-tutorial/IC794123.png "egyszeri bejelentkezés konfigurálása")
-3. A hello **alkalmazás URL-cím konfigurálása** lap hello **URL-cím bejelentkezési** szövegmezőhöz típus hello URL-címet használják a felhasználók toosign tooyour a SCC életciklus-alkalmazást a következő mintát hello "*https:// bs1.SCC.com/lc7/Welcome/Customer/PICTtest.aspx*", és kattintson a **következő**.
+3. A a **alkalmazás URL-cím konfigurálása** lap a **URL-cím bejelentkezési** szövegmező, írja be az URL-cím segítségével a felhasználók jelentkezzen be a SCC életciklus-alkalmazás a következő minta használatával "*https://bs1.scc.com/lc7/welcome/customer/PICTtest.aspx*", és kattintson a **következő**.
    
     ![Alkalmazás URL-CÍMEK konfigurálása](./media/active-directory-saas-scc-lifecycle-tutorial/IC794124.png "alkalmazás URL-CÍMEK konfigurálása")
-4. A hello **konfigurálhatja az egyszeri bejelentkezés SCC életciklus** lapján kattintson **metaadatok letöltése**, és mentse helyileg a számítógépen metaadatait tartalmazó fájl.
+4. A a **konfigurálhatja az egyszeri bejelentkezés SCC életciklus** lapján kattintson **metaadatok letöltése**, és mentse helyileg a számítógépen metaadatait tartalmazó fájl.
    
    ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-scc-lifecycle-tutorial/IC795083.png "egyszeri bejelentkezés konfigurálása")
-5. A metaadatok fájl tooSCC életciklus támogatási csoport továbbítja.
+5. Továbbítsa a SCC életciklus támogatási csoportnak adott metaadatait tartalmazó fájl.
    
    >[!NOTE]
-   >Egyszeri bejelentkezés hello SCC életciklus támogatási csoport által engedélyezett toobe rendelkezik.
+   >Egyszeri bejelentkezés ki engedélyezni lehessen az SCC életciklus támogatási csapatával.
    > 
    > 
 
-6. Hello a klasszikus Azure portálon, jelölje ki a hello egyszeri bejelentkezés konfigurációs megerősítő, és kattintson a **Complete** tooclose hello **konfigurálása egyszeri bejelentkezés** párbeszédpanel.
+6. A klasszikus Azure portálon, válassza ki az egyszeri bejelentkezés konfigurációs megerősítő, és kattintson **Complete** bezárásához a **konfigurálása egyszeri bejelentkezés** párbeszédpanel.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-scc-lifecycle-tutorial/IC794125.png "egyszeri bejelentkezés konfigurálása")
    
 ## <a name="configure-user-provisioning"></a>A felhasználók átadása konfigurálása
 
-A sorrend tooenable az Azure AD felhasználók toolog SCC életciklus be azok kell üzembe SCC életciklus be. Nincs művelet elem a akkor tooconfigure felhasználók átadásához tooSCC életciklusát.
+Ahhoz, hogy az Azure AD-felhasználók SCC életciklus bejelentkezni, akkor ki kell építenie SCC életciklus be. Nincs művelet elem felhasználói kiépítés SCC életciklus konfigurálhatók.
 
-Amikor egy hozzárendelt felhasználó záma toolog SCC életciklus be, SCC életciklus fiók automatikusan létrejön, szükség esetén.
+Ha egy hozzárendelt felhasználó próbál bejelentkezni az SCC életciklusát, SCC életciklus fiók automatikusan létrejön, szükség esetén.
 
 >[!NOTE]
->Bármely más SCC életciklus felhasználói fiók létrehozása eszközök vagy SCC életciklus tooprovision által nyújtott API-k AAD felhasználói fiókokat.
+>Bármely más SCC életciklus felhasználói fiók létrehozása eszközök, vagy API-k biztosítja SCC életciklus rendelkezés AAD felhasználói fiókokhoz.
 > 
 > 
 
 ## <a name="assign-users"></a>Felhasználók hozzárendelése
-tootest a konfigurációs kell azt szeretné, hogy az alkalmazás hozzáférési tooit használatával hozzárendelésével tooallow toogrant hello Azure AD felhasználók.
+A konfiguráció teszteléséhez kell biztosítania az Azure AD-felhasználók számára engedélyezni, használja az alkalmazás elérésére hozzárendelésével.
 
-**tooassign felhasználók tooSCC életciklusát, hajtsa végre a lépéseket követve hello:**
+**Felhasználók hozzárendelése SCC életciklusát, hajtsa végre az alábbi lépéseket:**
 
-1. Hello a klasszikus Azure portálon hozzon létre egy olyan fiókot.
-2. A hello ** SCC életciklus ** alkalmazás integráció lapján, kattintson a **felhasználók hozzárendelése**.
+1. A klasszikus Azure portálon hozzon létre egy olyan fiókot.
+2. Az a ** SCC életciklus ** alkalmazás integráció lapján, kattintson a **felhasználók hozzárendelése**.
    
     ![Felhasználók hozzárendelése](./media/active-directory-saas-scc-lifecycle-tutorial/IC794126.png "felhasználók hozzárendelése")
-3. Adja meg a tesztfelhasználó számára, kattintson **hozzárendelése**, és kattintson a **Igen** tooconfirm a hozzárendelés.
+3. Adja meg a tesztfelhasználó számára, kattintson **hozzárendelése**, és kattintson a **Igen** a hozzárendelés megerősítéséhez.
    
     ![Igen](./media/active-directory-saas-scc-lifecycle-tutorial/IC767830.png "Igen")
 
-Ha tootest az egyszeri Bejelentkezést a beállításokat, nyissa meg a hozzáférési Panel hello. Hozzáférési Panel hello kapcsolatos további tudnivalókért lásd: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).
+Az SSO-beállítások tesztelésére, nyissa meg a hozzáférési Panel. A hozzáférési Panel kapcsolatos további tudnivalókért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
 

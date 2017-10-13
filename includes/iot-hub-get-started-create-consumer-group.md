@@ -1,10 +1,10 @@
-## <a name="add-a-consumer-group-tooyour-iot-hub"></a>Adja hozzá a felhasználói csoport tooyour IoT-központ
+## <a name="add-a-consumer-group-to-your-iot-hub"></a>Az IoT hub egy felhasználói csoport hozzáadása
 
-Felhasználói csoportok Azure IoT Hub alkalmazások toopull adatait használja. Ebben az oktatóanyagban létrehoz egy felhasználói csoport toobe a következő Azure szolgáltatás tooread adatokat az IoT hub használják.
+Alkalmazások az fogyasztói csoportok segítségével olvasnak be adatokat Azure IoT-központot. Ebben az oktatóanyagban létrehoz egy felhasználói csoport adatokat olvasni az IoT hub elkövetkező Azure szolgáltatás által használandó.
 
-felhasználói csoport tooyour IoT hubot tooadd kövesse az alábbi lépéseket:
+Egy felhasználói csoport hozzáadása az IoT hub, kövesse az alábbi lépéseket:
 
-1. A hello [Azure-portálon](https://ms.portal.azure.com/), nyissa meg az IoT hub.
-2. Hello bal oldali ablaktáblában kattintson **végpontok**, jelölje be **események** hello középső ablaktábláján, adja meg egy nevet a **fogyasztói csoportok** hello jobb oldali ablaktáblán, és kattintson a  **Mentés**.
+1. Az [Azure Portalon](https://ms.portal.azure.com/) nyissa meg az IoT Hubot.
+2. A bal oldali ablaktáblán kattintson **végpontok**, jelölje be **események** a középső panelen adjon meg egy nevet a **fogyasztói csoportok** a jobb oldali ablaktáblán, majd **mentése** .
 
    ![Az IoT hub egy felhasználói csoport létrehozása](../articles/iot-hub/media/iot-hub-create-consumer-group/1_iot-hub-create-consumer-group-azure.png)

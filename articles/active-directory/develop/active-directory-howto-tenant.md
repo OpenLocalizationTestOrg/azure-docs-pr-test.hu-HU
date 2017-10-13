@@ -1,6 +1,6 @@
 ---
-title: "az Azure AD-bérlő aaaHow tooget |} Microsoft Docs"
-description: "Hogyan tooget Azure Active Directory-alapú alkalmazások regisztrálásához és fordításához a bérlői."
+title: "Azure AD-bérlő beszerzése | Microsoft Docs"
+description: "Annak ismertetése, hogyan szerezhet be egy Azure Active Directory-bérlőt az alkalmazások regisztrálásához és fordításához."
 services: active-directory
 documentationcenter: 
 author: bryanla
@@ -15,52 +15,52 @@ ms.topic: hero-article
 ms.date: 07/19/2017
 ms.author: bryanla
 ms.custom: aaddev
-ms.openlocfilehash: dcc6b3109528cf763bda9bd527344ea9ab5c0d69
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: fe33d490b754e2f793f5c7a13dc55ca038b1b71c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-tooget-an-azure-active-directory-tenant"></a>Hogyan tooget egy Azure Active Directory-bérlőben
-Az Azure Active Directory (Azure AD) alatt a [bérlők](https://msdn.microsoft.com/library/azure/jj573650.aspx#BKMK_WhatIsAnAzureADTenant) a szervezetek képviselői.  Hello Azure AD szolgáltatás, amely a szervezetek megkapnak és a tulajdonában áll, amikor regisztrálnak egy Microsoft felhőszolgáltatásra, például az Azure, a Microsoft Intune vagy az Office 365 dedikált példányát is.  Mindegyik Azure AD-bérlő önálló, és elkülönül a többi Azure AD-bérlőtől.  
+# <a name="how-to-get-an-azure-active-directory-tenant"></a>Azure AD-bérlő beszerzése
+Az Azure Active Directory (Azure AD) alatt a [bérlők](https://msdn.microsoft.com/library/azure/jj573650.aspx#BKMK_WhatIsAnAzureADTenant) a szervezetek képviselői.  Ez az Azure AD szolgáltatás egy dedikált példánya, amelyet a szervezetek megkapnak és a tulajdonukban áll, amikor regisztrálnak egy Microsoft-felhőszolgáltatásra, például az Azure, a Microsoft Intune vagy az Office 365 szolgáltatásra.  Mindegyik Azure AD-bérlő önálló, és elkülönül a többi Azure AD-bérlőtől.  
 
-A bérlő Kezelőkód hello felhasználók egy vállalati és hello információit – a jelszavak, felhasználói profil adatainak, engedélyek és így tovább.  Csoportok, alkalmazások és tooan szervezethez és annak biztonságához kapcsolódó egyéb információkat is tartalmaz.
+A bérlők a vállalatnál tárolják a felhasználóikat és azok információit – a jelszavaikat, a felhasználói profiljuk adatait, az engedélyeiket stb.  Csoportokat, alkalmazásokat és a szervezethez és annak biztonságához kapcsolódó egyéb információkat is tartalmazzák.
 
-tooallow az Azure AD felhasználók toosign tooyour alkalmazásban, regisztrálnia kell az alkalmazás a saját bérlőjében.  Az Azure AD-bérlőkben az alkalmazások közzététele **teljesen ingyenes**.  Valójában a legtöbb fejlesztő több bérlőt és alkalmazást is létrehoz kísérleti, fejlesztési, előkészítési és tesztelési célokból.  A szervezeteknek, amelyek a regisztrálás és az alkalmazásra is lehetősége van toopurchase licencek Ha speciális címtárfunkciókat tootake előnyeit.
+Ha engedélyezni szeretné, hogy az Azure AD-felhasználók bejelentkezzenek az alkalmazásába, regisztrálnia kell az alkalmazást a saját bérlőjében.  Az Azure AD-bérlőkben az alkalmazások közzététele **teljesen ingyenes**.  Valójában a legtöbb fejlesztő több bérlőt és alkalmazást is létrehoz kísérleti, fejlesztési, előkészítési és tesztelési célokból.  Az alkalmazásra regisztráló és azt használó szervezetek licenceket vásárolhatnak, ha ki szeretnék használni a speciális címtárfunkciókat.
 
-Szóval, hogyan szerezhet be Azure AD-bérlőt?  hello folyamat lehet kissé eltérő, ha Ön:
+Szóval, hogyan szerezhet be Azure AD-bérlőt?  Az eljárás kissé eltérő, ha:
 
 * [Meglévő Office 365-előfizetéssel rendelkezik](#use-an-existing-office-365-subscription)
 * [Meglévő Azure-előfizetése társítva van egy Microsoft-fiókkal](#use-an-msa-azure-subscription)
 * [Meglévő Azure-előfizetése társítva van egy szervezeti fiókkal](#use-an-organizational-azure-subscription)
-* [A fenti hello közül egyikkel sem rendelkezik & szeretné, hogy teljesen új toostart](#start-from-scratch)
+* [A fentiek közül egyikkel sem rendelkezik, és teljesen új előfizetéssel kezd](#start-from-scratch)
 
 ## <a name="use-an-existing-office-365-subscription"></a>Meglévő Office 365-előfizetést használ
-Ha van meglévő Office 365-előfizetése, akkor már Azure AD-bérlővel is rendelkezik! Bejelentkezhet toohello [Azure-portálon](https://portal.azure.com) fiókhoz az Office 365 és az Azure AD használatának megkezdéséhez.
+Ha van meglévő Office 365-előfizetése, akkor már Azure AD-bérlővel is rendelkezik! Az [Azure Portalra](https://portal.azure.com) bejelentkezhet O365-fiókjával, és el is kezdheti használni az Azure AD-t.
 
 ## <a name="use-an-msa-azure-subscription"></a>MSA Azure-előfizetést használ
-Ha korábban regisztrált egy Azure-előfizetésre egyéni Microsoft-fiókkal, már van bérlője.  Ha jelentkezik be a toohello [Azure Portal](https://portal.azure.com), akkor automatikusan vannak, naplózva lesznek tooyour alapértelmezett bérlőt. Biztos, hogy elférjen - szabad toouse ennél a bérlőnél, akkor tekintse meg, de érdemes lehet toocreate egy szervezeti rendszergazdai fiókot.
+Ha korábban regisztrált egy Azure-előfizetésre egyéni Microsoft-fiókkal, már van bérlője.  Amikor bejelentkezik az [Azure Portalra](https://portal.azure.com), a rendszer automatikusan belépteti az alapértelmezett bérlői fiókba. Szabadon használhatja ezt a bérlőt, ahogyan szeretné – de érdemes lehet egy szervezeti rendszergazdai fiókot létrehozni.
 
-toodo Igen, kövesse az alábbi lépéseket.  Azt is megteheti előfordulhat, hogy kívánja toocreate egy új bérlőt, és hozzon létre egy rendszergazda bérlőben hasonló folyamata.
+Ehhez kövesse az alábbi lépéseket.  Vagy lehet, hogy új bérlőt szeretne létrehozni, és egy hasonló folyamattal rendszergazdát szeretne létrehozni a bérlőben.
 
-1. Jelentkezzen be a hello [Azure Portal](https://portal.azure.com) az egyéni fiókjával
-2. Keresse meg a toohello "Azure Active Directory" szakaszát hello portal (hello bal oldali navigációs sávban, alatt található **több szolgáltatások**)
-3. Érdemes automatikusan bejelentkezve toohello "Alapértelmezett címtárat", ha nem könyvtárak hello jobb felső sarokban a fiók nevére kattintva válthat.
-4. A hello **gyorsan elvégezhető** területen válasszon **hozzáadni egy felhasználót**.
-5. A felhasználó hozzáadása űrlapon hello, adja meg a következő adatok hello:
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com) az egyéni fiókjával
+2. Keresse meg a portál „Azure Active Directory” szakaszát (a bal oldali navigációs sávban található a **További szolgáltatások** menüpont alatt)
+3. A rendszer automatikusan belépteti az „Alapértelmezett címtárba”, ha nem, akkor válthat a címtárak között a jobb felső sarokban található fióknevére kattintva.
+4. A **Gyors feladatok** szakaszban válassza ki a **Felhasználó hozzáadása** lehetőséget.
+5. A Felhasználó hozzáadása űrlapon adja meg a következő adatokat:
 
    * Név: (adjon meg egy megfelelő értéket)
    * Felhasználónév: (válasszon egy felhasználónevet ehhez a rendszergazdához)
-   * Profil: (írja hello megfelelő értékeket keresztnév, utolsó nevét, beosztás és szervezeti egység)
+   * Profil: (töltse ki az utónév, vezetéknév, beosztás és részleg mezőket megfelelő értékekkel)
    * Szerepkör: Globális rendszergazda
-6. Miután végrehajtotta hello felhasználó hozzáadása űrlapot, és ideiglenes jelszót hello hello új rendszergazda felhasználó kap, toorecord meg arról, hogy ezt a jelszót mivel ennek rendelés toochange hello jelszó a felhasználónak a toologin kell. Hello jelszó is küldhet közvetlenül toohello felhasználónak egy másodlagos e-mail-címre.
-7. Kattintson a **létrehozása** toocreate hello új felhasználó.
-8. Jelentkezzen be a toochange hello ideiglenes jelszó [https://login.microsoftonline.com](https://login.microsoftonline.com) az új felhasználói fiókot, és módosítsa a hello jelszó kérésekor.
+6. Amikor kitöltötte a Felhasználó hozzáadása űrlapot, és megkapta az ideiglenes jelszót az új rendszergazdai felhasználóhoz, jegyezze fel ezt a jelszót, mivel ezzel az új felhasználóval kell bejelentkeznie a jelszó módosításához. Közvetlenül el is küldheti a jelszót a felhasználónak egy másodlagos e-mail-címre.
+7. Az új felhasználó létrehozásához kattintson a **Létrehozás** parancsra.
+8. Az ideiglenes jelszó módosításához jelentkezzen be a [https://login.microsoftonline.com](https://login.microsoftonline.com) címre ezzel az új felhasználói fiókkal, és módosítsa a jelszót, ha a rendszer arra kéri.
 
 ## <a name="use-an-organizational-azure-subscription"></a>Szervezeti Azure-előfizetést használ
-Ha korábban regisztrált egy Azure-előfizetésre a szervezeti fiókjával, már van bérlője.  A hello [Azure Portal](https://portal.azure.com), keresse meg a bérlő túl Navigálás "Több szolgáltatások" és "Az Azure Active Directory."  Ennél a bérlőnél ismertető elférjen szabad toouse áll.
+Ha korábban regisztrált egy Azure-előfizetésre a szervezeti fiókjával, már van bérlője.  Az [Azure Portalon](https://portal.azure.com) látnia kell egy bérlőt, ha a „További Szolgáltatások”, majd az „Azure Active Directory” területre navigál.  Szabadon használhatja ezt a bérlőt, ahogyan szeretné.
 
 ## <a name="start-from-scratch"></a>Kezdés a nulláról
-Ha az összes fenti hello értelmetlen tooyou, ne aggódjon.  Egyszerűen látogasson el [https://account.windowsazure.com/organization](https://account.windowsazure.com/organization) toosign az Azure szolgáltatáshoz egy új szervezettel.  Hello folyamat befejezése után fog a saját Azure AD-bérlő hello meg regisztrációkor választott tartománynévvel.  A hello [Azure Portal](https://portal.azure.com), túl navigálva megkeresheti a bérlőt "Azure Active Directory" hello bal oldali sávban a
+Ha nem érti a fentieket, ne aggódjon.  Egyszerűen látogasson el a [https://account.windowsazure.com/organization](https://account.windowsazure.com/organization) oldalra, hogy egy új szervezettel regisztráljon az Azure-ba.  Amint befejezte a folyamatot, egy saját Azure AD-bérlővel fog rendelkezni a regisztrációkor választott tartománynévvel.  Az [Azure Portalon](https://portal.azure.com) megkeresheti a bérlőt, ha a bal oldali navigációs sávban az „Azure Active Directory” elemre lép.
 
-Iratkozik fel Azure hello folyamat részeként fogja szükséges tooprovide hitelkártya adatait.  Nyugodtan folytathatja a folyamatot – nem kell fizetnie az alkalmazások Azure AD-ben történő közzétételéért vagy az új bérlők létrehozásáért.
+Az Azure-ba történő regisztráció folyamatának részeként meg kell adnia a hitelkártyaadatait.  Nyugodtan folytathatja a folyamatot – nem kell fizetnie az alkalmazások Azure AD-ben történő közzétételéért vagy az új bérlők létrehozásáért.

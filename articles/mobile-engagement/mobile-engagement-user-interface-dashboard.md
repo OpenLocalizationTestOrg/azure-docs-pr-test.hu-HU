@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Mobile Engagement felhasználói felület - irányítópult"
-description: "Megtudhatja, hogyan tooview és diagramokat az alkalmazás használatával az Azure Mobile Engagement adatok kezelése"
+title: "Az Azure Mobile Engagement felhasználói felület - irányítópult"
+description: "Megtudhatja, hogyan tekintheti meg és kezelheti a diagramok adatok segítségével az Azure Mobile Engagement az alkalmazás"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: d834c01cb748a962d50006398b75b381fa6d8cef
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: eaf5a2f9fdfcec33e8b4e2ddf77505980cd37c5e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooview-and-manage-charts-of-data-about-your-application"></a>Hogyan tooview és diagramokat az alkalmazással kapcsolatos adatok kezelése
-hello hello felhasználói felület lehetővé teszi, hogy az ügyfelek toocreate testre szabott irányítópultot szakasza diagramokat toomaximize idejük hello pontos információk kívánják helyett hello analytics szakaszban keres. Egy irányítópultot a az alkalmazás és a hello aktív felhasználók száma az alkalmazás egy adott időszakban (óránként/nap vagy hét/hónap/egyéni) hello különböző verzióihoz hello trendeket szemlélteti. hello trendek látható alapuló hello legutóbbi 7 nap.
+# <a name="how-to-view-and-manage-charts-of-data-about-your-application"></a>Megtekintése és diagramokat az alkalmazással kapcsolatos adatok kezelése
+A felhasználói felület irányítópult szakasza lehetővé teszi az ügyfelek testreszabott diagramokat idejük maximalizálása helyett az analytics szakaszban keresse meg a pontos információk megadásával. Egy irányítópult jeleníti meg az alkalmazás és az aktív felhasználói adatokra egy adott idő alatt az alkalmazás különböző verzióit is trendjeinek (óránként/nap vagy hét/hónap/egyéni). A trendek látható az elmúlt 7 napban alapulnak.
 
 ### <a name="see-also"></a>Lásd még:
 * [Hibaelhárítási útmutató - elemzés][Link 21]
 
 ## <a name="dashboard"></a>Irányítópult
-* Hello "küldési toodashboard" szakaszában hello Analytics hello felhasználói felületén, hogy szeretné-e az irányítópulton toosee bármelyik olyan diagram hello fogaskerék menüből válassza diagramok tooan üres irányítópult is hozzáadhat.
+* Diagramok adhat az üres irányítópultra, válassza a "Küldés az irányítópultra" bármelyik olyan diagram, a felhasználói felület, amelyeket szeretne, tekintse meg az irányítópulton Analytics szakaszában fogaskerék menüből.
 
 ## <a name="-add-a-dashboard"></a>+ (Irányítópult hozzáadása)
-* Akkor is hello használata "+" menüszalag menü elem toocreate új irányítópult, amely megjeleníti a hello menüszalag menüben.
+* A "+" menüszalag menüpont hozhat létre egy új irányítópult, amely megjeleníti a menüszalag menü.
 
 ## <a name="gear-menu"></a>Fogaskerék menü
-* Használhatja a hello fogaskerék menü irányítópult tooDelete, nevezze át, megosztás, vagy az irányítópulton (E-mail fogadása) ütemezését. Használhat hello ütemezési beállítás toodefine hello ütemezés, ahol szeretné tooreceive az egyéni irányítópultját e-mailben. Ütemezheti az tooreceive azt napi, heti vagy havi gyakorisággal választható. Kiválaszthatja a hello és hello hello hét napja, vagy ha azt szeretné, tooreceive hello e-mail hello hónap hello idő. E-mail címét és időzóna állított be felhasználói felület hello saját fiók szakasza hello hello-beállítások alapján.
+* A fogaskerék menü egy irányítópult segítségével törölje, nevezze át a megosztást, vagy az irányítópulton (E-mail fogadása) ütemezését. Az ütemezési beállítás segítségével adhatja meg az ütemezés szerint, ahol szeretné megkapni e-mailek az egyéni irányítópultját. Napi, heti vagy havi jussanak is ütemezheti. Kiválaszthatja a, és a napot a hét, vagy ha szeretné az e-mail üzeneteket a hónap napját idején. A felhasználói felület saját fiók szakaszában konfigurált beállításokat e-mail címét és időzóna alapulnak.
   
   ![dashboard1][34]
 

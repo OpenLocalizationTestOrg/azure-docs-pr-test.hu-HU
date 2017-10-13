@@ -1,6 +1,6 @@
 ---
-title: "az Azure CLI 2.0 verziót használja Azure DNS használatába aaaGet |} Microsoft Docs"
-description: "Megtudhatja, hogyan toocreate DNS zóna, illetve az Azure DNS-rekord. Ez egy részletes útmutató toocreate, és kezeli az első DNS-zóna és a rekord hello Azure CLI 2.0 használatával."
+title: "Az Azure DNS használatának első lépései az Azure CLI 2.0-val | Microsoft Docs"
+description: "A cikkből megtudhatja, hogyan hozhat létre DNS-zónát és -rekordot az Azure DNS-ben. Ez egy lépésenkénti útmutató, amellyel az Azure CLI 2.0 használatával létrehozhatja és kezelheti az első DNS-zónáját és -rekordját."
 services: dns
 documentationcenter: na
 author: jtuliani
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/10/2017
 ms.author: jonatul
-ms.openlocfilehash: 8a894941e9910d5cc35394a1be9dbca9792613f2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6958d61b29961f59cb22f62bec55f2d467e7e7cb
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-azure-dns-using-azure-cli-20"></a>Az Azure DNS használatának első lépései az Azure CLI 2.0-val
 
@@ -29,15 +29,15 @@ ms.lasthandoff: 10/06/2017
 > * [Azure CLI 1.0](dns-getstarted-cli-nodejs.md)
 > * [Azure CLI 2.0](dns-getstarted-cli.md)
 
-Ez a cikk bemutatja, hogyan hello lépéseket toocreate az első DNS-zónát, és rekord használatával hello platformfüggetlen Azure CLI 2.0, a Windows, Mac és Linux elérhető. Ezeket a lépéseket hello Azure-portálon vagy az Azure PowerShell használatával is elvégezheti.
+Ez a cikk bemutatja az első DNS-zóna és -rekord létrehozásának lépéseit a platformfüggetlen Azure CLI 2.0 használatával, amely Windows, Mac és Linux platformokon is elérhető. Ezeket a lépéseket az Azure Portal vagy az Azure PowerShell használatával is elvégezheti.
 
-A DNS-zónák használt toohost hello DNS-rekordok az adott tartományban. az Azure DNS, a tartomány toostart toocreate DNS-zóna van szüksége a tartománynevet. Ezután a tartománya összes DNS-rekordja ebben a DNS-zónában jön létre. Végezetül toopublish a DNS-zónák toohello Internet, tooconfigure hello névkiszolgálók hello tartomány van szüksége. Az egyes lépéseket az alábbiakban ismertetjük.
+Az egyes tartományokhoz tartozó DNS-rekordok üzemeltetése DNS-zónákban történik. A tartománya Azure DNS-ben való üzemeltetésének megkezdéséhez létre kell hoznia egy DNS-zónát az adott tartománynévhez. Ezután a tartománya összes DNS-rekordja ebben a DNS-zónában jön létre. Végül a DNS-zóna interneten való közzétételéhez konfigurálnia kell a tartomány névkiszolgálóit. Az egyes lépéseket az alábbiakban ismertetjük.
 
-Ezek az utasítások azt feltételezik, ha már telepítette, és tooAzure CLI 2.0 bejelentkezett. Útmutatásért lásd: [hogyan toomanage DNS zónák Azure CLI 2.0 használatával](dns-operations-dnszones-cli.md).
+Ezek az utasítások feltételezik, hogy már telepítette az Azure CLI 2.0-t, és bejelentkezett. További segítségért lásd [a DNS-zónák az Azure CLI 2.0 használatával való kezelésével kapcsolatos](dns-operations-dnszones-cli.md) témakört.
 
-## <a name="create-hello-resource-group"></a>Hello erőforráscsoport létrehozása
+## <a name="create-the-resource-group"></a>Az erőforráscsoport létrehozása
 
-Mielőtt létrehozna hello DNS-zónát, egy erőforráscsoportot toocontain hello DNS-zóna jön létre. hello következő hello parancs jeleníti meg.
+A DNS-zóna létrehozása előtt egy erőforráscsoportot kell létrehozni, amely a DNS-zónát tartalmazza majd. Az alábbiakban a parancs látható.
 
 ```azurecli
 az group create --name MyResourceGroup --location "West US"
@@ -45,9 +45,9 @@ az group create --name MyResourceGroup --location "West US"
 
 ## <a name="create-a-dns-zone"></a>DNS-zóna létrehozása
 
-A DNS-zóna létrehozása hello használatával `az network dns zone create` parancsot. a parancs toosee súgójának, írja be `az network dns zone create -h`.
+A DNS-zóna az `az network dns zone create` parancs használatával hozható létre. A paranccsal kapcsolatos súgó megtekintéséhez írja be a következőt: `az network dns zone create -h`.
 
-hello alábbi példa létrehoz egy DNS-zónát *contoso.com* hello erőforráscsoportban *MyResourceGroup*. Hello példa toocreate egy DNS-zónát és hello értékeket a saját használja.
+Az alábbi példaparancs a *MyResourceGroup* nevű erőforráscsoportban létrehozza a *contoso.com* DNS-zónát. A példát követve, és az értékeket a sajátjaira cserélve hozza létre a DNS-zónát.
 
 ```azurecli
 az network dns zone create -g MyResourceGroup -n contoso.com
@@ -56,20 +56,20 @@ az network dns zone create -g MyResourceGroup -n contoso.com
 
 ## <a name="create-a-dns-record"></a>DNS-rekord létrehozása
 
-egy DNS-rekord toocreate hello használata `az network dns record-set [record type] add-record` parancsot. Az A-rekordokkal kapcsolatos segítségért például lásd: `azure network dns record-set A add-record -h`.
+DNS-rekordokat az `az network dns record-set [record type] add-record` paranccsal lehet létrehozni. Az A-rekordokkal kapcsolatos segítségért például lásd: `azure network dns record-set A add-record -h`.
 
-hello alábbi példa létrehoz egy rekordot hello relatív névvel "www" hello "contoso.com", az erőforráscsoportban "Contoso.com" DNS-zónát. hello rekordhalmaz hello teljesen minősített neve "www.contoso.com". hello rekordtípus "A", "1.2.3.4" IP-címmel, és egy alapértelmezett élettartam 3600 másodperc (1 óra) használt.
+Az alábbi példa a „MyResourceGroup” erőforráscsoport „contoso.com” DNS-zónájában egy „www” relatív nevű rekordot hoz létre. A beállított rekord teljes neve „www.contoso.com”. A rekord típusa „A”, az IP-címe „1.2.3.4”, és a rendszer a 3600 másodperces (1 órás) alapértelmezett élettartamot használja.
 
 ```azurecli
 az network dns record-set a add-record -g MyResourceGroup -z contoso.com -n www -a 1.2.3.4
 ```
 
-Egyéb típusú bejegyzés a rekordhalmazok alternatív TTL értékeket, és toomodify meglévő rekordokat, a több rekordot tartalmazó lásd: [kezelése DNS-rekordok és a rekordhalmazok használatával hello Azure CLI 2.0](dns-operations-recordsets-cli.md).
+Más rekordtípusok, több rekordot tartalmazó rekordhalmazok, alternatív élettartam-értékek és meglévő rekordok módosítása esetén lásd: [DNS-rekordok és -rekordhalmazok kezelése az Azure CLI 2.0 használatával](dns-operations-recordsets-cli.md).
 
 
 ## <a name="view-records"></a>A rekordok megtekintése
 
-toolist hello DNS-rekordokat, amelyek a zónához használja:
+A zónájában lévő DNS-rekordokat a következő paranccsal listázhatja:
 
 ```azurecli
 az network dns record-set list -g MyResourceGroup -z contoso.com
@@ -78,9 +78,9 @@ az network dns record-set list -g MyResourceGroup -z contoso.com
 
 ## <a name="update-name-servers"></a>A névkiszolgálók frissítése
 
-Ha mindent megfelelőnek talált, hogy a DNS-zóna és a rekordok beállított megfelelően, tooconfigure van szüksége a tartománynév toouse hello Azure DNS névkiszolgálóit. Ez lehetővé teszi a más felhasználóktól a hello Internet toofind a DNS-rekordokat.
+Ha a DNS-zóna és -rekordok megfelelően be lettek állítva, konfigurálnia kell a tartománynevet az Azure DNS-névkiszolgálók használatára. Így más internetes felhasználók megkereshetik a DNS-rekordjait.
 
-Adja meg a zóna névkiszolgálóit hello hello `az network dns zone show` parancsot. toosee hello névkiszolgálói neveket, használja a JSON kimeneti, ahogy az alábbi példa hello.
+A zóna névkiszolgálói az `az network dns zone show` paranccsal vannak megadva. A névkiszolgáló nevek megtekintéséhez használjon JSON-kimenetet az alábbi példában látható módon.
 
 ```azurecli
 az network dns zone show -g MyResourceGroup -n contoso.com -o json
@@ -104,11 +104,11 @@ az network dns zone show -g MyResourceGroup -n contoso.com -o json
 }
 ```
 
-Ezeket a kiszolgálókat (vásárolta hello tartománynevet) hello regisztrációs kell konfigurálni. A regisztráló felajánlja, hello beállítás tooset hello neve kiszolgáló hello tartományhoz. További információkért lásd: [delegálása a tartományi tooAzure DNS](dns-domain-delegation.md).
+Ezeket a névkiszolgálókat a tartományregisztrálóhoz kell konfigurálni (ahol a tartománynevet vásárolta). A regisztráló felajánlja, hogy beállítja a névkiszolgálókat a tartományhoz. További információért lásd: [Tartomány delegálása az Azure DNS-be](dns-domain-delegation.md).
 
 ## <a name="delete-all-resources"></a>Az összes erőforrás törlése
  
-toodelete ebben a cikkben a következő lépés hajtsa végre a megfelelő hello létrehozott összes erőforrás:
+A jelen cikkben létrehozott összes erőforrás törléséhez hajtsa végre az alábbi lépést:
 
 ```azurecli
 az group delete --name MyResourceGroup
@@ -116,8 +116,8 @@ az group delete --name MyResourceGroup
 
 ## <a name="next-steps"></a>Következő lépések
 
-További információ az Azure DNS-beli toolearn lásd [Azure DNS áttekintése](dns-overview.md).
+Az Azure DNS-sel kapcsolatos további információért lásd [az Azure DNS áttekintését biztosító](dns-overview.md) cikket.
 
-További információ az Azure DNS-, DNS-zónák kezelése toolearn lásd [kezelése DNS-zónák az Azure DNS az Azure CLI 2.0 verziót használja](dns-operations-dnszones-cli.md).
+DNS-zónák az Azure DNS-ben való kezelésével kapcsolatos további információért lásd [a DNS-zónák az Azure DNS-ben az Azure CLI 2.0-val való kezelésével kapcsolatos](dns-operations-dnszones-cli.md) témakört.
 
-További információ az Azure DNS-, DNS-rekordok kezelése toolearn lásd [kezelése DNS-rekordok és a rekord beállítja az Azure DNS az Azure CLI 2.0 verziót használja](dns-operations-recordsets-cli.md).
+DNS-rekordok az Azure DNS-ben való kezelésével kapcsolatos további információért lásd [a DNS-rekordok és -rekordhalmazok az Azure DNS-ben az Azure CLI 2.0-val való kezelésével kapcsolatos](dns-operations-recordsets-cli.md) témakört.

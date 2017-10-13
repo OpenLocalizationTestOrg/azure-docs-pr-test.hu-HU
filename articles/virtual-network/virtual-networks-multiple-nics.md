@@ -1,6 +1,6 @@
 ---
-title: "PowerShell-lel több hálózati adapterrel rendelkező virtuális gép (klasszikus) aaaCreate |} Microsoft Docs"
-description: "Megtudhatja, hogyan toocreate és a PowerShell segítségével több hálózati adapterrel rendelkező virtuális gépek konfigurálása."
+title: "Virtuális gép (klasszikus) létrehozása a PowerShell segítségével több hálózati adapterrel rendelkező |} Microsoft Docs"
+description: "Megtudhatja, hogyan hozza létre és konfigurálja a virtuális gépek több hálózati adapterrel, PowerShell-lel rendelkező."
 services: virtual-network, virtual-machines
 documentationcenter: na
 author: jimdial
@@ -15,40 +15,40 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
-ms.openlocfilehash: 8ef35bd4cfd7e6a527080f1cfc541275ca86f5e7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 68ccc1cac22e593b099729fe68c6bee63df44d9b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-a-vm-classic-with-multiple-nics"></a>Több hálózati adapterrel rendelkező virtuális gép (klasszikus) létrehozása
-Virtuális gépek (VM) létrehozása az Azure-ban, és csatlakoztassa a virtuális gépek több hálózati adapterek (NIC) tooeach. Több hálózati adapter áll számos hálózati virtuális készülékeket, például az alkalmazások biztosításán és WAN-optimalizálást megoldások követelményeit. Több hálózati adapterrel is közötti hálózati forgalom elkülönítést biztosítani.
+Virtuális gépek (VM) létrehozása az Azure-ban, és csatlakoztassa a virtuális gépek mindegyikének több hálózati adapterek (NIC). Több hálózati adapter áll számos hálózati virtuális készülékeket, például az alkalmazások biztosításán és WAN-optimalizálást megoldások követelményeit. Több hálózati adapterrel is közötti hálózati forgalom elkülönítést biztosítani.
 
 ![Több hálózati adapter a virtuális gép](./media/virtual-networks-multiple-nics/IC757773.png)
 
-hello. ábra azt mutatja be a három hálózati adapterrel rendelkező virtuális gépet, tooa eltérő alhálózathoz csatlakoznak.
+Az ábrán látható virtuális gép három hálózati adaptert, és csatlakoznak egy másik alhálózat.
 
 > [!IMPORTANT]
-> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../resource-manager-deployment-model.md). Ez a cikk hello klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén használja a Resource Manager.
+> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../resource-manager-deployment-model.md). Ez a cikk a klasszikus üzembehelyezési modellt ismerteti. A Microsoft azt javasolja, hogy az új telepítések esetén használja a Resource Manager.
 
-* Az Internet felé néző VIP (klasszikus üzembe helyezés) csak akkor támogatott a hello "alapértelmezett" hálózati adaptert. Nincs a csak egy VIP toohello IP-címe hello alapértelmezett hálózati adaptert.
+* Internet felé néző VIP (klasszikus üzembe helyezés) csak akkor támogatott a "alapértelmezett" adapteren zajlik. Nincs a csak egy VIP – IP-címét az alapértelmezett hálózati adaptert.
 * Ilyenkor (klasszikus üzembe helyezés) példány szint nyilvános IP (LPIP) címek nem támogatottak a több hálózati adapter virtuális gépeket.
-* hello sorrendjének hello hálózati adaptert a virtuális gép véletlenszerű lesz, és különböző Azure-infrastruktúra frissítéseket is módosulhatnak hello belül. Azonban hello IP-címeket, és megfelelő ethernet MAC hello megmarad címek hello azonos. Tegyük fel például, **Eth1** ; 10.1.0.100 IP-cím és MAC-cím 00-0D-3A-B0-39-0D tartalmaz, az Azure infrastruktúra-frissítési és újraindítás után az módosítható túl**Eth2**, de hello az IP-cím és MAC párosítás lesz továbbra is hello azonos. Ha újraindításra az ügyfél által kezdeményezett, hello NIC rendelés marad hello azonos.
-* hello minden egyes virtuális Gépen lévő hálózati adapter címe kell lennie az alhálózat, több hálózati adaptert egy virtuális gép egyes hozzárendelhetők legyenek címek hello ugyanazon az alhálózaton.
-* Virtuálisgép-méretet hello határozza meg, hogy hello, létrehozhat egy virtuális hálózati Adapterrel. Hivatkozás hello [Windows Server](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) és [Linux](../virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) virtuális gép méretének cikkek toodetermine hány hálózati ADAPTERT támogat minden egyes Virtuálisgép-méretet. 
+* A hálózati adapterek sorrendje a virtuális gépen belül véletlenszerű, és az Azure-infrastruktúra frissítései során is változhat. Azonban az IP-címeket, és a megfelelő ethernet MAC címek lesz változatlan marad. Tegyük fel például, **Eth1** ; 10.1.0.100 IP-cím és MAC-cím 00-0D-3A-B0-39-0D tartalmaz, az Azure infrastruktúra-frissítési és újraindítás után azt módosítani: **Eth2**, de IP- és MAC párosítás változatlan marad. Ha újraindításra az ügyfél által kezdeményezett, a hálózati adapter rendelés változatlan marad.
+* A cím az egyes hálózati adapterek minden egyes virtuális gépen kell lennie az alhálózat, a egyetlen virtuális gép több hálózati adapter egyes hozzárendelhetők legyenek címek, amelyek ugyanazon az alhálózaton.
+* A Virtuálisgép-méretet, amelyet létrehozhat egy virtuális gép hálózati adapterek számát határozza meg. Hivatkozás a [Windows Server](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) és [Linux](../virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) virtuális gép méretének annak meghatározásához, hány hálózati ADAPTERT támogat minden egyes Virtuálisgép-méretet. 
 
 ## <a name="network-security-groups-nsgs"></a>Hálózati biztonsági csoportokkal (NSG-k)
-Egy erőforrás-kezelő telepítése esetén a a hálózati adapterek, a virtuális gép is lehet társítani, a hálózati biztonsági csoport (NSG), például minden hálózati adaptert egy virtuális gépen, amelyen engedélyezve van több hálózati adapter. Ha egy hálózati adapter hozzá van rendelve egy címet, ahol hello alhálózat társítva van egy NSG-t egy alhálózaton belül, majd hello hello alhálózati NSG szabályait is érvényesek toothat hálózati adaptert. Továbbá tooassociating alhálózatokon az NSG-ket is társíthat egy hálózati adapter egy NSG.
+Egy erőforrás-kezelő telepítése esetén a a hálózati adapterek, a virtuális gép is lehet társítani, a hálózati biztonsági csoport (NSG), például minden hálózati adaptert egy virtuális gépen, amelyen engedélyezve van több hálózati adapter. Ha egy hálózati adapter hozzá van rendelve egy címet, ahol az alhálózaton társítva van egy NSG-t egy alhálózaton belül, majd a az alhálózat NSG is alkalmazni kell a hálózati adaptert. Alhálózatok társítása NSG-ket, mellett is társíthat egy hálózati adapter egy NSG.
 
-Ha egy alhálózat társítva egy NSG-t, és egy hálózati adapter belül alhálózaton külön-külön társítva van egy NSG-t, hello társított NSG-szabályok érvényesek a **flow-rendelési** toohello forgalom iránya a hello átadta-e be vagy ki szerint a hálózati adapter hello:
+Ha egy alhálózat társítva egy NSG-t, és egy hálózati adapter belül alhálózaton külön-külön társítva van egy NSG-t, a társított NSG-szabályok vonatkoznak a **flow-rendelési** a átadta-e virtuális gépbe vagy onnan a hálózati forgalom irányát megfelelően:
 
-* **Bejövő forgalom** először áthaladó amelyek célja az adott hálózati hello hello alhálózati hello alhálózati NSG-szabályok előtt hello NIC történő továbbításához, majd hello NIC NSG-szabályok kiváltó váltanak.
-* **Kimenő forgalom** hello NIC kiváltó hello NIC NSG-szabályok előtt hello alhálózati áthaladó, majd kiváltó hello alhálózati NSG-szabályok az első kimeneti amelynek forrása hello az adott hálózati forgalmat.
+* **Bejövő forgalom** először áthaladó amelynek célja a szóban forgó hálózati adapter az alhálózat, időt. az alhálózat NSG-szabályok előtt a hálózati adapter történő továbbításához, majd a hálózati adapter NSG-szabályok váltanak.
+* **Kimenő forgalom** amelyek forrása a hálózati adapter a a hálózati időt. a hálózati adapter NSG-szabályok előtt áthaladó az alhálózatot, majd időt. az alhálózat NSG-szabályok első out zajlik.
 
-További információ [hálózati biztonsági csoportok](virtual-networks-nsg.md) és társítások toosubnets, a virtuális gépek és a hálózati adapterek alkalmazásának módja alapján...
+További információ [hálózati biztonsági csoportok](virtual-networks-nsg.md) és alhálózatok, a virtuális gépek és a hálózati adapter társítását alkalmazásának módja alapján...
 
-## <a name="how-tooconfigure-a-multi-nic-vm-in-a-classic-deployment"></a>Hogyan tooConfigure egy hálózati adapter több virtuális Gépre kiterjedő a klasszikus telepítési
-az alábbi utasítások hello segítségével hozhat létre egy több hálózati adapter virtuális gép 3 hálózati adaptert tartalmazó: az alapértelmezett hálózati adapter és két további hálózati adapterek. hello konfigurációs lépéseket hozza létre a virtuális gépek toohello szolgáltatás konfigurációs fájl töredék alábbi megfelelően kell konfigurálni:
+## <a name="how-to-configure-a-multi-nic-vm-in-a-classic-deployment"></a>A klasszikus üzembe helyezési egy több hálózati adapter virtuális Gépre kiterjedő konfigurálása
+Az alábbi utasítások segítségével hozhat létre egy több hálózati adapter virtuális gép 3 hálózati adaptert tartalmazó: az alapértelmezett hálózati adapter és két további hálózati adapterek. A konfigurálás lépéseinek végrehajtásához hozza létre a virtuális gépek, a szolgáltatás konfigurációs fájl töredéke alábbi megfelelően kell konfigurálni:
 
     <VirtualNetworkSite name="MultiNIC-VNet" Location="North Europe">
     <AddressSpace>
@@ -68,19 +68,19 @@ az alábbi utasítások hello segítségével hozhat létre egy több hálózati
             <AddressPrefix>10.1.200.0/28</AddressPrefix>
           </Subnet>
         </Subnets>
-    … Skip over hello remainder section …
+    … Skip over the remainder section …
     </VirtualNetworkSite>
 
 
-Előfeltételek toorun hello PowerShell-parancsok hello példa próbálkozás előtt a következő hello van szüksége.
+A példában a PowerShell-parancsok futtatása előtt kell a következő előfeltételek teljesülését.
 
 * Azure-előfizetés.
 * A konfigurált virtuális hálózati. Lásd: [virtuális hálózat áttekintése](virtual-networks-overview.md) Vnetek további információt.
-* hello Azure PowerShell legújabb verziójának letöltése, és telepítve. Lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview).
+* Az Azure PowerShell legújabb verziójának letöltése, és telepítve. Lásd: [How to install and configure Azure PowerShell](/powershell/azure/overview) (Az Azure PowerShell telepítése és konfigurálása).
 
-virtuális gép több hálózati adapter a következő lépéseket egy PowerShell-munkameneten belül minden parancs beírásával teljes hello és toocreate:
+Több hálózati adapterrel rendelkező virtuális gép létrehozása, az alábbi lépésekkel egy PowerShell-munkameneten belül minden parancs beírásával:
 
-1. Válassza ki a Virtuálisgép-lemezkép Azure VM-lemezkép gyűjteményből. Vegye figyelembe, hogy a képek módosulnak, és régiónként elérhetők. hello hello az alábbi példában megadott lemezkép módosítása vagy előfordulhat, hogy nem a régióban kell, ezért mindenképpen toospecify hello lemezkép van szüksége.
+1. Válassza ki a Virtuálisgép-lemezkép Azure VM-lemezkép gyűjteményből. Vegye figyelembe, hogy a képek módosulnak, és régiónként elérhetők. Az alábbi példában megadott lemezkép módosítása vagy előfordulhat, hogy nem a régióban kell, ezért ügyeljen arra, hogy adja meg a lemezképet kell.
 
     ```powershell
     $image = Get-AzureVMImage `
@@ -94,14 +94,14 @@ virtuális gép több hálózati adapter a következő lépéseket egy PowerShel
     -Image $image.ImageName –AvailabilitySetName "MyAVSet"
     ```
 
-3. Hello alapértelmezett rendszergazdai bejelentkezés létrehozása.
+3. Az alapértelmezett rendszergazdai bejelentkezés létrehozása.
 
     ```powershell
     Add-AzureProvisioningConfig –VM $vm -Windows -AdminUserName "<YourAdminUID>" `
     -Password "<YourAdminPassword>"
     ```
 
-4. Adja hozzá a további hálózati adapterek toohello Virtuálisgép-konfiguráció.
+4. További hálózati adapterek hozzáadása a Virtuálisgép-konfigurációhoz.
 
     ```powershell
     Add-AzureNetworkInterfaceConfig -Name "Ethernet1" `
@@ -110,35 +110,35 @@ virtuális gép több hálózati adapter a következő lépéseket egy PowerShel
     -SubnetName "Backend" -StaticVNetIPAddress "10.1.2.222" -VM $vm
     ```
 
-5. Hello alhálózatot és IP-cím megadása hello alapértelmezett hálózati adaptert.
+5. Adja meg az alhálózatot és IP-címet az alapértelmezett hálózati adaptert.
 
     ```powershell
     Set-AzureSubnet -SubnetNames "Frontend" -VM $vm
     Set-AzureStaticVNetIP -IPAddress "10.1.0.100" -VM $vm
     ```
 
-6. Hozzon létre hello VM a virtuális hálózat.
+6. Hozzon létre a virtuális Gépet a virtuális hálózat.
 
     ```powershell
     New-AzureVM -ServiceName "MultiNIC-CS" –VNetName "MultiNIC-VNet" –VMs $vm
     ```
 
     > [!NOTE]
-    > hello itt megadott virtuális hálózat már léteznie kell (ahogy azt hello Előfeltételek). az alábbi példa hello megadja nevű virtuális hálózat **MultiNIC-VNet**.
+    > Az itt megadott virtuális hálózat már léteznie kell (ahogy azt az Előfeltételek). Az alábbi példa meghatározza nevű virtuális hálózat **MultiNIC-VNet**.
     >
 
 ## <a name="limitations"></a>Korlátozások
-hello a következő korlátozások vonatkoznak, több hálózati adapter használata esetén:
+A következő korlátozások vonatkoznak, több hálózati adapter használata esetén:
 
 * Több hálózati adapterrel rendelkező virtuális gépeket az Azure virtuális hálózatokról (Vnetekről) kell létrehozni. Nem-virtuális hálózat virtuális gépek több hálózati adapter nem állítható be.
-* Rendelkezésre állási virtuális gépeinek kell toouse állítsa be, vagy több hálózati adapterrel, vagy egy egyetlen hálózati adaptert. Nem lehet több hálózati adapter virtuális gépek és egyetlen, a hálózati adapter virtuális gépek rendelkezésre állási csoportok belül. Ugyanazok a szabályok vonatkoznak a virtuális gépek felhőszolgáltatásban. Több hálózati adapter virtuális gépek esetén nem szükséges toohave hello azonos számú hálózati adaptert, mindaddig, amíg minden rendelkeznek legalább két.
+* Minden virtuális gép rendelkezésre állási csoportba szeretné használni, vagy több hálózati adapterrel, vagy egy egyetlen hálózati adaptert. Nem lehet több hálózati adapter virtuális gépek és egyetlen, a hálózati adapter virtuális gépek rendelkezésre állási csoportok belül. Ugyanazok a szabályok vonatkoznak a virtuális gépek felhőszolgáltatásban. Több hálózati adapter virtuális gépekhez, azok megnyitásáig nem szükséges hálózati adapterek, azonos számú mindaddig, amíg minden rendelkeznek legalább két.
 * Virtuális gép egyetlen hálózati adapter és több hálózati adapter (és fordítva) nem állítható be, ha telepítve van, törlésével és ismételt létrehozása nélkül.
 
-## <a name="secondary-nics-access-tooother-subnets"></a>Másodlagos hálózati adapterek hozzáférés tooother alhálózatok
-Másodlagos hálózati adapter nem konfigurálható egy alapértelmezett átjáró alapértelmezés szerint miatt hello toowhich hello adatforgalmat másodlagos hálózati adapter lesz belül hello korlátozott toobe ugyanazon az alhálózaton. Hello tooenable másodlagos hálózati adapterek tootalk kívül a saját alhálózati szeretnék, azok bejegyzés hello útválasztási táblázat tooconfigure hello átjáró, az alább ismertetett tooadd kell.
+## <a name="secondary-nics-access-to-other-subnets"></a>Másodlagos hálózati adapterek hozzáférést más alhálózatok
+Alapértelmezés szerint a egy alapértelmezett átjáró, amely miatt a forgalom áramlását az másodlagos hálózati adaptereken kell lennie ugyanazon az alhálózaton belül korlátozza nem másodlagos hálózati adapter lesz konfigurálva. Ha a felhasználók a saját alhálózati kívül ügyfélcsatornája másodlagos hálózati adapterek engedélyezni kívánja, akkor kell bejegyzés hozzáadása az átjáró konfigurálásához, az alább ismertetett-útválasztási táblázatához.
 
 > [!NOTE]
-> A virtuális gépeket létrehozni, mielőtt a 2015. július lehet a hálózati adapterek összes beállított alapértelmezett átjárót. hello alapértelmezett átjáró másodlagos hálózati adaptert a virtuális gépeken újraindítása nem lesznek eltávolítva. Hello gyenge állomás útválasztási modellt használó, például a Linux operációs rendszerben internetkapcsolat érvénytelenné Ha hello bemenő és kimenő forgalom használjon másik hálózati adaptert.
+> A virtuális gépeket létrehozni, mielőtt a 2015. július lehet a hálózati adapterek összes beállított alapértelmezett átjárót. Az alapértelmezett átjáró, a másodlagos hálózati adapter nem távolítja el, a virtuális gép újraindítása. Az operációs rendszerek, Linux, például a gyenge állomás útválasztási modellt használó internetkapcsolat különböző hálózati adapterein használatakor a bemenő és kimenő forgalom meghibásodásához vezethet.
 > 
 
 ### <a name="configure-windows-vms"></a>Windows virtuális gépek
@@ -147,7 +147,7 @@ Tegyük fel, hogy két hálózati adapterrel rendelkező virtuális gép Windows
 * Elsődleges hálózati adapter IP-cím: 192.168.1.4
 * Másodlagos hálózati adapter IP-cím: 192.168.2.5
 
-Ez a virtuális gép hello IPv4 útvonaltábla néz ki:
+A virtuális gép az IPv4-alapú útválasztási táblázatot néz ki:
 
     IPv4 Route Table
     ===========================================================================
@@ -172,7 +172,7 @@ Ez a virtuális gép hello IPv4 útvonaltábla néz ki:
       255.255.255.255  255.255.255.255         On-link       192.168.2.5    261
     ===========================================================================
 
-Láthatja, hogy hello alapértelmezett útvonalat (0.0.0.0) csak elérhető toohello elsődleges hálózati adaptert. Csak akkor tudja tooaccess erőforrások kívül másodlagos hello hello IP-alhálózatot a hálózati adapter, az alább látható módon:
+Figyelje meg, hogy az alapértelmezett útvonalat (0.0.0.0) csak érhető el az elsődleges hálózati adapternek. Csak akkor férhessenek hozzá az erőforrásokhoz kívül az alhálózat a másodlagos hálózati adapter, az alább látható módon:
 
     C:\Users\Administrator>ping 192.168.1.7 -S 192.165.2.5
 
@@ -182,9 +182,9 @@ Láthatja, hogy hello alapértelmezett útvonalat (0.0.0.0) csak elérhető tooh
     PING: transmit failed. General failure.
     PING: transmit failed. General failure.
 
-az alapértelmezett útvonal a tooadd hello másodlagos hálózati adapter, hajtsa végre hello alábbi lépéseket:
+A másodlagos hálózati adapter által az alapértelmezett útvonal hozzáadásához kövesse az alábbi lépéseket:
 
-1. Egy parancssorból futtassa a tooidentify hello indexszámát hello hello parancsot másodlagos hálózati adapter:
+1. Egy parancssorból futtassa a parancsot az alábbi indexszámát azonosítja a másodlagos hálózati adapter:
    
         C:\Users\Administrator>route print
         ===========================================================================
@@ -195,11 +195,11 @@ az alapértelmezett útvonal a tooadd hello másodlagos hálózati adapter, hajt
          14...00 00 00 00 00 00 00 e0 Teredo Tunneling Pseudo-Interface
          20...00 00 00 00 00 00 00 e0 Microsoft ISATAP Adapter #2
         ===========================================================================
-2. Figyelje meg a második bejegyzés hello hello a táblában (a példában) 27 az indexet.
-3. Hello parancssorból futtassa a hello **útvonal hozzáadása** parancsot a lent látható módon. Ebben a példában meg 192.168.2.1 hello alapértelmezett átjáróként hello a másodlagos hálózati adapter:
+2. Figyelje meg, a második bejegyzés a táblában (a példában) 27 az indexet.
+3. A parancssorból futtassa a **útvonal hozzáadása** parancsot a lent látható módon. Ebben a példában meg 192.168.2.1 alapértelmezett átjáróként a másodlagos hálózati adapter:
    
         route ADD -p 0.0.0.0 MASK 0.0.0.0 192.168.2.1 METRIC 5000 IF 27
-4. tootest kapcsolatot, lépjen vissza toohello parancssort, és próbálkozzon egy másik alhálózatból származó hello másodlagos hálózati adapter látható egész elemeként eh az alábbi példában tooping:
+4. A kapcsolat tesztelése, lépjen vissza a parancssort, és próbálja meg Pingelje meg egy másik alhálózat a másodlagos hálózati adapter látható egész elemeként eh az alábbi példa:
    
         C:\Users\Administrator>ping 192.168.1.7 -S 192.165.2.5
    
@@ -207,7 +207,7 @@ az alapértelmezett útvonal a tooadd hello másodlagos hálózati adapter, hajt
         Reply from 192.168.1.7: bytes=32 time<1ms TTL=128
         Reply from 192.168.1.7: bytes=32 time=2ms TTL=128
         Reply from 192.168.1.7: bytes=32 time<1ms TTL=128
-5. Ellenőrizheti az útvonal tábla toocheck hello újonnan hozzáadott útvonal, alább látható módon:
+5. Alább látható módon is ellenőrizheti az útválasztási táblázatot az újonnan hozzáadott útvonal kereséséhez:
    
         C:\Users\Administrator>route print
    
@@ -222,7 +222,7 @@ az alapértelmezett útvonal a tooadd hello másodlagos hálózati adapter, hajt
                 127.0.0.0        255.0.0.0         On-link         127.0.0.1    306
 
 ### <a name="configure-linux-vms"></a>Linux virtuális gépek
-Linux virtuális gépekhez, mivel a hello alapértelmezett konfigurációját használja gyenge állomás útválasztási, azt javasoljuk, hogy hello másodlagos hálózati adapterek korlátozott tootraffic folyamatot csak belül hello ugyanazon az alhálózaton. Azonban bizonyos forgatókönyvek hello alhálózati kívüli kapcsolatot igényelnek, ha felhasználók lehetővé kell tennie a csoportházirend-alapú útválasztási tooensure érkező hello és kimenő forgalom által használt hello azonos hálózati adaptert.
+Linux virtuális gépekhez mivel az alapértelmezett viselkedés használ gyenge állomás útválasztási, azt javasoljuk, hogy a másodlagos hálózati adapterek forgalom csak az ugyanazon alhálózaton belüli korlátozódnak. Azonban ha bizonyos esetekben az alhálózat kívüli kapcsolatot igényelnek, felhasználók engedélyeznie kell a csoportházirend-alapú útválasztási annak érdekében, hogy a bemenő és kimenő forgalom használja-e az azonos hálózati adaptert.
 
 ## <a name="next-steps"></a>Következő lépések
 * Telepítése [MultiNIC virtuális gépeket a 2-rétegbeli alkalmazás esetén a Resource Manager-telepítés a](virtual-network-deploy-multinic-arm-template.md).

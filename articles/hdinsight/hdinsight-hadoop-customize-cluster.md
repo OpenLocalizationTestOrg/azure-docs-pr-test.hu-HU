@@ -1,6 +1,6 @@
 ---
-title: "aaaCustomize a HDInsight-fürtök használata parancsfájl-műveletek - Azure |} Microsoft Docs"
-description: "Ismerje meg, hogyan toocustomize HDInsight clusters parancsfájlművelet használatával."
+title: "A Parancsfájlműveletek - Azure HDInsight-fürtök testreszabása |} Microsoft Docs"
+description: "Ismerje meg a parancsfájlművelet HDInsight-fürtök testreszabása."
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -16,41 +16,41 @@ ms.topic: article
 ms.date: 10/05/2016
 ms.author: nitinme
 ROBOTS: NOINDEX
-ms.openlocfilehash: 076fff23e016db47bc7e9963582a545ad638e691
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ec95b6d66c71b4278dd1e16807fcc75f5e8b1c36
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="customize-windows-based-hdinsight-clusters-using-script-action"></a>Parancsfájlművelet Windows-alapú HDInsight-fürtök testreszabása
-**Parancsfájl-művelet** lehet használt tooinvoke [egyéni parancsfájlok](hdinsight-hadoop-script-actions.md) hello Fürtlétrehozási folyamat a fürt további szoftver telepítése során.
+**Parancsfájl-művelet** alkalmazásához használt [egyéni parancsfájlok](hdinsight-hadoop-script-actions.md) a fürt további szoftver telepítése a fürt létrehozása során.
 
-a cikkben szereplő információkat hello tooWindows-alapú HDInsight-fürtök adott. Linux-alapú fürtök esetében lásd: [testreszabása Linux-alapú HDInsight-fürtök használata parancsfájlművelet](hdinsight-hadoop-customize-cluster-linux.md).
+Ebben a cikkben szereplő információk csak a Windows-alapú HDInsight-fürtök az elő. Linux-alapú fürtök esetében lásd: [testreszabása Linux-alapú HDInsight-fürtök használata parancsfájlművelet](hdinsight-hadoop-customize-cluster-linux.md).
 
 > [!IMPORTANT]
-> Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
-További Azure Storage-fiókok ideértve például a HDInsight-fürtök testre szabható más módszerekkel is, számos, hello Hadoop módosítása konfigurációs fájljai (core-site.xml, hive-site.xml stb.), vagy hozzáadása a megosztott függvénytárak (például a Hive, az Oozie) be általános helyek hello fürtben. Ezek a testreszabások Azure PowerShell, hello Azure HDInsight .NET SDK használatával, vagy hello Azure-portálon. További információkért lásd: [Hadoop létrehozása a HDInsight-fürtök][hdinsight-provision-cluster].
+További Azure Storage-fiókok ideértve például a HDInsight-fürtök testre szabható más módszerekkel is, számos, a Hadoop módosítása konfigurációs fájljai (core-site.xml, hive-site.xml stb.), vagy a megosztott függvénytárak (például a Hive, az Oozie) hozzáadása a fürt közös helyen való. Ezek a testreszabások végezhető el az Azure PowerShell, az Azure HDInsight .NET SDK vagy az Azure-portálon. További információkért lásd: [Hadoop létrehozása a HDInsight-fürtök][hdinsight-provision-cluster].
 
 [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell-cli-and-dotnet-sdk.md)]
 
-## <a name="script-action-in-hello-cluster-creation-process"></a>Hello fürtlétrehozás parancsfájlművelet
-Parancsfájlművelet csak akkor használható, amíg hello folyamatának létrehozása folyamatban van egy fürt. hello alábbi ábrán látható parancsfájl hello létrehozási folyamata során kerül végrehajtásra:
+## <a name="script-action-in-the-cluster-creation-process"></a>A Fürtlétrehozási folyamat parancsfájlművelet
+Parancsfájl művelet csak akkor használatos, miközben a fürt létrehozása folyamatban van. A következő ábra szemlélteti a parancsfájl művelet végrehajtásakor a létrehozási folyamat során:
 
 ![A HDInsight fürt testreszabási és fürt létrehozása során szakaszai][img-hdi-cluster-states]
 
-Hello fürt hello parancsprogram futtatásakor kerül, hello **ClusterCustomization** szakaszban. Ebben a szakaszban a hello parancsfájl hello rendszer rendszergazdai fiók alatt fut, minden hello párhuzamos megadott hello fürt csomópontja, és teljes rendszergazdai jogosultságokat biztosít hello csomópontján.
+A parancsprogram futtatásakor kerül, a fürt a **ClusterCustomization** szakaszban. Ebben a szakaszban a parancsfájlt a fürt összes az adott csomóponton párhuzamosan a rendszer rendszergazdai fiók alatt fut, és teljes rendszergazdai jogosultságokat biztosít a csomópontokon.
 
 > [!NOTE]
-> Mivel a rendszergazdai jogosultságokkal rendelkezik a fürtcsomópontokon hello során a **ClusterCustomization** -szakaszban is használhat hello parancsfájl tooperform műveletek, például a szolgáltatások, beleértve a Hadoop-kapcsolatos szolgáltatások indítása és leállítása. Így hello parancsfájl részeként meg kell győződnie arról, hogy hello Ambari és egyéb Hadoop-kapcsolódó szolgáltatás megfelelően működik előtt hello parancsfájl befejezése után történik. Ezek a szolgáltatások szükségesek toosuccessfully hello állapotának és hello fürt állapotának megállapítása közben létrehozása folyamatban van. Ha módosítja a fürtön, ezeket a szolgáltatásokat érintő beállításra, hello súgófunkciókat által biztosított kell használnia. Súgófunkciókat kapcsolatos további információkért lásd: [parancsfájlművelet fejlesztése parancsfájlok a HDInsight][hdinsight-write-script].
+> Mivel a rendszergazdai jogosultságokkal rendelkezik a fürtcsomópontokon során a **ClusterCustomization** szakasza alatt a parancsfájlt használhatja például a szolgáltatások, beleértve a Hadoop-kapcsolatos szolgáltatások indítása és leállítása műveletek végrehajtásához. Igen, a parancsfájl gondoskodnia kell arról, hogy az Ambari és egyéb Hadoop-kapcsolódó szolgáltatás megfelelően működik, mielőtt a parancsfájl befejezése után történik. Ezek a szolgáltatások szükségesek állapotát és a fürt állapotának sikeresen megállapítása közben létrehozása folyamatban van. Ha módosítja a fürtön, ezeket a szolgáltatásokat érintő beállításra, a súgófunkciókat által biztosított kell használnia. Súgófunkciókat kapcsolatos további információkért lásd: [parancsfájlművelet fejlesztése parancsfájlok a HDInsight][hdinsight-write-script].
 >
 >
 
-hello kimeneti és hello hibanaplókat hello parancsfájl hello alapértelmezett tárfiók hello fürt megadott vannak tárolva. hello naplófájljainak tárolása a hello nevű tábla **u < \cluster-name-fragment >< \time-stamp > setuplog**. Ezek a hello parancsfájl futtatása minden csomóponton hello (átjárócsomópont és feldolgozó csomópontokat) hello fürt származó összesített naplók.
+A kimeneti és a hibanaplókat a parancsfájl az alapértelmezett tárfiókot, a fürt számára megadott vannak tárolva. A naplók tárolódnak a nevű tábla **u < \cluster-name-fragment >< \time-stamp > setuplog**. Ezek a összesített napló, a parancsfájl futhat az összes (átjárócsomópont és feldolgozó csomópontokat) a fürt csomópontja.
 
-Az egyes fürtökön fogadhatnak több Parancsfájlműveletek megadott vannak hello sorrendben definiálásra. Egy parancsfájlt is futott, hello átjárócsomópont, hello munkavégző csomópontokhoz vagy mindkettőt.
+Az egyes fürtökön fogadhatnak kerül meghívásra, amely a megadott sorrendben több parancsfájl-műveletek. Egy parancsfájlt is futott, az átjárócsomópont, a munkavégző csomópontokhoz vagy mindkettőt.
 
-HDInsight biztosít több parancsfájlok tooinstall hello összetevők HDInsight-fürtök a következő:
+HDInsight több parancsprogramokat a HDInsight-fürtök az alábbi összetevők telepítése itt:
 
 | Név | Szkript |
 | --- | --- |
@@ -60,36 +60,36 @@ HDInsight biztosít több parancsfájlok tooinstall hello összetevők HDInsight
 | - **Giraph telepítése** |https://hdiconfigactions.BLOB.Core.Windows.NET/giraphconfigactionv01/giraph-Installer-v01.ps1. Lásd: [telepítése és használata Giraph a HDInsight-fürtök](hdinsight-hadoop-giraph-install.md). |
 | **Hive-könyvtárakhoz előzetes betöltése** |https://hdiconfigactions.BLOB.Core.Windows.NET/setupcustomhivelibsv01/Setup-customhivelibs-v01.ps1. Lásd: [kódtárak hozzáadása Hive HDInsight-fürtök](hdinsight-hadoop-add-hive-libraries.md) |
 
-## <a name="call-scripts-using-hello-azure-portal"></a>Hívás parancsfájlok hello Azure-portál használatával
-**A hello Azure-portálon**
+## <a name="call-scripts-using-the-azure-portal"></a>Az Azure portál használatával hívás parancsfájlok
+**Az Azure-portálon**
 
 1. Indítsa el a fürt létrehozása a részben ismertetett módon [Hadoop létrehozása a HDInsight-fürtök](hdinsight-hadoop-provision-linux-clusters.md).
-2. A választható konfigurációs, hello **Parancsfájlműveletek** panelen kattintson a **parancsfájlművelet hozzáadása** tooprovide részleteinek hello parancsfájlművelet, alább látható módon:
+2. Választható konfiguráció alatt az a **Parancsfájlműveletek** panelen kattintson **parancsfájlművelet hozzáadása** adni a parancsfájlművelet alább látható módon:
 
-    ![Használja a fürt parancsfájlművelet toocustomize](./media/hdinsight-hadoop-customize-cluster/HDI.CreateCluster.8.png "használata parancsfájlművelet toocustomize fürt")
+    ![Parancsfájlművelet használni ahhoz, hogy a fürt](./media/hdinsight-hadoop-customize-cluster/HDI.CreateCluster.8.png "parancsfájlművelet használja a fürt testreszabása")
 
     <table border='1'>
         <tr><th>Tulajdonság</th><th>Érték</th></tr>
         <tr><td>Név</td>
-            <td>Adja meg a hello parancsfájlművelet nevét.</td></tr>
+            <td>Adja meg a parancsfájlművelet nevét.</td></tr>
         <tr><td>A parancsfájl URI azonosítója</td>
-            <td>Hello URI toohello parancsfájl megadásához, amely meghívott toocustomize hello fürt. s</td></tr>
+            <td>Adja meg az URI-t a parancsfájlt, amelyet a fürt testreszabásához. s</td></tr>
         <tr><td>HEAD/munkavégző</td>
-            <td>Adja meg a hello csomópontok (**Head** vagy **munkavégző**) mely hello testreszabási a parancsfájl futtatása.</b>.
+            <td>Adja meg a csomópontok (**Head** vagy **munkavégző**) a testreszabási parancsfájl futtatása a.</b>.
         <tr><td>Paraméterek</td>
-            <td>Adja meg a hello paraméterek hello parancsfájl által szükség esetén.</td></tr>
+            <td>Adja meg a paraméterek, ha a parancsfájl által igényelt.</td></tr>
     </table>
 
-    Nyomja le az ENTER tooadd több mint egy parancsfájl művelet tooinstall több összetevő hello fürtön.
-3. Kattintson a **válasszon** toosave hello parancsprogram művelet konfigurációját, és folytassa a fürt létrehozása.
+    Nyomja le az ENTER billentyűt több összetevőinek telepítése a fürt több parancsfájlművelet hozzáadása.
+3. Kattintson a **válasszon** a parancsfájl művelet konfiguráció mentéséhez, majd folytassa a fürt létrehozása.
 
 ## <a name="call-scripts-using-azure-powershell"></a>Hívja meg az Azure PowerShell parancsfájlok
-A következő PowerShell-parancsfájl bemutatja, hogyan tooinstall a Spark on Windows alapú HDInsight-fürthöz.  
+A következő PowerShell-parancsfájl bemutatja, hogyan kell külső telepítse a Windows-alapú HDInsight-fürthöz.  
 
     # Provide values for these variables
-    $subscriptionID = "<Azure Suscription ID>" # After "Login-AzureRmAccount", use "Get-AzureRmSubscription" toolist IDs.
+    $subscriptionID = "<Azure Suscription ID>" # After "Login-AzureRmAccount", use "Get-AzureRmSubscription" to list IDs.
 
-    $nameToken = "<Enter A Name Token>"  # hello token is use toocreate Azure service names.
+    $nameToken = "<Enter A Name Token>"  # The token is use to create Azure service names.
     $namePrefix = $nameToken.ToLower() + (Get-Date -Format "MMdd")
 
     $resourceGroupName = $namePrefix + "rg"
@@ -103,7 +103,7 @@ A következő PowerShell-parancsfájl bemutatja, hogyan tooinstall a Spark on Wi
     $defaultBlobContainerName = $hdinsightClusterName
 
     #############################################################
-    # Connect tooAzure
+    # Connect to Azure
     #############################################################
 
     Try{
@@ -115,7 +115,7 @@ A következő PowerShell-parancsfájl bemutatja, hogyan tooinstall a Spark on Wi
     Select-AzureRmSubscription -SubscriptionId $subscriptionID
 
     #############################################################
-    # Prepare hello dependent components
+    # Prepare the dependent components
     #############################################################
 
     # Create resource group
@@ -141,13 +141,13 @@ A következő PowerShell-parancsfájl bemutatja, hogyan tooinstall a Spark on Wi
     # Create cluster with ApacheSpark
     #############################################################
 
-    # Specify hello configuration options
+    # Specify the configuration options
     $config = New-AzureRmHDInsightClusterConfig `
                 -DefaultStorageAccountName "$defaultStorageAccountName.blob.core.windows.net" `
                 -DefaultStorageAccountKey $defaultStorageAccountKey
 
 
-    # Add a script action toohello cluster configuration
+    # Add a script action to the cluster configuration
     $config = Add-AzureRmHDInsightScriptAction `
                 -Config $config `
                 -Name "Install Spark" `
@@ -166,22 +166,22 @@ A következő PowerShell-parancsfájl bemutatja, hogyan tooinstall a Spark on Wi
             -Config $config
 
 
-tooinstall egyéb szoftvereihez, szüksége lesz tooreplace hello parancsfájl hello parancsfájlban:
+Más szoftverek telepítése, akkor cserélje le a parancsfájlt a parancsfájl:
 
-Amikor a rendszer kéri, adja meg hello hitelesítő hello fürt. Hello fürt létrehozása előtt több percet is igénybe vehet.
+Amikor a rendszer kéri, adja meg a hitelesítő adatok a fürt. A fürt létrehozása előtt több percet is igénybe vehet.
 
 ## <a name="call-scripts-using-net-sdk"></a>Hívás parancsfájlok .NET SDK használatával
-hello következő minta bemutatja, hogyan tooinstall a Spark on Windows alapú HDInsight-fürthöz. tooinstall egyéb szoftvereihez, szüksége lesz tooreplace hello parancsfájl hello kódot.
+A következő példa bemutatja, hogyan Spark telepítse a Windows-alapú HDInsight-fürthöz. Más szoftver telepítéséhez, akkor cserélje le a parancsfájlt a kódban.
 
-**a Spark HDInsight-fürtök toocreate**
+**A Spark HDInsight-fürtök létrehozása**
 
 1. Hozzon létre egy C# konzolalkalmazást a Visual Studióban.
-2. Hello Nuget Package Manager Console futtassa a következő parancs hello.
+2. A Nuget-Csomagkezelő konzolról a következő parancsot.
 
         Install-Package Microsoft.Rest.ClientRuntime.Azure.Authentication -Pre
         Install-Package Microsoft.Azure.Management.ResourceManager -Pre
         Install-Package Microsoft.Azure.Management.HDInsight
-3. A következő using utasításokat a Program.cs fájlban hello használata hello:
+3. Használja a következő using utasításokat a Program.cs fájlban:
 
         using System;
         using System.Security;
@@ -192,14 +192,14 @@ hello következő minta bemutatja, hogyan tooinstall a Spark on Windows alapú H
         using Microsoft.IdentityModel.Clients.ActiveDirectory;
         using Microsoft.Rest;
         using Microsoft.Rest.Azure.Authentication;
-4. Helyezze hello kódot hello osztály hello alábbira:
+4. Helyezze a kódot az osztály a következő:
 
         private static HDInsightManagementClient _hdiManagementClient;
 
         // Replace with your AAD tenant ID if necessary
         private const string TenantId = UserTokenProvider.CommonTenantId;
         private const string SubscriptionId = "<Your Azure Subscription ID>";
-        // This is hello GUID for hello PowerShell client. Used for interactive logins in this example.
+        // This is the GUID for the PowerShell client. Used for interactive logins in this example.
         private const string ClientId = "1950a258-227b-4e31-a9cf-717495945fc2";
         private const string ResourceGroupName = "<ExistingAzureResourceGroupName>";
         private const string NewClusterName = "<NewAzureHDInsightClusterName>";
@@ -252,11 +252,11 @@ hello következő minta bemutatja, hogyan tooinstall a Spark on Windows alapú H
         }
 
         /// <summary>
-        /// Authenticate tooan Azure subscription and retrieve an authentication token
+        /// Authenticate to an Azure subscription and retrieve an authentication token
         /// </summary>
-        /// <param name="TenantId">hello AAD tenant ID</param>
-        /// <param name="ClientId">hello AAD client ID</param>
-        /// <param name="SubscriptionId">hello Azure subscription ID</param>
+        /// <param name="TenantId">The AAD tenant ID</param>
+        /// <param name="ClientId">The AAD client ID</param>
+        /// <param name="SubscriptionId">The Azure subscription ID</param>
         /// <returns></returns>
         static TokenCloudCredentials Authenticate(string TenantId, string ClientId, string SubscriptionId)
         {
@@ -276,42 +276,42 @@ hello következő minta bemutatja, hogyan tooinstall a Spark on Windows alapú H
         /// <param name="authToken">An authentication token for your Azure subscription</param>
         static void EnableHDInsight(TokenCloudCredentials authToken)
         {
-            // Create a client for hello Resource manager and set hello subscription ID
+            // Create a client for the Resource manager and set the subscription ID
             var resourceManagementClient = new ResourceManagementClient(new TokenCredentials(authToken.Token));
             resourceManagementClient.SubscriptionId = SubscriptionId;
-            // Register hello HDInsight provider
+            // Register the HDInsight provider
             var rpResult = resourceManagementClient.Providers.Register("Microsoft.HDInsight");
         }
-5. Nyomja le az **F5** toorun hello alkalmazás.
+5. Az alkalmazás futtatásához nyomja le az **F5** billentyűt.
 
 ## <a name="support-for-open-source-software-used-on-hdinsight-clusters"></a>A HDInsight-fürtökön használt nyílt forráskódú szoftvereket támogatása
-a Microsoft Azure HDInsight szolgáltatás hello egy rugalmas platform, amely lehetővé teszi az ökoszisztéma formátumú-e körül Hadoop nyílt forráskódú technológiák használatával toobuild big data-alkalmazások hello felhőben. A Microsoft Azure biztosít, általános támogatási nyílt forráskódú technológiák hello leírtaknak megfelelően **támogatja a hatókör** hello szakasza <a href="http://azure.microsoft.com/support/faq/" target="_blank">Azure támogatási gyakori Kérdéseinek webhelyre</a>. HDInsight szolgáltatás hello biztosít egy további néhány hello összetevőjét támogatása az alább ismertetett.
+A Microsoft Azure HDInsight-szolgáltatás rugalmas platform, amely lehetővé teszi a felhőalapú big data-alkalmazások összeállítását az ökoszisztéma formátumú-e körül Hadoop nyílt forráskódú technológiák használatával. A Microsoft Azure biztosít, általános támogatási nyílt forráskódú technológiák leírtaknak megfelelően a **támogatja a hatókör** szakasza a <a href="http://azure.microsoft.com/support/faq/" target="_blank">Azure támogatási gyakori Kérdéseinek webhelyre</a>. A HDInsight-szolgáltatás egy további szintű egyes összetevői, támogatást biztosít, az alább ismertetett.
 
-Nyílt forráskódú összetevők hello HDInsight szolgáltatás elérhető két típusa van:
+A HDInsight szolgáltatásban elérhető nyílt forráskódú összetevőinek két típusa van:
 
-* **A beépített összetevők** -ezeket az összetevőket a HDInsight-fürtök előre telepített, és alapfunkciókat hello fürt adja meg. YARN ResourceManager, hello Hive query language (HiveQL) és hello Mahout könyvtár például toothis kategóriába tartozik. A kiszolgálófürt-összetevők teljes listáját a érhető [What's new in HDInsight által biztosított hello Hadoop-fürt verziók?](hdinsight-component-versioning.md) </a>.
-* **Egyéni összetevők** -hello fürt felhasználóként, telepítése vagy használata előtt a munkaterhelésnek valamelyik összetevő a hello közösségi vagy Ön által létrehozott.
+* **A beépített összetevők** -ezeket az összetevőket a HDInsight-fürtök előre telepített, és adja meg a fürt alapvető funkcióit. Például YARN erőforrás-kezelő, a Hive lekérdezési nyelv (HiveQL) és a Mahout könyvtárban a kategóriába tartoznak. A kiszolgálófürt-összetevők teljes listáját a érhető [What's new in HDInsight által biztosított Hadoop-fürt verziók?](hdinsight-component-versioning.md) </a>.
+* **Egyéni összetevők** -Ön, mint a felhasználó a fürt telepítése vagy használata előtt a munkaterhelésnek valamelyik összetevő a közösségi érhető el, vagy Ön által létrehozott.
 
-A beépített összetevők teljes mértékben támogatottak, és Microsoft Support fog tooisolate segítségével, és a kapcsolódó toothese összetevők problémák megoldásához.
+A beépített összetevők teljes mértékben támogatottak, és a Microsoft Support fog help elkülönítésére, és ezeket az összetevőket kapcsolatos problémák megoldásához.
 
 > [!WARNING]
-> Hello HDInsight-fürt összetevői teljes mértékben támogatottak, és a Microsoft Support fog tooisolate segítségével, és a kapcsolódó toothese összetevők problémák megoldásához.
+> A HDInsight-fürt összetevői teljes mértékben támogatottak, és a Microsoft Support fog help elkülönítésére, és ezeket az összetevőket kapcsolatos problémák megoldásához.
 >
-> Egyéni összetevők kap minden üzleti szempontból ésszerű támogatási toohelp meg toofurther hello problémával kapcsolatos hibaelhárítás elősegítéséhez. Hello probléma megoldását, vagy kérni a tooengage elérhető csatorna az hello megnyitja részletes segítséget, hogy a technológiát találhatók technológiák eredményezhet. Például nincsenek sok közösségi webhelyek használható, például: [MSDN fórum hdinsight](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=hdinsight), [http://stackoverflow.com](http://stackoverflow.com). Is Apache projektek rendelkezik projekt helyek [http://apache.org](http://apache.org), például: [Hadoop](http://hadoop.apache.org/), [Spark](http://spark.apache.org/).
+> Egyéni összetevők kapnak minden üzleti szempontból ésszerű támogatási segítséget nyújtanak a probléma további hibaelhárításához. A probléma megoldását, vagy kéri fel, a nyílt forráskódú technológiák, ahol a részletes segítséget, hogy a technológiát található elérhető csatorna végezhetnek eredményezhet. Például nincsenek sok közösségi webhelyek használható, például: [MSDN fórum hdinsight](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=hdinsight), [http://stackoverflow.com](http://stackoverflow.com). Is Apache projektek rendelkezik projekt helyek [http://apache.org](http://apache.org), például: [Hadoop](http://hadoop.apache.org/), [Spark](http://spark.apache.org/).
 >
 >
 
-HDInsight-szolgáltatás hello toouse egyéni összetevők számos lehetőséget biztosít. Függetlenül attól, milyen összetevő használt vagy hello fürt telepíteni hello azonos szintű támogatást vonatkozik. Az alábbiakban olvashat egy listát hello leggyakoribb módon, hogy a HDInsight-fürtök egyéni összetevők használható:
+A HDInsight-szolgáltatás többféleképpen is egyéni összetevőket használnak. Függetlenül attól, milyen összetevőt használja vagy a fürt telepíteni az azonos szintű támogatást vonatkozik. Alább felsoroljuk, hogy használható-e az egyéni összetevőkben HDInsight-fürtök leggyakoribb módja:
 
-1. Feladat elküldése - Hadoop és egyéb feladatok végrehajtása, vagy használjon egyéni összetevők elküldött toohello tárolófürt is lehet.
-2. Fürt testreszabási - fürt létrehozása során megadhatja további beállításokat és egyéni hello fürtcsomópontokon telepített összetevők.
-3. Minták – a népszerű egyéni összetevők, a Microsoft és a mások által biztosított mintákat ezeket az összetevőket hogyan használható a hello HDInsight-fürtökön. Ezeket a mintákat támogatás nélkül van megadva.
+1. Feladat elküldése - Hadoop és egyéb feladatok végrehajtása, vagy használjon egyéni összetevők küldheti el a fürtöt.
+2. Fürt testreszabási - fürt létrehozása során megadhatja további beállításokat és a fürtcsomópontokon telepített egyéni összetevők.
+3. Minták – a népszerű egyéni összetevők, a Microsoft és a mások által biztosított mintákat ezeket az összetevőket hogyan használható a HDInsight-fürtök. Ezeket a mintákat támogatás nélkül van megadva.
 
 ## <a name="develop-script-action-scripts"></a>Parancsfájlművelet-parancsfájlok fejlesztése
 Lásd: [parancsfájlművelet fejlesztése parancsfájlok a HDInsight][hdinsight-write-script].
 
 ## <a name="see-also"></a>Lásd még:
-* [Hdinsight Hadoop-fürtök létrehozása] [ hdinsight-provision-cluster] hogyan toocreate egy HDInsight fürt más egyéni beállítások használatával kapcsolatos utasításokat tartalmazza.
+* [Hdinsight Hadoop-fürtök létrehozása] [ hdinsight-provision-cluster] HDInsight-fürtök létrehozása más egyéni beállítások használatával kapcsolatos utasításokat tartalmazza.
 * [A HDInsight parancsfájlművelet-parancsfájlok fejlesztése][hdinsight-write-script]
 * [Telepítse, és válassza a Spark on HDInsight-fürtök][hdinsight-install-spark]
 * [Telepítheti és használhatja a HDInsight-fürtök R][hdinsight-install-r]

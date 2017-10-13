@@ -1,6 +1,6 @@
 ---
-title: "aaaManage hozzáférést és engedélyeket az RBAC - Azure RBAC |} Microsoft Docs"
-description: "Ismerkedés a hozzáférés-kezelés az Azure portál hello Azure szerepköralapú hozzáférés-vezérlés. Szerepkör-hozzárendelések tooassign engedélyek használata a címtárban."
+title: "Kezelheti a hozzáférést és engedélyeket az RBAC - Azure RBAC |} Microsoft Docs"
+description: "Ismerkedés a hozzáférés-kezelés az Azure szerepköralapú hozzáférés-vezérlés az Azure portálon. Szerepkör-hozzárendelésekkel adhat meg engedélyeket a címtárában."
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -14,56 +14,56 @@ ms.workload: identity
 ms.date: 07/13/2017
 ms.author: andredm
 ms.reviewer: rqureshi
-ms.openlocfilehash: 1c133b2b57b49d85f0e12a318c7997478e095fb9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0462fe8ff75bdda397decb301c459795886e9e58
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="get-started-with-role-based-access-control-in-hello-azure-portal"></a>Szerepköralapú hozzáférés-vezérlés hello Azure-portálon az első lépések
-A vállalat biztonsági célú hello pontos engedélyeket szükségük ad az alkalmazottak kell összpontosítania. Túl sok engedélyek egy fiók tooattackers is elérhetővé teheti. Túl kevés engedélyek, az azt jelenti, hogy az alkalmazottak nem munkavégzéséhez hatékony. Azure szerepköralapú hozzáférés-vezérlés (RBAC) segít a részletes hozzáféréskezelést az Azure felajánlásával oldja meg a problémát.
+# <a name="get-started-with-role-based-access-control-in-the-azure-portal"></a>Szerepköralapú hozzáférés-vezérlés az Azure-portálon az első lépései
+A vállalat biztonsági célú van szükségük a pontos engedélyeket ad az alkalmazottak kell összpontosítania. Túl sok engedélyeket is elérhetővé teheti a támadásokkal fiókkal. Túl kevés engedélyek, az azt jelenti, hogy az alkalmazottak nem munkavégzéséhez hatékony. Azure szerepköralapú hozzáférés-vezérlés (RBAC) segít a részletes hozzáféréskezelést az Azure felajánlásával oldja meg a problémát.
 
-Szerepalapú használ, feladatokat elkülönítse a munkacsoporton belül, és hozzáférési toousers csak hello összegét adja meg, hogy be kell tooperform a munkájukat. Jogosultságot ad a Mindenki helyett korlátozás engedélyek az Ön Azure-előfizetés vagy erőforrásokhoz, engedélyezheti a csak bizonyos műveleteket. Például használja az RBAC toolet egy alkalmazott egy előfizetésben található virtuális gépek kezeléséhez, miközben egy másik kezelhető SQL-adatbázisok hello belül azonos előfizetéssel.
+Az RBAC használata, feladatokat elkülönítse a munkacsoporton belül, és csak olyan mértékű hozzáférést biztosítania a felhasználóknak a feladataik elvégzéséhez szükséges. Jogosultságot ad a Mindenki helyett korlátozás engedélyek az Ön Azure-előfizetés vagy erőforrásokhoz, engedélyezheti a csak bizonyos műveleteket. Például, hogy egy előfizetésben található virtuális gépek kezeléséhez, miközben egy másik kezelheti az SQL-adatbázisok egyazon előfizetésen belül egy alkalmazott RBAC használatát.
 
 ## <a name="basics-of-access-management-in-azure"></a>Hozzáférés-kezelés az Azure-ban alapjai
-Minden Azure-előfizetés tartozik egy Azure Active Directory (AD) címtárban. Felhasználók, csoportok és alkalmazások tartalmazza a kezelhetik az erőforrásokat a hello Azure-előfizetés. Rendelje hozzá a következő hozzáférési jogokat hello Azure-portálon, az Azure parancssori eszközök és Azure szolgáltatásfelügyeleti API használatával.
+Minden Azure-előfizetés tartozik egy Azure Active Directory (AD) címtárban. Felhasználók, csoportok és alkalmazások tartalmazza a kezelhetik az erőforrásokat az Azure-előfizetésben. Rendelje hozzá a következő hozzáférési jogokat az Azure portál, az Azure parancssori eszközök és az Azure szolgáltatásfelügyeleti API használatával.
 
-Adjon hozzáférést rendel hello megfelelő RBAC szerepkör toousers, csoportok és alkalmazások egy adott hatókörben. szerepkör-hozzárendelés hello hatóköre lehet előfizetés, egy erőforráscsoport vagy egy erőforrást. Egy szülő hatókörben szerepkörrel is hozzáférést biztosít az abban szereplő toohello gyermekei. Például tooa erőforráscsoport hozzáféréssel rendelkező felhasználó az összes hello erőforrást tartalmaz, például webhelyekhez, virtuális gépek és alhálózatok kezelheti.
+Adjon hozzáférést a megfelelő RBAC szerepkört rendel a felhasználók, csoportok és alkalmazások egy adott hatókörben. A szerepkör-hozzárendelés hatóköre lehet előfizetés, egy erőforráscsoport vagy egy erőforrást. A szülő hatókörben szerepkörrel is benne a gyermekek számára engedélyezi a hozzáférést. Például egy felhasználó, aki hozzáfér az erőforráscsoporthoz az összes erőforrást tartalmaz, például webhelyekhez, virtuális gépek és alhálózatok kezelheti.
 
 ![Kapcsolat közötti elemek Azure Active Directory - ábra](./media/role-based-access-control-what-is/rbac_aad.png)
 
-hello RBAC szerepkörhöz hozzárendelt határozzák meg, hogy milyen erőforrások hello felhasználó, csoport vagy alkalmazás adott hatókörén belül kezelheti.
+Az RBAC szerepkörhöz hozzárendelt határozzák meg, hogy a felhasználó, csoport vagy alkalmazás felügyelheti, hogy a hatókörön belüli erőforrásokat.
 
 ## <a name="built-in-roles"></a>Beépített szerepkörök
-Az Azure RBAC három alapvető szerepkörökhöz tooall erőforrástípusok rendelkezik:
+Az Azure RBAC rendelkezik, amelyek érvényesek az összes erőforrástípus három alapvető szerepkörök:
 
-* **Tulajdonos** rendelkezik teljes körű hozzáférési tooall erőforrások, például az hello jobb toodelegate hozzáférés tooothers.
-* **A közreműködői** is létrehozása és kezelése az Azure-erőforrások minden típusú, de nem tudja engedélyezni a hozzáférést tooothers.
+* **Tulajdonos** minden erőforrást, beleértve a jogot, hogy mások számára delegálása teljes hozzáféréssel rendelkezik.
+* **A közreműködői** is létrehozása és kezelése az Azure-erőforrások minden típusú, de nem tud hozzáférést biztosítani, mások számára.
 * **Olvasó** megtekintheti a meglévő Azure-erőforrások.
 
-hello rest hello RBAC-szerepkörök az Azure-ban az adott Azure-erőforrások felügyelet lehetővé tételéhez. Virtuális gép közreműködő szerepkört hello például lehetővé teszi, hogy a felhasználó toocreate hello, és virtuális gépeket. Azt nem kapnak hozzáférést toohello virtuális hálózat vagy, amely a virtuális gép hello hello alhálózathoz csatlakozik. 
+A többi Azure RBAC szerepkört az adott Azure-erőforrások felügyelet lehetővé tételéhez. Például a virtuális gép közreműködői szerepkör lehetővé teszi, hogy a felhasználó számára a virtuális gépek létrehozására és kezelésére. Azt nem betekintést biztosít a virtuális hálózat vagy az alhálózatot, amely a virtuális géphez csatlakozik. 
 
-[Beépített RBAC-szerepkörök](role-based-access-built-in-roles.md) listák hello szerepkörök az Azure-ban érhető el. Hello műveletek és, hogy minden beépített szerepkörök toousers hatókört határoz meg. Ha saját szerepköröket még jobban kézben toodefine van szüksége, lásd: hogyan toobuild [egyéni szerepkörök az Azure RBAC](role-based-access-control-custom-roles.md).
+[Beépített RBAC-szerepkörök](role-based-access-built-in-roles.md) felsorolja azokat a szerepköröket, az Azure-ban érhető el. Azt adja meg az operatív és hatókörhöz, amely minden beépített szerepkörök a felhasználók számára. Ha még nagyobb mértékben vezérelheti a saját szerepköröket definiál, lásd: hogyan hozhat létre [egyéni szerepkörök az Azure RBAC](role-based-access-control-custom-roles.md).
 
 ## <a name="resource-hierarchy-and-access-inheritance"></a>Erőforrás-hierarchiát és a hozzáférés öröklési
-* Minden egyes **előfizetés** az Azure-ban tartozik tooonly egy címtárban. (De minden directory rendelkezhet egynél több előfizetésnek.)
-* Minden egyes **erőforráscsoport** tooonly egy előfizetés tartozik.
-* Minden egyes **erőforrás** tooonly egy erőforráscsoporthoz tartozik.
+* Minden egyes **előfizetés** csak egy címtárban az Azure-ban tartozik. (De minden directory rendelkezhet egynél több előfizetésnek.)
+* Minden egyes **erőforráscsoport** csak egy előfizetés tartozik.
+* Minden egyes **erőforrás** csak egy erőforráscsoporthoz tartozik.
 
 A gyermekhatókör örökölt, hogy a szülő hatókörök számára biztosítson hozzáférést. Példa:
 
-* Hozzárendelt hello olvasó szerepkör tooan az Azure AD-csoport hello előfizetés hatókörben. a csoport tagjai hello megtekintheti minden erőforráscsoport és erőforrások hello előfizetés.
-* Hello közreműködői szerepkör tooan alkalmazást hello erőforrás csoport hatóköre lehet kijelölni. Az erőforráscsoport, de nem egyéb erőforráscsoportok hello előfizetésben bármilyen típusú erőforrások kezelésére alkalmas.
+* Az olvasó szerepkört rendelni az előfizetési hatókört, az Azure Active Directory-csoportnak. A csoport tagjai megtekintheti minden erőforrás csoport- és az előfizetés.
+* A közreműködői szerepkör hozzárendelése az erőforrás-csoport hatóköre az alkalmazást. Az erőforráscsoport, de nem egyéb erőforráscsoportok az előfizetés bármilyen típusú erőforrások kezelésére alkalmas.
 
 ## <a name="azure-rbac-vs-classic-subscription-administrators"></a>Az Azure RBAC és a hagyományos előfizetés rendszergazdái
-Hagyományos előfizetés rendszergazdák és a társadminisztrátoroknak rendelkezik teljes körű hozzáférési toohello Azure-előfizetés. Hello-erőforrások kezelésére [Azure-portálon](https://portal.azure.com) az Azure Resource Manager API-k vagy hello [a klasszikus Azure portálon](https://manage.windowsazure.com) és az Azure klasszikus üzembe helyezési modellben. Hello RBAC-modellben a hagyományos adminisztrátorait szerepkörrel hello tulajdonos hello előfizetés hatókörben.
+Hagyományos előfizetés rendszergazdák és a társadminisztrátoroknak az Azure-előfizetés teljes hozzáféréssel rendelkezzen. -Erőforrások kezelésére a [Azure-portálon](https://portal.azure.com) Azure Resource Manager API-khoz, vagy a [a klasszikus Azure portálon](https://manage.windowsazure.com) és az Azure klasszikus üzembe helyezési modellben. Az RBAC-modellben a hagyományos adminisztrátorait a tulajdonosi szerepkört az előfizetés hatókörben vannak társítva.
 
-Csak hello Azure-portálon, és új Azure Resource Manager API-k támogatása Azure RBAC hello. Felhasználók és az alkalmazások rendelt RBAC-szerepkörök hello klasszikus felügyeleti portált és a hello Azure klasszikus telepítési modell nem használható.
+Csak az Azure portál és az új Azure Resource Manager API-kat támogatja az Azure RBAC. Felhasználók és az alkalmazások rendelt RBAC-szerepkörök nem használható a klasszikus felügyeleti portál és az Azure klasszikus üzembe helyezési modellben.
 
 ## <a name="authorization-for-management-vs-data-operations"></a>Engedélyezési és adatok az operations Management
-Az Azure RBAC csak támogatja a felügyeleti műveleteket, az Azure-erőforrások hello hello Azure-portál és az Azure Resource Manager API-k. Nem lehet engedélyezni, az összes adat szintű műveletet Azure-erőforrások. Például engedélyezheti valaki toomanage Storage-fiókok, de nem toohello blobokkal vagy a táblák egy Tárfiókon belül. Hasonlóképpen SQL-adatbázis kezelheti, de nem hello táblák belül.
+Az Azure RBAC az Azure-erőforrások felügyeleti műveletek csak támogatja az Azure-portál és az Azure Resource Manager API-k. Nem lehet engedélyezni, az összes adat szintű műveletet Azure-erőforrások. Például engedélyezheti valaki Storage-fiókok kezeléséhez, de nem a blobok vagy a táblák egy Tárfiókon belül. Hasonlóképpen SQL-adatbázis kezelése, de nem szereplő táblák.
 
 ## <a name="next-steps"></a>Következő lépések
-* Ismerkedés a [szerepköralapú hozzáférés-vezérlés az Azure-portálon hello](role-based-access-control-configure.md).
-* Lásd: hello [beépített RBAC-szerepkörök](role-based-access-built-in-roles.md)
+* Ismerkedés a [szerepköralapú hozzáférés-vezérlés az Azure portálon](role-based-access-control-configure.md).
+* Lásd: [Beépített RBAC-szerepkörök](role-based-access-built-in-roles.md)
 * Saját [egyéni szerepkörök az Azure RBAC-ben](role-based-access-control-custom-roles.md)

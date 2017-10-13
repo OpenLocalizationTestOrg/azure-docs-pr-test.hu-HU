@@ -1,6 +1,6 @@
 ---
-title: "az Operations Management Suite - Azure Logic Apps B2B üzenetek aaaQuery |} Microsoft Docs"
-description: "Hozzon létre lekérdezések tootrack AS2, X 12 és EDIFACT üzenetek hello Operations Management Suite szolgáltatásban"
+title: "Az Operations Management Suite - Azure Logic Apps B2B üzenetek lekérdezés |} Microsoft Docs"
+description: "Az Operations Management Suite a nyomon követendő AS2, X 12 és EDIFACT üzeneteinek lekérdezések létrehozása"
 author: padmavc
 manager: anneta
 editor: 
@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: LADocs; padmavc
-ms.openlocfilehash: aee6644ff19add8f074ed5f1725db87b1d3b74b3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2748d3d3daf7c13dca05f663a4a088598e1b3605
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="query-for-as2-x12-and-edifact-messages-in-hello-microsoft-operations-management-suite-oms"></a>Az AS2, X 12 és EDIFACT üzenetek a Microsoft Operations Management Suite (OMS) hello lekérdezés
+# <a name="query-for-as2-x12-and-edifact-messages-in-the-microsoft-operations-management-suite-oms"></a>Az AS2, X 12 és EDIFACT üzenetek a Microsoft Operations Management Suite (OMS) lekérdezés
 
-toofind hello AS2, X 12 és EDIFACT üzenetek nyomon követett webhelyekről, [Azure Naplóelemzés](../log-analytics/log-analytics-overview.md) a hello [Operations Management Suite (OMS)](../operations-management-suite/operations-management-suite-overview.md), a specifikus alapuló intézkedések kezdeményezésére szűrő lekérdezéseket hozhat létre feltételek. Például egy adott interchange ellenőrző szám alapján is megtalálhatja.
+Az AS2 megkereséséhez X12 vagy EDIFACT-üzenetek, hogy követi nyomon a [Azure Naplóelemzés](../log-analytics/log-analytics-overview.md) a a [Operations Management Suite (OMS)](../operations-management-suite/operations-management-suite-overview.md), műveletek a megadott feltételek alapján szűrő lekérdezéseket hozhat létre. Például egy adott interchange ellenőrző szám alapján is megtalálhatja.
 
 ## <a name="requirements"></a>Követelmények
 
-* Egy logikai alkalmazást a diagnosztikai naplózás be van állítva. Ismerje meg, [hogyan toocreate logikai alkalmazás](../logic-apps/logic-apps-create-a-logic-app.md) és [hogyan tooset be a naplózást az adott logikai alkalmazás](../logic-apps/logic-apps-monitor-your-logic-apps.md#azure-diagnostics).
+* Egy logikai alkalmazást a diagnosztikai naplózás be van állítva. Ismerje meg, [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md) és [adott logikai alkalmazás naplózásának beállítása](../logic-apps/logic-apps-monitor-your-logic-apps.md#azure-diagnostics).
 
-* Integráció fiók be van állítva a figyelés és naplózás. Ismerje meg, [hogyan toocreate integrációs fiók](../logic-apps/logic-apps-enterprise-integration-create-integration-account.md) és [hogyan figyelés és naplózás fiók tooset](../logic-apps/logic-apps-monitor-b2b-message.md).
+* Integráció fiók be van állítva a figyelés és naplózás. Ismerje meg, [integrációs fiók létrehozása](../logic-apps/logic-apps-enterprise-integration-create-integration-account.md) és [figyelés és naplózás fiók beállításával](../logic-apps/logic-apps-monitor-b2b-message.md).
 
-* Ha még nem tette, [diagnosztikai adatok tooLog Analytics közzététele](../logic-apps/logic-apps-track-b2b-messages-omsportal.md) és [állítsa be az OMS nyomkövetési üzenet](../logic-apps/logic-apps-track-b2b-messages-omsportal.md).
+* Ha még nem tette, [diagnosztikai adatok közzétételére Naplóelemzési](../logic-apps/logic-apps-track-b2b-messages-omsportal.md) és [állítsa be az OMS nyomkövetési üzenet](../logic-apps/logic-apps-track-b2b-messages-omsportal.md).
 
 > [!NOTE]
-> Miután teljesítette hello előző követelmények, hello munkaterületeinek rendelkeznie kell [Operations Management Suite (OMS)](../operations-management-suite/operations-management-suite-overview.md). Használjon hello azonos OMS-munkaterület nyomon követése a B2B kommunikáció az OMS Szolgáltatáshoz. 
+> Miután teljesítette az előző követelményeknek, rendelkeznie kell egy munkaterület a [Operations Management Suite (OMS)](../operations-management-suite/operations-management-suite-overview.md). Az azonos OMS-munkaterület nyomon követése a B2B kommunikáció OMS kell használnia. 
 >  
-> Ha még nem rendelkezik az OMS-munkaterület, [hogyan toocreate OMS-munkaterület](../log-analytics/log-analytics-get-started.md).
+> Ha még nem rendelkezik az OMS-munkaterület, [OMS-munkaterület létrehozása](../log-analytics/log-analytics-get-started.md).
 
-## <a name="create-message-queries-with-filters-in-hello-operations-management-suite-portal"></a>Állapotüzenet-lekérdezések létrehozása szűrőkkel hello Operations Management Suite-portálon
+## <a name="create-message-queries-with-filters-in-the-operations-management-suite-portal"></a>Állapotüzenet-lekérdezések létrehozása szűrőkkel az Operations Management Suite-portálon
 
 Ez a példa bemutatja, hogyan található üzenetek az adatcsere ellenőrző szám alapján.
 
 > [!TIP] 
-> Ha ismeri az OMS-munkaterület neve, nyissa meg tooyour munkaterület kezdőlap (`https://{your-workspace-name}.portal.mms.microsoft.com`), 4. lépés: Indítsa el. Ellenkező esetben kezdjék 1. lépés.
+> Ha ismeri az OMS-munkaterület neve, nyissa meg a munkaterület kezdőlapra (`https://{your-workspace-name}.portal.mms.microsoft.com`), 4. lépés: Indítsa el. Ellenkező esetben kezdjék 1. lépés.
 
-1. A hello [Azure-portálon](https://portal.azure.com), válassza a **több szolgáltatások**. Keresse meg a "naplóelemzési", és válassza a **Naplóelemzési** itt látható módon:
+1. Az a [Azure-portálon](https://portal.azure.com), válassza a **több szolgáltatások**. Keresse meg a "naplóelemzési", és válassza a **Naplóelemzési** itt látható módon:
 
    ![A Naplóelemzési keresése](media/logic-apps-track-b2b-messages-omsportal-query-filter-control-number/browseloganalytics.png)
 
@@ -62,51 +62,51 @@ Ez a példa bemutatja, hogyan található üzenetek az adatcsere ellenőrző sz�
 
    – vagy –
 
-   ![A hello OMS menüben válassza a "Naplófájl-keresési"](media/logic-apps-track-b2b-messages-omsportal-query-filter-control-number/logsearch-2.png)
+   ![A OMS menüben válassza a "Naplófájl-keresési"](media/logic-apps-track-b2b-messages-omsportal-query-filter-control-number/logsearch-2.png)
 
-5. Hello keresési mezőbe, írja be egy mező, amelyet az toofind, és nyomja le az ENTER **Enter**. Amikor elkezdi beírni, OMS megjeleníti a lehetséges találatok és műveletek közül választhat. További információ [hogyan Naplóelemzési toofind adatok](../log-analytics/log-analytics-log-searches.md).
+5. A keresési mezőbe, írja be egy mező található, és nyomja le az ENTER kívánt **Enter**. Amikor elkezdi beírni, OMS megjeleníti a lehetséges találatok és műveletek közül választhat. További információ [adatok megkeresése a Naplóelemzési](../log-analytics/log-analytics-log-searches.md).
 
    Ez a példa eseményeket keres **típus = AzureDiagnostics**.
 
    ![Kezdje beírni a lekérdezési karakterlánc](media/logic-apps-track-b2b-messages-omsportal-query-filter-control-number/oms-start-query.png)
 
-6. Hello bal oldali sávon kattintson hello időkeretet, amelyet az tooview. tooadd szűrőlekérdezésnek tooyour válasszon **+ Hozzáadás**.
+6. A bal oldali sávon válassza ki a megtekinteni kívánt időkeretet. Adjon hozzá egy szűrőt a lekérdezést, válassza a **+ Hozzáadás**.
 
-   ![Szűrő tooquery hozzáadása](media/logic-apps-track-b2b-messages-omsportal-query-filter-control-number/query1.png)
+   ![Szűrő felvétele lekérdezés](media/logic-apps-track-b2b-messages-omsportal-query-filter-control-number/query1.png)
 
-7. A **szűrők hozzáadása**, adja meg a hello szűrő nevét, így kívánt hello szűrő található. Válassza ki a hello szűrőt, és válassza a **+ Hozzáadás**.
+7. A **szűrők hozzáadása**, így megtalálja a kívánt szűrőt, adja meg a szűrő nevét. Válassza ki a szűrőt, és válassza a **+ Hozzáadás**.
 
-   toofind hello interchange ellenőrző szám, ebben a példában hello word "csomópont" keres, és kiválasztja **event_record_messageProperties_interchangeControlNumber_s** hello szűrőként.
+   Interchange ellenőrző szám megkereséséhez ebben a példában keres rá a "csomópont" szót, majd kiválasztja **event_record_messageProperties_interchangeControlNumber_s** a szűrőként.
 
    ![Válassza ki a szűrő](media/logic-apps-track-b2b-messages-omsportal-query-filter-control-number/oms-query-add-filter.png)
 
-9. Hello bal oldali sávon, adja meg a hello szűrő értéket, hogy szeretné, hogy toouse, és válassza **alkalmaz**.
+9. A bal oldali sávon, válassza ki a szűrő értéket használja, és válassza a kívánt **alkalmaz**.
 
-   Ebben a példában hello interchange ellenőrző szám köszönőüzenetei azt szeretnénk, ha kiválasztja.
+   Ez a példa azt szeretnénk, ha üzenetekhez interchange ellenőrző szám választja ki.
 
    ![Adja meg a szűrő értéket](media/logic-apps-track-b2b-messages-omsportal-query-filter-control-number/oms-query-select-filter-value.png)
 
-10. Térjen vissza van felépítése toohello lekérdezést. A lekérdezés a kijelölt szűrő esemény és értékű frissítve lett. Az előző eredmények most túl szűrve.
+10. Térjen vissza a lekérdezést, amely éppen összeállításakor. A lekérdezés a kijelölt szűrő esemény és értékű frissítve lett. Az előző eredmények most túl szűrve.
 
-    ![Térjen vissza a szűrt eredményekkel tooyour lekérdezés](media/logic-apps-track-b2b-messages-omsportal-query-filter-control-number/oms-query-filtered-results.png)
+    ![Térjen vissza a lekérdezés szűrt eredményekkel](media/logic-apps-track-b2b-messages-omsportal-query-filter-control-number/oms-query-filtered-results.png)
 
 <a name="save-oms-query"></a>
 
 ## <a name="save-your-query-for-future-use"></a>Jövőbeli használatra a lekérdezés mentése
 
-1. A lekérdezés a hello **naplófájl-keresési** lapon, válassza ki **mentése**. Nevezze el a lekérdezést, válasszon egy kategóriát, és válassza a **mentése**.
+1. A lekérdezés a a **naplófájl-keresési** lapon, válassza ki **mentése**. Nevezze el a lekérdezést, válasszon egy kategóriát, és válassza a **mentése**.
 
    ![A lekérdezés adjon egy nevet és a kategória](media/logic-apps-track-b2b-messages-omsportal-query-filter-control-number/oms-query-save.png)
 
-2. tooview a lekérdezésbe, válassza a **Kedvencek**.
+2. A lekérdezés megtekintéséhez válassza **Kedvencek**.
 
    ![Válassza ki a "Kedvencek"](media/logic-apps-track-b2b-messages-omsportal-query-filter-control-number/oms-query-favorites.png)
 
-3. A **mentett keresések**, válassza ki a lekérdezést, hogy hello eredmények megtekinthetők. tooupdate hello lekérdezés, eltérő eredményeket található hello lekérdezés szerkesztése.
+3. A **mentett keresések**, válassza ki a lekérdezést, hogy az eredmények megtekinthetők. A lekérdezés, eltérő eredményeket található frissítéséhez szerkessze a lekérdezést.
 
    ![Válassza ki a lekérdezés](media/logic-apps-track-b2b-messages-omsportal-query-filter-control-number/oms-log-search-find-favorites.png)
 
-## <a name="find-and-run-saved-queries-in-hello-operations-management-suite-portal"></a>Keresse meg és futtassa a lekérdezések hello Operations Management Suite-portálon
+## <a name="find-and-run-saved-queries-in-the-operations-management-suite-portal"></a>Keresse meg és lekérdezések futtatása az Operations Management Suite-portálon
 
 1. Nyissa meg az OMS-munkaterület kezdőlapjának (`https://{your-workspace-name}.portal.mms.microsoft.com`), és válassza a **naplófájl-keresési**.
 
@@ -114,13 +114,13 @@ Ez a példa bemutatja, hogyan található üzenetek az adatcsere ellenőrző sz�
 
    – vagy –
 
-   ![A hello OMS menüben válassza a "Naplófájl-keresési"](media/logic-apps-track-b2b-messages-omsportal-query-filter-control-number/logsearch-2.png)
+   ![A OMS menüben válassza a "Naplófájl-keresési"](media/logic-apps-track-b2b-messages-omsportal-query-filter-control-number/logsearch-2.png)
 
-2. A hello **naplófájl-keresési** kezdőlapját, válassza a **Kedvencek**.
+2. Az a **naplófájl-keresési** kezdőlapját, válassza a **Kedvencek**.
 
    ![Válassza ki a "Kedvencek"](media/logic-apps-track-b2b-messages-omsportal-query-filter-control-number/oms-log-search-favorites.png)
 
-3. A **mentett keresések**, válassza ki a lekérdezést, hogy hello eredmények megtekinthetők. tooupdate hello lekérdezés, eltérő eredményeket található hello lekérdezés szerkesztése.
+3. A **mentett keresések**, válassza ki a lekérdezést, hogy az eredmények megtekinthetők. A lekérdezés, eltérő eredményeket található frissítéséhez szerkessze a lekérdezést.
 
    ![Válassza ki a lekérdezés](media/logic-apps-track-b2b-messages-omsportal-query-filter-control-number/oms-log-search-find-favorites.png)
 

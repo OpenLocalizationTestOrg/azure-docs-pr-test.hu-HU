@@ -1,22 +1,22 @@
 
-hello előző példa bemutatta, egy szabványos bejelentkezéshez, ami hello ügyfél toocontact szükséges mindkét hello identity provider és hello Azure háttérszolgáltatásnak hello alkalmazás minden indításakor. Ez a módszer nem hatékony, és ha sok ügyfél próbálja toostart az alkalmazás egyidejűleg használati kapcsolatos probléma lehet. A jobb megoldás, toocache hello engedélyezési jogkivonat által visszaadott hello Azure-szolgáltatás, és próbálja meg toouse ez használata előtt a szolgáltató alapú bejelentkezés.
+Az előző példában bemutatta szabványos bejelentkezéshez, ami megköveteli, hogy az ügyfél, mind az identitásszolgáltató, és a háttér-Azure szolgáltatás kapcsolódni az alkalmazás minden indításakor. Ez a módszer nem hatékony, és akkor használati kapcsolatos problémák, ha sok ügyfél próbál meg egyidejűleg indítsa el az alkalmazást. Egy jobb megoldás, a gyorsítótár az engedélyezési jogkivonatot az Azure-szolgáltatás által visszaadott, és próbálja meg használni az első olyan szolgáltató alapú bejelentkezés használata előtt.
 
 > [!NOTE]
-> Hello háttér-függetlenül használja-e ügyfél által felügyelt vagy a szolgáltatás által kezelt hitelesítés az Azure szolgáltatás által kiállított hello token képes gyorsítótárazni. Ez az oktatóanyag a szolgáltatás által kezelt hitelesítést használ.
+> A háttér-függetlenül használja-e ügyfél által felügyelt vagy a szolgáltatás által kezelt hitelesítés az Azure szolgáltatás által kiadott tokennek képes gyorsítótárazni. Ez az oktatóanyag a szolgáltatás által kezelt hitelesítést használ.
 >
 >
 
-1. Nyissa meg a hello ToDoActivity.java fájlban, és adja hozzá a következő importálási utasításokat hello:
+1. Nyissa meg a ToDoActivity.java fájlban, és adja hozzá a következő importálási utasításokat:
 
         import android.content.Context;
         import android.content.SharedPreferences;
         import android.content.SharedPreferences.Editor;
-2. Adja hozzá a következő tagok toohello hello `ToDoActivity` osztály.
+2. A következő tagokat adjanak hozzá a `ToDoActivity` osztály.
 
         public static final String SHAREDPREFFILE = "temp";    
         public static final String USERIDPREF = "uid";    
         public static final String TOKENPREF = "tkn";    
-3. Hello ToDoActivity.java fájlban adja hozzá a következő hello definíciója hello `cacheUserToken` metódust.
+3. A ToDoActivity.java fájlban adja hozzá a következő definícióját a `cacheUserToken` metódust.
 
         private void cacheUserToken(MobileServiceUser user)
         {
@@ -27,13 +27,13 @@ hello előző példa bemutatta, egy szabványos bejelentkezéshez, ami hello üg
             editor.commit();
         }    
 
-    Ez a módszer hello felhasználói Azonosítót és a token titkos megjelölt beállításokat szabályozó fájlban tárolja. Ez kell hozzáférést toohello gyorsítótár védelmére is, hogy hello eszközön található egyéb alkalmazások nem rendelkeznek toohello jogkivonatot. hello beállítása az elkülönített hello alkalmazás. Azonban valaki kap hozzáférést toohello eszköz, esetén lehetséges, hogy hozzáférési toohello jogkivonat gyorsítótára más módon is kapnak.
+    Ez a módszer is meg van jelölve személyes beállításokat szabályozó fájlban tárolja a felhasználói Azonosítót és a jogkivonatot. Hogy más alkalmazások az eszközön nincs hozzáférése a jogkivonatot, ez a gyorsítótár a hozzáférést kell védeni. A beállítás ki az alkalmazás elkülönített. Azonban ha valaki hozzáfér az eszközre, akkor lehet, hogy előfordulhat, hogy a jogkivonat gyorsítótára más módon hozzáférést kapnak.
 
    > [!NOTE]
-   > További védelmet biztosíthat az hello jogkivonat a titkosítás, ha a hozzáférés a jogkivonatokhoz tooyour adatok szigorúan bizalmas minősülnek, és valaki szerezhetnek toohello eszközt. Teljesen biztonságos megoldást ebben az oktatóanyagban hello terjed, és attól függ, a biztonsági követelményeinek.
+   > Ha a adatokhoz való hozzáférés a jogkivonatokhoz szigorúan bizalmas minősül, és hozzáférhet az eszközt valaki, további védelmet biztosíthat a titkosítás, a jogkivonatot. Teljesen biztonságos megoldást ebben az oktatóanyagban terjed, és attól függ, a biztonsági követelményeinek.
    >
    >
-4. Hello ToDoActivity.java fájlban adja hozzá a következő hello definíciója hello `loadUserTokenCache` metódust.
+4. A ToDoActivity.java fájlban adja hozzá a következő definícióját a `loadUserTokenCache` metódust.
 
         private boolean loadUserTokenCache(MobileServiceClient client)
         {
@@ -51,18 +51,18 @@ hello előző példa bemutatta, egy szabványos bejelentkezéshez, ami hello üg
 
             return true;
         }
-5. A hello *ToDoActivity.java* fájlt, cserélje le a hello `authenticate` hello metódus, amely a token gyorsítótárát használja a következő metódust. Ha azt szeretné, hogy nem Google toouse hello bejelentkezési szolgáltató módosítása
+5. Az a *ToDoActivity.java* fájlt, cserélje le a `authenticate` metódus a következő módszerrel, amely jogkivonatok gyorsítótárát használja. Módosítsa a bejelentkezés-szolgáltató, ha szeretné használni a Google nem.
 
         private void authenticate() {
-            // We first try tooload a token cache if one exists.
+            // We first try to load a token cache if one exists.
             if (loadUserTokenCache(mClient))
             {
                 createTable();
             }
-            // If we failed tooload a token cache, login and create a token cache
+            // If we failed to load a token cache, login and create a token cache
             else
             {
-                // Login using hello Google provider.    
+                // Login using the Google provider.    
                 ListenableFuture<MobileServiceUser> mLogin = mClient.login(MobileServiceAuthenticationProvider.Google);
 
                 Futures.addCallback(mLogin, new FutureCallback<MobileServiceUser>() {
@@ -81,4 +81,4 @@ hello előző példa bemutatta, egy szabványos bejelentkezéshez, ami hello üg
                 });
             }
         }
-6. Build hello alkalmazás és a teszt hitelesítés egy érvényes fiókot. Legalább két alkalommal futtassa. Során hello először futtatja az a kérdés toosign fogadni és hello token gyorsítótár létrehozása. Minden egyes futtatásához ezt követően próbálja meg tooload hello jogkivonatok gyorsítótárát a hitelesítéshez. A szükséges toosign nem lehetnek.
+6. Hozhat létre. az alkalmazás és a teszt hitelesítési érvényes fiók használatával. Legalább két alkalommal futtassa. Az első futtatás során jelenít meg bejelentkezni, és hozzon létre a jogkivonatok gyorsítótárát kell kapnia. Ezután minden egyes futtatásához megkísérli betölteni a hitelesítési jogkivonat gyorsítótárában. Ön nem köteles jelentkezzen be.

@@ -1,5 +1,5 @@
 ---
-title: "vegyes egyesítéses szolgáltatás aaaDeploy |} Microsoft Docs"
+title: "Vegyes egyesítéses szolgáltatás telepítése |} Microsoft Docs"
 description: "A felosztás és rugalmas adatbáziseszközöket egyesítés"
 services: sql-database
 documentationcenter: 
@@ -15,58 +15,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
-ms.openlocfilehash: 6fef641cbc1e73ce34a851c53298a072dade8f9d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6e2fea882c248fa095a9d450ed54a7b4e64b45e1
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="deploy-a-split-merge-service"></a>Felosztási-egyesítési szolgáltatás üzembe helyezése
-hello vegyes egyesítéses eszköz lehetővé teszi az adatok áthelyezése a szilánkos adatbázisok között. Lásd: [adatok kiterjesztett felhő adatbázisok közötti áthelyezése](sql-database-elastic-scale-overview-split-and-merge.md)
+A felosztott egyesítéses eszköz lehetővé teszi az adatok áthelyezése a szilánkos adatbázisok között. Lásd: [adatok kiterjesztett felhő adatbázisok közötti áthelyezése](sql-database-elastic-scale-overview-split-and-merge.md)
 
-## <a name="download-hello-split-merge-packages"></a>Hello vegyes egyesítéses csomagok letöltése
-1. Töltse le a NuGet legfrissebb hello a [NuGet](http://docs.nuget.org/docs/start-here/installing-nuget).
-2. Nyisson meg egy parancssort, és keresse meg a toohello könyvtárat, amelybe letöltötte nuget.exe. hello letöltése a PowerShell commmands tartalmazza.
-3. Töltse le a hello legújabb vegyes egyesítéses csomagot az alábbi parancs hello hello aktuális könyvtárba:
+## <a name="download-the-split-merge-packages"></a>A felosztott egyesítéses csomagok letöltése
+1. Töltse le a legfrissebb NuGet [NuGet](http://docs.nuget.org/docs/start-here/installing-nuget).
+2. Nyisson meg egy parancssort, és keresse meg a könyvtárat, amelybe letöltötte nuget.exe. A letöltés PowerShell commmands tartalmazza.
+3. Töltse le a legfrissebb vegyes egyesítéses csomagot be az aktuális könyvtár és az alábbi parancsot:
    ```
    nuget install Microsoft.Azure.SqlDatabase.ElasticScale.Service.SplitMerge
    ```  
 
-hello fájlok kerülnek nevű **Microsoft.Azure.SqlDatabase.ElasticScale.Service.SplitMerge.x.x.xxx.x** ahol *x.x.xxx.x* hello verziószám tükrözi. Található hello vegyes egyesítéses szolgáltatásfájlokat hello **content\splitmerge\service** alkönyvtára, és hello vegyes egyesítéses PowerShell-parancsfájlok (és a szükséges ügyfél .dll) a hello **content\splitmerge\powershell** alkönyvtárát.
+A fájlok kerülnek nevű **Microsoft.Azure.SqlDatabase.ElasticScale.Service.SplitMerge.x.x.xxx.x** ahol *x.x.xxx.x* tükrözi a verziószámot. A felosztott egyesítéses szolgáltatásfájlokat található a **content\splitmerge\service** alkönyvtára, és a felosztott egyesítéses PowerShell parancsfájlok (és szükséges ügyfél .dll) a **content\splitmerge\powershell** alkönyvtárát.
 
 ## <a name="prerequisites"></a>Előfeltételek
-1. Hello vegyes egyesítéses állapot adatbázisként használható Azure SQL Database-adatbázis létrehozása. Nyissa meg toohello [Azure-portálon](https://portal.azure.com). Hozzon létre egy új **SQL-adatbázis**. Nevezze el hello adatbázis, és hozzon létre egy új rendszergazda és a jelszót. Lehet, hogy toorecord hello nevét és jelszavát későbbi használatra.
-2. Győződjön meg arról, hogy az Azure SQL Database-kiszolgáló lehetővé teszi, hogy Azure Services tooconnect tooit. Hello portálon, a hello **tűzfalbeállítások**, győződjön meg arról, hogy hello **hozzáférést tooAzure szolgáltatások** beállítás értéke túl**a**. Kattintson a "Mentés" ikonra hello.
+1. A felosztott egyesítéses állapot adatbázisként használandó Azure SQL Database-adatbázis létrehozása. Nyissa meg az [Azure Portal](https://portal.azure.com). Hozzon létre egy új **SQL-adatbázis**. Nevezze el az adatbázist, és hozzon létre egy új rendszergazda és a jelszót. Ne felejtse el a név és jelszó későbbi használatra.
+2. Győződjön meg arról, hogy az Azure SQL Database-kiszolgáló lehetővé teszi, hogy a csatlakozáshoz Azure-szolgáltatások. A portálon a a **tűzfalbeállítások**, ügyeljen arra, hogy a **Azure-szolgáltatásokhoz való hozzáférés engedélyezése** beállítása **a**. Kattintson a "Mentés" ikonra.
    
    ![Engedélyezett szolgáltatások][1]
-3. Azure-tárfiók létrehozása, amely jelzi a diagnosztikai kimenetet. Nyissa meg toohello Azure portálon. Hello bal oldali sávon kattintson **új**, kattintson a **adatok + tárolás**, majd **tárolási**.
-4. Hozzon létre egy Azure felhőalapú szolgáltatás, amely a vegyes egyesítéses szolgáltatás fogja tartalmazni.  Nyissa meg toohello Azure portálon. Hello bal oldali sávon kattintson **új**, majd **számítási**, **Felhőszolgáltatás**, és **létrehozása**. 
+3. Azure-tárfiók létrehozása, amely jelzi a diagnosztikai kimenetet. Ugrás az Azure-portálon. A bal oldali sávon kattintson **új**, kattintson a **adatok + tárolás**, majd **tárolási**.
+4. Hozzon létre egy Azure felhőalapú szolgáltatás, amely a vegyes egyesítéses szolgáltatás fogja tartalmazni.  Ugrás az Azure-portálon. A bal oldali sávon kattintson **új**, majd **számítási**, **Felhőszolgáltatás**, és **létrehozása**. 
 
 ## <a name="configure-your-split-merge-service"></a>A felosztott egyesítéses szolgáltatás konfigurálása
 ### <a name="split-merge-service-configuration"></a>Vegyes egyesítéses szolgáltatás konfigurációja
-1. Hello mappát, ahova letöltötte hello vegyes egyesítéses szerelvényeket, hozzon létre hello másolatát **ServiceConfiguration.Template.cscfg** fájl mellett szállított **SplitMergeService.cspkg** és adjon neki **ServiceConfiguration.cscfg**.
-2. Nyissa meg **ServiceConfiguration.cscfg** egy szövegszerkesztőben, például a Visual Studio, amely a bemeneti adatok, például a tanúsítvány-ujjlenyomatok hello formátuma.
-3. Hozzon létre egy új adatbázist, vagy válasszon ki egy létező adatbázis tooserve hello állapot adatbázis vegyes-Merge műveletek legyen, és az adatbázis hello kapcsolat-karakterlánc beolvasása. 
+1. A mappában, amelybe letöltötte a felosztás egyesítéses szerelvényeket, készítsen másolatot a **ServiceConfiguration.Template.cscfg** fájl mellett szállított **SplitMergeService.cspkg** és adjon neki **ServiceConfiguration.cscfg**.
+2. Nyissa meg **ServiceConfiguration.cscfg** egy szövegszerkesztőben, például a Visual Studio, amely a bemeneti adatok, például a tanúsítvány-ujjlenyomatok formátuma.
+3. Hozzon létre egy új adatbázist, vagy válasszon egy meglévő adatbázist a felosztott-Merge műveletek állapotának adatbázisként szolgál, és az adatbázis a kapcsolati karakterlánc lekéréséhez. 
    
    > [!IMPORTANT]
-   > Jelenleg állapot-adatbázis hello hello Latin rendezést kell használnia (SQL\_Latin1\_általános\_CP1\_CI\_AS). További információkért lásd: [Windows Collation Name (Transact-SQL)](https://msdn.microsoft.com/library/ms188046.aspx).
+   > Ilyenkor az állapot-adatbázis a Latin rendezést kell használnia (SQL\_Latin1\_általános\_CP1\_CI\_AS). További információkért lásd: [Windows Collation Name (Transact-SQL)](https://msdn.microsoft.com/library/ms188046.aspx).
    >
 
-   Az Azure SQL Database hello kapcsolati karakterlánc általában: hello űrlap:
+   Az Azure SQL Database a kapcsolati karakterlánc általában a következő formátumban:
       ```
       Server=myservername.database.windows.net; Database=mydatabasename;User ID=myuserID; Password=mypassword; Encrypt=True; Connection Timeout=30
       ```
 
-4. Adja meg a kapcsolati karakterlánc hello cscfg-fájl a mindkét hello **SplitMergeWeb** és **SplitMergeWorker** hello ElasticScaleMetadata beállítás szerepkör részei.
-5. A hello **SplitMergeWorker** szerepkör, adjon meg egy érvényes kapcsolati karakterlánc tooAzure tárolási hello **WorkerRoleSynchronizationStorageAccountConnectionString** beállítást.
+4. Adja meg a kapcsolati karakterlánc mindkét cscfg-fájl a **SplitMergeWeb** és **SplitMergeWorker** szerepkör részei a ElasticScaleMetadata beállítást.
+5. Az a **SplitMergeWorker** szerepkör, adjon meg egy érvényes kapcsolati karakterláncot az Azure Storage a **WorkerRoleSynchronizationStorageAccountConnectionString** beállítást.
 
 ### <a name="configure-security"></a>Biztonság konfigurálása
-Részletes utasítások tooconfigure hello biztonsági hello szolgáltatást, tekintse meg a toohello [vegyes egyesítéses biztonsági konfiguráció](sql-database-elastic-scale-split-merge-security-configuration.md).
+A szolgáltatás biztonsági konfigurálása részletes utasításokért tekintse meg a [vegyes egyesítéses biztonsági konfiguráció](sql-database-elastic-scale-split-merge-security-configuration.md).
 
-Ebben az oktatóanyagban egy egyszerű próbatelepítés hello céljából a minimális konfigurációs készlet vonatkozik, lépés végre tooget hello szolgáltatás lépéseivel. Ezeket a lépéseket csak hello egy számítógép vagy fiók engedélyezése végrehajtása őket toocommunicate hello szolgáltatásban.
+Ebben az oktatóanyagban egy egyszerű próbatelepítés céljából a konfigurációs lépések minimális számú elvégezni a szolgáltatás eléréséhez és futó lesz. Ezeket a lépéseket csak az egy gépen/fiók engedélyezése végrehajtása a szolgáltatással való kommunikációra őket.
 
 ### <a name="create-a-self-signed-certificate"></a>Önaláírt tanúsítvány létrehozása
-Hozzon létre egy új könyvtárat és a könyvtár végrehajtás hello a következő parancs használatával egy [Visual Studio Developer-parancssorból](http://msdn.microsoft.com/library/ms229859.aspx) ablakban:
+Hozzon létre egy új könyvtárat, és a következő könyvtár a következő parancs használatával végrehajtani egy [Visual Studio Developer-parancssorból](http://msdn.microsoft.com/library/ms229859.aspx) ablakban:
 
    ```
     makecert ^
@@ -77,39 +77,39 @@ Hozzon létre egy új könyvtárat és a könyvtár végrehajtás hello a követ
     -sv MyCert.pvk MyCert.cer
    ```
 
-A jelszó tooprotect hello titkos kulcs kell adnia. Adjon meg egy erős jelszót, és erősítse meg. Majd kéri hello jelszó toobe még egyszer ezt követően használható. Kattintson a **Igen** : hello end tooimport azt toohello megbízható hitelesítésszolgáltató hatóságok gyökérszintű tárolóban.
+A titkos kulcs védelme jelszó kéri. Adjon meg egy erős jelszót, és erősítse meg. Majd kéri a jelszót még egyszer ezt követően használható. Kattintson a **Igen** ezzel importálja azt a megbízható hitelesítésszolgáltatók hitelesítésszolgáltatók legfelső szintű hitelesítésszolgáltatók tárolójába.
 
 ### <a name="create-a-pfx-file"></a>A PFX-fájl létrehozása
-Hajtható végre a következő parancsot a hello hello ugyanazon ablakra, ahol makecert végre lett hajtva; használja az Ön használt toocreate hello tanúsítvány hello ugyanazt a jelszót:
+Hajtsa végre a következő parancsot a azonos ablakban, ahol makecert végre lett hajtva; a tanúsítvány létrehozásához használt jelszavának használata:
 
     pvk2pfx -pvk MyCert.pvk -spc MyCert.cer -pfx MyCert.pfx -pi <password>
 
-### <a name="import-hello-client-certificate-into-hello-personal-store"></a>Hello személyes tárolóba hello ügyféltanúsítvány importálása
+### <a name="import-the-client-certificate-into-the-personal-store"></a>Importálja az ügyféltanúsítványt a személyes tárolóba
 1. A Windows Intézőt, kattintson duplán a **MyCert.pfx**.
-2. A hello **Tanúsítványimportáló varázsló** válasszon **aktuális felhasználó** kattintson **következő**.
-3. Ellenőrizze a hello fájl elérési útját, majd kattintson **következő**.
-4. Írja be a hello jelszót, hagyja **tartalmazza az összes kiterjesztett tulajdonságok** be van jelölve, és kattintson a **tovább**.
-5. Hagyja **automatikusan választ hello tanúsítványtároló [...]**  be van jelölve, és kattintson a **következő**.
+2. Az a **Tanúsítványimportáló varázsló** válasszon **aktuális felhasználó** kattintson **következő**.
+3. Ellenőrizze a fájl elérési útját, majd kattintson **következő**.
+4. Írja be a jelszót, hagyja **tartalmazza az összes kiterjesztett tulajdonságok** be van jelölve, és kattintson a **következő**.
+5. Hagyja **automatikusan a tanúsítvány választása [...]**  be van jelölve, és kattintson a **következő**.
 6. Kattintson a **Befejezés** és **OK**.
 
-### <a name="upload-hello-pfx-file-toohello-cloud-service"></a>Hello PFX fájl toohello felhőszolgáltatás feltöltése
-1. Nyissa meg toohello [Azure Portal](https://portal.azure.com).
+### <a name="upload-the-pfx-file-to-the-cloud-service"></a>A PFX-fájl feltöltése a felhőalapú szolgáltatáshoz
+1. Nyissa meg az [Azure Portalt](https://portal.azure.com).
 2. Válassza ki **a felhőalapú szolgáltatások**.
-3. Válassza ki a fent hello vegyes/egyesítés szolgáltatás számára létrehozott hello felhőalapú szolgáltatás.
-4. Kattintson a **tanúsítványok** hello felső menüben.
-5. Kattintson a **feltöltése** a hello alsó sáv.
-6. Válassza ki a hello PFX-fájlt, és írja be a hello a fenti ugyanazt a jelszót.
-7. Ezt követően másolása hello új bejegyzést hello lista hello tanúsítvány ujjlenyomata.
+3. Válassza ki a felhőszolgáltatást, a felosztás/egyesítés szolgáltatás számára létrehozott fent.
+4. Kattintson a **tanúsítványok** a felső menüben.
+5. Kattintson a **feltöltése** az alsó sáv a.
+6. Válassza ki a PFX-fájlt, és adja meg ugyanazt a jelszót a fenti.
+7. Ezt követően másolja a tanúsítvány ujjlenyomata az új bejegyzést a listában.
 
-### <a name="update-hello-service-configuration-file"></a>Hello szolgáltatás konfigurációs fájljának frissítése
-Illessze be a fenti másol hello ujjlenyomat-érték attribútum ezeket a beállításokat hello tanúsítvány ujjlenyomata.
-A feldolgozói szerepkör hello:
+### <a name="update-the-service-configuration-file"></a>A szolgáltatás konfigurációs fájljának frissítése
+Illessze be a tanúsítvány ujjlenyomata fent átkerül az ujjlenyomat-érték attribútum ezeket a beállításokat.
+A feldolgozói szerepkör:
    ```
     <Setting name="DataEncryptionPrimaryCertificateThumbprint" value="" />
     <Certificate name="DataEncryptionPrimary" thumbprint="" thumbprintAlgorithm="sha1" />
    ```
 
-Hello webes szerepkör:
+A webes szerepkör:
 
    ```
     <Setting name="AdditionalTrustedRootCertificationAuthorities" value="" />
@@ -120,50 +120,50 @@ Hello webes szerepkör:
     <Certificate name="DataEncryptionPrimary" thumbprint="" thumbprintAlgorithm="sha1" />
    ```
 
-Kérjük, vegye figyelembe, hogy az üzemi környezetek külön tanúsítványokat kell használni hello hitelesítésszolgáltató, a titkosításhoz, a kiszolgálói tanúsítvány és az ügyféltanúsítványok hello. Ez a részletes utasításokért lásd: [biztonsági konfiguráció](sql-database-elastic-scale-split-merge-security-configuration.md).
+Vegye figyelembe, hogy az éles központi telepítések tanúsítványok önálló adja a hitelesítésszolgáltató, a titkosítási tanúsítvány és az ügyféltanúsítványok történjen. Ez a részletes utasításokért lásd: [biztonsági konfiguráció](sql-database-elastic-scale-split-merge-security-configuration.md).
 
 ## <a name="deploy-your-service"></a>A szolgáltatás üzembe helyezése
-1. Nyissa meg toohello [Azure-portálon](https://manage.windowsazure.com).
-2. Kattintson a hello **Felhőszolgáltatások** hello bal oldali lapon, és válassza ki a korábban létrehozott hello felhőalapú szolgáltatás.
+1. Nyissa meg az [Azure Portal](https://manage.windowsazure.com).
+2. Kattintson a **Felhőszolgáltatások** a bal oldali lapon, és válassza ki a korábban létrehozott felhőszolgáltatást.
 3. Kattintson a **irányítópult**.
-4. Átmeneti környezet hello válasszon, majd kattintson a **töltse fel az új átmeneti üzembe helyezésének**.
+4. Válassza ki az átmeneti, majd kattintson a **töltse fel az új átmeneti üzembe helyezésének**.
    
    ![Átmeneti][3]
-5. A hello párbeszédpanelen adjon meg egy üzemelő példány címkéje. "Csomag", mind a "Konfiguráció" részen kattintson "A helyi", és válassza ki a hello **SplitMergeService.cspkg** fájl- és a .cscfg fájlban korábban megadott értékektől.
-6. Győződjön meg arról, hogy hello feliratú jelölőnégyzet **üzembe helyezés akkor is, ha egy vagy több szerepkör egyetlen példányt tartalmaz** be van jelölve.
-7. Találati hello osztásjelek gomb hello alsó jobb toobegin hello telepítésben. Tehát az tootake néhány perc toocomplete.
+5. A párbeszédpanelen adja meg egy üzemelő példány címkéje. "Csomag", mind a "Konfiguráció" részen kattintson "A helyi", és válassza ki a **SplitMergeService.cspkg** fájl- és a .cscfg fájlban korábban megadott értékektől.
+6. Győződjön meg arról, hogy a feliratú jelölőnégyzet **üzembe helyezés akkor is, ha egy vagy több szerepkör egyetlen példányt tartalmaz** be van jelölve.
+7. Kattintson a jobb alsó a telepítésének megkezdéséhez a osztásjelek gombra. Tehát az néhány percet igénybe vehet.
 
    ![Feltöltés][4]
 
-## <a name="troubleshoot-hello-deployment"></a>Hello telepítési hibáinak elhárítása
-A webes szerepkör toocome online nem sikerül, esetén valószínűleg probléma hello biztonsági beállításaival. Ellenőrizze, hogy hello SSL van konfigurálva a fent leírt módon.
+## <a name="troubleshoot-the-deployment"></a>A telepítés hibáinak
+Ha a webes szerepkör nem hozható online állapotba, azt valószínűleg probléma a biztonsági beállítások. Ellenőrizze, hogy az SSL a fent leírt módon van-e konfigurálva.
 
-A feldolgozói szerepkör toocome online meghiúsul, de a webes szerepkör sikeres, esetén nagy valószínűséggel egy korábban létrehozott toohello állapot adatbázis kapcsolódás hibája.
+A feldolgozói szerepkör nem tudja ismét online elérhető, de a webes szerepkör sikeres, ha azt valószínűleg probléma a korábban létrehozott állapot-adatbázishoz szeretne csatlakozni.
 
-* Győződjön meg arról, hogy a .cscfg hello kapcsolati karakterlánc pontos.
-* Ellenőrizze, hogy hello server és adatbázis létezik, és hello felhasználóazonosító és jelszó helyességét.
-* Az Azure SQL Database Szolgáltatásnak hello kapcsolati karakterlánc kötelező forma: hello:
+* Győződjön meg arról, hogy a kapcsolati karakterláncot a .cscfg a pontos.
+* Ellenőrizze, hogy a kiszolgáló és az adatbázis létezik, és a felhasználóazonosító és jelszó helyességét.
+* Az Azure SQL Database a kapcsolati karakterlánc a következő formátumban kell lennie:
 
    ```  
    Server=myservername.database.windows.net; Database=mydatabasename;User ID=myuserID; Password=mypassword; Encrypt=True; Connection Timeout=30
    ```
 
-* Győződjön meg arról, hogy hello kiszolgáló neve nem kezdődhet **https://**.
-* Győződjön meg arról, hogy az Azure SQL Database-kiszolgáló lehetővé teszi, hogy Azure Services tooconnect tooit. toodo, nyissa meg a https://manage.windowsazure.com, balra kattintson "SQL-adatbázisok" hello, hello tetején kattintson a "Kiszolgáló", és jelölje ki a kiszolgálót. Kattintson a **konfigurálása** : hello top, és győződjön meg arról, hogy hello **Azure Services** beállítás értéke túl "Yes". (Lásd: hello Előfeltételek szakasz ebben a cikkben hello tetején).
+* Győződjön meg arról, hogy a kiszolgáló neve nem kezdődhet **https://**.
+* Győződjön meg arról, hogy az Azure SQL Database-kiszolgáló lehetővé teszi, hogy a csatlakozáshoz Azure-szolgáltatások. Ehhez nyissa meg a https://manage.windowsazure.com, a bal oldalon kattintson az "SQL-adatbázisok", a lap tetején kattintson a "Kiszolgáló", és válassza ki a kiszolgálót. Kattintson a **konfigurálása** tetején, és győződjön meg arról, hogy a **Azure Services** beállítás "Yes" értékre van állítva. (Az Előfeltételek című Ez a cikk tetején).
 
-## <a name="test-hello-service-deployment"></a>Hello szolgáltatás központi telepítés tesztelése
+## <a name="test-the-service-deployment"></a>A szolgáltatás központi telepítés tesztelése
 ### <a name="connect-with-a-web-browser"></a>Egy webböngészővel rendelkező csatlakozás
-Határozza meg, hogy a vegyes egyesítéses szolgáltatás hello webes végpontjának. Ez az található hello klasszikus Azure portálon is toohello által **irányítópult** a felhőszolgáltatás és a keresése **webhely URL-címe** hello jobb oldalán. Cserélje le **http://** rendelkező **https://** óta hello alapértelmezett biztonsági beállítások letiltása hello HTTP-végpont. A böngészőbe az URL-cím hello oldal betöltése.
+Határozza meg, hogy a vegyes egyesítéses szolgáltatás webes végpontja. Ez az található a klasszikus Azure-portálon a a **irányítópult** a felhőszolgáltatás és a keresése **webhely URL-címe** jobb oldalán. Cserélje le **http://** rendelkező **https://** óta az alapértelmezett biztonsági beállításairól, tiltsa le a HTTP-végpont. A lap betöltése a böngészőbe az URL-címhez.
 
 ### <a name="test-with-powershell-scripts"></a>A PowerShell-parancsfájlok tesztelése
-hello telepítési és a környezet által tartalmazott hello minta PowerShell-parancsfájlok futtatásakor tesztelhető.
+A központi telepítés és a környezet tesztelhető a mellékelt PowerShell-parancsfájlok futtatásával.
 
-tartalmazott hello parancsprogramok a következők:
+A parancsfájlok tartalmazza a következők:
 
 1. **SetupSampleSplitMergeEnvironment.ps1** -állítja be a teszt adatrétegbeli vegyes/egyesítés (lásd az alábbi táblázatban részletes leírása)
-2. **ExecuteSampleSplitMerge.ps1** -hello teszt teszt műveleteket hajt végre adatok réteg (lásd az alábbi táblázatban részletes leírása)
-3. **GetMappings.ps1** – legfelső szintű mintaparancsfájl hello shard hozzárendelések hello aktuális állapotát megjeleníti.
-4. **ShardManagement.psm1** -segítő parancsfájl nagyságúra hello ShardManagement API
+2. **ExecuteSampleSplitMerge.ps1** -végrehajtja a teszteléshez használt teszt műveleteit adatok réteg (lásd az alábbi táblázatban részletes leírása)
+3. **GetMappings.ps1** – legfelső szintű mintaparancsfájl a shard leképezések aktuális állapotát megjeleníti.
+4. **ShardManagement.psm1** -segítő parancsfájl tördelve a ShardManagement API
 5. **SqlDatabaseHelpers.psm1** -segítő parancsfájl létrehozásához és kezeléséhez az SQL-adatbázisok
    
    <table style="width:100%">
@@ -182,10 +182,10 @@ tartalmazott hello parancsprogramok a következők:
        <td>3.    Ezen adatbázis (törli ezeket az adatbázisokat a maps bármely létező szilánkok) shard leképezést hoz létre. </td>
      </tr>
      <tr>
-       <td>4.    Táblát hoz létre egy kis minta mindkét hello szilánkok, és feltölti a hello tábla hello szilánkok egyikében.</td>
+       <td>4.    Táblát hoz létre egy kis minta mindkét a szilánkok, tölti fel a tábla a szilánkok egyikében.</td>
      </tr>
      <tr>
-       <td>5.    Deklarálja hello SchemaInfo hello szilánkos táblához.</td>
+       <td>5.    A szilánkos táblához SchemaInfo deklarálja.</td>
      </tr>
    </table>
    <table style="width:100%">
@@ -195,33 +195,33 @@ tartalmazott hello parancsprogramok a következők:
      </tr>
    <tr>
        <th rowspan="4">ExecuteSampleSplitMerge.ps1 </th>
-       <td>1.    Vegyes kérelem toohello vegyes egyesítéses szolgáltatás webes időtúllépést, amely felosztja a hello első shard toohello második shard fele hello adatokat küld.</td>
+       <td>1.    Felosztja a fele az adatokat az első shard a második shard vegyes egyesítéses szolgáltatás webes előtér vegyes kérést küld.</td>
      </tr>
      <tr>
-       <td>2.    Szavazások hello webes előtér a hello ossza fel a kérelem állapotának és vár csak hello kérelem befejeződése után.</td>
+       <td>2.    Kérdezze le a webes előtér vegyes kérés állapotát, és megvárja, amíg a kérelem befejeződött.</td>
      </tr>
      <tr>
-       <td>3.    Egyesítési kérelem toohello vegyes egyesítéses szolgáltatás webes időtúllépést, amely hello második shard hátsó toohello első shard helyez hello adatokat küld.</td>
+       <td>3.    Egyesítési kérést küld az áll át az adatokat a második shard vissza az első shard vegyes egyesítéses szolgáltatás webes előtér.</td>
      </tr>
      <tr>
-       <td>4.    Szavazások hello webes előtér hello egyesítési kérelem állapotának és megvárja, amíg hello kérelem befejeződött.</td>
+       <td>4.    Kérdezze le a webes előtér az egyesítési kérelem állapot, és megvárja, amíg a kérelem befejeződött.</td>
      </tr>
    </table>
    
-## <a name="use-powershell-tooverify-your-deployment"></a>A központi telepítés PowerShell tooverify használata
-1. Új PowerShell ablakban keresse meg a toohello könyvtárat, amelybe letöltötte hello vegyes egyesítéses csomag és hello "powershell" könyvtárba, majd lépjen.
-2. Hozzon létre egy Azure SQL adatbázis-kiszolgáló (vagy válasszon egy meglévő kiszolgálót) ahol hello shard térkép manager és a szilánkok létrejön.
+## <a name="use-powershell-to-verify-your-deployment"></a>A telepítés ellenőrzése a PowerShell használatával
+1. Új PowerShell ablakban keresse meg a könyvtárat, amelybe letöltötte a felosztás egyesítéses csomag és keresse meg a "powershell" könyvtárba.
+2. Hozzon létre egy Azure SQL adatbázis-kiszolgáló (vagy válasszon egy meglévő kiszolgálót) Ha a shard térkép manager és a szilánkok jön létre.
    
    > [!NOTE]
-   > hello SetupSampleSplitMergeEnvironment.ps1 parancsfájl ezeket az adatbázisokat hoz létre hello alapértelmezett tookeep hello parancsfájl egyszerű ugyanarra a kiszolgálóra. Ez a korlátozás nem hello vegyes egyesítéses szolgáltatás a saját magát.
+   > A SetupSampleSplitMergeEnvironment.ps1 parancsfájl hoz létre, tartsa a parancsfájl egyszerű alapértelmezés szerint ezek az adatbázisok ugyanazon a kiszolgálón. Ez a korlátozás nem osztott egyesítéses szolgáltatás magát.
    >
    
-   Egy SQL hitelesítési-bejelentkezési az olvasási/írási hozzáférést toohello adatbázisok hello vegyes egyesítéses toomove szolgáltatásadatok és frissítési hello shard leképezés szükséges. Hello felhő hello vegyes egyesítéses szolgáltatás fut, mert azt jelenleg nem támogatja integrált hitelesítést.
+   A felosztott egyesítéses szolgáltatás helyezi át az adatokat, és frissíti a shard leképezés egy SQL-hitelesítési bejelentkezési olvasási/írási hozzáférést a adatbázisok lesz szükség. A felosztott egyesítéses szolgáltatás fut a felhőben, mert azt jelenleg nem támogatja integrált hitelesítést.
    
-   Ellenőrizze, hogy hello Azure SQL-kiszolgálót tooallow a hozzáférést a hello számítógépen, amelyen ezek a parancsfájlok hello IP-címét. Ez a beállítás hello Azure SQL-kiszolgálón található / configuration / engedélyezett IP-címeket.
-3. Hello SetupSampleSplitMergeEnvironment.ps1 toocreate hello minta parancsfájlkörnyezetet hajtható végre.
+   Győződjön meg arról, hogy engedélyezzék az IP-cím a gép, ezek a parancsfájlok futtatása az Azure SQL-kiszolgáló van konfigurálva. Ezt a beállítást, az Azure SQL-kiszolgáló található / configuration / engedélyezett IP-címeket.
+3. Hajtsa végre a SetupSampleSplitMergeEnvironment.ps1 parancsfájlt a minta környezetet hozhat létre.
    
-   A parancsfájl futtatása lesz kitöröl shard térkép meglévő felügyeleti adatokat hello shard manager adatbázist és hello szilánkok struktúrákat. Ha toore inicializálásának hello shard térkép vagy szilánkok lehet hasznos toorerun hello parancsfájl.
+   A parancsfájl futtatása lesz kitöröl shard térkép meglévő felügyeleti adatokat a shard manager adatbázist és a szilánkok struktúrákat. Hasznos, ha a shard térkép vagy szilánkok inicializálja újra kívánja a parancsfájl lehet.
    
    Minta parancssor:
 
@@ -232,7 +232,7 @@ tartalmazott hello parancsprogramok a következők:
          -Password 'MySqlPassw0rd' 
          -ShardMapManagerServerName 'abcdefghij.database.windows.net'
    ```      
-4. Végrehajtás hello Getmappings.ps1 parancsfájl tooview hello hozzárendelések jelenleg létező hello minta környezetben.
+4. Hajtsa végre a Getmappings.ps1 parancsfájlt a jelenleg létező hozzárendelések megtekintése a minta-környezetben.
    
    ```
      .\GetMappings.ps1 
@@ -242,7 +242,7 @@ tartalmazott hello parancsprogramok a következők:
          -ShardMapManagerServerName 'abcdefghij.database.windows.net'
 
    ```         
-5. Hello ExecuteSampleSplitMerge.ps1 parancsfájl tooexecute hajtható végre, egy vegyes művelet (hello első shard toohello második shard helyezze át fele hello adatokat), majd egy partícióegyesítési művelet (adatmozgatás hello vissza alakzatot hello első szilánkok). Ha konfigurálta az SSL és a bal oldali hello http-végpont le van tiltva, győződjön meg arról, hello https:// végpont helyette használja.
+5. Hajtsa végre a ExecuteSampleSplitMerge.ps1 parancsfájlt egy vegyes művelet (továbblép fele az adatokat az első shard a második szilánkok) és egy (az adatok áthelyezése vissza az első shard alakzatot) egyesítési művelet végrehajtásához. Ha SSL konfigurálva, és a bal oldali a http-végpont le van tiltva, győződjön meg arról, hogy inkább a https:// végpont.
    
    Minta parancssor:
 
@@ -256,75 +256,75 @@ tartalmazott hello parancsprogramok a következők:
          -CertificateThumbprint '0123456789abcdef0123456789abcdef01234567'
    ```      
    
-   Hiba alább hello kapja, esetén valószínűleg a webalkalmazás-végpontot tanúsítványával kapcsolatos problémára. Próbáljon meg toohello webes végpontjának a kedvenc webböngészőt, és ellenőrizze, hogy a tanúsítvány hiba.
+   Ha megjelenik a alatt hiba, akkor nagy valószínűséggel a webalkalmazás-végpontot tanúsítványával kapcsolatos problémára. Próbáljon meg csatlakozni a kedvenc webböngésző webes végpontjának, és ellenőrizze, hogy a tanúsítvány hiba.
    
      ```
-     Invoke-WebRequest : hello underlying connection was closed: Could not establish trust relationship for hello SSL/TLSsecure channel.
+     Invoke-WebRequest : The underlying connection was closed: Could not establish trust relationship for the SSL/TLSsecure channel.
      ```
    
-   Ha sikeres volt, hello kimeneti alábbi hello hasonlóan kell kinéznie:
+   Ha sikeres volt, a kimeneti hasonlóan kell kinéznie az alábbi:
    
    ```
    > .\ExecuteSampleSplitMerge.ps1 -UserName 'mysqluser' -Password 'MySqlPassw0rd' -ShardMapManagerServerName 'abcdefghij.database.windows.net' -SplitMergeServiceEndpoint 'http://mysplitmergeservice.cloudapp.net' -CertificateThumbprint 0123456789abcdef0123456789abcdef01234567
    > Sending split request
    > Began split operation with id dc68dfa0-e22b-4823-886a-9bdc903c80f3
-   > Polling split-merge request status. Press Ctrl-C tooend
+   > Polling split-merge request status. Press Ctrl-C to end
    > Progress: 0% | Status: Queued | Details: [Informational] Queued request
    > Progress: 5% | Status: Starting | Details: [Informational] Starting split-merge state machine for request.
    > Progress: 5% | Status: Starting | Details: [Informational] Performing data consistency checks on target     shards.
-   > Progress: 20% | Status: CopyingReferenceTables | Details: [Informational] Moving reference tables from     source tootarget shard.
+   > Progress: 20% | Status: CopyingReferenceTables | Details: [Informational] Moving reference tables from     source to target shard.
    > Progress: 20% | Status: CopyingReferenceTables | Details: [Informational] Waiting for reference tables copy     completion.
-   > Progress: 20% | Status: CopyingReferenceTables | Details: [Informational] Moving reference tables from     source tootarget shard.
+   > Progress: 20% | Status: CopyingReferenceTables | Details: [Informational] Moving reference tables from     source to target shard.
    > Progress: 44% | Status: CopyingShardedTables | Details: [Informational] Moving key range [100:110) of     Sharded tables
    > Progress: 44% | Status: CopyingShardedTables | Details: [Informational] Successfully copied key range     [100:110) for table [dbo].[MyShardedTable]
    > ...
    > ...
    > Progress: 90% | Status: Completing | Details: [Informational] Successfully deleted shardlets in table     [dbo].[MyShardedTable].
-   > Progress: 90% | Status: Completing | Details: [Informational] Deleting any temp tables that were created     while processing hello request.
+   > Progress: 90% | Status: Completing | Details: [Informational] Deleting any temp tables that were created     while processing the request.
    > Progress: 100% | Status: Succeeded | Details: [Informational] Successfully processed request.
    > Sending merge request
    > Began merge operation with id 6ffc308f-d006-466b-b24e-857242ec5f66
-   > Polling request status. Press Ctrl-C tooend
+   > Polling request status. Press Ctrl-C to end
    > Progress: 0% | Status: Queued | Details: [Informational] Queued request
    > Progress: 5% | Status: Starting | Details: [Informational] Starting split-merge state machine for request.
    > Progress: 5% | Status: Starting | Details: [Informational] Performing data consistency checks on target     shards.
-   > Progress: 20% | Status: CopyingReferenceTables | Details: [Informational] Moving reference tables from     source tootarget shard.
+   > Progress: 20% | Status: CopyingReferenceTables | Details: [Informational] Moving reference tables from     source to target shard.
    > Progress: 44% | Status: CopyingShardedTables | Details: [Informational] Moving key range [100:110) of     Sharded tables
    > Progress: 44% | Status: CopyingShardedTables | Details: [Informational] Successfully copied key range     [100:110) for table [dbo].[MyShardedTable]
    > ...
    > ...
    > Progress: 90% | Status: Completing | Details: [Informational] Successfully deleted shardlets in table     [dbo].[MyShardedTable].
-   > Progress: 90% | Status: Completing | Details: [Informational] Deleting any temp tables that were created     while processing hello request.
+   > Progress: 90% | Status: Completing | Details: [Informational] Deleting any temp tables that were created     while processing the request.
    > Progress: 100% | Status: Succeeded | Details: [Informational] Successfully processed request.
    > 
    ```
-6. Más adattípusok kísérletezhet! Mindegyik parancsfájl vennie a választható - ShardKeyType paraméter, amely lehetővé teszi a toospecify hello kulcs típusa. hello alapértelmezett Int32, de azt is megadhatja Int64, Guid vagy bináris.
+6. Más adattípusok kísérletezhet! Választható - ShardKeyType paraméter, amely lehetővé teszi a írja be mindegyik parancsfájl érvénybe. Az alapértelmezett érték Int32, de azt is megadhatja Int64, Guid vagy bináris.
 
 ## <a name="create-requests"></a>Létrehozási kérelmek
-hello szolgáltatás használható hello webes felhasználói felület használatával vagy importálni és hello SplitMerge.psm1 PowerShell-modult, amely a kéréseket keresztül hello webes szerepkör használatával.
+A szolgáltatás használható a webes felhasználói felületen vagy importálásáról és használatáról a SplitMerge.psm1 PowerShell modult, amely a kéréseket a webes szerepkör keresztül.
 
-hello szolgáltatás mozgathatja az adatokat a szilánkos táblák és a hivatkozási táblák. A szilánkos táblához egy horizontális skálázási kulcsoszlopa, és különböző soradatok rendelkezzen minden szilánkcímtárban. Egy hivatkozási tábla nincs szilánkos hello tartalmaz, ugyanazt a sort adatok a minden szilánkcímtárban. Hivatkozási táblák hasznosak, amely nem változik gyakran, és a lekérdezésekben szilánkos táblákkal használt tooJOIN adatokat.
+A szolgáltatás mozgathatja az adatokat a szilánkos táblák és a hivatkozási táblák. A szilánkos táblához egy horizontális skálázási kulcsoszlopa, és különböző soradatok rendelkezzen minden szilánkcímtárban. A referenciatábla nincs szilánkos, a minden shard azonos sor adatokat tartalmazza. Hivatkozási táblák nem változik gyakran, és csatlakozzon a lekérdezésekben szilánkos táblák használt adatok hasznosak.
 
-A sorrend tooperform vegyes egyesítésével hello szilánkos táblák és hivatkozási táblák toohave áthelyezni kívánt kell deklarálnia. Mindez a hello **SchemaInfo** API. Ez az API van hello **Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.Schema** névtér.
+A felosztott-egyesítési művelet végrehajtásához a szilánkos táblákat és a referencia-táblázatot, amely került át szeretné kell deklarálni. Ez a érhető el a **SchemaInfo** API. Az API-t a **Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.Schema** névtér.
 
-1. Minden szilánkos táblához, hozzon létre egy **ShardedTableInfo** hello tábla szülő sémanév leíró objektum (nem kötelező, alapértelmezés szerint használt érték túl "dbo"), táblanév hello és hello oszlopnév hello horizontális kulcsot tartalmazó tábla.
-2. Minden egyes összefoglaló táblázatot is létrehozhat egy **ReferenceTableInfo** hello tábla szülő sémanév leíró objektum (nem kötelező, alapértelmezés szerint használt érték túl "dbo") és hello tábla neve.
-3. Adja hozzá a fenti TableInfo objektumok tooa új hello **SchemaInfo** objektum.
-4. Egy hivatkozási tooa beolvasása **ShardMapManager** objektum és hívás **GetSchemaInfoCollection**.
-5. Adja hozzá a hello **SchemaInfo** toohello **SchemaInfoCollection**, hello shard leképezésnév biztosítása.
+1. Minden szilánkos táblához, hozzon létre egy **ShardedTableInfo** a tábla szülő sémanév leíró objektum (nem kötelező, az alapértelmezett érték a "dbo"), a táblázat nevét, és az oszlop nevét a horizontális kulcsot tartalmazó tábla.
+2. Minden egyes összefoglaló táblázatot is létrehozhat egy **ReferenceTableInfo** a tábla szülő sémanév leíró objektum (nem kötelező, az alapértelmezett érték a "dbo") és a tábla neve.
+3. A fenti TableInfo objektumokat hozzáadni egy új **SchemaInfo** objektum.
+4. A hivatkozás egy **ShardMapManager** objektum és hívás **GetSchemaInfoCollection**.
+5. Adja hozzá a **SchemaInfo** számára a **SchemaInfoCollection**, a shard leképezésnév biztosítása.
 
-Például az hello SetupSampleSplitMergeEnvironment.ps1 parancsfájl látható.
+Példa erre a SetupSampleSplitMergeEnvironment.ps1 parancsfájl látható.
 
-hello vegyes egyesítéses szolgáltatás nem hello céladatbázis (vagy bármely hello adatbázis tábláit sémáját) hozza létre. Fel kell előre létrehozott egy kérést toohello szolgáltatás elküldése előtt.
+A felosztott egyesítéses szolgáltatás nem a céladatbázis (vagy bármely táblák az adatbázisban séma) hozza létre. Fel kell előre létrehozott egy kérést küld a szolgáltatás előtt.
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
-Hello minta powershell-parancsfájlok futtatásakor alatt üzenet hello jelenhetnek meg:
+Megjelenik a alatt jelenik meg, amikor a minta powershell-parancsfájlok futtatásakor:
 
    ```
-   Invoke-WebRequest : hello underlying connection was closed: Could not establish trust relationship for hello SSL/TLS secure channel.
+   Invoke-WebRequest : The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel.
    ```
 
-Ez a hiba azt jelenti, hogy az SSL-tanúsítvány nincs megfelelően konfigurálva. Kérjük, kövesse a részben található útmutatást hello "Böngészővel csatlakozás".
+Ez a hiba azt jelenti, hogy az SSL-tanúsítvány nincs megfelelően konfigurálva. Kérjük, kövesse a szakaszban található útmutatásokat "Böngészővel csatlakozás".
 
 Nem küldenek kéréseket jelenhet meg ezt:
 
@@ -332,7 +332,7 @@ Nem küldenek kéréseket jelenhet meg ezt:
 [Exception] System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'dbo.InsertRequest'. 
 ```
 
-Ebben az esetben ellenőrizze a konfigurációs fájlban, az adott hello beállítása **WorkerRoleSynchronizationStorageAccountConnectionString**. Ez a hiba általában azt jelzi, hogy hello feldolgozói szerepkör sikeresen inicializálása hello metaadatokat tároló adatbázis első használatkor. 
+Ebben az esetben ellenőrizze, a konfigurációs fájlban, különösen a beállítás a **WorkerRoleSynchronizationStorageAccountConnectionString**. Ez a hiba általában azt jelzi, hogy a feldolgozói szerepkör sikeresen inicializálása sikertelen első használatkor a metaadatokat tároló adatbázis. 
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 

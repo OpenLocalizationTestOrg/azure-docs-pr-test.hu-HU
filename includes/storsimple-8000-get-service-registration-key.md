@@ -1,18 +1,18 @@
 <!--author=alkohli last changed: 06/22/17-->
 
-#### <a name="tooget-hello-storsimple-service-registration-key"></a>tooget hello StorSimple szolgáltatás regisztrációs kulcsának
+#### <a name="to-get-the-storsimple-service-registration-key"></a>A StorSimple szolgáltatás regisztrációs kulcsának lekérése
 
-1. A hello **StorSimple Device Manager** panelen kattintson a létrehozott hello szolgáltatást. Ekkor megnyílik egy új panel toohello jobbra fel.
+1. A **StorSimple-eszközkezelő** panelen kattintson a létrehozott szolgáltatásra. Ez egy új panelt nyit meg a jobb oldalon.
    
      ![StorSimple-eszközkezelő panel](./media/storsimple-8000-get-service-registration-key/createssdevman5.png)
 
-2.  Nyissa meg túl**felügyeleti > kulcsok**.
+2.  Lépjen a **Felügyelet > Kulcsok** részhez.
    
      ![Kulcsok panel](./media/storsimple-8000-get-service-registration-key/getregkey2.png)
 
-3.  A megnyitott hello panelen kattintson a hello másolás ikon toocopy hello Szolgáltatásregisztrációs kulcs, és mentheti későbbi felhasználásra.
+3.  A megnyíló panelen kattintson a másolás ikonjára a szolgáltatásregisztrációs kulcs másolásához és mentéséhez későbbi használatra.
 
 > [!NOTE]
-> hello Szolgáltatásregisztrációs kulcs használt tooregister összes hello tooregister a StorSimple Device Manager szolgáltatással igénylő eszközök.
+> A szolgáltatásregisztrációs kulccsal regisztrálható az összes olyan eszköz, amelyet regisztrálni kell a StorSimple-eszközkezelő szolgáltatásban.
 
 

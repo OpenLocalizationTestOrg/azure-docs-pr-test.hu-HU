@@ -14,48 +14,48 @@ ms.topic: article
 ms.devlang: na
 ms.date: 04/24/2017
 ms.author: joroja
-ms.openlocfilehash: 90a495029f48d70232ef3f99de4ea4d351395aa7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: dc319c97e64e55861b84cc3943667418077a05d8
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="walkthrough-integrate-rest-api-claims-exchanges-in-your-azure-ad-b2c-user-journey-as-an-orchestration-step"></a>Forgatókönyv: Integrálása az Azure AD B2C felhasználói út a REST API jogcímek cseréjét egy vezénylési lépés
 
-hello identitás élmény keretrendszer (IEF) Azure Active Directory B2C alapjául szolgáló (az Azure AD B2C) lehetővé teszi, hogy a hello identitás fejlesztői toointegrate tevékenységet egy felhasználó út RESTful API-t.  
+Az identitás élmény keretrendszer (IEF) Azure Active Directory B2C alapjául szolgáló (az Azure AD B2C) lehetővé teszi, hogy a tevékenységet egy felhasználó út RESTful API-t integrálja a identitás fejlesztő.  
 
-Ez az útmutató végén hello fogja tudni toocreate az Azure AD B2C felhasználói út, amely együttműködik a RESTful-szolgáltatásokat.
+Ez az útmutató végén lesz létrehozása az Azure AD B2C felhasználói út, amely együttműködik a RESTful-szolgáltatásokat.
 
-hello IEF adatok jogcímekben adatokat küld és fogad vissza a jogcímeket. REST API jogcímek exchange hello:
+A IEF adatok jogcímekben adatokat küld és fogad vissza a jogcímeket. A REST API-exchange jogcímek:
 
 - Egy vezénylési lépés tervezhető.
 - Egy külső műveletet is elindíthatja. Például a külső adatbázis azt is naplózhat egy eseményt.
-- Is lehet használt toofetch értékű, és majd hello felhasználói adatbázisban tárolja.
+- Olyan érték beolvasása, és majd tárolja a felhasználói adatbázis használható.
 
-Hello kapott jogcímek használata újabb toochange hello folyamat végrehajtása.
+A kapott jogcímek később segítségével módosíthatja a végrehajtási folyamat.
 
-Hello interakció érvényesítési profil is tervezhet. További információkért lásd: [forgatókönyv: integrálja a REST API-t cseréjét használják az Azure AD B2C felhasználói út a jogcímeket, a felhasználói bevitel ellenőrzése](active-directory-b2c-rest-api-validation-custom.md).
+A kapcsolati érvényesítési profil tervezhet. További információkért lásd: [forgatókönyv: integrálja a REST API-t cseréjét használják az Azure AD B2C felhasználói út a jogcímeket, a felhasználói bevitel ellenőrzése](active-directory-b2c-rest-api-validation-custom.md).
 
-hello például az is, hogy amikor egy felhasználó egy profil szerkesztése végez, szeretnénk:
+A például az is, hogy amikor egy felhasználó egy profil szerkesztése végez, szeretnénk:
 
-1. Hello felhasználói kereshet meg egy külső rendszerben.
-2. Ha regisztrálva van-e az adott felhasználó hello város beolvasása.
-3. Az attribútum toohello alkalmazást jogcímként visszaadása.
+1. Keresse meg a felhasználó egy külső rendszerben.
+2. A város, amelyen regisztrálva van-e az, hogy a felhasználó beolvasása.
+3. Térjen vissza az alkalmazás jogcímként ezt az attribútumot.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Azure AD B2C bérlő konfigurált toocomplete sign-Close-Up/bejelentkezés, a helyi fiók [bevezetés](active-directory-b2c-get-started-custom.md).
-- A REST API végpont toointeract együtt. Ez az útmutató egy egyszerű Azure függvény app webhook használja példaként.
-- *Ajánlott*: teljes hello [REST API-jogcímek exchange forgatókönyv érvényesítési lépésként](active-directory-b2c-rest-api-validation-custom.md).
+- Egy helyi fiókot sign-Close-Up/sign-in befejezéséhez, a konfigurált Azure AD B2C-bérlő [bevezetés](active-directory-b2c-get-started-custom.md).
+- REST API-végpont kommunikál. Ez az útmutató egy egyszerű Azure függvény app webhook használja példaként.
+- *Ajánlott*: végezze el a [REST API-jogcímek exchange forgatókönyv érvényesítési lépésként](active-directory-b2c-rest-api-validation-custom.md).
 
-## <a name="step-1-prepare-hello-rest-api-function"></a>1. lépés: Felkészülés hello REST API-függvénye
+## <a name="step-1-prepare-the-rest-api-function"></a>1. lépés: Felkészülés a REST API-függvénye
 
 > [!NOTE]
-> A REST API-függvények telepítése Ez a cikk hello hatókörén kívül esik. [Az Azure Functions](https://docs.microsoft.com/azure/azure-functions/functions-reference) biztosít egy kiváló eszközkészlet toocreate RESTful-szolgáltatásokat hello felhőben.
+> Ez a cikk hatókörén kívül található a REST API-függvények telepítése. [Az Azure Functions](https://docs.microsoft.com/azure/azure-functions/functions-reference) biztosít egy kiváló eszközkészlet RESTful szolgáltatás létrehozásához a felhőben.
 
-Beállítjuk van egy Azure függvény, amely megkapja a jogcím nevű `email`, majd vissza hello jogcím és `city` hozzárendelt hello értékű `Redmond`. hello minta Azure függvény megtalálható [GitHub](https://github.com/Azure-Samples/active-directory-b2c-advanced-policies/tree/master/AzureFunctionsSamples).
+Beállítjuk van egy Azure függvény, amely megkapja a jogcím nevű `email`, majd visszatér az a jogcím `city` hozzárendelt értékét `Redmond`. A minta Azure függvény megtalálható [GitHub](https://github.com/Azure-Samples/active-directory-b2c-advanced-policies/tree/master/AzureFunctionsSamples).
 
-Hello `userMessage` jogcímet, amely hello Azure függvény által visszaadott nem kötelező ebben a környezetben, és hello IEF figyelmen kívül hagyja azt. Potenciálisan használhatja az üzenet átadott toohello alkalmazás, és később bemutatott toohello felhasználó.
+A `userMessage` jogcímet, amely az Azure függvény nem kötelező ebben a környezetben, és a IEF figyelmen kívül hagyja azt. Potenciálisan akár is használhatja az alkalmazásnak átadott, és később a felhasználó számára megjelenő üzenet.
 
 ```csharp
 if (requestContentAsJObject.email == null)
@@ -78,14 +78,14 @@ return request.CreateResponse<ResponseContent>(
     "application/json");
 ```
 
-Egy Azure függvény alkalmazás könnyen tooget hello függvény URL-címe, hello azonosítóval hello adott függvény segítségével. Ebben az esetben hello URL-cím van: https://wingtipb2cfuncs.azurewebsites.net/api/LookUpLoyaltyWebHook?code=MQuG7BIE3eXBaCZ/YCfY1SHabm55HEphpNLmh1OP3hdfHkvI2QwPrw==. Tesztelési használhatja.
+Egy Azure függvény alkalmazás megkönnyíti az első a függvény URL-cím, az adott függvény azonosítóval. Ebben az esetben a URL-je: https://wingtipb2cfuncs.azurewebsites.net/api/LookUpLoyaltyWebHook?code=MQuG7BIE3eXBaCZ/YCfY1SHabm55HEphpNLmh1OP3hdfHkvI2QwPrw==. Tesztelési használhatja.
 
-## <a name="step-2-configure-hello-restful-api-claims-exchange-as-a-technical-profile-in-your-trustframeworextensionsxml-file"></a>2. lépés: Hello RESTful API jogcímek az exchange konfigurálása a TrustFrameworExtensions.xml fájlban műszaki profil
+## <a name="step-2-configure-the-restful-api-claims-exchange-as-a-technical-profile-in-your-trustframeworextensionsxml-file"></a>2. lépés: A RESTful API jogcímek az exchange konfigurálása a TrustFrameworExtensions.xml fájlban műszaki profil
 
-Egy technikai profil beállítás hello teljes hello Exchange hello RESTful szolgáltatás a szükséges. Nyissa meg hello TrustFrameworkExtensions.xml fájlt, és adja hozzá a következő XML-részletet belül hello hello `<ClaimsProvider>` elemet.
+Műszaki profilt a RESTful szolgáltatás szükséges az exchange teljes konfigurációjának. Nyissa meg a TrustFrameworkExtensions.xml fájlt, és adja hozzá a következő XML-részletet belül a `<ClaimsProvider>` elemet.
 
 > [!NOTE]
-> A következő XML-RESTful szolgáltató hello `Version=1.0.0.0` hello protokollként leírása. Tekinti azokat hello függvény hello külső szolgáltatással együtt fog működni. <!-- TODO: A full definition of hello schema can be found...link tooRESTful Provider schema definition>-->
+> A következő XML-kódban, RESTful szolgáltató `Version=1.0.0.0` protokoll leírását. Vegye figyelembe azt, a függvény, amely a külső szolgáltatással együtt fog működni. <!-- TODO: A full definition of the schema can be found...link to RESTful Provider schema definition>-->
 
 ```XML
 <ClaimsProvider>
@@ -111,18 +111,18 @@ Egy technikai profil beállítás hello teljes hello Exchange hello RESTful szol
 </ClaimsProvider>
 ```
 
-Hello `<InputClaims>` elem definiálja hello küldi hello IEF toohello REST-szolgáltatást a jogcímeket. Ebben a példában hello hello jogcím tartalmát `givenName` toohello REST-szolgáltatást küldi hello jogcímként `email`.  
+A `<InputClaims>` elem definiálja a jogcímeket, amely a REST-szolgáltatást a IEF a kapnak. Ebben a példában a jogcím tartalmát `givenName` a REST-szolgáltatást a jogcímként való küldésének `email`.  
 
-Hello `<OutputClaims>` elem definiálja hello jogcímeket, hogy hello IEF fog várható hello REST-szolgáltatást. Kapott jogcímek hello száma, függetlenül hello IEF használja csak azonosított itt. Ebben a példában a jogcím érkezett `city` csatlakoztatott tooan IEF jogcím fogja meghívni `city`.
+A `<OutputClaims>` elem definiálja a IEF várható fog a többi szolgáltatás jogcímeket. Kapott jogcímek száma, függetlenül a IEF használja csak azonosított itt. Ebben a példában a jogcím érkezett `city` kell hozzárendelni egy IEF nevű jogcím `city`.
 
-## <a name="step-3-add-hello-new-claim-city-toohello-schema-of-your-trustframeworkextensionsxml-file"></a>3. lépés: Új jogcímet hello hozzáadása `city` toohello séma a TrustFrameworkExtensions.xml fájl
+## <a name="step-3-add-the-new-claim-city-to-the-schema-of-your-trustframeworkextensionsxml-file"></a>3. lépés:, Adja hozzá az új jogcímet `city` a sémának a TrustFrameworkExtensions.xml fájl
 
-hello jogcím `city` nincs még definiálva a sémában. Igen, hozzáadása hello elemen belül `<BuildingBlocks>`. Ez az elem hello TrustFrameworkExtensions.xml fájl hello elején található.
+A jogcímek `city` nincs még definiálva a sémában. Igen, hozzáadása a elemen belül `<BuildingBlocks>`. Ez az elem a TrustFrameworkExtensions.xml fájl elején található.
 
 ```XML
 <BuildingBlocks>
-    <!--hello claimtype city must be added toohello TrustFrameworkPolicy-->
-    <!-- You can add new claims in hello BASE file Section III, or in hello extensions file-->
+    <!--The claimtype city must be added to the TrustFrameworkPolicy-->
+    <!-- You can add new claims in the BASE file Section III, or in the extensions file-->
     <ClaimsSchema>
         <ClaimType Id="city">
             <DisplayName>City</DisplayName>
@@ -134,14 +134,14 @@ hello jogcím `city` nincs még definiálva a sémában. Igen, hozzáadása hell
 </BuildingBlocks>
 ```
 
-## <a name="step-4-include-hello-rest-service-claims-exchange-as-an-orchestration-step-in-your-profile-edit-user-journey-in-trustframeworkextensionsxml"></a>4. lépés: Hello REST szolgáltatási igények exchange közé az orchestration lépése a profil szerkesztése felhasználói megtett út TrustFrameworkExtensions.xml
+## <a name="step-4-include-the-rest-service-claims-exchange-as-an-orchestration-step-in-your-profile-edit-user-journey-in-trustframeworkextensionsxml"></a>4. lépés: A profil szerkesztése felhasználói megtett út TrustFrameworkExtensions.xml lépést az orchestration közé a többi szolgáltatás jogcímek exchange
 
-Adjon hozzá egy lépést toohello profil szerkesztése felhasználói út után hello felhasználó hitelesített (vezénylési lépésekből 1-4 a következő XML hello), és hello felhasználó már rendelkezik frissített hello-profil adatait (5. lépés).
+Adjon hozzá egy lépést, amely a profil szerkesztése felhasználói út után a felhasználó hitelesítése (vezénylési lépésekből 1-4 a következő XML-kódban), és a felhasználó már rendelkezik a frissített profil adatait (5. lépés).
 
 > [!NOTE]
-> Nincsenek hello REST API-hívás helyének egy vezénylési lépés számos használhatók. Egy vezénylési lépés azt követően a felhasználó sikeresen befejezte egy feladat, például az első regisztráció frissítés tooan külső rendszerekből használható vagy profil frissítése tookeep adatok szinkronizálása. Ebben az esetben használt tooaugment hello információk toohello alkalmazás hello-profil szerkesztése után.
+> Nincsenek a REST API-hívás helyének egy vezénylési lépés számos használhatók. Az orchestration lépésként használat egy frissítést adunk ki a külső rendszerek, a felhasználó sikeresen befejezte egy feladat, például az első regisztráció után, akár egy profil frissítéséhez megőrizheti az adatok szinkronizálása. Ebben az esetben szolgál a profil szerkesztése után az alkalmazás foglalt információk révén.
 
-Másolás hello-profil szerkesztése felhasználói út XML-kódot fájlból hello TrustFrameworkBase.xml fájl tooyour TrustFrameworkExtensions.xml belül hello `<UserJourneys>` elemet. Végezze el a 6. lépés hello módosítását.
+Másolás a profil szerkesztése felhasználói út XML-kódot a TrustFrameworkBase.xml fájlból a TrustFrameworkExtensions.xml fájl belül a `<UserJourneys>` elemet. Végezze el a módosítást, a 6. lépés.
 
 ```XML
 <OrchestrationStep Order="6" Type="ClaimsExchange">
@@ -152,9 +152,9 @@ Másolás hello-profil szerkesztése felhasználói út XML-kódot fájlból hel
 ```
 
 > [!IMPORTANT]
-> Ha hello sorrendje eltér a verziót, győződjön meg arról, hogy hello lépése előtt hello hello kód beszúrása `ClaimsExchange` típus `SendClaims`.
+> Ha a sorrend nem egyezik meg a verziójával, győződjön meg arról, hogy lépése előtt helyezze be a kódját a `ClaimsExchange` típus `SendClaims`.
 
-hello hello felhasználói útra végső XML kell kinéznie:
+A felhasználó útra végső XML kell kinéznie:
 
 ```XML
 <UserJourney Id="ProfileEdit">
@@ -200,7 +200,7 @@ hello hello felhasználói útra végső XML kell kinéznie:
                 <ClaimsExchange Id="B2CUserProfileUpdateExchange" TechnicalProfileReferenceId="SelfAsserted-ProfileUpdate" />
             </ClaimsExchanges>
         </OrchestrationStep>
-        <!-- Add a step 6 toohello user journey before hello JWT token is created-->
+        <!-- Add a step 6 to the user journey before the JWT token is created-->
         <OrchestrationStep Order="6" Type="ClaimsExchange">
             <ClaimsExchanges>
                 <ClaimsExchange Id="GetLoyaltyData" TechnicalProfileReferenceId="AzureFunctions-LookUpLoyaltyWebHook" />
@@ -212,11 +212,11 @@ hello hello felhasználói útra végső XML kell kinéznie:
 </UserJourney>
 ```
 
-## <a name="step-5-add-hello-claim-city-tooyour-relying-party-policy-file-so-hello-claim-is-sent-tooyour-application"></a>5. lépés: Hello jogcímszabály hozzáadása `city` tooyour függő entitás házirend fájlt, így hello jogcím küldött tooyour alkalmazás
+## <a name="step-5-add-the-claim-city-to-your-relying-party-policy-file-so-the-claim-is-sent-to-your-application"></a>5. lépés:, Vegye fel a jogcím `city` a függő entitás házirend fájl, a jogcím kap az alkalmazáshoz
 
-Szerkessze a ProfileEdit.xml függő entitásonkénti (RP) fájlt, és módosítsa a hello `<TechnicalProfile Id="PolicyProfile">` elem tooadd hello alábbi: `<OutputClaim ClaimTypeReferenceId="city" />`.
+Szerkessze a ProfileEdit.xml függő entitásonkénti (RP) fájlt, és módosítsa a `<TechnicalProfile Id="PolicyProfile">` adja hozzá a következő elem: `<OutputClaim ClaimTypeReferenceId="city" />`.
 
-Miután hozzáadta a hello új jogcímet, akkor a műszaki hello-profil néz ki:
+Miután az új jogcím, a műszaki profil néz ki:
 
 ```XML
 <DisplayName>PolicyProfile</DisplayName>
@@ -231,15 +231,15 @@ Miután hozzáadta a hello új jogcímet, akkor a műszaki hello-profil néz ki:
 
 ## <a name="step-6-upload-your-changes-and-test"></a>6. lépés: Töltse fel a módosításokat, és tesztelése
 
-Meglévő verzióinak hello hello házirend felülírja.
+A házirend meglévő verzióinak felülírását.
 
-1.  (Nem kötelező:) Mentse hello meglévő verzióját (Letöltés) a bővítmények fájl folytatás előtt. tookeep hello kezdeti összetettsége alacsony, azt javasoljuk, hogy nem töltsön hello bővítmények fájl több verziója.
-2.  (Nem kötelező:) Nevezze át a hello házirend azonosítója hello házirend szerkesztése fájl új verziójának hello módosításával `PolicyId="B2C_1A_TrustFrameworkProfileEdit"`.
-3.  Hello bővítmények fájl feltöltése.
-4.  Hello házirend szerkesztése RP-fájl feltöltése.
-5.  Használjon **Futtatás most** tootest hello házirend. Tekintse át a hello jogkivonatot adott hello IEF toohello alkalmazás adja vissza.
+1.  (Nem kötelező:) Mentse a meglévő verziót (Letöltés) a bővítmények fájl folytatás előtt. Kezdeti összetettségét alacsony megtartásához, javasoljuk, hogy nem töltsön a bővítmények fájl több verziója.
+2.  (Nem kötelező:) Nevezze át az új verziót a házirend-azonosító a házirend szerkesztése fájl módosításával `PolicyId="B2C_1A_TrustFrameworkProfileEdit"`.
+3.  A bővítmények-fájl feltöltése.
+4.  A házirend szerkesztése RP-fájl feltöltése.
+5.  Használjon **Futtatás most** tesztelése a házirendet. Tekintse át a jogkivonatot, amely a IEF visszaadja az alkalmazásnak.
 
-Ha minden megfelelően van beállítva, hello jogkivonat tartalmazza hello új jogcímet `city`, hello értékű `Redmond`.
+Ha minden megfelelően van beállítva, a jogkivonat tartalmazza az új jogcímet `city`, a értékű `Redmond`.
 
 ```JSON
 {
@@ -261,4 +261,4 @@ Ha minden megfelelően van beállítva, hello jogkivonat tartalmazza hello új j
 
 [A REST API-t használják a ellenőrzési lépés](active-directory-b2c-rest-api-validation-custom.md)
 
-[Hello profil szerkesztése toogather további információt a felhasználók a módosítása](active-directory-b2c-create-custom-attributes-profile-edit-custom.md)
+[Módosítsa a profil szerkesztése további információkat kell gyűjteni a felhasználóktól](active-directory-b2c-create-custom-attributes-profile-edit-custom.md)

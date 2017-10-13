@@ -1,6 +1,6 @@
 ---
-title: "Használati jelentés aaaUnlicensed |} Microsoft Docs"
-description: "hello licenc nélküli használati jelentés licenc nélküli felhasználók által használt azonosíthatja, hogy a fizetős Azure AD-funkciókat."
+title: "Licenc nélküli használati jelentés |} Microsoft Docs"
+description: "A nem licencelt használati jelentés segítségével azonosíthatja a licenc nélküli felhasználók által használt fizetős Azure AD-funkciókat."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -13,35 +13,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: markvi
-ms.openlocfilehash: c44d1756b4641d7ca88434017eedb6c5e2567cb0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c0b4f455f067e825362bdecc02ea62d7984f0d31
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="unlicensed-usage-report"></a>Licenc nélküli használati jelentés
-hello licenc nélküli használati jelentés licenc nélküli felhasználók által használt azonosíthatja, hogy a fizetős Azure AD-funkciókat. Ez lehetővé teszi toomake jobb megvásárolt licencek és tudja, amikor szükség lehet további licencek tooidentify használatát. 
+A nem licencelt használati jelentés segítségével azonosíthatja a licenc nélküli felhasználók által használt fizetős Azure AD-funkciókat. Ez lehetővé teszi, hogy élvezetesebbé tegyük használja a megvásárolt licencek és azonosításához tudja, amikor szükség lehet további licenceket. 
 
-a jelentésben hello hello szolgáltatások fizetős utolsó 30 nap hello aktív használatát. 
+Ebben a jelentésben aktív használati fizetős funkciója az elmúlt 30 napban. 
 
 ## <a name="report-structure"></a>A jelentés struktúra
 | Oszlop neve | Leírás |
 |:--- |:--- |
-| Licenc nélküli felhasználók |Hello felhasználó neve |
-| Szolgáltatás |hello szolgáltatás neve. Például: a feltételes hozzáférés |
-| Alkalmazás érhető el |hello hello funkcióval is hozzáférnek hello alkalmazás neve. Például: Office 365 SharePoint online-hoz |
+| Licenc nélküli felhasználók |A felhasználó neve |
+| Szolgáltatás |A szolgáltatás neve. Például: a feltételes hozzáférés |
+| Alkalmazás érhető el |Az alkalmazást, amely használatban van a szolgáltatás neve. Például: Office 365 SharePoint online-hoz |
 
 > [!NOTE]
-> Ha egy felhasználói fiókot törölték hello "Licenc nélküli felhasználó" oszlop tölti fel az ID, például a 1003000090D8B285
+> Ha egy felhasználói fiók törölve lett a "Licenc nélküli felhasználók" oszlop tölti fel az ID, például a 1003000090D8B285
 > 
 > 
 
 ## <a name="conditional-access-feature"></a>Feltételes hozzáférési funkciónak
 Licenc nélküli felhasználók lesz megjelölve, amikor hozzáférni a feltételes hozzáférési szabályzatot, akkor használható, ha nem rendelkeznek egy Azure AD Premium-licenc egy szolgáltatást. 
 
-Ez vonatkozik tooMFA, / hely házirendeket, valamint az eszköz házirendek, amelyek az Intune-nal.
+Ez vonatkozik az MFA / hely házirendeket, valamint az eszköz házirendek, amelyek az Intune-nal.
 
 ## <a name="see-also"></a>Lásd még:
 * [Feltételes hozzáférés az Office 365 és az egyéb Azure Active Directory használatával csatlakozó alkalmazások](active-directory-conditional-access.md)
-* [Feltételes hozzáférés tooAzure AD első lépések](active-directory-conditional-access-azuread-connected-apps.md) 
+* [Az Azure AD feltételes hozzáférés – első lépések](active-directory-conditional-access-azuread-connected-apps.md) 
 

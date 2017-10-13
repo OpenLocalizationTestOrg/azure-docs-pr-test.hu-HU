@@ -1,6 +1,6 @@
 ---
-title: az Azure-on Linux Cassandra aaaRun |} Microsoft Docs
-description: "Hogyan toorun egy Cassandra fürt Linux Azure Virtual Machines egy Node.js-alkalmazás"
+title: Linux Cassandra futtassa az Azure-on |} Microsoft Docs
+description: "Hogyan Linux Azure Virtual Machines Cassandra fürt futtassa a Node.js-alkalmazás"
 services: virtual-machines-linux
 documentationcenter: nodejs
 author: tomarcher
@@ -15,104 +15,104 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: tarcher
-ms.openlocfilehash: 381ca301bbe88d3740cf182f9c44fada5b9ba7cc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1ff3d77ced6c9d90029b251490c05e52d9b43515
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="running-cassandra-with-linux-on-azure-and-accessing-it-from-nodejs"></a>A linuxos Cassandra futtatása az Azure-ban és az alkalmazás Node.js-ből való elérése
 > [!IMPORTANT] 
-> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../resource-manager-deployment-model.md). Ez a cikk hello klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén hello Resource Manager modellt használja. Tekintse meg a Resource Manager-sablonok [alapszintű Datastax vállalati](https://azure.microsoft.com/documentation/templates/datastax) és [Spark-fürt és Cassandra a CentOS](https://azure.microsoft.com/documentation/templates/spark-and-cassandra-on-centos/).
+> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../resource-manager-deployment-model.md). Ez a cikk a klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén a Resource Manager modellt használja. Tekintse meg a Resource Manager-sablonok [alapszintű Datastax vállalati](https://azure.microsoft.com/documentation/templates/datastax) és [Spark-fürt és Cassandra a CentOS](https://azure.microsoft.com/documentation/templates/spark-and-cassandra-on-centos/).
 
 ## <a name="overview"></a>Áttekintés
 Microsoft Azure a egy megnyitott felhőalapú platform, amely a Microsoft fut, és a nem Microsoft szoftvert, amely operációs rendszerek, alkalmazás-kiszolgálókat, üzenetküldési köztes, valamint SQL és a NoSQL-adatbázisok mindkét kereskedelmi és nyissa meg a forrás-modellek. A nyilvános felhők, beleértve az Azure rugalmas szolgáltatások igényel gondos tervezéssel és szándékos architektúra mindkét alkalmazáskiszolgálók jól tárolási rétegek. Cassandra által elosztott tároló-architektúra természetes segítségével magas rendelkezésre állású rendszerek, amelyek a fürt hibák hibatűrő fejlesztése során. Cassandra egy felhőhöz méretezett NoSQL-adatbázis által Apache szoftver Foundation költséget cassandra.apache.org; Cassandra Java nyelven van megírva, és ezért mind a Windows, Linux futtatja platformokon.
 
-hello Ez a cikk célja a Microsoft Azure virtuális gépek és virtuális hálózatok egyetlen és több data center fürtként Ubuntu tooshow Cassandra telepítés. hello fürttelepítés optimalizált termelési számítási feladatokhoz hatókörén kívül esik a cikk több lemez a csomópont-konfiguráció szükséges, megfelelő körgyűrűs topológia tervezési és toosupport hello modellezési szükséges replikációs, az adatok konzisztenciájának, átviteli sebesség és magas rendelkezésre állási követelményeinek.
+Ez a cikk célja Cassandra telepítési megjelenítése Ubuntu a Microsoft Azure virtuális gépek és virtuális hálózatok egyetlen és több data center fürtként. A fürtöt tartalmazó környezetben optimalizált termelési számítási feladatokhoz nem ez a cikk érhető el, mivel az több lemez a csomópont-konfiguráció, megfelelő körgyűrűs topológia tervezési és a szükséges replikációs, a adatkonzisztenciát, az átviteli sebesség és a magas támogatásához modellezési adatok rendelkezésre állási követelményeinek.
 
-Ez a cikk vesz egy alapvető megközelítés tooshow, mi is szerepet kap az épület hello Cassandra fürt képest Docker, Chef vagy Puppet, amely hello infrastruktúra telepítése sokkal egyszerűbbé teheti.  
+A cikk vesz részt vesz egy alapvető megközelítés jeleníthető meg, mi a Cassandra fürt építése Docker, Chef vagy Puppet, amely megkönnyítheti az infrastruktúra telepítése sokkal képest.  
 
-## <a name="hello-deployment-models"></a>üzembe helyezési modellel hello
-A Microsoft Azure hálózatkezelés lehetővé teszi, hogy a elkülönített titkos fürtök esetén, amelyek hello hozzáférést lehet korlátozott tooattain finom nyomtatott hálózati biztonsági hello telepítését.  Mivel ez a cikk hello Cassandra telepítési alapvető szinten megjelenítésével kapcsolatos, nem tárgyaljuk hello konzisztenciaszint és hello optimális tárolókialakítás átviteli sebesség eléréséhez. A képzeletbeli fürt hálózati követelményei hello listája itt található:
+## <a name="the-deployment-models"></a>Az üzembe helyezési modellek
+A Microsoft Azure hálózatkezelés lehetővé teszi, hogy a telepítése elkülönített titkos fürtök esetén, amelyek a hozzáférés korlátozható részletes hálózati biztonság eléréséhez.  Mivel ez a cikk a Cassandra telepítési alapvető szinten megjelenítésével kapcsolatos, nem tárgyaljuk a konzisztenciaszint és átviteli sebesség eléréséhez optimális tároló-kialakításában. A hálózati követelményei a elméleti fürt listája itt található:
 
 * Külső rendszerek Cassandra adatbázis belül vagy kívül Azure nem tud hozzáférni.
-* Cassandra fürt toobe thrift-forgalom egy terheléselosztó mögött van
+* Cassandra fürt-nak kell lennie a thrift-forgalmat egy terheléselosztó mögött
 * Minden adatközpontot továbbfejlesztett fürt rendelkezésre állási csoportok két csomópontja Cassandra telepítése
-* Zárolását hello fürt úgy, hogy csak az alkalmazás kiszolgálófarm hozzáférés toohello adatbázis közvetlenül van
+* Zárolását, a fürt úgy, hogy csak az alkalmazás kiszolgálófarm közvetlenül rendelkezik hozzáféréssel az adatbázishoz
 * Eltérő SSH nyilvános hálózati végpontok
 * Minden egyes Cassandra csomópont kell egy rögzített belső IP-cím
 
-Cassandra telepített tooa egyetlen Azure-régiót vagy toomultiple régiók hello munkaterhelés hello elosztott jellege alapján lehet. Több régióban üzembe helyezési modellel lehet tooserve kihasználhatók a végfelhasználók szorosabb tooa adott földrajzi keresztül hello Cassandra ugyanabban az infrastruktúrában. Cassandra meg beépített csomópont replikációs vesz többszörös főkiszolgáló hello szinkronizálás több különböző adatközponthoz származó ír és egységes hello adatok tooapplications ablak jeleníti. Több területi központi telepítés is segíthetnek a hello kockázatcsökkentés a hello szélesebb körű Azure szolgáltatás-kimaradások számát. Cassandra tartozó hangolható konzisztencia és a replikációs topológia segít az alkalmazások különböző Helyreállítási igényeket.
+Cassandra egyetlen Azure-régió, vagy a munkaterhelés elosztott jellege alapján több régióba telepíthető. Több régióban üzembe helyezési modellel is javítható kiszolgálni a végfelhasználók számára közelebb, hogy egy adott földrajzi Cassandra ugyanazon az infrastruktúrán keresztül. Cassandra meg beépített csomópont replikációs vesz igénybe a szinkronizálás többszörös főkiszolgáló több különböző adatközponthoz származó ír és megadja az adatok az alkalmazások konzisztens nézetét. Több területi központi telepítés is segíthetnek a a kockázatcsökkentés a szélesebb körű Azure szolgáltatás-kimaradások számát. Cassandra tartozó hangolható konzisztencia és a replikációs topológia segít az alkalmazások különböző Helyreállítási igényeket.
 
 ### <a name="single-region-deployment"></a>Egyetlen régión központi telepítés
-Program először egy régió egyetlen központi telepítési és betakarítás hello learnings több területi modell létrehozásához. Az Azure virtuális hálózat lesz elkülönített használt toocreate alhálózatok, hogy a fent említett hello hálózatbiztonsági követelményei érheti el.  hello egyetlen régión központi telepítés létrehozása bemutatott hello folyamat használja az Ubuntu 14.04 LTS és Cassandra 2.08; azonban hello folyamat könnyen lehet elfogadott toohello más Linux Variant adattípusban. hello közé tartoznak a következők hello rendszeres hello egyetlen régión telepítési jellemzőit.  
+Rendszer egy régió telepítés elindításához és nem kér be adatokat az learnings több területi modell létrehozásához. Az Azure virtuális hálózat használandó elkülönített alhálózatokat létre úgy, hogy a fent említett hálózatbiztonsági követelményei érheti el.  A régió egyetlen központi telepítés létrehozása ismertetett folyamatot használ Ubuntu 14.04 LTS és Cassandra 2.08; azonban a folyamat is könnyen elfogadni Linux Variant adattípusban. Az alábbiakban a egyetlen régión telepítési rendszeres jellemzőit.  
 
-**Magas rendelkezésre állás:** hello Cassandra csomópontok látható az 1. ábra telepített hello tootwo rendelkezésre állási készletek, hogy hello csomópont a magas rendelkezésre állású több tartalék tartományok között van elosztva. Virtuális gépek minden egyes rendelkezésre állási csoport attribútummal megfeleltetve too2 tartalék tartományok.  A Microsoft Azure által használt hello fogalma tartalék tartomány toomanage állásidő (pl. a hardver- vagy hibák) közben (pl. gazdagép vagy vendég operációs rendszer javítás vagy frissítés, alkalmazásfrissítések) frissítési tartomány hello fogalma nem tervezett kezelésére állásidő ütemezett használt. Ellenőrizze a [vész-helyreállítási és magas rendelkezésre állás, az Azure-alkalmazások](http://msdn.microsoft.com/library/dn251004.aspx) hello szerepkör hiba és a frissítési tartományok magas rendelkezésre állás eléréséhez.
+**Magas rendelkezésre állás:** az 1. ábráján látható Cassandra csomópont két rendelkezésre állási csoportokra vannak telepítve, úgy, hogy a csomópont a magas rendelkezésre állású több tartalék tartományok között van elosztva. Virtuális gépek minden egyes rendelkezésre állási csoport attribútummal 2 tartalék tartományok van leképezve.  A Microsoft Azure által használt tartalék tartomány le nem tervezett idő (pl. a hardver- vagy hibák) közben (pl. gazdagép vagy vendég operációs rendszer javítás vagy frissítés, alkalmazásfrissítések) frissítési tartomány fogalma kezelésére fogalma állásidő ütemezett kezelésére használt. Ellenőrizze a [vész-helyreállítási és magas rendelkezésre állás, az Azure-alkalmazások](http://msdn.microsoft.com/library/dn251004.aspx) hiba és a frissítési tartományok magas rendelkezésre állás elérése a szerepkörhöz.
 
 ![Egyetlen régión központi telepítés](./media/cassandra-nodejs/cassandra-linux1.png)
 
 1. ábra: Egy régiót központi telepítés
 
-Vegye figyelembe, hogy írásának hello időpontban Azure nem engedélyezi a virtuális gépek tooa adott tartalék tartomány; csoportja hello explicit leképezése Következésképpen még hello telepítési modell 1. ábrán látható, a valószínű statisztikailag, hogy az összes hello virtuális gép csatlakoztatott tootwo tartalék tartományok helyett négy lehetnek.
+Vegye figyelembe, hogy a cikk írásának időpontjában Azure nem engedélyezi egy csoportján az adott tartalék tartomány; explicit leképezése ezért még a üzembe helyezési modellel, 1. ábrán látható, a valószínű statisztikailag, hogy a virtuális gépek két tartalék tartományok helyett négy lehet rendelni.
 
-**Terheléselosztás Thrift forgalmi betöltése:** Thrift ügyfél függvénytárainak belül hello webkiszolgáló toohello fürt csatlakoznak a belső terheléselosztót. Ehhez hello folyamata hello belső terheléselosztó toohello "data" alhálózat hozzáadása (lásd az 1. ábra) hello Cassandra fürtöt hello felhőszolgáltatás hello környezetében. Belső terheléselosztó hello van definiálva, miután minden csomópont van szükség, hello megjegyzések egy elosztott terhelésű készlet a korábban hozzáadott hello elosztott terhelésű végpont toobe meghatározott terheléselosztó neve. Lásd: [Azure belső terheléselosztás ](../../../load-balancer/load-balancer-internal-overview.md)további részleteket.
+**Terheléselosztás Thrift forgalmi betöltése:** Thrift ügyfél függvénytárainak belül a webalkalmazás-kiszolgáló csatlakozzon a fürthöz, a belső terheléselosztók használatával. Ehhez szükséges, hogy a belső terheléselosztó hozzáadása a "data" alhálózathoz (lásd az 1. ábra) keretén belül a felhőalapú szolgáltatás, a Cassandra fürtöt. A belső terheléselosztó van definiálva, miután minden csomópont szükséges az elosztott terhelésű végpont a Megjegyzések a korábban meghatározott terheléselosztó neve az elosztott terhelésű készlet lehet hozzáadni. Lásd: [Azure belső terheléselosztás ](../../../load-balancer/load-balancer-internal-overview.md)további részleteket.
 
-**Fürt magok:** fontos tooselect hello legtöbb magas rendelkezésre állású csomópontok az mag, az új csomópontok hello kezdőérték csomópontok toodiscover hello topológia hello fürt fognak kommunikálni. Egyes rendelkezésre állási csoport egy csomópont kijelölt kezdőérték csomópontok tooavoid hibaérzékeny pontok kialakulását.
+**Fürt magok:** fontos, hogy válassza ki a legtöbb magas rendelkezésre állású csomópontok beállítása mag, mert a kezdőérték csomópontok feltérképezi a fürt kommunikál az új csomópontok. Egyes rendelkezésre állási csoport egy csomópont kezdőérték csomópontként kijelölt kerülje a hibaérzékeny pontok kialakulását.
 
-**Replikációs tényező és Konzisztenciaszint:** Cassandra a beépített magas rendelkezésre állású és az adatok tartóssága jellemzőek hello replikációs tényező (RF - példányszámot az egyes sorok hello fürtön tárolt), és a Konzisztenciaszint (száma replikák toobe hello eredmény toohello hívó visszatérése előtt olvasása/írása). Replikációs tényező hello kulcstérértesítések használatával (hasonlóan tooa relációs adatbázis) létrehozása közben megadott, mivel hello konzisztenciaszint hello CRUD-lekérdezés elküldése során van megadva. Lásd a Cassandra dokumentációját a [konfigurálásával konzisztenciájának](http://www.datastax.com/documentation/cassandra/2.0/cassandra/dml/dml_config_consistency_c.html) konzisztencia részletek és hello képlet kvórum számításhoz.
+**Replikációs tényező és Konzisztenciaszint:** Cassandra a beépített magas rendelkezésre állású és az adatok tartóssága jellemzőek a replikációs tényező (RF - példányszámot az egyes sorok, a fürtön tárolt), és a Konzisztenciaszint (replikák száma kell olvasása/írása az eredmény a hívó való visszatérés előtt). Replikációs tényező kulcstérértesítések használatával (hasonlóan egy relációs adatbázisban) létrehozása közben megadott, mivel a konzisztenciaszint van megadva a CRUD-lekérdezés elküldése során. Lásd a Cassandra dokumentációját a [konfigurálásával konzisztenciájának](http://www.datastax.com/documentation/cassandra/2.0/cassandra/dml/dml_config_consistency_c.html) konzisztencia részletek és a képlet kvórum számításhoz.
 
-Cassandra kétféle adatok integritásának modellek – konzisztencia és a végleges konzisztencia; hello replikációs tényező és Konzisztenciaszint együtt meghatározzák, ha hello adatok lesz konzisztens, amint egy írási művelet befejeződik, vagy idővel konzisztenssé lesz. Például KVÓRUM megadó Konzisztenciaszint mindig lesz hello biztosítja az adatok konzisztencia során minden konzisztencia szint alatt szükséges tooattain megírva replikák toobe hello száma, hogy idővel konzisztenssé adatok eredményezi KVÓRUM (pl. egy).
+Cassandra kétféle adatok integritásának modellek – konzisztencia és a végleges konzisztencia; a replikációs tényező és Konzisztenciaszint együtt meghatározzák, ha az adatok lesz konzisztens, amint egy írási művelet befejeződik, vagy idővel konzisztenssé lesz. Például KVÓRUM megadását, mint a Konzisztenciaszint fognak mindig biztosítja az adatok konzisztenciájának során bármely konzisztenciaszint, eléréséhez szükség szerint írandó replikák száma alatt (pl. egy) KVÓRUM eredményezi, hogy idővel konzisztenssé adatok.
 
-3-KVÓRUM replikációs tényezővel a fent látható hello 8 csomópontos fürt (2 csomópontok vannak olvasása vagy írása konzisztencia) olvasási/írási konzisztenciaszint, hibatűrését hello elméleti megszűnését hello legtöbb 1 csomópont egy replikációs csoport hello alkalmazás indítása előtt: hello hiba észre. A parancs feltételezi, hogy minden hello kulcs szóközt kell jól kiegyensúlyozott olvasási/írási kérések.  Az alábbiakban hello hello paraméterek telepített hello fürt használjuk:
+A fentiek, egy replikációs tényező 3-KVÓRUM 8 csomópontos fürt (2 csomópontok vannak olvasása vagy írása konzisztencia) olvasási/írási konzisztenciaszint, az elméleti elvész az egyes replikációs csoportok legfeljebb 1 csomópont hibatűrését előtt az alkalmazás indítása előtt tartva a Hiba történt. A parancs feltételezi, hogy a kulcs szóközöket jól kiegyensúlyozott rendelkezik az összes olvasási/írási kérések.  A telepített fürt használjuk a paraméterek a következők:
 
 Egyetlen régión Cassandra fürtkonfiguráció:
 
 | Fürt paraméter | Érték | Megjegyzések |
 | --- | --- | --- |
-| (N) csomópontok száma |8 |Hello fürtben található csomópontok száma |
+| (N) csomópontok száma |8 |A fürtben található csomópontok száma |
 | Replikációs tényező (RF) |3 |Adott sor replikák száma |
-| Konzisztenciaszint (írás) |QUORUM[(RF/2) +1) = 2] hello eredmény hello a képlet lefelé kerekíti |Írja a hello legtöbb 2 replikával hello válasz toohello hívó elküldése előtt 3. a replika idővel konzisztenssé módon írása. |
-| Konzisztenciaszint (olvasás) |KVÓRUM [(RF/2) + 1 = 2] hello képlet hello eredményét lefelé kerekíti |Beolvassa a 2-replikával válasz toohello hívó elküldése előtt. |
-| Replikációs stratégia |NetworkTopologyStrategy lásd [adatreplikáció](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureDataDistributeReplication_c.html) Cassandra dokumentációjában talál további információt a |Hello telepítési topológia megértette és replikák helyezi a csomóponton, hogy az összes hello replika nem végül a hello azonos állvány |
-| Snitch |Lásd a GossipingPropertyFileSnitch [Snitches](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureSnitchesAbout_c.html) Cassandra dokumentációjában talál további információt a |NetworkTopologyStrategy snitch toounderstand hello topológia egy fogalom használja. GossipingPropertyFileSnitch a minden egyes csomópont toodata center és állvány leképezésekor nagyobb ellenőrzést biztosít. hello fürt pletykákat toopropagate ezt az információt használja. Ez az jóval egyszerűbbé válik a dinamikus IP beállítás relatív tooPropertyFileSnitch |
+| Konzisztenciaszint (írás) |QUORUM[(RF/2) +1) = 2] az eredmény a képlet lefelé kerekíti |Legfeljebb 2 replikával ír a hívónak; a válasz elküldése előtt 3. a replika idővel konzisztenssé módon írása. |
+| Konzisztenciaszint (olvasás) |KVÓRUM [(RF/2) + 1 = 2] kerekíti a képlet eredménye |2 replikával beolvassa a hívónak elküldése előtt. |
+| Replikációs stratégia |NetworkTopologyStrategy lásd [adatreplikáció](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureDataDistributeReplication_c.html) Cassandra dokumentációjában talál további információt a |A telepítési topológia megértette és replikák csomóponton helyezi el, hogy minden replika az azonos állványra a nem végződhet |
+| Snitch |Lásd a GossipingPropertyFileSnitch [Snitches](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureSnitchesAbout_c.html) Cassandra dokumentációjában talál további információt a |NetworkTopologyStrategy snitch egy fogalom megértéséhez a topológia használja. GossipingPropertyFileSnitch az egyes csomópontok leképezése a adatközpont és állvány nagyobb ellenőrzést biztosít. A fürt pletykákat használja fel ezeket az információkat terjesztése. Ez az jóval egyszerűbb, a dinamikus IP-beállítása PropertyFileSnitch viszonyítva |
 
-**Cassandra fürt Azure szempontjai:** Microsoft Azure virtuális gépek funkció Azure Blob Storage tárolót használja a lemez megőrzéséhez; Az Azure Storage minden lemez a magas tartósság 3 replikák menti. Ez azt jelenti, hogy minden egyes soraiban levő adatok, a Cassandra táblába 3 replikák már tárolja, és ezért adatkonzisztencia van már hozott megvagyunk akkor is, ha hello replikációs tényező (RF) 1. hello fő problémája replikációs tényező 1 folyamatban, hogy az alkalmazás hello Leállás következik, még akkor is, ha egy önálló Cassandra csomópont meghibásodik. Azonban ha egy csomópont le a hello problémákat (például a hardver, a szoftver rendszerhibák) ismeri fel az Azure Fabric Controller, az kiépíti a hely használatával új csomópontjának azonos tárolóeszközöket hello. Kiépítés egy új csomópont tooreplace hello régi egy eltarthat néhány percig.  Tervezett karbantartás tevékenységek, például a vendég operációs rendszer módosításokat, hasonlóképpen Cassandra frissíti, és alkalmazás Azure Fabric Controller hajtja végre a működés közbeni frissítés hello csomópontok hello fürtben.  Működés közbeni frissítés is is igénybe vehet néhány csomópont le egyszerre, és ezért hello fürt problémákat tapasztalhat a néhány partíciók rövid idejű leállást. Hello adatok azonban nem lesznek toohello beépített Azure adattároló redundanciája, amely miatt megszakadt.  
+**Cassandra fürt Azure szempontjai:** Microsoft Azure virtuális gépek funkció Azure Blob Storage tárolót használja a lemez megőrzéséhez; Az Azure Storage minden lemez a magas tartósság 3 replikák menti. Ez azt jelenti, hogy minden egyes soraiban levő adatok, a Cassandra táblába 3 replikák már tárolja, és ezért adatkonzisztencia van már hozott megvagyunk akkor is, ha a replikációs tényező (RF) 1. A fő replikációs tényező alatt 1 probléma, hogy az az alkalmazás leállás következik, még akkor is, ha egy önálló Cassandra csomópont meghibásodik. Azonban ha egy csomópont le a Azure Fabric Controller által felismert problémákat (például a hardver, a szoftver rendszerhibák), akkor kiépíti a azonos tárolási-meghajtókat használ helyette egy új csomópont. Lecseréli a régi egy olyan új csomópont kiépítés néhány percet is igénybe vehet.  Tervezett karbantartás tevékenységek, például a vendég operációs rendszer módosításokat, hasonlóképpen Cassandra frissíti, és a alkalmazás Azure Fabric Controller hajtja végre a működés közbeni frissítés a csomópontok a fürtben.  Működés közbeni frissítés is is igénybe vehet néhány csomópont le egyszerre, és ezért a fürt rövid idejű leállást néhány partíciók problémákat tapasztalhat. Azonban az adatok nem elvesznek a beépített Azure adattároló redundanciája, amely miatt.  
 
-A rendszerek, amelyek nem igényelnek magas rendelkezésre állású tooAzure telepített (pl. körülbelül 99,9 amely egyenértékű too8.76 óra/év; lásd: [magas rendelkezésre állású](http://en.wikipedia.org/wiki/High_availability) részletek) rendelkező RF képes toorun esetleg = 1 és Konzisztenciaszint = egy.  A magas rendelkezésre állású KÖVETELMÉNYŰ RF alkalmazások = 3 és Konzisztenciaszint = KVÓRUM hello hello csomópontok egy hello replikák közül az egyik állásidő lesz működését. RF = 1, a hagyományos telepítések (pl. a helyszíni) toohello esetleges adatvesztés eredő problémák, mint például a lemezek meghibásodása miatt nem használható.   
+A telepített Azure-ba, amelyek nem igényelnek magas rendelkezésre állású rendszerek (pl. körülbelül 99,9 amely egyenértékű 8.76 óra/év; lásd: [magas rendelkezésre állású](http://en.wikipedia.org/wiki/High_availability) részletes) esetleg RF futtatásához = 1 és Konzisztenciaszint = egyik.  A magas rendelkezésre állású KÖVETELMÉNYŰ RF alkalmazások = 3 és Konzisztenciaszint = KVÓRUM egyik csomópontján egy a replikák lefelé idején fog működését. RF = 1, a hagyományos telepítések (pl. a helyszíni) a problémák, mint például a lemezek meghibásodása eredő esetleges adatvesztés miatt nem használható.   
 
 ## <a name="multi-region-deployment"></a>Több területi központi telepítés
-Bármely külső tooling Cassandra tartozó adatok-center-kompatibilis replikációs és konzisztencia-modell segítségével hello több területi telepítés nélkül hello hello kezdő verzióról a fent leírt van szükség. Ez eltér meglehetősen hello hagyományos, relációs adatbázisok ahol hello beállítása az adatbázis-tükrözésre több főkiszolgálós írások elég bonyolult lehet. Állítson be több régióban Cassandra hello használati forgatókönyvei többek között a következő hello is segítséget nyújt:
+Cassandra tartozó adatok-center-kompatibilis replikációs és konzisztencia modell a fent leírt segít a több területi telepítés kívül a lista bármely külső tooling szükségessége nélkül. Ez eltér elég a hagyományos, relációs adatbázisok ahol adatbázis-tükrözés a több főkiszolgálós írások telepítőprogramja elég bonyolult lehet. Állítson be több régióban Cassandra is segítséget nyújt a használati forgatókönyvei többek között a következőket:
 
-**Közelségi kapcsolat alapú központi telepítés:** több-bérlős alkalmazásokhoz, és törölje a jelet a bérlő felhasználók-az-régió, is származott, alacsony késleltetésű hello több területi fürt által. Például egy tanulási felügyeleti rendszerek oktatási intézményeknél a az USA keleti régiója, és az USA nyugati régiója régiók tooserve hello megfelelő kampuszok az elosztott fürtök telepítése tranzakciós, továbbá az elemzés. hello adatok lehetnek helyileg konzisztens hello idő olvasása és írása, és idővel konzisztenssé mindkét hello régiók között. További példák mint az adathordozó terjesztési, elektronikus kereskedelmi és semmit, és koncentrált földrajzi felhasználói alap látja, hogy egy megfelelő használati eset a központi telepítési modell.
+**Közelségi kapcsolat alapú központi telepítés:** több-bérlős alkalmazásokhoz, és törölje a jelet a bérlő felhasználók-az-régió, is származott, a több területi fürt alacsony késleltetésű által. Például egy tanulási felügyeleti rendszerek oktatási intézményeknél a megfelelő kampuszok kiszolgálására USA keleti régiója, és az USA nyugati régiója régiókban a elosztott fürtök telepítése tranzakciós, továbbá az elemzés. Az adatok lehetnek helyileg egységes idő olvasási és írási műveletek és idővel konzisztenssé mindkét a régiók között. További példák mint az adathordozó terjesztési, elektronikus kereskedelmi és semmit, és koncentrált földrajzi felhasználói alap látja, hogy egy megfelelő használati eset a központi telepítési modell.
 
-**Magas rendelkezésre állás:** redundancia szoftverek és hardverek magas rendelkezésre állás elérése kulcsfontosságú tényező; a részleteket lásd a Microsoft Azure épület megbízható a felhőalapú rendszerek. A Microsoft Azure-hello csak megbízható igaz redundancia elérésének módja több területi fürt üzembe helyezésével. Egy aktív-aktív vagy aktív-passzív módban alkalmazások telepíthetők, és hello régiók egyikéhez sem nem működik, ha Azure Traffic Manager irányíthatja a forgalmat toohello aktív terület.  Hello egyetlen régión központi telepítésére, ha hello rendelkezésre állás 99,9, a két-régió központi telepítés el tud érni hello képlettel kiszámított 99.9999 a rendelkezésre állási: (1-(1-0.999) * (1-0.999)) * 100); Lásd a dokumentum részletes fent hello.
+**Magas rendelkezésre állás:** redundancia szoftverek és hardverek magas rendelkezésre állás elérése kulcsfontosságú tényező; a részleteket lásd a Microsoft Azure épület megbízható a felhőalapú rendszerek. A Microsoft Azure-ban a csak megbízható igaz redundancia elérésének módja több területi fürt üzembe helyezésével. Alkalmazások is telepíthető egy aktív-aktív vagy aktív-passzív módban, és ha a régiók egyikéhez sem működik, Azure Traffic Manager forgalom irányíthatja át az aktív terület.  Az egyetlen régión üzemelő példányhoz, ha a rendelkezésre állás 99,9, a két-régió központi telepítés el tud érni a képlettel kiszámított 99.9999 a rendelkezésre állási: (1-(1-0.999) * (1-0.999)) * 100); olvassa el a fenti részleteiről.
 
-**Vész-helyreállítási:** több területi Cassandra fürt, ha megfelelően, is képes elviselni katasztrofális data center kimaradások esetén. Ha egy régió nem működik, hello központilag telepített alkalmazás tooother régiók indításához hello végfelhasználók szolgáltató. Bármely más üzleti folytonossági megvalósításokhoz, például a hello alkalmazásnak hello adatok hello aszinkron feldolgozási eredő adatvesztést a hibatűrő toobe. Cassandra azonban hello helyreállítási sokkal zavartalanabbá, mint a hagyományos adatbázis helyreállítási folyamatok által igénybe vett hello idő. 2. ábrán minden régióban hello tipikus több régióban üzembe helyezési modellben a nyolc csomópont látható. Mindkét régiók a következők tükör lemezképeket minden más hello azonos szimmetriasíkjához; valós tervek hello munkaterhelésének típusát (pl. tranzakciós vagy analitikai), a helyreállítási Időkorlát, a RTO, a adatkonzisztenciát és a rendelkezésre állási követelményektől függenek.
+**Vész-helyreállítási:** több területi Cassandra fürt, ha megfelelően, is képes elviselni katasztrofális data center kimaradások esetén. Ha egy régió nem működik, más régiókban központi telepítésű alkalmazás indításához szolgál a végfelhasználók számára. Bármely más üzleti folytonossági megvalósításokhoz, például az alkalmazás nem lehet az adatokat a aszinkron feldolgozási eredő adatvesztést a hibatűrő. Cassandra azonban a helyreállítási sokkal zavartalanabbá, mint a hagyományos adatbázis helyreállítási folyamatok által igénybe vett idő. A 2. ábrán minden régióban nyolc csomópontokkal tipikus több területi telepítési modelljét mutatja. Mindkét régiók a következők tükör képek minden más ugyanazon szimmetriasíkjához; valós tervek munkaterhelésének típusát (pl. tranzakciós vagy analitikai), a helyreállítási Időkorlát, RTO, adatkonzisztenciát és rendelkezésre állási követelmények függ.
 
 ![Több régióban központi telepítés](./media/cassandra-nodejs/cassandra-linux2.png)
 
 2. ábra: Több területi Cassandra központi telepítés
 
 ### <a name="network-integration"></a>Hálózati integráció
-Beállítja a virtuális gépek két régiókban található telepített tooprivate hálózatok egymáshoz VPN-alagúton használatával kommunikál. hello VPN-alagút két szoftver átjáró hello hálózati telepítési folyamat során létesített kapcsolatot. Mindkét memóriaterületnél hasonló hálózati architektúra szempontjából "web" és "data" alhálózat; Az Azure hálózatkezelés lehetővé teszi, hogy a lehető legtöbb alhálózatok igény szerint hello létrehozása, és alkalmazni a hozzáférés-vezérlési listákat, igényei szerint hálózati biztonság. Hello fürtjének topológiája tervezésekor többek adatok center kommunikációs késés és hello gazdasági hatása hello hálózati forgalmat kell toobe számít.
+Készlet két régiókban található magánhálózatokhoz telepített virtuális gépek egymástól a VPN-alagút segítségével kommunikál. A VPN-alagút két szoftver átjárók a hálózati telepítési folyamat során létesített kapcsolatot. Mindkét memóriaterületnél hasonló hálózati architektúra szempontjából "web" és "data" alhálózat; Az Azure hálózatkezelés lehetővé teszi, hogy a lehető legtöbb alhálózatok igény szerint létrehozása, és alkalmazni a hozzáférés-vezérlési listákat, igényei szerint hálózati biztonság. A fürt topológia tervezése során többek data center kommunikációs késés és a hálózati forgalmat kell figyelembe kell venni a gazdasági hatását.
 
 ### <a name="data-consistency-for-multi-data-center-deployment"></a>Adatok konzisztenciájának több adatközpont központi telepítéshez
-Az elosztott központi telepítések kell toobe tisztában hello fürt topológia gyakorolt átviteli sebesség és a magas rendelkezésre állású legyen. hello RF és Konzisztenciaszint kell toobe, ilyen módon, amely a kvórum hello kijelölt összes hello adatközpontok hello rendelkezésre állását sem függ.
-A rendszer, amelyet a magas konzisztencia, a LOCAL_QUORUM konzisztenciaszint (az olvasási és írási) fog győződjön meg arról, hogy hello helyi beolvassa és írási műveletek teljesülnek a helyi hello csomópontok, adatok replikálása aszinkron módon történik toohello távoli adatközpontokban.  2. táblázat hello leírt hello több területi fürt részletes Microsoft Word hello konfiguráció összegzése látható.
+Az elosztott központi telepítések kell figyelembe vennie átviteli sebesség és a magas rendelkezésre állású fürt topológia hatását. A RF és Konzisztenciaszint kell megadni, hogy a kvórum sem függ a adatközpontok rendelkezésre állását módon.
+A rendszer, amelyet a magas konzisztencia egy LOCAL_QUORUM konzisztencia szint (az olvasási és írási) fog győződjön meg arról, hogy a helyi olvasási és írási teljesülnek a helyi csomópontjáról adatok aszinkron módon replikálja a távoli adatközpontokban.  2. táblázat összefoglalja a több területi fürt be az írás leírt konfigurációs részleteit.
 
 **A két-régió Cassandra fürtkonfiguráció**
 
 | Fürt paraméter | Érték | Megjegyzések |
 | --- | --- | --- |
-| (N) csomópontok száma |8 + 8 |Hello fürtben található csomópontok száma |
+| (N) csomópontok száma |8 + 8 |A fürtben található csomópontok száma |
 | Replikációs tényező (RF) |3 |Adott sor replikák száma |
-| Konzisztenciaszint (írás) |LOCAL_QUORUM [(sum(RF)/2) +1) = 4] hello képlet hello eredményét lefelé kerekíti |2 csomópontok lesz írva toohello első adatközpont szinkron módon történik; hello további 2 csomópontok kvórum szükség lesz írva aszinkron módon toohello 2. az Adatközpont. |
-| Konzisztenciaszint (olvasás) |LOCAL_QUORUM ((RF/2) + 1) = 2 hello képlet hello eredményét lefelé kerekíti |Olvasási kérések teljesülnek a csak egy régió tartozik; 2 csomópontja hátsó toohello ügyfél hello válasz elküldése előtt olvasható. |
-| Replikációs stratégia |NetworkTopologyStrategy lásd [adatreplikáció](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureDataDistributeReplication_c.html) Cassandra dokumentációjában talál további információt a |Hello telepítési topológia megértette és replikák helyezi a csomóponton, hogy az összes hello replika nem végül a hello azonos állvány |
-| Snitch |Lásd a GossipingPropertyFileSnitch [Snitches](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureSnitchesAbout_c.html) Cassandra dokumentációjában talál további információt a |NetworkTopologyStrategy snitch toounderstand hello topológia egy fogalom használja. GossipingPropertyFileSnitch a minden egyes csomópont toodata center és állvány leképezésekor nagyobb ellenőrzést biztosít. hello fürt pletykákat toopropagate ezt az információt használja. Ez az jóval egyszerűbbé válik a dinamikus IP beállítás relatív tooPropertyFileSnitch |
+| Konzisztenciaszint (írás) |LOCAL_QUORUM [(sum(RF)/2) +1) = 4] kerekíti a képlet eredménye |2 csomópontok rendszer úgy tünteti fel az első adatközpont szinkron módon történik; a kvórum szükséges további 2 csomópontok aszinkron módon történik a 2. az Adatközpont fog szerepelni. |
+| Konzisztenciaszint (olvasás) |LOCAL_QUORUM ((RF/2) + 1) a képlet eredménye lefelé kerekíti 2 = |Olvasási kérések teljesülnek a csak egy régió tartozik; 2 csomópontok olvasható az ügyfélnek a válasz elküldése előtt. |
+| Replikációs stratégia |NetworkTopologyStrategy lásd [adatreplikáció](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureDataDistributeReplication_c.html) Cassandra dokumentációjában talál további információt a |A telepítési topológia megértette és replikák csomóponton helyezi el, hogy minden replika az azonos állványra a nem végződhet |
+| Snitch |Lásd a GossipingPropertyFileSnitch [Snitches](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureSnitchesAbout_c.html) Cassandra dokumentációjában talál további információt a |NetworkTopologyStrategy snitch egy fogalom megértéséhez a topológia használja. GossipingPropertyFileSnitch az egyes csomópontok leképezése a adatközpont és állvány nagyobb ellenőrzést biztosít. A fürt pletykákat használja fel ezeket az információkat terjesztése. Ez az jóval egyszerűbb, a dinamikus IP-beállítása PropertyFileSnitch viszonyítva |
 
-## <a name="hello-software-configuration"></a>hello SZOFTVERKONFIGURÁCIÓJÁNAK összeállítása
-a következő szoftververziók hello hello központi telepítése során használhatók:
+## <a name="the-software-configuration"></a>A SZOFTVERKONFIGURÁCIÓJÁNAK ÖSSZEÁLLÍTÁSA
+Az alábbi szoftververziók a telepítés során használt:
 
 <table>
 <tr><th>Szoftver</th><th>Forrás</th><th>Verzió</th></tr>
@@ -122,57 +122,57 @@ a következő szoftververziók hello hello központi telepítése során haszná
 <tr><td>Ubuntu    </td><td>[A Microsoft Azure](https://azure.microsoft.com/) </td><td>14.04 LTS</td></tr>
 </table>
 
-Az Oracle-licencet, toosimplify hello központi telepítés, az összes szükséges szoftverek toohello asztal lemezképpel hello Ubuntu sablon azt létrehozni prekurzor toohello fürtként később feltöltése hello letöltési manuális elfogadását JRE letöltésének szükséges. központi telepítés.
+Az Oracle licencfeltételeinek elfogadását manuális JRE letöltése szükséges, egyszerűbbé teheti a központi telepítést, töltse le a szükséges szoftverek később feltöltése a Ubuntu sablon lemezképpel azt létrehozni a fürtöt tartalmazó környezetben való előanyagát, az asztalon.
 
-Töltse le a fenti szoftverek hello könyvtárba, amely egy jól ismert letöltési (pl. Windows %TEMP%/downloads vagy legtöbb Linux terjesztésekről vagy Mac ~/Downloads) hello helyi számítógépen.
+A fenti szoftverek letöltési könyvtárba, amely egy jól ismert letöltési (pl. Windows %TEMP%/downloads vagy ~/Downloads legtöbb Linux terjesztésekről vagy Mac) a helyi számítógépen.
 
 ### <a name="create-ubuntu-vm"></a>UBUNTU VIRTUÁLIS GÉP LÉTREHOZÁSA
-Ebben a lépésben hello folyamat létrehozunk Ubuntu kép hello előfeltételt jelentő szoftvereket a úgy, hogy hello lemezkép felhasználható számos Cassandra csomópont történő üzembe helyezéséhez.  
+Ebben a lépésben a folyamat létrehozunk Ubuntu kép az előfeltételt jelentő szoftvereket az, hogy a kép felhasználhatók számos Cassandra csomópont történő üzembe helyezéséhez.  
 
 #### <a name="step-1-generate-ssh-key-pair"></a>1. lépés: Az SSH-kulcspárral létrehozása
-Azure egy nyilvános kulcsot, amely PEM vagy DER kódolású idő kiépítés hello: X509 kér. Milyen található hello utasításokat követve nyilvános/titkos kulcspárt létre tooUse SSH Linux Azure-on. Ha azt tervezi, toouse putty.exe Windows vagy Linux SSH-ügyfélként, hogy tooconvert hello PEM kódolású RSA titkos kulcs tooPPK formátum használatával puttygen.exe; hello utasításokat a fenti weblap hello találhatók.
+Azure egy nyilvános kulcsot, amely PEM vagy DER kódolású létesítési időpontjában X509 kér. A el az SSH Linux Azure-on található utasításokat követve nyilvános/titkos kulcspárt létre. Ha tervezi putty.exe Windows vagy Linux SSH-ügyfélként, hogy alakítsa át a PEM-kódolású RSA titkos kulcs PPK formátum használatával puttygen.exe; Ehhez útmutatást a fenti weblapon találhatók.
 
 #### <a name="step-2-create-ubuntu-template-vm"></a>2. lépés: Sablon Ubuntu virtuális gép
-toocreate hello sablon virtuális Gépet, jelentkezzen be hello Azure klasszikus portál és -felhasználási hello a következő feladatütemezési: kattintson az új, számítási, virtuális gép, FROM GYŰJTEMÉNYE, UBUNTU, Ubuntu Server 14.04 LTS, majd a hello jobbra mutató nyílra. Egy oktatóanyag, amely leírja, hogyan toocreate Linux virtuális gép: hozzon létre egy virtuális gép futó Linux.
+A Virtuálisgép-sablon létrehozásához jelentkezzen be a klasszikus Azure portálra, és kövesse az alábbi eljárást: új, számítási, virtuális gép, FROM GYŰJTEMÉNYE, UBUNTU, Ubuntu Server 14.04 LTS kattintson, majd a jobbra mutató nyílra. Ez az oktatóanyag ismerteti, hogyan hozzon létre egy Linux virtuális Gépet hozzon létre egy virtuális gép futó Linux talál.
 
-Adja meg a következő információ hello "virtuálisgép-konfiguráció" képernyőn #1 hello:
+Adja meg a következő információkat a "virtuálisgép-konfiguráció" képernyőn #1:
 
 <table>
 <tr><th>MEZŐ NEVE              </td><td>       MEZŐÉRTÉK               </td><td>         MEGJEGYZÉSEK                </td><tr>
-<tr><td>VERZIÓ KIADÁSI DÁTUM    </td><td> Válassza ki a megfelelő hello legördülő dátuma</td><td></td><tr>
-<tr><td>VIRTUÁLIS GÉP NEVE    </td><td> esetén-sablon                   </td><td> Ez a virtuális gép hello hello állomásnevét </td><tr>
-<tr><td>RÉTEG                     </td><td> STANDARD                           </td><td> Hello alapértelmezett hagyja              </td><tr>
-<tr><td>MÉRET                     </td><td> A1                              </td><td>Virtuális gép alapján hello IO válassza hello kell; erre a célra hagyja hello alapértelmezett </td><tr>
+<tr><td>VERZIÓ KIADÁSI DÁTUM    </td><td> Egy dátumot a legördülő menüből válassza le</td><td></td><tr>
+<tr><td>VIRTUÁLIS GÉP NEVE    </td><td> esetén-sablon                   </td><td> Ez az a virtuális gép állomásnevét </td><tr>
+<tr><td>RÉTEG                     </td><td> STANDARD                           </td><td> Hagyja meg az alapértelmezett              </td><tr>
+<tr><td>MÉRET                     </td><td> A1                              </td><td>Válassza ki a virtuális Gépet a IO igényeinek megfelelően; erre a célra hagyja meg az alapértelmezett </td><tr>
 <tr><td> ÚJ FELHASZNÁLÓ NEVE             </td><td> localadmin                       </td><td> "rendszergazda" az egyetlen foglalt felhasználónévvel Ubuntu 12. xx és után</td><tr>
-<tr><td> HITELESÍTÉS         </td><td> Jelölje be jelölőnégyzetet                 </td><td>Ellenőrizze, hogy ha azt szeretné toosecure SSH-kulcs </td><tr>
-<tr><td> TANÚSÍTVÁNY             </td><td> hello nyilvános kulcsú tanúsítvány fájlneve </td><td> Korábban létrehozott hello nyilvános kulcs használata</td><tr>
+<tr><td> HITELESÍTÉS         </td><td> Jelölje be jelölőnégyzetet                 </td><td>Ellenőrizze, hogy szeretné-e az SSH-kulcs biztonságos </td><tr>
+<tr><td> TANÚSÍTVÁNY             </td><td> a nyilvános kulcsú tanúsítvány fájlneve </td><td> A korábban létrehozott nyilvános kulcs</td><tr>
 <tr><td> Új jelszó    </td><td> erős jelszó </td><td> </td><tr>
 <tr><td> Jelszó megerősítése    </td><td> erős jelszó </td><td></td><tr>
 </table>
 
-Adja meg a következő információ hello "virtuálisgép-konfiguráció" képernyőn #2 hello:
+Adja meg a következő információkat a "virtuálisgép-konfiguráció" képernyőn #2:
 
 <table>
 <tr><th>MEZŐ NEVE             </th><th> MEZŐÉRTÉK                       </th><th> MEGJEGYZÉSEK                                 </th></tr>
 <tr><td> A FELHŐALAPÚ SZOLGÁLTATÁS    </td><td> Új felhőalapú szolgáltatás létrehozása    </td><td>Felhőszolgáltatás egy tároló számítási erőforrásokhoz, mint a virtuális gépek</td></tr>
 <tr><td> FELHŐALAPÚ SZOLGÁLTATÁS DNS-NÉV    </td><td>ubuntu-template.cloudapp.net    </td><td>Adjon meg egy gép független terheléselosztó neve</td></tr>
-<tr><td> RÉGIÓ/AFFINITÁSCSOPORT/VIRTUÁLIS HÁLÓZAT </td><td>    USA nyugati régiója    </td><td> Válasszon ki egy régiót, ahol a webalkalmazások hello Cassandra fürt eléréséhez</td></tr>
-<tr><td>TÁRFIÓK </td><td>    Használhatja az alapértelmezettet    </td><td>Az adott hello alapértelmezett tárfiókot vagy egy előre létrehozott tárfiók használata</td></tr>
+<tr><td> RÉGIÓ/AFFINITÁSCSOPORT/VIRTUÁLIS HÁLÓZAT </td><td>    USA nyugati régiója    </td><td> Válasszon ki egy régiót, ahol a webalkalmazások érje el a Cassandra</td></tr>
+<tr><td>TÁRFIÓK </td><td>    Használhatja az alapértelmezettet    </td><td>Az alapértelmezett tárfiók vagy egy korábban létrehozott tárfiókot használja az adott</td></tr>
 <tr><td>A RENDELKEZÉSRE ÁLLÁSI CSOPORT </td><td>    None </td><td>    Hagyja üresen</td></tr>
-<tr><td>VÉGPONTOK    </td><td>Használhatja az alapértelmezettet </td><td>    Hello alapértelmezett SSH-konfiguráció használata </td></tr>
+<tr><td>VÉGPONTOK    </td><td>Használhatja az alapértelmezettet </td><td>    Az alapértelmezett SSH-konfigurációt használja. </td></tr>
 </table>
 
-Kattintson a jobbra mutató nyílra hello alapértelmezett hagyja a #3 üdvözlő képernyőt, és kattintson a hello "ellenőrzés" gombra toocomplete hello virtuális gép üzembe helyezési folyamat. Néhány perc elteltével hello virtuális gép neve "ubuntu-sablonnal hello" a "fut" állapotba kell lennie.
+Kattintson a jobbra mutató nyílra, a #3 képernyőn hagyja meg az alapértelmezett beállításokat, és kattintson az "ellenőrzés" gombra a Virtuálisgép-létrehozásnál folyamat befejezéséhez. Néhány perc múlva a virtuális Géphez a neve "ubuntu-template" a "fut" állapotú kell lennie.
 
-### <a name="install-hello-necessary-software"></a>Hello szükséges SZOFTVEREK telepítése
+### <a name="install-the-necessary-software"></a>A SZÜKSÉGES SZOFTVER TELEPÍTÉSÉHEZ
 #### <a name="step-1-upload-tarballs"></a>1. lépés: Feltöltés tarballs
-A szolgáltatáskapcsolódási pont vagy pscp, másolása hello korábban letöltött szoftverfrissítések túl ~ / letöltések directory hello parancs formátuma a következő használatával:
+A következő parancs formátumban ~/downloads directory scp vagy pscp használ, másolja a korábban letöltött szoftverfrissítések:
 
 ##### <a name="pscp-server-jre-8u5-linux-x64targz-localadminhk-cas-templatecloudappnethomelocaladmindownloadsserver-jre-8u5-linux-x64targz"></a>pscp kiszolgáló-jre-8u5-linux-x64.tar.gzlocaladmin@hk-cas-template.cloudapp.net:/home/localadmin/downloads/server-jre-8u5-linux-x64.tar.gz
-Ismételje meg a fent parancs hello JRE is mint hello Cassandra bits.
+Ismételje meg a fenti parancs JRE, valamint a Cassandra bits esetében.
 
-#### <a name="step-2-prepare-hello-directory-structure-and-extract-hello-archives"></a>2. lépés: Készítse elő a hello könyvtárszerkezetét és hello archívum kibontása
-Jelentkezzen be a virtuális gép hello és hello könyvtárstruktúrát létrehozása, és bontsa ki a szoftver felügyelőként hello bash parancsfájlt az alábbi:
+#### <a name="step-2-prepare-the-directory-structure-and-extract-the-archives"></a>2. lépés: Készítse elő a könyvtárstruktúra, és bontsa ki az archívumban
+Jelentkezzen be a virtuális gép és a könyvtárstruktúra létrehozása, és bontsa ki a szoftver felügyelőként a bash az alábbi parancsfájlt:
 
     #!/bin/bash
     CASS_INSTALL_DIR="/opt/cassandra"
@@ -242,20 +242,20 @@ Jelentkezzen be a virtuális gép hello és hello könyvtárstruktúrát létreh
     unzip $HOME/downloads/$JRE_TARBALL $JRE_INSTALL_DIR
     unzip $HOME/downloads/$CASS_TARBALL $CASS_INSTALL_DIR
 
-    #Change hello ownership toohello service credentials
+    #Change the ownership to the service credentials
 
     chown -R $SVC_USER:$GROUP $CASS_DATA_DIR
     chown -R $SVC_USER:$GROUP $CASS_LOG_DIR
-    echo "edit /etc/profile tooadd JRE toohello PATH"
+    echo "edit /etc/profile to add JRE to the PATH"
     echo "installation is complete"
 
 
-Ha vim ablakba be ezt a parancsfájlt, győződjön meg arról, hogy tooremove hello kocsivissza visszatérési ("\r") a következő parancs hello használata:
+Ha vim ablakba be ezt a parancsfájlt, ügyeljen arra, hogy távolítsa el a kocsivissza ("\r") a következő parancsot:
 
     tr -d '\r' <infile.sh >outfile.sh
 
 #### <a name="step-3-edit-etcprofile"></a>3. lépés: Stb/profil szerkesztése
-Hozzáfűzendő hello következő hello végén:
+A következő végén hozzáfűzése:
 
     JAVA_HOME=/opt/java/jdk1.8.0_05
     CASS_HOME= /opt/cassandra/apache-cassandra-2.0.8
@@ -265,7 +265,7 @@ Hozzáfűzendő hello következő hello végén:
     export PATH
 
 #### <a name="step-4-install-jna-for-production-systems"></a>4. lépés: Telepítse JNA éles rendszerek esetén
-Használjon hello következő parancsot a feladatütemezési: hello következő parancsot a telepítés jna-3.2.7.jar és jna-platform-3.2.7.jar too/usr/share.java directory sudo apt-get telepíti a java-libjna
+A következő parancssort használja: A következő parancsot a jna-3.2.7.jar és jna-platform-3.2.7.jar /usr/share.java könyvtárba sudo apt-get libjna-java
 
 Hozza létre a szimbolikus csatolást $CASS_HOME/lib könyvtárban, hogy Cassandra indítási parancsfájl megtalálhassa a JAR-fájlok kivételével:
 
@@ -274,35 +274,35 @@ Hozza létre a szimbolikus csatolást $CASS_HOME/lib könyvtárban, hogy Cassand
     ln -s /usr/share/java/jna-platform-3.2.7.jar $CASS_HOME/lib/jna-platform.jar
 
 #### <a name="step-5-configure-cassandrayaml"></a>5. lépés: Cassandra.yaml konfigurálása
-Minden virtuális gép tooreflect konfiguráció [azt fogja végeznünk ez hello tényleges kiépítése során] összes hello virtuális gép által igényelt cassandra.yaml szerkesztése:
+Az egyes virtuális gépek megfelelően [azt fogja tudjon végezni ezzel a tényleges kiépítése során] összes virtuális gép által igényelt konfigurációs cassandra.yaml szerkesztése:
 
 <table>
 <tr><th>Mező neve   </th><th> Érték  </th><th>    Megjegyzések </th></tr>
-<tr><td>fürtnév </td><td>    "CustomerService"    </td><td> Hello nevet válasszon, amely tükrözi a központi telepítés</td></tr>
+<tr><td>fürtnév </td><td>    "CustomerService"    </td><td> A nevet válasszon, amely tükrözi a központi telepítés</td></tr>
 <tr><td>listen_address    </td><td>[hagyja üresen a mezőt]    </td><td> Törölje a "localhost" </td></tr>
 <tr><td>rpc_addres   </td><td>[hagyja üresen a mezőt]    </td><td> Törölje a "localhost" </td></tr>
-<tr><td>magok    </td><td>"10.1.2.4, 10.1.2.6, 10.1.2.8"    </td><td>Összes rendszer naplólemezként jelöli magok hello IP-címek listáját.</td></tr>
-<tr><td>endpoint_snitch </td><td> org.apache.cassandra.locator.GossipingPropertyFileSnitch </td><td> Ez hello NetworkTopologyStrateg behívásakor hello adatközpontban és a virtuális gép hello hello állvány használja</td></tr>
+<tr><td>magok    </td><td>"10.1.2.4, 10.1.2.6, 10.1.2.8"    </td><td>Minden a magok jelöli a rendszer IP-címek listáját.</td></tr>
+<tr><td>endpoint_snitch </td><td> org.apache.cassandra.locator.GossipingPropertyFileSnitch </td><td> A NetworkTopologyStrateg által szolgál az adatközpontban és a virtuális gép állvány behívásakor</td></tr>
 </table>
 
-#### <a name="step-6-capture-hello-vm-image"></a>6. lépés: Hello Virtuálisgép-lemezkép rögzítése
-Jelentkezzen be hello virtuális gép hello állomásnév (hk-cas-template.cloudapp.net) és hello titkos SSH-kulcsot korábban hozott létre. Lásd: hogyan hogyan használatával toolog hello parancs ssh vagy putty.exe részletezi az Azure Linux SSH tooUse.
+#### <a name="step-6-capture-the-vm-image"></a>6. lépés: A virtuális gép lemezképének rögzítése
+Jelentkezzen be a virtuális gépet az állomásnév (hk-cas-template.cloudapp.net) és a korábban létrehozott titkos SSH-kulcs használatával. Tekintse meg az SSH használata az Azure-ral való bejelentkezéshez használja a parancsot ssh vagy putty.exe Linux hogyan.
 
-A következő feladatütemezési műveletek toocapture hello lemezkép hello hajtható végre:
+A következő feladatütemezési lépéssel a lemezkép rögzítése hajtható végre:
 
 ##### <a name="1-deprovision"></a>1. Deprovision
-Hello paranccsal "sudo waagent-deprovision + felhasználói" tooremove virtuálisgép-példány egyedi adatok. Tekintse át a vonatkozó [hogyan tooCapture Linux virtuális gépek](capture-image.md) sablonként tooUse több részletet hello lemezkép rögzítését.
+A paranccsal "sudo waagent-deprovision + felhasználói" virtuálisgép-példányt adott adatok eltávolítása. Tekintse át a vonatkozó [egy Linux virtuális gép rögzítése](capture-image.md) sablonként használatára további részleteket a lemezkép rögzítését.
 
-##### <a name="2-shutdown-hello-vm"></a>2: leállítási hello méretű VM
-Győződjön meg arról, hogy hello a virtuális gép ki van jelölve, és az alsó eszköztár hello hello LEÁLLÍTÁSI hivatkozásra.
+##### <a name="2-shutdown-the-vm"></a>2: a virtuális gép leállítása
+Győződjön meg arról, hogy a virtuális gép ki van jelölve, és kattintson a LEÁLLÍTÁS hivatkozásra az alsó parancs segítségével.
 
-##### <a name="3-capture-hello-image"></a>3: hello lemezképet
-Győződjön meg arról, hogy hello a virtuális gép ki van jelölve, és az alsó eszköztár hello hello rögzítési hivatkozásra. Hello következő képernyőn nevezze el egy kép (pl. hk-cas-2-08-ub-14-04-2014071), a megfelelő RENDSZERKÉP leírása, és kattintson a hello "ellenőrzés" jel toofinish hello rögzítési folyamat.
+##### <a name="3-capture-the-image"></a>3: a lemezképének rögzítése
+Győződjön meg arról, hogy a virtuális gép ki van jelölve, és az utolsó parancs segítségével a rögzítési hivatkozásra. A következő képernyőn nevezze el egy kép (pl. hk-cas-2-08-ub-14-04-2014071), a megfelelő RENDSZERKÉP leírása, és kattintson az "ellenőrzés" jelre a rögzítési folyamat befejezéséhez.
 
-Ez eltarthat néhány másodpercig és hello kép elérhetőnek kell lennie hello kép gyűjteménye a saját LEMEZKÉPEK szakaszában. hello forrás virtuális gép automatikusan után törlődni fognak hello lemezkép rögzítése sikerült. 
+Ez eltarthat néhány másodpercig, és a lemezkép elérhetőnek kell lennie a kép tár a saját LEMEZKÉPEK szakaszban. A forrás virtuális gép automatikusan után törlődni fognak a lemezkép rögzítése sikerült. 
 
 ## <a name="single-region-deployment-process"></a>Egyetlen régión telepítési folyamata
-**1. lépés:, Hozzon létre virtuális hálózati hello** bejelentkezni hello Azure-portálon, és hozzon létre egy virtuális hálózat (klasszikus) hello attribútumokkal hello a következő táblázatban látható. Lásd: [hozzon létre egy virtuális hálózat (klasszikus) Azure-portálon hello](../../../virtual-network/virtual-networks-create-vnet-classic-pportal.md) hello folyamat részletes leírást.      
+**1. lépés: A virtuális hálózat létrehozása** jelentkezzen be az Azure portálon, és hozzon létre egy virtuális hálózat (klasszikus) az alábbi táblázatban szereplő attribútumait. Lásd: [virtuális hálózat létrehozása (klasszikus) Azure-portálon](../../../virtual-network/virtual-networks-create-vnet-classic-pportal.md) a részletes lépéseket a folyamat.      
 
 <table>
 <tr><th>VM-attribútum neve</th><th>Érték</th><th>Megjegyzések</th></tr>
@@ -314,17 +314,17 @@ Ez eltarthat néhány másodpercig és hello kép elérhetőnek kell lennie hell
 <tr><td>CIDR </td><td>/16 (65531)</td><td></td></tr>
 </table>
 
-Adja hozzá a következő alhálózatok hello:
+Adja hozzá a következő alhálózatok:
 
 <table>
 <tr><th>Név</th><th>Kezdő IP-Címét</th><th>CIDR</th><th>Megjegyzések</th></tr>
-<tr><td>webalkalmazás</td><td>10.1.1.0</td><td>/24 (251)</td><td>Hello webfarm-alhálózatot</td></tr>
-<tr><td>Adatok</td><td>10.1.2.0</td><td>/24 (251)</td><td>Adatbázis-csomópont hello alhálózatot</td></tr>
+<tr><td>webalkalmazás</td><td>10.1.1.0</td><td>/24 (251)</td><td>A webfarm-alhálózatot</td></tr>
+<tr><td>Adatok</td><td>10.1.2.0</td><td>/24 (251)</td><td>Az adatbázis-csomópont-alhálózatot</td></tr>
 </table>
 
-Adatok és a webes alhálózatok védetté tehetők a hálózati biztonsági csoportokkal hello érvényességének, amelyeknek ez a cikk a hatókörén kívül esik.  
+Adatok és a webes alhálózatok hálózati biztonsági csoportokkal, ez a cikk a hatókörén kívül esik a körét, amelyek védhetők.  
 
-**2. lépés: Kiépítése virtuális gépek** korábban létrehozott hello lemezképet használ, rendszer létrehozása a következő virtuális gépek hello felhőben hello server "hk-c-svc-nyugati" és azok toohello megfelelő alhálózatokban kötési alább látható módon:
+**2. lépés: Kiépítése virtuális gépek** a korábban létrehozott rendszerkép használatával, rendszer a következő virtuális gépek létrehozása a felhő kiszolgálón "hk-c-svc-nyugati" és a megfelelő alhálózatokban alább látható módon köthető:
 
 <table>
 <tr><th>Számítógép neve    </th><th>Alhálózat    </th><th>IP-cím    </th><th>Rendelkezésre állási csoport</th><th>DC/Rack</th><th>Kezdőérték?</th></tr>
@@ -340,23 +340,23 @@ Adatok és a webes alhálózatok védetté tehetők a hálózati biztonsági cso
 <tr><td>HK-w2-nyugati-us    </td><td>webalkalmazás    </td><td>10.1.1.5    </td><td>HK-w-aset-1    </td><td>                       </td><td>N/A</td></tr>
 </table>
 
-Hello fent található virtuális gépek listájára létrehozásához a következő folyamat hello van szükség:
+A fenti listában található virtuális gépek létrehozásához a következő folyamat van szükség:
 
 1. Az adott üres felhőalapú szolgáltatás létrehozása
-2. Hozzon létre egy virtuális Gépet hello korábban rögzített lemezképből, és csatlakoztassa azt toohello; korábban létrehozott virtuális hálózatban Ismételje meg ezt a hello virtuális gépen
-3. Adja hozzá a belső terheléselosztó toohello felhőalapú szolgáltatás, és csatlakoztassa azt toohello "data" alhálózat
-4. A korábban létrehozott virtuális gépek hozzáadása egy elosztott terhelésű végpont egy elosztott terhelésű készlet csatlakoztatott korábban létrehozott toohello belső terheléselosztó keresztül thrift-forgalom
+2. Hozzon létre egy virtuális Gépet a korábban rögzített lemezképből, és csatlakoztassa a virtuális hálózat létrehozása korábban; Ismételje meg ezt a virtuális gépek
+3. A belső terheléselosztók hozzáadása a felhőalapú szolgáltatás, és a "data" alhálózati csatlakoztatása
+4. A korábban létrehozott virtuális gépek hozzáadása egy elosztott terhelésű végpont keresztül csatlakozik a korábban létrehozott belső terheléselosztóhoz elosztott terhelésű készlet thrift-forgalom
 
-hello fent folyamat használja a klasszikus Azure portálon; hajtható végre a Windows-számítógépen (Ha még nem rendelkezik hozzáférési tooa Windows gép Azure virtuális gép egy használata), használja a következő PowerShell-parancsfájl tooprovision hello 8 virtuális gépeinek automatikusan.
+A fenti folyamatot használja a klasszikus Azure portálon; hajtható végre egy Windows-számítógép (használja a virtuális gép Azure, ha nem rendelkezik hozzáféréssel a Windows-számítógép), használja a következő PowerShell-parancsfájl segítségével minden 8 virtuális gépek automatikus kiépítéséhez.
 
 **Lista 1: Virtuális gépek rendszerbe állításához PowerShell-parancsfájl**
 
         #Tested with Azure Powershell - November 2014
         #This powershell script deployes a number of VMs from an existing image inside an Azure region
-        #Import your Azure subscription into hello current Powershell session before proceeding
-        #hello process: 1. create Azure Storage account, 2. create virtual network, 3.create hello VM template, 2. crate a list of VMs from hello template
+        #Import your Azure subscription into the current Powershell session before proceeding
+        #The process: 1. create Azure Storage account, 2. create virtual network, 3.create the VM template, 2. crate a list of VMs from the template
 
-        #fundamental variables - change these tooreflect your subscription
+        #fundamental variables - change these to reflect your subscription
         $country="us"; $region="west"; $vnetName = "your_vnet_name";$storageAccount="your_storage_account"
         $numVMs=8;$prefix = "hk-cass";$ilbIP="your_ilb_ip"
         $subscriptionName = "Azure_subscription_name";
@@ -380,8 +380,8 @@ hello fent folyamat használja a klasszikus Azure portálon; hajtható végre a 
         New-AzureService -ServiceName $serviceName -Label "hkcass$region" -Location $azureRegion
         Write-Host "Created $serviceName"
 
-        $VMList= @()   # stores hello list of azure vm configuration objects
-        #create hello list of VMs
+        $VMList= @()   # stores the list of azure vm configuration objects
+        #create the list of VMs
         foreach($vmName in $vmNames)
         {
            $VMList += New-AzureVMConfig -Name $vmName -InstanceSize ExtraSmall -ImageName $imageName |
@@ -394,7 +394,7 @@ hello fent folyamat használja a klasszikus Azure portálon; hajtható végre a 
         #Create internal load balancer
         Add-AzureInternalLoadBalancer -ServiceName $serviceName -InternalLoadBalancerName $ilbName -SubnetName "data" -StaticVNetIPAddress "$ilbIP"
         Write-Host "Created $ilbName"
-        #Add add hello thrift endpoint toohello internal load balancer for all hello VMs
+        #Add add the thrift endpoint to the internal load balancer for all the VMs
         foreach($vmName in $vmNames)
         {
             Get-AzureVM -ServiceName $serviceName -Name $vmName |
@@ -406,22 +406,22 @@ hello fent folyamat használja a klasszikus Azure portálon; hajtható végre a 
 
 **3. lépés: Cassandra konfigurálása az egyes virtuális gépek**
 
-Jelentkezzen be a virtuális gép hello és hello következőket hajthatja végre:
+Jelentkezzen be a virtuális Gépet, és hajtsa végre a következő:
 
-* $CASS_HOME/conf/cassandra-rackdc.properties toospecify hello data center és állvány tulajdonságainak szerkesztése:
+* A data center és állvány tulajdonságainak $CASS_HOME/conf/cassandra-rackdc.properties szerkesztése:
   
        dc =EASTUS, rack =rack1
-* Cassandra.yaml tooconfigure kezdőérték csomópontok alábbi szerkesztése:
+* Kezdőérték csomópontok beállítása az alábbi cassandra.yaml szerkesztése:
   
        Seeds: "10.1.2.4,10.1.2.6,10.1.2.8,10.1.2.10"
 
-**4. lépés: Indítsa el a hello virtuális gépek és hello fürt tesztelése**
+**4. lépés: Indítsa el a virtuális gépek és a fürt tesztelése**
 
-Jelentkezzen be valamelyik hello csomópontja (pl. hk-c1-nyugati-us) és a következő parancs toosee hello állapotának hello fürt futtatási hello:
+Jelentkezzen be az egyik csomóponton (pl. hk-c1-nyugati-us), és a fürt állapotának megtekintéséhez a következő parancsot:
 
        nodetool –h 10.1.2.4 –p 7199 status
 
-Hello megjelenítési hasonló toohello egy alatt a 8 csomópontos fürtök kell megjelennie:
+A képernyőt a hasonló alatt a 8 csomópontos fürtök kell megjelennie:
 
 <table>
 <tr><th>status</th><th>Cím    </th><th>Betöltés    </th><th>Tokenek    </th><th>Tulajdonos </th><th>Állomás azonosítója    </th><th>Állvány</th></tr>
@@ -435,19 +435,19 @@ Hello megjelenítési hasonló toohello egy alatt a 8 csomópontos fürtök kell
 <tr><th>VISSZAVONÁSA    </td><td>10.1.2.11     </td><td>55.29 KB    </td><td>256    </td><td>68.8%    </td><td>GUID (eltávolítani)</td><td>rack4</td></tr>
 </table>
 
-## <a name="test-hello-single-region-cluster"></a>Teszt hello fürtön régió
-A következő lépéseket tootest hello fürt hello használata:
+## <a name="test-the-single-region-cluster"></a>Az egyetlen régión fürt tesztelése
+A fürt ellenőrzéséhez tegye a következőket:
 
-1. Belső terheléselosztó hello hello IP-cím (pl. lekérésére hello Powershell parancs Get-AzureInternalLoadbalancer parancsmag használatával,  10.1.2.101). hello hello parancs szintaxisa alább látható: Get-AzureLoadbalancer – szolgáltatásnév "hk-c-svc-nyugati-us" [hello belső terheléselosztó IP-címének együtt hello részleteit jeleníti meg]
-2. Jelentkezzen be a hello webfarm (pl. hk-F1-nyugati-us) virtuális gép használata a Putty vagy ssh
+1. (Pl. a Powershell-parancs Get-AzureInternalLoadbalancer parancsmag segítségével használja, szerezze be a belső terheléselosztó IP-címe  10.1.2.101). A parancs szintaxisa alább látható: Get-AzureLoadbalancer – szolgáltatásnév "hk-c-svc-nyugati-us" [megjeleníti a részletek a belső terheléselosztó mellett az IP-címe]
+2. Jelentkezzen be a virtuális gép (pl. hk-F1-nyugati-us) webfarm a Putty használatával vagy ssh
 3. Végrehajtás $CASS_HOME/bin/cqlsh 10.1.2.101 9160
-4. Ha hello fürt nem működik a következő CQL parancsok tooverify hello használata:
+4. A következő CQL parancsokkal ellenőrizheti, hogy működik-e a fürt:
    
      Kulcstérértesítések használatával hozzon létre customers_ks rendelkező replikációs = {"class": "SimpleStrategy", "replication_factor": 3};   HASZNÁLJA a customers_ks;   Hozzon létre a tábla Customers(customer_id int PRIMARY KEY, firstname text, lastname text);   Helyezze be a Customers(customer_id, firstname, lastname) VALUES(1, 'John', 'Doe');   Helyezze be a Customers(customer_id, firstname, lastname) értékek (2, "Jane", "Doe").
    
      Válassza ki * ügyfelek;
 
-Például hello alatt megjelenítésre kell megjelennie:
+Például az alábbi megjelenítésre kell megjelennie:
 
 <table>
   <tr><th> customer_id </th><th> Utónév </th><th> Vezetéknév </th></tr>
@@ -455,13 +455,13 @@ Például hello alatt megjelenítésre kell megjelennie:
   <tr><td> 2 </td><td> Jane </td><td> DOE </td></tr>
 </table>
 
-Vegye figyelembe, hogy a 4. lépésben létrehozott hello kulcstérértesítések használatával SimpleStrategy használ egy replication_factor 3. SimpleStrategy ajánlott egyetlen data center központi telepítések mivel több adatok NetworkTopologyStrategy center központi telepítések. A / 3 replication_factor csomópont hibák tolerancia rendszerében.
+Vegye figyelembe, hogy a 4. lépésében létrehozott kulcstérértesítések használatával egy replication_factor 3 SimpleStrategy használ. SimpleStrategy ajánlott egyetlen data center központi telepítések mivel több adatok NetworkTopologyStrategy center központi telepítések. A / 3 replication_factor csomópont hibák tolerancia rendszerében.
 
 ## <a id="tworegion"></a>Több területi telepítési folyamata
-Lesz használhatják fel a hello egyetlen régión telepítése befejeződött, és ismételje meg ugyanezt a folyamatot hello hello második régió telepítése. hello kulcs hello egyetlen és több régióban telepítési közötti különbség hello VPN-alagút beállítást régió közti kommunikációhoz; rendszer hello hálózati telepítéssel, hello virtuális gépek telepítéséhez és konfigurálásához Cassandra.
+A rendszer használja ki a egyetlen régión telepítése befejeződött, és ugyanezt az eljárást ismételje meg a második régió telepítése. Az egyetlen és több régió telepítési közötti fő különbség a VPN-alagút beállítást régió közti kommunikációhoz; rendszer a hálózati telepítéssel, a virtuális gépek telepítéséhez és konfigurálásához Cassandra.
 
-### <a name="step-1-create-hello-virtual-network-at-hello-2nd-region"></a>1. lépés: Hozzon létre virtuális hálózati hello hello régió 2.
-Jelentkezzen be a klasszikus Azure portálon hello, és hozzon létre egy virtuális hálózati hello attribútumok megjelenítése hello táblában. Lásd: [Cloud-Only virtuális hálózat konfigurálása a klasszikus Azure portálon hello](../../../virtual-network/virtual-networks-create-vnet-classic-pportal.md) hello folyamat részletes leírást.      
+### <a name="step-1-create-the-virtual-network-at-the-2nd-region"></a>1. lépés: A virtuális hálózat létrehozása a 2. terület:
+Jelentkezzen be a klasszikus Azure portálra, és hozzon létre egy virtuális hálózatot az attribútumok megjelenítése a táblában. Lásd: [Cloud-Only virtuális hálózat konfigurálása a klasszikus Azure portálon](../../../virtual-network/virtual-networks-create-vnet-classic-pportal.md) a részletes lépéseket a folyamat.      
 
 <table>
 <tr><th>Attribútum neve    </th><th>Érték    </th><th>Megjegyzések</th></tr>
@@ -475,27 +475,27 @@ Jelentkezzen be a klasszikus Azure portálon hello, és hozzon létre egy virtu�
 <tr><td>CIDR    </td><td>/16 (65531)</td><td></td></tr>
 </table>
 
-Adja hozzá a következő alhálózatok hello:
+Adja hozzá a következő alhálózatok:
 
 <table>
 <tr><th>Név    </th><th>Kezdő IP-Címét    </th><th>CIDR    </th><th>Megjegyzések</th></tr>
-<tr><td>webalkalmazás    </td><td>10.2.1.0    </td><td>/24 (251)    </td><td>Hello webfarm-alhálózatot</td></tr>
-<tr><td>Adatok    </td><td>10.2.2.0    </td><td>/24 (251)    </td><td>Adatbázis-csomópont hello alhálózatot</td></tr>
+<tr><td>webalkalmazás    </td><td>10.2.1.0    </td><td>/24 (251)    </td><td>A webfarm-alhálózatot</td></tr>
+<tr><td>Adatok    </td><td>10.2.2.0    </td><td>/24 (251)    </td><td>Az adatbázis-csomópont-alhálózatot</td></tr>
 </table>
 
 
 ### <a name="step-2-create-local-networks"></a>2. lépés: A helyi hálózatok létrehozása
-Az Azure virtuális hálózatban egy helyi hálózaton egy proxy címtartományt, amely leképezhető tooa magánfelhőbe vagy egy másik Azure-régió, többek között távoli hely. A proxy címtartomány kötött tooa távoli átjáró jobb hálózati célok útválasztási hálózati toohello. Lásd: [konfigurálja a VNet tooVNet kapcsolat](../../../vpn-gateway/virtual-networks-configure-vnet-to-vnet-connection.md) hello útmutatásért VNET – VNET-kapcsolatot létesít.
+Az Azure virtuális hálózatban egy helyi hálózaton, egy proxy címtartományt, amely egy magánfelhőbe vagy egy másik Azure-régió, beleértve egy távoli helyre van leképezve. A proxy címtartomány a megfelelő hálózati helyre egy távoli átjáró útválasztási hálózathoz van kötve. Lásd: [konfigurálása egy VNet és Kapcsolatcsoporttal](../../../vpn-gateway/virtual-networks-configure-vnet-to-vnet-connection.md) kapcsolatos utasításokat a VNET – VNET-kapcsolatot létesít.
 
-Hozzon létre két helyi hálózat következő adatok hello száma:
+Hozzon létre két helyi hálózatok száma a következő adatokat:
 
 | Hálózati név | VPN-átjáró címét | Címterület | Megjegyzések |
 | --- | --- | --- | --- |
-| HK-lnet-Map-to-East-us |23.1.1.1 |10.2.0.0/16 |Hello helyi hálózat létrehozásakor adjon címet az átjáró helyőrző. hello valós átjárócímet ki van töltve, hello átjáró létrehozása után. Győződjön meg arról, hogy hello címterület pontosan megegyezik hello megfelelő távoli virtuális hálózat; Ebben az esetben hello virtuális hálózat létrehozása hello USA keleti régiójában. |
-| HK-lnet-Map-to-West-us |23.2.2.2 |10.1.0.0/16 |Hello helyi hálózat létrehozásakor adjon címet az átjáró helyőrző. hello valós átjárócímet ki van töltve, hello átjáró létrehozása után. Győződjön meg arról, hogy hello címterület pontosan megegyezik hello megfelelő távoli virtuális hálózat; Ebben az esetben hello virtuális hálózat létrehozása hello USA nyugati régiója régióban. |
+| HK-lnet-Map-to-East-us |23.1.1.1 |10.2.0.0/16 |A helyi hálózat létrehozásakor adjon címet az átjáró egy helyőrző. Az átjáró létrehozása után a tényleges átjárócím ki van töltve. Győződjön meg arról, hogy a címtartomány pontosan egyezik a megfelelő távoli virtuális hálózat; Ebben az esetben a virtuális hálózat létrehozása az USA keleti régiójában. |
+| HK-lnet-Map-to-West-us |23.2.2.2 |10.1.0.0/16 |A helyi hálózat létrehozásakor adjon címet az átjáró egy helyőrző. Az átjáró létrehozása után a tényleges átjárócím ki van töltve. Győződjön meg arról, hogy a címtartomány pontosan egyezik a megfelelő távoli virtuális hálózat; Ebben az esetben a virtuális hálózat az USA nyugati régiója régióban létrehozott. |
 
-### <a name="step-3-map-local-network-toohello-respective-vnets"></a>3. lépés: Térkép "Helyi" hálózati toohello megfelelő Vnetek
-Hello a klasszikus Azure portálon minden egyes virtuális hálózat kiválasztása, kattintson a "Beállítása", "Connect toohello helyi hálózat" Ellenőrizze, majd hello a következő adatok hello / helyi hálózatok kiválasztása:
+### <a name="step-3-map-local-network-to-the-respective-vnets"></a>3. lépés: Térkép "Helyi" hálózat a megfelelő Vnetek
+A klasszikus Azure portálon minden egyes virtuális hálózat kiválasztása, kattintson a "Beállítása", ellenőrizze a "Csatlakozás a helyi hálózatra", majd a következő adatok egy helyi hálózatok kiválasztása:
 
 | Virtual Network | Helyi hálózati |
 | --- | --- |
@@ -503,10 +503,10 @@ Hello a klasszikus Azure portálon minden egyes virtuális hálózat kiválaszt�
 | HK-vnet-keleti-us |HK-lnet-Map-to-West-us |
 
 ### <a name="step-4-create-gateways-on-vnet1-and-vnet2"></a>4. lépés: A VNET1 és VNET2 átjárók létrehozása
-Mindkét hello virtuális hálózatok hello irányítópultról kattintson létrehozása ÁTJÁRÓN, amely akkor indul el, hello VPN-átjáró létesítésének folyamatát kell használnia. Miután néhány percig, amíg az összes virtuális hálózat irányítópult hello megjelenjen-e hello tényleges átjárócímet.
+A virtuális hálózatok az irányítópultról kattintson a létrehozása ÁTJÁRÓN, amely akkor indul el, a VPN-átjáró létesítésének folyamatát kell használnia. Néhány perc elteltével az irányítópult az összes virtuális hálózat megjelenjen-e a tényleges átjárócímet.
 
-### <a name="step-5-update-local-networks-with-hello-respective-gateway-addresses"></a>5. lépés: Frissítés "Helyi" hálózatok hello megfelelő "Gateway" címek
-Mindkét hello helyi hálózatok tooreplace hello helyőrző átjáró IP-cím hello valós IP-címével csak hello kiépített átjárók szerkesztése. A következő hozzárendelési hello használata:
+### <a name="step-5-update-local-networks-with-the-respective-gateway-addresses"></a>5. lépés: Frissítés "Helyi" hálózatok a megfelelő "Gateway" címek
+Mindkét a helyi hálózat a helyőrző átjáró IP-címet lecseréli az imént telepített átjárók valós IP-címének szerkesztése. Az alábbi megfeleltetést a használja:
 
 <table>
 <tr><th>Helyi hálózati    </th><th>Virtuális hálózati átjáró</th></tr>
@@ -514,14 +514,14 @@ Mindkét hello helyi hálózatok tooreplace hello helyőrző átjáró IP-cím h
 <tr><td>HK-lnet-Map-to-West-us </td><td>A hk-vnet-keleti-us átjáró</td></tr>
 </table>
 
-### <a name="step-6-update-hello-shared-key"></a>6. lépés: Hello megosztott kulcs frissítése
-A következő Powershell parancsfájl tooupdate hello IPSec-kulcs minden VPN-átjáró [hello szakét kulcs használata mindkét hello átjárók] használata hello: Set-AzureVNetGatewayKey - VNetName hk-vnet-keleti-us - LocalNetworkSiteName hk-lnet-map-to-west-us - SharedKey D9E76BKK Set-AzureVNetGatewayKey - VNetName hk-vnet-nyugati-us - LocalNetworkSiteName hk-lnet-map-to-east-us - SharedKey D9E76BKK
+### <a name="step-6-update-the-shared-key"></a>6. lépés: A megosztott kulcs frissítése
+A következő Powershell-parancsfájl segítségével frissíteni az IPSec-kulcsot minden egyes VPN-átjáró [használatát mindkét átjáró szakét kulcsa]: Set-AzureVNetGatewayKey - VNetName hk-vnet-keleti-us - LocalNetworkSiteName hk-lnet-map-to-west-us - SharedKey D9E76BKK Set-AzureVNetGatewayKey - VNetName hk-vnet-nyugati-us - LocalNetworkSiteName hk-lnet-map-to-east-us - SharedKey D9E76BKK
 
-### <a name="step-7-establish-hello-vnet-to-vnet-connection"></a>7. lépés: Hello VNET – VNET-kapcsolatot létrehozni.
-A klasszikus Azure portálon hello használja a hello "IRÁNYÍTÓPULT" menü mindkét hello virtuális hálózatok tooestablish átjárók közötti kapcsolat. Hello alsó eszköztár hello "Csatlakozás" menüpontok használja. Néhány perc múlva hello irányítópult megjelenjen-e hello kapcsolódási adatait grafikusan.
+### <a name="step-7-establish-the-vnet-to-vnet-connection"></a>7. lépés: A VNET – VNET-kapcsolatot létrehozni.
+A klasszikus Azure portálon az "IRÁNYÍTÓPULT" menü, mind a virtuális hálózatok használatával átjárók közötti kapcsolat létrehozásához. Az alsó eszköztár használja a "Csatlakozás" menü menüpontjai. Néhány perc elteltével az irányítópult megjelenjen-e a kapcsolat adatai grafikusan.
 
-### <a name="step-8-create-hello-virtual-machines-in-region-2"></a>8. lépés: A régió #2 hello virtuális gépek létrehozása
-Hello Ubuntu lemezkép létrehozása ugyanazon lépések vagy hello kép VHD fájl toohello Azure storage-fiók #2 régióban található, másolja a következő hello #1 régió telepítésben szerint, és hello lemezkép létrehozásához. Ezzel a lemezképpel, és hozzon létre egy új felhőalapú szolgáltatás hk-c-svc-keleti-nekünk a virtuális gépek listájának következő hello:
+### <a name="step-8-create-the-virtual-machines-in-region-2"></a>8. lépés: A virtuális gépek létrehozása régióban #2
+Ubuntu lemezkép létrehozásához a következő ugyanazokat a lépéseket vagy másolása a kép VHD-fájlt az Azure storage-fiók a #2 régióban található #1 régió telepítési leírtak szerint, és a lemezkép létrehozásához. Ezzel a lemezképpel, és hozzon létre az alábbi listán szereplő virtuális gépeket az új felhőalapú szolgáltatás hk-c-svc-keleti-us:
 
 | Számítógép neve | Alhálózat | IP-cím | Rendelkezésre állási csoport | DC/Rack | Kezdőérték? |
 | --- | --- | --- | --- | --- | --- |
@@ -535,62 +535,62 @@ Hello Ubuntu lemezkép létrehozása ugyanazon lépések vagy hello kép VHD fá
 | HK-F1-keleti-us |webalkalmazás |10.2.1.4 |HK-w-aset-1 |N/A |N/A |
 | HK-w2-keleti-us |webalkalmazás |10.2.1.5 |HK-w-aset-1 |N/A |N/A |
 
-Kövesse hello ugyanaz, mint #1 régió utasításokat, de a 10.2.xxx.xxx címterület használata.
+Ugyanezeket az utasításokat, mint #1 régió, de 10.2.xxx.xxx címterület használata.
 
 ### <a name="step-9-configure-cassandra-on-each-vm"></a>9. lépés: Cassandra konfigurálása az egyes virtuális gépek
-Jelentkezzen be a virtuális gép hello és hello következőket hajthatja végre:
+Jelentkezzen be a virtuális Gépet, és hajtsa végre a következő:
 
-1. $CASS_HOME/conf/cassandra-rackdc.properties toospecify hello data center és állvány tulajdonságainak szerkesztése hello formátumban: dc = EASTUS állvány = rack1
-2. Cassandra.yaml tooconfigure kezdőérték csomópontok szerkesztése: magok: "10.1.2.4,10.1.2.6,10.1.2.8,10.1.2.10,10.2.2.4,10.2.2.6,10.2.2.8,10.2.2.10"
+1. A formátumban adja meg a data center és állvány tulajdonságok $CASS_HOME/conf/cassandra-rackdc.properties szerkesztése: dc = EASTUS állvány = rack1
+2. Cassandra.yaml konfigurálása kezdőérték csomópontok szerkesztése: magok: "10.1.2.4,10.1.2.6,10.1.2.8,10.1.2.10,10.2.2.4,10.2.2.6,10.2.2.8,10.2.2.10"
 
 ### <a name="step-10-start-cassandra"></a>10. lépés: Indítsa el a Cassandra
-Jelentkezzen be az összes virtuális Géphez, és indítsa el a Cassandra hello háttérben hello a következő parancs futtatásával: $CASS_HOME/bin/cassandra
+Jelentkezzen be minden virtuális gép, majd indítsa el a Cassandra a háttérben a következő parancs futtatásával: $CASS_HOME/bin/cassandra
 
-## <a name="test-hello-multi-region-cluster"></a>Teszt hello több területi fürt
-Mostanra Cassandra lett telepített too16-csomópont minden Azure régióban 8 csomópont. Ezek a csomópontok azonos fürt hello közös fürt neve és hello kezdőérték csomópont-konfiguráció hello szerepelnek. A következő folyamat tootest hello fürt hello használata:
+## <a name="test-the-multi-region-cluster"></a>A több területi fürt tesztelése
+Mostanra Cassandra már alkalmazva van minden Azure régióban 8 csomópontokkal 16 csomóponttal. Ezek a csomópontok ugyanabban a fürtben, a közös fürt neve és a kezdőérték csomópont-konfiguráció szerepelnek. A fürt ellenőrzéséhez tegye a következőket:
 
-### <a name="step-1-get-hello-internal-load-balancer-ip-for-both-hello-regions-using-powershell"></a>1. lépés: Hello belső terheléselosztó IP lekérése mindkét hello régió PowerShell használatával
+### <a name="step-1-get-the-internal-load-balancer-ip-for-both-the-regions-using-powershell"></a>1. lépés: A belső terheléselosztó IP lekérése is a PowerShell használatával régiók
 * "Hk-c-svc-nyugati-us" Get-AzureInternalLoadbalancer - szolgáltatásnév
 * "Hk-c-svc-keleti-us" Get-AzureInternalLoadbalancer - szolgáltatásnév  
   
-    Vegye figyelembe a hello IP-cím (pl. - 10.1.2.101, kelet - nyugati 10.2.2.101) jelenik meg.
+    Vegye figyelembe az IP-címek (pl. - 10.1.2.101, kelet - nyugati 10.2.2.101) jelenik meg.
 
-### <a name="step-2-execute-hello-following-in-hello-west-region-after-logging-into-hk-w1-west-us"></a>2. lépés: A végrehajtást hello következő hello nyugati terület hk-F1-nyugati-us való bejelentkezés után
+### <a name="step-2-execute-the-following-in-the-west-region-after-logging-into-hk-w1-west-us"></a>2. lépés: Hajtsa végre az alábbiakat eladásait hk-F1-nyugati-us való bejelentkezés után
 1. Végrehajtás $CASS_HOME/bin/cqlsh 10.1.2.101 9160
-2. A következő CQL parancsok hello hajtható végre:
+2. A következő CQL parancsokat hajthat végre:
    
      Kulcstérértesítések használatával hozzon létre customers_ks rendelkező replikációs = {"class": "NetworkToplogyStrategy", "WESTUS": 3, "EASTUS": 3};   HASZNÁLJA a customers_ks;   Hozzon létre a tábla Customers(customer_id int PRIMARY KEY, firstname text, lastname text);   Helyezze be a Customers(customer_id, firstname, lastname) VALUES(1, 'John', 'Doe');   Helyezze be a Customers(customer_id, firstname, lastname) értékek (2, "Jane", "Doe").   Válassza ki * ügyfelek;
 
-Például hello alatt megjelenítésre kell megjelennie:
+Például az alábbi megjelenítésre kell megjelennie:
 
 | customer_id | Utónév | Vezetéknév |
 | --- | --- | --- |
 | 1 |John |DOE |
 | 2 |Jane |DOE |
 
-### <a name="step-3-execute-hello-following-in-hello-east-region-after-logging-into-hk-w1-east-us"></a>3. lépés: A végrehajtást hello következő hello keleti terület hk-F1-keleti-us való bejelentkezés után:
+### <a name="step-3-execute-the-following-in-the-east-region-after-logging-into-hk-w1-east-us"></a>3. lépés: A következő végrehajtani a keleti terület hk-F1-keleti-us való bejelentkezés után:
 1. Végrehajtás $CASS_HOME/bin/cqlsh 10.2.2.101 9160
-2. A következő CQL parancsok hello hajtható végre:
+2. A következő CQL parancsokat hajthat végre:
    
      HASZNÁLJA a customers_ks;   Hozzon létre a tábla Customers(customer_id int PRIMARY KEY, firstname text, lastname text);   Helyezze be a Customers(customer_id, firstname, lastname) VALUES(1, 'John', 'Doe');   Helyezze be a Customers(customer_id, firstname, lastname) értékek (2, "Jane", "Doe").   Válassza ki * ügyfelek;
 
-Azonos jeleníti meg, mint hello nyugati régiójában hello kell megjelennie:
+A nyugati régiójában alapegységét az azonos megjelenítési kell megjelennie:
 
 | customer_id | Utónév | Vezetéknév |
 | --- | --- | --- |
 | 1 |John |DOE |
 | 2 |Jane |DOE |
 
-Néhány további Beszúrások hajtható végre, és, hogy azok beszerezni replikált toowest-us hello fürt része.
+Néhány további Beszúrások hajtható végre, és tekintse meg, hogy azok replikálja nyugati-nekünk a fürt része.
 
 ## <a name="test-cassandra-cluster-from-nodejs"></a>Cassandra Tesztfürthöz Node.js-ből
-Hello Linux virtuális gépek egyike segítségével jön létre hello "web" réteg korábban, azt fogja végrehajtani egy egyszerű Node.js parancsfájl tooread hello korábban beszúrt adatok
+Egyikének használatával jön létre a "web" a Linux virtuális gépek réteg korábban, azt fogja végrehajtani egy egyszerű Node.js parancsfájl a korábban beszúrt adatokat olvasni.
 
 **1. lépés: A Node.js és Cassandra ügyfél telepítése**
 
 1. Telepítse a Node.js és npm
 2. Telepítse a csomag "cassandra-ügyfél csomópont" npm segítségével
-3. A következő parancsfájl hello rendszerhéj-parancssorba, mely megjeleníti a json-karakterláncban hello hello beolvasott adatok hello hajtható végre:
+3. Hajtsa végre a következő parancsfájlt a rendszerhéj-parancssorba, mely megjeleníti a json-karakterláncban a beolvasott adatok:
    
         var pooledCon = require('cassandra-client').PooledConnection;
         var ksName = "custsupport_ks";
@@ -606,7 +606,7 @@ Hello Linux virtuális gépek egyike segítségével jön létre hello "web" ré
            var con = new pooledCon(sysConOptions);
            con.execute(cql,[],function(err) {
            if (err) {
-             console.log("Failed toocreate Keyspace: " + ksName);
+             console.log("Failed to create Keyspace: " + ksName);
              console.log(err);
            }
            else {
@@ -624,7 +624,7 @@ Hello Linux virtuális gépek egyike segítségével jön létre hello "web" ré
         var con =  new pooledCon(ksConOptions);
           con.execute(cql,params,function(err) {
               if (err) {
-                 console.log("Failed toocreate column family: " + params[0]);
+                 console.log("Failed to create column family: " + params[0]);
                  console.log(err);
               }
               else {
@@ -644,7 +644,7 @@ Hello Linux virtuális gépek egyike segítségével jön létre hello "web" ré
            updateCustomer(ksConOptions,params);
         }
    
-        //update will also insert hello record if none exists
+        //update will also insert the record if none exists
         function updateCustomer(ksConOptions,params)
         {
           var cql = 'UPDATE customers_cf SET custname=?,custaddress=? where custid=?';
@@ -656,7 +656,7 @@ Hello Linux virtuális gépek egyike segítségével jön létre hello "web" ré
           con.shutdown();
         }
    
-        //read hello two rows inserted above
+        //read the two rows inserted above
         function readCustomer(ksConOptions)
         {
           var cql = 'SELECT * FROM customers_cf WHERE custid IN (1,2)';
@@ -671,12 +671,12 @@ Hello Linux virtuális gépek egyike segítségével jön létre hello "web" ré
            con.shutdown();
         }
    
-        //exectue hello code
+        //exectue the code
         createKeyspace(createColumnFamily);
         readCustomer(ksConOptions)
 
 ## <a name="conclusion"></a>Összegzés
-Microsoft Azure a rugalmas platform, amely lehetővé teszi a Microsoft, valamint nyílt forráskódú szoftvereket hello fut, amint azt a ebben a gyakorlatban. Magas rendelkezésre állású Cassandra fürtök egyetlen adatközpontba több tartalék tartományokban hello fürtcsomópontok terjednek hello keresztül telepíthető. Cassandra fürtök különféle régiókban földrajzilag távoli Azure katasztrófa igazoló rendszerekhez is telepíthető. Azure és Cassandra együtt lehetővé teszi, hogy hello építése jól skálázható, magas rendelkezésre állású és a vészhelyreállítás helyreállítható felhőszolgáltatások szükséges mai internet által méret szolgáltatások.  
+Microsoft Azure a rugalmas platform, amely lehetővé teszi a Microsoft, valamint nyílt forráskódú szoftverek futtatását, amint azt a ebben a gyakorlatban. Magas rendelkezésre állású Cassandra fürtök telepíthetők egyetlen adatközpontba keresztül a fürt csomópontjai terjednek több tartalék tartományokban. Cassandra fürtök különféle régiókban földrajzilag távoli Azure katasztrófa igazoló rendszerekhez is telepíthető. Azure és Cassandra együtt lehetővé teszi, hogy jól skálázható, magas rendelkezésre állású létrehozása és a vészhelyreállítás helyreállítható felhőszolgáltatások szükséges mai internet által méret szolgáltatások.  
 
 ## <a name="references"></a>Referencia
 * [http://cassandra.Apache.org](http://cassandra.apache.org)

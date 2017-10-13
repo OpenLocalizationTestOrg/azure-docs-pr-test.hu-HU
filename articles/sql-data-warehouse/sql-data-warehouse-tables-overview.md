@@ -1,5 +1,5 @@
 ---
-title: "az SQL Data Warehouse táblák aaaOverview |} Microsoft Docs"
+title: "Az SQL Data Warehouse táblák áttekintése |} Microsoft Docs"
 description: "Ismerkedés az Azure SQL Data Warehouse tábláiba."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: tables
 ms.date: 06/29/2016
 ms.author: shigu;jrj
-ms.openlocfilehash: 4edabcb4b0754bf6c99c2b6b3f0c077749051d9e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c16fef2f302dbc56f257eaf2f0d2b68b6a3c1852
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="overview-of-tables-in-sql-data-warehouse"></a>Az SQL Data Warehouse táblák áttekintése
 > [!div class="op_single_selector"]
@@ -33,37 +33,37 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Ismerkedés az SQL Data Warehouse-táblázatok létrehozása felettébb egyszerű.  Alapszintű hello [CREATE TABLE] [ CREATE TABLE] szintaxisa a következő hello közös szintaxis legnagyobb valószínűséggel már ismeri, a más adatbázisok nem működnek.  egy tábla toocreate, egyszerűen tooname a táblában az oszlopok neve, és az egyes oszlopok adattípusok definiálása.  Ha más adatbázisokban is hozzon létre táblák, ez tisztában tooyou kell kinéznie.
+Ismerkedés az SQL Data Warehouse-táblázatok létrehozása felettébb egyszerű.  A basic [CREATE TABLE] [ CREATE TABLE] szintaxis követi a legnagyobb valószínűséggel közös szintaxist már ismeri, a más adatbázisok nem működnek.  Hozzon létre egy táblát, egyszerűen szüksége a tábla neve, az oszlopok neve és az egyes oszlopok adattípusok definiálása.  Ha más adatbázisokban is hozzon létre táblák, ez Bizonyára ismerős nagyon Önnek.
 
 ```sql  
 CREATE TABLE Customers (FirstName VARCHAR(25), LastName VARCHAR(25))
  ``` 
 
-Példa fent hello táblázatot hoz létre az ügyfelek nevű két oszlop, az utónév és Vezetéknév.  Egyes oszlopok VARCHAR(25), hello adatok too25 karakterek korlátozó adattípus van definiálva.  Alapvető attribútumait az egy tábla, valamint más, főleg hello ugyanaz, mint a más adatbázisok vannak.  Az egyes oszlopok megadása és hello az adatok sértetlenségének ellenőrzése.  Indexek i/o csökkentésével tooimprove teljesítmény lehet hozzáadni.  Particionálás felveheti tooimprove teljesítmény Ha toomodify adatok van szükség.
+A fenti példa létrehoz egy két oszlop, az utónév és Vezetéknév ügyfelek nevű táblát.  Egyes oszlopok VARCHAR(25), amely korlátozza a 25 karakterből kell az adatok típusú adatokat van definiálva.  Egy tábla, valamint más, alapvető attribútumaihoz megegyeznek többnyire más adatbázisok.  Adattípusok minden egyes oszlophoz van definiálva, és az adatok integritásának biztosításában.  Indexek teljesítményének javításával i/o csökkentésével lehet hozzáadni.  Particionálás teljesítményének javításával, ha módosítania kell adatokat lehet hozzáadni.
 
 [Átnevezése] [ RENAME] egy SQL Data Warehouse tábla néz ki:
 
 ```sql  
-RENAME OBJECT Customer tooCustomerOrig; 
+RENAME OBJECT Customer TO CustomerOrig; 
  ```
 
 ## <a name="distributed-tables"></a>Elosztott táblák
-A like SQL Data Warehouse hello elosztott rendszerek által bevezetett új alapvető attribútum **terjesztési oszlop**.  hello terjesztési oszlop túlságosan azok milyen úgy tűnik, hogy hasonló.  Hello oszlop, amely meghatározza, hogyan toodistribute, vagy osztási, az adatok hello színfalak mögött.  Amikor hello terjesztési oszlopok megadása nélkül hozunk létre táblát, hello tábla a rendszer automatikusan továbbítja használatával **ciklikus multiplexelés**.  Ciklikus multiplexelés táblák elegendő bizonyos esetekben lehetnek, terjesztési oszlopok meghatározása csökkenti adatátvitelt jelölik a lekérdezések, így a teljesítmény optimalizálása során.  Olyan esetekben ha kis mennyiségű táblákban tárolt adatokat, válassza a toocreate hello tábla hello **replikálása** terjesztési típust másolja át az adatokat tooeach számítási csomópont, és menti a adatátvitelt jelölik a lekérdezések végrehajtása során. Lásd: [terjesztése egy tábla] [ Distribute] kapcsolatos további toolearn tooselect terjesztési oszlop.
+Elosztott rendszerek például az SQL Data warehouse által bevezetett új alapvető attribútum a **terjesztési oszlop**.  A terjesztési oszlop túlságosan azok milyen úgy tűnik, hogy hasonló.  Az oszlop, amely meghatározza, hogyan kell terjeszteni, vagy ossza, az adatok a háttérben is.  Ha a terjesztési oszlopok megadása nélkül hozunk létre táblát, a tábla a rendszer automatikusan továbbítja használatával **ciklikus multiplexelés**.  Ciklikus multiplexelés táblák elegendő bizonyos esetekben lehetnek, terjesztési oszlopok meghatározása csökkenti adatátvitelt jelölik a lekérdezések, így a teljesítmény optimalizálása során.  Olyan esetekben ha kis mennyiségű táblákban tárolt adatokat, válassza a tábla létrehozásához a **replikálása** telepítési típus minden számítási csomópont másolja az adatokat, és menti a adatátvitelt jelölik a lekérdezések végrehajtása során. Lásd: [terjesztése egy tábla] [ Distribute] további információt a terjesztési oszlop kiválasztása.
 
 ## <a name="indexing-and-partitioning-tables"></a>Indexelő és táblák particionálása
-Válnak fejlettebb, az SQL Data Warehouse a, és szeretné, hogy toooptimize teljesítmény, érdemes toolearn Táblatervezés többet.  toolearn több, lásd: hello cikkeket a [tábla adattípusok][Data Types], [terjesztése egy tábla][Distribute], [táblaindexelő] [ Index] és [tábla particionáló][Partition].
+Válnak fejlettebb, az SQL Data Warehouse használatával, és szeretné, hogy a teljesítmény optimalizálása, érdemes Táblatervezés tájékozódhat.  További tudnivalókért tekintse meg a cikkek [tábla adattípusok][Data Types], [terjesztése egy tábla][Distribute], [tábla indexelő] [ Index] és [tábla particionáló][Partition].
 
 ## <a name="table-statistics"></a>Tábla statisztikai adatainak
-A statisztikákat egy rendkívül fontos toogetting hello legjobb teljesítmény érdekében az SQL Data Warehouse kívül.  Mivel az SQL Data Warehouse automatikusan még nem létrehozása, és statisztikai adatainak frissítése, például előfordulhat, hogy az Azure SQL Database tooexpect származnak, a cikk elolvasása a [statisztika] [ Statistics] hello egyike lehet legfontosabb cikkeket tooensure olvassa el a lekérdezés elérhetővé hello lehető legjobb teljesítményt.
+A statisztikákat egy rendkívül fontos, hogy a lehető legjobb teljesítményt nehézséget okoz az SQL Data Warehouse.  Mivel az SQL Data Warehouse automatikusan még nem létrehozása, és statisztikai adatainak frissítése, például az Azure SQL Database számítson rendelkezik olyan, a cikk elolvasása a [statisztika] [ Statistics] lehet az egyik legfontosabb cikkekben elolvasta biztosítják, hogy a legjobb teljesítmény érdekében a lekérdezésből.
 
 ## <a name="temporary-tables"></a>Ideiglenes táblák
-Az ideiglenes táblák olyan táblák csak hello ideje alatt a bejelentkezési létezik, és más felhasználók által nem láthatók.  Az ideiglenes táblák lehetnek egy jó módszer tooprevent mások ideiglenes eredmények megtekinthessék és karbantartása hello szükségességét is csökkentheti.  Az ideiglenes táblák is a helyi tároló használatára, mivel egyes műveletek esetében gyorsabb teljesítményt is biztosítanak.  Lásd: hello [ideiglenes tábla] [ Temporary] cikkek az ideiglenes táblák további információt.
+Az ideiglenes táblák olyan táblák csak a bejelentkezési időtartama létezik, és más felhasználók által nem láthatók.  Az ideiglenes táblák lehet szeretné megakadályozni, hogy mások ideiglenes eredmények megtekintése és karbantartása szükségességét is csökkentheti.  Az ideiglenes táblák is a helyi tároló használatára, mivel egyes műveletek esetében gyorsabb teljesítményt is biztosítanak.  Tekintse meg a [ideiglenes tábla] [ Temporary] cikkek az ideiglenes táblák további információt.
 
 ## <a name="external-tables"></a>Külső táblák
-Külső táblák, más néven a Polybase táblák olyan táblák, amely az SQL Data Warehouse, de az SQL Data Warehouse külső pont toodata kérdezhetők le.  Például létrehozhat egy külső tábla melyik pontok toofiles Azure Blob Storage tárolóban.  Hogyan toocreate és a lekérdezés a külső tábla, tekintse meg a további részletekért [adatok betöltése a Polybase][Load data with Polybase].  
+Külső táblák, más néven a Polybase táblák olyan táblák, amely az SQL Data Warehouse, de pont lekérdezhetők, az SQL Data Warehouse külső adatokhoz.  Például pontot hozhat létre a külső tábla mely Azure Blob Storage tárolóban lévő fájlokhoz.  Hogyan hozhat létre, és a külső tábla lekérdezése a további részletekért lásd: [adatok betöltése a Polybase][Load data with Polybase].  
 
 ## <a name="unsupported-table-features"></a>A tábla nem támogatott funkciók
-Amíg az SQL Data Warehouse tartalmaz hello szolgáltatást tábla más adatbázisok által kínált számos, van néhány funkció, amely még nem támogatottak.  Alább olvashat egy listát néhány hello táblában funkciók még nem támogatottak.
+Az SQL Data Warehouse számos más adatbázisok által kínált tábla funkciót tartalmaz, amíg nincsenek néhány funkció, amely még nem támogatottak.  Alább felsoroljuk a néhány tábla funkciója még nem támogatott.
 
 | Nem támogatott funkciók |
 | --- |
@@ -78,13 +78,13 @@ Amíg az SQL Data Warehouse tartalmaz hello szolgáltatást tábla más adatbáz
 | [Szinonimák][Synonyms] |
 
 ## <a name="table-size-queries"></a>Tábla méretét lekérdezések
-Egy egyszerű módon tooidentify terület és egy tábla minden hello 60 azokat a terjesztéseket, által felhasznált sorok toouse [DBCC PDW_SHOWSPACEUSED][DBCC PDW_SHOWSPACEUSED].
+Egy hely és egy táblázat minden a 60 azokat a terjesztéseket, felhasznált sorok legegyszerűbb használandó [DBCC PDW_SHOWSPACEUSED][DBCC PDW_SHOWSPACEUSED].
 
 ```sql
 DBCC PDW_SHOWSPACEUSED('dbo.FactInternetSales');
 ```
 
-Azonban a DBCC-parancsokkal is kell meglehetősen korlátozása.  Dinamikus felügyeleti nézetekkel (dinamikus felügyeleti nézetek) lehetővé teszi a toosee sokkal részletességi, valamint hello lekérdezési eredmények sokkal nagyobb szabályozható.  Először hozzon létre ebben a nézetben, ez az említett tooby jelen példában számos ebben és egyéb.
+Azonban a DBCC-parancsokkal is kell meglehetősen korlátozása.  Dinamikus felügyeleti nézetekkel (dinamikus felügyeleti nézetek) lehetővé teszi a sokkal részletesebben lásd, valamint a lekérdezési eredmények sokkal nagyobb szabályozható.  Először hozzon létre ebben a nézetben keresztül ez, és további cikkeit a jelen példában számos hivatkoznak.
 
 ```sql
 CREATE VIEW dbo.vTableSizes
@@ -199,7 +199,7 @@ FROM size
 ```
 
 ### <a name="table-space-summary"></a>Összefoglaló táblázat terület
-A lekérdezés hello sorok és a hely által visszaadott tábla.  A táblák, a legnagyobb táblák, és azok csatlakoznak-e időszeletelés, replikált vagy elosztott kivonatoló kiváló lekérdezés toosee.  Az elosztott kivonattáblákkal hello terjesztési oszlop is mutatja.  A legtöbb esetben a legnagyobb kell szerepelnie. a fürtözött oszlopcentrikus indexszel rendelkező elosztott kivonatát.
+Ez a lekérdezés táblázat adja vissza a sorok és a helyet.  Tekintse meg a táblák a legnagyobb táblák, és azok csatlakoznak-e időszeletelés, replikált vagy elosztott kivonatoló kiváló lekérdezés is.  A kivonattáblákkal elosztott azt is látható a terjesztési oszlop.  A legtöbb esetben a legnagyobb kell szerepelnie. a fürtözött oszlopcentrikus indexszel rendelkező elosztott kivonatát.
 
 ```sql
 SELECT 
@@ -273,7 +273,7 @@ ORDER BY    distribution_id
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-toolearn több, lásd: hello cikkeket a [tábla adattípusok][Data Types], [terjesztése egy tábla][Distribute], [táblaindexelő] [ Index], [Tábla particionáló][Partition], [fenntartása a tábla statisztikai adatainak] [ Statistics] és [ Az ideiglenes táblák][Temporary].  Gyakorlati tanácsok kapcsolatban bővebben lásd: [SQL Data Warehouse gyakorlati tanácsok][SQL Data Warehouse Best Practices].
+További tudnivalókért tekintse meg a cikkek [tábla adattípusok][Data Types], [terjesztése egy tábla][Distribute], [tábla indexelő][Index], [tábla particionáló][Partition], [fenntartása a tábla statisztikai adatainak] [ Statistics] és [az ideiglenes táblák][Temporary].  Gyakorlati tanácsok kapcsolatban bővebben lásd: [SQL Data Warehouse gyakorlati tanácsok][SQL Data Warehouse Best Practices].
 
 <!--Image references-->
 

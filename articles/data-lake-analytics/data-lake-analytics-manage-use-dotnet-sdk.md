@@ -1,6 +1,6 @@
 ---
-title: "Azure Data Lake Analytics Azure .NET SDK használatával aaaManage |} Microsoft Docs"
-description: "Ismerje meg, hogyan toomanage Data Lake Analytics feladatok, adatforrások, felhasználók. "
+title: "Azure Data Lake Analytics Azure .NET SDK használatával kezelése |} Microsoft Docs"
+description: "Megtudhatja, hogyan kezelheti a Data Lake Analytics-feladatok, az adatforrások, a felhasználók. "
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/18/2017
 ms.author: saveenr
-ms.openlocfilehash: 98630ba411823644a8bce1f1b0c1331f689cbb0c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0f8a95f96ce4c816dfb9132923faa9a9bf20c205
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="manage-azure-data-lake-analytics-using-azure-net-sdk"></a>Azure Data Lake Analytics Azure .NET SDK használatával kezelése
 [!INCLUDE [manage-selector](../../includes/data-lake-analytics-selector-manage.md)]
 
-Ismerje meg, hogyan toomanage Azure Data Lake Analytics-fiókok, adatforrások, felhasználók és használó feladatok hello Azure .NET SDK-t. 
+Útmutató: Azure Data Lake Analytics-fiókok, adatforrások, felhasználók és az Azure .NET SDK-t használó feladatok kezelése. 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
 * **Visual Studio 2015, Visual Studio 2013 4. frissítéssel vagy Visual Studio 2012 és telepített Visual C++**.
-* **Microsoft Azure SDK for .NET 2.5-ös vagy újabb verzió**.  Telepítse hello [webplatform-telepítő](http://www.microsoft.com/web/downloads/platform.aspx).
+* **Microsoft Azure SDK for .NET 2.5-ös vagy újabb verzió**.  Telepítse a [Webplatform-telepítővel](http://www.microsoft.com/web/downloads/platform.aspx).
 * **Szükséges NuGet-csomagok**
 
-### <a name="install-nuget-packages"></a>NuGet-csomagok telepítése
+### <a name="install-nuget-packages"></a>Telepítse a NuGet-csomagok
 
 |Csomag|Verzió|
 |-------|-------|
@@ -41,7 +41,7 @@ Ismerje meg, hogyan toomanage Azure Data Lake Analytics-fiókok, adatforrások, 
 |[Microsoft.Azure.Management.ResourceManager](https://www.nuget.org/packages/Microsoft.Azure.Management.ResourceManager)|1.6.0-Preview|
 |[Microsoft.Azure.Graph.RBAC](https://www.nuget.org/packages/Microsoft.Azure.Management.ResourceManager)|3.4.0-Preview|
 
-A következő parancsok hello telepítheti ezeket a csomagokat hello NuGet parancssorból:
+A következő parancsokkal telepítheti ezeket a csomagokat a NuGet parancssorból:
 
 ```
 Install-Package -Id Microsoft.Rest.ClientRuntime.Azure.Authentication  -Version 2.3.1
@@ -62,7 +62,7 @@ string clientid = "1950a258-227b-4e31-a9cf-717495945fc2"; // Sample client ID (t
 
 ## <a name="authentication"></a>Authentication
 
-A Data Lake Analytics tooAzure bejelentkezés több lehetősége van. hello alábbi kódrészletet mutat példát hitelesítési egy előugró ablak az interaktív felhasználói hitelesítéssel.
+Lehetősége van több Azure Data Lake Analytics történő bejelentkezéshez. Az alábbi részlet egy előugró ablak az interaktív felhasználói hitelesítéssel hitelesítési példáját mutatja be.
 
 ``` csharp
 using System;
@@ -100,10 +100,10 @@ public static Program
 }
 ```
 
-hello forráskódja **GetCreds_User_Popup** és hello kód számára más beállításokat a hitelesítési ismertetnek [Data Lake Analytics .NET-hitelesítés beállításai](https://github.com/Azure-Samples/data-lake-analytics-dotnet-auth-options)
+Forráskódja **GetCreds_User_Popup** és más beállításokat a hitelesítési kódját ismertetnek [Data Lake Analytics .NET-hitelesítés beállításai](https://github.com/Azure-Samples/data-lake-analytics-dotnet-auth-options)
 
 
-## <a name="create-hello-client-management-objects"></a>Hello ügyfél létrehozása kezelési objektumok
+## <a name="create-the-client-management-objects"></a>Az ügyfél létrehozása kezelési objektumok
 
 ``` csharp
 var resourceManagementClient = new ResourceManagementClient(armCreds) { SubscriptionId = subid };
@@ -128,7 +128,7 @@ graphClient.TenantID = domain;
 
 ### <a name="create-an-azure-resource-group"></a>Azure-erőforráscsoport létrehozása
 
-Ha még nem már létrehozott egy, a Data Lake Analytics-összetevők az Azure-erőforráscsoport toocreate kell rendelkeznie. A hitelesítő adatok, előfizetés-azonosító és egy helyre van szükség. a következő kód bemutatja hogyan hello toocreate erőforráscsoport:
+Ha még nem már létrehozott egy, a Data Lake Analytics-összetevők létrehozásához Azure-erőforráscsoport kell rendelkeznie. A hitelesítő adatok, előfizetés-azonosító és egy helyre van szükség. A következő kód bemutatja, hogyan hozzon létre egy erőforráscsoportot:
 
 ``` csharp
 var resourceGroup = new ResourceGroup { Location = location };
@@ -138,7 +138,7 @@ További információkért lásd: [Azure erőforráscsoport-sablonok és a Data 
 
 ### <a name="create-a-data-lake-store-account"></a>Data Lake Store-fiók létrehozása
 
-Legalább egyszer a ADLA fiók egy ADLS-fiók szükséges. Ha még nem rendelkezik egy toouse, létrehozhat egyet a következő kód hello:
+Legalább egyszer a ADLA fiók egy ADLS-fiók szükséges. Ha még nem rendelkezik egyike, létrehozhat egyet az alábbi kódra:
 
 ``` csharp
 var new_adls_params = new DataLakeStoreAccount(location: _location);
@@ -147,7 +147,7 @@ adlsAccountClient.Account.Create(rg, adls, new_adls_params);
 
 ### <a name="create-a-data-lake-analytics-account"></a>Data Lake Analytics-fiók létrehozása
 
-a következő kód hello létrehoz egy ADLS-fiók
+Az alábbi kód létrehoz egy ADLS-fiók
 
 ``` csharp
 var new_adla_params = new DataLakeAnalyticsAccount()
@@ -205,9 +205,9 @@ if (adlaClient.Account.Exists(rg, adla))
 }
 ```
 
-### <a name="get-hello-default-data-lake-store-account"></a>Hello alapértelmezett Data Lake Store-fiók beszerzése
+### <a name="get-the-default-data-lake-store-account"></a>Az alapértelmezett Data Lake Store-fiók beszerzése
 
-Minden Data Lake Analytics-fiókja alapértelmezett Data Lake Store-fiók szükséges. Használja a kód toodetermine hello alapértelmezett tároló fiókot az Analytics-fiók.
+Minden Data Lake Analytics-fiókja alapértelmezett Data Lake Store-fiók szükséges. Ez a kód segítségével határozhatja meg az alapértelmezett Store-fiókot az Analytics-fiókhoz.
 
 ``` csharp
 if (adlaClient.Account.Exists(rg, adla))
@@ -219,14 +219,14 @@ if (adlaClient.Account.Exists(rg, adla))
 
 ## <a name="manage-data-sources"></a>Adatforrások kezelése
 
-A Data Lake Analytics jelenleg a következő adatforrások hello támogatja:
+A Data Lake Analytics jelenleg a következő adatforrásokat támogatja:
 
 * [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md)
 * [Azure Storage-fiók](../storage/common/storage-introduction.md)
 
-### <a name="link-tooan-azure-storage-account"></a>Hivatkozás tooan Azure Storage-fiókban
+### <a name="link-to-an-azure-storage-account"></a>Egy Azure Storage-fiók összekapcsolása
 
-Hivatkozások tooAzure Storage-fiókokat hozhat létre.
+Azure Storage-fiókok mutató hivatkozásokat is létrehozhat.
 
 ``` csharp
 string storage_key = "xxxxxxxxxxxxxxxxxxxx";
@@ -264,16 +264,16 @@ if (adls_accounts != null)
 ```
 
 ### <a name="upload-and-download-folders-and-files"></a>Fájlok és mappák le- és feltöltése
-Hello Data Lake Store fájl rendszer ügyfél felügyeleti objektum tooupload használja, és töltse le a fájlokat vagy mappákat Azure tooyour helyi számítógépről, a következő módszerek hello használata:
+A Data Lake Store ügyfél felügyeleti Fájlrendszerobjektum segítségével töltse fel, és töltse le a fájlokat vagy mappákat az Azure-ból a helyi számítógépen, az alábbi módszerekkel:
 
 - UploadFolder
 - UploadFile
 - DownloadFolder
 - DownloadFile
 
-Ezek a módszerek hello első paraméter értéke nem hello hello forrás elérési útja és hello célútvonalat paramétereinek követ hello Data Lake Store-fiók nevét.
+Az ezen módszerek első paramétere a Data Lake Store-fiók, kiegészítve a forrás elérési útja és a cél elérési útja paramétereinek a nevét.
 
-hello a következő példa bemutatja, hogyan toodownload egy mappát a hello Data Lake Store.
+A következő példa bemutatja, hogyan töltheti le a Data Lake Store egyik mappájába.
 
 ``` csharp
 adlsFileSystemClient.FileSystem.DownloadFolder(adls, sourcePath, destinationPath);
@@ -295,7 +295,7 @@ using (var memstream = new MemoryStream())
 ```
 
 ### <a name="verify-azure-storage-account-paths"></a>Ellenőrizze az Azure Storage-fiók elérési utak
-hello alábbira ellenőrzi, ha egy Azure Storage-fiók (storageAccntName) szerepel a Data Lake Analytics-fiók (analyticsAccountName), és a tároló (containerName) hello Azure Storage-fiók létezik.
+Az alábbi kód ellenőrzi, ha egy Azure Storage-fiók (storageAccntName) szerepel a Data Lake Analytics-fiók (analyticsAccountName), és a tároló (containerName) szerepel az Azure Storage-fiók.
 
 ``` csharp
 string storage_account = "mystorageaccount";
@@ -305,10 +305,10 @@ bool containerExists = adlaClient.Account.StorageContainerExists(rg, adla, stora
 ```
 
 ## <a name="manage-catalog-and-jobs"></a>Katalógus és feladatok kezelése
-hello DataLakeAnalyticsCatalogManagementClient objektum hello minden Azure Data Lake Analytics-fiók a megadott SQL-adatbázis kezelésére szolgáló módszert biztosít. hello DataLakeAnalyticsJobManagementClient módszerek toosubmit biztosít, és futtassa a U-SQL-parancsfájlok hello adatbázis feladatok kezelése.
+A DataLakeAnalyticsCatalogManagementClient objektum minden Azure Data Lake Analytics-fiók a megadott SQL-adatbázis kezelésére szolgáló módszert biztosít. A DataLakeAnalyticsJobManagementClient biztosít a U-SQL-parancsfájlok adatbázis futtatásához módszereket küldje el, és a feladatok kezelése.
 
 ### <a name="list-databases-and-schemas"></a>Lista adatbázisok és -sémákat
-Hello között több eredményoldalra is listázhatja, leggyakrabban előforduló hello minden olyan adatbázisok és a séma. hello alábbira jut hozzá a adatbázisok gyűjteménye, és az egyes adatbázisok hello séma majd enumerálása.
+Között is számos dolgot a legtöbb olyan adatbázisok és a séma. A következő kódot jut hozzá a adatbázisok gyűjteménye, és az egyes adatbázisok séma majd enumerálása.
 
 ``` csharp
 var databases = adlaCatalogClient.Catalog.ListDatabases(adla);
@@ -325,7 +325,7 @@ foreach (var db in databases)
 ```
 
 ### <a name="list-table-columns"></a>A táblázat oszlopaihoz listája
-hello következő kód bemutatja, hogyan tooaccess hello egy Data Lake Analytics-katalógus felügyeleti ügyfél toolist hello a táblázatban levő oszlopkészleteket megadott adatbázishoz.
+A következő kód bemutatja, hogyan érik el az adatbázist a megadott tábla az oszlopok egy Data Lake Analytics-katalógus felügyeleti ügyféllel.
 
 ``` csharp
 var tbl = adlaCatalogClient.Catalog.GetTable(adla, "master", "dbo", "MyTableName");
@@ -352,7 +352,7 @@ foreach (USqlTableColumn utc in columns)
 ```
 
 ### <a name="list-failed-jobs"></a>A sikertelen feladatok listázása
-hello alábbira sorolja fel a sikertelen feladatok kapcsolatos információkat.
+A következő kódot a sikertelen feladatok információkat sorolja fel.
 
 ``` csharp
 var odq = new ODataQuery<JobInformation> { Filter = "result eq 'Failed'" };
@@ -364,7 +364,7 @@ foreach (var j in jobs)
 ```
 
 ### <a name="list-pipelines"></a>Lista folyamatok
-hello alábbira információ megjelenítése minden folyamatkezelési feladatok elküldött toohello fiók.
+A következő kódot az a fiók a feladat minden folyamatkezelési kapcsolatos információkat sorolja fel.
 
 ``` csharp
 var pipelines = adlaJobClient.Pipeline.List(adla);
@@ -375,7 +375,7 @@ foreach (var p in pipelines)
 ```
 
 ### <a name="list-recurrences"></a>Lista ismétlődések
-hello alábbira információ megjelenítése minden ismétlődési feladatok elküldött toohello fiók.
+A következő kódot az ahhoz a fiókhoz feladat minden egyes ismétlődési kapcsolatos információkat sorolja fel.
 
 ``` csharp
 var recurrences = adlaJobClient.Recurrence.List(adla);
@@ -387,13 +387,13 @@ foreach (var r in recurrences)
 
 ## <a name="common-graph-scenarios"></a>Általános graph-forgatókönyvek
 
-### <a name="look-up-user-in-hello-aad-directory"></a>Hello AAD-címtárában lévő felhasználó keresése
+### <a name="look-up-user-in-the-aad-directory"></a>Az AAD-címtárában lévő felhasználó keresése
 
 ``` csharp
 var userinfo = graphClient.Users.Get( "bill@contoso.com" );
 ```
 
-### <a name="get-hello-objectid-of-a-user-in-hello-aad-directory"></a>Egy felhasználó ObjectId hello beolvasása a hello AAD-címtárában
+### <a name="get-the-objectid-of-a-user-in-the-aad-directory"></a>Egy felhasználó ObjectId beolvasni az AAD-címtárában
 
 ``` csharp
 var userinfo = graphClient.Users.Get( "bill@contoso.com" );
@@ -401,10 +401,10 @@ Console.WriteLine( userinfo.ObjectId )
 ```
 
 ## <a name="manage-compute-policies"></a>Számítási házirendjeinek kezelése
-hello DataLakeAnalyticsAccountManagementClient objektum biztosít hello kezelésére szolgáló módszerek számítási házirendek a Data Lake Analytics-fiók.
+A DataLakeAnalyticsAccountManagementClient objektum a számítási házirendek előnyeit a Data Lake Analytics-fiók kezelésére szolgáló módszert biztosít.
 
 ### <a name="list-compute-policies"></a>Számítási házirendek felsorolása
-hello a következő kód lekéri a Data Lake Analytics-fiók számítási házirendek listáját.
+A következő kód lekéri a Data Lake Analytics-fiók számítási házirendek listáját.
 
 ``` csharp
 var policies = adlaAccountClient.ComputePolicies.ListByAccount(rg, adla);
@@ -415,7 +415,7 @@ foreach (var p in policies)
 ```
 
 ### <a name="create-a-new-compute-policy"></a>Hozzon létre egy új számítási házirendet
-a következő kód hello létrehoz egy új számítási házirendet a Data Lake Analytics-fiók, beállítás hello maximális ausztráliai elérhető toohello megadott felhasználói too50, és hello minimális feladat prioritása too250.
+Az alábbi kód létrehoz egy új számítási házirendet Data Lake Analytics-fiók esetén a rendelkezésre álló maximális ausztráliai beállítása a megadott felhasználó 50 és 250 minimális feladat prioritása.
 
 ``` csharp
 var userAadObjectId = "3b097601-4912-4d41-b9d2-78672fc2acde";

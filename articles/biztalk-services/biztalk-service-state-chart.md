@@ -1,6 +1,6 @@
 ---
-title: "engedélyezett állapotot váltani vagy a BizTalk szolgáltatások állapotok aaaTasks |} Microsoft Docs"
-description: "a különböző MABS állapotú engedélyezett műveletek/műveletek hello: állítsa le, indítsa el, indítsa újra, felfüggesztése, folytatása, törlése, méretezhető, frissítheti a konfigurációs és biztonsági mentése"
+title: "Engedélyezett állapotot váltani vagy a BizTalk szolgáltatások állapotok feladatok |} Microsoft Docs"
+description: "A különböző MABS állapotú engedélyezett műveletek/műveletek: állítsa le, indítsa el, indítsa újra, felfüggesztése, folytatása, törlése, méretezhető, frissítheti a konfigurációs és biztonsági mentése"
 services: biztalk-services
 documentationcenter: 
 author: MandiOhlinger
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/08/2016
 ms.author: mandia
-ms.openlocfilehash: 643307ba6fa9b05c82b867912feab249c42b65dd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 918154852cf4ee1b80792eaddb588f5b0237da7c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="what-you-can-and-cant-do-using-hello-biztalk-service-state"></a>Lehet, illetve mit nem használatával hello BizTalk szolgáltatás állapota
+# <a name="what-you-can-and-cant-do-using-the-biztalk-service-state"></a>Lehet, illetve mit nem használja a BizTalk szolgáltatás állapota
 
 > [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
 
-Attól függően, hogy hello hello BizTalk szolgáltatás aktuális állapotát nincsenek vagy hello BizTalk szolgáltatás nem hajtható végre műveleteket.
+Attól függően, hogy a BizTalk szolgáltatás aktuális állapotát, és a BizTalk szolgáltatás nem hajtható végre műveletek vannak.
 
-Például a klasszikus Azure portálon hello új BizTalk szolgáltatás kiépítése. Sikeresen befejeződött, hello BizTalk szolgáltatás esetén a `active` állapotát. Hello aktív állapotban állítsa le, felfüggesztése és hello BizTalk szolgáltatás törléséhez. Ha le hello BizTalk szolgáltatás leállítása sikertelen, majd hello BizTalk szolgáltatás kerül tooa `StopFailed` állapotát. A hello `StopFailed` állapotba kerül, hello BizTalk szolgáltatásokat. Hello a következő hiba akkor fordul elő, ha egy művelet nem engedélyezett, folytatása, például:
+Például a klasszikus Azure portálon új BizTalk szolgáltatás kiépítése. Amikor befejeződik, a BizTalk szolgáltatás van `active` állapotát. Az aktív állapotú leállítása, felfüggesztése és a BizTalk szolgáltatás törléséhez. Ha a BizTalk szolgáltatás leállítása és leállítása sikertelen lesz, majd a BizTalk szolgáltatás a egy `StopFailed` állapotát. Az a `StopFailed` állapotba kerül, a BizTalk szolgáltatásokat. A következő hiba akkor fordul elő, ha egy művelet nem engedélyezett, folytatása, például:
 
 `Operation not allowed`
 
-## <a name="view-hello-possible-states"></a>Hello lehetséges állapota nézet
+## <a name="view-the-possible-states"></a>A lehetséges állapotok megtekintése
 
-hello alábbi táblázatok a lista hello műveletek vagy meghatározott állapotban lévő hello BizTalk szolgáltatás esetén végezhető műveleteket. Egy ✔ azt jelenti, hogy hello művelet engedélyezett az adott állapotban. Egy üres bejegyzést azt jelenti, hogy hello művelet nem hajtható végre az adott állapotban.
+A következő táblázat a műveletek vagy a műveletek is létrehozhatók, ha a BizTalk szolgáltatás egy adott állapotban. Egy ✔ azt jelenti, hogy a művelet engedélyezett az adott állapotban. Egy üres bejegyzést azt jelenti, hogy a művelet nem hajtható végre az adott állapotban.
 
 | Szolgáltatás állapota | Indítás | Leállítás | Újraindítás | Felfüggesztése | Folytatás | Törlés | Méretezés | Frissítés <br/> Konfiguráció | Biztonsági mentés |
 | --- | --- | --- | --- | --- | --- | --- |--- | --- | --- |
@@ -52,11 +52,11 @@ hello alábbi táblázatok a lista hello műveletek vagy meghatározott állapot
 
 
 ## <a name="see-also"></a>Lásd még:
-* [A klasszikus Azure portálon hello BizTalk szolgáltatás létrehozása](http://go.microsoft.com/fwlink/p/?LinkID=302280)<br/>
-* [Mi mindent hello irányítópult, a figyelő és a skála lapon BizTalk szolgáltatások](http://go.microsoft.com/fwlink/p/?LinkID=302281)<br/>
-* [BizTalk szolgáltatások hello fejlesztői, Basic, Standard és prémium kiadás beolvasása](http://go.microsoft.com/fwlink/p/?LinkID=302279)<br/>
-* [Hogyan tooback össze, és a BizTalk szolgáltatás visszaállítása](http://go.microsoft.com/fwlink/p/?LinkID=329873)<br/>
+* [A klasszikus Azure portál használatával BizTalk szolgáltatás létrehozása](http://go.microsoft.com/fwlink/p/?LinkID=302280)<br/>
+* [Teendők, az irányítópult, a figyelő és a skála lapon a BizTalk szolgáltatások](http://go.microsoft.com/fwlink/p/?LinkID=302281)<br/>
+* [BizTalk szolgáltatások fejlesztői, Basic, Standard és prémium verzióval beolvasása](http://go.microsoft.com/fwlink/p/?LinkID=302279)<br/>
+* [Készítsen biztonsági másolatot, és a BizTalk szolgáltatás visszaállítása](http://go.microsoft.com/fwlink/p/?LinkID=329873)<br/>
 * [Sávszélesség-szabályozás, tekintse meg a BizTalk szolgáltatások](http://go.microsoft.com/fwlink/p/?LinkID=302282)<br/>
-* [A BizTalk szolgáltatás hello Service Bus- és hozzáférés-vezérlés kibocsátó neve és a kiállító kulcsértékei beolvasása](http://go.microsoft.com/fwlink/p/?LinkID=303941)<br/>
-* [Hogyan tudom használata hello Azure BizTalk szolgáltatások SDK-t](http://go.microsoft.com/fwlink/p/?LinkID=302335)
+* [A Service Bus- és hozzáférés-vezérlés kibocsátó neve és a kiállító értékek beolvasása a BizTalk szolgáltatás](http://go.microsoft.com/fwlink/p/?LinkID=303941)<br/>
+* [Hogyan kezdhetem el az Azure BizTalk Services SDK használatát](http://go.microsoft.com/fwlink/p/?LinkID=302335)
 

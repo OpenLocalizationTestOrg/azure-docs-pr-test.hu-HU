@@ -1,15 +1,15 @@
 
 ## <a name="about-vhds"></a>Tudnivalók a VHD-kről
 
-hello Azure-ban használt virtuális merevlemezek a .vhd fájlok lapblobokat egy standard vagy prémium szintű storage-fiókban az Azure-ban tárolja. A lapblobokkal kapcsolatos további részletekért tekintse meg [a blokkblobokat és a lapblobokat bemutató cikket](/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs/). A prémium szintű tárolással kapcsolatos részletekért tekintse meg [a nagy teljesítményű Premium Storage szolgáltatással és az Azure virtuális gépekkel kapcsolatos cikket](../articles/storage/common/storage-premium-storage.md).
+Az Azure-ban használt VHD-k .vhd fájlok, amelyek lapblobként vannak tárolva egy standard vagy prémium szintű Azure-tárfiókban. A lapblobokkal kapcsolatos további részletekért tekintse meg [a blokkblobokat és a lapblobokat bemutató cikket](/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs/). A prémium szintű tárolással kapcsolatos részletekért tekintse meg [a nagy teljesítményű Premium Storage szolgáltatással és az Azure virtuális gépekkel kapcsolatos cikket](../articles/storage/common/storage-premium-storage.md).
 
-Azure rögzített VHD formátummal hello támogatja. Meghatározza a rögzített hello formátum hello lineárisan belül hello fájl ki logikai lemez, úgy, hogy a lemez eltolás X blob eltolás X tárolja. Hello blob hello végén kis élőláb hello VHD hello tulajdonságait ismerteti. Gyakran hello rögzített formátum Helypazarlás mert legtöbb lemez nagy nem használt tartományokat őket. Azonban Azure tárolja .vhd fájlok ritka formátuma, hogy mindkét rögzített hello hello előnyei, és a dinamikus lemezek, a hello azonos idő. További részletekért tekintse meg [a virtuális merevlemezek használatába bevezető cikket](https://technet.microsoft.com/library/dd979539.aspx).
+Az Azure támogatja a rögzített lemezes VHD formátumot. A rögzített formátum a logikai lemezt lineárisan helyezi el a fájlon belül, így az X lemezeltolás az X blobeltolásnál van tárolva. A blob végén egy kis lábléc írja le a VHD tulajdonságait. A rögzített formátum gyakran helypazarló, mivel a legtöbb lemezen nagy méretű kihasználatlan tartományok találhatóak. Az Azure azonban egy ritka formátumban tárolja a .vhd fájlokat, így a rögzített és a dinamikus lemezek előnyei egyaránt kihasználhatók. További részletekért tekintse meg [a virtuális merevlemezek használatába bevezető cikket](https://technet.microsoft.com/library/dd979539.aspx).
 
-Az összes .vhd fájlt, hogy egy forrás toocreate lemezként szeretne toouse vagy lemezképek írásvédettek Azure-ban. Amikor létrehoz egy lemezen vagy lemezképen, Azure lemásolja hello .vhd-fájlokat. Példányainak lehet csak olvasható vagy és-írhatónak és olvashatónak, attól függően, hogy a virtuális merevlemez hello használatáról.
+Az Azure-ban minden olyan .vhd fájl írásvédett, amelyet forrásként szeretne használni lemezek vagy rendszerképek létrehozásához. Lemez vagy rendszerkép létrehozásakor az Azure másolatot készít a .vhd fájlokról. Ezek a másolatok csak olvashatók vagy olvashatók és írhatók is lehetnek a VHD használatától függően.
 
-Ha lemezképből hoz létre egy virtuális gépet, az Azure hello virtuális gépre, amelyik hello forrás .vhd fájl egy példányát a lemezt hozott létre. tooprotect véletlen törlése ellen, Azure helyezi a címbérlet toocreate használatban van, kép, operációsrendszer-lemez vagy adatlemezt forrás .vhd fájlok.
+Amikor egy virtuális gépet hoz létre egy rendszerképből, az Azure létrehoz egy lemezt a virtuális gép számára, amely a forrás .vhd fájl másolata. A véletlen törlés elleni védelem érdekében az Azure egy bérlést helyez minden olyan forrás .vhd fájlra, amelyet egy rendszerkép, egy operációsrendszer-lemez vagy egy adatlemez létrehozásához használtak.
 
-.Vhd fájlok törlése előtt törölni kell hello lemezen vagy lemezképen tooremove hello bérleti lesz szüksége. operációsrendszer-lemez a virtuális gép által éppen használt .vhd-fájllá. toodelete, törölheti hello virtuális gép, hello operációsrendszer-lemez, és hello forrás .vhd fájl egyszerre hello virtuális gép törlésével, és minden kapcsolódó lemezek törlése. Egy adatlemez forrásaként használt .vhd fájl törléséhez azonban több lépést is el kell végezni, egy megadott sorrendben. Először meg hello lemez hello virtuális gépről, majd törölje hello lemez leválasztása, és törölje a hello .vhd fájl.
+Mielőtt a forrás .vhd fájlt törölhetné, el kell távolítania a bérlést, ehhez pedig törölnie kell a lemezt vagy a rendszerképet. Ha törölni szeretne egy virtuális gép által operációsrendszer-lemezként használt .vhd fájlt, egyszerre is törölheti a virtuális gépet, az operációsrendszer-lemezt és a forrás .vhd fájlt a virtuális gép és az összes hozzá tartozó lemez törlésével. Egy adatlemez forrásaként használt .vhd fájl törléséhez azonban több lépést is el kell végezni, egy megadott sorrendben. Először válassza le a lemezt a virtuális gépről, majd törölje a lemezt, és végül törölje a .vhd fájlt.
 
 > [!WARNING]
 > Ha töröl egy forrás .vhd fájlt a tárolóból, vagy törli a saját tárfiókját, a Microsoft nem tudja visszaállítani az adatait.
@@ -34,19 +34,19 @@ Az SSD-kre épülő Premium Storage nagy teljesítményű, kis késleltetésű l
 
 ### <a name="unmanaged-disks"></a>Nem felügyelt lemezek
 
-Nem felügyelt lemezek hello hagyományos típusú virtuális gépek által használt lemezek. Ezekkel a saját storage-fiók létrehozása, és adjon meg, hogy a tárfiókot, hello lemezek létrehozása során. Toomake meg arról, hogy nem helyezett túl sok rendelkezik hello ugyanazt a tárfiókot, mert túllépi sikerült hello [méretezhetőségi célok](../articles/storage/common/storage-scalability-targets.md) hello tárfiókja (a 20 000 IOPS például), ami azt eredményezi, hello szabályozva virtuális gépeket. Nem felügyelt lemezek esetében az informatikai részleg toofigure hogyan toomaximize hello egy vagy több tároló fiókok tooget hello legjobb teljesítményt kívül a virtuális gépek használják ki.
+A nem felügyelt lemez a virtuális gépek által használt hagyományos lemeztípus. Az ilyen lemezekkel létrehozhatja a saját tárfiókját, és a lemez létrehozásakor azt a tárfiókot adhatja meg. Ügyeljen arra, hogy ne helyezzen túl sok lemezt ugyanabba a tárfiókba, mert azzal túllépheti a tárfiók [skálázási célértékeit](../articles/storage/common/storage-scalability-targets.md) (pl. 20 000 IOPS), amivel korlátozhatja a virtuális gépeket. Nem felügyelt lemezek esetén Önnek kell felmérnie, hogyan maximalizálhatja egy vagy több tárfiók kihasználtságát, hogy a virtuális gépeiből a lehető legjobb teljesítményt hozza ki.
 
 ### <a name="managed-disks"></a>Felügyelt lemezek 
 
-A felügyelt hello tárolási fiókkezelés létrehozása/hello háttérben meg, és biztosítja, hogy nem rendelkezik tooworry kapcsolatos hello méretezhetőségi korlátok hello tárfiók lemezek kezeli. Egyszerűen hello lemezméretet és hello teljesítményszinttel (Standard vagy prémium), és a Azure hoz létre, és kezeli a hello lemez meg. Akár lemezek hozzáadása, illetve a virtuális gép hello felfelé és lefelé méretezési, nincs használatban hello tárolás tooworry. 
+A felügyelt lemezek a háttérben végzik a tárfiók létrehozását és kezelését, hogy Önnek ne kelljen foglalkoznia a tárfiók skálázási korlátaival. Egyszerűen csak adja meg a lemez méretét és teljesítményszintjét (Standard vagy prémium), és az Azure létrehozza és felügyeli a lemezt Ön helyett. Akkor sem kell a használt tárterület miatt aggódnia, ha lemezeket ad hozzá vagy fel-/leskálázza a virtuális gépet. 
 
-Is kezelheti az egyéni lemezképek az egyes Azure-régió, egy tárfiókot, és használhatja őket több száz. toocreate hello a virtuális gépek ugyanahhoz az előfizetéshez. A felügyelt lemezek kapcsolatos további információkért lásd: hello [felügyelt lemezekhez – áttekintés](../articles/virtual-machines/windows/managed-disks-overview.md).
+Az egyéni rendszerképeit Azure-régiónként egyetlen tárfiókban is felügyelheti, és a használatukkal több száz virtuális gépet hozhat létre egy adott előfizetésben. A felügyelt lemezekkel kapcsolatos további információért tekintse meg [a felügyelt lemezek áttekintésével kapcsolatos cikket](../articles/virtual-machines/windows/managed-disks-overview.md).
 
-Javasoljuk, hogy Azure kezelt lemezek használatakor az új virtuális gépekhez, és, hogy az előző nem felügyelt lemezek toomanaged lemezek konvertálása, hello tootake előnyeit felügyelt lemezek számos szolgáltatásához.
+Javasoljuk, hogy az új virtuális gépeihez használja az Azure Managed Disks szolgáltatást, és a korábbi, nem felügyelt lemezeit is alakítsa felügyeltté, hogy kihasználhassa a Managed Disks által kínált számos szolgáltatást.
 
 ### <a name="disk-comparison"></a>Lemezek összehasonlítása
 
-a következő táblázat hello itt prémium és Standard összehasonlítása mindkettő nem felügyelt, és úgy dönt, hogy milyen toouse lemezek toohelp felügyelt.
+A következő tábla összehasonlítja a Prémium és a Standard szintet a nem felügyelt és a felügyelt lemezek esetén, így könnyebben eldöntheti, melyiket érdemes használni.
 
 |    | Prémium szintű Azure-lemez | Standard szintű Azure-lemez |
 |--- | ------------------ | ------------------- |

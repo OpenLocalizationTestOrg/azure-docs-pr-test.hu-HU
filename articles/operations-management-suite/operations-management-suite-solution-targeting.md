@@ -1,6 +1,6 @@
 ---
-title: "az OMS célzó aaaSolution |} Microsoft Docs"
-description: "Megoldás célcsoportkezelést egy olyan szolgáltatás, az Operations Management Suite (OMS), amely lehetővé teszi toolimit felügyeleti megoldások tooa meghatározott készletének ügynökök.  Ez a cikk ismerteti, hogyan toocreate a hatókör konfigurációját, és alkalmazza azt tooa megoldás."
+title: "Célcsoport-kezelési megoldás az OMS |} Microsoft Docs"
+description: "Megoldás célcsoportkezelést egy olyan szolgáltatás, az Operations Management Suite (OMS), amely lehetővé teszi az ügynökök meghatározott megoldások korlátozza.  Ez a cikk ismerteti, hogyan segítségével hozzon létre egy hatókör konfigurációját, és a megoldáshoz."
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -14,64 +14,64 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/27/2017
 ms.author: bwren
-ms.openlocfilehash: 6f8c8109e0d9e282e18724bf8b673b10de8e498a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cb73a2d7ae57a5a11869259dbe913ae83ffb2b01
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-solution-targeting-in-operations-management-suite-oms-tooscope-management-solutions-toospecific-agents-preview"></a>Megoldással célzó Operations Management Suite (OMS) tooscope megoldások toospecific kezelőügynökök (előzetes verzió)
-A megoldás tooOMS hozzáadásakor a alapértelmezett tooall Windows és Linux ügynökök csatlakoztatott tooyour Naplóelemzési munkaterület automatikusan telepíti.  Érdemes lehet a költségeket és a limit hello adatmennyiség gyűjtött toomanage megoldás ügynökök különösen készlete tooa korlátozásával.  Ez a cikk ismerteti, hogyan toouse **célcsoport-kezelési megoldás** Ez az az OMS-szolgáltatása, amely lehetővé teszi a hatókör tooapply tooyour megoldásokat.
+# <a name="use-solution-targeting-in-operations-management-suite-oms-to-scope-management-solutions-to-specific-agents-preview"></a>Használja a megoldás a célcsoport-kezelési Operations Management Suite (OMS) hatókör-kezelési megoldások adott ügynökökkel (előzetes verzió)
+A megoldás az OMS-be való hozzáadásakor automatikusan telepíti a Naplóelemzési munkaterület csatlakozó Windows és Linux ügynökök alapértelmezés szerint.  Érdemes lehet a költségek kezelésére, és egy meghatározott ügynökök korlátozásával megoldás gyűjtött adatok mennyiségét.  Ez a cikk ismerteti, hogyan használható **célcsoport-kezelési megoldás** Ez az az OMS-szolgáltatása, amely lehetővé teszi a hatókör vonatkozik.
 
-## <a name="how-tootarget-a-solution"></a>Hogyan tootarget megoldás
-Nincsenek három lépést tootargeting megoldás hello a következő részekben leírtak szerint.  Vegye figyelembe, hogy szüksége lesz hello OMS-portálon és a hello Azure-portálon más lépéseket.
+## <a name="how-to-target-a-solution"></a>A megoldás bemutatásához
+A következő szakaszokban ismertetett módon célcsoport-kezelési megoldás három lépésben történik.  Vegye figyelembe, hogy szüksége lesz az OMS-portállal, mind az Azure-portálon más lépéseket.
 
 
 ### <a name="1-create-a-computer-group"></a>1. Hozzon létre egy számítógépcsoportot
-Akkor adja meg, amelyet az adott hatókörben tooinclude létrehozásával hello számítógépek egy [számítógépcsoport](../log-analytics/log-analytics-computer-groups.md) a Naplóelemzési.  hello számítógépcsoport napló keresés alapján, vagy más forrásokból, például az Active Directory vagy a WSUS-csoportok importálása. Mint [az alábbiakban](#solutions-and-agents-that-cant-be-targeted), csak a számítógépek, amelyek közvetlenül csatlakoztatott tooLog Analytics hello hatókör fog szerepelni.
+A számítógépek, hozzon létre egy hatókört szerepeltetni kívánt megadása egy [számítógépcsoport](../log-analytics/log-analytics-computer-groups.md) a Naplóelemzési.  A számítógép csoport naplófájl-keresési alapján, vagy más forrásokból, például az Active Directory vagy a WSUS-csoportok importálása. Mint [az alábbiakban](#solutions-and-agents-that-cant-be-targeted), csak a Naplóelemzési közvetlenül csatlakozó számítógépek megtalálható a hatókörben.
 
-Ha már létre a munkaterületén hello számítógépcsoportot, majd is tartalmazni fogja az alkalmazott tooone vagy további megoldások hatókör konfigurációban.
+Követően létre a munkaterületén számítógépcsoport akkor kell szerepeltetni a hatókör konfigurációját, amelyek egy vagy több megoldásokat alkalmazhatja.
  
  
  ### <a name="2-create-a-scope-configuration"></a>2. Hatókör-konfiguráció létrehozása
- A **hatókör konfigurációjának** egy vagy több számítógép csoportot tartalmaz, és lehet alkalmazott tooone vagy további megoldásokat. 
+ A **hatókör konfigurációjának** egy vagy több számítógép csoportot tartalmaz, és egy vagy több megoldásokat alkalmazhatja. 
  
- Hozzon létre egy hatókör konfigurációját, a folyamatot követve hello segítségével.  
+ A következő eljárással hatókör-konfiguráció létrehozása.  
 
- 1. Az Azure-portálon hello, keresse meg a túl**Naplóelemzési** válassza ki a munkaterületen.
- 2. Hello munkaterület hello tulajdonságaiban **munkaterület adatforrások** válasszon **hatókör konfigurációk**.
- 3. Kattintson a **Hozzáadás** toocreate egy új hatókör konfigurációját.
- 4. Adjon meg egy **neve** hello hatókör-konfigurációhoz.
+ 1. Az Azure-portálon lépjen a **Naplóelemzési** válassza ki a munkaterületen.
+ 2. A munkaterület tulajdonságainak **munkaterület adatforrások** válasszon **hatókör konfigurációk**.
+ 3. Kattintson a **Hozzáadás** hatókör új konfiguráció létrehozásához.
+ 4. Adjon meg egy **neve** hatókör-konfigurációhoz.
  5. Kattintson a **válassza ki a számítógépcsoportokat**.
- 6. Válassza ki a létrehozott hello számítógépcsoport és opcionálisan más csoportok tooadd toohello beállításokat.  Kattintson a **Kiválasztás** gombra.  
- 6. Kattintson a **OK** toocreate hello hatókör konfigurációját. 
+ 6. Válassza ki a létrehozott számítógépcsoport és a nem kötelezően bármely egyéb csoportok hozzáadni a konfigurációhoz.  Kattintson a **Kiválasztás** gombra.  
+ 6. Kattintson a **OK** létrehozása a hatókör beállításait. 
 
 
- ### <a name="3-apply-hello-scope-configuration-tooa-solution"></a>3. Hello hatókör konfigurációs tooa megoldás alkalmazni.
-Miután a hatókör konfigurációját, majd alkalmazhatja tooone vagy további megoldásokat.  Vegye figyelembe, hogy egy egyetlen hatókör konfigurációjának több megoldás is használható, amíg minden megoldás csak használhatja egy hatókör-konfigurációt.
+ ### <a name="3-apply-the-scope-configuration-to-a-solution"></a>3. A hatókör konfigurációjának alkalmazása megoldásokhoz.
+Miután a hatókör konfigurációját, majd alkalmazhatja azt egy vagy több megoldásokhoz.  Vegye figyelembe, hogy egy egyetlen hatókör konfigurációjának több megoldás is használható, amíg minden megoldás csak használhatja egy hatókör-konfigurációt.
 
-A hatókör konfigurációját, a folyamatot követve hello segítségével alkalmazni.  
+A hatókör konfigurációját, a következő eljárással alkalmazni.  
 
- 1. Az Azure-portálon hello, keresse meg a túl**Naplóelemzési** válassza ki a munkaterületen.
- 2. Hello tulajdonságaiban hello munkaterületen válassza ki a **megoldások**.
- 3. Kattintson a hello megoldás tooscope szeretné.
- 4. Hello megoldás alatt hello tulajdonságaiban **munkaterület adatforrások** válasszon **célcsoport-kezelési megoldás**.  Ha nem érhető el hello beállítás majd [Ez a megoldás nem tudja megcélozni](#solutions-and-agents-that-cant-be-targeted).
- 5. Kattintson a **Hozzáadás hatókör konfigurációjának**.  Ha már van egy alkalmazott konfiguráció toothis megoldás ezt a beállítást elérhetetlenné válik.  Meglévő konfigurációs hello felvétele előtt el kell távolítania.
- 6. Kattintson a létrehozott hello hatókör konfigurációját.
- 7. A Watch hello **állapot** hello konfigurációs tooensure, amely azt mutatja, **sikeres**.  Ha hello állapot hibát jelez, majd kattintson a hello ellipszis toohello jobb hello konfigurációs, és válassza a **Szerkesztés hatókör konfigurációjának** toomake módosításokat.
+ 1. Az Azure-portálon lépjen a **Naplóelemzési** válassza ki a munkaterületen.
+ 2. Válassza ki a munkaterület tulajdonságainak **megoldások**.
+ 3. Kattintson a kívánt hatókör-megoldásban.
+ 4. A megoldás tulajdonságainak **munkaterület adatforrások** kiválasztása **célcsoport-kezelési megoldás**.  Ha a beállítás nem érhető el majd [Ez a megoldás nem tudja megcélozni](#solutions-and-agents-that-cant-be-targeted).
+ 5. Kattintson a **Hozzáadás hatókör konfigurációjának**.  Ha már rendelkezik egy konfigurációt, akkor ez a beállítás nem érhető el ebben a megoldásban alkalmazott.  A meglévő konfigurációt felvétele előtt el kell távolítania.
+ 6. Kattintson a hatókör beállításait a létrehozott.
+ 7. Tekintse meg a **állapot** a konfigurációban, hogy azt mutatja, hogy a **sikeres**.  Ha az állapot hibát jelez, majd kattintson a jobb oldalán a konfigurációt, és válassza a három pont **Szerkesztés hatókör konfigurációjának** módosításokat.
 
 ## <a name="solutions-and-agents-that-cant-be-targeted"></a>Megoldások és az ügynököket, amelyeket nem telepíthető
-Az alábbiakban az ügynök és a megoldások, amelyek nem használható a célcsoport-kezelési megoldás hello feltételeket.
+Az alábbiakban az ügynök és a megoldások, amelyek nem használható a célcsoport-kezelési megoldás a feltételeket.
 
-- Csak célcsoport-kezelési megoldás tooagents telepítendő toosolutions vonatkozik.
-- Csak célcsoport-kezelési megoldás a Microsoft által biztosított toosolutions vonatkozik.  Nem alkalmazható toosolutions [partnerek vagy saját maga által létrehozott](operations-management-suite-solutions-creating.md).
-- Ügynökök tooLog Analytics közvetlenül csatlakozó csak szűrésére.  Megoldás-e azokat a hatókör beállításait tartalmazza-e a most csatlakoztatott Operations Manager felügyeleti csoport részét képező ügynökök tooany automatikusan telepíteni fogja.
+- Csak célcsoport-kezelési megoldás által telepítendő ügynökök megoldások vonatkozik.
+- Csak célcsoport-kezelési megoldás a Microsoft által biztosított megoldások vonatkozik.  Nem alkalmazható megoldásokhoz [partnerek vagy saját maga által létrehozott](operations-management-suite-solutions-creating.md).
+- Ügynököket, amelyeket közvetlen csatlakoztatása a Log Analyticshez csak szűrésére.  Megoldás automatikusan telepíti azokat a hatókör konfigurációját most tartalmazza-e az Operations Manager csatlakoztatott felügyeleti csoport részét képező összes ügynököt.
 
 ### <a name="exceptions"></a>Kivételek
-Célcsoport-kezelési megoldás nem használható hello annak ellenére, hogy azok hello fér el a következő megoldások megadott feltételeknek.
+Célcsoport-kezelési megoldás nem használható a következő megoldásokat annak ellenére, hogy elférjen a megadott feltételeknek.
 
 - Ügynök állapotfigyelő értékelése
 
 ## <a name="next-steps"></a>Következő lépések
-- További tudnivalók a megoldások többek között a környezetében, a rendelkezésre álló tooinstall hello megoldásokat [hozzáadása Azure Naplóelemzés felügyeleti megoldások tooyour munkaterület](../log-analytics/log-analytics-add-solutions.md).
+- További információ a megoldások, amelyek telepíthető a környezetben, beleértve a felügyeleti megoldásokra [megoldások Azure Naplóelemzés adja hozzá a munkaterületre](../log-analytics/log-analytics-add-solutions.md).
 - További információ a számítógépcsoportok létrehozása [számítógépcsoportokat a Log Analyticshez jelentkezzen keresések](../log-analytics/log-analytics-computer-groups.md).

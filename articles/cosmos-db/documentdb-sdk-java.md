@@ -1,6 +1,6 @@
 ---
 title: "Az Azure Cosmos DB: A DocumentDB Java API, SDK & erőforrások |} Microsoft Docs"
-description: "Tudnivalók az hello Java API és az SDK kiadási dátum, használatból való kivonást dátumok és módosítások hello Azure Cosmos DB DocumentDB Java SDK verziói között."
+description: "Tudnivalók a Java API és SDK, beleértve a kiadási dátum, használatból való kivonást dátumok és az Azure Cosmos DB DocumentDB Java SDK verziói között végrehajtott módosításokat."
 services: cosmos-db
 documentationcenter: java
 author: rnagpal
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 07/11/2017
 ms.author: khdang
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8ef43ebeb7ae1bfc55512c4a7489c1b7930122d6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 15e3f7ef3bfd6b1f61fe6081a378bdb29e0a1aa2
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="azure-cosmos-db-documentdb-java-sdk-release-notes-and-resources"></a>Azure Cosmos DB: A DocumentDB Java SDK kibocsátási megjegyzések és erőforrások
 > [!div class="op_single_selector"]
@@ -41,9 +41,9 @@ ms.lasthandoff: 10/06/2017
 
 <tr><td>**API-JÁNAK dokumentációja**</td><td>[Java API-referenciadokumentáció](/java/api/com.microsoft.azure.documentdb)</td></tr>
 
-<tr><td>**Közreműködési lehetőségek tooSDK**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-java/)</td></tr>
+<tr><td>**Hozzájárul az SDK**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-java/)</td></tr>
 
-<tr><td>**Első lépések**</td><td>[Ismerkedés a hello Java SDK](documentdb-java-get-started.md)</td></tr>
+<tr><td>**Első lépések**</td><td>[Ismerkedés a Java SDK-val](documentdb-java-get-started.md)</td></tr>
 
 <tr><td>**Webes alkalmazás oktatóanyag**</td><td>[Webalkalmazás fejlesztése a Azure Cosmos DB](documentdb-java-application.md)</td></tr>
 
@@ -53,8 +53,8 @@ ms.lasthandoff: 10/06/2017
 ## <a name="release-notes"></a>Kibocsátási megjegyzések
 
 ### <a name="a-name11201120"></a><a name="1.12.0"/>1.12.0
-* Felosztja a kritikus hibajavítások toorequest során partíció feldolgozása.
-* Megtörtént egy probléma javítása hello erős és BoundedStaleness konzisztenciaszintek.
+* A kérelem feldolgozása során partíció elágazást kritikus hibajavítások.
+* Az erős és BoundedStaleness konzisztenciaszintek rögzített kapcsolatos problémát.
 
 ### <a name="a-name11101110"></a><a name="1.11.0"/>1.11.0
 * Egy új konzisztenciaszint támogatása ConsistentPrefix nevezik.
@@ -62,11 +62,11 @@ ms.lasthandoff: 10/06/2017
 
 ### <a name="a-name11001100"></a><a name="1.10.0"/>1.10.0
 * Particionált gyűjtemény, mint az engedélyezett támogatása 2500 RU/mp, alacsony, a méretezés lépésekben 100 RU/mp.
-* A hiba kijavítva a hello natív szerelvény, ami azt eredményezheti NullRef kivétel néhány lekérdezést.
+* Rögzített, a hiba a natív szerelvény, ami azt eredményezheti NullRef kivétel néhány lekérdezést.
 
 ### <a name="a-name196196"></a><a name="1.9.6"/>1.9.6
-* Programhiba rögzített hello lekérdezési motor konfigurációját, amelyek kivételek lekérdezések okozhatnak átjáró módban.
-* Rögzített néhány hibák hello munkamenet tárolóban, amelyek közvetlenül a webhelycsoport létrehozása után a kéréseket "Tulajdonosa erőforrás nem található" kivétel okozhatnak.
+* Programhiba rögzített, a lekérdezési motor konfigurációját, amelyek kivételek lekérdezések okozhatnak átjáró módban.
+* A munkamenet-tárolóban, amelyek közvetlenül a webhelycsoport létrehozása után a kéréseket "Tulajdonosa erőforrás nem található" kivétel okozhatnak néhány hibák rögzített.
 
 ### <a name="a-name195195"></a><a name="1.9.5"/>1.9.5
 * Összesítési lekérdezéseket (COUNT, MIN, MAX, SUM és átlagos) támogatása. Lásd: [összesítési támogatási](documentdb-sql-query.md#Aggregates).
@@ -80,72 +80,72 @@ ms.lasthandoff: 10/06/2017
 
 ### <a name="a-name194194"></a><a name="1.9.4"/>1.9.4
 * A hozzáadott egyszerű példány-alapú proxyk ügyféltámogatás ConnectionPolicy.setProxy() API-t.
-* A hozzáadott DocumentClient.close() API tooproperly leállítási DocumentClient-példány.
-* Továbbfejlesztett lekérdezési teljesítmény szerint hello lekérdezésterv származó hello natív szerelvény helyett átjáró hello közvetlen kapcsolatot módban.
-* Állítsa be a FAIL_ON_UNKNOWN_PROPERTIES = false, így a felhasználók a saját pojo-vá JsonIgnoreProperties toodefine nem szükséges.
-* Átkerült naplózási toouse SLF4J.
+* A hozzáadott DocumentClient.close() API megfelelően leállítási DocumentClient példányra.
+* Javítja a lekérdezési teljesítmény közvetlen kapcsolatot módban való származtatás a lekérdezésterv a natív szerelvény helyett az átjárót.
+* Állítsa be a FAIL_ON_UNKNOWN_PROPERTIES = false, így a felhasználóknak nem kell a pojo-vá JsonIgnoreProperties ad meg.
+* Átkerült naplózási SLF4J használatára.
 * Rögzített, néhány más hibák konzisztencia-olvasó.
 
 ### <a name="a-name193193"></a><a name="1.9.3"/>1.9.3
-* Programhiba rögzített hello kapcsolat felügyeleti tooprevent kapcsolat kiszivárgásának közvetlen kapcsolatot módban.
-* Rögzített programhiba hello legfelső szintű lekérdezésben, ahol NullReferenece kivétel generálhat.
-* Javítja a teljesítményt, csökkenti a hálózati hívás hello belső gyorsítótárak esetében hello száma.
+* A kapcsolat kezelése közvetlen kapcsolatot módban kapcsolat kiszivárgásának elkerülésére programhiba rögzített.
+* Rögzített programhiba a legfelső szintű lekérdezésben, ahol NullReferenece kivétel generálhat.
+* Javítja a teljesítményt a belső gyorsítótárat hálózati hívás számának csökkentésével.
 * A hozzáadott állapotkód, tevékenységazonosító és a kérelem URI-azonosítója a DocumentClientException hibaelhárítást.
 
 ### <a name="a-name192192"></a><a name="1.9.2"/>1.9.2
-* Megtörtént egy probléma javítása hello kapcsolat felügyeleti stabilitását.
+* Megtörtént egy probléma javítása a kapcsolat kezelése stabilitását.
 
 ### <a name="a-name191191"></a><a name="1.9.1"/>1.9.1
 * BoundedStaleness konzisztenciaszint támogatása.
 * Közvetlen kapcsolat CRUD műveleteihez particionált gyűjtemények támogatása.
 * SQL adatbázis lekérdezése hiba kijavítva.
-* Programhiba rögzített hello gyorsítótárában, ahol munkamenet-azonosító is lehet helytelenül van beállítva.
+* Programhiba rögzített, a munkamenet-gyorsítótár, ahol munkamenet-azonosító is lehet helytelenül van beállítva.
 
 ### <a name="a-name190190"></a><a name="1.9.0"/>1.9.0
 * Támogatja a párhuzamos lekérdezések partíció közötti.
 * FELSŐ/ORDER BY lekérdezések a particionált gyűjtemények támogatása.
 * Az erős konzisztencia támogatása.
 * Alapú kérések közvetlen kapcsolat használatakor támogatása.
-* Rögzített toomake ActivityId maradnak konzisztens összes kérelem újrapróbálkozások között.
-* Programhiba rögzített során egy gyűjteménybe hello és újbóli létrehozása a munkamenet-gyorsítótár toohello kapcsolatos ugyanazzal a névvel.
+* Ellenőrizze az összes kérelem újrapróbálkozások között konzisztens marad ActivityId rögzített.
+* Rögzített egy azonos nevű gyűjtemény újbóli létrehozása során a munkamenet-gyorsítótár kapcsolatos hiba.
 * A hozzáadott sokszög és LineString adattípusok indexelő házirend geokerítések térbeli lekérdezéseket a gyűjtemény meg.
 * Java Doc Java 1.8 rögzített problémákat.
 
 ### <a name="a-name181181"></a><a name="1.8.1"/>1.8.1
-* Programhiba rögzített PartitionKeyDefinitionMap toocache az egypartíciós gyűjtemények és extra nem később fetch partíció kulcs kérelmeket.
-* Rögzített egy hiba toonot újra, amikor egy helytelen partíciókulcs-értékkel van megadva.
+* Az egypartíciós gyűjtemények gyorsítótárba, és nem kulcs kérelmek partícióazonosító extra fetch PartitionKeyDefinitionMap programhiba rögzített.
+* A hiba nem próbálja meg, amikor egy helytelen partíciókulcs-értékkel van megadva a rögzített.
 
 ### <a name="a-name180180"></a><a name="1.8.0"/>1.8.0
-* Több területi adatbázis fiókok hozzáadott hello támogatása.
-* A beállítások toocustomize hello maximális szabályozottan halmozott kérelmek automatikus újrapróbálkozási támogatása ismétlési kísérletek száma és max várakozási idő.  Lásd: RetryOptions és ConnectionPolicy.getRetryOptions().
+* Több területi adatbázis fiókok támogatása.
+* A beállítások az újrapróbálkozások maximális és a várakozási idő maximális újrapróbálkozási testreszabásához szabályozottan halmozott kérelmek automatikus újrapróbálkozási támogatása.  Lásd: RetryOptions és ConnectionPolicy.getRetryOptions().
 * Elavult IPartitionResolver egyéni particionálási kód alapján. A particionált gyűjtemények használata magasabb tárolási és átviteli sebességet.
 
 ### <a name="a-name171171"></a><a name="1.7.1"/>1.7.1
 * A hozzáadott újrapróbálkozási házirend támogatása sávszélesség-szabályozás.  
 
 ### <a name="a-name170170"></a><a name="1.7.0"/>1.7.0
-* Időigényessé toolive (TTL) dokumentumok támogatása.
+* A hozzáadott idő live (TTL)-támogatás a dokumentumok.
 
 ### <a name="a-name160160"></a><a name="1.6.0"/>1.6.0
 * Megvalósított [particionált gyűjtemények](partition-data.md) és [felhasználói teljesítményszintet](performance-levels.md).
 
 ### <a name="a-name151151"></a><a name="1.5.1"/>1.5.1
-* Programhiba rögzített HashPartitionResolver toogenerate kivonatértékeket más SDK konzisztens little endian toobe.
+* Programhiba rögzített HashPartitionResolver kivonatértékeket little endian Csomagjától konzisztens kell létrehozni.
 
 ### <a name="a-name150150"></a><a name="1.5.0"/>1.5.0
-* Kivonatoló & tartomány hozzáadása partíció feloldókat tooassist a horizontális az alkalmazások több partíciót.
+* Kivonatoló & tartomány hozzáadása partícióazonosító feloldókat, elősegítve ezzel a horizontális alkalmazások között több partíciót.
 
 ### <a name="a-name140140"></a><a name="1.4.0"/>1.4.0
-* Upsert megvalósításához. Új upsertXXX módszerek toosupport Upsert szolgáltatás hozzá.
+* Upsert megvalósításához. Új upsertXXX módszerek Upsert szolgáltatás támogatása érdekében adott hozzá.
 * Azonosító-alapú útválasztás megvalósítása. Nincs nyilvános API-módosítás, belső összes módosítását.
 
 ### <a name="a-name130130"></a><a name="1.3.0"/>1.3.0
-* Kiadás kihagyva Csomagjától összehangolás toobring verziószám
+* Kiadás verziószáma átveendő Csomagjától összehangolás kihagyva
 
 ### <a name="a-name120120"></a><a name="1.2.0"/>1.2.0
 * Támogatja a földrajzi Index
 * Ellenőrzi az összes erőforrás id tulajdonság. Erőforrások azonosító nem tartalmazhat?, /, #, \, karaktereket vagy záró szóközt.
-* Hozzáadja az új fejléc "index átalakítása folyamatban" tooResourceResponse.
+* Új fejléc "index átalakítása folyamatban" hozzáadása ResourceResponse.
 
 ### <a name="a-name110110"></a><a name="1.1.0"/>1.1.0
 * V2 indexelési házirendet alkalmazza
@@ -154,14 +154,14 @@ ms.lasthandoff: 10/06/2017
 * GA SDK
 
 ## <a name="release--retirement-dates"></a>Kiadás & használatból való kivonást dátumok
-Microsoft legalább értesítést küldenek **12 hónapon keresztül** előre kivonása az SDK-t rendelés toosmooth hello átmenet tooa vagy újabb támogatott verzióra.
+Microsoft legalább értesítést küldenek **12 hónapon keresztül** SDK eltávolítása érdekében vagy újabb támogatott verzióra való áttérés előtt.
 
-Új szolgáltatásait és funkcióit és optimalizálás csak hozzáadott toohello aktuális SDK-t, így célszerű a lehető leghamarabb javasoljuk, hogy Ön mindig frissítési toohello SDK letöltéséhez.
+Új szolgáltatásait és funkcióit és optimalizálás csak hozzá az aktuális SDK, így javasoljuk, hogy mindig a legújabb SDK verzióra frissít legkorábban lehető.
 
-A kérelem tooCosmos DB kivont SDK használatával a program elutasítja hello szolgáltatás.
+A Cosmos DB kivont SDK használatával fog kell elutasította a szolgáltatás.
 
 > [!WARNING]
-> Hello DocumentDB SDK-t a Java előzetes tooversion összes verziója **1.0.0** a rendszerből **2016. február 29-én**.
+> A DocumentDB Java SDK-es vagy korábbi összes verziója **1.0.0** a rendszerből **2016. február 29-én**.
 > 
 > 
 
@@ -203,5 +203,5 @@ A kérelem tooCosmos DB kivont SDK használatával a program elutasítja hello s
 [!INCLUDE [cosmos-db-sdk-faq](../../includes/cosmos-db-sdk-faq.md)]
 
 ## <a name="see-also"></a>Lásd még:
-toolearn Cosmos DB kapcsolatos további információkért lásd: [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) szolgáltatás lapján.
+A Cosmos DB kapcsolatos további információkért lásd: [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) szolgáltatás lapján.
 

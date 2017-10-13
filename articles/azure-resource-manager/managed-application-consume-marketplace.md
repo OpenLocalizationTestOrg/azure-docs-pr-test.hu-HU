@@ -1,6 +1,6 @@
 ---
-title: "Kezelt alkalmazás Azure piactér aaaConsume |} Microsoft Docs"
-description: "Describeshow toocreate Azure felügyelt alkalmazás hello piactéren keresztül érhető el."
+title: "Kezelt alkalmazás Azure piactér felhasználása |} Microsoft Docs"
+description: "Describeshow hozhat létre egy Azure felügyelt alkalmazást, amely elérhető a piactéren keresztül."
 services: azure-resource-manager
 author: ravbhatnagar
 manager: rjmax
@@ -10,44 +10,44 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 07/11/2017
 ms.author: gauravbh; tomfitz
-ms.openlocfilehash: 9ae6e11a3f63eb58a9f3199364b5606a7afe5618
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: baf456740bddd562391ed64d707f990c8921d710
+ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/29/2017
 ---
-# <a name="consume-azure-managed-applications-in-hello-marketplace"></a>Azure felhasználásához hello piactér-alkalmazások felügyelete
+# <a name="consume-azure-managed-applications-in-the-marketplace"></a>Azure felhasználásához felügyelt alkalmazások a piactéren
 
-Hello leírtaknak megfelelően [kezelt alkalmazás – áttekintés](managed-application-overview.md) cikk, van két olyan eset hello end tooend élményt nyújt. Egyik hello közzétevőt vagy szállító kívánó toocreate egy kezelt alkalmazást, az ügyfelek általi használatra. hello második hello end vevő vagy hello fogyasztói hello felügyelt alkalmazás. Ez a cikk ismerteti a hello második forgatókönyv szerint. Leírja, hogyan telepíthet egy kezelt alkalmazást, a Microsoft Azure piactérről hello.
+A bemutatott a [kezelt alkalmazás – áttekintés](managed-application-overview.md) cikk, van két olyan eset a teljes körű élményt nyújt. A közzétevő vagy a szállító, hozzon létre egy felügyelt alkalmazást, az ügyfelek által használható számára, akik egyik. A második pedig a végfelhasználók az ügyfél vagy a fogyasztó a kezelt alkalmazás. Ez a cikk ismerteti a második forgatókönyv szerint. Leírja, hogyan telepíthet egy kezelt alkalmazást, a Microsoft Azure piactérről.
 
-## <a name="create-from-hello-marketplace"></a>Hello piactér létrehozása
+## <a name="create-from-the-marketplace"></a>Hozzon létre a piactérről
 
-Erőforrások a piactér hello bármilyen hasonló toodeploying hello piactér a kezelt alkalmazás telepítése. 
+A piactérről kezelt alkalmazás telepítése hasonlít bármilyen típusú erőforrások telepítése a piactéren. 
 
-Hello portálon, válassza ki a **+ új** , és keressen megoldást toodeploy hello típusú. Hello rendelkezésre álló lehetőségeket válassza ki valamelyik kell hello.
+Válassza a portál **+ új** , és keresse meg a telepítendő megoldás típusával. Az elérhető lehetőségek közül jelölje ki a van szüksége.
 
 ![keresési megoldások](./media/managed-application-consume-marketplace/search-apps.png)
 
-Tekintse át a hello alkalmazás hello összefoglalása, és válassza ki **létrehozása**.
+Tekintse át az összefoglalást, az alkalmazás, és válassza ki **létrehozása**.
 
 ![kezelt alkalmazás létrehozása](./media/managed-application-consume-marketplace/create-marketplace-managed-app.png)
 
-Például a más megoldás lehetősége lesz mezők tooprovide értékeit. Ezek a mezők hoz létre a felügyelt alkalmazási hello típusú lehet. 
+Más megoldás, például lehetősége lesz arra, hogy az értékek mezőkkel. Ezek a mezők változó által kezelt alkalmazás hoz létre. 
 
 ## <a name="view-support-information"></a>Támogatási információk megtekintése
 
-Miután a kezelt alkalmazás telepítve van, hello alkalmazás hello támogatási információk megtekintése. Hello kezelt alkalmazás paneljén hello támogatási információkat szerepel.
+Miután a kezelt alkalmazás telepítve van, az alkalmazás támogatási információk megtekintése. A kezelt alkalmazás paneljén jelenik meg a támogatási információkat.
 
 ![Támogatás](./media/managed-application-consume-marketplace/support.png)
 
 ## <a name="view-publisher-permissions"></a>A publisher engedélyek megtekintése
 
-amely felügyeli az alkalmazás hello szállítói kapnak tooyour erőforrások eléréséhez. toosee ezeket az engedélyeket, válassza ki **engedélyek**.
+A gyártó, amely felügyeli az alkalmazás az erőforrásokhoz való hozzáférést. Ezeket az engedélyeket, jelölje ki a **engedélyek**.
 
 ![Engedélyek](./media/managed-application-consume-marketplace/authorizations.png)
 
 ## <a name="next-steps"></a>Következő lépések
 
-* További információ a kezelt alkalmazás közzététele hello piactér: [által felügyelt alkalmazások Azure piactér](managed-application-author-marketplace.md).
-* toopublish felügyelt alkalmazásokat, amelyek a szervezet csak elérhető toousers lásd [létrehozása és a szolgáltatási katalógus kezelt alkalmazás közzététele](managed-application-publishing.md).
-* tooconsume felügyelt alkalmazásokat, amelyek a szervezet csak elérhető toousers lásd [szolgáltatás katalógus kezelt alkalmazás felhasználása](managed-application-consumption.md).
+* További információ a kezelt alkalmazás közzététele a piactéren: [által felügyelt alkalmazások Azure piactér](managed-application-author-marketplace.md).
+* Felügyelt alkalmazások, amelyek csak a szervezet felhasználói számára elérhető közzétételét, lásd: [létrehozása és a szolgáltatási katalógus kezelt alkalmazás közzététele](managed-application-publishing.md).
+* Felügyelt alkalmazások, amelyek csak a szervezet felhasználói számára elérhető felhasználását, lásd: [szolgáltatás katalógus kezelt alkalmazás felhasználása](managed-application-consumption.md).

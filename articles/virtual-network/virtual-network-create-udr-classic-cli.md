@@ -1,6 +1,6 @@
 ---
-title: "egy Azure-beli virtuális hálózatra - CLI - klasszikus útválasztás aaaControl |} Microsoft Docs"
-description: "Ismerje meg, hogyan útválasztás használatával Vnetek toocontrol hello hello klasszikus üzembe helyezési modellel Azure parancssori felület"
+title: "Szabályozhatja az Azure Virtual Network - CLI - klasszikus Útválasztás |} Microsoft Docs"
+description: "Megtudhatja, hogyan szabályozhatja az Azure parancssori felület használatával a klasszikus üzembe helyezési modellel Vnetek Útválasztás"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
-ms.openlocfilehash: 07dde573f1a605bf280156c261d51e213ede0cdc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8fcb98723e7e872c932908e3456dc8680deb0901
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="control-routing-and-use-virtual-appliances-classic-using-hello-azure-cli"></a>Vezérlő az Útválasztás és a használata (klasszikus) virtuális készülékek használata Azure CLI hello
+# <a name="control-routing-and-use-virtual-appliances-classic-using-the-azure-cli"></a>Szabályozhatja az Útválasztás és használni a virtuális készülékeket (klasszikus) az Azure parancssori felület használatával
 
 > [!div class="op_single_selector"]
 > * [PowerShell](virtual-network-create-udr-arm-ps.md)
@@ -34,18 +34,18 @@ ms.lasthandoff: 10/06/2017
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-Ez a cikk ismerteti a hello klasszikus üzembe helyezési modellben. Emellett [szabályozhatja az Útválasztás és használni a virtuális készülékeket hello Resource Manager üzembe helyezési modellel](virtual-network-create-udr-arm-cli.md).
+Ez a cikk a klasszikus üzembehelyezési modellt ismerteti. Emellett [szabályozhatja az Útválasztás és a virtuális készülékek használata a Resource Manager üzembe helyezési modellel](virtual-network-create-udr-arm-cli.md).
 
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
-minta hello Azure CLI-t az alábbi parancsok már a fenti hello forgatókönyv alapján létre egy egyszerű környezetben várható. Ha toorun hello parancsok ebben a dokumentumban megjelenített, hozzon létre hello környezet látható [VNet létrehozása (klasszikus) használatával hello Azure CLI](virtual-networks-create-vnet-classic-cli.md).
+Az alábbi minta Azure parancssori felület parancsait már a fenti forgatókönyv alapján létre egy egyszerű környezetben várható. Ha szeretné a parancsokat a jelen dokumentum megjelenített, hozza létre a környezet megjelenő [hozzon létre egy virtuális hálózat (klasszikus) az Azure parancssori felület használatával](virtual-networks-create-vnet-classic-cli.md).
 
 [!INCLUDE [azure-cli-prerequisites-include.md](../../includes/azure-cli-prerequisites-include.md)]
 
-## <a name="create-hello-udr-for-hello-front-end-subnet"></a>Hello UDR hello előtér alhálózat létrehozása
-toocreate hello útválasztási táblázatot és hello előtérben lévő alhálózat alhálózat alapján hello forgatókönyv fenti, a szükséges útvonal kövesse a hello lépéseket.
+## <a name="create-the-udr-for-the-front-end-subnet"></a>Az előtér-alhálózat UDR létrehozása
+Az útválasztási táblázatot és az előtér-alhálózat, a fenti forgatókönyv alapján szükséges útvonal létrehozásához kövesse az alábbi lépéseket.
 
-1. Futtassa a következő tooswitch tooclassic üzemmód hello:
+1. Futtassa a következő parancsot a klasszikus mód:
 
     ```azurecli
     azure config mode asm
@@ -55,7 +55,7 @@ toocreate hello útválasztási táblázatot és hello előtérben lévő alhál
 
         info:    New mode is asm
 
-2. Futtassa a következő parancs toocreate hello hello előtér-alhálózat egy útválasztási táblázatot:
+2. Futtassa a következő parancsot az előtér-alhálózat egy útválasztási táblázatot létrehozásához:
 
     ```azurecli
     azure network route-table create -n UDR-FrontEnd -l uswest
@@ -72,9 +72,9 @@ toocreate hello útválasztási táblázatot és hello előtérben lévő alhál
    
     Paraméterek:
    
-   * **-l (vagy --location)**. Azure-régió, ahol hello új NSG létrejön. A mi esetünkben *westus*.
-   * **-n (vagy --name)**. Hello nevét új NSG. A mi esetünkben *NSG-előtérbeli*.
-3. Futtassa a következő parancs toocreate hello útvonal tábla toosend adott útvonal hello összes adatforgalmat toohello háttér-alhálózat (192.168.2.0/24) toohello **FW1** virtuális gép (192.168.0.4):
+   * **-l (vagy --location)**. Azure-régió, ahol létrejön az új NSG. A mi esetünkben *westus*.
+   * **-n (vagy --name)**. Az új NSG neve. A mi esetünkben *NSG-előtérbeli*.
+3. A következő parancsot egy útvonal létrehozása az útvonaltáblában a háttér-alhálózat (192.168.2.0/24) irányuló összes forgalom küldése a a **FW1** virtuális gép (192.168.0.4):
 
     ```azurecli
     azure network route-table route set -r UDR-FrontEnd -n RouteToBackEnd -a 192.168.2.0/24 -t VirtualAppliance -p 192.168.0.4
@@ -89,11 +89,11 @@ toocreate hello útválasztási táblázatot és hello előtérben lévő alhál
    
     Paraméterek:
    
-   * **-r (vagy--útvonal-részes-táblanév)**. Amennyiben adható hozzá hello útvonal hello útvonaltábla neve. A mi esetünkben *UDR-előtérbeli*.
-   * **-a (vagy --address-prefix)**. Ha a csomagok irányuló forgalomnál hello alhálózat címelőtagot. A mi esetünkben *192.168.2.0/24*.
+   * **-r (vagy--útvonal-részes-táblanév)**. Az útvonaltábla, ahova a rendszer hozzáadja az útvonal neve. A mi esetünkben *UDR-előtérbeli*.
+   * **-a (vagy --address-prefix)**. Az alhálózat, ahol a csomagok irányuló forgalomnál címelőtagot. A mi esetünkben *192.168.2.0/24*.
    * **-t (vagy--tovább-hop-type)**. Típusú objektum forgalom kapnak. A lehetséges értékek: *VirtualAppliance*, *pedig*, *VNETLocal*, *Internet*, vagy *nincs*.
    * **-p (vagy--next-hop-ip-cím**). Következő ugrás IP-címet. A mi esetünkben *192.168.0.4*.
-4. Futtatási hello következő parancsot a tooassociate hello útvonaltábla hello létre **előtér** alhálózati:
+4. Rendelje hozzá a létrehozott útválasztási táblázatot a következő parancsot a **előtér** alhálózati:
 
     ```azurecli
     azure network vnet subnet route-table add -t TestVNet -n FrontEnd -r UDR-FrontEnd
@@ -102,7 +102,7 @@ toocreate hello útválasztási táblázatot és hello előtérben lévő alhál
     Kimenet:
    
         info:    Executing command network vnet subnet route-table add
-        info:    Looking up hello subnet "FrontEnd"
+        info:    Looking up the subnet "FrontEnd"
         info:    Looking up network configuration
         info:    Looking up network gateway route tables in virtual network "TestVNet" subnet "FrontEnd"
         info:    Associating route table "UDR-FrontEnd" and subnet "FrontEnd"
@@ -114,25 +114,25 @@ toocreate hello útválasztási táblázatot és hello előtérben lévő alhál
    
     Paraméterek:
    
-   * **-t (vagy--vnet-name)**. Hello ahol hello alhálózat VNet neve. A mi esetünkben *TestVNet*.
-   * **-n (vagy--alhálózatneve**. Hozzáadandó hello alhálózati hello útvonaltábla neve. A mi esetünkben *FrontEnd*.
+   * **-t (vagy--vnet-name)**. A VNet neve, ahol az alhálózatban. A mi esetünkben *TestVNet*.
+   * **-n (vagy--alhálózatneve**. Az útvonaltábla nem kerülnek be az alhálózat neve. A mi esetünkben *FrontEnd*.
 
-## <a name="create-hello-udr-for-hello-back-end-subnet"></a>Hello UDR hello háttér-alhálózat létrehozása
-toocreate hello útválasztási táblázatot és hello háttér-alhálózat hello esetben teljes hello lépések alapján szükséges útvonal:
+## <a name="create-the-udr-for-the-back-end-subnet"></a>A háttér-alhálózat UDR létrehozása
+Az útvonaltábla és a háttér-alhálózat alapján a forgatókönyvhöz szükséges útvonal létrehozásához kövesse az alábbi lépéseket:
 
-1. Futtassa a következő parancs toocreate hello hello háttér-alhálózat egy útválasztási táblázatot:
+1. A következő parancsot egy útválasztási táblázatot a háttér-alhálózat létrehozásához:
 
     ```azurecli
     azure network route-table create -n UDR-BackEnd -l uswest
     ```
 
-2. Futtassa a következő parancs toocreate hello útvonal tábla toosend adott útvonal hello összes adatforgalmat toohello előtér-alhálózat (192.168.1.0/24) toohello **FW1** virtuális gép (192.168.0.4):
+2. A következő parancsot egy útvonal létrehozása az útválasztási táblázatban az előtér-alhálózat (192.168.1.0/24) irányuló összes forgalom küldése a a **FW1** virtuális gép (192.168.0.4):
 
     ```azurecli
     azure network route-table route set -r UDR-BackEnd -n RouteToFrontEnd -a 192.168.1.0/24 -t VirtualAppliance -p 192.168.0.4
     ```
 
-3. Futtatási hello parancs tooassociate hello útvonaltáblában hello a következő **háttér** alhálózati:
+3. A következő parancsot az útvonaltáblában a társítja a **háttér** alhálózati:
 
     ```azurecli
     azure network vnet subnet route-table add -t TestVNet -n BackEnd -r UDR-BackEnd

@@ -1,5 +1,5 @@
 ---
-title: "aaaConcurrency és munkaterhelés-kezelés az SQL Data Warehouse |} Microsoft Docs"
+title: "Párhuzamossági és munkaterhelés-kezelés az SQL Data Warehouse |} Microsoft Docs"
 description: "Ismerje meg a feldolgozási és munkaterhelés-kezelés az Azure SQL Data Warehouse adattárházzal történő, megoldások."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,24 +15,24 @@ ms.workload: data-services
 ms.custom: performance
 ms.date: 08/23/2017
 ms.author: joeyong;barbkess;kavithaj
-ms.openlocfilehash: 7f7e77aa687760252aed16573b609817ed9111c3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: eaf2d43286dbaa52ada1430fbb7ce1e37f41c0d4
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="concurrency-and-workload-management-in-sql-data-warehouse"></a>Párhuzamossági és munkaterhelés-kezelés az SQL Data Warehouse
-toodeliver kiszámítható teljesítményt biztosít, a Microsoft Azure SQL Data Warehouse segít párhuzamossági szintek és erőforrás-hozzárendelések például memória és CPU rangsorolását. Ez a cikk bemutatja a feldolgozási és munkaterhelés-kezelés, elmagyarázza, hogyan mindkét szolgáltatásokat nyújt, és hogy miként szabályozható őket az adatraktár toohello elveit. Az SQL Data Warehouse munkaterhelés-kezelés a tervezett toohelp Többfelhasználós környezetek támogatására. Nem célja a több-bérlős munkaterhelésekhez.
+Kiszámítható teljesítményt biztosítanak a Microsoft Azure SQL Data Warehouse segítséget nyújt a nagyságrendnél párhuzamossági szintek és erőforrás-hozzárendelések például memória és CPU rangsorolási ellenőrzése. Ez a cikk bemutatja a feldolgozási és munkaterhelés-kezelés, elmagyarázza, hogyan mindkét szolgáltatásokat nyújt, és hogy miként szabályozható őket az adatraktár elveit. SQL Data Warehouse munkaterhelés felügyeleti Többfelhasználós környezetek támogatására segítenek célja. Nem célja a több-bérlős munkaterhelésekhez.
 
 ## <a name="concurrency-limits"></a>Feldolgozási korlátok
-Az SQL Data Warehouse lehetővé teszi, hogy too1, 024 egyidejű kapcsolatok mentése. Az összes 1024 kapcsolat egyidejű lekérdezések küldje el. Toooptimize átviteli, az SQL Data Warehouse azonban előfordulhat, hogy várólista egyes lekérdezések tooensure, hogy minden egyes lekérdezés megkapja-e a minimális memória biztosítása. A lekérdezés-végrehajtás során Queuing következik be. Üzenetsor-kezelés lekérdezések a amikor növelheti a feldolgozási korlátok elérésekor az SQL Data Warehouse teljes átviteli sebesség biztosításával, hogy aktív lekérdezések beolvasása hozzáférés toocritically szükséges memória-erőforrásokat.  
+Az SQL Data Warehouse lehetővé teszi, hogy legfeljebb 1024 egyidejű kapcsolatok. Az összes 1024 kapcsolat egyidejű lekérdezések küldje el. Azonban a teljesítmény optimalizálása érdekében az SQL Data Warehouse is várólista néhány lekérdezést biztosítja, hogy minden egyes lekérdezés megkapják-e a minimális memória biztosítása. A lekérdezés-végrehajtás során Queuing következik be. Üzenetsor-kezelés lekérdezések feldolgozási korlátok elérésekor, az SQL Data Warehouse növelheti teljes átviteli sebesség győződjön meg arról, hogy aktív lekérdezések kritikusan szükséges memória-erőforrások eléréséhez.  
 
-Feldolgozási korlátok vonatkoznak két fogalom: *párhuzamos lekérdezések* és *egyidejűségi üzembe helyezési ponti*. Az egy lekérdezésben tooexecute, végre kell hajtani hello lekérdezés feldolgozási korlát és a hello párhuzamossági tárolóhely foglalási belül.
+Feldolgozási korlátok vonatkoznak két fogalom: *párhuzamos lekérdezések* és *egyidejűségi üzembe helyezési ponti*. A lekérdezés végrehajtásához azt végre kell hajtani a lekérdezés feldolgozási korlát és a párhuzamosság tárolóhely lefoglalása belül.
 
-* Egyidejű lekérdezések hello végrehajtása azonos hello lekérdezések idő. Az SQL Data Warehouse too32 párhuzamos lekérdezések hello nagyobb DWU mérete legfeljebb támogat.
-* Párhuzamossági üzembe helyezési ponti DWU alapján foglal le. Minden 100 DWU 4 párhuzamossági üzembe helyezési ponti biztosít. Például egy DW100 4 párhuzamossági üzembe helyezési ponti foglal le, és DW1000 40 foglal le. Minden egyes lekérdezés használ egy vagy több egyidejű tárhelyek, hello függő [erőforrásosztály](#resource-classes) hello lekérdezés. Hello smallrc erőforrásosztály futó lekérdezések egy feldolgozási tárolóhely felhasználását. Egy magasabb erőforrásosztály futó lekérdezések több egyidejű üzembe helyezési ponti felhasználását.
+* Egyidejű lekérdezések a lekérdezések végrehajtása egy időben. SQL Data Warehouse legfeljebb 32 egyidejű lekérdezések a DWU nagyobb méretű használatát teszi lehetővé.
+* Párhuzamossági üzembe helyezési ponti DWU alapján foglal le. Minden 100 DWU 4 párhuzamossági üzembe helyezési ponti biztosít. Például egy DW100 4 párhuzamossági üzembe helyezési ponti foglal le, és DW1000 40 foglal le. Minden egyes lekérdezés használ egy vagy több egyidejű tárhelyek, függ a [erőforrásosztály](#resource-classes) a lekérdezés. A smallrc erőforrásosztály futó lekérdezések egy feldolgozási tárolóhely felhasználását. Egy magasabb erőforrásosztály futó lekérdezések több egyidejű üzembe helyezési ponti felhasználását.
 
-hello következő táblázatban hello korlátozhatja a párhuzamos lekérdezések és a párhuzamosság tárhelyek hello, különböző DWU méretű.
+A következő táblázat ismerteti a korlátozhatja a párhuzamos lekérdezések és a feldolgozási tárhelyek a különböző DWU méretben.
 
 ### <a name="concurrency-limits"></a>Feldolgozási korlátok
 | DWU | Maximális párhuzamos lekérdezések | Lefoglalt párhuzamossági tárhelyek |
@@ -50,21 +50,21 @@ hello következő táblázatban hello korlátozhatja a párhuzamos lekérdezése
 | DW3000 |32 |120 |
 | DW6000 |32 |240 |
 
-E küszöbértékek valamelyike teljesül, amikor új lekérdezések helyezi várólistára, és végre érkezési sorrendben történő kiküldési alapon.  A lekérdezések befejeződik, és hello a lekérdezések és üzembe helyezési ponti süllyed hello korlátok, várólistára helyezett lekérdezések kiadásakor. 
+E küszöbértékek valamelyike teljesül, amikor új lekérdezések helyezi várólistára, és végre érkezési sorrendben történő kiküldési alapon.  A lekérdezések befejeződése és a lekérdezések és üzembe helyezési ponti süllyed korlátokat, várólistára helyezett lekérdezések kiadásakor. 
 
 > [!NOTE]  
-> *Válassza ki* lekérdezések végrehajtása kizárólag a dinamikus felügyeleti nézetek (dinamikus felügyeleti nézetek) vagy a katalógus nézetek nem szabályozza a hello feldolgozási korlátok. Hello rendszer függetlenül hello száma lekérdezések végrehajtása a figyelheti.
+> *Válassza ki* lekérdezések végrehajtása kizárólag a dinamikus felügyeleti nézetek (dinamikus felügyeleti nézetek) vagy a katalógus nézetek nem szabályozza a feldolgozási korlátok bármelyikét. A rendszer függetlenül lekérdezések végrehajtása a figyelheti.
 > 
 > 
 
 ## <a name="resource-classes"></a>Erőforrás-osztályok
-Erőforrás segítségével szabályozható a memóriafoglalás és CPU-ciklusok tooa lekérdezés megadott osztályokat. Kétféle típusú erőforrás osztályok tooa felhasználói adatbázis-szerepkörök hello formájában rendelhet hozzá. hello kétféle típusú erőforrás-osztályok a következők:
-1. Dinamikus erőforrás-osztályok (**smallrc, mediumrc, largerc, xlargerc**) foglaljon le a változó méretű memória, attól függően, hogy hello aktuális DWU. Ez azt jelenti, hogy amikor Ön vertikális felskálázás tooa nagyobb DWU, a lekérdezések automatikusan lekérni memóriáját. 
-2. Statikus erőforrás osztályok (**staticrc10, staticrc20, staticrc30, staticrc40, staticrc50, staticrc60, staticrc70, staticrc80**) lefoglalni hello függetlenül attól, hogy ugyanazon memóriamennyiség hello aktuális DWU (feltéve, hogy maga DWU hello elegendő memóriával rendelkezik). Ez azt jelenti, hogy nagyobb dwu-k, a lekérdezéseket is futtathat további erőforrás az osztályok egyidejűleg.
+Az erőforrásosztályok segítségével szabályozhatja a lekérdezésekhez rendelt memóriakiosztást és CPU-ciklusokat. Kétféle típusú erőforrás osztályok rendelhet egy felhasználói adatbázis-szerepkörök formájában. A két típusú erőforrás-osztályok a következők:
+1. Dinamikus erőforrás-osztályok (**smallrc, mediumrc, largerc, xlargerc**) foglaljon le a változó méretű memória, attól függően, hogy az aktuális DWU. Ez azt jelenti, hogy ha egy nagyobb adattárházegységre növelheti a lekérdezések automatikusan beolvasása több memóriát. 
+2. Statikus erőforrás-osztály (**staticrc10, staticrc20, staticrc30, staticrc40, staticrc50, staticrc60, staticrc70, staticrc80**) lefoglalni az aktuális DWU függetlenül azonos memóriamennyiség (feltéve, hogy a DWU maga elegendő memória). Ez azt jelenti, hogy nagyobb dwu-k, a lekérdezéseket is futtathat további erőforrás az osztályok egyidejűleg.
 
-A felhasználók **smallrc** és **staticrc10** kap a kisebb méretű memória, és magasabb szintű párhuzamosság előnyeit. Ezzel szemben, minden felhasználóhoz rendelni túl**xlargerc** vagy **staticrc80** kap nagy mennyiségű memóriát, és ezért a lekérdezések kevesebb egyidejűleg is futtathatók.
+A felhasználók **smallrc** és **staticrc10** kap a kisebb méretű memória, és magasabb szintű párhuzamosság előnyeit. Ezzel szemben rendelt felhasználók **xlargerc** vagy **staticrc80** kap nagy mennyiségű memóriát, és ezért a lekérdezések kevesebb egyidejűleg is futtathatók.
 
-Alapértelmezés szerint minden felhasználó tagja hello kis erőforrásosztály, **smallrc**. az eljárás hello `sp_addrolemember` van használt tooincrease hello erőforrásosztály, és `sp_droprolemember` van toodecrease hello erőforrásosztály használt. Például a parancs nőne hello erőforrásosztály a loaduser túl**largerc**:
+Alapértelmezés szerint minden felhasználó tagja a kis erőforrásosztály **smallrc**. Az eljárás `sp_addrolemember` használatával növelheti a erőforrásosztály és `sp_droprolemember` csökkenti a erőforrásosztály szolgál. Például a parancs a loaduser erőforrásosztály nőni fog **largerc**:
 
 ```sql
 EXEC sp_addrolemember 'largerc', 'loaduser'
@@ -73,24 +73,24 @@ EXEC sp_addrolemember 'largerc', 'loaduser'
 
 ### <a name="queries-that-do-not-honor-resource-classes"></a>Lekérdezések, amelyek nem fogadják el erőforrás-osztályok
 
-A lekérdezések, amelyek nem tudják igénybe venni egy nagyobb memóriafoglalás néhány típusa van. hello rendszer figyelmen kívül hagyja az erőforrás-osztály terhelése, és mindig futtassa ezeket a lekérdezéseket hello kis erőforrásosztály helyette. Hello kis erőforrásosztály mindig fut, ezeket a lekérdezéseket, ha azok futtathatja, ha a feldolgozási üzembe helyezési ponti nyomás alatt, és nem használja a tárolóhelyek több, mint amennyi szükséges. Lásd: [erőforrás osztály kivételek](#query-exceptions-to-concurrency-limits) további információt.
+A lekérdezések, amelyek nem tudják igénybe venni egy nagyobb memóriafoglalás néhány típusa van. A rendszer figyelmen kívül hagyja az erőforrás-osztály terhelése, és mindig futni ezeket a lekérdezéseket a kis erőforrás osztály. Ha kis erőforrásosztály mindig fut, ezeket a lekérdezéseket, ha párhuzamossági üzembe helyezési ponti nyomás alatt, és nem használja a tárolóhelyek több, mint amennyi szükséges futtathatják. Lásd: [erőforrás osztály kivételek](#query-exceptions-to-concurrency-limits) további információt.
 
 ## <a name="details-on-resource-class-assignment"></a>Az erőforrás osztály-hozzárendelés részletei
 
 
 Néhány további részleteket a erőforrásosztály:
 
-* *Az ALTER szerepkör* engedély is szükséges toochange hello erőforrásosztály egy felhasználó.
-* Bár hozzáadhatja a felhasználói tooone vagy több hello magasabb erőforrás osztályok, akkor a dinamikus erőforrás-osztályok élveznek statikus erőforrás osztályok. Ez azt jelenti, hogy ha a felhasználó hozzá van rendelve a tooboth **mediumrc**(dinamikus) és **staticrc80**(statikus), **mediumrc** hello erőforrás osztály, amely van figyelembe véve.
- * Amikor a felhasználó hozzá van rendelve egy erőforrás osztály egy adott osztály erőforrástípusra (egynél több dinamikus erőforrásosztály vagy több statikus erőforrásosztály) mint toomore, akkor hello legmagasabb erőforrásosztály figyelembe véve. Ez azt jelenti, hogy ha a felhasználó hozzá van rendelve, tooboth mediumrc és largerc, hello magasabb erőforrásosztály (largerc) van figyelembe véve. És ha a felhasználó hozzá van rendelve a tooboth **staticrc20** és **statirc80**, **staticrc80** kell figyelembe venni.
-* hello erőforrásosztály hello rendszer rendszergazda felhasználó nem módosítható.
+* *Az ALTER szerepkör* engedély szükséges egy olyan felhasználó erőforrásosztály módosítása.
+* Bár hozzáadhat egy felhasználó egy vagy több, a magasabb szintű erőforrás-osztályok, akkor dinamikus erőforrás-osztályok élveznek statikus erőforrás osztályok. Ez azt jelenti, hogy ha egy felhasználó mindkét rendelve **mediumrc**(dinamikus) és **staticrc80**(statikus), **mediumrc** az erőforrás-osztály, amely van figyelembe véve.
+ * Ha a felhasználó egynél több erőforrás osztály egy adott osztály erőforrástípusra (egynél több dinamikus erőforrásosztály vagy több statikus erőforrásosztály) van rendelve, akkor a legmagasabb erőforrásosztály figyelembe véve. Ez azt jelenti, hogy ha egy felhasználó mediumrc és a largerc van rendelve, a magasabb szintű erőforrás-osztály (largerc) van figyelembe véve. És ha egy felhasználó mindkét rendelve **staticrc20** és **statirc80**, **staticrc80** kell figyelembe venni.
+* A rendszer rendszergazda felhasználó erőforrásosztály nem módosítható.
 
 Részletes példákat lásd: [módosul felhasználói erőforrás osztály példa](#changing-user-resource-class-example).
 
 ## <a name="memory-allocation"></a>A memóriafoglalás
-Vannak előnyei és hátrányai tooincreasing egy felhasználó erőforrásosztály. A lekérdezések egy felhasználó egy erőforrásosztály növelését, ad hozzáférési toomore memóriába, ami azt jelentheti, lekérdezések gyorsabban hajtható végre.  Azonban a magasabb erőforrás osztályok is csökkentheti a hello száma párhuzamos lekérdezések futtatható. Ez a hello kompromisszum nagy mennyiségű memória tooa egyetlen lekérdezés elosztásáról, és így további lekérdezések, memória-foglalásokat, egyidejűleg toorun igénylő között. Ha egy felhasználó kap a lekérdezés számára magas foglalásokat, a más felhasználók nem fogják tudni hozzáférés toothat azonos memória toorun lekérdezést.
+Vannak előnyei és hátrányai a növekvő számú egy felhasználó erőforrásosztály. Egy felhasználó egy erőforrásosztály növekszik, a lekérdezések hozzáférést ad további memória, amely azt jelentheti, lekérdezések gyorsabban hajtható végre.  Azonban a magasabb erőforrás osztályok is csökkentheti a futtatható egyidejű lekérdezések száma. Ez egy nagy mennyiségű egyetlen lekérdezést memória lefoglalásakor vagy más lekérdezések, memória-hozzárendelések egyidejű futtatását is igénylő így között kompromisszum. Ha egy felhasználó kap a lekérdezés számára magas foglalásokat, más felhasználók nem hozzáférhetnek, hogy ugyanazt a memória-lekérdezés futtatható.
 
-a következő táblázat hello hello fenntartott memória mérete tooeach terjesztési DWU- és erőforrás-osztály képezi le.
+A következő táblázat a DWU- és erőforrás-osztály minden egyes terjesztési kiosztott memória képezi le.
 
 ### <a name="memory-allocations-per-distribution-for-dynamic-resource-classes-mb"></a>Memória kiosztásokat eloszlása dinamikus erőforrás osztályok (MB)
 | DWU | smallrc | mediumrc | largerc | xlargerc |
@@ -108,7 +108,7 @@ a következő táblázat hello hello fenntartott memória mérete tooeach terjes
 | DW3000 |100 |1,600 |3,200 |6,400 |
 | DW6000 |100 |3,200 |6,400 |12,800 |
 
-a következő táblázat hello le van foglalva tooeach terjesztési DWU és statikus erőforrásosztály hello memória képezi le. Vegye figyelembe, hello magasabb erőforrás osztályokkal rendelkezik-e a saját memória toohonor hello globális DWU korlátok csökken.
+A következő táblázat minden egyes terjesztési DWU és statikus erőforrásosztály által kiosztott memória képezi le. Ne feledje, hogy a magasabb szintű erőforrás-osztályok a memória, a globális DWU korlátok tiszteletben csökken.
 
 ### <a name="memory-allocations-per-distribution-for-static-resource-classes-mb"></a>Memória kiosztásokat eloszlása statikus erőforrás osztályok (MB)
 | DWU | staticrc10 | staticrc20 | staticrc30 | staticrc40 | staticrc50 | staticrc60 | staticrc70 | staticrc80 |
@@ -126,7 +126,7 @@ a következő táblázat hello le van foglalva tooeach terjesztési DWU és stat
 | DW3000 |100 |200 |400 |800 |1,600 |3,200 |6,400 |6,400 |
 | DW6000 |100 |200 |400 |800 |1,600 |3,200 |6,400 |12,800 |
 
-A tábla megelőző hello, láthatja, hogy a lekérdezés egy DW2000 hello a futó **xlargerc** erőforrásosztály kellene hozzáférés too6, 400 MB memória belül hello 60 elosztott adatbázisok mindegyike esetében.  Az SQL Data Warehouse nincsenek 60 terjesztéseket. Ezért toocalculate hello teljes memória lefoglalása egy lekérdezést a megadott erőforrásosztály, hello meghaladja értékeket meg kell szorozni 60.
+Az előző táblázatban láthatja, hogy fut egy DW2000 a lekérdezés a **xlargerc** erőforrásosztály kellene 6400 MB memória belül 60 elosztott adatbázis elérésére.  Az SQL Data Warehouse nincsenek 60 terjesztéseket. Ezért a teljes memória-foglalás a megadott erőforrásosztály lekérdezés kiszámításához, a fenti értékeket be kell szorozni 60.
 
 ### <a name="memory-allocations-system-wide-gb"></a>Memória kiosztásokat rendszerszintű (GB)
 | DWU | smallrc | mediumrc | largerc | xlargerc |
@@ -144,12 +144,12 @@ A tábla megelőző hello, láthatja, hogy a lekérdezés egy DW2000 hello a fut
 | DW3000 |6 |94 |188 |375 |
 | DW6000 |6 |188 |375 |750 |
 
-Ebből a táblázatból tartozó rendszerszintű memória-hozzárendelések, láthatja, hogy a lekérdezés egy DW2000 hello xlargerc erőforrás osztályban futó lefoglalt 375 GB memória összesen (6400 MB * 60 terjesztéseket / 1024 tooconvert tooGB) az SQL Data Warehouse hello a teljes keresztül.
+Ebből a táblázatból tartozó rendszerszintű memória-hozzárendelések, láthatja, hogy a xlargerc erőforrás osztály egy DW2000 futó lekérdezés lefoglalt 375 GB memória összesen (6400 MB * 60 azokat a terjesztéseket / 1024 GB átalakítása) az SQL Data Warehouse a a teljes keresztül.
 
-hello azonos számítási érvényes toostatic erőforrás osztályok.
+Ugyanazt a számítást vonatkozik statikus erőforrás.
  
 ## <a name="concurrency-slot-consumption"></a>Párhuzamossági tárolóhely-használat  
-Az SQL Data Warehouse magasabb erőforrás osztályok futtató további memória tooqueries biztosít. Memória mérete rögzített erőforrás.  Ezért hello lekérdezésenként kevesebb egyidejű lekérdezések végrehajtható hello lefoglalt memória. hello következő tábla ismételten kifejezi összes hello előző fogalmak DWU által elérhető párhuzamossági bővítőhelyek és minden erőforrásosztály által felhasznált hello tárhelyek hello számát jeleníti meg egyetlen nézetben.  
+Az SQL Data Warehouse biztosít több memóriát az magasabb erőforrás osztályok futó lekérdezésekhez. Memória mérete rögzített erőforrás.  Ezért további fenntartott memória mérete lekérdezésenként, kevesebb párhuzamos lekérdezések hajthat végre. A következő táblázat ismételten kifejezi összes, a korábbi fogalmakat, amelyek a feldolgozási bővítőhelyek DWU által elérhető és a tárolóhelyek minden erőforrásosztály által felhasznált számát jeleníti meg egyetlen nézetben.  
 
 ### <a name="allocation-and-consumption-of-concurrency-slots-for-dynamic-resource-classes"></a>Foglalási és felhasználási párhuzamossági tárolóhelyek dinamikus erőforrás-osztályok  
 | DWU | Maximális párhuzamos lekérdezések | Lefoglalt párhuzamossági tárhelyek | Üzembe helyezési ponti smallrc által használt | Üzembe helyezési ponti mediumrc által használt | Üzembe helyezési ponti largerc által használt | Üzembe helyezési ponti xlargerc által használt |
@@ -183,50 +183,50 @@ Az SQL Data Warehouse magasabb erőforrás osztályok futtató további memória
 | DW3000 | 32| 120| 1| 2| 4| 8| 16| 32| 64| 64|
 | DW6000 | 32| 240| 1| 2| 4| 8| 16| 32| 64| 128|
 
-Ezek a táblázatok a láthatja, hogy az SQL Data Warehouse fut, DW1000 foglal le, mely legfeljebb 32 egyidejű lekérdezéseket és 40 párhuzamossági tárolóhelyek összesen. Minden felhasználó smallrc fut, ha 32 egyidejű lekérdezések volna kell engedélyezett, mert minden egyes lekérdezés 1 párhuzamossági tárolóhely volna felhasználását. Ha minden felhasználó egy DW1000 mediumrc a futtatást, minden egyes lekérdezés szeretné kiosztani 800 MB eloszlása lekérdezésenként 47 GB memória összesen kiosztható és feldolgozási lenne korlátozott too5 felhasználók (40 párhuzamossági üzembe helyezési ponti / 8 tárolóhely mediumrc felhasználónként).
+Ezek a táblázatok a láthatja, hogy az SQL Data Warehouse fut, DW1000 foglal le, mely legfeljebb 32 egyidejű lekérdezéseket és 40 párhuzamossági tárolóhelyek összesen. Minden felhasználó smallrc fut, ha 32 egyidejű lekérdezések volna kell engedélyezett, mert minden egyes lekérdezés 1 párhuzamossági tárolóhely volna felhasználását. Ha minden felhasználó egy DW1000 mediumrc a futtatást, minden egyes lekérdezés szeretné kiosztani 800 MB eloszlása lekérdezésenként 47 GB memória összesen kiosztható és feldolgozási korlátozódik, 5 felhasználók (40 párhuzamossági üzembe helyezési ponti / 8 tárolóhely mediumrc felhasználónként).
 
 ## <a name="selecting-proper-resource-class"></a>Megfelelő erőforrásosztály kiválasztása  
-Bevált gyakorlat az erőforrás-osztályok módosítása helyett toopermanently hozzárendelése felhasználók tooa erőforrásosztály. Például, terhelések tooclustered oszloptárindexű táblákat hoz létre magasabb színvonalú indexeket, amikor több memóriát foglal le. tooensure, hogy terhelés toohigher memória rendelkezik-e, kifejezetten az adatok betöltése a felhasználó létrehozása, és véglegesen rendelje hozzá a felhasználó tooa magasabb erőforrásosztály.
-Nincsenek ajánlott eljárások toofollow Itt néhány. Fent említett SQL DW támogatja-e a kétféle típusú erőforrások osztály: erőforrás statikus és dinamikus erőforrás-osztályok.
+Egy jó gyakorlat az, hogy véglegesen felhasználók hozzárendelése az erőforrás-osztályok módosítása helyett egy erőforrásosztály. Fürtözött oszloptárindexű táblákat terhelések hozzon létre például a következő: jobb minőségű indexeket, amikor több memóriát foglal le. Győződjön meg arról, hogy terhelések hozzáférhetnek a nagyobb memóriába, kifejezetten az adatok betöltése a felhasználó létrehozása, és a felhasználó véglegesen hozzárendelése egy magasabb erőforrásosztály.
+Nincsenek ajánlott eljárásokat Itt néhány. Fent említett SQL DW támogatja-e a kétféle típusú erőforrások osztály: erőforrás statikus és dinamikus erőforrás-osztályok.
 ### <a name="loading-best-practices"></a>Gyakorlati tanácsok betöltése
-1.  Ha hello elvárásainak betölti a rendszeres adatmennyiséget, statikus erőforrásosztály érdemes használni. Később további számítási teljesítménnyel rendelkezik, hello adatraktár vertikális felskálázásával tooget tudnak több egyidejű toorun lekérdezi out-of-az-box, hello terhelés felhasználói nem több memóriát igényel.
-2.  Ha hello elvárásainak nagyobb terhelés bizonyos esetekben a, dinamikus erőforrásosztály érdemes használni. Később, amikor vertikális felskálázásával tooget további számítási teljesítménnyel rendelkezik, hello terhelés felhasználó kap további memória az a-kész, ezért így gyorsabban hello terhelés tooperform.
+1.  Ha az elvárások betölti a rendszeres adatmennyiséget, statikus erőforrásosztály érdemes használni. Később Ha vertikális felskálázásával eléréséhez további számítási teljesítménnyel rendelkezik, az adatraktár tudnak futni több egyidejű lekérdezéseket, a-kész, a betöltés felhasználó nem több memóriát igényel.
+2.  Ha az elvárások nagyobb terhelés egyes esetekben, dinamikus erőforrásosztály érdemes használni. Később, ha vertikális felskálázásával eléréséhez további számítási teljesítménnyel rendelkezik, a betöltés felhasználó kap további memória az a-kész, így lehetővé téve a gyorsabb végrehajtásához a terhelés.
 
-hello szükséges memóriát tooprocess terhelések hatékonyan függ betöltött hello tábla és a feldolgozandó adatok mennyiségétől hello hello jellegét. Például adatok közösségi koordináló intézet táblába töltéséhez szükséges néhány memória toolet közösségi koordináló intézet rowgroups optimalizálási elérni. További részletekért lásd: hello Oszlopcentrikus indexek - Adatbetöltési útmutatást.
+A terhelés hatékonyan feldolgozásához szükséges memória betöltve a tábla és a feldolgozott adatok mennyisége jellegétől függ. Például adatok közösségi koordináló intézet táblába töltéséhez ahhoz, hogy a közösségi koordináló intézet rowgroups optimalizálási elérni bizonyos memóriát igényel. További részletekért tekintse meg az Oszlopcentrikus indexek - Adatbetöltési útmutatást.
 
-Ajánlott eljárásként javasoljuk toouse legalább 200MB memória terhelések.
+Ajánlott eljárásként javasoljuk terhelések legalább 200MB memória használata.
 
 ### <a name="querying-best-practices"></a>Gyakorlati tanácsok lekérdezése
-Lekérdezések összetettségük függően különböző követelményekkel rendelkezik. Memória lekérdezésenként megnövelni, vagy növekvő hello párhuzamossági mindkét érvényes módon tooaugment hello lekérdezés igényeitől függően a teljes teljesítményt.
-1.  Hello elvárásainak rendszeres, összetett lekérdezések esetén (például toogenerate napi és heti jelentések), és nem kell egyidejűségi tootake előnyeit, dinamikus erőforrásosztály, akkor a. Ha hello rendszer további adatokat tooprocess, hello adatraktár vertikális felskálázásával ezért automatikusan nyújt további memória toohello felhasználói hello a lekérdezésnek a futtatása.
-2.  Ha hello elvárásainak változó vagy diurnal egyidejűségi minták (például ha hello adatbázis lekérik a webes felhasználói felület széles körben elérhető keresztül), egy statikus erőforrásosztály, akkor a. Később, amikor toodata adatraktár vertikális felskálázásával, hello statikus erőforrásosztály társított hello felhasználó automatikusan kell tudni toorun több egyidejű lekérdezéseket.
+Lekérdezések összetettségük függően különböző követelményekkel rendelkezik. Növelje a lekérdezésenként memóriát, vagy a feldolgozási növelését módon egyaránt érvényes lekérdezés igényeitől függően a teljes átviteli sebesség révén.
+1.  Az elvárások rendszeres, összetett lekérdezések esetén (például napi és heti jelentések készítéséhez), és nem kell párhuzamossági előnyeit, dinamikus erőforrásosztály, akkor a. Ha a rendszer további adatokat feldolgozni, az adatraktár vertikális felskálázásával ezért automatikusan nyújtják több memóriát a lekérdezés futtatása a felhasználók számára.
+2.  Ha elvárásainak változó vagy diurnal egyidejűségi minták (például ha az adatbázis lekérik a webes felhasználói felület széles körben elérhető keresztül), egy statikus erőforrásosztály, akkor a. Később Ha vertikális felskálázásával adatraktár, a felhasználó statikus erőforrásosztály társított automatikusan tudnak több egyidejű lekérdezések futtatásához.
 
-Ez számos tényezőtől függ, például hello mennyiségét, lekérdezett adatok hello táblasémákat, és különböző csatlakozást, kiválasztása és a csoport predikátumok hello jellege nem nem triviális, attól függően, hogy a lekérdezés hello kell kiválasztásával megfelelő memóriaengedély. Egy általános tükrözik, rendeljen több memóriát lehetővé teszi lekérdezések toocomplete gyorsabb, de csökkenne teljes feldolgozási hello. Párhuzamossági darabolása nem okoz problémát, ha nem árt túlzott memória lefoglalásakor. toofine-hangolási átviteli különböző változataira jellemző az erőforrás-osztályok tett kísérlet lehet szükség.
+Ez számos tényezőtől függ, például a lekérdezett, adatok mennyiségét a táblasémákat és különböző csatlakozást, kiválasztása és a csoport predikátumok jellege nem nem triviális, attól függően, hogy a lekérdezés kellene kiválasztásával megfelelő memóriaengedély. Egy általános tükrözik, rendeljen több memóriát lehetővé teszi a lekérdezéseket, amelyekkel gyorsabban befejeződjenek, de a teljes feldolgozási csökkenne. Párhuzamossági darabolása nem okoz problémát, ha nem árt túlzott memória lefoglalásakor. Átviteli sebesség finomhangolása, különböző változataira jellemző az erőforrás-osztályok tett kísérlet lehet szükség.
 
-Hello alábbi tárolt eljárás toofigure kimenő feldolgozási és memória grant / erőforrásosztály adott SLO és hello legközelebbi legjobb erőforrás osztályra memória intenzív közösségi koordináló intézet műveletekhez közösségi koordináló intézet tábla particionálva adott erőforrás osztályra:
+A következő tárolt eljárás segítségével mérje fel, egyidejűségi és a memória grant / erőforrás egy adott slo-t, és a legközelebbi legjobb erőforrás osztály memória intenzív közösségi koordináló intézet műveletekhez közösségi koordináló intézet tábla particionálva adott erőforrás osztályra:
 
 #### <a name="description"></a>Leírás:  
-A tárolt eljárás hello célja van:  
-1. toohelp felhasználói vizsgálhatja meg erőforrás osztály egy adott SLO / feldolgozási és memória biztosítása. Felhasználói igényeihez tooprovide NULL séma és a tablename ehhez az alábbi hello példában látható módon.  
-2. hello legközelebbi legjobb tartozó erőforrásosztály hello memória intensed közösségi koordináló intézet műveleteket (terhelésétől, a másolási tábla rebuild index stb.) a megadott erőforrásosztály nem particionált közösségi koordináló intézet táblázat elháríthassa toohelp felhasználó. hello tárolt eljárás tábla séma toofind kimenő hello szükséges memória biztosítása a használja.
+A tárolt eljárás célja van:  
+1. Segítségével mérje fel, felhasználói egyidejűségi és a memória adja meg egy erőforrás osztály egy adott SLO. Felhasználói kell megadni. null értékű séma és a tablename ehhez az alábbi példában látható módon.  
+2. Felhasználói segítségével mérje fel, a memória intensed legközelebbi legjobb erőforrásosztály közösségi koordináló intézet műveleteket (terhelésétől, a másolási tábla rebuild index stb.) a megadott erőforrásosztály nem particionált közösségi koordináló intézet táblázat. A tárolt eljárás tudja meg a szükséges memória biztosítása a következő tábla sémáját használja.
 
 #### <a name="dependencies--restrictions"></a>Függőségek és korlátozások:
-- A tárolt eljárás nincs particionálva közösségi koordináló intézet tábla tervezett toocalculate memóriakövetelményét.    
-- A tárolt eljárás nem memóriakövetelményét CTAS/INSERT-VÁLASZTANI VÁLASSZA részét hello figyelembe veszi, és azt feltételezi, hogy toobe egy egyszerű jelöljön ki.
-- A tárolt eljárás egy ideiglenes táblát használ, így ez használható hello munkamenetben hol jött létre a tárolt eljáráshoz.    
-- A tárolt eljárás hello aktuális offerings (pl. hardverkonfiguráció, DMS config) függ, és ha bármelyik, amely módosítja majd a tárolt eljárás nem megfelelően fog működni.  
+- A tárolt eljárás nem célja, hogy a tábla particionálva közösségi koordináló intézet memóriakövetelményét kiszámításához.    
+- A tárolt eljárás nem memóriakövetelményét CTAS/INSERT-VÁLASZTANI SELECT részében figyelembe veszi, és feltételezi, hogy lehet egy egyszerű jelöljön ki.
+- A tárolt eljárás egy ideiglenes táblát használ, így használható a munkamenet hol jött létre a tárolt eljáráshoz.    
+- A tárolt eljárás attól függ, az aktuális offerings (pl. hardverkonfiguráció, DMS config), és ha bármelyik, amely módosítja majd a tárolt eljárás nem megfelelően fog működni.  
 - A tárolt eljárás attól függ, meglévő felajánlott feldolgozási korlátja, és ha megváltozik, majd a tárolt eljárás nem megfelelően fog működni.  
 - A tárolt eljárás attól függ, meglévő erőforrás osztály ajánlatokat, és ha, amely módosítja majd ez tárolása megfelelő proc wuold nem működik.  
 
 >  [!NOTE]  
->  Ha nem kap kimeneti megadva, előfordulhat, hogy két esetben paraméterekkel tárolt eljárás végrehajtása után. <br />1. Vagy DW paraméter érvénytelen SLO értéket tartalmazza: <br />2. VAGY nem megfelelő erőforrásosztály közösségi koordináló intézet művelet Ha megadva tábla neve. <br />Például: DW100, legmagasabb rendelkezésre memóriaengedély 400MB és széles táblaséma esetén elegendő toocross hello követelmény 400 MB.
+>  Ha nem kap kimeneti megadva, előfordulhat, hogy két esetben paraméterekkel tárolt eljárás végrehajtása után. <br />1. Vagy DW paraméter érvénytelen SLO értéket tartalmazza: <br />2. VAGY nem megfelelő erőforrásosztály közösségi koordináló intézet művelet Ha megadva tábla neve. <br />Például: DW100, legmagasabb rendelkezésre memóriaengedély 400MB, és ha táblaséma elég széles kereszt-követelmény 400MB.
       
 #### <a name="usage-example"></a>Példa:
 Szintaxis:  
 `EXEC dbo.prc_workload_management_by_DWU @DWU VARCHAR(7), @SCHEMA_NAME VARCHAR(128), @TABLE_NAME VARCHAR(128)`  
-1. @DWU:Adjon meg egy NULL paraméter tooextract aktuális DWU az Adatraktár-adatbázisban hello hello, vagy adjon meg, az "DW100" hello formájában DWU támogatott
-2. @SCHEMA_NAME:Adjon meg egy séma hello tábla neve
-3. @TABLE_NAME:Adjon meg egy tábla nevét hello érdeklő
+1. @DWU:Adja meg az aktuális DWU kinyerése az Adatraktár-adatbázisban, vagy bármely támogatott DWU "DW100" formájában adja meg egy NULL értékű paramétert vagy
+2. @SCHEMA_NAME:Adja meg a tábla a séma neve
+3. @TABLE_NAME:Adjon meg egy tábla nevét, a fontos
 
 A tárolt eljárás végrehajtása példák:  
 ```sql  
@@ -236,10 +236,10 @@ EXEC dbo.prc_workload_management_by_DWU 'DW6000', NULL, NULL;
 EXEC dbo.prc_workload_management_by_DWU NULL, NULL, NULL;  
 ```
 
-A fenti példák hello használt Table1 sikerült létrehozni, az alábbi:  
+A fenti példákban használt Table1 sikerült létrehozni a következő:  
 `CREATE TABLE Table1 (a int, b varchar(50), c decimal (18,10), d char(10), e varbinary(15), f float, g datetime, h date);`
 
-#### <a name="heres-hello-stored-procedure-definition"></a>Íme hello tárolt eljárás definíciója:
+#### <a name="heres-the-stored-procedure-definition"></a>Ez a tárolt eljárás definíciója:
 ```sql  
 -------------------------------------------------------------------------------
 -- Dropping prc_workload_management_by_DWU procedure if it exists.
@@ -259,7 +259,7 @@ CREATE PROCEDURE dbo.prc_workload_management_by_DWU
 AS
 IF @DWU IS NULL
 BEGIN
--- Selecting proper DWU for hello current DB if not specified.
+-- Selecting proper DWU for the current DB if not specified.
 SET @DWU = (
   SELECT 'DW'+CAST(COUNT(*)*100 AS VARCHAR(10))
   FROM sys.dm_pdw_nodes
@@ -271,7 +271,7 @@ SET @DWU_NUM = CAST (SUBSTRING(@DWU, 3, LEN(@DWU)-2) AS INT)
 
 -- Raise error if either schema name or table name is supplied but not both them supplied
 --IF ((@SCHEMA_NAME IS NOT NULL AND @TABLE_NAME IS NULL) OR (@TABLE_NAME IS NULL AND @SCHEMA_NAME IS NOT NULL))
---     RAISEERROR('User need toosupply either both Schema Name and Table Name or none of them')
+--     RAISEERROR('User need to supply either both Schema Name and Table Name or none of them')
        
 -- Dropping temp table if exists.
 IF OBJECT_ID('tempdb..#ref') IS NOT NULL
@@ -279,7 +279,7 @@ BEGIN
   DROP TABLE #ref;
 END
 
--- Creating ref. temptable (CTAS) toohold mapping info.
+-- Creating ref. temptable (CTAS) to hold mapping info.
 -- CREATE TABLE #ref
 CREATE TABLE #ref
 WITH (DISTRIBUTION = ROUND_ROBIN)
@@ -316,7 +316,7 @@ AS
   UNION ALL
     SELECT 'DW6000', 32, 240, 1, 32, 64, 128, 1, 2, 4, 8, 16, 32, 64, 128
 )
--- Creating workload mapping tootheir corresponding slot consumption and default memory grant.
+-- Creating workload mapping to their corresponding slot consumption and default memory grant.
 ,map
 AS
 (
@@ -554,11 +554,11 @@ GO
 ```
 
 ## <a name="query-importance"></a>Lekérdezés fontossága
-Az SQL Data Warehouse erőforrás osztályok munkaterhelés-csoport használatával valósít meg. Nincsenek összesen nyolc hello erőforrás osztályok hello viselkedését szabályozó hello között különböző DWU méretű munkaterhelés-csoport. A DWU az SQL Data Warehouse csak közül négyet használ hello nyolc munkaterhelés-csoport. Ez teljesen logikus, mert egyes tevékenységprofil-csoport hozzá van rendelve a négy erőforrás osztályok tooone: smallrc, mediumrc, largerc, vagy xlargerc. hello hello munkaterhelés csoportok ismertetése fontosságát az, hogy a munkaterhelés csoportok beállítása toohigher *fontossági*. Fontos használt CPU ütemezés. A nagyon fontos futtatása lekérdezések háromszor több, mint a közepes fontos CPU-ciklusok fogja kapni. Ezért a feldolgozási tárolóhely hozzárendelések is CPU prioritásának meghatározása. Lekérdezés 16 vagy több üzembe helyezési ponti használ fel, ha fut, nagyon fontos.
+Az SQL Data Warehouse erőforrás osztályok munkaterhelés-csoport használatával valósít meg. Nincsenek összesen nyolc munkaterhelés-csoport, amely felügyeli az erőforrás osztályok között a különböző DWU méretű. A DWU az SQL Data Warehouse csak közül négyet használ a nyolc munkaterhelés-csoport. Ez teljesen logikus, mert egyes tevékenységprofil-csoport van rendelve egy négy erőforrás osztályok: smallrc, mediumrc, largerc, vagy xlargerc. A munkaterhelés-csoport ismertetése fontosságát az, hogy a munkaterhelés csoportok vannak beállítva a magasabb *fontossági*. Fontos használt CPU ütemezés. A nagyon fontos futtatása lekérdezések háromszor több, mint a közepes fontos CPU-ciklusok fogja kapni. Ezért a feldolgozási tárolóhely hozzárendelések is CPU prioritásának meghatározása. Lekérdezés 16 vagy több üzembe helyezési ponti használ fel, ha fut, nagyon fontos.
 
-hello következő táblázatban minden tevékenységprofil-csoport leképezéseit hello fontosságát.
+Az alábbi táblázat az egyes tevékenységprofil-csoport fontosság leképezéseit.
 
-### <a name="workload-group-mappings-tooconcurrency-slots-and-importance"></a>Munkaterhelési csoport hozzárendelések tooconcurrency tárhelyek és fontossága
+### <a name="workload-group-mappings-to-concurrency-slots-and-importance"></a>Párhuzamossági tárhelyek és a fontosság munkaterhelési csoport leképezései
 | Munkaterhelés-csoport | Párhuzamossági tárolóhely leképezése | MB / terjesztési | Fontos leképezése |
 |:--- |:---:|:---:|:--- |
 | SloDWGroupC00 |1 |100 |Közepes |
@@ -570,9 +570,9 @@ hello következő táblázatban minden tevékenységprofil-csoport leképezései
 | SloDWGroupC06 |64 |6,400 |Magas |
 | SloDWGroupC07 |128 |12,800 |Magas |
 
-A hello **foglalási és felhasználási párhuzamossági tárolóhelyek** diagram, ellenőrizheti, hogy egy DW500 használ 1, 4, 8, vagy 16 párhuzamossági üzembe helyezési ponti smallrc, mediumrc, largerc és xlargerc, illetve. Megtekintheti ezeket az értékeket a diagram toofind hello fontos az egyes erőforrás megelőző hello.
+Az a **foglalási és felhasználási párhuzamossági tárolóhelyek** diagram, ellenőrizheti, hogy egy DW500 használ 1, 4, 8, vagy 16 párhuzamossági üzembe helyezési ponti smallrc, mediumrc, largerc és xlargerc, illetve. Megtekintheti ezeket az értékeket az előző táblázat az egyes erőforrás fontossága kereséséhez.
 
-### <a name="dw500-mapping-of-resource-classes-tooimportance"></a>Erőforrás-osztályok tooimportance DW500 leképezése
+### <a name="dw500-mapping-of-resource-classes-to-importance"></a>Az erőforrás fontossága osztályok DW500 leképezése
 | Erőforrásosztály | A tevékenységprofil-csoport | Párhuzamossági tárhelyek használt | MB / terjesztési | Fontos |
 |:--- |:--- |:---:|:---:|:--- |
 | smallrc |SloDWGroupC00 |1 |100 |Közepes |
@@ -588,7 +588,7 @@ A hello **foglalási és felhasználási párhuzamossági tárolóhelyek** diagr
 | staticrc70 |SloDWGroupC03 |16 |1,600 |Magas |
 | staticrc80 |SloDWGroupC03 |16 |1,600 |Magas |
 
-Hello hibaelhárításához a következő DMV-lekérdezés toolook hello különbségeit memória erőforrás-elosztás részletesen hello szempontjából erőforrás-vezérlő hello vagy tooanalyze aktív és előzménynaplók használatát hello munkaterhelés-csoport a következő is használhatja.
+A következő DMV-lekérdezés is használhatja, nézze meg a memória erőforrás-elosztás részletesen különbségek szempontjából az erőforrás-vezérlő, illetve elemzése a munkaterhelés-csoport aktív és előzménynaplók használata esetén végzett hibaelhárításhoz.
 
 ```sql
 WITH rg
@@ -637,9 +637,9 @@ ORDER BY
 ```
 
 ## <a name="queries-that-honor-concurrency-limits"></a>Feldolgozási korlátok tiszteletben lekérdezések
-A legtöbb lekérdezések erőforrás osztályok vonatkozik. Ezeket a lekérdezéseket hello párhuzamos lekérdezés és a párhuzamosság tárolóhely küszöbértékek kell férnie. A felhasználó nem választhat tooexclude lekérdezés hello párhuzamossági tárolóhely modell.
+A legtöbb lekérdezések erőforrás osztályok vonatkozik. Ezeket a lekérdezéseket is a párhuzamos lekérdezés és feldolgozási tárolóhely küszöbértékek kell férnie. A felhasználó nem választható, egy lekérdezés kizárását a párhuzamossági tárolóhely modell.
 
-tooreiterate, hello következő utasításokat tiszteletben erőforrás osztályok:
+A következő utasításokat megújítja, tiszteletben az erőforrás-osztályok:
 
 * INSERT-KIVÁLASZTÁSA
 * FRISSÍTÉS
@@ -652,12 +652,12 @@ tooreiterate, hello következő utasításokat tiszteletben erőforrás osztály
 * HOZZON LÉTRE FÜRTÖZÖTT OSZLOPCENTRIKUS INDEXET
 * TABLE AS SELECT (CTAS) LÉTREHOZÁSA
 * Az adatok betöltése
-* Az adatátviteli műveletek hello adatok adatátviteli szolgáltatás (DMS) által
+* Az adatátviteli műveletek elvégzése az adatok adatátviteli szolgáltatás (DMS)
 
-## <a name="query-exceptions-tooconcurrency-limits"></a>Lekérdezés kivételek tooconcurrency korlátok
-Egyes lekérdezések nem fogadják el hello erőforrás osztály toowhich hello felhasználó hozzá van rendelve. A kivételek toohello feldolgozási korlátok válnak, amikor egy adott parancshoz szükséges hello memória-erőforrások terhelése alacsony, gyakran mivel hello parancs a metaadat-művelet. hello ezeket a kivételeket célja tooavoid nagyobb memória helylefoglalását lekérdezések, amelyek soha nem kell őket. Ezekben az esetekben a tényleges erőforrásosztály hello függetlenül mindig használatra a kis erőforrásosztály (smallrc) hello alapértelmezett hozzárendelt toohello felhasználó. Például `CREATE LOGIN` mindig smallrc fog futni. hello szükséges erőforrások toofulfill ezt a műveletet olyan nagyon alacsony, így nem tesz logika tooinclude hello lekérdezés hello párhuzamossági tárolóhely modellben.  Ezeket a lekérdezéseket is nincs korlátozva hello 32 felhasználói feldolgozási korlát, korlátlan számú ezeket a lekérdezéseket futtathat toohello munkamenet legfeljebb 1024 munkamenetek fel.
+## <a name="query-exceptions-to-concurrency-limits"></a>Lekérdezés kivételek feldolgozási korlátok
+Egyes lekérdezések nem fogadják el a erőforrásosztály, amelyhez a felhasználó hozzá van rendelve. Ezeket a kivételeket a feldolgozási korlátok válnak, amikor egy adott parancshoz szükséges memória-erőforrások terhelése alacsony, gyakran mivel a parancs a metaadat-művelet. Az ilyen kivételek célja lekérdezések, amelyek soha nem kell őket nagyobb memória-foglalásának elkerülése érdekében. A felhasználóhoz rendelt tényleges erőforrásosztály függetlenül mindig használatra a ezekben az esetekben az alapértelmezett kis erőforrásosztály (smallrc). Például `CREATE LOGIN` mindig smallrc fog futni. Ez a művelet teljesítéséhez szükséges erőforrások nagyon alacsony, így nem célszerű a lekérdezés tartalmazza a feldolgozási tárolóhely modellben.  Ezeket a lekérdezéseket is nem korlátozza a 32 felhasználói feldolgozási korlát, korlátlan számú ezeket a lekérdezéseket is futtathat a munkamenet legfeljebb 1024 munkamenetek.
 
-a következő utasítások hello nem fogadják el az erőforrás osztályok:
+A következő utasítás nem fogadják el az erőforrás-osztályok:
 
 * DROP TABLE vagy létrehozása
 * AZ ALTER TABLE... KAPCSOLÓ, a megosztott vagy a partíció EGYESÍTÉSE
@@ -683,7 +683,7 @@ Removed as these two are not confirmed / supported under SQLDW
 -->
 
 ##  <a name="changing-user-resource-class-example"></a>A felhasználói erőforrás osztály példa módosítása
-1. **Hozzon létre bejelentkezési:** nyissa meg a kapcsolat tooyour **fő** adatbázis-hello az SQL Data Warehouse-adatbázist futtató SQL-kiszolgálón, és hajtsa végre a következő parancsok hello.
+1. **Hozzon létre bejelentkezési:** kapcsolatot létesíteni a **fő** adatbázis az SQL Data Warehouse-adatbázist futtató SQL-kiszolgálón, és a következő parancsok.
    
     ```sql
     CREATE LOGIN newperson WITH PASSWORD = 'mypassword';
@@ -691,37 +691,37 @@ Removed as these two are not confirmed / supported under SQLDW
     ```
    
    > [!NOTE]
-   > Egy jó ötlet toocreate egy felhasználó fő adatbázis hello Azure SQL Data Warehouse felhasználók. A felhasználó létrehozása a fő lehetővé teszi, hogy egy felhasználó toologin, például az SSMS használatával adatbázis nevének megadása nélkül.  Lehetővé teszi őket toouse hello object explorer tooview összes adatbázist egy SQL-kiszolgálón.  További létrehozásával és felhasználók kezelésével kapcsolatos további információkért lásd: [az SQL Data Warehouse adatbázis védelme][Secure a database in SQL Data Warehouse].
+   > Célszerű egy felhasználó létrehozása az Azure SQL Data Warehouse-felhasználók számára a fő adatbázist. A felhasználó létrehozása a fő lehetővé teszi a felhasználóknak például az SSMS használatával adatbázis nevének megadása nélkül.  Emellett lehetővé teszi az object explorer segítségével megtekintheti az összes adatbázis SQL-kiszolgálón.  További létrehozásával és felhasználók kezelésével kapcsolatos további információkért lásd: [az SQL Data Warehouse adatbázis védelme][Secure a database in SQL Data Warehouse].
    > 
    > 
-2. **Az SQL Data Warehouse-felhasználó létrehozása:** nyissa meg a kapcsolat toohello **SQL Data Warehouse** adatbázis, és hajtsa végre a következő parancs hello.
+2. **Az SQL Data Warehouse-felhasználó létrehozása:** kapcsolatot létesíteni a **SQL Data Warehouse** adatbázis, és hajtsa végre a következő parancsot.
    
     ```sql
     CREATE USER newperson FOR LOGIN newperson;
     ```
-3. **Engedélyek:** hello a következő példa engedélyezi `CONTROL` a hello **SQL Data Warehouse** adatbázis. `CONTROL`a hello adatbázis szintje hello egyenértékű az SQL Server db_owner.
+3. **Engedélyek:** a következő példa engedélyezi a `CONTROL` a a **SQL Data Warehouse** adatbázis. `CONTROL`az adatbázist szintje megegyezik a db_owner az SQL Server kiszolgálón.
    
     ```sql
-    GRANT CONTROL ON DATABASE::MySQLDW toonewperson;
+    GRANT CONTROL ON DATABASE::MySQLDW to newperson;
     ```
-4. **Erőforrásosztály növelése:** használata hello következő lekérdezés tooadd felhasználói tooa nagyobb munkaterhelés felügyeleti szerepkört.
+4. **Erőforrásosztály növelése:** használja a következő lekérdezést a felhasználó egy nagyobb munkaterhelés felügyeleti szerepkörbe való felvételre.
    
     ```sql
     EXEC sp_addrolemember 'largerc', 'newperson'
     ```
-5. **Erőforrásosztály csökkentése:** használata hello következő lekérdezés tooremove a felhasználó az alkalmazások és szolgáltatások felügyeleti szerepkör.
+5. **Erőforrásosztály csökkentése:** felhasználó eltávolítása egy munkaterhelés felügyeleti szerepkört a következő lekérdezés segítségével.
    
     ```sql
     EXEC sp_droprolemember 'largerc', 'newperson';
     ```
    
    > [!NOTE]
-   > Már nem lehetséges tooremove smallrc egy felhasználót.
+   > Nincs lehetőség a felhasználó eltávolítása smallrc.
    > 
    > 
 
 ## <a name="queued-query-detection-and-other-dmvs"></a>Várólistára helyezett lekérdezés felderítését és egyéb dinamikus felügyeleti nézetek
-Használhatja a hello `sys.dm_pdw_exec_requests` DMV tooidentify lekérdezések, amelyek a feldolgozási sorban várnak. Lekérdezi a feldolgozási tárhely állapottal fog rendelkezni várakozással **felfüggesztve**.
+Használhatja a `sys.dm_pdw_exec_requests` DMV lekérdezések egy feldolgozási sorban várakozó azonosításához. Lekérdezi a feldolgozási tárhely állapottal fog rendelkezni várakozással **felfüggesztve**.
 
 ```sql
 SELECT      r.[request_id]                 AS Request_ID
@@ -742,7 +742,7 @@ WHERE   ro.[type_desc]      = 'DATABASE_ROLE'
 AND     ro.[is_fixed_role]  = 0;
 ```
 
-a következő lekérdezés hello jeleníti meg, milyen szerepkört minden felhasználóhoz hozzá van rendelve.
+A következő lekérdezés jeleníti meg, hogy melyik szerepkört minden felhasználóhoz hozzá van rendelve.
 
 ```sql
 SELECT     r.name AS role_principal_name
@@ -753,14 +753,14 @@ JOIN    sys.database_principals AS m            ON rm.member_principal_id    = m
 WHERE    r.name IN ('mediumrc','largerc', 'xlargerc');
 ```
 
-Az SQL Data Warehouse rendelkezik hello következő várjon típusok:
+Az SQL Data Warehouse rendelkezik várjon típusok a következők:
 
-* **LocalQueriesConcurrencyResourceType**: hello párhuzamossági tárolóhely keretrendszer kívül elhelyezkedik lekérdezések. DMV lekérdezések és a rendszer funkciókkal, mint például `SELECT @@VERSION` példák a helyi lekérdezések.
-* **UserConcurrencyResourceType**: hello párhuzamossági tárolóhely keretrendszer belül elhelyezkedik lekérdezések. Végfelhasználói táblák lekérdezéseket képviselő példák, amelyek szeretné használni az erőforrástípus.
+* **LocalQueriesConcurrencyResourceType**: lekérdezések, amelyek a feldolgozási tárolóhely keretrendszer kívül elhelyezkedik. DMV lekérdezések és a rendszer funkciókkal, mint például `SELECT @@VERSION` példák a helyi lekérdezések.
+* **UserConcurrencyResourceType**: egyidejűségi tárolóhely keretein belül elhelyezkedik lekérdezések. Végfelhasználói táblák lekérdezéseket képviselő példák, amelyek szeretné használni az erőforrástípus.
 * **DmsConcurrencyResourceType**: megvárja-e az adatátviteli műveletek eredő.
-* **BackupConcurrencyResourceType**: A várakozás azt jelzi, hogy egy adatbázis biztonsági mentése van folyamatban. az erőforrástípus hello maximális értéke: 1. Ha több biztonsági mentés: hello kérték ugyanannyi időt vesz igénybe, mások várólistájára hello.
+* **BackupConcurrencyResourceType**: A várakozás azt jelzi, hogy egy adatbázis biztonsági mentése van folyamatban. Az erőforrástípus maximális értéke 1. Ha több biztonsági mentés kért egy időben, a többi várólistájára.
 
-Hello `sys.dm_pdw_waits` DMV lehet használt toosee erőforrások kérést vár.
+A `sys.dm_pdw_waits` DMV kérelmet arra vár, hogy milyen erőforrásokat is használható.
 
 ```sql
 SELECT  w.[wait_id]
@@ -796,7 +796,7 @@ JOIN    sys.dm_pdw_exec_requests r  ON w.[request_id] = r.[request_id]
 WHERE    w.[session_id] <> SESSION_ID();
 ```
 
-Hello `sys.dm_pdw_resource_waits` DMV csak hello erőforrás vár egy adott lekérdezésre által felhasznált jeleníti meg. Erőforrás várakozási idő csak a megadott erőforrások toobe Várakozás hello idő méri, megakadályozását toosignal várnia kell, amely hello ideje szerint az SQL kiszolgáló tooschedule hello lekérdezés alakzatot hello CPU alapjául szolgáló hello szükséges.
+A `sys.dm_pdw_resource_waits` DMV csak egy adott lekérdezésre által felhasznált erőforrások vár jeleníti meg. Erőforrás várakozási idő csak meg kell adni, szemben a jel várakozási időt, ami az alapul szolgáló SQL-kiszolgálók ütemezni a CPU, a lekérdezés szükséges idő erőforrások Várakozás időt méri.
 
 ```sql
 SELECT  [session_id]
@@ -814,7 +814,7 @@ FROM    sys.dm_pdw_resource_waits
 WHERE    [session_id] <> SESSION_ID();
 ```
 
-Hello `sys.dm_pdw_wait_stats` történelmi trendelemzés vár a DMV is használható.
+A `sys.dm_pdw_wait_stats` történelmi trendelemzés vár a DMV is használható.
 
 ```sql
 SELECT    w.[pdw_node_id]
@@ -828,13 +828,13 @@ FROM    sys.dm_pdw_wait_stats w;
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-Adatbázis-felhasználók és biztonsági kezelésével kapcsolatos további információkért lásd: [az SQL Data Warehouse adatbázis védelme][Secure a database in SQL Data Warehouse]. További információ a hogyan nagyobb erőforrás osztályok javíthatja a fürtözött oszlopcentrikus index minőségének, lásd: [indexek tooimprove szegmens minőségi újraépítése].
+Adatbázis-felhasználók és biztonsági kezelésével kapcsolatos további információkért lásd: [az SQL Data Warehouse adatbázis védelme][Secure a database in SQL Data Warehouse]. További információ a hogyan nagyobb erőforrás osztályok javíthatja a fürtözött oszlopcentrikus index minőségének, lásd: [szegmens minőségének javítására indexek újraépítése].
 
 <!--Image references-->
 
 <!--Article references-->
 [Secure a database in SQL Data Warehouse]: ./sql-data-warehouse-overview-manage-security.md
-[indexek tooimprove szegmens minőségi újraépítése]: ./sql-data-warehouse-tables-index.md#rebuilding-indexes-to-improve-segment-quality
+[szegmens minőségének javítására indexek újraépítése]: ./sql-data-warehouse-tables-index.md#rebuilding-indexes-to-improve-segment-quality
 [Secure a database in SQL Data Warehouse]: ./sql-data-warehouse-overview-manage-security.md
 
 <!--MSDN references-->

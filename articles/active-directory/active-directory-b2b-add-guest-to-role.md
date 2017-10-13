@@ -1,6 +1,6 @@
 ---
-title: "aaaAdd egy Azure Active Directory B2B együttműködés felhasználói tooa szerepkör |} Microsoft Docs"
-description: "Vegye fel a Vendég felhasználói tooa szerepkört az Azure Active Directoryban"
+title: "Adja hozzá az Azure Active Directory B2B együttműködés felhasználó egy szerepkörhöz |} Microsoft Docs"
+description: "A Vendég felhasználó hozzáadása egy szerepkört az Azure Active Directoryban"
 services: active-directory
 documentationcenter: 
 author: sasubram
@@ -16,15 +16,15 @@ ms.workload: identity
 ms.date: 03/15/2017
 ms.author: sasubram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: ccc58a0c8ecc73f8e79a8d827efdc0ff93846a96
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e816349ea971c997f655b4d51672dba666bc3e89
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="grant-permissions-toousers-from-partner-organizations-in-your-azure-active-directory-tenant"></a>Engedélyek toousers adja meg a fiókpartner-szervezetek, az Azure Active Directory-bérlőben
+# <a name="grant-permissions-to-users-from-partner-organizations-in-your-azure-active-directory-tenant"></a>Felhasználói engedélyek kiosztása a fiókpartner-szervezetek, az Azure Active Directory-bérlőben
 
-Az Azure Active Directory (Azure AD) B2B együttműködés felhasználók adódnak, Vendég felhasználó toohello könyvtár, és a Vendég engedélye hello könyvtárban korlátozott alapértelmezés szerint. A vállalat esetleg néhány vendég felhasználók toofill magasabb szintű szerepkört a szervezetében. magasabb jogosultsági szerepkörök definiálása toosupport vendégfelhasználók lehet felügyelni, a szervezet igényei alapján hozzáadott tooany szerepkörök.
+Az Azure Active Directory (Azure AD) B2B együttműködés felhasználók hozzá szeretné adni vendégfelhasználók számára a könyvtárba, és a címtárban Vendég engedélye korlátozott alapértelmezés szerint. A vállalat esetleg néhány vendégfelhasználók a szervezet magasabb szintű szerepkörök betöltésére. Magasabb jogosultsági szerepkörök definiálása támogatásához vendégfelhasználók egyetlen szerepkörhöz sem felügyelni, a szervezet igényei alapján is hozzáadhatók.
 
 ## <a name="default-role"></a>alapértelmezett szerepkör
 

@@ -13,7 +13,7 @@
 | Üresjárati időtúllépés |4 óra |
 | Leválasztott időtúllépés |4 óra |
 
-hello felhasználók száma a gyűjteményben használt virtuális gépek hello számát határozza meg:
+A felhasználók száma a gyűjteményben használt virtuális gépek számát határozza meg:
 
 * Alapszintű virtuális gépenként 16 felhasználót =
 * Standard = 10 olyan felhasználót virtuális gépenként

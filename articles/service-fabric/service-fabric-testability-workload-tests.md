@@ -1,6 +1,6 @@
 ---
-title: "az Azure mikroszolgáltatások aaaSimulate hibáinak |} Microsoft Docs"
-description: "Hogyan tooharden a szolgáltatások szabályos és ungraceful-hibákkal szemben."
+title: "Az Azure mikroszolgáltatások hibáinak szimulálása |} Microsoft Docs"
+description: "A szolgáltatások szabályos és ungraceful-hibákkal szemben támogatnia kell a módját."
 services: service-fabric
 documentationcenter: .net
 author: anmolah
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/15/2017
 ms.author: anmola
-ms.openlocfilehash: 05467e291dfc0f12a021955f8ea540881ec10746
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7ec671c23e101d0f7401bd4656fb201111602cad
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="simulate-failures-during-service-workloads"></a>Hibák szimulálása a szolgáltatások számítási feladatai közben
-hello tesztelhetőségi forgatókönyvek az Azure Service Fabric fejlesztők toonot aggódjon egyes hibák kezelésével kapcsolatos engedélyezése. Nincsenek forgatókönyvek, azonban ha explicit kihagyásos ügyfél munkaterhelési és sikertelen lehet szükség. az ügyfél munkaterhelési és hibák kihagyásos hello biztosítja, hogy hello szolgáltatást van ténylegesen néhány művelet végrehajtása során hiba történik. Mivel hello vezérlő tesztelhetőségi biztosítja, ezek lehetnek hello munkaterhelés végrehajtás pontos pontokon. Hibák a különböző állapotok hello alkalmazásban ez indukciós talál hibák és minőségét javítja.
+Azure Service Fabric tesztelhetőségi forgatókönyvei a fejlesztők nem foglalkoznia az egyéni hibák foglalkozik. Nincsenek forgatókönyvek, azonban ha explicit kihagyásos ügyfél munkaterhelési és sikertelen lehet szükség. Az ügyfél munkaterhelési és hibák kihagyásos biztosítja, hogy a szolgáltatás van ténylegesen néhány művelet végrehajtása során hiba történik. Megadott tesztelhetőségi biztosító felügyeleti, ezek lehetnek a munkaterhelés végrehajtásának pontos pontokon. A hibák, az alkalmazás különböző állapotok indukciós megkeresheti a hibák és minőségének javítása.
 
 ## <a name="sample-custom-scenario"></a>Egyéni mintaforgatókönyv
-Ez a vizsgálat egy forgatókönyvet mutat a interleaves hello üzleti munkaterhelés [szabályos és ungraceful hibák](service-fabric-testability-actions.md#graceful-vs-ungraceful-fault-actions). hello hibák hello közel a szolgáltatási műveletek vagy számítási a legjobb eredmények elérése érdekében érdemes előrehaladását.
+Ez a vizsgálat jeleníti meg az olyan forgatókönyvekben, amelyek az üzleti munkaterhelés interleaves [szabályos és ungraceful hibák](service-fabric-testability-actions.md#graceful-vs-ungraceful-fault-actions). A hibák kell előidézett, a szolgáltatási műveletek vagy a legjobb eredmények elérése érdekében számítási közepén.
 
-Példa egy szolgáltatás, amely elérhetővé teszi a munkaterhelések négy keresztül bemutatjuk: A, B, C, és D. egyes felel meg a munkafolyamatok tooa készletét, és sikerült kell számítási, tárolási, vagy a kettőn. Hello szakét az egyszerűség, a már nem lesz terheli hello munkaterhelések ki ebben a példában. Ebben a példában végre hello különböző hibák a következők:
+Példa egy szolgáltatás, amely elérhetővé teszi a munkaterhelések négy keresztül bemutatjuk: A, B, C és D. mindegyike megfelel a munkafolyamatok és számítási, tárolási vagy a kettőn lehet. Az egyszerűség kedvéért azt fogja absztrakt a munkaterhelések ki ebben a példában. Az ebben a példában végre különböző hibák a következők:
 
-* A RestartNode: Ungraceful tartalék toosimulate a gép újraindítása.
-* RestartDeployedCodePackage: Ungraceful tartalék toosimulate szolgáltatás gazdafolyamat összeomlik.
-* RemoveReplica: Szabályos tartalék toosimulate replika eltávolítása.
-* A MovePrimary: A szabályos tartalék toosimulate replika hello Service Fabric terheléselosztó által kiváltott helyezi.
+* A RestartNode: Ungraceful hiba szimulálása a számítógép újraindítását.
+* RestartDeployedCodePackage: Ungraceful hiba szimulálása a szolgáltatás gazdafolyamat összeomlik.
+* RemoveReplica: Szabályos hiba szimulálása a replika eltávolítása.
+* A MovePrimary: Szabályos hiba szimulálása a Service Fabric terheléselosztó által indított replika helyezi át.
 
 ```csharp
-// Add a reference tooSystem.Fabric.Testability.dll and System.Fabric.dll.
+// Add a reference to System.Fabric.Testability.dll and System.Fabric.dll.
 
 using System;
 using System.Fabric;
@@ -46,7 +46,7 @@ class Test
 {
     public static int Main(string[] args)
     {
-        // Replace these strings with hello actual version for your cluster and application.
+        // Replace these strings with the actual version for your cluster and application.
         string clusterConnection = "localhost:19000";
         Uri applicationName = new Uri("fabric:/samples/PersistentToDoListApp");
         Uri serviceName = new Uri("fabric:/samples/PersistentToDoListApp/PersistentToDoListService");
@@ -93,31 +93,31 @@ class Test
     {
         // Create FabricClient with connection and security information here.
         FabricClient fabricClient = new FabricClient(clusterConnection);
-        // Maximum time toowait for a service toostabilize.
+        // Maximum time to wait for a service to stabilize.
         TimeSpan maxServiceStabilizationTime = TimeSpan.FromSeconds(120);
 
-        // How many loops of faults you want tooexecute.
+        // How many loops of faults you want to execute.
         uint testLoopCount = 20;
         Random random = new Random();
 
         for (var i = 0; i < testLoopCount; ++i)
         {
             var workload = SelectRandomValue<ServiceWorkloads>(random);
-            // Start hello workload.
+            // Start the workload.
             var workloadTask = RunWorkloadAsync(workload);
 
-            // While hello task is running, induce faults into hello service. They can be ungraceful faults like
+            // While the task is running, induce faults into the service. They can be ungraceful faults like
             // RestartNode and RestartDeployedCodePackage or graceful faults like RemoveReplica or MovePrimary.
             var fault = SelectRandomValue<ServiceFabricFaults>(random);
 
-            // Create a replica selector, which will select a primary replica from hello given service tootest.
+            // Create a replica selector, which will select a primary replica from the given service to test.
             var replicaSelector = ReplicaSelector.PrimaryOf(PartitionSelector.RandomOf(serviceName));
-            // Run hello selected random fault.
+            // Run the selected random fault.
             await RunFaultAsync(applicationName, fault, replicaSelector, fabricClient);
-            // Validate hello health and stability of hello service.
+            // Validate the health and stability of the service.
             await fabricClient.ServiceManager.ValidateServiceAsync(serviceName, maxServiceStabilizationTime);
 
-            // Wait for hello workload toofinish successfully.
+            // Wait for the workload to finish successfully.
             await workloadTask;
         }
     }
@@ -145,9 +145,9 @@ class Test
     {
         throw new NotImplementedException();
         // This is where you trigger and complete your service workload.
-        // Note that hello faults induced while your service workload is running will
-        // fault hello primary service. Hence, you will need tooreconnect toocomplete or check
-        // hello status of hello workload.
+        // Note that the faults induced while your service workload is running will
+        // fault the primary service. Hence, you will need to reconnect to complete or check
+        // the status of the workload.
     }
 
     private static T SelectRandomValue<T>(Random random)

@@ -1,5 +1,5 @@
 ---
-title: "Azure SQL-adatbázis aaaCopy |} Microsoft Docs"
+title: "Azure SQL-adatbázis másolása |} Microsoft Docs"
 description: "Azure SQL-adatbázis másolatának létrehozása"
 services: sql-database
 documentationcenter: 
@@ -15,39 +15,39 @@ ms.author: carlrab
 ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
-ms.openlocfilehash: 64a297d819d6da89600fda60abe8394ae405abfe
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8c1e3c80b9f24089dc99463d6ea8ae5d0ea7b19d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="copy-an-azure-sql-database"></a>Azure SQL-adatbázis másolása
 
-Az Azure SQL Database is tartalmaz több módszerét tranzakciós úton konzisztens másolat készítését egy meglévő Azure SQL adatbázis-vagy hello az azonos vagy egy másik kiszolgálóhoz. SQL-adatbázis hello Azure-portálon, a PowerShell vagy a T-SQL használatával másolhatja. 
+Az Azure SQL-adatbázis létrehozásához egy meglévő Azure SQL adatbázis tranzakciós úton konzisztens másolatot ugyanarra a kiszolgálóra vagy egy másik kiszolgálóra több módszert biztosít. SQL-adatbázis másolása az Azure-portálon, a PowerShell vagy a T-SQL. 
 
 ## <a name="overview"></a>Áttekintés
 
-Egy adatbázis-példány hello forrásadatbázis hello időpontban hello kérelmet a meglévő pillanatkép. Kiválaszthatja ugyanarra a kiszolgálóra vagy egy másik kiszolgálót, a szolgáltatás és teljesítményszintet szintje vagy hello belül különböző teljesítményszintet hello azonos szolgáltatási réteg (kiadás). Hello Másolás befejezése után egy teljesen működőképes, független adatbázis válik. Ezen a ponton frissítése vagy tooany edition használni azt. hello bejelentkezéseket, felhasználók és engedélyek függetlenül is kezelhetők.  
+Egy adatbázis-példány a source adatbázis időpontjában a a másolási kérés. Kiválaszthatja, hogy ugyanazon a kiszolgálón vagy egy másik kiszolgáló, a szolgáltatási rétegben és teljesítményszintet vagy egy másik teljesítményszintet belül az azonos szolgáltatási réteg (kiadás). A másolás után egy teljesen működőképes, független adatbázis válik. Ezen a ponton frissítése vagy visszaminősítését a bármely verzióra. A bejelentkezési adatok, a felhasználók és az engedélyek függetlenül is kezelhetők.  
 
-## <a name="logins-in-hello-database-copy"></a>Az adatbázis-másolat hello bejelentkezések
+## <a name="logins-in-the-database-copy"></a>Az adatbázis-másolat bejelentkezésekre
 
-Egy adatbázis toohello másolásakor azonos logikai kiszolgáló, hello azonos bejelentkezések mindkét adatbázissal is használhatók. hello rendszerbiztonsági tag toocopy hello adatbázist használ hello új adatbázis hello adatbázis tulajdonosa lesz. Minden adatbázis-felhasználók, az engedélyek és a biztonsági azonosítók (SID) másolt toohello adatbázis-másolat.  
+Egy adatbázis ugyanazon a logikai kiszolgálón történő másolásakor a azonos bejelentkezések mindkét adatbázissal is használhatók. A rendszerbiztonsági tag használatával másolja az adatbázist az új adatbázis az adatbázis tulajdonosa lesz. Minden adatbázis-felhasználó, az engedélyek és a biztonsági azonosítók (SID) az adatbázis-másolat lesz másolva.  
 
-Egy adatbázis tooa másik logikai kiszolgáló másolásakor a hello rendszerbiztonsági tag hello új kiszolgálóra lesz hello adatbázis tulajdonosa hello új adatbázis. Használatakor [tartalmazott adatbázis-felhasználók](sql-database-manage-logins.md) adatelérési, győződjön meg arról, hogy mindkét hello elsődleges és másodlagos adatbázisok mindig hello ugyanazon felhasználó hitelesítő adatait, így az, hogy hello másolás után végezhető el, azonnal férhetnek hozzá a hello azonos hitelesítő adatok. 
+Adatbázis másolása egy másik logikai kiszolgálóhoz, ha a rendszerbiztonsági tag az új kiszolgáló lesz az adatbázis tulajdonosának az új adatbázis. Ha [tartalmazott adatbázis-felhasználók](sql-database-manage-logins.md) adatelérés, biztosítja, hogy az elsődleges és másodlagos adatbázisok mindig a felhasználói hitelesítő adatokkal, így a másolás után azonnal elérhetőségét azokkal a hitelesítő adatokkal . 
 
-Ha [Azure Active Directory](../active-directory/active-directory-whatis.md), teljesen megszüntetheti hello másolatot a hitelesítő adatok kezelése hello szükségességét. Azonban hello adatbázis tooa új kiszolgáló másolásakor hello bejelentkezés-alapú hozzáférés előfordulhat, hogy nem működik, mert hello bejelentkezések nem léteznek hello új kiszolgálón. bejelentkezések kezelése adatbázis tooa másik logikai kiszolgálót, másolásakor toolearn lásd [hogyan toomanage Azure SQL-adatbázis biztonsági katasztrófa utáni helyreállítás után](sql-database-geo-replication-security-config.md). 
+Ha [Azure Active Directory](../active-directory/active-directory-whatis.md), akkor is teljesen szükségtelenné teszik a hitelesítő adatokat, a Másolás kezelése. Azonban az adatbázis új kiszolgálóra történő másolásakor a bejelentkezés-alapú hozzáférés előfordulhat, hogy nem működik, mert a bejelentkezési adatok nem léteznek az új kiszolgálón. Bejelentkezések kezelése, ha az adatbázis másolása egy másik logikai kiszolgáló kapcsolatos további tudnivalókért lásd: [kezelése az Azure SQL database biztonsági katasztrófa utáni helyreállítás után](sql-database-geo-replication-security-config.md). 
 
-Sikeres hello másolását követően, és mielőtt más felhasználók újra vannak társítva, csak hello bejelentkezési, másolása, hello kezdeményezett hello adatbázis-tulajdonos, bejelentkezhet toohello új adatbázist. tooresolve bejelentkezések hello másolása művelet befejezése után, lásd: [bejelentkezések megoldásához](#resolve-logins).
+A másolási sikeres követően, és mielőtt más felhasználók újra vannak társítva, csak a bejelentkezési azonosítót, a másolás, az adatbázis tulajdonosának kezdeményezett bejelentkezhet az új adatbázishoz. A másolási művelet befejezése után bejelentkezések megoldását lásd [bejelentkezések megoldásához](#resolve-logins).
 
-## <a name="copy-a-database-by-using-hello-azure-portal"></a>Adatbázis másolása hello Azure-portál használatával
+## <a name="copy-a-database-by-using-the-azure-portal"></a>Adatbázis másolása az Azure portál használatával
 
-egy adatbázis használatával hello Azure portál, az adatbázis megnyitása hello oldaláról, és kattintson a toocopy **másolási**. 
+Adatbázis másolása az Azure portál használatával, nyissa meg az adatbázis lapját, és kattintson **másolási**. 
 
    ![Az adatbázis másolása](./media/sql-database-copy/database-copy.png)
 
 ## <a name="copy-a-database-by-using-powershell"></a>Adatbázis másolása a PowerShell használatával
 
-a PowerShell használata hello adatbázis toocopy [New-AzureRmSqlDatabaseCopy](/powershell/module/azurerm.sql/new-azurermsqldatabasecopy) parancsmag. 
+Adatbázis másolása a PowerShell használatával, használja a [New-AzureRmSqlDatabaseCopy](/powershell/module/azurerm.sql/new-azurermsqldatabasecopy) parancsmag. 
 
 ```PowerShell
 New-AzureRmSqlDatabaseCopy -ResourceGroupName "myResourceGroup" `
@@ -58,54 +58,54 @@ New-AzureRmSqlDatabaseCopy -ResourceGroupName "myResourceGroup" `
     -CopyDatabaseName "CopyOfMySampleDatabase"
 ```
 
-Tekintse meg a teljes minta parancsfájlt [adatbázis tooa új kiszolgáló másolása](scripts/sql-database-copy-database-to-new-server-powershell.md).
+Tekintse meg a teljes minta parancsfájlt [adatbázis másolása egy új kiszolgálót](scripts/sql-database-copy-database-to-new-server-powershell.md).
 
 ## <a name="copy-a-database-by-using-transact-sql"></a>Adatbázis másolása Transact-SQL használatával
 
-Jelentkezzen be toohello master adatbázis hello kiszolgálószintű fő bejelentkezéssel vagy hello bejelentkezési azonosítót, amely a létrehozni kívánt toocopy hello adatbázis. -Adatbázis másolása toosucceed bejelentkezéseket, amelyek nincsenek hello kiszolgálószintű egyszerű hello dbmanager szerepkör tagjának kell lennie. További információ a bejelentkezési és kapcsolódó toohello kiszolgáló: [bejelentkezések kezelése](sql-database-manage-logins.md).
+Jelentkezzen be a kiszolgálószintű fő bejelentkezéssel vagy a bejelentkezés által létrehozott át kívánja másolni az adatbázist a fő adatbázist. Az adatbázis másolása sikeres, bejelentkezési adatok, amelyek nincsenek a kiszolgálói szintű rendszerbiztonsági tag a dbmanager szerepkör tagjának kell lennie. Bejelentkezéseket és a kiszolgálóhoz való kapcsolódás kapcsolatos további információkért lásd: [bejelentkezések kezelése](sql-database-manage-logins.md).
 
-Hello forrásadatbázis hello másolásának megkezdése [CREATE DATABASE](https://msdn.microsoft.com/library/ms176061.aspx) utasítást. Az utasítás végrehajtása kezdeményezi hello adatbázis másolása folyamat. Mivel az adatbázis másolása egy aszinkron folyamat, hello CREATE DATABASE utasítás hello adatbázis-Másolás befejezése előtt adja vissza.
+A forrásadatbázis másolásának megkezdése a [CREATE DATABASE](https://msdn.microsoft.com/library/ms176061.aspx) utasítást. Az utasítás végrehajtása indít el az adatbázis másolása folyamat. Mivel az adatbázis másolása egy aszinkron folyamat, a CREATE DATABASE utasítás adja vissza, az adatbázis-Másolás befejezése előtt.
 
-### <a name="copy-a-sql-database-toohello-same-server"></a>Másolja át egy SQL-adatbázis toohello ugyanarra a kiszolgálóra
-Jelentkezzen be toohello master adatbázis hello kiszolgálószintű fő bejelentkezéssel vagy hello bejelentkezési azonosítót, amely a létrehozni kívánt toocopy hello adatbázis. -Adatbázis másolása toosucceed bejelentkezéseket, amelyek nincsenek hello kiszolgálószintű egyszerű hello dbmanager szerepkör tagjának kell lennie.
+### <a name="copy-a-sql-database-to-the-same-server"></a>Egy SQL-adatbázis másolása ugyanarra a kiszolgálóra
+Jelentkezzen be a kiszolgálószintű fő bejelentkezéssel vagy a bejelentkezés által létrehozott át kívánja másolni az adatbázist a fő adatbázist. Az adatbázis másolása sikeres, bejelentkezési adatok, amelyek nincsenek a kiszolgálói szintű rendszerbiztonsági tag a dbmanager szerepkör tagjának kell lennie.
 
-Ez a parancs átmásolja Database1 tooa új adatbázis Database2 megnevezett hello ugyanarra a kiszolgálóra. Attól függően, hogy az adatbázis hello méretét a művelet másolása hello is igénybe vehet néhány alkalommal toocomplete.
+Ez a parancs egy új adatbázist ugyanazon a kiszolgálón Database2 nevű Database1 másolja. Az adatbázis méretétől függően a másolási művelet eltarthat egy ideig.
 
-    -- Execute on hello master database.
+    -- Execute on the master database.
     -- Start copying.
     CREATE DATABASE Database1_copy AS COPY OF Database1;
 
-### <a name="copy-a-sql-database-tooa-different-server"></a>SQL adatbázis tooa másik kiszolgálót másolása
+### <a name="copy-a-sql-database-to-a-different-server"></a>Egy SQL-adatbázis másolása egy másik kiszolgálóra
 
-Jelentkezzen be toohello master adatbázis hello célkiszolgáló, hello SQL adatbázis-kiszolgáló létrehozása toobe hello új adatbázis esetén. Használjon olyan bejelentkezési azonosítót, rendelkezik hello ugyanazt a nevet és jelszót az hello forrásadatbázis forráskiszolgálón hello SQL adatbázis hello adatbázis tulajdonosa. hello bejelentkezési hello célkiszolgálón kell hello dbmanager szerepkör tagjai vagy is hello kiszolgálószintű fő bejelentkezéssel.
+Jelentkezzen be a célkiszolgáló, ahol az új adatbázisnak van-e létrehozni SQL-adatbáziskiszolgáló a fő adatbázist. Használjon olyan bejelentkezési azonosítót, amely rendelkezik az adatbázis tulajdonosának a forráskiszolgálón SQL adatbázis a forrásadatbázis ugyanazt a nevet és jelszót. A bejelentkezés a célkiszolgálón is kell a dbmanager szerepkör tagjának vagy a kiszolgálószintű fő bejelentkezéssel kell.
 
-Ez a parancs Database1 kiszolgáló1 tooa új adatbázis Database2 nevű kiszolgáló2 másolja át. Attól függően, hogy az adatbázis hello méretét a művelet másolása hello is igénybe vehet néhány alkalommal toocomplete.
+Ez a parancs átmásolja Database1 kiszolgáló1 kiszolgáló2 Database2 nevű új adatbázis. Az adatbázis méretétől függően a másolási művelet eltarthat egy ideig.
 
-    -- Execute on hello master database of hello target server (server2)
-    -- Start copying from Server1 tooServer2
+    -- Execute on the master database of the target server (server2)
+    -- Start copying from Server1 to Server2
     CREATE DATABASE Database1_copy AS COPY OF server1.Database1;
 
 
-### <a name="monitor-hello-progress-of-hello-copying-operation"></a>A Másolás művelet hello hello előrehaladást
+### <a name="monitor-the-progress-of-the-copying-operation"></a>A másolási művelet előrehaladásának figyeléséhez
 
-Hello másolási folyamat figyelése hello sys.databases és sys.dm_database_copies nézet lekérdezésével. Amíg hello másolása folyamatban van, hello **state_desc** hello sys.databases nézetben hello új adatbázis oszlop értéke túl**MÁSOLÁSA**.
+A másolási folyamat figyelése a sys.databases és sys.dm_database_copies nézet lekérdezésével. Miközben folyamatban van. a Másolás a **state_desc** a sys.databases nézetben az új adatbázis oszlop értéke **MÁSOLÁSA**.
 
-* Ha hello másolása sikertelen, hello **state_desc** hello sys.databases nézetben hello új adatbázis oszlop értéke túl**FELTÉTELEZHETŐ**. Új adatbázis hello hello DROP utasítást hajt végre, és próbálkozzon újra később.
-* Ha hello másolása sikeres, hello **state_desc** hello sys.databases nézetben hello új adatbázis oszlop értéke túl**ONLINE**. hello másolása befejeződött, és új adatbázis hello rendszeres adatbázis független hello forrásadatbázis módosítható.
+* Ha a másolás nem sikerül, a **state_desc** a sys.databases nézetben az új adatbázis oszlop értéke **FELTÉTELEZHETŐ**. Hajtsa végre a DROP utasítást az új adatbázis, és próbálkozzon újra később.
+* Ha a másolás sikeres, a **state_desc** a sys.databases nézetben az új adatbázis oszlop értéke **ONLINE**. A másolási befejeződött, és az új adatbázis rendszeres adatbázis a forrásadatbázis független módosítható.
 
 > [!NOTE]
-> Ha úgy dönt, hogy toocancel az hello másolja, amíg folyamatban van, a végrehajtást hello [DROP DATABASE](https://msdn.microsoft.com/library/ms178613.aspx) hello új adatbázis utasítást. Másik lehetőségként hello forrásadatbázison hello DROP DATABASE utasítás végrehajtása is visszavonja hello másolása folyamat.
+> Ha úgy dönt, hogy megszakítja a a másolást, amíg folyamatban van, a végrehajtást a [DROP DATABASE](https://msdn.microsoft.com/library/ms178613.aspx) utasítás az új adatbázishoz. Alternatív megoldásként a DROP DATABASE utasítás végrehajtása a forrásadatbázison is visszavonja a másolási folyamat.
 > 
 
 ## <a name="resolve-logins"></a>Oldja meg a bejelentkezési adatok
 
-Miután új adatbázis hello hello célkiszolgálón online állapotban, a hello [ALTER felhasználói](https://msdn.microsoft.com/library/ms176060.aspx) utasítás tooremap hello felhasználók hello új adatbázis-toologins hello célkiszolgálón. tooresolve árva felhasználók [árva felhasználók hibaelhárítása](https://msdn.microsoft.com/library/ms175475.aspx). Lásd még: [hogyan toomanage Azure SQL-adatbázis biztonsági katasztrófa utáni helyreállítás után](sql-database-geo-replication-security-config.md).
+Miután az új adatbázis a célkiszolgálón online állapotban, a [ALTER felhasználói](https://msdn.microsoft.com/library/ms176060.aspx) adja meg a felhasználók az új adatbázis bejelentkezések a célkiszolgálón újból az utasítást. Árva felhasználók megoldása érdekében tekintse meg a [árva felhasználók hibaelhárítása](https://msdn.microsoft.com/library/ms175475.aspx). Lásd még: [kezelése az Azure SQL database biztonsági katasztrófa utáni helyreállítás után](sql-database-geo-replication-security-config.md).
 
-Hello új adatbázisban lévő összes felhasználó számára, hogy a hello forrásadatbázis hello engedélyek megőrzése mellett. adatbázis-másolat hello elindító felhasználó hello hello adatbázis hello új adatbázis tulajdonosa lesz, és hozzá van rendelve egy új biztonsági azonosítóval (SID). Sikeres hello másolását követően, és mielőtt más felhasználók újra vannak társítva, csak hello bejelentkezési, másolása, hello kezdeményezett hello adatbázis-tulajdonos, bejelentkezhet toohello új adatbázist.
+Minden felhasználó az új adatbázis a forrásadatbázis rendelkeztek engedélyeket megőrzése mellett. Az adatbázis-másolat elindító felhasználó az új adatbázis tulajdonosa lesz, és hozzá van rendelve egy új biztonsági azonosítóval (SID). A másolási sikeres követően, és mielőtt más felhasználók újra vannak társítva, csak a bejelentkezési azonosítót, a másolás, az adatbázis tulajdonosának kezdeményezett bejelentkezhet az új adatbázishoz.
 
-Tekintse meg a felhasználók és bejelentkezések kezelése, adatbázis tooa másik logikai kiszolgálót, másolásakor toolearn [hogyan toomanage Azure SQL-adatbázis biztonsági katasztrófa utáni helyreállítás után](sql-database-geo-replication-security-config.md).
+Felhasználók és bejelentkezések kezelése, ha az adatbázis másolása egy másik logikai kiszolgáló kapcsolatos további tudnivalókért lásd: [kezelése az Azure SQL database biztonsági katasztrófa utáni helyreállítás után](sql-database-geo-replication-security-config.md).
 
 ## <a name="next-steps"></a>Következő lépések
 
-* Bejelentkezések kapcsolatos információkért lásd: [bejelentkezések kezelése](sql-database-manage-logins.md) és [hogyan toomanage Azure SQL-adatbázis biztonsági katasztrófa utáni helyreállítás után](sql-database-geo-replication-security-config.md).
-* tooexport adatbázisba, lásd: [hello adatbázis tooa BACPAC exportálása](sql-database-export.md).
+* Bejelentkezések kapcsolatos információkért lásd: [bejelentkezések kezelése](sql-database-manage-logins.md) és [kezelése az Azure SQL database biztonsági katasztrófa utáni helyreállítás után](sql-database-geo-replication-security-config.md).
+* Egy adatbázis-exportálási, lásd: [exportálja az adatbázis egy BACPAC](sql-database-export.md).

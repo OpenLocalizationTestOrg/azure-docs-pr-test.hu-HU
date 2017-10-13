@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált ServiceNow |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és a ServiceNow és a ServiceNow Express között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és a ServiceNow és a ServiceNow Express között."
 services: active-directory
 documentationcenter: 
 author: jeevansd
@@ -15,122 +15,122 @@ ms.topic: article
 ms.date: 07/21/2017
 ms.author: jeedes
 ms.reviewer: jeedes
-ms.openlocfilehash: df6a07dd1aa437198fbdb9d0a04ea14f3a320249
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a91fab90a94b655b93c8ae9064ea4836b80d7678
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-servicenow"></a>Oktatóanyag: Azure Active Directoryval integrált ServiceNow
-Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate a ServiceNow és a ServiceNow Express, az Azure Active Directoryval (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja a ServiceNow és a ServiceNow Express integrálása az Azure Active Directory (Azure AD).
 
-A ServiceNow és a ServiceNow Express integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
+A ServiceNow és a ServiceNow Express integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
 
-* Megadhatja a hozzáférés tooServiceNow, aki az Azure AD és a ServiceNow Express
-* Az Azure AD-fiókok a engedélyezheti a felhasználók tooautomatically get bejelentkezett tooServiceNow és ServiceNow Express (egyszeri bejelentkezés)
-* Kezelheti a fiókokat, egy központi helyen - hello a klasszikus Azure portálon
+* Szabályozhatja, aki hozzáfér a ServiceNow és a ServiceNow Express Azure AD-ben
+* Engedélyezheti a felhasználóknak, hogy automatikusan beolvasása aláírt a ServiceNow és a ServiceNow Express (egyszeri bejelentkezés) a saját Azure AD-fiókok
+* Kezelheti a fiókokat, egy központi helyen - a klasszikus Azure portálon
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
-az Azure AD-integráció a ServiceNow és a ServiceNow Express tooconfigure, a következő elemek hello kell:
+Az Azure AD-integráció konfigurálása a ServiceNow és a ServiceNow Express, az alábbi elemek szükségesek:
 
 * Az Azure AD szolgáltatásra
 * A ServiceNow, egy példány vagy bérlő ServiceNow, Calgary verzió vagy újabb
 * A ServiceNow expressz, ServiceNow kifejezett, Helsinki verzió példányának vagy újabb
-* hello ServiceNow bérlői rendelkeznie kell hello [több szolgáltató egyszeri bejelentkezést a beépülő modul](http://wiki.servicenow.com/index.php?title=Multiple_Provider_Single_Sign-On#gsc.tab=0) engedélyezve van. Ezt úgy teheti [szolgáltatási kérelem elküldése](https://hi.service-now.com). 
+* A ServiceNow bérlő kell rendelkeznie a [több szolgáltató egyszeri bejelentkezést a beépülő modul](http://wiki.servicenow.com/index.php?title=Multiple_Provider_Single_Sign-On#gsc.tab=0) engedélyezve van. Ezt úgy teheti [szolgáltatási kérelem elküldése](https://hi.service-now.com). 
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 > 
 > 
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 * Ne használja az éles környezetben, ha ez nem szükséges.
 * Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. A ServiceNow hozzáadása hello gyűjteményből
+1. A ServiceNow hozzáadása a gyűjteményből
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés ServiceNow vagy ServiceNow Express
 
-## <a name="adding-servicenow-from-hello-gallery"></a>A ServiceNow hozzáadása hello gyűjteményből
-tooconfigure hello integrációs ServiceNow vagy ServiceNow Express, az Azure AD-be, meg kell tooadd ServiceNow hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája. 
+## <a name="adding-servicenow-from-the-gallery"></a>A ServiceNow hozzáadása a gyűjteményből
+Az Azure AD integrálása a ServiceNow vagy ServiceNow Express konfigurálásához kell hozzáadnia a ServiceNow a gyűjteményből a felügyelt SaaS-alkalmazások listájára. 
 
-**tooadd ServiceNow hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
+**A ServiceNow hozzáadása a gyűjteményből, hajtsa végre az alábbi lépéseket:**
 
-1. A hello **a klasszikus Azure portálon**, a hello bal oldali navigációs panelen, kattintson a **Active Directory**. 
+1. Az a **a klasszikus Azure portálon**, a bal oldali navigációs ablaktábláján kattintson **Active Directory**. 
    
     ![Active Directory][1]
-2. A hello **Directory** listában, jelölje be hello directory kívánt tooenable címtár-integráció.
-3. tooopen hello alkalmazások megtekintése, hello könyvtár nézetben kattintson **alkalmazások** hello felső menüjében.
+2. Az a **Directory** listára, válassza ki a könyvtárat, amelyhez a címtár-integrációs engedélyezni szeretné.
+3. A könyvtár nézetben a alkalmazások nézet megnyitásához kattintson **alkalmazások** a felső menüben.
    
     ![Alkalmazások][2]
-4. Kattintson a **Hozzáadás** hello lap hello alján.
+4. Kattintson a **Hozzáadás** az oldal alján.
    
     ![Alkalmazások][3]
-5. A hello **miről szeretne toodo** párbeszédpanel, kattintson **hello gyűjteményből alkalmazás hozzáadása**.
+5. Az a **mi történjen a teendő** párbeszédpanel, kattintson a **hozzáadhat egy alkalmazást a katalógusból**.
    
     ![Alkalmazások][4]
-6. Hello keresési mezőbe, írja be a **ServiceNow**.
+6. Írja be a keresőmezőbe, **ServiceNow**.
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-servicenow-tutorial/tutorial_servicenow_01.png)
-7. Hello eredmények ablaktábláján jelöljön ki **ServiceNow**, és kattintson a **Complete** tooadd hello alkalmazás.
+7. Az eredmények ablaktáblájában válassza **ServiceNow**, és kattintson a **Complete** hozzáadása az alkalmazáshoz.
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-servicenow-tutorial/tutorial_servicenow_02.png)
 
 ## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban konfigurálása és tesztelése az Azure AD az egyszeri bejelentkezés ServiceNow vagy ServiceNow Express "Britta Simon" nevű tesztfelhasználó alapján.
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello tartozó felhasználói a ServiceNow tooa felhasználó az Azure ad-ben. Ez azt jelenti hello kapcsolódó felhasználó a ServiceNow és az Azure AD-felhasználó közötti kapcsolat kapcsolatot kell létrehozni toobe.
-Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** a ServiceNow. tooconfigure és az Azure AD egyszeri bejelentkezést a ServiceNow-teszthez, a következő építőelemeket toocomplete hello szüksége:
+Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a ServiceNow tartozó felhasználót a felhasználó Azure AD-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó a ServiceNow közötti kapcsolat kapcsolatot kell létrehozni.
+Ez a hivatkozás kapcsolat létesíti értéket rendeli az **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a ServiceNow. Az Azure AD egyszeri bejelentkezést a ServiceNow tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD az egyszeri bejelentkezés beállítása a ServiceNow](#configuring-azure-ad-single-sign-on-for-servicenow)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Az Azure AD az egyszeri bejelentkezés beállítása a ServiceNow Express](#configuring-azure-ad-single-sign-on-for-servicenow-express)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-3. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-4. **[A ServiceNow tesztfelhasználó létrehozása](#creating-a-servicenow-test-user)**  -toohave Britta Simon a ServiceNow, amely az Azure AD csatolt toohello ábrázolása rá, hogy valami.
-5. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-6. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés beállítása a ServiceNow](#configuring-azure-ad-single-sign-on-for-servicenow)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Az Azure AD az egyszeri bejelentkezés beállítása a ServiceNow Express](#configuring-azure-ad-single-sign-on-for-servicenow-express)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+3. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+4. **[A ServiceNow tesztfelhasználó létrehozása](#creating-a-servicenow-test-user)**  - való Britta Simon egy megfelelője a ServiceNow, amely csatolva van rá, hogy az Azure AD ábrázolása.
+5. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+6. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 > [!NOTE]
-> Ha azt szeretné, hogy a ServiceNow tooconfigure hagyja ki ezt a 2. lépés. Hasonlóképpen ha azt szeretné, hogy a ServiceNow Express tooconfigure hagyja el az 1. lépés.
+> Ha szeretne konfigurálni a ServiceNow hagyja el a 2. lépés. Hasonlóképpen ha azt szeretné, hogy a ServiceNow Express konfigurálásához 1. lépés kihagyása.
 > 
 > 
 
 ### <a name="configuring-azure-ad-single-sign-on-for-servicenow"></a>A ServiceNow az Azure AD-egyszeri bejelentkezés konfigurálása
-1. A klasszikus portálon hello Azure AD, a hello **ServiceNow** alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** tooopen hello **konfigurálása egyszeri bejelentkezés** párbeszédpanel .
+1. A klasszikus Azure AD portálon a a **ServiceNow** alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** megnyitásához a **konfigurálása egyszeri bejelentkezés** párbeszédpanel.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC749323.png "egyszeri bejelentkezés konfigurálása")
 
-2. A hello **hogyan szeretné tooServiceNow a felhasználók toosign** lapon jelölje be **Microsoft Azure AD az egyszeri bejelentkezés**, és kattintson a **következő**.
+2. Az a **hová felhasználók számára történő bejelentkezést ServiceNow** lapon jelölje be **Microsoft Azure AD az egyszeri bejelentkezés**, és kattintson a **következő**.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC749324.png "egyszeri bejelentkezés konfigurálása")
 
-3. A hello **Alkalmazásbeállítások konfigurálása** lapon, hajtsa végre az alábbi lépésekkel hello:
+3. Az a **Alkalmazásbeállítások konfigurálása** lapon, a következő lépésekkel:
    
     ![Alkalmazás URL-CÍMEK konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC769497.png "alkalmazás URL-CÍMEK konfigurálása")
    
-    a. a hello **ServiceNow bejelentkezési URL-cím** szövegmező, írja be az URL-cím a felhasználók toosign tooyour ServiceNow alkalmazás hello mintát a következő használja: `https://<instance-name>.service-now.com`.
+    a. az a **ServiceNow bejelentkezési URL-cím** szövegmező, írja be az URL-címet használják-e a felhasználók bejelentkezés a ServiceNow alkalmazáshoz a következő mintát: `https://<instance-name>.service-now.com`.
    
-    b. A hello **azonosító** szövegmező, írja be az URL-cím a felhasználók toosign tooyour ServiceNow alkalmazás hello mintát a következő használja: `https://<instance-name>.service-now.com`.
+    b. Az a **azonosító** szövegmező, írja be az URL-cím segítségével a felhasználók bejelentkezés a ServiceNow alkalmazáshoz a következő mintát: `https://<instance-name>.service-now.com`.
    
     c. Kattintson a **Tovább** gombra
 
-4. az Azure AD toohave automatikusan ServiceNow beállítása az SAML-alapú hitelesítéshez, írja be a ServiceNow példány nevét, a rendszergazda felhasználónevét és a rendszergazdai jelszó hello **automatikus konfigurálása egyszeri bejelentkezéshez** kialakításához, és kattintson a  *Konfigurálása*. Vegye figyelembe, hogy hello rendszergazdai felhasználónevet kell rendelkeznie a hello **security_admin** a toowork a ServiceNow hozzárendelt szerepkör. Ellenkező esetben toomanually ServiceNow toouse az Azure AD beállítása SAML-Identitásszolgáltatóként, kattintson a **manuálisan állítsa be a hello alkalmazását az egyszeri bejelentkezés**, majd kattintson a **következő** és teljes hello a következő lépéseket.
+4. Ahhoz, hogy az Azure AD automatikus konfigurálása a ServiceNow SAML-alapú hitelesítéshez, adja meg a ServiceNow példány nevét, a rendszergazda felhasználónevét és a rendszergazdai jelszó a **automatikus konfigurálása egyszeri bejelentkezéshez** kialakításához, és kattintson a *konfigurálása*. Vegye figyelembe, hogy a rendszergazdai felhasználónevet kell rendelkeznie a **security_admin** működéséhez a ServiceNow hozzárendelve szerepkör. Ellenkező esetben a SAML-Identitásszolgáltatóként az Azure AD használandó ServiceNow kézzel konfigurálásához kattintson **manuálisan állítsa be az alkalmazását az egyszeri bejelentkezés**, majd kattintson a **következő** és kövesse az alábbi lépéseket.
    
     ![Alkalmazás URL-CÍMEK konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC7694971.png "alkalmazás URL-CÍMEK konfigurálása")
 
-5. A hello **konfigurálhatja az egyszeri bejelentkezés ServiceNow** kattintson **tanúsítvánnyal letöltés**, mentse helyileg a számítógépen hello tanúsítványfájlt.
+5. A a **konfigurálhatja az egyszeri bejelentkezés ServiceNow** kattintson **tanúsítvánnyal letöltés**, mentse helyileg a számítógépen a tanúsítvány fájlt.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC749325.png "egyszeri bejelentkezés konfigurálása")
 
-6. Bejelentkezés tooyour ServiceNow alkalmazást rendszergazdaként.
+6. Bejelentkezés a ServiceNow alkalmazást rendszergazdaként.
 
-7. Hello aktiválása *integrációs - több szolgáltató egyszeri bejelentkezés telepítő* beépülő modul következő hello a következő lépéseket:
+7. Aktiválja a *integrációs - több szolgáltató egyszeri bejelentkezés telepítő* beépülő modul a következő lépéseket követve:
    
-    a. A bal oldalon hello hello navigációs ablaktábláján válassza túl**rendszer Definition** szakaszt, és kattintson a **beépülő modulok**.
+    a. A bal oldali navigációs ablaktábláján válassza **rendszer Definition** szakaszt, és kattintson a **beépülő modulok**.
    
     ![Alkalmazás URL-CÍMEK konfigurálása](./media/active-directory-saas-servicenow-tutorial/tutorial_servicenow_03.png "beépülő modul aktiválása")
    
@@ -138,41 +138,41 @@ Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév
    
     ![Alkalmazás URL-CÍMEK konfigurálása](./media/active-directory-saas-servicenow-tutorial/tutorial_servicenow_04.png "beépülő modul aktiválása")
    
-    c. Válassza ki a hello beépülő modul. Rigth kattintson, és válassza ki **aktiválás/frissítése**.
+    c. Válassza ki a beépülő modul. Rigth kattintson, és válassza ki **aktiválás/frissítése**.
    
-    d. Kattintson a hello **aktiválás** gombra.
+    d. Kattintson a **aktiválás** gombra.
 
-8. A bal oldalon hello hello navigációs ablaktábláján kattintson **tulajdonságok**.  
+8. A bal oldali navigációs ablaktábláján kattintson **tulajdonságok**.  
    
     ![Alkalmazás URL-CÍMEK konfigurálása](./media/active-directory-saas-servicenow-tutorial/tutorial_servicenow_06.png "alkalmazás URL-CÍMEK konfigurálása")
 
-9. A hello **több SSO tulajdonságokat** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello:
+9. Az a **több SSO tulajdonságokat** párbeszédpanelen hajtsa végre a következő lépéseket:
    
     ![Alkalmazás URL-CÍMEK konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC7694981.png "alkalmazás URL-CÍMEK konfigurálása")
    
     a. Mint **több szolgáltató SSO engedélyezése**, jelölje be **Igen**.
    
-    b. Mint **kapott hibakeresési naplózás engedélyezése hello több szolgáltató SSO integrációs**, jelölje be **Igen**.
+    b. Mint **hibakeresési naplózás kapott a több szolgáltató SSO-integráció engedélyezése**, jelölje be **Igen**.
    
-    c. A **hello felhasználói hello mezőjében táblázat...**  szövegmezőhöz típus **felhasználónév**.
+    c. A **a mezőt, a felhasználó táblázat...**  szövegmezőhöz típus **felhasználónév**.
    
     d. Kattintson a **Save** (Mentés) gombra.
 
-10. A bal oldalon hello hello navigációs ablaktábláján kattintson **x509 tanúsítványok**.
+10. A bal oldali navigációs ablaktábláján kattintson **x509 tanúsítványok**.
     
      ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/tutorial_servicenow_05.png "egyszeri bejelentkezés konfigurálása")
 
-11. A hello **X.509-tanúsítványokat** párbeszédpanel, kattintson a **új**.
+11. Az a **X.509-tanúsítványokat** párbeszédpanel, kattintson a **új**.
     
      ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC7694974.png "egyszeri bejelentkezés konfigurálása")
 
-12. A hello **X.509-tanúsítványokat** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello:
+12. Az a **X.509-tanúsítványokat** párbeszédpanelen hajtsa végre a következő lépéseket:
     
      ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC7694975.png "egyszeri bejelentkezés konfigurálása")
     
      a. Kattintson az **Új** lehetőségre.
     
-     b. A hello **neve** szövegmező, adja meg a konfiguráció nevét (pl.: **TestSAML2.0**).
+     b. Az a **neve** szövegmező, adja meg a konfiguráció nevét (pl.: **TestSAML2.0**).
     
      c. Válassza ki **aktív**.
     
@@ -180,122 +180,122 @@ Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév
     
      e. Mint **típus**, jelölje be **megbízható tároló Cert**.
     
-     f. Nyissa meg a Base64 kódolású tanúsítvány a Jegyzettömbben, a vágólapra tartalmának másolása hello és toohello Beillesztés **PEM tanúsítvány** szövegmező.
+     f. A Base64 kódolású tanúsítvány megnyitása a Jegyzettömbben, annak tartalmának másolása a vágólapra és illessze be azt a **PEM tanúsítvány** szövegmező.
     
      g. Kattintson a **frissítés**.
 
-13. A bal oldalon hello hello navigációs ablaktábláján kattintson **identitás-szolgáltatóktól**.
+13. A bal oldali navigációs ablaktábláján kattintson **identitás-szolgáltatóktól**.
     
      ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/tutorial_servicenow_07.png "egyszeri bejelentkezés konfigurálása")
 
-14. A hello **identitás-szolgáltatóktól** párbeszédpanel, kattintson a **új**:
+14. Az a **identitás-szolgáltatóktól** párbeszédpanel, kattintson a **új**:
     
      ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC7694977.png "egyszeri bejelentkezés konfigurálása")
 
-15. A hello **identitás-szolgáltatóktól** párbeszédpanel, kattintson a **egy SAML2 1. frissítés?**:
+15. Az a **identitás-szolgáltatóktól** párbeszédpanel, kattintson a **egy SAML2 1. frissítés?**:
     
      ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC7694978.png "egyszeri bejelentkezés konfigurálása")
 
-16. Hello egy SAML2 1. frissítés tulajdonságai párbeszédpanelen hajtsa végre a lépéseket követve hello:
+16. Egy SAML2 1. frissítés tulajdonságai párbeszédpanelen hajtsa végre a következő lépéseket:
     
      ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC7694982.png "egyszeri bejelentkezés konfigurálása")
 
-    a. a hello **neve** szövegmező, adja meg a konfiguráció nevét (pl.: **SAML 2.0**).
+    a. az a **neve** szövegmező, adja meg a konfiguráció nevét (pl.: **SAML 2.0**).
 
-    b. A hello **felhasználói mező** szövegmezőhöz típus **e-mail** vagy **felhasználónév**, attól függően, hogy mely mezővel toouniquely azonosítsa azokat a felhasználókat a ServiceNow központi telepítés. 
-
-    > [!NOTE] 
-    > E-mail cím hello hello SAML-jogkivonat szereplő egyedi azonosítóra hello által toohello állapotra vált, vagy az Azure AD configue tooemit vagy hello Azure AD felhasználói azonosító (egyszerű felhasználónév) is **ServiceNow > attribútumok > egyszeri bejelentkezés** szakasza klasszikus Azure portál és a leképezés szükséges hello mező toohello hello **nameidentifier** attribútum. az Azure AD (pl. egyszerű felhasználónév) hello kiválasztott attribútumnak tárolt hello értékének meg kell felelnie a ServiceNow hello megadott mező (pl. felhasználónév) tárolt hello érték
-
-    c. A klasszikus portálon hello Azure AD, másolja a hello **identitás Szolgáltatóazonosító** értékét, és illessze be hello **identitási szolgáltató URL-cím** szövegmező.
-
-    d. A klasszikus portálon hello Azure AD, másolja a hello **hitelesítési kérelem URL-cím** értékét, és illessze be hello **identitásszolgáltató AuthnRequest** szövegmező.
-
-    e. A klasszikus portálon hello Azure AD, másolja a hello **egyetlen Sign-Out URL-címe** értékét, és illessze be hello **identitásszolgáltató SingleLogoutRequest** szövegmező.
-
-    f. A hello **ServiceNow kezdőlap** szövegmezőhöz típus hello URL-CÍMÉT a ServiceNow példány kezdőlapján.
+    b. Az a **felhasználói mező** szövegmezőhöz típus **e-mail** vagy **felhasználónév**, attól függően, melyik mezőt a ServiceNow környezetben a felhasználók egyedi azonosítására szolgál. 
 
     > [!NOTE] 
-    > hello ServiceNow példány kezdőlap összefűzése a **ServieNow bérlői URL-cím** és **/navpage.do** (pl.:`https://fabrikam.service-now.com/navpage.do`).
+    > Az Azure AD configue hozható létre az Azure AD felhasználói azonosító (egyszerű felhasználónév) vagy az e-mail cím a SAML-jogkivonat egyedi azonosítóként a is a **ServiceNow > attribútumok > egyszeri bejelentkezés** a klasszikus Azure portálra, és a kívánt mezőt leképezési a **nameidentifier** attribútum. A kiválasztott attribútumnak az Azure AD (pl. egyszerű felhasználónév) tárolt érték meg kell egyeznie a megadott mező (pl. felhasználónév) ServiceNow tárolt érték
 
-    g. A hello **Entitásazonosító / kibocsátó** szövegmezőhöz típus hello URL-CÍMÉT a ServiceNow-bérlő.
+    c. A klasszikus Azure AD portálon, másolja a **identitás Szolgáltatóazonosító** értékét, és illessze be azt a **identitási szolgáltató URL-cím** szövegmező.
 
-    h. A hello **célközönség URL-cím** szövegmezőhöz típus hello URL-CÍMÉT a ServiceNow-bérlő. 
+    d. A klasszikus Azure AD portálon, másolja a **hitelesítési kérelem URL-cím** értékét, és illessze be azt a **identitásszolgáltató AuthnRequest** szövegmező.
 
-    i. A hello **protokoll kötése hello IDP tartozó SingleLogoutRequest** szövegmezőhöz típus **urn: oasis: nevek: tc: SAML:2.0:bindings:HTTP-átirányítási**.
+    e. A klasszikus Azure AD portálon, másolja a **egyetlen Sign-Out URL-címe** értékét, és illessze be azt a **identitásszolgáltató SingleLogoutRequest** szövegmező.
 
-    j. Írja be a hello NameID házirend szövegmező, **urn: oasis: nevek: tc: SAML:1.1:nameid-formátum: nem meghatározott**.
+    f. Az a **ServiceNow kezdőlap** szövegmezőhöz a ServiceNow példány kezdőlap URL-címét.
+
+    > [!NOTE] 
+    > A ServiceNow példány kezdőlapon összefűzése a **ServieNow bérlői URL-cím** és **/navpage.do** (pl.:`https://fabrikam.service-now.com/navpage.do`).
+
+    g. Az a **Entitásazonosító / kibocsátó** szövegmezőhöz a ServiceNow bérlői URL-címét.
+
+    h. Az a **célközönség URL-cím** szövegmezőhöz a ServiceNow bérlői URL-címét. 
+
+    i. Az a **protokoll kötése az IDP SingleLogoutRequest** szövegmezőhöz típus **urn: oasis: nevek: tc: SAML:2.0:bindings:HTTP-átirányítási**.
+
+    j. Írja be a NameID házirend szövegmező **urn: oasis: nevek: tc: SAML:1.1:nameid-formátum: nem meghatározott**.
 
     k. Kapcsolja ki **hozzon létre egy AuthnContextClass**.
 
-    l. A hello **AuthnContextClassRef metódus**, típus `http://schemas.microsoft.com/ws/2008/06/identity/authenticationmethod/password`. Ez csak akkor szükséges, ha egyetlen szervezet felhőbeli. Használata a helyszíni AD FS vagy MFA hitelesítés akkor ne konfigurálja ezt az értéket. 
+    l. Az a **AuthnContextClassRef metódus**, típus `http://schemas.microsoft.com/ws/2008/06/identity/authenticationmethod/password`. Ez csak akkor szükséges, ha egyetlen szervezet felhőbeli. Használata a helyszíni AD FS vagy MFA hitelesítés akkor ne konfigurálja ezt az értéket. 
 
     m. A **óra döntés** szövegmezőhöz típus **60**.
 
     n. Mint **egyszeri bejelentkezést a parancsfájl**, jelölje be **MultiSSO_SAML2_Update1**.
 
-    o. Mint **x509 tanúsítvány**, jelölje be hello előző lépésben létrehozott hello tanúsítványt.
+    o. Mint **x509 tanúsítvány**, válassza ki az előző lépésben létrehozott tanúsítványt.
 
     p. Kattintson a **nyújt**. 
 
-1. Hello Azure AD-klasszikus portál hello egyszeri bejelentkezés konfigurációs megerősítő válassza ki, és kattintson **következő**. 
+1. A klasszikus Azure AD portálon válassza ki az egyszeri bejelentkezés konfigurációs megerősítő, és kattintson **következő**. 
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC7694990.png "egyszeri bejelentkezés konfigurálása")
 
-2. A hello **az egyszeri bejelentkezés megerősítő** kattintson **Complete**.
+2. Az a **az egyszeri bejelentkezés megerősítő** kattintson **Complete**.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC7694991.png "egyszeri bejelentkezés konfigurálása")
 
 ### <a name="configuring-azure-ad-single-sign-on-for-servicenow-express"></a>A ServiceNow expressz az Azure AD-egyszeri bejelentkezés konfigurálása
-1. A klasszikus portálon hello Azure AD, a hello **ServiceNow** alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** tooopen hello **konfigurálása egyszeri bejelentkezés** párbeszédpanel .
+1. A klasszikus Azure AD portálon a a **ServiceNow** alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** megnyitásához a **konfigurálása egyszeri bejelentkezés** párbeszédpanel.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC749323.png "egyszeri bejelentkezés konfigurálása")
 
-2. A hello **hogyan szeretné tooServiceNow a felhasználók toosign** lapon jelölje be **Microsoft Azure AD az egyszeri bejelentkezés**, és kattintson a **következő**.
+2. Az a **hová felhasználók számára történő bejelentkezést ServiceNow** lapon jelölje be **Microsoft Azure AD az egyszeri bejelentkezés**, és kattintson a **következő**.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC749324.png "egyszeri bejelentkezés konfigurálása")
 
-3. A hello **Alkalmazásbeállítások konfigurálása** lapon, hajtsa végre az alábbi lépésekkel hello:
+3. Az a **Alkalmazásbeállítások konfigurálása** lapon, a következő lépésekkel:
    
     ![Alkalmazás URL-CÍMEK konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC769497.png "alkalmazás URL-CÍMEK konfigurálása")
    
-    a. a hello **ServiceNow bejelentkezési URL-cím** szövegmező, írja be az URL-cím a felhasználók toosign tooyour ServiceNow alkalmazás hello mintát a következő használja: `https://<instance-name>.service-now.com`.
+    a. az a **ServiceNow bejelentkezési URL-cím** szövegmező, írja be az URL-címet használják-e a felhasználók bejelentkezés a ServiceNow alkalmazáshoz a következő mintát: `https://<instance-name>.service-now.com`.
    
-    b. A hello **kiállítójának URL-címe** szövegmező, írja be az URL-cím használják-e a felhasználók toosign tooyour ServiceNow alkalmazás hello mintát a következő `https://<instance-name>.service-now.com`.
+    b. Az a **kiállítójának URL-címe** szövegmező, írja be az URL-cím segítségével a felhasználók bejelentkezés a ServiceNow alkalmazásra mintát a következő `https://<instance-name>.service-now.com`.
    
     c. Kattintson a **Tovább** gombra
 
-4. Kattintson a **manuálisan állítsa be a hello alkalmazását az egyszeri bejelentkezés**, kattintson a **következő** és teljes hello a következő lépéseket.
+4. Kattintson a **manuálisan állítsa be az alkalmazását az egyszeri bejelentkezés**, majd kattintson a **következő** és kövesse az alábbi lépéseket.
    
     ![Alkalmazás URL-CÍMEK konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC7694971.png "alkalmazás URL-CÍMEK konfigurálása")
 
-5. A hello **konfigurálhatja az egyszeri bejelentkezés ServiceNow** kattintson **tanúsítvánnyal letöltés**, mentse helyileg a számítógépen hello tanúsítvány fájlt, és kattintson **tovább**.
+5. A a **konfigurálhatja az egyszeri bejelentkezés ServiceNow** kattintson **tanúsítvánnyal letöltés**, mentse helyileg a számítógépen a tanúsítvány fájlt, és kattintson **következő**.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC749325.png "egyszeri bejelentkezés konfigurálása")
 
-6. Bejelentkezés tooyour ServiceNow Express alkalmazást rendszergazdaként.
+6. Bejelentkezés a ServiceNow Express alkalmazást rendszergazdaként.
 
-7. A bal oldalon hello hello navigációs ablaktábláján kattintson **egyszeri bejelentkezés**.  
+7. A bal oldali navigációs ablaktábláján kattintson **egyszeri bejelentkezés**.  
    
     ![Alkalmazás URL-CÍMEK konfigurálása](./media/active-directory-saas-servicenow-tutorial/ic7694980ex.png "alkalmazás URL-CÍMEK konfigurálása")
 
-8. A hello **egyszeri bejelentkezés** párbeszédpanel, kattintson hello konfigurációs ikonjára hello felső, jobb és beállított hello következő tulajdonságai:
+8. Az a **egyszeri bejelentkezés** párbeszédpanel, kattintson a jobb felső konfigurációs ikonjára, és állítsa be a következő tulajdonságokat:
    
     ![Alkalmazás URL-CÍMEK konfigurálása](./media/active-directory-saas-servicenow-tutorial/ic7694981ex.png "alkalmazás URL-CÍMEK konfigurálása")
    
-    a. Váltás **több szolgáltató SSO engedélyezése** toohello jobbra.
+    a. Váltás **több szolgáltató SSO engedélyezése** jobbra.
    
-    b. Váltás **naplózása hello több szolgáltató SSO-integráció engedélyezése hibakeresési** toohello jobbra.
+    b. Váltás **engedélyezése hibakeresési naplózás több szolgáltatójának SSO integrációs** jobbra.
    
-    c. A **hello felhasználói hello mezőjében táblázat...**  szövegmezőhöz típus **felhasználónév**.
-9. A hello **egyszeri bejelentkezés** párbeszédpanel, kattintson a **új tanúsítvány hozzáadása**.
+    c. A **a mezőt, a felhasználó táblázat...**  szövegmezőhöz típus **felhasználónév**.
+9. Az a **egyszeri bejelentkezés** párbeszédpanel, kattintson a **új tanúsítvány hozzáadása**.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/ic7694973ex.png "egyszeri bejelentkezés konfigurálása")
-10. A hello **X.509-tanúsítványokat** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello:
+10. Az a **X.509-tanúsítványokat** párbeszédpanelen hajtsa végre a következő lépéseket:
     
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC7694975.png "egyszeri bejelentkezés konfigurálása")
     
-    a. A hello **neve** szövegmező, adja meg a konfiguráció nevét (pl.: **TestSAML2.0**).
+    a. Az a **neve** szövegmező, adja meg a konfiguráció nevét (pl.: **TestSAML2.0**).
     
     b. Válassza ki **aktív**.
     
@@ -306,195 +306,195 @@ Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév
     e. Hozzon létre egy Base64-kódolású fájlt a letöltött tanúsítvány.
     
     > [!NOTE]
-    > További részletekért lásd: [hogyan tooconvert bináris tanúsítvány egy szövegfájlba](http://youtu.be/PlgrzUZ-Y1o).
+    > További részletekért lásd: [bináris tanúsítvány szöveg fájlba való konvertálása](http://youtu.be/PlgrzUZ-Y1o).
     > 
     > 
     
-    f. Nyissa meg a Base64 kódolású tanúsítvány a Jegyzettömbben, a vágólapra tartalmának másolása hello és toohello Beillesztés **PEM tanúsítvány** szövegmező.
+    f. A Base64 kódolású tanúsítvány megnyitása a Jegyzettömbben, annak tartalmának másolása a vágólapra és illessze be azt a **PEM tanúsítvány** szövegmező.
     
     g. Kattintson a **frissítés**.
-11. A hello **egyszeri bejelentkezés** párbeszédpanel, kattintson a **hozzáadása új IdP**.
+11. Az a **egyszeri bejelentkezés** párbeszédpanel, kattintson a **hozzáadása új IdP**.
     
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/ic7694976ex.png "egyszeri bejelentkezés konfigurálása")
-12. A hello **hozzáadása új identitásszolgáltató** párbeszédpanelen, a **identitásszolgáltató konfigurálása**, hajtsa végre az alábbi lépésekkel hello:
+12. Az a **hozzáadása új identitásszolgáltató** párbeszédpanelen, a **identitásszolgáltató konfigurálása**, hajtsa végre a következő lépéseket:
     
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/ic7694982ex.png "egyszeri bejelentkezés konfigurálása")
 
-    a. a hello **neve** szövegmező, adja meg a konfiguráció nevét (pl.: **SAML 2.0**).
+    a. az a **neve** szövegmező, adja meg a konfiguráció nevét (pl.: **SAML 2.0**).
 
-    b. A klasszikus portálon hello Azure AD, másolja a hello **identitás Szolgáltatóazonosító** értékét, és illessze be hello **identitási szolgáltató URL-cím** szövegmező.
+    b. A klasszikus Azure AD portálon, másolja a **identitás Szolgáltatóazonosító** értékét, és illessze be azt a **identitási szolgáltató URL-cím** szövegmező.
 
-    c. A klasszikus portálon hello Azure AD, másolja a hello **hitelesítési kérelem URL-cím** értékét, és illessze be hello **identitásszolgáltató AuthnRequest** szövegmező.
+    c. A klasszikus Azure AD portálon, másolja a **hitelesítési kérelem URL-cím** értékét, és illessze be azt a **identitásszolgáltató AuthnRequest** szövegmező.
 
-    d. A klasszikus portálon hello Azure AD, másolja a hello **egyetlen Sign-Out URL-címe** értékét, és illessze be hello **identitásszolgáltató SingleLogoutRequest** szövegmező.
+    d. A klasszikus Azure AD portálon, másolja a **egyetlen Sign-Out URL-címe** értékét, és illessze be azt a **identitásszolgáltató SingleLogoutRequest** szövegmező.
 
-    e. Mint **szolgáltató Identitástanúsítvány**, jelölje be hello előző lépésben létrehozott hello tanúsítványt.
+    e. Mint **szolgáltató Identitástanúsítvány**, válassza ki az előző lépésben létrehozott tanúsítványt.
 
 
-1. Kattintson a **speciális beállítások**, majd a **további identitás szolgáltató tulajdonságai**, hajtsa végre az alábbi lépésekkel hello:
+1. Kattintson a **speciális beállítások**, majd a **további identitás szolgáltató tulajdonságai**, hajtsa végre a következő lépéseket:
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/ic7694983ex.png "egyszeri bejelentkezés konfigurálása")
    
-    a. A hello **protokoll kötése hello IDP tartozó SingleLogoutRequest** szövegmezőhöz típus **urn: oasis: nevek: tc: SAML:2.0:bindings:HTTP-átirányítási**.
+    a. Az a **protokoll kötése az IDP SingleLogoutRequest** szövegmezőhöz típus **urn: oasis: nevek: tc: SAML:2.0:bindings:HTTP-átirányítási**.
    
-    b. A hello **NameID házirend** szövegmezőhöz típus **urn: oasis: nevek: tc: SAML:1.1:nameid-formátum: nem meghatározott**.    
+    b. Az a **NameID házirend** szövegmezőhöz típus **urn: oasis: nevek: tc: SAML:1.1:nameid-formátum: nem meghatározott**.    
    
-    c. A hello **AuthnContextClassRef metódus**, típus **http://schemas.microsoft.com/ws/2008/06/identity/authenticationmethod/password**.
+    c. Az a **AuthnContextClassRef metódus**, típus **http://schemas.microsoft.com/ws/2008/06/identity/authenticationmethod/password**.
    
     d. Kapcsolja ki **hozzon létre egy AuthnContextClass**.
 
-2. A **további szolgáltató tulajdonságai**, hajtsa végre az alábbi lépésekkel hello:
+2. A **további szolgáltató tulajdonságai**, hajtsa végre a következő lépéseket:
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/ic7694984ex.png "egyszeri bejelentkezés konfigurálása")
    
-    a. A hello **ServiceNow kezdőlap** szövegmezőhöz típus hello URL-CÍMÉT a ServiceNow példány kezdőlapján.
+    a. Az a **ServiceNow kezdőlap** szövegmezőhöz a ServiceNow példány kezdőlap URL-címét.
    
     > [!NOTE]
-    > hello ServiceNow példány kezdőlap összefűzése a **ServieNow bérlői URL-cím** és **/navpage.do** (pl.: `https://fabrikam.service-now.com/navpage.do`).
+    > A ServiceNow példány kezdőlapon összefűzése a **ServieNow bérlői URL-cím** és **/navpage.do** (pl.: `https://fabrikam.service-now.com/navpage.do`).
     > 
     > 
    
-    b. A hello **Entitásazonosító / kibocsátó** szövegmezőhöz típus hello URL-CÍMÉT a ServiceNow-bérlő.
+    b. Az a **Entitásazonosító / kibocsátó** szövegmezőhöz a ServiceNow bérlői URL-címét.
    
-    c. A hello **célközönség URI** szövegmezőhöz típus hello URL-CÍMÉT a ServiceNow-bérlő. 
+    c. Az a **célközönség URI** szövegmezőhöz a ServiceNow bérlői URL-címét. 
    
     d. A **óra döntés** szövegmezőhöz típus **60**.
    
-    e. A hello **felhasználói mező** szövegmezőhöz típus **e-mail** vagy **felhasználónév**, attól függően, hogy mely mezővel toouniquely azonosítsa azokat a felhasználókat a ServiceNow központi telepítés.
+    e. Az a **felhasználói mező** szövegmezőhöz típus **e-mail** vagy **felhasználónév**, attól függően, melyik mezőt a ServiceNow környezetben a felhasználók egyedi azonosítására szolgál.
    
     > [!NOTE]
-    > E-mail cím hello hello SAML-jogkivonat szereplő egyedi azonosítóra hello által toohello állapotra vált, vagy az Azure AD configue tooemit vagy hello Azure AD felhasználói azonosító (egyszerű felhasználónév) is **ServiceNow > attribútumok > egyszeri bejelentkezés** szakasza klasszikus Azure portál és a leképezés szükséges hello mező toohello hello **nameidentifier** attribútum. az Azure AD (pl. egyszerű felhasználónév) hello kiválasztott attribútumnak tárolt hello értékének meg kell felelnie a ServiceNow hello megadott mező (pl. felhasználónév) tárolt hello érték
+    > Az Azure AD configue hozható létre az Azure AD felhasználói azonosító (egyszerű felhasználónév) vagy az e-mail cím a SAML-jogkivonat egyedi azonosítóként a is a **ServiceNow > attribútumok > egyszeri bejelentkezés** a klasszikus Azure portálra, és a kívánt mezőt leképezési a **nameidentifier** attribútum. A kiválasztott attribútumnak az Azure AD (pl. egyszerű felhasználónév) tárolt érték meg kell egyeznie a megadott mező (pl. felhasználónév) ServiceNow tárolt érték
     > 
     > 
    
     f. Kattintson a **Save** (Mentés) gombra. 
 
-3. Hello Azure AD-klasszikus portál hello egyszeri bejelentkezés konfigurációs megerősítő válassza ki, és kattintson **következő**. 
+3. A klasszikus Azure AD portálon válassza ki az egyszeri bejelentkezés konfigurációs megerősítő, és kattintson **következő**. 
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC7694990.png "egyszeri bejelentkezés konfigurálása")
 
-4. A hello **az egyszeri bejelentkezés megerősítő** kattintson **Complete**.
+4. Az a **az egyszeri bejelentkezés megerősítő** kattintson **Complete**.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/IC7694991.png "egyszeri bejelentkezés konfigurálása")
 
 ## <a name="configuring-user-provisioning"></a>Felhasználók átadására
-hello ebben a szakaszban célja toooutline hogyan tooServiceNow tooenable a felhasználók átadása az Active Directory felhasználói fiókok.
+Ez a szakasz célja engedélyezése a felhasználók átadása, az Active Directory felhasználói fiókokat a ServiceNow felvázoló.
 
-### <a name="tooconfigure-user-provisioning-perform-hello-following-steps"></a>tooconfigure felhasználók átadásához, hajtsa végre a lépéseket követve hello:
-1. Hello Azure kezelési klasszikus portál, a hello **ServiceNow** alkalmazás integráció lapján, kattintson a **konfigurálja, a felhasználók átadása**. 
+### <a name="to-configure-user-provisioning-perform-the-following-steps"></a>Adja meg a felhasználók átadása, hajtsa végre az alábbi lépéseket:
+1. A klasszikus Azure felügyeleti portálon a a **ServiceNow** alkalmazás integráció lapján, kattintson a **konfigurálja, a felhasználók átadása**. 
    
     ![A felhasználók átadása](./media/active-directory-saas-servicenow-tutorial/IC769498.png "a felhasználók átadása")
 
-2. A hello **adja meg a ServiceNow hitelesítő adatok tooenable automatikus felhasználólétesítés** lapján adja meg a következő konfigurációs beállítások hello:
+2. Az a **ServiceNow hitelesítő adatait ahhoz, hogy a felhasználók automatikus átadása** lapján adja meg a következő konfigurációs beállításokat:
    
-     a. A hello **ServiceNow példánynév** szövegmezőhöz hello ServiceNow példány neve.
+     a. Az a **ServiceNow példánynév** szövegmező, írja be a ServiceNow-példány nevét.
    
-     b. A hello **ServiceNow rendszergazda felhasználóneve** szövegmezőhöz hello ServiceNow rendszergazdai fiók hello nevét.
+     b. Az a **ServiceNow rendszergazda felhasználóneve** szövegmező, írja be a ServiceNow rendszergazda fiók nevét.
    
-     c. A hello **ServiceNow rendszergazdai jelszó** szövegmezőhöz típus hello fiókhoz tartozó jelszót.
+     c. Az a **ServiceNow rendszergazdai jelszó** szövegmező, írja be a fiókhoz tartozó jelszót.
    
-     d. Kattintson a **érvényesítése** tooverify a konfigurációt.
+     d. Kattintson a **érvényesítése** a konfiguráció ellenőrzése.
    
-     e. Kattintson a hello **következő** gomb tooopen hello **további lépések** lap.
+     e. Kattintson a **következő** gombra kattintva nyissa meg a **további lépések** lap.
    
-     f. Ha tooprovision felhasználók toothis összes alkalmazást, jelölje be "**hello directory toothis alkalmazás az összes felhasználói fiók automatikusan létesítsen**". 
+     f. Ha minden felhasználó számára az alkalmazás telepítéséhez, jelölje be "**a könyvtárban ezen alkalmazás összes felhasználói fiók automatikusan létesítsen**". 
    
     ![További lépések](./media/active-directory-saas-servicenow-tutorial/IC698804.png "további lépések")
    
-     g. A hello **további lépések** kattintson **Complete** toosave a konfigurációt.
+     g. Az a **további lépések** kattintson **Complete** kattintva mentse a konfigurációt.
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-Ebben a szakaszban a tesztfelhasználó hello Britta Simon neve a klasszikus portálon létrehozta.
+Ebben a szakaszban Britta Simon neve a klasszikus portálon tesztfelhasználó létrehozása.
 
 ![Az Azure AD-felhasználó létrehozása][20]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello **a klasszikus Azure portálon**, a hello bal oldali navigációs panelen, kattintson a **Active Directory**.
+1. Az a **a klasszikus Azure portálon**, a bal oldali navigációs ablaktábláján kattintson **Active Directory**.
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-servicenow-tutorial/create_aaduser_09.png) 
 
-2. A hello **Directory** listában, jelölje be hello directory kívánt tooenable címtár-integráció.
+2. Az a **Directory** listára, válassza ki a könyvtárat, amelyhez a címtár-integrációs engedélyezni szeretné.
 
-3. toodisplay hello azoknak a felhasználóknak, hello menüben található hello felső részén kattintson **felhasználók**.
+3. A felhasználók listájának megjelenítéséhez a felső menüben, kattintson a **felhasználók**.
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-servicenow-tutorial/create_aaduser_03.png) 
 
-4. tooopen hello **felhasználó hozzáadása** párbeszédpanelen hello eszköztár hello alján, kattintson a **felhasználó hozzáadása**.
+4. Lehetőségre a **felhasználó hozzáadása** párbeszédpanel alján, az eszköztárban kattintson **felhasználó hozzáadása**.
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-servicenow-tutorial/create_aaduser_04.png) 
 
-5. A hello **adja meg azt a felhasználó** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+5. Az a **adja meg azt a felhasználó** párbeszédpanel lapon, a következő lépésekkel:
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-servicenow-tutorial/create_aaduser_05.png) 
    
     a. A felhasználó típusát válassza ki az új felhasználót a szervezetében.
    
-    b. A felhasználónév hello **szövegmező**, típus **BrittaSimon**.
+    b. A felhasználó nevében **szövegmező**, típus **BrittaSimon**.
    
     c. Kattintson a **Tovább** gombra.
 
-6. A hello **felhasználói profil** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+6. Az a **felhasználói profil** párbeszédpanel lapon, a következő lépésekkel:
    
    ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-servicenow-tutorial/create_aaduser_06.png) 
    
-   a. A hello **Utónév** szövegmezőhöz típus **Britta**.  
+   a. Az a **Utónév** szövegmezőhöz típus **Britta**.  
    
-   b. A hello **Vezetéknév** szövegmezőhöz típusa, **Simon**.
+   b. Az a **Vezetéknév** szövegmezőhöz típusa, **Simon**.
    
-   c. A hello **megjelenített név** szövegmezőhöz típus **Britta Simon**.
+   c. Az a **megjelenített név** szövegmezőhöz típus **Britta Simon**.
    
-   d. A hello **szerepkör** listáról válassza ki **felhasználói**.
+   d. Az a **szerepkör** listáról válassza ki **felhasználói**.
    
    e. Kattintson a **Tovább** gombra.
 
-7. A hello **ideiglenes jelszó beszerzése** párbeszédpanel lap, kattintson a **létrehozása**.
+7. Az a **ideiglenes jelszó beszerzése** párbeszédpanel lap, kattintson a **létrehozása**.
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-servicenow-tutorial/create_aaduser_07.png) 
 
-8. A hello **ideiglenes jelszó beszerzése** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+8. Az a **ideiglenes jelszó beszerzése** párbeszédpanel lapon, a következő lépésekkel:
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-servicenow-tutorial/create_aaduser_08.png) 
    
-    a. Írja le hello hello értékének **új jelszó**.
+    a. Jegyezze fel az értéket a **új jelszó**.
    
     b. Kattintson a **Befejezés** gombra.   
 
 ### <a name="creating-a-servicenow-test-user"></a>A ServiceNow tesztfelhasználó létrehozása
-Ebben a szakaszban a ServiceNow Britta Simon nevű felhasználó hoz létre. Ebben a szakaszban a ServiceNow Britta Simon nevű felhasználó hoz létre. Ha nem tudja, hogyan tooadd a ServiceNow vagy ServiceNow Express egy felhasználói fiók, lépjen kapcsolatba a terméktámogatással a ServiceNow.
+Ebben a szakaszban a ServiceNow Britta Simon nevű felhasználó hoz létre. Ebben a szakaszban a ServiceNow Britta Simon nevű felhasználó hoz létre. Ha nem tudja a felhasználó hozzáadása a ServiceNow vagy ServiceNow Express fiókját, lépjen kapcsolatba a terméktámogatással a ServiceNow.
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
-Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés saját hozzáférés tooServiceNow megadásával engedélyeznie.
+### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
+Ebben a szakaszban engedélyezze Britta Simon szerint saját hozzáférést biztosít a ServiceNow Azure egyszeri bejelentkezéshez használandó.
 
 ![Felhasználó hozzárendelése][200] 
 
-**tooassign Britta Simon tooServiceNow, hajtsa végre a következő lépéseket hello:**
+**A ServiceNow Britta Simon rendel, hajtsa végre az alábbi lépéseket:**
 
-1. Klasszikus portál hello tooopen hello alkalmazások megtekintése, hello könyvtár nézetben kattintson **alkalmazások** hello felső menüjében.
+1. A klasszikus portál megnyitásához az alkalmazások megtekintése a könyvtár nézetben kattintson **alkalmazások** a felső menüben.
    
     ![Felhasználó hozzárendelése][201] 
 
-2. Hello alkalmazások listában válassza ki a **ServiceNow**.
+2. Az alkalmazások listában válassza ki a **ServiceNow**.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-servicenow-tutorial/tutorial_servicenow_10.png) 
 
-3. Hello hello felső menüben kattintson a **felhasználók**.
+3. Kattintson a felső menüben **felhasználók**.
    
     ![Felhasználó hozzárendelése][203] 
 
-4. Hello minden felhasználó listában válassza ki a **Britta Simon**.
+4. Válassza a minden felhasználó lista **Britta Simon**.
 
-5. Hello alján hello eszköztárában kattintson **hozzárendelése**.
+5. Kattintson az alsó eszköztár **hozzárendelése**.
    
     ![Felhasználó hozzárendelése][205]
 
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
-hello ebben a szakaszban célja tootest az egyszeri bejelentkezés konfigurációs használatával hello a hozzáférési Panel.
+Ez a szakasz célja tesztelése az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen.
 
-Hello ServiceNow csempe a hozzáférési Panel hello kattintáskor automatikusan bejelentkezett tooyour ServiceNow alkalmazás kapja meg.
+Ha a hozzáférési panelen a ServiceNow csempére kattint, akkor kell beolvasása automatikusan bejelentkezett a ServiceNow alkalmazásba.
 
 ## <a name="additional-resources"></a>További források
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

@@ -1,6 +1,6 @@
 ---
-title: "aaaAdd hello Excel összekötő |} Microsoft Docs"
-description: "A REST API paraméterekkel hello Excel-összekötő áttekintése"
+title: "Vegye fel az Excel-összekötő |} Microsoft Docs"
+description: "Az Excel-összekötő REST API-paraméterekkel rendelkező áttekintése"
 services: 
 documentationcenter: 
 author: MandiOhlinger
@@ -15,21 +15,21 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/23/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 00dae29ca4f852dff9553d785c159486156f3410
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4d62bee573aba4c8b0445b1f4c44190496fb3a18
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="get-started-with-hello-excel-connector"></a>Hello Excel összekötő az első lépései
+# <a name="get-started-with-the-excel-connector"></a>Az Excel-összekötő az első lépései
 A Logic Apps nincs Excel összekötő található. 
 
-## <a name="toouse-excel-data"></a>toouse Excel-adatok
-Az Excel adatok tárolhatók tárolás mappában, vesszővel tagolt (CSV) fájlként, mint [OneDrive](connectors-create-api-onedrive.md). A CSV-fájl is használható hello [fájlszintű összekötő](../logic-apps/logic-apps-enterprise-integration-flatfile.md).
+## <a name="to-use-excel-data"></a>Az Excel adatok használata
+Az Excel adatok tárolhatók tárolás mappában, vesszővel tagolt (CSV) fájlként, mint [OneDrive](connectors-create-api-onedrive.md). Is használhatja ezt a CSV-fájl a [fájlszintű összekötő](../logic-apps/logic-apps-enterprise-integration-flatfile.md).
 
 ## <a name="connector-specific-details"></a>Összekötő-specifikus részletei
 
-Bármely eseményindítók és hello swagger definiált műveletek megtekintése, és semmilyen határnak hello a Lásd még: [connector részleteket](/connectors/excel/).
+Bármely eseményindítók és a swagger definiált műveletek megtekintése, és semmilyen határnak a Lásd még: a [connector részleteket](/connectors/excel/).
 
 ## <a name="more-connectors"></a>További összekötők
-Lépjen vissza toohello [API-k lista](apis-list.md).
+Lépjen vissza a [API-k lista](apis-list.md).

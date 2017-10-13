@@ -1,6 +1,6 @@
 ---
-title: "aaaScenario - hozzon létre egy felhasználói irányítópult Azure kiszolgáló nélküli |} Microsoft Docs"
-description: "Példa bemutatja, hogyan hozhat létre irányítópult toomanage ügyfél visszajelzést, közösségi adatok és további Azure Logic Apps és az Azure Functions."
+title: "Forgatókönyv – a felhasználói irányítópult létrehozása az Azure kiszolgáló nélküli |} Microsoft Docs"
+description: "Hogyan kezelheti az ügyfelek visszajelzései alapján, közösségi adatok és további Azure Logic Apps és az Azure Functions egy irányítópultot hozhat létre egy példát."
 keywords: 
 services: logic-apps
 author: jeffhollan
@@ -15,95 +15,95 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/29/2017
 ms.author: jehollan
-ms.openlocfilehash: db175e895e37aa795a9c34bf4d65566bf68f8c37
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0b6e118cb13ab8185d8eeb42bec6147155967967
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-a-real-time-customer-insights-dashboard-with-azure-logic-apps-and-azure-functions"></a>Az Azure Logic Apps és az Azure Functions egy valós idejű felhasználói irányítópult létrehozása
 
-Azure-kiszolgáló nélküli eszközök alkalmazások biztosítása a hatékony képességekkel tooquickly build és a gazdagép hello felhőben anélkül, hogy az infrastruktúrával kapcsolatos toothink.  Ebben az esetben a rendszer létrehoz egy irányítópult tootrigger az ügyfelek visszajelzései, visszajelzés machine Learning segítségével elemezheti, és közzététele insights egy forrás, például a Power bi-ban vagy az Azure Data Lake.
+Azure-kiszolgáló nélküli eszközök biztosítanak a hatékony funkciókat gyorsan készíthet, és nem kell gondolniuk infrastruktúra alkalmazásaikat a felhőben tárolni.  Ebben a forgatókönyvben létrehozunk indul el, az ügyfelek visszajelzései, visszajelzés machine Learning segítségével elemezheti és elemzések közzététele irányítópulton Power bi-ban vagy az Azure Data Lake ki forrást.
 
-## <a name="overview-of-hello-scenario-and-tools-used"></a>Hello forgatókönyv és a használt eszközök áttekintése
+## <a name="overview-of-the-scenario-and-tools-used"></a>A forgatókönyv és a használt eszközök áttekintése
 
-A rendezés tooimplement ebben a megoldásban, azt fogja használni a legfontosabb összetevők hello két kiszolgáló nélküli alkalmazások az Azure-ban: [Azure Functions](https://azure.microsoft.com/services/functions/) és [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/).
+Ez a megoldás megvalósításához azt fogja használni, a két legfontosabb összetevők, a kiszolgáló nélküli alkalmazások az Azure-ban: [Azure Functions](https://azure.microsoft.com/services/functions/) és [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/).
 
-A Logic Apps egy kiszolgáló nélküli munkafolyamat-motor hello felhőben.  Vezénylési biztosít a kiszolgáló nélküli összetevői között, és tooover 100 szolgáltatások és API-kat is csatlakozik.  A jelen esetben az ügyfelek visszajelzései létrehozunk egy logic app tootrigger.  Hello összekötők, amelyek segítik a reakciójú toocustomer visszajelzés többek között Outlook.com-os, az Office 365, a felmérést Monkey, a Twitter és a HTTP-kérelem [egy webes űrlap](https://blogs.msdn.microsoft.com/logicapps/2017/01/30/calling-a-logic-app-from-an-html-form/).  Az alábbi hello munkafolyamat azt figyeli egy hashtaggel történő a Twitteren.
+A Logic Apps egy kiszolgáló nélküli munkafolyamat-motor a felhőben.  Vezénylési biztosít a kiszolgáló nélküli összetevői között, és több mint 100 szolgáltatások és API-kat is csatlakozik.  A jelen esetben létre fogunk hozni egy logikai alkalmazást az ügyfelek visszajelzései indításához.  Az összekötők, amelyek segítik az ügyfelek visszajelzései alapján reagál a többek között Outlook.com-os, az Office 365, a felmérést Monkey, a Twitter és a HTTP-kérelem [egy webes űrlap](https://blogs.msdn.microsoft.com/logicapps/2017/01/30/calling-a-logic-app-from-an-html-form/).  Az alábbi munkafolyamat azt figyeli egy hashtaggel történő a Twitteren.
 
-Funkciók adja meg a kiszolgáló nélküli számítási hello felhőben.  Ebben a forgatókönyvben használjuk az Azure Functions tooflag Twitter-üzeneteket az ügyfelektől, előre definiált kulcsszavakat sorozata alapján.
+Funkciók adja meg a kiszolgáló nélküli számítási a felhőben.  Ebben a forgatókönyvben az Azure Functions segítségével jelzőt Twitter-üzeneteket az ügyfelektől, előre definiált kulcsszavakat sorozata alapján.
 
-hello teljes megoldás lehet [a Visual Studio build](logic-apps-deploy-from-vs.md) és [erőforrás sablon részeként](logic-apps-create-deploy-template.md).  Szerepel továbbá hello forgatókönyv bemutató videó [a Channel 9](http://aka.ms/logicappsdemo).
+A teljes megoldás lehet [a Visual Studio build](logic-apps-deploy-from-vs.md) és [erőforrás sablon részeként](logic-apps-create-deploy-template.md).  Szerepel továbbá forgatókönyv bemutató videó [a Channel 9](http://aka.ms/logicappsdemo).
 
-## <a name="build-hello-logic-app-tootrigger-on-customer-data"></a>Hello logic app tootrigger ügyféladatok létrehozása
+## <a name="build-the-logic-app-to-trigger-on-customer-data"></a>Az ügyféladatok elindítani a logikai alkalmazás létrehozása
 
-Miután [logikai alkalmazás létrehozása](logic-apps-create-a-logic-app.md) a Visual Studio vagy hello Azure-portálon:
+Miután [logikai alkalmazás létrehozása](logic-apps-create-a-logic-app.md) a Visual Studio vagy az Azure-portálon:
 
 1. Adja hozzá az eseményindító **az új Twitter-üzeneteket** a Twitteren
-2. Hello eseményindító toolisten tootweets konfigurálása kulcsszó vagy hashtaggel történő.
+2. Az eseményindító Twitter-üzeneteket kulcsszó vagy hashtaggel történő figyelésére konfigurálni.
 
    > [!NOTE]
-   > hello eseményindító hello ismétlődési tulajdonság határozza meg, hogy milyen gyakran hello logikai alkalmazás ellenőrzi a lekérdezési alapú eseményindítók új elemek
+   > Az eseményindító ismétlődési tulajdonsága határozza meg, hogy milyen gyakran a logikai alkalmazás ellenőrzi a lekérdezési alapú eseményindítók új elemek
 
    ![Twitter eseményindító – példa][1]
 
-Ez az alkalmazás most már az összes új Twitter-üzeneteket fog érvényesítést.  Azt majd tweetet adatok igénybe vehet, és részletesebb kifejezett hello véleményeket.  A hello használjuk [Azure kognitív szolgáltatás](https://azure.microsoft.com/services/cognitive-services/) szöveg toodetect céggel kapcsolatos véleményeket.
+Ez az alkalmazás most már az összes új Twitter-üzeneteket fog érvényesítést.  Azt majd tweetet adatok igénybe vehet, és részletesebb a céggel kapcsolatos véleményeket kifejezve.  A használjuk a [Azure kognitív szolgáltatás](https://azure.microsoft.com/services/cognitive-services/) szöveg véleményeket észleléséhez.
 
 1. Kattintson a **új lépés**
-1. Válassza ki, vagy keresse meg a hello **Szövegelemzések** összekötő
-1. Jelölje be hello **észlelése céggel kapcsolatos véleményeket** művelet
-1. Ha a rendszer kéri, adjon meg egy érvényes kognitív szolgáltatások kulcs hello Szövegelemzések szolgáltatás
-1. Adja hozzá a hello **Tweetet szöveg** , szöveges tooanalyze hello.
+1. Válassza ki, vagy keresse meg a **Szövegelemzések** összekötő
+1. Válassza ki a **észlelése céggel kapcsolatos véleményeket** művelet
+1. Ha a rendszer kéri, adja meg egy érvényes kognitív szolgáltatások kulcsát a Szövegelemzések szolgáltatás
+1. Adja hozzá a **Tweetet szöveg** , mint a szöveg elemzésére.
 
-Most, hogy hello tweetet adatokat és az elemzések a hello tweetet, más összekötőket vonatkozó lehet:
-* Power BI - sorok tooStreaming adatkészlet hozzáadása: valós idejű egy Power BI-irányítópult nézet Twitter-üzeneteket.
-* Azure Data Lake - fájl hozzáfűzése: felhasználói adatok tooan Azure Data Lake dataset tooinclude hozzáadása az analytics-feladatok.
+Most, hogy az tweetet adatok, és az elemzések a a tweetet, más összekötőket vonatkozó lehet:
+* Power BI - sorok hozzáadása a folyamatos átviteli adatkészletet: valós idejű egy Power BI-irányítópult nézet Twitter-üzeneteket.
+* Azure Data Lake - fájl hozzáfűzése: felhasználói adatok hozzáadása egy Azure Data Lake analytics-feladatok szerepeljenek a DataSet adatkészlethez.
 * SQL - sorok felvételének: adatok tárolása a későbbi beolvasásához adatbázis.
 * Slack - üzenetet küldeni: egy közzététele a slack-csatornát negatív visszajelzés műveletek igénylő riasztást.
 
-Egy Azure-függvény használt toodo hello adatok felett számítási további egyéni is lehet.
+Egy Azure-függvény is használható felett az adatokat több egyéni számítás elvégzéséhez.
 
-## <a name="enriching-hello-data-with-an-azure-function"></a>Egy Azure-függvény hello adatok bővítése
+## <a name="enriching-the-data-with-an-azure-function"></a>Az adatokat egy Azure-függvényt a bővítése
 
-Azt is hozzon létre egy függvényt, igazolnia kell toohave egy függvény alkalmazást az Azure-előfizetésben.  Egy Azure-függvény létrehozásának hello portálon is [itt található](../azure-functions/functions-create-first-azure-function-azure-portal.md)
+Azt is hozzon létre egy függvényt, igazolnia kell egy függvény alkalmazást az Azure-előfizetésben rendelkezik.  Egy Azure-függvény létrehozása a portálon részleteket is [itt található](../azure-functions/functions-create-first-azure-function-azure-portal.md)
 
-Egy függvény toobe hívása közvetlenül egy logikai alkalmazást, az azt kell toohave HTTP indítható el, kötés.  Azt javasoljuk, hello **HttpTrigger** sablont.
+Egy függvény hívása közvetlenül a logikai alkalmazás, HTTP rendelkeznie kell elindítani a kötés.  Azt javasoljuk, a **HttpTrigger** sablont.
 
-Ebben a forgatókönyvben a hello kérelem törzse hello Azure-függvény lenne hello tweetet szöveg.  Hello függvény kódban egyszerűen meg logika Ha hello tweetet szöveg tartalmazza-e egy kulcsszót vagy kifejezést.  hello függvény önmagára sikerült megmarad, mint egyszerűek vagy összetettek, hello a forgatókönyvhöz szükséges.
+Ebben a forgatókönyvben a kérés törzsében az Azure-függvény lenne a tweetet szöveget.  A függvény kódban egyszerűen határozza meg programot, ha a tweetet szöveg tartalmazza-e egy kulcsszót vagy kifejezést.  A függvény önmagára sikerült megmarad, ennek egyszerűek vagy összetettek, a forgatókönyv konfigurálásához szükséges.
 
-Hello függvény hello végén egyszerűen vissza válasz toohello logikai alkalmazás adatokkal.  Ennek oka lehet egy egyszerű logikai értéket (pl. `containsKeyword`), vagy egy összetett objektumot.
+A függvény végén egyszerűen válaszol a logikai alkalmazás adatokkal.  Ennek oka lehet egy egyszerű logikai értéket (pl. `containsKeyword`), vagy egy összetett objektumot.
 
 ![Konfigurált Azure-függvény lépés][2]
 
 > [!TIP]
-> Egy logikai alkalmazás függvényt az összetett választ elérésekor művelettel hello elemzése JSON.
+> Egy logikai alkalmazás függvényt az összetett választ elérésekor művelettel a JSON elemezni.
 
-Miután hello függvény mentettük, a fentiekben létrehozott hello logika alkalmazásba vehető fel.  A hello logic app:
+A funkció megmarad, ha azokat az előbb létrehozott logikai alkalmazás vehető fel.  A logikai alkalmazásban:
 
-1. Kattintson a tooadd egy **új lépés**
-1. Jelölje be hello **Azure Functions** összekötő
-1. Válasszon egy meglévő függvény toochoose, és keresse meg a létrehozott toohello függvény
-1. Hello küldése **Tweetet szöveg** a hello **kérelem törzsét.**
+1. Hozzáadásához kattintson ide a **új lépés**
+1. Válassza ki a **Azure Functions** összekötő
+1. Válasszon egy meglévő függvényben, és keresse meg a létrehozott függvény kiválasztása
+1. Küldjön a **Tweetet szöveg** a a **kérelem törzse**
 
-## <a name="running-and-monitoring-hello-solution"></a>Futtatnia vagy felügyelnie hello megoldás
+## <a name="running-and-monitoring-the-solution"></a>Futtatnia vagy felügyelnie a megoldás
 
-Jelentéskészítő kiszolgáló nélküli álló üzenettípusok összehangolását a Logic Apps előnyeit hello egyik hello hatékony hibakeresési és figyelési képességek.  A Futtatás (jelenlegi vagy történelmi) tekintheti meg a Visual Studio hello Azure-portálon vagy REST API hello és SDK-k segítségével.
+A jelentéskészítő kiszolgáló nélküli álló üzenettípusok összehangolását a Logic Apps előnyeit egyik a hatékony hibakeresési és a figyelési lehetőségek körét.  A Futtatás (jelenlegi vagy történelmi) tekintheti meg a Visual studióban, az Azure-portálon, vagy a REST API-t és az SDK-k segítségével.
 
-Hello legegyszerűbb módja tootest logikai alkalmazás egyike hello használja **futtatása** hello Designer gombra.  Kattintson a **futtatása** továbbra is toopoll hello eseményindító minden 5 másodperc, amíg a rendszer észlelt egy eseményt, és futtassa hello előrehaladtával egy élő betekintést.
+Egyik legegyszerűbb módja logikai alkalmazás teszteléséhez használja a **futtatása** gomb a tervezőben.  Kattintson a **futtatása** továbbra is kérdezze le az eseményindító minden 5 másodperc, amíg a rendszer észlelt egy eseményt, és a futási előrehaladtával egy élő betekintést.
 
-Előző futtatási alábbi előzményeinek hello áttekintése panelen hello Azure-portálon, vagy a Visual Studio Cloud Explorer hello segítségével tekintheti meg.
+Előző futtatási alábbi előzményeinek az Áttekintés panel az Azure-portálon, vagy a Visual Studio Cloud Explorer használatával tekintheti meg.
 
 ## <a name="creating-a-deployment-template-for-automated-deployments"></a>Az automatikus központi telepítés központi telepítési sablon létrehozása
 
-Ha olyan megoldást fejlesztett ki, rögzített, és egy Azure-telepítés sablon tooany hello world az Azure-régiót keresztül telepíthetők.  Ez akkor hasznos, mindkét módosítása paraméter különböző a munkafolyamat-verziót, hanem is használható az ebben a megoldásban egy build és kiadás folyamat.  A központi telepítési sablonok létrehozásának részletes ismertetése [ebben a cikkben](logic-apps-create-deploy-template.md).
+Ha olyan megoldást fejlesztett ki, rögzített, és egy Azure központi telepítési sablont a világ bármely Azure régióban keresztül telepíthetők.  Ez akkor hasznos, mindkét módosítása paraméter különböző a munkafolyamat-verziót, hanem is használható az ebben a megoldásban egy build és kiadás folyamat.  A központi telepítési sablonok létrehozásának részletes ismertetése [ebben a cikkben](logic-apps-create-deploy-template.md).
 
-Az Azure Functions is építhető hello központi telepítési sablont -, így hello teljes megoldás az összes függősége kezelhető egyetlen sablont.  Példa függvény a központi telepítési sablont hello található [Azure gyors üzembe helyezés sablon tárház](https://github.com/Azure/azure-quickstart-templates/tree/master/101-function-app-create-dynamic).
+Az Azure Functions is be lehessen építeni a központi telepítési sablont -, a teljes megoldás az összes függősége kezelhető egyetlen sablont.  Példa függvény a központi telepítési sablont itt található: a [Azure gyors üzembe helyezés sablon tárház](https://github.com/Azure/azure-quickstart-templates/tree/master/101-function-app-create-dynamic).
 
 ## <a name="next-steps"></a>Következő lépések
 
 * [Tekintse meg az egyéb példák és forgatókönyvek az Azure Logic Apps](logic-apps-examples-and-scenarios.md)
 * [Tekintse meg a video-útmutatót a megoldás-végpontok létrehozásáról](http://aka.ms/logicappsdemo)
-* [Megtudhatja, hogyan toohandle és catch kivételek logikai alkalmazás belül](logic-apps-exception-handling.md)
+* [Megtudhatja, hogyan dolgozza fel a logikai alkalmazások kivételeket és kezelésére](logic-apps-exception-handling.md)
 
 <!-- Image References -->
 [1]: ./media/logic-apps-scenario-social-serverless/twitter.png

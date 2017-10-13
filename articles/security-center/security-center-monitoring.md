@@ -1,6 +1,6 @@
 ---
-title: "aaaSecurity figyelése az Azure Security Centerben |} Microsoft Docs"
-description: "Ez a cikk segít tooget, figyelési képességek az Azure Security Center használatába."
+title: "Biztonságfigyelés az Azure Security Centerben | Microsoft Docs"
+description: "Ez a cikk az Azure Security Center figyelési funkcióinak használatába nyújt bevezetést."
 services: security-center
 documentationcenter: na
 author: YuriDio
@@ -12,119 +12,128 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/09/2017
+ms.date: 09/07/2017
 ms.author: yurid
-ms.openlocfilehash: 43c2a8864d5fe27ba44b0d7bc979db970305ec17
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d610a4ae97657013f6bb784790f073c3d986959f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="security-health-monitoring-in-azure-security-center"></a>Biztonsági állapotfigyelés az Azure Security Centerben
-Ez a cikk segít az Azure Security Center toomonitor szabályzatoknak való megfelelőségét a figyelési képességek hello használata.
+Ez a cikk az Azure Security Center figyelési funkcióknak használatához nyújt segítséget a szabályzatoknak való megfelelés ellenőrzése érdekében.
 
 ## <a name="what-is-security-health-monitoring"></a>Mi az a biztonsági állapotfigyelés?
-Gyakran szerintünk "figyelés" figyeli, és úgy, hogy aztán reagálhassunk toohello helyzet egy esemény toooccur vár. A biztonságfigyelés toohaving proaktív stratégiát jelent, amely a vállalati szabványoknak vagy ajánlott eljárásoknak eleget nem tevő erőforrások tooidentify rendszerek naplózás.
+Ha a „figyelés” szót halljuk, általában arra gondolunk, hogy elővigyázatosan várjuk, hogy egy adott esemény bekövetkezzen, hogy aztán reagálhassunk a szituációra. A biztonságfigyelés ezzel szemben proaktív stratégiát jelent, amely az erőforrásokat ellenőrizve azonosítja a vállalati szabványoknak vagy ajánlott eljárásoknak meg nem felelő rendszereket.
 
 ## <a name="monitoring-security-health"></a>A biztonsági állapot figyelése
-Miután engedélyezte a [biztonsági házirendek](security-center-policies.md) az előfizetéshez tartozó erőforrásokra, a Security Center elemzi az erőforrások tooidentify potenciális biztonsági réseket hello biztonságát. A hálózati konfigurációval kapcsolatos információk azonnal elérhetők. Egy óráig is eltarthat, vagy további információ a virtuális gép konfigurációját, például biztonsági frissítése, állapot és az operációs rendszer konfigurálása, toobecome érhető el. Az erőforrások és probléma merül fel hello biztonsági állapotát megtekintheti a hello **megelőzési** szakasz. Ezek a problémák listáját is megtekintheti a hello **javaslatok** csempére.
+Ha bekapcsolja az előfizetéshez tartozó erőforrásokra vonatkozó [biztonsági szabályzatokat](security-center-policies.md), a Security Center elvégzi az erőforrások biztonsági elemzését, és azonosítja a potenciális sebezhető pontokat. A hálózati konfigurációval kapcsolatos információk azonnal elérhetők. Azon virtuális gépek és számítógépek számától függően, amelyeken az ügynök telepítve van, a virtuális gépek és a számítógép konfigurációjára (például a biztonsági frissítések állapotára és az operációs rendszer beállításaira) vonatkozó információk összegyűjtésére körülbelül egy órát kell várni. A **Megelőzés** szakasz területén megtekintheti az erőforrások biztonsági állapotát és az esetleges problémákat. A problémák listáját a **Javaslatok** csempén is megtekintheti.
 
-További információ tooapply ajánlásokat, olvassa el [végrehajtási biztonsági javaslatok az Azure Security Centerben](security-center-recommendations.md).
+A javaslatok alkalmazásával kapcsolatban további információkat talál a következő cikkben: [A biztonsági javaslatok alkalmazása az Azure Security Centerben](security-center-recommendations.md).
 
-Hello alatt **megelőzési** szakaszban figyelheti hello az erőforrások biztonsági állapotát. A következő példa hello, megtekintheti az egyes erőforrások csempén (számítási, hálózati, tárolási & adat és alkalmazás) rendelkező hello azonosított problémák teljes száma.
+A **Megelőzés** szakaszban is nyomon követheti erőforrásainak biztonsági állapotát. Az alábbi példában azt láthatja, hogy minden egyes erőforrás csempéjén (Számítás, Hálózat, Tárolás és adatok, Alkalmazás) megtalálható az azonosított hibák összes száma.
 
 ![A Resources security health (Erőforrások biztonsági állapota) csempe](./media/security-center-monitoring/security-center-monitoring-fig1-newUI-2017.png)
 
 
 ### <a name="monitor-compute"></a>Számítási tevékenység figyelése
-Amikor rákattint **számítási** csempére, hello **számítási** panelt megnyitó bemutatja a három lappal:
+A **Számítás** csempére kattintva a következő három lap jelenik meg:
 
-- **Áttekintés**: megfigyelés és a virtuális gépre vonatkozó javaslatok.
-- **Virtuális gépek**: az összes virtuális gép és azok aktuális biztonsági állapotának listája.
+- **Áttekintés**: figyelés és javaslatok.
+- **Virtuális gépek és számítógépek**: az összes virtuális gép és számítógép, valamint azok aktuális biztonsági állapotának listája.
 - **Felhőszolgáltatások**: a Security Center által figyelt összes webes és feldolgozói szerepkör listája.
 
-![Hiányzó rendszerfrissítések virtuális gépenként](./media/security-center-monitoring/security-center-monitoring-fig1-new002-2017.png)
+![Hiányzó rendszerfrissítések virtuális gépenként](./media/security-center-monitoring/security-center-monitoring-fig1-sep2017.png)
 
-Az egyes lapokon rendelkezhet több szakaszt, és minden egyes részben válassza ki az egyéni beállítás toosee hello kapcsolatos további részletekért javasolt lépéseket tooaddress, hogy az adott problémát. 
+Minden egyes lap esetében több szakaszt hozhat létre, és az egyes szakaszokban elérhető lehetőségek kiválasztásával további részleteket tudhat meg az adott probléma megoldásához szükséges lépésekről. 
 
 #### <a name="monitoring-recommendations"></a>Figyelési javaslatok
-Ez a szakasz bemutatja a virtuális gépekhez, amelyek az adatgyűjtés és a jelenlegi állapot volt inicializálva hello teljes száma. Miután az összes virtuális gép rendelkezik az adatgyűjtést, fogják készen tooreceive Security Center biztonsági szabályzatainak. Ha ez a bejegyzés gombra kattint, hello **Virtuálisgép-ügynök hiányzik vagy nem válaszol** panel nyílik meg. 
+Ebben a szakaszban tekintheti meg az összes automatikus üzembe helyezésre beállított virtuális gépet és számítógépet, valamint azok aktuális állapotát. Ha erre a bejegyzésre kattint, megnyílik **A virtuálisgép-ügynök hiányzik vagy nem válaszol** panel. 
 
 ![Hiányzó rendszerfrissítések virtuális gépenként](./media/security-center-monitoring/security-center-monitoring-fig1-new003-2017.png)
 
 
-#### <a name="virtual-machine-recommendations"></a>Virtual machine recommendations (A virtuális gépre vonatkozó javaslatok)
-Ebben a szakaszban az Azure Security Center által megfigyelt [virtuális gépekre vonatkozó javaslatokat](security-center-virtual-machine-recommendations.md) olvashat. hello első oszlopban található hello javaslat. hello második oszlopban látható a virtuális gépeket, amelyekre érvényes által érintett hello teljes száma. hello harmadik oszlopban látható a hello hello probléma súlyossága, a következő képernyőkép hello ismertetett módon.
+#### <a name="recommendations"></a>Javaslatok
+Ebben a szakaszban az Azure Security Center által megfigyelt [virtuális gépekre és számítógépekre vonatkozó javaslatokat](security-center-virtual-machine-recommendations.md) olvashat. Az első oszlop a javaslatokat sorolja fel. A második oszlop az adott javaslat által érintett virtuális gépek és számítógépek számát tartalmazza. A harmadik oszlop a probléma súlyosságát mutatja, ahogyan az alábbi képernyőfelvételen látható:
 
-![Virtual machine recommendations (A virtuális gépre vonatkozó javaslatok)](./media/security-center-monitoring/security-center-monitoring-fig1-new004-2017.png)
+![Virtual machine recommendations (A virtuális gépre vonatkozó javaslatok)](./media/security-center-monitoring/security-center-monitoring-fig2-sep2017.png)
 
 > [!NOTE]
-> Csak a legalább egy nyilvános végpontot virtuális gépek megjelennek-e hello **hálózati állapotfigyelő** hello paneljén **hálózati topológia** listája.
+> A **Hálózatkezelés állapota** panel **Hálózati topológia** listájában kizárólag a legalább egy nyilvános végponttal rendelkező virtuális gépek jelennek meg.
 >
->
 
-Az egyes javaslatokra kattintva különböző műveleteket végezhet el. Ha például **hiányzó rendszerfrissítések**, hello **hiányzó rendszerfrissítések** panel nyílik meg. Felsorolja, hogy hiányoznak a javítások és hello hello hiányzó frissítés súlyosságát, ahogy az alábbi hello hello virtuális gépek képernyőkép.
+Az egyes javaslatokra kattintva különböző műveleteket végezhet el. Ha például a **Hiányzó rendszerfrissítések** elemre kattint, megtekintheti azoknak a virtuális gépeknek és számítógépeknek a listáját, amelyekről frissítések hiányoznak, valamint a hiányzó frissítés súlyosságát, ahogy az alábbi képernyőfelvételen látható:
 
-![Virtuális gépek hiányzó rendszerfrissítései](./media/security-center-monitoring/security-center-monitoring-fig5-ga.png)
+![Virtuális gépek hiányzó rendszerfrissítései](./media/security-center-monitoring/security-center-monitoring-fig9-sep2017.png)
 
-Hello **hiányzó rendszerfrissítések** panelen a következő információ hello táblázatát jeleníti meg:
+A **Hiányzó rendszerfrissítések** grafikus formátumban összegzi a kritikus frissítéseket, az egyik részben a Windows, a másik részben pedig a Linux rendszerre vonatkozóan. A második részben az alábbi információkat tartalmazó táblázat található:
 
-* **VIRTUÁLIS gép**: hello hello virtuális gép nevét, amelyről frissítések hiányoznak.
-* **RENDSZERFRISSÍTÉSEK**: hello hiányzó rendszerfrissítések száma.
-* **LEGUTÓBBI ellenőrzés időpontja**: hello ideje, hogy a Security Center legutóbb ellenőrizte hello virtuális gép a frissítéseket.
-* **ÁLLAPOT**: hello hello javaslat aktuális állapota:
-  * **Nyissa meg**: hello javaslat még nem foglalkoztak még.
-  * **A folyamatban lévő**: hello javaslat jelenleg folyamatban van a alkalmazott toothose erőforrásokat, és nincs szükség felhasználói műveletek is.
-  * **Megoldott**: hello javaslat már befejeződött. (Ha hello problémát sikerült megoldani, hello bejegyzés szürkén jelenik meg).
-* **SÚLYOSSÁGI**: ismerteti, hogy adott javaslat súlyosságát hello:
+* **NÉV** – A hiányzó frissítés neve.
+*  **VIRTUÁLIS GÉPEK ÉS SZÁMÍTÓGÉPEK SZÁMA**: Azon virtuális gépek és számítógépek teljes száma, amelyek esetében ez a frissítés hiányzik.
+* **STATE** (Állapot): a javaslat aktuális állapota:
+  * **Open** (Nyitott): a javaslattal egyelőre még nem foglalkoztak.
+  * **In Progress** (Folyamatban): folyamatban van a javaslat alkalmazása az érintett erőforrásokra, további lépésekre nincs szükség.
+  * **Resolved** (Megoldott): a javaslat alkalmazása megtörtént. (A probléma megoldása után a bejegyzés halványan jelenik meg.)
+* **SEVERITY** (Súlyosság): az adott javaslat súlyosságát határozza meg:
   * **High** (Magas): biztonsági rés található egy fontos erőforrásnál (alkalmazás, virtuális gép, hálózati biztonsági csoport) és beavatkozást igényel.
-  * **Közepes**: nem kritikus vagy kiegészítő lépések elvégzése szükséges toocomplete egy folyamat vagy egy biztonsági rés megszüntetéséhez.
-  * **Low** (Alacsony): a biztonsági rést be kell tömni, de a probléma nem igényel azonnali beavatkozást. (Alapértelmezés szerint alacsony súlyosságú javaslatok nem láthatók, de ha azt szeretné, hogy tooview alacsony súlyosságú javaslatok végezhet azokat.)
+  * **Medium** (Közepes): nem kritikus vagy kiegészítő lépések elvégzése szükséges egy folyamat befejezéséhez vagy egy biztonsági rés megszüntetéséhez.
+  * **Low** (Alacsony): a biztonsági rést be kell tömni, de a probléma nem igényel azonnali beavatkozást. (Az alacsony súlyosságú javaslatok alapértelmezés szerint nem láthatók, de a szűrővel bekapcsolhatja megjelenítésüket.)
 
-tooview hello ajánlás részleteit, kattintson a hello hello virtuális gép nevét. Új a virtuális gép ekkor megnyílik egy panel hello frissítések listáját a következő képernyőkép hello ismertetett módon.
+A javaslat részleteinek megtekintéséhez kattintson a hiányzó frissítés nevére a listában. 
 
-![Adott virtuális gép hiányzó rendszerfrissítései](./media/security-center-monitoring/security-center-monitoring-fig6-ga.png)
+![Adott virtuális gép hiányzó rendszerfrissítései](./media/security-center-monitoring/security-center-monitoring-fig4-sep2017.png)
 
 > [!NOTE]
-> hello biztonsági javaslatok itt még hello ugyanaz, mint a hello **javaslatok** panelen. Lásd: hello [végrehajtási biztonsági javaslatok az Azure Security Centerben](security-center-recommendations.md) további információt a cikk tooresolve javaslatok. Ez a tulajdonság vonatkozik, nem csupán a virtuális gépek is hello elérhető erőforrások **Resource Health** csempére.
+> Itt ugyanazok a biztonsági javaslatok láthatók, mint a **Javaslatok** lehetőség esetében. A javaslatok alkalmazásával kapcsolatban további információkat talál a következő cikkben: [A biztonsági javaslatok alkalmazása az Azure Security Centerben](security-center-recommendations.md). Ez nem csupán a virtuális gépekre vonatkozik, hanem az összes olyan erőforrásra és számítógépre, amely szerepel az **Erőforrás állapota** csempén.
 >
->
 
-#### <a name="virtual-machines-section"></a>A Virtual machines (Virtuális gépek) szakasz
-hello virtuális gépek szakasz áttekintést nyújt az összes virtuális gépek és javaslatokat. Minden oszlop felel javasolt, ahogy az alábbi képernyőfelvétel a hello:
+#### <a name="vms--computers-section"></a>Virtuális gépek és számítógépek szakasz
+A virtuális gépekre és számítógépekre vonatkozó szakaszban áttekintheti az összes virtuális gépet és számítógépet, valamint a rájuk vonatkozó javaslatokat. Ahogy az alábbi képernyőfelvételen is látható, minden oszlop egy javaslatcsoportot képvisel:
 
-![Az összes virtuális gép és javaslat áttekintése](./media/security-center-monitoring/security-center-monitoring-fig1-new005-2017.png)
+![Az összes virtuális gép és javaslat áttekintése](./media/security-center-monitoring/security-center-monitoring-fig5-sep2017.png)
 
-Minden javaslat megkönnyíti alatt megjelenő hello ikonok meg tooquickly azonosítása hello virtuális gépek kezeléséről és hello típusú javaslat érkezett.
+A listában négyféle ikon szerepel, az alábbiak szerint:
 
-Hello előző példában egy virtuális gépnek az endpoint protection vonatkozó kritikus súlyosságú javaslat. tooget a olvashat hello virtuális gépet, kattintson rá. Egy új panel, amely megnyitja ezt a virtuális gépet jelöl, ahogy az alábbi képernyőfelvétel a hello.
+![icon1](./media/security-center-monitoring/security-center-monitoring-icon1.png) Nem Azure-alapú számítógép.
 
-![Virtuális gépek biztonsági információi](./media/security-center-monitoring/security-center-monitoring-fig8-ga.png)
+![icon2](./media/security-center-monitoring/security-center-monitoring-icon2.png) Azure Resource Manager-alapú virtuális gép.
 
-Ezen a panelen hello biztonsági részletek hello virtuális gép van. Ez a panel alsó részén hello láthatja, hello javasolt művelet és az egyes problémák súlyosságát hello.
+![icon3](./media/security-center-monitoring/security-center-monitoring-icon3.png) Klasszikus Azure virtuális gép.
+
+![icon4](./media/security-center-monitoring/security-center-monitoring-icon4.png) Azok a virtuális gépek, amelyek csak a megtekintett előfizetés részét képező munkaterület alapján azonosít a rendszer. Ezek közé tartozhatnak olyan, más előfizetésekből származó virtuális gépek is, amelyek a jelen előfizetéshez tartozó munkaterületnek vannak alárendelve, valamint az SCOM közvetlen ügynök használatával telepített, erőforrás-azonosítóval nem rendelkező virtuális gépek.
+
+Az egyes javaslatok alatt megjelenő ikonok segítenek gyorsan azonosítani az intézkedést igénylő virtuális gépeket és számítógépeket, valamint a javaslat típusát. A **Szűrő** lehetőség használatával kiválaszthatja, hogy mely lehetőségek jelenjenek meg a képernyőn.
+
+![Szűrés](./media/security-center-monitoring/security-center-monitoring-fig6-sep2017.png)
+
+Az előző példában az egyik virtuális gép végpontvédelmével kapcsolatban a rendszer kritikus fontosságú javaslatot tett közzé. Ha további információt szeretne kapni a virtuális gépről, kattintson rá:
+
+![Virtuális gépek biztonsági információi](./media/security-center-monitoring/security-center-monitoring-fig7-sep2017.png)
+
+Itt láthatja a virtuális gépre vagy a számítógépre vonatkozó biztonsági információkat. A panel alján a javasolt műveleteket, valamint az egyes problémák súlyosságát láthatja.
 
 #### <a name="cloud-services-section"></a>Cloud Services szakasz
-A felhőszolgáltatások ajánlást létre elavult látható módon a következő képernyőkép hello hello operációs rendszer verziója esetén:
+A Cloud Services-szolgáltatások esetében a rendszer abban az esetben hozza létre a javaslatot, ha az operációs rendszer verziója elavult, ahogyan az alábbi képernyőfelvételen látható:
 
 ![Felhőszolgáltatások állapotinformációi](./media/security-center-monitoring/security-center-monitoring-fig1-new006-2017.png)
 
-Forgatókönyv esetében, amelyhez rendelkezik (ami nem hello elő hello előző példához) javaslat kell toofollow hello lépéseit hello ajánlás tooupdate hello operációs rendszer verziója. Egy frissítést nem érhető el, hogy egy riasztást (piros vagy narancssárga - függ hello probléma súlyossága hello). Ha ez a riasztás hello WebRole1 (Windows Server fut, a webes alkalmazás automatikusan telepített tooIIS) vagy (a Windows Server fut, a webes alkalmazás automatikusan telepített tooIIS) WorkerRole1 egy sor kattint, egy új panel nyílik meg a további részletekért a javaslat látható módon a következő képernyőkép hello:
+Olyan esetekben, ahol valóban rendelkezik javaslattal (az előző példa nem ilyen esetet mutat be), a javaslatban megadott lépéseket követve frissítheti az operációs rendszer verzióját. Ha egy frissítés elérhetővé válik, a rendszer riasztást jelenít meg (a probléma súlyosságától függően vörös vagy narancssárga riasztást). Ha a WebRole1 webes vagy a WorkerRole1 feldolgozói szerepkör riasztására kattint (mindkettő az IIS-re automatikusan telepített webalkalmazással együtt futtatja a Windows Servert), akkor további részleteket láthat az adott javaslatról, ahogyan az alábbi képernyőfelvételen is látható:
 
 ![Felhőszolgáltatás adatai](./media/security-center-monitoring/security-center-monitoring-fig8-new3.png)
 
-több előíró ismertetése, ez a javaslat toosee kattintson **frissítés operációsrendszer-verzió** hello alatt **leírás** oszlop. Hello **frissítés operációsrendszer-verzió (előzetes verzió)** további részletek panel nyílik meg.
+Ha előírásszerűbb magyarázatot kíván megtekinteni erről a javaslatról, a **DESCRIPTION** (LEÍRÁS) oszlopban kattintson az **Update OS version** (Operációs rendszer verziójának frissítése) elemre. 
 
 ![Felhőszolgáltatásokkal kapcsolatos javaslatok](./media/security-center-monitoring/security-center-monitoring-fig8-new4.png)  
 
 ### <a name="monitor-virtual-networks"></a>Virtuális hálózatok figyelése
-Amikor rákattint **hálózati** csempe, hello **hálózati** panel nyílik meg további részleteket, ahogy az alábbi képernyőfelvétel a hello:
+A **Hálózat** csempére kattintva megnyílik az alábbi képernyőképen látható **Hálózat** panel, amelyen további információk érhetők el:
 
 ![Hálózat panel](./media/security-center-monitoring/security-center-monitoring-fig9-new3.png)
 
 #### <a name="networking-recommendations"></a>Hálózatokra vonatkozó javaslatok
-Például a virtuálisgép-erőforrás állapotinformációkat hello, ezen a panelen hello panelről hello top és a megfigyelt hálózatok listája részén a problémák összefoglaló listája hello alsó biztosít.
+A virtuális gépek erőforrás-állapotára vonatkozó információkhoz hasonlóan a képernyő felső részén a problémák összefoglaló listája látható, alább pedig a megfigyelt hálózatok listája.
 
-hálózati állapotot részletező hello kínál, és tartalmazza a potenciális biztonsági problémákat [javaslatok](security-center-network-recommendations.md). Problémát jelenthetnek például a következők:
+A hálózati állapotot részletező listában megtekintheti a potenciális biztonsági problémákat, valamint az ezekre vonatkozó [javaslatokat](security-center-network-recommendations.md). Problémát jelenthetnek például a következők:
 
 * Nincs telepítve újgenerációs tűzfal (NGFW)
 * Az alhálózatokon nincsenek bekapcsolva a hálózati biztonsági csoportok
@@ -132,27 +141,25 @@ hálózati állapotot részletező hello kínál, és tartalmazza a potenciális
 * Külső hozzáférés korlátozása nyilvános külső végponton keresztül
 * Megfelelő állapotú internet felé néző végpontok
 
-Kattintva azt ajánljuk, ahogy az alábbi példa hello tartalmazó hello javaslat részletes adatainak megnyitása egy új panel.
+Ha egy javaslatra kattint, az alábbi példában látható módon további részleteket tekinthet meg a javaslatról:
 
-![Hello hálózati panelén ajánlás részleteit](./media/security-center-monitoring/security-center-monitoring-fig9-ga.png)
+![Az adott javaslat részletei a Hálózat panelen](./media/security-center-monitoring/security-center-monitoring-fig9-ga.png)
 
-Ebben a példában hello **hiányzó hálózati biztonsági csoportok beállítása az alhálózatok** panel rendelkezik alhálózatok listájának, és a virtuális gépek, hiányzó hálózati biztonsági csoport védelmét. Ha hello alhálózati toowhich tooapply hello hálózati biztonsági csoport gombra kattint, megnyílik egy újabb panel.
-
-A hello **válassza a hálózati biztonsági csoport** panelen kiválaszthatja hello legmegfelelőbb hálózati biztonsági csoportot az alhálózathoz hello, vagy létrehozhat egy új hálózati biztonsági csoportot.
+Ebben a példában a **Configure Missing Network Security Groups for Subnets** (Hiányzó hálózati biztonsági csoportok konfigurálása az alhálózatok számára) panelen láthatja azoknak az alhálózatoknak és virtuális gépeknek a listáját, amelyekhez nem tartoznak hálózati biztonsági csoportok védelme alá. Ha arra az alhálózatra kattint, amelyre a hálózati biztonsági csoportot szeretné alkalmazni, megnyílik a **Hálózati biztonsági csoport választása** panel. Itt kiválaszthatja az alhálózathoz legmegfelelőbb hálózati biztonsági csoportot, illetve akár új hálózati biztonsági csoportot is létrehozhat.
 
 #### <a name="internet-facing-endpoints-section"></a>Internet facing endpoints (Internet felé néző végpontok) szakasz
-A hello **végpontokat internetes** területen látható hello virtuális gépek, amelyeken jelenleg Internet felé néző végpont és az aktuális állapotával.
+Az **Internet facing endpoints** (Internet felé néző végpontok) részben azokat a virtuális gépeket láthatja, amelyeken jelenleg internet felé néző végpont működik, illetve megtekinthető a végpont aktuális állapota is.
 
 ![Internet felé néző végpontokkal konfigurált virtuális gépek és a végpontok állapota](./media/security-center-monitoring/security-center-monitoring-fig10-ga.png)
 
-Ez a táblázat rendelkezik hello tartalmazó végpont nevét hello virtuális gép, hello internetre irányuló IP-címet, és hello hello hálózati biztonsági csoport aktuális súlyossági állapotát, és hello NGFW. hello tábla súlyosság szerint rendezve:
+Ez a táblázat tartalmazza a virtuális gépet tartalmazó végpont nevét, az internet felé néző IP-címet, valamint a hálózati biztonsági csoport és az NGFW aktuális súlyossági állapotát. A táblázat elemei súlyosság szerint rendezve jelennek meg:
 
 * Piros (legfelül): a legmagasabb prioritás, azonnali beavatkozást igényel
 * Narancssárga: közepes szintű prioritás, a lehető legrövidebb időn belül beavatkozást igényel
 * Zöld (utolsó): megfelelő állapot
 
 #### <a name="networking-topology-section"></a>Networking topology (Hálózati topológia) szakasz
-Hello **hálózati topológia** szakaszában ismételten hello erőforrások hierarchikus nézete, ahogy az alábbi képernyőfelvétel a hello:
+A **Networking topology** (Hálózati topológia) rész az erőforrások hierarchikus nézetét mutatja, ahogy az alábbi képernyőfelvételen is látható:
 
 ![Az erőforrások hierarchikus nézete a Hálózati topológia szakaszban](./media/security-center-monitoring/security-center-monitoring-fig121-new4.png)
 
@@ -162,55 +169,55 @@ A táblázat elemei (a virtuális gépek és az alhálózatok) súlyosság szeri
 * Narancssárga: közepes szintű prioritás, a lehető legrövidebb időn belül beavatkozást igényel
 * Zöld (utolsó): megfelelő állapot
 
-A topológia e nézetében hello első szinten vannak [virtuális hálózatok](../virtual-network/virtual-networks-overview.md), [virtuális hálózati átjárók](/vpn-gateway/vpn-gateway-site-to-site-create.md), és [virtuális hálózatok (klasszikus)](/virtual-network/virtual-networks-create-vnet-classic-pportal.md). hello második szinthez tartoznak az alhálózatok, és létezik hello virtuális gépek toothose alhálózatok tartozó hello harmadik szinten. jobb oldali oszlopban hello állapota hello aktuális hello hálózati biztonsági csoport az erőforrásokhoz, ahogy az alábbi példa hello:
+A topológia e nézetében az első szinten vannak a [virtuális hálózatok](../virtual-network/virtual-networks-overview.md), a [virtuális hálózati átjárók](/vpn-gateway/vpn-gateway-site-to-site-create.md) és a [ (klasszikus) virtuális hálózatok](/virtual-network/virtual-networks-create-vnet-classic-pportal.md). A második szinthez tartoznak az alhálózatok, míg a harmadik szinten az ezekhez az alhálózatokhoz tartozó virtuális gépek. A jobb oldali oszlopban az adott erőforrásokhoz tartozó hálózati biztonsági csoport aktuális állapota található, ahogyan az alábbi példában is látható:
 
-![Hálózati topológia szakasz hello hálózati biztonsági csoport állapota](./media/security-center-monitoring/security-center-monitoring-fig12-ga.png)
+![A hálózati biztonsági csoport állapota a Networking topology (Hálózati topológia) szakaszban](./media/security-center-monitoring/security-center-monitoring-fig12-ga.png)
 
-hello a panel alsó részén van a virtuális gépet, amely hasonló hello javaslatok toowhat korábban leírt. Kattintson a további ajánlás toolearn, vagy hello szükséges biztonsági ellenőrzést vagy a konfiguráció alkalmazásához.
+A panel alsó részén a virtuális gépre vonatkozó javaslatok láthatók, a fentiekben leírtakhoz hasonlóan. A javaslatra kattintva további információkat tekinthet meg, illetve alkalmazhatók a szükséges biztonsági rendszabályok/konfigurációk.
 
 ### <a name="monitor-storage--data"></a>A Tárolás és adatok figyelése
 
-Elemre **tárolási & adatok** a hello **megelőzése** című szakaszba hello **erőforrásokat** SQL- és tárolási javaslatok panel nyílik meg. Azt is [javaslatok](security-center-sql-service-recommendations.md) hello általános állapot hello adatbázis. A tárolás titkosításáról további információkat az [Azure-tárfiókok titkosításának engedélyezése az Azure Security Centerben](security-center-enable-encryption-for-storage-account.md) című cikkben találhat.
+A **Megelőzés szakasz** **Tárolás és adatok** elemére kattintva megnyithatja az **Adatforrások** panelt, amelyen az SQL és a Storage használatával kapcsolatos javaslatokat olvashat. Ezenfelül általános [javaslatokat](security-center-sql-service-recommendations.md) is talál itt az adatbázis állapotára vonatkozóan. A tárolás titkosításáról további információkat az [Azure-tárfiókok titkosításának engedélyezése az Azure Security Centerben](security-center-enable-encryption-for-storage-account.md) című cikkben találhat.
 
 ![Adatforrások](./media/security-center-monitoring/security-center-monitoring-fig13-newUI-2017.png)
 
-A **SQL javaslatok**, is minden javaslat és a get több kapcsolatos információk további művelet tooresolve kapcsolatos problémát. hello alábbi példa bemutatja hello hello bővítése **Database Auditing & Threat detection SQL adatbázisok** javaslat.
+Az **SQL Recommendations** (Javaslatok az SQL használatával kapcsolatban) területen bármely javaslatra kattintva részletesebb információt kap a probléma megoldásához szükséges további intézkedésről. A következő példában a **Database Auditing & Threat detection on SQL databases** (Naplózás és fenyegetésészlelés az SQL-adatbázisokban) javaslat kibontott nézete látható.
 
 ![SQL-javaslat részletei](./media/security-center-monitoring/security-center-monitoring-fig14-ga-new.png)
 
-Hello **naplózás engedélyezését & Threat detection SQL-adatbázisok** panel rendelkezik hello a következő információkat:
+Az **Naplózás és fenyegetésészlelés engedélyezése az SQL-adatbázisokban** panelen a következő információk láthatók:
 
 * Az SQL-adatbázisok listája
-* hello kiszolgáló, amelyen találhatók-e
-* E ezt a beállítást hello server öröklődött, vagy konkrétan az adatbázisban
-* hello aktuális állapota
-* hello hello probléma súlyossága
+* A kiszolgáló, amely tárolja ezeket
+* Az, hogy a beállítás a kiszolgálóról öröklődött, vagy konkrétan az adott adatbázisra vonatkozik
+* Az aktuális állapot
+* A probléma súlyossága
 
-Ez a javaslat kattintva hello adatbázis tooaddress, hello **naplózási & Threat detection** panel nyílik meg, ahogy az a következő képernyő hello.
+Ha a javaslat megoldása érdekében rákattint az adatbázisra, az alábbi képernyőn látható módon megnyílik az **Naplózás és fenyegetésészlelés** panel.
 
-![Naplózás és fenyegetésészlelés panel](./media/security-center-monitoring/security-center-monitoring-fig15-ga.png)
+![Naplózás és fenyegetésészlelés](./media/security-center-monitoring/security-center-monitoring-fig15-ga.png)
 
-tooenable naplózás esetén jelölje be **ON** alatt hello **naplózási** lehetőséget.
+A naplózás engedélyezéséhez módosítsa az **Auditing** (Naplózás) beállítását **ON** (BE) értékre.
 
 ### <a name="monitor-applications"></a>Alkalmazások figyelése
 
-Ha az Azure számítási található alkalmazások [(az Azure Resource Manager használatával létrehozott) virtuális gépeket](../azure-resource-manager/resource-manager-deployment-model.md) feladatban felfedett webes portokkal (80-as és 443-as TCP-portok), a Security Center képes figyelni azokat tooidentify potenciális biztonsági problémákat és javasolni. Hello elemre **alkalmazások** csempére, hello **alkalmazások** panel nyílik meg számos javaslat található hello **alkalmazás javaslatok** szakasz. Hello alkalmazások állomásonkénti/virtuális IP is látható módon a következő képernyőkép hello mutatja.
+Ha az Azure számítási feladatban felfedett webes portokkal (80-as és 443-as TCP-portok) működő (az Azure Resource Managerrel létrehozott) [virtuális gépeken](../azure-resource-manager/resource-manager-deployment-model.md) található alkalmazások futnak, a Security Center képes ezeket is figyelni, azonosítani a potenciális biztonsági problémákat és megoldást javasolni. Az **Alkalmazások** csempére kattintva megnyithatja az **Alkalmazások** panelt, amelynek **Alkalmazásokkal kapcsolatos javaslatok** szakaszában számos javaslat található. Ezenfelül itt látható az alkalmazások gazdagép, IP-cím vagy tartomány szerinti lebontása is, valamint ha van telepítve WAF-megoldás:
 
-![Alkalmazások biztonsági állapota](./media/security-center-monitoring/security-center-monitoring-fig16-ga.png)
+![Alkalmazások biztonsági állapota](./media/security-center-monitoring/security-center-monitoring-fig8-sep2017.png)
 
-Ugyanúgy, mint Ön volt az hello más javaslatokról, kattintson a javaslat toosee hello problémával kapcsolatos további részletekért és hogyan tooremediate. hello hello a következő ábrán látható példája egy alkalmazás egy nem biztonságos webalkalmazásként való kezelése azonosított. Hello alkalmazás, amely nem biztonságosnak kiválasztásakor egy újabb panel társítás hello beállítása a következő:
+Ahogy a többi javaslat esetében, az egyes javaslatokra kattintva további információkhoz juthat a problémáról, illetve lehetséges megoldásáról. Az alábbi ábrán szereplő példában a rendszer nem biztonságos webalkalmazásként azonosított egy alkalmazást. Ha kijelöli a nem biztonságosnak ítélt alkalmazást, az alábbi lehetőség érhető el:
 
-![Információk a nem biztonságos alkalmazásról](./media/security-center-monitoring/security-center-monitoring-fig17-ga.png)
+![Részletek](./media/security-center-monitoring/security-center-monitoring-fig17-ga.png)
 
-Ezen a panelen megjelenik az alkalmazáshoz tartozó összes javaslat listája. Amikor rákattint hello **webalkalmazási tűzfal hozzáadása** javaslat, hello **webalkalmazási tűzfal hozzáadása** panel megnyitása, tooinstall lehetőségeket webalkalmazási tűzfal (WAF) a partner a következő képernyőkép hello látható.
+Itt megjelenik az alkalmazáshoz tartozó összes javaslat listája. A **Webalkalmazási tűzfal felvétele** javaslatra kattintva megnyílik a **Webalkalmazási tűzfal felvétele** panel, amelyről külső WAF (webalkalmazási tűzfal) telepítésére van lehetőség, ahogyan az alábbi képernyőfelvételen is látható.
 
 ![Az Add Web Application Firewall (Webalkalmazás-tűzfal hozzáadása) párbeszédpanel](./media/security-center-monitoring/security-center-monitoring-fig18-ga.png)
 
 ## <a name="see-also"></a>Lásd még:
-Ebben a cikkben megtanulta, hogyan meg toouse figyelési képességek az Azure Security Centerben. További információ az Azure Security Center toolearn hello következő lásd:
+Ebben a cikkben megismerkedhetett az Azure Security Center figyelési funkcióinak használatával. Az Azure Security Centerrel kapcsolatos további információkért olvassa el a következőket:
 
-* [Biztonsági szabályzatok beállítása az Azure Security Center](security-center-policies.md): megtudhatja, hogyan tooconfigure biztonsági beállításait az Azure Security Centerben.
-* [Az Azure Security Centerben riasztások kezelése és válaszol toosecurity](security-center-managing-and-responding-alerts.md): megtudhatja, hogyan toomanage és válaszoljon toosecurity riasztásokat.
-* [Partnermegoldások figyelése az Azure Security Center](security-center-partner-solutions.md): megtudhatja, hogyan toomonitor hello partneri megoldások biztonsági állapotát.
-* [Azure Security Center: GYIK](security-center-faq.md): gyakran ismételt kérdések hello szolgáltatás használatával kapcsolatban.
+* [Biztonsági szabályzatok beállítása az Azure Security Centerben](security-center-policies.md): Ez a cikk bemutatja, hogyan konfigurálhat biztonsági beállításokat az Azure Security Centerben.
+* [Biztonsági riasztások kezelése és válaszadás a riasztásokra az Azure Security Centerben](security-center-managing-and-responding-alerts.md): A biztonsági riasztások kezelése és az azokra való reagálás.
+* [Partneri megoldások monitorozása az Azure Security Centerrel](security-center-partner-solutions.md): Útmutató a partneri megoldások biztonsági állapotának monitorozásához.
+* [Azure Security Center – gyakran ismételt kérdések](security-center-faq.md): Gyakran ismételt kérdések a szolgáltatás használatával kapcsolatban.
 * [Azure Security blog](http://blogs.msdn.com/b/azuresecurity/): Blogbejegyzések az Azure biztonsági és megfelelőségi funkcióiról.

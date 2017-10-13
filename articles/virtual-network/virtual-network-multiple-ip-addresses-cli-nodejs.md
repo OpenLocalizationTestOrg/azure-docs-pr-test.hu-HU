@@ -1,6 +1,6 @@
 ---
-title: "hello Azure CLI 1.0 használatával több IP-címmel aaaVM |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooassign több IP-címek tooa virtuális gép használt hello Azure CLI 1.0 |} Erőforrás-kezelő."
+title: "Virtuális gép több IP-címek az Azure CLI 1.0 |} Microsoft Docs"
+description: "Megtudhatja, hogyan több IP-címek hozzárendelése a virtuális gépek az Azure CLI 1.0 |} Erőforrás-kezelő."
 services: virtual-network
 documentationcenter: na
 author: anavinahar
@@ -15,25 +15,25 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 11/17/2016
 ms.author: annahar
-ms.openlocfilehash: 83ad48e67309fb21d5aca967d4f2c01afdc0b5cc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9f085dfa1fe4db36d58cb976bb550a46bf241ac7
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="assign-multiple-ip-addresses-toovirtual-machines-using-azure-cli-10"></a>Több IP-cím használata az Azure CLI 1.0 toovirtual gépek hozzárendelése
+# <a name="assign-multiple-ip-addresses-to-virtual-machines-using-azure-cli-10"></a>Több IP-címek hozzárendelése az Azure CLI 1.0 használata virtuális gépek
 
 [!INCLUDE [virtual-network-multiple-ip-addresses-intro.md](../../includes/virtual-network-multiple-ip-addresses-intro.md)]
 
-Ez a cikk azt ismerteti, hogyan toocreate keresztül hello Azure Resource Manager deployment model használatával egy virtuális gép (VM) hello Azure CLI 1.0. Több IP-cím hello klasszikus telepítési modell használatával létrehozott tooresources nem lehet hozzárendelni. További információk az Azure üzembe helyezési modellel, olvassa el a hello toolearn [üzembe helyezési modellel megértéséhez](../resource-manager-deployment-model.md) cikk.
+Ez a cikk ismerteti (VM) virtuális gép létrehozása az Azure Resource Manager deployment használatával az Azure CLI 1.0 használatával. Több IP-cím nem lehet hozzárendelni a klasszikus üzembe helyezési modell használatával létrejött erőforrásokat. Az Azure üzembe helyezési modellel kapcsolatos további tudnivalókért olvassa el a [üzembe helyezési modellel megértéséhez](../resource-manager-deployment-model.md) cikk.
 
 [!INCLUDE [virtual-network-multiple-ip-addresses-template-scenario.md](../../includes/virtual-network-multiple-ip-addresses-scenario.md)]
 
 ## <a name = "create"></a>Több IP-címekkel rendelkező virtuális gép létrehozása
 
-Hajthatja végre ezt a feladatot az Azure CLI 1.0 (Ez a cikk) hello vagy hello [Azure CLI 2.0](virtual-network-multiple-ip-addresses-cli.md). hello következő lépések azt ismertetik, hogyan toocreate például VM több IP-címek, hello forgatókönyvben leírtak szerint. Módosítsa a változó nevét és IP cím típusát a végrehajtásához szükség szerint.
+Hajthatja végre ezt a feladatot az Azure CLI 1.0 (Ez a cikk) vagy a [Azure CLI 2.0](virtual-network-multiple-ip-addresses-cli.md). A következő lépések bemutatják, hogyan több IP-címmel, például virtuális gép létrehozásához a forgatókönyvben leírtak szerint. Módosítsa a változó nevét és IP cím típusát a végrehajtásához szükség szerint.
 
-1. Telepítse és konfigurálja a következő hello által az Azure CLI 1.0 lépések hello a hello [telepítése és konfigurálása az Azure parancssori felület hello](../cli-install-nodejs.md?toc=%2fazure%2fvirtual-network%2ftoc.json) a következő cikket, és jelentkezzen be az Azure-fiókjával hello `azure-login` parancsot.
+1. Telepítheti és konfigurálhatja az Azure CLI 1.0 lépéseit a [telepítése és konfigurálása az Azure parancssori felület](../cli-install-nodejs.md?toc=%2fazure%2fvirtual-network%2ftoc.json) cikk, és jelentkezzen be a Azure fiók a `azure-login` parancsot.
 
 2. Hozzon létre egy erőforráscsoportot:
     
@@ -48,30 +48,30 @@ Hajthatja végre ezt a feladatot az Azure CLI 1.0 (Ez a cikk) hello vagy hello [
     azure network vnet create --resource-group $RgName --location $Location --name myVNet \
     --address-prefixes 10.0.0.0/16
     ```
-4. A hello virtuális hálózati alhálózat létrehozása:
+4. A virtuális hálózati alhálózat létrehozása:
 
     ```azurecli
     azure network vnet subnet create --name mySubnet --resource-group $RgName --vnet-name myVNet \
     --address-prefix 10.0.0.0/24
     ```
     
-5. Hozzon létre egy tárfiókot a virtuális gép hello. Hello futtatása előtt a következő parancsban cserélje le *mystorageaccount* egyedi névvel. hello nevének egyedinek kell lennie a Azure között:
+5. Hozzon létre egy tárfiókot a virtuális gép számára. A következő parancs futtatása előtt cserélje le a *mystorageaccount* egyedi névvel. A nevének egyedinek kell lennie a Azure között:
 
     ```azurecli
     az storage account create --resource-group $RgName --location $Location --name mystorageaccount \
     --kind Storage --sku Standard_LRS
     ```
 
-6. Hozzon létre hello IP-konfigurációk, egy hálózati Adaptert, és rendelje a hello IP konfigurációk toohello hálózati adaptert. Hozzáadása, eltávolítása vagy szükség szerint hello konfigurációjának módosításához. a következő konfigurációk hello hello forgatókönyvet ismerteti:
+6. A hálózati adapter IP-konfigurációk létrehozása és az IP-konfiguráció hozzárendelése a hálózati adaptert. Hozzáadása, eltávolítása vagy módosítsa a beállításokat, szükség szerint. A következő konfigurációk a forgatókönyv leírása olvasható:
 
     **IPConfig-1**
 
-    Adja meg a hello további parancsoknál, amelyek toocreate:
+    Adja meg a további parancsoknál, amelyek létrehozásához:
 
     - A nyilvános IP-cím erőforrás egy statikus nyilvános IP-cím
-    - Egy hálózati Adaptert, hello nyilvános IP-cím és a statikus magánhálózati IP-cím tooit hozzárendelése.
+    - Egy hálózati Adaptert, azt a nyilvános IP-cím és a hozzá statikus magánhálózati IP-cím hozzárendelése.
     
-    Cserélje le *mypublicdns* hello Azure-beli hely egyedi névvel.
+    Cserélje le *mypublicdns* , amelynek az Azure-hely egyedi neve.
 
       ```azurecli
       azure network public-ip create --resource-group $RgName --location $Location --name myPublicIP1 \
@@ -83,11 +83,11 @@ Hajthatja végre ezt a feladatot az Azure CLI 1.0 (Ez a cikk) hello vagy hello [
       ```
 
       > [!NOTE]
-      > Nyilvános IP-címek névleges díjat kell. tudnivalók az IP-cím díjszabást toolearn olvasási hello [IP-cím árképzési](https://azure.microsoft.com/pricing/details/ip-addresses) lap. Nincs előfizetés használható nyilvános IP-címek számának korlátozása toohello. További információk hello korlátok, olvassa el a hello toolearn [Azure korlátozza](../azure-subscription-service-limits.md#networking-limits) cikk.
+      > Nyilvános IP-címek névleges díjat kell. IP-cím árazással kapcsolatos további tudnivalókért olvassa el a [IP-cím árképzési](https://azure.microsoft.com/pricing/details/ip-addresses) lap. Nyilvános IP-címek egy előfizetésben használható száma korlátozva van. A korlátozásokkal kapcsolatos további információkért olvassa el az [Azure korlátairól](../azure-subscription-service-limits.md#networking-limits) szóló cikket.
 
     **IPConfig-2**
 
-     Adja meg a következő parancsok toocreate hello, egy új nyilvános IP-cím erőforrás és egy új IP-konfiguráció egy statikus nyilvános IP-címet és egy statikus magánhálózati IP-cím:
+     Adja meg a következő parancsok futtatásával hozzon létre egy új nyilvános IP-cím erőforrás és egy új IP-konfiguráció egy statikus nyilvános IP-címet és egy statikus magánhálózati IP-cím:
     
       ```azurecli
       azure network public-ip create --resource-group $RgName --location $Location --name myPublicIP2
@@ -99,7 +99,7 @@ Hajthatja végre ezt a feladatot az Azure CLI 1.0 (Ez a cikk) hello vagy hello [
 
     **IPConfig-3**
 
-    Adja meg a következő parancsok toocreate hozzá statikus magánhálózati IP-cím és a nyilvános IP-cím az IP-konfigurációt hello:
+    Adja meg a következő parancsok futtatásával hozzon létre egy IP-konfiguráció hozzá statikus magánhálózati IP-cím és a nyilvános IP-cím:
 
       ```azurecli
       azure network nic ip-config create --resource-group $RgName --nic-name myNic1 --private-ip-address 10.0.0.6 \
@@ -107,7 +107,7 @@ Hajthatja végre ezt a feladatot az Azure CLI 1.0 (Ez a cikk) hello vagy hello [
       ```
 
     >[!NOTE] 
-    >Ez a cikk összes IP-konfigurációk tooa rendeli hozzá, ha egyetlen hálózati adapter, több IP-konfigurációk tooany egy virtuális hálózati adapter is hozzárendelhetők. toolearn hogyan toocreate virtuális gép több hálózati adaptert, és olvasási hello létrehozása a cikk több hálózati adapterrel rendelkező virtuális gépeknél.
+    >Bár ez a cikk összes IP-konfigurációk rendel hozzá egyetlen hálózati adapter, is rendelhet több IP-konfigurációk a hálózati adapterek virtuális gépen. Több hálózati adapterrel rendelkező virtuális gép létrehozása, olvassa el a hozza létre a cikk több hálózati adapterrel rendelkező virtuális gépeknél.
 
 7. Linux rendszerű virtuális gép létrehozása 
 
@@ -116,26 +116,26 @@ Hajthatja végre ezt a feladatot az Azure CLI 1.0 (Ez a cikk) hello vagy hello [
     --image UbuntuLTS --ssh-key-value ~/.ssh/id_rsa.pub --admin-username azureuser
     ```
 
-    toochange hello mérete tooStandard DS2 v2 virtuális gép, például egyszerűen adja hozzá a következő tulajdonság hello `--vm-size Standard_DS3_v2` toohello `azure vm create` parancsot a 6.
+    Módosítsa a Virtuálisgép-méretet szabványos DS2 v2, például egyszerűen adja hozzá a következő tulajdonság `--vm-size Standard_DS3_v2` számára a `azure vm create` parancsot a 6.
 
-8. Adja meg a következő parancs tooview hello NIC hello és hello társított IP-konfigurációk:
+8. Adja meg a hálózati adapter és a társított IP-konfiguráció megtekintéséhez a következő parancsot:
 
     ```azurecli
     azure network nic show --resource-group $RgName --name myNic1
     ```
-9. Hozzáadás hello privát IP-címek toohello virtuális gép operációs rendszer hello lépések végrehajtásával, az operációs rendszernek a hello [hozzáadása IP-címek tooa virtuális gép operációs rendszer](#os-config) című szakaszát.
+9. A privát IP-címek hozzáadása a virtuális gép operációs rendszer, az operációs rendszernek a lépések végrehajtásával a [hozzáadása IP-címek egy virtuális gép operációs rendszerre](#os-config) című szakaszát.
 
-## <a name="add"></a>Adja hozzá az IP-címek tooa méretű VM
+## <a name="add"></a>IP-címek hozzáadása a virtuális gépek
 
-Hozzáadhat további magán- és IP címeket tooan meglévő hálózati hello következő lépések végrehajtásával. hello példák épül hello [forgatókönyv](#Scenario) a cikkben.
+További privát és nyilvános IP-címeket adhat hozzá egy meglévő hálózati adapterre a következő lépések végrehajtásával. A példák épül a [forgatókönyv](#Scenario) a cikkben.
 
-1. Nyissa meg az Azure parancssori felület és a teljes hello hátralévő lépéseket ebben a szakaszban egy CLI-munkameneten belül. Ha még nem rendelkezik Azure CLI telepítése és konfigurálása, teljes hello hello szükséges lépések [telepítése és konfigurálása az Azure parancssori felület hello](../cli-install-nodejs.md?toc=%2fazure%2fvirtual-network%2ftoc.json) a következő cikket, és jelentkezzen be az Azure-fiókjával.
+1. Nyissa meg az Azure parancssori felület, és hajtsa végre a fennmaradó lépéseit ebben a szakaszban egy CLI-munkameneten belül. Ha még nem rendelkezik Azure CLI telepítése és konfigurálása, hajtsa végre a a [telepítése és konfigurálása az Azure parancssori felület](../cli-install-nodejs.md?toc=%2fazure%2fvirtual-network%2ftoc.json) a következő cikket, és jelentkezzen be az Azure-fiókjával.
 
-2. Végezze el a következő szakaszok a követelmények alapján hello egyikében hello lépéseket:
+2. Hajtsa végre a következő részeiből, a követelmények alapján:
 
     - **Adja hozzá a magánhálózati IP-cím**
     
-        egy privát IP-cím tooa NIC tooadd, létre kell hoznia hello parancsot az alábbi IP-konfigurációt. hello statikus cím hello alhálózat nem használt címnek kell lennie.
+        A magánhálózati IP-cím hozzáadása a hálózati adapter, létre kell hoznia IP-konfigurációt az alábbi parancs segítségével. A statikus cím az alhálózat nem használt címnek kell lennie.
 
         ```azurecli
         azure network nic ip-config create --resource-group myResourceGroup --nic-name myNic1 \
@@ -145,37 +145,37 @@ Hozzáadhat további magán- és IP címeket tooan meglévő hálózati hello k�
 
     - **A nyilvános IP-cím hozzáadása**
     
-        A nyilvános IP-cím való társítás tooeither által hozzáadott új IP-konfiguráció vagy a meglévő IP-konfigurációt. Hajtsa végre hello egyik hello szakaszokban szereplő, az összes kívánt beállítást.
+        A nyilvános IP-cím jelenik meg egy új IP-konfigurációt vagy egy meglévő IP-konfiguráció társításával. Hajtsa végre a következő szakaszok, egyikében összes kívánt beállítást.
 
         > [!NOTE]
-        > Nyilvános IP-címek névleges díjat kell. tudnivalók az IP-cím díjszabást toolearn olvasási hello [IP-cím árképzési](https://azure.microsoft.com/pricing/details/ip-addresses) lap. Nincs előfizetés használható nyilvános IP-címek számának korlátozása toohello. További információk hello korlátok, olvassa el a hello toolearn [Azure korlátozza](../azure-subscription-service-limits.md#networking-limits) cikk.
+        > Nyilvános IP-címek névleges díjat kell. IP-cím árazással kapcsolatos további tudnivalókért olvassa el a [IP-cím árképzési](https://azure.microsoft.com/pricing/details/ip-addresses) lap. Nyilvános IP-címek egy előfizetésben használható száma korlátozva van. A korlátozásokkal kapcsolatos további információkért olvassa el az [Azure korlátairól](../azure-subscription-service-limits.md#networking-limits) szóló cikket.
         >
 
-        **Hello erőforrás tooa új IP-konfiguráció hozzárendelése**
+        **Társítsa az erőforrást egy új IP-konfiguráció**
     
-        Egy nyilvános IP-címet ad hozzá egy új IP-konfiguráció, amikor is hozzá kell magánhálózati IP-cím, mert az összes IP-konfiguráció magánhálózati IP-címnek kell rendelkeznie. Egy meglévő nyilvános IP-cím erőforrás hozzáadása, vagy hozzon létre egy újat. toocreate egy új, adja meg a következő parancs hello:
+        Egy nyilvános IP-címet ad hozzá egy új IP-konfiguráció, amikor is hozzá kell magánhálózati IP-cím, mert az összes IP-konfiguráció magánhálózati IP-címnek kell rendelkeznie. Egy meglévő nyilvános IP-cím erőforrás hozzáadása, vagy hozzon létre egy újat. Hozzon létre egy újat, írja be a következő parancsot:
 
         ```azurecli
         azure network public-ip create --resource-group myResourceGroup --location westcentralus --name myPublicIP3 \
         --domain-name-label mypublicdns3
         ```
 
-        egy új IP-beállítását egy statikus magánhálózati IP-cím és a kapcsolódó hello toocreate *myPublicIP3* nyilvános IP-cím erőforrás címet, adja meg a következő parancs hello:
+        Új IP-konfiguráció létrehozása hozzá statikus magánhálózati IP-cím és a társított *myPublicIP3* nyilvános IP-cím erőforrás címet, adja meg a következő parancsot:
 
         ```azurecli
         azure network nic ip-config create --resource-group myResourceGroup --nic-name myNic --name IPConfig-4 \
         --private-ip-address 10.0.0.8 --public-ip-name myPublicIP3
         ```
 
-        **Hello erőforrás tooan meglévő IP-konfiguráció hozzárendelése**
+        **Társítsa az erőforrást egy meglévő IP-konfiguráció**
 
-        A nyilvános IP-cím erőforrás csak lehet társított tooan IP-konfigurációja, amely még nincs társítva. Segítségével meghatározhatja, hogy rendelkezik-e IP-konfigurációt tartozó nyilvános IP-cím hello a következő parancs beírásával:
+        A nyilvános IP-cím erőforrás csak lehet társítva, amely még nincs társított IP-konfigurációt. Segítségével meghatározhatja, hogy rendelkezik-e IP-konfigurációt tartozó nyilvános IP-cím a következő parancs beírásával:
 
         ```azurecli
         azure network nic ip-config list --resource-group myResourceGroup --nic-name myNic1
         ```
 
-        Egy sor hasonló toohello egy adott vissza a kimeneti hello az IPConfig-3 következő keresése:
+        Keresse meg az utánuk az IPConfig-3 visszaadott kimenet hasonló:
 
         ```         
         Name               Provisioning state  Primary  Private IP allocation Private IP version  Private IP address  Subnet    Public IP
@@ -184,26 +184,26 @@ Hozzáadhat további magán- és IP címeket tooan meglévő hálózati hello k�
         IPConfig-3         Succeeded           false    Static                IPv4                10.0.0.6            mySubnet
         ```
           
-        Hello óta **nyilvános IP-cím** oszlopában *IpConfig-3* van üres, nem nyilvános IP-cím erőforrás jelenleg társított tooit. Adja hozzá egy meglévő nyilvános IP cím erőforrás tooIpConfig-3, vagy adja meg a következő parancs toocreate egy hello:
+        Mivel a **nyilvános IP-cím** oszlopában *IpConfig-3* van üres, nem nyilvános IP-cím erőforrás jelenleg társítva. Egy meglévő nyilvános IP-cím erőforrás hozzáadása IpConfig-3, vagy hozzon létre egyet a következő parancsot írja be:
 
         ```azurecli
         azure network public-ip create --resource-group  myResourceGroup --location westcentralus \
         --name myPublicIP3 --domain-name-label mypublicdns3 --allocation-method Static
         ```
 
-        Adja meg a következő parancs tooassociate hello nyilvános IP-cím erőforrás toohello meglévő IP-konfiguráció hello *IPConfig-3*:
+        Adja meg a következő parancsot a meglévő IP-konfiguráció a nyilvános IP-cím erőforrás hozzárendelni *IPConfig-3*:
         ```azurecli
         azure network nic ip-config set --resource-group myResourceGroup --nic-name myNic1 --name IPConfig-3 \
         --public-ip-name myPublicIP3
         ```
 
-3. Hello magánhálózati IP-címek megtekintése és hello nyilvános IP cím erőforrások hozzárendelt toohello megadásával NIC hello a következő parancsot:
+3. Tekintse meg a magánhálózati IP-címek és a nyilvános IP-cím erőforrás hozzárendelt hálózati adapter a következő parancs beírásával:
 
     ```azurecli
     azure network nic ip-config list --resource-group myResourceGroup --nic-name myNic1
     ```
 
-      hello visszaadott kimeneti hasonló toohello következő:
+      A visszaadott kimenete az alábbihoz hasonló:
       ```
       Name               Provisioning state  Primary  Private IP allocation Private IP version  Private IP address  Subnet    Public IP
         
@@ -211,6 +211,6 @@ Hozzáadhat további magán- és IP címeket tooan meglévő hálózati hello k�
       IPConfig-2         Succeeded           false    Static                IPv4                10.0.0.5            mySubnet  myPublicIP2
       IPConfig-3         Succeeded           false    Static                IPv4                10.0.0.6            mySubnet  myPublicIP3
       ```
-4. Hello toohello NIC toohello virtuális gép operációs rendszer hello hello utasításait követve hozzáadott magánhálózati IP-címek hozzáadása [hozzáadása IP-címek tooa virtuális gép operációs rendszer](#os-config) című szakaszát. Hello nyilvános IP-címek toohello operációs rendszere nem adja hozzá.
+4. Adja hozzá a magánhálózati IP-címek utasításait követve hozzáadni a hálózati Adaptert a virtuális gép operációs rendszerre a [hozzáadása IP-címek egy virtuális gép operációs rendszerre](#os-config) című szakaszát. Ne vegyen fel a nyilvános IP-címeket az operációs rendszer.
 
 [!INCLUDE [virtual-network-multiple-ip-addresses-os-config.md](../../includes/virtual-network-multiple-ip-addresses-os-config.md)]

@@ -1,6 +1,6 @@
 ---
-title: "Ruby használatával PostgreSQL adatbázis aaaConnect tooAzure |} Microsoft Docs"
-description: "A gyors üzembe helyezés biztosít egy Ruby kódminta PostgreSQL lekérdezése a Azure-adatbázis adatait és tooconnect használhatja."
+title: "Csatlakozás a PostgreSQL-hez készült Azure Database-hez a Ruby használatával | Microsoft Docs"
+description: "Az alábbi gyors útmutatóban egy olyan Ruby-kódminta található, amely a PostgreSQL-hez készült Azure Database csatlakoztatására és adatlekérdezésre használható."
 services: postgresql
 author: jasonwhowell
 ms.author: jasonh
@@ -11,17 +11,17 @@ ms.custom: mvc
 ms.devlang: ruby
 ms.topic: quickstart
 ms.date: 06/30/2017
-ms.openlocfilehash: 7a0c8c92023452b40ca19d76fa659744f3e9a236
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9153a5a843dd5c18f27a3af232fea3b152240fe1
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="azure-database-for-postgresql-use-ruby-tooconnect-and-query-data"></a>Azure PostgreSQL-adatbázishoz: használata Ruby tooconnect és lekérdezési adatok
-A gyors üzembe helyezés bemutatja, hogyan tooconnect tooan Azure PostgreSQL az adatbázis egy [Ruby](https://www.ruby-lang.org) alkalmazás. Azt illusztrálja, hogyan toouse SQL utasítás tooquery beszúrási, frissítési és törlési hello adatbázis adatait. Ez a cikk feltételezi, hogy jártas használatával Ruby, azonban, hogy új tooworking PostgreSQL az Azure-adatbázissal.
+# <a name="azure-database-for-postgresql-use-ruby-to-connect-and-query-data"></a>A PostgreSQL-hez készült Azure Database: csatlakozás és adatlekérdezés a Ruby használatával
+Ebben a gyors útmutatóban azt szemléltetjük, hogy miként lehet egy [Ruby](https://www.ruby-lang.org)-alkalmazás használatával csatlakozni a PostgreSQL-hez készült Azure Database-hez. Bemutatjuk, hogy az SQL-utasítások használatával hogyan kérdezhetők le, illeszthetők be, frissíthetők és törölhetők az adatok az adatbázisban. A jelen cikk azt feltételezi, hogy Ön már rendelkezik Ruby-fejlesztési tapasztalatokkal, de a PostgreSQL-hez készült Azure Database használatában pedig még járatlan.
 
 ## <a name="prerequisites"></a>Előfeltételek
-A gyors üzembe helyezés kiindulási pontként ezek az útmutatók valamelyikével létrehozott hello erőforrást használ:
+A rövid útmutató az alábbi útmutatók valamelyikében létrehozott erőforrásokat használja kiindulópontként:
 - [DB létrehozása – portál](quickstart-create-server-database-portal.md)
 - [DB létrehozása – Azure CLI](quickstart-create-server-database-azure-cli.md)
 
@@ -29,49 +29,49 @@ A gyors üzembe helyezés kiindulási pontként ezek az útmutatók valamelyiké
 Telepítse a Rubyt saját számítógépén. 
 
 ### <a name="windows"></a>Windows
-- A letöltés és telepítés hello legújabb verziójának [Ruby](http://rubyinstaller.org/downloads/).
-- Hello a Befejezés gombra a képernyő hello MSI-telepítő, jelölőnégyzetet hello, amely szerint a "Futtatás"ridk telepítése"tooinstall MSYS2 és fejlesztési toolchain." Kattintson a **Befejezés** toolaunch hello következő telepítő.
-- hello RubyInstaller2 a Windows telepítő elindítja. Adjon meg 2 tooinstall hello MSYS2 lemezképtár frissítése. Miután befejeződik, és toohello telepítési kérdés adja vissza, hello parancs ablak bezárásához.
-- Nyissa meg egy új parancssort (cmd) hello Start menüből.
-- Teszt hello Ruby telepítési `ruby -v` toosee hello verziója van telepítve.
-- Hello Gem telepítés sikerességének ellenőrzése `gem -v` toosee hello verziója van telepítve.
-- Hello PostgreSQL modul építése Gem használatával hello parancs futtatásával Ruby `gem install pg`.
+- Töltse le, és telepítse a [Ruby](http://rubyinstaller.org/downloads/) legújabb verzióját.
+- Az MSI telepítő befejező képernyőjén jelölje be a „Run 'ridk install' to install MSYS2 and development toolchain” (A ridk install parancs futtatása az MSYS2 és a fejlesztési eszközlánc telepítéséhez) jelölőnégyzetet. Kattintson a **Befejezés** gombra a következő telepítő elindításához.
+- Ekkor elindul l aRubyInstaller2 for Windows telepítője. Az MSYS2-adattárfrissítés telepítéséhez nyomja le a 2 billentyűt. Miután befejeződik a telepítés, és visszatér a telepítő parancssorába, zárja be a parancssor ablakát.
+- Nyisson meg egy új parancssort (cmd) a Start menüből.
+- Ellenőrizze a Ruby-telepítés sikerességét a telepített verzió megtekintésével: `ruby -v`.
+- Ellenőrizze a Gem-telepítés sikerességét a telepített verzió megtekintésével: `gem -v`.
+- A következő parancs futtatásával készítse el a PostgreSQL-modult a Ruby-hoz a Gem használatával: `gem install pg`.
 
 ### <a name="macos"></a>MacOS
-- Ruby Homebrew használatával hello parancs futtatásával telepítse `brew install ruby`. További telepítési lehetőségekről, tekintse meg a hello Ruby [dokumentáció](https://www.ruby-lang.org/en/documentation/installation/#homebrew)
-- Teszt hello Ruby telepítési `ruby -v` toosee hello verziója van telepítve.
-- Hello Gem telepítés sikerességének ellenőrzése `gem -v` toosee hello verziója van telepítve.
-- Hello PostgreSQL modul építése Gem használatával hello parancs futtatásával Ruby `gem install pg`.
+- A következő parancs futtatásával telepítse a Rubyt a Homebrew használatával: `brew install ruby`. A további telepítési lehetőségekről a Ruby [telepítési dokumentációjából](https://www.ruby-lang.org/en/documentation/installation/#homebrew) tájékozódhat
+- Ellenőrizze a Ruby-telepítés sikerességét a telepített verzió megtekintésével: `ruby -v`.
+- Ellenőrizze a Gem-telepítés sikerességét a telepített verzió megtekintésével: `gem -v`.
+- A következő parancs futtatásával készítse el a PostgreSQL-modult a Ruby-hoz a Gem használatával: `gem install pg`.
 
 ### <a name="linux-ubuntu"></a>Linux (Ubuntu)
-- Telepítse a Ruby hello parancs futtatásával `sudo apt-get install ruby-full`. További telepítési lehetőségekről, tekintse meg a hello Ruby [dokumentáció](https://www.ruby-lang.org/en/documentation/installation/).
-- Teszt hello Ruby telepítési `ruby -v` toosee hello verziója van telepítve.
-- Hello legújabb frissítéseinek telepítése Gem hello parancs futtatásával `sudo gem update --system`.
-- Hello Gem telepítés sikerességének ellenőrzése `gem -v` toosee hello verziója van telepítve.
-- Telepítse a hello ÖET, ellenőrizze és egyéb build tools hello parancs futtatásával `sudo apt-get install build-essential`.
-- Telepítse a hello PostgreSQL szalagtárak hello parancs futtatásával `sudo apt-get install libpq-dev`.
-- Build hello Ruby pg modul használatával Gem hello parancs futtatásával `sudo gem install pg`.
+- A következő parancs futtatásával telepítse a Rubyt: `sudo apt-get install ruby-full`. A további telepítési lehetőségekről a Ruby [telepítési dokumentációjából](https://www.ruby-lang.org/en/documentation/installation/) tájékozódhat.
+- Ellenőrizze a Ruby-telepítés sikerességét a telepített verzió megtekintésével: `ruby -v`.
+- Telepítse a legújabb Gem-frissítéseket a következő parancs futtatásával: `sudo gem update --system`.
+- Ellenőrizze a Gem-telepítés sikerességét a telepített verzió megtekintésével: `gem -v`.
+- A következő parancs futtatásával telepítse a gcc, a make és az egyéb összeállítási eszközöket: `sudo apt-get install build-essential`.
+- Telepítése a PostgreSQL-kódtárakat a `sudo apt-get install libpq-dev` parancs futtatásával.
+- Hozza létre a Ruby pg modult a Gem használatával a `sudo gem install pg` parancs futtatásával.
 
 ## <a name="run-ruby-code"></a>Ruby-kód futtatása 
-- Hello kód egy szövegfájlba, és hello fájlt például a fájl kiterjesztése .rb, a projekt mappába Mentés `C:\rubypostgres\read.rb` vagy`/home/username/rubypostgres/read.rb`
-- toorun hello kódot, indítsa el a hello parancssor, vagy a bash rendszerhéjat. A projekt mappába könyvtárváltás `cd rubypostgres`, majd írja be a hello parancsot `ruby read.rb` toorun hello alkalmazás.
+- Mentse a kódot egy szövegfájlba, és mentse a fájlt egy projektmappába az .rb fájlkiterjesztéssel, például: `C:\rubypostgres\read.rb` vagy `/home/username/rubypostgres/read.rb`
+- A kód futtatásához nyissa meg a parancssort vagy a bash rendszerhéjat. Lépjen a projektmappába a `cd rubypostgres` paranccsal, majd írja be a `ruby read.rb` parancsot az alkalmazás futtatásához.
 
 ## <a name="get-connection-information"></a>Kapcsolatadatok lekérése
-Hello kapcsolat szükséges információkat tooconnect toohello Azure adatbázis beolvasása PostgreSQL. Teljesen minősített kiszolgáló nevét és a bejelentkezési hitelesítő adatokat hello van szüksége.
+Kérje le a PostgreSQL-hez készült Azure-adatbázishoz való csatlakozáshoz szükséges kapcsolatadatokat. Szüksége lesz a teljes kiszolgálónévre és a bejelentkezési hitelesítő adatokra.
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/).
-2. A hello Azure-portálon a bal oldali menüből, kattintson az **összes erőforrás** , és keressen a létrehozott, például a hello server **mypgserver-20170401**.
-3. Hello kiszolgáló nevére kattint **mypgserver-20170401**.
-4. Jelölje be hello server **áttekintése** lap. Jegyezze fel a hello **kiszolgálónév** és **kiszolgálói rendszergazda bejelentkezési név**.
- ![PostgreSQL-hez készült Azure-adatbázis – Kiszolgáló-rendszergazdai bejelentkezés](./media/connect-ruby/1-connection-string.png)
-5. Ha elfelejti a kiszolgálói bejelentkezési adatok, keresse meg a toohello **áttekintése** lap tooview hello rendszergazda bejelentkezési nevet. Ha szükséges, jelszó-átállítási hello.
+1. Jelentkezzen be az [Azure portálra](https://portal.azure.com/).
+2. Az Azure Portal bal oldali menüjében kattintson az **Összes erőforrás** lehetőségre, és keressen rá a létrehozott kiszolgálóra (például **mypgserver-20170401**).
+3. Kattintson a **mypgserver-20170401** kiszolgálónévre.
+4. Válassza ki a kiszolgáló **Áttekintés** oldalát. Jegyezze fel a **Kiszolgálónevet** és a **Kiszolgáló-rendszergazdai bejelentkezési nevet**.
+ ![Azure-adatbázis PostgreSQL-hez - Kiszolgáló-rendszergazdai bejelentkezés](./media/connect-ruby/1-connection-string.png)
+5. Amennyiben elfelejtette a kiszolgáló bejelentkezési adatait, lépjen az **Overview** (Áttekintés) oldalra, és itt megtudhatja a kiszolgáló rendszergazdájának bejelentkezési nevét. Szükség esetén állítsa alaphelyzetbe a jelszót.
 
 ## <a name="connect-and-create-a-table"></a>Csatlakozás és tábla létrehozása
-Használjon hello alábbi code tooconnect, és hozzon létre egy táblát az **CREATE TABLE** SQL-utasítást, és **INSERT INTO** SQL utasítás tooadd sorok hello táblába.
+A következő kód segítségével csatlakozzon, és hozzon létre egy táblát a **CREATE TABLE** SQL-utasítással, majd az **INSERT INTO** SQL-utasítással adjon hozzá sorokat a táblához.
 
-hello kódot használja a [PG::Connection](http://www.rubydoc.info/gems/pg/PG/Connection) konstruktorral objektum [hívás](http://www.rubydoc.info/gems/pg/PG%2FConnection:initialize) tooconnect tooAzure PostgreSQL-adatbázisban. Ezután a metódus meghívja [exec()](http://www.rubydoc.info/gems/pg/PG/Connection#exec-instance_method) toorun hello dobja el, CREATE TABLE és INSERT INTO parancsok. hello kód ellenőrzi a hello segítségével hibákat [PG::Error](http://www.rubydoc.info/gems/pg/PG/Error) osztály. Ezután a metódus meghívja [close()](http://www.rubydoc.info/gems/pg/PG/Connection#lo_close-instance_method) tooclose hello kapcsolat megszakítása előtt.
+A kód egy [PG::Connection](http://www.rubydoc.info/gems/pg/PG/Connection) objektumot használ a [new()](http://www.rubydoc.info/gems/pg/PG%2FConnection:initialize) konstruktorral a PostgreSQL-hez készült Azure Database-hez való kapcsolódáshoz. Ezután meghívja az [exec()](http://www.rubydoc.info/gems/pg/PG/Connection#exec-instance_method) metódust a DROP, CREATE TABLE és INSERT INTO parancsok futtatásához. A kód a [PG::Error](http://www.rubydoc.info/gems/pg/PG/Error) osztály használatával ellenőrzi a hibákat. Végül pedig a [close()](http://www.rubydoc.info/gems/pg/PG/Connection#lo_close-instance_method) metódus meghívásával bontja a kapcsolatot, mielőtt kilép.
 
-Cserélje le a hello `host`, `database`, `user`, és `password` karakterláncok saját értékekkel. 
+Cserélje le a `host`, `database`, `user`, és `password` karakterláncokat a saját értékekre. 
 ```ruby
 require 'pg'
 
@@ -84,7 +84,7 @@ begin
 
     # Initialize connection object.
     connection = PG::Connection.new(:host => host, :user => user, :dbname => database, :port => '5432', :password => password)
-    puts 'Successfully created connection toodatabase'
+    puts 'Successfully created connection to database'
 
     # Drop previous table of same name if one exists
     connection.exec('DROP TABLE IF EXISTS inventory;')
@@ -109,11 +109,11 @@ end
 ```
 
 ## <a name="read-data"></a>Adatok olvasása
-Használjon hello alábbi code tooconnect, és hello adatok segítségével olvassa a **kiválasztása** SQL-utasításban. 
+Az alábbi kód használatával csatlakozhat és végezheti el az adatok olvasását az adott **SELECT** SQL-utasítás segítségével. 
 
-hello kódot használja a [PG::Connection](http://www.rubydoc.info/gems/pg/PG/Connection) konstruktorral objektum [hívás](http://www.rubydoc.info/gems/pg/PG%2FConnection:initialize) tooconnect tooAzure PostgreSQL-adatbázisban. Ezután a metódus meghívja [exec()](http://www.rubydoc.info/gems/pg/PG/Connection#exec-instance_method) toorun hello kijelölési parancs, hello eredmények tartása egy eredményhalmazban szerepel. hello eredmény készlet gyűjteményéhez van többször is hello használatához képest `resultSet.each do` hurok hello aktuális sorérték megőrzi található hello `row` változó. hello kód ellenőrzi a hello segítségével hibákat [PG::Error](http://www.rubydoc.info/gems/pg/PG/Error) osztály. Ezután a metódus meghívja [close()](http://www.rubydoc.info/gems/pg/PG/Connection#lo_close-instance_method) tooclose hello kapcsolat megszakítása előtt.
+A kód egy [PG::Connection](http://www.rubydoc.info/gems/pg/PG/Connection) objektumot használ a [new()](http://www.rubydoc.info/gems/pg/PG%2FConnection:initialize) konstruktorral a PostgreSQL-hez készült Azure Database-hez való kapcsolódáshoz. Ezután meghívja az [exec()](http://www.rubydoc.info/gems/pg/PG/Connection#exec-instance_method) metódust a SELECT parancs futtatásához, az eredményeket az eredményhalmazban megőrizve. Az eredményhalmaz gyűjtése többször is végrehajtódik a `resultSet.each do` ciklus használatával, megőrizve az aktuális sor értékeit a `row` változóban. A kód a [PG::Error](http://www.rubydoc.info/gems/pg/PG/Error) osztály használatával ellenőrzi a hibákat. Végül pedig a [close()](http://www.rubydoc.info/gems/pg/PG/Connection#lo_close-instance_method) metódus meghívásával bontja a kapcsolatot, mielőtt kilép.
 
-Cserélje le a hello `host`, `database`, `user`, és `password` karakterláncok saját értékekkel. 
+Cserélje le a `host`, `database`, `user`, és `password` karakterláncokat a saját értékekre. 
 
 ```ruby
 require 'pg'
@@ -127,7 +127,7 @@ begin
 
     # Initialize connection object.
     connection = PG::Connection.new(:host => host, :user => user, :database => dbname, :port => '5432', :password => password)
-    puts 'Successfully created connection toodatabase.'
+    puts 'Successfully created connection to database.'
 
     resultSet = connection.exec('SELECT * from inventory;')
     resultSet.each do |row|
@@ -143,11 +143,11 @@ end
 ```
 
 ## <a name="update-data"></a>Adatok frissítése
-Használjon hello következő code tooconnect, és frissítse a hello adatok segítségével egy **frissítése** SQL-utasításban.
+Az alábbi kód használatával csatlakozhat és végezheti el az adatok módosítását egy **UPDATE** SQL-utasítás segítségével.
 
-hello kódot használja a [PG::Connection](http://www.rubydoc.info/gems/pg/PG/Connection) konstruktorral objektum [hívás](http://www.rubydoc.info/gems/pg/PG%2FConnection:initialize) tooconnect tooAzure PostgreSQL-adatbázisban. Ezután a metódus meghívja [exec()](http://www.rubydoc.info/gems/pg/PG/Connection#exec-instance_method) toorun hello frissítés parancsot. hello kód ellenőrzi a hello segítségével hibákat [PG::Error](http://www.rubydoc.info/gems/pg/PG/Error) osztály. Ezután a metódus meghívja [close()](http://www.rubydoc.info/gems/pg/PG/Connection#lo_close-instance_method) tooclose hello kapcsolat megszakítása előtt.
+A kód egy [PG::Connection](http://www.rubydoc.info/gems/pg/PG/Connection) objektumot használ a [new()](http://www.rubydoc.info/gems/pg/PG%2FConnection:initialize) konstruktorral a PostgreSQL-hez készült Azure Database-hez való kapcsolódáshoz. Ezután meghívja az [exec()](http://www.rubydoc.info/gems/pg/PG/Connection#exec-instance_method) metódust az UPDATE parancs futtatásához. A kód a [PG::Error](http://www.rubydoc.info/gems/pg/PG/Error) osztály használatával ellenőrzi a hibákat. Végül pedig a [close()](http://www.rubydoc.info/gems/pg/PG/Connection#lo_close-instance_method) metódus meghívásával bontja a kapcsolatot, mielőtt kilép.
 
-Cserélje le a hello `host`, `database`, `user`, és `password` karakterláncok saját értékekkel. 
+Cserélje le a `host`, `database`, `user`, és `password` karakterláncokat a saját értékekre. 
 
 ```ruby
 require 'pg'
@@ -161,7 +161,7 @@ begin
 
     # Initialize connection object.
     connection = PG::Connection.new(:host => host, :user => user, :dbname => database, :port => '5432', :password => password)
-    puts 'Successfully created connection toodatabase.'
+    puts 'Successfully created connection to database.'
 
     # Modify some data in table.
     connection.exec('UPDATE inventory SET quantity = %d WHERE name = %s;' % [200, '\'banana\''])
@@ -177,11 +177,11 @@ end
 
 
 ## <a name="delete-data"></a>Adat törlése
-Használjon hello alábbi code tooconnect, és olvasott hello adatok egy **törlése** SQL-utasításban. 
+Az alábbi kód használatával csatlakozhat és végezheti el az adatok olvasását egy **DELETE** SQL-utasítás segítségével. 
 
-hello kódot használja a [PG::Connection](http://www.rubydoc.info/gems/pg/PG/Connection) konstruktorral objektum [hívás](http://www.rubydoc.info/gems/pg/PG%2FConnection:initialize) tooconnect tooAzure PostgreSQL-adatbázisban. Ezután a metódus meghívja [exec()](http://www.rubydoc.info/gems/pg/PG/Connection#exec-instance_method) toorun hello frissítés parancsot. hello kód ellenőrzi a hello segítségével hibákat [PG::Error](http://www.rubydoc.info/gems/pg/PG/Error) osztály. Ezután a metódus meghívja [close()](http://www.rubydoc.info/gems/pg/PG/Connection#lo_close-instance_method) tooclose hello kapcsolat megszakítása előtt.
+A kód egy [PG::Connection](http://www.rubydoc.info/gems/pg/PG/Connection) objektumot használ a [new()](http://www.rubydoc.info/gems/pg/PG%2FConnection:initialize) konstruktorral a PostgreSQL-hez készült Azure Database-hez való kapcsolódáshoz. Ezután meghívja az [exec()](http://www.rubydoc.info/gems/pg/PG/Connection#exec-instance_method) metódust az UPDATE parancs futtatásához. A kód a [PG::Error](http://www.rubydoc.info/gems/pg/PG/Error) osztály használatával ellenőrzi a hibákat. Végül pedig a [close()](http://www.rubydoc.info/gems/pg/PG/Connection#lo_close-instance_method) metódus meghívásával bontja a kapcsolatot, mielőtt kilép.
 
-Cserélje le a hello `host`, `database`, `user`, és `password` karakterláncok saját értékekkel. 
+Cserélje le a `host`, `database`, `user`, és `password` karakterláncokat a saját értékekre. 
 
 ```ruby
 require 'pg'
@@ -195,7 +195,7 @@ begin
 
     # Initialize connection object.
     connection = PG::Connection.new(:host => host, :user => user, :dbname => database, :port => '5432', :password => password)
-    puts 'Successfully created connection toodatabase.'
+    puts 'Successfully created connection to database.'
 
     # Modify some data in table.
     connection.exec('DELETE FROM inventory WHERE name = %s;' % ['\'orange\''])

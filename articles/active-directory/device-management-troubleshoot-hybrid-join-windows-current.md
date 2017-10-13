@@ -1,5 +1,5 @@
 ---
-title: "aaaTroubleshooting hibrid Azure Active Directoryhoz csatlakoztatott Windows 10 és Windows Server 2016-os eszközök |} Microsoft Docs"
+title: "Hibaelhárítás az Azure Active Directory hibrid csatlakoztatott Windows 10 és Windows Server 2016-os eszközök |} Microsoft Docs"
 description: "Hibaelhárítás az Azure Active Directory hibrid csatlakoztatott Windows 10 és Windows Server 2016-os eszközök."
 services: active-directory
 documentationcenter: 
@@ -14,22 +14,22 @@ ms.topic: article
 ms.date: 08/17/2017
 ms.author: markvi
 ms.reviewer: jairoc
-ms.openlocfilehash: cc252d1d0684d6632694afc8a367327794228c19
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 51962c14a3c32bbfa9a613fa203cc48cfea50c0b
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="troubleshooting-hybrid-azure-active-directory-joined-windows-10-and-windows-server-2016-devices"></a>Hibaelhárítás az Azure Active Directory hibrid csatlakoztatott Windows 10 és Windows Server 2016-os eszközök 
 
-Ez a témakör a következő ügyfelek alkalmazható toohello:
+Ez a témakör a következő alkalmazható a következő ügyfelekre:
 
 -   Windows 10
 -   Windows Server 2016
 
 Egyéb Windows-ügyfelein, lásd: [hibaelhárítás hibrid Azure Active Directoryhoz csatlakoztatott régebbi eszközök](device-management-troubleshoot-hybrid-join-windows-legacy.md).
 
-Ez a témakör azt feltételezi, hogy [konfigurált hibrid Azure Active Directoryhoz csatlakoztatott eszközök](device-management-hybrid-azuread-joined-devices-setup.md) toosupport hello a következő esetekben:
+Ez a témakör azt feltételezi, hogy [konfigurált hibrid Azure Active Directoryhoz csatlakoztatott eszközök](device-management-hybrid-azuread-joined-devices-setup.md) a következő forgatókönyvek támogatása céljából:
 
 - Eszközalapú feltételes hozzáférés
 
@@ -38,16 +38,16 @@ Ez a témakör azt feltételezi, hogy [konfigurált hibrid Azure Active Director
 - [Vállalati Windows Hello](active-directory-azureadjoin-passport-deployment.md)
 
 
-Ez a dokumentum hogyan tooresolve potenciális problémák nyújt hibaelhárítási útmutatót. 
+Ez a dokumentum a lehetséges problémák megoldásához nyújt hibaelhárítási útmutatót. 
 
 
-Windows 10 és Windows Server 2016, az Azure Active Directory join támogatja hello Windows hibrid 2015. November 10. Frissítse vagy újabb verzió. Hello évforduló frissítés használatát javasoljuk.
+Windows 10 és Windows Server 2016, az Azure Active Directory join hibrid támogatja, a Windows 2015. November 10. frissítés vagy újabb verzió. A évforduló frissítés használatát javasoljuk.
 
-## <a name="step-1-retrieve-hello-join-status"></a>1. lépés: Hello illesztési állapotának lekérése 
+## <a name="step-1-retrieve-the-join-status"></a>1. lépés: Az illesztés állapotának lekérése 
 
-**tooretrieve hello illesztési állapota:**
+**Az illesztési állapotának lekérése:**
 
-1. Nyissa meg hello parancssort rendszergazdaként
+1. Nyissa meg a parancssort rendszergazdaként
 
 2. Típus **dsregcmd/status**
 
@@ -57,7 +57,7 @@ Windows 10 és Windows Server 2016, az Azure Active Directory join támogatja he
    | Az eszköz állapotát |}+----------------------------------------------------------------------+
     
         AzureAdJoined: YES
-     EnterpriseJoined: Nincs DeviceId: 5820fbe9-60c8-43b0-bb11-44aee233e4e7 ujjlenyomat: B753A6679CE720451921302CA873794D94C6204A KeyContainerId: bae6a60b-1d2f-4d2a-a298-33385f6d05e9 KeyProvider: Microsoft Platform titkosításszolgáltató TpmProtected: Igen KeySignTest:: futtassa emelt szintű kell tootest.
+     EnterpriseJoined: Nincs DeviceId: 5820fbe9-60c8-43b0-bb11-44aee233e4e7 ujjlenyomat: B753A6679CE720451921302CA873794D94C6204A KeyContainerId: bae6a60b-1d2f-4d2a-a298-33385f6d05e9 KeyProvider: Microsoft Platform kriptográfiai szolgáltató TpmProtected: Igen KeySignTest:: futtatásához emelt szintű teszteléséhez.
                   IDP: login.windows.net TenantId: 72b988bf-86f1-41af-91ab-2d7cd011db47 TenantName: Contoso AuthCodeUrl: https://login.microsoftonline.com/msitsupp.microsoft.com/oauth2/authorize AccessTokenUrl: https://login.microsoftonline.com/msitsupp.microsoft.com/oauth2/token MdmUrl: https://enrollment.manage-beta.microsoft.com/EnrollmentServer/Discovery.svc MdmTouUrl: https://portal.manage-beta.microsoft.com/TermsOfUse.aspx dmComplianceUrl: https://portal.manage-beta.microsoft.com/?portalAction=Compliance SettingsUrl: eyJVcmlzIjpbImh0dHBzOi8va2FpbGFuaS5vbmUubWljcm9zb2Z0LmNvbS8iLCJodHRwczovL2thaWxhbmkxLm9uZS5taWNyb3NvZnQuY29tLyJdfQ == JoinSrvVersion: 1.0-ás JoinSrvUrl: https://enterpriseregistration.windows.net/EnrollmentServer/device/ JoinSrvId: urn: ms-drs:enterpriseregistration.windows.net KeySrvVersion: 1.0-ás KeySrvUrl: https://enterpriseregistration.windows.net/EnrollmentServer/key/ KeySrvId: urn: ms-drs:enterpriseregistration.windows.net DomainJoined: Igen tartománynév: CONTOSO
     
     +----------------------------------------------------------------------+
@@ -71,53 +71,53 @@ Windows 10 és Windows Server 2016, az Azure Active Directory join támogatja he
 
 
 
-## <a name="step-2-evaluate-hello-join-status"></a>2. lépés: Hello illesztési állapotának kiértékelésére. 
+## <a name="step-2-evaluate-the-join-status"></a>2. lépés: Csatlakozás állapotának kiértékelésére. 
 
-Tekintse át a következő mezők hello, és győződjön meg arról, hogy rendelkezik-e hello várt értékek:
+Tekintse át a következő mezőket, és győződjön meg arról, hogy rendelkezik-e a várt értékek:
 
 ### <a name="azureadjoined--yes"></a>AzureAdJoined: Igen  
 
-Ez a mező jelzi, hogy hello eszköz csatlakozott-e az Azure ad-val. Ha hello érték **nem**, hello illesztési tooAzure AD még nem fejeződött be. 
+Ez a mező jelzi, hogy az eszköz csatlakozott-e az Azure ad-val. Ha az érték **nem**, az Azure AD join még nem fejeződött be. 
 
 **Lehetséges okok:**
 
-- Az illesztés hello számítógép hitelesítés sikertelen.
+- A számítógép a csatlakozzon a hitelesítés sikertelen.
 
-- HTTP-proxy van hello olyan szervezet, amely nem észlelhetők hello számítógép
+- Nincs olyan szervezet, amely a számítógép nem észlelhetők egy HTTP-proxy
 
-- hello számítógép nem érhető el az Azure AD tooauthenticate vagy Azure DRS a regisztrációhoz
+- A számítógép nem érhető el az Azure AD-hitelesítés vagy Azure DRS a regisztrációhoz
 
-- hello számítógép nem lehet hello szervezet belső hálózaton vagy a VPN közvetlen tooan a helyszíni AD-tartományvezérlő.
+- A számítógép nem lehet a szervezet belső hálózaton vagy a VPN a közvetlen sor a láthatáron egy a helyszíni AD-tartományvezérlő.
 
-- Ha hello számítógép TPM-mel, az állapota lehet.
+- Ha a számítógép TPM-mel, az állapota lehet.
 
-- Valószínűleg a helytelen konfiguráció hello szolgáltatásban hello dokumentumban korábban feljegyzett, akkor kell tooverify újra. Gyakori példák:
+- Előfordulhat, a szolgáltatások helytelen beállítása a dokumentum korábban feljegyzett, hogy újra ellenőrizni kell. Gyakori példák:
 
     - Az összevonási kiszolgálón nincs engedélyezve a WS-Trust végpontok
 
     - Az összevonási kiszolgálón nem engedélyezi a bejövő hitelesítést számítógépekről integrált Windows-hitelesítés segítségével a hálózaton.
 
-    - Nincs tooyour ellenőrzött tartomány nevét az Azure AD oldalra mutat, ahol hello a számítógép tartozik hello AD-erdő szolgáltatáskapcsolódási pont objektum
+    - Nincs szolgáltatáskapcsolódási pont objektum mutat, a ellenőrzött tartomány nevét az Azure ad-ben az Active Directory-erdőben, ahol a számítógép tartozik
 
 ---
 
 ### <a name="domainjoined--yes"></a>DomainJoined: Igen  
 
-Ez a mező azt jelzi, hogy hello eszköz tooan a helyszíni Active Directory-e. Ha hello érték **nem**, hello eszköz nem tudja végrehajtani a Azure AD hibrid csatlakozzon.  
+Ez a mező jelzi, hogy az eszköz csatlakozott a helyi Active Directory-e. Ha az érték **nem**, az eszköz nem tudja végrehajtani a Azure AD hibrid csatlakozzon.  
 
 ---
 
 ### <a name="workplacejoined--no"></a>WorkplaceJoined: nincs  
 
-Ez a mező jelzi, hogy hello eszköz regisztrálva van-e az Azure AD egy személyes eszközként (jelölésű *munkahelyhez csatlakoztatott*). Ez az érték legyen **nem** egy tartományhoz csatlakozó számítógép, amely egyúttal az Azure AD hibrid csatlakoztatva. Ha hello érték **Igen**, a munkahelyi vagy iskolai fiók hozzá lett adva hello hibrid az Azure AD join előzetes toohello befejezését. Ebben az esetben hello fiók rendszer figyelmen kívül hagyja a Windows 10 (1607) hello évforduló frissítés verzióját használja.
+Ez a mező jelzi, hogy az eszköz regisztrálva van-e az Azure AD egy személyes eszközként (jelölésű *munkahelyhez csatlakoztatott*). Ez az érték legyen **nem** egy tartományhoz csatlakozó számítógép, amely egyúttal az Azure AD hibrid csatlakoztatva. Ha az érték **Igen**, a munkahelyi vagy iskolai fiók hozzá lett adva, az Azure AD hibrid csatlakozási befejezése előtt. Ebben az esetben a fiók rendszer figyelmen kívül hagyja a Windows 10 (1607) évforduló frissítés verzióját használja.
 
 ---
 
 ### <a name="wamdefaultset--yes-and-azureadprt--yes"></a>WamDefaultSet: Igen és AzureADPrt: Igen
   
-Ezek a mezők azt jelzi, hogy hello felhasználó sikeresen hitelesített tooAzure AD toohello eszköz bejelentkezéskor. Ha hello értékek **nem**, annak oka az lehet esedékes:
+Ezek a mezők azt jelzi, hogy az Azure AD rendelkezik sikeresen hitelesíteni a felhasználót az eszköz történő bejelentkezéskor. Ha az értékek **nem**, annak oka az lehet esedékes:
 
-- Hibás tárolási (STK) TPM hello eszköz regisztrálásakor (ellenőrzés hello KeySignTest emelt szintű futtatása közben) társított kulcs.
+- Hibás tárolási kulcs (STK) az eszköz regisztrálásakor (Ellenőrizze az emelt szintű futtatása közben KeySignTest) társított TPM.
 
 - Másodlagos bejelentkezési Azonosítóval
 
@@ -125,4 +125,4 @@ Ezek a mezők azt jelzi, hogy hello felhasználó sikeresen hitelesített tooAzu
 
 ## <a name="next-steps"></a>Következő lépések
 
-A kérdésekhez lásd: hello [eszköz felügyeleti kapcsolatos gyakori kérdések](device-management-faq.md) 
+Kérdéseit, tekintse meg a [eszköz felügyeleti kapcsolatos gyakori kérdések](device-management-faq.md) 

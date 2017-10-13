@@ -1,11 +1,11 @@
-Telepítheti a sablon által következő hello megelőző hello [Azure Resource Manager dokumentációs](../articles/azure-resource-manager/resource-group-template-deploy.md).
+Az előző sablon üzembe helyezéséhez kövesse az [Azure Resource Manager dokumentációjában](../articles/azure-resource-manager/resource-group-template-deploy.md) leírtakat.
 
-Az oktatóanyag adatsorozat hello indítható [minimális életképes méretezési sablon cikk](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-mvss-start.md).
+Ezt az oktatóanyag-sorozatot a [minimális működőképes méretezési csoport sablonját ismertető cikktől](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-mvss-start.md) kezdheti el.
 
-Látható hogyan toomodify hello [minimális életképes méretezési sablon](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-mvss-start.md) túl[hello méretezési készletben létrehozni meglévő virtuális hálózatban telepítése](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-mvss-existing-vnet.md).
+Itt megtekintheti, hogyan módosíthatja a [minimális működőképes méretezési csoport sablonját](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-mvss-start.md) a [méretezési csoport meglévő virtuális hálózaton történő üzembe helyezéséhez](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-mvss-existing-vnet.md).
 
-Látható hogyan toomodify hello [minimális életképes méretezési sablon](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-mvss-start.md) túl[hello méretezési készletben egyéni képének telepítéséhez](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-mvss-custom-image.md).
+Itt megtekintheti, hogyan módosíthatja a [minimális működőképes méretezési csoport sablonját](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-mvss-start.md) a [méretezési csoport egyéni rendszerképpel történő üzembe helyezéséhez](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-mvss-custom-image.md).
 
-Látható hogyan toomodify hello [minimális életképes méretezési sablon](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-mvss-start.md) túl[központi telepítése egy Linux-skálázási állítható be Vendég-alapú automatikus skálázás](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-mvss-guest-based-autoscale-linux.md).
+Itt megtekintheti, hogyan módosíthatja a [minimális működőképes méretezési csoport sablonját](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-mvss-start.md) a [linuxos méretezési csoportok vendégalapú automatikus skálázással történő üzembe helyezéséhez](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-mvss-guest-based-autoscale-linux.md).
 
-Méretezési csoportok kapcsolatos további általános információkért tekintse meg a toohello [méretezési – áttekintés oldalra](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md).
+Általánosabb információk a méretezési csoportokról: [méretezési csoportok áttekintése oldal](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md).

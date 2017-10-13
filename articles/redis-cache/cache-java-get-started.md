@@ -1,5 +1,5 @@
 ---
-title: Azure Redis Cache Java aaaHow toouse |} Microsoft Docs
+title: "Az Azure Redis Cache használata Javával | Microsoft Docs"
 description: "Bevezetés az Azure Redis Cache és a Java együttes használatába"
 services: redis-cache
 documentationcenter: 
@@ -12,15 +12,15 @@ ms.devlang: java
 ms.topic: hero-article
 ms.tgt_pltfrm: cache-redis
 ms.workload: tbd
-ms.date: 04/13/2017
+ms.date: 08/31/2017
 ms.author: sdanie
-ms.openlocfilehash: 7768e879d71f61585b59cf4bd6634ba3f12e001d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b433eecb0424db85b616c40c5f0cdfc88692cef1
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toouse-azure-redis-cache-with-java"></a>Hogyan toouse Azure Redis Cache-gyorsítótár Java
+# <a name="how-to-use-azure-redis-cache-with-java"></a>Az Azure Redis Cache használata Javával
 > [!div class="op_single_selector"]
 > * [.NET](cache-dotnet-how-to-use-azure-redis-cache.md)
 > * [ASP.NET](cache-web-app-howto.md)
@@ -30,9 +30,9 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Azure Redis Cache hozzáférést tud biztosítani dedikált tooa Redis gyorsítótár, a Microsoft kezeli. A gyorsítótár a Microsoft Azure összes alkalmazásából elérhető.
+Az Azure Redis Cache hozzáférést biztosít egy dedikált Redis Cache gyorsítótárhoz, amelyet a Microsoft felügyel. A gyorsítótár a Microsoft Azure összes alkalmazásából elérhető.
 
-Ez a témakör bemutatja, hogyan tooget el az Azure Redis Cache Java használatával.
+Ez a témakör segítséget nyújt az első lépések megtételében a Javát alkalmazó Azure Redis Cache használatakor.
 
 ## <a name="prerequisites"></a>Előfeltételek
 [Jedis](https://github.com/xetorthio/jedis) - Java-ügyfél a Redishez
@@ -42,11 +42,11 @@ Ez az oktatóanyag a Jedis használatát mutatja be, de a [http://redis.io/clien
 ## <a name="create-a-redis-cache-on-azure"></a>Redis Cache gyorsítótár létrehozása az Azure-ban
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-create.md)]
 
-## <a name="retrieve-hello-host-name-and-access-keys"></a>Hello állomás neve vagy a hozzáférési kulcsok beolvasása
+## <a name="retrieve-the-host-name-and-access-keys"></a>Állomásnév és hívóbetűk lekérése
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-access-keys.md)]
 
-## <a name="connect-toohello-cache-securely-using-ssl"></a>Csatlakozás toohello gyorsítótár biztonságosan az SSL használata
-hello legújabb-buildekről [jedis](https://github.com/xetorthio/jedis) támogatást nyújt a Redis Cache tooAzure kapcsolódás SSL használatával. hello a következő példa bemutatja, hogyan tooconnect tooAzure Redis Cache segítségével hello 6380 az SSL-végponton. Cserélje le `<name>` hello nevet, a gyorsítótár és `<key>` sem az elsődleges vagy másodlagos kulcsot a hello előző [lekéréséhez hello állomás neve vagy a hozzáférési kulcsok](#retrieve-the-host-name-and-access-keys) szakasz.
+## <a name="connect-to-the-cache-securely-using-ssl"></a>Biztonságos csatlakozás a gyorsítótárhoz SSL használatával
+A [jedis](https://github.com/xetorthio/jedis) legújabb buildjei támogatást nyújtanak ahhoz, ha SSL-lel szeretne kapcsolódni az Azure Redis Cache-hez. Az alábbi példa bemutatja, hogyan csatlakozhat az Azure Redis Cache-hez a 6380-as SSL-végpont használatával. A `<name>` helyére a gyorsítótár nevét, a `<key>` helyére pedig az előző, [Állomásnév és hívóbetűk lekérése](#retrieve-the-host-name-and-access-keys) című szakaszban ismertetett elsődleges vagy másodlagos kulcsot írja be.
 
     boolean useSsl = true;
     /* In this line, replace <name> with your cache name: */
@@ -54,11 +54,11 @@ hello legújabb-buildekről [jedis](https://github.com/xetorthio/jedis) támogat
     shardInfo.setPassword("<key>"); /* Use your access key. */
 
 > [!NOTE]
-> hello nem SSL port az új Azure Redis Cache példány le van tiltva. Ha egy másik ügyféltől, amely nem támogatja az SSL használ, tekintse meg [hogyan tooenable hello nem SSL port](cache-configure.md#access-ports).
+> A nem SSL-port le van tiltva az új Azure Redis Cache-példányokban. Ha az SSL-t nem támogató, egyéb ügyfelet használ, tekintse meg a következőt: [A nem SSL-port engedélyezése](cache-configure.md#access-ports).
 > 
 > 
 
-## <a name="add-something-toohello-cache-and-retrieve-it"></a>Hozzáadás toohello gyorsítótárazása és lekéréséhez
+## <a name="add-something-to-the-cache-and-retrieve-it"></a>Elemek hozzáadása és lekérése a gyorsítótárból
     package com.mycompany.app;
     import redis.clients.jedis.Jedis;
     import redis.clients.jedis.JedisShardInfo;
@@ -79,5 +79,6 @@ hello legújabb-buildekről [jedis](https://github.com/xetorthio/jedis) támogat
 
 
 ## <a name="next-steps"></a>Következő lépések
-* [Gyorsítótár-diagnosztika engedélyezése](https://msdn.microsoft.com/library/azure/dn763945.aspx#EnableDiagnostics) így [figyelő](https://msdn.microsoft.com/library/azure/dn763945.aspx) hello a gyorsítótár állapotát.
-* Olvasási hello hivatalos [dokumentáció Redis](http://redis.io/documentation).
+* [Engedélyezze a gyorsítótár-diagnosztikát,](https://msdn.microsoft.com/library/azure/dn763945.aspx#EnableDiagnostics) hogy [megfigyelhesse](https://msdn.microsoft.com/library/azure/dn763945.aspx) a gyorsítótár állapotát.
+* Olvassa el a hivatalos [Redis dokumentációt](http://redis.io/documentation).
+* Ismerkedjen meg a [Spring Initializr-alkalmazások konfigurálásának végrehajtásával Redis Cache használatával](cache-java-spring-boot-initializer-with-redis-cache.md).

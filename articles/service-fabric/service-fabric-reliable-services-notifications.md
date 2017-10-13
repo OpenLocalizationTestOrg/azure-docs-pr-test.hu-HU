@@ -1,5 +1,5 @@
 ---
-title: "aaaReliable szolgáltatások értesítések |} Microsoft Docs"
+title: "Megbízható szolgáltatások értesítések |} Microsoft Docs"
 description: "Service Fabric Reliable Services értesítések fogalmi dokumentációja"
 services: service-fabric
 documentationcenter: .net
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 6/29/2017
 ms.author: mcoskun
-ms.openlocfilehash: 8c43190d31dbe82d1dc7fa1c228128bdcc3684f6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c6a53d851510ed5e6eec1f3ac0f636ad034a6d4c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="reliable-services-notifications"></a>Megbízható szolgáltatások értesítések
-Értesítések engedélyezése az ügyfelek tootrack hello kíváncsiak vagyunk tooan objektum alatt végzett módosításokat. Kétféle típusú objektumok támogatja értesítéseket: *megbízható állapotkezelője* és *megbízható szótár*.
+Értesítések engedélyezése az ügyfelek nyomon követni a kíváncsiak vagyunk objektum végrehajtott módosításokat. Kétféle típusú objektumok támogatja értesítéseket: *megbízható állapotkezelője* és *megbízható szótár*.
 
 Értesítések használata gyakori okai a következők:
 
-* Épület materializált nézetek, például a másodlagos indexek vagy szűrt nézeteinek hello replika állapotát összesíti. Példa: egy rendezett index összes kulcsok megbízható szótárban.
-* Küldő figyelési adatok, például az elmúlt egy órában hello hozzáadott felhasználók hello száma.
+* Épület materializált nézetek, például a másodlagos indexek vagy szűrt nézeteinek a másodpéldány állapotát összesíti. Példa: egy rendezett index összes kulcsok megbízható szótárban.
+* Küldő figyelési adatok, például az elmúlt órában hozzáadott felhasználók száma.
 
 Értesítések elindulása részeként műveleteket alkalmazása esetén. Miatt, amely értesítések gyors lehetséges és szinkron események nem tartalmazhatja a költséges műveleteket kell kezelni.
 
 ## <a name="reliable-state-manager-notifications"></a>Megbízható állapot Manager értesítéseire
-Megbízható állapotkezelője események hello értesítéseket biztosít:
+Megbízható állapotkezelő a következő események értesítéseket biztosít:
 
 * Tranzakció
   * Véglegesítés
@@ -40,16 +40,16 @@ Megbízható állapotkezelője események hello értesítéseket biztosít:
   * A megbízható állapot hozzáadása
   * A megbízható állapot törlése
 
-Megbízható állapotkezelője hello aktuális aktív tranzakciók követi nyomon. hello mindössze annyi a változás egy értesítési toobe indította okozó tranzakció állapotban egy tranzakció véglegesítés alatt áll.
+Megbízható állapotkezelője követi nyomon, hogy az aktuális aktív tranzakciók. Mindössze annyi a változás aktiválódik értesítést okozó tranzakció állapotban egy tranzakció véglegesítés alatt áll.
 
-Megbízható állapotkezelője tart fenn például megbízható szótár és megbízható várólista megbízható állapotok gyűjteménye. Megbízható állapotkezelője értesítések következik be, amikor megváltozik a gyűjtemény: olyan megbízható állapotban van hozzáadásakor vagy eltávolításakor, vagy újraépítésekor hello teljes gyűjteményt.
-hello megbízható állapotkezelője gyűjtemény újraépítésekor három esetben:
+Megbízható állapotkezelője tart fenn például megbízható szótár és megbízható várólista megbízható állapotok gyűjteménye. Megbízható állapotkezelője értesítések következik be, amikor megváltozik a gyűjtemény: olyan megbízható állapotban van hozzáadásakor vagy eltávolításakor, vagy a teljes gyűjteményt újraépítésekor.
+A megbízható állapotkezelője gyűjtemény újraépítésekor három esetben:
 
-* Helyreállítás: Replika indításakor azt anélkül állíthatóak vissza korábbi állapotba hello lemezről. Helyreállítási hello végén, használja **NotifyStateManagerChangedEventArgs** toofire helyreállított megbízható állapotok hello készletét tartalmazó esemény.
-* Másolás teljes: előtt a replika hello konfigurációkészlet csatlakozhat, a beépített toobe rendelkezik. Egyes esetekben ehhez hello elsődleges replika toobe alkalmazott toohello tétlen másodlagos replika megbízható állapotkezelője állapot teljes másolata. Hello másodlagos replika használja a megbízható állapotkezelője **NotifyStateManagerChangedEventArgs** toofire azért szerzett hello elsődleges replikából megbízható állapotok hello készletét tartalmazó esemény.
-* Visszaállítás: A vész-helyreállítási helyzetekben hello replika visszaállítható egy biztonsági másolatból keresztül **RestoreAsync**. Ilyen esetekben megbízható állapotkezelője hello elsődleges replikán használ **NotifyStateManagerChangedEventArgs** toofire egy eseményt, amely megbízható állapotok azt hello biztonsági másolatból visszaállított hello készletét tartalmazza.
+* Helyreállítás: Replika indításakor azt anélkül állíthatóak vissza korábbi állapotba a lemezről. A helyreállítás végén, használja **NotifyStateManagerChangedEventArgs** az érvényesítést a helyreállított megbízható állapotok készletét tartalmazó esemény.
+* Másolás teljes: replika csatlakozhat a konfigurációs készlet, mielőtt rendelkezik kialakítani. Egyes esetekben ehhez az elsődleges replikából a tétlen másodlagos replikán alkalmazni kívánt megbízható állapotkezelője állapot teljes másolata. Használja a másodlagos replikán megbízható állapotkezelője **NotifyStateManagerChangedEventArgs** az érvényesítést egy eseményt, amely azokat a megbízható állapotok azért szerzett, az elsődleges replikából.
+* Visszaállítás: A vész-helyreállítási helyzetekben a replika visszaállítható egy biztonsági másolatból keresztül **RestoreAsync**. Ilyen esetben az elsődleges replikán megbízható állapotkezelője használ **NotifyStateManagerChangedEventArgs** az érvényesítést, amely azokat a megbízható állapotok azt a biztonsági másolatból visszaállított esemény.
 
-tranzakció értesítések és/vagy állapot manager értesítéseinek tooregister, van szüksége a hello tooregister **TransactionChanged** vagy **StateManagerChanged** megbízható állapotkezelője eseményeit. Gyakori hely a ezek eseménykezelők tooregister az állapotalapú szolgáltatás hello konstruktor. Amikor regisztrál a hello konstruktor, teljesíti-e nem hello élettartama során változás által okozott értesítésekhez **IReliableStateManager**.
+Tranzakció értesítések és/vagy az állapot manager értesítéseinek regisztrálásához regisztrálni kell a **TransactionChanged** vagy **StateManagerChanged** megbízható állapotkezelője eseményeit. A közös ezek eseménykezelők regisztrálására helye az állapotalapú szolgáltatás konstruktor. Ha regisztrálja a konstruktora, teljesíti-e nem élettartama során változás által okozott értesítésekhez **IReliableStateManager**.
 
 ```C#
 public MyService(StatefulServiceContext context)
@@ -60,10 +60,10 @@ public MyService(StatefulServiceContext context)
 }
 ```
 
-Hello **TransactionChanged** eseménykezelő használ **NotifyTransactionChangedEventArgs** hello esemény tooprovide adatait. Hello művelet tulajdonságot tartalmaz (például **NotifyTransactionChangedAction.Commit**), amely megadja, hogy a módosítás hello típusát. Hello transaction tulajdonság, amely biztosítja, hogy módosultak a hivatkozás toohello tranzakció is tartalmaz.
+A **TransactionChanged** eseménykezelő használ **NotifyTransactionChangedEventArgs** arra, hogy az esemény részleteit. A művelet tulajdonságot tartalmaz (például **NotifyTransactionChangedAction.Commit**), amely megadja, hogy olyan változást. A transaction tulajdonság, amely módosult a tranzakció egy hivatkozást is tartalmaz.
 
 > [!NOTE]
-> Napjainkban **TransactionChanged** események aktiválódnak csak akkor, ha hello tranzakció. hello művelet megegyezik túl**NotifyTransactionChangedAction.Commit**. De a jövőbeli hello események előfordulhat, hogy kiváltott tranzakció állapotváltozások más típusú. Javasoljuk, hogy hello művelet ellenőrzése és a hello esemény feldolgozása csak akkor, ha egy, a várt.
+> Napjainkban **TransactionChanged** események aktiválódnak csak akkor, ha a tranzakció. A művelet megegyezik **NotifyTransactionChangedAction.Commit**. De a jövőben események előfordulhat, hogy generál tranzakciót állapotváltozások más típusú. Javasoljuk, hogy a művelet ellenőrzése és az esemény feldolgozása, csak akkor, ha egy, a várt.
 > 
 > 
 
@@ -82,9 +82,9 @@ private void OnTransactionChangedHandler(object sender, NotifyTransactionChanged
 }
 ```
 
-Hello **StateManagerChanged** eseménykezelő használ **NotifyStateManagerChangedEventArgs** hello esemény tooprovide adatait.
+A **StateManagerChanged** eseménykezelő használ **NotifyStateManagerChangedEventArgs** arra, hogy az esemény részleteit.
 **NotifyStateManagerChangedEventArgs** két alosztályok rendelkezik: **NotifyStateManagerRebuildEventArgs** és **NotifyStateManagerSingleEntityChangedEventArgs**.
-Hello művelet tulajdonságával a **NotifyStateManagerChangedEventArgs** toocast **NotifyStateManagerChangedEventArgs** toohello helytelen alosztályának:
+A művelet tulajdonsággal a **NotifyStateManagerChangedEventArgs** konvertálni **NotifyStateManagerChangedEventArgs** a helytelen alosztályának létrehozására:
 
 * **NotifyStateManagerChangedAction.Rebuild**: **NotifyStateManagerRebuildEventArgs**
 * **NotifyStateManagerChangedAction.Add** és **NotifyStateManagerChangedAction.Remove**: **NotifyStateManagerSingleEntityChangedEventArgs**
@@ -106,16 +106,16 @@ public void OnStateManagerChangedHandler(object sender, NotifyStateManagerChange
 ```
 
 ## <a name="reliable-dictionary-notifications"></a>Megbízható szótár értesítések
-Megbízható szótár események hello értesítéseket biztosít:
+Megbízható szótár a következő események értesítéseket biztosít:
 
 * Újraépítés: Meghívva **ReliableDictionary** helyreállt állapotában a helyreállított vagy másolt helyi állapot vagy a biztonsági mentés.
-* Törlés: Meghívva állapotának hello **ReliableDictionary** keresztül hello törölve lett **ClearAsync** metódust.
-* Adja hozzá: Hívható meg, ha egy elem túl hozzá lett adva**ReliableDictionary**.
+* Törlés: Meghívva állapotának **ReliableDictionary** keresztül törölve lett a **ClearAsync** metódust.
+* Adja hozzá: Hívható meg, ha egy elem hozzáadva **ReliableDictionary**.
 * Frissítés: Hívható meg, ha az elem **IReliableDictionary** frissítve lett.
 * Eltávolítás: Hívható meg, ha az elem **IReliableDictionary** törölve lett.
 
-tooget megbízható szótár értesítések, van szüksége a hello tooregister **DictionaryChanged** eseménykezelő a **IReliableDictionary**. A közös helyen hello van az e eseménykezelők tooregister **ReliableStateManager.StateManagerChanged** értesítési hozzáadása.
-Ha regisztrálja **IReliableDictionary** túl szerepel-e**IReliableStateManager** biztosítja, hogy nem hagyott ki belőle értesítéseket.
+Ahhoz, hogy megbízható szótár értesítéseket, és regisztrálnia kell a **DictionaryChanged** eseménykezelő a **IReliableDictionary**. Van olyan közös helyen ezek eseménykezelők regisztrálni a **ReliableStateManager.StateManagerChanged** értesítési hozzáadása.
+Ha regisztrálja **IReliableDictionary** hozzáadódik **IReliableStateManager** biztosítja, hogy nem hagyott ki belőle értesítéseket.
 
 ```C#
 private void ProcessStateManagerSingleEntityNotification(NotifyStateManagerChangedEventArgs e)
@@ -136,11 +136,11 @@ private void ProcessStateManagerSingleEntityNotification(NotifyStateManagerChang
 ```
 
 > [!NOTE]
-> **ProcessStateManagerSingleEntityNotification** hello minta módszer van a fenti hello **OnStateManagerChangedHandler** példa hívások.
+> **ProcessStateManagerSingleEntityNotification** a minta módszer, amely az előző **OnStateManagerChangedHandler** példa hívások.
 > 
 > 
 
-hello előző kód beállítja hello **IReliableNotificationAsyncCallback** kommunikáljanak, jelszavat **DictionaryChanged**. Mivel **NotifyDictionaryRebuildEventArgs** tartalmaz egy **IAsyncEnumerable** illesztő – amely toobe aszinkron módon--számba kell belüli értesítések elindulása esetén keresztül  **RebuildNotificationAsyncCallback** helyett **OnDictionaryChangedHandler**.
+Az előző kód beállítása a **IReliableNotificationAsyncCallback** kommunikáljanak, jelszavat **DictionaryChanged**. Mivel **NotifyDictionaryRebuildEventArgs** tartalmaz egy **IAsyncEnumerable** illesztő – amely aszinkron módon--számba kell belüli értesítések elindulása esetén keresztül **RebuildNotificationAsyncCallback** helyett **OnDictionaryChangedHandler**.
 
 ```C#
 public async Task OnDictionaryRebuildNotificationHandlerAsync(
@@ -158,12 +158,12 @@ public async Task OnDictionaryRebuildNotificationHandlerAsync(
 ```
 
 > [!NOTE]
-> A kód, megelőző feldolgozási hello rebuild értesítési részeként hello első hello megmarad az összesített állapota nincs bejelölve. Hello megbízható gyűjtemény újraépíti az új állapot, mert az összes korábbi értesítés irrelevánsak.
+> Az előzőekben látható kód rebuild értesítés feldolgozása részeként az először a karbantartott összesített állapota nincs bejelölve. A megbízható gyűjtemény újraépíti az új állapot, mert az összes korábbi értesítés irrelevánsak.
 > 
 > 
 
-Hello **DictionaryChanged** eseménykezelő használ **NotifyDictionaryChangedEventArgs** hello esemény tooprovide adatait.
-**NotifyDictionaryChangedEventArgs** öt alosztályok rendelkezik. A hello művelet tulajdonsággal **NotifyDictionaryChangedEventArgs** toocast **NotifyDictionaryChangedEventArgs** toohello helytelen alosztályának:
+A **DictionaryChanged** eseménykezelő használ **NotifyDictionaryChangedEventArgs** arra, hogy az esemény részleteit.
+**NotifyDictionaryChangedEventArgs** öt alosztályok rendelkezik. A művelet tulajdonsággal **NotifyDictionaryChangedEventArgs** konvertálni **NotifyDictionaryChangedEventArgs** a helytelen alosztályának létrehozására:
 
 * **NotifyDictionaryChangedAction.Rebuild**: **NotifyDictionaryRebuildEventArgs**
 * **NotifyDictionaryChangedAction.Clear**: **NotifyDictionaryClearEventArgs**
@@ -205,15 +205,15 @@ public void OnDictionaryChangedHandler(object sender, NotifyDictionaryChangedEve
 ## <a name="recommendations"></a>Javaslatok
 * *Tegye* értesítési események lehető legnagyobb befejezéséhez.
 * *Ne* hajtható végre a költséges műveleteket (például i/o-műveletek) szinkron események részeként.
-* *Tegye* hello művelet típusának ellenőrzése előtt hello esemény feldolgozása. Új művelettípusok hello jövőbeli lehet hozzáadni.
+* *Tegye* a művelet típusának ellenőrzése előtt feldolgozni a eseményt. Új művelettípusok előfordulhat, hogy a jövőben hozzáadni.
 
-Íme néhány dolgot tookeep figyelembe vételével:
+Az alábbiakban néhány dolgot figyelembe venni:
 
-* Értesítések elindulása esetén hello művelet végrehajtásának részeként. Például egy visszaállítási értesítést a visszaállítási művelet hello utolsó lépésként lép működésbe. A visszaállítás nem fejeződik be, amíg hello értesítési eseményt dolgoz fel.
-* Értesítések elindulása műveletek alkalmazása hello részeként esetén, mert az ügyfelek csak a helyileg véglegesített műveletek értesítések:. És mivel a műveletek csak a helyileg véglegesített toobe garantáltan (más szóval naplózása), előfordulhat, hogy, vagy előfordulhat, hogy nem vonható vissza a jövőbeli hello.
-* Hello visszaállítási elérési úton egy értesítés minden alkalmazott művelethez lép működésbe. Ez azt jelenti, hogy ha tranzakció T1 Create(X) Delete(X) és Create(X) tartalmaz, kaphat egy értesítési X hello létrehozását, egy hello törlésre és hello létrehozásához ebben az esetben egy abban a sorrendben.
-* Az egyes tranzakciókra vonatkozóan, több műveletet tartalmazó műveleteket a rendszer, amelyben beérkezett hello felhasználótól hello elsődleges replikán hello sorrendben alkalmazza.
-* Feldolgozási hamis folyamat részeként néhány művelet lehet, hogy vonható vissza. Értesítések a visszavonási műveletek, működés közbeni hello replika hátsó tooa stabil pontjának állapota hello aktiválódnak. Egy fontos visszavonási értesítések különbség, hogy eseményeket, amelyek ismétlődő kulcsok összesítése. Például ha tranzakció T1 visszavonja, egy egyetlen értesítési tooDelete(X) láthatja.
+* Értesítések elindulása esetén egy művelet végrehajtásának részeként. Például egy visszaállítási értesítést a visszaállítási művelet utolsó lépéseként lép működésbe. A visszaállítás nem fejeződik be, amíg a értesítő eseményt dolgoz fel.
+* Értesítések a alkalmazása műveletek részeként elindulása esetén, mert az ügyfelek csak a helyileg véglegesített műveletek értesítések:. Ezért műveletek garantáltan csak helyi véglegesített (más szóval naplózása), előfordulhat, hogy, vagy előfordulhat, hogy nem lehet visszavonni a jövőben.
+* A visszaállítási útvonalon egyetlen értesítést minden alkalmazott művelethez lép működésbe. Ez azt jelenti, hogy ha tranzakció T1 Create(X) Delete(X) és Create(X) tartalmaz, kap egy értesítési X, egy, a törlésre, és egy újbóli létrehozásához létrehozásához abban a sorrendben.
+* Az egyes tranzakciókra vonatkozóan, több műveletet tartalmazó műveletek lesznek alkalmazva a sorrendet, amelyben azok érkezett a felhasználótól az elsődleges replikán.
+* Feldolgozási hamis folyamat részeként néhány művelet lehet, hogy vonható vissza. Értesítések a visszavonási műveletek, a replika állapotának visszaállítása egy stabil ponton aktiválódnak. Egy fontos visszavonási értesítések különbség, hogy eseményeket, amelyek ismétlődő kulcsok összesítése. Például ha tranzakció T1 visszavonja, Delete(X) egyetlen értesítést láthatja.
 
 ## <a name="next-steps"></a>Következő lépések
 * [Reliable Collections](service-fabric-work-with-reliable-collections.md)

@@ -1,10 +1,10 @@
-Virtuális gép, amely telepített tooyour virtuális hálózatot hozzon létre egy távoli asztali kapcsolat tooyour VM tooa is elérheti. hello legjobb módja tooinitially győződjön meg arról, hogy a virtuális gép által tooconnect tooyour csatlakoztathatja a privát IP-cím, ahelyett, hogy a számítógép nevét. Ily módon teszteli toosee Ha is elérheti, nem e névfeloldás megfelelően van konfigurálva.
+Ha létrehoz egy távoli asztali kapcsolatot a virtuális géppel, csatlakozhat egy virtuális hálózaton üzembe helyezett virtuális géphez. A legjobb mód arra, hogy először ellenőrizze, hogy tud-e csatlakozni a virtuális géphez, ha egy magánhálózati IP-címet használ a számítógép neve helyett. Ily módon azt teszteli, hogy tud-e csatlakozni, nem azt, hogy a névfeloldás megfelelően van-e konfigurálva.
 
-1. Keresse meg a hello magánhálózati IP-címet. Hello magánhálózati IP-címet a virtuális gépek található megtekintésével vagy hello hello hello Azure-portálon a virtuális gép tulajdonságainak vagy a PowerShell használatával.
+1. Keresse meg a magánhálózati IP-címet. Ha egy virtuális gép magánhálózati IP-címét szeretné megkeresni, vagy tekintse meg a virtuális gép tulajdonságait az Azure Portalon, vagy használja a PowerShellt.
 
-  - Azure portál – keresse meg a virtuális gép hello Azure-portálon. Virtuális gép hello hello tulajdonságainak megtekintése. hello magánhálózati IP-cím szerepel.
+  - Azure Portal – Keresse meg a virtuális gépet az Azure Portalon. Tekintse meg a virtuális gép tulajdonságait. A magánhálózati IP-cím a listában szerepel.
 
-  - PowerShell - használata hello példa tooview virtuális gépek és a erőforráscsoportokból magánhálózati IP-címek listáját. Nincs szükség a toomodify ebben a példában annak használata előtt.
+  - PowerShell – A példa segítségével tekintse meg a virtuális gépek listáját és magánhálózati IP-címeket az erőforráscsoportokból. Ezt a példát nem kell használat előtt módosítania.
 
     ```powershell
     $VMs = Get-AzureRmVM
@@ -19,17 +19,17 @@ Virtuális gép, amely telepített tooyour virtuális hálózatot hozzon létre 
     }
     ```
 
-2. Ellenőrizze, hogy csatlakoztatott tooyour hello pont-pont VPN használatával VNet kapcsolat.
-3. Nyissa meg **távoli asztali kapcsolat** hello tálcán hello keresőmezőbe írja be a "RDP" vagy "Távoli asztali kapcsolat", majd válassza ki a távoli asztali kapcsolat. Nyissa meg a távoli asztali kapcsolat hello "mstsc" parancsot a PowerShell használatával is. 
-4. A távoli asztali kapcsolat esetén adja meg a hello VM hello magánhálózati IP-címe. Kattintson a "Beállítások megjelenítése" tooadjust további beállításokat, majd csatlakozzon.
+2. Győződjön meg arról, hogy pont–hely típusú VPN-kapcsolattal csatlakozik a virtuális hálózathoz.
+3. A **távoli asztali kapcsolat** megnyitásához írja be a tálca keresőmezőjébe az „RDP” vagy a „Távoli asztali kapcsolat” kifejezést, majd válassza a Távoli asztali kapcsolat lehetőséget. A távoli asztali kapcsolatot megnyithatja a PowerShell „mstsc” parancsával is. 
+4. A távoli asztali kapcsolatban írja be a virtuális gép magánhálózati IP-címét. A további beállításokat a „Beállítások megjelenítése” gombra kattintva módosíthatja. Ha végzett, hozza létre a kapcsolatot.
 
-### <a name="tootroubleshoot-an-rdp-connection-tooa-vm"></a>az RDP-kapcsolat tooa VM tootroubleshoot
+### <a name="to-troubleshoot-an-rdp-connection-to-a-vm"></a>Egy virtuális géppel létrehozni kívánt RDP-kapcsolat hibaelhárítása
 
-Ha problémája van tooa virtuális gép a VPN-kapcsolaton keresztül csatlakozó, ellenőrizze a hello következőket:
+Ha probléma adódik egy virtuális gép VPN-kapcsolaton keresztüli csatlakoztatása során, ellenőrizze az alábbiakat:
 
 - Ellenőrizze, hogy a VPN-kapcsolat sikeresen létrejött-e.
-- Győződjön meg arról, hogy csatlakozik-e virtuális gép hello toohello magánhálózati IP-címet.
-- Használja az "ipconfig" toocheck hello hozzárendelt, amelyből kapcsolódik hello számítógépen toohello Ethernet-adapter IPv4-címmel. Ha hello IP-cím hello Vnetben, amely csatlakozik hello címtartományán belül, vagy a VPNClientAddressPool hello címtartományán belül, egy átfedő címtér hivatkozott tooas. A címtartomány átfedésben van így, hello hálózati forgalom nem elérni az Azure, a helyi hálózaton hello marad.
-- Csatlakozhat a virtuális gép toohello hello privát IP-cím, de nem hello a számítógép nevét, ellenőrizze, hogy DNS megfelelően van konfigurálva. A virtuális gépek névfeloldásának működésével kapcsolatos további információkért lásd [a virtuális gépek névfeloldásával](../articles/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md) foglakozó cikket.
-- Győződjön meg arról, hogy hello VPN-konfigurációs ügyfélcsomag készítésének után hello DNS-kiszolgáló IP-címek hello VNet lett megadva. Ha hello DNS-kiszolgáló IP-címének frissítése létrehozása, és egy új VPN-konfigurációs ügyfélcsomag telepítéséhez.
-- Az RDP-kapcsolatok kapcsolatos további információkért lásd: [hibaelhárítása távoli asztali kapcsolatok tooa VM](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md).
+- Ellenőrizze, hogy a virtuális gép magánhálózati IP-címéhez csatlakozik-e.
+- Az „ipconfig” használatával ellenőrizze annak a számítógépnek az Ethernet-adapteréhez hozzárendelt IPv4-címet, amelyről a kapcsolatot létesíti. Ha az IP-cím azon virtuális hálózat tartományában található, amelyhez csatlakozni kíván, vagy a VPN-ügyfél címkészletének címtartományában, akkor átfedő címtérről beszélünk. Ilyen átfedés esetén a hálózati forgalom nem éri el az Azure-t, és a helyi hálózaton marad.
+- Ha tud csatlakozni a virtuális géphez a magánhálózati IP-címmel, de a számítógép nevével nem, ellenőrizze, hogy a DNS-konfiguráció megfelelő-e. A virtuális gépek névfeloldásának működésével kapcsolatos további információkért lásd [a virtuális gépek névfeloldásával](../articles/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md) foglakozó cikket.
+- Ellenőrizze, hogy létrejött-e a VPN-ügyfél konfigurációs csomagja azután, hogy a DNS-kiszolgáló IP-címei meg lettek adva a virtuális hálózathoz. Ha frissítette a DNS-kiszolgáló IP-címeit, hozzon létre és telepítsen egy új VPN-ügyfélkonfigurációs csomagot.
+- Az RDP-kapcsolatokkal kapcsolatos további információkért lásd [a virtuális gép távoli asztali kapcsolatainak hibaelhárításával](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md) foglalkozó cikket.

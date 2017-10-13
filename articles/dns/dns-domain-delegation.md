@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure DNS-delegálás áttekintése |} Microsoft Docs"
-description: "Ismerje meg, hogyan toochange tartományok delegálását és használata Azure DNS neve kiszolgálók tooprovide tartomány üzemeltetéséhez."
+title: "Az Azure DNS-delegálás áttekintése | Microsoft Docs"
+description: "Ismerje meg, hogyan módosíthatja a tartományok delegálását és használhatja tartományszolgáltatóként az Azure DNS-névkiszolgálóit."
 services: dns
 documentationcenter: na
 author: georgewallace
@@ -13,61 +13,61 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/12/2017
 ms.author: gwallace
-ms.openlocfilehash: eaf2d2e345004b4d631e8d81d548b8ca23277d05
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 31a500502a4d3e729ecb79929ed6c1de156d6259
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="delegation-of-dns-zones-with-azure-dns"></a>DNS-zónák delegálása az Azure DNS-sel
 
-Az Azure DNS lehetővé teszi a DNS-zóna toohost, és egy tartományhoz az Azure-ban hello DNS-rekordok kezelése. Ahhoz, hogy a tartomány tooreach Azure DNS-ben a DNS-lekérdezések, hello tartomány rendelkezik toobe hello szülőtartomány tooAzure DNS átadva. Ne feledje Azure DNS nincs hello tartományregisztráló. Ez a cikk azt ismerteti, hogyan tartománydelegálás működését, és hogyan toodelegate tartományok tooAzure DNS.
+Az Azure DNS használatával DNS-zónákat üzemeltethet, és kezelheti a tartomány DNS-rekordjait az Azure felületén. Egy tartomány DNS-lekérdezései csak akkor érik el az Azure DNS-t, ha a tartomány delegálva van az Azure DNS-be a szülőtartományból. Ne feledje: nem az Azure DNS a tartományregisztráló. Ez a cikk ismerteti a tartománydelegálás működését és a tartományok Azure DNS-be való delegálását.
 
 ## <a name="how-dns-delegation-works"></a>A DNS-delegálás működése
 
 ### <a name="domains-and-zones"></a>Tartományok és zónák
 
-hello tartománynévrendszer tartományok hierarchiájából áll. hello hierarchia első eleme hello "gyökértartomány", amelynek neve egyszerűen "**.**".  Ez alatt találhatók a legfelső szintű tartományok, mint a „com”, a „net”, az „org”, az „uk” vagy a „jp”.  A legfelső szintű tartományok alatt találhatók a másodlagos szintű tartományok, mint az „org.uk” vagy a „co.jp”.  És így tovább. a DNS-hierarchiában hello hello tartományok különálló DNS-zónák üzemelteti. A zónák globálisan fel vannak osztva, DNS-névkiszolgálók hello világ üzemelteti.
+A tartománynévrendszer tartományok hierarchiájából áll. A hierarchia első eleme a „gyökértartomány”, amelynek neve egyszerűen „**.**”.  Ez alatt találhatók a legfelső szintű tartományok, mint a „com”, a „net”, az „org”, az „uk” vagy a „jp”.  A legfelső szintű tartományok alatt találhatók a másodlagos szintű tartományok, mint az „org.uk” vagy a „co.jp”.  És így tovább. A DNS-hierarchia tartományait különálló DNS-zónák üzemeltetik. A zónák globálisan fel vannak osztva, és a világ különböző pontjain található DNS-névkiszolgálók üzemeltetik őket.
 
-**DNS-zóna** -tartomány az egyedi nevek a tartománynévrendszerben, például "contoso.com" hello. A DNS-zónák használt toohost hello DNS-rekordok az adott tartományban. Hello "contoso.com" tartomány például "mail.contoso.com" (levelezési kiszolgálóhoz) és "www.contoso.com" (webhelyhez) például számos DNS-rekordokat is tartalmazhat.
+**DNS-zóna** – A tartományok egyedi nevek a tartománynévrendszerben, például „contoso.com”. Az egyes tartományokhoz tartozó DNS-rekordok üzemeltetése DNS-zónákban történik. A „contoso.com” tartomány például számos DNS-rekordot tartalmazhat: „mail.contoso.com” (levelezési kiszolgálóhoz) és „www.contoso.com” (webhelyhez).
 
-**Tartományregisztráló** – A tartományregisztráló egy olyan cég, amely internetes tartományneveket biztosít. Ezek ellenőrzik, hogy ha hello internetes tartomány toouse érhető el, és lehetővé teszik toopurchase azt. Miután hello tartománynév van regisztrálva, hello jogi tulajdonos hello tartománynév áll. Ha már van internetes tartománya, hello aktuális tartomány regisztráló toodelegate tooAzure DNS fogja használni.
+**Tartományregisztráló** – A tartományregisztráló egy olyan cég, amely internetes tartományneveket biztosít. Ezek a cégek ellenőrzik, hogy a használni kívánt internetes tartomány elérhető-e, és ők engedélyezik azok megvásárlását. A tartománynév regisztrálása után Ön annak a jogos tulajdonosa. Ha már van internetes tartománya, az aktuális tartományregisztrálóval delegálhat az Azure DNS-be.
 
-További információt a ki az adott tartománynév tulajdonosa, vagy kapcsolatos információk toofind toobuy egy tartományhoz, lásd: [internetes tartományok az Azure AD](https://msdn.microsoft.com/library/azure/hh969248.aspx).
+További információt a tartománynevek tulajdonosairól, illetve a tartományok vásárlásáról az [Internet domain management in Azure AD](https://msdn.microsoft.com/library/azure/hh969248.aspx) (Internetes tartományok kezelése az Azure AD-ben) című cikkben talál.
 
 ### <a name="resolution-and-delegation"></a>Feloldás és delegálás
 
 Kétféle DNS-kiszolgáló létezik:
 
 * A *mérvadó* DNS-kiszolgáló üzemelteti a DNS-zónákat. Csak az ezekben a zónákban található rekordokra irányuló DNS-lekérdezéseket válaszolja meg.
-* A *rekurzív* DNS-kiszolgáló nem üzemeltet DNS-zónákat. DNS-lekérdezéseket válaszolja meg mérvadó DNS-kiszolgálók toogather hello adatok kell meghívásával.
+* A *rekurzív* DNS-kiszolgáló nem üzemeltet DNS-zónákat. Minden DNS-lekérdezést megválaszol a mérvadó DNS-kiszolgálók adatait összegyűjtve.
 
-Az Azure DNS mérvadó DNS szolgáltatást nyújt.  Rekurzív DNS szolgáltatást nem biztosít. Felhőalapú szolgáltatásokhoz és az Azure virtuális gépek a rekurzív DNS-szolgáltatás külön Azure infrastruktúrája részeként biztosított automatikusan konfigurált toouse. Hogyan toochange ezeket a DNS-beállításokat: kapcsolatos [névfeloldás az Azure-ban](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server).
+Az Azure DNS mérvadó DNS szolgáltatást nyújt.  Rekurzív DNS szolgáltatást nem biztosít. Az Azure felhőszolgáltatásai és virtuális gépei automatikusan egy rekurzív DNS szolgáltatás használatára vannak konfigurálva, amelyet az Azure-infrastruktúra külön biztosít. Ha további információt szeretne kapni ezen DNS-beállítások módosításáról, olvassa el az [Azure-beli névfeloldást](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server) ismertető cikket.
 
-A számítógépek vagy mobileszközök a DNS-ügyfelek általában hívható meg egy rekurzív DNS-kiszolgáló tooperform hello ügyfélalkalmazások számára szükséges DNS-lekérdezések.
+A számítógépes vagy mobileszköz-kompatibilis DNS-ügyfelek általában egy rekurzív DNS-kiszolgálóval végeztetik el az ügyfélalkalmazások számára szükséges DNS-lekérdezéseket.
 
-Amikor egy rekurzív DNS-kiszolgáló egy DNS-rekordot, például "www.contoso.com" vonatkozó lekérdezést kap, először meg kell toofind hello neve server üzemeltetési hello zóna hello "contoso.com" tartomány. toofind hello névkiszolgáló, akkor hello gyökérkiszolgálók neve kezdődik, és névkiszolgálótól kiindulva megkeresi a hello hello "com" zónát üzemeltető névkiszolgálókat. Ezután lekérdezi hello "com" név kiszolgálók toofind hello üzemeltető névkiszolgálókat hello "contoso.com" zóna.  Végezetül fontos képes tooquery ezek névkiszolgálóit "www.contoso.com".
+Amikor egy rekurzív DNS-kiszolgáló egy DNS-rekordra (például „www.contoso.com”) vonatkozó lekérdezést kap, először meg kell keresnie a „contoso.com” tartomány zónáját üzemeltető névkiszolgálót. A névkiszolgáló megkereséséhez a gyökér-névkiszolgálótól kiindulva megkeresi a „com” zónát üzemeltető névkiszolgálókat. Ezután lekérdezi a „com” névkiszolgálóktól a „contoso.com” zónát üzemeltető névkiszolgálókat.  Végül lekérdezi ezektől a névkiszolgálóktól a „www.contoso.com” címet.
 
-Ez az eljárás neve hello DNS-név feloldása. Szigorúan fogalmazva a DNS-feloldás más lépéseket például a CNAME-rekordok követését is tartalmaz, de ez nem fontos toounderstanding DNS-delegálás működése.
+Ez az eljárás a DNS-név feloldása. Szigorú értelemben véve a DNS-feloldás más lépéseket is tartalmaz, például a CNAME-rekordok követését, de ez nem fontos a DNS-delegálás megértéséhez.
 
-Hogyan nem a szülő "mutat rá" toohello névkiszolgálók gyermekzóna? Ezt egy speciális DNS-rekorddal, az úgynevezett névkiszolgálói rekorddal hajtja végre. Hello gyökérzóna például a "com" Névkiszolgálói rekordokat tartalmaz, és hello "com" zóna névkiszolgálóit hello jeleníti meg. Hello "com" zóna pedig tartalmazza a Névkiszolgálói rekordokat a "contoso.com", amely hello "contoso.com" zóna névkiszolgálóit hello mutatja. Egy szülőzónán belüli gyermekzóna Névkiszolgálói rekordjainak hello beállítása felhatalmazó hello tartomány neve.
+Hogyan „mutat rá” egy szülőzóna a gyermekzóna névkiszolgálóira? Ezt egy speciális DNS-rekorddal, az úgynevezett névkiszolgálói rekorddal hajtja végre. Például a gyökérzóna tartalmazza a „com” névkiszolgálói rekordjait, és megjeleníti a „com” zóna névkiszolgálóit. A „com” zóna pedig tartalmazza a „contoso.com” névkiszolgálói rekordjait, amelyek a „contoso.com” zóna névkiszolgálóit mutatják. Egy szülőzónán belüli gyermekzóna névkiszolgálói rekordjainak beállítását nevezzük tartománydelegálásnak.
 
-kép a következő hello látható egy példa DNS-lekérdezést. hello contoso.net és partners.contoso.net az Azure DNS-zónák.
+Az alábbi képen egy példa DNS-lekérdezés látható. A contoso.net és a partners.contoso.net Azure DNS-zónák.
 
 ![DNS-névkiszolgáló](./media/dns-domain-delegation/image1.png)
 
-1. ügyfélkérések hello `www.partners.contoso.net` a helyi DNS-kiszolgálóról.
-1. hello helyi DNS-kiszolgáló nem rendelkezik hello rekord, a kérelem tootheir gyökér neve kiszolgáló teszi.
-1. hello gyökérkiszolgáló neve nincs hello rekord, de tudja hello hello címe `.net` kiszolgáló nevét, biztosítja, hogy cím toohello DNS-kiszolgáló
-1. hello DNS küldi hello kérelem toohello `.net` névkiszolgáló, nincs hello rekord azonban hello contoso.net névkiszolgáló hello címét. Ebben az esetben ez egy DNS-zóna, amely az Azure DNS-en fut.
-1. hello zóna `contoso.net` hello rekord rendelkezik, de tudja a névkiszolgáló hello `partners.contoso.net` és, hogy válaszol. Ebben az esetben ez egy DNS-zóna, amely az Azure DNS-en fut.
-1. hello DNS-kiszolgáló IP-címe hello kérelmek `partners.contoso.net` a hello `partners.contoso.net` zóna. Hello A rekord tartalmazza, és hello IP-cím válaszol.
-1. hello DNS-kiszolgáló látja el hello IP cím toohello ügyfelet
-1. hello ügyfél kapcsolódik toohello webhely `www.partners.contoso.net`.
+1. Az ügyfél lekéri a `www.partners.contoso.net` címet a helyi DNS-kiszolgálóról.
+1. A helyi DNS-kiszolgálón nem található meg a rekord, így lekéri azt a gyökér-névkiszolgálótól.
+1. A gyökér-névkiszolgálón sem található meg a rekord, azonban ismeri a `.net`-névkiszolgáló címét, és megadja azt a DNS-kiszolgálónak.
+1. A DNS-kiszolgáló elküldi a kérést a `.net`-névkiszolgálónak. Ezen sem található meg a rekord, azonban ismeri a contoso.net névkiszolgáló címét. Ebben az esetben ez egy DNS-zóna, amely az Azure DNS-en fut.
+1. A `contoso.net` zónában nem található meg a rekord, azonban ismeri a `partners.contoso.net` névkiszolgálója címét, és ezt adja vissza válaszként. Ebben az esetben ez egy DNS-zóna, amely az Azure DNS-en fut.
+1. A DNS-kiszolgáló lekéri a `partners.contoso.net` IP-címét a `partners.contoso.net` zónából. Ezen megtalálható az „A” rekord, és az IP-címet adja vissza válaszként.
+1. A DNS-kiszolgáló megadja az IP-címet az ügyfélnek.
+1. Az ügyfél csatlakozik a `www.partners.contoso.net` webhelyhez.
 
-Összes delegálás rendelkezik-e két példányban hello Névkiszolgálói rekordokat; egy-egy hello gyermekzónára toohello, egy pedig a hello gyermekzónát magát. hello "contoso.net" zónához hello Névkiszolgálói rekordokat a "contoso.net" (a hozzáadása toohello Névkiszolgálói rekordokat a "net") tartalmaz. Ezeket a rekordokat hívják mérvadó Névkiszolgálói rekordokat, és a gyermekzóna hello gyermekzónát hello legfelső pontján.
+A delegálások a névkiszolgálói rekordok két példányával rendelkeznek: egy a gyermekzónára mutató szülőzónában, egy pedig magában a gyermekzónában található. A „contoso.net” zóna a „net” névkiszolgálói rekordjai mellett a „contoso.net” névkiszolgálói rekordjait is tartalmazza. Ezek a rekordok az úgynevezett mérvadó névkiszolgálói rekordok, és a gyermekzóna tetején találhatók.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ismerje meg, hogyan túl[delegálása a tartományi tooAzure DNS](dns-delegate-domain-azure-dns.md)
+Ismerje meg, hogyan [delegálhat tartományokat az Azure DNS-be](dns-delegate-domain-azure-dns.md).
 

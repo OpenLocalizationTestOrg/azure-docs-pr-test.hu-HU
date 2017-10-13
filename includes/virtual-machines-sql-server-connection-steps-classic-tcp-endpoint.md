@@ -1,19 +1,19 @@
-### <a name="create-a-tcp-endpoint-for-hello-virtual-machine"></a>Hello virtuális gép TCP-végpont létrehozása
-A sorrend tooaccess SQL Server hello az internet, hello virtuális gépnek rendelkeznie kell egy végpont toolisten bejövő TCP-kommunikációhoz. Az Azure-alapú konfigurációs lépés irányítja a bejövő TCP port forgalom tooa TCP-portot, amely elérhető toohello virtuális gépet.
+### <a name="create-a-tcp-endpoint-for-the-virtual-machine"></a>TCP-végpont létrehozása a virtuális géphez
+Ha az internetről szeretné elérni az SQL Servert, a virtuális gépnek rendelkeznie kell egy, a bejövő TCP-kommunikációt figyelő végponttal. Ez az Azure-konfigurációs lépés a TCP-port bejövő forgalmát egy olyan TCP-portra irányítja, amelyet elér a virtuális gép.
 
 > [!NOTE]
-> Ha kapcsolódik hello belül ugyanaz a felhőalapú szolgáltatás, vagy a virtuális hálózati, nincs toocreate egy nyilvánosan elérhető végponton. Ebben az esetben lehetett folytatni toohello következő lépésre. További információ: [Kapcsolódási esetek](../articles/virtual-machines/windows/sqlclassic/virtual-machines-windows-classic-sql-connect.md#connection-scenarios).
+> Ha azonos felhőszolgáltatáson vagy virtuális hálózaton belül csatlakozik, nem kell létrehoznia egy nyilvánosan elérhető végpontot. Ebben az esetben folytassa a következő lépéssel. További információ: [Kapcsolódási esetek](../articles/virtual-machines/windows/sqlclassic/virtual-machines-windows-classic-sql-connect.md#connection-scenarios).
 > 
 > 
 
-1. Hello Azure portált, válassza ki **virtuális gépek (klasszikus)**.
+1. Az Azure Portalon válassza a **Virtuális gépek (klasszikus)** lehetőséget.
 2. Ezután válassza ki az SQL Server virtuális gépét.
-3. Válassza ki **végpontok**, és kattintson a hello **Hozzáadás** hello végpontok panel felső hello gombra.
+3. Válassza a **Végpontok** lehetőséget, majd kattintson a **Hozzáadás** gombra a Végpontok panel tetején.
    
     ![A végpontlétrehozás lépései a Portalon](./media/virtual-machines-sql-server-connection-steps/portal-endpoint-creation.png)
-4. A hello **végpont hozzáadása** panelen adjon meg egy **neve** például SQLEndpoint.
-5. Válassza ki **TCP** a hello **protokoll**.
+4. A **Végpont hozzáadása** panelen adjon meg egy **Nevet**, például SQLVégpont.
+5. A **Protokoll** területen válassza a **TCP** lehetőséget.
 6. **Nyilvános port** esetén adjon meg egy portszámot, például **57500**.
-7. A **magánhálózati port**, adja meg az SQL Server figyelő portja, alapértelmezett értéke túl**1433**.
-8. Kattintson a **Ok** toocreate hello végpont.
+7. **Privát port**esetén adja meg az SQL Server figyelőportját, amely alapértelmezés szerint az **1433**.
+8. A végpont létrehozásához kattintson az **OK** gombra.
 

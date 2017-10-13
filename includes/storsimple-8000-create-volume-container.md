@@ -1,34 +1,34 @@
 <!--author=alkohli last changed: 06/22/17-->
 
-#### <a name="toocreate-a-volume-container"></a>a kötettároló toocreate
-1. Nyissa meg tooyour StorSimple Device Manager szolgáltatás és **eszközök**. Válassza ki a hello táblázatos hello eszközök listája, és kattintson arra az eszközre. 
+#### <a name="to-create-a-volume-container"></a>Kötettároló létrehozása
+1. A StorSimple-eszközkezelő szolgáltatásban kattintson az **Eszközök** elemre. Az eszközök táblázatos listájából válassza ki az eszközt, majd kattintson rá. 
 
     ![Kötettároló panel](./media/storsimple-8000-create-volume-container/createvolumecontainer1.png)
 
-2. Hello eszköz irányítópulton kattintson **+ Hozzáadás kötettároló**
+2. Az eszköz irányítópultján kattintson a **+ Kötettároló hozzáadása** gombra.
 
     ![Kötettároló panel](./media/storsimple-8000-create-volume-container/createvolumecontainer2.png)
 
-3. A hello **Hozzáadás kötettároló** panel:
+3. A **Kötettároló hozzáadása** panelen:
    
-   1. hello eszköz automatikusan ki van jelölve.
-   2. Adja meg a kötettároló **nevét**. hello nevének 3 too32 karakter hosszúságúnak kell lennie. A kötettárolók nem nevezhetők át a létrehozásuk után.
-   3. Válassza ki **felhőalapú tárolás titkosításának engedélyezése** hello eszköz toohello felhőből küldi hello adatok tooenable titkosítását.
-   4. Adja meg, és erősítse meg a **felhőalapú tárolás titkosítási kulcsát** , amely 8 too32 karakternél hosszabb. Ez a kulcs hello eszköz tooaccess titkosított adatokat használják.
-   5. Válassza ki a **Tárfiók** tooassociate az ehhez a kötettárolóhoz. Választhat egy meglévő tárfiók vagy a hello alapértelmezett fiókot, amely hello időben, a szolgáltatás létrehozásakor jön létre. Is használhatja a hello **új hozzáadása** beállítás toospecify egy tárfiókot, amely nem kapcsolódó toothis szolgáltatási előfizetés szükséges.
-   6. Válassza ki **korlátlan** a hello **adja meg a sávszélesség** legördülő listában, ha tooconsume hello összes rendelkezésre álló sávszélességet. Túl is állítja ezt a beállítást**egyéni** tooemploy sávszélesség-vezérlés, és adjon meg 1 és 1000 MB/s közötti értéket.
-      Ha a rendelkezésre álló sávszélesség használati információk, esetleg megadásával a ütemezés szerint képes tooallocate sávszélesség **sávszélességsablon kiválasztása**. Lépésenkénti útmutatót, nyissa meg túl[sávszélességsablon hozzáadása](../articles/storsimple/storsimple-8000-manage-bandwidth-templates.md#add-a-bandwidth-template).
+   1. Az eszköz automatikusan ki lesz választva.
+   2. Adja meg a kötettároló **nevét**. A név 3–32 karakter hosszúságú lehet. A kötettárolók nem nevezhetők át a létrehozásuk után.
+   3. A **Felhőalapú tárolás titkosításának engedélyezése** lehetőséggel engedélyezheti az eszközről a felhőbe küldött adatok titkosítását.
+   4. Adja meg a **Felhőalapú tárolás titkosítási kulcsát**, amely 8–32 karakter hosszúságú lehet. Ezt a kulcsot az eszköz a titkosított adatok hozzáféréséhez használja.
+   5. Válasszon egy **tárfiókot**, amelyet ehhez a kötettárolóhoz kíván társítani. Választhat egy meglévő tárfiókot vagy kiválaszthatja az alapértelmezett fiókot is, amely a szolgáltatás létrehozásakor jön létre. Használhatja az **Új hozzáadása** lehetőséget is. Ezzel megadhat egy olyan tárfiókot, amely nincs ehhez a szolgáltatás-előfizetéshez kapcsolva.
+   6. A **Sávszélesség megadása** legördülő listában válassza a **Korlátlan** lehetőséget, ha az összes rendelkezésre álló sávszélességet fel kívánja használni. Ehhez a beállításhoz megadhatja az **Egyéni** értéket is, ha sávszélesség-korlátozást szeretne alkalmazni. 1 MB/s és 1000 Mb/s közötti értéket adhat meg.
+      Ha hozzáfér a sávszélesség-használati adatokhoz, lehetősége van a sávszélesség ütemezett lefoglalására a **Sávszélességsablon kiválasztása** beállítás megadásával. Az eljárás pontos lépéseit a [Sávszélességsablon hozzáadása](../articles/storsimple/storsimple-8000-manage-bandwidth-templates.md#add-a-bandwidth-template) szakaszban találja.
 
       ![Kötettároló panel](./media/storsimple-8000-create-volume-container/createvolumecontainer6b.png)
    7. Kattintson a **Létrehozás** gombra.
 
         ![Kötettároló panel](./media/storsimple-8000-create-volume-container/createvolumecontainer6.png)
    
-       Értesítést kap hello kötettároló létrehozása sikerült.
+       A kötettároló sikeres létrehozásáról értesítést kap.
 
        ![Kötettároló létrehozási értesítése](./media/storsimple-8000-create-volume-container/createvolumecontainer8.png)
 
-   az újonnan létrehozott kötettároló hello, az eszköz kötettárolók hello listája szerepel.
+   Az újonnan létrehozott kötettároló megjelenik az eszköz kötettárolóinak listájában.
 
    ![Kötettároló hozzáadása panel](./media/storsimple-8000-create-volume-container/createvolumecontainer9.png)
 

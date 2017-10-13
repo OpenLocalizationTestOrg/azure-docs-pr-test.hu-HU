@@ -14,70 +14,70 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
-ms.openlocfilehash: 86eb3513b7bc921c59287600b1b76eeda20c1356
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d6695b0c40f56093e8701dfe6394143268114453
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-ad-domain-services---troubleshooting-guide"></a>Azure AD tartományi szolgáltatások - hibaelhárítási útmutatója
 Ez a cikk hibaelhárítási tippek biztosít a problémák jelentkezhetnek, ha beállítása és felügyelete az Azure Active Directory (AD) tartományi szolgáltatásokban.
 
 ## <a name="you-cannot-enable-azure-ad-domain-services-for-your-azure-ad-directory"></a>Nem lehet engedélyezni az Azure AD-címtár az Azure AD tartományi szolgáltatások
-Ez a szakasz segítséget nyújt hibák elhárítása az Azure AD tartományi szolgáltatásokat a címtáron tooenable és meghibásodik, vagy lekérdezi váltható hátsó too'Disabled ".
+Ez a szakasz segítséget nyújt a hibák elhárítása, amikor megpróbálja engedélyezni a címtár Azure AD tartományi szolgáltatásokat, és nem sikerül, vagy vissza a "Letiltva" váltható lekérdezi.
 
-Válassza ki a megfelelő tapasztal toohello hibaüzenet hibaelhárítási hello.
+Válassza ki a hibaelhárítási lépéseket, amelyek megfelelnek a hibaüzenet a következő megjelenne.
 
 | **Hibaüzenet** | **Megoldás** |
 | --- |:--- |
-| *hello neve contoso100.com már használatban a hálózaton. Adjon meg olyan nevet, amely még nincs használatban.* |[Tartomány névütközés hello virtuális hálózatban](active-directory-ds-troubleshooting.md#domain-name-conflict) |
-| *Tartományi szolgáltatások nem sikerült engedélyezni ezt az Azure AD-bérlőben. hello szolgáltatás nem rendelkezik megfelelő engedélyekkel toohello alkalmazás "Azure AD tartományi szolgáltatások Sync" nevezik. "Az Azure AD tartományi szolgáltatások Sync" nevű hello alkalmazás törlése, és ismételje meg az tooenable tartományi szolgáltatások az Azure AD-bérlő.* |[Tartományi szolgáltatások nem rendelkezik megfelelő engedélyekkel toohello Azure AD tartományi szolgáltatások Szinkronizáló alkalmazás](active-directory-ds-troubleshooting.md#inadequate-permissions) |
-| *Tartományi szolgáltatások nem sikerült engedélyezni ezt az Azure AD-bérlőben. Tartományi szolgáltatások az Azure AD-bérlő az alkalmazás nem rendelkezik hello hello szükséges engedélyek tooenable tartományi szolgáltatásokban. Hello alkalmazás azonosítója d87dcbc6-a371-462e-88e3-28ad15ec4e64 hello alkalmazás törlése, és ismételje meg az Azure AD-bérlő tartományszolgáltatásokban tooenable.* |[hello tartományi szolgáltatások alkalmazás nincs megfelelően konfigurálva az Ön bérlőjében](active-directory-ds-troubleshooting.md#invalid-configuration) |
-| *Tartományi szolgáltatások nem sikerült engedélyezni ezt az Azure AD-bérlőben. Microsoft Azure AD alkalmazás hello le van tiltva, az Azure AD-bérlőben. Hello alkalmazás azonosítója 00000002-0000-0000-c000-000000000000 hello alkalmazás engedélyezése, és ismételje meg az Azure AD-bérlő tartományszolgáltatásokban tooenable.* |[Microsoft Graph alkalmazás hello le van tiltva, az Azure AD-bérlőben](active-directory-ds-troubleshooting.md#microsoft-graph-disabled) |
+| *A contoso100.com név már használatban van ezen a hálózaton. Adjon meg olyan nevet, amely még nincs használatban.* |[Tartomány névütközés a virtuális hálózat](active-directory-ds-troubleshooting.md#domain-name-conflict) |
+| *A tartományi szolgáltatások nem engedélyezhetők ebben az Azure AD-bérlőben. A szolgáltatás nem rendelkezik megfelelő engedélyekkel az „Azure AD Domain Services Sync” alkalmazáshoz. Törölje az „Azure AD Domain Services Sync” alkalmazást, és próbálja meg ezután engedélyezni a tartományi szolgáltatásokat az Azure AD-bérlője számára.* |[Tartományi szolgáltatások nem rendelkezik megfelelő engedéllyel az Azure AD tartományi szolgáltatások Szinkronizáló alkalmazás](active-directory-ds-troubleshooting.md#inadequate-permissions) |
+| *A tartományi szolgáltatások nem engedélyezhetők ebben az Azure AD-bérlőben. Az Azure AD-bérlőjében található Domain Services alkalmazás nem rendelkezik a tartományi szolgáltatások engedélyezéséhez szükséges engedélyekkel. Törölje a d87dcbc6-a371-462e-88e3-28ad15ec4e64 alkalmazásazonosítójú alkalmazást, majd próbálja meg engedélyezni a Domain Servicest az Azure AD-bérlője számára.* |[A tartományi szolgáltatások alkalmazás nincs megfelelően konfigurálva az Ön bérlőjében](active-directory-ds-troubleshooting.md#invalid-configuration) |
+| *A tartományi szolgáltatások nem engedélyezhetők ebben az Azure AD-bérlőben. A Microsoft Azure AD alkalmazás le van tiltva az Ön Azure AD-bérlőjében. Engedélyezze a 00000002-0000-0000-c000-000000000000 alkalmazásazonosítójú alkalmazást, majd próbálja meg engedélyezni a Domain Servicest az Azure AD-bérlője számára.* |[A Microsoft Graph alkalmazás le van tiltva, az Azure AD-bérlőben](active-directory-ds-troubleshooting.md#microsoft-graph-disabled) |
 
 ### <a name="domain-name-conflict"></a>Tartomány névütközés
 **Hibaüzenet:**
 
-*hello neve contoso100.com már használatban a hálózaton. Adjon meg olyan nevet, amely még nincs használatban.*
+*A contoso100.com név már használatban van ezen a hálózaton. Adjon meg olyan nevet, amely még nincs használatban.*
 
 **Szervizelés:**
 
-Győződjön meg arról, hogy nem rendelkezik egy meglévő tartomány hello ugyanazon a néven érhető el a virtuális hálózat. Például során feltételezzük, hogy a "contoso.com" már elérhető nevű hello kijelölt virtuális hálózati tartományhoz. Később, próbálja meg az Azure AD tartományi szolgáltatások által felügyelt tartományokhoz való hello tooenable ugyanazon tartomány nevét (például "contoso.com") a virtuális hálózat. Tooenable az Azure AD tartományi szolgáltatások közben hibát tapasztal.
+Győződjön meg arról, hogy nem rendelkezik egy meglévő tartományhoz, a tartomány néven érhető el a virtuális hálózat. Tegyük fel például, hogy a kiválasztott virtuális hálózatban már van egy contoso.com nevű tartomány. Később akkor próbálja meg engedélyezni az Azure AD tartományi szolgáltatások által felügyelt tartományokhoz, azonos nevű tartomány (például "contoso.com") a virtuális hálózat. Azure AD tartományi szolgáltatások engedélyezése közben hibát tapasztal.
 
-Ez a hiba van a virtuális hálózat hello tartománynév tooname ütközések miatt. Ebben az esetben egy másik nevet tooset mentése az Azure AD tartományi szolgáltatások által felügyelt tartományokhoz kell használnia. Alternatív megoldásként leépíti hello meglévő tartományhoz, és folytathatja a tooenable az Azure AD tartományi szolgáltatások.
+Ez a hiba a tartománynév, a virtuális hálózatban tapasztalható névütközés okozza. Ebben az esetben az Azure AD tartományi szolgáltatások által kezelt tartomány beállításához másik nevet kell használnia. A másik lehetséges megoldás az, hogy leépíti a meglévő tartományt, majd ezután folytatja a Azure AD tartományi szolgáltatások engedélyezését.
 
 ### <a name="inadequate-permissions"></a>Nincsenek megfelelő engedélyei
 **Hibaüzenet:**
 
-*Tartományi szolgáltatások nem sikerült engedélyezni ezt az Azure AD-bérlőben. hello szolgáltatás nem rendelkezik megfelelő engedélyekkel toohello alkalmazás "Azure AD tartományi szolgáltatások Sync" nevezik. "Az Azure AD tartományi szolgáltatások Sync" nevű hello alkalmazás törlése, és ismételje meg az tooenable tartományi szolgáltatások az Azure AD-bérlő.*
+*A tartományi szolgáltatások nem engedélyezhetők ebben az Azure AD-bérlőben. A szolgáltatás nem rendelkezik megfelelő engedélyekkel az „Azure AD Domain Services Sync” alkalmazáshoz. Törölje az „Azure AD Domain Services Sync” alkalmazást, és próbálja meg ezután engedélyezni a tartományi szolgáltatásokat az Azure AD-bérlője számára.*
 
 **Szervizelés:**
 
-Ellenőrizze a toosee, ha "Azure AD tartományi szolgáltatások Sync" hello nevű alkalmazás az Azure AD-címtárát. Ha ezt az alkalmazást, törölje azt, majd engedélyezze újra Azure AD tartományi szolgáltatásokat.
+Ellenőrizze, hogy van-e egy alkalmazás "Azure AD tartományi szolgáltatások Sync" az Azure AD-címtárát a néven. Ha ezt az alkalmazást, törölje azt, majd engedélyezze újra Azure AD tartományi szolgáltatásokat.
 
-Hajtsa végre hello következő lépések toocheck hello alkalmazás és toodelete hello meglétét, ha hello alkalmazás létezik:
+A következő lépésekkel az alkalmazás meglétének ellenőrzése és törlése, ha az alkalmazás létezik:
 
-1. Keresse meg a toohello **a klasszikus Azure portálon** ([https://manage.windowsazure.com](https://manage.windowsazure.com)).
-2. Jelölje be hello **Active Directory** csomópontot a bal oldali panelen hello.
-3. Jelölje be hello Azure AD bérlőt (címtárat), amelynek szeretné tooenable Azure AD tartományi szolgáltatásokat.
-4. Keresse meg a toohello **alkalmazások** fülre.
-5. Jelölje be hello **a vállalat tulajdonában lévő alkalmazások** hello legördülő lehetőséget.
-6. Ellenőrizze az alkalmazás **Azure AD tartományi szolgáltatások szinkronizáló**. Hello alkalmazás létezik, folytassa a műveletet toodelete azt.
-7. Miután hello alkalmazás törölt, próbálkozzon újra a tooenable az Azure AD tartományi szolgáltatásokban.
+1. Nyissa meg a **klasszikus Azure-portált** ([https://manage.windowsazure.com](https://manage.windowsazure.com)).
+2. Válassza az **Active Directory** csomópontot a bal oldali panelen.
+3. Válassza ki az Azure AD bérlőt (címtárat), amelyiken engedélyezni kívánja az Azure AD tartományi szolgáltatásokat.
+4. Keresse meg a **alkalmazások** fülre.
+5. Válassza ki a **a vállalat tulajdonában lévő alkalmazások** beállítást meg a legördülő listában.
+6. Ellenőrizze az alkalmazás **Azure AD tartományi szolgáltatások szinkronizáló**. Ha az alkalmazás létezik, ugorjon a törölje azt.
+7. Ha törölte az alkalmazáshoz, próbálja meg ismét Azure AD tartományi szolgáltatások engedélyezése.
 
 ### <a name="invalid-configuration"></a>Érvénytelen konfiguráció
 **Hibaüzenet:**
 
-*Tartományi szolgáltatások nem sikerült engedélyezni ezt az Azure AD-bérlőben. Tartományi szolgáltatások az Azure AD-bérlő az alkalmazás nem rendelkezik hello hello szükséges engedélyek tooenable tartományi szolgáltatásokban. Hello alkalmazás azonosítója d87dcbc6-a371-462e-88e3-28ad15ec4e64 hello alkalmazás törlése, és ismételje meg az Azure AD-bérlő tartományszolgáltatásokban tooenable.*
+*A tartományi szolgáltatások nem engedélyezhetők ebben az Azure AD-bérlőben. Az Azure AD-bérlőjében található Domain Services alkalmazás nem rendelkezik a tartományi szolgáltatások engedélyezéséhez szükséges engedélyekkel. Törölje a d87dcbc6-a371-462e-88e3-28ad15ec4e64 alkalmazásazonosítójú alkalmazást, majd próbálja meg engedélyezni a Domain Servicest az Azure AD-bérlője számára.*
 
 **Szervizelés:**
 
-Ellenőrizze a toosee, ha nem található a "AzureActiveDirectoryDomainControllerServices" (az alkalmazás azonosítója, amelyet d87dcbc6-a371-462e-88e3-28ad15ec4e64) hello nevű alkalmazás az Azure AD-címtárát. Ha az alkalmazás már létezik, toodelete szüksége, és ezután engedélyezze újra az Azure AD tartományi szolgáltatások.
+Ellenőrizze, hogy van-e (az alkalmazás azonosítója, amelyet d87dcbc6-a371-462e-88e3-28ad15ec4e64) "AzureActiveDirectoryDomainControllerServices" nevű alkalmazás az Azure AD-címtárát. Ha az alkalmazás már létezik, törölje azt, és majd engedélyezze újra Azure AD tartományi szolgáltatások szüksége.
 
-A következő PowerShell parancsfájl toofind hello alkalmazás hello használja, és törölje.
+A következő PowerShell-parancsfájl segítségével keresse meg az alkalmazást, és törölje azt.
 
 > [!NOTE]
-> A parancsfájl a **Azure AD PowerShell 2-es** parancsmagok. Az összes elérhető parancsmagok és toodownload hello modul teljes listáját, olvassa el a hello [AzureAD PowerShell referenciadokumentációt](https://msdn.microsoft.com/library/azure/mt757189.aspx).
+> A parancsfájl a **Azure AD PowerShell 2-es** parancsmagok. Teljes listáját az összes rendelkezésre álló parancsmagok és a modul letöltése, olvassa el a [AzureAD PowerShell referenciadokumentációt](https://msdn.microsoft.com/library/azure/mt757189.aspx).
 >
 >
 
@@ -90,7 +90,7 @@ if ($aadDsSp -ne $null)
 {
     Write-Information "Found Azure AD Domain Services application. Deleting it ..."
     Remove-AzureADServicePrincipal -ObjectId $aadDsSp.ObjectId
-    Write-Information "Deleted hello Azure AD Domain Services application."
+    Write-Information "Deleted the Azure AD Domain Services application."
 }
 
 $identifierUri = "https://sync.aaddc.activedirectory.windowsazure.com"
@@ -100,7 +100,7 @@ if ($app -ne $null)
 {
     Write-Information "Found Azure AD Domain Services Sync application. Deleting it ..."
     Remove-AzureADApplication -ObjectId $app.ObjectId
-    Write-Information "Deleted hello Azure AD Domain Services Sync application."
+    Write-Information "Deleted the Azure AD Domain Services Sync application."
 }
 
 $spFilter = "ServicePrincipalNames eq '" + $identifierUri + "'"
@@ -109,7 +109,7 @@ if ($sp -ne $null)
 {
     Write-Information "Found Azure AD Domain Services Sync service principal. Deleting it ..."
     Remove-AzureADServicePrincipal -ObjectId $sp.ObjectId
-    Write-Information "Deleted hello Azure AD Domain Services Sync service principal."
+    Write-Information "Deleted the Azure AD Domain Services Sync service principal."
 }
 ```
 <br>
@@ -117,43 +117,43 @@ if ($sp -ne $null)
 ### <a name="microsoft-graph-disabled"></a>A Microsoft Graph le van tiltva
 **Hibaüzenet:**
 
-Tartományi szolgáltatások nem sikerült engedélyezni ezt az Azure AD-bérlőben. Microsoft Azure AD alkalmazás hello le van tiltva, az Azure AD-bérlőben. Hello alkalmazás azonosítója 00000002-0000-0000-c000-000000000000 hello alkalmazás engedélyezése, és ismételje meg az Azure AD-bérlő tartományszolgáltatásokban tooenable.
+Tartományi szolgáltatások nem sikerült engedélyezni ezt az Azure AD-bérlőben. A Microsoft Azure AD alkalmazás le van tiltva az Ön Azure AD-bérlőjében. Az alkalmazás az alkalmazás azonosítója 00000002-0000-0000-c000-000000000000 engedélyezése, és próbálja meg az Azure AD-bérlő tartományi szolgáltatások engedélyezése.
 
 **Szervizelés:**
 
-Ellenőrizze a toosee, ha le van tiltva az alkalmazás hello azonosítója 00000002-0000-0000-c000-000000000000. Az alkalmazás hello Microsoft Azure AD-alkalmazáshoz, és a Graph API access tooyour az Azure AD bérlő biztosít. Azure AD tartományi szolgáltatások kell ezt az Azure AD-bérlő tooyour felügyelt alkalmazás engedélyezve toobe toosynchronize tartomány.
+Ellenőrizze, hogy ha le van tiltva az alkalmazás azonosítóját 00000002-0000-0000-c000-000000000000. Ez az alkalmazás a Microsoft Azure AD-alkalmazás, és a Graph API-hozzáférést biztosít az Azure AD-bérlő. Az Azure AD tartományi szolgáltatásokat kell engedélyezni a felügyelt tartományra az Azure AD-bérlő szinkronizálni kell az alkalmazás.
 
-tooresolve ezt a hibát alkalmazás engedélyezése, és próbálkozzon tooenable tartományi szolgáltatások az Azure AD-bérlő.
+Ez a hiba elhárításához alkalmazás engedélyezése, és próbálja meg az Azure AD-bérlő tartományi szolgáltatások engedélyezése.
 
-## <a name="users-are-unable-toosign-in-toohello-azure-ad-domain-services-managed-domain"></a>Felhasználók az Azure AD tartományi szolgáltatások által kezelt tartomány toohello nem toosign
-Ha egy vagy több felhasználó az Azure AD-bérlőben található, újonnan létrehozott toohello felügyelt tartomány nem toosign, hajtsa végre az alábbi hibaelhárítási lépésekkel hello:
+## <a name="users-are-unable-to-sign-in-to-the-azure-ad-domain-services-managed-domain"></a>A felhasználók nem tudnak bejelentkezni az Azure AD Domain Services által felügyelt tartományba
+Ha az Azure AD-bérlőről egy vagy több felhasználók nem jelentkezhetnek be az újonnan létrehozott felügyelt tartományra, hajtsa végre a következő hibaelhárítási lépéseket:
 
-* **Jelentkezzen be UPN formátum használatával:** próbálja toosign hello UPN formátumban (például "joeuser@contoso.com") helyett hello SAMAccountName formátumban ("CONTOSO\joeuser"). hello SAMAccountName előfordulhat, hogy hozható létre automatikusan, a felhasználók számára, amelynek UPN-előtag túlságosan hosszú, vagy van hello megegyezik egy másik felhasználóként hello felügyelt tartományon. hello UPN formátum az Azure AD-bérlő belül egyedi garantáltan toobe.
+* **Jelentkezzen be UPN formátum használatával:** próbáljon meg bejelentkezni az UPN-formátumban (például "joeuser@contoso.com") helyett a SAMAccountName formátumban ("CONTOSO\joeuser"). A SAMAccountName előfordulhat, hogy automatikusan generált felhasználók amelynek UPN előtag túlságosan hosszú, vagy azonos egy másik felhasználója a felügyelt tartományra. Az egyszerű felhasználónév formátuma garantáltan az Azure AD-bérlő belül egyedinek kell lennie.
 
 > [!NOTE]
-> Az Azure AD tartományi szolgáltatások által kezelt tartomány toohello hello UPN formátum toosign használatát javasoljuk.
+> Azt javasoljuk, hogy jelentkezzen be az Azure AD tartományi szolgáltatások által kezelt tartomány a UPN formátumban.
 >
 >
 
-* Győződjön meg arról, hogy [engedélyezve a jelszó-szinkronizálás](active-directory-ds-getting-started-password-sync.md) hello a kezdeti lépések útmutatóban található lépések hello megfelelően.
-* **Külső fiókok:** győződjön meg arról, hogy hatással hello felhasználói fiók nem külső fiók hello Azure AD-bérlőben. Külső fiókok például Microsoft-fiókok (például "joe@live.com") vagy külső felhasználói fiókok Azure AD-címtárban. Azure AD tartományi szolgáltatások nem tartozik ilyen felhasználói fiókhoz tartozó hitelesítő adatok, ezek a felhasználók által kezelt tartomány toohello nem tud bejelentkezni.
-* **Fiókok szinkronizálva:** hatással hello felhasználói fiókok szinkronizálása a helyszíni könyvtárból, ellenőrizze, hogy:
+* Győződjön meg arról, hogy [engedélyezte a jelszó-szinkronizálást](active-directory-ds-getting-started-password-sync.md) az első lépéseket ismertető útmutató lépéseinek megfelelően.
+* **Külső fiókok:** győződjön meg arról, hogy az érintett felhasználó egy nem külső fiók az Azure AD-bérlőben. Külső fiókok például Microsoft-fiókok (például "joe@live.com") vagy külső felhasználói fiókok Azure AD-címtárban. Azure AD tartományi szolgáltatások nem tartozik ilyen felhasználói fiókhoz tartozó hitelesítő adatok, ezek a felhasználók nem jelentkezhet be a felügyelt tartományra.
+* **Fiókok szinkronizálva:** az érintett felhasználói fiókok szinkronizálása a helyszíni könyvtárból, ellenőrizze, hogy:
 
-  * Telepítése vagy frissítése toohello [legújabb ajánlott az Azure AD Connect kiadás](https://www.microsoft.com/en-us/download/details.aspx?id=47594).
-  * Az Azure AD Connect túl konfigurált[teljes szinkronizálást végezzen](active-directory-ds-getting-started-password-sync.md).
-  * Attól függően, hogy a címtárban hello méretét akkor előfordulhat, hogy igénybe a felhasználói fiókok, és hitelesítőadat-kivonatok toobe érhető el az Azure AD tartományi szolgáltatásokban. Gondoskodjon arról, hogy elegendő ideig, mielőtt újra próbálkozna a (attól függően, a címtár - néhány óra tooa a napot vagy a kettő nagyméretű címtárak esetében hello mérete) várja.
-  * Ha az előző lépésekben hello ellenőrzése után hello a probléma továbbra is fennáll, indítsa újra a Microsoft Azure AD Sync szolgáltatás hello. A szinkronizálás gépről elindítani a parancssort, és hajtsa végre a következő parancsok hello:
+  * Telepítése vagy frissítése a [legújabb ajánlott az Azure AD Connect kiadás](https://www.microsoft.com/en-us/download/details.aspx?id=47594).
+  * Az Azure AD Connect konfigurálása [teljes szinkronizálást végezzen](active-directory-ds-getting-started-password-sync.md).
+  * A címtár méretétől függően esetlegesen időigényes a felhasználói fiókok és hitelesítőadat-kivonatok elérhető lesz az Azure AD tartományi szolgáltatásokat. Gondoskodjon arról, hogy elegendő ideig, mielőtt újra próbálkozna a hitelesítési (attól függően, hogy a címtárban - naponta néhány órát, amíg nagy méretű könyvtárakon méretét) várja.
+  * Ha az előző lépések ellenőrzése után a probléma továbbra is fennáll, indítsa újra a Microsoft Azure AD Sync szolgáltatás. A szinkronizálás gépről elindítani a parancssort, és hajtsa végre a következő parancsokat:
 
     1. net stop "Microsoft Azure AD Sync"
     2. a net start "Microsoft Azure AD Sync"
-* **Csak felhőalapú fiókok**: Ha hatással hello felhasználói fiók egy kizárólag felhőalapú felhasználói fiókot, győződjön meg arról, hello felhasználó módosította a jelszavát, miután engedélyezte az Azure AD tartományi szolgáltatásokat. Ez a lépés azt eredményezi, hello hitelesítő kivonatok Azure AD tartományi szolgáltatások toobe jön létre a szükséges.
+* **Csak felhőalapú fiókok**: Ha az érintett felhasználó fiók egy kizárólag felhőalapú felhasználói fiókot, győződjön meg arról, hogy a felhasználó módosította a jelszavát, miután engedélyezte az Azure AD tartományi szolgáltatások. Ezzel a lépéssel létrejönnek az Azure AD tartományi szolgáltatásokhoz szükséges hitelesítő adatok kivonatai.
 
 ## <a name="users-removed-from-your-azure-ad-tenant-are-not-removed-from-your-managed-domain"></a>Eltávolítja az Azure AD-bérlő felhasználók a felügyelt tartományok nem törlődnek
-Az Azure AD megvédi Önt a felhasználói objektumok véletlen törlésétől. Az Azure AD-bérlő töröl egy felhasználói fiókot, hello megfelelő felhasználói objektum esetén áthelyezett toohello Lomtár. Ha ezt a műveletet szinkronizált tooyour által felügyelt tartományokhoz, okoz hello megfelelő felhasználói fiók toobe megjelölve le van tiltva. Ez a szolgáltatás segít a helyre, vagy később törlés visszavonása hello felhasználói fiókot.
+Az Azure AD megvédi Önt a felhasználói objektumok véletlen törlésétől. Amikor töröl egy felhasználói fiókot az Azure AD-bérlőből, a megfelelő felhasználói objektum átkerül a Lomtárba. Amikor a törlési művelet szinkronizálja a felügyelt tartományra, a megfelelő felhasználói fiókkal kell megjelölni, letiltott okoz. Ez a szolgáltatás segítségével helyre, vagy később törlésének visszavonása a felhasználói fiók.
 
-hello hello marad le van tiltva a felügyelt tartományok lévő felhasználói fiók, akkor is, ha a felhasználói fiók újbóli létrehozása hello azonos egyszerű felhasználónév az Azure AD-címtárát. tooforce tooremove hello felhasználói fiók a felügyelt tartomány kell törölni az Azure AD-bérlőn.
+A felhasználói fiók a felügyelt tartományok letiltott állapotban marad, akkor is, ha az Azure AD-címtárát hozza létre a azonos egyszerű Felhasználónévvel rendelkező felhasználói fiókkal. Távolítsa el a felhasználói fiók a felügyelt tartományok, kényszeríteni kell törölni az Azure AD-bérlőn.
 
-tooremove hello felhasználói fiókot a teljes mértékben a felügyelt tartományok hello felhasználó végleges törlése az Azure AD-bérlő. Hello Remove-MsolUser PowerShell-parancsmag használata hello "-RemoveFromRecycleBin" lehetőség, mert leírt [MSDN-cikk](https://msdn.microsoft.com/library/azure/dn194132.aspx).
+A teljes mértékben eltávolítja a felügyelt tartományok a felhasználói fiók, a felhasználó véglegesen törli az Azure AD-bérlőn. Használja a Remove-MsolUser PowerShell-parancsmagot a „-RemoveFromRecycleBin” paraméterrel, ahogyan az az alábbi [MSDN-cikkben](https://msdn.microsoft.com/library/azure/dn194132.aspx) is olvasható.
 
 ## <a name="contact-us"></a>Kapcsolat
-Lépjen kapcsolatba a hello Azure Active Directory tartományi szolgáltatások termékért felelős csoport túl[visszajelzés megosztása vagy támogatásához](active-directory-ds-contact-us.md).
+Lépjen kapcsolatba az Azure Active Directory tartományi szolgáltatások termékért felelős csoport a [visszajelzés fájlmegosztás vagy a támogatáshoz](active-directory-ds-contact-us.md).

@@ -1,6 +1,6 @@
 ---
-title: "aaaGetting lépések az Azure multi-factor Authentication kiszolgáló |} Microsoft Docs"
-description: "Ez a hello Azure többtényezős hitelesítés lap, amely leírja, hogyan tooget el az Azure MFA kiszolgáló."
+title: "Azure Multi-Factor Authentication-kiszolgáló – első lépések | Microsoft Docs"
+description: "Ez az Azure Multi-Factor Authentication-oldal leírja, hogyan kezdheti el az Azure MFA-kiszolgáló használatát."
 services: multi-factor-authentication
 keywords: "hitelesítési kiszolgáló, azure multi factor authentication alkalmazásaktiválási oldal, hitelesítési kiszolgáló letöltése"
 documentationcenter: 
@@ -12,27 +12,27 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 08/23/2017
+ms.date: 08/30/2017
 ms.author: joflore
 ms.reviewer: alexwe
 ms.custom: it-pro
-ms.openlocfilehash: 92a6a586eb96375e92a9455ad64e67221001db81
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: df847c370817c0702163b5e22c35c7e4f1d3cfee
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="getting-started-with-hello-azure-multi-factor-authentication-server"></a>Ismerkedés az Azure multi-factor Authentication kiszolgáló hello
+# <a name="getting-started-with-the-azure-multi-factor-authentication-server"></a>Azure Multi-Factor Authentication-kiszolgáló – első lépések
 
 <center>![Helyszíni MFA](./media/multi-factor-authentication-get-started-server/server2.png)</center>
 
-Most, hogy toouse a helyi multi-factor Authentication kiszolgáló azt észlelte, adjuk hozzá. Ezen a lapon egy új telepítés hello kiszolgáló és a helyszíni Active Directory beállítása magában foglalja. Ha már hello MFA kiszolgáló telepítve van, és tooupgrade olyan eszközökre, [toohello frissítés legújabb Azure multi-factor Authentication kiszolgáló](multi-factor-authentication-server-upgrade.md). Ha csak hello webszolgáltatás telepítésével kapcsolatos információkat keres, tekintse meg [Deploying hello Azure multi-factor Authentication kiszolgáló mobilalkalmazás webszolgáltatásának](multi-factor-authentication-get-started-server-webservice.md).
+Most, hogy a helyszíni Multi-Factor Authentication-kiszolgáló használata mellett döntöttünk, lássunk neki. Ezen a lapon a kiszolgáló új telepítését és helyszíni Active Directoryval való beállítását ismertetjük. Ha már telepített MFA-kiszolgálót és frissíteni szeretné, tekintse meg [a legújabb Azure Multi-Factor Authentication-kiszolgálóra való frissítéssel kapcsolatos](multi-factor-authentication-server-upgrade.md) témakört. Ha csak a webszolgáltatás telepítésével kapcsolatban keres információt, tekintse meg [Az Azure Multi-Factor Authentication-kiszolgáló Mobile App Web Service szolgáltatásának telepítése](multi-factor-authentication-get-started-server-webservice.md) című témakört.
 
 ## <a name="plan-your-deployment"></a>Az üzembe helyezés megtervezése
 
-Hello Azure multi-factor Authentication kiszolgáló letöltése előtt gondolja át a terhelés és a magas rendelkezésre állás biztosításához van. Ezen információk toodecide használja, hogyan és hol toodeploy.
+Az Azure Multi-Factor Authentication-kiszolgáló letöltése előtt fontolja meg, milyen terhelési és magas rendelkezésre állási követelményekkel rendelkezik. Ezen információ alapján döntse el, hogyan és hol szeretné üzembe helyezni.
 
-Jó megoldás tooauthenticate rendszeresen várt hello memóriamennyiség szüksége van hello felhasználók száma.
+A szükséges memória mennyiségének meghatározásához jó útmutató azoknak a felhasználóknak a száma, akik várhatóan rendszeresen hitelesítést fognak végezni.
 
 | Felhasználók | RAM |
 | ----- | --- |
@@ -42,38 +42,38 @@ Jó megoldás tooauthenticate rendszeresen várt hello memóriamennyiség szüks
 | 100 000–200 001 | 16 GB |
 | 200 001+ | 32 GB |
 
-Meg kell tooset több kiszolgáló magas rendelkezésre állásra vagy terheléselosztás? Számos módon tooset be az Azure MFA kiszolgáló a konfigurációt. Az első Azure MFA kiszolgáló telepítésekor hello fő válik. Bármely további kiszolgálók lesz alárendelt, és a felhasználók és a konfiguráció automatikus szinkronizálás hello master. Ezután, egy elsődleges kiszolgáló konfigurálása, és a működésre hello rest rendelkezik, a biztonsági másolatból, vagy minden hello kiszolgálók közötti terheléselosztás állíthat be.
+Szüksége van több kiszolgáló beállítására magas rendelkezésre álláshoz vagy terheléselosztáshoz? Az Azure MFA-kiszolgálóval több módon is beállíthatja ezt a konfigurációt. Az elsőként telepített Azure MFA-kiszolgálót lesz a főkiszolgáló. A további kiszolgálók alárendelt kiszolgálókká válnak, és automatikusan szinkronizálják a felhasználókat és a konfigurációt a főkiszolgálóval. Ekkor konfigurálhat egy elsődleges kiszolgálót, a többit pedig használhatja biztonsági másolathoz, vagy beállíthat terheléselosztást a kiszolgálók között.
 
-A fő Azure MFA kiszolgáló offline állapotba kerül, ha hello alárendelt kiszolgálók továbbra is kétlépéses ellenőrzés kérelmek feldolgozásához is. Azonban nem adhat hozzá új és meglévő felhasználók nem tudja frissíteni a beállításait, amíg hello fő újra online állapotba kerül, vagy egy alárendelt lekérése előléptetve.
+Amikor egy fő Azure MFA-kiszolgálónak megszakad az internetes kapcsolata, az alárendelt kiszolgálók továbbra is feldolgozhatják a kétlépéses ellenőrzési kérelmeket. Új felhasználókat azonban nem vehet fel, és a meglévő felhasználók nem frissíthetik a beállításaikat, amíg a főkiszolgáló megint elérhetővé nem válik, vagy egy alárendelt kiszolgálót elő nem léptet.
 
 ### <a name="prepare-your-environment"></a>A környezet előkészítése
 
-Győződjön meg arról, amelyen az Azure multi-factor Authentication kiszolgáló hello megfelel a követelményeknek hello:
+Győződjön meg róla, hogy az Azure Multi-Factor Authenticationhöz használt kiszolgáló megfelel a következő követelményeknek:
 
 | Az Azure Multi-Factor Authentication-kiszolgáló követelményei | Leírás |
 |:--- |:--- |
 | Hardver |<li>200 MB merevlemez-terület</li><li>x32-es vagy x64-es verzió futtatására képes processzor</li><li>Legalább 1 GB RAM</li> |
-| Szoftver |<li>Windows Server 2008 vagy újabb, ha az hello állomás operációs rendszer</li><li>Windows 7-es vagy nagyobb, ha hello gazdagép egy ügyfél OS</li><li>Microsoft .NET-keretrendszer 4.0</li><li>IIS 7.0-s vagy újabb, ha telepíti a felhasználói portál vagy a web service SDK hello</li> |
+| Szoftver |<li>Windows Server 2016</li><li>Windows Server 2012 R2</li><li>Windows Server 2012</li><li>Windows Server 2008 R2</li><li>Windows Server 2008, SP1, SP2</li><li>Windows Server 2003 R2</li><li>Windows Server 2003, SP1, SP2</li><li>Windows 10</li><li>Windows 8.1, minden kiadás</li><li>Windows 8, minden kiadás</li><li>Windows 7, minden kiadás</li><li>Windows Vista, minden kiadás, SP1, SP2</li><li>Microsoft .NET-keretrendszer 4.0</li><li>IIS 7.0 vagy újabb a felhasználói portál vagy a web service SDK telepítésekor</li> |
 
 ### <a name="azure-mfa-server-components"></a>Az Azure MFA-kiszolgáló összetevői
 
 Az Azure MFA-kiszolgáló három webösszetevőt tartalmaz:
 
-* Webszolgáltatási SDK - lehetővé teszi a kommunikációt hello más összetevők és hello Azure MFA kiszolgáló telepítve van
-* Felhasználói portál –, amely lehetővé teszi, hogy a felhasználók tooenroll Azure multi-factor Authentication (MFA) és a fiókok karbantartásához IIS-webhelyet.
-* Mobil webszolgáltatás - lehetővé teszi, hogy a kétlépéses ellenőrzéshez például hello Microsoft Authenticator alkalmazás használatával.
+* Web Service SDK – Lehetővé teszi a kommunikációt a többi összetevővel, és az Azure MFA-alkalmazáskiszolgálón van telepítve
+* Felhasználói portál – egy olyan IIS-webhely, ahol a felhasználók regisztrálhatnak az Azure Multi-Factor Authenticationre (MFA), és karbantarthatják a fiókjaikat.
+* Mobile App Web Service – Lehetővé teszi a Microsoft Authenticatorhoz hasonló mobilalkalmazások használatát a kétlépéses ellenőrzéshez.
 
-Mindhárom összetevő hello telepíthető ugyanarra a kiszolgálóra, ha hello kiszolgáló internetre irányuló. Ha összeállításának hello összetevők, hello webszolgáltatási SDK telepítve van-e hello Azure MFA alkalmazáskiszolgálón, és hello felhasználói portál és a mobilalkalmazás webszolgáltatás egy internetre irányuló kiszolgálón van telepítve.
+Ha az adott kiszolgáló rendelkezik internetkapcsolattal, mindhárom összetevő telepíthető ugyanarra a kiszolgálóra. Ha szétválasztja az összetevőket, a Web Service SDK az Azure MFA-alkalmazáskiszolgálón, a Felhasználói portál és a Mobile App Web Service pedig az internetkapcsolattal rendelkező kiszolgálón lesz telepítve.
 
 ### <a name="azure-multi-factor-authentication-server-firewall-requirements"></a>Az Azure Multi-Factor Authentication-kiszolgáló tűzfalkövetelményei
 
-Minden multi-factor Authentication kiszolgáló a 443-as port kimenő toohello a következő címeket tud toocommunicate kell lennie:
+Mindegyik MFA-kiszolgálónak képesnek kell lennie kommunikálni a 443-as kimenő porton a következő címekkel:
 
 * https://pfd.phonefactor.net
 * https://pfd2.phonefactor.net
 * https://css.phonefactor.net
 
-Ha kimenő tűzfalak korlátozza a 443-as porton, nyissa meg a következő IP-címtartományok hello:
+Ha a kimenő tűzfalak korlátozva vannak a 443-as porton, nyissa meg a következő IP-címtartományokat:
 
 | IP-alhálózat | Hálózati maszk | IP-címtartomány |
 |:---: |:---: |:---: |
@@ -81,7 +81,7 @@ Ha kimenő tűzfalak korlátozza a 443-as porton, nyissa meg a következő IP-c�
 | 134.170.165.0/25 |255.255.255.128 |134.170.165.1 – 134.170.165.126 |
 | 70.37.154.128/25 |255.255.255.128 |70.37.154.129 – 70.37.154.254 |
 
-Ha a nem használt hello Eseménymegerősítési szolgáltatást, és a felhasználók a nem használt eszközökön mobilalkalmazások tooverify hello a vállalati hálózaton, csak kell hello tartomány a következő:
+Ha nem használja az eseménymegerősítési szolgáltatást, a felhasználók pedig nem használnak mobilalkalmazásokat az ellenőrzéshez a vállalati hálózaton található eszközökön, csak a következő tartományokra van szüksége:
 
 | IP-alhálózat | Hálózati maszk | IP-címtartomány |
 |:---: |:---: |:---: |
@@ -89,10 +89,10 @@ Ha a nem használt hello Eseménymegerősítési szolgáltatást, és a felhaszn
 | 134.170.165.72/29 |255.255.255.248 |134.170.165.72 – 134.170.165.79 |
 | 70.37.154.200/29 |255.255.255.248 |70.37.154.201 – 70.37.154.206 |
 
-## <a name="download-hello-azure-multi-factor-authentication-server"></a>Hello Azure multi-factor Authentication kiszolgáló letöltése
+## <a name="download-the-azure-multi-factor-authentication-server"></a>Az Azure Multi-Factor Authentication-kiszolgáló letöltése
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) rendszergazdaként.
-2. Hello bal oldalon válassza ki a **Active Directory**
+1. Jelentkezzen be az [Azure Portal](https://portal.azure.com) felületére rendszergazdaként.
+2. A bal oldalon válassza az **Active Directory** elemet
 3. Kattintson a **Felhasználók és csoportok** elemre
 4. Kattintson a **Minden felhasználó** elemre
 5. Kattintson a **Többtényezős hitelesítés** elemre
@@ -100,69 +100,69 @@ Ha a nem használt hello Eseménymegerősítési szolgáltatást, és a felhaszn
 
    ![Szolgáltatásbeállítások oldal](./media/multi-factor-authentication-get-started-server/servicesettings.png)
 
-6. A hello services beállítások oldalán üdvözlő képernyőt hello alján kattintson **Ugrás toohello portal**. Megnyílik egy új lap.
+6. A Szolgáltatásbeállítások lapon, a képernyő alsó részén kattintson az **Ugrás a portálra** elemre. Megnyílik egy új lap.
 7. Kattintson a **Letöltések** elemre.
-8. Kattintson a hello **letöltése** hivatkozásra, és mentse hello telepítő.
+8. Kattintson a **Letöltés** hivatkozásra, és mentse a telepítőt.
 
    ![Az MFA-kiszolgáló letöltése](./media/multi-factor-authentication-get-started-server/download4.png)
 
-9. Ezen a lapon tartsa nyitva, tooit után futó hello telepítő hivatkozik.
+9. Hagyja megnyitva ezt az oldalt, mivel a telepítő futtatása után még hivatkozni fogunk rá.
 
-## <a name="install-and-configure-hello-azure-multi-factor-authentication-server"></a>Telepítse és konfigurálja a hello Azure multi-factor Authentication kiszolgáló
+## <a name="install-and-configure-the-azure-multi-factor-authentication-server"></a>Az Azure Multi-Factor Authentication-kiszolgáló telepítése és konfigurálása
 
-Most, hogy a letöltött hello kiszolgáló telepítéséhez, és konfigurálásához. Győződjön meg arról, hogy telepíti azt hello kiszolgáló megfelel-e hello tervezési szakaszban felsorolt követelményeknek.
+Most, hogy letöltötte a kiszolgálót, telepítse és konfigurálja azt. Győződjön meg róla, hogy az a kiszolgáló, amelyikre telepíti, megfelel-e a tervezési szakaszban felsorolt követelményeknek.
 
-1. Kattintson duplán a hello végrehajtható.
-2. A telepítési mappa kijelölése hello képernyőn ellenőrizze, hogy megfelelő-e a hello mappában, és kattintson a **következő**.
-3. Hello telepítés befejeződése után kattintson **Befejezés**.  hello konfigurációs varázsló elindul.
-4. Hello konfigurációs varázsló üdvözlőképernyőn jelölje **használatával Skip hello Hitelesítéskonfiguráló varázsló** kattintson **következő**.  hello varázsló bezárása után, és hello kiszolgáló indul.
+1. Kattintson duplán a végrehajtható fájlra.
+2. A Telepítési mappa kijelölése képernyőn győződjön meg arról, hogy megfelelő mappát választott ki, és kattintson a **Tovább** gombra.
+3. A telepítés befejezése után kattintson a **Befejezés** gombra.  Ekkor elindul a konfigurációs varázsló.
+4. A konfigurációs varázsló üdvözlőképernyőjén jelölje be **A hitelesítéskonfiguráló varázsló használatának kihagyása** jelölőnégyzetet, és kattintson a **Tovább** gombra.  Bezáródik a varázsló, és elindul a kiszolgáló.
 
    ![Felhő](./media/multi-factor-authentication-get-started-server/skip2.png)
 
-5. Vissza a Microsoft hello kiszolgálót a letöltött hello lapon kattintson hello **aktiválási hitelesítő adatok generálása** gombra. Másolja ezt az információt hello Azure MFA kiszolgáló hello mezőkben megadott, és kattintson a **aktiválás**.
+5. Azon az oldalon, ahonnan letöltötte a kiszolgálót, kattintson az **Aktiváló hitelesítő adatok előállítása** gombra. Másolja ezt az információt az Azure MFA-kiszolgálón a megfelelő mezőkbe, majd kattintson az **Aktiválás** lehetőségre.
 
 ## <a name="send-users-an-email"></a>E-mail küldése a felhasználóknak
 
-a bevezetési tooease engedélyezi az MFA kiszolgáló toocommunicate a felhasználóival. Multi-factor Authentication kiszolgáló egy e-mailek tooinform elküldheti őket, hogy azok regisztrálva vannak a kétlépéses ellenőrzéshez.
+A bevezetés megkönnyítése érdekében engedélyezze, hogy az MFA-kiszolgáló kommunikálhasson a felhasználóival. Az MFA-kiszolgáló tájékoztató e-mailt küld a felhasználóknak arról, hogy regisztrálta őket a kétlépéses ellenőrzési szolgáltatásban.
 
-hello e-mailt küldünk hogyan konfigurálja a felhasználók a kétlépéses ellenőrzéshez segítségével határozható meg. Például ha tudja tooimport telefonszámok hello vállalati könyvtárból, hello e-mail tartalmaznia kell hello alapértelmezett telefonszámokat, hogy a felhasználók tudják, milyen tooexpect. Ha nem importálja telefonszámokat, vagy a felhasználók toouse hello mobilalkalmazás fog, küldje el az e-mailek, toocomplete vezeti őket a fiók regisztráció. Vegye fel a hivatkozás toohello Azure multi-factor Authentication felhasználói portál hello e-mailek.
+Az elküldött e-mail tartalmát az határozza meg, hogyan konfigurálja a felhasználókat a kétlépéses ellenőrzéshez. Ha például tud telefonszámokat importálni a vállalat címtárából, az e-mailnek tartalmaznia kell az alapértelmezett telefonszámokat, így a felhasználók tudni fogják, hogy mire számítsanak. Ha nem importál telefonszámokat, vagy ha a felhasználói a mobilalkalmazást fogják használni, olyan e-mailt küldjön a felhasználóknak, amely a fiók regisztrációjának befejezésére kéri őket. Az e-mail tartalmazzon egy hivatkozást az Azure Multi-Factor Authentication felhasználói portáljára.
 
-hello e-mailek tartalma hello hello módszer annak ellenőrzése, hogy be van állítva (telefonhívás, SMS vagy mobilalkalmazás) hello felhasználói is függ.  Például ha hello felhasználó PIN-kód szükséges toouse hitelesítéshez, hello e-mail meghatározza, milyen a kezdeti PIN-KÓDJUKBAN van beállítva.  Felhasználók vannak a szükséges toochange PIN-kódjukat az első hitelesítés során.
+Az e-mail tartalma a felhasználóhoz beállított ellenőrzési módszertől is függ (telefonhívás, SMS vagy mobilalkalmazás).  Ha például a felhasználónak PIN-kódot kell használnia a hitelesítéskor, az e-mail tartalmazza a kezdeti PIN-kódot.  A felhasználóknak általában az első ellenőrzéskor módosítaniuk kell a PIN-kódot.
 
 ### <a name="configure-email-and-email-templates"></a>E-mailek és e-mail-sablonok konfigurálása
 
-Kattintson a hello e-mail ikonra a bal oldali tooset hello hello-beállítások ezen e-mailek küldésére. Ezen a lapon be hello SMTP-adatokat a levelezési kiszolgáló, majd küldje el e-mailek hello ellenőrzésével **küldése e-mailt küld toousers** jelölőnégyzetet.
+Kattintson a bal oldalon található e-mail ikonra az e-mailek küldésére vonatkozó beállítások megadásához. Ezen az oldalon adhatja meg a levelezési kiszolgáló SMTP-adatait, és innen küldhet e-maileket az **E-mailek küldése a felhasználóknak** jelölőnégyzet bejelölésével.
 
 ![MFA-kiszolgáló – E-mail-konfiguráció](./media/multi-factor-authentication-get-started-server/email1.png)
 
-Hello E-mail tartalma lapon láthatja, amelyek a rendelkezésre álló toochoose hello e-mail sablonok. Attól függően, hogy hogyan konfigurálta a felhasználók tooperform kétlépéses ellenőrzést válassza ki a leginkább megfelelő hello sablont.
+Az E-mail tartalma lapon áttekintheti a választható e-mail-sablonokat. Válassza a leginkább megfelelő sablont attól függően, hogyan konfigurálta a felhasználókat a kétlépéses ellenőrzés végrehajtására.
 
 ![MFA-kiszolgáló – E-mail-sablonok](./media/multi-factor-authentication-get-started-server/email2.png)
 
 ## <a name="import-users-from-active-directory"></a>Felhasználók importálása az Active Directoryból
 
-Most már telepítve van a hello kiszolgálón érdemes tooadd felhasználók. Kiválaszthatja a toocreate őket manuálisan, az Active Directoryból importál felhasználókat vagy az automatikus szinkronizálás konfigurálása az Active Directoryban.
+A kiszolgáló telepítése után a felhasználók hozzáadása következik. Létrehozhatja őket manuálisan, importálhatja az Active Directory-felhasználókat, vagy beállíthatja az Active Directoryval történő automatikus szinkronizálást.
 
 ### <a name="manual-import-from-active-directory"></a>Manuális importálás az Active Directoryból
 
-1. Válassza ki az Azure MFA kiszolgáló hello hello bal oldali **felhasználók**.
-2. Hello alján válassza **Active Directoryból való importálás**.
-3. Most vagy kereshet felhasználónként vagy keresési hello Active directory szervezeti egységek felhasználóival őket.  Ebben az esetben hello felhasználók szervezeti egység adtuk meg.
-4. Jelölje ki a megfelelő hello senki hello majd **importálási**.  Megjelenik egy előugró ablak, amely a művelet sikerességéről értesít.  Bezárás hello importálás ablak.
+1. Az Azure MFA-kiszolgálón a bal oldalon válassza a **Felhasználók** elemet.
+2. Alul válassza az **Importálás Active Directoryból** lehetőséget.
+3. Most kereshet egyes felhasználókat vagy kereshet az AD címtárban felhasználókat tartalmazó szervezeti egységeket.  Ebben az esetben meg kell adni a felhasználók szervezeti egységét.
+4. Jelölje ki az összes felhasználót a jobb oldalon, és kattintson az **Importálás** gombra.  Megjelenik egy előugró ablak, amely a művelet sikerességéről értesít.  Zárja be az importálási ablakot.
 
    ![MFA-kiszolgáló – Felhasználók importálása](./media/multi-factor-authentication-get-started-server/import2.png)
 
 ### <a name="automated-synchronization-with-active-directory"></a>Automatikus szinkronizálás az Active Directoryval
 
-1. Válassza ki az Azure MFA kiszolgáló hello hello bal oldali **címtár-integráció**.
-2. Keresse meg a toohello **szinkronizálási** fülre.
-3. Hello alján válassza **hozzáadása**
-4. A hello **szinkronizálási elemek hozzáadása** meg hello tartomány, szervezeti egység kiválasztása **vagy** biztonsági csoport, beállítások, módszer alapbeállításai és nyelve alapértelmezés szerint ez a szinkronizálás a feladatot, és kattintson a **Hozzáadása**.
-5. Hello jelölőnégyzetet **Active Directory-szinkronizálás engedélyezése** , és válassza a **szinkronizálás időköze** egy perc és 24 óra között.
+1. Az Azure MFA-kiszolgálón válassza a **Címtár-integráció** elemet a bal oldalon.
+2. Lépjen a **Szinkronizálás** lapra.
+3. Válassza az alul lévő **Hozzáadás** lehetőséget
+4. A megjelenő **Szinkronizálási elem hozzáadása** mezőben válassza az ehhez a szinkronizálási feladathoz tartozó Tartomány, Szervezeti egység **vagy** biztonsági csoport, Beállítások, Módszer alapértelmezett beállításai vagy Nyelv alapértelmezett beállításai lehetőséget, és kattintson a **Hozzáadás** gombra.
+5. Jelölje be a **Active Directory-szinkronizálás engedélyezése** jelölőnégyzetet, majd válassza ki a **Szinkronizálási időköz** értékét egy perc és 24 óra között.
 
-## <a name="how-hello-azure-multi-factor-authentication-server-handles-user-data"></a>Hogyan kezeli a hello Azure multi-factor Authentication kiszolgáló a felhasználói adatokat
+## <a name="how-the-azure-multi-factor-authentication-server-handles-user-data"></a>A felhasználói adatok kezelése az Azure Multi-Factor Authentication-kiszolgálón
 
-Hello multi-factor Authentication (MFA) helyszíni Server használata esetén a felhasználói adatok hello a helyszíni kiszolgálók találhatók. Nem állandó felhasználói adatok hello felhő tárolja. Hello felhasználó a kétlépéses ellenőrzést hajt végre, amikor hello MFA kiszolgáló küld adatokat toohello Azure MFA felhőalapú szolgáltatás tooperform hello ellenőrzése. Ha ezeket a hitelesítési kérelmeket küld toohello felhőalapú szolgáltatás, hello következő mezők küldése a hello kérelem és a naplókat, hogy elérhetők a hello az ügyfél-hitelesítési/használati jelentésekben. Néhány hello mező nem kötelező, ezért engedélyezve van vagy le van tiltva, a multi-factor Authentication kiszolgáló hello belül. hello kommunikációt a multi-factor Authentication kiszolgáló toohello MFA felhőalapú szolgáltatás hello SSL/TLS használja a 443-as kimenő porton keresztül. Ezek a mezők a következők:
+Ha a Multi-Factor Authentication- (MFA-) kiszolgálót a helyszínen használja, a felhasználók adatait a helyszíni kiszolgálók tárolják. A felhőben nincsenek állandó felhasználói adatok. Amikor a felhasználó kétlépéses ellenőrzést végez, az MFA-kiszolgáló elküldi az adatokat az Azure MFA-felhőszolgáltatásnak az ellenőrzés végrehajtásához. Amikor a rendszer ezeket a hitelesítési kéréseket elküldi a felhőszolgáltatásnak, a kérések és a naplók a következő mezőket tartalmazzák, hogy azok elérhetők legyenek az ügyfél hitelesítési/használati jelentéseiben. Egyes mezők megadása nem kötelező, így engedélyezhetők vagy letilthatók a Multi-Factor Authentication-kiszolgálón. Az MFA-kiszolgáló és az MFA-felhőszolgáltatás közötti kommunikáció SSL-/TLS-titkosítást használ a 443-as kimenő porton. Ezek a mezők a következők:
 
 * Egyedi azonosító – felhasználónév vagy belső MFA-kiszolgálói azonosító
 * Utónév és vezetéknév (nem kötelező)
@@ -175,28 +175,28 @@ Hello multi-factor Authentication (MFA) helyszíni Server használata esetén a 
 * MFA-kiszolgáló IP-címe
 * Ügyfél IP-címe – ha elérhető
 
-Ezenkívül toohello fenti mezők, hello ellenőrzés eredményét (sikeres vagy megtagadását) és bármely elutasítások okát is tárolt hello hitelesítési adatokkal és hello hitelesítési/használati jelentések keresztül elérhető.
+A fenti mezőkön kívül a rendszer az ellenőrzési eredményeket (sikeres/elutasítva) és az elutasítások okait is tárolja a hitelesítési adatokkal együtt. Ezek az adatok a hitelesítési/használati jelentésekben érhetők el.
 
 ## <a name="back-up-and-restore-azure-mfa-server"></a>Az Azure MFA-kiszolgáló biztonsági mentése és visszaállítása
 
-Annak biztosítása, hogy a helyes biztonsági másolatot a rendszer egy fontos lépés tootake.
+A biztonsági mentés megfelelőségének ellenőrzése minden rendszeren fontos lépés.
 
-tooback Azure MFA kiszolgáló, győződjön meg arról, hogy rendelkezik-e hello másolatát **C:\Program Files\Multi-Factor Authentication Server\Data** mappa, beleértve a hello **PhoneFactor.pfdata** fájlt. 
+Az Azure MFA-kiszolgáló biztonsági mentéséhez győződjön meg arról, hogy rendelkezik másolati példánnyal a **C:\Program Files\Multi-Factor Authentication Server\Data** mappáról, beleértve a **PhoneFactor.pfdata** fájlt is. 
 
-A visszaállítási esetben van szükséges teljes hello a következő lépéseket:
+Ha visszaállításra lenne szükség, a következő lépésekkel hajthatja végre:
 
 1. Telepítse újra az Azure MFA-kiszolgálót egy új kiszolgálón.
-2. Aktiválása hello új Azure MFA kiszolgáló.
-3. Állítsa le hello **MultiFactorAuth** szolgáltatás.
-4. Hello felülírása **PhoneFactor.pfdata** a biztonsági másolat hello.
-5. Indítsa el a hello **MultiFactorAuth** szolgáltatás.
+2. Aktiválja az új Azure MFA-kiszolgálót.
+3. Állítsa le a **MultiFactorAuth** szolgáltatást.
+4. Írja felül a **PhoneFactor.pfdata** fájlt a biztonsági másolati példánnyal.
+5. Indítsa el a **MultiFactorAuth** szolgáltatást.
 
-hello új kiszolgáló megfelelően most működik, és a hello eredeti konfigurációs és a felhasználói adatokat.
+Az új kiszolgáló ezzel használatra kész az eredeti biztonsági másolatban található konfigurációval és felhasználói adatokkal.
 
 ## <a name="next-steps"></a>Következő lépések
 
-- Beállítása és konfigurálása hello [felhasználói portál](multi-factor-authentication-get-started-portal.md) önkiszolgáló felhasználó számára.
-- Beállítása és konfigurálása az Azure MFA kiszolgáló hello [Active Directory összevonási szolgáltatás](multi-factor-authentication-get-started-adfs.md), [RADIUS-hitelesítés](multi-factor-authentication-get-started-server-radius.md), vagy [LDAP-hitelesítés](multi-factor-authentication-get-started-server-ldap.md).
+- A [felhasználói portál](multi-factor-authentication-get-started-portal.md) telepítése és konfigurálása a felhasználói önkiszolgáló funkciókhoz.
+- Az Azure MFA-kiszolgáló telepítése és konfigurálása [Active Directory összevonási szolgáltatásokkal](multi-factor-authentication-get-started-adfs.md), [RADIUS-hitelesítéssel](multi-factor-authentication-get-started-server-radius.md) vagy [LDAP-hitelesítéssel](multi-factor-authentication-get-started-server-ldap.md).
 - [Távoli asztali átjáró és RADIUS-t használó Azure Multi-Factor Authentication-kiszolgáló](multi-factor-authentication-get-started-server-rdg.md) telepítése és konfigurálása.
-- [Hello Azure multi-factor Authentication kiszolgáló mobilalkalmazás webszolgáltatásának telepítése](multi-factor-authentication-get-started-server-webservice.md).
+- [Az Azure Multi-Factor Authentication-kiszolgáló Mobile App Web Service szolgáltatásának telepítése](multi-factor-authentication-get-started-server-webservice.md).
 - [Speciális, az Azure Multi-Factor Authenticationre és külső VPN-ekre vonatkozó forgatókönyvek](multi-factor-authentication-advanced-vpn-configurations.md).

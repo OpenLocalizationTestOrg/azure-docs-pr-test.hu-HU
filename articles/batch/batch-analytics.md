@@ -1,5 +1,5 @@
 ---
-title: "Kötegelt elemzés aaaAzure |} Microsoft Docs"
+title: Az Azure Batch Analytics |} Microsoft Docs
 description: "Az Azure Batch Analytics hivatkozását."
 services: batch
 author: tamram
@@ -12,20 +12,20 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 04/20/2017
 ms.author: tamram
-ms.openlocfilehash: 462fbad1ac522b485ae18c1e8891b9d2cabd45e0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7d634e1bb595a84b8af339e5bc5a483a7849e7f7
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="batch-analytics"></a>Kötegelt elemzés
-Kötegelt elemzés hello témakörei hello események és riasztások érhető el a Batch szolgáltatás erőforrások referencia jellegű információt tartalmaz.
+Kötegelt elemzés témakörei az események és riasztások érhető el a Batch szolgáltatás erőforrásainak referencia jellegű információt tartalmaz.
 
 Lásd: [Azure Batch diagnosztikai naplózás](https://azure.microsoft.com/documentation/articles/batch-diagnostics/) engedélyezése és kötegelt diagnosztikai naplók fel további információt.
 
 ## <a name="diagnostic-logs"></a>Diagnosztikai naplók
 
-Azure Batch szolgáltatás hello diagnosztikai naplóeseményeket bizonyos kötegelt erőforrások hello élettartama során a következő hello bocsát ki.
+Az Azure Batch szolgáltatás a következő diagnosztikai naplóeseményeket bizonyos kötegelt erőforrások élettartama során bocsát ki.
 
 **Szolgáltatás bejelentkezési események**
 * [Alkalmazáskészlet létrehozása](batch-pool-create-event.md)

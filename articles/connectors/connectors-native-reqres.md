@@ -1,6 +1,6 @@
 ---
-title: "kérelem és válasz műveletek aaaUse |} Microsoft Docs"
-description: "Hello kérelem-válasz eseményindítója és tevékenysége fel az Azure logic App áttekintése"
+title: "Kérelem és válasz műveletek használata |} Microsoft Docs"
+description: "A kérelem-válasz eseményindítója és tevékenysége fel az Azure logic App áttekintése"
 services: 
 documentationcenter: 
 author: jeffhollan
@@ -15,84 +15,84 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/18/2016
 ms.author: jehollan
-ms.openlocfilehash: 24c378cc12d5f3f65116d5e59278236186a99662
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e45b07d709927af64cfba28dfb0d8ee9cb8893b3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="get-started-with-hello-request-and-response-components"></a>Első lépések hello kérés- és összetevői
-Hello kérelem-válasz összetevőket logikai alkalmazás reagálhat a valós idejű tooevents.
+# <a name="get-started-with-the-request-and-response-components"></a>Első lépések a kérelem-válasz összetevői
+A logikai alkalmazás kérelem-válasz összetevővel reagálhat valós idejű eseményekre.
 
 Megteheti például a következőt:
 
-* Válaszol a HTTP-kérelem tooan adatokkal keresztül logikai alkalmazás a helyi adatbázisból.
+* Válaszol a HTTP-kérelem adatokkal keresztül logikai alkalmazás a helyi adatbázisból.
 * Indítás, a logikai alkalmazást egy külső webhook eseményből.
 * Hívja meg a logikai alkalmazás belül egy másik logikai alkalmazás a kérelem-válasz művelettel.
 
-tooget használatának hello kérelem-válasz műveletek a logikai alkalmazás, lásd: [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).
+Első lépések egy logikai alkalmazás a kérelem-válasz műveletek használatával, lásd: [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="use-hello-http-request-trigger"></a>HTTP-kérelem eseményindító hello használata
-Egy eseményindító nem lehet a logikai alkalmazás definiált használt toostart hello munkafolyamat esemény. [További tudnivalók az eseményindítók](connectors-overview.md).
+## <a name="use-the-http-request-trigger"></a>Használja a HTTP-kérelem eseményindító
+Egy eseményindító egy eseményt, amely segítségével indítsa el a munkafolyamatot, amely a logikai alkalmazás van definiálva. [További tudnivalók az eseményindítók](connectors-overview.md).
 
-Íme egy parancssorozat-példa hogyan tooset be HTTP hello Logic App Designer kérheti.
+Íme egy parancssorozat-példa bemutatja, hogyan állítson be egy HTTP-kérelem a Logic App tervezőben.
 
-1. Adja hozzá a hello eseményindító **kérelem - amikor egy HTTP-kérelem érkezik** a Logic Apps alkalmazást a. Is megadhat egy JSON-séma (például egy olyan eszközzel [JSONSchema.net](http://jsonschema.net)) a hello kérés törzsében. Ez lehetővé teszi tulajdonságok hello Tervező toogenerate jogkivonatainak hello HTTP-kérelem.
-2. Adja hozzá egy másik művelet, így hello logikai alkalmazás mentheti.
-3. Hello logikai alkalmazást a mentés után a hello HTTP-kérelem URL-CÍMÉT az hello kérelem kártya kérheti le.
-4. Egy HTTP POST (például egy eszközzel [Postman](https://www.getpostman.com/)) toohello URL-cím eseményindítók hello logikai alkalmazást.
+1. Adja hozzá az eseményindító **kérelem - amikor egy HTTP-kérelem érkezik** a a Logic Apps alkalmazást. Is megadhat egy JSON-séma (például egy olyan eszközzel [JSONSchema.net](http://jsonschema.net)) vonatkozó kérés törzsében. Ez lehetővé teszi, hogy a Tervező jogkivonatokat a tulajdonságok a HTTP-kérelmet létrehozni.
+2. Egy másik művelet hozzáadása, hogy a logikai alkalmazást is mentheti.
+3. A logikai alkalmazást a mentés után letölthető a HTTP-kérelem URL-CÍMÉT a kérelem kártya.
+4. Egy HTTP POST (használhatja, hogy egy eszköz, például [Postman](https://www.getpostman.com/)) URL-címre akkor váltja ki a logikai alkalmazást.
 
 > [!NOTE]
-> Ha nem adja meg egy válasz művelet egy `202 ACCEPTED` azonnal érkezik válasz toohello hívó. Hello válasz művelet toocustomize választ is használhatja.
+> Ha nem adja meg egy válasz művelet egy `202 ACCEPTED` választ a rendszer azonnal visszaérkezik a hívóhoz. A válasz művelet segítségével testre szabhatja a választ.
 > 
 > 
 
 ![Válasz eseményindító](./media/connectors-native-reqres/using-trigger.png)
 
-## <a name="use-hello-http-response-action"></a>HTTP-válasz művelet hello használata
-hello HTTP-válasz művelet csak akkor érvényes, ha egy munkafolyamatban, amely egy HTTP-kérés használhatja. Ha nem adja meg egy válasz művelet egy `202 ACCEPTED` azonnal érkezik válasz toohello hívó.  A válasz művelet hello munkafolyamaton belül bármely lépése is hozzáadhat. hello logikai alkalmazás csak fenntartja hello bejövő kérelem választ egy percig.  Ha nem választ küldött hello munkafolyamat (és hello definíciója van a válasz művelet), egy perc után egy `504 GATEWAY TIMEOUT` toohello hívó adja vissza.
+## <a name="use-the-http-response-action"></a>A HTTP-válasz művelettel
+A HTTP-válasz művelet csak akkor érvényes, ha egy munkafolyamatban, amely egy HTTP-kérés használhatja. Ha nem adja meg egy válasz művelet egy `202 ACCEPTED` választ a rendszer azonnal visszaérkezik a hívóhoz.  Hozzáadhat egy válasz művelet bármely lépése a munkafolyamaton belül. A logikai alkalmazást csak fenntartja a bejövő kérelem választ egy percig.  Ha nincs válasz érkezett a munkafolyamat (és a definíciója van a válasz művelet), egy perc után egy `504 GATEWAY TIMEOUT` van visszaérkezik a hívóhoz.
 
-Itt hogyan tooadd egy HTTP-válasz műveletet:
+Megtudhatja, hogyan HTTP-válasz művelet hozzáadása:
 
-1. Jelölje be hello **új lépés** gombra.
+1. Válassza ki a **új lépés** gombra.
 2. Válasszon **művelet hozzáadása**.
-3. Hello művelet keresési mezőbe, írja be a **válasz** toolist hello válasz művelet.
+3. A művelet a keresőmezőbe írja be **válasz** a válasz művelet listázásához.
    
-    ![Válassza ki a hello válasz művelet](./media/connectors-native-reqres/using-action-1.png)
-4. Adja hozzá a HTTP-válaszüzenetnek hello szükséges paramétereket.
+    ![Válassza ki a válasz](./media/connectors-native-reqres/using-action-1.png)
+4. Adja hozzá a HTTP-válaszüzenetnek szükséges paramétereket.
    
-    ![Teljes hello válasz művelet](./media/connectors-native-reqres/using-action-2.png)
-5. Kattintson a bal felső sarkának hello hello eszköztár toosave, és a logic app fog egyaránt mentés, és tegye közzé (aktiválása).
+    ![A válasz a művelet](./media/connectors-native-reqres/using-action-2.png)
+5. Kattintson az eszköztáron menteni a bal felső sarkában, és a Logic Apps alkalmazást mentése és közzététele (aktiválása).
 
 ## <a name="request-trigger"></a>Kérelem eseményindító
-Az alábbiakban hello részletek hello eseményindító, amely támogatja ezt az összekötőt. Nincs egyetlen kérelem eseményindítót.
+Az alábbiak az eseményindító, amely támogatja ezt az összekötőt. Nincs egyetlen kérelem eseményindítót.
 
 | Eseményindító | Leírás |
 | --- | --- |
 | Kérés |Akkor következik be, amikor egy HTTP-kérelem érkezik |
 
 ## <a name="response-action"></a>Válasz művelet
-Az alábbiakban hello részleteit, amely támogatja ezt az összekötőt hello a művelethez. Nincs olyan egyetlen válasz művelet, amely csak akkor használható, amikor egy kérelem eseményindító kíséri.
+Az alábbiak a művelet, amely támogatja ezt az összekötőt. Nincs olyan egyetlen válasz művelet, amely csak akkor használható, amikor egy kérelem eseményindító kíséri.
 
 | Műveletek | Leírás |
 | --- | --- |
-| Válasz |Visszaadja egy válasz toohello korrelált HTTP-kérelem |
+| Válasz |A korrelált HTTP-kérelem választ ad vissza |
 
 ### <a name="trigger-and-action-details"></a>Eseményindítója és tevékenysége részletei
-hello táblázatokban leíró hello bemeneti mezőinek hello eseményindítója és tevékenysége fel, és megfelelő kimeneti részletek hello.
+Az alábbi táblázatban láthatók a beviteli mezők az eseményindító és a művelet, és a megfelelő kimeneti részleteit.
 
 #### <a name="request-trigger"></a>Kérelem eseményindító
-hello egy beviteli mezőt a bejövő HTTP-kérelem hello eseményindító látható.
+A bejövő HTTP-kérelem az eseményindító egy beviteli mezőt a következő:
 
 | Megjelenített név | Tulajdonság neve | Leírás |
 | --- | --- | --- |
-| JSON-séma |Séma |hello JSON-séma hello HTTP-kérelem törzse |
+| JSON-séma |Séma |A JSON-séma, a HTTP-kérelem törzse |
 
 <br>
 
 **Kimeneti részletei**
 
-Az alábbiakban hello kimeneti részletes hello kérelem.
+Az alábbiakban a kérelem részletes kimenet.
 
 | Tulajdonság neve | Adattípus | Leírás |
 | --- | --- | --- |
@@ -100,14 +100,14 @@ Az alábbiakban hello kimeneti részletes hello kérelem.
 | Törzs |Objektum |Kérelem objektum |
 
 #### <a name="response-action"></a>Válasz művelet
-Az alábbiakban hello hello HTTP-válasz művelet a beviteli mezők. A * azt jelenti, hogy mezőt kötelező kitölteni.
+Az alábbiakban a beviteli mezők a HTTP-válasz művelethez. A * azt jelenti, hogy mezőt kötelező kitölteni.
 
 | Megjelenített név | Tulajdonság neve | Leírás |
 | --- | --- | --- |
-| Állapot kód * |statusCode |hello HTTP-állapotkód: |
-| Fejlécek |Fejlécek |Minden válasz fejlécek tooinclude, egy JSON-objektum |
-| Törzs |Törzs |hello választörzs |
+| Állapot kód * |statusCode |A HTTP-állapotkód: |
+| Fejlécek |Fejlécek |Bármely válaszfejlécek felvenni, egy JSON-objektum |
+| Törzs |Törzs |A választörzs |
 
 ## <a name="next-steps"></a>Következő lépések
-Most, próbálja ki hello platform és [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md). Ismerje meg a hello más rendelkezésre álló összekötők logic Apps alkalmazások felmérésével a [API-k lista](apis-list.md).
+Most, próbálja ki a platformot és [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md). Az egyéb rendelkezésre álló összekötők logic Apps alkalmazások felmérésével felfedezheti a [API-k lista](apis-list.md).
 

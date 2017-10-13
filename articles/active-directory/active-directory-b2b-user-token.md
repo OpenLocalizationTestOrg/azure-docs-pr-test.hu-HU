@@ -1,5 +1,5 @@
 ---
-title: "az Azure AD B2B együttműködés aaaUnderstand felhasználói jogkivonatokhoz |} Microsoft Docs"
+title: "Az Azure AD B2B együttműködés felhasználói jogkivonatokhoz megértése |} Microsoft Docs"
 description: "Felhasználói jogkivonat-hivatkozást az Azure Active Directory B2B együttműködés"
 services: active-directory
 documentationcenter: 
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 05/25/2017
 ms.author: sasubram
-ms.openlocfilehash: 968af1c8d1ab6f4b3f50a82f6c998da3955ac364
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 57b170539513953bd6a01ab4dd362a65cf905496
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="understand-user-tokens-in-azure-ad-b2b-collaboration"></a>Az Azure AD B2B együttműködés felhasználói jogkivonatokhoz ismertetése
 
-Ha szeretné tooknow, milyen hello jogkivonat a következőképpen néz B2B együttműködés felhasználó számára, az alábbiakban hello tulajdonosi token adatai és az Azure Active Directory (Azure AD) Vendég és a Microsoft-fiók Vendég hello erőforrás-bérlőben (a tenantid jogkivonat tartalmának 04dcc6ab-388a-4559-b527-fbec656300ea). toosee hello JSON webes jogkivonat (JWT) tartalmát használja [https://jwt.io/](https://jwt.io/) vagy [http://calebb.net](http://calebb.net/).
+Ha szeretné tudni, hogy a jogkivonat néz B2B együttműködés felhasználó számára, az alábbiakban a tulajdonosi token adatai és az Azure Active Directory (Azure AD) Vendég és a Microsoft-fiók Vendég (a tenantid 04dcc6ab-388a-4559-b527-fbec656300ea) erőforrás-bérlőben jogkivonat tartalmának. A JSON webes jogkivonat (JWT) tartalmát, használja a [https://jwt.io/](https://jwt.io/) vagy [http://calebb.net](http://calebb.net/).
 
 ## <a name="azure-ad-guest-token"></a>Az Azure AD Vendég jogkivonat
 ```
@@ -42,7 +42,7 @@ Ismerje meg az Azure AD B2B együttműködés további cikkeit:
 
 * [Mi az az Azure AD B2B együttműködés?](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [B2B együttműködés felhasználó tulajdonságai](active-directory-b2b-user-properties.md)
-* [B2B együttműködés felhasználói tooa szerepkör hozzáadása](active-directory-b2b-add-guest-to-role.md)
+* [Egy szerepkör B2B együttműködés felhasználók hozzáadása](active-directory-b2b-add-guest-to-role.md)
 * [B2B együttműködés meghívókat delegálása](active-directory-b2b-delegate-invitations.md)
 * [Dinamikus csoportok és a B2B együttműködés](active-directory-b2b-dynamic-groups.md)
 * [B2B együttműködés kód és a PowerShell-példák](active-directory-b2b-code-samples.md)

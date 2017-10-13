@@ -1,6 +1,6 @@
 ---
-title: "a StorSimple 8000 series eszközén PCM aaaReplace |} Microsoft Docs"
-description: "Azt ismerteti, hogyan tooremove és csere hello energia- és hűtési modul (PCM) a StorSimple eszköz"
+title: "Cserélje le a StorSimple 8000 series eszközén PCM |} Microsoft Docs"
+description: "Ismerteti, hogyan eltávolítja és pótolja az energia- és hűtési modul (PCM) a StorSimple eszköz"
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/02/2017
 ms.author: alkohli
-ms.openlocfilehash: 474fd09787c5361a81efda4de74356027ac60f47
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7d181e6e434c998573dbea4b541cfacf7a28ee66
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="replace-a-power-and-cooling-module-on-your-storsimple-device"></a>Cserélje le a energia- és hűtési modul a StorSimple eszköz
 ## <a name="overview"></a>Áttekintés
-hello Power és hűtési modul (PCM) a Microsoft Azure StorSimple eszközt a áll egy tápegység- és hűtési elsődleges hello és EBOD csatolmányt által szabályozott ventilátor. Csak egy modellje, amely minden ház minősítéssel PCM van. hello elsődleges ház egy 764 W PCM minősítéssel, és egy 580 W PCM hello EBOD ház minősítéssel. Annak ellenére, hogy hello PCMs hello elsődleges ház és hello EBOD ház különböző, hello helyettesítő eljárás megegyezik.
+A energia- és hűtési modul (PCM) a Microsoft Azure StorSimple eszközt a áll egy tápegység- és hűtési az elsődleges és a EBOD ház által szabályozott ventilátor. Csak egy modellje, amely minden ház minősítéssel PCM van. Az elsődleges ház egy 764 W PCM minősítéssel, és a EBOD ház egy 580 W PCM minősítéssel. Annak ellenére, hogy az elsődleges ház és a EBOD ház PCMs különböző, a csere eljárás megegyezik.
 
 Ez az oktatóanyag azt ismerteti, hogyan:
 
@@ -30,35 +30,35 @@ Ez az oktatóanyag azt ismerteti, hogyan:
 * A helyettesítő PCM telepítése
 
 > [!IMPORTANT]
-> Mielőtt eltávolítása és cseréje egy PCM, tekintse át a hello biztonsági adatokat a [StorSimple hardver összetevő cseréje](storsimple-8000-hardware-component-replacement.md).
+> Mielőtt eltávolítása és cseréje egy PCM, tekintse át a biztonsági információk [StorSimple hardver összetevő cseréje](storsimple-8000-hardware-component-replacement.md).
 
 
 ## <a name="before-you-replace-a-pcm"></a>Mielőtt lecseréli a PCM
-Vegye figyelembe a fontos problémákat követően lecseréli a PCM hello:
+Vegye figyelembe a következő fontos problémák a PCM cseréje előtt:
 
-* Ha hello tápegység a meghiúsul PCM, hello hello hibás modul telepítve hagyja, de hello tápkábelét eltávolítása. hello ventilátor hello ház tooreceive tápellátás folytatódik, és folytatni a tooprovide megfelelő hűtési. Hello ventilátor meghibásodásakor hello PCM kell cserélni azonnal toobe.
-* Mielőtt eltávolítaná a hello PCM, válassza le hello power hello PCM (ha van ilyen) hello fő kapcsoló kikapcsolásával vagy hello tápkábelét fizikailag eltávolításával. Ez biztosítja, hogy egy power leállítás rövidesen figyelmeztető tooyour rendszer.
-* Győződjön meg arról, hogy más PCM működőképességét a hello folytatható rendszer cseréje hello hibás PCM előtt. Hibás PCM kell helyettesíteni egy teljesen működőképes PCM lehető legrövidebb időn belül.
-* PCM modul helyettesítő csak néhány perc toocomplete vesz igénybe, de eltávolítása nem sikerült hello PCM tooprevent túlmelegedése követő 10 percen belül kell végezni.
-* Vegye figyelembe, hogy hello helyettesítő 764 W PCM modulok hello gyárból származó szállított tartalmaz hello biztonsági mentési akkumulátor modul. Először a hibás PCM tooremove hello akkumulátor kell, majd beilleszteni hello helyettesítő modul előzetes tooperforming hello helyettesítő. További információkért lásd: hogyan túl[távolítsa el, majd szúrja be a biztonsági mentési akkumulátor modul](storsimple-8000-battery-replacement.md).
+* Ha a PCM tápegység. meghibásodik, a hibás modul telepítve hagyja, de a tápkábel eltávolítása. A ventilátor power kapnak a ház, és továbbra is biztosítani a megfelelő hűtési továbbra is. Ha nem sikerül a ventilátor, a PCM kell azonnal le kell cserélni.
+* Mielőtt eltávolítaná a PCM, válassza le a teljesítmény a PCM (ha van ilyen) a fő kapcsoló kikapcsolásával vagy a tápkábel fizikailag eltávolításával. Így lehetővé teszi a rendszer figyelmeztetést, hogy egy power leállítás rövidesen.
+* Győződjön meg arról, hogy a többi PCM működési folyamatos rendszer működéséhez a hibás PCM cseréje előtt. Hibás PCM kell helyettesíteni egy teljesen működőképes PCM lehető legrövidebb időn belül.
+* PCM modul helyettesítő csak néhány percet is igénybe vehet, de túlmelegedése megelőzése érdekében sikertelen PCM eltávolításával 10 percen belül kell végezni.
+* Vegye figyelembe, hogy a csere 764 W PCM modulok gyártól szállított tartalmaz a biztonsági mentési akkumulátor modul. Szüksége lesz az akkumulátor eltávolítása a hibás PCM, majd szúrja be a csere modulba váltja végrehajtása előtt. További információkért lásd: hogyan [távolítsa el, majd szúrja be a biztonsági mentési akkumulátor modul](storsimple-8000-battery-replacement.md).
 
 ## <a name="remove-a-pcm"></a>Távolítsa el a PCM
-Kövesse ezeket az utasításokat, ha készen áll a tooremove egy Power és hűtési modul (PCM) a Microsoft Azure StorSimple eszközön.
+Kövesse ezeket az utasításokat, ha készen áll egy Power és hűtési modul (PCM) eltávolítása a Microsoft Azure StorSimple eszközt.
 
 > [!NOTE]
-> A PCM eltávolítása előtt győződjön meg arról, hogy rendelkezik-e a megfelelő helyettesítő (764 hello elsődleges ház W) vagy a hello EBOD ház W 580.
+> A PCM eltávolítása előtt győződjön meg arról, hogy rendelkezik-e (az elsődleges ház W 764) vagy 580 W a EBOD ház a megfelelő helyettesíti.
 
-#### <a name="tooremove-a-pcm"></a>egy PCM tooremove
-1. Hello a klasszikus Azure portálon, kattintson **beállítások > figyelő > hardver állapotának**. Hello PCM összetevők alatt hello állapotának ellenőrzése **összetevők megosztott** tooidentify, amely PCM sikertelen volt:
+#### <a name="to-remove-a-pcm"></a>Egy PCM eltávolítása
+1. A klasszikus Azure portálon kattintson **beállítások > figyelő > hardver állapotának**. Tekintse meg a PCM összetevők alatt **összetevők megosztott** azonosításához, amely PCM sikertelen volt:
    
-   * Nem sikerült a tápegységet PCM 0, ha hello állapotának **tápegység PCM 0 a** pedig piros színűvé változik.
-   * Ha egy tápegység PCM az 1. sikertelen volt, hello állapotának **PCM az 1. tápegység** pedig piros színűvé változik.
-   * Ha hello ventilátor PCM az 1. sikertelen volt, vagy állapotának hello **0 hűtési PCM 0 a** vagy **PCM 0 1 hűtési** pedig piros színűvé változik.
-2. Keresse meg a hello sikertelen PCM biztonsági a hello elsődleges ház hello. Ha futtat egy 8600 modell, azonosítsa a hello elsődleges ház hello hello előlapja LED képernyőjén látható rendszer azonosító száma alapján. az alapértelmezett egység azonosítója: hello elsődleges ház megjelenő hello **00**, mivel egység azonosítója: hello EBOD ház megjelenő hello alapértelmezett **01**. hello következő ábra és táblázat ismertetik hello előlapja hello LED megjelenítése.
+   * Ha a tápegységet PCM 0 sikertelen volt, állapotának **tápegység PCM 0 a** pedig piros színűvé változik.
+   * Ha egy tápegység PCM az 1. sikertelen volt, állapotának **PCM az 1. tápegység** pedig piros színűvé változik.
+   * Ha a ventilátor PCM az 1. sikertelen volt, vagy állapotának **0 hűtési PCM 0 a** vagy **PCM 0 1 hűtési** pedig piros színűvé változik.
+2. Keresse meg a sikertelen PCM az elsődleges ház hátulján olvasható. Ha futtat egy 8600 modell, azonosítsa az elsődleges ház alapján a rendszer egység azonosítószámának a előlapján LED megjelenítendő látható. Az alapértelmezett érték a egység azonosítója: jelenik meg a elsődleges ház **00**, mivel az alapértelmezett egység azonosítója: jelenik meg a EBOD ház **01**. A következő ábra és táblázat magyarázza el, a LED megjelenítési előlapja.
    
     ![Előlapján OPS azonosító](./media/storsimple-power-cooling-module-replacement/IC740991.png)
    
-     **1. ábra** első panel hello eszköz  
+     **1. ábra** az eszköz első panel  
    
    | Címke | Leírás |
    |:--- |:--- |
@@ -67,7 +67,7 @@ Kövesse ezeket az utasításokat, ha készen áll a tooremove egy Power és hű
    | 3 |A modul hiba |
    | 4 |Logikai hiba |
    | 5 |Egység azonosító megjelenítése |
-3. kijelző LED hello hello elsődleges ház oldalán a figyelési hello is tooidentify hello hibás PCM. Hello következő ábra és táblázat hogyan toounderstand toouse hello LED toolocate hello hibás PCM. Például ha hello vezetett megfelelő toohello **ventilátor sikertelen** van bekapcsolásával; hello ventilátor sikertelen volt. Hasonlóképpen, ha hello vezetett túl megfelelő**AC sikertelen** van bekapcsolásával; hello tápegység sikertelen volt. 
+3. A figyelési kijelző LED hátulján az elsődleges ház is használható a hibás PCM azonosításához. Tekintse meg a következő ábra és táblázat segít megérteni, hogyan keresse meg a hibás PCM a LED segítségével. Például ha a LED megfelelő a **ventilátor sikertelen** van bekapcsolásával; a ventilátor sikertelen volt. Hasonlóképpen ha a LED megfelelő **AC sikertelen** van bekapcsolásával, az áramellátás sikertelen volt. 
    
     ![Eszköz PCM figyelési kijelző LED Csatlakozópanel](./media/storsimple-power-cooling-module-replacement/IC740992.png)
    
@@ -81,7 +81,7 @@ Kövesse ezeket az utasításokat, ha készen áll a tooremove egy Power és hű
    | 4 |PCM OK |
    | 5 |DC áramszünet esetén |
    | 6 |Kifogástalan akkumulátor |
-4. Tekintse meg a következő hátsó hello StorSimple eszköz toolocate sikertelen hello PCM modul hello ábrája toohello. Hello bal oldali van PCM 0 és PCM 1 hello jobb. hello táblázatot hello modulok ismerteti.
+4. Tekintse meg a következő ábra a háttér a StorSimple eszköz keresse meg a sikertelen PCM modul. PCM 0 a bal oldali és a jobb oldalon pedig PCM 1. Az alábbi táblázat ismerteti a modulokat.
    
      ![Az eszköz elsődleges ház modulok Csatlakozópanel](./media/storsimple-power-cooling-module-replacement/IC740994.png)
    
@@ -93,50 +93,50 @@ Kövesse ezeket az utasításokat, ha készen áll a tooremove egy Power és hű
    | 2 |PCM 1 |
    | 3 |A vezérlő 0 |
    | 4 |1. vezérlő |
-5. Kapcsolja ki hibás PCM hello, vagy válassza le hello tápegység csatlakozója. Most már eltávolíthatja hello PCM.
-6. Hello zárolás és PCM kezelni a mutatóujj között görgetőgomb hello hello oldalán megfogható, és együtt tooopen hello leíró nyomja össze.
+5. Kapcsolja ki a hibás PCM, és húzza ki a forrás. Most már eltávolíthatja a PCM.
+6. A zárolás és az USB és mutatóujj között a PCM leíró oldalán megfogható, és nyomja össze együtt, hogy a leírót megnyitni.
    
     ![Nyitó PCM leíró](./media/storsimple-power-cooling-module-replacement/IC740995.png)
    
-    **4. ábra** nyitó hello PCM kezelése
-7. Fogantyú hello hello PCM eltávolítása és kezelésére.
+    **4. ábra** a PCM leíró megnyitása
+7. A leíró fogja túl, és távolítsa el a PCM.
    
     ![PCM-eszközök eltávolítása](./media/storsimple-power-cooling-module-replacement/IC740996.png)
    
-    **5. ábra** eltávolításával hello PCM
+    **5. ábra** a PCM eltávolítása
 
 ## <a name="install-a-replacement-pcm"></a>A helyettesítő PCM telepítése
-Hajtsa végre az ezen utasításokat tooinstall egy PCM a StorSimple eszköz. Győződjön meg arról, hogy beszúrt hello biztonsági mentési akkumulátor modul előzetes tooinstalling hello helyettesítő PCM (too764 W PCMs vonatkozik). További információkért lásd: hogyan túl[távolítsa el, majd szúrja be a biztonsági mentési akkumulátor modul](storsimple-8000-battery-replacement.md).
+Kövesse ezeket az utasításokat egy PCM a StorSimple eszköz telepítése. Győződjön meg arról, hogy a csere PCM (764 W PCMs vonatkozik) telepítése előtt a biztonsági mentési akkumulátor modul beszúrt. További információkért lásd: hogyan [távolítsa el, majd szúrja be a biztonsági mentési akkumulátor modul](storsimple-8000-battery-replacement.md).
 
-#### <a name="tooinstall-a-pcm"></a>egy PCM tooinstall
-1. Győződjön meg arról, hogy rendelkezik-e hello megfelelő váltja fel PCM a ház. hello elsődleges ház kell egy 764 W PCM és hello EBOD ház kell egy 580 W PCM. Ne próbáljon toouse 580 W PCM hello elsődleges szolgáltatással hello, vagy a hello EBOD ház 764 W PCM hello. a következő kép hello jeleníti meg, ahol ezt az információt a hello címke, amely tooidentify elhelyezni toohello PCM.
+#### <a name="to-install-a-pcm"></a>Egy PCM telepítése
+1. Győződjön meg arról, hogy rendelkezik-e a ház megfelelő PCM helyettesítője. Az elsődleges ház kell egy 764 W PCM, és a EBOD ház kell egy 580 W PCM. Ne próbáljon a 580 W PCM az elsődleges szolgáltatással, illetve a 764 W PCM a EBOD szolgáltatással. A következő kép bemutatja, hol határozza meg az adatokat, amelyek a PCM dobozának a címkén.
    
     ![Eszköz PCM címke](./media/storsimple-power-cooling-module-replacement/IC740973.png)
    
     **6. ábra** PCM címke
-2. Ellenőrizze, hogy a sérülés toohello ház, különös tekintettel toohello összekötők. 
+2. Ellenőrizze, hogy a ház, különös tekintettel az összekötők való megosztása kárt. 
    
    > [!NOTE]
-   > **Ha bármely összekötő elgörbülve ne telepítse hello modul.**
+   > **A modul nem telepítése, ha bármely összekötő elgörbülve.**
    > 
    > 
-3. Hello PCM hello kezelni a nyissa meg a pozíció, hello ház hello modult menüpontban húzással állíthatja be.
+3. A nyitott állapotban PCM leíró, és csúsztassa be a modul a ház be.
    
     ![PCM eszköz telepítése](./media/storsimple-power-cooling-module-replacement/IC740975.png)
    
-    **7. ábra** telepítése hello PCM
-4. Zárja be kézzel a hello PCM leíró. Egy kattintással kell hall, mivel hello leíró zárolás kapcsolatba lép.
+    **7. ábra** a PCM telepítése
+4. Kézzel zárja be a PCM leíró. Egy kattintással kell hall, mivel a leíró zárolás kapcsolatba lép.
    
    > [!NOTE]
-   > amely összekötő PIN-kódok hello tooensure végző rendelkezik, akkor is óvatosan tug hello leírón hello zárolás feloldása nélkül. Hello PCM diák ki, ha ez arra utalhat, hogy hello zárolás előtt hello összekötők részt vevő be lett zárva.
+   > Győződjön meg arról, hogy folytat rendelkezik-e az összekötő PIN-kód, hogy akkor is óvatosan tug a leírón a zárolás feloldása nélkül. A PCM diák ki, ha azt feltételezi, hogy a zárolás bezárult, mielőtt az összekötők részt vevő.
    
-5. Csatlakozás hello power kábelek toohello áramforrásról és közös toohello PCM.
-6. Biztonságos hello törzs mentesség bálákban.
-7. Hello PCM bekapcsolása.
-8. Győződjön meg arról, hogy sikeres volt-e helyettesítő hello: hello Azure-portálon a StorSimple Device Manager szolgáltatást, lépjen a tooyour eszközt, majd túl**beállítások > figyelő > hardver állapotának**. A hello **összetevők megosztott**, hello PCM hello állapota zöld kell lennie.
+5. A tápkábelek csatlakoztatja a áramforrásról és a PCM.
+6. A törzs mentesség bálákban biztonságos.
+7. Kapcsolja be a PCM.
+8. Győződjön meg arról, hogy sikeres volt-e a helyettesítő: az Azure-portálon a StorSimple eszköz kezelő szolgáltatás, keresse meg az eszköz, és ezután **beállítások > figyelő > hardver állapotának**. Az a **összetevők megosztott**, a PCM állapota zöld kell lennie.
    
    > [!NOTE]
-   > Hello helyettesítő PCM toocompletely inicializálása néhány percig is eltarthat.
+   > A csere PCM teljesen inicializálni a néhány percig is eltarthat.
 
 ## <a name="next-steps"></a>Következő lépések
 További információ [StorSimple hardver összetevő cseréje](storsimple-8000-hardware-component-replacement.md).

@@ -1,6 +1,6 @@
 ---
-title: "aaaFail VMware virtuális gépek biztonsági Azure hello klasszikus portál |} Microsoft Docs"
-description: "További információk a hátsó toohello helyszíni hely hiányában a VMware virtuális gépek és fizikai kiszolgálók tooAzure feladatátvételt követően."
+title: "Sikertelen biztonsági VMware virtuális gépek az Azure-ból a klasszikus portálon |} Microsoft Docs"
+description: "További tudnivalók a VMware virtuális gépek feladatátvétele után is a helyszíni webhelyre megfelelően működjenek és fizikai kiszolgálók Azure-bA."
 services: site-recovery
 documentationcenter: 
 author: ruturaj
@@ -14,13 +14,13 @@ ms.topic: article
 ms.workload: storage-backup-recovery
 ms.date: 06/05/2017
 ms.author: ruturajd
-ms.openlocfilehash: 80bc3ab2708a5df953c6532b353da19a4c44ac34
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 82d5eb7fd13b1e9700a3e9bc2d30775e9c129749
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="fail-back-vmware-virtual-machines-and-physical-servers-toohello-on-premises-site-classic-portal"></a>Sikertelen a hátsó VMware virtuális gépek és fizikai kiszolgálók toohello helyszíni hely (klasszikus portál)
+# <a name="fail-back-vmware-virtual-machines-and-physical-servers-to-the-on-premises-site-classic-portal"></a>Sikertelen a hátsó VMware virtuális gépek és fizikai kiszolgálók a helyszíni hely (klasszikus portál)
 > [!div class="op_single_selector"]
 > * [Azure Portal](site-recovery-failback-azure-to-vmware.md)
 > * [Klasszikus Azure portál](site-recovery-failback-azure-to-vmware-classic.md)
@@ -28,114 +28,114 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-Ez a cikk ismerteti, hogyan toofail biztonsági másolatot az Azure virtuális gépek Azure toohello a helyszíni helyről. Kövesse az ebben a cikkben, ha már készen áll a toofail hello utasításokat a VMware virtuális gépeket vagy windowsos/Linuxos fizikai kiszolgálók biztonsági után már átvette azokat a hello helyszíni hely tooAzure használó [oktatóanyag](site-recovery-vmware-to-azure-classic.md).
+Ez a cikk ismerteti a helyszíni hely Azure-ból vissza az Azure virtuális gépek sikertelen. Kövesse az utasításokat ebben a cikkben, amikor készen áll a sikertelen biztonsági a VMware virtuális gépeket vagy windowsos/Linuxos fizikai kiszolgálók után azok feladatátvételt is a helyszíni hely Azure-ban ez [oktatóanyag](site-recovery-vmware-to-azure-classic.md).
 
 ## <a name="overview"></a>Áttekintés
-Ez az ábra az ebben a forgatókönyvben hello feladat-visszavétel architektúráját mutatja be.
+Ez az ábra az ebben a forgatókönyvben a feladat-visszavétel architektúráját mutatja be.
 
-Az architektúrák használatára, ha hello folyamatkiszolgáló a helyszíni és az ExpressRoute használ.
+Ez az architektúra használja, ha a folyamatkiszolgáló a helyszíni és az ExpressRoute használ.
 
 ![](./media/site-recovery-failback-azure-to-vmware-classic/architecture.png)
 
-Az architektúrák használatára, ha hello folyamatkiszolgáló az Azure-on, és egy VPN vagy ExpressRoute kapcsolat van.
+Használja az ebbe az architektúrába, ha a VPN-en vagy ExpressRoute kapcsolat van, és a folyamatkiszolgáló az Azure-on.
 
 ![](./media/site-recovery-failback-azure-to-vmware-classic/architecture2.png)
 
-az alábbi képen toohello tekintse meg a toosee hello portok és listája hello feladat-visszavétel architechture diagramja
+Portok és a feladat-visszavétel teljes listájának megtekintéséhez architechture diagram tekintse meg az alábbi képen
 
 ![](./media/site-recovery-failback-azure-to-vmware-classic/Failover-Failback.png)
 
 Hogyan működik a feladat-visszavétel itt található:
 
-* Miután tooAzure már feladatátvételt, néhány lépésben nem hátsó tooyour helyszíni hely:
-  * **1. szakasz**: hello Azure virtuális gépek állítsa az, hogy elindítja a helyszíni hely futtató hátsó tooVMware virtuális gépek replikálása. Ismételt védelem engedélyezésével hello VM áthelyezi a feladat-visszavétel védelmi csoport automatikusan létrehozott hello feladatátvételi védelmi csoport létrehozásakor. Ha a feladatátvételi védelmi csoport tooa helyreállítási terv hozzáadott majd hello feladat-visszavétel védelmi csoport is automatikusan toohello terv lett adva.  Védelem-újrabeállítási során megadhatja, hogyan tooplan toofail biztonsági másolatot.
-  * **2. szakaszra**: után az Azure virtuális gépek tooyour helyszíni helyre replikál, futtassa a sikertelen toofail keresztül az Azure-ból.
-  * **3. szakaszra**: követően az adatok visszaállítása sikertelen volt, állítsa hello a helyszíni virtuális gépek, a sikertelen biztonsági, így azok tooAzure replikálást indítani.
+* Miután az Azure-bA már feladatátvételt, akkor visszaadják feladataikat a helyszíni hely néhány fázisból áll:
+  * **1. szakasz**:, lássa el újból védelemmel az Azure virtuális gépeket, hogy azokat vissza a VMware virtuális gépeket futtathatnak a helyszíni hely replikálást indítani. Ismételt védelem engedélyezése a virtuális Gépet áthelyezi egy feladat-visszavétel védelmi csoportot, amely automatikusan létrejött, a feladatátvételi védelmi csoport létrehozásakor. Ha hozzáadott a feladatátvevő védelmi csoport a helyreállítási tervbe, majd a feladat-visszavétel védelmi csoport is automatikusan lett adva a tervet.  Védelem-újrabeállítási során adja meg a feladat-visszavételt tervezéséről.
+  * **2. szakaszra**: után Azure virtuális gépeken, a helyszíni helyre replikál, futtassa a sikertelen meghiúsul az Azure-ból.
+  * **3. szakaszra**: követően az adatok visszaállítása sikertelen volt, állítsa a helyszíni virtuális gépek vissza a megbukott, hogy elindítja replikálása Azure-bA.
 
 
   [!VIDEO https://channel9.msdn.com/Blogs/Azure/Enhanced-VMware-to-Azure-Failback/player]
 
-### <a name="failback-toohello-original-or-alternate-location"></a>Feladat-visszavétel toohello eredeti helyére vagy máshová
-Ha átadja a VMware virtuális gép hátsó toohello sikertelen lehet azonos forrás virtuális gép, ha még létezik a helyszíni. Ebben a forgatókönyvben csak hello változáskülönbözeteit fog megtörténni vissza. Vegye figyelembe:
+### <a name="failback-to-the-original-or-alternate-location"></a>Feladat-visszavétel az eredeti vagy egy másik helyre
+Ha a feladatátvételt a virtuális gép ugyanazon forrására közben meghiúsulhatnak, ha még létezik a helyszíni VMware virtuális gép. Ebben a forgatókönyvben csak a változási különbözeteket fog megtörténni vissza. Vegye figyelembe:
 
-* Ha átadja a fizikai kiszolgálókon, akkor a feladat-visszavétel értéke mindig tooa új VMware virtuális gép.
+* Ha átadja a fizikai kiszolgálók feladat-visszavétel akkor mindig egy új VMware virtuális géphez.
   * Vissza a fizikai gép sikertelen előtt vegye figyelembe, hogy
-  * Védett fizikai gépek fog visszatérhet, amikor újból az Azure tooVMware feladatátvételt virtuális gépként
-  * Győződjön meg arról, hogy legalább egy fő célkiszolgáló Server együtt hello szükséges ESX/ESXi-gazdagépek toowhich felfedezi toofailback van szüksége.
-* Ha Ön a feladat-visszavételt toohello eredeti VM hello következő szükség:
+  * Védett fizikai gépek fog visszatérhet, amikor át nem adja vissza az Azure-ból a VMware virtuális gépként
+  * Győződjön meg arról, hogy a legalább egy fő célkiszolgáló és a szükséges ESX/ESXi-gazdagépek szüksége a feladat-visszavételi Server felderíteni.
+* Ha vissza az eredeti virtuális gép nem az alábbi feltételek teljesülése esetén:
 
-  * Ha hello VM egy vCenter-kiszolgáló által felügyelt hello fő célkiszolgáló ESX-gazdagép hozzáférés toohello virtuális gépek datastore kell rendelkeznie.
-  * Ha hello VM ESX-gazdagépen, de nem kezeli vCenter majd hello merevlemezén hello VM kell lennie a hello MT a gazdagép által elérhető adattárolót.
-  * Ha a virtuális Gépet az ESX-gazdagépen, és nem használja a vCenter el kell végeznie az ESX-gazdagép hello a fő Célkiszolgáló hello felderítése ahhoz, hogy lássa el újból védelemmel. Ez igaz, ha a feladat-visszavétele vissza fizikai kiszolgálók túl.
-  * Egy másik lehetőség (ha hello a helyszíni virtuális gép létezik) toodelete Ez a feladat-visszavétel előtt. Majd feladat-visszavétel fog majd új virtuális gép létrehozása az hello azonos, hello fő ESX-gazdagép üzemeltetésére.
-* Ha feladat-visszavétel tooan másik helyre hello adatokat fog helyreállított toohello ugyanazon adattár és hello hello a helyszíni fő célkiszolgáló által használt azonos ESX-gazdagépet.
+  * Ha a virtuális gép vCenter-kiszolgáló kezeli a fő célkiszolgáló ESX-gazdagépet a virtuális gépek hozzáférése kell rendelkeznie.
+  * Ha a virtuális gép ESX-gazdagépen, de vCenter nem felügyeli majd a merevlemezt a virtuális gép a fő Célkiszolgáló gazdagép által elérhető adattárolót a kell lennie.
+  * Ha a virtuális Gépet az ESX-gazdagépen, és nem használja a vCenter el kell végeznie az ESX-gazdagép, a fő Célkiszolgáló felderítése ahhoz, hogy lássa el újból védelemmel. Ez igaz, ha a feladat-visszavétele vissza fizikai kiszolgálók túl.
+  * Egy másik lehetőség (ha létezik a helyszíni virtuális gép) törli-e a feladat-visszavétel előtt. Majd feladat-visszavétel majd létrehoz egy új virtuális Gépet a fő célkiszolgáló ESX-gazdagép ugyanazon a gazdagépen.
+* Ha egy másik helyre az adatokat feladatátvételi fogja visszaállítani a ugyanazon adattár és a helyszíni fő célkiszolgáló által használt azonos ESX-gazdagép.
 
 ## <a name="prerequisites"></a>Előfeltételek
-* Szüksége lesz a rendelés toofail vissza VMware virtuális gépek és fizikai kiszolgálók VMware környezetben. Hátsó tooa hiányában a fizikai kiszolgáló nem támogatott.
-* A sorrend toofail vissza kell létrehozott Azure-hálózat védelmi kezdeti beállításakor. Feladat-visszavétel hello Azure VPN- vagy ExpressRoute kapcsolat van szüksége, amelyben hello Azure virtuális gépek hálózati található toohello helyszíni hely.
-* Ha hello virtuális gépek toofail hátsó tooare vCenter-kiszolgáló által kezelt toomake meg arról, hogy a vCenter-kiszolgáló a virtuális gépek felderítése hello szükséges engedélyek lesz szüksége. [További információk](site-recovery-vmware-to-azure-classic.md).
-* Ha a pillanatképek a virtuális gép ismételt védelem meghiúsul. Hello pillanatképekkel vagy hello lemezek törlése.
-* Ahhoz, hogy a feladat-visszavételt toocreate összetevők számos lesz szüksége:
-  * **A folyamat-kiszolgáló létrehozása az Azure-ban**. Ez az az Azure virtuális gép toocreate kell, és a feladat-visszavétel során tovább futnak. Hello gép feladat-visszavétel befejezése után törölheti.
-  * **Hozzon létre egy fő célkiszolgáló**: hello fő célkiszolgáló adatokat küld és fogad feladat-visszavételre. a helyszíni létrehozott hello felügyeleti kiszolgálóhoz be a fő célkiszolgálón, alapértelmezés szerint telepítve van. Azonban sikertelen hátsó forgalom mennyiségét hello függően szükség lehet egy külön fő célkiszolgáló toocreate feladat-visszavételi.
-  * Ha azt szeretné, toocreate egy további fő célkiszolgálón futó Linux, szüksége lesz tooset hello Linux virtuális gép mentése az alább ismertetett hello fő célkiszolgáló, telepítése előtt.
-* Konfigurációs kiszolgáló szükségesek helyszíni, ha így tesz, a feladat-visszavételre. A feladat-visszavétel során hello virtuális gép hello konfigurációs adatbázishoz, mely feladat-visszavétel nem lesz sikeres végrehajtása léteznie kell. Ezért győződjön meg arról, hogy szánjon a kiszolgáló rendszeres ütemezett biztonsági mentést. Abban az esetben, ha az egy olyan vészhelyzet esetén, szüksége lesz a toorestore hello együtt ugyanazon IP-címek, hogy a feladat-visszavétel fog működni.
+* VMware környezetben lesz szüksége ahhoz, hogy a sikertelen biztonsági VMware virtuális gépek és fizikai kiszolgálók. Hibás fizikai kiszolgálóra nem támogatott.
+* Ahhoz, hogy a feladat-visszavételt kell létrehozott Azure-hálózat védelmi kezdeti beállításakor. Feladat-visszavétel az Azure-hálózatot, amelyben az Azure virtuális gépek találhatók, a helyszíni hely közötti VPN- vagy ExpressRoute kapcsolatra van szüksége.
+* Ha a virtuális gépeket szeretné visszavenni szüksége lesz, győződjön meg arról, hogy a vCenter-kiszolgáló által kezelt virtuális gépek a vCenter-kiszolgáló a felderítéshez szükséges jogosultságokkal rendelkezik. [További](site-recovery-vmware-to-azure-classic.md).
+* Ha a pillanatképek a virtuális gép ismételt védelem meghiúsul. A pillanatképek vagy a lemezek törlése.
+* Ahhoz, hogy a feladat-visszavételt meg kell létrehoznia egy összetevők száma:
+  * **A folyamat-kiszolgáló létrehozása az Azure-ban**. Ez az egy Azure virtuális gép létrehozása és a feladat-visszavétel során adatközpontnak futnia kell. Törölheti a gép feladat-visszavétel befejezése után.
+  * **Hozzon létre egy fő célkiszolgáló**: A fő célkiszolgáló adatokat küld és fogad feladat-visszavételre. A felügyeleti kiszolgáló, a helyszíni létrehozta a fő célkiszolgálón, alapértelmezés szerint telepítve van. Azonban sikertelen hátsó forgalom mennyiségét függően szükség lehet egy külön fő célkiszolgáló feladat-visszavételi létrehozásához.
+  * Ha szeretne létrehozni egy további fő célkiszolgáló Linux rendszeren fut, akkor kell beállítani a Linux virtuális gépet a fő célkiszolgáló telepítése előtt az alább ismertetett.
+* Konfigurációs kiszolgáló szükségesek helyszíni, ha így tesz, a feladat-visszavételre. A feladat-visszavétel során a virtuális gép léteznie kell a konfigurációs adatbázishoz, sikertelenek lesznek, mely feladat-visszavétel nem lesz sikeres. Ezért győződjön meg arról, hogy szánjon a kiszolgáló rendszeres ütemezett biztonsági mentést. Egy katasztrófa esetén akkor állítsa vissza az azonos IP-cím így fog működni a feladat-visszavétel.
 
-## <a name="set-up-hello-process-server-in-azure"></a>Az Azure-ban hello folyamat kiszolgáló beállítása
-Így hello Azure virtuális gépek küldhet hello adatok hátsó tooon helyszíni fő célkiszolgáló szüksége tooinstall a folyamatkiszolgáló az Azure-ban.
+## <a name="set-up-the-process-server-in-azure"></a>Állítsa be a folyamatkiszolgáló az Azure-ban
+A folyamatkiszolgáló telepítése az Azure-ban, hogy az Azure virtuális gépeken is küldheti az adatokat a helyszíni fő célkiszolgáló kiszolgálóra van szükség.
 
-1. Hello Site Recovery portálon > **konfigurációs kiszolgálók** válassza ki az új folyamatkiszolgáló tooadd.
+1. A Site Recovery portálon > **konfigurációs kiszolgálók** lehetőséget, és adja hozzá az új folyamatkiszolgáló.
 
    ![](./media/site-recovery-failback-azure-to-vmware-classic/ps1.png)
-2. Adja meg a folyamat-kiszolgáló nevét, és adjon meg egy nevet és jelszót tooconnect toohello Azure virtuális gép rendszergazdaként fogja használni. A **konfigurációs kiszolgáló** válassza ki hello helyszíni felügyeleti kiszolgálót, és adja meg a hello Azure hálózati mely hello a folyamatkiszolgáló kell telepíteni. Ez legyen hello hálózati hello Azure virtuális gépek találhatók. Adjon meg egy egyedi IP-címet a hello válassza alhálózatból és telepítésének megkezdéséhez.
+2. Adja meg a folyamat-kiszolgáló nevét, és adjon meg egy nevet és jelszót fogja használni az Azure virtuális gép rendszergazdaként csatlakozni. A **konfigurációs kiszolgáló** válassza ki a helyszíni felügyeleti kiszolgálót, és adja meg az Azure-hálózatot, amelyben a folyamatkiszolgáló kell telepíteni. Ez legyen a hálózaton, amelyben az Azure virtuális gépek találhatók. Adjon meg egy egyedi IP-címet, válassza ki az alhálózatról, és telepítésének megkezdéséhez.
 
    ![](./media/site-recovery-failback-azure-to-vmware-classic/ps2.png)
 
-   Egy feladat toodeploy hello folyamatkiszolgáló indul
+   Akkor is kiváltódik egy feladatot, amely a folyamatkiszolgáló telepítése
 
    ![](./media/site-recovery-failback-azure-to-vmware-classic/ps3.png)
 
-   Hello után folyamatkiszolgáló bejelentkezhet hello hitelesítő adatokat adja meg azt az Azure-ban van telepítve. hello első bejelentkezéskor hello folyamat kiszolgáló párbeszédpanelen fog futni. Hello típusú hello IP-címet a helyi felügyeleti kiszolgáló és a jelszót. Hagyja hello alapértelmezett 443-as porton értéket. Is hagyhatja hello alapértelmezett 9443 port adatreplikáció kivéve hello helyszíni felügyeleti kiszolgáló beállításakor kifejezetten módosítani ezt a beállítást.
+   A folyamatkiszolgáló telepítése az Azure-ban után bejelentkezhet a megadott hitelesítő adatok használatával. Az első alkalommal jelentkezik be a folyamat server párbeszédpanel fog futni. Adja meg az IP-címét a helyi felügyeleti kiszolgáló és a jelszót. Ne módosítsa az alapértelmezett 443-as portot. Is hagyhatja az alapértelmezett adatreplikáció 9443 port kivéve, ha a helyi felügyeleti kiszolgáló beállításakor kifejezetten módosítani ezt a beállítást.
 
    > [!NOTE]
-   > hello kiszolgáló nem fog megjelenni a **virtuális gép tulajdonságok**. Értéke csak hello láthatóvá **kiszolgálók** lapján hello felügyeleti kiszolgáló toowhich van regisztrálva. Arról is igénybe vehet a hello folyamat server tooappear 10 – 15 perc.
+   > A kiszolgáló nem fog megjelenni a **virtuális gép tulajdonságok**. Értéke csak alatt megjelenik a **kiszolgálók** lapján a felügyeleti kiszolgáló, amelyhez már regisztrálva van. Arról is igénybe vehet a folyamatkiszolgálót a jelennek meg a 10-15 perc.
    >
    >
 
-## <a name="set-up-hello-master-target-server-on-premises"></a>Hello fő helyszíni server beállítása
-hello fő célkiszolgáló kap hello feladat-visszavétel adatokat. A fő célkiszolgáló automatikusan hello a helyi felügyeleti kiszolgálón van telepítve, de visszavétele esetén vissza nagy mennyiségű adat szükség lehet a tooset további fő célkiszolgáló fel. Ehhez az alábbiak szerint:
+## <a name="set-up-the-master-target-server-on-premises"></a>A fő célkiszolgáló helyszíni server beállítása
+A fő célkiszolgáló kap a feladat-visszavétel adatokat. A fő célkiszolgáló automatikusan telepítve van a helyi felügyeleti kiszolgálón, de visszavétele esetén vissza nagy mennyiségű adat szükség lehet további fő célkiszolgáló beállítása. Ehhez az alábbiak szerint:
 
 > [!NOTE]
-> Ha azt szeretné, hogy a fő célkiszolgáló Linux tooinstall, követésével hello hello következő eljárásban.
+> Ha szeretné a fő célkiszolgáló telepítése Linux, kövesse a következő eljárásban.
 >
 >
 
-1. A Windows hello fő célkiszolgáló telepítése, nyissa meg a hello gyors kezdés lapon hello virtuális gép, amelyen hello fő célkiszolgáló telepítése, és töltse le a hello Azure Site Recovery az egységes telepítő varázsló hello telepítőfájlját.
-2. Futtassa a telepítőt, és a **megkezdése előtt** válasszon **további folyamat kiszolgálók tooscale ki a központi telepítés hozzáadása**.
-3. Teljes hello varázsló hello a megszokott módon mikor meg [hello kiszolgáló beállítása](site-recovery-vmware-to-azure-classic.md). A hello **konfigurációs kiszolgáló adatait** adja meg azokat a fő célkiszolgáló és egy jelszó tooaccess hello VM hello IP-címét.
+1. A Windows telepítése a fő célkiszolgáló, nyissa meg a gyors kezdés lapon a virtuális gép, amelyen telepíti a fő célkiszolgálón, és töltse le a fájlt az Azure Site Recovery az egységes telepítő varázsló.
+2. Futtassa a telepítőt, és a **megkezdése előtt** válasszon **adjon hozzá további folyamat kiszolgálókat telepítésének bővítése**.
+3. A varázsló a megszokott módon mikor meg [állítsa be a felügyeleti kiszolgáló](site-recovery-vmware-to-azure-classic.md). Az a **konfigurációs kiszolgáló adatait** adja meg azokat a fő célkiszolgáló és egy hozzáférési kódot elérni a virtuális gép IP-címét.
 
-### <a name="set-up-a-linux-vm-as-hello-master-target-server"></a>Fő célkiszolgáló hello beállított Linux virtuális gép
-hello felügyeleti kiszolgáló hello fő célkiszolgálón fut egy Linux virtuális gép tooinstall hello centes kell tooset) S 6.6 minimális méretű operációs rendszer, egyes SCSI merevlemez hello SCSI-azonosítóinak beolvasása, néhány további csomagok telepítése, és néhány egyéni módosítások alkalmazásához.
+### <a name="set-up-a-linux-vm-as-the-master-target-server"></a>A fő célkiszolgáló beállított Linux virtuális gép
+A felügyeleti kiszolgáló, a fő célkiszolgálón fut, telepítenie kell a centes Linux virtuális gép beállítása) S 6.6 minimális operációs rendszer, egyes SCSI merevlemez SCSI-azonosítóinak beolvasása, néhány további csomagok telepítése, és néhány egyéni módosítások alkalmazásához.
 
 #### <a name="install-centos-66"></a>CentOS 6.6 telepítése
-1. Hello CentOS 6.6 minimális méretű operációs rendszer telepítése hello VM felügyeleti kiszolgálón. Egy DVD-ről meghajtó és rendszerindító hello rendszer hello ISO ne. Kihagyás hello media tesztelése, válassza ki angol hello nyelvi, jelölje be a **alapvető tárolóeszközök**, ellenőrizze, hogy a merevlemez-meghajtóról hello nem fontos adatokat, majd kattintson a **Igen**, minden az adatok elvetése. Adja meg a hello felügyeleti kiszolgáló hello állomásnevét, és válassza ki a hello kiszolgáló hálózati adaptere.  A hello **szerkesztése rendszer** párbeszédpanelen válasszon ** automatikus csatlakozás **, és adja hozzá egy statikus IP-címet, a hálózati és a DNS-beállításait. Adjon meg egy időzóna, és egy jelszó tooaccess hello felügyeleti gyökérkiszolgáló.
-2. Ha kérni hello típusú telepítést szeretné, hogy válasszon **hozzon létre egyéni elrendezés** hello partíció. Miután rákattintott **következő** válasszon **szabad** , és kattintson a Létrehozás gombra. Hozzon létre  **/** , **/var/összeomlási** és **/home partíciók** rendelkező **FS típusa:** **ext4**. Hozzon létre hello swap partion, **FS típusa: swap**.
-3. Ha már meglévő eszközök találhatók, ekkor megjelenik egy figyelmeztető üzenet. Kattintson a **formátum** tooformat hello meghajtó hello partíció beállításokkal. Kattintson a **írási módosítása toodisk** tooapply hello partíció módosításokat.
-4. Válassza ki **telepítés rendszertöltőt** > **következő** tooinstall hello rendszertöltő hello legfelső szintű partíción.
+1. A CentOS 6.6 minimális méretű operációs rendszer telepítése a virtuális gép felügyeleti kiszolgálón. Egy DVD-meghajtóban lévő ISO tartani, és indítsa el a rendszer. Hagyja ki az adathordozó tesztelése, válassza ki a angol nyelvet, jelölje be a **alapvető tárolóeszközök**, ellenőrizze, hogy a merevlemez-meghajtó nem fontos adatokat, kattintson a **Igen**, minden az adatok elvetése. Adja meg a felügyeleti kiszolgáló állomásnevét, és válassza ki a kiszolgáló hálózati adaptert.  Az a **szerkesztése rendszer** párbeszédpanelen válasszon ** automatikus csatlakozás ** adja hozzá egy statikus IP-címet, a hálózati és a DNS-beállítások. Adjon meg egy időzóna, és a legfelső szintű jelszó megadásával érheti el a felügyeleti kiszolgáló.
+2. Ha kéri a telepítés típusát azt szeretné, hogy válasszon **hozzon létre egyéni elrendezés** a partíció. Miután rákattintott **következő** válasszon **szabad** , és kattintson a Létrehozás gombra. Hozzon létre  **/** , **/var/összeomlási** és **/home partíciók** rendelkező **FS típusa:** **ext4**. A lapozófájl-kapacitás partion, hozzon létre **FS típusa: swap**.
+3. Ha már meglévő eszközök találhatók, ekkor megjelenik egy figyelmeztető üzenet. Kattintson a **formátum** a meghajtót, amelyen a partícióbeállítások formázásához. Kattintson a **módosítás írása a lemezre** a partíció módosítások alkalmazásához.
+4. Válassza ki **telepítés rendszertöltőt** > **tovább** a rendszertöltő telepítéséhez a legfelső szintű partíción.
 5. Kattintson a telepítés befejeztével **újraindítás**.
 
-#### <a name="retrieve-hello-scsi-ids"></a>Hello SCSI-azonosítókat beolvasása
-1. A telepítés után minden virtuális gép hello SCSI merevlemez hello SCSI-azonosítóinak beolvasása. toodo ez leállítása hello felügyeleti kiszolgáló virtuális gép, a virtuális gép hello tulajdonságok VMware-ben kattintson a jobb gombbal hello VM bejegyzés > **beállításainak szerkesztése** > **beállítások**.
-2. Válassza ki **speciális** > **általános elem** kattintson **konfigurációs paraméterek**. Ez a beállítás el de-active hello gép futása közben. toomake informatikai aktív hello gépen le kell állítani.
-3. Ha hello sor **lemez. EnableUUID** létezik ellenőrizze, hogy hello értéke túl**igaz** (kis-és nagybetűket). Ha már van szakítsa meg, és tesztelje a hello SCSI parancsot egy vendég operációs rendszerében után.
-4. Ha hello sor nem létező kattintson **Hozzáadás sor** –, és adja hozzá hello **igaz** érték. Ne használjon dupla idézőjelet.
+#### <a name="retrieve-the-scsi-ids"></a>A SCSI-azonosítókat beolvasása
+1. A telepítés után minden SCSI merevlemezt a virtuális gépen a SCSI-azonosítóinak beolvasása. Ez a felügyeleti kiszolgáló virtuális gép leállítása, ehhez a VMware virtuális gép tulajdonságainak kattintson a jobb gombbal a virtuális gép bejegyzés > **beállításainak szerkesztése** > **beállítások**.
+2. Válassza ki **speciális** > **általános elem** kattintson **konfigurációs paraméterek**. Ez a beállítás de-active el, a gép futása közben. Az aktív legyen a számítógép le kell állítani.
+3. Ha a sor **lemez. EnableUUID** létezik győződjön meg arról, hogy a beállítás értéke **igaz** (kis-és nagybetűket). Ha már van szakítsa meg, és tesztelje a SCSI parancsot egy vendég operációs rendszerében után.
+4. Ha a sor nem létező kattintson **Hozzáadás sor** –, és adja hozzá azt a **igaz** érték. Ne használjon dupla idézőjelet.
 
 #### <a name="install-additional-packages"></a>További csomagok telepítése
-Toodownload szüksége lesz, és néhány további csomagok telepítése.
+Szüksége lesz, letöltése és telepítése, néhány további csomagokat.
 
-1. Győződjön meg arról, hello fő célkiszolgálóhoz csatlakoztatott toohello internet.
-2. Ez a parancs toodownload futtatásához és 15 csomagok telepítéséhez a CentOS adattárból hello: **# yum – y xfsprogs perl lsscsi rsync wget kexec-eszközök telepítése**.
-3. Ha lát el védelemmel hello forrásgépek futnak Linux p Reiser, illetve XFS hello gyökér-fájlrendszer vagy rendszerindító eszköz, akkor le kell töltenie és további csomagok telepítése az alábbiak szerint:
+1. Győződjön meg arról, hogy a fő célkiszolgáló kapcsolódik az internethez.
+2. A parancs futtatásával töltse le és telepítse a 15 csomagok a CentOS tárházból: **# yum – y xfsprogs perl lsscsi rsync wget kexec-eszközök telepítése**.
+3. Ha védi a forrásgépek Linux p Reiser fut, vagy XFS fájlrendszer a gyökér- vagy rendszerindító eszköz, akkor le kell töltenie és további csomagok telepítése az alábbiak szerint:
 
    * # <a name="cd-usrlocal"></a>CD /usr/local
    * # <a name="wget-httpelrepoorglinuxelrepoel6x8664rpmskmod-reiserfs-00-1el6elrepox8664rpmhttpelrepoorglinuxelrepoel6x8664rpmskmod-reiserfs-00-1el6elrepox8664rpm"></a>wget [http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/kmod-reiserfs-0.0-1.el6.elrepo.x86_64.rpm](http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/kmod-reiserfs-0.0-1.el6.elrepo.x86_64.rpm)
@@ -145,46 +145,46 @@ Toodownload szüksége lesz, és néhány további csomagok telepítése.
    * # <a name="rpm-ivh-xfsprogs-311-16el6x8664rpm"></a>rpm – ivh xfsprogs-3.1.1-16.el6.x86_64.rpm
 
 #### <a name="apply-custom-changes"></a>Egyéni módosítások alkalmazásához
-Hajtsa végre a következő tooapply egyéni módosításokat, Miután megismerte a teljes hello telepítés utáni lépéseket és a telepített hello csomagok hello:
+Hajtsa végre a következő egyéni módosítások alkalmazásához beállította végezze el a telepítés utáni lépéseket és a csomagok telepítése:
 
-1. Hello RHEL 6-64 Unified Agent ügynököt bináris toohello VM másolja. Futtassa a parancsot toountar hello bináris: **bont – zxvf<file name>**
-2. Futtassa a parancsot toogive engedélyek: **# chmod 755./ApplyCustomChanges.sh**
-3. Hello parancsprogrammal: **#./ApplyCustomChanges.sh**. Hello parancsfájl egyszer csak futtasson. Hello kiszolgáló újraindul, miután hello parancsprogram sikeresen lefut.
+1. A 6-64 RHEL Unified Agent ügynököt bináris másolja a virtuális Gépet. Futtassa ezt a parancsot a bináris untar: **bont – zxvf<file name>**
+2. Futtassa ezt a parancsot, amelyhez engedélyeket: **# chmod 755./ApplyCustomChanges.sh**
+3. Futtassa a parancsfájlt: **#./ApplyCustomChanges.sh**. A parancsfájl egyszer csak futtasson. Miután a parancsfájl sikeresen fut, indítsa újra a kiszolgálót.
 
-## <a name="run-hello-failback"></a>Hello feladat-visszavétel futtatása
-### <a name="reprotect-hello-azure-vms"></a>Lássa el újból védelemmel hello Azure virtuális gépeken
-1. Hello Site Recovery portálon > **gépek** válassza ki hello virtuális Gépet, amely a feladatátvétel megtörtént, és kattintson a **védelmének újbóli beállításához**.
-2. A **fő célkiszolgáló** és **Folyamatkiszolgáló** válassza ki a helyszíni fő célkiszolgáló hello és hello Azure virtuális gép folyamatkiszolgáló.
-3. Válassza ki a csatlakozáshoz a virtuális gép toohello konfigurált hello fiókot.
-4. Válassza ki a hello feladat-visszavétel verziót hello védelmi csoport. Például ha a virtuális gép hello PG1 védett, akkor tooselect PG1_Failback telepítenie kell.
-5. Ha toorecover tooan másik helyre, jelölje be a hello adatmegőrzési meghajtó és adattároló hello fő célkiszolgáló konfigurálva. Ha nem sikerül hátsó toohello helyszíni hely hello VMware virtuális gépek hello feladat-visszavétel védelmi terv hello fogja használni, hello fő célkiszolgáló ugyanazon adattár. Ha azt szeretné, hogy toorecover hello replika Azure virtuális gép toohello megegyezik a helyszíni virtuális gép ezután hello a helyszíni virtuális gép már kell kell a hello azonos adattároló mint hello fő célkiszolgáló. Ha nincs virtuális gép helyszíni ismételt védelem alatt jön létre egy újat.
+## <a name="run-the-failback"></a>A feladat-visszavétel futtatása
+### <a name="reprotect-the-azure-vms"></a>Lássa el újból védelemmel az Azure virtuális gépek
+1. A Site Recovery portálon > **gépek** lapját, válassza ki a virtuális Gépet, amely a feladatátvétel megtörtént, és kattintson a **védelmének újbóli beállításához**.
+2. A **fő célkiszolgáló** és **Folyamatkiszolgáló** válassza ki a helyszíni fő célkiszolgáló, és az Azure virtuális gép folyamatkiszolgáló.
+3. Válassza ki a beállított fiók megjelenik a virtuális Géphez való kapcsolódáshoz.
+4. Válassza ki a védelmi csoport feladat-visszavétel verzióját. A példa, ha a virtuális gép védett, akkor PG1 kell választania a PG1_Failback.
+5. Ha azt szeretné, egy másik helyre történő helyreállítást, válassza az adatmegőrzési meghajtó és a fő célkiszolgáló konfigurált adattároló. Ha Ön visszaadják feladataikat a helyszíni hely a VMware virtuális gépeket a feladat-visszavétel védelmi terv fog használni a ugyanazon adattár a fő célkiszolgálón. Ha végre kívánja hajtani a replika Azure virtuális gép ugyanahhoz a helyszíni virtuális gép és a helyszíni virtuális gép már kell lennie, a fő célkiszolgáló ugyanazon adattár. Ha nincs virtuális gép helyszíni ismételt védelem alatt jön létre egy újat.
 
    ![](./media/site-recovery-failback-azure-to-vmware-classic/failback1.png)
-6. Miután rákattintott **OK** toobegin ismételt védelemmel ellátni azt a feladatok megkezdése tooreplicate hello VM Azure toohello a helyszíni helyről. Előrehaladásának hello a hello **feladatok** fülre.
+6. Miután rákattintott **OK** ismételt védelemmel ellátni azt egy feladat elkezdi replikálni a virtuális Gépet az Azure-ból a helyszíni hely megkezdéséhez. A előrehaladásának a a **feladatok** fülre.
 
    ![](./media/site-recovery-failback-azure-to-vmware-classic/failback2.png)
 
-### <a name="run-a-failover-toohello-on-premises-site"></a>Futtassa a feladatátvételi toohello helyszíni hely
-Ismételt védelem hello után a virtuális Gépet áthelyezett toohello feladat-visszavétel verziója, a védelmi csoportból, és automatikusan fel lesz véve toohello helyreállítási terv hello feladatátvételi tooAzure ha van ilyen használja.
+### <a name="run-a-failover-to-the-on-premises-site"></a>Feladatátvételt végez a helyszíni hely
+Ismételt védelemmel ellátni azt követően a virtuális gép áthelyezése a feladat-visszavétel verzióra, a védelmi csoport, és automatikusan hozzáadódik a helyreállítási tervet, használja a az Azure, ha van ilyen.
 
-1. A hello **helyreállítási tervek** lapon jelölje be hello helyreállítási tervet tartalmazó hello feladat-visszavétel csoport, és kattintson **feladatátvételi** > **nem tervezett feladatátvétel**.
-2. A **megerősítéséhez feladatátvétel** hello feladatátvételi irányát (tooAzure) ellenőrizze, és válassza ki a kívánt toouse (legújabb) hello feladatátvételhez hello helyreállítási pontot. Ha engedélyezte a **virtuális Gépre kiterjedő** replikációs tulajdonságok konfigurálása során is helyreállíthatja toohello legújabb alkalmazás vagy összeomlás-konzisztens helyreállítási pontot. Kattintson a hello pipa toostart hello feladatátvételi.
-3. A feladatátvétel során a Site Recovery hello Azure virtuális gépeken le fog állni. Ellenőrzése meg a várt módon, hogy feladat-visszavétel befejezése után is ellenőrizheti, hogy hello Azure virtuális gépek be lett zárva várt módon.
+1. Az a **helyreállítási tervek** lapon jelölje be a a feladat-visszavétel csoportot tartalmazó helyreállítási tervet, és kattintson a **feladatátvételi** > **nem tervezett feladatátvétel**.
+2. A **megerősítéséhez feladatátvétel** ellenőrzése a feladatátvevő irányát (az Azure-bA), és válassza ki a a (legújabb) a feladatátvételre használni kívánt helyreállítási pontot. Ha engedélyezte a **virtuális Gépre kiterjedő** helyreállíthatja a legutóbbi alkalmazás vagy összeomlás-konzisztens helyreállítási pontot replikációs tulajdonságok konfigurálása során. Kattintson a pipa jelre elindítani a feladatátvételt.
+3. A feladatátvétel során a Site Recovery az Azure virtuális gépeken le fog állni. Ellenőrzése meg a várt módon, hogy feladat-visszavétel befejezése után is ellenőrizheti, hogy az Azure virtuális gépek be lett zárva várt módon.
 
-### <a name="reprotect-hello--on-premises-site"></a>Lássa el újból védelemmel hello helyszíni hely
-Feladat-visszavétel befejezése után az adatok vissza a hello helyszíni helyen, de nem lehet védetté tenni. toostart replikációs tooAzure újra hello a következő:
+### <a name="reprotect-the--on-premises-site"></a>Állítsa a helyszíni hely
+Feladat-visszavétel befejezése után az adatok vissza a helyszíni helyen, de nem lehet védetté tenni. Az Azure-bA replikálást indítani újra tegye a következőket:
 
-1. Hello Site Recovery portálon > **gépek** válassza hello virtuális gépek ismét sikertelen, és kattintson a lap **védelmének újbóli beállításához**.
-2. Miután ellenőrizte, hogy replikációs tooAzure a várt módon működik, az Azure-ban törölheti hello Azure virtuális gépeken (jelenleg nem fut) visszaállítása sikertelen volt.
+1. A Site Recovery portálon > **gépek** lapon válassza ki a virtuális gépek, amelyek nem tudták biztonsági, és kattintson a **védelmének újbóli beállításához**.
+2. Miután ellenőrizte, hogy a replikáció Azure a várt módon működik, az Azure törölheti az Azure virtuális gépeken (jelenleg nem fut) visszaállítása sikertelen volt.
 
 ### <a name="common-issues-in-failback"></a>A feladat-visszavétel kapcsolatos gyakori hibák
-1. Csak olvasási jogosultsággal rendelkező felhasználói vCenter-kiszolgálók automatikus észlelését, és a virtuális gépek védelmére, ha ez sikeres, és feladatátvételi működik. A védelem-Újrabeállítási hello időpontjában meghiúsul óta hello datastores nem lesz felderítve. A jelenség, nem látják hello datastores felsorolt közben ismételt védelmével. tooresolve, frissíteni hello vCenter hitelesítő adatokat a megfelelő engedélyekkel rendelkező fiókot, és próbálja meg újra hello feladatot. [További információ](site-recovery-vmware-to-azure-classic.md)
-2. Ha a Linux virtuális gép feladatátvételi, és futtassa a helyszínen, látni fogja a hello hálózatkezelő csomag eltávolítása hello gépről. Ennek az az oka a virtuális gép hello helyreállításakor az Azure-ban hello hálózatkezelő csomag törlődik.
-3. Ha egy virtuális gép statikus IP-címmel van konfigurálva, és tooAzure feladatátvételt, hello IP-cím szerezte be a DHCP. Amikor a rendszer átadja a hátsó tooOn helyszínen, hello VM toouse DHCP tooacquire hello IP-cím továbbra is. Hello géppé toomanually bejelentkezési kell és hello IP-cím beállítása biztonsági tooStatic címet, ha szükséges.
-4. Vagy ESXi 5.5 ingyenes kiadásban, vagy vSphere 6 hipervizor ingyenes kiadás használatakor volna sikertelen volt, de a feladat-visszavétel nem fog sikerülni. Ned tooupgrade tooeither Próbalicencre tooenable feladat-visszavétel lesz.
+1. Csak olvasási jogosultsággal rendelkező felhasználói vCenter-kiszolgálók automatikus észlelését, és a virtuális gépek védelmére, ha ez sikeres, és feladatátvételi működik. A védelem-Újrabeállítási időpontjában meghiúsul, mert a datastores nem lesz felderítve. Egyik oka az, nem látják a datastores felsorolt közben ismételt védelmével. A probléma megoldásához, frissítse a vCenter hitelesítőadat megfelelő engedélyekkel rendelkező fiókot, és próbálja újból elvégezni a feladatot. [További információ](site-recovery-vmware-to-azure-classic.md)
+2. Ha a Linux virtuális gép feladatátvételi, és futtassa a helyszínen, látni fogja, hogy a hálózatkezelő csomag eltávolítása a számítógépről. Ennek az az oka helyreállításakor a virtuális Gépet az Azure-ban, a hálózatkezelő csomag törlődik.
+3. Ha egy virtuális gép statikus IP-címmel van konfigurálva, és át nem adja a Azure, az IP-cím szerezte be a DHCP. Amikor a rendszer átadja a Vissza gombra, és a helyszínen, a virtuális gép továbbra is az IP-cím beszerzése a DHCP Protokollt használják. A számítógép és az IP-cím statikus cím biztonsági másolatot, szükség esetén állítsa be kell manuálisan a bejelentkezéshez.
+4. Vagy ESXi 5.5 ingyenes kiadásban, vagy vSphere 6 hipervizor ingyenes kiadás használatakor volna sikertelen volt, de a feladat-visszavétel nem fog sikerülni. Ned vagy próbalicencre ahhoz, hogy feladat-visszavétel frissíteni fogja.
 
 ## <a name="failing-back-with-expressroute"></a>Az ExpressRoute meghibásodott vissza
-Átveheti vissza egy VPN-kapcsolat vagy Azure expressroute-ot. Ha azt szeretné, hogy toouse ExpressRoute Megjegyzés hello következő:
+Átveheti vissza egy VPN-kapcsolat vagy Azure expressroute-ot. Ha szeretné használni az ExpressRoute vegye figyelembe a következőket:
 
-* ExpressRoute hello Azure-beli virtuális hálózat toowhich forrás gépek sikertelenek keresztül, és amelyhez Azure virtuális gépek találhatók hello feladatátvételt követően kell beállítani.
-* A adata replikált tooan egy nyilvános végpontot az Azure storage-fiók. Állítson be nyilvános társviszony-létesítés ExpressRoute a Site Recovery replikációs toouse ExpressRoute hello cél adatközpontot.
+* ExpressRoute mely forrás gépek sikertelen keresztül, és az Azure virtuális gépek mely találhatók a feladatátvételt követően Azure virtuális hálózaton kell beállítani.
+* Egy Azure storage-fiók egy nyilvános végpontot az adatok replikálódnak. Állítson be nyilvános társviszony-létesítés az ExpressRoute a Site Recovery replikáció ExpressRoute használja a cél adatközpont.

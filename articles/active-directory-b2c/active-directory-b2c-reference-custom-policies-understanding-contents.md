@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Active Directory B2C: Hello alapszintű csomag egyéni házirendjeinek ismertetése |} Microsoft Docs"
+title: "Az Azure Active Directory B2C: Az alapszintű csomag egyéni házirendjeinek ismertetése |} Microsoft Docs"
 description: "Témakör: Azure Active Directory B2C egyéni házirendek"
 services: active-directory-b2c
 documentationcenter: 
@@ -14,89 +14,89 @@ ms.topic: article
 ms.devlang: na
 ms.date: 04/25/2017
 ms.author: joroja
-ms.openlocfilehash: 3484e8cc6fa6a9d57c2aa14c0cc9616065892d10
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9847bcfcc139a769847678c1cca6a8b9c3a30e93
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="understanding-hello-custom-policies-of-hello-azure-ad-b2c-custom-policy-starter-pack"></a>Egyéni házirendek hello hello Azure AD B2C egyéni házirend alapszintű csomag ismertetése
+# <a name="understanding-the-custom-policies-of-the-azure-ad-b2c-custom-policy-starter-pack"></a>Az Azure AD B2C egyéni házirend alapszintű csomag egyéni házirendjeinek ismertetése
 
-Ez a rész felsorolja a hello hello B2C_1A_base házirend minden hello core elemei **alapszintű csomag** és, hogy a rendszer elkészítéséhez használja megfelelő saját házirendeket a hello hello örökléssel tartalomkészítéshez *B2C_1A_base_ bővítmények házirend*.
+Ez a rész felsorolja a B2C_1A_base szabályzat részeként elérhető összes core elem a **alapszintű csomag** és, hogy megfelelő saját házirendeket a örökléssel tartalomkészítéshez elkészítéséhez használja a *B2C_1A_base_extensions házirend* .
 
-Azt több különösen mutatja be már meg van adva hello jogcím-típusokat, a jogcímek átalakítása, tartalom definíciók, az a műszaki profil Jogcímszolgáltatók, és alapvető felhasználói utak hello.
+Mint ilyen akkor különösen mutatja be a már definiált jogcímtípusok, a jogcímek átalakítása, tartalom definíciók, az a műszaki profil és a központi felhasználói utak jogcímszolgáltatóktól.
 
 > [!IMPORTANT]
-> A Microsoft nem vállal semmilyen kifejezett, kifejezett vagy vélelmezett, továbbiakban megadott tekintetben toohello adatokkal. GA idő, illetve után a módosítások vihetők bármikor GA időpont előtt.
+> A Microsoft nem vállal sem kifejezett szavatosságot, a továbbiakban megadott adatai. GA idő, illetve után a módosítások vihetők bármikor GA időpont előtt.
 
-Saját házirendek és a hello B2C_1A_base_extensions házirend felülírja ezeket a definíciókat, és a szülő házirend kiterjesztése újak megadásával, igény szerint.
+Megfelelő saját házirendeket, mind a B2C_1A_base_extensions házirend felülírja ezeket a definíciókat, és a szülő házirend kiterjesztése újak megadásával, igény szerint.
 
-alapvető összetevőjét hello hello *B2C_1A_base házirend* jogcímtípusok, a jogcímek átalakítása és a tartalom definíciókat. Ezeket az elemeket is ki vannak téve toobe hello mellett a saját a házirendeket, valamint a hivatkozott *B2C_1A_base_extensions házirend*.
+A fő elemei a *B2C_1A_base házirend* jogcímtípusok, a jogcímek átalakítása és a tartalom definíciókat. Ezeket az elemeket is ki vannak téve a megfelelő saját házirendeket is és a lehet hivatkozni a *B2C_1A_base_extensions házirend*.
 
 ## <a name="claims-schemas"></a>Jogcímek sémák
 
 A jogcím-sémák három részből áll:
 
-1.  Első szakasz hello minimális jogcímeket, amelyek szükségesek a hello felhasználói utak toowork megfelelően felsoroló.
-2.  Második szakasz listák hello lekérdezési karakterlánc paraméter szükséges jogcímeket és a más különleges paraméterek toobe átadott tooother Jogcímszolgáltatók, különösen a hitelesítéshez login.microsoftonline.com. **Ne módosítsa ezeket a jogcímeket**.
-3.  És végül a hello felhasználótól összegyűjthetők további, opcionális jogcímeket felsoroló harmadik szakasz hello könyvtárban tárolja, és a bejelentkezés során küldött jogkivonatokat. Új jogcím típusa toobe hello felhasználói gyűjtött és/vagy küldi hello token ebben a szakaszban lehet hozzáadni.
+1.  Első szakasz, amely felsorolja a minimális jogcímet a felhasználó utak helyes működéséhez szükséges.
+2.  A jogcímek listája második szakasz szükséges lekérdezési karakterlánc és más különleges paraméterei más jogcímszolgáltatóktól, különösen a hitelesítéshez login.microsoftonline.com átadandó. **Ne módosítsa ezeket a jogcímeket**.
+3.  És végül a harmadik szakasz további, opcionális jogcímeket a felhasználó a gyűjtendő felsoroló a könyvtárban tárolja, és a bejelentkezés során küldött jogkivonatokat. A felhasználó gyűjtött vagy a token küldött új jogcím típusa ebben a szakaszban lehet hozzáadni.
 
 > [!IMPORTANT]
-> hello jogcímek séma egyes jogcímek, például a jelszavak és a felhasználónevek korlátozásokat tartalmaz. hello megbízható keretrendszer (TF) házirend más jogcím-szolgáltató kezeli az Azure AD és a korlátozások vannak modellezni hello prémium házirendben. Egy házirend módosított tooadd további korlátozásokat, vagy egy másik jogcímszolgáltató használandó hitelesítő adatok tárolása, amelynek a saját korlátozások.
+> A jogcímek séma egyes jogcímek, például a jelszavak és a felhasználónevek korlátozásokat tartalmaz. A megbízható keretrendszer (TF) házirend más jogcím-szolgáltató kezeli az Azure AD és a korlátozások vannak modellezni a prémium szintű házirendben. További korlátozások hozzáadása, vagy egy másik jogcím-szolgáltató használata a hitelesítő adatok tárolása, amelynek a saját korlátozások házirend volt módosítani.
 
-hello elérhető jogcímtípusok alább láthatók.
+A rendelkezésre álló jogcím-típusok listája látható.
 
-### <a name="claims-that-are-required-for-hello-user-journeys"></a>A hello felhasználói utak által igényelt jogcímeket
+### <a name="claims-that-are-required-for-the-user-journeys"></a>A felhasználó utak szükséges jogcímeket
 
-a következő jogcímeket hello szükségesek a felhasználó utak toowork megfelelően:
+A következő jogcímek felhasználói utak helyes működéséhez szükségesek:
 
 | Jogcím típusa | Leírás |
 |-------------|-------------|
 | *Felhasználói azonosítóját* | Felhasználónév |
 | *signInName* | Jelentkezzen be neve |
-| *a tenantId* | Bérlő azonosítóját az Azure AD B2C prémium hello felhasználói objektum |
-| *Objektumazonosító* | Objektumazonosító (ID) az Azure AD B2C prémium hello felhasználói objektum |
+| *a tenantId* | Bérlő azonosítóját az Azure AD B2C-támogatás a felhasználói objektum |
+| *Objektumazonosító* | Objektumazonosító (ID) az Azure AD B2C-támogatás a felhasználói objektum |
 | *jelszó* | Jelszó |
 | *ÚjJelszó* | |
 | *reenterPassword* | |
-| *passwordPolicies* | A jelszóházirendek használják az Azure AD B2C prémium toodetermine jelszó erőssége, a lejárat, stb. |
+| *passwordPolicies* | A jelszóházirendek az Azure AD B2C prémium alapján határozzák meg a jelszó erőssége, a lejárat, stb. |
 | *Sub* | |
 | *alternativeSecurityId* | |
 | *identityProvider* | |
 | *displayName* | |
 | *strongAuthenticationPhoneNumber* | A felhasználó telefonszáma |
 | *Verified.strongAuthenticationPhoneNumber* | |
-| *e-mailek* | E-mail cím használható használt toocontact hello felhasználó |
-| *signInNamesInfo.emailAddress* | E-mail címet, amely a felhasználó hello használhatja a toosign |
-| *otherMails* | E-mail címek, amelyek lehetnek használt toocontact hello felhasználó |
-| *userPrincipalName* | Az Azure AD B2C prémium hello tárolt felhasználónév |
+| *e-mailek* | Kapcsolattartás a felhasználókkal használható e-mail cím |
+| *signInNamesInfo.emailAddress* | A felhasználó használhatja-e bejelentkezni az e-mail címet |
+| *otherMails* | Kapcsolattartás a felhasználókkal használt e-mail címek |
+| *userPrincipalName* | Az Azure AD B2C prémium tárolt felhasználónév |
 | *upnUserName* | Egyszerű felhasználónév létrehozásához felhasználónév |
-| *mailNickName* | Mail nick felhasználónév tárolt hello Azure AD B2C-támogatás |
+| *mailNickName* | Mail nick felhasználónév tárolt az Azure AD B2C-támogatás |
 | *Új_felhasználó* | |
-| *végre SelfAsserted-bemenet* | Jogcímet, amely megadja, hogy attribútumok gyűjtötte a program a hello felhasználó |
-| *végre PhoneFactor-bemenet* | Jogcímet, amely megadja, hogy egy új telefonszámot gyűjtötte a program a hello felhasználó |
-| *authenticationSource* | Megadja, hogy hello felhasználó közösségi identitásszolgáltató, login.microsoftonline.com vagy helyi fiók hitelesítési |
+| *végre SelfAsserted-bemenet* | Amely meghatározza, hogy attribútumok gyűjtötte a program a felhasználói jogcímek |
+| *végre PhoneFactor-bemenet* | Jogcímet, amely megadja, hogy egy új telefonszámot gyűjtötte a program a felhasználó részéről |
+| *authenticationSource* | Megadja, hogy a felhasználó hitelesítési közösségi identitásszolgáltató, login.microsoftonline.com vagy helyi fiók |
 
 ### <a name="claims-required-for-query-string-parameters-and-other-special-parameters"></a>A lekérdezési karakterlánc és más különleges paraméterei szükséges jogcímeket
 
-hello következő jogcímek olyan speciális paramétert (beleértve az egyes lekérdezési karakterlánc paraméterek) tooother Jogcímszolgáltatók a szükséges toopass:
+A következő jogcímeket más jogcímszolgáltatóktól kell továbbítani a Speciális paraméterek (beleértve az egyes lekérdezési karakterlánc paraméterek):
 
 | Jogcím típusa | Leírás |
 |-------------|-------------|
-| *nux* | Speciális paramétert a helyi fiók hitelesítési toologin.microsoftonline.com |
-| *a hálózati csatlakozási Segéd* | Speciális paramétert a helyi fiók hitelesítési toologin.microsoftonline.com |
-| *parancssor* | Speciális paramétert a helyi fiók hitelesítési toologin.microsoftonline.com |
-| *mkt* | Speciális paramétert a helyi fiók hitelesítési toologin.microsoftonline.com |
-| *LC* | Speciális paramétert a helyi fiók hitelesítési toologin.microsoftonline.com |
-| *grant_type* | Speciális paramétert a helyi fiók hitelesítési toologin.microsoftonline.com |
-| *hatókör* | Speciális paramétert a helyi fiók hitelesítési toologin.microsoftonline.com |
-| *client_id* | Speciális paramétert a helyi fiók hitelesítési toologin.microsoftonline.com |
-| *objectIdFromSession* | Hello alapértelmezett munkamenet felügyeleti szolgáltató tooindicate, objektumazonosító: hello által biztosított paraméter egy egyszeri bejelentkezési munkamenet beolvasása |
-| *isActiveMFASession* | Hello MFA munkamenet felügyeleti tooindicate által biztosított paraméter hello rendelkezik aktív MFA munkamenet |
+| *nux* | Speciális paramétert a helyi fiók hitelesítési login.microsoftonline.com |
+| *a hálózati csatlakozási Segéd* | Speciális paramétert a helyi fiók hitelesítési login.microsoftonline.com |
+| *parancssor* | Speciális paramétert a helyi fiók hitelesítési login.microsoftonline.com |
+| *mkt* | Speciális paramétert a helyi fiók hitelesítési login.microsoftonline.com |
+| *LC* | Speciális paramétert a helyi fiók hitelesítési login.microsoftonline.com |
+| *grant_type* | Speciális paramétert a helyi fiók hitelesítési login.microsoftonline.com |
+| *hatókör* | Speciális paramétert a helyi fiók hitelesítési login.microsoftonline.com |
+| *client_id* | Speciális paramétert a helyi fiók hitelesítési login.microsoftonline.com |
+| *objectIdFromSession* | Az alapértelmezett munkamenet felügyeleti szolgáltató annak jelzésére, hogy az egyszeri bejelentkezési munkamenet objektumazonosító beolvasása a megadott paraméter |
+| *isActiveMFASession* | A többtényezős hitelesítés annak jelzésére, hogy a felhasználó rendelkezik-e többtényezős hitelesítés aktív munkamenet munkamenet-kezelés által biztosított paraméter |
 
 ### <a name="additional-optional-claims-that-can-be-collected"></a>További (nem kötelező) jogcímeket is
 
-hello következő hello felhasználóktól összegyűjthetők további jogcímeket hello könyvtárban tárolja, és hello tokent küldött jogcímek. Mielőtt leírtak további jogcímek toothis lista lehet hozzáadni.
+A következő jogcímek további gyűjtött felhasználói, a címtárban tárolt, és a token küldi. Mielőtt leírtak további jogcímeket is hozzáadhatók erre a listára.
 
 | Jogcím típusa | Leírás |
 |-------------|-------------|
@@ -106,7 +106,7 @@ hello következő hello felhasználóktól összegyűjthetők további jogcímek
 
 ## <a name="claim-transformations"></a>A jogcímek átalakításához
 
-hello érhető el a jogcímek átalakításához alább láthatók.
+A rendelkezésre álló a jogcímek átalakításához alább láthatók.
 
 | Jogcím-átalakítást | Leírás |
 |----------------------|-------------|
@@ -119,7 +119,7 @@ hello érhető el a jogcímek átalakításához alább láthatók.
 
 ## <a name="content-definitions"></a>Tartalom definíciók
 
-Ez a szakasz ismerteti a definíciók tartalom hello hello már deklarálva *B2C_1A_base* házirend. A tartalom definíciók téve toobe hivatkozott, felül, illetve szükség esetén hello mellett a saját a házirendeket, valamint a kiterjesztett *B2C_1A_base_extensions* házirend.
+Ez a szakasz ismerteti a tartalom-definíciók már deklarálva a *B2C_1A_base* házirend. A tartalom definíciók lehet hivatkozni, felül, illetve szükség esetén a megfelelő saját házirendeket, valamint hasonlóan a kiterjesztett ki vannak téve a *B2C_1A_base_extensions* házirend.
 
 | Jogcím-szolgáltató | Leírás |
 |-----------------|-------------|
@@ -136,7 +136,7 @@ Ez a szakasz ismerteti a definíciók tartalom hello hello már deklarálva *B2C
 
 ## <a name="technical-profiles"></a>Műszaki profilok
 
-Ez a szakasz ábrázol hello műszaki profilok / hello a jogcímszolgáltató már deklarálva *B2C_1A_base* házirend. A műszaki profilok téve toobe további hivatkozott, felül, illetve szükség esetén hello mellett a saját a házirendeket, valamint a kiterjesztett *B2C_1A_base_extensions* házirend.
+Ez a szakasz mutatja be a műszaki profilok száma a jogcímszolgáltató már deklarálva a *B2C_1A_base* házirend. A műszaki profilok lehet további hivatkozott, felül, illetve szükség esetén a megfelelő saját házirendeket, valamint hasonlóan a kiterjesztett ki vannak téve a *B2C_1A_base_extensions* házirend.
 
 ### <a name="technical-profiles-for-facebook"></a>Műszaki profilokat a Facebook-on
 
@@ -162,7 +162,7 @@ Ez a szakasz ábrázol hello műszaki profilok / hello a jogcímszolgáltató m�
 
 | Műszaki profil | Leírás |
 |-------------------|-------------|
-| *Az AAD-közös* | Műszaki profil benne hello más AAD-xxx műszaki profilok |
+| *Az AAD-közös* | A más AAD-xxx műszaki profil része műszaki profil |
 | *Az AAD-UserWriteUsingAlternativeSecurityId* | A közösségi bejelentkezések során műszaki profil |
 | *Az AAD-UserReadUsingAlternativeSecurityId* | A közösségi bejelentkezések során műszaki profil |
 | *Az AAD-UserReadUsingAlternativeSecurityId-NoError* | A közösségi bejelentkezések során műszaki profil |
@@ -171,7 +171,7 @@ Ez a szakasz ábrázol hello műszaki profilok / hello a jogcímszolgáltató m�
 | *Az AAD-UserWriteProfileUsingObjectId* | Műszaki profil használatával objectId felhasználói rekord frissítéséhez |
 | *Az AAD-UserWritePhoneNumberUsingObjectId* | Műszaki profil használatával objectId felhasználói rekord frissítéséhez |
 | *Az AAD-UserWritePasswordUsingObjectId* | Műszaki profil használatával objectId felhasználói rekord frissítéséhez |
-| *Az AAD-UserReadUsingObjectId* | Műszaki profil az használt tooread adatai után a felhasználók hitelesítése |
+| *Az AAD-UserReadUsingObjectId* | Műszaki profil segítségével adatokat olvasni, miután a felhasználók hitelesítése |
 
 ### <a name="technical-profiles-for-self-asserted"></a>Az önkiszolgáló magas műszaki profilok
 
@@ -192,13 +192,13 @@ Ez a szakasz ábrázol hello műszaki profilok / hello a jogcímszolgáltató m�
 |-------------------|-------------|
 | *SM-Noop* | |
 | *SM-AAD-BEN* | |
-| *SM-SocialSignup* | Profil neve alatt használt toodisambiguate AAD munkamenet között bejelentkezési fel, és jelentkezzen be |
+| *SM-SocialSignup* | Elem egyértelműségének biztosításához AAD munkamenet között jelentkezzen be, és jelentkezzen be a profil neve használatban van |
 | *SM-SocialLogin* | |
 | *SM-MFA* | |
 
 ### <a name="technical-profiles-for-trustframework-policy-engine-technicalprofiles"></a>Trustframework házirend motor TechnicalProfiles műszaki profilok
 
-Jelenleg nincsenek technikai profilok hello definiált **Trustframework házirend motor TechnicalProfiles** jogcím-szolgáltató.
+Jelenleg nincsenek technikai profilok meghatározása a **Trustframework házirend motor TechnicalProfiles** jogcím-szolgáltató.
 
 ### <a name="technical-profiles-for-token-issuer"></a>Jogkivonatot kibocsátó műszaki profilok
 
@@ -208,7 +208,7 @@ Jelenleg nincsenek technikai profilok hello definiált **Trustframework háziren
 
 ## <a name="user-journeys"></a>Felhasználói utak
 
-Ez a szakasz ábrázol hello felhasználói utak hello már deklarálva *B2C_1A_base* házirend. Ezek az felhasználói utak téve toobe további hivatkozott, felül, illetve szükség esetén hello mellett a saját a házirendeket, valamint a kiterjesztett *B2C_1A_base_extensions* házirend.
+Ez a szakasz mutatja be a felhasználó utak már deklarálva a *B2C_1A_base* házirend. Ezek az felhasználói utak amelyek ki vannak téve lehet további hivatkozott, felül, és/vagy szükség esetén a megfelelő saját házirendeket, valamint hasonlóan a kiterjesztett a *B2C_1A_base_extensions* házirend.
 
 | Felhasználói út | Leírás |
 |--------------|-------------|

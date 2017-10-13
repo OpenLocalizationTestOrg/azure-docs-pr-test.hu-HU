@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált Velpic SAML |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és Velpic SAML között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és Velpic SAML között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,111 +13,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/04/2017
 ms.author: jeedes
-ms.openlocfilehash: 613947d8fe95113382a2cdc0f79ce9eda85a0127
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5325f3cca00167e6b7b687509ce43435447ad2f4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-velpic-saml"></a>Oktatóanyag: Azure Active Directoryval integrált Velpic SAML
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Velpic SAML az Azure Active Directoryval (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja Velpic SAML integrálása az Azure Active Directory (Azure AD).
 
-Velpic SAML integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
+Velpic SAML integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
 
-- Megadhatja a hozzáférés tooVelpic SAML rendelkező Azure AD-ben
-- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooVelpic SAML (egyszeri bejelentkezés) a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen - hello Azure felügyeleti portálon
+- Megadhatja a Velpic SAML hozzáféréssel rendelkező Azure AD-ben
+- Az Azure AD-fiókok a engedélyezheti a felhasználóknak, hogy automatikusan lekérni aláírt a Velpic SAML (egyszeri bejelentkezés)
+- Kezelheti a fiókokat, egy központi helyen – az Azure felügyeleti portálon
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-az Azure AD integrálása Velpic SAML tooconfigure, kell a következő elemek hello:
+Velpic SAML konfigurálása az Azure AD-integrációra, a következőkre van szükség:
 
 - Az Azure AD szolgáltatásra
 - Egy Velpic SAML-alapú egyszeri bejelentkezést engedélyezve van az előfizetésben
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 - Ne használja az éles környezetben, ha ez nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. Hello gyűjteményből Velpic SAML hozzáadása
+1. A gyűjteményből Velpic SAML hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-velpic-saml-from-hello-gallery"></a>Hello gyűjteményből Velpic SAML hozzáadása
-tooconfigure hello integrációja Velpic SAML az Azure AD-be, meg kell tooadd Velpic SAML hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-velpic-saml-from-the-gallery"></a>A gyűjteményből Velpic SAML hozzáadása
+Az Azure AD integrálása a Velpic SAML konfigurálásához kell hozzáadnia Velpic SAML a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
 
-**tooadd Velpic SAML hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
+**A gyűjteményből Velpic SAML hozzáadásához hajtsa végre az alábbi lépéseket:**
 
-1. A hello  **[Azure felügyeleti portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
+1. Az a  **[Azure felügyeleti portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
+2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Kattintson a **Hozzáadás** hello párbeszédpanel tetején hello gombjára.
+3. Kattintson a **Hozzáadás** gombra a párbeszédpanel tetején.
 
     ![Alkalmazások][3]
 
-4. Hello keresési mezőbe, írja be a **Velpic SAML**.
+4. Írja be a keresőmezőbe, **Velpic SAML**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-velpicsaml-tutorial/tutorial_velpicsaml_search.png)
 
-5. A hello eredmények panelen válassza ki a **Velpic SAML**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
+5. Az eredmények panelen válassza ki a **Velpic SAML**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-velpicsaml-tutorial/tutorial_velpicsaml_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban konfigurálhatja, és az Azure AD az egyszeri bejelentkezés Velpic SAML-teszthez "Britta Simon" nevű tesztfelhasználó alapján.
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó Velpic SAML tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello Velpic SAML közötti kapcsolat kapcsolatot kell létrehozni toobe.
+Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó Velpic SAML a felhasználó Azure AD-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó a Velpic SAML közötti kapcsolat kapcsolatot kell létrehozni.
 
-Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** a Velpic SAML.
+Ez a hivatkozás kapcsolat létesíti értéket rendeli az **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a Velpic SAML.
 
-tooconfigure és az Azure AD az egyszeri bejelentkezés Velpic SAML-teszthez, a következő építőelemeket toocomplete hello szüksége:
+Az Azure AD egyszeri bejelentkezéshez a Velpic SAML tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-3. **[Velpic SAML tesztfelhasználó létrehozása](#creating-a-velpic-saml-test-user)**  -toohave egy megfelelője a Britta Simon a csatolt toohello az Azure AD ábrázolása rá, hogy Velpic SAML-alapú.
-4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+3. **[Velpic SAML tesztfelhasználó létrehozása](#creating-a-velpic-saml-test-user)**  - való egy megfelelője a Britta Simon Velpic SAML, amely csatolva van rá, hogy az Azure AD ábrázolása.
+4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel hello Azure felügyeleti portálon, és konfigurálása egyszeri bejelentkezéshez az Velpic SAML-alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure felügyeleti portálon, és konfigurálása egyszeri bejelentkezéshez az Velpic SAML-alkalmazásban.
 
-**tooconfigure az Azure AD egyszeri bejelentkezéshez a Velpic SAML, hajtsa végre a lépéseket követve hello:**
+**Velpic SAML konfigurálása az Azure AD egyszeri bejelentkezést, hajtsa végre az alábbi lépéseket:**
 
-1. Hello Azure felügyeleti portálon, a hello **Velpic SAML** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure felügyeleti portálján a a **Velpic SAML** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. A hello **egyszeri bejelentkezés** párbeszédpanel, mint **mód** kiválasztása **SAML-alapú bejelentkezés** tooenable az egyszeri bejelentkezés.
+2. A a **egyszeri bejelentkezés** párbeszédpanel, mint **mód** kiválasztása **SAML-alapú bejelentkezés** a engedélyezése az egyszeri bejelentkezéshez.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-velpicsaml-tutorial/tutorial_velpicsaml_samlbase.png)
 
-3. Adjon meg hello részletet hello **Velpic SAML-tartomány és az URL-címek** szakasz -
+3. Adja meg a részleteket a **Velpic SAML-tartomány és az URL-címek** szakasz -
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-velpicsaml-tutorial/tutorial_velpicsaml_url.png)
 
-    a. A hello **bejelentkezési URL-cím** szövegmezőhöz hello érték típusa:`https://<sub-domain>.velpicsaml.net`
+    a. Az a **bejelentkezési URL-cím** szövegmező, írja be az értéket, mint:`https://<sub-domain>.velpicsaml.net`
 
-    b. A hello **azonosító** szövegmezőhöz Beillesztés hello **"Egyszeri bejelentkezési URL-címe"** érték`https://auth.velpic.com/saml/v2/<entity-id>/login`
+    b. Az a **azonosító** szövegmező, illessze be a **"Egyszeri bejelentkezési URL-címe"** érték`https://auth.velpic.com/saml/v2/<entity-id>/login`
     
     > [!NOTE]
-    > Vegye figyelembe, hogy hello Velpic SAML team biztosítja hello bejelentkezési URL-címen, és azonosító értéket hello SSO beépülő modul Velpic SAML oldalon konfigurálásakor lesz elérhető. Meg kell toocopy Velpic SAML alkalmazáslap értéket, és illessze be ide.
+    > Vegye figyelembe, hogy a Velpic SAML team biztosítja a bejelentkezési URL-címen, és azonosító értéket az SSO beépülő modul Velpic SAML oldalon konfigurálásakor lesz elérhető. Ezt az értéket Velpic SAML alkalmazáslap másolja és illessze be ide kell.
 
-4. A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello XML-fájlt a számítógépen.
+4. Az a **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse az XML-fájlt a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-velpicsaml-tutorial/tutorial_velpicsaml_certificate.png) 
 
@@ -125,116 +125,116 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel hello Azure felügyele
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-velpicsaml-tutorial/tutorial_general_400.png)
 
-6. Hello Velpic SAML-alapú konfigurációs szakaszt kattintson a Velpic SAML konfigurálása tooopen konfigurálása bejelentkezés ablak. Rövid összefoglaló szakasz hello hello SAML Entitásazonosító másolja.
+6. Kattintson a Velpic SAML-alapú konfigurációs szakasz Velpic SAML konfigurálása konfigurálása bejelentkezés ablak megnyitásához. Másolja a SAML Entitásazonosító rövid összefoglaló szakaszából.
 
 7. Egy másik webes böngészőablakban jelentkezzen be a Velpic SAML-alapú vállalati webhely rendszergazdaként.
 
-8. Kattintson a **kezelése** lapra, és nyissa meg túl**integrációs** tooclick kell a szakasz **beépülő modulok** gomb toocreate új beépülő modul a bejelentkezéshez.
+8. Kattintson a **kezelése** lapra, és navigáljon a **integrációs** szakaszban kattintson a kell **beépülő modulok** gombra kattintva hozzon létre új beépülő modul a bejelentkezéshez.
 
     ![Beépülő modul](./media/active-directory-saas-velpicsaml-tutorial/velpic_1.png)
 
-9. Kattintson a hello **"Beépülő modul hozzáadása"** gombra.
+9. Kattintson a **"Beépülő modul hozzáadása"** gombra.
     
     ![Beépülő modul](./media/active-directory-saas-velpicsaml-tutorial/velpic_2.png)
 
-10. Kattintson a hello **SAML** hello hozzáadása beépülő modul oldal csempére.
+10. Kattintson a **SAML** a beépülő modul hozzáadása oldalon csempére.
     
     ![Beépülő modul](./media/active-directory-saas-velpicsaml-tutorial/velpic_3.png)
 
-11. Írja be hello új SAML-alapú beépülő modul hello nevét, és kattintson a hello **"Add"** gombra.
+11. Adja meg az új SAML-alapú beépülő modul nevét, majd kattintson a **"Add"** gombra.
 
     ![Beépülő modul](./media/active-directory-saas-velpicsaml-tutorial/velpic_4.png)
 
-12. Adja meg az alábbiak szerint hello részleteit:
+12. Adja meg a következőképpen:
 
     ![Beépülő modul](./media/active-directory-saas-velpicsaml-tutorial/velpic_5.png)
 
-    a. A hello **neve** szövegmezőhöz SAML-alapú beépülő modul hello nevét.
+    a. Az a **neve** szövegmező, írja be a SAML-alapú beépülő modul nevét.
 
-    b. A hello **kiállítójának URL-címe** szövegmezőhöz Beillesztés hello **SAML Entitásazonosító** hello a másolt **bejelentkezés konfigurálása** ablakot, hello Azure-portálon.
+    b. A a **kiállítójának URL-címe** szövegmező, illessze be a **SAML Entitásazonosító** , átmásolva a **bejelentkezés konfigurálása** ablakot, az Azure-portálon.
 
-    c. A hello **szolgáltató metaadatok Config** hello metaadatok XML-fájl, amely az Azure-portálról letöltött feltöltése.
+    c. Az a **szolgáltató metaadatok Config** a metaadatok XML-fájl, amely az Azure-portálról letöltött feltöltése.
 
-    d. Másik lehetőségként tooenable SAML csak az idő kiépítés engedélyezése hello **"Automatikus hozzon létre új felhasználók"** jelölőnégyzetet. Ha egy felhasználó Velpic nem létezik, és ez a jelző nincs engedélyezve, az Azure-ból hello bejelentkezési sikertelen lesz. Ha hello jelző engedélyezve hello felhasználói lesz automatikusan üzembe Velpic történő bejelentkezési ideje hello. 
+    d. SAML engedélyezése csak az idő-kiépítés engedélyezése is beállíthatja a **"Automatikus hozzon létre új felhasználók"** jelölőnégyzetet. Ha egy felhasználó Velpic nem létezik, és ez a jelző nincs engedélyezve, az Azure-ból a bejelentkezés sikertelen lesz. Ha a jelző engedélyezve van a felhasználó automatikusan megkapják a Velpic bejelentkezés alkalmával. 
 
-    e. Másolás hello **egyszeri bejelentkezés URL-címen** hello szövegmezőbe, és illessze be azt a hello Azure-portálon.
+    e. Másolás a **egyszeri bejelentkezés URL-címen** szöveg mezőbe, majd illessze be az Azure-portálon.
     
     f. Kattintson a **Save** (Mentés) gombra.
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-hello ebben a szakaszban célja toocreate tesztfelhasználó Britta Simon nevű hello Azure felügyeleti portálon.
+Ez a szakasz célja a tesztfelhasználó létrehozása az Azure felügyeleti portálján Britta Simon nevezik.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello **Azure Management portal**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
+1. Az a **Azure Management portal**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-velpicsaml-tutorial/create_aaduser_01.png) 
 
-2. Nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó** toodisplay hello azoknak a felhasználóknak.
+2. Ugrás a **felhasználók és csoportok** kattintson **minden felhasználó** azon felhasználók listájának megjelenítéséhez.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-velpicsaml-tutorial/create_aaduser_02.png) 
 
-3. Hello párbeszédpanel hello tetején kattintson **Hozzáadás** tooopen hello **felhasználói** párbeszédpanel.
+3. Kattintson a párbeszédpanel tetején **Hozzáadás** megnyitásához a **felhasználói** párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-velpicsaml-tutorial/create_aaduser_03.png) 
 
-4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-velpicsaml-tutorial/create_aaduser_04.png) 
 
-    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
+    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-velpic-saml-test-user"></a>Velpic SAML tesztfelhasználó létrehozása
 
-Ebben a lépésben esetén általában nincs szükség hello alkalmazás támogatja a csak az idő a felhasználók átadása. Ha nincs engedélyezve a hello automatikus felhasználó-átadási majd kézi felhasználó létrehozása teheti az alább ismertetett.
+Ebben a lépésben esetén általában nincs szükség, ha az alkalmazás csak az idő a felhasználók átadása támogatja. Ha nincs engedélyezve az automatikus felhasználó-átadási majd kézi felhasználó létrehozása teheti az alább ismertetett.
 
 Jelentkezzen be rendszergazdaként egy vállalati Velpic SAML-alapú webhelyekhez, és hajtsa végre a következő lépéseket:
     
-1. Kattintson a kezelés lapon tooUsers szakasz lépjen, majd kattintson az új gomb tooadd felhasználók.
+1. Kattintson a kezelés lapon, majd nyissa meg a felhasználók szakaszban kattintson a felhasználók hozzáadása az új gombra.
 
     ![felhasználó hozzáadása](./media/active-directory-saas-velpicsaml-tutorial/velpic_7.png)
 
-2. A hello **"Az új felhasználó létrehozása"** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello lapján.
+2. Az a **"Az új felhasználó létrehozása"** párbeszédpanel lapon, a következő lépésekkel.
 
     ![Felhasználó](./media/active-directory-saas-velpicsaml-tutorial/velpic_8.png)
     
-    a. A hello **Keresztnév** szövegmezőhöz Britta Simon hello első nevét.
+    a. Az a **Keresztnév** szövegmezőhöz Britta Simon az első nevét.
 
-    b. A hello **Vezetéknév** szövegmezőhöz típus hello vezetékneve Britta Simon.
+    b. Az a **Vezetéknév** szövegmezőhöz Britta Simon utolsó neve.
 
-    c. A hello **felhasználónév** szövegmezőhöz Britta Simon hello felhasználói nevét.
+    c. Az a **felhasználónév** szövegmező, írja be a felhasználónevet Britta Simon.
 
-    d. A hello **E-mail** szövegmezőhöz típus hello Britta Simon fiókhoz tartozó e-mail cím.
+    d. Az a **E-mail** szövegmezőhöz Britta Simon fiók e-mail címét.
 
-    e. Hello információk többi nem kötelező, megadhatja, hogy szükség esetén.
+    e. További információk megadása nem kötelező, megadhatja azt, ha szükséges.
     
     f. Kattintson a **SAVE** (Mentés) gombra.  
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
+### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
 
-Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés saját hozzáférés tooVelpic SAML megadásával engedélyeznie.
+Ebben a szakaszban engedélyezze Britta Simon által biztosított a hozzáférés Velpic SAML Azure egyszeri bejelentkezéshez használandó.
 
 ![Felhasználó hozzárendelése][200] 
 
-**tooassign Britta Simon tooVelpic SAML, hajtsa végre a következő lépéseket hello:**
+**Britta Simon hozzárendelése Velpic SAML, hajtsa végre az alábbi lépéseket:**
 
-1. Hello Azure felügyeleti portálján, nyissa meg a hello alkalmazások megtekintése, majd toohello könyvtár nézetben keresse meg, és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Az Azure felügyeleti portálra, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Hello alkalmazások listában válassza ki a **Velpic SAML**.
+2. Az alkalmazások listában válassza ki a **Velpic SAML**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-velpicsaml-tutorial/tutorial_velpicsaml_app.png) 
 
-3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -242,7 +242,7 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés saját ho
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -250,18 +250,18 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés saját ho
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
 
-1. Hello Velpic SAML hello hozzáférési Panel csempére kattintva Velpic SAML alkalmazás bejelentkezési oldalán szerezheti be. Megtekintheti az hello **"Jelentkezzen be az Azure AD"** hello bejelentkezési oldal gombjára.
+1. Ha a hozzáférési panelen Velpic SAML csempére kattint, Velpic SAML alkalmazás bejelentkezési oldalán szerezheti be. Megjelenik a **"Jelentkezzen be az Azure AD"** a bejelentkezési oldal gombjára.
 
     ![Beépülő modul](./media/active-directory-saas-velpicsaml-tutorial/velpic_6.png)
 
-2. Kattintson a hello **"Jelentkezzen be az Azure AD"** gomb toolog a tooVelpic az Azure AD-fiókjával.
+2. Kattintson a **"Az Azure AD bejelentkezés"** gombra kattintva Velpic az Azure AD-fiókkal bejelentkezni.
 
 
 ## <a name="additional-resources"></a>További források
 
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

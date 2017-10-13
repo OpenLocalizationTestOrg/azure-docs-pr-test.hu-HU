@@ -1,4 +1,4 @@
-Ha egy fájl toopass paraméter paraméterértékeket központi telepítése során használja, kell toocreate egy JSON-fájl, egy hasonló toohello formátumban, például a következő:
+A paraméterfájl használata paraméterértékek felelt meg a telepítés során, ha szüksége hozzon létre egy JSON-fájl formátuma nem a következőhöz hasonló:
 
 ```json
 {
@@ -26,7 +26,7 @@ Ha egy fájl toopass paraméter paraméterértékeket központi telepítése sor
 }
 ```
 
-hello hello paraméter fájl mérete nem lehet több mint 64 KB.
+A paraméter-fájl mérete nem lehet több mint 64 KB.
 
-Ha tooprovide kényes értéket a paraméterhez (például jelszót), adja hozzá az adott érték tooa kulcstároló. Hello kulcstároló beolvasása hello előző példában látható módon üzembe helyezése során. További információkért lásd: [biztonságos értéket átadni a telepítés során](../articles/azure-resource-manager/resource-manager-keyvault-parameter.md). 
+Meg kell adnia a kényes értéket a paraméterhez (például jelszót), ha hozzá kulcstároló ezt az értéket. Olvashatók be a key vault üzembe helyezése során, mert az előző példában látható módon. További információkért lásd: [biztonságos értéket átadni a telepítés során](../articles/azure-resource-manager/resource-manager-keyvault-parameter.md). 
 

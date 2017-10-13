@@ -1,8 +1,8 @@
 ---
-title: "aaaAzure alkalmazás átjáró dokumentációja – oktatóanyagok API-referencia |} Microsoft Docs"
-description: "Megtudhatja, hogyan toodeploy egy felhőalapú alkalmazás kézbesítési tartományvezérlőre. Dokumentációja bemutatja, hogyan tooset akár alkalmazásszintű útválasztás-e, és egy előtér-webkiszolgáló a(z) terheléselosztást."
+title: "Az Azure Application Gateway dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogyan helyezhet üzembe felhőalapú alkalmazáskézbesítési vezérlőt. A dokumentáció bemutatja, hogyan állíthat be alkalmazásszintű útválasztást és terheléselosztást egy webes kezelőfelülethez."
 services: application-gateway
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 9351bbc5cf288fd4650e9edb89be5a601c2a13ce
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 18fdc11227a07e02df1a6b9f9711fd33c23eadb2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="application-gateway-documentation"></a>Application Gateway – dokumentáció
 
-Megtudhatja, hogyan toodeploy Alkalmazásátjáró, az alkalmazás kézbesítési vezérlőhöz (LÉPETT) szolgáltatás. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt, megtudhatja, hogyan alkalmazásszintű útválasztási és terheléselosztási szolgáltatásokról, amelyek lehetővé teszik, hogy tooset build egy magas rendelkezésre állású és méretezhető előtér.
+Ismerje meg, hogyan helyezheti üzembe szolgáltatásként az Application Gateway alkalmazáskézbesítési vezérlőt (ADC). Oktatóanyagok, API-referenciák, és egyéb dokumentációk, amelyek bemutatják, hogyan állíthat be alkalmazásszintű útválasztást és terheléselosztási szolgáltatásokat, amelyek lehetővé teszik méretezhető és magas rendelkezésre állású webes kezelőfelületek létrehozását.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ Megtudhatja, hogyan toodeploy Alkalmazásátjáró, az alkalmazás kézbesítés
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Ismerkedés az Application Gateway hello Azure-portál használatával</h3>
+                        <h3>Ismerkedés az Application Gateway és az Azure-portál együttes használatával</h3>
                     </div>
                 </div>
             </div>

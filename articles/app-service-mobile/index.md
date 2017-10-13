@@ -1,26 +1,26 @@
 ---
-title: "aaaAzure Mobile Apps dokumentációs - oktatóanyagok API-referencia |} Microsoft Docs"
-description: "Megtudhatja, hogyan Azure App Service toobuild és a gazdagép natív iOS, Android vagy Windows Mobile Apps toouse alkalmazásokat vagy platformfüggetlen alkalmazások Xamarin- vagy Cordova segítségével."
-services: app-service\mobile
-author: carolz
+title: "Az Azure Mobile Apps dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogyan használhatja az Azure App Service Mobile Apps szolgáltatását natív iOS-, Android- vagy Windows-alkalmazás, illetve Xamarin és Cordova segítségével platformfüggetlen alkalmazások készítésére és üzemeltetésére."
+services: app-service-mobile
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
-ms.service: app-service\mobile
+ms.service: app-service-mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 09b103b274c66f515d9a34bbdcb54cf0ff3a035a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d602d833286d1906a2e9bd38d3e99d737146310b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="mobile-apps-documentation"></a>A Mobile Apps dokumentációja
 
-Megtudhatja, hogyan Azure App Service toobuild natív iOS, Android vagy Windows Mobile Apps toouse alkalmazásokat vagy platformfüggetlen alkalmazások Xamarin- vagy Cordova segítségével. Oktatóanyagok, videók, ügyfél SDK-dokumentáció és több megtudhatja, hogyan toobuild és a gazdagép hello bármely mobilalkalmazás a háttér.
+Ismerje meg, hogyan használhatja az Azure App Service Mobile Apps szolgáltatását natív iOS-, Android- vagy Windows-alkalmazás, illetve Xamarin és Cordova segítségével platformfüggetlen alkalmazások készítésére. Az oktatóanyagok, videók, ügyféloldali SDK-dokumentációk és egyebek bemutatják, hogyan készíthet és üzemeltethet háttérmodult bármilyen mobilalkalmazáshoz.
 
 <ul class="panelContent cardsFTitle">
     <li>

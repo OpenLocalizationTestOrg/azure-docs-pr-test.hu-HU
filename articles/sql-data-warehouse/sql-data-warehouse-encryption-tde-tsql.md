@@ -1,5 +1,5 @@
 ---
-title: "az SQL Data Warehouse (T-SQL) adattitkosítás aaaTransparent |} Microsoft Docs"
+title: "Az SQL Data Warehouse (T-SQL) átlátható adattitkosítás |} Microsoft Docs"
 description: "Az SQL Data Warehouse (T-SQL) átlátható adattitkosítás (TDE)"
 services: sql-data-warehouse
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.topic: article
 ms.custom: security
 ms.date: 10/31/2016
 ms.author: rortloff;barbkess
-ms.openlocfilehash: 3894431c76f14b217f3a6b9a42dbf2f4d216bad6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 74c9032aababdce91ed617cd7a4c628915b42504
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="get-started-with-transparent-data-encryption-tde"></a>Ismerkedés a transzparens adatok titkosítás (TDE)
 > [!div class="op_single_selector"]
@@ -31,38 +31,38 @@ ms.lasthandoff: 10/06/2017
 > 
 
 ## <a name="required-permssions"></a>Szükséges engedélyek
-tooenable átlátszó Data Encryption (TDE), a rendszergazda vagy a hello dbmanager szerepkör tagjának kell lennie.
+Ahhoz, hogy az átlátszó Data Encryption (TDE), a rendszergazda vagy a dbmanager szerepkör tagjának kell lennie.
 
 ## <a name="enabling-encryption"></a>Titkosítás engedélyezése
-Hajtsa végre az alábbi lépéseket tooenable TDE SQL Data Warehouse:
+Kövesse az alábbi lépéseket az SQL Data Warehouse TDE engedélyezéséhez:
 
-1. Csatlakozás toohello *fő* adatbázis használata a bejelentkezési azonosítót, amely a rendszergazda vagy egy másik hello hello adatbázisát üzemeltető hello kiszolgálón **dbmanager** hello főadatbázisban szerepkör
-2. A következő utasítás tooencrypt hello adatbázis hello hajtható végre.
+1. Csatlakozás a *fő* adatbázis használata a bejelentkezési azonosítót, amely a rendszergazda vagy egy másik adatbázist futtató kiszolgálón a **dbmanager** a master adatbázisban szerepkör
+2. Hajtsa végre a következő utasítást az adatbázis titkosításához.
 
 ```sql
 ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 ```
 
 ## <a name="disabling-encryption"></a>Titkosításának letiltása
-Hajtsa végre az alábbi lépéseket toodisable TDE SQL Data Warehouse:
+Kövesse az alábbi lépéseket az SQL Data Warehouse TDE letiltása:
 
-1. Csatlakozás toohello *fő* adatbázis használata a bejelentkezési azonosítót, amely a rendszergazda vagy egy másik hello **dbmanager** hello főadatbázisban szerepkör
-2. A következő utasítás tooencrypt hello adatbázis hello hajtható végre.
+1. Csatlakozás a *fő* adatbázis használata a bejelentkezési azonosítót, amely a rendszergazda vagy egy tagja a **dbmanager** a master adatbázisban szerepkör
+2. Hajtsa végre a következő utasítást az adatbázis titkosításához.
 
 ```sql
 ALTER DATABASE [AdventureWorks] SET ENCRYPTION OFF;
 ```
 
 > [!NOTE]
-> Felfüggesztett SQL Data Warehouse toohello TDE beállítások módosítása előtt kell folytatni.
+> Felfüggesztett SQL Data Warehouse a TDE beállítások módosítása előtt kell folytatni.
 > 
 > 
 
 ## <a name="verifying-encryption"></a>Titkosítási ellenőrzése
-tooverify titkosítás állapotát az SQL Data Warehouse, kövesse az alábbi hello lépéseket:
+SQL Data Warehouse titkosítási állapot ellenőrzéséhez kövesse az alábbi lépéseket:
 
-1. Csatlakozás toohello *fő* vagy példány adatbázis használata a bejelentkezési azonosítót, amely a rendszergazda vagy egy másik hello **dbmanager** hello főadatbázisban szerepkör
-2. A következő utasítás tooencrypt hello adatbázis hello hajtható végre.
+1. Csatlakozás a *fő* vagy egy bejelentkezési azonosítót, amely a rendszergazda vagy egy másik példány adatbázist a **dbmanager** a master adatbázisban szerepkör
+2. Hajtsa végre a következő utasítást az adatbázis titkosításához.
 
 ```sql
 SELECT

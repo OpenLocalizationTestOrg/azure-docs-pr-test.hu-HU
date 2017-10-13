@@ -1,6 +1,6 @@
 ---
-title: "aaaBridge iOS webes nézet natív a Mobile Engagement IOS SDK"
-description: "Ismerteti, hogyan toocreate hidat között, Javascript és hello natív a Mobile Engagement iOS SDK fut webes nézet"
+title: "A Helykapcsolathíd iOS webes nézet natív a Mobile Engagement IOS SDK"
+description: "Hidat között, Javascript és a natív a Mobile Engagement iOS SDK szolgáltatást futtató webes nézet létrehozása"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,11 +14,11 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 089ed8484722cb5ba624e5dce0e670ab56de514d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 35f7bdbeb480122513ae2a0b04a6d8cfd426802a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="bridge-ios-webview-with-native-mobile-engagement-ios-sdk"></a>A Helykapcsolathíd iOS webes nézet natív a Mobile Engagement IOS SDK
 > [!div class="op_single_selector"]
@@ -27,25 +27,25 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Egyes mobil alkalmazások úgy lettek kialakítva, ahol maga hello alkalmazás fejlesztett Objective-C natív iOS-fejlesztések, de néhány vagy akár az összes hello képernyők megjelennek-e egy webes nézet iOS belül hibrid alkalmazásként. Ön továbbra is használhatja a Mobile Engagement iOS SDK ilyen alkalmazásokon belül, és ez az oktatóanyag leírja, hogyan toogo ezzel kapcsolatban. 
+Egyes mobil alkalmazások úgy lettek kialakítva, ahol maga az alkalmazás fejlesztett Objective-C natív iOS-fejlesztések, de még a képernyők listáját megjelennek-e egy webes nézet iOS belül hibrid alkalmazásként. Ön továbbra is használhatja a Mobile Engagement iOS SDK ilyen alkalmazásokon belül, és ez az oktatóanyag leírja, hogyan érhetők el ezzel. 
 
-Nincsenek két megközelítés tooachieve Ez abban az esetben, ha mindkettő nem dokumentált:
+Ennek ellenére nem dokumentált mindkettő elérése kétféleképpen történhet:
 
 * Először egy leírását itt [hivatkozás](http://stackoverflow.com/questions/9826792/how-to-invoke-objective-c-method-from-javascript-and-send-back-data-to-javascrip) amely magában foglalja a regisztrálása a `UIWebViewDelegate` a webes nézet és a catch-és-azonnal-Mégse gombra a hely módosítása Javascript végezheti el. 
-* Második egy alapján ez [WWDC 2013 munkamenet](https://developer.apple.com/videos/play/wwdc2013/615), mint hello tisztító először, és amely azt követi a jelen útmutató egy módszert. Vegye figyelembe, hogy ez a módszer csak akkor működik ios7-en és újabb verziók. 
+* Második egy alapján ez [WWDC 2013 munkamenet](https://developer.apple.com/videos/play/wwdc2013/615), tisztító, mint az első, amely azt követi a jelen útmutató, amely egy módszert. Vegye figyelembe, hogy ez a módszer csak akkor működik ios7-en és újabb verziók. 
 
-A hello iOS híd minta, kövesse a hello alábbi lépéseket:
+Az iOS minta hidat képeznek a, kövesse az alábbi lépéseket:
 
-1. Első lépésként szüksége, amely keresztül megtettünk mindent tooensure a [bevezető oktatóanyag](mobile-engagement-ios-get-started.md) toointegrate hello a Mobile Engagement iOS SDK a hibrid alkalmazásban. Szükség esetén is engedélyezheti, hogy láthassa hello SDK módszerek, mivel azt elindítani őket a hello webes nézet teszt naplózás az alábbiak szerint. 
+1. Első lépésként gondoskodnia kell arról, hogy elvégezték-a [bevezető oktatóanyag](mobile-engagement-ios-get-started.md) integrálható a Mobile Engagement iOS SDK a hibrid alkalmazásban. Szükség esetén is engedélyezheti, hogy az SDK módszerek látható módon azt hajtható végre ezeket a webes nézet teszt naplózás az alábbiak szerint. 
    
         - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
            ....
              [EngagementAgent setTestLogEnabled:YES];
            ....
         }
-2. Most győződjön meg arról, hogy rendelkezik-e a hibrid app egy webes nézet egy képernyőt rajta. Toohello adhat hozzá `Main.storyboard` hello alkalmazás. 
-3. Társítsa ezt a webes nézet a **ViewController** kattintással és húzással hello webes nézet a hello View vezérlő helyszín toohello `ViewController.h` képernyőn helyezés hello alatt szerkesztése `@interface` sor. 
-4. Ezután a, egy párbeszédpanel jelenik kérő nevét. Adja meg a hello néven **webes nézet**. A `ViewController.h` fájl hello hasonlóan kell kinéznie:
+2. Most győződjön meg arról, hogy rendelkezik-e a hibrid app egy webes nézet egy képernyőt rajta. Hozzáadhat, úgy, hogy a `Main.storyboard` az alkalmazás. 
+3. Ez a webes nézet társítsa a **ViewController** kattintással és húzással a webes nézet a View vezérlő leképezni kívánt jelenetben a a `ViewController.h` képernyőn helyezés szerkesztése csak az alábbiakban a `@interface` sor. 
+4. Ezután a, egy párbeszédpanel jelenik kérő nevét. Adja meg a nevet a következőként **webes nézet**. A `ViewController.h` fájl a következő hasonlóan kell kinéznie:
    
         #import <UIKit/UIKit.h>
         #import "EngagementViewController.h"
@@ -54,7 +54,7 @@ A hello iOS híd minta, kövesse a hello alábbi lépéseket:
         @property (strong, nonatomic) IBOutlet UIWebView *webView;
    
         @end
-5. Frissítjük a hello `ViewController.m` később fájlt, de először létrehozunk hello híd fájlt, amely egy burkolót hoz keresztül néhány gyakran használt Mobile Engagement iOS SDK módszerek. Hozzon létre egy új fejlécfájlt nevű **EngagementJsExports.h** hello használó `JSExport` hello fent ismertetett mechanizmus [munkamenet](https://developer.apple.com/videos/play/wwdc2013/615) tooexpose hello natív iOS módszerek. 
+5. A Microsoft frissíti a `ViewController.m` később fájlt, de először létrehozunk a híd fájlt, amely egy burkolót hoz keresztül néhány gyakran használt Mobile Engagement iOS SDK módszerek. Hozzon létre egy új fejlécfájlt nevű **EngagementJsExports.h** használó a `JSExport` a fent ismertetett mechanizmus [munkamenet](https://developer.apple.com/videos/play/wwdc2013/615) teszi közzé a natív iOS módszerek. 
    
         #import <Foundation/Foundation.h>
         #import <JavaScriptCore/JavascriptCore.h>
@@ -72,7 +72,7 @@ A hello iOS híd minta, kövesse a hello alábbi lépéseket:
         @interface EngagementJs : NSObject <EngagementJsExports>
    
         @end
-6. Ezután létrehozunk hello hello híd fájl második részét. Hozzon létre egy nevű fájlt **EngagementJsExports.m** fog tartalmazó hello megvalósítása által hello a Mobile Engagement iOS SDK metódusok meghívása tényleges burkolók hello létrehozása. Is vegye figyelembe, hogy azt a rendszer elemzése hello `extras` hello webes nézet JavaScript átadott, és azokat, amelyek üzembe egy `NSMutableDictionary` hello Engagement SDK-metódussal hívások objektum toobe átadni.  
+6. Ezután létre fogunk hozni a híd fájl második részét. Hozzon létre egy nevű fájlt **EngagementJsExports.m** tartalmazó fogja a tényleges burkolók létrehozása a Mobile Engagement iOS SDK metódusok meghívása végrehajtására. Is vegye figyelembe, hogy azt elemzése a `extras` átadta-e a webes nézet JavaScript, és azokat, amelyek üzembe egy `NSMutableDictionary` objektumot az Engagement SDK metódushívások átadni.  
    
         #import <UIKit/UIKit.h>
         #import "EngagementAgent.h"
@@ -113,7 +113,7 @@ A hello iOS híd minta, kövesse a hello alábbi lépéseket:
         }
    
         @end
-7. Most azt visszatérhet toohello **ViewController.m** és hello kód a következő frissítést: 
+7. Most azt térjen vissza a **ViewController.m** és frissíti a következő kódot: 
    
         #import <JavaScriptCore/JavaScriptCore.h>
         #import "ViewController.h"
@@ -158,11 +158,11 @@ A hello iOS híd minta, kövesse a hello alábbi lépéseket:
         }
    
         @end
-8. Megjegyzés: hello következő mutat kapcsolatos hello **ViewController.m** fájlt:
+8. A következő szempontokat vegye figyelembe a kapcsolatos a **ViewController.m** fájlt:
    
-   * A hello `loadWebView` módszer, azt letöltése folyamatban van egy helyi HTML-fájl neve **LocalPage.html** azt a következő felülvizsgálja azonosítójú. 
-   * A hello `webViewDidFinishLoad` módszer, azt is grabbing hello `JsContext` és a burkoló osztályt társít. Ez lehetővé teszi a a burkoló hello leíró használatával SDK metódusok meghívása **EngagementJs** a hello webes nézet. 
-9. Hozzon létre egy nevű fájlt **LocalPage.html** a hello a következő kódot:
+   * Az a `loadWebView` módszer, azt letöltése folyamatban van egy helyi HTML-fájl neve **LocalPage.html** azt a következő felülvizsgálja azonosítójú. 
+   * Az a `webViewDidFinishLoad` metódust, hogy vannak grabbing a `JsContext` és a burkoló osztályt társít. Ez lehetővé teszi a a burkoló a leíró használatával SDK metódusok meghívása **EngagementJs** a a webes nézet. 
+9. Hozzon létre egy nevű fájlt **LocalPage.html** az alábbi kódra:
    
         <!doctype html>
         <html>
@@ -186,7 +186,7 @@ A hello iOS híd minta, kövesse a hello alábbi lépéseket:
                    if(input)
                    {
                        var value = input.value;
-                       // Example of how extras info can be passed with hello Engagement logs
+                       // Example of how extras info can be passed with the Engagement logs
                        var extras = '{"CustomerId":"MS290011"}';
                    }
    
@@ -248,16 +248,16 @@ A hello iOS híd minta, kövesse a hello alábbi lépéseket:
                </div>
            </body>
         </html>
-10. Megjegyzés: hello következő fenti hello HTML-fájllal kapcsolatos mutat:
+10. A fenti HTML-fájl a következő szempontokat vegye figyelembe:
     
-    * A beviteli mezőbe, ahol megadhatja a esemény, a feladat, a hiba, a AppInfo névként használt adatok toobe készletét tartalmazza. Amikor hello gomb következő tooit kattint, a rendszer telefonhívást indít toohello Javascript, ami végül hello módszerek hívásait hello híd fájl toopass a hívás toohello a Mobile Engagement iOS SDK. 
-    * Azt is címkézés néhány statikus további információ toohello események, feladatok és hibák toodemonstrate még hogyan ezt megteheti. A felesleges adatokat küldött, egy JSON karakterlánc, amely hello jelenik meg `EngagementJsExports.m` fájl elemzése, amely átadott események, feladatok, hibák küldése mellett. 
-    * A Mobile Engagement feladat hello beviteli mezőbe, adjon meg 10 másodperces futtatása, és állítsa le hello nevű kezdődött el. 
-    * A Mobile Engagement appinfo vagy címke van át a "customer_name" hello statikus adatcserekulcsokat és hello megadott hello bemeneti hello értékként hello címkével. 
-11. Hello következő futtatási hello alkalmazást, és akkor jelenik meg. Most adja meg például a következő hello vizsgálati esemény néhány nevét, majd kattintson **küldése** következő tooit. 
+    * A beviteli mezőbe, ahol megadhatja a esemény, a feladat, a hiba, a AppInfo névként használt adatok készletét tartalmazza. Amikor a látható gombra kattint, egy kérés érkezett a Javascript, ami végül az olyan módszereket hív meg felelt meg a Mobile Engagement iOS SDK hívása híd fájlból. 
+    * Azt a néhány statikus további információt az események, feladatok és bemutatják, hogyan ezt megteheti a még akkor is, hibákat vannak címkézést. A felesleges adatokat küldött, egy JSON karakterlánc, amely jelenik meg a `EngagementJsExports.m` fájl elemzése, amely átadott események, feladatok, hibák küldése mellett. 
+    * A Mobile Engagement feladat kezdődött el a nevet, adjon meg a beviteli mezőbe, futtassa a 10 másodperc, és állítsa le. 
+    * A Mobile Engagement appinfo vagy címke átadása "customer_name" statikus kulcs és a megadott bemeneti értékeként a címke értéke. 
+11. Futtassa az alkalmazást, és a következő jelenik meg. Most adja meg a következőhöz hasonló vizsgálati esemény néhány nevét, majd kattintson **küldése** látható. 
     
      ![][1]
-12. Jelenleg Ha toohello **figyelő** fülre az alkalmazás, és kattintson duplán a **események -> részletek**, láthatja, hogy ez az esemény hello statikus app-info azt küldő együtt jelenik meg. 
+12. Ha most a **figyelő** fülre az alkalmazás, és kattintson duplán a **események -> részletek**, láthatja, hogy ez az esemény jelenik meg a statikus app-info azt küldő együtt. 
     
     ![][2]
 

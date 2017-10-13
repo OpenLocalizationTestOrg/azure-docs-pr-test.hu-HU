@@ -1,6 +1,6 @@
 ---
-title: "az alkalmazások Azure AD SSO aaaConfigure |} Microsoft Docs"
-description: "Ismerje meg, hogyan kapcsolódnak az tooself-szolgáltatás a alkalmazások tooAzure Active Directory SAML és a jelszó-alapú egyszeri bejelentkezés használatával"
+title: "Az alkalmazások Azure AD egyszeri bejelentkezés konfigurálása |} Microsoft Docs"
+description: "Megtudhatja, hogyan önkiszolgáló csatlakozzon az Azure Active Directoryhoz, SAML és a jelszó-alapú egyszeri Bejelentkezést használó alkalmazások"
 services: active-directory
 author: asmalser-msft
 documentationcenter: na
@@ -15,52 +15,52 @@ ms.date: 07/20/2017
 ms.author: asmalser
 ms.reviewer: luleon
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 002a19a6c7ad25ea2f3b9c6a7c7874ed2be23cce
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9049f526243cb4659aaf86b3d31146abe8f5f3ef
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="configuring-single-sign-on-tooapplications-that-are-not-in-hello-azure-active-directory-application-gallery"></a>Egyszeri bejelentkezés tooapplications, amelyek nincsenek hello Azure Active Directory alkalmazáskatalógusában konfigurálása
-Ez a cikk egy szolgáltatás, amely lehetővé teszi a rendszergazdák tooconfigure egyszeri bejelentkezés tooapplications nem található meg a hello Azure Active Directory-alkalmazásgyűjtemény tárgya *kód írása nélkül*. Ez a funkció a 2015. November 18. a technical Preview-ban jelent meg, és szerepel a [Azure Active Directory Premium](active-directory-editions.md). Ha ehelyett keresett fejlesztői útmutatás toointegrate egyéni alkalmazások az Azure AD kód, lásd: [hitelesítési forgatókönyvek az Azure AD](active-directory-authentication-scenarios.md).
+# <a name="configuring-single-sign-on-to-applications-that-are-not-in-the-azure-active-directory-application-gallery"></a>Egyszeri bejelentkezés konfigurálása az Azure Active Directory alkalmazáskatalógusában nem szereplő alkalmazásokhoz
+Ez a cikk egy szolgáltatás, amely lehetővé teszi a rendszergazdák egyszeri bejelentkezés alkalmazásokhoz nem szerepel az Azure Active Directory-alkalmazásgyűjtemény konfigurálása tárgya *kód írása nélkül*. Ez a funkció a 2015. November 18. a technical Preview-ban jelent meg, és szerepel a [Azure Active Directory Premium](active-directory-editions.md). Ha ehelyett fejlesztői útmutató az egyéni alkalmazások integrálása az Azure AD kód keres, tekintse meg [hitelesítési forgatókönyvek az Azure AD](active-directory-authentication-scenarios.md).
 
-hello Azure Active Directory alkalmazáskatalógusában felsorolja az alkalmazások, amelyről ismert, toosupport egy formája, amelyet az egyszeri bejelentkezés az Azure Active Directoryval, a [Ez a cikk](active-directory-appssoaccess-whatis.md). (A egy informatikai szakember vagy a rendszer integráló a szervezet) megkeresése hello alkalmazás meg tooconnect, elkezdheti kövesse hello részletes utasításokkal hello Azure felügyeleti portál tooenable egyszeri bejelentkezés állnak rendelkezésre.
+Az Azure Active Directory alkalmazáskatalógusában felsorolja alkalmazásokat, amelyek kat közismerten támogató egy formája, amelyet az egyszeri bejelentkezés az Azure Active Directoryval, a [Ez a cikk](active-directory-appssoaccess-whatis.md). (A egy informatikai szakember vagy a rendszer integráló a szervezet) megkeresése az alkalmazáshoz, amelyhez csatlakozni, elkezdheti által kövesse a részletes útmutatás a jelenik meg az Azure felügyeleti portálon való egyszeri bejelentkezés engedélyezése.
 
 Az ügyfelek [Azure Active Directory Premium](active-directory-editions.md) licencek is ezekhez a kiegészítő lehetőségekhez beolvasása:
 
 * Önkiszolgáló integrációs bármely alkalmazás, amely támogatja az SAML 2.0 identitás-szolgáltatóktól (a Szolgáltató által kezdeményezett vagy a kiállító terjesztési hely által kezdeményezett)
 * A webes alkalmazás, amelynek használatával egy bejelentkezési lap HTML-alapú önkiszolgáló integrációs [jelszó-alapú egyszeri bejelentkezés](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)
-* Kapcsolat az önkiszolgáló felhasználó kialakítási hello SCIM protokollt használó alkalmazások ([itt leírt](active-directory-scim-provisioning.md))
-* Képes tooadd hivatkozásait hello tooany alkalmazás [Office 365 alkalmazás indító](https://blogs.office.com/2014/10/16/organize-office-365-new-app-launcher-2/) vagy hello [Azure AD hozzáférési panel](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users)
+* Kapcsolat az önkiszolgáló felhasználó történő üzembe helyezéséhez a SCIM protokollt használó alkalmazások ([itt leírt](active-directory-scim-provisioning.md))
+* Hivatkozások a bármely alkalmazás hozzáadása a [Office 365 alkalmazás indító](https://blogs.office.com/2014/10/16/organize-office-365-new-app-launcher-2/) vagy a [Azure AD hozzáférési panel](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users)
 
-Ez magában foglalhatja nem csak a SaaS-alkalmazások használják, de még nem volt az Azure AD application gallery toohello előre telepített, de a szervezet szabályozhatja, hello felhőalapú vagy helyszíni tooservers központilag telepített külső webes alkalmazásokhoz.
+Ez magában foglalhatja nem csak a SaaS-alkalmazásokhoz, amelyek használják, de rendelkezik nem még nincs előre telepített az Azure AD alkalmazás gyűjteményébe, de külső webes alkalmazásokhoz, amelyek azt szabályozzák, vagy a felhőben, vagy a helyszíni kiszolgálók alkalmazva van a szervezet.
 
 Ezek a képességek, más néven *app integrációs sablonok*, adja meg a szabvány alapú csatlakozási pontok SAML, SCIM vagy űrlapalapú hitelesítést támogató alkalmazások esetében, és rugalmas lehetőségeket és a beállításokat széles körű több alkalmazáshoz is kompatibilisek. 
 
 ## <a name="adding-an-unlisted-application"></a>Egy fel nem sorolt alkalmazás hozzáadása
-egy alkalmazás integrációs sablonnal, egy alkalmazás tooconnect jelentkezzen be az Azure Active Directory rendszergazdai fiókkal hello Azure felügyeleti portálra, és keresse meg a toohello **Active Directory > [Directory] > alkalmazások**szakaszban jelölje be **Hozzáadás**, majd **alkalmazás hozzáadása hello gyűjteményből**. 
+Alkalmazás-integráció sablonnal alkalmazás csatlakoztatása az Azure felügyeleti portálon az Azure Active Directory rendszergazdai fiókkal bejelentkezni, és keresse meg a a **Active Directory > [Directory] > alkalmazások** szakaszban jelölje be **Hozzáadás**, majd **hozzáadhat egy alkalmazást a katalógusból**. 
 
 ![][1]
 
-Hello alkalmazásgyűjtemény, hozzáadhat egy fel nem sorolt alkalmazáshoz hello **egyéni** hello bal oldali vagy hello kiválasztásával kategóriába **fel nem sorolt alkalmazás hozzáadása** hivatkozás található hello keresési eredmények, ha a kívánt alkalmazást nem található. Az alkalmazás egy név beírása után hello egyszeri bejelentkezésre vonatkozó beállításokat és viselkedése is konfigurálhatja. 
+A gyűjtemény, adhat hozzá egy fel nem sorolt alkalmazás használata a **egyéni** kategória a bal oldali vagy kiválasztásával a **fel nem sorolt alkalmazás hozzáadása** hivatkozásra, ha a kívánt alkalmazás nem volt látható a keresési eredmények között található. Után írja be az alkalmazás nevét, az egyszeri bejelentkezésre vonatkozó beállításokat és viselkedése is konfigurálhatja. 
 
-**Egyszerű ötlet**: hello keresési funkció toocheck toosee ajánlott eljárásként használja, ha hello alkalmazáskatalógusában hello alkalmazás már létezik. Ha hello app található, és annak leírását említi "egyszeri bejelentkezés", majd hello alkalmazás már támogatja az összevont egyszeri bejelentkezést. 
+**Egyszerű ötlet**: ajánlott eljárásként, a keresési funkció segítségével ellenőrizze, hogy az alkalmazás már létezik-e az alkalmazás gyűjteménye. Ha az alkalmazás megtalálható-e, és annak leírását akkor említi, "az egyszeri bejelentkezés", akkor az alkalmazás már támogatja az összevont egyszeri bejelentkezést. 
 
 ![][2]
 
-Egy alkalmazás hozzáadása így biztosít egy nagyon hasonló élményt toohello egy előre integrált alkalmazások érhető el. Jelölje be toostart **konfigurálása egyszeri bejelentkezéshez**. hello következő képernyőn hello konfigurálása egyszeri bejelentkezéshez, három lehetséges a következő hello a következő részekben ismertetett mutatja be.
+Az alkalmazás így hozzáadása – ebben a rendelkezésre álló előre integrált alkalmazások nagyon hasonló élményt nyújt. Elindításához válassza ki a **konfigurálása egyszeri bejelentkezéshez**. A következő képernyő mutatja be a következő három lehetséges konfigurálása egyszeri bejelentkezéshez, aminek leírása az alábbi szakaszokban található.
 
 ![][3]
 
 ## <a name="azure-ad-single-sign-on"></a>Az Azure AD-egyszeri bejelentkezés
-Ez a beállítás tooconfigure hello alkalmazáshoz a SAML-alapú hitelesítés kiválasztása Ehhez szükséges, amely hello alkalmazástámogatási SAML 2.0, és információkat gyűjtenek a hogyan toouse hello SAML képességek hello alkalmazás folytatása előtt. Kiválasztása után **következő**, rákérdezéses tooenter három különböző URL-címek toohello SAML végpontok hello alkalmazáshoz megfelelő lesz. 
+Válassza ezt a beállítást, az alkalmazás SAML-alapú hitelesítés beállítása. Ehhez szükséges, hogy az alkalmazás támogatási SAML 2.0, és információkat gyűjtenek a SAML képességeit, a folytatás előtt az alkalmazás használatáról. Miután kiválasztott **következő**, három különböző URL-eket a SAML-végpontok az alkalmazás megfelelő megadását kéri. 
 
 ![][4]
 
 Ezek a következők:
 
-* **Bejelentkezés az URL-címe (Szolgáltató által kezdeményezett csak)** – amennyiben hello felhasználói toosign a toothis alkalmazás kerül. Ha hello alkalmazás van konfigurálva tooperform szolgáltatás szolgáltató által kezdeményezett egyszeri bejelentkezés, majd amikor a felhasználók megnyitják toothis URL-címe, hello szolgáltató lesz hello szükséges átirányítást tooAzure AD tooauthenticate, és jelentkezzen be a hello felhasználó. Ha ez a mező nem üres, az Azure AD az URL-cím toolaunch hello alkalmazás az Office 365 és Azure AD hozzáférési Panel hello fogja használni. Ha ez a mező ommited, akkor az Azure AD ehelyett hajtsa végre az identitásszolgáltató-amikor hello indításától Office 365, Azure AD hozzáférési Panel hello vagy az Azure AD hello egyetlen kezdeményezett bejelentkezés bejelentkezés URL-címe (copiable hello irányítópult lapján).
-* **Kiállítói URL-címe** -hello kibocsátó URL-cím egyedileg kell azonosítania hello alkalmazás, a mely egyszeri bejelentkezés konfigurálása történik. Ez az, hogy az Azure AD vissza tooapplication küldi hello, hello érték **célközönség** hello SAML-jogkivonat és hello alkalmazás paraméter várt toovalidate azt. Ez az érték jelenik meg is hello **Entitásazonosító** bármely hello alkalmazás által biztosított SAML-metaadatokban. Hello alkalmazás SAML dokumentációjában talál részletes információt mi Entitásazonosító, vagy a célközönség érték. Alább látható egy példa hogyan hello célközönség URL-cím hello SAML-jogkivonat visszaadott toohello alkalmazás jelenik meg:
+* **Bejelentkezés az URL-címe (Szolgáltató által kezdeményezett csak)** – Ha a felhasználó megnyitja a jelentkezik be az alkalmazás számára. Ha az alkalmazás végre szolgáltatás szolgáltató által kezdeményezett egyszeri bejelentkezéshez, majd amikor a felhasználók megnyitják az URL-cím van konfigurálva, a szolgáltató és jelentkezzen be a felhasználó hitelesítéséhez az Azure AD fog tenni a szükséges átirányítást. Ha ez a mező nem üres, majd az Azure AD fogja használni az Office 365 és az Azure AD hozzáférési Panel az alkalmazás elindításához az URL-cím. Ha ez a mező ommited, akkor az Azure AD ehelyett hajtsa végre az identitásszolgáltató – amikor az alkalmazás elindul az Office 365, az Azure AD hozzáférési Panel vagy az Azure ad-bejelentkezés kezdeményezett egyszeri bejelentkezési URL-cím (vagy az irányítópult fület a copiable).
+* **Kiállítói URL-címe** -a kibocsátó URL-cím egyedileg kell azonosítania az alkalmazást, a mely egyszeri bejelentkezés konfigurálása történik. Ez az érték, amely az Azure AD küld vissza az alkalmazásra, amely a **célközönség** a SAML-jogkivonat és az alkalmazás lemezszámmal érvényesíti. Ez az érték is frissült a **Entitásazonosító** bármely, az alkalmazás által biztosított SAML metaadatokban. Az alkalmazás SAML dokumentációjában talál részletes információt mi Entitásazonosító, vagy a célközönség érték. Alább látható egy példa a célközönség URL-cím hogyan jelenik meg az adott vissza az alkalmazásba SAML-jogkivonat:
 
 ```
     <Subject>
@@ -74,63 +74,63 @@ Ezek a következők:
       </Conditions>
 ```
 
-* **Válasz URL-cím** -hello válasz URL-címe, ahol hello alkalmazás vár tooreceive hello SAML-jogkivonat. Ez egyben hivatkozott tooas hello **helyességi feltétel fogyasztói Service (ACS) URL-cím**. Ellenőrizze a hello alkalmazás SAML dokumentációjában talál részletes információt az SAML-jogkivonat válasz URL-CÍMEN és ACS URL-címe van.
-  Miután ezek megadott, kattintson a **következő** tooproceed toohello következő képernyőn. Ezen a képernyőn milyen igények toobe állítja be a hello alkalmazás ügyféloldali tooenable tooaccept egy SAML-jogkivonatot az Azure AD tájékoztatást. 
+* **Válasz URL-cím** -válasz URL-címe, ahol az alkalmazás fogadni az SAML-jogkivonat vár. Ez más néven a a **helyességi feltétel fogyasztói Service (ACS) URL-cím**. Ellenőrizze az alkalmazás SAML dokumentációjában talál részletes információt a SAML token válasz és ACS URL-címe van.
+  Miután ezek megadott, kattintson a **következő** folytassa a következő képernyő. Ez a képernyő mit kell megadni az alkalmazás oldalon engedélyezze, hogy fogadja el az Azure AD SAML-jogkivonatból információkat biztosít. 
 
 ![][5]
 
-Mely értékei szükséges hello alkalmazástól függően változnak, ezért ellenőrizze az alkalmazás hello SAML dokumentációjában. Hello **bejelentkezés** és **kijelentkezési** szolgáltatás URL-címe mindkét megoldásához toohello azonos végpontot, amely hello SAML kéréskezeléshez végpont esetében az Azure AD példányával. hello kiállítójának URL-címe hello érték hello "Kiállító" hello SAML-jogkivonat kiállított toohello alkalmazás belül jelenik meg. 
+Mely értékei szükségesek az alkalmazástól függően változnak, ezért ellenőrizze az alkalmazás SAML dokumentációjában találhatók. A **bejelentkezés** és **kijelentkezési** URL-címét egyaránt oldja fel a azonos végpont, amely az SAML-kéréskezeléshez végpont az az Azure AD példányával. A kiállítói URL-címe az érték, amely akkor jelenik meg, mint a "kiállító" belül a SAML-jogkivonat ki az alkalmazáshoz. 
 
-Az alkalmazás konfigurálása után kattintson **következő** gombra, majd hello **Complete** tooclose hello párbeszédpanel. 
+Az alkalmazás konfigurálása után kattintson **következő** gombra, majd a **Complete** bezárhatja a párbeszédpanelt. 
 
-## <a name="assigning-users-and-groups-tooyour-saml-application"></a>Felhasználók és csoportok tooyour SAML alkalmazás hozzárendelése
-Miután az alkalmazás már konfigurált toouse az Azure AD egy SAML-alapú identitás-szolgáltatóként, majd már majdnem kész tootest. Biztonsági ellenőrzés, mint az Azure AD engedélyezi azok toosign hello alkalmazásba kivéve kaptak az Azure AD hozzáférési jogkivonat nem állítanak ki. Felhasználók adható hozzáférés közvetlenül, vagy egy csoportot, amely tagja. 
+## <a name="assigning-users-and-groups-to-your-saml-application"></a>Felhasználók és csoportok hozzárendelése az SAML-alkalmazás
+Miután az alkalmazás konfigurációja használhatja az Azure Active Directory SAML-alapú identitás-szolgáltatóként, majd azt már majdnem kész teszteléséhez. Biztonsági ellenőrzés, mint az Azure AD lehetővé teheti, hogy jelentkezzen be az alkalmazáshoz, kivéve, ha azok nem biztosít hozzáférést az Azure AD jogkivonat nem állítanak ki. Felhasználók adható hozzáférés közvetlenül, vagy egy csoportot, amely tagja. 
 
-egy felhasználó vagy csoport tooyour alkalmazás tooassign kattintson hello **felhasználók hozzárendelése** gombra. Válassza ki a hello felhasználó vagy csoport tooassign kívánja, és válassza a hello **hozzárendelése** gombra. 
+Az alkalmazás hozzárendelése egy felhasználóhoz vagy csoporthoz, kattintson a **felhasználók hozzárendelése** gombra. Válassza ki a felhasználó vagy csoport szeretne rendelni, majd válassza ki a **hozzárendelése** gombra. 
 
 ![][6]
 
-Egy felhasználói hozzárendelése lehetővé teszi az Azure AD tooissue hello felhasználó, valamint az alkalmazás tooappear mozaikokra hello felhasználói hozzáférési panel, amely egy token. Egy alkalmazás csempe is megjelenik a hello Office 365 alkalmazásindító, ha hello felhasználó által használt Office 365. 
+A felhasználó hozzárendelése lehetővé teszi a felhasználó, valamint az alkalmazás megjelenik a felhasználói hozzáférési Panel egy csempe, amely a jogkivonatok kiállítása az Azure AD. Ha a felhasználó által használt Office 365 egy alkalmazás csempe is megjelennek az Office 365 alkalmazásindító. 
 
-Az alkalmazások hello hello csempe emblémát tölthet **embléma feltöltéséhez** hello gombjára **konfigurálása** hello alkalmazás lapon. 
+Feltöltheti a csempe emblémát használó alkalmazás a **embléma feltöltéséhez** gombra a **konfigurálása** fülre az alkalmazáshoz. 
 
-### <a name="customizing-hello-claims-issued-in-hello-saml-token"></a>Hello SAML-jogkivonat kiállított hello jogcímek testreszabása
-Amikor a felhasználók hitelesítése toohello alkalmazás, az Azure AD egy SAML token toohello alkalmazást, amely tartalmazza az adatokat (vagy jogcímeket) állít ki, amely egyedileg azonosítja hello felhasználóról. Alapértelmezés szerint ez magában foglalja a hello felhasználói felhasználónév, e-mail címét, Utónév és Vezetéknév. 
+### <a name="customizing-the-claims-issued-in-the-saml-token"></a>A SAML-jogkivonat kiállított jogcímek testreszabása
+Amikor egy felhasználó hitelesíti magát az alkalmazást, az Azure AD fog kiadni egy SAML-jogkivonat az adatokat (vagy jogcímeket) tartalmazó alkalmazás, amely egyedileg azonosítja a felhasználóról. Alapértelmezés szerint ez tartalmazza a felhasználó felhasználónevét, e-mail cím, Utónév és Vezetéknév. 
 
-Megtekintheti vagy hello hello SAML-jogkivonat toohello alkalmazást küldi hello jogcímek szerkesztése **attribútumok** fülre. 
+Megtekintheti vagy szerkesztheti a jogcímek küldése az alkalmazásnak a SAML-jogkivonat a **attribútumok** fülre. 
 
 ![][7]
 
-Miért szükség lehet a hello SAML-jogkivonat kiadott tooedit hello jogcímeket két lehetséges oka lehet: •hello alkalmazás írása toorequire egy másik jogcím URI-azonosítók beállítása vagy a jogcím-értékek •Your alkalmazás telepítve van a hello igényel NameIdentifier jogcím toobe értéktől eltérő hello felhasználónév (AKA egyszerű felhasználónév) az Azure Active Directoryban tárolja. 
+Előfordulhat, hogy miért szerkesztése a SAML-jogkivonat kiadott jogcímeket kell két lehetséges oka lehet: •a alkalmazás írt eltérő szabályzatkészletet jogcím URI-azonosítók, vagy a jogcím-értékek •Your alkalmazás telepítve lett az NameIdentifier jogcím igényel az Azure Active Directoryban tárolja (AKA egyszerű felhasználónév) felhasználónév nem lehet. 
 
-Hogyan tooadd és Szerkesztés jogcím-forgatókönyvek esetén információkért tekintse meg a [jogcímek testreszabása foglalkozó](active-directory-saml-claims-customization.md). 
+Hozzáadása és szerkesztése a jogcímek forgatókönyvek esetén információkért tekintse meg a [jogcímek testreszabása foglalkozó](active-directory-saml-claims-customization.md). 
 
-### <a name="testing-hello-saml-application"></a>Hello SAML-alkalmazás tesztelése
-Hello SAML-alapú URL-címek és a tanúsítvány konfigurálása az Azure AD- és hello alkalmazásban felhasználókhoz vagy csoportokhoz van rendelve toohello alkalmazás az Azure és hello jogcímek felülvizsgálata és szerkeszthető, ha szükséges, majd a hello felhasználó kész toosign hello be az alkalmazás. 
+### <a name="testing-the-saml-application"></a>A SAML-alkalmazás tesztelése
+A SAML-alapú URL-címek és a tanúsítvány konfigurálása az Azure AD és az alkalmazás Azure, az alkalmazáshoz hozzárendelt felhasználók vagy csoportok és jogcímek felülvizsgálata és szerkeszthető, ha szükséges, majd jelentkezzen be az alkalmazás készen áll a felhasználó. 
 
-tootest, egyszerűen csak jelentkezzen be hello Azure AD hozzáférési panel a https://myapps.microsoft.com toohello alkalmazás hozzárendelt felhasználói fiókkal, és kattintson hello mozaikokon hello alkalmazás tookick hello bejelentkezési folyamat egyetlen ki. Alternatív megoldásként tallózással közvetlenül toohello bejelentkezési URL-cím hello alkalmazás és a bejelentkezés onnan. 
+Egyszerűen jelentkezzen be az Azure AD hozzáférési panel https://myapps.microsoft.com az alkalmazáshoz hozzárendelt felhasználói fiókkal, teszteléséhez, és kattintson a csempére a bejelentkezési folyamat egyetlen indítsa az alkalmazásra vonatkozóan. Alternatív megoldásként tallózással is kikeresheti közvetlenül azt a bejelentkezési URL-címet az alkalmazás és a bejelentkezési onnan. 
 
-Hibakeresési tippeket, megjelenik ez [cikkünket toodebug SAML-alapú egyszeri bejelentkezés tooapplications](active-directory-saml-debugging.md) 
+Hibakeresési tippeket, megjelenik ez [cikk az SAML-alapú egyszeri bejelentkezést alkalmazások hibakeresése](active-directory-saml-debugging.md) 
 
 ## <a name="password-single-sign-on"></a>Jelszó egyszeri bejelentkezést.
-Válassza ezt a beállítást tooconfigure [jelszó-alapú egyszeri bejelentkezést](active-directory-appssoaccess-whatis.md) , amely rendelkezik egy bejelentkezési lap HTML webalkalmazás. Egyszeri jelszó alapú is vaulting, hivatkozott tooas jelszó toomanage felhasználói hozzáférés és a jelszavak tooweb alkalmazások, amelyek nem támogatják az identitás-összevonási lehetővé teszi. Akkor célszerű is helyzetekben, amikor több felhasználónak kell tooshare ugyanazt a fiókot, például a szervezete tooyour közösségi app fiókok. 
+Válassza ezt a lehetőséget választva [jelszó-alapú egyszeri bejelentkezést](active-directory-appssoaccess-whatis.md) , amely rendelkezik egy bejelentkezési lap HTML webalkalmazás. Egyszeri jelszó alapú is hívják jelszó vaulting, lehetővé teszi a felhasználói hozzáférés és a webes alkalmazásokhoz, amelyek nem támogatják az identitás-összevonási jelszavak kezeléséhez. Akkor célszerű is forgatókönyvek, ahol több felhasználó meg szeretné osztani ugyanazt a fiókot, például a szervezet közösségi app fiókokhoz. 
 
-Kiválasztása után **következő**, hello alkalmazás webalapú bejelentkezési oldal felszólító tooenter hello URL-cím lesz. Vegye figyelembe, hogy hello felhasználónév és jelszó bemeneti mezőket tartalmazó hello oldalon kell lennie. Többször megadott, az Azure AD egy folyamat tooparse hello bejelentkezési oldal az a felhasználónév megadásához és a jelszavak beírására kezdődik. Ha hello folyamat sikertelen, majd azt végigvezeti Önt egy másik folyamat telepíthet egy bővítmény (igényli az Internet Explorer, a Chrome vagy a Firefox), amely lehetővé teszi a toomanually rögzítési hello mezőket.
+Miután kiválasztott **következő**, kérni fogja az alkalmazás webes bejelentkezési lap URL-címet. Vegye figyelembe, hogy a felhasználónév és jelszó bemeneti mezőket tartalmazó oldalon kell lennie. Ha meg van adva, az Azure AD elindítja elemzése a bejelentkezési lapon adjon meg egy felhasználónevet és jelszót adjon meg egy folyamatot. Ha a folyamat nem sikeres, majd azt végigvezeti Önt egy másik folyamat telepíthet egy bővítmény (igényli az Internet Explorer, a Chrome vagy a Firefox), amely lehetővé teszi a mezők manuálisan rögzítéséhez.
 
-Amennyiben hello bejelentkezési oldal rögzítése, felhasználók és csoportok rendelt és credential házirendeket állíthat be hasonlóan rendszeres [jelszó SSO alkalmazások](active-directory-appssoaccess-whatis.md).
+Amennyiben a bejelentkezési oldal rögzítése, felhasználók és csoportok rendelt és credential házirendeket állíthat be hasonlóan rendszeres [jelszó SSO alkalmazások](active-directory-appssoaccess-whatis.md).
 
-Megjegyzés: Az alkalmazások hello hello csempe emblémát tölthet **embléma feltöltéséhez** hello gombjára **konfigurálása** hello alkalmazás lapon. 
+Megjegyzés: Az alkalmazás használatára vonatkozó egy csempeembléma feltöltheti a **embléma feltöltéséhez** gombra a **konfigurálása** fülre az alkalmazáshoz. 
 
 ## <a name="existing-single-sign-on"></a>Meglévő egyszeri bejelentkezést.
-Válassza ezt a beállítást tooadd egy hivatkozás tooan alkalmazás tooyour szervezet Azure AD hozzáférési Panel vagy az Office 365 portálra. Azure AD hitelesítésében helyett a tooadd hivatkozások toocustom webes alkalmazásokat, amelyek jelenleg használják az Azure Active Directory összevonási szolgáltatások (vagy más összevonási szolgáltatásból) is használhatja. Vagy mélyhivatkozással toospecific SharePoint-lapokat vagy más, hogy csak szeretné tooappear a felhasználói hozzáférés panelek a weblapok is hozzáadhat. 
+Válassza ezt a beállítást, a szervezet Azure AD hozzáférési Panel vagy az Office 365 portál alkalmazásokra mutató hivatkozás hozzáadása. Ezzel hivatkozások felvétele egyéni webes alkalmazásokat, amelyek jelenleg használják az Azure Active Directory összevonási szolgáltatások (vagy más összevonási szolgáltatásból) helyett az Azure AD használatára a hitelesítéshez. Vagy mélyhivatkozással hozzáadása adott SharePoint-lapokat vagy más szeretné jelennek meg a felhasználói hozzáférés panelek weblapokat. 
 
-Kiválasztása után **következő**, rákérdezéses tooenter hello URL-CÍMÉT a hello alkalmazás toolink lesz. Ezt követően felhasználókhoz és csoportokhoz rendelt toohello alkalmazásról, így hello alkalmazás tooappear hatására a hello [Office 365 alkalmazás indító](https://blogs.office.com/2014/10/16/organize-office-365-new-app-launcher-2/) vagy hello [Azure AD hozzáférési panel](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users) azoknak a felhasználóknak.
+Miután kiválasztott **következő**, kérni fogja a csatolni kívánt alkalmazás URL-címet. Ezt követően felhasználókhoz és csoportokhoz rendelt az alkalmazásról, így az alkalmazás megjelenik a [Office 365 alkalmazás indító](https://blogs.office.com/2014/10/16/organize-office-365-new-app-launcher-2/) vagy a [Azure AD hozzáférési panel](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users) azoknak a felhasználóknak.
 
-Megjegyzés: Az alkalmazások hello hello csempe emblémát tölthet **embléma feltöltéséhez** hello gombjára **konfigurálása** hello alkalmazás lapon.
+Megjegyzés: Az alkalmazás használatára vonatkozó egy csempeembléma feltöltheti a **embléma feltöltéséhez** gombra a **konfigurálása** fülre az alkalmazáshoz.
 
 ## <a name="related-articles"></a>Kapcsolódó cikkek
 * [Az Azure Active Directory segítségével végzett alkalmazásfelügyeletre vonatkozó cikkek jegyzéke](active-directory-apps-index.md)
-* [Hogyan tooCustomize jogcím a kiállított hello SAML-jogkivonat Pre-Integrated alkalmazások](active-directory-saml-claims-customization.md)
+* [A SAML-jogkivonat előzetesen beépített alkalmazások számára kiállított jogcímek testreszabása](active-directory-saml-claims-customization.md)
 * [Hibaelhárítási SAML-alapú egyszeri bejelentkezést.](active-directory-saml-debugging.md)
 
 <!--Image references-->

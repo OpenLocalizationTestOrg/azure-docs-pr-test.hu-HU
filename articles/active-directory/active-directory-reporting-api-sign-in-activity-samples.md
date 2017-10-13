@@ -1,6 +1,6 @@
 ---
-title: "az Active Directory-bejelentkezés aaaAzure tevékenység jelentés API minták |} Microsoft Docs"
-description: "Hogyan a tooget hello Azure Active Directory Reporting API használatába"
+title: "Azure Active Directory bejelentkezési tevékenység jelentés API-minták |} Microsoft Docs"
+description: "Útmutató az Azure Active Directory Reporting API használatába"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,28 +15,28 @@ ms.workload: identity
 ms.date: 07/15/2017
 ms.author: dhanyahk;markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: d4fbbea95fe0b52828673b997681ae37481e21bc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7fc2b59fe37ed2ffe85925c457300ef8fd83c3c7
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-active-directory-sign-in-activity-report-api-samples"></a>Azure Active Directory bejelentkezési tevékenység jelentés API-minták
-Ez a témakör hello Azure Active Directoryval kapcsolatos témakörök gyűjteményét része reporting API-val.  
-Az Azure AD jelentéskészítési lehetőséget biztosít, amely lehetővé teszi az API-k tooaccess bejelentkezési tevékenység adatok használata a kódban, illetve a kapcsolódó eszközök.  
-hello ebben a témakörben hatóköre példával kódaláírással a hello tooprovide **bejelentkezés tevékenység API**.
+Ez a témakör az Azure Active Directory reporting API-val kapcsolatos témakörök gyűjteményét részét képezi.  
+Az Azure AD jelentéskészítési lehetőséget biztosít az API-k, amely lehetővé teszi a kód vagy a kapcsolódó eszközök bejelentkezési tevékenység adatok eléréséhez.  
+Ez a témakör a hatóköre használatával látják el a mintakódot az **bejelentkezés tevékenység API**.
 
 Lásd:
 
 * [A naplók](active-directory-reporting-azure-portal.md#activity-reports) további információ
-* [Ismerkedés az Azure Active Directory Reporting API hello](active-directory-reporting-api-getting-started.md) hello reporting API-val kapcsolatos további információk.
+* [Bevezetés az Azure Active Directory Reporting API használatába](active-directory-reporting-api-getting-started.md) a reporting API-val kapcsolatos további információk.
 
 
 ## <a name="prerequisites"></a>Előfeltételek
-Hello minták ebben a témakörben használata előtt kell toocomplete hello [Előfeltételek tooaccess hello Azure AD jelentéskészítési API](active-directory-reporting-api-prerequisites.md).  
+A minták ebben a témakörben használata előtt végre kell hajtania a [Előfeltételek az Azure AD reporting API eléréséhez](active-directory-reporting-api-prerequisites.md).  
 
 ## <a name="powershell-script"></a>PowerShell-szkript
-    # This script will require hello Web Application and permissions setup in Azure Active Directory
+    # This script will require the Web Application and permissions setup in Azure Active Directory
     $ClientID       = "<clientId>"             # Should be a ~35 character string insert your info here
     $ClientSecret   = "<clientSecret>"         # Should be a ~44 character string insert your info here
     $loginURL       = "https://login.microsoftonline.com/"
@@ -63,7 +63,7 @@ Hello minták ebben a témakörben használata előtt kell toocomplete hello [El
     Do{
         Write-Output "Fetching data using Uri: $url"
         $myReport = (Invoke-WebRequest -UseBasicParsing -Headers $headerParams -Uri $url)
-        Write-Output "Save hello output tooa file SigninActivities$i.json"
+        Write-Output "Save the output to a file SigninActivities$i.json"
         Write-Output "---------------------------------------------"
         $myReport.Content | Out-File -FilePath SigninActivities$i.json -Force
         $url = ($myReport.Content | ConvertFrom-Json).'@odata.nextLink'
@@ -78,13 +78,13 @@ Hello minták ebben a témakörben használata előtt kell toocomplete hello [El
 
 
 
-## <a name="executing-hello-script"></a>Hello-parancsprogram végrehajtása
-Egyszer hello parancsfájl szerkesztése, fut azt, és ellenőrizze, hogy hello várt hello naplózási naplók jelentés adatokat ad vissza.
+## <a name="executing-the-script"></a>A parancsfájl végrehajtása
+Miután a parancsfájl szerkesztése, futtassa, és győződjön meg arról, hogy a naplózás a várt adatokat naplózza a jelentés adja vissza.
 
-hello parancsfájl kimeneti hello bejelentkezési jelentés JSON formátumban ad vissza. Emellett létrehoz egy `SigninActivities.json` hello fájlt azonos kimeneti. Hello parancsfájl tooreturn adatok más jelentések, és nem kell hello formátumokban megjegyzésbe módosításával kísérletezhet.
+A parancsfájl kimenete a bejelentkezési jelentés JSON formátumban ad vissza. Emellett létrehoz egy `SigninActivities.json` az azonos kimenethez fájlt. Ha adatokat más jelentések, és a kimeneti formátum, amely nem kell megjegyzésbe a parancsfájl módosításával kísérletezhet.
 
 ## <a name="next-steps"></a>Következő lépések
-* Ebben a témakörben toocustomize hello minták szeretné használni? Tekintse meg a hello [Azure Active Directory bejelentkezési tevékenység API-referencia](active-directory-reporting-api-sign-in-activity-reference.md). 
-* Ha azt szeretné, hogy a teljes áttekintése, használatával toosee hello Azure Active Directory reporting API-val, lásd: [Ismerkedés az Azure Active Directory reporting API-val hello](active-directory-reporting-api-getting-started.md).
-* Ha szeretne további információk az Azure Active Directory reporting toofind, tekintse meg a hello [Azure Active Directory-jelentéskészítés – útmutató](active-directory-reporting-guide.md).  
+* Szeretné testre szabhatja a minták ebben a témakörben? Tekintse meg a [Azure Active Directory bejelentkezési tevékenység API-referencia](active-directory-reporting-api-sign-in-activity-reference.md). 
+* Ha azt szeretné, hogy teljes áttekintése, az Azure Active Directory reporting API használatával [Bevezetés az Azure Active Directory reporting API használatába](active-directory-reporting-api-getting-started.md).
+* Ha meg szeretne többet megtudni az Azure Active Directory reporting, tekintse meg a [Azure Active Directory-jelentéskészítés – útmutató](active-directory-reporting-guide.md).  
 

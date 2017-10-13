@@ -1,5 +1,5 @@
 ---
-title: "aaaAdd hello Azure SQL Database-összekötőt a Logic Apps a |} Microsoft Docs"
+title: "Adja hozzá az Azure SQL Database-összekötőt a Logic Apps |} Microsoft Docs"
 description: "REST API-paraméterek az Azure SQL Database-összekötő áttekintése"
 services: 
 documentationcenter: 
@@ -15,61 +15,61 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: a9ca0f446d05dc00f310a908eee8d50e41fcd82b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a3d5cb909dbfcb00f3fbfa0165bb6cd58eb18688
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="get-started-with-hello-azure-sql-database-connector"></a>Ismerkedés az Azure SQL Database összekötő hello
-Hello Azure SQL Database-összekötő használatával hozhat létre a munkafolyamatok a szervezet számára, hogy a tábla adatainak kezelése. 
+# <a name="get-started-with-the-azure-sql-database-connector"></a>Ismerkedés az Azure SQL Database-összekötő
+Az Azure SQL Database-összekötővel, munkafolyamatokat a szervezet számára, hogy a tábla adatainak kezelése. 
 
 Az SQL Database meg:
 
-* A munkafolyamat egy új ügyfél tooa ügyfelek adatbázist, vagy frissítésétől egészen a rendelések adatbázisban egy rendelés hozhat létre.
-* Műveletek tooget soraiban levő adatok használni, új sor beszúrására és még akkor is törli. Például egy rekord létrehozásakor a Dynamics CRM Online (trigger), majd sor beszúrása egy Azure SQL Database (a műveletet). 
+* A munkafolyamat egy új ügyfél ügyfelek adatbázishoz, vagy frissítésétől egészen a rendelések adatbázisban egy rendelés hozhat létre.
+* Műveletek segítségével az adatok egy sor lekéréséhez, új sor beszúrására, és akkor is törli. Például egy rekord létrehozásakor a Dynamics CRM Online (trigger), majd sor beszúrása egy Azure SQL Database (a műveletet). 
 
-Ez a témakör bemutatja, hogyan toouse hello SQL adatbázis-összekötőt a logikai alkalmazás, és is listák hello műveletek.
+Ez a témakör bemutatja, hogyan használható az SQL-adatbázis összekötő logikai alkalmazás, és is felsorolja azokat a műveleteket.
 
-További információk a Logic Apps toolearn lásd [Mik azok a logic apps](../logic-apps/logic-apps-what-are-logic-apps.md) és [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).
+A Logic Apps kapcsolatos további információkért lásd: [Mik azok a logic apps](../logic-apps/logic-apps-what-are-logic-apps.md) és [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="connect-tooazure-sql-database"></a>Csatlakozás SQL Database tooAzure
-A Logic Apps alkalmazást bármely szolgáltatás hozzáférni, először létre kell hoznia egy *kapcsolat* toohello szolgáltatás. Egy kapcsolat egy logikai alkalmazást és egy másik szolgáltatás közötti kapcsolatot biztosít. Tooconnect tooSQL adatbázis, akkor először hozzon létre például egy SQL-adatbázis *kapcsolat*. toocreate kapcsolatot, akkor adja meg a hello hitelesítő adatokkal kell általában tooaccess hello szolgáltatáshoz való kapcsolódás esetén. Igen az SQL-adatbázis, adja meg az SQL-adatbázis hitelesítő adatai toocreate hello kapcsolat. 
+## <a name="connect-to-azure-sql-database"></a>Csatlakozás az Azure SQL Database
+A Logic Apps alkalmazást bármely szolgáltatás hozzáférni, először létre kell hoznia egy *kapcsolat* a szolgáltatáshoz. Egy kapcsolat egy logikai alkalmazást és egy másik szolgáltatás közötti kapcsolatot biztosít. SQL-adatbázishoz való kapcsolódáshoz, először hozzon létre például egy SQL-adatbázis *kapcsolat*. VPN-kapcsolat létrehozásához adja meg a hitelesítő adatokkal kell általában hozzáférhetnek a szolgáltatáshoz való kapcsolódás esetén. Igen az SQL-adatbázis, adja meg az SQL-adatbázis hitelesítő adatokat a VPN-kapcsolat létrehozásához. 
 
-#### <a name="create-hello-connection"></a>Hello kapcsolat létrehozása
-> [!INCLUDE [Create hello connection tooSQL Azure](../../includes/connectors-create-api-sqlazure.md)]
+#### <a name="create-the-connection"></a>A kapcsolat létrehozása
+> [!INCLUDE [Create the connection to SQL Azure](../../includes/connectors-create-api-sqlazure.md)]
 > 
 > 
 
 ## <a name="use-a-trigger"></a>Eseményindítók
-Ez az összekötő nem rendelkezik a eseményindítókat. Használjon más eseményindítók toostart hello logikai alkalmazás, például az ismétlődési eseményindítót, egy HTTP Webhook eseményindító, eseményindítók érhető el a többi összekötőt, és több. [Logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md) példaként szolgál.
+Ez az összekötő nem rendelkezik a eseményindítókat. Más eseményindítók segítségével indítsa el a logikai alkalmazás, például az ismétlődési eseményindítót, egy HTTP Webhook eseményindító, eseményindítók érhető el a többi összekötőt, és több. [Logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md) példaként szolgál.
 
 ## <a name="use-an-action"></a>Egy művelettel
-Egy művelet által definiált logikai alkalmazás hello munkafolyamat során. [További információ a műveletek](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
+Egy művelet során a logikai alkalmazás definiált munkafolyamat által végzett. [További információ a műveletek](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
 
-1. Válassza ki a hello plusz jel. Több beállítások megtekintéséhez: **művelet hozzáadása**, **feltétel hozzáadása**, vagy egy hello **további** beállítások.
+1. Kattintson a plusz ikonra. Több beállítások megtekintéséhez: **művelet hozzáadása**, **feltétel hozzáadása**, vagy az egyik a **további** beállítások.
    
     ![](./media/connectors-create-api-sqlazure/add-action.png)
 2. Válasszon **művelet hozzáadása**.
-3. Hello szövegmezőbe írja be a "sql" tooget összes hello elérhető műveletek listáját.
+3. A szövegmezőben írja be a rendelkezésre álló műveletek listájának "sql".
    
     ![](./media/connectors-create-api-sqlazure/sql-1.png) 
-4. Válassza ki a fenti példában **SQL Server - Get sor**. Ha már létezik egy kapcsolat, majd válassza ki hello **táblanév** a hello legördülő listában, és adja meg a hello **Sorazonosító** tooreturn szeretné.
+4. Válassza ki a fenti példában **SQL Server - Get sor**. Ha már létezik egy kapcsolat, majd válassza ki a **táblanév** a legördülő listában, és adja meg a **Sorazonosító** szeretne visszaállítani.
    
     ![](./media/connectors-create-api-sqlazure/sample-table.png)
    
-    Ha hello kapcsolati adatokat kéri, adja meg hello részletek toocreate hello kapcsolat. [Hello kapcsolat létrehozása](connectors-create-api-sqlazure.md#create-the-connection) a témakörben ismertetett ezeket a tulajdonságokat. 
+    Ha a kapcsolati adatokat kéri, adja meg a részleteket a VPN-kapcsolat létrehozásához. [A kapcsolat létrehozása](connectors-create-api-sqlazure.md#create-the-connection) a témakörben ismertetett ezeket a tulajdonságokat. 
    
    > [!NOTE]
-   > Ebben a példában azt egy táblából egy sort ad vissza. a sorhoz toosee hello adatok hozzáadása egy másik művelet, amely létrehoz egy hello mezőkkel hello táblából. Adja hozzá például a onedrive vállalati verzió művelet hello Utónév és Vezetéknév mező toocreate hello a felhőalapú társzolgáltatás fiókja egy új fájlt használó. 
+   > Ebben a példában azt egy táblából egy sort ad vissza. A sor adatai, vegye fel egy újabb műveletet, amely létrehoz egy fájlt, a mezők a táblából. Adja hozzá például a Keresztnév és Vezetéknév mező használatával hozzon létre egy új fájlt a felhőalapú társzolgáltatás fiókja a onedrive vállalati verzió végrehajtandó. 
    > 
    > 
-5. **Mentés** a módosításokat (bal felső sarkában hello eszköztár). A Logic Apps alkalmazást menti, és lehet, hogy automatikusan engedélyezve.
+5. **Mentés** a módosításokat (bal felső sarkában az eszköztár). A Logic Apps alkalmazást menti, és lehet, hogy automatikusan engedélyezve.
 
 ## <a name="connector-specific-details"></a>Összekötő-specifikus részletei
 
-Bármely eseményindítók és hello swagger definiált műveletek megtekintése, és semmilyen határnak hello a Lásd még: [connector részleteket](/connectors/sql/). 
+Bármely eseményindítók és a swagger definiált műveletek megtekintése, és semmilyen határnak a Lásd még: a [connector részleteket](/connectors/sql/). 
 
 ## <a name="next-steps"></a>Következő lépések
-[Logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md). Fedezze fel más rendelkezésre álló összekötők Logic Apps: hello a [API-k lista](apis-list.md).
+[Logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md). Az egyéb rendelkezésre álló összekötők Logic Apps, megismerkedhet a [API-k lista](apis-list.md).
 

@@ -1,6 +1,6 @@
 ---
-title: "biztonsági és adatkezelési központ és az Azure biztonsági információk aaaMicrosoft |} Microsoft Docs"
-description: "hello Microsoft Trust központ biztosítja, hello szükséges információk toobe abban, hogy hello Azure platform, amelyen futtatja a szolgáltatások biztonságos."
+title: "A Microsoft Trust Center és az Azure biztonsági információk |} Microsoft Docs"
+description: "A Microsoft Trust központ kell lennie abban, hogy az Azure platformon, amelyen futtatja a szolgáltatások biztonságos adatokat tartalmazza."
 services: security
 documentationcenter: na
 author: TomShinder
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/23/2017
 ms.author: terrylan
-ms.openlocfilehash: 3710ad820699045b7c1d3af6739c3bdf1a3d36e7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a8835da0947ce2a365b57356960541cb997e73b3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="microsoft-trust-center"></a>Microsoft adatvédelmi központ
-hello Azure biztonsági adatokat hely az Azure.com-on lehetővé teszi az tooplan, szükséges hello információkat megtervezésére, központi telepítése, konfigurálása és biztonságosan kezelheti a felhőalapú megoldások. Hello Microsoft Trust központban, akkor is hello szükséges információk toobe abban, hogy hello Azure platform, amelyen futtatja a szolgáltatások biztonságos.
+Az Azure biztonsági adatokat hely az Azure.com-on lehetővé teszi a szükséges információkat, tervezése, kialakítása, telepítése, konfigurálása, és a felhőalapú megoldások biztonságosan kezelése. A Microsoft Trust központ is kell lennie abban, hogy az Azure platformon, amelyen futtatja a szolgáltatások biztonságos adatokat.
 
-Tudjuk, hogy Ön megbízni az alkalmazások és adatok tooAzure, amikor fog toohave kérdéseket. Hol található? Ki férhet? Milyen módon Microsoft tooprotect azt? Hogyan is ellenőrizheti, hogy a Microsoft tesz a azt szerint?
+Tudjuk, hogy az alkalmazások és adatok megbízni az Azure-ba, amikor fog kérdése van. Hol található? Ki férhet? Milyen módon Microsoft védelmét? Hogyan is ellenőrizheti, hogy a Microsoft tesz a azt szerint?
 
-És tudunk választ. Mivel az adatok, eldöntheti, hogy kinek van hozzáférése, és kezelheti betartásának vizsgálatára toodecide helyétől. toosafeguard az adatok állapot-az-a legújabb biztonsági technológia és a világszínvonalú titkosítási használjuk. A megfelelőségi egymástól függetlenül ellenőrzi, és sok szinten átlátszó még – a hogyan azt kezeli a felhasználói adatok toohello biztonsági kód a jogi iránti igények kielégítése érdekében.
+És tudunk választ. Mivel az adatok, eldöntheti, hogy kinek van hozzáférése, és kezelheti, döntse el, hogy hol. Az adatok védelme, használjuk állapota-a-a legújabb biztonsági technológiát és világszínvonalú titkosítás. A megfelelőségi egymástól függetlenül ellenőrzi, és sok szinten átlátszó még – a hogyan azt kezelik az ügyféladatok kód biztonságára vonatkozó jogi iránti igények kielégítése érdekében.
 
-Ez a Microsoft Trust Center hello található:
+Ez a Microsoft Trust Centerben található:
 
-* [Biztonsági](https://aka.ms/tcsecurity) – további hogyan összes hello Microsoft Cloud services biztonságosak.
-* [Adatvédelmi](https://aka.ms/tcprivacy) – megérteni, hogyan biztosítja a Microsoft, az az adatok védelme a Microsoft cloud hello.
-* [Megfelelőségi](https://aka.ms/tccompliance) – felderítése, hogyan segíti az Microsoft a szervezet megfeleljen az irányadó hello gyűjtése és felhasználása egyének adatok nemzeti regionális és iparág-specifikus követelményeinek.
-* [Átláthatóság](https://aka.ms/tctransparency) – nézet hogyan Microsoft úgy véli, hogy az adatok hello szabályozhatja a felhő és a Microsoft miként biztosítja, hogy a lehető legnagyobb mértékben kapcsolatos adatokat a rendszer hogyan kezelje.
-* [Termékei és szolgáltatásai](https://aka.ms/tcproductsservices) – tekintse meg az összes hello Microsoft Cloud termékei és szolgáltatásai egy helyen
+* [Biztonsági](https://aka.ms/tcsecurity) – további információ a Microsoft Cloud-szolgáltatások biztonságosak hogyan.
+* [Adatvédelmi](https://aka.ms/tcprivacy) – megérteni, hogyan Microsoft biztosítja az adatok a Microsoft felhőben.
+* [Megfelelőségi](https://aka.ms/tccompliance) – felderítése, hogyan segíti az Microsoft a szervezet megfeleljen az irányadó gyűjtésére és felhasználására egyének adatok nemzeti regionális és iparág-specifikus követelményeinek.
+* [Átláthatóság](https://aka.ms/tctransparency) – hogyan Microsoft úgy véli, hogy szabályozhatja az adatok a felhőben és a Microsoft miként biztosítja, hogy a lehető legnagyobb mértékben kapcsolatos adatokat a rendszer hogyan kezelje.
+* [Termékei és szolgáltatásai](https://aka.ms/tcproductsservices) – olvassa el a Microsoft Cloud termékek és szolgáltatások egy helyen
 * [Megbízható portálon](https://aka.ms/tcservicetrportal) – gyakorlati tanácsok szerezze be a független naplózási jelentések a Microsoft felhőszolgáltatásai, kockázatértékelések, biztonsági másolatot, és a kapcsolódó anyagok.
 * [Újdonságok](https://aka.ms/tcwhatsnew) – what's new in Microsoft felhő megbízható megállapítása
 * [Erőforrások](https://aka.ms/tcresources) – tanulmányok, videókat és esettanulmányok a Microsoft megbízható felhő vizsgálata
 
-Hello [Microsoft Trust Center](https://www.microsoft.com/trustcenter) mi van szüksége toounderstand mi toosecure hello Microsoft Cloud végezzük.
+A [Microsoft Trust Center](https://www.microsoft.com/trustcenter) kell tudni, hogy mire biztonságossá tétele a Microsoft Cloud rendelkezik.

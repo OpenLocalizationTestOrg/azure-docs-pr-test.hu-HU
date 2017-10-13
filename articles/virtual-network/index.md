@@ -1,8 +1,8 @@
 ---
-title: "Virtuális hálózati dokumentációja – oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
-description: "Ismerje meg, hogyan toouse hello virtuális hálózat a felhő. Dokumentációja bemutatja, hogyan toodeploy egy Vnetet toolaunch erőforrások használata, és egy helyszíni hálózat integrálása."
+title: "Az Azure Virtual Network dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerkedjen meg a felhőben működő virtuális hálózatok használatával. A dokumentáció bemutatja, hogyan helyezhet üzembe VNeteket, hogyan indíthat a használatukkal erőforrásokat, és hogyan integrálhatja azokat a helyszíni hálózattal."
 services: virtual-network
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: ecaecfab31a2bbfb46a712a035e07a059fa40be7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6ae5c9019f292a18bc4ae8afe8d615977e8e6c9d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="virtual-network-documentation"></a>Virtual Network dokumentációja
 
-Ismerje meg, hogyan toouse Virtual Network (VNet), a hálózaton lévő hello logikai reprezentációjává felhő. Dokumentációja bemutatja, hogyan beállítása és kezelése egy Vnetet, toolaunch virtuális gépek vagy Felhőszolgáltatások, hello VNet tooyour a helyszíni hálózat, és bontsa ki a hálózati toohello felhőalapú erőforrások szabályozhatják, miközben.
+Ismerkedjen meg a Virtual Network (VNet) használatával, amely saját hálózatának logikai leképezése a felhőben. A dokumentáció bemutatja, hogyan telepítheti és felügyelheti a VNeteket, hogyan indíthat a használatukkal virtuális gépeket vagy felhőalapú szolgáltatásokat, hogyan csatlakoztathatja a VNeteket helyszíni hálózatához, és hogyan terjesztheti ki hálózatát a felhőbe, miközben megőrzi az irányítást az erőforrásai felett.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ Ismerje meg, hogyan toouse Virtual Network (VNet), a hálózaton lévő hello lo
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Ismerkedés az Azure-portálon hello virtuális hálózat</h3>
+                        <h3>Ismerkedés a Virtual Networkkel az Azure Portal használatával</h3>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@ Ismerje meg, hogyan toouse Virtual Network (VNet), a hálózaton lévő hello lo
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Ismerkedés a virtuális hálózati hello Azure parancssori felület használatával</h3>
+                        <h3>Ismerkedés a Virtual Networkkel az Azure parancssori felületének használatával</h3>
                     </div>
                 </div>
             </div>

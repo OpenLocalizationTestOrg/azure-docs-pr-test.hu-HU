@@ -1,5 +1,5 @@
 ---
-title: "egy SQL Server rendelkezésre állási csoport figyelőjének az Azure virtuális gépeken aaaCreate |} Microsoft Docs"
+title: "Hozzon létre egy SQL Server rendelkezésre állási csoport figyelőjének az Azure virtuális gépeken |} Microsoft Docs"
 description: "Részletes útmutatást ad a figyelő egy Always On rendelkezésre állási csoport létrehozása az SQL Server Azure virtuális gépeken"
 services: virtual-machines
 documentationcenter: na
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 05/01/2017
 ms.author: mikeray
-ms.openlocfilehash: c6a44dc5c7c18b572c2bf5772b4651b7210aacbd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 09fed7e785708d4afe64905de973becc188181d7
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="configure-a-load-balancer-for-an-always-on-availability-group-in-azure"></a>A terheléselosztó egy Always On rendelkezésre állási csoport konfigurálása az Azure-ban
-Ez a cikk azt ismerteti, hogyan toocreate egy terheléselosztót egy SQL Server Always On rendelkezésre állási csoport az Azure virtuális gépen is fut az Azure Resource Manager eszközzel. Rendelkezésre állási csoport egy adott terheléselosztóhoz szükséges, ha a hello SQL-kiszolgálópéldányok el vannak az Azure virtuális gépeken. hello terheléselosztó hello rendelkezésre állási csoport figyelőjének hello IP-címét tárolja. Rendelkezésre állási csoport több régióba is, ha minden egyes régió egy terhelés-kiegyenlítő van szüksége.
+Ez a cikk azt ismerteti, hogyan egy terheléselosztót egy SQL Server Always On rendelkezésre állási csoport létrehozása az Azure Resource Manager rendszert futtató Azure virtuális gépekben. Rendelkezésre állási csoport szükséges egy adott terheléselosztóhoz, ha az SQL Server-példányok áll az Azure virtuális gépeken. A terheléselosztó a rendelkezésre állási csoport figyelője az IP-cím tárolja. Rendelkezésre állási csoport több régióba is, ha minden egyes régió egy terhelés-kiegyenlítő van szüksége.
 
-toocomplete ebben a feladatban van szüksége a Resource Manager rendszert futtató Azure virtuális gépeken telepített egy SQL Server rendelkezésre állási csoport toohave. Mindkét SQL Server virtuális gépek kell tartozniuk toohello azonos rendelkezésre állási csoportot. Használhatja a hello [Microsoft sablon](virtual-machines-windows-portal-sql-alwayson-availability-groups.md) tooautomatically hello rendelkezésre állási csoport létrehozására az erőforrás-kezelőben. Ez a sablon automatikusan létrehoz egy belső terheléselosztót. 
+Ez a feladat befejezéséhez szükség lehet a Resource Manager rendszert futtató Azure virtuális gépeken telepített SQL Server rendelkezésre állási csoport. Mindkét SQL Server virtuális gépek ugyanabban a rendelkezésre állási csoportba kell tartoznia. Használhatja a [Microsoft sablon](virtual-machines-windows-portal-sql-alwayson-availability-groups.md) automatikus létrehozásához a rendelkezésre állási csoportot az erőforrás-kezelőben. Ez a sablon automatikusan létrehoz egy belső terheléselosztót. 
 
 Ha kívánja, akkor [manuálisan konfigurálnia a rendelkezésre állási csoport](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md).
 
@@ -34,83 +34,83 @@ Kapcsolódó témakörök az alábbiak:
 * [Always On rendelkezésre állási csoportok konfigurálása az Azure virtuális gép (GUI)](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)   
 * [Egy VNet – VNet-kapcsolat beállítása az Azure Resource Manager és a PowerShell használatával](../../../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md)
 
-Érdekében ez a cikk keresztül, hozzon létre, és konfigurálja a terheléselosztó hello Azure-portálon. Hello folyamat befejezése után konfigurálnia hello toouse hello IP-címet terheléselosztóról hello hello elérhetőségi csoport figyelője.
+Érdekében ez a cikk keresztül, hozzon létre, és a terheléselosztó konfigurálása az Azure portálon. A folyamat befejezése után, akkor a fürt használja az IP-címet a terheléselosztóról a rendelkezésre állási csoport figyelőjének konfigurálása.
 
-## <a name="create-and-configure-hello-load-balancer-in-hello-azure-portal"></a>Létrehozhat és konfigurálhat hello terheléselosztó hello Azure-portálon
-Az hello ezen részén hello feladat a következő:
+## <a name="create-and-configure-the-load-balancer-in-the-azure-portal"></a>Hozza létre és konfigurálja a terheléselosztó az Azure-portálon
+Ez a tevékenység része tegye a következőket:
 
-1. Hello terheléselosztó létrehozása hello Azure-portálon, és hello IP-címének beállítása.
-2. Hello háttér-készlet beállítása.
-3. Hello mintavétel létrehozása. 
-4. Hello terheléselosztási szabályok beállítása.
+1. Az Azure portálon a terheléselosztó létrehozása, és konfigurálja az IP-cím.
+2. A háttér-készlet beállítása.
+3. A mintavétel létrehozása. 
+4. A terheléselosztási szabályok beállítása.
 
 > [!NOTE]
-> Ha több erőforráscsoportok és régiókban hello SQL Server-példányokat, hajtsa végre az kétszer, egyszer minden erőforráscsoportban.
+> Ha az SQL Server-példányok több erőforráscsoportok és régiókban, hajtsa végre az kétszer, egyszer minden erőforráscsoportban.
 > 
 > 
 
-### <a name="step-1-create-hello-load-balancer-and-configure-hello-ip-address"></a>1. lépés: Hello terheléselosztó létrehozása, és hello IP-cím konfigurálása
-Először hozzon létre hello terheléselosztóhoz. 
+### <a name="step-1-create-the-load-balancer-and-configure-the-ip-address"></a>1. lépés: A terheléselosztó létrehozása, és az IP-cím konfigurálása
+Először hozza létre a terheléselosztó hasonló adataival. 
 
-1. Hello Azure-portálon nyissa meg hello SQL Server virtuális gépeket tartalmazó erőforráscsoport hello. 
+1. Nyissa meg az SQL Server virtuális gépeket tartalmazó erőforráscsoportot az Azure-portálon. 
 
-2. Hello erőforráscsoportban, kattintson a **Hozzáadás**.
+2. Kattintson az erőforráscsoportot, **Hozzáadás**.
 
-3. Keresse meg **terheléselosztó** majd hello keresési eredmények között, jelölje ki **terheléselosztó**, által közzétett **Microsoft**.
+3. Keresse meg **terheléselosztó** majd, a keresési eredmények **terheléselosztó**, által közzétett **Microsoft**.
 
-4. A hello **terheléselosztó** panelen kattintson a **létrehozása**.
+4. Az a **terheléselosztó** panelen kattintson a **létrehozása**.
 
-5. A hello **létrehozás terheléselosztó** párbeszédpanel hello terheléselosztó adja meg az alábbiak szerint:
+5. Az a **létrehozás terheléselosztó** párbeszédpanel az alábbiak szerint adja meg a terheléselosztó:
 
    | Beállítás | Érték |
    | --- | --- |
-   | **Name (Név)** |Hello terheléselosztó képviselő szöveges nevét. Például **sqlLB**. |
-   | **Típus** |**Belső**: a legtöbb megvalósítások használja egy belső terheléselosztó, amely lehetővé teszi az alkalmazások hello belül azonos virtuális hálózati tooconnect toohello rendelkezésre állási csoport.  </br> **Külső**: lehetővé teszi az alkalmazások tooconnect toohello rendelkezésre állási csoport nyilvános internetkapcsolaton keresztül. |
-   | **Virtuális hálózat** |Válassza ki, amelyek hello SQL Server intances hello virtuális hálózat. |
-   | **Alhálózat** |Válassza ki, amelyek az SQL Server-példányokat hello hello alhálózat. |
+   | **Name (Név)** |A load balancer képviselő szöveges nevét. Például **sqlLB**. |
+   | **Típus** |**Belső**: a legtöbb megvalósítások belső terheléselosztót, lehetővé teszi a rendelkezésre állási csoporthoz való csatlakozáshoz a virtuális hálózaton belül alkalmazások használja.  </br> **Külső**: lehetővé teszi olyan alkalmazások nyilvános internetkapcsolaton keresztül a rendelkezésre állási csoporthoz való csatlakozáshoz. |
+   | **Virtuális hálózat** |Válassza ki a virtuális hálózat, amely az SQL Server intances szerepelnek. |
+   | **Alhálózat** |Válassza ki az alhálózatot, amely az SQL Server-példányok szerepelnek. |
    | **IP-cím hozzárendelése** |**Statikus** |
-   | **Magánhálózati IP-cím** |Adja meg a hello alhálózat elérhető IP-címeit. Használja az IP-cím, egy figyelő hello fürt létrehozásakor. Egy PowerShell-parancsfájlt, a cikk későbbi részében használni ezt a címet hello `$ILBIP` változó. |
-   | **Előfizetés** |Ha több előfizetéssel rendelkezik, ez a mező jelenhet meg. Válassza ki, hogy szeretné-e az ehhez az erőforráshoz tooassociate hello előfizetést. Azt az általában hello ugyanahhoz az előfizetéshez hello rendelkezésre állási csoporthoz tartozó összes hello erőforrás. |
-   | **Erőforráscsoport** |Válassza ki, amelyek az SQL Server-példányokat hello hello erőforráscsoport. |
-   | **Hely** |Válassza ki a hello Azure-beli hely, amelyek hello SQL Server-példányokat. |
+   | **Magánhálózati IP-cím** |Adja meg az alhálózat elérhető IP-címeit. Az IP-címet használja, a figyelő a fürt létrehozásakor. Egy PowerShell-parancsfájlt, a cikk későbbi részében használni ezt a címet a `$ILBIP` változó. |
+   | **Előfizetés** |Ha több előfizetéssel rendelkezik, ez a mező jelenhet meg. Válassza ki az előfizetést, amelyet hozzá szeretne rendelni ehhez az erőforráshoz. Akkor általában a rendelkezésre állási csoporthoz tartozó összes erőforrás tárolóként ugyanazt az előfizetést. |
+   | **Erőforráscsoport** |Válassza ki az erőforráscsoportot, amelyek az SQL Server-példányokat. |
+   | **Hely** |Válassza ki az Azure-beli hely, amely az SQL Server-példányok szerepelnek. |
 
 6. Kattintson a **Create** (Létrehozás) gombra. 
 
-Azure hello terheléselosztót hoz létre. hello terheléselosztóhoz tartozik, adott hálózati tooa, alhálózaton, erőforráscsoportot és helyet. Azure hello feladat befejezése után ellenőrizze a hello terheléselosztási beállításokat az Azure-ban. 
+A load balancer az Azure létrehoz. A load balancer egy adott hálózati, alhálózati, erőforráscsoportot és helyet tartozik. Azure a feladat befejezése után ellenőrizze a terheléselosztási beállításokat az Azure-ban. 
 
-### <a name="step-2-configure-hello-back-end-pool"></a>2. lépés: Hello háttér-készlet konfigurálása
-Az Azure hívások hello háttér címkészletet *háttérkészlet*. Ebben az esetben a hello háttér-készlet hello címek hello két SQL Server-példányok a rendelkezésre állási csoportban. 
+### <a name="step-2-configure-the-back-end-pool"></a>2. lépés: A háttér-készlet konfigurálása
+Azure meghívja a háttér-címkészlet *háttérkészlet*. Ebben az esetben a háttér-készlet a rendelkezésre állási csoport két SQL Server-példánya a címeket. 
 
-1. Az erőforráscsoportban kattintson a létrehozott hello terheléselosztóhoz. 
+1. Az erőforráscsoport kattintson a terheléselosztóhoz, amely létrehozta. 
 
 2. A **beállítások**, kattintson a **háttérkészletek**.
 
-3. A **háttérkészletek**, kattintson a **Hozzáadás** toocreate egy háttér címkészletet. 
+3. A **háttérkészletek**, kattintson a **Hozzáadás** egy háttér-címkészlet létrehozása. 
 
-4. A **háttérkészlet hozzáadása**a **neve**, adjon meg egy nevet hello háttér-készlet.
+4. A **háttérkészlet hozzáadása**a **neve**, adjon meg egy nevet a háttér-készlet.
 
 5. A **virtuális gépek**, kattintson a **adja hozzá a virtuális gépek**. 
 
-6. A **válassza ki a virtuális gépek**, kattintson a **rendelkezésre állási csoport kiválasztása**, majd adja meg a hello rendelkezésre állási csoportban, hogy hello SQL Server virtuális gépek tartozik.
+6. A **válassza ki a virtuális gépek**, kattintson a **rendelkezésre állási csoport kiválasztása**, és adja meg a rendelkezésre állási csoport, hogy az SQL Server virtuális gépek tartozik.
 
-7. Hello rendelkezésre állási csoport kiválasztása után kattintson **válassza ki a virtuális gépek hello**, válasszon hello két olyan virtuális gépet, amely az SQL Server-példányokat hello hello rendelkezésre állási csoportban, és kattintson **Válasszon**. 
+7. A rendelkezésre állási csoport kiválasztása után kattintson **válassza ki a virtuális gépek**, jelölje ki a két virtuális gépeket üzemeltető SQL Server-példányok a rendelkezésre állási csoport, és kattintson a **válasszon**. 
 
-8. Kattintson a **OK** tooclose hello paneleket az **válassza ki a virtuális gépek**, és **háttérkészlet hozzáadása**. 
+8. Kattintson a **OK** bezárásához a paneleket az **válassza ki a virtuális gépek**, és **háttérkészlet hozzáadása**. 
 
-Azure frissíti hello háttér címkészletet hello beállításait. A rendelkezésre állási csoport már két SQL Server-példányokat készletét.
+Azure frissíti a háttér-címkészlet beállításait. A rendelkezésre állási csoport már két SQL Server-példányokat készletét.
 
 ### <a name="step-3-create-a-probe"></a>3. lépés: A mintavétel létrehozása
-hello mintavételi határozza meg, hogyan Azure ellenőrzi, amelyek hello SQL Server-példány éppen birtokolja hello rendelkezésre állási csoport figyelőjét. Azure-vizsgálat hello szolgáltatás hello mintavételi létrehozásakor meghatározó port hello IP-címe alapján.
+A mintavétel határozza meg, hogyan Azure ellenőrzi, amelyek az SQL Server-példányok éppen birtokolja a rendelkezésre állási csoport figyelőjét. Azure-vizsgálat a szolgáltatás az IP-cím a mintavétel létrehozásakor meghatározó port alapján.
 
-1. Hello terheléselosztó **beállítások** panelen kattintson a **állapot-mintavételi csomagjai**. 
+1. A terheléselosztóhoz **beállítások** panelen kattintson a **állapot-mintavételi csomagjai**. 
 
-2. A hello **állapot-mintavételi csomagjai** panelen kattintson a **Hozzáadás**.
+2. Az a **állapot-mintavételi csomagjai** panelen kattintson a **Hozzáadás**.
 
-3. Hello mintavétel konfigurálása hello **Hozzáadás mintavételi** panelen. A következő értékek tooconfigure hello mintavételi használata hello:
+3. A mintavétel konfigurálása a **Hozzáadás mintavételi** panelen. A mintavétel konfigurálása a következő értékeket használja:
 
    | Beállítás | Érték |
    | --- | --- |
-   | **Name (Név)** |Hello mintavételi képviselő szöveges nevét. Például **SQLAlwaysOnEndPointProbe**. |
+   | **Name (Név)** |A mintavétel képviselő szöveges nevét. Például **SQLAlwaysOnEndPointProbe**. |
    | **Protocol (Protokoll)** |**TCP** |
    | **Port** |A rendelkezésre álló portot is használhat. Például *59999*. |
    | **Időköz** |*5* |
@@ -119,156 +119,156 @@ hello mintavételi határozza meg, hogyan Azure ellenőrzi, amelyek hello SQL Se
 4.  Kattintson az **OK** gombra. 
 
 > [!NOTE]
-> Győződjön meg arról, hogy a megadott hello port a hello tűzfalat mindkét SQL Server-példányok nyitva-e. Mindkét esetben szükséges egy bejövő forgalomra vonatkozó szabály hello TCP-portot használja. További információkért lásd: [hozzáadása vagy szerkesztése tűzfalszabály](http://technet.microsoft.com/library/cc753558.aspx). 
+> Győződjön meg arról, hogy a megadott port meg nyitva a tűzfalon, mind az SQL Server-példányok. Mindkét esetben szükséges egy bejövő forgalomra vonatkozó szabály, amelyekkel a TCP-portot. További információkért lásd: [hozzáadása vagy szerkesztése tűzfalszabály](http://technet.microsoft.com/library/cc753558.aspx). 
 > 
 > 
 
-Azure hello mintavételi hoz létre, és melyik SQL Server-példány hello figyelő hello rendelkezésre állási csoport rendelkezik tootest használja.
+Azure hoz létre a mintavételi, és azt teszteléséhez melyik SQL Server-példány van a rendelkezésre állási csoport figyelőjének használja.
 
-### <a name="step-4-set-hello-load-balancing-rules"></a>4. lépés: Hello terheléselosztási szabályok beállítása
-hello terheléselosztási szabályok konfigurálása, hogyan hello terheléselosztó irányítja a forgalmat toohello SQL Server-példányokat. Ez a terheléselosztó engedélyeznie a közvetlen kiszolgálói válasz mert hello két SQL Server-példányok csak az egyik hello rendelkezésre állási csoport figyelőjének erőforrás tulajdonosa egyszerre.
+### <a name="step-4-set-the-load-balancing-rules"></a>4. lépés: A terheléselosztási szabályok beállítása
+A terheléselosztási szabályok konfigurálása, hogy a terheléselosztó hogyan irányítja a forgalmat az SQL Server-példányokat. A terheléselosztóhoz engedélyezi a közvetlen kiszolgálói válasz, mert a két SQL Server-példányok csak az egyik a rendelkezésre állási csoport figyelőjének erőforrás tulajdonosa egyszerre.
 
-1. Hello terheléselosztó **beállítások** panelen kattintson a **terheléselosztási szabályok**. 
+1. A terheléselosztóhoz **beállítások** panelen kattintson a **terheléselosztási szabályok**. 
 
-2. A hello **terheléselosztási szabályok** panelen kattintson a **Hozzáadás**.
+2. Az a **terheléselosztási szabályok** panelen kattintson a **Hozzáadás**.
 
-3. A hello **Hozzáadás terheléselosztási szabályok** panelen hello terheléselosztási szabály konfigurálása. A következő beállítások hello használata: 
+3. Az a **Hozzáadás terheléselosztási szabályok** panelen a terheléselosztási szabály konfigurálása. A következő beállításokkal: 
 
    | Beállítás | Érték |
    | --- | --- |
-   | **Name (Név)** |Hello terheléselosztási szabályok képviselő szöveges nevét. Például **SQLAlwaysOnEndPointListener**. |
+   | **Name (Név)** |A terheléselosztási szabályok képviselő szöveges nevét. Például **SQLAlwaysOnEndPointListener**. |
    | **Protocol (Protokoll)** |**TCP** |
    | **Port** |*1433* |
    | **Háttér-Port** |*1433*. Rendszer figyelmen kívül hagyja ezt az értéket, mert ez a szabály **fix IP-Címek (közvetlen kiszolgálói válasz)**. |
-   | **Hálózatfigyelő** |Hello mintavételi létrehozott hello nevét használni a terheléselosztóhoz. |
+   | **Hálózatfigyelő** |A mintavétel létrehozott nevét használni a terheléselosztóhoz. |
    | **Munkamenet megőrzését** |**Egyik sem** |
    | **Üresjárati időkorlátja (perc)** |*4* |
    | **Lebegőpontos IP (közvetlen kiszolgálói válasz)** |**Engedélyezve** |
 
    > [!NOTE]
-   > Lehetséges, hogy le hello panel tooview tooscroll összes hello-beállítások.
+   > Lehetséges, hogy a megadott beállítások panel le kell görgetnie.
    > 
 
 4. Kattintson az **OK** gombra. 
-5. Azure hello terheléselosztási szabály konfigurálása Hello terheléselosztó most konfigurált tooroute forgalom toohello SQL Server-példány hello figyelő hello rendelkezésre állási csoporthoz. 
+5. Azure terheléselosztási szabályt konfigurálja. A terheléselosztó van konfigurálva irányíthatja a forgalmat a rendelkezésre állási csoport figyelőjének az SQL Server-példány számára. 
 
-Ezen a ponton hello erőforráscsoport rendelkezik olyan terheléselosztóhoz, amely az SQL Server-gépek tooboth csatlakozik. hello terheléselosztó hello SQL Server Always On rendelkezésre állási csoport figyelőjét, IP-címet is tartalmazza, hogy bármelyik számítógép válaszolhassanak toorequests hello rendelkezésre állási csoportok számára.
+Ezen a ponton az erőforráscsoport rendelkezik olyan terheléselosztóhoz, amely mindkét SQL Server-gépek csatlakozik. A terheléselosztó is tartalmazza az SQL Server Always On rendelkezésre állási csoport figyelőjét, IP-címet, hogy vagy a gép válaszolhassanak a rendelkezésre állási csoportok kérelmekre.
 
 > [!NOTE]
-> Ha az SQL Server-példány két külön régióban, ismételje meg a hello hello a más régióban. Minden egyes régió egy terheléselosztót igényel. 
+> Ha az SQL Server-példány két külön régióban, ismételje meg a más régióban. Minden egyes régió egy terheléselosztót igényel. 
 > 
 > 
 
-## <a name="configure-hello-cluster-toouse-hello-load-balancer-ip-address"></a>Hello fürt toouse hello load balancer IP-cím konfigurálása
-következő lépés hello tooconfigure hello figyelő hello fürtön, és hello figyelő online állapotba. A következő hello: 
+## <a name="configure-the-cluster-to-use-the-load-balancer-ip-address"></a>A load balancer IP-címet a fürt konfigurálása
+A következő lépés, hogy adja meg a figyelő a fürtön, és a figyelő online állapotba. Tegye a következőket: 
 
-1. Hozzon létre hello rendelkezésre állási csoport figyelőjének hello feladatátvevő fürtön. 
+1. A rendelkezésre állási csoport figyelőjének létrehozásához a feladatátvevő fürtön. 
 
-2. Hello figyelő online állapotba.
+2. A figyelő online állapotba.
 
-### <a name="step-5-create-hello-availability-group-listener-on-hello-failover-cluster"></a>5. lépés: Hello rendelkezésre állási csoport figyelőjének létrehozása hello feladatátvevő fürtön
-Ebben a lépésben kézzel létrehozhat hello rendelkezésre állási csoport figyelőjének a Feladatátvevőfürt-kezelő és az SQL Server Management Studio.
+### <a name="step-5-create-the-availability-group-listener-on-the-failover-cluster"></a>5. lépés: A rendelkezésre állási csoport figyelőjének létrehozása a feladatátvevő fürt
+Ebben a lépésben kézzel létrehozhat a rendelkezésre állási csoport figyelőjének a Feladatátvevőfürt-kezelő és az SQL Server Management Studio.
 
 [!INCLUDE [ag-listener-configure](../../../../includes/virtual-machines-ag-listener-configure.md)]
 
-### <a name="verify-hello-configuration-of-hello-listener"></a>Hello figyelő hello konfigurációjának ellenőrzése
+### <a name="verify-the-configuration-of-the-listener"></a>A figyelő konfigurációjának ellenőrzése
 
-Ha hello fürterőforrások és a függőségek helyesen van konfigurálva, az SQL Server Management Studio képes tooview hello figyelő legyen. tooset hello figyelő portja, a következő hello:
+Ha a fürt erőforrásait, és a függőségek megfelelően vannak konfigurálva, a figyelő megtekintheti az SQL Server Management Studio kell lennie. A figyelő port megadásához tegye a következőket:
 
-1. Indítsa el az SQL Server Management Studio eszközt, és csatlakoztassa a toohello elsődleges másodpéldány.
+1. Indítsa el az SQL Server Management Studio eszközt, és csatlakozzon az elsődleges másodpéldány.
 
-2. Nyissa meg túl**AlwaysOn magas rendelkezésre állású** > **rendelkezésre állási csoportok** > **rendelkezésre állási csoport figyelői**.  
-    Most látnia kell a Feladatátvevőfürt-kezelő létrehozta hello figyelő nevét. 
+2. Nyissa meg a **AlwaysOn magas rendelkezésre állás** > **rendelkezésre állási csoportok** > **rendelkezésre állási csoport figyelői**.  
+    Meg kell jelennie a figyelő nevét, amelyet a Feladatátvevőfürt-kezelőt hozott létre. 
 
-3. Kattintson a jobb gombbal a hello figyelőjének nevével, és kattintson **tulajdonságok**.
+3. Kattintson a jobb gombbal a figyelő nevét, és kattintson **tulajdonságok**.
 
-4. A hello **Port** hello rendelkezésre állási csoport figyelőjének hello portszáma hello segítségével adja meg a korábban használt $EndpointPort (1433 volt hello alapértelmezett), és kattintson a **OK**.
+4. Az a **Port** mezőben adja meg a portszámot az elérhetőségi csoport figyelője az a korábban használt $EndpointPort használatával (az alapértelmezett 1433-as volt az), és kattintson a **OK**.
 
 Most már rendelkezik egy rendelkezésre állási csoport erőforrás-kezelő módban futó Azure virtuális gépeken. 
 
-## <a name="test-hello-connection-toohello-listener"></a>Teszt hello kapcsolat toohello figyelő
-Hello kapcsolat tesztelése hello következő tevékenységek végrehajtásával:
+## <a name="test-the-connection-to-the-listener"></a>Tesztelje a kapcsolatot a figyelő
+Tesztelje a kapcsolatot a következő módon:
 
-1. RDP tooa SQL Server-példányt, amely hello azonos virtuális hálózat, de nem saját hello replika. A kiszolgáló más SQL Server-példány hello fürt hello is lehet.
+1. Az SQL Server-példányt, amely ugyanabban a virtuális hálózatban, de nem tulajdonosa a replika RDP. A kiszolgáló lehet a más SQL Server-példány a fürtben.
 
-2. Használjon **sqlcmd** segédprogram tootest hello kapcsolat. Például a következő parancsfájl hello hoz létre egy **sqlcmd** kapcsolat toohello elsődleges replika hello figyelő Windows-hitelesítés használatával:
+2. Használjon **sqlcmd** segédprogram létrehozott kapcsolat ellenőrzéséhez. Például az alábbi parancsfájlt hoz létre egy **sqlcmd** kapcsolatot az elsődleges másodpéldány, a figyelő a Windows-hitelesítés használatával:
    
         sqlcmd -S <listenerName> -E
 
-hello SQLCMD kapcsolat automatikusan csatlakozik a hello elsődleges másodpéldányt futtató toohello SQL Server-példányt. 
+Az SQLCMD kapcsolat automatikusan csatlakozik, amelyen az elsődleges replika SQL Server-példány. 
 
 ## <a name="create-an-ip-address-for-an-additional-availability-group"></a>Egy IP-cím, egy további rendelkezésre állási csoport létrehozása
 
-Egyes rendelkezésre állási csoport egy külön figyelő használja. Minden egyes figyelő saját IP-címmel rendelkezik. Használja az azonos hello további figyelők terheléselosztó toohold hello IP-cím betölteni. Miután létrehozott egy rendelkezésre állási csoportban, hello IP cím toohello terheléselosztó hozzáadása, és adja meg hello figyelő.
+Egyes rendelkezésre állási csoport egy külön figyelő használja. Minden egyes figyelő saját IP-címmel rendelkezik. Az azonos terheléselosztóhoz segítségével az IP-cím tárolásához további figyelők. Miután létrehozott egy rendelkezésre állási csoporthoz, az IP-cím hozzáadása a terheléselosztóhoz, és adja meg a figyelő.
 
-az IP cím tooa rendelkező terheléselosztó hello Azure-portálon tooadd hello a következő:
+IP-cím hozzáadása a terheléselosztó és az Azure portál, tegye a következőket:
 
-1. Hello Azure-portálon nyissa meg a terheléselosztó hello tartalmazó erőforráscsoportot hello, és kattintson a hello terheléselosztó. 
+1. Az Azure portálon nyissa meg a terheléselosztó tartalmazó erőforráscsoportot, és kattintson a terheléselosztó. 
 
 2. A **beállítások**, kattintson a **előtér-IP-címkészlet**, és kattintson a **Hozzáadás**. 
 
-3. A **előtérbeli IP-cím hozzáadása**, rendelje hozzá a hello előtér nevét. 
+3. A **előtérbeli IP-cím hozzáadása**, rendelje hozzá az előtér nevét. 
 
-4. Győződjön meg arról, hogy hello **virtuális hálózati** és hello **alhálózati** megegyezik az SQL Server-példányokat hello hello.
+4. Ellenőrizze, hogy a **virtuális hálózati** és a **alhálózati** ugyanazok, mint az SQL Server-példányokat.
 
-5. Hello figyelő hello IP-címének beállítása. 
+5. Az IP-címének beállítása a figyelőhöz. 
    
    >[!TIP]
-   >IP-cím toostatic hello beállítása, és adjon meg egy címet, amely jelenleg nincs használatban hello alhálózaton. Azt is megteheti IP-cím toodynamic hello beállítása és mentése hello új előtér-IP-készlet. Ha így tesz, hello Azure-portálon automatikusan hozzárendel egy elérhető IP-cím toohello készletből. Ezután nyissa meg újra a hello előtér-IP-készlet és hello hozzárendelés toostatic módosítása. 
+   >Az IP-cím beállítása statikus, és adjon meg egy címet, amely jelenleg nincs használatban az alhálózaton. Másik lehetőségként az IP-címének beállítása a dinamikus, és mentse az új előtér-IP-címkészlet. Ha így tesz, az Azure-portálon automatikusan hozzárendeli az elérhető IP-címet a készletbe. Ezután nyissa meg újra az előtér-IP-címkészletet, és módosítsa a hozzárendelési statikus. 
 
-6. Mentse a hello figyelő hello IP-címet. 
+6. Mentse az IP-címet a figyelőhöz. 
 
-7. Adja hozzá a állapotmintáihoz hello-beállítások a következő használatával:
+7. Adja hozzá a állapotmintáihoz a következő beállításokkal:
 
    |Beállítás |Érték
    |:-----|:----
-   |**Name (Név)** |A név tooidentify hello mintavétel.
+   |**Name (Név)** |A mintavétel azonosító nevet.
    |**Protocol (Protokoll)** |TCP
-   |**Port** |Egy nem használt TCP-port, amelyen az összes virtuális gép rendelkezésre kell állnia. Semmilyen más célra nem használható. Nincs két figyelői hello használhatja ugyanazt a mintavételi portot. 
-   |**Időköz** |hello időn közötti mintavételi kísérletek. Hello alapértelmezett (5) használja.
-   |**Sérült küszöbérték** |egymást követő küszöbértékeket, amelyek a virtuális gép nem kell hello száma nem megfelelő állapotúnak számít.
+   |**Port** |Egy nem használt TCP-port, amelyen az összes virtuális gép rendelkezésre kell állnia. Semmilyen más célra nem használható. Két figyelői nem használhatja ugyanazt a mintavételi portot. 
+   |**Időköz** |A mintavételi kísérletek közötti időtartam. Használja az alapértelmezett (5).
+   |**Sérült küszöbérték** |Egymást követő küszöbértékeket, amelyek a virtuális gép nem kell száma nem megfelelő állapotúnak számít.
 
-8. Kattintson a **OK** toosave hello mintavétel. 
+8. Kattintson a **OK** a mintavétel mentése. 
 
 9. Terheléselosztási szabály létrehozása. Kattintson a **terheléselosztási szabályok**, és kattintson a **Hozzáadás**.
 
-10. Hello új terheléselosztási szabály használatával a következő beállítások hello konfigurálása:
+10. Adja meg az új terheléselosztási szabályt a következő beállításokkal:
 
    |Beállítás |Érték
    |:-----|:----
-   |**Name (Név)** |A név tooidentify hello terheléselosztási szabály betöltése. 
-   |**Előtérbeli IP-cím** |Válassza ki a létrehozott hello IP-címet. 
+   |**Name (Név)** |A terheléselosztási szabályt azonosító nevet. 
+   |**Előtérbeli IP-cím** |Válassza ki a létrehozott IP-cím. 
    |**Protocol (Protokoll)** |TCP
-   |**Port** |Hello SQL Server-példány által használt hello port használatára. Egy alapértelmezett példány 1433-as portot használja, kivéve, ha módosította az. 
-   |**Háttér-port** |Ugyanaz, mint érték használata hello **Port**.
-   |**Háttérkészlet** |virtuális gépek hello hello SQL Server-példányokat tartalmazó hello készlet. 
-   |**Állapotmintáihoz** |Válassza ki a létrehozott hello mintavétel.
+   |**Port** |Az SQL Server-példányok által használt portot használja. Egy alapértelmezett példány 1433-as portot használja, kivéve, ha módosította az. 
+   |**Háttér-port** |Ugyanazt az értéket, mint a **Port**.
+   |**Háttérkészlet** |A virtuális gépek az SQL Server-példányokat tartalmazó készlet. 
+   |**Állapotmintáihoz** |Válassza ki a létrehozott mintavétel.
    |**Munkamenet megőrzését** |None
    |**Üresjárati időkorlátja (perc)** |Alapértelmezett (4)
    |**Lebegőpontos IP (közvetlen kiszolgálói válasz)** | Engedélyezve
 
-### <a name="configure-hello-availability-group-toouse-hello-new-ip-address"></a>Hello rendelkezésre állási csoport toouse hello új IP-cím konfigurálása
+### <a name="configure-the-availability-group-to-use-the-new-ip-address"></a>Az új IP-címet használja a rendelkezésre állási csoport konfigurálása
 
-toofinish hello fürt, ismétlődő hello lépéseket követte hello első rendelkezésre állási csoport elküldésekor konfigurálása. Ez azt jelenti, hogy a hello konfigurálása [toouse hello új IP-címe](#configure-the-cluster-to-use-the-load-balancer-ip-address). 
+A fürt konfigurálásának befejezéséhez, ismételje meg a lépéseket, amelyek az első rendelkezésre állási csoport elküldésekor követni. Ez azt jelenti, hogy konfigurálja a [az új IP-cím fürt](#configure-the-cluster-to-use-the-load-balancer-ip-address). 
 
-Miután hozzáadta a hello figyelő IP-címet, a hello további rendelkezésre állási csoport konfigurálásához hello következő tevékenységek végrehajtásával: 
+Miután hozzáadta az IP-címet a figyelőhöz, további rendelkezésre állási csoport konfigurálása a következő módon: 
 
-1. Győződjön meg arról, hogy mindkét SQL Server virtuális gépen nyissa meg hello mintavételi portot hello új IP-cím. 
+1. Győződjön meg arról, hogy mindkét SQL Server virtuális gépen nyissa meg a mintavételi portot az új IP-címhez. 
 
-2. [A kezelő hozzáadása hello ügyfél-hozzáférési pont](#addcap).
+2. [A kezelő hozzáadása az ügyfél-hozzáférési pont](#addcap).
 
-3. [Hello IP-erőforrás hello rendelkezésre állási csoport konfigurálása](#congroup).
+3. [Az IP-erőforrás a rendelkezésre állási csoport konfigurálása](#congroup).
 
    >[!IMPORTANT]
-   >Hello IP-cím létrehozásakor használja, hogy hozzáadta a toohello terheléselosztó hello IP-cím.  
+   >Az IP-cím létrehozásakor használja a terheléselosztó hozzáadott IP-címét.  
 
-4. [Ügyfél-hozzáférési pont hello tegyen hello SQL Server rendelkezésre állási csoport erőforrása](#dependencyGroup).
+4. [Az SQL Server rendelkezésre állási csoport erőforrása függővé az ügyfél-hozzáférési pontokon](#dependencyGroup).
 
-5. [Ellenőrizze a hello ügyfél-hozzáférési pont erőforrás hello IP-címtől függő](#listname).
+5. [Ellenőrizze az ügyfél hozzáférési pont erőforrás az IP-címtől függő](#listname).
  
-6. [A PowerShell hello fürt paraméterek beállítása](#setparam).
+6. [A fürt paraméterek beállítása a PowerShell](#setparam).
 
-Miután konfigurálta a hello rendelkezésre állási csoport toouse hello új IP-címet, konfigurálja a hello kapcsolat toohello figyelő. 
+Miután konfigurálta a rendelkezésre állási csoportot az új IP-címet használja, a figyelő a kapcsolat beállítása. 
 
 ## <a name="next-steps"></a>Következő lépések
 

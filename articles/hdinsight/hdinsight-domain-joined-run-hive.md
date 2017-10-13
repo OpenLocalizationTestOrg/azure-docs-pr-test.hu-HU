@@ -1,5 +1,5 @@
 ---
-title: "a tartományhoz csatlakoztatott HDInsight - Azure aaaConfigure Hive házirendek |} Microsoft Docs"
+title: "Tartományhoz csatlakoztatott HDInsight - Azure Hive szabályzatok konfigurálására |} Microsoft Docs"
 description: "Információk ...."
 services: hdinsight
 documentationcenter: 
@@ -16,45 +16,45 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 10/25/2016
 ms.author: saurinsh
-ms.openlocfilehash: 56f2bf9d872abc5f772b886fcf91c2e2422092f4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: de537d5e39dd0d3f75ff802948c7372e4d65d127
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="configure-hive-policies-in-domain-joined-hdinsight-preview"></a>Hive-házirendek konfigurálása a tartományhoz csatlakoztatott HDInsight-ban (előzetes verzió)
-Megtudhatja, hogyan tooconfigure Apache Pletyka házirendek a Hive. Ebben a cikkben létrehoz két Pletyka házirendek toorestrict hozzáférés toohello hivesampletable. a HDInsight-fürtök hello hivesampletable tartalmaz. Miután konfigurálta hello házirendeket, a Hdinsightban az Excel és az ODBC illesztőprogram tooconnect tooHive táblák.
+Útmutató ahhoz, hogyan lehet az Apache Ranger-házirendeket a Hive számára konfigurálni. Ebben a cikkben két Ranger-házirendet hoz létre a hivesampletable nevű táblához való hozzáférés korlátozása érdekében. A hivesampletable HDInsight-fürtöket tartalmaz. Miután konfigurálta a házirendeket, az Excel és az ODBC-illesztőprogram használatával kapcsolódjon a HDInsight Hive-tábláihoz.
 
 ## <a name="prerequisites"></a>Előfeltételek
 * Tartományhoz csatlakoztatott HDInsight-fürt. Lásd a [Tartományhoz csatlakoztatott HDInsight-fürtök konfigurálása](hdinsight-domain-joined-configure.md) című részt.
 * Office 2016, Office 2013 Professional Plus, Office 365 Pro Plus, az Excel 2013 Standalone vagy Office 2010 Professional Plus rendszert futtató munkaállomás.
 
-## <a name="connect-tooapache-ranger-admin-ui"></a>Csatlakozás tooApache Pletyka felügyeleti felhasználói felület
-**tooconnect tooRanger felügyeleti felhasználói felület**
+## <a name="connect-to-apache-ranger-admin-ui"></a>Csatlakozás az Apache Ranger felügyeleti felhasználói felületéhez
+**Csatlakozás az Apache Ranger felügyeleti felhasználói felületéhez**
 
-1. Egy böngészőből csatlakozás tooRanger felügyeleti felhasználói felület. hello URL-címe: https://&lt;ClusterName >.azurehdinsight.net/Ranger/.
+1. Egy böngészőből csatlakozzon a Ranger felügyeleti felhasználói felületéhez. Az URL-cím: https://&lt;ClusterName>.azurehdinsight.net/Ranger/.
 
    > [!NOTE]
-   > A Ranger más hitelesítő adatokat használ, mint a Hadoop-fürt. gyorsítótárazott hitelesítő adatok használata Hadoop, tooprevent böngészők arra használják új InPrivate-böngésző ablak tooconnect toohello Pletyka felügyeleti felhasználói felület.
+   > A Ranger más hitelesítő adatokat használ, mint a Hadoop-fürt. Ha szeretné megakadályozni, hogy a böngészők gyorsítótárazott Hadoop hitelesítő adatokat használjanak, új InPrivate-böngészőablakból csatlakozzon a Ranger felügyeleti felhasználói felületéhez.
    >
    >
-2. Jelentkezzen be hello fürt rendszergazdai tartományi felhasználónevet és jelszót:
+2. Jelentkezzen be a fürt rendszergazdai tartományi felhasználónevével és jelszavával:
 
     ![HDInsight-tartományhoz csatlakoztatott Ranger kezdőlapja](./media/hdinsight-domain-joined-run-hive/hdinsight-domain-joined-ranger-home-page.png)
 
     A Ranger jelenleg csak a Yarn és a Hive rendszerrel működik.
 
 ## <a name="create-domain-users"></a>Tartományi felhasználók létrehozása
-A [Tartományhoz csatlakoztatott HDInsight-fürtök konfigurálása](hdinsight-domain-joined-configure.md#create-and-configure-azure-ad-ds-for-your-azure-ad) című részben létrehozott egy hiveuser1 és egy hiveuser2 nevű felhasználót. Ebben az oktatóanyagban hello két felhasználói fiókot fogja használni.
+A [Tartományhoz csatlakoztatott HDInsight-fürtök konfigurálása](hdinsight-domain-joined-configure.md#create-and-configure-azure-ad-ds-for-your-azure-ad) című részben létrehozott egy hiveuser1 és egy hiveuser2 nevű felhasználót. A két felhasználói fiókot fogja ebben az oktatóprogramban használni.
 
 ## <a name="create-ranger-policies"></a>Ranger-házirendek létrehozása
-Ebben a szakaszban két Ranger-házirendet fog létrehozni a hivesampletable eléréséhez. Adjon kiválasztási engedélyt a különböző oszlopcsoportokra vonatkozóan. Mindkét felhasználó a [Tartományhoz csatlakoztatott HDInsight-fürtök konfigurálása](hdinsight-domain-joined-configure.md#create-and-configure-azure-ad-ds-for-your-azure-ad) című részben lett létrehozva.  A következő szakaszban hello tesztelni hello két házirend, az Excel programban.
+Ebben a szakaszban két Ranger-házirendet fog létrehozni a hivesampletable eléréséhez. Adjon kiválasztási engedélyt a különböző oszlopcsoportokra vonatkozóan. Mindkét felhasználó a [Tartományhoz csatlakoztatott HDInsight-fürtök konfigurálása](hdinsight-domain-joined-configure.md#create-and-configure-azure-ad-ds-for-your-azure-ad) című részben lett létrehozva.  A következő szakaszban a két házirendet Excelben fogja tesztelni.
 
-**toocreate Pletyka házirendek**
+**Ranger-házirendek létrehozása**
 
-1. Nyissa meg a Ranger felügyeleti felhasználói felületét. Lásd: [tooApache Pletyka felügyeleti felhasználói felület csatlakozás](#connect-to-apache-ranager-admin-ui).
+1. Nyissa meg a Ranger felügyeleti felhasználói felületét. Lásd a [Csatlakozás az Apache Ranger felügyeleti felhasználói felületéhez](#connect-to-apache-ranager-admin-ui) című részt.
 2. A **Hive** alatt kattintson a **&lt;ClusterName>_hive** elemre. Két előre konfigurált házirendnek kell megjelennie.
-3. Kattintson a **új házirend hozzáadása**, és írja be a következő értékek hello:
+3. Kattintson az **Új házirend hozzáadása** gombra, majd adja meg a következő értékeket:
 
    * Házirend neve: read-hivesampletable-all
    * Hive-adatbázis: alapértelmezett
@@ -66,11 +66,11 @@ Ebben a szakaszban két Ranger-házirendet fog létrehozni a hivesampletable el�
      ![HDInsight-tartományhoz csatlakoztatott Ranger Hive-házirendjének konfigurálása](./media/hdinsight-domain-joined-run-hive/hdinsight-domain-joined-configure-ranger-policy.png).
 
      > [!NOTE]
-     > Ha egy tartományi felhasználó nincs feltöltve a felhasználó kiválasztása, pár perc múlva a Pletyka toosync AAD-ben.
+     > Ha egy tartományi felhasználó nem töltődik be a Felhasználó kiválasztása részben, várjon néhány másodpercig, amíg a Ranger szinkronizálódik az AAD-val.
      >
      >
-4. Kattintson a **Hozzáadás** toosave hello házirend.
-5. Ismételje meg a hello utolsó két lépést toocreate egy másik házirendet a következő tulajdonságai hello:
+4. A házirend mentéséhez kattintson a **Hozzáadás** gombra.
+5. Ismételje meg az utolsó két lépést egy másik házirend létrehozásához, amely a következő tulajdonságokkal rendelkezik:
 
    * Házirend neve: read-hivesampletable-devicemake
    * Hive-adatbázis: alapértelmezett
@@ -80,54 +80,54 @@ Ebben a szakaszban két Ranger-házirendet fog létrehozni a hivesampletable el�
    * Engedélyek: kiválasztás
 
 ## <a name="create-hive-odbc-data-source"></a>Hive ODBC-adatforrás létrehozása
-hello utasítások megtalálhatók [létrehozása Hive ODBC-adatforrás](hdinsight-connect-excel-hive-odbc-driver.md).  
+Az utasítások a [Hive ODBC-adatforrás létrehozása](hdinsight-connect-excel-hive-odbc-driver.md) című részben találhatók.  
 
     Tulajdonság|Leírás
     ---|---
-    Adatforrás neve|Adjon nevet tooyour adatforrás
+    Adatforrás neve|Adjon nevet az adatforrásának
     Gazdagép|Írja be a következő kifejezést: &lt;HDInsightClusterName>.azurehdinsight.net. Például: sajatHDICluster.azurehdinsight.net
-    Port|Használja a <strong>443</strong> számú portot. (Ez a port módosult 563 too443.)
+    Port|Használja a <strong>443</strong> számú portot. (Ez a port megváltozott a 563-ról 443-ra.)
     Adatbázis|Használja az <strong>Alapértelmezett</strong> adatbázist.
     Hive Server típusa|Válassza ki a <strong>Hive Server 2</strong> típust
     Mechanizmus|Válassza ki az <strong>Azure HDInsight szolgáltatást</strong>
     HTTP elérési útja|Hagyja üresen.
-    Felhasználónév|Adja meg hiveuser1@contoso158.onmicrosoft.com. Ha más, frissítse a hello tartomány nevét.
-    Jelszó|Adjon meg hiveuser1 hello jelszót.
+    Felhasználónév|Adja meg hiveuser1@contoso158.onmicrosoft.com. Frissítse a tartomány nevét, ha más.
+    Jelszó|Adja meg a hiveuser1 jelszavát.
     </table>
 
-Győződjön meg arról, hogy tooclick **teszt** hello adatforrás mentése előtt.
+Az adatforrás mentése előtt kattintson a **Tesztelés** gombra.
 
 ## <a name="import-data-into-excel-from-hdinsight"></a>Adatok importálása Excel formátumba a HDInsight-ból
-Hello utolsó szakaszában konfigurálta a két házirendeket.  hiveuser1 hello válassza ki az összes hello oszlopához engedéllyel rendelkezik, és hiveuser2 rendelkezik engedéllyel a két olyan oszlopot válasszon hello. Ebben a szakaszban hello két felhasználók tooimport adatokat Excelbe megszemélyesíteni.
+Az utolsó szakaszban két házirendet konfigurált.  A hiveuser1 nevű felhasználó az összes oszlopra, míg hiveuser2 csak két oszlopra vonatkozó kiválasztási engedéllyel rendelkezik. Ebben a szakaszban Ön megszemélyesíti a két felhasználót, hogy adatokat importáljon Excel formátumba.
 
 1. Nyisson meg egy új vagy egy meglévő munkafüzetet Excelben.
-2. A hello **adatok** lapra, majd **az egyéb adatforrások**, és kattintson a **az Adatkapcsolat varázsló** toolaunch hello **Adatkapcsolat varázsló**.
+2. Az **Adatok** lapon kattintson az **Egyéb adatforrásokból** elemre, majd kattintson az **Adatkapcsolat varázslóból** elemre, hogy elindítsa az **Adatkapcsolat varázslót**.
 
     ![Adatkapcsolat varázsló megnyitása] [img-hdi-simbahiveodbc.excel.dataconnection]
-3. Válassza ki **ODBC Adatforrásnevet** hello adatforrás lehetőséget, majd kattintson **következő**.
-4. Az ODBC adatforrások, válassza hello adatok adatforrásnév hello előző lépésben létrehozott, és kattintson **következő**.
-5. Jelszó ismételt hello hello fürt hello varázslóban, és kattintson **OK**. Várjon, amíg hello **adatbázis és tábla kijelölése** párbeszédpanel tooopen. Ez eltarthat néhány másodpercig.
+3. Válassza ki az **ODBC DSN** adatforrást, majd kattintson a **Tovább** gombra.
+4. Az ODBC-adatforrások közül válassza ki az előző lépésben létrehozott adatforrásnevet, majd kattintson a **Tovább** gombra.
+5. Írja be újból a fürthöz tartozó jelszót a varázslóban, majd kattintson az **OK** gombra. Várja meg, amíg megnyílik az **Adatbázis és tábla kiválasztása** párbeszédpanel. Ez eltarthat néhány másodpercig.
 6. Válassza ki a **hivesampletable** táblát, majd kattintson a **Tovább** gombra.
-7. Kattintson a **Befejezés** gombra.
-8. A hello **és adatokat importálhat** párbeszédpanelen módosíthatja vagy hello lekérdezést. toodo kattintson **tulajdonságok**. Ez eltarthat néhány másodpercig.
-9. Kattintson a hello **Definition** külön-külön hello parancs szövege:
+7. Kattintson a **Finish** (Befejezés) gombra.
+8. Az **Adatok importálása** párbeszédpanelen módosíthatja vagy megadhatja a lekérdezést. Ehhez kattintson a **Tulajdonságok** elemre. Ez eltarthat néhány másodpercig.
+9. Kattintson a **Definíció** fülre. A parancs szövege a következő:
 
        SELECT * FROM "HIVE"."default"."hivesampletable"
 
-   Hello Pletyka szabályzatok az Ön által definiált hiveuser1 válassza megfelelő jogosultságokkal rendelkezik az összes hello oszlop.  Ezért ez a lekérdezés hiveuser1 hitelesítő adataival működik, azonban hiveuser2 hitelesítő adataival nem működik.
+   A definiált Ranger-házirendek alapján a hiveuser1 az összes oszlopra vonatkozó kiválasztási engedéllyel rendelkezik.  Ezért ez a lekérdezés hiveuser1 hitelesítő adataival működik, azonban hiveuser2 hitelesítő adataival nem működik.
 
    ![Kapcsolat tulajdonságai] [img-hdi-simbahiveodbc-excel-connectionproperties]
-10. Kattintson a **OK** tooclose hello kapcsolat tulajdonságai párbeszédpanelen.
-11. Kattintson a **OK** tooclose hello **és adatokat importálhat** párbeszédpanel.  
-12. Írja be újból az hiveuser1 hello jelszót, és kattintson a **OK**. Előtt adatokat lekérdezi az importált tooExcel néhány másodpercet vesz igénybe. Amikor kész van, 11 adatoszlopnak kell megjelennie.
+10. A kapcsolat tulajdonságai párbeszédpanel bezárásához kattintson az **OK** gombra.
+11. Az **Adatok importálása** párbeszédpanel bezárásához kattintson az **OK** gombra.  
+12. Írja be újra a hiveuser1 jelszavát, majd kattintson az **OK** gombra. Az adatok importálása az Excelbe néhány másodpercet vesz igénybe. Amikor kész van, 11 adatoszlopnak kell megjelennie.
 
-hello utolsó szakaszában létrehozott tootest hello második házirend (olvasás-hivesampletable-devicemake)
+Az utolsó szakaszban létrehozott második (read-hivesampletable-devicemake) házirend tesztelése
 
 1. Adjon hozzá egy új munkalapot az Excelben.
-2. Hajtsa végre a hello utolsó eljárás tooimport hello adatokat.  hello mindössze annyi a változás teheti toouse hiveuser2 hitelesítő adatok helyett hiveuser1 tartozó. Ez sikertelen lesz, mert hiveuser2, csak a engedély toosee két oszlopot tartalmaz. Hiba a következő hello kell beolvasása:
+2. Az adatok importálásához kövesse az utolsó eljárást.  Csupán annyit kell változtatnia, hogy a hiveuser2 hitelesítő adatai helyett a hiveuser1 hitelesítő adatait használja. Ez sikertelenséghez vezet, mert hiveuser2 csak két oszlop megtekintésére jogosult. A következő hibaüzenetnek kell megjelennie:
 
         [Microsoft][HiveODBC] (35) Error from Hive: error code: '40000' error message: 'Error while compiling statement: FAILED: HiveAccessControlException Permission denied: user [hiveuser2] does not have [SELECT] privilege on [default/hivesampletable/clientid,country ...]'.
-3. Hajtsa végre az azonos hello eljárás tooimport adatokat. Ennek az időnek hiveuser2 tartozó hitelesítő adatokat használja, és hello select utasítás a is módosíthatók:
+3. Az adatok importálásához kövesse ugyanazt az eljárást. Ez alkalommal hiveuser2 hitelesítő adatait használja, és módosítsa a kiválasztási utasítást erről:
 
         SELECT * FROM "HIVE"."default"."hivesampletable"
 
@@ -141,6 +141,6 @@ hello utolsó szakaszában létrehozott tootest hello második házirend (olvas�
 * A tartományhoz csatlakoztatott HDInsight-fürtök konfigurálásához lásd: [Tartományhoz csatlakoztatott HDInsight-fürtök konfigurálása](hdinsight-domain-joined-configure.md).
 * A tartományhoz csatlakoztatott HDInsight-fürtök kezeléséhhez lásd: [Tartományhoz csatlakoztatott HDInsight-fürtök kezelése](hdinsight-domain-joined-manage.md).
 * Az SSH használata a tartományhoz csatlakoztatott HDInsight-fürtökön Hive-lekérdezéseket futtat, tekintse meg a [az SSH a Hdinsighttal](hdinsight-hadoop-linux-use-ssh-unix.md#domainjoined).
-* Csatlakozás Hive Hive JDBC használatával, lásd: [tooHive on Azure HDInsight Hive JDBC-illesztőt hello használata csatlakozáshoz](hdinsight-connect-hive-jdbc-driver.md)
-* Csatlakozás Excel tooHadoop Hive ODBC használatával, lásd: [kapcsolódás Excel tooHadoop a Microsoft Hive ODBC-meghajtó hello](hdinsight-connect-excel-hive-odbc-driver.md)
-* Csatlakozás a Power Query használatával Excel tooHadoop, lásd: [kapcsolódás Excel tooHadoop Power Query használatával](hdinsight-connect-excel-power-query.md)
+* A Hive JDBC segítségével történő Hive-csatlakoztatáshoz olvassa el a [Csatlakozás a Hive-hoz az Azure HDInsight rendszerben a Hive JDBC-illesztőprogrammal](hdinsight-connect-hive-jdbc-driver.md) című részt
+* Ha az Excelt a Hive ODBC segítségével szeretné a Hadoophoz csatlakoztatni, olvassa el [Az Excel csatlakoztatása a Hadoophoz a Microsoft Hive ODBC-meghajtó segítségével](hdinsight-connect-excel-hive-odbc-driver.md) című részt
+* Ha az Excelt a Power Query segítségével szeretné a Hadoophoz csatlakoztatni, olvassa el [Az Excel csatlakoztatása a Hadoophoz a Power Query segítségével](hdinsight-connect-excel-power-query.md) című részt

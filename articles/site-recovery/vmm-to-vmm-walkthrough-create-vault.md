@@ -1,6 +1,6 @@
 ---
-title: "a Hyper-V replikáció tooa másodlagos hely az Azure Site Recovery tárolójából aaaCreate |} Microsoft Docs"
-description: "Ismerteti, hogyan toocreate egy tároló tooa Hyper-V virtuális gépek replikálása esetén másodlagos System Center VMM helyet az Azure Site Recovery szolgáltatással."
+title: "A Hyper-V replikáció egy másodlagos helyre tároló létrehozása az Azure Site Recovery szolgáltatással |} Microsoft Docs"
+description: "Hozzon létre egy tárolót, ha a Hyper-V virtuális gépek replikálása az Azure Site Recovery System Center VMM másodlagos hely ismerteti."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/30/2017
 ms.author: raynew
-ms.openlocfilehash: 96ee09cbf2376a5089b9efa09dc7ab3fb7d472cb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 28cfcf12b2e369f96664c163c0b6f2aa8a6ddcb9
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="step-5-create-a-vault-for-hyper-v-replication-tooa-secondary-site"></a>5. lépés: Hyper-V replikáció tooa másodlagos hely tároló létrehozása
+# <a name="step-5-create-a-vault-for-hyper-v-replication-to-a-secondary-site"></a>5. lépés:, Hozzon létre egy tárolót a Hyper-V replikáció egy másodlagos helyre
 
-A helyszíni előkészítését követően [System Center Virtual Machine Manager (VMM) kiszolgáló és Hyper-V gazdagépek/fürt](vmm-to-vmm-walkthrough-vmm-hyper-v.md) a Hyper-V replikáció tooa másodlagos hely [Azure Site Recovery](site-recovery-overview.md), létrehozhat egy Recovery Services-tároló, és jelölje be hello replikációs forgatókönyv.
+A helyszíni előkészítését követően [System Center Virtual Machine Manager (VMM) kiszolgáló és a Hyper-V gazdagép vagy fürt](vmm-to-vmm-walkthrough-vmm-hyper-v.md) a Hyper-V replikáció egy másodlagos hely használatával [Azure Site Recovery](site-recovery-overview.md), Recovery Services-tároló létrehozása, és válassza ki a replikációs környezet.
 
-A cikk elolvasása után fűzhetnek bármely hello lap alján, vagy a hello [Azure Recovery Services fórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+A cikk elolvasása után felmerülő megjegyzéseit alul vagy az [Azure Recovery Services fórumban](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) teheti közzé.
 
 
 ## <a name="create-a-recovery-services-vault"></a>Recovery Services-tároló létrehozása
@@ -34,11 +34,11 @@ A cikk elolvasása után fűzhetnek bármely hello lap alján, vagy a hello [Azu
 
 ## <a name="choose-a-protection-goal"></a>Válassza ki a védelmi cél
 
-Válassza ki a kívánt tooreplicate és a tooreplicate, ahová.
+Válassza ki, hogy mit szeretne replikálni, és hova.
 
 1. Kattintson a **Site Recovery** > **1. lépés: az infrastruktúra előkészítése** > **védelmi cél**.
-2. Válassza ki **toorecovery hely**, és válassza ki **Igen, a Hyper-V-vel**.
-3. Válassza ki **Igen** tooindicate VMM toomanage hello Hyper-V-gazdagépek használata.
+2. Válassza ki **helyreállítási hely**, és válassza ki **Igen, a Hyper-V-vel**.
+3. Válassza ki **Igen** annak jelzésére, hogy a VMM segítségével a Hyper-V-gazdagépek kezelése.
 4. Válassza ki **Igen** Ha egy másodlagos VMM-kiszolgálóval rendelkezik. Ha egy VMM-kiszolgálón felhők közötti replikáció telepít, kattintson a **nem**. Ezután kattintson az **OK** gombra.
 
     ![Célok megválasztása](./media/vmm-to-vmm-walkthrough-create-vault/choose-goals.png)
@@ -47,4 +47,4 @@ Válassza ki a kívánt tooreplicate és a tooreplicate, ahová.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Nyissa meg túl[6. lépés: hello replikációs forrás és cél beállítása](vmm-to-vmm-walkthrough-source-target.md).
+Ugrás a [6. lépés: a replikáció forrás- és a cél beállítása](vmm-to-vmm-walkthrough-source-target.md).

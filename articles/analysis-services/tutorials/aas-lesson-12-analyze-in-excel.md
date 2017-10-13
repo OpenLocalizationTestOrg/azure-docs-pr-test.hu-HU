@@ -1,65 +1,83 @@
 ---
-cím: aaa "Azure Analysis Services-oktatóanyag lecke 12: elemzés az Excelben |} Microsoft Docs"Leírás: ismerteti, hogyan toouse elemzés az Excelben a hello Azure Analysis Services oktatóanyag projekt. szolgáltatások: analysis-szolgáltatások documentationcenter: "Szerző: minewiskan manager: erikre szerkesztőben:" címkék: "
-
-MS.AssetId: ms.service: analysis-szolgáltatások ms.devlang: NA ms.topic: get-started-article ms.tgt_pltfrm: NA ms.workload: na ms.date: 05/26/2017 ms.author: owend
+title: "Azure Analysis Services-oktatóanyag – 12. lecke: Elemzés az Excelben | Microsoft Docs"
+description: "A lecke azt ismerteti, hogyan használható az Elemzés az Excelben az Azure Analysis Services oktatóprojektjében."
+services: analysis-services
+documentationcenter: 
+author: Minewiskan
+manager: erikre
+editor: 
+tags: 
+ms.assetid: 
+ms.service: analysis-services
+ms.devlang: NA
+ms.topic: get-started-article
+ms.tgt_pltfrm: NA
+ms.workload: na
+ms.date: 09/20/2017
+ms.author: owend
+ms.openlocfilehash: e257862a88d39b96360703117f544c43e82b0e3d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="lesson-12-analyze-in-excel"></a>12. lecke: Elemzés az Excelben
 
 [!INCLUDE[analysis-services-appliesto-aas-sql2017-later](../../../includes/analysis-services-appliesto-aas-sql2017-later.md)]
 
-Ez a lecke hello elemzés az Excelben funkciót tooopen Microsoft Excel használjon, automatikusan hozzon létre egy kapcsolat toohello modell munkaterületet, és automatikusan adja hozzá a kimutatáshoz toohello munkalap. hello elemzése az Excel programba tooprovide célja egy a modell gyorsan és egyszerűen elvégezhető tootest hello hatékonyságát tervezési előzetes toodeploying a modell. Ez a lecke nem tartalmaz adatelemzést. hello Ez a lecke célja toofamiliarize, hello modell szerzőként, hello eszközök segítségével tootest a modell kialakítását.   
+Ebben a leckében az Elemzés az Excelben használatával megnyitja a Microsoft Excelt, automatikusan létrehoz egy kapcsolatot a modell-munkaterülettel, és automatikusan hozzáad egy kimutatást a munkalaphoz. Az Elemzés az Excelben funkció gyors és könnyű módot biztosít a modellfelépítés hatékonyságának tesztelésére a modell üzembe helyezése előtt. Ez a lecke nem tartalmaz adatelemzést. A lecke célja, hogy megismertesse Önt, a modell alkotóját a modellfelépítés tesztelésére használható eszközökkel.   
   
-Ebben a leckében Excel telepíteni kell hello toocomplete SSDT ugyanarra a számítógépre.
+A lecke elvégzéséhez az Excelnek és az SSDT-nek ugyanazon a számítógépen kell telepítve lennie.
   
-Becsült idő toocomplete Ez a lecke: **öt perc**  
+A lecke elvégzésének várható időtartama: **5 perc**.  
   
 ## <a name="prerequisites"></a>Előfeltételek  
-Ez a témakör a táblázatos modellezéssel foglalkozó oktatóanyag részét képezi, amelyet a megfelelő sorrendben kell elvégezni. Ez a lecke hello feladatok elvégzése előtt kell befejeződött hello előző lecke: [lecke 11: szerepkörök létrehozása](../tutorials/aas-lesson-11-create-roles.md).  
+Ez a témakör a táblázatos modellezéssel foglalkozó oktatóanyag részét képezi, amelyet a megfelelő sorrendben kell elvégezni. A leckében foglalt feladatok végrehajtása előtt el kell végeznie az előző leckét ([11. lecke: Szerepkörök létrehozása](../tutorials/aas-lesson-11-create-roles.md)).  
   
-## <a name="browse-using-hello-default-and-internet-sales-perspectives"></a>Keresse meg az alapértelmezett és az Internet értékesítési perspektívák hello használata  
-Első a feladatokkal, akkor keresse meg a modell mindkét hello alapértelmezett perspektívára, minden modellobjektumokat tartalmazó használatával és hello Internet értékesítési perspektíva használatával korábban meg. hello Internet értékesítési perspektíva hello felhasználói táblaobjektum nem tartalmazza.  
+## <a name="browse-using-the-default-and-internet-sales-perspectives"></a>Tallózás az alapértelmezett és az Internetes értékesítés perspektíva használatával  
+Ezekben az első feladatokban az összes modellobjektumot tartalmazó alapértelmezett perspektíva, valamint a korábban létrehozott Internetes értékesítés perspektíva használatával tallózhat a modellben. Az Internetes értékesítés perspektíva nem tartalmazza a Customer (Ügyfél) táblaobjektumot.  
   
-#### <a name="toobrowse-by-using-hello-default-perspective"></a>toobrowse hello alapértelmezett perspektíva használatával  
+#### <a name="to-browse-by-using-the-default-perspective"></a>Tallózás az alapértelmezett perspektívával  
   
-1.  Kattintson a hello **modell** menü > **elemzés az Excelben**.  
+1.  Kattintson a **Modell** menü **Elemzés az Excelben** elemére.  
   
-2.  A hello **elemzés az Excelben** párbeszédpanel, kattintson a **OK**.  
+2.  Az **Elemzés az Excelben** párbeszédpanelen kattintson az **OK** gombra.  
   
-    Megnyílik az Excel, és megjelenít egy új munkafüzetet. Adatforrás-kapcsolat jön létre hello aktuális felhasználói fiókkal, és alapértelmezett perspektíva hello használt toodefine megtekinthető mezők. A kimutatás automatikusan toohello munkalapra.  
+    Megnyílik az Excel, és megjelenít egy új munkafüzetet. Létrejön egy adatforrás-kapcsolat az aktuális felhasználói fiók használatával, a megtekinthető mezőket pedig az alapértelmezett perspektíva határozza meg. A rendszer automatikusan hozzáad egy kimutatást a munkalaphoz.  
   
-3.  Az Excel, a hello **kimutatás mezőlistájának**, értesítés hello **DimDate** és **FactInternetSales** Mértékcsoportok jelennek meg. Hello **DimCustomer**, **DimDate**, **DimGeography**, **DimProduct**, **DimProductCategory**, **DimProductSubcategory**, és **FactInternetSales** is megjelenhet a megfelelő oszloppal rendelkező táblákon.  
+3.  Az Excel **Kimutatás mezőlistája** területén figyelje meg, hogy a **DimDate** és **FactInternetSales** mértékcsoportok is láthatók. A **DimCustomer**, **DimDate**, **DimGeography**, **DimProduct**, **DimProductCategory**, **DimProductSubcategory** és **FactInternetSales** táblák is megjelennek a saját oszlopaikkal együtt.  
   
-4.  Zárja be az Excel hello munkafüzetet mentés nélkül.  
+4.  Zárja be az Excelt a munkafüzet mentése nélkül.  
   
-#### <a name="toobrowse-by-using-hello-internet-sales-perspective"></a>toobrowse hello Internet értékesítési perspektíva használatával  
+#### <a name="to-browse-by-using-the-internet-sales-perspective"></a>Tallózás az Internetes értékesítés perspektívával  
   
-1.  Kattintson a hello **modell** menüben, majd kattintson **elemzés az Excelben**.  
+1.  Kattintson a **Modell** menü **Elemzés az Excelben** elemére.  
   
-2.  A hello **elemzés az Excelben** párbeszédpanelen hagyja **aktuális Windows-felhasználó** kijelölve, majd a hello **perspektíva** legördülő listáról válassza **Internet értékesítés** , és kattintson a **OK**. 
+2.  Az **Elemzés az Excelben** párbeszédpanelen hagyja bejelölve **A Windows jelenlegi felhasználója** beállítást, majd a **Perspektíva** legördülő listából válassza ki az **Internetes értékesítés** elemet, és kattintson az **OK** gombra. 
     
     ![aas-lesson12-perspective](../tutorials/media/aas-lesson12-perspective.png)
     
-3.  Az Excel programban a **kimutatástábla mezői**, figyelje meg, hello DimCustomer tábla hello mezőlistáról ki van zárva.  
+3.  Az Excel **Kimutatás mezőlistája** területén figyelje meg, hogy a DimCustomer tábla nem szerepel a mezők listájában.  
     
     ![aas-lesson12-fields](../tutorials/media/aas-lesson12-fields.png)
     
-4.  Zárja be az Excel hello munkafüzetet mentés nélkül.  
+4.  Zárja be az Excelt a munkafüzet mentése nélkül.  
   
 ## <a name="browse-by-using-roles"></a>Tallózás szerepkörök használatával  
-A szerepkörök minden táblázatos modell fontos részét képezik. Legalább egy szerepkör nélkül toowhich felhasználót adnak hozzá tagként, felhasználók nem férhetnek hozzá, és elemezhetik a modell használatával. hello elemzése az Excel funkció lehetőséget biztosít az Ön tootest hello szerepköröket, meghatározott.  
+A szerepkörök minden táblázatos modell fontos részét képezik. Ha nincs legalább egy szerepkör, amelyhez felhasználók vannak hozzáadva tagként, a felhasználók nem érhetik el és nem elemezhetik az adatokat a modell használatával. Az Elemzés az Excelben funkció lehetővé teszi a definiált szerepkörök tesztelését.  
   
-#### <a name="toobrowse-by-using-hello-sales-manager-user-role"></a>toobrowse hello értékesítési igazgató felhasználói szerepkör használatával  
+#### <a name="to-browse-by-using-the-sales-manager-user-role"></a>Tallózás az Értékesítési vezető felhasználói szerepkörrel  
   
-1.  Az SSDT, kattintson a hello **modell** menüben, majd kattintson **elemzés az Excelben**.  
+1.  Az SSDT-ben kattintson a **Modell** menüre, majd az **Elemzés az Excelben** elemre.  
   
-2.  A **megadása hello felhasználó neve vagy szerepe toouse tooconnect toohello modell**, jelölje be **szerepkör**, majd a hello legördülő lista, válassza **értékesítési igazgató**, és kattintson a  **OK**.  
+2.  Az **Adja meg a modellhez való kapcsolódáshoz használandó felhasználónevet vagy szerepkört** mezőben válassza ki a **Szerepkör** lehetőséget, majd a legördülő listából válassza ki az **Értékesítési vezető** szerepkört, és kattintson az **OK** gombra.  
   
-    Megnyílik az Excel, és megjelenít egy új munkafüzetet. Ekkor automatikusan létrejön egy kimutatás. hello Pivot tábla mezőlista olyan összes hello adatok mezőket az új modell érhető el.  
+    Megnyílik az Excel, és megjelenít egy új munkafüzetet. Ekkor automatikusan létrejön egy kimutatás. A kimutatás mezőlistája az új modellben elérhető összes adatmezőt tartalmazza.  
       
-3.  Zárja be az Excel hello munkafüzetet mentés nélkül.  
+3.  Zárja be az Excelt a munkafüzet mentése nélkül.  
   
 ## <a name="whats-next"></a>A következő lépések
-Nyissa meg toohello következő lecke: [lecke 13: telepítése](../tutorials/aas-lesson-13-deploy.md).
+Tovább a következő leckére: [13. lecke: Üzembe helyezés](../tutorials/aas-lesson-13-deploy.md).
 
   
   

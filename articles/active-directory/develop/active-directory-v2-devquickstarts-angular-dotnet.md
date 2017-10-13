@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure AD v2.0 .NET AngularJS egylapos alkalmazások első lépések |} Microsoft Docs"
-description: "Hogyan toobuild, hogy a felhasználók a személyes Microsoft-szal szögben kifejezett JS egylapos alkalmazások fiókok és a munkahelyi vagy iskolai fiókjait."
+title: "Azure AD v2.0 .NET AngularJS egylapos alkalmazás első lépések |} Microsoft Docs"
+description: "Hogyan hozhat létre, hogy mindkét személyes Microsoft-fiókkal rendelkező felhasználók bejelentkezésekor szögben kifejezett JS egylapos alkalmazások és a munkahelyi vagy iskolai fiókját."
 services: active-directory
 documentationcenter: 
 author: jmprieur
@@ -15,54 +15,54 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: jmprieur
 ms.custom: aaddev
-ms.openlocfilehash: bd3fc8dce91eb0bedcbfed47a9b3ef52c5568c6a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c68180c0ecabf5c0732f0db77ef1f3cc93be965b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="add-sign-in-tooan-angularjs-single-page-app---net"></a>Bejelentkezési tooan AngularJS egylapos alkalmazás - .NET hozzáadása
-Ebben a cikkben fel kell venni, jelentkezzen be az alkalmazás bekapcsolja Microsoft fiókok tooan AngularJS használó alkalmazás hello Azure Active Directory v2.0-végponttól.  hello v2.0-végponttól tooperform egy egyetlen integrációt az alkalmazás lehetővé teszi, és a személyes és munkahelyi vagy iskolai fiókkal rendelkező felhasználók hitelesítéséhez.
+# <a name="add-sign-in-to-an-angularjs-single-page-app---net"></a>Bejelentkezési hozzáadása egy AngularJS egylapos alkalmazás - .NET
+Ebben a cikkben fel kell venni jelentkezzen be az alkalmazás bekapcsolja Microsoft-fiókok AngularJS alkalmazásokhoz az Azure Active Directory v2.0-végponttól használatával.  A v2.0-végpontra lehetővé teszi egyetlen integrációs elvégzéséhez az alkalmazáson belüli és a személyes és munkahelyi vagy iskolai fiókkal rendelkező felhasználók hitelesítéséhez.
 
-Ez a minta egy egyszerű Tennivalólista egylapos alkalmazást, amely tárolja a feladatokat az olyan háttér REST API-t hello .NET 4.5 MVC keretrendszer használatával írt, és az Azure AD OAuth tulajdonosi jogkivonatok használatával biztonságossá.  hello AngularJS alkalmazás fogja használni a nyílt forráskódú JavaScript hitelesítési kódtár [adal.js](https://github.com/AzureAD/azure-activedirectory-library-for-js) toohandle hello teljes bejelentkezési folyamathoz, és beszerezni a jogkivonatokat a hívó hello REST API-t.  hello ugyanilyen mintájú lehet alkalmazott tooauthenticate tooother REST API-k, például a hello [Microsoft Graph](https://graph.microsoft.com).
+Ez a minta egy egyszerű Tennivalólista egylapos alkalmazást, amely tárolja a feladatokat az olyan háttér REST API-t a .NET 4.5 MVC-keretrendszer használatával írt, és az Azure AD OAuth tulajdonosi jogkivonatok használatával biztonságossá.  Az AngularJS alkalmazás fog használni a nyílt forráskódú JavaScript hitelesítési kódtár [adal.js](https://github.com/AzureAD/azure-activedirectory-library-for-js) a teljes bejelentkezési folyamathoz, és a REST API hívásának jogkivonatainak szerezni.  Ugyanilyen mintájú alkalmazható felé történő hitelesítésre más REST API-k, például a [Microsoft Graph](https://graph.microsoft.com).
 
 > [!NOTE]
-> Nem minden Azure Active Directory forgatókönyvek és funkciók támogatják hello v2.0-végponttól.  toodetermine használatát hello v2.0-végpontra, olvassa el [v2.0 korlátozások](active-directory-v2-limitations.md).
+> Nem minden Azure Active Directory forgatókönyvek és funkciók támogatják a v2.0-végponttól.  Annak meghatározásához, ha a v2.0-végponttal kell használnia, olvassa el [v2.0 korlátozások](active-directory-v2-limitations.md).
 > 
 > 
 
 ## <a name="download"></a>Letöltés
-elindult, tooget lesz szüksége toodownload & telepítse a Visual Studio.  Majd átmásolhatja vagy [letöltése](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-DotNet/archive/skeleton.zip) egy üres alkalmazást:
+A kezdéshez töltse le és telepítse a Visual Studio szüksége.  Majd átmásolhatja vagy [letöltése](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-DotNet/archive/skeleton.zip) egy üres alkalmazást:
 
 ```
 git clone --branch skeleton https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-DotNet.git
 ```
 
-hello üres alkalmazás egy egyszerű AngularJS alkalmazás összes hello bolierplate kódot tartalmaz, de összes hello identitás kapcsolatos eleme hiányzik.  Ha nem szeretné mentén toofollow, hanem klónozhat vagy [letöltése](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-DotNet/archive/complete.zip) befejeződött hello minta.
+Az üres alkalmazás egyszerű AngularJS alkalmazások bolierplate kódot tartalmaz, de hiányzik az identitás-kapcsolódó darab mindegyikét.  Ha nem szeretné követéséhez, hanem klónozhat vagy [letöltése](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-DotNet/archive/complete.zip) az elkészült mintát.
 
 ```
 git clone https://github.com/AzureADSamples/SinglePageApp-AngularJS-DotNet.git
 ```
 
 ## <a name="register-an-app"></a>Alkalmazás regisztrálása
-Először hozzon létre egy alkalmazást hello [App regisztrációs portál](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), vagy kövesse az alábbi [részletes lépéseket](active-directory-v2-app-registration.md).  Győződjön meg arról, hogy:
+Először hozzon létre egy alkalmazást, az a [App regisztrációs portál](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), vagy kövesse az alábbi [részletes lépéseket](active-directory-v2-app-registration.md).  Győződjön meg arról, hogy:
 
-* Adja hozzá a hello **webes** platform az alkalmazásra vonatkozóan.
-* Adja meg a megfelelő hello **átirányítási URI-**. Ez a minta hello alapértelmezett értéke `https://localhost:44326/`.
-* Hagyja hello **Implicit Flow engedélyezése** engedélyezve jelölőnégyzetet. 
+* Adja hozzá a **webes** platform az alkalmazásra vonatkozóan.
+* Adja meg a megfelelő **átirányítási URI-**. Ez a minta alapértelmezés szerint `https://localhost:44326/`.
+* Hagyja a **Implicit Flow engedélyezése** engedélyezve jelölőnégyzetet. 
 
-Másolja le hello **Alkalmazásazonosító** hozzárendelt tooyour app, hamarosan lesz kell. 
+Másolja le a **Alkalmazásazonosító** , amely hozzá van rendelve az alkalmazáshoz, hamarosan kell azt. 
 
 ## <a name="install-adaljs"></a>Adal.js telepítése
-toostart, keresse meg a letöltött tooproject, és telepítse a adal.js.  Ha rendelkezik [bower](http://bower.io/) telepítve, ugyanúgy futtathatja ezt a parancsot.  A semmilyen függőségi verzió eltérést válassza a hello újabb verziójú.
+Indítsa el, navigáljon a letöltött projektre, és telepítse a adal.js.  Ha rendelkezik [bower](http://bower.io/) telepítve, ugyanúgy futtathatja ezt a parancsot.  Semmilyen függőségi verzió eltérést csak adja meg az újabb verziót.
 
 ```
 bower install adal-angular#experimental
 ```
 
-Azt is megteheti, manuálisan letöltheti [adal.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal.min.js) és [adal angular.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal-angular.min.js).  Adja hozzá a mindkét fájlok toohello `app/lib/adal-angular-experimental/dist` mappában található hello `TodoSPA` projekt.
+Azt is megteheti, manuálisan letöltheti [adal.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal.min.js) és [adal angular.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal-angular.min.js).  Mindkét fájlok hozzáadása a `app/lib/adal-angular-experimental/dist` mappában található a `TodoSPA` projekt.
 
-Most nyissa meg a hello projektet a Visual Studio és a betöltési adal.js hello fő lapján törzs hello végén:
+Most nyissa meg a projektet a Visual Studio, és a fő lapján törzs végén adal.js betöltése:
 
 ```html
 <!--index.html-->
@@ -75,8 +75,8 @@ Most nyissa meg a hello projektet a Visual Studio és a betöltési adal.js hell
 ...
 ```
 
-## <a name="set-up-hello-rest-api"></a>REST API hello beállítása
-Míg beállítás folyamatban van, folytassuk hello háttér REST API-n működő.  Hello projekt gyökerében hello, nyissa meg `web.config` , és cserélje le a hello `audience` érték.  hello REST API-t fogja használni a toovalidate értékelemek hello szögben kifejezett alkalmazás AJAX-kérelmek megkapja.
+## <a name="set-up-the-rest-api"></a>A REST API beállítása
+Míg beállítás folyamatban van, folytassuk a háttérrendszer REST API-n működő.  A projekt gyökérkönyvtárában nyissa meg a `web.config` , és cserélje le a `audience` érték.  A REST API-t használja ezt az értéket érvényesítse a szögben kifejezett alkalmazást, az AJAX-kérelmek megkapja.
 
 ```xml
 <!--web.config-->
@@ -90,10 +90,10 @@ Míg beállítás folyamatban van, folytassuk hello háttér REST API-n működ�
 ...
 ```
 
-Ez minden fogjuk megvitatása hello REST API működése toospend hello idő.  Érzi, hogy szabad toopoke hello kódban, de ha azt szeretné, hogy a webes API-k és az Azure AD biztosításával kapcsolatos további toolearn, tekintse meg [Ez a cikk](active-directory-v2-devquickstarts-dotnet-api.md). 
+Ez egy, a REST API működése megvitatása fogjuk folyamatosan.  Nyugodtan poke, a kódban, de ha szeretné megtudni a további információk védelme webes API-kat az Azure ad-vel, tekintse meg [Ez a cikk](active-directory-v2-devquickstarts-dotnet-api.md). 
 
 ## <a name="sign-users-in"></a>A felhasználók beléptetése
-Idő toowrite néhány identitás kódot.  Észrevette, hogy már adott adal.js egy AngularJS szolgáltatót tartalmaz, amely lehetőségben szépen szögben kifejezett útválasztási mechanizmusokat.  Először vegyen fel hello adal modul toohello alkalmazást:
+Identitás kódírást idő.  Észrevette, hogy már adott adal.js egy AngularJS szolgáltatót tartalmaz, amely lehetőségben szépen szögben kifejezett útválasztási mechanizmusokat.  Indítsa el az alkalmazás az adal modul hozzáadásával:
 
 ```js
 // app/scripts/app.js
@@ -105,7 +105,7 @@ angular.module('todoApp', ['ngRoute','AdalAngular'])
 ...
 ```
 
-Most már tudja inicializálni a hello `adalProvider` az alkalmazás azonosítójú:
+Most töltse a `adalProvider` az alkalmazás azonosítójú:
 
 ```js
 // app/scripts/app.js
@@ -114,22 +114,22 @@ Most már tudja inicializálni a hello `adalProvider` az alkalmazás azonosító
 
 adalProvider.init({
 
-        // Use this value for hello public instance of Azure AD
+        // Use this value for the public instance of Azure AD
         instance: 'https://login.microsoftonline.com/', 
 
-        // hello 'common' endpoint is used for multi-tenant applications like this one
+        // The 'common' endpoint is used for multi-tenant applications like this one
         tenant: 'common',
 
-        // Your application id from hello registration portal
+        // Your application id from the registration portal
         clientId: '<Your-application-id>',
 
-        // If you're using IE, uncommment this line - hello default HTML5 sessionStorage does not work for localhost.
+        // If you're using IE, uncommment this line - the default HTML5 sessionStorage does not work for localhost.
         //cacheLocation: 'localStorage',
 
     }, $httpProvider);
 ```
 
-Nagyszerű, már adal.js hello kapcsolatos összes információ szükséges toosecure alkalmazás és a bejelentkezési felhasználói számára.  egy adott útvonalon hello alkalmazásban, az összes szükséges bejelentkezés tooforce kód egy sor:
+Nagyszerű, adal.js már az alkalmazás biztonságos és felhasználói bejelentkezéshez szükséges összes adatot.  Jelentkezzen be az alkalmazás az adott útvonal kényszerítéséhez tart egy kódsort:
 
 ```js
 // app/scripts/app.js
@@ -139,29 +139,29 @@ Nagyszerű, már adal.js hello kapcsolatos összes információ szükséges toos
 }).when("/TodoList", {
     controller: "todoListCtrl",
     templateUrl: "/static/views/TodoList.html",
-    requireADLogin: true, // Ensures that hello user must be logged in tooaccess hello route
+    requireADLogin: true, // Ensures that the user must be logged in to access the route
 })
 
 ...
 ```
 
-Most amikor a felhasználó rákattint hello `TodoList` hivatkozást, a adal.js automatikusan átirányítja a tooAzure AD-hez, jelentkezzen be szükséges.  Be- és kijelentkezési kérések, a vezérlők adal.js hívja közvetlenül is küldhet:
+Most amikor a felhasználó rákattint a `TodoList` hivatkozásra a adal.js automatikusan átirányítja az Azure AD-hez bejelentkezési szükség esetén.  Be- és kijelentkezési kérések, a vezérlők adal.js hívja közvetlenül is küldhet:
 
 ```js
 // app/scripts/homeCtrl.js
 
 angular.module('todoApp')
-// Load adal.js hello same way for use in controllers and views   
+// Load adal.js the same way for use in controllers and views   
 .controller('homeCtrl', ['$scope', 'adalAuthenticationService','$location', function ($scope, adalService, $location) {
     $scope.login = function () {
 
-        // Redirect hello user toosign in
+        // Redirect the user to sign in
         adalService.login();
 
     };
     $scope.logout = function () {
 
-        // Redirect hello user toolog out    
+        // Redirect the user to log out    
         adalService.logOut();
 
     };
@@ -169,7 +169,7 @@ angular.module('todoApp')
 ```
 
 ## <a name="display-user-info"></a>Felhasználói adatok megjelenítése
-Most, hogy hello van bejelentkezett felhasználó, az alkalmazás valószínűleg tooaccess hello bejelentkezett felhasználó hitelesítési adat lesz szüksége.  Adal.js elérhetővé teszi ezeket az adatokat a hello `userInfo` objektum.  tooaccess az objektumot a nézet, először adja hozzá a adal.js toohello legfelső szintű vezérlő hatókörébe, hello megfelelő:
+Most, hogy a felhasználó jelentkezett be, valószínűleg szüksége a bejelentkezett felhasználók hitelesítési adatait az alkalmazás eléréséhez.  Adal.js elérhetővé teszi ezeket az adatokat a a `userInfo` objektum.  Az objektumot a nézet megnyitásához először adja hozzá adal.js a legfelső szintű vezérlő hatókörébe, a megfelelő:
 
 ```js
 // app/scripts/userDataCtrl.js
@@ -179,14 +179,14 @@ angular.module('todoApp')
 .controller('userDataCtrl', ['$scope', 'adalAuthenticationService', function ($scope, adalService) {}]);
 ```
 
-Ezt követően közvetlenül meg lehet oldani hello `userInfo` objektumot a nézet: 
+Ezt követően közvetlenül meg lehet oldani a `userInfo` objektumot a nézet: 
 
 ```html
 <!--app/views/UserData.html-->
 
 ...
 
-    <!--Get hello user's profile information from hello ADAL userInfo object-->
+    <!--Get the user's profile information from the ADAL userInfo object-->
     <tr ng-repeat="(key, value) in userInfo.profile">
         <td>{{key}}</td>
         <td>{{value}}</td>
@@ -194,14 +194,14 @@ Ezt követően közvetlenül meg lehet oldani hello `userInfo` objektumot a néz
 ...
 ```
 
-Is használhatja a hello `userInfo` toodetermine objektumot, ha hello felhasználó van bejelentkezve.
+Használhatja a `userInfo` objektumot határozza meg, ha a felhasználó bejelentkezett-e.
 
 ```html
 <!--index.html-->
 
 ...
 
-    <!--Use hello ADAL userInfo object tooshow hello right login/logout button-->
+    <!--Use the ADAL userInfo object to show the right login/logout button-->
     <ul class="nav navbar-nav navbar-right">
         <li><a class="btn btn-link" ng-show="userInfo.isAuthenticated" ng-click="logout()">Logout</a></li>
         <li><a class="btn btn-link" ng-hide="userInfo.isAuthenticated" ng-click="login()">Login</a></li>
@@ -209,12 +209,12 @@ Is használhatja a hello `userInfo` toodetermine objektumot, ha hello felhaszná
 ...
 ```
 
-## <a name="call-hello-rest-api"></a>Hello REST API hívása
-Végezetül fontos idő tooget néhány jogkivonatokat és hívás hello REST API toocreate, olvasása, frissítése és törölheti a feladatokat.  Jól kitalálni a Mi?  Nincs toodo *egy dolog*.  Adal.js automatikusan kezeli, gyorsítótárazás, és a jogkivonatok frissítése.  Azt is kezeli a jogkivonatok toooutgoing AJAX-kérelmek, hogy küldjön toohello REST API csatolni.  
+## <a name="call-the-rest-api"></a>A REST API hívása
+Végül néhány jogkivonatok lekérésére, és az REST API létrehozása, olvasása, frissítése és törölheti a feladatokat.  Jól kitalálni a Mi?  Ehhez nincs *egy dolog*.  Adal.js automatikusan kezeli, gyorsítótárazás, és a jogkivonatok frissítése.  Azt is kezeli a jogkivonatok csatolása a REST API-t küldünk kimenő AJAX-kérelmek.  
 
-Pontosan hogyan működik ez? Köszönjük, hogy az összes toohello magic [AngularJS elfogókat](https://docs.angularjs.org/api/ng/service/$http), amely lehetővé teszi, hogy adal.js tootransform kimenő és bejövő HTTP-üzenetek.  Ezenkívül adal.js feltételezi, hogy minden kérést küldeni toohello ugyanabban a tartományban, hello ablak használandó jogkivonatokat szánt hello ugyanazon alkalmazás azonosítója, az AngularJS app hello.  Ezért hello használtuk azonos Alkalmazásazonosító mindkét hello szögben kifejezett alkalmazásban és a hello NodeJS REST API-t.  Természetesen bírálja felül ezt a viselkedést, és közölje adal.js tooget jogkivonatok más REST API-kat, ha szükséges – a, de ez a forgatókönyv egyszerű hello alapértelmezett értéke lesz tegye.
+Pontosan hogyan működik ez? Az összes köszönhetően a Bűvös van [AngularJS elfogókat](https://docs.angularjs.org/api/ng/service/$http), amely lehetővé teszi, hogy a kimenő és bejövő HTTP-üzenetek átalakítására adal.js.  Ezenkívül adal.js feltételezi, hogy minden kérést küldeni ugyanabban a tartományban, az ablak jogkivonatok szánt alkalmazás azonosítója megegyezik az AngularJS alkalmazást kell használnia.  Ezért a mindkét szögben kifejezett alkalmazás és a NodeJS REST API azonos Alkalmazásazonosító használtuk.  Természetesen bírálja felül ezt a viselkedést, és kérje meg a jogkivonatok lekérésére más REST API-kat, ha szükséges – adal.js, de a egyszerű forgatókönyv az alapértelmezett beállításokat fog tenni.
 
-Íme egy kódrészletet, amely azt mutatja, milyen egyszerűen azt toosend tulajdonosi jogkivonatok az Azure AD rendelkező kérelmek esetében:
+Íme egy kódrészletet, amely azt mutatja, milyen egyszerűen azt tulajdonosi jogkivonatok kérések küldése az Azure AD:
 
 ```js
 // app/scripts/todoListSvc.js
@@ -224,14 +224,14 @@ return $http.get('/api/tasks');
 ...
 ```
 
-Gratulálunk!  Az Azure AD integrált egylapos alkalmazás most már befejeződött.  Lépjen tovább, meghajolni igénybe vehet.  Azt is hitelesíti a felhasználókat, biztonságosan hívható meg a háttérrendszer REST API használatával OpenID Connect és alapszintű hello felhasználó adatainak beolvasása.  Hello mezőbe kívül bármely felhasználó vagy személyes Microsoft Account, vagy a munkahelyi vagy iskolai fiókkal az Azure AD támogatja.  Hello alkalmazás futtatását, és a böngészőben lépjen túl`https://localhost:44326/`.  Jelentkezzen be személyes Microsoft-fiókkal vagy a munkahelyi vagy iskolai fiókkal.  Adja hozzá a feladatok toohello felhasználói feladatlistában, és jelentkezzen ki.  Próbálja meg azzal aláíró hello más típusú fiókot. Ha az Azure AD bérlő toocreate munkahelyi vagy iskolai felhasználók kell [megtudhatja, hogyan tooget egy itt](active-directory-howto-tenant.md) (szabad).
+Gratulálunk!  Az Azure AD integrált egylapos alkalmazás most már befejeződött.  Lépjen tovább, meghajolni igénybe vehet.  Képes hitelesíti a felhasználókat, biztonságosan hívható meg a háttérrendszer REST API használatával OpenID Connect, és a felhasználó alapszintű adatainak beolvasása.  Alapesetben minden személyes Microsoft-Account vagy az Azure AD egy munkahelyi vagy iskolai fiókkal rendelkező felhasználó támogatja.  Futtassa az alkalmazást, és a böngészőben navigáljon `https://localhost:44326/`.  Jelentkezzen be személyes Microsoft-fiókkal vagy a munkahelyi vagy iskolai fiókkal.  Feladatok hozzáadása a felhasználói feladatlistában, és jelentkezzen ki.  Próbáljon meg, a más típusú fiókot bejelentkezni. Ha az Azure AD-bérlő létrehozása a munkahelyi vagy iskolai felhasználók kell [beszerzéséről egy itt](active-directory-howto-tenant.md) (szabad).
 
-hello v2.0-végpontra, központi hátsó tooour megtanulni toocontinue [v2.0 – útmutató fejlesztőknek](active-directory-appmodel-v2-overview.md).  További forrásokért tekintse meg:
+A folytatáshoz a v2.0-végpontra megismerését head biztonsági a [v2.0 – útmutató fejlesztőknek](active-directory-appmodel-v2-overview.md).  További forrásokért tekintse meg:
 
 * [Azure-minták a Githubon >>](https://github.com/Azure-Samples)
 * [Az Azure AD a veremtúlcsordulás >>](http://stackoverflow.com/questions/tagged/azure-active-directory)
 * Az Azure AD-dokumentációja [Azure.com webhelyre >>](https://azure.microsoft.com/documentation/services/active-directory/)
 
 ## <a name="get-security-updates-for-our-products"></a>Biztonsági frissítések termékeinkhez
-Javasoljuk, tooget értesítést a bekövetkező biztonsági incidensekről ellátogatva [ezen a lapon](https://technet.microsoft.com/security/dd252948) és előfizetés tooSecurity tanácsadói riasztásokra.
+Javasoljuk, hogy kérjen értesítést a bekövetkező biztonsági incidensekről. Látogasson el [erre a lapra](https://technet.microsoft.com/security/dd252948), és fizessen elő a biztonsági tanácsadói riasztásokra.
 

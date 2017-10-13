@@ -1,5 +1,5 @@
 ---
-title: "aaaMonitoring használati és teljesítményadatokat Windows asztali alkalmazások esetén"
+title: "Windowsos asztali alkalmazások használatának és teljesítményének figyelése"
 description: "Windowsos asztali alkalmazások használatát és teljesítményét elemezheti a HockeyApp és az Application Insights segítségével."
 services: application-insights
 documentationcenter: windows
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/26/2016
 ms.author: bwren
-ms.openlocfilehash: 73806885a6f0ed3896c0e43308c90ba087007887
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9d7e2a390adf10cbf5d88dd0084ce09136987309
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="monitoring-usage-and-performance-in-windows-desktop-apps"></a>Windowsos asztali alkalmazások használatának és teljesítményének figyelése
 
@@ -25,27 +25,27 @@ ms.lasthandoff: 10/06/2017
 Az [Azure Application Insights](app-insights-overview.md) és a [HockeyApp](https://hockeyapp.net) a telepített alkalmazások használatának és teljesítményének figyelését teszi lehetővé.
 
 > [!IMPORTANT]
-> Ajánlott [Hockeyappra](https://hockeyapp.net) toodistribute és a figyelő asztali és az eszköz alkalmazások. A HockeyApp segítségével a terjesztést, a működés közbeni tesztelést és a felhasználói visszajelzéseket felügyelheti, valamint a használatot és az összeomlási jelentéseket figyelheti. Ezen túlmenően [telemetriai adatokat exportálhat és kérdezhet le az Analytics használatával](app-insights-hockeyapp-bridge-app.md).
+> Az asztali és eszközalkalmazások terjesztésére és figyelésére a [HockeyApp](https://hockeyapp.net) szolgáltatást ajánljuk. A HockeyApp segítségével a terjesztést, a működés közbeni tesztelést és a felhasználói visszajelzéseket felügyelheti, valamint a használatot és az összeomlási jelentéseket figyelheti. Ezen túlmenően [telemetriai adatokat exportálhat és kérdezhet le az Analytics használatával](app-insights-hockeyapp-bridge-app.md).
 > 
-> Telemetria küldhetők tooApplication Insights egy asztali alkalmazás, bár ez elsősorban az hibakeresési és kísérleti használható.
+> Bár küldhetők asztali alkalmazásból származó telemetriai adatok az Application Insightsba, ez elsősorban hibakeresésre és kísérletezésre szolgál.
 > 
 > 
 
-## <a name="toosend-telemetry-tooapplication-insights-from-a-windows-application"></a>toosend telemetriai tooApplication Insights Windows-alkalmazás
-1. A hello [Azure-portálon](https://portal.azure.com), [Application Insights-erőforrás létrehozása](app-insights-create-new-resource.md). Az alkalmazás típusánál válassza az ASP.NET alkalmazás lehetőséget.
-2. Tegye meg a hello Instrumentation kulcs másolatát. Hello kulcs található hello Essentials legördülő a most létrehozott hello új erőforrást. 
-3. A Visual Studio NuGet-csomagok hello a alkalmazás projekt szerkesztése, és vegye fel a Microsoft.ApplicationInsights.WindowsServer. (Vagy Microsoft.ApplicationInsights válassza, ha csak operációs rendszer API nélkül hello szabványos telemetriai gyűjtemény modulok hello.)
-4. Állítsa be hello instrumentation kulcs vagy a kódban:
+## <a name="to-send-telemetry-to-application-insights-from-a-windows-application"></a>Windows-alkalmazásból származó telemetriai adatok küldése az Application Insightsba
+1. [Hozzon létre egy Application Insights-erőforrást](app-insights-create-new-resource.md) az [Azure Portalon](https://portal.azure.com). Az alkalmazás típusánál válassza az ASP.NET-alkalmazás lehetőséget.
+2. Végezze el a kialakítási kulcs másolását. A kulcs az imént létrehozott új erőforrás Alapvető szolgáltatások legördülő menüjében található. 
+3. A Visual Studióban szerkessze az alkalmazási projekt NuGet-csomagjait, és vegye fel a Microsoft.ApplicationInsights.WindowsServer csomagot. (Vagy válassza a Microsoft.ApplicationInsights csomagot, ha csak az API-ra van szüksége a normál telemetriai adatgyűjtő modulok nélkül.)
+4. Állítsa be a kialakítási kulcsot a kódban:
    
     `TelemetryConfiguration.Active.InstrumentationKey = "`*az Ön kulcsa*`";` 
    
-    vagy applicationinsights.config (Ha telepítette az egyik hello szabványos telemetriai csomagok):
+    vagy az ApplicationInsights.config fájlban (ha telepítette valamelyik normál telemetriai csomagot):
    
     `<InstrumentationKey>`*az Ön kulcsa*`</InstrumentationKey>` 
    
-    ApplicationInsights.config használatakor győződjön róla túl van-e beállítva a tulajdonságait a Solution Explorer**Build művelet = tartalom másolása tooOutput Directory másolási =**.
-5. [Hello API-t használó](app-insights-api-custom-events-metrics.md) toosend telemetriai adatokat.
-6. Az alkalmazás futtatása, és tekintse meg a hello telemetriai hello Azure-portálon létrehozott hello erőforrás.
+    Az ApplicationInsights.config használatakor győződjön meg arról, hogy annak tulajdonságait a következőre állította a Megoldáskezelőben: **Build Action = Content, Copy to Output Directory = Copy**.
+5. [Az API-val](app-insights-api-custom-events-metrics.md) telemetriai adatokat küldhet.
+6. Az alkalmazás futtatása után az Azure Portalon tekintheti meg a létrehozott erőforrás telemetriai adatait.
 
 ## <a name="telemetry"></a>Mintakód
 ```C#
@@ -56,7 +56,7 @@ Az [Azure Application Insights](app-insights-overview.md) és a [HockeyApp](http
         ...
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Alternative toosetting ikey in config file:
+            // Alternative to setting ikey in config file:
             tc.InstrumentationKey = "key copied from portal";
 
             // Set session data:

@@ -1,8 +1,8 @@
 ---
-title: "Cloud Services dokumentációjában - oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
-description: "Oktatóanyagok, API hivatkozások vagy egyéb dokumentációt mutatja be toouse Felhőszolgáltatások toohost és magas rendelkezésre állású és méretezhető felhőalapú alkalmazások és API-k futtatásához."
+title: "Az Azure Cloud Services dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Oktatóanyagok, API-referenciák és egyéb dokumentációk, amelyekből megtudhatja, hogyan használhatja a felhőszolgáltatásokat nagy rendelkezésre állású és skálázható felhőalkalmazások és API-k futtatására."
 services: cloud-services
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 80793de5a66c9f125c23caf2664fbf08015298ab
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 566daede7e0b32110ceae2afa473e427992bc3a8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="cloud-services-documentation"></a>Cloud Services – dokumentáció
 
-Megtudhatja, hogyan toouse Cloud Services toohost és futtatási magas rendelkezésre állású, méretezhető felhőalapú alkalmazások és API-k.  Oktatóanyagok, API-hivatkozás és egyéb dokumentációt, is felhívja a hogyan toomanage virtuális gép futtatja és konfigurálása, javítása és a szoftver telepítése.
+Megismerheti, hogy a felhőszolgáltatások hogyan használható nagy rendelkezésre állású és skálázható felhőalkalmazások és API-k futtatására.  Oktatóanyagok, API-referenciák és egyéb dokumentációk, amelyekből megtudhatja, hogyan kezelheti a virtuális gépek gazdagépét, és hogyan konfigurálhatja, javíthatja és telepítheti a szoftvereket.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -107,8 +107,14 @@ Megtudhatja, hogyan toouse Cloud Services toohost és futtatási magas rendelkez
                 <div class="card">
                     <div class="cardText">
                         <h3>Nyelvek</h3>
-                        <p><a href="https://msdn.microsoft.com/library/azure/ee758711">.csdef XMLSchema</a></p>
-                        <p><a href="https://msdn.microsoft.com/library/azure/ee758710">.cscfg XMLSchema</a></p>
+                        <p><a href="/azure/cloud-services/schema-csdef-file">.csdef XML-séma</a></p>
+                        <p><a href="/azure/cloud-services/schema-csdef-loadbalancerprobe">LoadBalancerProbe séma</a></p>
+                        <p><a href="/azure/cloud-services/schema-csdef-webrole">WebRole séma</a></p>
+                        <p><a href="/azure/cloud-services/schema-csdef-workerrole">WorkerRole séma</a></p>
+                        <p><a href="/azure/cloud-services/schema-csdef-networktrafficrules">NetworkTrafficRules séma</a></p>
+                        <p><a href="/azure/cloud-services/schema-cscfg-file">.cscfg XML-séma</a></p>
+                        <p><a href="/azure/cloud-services/schema-cscfg-role">Szerepkörséma</a></p>
+                        <p><a href="/azure/cloud-services/schema-cscfg-networkconfiguration">NetworkConfiguration séma</a></p>
                     </div>
                 </div>
             </div>
@@ -127,5 +133,3 @@ Megtudhatja, hogyan toouse Cloud Services toohost és futtatási magas rendelkez
         </div>
     </li>
 </ul>
-
-

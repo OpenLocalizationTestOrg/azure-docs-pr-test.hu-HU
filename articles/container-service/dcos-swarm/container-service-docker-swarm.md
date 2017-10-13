@@ -1,6 +1,6 @@
 ---
-title: "Azure Swarm aaaManage Docker API-fürtöt |} Microsoft Docs"
-description: "Tárolók tooa Docker Swarm-fürt üzembe az Azure Tárolószolgáltatásban"
+title: "Docker API-t Azure Swarm-fürt kezeléséhez |} Microsoft Docs"
+description: "A Docker Swarm-fürt az Azure Tárolószolgáltatás – tárolók üzembe helyezése"
 services: container-service
 documentationcenter: 
 author: rgardler
@@ -16,25 +16,25 @@ ms.workload: na
 ms.date: 09/13/2016
 ms.author: rogardle
 ms.custom: mvc
-ms.openlocfilehash: bb9b07c82a7b48caeb2e351455797cbf2a6e7480
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6ca2d2e49c4b7f5eb0580e7091b09209f8b73a7c
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="container-management-with-docker-swarm"></a>Tárolókezelés a Docker Swarmmal
-A Docker Swarm olyan környezetet biztosít, amelyben tárolóalapú számítási feladatokat helyezhet üzembe egy Docker-gazdagépekből álló készletben. A docker Swarm hello natív Docker API-t használja. hello munkafolyamattal a Docker Swarmról majdnem azonos toowhat lenne, az egyetlen tároló-gazdagépen. Ez a dokumentum egyszerű példák segítségével ismerteti, hogy miként helyezhetők üzembe a tárolóalapú munkafolyamatok a Docker Swarm Azure tárolószolgáltatás-példányaiban. További részletes dokumentációt a Docker Swarmról a [ Docker.com](https://docs.docker.com/swarm/) webhelyen talál.
+A Docker Swarm olyan környezetet biztosít, amelyben tárolóalapú számítási feladatokat helyezhet üzembe egy Docker-gazdagépekből álló készletben. A Docker Swarm a natív Docker API-t használja. A Docker Swarm tárolókezelésének munkafolyamata majdnem azonos az egyetlen tároló-gazdagépen elvégzendő munkafolyamattal. Ez a dokumentum egyszerű példák segítségével ismerteti, hogy miként helyezhetők üzembe a tárolóalapú munkafolyamatok a Docker Swarm Azure tárolószolgáltatás-példányaiban. További részletes dokumentációt a Docker Swarmról a [ Docker.com](https://docs.docker.com/swarm/) webhelyen talál.
 
 [!INCLUDE [container-service-swarm-mode-note](../../../includes/container-service-swarm-mode-note.md)]
 
-A dokumentumban szereplő toohello gyakorlatok előfeltételei:
+A dokumentumban szereplő gyakorlatok előfeltételei:
 
 [Swarm-fürt létrehozása az Azure Container Service-ben](container-service-deployment.md)
 
-[Csatlakozás az Azure Tárolószolgáltatásban hello Swarm-fürthöz](../container-service-connect.md)
+[Csatlakozás a Swarm-fürthöz az Azure Container Service-ben](../container-service-connect.md)
 
 ## <a name="deploy-a-new-container"></a>Új tároló üzembe helyezése
-egy új tároló Docker Swarm, hello az toocreate hello használata `docker run` (Győződjön meg arról, hogy egy SSH-alagút toohello hello fenti előfeltételeknek megfelelően főkiszolgálók megnyitott) parancsot. Ez a példa létrehoz egy tároló hello `yeasy/simple-web` lemezképet:
+Ha új tárolót szeretne létrehozni a Docker Swarmban, használja a `docker run` parancsot (ügyeljen arra, hogy a fenti előfeltételeknek megfelelően nyisson meg egy SSH-alagutat a főkiszolgálók felé). Az alábbi példa létrehoz egy tárolót a `yeasy/simple-web` lemezképből:
 
 ```bash
 user@ubuntu:~$ docker run -d -p 80:80 yeasy/simple-web
@@ -42,7 +42,7 @@ user@ubuntu:~$ docker run -d -p 80:80 yeasy/simple-web
 4298d397b9ab6f37e2d1978ef3c8c1537c938e98a8bf096ff00def2eab04bf72
 ```
 
-Hello tároló létrehozása után a `docker ps` hello tároló tooreturn információt. Itt figyelje meg, hogy hello Swarm ügynök hello tárolót futtató szerepel:
+A tároló létrehozása után használja a `docker ps` parancsot a tárolóinformációk megjelenítéséhez. Az információkban a tárolót tartalmazó Swarm ügynök is szerepel:
 
 ```bash
 user@ubuntu:~$ docker ps
@@ -51,14 +51,14 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 4298d397b9ab        yeasy/simple-web    "/bin/sh -c 'python i"   31 seconds ago      Up 9 seconds        10.0.0.5:80->80/tcp   swarm-agent-34A73819-1/happy_allen
 ```  
 
-Hello Swarm ügynök terheléselosztójának hello nyilvános DNS-nevén keresztül ebben a tárolóban futó alkalmazást hello érhetők el. Ez az információ hello Azure-portálon találja meg:  
+A tárolóban futó alkalmazást a Swarm ügynök terheléselosztójának nyilvános DNS-nevén keresztül érheti el. Ezeket az információkat megtalálja az Azure Portalon:  
 
 ![Valós látogatási eredmények](./media/container-service-docker-swarm/real-visit.jpg)  
 
-Alapértelmezés szerint hello terheléselosztó rendelkezik portok: 80-as, 8080-as és 443 megnyitása. Ha azt szeretné, hogy egy másik porton tooconnect szüksége lesz tooopen ezt a portot, az Azure Load Balancer hello hello ügynök készlet.
+Alapértelmezés szerint a Load Balancer a 80-as, 8080-as és 443-as portot nyitja meg. Ha másik porton keresztül szeretne csatlakozni, akkor az Azure Load Balancerben meg kell nyitnia a portot az ügynökkészlet számára.
 
 ## <a name="deploy-multiple-containers"></a>Több tároló üzembe helyezése
-Több tároló indulnak el, futtassa a "docker Futtatás" többször, mint hello használhatja `docker ps` parancs toosee hello tárolók futtató futnak a kiszolgálón. A hello az alábbi példában három tároló egyenlően van elosztva három Swarm ügynök hello között:  
+Amikor több tároló is elindul a „docker run” többszöri végrehajtása után, a `docker ps` paranccsal megtekintheti, mely állomásokon futnak a tárolók. Az alábbi példában három tároló oszlik el egyenlően a három Swarm-ügynökön:  
 
 ```bash
 user@ubuntu:~$ docker ps
@@ -70,9 +70,9 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 ```  
 
 ## <a name="deploy-containers-by-using-docker-compose"></a>Tároló üzembe helyezése a Docker Compose-zal
-A több tároló Docker Compose tooautomate hello telepítését és konfigurálását is használhatja. toodo Igen, győződjön meg arról, hogy a Secure Shell (SSH) alagút létrejött adott hello DOCKER_HOST változó (lásd a fenti hello Előfeltételek) van beállítva.
+A Docker Compose-zal automatizálhatja a több tároló telepítését és konfigurálását. Ehhez hozzon létre egy Secure Shell- (SSH-) alagutat, és állítsa be a DOCKER_HOST változót (lásd a feni előfeltételeket).
 
-Hozzon létre egy docker-compose.yml fájlt a helyi számítógépen. toodo, ezzel [minta](https://raw.githubusercontent.com/rgardler/AzureDevTestDeploy/master/docker-compose.yml).
+Hozzon létre egy docker-compose.yml fájlt a helyi számítógépen. Ehhez használja ezt a [mintát](https://raw.githubusercontent.com/rgardler/AzureDevTestDeploy/master/docker-compose.yml).
 
 ```bash
 web:
@@ -88,7 +88,7 @@ rest:
 
 ```
 
-Futtatás `docker-compose up -d` toostart hello üzemelő tárolópéldányokat:
+A tárolók üzembe helyezéséhez futtassa a `docker-compose up -d` parancsot:
 
 ```bash
 user@ubuntu:~/compose$ docker-compose up -d
@@ -104,7 +104,7 @@ swarm-agent-3B7093B8-2: Pulling adtd/web:0.1... : downloaded
 Creating compose_web_1
 ```
 
-Végezetül hello futó tárolók listája az eredmény. Ez a lista tükrözi hello tárolók üzembe helyezése a Docker Compose használatával:
+Végül megjelenik a futó tárolók listája. Ebben a listában a Docker Compose-zal üzembe helyezett tárolók szerepelnek:
 
 ```bash
 user@ubuntu:~/compose$ docker ps
@@ -113,7 +113,7 @@ caf185d221b7        adtd/web:0.1        "apache2-foreground"   2 minutes ago    
 040efc0ea937        adtd/rest:0.1       "catalina.sh run"      3 minutes ago       Up 2 minutes        10.0.0.4:8080->8080/tcp   swarm-agent-3B7093B8-0/compose_rest_1
 ```
 
-Természetesen használhatja `docker-compose ps` tooexamine csak hello definiált tárolók a `compose.yml` fájlt.
+A `docker-compose ps` használatával természetesen megvizsgálhatja a csak a `compose.yml` fájlban megadott tárolókat.
 
 ## <a name="next-steps"></a>Következő lépések
 [További információ a Docker Swarmról](https://docs.docker.com/swarm/)

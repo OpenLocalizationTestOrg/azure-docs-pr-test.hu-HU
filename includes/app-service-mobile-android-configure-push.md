@@ -1,8 +1,8 @@
 
-1. A hello [Azure-portálon](https://portal.azure.com/), kattintson a **összes tallózása** > **alkalmazásszolgáltatások**, és kattintson a Mobile Apps háttér. A **beállítások**, kattintson a **App Service leküldéses**, majd kattintson az értesítési központ nevére.
-2. Nyissa meg túl**Google (GCM)**, írja be a hello FCM kiszolgálókulcs hello Firebase konzolról szerezte be, és kattintson **mentése**.
+1. A a [Azure-portálon](https://portal.azure.com/), kattintson a **összes tallózása** > **alkalmazásszolgáltatások**, és kattintson a Mobile Apps háttér. A **beállítások**, kattintson a **App Service leküldéses**, majd kattintson az értesítési központ nevére.
+2. Ugrás a **Google (GCM)**, adja meg a kapott, a Firebase konzol FCM server kulcsot, és kattintson a **mentése**.
 
-A szolgáltatás már konfigurált toowork rendelkező Firebase Cloud Messaging.
+A szolgáltatás konfigurálva van az Firebase Cloud Messaging dolgozni.
 
 <!-- URLs. -->
 

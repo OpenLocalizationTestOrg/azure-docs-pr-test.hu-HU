@@ -1,9 +1,9 @@
 ---
-title: "aaaService egyszerű Azure Kubernetes fürthöz |} Microsoft Docs"
+title: "Az Azure Kubernetes-fürthöz tartozó egyszerű szolgáltatás | Microsoft Docs"
 description: "Kubernetes-fürthöz tartozó Azure Active Directory egyszerű szolgáltatás létrehozása és felügyelete az Azure Container Service-ben"
 services: container-service
 documentationcenter: 
-author: dlepow
+author: neilpeterson
 manager: timlt
 editor: 
 tags: acs, azure-container-service, kubernetes
@@ -13,131 +13,126 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/08/2017
-ms.author: danlep
+ms.date: 09/26/2017
+ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: 7a01624c5ac3fa717dbcbd570e05ceb4d917c53a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 14975454cbc0afcfbdbd3aa6b52983be4d4b1785
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="set-up-an-azure-ad-service-principal-for-a-kubernetes-cluster-in-container-service"></a>Kubernetes-fürthöz tartozó Azure AD egyszerű szolgáltatás beállítása a Container Service-ben
 
 
-Az Azure Tárolószolgáltatásban, Kubernetes fürt szükséges egy [Azure Active Directory szolgáltatás egyszerű](../../active-directory/develop/active-directory-application-objects.md) toointeract Azure API-khoz. hello szolgáltatás egyszerű szükséges toodynamically kezelheti az erőforrásokat például [felhasználó által definiált útvonalak](../../virtual-network/virtual-networks-udr-overview.md) és hello [réteg 4 Azure Load Balancer](../../load-balancer/load-balancer-overview.md). 
+Az Azure Container Service-ben a Kubernetes számára szükséges egy [Azure Active Directory egyszerű szolgáltatás](../../active-directory/develop/active-directory-application-objects.md) az Azure API-kkal való kommunikációhoz. Az egyszerű szolgáltatással dinamikusan kezelhet olyan erőforrásokat, mint a [felhasználó által meghatározott útvonalak](../../virtual-network/virtual-networks-udr-overview.md) és a [4. rétegű Azure Load Balancer](../../load-balancer/load-balancer-overview.md).
 
 
-Ez a cikk ismerteti a különböző beállítások tooset egy szolgáltatás egyszerű a Kubernetes fürt számára. Például, ha telepítve, és állítsa be hello [Azure CLI 2.0](/cli/azure/install-az-cli2), futtathatja hello [ `az acs create` ](/cli/azure/acs#create) parancs toocreate hello Kubernetes fürt és hello egyszerű szolgáltatásnév: hello ugyanannyi időt vesz igénybe.
+Ebben a cikkben különböző lehetőségeket talál arra, hogyan állíthat be egy egyszerű szolgáltatást a Kubernetes-fürthöz. Például ha telepítette és beállította az [Azure CLI 2.0](/cli/azure/install-az-cli2)-t, akkor futtathatja a [`az acs create`](/cli/azure/acs#create) parancsot a Kubernetes-fürt és az egyszerű szolgáltatás egyidejű létrehozásához.
 
 
-## <a name="requirements-for-hello-service-principal"></a>Hello szolgáltatás egyszerű követelményei
+## <a name="requirements-for-the-service-principal"></a>Az egyszerű szolgáltatás követelményei
 
-Használhat egy meglévő Azure AD szolgáltatás egyszerű, hogy megfelel-e hello követelményeknek, vagy hozzon létre egy újat.
+Meglévő Azure AD egyszerű szolgáltatást is használhat, amely megfelel az alábbi feltételeknek, vagy újat is létrehozhat.
 
-* **Hatókör**: hello erőforráscsoport hello előfizetésben toodeploy hello Kubernetes fürt, vagy (kevésbé korlátozottan) hello előfizetés fel toodeploy hello fürt.
+* **Hatókör**: a fürt üzembe helyezéséhez használt előfizetés.
 
 * **Szerepkör**: **Közreműködő**
 
 * **Titkos ügyfélkulcs**: egy jelszónak kell lennie. Jelenleg nem használhat egyszerű szolgáltatás beállítást tanúsítvány hitelesítéshez.
 
-> [!IMPORTANT] 
-> egy egyszerű szolgáltatásnév toocreate, rendelkeznie kell engedélyek tooregister az alkalmazás az Azure AD-bérlő és a tooassign hello alkalmazás tooa szerepkör az előfizetésben. hello szükséges engedélyek, ha toosee [hello Portal beadása](../../azure-resource-manager/resource-group-create-service-principal-portal.md#required-permissions). 
+> [!IMPORTANT]
+> Egyszerű szolgáltatás létrehozásához rendelkeznie kell engedélyekkel alkalmazások regisztrációjához az Azure AD bérlőben és alkalmazások szerepkörhöz rendeléséhez az előfizetésben. [Ellenőrizze a portálon](../../azure-resource-manager/resource-group-create-service-principal-portal.md#required-permissions), hogy rendelkezik-e a szükséges engedélyekkel.
 >
 
 ## <a name="option-1-create-a-service-principal-in-azure-ad"></a>1. lehetőség: Egyszerű szolgáltatás létrehozása az Azure AD-ban
 
-Ha az Azure AD szolgáltatás egyszerű toocreate Kubernetes fürt központi telepítése előtt, az Azure számos módszert biztosít. 
+Az Azure-ban többféle módszerrel is létrehozható Azure AD egyszerű szolgáltatás a Kubernetes-fürt üzembe helyezése előtt.
 
-a következő Példaparancsok hello mutatja be toodo hello a [Azure CLI 2.0](../../azure-resource-manager/resource-group-authenticate-service-principal-cli.md). Másik lehetőségként létrehozhat egy szolgáltatás egyszerű használatával [Azure PowerShell](../../azure-resource-manager/resource-group-authenticate-service-principal.md), hello [portal](../../azure-resource-manager/resource-group-create-service-principal-portal.md), vagy más módszerrel.
+A következő példaparancsok megmutatják, hogyan teheti ezt meg az [Azure CLI 2.0](../../azure-resource-manager/resource-group-authenticate-service-principal-cli.md) segítségével. Másik megoldásként az [Azure PowerShell](../../azure-resource-manager/resource-group-authenticate-service-principal.md), a [portál](../../azure-resource-manager/resource-group-create-service-principal-portal.md) és egyéb módszerek használatával is létrehozhat egyszerű szolgáltatást.
 
 ```azurecli
 az login
 
 az account set --subscription "mySubscriptionID"
 
-az group create -n "myResourceGroupName" -l "westus"
+az group create --name "myResourceGroup" --location "westus"
 
-az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/mySubscriptionID/resourceGroups/myResourceGroupName"
+az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/mySubscriptionID"
 ```
 
-(Itt látható kivont) hasonló toohello következő kimenete:
+A kimenet a következőkhöz hasonló (itt kivonatosan látható):
 
 ![Egyszerű szolgáltatás létrehozása](./media/container-service-kubernetes-service-principal/service-principal-creds.png)
 
-A kijelölt vannak hello **ügyfél-azonosító** (`appId`) és hello **ügyfélkulcs** (`password`) az fürtöt tartalmazó környezetben használt service egyszerű paraméterekként.
+A fürt üzembe helyezéséhez használt egyszerű szolgáltatás paraméterek, az **ügyfél-azonosító** (`appId`) és a **titkos ügyfélkulcs** (`password`), ki vannak emelve.
 
 
-### <a name="specify-service-principal-when-creating-hello-kubernetes-cluster"></a>Adja meg a szolgáltatás egyszerű hello Kubernetes fürt létrehozásakor
+### <a name="specify-service-principal-when-creating-the-kubernetes-cluster"></a>Egyszerű szolgáltatás megadása a Kubernetes-fürt létrehozásakor
 
-Adja meg a hello **ügyfél-azonosító** (más néven hello `appId`, az Alkalmazásazonosító) és **ügyfélkulcs** (`password`) egy meglévő egyszerű szolgáltatásnév paraméter hello létrehozásakor a Kubernetes fürt. Ellenőrizze, hogy hello szolgáltatás egyszerű kezdve ez a cikk hello: hello követelményeknek megfelelő.
+A Kubernetes-fürt létrehozásakor adja meg paraméterekként egy létező egyszerű szolgáltatás **ügyfél-azonosítóját** (`appId` néven is szerepel az alkalmazás-azonosító esetében) és a **titkos ügyfélkulcsot** (`password`). Ellenőrizze, hogy az egyszerű szolgáltatás megfelel-e a cikk elején szereplő feltételeknek.
 
-Ezek a paraméterek hello Kubernetes fürtjéhez hello telepítésekor megadhatja [Azure parancssori felület (CLI) 2.0-s](container-service-kubernetes-walkthrough.md), [Azure-portálon](../dcos-swarm/container-service-deployment.md), vagy más módszerrel.
+Ezeket a paramétereket a Kubernetes-fürt üzembe helyezésekor adhatja meg az [Azure Command-Line Interface (CLI) 2.0](container-service-kubernetes-walkthrough.md) vagy az [Azure Portal](../dcos-swarm/container-service-deployment.md) segítségével, illetve más módszerekkel.
 
->[!TIP] 
->Hello megadásakor **ügyfél-azonosító**, lehet, hogy toouse hello `appId`, nem hello `ObjectId`, hello szolgáltatás rendszerbiztonsági tag.
+>[!TIP]
+>Az **ügyfél-azonosító** megadásakor győződjön meg arról, hogy az egyszerű szolgáltatás `appId`-ját és nem az `ObjectId`-ját használja.
 >
 
-hello alábbi példában látható egyirányú toopass hello Azure CLI 2.0 hello paramétereket. Ez a példa hello [Kubernetes gyorsindítási sablonon](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-kubernetes).
+Az alábbi példában az Azure CLI 2.0-s verziójával adjuk át a paramétereket. Ez a példa a [Kubernetes gyorsindítási sablont](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-kubernetes) használja.
 
-1. [Töltse le](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-acs-kubernetes/azuredeploy.parameters.json) hello sablon paraméterfájl `azuredeploy.parameters.json` a Githubról.
+1. A paraméterfájl-sablont `azuredeploy.parameters.json` a GitHubról [töltheti le](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-acs-kubernetes/azuredeploy.parameters.json).
 
-2. toospecify hello szolgáltatás egyszerű, adja meg az értékeket `servicePrincipalClientId` és `servicePrincipalClientSecret` hello fájlban. (Szükség tooprovide a saját értékeit `dnsNamePrefix` és `sshRSAPublicKey`. Ez utóbbi hello hello SSH nyilvános kulcs tooaccess hello fürt.) Hello fájl mentéséhez.
+2. Az egyszerű szolgáltatás megadásához adja meg a `servicePrincipalClientId` és a `servicePrincipalClientSecret` értékét a fájlban. (A saját értékeit is meg kell adnia a `dnsNamePrefix` és az `sshRSAPublicKey` esetében. Az utóbbi a nyilvános SSH-kulcs, amely hozzáfér a fürthöz.) Mentse a fájlt.
 
     ![Az egyszerű szolgáltatás paramétereinek továbbítása](./media/container-service-kubernetes-service-principal/service-principal-params.png)
 
-3. A következő parancsot, használatával futtatási hello `--parameters` tooset hello elérési toohello azuredeploy.parameters.json fájlt. Ez a parancs telepíti egy erőforráscsoportban hoz létre a hívott hello fürt `myResourceGroup` hello USA nyugati régiója régióban.
+3. A `--parameters` használatával futtassa a következő parancsot, amely beállítja az útvonalat az azuredeploy.parameters.json fájlra. Ez a parancs egy, az USA nyugati régiójában létrehozott, `myResourceGroup` nevű erőforráscsoportban helyezi üzembe a fürtöt.
 
     ```azurecli
     az login
 
     az account set --subscription "mySubscriptionID"
 
-    az group create --name "myResourceGroup" --location "westus" 
-    
+    az group create --name "myResourceGroup" --location "westus"
+
     az group deployment create -g "myResourceGroup" --template-uri "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-acs-kubernetes/azuredeploy.json" --parameters @azuredeploy.parameters.json
     ```
 
 
-## <a name="option-2-generate-a-service-principal-when-creating-hello-cluster-with-az-acs-create"></a>2. lehetőség: Egy egyszerű szolgáltatás létrehozása, ha hello fürt létrehozása`az acs create`
+## <a name="option-2-generate-a-service-principal-when-creating-the-cluster-with-az-acs-create"></a>2. lehetőség: Egyszerű szolgáltatás létrehozása a fürt az `az acs create` paranccsal való létrehozásakor
 
-Ha futtatja a hello [ `az acs create` ](/cli/azure/acs#create) parancs toocreate Kubernetes fürt hello telepítette, hello beállítás toogenerate szolgáltatásnevet automatikusan.
+Ha az [`az acs create`](/cli/azure/acs#create) paranccsal hozza létre a Kubernetes-fürtöt, lehetősége van automatikusan létrehozni egy egyszerű szolgáltatást.
 
-Hasonlóan mint más Kubernetes-fürt létrehozási lehetőségek esetében, az `az acs create` futtatásakor megadhatja egy meglévő egyszerű szolgáltatás paramétereit. Azonban ha kihagyja ezeket a paramétereket, hello Azure CLI hoz létre egy automatikusan használja a Tárolószolgáltatás. Ez akkor történik meg transzparens módon hello üzembe helyezése során. 
+Hasonlóan mint más Kubernetes-fürt létrehozási lehetőségek esetében, az `az acs create` futtatásakor megadhatja egy meglévő egyszerű szolgáltatás paramétereit. Ha azonban kihagyja ezeket a paramétereket, az Azure CLI létrehoz egyet automatikusan a Container Service szolgáltatással való használatra. Ez az üzembe helyezés során transzparens módon történik.
 
-hello következő parancs egy Kubernetes fürtöt hoz létre, és SSH-kulcsok és a szolgáltatás egyszerű hitelesítő adatait:
+A következő parancs létrehoz egy Kubernetes-fürtöt, valamint előállítja az SSH-kulcsokat és az egyszerű szolgáltatás hitelesítő adatait:
 
 ```console
 az acs create -n myClusterName -d myDNSPrefix -g myResourceGroup --generate-ssh-keys --orchestrator-type kubernetes
 ```
 
 > [!IMPORTANT]
-> Ha a fiók nem rendelkezik hello Azure AD és az előfizetés engedélyek toocreate egy egyszerű szolgáltatást, hello parancs hibát generál hasonló túl`Insufficient privileges toocomplete hello operation.`
-> 
+> Ha a fiók nem rendelkezik az egyszerű szolgáltatás létrehozásához szükséges Azure AD- és előfizetési engedélyekkel, a parancs a következőhöz hasonló hibaüzenetet hoz létre: `Insufficient privileges to complete the operation.`
+>
 
 ## <a name="additional-considerations"></a>Néhány fontos megjegyzés
 
-* Ha nincs engedélyek toocreate egyszerű szolgáltatás az előfizetéshez, szükség lehet a tooask az Azure AD vagy az előfizetés rendszergazdája tooassign hello szükséges engedélyekkel, vagy kérje az Azure Tárolószolgáltatás egy szolgáltatás egyszerű toouse. 
+* Ha az előfizetésben nincs engedélye egyszerű szolgáltatás létrehozására, lehet, hogy meg kell kérnie Azure AD- vagy előfizetés-rendszergazdáját, hogy biztosítsa a szükséges engedélyeket, vagy kérnie kell tőlük egy, az Azure Container Service-szel használható egyszerű szolgáltatást.
 
-* a Kubernetes egyszerű hello szolgáltatás hello fürtkonfiguráció része. Azonban nem használható hello identitás toodeploy hello fürt.
+* A Kubernetes egyszerű szolgáltatása része a fürtkonfigurációnak. Azonban nem ajánlott az identitást használni a fürt üzembe helyezésére.
 
-* Minden egyszerű szolgáltatás társítva van egy Azure AD-alkalmazáshoz. hello szolgáltatás egyszerű Kubernetes fürt társítható bármilyen érvényes Azure AD-alkalmazás neve (például: `https://www.contoso.org/example`). hello alkalmazás URL-címe hello valós végpont nem rendelkezik a toobe.
+* Minden egyszerű szolgáltatás társítva van egy Azure AD-alkalmazáshoz. A Kubernetes-fürt egyszerű szolgáltatása társítható bármilyen érvényes Azure AD-alkalmazásnévhez (például: `https://www.contoso.org/example`). Az alkalmazás URL-címének nem szükséges valódi végpontnak lennie.
 
-* Ha megadó hello szolgáltatás egyszerű **ügyfél-azonosító**, használhatja a hello hello értékének `appId` (amint ez a cikk) vagy hello tartozó egyszerű szolgáltatásnév `name` (például`https://www.contoso.org/example`).
+* Amikor megadja az egyszerű szolgáltatás **ügyfél-azonosítóját**, használhatja az `appId` értékét (ahogyan az a cikkben látható) vagy a megfelelő egyszerű szolgáltatást `name` (például: `https://www.contoso.org/example`).
 
-* Hello master és a virtuális gépek ügynök hello Kubernetes fürt hello fájl /etc/kubernetes/azure.json hello szolgáltatás egyszerű hitelesítő adatait tárolja.
+* A Kubernetes-fürt fő és ügynök virtuális gépein az egyszerű szolgáltatás hitelesítő adatai az /etc/kubernetes/azure.json fájlban vannak tárolva.
 
-* Amikor az hello `az acs create` toogenerate hello szolgáltatás egyszerű parancs automatikusan, hello szolgáltatás egyszerű hitelesítő adatait írt toohello fájl ~/.azure/acsServicePrincipal.json hello gépen használt toorun hello parancsot. 
+* Ha az `az acs create` parancsot használja az egyszerű szolgáltatás automatikus létrehozásához, az egyszerű szolgáltatás hitelesítő adatai a ~/.azure/acsServicePrincipal.json fájlba lesznek írva azon a gépen, amelyen a parancsot futtatta.
 
-* Hello használata esetén `az acs create` toogenerate hello szolgáltatás egyszerű parancs automatikusan, egyszerű hello szolgáltatást is képes hitelesíteni az egy [Azure tároló beállításjegyzék](../../container-registry/container-registry-intro.md) hello létrehozott azonos előfizetéssel.
-
-
-
+* Ha az `az acs create` parancsot használja az egyszerű szolgáltatás automatikus létrehozásához, az egyszerű szolgáltatás hitelesíthető egy, ugyanabban az előfizetésben létrehozott [Azure Container Registryvel](../../container-registry/container-registry-intro.md).
 
 ## <a name="next-steps"></a>Következő lépések
 
 * [Ismerkedés a Kubernetes-szel](container-service-kubernetes-walkthrough.md) a tárolószolgáltatás-fürtben.
 
-* tootroubleshoot hello szolgáltatás egyszerű Kubernetes, lásd: hello [ACS motor dokumentáció](https://github.com/Azure/acs-engine/blob/master/docs/kubernetes.md#troubleshooting).
-
-
+* A Kubernetes egyszerű szolgáltatásainak hibaelhárításához tekintse meg az [ACS Engine dokumentációját](https://github.com/Azure/acs-engine/blob/master/docs/kubernetes.md#troubleshooting).

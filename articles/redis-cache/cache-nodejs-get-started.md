@@ -1,5 +1,5 @@
 ---
-title: Azure Redis Cache a Node.js aaaHow toouse |} Microsoft Docs
+title: "Az Azure Redis Cache használata a Node.js környezettel | Microsoft Docs"
 description: "Bevezetés az Azure Redis Cache használatába a Node.js és a node_redis alkalmazásával."
 services: redis-cache
 documentationcenter: 
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: cache-redis
 ms.workload: tbd
 ms.date: 02/10/2017
 ms.author: sdanie
-ms.openlocfilehash: dc8732041d2c4e5793e684e0c80b87a1c9d17f34
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f2c448af24e180db58f3ef3d39e90036dda3f7eb
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toouse-azure-redis-cache-with-nodejs"></a>Hogyan toouse Azure Redis Cache-gyorsítótár a Node.js
+# <a name="how-to-use-azure-redis-cache-with-nodejs"></a>Az Azure Redis Cache használata a Node.js környezettel
 > [!div class="op_single_selector"]
 > * [.NET](cache-dotnet-how-to-use-azure-redis-cache.md)
 > * [ASP.NET](cache-web-app-howto.md)
@@ -30,25 +30,25 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Azure Redis Cache által biztosított hozzáférés tooa biztonságos, dedikált Redis gyorsítótár, a Microsoft kezeli. A gyorsítótár a Microsoft Azure összes alkalmazásából elérhető.
+Az Azure Redis Cache hozzáférést biztosít egy biztonságos, dedikált Redis Cache gyorsítótárhoz, amelyet a Microsoft felügyel. A gyorsítótár a Microsoft Azure összes alkalmazásából elérhető.
 
-Ez a témakör bemutatja, hogyan tooget el az Azure Redis Cache Node.js segítségével. Egy másik példa az Azure Redis Cache használatára Node.js környezetben: [Node.js-csevegőalkalmazás létrehozása a Socket.IO segítségével egy Azure-webhelyen](../app-service-web/web-sites-nodejs-chat-app-socketio.md).
+Ez a témakör segítséget nyújt az első lépések megtételében az Azure Redis Cache használatakor Node.js környezetben. 
 
 ## <a name="prerequisites"></a>Előfeltételek
 Telepítse a [node_redis](https://github.com/mranney/node_redis) ügyfelet:
 
     npm install redis
 
-Ez az oktatóanyag a [node_redis](https://github.com/mranney/node_redis) ügyfelet használja. Példák a más Node.js-ügyfél használatával, a dokumentációban hello egyedi hello Node.js ügyfelek megtalálható a [Node.js Redis-ügyfelek](http://redis.io/clients#nodejs).
+Ez az oktatóanyag a [node_redis](https://github.com/mranney/node_redis) ügyfelet használja. Az egyéb Node.js-ügyfeleket használó példákért tekintse meg az egyes Node.js-ügyfelek dokumentációját a [Node.js Redis-ügyfeleket](http://redis.io/clients#nodejs) felsoroló weblapon.
 
 ## <a name="create-a-redis-cache-on-azure"></a>Redis Cache gyorsítótár létrehozása az Azure-ban
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-create.md)]
 
-## <a name="retrieve-hello-host-name-and-access-keys"></a>Hello állomás neve vagy a hozzáférési kulcsok beolvasása
+## <a name="retrieve-the-host-name-and-access-keys"></a>Állomásnév és hívóbetűk lekérése
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-access-keys.md)]
 
-## <a name="connect-toohello-cache-securely-using-ssl"></a>Csatlakozás toohello gyorsítótár biztonságosan az SSL használata
-hello legújabb-buildekről [node_redis](https://github.com/mranney/node_redis) támogatást nyújt a Redis Cache tooAzure kapcsolódás SSL használatával. hello a következő példa bemutatja, hogyan tooconnect tooAzure Redis Cache segítségével hello 6380 az SSL-végponton. Cserélje le `<name>` hello nevet, a gyorsítótár és `<key>` sem az elsődleges vagy másodlagos kulcsot a hello előző [lekéréséhez hello állomás neve vagy a hozzáférési kulcsok](#retrieve-the-host-name-and-access-keys) szakasz.
+## <a name="connect-to-the-cache-securely-using-ssl"></a>Biztonságos csatlakozás a gyorsítótárhoz SSL használatával
+A [node_redis](https://github.com/mranney/node_redis) legújabb buildjei támogatást nyújtanak az Azure Redis Cache-hez SSL használatával való kapcsolódáshoz. Az alábbi példa bemutatja, hogyan csatlakozhat az Azure Redis Cache-hez a 6380-as SSL-végpont használatával. A `<name>` helyére a gyorsítótár nevét, a `<key>` helyére pedig az előző, [Állomásnév és hívóbetűk lekérése](#retrieve-the-host-name-and-access-keys) című szakaszban ismertetett elsődleges vagy másodlagos kulcsot írja be.
 
      var redis = require("redis");
 
@@ -56,12 +56,12 @@ hello legújabb-buildekről [node_redis](https://github.com/mranney/node_redis) 
     var client = redis.createClient(6380,'<name>.redis.cache.windows.net', {auth_pass: '<key>', tls: {servername: '<name>.redis.cache.windows.net'}});
 
 > [!NOTE]
-> hello nem SSL port az új Azure Redis Cache példány le van tiltva. Ha egy másik ügyféltől, amely nem támogatja az SSL használ, tekintse meg [hogyan tooenable hello nem SSL port](cache-configure.md#access-ports).
+> A nem SSL-port le van tiltva az új Azure Redis Cache-példányokban. Ha az SSL-t nem támogató, egyéb ügyfelet használ, tekintse meg a következőt: [A nem SSL-port engedélyezése](cache-configure.md#access-ports).
 > 
 > 
 
-## <a name="add-something-toohello-cache-and-retrieve-it"></a>Hozzáadás toohello gyorsítótárazása és lekéréséhez
-a következő példa azt mutatja meg, hogyan tooconnect tooan Azure Redis gyorsítótár példányt, és tárolásához és lekéréséhez elem hello gyorsítótárból hello. További példák a Redis használata hello [node_redis](https://github.com/mranney/node_redis) ügyfél, lásd: [http://redis.js.org/](http://redis.js.org/).
+## <a name="add-something-to-the-cache-and-retrieve-it"></a>Elemek hozzáadása és lekérése a gyorsítótárból
+Az alábbi példa bemutatja, hogyan csatlakozhat egy Azure Redis Cache-példányhoz, valamint hogyan menthet egy elemet a gyorsítótárban, majd kérheti le azt onnan. További példák a Redis használatára a [node_redis](https://github.com/mranney/node_redis) ügyféllel: [http://redis.js.org/](http://redis.js.org/).
 
      var redis = require("redis");
 
@@ -83,6 +83,6 @@ Kimenet:
 
 
 ## <a name="next-steps"></a>Következő lépések
-* [Gyorsítótár-diagnosztika engedélyezése](cache-how-to-monitor.md#enable-cache-diagnostics) így [figyelő](cache-how-to-monitor.md) hello a gyorsítótár állapotát.
-* Olvasási hello hivatalos [dokumentáció Redis](http://redis.io/documentation).
+* [Engedélyezze a gyorsítótár-diagnosztikát,](cache-how-to-monitor.md#enable-cache-diagnostics) hogy [megfigyelhesse](cache-how-to-monitor.md) a gyorsítótár állapotát.
+* Olvassa el a hivatalos [Redis dokumentációt](http://redis.io/documentation).
 

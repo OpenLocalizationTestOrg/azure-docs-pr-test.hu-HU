@@ -1,6 +1,6 @@
 ---
-title: "aaaConnected gyári Azure IoT Suite megoldás forgatókönyv |} Microsoft Docs"
-description: "Hello előre konfigurált Azure IoT-megoldás leírása factory és az architektúra csatlakoztatva."
+title: "Az Azure IoT Suite csatlakoztatott gyár megoldásának bemutatója | Microsoft Docs"
+description: "Az Azure IoT előre konfigurált csatlakoztatott gyár megoldásának és architektúrájának leírása."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,121 +15,121 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/27/2017
 ms.author: dobett
-ms.openlocfilehash: 7fd55c51351659401349cfde91a20fce1045b4f0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 517e908a744734139ed0aeee314a4f3b9eda86cc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="connected-factory-preconfigured-solution-walkthrough"></a>Előre konfigurált csatlakoztatott gyár megoldás – bemutató
 
-hello IoT Suite csatlakoztatott gyári [előre konfigurált megoldás] [ lnk-preconfigured-solutions] egy végpontok közötti ipari megoldás megvalósítása, amely:
+Az IoT Suite [előre konfigurált][lnk-preconfigured-solutions] csatlakoztatott gyár megoldással egy teljes körű ipari megoldást implementálhat, amely:
 
-* Szimulált tooboth ipari eszközökön futó OPC EE-kiszolgálók szimulált gyári éles sorok és valós OPC EE-kiszolgálóeszközökkel a kapcsolatot. OPC EE kapcsolatos további információkért lásd: hello [gyári gyakran ismételt kérdések csatlakoztatott](iot-suite-faq-cf.md).
+* Szimulált gyártósorokon OPC UA-kiszolgálókat futtató szimulált ipari eszközökhöz és valódi OPC UA-kiszolgálóeszközökhöz is csatlakozik. Az OPC UA architektúráról a [Csatlakoztatott gyár – GYIK](iot-suite-faq-cf.md) fejezetben talál további információt.
 * Megjeleníti ezen eszközök és gyártósorok működési KPI- és OEE-értékeit.
-* Bemutatja, hogyan egy felhőalapú alkalmazás OPC EE server rendszerrel használt toointeract lehet-e.
-* Lehetővé teszi, hogy Ön tooconnect saját OPC EE kiszolgálóeszközökkel.
-* Lehetővé teszi a toobrowse és hello OPC EE-kiszolgáló adatainak módosítása.
-* Integrálható a hello Azure idő adatsorozat Insights (ÁME) szolgáltatás tooprovide egyéni nézetek hello adatok a OPC EE-kiszolgálókról.
+* Bemutatja, hogyan lehet kommunikálni az OPC UA-kiszolgálórendszerekkel felhőalapú alkalmazások használatával.
+* Lehetővé teszi, hogy összekapcsolja saját OPC UA-kiszolgálóeszközeit.
+* Lehetővé teszi az OPC UA-kiszolgálóadatok tallózását és módosítását.
+* Integrálható az Azure Time Series Insights (TSI) szolgáltatással, amely testreszabott nézeteket biztosít az OPC UA-kiszolgálók adatairól.
 
-Használhat hello megoldás kiindulási pontként a saját megvalósítási és [testreszabása] [ lnk-customize] azt toomeet saját speciális üzleti igényeinek.
+A megoldást kiindulási pontként használhatja a saját implementációjához, és a saját üzleti igényeinek megfelelően [testreszabhatja][lnk-customize] azt.
 
-Ez a cikk bemutatja, hogyan néhány hello fontosabb elemei csatlakozó hello gyári megoldás tooenable toounderstand, hogyan működik. Ezeknek az ismereteknek a birtokában:
+Ebben a cikkben bemutatjuk a csatlakoztatott gyár megoldás néhány fontos elemét, hogy jobban megismerhesse a szolgáltatás működését. Ezeknek az ismereteknek a birtokában:
 
-* Problémamegoldás hello megoldásban.
-* Tervezze meg hogyan toocustomize toohello megoldás toomeet a saját konkrét követelmények.
+* Elháríthatja a megoldásban felmerülő hibákat.
+* Megtervezheti, hogy miképpen érdemes testre szabni a megoldást úgy, hogy az megfeleljen egyedi igényeinek.
 * Kialakíthatja saját, Azure-szolgáltatásokat használó IoT-megoldását.
 
-További információkért lásd: hello [gyári gyakran ismételt kérdések csatlakoztatott](iot-suite-faq-cf.md).
+További információ: [Csatlakoztatott gyár – GYIK](iot-suite-faq-cf.md).
 
 ## <a name="logical-architecture"></a>Logikai architektúra
 
-a következő diagram hello hello logikai összetevőinek előre konfigurált hello megoldás ismerteti:
+A következő diagram az előre konfigurált megoldás logikai összetevőit vázolja fel:
 
 ![Csatlakoztatott gyár logikai architektúrája][connected-factory-logical]
 
 ## <a name="communication-patterns"></a>Kommunikációs minták
 
-hello megoldás az hello [OPC EE Pub/Sub specification](https://opcfoundation.org/news/opc-foundation-news/opc-foundation-announces-support-of-publish-subscribe-for-opc-ua/) toosend OPC EE telemetriai adatok tooIoT központ JSON formátumban. hello megoldás az hello [OPC Publisher](https://github.com/Azure/iot-edge-opc-publisher) IoT peremhálózati modul erre a célra.
+A megoldás az [OPC UA Pub/Sub specifikációt](https://opcfoundation.org/news/opc-foundation-news/opc-foundation-announces-support-of-publish-subscribe-for-opc-ua/) használja az OPC UA telemetriai adatok JSON-formátumban való küldésére az IoT Hub részére. A megoldás az [OPC Publisher](https://github.com/Azure/iot-edge-opc-publisher) IoT Edge-modult használja erre a célra.
 
-hello megoldás is rendelkezik egy OPC EE-ügyfél integrálva egy webes alkalmazás, amely képes kapcsolatot létrehozni a helyszíni OPC EE-kiszolgálókkal. hello ügyfél használ egy [fordított proxy](https://wikipedia.org/wiki/Reverse_proxy) és súgó fogad az IoT-központ toomake hello kapcsolat hello helyszíni tűzfal portjainak megnyitása nélkül. Ezt a kommunikációs mintát [szolgáltatás által támogatott kommunikációnak](https://blogs.msdn.microsoft.com/clemensv/2014/02/09/service-assisted-communication-for-connected-devices/) hívják. hello megoldás az hello [OPC Proxy](https://github.com/Azure/iot-edge-opc-proxy/) IoT peremhálózati modul erre a célra.
+A megoldás webalkalmazásba integrált OPC UA-ügyféllel is rendelkezik, amely képes kapcsolatot létesíteni a helyszíni OPC UA-kiszolgálókkal. Az ügyfél [fordított proxyt](https://wikipedia.org/wiki/Reverse_proxy) használ, és az IoT Hub segítségével anélkül képes létrehozni a kapcsolatot, hogy nyitott portokra lenne szüksége a helyszíni tűzfalon. Ezt a kommunikációs mintát [szolgáltatás által támogatott kommunikációnak](https://blogs.msdn.microsoft.com/clemensv/2014/02/09/service-assisted-communication-for-connected-devices/) hívják. A megoldás az [OPC Proxy](https://github.com/Azure/iot-edge-opc-proxy/) IoT Edge-modult használja erre a célra.
 
 
 ## <a name="simulation"></a>Szimuláció
 
-hello szimulált állomások és a szimulált hello gyártási végrehajtási rendszerek (MES) jött létre a gyári termelési sor. hello szimulált eszközök és hello OPC Publisher modul alapuló hello [OPC EE .NET szabványos] [ lnk-OPC-UA-NET-Standard] hello OPC Foundation tett közzé.
+A gyártósorok szimulált állomásokból és szimulált gyártási végrehajtó rendszerekből (MES) állnak. A szimulált eszközök és az OPC kiadói modul az OPC Foundation által kiadott [OPC UA .NET standardon][lnk-OPC-UA-NET-Standard] alapul.
 
-hello OPC Proxy és OPC szoftvergyártó valósíthatók alapján modulok [Azure IoT peremhálózati][lnk-Azure-IoT-Gateway]. Mindegyik szimulált gyártósorhoz kijelölt átjáró van csatlakoztatva.
+Az OPC Proxy és az OPC Publisher modulként van megvalósítva az [Azure IoT Edge][lnk-Azure-IoT-Gateway] alapján. Mindegyik szimulált gyártósorhoz kijelölt átjáró van csatlakoztatva.
 
-Minden szimulációs összetevő Azure Linux virtuális gépen futtatott Docker-tárolókban fut. hello szimuláció konfigurált toorun nyolc szimulált éles sorok alapértelmezés szerint.
+Minden szimulációs összetevő Azure Linux virtuális gépen futtatott Docker-tárolókban fut. A szimuláció úgy van konfigurálva, hogy alapértelmezés szerint nyolc szimulált gyártósort futtasson.
 
 ## <a name="simulated-production-line"></a>Szimulált gyártósor
 
 A gyártósorok alkatrészeket gyártanak. Különböző állomásokból állnak: összeszerelő állomásból, tesztelő állomásból és csomagoló állomásból.
 
-hello szimuláció fut, és frissíti a hello adatok hello OPC EE csomóponton keresztül elérhetővé. Az összes szimulált termelési sor állomás hello MES keresztül OPC EE által összehangolva. vannak.
+A szimuláció futtatja és frissíti az OPC UA-csomópontokon keresztül közzétett adatokat. Minden szimulált gyártósori állomást a MES vezényel az OPC UA-n keresztül.
 
 ## <a name="simulated-manufacturing-execution-system"></a>Szimulált gyártási végrehajtó rendszer
 
-hello MES figyeli minden állomáshoz hello termelési sorban OPC EE toodetect állomás állapotmódosítások keresztül. Meghívja a OPC EE módszerek toocontrol hello állomás, és adja át a termék egy állomás toohello a következő mindaddig, amíg nem fejeződik be.
+A MES az OPC UA-n keresztül figyeli a gyártósor egyes állomásait azok állapotváltozásainak észlelése érdekében. OPC UA-metódusokat hív meg az állomások vezérlése érdekében, és egyik állomásról a következőre továbbítja a termékeket a befejezésükig.
 
 ## <a name="gateway-opc-publisher-module"></a>Átjáró OPC kiadói modul
 
-OPC Publisher modul csatlakoztatja toohello állomás OPC EE-kiszolgálókat, és előfizet toohello OPC csomópontok toobe közzé. hello modul hello csomópont adatait JSON formátumba konvertálja, titkosítja azokat, és elküldi azt OPC EE Pub/Sub üzenetekként tooIoT központ.
+Az OPC kiadói modul az állomás OPC UA-kiszolgálóihoz csatlakozik és feliratkozik a kiadandó OPC-csomópontokra. A modul a csomópontadatokat JSON-formátumba alakítja, titkosítja, majd az IoT Hubra küldi OPC UA Pub/Sub üzenetekként.
 
-hello OPC Publisher modul csak egy kimenő https (443) portra van szüksége, és a meglévő vállalati infrastruktúra is használhatók.
+Az OPC kiadói modulnak csak kimenő https-portra (443) van szüksége, és képes együttműködni a meglévő vállalati infrastruktúrával.
 
 ## <a name="gateway-opc-proxy-module"></a>Átjáró OPC-proxymodul
 
-hello átjáró OPC EE Proxy modul bújtatja bináris OPC EE parancs és a vezérlő üzeneteket, és csak igényel az egy kimenő https (443-as) porton. Képes a meglévő vállalati infrastruktúrát használni, beleértve a webes proxykat is.
+Az átjáró OPC UA-proxymodul bináris OPC UA-parancs- és vezérlési üzeneteket továbbít, és csak kimenő https-portot (443) igényel. Képes a meglévő vállalati infrastruktúrát használni, beleértve a webes proxykat is.
 
-Az IoT Hub eszközhöz módszerek tootransfer packetized TCP/IP-adatok hello alkalmazás rétegben használ, és így biztosítja a végpont megbízható, az adattitkosítás és az SSL/TLS használatával integritása.
+IoT Hub-eszközmetódusokkal viszi át a csomagolt TCP/IP-adatokat az alkalmazásrétegen, így az SSL/TLS segítségével biztosítja a végpontok megbízhatóságát, az adatok titkosítását és az integritást.
 
-hello OPC EE bináris protokoll maga hello proxyn keresztül történő továbbítását EE-hitelesítést és titkosítást használ.
+A magán a proxyn keresztül továbbított OPC UA bináris protokoll UA-hitelesítést és -titkosítást használ.
 
 ## <a name="azure-time-series-insights"></a>Azure Time Series Insights
 
-Átjáró OPC Publisher modul hello előfizet tooOPC EE server csomópontok toodetect változása hello adatértékekkel. Ha egy adatok valamelyik hello csomópontokat észlelt, ez a modul ezután elküldi üzenetek tooAzure IoT-központot.
+Az átjáró OPC kiadói modul feliratkozik az OPC UA-kiszolgálócsomópontokra az adatértékek változásainak észlelése érdekében. Ha a rendszer adatmódosítást észlel valamelyik csomóponton, ez a modul üzeneteket küld az Azure IoT Hubnak.
 
-IoT-központot egy esemény forrás tooAzure ÁME biztosít. ÁME tárolók adatok alapján időbélyegeket 30 napig csatolt toohello üzeneteket. A adatok tartalma:
+Az IoT Hub eseményforrást biztosít az Azure TSI-nek. A TSI 30 napig tárol adatokat az üzenetekhez csatolt időbélyegek alapján. A adatok tartalma:
 
 * OPC UA ApplicationUri
 * OPC UA NodeId
-* Hello csomópont értéke
+* A csomópont értéke
 * Forrás időbélyege
 * OPC UA DisplayName
 
-Jelenleg ÁME nem teszi lehetővé az ügyfelek mennyi ideig toocustomize kívánják tookeep hello adatait.
+A TSI jelenleg nem engedélyezi, hogy az ügyfelek testreszabják, mennyi ideig szeretnék megőrizni az adatokat.
 
 A TSI a csomópontadatok lekérdezését egy SearchSpan (Time.From, Time.To), az összesítést pedig az OPC UA ApplicationUri, az OPC UA NodeId vagy az OPC UA DisplayName attribútum alapján végzi.
 
-tooretrieve hello adatok hello OEE és KPI mérőműszer, és az adatsorozat hello idődiagramokat, adatok összesítve van az események, Sum, Avg, minimális és maximális számát.
+Az OEE- és a KPI-mérőműszer adatainak és az idősorozat-diagramok lekérdezése érdekében a rendszer az események száma, valamint a Sum, az Avg, a Min és a Max értékek alapján összesíti az adatokat.
 
-hello a time series egy másik folyamat használatával készített. Állomás alap adatokból számított és hello alkalmazás feliratkozott hello topológia (éles sorok, előállítók, vállalati) átbuborékoltatni OEE és a KPI-k.
+Az idősorozatok más folyamattal vannak felépítve. Az OEE és a KPI-k állomások alapadataiból vannak kiszámítva és buborékba vannak rendezve a topológiához (gyártósorok, gyárak, vállalat) az alkalmazásban.
 
-Emellett OEE és a KPI-topológia a time series kiszámítása hello alkalmazásban, amikor készen áll a megjelenített timespan érték. Például a hello mai nézete teljes óránként frissül.
+Ezenkívül az OEE- és a KPI-topológia idősorozatai az alkalmazásban lesznek kiszámítva, amikor egy megjelenített időtartomány készen áll. A nap nézet például minden teljes órában frissül.
 
-hello idő adatsorozat nézet csomópont adatok közvetlenül a összesítést használ timespan ÁME származik.
+A csomópontadatok idősorozat nézete közvetlenül a TSI-ból származik az időtartomány összegzése segítségével.
 
 ## <a name="iot-hub"></a>IoT Hub
-Hello [IoT-központ] [ lnk-IoT Hub] hello OPC Publisher modul hello felhőbe küldött adatokat fogad, és lehetővé teszi az elérhető toohello Azure ÁME szolgáltatás. 
+Az [IoT hub][lnk-IoT Hub] fogadja az OPC kiadói modulból a felhőbe küldött adatokat, és elérhetővé teszi azokat az Azure TSI szolgáltatás számára. 
 
-az IoT-központ hello hello megoldásban is:
-- Kezeli az identitásjegyzékhez hello azonosítók tároló összes OPC Publisher modult és minden OPC Proxy modul.
-- Használható szállítási csatorna hello OPC Proxy modul közötti kommunikáció kétirányú.
+A megoldásban az IoT Hub ezenkívül a következőket teszi:
+- Fenntart egy identitásjegyzéket, amely tárolja az összes OPC kiadói modul és az összes OPC-proxymodul azonosítóját.
+- Átviteli csatornaként szolgál az OPC-proxymodul kétirányú kommunikációjához.
 
 ## <a name="azure-storage"></a>Azure Storage
-hello megoldás használ az Azure blob-tároló lemez tárolóként hello VM és toostore központi telepítésével kapcsolatos adatokat.
+A megoldás Azure Blob Storage tárolót használ a virtuális gép lemezes tárolójaként, valamint az üzembehelyezési adatok tárolásához.
 
 ## <a name="web-app"></a>Webalkalmazás
-hello webalkalmazás üzembe az előre konfigurált hello megoldás részét képező egy integrált OPC EE-ügyfél, a riasztások feldolgozása és a telemetriai adatokat a képi megjelenítés foglalja magában.
+Az előre konfigurált megoldás részeként üzembe helyezett webalkalmazás integrált OPC UA-ügyfélből, riasztások feldolgozásából és a telemetria megjelenítéséből áll.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Továbbra is a következő cikkek hello olvasásával Ismerkedés az IoT Suite:
+Folytassa az IoT Suite megismerését az alábbi cikkek elolvasásával:
 
-* [Engedélyek hello azureiotsuite.com webhelyen][lnk-permissions]
-* [Telepítsen egy átjárót a Windows vagy Linux csatlakoztatott hello előre konfigurált gyári megoldás](iot-suite-connected-factory-gateway-deployment.md)
+* [Engedélyek az azureiotsuite.com webhelyen][lnk-permissions]
+* [Átjáró üzembe helyezése Windows vagy Linux rendszeren az előre konfigurált csatlakoztatott gyár megoldáshoz](iot-suite-connected-factory-gateway-deployment.md)
 
 [connected-factory-logical]:media/iot-suite-connected-factory-walkthrough/cf-logical-architecture.png
 

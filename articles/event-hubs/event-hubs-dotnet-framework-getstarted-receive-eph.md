@@ -1,6 +1,6 @@
 ---
-title: "Azure Event Hubs használatával aaaReceive események a .NET-keretrendszer hello |} Microsoft Docs"
-description: "Az oktatóanyag tooreceive események kövesse az Azure Event Hubs hello .NET-keretrendszer használatával."
+title: "Események fogadása az Azure Event Hubsból a .NET-keretrendszer használatával | Microsoft Docs"
+description: "Események az Azure Event Hubsból .NET-keretrendszer segítségével történő fogadásához kövesse az oktatóanyag lépéseit."
 services: event-hubs
 documentationcenter: 
 author: sethmanheim
@@ -12,73 +12,73 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 06/12/2017
+ms.date: 10/10/2017
 ms.author: sethm
-ms.openlocfilehash: a88c3feeacfd3de9622dbb86e25222e861750204
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5d2f6f53af182a8ac0430de0ca3701a9a30e0bf4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="receive-events-from-azure-event-hubs-using-hello-net-framework"></a>Események fogadása az Azure Event Hubs hello .NET-keretrendszer használatával
+# <a name="receive-events-from-azure-event-hubs-using-the-net-framework"></a>Események fogadása az Azure Event Hubsból a .NET-keretrendszer használatával
 
-## <a name="introduction"></a>Bevezetés
+## <a name="introduction"></a>Introduction (Bevezetés)
 
-Az Event Hubs szolgáltatás a csatlakoztatott eszközökről és alkalmazásokból származó nagy mennyiségű eseményadatot dolgoz fel (telemetria). Miután összegyűjtötte az adatokat az Event Hubs, egy tárolási fürt használatával hello adatok tárolására, vagy átalakíthatja egy valós idejű elemzési szolgáltató használatával. A felügyeleti teendők központjaként esemény és -feldolgozási képesség, modern alkalmazásarchitektúráknak, beleértve az eszközök internetes hálózatát (IoT) hello nyilvános kulcsokra épülő.
+Az Event Hubs szolgáltatás a csatlakoztatott eszközökről és alkalmazásokból származó nagy mennyiségű eseményadatot dolgoz fel (telemetria). Miután összegyűjtötte az adatokat az Event Hubsban, az adatok egy tárolási fürt használatával tárolhatja, vagy átalakíthatja egy valós idejű elemzési szolgáltató segítségével. Ez az átfogó eseménygyűjtési és -feldolgozási képesség kulcsfontosságú alkotóeleme a modern alkalmazásarchitektúráknak, beleértve az eszközök internetes hálózatát (IoT).
 
-Ez az oktatóanyag bemutatja, hogyan toowrite egy .NET-keretrendszer Konzolalkalmazás fogad üzeneteket hello használata az eseményközpontban lévő  **[Event Processor Host][EventProcessorHost]**. toosend események hello .NET-keretrendszer használatával, lásd: hello [hello .NET-keretrendszer használatával tooAzure Event Hubs üzenetküldési](event-hubs-dotnet-framework-getstarted-send.md) a következő cikket, vagy kattintson a hello küldő megfelelő nyelvi hello bal oldali tábla tartalmát.
+Ez az oktatóanyag ismerteti, hogyan írható olyan .NET-keretrendszerbeli konzolalkalmazás, amely egy eseményközpontból fogad üzeneteket az **[Event Processor Host][EventProcessorHost]** használatával. Az események a .NET-keretrendszerrel való küldéséről lásd a [Események küldése az Azure Event Hubsba a .NET-keretrendszer használatával](event-hubs-dotnet-framework-getstarted-send.md) című cikket, vagy kattintson a megfelelő küldőnyelvre a bal oldalon található tartalomjegyzékben.
 
-Hello [Event Processor Host] [ EventProcessorHost] egy .NET-osztály, amely leegyszerűsíti az események fogadását az event hubs kezeli az állandó ellenőrzőpontokat és párhuzamos fogadásokat az adott event hubs eseményközpontokból. Hello segítségével [Event Processor Host][Event Processor Host], akkor is feloszthatja az eseményeket több fogadóra, akkor is, ha különböző csomópontokon üzemelnek. A példa bemutatja, hogyan toouse hello [Event Processor Host] [ EventProcessorHost] egyetlen fogadóhoz. Hello [esemény feldolgozása kibővítési] [ Scale out Event Processing with Event Hubs] bemutatja hogyan minta toouse hello [Event Processor Host] [ EventProcessorHost] több fogadóval.
+Az [Event Processor Host][EventProcessorHost] egy .NET-osztály, amely leegyszerűsíti az események fogadását az Event Hubsból, mivel kezeli az állandó ellenőrzőpontokat és a párhuzamos fogadásokat az adott Event Hubs -eseményközpontokból. Az [Event Processor Host][Event Processor Host] használatával több fogadó között oszthatja el az eseményeket, még akkor is, ha ezek különböző csomópontokon üzemelnek. Ez a példa bemutatja, hogyan használható az [Event Processor Host][EventProcessorHost] egyetlen fogadóhoz. A [horizontálisan felskálázott eseményfeldolgozási][Scale out Event Processing with Event Hubs] minta megmutatja, hogyan használható az [Event Processor Host][EventProcessorHost] több fogadóval.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-toocomplete ebben az oktatóanyagban a következő előfeltételek hello szüksége:
+Az oktatóanyag teljesítéséhez a következő előfeltételekre lesz szüksége:
 
-* [Microsoft Visual Studio 2015 vagy újabb](http://visualstudio.com). Ebben az oktatóanyagban hello képernyőképek használja a Visual Studio 2017.
+* [Microsoft Visual Studio 2015 vagy újabb](http://visualstudio.com). A jelen oktatóanyag képernyőképei a Visual Studio 2017-et használják.
 * Aktív Azure-fiók. Ha még nincs fiókja, néhány perc alatt létrehozhat egy ingyenes fiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/free/).
 
 ## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a>Event Hubs-névtér és eseményközpont létrehozása
 
-első lépés hello toouse hello [Azure-portálon](https://portal.azure.com) névtere a toocreate írja be az Event Hubs, és hello felügyeleti hitelesítő adatok az alkalmazás kell toocommunicate hello event hubs az beszerzése. toocreate névtér és az event hubs eljárással hello a [Ez a cikk](event-hubs-create.md), majd folytassa a hello ebben az oktatóanyagban a lépéseket követve.
+Első lépésként az [Azure Portalon](https://portal.azure.com) hozzon létre egy Event Hubs típusú névteret, és szerezze be az alkalmazása és az eseményközpont közötti kommunikációhoz szükséges felügyeleti hitelesítő adatokat. A névtér és az eseményközpont létrehozásához kövesse az [ebben a cikkben](event-hubs-create.md) olvasható eljárást, majd folytassa a jelen oktatóanyag alábbi lépéseivel.
 
 ## <a name="create-an-azure-storage-account"></a>Azure Storage-fiók létrehozása
 
-toouse hello [Event Processor Host][EventProcessorHost], rendelkeznie kell egy [Azure Storage-fiók][Azure Storage account]:
+Az [Event Processor Host][EventProcessorHost] használatához egy [Azure Storage-fiók][Azure Storage account] szükséges:
 
-1. Jelentkezzen be toohello [Azure-portálon][Azure portal], és kattintson **új** hello: bal felső részén üdvözlő képernyőt.
+1. Jelentkezzen be az [Azure Portalra][Azure portal], és kattintson az **Új** gombra a képernyő bal felső részén.
 2. Kattintson a **Tárolás**, majd a **Tárfiók** elemre.
    
     ![](./media/event-hubs-dotnet-framework-getstarted-receive-eph/create-storage1.png)
-3. A hello **storage-fiók létrehozása** panelen adja meg a hello storage-fiók nevét. Adja meg az Azure-előfizetéssel, erőforráscsoportot és helyet melyik toocreate hello erőforrást. Ezt követően kattintson a **Create** (Létrehozás) gombra.
+3. A **Tárfiókok létrehozása** panelen írja be a tárfiók nevét. Válassza ki azt az Azure-előfizetést, erőforráscsoportot és helyet, amellyel az erőforrást létre kívánja hozni. Ezt követően kattintson a **Create** (Létrehozás) gombra.
    
     ![](./media/event-hubs-dotnet-framework-getstarted-receive-eph/create-storage2.png)
-4. Hello listában tárfiókok kattintson az újonnan létrehozott tárfiók hello.
-5. Hello storage-fiók panelen kattintson **hívóbetűk**. Másolja a hello értékének **key1** toouse az oktatóanyag későbbi részében.
+4. A tárfiókok listáján kattintson az újonnan létrehozott tárfiókra.
+5. A tárfiók panelen kattintson a **Hívóbetűk** elemre. Másolja ki a **key1** értékét – erre később lesz szükség az oktatóprogramban.
    
     ![](./media/event-hubs-dotnet-framework-getstarted-receive-eph/create-storage3.png)
 
 ## <a name="create-a-receiver-console-application"></a>Fogadó konzolalkalmazás létrehozása
 
-1. A Visual Studióban hozzon létre egy új Visual C# Asztalialkalmazás-projektet hello segítségével **Konzolalkalmazás** projektsablon. Név hello projekt **fogadó**.
+1. Hozzon létre egy új Visual C# asztalialkalmazás-projektet a **Console Application** (Konzolalkalmazás) projektsablonnal. Adja a projektnek a **Receiver** (Fogadó) nevet.
    
     ![](./media/event-hubs-dotnet-framework-getstarted-receive-eph/create-receiver-csharp1.png)
-2. A Megoldáskezelőben kattintson a jobb gombbal hello **fogadó** projektre, és kattintson a **NuGet-csomagok kezelése megoldáshoz**.
-3. Kattintson a hello **Tallózás** lapra, és keresse meg `Microsoft Azure Service Bus Event Hub - EventProcessorHost`. Kattintson a **telepítése**, és el kell fogadnia a használati feltételek hello.
+2. A Megoldáskezelőben kattintson a jobb gombbal a **Receiver** (Fogadó) projektre, majd kattintson a **Manage NuGet Packages for Solution** (Megoldás NuGet-csomagjainak kezelése) parancsra.
+3. Kattintson a **Browse** (Tallózás) lapra, és keressen a következőre: `Microsoft Azure Service Bus Event Hub - EventProcessorHost`. Kattintson az **Install** (Telepítés) gombra, és fogadja el a használati feltételeket.
    
     ![](./media/event-hubs-dotnet-framework-getstarted-receive-eph/create-eph-csharp1.png)
    
-    A Visual Studio letöltések, telepíti, és hozzáad egy hivatkozást toohello [Azure Service Bus-Eseményközpont - EventProcessorHost NuGet-csomag](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost), elemet minden függőségével.
-4. Kattintson a jobb gombbal hello **fogadó** projektre, kattintson **Hozzáadás**, és kattintson a **osztály**. Hello új osztály neve **SimpleEventProcessor**, és kattintson a **Hozzáadás** toocreate hello osztály.
+    A Visual Studio letölti és telepíti az [Azure Service Bus Event Hub - EventProcessorHost NuGet csomagot](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost) minden függőségével együtt, és hozzáad egy rá mutató hivatkozást is.
+4. Kattintson a jobb gombbal a **Receiver** (Fogadó) projektre, kattintson az **Add** (Hozzáadás) lehetőségre, majd a **Class** (Osztály) elemre. Nevezze el az új osztályt **SimpleEventProcessor** névre, és kattintson az **Add** (Hozzáadás) gombra az osztály létrehozásához.
    
     ![](./media/event-hubs-dotnet-framework-getstarted-receive-eph/create-receiver-csharp2.png)
-5. Adja hozzá a következő utasításokat hello SimpleEventProcessor.cs fájl elejéhez hello hello:
+5. Adja hozzá a következő utasításokat a SimpleEventProcessor.cs fájl elejéhez:
     
   ```csharp
   using Microsoft.ServiceBus.Messaging;
   using System.Diagnostics;
   ```
     
-  Ezután helyettesítse be a következő hello törzsét hello osztály kódját hello:
+  Ezután helyettesítse be a következő kódot az osztály törzseként:
     
   ```csharp
   class SimpleEventProcessor : IEventProcessor
@@ -122,14 +122,14 @@ toouse hello [Event Processor Host][EventProcessorHost], rendelkeznie kell egy [
   }
   ```
     
-  Ez az osztály hívja hello **EventProcessorHost** tooprocess események hello eseményközpont kapott. Hello `SimpleEventProcessor` osztály stoppert tooperiodically hívás hello ellenőrzőpont módszert használ a hello **EventProcessorHost** a környezetben. A feldolgozási biztosítja, hogy hello fogadó újraindul, ha elveszíti legfeljebb öt percen feldolgozási munka.
-6. A hello **Program** osztály, adja hozzá a következő hello `using` hello fájl hello tetején utasítást:
+  Az **EventProcessorHost** ezt az osztályt hívja meg az eseményközpontból fogadott események feldolgozásához. A `SimpleEventProcessor` osztály stoppert használ az ellenőrzőpont-metódus **EventProcessorHost** környezetben való rendszeres időközönkénti hívásához. Ez az eljárás biztosítja, hogy ha a fogadó újraindul, ne vesszen el öt percnél több feldolgozási munka.
+6. A **Program** osztályban adja hozzá a következő `using` utasítást a fájl elejéhez:
     
   ```csharp
   using Microsoft.ServiceBus.Messaging;
   ```
     
-  Ezután cserélje le a hello `Main` metódus a hello `Program` hello a következő kódot az osztály, és hello eseményközpont neveként és hello névtérszintű kapcsolati karakterlánc, amikor a korábban mentett és a storage-fiók és a kulcs a hello hello korábbi szakaszokban. 
+  Ezután cserélje le a `Main` metódust a `Program` osztályban a következő kódra, behelyettesítve az eseményközpont nevét, a korábban mentett névtérszintű kapcsolati karakterláncot, valamint a tárfiókot és a kulcsot, amelyeket a korábbi szakaszokban lemásolt. 
     
   ```csharp
   static void Main(string[] args)
@@ -147,25 +147,25 @@ toouse hello [Event Processor Host][EventProcessorHost], rendelkeznie kell egy [
     options.ExceptionReceived += (sender, e) => { Console.WriteLine(e.Exception); };
     eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>(options).Wait();
     
-    Console.WriteLine("Receiving. Press enter key toostop worker.");
+    Console.WriteLine("Receiving. Press enter key to stop worker.");
     Console.ReadLine();
     eventProcessorHost.UnregisterEventProcessorAsync().Wait();
   }
   ```
 
-7. Hello program futtatása, és győződjön meg arról, hogy nincsenek-e hibák.
+7. Futtassa a programot, és ellenőrizze, hogy nincsenek-e hibák.
   
-Gratulálunk! Az eseményközpontok hello Event Processor Host használatával most kapott üzenetek.
+Gratulálunk! Sikeresen fogadott üzeneteket egy eseményközpontból az Event Processor Host használatával.
 
 
 > [!NOTE]
-> Ez az oktatóprogram az [EventProcessorHost][EventProcessorHost] egyetlen példányát használja. tooincrease átviteli, javasoljuk, hogy több példányát futtatja [EventProcessorHost][EventProcessorHost], ahogy az hello [méretezett események feldolgozásával,] [out esemény feldolgozása méretezett] minta. Ezekben az esetekben hello különböző példányok automatikusan koordinálja egymással tooload egyenleg hello fogadott események. Ha azt szeretné, hogy több fogadóval tooeach folyamat *összes* események, hello hello kell használnia **ConsumerGroup** fogalom. Események fogadása különböző gépek, amikor előfordulhat, hogy hasznos toospecify neveit [EventProcessorHost] [ EventProcessorHost] példányok alapuló hello gépeken (vagy szerepkörökön) azokat. Ezek a témakörök kapcsolatos további információkért lásd: hello [Event Hubs – áttekintés] [ Event Hubs overview] és hello [Event Hubs programozási útmutató] [ Event Hubs Programming Guide] témaköröket.
+> Ez az oktatóprogram az [EventProcessorHost][EventProcessorHost] egyetlen példányát használja. Az átviteli sebesség növelése érdekében ajánlott az [EventProcessorHost][EventProcessorHost] több példányának futtatása, amelyre a horizontálisan felskálázott eseményfeldolgozási mintában láthat példát. Ilyen esetekben a különböző példányok automatikusan koordinálnak egymással a fogadott események terhelésének kiegyenlítéséhez. Ha több fogadóval szeretné feldolgoztatni az *összes* eseményt, a **ConsumerGroup** szolgáltatást kell használnia. Ha több gépről fogad eseményeket, célszerű lehet az azokat futtató gépeken (vagy szerepkörökön) alapuló nevet adni az [EventProcessorHost][EventProcessorHost]-példányoknak. További tudnivalók ezekről a témákról az [Event Hubs – áttekintés][Event Hubs overview] és az [Event Hubs programozási útmutatója][Event Hubs Programming Guide] témakörben olvashatók.
 > 
 > 
 
 ## <a name="next-steps"></a>Következő lépések
 
-Most, hogy létrehozott egy működő alkalmazást, amely létrehoz egy eseményközpontot, és adatokat küld és fogad, többet is megtudhat a következő hivatkozások hello érhetők el:
+Létrehozott egy működő alkalmazást, amely létrehoz egy Event Hubot, valamint adatokat fogad és küld. További információkért kövesse az alábbi hivatkozásokat:
 
 * [Event Processor Host][Event Processor Host]
 * [Event Hubs – áttekintés][Event Hubs overview]

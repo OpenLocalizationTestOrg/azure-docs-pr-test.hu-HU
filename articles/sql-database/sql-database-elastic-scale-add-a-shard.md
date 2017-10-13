@@ -1,6 +1,6 @@
 ---
-title: "a rugalmas adatbázis-eszközökkel shard aaaAdding |} Microsoft Docs"
-description: "Rugalmas, méretezhető API-k tooadd új szilánkok tooa shard toouse beállításának módját."
+title: "A rugalmas adatbázis-eszközökkel szilánkcímtárban hozzáadása |} Microsoft Docs"
+description: "Állítsa be a rugalmas, méretezhető API-k használata új szilánkok hozzáadása a szilánkcímtárban."
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -15,23 +15,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
-ms.openlocfilehash: f44b59578376d1238b3012a3cb52339978079f0e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6a91ea2251ea3b748faba5c97765bfded9c00234
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="adding-a-shard-using-elastic-database-tools"></a>A rugalmas adatbázis-eszközökkel szilánkcímtárban hozzáadása
-## <a name="tooadd-a-shard-for-a-new-range-or-key"></a>a szilánkok egy új tartományt vagy a kulcs tooadd
-Alkalmazások gyakran kell toosimply új szilánkok toohandle adatok hozzáadása új kulcsokat vagy kulcstartományokkal, várt shard térképre már létezik. Például a bérlő-azonosító szerint szilánkos alkalmazás egy új shard tooprovision szükséges egy új bérlőt, vagy adatok szilánkos havi esetleg egy új shard kiépítése előtt minden új hónap elején hello. 
+## <a name="to-add-a-shard-for-a-new-range-or-key"></a>A szilánkok egy új tartományt vagy a kulcs hozzáadása
+Alkalmazások egyszerűen adja hozzá az új kulcsokat vagy egy már létező shard térkép kulcstartományokkal várt adatok kezelésének új szilánkok gyakran kell. Például egy bérlő-azonosító szerint szilánkos alkalmazás egy új shard létrehozni egy új bérlőt kell, vagy adatok szilánkos havi esetleg egy új shard kiépített új havonta megkezdése előtt. 
 
-Hello új kulcs értékek tartománya nem már tartozik egy meglévő leképezést, akkor nagyon egyszerű tooadd hello új shard és társítás hello új kulcs vagy a tartomány toothat szilánkcímtárban. 
+Az új kulcs értékek tartományán már nem része egy meglévő leképezést, akkor adja hozzá az új shard, és rendelje hozzá az új kulcs vagy az és, hogy a shard nagyon egyszerű. 
 
-### <a name="example--adding-a-shard-and-its-range-tooan-existing-shard-map"></a>Példa: egy shard és a tartomány tooan meglévő shard leképezés hozzáadása
-Ezt a mintát használ hello [TryGetShard](https://msdn.microsoft.com/library/azure/dn823929.aspx) hello [CreateShard](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.createshard.aspx), [CreateRangeMapping](https://msdn.microsoft.com/library/azure/dn807221.aspx#M:Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.RangeShardMap`1.CreateRangeMapping\(Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.RangeMappingCreationInfo{`0}\)) módszerek, és létrehoz egy új hello [ShardLocation](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardlocation.shardlocation.aspx#M:Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.ShardLocation.) osztály. Az alábbi nevű adatbázis hello mintában **sample_shard_2** , minden szükséges sémaobjektumok saját létrejöttek toohold tartomány [300, 400).  
+### <a name="example--adding-a-shard-and-its-range-to-an-existing-shard-map"></a>Példa: egy shard és a tartomány hozzáadása meglévő shard térkép
+Ebben a példában a [TryGetShard](https://msdn.microsoft.com/library/azure/dn823929.aspx) a [CreateShard](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.createshard.aspx), [CreateRangeMapping](https://msdn.microsoft.com/library/azure/dn807221.aspx#M:Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.RangeShardMap`1.CreateRangeMapping\(Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.RangeMappingCreationInfo{`0}\)) módszerek, és létrehoz egy példányát a [ShardLocation](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardlocation.shardlocation.aspx#M:Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.ShardLocation.)osztály. Néven adatbázis az alábbi minta **sample_shard_2** , minden szükséges sémaobjektumok saját létrejöttek ahhoz, hogy a tartomány [300, 400).  
 
     // sm is a RangeShardMap object.
-    // Add a new shard toohold hello range being added. 
+    // Add a new shard to hold the range being added. 
     Shard shard2 = null; 
 
     if (!sm.TryGetShard(new ShardLocation(shardServer, "sample_shard_2"),out shard2)) 
@@ -39,21 +39,21 @@ Ezt a mintát használ hello [TryGetShard](https://msdn.microsoft.com/library/az
         shard2 = sm.CreateShard(new ShardLocation(shardServer, "sample_shard_2"));  
     } 
 
-    // Create hello mapping and associate it with hello new shard 
+    // Create the mapping and associate it with the new shard 
     sm.CreateRangeMapping(new RangeMappingCreationInfo<long> 
                             (new Range<long>(300, 400), shard2, MappingStatus.Online)); 
 
 
-Alternatív megoldásként használhatja a Powershell toocreate egy új Shard térkép Manager. Példa: elérhető [Itt](https://gallery.technet.microsoft.com/scriptcenter/Azure-SQL-DB-Elastic-731883db).
+Alternatív megoldásként a Powershell segítségével hozzon létre egy új Shard térkép Manager. Példa: elérhető [Itt](https://gallery.technet.microsoft.com/scriptcenter/Azure-SQL-DB-Elastic-731883db).
 
-## <a name="tooadd-a-shard-for-an-empty-part-of-an-existing-range"></a>egy meglévő tartomány üres részét képezik a shard tooadd
-Bizonyos körülmények között előfordulhat, hogy már le van képezve egy tartomány tooa shard és részben megtelt adatokkal, de arra most jövőbeli adatok toobe irányított tooa különböző szilánkcímtárban. Például, hogy a shard napi között, és már hozzárendelt 50 nap tooa shard, de 24. napon, egy másik shard a jövőbeli adatok tooland kívánt. hello rugalmas adatbázis [vegyes egyesítéses eszköz](sql-database-elastic-scale-overview-split-and-merge.md) hajthatják végre a műveletet, de ha az adatmozgatás nem szükséges (például napos [25, 50 hello tartomány adatokat), azaz, 25 nap között lehet too50 kizárólagos, még nem létezik) hajthat végre a Shard térkép felügyeleti API-k közvetlenül hello a teljes mértékben használatával.
+## <a name="to-add-a-shard-for-an-empty-part-of-an-existing-range"></a>Egy meglévő tartomány üres részét képezik a szilánkcímtárban hozzáadása
+Bizonyos körülmények között előfordulhat, hogy már van leképezve a shard széles és részben megtelt adatokkal, de az kívánja most átirányítja egy másik shard jövőbeli adatokat. Például, hogy a shard naptartomány által, és már lefoglalt 50 nap kell egy shard, de 24 napon szeretné megnyílik egy másik shard a jövőbeli adatokat. A rugalmas adatbázis [vegyes egyesítéses eszköz](sql-database-elastic-scale-overview-split-and-merge.md) hajthatják végre a műveletet, de ha az adatmozgatás nem szükséges (például a tartományhoz [25, 50 napnyi adat), azaz, napi 25 kizárólagos, 50 között lehet még nem létezik) Ez végezheti el a szilánkok térkép felügyeleti API-k teljes mértékben közvetlenül használatával.
 
-### <a name="example-splitting-a-range-and-assigning-hello-empty-portion-tooa-newly-added-shard"></a>Példa: a felosztás egy tartományt, és rendelje hozzá a hello üres részét tooa újonnan hozzáadott shard
+### <a name="example-splitting-a-range-and-assigning-the-empty-portion-to-a-newly-added-shard"></a>Példa: egy tartományt a felosztás, és az üres rész hozzárendelése egy újonnan hozzáadott shard
 Létrehozott egy "sample_shard_2" és az összes szükséges séma objektum saját nevű adatbázis.  
 
     // sm is a RangeShardMap object.
-    // Add a new shard toohold hello range we will move 
+    // Add a new shard to hold the range we will move 
     Shard shard2 = null; 
 
     if (!sm.TryGetShard(new ShardLocation(shardServer, "sample_shard_2"),out shard2)) 
@@ -62,19 +62,19 @@ Létrehozott egy "sample_shard_2" és az összes szükséges séma objektum saj�
         shard2 = sm.CreateShard(new ShardLocation(shardServer, "sample_shard_2"));  
     } 
 
-    // Split hello Range holding Key 25 
+    // Split the Range holding Key 25 
 
     sm.SplitMapping(sm.GetMappingForKey(25), 25); 
 
-    // Map new range holding [25-50) toodifferent shard: 
+    // Map new range holding [25-50) to different shard: 
     // first take existing mapping offline 
     sm.MarkMappingOffline(sm.GetMappingForKey(25)); 
-    // now map while offline tooa different shard and take online 
+    // now map while offline to a different shard and take online 
     RangeMappingUpdate upd = new RangeMappingUpdate(); 
     upd.Shard = shard2; 
     sm.MarkMappingOnline(sm.UpdateMapping(sm.GetMappingForKey(25), upd)); 
 
-**Fontos**: Ezzel a technikával használja, csak ha egyes tartományon hello hello frissítve lesz üres.  a fenti hello módszerek hello tartomány áthelyezett adatok ellenőrzése, a legjobb tooinclude ellenőrzi a kódban.  Ha a sorok léteznek hello közé kerülnek, hello tényleges adatokat terjesztési nem fog egyezni a hello frissített shard térkép. Használjon hello [vegyes egyesítéses eszköz](sql-database-elastic-scale-overview-split-and-merge.md) tooperform hello művelet helyette ezekben az esetekben.  
+**Fontos**: Ezzel a technikával használja, csak ha biztos abban, hogy a tartományon a frissített leképezése nem üres.  A fenti módszerek nem ellenőrzi adatokat át, a tartományhoz, így legjobb ellenőrzések szerepeljenek a kódot.  Ha a sorok léteznek éppen áthelyezik a tartományban, a tényleges adatok terjesztési nem fog egyezni a frissített shard leképezés. Használja a [vegyes egyesítéses eszköz](sql-database-elastic-scale-overview-split-and-merge.md) ezekben az esetekben inkább a művelet végrehajtására.  
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 

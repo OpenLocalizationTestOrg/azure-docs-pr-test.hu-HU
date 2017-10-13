@@ -1,6 +1,6 @@
 ---
-title: "a Xamarin.iOS-alkalmazásokhoz az Azure App Service Mobile Apps lépései aaaGet |} Microsoft Docs"
-description: "Hajtsa végre az oktatóanyag tooget az Xamarin.iOS fejlesztési Mobile Apps használatával."
+title: "Bevezetés az Azure App Service Mobile Apps szolgáltatásnak a Xamarin.iOS-alkalmazásokkal való használatába| Microsoft Docs"
+description: "Ezt az oktatóanyagot követve megismerkedhet azokkal a kezdeti lépésekkel, amelyekkel Xamarin.iOS-alapú fejlesztésre használhatja a Mobile Apps szolgáltatást."
 services: app-service\mobile
 documentationcenter: xamarin
 author: ggailey777
@@ -14,66 +14,66 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 10/01/2016
 ms.author: syntaxc4
-ms.openlocfilehash: 524c5ac4d8a29d7cb858f74132aad5d6e2201d02
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8dc965df2cd45366970effb29f246b0045a94717
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-a-xamarinios-app"></a>Xamarin.iOS-alkalmazás létrehozása
 [!INCLUDE [app-service-mobile-selector-get-started](../../includes/app-service-mobile-selector-get-started.md)]
 
 ## <a name="overview"></a>Áttekintés
-Az oktatóanyag bemutatja, hogyan tooadd felhőalapú háttérkiszolgálón szolgáltatás az Azure mobile Apps-háttéralkalmazás segítségével tooa Xamarin.iOS mobilalkalmazás.  Létre fog hozni egy új mobil-háttéralkalmazást, illetve egy olyan egyszerű *Teendőlista* Xamarin.iOS-alkalmazást, amely az alkalmazásadatokat az Azure-ban tárolja.
+Ez az cikk azt ismerteti, hogyan adhat felhőalapú háttérszolgáltatást a Xamarin.iOS-mobilalkalmazásokhoz egy Azure-alapú mobil-háttéralkalmazás segítségével.  Létre fog hozni egy új mobil-háttéralkalmazást, illetve egy olyan egyszerű *Teendőlista* Xamarin.iOS-alkalmazást, amely az alkalmazásadatokat az Azure-ban tárolja.
 
-Az oktatóanyag végrehajtása feltétele az összes többi Xamarin.iOS-oktatóanyag az Azure App Service hello Mobile Apps szolgáltatás használatáról.
+Az oktatóanyag végrehajtása feltétele az Azure App Service Mobile Apps szolgáltatásának használatát ismertető többi Xamarin.iOS-oktatóanyag elérésének.
 
 ## <a name="prerequisites"></a>Előfeltételek
-toocomplete ebben az oktatóanyagban a következő előfeltételek hello szüksége:
+Az oktatóanyag teljesítéséhez a következő előfeltételekre lesz szüksége:
 
-* Aktív Azure-fiók. Ha nincs fiókja, regisztráljon az Azure-próbaverzióra, és létrehozásához too10 szabad mobilalkalmazások a próbaidőszak után is tovább használhat. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/).
+* Aktív Azure-fiók. Ha nincs fiókja, regisztráljon az Azure próba-előfizetésére, és akár 10 ingyenes mobilalkalmazáshoz is hozzájuthat, amelyeket a próba-előfizetés lejárta után is tovább használhat. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/).
 * Visual Studio és Xamarin. Az útmutatót lásd: [Setup and install for Visual Studio and Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) (A Visual Studio és a Xamarin beállítása és telepítése).
 * Mac számítógép 7.0 vagy-s újabb verziójú Xcode-dal és Xamarin Studio Communityvel. Lásd: [Setup and install for Visual Studio and Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) (A Visual Studio és a Xamarin beállítása és telepítése) és [Setup, install, and verifications for Mac users](https://msdn.microsoft.com/library/mt488770.aspx) (Beállítás, telepítés és ellenőrzés Macintosh-felhasználók számára) (MSDN).
 
 ## <a name="create-an-azure-mobile-app-backend"></a>Azure Mobile Apps-háttéralkalmazás létrehozása
-Kövesse ezeket a lépéseket toocreate a Mobile Apps-háttéralkalmazás.
+Mobile Apps-háttéralkalmazás létrehozásához tegye a következőket.
 
 [!INCLUDE [app-service-mobile-dotnet-backend-create-new-service](../../includes/app-service-mobile-dotnet-backend-create-new-service.md)]
 
-## <a name="configure-hello-server-project"></a>Hello server projekt konfigurálása
-Már kiépített egy Azure Mobile Apps-háttérszolgáltatást, amelyet mobil ügyfélalkalmazásai használni tudnak. Ezt követően töltse le egy kiszolgálóprojektet egy egyszerű "teendőlista" háttér és tooAzure közzététele.
+## <a name="configure-the-server-project"></a>Kiszolgálóprojekt konfigurálása
+Már kiépített egy Azure Mobile Apps-háttérszolgáltatást, amelyet mobil ügyfélalkalmazásai használni tudnak. A következő lépésben le kell töltenie egy kiszolgálóprojektet egy egyszerű „Teendőlista” háttéralkalmazáshoz, és közzé kell tennie az Azure-ban.
 
-Hajtsa végre a következő lépéseket tooconfigure hello server projekt toouse hello vagy hello Node.js vagy a .NET-háttérrendszer.
+Konfigurálja a kiszolgálóprojektet a Node.js vagy a .NET-háttéralkalmazás használatára az alábbi lépésekkel.
 
 [!INCLUDE [app-service-mobile-configure-new-backend](../../includes/app-service-mobile-configure-new-backend.md)]
 
-## <a name="download-and-run-hello-xamarinios-app"></a>Hello Xamarin.iOS-alkalmazás letöltése és futtatása
-1. Nyissa meg hello [Azure-portálon] egy böngészőablakban.
-2. A Mobile Apps hello beállítási paneljén kattintson **Ismerkedés** > **Xamarin.iOS**. A 3. lépésben kattintson az **Új alkalmazás létrehozása** lehetőségre, ha még nincs kiválasztva.  Ezután kattintson a hello **letöltése** gombra.
+## <a name="download-and-run-the-xamarinios-app"></a>A Xamarin.iOS-alkalmazás letöltése és futtatása
+1. Nyissa meg az [Azure Portal] egy böngészőablakban.
+2. A Mobile Apps beállítási paneljén kattintson az **Első lépések** > **Xamarin.iOS** elemre. A 3. lépésben kattintson az **Új alkalmazás létrehozása** lehetőségre, ha még nincs kiválasztva.  Ezután kattintson a **Letöltés** gombra.
 
-      Egy ügyfélalkalmazást, amely a mobil-háttéralkalmazást tooyour lesznek letöltve. Mentse a hello tömörített projektfájlt a helyi számítógépen, és jegyezze fel a mentési helyét.
-3. Bontsa ki a letöltött hello projektet, és nyissa meg a Xamarin Studio (vagy a Visual Studio).
+      A program ekkor letölt egy, a mobilháttérmodulhoz csatlakozó ügyfélalkalmazást. Mentse el a tömörített projektfájlt a helyi számítógépen, és jegyezze fel a mentési helyét.
+3. Bontsa ki a letöltött projektet, és nyissa meg a Xamarin Studio (vagy a Visual Studio) alkalmazást.
 
     ![][9]
 
     ![][8]
-4. Nyomja le az ENTER hello F5 kulcs toobuild hello projektet, és indítsa el a hello alkalmazást hello iPhone-emulátorban.
-5. Hello alkalmazásban írjon be egy értelmes szöveget, például *további Xamarin*, majd kattintson a hello  **+**  gombra.
+4. Készítse el a projekt buildjét az F5 billentyűt lenyomásával, és indítsa el az alkalmazást az iPhone-emulátoron.
+5. Az alkalmazásban írjon be egy értelmes szöveget, például *Xamarin-tanulás*, majd kattintson a **+** gombra.
 
     ![][10]
 
-    Hello kérelemből adatok bekerülnek hello TodoItem tábla. Mobil-háttéralkalmazás hello által visszaadott hello táblában tárolt elemeket, és az adatok hello listája jelenik meg.
+    A kérelem adatai beillesztésre kerülnek a TodoItem táblába. A táblában tárolt elemeket a mobil-háttéralkalmazás visszaküldi, és az adatok megjelennek a listában.
 
 > [!NOTE]
-> Megtekintheti a mobilalkalmazás-háttérrendszer tooquery hozzáférő hello kódot, és adatokat beszúrni hello QSTodoService.cs C# fájlban.
+> A mobil-háttéralkalmazás számára az adatok lekérdezéséhez és beszúrásához hozzáférést biztosító kódot a QSTodoService.cs C# fájlban tekintheti meg.
 >
 >
 
 ## <a name="next-steps"></a>Következő lépések
-* [Kapcsolat nélküli szinkronizálás tooyour alkalmazás hozzáadása](app-service-mobile-xamarin-ios-get-started-offline-data.md)
-* [Hitelesítési tooyour alkalmazás hozzáadása](app-service-mobile-xamarin-ios-get-started-users.md)
-* [Leküldéses értesítések tooyour Xamarin.Android-alkalmazás hozzáadása](app-service-mobile-xamarin-ios-get-started-push.md)
-* [Hogyan kezeli a toouse hello az Azure Mobile Apps-ügyfél](app-service-mobile-dotnet-how-to-use-client-library.md)
+* [Offline szinkronizálás hozzáadása az alkalmazáshoz](app-service-mobile-xamarin-ios-get-started-offline-data.md)
+* [Hitelesítés hozzáadása az alkalmazáshoz ](app-service-mobile-xamarin-ios-get-started-users.md)
+* [Leküldéses értesítések hozzáadása Xamarin.Android-alkalmazáshoz](app-service-mobile-xamarin-ios-get-started-push.md)
+* [A felügyelt ügyfelek használata az Azure Mobile Apps-alkalmazásokhoz](app-service-mobile-dotnet-how-to-use-client-library.md)
 
 <!-- Anchors. -->
 [Getting started with mobile app backends]:#getting-started
@@ -87,4 +87,4 @@ Hajtsa végre a következő lépéseket tooconfigure hello server projekt toouse
 [10]: ./media/app-service-mobile-xamarin-ios-get-started/mobile-quickstart-startup-ios.png
 
 <!-- URLs. -->
-[Azure-portálon]: https://portal.azure.com/
+[Azure Portal]: https://portal.azure.com/

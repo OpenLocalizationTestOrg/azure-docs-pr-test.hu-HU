@@ -1,5 +1,5 @@
 ---
-title: az SQL Data Warehouse aaaTransactions |} Microsoft Docs
+title: "Az SQL Data Warehouse tranzakciók |} Microsoft Docs"
 description: "Ötletek a tranzakciók az Azure SQL Data Warehouse adattárházzal történő, megoldások."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,25 +15,25 @@ ms.workload: data-services
 ms.custom: t-sql
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: 7c541648553238443b407666612561918096eb61
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 29d53e18539f2c24dd64090b2ac6f9dd4c783961
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="transactions-in-sql-data-warehouse"></a>Az SQL Data Warehouse-tranzakciók
-Módon teheti meg, az SQL Data Warehouse hello adatraktár-számítási feladat részeként támogatja a tranzakciókat. Azonban tooensure hello teljesítmény az SQL Data Warehouse megmarad, egyes funkciók korlátozva, ha léptékű összehasonlított tooSQL kiszolgáló. Ez a cikk kiemeli a hello különbségeket, és listák hello mások. 
+Módon teheti meg, az SQL Data Warehouse támogatja a tranzakciókat, az adatraktár-számítási feladat részeként. Azonban kell biztosítják az SQL Data Warehouse teljesítményét léptékű néhány funkció korlátozva az SQL Server képest. Ez a cikk kiemeli a különbségeket, és felsorolja a többi. 
 
 ## <a name="transaction-isolation-levels"></a>Tranzakció elkülönítési szinten
-Az SQL Data Warehouse megvalósítja az ACID-tranzakciókat. Azonban hello hello tranzakciós támogatás elkülönítési korlátozódik túl`READ UNCOMMITTED` és ez nem módosítható. Megvalósíthat számos programozási módszer inkonzisztencia tooprevent adatok olvassa be, ha ez problémát jelent meg. hello legnépszerűbb módszerek kihasználja CTAS és a tábla partíciós váltás (gyakran más néven mozgó ablak mintát hello) tooprevent felhasználók továbbra is előkészítés alatt álló adatok lekérdezésére. Győződjön meg arról, hogy előtti szűrő hello adatokat is a népszerű megközelítés nézetek.  
+Az SQL Data Warehouse megvalósítja az ACID-tranzakciókat. Azonban a dokumentumos tranzakciótámogatást elkülönítését korlátozódik `READ UNCOMMITTED` és ez nem módosítható. Megvalósíthat számos kódolási módszerek a nem véglegesített adatokat az adatok elkerülésére, ha ez problémát jelent meg. A legnépszerűbb módszerek megakadályozhatja, hogy a felhasználók továbbra is előkészítés alatt álló adatok lekérdezése a CTAS és a tábla partíciós váltás (gyakran más néven mozgó ablak mintát) használja. A népszerű megközelítés nézeteket, amelyek előre szűrje az adatokat is.  
 
 ## <a name="transaction-size"></a>Tranzakció mérete
-Egyetlen módosítása tranzakció mérete korlátozott. hello korlát ma alkalmazza ") eloszlása feladatonként (". Ezért hello teljes foglalási kiszámítható hello korlát megszorozzuk hello terjesztési száma. tooapproximate hello sorok maximális számát hello tranzakcióban hello terjesztési cap nullával való minden egyes sorára hello teljes mérete. A változó hosszúságú oszloppal vegye figyelembe véve az átlagos oszlop hossza, nem pedig hello maximális méret használatával.
+Egyetlen módosítása tranzakció mérete korlátozott. A korlát még ma alkalmazza ") eloszlása feladatonként (". Ezért az összes felosztás kerülhet sor, a korlát megszorozzuk a terjesztési száma. Hozzávetőleges tranzakcióban sorok maximális számát osztja a terjesztési kap minden egyes sorára teljes mérete. A változó hosszúságú oszloppal vegye figyelembe véve az átlagos oszlop hossza, nem pedig a maximális méret használatával.
 
-Hello tábla hello alább következő feltételezéseket végzett:
+A következő előfeltételek az alábbi táblázatban szereplő történtek:
 
 * Az adatok még akkor is, terjesztési történt. 
-* hello átlagos sor hossza 250 bájt
+* Az átlagos sor hossza 250 bájt
 
 | [DWU][DWU] | Cap eloszlása (GB) | Azokat a Terjesztéseket száma | Tranzakció maximális (GB) | # Sorok eloszlása | Tranzakciónként sorok maximális száma |
 | --- | --- | --- | --- | --- | --- |
@@ -50,21 +50,21 @@ Hello tábla hello alább következő feltételezéseket végzett:
 | DW3000 |22.5 |60 |1,350 |90,000,000 |5,400,000,000 |
 | DW6000 |45 |60 |2,700 |180,000,000 |10,800,000,000 |
 
-hello tranzakció maximális mérete / tranzakció vagy műveletet alkalmazza. Minden egyidejű tranzakciókat keresztül nem lesz alkalmazva. Ezért az egyes tranzakciókra, engedélyezett toowrite ezt a adatok toohello napló mennyiséget. 
+A tranzakció méretkorlátot tranzakció vagy műveletet alkalmazza. Minden egyidejű tranzakciókat keresztül nem lesz alkalmazva. Ezért a mennyiségű adatot írni a napló minden tranzakció engedélyezett. 
 
-toooptimize minimalizálása érdekében hello toohello napló írt adatok mennyiségét, és tekintse meg a toohello [tranzakciók gyakorlati tanácsok] [ Transactions best practices] cikk.
+Optimalizálása és a naplóba írt adatok csökkentése érdekében tekintse meg a [tranzakciók gyakorlati tanácsok] [ Transactions best practices] cikk.
 
 > [!WARNING]
-> tranzakció mérete csak érhető el, a KIVONATOLÓ vagy az elosztott ROUND_ROBIN táblák, ahol hello terjednek a hello adatok maximális hello is van. Ha hello tranzakció az adatok írása kihasználtságot módon toohello terjesztéseket majd hello határértéke valószínűleg toobe elérte előzetes toohello tranzakció maximális méretet.
+> A tranzakció maximális mérete csak érhető el, a kivonat, vagy akkor is igaz, ahol az adatok terjedésének az elosztott ROUND_ROBIN táblákat. Ha a tranzakció van írás a kihasználtságot módon a terjesztési majd korlát valószínű előtt a tranzakció maximális méret érhető el.
 > <!--REPLICATED_TABLE-->
 > 
 > 
 
 ## <a name="transaction-state"></a>Tranzakció állapota
-Az SQL Data Warehouse használ hello XACT_STATE() függvény tooreport hello értékével -2 sikertelen tranzakció. Ez azt jelenti, hogy hello tranzakció sikertelen volt, és csak visszaállítás meg van jelölve
+Az SQL Data Warehouse a XACT_STATE() függvény segítségével -2 értéke hibás tranzakció jelentést. Ez azt jelenti, hogy a tranzakció sikertelen volt, és csak visszaállítás meg van jelölve
 
 > [!NOTE]
-> hello-2 hello XACT_STATE függvény toodenote egy sikertelen tranzakció jelöli másképp viselkednek tooSQL kiszolgáló használatához. SQL Server hello-1 érték toorepresent vissza nem vonható véglegesítésű tranzakcióból használja. SQL Server egy tranzakción belül hibák tűri megjelölve, vissza nem vonható véglegesítésű toobe rendelkező nélkül. Például `SELECT 1/0` volna hibát jelez, de nem kényszerítik ki a tranzakció vissza nem vonható véglegesítésű állapotba kerülnek. SQL Server is lehetővé teszi az olvasási műveletek hello vissza nem vonható véglegesítésű tranzakcióban. Azonban az SQL Data Warehouse nem teszik ezt. Hiba esetén egy SQL Data Warehouse tranzakción belül automatikusan módba lép, -2 hello állapotát, és nem fogja tudni toomake esetleges további kiválasztása utasítások amíg hello utasítás vissza lett állítva. Éppen ezért fontos, hogy az alkalmazás kódja toosee XACT_STATE() használ, akkor esetleg toomake kódmódosításra toocheck.
+> -2, sikertelen tranzakció jelöléséhez a XACT_STATE függvény használatát az SQL Server különböző viselkedés képviseli. SQL Server vissza nem vonható véglegesítésű tranzakcióból képviselő -1 értéket használja. SQL Server egy tranzakción belül hibák tűri szerint vissza nem vonható véglegesítésű kell megjelölni, hogy nélkül. Például `SELECT 1/0` volna hibát jelez, de nem kényszerítik ki a tranzakció vissza nem vonható véglegesítésű állapotba kerülnek. SQL Server is lehetővé teszi az olvasási műveletek vissza nem vonható véglegesítésű a tranzakcióban. Azonban az SQL Data Warehouse nem teszik ezt. Ha a hiba akkor fordul elő, az SQL Data Warehouse tranzakción belül automatikusan módba lép,-2 állapotát, és nem tudnak elvégezni további választhatja ki utasításokat, amíg az utasítás vissza lett állítva. Ezért fontos ellenőrizni, hogy az alkalmazás kódjában, hogy XACT_STATE() használ, ha Ön esetleg kód módosításokat.
 > 
 > 
 
@@ -106,13 +106,13 @@ END
 SELECT @xact_state AS TransactionState;
 ```
 
-Ha nem adja meg a kódot, mert az újabb majd jelenik meg hibaüzenet a következő hello:
+Ha nem adja meg a kódot, mert az újabb majd jelenik meg a következő hibaüzenet:
 
-Üzenet 111233, szint 16 állapot 1, 1 sor 111233; hello aktuális tranzakció megszakadt, és minden függő módosítás rendelkezik vissza lett állítva. OK: A tranzakció csak visszaállítási állapotban nem kifejezetten vissza lett állítva egy DDL, DML vagy SELECT utasítás előtt.
+Üzenet 111233, szint 16, 1, 1 111233; sor állapota Az aktuális tranzakció megszakadt, és minden függő módosításának rendelkezik visszaállításra került. OK: A tranzakció csak visszaállítási állapotban nem kifejezetten vissza lett állítva egy DDL, DML vagy SELECT utasítás előtt.
 
-Még nem fog hello ERROR_ * funkciók hello kimenetét.
+Még nem fog ERROR_ * függvények kimenete.
 
-Az SQL Data Warehouse hello kód toobe kis mértékben meg van szüksége:
+Az SQL Data Warehouse a kód némileg módosítani kell:
 
 ```sql
 SET NOCOUNT ON;
@@ -149,22 +149,22 @@ END
 SELECT @xact_state AS TransactionState;
 ```
 
-hello várt működést Mostantól követi. hello hiba hello tranzakcióban kezeli, és hello ERROR_ * funkciók elvárt adjon meg értékeket.
+Most már a várt működést követi. A hiba a tranzakció kezeli, és a ERROR_ * funkciók elvárt adjon meg értékeket.
 
-Megváltozott csak adott hello `ROLLBACK` a hello a tranzakció toohappen volna, mielőtt hello hello hello hiba adatainak olvasása `CATCH` blokkot.
+Összes megváltozott, hogy a `ROLLBACK` a tranzakció kellett az olvasás a hibaadatok előtt megtörténjen a `CATCH` blokkot.
 
 ## <a name="errorline-function"></a>Error_Line() függvény
-Akkor is érdemes megjegyezni, hogy az SQL Data Warehouse nem valósítja meg, vagy hello ERROR_LINE() funkció támogatja. Ha ez a kód szüksége lesz a tooremove azt az SQL Data Warehouse szolgáltatással kompatibilis toobe. Helyette a kódban lekérdezés címkék tooimplement funkciókat. Tekintse meg a toohello [címke] [ LABEL] cikk további részleteket a szolgáltatást.
+Akkor is érdemes megjegyezni, hogy az SQL Data Warehouse nem valósítja meg, és nem támogatja a ERROR_LINE() függvény. Ha ez a kódban, távolítsa el, hogy meg kell felelnie az SQL Data Warehouse kell. A kódban lekérdezés címkék inkább megfelelő funkciók végrehajtásához. Tekintse meg a [címke] [ LABEL] cikk további részleteket a szolgáltatást.
 
 ## <a name="using-throw-and-raiserror"></a>Segítségével THROW és RAISERROR
-THROW hello korszerűbb implementációja az SQL Data Warehouse kivételt váltson ki, de a RAISERROR is támogatott. Néhány dologban is érdemes figyelmet toohowever fizet.
+THROW az SQL Data Warehouse kivételt váltson ki több modern végrehajtására, de a RAISERROR is támogatott. Néhány dologban is érdemes figyelmet kell fordítani azonban fizet.
 
-* Felhasználó által definiált hibaüzenetek számok nem lehet hello THROW 100 000-150 000 tartományon
+* Felhasználó által definiált hibaüzenetek számok nem lehet THROW 100 000-150 000 tartományán
 * RAISERROR hibaüzenetek 50 000 van rögzítve.
 * Ilyen hibaszámú használata nem támogatott.
 
 ## <a name="limitiations"></a>Limitiations
-Az SQL Data Warehouse néhány egyéb korlátozások is tootransactions rendelkezik.
+Az SQL Data Warehouse rendelkezik néhány egyéb korlátozások is tranzakciók.
 
 Ezek a következők:
 
@@ -176,7 +176,7 @@ Ezek a következők:
 * Nem támogatott például DDL `CREATE TABLE` belül a felhasználó definiált tranzakció
 
 ## <a name="next-steps"></a>Következő lépések
-toolearn optimalizálása tranzakciók, bővebben lásd: [tranzakciók gyakorlati tanácsok][Transactions best practices].  Lásd az SQL Data Warehouse gyakorlati tanácsokat, toolearn [gyakorlati tanácsok az SQL Data Warehouse][SQL Data Warehouse best practices].
+Tranzakciók optimalizálása kapcsolatos további információkért lásd: [tranzakciók gyakorlati tanácsok][Transactions best practices].  Az SQL Data Warehouse gyakorlati tanácsokat kapcsolatban lásd: [gyakorlati tanácsok az SQL Data Warehouse][SQL Data Warehouse best practices].
 
 <!--Image references-->
 

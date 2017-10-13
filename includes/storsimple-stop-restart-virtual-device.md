@@ -1,16 +1,16 @@
-#### <a name="toostop-and-start-a-virtual-device"></a>toostop és a virtuális eszköz indítása
-toostop egy virtuális eszközt, kattintson a nevére, és kattintson a **leállítási**. Hello virtuális eszköz leállítás fázisában van, amíg állapotú-e **leállítása**. Hello virtuális eszköz leállítása után állapotú-e **leállítva**.
+#### <a name="to-stop-and-start-a-virtual-device"></a>Virtuális eszköz leállítása és indítása
+Egy virtuális eszköz leállításához kattintson a nevére, majd kattintson a **Leállítás** elemre. A virtuális eszköz leállítása közben az eszköz állapota **Leállítás folyamatban**. A virtuális eszköz leállítás utáni állapota **Leállítva**.
 
-A következő parancsmagok toostop hello használja, és indítsa el a virtuális eszköz.
+Virtuális eszközt az alábbi parancsmagok segítségével állíthatja le és indíthatja újra.
 
 `Stop-AzureVM -ServiceName "MyStorSimpleservice1" -Name "MyStorSimpleDevice"`
 
 `Start-AzureVM -ServiceName "MyStorSimpleservice1" -Name "MyStorSimpleDevice"`
 
-#### <a name="toorestart-a-virtual-device"></a>a virtuális eszköz toorestart
-Ha egy virtuális eszközön fut, és azt szeretné, hogy toorestart, kattintson a nevére, és kattintson **indítsa újra a**. Hello virtuális eszköz újraindítása, közben állapotú-e **újraindítása**. Virtuális eszköz hello meg toouse készen áll, amikor állapotú-e **futtató**.
+#### <a name="to-restart-a-virtual-device"></a>Virtuális eszköz újraindítása
+Ha egy virtuális eszközt futás közben szeretne újraindítani, kattintson a nevére, majd az **Újraindítás** lehetőségre. A virtuális eszköz újraindítása közben az eszköz állapota **Újraindítás folyamatban**. Ha a virtuális eszköz használatra kész, az eszköz állapota **Fut**.
 
-A következő parancsmag toorestart a virtuális eszköz hello használata.
+Az alábbi parancsmag segítségével indítsa újra a virtuális eszközt.
 
 `Restart-AzureVM -ServiceName "MyStorSimpleservice1" -Name "MyStorSimpleDevice"`
 

@@ -1,14 +1,14 @@
 ## <a name="incremental-and-complete-deployments"></a>Növekményes és teljes központi telepítések
-Az erőforrások való telepítésekor, adja meg, hogy hello telepítési növekményes frissítés vagy a teljes frissítés. hello elsődleges e két mód közötti különbség miként kezeli az erőforrás-kezelő a meglévő erőforrásokat hello erőforráscsoportban, amelyek nincsenek hello sablonban:
+Az erőforrások telepítésekor Megadja, hogy a központi telepítés egy növekményes frissítés vagy egy teljes frissítés. E két mód között az elsődleges különbség az, hogyan kezeli az erőforrás-kezelő a meglévő erőforrások az erőforráscsoportban, amelyek nincsenek a sablonban:
 
-* Teljes módban, erőforrás-kezelő **törli** hello erőforráscsoportban léteznek, de nincs megadva hello sablon az erőforrásokat. 
-* Növekményes módban, erőforrás-kezelő **hagyja változatlanul** hello erőforráscsoportban léteznek, de nincs megadva hello sablon az erőforrásokat.
+* Teljes módban, erőforrás-kezelő **törli** erőforrásokat, az erőforráscsoport szerepel, de nincs megadva a sablonban. 
+* Növekményes módban, erőforrás-kezelő **hagyja változatlanul** erőforrásokat, az erőforráscsoport szerepel, de nincs megadva a sablonban.
 
-Mindkét módnál erőforrás-kezelő kísérel meg tooprovision hello sablonban megadott összes erőforrást. Ha hello erőforrás már létezik egy hello erőforráscsoportban, és a beállítások nem változnak, hello műveletet okoz nincs változás. Ha egy erőforrás hello beállításainak módosításához hello erőforrás ki van építve a új beállítások. Ha úgy próbálja tooupdate hello helyet vagy egy meglévő erőforrás típusát, hello telepítése sikertelen, hiba történt. Ehelyett egy új erőforrást hello hellyel rendelkező telepítéséhez, vagy írja be, hogy szüksége van.
+Mindkét módnál az erőforrás-kezelő megpróbálja a sablonban megadott összes erőforrások biztosításához. Ha az erőforrás már létezik az erőforráscsoporthoz tartozik, és a beállítások nem változnak, a művelet nincs változás eredményezi. Ha egy erőforrás beállításait módosítja, az erőforrás ki van építve a új beállítások. Ha úgy próbálja frissíteni a helyet vagy a meglévő erőforrás típusa, a telepítés sikertelen, a hibaüzenet. Ehelyett egy új erőforrást a hely telepítése, vagy adjon meg, hogy van szüksége.
 
-Alapértelmezés szerint az erőforrás-kezelő hello növekményes módot használ.
+Alapértelmezés szerint az erőforrás-kezelő a növekményes módot használ.
 
-tooillustrate hello különbségének növekményes és teljes üzemmódot, fontolja meg a következő forgatókönyv hello.
+Növekményes és teljes mód közötti különbséget mutatja be, a következő eset.
 
 **Meglévő erőforráscsoport** tartalmazza:
 
@@ -22,14 +22,14 @@ tooillustrate hello különbségének növekményes és teljes üzemmódot, font
 * B erőforrás
 * D erőforrás
 
-Ha telepítve **növekményes** módban hello erőforráscsoport tartalmazza:
+Ha telepítve **növekményes** módot, az erőforráscsoport tartalmazza:
 
 * Erőforrás
 * B erőforrás
 * Erőforrás C
 * D erőforrás
 
-Ha telepítve **teljes** mód, erőforrás-C törlődik. hello erőforráscsoport tartalmazza:
+Ha telepítve **teljes** mód, erőforrás-C törlődik. Az erőforráscsoport tartalmazza:
 
 * Erőforrás
 * B erőforrás

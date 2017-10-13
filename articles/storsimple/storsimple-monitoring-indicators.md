@@ -1,6 +1,6 @@
 ---
-title: "ellenőrzési mutatók aaaStorSimple |} Microsoft Docs"
-description: "Hello fénykibocsátó dióda (LED) és a használt hallható riasztások toomonitor hello hello StorSimple eszköz állapotának ismerteti."
+title: "A StorSimple ellenőrzési mutatók |} Microsoft Docs"
+description: "Fénykibocsátó dióda (LED) és a StorSimple eszköz állapotának figyelésére használható hallható riasztások mutatja be."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,30 +14,30 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/05/2017
 ms.author: alkohli
-ms.openlocfilehash: e690b8f4727272f5fbb8886a594a046f794a1380
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0d44f94719bff0cb58b3727050598e55f4774e66
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-storsimple-monitoring-indicators-toomanage-your-device"></a>Figyelési mutatók toomanage StorSimple használni az eszközét
+# <a name="use-storsimple-monitoring-indicators-to-manage-your-device"></a>A StorSimple ellenőrzési mutatók segítségével kezelhesse az eszközét
 ## <a name="overview"></a>Áttekintés
-A StorSimple eszköz fénykibocsátó dióda (LED) tartalmaz, és a riasztások használható toomonitor hello modulok és hello StorSimple eszköz általános állapotáról. ellenőrzési mutatók hello hello hardverösszetevők hello eszköz elsődleges ház és hello EBOD ház található. ellenőrzési mutatók hello LED vagy a hallható riasztások lehet.
+A StorSimple eszköz fénykibocsátó dióda (LED) tartalmaz, és riasztókat használható a modulok és a StorSimple eszköz az általános állapotának figyelésére. A figyelési mutatók található meg az eszköz elsődleges ház és a EBOD ház hardverösszetevők listáját. A figyelési mutatók LED vagy a hallható riasztások lehet.
 
-Három LED használt állapotok tooindicate hello modul állapota van: zöld, villogó zöld toored sárga vagy piros-sárga.  
+Három LED állapota azt jelzi, a modul állapota van: zöld, piros-sárga vagy piros-sárga zöld.  
 
 * Zöld LED működési állapotát képviselik.  
-* Zöld toored-sárga villogó LED képviselő hello jelenléte nem kritikus feltételek, amelyeknek a felhasználói beavatkozást igényel.  
-* Piros-sárga LED jelzi, hogy nincs-e hello modulon belül található kritikus hibát.  
+* Villogó zöld piros-sárga LED jelentik a nem kritikus feltételek a felhasználói beavatkozást igénylő jelenlétét.  
+* Piros-sárga LED jelzi, hogy nincs-e a modulban található kritikus hibát.  
 
-hello a cikk hátralévő része ismerteti, különféle figyelési kijelző LED, hello StorSimple eszközön helyükre hello hello LED állapotok alapján hello Eszközállapot és hallható riasztások az esetleg hozzá tartozó.
+Ez a cikk fennmaradó ismerteti a különböző megfigyelési kijelző LED, a helyek, a StorSimple eszközön, az eszköz állapotát a LED állapotok, és minden kapcsolódó hallható riasztások alapján.
 
 ## <a name="front-panel-indicator-leds"></a>Előlapi panel kijelző LED
-hello előlapján, más néven hello *műveletek panel* vagy *ops panel*, hello összesített állapota minden hello modul hello rendszer jeleníti meg. hello előlapja hello elsődleges StorSimple és hello EBOD ház azonos, és az alábbi ábra szemlélteti.  
+Az első panel, más néven a *műveletek panel* vagy *ops panel*, a rendszer a modulokat összesített állapotát jeleníti meg. Az első panelen a StorSimple elsődleges és a EBOD ház azonos, és az alábbi ábra szemlélteti.  
 
    ![Eszköz előlapi panel][1]
 
-hello előlapja tartalmazza a következő mutatók hello:  
+Az első panelen a következő mutatók tartalmazza:  
 
 1. Némító gomb
 2. Energiagazdálkodási kijelző LED-jét (zöld/piros-sárga)
@@ -45,14 +45,14 @@ hello előlapja tartalmazza a következő mutatók hello:
 4. Tartalék logikai mutató vezetett (a piros sárga KIKAPCSOLÁS
 5. Egység azonosító megjelenítése  
 
-hello hello előlapi panel LED hello eszköz és a hello EBOD ház jelentős különbség, hello **rendszer egység azonosítószámot** hello LED képernyőjén látható. hello alapértelmezett egység hello eszközön megjelenő azonosító **00**, mivel a hello alapértelmezett egység azonosítója: hello EBOD ház megjelenő **01**. Ez lehetővé teszi tooquickly megkülönböztetni hello eszköz és hello EBOD ház hello eszköz bekapcsolása. Ha az eszköz ki van kapcsolva, használja a található hello információk [kapcsolja be az új eszköz](storsimple-turn-device-on-or-off.md#turn-on-a-new-device) toodifferentiate hello eszköz hello EBOD ház.  
+A fő különbség a előlapja LED az eszközön, és megfelelnek a EBOD ház között a **rendszer egység azonosítószámot** az LED képernyőjén látható. Az alapértelmezett egység jelenik meg az eszköz azonosítója **00**, mivel az alapértelmezett egység Azonosítóját jelenik meg a EBOD ház **01**. Ez lehetővé teszi, hogy gyorsan különböztetheti meg az eszköz és a EBOD ház az eszköz bekapcsolása. Ha az eszköz ki van kapcsolva, olvassa el a megadott [kapcsolja be az új eszköz](storsimple-turn-device-on-or-off.md#turn-on-a-new-device) EBOD ki az eszköz megkülönböztetéséhez.  
 
 ## <a name="front-panel-led-status"></a>Előlapi panel LED állapota
-A következő tábla tooidentify hello állapotukat a hello LED hello előlapján hello eszköz vagy hello EBOD ház hello használata.  
+Az alábbi táblázat segítségével azonosíthatja a előlapján az eszköz vagy a EBOD ház LED által jelzett állapotát.  
 
 | Rendszer energiagazdálkodási | A modul hiba | Logikai hiba | Riasztás | status |
 | --- | --- | --- | --- | --- |
-| Piros-sárga |KIKAPCSOLVA |KIKAPCSOLVA |N/A |AC power elveszett, a biztonsági mentési power vagy AC power működő és hello vezérlő modulok eltávolítva. |
+| Piros-sárga |KIKAPCSOLVA |KIKAPCSOLVA |N/A |A biztonsági mentési power vagy AC power működő elveszett, AC energia- és a modulok távolítottak-e a tartományvezérlő. |
 | Zöld |ON |ON |N/A |(5s) panelen bekapcsolás OPS teszt állapota |
 | Zöld |KIKAPCSOLVA |KIKAPCSOLVA |N/A |Bekapcsolás jó összes funkciók |
 | Zöld |ON |N/A |PCM tartalék LED, ventilátor tartalék LED |Bármely PCM hibája, ventilátor hibája, vagy hőmérsékletű keresztül |
@@ -61,15 +61,15 @@ A következő tábla tooidentify hello állapotukat a hello LED hello előlapjá
 | Zöld |Flash |N/A |Modul állapota vezérlő modul vezetett. PCM tartalék LED, ventilátor tartalék LED |Ismeretlen vezérlő modultípus telepítve, I2C bus sikertelen, a tartományvezérlő modul létfontosságú termék data (VPD) konfigurációs hiba |
 
 ## <a name="power-cooling-module-pcm-indicator-leds"></a>Energiagazdálkodási modul (PCM) mutató LED hűtési
-Energiagazdálkodási hűtési modul (PCM) mutató LED hello hello elsődleges ház vagy EBOD ház minden PCM modul oldalán található. Ez a témakör ismerteti hogyan toouse hello LED toomonitor hello állapotát a StorSimple eszközt a következő.  
+Energiagazdálkodási hűtési modul (PCM) mutató LED található az elsődleges vagy a EBOD ház hátulján PCM modulokhoz. Ez a témakör ismerteti, hogyan használható a következő LED a StorSimple eszköz állapotának figyelése.  
 
-* Az elsődleges ház hello PCM LED
-* A hello EBOD ház PCM LED
+* Az elsődleges ház PCM LED
+* Az a EBOD ház PCM LED
 
-## <a name="pcm-leds-for-hello-primary-enclosure"></a>Az elsődleges ház hello PCM LED
-hello StorSimple eszköz egy 764W PCM modul egy további akkumulátor rendelkezik. hello alábbi ábrán hello LED panel hello eszközhöz.  
+## <a name="pcm-leds-for-the-primary-enclosure"></a>Az elsődleges ház PCM LED
+A StorSimple eszköz egy 764W PCM modul egy további akkumulátor rendelkezik. A következő ábrán az eszköz a LED panelen.  
 
-   ![Az elsődleges ház hello PCM LED][2]
+   ![A elsődleges tárolóeszközön PCM LED][2]
 
 Jelmagyarázat LED:
 
@@ -80,12 +80,12 @@ Jelmagyarázat LED:
 5. DC hiba
 6. Jó akkumulátor  
 
-hello állapotának PCM fel van tüntetve hello hello panel vezetett. hello eszköz PCM LED panel hat LED rendelkezik. Négy ezek LED hello tápegység és hello ventilátor hello állapotának megjelenítése. két LED fennmaradó hello hello biztonsági mentési akkumulátor modulja hello PCM hello állapotát jelzi. A következő táblák toodetermine hello állapotának hello PCM hello is használhatja.  
+A PCM állapotának fel van tüntetve a LED panelen. Az eszköz PCM LED panel hat LED rendelkezik. Négy ezek LED a tápegység és a ventilátor állapotüzenet jelenik meg. A többi két LED a biztonsági mentési akkumulátor modulja a PCM állapotát jelzi. Az alábbi táblázatok használatával a PCM állapotának megállapítása.  
 
 ### <a name="pcm-indicator-leds-for-power-supply-and-fan"></a>PCM kijelző LED tápegység és ventilátor
 | status | PCM OK (zöld) | AC sikertelen (sárga) | Ventilátor sikertelen (sárga) | Tartományvezérlő sikertelen (sárga) |
 | --- | --- | --- | --- | --- |
-| Nincs AC power (tooenclosure) |KIKAPCSOLVA |KIKAPCSOLVA |KIKAPCSOLVA |KIKAPCSOLVA |
+| Nincs AC power (a ház) |KIKAPCSOLVA |KIKAPCSOLVA |KIKAPCSOLVA |KIKAPCSOLVA |
 | Nincs AC power (csak ez a PCM) |KIKAPCSOLVA |ON |KIKAPCSOLVA |ON |
 | AC jelen PCM ON - OK |ON |KIKAPCSOLVA |KIKAPCSOLVA |KIKAPCSOLVA |
 | PCM sikertelen (ventilátor sikertelen) |KIKAPCSOLVA |KIKAPCSOLVA |ON |N/A |
@@ -94,7 +94,7 @@ hello állapotának PCM fel van tüntetve hello hello panel vezetett. hello eszk
 | Készenléti kiszolgálói mód |Villogó |KIKAPCSOLVA |KIKAPCSOLVA |KIKAPCSOLVA |
 | PCM belső vezérlőprogram letöltése |KIKAPCSOLVA |Villogó |Villogó |Villogó |
 
-### <a name="pcm-indicator-leds-for-hello-backup-battery"></a>PCM mutató LED a biztonsági mentési hello akkumulátor
+### <a name="pcm-indicator-leds-for-the-backup-battery"></a>A biztonsági mentési akkumulátor LED PCM mutatója
 | status | Jó akkumulátor (zöld) | Akkumulátor hiba (sárga) |
 | --- | --- | --- |
 | Nem található akkumulátor |KIKAPCSOLVA |KIKAPCSOLVA |
@@ -104,16 +104,16 @@ hello állapotának PCM fel van tüntetve hello hello panel vezetett. hello eszk
 | Akkumulátor "rögzített" hiba (helyreállíthatatlan) |KIKAPCSOLVA |ON |
 | Ártalmatlanított akkumulátor |Villogó |KIKAPCSOLVA |
 
-## <a name="pcm-leds-for-hello-ebod-enclosure"></a>A hello EBOD ház PCM LED
-hello EBOD ház egy 580W PCM és további telep nem rendelkezik. hello PCM panelje hello EBOD ház rendelkezik kijelző LED csak a hello áramforrások és hello ventilátor. hello alábbi ábrán ezek LED.
+## <a name="pcm-leds-for-the-ebod-enclosure"></a>Az a EBOD ház PCM LED
+A EBOD ház egy 580W PCM és további telep nem rendelkezik. A PCM panelje a EBOD ház rendelkezik kijelző LED csak a a áramforrások és a ventilátor. Az alábbi ábrán a LED.
 
-   ![A hello EBOD ház PCM LED][3] 
+   ![A EBOD tárolóeszközön PCM LED][3] 
 
-A következő tábla toodetermine hello állapotának hello PCM hello is használhatja.  
+Az alábbi táblázat segítségével határozza meg a PCM állapotát.  
 
 | status | PCM OK (zöld) | AC sikertelen (sárga) | Ventilátor sikertelen (sárga) | Tartományvezérlő sikertelen (sárga) |
 | --- | --- | --- | --- | --- |
-| Nincs AC power (tooenclosure) |KIKAPCSOLVA |KIKAPCSOLVA |KIKAPCSOLVA |KIKAPCSOLVA |
+| Nincs AC power (a ház) |KIKAPCSOLVA |KIKAPCSOLVA |KIKAPCSOLVA |KIKAPCSOLVA |
 | Nincs AC power (csak ez a PCM) |KIKAPCSOLVA |ON |KIKAPCSOLVA |ON |
 | AC jelen PCM ON – OK |ON |KIKAPCSOLVA |KIKAPCSOLVA |KIKAPCSOLVA |
 | PCM sikertelen (ventilátor sikertelen) |KIKAPCSOLVA |KIKAPCSOLVA |ON |X |
@@ -123,36 +123,36 @@ A következő tábla toodetermine hello állapotának hello PCM hello is haszná
 | PCM belső vezérlőprogram letöltése |KIKAPCSOLVA |Villogó |Villogó |Villogó |
 
 ## <a name="controller-module-indicator-leds"></a>A tartományvezérlő modul kijelző LED
-hello StorSimple eszköz LED hello elsődleges tartományvezérlő és a hello EBOD vezérlő modulok tartalmazza.   
+A StorSimple eszköz LED az elsődleges tartományvezérlő és a EBOD vezérlő modulokat tartalmaz.   
 
-### <a name="monitoring-leds-for-hello-primary-controller"></a>Az elsődleges tartományvezérlő hello LED figyelése
-hello alábbi ábrán látható könnyebb legyen azonosítani hello LED hello elsődleges tartományvezérlőn. (Hello összetevők mindegyike helyzetben felsorolt tooaid.)  
+### <a name="monitoring-leds-for-the-primary-controller"></a>Az elsődleges tartományvezérlő LED figyelése
+Az alábbi ábrán látható könnyebb legyen azonosítani az elsődleges tartományvezérlőn LED. (A összetevőket találhatók, a tájolás segítése érdekében.)  
 
    ![Figyelési LED - elsődleges tartományvezérlő][4]
 
-Hello vezérlő modul megfelelően működik-e a következő tábla toodetermine hello használata.  
+Az alábbi táblázat segítségével határozza meg, hogy a vezérlő modul megfelelően működik-e.  
 
 ### <a name="controller-indicator-leds"></a>A tartományvezérlő kijelző LED
 | LED | Leírás |
 | --- | --- |
-| Azonosító LED-jét (kék) |Azt jelzi, hogy hello modul azonosít a rendszer. Ha hello kék LED van villogó egy futó tartományvezérlő, majd hello vezérlő hello aktív vezérlő pedig hello egy másikra hello készenléti vezérlő. További információkért lásd: [azonosítása hello aktív vezérlő az eszközön](storsimple-8000-controller-replacement.md#identify-the-active-controller-on-your-device). |
-| Tartalék LED-jét (sárga) |Azt jelzi, hogy az hello controller hibát. |
-| OK LED-jét (zöld) |Állandó zöld azt jelzi, hogy hello vezérlő OK gombra. A vezérlő VPD konfigurációs hiba zöld jelzi. |
-| SAS-tevékenység LED (zöld) |Állandó zöld állapot azt jelzi, hogy nincs aktuális tevékenység kapcsolatot. Zöld azt jelzi, hello kapcsolat folyamatban lévő tevékenységek. |
-| Ethernet állapot LED |Jobb oldali hivatkozást és a hálózati tevékenységet jelez: (állandó zöld) hivatkozás aktív, (zöld villogó) hálózati tevékenységet. Bal oldali jelzi a hálózati sebesség: (sárga) 1000 Mb/s (zöld) 100 Mb/s és (KIKAPCSOLT) 10 Mb/s. Attól függően, hogy hello összetevő modell a ritka villogni előfordulhat, hogy akkor is, ha hello hálózati illesztő nem engedélyezett. |
-| POST LED |Azt jelzi, hello rendszerindítási folyamat, amikor hello vezérlő be van kapcsolva. Ha hello StorSimple eszköz tooboot nem sikerül, a LED Microsoft Support hello rendszerindítási folyamat számára, amellyel hello hiba történt a hello pontot azonosító segítségével. |
+| Azonosító LED-jét (kék) |Azt jelzi, hogy a modul az azonosított. Ha egy futó tartományvezérlő a kék LED van villogó, majd a tartományvezérlő az aktív vezérlő pedig a másik egy a készenléti vezérlő. További információkért lásd: [azonosítani az eszköz aktív vezérlőjén](storsimple-8000-controller-replacement.md#identify-the-active-controller-on-your-device). |
+| Tartalék LED-jét (sárga) |Azt jelzi, hogy a tartományvezérlő a hibát. |
+| OK LED-jét (zöld) |Állandó zöld állapot azt jelzi, hogy a vezérlő OK gombra. A vezérlő VPD konfigurációs hiba zöld jelzi. |
+| SAS-tevékenység LED (zöld) |Állandó zöld állapot azt jelzi, hogy nincs aktuális tevékenység kapcsolatot. Zöld azt jelzi, a kapcsolat a folyamatban lévő tevékenységek. |
+| Ethernet állapot LED |Jobb oldali hivatkozást és a hálózati tevékenységet jelez: (állandó zöld) hivatkozás aktív, (zöld villogó) hálózati tevékenységet. Bal oldali jelzi a hálózati sebesség: (sárga) 1000 Mb/s (zöld) 100 Mb/s és (KIKAPCSOLT) 10 Mb/s. Az összetevő modelltől függően a ritka villogni előfordulhat, hogy akkor is, ha a hálózati illesztő nem engedélyezett. |
+| POST LED |Azt jelzi, a rendszerindító előrehaladását, amikor a vezérlő be van kapcsolva. Ha a StorSimple eszköz rendszerindító nem sikerül, a LED írva az a pont, a rendszerindítási folyamat számára, ahol a hiba történt a Microsoft Support segítségével. |
 
 > [!IMPORTANT]
-> Hello tartalék LED bekapcsolásával van, ha probléma van, előfordulhat, hogy orvosolható hello vezérlő újraindításával hello vezérlő modullal. Ha újraindítás hello vezérlő nem oldja meg a probléma, forduljon a Microsoft Support.  
+> A tartalék LED bekapcsolásával van, ha probléma van a vezérlő modullal, előfordulhat, hogy a vezérlő újraindításával orvosolható. Ha a tartományvezérlő újraindítása nem oldja meg a probléma, forduljon a Microsoft Support.  
 > 
 > 
 
-### <a name="monitoring-leds-for-hello-ebod-ebod-enclosure"></a>Figyelés LED hello EBOD (EBOD ház)
-Egyes hello 6 Gb/s SAS EBOD vezérlők annak állapotát jelző, ahogy az ábra a következő hello LED rendelkezik.  
+### <a name="monitoring-leds-for-the-ebod-ebod-enclosure"></a>LED figyelését a EBOD (EBOD ház)
+A 6 Gb/s SAS EBOD tartományvezérlők mindegyikén LED állapotát jelző, a következő ábrán látható módon.  
 
   ![Figyelési LED - EBOD ház][5]
 
-E hello EBOD vezérlő modul megfelelően működik-e a következő tábla toodetermine hello használata.  
+Az alábbi táblázat segítségével határozza meg, hogy a vezérlő EBOD modul megfelelően működik-e.  
 
 ### <a name="ebod-controller-module-indicator-leds"></a>EBOD vezérlő modul kijelző LED
 | status | I/o-modul OK (zöld) | I/o-modul hibát (sárga) | Host port tevékenység (zöld) |
@@ -164,16 +164,16 @@ E hello EBOD vezérlő modul megfelelően működik-e a következő tábla toode
 | Külső host port kapcsolat - tevékenység |- |- |Villogó |
 | A tartományvezérlő metaadatainak modulhiba |Villogó |- |- |
 
-## <a name="disk-drive-indicator-leds-for-hello-primary-enclosure-and-ebod-enclosure"></a>Lemezmeghajtó kijelző LED hello elsődleges ház és EBOD ház
-hello StorSimple eszköz hello elsődleges ház és hello EBOD házhoz, és meghajtó van. Egyes meghajtókon tartalmaz figyelési kijelző LED, ebben a szakaszban leírtak szerint. 
+## <a name="disk-drive-indicator-leds-for-the-primary-enclosure-and-ebod-enclosure"></a>Lemezmeghajtó kijelző LED EBOD ház és elsődleges ház
+A StorSimple eszköz található, az elsődleges ház- és a EBOD ház meghajtó van. Egyes meghajtókon tartalmaz figyelési kijelző LED, ebben a szakaszban leírtak szerint. 
 
-Hello lemezmeghajtókhoz, hello meghajtó állapotát jelzi egy zöld LED-jét, és a piros-sárga LED csatlakoztatott meghajtó szolgáltatónként modulokhoz hello elején. hello alábbi ábrán ezek LED.
+A merevlemez-meghajtók esetében a meghajtó állapotát jelzi egy zöld LED-jét, és a piros-sárga LED csatlakoztatott meghajtó szolgáltatónként modulokhoz elején. Az alábbi ábrán a LED.
 
   ![Lemezmeghajtó LED][6]
 
-A következő tábla toodetermine hello állapotát minden meghajtó, amely viszont hatással van a teljes előlapja LED állapot hello hello használata.  
+Az alábbi táblázat segítségével minden meghajtó, amely viszont hatással van a teljes előlapja LED állapot állapotának megállapítása.  
 
-### <a name="disk-drive-indicator-leds-for-hello-ebod-enclosure"></a>Lemezmeghajtó mutató LED a hello EBOD ház
+### <a name="disk-drive-indicator-leds-for-the-ebod-enclosure"></a>A EBOD ház LED lemezmeghajtó mutatója
 | status | Tevékenység OK LED (zöld) | Tartalék LED-jét (piros-sárga) | Ops panel LED társított |
 | --- | --- | --- | --- |
 | Nincs telepítve meghajtó |KIKAPCSOLVA |KIKAPCSOLVA |None |
@@ -183,7 +183,7 @@ A következő tábla toodetermine hello állapotát minden meghajtó, amely visz
 | Áramszünet vezérlő áramkör |KIKAPCSOLVA |ON |A modul hibát (piros) |
 
 ## <a name="audible-alarms"></a>Hallható riasztások
-A StorSimple eszköz hello elsődleges ház és a hello EBOD ház kapcsolódó hallható riasztásokat tartalmazza. Hallható figyelmeztető hello előlapja (más néven hello ops panel) mindkét házban található. hello hallható riasztás azt jelzi, ha jelen-e a hibaállapot esetén. a következő feltételek hello aktiválódik hello riasztás:  
+A StorSimple eszköz mind az elsődleges ház- és a EBOD ház társított hallható riasztásokat tartalmazza. Hallható figyelmeztető mindkét ház előlapja (más néven az ops panel) található. A hallható riasztás azt jelzi, ha jelen-e a hibaállapot esetén. A következő feltételek aktiválódik a riasztás:  
 
 * Ventilátor hiba vagy probléma
 * Engedélyezett tartományon kívül esik feszültségérzékelő
@@ -194,26 +194,26 @@ A StorSimple eszköz hello elsődleges ház és a hello EBOD ház kapcsolódó h
 * Hálózati ellátási hiba
 * A modul (PCM) hűtési teljesítménye eltávolítása  
 
-hello következő táblázatban található hello különböző riasztás állapota.  
+A következő táblázat ismerteti a különböző riasztó állapotait.  
 
 ### <a name="alarm-states"></a>Riasztó állapotait
 | Riasztási állapot | Műveletek | A művelet némító gombokra |
 | --- | --- | --- |
 | S0 |Normál mód: beavatkozás nélküli |E sípoló kétszer |
-| S1 |Tartalék mód: 1 másodperc a/1 második kikapcsolása |Átmenet tooS2 vagy S3 (lásd: a Megjegyzés) |
+| S1 |Tartalék mód: 1 másodperc a/1 második kikapcsolása |S2 vagy S3 átmenet (lásd: a Megjegyzés) |
 | S2 |Emlékeztesse mód: időszakos hangjelzés |None |
 | S3 |Elfedett mód: beavatkozás nélküli |None |
 | S4 |Kritikus hiba mód: folyamatos riasztás |Nem érhető el: csend nem aktív |
 
 > [!NOTE]
-> * A riasztás állapota S1 Ha a nem gombra kattint némító 2 percen belül hello állapot automatikusan átkerül tooS2 vagy S3.  
-> * Riasztó állapotait S1 tooS4 vissza tooS0 után hello hibaállapot esetén nincs bejelölve.  
+> * A riasztás állapota S1 Ha a nem gombra kattint némító 2 percen belül az állapot automatikusan átkerül S2 vagy S3.  
+> * Riasztó állapotait S1 S4 való visszatéréshez S0 után a hiba az állapot nincs bejelölve.  
 > * Kritikus hiba állapot S4 más állapotból adható meg.  
 
 
-Hello hallható riasztás is elnémíthatja hello ops panelen hello némító gomb lenyomásával. Automatikus némítása megtörténik a két perc után ha hello némító kapcsoló manuálisan nem működik. Amikor hello riasztás némított, továbbra is toosound a rövid időszakos hangjelzés tooindicate, hogy a probléma továbbra is fennáll. hello riasztás csendes lesz, ha az összes hello probléma adatútvonalai törlődtek.
+Az ops panel a némító gomb megnyomásával a hallható riasztás is elnémíthatja. Automatikus némítása megtörténik a két perc után ha némító kapcsoló manuálisan nem működik. Ha a riasztás némított, továbbra is hang rövid időszakos hangjelzés annak jelzésére, hogy a probléma továbbra is létezik. A riasztás csendes lesz, ha az összes probléma adatútvonalai törlődtek.
 
-hello következő táblázatban található hello különböző feltételek riasztás.
+A következő táblázat ismerteti a különböző riasztási feltételeket.
 
 ### <a name="alarm-conditions"></a>Riasztási feltételek
 | status | Súlyosság | Riasztás | OPS LED panel |

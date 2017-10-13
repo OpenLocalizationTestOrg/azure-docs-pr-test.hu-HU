@@ -1,6 +1,6 @@
 ---
-title: "storage-fiókok biztonságos átvitele az Azure HDInsight-fürtöt aaaCreate Hadoop |} Microsoft Docs"
-description: "Ismerje meg, hogyan engedélyezve van a HDInsight-fürtök toocreate biztonságos átvitele az Azure storage-fiókok."
+title: "Biztonságos átvitelű tárfiókokkal rendelkező Hadoop-fürt létrehozása az Azure HDInsightban | Microsoft Docs"
+description: "Megtudhatja, hogyan hozhat létre biztonságos átvitelű Azure-tárfiókokkal rendelkező HDInsight-fürtöket."
 keywords: "hadoop első lépései,hadoop linux,hadoop gyorsútmutató,biztonságos átvitel,azure-tárfiók"
 services: hdinsight
 documentationcenter: 
@@ -16,43 +16,43 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/21/2017
 ms.author: jgao
-ms.openlocfilehash: 0acb8814ad0d5d5b5652d930b2e3da90f9d7978d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 370b2f081930fe88527436a1a127309aed6681f0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-hadoop-cluster-with-secure-transfer-storage-accounts-in-azure-hdinsight"></a>Biztonságos átvitelű tárfiókokkal rendelkező Hadoop-fürt létrehozása az Azure HDInsightban
 
-Hello [szükséges átviteli biztonságos](../storage/common/storage-require-secure-transfer.md) a szolgáltatás továbbfejleszti hello biztonsági az Azure Storage-fiókjának tartat be az összes kérelem tooyour fiók biztonságos kapcsolaton keresztül. Ez a szolgáltatás és hello wasbs séma csak támogatja HDInsight-fürt verziószáma 3,6 vagy újabb. 
+A [biztonságos átvitelt szükséges](../storage/common/storage-require-secure-transfer.md) funkció megnöveli az Azure Storage-fiók biztonságát azáltal, hogy minden, a fiókra beérkező kérést biztonságos kapcsolat használatára kényszerít. Ezt a funkciót és a wasbs sémát csak a HDInsight-fürt 3.6-os vagy újabb verziója támogatja. 
 
 ## <a name="prerequisites"></a>Előfeltételek
 Az oktatóanyag elindításának feltétele:
 
-* **Azure-előfizetés**: egy ingyenes egy hónapos próbafiók, toocreate Tallózás túl[azure.microsoft.com/free](https://azure.microsoft.com/free).
-* **Engedélyezett biztonságos átvitellel rendelkező Azure-tárfiók** Hello útmutatásért lásd: [hozzon létre egy tárfiókot](../storage/common/storage-create-storage-account.md#create-a-storage-account) és [biztonságos átvitelét igénylő](../storage/common/storage-require-secure-transfer.md).
-* **A Blob-tároló hello tárfiók**. 
+* **Azure-előfizetés**: egy ingyenes egy hónapos próbafiók létrehozásához keresse fel az [azure.microsoft.com/free](https://azure.microsoft.com/free) webhelyet.
+* **Engedélyezett biztonságos átvitellel rendelkező Azure-tárfiók** Az utasításokért lásd a [Tárfiók létrehozása](../storage/common/storage-create-storage-account.md#create-a-storage-account) és a [Biztonságos átvitel megkövetelése](../storage/common/storage-require-secure-transfer.md) szakaszokat.
+* **Blobtároló a tárfiókon**. 
 ## <a name="create-cluster"></a>Fürt létrehozása
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 
-Ebben a szakaszban egy Hadoop-fürtöt hozhat létre a HDInsightban egy [Azure Resource Manager-sablonnal](../azure-resource-manager/resource-group-template-deploy.md). hello sablon található [Github](https://azure.microsoft.com/resources/templates/101-hdinsight-linux-with-existing-default-storage-account/). Nem kell a Resource Manager-sablonok használatára vonatkozó tapasztalattal rendelkeznie az oktatóanyag követéséhez. Egyéb Fürtlétrehozási módszerekhez és ebben az oktatóanyagban használt hello tulajdonságok ismertetése, tanulmányozza a [HDInsight-fürtök létrehozása](hdinsight-hadoop-provision-linux-clusters.md).
+Ebben a szakaszban egy Hadoop-fürtöt hozhat létre a HDInsightban egy [Azure Resource Manager-sablonnal](../azure-resource-manager/resource-group-template-deploy.md). A sablon a [GitHubon](https://azure.microsoft.com/resources/templates/101-hdinsight-linux-with-existing-default-storage-account/) található. Nem kell a Resource Manager-sablonok használatára vonatkozó tapasztalattal rendelkeznie az oktatóanyag követéséhez. Egyéb fürtlétrehozási módszerekhez és az oktatóanyagban használt tulajdonságok megértéséhez tekintse meg a [Create HDInsight clusters](hdinsight-hadoop-provision-linux-clusters.md) (HDInsight-fürtök létrehozása) című témakört.
 
-1. Kattintson a következő kép toosign tooAzure a és a nyitott hello Resource Manager sablon hello Azure-portálon hello. 
+1. Az alábbi képre kattintva jelentkezzen be az Azure-ba, és nyissa meg a Resource Manager-sablont az Azure Portalon. 
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-with-existing-default-storage-account%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-hadoop-linux-tutorial-get-started/deploy-to-azure.png" alt="Deploy tooAzure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-with-existing-default-storage-account%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-hadoop-linux-tutorial-get-started/deploy-to-azure.png" alt="Deploy to Azure"></a>
 
-2. Hello utasításokat toocreate hello fürt kövesse a hello előírásainak megfelelően: 
+2. Kövesse az utasításokat a fürt a következő specifikációkkal való létrehozásához: 
 
-    - Adja meg a HDInsight 3.6-os verzióját.  hello alapértelmezett verziója 3.5-ös verzióját. A 3.6-os vagy újabb verzió szükséges.
+    - Adja meg a HDInsight 3.6-os verzióját.  Az alapértelmezett verzió a 3.5. A 3.6-os vagy újabb verzió szükséges.
     - Adjon meg egy biztonságos átvitel használatára képes tárfiókot.
-    - Hello tárfiók rövid nevét használja.
-    - Hello tárfiók és a blob-tároló hello előre kell létrehozni. 
+    - Rövid nevet adjon a tárfióknak.
+    - Már korábban létre kell hozni a tárfiókot és a blobtárolót is. 
 
-    Hello útmutatásért lásd: [fürt létrehozása](./hdinsight-hadoop-linux-tutorial-get-started.md#create-cluster). 
+    Az utasításokért lásd: [Fürt létrehozása](./hdinsight-hadoop-linux-tutorial-get-started.md#create-cluster). 
 
-Parancsfájl művelet tooprovide saját konfigurációs fájlok használatára, ha a következő beállítások hello wasbs kell használnia:
+Ha szkriptműveleteket használ a saját konfigurációs fájlok megadásához, a wasbs a következő beállításokkal használandó:
 
 - fs.defaultFS (core-site)
 - spark.eventLog.dir 
@@ -60,36 +60,36 @@ Parancsfájl művelet tooprovide saját konfigurációs fájlok használatára, 
 
 ## <a name="add-additional-storage-accounts"></a>További tárfiókok hozzáadása
 
-Van több beállítások tooadd engedélyezni biztonságos letöltési storage-fiókok:
+További, biztonságos átvitel használatára képes tárfiókok hozzáadására számos lehetőség áll rendelkezésre:
 
-- Hello utolsó szakaszában hello Azure Resource Manager sablon módosításához.
-- Hozzon létre egy fürtöt hello [Azure-portálon](https://portal.azure.com) , és adja meg a kapcsolt tárfiókra.
-- Engedélyezve használata parancsfájl művelet tooadd további biztonságos átviteli tárolási fiókok tooan meglévő HDInsight-fürtre.  További információkért lásd: [adja hozzá a további tárhely fiókok tooHDInsight](hdinsight-hadoop-add-storage.md).
+- Az előző szakaszban ismertetett Azure Resource Manager-sablon módosítása.
+- Egy fürt létrehozása az [Azure Portal](https://portal.azure.com) használatával és a kapcsolódó tárfiók megadása.
+- Szkriptműveleteket használata további, biztonságos átvitel használatára képes tárfiókok meglévő HDInsight-fürthöz történő hozzáadásához.  További információkért lásd: [Add additional storage accounts to HDInsight](hdinsight-hadoop-add-storage.md) (További tárfiókok hozzáadása a HDInsighthoz).
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben az oktatóprogramban megtanulhatta, hogyan toocreate HDInsight-fürtöt, és biztonságos engedélyezése átvitele toohello storage-fiókok.
+Ebben az oktatóanyagban megtanulhatta, hogyan hozhat létre HDInsight-fürtöt, és hogyan engedélyezheti a biztonságos átvitelt a tárfiókokba.
 
-További információk a HDInsight az adatok elemzése toolearn lásd: a következő cikkek hello:
+A HDInsight használatával történő adatelemzésről az alábbi cikkekben talál további információt:
 
-* További információk a hdinsight eszközzel, hogyan tooperform Hive lekérdezi a Visual Studio eszközből, beleértve a Hive eszközzel toolearn lásd [használata a HDInsight Hive][hdinsight-use-hive].
-* Pig kapcsolatos toolearn, nyelv használt tootransform adatokat, lásd: [a Pig használata a hdinsight eszközzel][hdinsight-use-pig].
-* toolearn MapReduce, egy módszer toowrite, Hadoopon adatokat feldolgozó programok kapcsolatban lásd: [és a HDInsight együttes használata MapReduce][hdinsight-use-mapreduce].
-* toolearn hello HDInsight Tools for Visual Studio tooanalyze adatok, használatával kapcsolatban lásd: [első lépések a Visual Studio Hadoop tools for HDInsight használatával](hdinsight-hadoop-visual-studio-tools-get-started.md).
+* További információ a Hive és a HDInsight együttes használatáról, például a Hive-lekérdezések Visual Studióból történő végrehajtásáról: [A Hive használata a HDInsighttal][hdinsight-use-hive].
+* További információ az adatok átalakítására szolgáló Pig nyelvről: [A Pig használata a HDInsighttal][hdinsight-use-pig].
+* További információ a Hadoopon adatokat feldolgozó programok írására szolgáló MapReduce módszerről: [A MapReduce használata a HDInsighttal][hdinsight-use-mapreduce].
+* A HDInsight-adatok elemzésére szolgáló HDInsight Tools for Visual Studio szolgáltatással kapcsolatos további információkért lásd: [Get started using Visual Studio Hadoop tools for HDInsight](hdinsight-hadoop-visual-studio-tools-get-started.md) (A HDInsight Visual Studio Hadoop-eszközeinek használatára vonatkozó első lépések).
 
-További információk a HDInsight adattárolási módszereiről toolearn vagy hogyan tooget adatok HDInsight, tekintse meg a következő cikkek hello:
+Ha szeretne többet megtudni a HDInsight adattárolási módszereiről, illetve arról, hogyan kerülnek az adatok a HDInsightba, tekintse meg a következő cikkeket:
 
 * További információt az Azure Storage HDInsight általi használatáról [az Azure Storage és a HDInsight együttes használatát](hdinsight-hadoop-use-blob-storage.md) ismertető cikkben talál.
-* Információ tooupload adatok tooHDInsight, lásd: [töltse fel az adatok tooHDInsight][hdinsight-upload-data].
+* További információ a HDInsightba való adatfeltöltésről: [Adatok feltöltése a HDInsightba][hdinsight-upload-data].
 
-toolearn bővebben létrehozása vagy kezelése a HDInsight-fürtöt, tekintse meg a következő cikkek hello:
+Ha többet szeretne megtudni a HDInsight-fürtök létréhozásáról vagy kezeléséről, tekintse meg a következő cikkeket:
 
-* a Linux-alapú HDInsight-fürt kezeléséhez toolearn lásd: [kezelése HDInsight-fürtök Ambari használatával](hdinsight-hadoop-manage-ambari.md).
-* toolearn kiválasztható egy HDInsight-fürt létrehozásakor hello beállításokról bővebben lásd: [létrehozása HDInsight Linux egyéni beállításokkal](hdinsight-hadoop-provision-linux-clusters.md).
-* Ha ismeri a Linux és a Hadoop, de szeretné, hogy a hello HDInsight Hadoop kapcsolatos tooknow rögzítésen, lásd: [a HDInsight használata Linux](hdinsight-hadoop-linux-information.md). Ez a cikk többek között az alábbi információkat tartalmazza:
+* Információk a Linux-alapú HDInsight-fürtök kezeléséhez: [Manage HDInsight clusters using Ambari](hdinsight-hadoop-manage-ambari.md) (HDInsight-fürtök kezelése az Ambari segítségével).
+* További információ a HDInsight-fürtök létrehozásakor kiválasztható beállításokról: [Creating HDInsight on Linux using custom options](hdinsight-hadoop-provision-linux-clusters.md) (HDInsight létrehozása Linux rendszeren egyéni beállításokkal).
+* Ha már ismeri a Linux és a Hadoop használatát, de szeretne konkrét részleteket megtudni a HDInsight-alapú Hadoopról, akkor tekintse meg a következő témakört: [Working with HDInsight on Linux](hdinsight-hadoop-linux-information.md) (A HDInsight használata Linux rendszeren). Ez a cikk többek között az alábbi információkat tartalmazza:
   
-  * Például az Ambari és a WebHCat hello fürtön tárolt szolgáltatások URL-címek
-  * a Hadoop-fájlok és példák a helyi fájlrendszerben hello hello helye
-  * hello alapértelmezett adattár hello használata az Azure Storage (WASB) HDFS helyett.
+  * a fürtön tárolt szolgáltatások, például az Ambari és a WebHCat URL-címét;
+  * a Hadoop-fájlok és- példák helyét a helyi fájlrendszerben;
+  * az Azure Storage (WASB) alapértelmezett adattárként történő használatát a HDFS helyett.
 
 [1]: ../HDInsight/hdinsight-hadoop-visual-studio-tools-get-started.md
 

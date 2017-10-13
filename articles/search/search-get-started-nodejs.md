@@ -1,5 +1,5 @@
 ---
-title: "aaaGet Node.js az Azure Search használatába |} Microsoft Docs"
+title: "Bevezetés az Azure Search használatába Node.js-ben | Microsoft Docs"
 description: "Keresőalkalmazás felépítési útmutatója az Azure egy üzemeltetett felhőalapú keresőszolgáltatásához a Node.js programozási nyelv használatával."
 services: search
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.date: 04/26/2017
 ms.author: evboyle
-ms.openlocfilehash: e9c7d756c2ea191ee2a285485c90439b96aa73b2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 32865ed986f5eea961ef2c3813dcc6531498c90a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-azure-search-in-nodejs"></a>Bevezetés az Azure Search használatába Node.js-ben
 > [!div class="op_single_selector"]
@@ -27,71 +27,71 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Ismerje meg, egy egyéni Node.js toobuild a keresési alkalmazás használ az Azure Search szolgáltatást a keresésekhez. Ez az oktatóanyag használja hello [Azure Search szolgáltatás REST API](https://msdn.microsoft.com/library/dn798935.aspx) tooconstruct hello objektumok és műveletek ebben a gyakorlatban.
+Ismerje meg, hogyan hozhat létre olyan egyéni Node.js-keresőalkalmazást, amely az Azure Search szolgáltatást használja a keresésekhez. Ez az oktatóanyag az [Azure Search szolgáltatás REST API](https://msdn.microsoft.com/library/dn798935.aspx)-ját használja ebben a gyakorlatban az objektumok és műveletek összeállításához.
 
-Használtuk [Node.js](https://Nodejs.org) és NPM, [Sublime Text 3](http://www.sublimetext.com/3), és a Windows PowerShell, a Windows 8.1 toodevelop és tesztelheti ezt a kódot.
+A kód fejlesztéséhez és teszteléséhez a [Node.js](https://Nodejs.org)-t, valamint Windows 8.1 rendszeren az NPM-et, a [Sublime Text 3](http://www.sublimetext.com/3)-at és a Windows PowerShellt használtuk.
 
-toorun Ez a minta rendelkeznie kell egy Azure Search szolgáltatással, amely jelentkezhet be a hello [Azure-portálon](https://portal.azure.com). Lásd: [Azure Search szolgáltatás létrehozása a portál hello](search-create-service-portal.md) részletes útmutatásait.
+A minta futtatásához rendelkeznie kell egy Azure Search-szolgáltatással, amelyre az [Azure Portalon](https://portal.azure.com) regisztrálhat. A részletes utasításokat lásd: [Azure Search szolgáltatás létrehozása a portálon](search-create-service-portal.md).
 
-## <a name="about-hello-data"></a>Hello adatokról
-A mintaalkalmazás hello adatait használja [az Amerikai Egyesült Államok geológiai szolgáltatások (USGS)](http://geonames.usgs.gov/domestic/download_data.htm), szűrt a hello Rhode Island államra tooreduce hello dataset mérete. Az adatok toobuild, amely jellegzetes épületeket, például kórházakat és iskolákat, valamint geológiai jellegzetességeket, például folyókat, tavakat és hegycsúcsokat ad vissza egy olyan keresőalkalmazás fogjuk használni.
+## <a name="about-the-data"></a>Tudnivalók az adatokról
+A mintaalkalmazás az [Amerikai Egyesült Államok geológiai szolgáltatásainak (United States Geological Services, USGS)](http://geonames.usgs.gov/domestic/download_data.htm) adatait használja, az adatkészlet méretének csökkentése érdekében Rhode Island államra szűrve. Ezeket az adatokat fogjuk használni egy olyan keresőalkalmazás létrehozásához, amely jellegzetes épületeket, például kórházakat és iskolákat, valamint geológiai jellegzetességeket, például folyókat, tavakat és hegycsúcsokat ad vissza eredményül.
 
-Ebben az alkalmazásban hello **DataIndexer** program létrehozza és betölti az indexet hello egy [indexelő](https://msdn.microsoft.com/library/azure/dn798918.aspx) szerkezet hello szűrt USGS-adatkészletet a nyilvános Azure SQL-adatbázis. Hitelesítő adatok és csatlakozási adatokat toohello online adatforrás hello programkód valósul meg. Nincs szükség további konfigurációra.
+Ebben az alkalmazásban a **DataIndexer** program egy [indexelő](https://msdn.microsoft.com/library/azure/dn798918.aspx) szerkezet segítségével létrehozza és betölti az indexet, amelyhez egy nyilvános Azure SQL-adatbázisból kéri le a szűrt USGS-adatkészletet. A hitelesítő adatokat és az online adatforrás csatlakozási adatait a programkód tartalmazza. Nincs szükség további konfigurációra.
 
 > [!NOTE]
-> Olyan szűrőt alkalmaztunk a dataset toostay hello 10 000 dokumentumos korlátja az ingyenes tarifacsomag hello alatt. Hello standard csomagot használja, ha a nem vonatkozik ez a korlátozás. Az egyes tarifacsomagok kapacitásával kapcsolatos részletes információkat lásd: [A Search szolgáltatásra vonatkozó korlátozások](search-limits-quotas-capacity.md).
+> Az adatkészlethez olyan szűrőt alkalmaztunk, hogy az ingyenes tarifacsomag 10 000 dokumentumos korlátja alatt maradjunk. Ha a standard csomagot használja, arra nem vonatkozik ez a korlátozás. Az egyes tarifacsomagok kapacitásával kapcsolatos részletes információkat lásd: [A Search szolgáltatásra vonatkozó korlátozások](search-limits-quotas-capacity.md).
 > 
 > 
 
 <a id="sub-2"></a>
 
-## <a name="find-hello-service-name-and-api-key-of-your-azure-search-service"></a>Hello szolgáltatás- és api-kulcsot az Azure Search szolgáltatás keresése
-Miután létrehozta a hello szolgáltatást, térjen vissza toohello portál tooget hello URL-cím vagy `api-key`. Kapcsolatok tooyour keresési szolgáltatás szükséges, hogy rendelkezik-e mindkét hello URL-címet és egy `api-key` tooauthenticate hello hívás.
+## <a name="find-the-service-name-and-api-key-of-your-azure-search-service"></a>Az Azure Search szolgáltatás szolgáltatásnevének és API-kulcsának megkeresése
+Miután létrehozta a szolgáltatást, térjen vissza a portálra az URL-cím vagy az `api-key` beolvasása érdekében. A keresőszolgáltatáshoz való kapcsolódáshoz szükséges, hogy a hívás hitelesítéséhez az URL-cím és egy `api-key` is a rendelkezésére álljon.
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
-2. Hello Ugrás sávon kattintson **keresési szolgáltatás** minden Azure Search szolgáltatás megjelenjen az előfizetéséhez kapcsolódó toolist.
-3. Válassza ki a kívánt toouse hello szolgáltatást.
-4. Hello szolgáltatás irányítópultján meg kell jelennie az alapvető információkat, például a hello adminisztrációs kulcsok eléréséhez szükséges kulcs ikon hello csempék.
-5. Másolja a hello szolgáltatás URL-cím, egy adminisztrációs kulcsot és egy lekérdezési kulcsot. Három később szüksége amikor toohello config.js fájl hozzáadja őket.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+2. A gyorselérési sávon kattintson a **Keresési szolgáltatás** elemre, hogy megjelenjen az előfizetéséhez kapcsolódó összes Azure Search-szolgáltatás.
+3. Válassza ki a használni kívánt szolgáltatást.
+4. A szolgáltatás irányítópultján meg kell jelenniük az alapvető információkat tartalmazó csempéknek, például az adminisztrációs kulcsok eléréséhez szükséges kulcs ikonnak.
+5. Másolja át a szolgáltatás URL-címét, egy adminisztrációs kulcsot és egy lekérdezési kulcsot. Mindháromra később lesz szüksége, amikor hozzáadja őket a config.js fájlhoz.
 
-## <a name="download-hello-sample-files"></a>Hello mintafájlok letöltése
-A következő módszerekkel toodownload hello minta hello bármelyikét használhatja.
+## <a name="download-the-sample-files"></a>A mintafájlok letöltése
+A minta letöltéséhez a következő módszerek bármelyikét használhatja.
 
-1. Nyissa meg túl[AzureSearchNodeJSIndexerDemo](https://github.com/AzureSearch/AzureSearchNodejsIndexerDemo).
-2. Kattintson a **töltse le a ZIP-**, mentse hello .zip fájlt, és bontsa ki a benne található összes hello fájlt.
+1. Lépjen az [AzureSearchNodeJSIndexerDemo](https://github.com/AzureSearch/AzureSearchNodejsIndexerDemo) elemre.
+2. Kattintson a **Download ZIP** (ZIP-fájl letöltése) elemre, mentse el a .zip-fájlt, és bontsa ki a benne található összes fájlt.
 
 Minden további fájlmódosítás és utasításfuttatás az ebben a mappában lévő fájlokra vonatkozóan történik.
 
-## <a name="update-hello-configjs-with-your-search-service-url-and-api-key"></a>Frissítse a hello config.js. a keresőszolgáltatása URL-címével és API-kulcsával
-URL-CÍMÉT és api-kulcsot, korábban kimásolt, használatával hello hello URL-Címének megadása, adminisztrációs-kulcsot, és a lekérdezési kulcsot a konfigurációs fájlban.
+## <a name="update-the-configjs-with-your-search-service-url-and-api-key"></a>Frissítse a config.js fájlt. a keresőszolgáltatása URL-címével és API-kulcsával
+A már korábban átmásolt URL-címmel és API-kulccsal a konfigurációs fájlban adja meg az URL-címet, az adminisztrációs kulcsot és a lekérdezési kulcsot.
 
-Az adminisztrációs kulcsok teljes körű vezérlést biztosítanak a szolgáltatási műveletek felett, beleértve az index létrehozását vagy törlését, illetve a dokumentumok betöltését. Ezzel szemben lekérdezés kulcsai csak olvasható műveletekhez, jellemzően tooAzure keresési szolgáltatáshoz kapcsolódó ügyfélalkalmazásokhoz által használt.
+Az adminisztrációs kulcsok teljes körű vezérlést biztosítanak a szolgáltatási műveletek felett, beleértve az index létrehozását vagy törlését, illetve a dokumentumok betöltését. Ezzel szemben a lekérdezési kulcsok a csak olvasható műveletekhez, jellemzően az Azure Search szolgáltatáshoz kapcsolódó ügyfélalkalmazásokhoz használhatók.
 
-Ez a példa hello lekérdezési kulcs toohelp megerősítése hello ajánlott eljárás használatával hello lekérdezési kulcs ügyfélalkalmazásokban magában foglalja.
+Ebben a példában a lekérdezési kulcsot arra használjuk, hogy segítsen megerősíteni a lekérdezési kulcs ügyfélalkalmazásokban történő használatának ajánlott eljárását.
 
-a következő képernyőfelvételen látható hello **config.js** hello egy szövegszerkesztőben megnyitott megfelelő bejegyzések meg vannak jelölve, hogy láthatja, ahol tooupdate hello fájl hello értékek, amelyek érvényesek a keresési szolgáltatáshoz.
+Az alábbi képernyőfelvételen egy szövegszerkesztőben megnyitott **config.js** fájl látható, és a megfelelő bejegyzések meg vannak jelölve, hogy tudja, hol frissítse a fájlt a keresőszolgáltatása számára érvényes értékekkel.
 
 ![][5]
 
-## <a name="host-a-runtime-environment-for-hello-sample"></a>Hello minta futtatókörnyezetének üzemeltetése
-hello minta HTTP-kiszolgáló, amely npm segítségével globálisan telepítése szükséges.
+## <a name="host-a-runtime-environment-for-the-sample"></a>A minta futtatókörnyezetének üzemeltetése
+A mintához HTTP-kiszolgáló szükséges, amelyet az npm segítségével globálisan telepíthet.
 
-A következő parancsok hello használni egy PowerShell-ablakot.
+A következő parancsokhoz használjon egy PowerShell-ablakot.
 
-1. Keresse meg a hello tartalmazó mappa toohello **package.json** fájlt.
+1. Keresse meg a **package.json** fájlt tartalmazó mappát.
 2. Gépelje be: `npm install`.
 3. Gépelje be: `npm install -g http-server`.
 
-## <a name="build-hello-index-and-run-hello-application"></a>Hello index létrehozása és hello alkalmazás futtatása
+## <a name="build-the-index-and-run-the-application"></a>Az index létrehozása és az alkalmazás futtatása
 1. Gépelje be: `npm run indexDocuments`.
 2. Gépelje be: `npm run build`.
 3. Gépelje be: `npm run start_server`.
 4. Irányítsa a böngészőt a következő helyre: `http://localhost:8080/index.html`
 
 ## <a name="search-on-usgs-data"></a>USGS-adatok keresése
-hello USGS-adatkészlet a Rhode Island államra vonatkozó toohello rekordokat tartalmaz. Ha **keresési** egy üres keresőmező kap hello 50 legfontosabb bejegyzés; hello alapértelmezett.
+Az USGS-adatkészlet a Rhode Island államra vonatkozó rekordokat tartalmaz. Ha rákattint egy üres keresőmező **Keresés** gombjára, megjelenik az 50 legfontosabb bejegyzés; ez az alapértelmezett viselkedés.
 
-A keresett kifejezés beírása ad hello keresőmotor valamit a toogo. Próbáljon meg a helyhez kötődő nevet beírni. "Roger Williams" volt Rhode Island első kormányzója hello. Számos parkot, épületet és iskolát neveztek el róla.
+A keresett kifejezés beírása elindítja a keresőmotort. Próbáljon meg a helyhez kötődő nevet beírni. „Roger Williams” volt Rhode Island első kormányzója. Számos parkot, épületet és iskolát neveztek el róla.
 
 ![][9]
 
@@ -102,11 +102,11 @@ Megpróbálhatja beírni az alábbi kifejezések bármelyikét is:
 * goose+cape
 
 ## <a name="next-steps"></a>Következő lépések
-Ez az hello Azure Search első oktatóanyaga a Node.js és hello USGS-adatkészlet alapján. Idővel majd tovább bővítjük ezen oktatóanyag toodemonstrate kiegészítő keresési funkciókat, amelyeket esetleg szívesen toouse egyéni megoldásaiban.
+Ez az Azure Search első oktatóanyaga, amely a Node.js és a USGS-adatkészlet alapján készült. Idővel majd tovább bővítjük oktatóanyagunkat, és olyan kiegészítő keresési funkciókat fogunk bemutatni, amelyeket esetleg szívesen használna egyéni megoldásaiban.
 
-Ha már rendelkezik bizonyos tapasztalattal az Azure Search használatában, ezt a mintát akár ugródeszkaként is használhatja a javaslattevők (előre begépelt vagy automatikusan kitöltött lekérdezések), szűrők és a jellemzőalapú navigáció kipróbálásához. Akkor is tovább fejlesztheti hello keresési eredmények oldalát által számok és kötegelt dokumentumok, így a felhasználók lapozhassanak az eredmények hello hozzáadásával.
+Ha már rendelkezik bizonyos tapasztalattal az Azure Search használatában, ezt a mintát akár ugródeszkaként is használhatja a javaslattevők (előre begépelt vagy automatikusan kitöltött lekérdezések), szűrők és a jellemzőalapú navigáció kipróbálásához. A keresési eredmények oldalát is tovább fejlesztheti számok és kötegelt dokumentumok hozzáadásával úgy, hogy a felhasználók lapozhassanak az eredmények között.
 
-Új tooAzure keresési? Azt javasoljuk, próbáljon más oktatóanyagok toodevelop megismerhesse, mit hozhat létre. Látogasson el a [dokumentációs oldal](https://azure.microsoft.com/documentation/services/search/) toofind több erőforrást. Hello hivatkozások is megtekintheti a [videók és oktatóanyagok listáját](search-video-demo-tutorial-list.md) tooaccess további információt.
+Mik az Azure Search újdonságai? Azt javasoljuk, próbáljon ki más oktatóanyagokat is, hogy jobban megismerhesse, mit hozhat létre. További forrásokat a [dokumentációs oldalunkon](https://azure.microsoft.com/documentation/services/search/) talál. További információkat szerezhet, ha megtekinti a [Videók és oktatóanyagok listáját](search-video-demo-tutorial-list.md).
 
 <!--Image references-->
 [1]: ./media/search-get-started-Nodejs/create-search-portal-1.PNG

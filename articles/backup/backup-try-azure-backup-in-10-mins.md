@@ -1,12 +1,12 @@
 ---
-title: "aaaBack fel Windows fájlok és mappák tooAzure (Resource Manager) |} Microsoft Docs"
-description: "Ismerje meg, hogy fel egy erőforrás-kezelő központi telepítés Windows-fájlok és mappák tooAzure tooback."
+title: "Windows-fájlok és -mappák biztonsági mentése az Azure-ba (Resource Manager) | Microsoft Docs"
+description: "Windows-fájlok és -mappák biztonsági mentése az Azure-ba egy Resource Manager-alapú üzemelő példányon."
 services: backup
 documentationcenter: 
 author: markgalioto
 manager: carmonm
 editor: 
-keywords: "Hogyan toobackup; Hogyan tooback; a biztonságimásolat-fájlok és mappák"
+keywords: "biztonsági mentés menete; biztonsági mentési útmutató; fájlok és mappák biztonsági mentése"
 ms.assetid: 5b15ebf1-2214-4722-b937-96e2be8872bb
 ms.service: backup
 ms.workload: storage-backup-recovery
@@ -15,216 +15,216 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 8/15/2017
 ms.author: markgal;
-ms.openlocfilehash: 07d6580a84d5092ed2c61bf86ff5fcb148423ef2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7a016ed92c68ce624aeb09d766adbc6fc8ba2b42
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="first-look-back-up-files-and-folders-in-resource-manager-deployment"></a>Áttekintés: Fájlok és mappák biztonsági mentése a Resource Manager-alapú üzemelő példányban
-Ez a cikk azt ismerteti, hogyan készíthet a Windows Server (és a Windows-számítógép) tooback fájlok és mappák tooAzure erőforrás-kezelő központi telepítéssel. Egy oktatóanyag tervezett toowalk hello alapokat nyújt. Ha azt szeretné, hogy tooget lépések az Azure Backup használatával, éppen hello megfelelő helyen.
+Ez a cikk leírja, hogyan készíthet biztonsági másolatot a Windows Server (vagy Windows-számítógép) fájljairól és mappáiról az Azure-ba Resource Manager-alapú üzemelő példány használatával. Ez az oktatóanyag végigvezeti az alapokon. Ha el szeretné kezdeni az Azure Backup használatát, jó helyen van.
 
-Ha azt szeretné, hogy további információk az Azure Backup tooknow, olvassa el ezt [áttekintése](backup-introduction-to-azure-backup.md).
+Ha többet szeretne megtudni az Azure Backupról, olvassa el ezt az [áttekintést](backup-introduction-to-azure-backup.md).
 
 Ha még nincs Azure-előfizetése, hozzon létre egy [ingyenes fiókot](https://azure.microsoft.com/free/), amellyel bármely Azure-szolgáltatást elérhet.
 
 ## <a name="create-a-recovery-services-vault"></a>Recovery Services-tároló létrehozása
-a fájlok és mappák tooback, meg kell toocreate hello régióban, ahová toostore hello adatokat Recovery Services-tároló. Meg kell toodetermine a replikált tároló módját is.
+A fájlok és mappák biztonsági mentéséhez létre kell hoznia egy Recovery Services-tárolót abban a régióban, ahol az adatokat tárolni szeretné. Emellett a tároló replikálásának módját is meg kell határoznia.
 
-### <a name="toocreate-a-recovery-services-vault"></a>Recovery Services-tároló toocreate
-1. Ha még nem tette meg, jelentkezzen be toohello [Azure Portal](https://portal.azure.com/) használata az Azure-előfizetéshez.
-2. Hello központ menüben kattintson a **további szolgáltatások** hello az erőforrások listájához, írja be a **Recovery Services** kattintson **Recovery Services-tárolók**.
+### <a name="to-create-a-recovery-services-vault"></a>Recovery Services-tároló létrehozása
+1. Ha még nem tette meg, jelentkezzen be az [Azure Portalra](https://portal.azure.com/) az Azure-előfizetésével.
+2. A központi menüben kattintson a **További szolgáltatások** elemre, majd az erőforrások listájában írja be a **Recovery Services** szöveget, és kattintson a **Recovery Services-tárolók** elemre.
 
     ![Recovery Services-tároló létrehozása – 1. lépés](./media/backup-try-azure-backup-in-10-mins/open-rs-vault-list.png) <br/>
 
-    Ha nincsenek recovery services-tárolók hello az előfizetést, hello tárolók vannak felsorolva.
-3. A hello **Recovery Services-tárolók** menüben kattintson a **Hozzáadás**.
+    Ha az előfizetés Recovery Services-tárolókat tartalmaz, a tárolók fel vannak sorolva.
+3. A **Recovery Services-tárolók** menüben kattintson a **Hozzáadás** elemre.
 
     ![Recovery Services-tároló létrehozása – 2. lépés](./media/backup-try-azure-backup-in-10-mins/rs-vault-menu.png)
 
-    hello Recovery Services tároló panel nyílik tooprovide kéri egy **neve**, **előfizetés**, **erőforráscsoport**, és **hely**.
+    Megnyílik a Recovery Services-tároló panelje, a rendszer pedig egy **Név**, **Előfizetés**, **Erőforráscsoport** és **Hely** megadását kéri.
 
     ![Recovery Services-tároló létrehozása – 3. lépés](./media/backup-try-azure-backup-in-10-mins/rs-vault-step-3.png)
 
-4. A **neve**, adjon meg egy rövid nevet tooidentify hello tárolóban. hello nevének kell toobe egyedi hello Azure-előfizetés esetében. Írjon be egy 2–50 karakter hosszúságú nevet. Ennek egy betűvel kell kezdődnie, és csak betűket, számokat és kötőjeleket tartalmazhat.
+4. A **Név** mezőben adjon meg egy egyszerű nevet a tároló azonosításához. A névnek egyedinek kell lennie az Azure-előfizetéshez. Írjon be egy 2–50 karakter hosszúságú nevet. Ennek egy betűvel kell kezdődnie, és csak betűket, számokat és kötőjeleket tartalmazhat.
 
-5. A hello **előfizetés** területen hello legördülő menü toochoose hello Azure-előfizetés használatára. Ha csak egyetlen előfizetéssel, előfizetés megjelenő használja, és tovább toohello a lépést kihagyhatja. Ha nem biztos abban, hogy melyik előfizetéssel toouse, használhatja az alapértelmezettet hello (vagy javasolt) előfizetés. Csak akkor lesz több választási lehetőség, ha a szervezetéhez tartozó fiók több Azure-előfizetéssel van összekötve.
+5. Az **Előfizetés** szakaszban, az Azure-előfizetés kiválasztásához használja a legördülő menüt. Ha csak egy előfizetést használ, az az előfizetés jelenik meg, és továbbléphet a következő lépésre. Ha nem biztos benne, hogy melyik előfizetést szeretné használni, használja az alapértelmezett (vagy javasolt) előfizetést. Csak akkor lesz több választási lehetőség, ha a szervezetéhez tartozó fiók több Azure-előfizetéssel van összekötve.
 
-6. A hello **erőforráscsoport** szakasz:
+6. Az **Erőforráscsoport** szakaszban:
 
-    * Válassza ki **hozzon létre új** Ha azt szeretné, hogy toocreate egy új erőforráscsoportot.
+    * válassza az **Új létrehozása** lehetőséget, ha új erőforráscsoportot szeretne létrehozni.
     Vagy
-    * Válassza ki **meglévő** kattintson hello legördülő menü toosee hello elérhető erőforráscsoportok listáját.
+    * válassza a **Meglévő használata** lehetőséget, és kattintson a legördülő menüben az elérhető erőforráscsoportok listájának megtekintéséhez.
 
-  Az erőforráscsoportok, tanulmányozza hello [Azure Resource Manager áttekintése](../azure-resource-manager/resource-group-overview.md).
+  Átfogó információk az erőforráscsoportokkal kapcsolatban: [Az Azure Resource Manager áttekintése](../azure-resource-manager/resource-group-overview.md).
 
-7. Kattintson a **hely** tooselect hello földrajzi régióban hello tároló. Ez a beállítás meghatározza, hogy hello földrajzi régiót, ahol a biztonsági mentési adatokat küldi el.
+7. Kattintson a **Hely** elemre a tárolóhoz tartozó földrajzi régió kiválasztásához. Ez a választás határozza meg a földrajzi régiót, ahová az adatok biztonsági másolata el lesz küldve.
 
-8. A Recovery Services-tároló panel hello hello alján kattintson **létrehozása**.
+8. Kattintson a Recovery Services-tároló panel alján a **Létrehozás** gombra.
 
-    Recovery Services-tároló létrehozása toobe hello több percet is igénybe vehet. Hello állapot értesítések hello felső jobb területen hello portál figyelése. A tároló létrehozása után hello Recovery Services-tárolók listája jelenik meg. Ha több perc után sem látja a tárolót, kattintson a **Frissítés** gombra.
+    A Recovery Services-tároló létrehozása több percet is igénybe vehet. Figyelje az állapotértesítéseket a portál jobb felső területén. Miután a tároló létrejött, megjelenik a Recovery Services-tárolók listájában. Ha több perc után sem látja a tárolót, kattintson a **Frissítés** gombra.
 
     ![Kattintson a Frissítés gombra](./media/backup-try-azure-backup-in-10-mins/refresh-button.png)</br>
 
-    A tároló a Recovery Services-tárolók hello listája jelenik meg, ha készen áll a tooset hello adattároló redundanciája, amely áll.
+    Ha látja a tárolót a Recovery Services-tárolók listájában, készen áll tárhely-redundancia beállítására.
 
-### <a name="set-storage-redundancy-for-hello-vault"></a>Állítsa be az adattároló redundanciája, amely hello tároló
-Recovery Services-tároló létrehozásakor ellenőrizze, hogy adattároló redundanciája, amely konfigurált hello igényeinek megfelelően.
+### <a name="set-storage-redundancy-for-the-vault"></a>Tárhely-redundancia beállítása a tárolóhoz
+A Recovery Services-tároló létrehozásakor győződjön meg róla, hogy a tárhely-redundancia a saját igényei szerint van beállítva.
 
-1. A hello **Recovery Services-tárolók** paneljén kattintson hello új tárolóra.
+1. A **Recovery Services-tárolók** panelen kattintson az új tárolóra.
 
-    ![Válassza ki az új tároló hello a hello Recovery Services-tároló](./media/backup-try-azure-backup-in-10-mins/rs-vault-list.png)
+    ![A Recovery Services-tárolók listájából válassza ki az új tárolót](./media/backup-try-azure-backup-in-10-mins/rs-vault-list.png)
 
-    Hello tároló kiválasztásakor hello **Recovery Services-tároló** panel narrows és hello-beállítások panel (*hello tároló nevére hello hello felső tartalmaz*) és hello tároló Részletek panel megnyitása.
+    Ha kiválasztja a tárolót, a **Recovery Services-tároló** panel leszűkül, és a Beállítások panel (*amelynek tetején a tároló neve látható*), valamint a tároló részleteit tartalmazó panel nyílik meg.
 
-    ![Hello új tároló tárolási konfiguráció megtekintése](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration-2.png)
-2. Hello új tároló-beállítások panelen hello függőleges diák tooscroll le toohello kezelése szakasz használja, és kattintson **biztonsági infrastruktúra**.
-    hello biztonsági infrastruktúra panel nyílik meg.
-3. Hello biztonsági infrastruktúra paneljén kattintson **biztonsági mentési konfigurációhoz** tooopen hello **biztonsági mentési konfigurációhoz** panelen.
+    ![Az új tároló tárolási konfigurációjának beállítása](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration-2.png)
+2. Használja a függőleges csúszkát az új tároló Beállítások paneljén a legörgetéshez a Kezelés szakaszhoz, és kattintson a **Biztonsági mentési infrastruktúra** lehetőségre.
+    Megnyílik a Biztonsági mentési infrastruktúra panel.
+3. A Biztonsági mentési infrastruktúra panelen kattintson a **Biztonsági mentés konfigurációja** elemre a **Biztonsági mentés konfigurációja** panel megnyitásához.
 
-    ![Új tároló hello tárolási konfiguráció beállítása](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration.png)
-4. Válassza ki a hello megfelelő tárolási replikációs beállítás a tároló számára.
+    ![Az új tároló tárolási konfigurációjának beállítása](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration.png)
+4. Válassza ki a megfelelő tárolóreplikációs beállítást a tárolóhoz.
 
     ![a tároló konfigurálásának lehetőségei](./media/backup-try-azure-backup-in-10-mins/choose-storage-configuration.png)
 
-    Alapértelmezés szerint a tárolója georedundáns tárolással rendelkezik. Azure biztonságimásolat-tároláshoz-végpontként használatakor, továbbra is toouse **georedundáns**. Ha nem adja meg Azure biztonságimásolat-tároláshoz-végpontként, majd válasszon **helyileg redundáns**, amely csökkenti a hello Azure storage költségei. A [georedundáns](../storage/common/storage-redundancy.md#geo-redundant-storage) és a [helyileg redundáns](../storage/common/storage-redundancy.md#locally-redundant-storage) tárolási lehetőségekről többet olvashat ebben a [Tárhely-redundancia áttekintésben](../storage/common/storage-redundancy.md).
+    Alapértelmezés szerint a tárolója georedundáns tárolással rendelkezik. Ha az Azure-t használja az elsődleges biztonsági mentési tároló végpontjaként, folytassa a **georedundáns** beállítás használatát. Ha nem az Azure-t használja az elsődleges biztonsági mentési tároló végpontjaként, válassza a **Helyileg redundáns** lehetőséget, amely csökkenti az Azure Storage költségeit. A [georedundáns](../storage/common/storage-redundancy.md#geo-redundant-storage) és a [helyileg redundáns](../storage/common/storage-redundancy.md#locally-redundant-storage) tárolási lehetőségekről többet olvashat ebben a [Tárhely-redundancia áttekintésben](../storage/common/storage-redundancy.md).
 
 A tároló létrehozása után konfigurálja azt a fájlok és mappák biztonsági mentésére.
 
-## <a name="configure-hello-vault"></a>Hello tároló konfigurálása
-1. A Recovery Services tároló paneljén (hello tároló most létrehozott), a Bevezetés című szakaszt hello hello, kattintson a **biztonsági mentés**, végül a hello **Ismerkedés a biztonsági mentés** panelen válassza  **Biztonsági mentési cél**.
+## <a name="configure-the-vault"></a>A tároló konfigurálása
+1. A Recovery Services-tároló (az imént létrehozott tároló) paneljén a Bevezetés szakaszban kattintson a **Biztonsági mentés** elemre, majd a **Bevezetés a biztonsági mentés használatába** panelen válassza a **Biztonsági mentés célja** elemet.
 
     ![A biztonsági mentés célja panel megnyitása](./media/backup-try-azure-backup-in-10-mins/open-backup-settings.png)
 
-    Hello **biztonsági mentési cél** panel nyílik meg.
+    Megnyílik a **Biztonsági mentés célja** panel.
 
     ![A biztonsági mentés célja panel megnyitása](./media/backup-try-azure-backup-in-10-mins/backup-goal-blade.png)
 
-2. A hello **a számítási feladatok futtató?** legördülő menüben válassza **helyszíni**.
+2. A **Hol futnak az alkalmazások és szolgáltatások?** legördülő menüből válassza a **Helyszíni** lehetőséget.
 
     Azért kell a **Helyszíni** lehetőséget választania, mert a Windows Server- vagy Windows-számítógépe egy fizikai gép, amely nem az Azure része.
 
-3. A hello **miről szeretné, hogy toobackup?** menüjében válassza **fájlok és mappák**, és kattintson a **OK**.
+3. A **Miről szeretne biztonsági másolatot készíteni?** menüben válassza a **Fájlok és mappák** lehetőséget, és kattintson az **OK** gombra.
 
     ![Fájlok és mappák konfigurálása](./media/backup-try-azure-backup-in-10-mins/set-file-folder.png)
 
-    Az OK gombra kattintva jelölje megjelenése után következő túl**biztonsági mentési cél**, és hello **infrastruktúra előkészítése** panel nyílik meg.
+    Miután az OK gombra kattint, a **Biztonsági mentés célja** mellett megjelenik egy pipa, és megnyílik **Az infrastruktúra előkészítése** panel.
 
     ![Ha konfigurálta a biztonsági mentés célját, a következő lépés az infrastruktúra előkészítése](./media/backup-try-azure-backup-in-10-mins/backup-goal-configed.png)
 
-4. A hello **infrastruktúra előkészítése** panelen kattintson a **letöltése ügynök Windows vagy a Windows ügyfél**.
+4. **Az infrastruktúra előkészítése** panelen kattintson **A Windows Server- vagy a Windows-ügyfél ügynökének letöltése** elemre.
 
     ![infrastruktúra előkészítése](./media/backup-try-azure-backup-in-10-mins/choose-agent-for-server-client.png)
 
-    Ha a Windows Server alapvető használ, majd válassza a toodownload hello ügynök a Windows Server alapvető. Felbukkanó toorun kéri, vagy MARSAgentInstaller.exe menti.
+    Ha Windows Server Essential verziót használ, akkor a Windows Server Essential ügynökét töltse le. Egy előugró menü rákérdez, hogy futtatni vagy menteni kívánja-e a MARSAgentInstaller.exe fájlt.
 
     ![MARSAgentInstaller párbeszédpanel](./media/backup-try-azure-backup-in-10-mins/mars-installer-run-save.png)
 
-5. Hello letöltési megjelenő menüben, kattintson a **mentése**.
+5. A letöltési előugró menüben kattintson a **Mentés** gombra.
 
-    Alapértelmezés szerint hello **MARSagentinstaller.exe** fájl tooyour Letöltések mappába kerül. Hello telepítő befejezése után megjelenik egy előugró ablak, amely rákérdez, ha szeretné, hogy toorun hello telepítő, vagy nyissa meg a hello mappa.
+    Alapértelmezés szerint az **MARSagentinstaller.exe** fájlt a rendszer a Downloads mappába menti. Amikor a telepítő végzett, megjelenik egy előugró ablak, amely rákérdez, hogy szeretné-e futtatni a telepítőt, vagy megnyitni a mappát.
 
     ![infrastruktúra előkészítése](./media/backup-try-azure-backup-in-10-mins/mars-installer-complete.png)
 
-    Tooinstall hello ügynök még nincs szükség. Hello ügynök is telepíthet, miután letöltötte a hello tárolói hitelesítő adatokat.
+    Az ügynököt még nem kell telepíteni. A tároló hitelesítő adatainak letöltése után telepítheti az ügynököt.
 
-6. A hello **infrastruktúra előkészítése** panelen kattintson a **letöltése**.
+6. **Az infrastruktúra előkészítése** panelen kattintson a **Letöltés** elemre.
 
     ![a tároló hitelesítő adatainak letöltése](./media/backup-try-azure-backup-in-10-mins/download-vault-credentials.png)
 
-    hello tárolói hitelesítő adatok letöltése tooyour Letöltések mappába. Hello tárolói hitelesítő adatokat, akkor letöltés befejezése után megjelenik egy előugró ablak, amely rákérdez, ha azt szeretné tooopen, vagy hello hitelesítő adatok mentése. Kattintson a **Save** (Mentés) gombra. Ha véletlenül kattintson **nyitott**, lehetővé teszik a hello párbeszédpanel érintő tooopen hello tárolói hitelesítő adatokat, a művelet sikertelen. Hello tárolói hitelesítő adatok nem nyitható meg. A folytatáshoz toohello következő lépésre. hello tárolói hitelesítő adatok vannak hello Letöltések mappába.   
+    A tároló hitelesítő adatait a rendszer a Letöltések mappába menti. Miután a tároló hitelesítő adatainak letöltése befejeződött, megjelenik egy előugró ablak, amely rákérdez, hogy szeretné-e megnyitni vagy menteni a hitelesítő adatokat. Kattintson a **Save** (Mentés) gombra. Ha véletlenül a **Megnyitás** gombra kattint, hagyja, hogy sikertelen legyen a párbeszédpanel, amely megpróbálja megnyitni a tároló hitelesítő adatait. A tároló hitelesítő adatai nem nyithatók meg. Folytassa a következő lépéssel. A tároló hitelesítő adatai a Letöltések mappában találhatók.   
 
     ![a tároló hitelesítő adatainak letöltése befejeződött](./media/backup-try-azure-backup-in-10-mins/vault-credentials-downloaded.png)
 
-## <a name="install-and-register-hello-agent"></a>Telepítse és regisztrálja a hello ügynök
+## <a name="install-and-register-the-agent"></a>Az ügynök telepítése és regisztrálása
 
 > [!NOTE]
-> Lehetővé teszi biztonsági mentés hello Azure-portálon keresztül még nem érhető el. A fájlok és mappák hello Microsoft Azure Recovery Services Agent tooback használja.
+> A biztonsági mentés engedélyezése az Azure Portalon keresztül még nem érhető el. Használja a Microsoft Azure Recovery Services-ügynököt biztonsági másolat készítésére a fájlokról és mappákról.
 >
 
-1. Keresse meg és kattintson duplán a hello **MARSagentinstaller.exe** hello Letöltések mappába (vagy más mentett helyről).
+1. Keresse meg és kattintson duplán az **MARSagentinstaller.exe** fájlra a Letöltések mappában (vagy más mentési helyen).
 
-    hello telepítője biztosítja az üzenetből bontja ki, mert telepíti, és regisztrálja hello Recovery Services Agent ügynököt.
+    A telepítő egy sor üzenetet jelenít meg, miközben kibontja, telepíti és regisztrálja a Recovery Services-ügynököt.
 
     ![a Recovery Services-ügynök telepítőjének futtatása, hitelesítő adatok](./media/backup-try-azure-backup-in-10-mins/mars-installer-registration.png)
 
-2. Hello Microsoft Azure Recovery Services ügynök telepítő varázsló befejezéséhez. toocomplete hello varázsló kell:
+2. Végezze el a Microsoft Azure Recovery Services ügynök telepítővarázslójának lépéseit. A varázsló lépéseinek elvégzéséhez a következőket kell tennie:
 
-   * Válassza ki a hello telepítési és a gyorsítótár mappa.
-   * Adja meg a proxykiszolgáló kiszolgálóadatok használatakor a proxy server tooconnect toohello internet.
+   * Válasszon egy helyet a telepítés és a gyorsítótár mappája számára.
+   * Adja meg a proxykiszolgáló információit, ha proxykiszolgálóval csatlakozik az internethez.
    * Adja meg a felhasználónevének és jelszavának részleteit, ha hitelesített proxyt használ.
-   * Adja meg a letöltött hello tárolói hitelesítő adatokat
-   * Hello titkosítási jelszó mentse egy biztonságos helyre.
+   * Adja meg a tároló letöltött hitelesítő adatait.
+   * Mentse a titkosítási jelszót egy biztonságos helyen.
 
      > [!NOTE]
-     > Ha elveszíti vagy elfelejti hello jelszót, a Microsoft nem súgó hello biztonsági mentési adatok helyreállítását. Mentse a hello fájlt biztonságos helyen. A biztonsági mentés szükséges toorestore.
+     > Ha elveszíti vagy elfelejti a jelszót, a Microsoft nem tud segíteni az adatok biztonsági másolatának visszaállításában. Mentse a fájlt egy biztonságos helyen. Erre szükség van a biztonsági másolat visszaállításához.
      >
      >
 
-hello ügynök telepítve van, és a számítógép regisztrált toohello tárolóban. Most készen áll a tooconfigure, és a biztonsági mentés ütemezése.
+Az ügynök most telepítve van, és a gépe regisztrálva van a tárolóban. Készen áll a biztonsági mentés konfigurálására és ütemezésére.
 
 ## <a name="network-and-connectivity-requirements"></a>Hálózati és kapcsolati követelmények
 
-Ha a machine /-proxy korlátozott internet-hozzáféréssel, győződjön meg arról, hogy tűzfal beállításait a hello mcahine /-proxy konfigurált tooallow hello következő URL-címek: <br>
+Ha a gép/proxy korlátozott internet-hozzáféréssel rendelkezik, győződjön meg arról, hogy a tűzfalbeállításokban engedélyezve vannak a következő URL-címek: <br>
     1. www.msftncsi.com
     2. *.Microsoft.com
     3. *.WindowsAzure.com
     4. *.microsoftonline.com
-    5. *.windows.ne
+    5. *.windows.net
 
 ## <a name="back-up-your-files-and-folders"></a>Biztonsági másolat készítése a fájlokról és mappákról
-hello kezdeti biztonsági másolatot a két fő feladatokból áll:
+A kezdeti biztonsági mentésbe két fő feladat tartozik:
 
-* Hello biztonsági mentés ütemezése
-* Fájlok és mappák biztonsági mentése a hello első alkalommal
+* A biztonsági mentés ütemezése
+* A fájlok és mappák biztonsági mentése első alkalommal
 
-toocomplete hello kezdeti biztonsági másolatot, használjon hello Microsoft Azure Recovery Services Agent ügynököt.
+A kezdeti biztonsági mentés végrehajtásához használja a Microsoft Azure Recovery Services-ügynököt.
 
-### <a name="tooschedule-hello-backup-job"></a>tooschedule hello biztonsági mentési feladat
-1. Nyissa meg a hello Microsoft Azure Recovery Services Agent ügynököt. A megkereséséhez keressen rá a gépen a **Microsoft Azure Backup** kifejezésre.
+### <a name="to-schedule-the-backup-job"></a>A biztonsági mentési feladat ütemezése
+1. Nyissa meg a Microsoft Azure Recovery Services-ügynököt. A megkereséséhez keressen rá a gépen a **Microsoft Azure Backup** kifejezésre.
 
-    ![Indítsa el a hello Azure Recovery Services Agent ügynök](./media/backup-try-azure-backup-in-10-mins/snap-in-search.png)
-2. Hello Recovery Services Agent ügynököt, kattintson **biztonsági mentés ütemezése**.
+    ![Az Azure Recovery Services-ügynök indítása](./media/backup-try-azure-backup-in-10-mins/snap-in-search.png)
+2. A Recovery Services-ügynökben kattintson a **Biztonsági mentés ütemezése** gombra.
 
     ![Windows Server biztonsági mentés ütemezése](./media/backup-try-azure-backup-in-10-mins/schedule-first-backup.png)
-3. A hello bevezetés hello ütemezett biztonsági mentés varázsló lapján, kattintson a **következő**.
-4. Kattintson hello elemek kijelölése tooBackup lap **elemek hozzáadása**.
-5. Válassza ki a hello fájlok és mappák tooback szeretné, hogy fel, és kattintson a **gépházban**.
+3. A Biztonsági mentés ütemezése varázsló Első lépések oldalán kattintson a **Tovább** gombra.
+4. Az Elemek kijelölése biztonsági mentéshez oldalon kattintson az **Elemek hozzáadása** lehetőségre.
+5. Jelölje ki azokat a fájlokat és mappákat, amelyekről biztonsági másolatot szeretne készíteni, majd kattintson az **OK** gombra.
 6. Kattintson a **Tovább** gombra.
-7. A hello **adja meg a biztonsági mentés ütemezése** adja meg azokat a hello **biztonsági mentés ütemezése** kattintson **következő**.
+7. A **Biztonsági mentés ütemezésének megadása** lapon határozza meg a **biztonsági mentés ütemezését**, és kattintson a **Tovább** gombra.
 
     Napi (legfeljebb napi háromszori) vagy heti biztonsági mentéseket ütemezhet.
 
     ![Windows Server biztonsági mentés elemei](./media/backup-try-azure-backup-in-10-mins/specify-backup-schedule-close.png)
 
    > [!NOTE]
-   > Hogyan toospecify hello biztonsági mentés ütemezése kapcsolatos további információkért lásd: hello cikk [használata Azure biztonsági mentési tooreplace a szalag infrastruktúra](backup-azure-backup-cloud-as-tape.md).
+   > A biztonsági mentés ütemezésének meghatározásával kapcsolatos további információért tekintse meg a [Use Azure Backup to replace your tape infrastructure](backup-azure-backup-cloud-as-tape.md) (Az Azure Backup használata a szalagos infrastruktúra lecseréléséhez) című cikket.
    >
 
-8. A hello **válassza ki az adatmegőrzési** lapra, jelölje be hello **adatmegőrzési** a hello biztonsági másolatot.
+8. A **Megőrzési házirend kiválasztása** oldalon válassza ki a biztonsági másolat **megőrzési házirendjét**.
 
-    hello adatmegőrzési határozza meg, mennyi ideig hello biztonsági mentési adatokat tárolja. Ahelyett, hogy adja meg az összes biztonsági mentési pont "egyszerű policy", a másik adatmegőrzési hello biztonsági mentés esetén alapján is megadhat. Hello napi, heti, havi és éves megőrzési házirendek toomeet módosíthatja az igényeinek.
-9. Hello kezdeti biztonsági mentési típusának kiválasztása lapon válassza a hello kezdeti biztonsági mentés típusát. Hagyja hello beállítást **automatikusan hello hálózaton keresztül** kiválasztva, és kattintson **következő**.
+    A megőrzési házirend megadja, hogy mennyi ideig tárolódnak a biztonsági mentési adatok. Ahelyett, hogy mindegyik biztonsági mentési ponthoz „lapos házirendet” határozna meg, különböző megőrzési házirendeket határozhat meg a biztonsági másolat készítésének ideje alapján. Igényei szerint módosíthatja a napi, heti, havi és évi megőrzési házirendeket.
+9. A Kezdeti biztonsági mentés típusának kiválasztása oldalon válassza ki a kezdeti biztonsági mentés típusát. Hagyja bejelölve az **Automatikusan a hálózaton keresztül** beállítást, majd kattintson a **Tovább** gombra.
 
-    Biztonsági másolatot készíthet automatikusan hello hálózaton keresztül, vagy a biztonsági mentést készíthet offline állapotba. hello a cikk hátralévő része a biztonsági mentési automatikusan hello folyamatot írja le. Ha jobban szeret toodo offline biztonsági másolat, tekintse át a hello cikk [az Azure Backup Offline biztonsági másolat munkafolyamat](backup-azure-backup-import-export.md) további információt.
-10. A hello megerősítése lapon tekintse át hello adatokat, és kattintson **Befejezés**.
-11. Hello biztonsági mentési ütemezés létrehozása hello varázsló befejezése után kattintson **Bezárás**.
+    Automatikusan készíthet biztonsági másolatot a hálózaton keresztül, vagy offline készíthet biztonsági másolatot. Ezen cikk többi része az automatikus biztonsági mentés folyamatát írja le. Ha offline biztonsági mentést szeretne végezni, további információért tekintse meg az [Offline backup workflow in Azure Backup](backup-azure-backup-import-export.md) (Offline biztonsági mentési munkafolyamat az Azure Backupban) című cikket.
+10. A Jóváhagyás lapon ellenőrizze az információkat, majd kattintson a **Befejezés** gombra.
+11. Miután a varázsló befejezte a biztonsági mentési ütemezés létrehozását, kattintson a **Bezárás** gombra.
 
-### <a name="tooback-up-files-and-folders-for-hello-first-time"></a>az első alkalommal hello mappák és fájlok tooback
-1. Hello Recovery Services Agent ügynököt, kattintson **biztonsági másolat készítése most** toocomplete hello kezdeti összehangolása hello hálózaton keresztül.
+### <a name="to-back-up-files-and-folders-for-the-first-time"></a>A fájlok és mappák biztonsági mentése első alkalommal
+1. A Recovery Services-ügynökben kattintson a **Biztonsági mentés** gombra a hálózaton keresztüli kezdeti összehangolás befejezéséhez.
 
     ![Windows Server biztonsági másolat készítése](./media/backup-try-azure-backup-in-10-mins/backup-now.png)
-2. A hello megerősítése lapon, amely a biztonsági mentést most varázsló hello hello beállítások áttekintése hello gép tooback fogja használni. Ezután kattintson a **Biztonsági mentés** gombra.
-3. Kattintson a **Bezárás** tooclose hello varázsló. Ha a biztonsági mentési folyamat hello befejeződése előtt bezárja hello varázslót, hello varázsló toorun hello háttérben folytatódik.
+2. A Jóváhagyás lapon tekintse át azokat a beállításokat, amelyeket a Biztonsági másolat készítése varázsló a gép biztonsági mentéséhez fog használni. Ezután kattintson a **Biztonsági mentés** gombra.
+3. A varázsló bezárásához kattintson a **Bezárás** gombra. Ha bezárja a varázslót a biztonsági mentési folyamat befejezése előtt, a varázsló továbbra is fut a háttérben.
 
-Hello kezdeti biztonsági mentés befejezése után hello **feladata befejezve** állapota megjelenik hello biztonsági mentés konzolban.
+A kezdeti biztonsági mentés befejezése után a **Feladat befejezve** állapot jelenik meg a biztonsági mentési konzolon.
 
 ![IR befejezve](./media/backup-try-azure-backup-in-10-mins/ircomplete.png)
 
 ## <a name="questions"></a>Kérdései vannak?
-Ha kérdése van, vagy ha bármely új szolgáltatása része, toosee szeretné [visszajelzést küldhet](http://aka.ms/azurebackup_feedback).
+Ha kérdései vannak, vagy van olyan szolgáltatás, amelyről hallani szeretne, [küldjön visszajelzést](http://aka.ms/azurebackup_feedback).
 
 ## <a name="next-steps"></a>Következő lépések
 * További részletek a [Windows rendszerű gépek biztonsági mentéséről](backup-configure-vault.md).
 * Most, hogy biztonsági másolatot készített a fájlokról és mappákról, [kezelheti a tárlókat és a kiszolgálókat](backup-azure-manage-windows-server.md).
-* Ha szükség toorestore biztonsági másolat, akkor ez a cikk túl[fájlok tooa Windows számítógép visszaállítása](backup-azure-restore-windows-server.md).
+* Ha vissza kell állítania egy biztonsági másolatot, ezzel a cikkel [állíthat vissza fájlokat Windows rendszerű gépre](backup-azure-restore-windows-server.md).

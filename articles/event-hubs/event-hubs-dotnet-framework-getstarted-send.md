@@ -1,6 +1,6 @@
 ---
-title: ".NET-keretrendszer aaaSend események tooAzure Event Hubs használatával hello |} Microsoft Docs"
-description: "Ismerkedés az események küldése tooEvent hubok hello .NET-keretrendszer használatával"
+title: "Események küldése az Azure Event Hubsba a .NET-keretrendszer használatával | Microsoft Docs"
+description: "Bevezetés az események Event Hubsba való küldésébe a .NET-keretrendszer használatával"
 services: event-hubs
 documentationcenter: 
 author: sethmanheim
@@ -12,57 +12,57 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 06/12/2017
+ms.date: 10/10/2017
 ms.author: sethm
-ms.openlocfilehash: 05514546a6094096e4a3c800db058190076de80a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 16da4e1732445b2480daf18130ea74935c6e6c49
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="send-events-tooazure-event-hubs-using-hello-net-framework"></a>Események küldése tooAzure Event Hubs hello .NET-keretrendszer használatával
+# <a name="send-events-to-azure-event-hubs-using-the-net-framework"></a>Események küldése az Azure Event Hubsba a .NET-keretrendszer használatával
 
-## <a name="introduction"></a>Bevezetés
+## <a name="introduction"></a>Introduction (Bevezetés)
 
-Az Event Hubs szolgáltatás a csatlakoztatott eszközökről és alkalmazásokból származó nagy mennyiségű eseményadatot dolgoz fel (telemetria). Miután összegyűjtötte az adatokat az Event Hubs, egy tárolási fürt használatával hello adatok tárolására, vagy átalakíthatja egy valós idejű elemzési szolgáltató használatával. A felügyeleti teendők központjaként esemény és -feldolgozási képesség, modern alkalmazásarchitektúráknak, beleértve az eszközök internetes hálózatát (IoT) hello nyilvános kulcsokra épülő.
+Az Event Hubs szolgáltatás a csatlakoztatott eszközökről és alkalmazásokból származó nagy mennyiségű eseményadatot dolgoz fel (telemetria). Miután összegyűjtötte az adatokat az Event Hubsban, az adatok egy tárolási fürt használatával tárolhatja, vagy átalakíthatja egy valós idejű elemzési szolgáltató segítségével. Ez az átfogó eseménygyűjtési és -feldolgozási képesség kulcsfontosságú alkotóeleme a modern alkalmazásarchitektúráknak, beleértve az eszközök internetes hálózatát (IoT).
 
-Ez az oktatóanyag bemutatja, hogyan toouse hello [Azure-portálon](https://portal.azure.com) toocreate egy eseményközpontba. Azt is bemutatja, hogyan toosend események tooan eseményközpontba egy C# használatával írt Konzolalkalmazás használatával hello .NET-keretrendszer. tooreceive események hello .NET-keretrendszer használatával, lásd: hello [hello .NET-keretrendszer használatával események fogadásához](event-hubs-dotnet-framework-getstarted-receive-eph.md) a következő cikket, vagy kattintson a hello fogadó megfelelő nyelvi hello bal oldali tábla tartalmát.
+A jelen oktatóanyag bemutatja, hogyan használhatja az [Azure Portalt](https://portal.azure.com) egy eseményközpont létrehozásához. Azt is ismerteti, hogyan küldhet eseményeket egy eseményközpontba egy C# nyelven írt konzolalkalmazással a .NET-keretrendszer használatával. Az események a .NET-keretrendszerrel való fogadásáról lásd a [Események fogadása a .NET-keretrendszerrel](event-hubs-dotnet-framework-getstarted-receive-eph.md) című cikket, vagy kattintson a megfelelő fogadónyelvre a bal oldali tartalomjegyzékben.
 
-toocomplete ebben az oktatóanyagban a következő előfeltételek hello szüksége:
+Az oktatóanyag teljesítéséhez a következő előfeltételekre lesz szüksége:
 
-* [Microsoft Visual Studio 2015 vagy újabb](http://visualstudio.com). Ebben az oktatóanyagban hello képernyőképek használja a Visual Studio 2017.
+* [Microsoft Visual Studio 2015 vagy újabb](http://visualstudio.com). A jelen oktatóanyag képernyőképei a Visual Studio 2017-et használják.
 * Aktív Azure-fiók. Ha még nincs fiókja, néhány perc alatt létrehozhat egy ingyenes fiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/free/).
 
 ## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a>Event Hubs-névtér és eseményközpont létrehozása
 
-első lépés hello toouse hello [Azure-portálon](https://portal.azure.com) névtere a toocreate írja be az Event Hubs, és hello felügyeleti hitelesítő adatok az alkalmazás kell toocommunicate hello event hubs az beszerzése. toocreate névtér és az event hubs eljárással hello a [Ez a cikk](event-hubs-create.md), majd folytassa a hello ebben az oktatóanyagban a lépéseket követve.
+Első lépésként az [Azure Portalon](https://portal.azure.com) hozzon létre egy Event Hubs típusú névteret, és szerezze be az alkalmazása és az eseményközpont közötti kommunikációhoz szükséges felügyeleti hitelesítő adatokat. A névtér és az eseményközpont létrehozásához kövesse az [ebben a cikkben](event-hubs-create.md) olvasható eljárást, majd folytassa a jelen oktatóanyag további lépéseivel.
 
 ## <a name="create-a-sender-console-application"></a>Küldő konzolalkalmazás létrehozása
 
-Ebben a szakaszban egy által küldött események tooyour eseményközpont Windows konzolalkalmazást fog írni.
+Ebben a szakaszban egy Windows konzolalkalmazást fog írni, amely elküldi az eseményeket az eseményközpontjába.
 
-1. A Visual Studióban hozzon létre egy új Visual C# Asztalialkalmazás-projektet hello segítségével **Konzolalkalmazás** projektsablon. Név hello projekt **küldő**.
+1. Hozzon létre egy új Visual C# asztalialkalmazás-projektet a **Console Application** (Konzolalkalmazás) projektsablonnal. Adja a projektnek a **Sender** (Küldő) nevet.
    
     ![](./media/event-hubs-dotnet-framework-getstarted-send/create-sender-csharp1.png)
-2. A Megoldáskezelőben kattintson a jobb gombbal hello **küldő** projektre, és kattintson a **NuGet-csomagok kezelése megoldáshoz**. 
-3. Kattintson a hello **Tallózás** lapra, és keresse meg `Microsoft Azure Service Bus`. Kattintson a **telepítése**, és el kell fogadnia a használati feltételek hello. 
+2. A Solution Explorerben (Megoldáskezelőben) kattintson a jobb gombbal a **Sender** (Küldő) projektre, majd kattintson a **Manage NuGet Packages for Solution** (NuGet-csomagok kezelése megoldáshoz) parancsra. 
+3. Kattintson a **Browse** (Tallózás) lapra, és keressen a következőre: `WindowsAzure.ServiceBus`. Kattintson az **Install** (Telepítés) gombra, és fogadja el a használati feltételeket. 
    
     ![](./media/event-hubs-dotnet-framework-getstarted-send/create-sender-csharp2.png)
    
-    A Visual Studio letöltések, telepíti, és hozzáad egy hivatkozást toohello [Azure Service Bus library NuGet-csomag](https://www.nuget.org/packages/WindowsAzure.ServiceBus).
-4. Adja hozzá a következő hello `using` hello hello tetején utasítások **Program.cs** fájlt:
+    A Visual Studio letölti és telepíti az [Azure Service Bus library NuGet package](https://www.nuget.org/packages/WindowsAzure.ServiceBus) (Azure szolgáltatásbusz-könyvtár NuGet-csomag) elemet, és hozzáad egy rá mutató hivatkozást is.
+4. Adja hozzá a következő `using` utasításokat a **Program.cs** fájl elejéhez:
    
   ```csharp
   using System.Threading;
   using Microsoft.ServiceBus.Messaging;
   ```
-5. Adja hozzá a következő mezők toohello hello **Program** osztályhoz, lecserélve a helyőrző értékeket hello hello hello hello előző szakaszban létrehozott eseményközpont, és a korábban mentett hello névtérszintű kapcsolati karakterlánc nevét.
+5. Adja hozzá a következő mezőket a **Program** osztályhoz, lecserélve a helyőrző értékeket az előző szakaszban létrehozott eseményközpont nevével, valamint a korábban elmentett névtérszintű kapcsolati karakterlánccal.
    
   ```csharp
   static string eventHubName = "{Event Hub name}";
   static string connectionString = "{send connection string}";
   ```
-6. Adja hozzá a következő metódus toohello hello **Program** osztály:
+6. Adja hozzá a **Program** osztályhoz a következő módszert:
    
   ```csharp
   static void SendingRandomMessages()
@@ -88,23 +88,23 @@ Ebben a szakaszban egy által küldött események tooyour eseményközpont Wind
   }
   ```
    
-  Ez a metódus folyamatosan küldi az események tooyour eseményközpont 200-ms késleltetéssel.
-7. Végül adja hozzá a következő sorokat toohello hello **fő** módszert:
+  Ez a metódus folyamatosan küldi az eseményeket az eseményközpontjának, 200 ezredmásodperces késleltetéssel.
+7. Végül adja a következő sorokat a **Main** metódushoz:
    
   ```csharp
-  Console.WriteLine("Press Ctrl-C toostop hello sender process");
-  Console.WriteLine("Press Enter toostart now");
+  Console.WriteLine("Press Ctrl-C to stop the sender process");
+  Console.WriteLine("Press Enter to start now");
   Console.ReadLine();
   SendingRandomMessages();
   ```
-8. Hello program futtatása, és győződjön meg arról, hogy nincsenek-e hibák.
+8. Futtassa a programot, és ellenőrizze, hogy nincsenek-e hibák.
   
-Gratulálunk! Most elküldött üzenetek tooan eseményközpontot.
+Gratulálunk! Üzeneteket küldött egy eseményközpontba.
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy létrehozott egy működő alkalmazást, amely létrehoz egy eseményközpontot, és adatokat küld, továbbléphet a következő forgatókönyvek toohello:
+Most, hogy létrehozott egy működő alkalmazást, amely létrehoz egy eseményközpontot és adatokat is küld, továbbléphet a következő forgatókönyvekre:
 
-* [Event Processor Host hello eseményeket fogadni](event-hubs-dotnet-framework-getstarted-receive-eph.md)
+* [Események fogadása az Event Processor Host használatával](event-hubs-dotnet-framework-getstarted-receive-eph.md)
 * [Event Processor Host-referencia](/dotnet/api/microsoft.servicebus.messaging.eventprocessorhost)
 * [Event Hubs – áttekintés](event-hubs-what-is-event-hubs.md)
 

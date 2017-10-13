@@ -1,5 +1,5 @@
 ---
-title: "az Azure Linux virtuális gép az Oracle-Golden kapu aaaImplement |} Microsoft Docs"
+title: "Oracle Golden kapu valósítja meg az Azure Linux virtuális gép |} Microsoft Docs"
 description: "Gyorsan karban lehessen az Oracle Golden mentése és az Azure-alapú környezetben futó."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -15,27 +15,27 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: rclaus
-ms.openlocfilehash: 320cafd5d23ee472f0af9f92577bc6f432f65778
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a05711357d345267647c02e42336fd37c09e1bff
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="implement-oracle-golden-gate-on-an-azure-linux-vm"></a>Oracle Golden kapu valósítja meg az Azure Linux virtuális gép 
 
-hello Azure CLI használt toocreate és hello parancssorból vagy parancsfájlokban Azure-erőforrások kezeléséhez. Ez az útmutató adatokat hogyan toouse hello Azure CLI toodeploy egy 12c Oracle adatbázis-hello Azure piactér gyűjtemény lemezképből. 
+Az Azure CLI az Azure-erőforrások parancssorból vagy szkriptekkel történő létrehozására és kezelésére használható. Ez az útmutató részletesen használata az Azure parancssori felület telepítése az Azure piactér gyűjtemény lemezképről való 12c Oracle-adatbázishoz. 
 
-Ez a dokumentum lépésről lépésre bemutatja hogyan toocreate, telepíteni és beállítani az Oracle Golden kapu egy Azure virtuális gépen.
+Ez a dokumentum lépésről lépésre bemutatja létrehozása, telepítése és konfigurálása az Oracle Golden kapu egy Azure virtuális gépen.
 
-Mielőtt elkezdené, győződjön meg arról, hogy telepítve van az Azure CLI hello listájában. További információért lásd az [Azure CLI telepítési útmutatóját](https://docs.microsoft.com/cli/azure/install-azure-cli).
+A kezdés előtt győződjön meg arról, hogy az Azure CLI telepítve van. További információért lásd az [Azure CLI telepítési útmutatóját](https://docs.microsoft.com/cli/azure/install-azure-cli).
 
-## <a name="prepare-hello-environment"></a>Hello környezet előkészítése
+## <a name="prepare-the-environment"></a>A környezet előkészítése
 
-tooperform hello a Golden kapu Oracle telepítés kell toocreate két Azure-alapú virtuális gépek hello azonos rendelkezésre állási csoportot. hello Piactéri rendszerkép toocreate hello virtuális gépek használata **Oracle: Oracle-adatbázis-Ee:12.1.0.2:latest**.
+Az Oracle Golden kapu telepítés elvégzéséhez szüksége az azonos rendelkezésre állási készlet két Azure virtuális gépek létrehozásához. A Piactéri lemezképet hozhat létre a virtuális gépek **Oracle: Oracle-adatbázis-Ee:12.1.0.2:latest**.
 
-Is toobe Unix szerkesztő vi ismernie kell, és megismerheti a x11 (X Windows).
+Szükség Unix szerkesztő vi ismernie kell, és megismerheti a x11 (X Windows).
 
-hello az alábbiakban látható hello környezet konfigurációjának összefoglalása:
+Az alábbiakban áttekintjük a környezet konfigurációjának összefoglalása:
 > 
 > |  | **Elsődleges hely** | **Hely replikálása** |
 > | --- | --- | --- |
@@ -48,9 +48,9 @@ hello az alábbiakban látható hello környezet konfigurációjának összefogl
 > | **Golden kapu folyamat** |EXTORA |REPORA|
 
 
-### <a name="sign-in-tooazure"></a>Jelentkezzen be tooAzure 
+### <a name="sign-in-to-azure"></a>Bejelentkezés az Azure-ba 
 
-Jelentkezzen be Azure előfizetés hello tooyour [az bejelentkezési](/cli/azure/#login) parancsot. Ezután kövesse hello képernyőn megjelenő utasításokat.
+Jelentkezzen be Azure előfizetés a [az bejelentkezési](/cli/azure/#login) parancsot. Ezután kövesse a képernyőn megjelenő utasításokat.
 
 ```azurecli
 az login
@@ -58,9 +58,9 @@ az login
 
 ### <a name="create-a-resource-group"></a>Hozzon létre egy erőforráscsoportot
 
-Hozzon létre egy erőforráscsoportot hello [az csoport létrehozása](/cli/azure/group#create) parancsot. Egy Azure erőforráscsoport egy olyan logikai tároló mely Azure-erőforrások vannak telepítve és onnan, ami által kezelhető legyen. 
+Hozzon létre egy erőforráscsoportot az [az group create](/cli/azure/group#create) paranccsal. Egy Azure erőforráscsoport egy olyan logikai tároló mely Azure-erőforrások vannak telepítve és onnan, ami által kezelhető legyen. 
 
-hello alábbi példa létrehoz egy erőforráscsoportot `myResourceGroup` a hello `westus` helyét.
+A következő példában létrehozunk egy `westus` nevű erőforráscsoportot a `myResourceGroup` helyen.
 
 ```azurecli
 az group create --name myResourceGroup --location westus
@@ -68,7 +68,7 @@ az group create --name myResourceGroup --location westus
 
 ### <a name="create-an-availability-set"></a>Rendelkezésre állási csoport létrehozása
 
-a következő lépés hello, kötelező, de ajánlott. További információkért lásd: [Azure rendelkezésre állási készletek útmutató](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines).
+A következő lépés az opcionális de javasolt. További információkért lásd: [Azure rendelkezésre állási készletek útmutató](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines).
 
 ```azurecli
 az vm availability-set create \
@@ -80,9 +80,9 @@ az vm availability-set create \
 
 ### <a name="create-a-virtual-machine"></a>Virtuális gép létrehozása
 
-Hozzon létre egy virtuális gép hello [az virtuális gép létrehozása](/cli/azure/vm#create) parancsot. 
+Hozzon létre egy virtuális gépet az [az vm create](/cli/azure/vm#create) paranccsal. 
 
-hello alábbi példa létrehoz két virtuális gépek nevű `myVM1` és `myVM2`. SSH-kulcsok létrehozása, ha még nem léteznek a kulcs alapértelmezett helye. toouse egy adott kulcsok beállításához használja a hello `--ssh-key-value` lehetőséget.
+Az alábbi példakód létrehozza nevű két virtuális gép `myVM1` és `myVM2`. SSH-kulcsok létrehozása, ha még nem léteznek a kulcs alapértelmezett helye. Ha konkrét kulcsokat szeretné használni, használja az `--ssh-key-value` beállítást.
 
 #### <a name="create-myvm1-primary"></a>Hozzon létre myVM1 (elsődleges):
 ```azurecli
@@ -95,7 +95,7 @@ az vm create \
      --generate-ssh-keys \
 ```
 
-Hello a virtuális gép létrehozása, miután hello Azure CLI információkat a következő példa hasonló toohello jeleníti meg. (Jegyezze fel a hello `publicIpAddress`. Ez a cím az használt tooaccess hello VM.)
+A virtuális gép létrehozása után az Azure parancssori felület információit mutatja meg az alábbi példához hasonló. (Vegye figyelembe a `publicIpAddress`. Ez a cím eléréséhez használt virtuális gép.)
 
 ```azurecli
 {
@@ -121,13 +121,13 @@ az vm create \
      --generate-ssh-keys \
 ```
 
-Jegyezze fel a hello `publicIpAddress` , valamint a létrehozása után.
+Vegye figyelembe a `publicIpAddress` , valamint a létrehozása után.
 
-### <a name="open-hello-tcp-port-for-connectivity"></a>Nyissa meg a TCP-portját hello kapcsolat
+### <a name="open-the-tcp-port-for-connectivity"></a>Nyissa meg a TCP-portot a kapcsolatot
 
-következő lépés hello tooconfigure külső végpontok száma, amelyek lehetővé teszik a távoli tooaccess hello Oracle-adatbázishoz. tooconfigure hello külső végpontok száma, futtassa a következő parancsok hello.
+A következő lépés, hogy konfigurálja a külső végpontok száma, amelyek lehetővé teszik, hogy távolról fér hozzá az Oracle-adatbázishoz. A külső végpontok száma konfigurálásához futtassa a következő parancsokat.
 
-#### <a name="open-hello-port-for-myvm1"></a>Nyissa meg a hello port myVM1:
+#### <a name="open-the-port-for-myvm1"></a>Nyissa meg a myVM1 portja:
 
 ```azurecli
 az network nsg rule create --resource-group myResourceGroup\
@@ -137,7 +137,7 @@ az network nsg rule create --resource-group myResourceGroup\
     --destination-address-prefix '*' --destination-port-range 1521 --access allow
 ```
 
-hello eredmények alábbihoz hasonló toohello válasz a következő:
+Az eredményeket a következő válasz hasonlóan kell kinéznie:
 
 ```bash
 {
@@ -158,7 +158,7 @@ hello eredmények alábbihoz hasonló toohello válasz a következő:
 }
 ```
 
-#### <a name="open-hello-port-for-myvm2"></a>Nyissa meg a hello port myVM2:
+#### <a name="open-the-port-for-myvm2"></a>Nyissa meg a myVM2 portja:
 
 ```azurecli
 az network nsg rule create --resource-group myResourceGroup\
@@ -168,25 +168,25 @@ az network nsg rule create --resource-group myResourceGroup\
     --destination-address-prefix '*' --destination-port-range 1521 --access allow
 ```
 
-### <a name="connect-toohello-virtual-machine"></a>Csatlakoztassa toohello virtuális gépet
+### <a name="connect-to-the-virtual-machine"></a>Csatlakozás a virtuális géphez
 
-Használjon hello következő parancsot a toocreate egy hello virtuális gép SSH-munkamenetet. Cserélje le hello IP-cím hello `publicIpAddress` a virtuális gép.
+Használja az alábbi parancsot egy SSH-munkamenet létrehozásához a virtuális géphez. Cserélje le az IP-címet a virtuális gépe `publicIpAddress` címére.
 
 ```bash 
 ssh <publicIpAddress>
 ```
 
-### <a name="create-hello-database-on-myvm1-primary"></a>Adatbázis létrehozásához. hello myVM1 (elsődleges)
+### <a name="create-the-database-on-myvm1-primary"></a>Létrehozza az adatbázist az myVM1 (elsődleges)
 
-hello Oracle szoftver már telepítve van hello Piactéri lemezképhez, így a következő lépésre hello tooinstall hello adatbázis. 
+Az Oracle szoftver már telepítve van a Piactéri lemezképhez, így a következő lépés az adatbázis telepítéséhez. 
 
-Hello szoftvert futtató hello "oracle" felügyelő:
+Futtassa a szoftvert az "oracle" felügyelő:
 
 ```bash
 sudo su - oracle
 ```
 
-hello adatbázis létrehozása:
+Az adatbázis létrehozása:
 
 ```bash
 $ dbca -silent \
@@ -207,7 +207,7 @@ $ dbca -silent \
    -storageType FS \
    -ignorePreReqs
 ```
-Kimenetek alábbihoz hasonló toohello válasz a következő:
+Kimenetének létrehozása a következő válasz hasonlóan kell kinéznie:
 
 ```bash
 Copying database files
@@ -236,10 +236,10 @@ Completing Database Creation
 Creating Pluggable Databases
 78% complete
 100% complete
-Look at hello log file "/u01/app/oracle/cfgtoollogs/dbca/cdb1/cdb1.log" for more details.
+Look at the log file "/u01/app/oracle/cfgtoollogs/dbca/cdb1/cdb1.log" for more details.
 ```
 
-Hello ORACLE_SID és ORACLE_HOME változók megadása.
+A ORACLE_SID és ORACLE_HOME változók megadása.
 
 ```bash
 $ ORACLE_HOME=/u01/app/oracle/product/12.1.0/dbhome_1; export ORACLE_HOME
@@ -247,7 +247,7 @@ $ ORACLE_SID=gg1; export ORACLE_SID
 $ LD_LIBRARY_PATH=ORACLE_HOME/lib; export LD_LIBRARY_PATH
 ```
 
-Szükség esetén ORACLE_HOME és ORACLE_SID toohello .bashrc fájl, adhat hozzá, hogy ezek a beállítások a későbbi bejelentkezések lesznek mentve:
+Szükség esetén adhat hozzá ORACLE_HOME és ORACLE_SID .bashrc fájlt úgy, hogy ezek a beállítások a későbbi bejelentkezések lesznek mentve:
 
 ```bash
 # add oracle home
@@ -264,12 +264,12 @@ $ sudo su - oracle
 $ lsnrctl start
 ```
 
-### <a name="create-hello-database-on-myvm2-replicate"></a>Hello adatbázis létrehozása a következőn myVM2 (replikáció)
+### <a name="create-the-database-on-myvm2-replicate"></a>Az adatbázis létrehozása a következőn myVM2 (replikáció)
 
 ```bash
 sudo su - oracle
 ```
-hello adatbázis létrehozása:
+Az adatbázis létrehozása:
 
 ```bash
 $ dbca -silent \
@@ -290,7 +290,7 @@ $ dbca -silent \
    -storageType FS \
    -ignorePreReqs
 ```
-Hello ORACLE_SID és ORACLE_HOME változók megadása.
+A ORACLE_SID és ORACLE_HOME változók megadása.
 
 ```bash
 $ ORACLE_HOME=/u01/app/oracle/product/12.1.0/dbhome_1; export ORACLE_HOME
@@ -298,7 +298,7 @@ $ ORACLE_SID=cdb1; export ORACLE_SID
 $ LD_LIBRARY_PATH=ORACLE_HOME/lib; export LD_LIBRARY_PATH
 ```
 
-Szükség esetén is felvett ORACLE_HOME és ORACLE_SID toohello .bashrc fájlt, így ezek a beállítások lesznek mentve a későbbi bejelentkezések.
+Szükség esetén is hozzáadott ORACLE_HOME és ORACLE_SID .bashrc fájlt úgy, hogy ezek a beállítások lesznek mentve a későbbi bejelentkezések.
 
 ```bash
 # add oracle home
@@ -316,7 +316,7 @@ $ lsnrctl start
 ```
 
 ## <a name="configure-golden-gate"></a>Golden kapu beállítása 
-tooconfigure Golden kapu, ebben a szakaszban hello lépéseket.
+Golden kapu konfigurálásához lépéseket az ebben a szakaszban.
 
 ### <a name="enable-archive-log-mode-on-myvm1-primary"></a>Archív napló mód a myVM1 (elsődleges) engedélyezése
 
@@ -346,24 +346,24 @@ SQL> EXIT;
 ```
 
 ### <a name="download-golden-gate-software"></a>Golden kapu szoftver letöltése
-toodownload és hello Oracle Golden kapu szoftver, a következő lépéseket teljes hello előkészítése:
+Töltse le, és az Oracle Golden kapu szoftver előkészítése, végezze el az alábbi lépéseket:
 
-1. Töltse le a hello **fbo_ggs_Linux_x64_shiphome.zip** hello fájlt [Oracle Golden kapu letöltési oldala](http://www.oracle.com/technetwork/middleware/goldengate/downloads/index.html). Hello alatt töltse le a cím **Oracle GoldenGate 12.x.x.x az Oracle Linux x86-64**, .zip fájlokat toodownload készlete kell lennie.
+1. Töltse le a **fbo_ggs_Linux_x64_shiphome.zip** fájlt a [Oracle Golden kapu letöltési oldala](http://www.oracle.com/technetwork/middleware/goldengate/downloads/index.html). A letöltési címben **Oracle GoldenGate 12.x.x.x az Oracle Linux x86-64**, kell lennie a .zip fájlokat letölteni.
 
-2. Hello .zip fájlokat tooyour ügyfélszámítógép letöltése után használja a biztonságos másolási protokoll (SCP) toocopy hello fájlok tooyour VM:
+2. Miután letöltötte a .zip fájlokat az ügyfélszámítógépre, használja a biztonságos másolási protokoll (SCP) a fájlok másolása a virtuális Gépet:
 
   ```bash
   $ scp fbo_ggs_Linux_x64_shiphome.zip <publicIpAddress>:<folder>
   ```
 
-3. Helyezze át a hello .zip fájlokat toohello **/ opt** mappát. Az alábbiak szerint módosítsa a hello fájlok hello tulajdonosa:
+3. Helyezze át a .zip fájlokat a **/ opt** mappát. Az alábbiak szerint módosítsa a fájlok tulajdonosa:
 
   ```bash
   $ sudo su -
   # mv <folder>/*.zip /opt
   ```
 
-4. Bontsa ki a hello fájlok (telepítés hello Linux csomagolja ki segédprogram Ha még nincs telepítve van):
+4. Bontsa ki a fájlokat (telepítés a Linux csomagolja ki segédprogram Ha még nincs telepítve van):
 
   ```bash
   # yum install unzip
@@ -377,24 +377,24 @@ toodownload és hello Oracle Golden kapu szoftver, a következő lépéseket tel
   # chown -R oracle:oinstall /opt/fbo_ggs_Linux_x64_shiphome
   ```
 
-### <a name="prepare-hello-client-and-vm-toorun-x11-for-windows-clients-only"></a>Előkészítése hello ügyfél és a virtuális gép toorun x11 (csak Windows-ügyfelek)
+### <a name="prepare-the-client-and-vm-to-run-x11-for-windows-clients-only"></a>Az ügyfél és a virtuális gép számára való futás x11 (csak Windows-ügyfelek) előkészítése
 Ez az egy opcionális lépés. Ezt a lépést kihagyhatja, ha a Linux ügyfelet kell használnia, vagy már rendelkezik x11 beállítása.
 
-1. Töltse le a PuTTY és Xming tooyour Windows-számítógép:
+1. Töltse le a PuTTY és Xming a Windows rendszerű számítógépen:
 
   * [Töltse le a PuTTY](http://www.putty.org/)
   * [Töltse le a Xming](https://xming.en.softonic.com/)
 
-2.  PuTTY telepítése után a PuTTY mappát (például, C:\Program Files\PuTTY) hello, puttygen.exe (PuTTY kulcs generátor) futtatásához.
+2.  Miután telepítette a PuTTY, a PuTTY mappában (például, C:\Program Files\PuTTY), futtassa a puttygen.exe (PuTTY kulcs generátor).
 
 3.  A PuTTY Megosztottelérésikulcs-készítő:
 
-  - a kulcs, jelölje be hello toogenerate **Generate** gombra.
-  - Hello kulcs hello tartalom másolása (**Ctrl + C**).
-  - Jelölje be hello **mentés titkos kulcs** gombra.
-  - Figyelmen kívül, amely akkor jelenik meg, majd válassza ki a hello figyelmeztetést **OK**.
+  - A kulcs létrehozásához válassza ki a **Generate** gombra.
+  - Másolja a kulcs tartalmát (**Ctrl + C**).
+  - Válassza ki a **mentés titkos kulcs** gombra.
+  - Figyelmen kívül hagyhatja a figyelmeztetést, amely akkor jelenik meg, majd válassza ki **OK**.
 
-    ![Hello PuTTY megosztottelérésikulcs-készítő oldalát bemutató képernyőkép](./media/oracle-golden-gate/puttykeygen.png)
+    ![A PuTTY megosztottelérésikulcs-készítő oldalát bemutató képernyőkép](./media/oracle-golden-gate/puttykeygen.png)
 
 4.  A virtuális gépen, futtassa az alábbi parancsokat:
 
@@ -404,61 +404,61 @@ Ez az egy opcionális lépés. Ezt a lépést kihagyhatja, ha a Linux ügyfelet 
   $ cd .ssh
   ```
 
-5. Hozzon létre egy fájlt **authorized_keys**. Hello kulcs tartalmát hello illessze be ezt a fájlt, és mentse hello fájlt.
+5. Hozzon létre egy fájlt **authorized_keys**. A kulcs tartalmának beillesztése a fájlban, és mentse a fájlt.
 
   > [!NOTE]
-  > hello kulcs tartalmaznia kell a hello karakterlánc `ssh-rsa`. Hello hello kulcs tartalmát is, egy egyszerű szövegsor kell lennie.
+  > A kulcs hossza csak a karakterlánc `ssh-rsa`. A kulcs tartalmát is, egy egyszerű szövegsor kell lennie.
   >  
 
-6. Indítsa el a PuTTY alkalmazást. A hello **kategória** ablaktáblán válassza előbb **kapcsolat** > **SSH** > **Auth**. A hello **hitelesítéshez titkos kulcsfájl** mezőbe keresse meg a korábban létrehozott toohello kulcs.
+6. Indítsa el a PuTTY alkalmazást. Az a **kategória** ablaktáblán válassza előbb **kapcsolat** > **SSH** > **Auth**. Az a **hitelesítéshez titkos kulcsfájl** mezőben tallózással keresse meg a korábban létrehozott kulcsot.
 
-  ![Hello titkos kulcs beállítása oldalát bemutató képernyőkép](./media/oracle-golden-gate/setprivatekey.png)
+  ![A titkos kulcs beállítása oldalát bemutató képernyőkép](./media/oracle-golden-gate/setprivatekey.png)
 
-7. A hello **kategória** ablaktáblán válassza előbb **kapcsolat** > **SSH** > **X11**. Válassza ki hello **engedélyezése X11 továbbítási** mezőbe.
+7. Az a **kategória** ablaktáblán válassza előbb **kapcsolat** > **SSH** > **X11**. Válassza ki a **engedélyezése X11 továbbítási** mezőbe.
 
-  ![Hello engedélyezése X11 oldalát bemutató képernyőkép](./media/oracle-golden-gate/enablex11.png)
+  ![Az engedélyezés X11 oldalát bemutató képernyőkép](./media/oracle-golden-gate/enablex11.png)
 
-8. A hello **kategória** ablaktáblában lépjen túl**munkamenet**. Adja meg a hello állomásadatai, majd válassza ki **nyitott**.
+8. Az a **kategória** ablaktáblában lépjen **munkamenet**. Adja meg a gazdagép adatokat, majd válassza ki **nyitott**.
 
-  ![Hello munkamenet oldalát bemutató képernyőkép](./media/oracle-golden-gate/puttysession.png)
+  ![A munkamenet oldalát bemutató képernyőkép](./media/oracle-golden-gate/puttysession.png)
 
 ### <a name="install-golden-gate-software"></a>Golden kapu szoftver telepítése
 
-tooinstall Oracle Golden kapu, teljes hello a következő lépéseket:
+Oracle Golden kapu telepítéséhez kövesse az alábbi lépéseket:
 
-1. Jelentkezzen be a oracle felhasználóként. (A jelszó megadása nélkül képes toosign kell lennie.) Győződjön meg arról, hogy fut-e Xming, hello telepítés megkezdése előtt.
+1. Jelentkezzen be a oracle felhasználóként. (Kell használva jelentkezhet be a jelszó megadása nélkül.) Győződjön meg arról, hogy fut-e Xming, a telepítés megkezdése előtt.
  
   ```bash
   $ cd /opt/fbo_ggs_Linux_x64_shiphome/Disk1
   $ ./runInstaller
   ```
-2. Válassza ki az "Oracle adatbázis 12c Oracle GoldenGate". Válassza ki **következő** toocontinue.
+2. Válassza ki az "Oracle adatbázis 12c Oracle GoldenGate". Válassza ki **tovább** a folytatáshoz.
 
-  ![Képernyőfelvétel a hello telepítő telepítési kiválasztása lap](./media/oracle-golden-gate/golden_gate_install_01.png)
+  ![A telepítő telepítési válasszon oldalát bemutató képernyőkép](./media/oracle-golden-gate/golden_gate_install_01.png)
 
-3. Hello szoftver helyének módosítása. Válassza ki hello **Start Manager** mezőben, és írja be a hello adatbázis helye. Válassza ki **következő** toocontinue.
+3. Módosíthatja a szoftver helyét. Válassza ki a **Start Manager** mezőbe, majd adja meg az adatbázis helyén. Válassza ki **tovább** a folytatáshoz.
 
-  ![Képernyőfelvétel a hello telepítési kiválasztása lap](./media/oracle-golden-gate/golden_gate_install_02.png)
+  ![A telepítés válasszon oldalát bemutató képernyőkép](./media/oracle-golden-gate/golden_gate_install_02.png)
 
-4. Módosítsa hello készlet könyvtárat, majd válassza ki **következő** toocontinue.
+4. Módosítsa a készlet könyvtárat, majd válassza ki **tovább** a folytatáshoz.
 
-  ![Képernyőfelvétel a hello telepítési kiválasztása lap](./media/oracle-golden-gate/golden_gate_install_03.png)
+  ![A telepítés válasszon oldalát bemutató képernyőkép](./media/oracle-golden-gate/golden_gate_install_03.png)
 
-5. A hello **összegzés** képernyőn válassza ki **telepítése** toocontinue.
+5. Az a **összegzés** képernyőn válassza ki **telepítése** folytatja.
 
-  ![Képernyőfelvétel a hello telepítő telepítési kiválasztása lap](./media/oracle-golden-gate/golden_gate_install_04.png)
+  ![A telepítő telepítési válasszon oldalát bemutató képernyőkép](./media/oracle-golden-gate/golden_gate_install_04.png)
 
-6. Előfordulhat, hogy a kért toorun parancsfájl "legfelső szintű". Ha igen, nyisson meg egy külön munkamenet ssh toohello VM, sudo tooroot, és futtassa hello parancsfájl. Válassza ki **OK** továbbra is.
+6. "Legfelső szintű" parancsfájllal kérheti. Ha igen, nyisson meg egy külön munkamenet ssh a virtuális gépre, a sudo legfelső szintű, és futtassa a parancsfájl. Válassza ki **OK** továbbra is.
 
-  ![Képernyőfelvétel a hello telepítési kiválasztása lap](./media/oracle-golden-gate/golden_gate_install_05.png)
+  ![A telepítés válasszon oldalát bemutató képernyőkép](./media/oracle-golden-gate/golden_gate_install_05.png)
 
-7. Hello telepítésének befejezését, válassza ki a **Bezárás** toocomplete hello folyamat.
+7. Ha a telepítés befejeződött, válassza ki a **Bezárás** a folyamat befejezéséhez.
 
-  ![Képernyőfelvétel a hello telepítési kiválasztása lap](./media/oracle-golden-gate/golden_gate_install_06.png)
+  ![A telepítés válasszon oldalát bemutató képernyőkép](./media/oracle-golden-gate/golden_gate_install_06.png)
 
 ### <a name="set-up-service-on-myvm1-primary"></a>Állítsa be a szolgáltatást a myVM1 (elsődleges)
 
-1. Hozzon létre vagy hello tnsnames.ora fájl frissítése:
+1. Hozzon létre, vagy frissítse a tnsnames.ora fájlt:
 
   ```bash
   $ cd $ORACLE_HOME/network/admin
@@ -491,29 +491,29 @@ tooinstall Oracle Golden kapu, teljes hello a következő lépéseket:
     )
   ```
 
-2. Hello Golden kapu tulajdonosi és felhasználói fiókokat hozhat létre.
+2. A Golden kapu tulajdonosi és felhasználói fiókokat hozhat létre.
 
   > [!NOTE]
-  > hello tulajdonos fióknak rendelkeznie kell a C ## előtag.
+  > A tulajdonos fióknak C ## előtaggal kell rendelkeznie.
   >
 
     ```bash
     $ sqlplus / as sysdba
     SQL> CREATE USER C##GGADMIN identified by ggadmin;
     SQL> EXEC dbms_goldengate_auth.grant_admin_privilege('C##GGADMIN',container=>'ALL');
-    SQL> GRANT DBA tooC##GGADMIN container=all;
+    SQL> GRANT DBA to C##GGADMIN container=all;
     SQL> connect C##GGADMIN/ggadmin
     SQL> ALTER SESSION SET CONTAINER=PDB1;
     SQL> EXIT;
     ```
 
-3. Hello Golden kapu teszt felhasználói fiók létrehozása:
+3. Hozza létre a Golden kapu tesztfelhasználói fiókja:
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ sqlplus system/OraPasswd1@pdb1
   SQL> CREATE USER test identified by test DEFAULT TABLESPACE USERS TEMPORARY TABLESPACE TEMP;
-  SQL> GRANT connect, resource, dba tootest;
+  SQL> GRANT connect, resource, dba TO test;
   SQL> ALTER USER test QUOTA 100M on USERS;
   SQL> connect test/test@pdb1
   SQL> @demo_ora_create
@@ -521,9 +521,9 @@ tooinstall Oracle Golden kapu, teljes hello a következő lépéseket:
   SQL> EXIT;
   ```
 
-4. Hello kivonat paraméterfájl konfigurálása.
+4. A kivonat paraméterfájl konfigurálása.
 
- Indítsa el a hello arany kapu parancssori felület (ggsci):
+ Indítsa el az arany kapu parancssori felület (ggsci):
 
   ```bash
   $ sudo su - oracle
@@ -537,7 +537,7 @@ tooinstall Oracle Golden kapu, teljes hello a következő lépéseket:
 
   GGSCI> EDIT PARAMS EXTORA
   ```
-5. Adja hozzá a következő toohello kivonat paraméter fájl (parancsokkal vi) hello. Nyomja meg az Esc billentyűt, ': wq! " toosave fájlt. 
+5. Adja hozzá a következőket a KIVONATOT paraméterfájl (vi parancsok segítségével). Nyomja meg az Esc billentyűt, ': wq! " sikerült menteni a fájlt. 
 
   ```bash
   EXTRACT EXTORA
@@ -578,7 +578,7 @@ tooinstall Oracle Golden kapu, teljes hello a következő lépéseket:
 
   GGSCI>  START EXTRACT EXTORA
 
-  Sending START request tooMANAGER ...
+  Sending START request to MANAGER ...
   EXTRACT EXTORA starting
 
   GGSCI > info all
@@ -588,7 +588,7 @@ tooinstall Oracle Golden kapu, teljes hello a következő lépéseket:
   MANAGER     RUNNING
   EXTRACT     RUNNING     EXTORA      00:00:11      00:00:04
   ```
-Ebben a lépésben található hello Állapotváltozás, később, a másik szakaszban használt indítása:
+Ebben a lépésben a kiindulási Állapotváltozás, később, a másik szakaszban használt keresése:
 
   ```bash
   $ sqlplus / as sysdba
@@ -620,7 +620,7 @@ Ebben a lépésben található hello Állapotváltozás, később, a másik szak
 ### <a name="set-up-service-on-myvm2-replicate"></a>A myVM2 szolgáltatás beállítása (replikáció)
 
 
-1. Hozzon létre vagy hello tnsnames.ora fájl frissítése:
+1. Hozzon létre, vagy frissítse a tnsnames.ora fájlt:
 
   ```bash
   $ cd $ORACLE_HOME/network/admin
@@ -659,7 +659,7 @@ Ebben a lépésben található hello Állapotváltozás, később, a másik szak
   $ sqlplus / as sysdba
   SQL> alter session set container = pdb1;
   SQL> create user repuser identified by rep_pass container=current;
-  SQL> grant dba toorepuser;
+  SQL> grant dba to repuser;
   SQL> exec dbms_goldengate_auth.grant_admin_privilege('REPUSER',container=>'PDB1');
   SQL> connect repuser/rep_pass@pdb1 
   SQL> EXIT;
@@ -671,14 +671,14 @@ Ebben a lépésben található hello Állapotváltozás, később, a másik szak
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ sqlplus system/OraPasswd1@pdb1
   SQL> CREATE USER test identified by test DEFAULT TABLESPACE USERS TEMPORARY TABLESPACE TEMP;
-  SQL> GRANT connect, resource, dba tootest;
+  SQL> GRANT connect, resource, dba TO test;
   SQL> ALTER USER test QUOTA 100M on USERS;
   SQL> connect test/test@pdb1
   SQL> @demo_ora_create
   SQL> EXIT;
   ```
 
-4. REPLICAT paraméter fájl tooreplicate változásai: 
+4. A paraméterfájl REPLICAT replikálni a módosításokat: 
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
@@ -718,22 +718,22 @@ Ebben a lépésben található hello Állapotváltozás, később, a másik szak
   GGSCI> ADD REPLICAT INITREP, SPECIALRUN
   ```
 
-### <a name="set-up-hello-replication-myvm1-and-myvm2"></a>Hello replikációjának (myVM1 és myVM2)
+### <a name="set-up-the-replication-myvm1-and-myvm2"></a>A replikáció (myVM1 és myVM2) beállítása
 
-#### <a name="1-set-up-hello-replication-on-myvm2-replicate"></a>1. A replikáció myVM2 hello beállítása (replikáció)
+#### <a name="1-set-up-the-replication-on-myvm2-replicate"></a>1. A replikáció myVM2 beállítása (replikáció)
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ ./ggsci
   GGSCI> EDIT PARAMS MGR
   ```
-Hello fájl frissítése hello alábbira:
+Frissítse a fájlt a következő:
 
   ```bash
   PORT 7809
   ACCESSRULE, PROG *, IPADDR *, ALLOW
   ```
-Indítsa újra a hello kezelő szolgáltatás:
+Indítsa újra a kezelő szolgáltatás:
 
   ```bash
   GGSCI> STOP MGR
@@ -741,9 +741,9 @@ Indítsa újra a hello kezelő szolgáltatás:
   GGSCI> EXIT
   ```
 
-#### <a name="2-set-up-hello-replication-on-myvm1-primary"></a>2. (Elsődleges) myVM1 hello a replikáció beállítása
+#### <a name="2-set-up-the-replication-on-myvm1-primary"></a>2. Állítsa be a replikáció myVM1 (elsődleges)
 
-Indítsa el a kezdeti betöltés hello és a hibák:
+Indítsa el a kezdeti betöltés és a hibák:
 
 ```bash
 $ cd /u01/app/oracle/product/12.1.0/oggcore_1
@@ -751,53 +751,53 @@ $ ./ggsci
 GGSCI> START EXTRACT INITEXT
 GGSCI> VIEW REPORT INITEXT
 ```
-#### <a name="3-set-up-hello-replication-on-myvm2-replicate"></a>3. A replikáció myVM2 hello beállítása (replikáció)
+#### <a name="3-set-up-the-replication-on-myvm2-replicate"></a>3. A replikáció myVM2 beállítása (replikáció)
 
-Hello Állapotváltozás számot hello előtt beszerzett módosítása:
+A módosítás előtt beszerzett számot száma az Állapotváltozás:
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ ./ggsci
   START REPLICAT REPORA, AFTERCSN 1857887
   ```
-hello replikációs megkezdődött, és a teszteléshez le új rekordok tooTEST táblák beszúrva.
+A replikáció már megkezdődött, és új rekordok teszt táblák beszúrásával tesztelheti.
 
 
 ### <a name="view-job-status-and-troubleshooting"></a>Feladat állapotának megtekintése és hibaelhárítása
 
 #### <a name="view-reports"></a>Jelentések megtekintése
-tooview myVM1, futtassa a következő parancsok hello jelentések:
+MyVM1 jelentések megtekintéséhez futtassa a következő parancsokat:
 
   ```bash
   GGSCI> VIEW REPORT EXTORA 
   ```
  
-tooview myVM2, futtassa a következő parancsok hello jelentések:
+MyVM2 jelentések megtekintéséhez futtassa a következő parancsokat:
 
   ```bash
   GGSCI> VIEW REPORT REPORA
   ```
 
 #### <a name="view-status-and-history"></a>Nézet állapota és előzményei
-tooview állapota és előzményei a myVM1, futtassa a következő parancsok hello:
+A myVM1 állapota és előzményei megtekintéséhez futtassa a következő parancsokat:
 
   ```bash
   GGSCI> dblogin userid c##ggadmin, password ggadmin 
   GGSCI> INFO EXTRACT EXTORA, DETAIL
   ```
 
-tooview állapota és előzményei a myVM2, futtassa a következő parancsok hello:
+A myVM2 állapota és előzményei megtekintéséhez futtassa a következő parancsokat:
 
   ```bash
   GGSCI> dblogin userid repuser@pdb1 password rep_pass 
   GGSCI> INFO REP REPORA, DETAIL
   ```
-Ezzel befejezte a hello telepítés és konfigurálás Golden kapu Oracle linux rendszeren.
+Ezzel befejezte a telepítési és konfigurációs Golden kapu Oracle Linux.
 
 
-## <a name="delete-hello-virtual-machine"></a>Hello virtuális gép törlése
+## <a name="delete-the-virtual-machine"></a>A virtuális gép törlése
 
-Már nincs szükség, ha a következő parancs hello lehet használt tooremove hello erőforráscsoport, virtuális gép és minden kapcsolódó erőforrásokat.
+Ha már nincs szükség, az alábbi parancs segítségével távolítsa el az erőforráscsoportot, virtuális gép és az összes kapcsolódó erőforrások.
 
 ```azurecli
 az group delete --name myResourceGroup

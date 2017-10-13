@@ -1,6 +1,6 @@
 ---
-title: a PHP a Notification Hubs aaaHow toouse
-description: "Megtudhatja, hogyan toouse Azure Notification Hubs PHP háttér-a."
+title: "A Notification Hubs használata PHP"
+description: "Útmutató az Azure Notification Hubs használata PHP háttér-a."
 services: notification-hubs
 documentationcenter: 
 author: ysxu
@@ -14,48 +14,48 @@ ms.devlang: php
 ms.topic: article
 ms.date: 06/07/2016
 ms.author: yuaxu
-ms.openlocfilehash: 6cd426286a684006a07867fcf44a8ff71be7efa8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c27b6308ff528224a0398e0ff40537db05417bb0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toouse-notification-hubs-from-php"></a>Hogyan toouse php-ből a Notification Hubs
+# <a name="how-to-use-notification-hubs-from-php"></a>Php-ből a Notification Hubs használatával
 [!INCLUDE [notification-hubs-backend-how-to-selector](../../includes/notification-hubs-backend-how-to-selector.md)]
 
-Java/PHP/Ruby háttér-összes értesítési központok szolgáltatás érhető el hello Notification Hub REST interfész használatával hello MSDN-témakörben leírtak szerint [Notification hub REST API-k](http://msdn.microsoft.com/library/dn223264.aspx).
+Minden értesítési központok szolgáltatás elérhető egy Java/PHP/Ruby-háttér használata a Notification Hub REST interfész, az MSDN-témakörben leírtak szerint [Notification hub REST API-k](http://msdn.microsoft.com/library/dn223264.aspx).
 
 Ebben a témakörben megmutatjuk, hogyan:
 
 * A Notification Hubs szolgáltatások PHP; a többi ügyfél létrehozása
-* Hajtsa végre a hello [Get bemutató](notification-hubs-ios-apple-push-notification-apns-get-started.md) választott hello háttér-részét valósít meg a PHP a mobil platformra.
+* Kövesse a [Get bemutató](notification-hubs-ios-apple-push-notification-apns-get-started.md) a mobil választott platformhoz valósít meg a háttér-rész PHP.
 
 ## <a name="client-interface"></a>Ügyféloldali felület
-fő hello felületet biztosít hello ugyanazokat a módszereket, amelyek hello elérhető [.NET Notification Hubs SDK](http://msdn.microsoft.com/library/jj933431.aspx), ez lehetővé teszi toodirectly állomásneveket, az összes hello oktatóanyagok és ezen a helyen aktuálisan elérhető mintákat és hello hello Közösség által közzétett internetes.
+A fő ügyféloldali felületen elérhető ugyanazokat a módszereket biztosít a [.NET Notification Hubs SDK](http://msdn.microsoft.com/library/jj933431.aspx), ez lehetővé teszi az oktatóanyagok és ezen a helyen aktuálisan elérhető mintákat közvetlenül fordítása, és az interneten a Közösség által közzétett.
 
-Az összes elérhető hello hello kód található [PHP REST burkoló minta].
+Az összes elérhető kód megtalálhatja a [PHP REST burkoló minta].
 
-Például toocreate ügyfél:
+Ha például egy ügyfél létrehozásához:
 
     $hub = new NotificationHub("connection string", "hubname");    
 
-az iOS natív értesítések toosend:
+IOS natív értesítést küldeni:
 
     $notification = new Notification("apple", '{"aps":{"alert": "Hello!"}}');
     $hub->sendNotification($notification, null);
 
 ## <a name="implementation"></a>Megvalósítás
-Ha még nem tette, kövesse a [Get bemutató] akár toohello utolsó szakasza tooimplement hello háttér-esetében.
-Is, ha azt szeretné, használhatja a hello hello kód [PHP REST burkoló minta] , és közvetlenül toohello [teljes hello oktatóanyag](#complete-tutorial) szakasz.
+Ha még nem tette, kövesse a [Get bemutató] akár utolsó szakasz esetében a háttér-megvalósításához.
+Is, ha azt szeretné, használhatja a kódot a [PHP REST burkoló minta] és közvetlenül a [az oktatóanyag befejezése](#complete-tutorial) szakasz.
 
-Összes hello teljes REST-burkoló található Részletek tooimplement [MSDN](http://msdn.microsoft.com/library/dn530746.aspx). Ebben a szakaszban azt ismerteti, hello fő lépésből szükséges tooaccess Notification hub REST-végpontok hello PHP végrehajtását:
+Egy teljes REST-burkoló megvalósításához a részleteit található [MSDN](http://msdn.microsoft.com/library/dn530746.aspx). Ebben a szakaszban azt ismerteti, a PHP megvalósítása a Notification hub REST-végpontok eléréséhez szükséges fő lépésből áll:
 
-1. Hello kapcsolati karakterlánc elemzése
-2. Hello engedélyezési jogkivonat létrehozása
-3. Hello HTTP hívás végrehajtása
+1. Kapcsolati karakterlánc elemzése
+2. Az engedélyezési jogkivonat létrehozása
+3. Hajtsa végre a HTTP-hívás
 
-### <a name="parse-hello-connection-string"></a>Hello kapcsolati karakterlánc elemzése
-Itt a hello fő osztály végrehajtási hello ügyfél, amelynek konstruktort, amely elemzi a hello kapcsolati karakterlánc:
+### <a name="parse-the-connection-string"></a>Kapcsolati karakterlánc elemzése
+Az ügyfél, amelynek konstruktort, amely elemzi a kapcsolati karakterlánc végrehajtási fő osztály itt található:
 
     class NotificationHub {
         const API_VERSION = "?api-version=2013-10";
@@ -91,8 +91,8 @@ Itt a hello fő osztály végrehajtási hello ügyfél, amelynek konstruktort, a
 
 
 ### <a name="create-security-token"></a>Biztonsági jogkivonat létrehozása
-hello biztonsági jogkivonat-létrehozási hello részletei érhetők el [Itt](http://msdn.microsoft.com/library/dn495627.aspx).
-hello következő metódusnak hozzáadott toobe toohello **NotificationHub** osztály toocreate hello token hello URI hello aktuális kérelem és hello kapcsolati karakterlánc kinyert hello hitelesítő adatok alapján.
+A részleteket a biztonsági jogkivonat-létrehozási [Itt](http://msdn.microsoft.com/library/dn495627.aspx).
+A következő metódusnak fel kell venni a **NotificationHub** a jogkivonat létrehozásához osztály alapján a jelenlegi kérelem és a hitelesítő adatokat a kapcsolati karakterlánc kinyert URI.
 
     private function generateSasToken($uri) {
         $targetUri = strtolower(rawurlencode(strtolower($uri)));
@@ -134,9 +134,9 @@ Először ossza meg velünk határozza meg egy értesítési képviselő osztál
 
 Ez az osztály egy olyan tároló, a natív értesítési törzs, vagy egy sablon értesítés esettel tulajdonságait, és a fejléc formátuma (natív platform vagy sablon) és a platform-specifikus tulajdonságok (például az Apple lejárati tulajdonság és WNS fejlécekkel együtt) tartalmazó készlettel.
 
-Tekintse meg a toohello [Notification hub REST API-k dokumentáció](http://msdn.microsoft.com/library/dn495827.aspx) és hello adott értesítési platformok formátumok, az összes rendelkezésre álló lehetőségek hello.
+Tekintse meg a [Notification hub REST API-k dokumentáció](http://msdn.microsoft.com/library/dn495827.aspx) és az összes rendelkezésre álló beállítások az adott értesítési platformok formázza az adathordozót.
 
-Volt képes ez az osztály felvértezve, azt most írhat hello send notification módszerek hello belül **NotificationHub** osztály.
+Volt képes ez az osztály felvértezve, azt most írhat a send notification módszerek belül a **NotificationHub** osztály.
 
     public function sendNotification($notification, $tagsOrTagExpression="") {
         if (is_array($tagsOrTagExpression)) {
@@ -180,7 +180,7 @@ Volt képes ez az osztály felvértezve, azt most írhat hello send notification
             CURLOPT_POSTFIELDS => $notification->payload
         ));
 
-        // Send hello request
+        // Send the request
         $response = curl_exec($ch);
 
         // Check for errors
@@ -195,16 +195,16 @@ Volt képes ez az osztály felvértezve, azt most írhat hello send notification
         }
     } 
 
-hello módszerek fent egy HTTP POST kérelem toohello /messages végpontot az értesítési központ hello megfelelő szervezet és a fejlécek toosend hello értesítés küldése.
+A fenti módszerek HTTP POST-kérelmet küld a /messages végpont az értesítési központ, és a megfelelő törzs és -fejléceket elküldeni az értesítést.
 
-## <a name="complete-tutorial"></a>Teljes hello oktatóanyag
-Most elvégezhet hello első lépéseket bemutató oktatóanyaghoz PHP háttér-hello értesítési üzenetet küld.
+## <a name="complete-tutorial"></a>Az oktatóanyag befejezése
+Az első lépéseket bemutató oktatóanyaghoz most az értesítés küldésével a PHP háttér-hajthatja végre.
 
-A Notification Hubs-ügyfél inicializálása (hello kapcsolati karakterláncot és a központ neve helyettesítő hello útmutatását [Get bemutató]):
+A Notification Hubs-ügyfél inicializálása (útmutatását, helyettesítse be a kapcsolati karakterlánc és a központ nevét a [Get bemutató]):
 
     $hub = new NotificationHub("connection string", "hubname");    
 
-Majd adja hozzá a hello küldési kódot attól függően, hogy a célként megadott mobilplatformot.
+Majd adja hozzá a küldési kódot, attól függően, hogy a célként megadott mobilplatformot.
 
 ### <a name="windows-store-and-windows-phone-81-non-silverlight"></a>Windows áruház és Windows Phone 8.1 (nem Silverlight)
     $toast = '<toast><visual><binding template="ToastText01"><text id="1">Hello from PHP!</text></binding></visual></toast>';
@@ -243,13 +243,13 @@ Majd adja hozzá a hello küldési kódot attól függően, hogy a célként meg
 A PHP kódja kell előállítania most egy értesítés jelenik meg a céleszközön.
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben a témakörben azt bemutatta, hogyan toocreate egy egyszerű Java REST-a Notification Hubs-ügyfél. Itt a következőket teheti:
+Ebben a témakörben azt bemutatta, hogyan hozhat létre egy egyszerű Java REST-ügyfél a Notification Hubs. Itt a következőket teheti:
 
-* Teljes hello letöltése [PHP REST burkoló minta], amely tartalmazza a fenti hello kódot.
-* Folytathatja az értesítési központok szolgáltatás szerinti címkézését hello [Megtörje hírek oktatóanyag]
-* További tudnivalók tooindividual felhasználók értesítések küldését [felhasználók értesítése oktatóprogram]
+* Töltse le a teljes [PHP REST burkoló minta], amely tartalmazza a fenti kódot.
+* Folytathatja az értesítési központok szolgáltatás címkézés [Megtörje hírek oktatóprogram]
+* További tudnivalók az értesítések küldését az egyéni felhasználók számára [felhasználók értesítése oktatóprogram]
 
-További információkért lásd még: hello [PHP fejlesztői központ](/develop/php/).
+További információ: a [PHP fejlesztői központ](/develop/php/).
 
 [PHP REST burkoló minta]: https://github.com/Azure/azure-notificationhubs-samples/tree/master/notificationhubs-rest-php
 [Get bemutató]: http://azure.microsoft.com/documentation/articles/notification-hubs-ios-get-started/

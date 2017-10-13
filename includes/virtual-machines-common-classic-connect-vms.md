@@ -2,41 +2,41 @@
 
 ![Önálló virtuális gépek a felhőalapú szolgáltatás](./media/virtual-machines-common-classic-connect-vms/CloudServiceExample.png)
 
-Ha a virtuális gépeket helyez egy virtuális hálózatot, dönthet úgy is azt szeretné, hogy a toouse hány felhőszolgáltatások és a rendelkezésre állási készletek betölteni. Emellett rendezhetők hello virtuális gépek hello alhálózataiban azonos módon a helyszíni hálózatot, és hello virtuális hálózati tooyour csatlakoznak a helyszíni hálózat. Íme egy példa:
+Ha a virtuális gépeket helyez egy virtuális hálózatot, megadhatja, hogy a használni kívánt hány felhőszolgáltatások betölteni a terheléselosztás és a rendelkezésre állási készletek. Emellett rendezheti a virtuális gépek alhálózatok ugyanúgy a helyszíni hálózat és a virtuális hálózathoz csatlakozni a helyszíni hálózat. Íme egy példa:
 
 ![A virtuális hálózatban lévő virtuális gépek](./media/virtual-machines-common-classic-connect-vms/VirtualNetworkExample.png)
 
-Virtuális hálózatok hello ajánlott módja tooconnect virtuális gépek Azure-ban. ajánlott eljárás hello tooconfigure az alkalmazást egy külön felhőalapú szolgáltatás egyes rétegeinek van. Azonban szükség lehet toocombine néhány virtuális gépnél a különböző alkalmazásrétegek hello be azonos cloud service tooremain hello legfeljebb 200 felhőszolgáltatások előfizetésenként belül. tooreview ezzel és más korlátok, lásd: [Azure-előfizetés és szolgáltatási korlátok, kvóták és megkötések](../articles/azure-subscription-service-limits.md).
+Virtuális hálózatok az ajánlott módszer a virtuális gépek Azure-ban való csatlakoztatásához. Az ajánlott eljárás az alkalmazás egyes rétegeinek konfigurálása külön felhőszolgáltatásban. Azonban szükség lehet néhány virtuális gépnél, a másik alkalmazási rétegek egyesítése a azonos felhőszolgáltatás 200 felhőszolgáltatások előfizetésenként legfeljebb belül maradjon. Ezzel és más korlátozások ellenőrzéséhez tekintse meg [Azure-előfizetés és szolgáltatási korlátok, kvóták és megkötések](../articles/azure-subscription-service-limits.md).
 
 ## <a name="connect-vms-in-a-virtual-network"></a>Csatlakozás a virtuális gépek virtuális hálózatban
-a virtuális hálózatban lévő virtuális gépek tooconnect:
+A virtuális hálózatban lévő virtuális gépek csatlakozni:
 
-1. Hello virtuális hálózat létrehozása a hello [Azure-portálon](../articles/virtual-network/virtual-networks-create-vnet-classic-pportal.md) , és adja meg a "klasszikus üzembe helyezési".
-2. Hozza létre a felhőalapú szolgáltatásokat a központi telepítés tooreflect hello csoportját a tervező a rendelkezésre állási csoportok és a terheléselosztás. Hello Azure-portálon, kattintson **új > számítási > Felhőszolgáltatás** minden felhőalapú szolgáltatás.
+1. A virtuális hálózat létrehozása a [Azure-portálon](../articles/virtual-network/virtual-networks-create-vnet-classic-pportal.md) , és adja meg a "klasszikus üzembe helyezési".
+2. Hozzon létre a felhőalapú szolgáltatások a környezetet, hogy tükrözze a tervező a rendelkezésre állási csoportok és a terheléselosztás. Az Azure portálon kattintson **új > számítási > Felhőszolgáltatás** minden felhőalapú szolgáltatás.
 
-  Adja meg az hello felhőalapú szolgáltatás részleteit, válassza ki a hello azonos _erőforráscsoport_ használt hello virtuális hálózattal.
+  Mivel kitöltötte a felhőalapú szolgáltatás részleteit, válassza ki ugyanazt _erőforráscsoport_ együtt a virtuális hálózat.
 
-3. toocreate minden egyes új virtuális gépre, kattintson a **új > számítási**, majd válassza ki a megfelelő Virtuálisgép-lemezkép a hello hello **a kiemelt alkalmazások**.
+3. Minden új virtuális gép létrehozásához kattintson a **új > számítási**, majd válassza ki a megfelelő Virtuálisgép-lemezkép a **a kiemelt alkalmazások**.
 
-  A virtuális gép hello **alapjai** panelen válassza a hello azonos _erőforráscsoport_ használt hello virtuális hálózattal.
+  A virtuális gép **alapjai** panelen válassza ki ugyanazt _erőforráscsoport_ együtt a virtuális hálózat.
 
   ![Virtuális gép alapvető beállítások panel egy virtuális hálózat használatakor](./media/virtual-machines-common-classic-connect-vms/CreateVM_Basics_VN.png)
 
-4. Adja meg az hello VM **beállítások**, válassza ki a megfelelő hello _felhőalapú szolgáltatás_ vagy _virtuális hálózati_ hello virtuális gép számára.
+4. Adja meg a virtuális Gépet, **beállítások**, válassza ki a megfelelő _felhőalapú szolgáltatás_ vagy _virtuális hálózati_ a virtuális gép számára.
 
-  Azure hello más a kijelölt elem alapján választja ki.
+  Azure fogja kiválasztani az egyéb elem a kijelölés alapján.
 
   ![Virtuálisgép-beállítások panel egy virtuális hálózat használatakor](./media/virtual-machines-common-classic-connect-vms/CreateVM_Settings_VN.png)
 
 
 ## <a name="connect-vms-in-a-standalone-cloud-service"></a>Csatlakozás a virtuális gépek önálló felhőszolgáltatásban
-az önálló felhőalapú szolgáltatásként tooconnect a virtuális gépek:
+Önálló felhőalapú szolgáltatásként lévő virtuális gépek csatlakozni:
 
-1. Hello felhőalapú szolgáltatás létrehozása hello [Azure-portálon](http://portal.azure.com). Kattintson a **új > számítási > Felhőszolgáltatás**. Másik lehetőségként is létrehozhat az üzembe helyezéshez hello felhőalapú szolgáltatás, az első virtuális gép létrehozásakor.
-2. Hello virtuális gépek létrehozásakor válassza ki a hello hello felhőalapú szolgáltatással használt ugyanabban az erőforráscsoportban.
+1. A felhőszolgáltatás létrehozása a [Azure-portálon](http://portal.azure.com). Kattintson a **új > számítási > Felhőszolgáltatás**. Vagy a felhőalapú szolgáltatás, az üzembe helyezéshez hozhat létre, amikor az első virtuális gép létrehozása.
+2. A virtuális gépek létrehozásakor válassza ki a felhőalapú szolgáltatással használt ugyanabban az erőforráscsoportban.
 
-  ![A virtuális gép tooan meglévő felhőalapú szolgáltatás hozzáadása](./media/virtual-machines-common-classic-connect-vms/CreateVM_Basics_SA.png)
+  ![A virtuális gépek hozzáadása egy meglévő felhőszolgáltatáshoz](./media/virtual-machines-common-classic-connect-vms/CreateVM_Basics_SA.png)
 
-3.  Adja meg az hello VM részleteit, mivel válassza ki a hello nevét hello első lépésben létrehozott felhőalapú szolgáltatás.
+3.  Adja meg az a virtuális gép részleteit, mivel válassza ki az első lépésben létrehozott felhőalapú szolgáltatás nevét.
 
   ![A virtuális gép egy felhőalapú szolgáltatás kiválasztása](./media/virtual-machines-common-classic-connect-vms/CreateVM_Settings_SA.png)

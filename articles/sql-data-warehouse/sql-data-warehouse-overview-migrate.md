@@ -1,6 +1,6 @@
 ---
-title: "aaaMigrate a megoldás tooSQL adatraktár |} Microsoft Docs"
-description: "Áttelepítési útmutató annak érdekében, hogy a megoldás tooAzure SQL Data Warehouse platform."
+title: "Megoldás migrálása az SQL Data Warehouse |} Microsoft Docs"
+description: "Áttelepítési útmutató az Azure SQL Data Warehouse platform, hogy a megoldás."
 services: sql-data-warehouse
 documentationcenter: NA
 author: sqlmojo
@@ -15,23 +15,23 @@ ms.workload: data-services
 ms.custom: migrate
 ms.date: 06/27/2017
 ms.author: joeyong;barbkess
-ms.openlocfilehash: 27b51f15247603f054070f360ede7f24541c0288
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 771b9456e66b8a1e41f72340b695b19e2adaf793
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="migrate-your-solution-tooazure-sql-data-warehouse"></a>A megoldás tooAzure SQL Data Warehouse áttelepítése
-Tekintse meg, mi részt vesz egy meglévő adatbázis megoldás tooAzure SQL Data Warehouse áttelepítése. 
+# <a name="migrate-your-solution-to-azure-sql-data-warehouse"></a>Megoldás migrálása az Azure SQL Data Warehouse
+Tekintse meg a meglévő adatbázis megoldás áttelepítése az Azure SQL Data Warehouse szerepet játszanak. 
 
 ## <a name="profile-your-workload"></a>Profilhoz, a számítási feladatok
-Az áttelepítést, mielőtt azt szeretné, toobe arról, hogy az SQL Data Warehouse hello ideális megoldás a terhelést. Az SQL Data Warehouse egy elosztott rendszert tooperform analytics nagy.  Áttelepítése tooSQL adatraktár néhány tervezési módosításaival, amelyek nem túl szigorú toounderstand, de eltarthat néhány alkalommal tooimplement igényel. Ha a vállalat által igényelt egy vállalati szintű data warehouse-ba, hello előnyöket hello tevékenységi-érdemes vannak. Azonban az SQL Data Warehouse hello power nincs szüksége, esetén további költséghatékony toouse SQL Server vagy az Azure SQL Database.
+Az áttelepítést, mielőtt kívánt legyen egyes SQL Data Warehouse a munkaterheléshez ideális megoldás. Az SQL Data Warehouse egy olyan elosztott rendszer készült elemzés végrehajtásához, nagy.  Az SQL Data Warehouse áttelepítése igényel az egyes módosításokat nem túl merevlemez annak megértése, de eltarthat egy ideig megvalósításához. Ha a vállalat által igényelt egy vállalati szintű data warehouse-ba, a következő előnyöket is megéri. Azonban az SQL Data Warehouse power nincs szüksége, esetén költséghatékonyabb SQL Server vagy az Azure SQL Database használatához.
 
 Fontolja meg az SQL Data Warehouse amikor Ön:
 - Rendelkezik egy vagy több terabájtos adatkészleteket
-- Terv toorun analytics a nagy mennyiségű adat
-- Hello képességét tooscale számítási és tárolási kell 
-- Szeretné, hogy toosave költségek felfüggesztésével számítási erőforrásokat, amikor már nincs szükség.
+- Szeretné futtatni az analytics a nagy mennyiségű adat
+- Képes számítási és tárolási méretek kell 
+- Szeretné költségeket takaríthat felfüggesztése számítási erőforrásokat, amikor már nincs szükség.
 
 Ne használjon az SQL Data Warehouse működési (OLTP) munkaterhelések esetén, amelyek rendelkeznek:
 - Nagy gyakoriságú olvasása és írása
@@ -41,33 +41,33 @@ Ne használjon az SQL Data Warehouse működési (OLTP) munkaterhelések esetén
 - Inkompatibilis formátumban (JSON, XML)
 
 
-## <a name="plan-hello-migration"></a>Hello áttelepítés tervezése
+## <a name="plan-the-migration"></a>Az áttelepítés tervezése
 
-Miután eldöntötte, hogy egy meglévő megoldás tooSQL adatraktár toomigrate, akkor fontos tooplan hello áttelepítés elkezdése előtt. 
+Miután eldöntötte, hogy egy meglévő megoldás áttelepítéséhez az SQL Data Warehouse, fontos tervezze meg az áttelepítés elkezdése előtt. 
 
-A tervezés egy célja tooensure az adatokat, a táblasémákat és a kódot az SQL Data Warehouse szolgáltatással kompatibilis. Bizonyos kompatibilitási különbségek toowork, körül a jelenlegi rendszer és az SQL Data Warehouse között van. Ráadásul nagy mennyiségű adatok tooAzure időt vesz áttelepítése. Gondosan meg kell tervezni a adatok tooAzure első gyorsítja. 
+Egy tervezési célja az adatok, a táblasémákat és a kód kompatibilisek-e az SQL Data Warehouse. Bizonyos kompatibilitási különbségek vannak a jelenlegi rendszer és az SQL Data Warehouse közötti megoldása. Áttelepíti, valamint időt Azure vesz nagy mennyiségű adat. Gondosan meg kell tervezni gyorsítja olvashatja be adatait az Azure-bA. 
 
-Egy másik tervezési célja, a megoldás kihasználja az SQL Data warehouse hello a lekérdezési teljesítmény módosításának tooensure tervezett tooprovide toomake Tervező. Bővített adatraktárak tervezése vezet be a különböző kialakítási minta, és így hagyományos megközelítés nem mindig hello legjobban. Bár bizonyos tervezési módosításokra áttelepítés után, későbbi módosítások hamarabb hello folyamat menti.
+Egy másik tervezési célja annak érdekében, hogy a megoldás kihasználja a célja, hogy az SQL Data Warehouse biztosításához a lekérdezési teljesítmény tervezési módosításokra. Az adatraktárak bővített tervezése vezet be a különböző kialakítási minták és így hagyományos módszerekkel nem mindig a legjobb. Bár bizonyos tervezési módosításokra áttelepítés után, a folyamat hamarabb módosítása menti a későbbi.
 
-a sikeres áttelepítéshez a tooperform, kell toomigrate a táblasémákat, a kódot és az adatokat. Az alábbi áttelepítési témakörök útmutatást lásd:
+A sikeres áttelepítéshez szüksége a táblasémákat, a kódot és az adatok áttelepítéséhez. Az alábbi áttelepítési témakörök útmutatást lásd:
 
 -  [Telepítse át a sémák](sql-data-warehouse-migrate-schema.md)
 -  [Telepítse át a kódot](sql-data-warehouse-migrate-code.md)
 -  [Adatok áttelepítése](sql-data-warehouse-migrate-data.md). 
 
 <!--
-## Perform hello migration
+## Perform the migration
 
 
-## Deploy hello solution
+## Deploy the solution
 
 
-## Validate hello migration
+## Validate the migration
 
 -->
 
 ## <a name="next-steps"></a>Következő lépések
-hello CAT (Ügyféltanácsadói csapatának) is rendelkezik néhány nagy az SQL Data Warehouse útmutatást, amelyek ezek teszik közzé a blogok keresztül.  Tekintse meg a cikk [áttelepítése adatok tooAzure SQL Data Warehouse a gyakorlatban] [ Migrating data tooAzure SQL Data Warehouse in practice] további útmutatást nyújt az áttelepítési.
+A CAT (Ügyféltanácsadói csapatának) is rendelkezik néhány nagy az SQL Data Warehouse útmutatást, amelyek ezek teszik közzé a blogok keresztül.  Tekintse meg a cikk [adatok áttelepítése az Azure SQL Data Warehouse a gyakorlatban] [ Migrating data to Azure SQL Data Warehouse in practice] további útmutatást nyújt az áttelepítési.
 
 <!--Image references-->
 
@@ -76,4 +76,4 @@ hello CAT (Ügyféltanácsadói csapatának) is rendelkezik néhány nagy az SQL
 <!--MSDN references-->
 
 <!--Other Web references-->
-[Migrating data tooAzure SQL Data Warehouse in practice]: https://blogs.msdn.microsoft.com/sqlcat/2016/08/18/migrating-data-to-azure-sql-data-warehouse-in-practice/
+[Migrating data to Azure SQL Data Warehouse in practice]: https://blogs.msdn.microsoft.com/sqlcat/2016/08/18/migrating-data-to-azure-sql-data-warehouse-in-practice/

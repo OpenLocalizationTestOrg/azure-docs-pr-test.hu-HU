@@ -1,6 +1,6 @@
 ---
-title: "prémium szintű Azure Storage az SQL Server aaaUse |} Microsoft Docs"
-description: "Ez a cikk hello klasszikus telepítési modellel létrehozott erőforrást használ, és a prémium szintű Azure Storage használata az Azure virtuális gépeken futó SQL Server útmutatást biztosít."
+title: "Prémium szintű Azure Storage használata az SQL Server |} Microsoft Docs"
+description: "Ez a cikk a klasszikus üzembe helyezési modellel létrehozott erőforrást használ, és a prémium szintű Azure Storage használata az Azure virtuális gépeken futó SQL Server útmutatást ad."
 services: virtual-machines-windows
 documentationcenter: 
 author: danielsollondon
@@ -15,28 +15,28 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 06/01/2017
 ms.author: jroth
-ms.openlocfilehash: 393ea2020b39ea686302ae632e1049935c24af00
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6790db207fc7ec8a4b1546ef07c97ef30abe9513
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="use-azure-premium-storage-with-sql-server-on-virtual-machines"></a>Az Azure Premium Storage és az SQL Server együttes használata virtuális gépeken
 ## <a name="overview"></a>Áttekintés
-[Prémium szintű Storage](../../../storage/common/storage-premium-storage.md) van hello tárhelyet biztosít alacsony késéssel és magas teljesítmény IO következő generációja. A kulcs IO igényes munkaterhelések, például az SQL Server IaaS a legjobban [virtuális gépek](https://azure.microsoft.com/services/virtual-machines/).
+[Prémium szintű Storage](../../../storage/common/storage-premium-storage.md) tárhelyet biztosít alacsony késéssel és magas teljesítmény IO következő generációja van. A kulcs IO igényes munkaterhelések, például az SQL Server IaaS a legjobban [virtuális gépek](https://azure.microsoft.com/services/virtual-machines/).
 
 > [!IMPORTANT]
-> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../azure-resource-manager/resource-manager-deployment-model.md). Ez a cikk hello klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén hello Resource Manager modellt használja.
+> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../azure-resource-manager/resource-manager-deployment-model.md). Ez a cikk a klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén a Resource Manager modellt használja.
 
-Ez a cikk ismerteti a tervezési és az SQL Server toouse prémium szintű Storage futtató virtuális gép áttelepítését. Ez magában foglalja az Azure-infrastruktúra (hálózati, tárolási) és a vendég Windows virtuális gép lépéseket. hello hello példát [függelék](#appendix-migrating-a-multisite-always-on-cluster-to-premium-storage) bemutatja, hogyan toomove nagyobb virtuális gépek tootake előnyeit továbbfejlesztett teljes átfogó end tooend áttelepítését helyi SSD-tárolóba, a PowerShell használatával.
+Ez a cikk ismerteti a tervezési és a prémium szintű Storage SQL Servert futtató virtuális gép áttelepítését. Ez magában foglalja az Azure-infrastruktúra (hálózati, tárolási) és a vendég Windows virtuális gép lépéseket. Példa a [függelék](#appendix-migrating-a-multisite-always-on-cluster-to-premium-storage) továbbfejlesztett helyi SSD-tárhelyre PowerShell előnyeinek kihasználása érdekében nagyobb virtuális gépek áthelyezése a teljes átfogó végpontok közötti áttelepítését mutatja.
 
-Fontos toounderstand hello végpont folyamata terjesztése prémium szintű Azure Storage az infrastruktúra-szolgáltatási virtuális gépeken futó SQL Server is. Ehhez a következőket:
+Fontos tudni, hogy terjesztése prémium szintű Azure Storage az infrastruktúra-szolgáltatási virtuális gépeken futó SQL Server-végpontok közötti folyamatán. Ehhez a következőket:
 
-* Hello Előfeltételek toouse prémium szintű Storage azonosítása.
-* SQL Server telepítése az infrastruktúra-szolgáltatási tooPremium tárhely az új központi telepítéseknél példát.
+* Prémium szintű Storage használatának előfeltételei azonosítása.
+* Prémium szintű Storage IaaS az SQL Server telepítése az új központi telepítéseknél példát.
 * Önálló kiszolgálók és a üzembe helyezése SQL Always On rendelkezésre állási csoportok áttelepítése meglévő telepítés példát.
 * Lehetséges áttelepítési módszer.
-* Teljes-végpont például megjelenítő hello áttelepítés végrehajtásának egy meglévő Always On Azure, a Windows és az SQL Server lépései.
+* Az áttelepítés végrehajtásának egy meglévő Always On Azure, a Windows és az SQL Server lépéseket bemutató teljes-végpontok példa.
 
 Tekintse meg az SQL Server Azure virtuális gépek további háttérinformációkat [SQL Server Azure virtuális gépek](../sql/virtual-machines-windows-sql-server-iaas-overview.md).
 
@@ -46,24 +46,24 @@ Tekintse meg az SQL Server Azure virtuális gépek további háttérinformáció
 Prémium szintű Storage használatával több előfeltételei van.
 
 ### <a name="machine-size"></a>Mérete
-Prémium szintű Storage használatához szüksége lesz a toouse DS adatsorozat virtuális gépek (VM). Ha DS adatsorozat gépek nem használta a felhőszolgáltatásban előtt, törölje a meglévő virtuális gép hello, hello csatlakoztatott lemezek tároljuk, és majd új felhőalapú szolgáltatás létrehozása előtt újra létrehozni a virtuális gép méreteként DS * szerepkör hello. További információ a virtuálisgép-méretek: [virtuális gépek és Felhőszolgáltatások mérete az Azure-](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Prémium szintű Storage használatához szüksége lesz DS adatsorozat virtuális gépek (VM) használja. DS adatsorozat gépek nem használta a felhőszolgáltatásban előtt, ha törli a meglévő virtuális Gépet, a csatlakoztatott lemezek tároljuk, és majd új felhőalapú szolgáltatás létrehozása előtt újra létrehozni a virtuális gép méreteként DS * szerepkör. További információ a virtuálisgép-méretek: [virtuális gépek és Felhőszolgáltatások mérete az Azure-](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 ### <a name="cloud-services"></a>Felhőszolgáltatások
-Csak használata virtuális gépek DS * prémium szintű Storage az új felhőalapú szolgáltatás létrehozásakor. Ha az SQL Server Always On használ az Azure-ban, mindig figyelő hello toohello Azure belső vagy a külső terheléselosztási terheléselosztó IP-cím egy felhőalapú szolgáltatás társított vonatkozik. Ez a cikk foglalkozik, hogyan ebben a forgatókönyvben rendelkezésre állásának toomigrate.
+Csak használata virtuális gépek DS * prémium szintű Storage az új felhőalapú szolgáltatás létrehozásakor. Ha az SQL Server Always On használ az Azure-ban, az mindig a figyelő az Azure belső vagy külső terheléselosztási terheléselosztó IP-cím egy felhőalapú szolgáltatás társított fog hivatkozni. Ez a cikk foglalkozik, hogyan telepítheti át az ebben a forgatókönyvben rendelkezésre állásának a.
 
 > [!NOTE]
-> Első virtuális gép, amely telepített toohello DS * több kell hello új felhőalapú szolgáltatás.
+> DS * kell a első virtuális gép, amely az új felhőalapú szolgáltatás van telepítve.
 >
 >
 
 ### <a name="regional-vnets"></a>Regionális VNETEK
-A DS * virtuális gépek hello virtuális hálózatot (VNET) a regionális virtuális gépek toobe üzemeltető kell konfigurálni. A "szélesebb formája" hello VNET tooallow hello nagyobb virtuális gépek toobe más fürtök kiépítése és azok közötti kommunikáció lehetővé tételéhez. A következő képernyőkép hello hello kiemelt helyen mutatja regionális Vnetek, mivel hello első eredmény azt mutatja, a "keskeny" VNET.
+Virtuális gépek DS * kell konfigurálnia a virtuális hálózatot (VNET) kell lennie a regionális a virtuális gépeket üzemeltet. A "szélesebb formája" a virtuális hálózat lehetővé teszi a nagyobb virtuális gépek építhető ki más fürtöket, és engedélyezheti a köztük folyó kommunikációt. Az alábbi képernyőfelvételen látható a kijelölt hely regionális Vnetek látható, mivel az első eredmény azt mutatja, a "keskeny" virtuális hálózat.
 
 ![RegionalVNET][1]
 
-A Microsoft támogatási jegy toomigrate tooa is növelheti regionális virtuális hálózat, a Microsoft fog olyan módosítást, majd toocomplete hello áttelepítési tooregional Vnetek, módosítsa a hello tulajdonság AffinityGroup hello a hálózati konfigurációban. Először exportálnia hello PowerShell a hálózati konfigurációt, és lecseréli a hello **AffinityGroup** hello tulajdonság **VirtualNetworkSite** elem egy **hely** tulajdonság. Adja meg `Location = XXXX` ahol `XXXX` egy Azure-régióban van. Importálja az új konfiguráció hello.
+A Microsoft támogatási jegy áttelepíteni egy regionális vnetre is növelheti, Microsoft olyan módosítást, majd a hálózati konfigurációban AffinityGroup-tulajdonság módosításához a regionális Vnetek, az áttelepítés befejezéséhez. Először exportálja a PowerShell a hálózati konfigurációt, és lecseréli a **AffinityGroup** tulajdonságot a **VirtualNetworkSite** elem egy **hely** tulajdonság. Adja meg `Location = XXXX` ahol `XXXX` egy Azure-régióban van. Importálja az új konfigurációt.
 
-Például figyelembe véve a VNET konfigurációját a következő hello:
+Például annak eldöntéséhez, hogy a következő VNET konfigurációját:
 
     <VirtualNetworkSite name="danAzureSQLnet" AffinityGroup="AzureSQLNetwork">
     <AddressSpace>
@@ -74,7 +74,7 @@ Például figyelembe véve a VNET konfigurációját a következő hello:
     ...
     </VirtualNetworkSite>
 
-toomove a tooa Nyugat-Európa, a regionális virtuális hálózat módosítása hello konfigurációs toohello a következő:
+Helyezze át a egy regionális VNETRE, Nyugat-Európában, módosítsa a konfigurációt a következő:
 
     <VirtualNetworkSite name="danAzureSQLnet" Location="West Europe">
     <AddressSpace>
@@ -86,71 +86,71 @@ toomove a tooa Nyugat-Európa, a regionális virtuális hálózat módosítása 
     </VirtualNetworkSite>
 
 ### <a name="storage-accounts"></a>Tárfiókok
-Szüksége lesz egy új tárfiókot, amelyet a prémium szintű Storage beállított toocreate. Figyelje meg, hogy hello storage-fiók nem egyedi virtuális merevlemezek, a prémium szintű Storage hello használata van beállítva azonban a DS * adatsorozat virtuális gépek használatakor csatolhat a VHD-k a prémium és standard szintű tárolást fiókokhoz. Ha nem szeretné, hogy tooplace hello az operációs rendszer virtuális Merevlemezt a prémium szintű Storage-fiók toohello ez foglalkozhat.
+Akkor hozzon létre egy új tárfiókot, amely prémium szintű Storage van konfigurálva. Figyelje meg, hogy a storage-fiók nem egyedi virtuális merevlemezek, a prémium szintű Storage használata van beállítva azonban a DS * adatsorozat virtuális gépek használatakor csatolhat a VHD-k a prémium és standard szintű tárolást fiókokhoz. A érdemes lehet, hogy lehet, ha nem szeretné helyezni a az operációs rendszer virtuális Merevlemezt a prémium szintű Storage-fiók.
 
-hello következő **New-AzureStorageAccountPowerShell** hello "Premium_LRS" parancsot **típus** hoz létre a prémium szintű Storage-fiókok:
+A következő **New-AzureStorageAccountPowerShell** parancsot a "Premium_LRS" **típus** hoz létre a prémium szintű Storage-fiókok:
 
     $newstorageaccountname = "danpremstor"
     New-AzureStorageAccount -StorageAccountName $newstorageaccountname -Location "West Europe" -Type "Premium_LRS"   
 
 ### <a name="vhds-cache-settings"></a>Virtuális merevlemezek gyorsítótár beállításai
-hello fő különbség a prémium szintű Storage-fiókok részét képező lemezek létrehozása, hello lemezgyorsítótár-beállítás. Használata javasolt az SQL Server adatmennyiség lemezek azt "**olvasási gyorsítótárazás**". A tranzakció naplózási kötetek, hello lemezgyorsítótár-beállítás beállításaként túl "**nincs**". Ez eltér a szabványos tárfiókok hello javaslatok.
+Lemezek, amelyek részei a prémium szintű Storage-fiók létrehozása közötti fő különbség a lemezgyorsítótár-beállítás. Használata javasolt az SQL Server adatmennyiség lemezek azt "**olvasási gyorsítótárazás**". A tranzakció naplózási kötetek, a lemezgyorsítótár-beállítás kell állítható be "**nincs**". Ez eltér a javaslatok, Standard szintű Storage-fiókok.
 
-Hello VHD-k csatolást követően hello lemezgyorsítótár-beállítás nem módosítható. Ehhez szükséges toodetach, és csatlakoztassa újra a virtuális merevlemez hello frissített gyorsítótár-beállítással.
+A virtuális merevlemezek csatolást követően a gyorsítótár-beállítása nem módosítható. Válassza le, majd újra csatlakoztatja a VHD-t egy frissített gyorsítótár beállítású kellene.
 
 ### <a name="windows-storage-spaces"></a>Windows tárolóhelyek
-Használhat [Windows tárolóhelyek](https://technet.microsoft.com/library/hh831739.aspx) úgy, ahogy az előző standard szintű Storage, ez lehetővé teszi egy virtuális Gépet, amely már van okhoz tárolóhelyek toomigrate. hello példát [függelék](#appendix-migrating-a-multisite-always-on-cluster-to-premium-storage) (9-es és az utána lépés) azt mutatja be, hello Powershell kód tooextract, és importálja a virtuális gép több csatlakoztatott virtuális merevlemezek és.
+Használhat [Windows tárolóhelyek](https://technet.microsoft.com/library/hh831739.aspx) úgy, ahogy az előző standard szintű Storage, ez lehetővé teszi, hogy át egy virtuális Gépet, amely már van okhoz tárolóhelyek. Példa [függelék](#appendix-migrating-a-multisite-always-on-cluster-to-premium-storage) (9-es és az utána lépés) való kigyűjtésére, majd importálja a virtuális gép több csatlakoztatott virtuális merevlemezek és a Powershell-kódot mutatja be.
 
-Tárolókészletek szabványos Azure tárolási fiók tooenhance átviteli alkalmazott, és a késés csökkentésére. Bizonyára hasznosnak találja érték a prémium szintű Storage Tárolókészletek tesztelése az új központi telepítéseknél, de nagyobb fokú összetettségével jár tárolási telepítés adnak hozzá.
+Tárolókészletek használt szabványos Azure storage-fiók átviteli sebesség növelése és a késés csökkentésére. Bizonyára hasznosnak találja érték a prémium szintű Storage Tárolókészletek tesztelése az új központi telepítéseknél, de nagyobb fokú összetettségével jár tárolási telepítés adnak hozzá.
 
-#### <a name="how-toofind-which-azure-virtual-disks-map-toostorage-pools"></a>Hogyan toofind mely Azure virtuális lemezek toostorage készletek leképezése
-Mivel másik gyorsítótármappa beállítás javaslatok csatolt VHD-k, dönthet úgy, hogy toocopy hello VHD-k tooa prémium szintű Storage-fiók. Azonban amikor Ön áttelepítést csatlakoztassa őket újra toohello új DS adatsorozat VM, szükség lehet a tooalter hello gyorsítótár beállításait is. Prémium szintű Storage ajánlott gyorsítótár beállításai, ha külön virtuális merevlemezek hello SQL adatok fájlok napló fájlok (helyett és egy virtuális Merevlemezt, amely egyaránt tartalmaz) egyszerűbb tooapply hello.
+#### <a name="how-to-find-which-azure-virtual-disks-map-to-storage-pools"></a>Annak ellenőrzése, mely Azure virtuális lemezek leképezés tárolókészletek
+Mivel másik gyorsítótármappa beállítás javaslatok csatolt VHD-k, dönthet, másolja a VHD-k a prémium szintű Storage-fiók. Azonban ha, csatlakoztassa újra őket az új virtuális gép DS adatsorozat, szükség lehet a gyorsítótár beállításainak módosításához. A prémium szintű Storage ajánlott gyorsítótár beállításai, ha az SQL-adatfájlok és naplófájlok (nem pedig egy virtuális Merevlemezt, amely egyaránt tartalmaz) külön virtuális merevlemezek alkalmazandó egyszerűbb.
 
 > [!NOTE]
-> Ha SQL Server adatainak és naplókönyvtárainak fájlok hello ugyanazon a köteten, gyorsítótárazási beállítását választja hello hello IO hozzáférési minták az adatbázis-terhelések függ. Csak tesztelési is bemutatják, milyen gyorsítótárazás esetén ajánlott ehhez a forgatókönyvhöz.
+> Ha SQL Server adatainak és naplókönyvtárainak fájlokat ugyanazon a köteten, a gyorsítótár lehetőséget választja a IO hozzáférési minták a adatbázis munkaterhelések függ. Csak tesztelési is bemutatják, milyen gyorsítótárazás esetén ajánlott ehhez a forgatókönyvhöz.
 >
 >
 
-Azonban használata Windows tárolóhelyek, amelyek össze több VHD-k toolook, szüksége lesz az eredeti parancsfájlok tooidentify, amelyek csatlakoztatott virtuális merevlemezek milyen adott készletben, majd beállíthatja hello gyorsítótár beállításainak ennek megfelelően az egyes lemezek.
+Azonban, amelyek össze több virtuális merevlemezzel, akkor tekintse meg a Windows a tárolóhelyek használata a eredeti parancsfájlok azonosításához, amelyek csatlakoztatott virtuális merevlemezek olyan milyen adott készletben, így után beállíthatja a gyorsítótár beállításait ennek megfelelően az egyes lemezek.
 
-Ha nem rendelkezik eredeti parancsfájl elérhető tooshow, amely a VHD-k leképezése toohello tárolókészlethez, használhatja a következő lépéseket toodetermine hello lemezegységet/készlet leképezési hello.
+Nincs elérhető mutatjuk be, amely a VHD-k leképezi a tárolókészlet eredeti parancsfájlt, ha az alábbi lépések segítségével határozza meg a lemez tárolási készlet leképezési.
 
-Az egyes lemezek lépések hello használata:
+Az egyes lemezek tegye a következőket:
 
-1. Lemezek listájának beszerzése a hello tooVM csatolt **Get-AzureVM** parancs:
+1. Virtuális gép és csatlakoztatott lemezek listájának beszerzése a **Get-AzureVM** parancs:
 
     Get-AzureVM - ServiceName <servicename> -név <vmname> |} Get-AzureDataDisk
-2. Megjegyzés: hello Diskname és a logikai Egységet.
+2. Jegyezze fel a Diskname és a logikai Egységet.
 
     ![DisknameAndLUN][2]
-3. Távoli asztali kapcsolatot hello virtuális gép. Keresse meg a túl**számítógép-kezelés** | **Eszközkezelő** | **lemezmeghajtók**. Nézze meg az egyes hello "Microsoft virtuális lemezek" hello tulajdonságait
+3. Távoli asztali kapcsolatot a virtuális Gépet. Ezután lépjen **számítógép-kezelés** | **Eszközkezelő** | **lemezmeghajtók**. Nézze meg a "Microsoft virtuális lemezek" tulajdonságairól
 
     ![VirtualDiskProperties][3]
-4. Itt hello LUN számot a hivatkozási toohello LUN számot adja meg a hello VHD toohello virtuális gép csatlakoztatása.
-5. A "Microsoft virtuális lemez" hello go toohello **részletek** fülre, majd a hello **tulajdonság** listában, nyissa meg túl**illesztőprogram kulcs**. A hello **érték**, Megjegyzés hello **eltolás**, vagyis a következő képernyőkép hello 0002. hello 0002 tárolási készlet hivatkozások hello hello Fizikailemez2 jelöli.
+4. Itt a LUN számot egy hivatkozást a LUN számot, ha a virtuális merevlemez csatolását virtuális gép.
+5. Az a "Microsoft virtuális lemez" Ugrás a **részletek** lapon ezt a a **tulajdonság** listájában keresse fel **illesztőprogram kulcs**. Az a **érték**, vegye figyelembe a **eltolás**, ez az az alábbi képernyőképen 0002. A 0002 azt jelzi, hogy a Fizikailemez2, amely a tárolókészlet hivatkozik.
 
     ![VirtualDiskPropertyDetails][4]
-6. Minden egyes tárolókészlethez kimenő hello memóriakép kapcsolódó lemezek:
+6. Minden egyes tárolókészlethez memóriakép el a társított lemezekkel:
 
     Get-StoragePool - FriendlyName AMS1pooldata |} Get-PhysicalDisk
 
     ![GetStoragePool][5]
 
-Most már használhat ezen információk tooassociate csatolt VHD-k tooPhysical lemezek tárolókészletek.
+Most már használhatja ezt az információt, rendelje hozzá a VHD-k csatolva tárolókészletek a fizikai lemezek.
 
-Miután leképezte a VHD-k tooPhysical lemezek tárolókészletek válassza le, majd másolja őket keresztül tooa prémium szintű Storage-fiókot, majd csatolja a hello beállítása helyes gyorsítótár. Tekintse meg a hello hello példát [függelék](#appendix-migrating-a-multisite-always-on-cluster-to-premium-storage), 8 – 12 lépést. Ezeket a lépéseket hogyan tooextract virtuális merevlemez virtuális gép csatlakoztatott lemez konfigurációs tooa CSV-fájl, másolja a VHD-k hello, hello lemez konfigurációs gyorsítótár beállításainak módosításához, és végül telepítse újra hello VM, az összes hello DS több virtuális gép csatlakoztatott lemezekkel megjelenítése.
+Virtuális merevlemezek tárolókészletek a fizikai lemezek leképezése után, majd is leválasztani és keresztül másolja őket a prémium szintű Storage-fiók, majd csatolja őket a megfelelő gyorsítótár-beállításokkal. Lásd: a példában a [függelék](#appendix-migrating-a-multisite-always-on-cluster-to-premium-storage), 8 – 12 lépést. A lépések bemutatják, hogyan bontsa ki a virtuális gép csatlakoztatott virtuális merevlemez lemezkonfigurációt CSV-fájlba, másolja a VHD-k, a lemez konfigurációs gyorsítótár beállításainak módosításához és végül telepítse újra a virtuális gép sorozataként DS VM a csatlakoztatott lemezeket.
 
 ### <a name="vm-storage-bandwidth-and-vhd-storage-throughput"></a>Virtuális gép tárolási sávszélesség és a virtuális merevlemez tárolási teljesítmény
-hello tárolási teljesítményének mértékét hello DS * Virtuálisgép-méretet megadott és hello virtuális merevlemez méretét. hello virtuális gépek különböző támogatás hello számát, amely lehet csatolni, és maximális sávszélesség (MB/s) fog támogatják hello VHD-k számára rendelkezik. Hello meghatározott sávszélesség számok, lásd: [virtuális gépek és Felhőszolgáltatások mérete az Azure-](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+A tárolási teljesítményt mértékét megadott DS * Virtuálisgép-méret és a virtuális merevlemez méretét. A virtuális gépek rendelkeznek, különböző juttatások csatolt VHD-k számát és a maximális sávszélesség (MB/s) támogatja azokat. Tekintse meg az adott sávszélesség számok [virtuális gépek és Felhőszolgáltatások mérete az Azure-](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-Nagyobb IOPS mérete nagyobb a érhetők el. Ez akkor érdemes megfontolni, amikor az áttelepítési útvonalának. További információkért [hello táblázatban találja az iops-érték és lemeztípusok](../../../storage/common/storage-premium-storage.md#scalability-and-performance-targets).
+Nagyobb IOPS mérete nagyobb a érhetők el. Ez akkor érdemes megfontolni, amikor az áttelepítési útvonalának. További információkért [lásd a táblázatot IOPS és lemeztípusok](../../../storage/common/storage-premium-storage.md#scalability-and-performance-targets).
 
-Mindemellett érdemes lehet megfontolnia, virtuális gépek támogatják az összes csatolt lemezek különböző maximális lemez sávszélesség rendelkezik-e. Magas terhelés alatt hello maximális sávszélesség érhető el a Virtuálisgép-szerepkör méretéhez sikerült telítsük. Például egy Standard_DS14 támogatja mentése too512MB/s. három P30 lemezzel ezért hello lemez sávszélesség hello VM telítsük sikerült. De ebben a példában hello átviteli korlátja sikerült túllépve, attól függően, hogy olvasási és írási IOs hello kombinációját.
+Mindemellett érdemes lehet megfontolnia, virtuális gépek támogatják az összes csatolt lemezek különböző maximális lemez sávszélesség rendelkezik-e. Nagy terhelés a maximális sávszélesség álljon rendelkezésre a Virtuálisgép-szerepkör méretéhez sikerült telítsük. Például egy Standard_DS14 támogatja legfeljebb 512 MB/s. három P30 lemezzel, ezért a virtuális lemez sávszélességét telítsük sikerült. De ebben a példában az átviteli sebesség korlátja sikerült túllépve, attól függően, hogy olvasási és írási IOs kombinációját.
 
 ## <a name="new-deployments"></a>Új központi telepítéséhez
-hello következő két szakaszok bemutatják, hogyan telepítheti az SQL Server VMs tooPremium tároló. Ahogy korábban említettük, nem feltétlenül kell tooplace hello operációsrendszer-lemez prémium szintű storage-kiszolgálóra. Előfordulhat, hogy toodo ezt választja, ha meg vannak szándékos volt tooplace bármely intenzív IO-munkaterhelések az operációs rendszer virtuális merevlemez hello.
+A következő két szakaszok bemutatják, hogyan telepítheti az SQL Server VMs prémium szintű Storage. Ahogy korábban említettük, nem feltétlenül kell elhelyezni az operációsrendszer-lemezképet, a prémium szintű storage. Akkor célszerű használni, ha bármely intenzív IO munkaterhelések helyezze az operációs rendszer virtuális merevlemez szándékos volt ehhez.
 
-hello első példa bemutatja, meglévő Azure-gyűjtemény lemezképei használatával. hello második példa bemutatja, hogyan toouse egyéni VM lemezkép, amelyet a meglévő standard szintű tárfiók van.
+Az első példa bemutatja, meglévő Azure-gyűjtemény lemezképei használatával. A második példában, hogy rendelkezik egy meglévő szabványos tárfiókban lévő egyéni VM-lemezkép használata.
 
 > [!NOTE]
 > Ezek a példák feltételezik, hogy már létrehozta a regionális virtuális Hálózatot.
@@ -158,7 +158,7 @@ hello első példa bemutatja, meglévő Azure-gyűjtemény lemezképei használa
 >
 
 ### <a name="create-a-new-vm-with-premium-storage-with-gallery-image"></a>Prémium szintű Storage gyűjtemény lemezképpel új virtuális gép létrehozása
-hello az alábbi példa bemutatja, hogyan tooplace az operációs rendszer virtuális merevlemez hello alakzatot prémium szintű storage-e, és csatolja a prémium szintű Storage VHD-k. Azonban is hello operációsrendszer-lemezzel helyez egy standard szintű tárfiókot, és majd csatolja a VHD-k, amelyek tárolása a prémium szintű Storage-fiók. Mindkét forgatókönyvet egy.
+Az alábbi példa bemutatja, hogyan helyezze el az operációs rendszer virtuális merevlemez prémium szintű storage, és a prémium szintű Storage-VHD csatolása. Azonban az operációsrendszer-lemezképet is helyez egy standard szintű tárfiókot, és majd csatolja a VHD-k, amelyek tárolása a prémium szintű Storage-fiók. Mindkét forgatókönyvet egy.
 
     $mysubscription = "DansSubscription"
     $location = "West Europe"
@@ -197,18 +197,18 @@ hello az alábbi példa bemutatja, hogyan tooplace az operációs rendszer virtu
     New-AzureStorageContainer -Name $containerName -Context $xioContext
 
 #### <a name="step-5-placing-os-vhd-on-standard-or-premium-storage"></a>5. lépés: az operációs rendszer virtuális Merevlemezt a Standard vagy prémium szintű Storage helyezi el.
-    #NOTE: Set up subscription and default storage account which will be used tooplace hello OS VHD in
+    #NOTE: Set up subscription and default storage account which will be used to place the OS VHD in
 
-    #If you want tooplace hello OS VHD Premium Storage Account
+    #If you want to place the OS VHD Premium Storage Account
     Set-AzureSubscription -SubscriptionName $mysubscription -CurrentStorageAccount  $newxiostorageaccountname  
 
-    #If you wanted tooplace hello OS VHD Standard Storage Account but attach Premium Storage VHDs then you would run this instead:
+    #If you wanted to place the OS VHD Standard Storage Account but attach Premium Storage VHDs then you would run this instead:
     $standardstorageaccountname = "danstdams"
 
     Set-AzureSubscription -SubscriptionName $mysubscription -CurrentStorageAccount  $standardstorageaccountname
 
 #### <a name="step-6-create-vm"></a>6. lépés: Virtuális gép létrehozása
-    #Get list of available SQL Server Images from hello Azure Image Gallery.
+    #Get list of available SQL Server Images from the Azure Image Gallery.
     $galleryImage = Get-AzureVMImage | where-object {$_.ImageName -like "*SQL*2014*Enterprise*"}
     $image = $galleryImage.ImageName
 
@@ -218,7 +218,7 @@ hello az alábbi példa bemutatja, hogyan tooplace az operációs rendszer virtu
     $subnet = "SQL"
     $ipaddr = "192.168.0.8"
 
-    #Remember toochange tooDS series VM
+    #Remember to change to DS series VM
     $newInstanceSize = "Standard_DS1"
 
     #create new Avaiability Set
@@ -231,9 +231,9 @@ hello az alábbi példa bemutatja, hogyan tooplace az operációs rendszer virtu
     #Create VM Config
     $vmConfigsl = New-AzureVMConfig -Name $vmName -InstanceSize $newInstanceSize -ImageName $image  -AvailabilitySetName $availabilitySet  ` | Add-AzureProvisioningConfig -Windows ` -AdminUserName $userName -Password $pass | Set-AzureSubnet -SubnetNames $subnet | Set-AzureStaticVNetIP -IPAddress $ipaddr
 
-    #Add Data and Log Disks tooVM Config
-    #Note hello size specified ‘-DiskSizeInGB 1023’, this will attach 2 x P30 Premium Storage Disk Type
-    #Utilising hello Premium Storage enabled Storage account
+    #Add Data and Log Disks to VM Config
+    #Note the size specified ‘-DiskSizeInGB 1023’, this will attach 2 x P30 Premium Storage Disk Type
+    #Utilising the Premium Storage enabled Storage account
 
     $vmConfigsl | Add-AzureDataDisk -CreateNew -DiskSizeInGB 1023 -LUN 0 -HostCaching "ReadOnly"  -DiskLabel "DataDisk1" -MediaLocation "https://$newxiostorageaccountname.blob.core.windows.net/vhds/$vmName-data1.vhd"
     $vmConfigsl | Add-AzureDataDisk -CreateNew -DiskSizeInGB 1023 -LUN 1 -HostCaching "None"  -DiskLabel "logDisk1" -MediaLocation "https://$newxiostorageaccountname.blob.core.windows.net/vhds/$vmName-log1.vhd"
@@ -250,8 +250,8 @@ hello az alábbi példa bemutatja, hogyan tooplace az operációs rendszer virtu
     Get-AzureVM -ServiceName $destcloudsvc -Name $vmName |Get-AzureOSDisk
 
 
-### <a name="create-a-new-vm-toouse-premium-storage-with-a-custom-image"></a>Hozzon létre egy új virtuális gép toouse prémium szintű Storage egyéni kép
-Ebben a forgatókönyvben azt mutatja be, melyekben egy standard szintű tárfiókot található meglévő testre szabott lemezképet. Ahogy azt korábban említettük, ha azt szeretné, tooplace hello az operációs rendszer virtuális Merevlemezt a prémium szintű Storage toocopy kell hello lemezképet, Standard szintű tárfiók hello szerepel, és helyezze tooa prémium szintű Storage használat előtt. Ha rendelkezik helyszíni kép, érdemes a metódus toocopy is használhatja, amely közvetlenül toohello prémium szintű Storage-fiók.
+### <a name="create-a-new-vm-to-use-premium-storage-with-a-custom-image"></a>A prémium szintű Storage egyéni lemezképként az új virtuális gép létrehozása
+Ebben a forgatókönyvben azt mutatja be, melyekben egy standard szintű tárfiókot található meglévő testre szabott lemezképet. Ahogy azt korábban említettük, ha el szeretné-e helyezni az operációs rendszer virtuális Merevlemezt a prémium szintű Storage kell, hogy létezik-e a lemezkép másolása a standard szintű tárfiók, és helyezze át a prémium szintű Storage használat előtt. Ha rendelkezik helyszíni kép, érdemes is ezt a módszert másolja, amely közvetlenül a prémium szintű Storage-fiók.
 
 #### <a name="step-1-create-storage-account"></a>1. lépés: Tárfiók létrehozása
     $mysubscription = "DansSubscription"
@@ -270,7 +270,7 @@ Ebben a forgatókönyvben azt mutatja be, melyekben egy standard szintű tárfi�
 
 
 #### <a name="step-3-use-existing-image"></a>3. lépés: A meglévő kép használata
-Egy meglévő lemezképet is használhatja. Is [igénybe vehet egy meglévő számítógép lemezképét](../classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json). Megjegyzés: hello géphez rendszerképet készítene nincs toobe DS * gép. Miután hello kép, hello módját a következő lépéseket megjelenítése toocopy, prémium szintű Storage-fiókkal és hello toohello **Start-AzureStorageBlobCopy** PowerShell-parancsmag segítségével.
+Egy meglévő lemezképet is használhatja. Is [igénybe vehet egy meglévő számítógép lemezképét](../classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json). Vegye figyelembe a gépet, akkor kép nem kell Tartományi * géphez. Miután a lemezképet, a következőket mutatják be a prémium szintű Storage-fiókkal, és másolja a **Start-AzureStorageBlobCopy** PowerShell-parancsmag segítségével.
 
     #Get storage account keys:
     #Standard Storage account
@@ -278,7 +278,7 @@ Egy meglévő lemezképet is használhatja. Is [igénybe vehet egy meglévő sz�
     #Premium Storage account
     $xiostorage = Get-AzureStorageKey -StorageAccountName $newxiostorageaccountname
 
-    #Set up contexts for hello storage accounts:
+    #Set up contexts for the storage accounts:
     $origContext = New-AzureStorageContext  –StorageAccountName $origstorageaccountname -StorageAccountKey $originalstorage.Primary
     $destContext = New-AzureStorageContext  –StorageAccountName $newxiostorageaccountname -StorageAccountKey $xiostorage.Primary  
 
@@ -295,19 +295,19 @@ Egy meglévő lemezképet is használhatja. Is [igénybe vehet egy meglévő sz�
 #### <a name="step-5-regularly-check-copy-status"></a>5. lépés: Rendszeresen ellenőrizze a példány állapotát:
     $blob | Get-AzureStorageBlobCopyState
 
-#### <a name="step-6-add-image-disk-tooazure-disk-repository-in-subscription"></a>6. lépés: Kép tooAzure lemezről lemezre tárház hozzáadása az előfizetéshez
+#### <a name="step-6-add-image-disk-to-azure-disk-repository-in-subscription"></a>6. lépés: Lemezt Azure előfizetés-tárház kép lemez hozzáadása
     $imageMediaLocation = $destContext.BlobEndPoint+"/"+$myImageVHD
     $newimageName = "prem"+"dansoldonorsql2k14"
 
     Add-AzureVMImage -ImageName $newimageName -MediaLocation $imageMediaLocation
 
 > [!NOTE]
-> Előfordulhat, hogy annak ellenére, hogy hello állapotáról szóló jelentések sikeres, sikertelen továbbra is megjelenik bérleti lemezhiba. Ebben az esetben várjon körülbelül 10 percet.
+> Előfordulhat, hogy annak ellenére, hogy a állapotjelentések sikeres, sikertelen továbbra is megjelenik bérleti lemezhiba. Ebben az esetben várjon körülbelül 10 percet.
 >
 >
 
-#### <a name="step-7--build-hello-vm"></a>7. lépés: Hello virtuális gép létrehozása
-Itt készítésekor hello VM a lemezkép és a VHD-k két Premium Storage:
+#### <a name="step-7--build-the-vm"></a>7. lépés: A virtuális gép létrehozása
+Itt hoz létre a virtuális Gépet a lemezkép és a VHD-k két Premium Storage:
 
     $newimageName = "prem"+"dansoldonorsql2k14"
     #Set up Machine Specific Information
@@ -316,10 +316,10 @@ Itt készítésekor hello VM a lemezkép és a VHD-k két Premium Storage:
     $subnet = "Clients"
     $ipaddr = "192.168.0.41"
 
-    #This will need toobe a new cloud service
+    #This will need to be a new cloud service
     $destcloudsvc = "danregsvcamsxio2"
 
-    #Use tooDS Series VM
+    #Use to DS Series VM
     $newInstanceSize = "Standard_DS1"
 
     #create new Avaiability Set
@@ -342,62 +342,62 @@ Itt készítésekor hello VM a lemezkép és a VHD-k két Premium Storage:
 
 ## <a name="existing-deployments-that-do-not-use-always-on-availability-groups"></a>Always On rendelkezésre állási csoportok nem használó meglévő központi telepítések
 > [!NOTE]
-> A meglévő telepítések esetében először lásd: hello [Előfeltételek](#prerequisites-for-premium-storage) című szakaszát.
+> A meglévő telepítések esetében először tekintse meg a [Előfeltételek](#prerequisites-for-premium-storage) című szakaszát.
 >
 >
 
-Nincsenek az Always On rendelkezésre állási csoportok és azok, amelyek nem használó SQL Server-telepítések kapcsolatos szempontokat. Ha nem használják a mindig bekapcsolva, és rendelkezik egy meglévő önálló SQL Server, frissítheti tooPremium tárolási új felhőalapú szolgáltatás és a tárolási fiók használatával. Vegye figyelembe az alábbi beállítások hello:
+Nincsenek az Always On rendelkezésre állási csoportok és azok, amelyek nem használó SQL Server-telepítések kapcsolatos szempontokat. Ha nem használják a mindig bekapcsolva, és rendelkezik egy meglévő önálló SQL Server, prémium szintű Storage frissíthet egy új felhőalapú szolgáltatás és a tárolási fiók használatával. Vegye figyelembe a következő lehetőségeket:
 
-* **Hozzon létre egy új SQL Server virtuális gép**. Új SQL Server virtuális gép egy prémium szintű Storage-fiókot használó hozhat létre, az új központi megfelelően. Majd készítsen biztonsági másolatot, és az SQL Server-konfigurációs és felhasználói adatbázisok visszaállítása. hello alkalmazásnak szüksége lesz frissítve toobe tooreference hello új SQL-kiszolgálót, ha azt kívül és belül is hozzáférnek. Kellene toocopy minden "kívül db" objektumot, ha korábban végzett (SxS) SQL Server párhuzamos áttelepítés. Ez magában foglalja az objektumok, például a bejelentkezési adatok, a tanúsítványokat és a csatolt kiszolgálók.
-* **Telepítse át a meglévő SQL Server virtuális**. Ehhez szükséges hello SQL Server virtuális gép offline állapotba helyezése, majd áthelyezte azt tooa új felhőalapú szolgáltatás, beleértve a csatlakoztatott virtuális merevlemezek toohello prémium szintű Storage-fiók összes másolása. Virtuális gép hello online állapotba kerül, ha hello alkalmazás hello állomásnevét, mielőtt hivatkozik. Vegye figyelembe, hogy a meglévő lemez hello hello mérete hatással lesz a hello teljesítményt nyújt. Például egy 400 GB lemezterület tooa P20 kerekíti lekérdezi. Ha tudja, hogy nincs szüksége a lemez teljesítménye akkor lehetett hello VM DS adatsorozat virtuális gépként hozza létre, és csatolja a prémium szintű Storage VHD-k hello mérete/teljesítmény specifikáció van szüksége. Ezután sikerült leválasztani a, és csatlakoztassa újra hello SQL-adatbázis a fájlokat.
+* **Hozzon létre egy új SQL Server virtuális gép**. Új SQL Server virtuális gép egy prémium szintű Storage-fiókot használó hozhat létre, az új központi megfelelően. Majd készítsen biztonsági másolatot, és az SQL Server-konfigurációs és felhasználói adatbázisok visszaállítása. Az alkalmazás kell frissíteni, hogy az új SQL Server hivatkoznak, ha azt kívül és belül is hozzáférnek. Minden "kívül db" objektumok másolja, mintha csinált (SxS) SQL Server párhuzamos áttelepítés kellene. Ez magában foglalja az objektumok, például a bejelentkezési adatok, a tanúsítványokat és a csatolt kiszolgálók.
+* **Telepítse át a meglévő SQL Server virtuális**. Ehhez szükséges az SQL Server virtuális gép offline állapotba helyezése, majd áthelyezte azt egy új felhőalapú szolgáltatás, mely tartalmazza, másolja a csatlakoztatott virtuális merevlemezek mindegyikét a prémium szintű Storage-fiók. A virtuális gép online állapotba kerül, ha az alkalmazás a kiszolgáló állomásneve, mielőtt hivatkozik. Vegye figyelembe, hogy a meglévő lemez mérete befolyásolja a teljesítményt nyújt. Például egy 400 GB lemezterület lekérdezi kerekíti egy P20. Ha tudja, hogy nincs szüksége a lemez teljesítménye akkor képes a virtuális Gépet a DS adatsorozat virtuális gépként hozza létre, és csatolja a prémium szintű Storage VHD-k az mérete/teljesítmény specifikáció van szüksége. Ezután leválasztása sikerült, és csatlakoztassa újra az SQL-adatbázis a fájlokat.
 
 > [!NOTE]
-> Érdemes figyelembe hello méretű hello méretétől függően hello VHD lemezek másolásának azt jelenti, hogy prémium szintű tároló lemez típusát esnek, ez határozza meg a lemez teljesítménye megadását. Lemez legközelebbi toohello mentése round Azure lesz mérete, így ha egy 400 GB lemezterület, ez kerekíti tooa P20. Attól függően, hogy a meglévő IO-követelményeket a hello az operációs rendszer virtuális merevlemez előfordulhat, nem kell toomigrate a tooa prémium szintű Storage-fiók.
+> Érdemes figyelembe méretétől függően a mérete, a virtuális merevlemez a lemezek másolásának azt jelenti, hogy prémium szintű tároló lemez típusát esnek, ez határozza meg a lemez teljesítménye megadását. Mentés a legközelebbi lemezre round Azure lesz mérete, így ha egy 400 GB lemezterület, ez kerekíti az egy P20. Attól függően, hogy a meglévő IO-követelményeket az operációs rendszer virtuális merevlemez nincs szükség lehet át ezt a prémium szintű Storage-fiók.
 >
 >
 
-Az SQL Server külsőleg érhető el, ha hello cloud service VIP változik. Ki is tooupdate végpontok, a hozzáférés-vezérlési listák és a DNS-beállításait.
+Ha az SQL Server külsőleg érhető el, a cloud service VIP változik. Is kell frissítés végpontok, a hozzáférés-vezérlési listák és a DNS-beállításait.
 
 ## <a name="existing-deployments-that-use-always-on-availability-groups"></a>Always On rendelkezésre állási csoportok használó meglévő központi telepítések
 > [!NOTE]
-> A meglévő telepítések esetében először lásd: hello [Előfeltételek](#prerequisites-for-premium-storage) című szakaszát.
+> A meglévő telepítések esetében először tekintse meg a [Előfeltételek](#prerequisites-for-premium-storage) című szakaszát.
 >
 >
 
-Kezdetben ebben a szakaszban követően áttekintjük hogyan Always On Azure hálózatkezelési működjön. Azt fogja majd lebontva áttelepítések tootwo forgatókönyvekben: áttelepítéseket, ahol is megengedett némi állásidővel, és áttelepítéseket, ahol minimális állásidővel kell elérni.
+Kezdetben ebben a szakaszban követően áttekintjük hogyan Always On Azure hálózatkezelési működjön. Azt fogja majd lebontva két olyan eset az áttelepítés: áttelepítéseket, ahol is megengedett némi állásidővel, és áttelepítéseket, ahol minimális állásidővel kell elérni.
 
-A helyszíni SQL Server Always On rendelkezésre állási csoportok használatára a figyelő a helyi, amely egy virtuális DNS-nevet egy IP-cím, egy vagy több SQL Server-kiszolgálók között megosztott együtt regisztrálja. Ha az ügyfelek hello figyelő IP toohello elsődleges SQL-kiszolgálón keresztül halad. Ez az adott időpontban mindig az IP-erőforrás hello birtokló hello kiszolgáló.
+A helyszíni SQL Server Always On rendelkezésre állási csoportok használatára a figyelő a helyi, amely egy virtuális DNS-nevet egy IP-cím, egy vagy több SQL Server-kiszolgálók között megosztott együtt regisztrálja. Ha az ügyfelek csatlakoznak a figyelő az elsődleges SQL-kiszolgáló IP-keresztül halad. Ez az a kiszolgáló, amely a mindig az IP-erőforrás tulajdonosa adott időpontban.
 
 ![A DeploymentsUseAlways][6]
 
-A Microsoft Azure-ban akkor is csak egy IP cím tooa hálózati adapter a hello VM, tehát a rendelés tooachieve hello azonos, a helyszíni absztrakciós réteget, Azure hello IP-címet, amely hozzá van rendelve toohello belső/külső terheléselosztó (ILB/ELB) használja. hello kiszolgálók között megosztott hello IP-erőforrás értéke toohello azonos IP mint hello ILB-/ ELB. Ez a hello DNS közzé van téve, és ügyfélforgalmat továbbítja a hello ILB-/ ELB toohello elsődleges SQL-kiszolgáló replika. hello ILB-/ ELB tudja, melyik SQL Server elsődleges óta mintavételt tooprobe hello mindig az IP-erőforrást használ. Hello előző példában azt vizsgálat hello ELB/ILB által hivatkozott végpont minden csomópont, a amelyik reagál hello elsődleges SQL Server.
+A Microsoft Azure lehet hozzárendelni egy hálózati Adaptert a virtuális Gépen csak egy IP-címet így az ugyanazon a helyszínen, mint absztrakciós réteget eléréséhez Azure használja az IP-cím, amely hozzá van rendelve a belső/külső terheléselosztó (ILB/ELB). Az IP-erőforrás, amelyet a kiszolgálók között, a ILB-/ ELB azonos IP-van beállítva. Ez a DNS-ben közzétett és ügyfélforgalmat a ILB-/ ELB azt az SQL-kiszolgáló elsődleges replikára továbbítja. A ILB-/ ELB tudja, melyik SQL Server elsődleges óta mintavételt számára, hogy megvizsgálja a mindig az IP-erőforrást használ. Az előző példában azt mintavétel az üzembe helyezett ELB/ILB által hivatkozott végpont minden csomópont, a attól válaszol az elsődleges SQL-kiszolgáló.
 
 > [!NOTE]
-> hello ILB és üzembe helyezett ELB mindkét rendelt tooa adott Azure-felhőszolgáltatásban, ezért bármely áttelepülés a felhőbe az Azure-ban lesz valószínűleg jelenti azt, hogy hello Load Balancer IP változik.
+> A Példánynak és üzembe helyezett ELB mindkét rendelt adott Azure cloud Service szolgáltatásra, ezért bármely áttelepülés a felhőbe az Azure-ban lesz valószínűleg azt jelenti, hogy a Load Balancer IP változik.
 >
 >
 
 ### <a name="migrating-always-on-deployments-that-can-allow-some-downtime"></a>Áttelepítése mindig a központi telepítések engedélyezhetik bizonyos időre leállítást
-Számos két stratégiák toomigrate mindig a központi telepítések lehetővé teszik a bizonyos időre leállítást.
+Nincsenek mindig a központi telepítései áttelepítésének, amely lehetővé teszi bizonyos időre leállítást két stratégiák:
 
-1. **Több másodlagos replika tooan meglévő mindig a fürt hozzáadása**
-2. **Telepítse át a tooa új mindig a fürt**
+1. **Több másodlagos replika hozzáadása egy meglévő mindig a fürthöz**
+2. **Új mindig a fürt áttelepítése**
 
-#### <a name="1-add-more-secondary-replicas-tooan-existing-always-on-cluster"></a>1. Több másodlagos replika tooan hozzáadása meglévő mindig a fürt
-Egy stratégia tooadd van több másodlagos adatbázist toohello Always On rendelkezésre állási csoportnak. Új felhőalapú szolgáltatás be ezeket tooadd kell, és frissítse az hello figyelő hello új load balancer IP.
+#### <a name="1-add-more-secondary-replicas-to-an-existing-always-on-cluster"></a>1. Több másodlagos replika hozzáadása egy meglévő mindig a fürthöz
+Egyik stratégia, hogy több másodlagos adatbázis hozzáadása az Always On rendelkezésre állási csoportnak. Meg kell vennie ezeket az új felhőalapú szolgáltatás, és frissítse a figyelő az új load balancer IP-cím.
 
 ##### <a name="points-of-downtime"></a>Állásidő pontok:
 * A fürt ellenőrzése.
 * Új másodlagos adatbázis-tesztelési mindig a feladatátvételt.
 
-Ha használ Tárolókészletek Windows hello VM belül IO nagyobb átviteli teljesítményt, akkor a rendszer offline állapotra állítja a teljes fürt ellenőrzése során. hello teszttel ellenőrizheti, ha a csomópontok toohello fürt hozzáadása. hello időt toorun hello teszt eltérőek lehetnek, így kell tesztelje a reprezentatív tesztelési környezetben tooget, hogy mennyi ideig Ez eltarthat egy megközelítőleges időpont, amikor.
+Használata Windows Tárolókészletek a virtuális Gépen belül magasabb IO átviteli sebesség eléréséhez, akkor a rendszer offline állapotra állítja a teljes fürt ellenőrzése során. A teszttel ellenőrizheti, ha a csomópontok hozzáadása a fürthöz. A teszt futtatása szükséges idő változhat, így kell tesztelje, hogy mennyi ideig Ez eltarthat egy megközelítőleges időpont, amikor a beolvasandó reprezentatív tesztelési környezetben.
 
-Ha kézi feladatátvételre végezheti el, és chaos tesztelés hello az újonnan hozzáadott csomópontok tooensure magas rendelkezésre állású mindig a Funkciók, a várt kell kiépíteni.
+Idő, ahol végezheti el kézi feladatátvételre és tesztelési chaos csomóponton az újonnan hozzáadott magas rendelkezésre állású mindig a funkciók a várt módon kell telepíteni.
 
 ![DeploymentUseAlways On2][7]
 
 > [!NOTE]
-> Ha hello Tárolókészletek hello érvényesítés futtatása előtt használt SQL Server összes példányát le kell állítani.
+> A Tárolókészletek helyének SQL Server összes példányát le kell állítani az érvényesítés futtatása előtt.
 >
 > ##### <a name="high-level-steps"></a>Magas szintű lépései
 >
@@ -408,50 +408,50 @@ Ha kézi feladatátvételre végezheti el, és chaos tesztelés hello az újonna
 4. Létrehozhat új egy új belső Load Balancer (ILB), illetve egy külső Load Balancer (ELB) használja, majd állítsa be a terhelés eloszlik végpontok mindkét új csomópontjának.
 
    > [!NOTE]
-   > Ellenőrizze minden csomópont hello megfelelő végpont-konfiguráció van, a folytatás előtt
+   > Ellenőrizze minden csomópont van a megfelelő végpont-konfiguráció, a folytatás előtt
    >
    >
-5. Állítsa le a felhasználó vagy alkalmazás-hozzáférés toohello SQL Server (ha Tárolókészletek használata).
+5. Állítsa le a felhasználó vagy alkalmazás-hozzáférés az SQL Server (ha Tárolókészletek használata).
 6. SQL Server adatbázismotor-szolgáltatások leállítása az összes olyan csomóponton, (ha Tárolókészletek használata).
-7. Adja hozzá az új csomópontok toocluster, és futtassa teljes ellenőrzést.
+7. A fürt, és futtassa teljes ellenőrzést új csomópontok hozzáadása.
 8. Miután az ellenőrzés nem jelez hibát, indítsa el az összes SQL Server szolgáltatás.
 9. Tranzakciós naplók biztonsági mentése és visszaállítása felhasználói adatbázisokat.
-10. Vegyen fel új csomópontok hello Always On rendelkezésre állási csoportnak, és helyezze el a replikációs **szinkron**.
-11. Hello IP-cím hozzáadása hello cím erőforrása új felhőalapú szolgáltatás ILB-/ ELB a PowerShell segítségével az Always On alapján hello többhelyes példát hello [függelék](#appendix-migrating-a-multisite-always-on-cluster-to-premium-storage). A Windows fürtszolgáltatás, állítsa be a hello **lehetséges tulajdonosok** a hello **IP-cím** erőforrás toohello új csomópontok régi. Című rész hello "IP-cím erőforrás hozzáadása ugyanazon az alhálózaton" hello [függelék](#appendix-migrating-a-multisite-always-on-cluster-to-premium-storage).
-12. Feladatátvételi tooone hello új csomópontok.
-13. Ellenőrizze a hello új csomópontok automatikus feladatátvételi partnerként és feladatátvételi tesztek.
+10. Vegyen fel új csomópontok az Always On rendelkezésre állási csoportnak, és helyezze el a replikációs **szinkron**.
+11. Adja hozzá az IP-cím erőforrás, az új felhőalapú szolgáltatás ILB-/ ELB Powershellen keresztül, az Always On többhelyes példa alapján a [függelék](#appendix-migrating-a-multisite-always-on-cluster-to-premium-storage). A Windows fürtszolgáltatás, állítsa be a **lehetséges tulajdonosok** , a **IP-cím** erőforrás a régi új csomóponttal. A "Hozzáadás IP-cím erőforrás ugyanazon az alhálózaton" című része a [függelék](#appendix-migrating-a-multisite-always-on-cluster-to-premium-storage).
+12. Feladatátvétel az új csomópontok egyikére.
+13. Ellenőrizze az új csomópontok automatikus feladatátvételi partnerként és a teszt feladatátvételt.
 14. Távolítsa el az eredeti csomópont a rendelkezésre állási csoport.
 
 ##### <a name="advantages"></a>Előnyei
-* Új SQL-kiszolgálók lehet tesztelni (SQL Server alkalmazás) tooAlways a Hozzáadás előtt.
-* Hello VM Oldalméret módosítása oly módon, és testre szabhatja hello tárolási tooyour pontos követelményeit. Azonban hasznos tookeep lenne hello SQL fájl görbékhez hello azonos.
-* Hello DB biztonsági mentések toohello másodlagos replikák hello átruházása elkezdésének szabályozhatja. Ez eltér az Azure használatával **Start-AzureStorageBlobCopy** parancsmag toocopy VHD-k, mert ez egy aszinkron másolatot.
+* Új SQL-kiszolgálók lehet tesztelni (SQL Server alkalmazás) előtt mindig a történő hozzáadásuk.
+* Módosítsa a Virtuálisgép-méretet, és testre szabhatja a tárolót az pontos igényeinek megfelelően. Azonban hasznos lenne azonos tartani az SQL teljes elérési utat.
+* Az adatbázis biztonsági mentések átvitele a másodlagos replikák elkezdésének szabályozhatja. Ez eltér az Azure használatával **Start-AzureStorageBlobCopy** parancsmag VHD-k, másolása, mert ez egy aszinkron másolatot.
 
 ##### <a name="disadvantages"></a>Hátrányok
-* Windows Tárolókészletek használata esetén nincs fürt állásidő hello teljes fürtérvényesítési hello új további csomópontok során.
-* Attól függően, hogy az SQL Server verziója hello és hello meglévő másodlagos replikák száma, akkor előfordulhat, hogy nem tud tooadd több másodlagos replika meglévő másodlagos adatbázis eltávolítása nélkül lehet.
-* Előfordulhat, hogy hosszú SQL adatátviteli idő hello másodlagos beállítása közben.
+* Windows Tárolókészletek használata esetén nincs fürt állásidő az új további csomópontokat a teljes fürt ellenőrzése során.
+* Attól függően, hogy az SQL Server verziója és a másodlagos replikák meglévő számát akkor nem feltétlenül adhat hozzá további másodlagos replikák meglévő másodlagos adatbázis eltávolítása nélkül.
+* Előfordulhat, hogy hosszú SQL adatátviteli idő a másodlagos adatbázis beállítása közben.
 * Nincs további költség nélkül az áttelepítés során előfordulhat, hogy a párhuzamosan futó új gépek.
 
-#### <a name="2-migrate-tooa-new-always-on-cluster"></a>2. Telepítse át a tooa új mindig a fürt
-Egy másik olyan stratégia toocreate egy teljesen új mindig a fürt új csomóponttal rendelkező új felhőalapú szolgáltatás és az átirányítási hello ügyfelek toouse azt.
+#### <a name="2-migrate-to-a-new-always-on-cluster"></a>2. Új mindig a fürt áttelepítése
+Egy másik olyan stratégia, hogy hozzon létre egy új mindig a fürtöt új csomópontot az új felhőalapú szolgáltatás, és majd irányítsa át az ügyfelek számára azt.
 
 ##### <a name="points-of-downtime"></a>Állásidő pontok
-Alkalmazások és a felhasználók toohello új mindig a figyelő-átvitel során, nincs leállás. hello állásidő függ:
+Alkalmazások és a felhasználók az új mindig a figyelő az átvitel során, nincs leállás. A leállás függ:
 
-* hello idő toorestore végső tranzakciós napló biztonsági mentések toodatabases új kiszolgálókon.
-* hello igénybe vett idő tooupdate ügyfél alkalmazások toouse új mindig a figyelő.
+* Végső tranzakciónapló biztonsági mentései új kiszolgálókon lévő adatbázisok visszaállítása szükséges idő.
+* Ügyfél-alkalmazások új mindig a figyelő az frissítéséhez szükséges idő.
 
 ##### <a name="advantages"></a>Előnyei
-* Hello tényleges éles környezetben, SQL Server, tesztelheti, és operációs rendszer a módosításokat.
-* Hello beállítás toocustomize hello tárhellyel rendelkező és toopotentially csökkentheti a virtuális gép méretét. Emiatt költségek csökkentéséhez.
-* A SQL Server build vagy a verziójával frissítheti a folyamat során. Operációs rendszer hello is lehet frissíteni.
-* hello előző mindig a fürt működhet teli visszaállítás céljaként.
+* SQL Server, a tényleges éles környezetben lehet tesztelni és operációs rendszer a módosításokat.
+* Lehetősége van a tárolási testreszabásához és potenciálisan a virtuális gép méretének csökkentésére. Emiatt költségek csökkentéséhez.
+* A SQL Server build vagy a verziójával frissítheti a folyamat során. Az operációs rendszer is lehet frissíteni.
+* Az előző mindig a fürt teli visszaállítás céljaként működhet.
 
 ##### <a name="disadvantages"></a>Hátrányok
-* Ha azt szeretné, hogy mindkét fut egyszerre mindig a fürtök szüksége hello figyelő toochange hello DNS-nevét. Adminisztrációs terhet hello az áttelepítés során ez biztosítja a, az ügyfél alkalmazás karakterláncok tükröznie kell hello új figyelő nevét.
-* Meg kell valósítani a szinkronizálási mechanizmus hello azokat a lehetséges toominimize hello végleges szinkronizálást követelmény áttelepítés előtt zárja be két környezetek tookeep között.
-* Hiba kerül költség az áttelepítés során közben fut hello új környezettel rendelkezik.
+* Módosítsa a figyelő a DNS-nevét, ha azt szeretné, hogy mindkét fut egyszerre mindig a fürtök kell. Ezzel hozzáad adminisztrációs terhet az áttelepítés során, az ügyfél alkalmazás karakterláncok tükröznie kell az új figyelő nevét.
+* Meg kell valósítani a szinkronizálási mechanizmus, hogy továbbra is a végleges szinkronizálást követelmények áttelepítés előtt minimalizálása érdekében a lehető legközelebb a két környezet közötti.
+* Hiba kerül költség az áttelepítés során előfordulhat, hogy az új futtató környezet.
 
 ### <a name="migrating-always-on-deployments-for-minimal-downtime"></a>Áttelepítése mindig a központi telepítések a minimális állásidő érdekében
 Nincsenek áttelepítése mindig a központi telepítés két stratégiák a minimális állásidő érdekében:
@@ -460,15 +460,15 @@ Nincsenek áttelepítése mindig a központi telepítés két stratégiák a min
 2. **Meglévő másodlagos másodpéldányt használják: többhelyes**
 
 #### <a name="1-utilize-an-existing-secondary-single-site"></a>1. Egy létező másodlagos használják: egy helyen
-A minimális állásidő érdekében egy stratégia tootake egy létező másodlagos felhőben, és távolítsa el az aktuális felhőszolgáltatás hello. Ezután másolja a VHD-k toohello új prémium szintű Storage-fiók hello, és hozzon létre hello VM hello új felhőalapú szolgáltatás. Módosítsa a fürtszolgáltatás és a feladatátvételi hello figyelő.
+A minimális állásidő érdekében egyik stratégia, hogy egy meglévő felhőalapú másodlagos igénybe vehet, és eltávolítja az aktuális felhőalapú szolgáltatás. Ezután másolja a virtuális merevlemezek az új prémium szintű Storage-fiókot, és a virtuális gép létrehozása az új felhőalapú szolgáltatás. A figyelő a fürtszolgáltatás és a feladatátvételi frissíteni.
 
 ##### <a name="points-of-downtime"></a>Állásidő pontok
-* Amikor a végső csomópontja hello hello az elosztott terhelésű végpont, nincs leállás.
+* Amikor a végső csomópontja az elosztott terhelésű végpont, nincs leállás.
 * Az ügyfél újracsatlakozás ügyfél és a DNS-konfigurációtól függően előfordulhat, hogy később.
-* Ha úgy dönt, hogy tootake hello mindig fürt csoport offline tooswap kimenő hello IP-címek, nincs további állásidő. Egy vagy függőség használatával elkerülheti ezt, és lehetséges tulajdonosainak hello hozzáadott IP-cím erőforrás. Című rész hello "IP-cím erőforrás hozzáadása ugyanazon az alhálózaton" hello [függelék](#appendix-migrating-a-multisite-always-on-cluster-to-premium-storage).
+* Ha választja, a fürt mindig a csoport offline állapotba ki az IP-címek felcserélése, nincs további állásidő. Ez a hozzáadott IP-cím erőforrás egy OR függőségi és a lehetséges tulajdonosok használatával elkerülheti a. A "Hozzáadás IP-cím erőforrás ugyanazon az alhálózaton" című része a [függelék](#appendix-migrating-a-multisite-always-on-cluster-to-premium-storage).
 
 > [!NOTE]
-> Ha azt szeretné, hogy hello hozzáadott csomópont toopartake a partnerként mindig a feladatátvétel, tooadd a terhelés eloszlik beállítása hivatkozás toohello Azure végpont kell. Hello futtatásakor **Add-AzureEndpoint** toodo nyissa meg a, aktuális kapcsolatok tooremain parancsot, de új kapcsolatok toohello figyelő nem lesz képes toobe mindaddig, amíg hello terheléselosztó frissült. A tesztelés látott toolast 90-120seconds volt, ez kell vizsgálni.
+> Ha azt szeretné, hogy a hozzáadott részt vesz a partnerként mindig a feladatátvevő csomópont kell egy hivatkozást a terhelés eloszlik beállítása az Azure végpont hozzáadása. Amikor futtatja a **Add-AzureEndpoint** ehhez parancsot, nyissa meg a jelenlegi kapcsolatok maradjon, de a figyelő új kapcsolatot nem fogja tudni hozható létre, amíg a terheléselosztó frissítette. A tesztelés ez fordult elő az elmúlt 90-120seconds, ez kell vizsgálni.
 >
 >
 
@@ -476,77 +476,77 @@ A minimális állásidő érdekében egy stratégia tootake egy létező másodl
 * Nincsenek további az áttelepítés során felmerülő költség.
 * -Az-egyhez áttelepítés.
 * Csökkentett összetettségét.
-* Lehetővé teszi, hogy a megnövekedett IOPS a prémium szintű Storage SKU. Amikor hello lemezek hello VM leválasztani és toohello új felhőalapú szolgáltatás, másolja a 3. fél eszköz lehet magasabb teljesítmények biztosít használt tooincrease hello virtuális merevlemez méretét. Virtuális merevlemez mérete növekszik, lásd: a [fórum vitafórum](https://social.msdn.microsoft.com/Forums/azure/4a9bcc9e-e5bf-4125-9994-7c154c9b0d52/resizing-azure-data-disk?forum=WAVirtualMachinesforWindows).
+* Lehetővé teszi, hogy a megnövekedett IOPS a prémium szintű Storage SKU. Ha a lemezt leválasztani a virtuális gép, és másolja az új felhőalapú szolgáltatás, a 3. fél eszköz a virtuális merevlemez méretét, magasabb teljesítmények biztosító használható. Virtuális merevlemez mérete növekszik, lásd: a [fórum vitafórum](https://social.msdn.microsoft.com/Forums/azure/4a9bcc9e-e5bf-4125-9994-7c154c9b0d52/resizing-azure-data-disk?forum=WAVirtualMachinesforWindows).
 
 ##### <a name="disadvantages"></a>Hátrányok
 * Nincs magas rendelkezésre ÁLLÁSÚ és vész-Helyreállítási átmenetileg megszakad az áttelepítés során.
-* Mivel ez egy 1:1 áttelepítési, egy minimális Virtuálisgép-méretet, amely támogatja a virtuális merevlemezeket, számát, nem feltétlenül tudja toodownsize a virtuális gépek toouse fog rendelkezni.
-* Ebben a forgatókönyvben használna hello Azure **Start-AzureStorageBlobCopy** parancsmag, amely aszinkron. Nincs nincs SLA-t a Másolás befejezése. hello példányok hello idő változó, amíg ez függ a várakozási sorban is függ adatok tootransfer hello mennyisége. hello ideje növekszik, ha hello átviteli tooanother Azure-adatközponthoz, amely támogatja a prémium szintű Storage egy másik régióban. Ha csak 2 csomópontok, inkább egy lehetséges megoldás, ha hello másolási tovább tart, mint a tesztelés. Ez magában foglalhatja a következő ötletek hello.
-  * Ideiglenes 3. az SQL Server csomópont hozzáadása a magas rendelkezésre ÁLLÁSÚ egyeztetett állásidővel hello áttelepítés előtt.
-  * Hello áttelepítéshez Azure ütemezett karbantartás kívül.
+* Ez ugyanis egy 1:1-áttelepítés, a minimális virtuális gép mérete által támogatott virtuális merevlemezek, a száma, ezért nem lehet a virtuális gépek downsize használni fog.
+* Ebben a forgatókönyvben szeretné használni az Azure **Start-AzureStorageBlobCopy** parancsmag, amely aszinkron. Nincs nincs SLA-t a Másolás befejezése. A példányok idő változó, amíg ez függ a várakozási sorban is függ a mennyiségű adatot továbbít. A másolási idő növeli a Ha az adatátvitelt lesz egy másik Azure-adatközponthoz, amely támogatja a prémium szintű Storage egy másik régióban. Ha csak 2 csomópontok, inkább egy lehetséges megoldás, abban az esetben a Másolás tovább tart, mint a tesztelés. Ez magában foglalhatja a következő ötleteket.
+  * Adja hozzá egy ideiglenes 3. az SQL Server-csomópont a magas rendelkezésre ÁLLÁSÚ egyeztetett állásidővel az áttelepítés előtt.
+  * Futtassa az áttelepítés Azure ütemezett karbantartás kívül.
   * Győződjön meg arról, a fürt kvóruma megfelelően konfigurálta-e.  
 
 ##### <a name="high-level-steps"></a>Magas szintű lépései
-Ez a dokumentum nem bemutatása teljes end tooend példában azonban hello [függelék](#appendix-migrating-a-multisite-always-on-cluster-to-premium-storage) ismerteti, amelyek alkalmazhatók tooperform lehetnek ez.
+Ez a dokumentum nem bemutatása teljes végpont példa, azonban a [függelék](#appendix-migrating-a-multisite-always-on-cluster-to-premium-storage) részletesen is javítható, ha ezt elvégezni.
 
 ![MinimalDowntime][8]
 
-* Összefog lemez konfigurációját, és távolítsa el hello csomópont (ne törölje a csatolt VHD-k).
-* Prémium szintű Storage-fiók létrehozása és virtuális merevlemezek másolása hello standard szintű tárfiók
-* Új felhőalapú szolgáltatás létrehozása, és telepítse újra a hello SQL2 virtuális gép található, amely a felhőszolgáltatás. Hozzon létre virtuális gép hello hello használatával másolja az eredeti operációs rendszer virtuális merevlemez és a kapcsolódó hello másolja a VHD-k.
+* Gyűjtse össze a lemezkonfigurációt, és távolítsa el a csomópont (ne törölje a csatolt VHD-k).
+* Prémium szintű Storage-fiók létrehozása, és másolja a standard szintű tárfiók VHD-k
+* Új felhőalapú szolgáltatás létrehozása, és telepítse újra a virtuális gép SQL2, amely a felhőszolgáltatás. A másolt eredeti operációs rendszer virtuális Merevlemezt használ, és a másolt VHD-virtuális gép létrehozása.
 * Konfigurálja a ILB / ELB és végpont-hozzáadáshoz.
 * Frissítés figyelő egyike:
-  * Véve hello mindig csoport offline állapotú, és a frissítési hello mindig a figyelő az új ILB és üzembe helyezett ELB IP-cím.
-  * Vagy hello IP-cím erőforrás az új felhőalapú szolgáltatás ILB-/ ELB Powershellen keresztül történő Windows-fürtszolgáltatás hozzáadására. Majd set hello lehetséges tulajdonosainak hello IP-cím erőforrás toohello csomópont, SQL2, át, és állítsa a hello hálózatnév vagy függőségként. Című rész hello "IP-cím erőforrás hozzáadása ugyanazon az alhálózaton" hello [függelék](#appendix-migrating-a-multisite-always-on-cluster-to-premium-storage).
-* Ellenőrizze a DNS-konfiguráció/propagálási toohello ügyfelek.
+  * A mindig a csoport offline állapotba helyezése, és a mindig a figyelő frissítése új ILB és üzembe helyezett ELB IP-cím.
+  * Vagy az IP-cím erőforrás az új felhőalapú szolgáltatás ILB-/ ELB Powershellen keresztül történő Windows-fürtszolgáltatás hozzáadására. Ezután állítsa be az IP-cím erőforrás lehetséges tulajdonosainak áttelepített csomóponthoz, SQL2, és ez állítja be a hálózati név vagy függőséghez. A "Hozzáadás IP-cím erőforrás ugyanazon az alhálózaton" című része a [függelék](#appendix-migrating-a-multisite-always-on-cluster-to-premium-storage).
+* Ellenőrizze a konfigurációs DNS propagálási az ügyfelek számára.
 * Telepítse át az sql1 számítógép virtuális gép, és nyissa meg a 2 – 4. lépésben.
-* Ha lépéseket 5ii használ, majd adja hozzá az sql1 számítógép ennek hello lehetséges tulajdonosa hozzá IP-cím erőforrás
+* Lépéseket 5ii használata, majd adja hozzá az sql1 számítógép lehetséges tulajdonosaként a hozzáadott IP-cím erőforrás
 * Feladatátvétel tesztelése.
 
 #### <a name="2-utilize-existing-secondary-replicas-multi-site"></a>2. Meglévő másodlagos másodpéldányt használják: többhelyes
-Ha több Azure-adatközpontban (DC) vannak olyan csomópontok, vagy ha hibrid környezettel rendelkezik, majd egy mindig a konfigurációt használhatja a környezet toominimize állásidőt.
+Ha több Azure-adatközpontban (DC) vannak olyan csomópontok, vagy ha hibrid környezettel rendelkezik, majd egy mindig a konfigurációt használhatja ebben a környezetben az állásidő minimalizálása érdekében.
 
-hello megoldás toochange hello mindig a szinkronizálási tooSynchronous hello a helyszíni vagy Azure a másodlagos Tartományvezérlőt, majd feladatátvétel, SQL Server toothat keresztül. Hello VHD-k tooa prémium szintű Storage-fiók másolja, és az új felhőalapú szolgáltatás hello gép újbóli üzembe helyezése. Hello figyelő frissítése, és ezután a feladat-visszavételt.
+A megoldás, a mindig bekapcsolva szinkronizálás átállítása szinkron a helyszíni vagy Azure a másodlagos Tartományvezérlőt, majd feladatátvétel keresztül az adott SQL Server. Ezután másolja a VHD-k a prémium szintű Storage-fiókra, és telepítse újra a gépet az új felhőalapú szolgáltatás. A figyelő frissítése, és ezután a feladat-visszavételt.
 
 ##### <a name="points-of-downtime"></a>Állásidő pontok
-hello állásidő hello idő toofailover toohello alternatív DC és biztonsági áll. Is függ, az ügyfél és a DNS-konfiguráció, és később, az ügyfél lehet újracsatlakozni.
-Vegye figyelembe a következő példa egy hibrid mindig a konfiguráció hello:
+A leállás áll a feladatátvételt a másodlagos tartományvezérlő és vissza időt. Is függ, az ügyfél és a DNS-konfiguráció, és később, az ügyfél lehet újracsatlakozni.
+Vegye figyelembe a következő példa egy hibrid mindig a konfiguráció:
 
 ![MultiSite1][9]
 
 ##### <a name="advantages"></a>Előnyei
 * Úgy használhatja a meglévő infrastruktúrát.
-* Hello beállítás toopre frissítési hello az Azure storage először a vész-Helyreállítási Azure DC hello rendelkezik.
-* DR Azure DC tárolási hello újra kell konfigurálni.
+* Lehetősége van a frissítés előtti először a vész-Helyreállítási Azure rendszerű tartományvezérlőn történő tárolása az Azure storage.
+* A vész-Helyreállítási Azure DC tárolási újra kell konfigurálni.
 * Nincs legalább két feladatátvételi teszteket kivéve az áttelepítés során.
-* Nem kell toomove SQL Server-adatok biztonsági mentése és visszaállítása.
+* Nem kell áthelyezni az SQL Server-adatok biztonsági mentése és visszaállítása.
 
 ##### <a name="disadvantages"></a>Hátrányok
-* Attól függően, hogy az ügyfél-hozzáférési tooSQL kiszolgáló előfordulhat nagyobb késéseket SQL Server egy másik tartományvezérlő toohello alkalmazás futtatásakor.
-* virtuális merevlemezek tooPremium tárolási hello ideje hosszú lehet. Ez befolyásolhatja a döntést e tookeep hello hello rendelkezésre állási csoport csomópontja. Megfontolandó szempontok a amikor napló intenzív feladata terhelések hello az áttelepítés során futnak, mivel hello elsődleges csomópontot a tranzakciónaplóban árvává tranzakciók hello tookeep kell. Ezért ez sikerült jelentősen megnő.
-* Ebben a forgatókönyvben használna hello Azure **Start-AzureStorageBlobCopy** parancsmag, amely aszinkron. Nincs nincs SLA befejezését követően. hello hello példányok idő változik, ez függ a várakozási sorban, miközben az adatok tootransfer hello mennyisége is függ. Ezért csak egy csomópont van a 2. adatközpontban, abban az esetben hello másolási tovább tart, mint a tesztelés megoldás lépéseket kell tennie. Ez magában foglalhatja a következő ötletek hello.
-  * Adja hozzá a 2. az SQL ideiglenes csomópontot a magas rendelkezésre ÁLLÁSÚ egyeztetett állásidővel hello áttelepítés előtt.
-  * Hello áttelepítéshez Azure ütemezett karbantartás kívül.
+* Attól függően, hogy az ügyfél-hozzáférési az SQL-kiszolgálón lehet nagyobb késéseket amikor SQL Server egy másik tartományvezérlő futtatja az alkalmazást.
+* A másolási idő a VHD-k prémium szintű Storage hosszú lehet. Ez befolyásolhatja a döntést kell-e őrizni a csomópont a rendelkezésre állási csoportban. Megfontolandó szempontok a amikor napló intenzív feladata betölti az áttelepítés során futnak, mivel az elsődleges csomópont kell tartani a árvává tranzakciókat a tranzakciónaplóban. Ezért ez sikerült jelentősen megnő.
+* Ebben a forgatókönyvben szeretné használni az Azure **Start-AzureStorageBlobCopy** parancsmag, amely aszinkron. Nincs nincs SLA befejezését követően. A példányok idő változik, ez függ a várakozási sorban, miközben is függ a mennyiségű adatot továbbít. Ezért csak egy csomópont van a 2. adatközpontban, abban az esetben a Másolás tovább tart, mint a tesztelés megoldás lépéseket kell tennie. Ez magában foglalhatja a következő ötleteket.
+  * Adja hozzá a 2. az SQL ideiglenes csomópontot a magas rendelkezésre ÁLLÁSÚ egyeztetett állásidővel az áttelepítés előtt.
+  * Futtassa az áttelepítés Azure ütemezett karbantartás kívül.
   * Győződjön meg arról, a fürt kvóruma megfelelően konfigurálta-e.
 
-Ebben a forgatókönyvben feltételezi, hogy rendelkezik saját telepítési dokumentált, és tudja, hogyan le van képezve hello tárolási a rendelés toomake optimális gyorsítótár beállítások módosításait.
+Ez a forgatókönyv feltételezi, hogy rendelkezik saját telepítési dokumentált, és tudja, hogyan hozzá van rendelve a tárhely optimális gyorsítótár beállításainak módosításához.
 
 ##### <a name="high-level-steps"></a>Magas szintű lépései
 ![Multisite2][10]
 
-* Győződjön meg a helyszíni hello / Azure DC hello SQL Server elsődleges alternatív és könnyebben hello más automatikus feladatátvételi Partner (AFP).
-* Lemez konfigurációs adatokat gyűjt a SQL2, és távolítsa el hello csomópont (ne törölje a csatolt VHD-k).
-* Prémium szintű Storage-fiók létrehozása, és másolja a VHD-k a hello standard szintű tárfiókot.
-* Hozzon létre egy új felhőalapú szolgáltatás, és hozzon létre a kapcsolódó díjakat tárolólemezek hello SQL2 virtuális gép.
+* Ellenőrizze a helyszíni / Azure-tartományvezérlő az SQL Server elsődleges alternatív, és azt a más automatikus feladatátvételi Partner (AFP).
+* Lemez konfigurációs adatokat gyűjtsön a SQL2, és távolítsa el a csomópont (ne törölje a csatolt VHD-k).
+* Prémium szintű Storage-fiók létrehozása, és másolja a standard szintű tárfiók VHD-k.
+* Hozzon létre egy új felhőalapú szolgáltatás, és hozzon létre a SQL2 virtuális Gépet a díjak tárolólemezek csatlakoztatva.
 * Konfigurálja a ILB / ELB és végpont-hozzáadáshoz.
-* Frissítés hello mindig a figyelő az új ILB / ELB IP cím és a teszt feladatátvételt.
-* Hello DNS konfigurációjának ellenőrzése.
-* Hello AFP tooSQL2, módosítsa, majd telepítse át az sql1 számítógép és végrehajtania 2 – 5. lépéseket.
+* Frissítse a mindig a figyelő új ILB / ELB IP cím és a teszt feladatátvételt.
+* Ellenőrizze a DNS-beállításait.
+* Módosítsa a AFP SQL2, majd telepítse át az sql1 számítógép és végrehajtania 2 – 5. lépéseket.
 * Feladatátvétel tesztelése.
-* Váltson vissza tooSQL1 hello AFP és SQL2
+* Váltás a AFP SQL1 és SQL2
 
-## <a name="appendix-migrating-a-multisite-always-on-cluster-toopremium-storage"></a>A függelék: Egy mindig a fürtözött tooPremium tároló áttelepítése
-Ez a témakör további része hello példát egy részletes egy többhelyes mindig a tooPremium fürttároló alakítása. Egy külső terheléselosztó (ELB) tooan belső terheléselosztón (ILB) használatával a hello figyelő is alakítja.
+## <a name="appendix-migrating-a-multisite-always-on-cluster-to-premium-storage"></a>Függelék: A prémium szintű Storage mindig a fürt egy többhelyes áttelepítése
+Ez a témakör további része a többhelyes mindig a fürt átalakítani a prémium szintű Storage egy részletes példát biztosít. Is átalakítja a figyelő a külső terheléselosztással (ELB) egy belső terheléselosztón (ILB).
 
 ### <a name="environment"></a>Környezet
 * 2 KB-os Windows 12 / 2 KB-os SQL 12
@@ -556,11 +556,11 @@ Ez a témakör további része hello példát egy részletes egy többhelyes min
 ![Appendix1][11]
 
 ### <a name="vm"></a>VIRTUÁLIS GÉP:
-Ebben a példában fogjuk tér át egy üzembe helyezett ELB tooILB toodemonstrate. Üzembe helyezett ELB volt elérhető ILB, mielőtt, így ez azt jelenti, hogy hogyan tooswitch toothis során hello áttelepítési.
+Ebben a példában fogjuk áthelyezése egy üzembe helyezett ELB ILB bemutatása. Üzembe helyezett ELB volt elérhető ILB, mielőtt, így ez azt jelenti, hogy hogyan lehet váltani a az áttelepítés során.
 
 ![Appendix2][12]
 
-### <a name="pre-steps-connect-toosubscription"></a>Előkészítő lépések: Csatlakozás tooSubscription
+### <a name="pre-steps-connect-to-subscription"></a>Előkészítő lépések: Csatlakozás-előfizetéshez
     Add-AzureAccount
 
     #Set up subscription
@@ -571,7 +571,7 @@ Ebben a példában fogjuk tér át egy üzembe helyezett ELB tooILB toodemonstra
     $location = "West Europe"
 
     #Storage accounts
-    #current storage account where hello vm toomigrate resides
+    #current storage account where the vm to migrate resides
     $origstorageaccountname = "danstdams"
 
     #Create Premium Storage account
@@ -600,32 +600,32 @@ Ebben a példában fogjuk tér át egy üzembe helyezett ELB tooILB toodemonstra
     $destcloudsvc = "danNewSvcAms"
     New-AzureService $destcloudsvc -Location $location
 
-#### <a name="step-2-increase-hello-permitted-failures-on-resources-optional"></a>2. lépés: Növelje hello hibák engedélyezett erőforrások<Optional>
-Bizonyos erőforrások tooyour mindig a rendelkezésre állási csoporthoz tartozó nincsenek korlátozások a hány sikertelen végrehajtása esetén, amelyek adott időszakban, ahol a hello Fürtszolgáltatás megkísérli toorestart hello erőforráscsoport fordul elő. Ajánlott növeli a miközben érdekében keresztül ez az eljárás, mert ellenkező esetben kézzel eseményindító és feladatátvételi feladatátvételek által gépek leállítása Bezárás toothis korlát kérheti le.
+#### <a name="step-2-increase-the-permitted-failures-on-resources-optional"></a>2. lépés: Az erőforrás engedélyezett hibák növelése<Optional>
+Bizonyos erőforrások, amelyek az Always On rendelkezésre állási csoportnak nincsenek korlátozások a hány sikertelen végrehajtása esetén, amelyek adott időszakban, amikor a Fürtszolgáltatás megpróbálja újraindítani az erőforráscsoport fordul elő. Növeli a miközben meg van útmutató alapján ez az eljárás óta Ha ezt elmulasztja manuálisan eseményindító és feladatátvételi feladatátvételek állítja le ezt a határt hamarosan kaphat gépek ajánlott.
 
-Volna kell körültekintő toodouble hello hiba támogatás, toodo Ez a Feladatátvevőfürt-kezelőben, nyissa meg hello mindig az erőforráscsoport toohello tulajdonságainak:
+A hiba támogatást ehhez a Feladatátvevőfürt-kezelőben, kétszeres körültekintő lenne keresse fel a mindig bekapcsolva erőforráscsoport tulajdonságait:
 
 ![Appendix3][13]
 
-Hello maximális hibák too6 módosítása.
+Módosítsa a maximális hibák 6.
 
 #### <a name="step-3-addition-ip-address-resource-for-cluster-group-optional"></a>3. lépés: IP-cím hozzáadása erőforrás fürt csoport<Optional>
-Ha hello fürtcsoport csak egy IP-címe és igazított toohello felhő alhálózati, ügyeljen arra, ha véletlenül kapcsolat nélküli hello felhőalapú a fürt összes csomópontján, hogy hálózati majd hello fürt IP- és hálózati fürtnév nem lesz képes toocome online. A hello Ez megakadályozza az esemény tooother fürterőforrások frissíti.
+Ha csak egy IP-cím a fürt csoport, és ez a felhő alhálózati igazodik, ügyeljen arra, ha véletlenül kapcsolat nélküli minden fürtcsomópontnak a felhőben, majd a fürt IP-erőforrás a hálózaton, és a fürt hálózati neve nem lesz képes online állapotba. Esetén ez megakadályozza majd frissítések a fürt más erőforrásai.
 
 #### <a name="step-4-dns-configuration"></a>4. lépés: DNS-konfiguráció
-tooimplement zökkenőmentes átmenet, attól függ, hogyan DNS folyamatban van szükség, és frissíti.
-Mindig telepítve van, ha létrehoz egy Windows fürterőforrás-csoporthoz, ha a Feladatátvevőfürt-kezelő megnyitásához láthatja, hogy legalább három erőforrások lesz, a dokumentum hello két hello tooare hivatkozik:
+Zavartalan végrehajtásához átmenet attól függ, hogyan DNS folyamatban van szükség, és frissíti.
+Mindig telepítve van, ha létrehoz egy Windows fürterőforrás-csoporthoz, ha Feladatátvevőfürt-kezelő megnyitásához jelenik meg, hogy legalább három erőforrások lesz, a kettő, hogy a dokumentum hivatkozik:
 
-* Virtuális hálózat neve (VNN) – Ez az hello DNS-nevet, hogy az ügyfél toowhen tooconnect tooSQL mindig a kiszolgálókra, aki a csatlakozáshoz.
-* IP-cím erőforrás – Ez az IP-címe, amelyhez társítva hello VNN hello, több is van, és többhelyes konfigurációban hely/alhálózatot / IP-cím lesz.
+* Virtuális hálózat neve (VNN) – Ez az a DNS-nevét, hogy az ügyfélszámítógépek csatlakozhatnak, ha szeretne csatlakozni az SQL Server Always On keresztül.
+* IP-cím erőforrás – Ez a VNN társított IP-cím, több is van, és többhelyes konfigurációban hely/alhálózatot / IP-cím lesz.
 
-Amikor csatlakozó tooSQL Server, SQL Server ügyfél-illesztőprogram hello lekéri hello figyelő társított hello DNS-rekordokat, és próbálja tooconnect tooeach mindig a hozzárendelt IP-cím, alább néhány befolyásoló tényezők is ez tárgyaljuk.
+Ha a Kapcsolódás az SQL Server, az SQL Server Client illesztőprogram lekéri a DNS-rekordokat, a figyelő társított, és csatlakozni próbálnak minden mindig a hozzárendelt IP-cím, alatt arról lesz szó néhány befolyásoló tényezők is ez.
 
-hello hello figyelőjének nevével társított párhuzamos DNS-rekordok száma attól függ, nem csak hello társított IP-címek száma, de hello "RegisterAllIpProviders'setting a Feladatátvételi fürtszolgáltatás hello Always ON VNN erőforrás számára.
+A figyelő neve társított egyidejű DNS-rekordok száma attól függ, nem csak kapcsolódó, IP-címek száma, de a "RegisterAllIpProviders'setting a Feladatátvételi fürtszolgáltatás az Always ON VNN erőforrás.
 
-Always On Azure telepítésekor más lépéseket toocreate hello figyelő és IP-címek, hello "RegisterAllIpProviders" too1 konfigurálása toomanually rendelkezik, ez különböző tooan helyi mindig a központi már állítottak too1.
+Ha telepít mindig az Azure-ban különböző lépést a figyelő és IP-címek létrehozása, kell manuálisan konfigurálnia a "RegisterAllIpProviders' 1, ez eltér a egy helyszíni mindig a telepítés már állítottak 1.
 
-Ha a "RegisterAllIpProviders" értéke 0, majd csak akkor jelenik meg egy DNS-rekordot a DNS-ben társított hello figyelő:
+Ha a "RegisterAllIpProviders" értéke 0, majd csak akkor jelenik meg egy a figyelő társított DNS-rekordot a DNS-ben:
 
 ![Appendix4][14]
 
@@ -633,7 +633,7 @@ Ha 'RegisterAllIpProviders' 1:
 
 ![Appendix5][15]
 
-hello kódot fog kimenő hello dump VNN beállításait, és állítsa be az Ön, adjon megjegyzés, hello tootake hello VNN offline állapotba, és kapcsolja hálózatra újra kell tootake effektus módosítása, ez véve hello figyelő offline okozó ügyfél kapcsolat megszűnésének.
+Az alábbi kódot fogja írassa ki a VNN beállítások és állítsa be az Ön, Megjegyzés: a változtatás érvénybe léptetéséhez szüksége lesz a VNN offline állapotba, és kapcsolja vissza online-e véve a figyelő offline állapotban, amely az ügyfél-kapcsolódási problémákat.
 
     ##Always On Listener Name
     $ListenerName = "Mylistener"
@@ -642,11 +642,11 @@ hello kódot fog kimenő hello dump VNN beállításait, és állítsa be az Ön
     ##Set RegisterAllProvidersIP
     Get-ClusterResource $ListenerName| Set-ClusterParameter RegisterAllProvidersIP  1
 
-Egy későbbi lépésben áttelepítési tooupdate hello mindig a figyelő frissített IP-címet, amely a használatával hivatkozik a terheléselosztó kell, ez magában foglalja az IP-cím erőforrás eltávolítása és hozzáadását. Hello IP frissítés után kell tooensure hello új IP-címet a DNS-zóna frissítették, és hogy hello ügyfelek frissítése a helyi gyorsítótárban.
+Egy későbbi lépésben áttelepítési kell frissíteni a mindig bekapcsolva figyelő frissített IP-címet, amely a használatával hivatkozik a terheléselosztó Ez magában foglalja az IP-cím erőforrás eltávolítása és hozzáadását. Az IP-frissítés után ellenőrizze az új IP-címet a DNS-zónában frissítették, és, hogy az ügyfelek frissítése a helyi gyorsítótárban kell.
 
-Ha az ügyfelek egy másik hálózati szegmensben találhatók, és egy másik DNS-kiszolgáló hivatkozik, mi történik, DNS-zóna átviteli kapcsolatos hello az áttelepítés során, hello alkalmazás újracsatlakozás idő fog korlátozott tooconsider kell által legalább hello zóna átviteli idő bármely új IP-címek hello figyelője. Ha itt időkorlát alatt, érdemes tárgyalja, és a Windows-csoportok egy növekményes zónaletöltés kényszerítése, és helyezheti is hello DNS állomás rekord tooa alacsonyabb idő tooLive (TTL), így hello ügyfelek frissítése. További információkért lásd: [növekményes zónaátvitelek](https://technet.microsoft.com/library/cc958973.aspx) és [Start-DnsServerZoneTransfer](https://technet.microsoft.com/library/jj649917.aspx).
+Ha az ügyfelek egy másik hálózati szegmensben találhatók, és egy másik DNS-kiszolgáló hivatkozik, akkor fontolja meg, mi történik, DNS-zóna átviteli kapcsolatos az áttelepítés során az alkalmazás csatlakozzon újra, akkor fog megtörténni által korlátozott legalább bármely a zóna átviteli idő a figyelő új IP-címet. Ha itt időkorlát alatt, érdemes tárgyalja, és a Windows-csoportok egy növekményes zónaletöltés kényszerítése, és a DNS-állomásrekord is helyezheti a egy alacsonyabb élettartam (TTL), ezért az ügyfelek frissítése. További információkért lásd: [növekményes zónaátvitelek](https://technet.microsoft.com/library/cc958973.aspx) és [Start-DnsServerZoneTransfer](https://technet.microsoft.com/library/jj649917.aspx).
 
-Alapértelmezett hello TTL-t, a DNS-rekord társított hello mindig az Azure-ban a figyelő az 1200-as másodperc. Kezdésként érdemes lehet tooreduce ez Ha frissítésekor az áttelepítési tooensure hello ügyfelek hello figyelő DNS-frissített hello IP-címmel vannak időkorlát alatt. Megtekintheti és hello konfigurációjának módosítása okai kimenő hello VNN hello konfigurálása:
+Az élettartam a DNS-rekord, a figyelő az Always On Azure társított alapértelmezés az 1200-as másodperc. Kezdésként érdemes lehet csökkenteni Ez a korlátozás ahhoz, hogy az ügyfelek az áttelepítés során frissítse a DNS a frissített IP-cím a figyelő időpontja esetén. Tekintse meg, és a konfiguráció módosítása a VNN konfigurációjának kimenő okai:
 
     $AGName = "myProductionAG"
     $ListenerName = "Mylistener"
@@ -656,35 +656,35 @@ Alapértelmezett hello TTL-t, a DNS-rekord társított hello mindig az Azure-ban
     #Set HostRecordTTL Examples
     Get-ClusterResource $ListenerName| Set-ClusterParameter -Name "HostRecordTTL" 120
 
-Vegye figyelembe, hello alacsonyabb hello "HostRecordTTL", a DNS-forgalom nagyobb mennyiségű történik.
+Vegye figyelembe, minél kisebb a "HostRecordTTL", a DNS-forgalom nagyobb mennyiségű történik.
 
 ##### <a name="client-application-settings"></a>Ügyfél-Alkalmazásbeállítások
-Ha az SQL client alkalmazás támogatja a .net 4.5 hello SQLClient, akkor használhatja "MULTISUBNETFAILOVER = TRUE" kulcsszót, az ajánlott toobe szerint lehetővé teszi a gyorsabb kapcsolat tooSQL Always On rendelkezésre állási csoportnak a feladatátvétel során. Hello mindig a figyelő párhuzamosan társított összes IP-címek keresztül enumerálása, és átadta szigorúbb TCP-kapcsolat újrapróbálkozási sebességét.
+Ha az SQL-ügyfélalkalmazást támogatja a .net 4.5 SQLClient, akkor használhatja "MULTISUBNETFAILOVER = TRUE" kulcsszót, ez ajánlott kell alkalmazni, mivel lehetővé teszi a gyorsabb kapcsolat SQL Always On rendelkezésre állási csoportnak a feladatátvétel során. A mindig bekapcsolva figyelő párhuzamosan társított összes IP-címek keresztül enumerálása, és átadta szigorúbb TCP-kapcsolat újrapróbálkozási sebességét.
 
-A fenti hello-beállítások kapcsolatos további információkért lásd: [MultiSubnetFailover kulcsszó és a kapcsolódó szolgáltatások](https://msdn.microsoft.com/library/hh213080.aspx#MultiSubnetFailover). Lásd még: [SqlClient támogatja a magas rendelkezésre állási, vészhelyreállítási](https://msdn.microsoft.com/library/hh205662\(v=vs.110\).aspx).
+A fenti beállításokat kapcsolatos további információkért lásd: [MultiSubnetFailover kulcsszó és a kapcsolódó szolgáltatások](https://msdn.microsoft.com/library/hh213080.aspx#MultiSubnetFailover). Lásd még: [SqlClient támogatja a magas rendelkezésre állási, vészhelyreállítási](https://msdn.microsoft.com/library/hh205662\(v=vs.110\).aspx).
 
 #### <a name="step-5-cluster-quorum-settings"></a>5. lépés: Fürt kvórumbeállításainak megadása
-Mivel legalább egy SQL Server le egyszerre véve toobe fog, módosítsa hello fürt kvórumbeállításokat, ha 2 csomópontok fájl megosztási tanúsító (FSW) használ, meg kell hello kvórum tooallow csomóponttöbbség beállítása és felhasználását dinamikus szavazás, és ezek a tooallow egy egycsomópontos tooremain állandó.
+Legalább egy SQL Server le egyszerre tart kívánja, módosítania kell a fürt Kvórum beállítása, 2-csomópontokkal fájl megosztási tanúsító (FSW) használata, állítsa be a kvórum csomóponttöbbség engedélyezése és felhasználását a dinamikus szavazás , és ezek lehetővé teszik a egyetlen csomópontot állandó marad.
 
     Set-ClusterQuorum -NodeMajority  
 
-További információ a kezelése és hello a fürtkvórum konfigurálása, lásd: [konfigurálása és kezelése a Windows Server 2012 feladatátvevő fürt kvórum hello](https://technet.microsoft.com/library/jj612870.aspx).
+Kezelését és konfigurálását a fürtkvórum további információkért lásd: [konfigurálása és kezelése a Windows Server 2012 feladatátvevő fürt kvórum](https://technet.microsoft.com/library/jj612870.aspx).
 
 #### <a name="step-6-extract-existing-endpoints-and-acls"></a>6. lépés: Bontsa ki a meglévő végpontok és hozzáférés-vezérlési listák
     #GET Endpoint info
     Get-AzureVM -ServiceName $destcloudsvc -Name $vmNameToMigrate | Get-AzureEndpoint
-    #GET ACL Rules for Each EP, this example is for hello Always On Endpoint
+    #GET ACL Rules for Each EP, this example is for the Always On Endpoint
     Get-AzureVM -ServiceName $destcloudsvc -Name $vmNameToMigrate | Get-AzureAclConfig -EndpointName "myAOEndPoint-LB"  
 
-Ezek tooa szöveges fájlt mentse.
+Mentse azokat a szövegfájl.
 
 #### <a name="step-7-change-failover-partners-and-replication-modes"></a>7. lépés: Feladatátvételi partnerként és replikációs mód módosítása
-Ha 2-nél több SQL-kiszolgálóval rendelkezik, meg kell változtatni a másik tartományvezérlő egy másik másodlagos hello feladatátvételi vagy helyszíni too'Synchronous', és teszi az automatikus feladatátvételi Partner (AFP), ez a helyzet magas rendelkezésre ÁLLÁSÚ karbantartása, míg a módosításokat. Ezt megteheti a TSQL használatával is módosíthatja, ha a szolgáltatáshoz az SSMS:
+Ha 2-nél több SQL-kiszolgáló, "Szinkron" módosítsa a feladatátvételt egy másik másodlagos egy másik tartományvezérlő vagy a helyszíni és teszik az automatikus feladatátvételi Partner (AFP) kell, ez pedig, magas rendelkezésre ÁLLÁSÚ karbantartása, míg a módosításokat. Ezt megteheti a TSQL használatával is módosíthatja, ha a szolgáltatáshoz az SSMS:
 
 ![Appendix6][16]
 
 #### <a name="step-8-remove-secondary-vm-from-cloud-service"></a>8. lépés: Másodlagos virtuális gép eltávolítása a felhőalapú szolgáltatás
-Kell egy felhőalapú másodlagos csomópont toomigrate tervezési először, ha jelenleg az elsődleges, akkor kell kezdeményezni kézi feladatátvételre.
+Meg kell lennie áttelepítésének tervezése felhő másodlagos csomópont először, ha jelenleg az elsődleges, akkor kell kezdeményezni kézi feladatátvételre.
 
     $vmNameToMigrate="dansqlams2"
 
@@ -720,7 +720,7 @@ Kell egy felhőalapú másodlagos csomópont toomigrate tervezési először, ha
     #Import disk config
     $diskobjects  = Import-CSV $file
 
-    #Check disk config, make sure below returns hello disks associated with hello VM
+    #Check disk config, make sure below returns the disks associated with the VM
     $diskobjects
 
     #Identify OS Disk
@@ -730,25 +730,25 @@ Kell egy felhőalapú másodlagos csomópont toomigrate tervezési először, ha
     #Check machibe is off
     Get-AzureVM -ServiceName $sourceSvc -Name  $vmNameToMigrate
 
-    #Drop machine and rebuild toonew cls
+    #Drop machine and rebuild to new cls
     Remove-AzureVM -ServiceName $sourceSvc -Name $vmNameToMigrate
 
 #### <a name="step-9-change-disk-caching-settings-in-csv-file-and-save"></a>9. lépés: Lemez gyorsítótárazási beállítások a CSV-fájlban, és mentse
-A adatkötetek ezek tooREADONLY kell állítani.
+A adatkötetek ezeket kell megadni csak OLVASHATÓ.
 
-TLOG kötetek ezek tooNONE kell állítani.
+TLOG kötetek ezeket érdemes lehet nincs értékűre állítani.
 
 ![Appendix7][17]
 
 #### <a name="step-10-copy-vhds"></a>10. lépés: Másolat VHD-k
-    #Ensure you have created hello container for these:
+    #Ensure you have created the container for these:
     $containerName = 'vhds'
 
     #Create container
     New-AzureStorageContainer -Name $containerName -Context $xioContext
 
     ####DISK COPYING####
-    #Get disks from csv, get settings for each VHDs and copy tooPremium Storage accoun
+    #Get disks from csv, get settings for each VHDs and copy to Premium Storage accoun
     ForEach ($disk in $diskobjects)
        {
        $lun = $disk.Lun
@@ -768,7 +768,7 @@ TLOG kötetek ezek tooNONE kell állítani.
 
 
 
-Hello példány állapotának hello VHD-k toohello prémium szintű Storage-fiók ellenőrizheti:
+A virtuális merevlemezek a prémium szintű Storage-fiók példány állapotát ellenőrizheti:
 
     ForEach ($disk in $diskobjects)
        {
@@ -805,11 +805,11 @@ Az egyes blobok információt:
     Add-AzureDisk -DiskName $xioDiskName -MediaLocation  "https://$newxiostorageaccountname.blob.core.windows.net/vhds/$osvhd"  -Label "BootDisk" -OS "Windows"
 
 #### <a name="step-12-import-secondary-into-new-cloud-service"></a>12. lépés: Importálása másodlagos új felhőszolgáltatás
-hello kódot is használ hello hozzá alább beállítást itt meg lehet hello gép importálni és használni hello retainable VIP.
+Az alábbi kódot is használ a hozzáadott itt importálhatja a gép és a retainable VIP használja.
 
     #Build VM Config
     $ipaddr = "192.168.0.5"
-    #Remember toochange tooXIO
+    #Remember to change to XIO
     $newInstanceSize = "Standard_DS13"
     $subnet = "SQL"
 
@@ -831,7 +831,7 @@ hello kódot is használ hello hozzá alább beállítást itt meg lehet hello g
     $datadiskforbuild = $attachdatadisk.diskName
     $vhdname = $attachdatadisk.vhdname
 
-    ###Attaching disks tooa VM during a deploy tooa new cloud service and new storage account is different from just attaching VHDs toojust a redeploy in a new cloud service
+    ###Attaching disks to a VM during a deploy to a new cloud service and new storage account is different from just attaching VHDs to just a redeploy in a new cloud service
     $vmConfig | Add-AzureDataDisk -ImportFrom -MediaLocation "https://$newxiostorageaccountname.blob.core.windows.net/vhds/$vhdname" -LUN $lunNo -HostCaching $hostcach -DiskLabel $label
 
     }
@@ -862,8 +862,8 @@ hello kódot is használ hello hozzá alább beállítást itt meg lehet hello g
     ####WAIT FOR FULL AlwaysOn RESYNCRONISATION!!!!!!!!!#####
 
 #### <a name="step-14-update-always-on"></a>14. lépés: Mindig a frissítése.
-    #Code toobe executed on a Cluster Node
-    $ClusterNetworkNameAmsterdam = "Cluster Network 2" # hello azure cluster subnet network name
+    #Code to be executed on a Cluster Node
+    $ClusterNetworkNameAmsterdam = "Cluster Network 2" # the azure cluster subnet network name
     $newCloudServiceIPAmsterdam = "192.168.0.25" # IP address of your cloud service
 
     $AGName = "myProductionAG"
@@ -877,21 +877,21 @@ hello kódot is használ hello hozzá alább beállítást itt meg lehet hello g
     #set NETBIOS, then remove old IP address
     Get-ClusterGroup $AGName | Get-ClusterResource -Name "IP Address $newCloudServiceIPAmsterdam" | Set-ClusterParameter -Name EnableNetBIOS -Value 0
 
-    #set dependency tooListener (OR Dependency) and delete previous IP Address resource that references:
+    #set dependency to Listener (OR Dependency) and delete previous IP Address resource that references:
 
     #Make sure no static records in DNS
 
 ![Appendix9][19]
 
-Hello régi felhőalapú szolgáltatás IP-cím eltávolítása.
+Most távolítsa el a régi felhőalapú szolgáltatás IP-címet.
 
 ![Appendix10][20]
 
 #### <a name="step-15-dns-update-check"></a>15. lépés: A DNS-frissítési ellenőrzése
-Most DNS-kiszolgálók ellenőrizze az SQL Server ügyfél hálózatokon és győződjön meg arról, hogy a fürtszolgáltatás hozzáadta hello hello extra állomásrekordot hozzáadott IP-címet. Ha ezeket a DNS-kiszolgálók nem frissítették, fontolja meg a DNS zónaletöltés kényszerítése, és győződjön meg arról, hogy hello ott alhálózaton lévő ügyfelek képesek tooresolve tooboth mindig az IP-címek, ez így nem kell toowait a automatikus DNS-replikáció az.
+Most DNS-kiszolgálók ellenőrizze az SQL Server ügyfél hálózatokon és győződjön meg arról, hogy a fürtszolgáltatás hozzáadta a felesleges állomásrekord a hozzáadott IP-cím. Ha ezeket a DNS-kiszolgálók nem frissítették, fontolja meg a DNS zónaletöltés kényszerítése, és győződjön meg arról, hogy az ügyfelek nem alhálózati képesek mindkét mindig az IP-címekhez, ez így nem kell várnia az automatikus DNS-replikáció az.
 
 #### <a name="step-16-reconfigure-always-on"></a>16. lépés: Mindig a újrakonfigurálása
-Ezen a ponton, de a áttelepített toofully csomóponton újraszinkronizálása hello helyi csomóponthoz, és toosynchronous replikációs csomópont váltson, és könnyebben hello AFP másodlagos hello várja.  
+Ezen a ponton várja meg a másodlagos teljesen szinkronizálja újra a helyi csomóponthoz és szinkron replikáció csomópont váltani, és lehetővé teszi a AFP áttelepített csomóponton.  
 
 #### <a name="step-17-migrate-second-node"></a>17. lépés: A második csomópont áttelepítése
     $vmNameToMigrate="dansqlams1"
@@ -939,13 +939,13 @@ Ezen a ponton, de a áttelepített toofully csomóponton újraszinkronizálása 
     #Check machine is off
     Get-AzureVM -ServiceName $sourceSvc -Name  $vmNameToMigrate
 
-    #Drop machine and rebuild toonew cls
+    #Drop machine and rebuild to new cls
     Remove-AzureVM -ServiceName $sourceSvc -Name $vmNameToMigrate
 
 #### <a name="step-18-change-disk-caching-settings-in-csv-file-and-save"></a>18. lépés: Lemez gyorsítótárazási beállítások a CSV-fájlban, és mentse
-A adatkötetek ezek tooREADONLY kell állítani.
+A adatkötetek ezeket kell megadni csak OLVASHATÓ.
 
-TLOG kötetek ezek tooNONE kell állítani.
+TLOG kötetek ezeket érdemes lehet nincs értékűre állítani.
 
 ![Appendix11][21]
 
@@ -953,7 +953,7 @@ TLOG kötetek ezek tooNONE kell állítani.
     $newxiostorageaccountnamenode2 = "danspremsams2"
     New-AzureStorageAccount -StorageAccountName $newxiostorageaccountnamenode2 -Location $location -Type "Premium_LRS"  
 
-    #Reset hello storage account src if node 1 in a different storage account
+    #Reset the storage account src if node 1 in a different storage account
     $origstorageaccountname2nd = "danstdams2"
 
     #Generate storage keys for later
@@ -967,14 +967,14 @@ TLOG kötetek ezek tooNONE kell állítani.
     Select-AzureSubscription -SubscriptionName $mysubscription -Current
 
 #### <a name="step-20-copy-vhds"></a>20. lépés: Másolat VHD-k
-    #Ensure you have created hello container for these:
+    #Ensure you have created the container for these:
     $containerName = 'vhds'
 
     #Create container
     New-AzureStorageContainer -Name $containerName -Context $xioContextnode2  
 
     ####DISK COPYING####
-    ##get disks from csv, get settings for each VHDs and copy tooPremium Storage accoun
+    ##get disks from csv, get settings for each VHDs and copy to Premium Storage accoun
     ForEach ($disk in $diskobjects)
        {
        $lun = $disk.Lun
@@ -998,7 +998,7 @@ TLOG kötetek ezek tooNONE kell állítani.
     Get-AzureStorageBlobCopyState -Blob "danRegSvcAms-dansqlams1-2014-07-03.vhd" -Container $containerName -Context $xioContext
 
 
-Hello VHD-másolat állapota ellenőrizze, hogy minden virtuális merevlemez: ForEach (a $diskobjects $disk) {$lun = $disk. LUN $vhdname $disk.vhdname $cacheoption = = $disk. HostCaching $disklabel = $disk. Lemezcímke $diskName = $disk. DiskName
+A VHD-másolat állapota ellenőrizze, hogy minden virtuális merevlemez: ForEach (a $diskobjects $disk) {$lun = $disk. LUN $vhdname $disk.vhdname $cacheoption = = $disk. HostCaching $disklabel = $disk. Lemezcímke $diskName = $disk. DiskName
 
        $copystate = Get-AzureStorageBlobCopyState -Blob $vhdname -Container $containerName -Context $xioContextnode2
     Write-Host "Copying Disk Lun $lun, Label : $disklabel, VHD : $vhdname, STATUS = " $copystate.Status
@@ -1014,7 +1014,7 @@ Az egyes blobok információt:
     Get-AzureStorageBlobCopyState -Blob "danRegSvcAms-dansqlams1-2014-07-03.vhd" -Container $containerName -Context $xioContextnode2
 
 #### <a name="step-21-register-os-disk"></a>21. lépés: az operációs rendszer Register lemez
-    #change storage account toohello new XIO storage account
+    #change storage account to the new XIO storage account
     Set-AzureSubscription -SubscriptionName $mysubscription -CurrentStorageAccount $newxiostorageaccountnamenode2
     Select-AzureSubscription -SubscriptionName $mysubscription -Current
 
@@ -1031,7 +1031,7 @@ Az egyes blobok információt:
     $ipaddr = "192.168.0.4"
     $newInstanceSize = "Standard_DS13"
 
-    #Join tooexisting Avaiability Set
+    #Join to existing Avaiability Set
 
     #Build machine config into object
     $vmConfig = New-AzureVMConfig -Name $vmNameToMigrate -InstanceSize $newInstanceSize -DiskName $xioDiskName -AvailabilitySetName $availabilitySet  ` | Add-AzureProvisioningConfig -Windows ` | Set-AzureSubnet -SubnetNames $subnet | Set-AzureStaticVNetIP -IPAddress $ipaddr
@@ -1048,8 +1048,8 @@ Az egyes blobok információt:
     $datadiskforbuild = $attachdatadisk.diskName
     $vhdname = $attachdatadisk.vhdname
 
-    ###This is different toojust a straight cloud service change
-    #note if you do not have a disk label hello command below will fail, populate as required.
+    ###This is different to just a straight cloud service change
+    #note if you do not have a disk label the command below will fail, populate as required.
     $vmConfig | Add-AzureDataDisk -ImportFrom -MediaLocation "https://$newxiostorageaccountnamenode2.blob.core.windows.net/vhds/$vhdname" -LUN $lunNo -HostCaching $hostcach -DiskLabel $label
 
     }
@@ -1066,38 +1066,38 @@ Az egyes blobok információt:
     Get-AzureVM –ServiceName $destcloudsvc –Name $vmNameToMigrate  | Add-AzureEndpoint -Name $epname -Protocol $prot -LocalPort $locport -PublicPort $pubport -ProbePort 59999 -ProbeIntervalInSeconds 5 -ProbeTimeoutInSeconds 11  -ProbeProtocol "TCP" -InternalLoadBalancerName $ilb -LBSetName $ilb -DirectServerReturn $true | Update-AzureVM
 
 
-    #STOP!!! CHECK in hello Azure portal or Machine Endpoints through PowerShell that these Endpoints are created!
+    #STOP!!! CHECK in the Azure portal or Machine Endpoints through PowerShell that these Endpoints are created!
 
     #SET ACLs or Azure Network Security Groups & Windows FWs
 
     #http://msdn.microsoft.com/library/azure/dn495192.aspx
 
 #### <a name="step-23-test-failover"></a>23. lépés: Feladatátvételi teszt
-Ha hagyja hello áttelepített csomópont szinkronizálja a helyszíni hello mindig a csomóponttal, helyezze toosynchronous replikációs mód, és várjon, amíg azt szinkronizálása. Ezután feladatátvétel helyszíni toohello első csomópontot az áttelepíti, amely hello AFP. Amennyiben rendelkezik működőképes, módosítás hello legutóbbi áttelepítésük óta csomópont toohello AFP.
+Ha most hagyja, az áttelepített csomópont szinkronizálja a helyszíni mindig a csomóponttal, elhelyezéséhez szinkron replikáció módra, és várjon, amíg azt szinkronizálva. Ezután az első csomópontot a helyszínen a feladatátvétel áttelepíti, vagyis a AFP. Után, amely működött, módosítsa a AFP áttelepített utolsó csomópontja.
 
-Feladatátvételi tesztek összes csomópontok között kell, és bár tooensure feladatátvételek működhet chaos tesztek várt, egy időben manor futnak.
+Feladatátvételi tesztek összes csomópontok között kell, és bár chaos tesztek annak biztosítása érdekében feladatátvételek work várt, egy időben manor futnak.
 
 #### <a name="step-24-put-back-cluster-quorum-settings--dns-ttl--failover-pntrs--sync-settings"></a>24. lépés: Helyezze vissza fürt kvórumbeállításainak megadása / DNS-élettartam / feladatátvételi Pntrs / szinkronizálási beállítások
 ##### <a name="adding-ip-address-resource-on-same-subnet"></a>Azonos alhálózatban lévő IP-cím erőforrás hozzáadása
-Ha csak 2 SQL-kiszolgálókhoz, és toomigrate szeretné őket tooa új felhőalapú szolgáltatás, de nem szeretnének tookeep azokat a hello ugyanazon az alhálózaton, elkerülheti a mindig offline toodelete hello eredeti hello figyelő véve az IP-címet, és adja hozzá az új IP-cím hello. Ha az áttelepítés hello virtuális gépek tooanother alhálózati nincs szükség van egy toodo ez nem lesznek egy fürt további hálózati alhálózaton fog hivatkozni.
+Ha csak 2 SQL-kiszolgálóval rendelkezik, és szeretne áttérni őket az új felhőalapú szolgáltatás, de szeretné, hogy továbbra is ugyanazon az alhálózaton, elkerülheti a figyelő offline véve törli az eredeti mindig az IP-címet, és adja hozzá az új IP-cím. Ha a virtuális gépeket telepít át egy másik alhálózat nem kell ehhez, mert egy további fürthálózat, alhálózaton hivatkozhat lesz.
 
-Miután léptetik hello másodlagos át, és előtt feladatátvételi hello meglévő elsődleges hozzáadott új IP-cím erőforrás hello hello új felhőalapú szolgáltatás, ezeket a lépéseket a fürt Feladatátvevőfürt-kezelő hello belül kell végrehajtani:
+Miután a áttelepített másodlagos felvet és hozzáadni az új IP-cím erőforrás a meglévő elsődleges feladatátvétel előtt az új felhőalapú szolgáltatás, ezeket a lépéseket belül a Feladatátvevőfürt-kezelőt kell tennie:
 
-az IP-cím tooadd lásd: hello [függelék](#appendix-migrating-a-multisite-alwayson-cluster-to-premium-storage), 14 lépésben.
+Adja hozzá az IP-cím, tekintse meg a [függelék](#appendix-migrating-a-multisite-alwayson-cluster-to-premium-storage), 14 lépésben.
 
-1. Az aktuális IP-cím erőforrás hello, módosítsa a hello lehetséges tulajdonos too'Existing elsődleges SQL Server ", az alábbi"dansqlams4"hello példa:
+1. Az aktuális IP-cím erőforrás az alábbi példában "dansqlams4" a "Meglévő elsődleges SQL Server", a lehetséges tulajdonos módosítása:
 
     ![Appendix13][23]
-2. Hello új IP-cím erőforráson, módosítsa a hello lehetséges tulajdonos too'Migrated másodlagos SQL-kiszolgáló ", az alábbi"dansqlams5"hello példa:
+2. Az új IP-cím erőforrás "Áttelepítve másodlagos SQL-kiszolgáló", az alábbi példában "dansqlams5" lehetséges tulajdonos módosítása:
 
     ![Appendix14][24]
-3. Miután ezt állítja be a következőket teheti feladatátvevő, és hello utolsó csomópontja áttelepítésekor hello lehetséges tulajdonosok módosítani kell úgy, hogy a csomópont lehetséges tulajdonosa meg van adva:
+3. Miután ezt állítja be a következőket teheti feladatátvevő, és az utolsó csomópont áttelepítésekor a lehetséges tulajdonosok módosítani kell úgy, hogy a csomópont lehetséges tulajdonosa meg van adva:
 
     ![Appendix15][25]
 
 ## <a name="additional-resources"></a>További források
 * [Prémium szintű Azure Storage](../../../storage/common/storage-premium-storage.md)
-* [Virtuális gépek](https://azure.microsoft.com/services/virtual-machines/)
+* [Virtual Machines](https://azure.microsoft.com/services/virtual-machines/)
 * [SQL Server Azure virtuális gépeken](../sql/virtual-machines-windows-sql-server-iaas-overview.md)
 
 <!-- IMAGES -->

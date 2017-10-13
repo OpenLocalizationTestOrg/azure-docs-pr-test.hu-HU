@@ -1,6 +1,6 @@
 ---
-title: "az Azure Data Catalog aaaSupported adatforrások |} Microsoft Docs"
-description: "Ez a cikk hello támogatott adatforrások specifikációk listája."
+title: "Azure Data Catalog támogatott adatforrások |} Microsoft Docs"
+description: "Ez a cikk felsorolja a jelenleg támogatott adatforrások előírásainak."
 services: data-catalog
 documentationcenter: 
 author: steelanddata
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/15/2017
 ms.author: maroche
-ms.openlocfilehash: 4bfcabf31bf9fd781c939a5026abc42a5407df32
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d6867c73bc6ea3c238cceef8a68466d451f3365c
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="supported-data-sources-in-azure-data-catalog"></a>Az Azure Data Catalog támogatott adatforrások
 
-Metaadatok közzététele egy kattintson vagy egy nyilvános API használatával-egyszer regisztrációs eszköz, vagy manuálisan adatok megadásával közvetlenül az Azure Data Catalog toohello webes portál. hello következő táblázat összefoglalja hello katalógus által jelenleg támogatott, és minden közzétételi képességek hello minden adatforrás. Hello is listában megtalálhatók a külső eszközök, amelyek az egyes adatforrások is elindíthatja a "Megnyitás a következőben" portal tapasztalatunkat is. hello második tábla minden egyes adatforrás kapcsolat tulajdonság olyan további technikai meghatározást tartalmaz.
+Egy nyilvános API-t vagy a kattintson a metaadatok közzététele-egyszer regisztrációs eszköz, vagy közvetlenül az Azure Data Catalog az információk manuális megadásával webes portál. Az alábbi táblázat foglalja össze az egyes ma a katalógusban, és a közzétételi lehetőségeket által támogatott összes adatforrás. A külső adatok eszközök, amelyek az egyes adatforrások is elindíthatja a "Megnyitás a következőben" portal tapasztalatunkat is listában megtalálhatók. A második tábla minden egyes adatforrás kapcsolat tulajdonság olyan további technikai meghatározást tartalmaz.
 
 
 ## <a name="list-of-supported-data-sources"></a>A támogatott adatforrások listája
@@ -443,12 +443,12 @@ Metaadatok közzététele egy kattintson vagy egy nyilvános API használatával
     </tr>
 </table>
 
-Ha további segítségre, küldje el a szolgáltatás kérelem toohello [Azure Data Catalog fórum](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409).
+Ha további segítségre, küldje el a szolgáltatás kérelmet a [Azure Data Catalog fórum](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409).
 
 
 ## <a name="data-source-reference-specification"></a>Adatforrás hivatkozás megadása
 > [!NOTE]
-> Hello **DSL struktúra** oszlop a következő táblázat hello csak hello csatlakozási tulajdonságokat az "address" tulajdonságcsomag Azure Data Catalog által használt sorolja fel. Ez azt jelenti, hogy a "address" tulajdonságcsomag tartalmazhat hello adatforrás, amely az Azure Data Catalog továbbra is fennáll, de nem használ más kapcsolat tulajdonságai.
+> A **DSL struktúra** oszlop a következő táblázat felsorolja a csak a csatlakozási tulajdonságokat az "address" tulajdonságcsomag Azure Data Catalog által használt. Ez azt jelenti, hogy a "address" tulajdonságcsomag tartalmazhat az adatforrás, amely az Azure Data Catalog továbbra is fennáll, de nem használ más kapcsolat tulajdonságai.
 
 <table>
     <tr>
@@ -970,7 +970,7 @@ Ha további segítségre, küldje el a szolgáltatás kérelem toohello [Azure D
       </td>
     </tr>
     <tr>
-      <td>Más (nincs a fenti hello)</td>
+      <td>Más (egyik sem)</td>
       <td>\*</td>
       <td>\*</td>
       <td>

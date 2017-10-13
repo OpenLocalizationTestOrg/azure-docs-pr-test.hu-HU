@@ -1,5 +1,5 @@
 ---
-title: "alkalmazás hitelesítés – az Azure SQL Database aaaGet értékeinek |} Microsoft Docs"
+title: "Értékek lekérése app hitelesítés – az Azure SQL Database |} Microsoft Docs"
 description: "Hozzon létre egy egyszerű szolgáltatást kód SQL-adatbázis eléréséhez."
 services: sql-database
 documentationcenter: 
@@ -16,30 +16,30 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 09/30/2016
 ms.author: sstein
-ms.openlocfilehash: b57dc075ec9e679da9f2f5fa53e02312539cdf07
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ec6256e9c5bb0d9c8d15d0f673cea70b3915eb34
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="get-hello-required-values-for-authenticating-an-application-tooaccess-sql-database-from-code"></a>Egy alkalmazás tooaccess SQL-adatbázis kódból hitelesítéséhez szükséges hello értékek lekérése
-toocreate és SQL-adatbázis kezeléséhez hello Azure Active Directory (AAD) tartomány hello előfizetésben ahol létrejöttek-e az Azure-erőforrások regisztrálnia kell az alkalmazás kódját.
+# <a name="get-the-required-values-for-authenticating-an-application-to-access-sql-database-from-code"></a>Az alkalmazás kódjában SQL-adatbázis eléréséhez szükséges értékek beolvasása
+Létrehozásához és kezeléséhez az SQL-adatbázis kódból regisztrálnia kell az az alkalmazás hol létrejöttek-e az Azure-erőforrások Azure Active Directory (AAD) tartományban az előfizetést.
 
-## <a name="create-a-service-principal-tooaccess-resources-from-an-application"></a>A szolgáltatás egyszerű tooaccess erőforrások létrehozása egy alkalmazás
-Legújabb szüksége toohave hello [Azure PowerShell](https://msdn.microsoft.com/library/mt619274.aspx) telepíteni és futtatni. Részletes információkért lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azureps-cmdlets-docs).
+## <a name="create-a-service-principal-to-access-resources-from-an-application"></a>Egy egyszerű szolgáltatásnév létrehozása hozzáférését az erőforrásokhoz az adott alkalmazásból
+Telepíteni kell a legújabb [Azure PowerShell](https://msdn.microsoft.com/library/mt619274.aspx) telepíteni és futtatni. Részletes információk: [Az Azure PowerShell telepítése és konfigurálása](/powershell/azureps-cmdlets-docs).
 
-hello következő PowerShell-parancsfájlt hoz létre hello Active Directory (AD) és hello szolgáltatást egyszerű tooauthenticate a C# alkalmazás igazolnia kell. hello parancsfájl kimenetében igazolnia kell a hello megelőző C# minták értékeket. Részletes információkért lásd: [egyszerű szolgáltatás használata az Azure PowerShell toocreate tooaccess erőforrások](../azure-resource-manager/resource-group-authenticate-service-principal.md).
+A következő PowerShell-parancsprogram létrehozza az Active Directory (AD)-alkalmazást, és a C#-alkalmazás hitelesítéséhez szükséges egyszerű szolgáltatást. A parancsfájl kimenetének értékeire szükség lesz az előbb említett C#-mintához. Részletes információk: [Egyszerű szolgáltatás létrehozása erőforrások eléréséhez az Azure PowerShell használatával](../azure-resource-manager/resource-group-authenticate-service-principal.md).
 
-    # Sign in tooAzure.
+    # Sign in to Azure.
     Add-AzureRmAccount
 
-    # If you have multiple subscriptions, uncomment and set toohello subscription you want toowork with.
+    # If you have multiple subscriptions, uncomment and set to the subscription you want to work with.
     #$subscriptionId = "{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}"
     #Set-AzureRmContext -SubscriptionId $subscriptionId
 
     # Provide these values for your new AAD app.
-    # $appName is hello display name for your app, must be unique in your directory.
-    # $uri does not need toobe a real uri.
+    # $appName is the display name for your app, must be unique in your directory.
+    # $uri does not need to be a real uri.
     # $secret is a password you create.
 
     $appName = "{app-name}"
@@ -49,19 +49,19 @@ hello következő PowerShell-parancsfájlt hoz létre hello Active Directory (AD
     # Create a AAD app
     $azureAdApplication = New-AzureRmADApplication -DisplayName $appName -HomePage $Uri -IdentifierUris $Uri -Password $secret
 
-    # Create a Service Principal for hello app
+    # Create a Service Principal for the app
     $svcprincipal = New-AzureRmADServicePrincipal -ApplicationId $azureAdApplication.ApplicationId
 
-    # tooavoid a PrincipalNotFound error, I pause here for 15 seconds.
+    # To avoid a PrincipalNotFound error, I pause here for 15 seconds.
     Start-Sleep -s 15
 
-    # If you still get a PrincipalNotFound error, then rerun hello following until successful. 
+    # If you still get a PrincipalNotFound error, then rerun the following until successful. 
     $roleassignment = New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $azureAdApplication.ApplicationId.Guid
 
 
-    # Output hello values we need for our C# application toosuccessfully authenticate
+    # Output the values we need for our C# application to successfully authenticate
 
-    Write-Output "Copy these values into hello C# sample app"
+    Write-Output "Copy these values into the C# sample app"
 
     Write-Output "_subscriptionId:" (Get-AzureRmContext).Subscription.SubscriptionId
     Write-Output "_tenantId:" (Get-AzureRmContext).Tenant.TenantId
@@ -73,5 +73,5 @@ hello következő PowerShell-parancsfájlt hoz létre hello Active Directory (AD
 
 ## <a name="see-also"></a>Lásd még:
 * [SQL-adatbázis létrehozása a C#](sql-database-get-started-csharp.md)
-* [Csatlakozás tooSQL adatbázis által használó Azure Active Directory-hitelesítés](sql-database-aad-authentication.md)
+* [Csatlakozás az SQL Database az Azure Active Directory-hitelesítés használatával](sql-database-aad-authentication.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "segítségre hello saját alkalmazások portálon az Azure Active Directoryban aaaDo |} Microsoft Docs"
-description: "Első utasításokat tooperform általános feladatok az hello hozzáférési panel használatakor."
+title: "Nem találja az Azure Active Directoryban a személyes alkalmazások portállal |} Microsoft Docs"
+description: "Gyakori feladatok végrehajtása, ha a hozzáférési panel dolgozunk annak."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,97 +15,97 @@ ms.topic: article
 ms.date: 07/15/2017
 ms.author: markvi
 ms.reviewer: japere
-ms.openlocfilehash: 5c9a820ab434e068abdab615cd4065a42b28d88c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 613c68d5c13793a3b696b6afbfc0e1a31595e201
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="do-you-need-help-with-hello-my-apps-portal"></a>Kell hello saját alkalmazások portál számára?
+# <a name="do-you-need-help-with-the-my-apps-portal"></a>Van szüksége a saját alkalmazások portál számára?
 
-Valószínűleg elérte a ezen a lapon, mert sajnos futtatása során a problémát hello saját alkalmazások portál használata. Amíg vannak esetek, amelyek miatt toocontact ügyfélszolgálathoz vagy a rendszergazda tooget a probléma megoldódott, az alábbiakban néhány hibaelhárítási témakörök, amelyek először lehetnek képes toohelp.
+Valószínűleg elérte a ezen a lapon, mert sajnos futtatása során a problémát a személyes alkalmazások portál használata. Amíg vannak esetek, amelyek igénylik, hogy forduljon az ügyfélszolgálathoz vagy a rendszergazdát a probléma megoldódott, az alábbiakban néhány hibaelhárítási témakörök, amelyek segítségével, először is.
 
-## <a name="i-am-having-trouble-signing-into-hello-my-apps-portal"></a>Problémáim vannak hello saját alkalmazások portál bejelentkezni
+## <a name="i-am-having-trouble-signing-into-the-my-apps-portal"></a>Problémáim vannak az alkalmazások saját portál bejelentkezni
 
-Általános problémák toocheck:
+Általános problémák kereséséhez:
 
-- Jelölőnégyzet toosee Ha jelentkezik be hello javítsa ki az URL-cím: [https://myapps.microsoft.com](https://myapps.microsoft.com)
+- Ellenőrizze, hogy ha jelentkezik be a helyes URL-címet: [https://myapps.microsoft.com](https://myapps.microsoft.com)
 
-- Próbálja meg hozzáadni a megbízható helyek hello URL-cím tooyour böngésző.
+- Próbálkozzon a böngésző megbízható helyek ad hozzá az URL-címet.
 
-- Győződjön meg arról, hogy a jelszó nem lejárt vagy elfelejtett. Ellenőrizze [Itt](active-directory-passwords-update-your-own-password.md) nyújt további tájékoztatást tooupdate a jelszavát.
+- Győződjön meg arról, hogy a jelszó nem lejárt vagy elfelejtett. Ellenőrizze [Itt](active-directory-passwords-update-your-own-password.md) a további részletekért frissítse a jelszavát.
 
-- Toosee ellenőrizze, hogy a hitelesítési kapcsolattartási adatai toodate, és nem blokkolja-e a hozzáférést. Ellenőrizze [Itt](https://docs.microsoft.com/en-us/azure/multi-factor-authentication/end-user/multi-factor-authentication-end-user) a hitelesítési adatok beállításával kapcsolatos további részletekért.
+- Ellenőrizze, hogy van-e a hitelesítés kapcsolattartási adatai és nem blokkolja-e a hozzáférés. Ellenőrizze [Itt](https://docs.microsoft.com/en-us/azure/multi-factor-authentication/end-user/multi-factor-authentication-end-user) a hitelesítési adatok beállításával kapcsolatos további részletekért.
 
-- Törölje a böngésző cookie-kat, és próbálja meg újból a toosign.
+- Törölje a böngésző cookie-kat, és próbálja meg újból bejelentkezni.
 
-Ha problémák a toosign közben továbbra is találkozik, a rendszergazdától további segítségért.
+Ha továbbra is problémák adódtak a bejelentkezés közben, a rendszergazdától további segítségért.
 
 
 ## <a name="how-do-i-update-my-password"></a>Hogyan frissíthetők a jelszó?
 
-Ha elfelejtette a jelszavát, soha nem kapott az informatikai munkatársak közül, zárolja a fiókot, vagy a kívánt toochange informatikai, lásd: [segítségre van szüksége, az Azure AD-jelszó elfelejtettem](active-directory-passwords-update-your-own-password.md) további részleteket.
+Ha elfelejtette a jelszavát, soha nem kapott az informatikai munkatársak közül, zárolja a fiókot, vagy szeretné módosítani, lásd: [segítségre van szüksége, az Azure AD-jelszó elfelejtettem](active-directory-passwords-update-your-own-password.md) további részleteket.
 
 ## <a name="how-do-i-register-for-password-reset"></a>Hogyan regisztrálhatnak a jelszóváltoztatásra?
 
-Végfelhasználói új jelszót, vagy a fiók zárolását kívánja feloldani anélkül, hogy az önkiszolgáló jelszó-változtatási (SSPR) használó toospeak tooa személy. Ez a funkció használata előtt tooregister hitelesítési módszerekkel van, vagy erősítse meg az előre megadott hello hitelesítési módszerek a rendszergazda fel van töltve. További részletekért lásd: [az önkiszolgáló jelszó-változtatási regisztrációs](active-directory-passwords-reset-register.md).
+Végfelhasználói új jelszót, vagy anélkül, hogy az önkiszolgáló jelszó-változtatási (SSPR) használó személy kommunikáljanak a fiók zárolását kívánja feloldani. Mielőtt használhatná ezt a funkciót, hitelesítési módszereket kell regisztrálnia, vagy jóvá kell hagynia a rendszergazda által betöltött előre definiált hitelesítési módszereket. További részletekért lásd: [az önkiszolgáló jelszó-változtatási regisztrációs](active-directory-passwords-reset-register.md).
 
 
-## <a name="i-am-having-trouble-installing-hello-my-apps-portal-browser-extension"></a>Problémáim vannak hello portál saját alkalmazások bővítmény telepítése
+## <a name="i-am-having-trouble-installing-the-my-apps-portal-browser-extension"></a>Problémáim vannak az alkalmazások saját portál bővítmény telepítése
 
-Ellenőrizze a toosee, ha Ön webböngészőkre vonatkozó követelmények teljesítésének:
+Ellenőrizze, hogy ha teljesíti-böngészőre vonatkozó követelményei:
 
-- hello portálhoz szükséges, amely támogatja a JavaScript egy böngészőt, és CSS engedélyezte. Ha a jelszó-alapú egyszeri bejelentkezés alkalmazásokat használ, bővítmény kísérő hello is telepíteni kell. A bővítmény automatikusan letöltődik jelszó-alapú egyszeri bejelentkezés alkalmazásokhoz konfigurált alkalmazás elindítása.
+- A portálhoz szükséges, amely támogatja a JavaScript egy böngészőt, és CSS engedélyezte. Ha jelszóalapú egyszeri bejelentkezés alkalmazásokat használ, a hozzá tartozó bővítmény is telepíteni kell. A bővítmény automatikusan letöltődik jelszó-alapú egyszeri bejelentkezés alkalmazásokhoz konfigurált alkalmazás elindítása.
 
-- hello bővítmény hello böngészőre vonatkozó követelményei a következők:
+- A bővítmény a böngészőre vonatkozó követelményei a következők:
     - Internet Explorer 8, 9, 10, 11, Windows 7 vagy újabb
     - Peremhálózati Windows 10 évforduló Edition vagy újabb
     - A Windows 7 vagy újabb, és MacOS X rendszeren vagy újabb Chrome
     - Firefox 26.0 vagy újabb, Windows XP SP2 vagy újabb verzióját, és a Mac OS X 10.6 vagy újabb
 
-Hello bővítmény Chrome és peremhálózati a hello közvetlen a lenti hivatkozásokra kattintva is letölthető:
+Az alábbi közvetlen hivatkozásokat a Chrome és peremhálózati is letölthető a bővítmény:
 
 - [Chrome-bővítmény](https://chrome.google.com/webstore/detail/access-panel-extension/ggjhpefgjjfobnfoldnjipclpcfbgbhl)
 
 - [Peremhálózati bővítmény](https://www.microsoft.com/store/apps/9pc9sckkzk84)
 
-Telepítési próbálja hello után ha áll kapcsolatban az alábbi lépések problémák:
+Miután a telepítés kövesse az alábbi lépéseket, ha a probléma áll kapcsolatban:
 
-- Ellenőrizze a tooin a böngésző kiterjesztés beállításait, amelyek hello bővítmény engedélyezve van.
+- Ellenőrizze, hogy a böngésző bővítmény beállításait az, hogy a bővítmény engedélyezve van-e.
 
-- Indítsa újra a böngészőt, és jelentkezzen be toohello saját alkalmazások portálon.
+- Indítsa újra a böngészőt, és jelentkezzen be a saját alkalmazások portálra.
 
-- Törölje a böngésző cookie-kat, és jelentkezzen be toohello saját alkalmazások portálon.
+- Törölje a böngésző cookie-kat, és jelentkezzen be a saját alkalmazások portálra.
 
 ## <a name="how-do-i-add-a-new-app"></a>Hogyan vehetek fel egy új alkalmazást?
 
-1.  A hello **alkalmazások** kattintson **alkalmazás hozzáadása**.
+1.  Az a **alkalmazások** kattintson **alkalmazás hozzáadása**.
 
-2.  Szeretné, hogy tooadd, és kattintson a keresés hello app **Hozzáadás**.
+2.  A kívánt alkalmazást, adja hozzá, és kattintson a Keresés **Hozzáadás**.
 
 **Megjegyzés:**
 
-- Ha a rendszergazda engedélyezte ezt a fiókot csak rendelkezik hozzáférési toothis lehetőséget.
+- Ha a rendszergazda engedélyezte ezt a fiókot csak rendelkezik hozzáféréssel a beállításhoz.
 
-- Ha hello app engedélyre van szüksége, szükség lehet toowait rendszergazdai jóváhagyásra.
+- Ha az alkalmazás engedélyre van szüksége, szükség lehet megvárja a rendszergazdai jóváhagyást.
 
 
 ## <a name="how-do-i-manage-my-group-memberships"></a>Hogyan kezelhetem a csoporttagságok?
 
-1. Kattintson a hello csoportok alkalmazás csempéjére. 
-2. egy csoport, a csoportok I saját, kattintson a csoport létrehozása, és kövesse az utasításokat hello toocreate.
-3. toojoin egy csoportba, a csoportok vagyok, kattintson a csatlakozás a csoporthoz, és kövesse a hello utasításokat.
+1. Kattintson a csoportok alkalmazás csempéjére. 
+2. Hozzon létre egy csoportot, a csoportok saját, kattintson a csoport létrehozása, és kövesse az utasításokat.
+3. Csatlakozás a csoporthoz, a csoportok vagyok, kattintson a csatlakozás a csoporthoz, és kövesse az utasításokat.
 
 **Megjegyzés:**
 
-- Ha a rendszergazda engedélyezte ezt a fiókot csak rendelkezik hozzáférési toothis lehetőséget.
+- Ha a rendszergazda engedélyezte ezt a fiókot csak rendelkezik hozzáféréssel a beállításhoz.
 
-- Csoportokat, amelyeket Ön tagja lehetővé teszik tooview részleteit, és hello csoport elhagyására.
+- Csoportokat, amelyeket Ön tagja lehetővé teszik a részletek megtekintéséhez és a csoport elhagyására.
 
-- Csoportokat, amelyeket Ön a tulajdonosa lehetővé teszi tooview részletek hozzáadása vagy a tagok eltávolítása és hello csoport elhagyására.
+- Csoportokat, amelyeket Ön a tulajdonosa adja hozzá vagy tagok eltávolítása és a csoport elhagyására teszi lehetővé, a részletek megtekintéséhez.
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-Kapcsolódó információk, tekintse meg [hello alkalmazás-hozzáférési problémák panel webhelyére vagy a mobilalkalmazás](active-directory-application-access-panel-content-map.md)
+Kapcsolódó információk, tekintse meg [az alkalmazás hozzáférési panel webhelyen vagy a mobilalkalmazás problémák](active-directory-application-access-panel-content-map.md)
 

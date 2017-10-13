@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure közbeni, hűtsük le, és archiválja storage BLOB objektumokhoz |} Microsoft Docs"
+title: "Az Azure blobtárolási rétege gyakran és ritkán használt, valamint archivált adatokhoz | Microsoft Docs"
 description: "A gyakran és a ritkán használt, valamint az archivált adatok tárolása Azure Blob Storage-fiókok esetén."
 services: storage
 documentationcenter: 
@@ -14,76 +14,76 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 06/05/2017
 ms.author: mihauss
-ms.openlocfilehash: 42fb699bf16147ba8a4d9f75a62debadea5af65e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 544b11d74a926fe62b8ceca51570ce9d2ee7e6e7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-blob-storage-hot-cool-and-archive-preview-storage-tiers"></a>Azure Blob Storage: A gyakran és a ritkán használt, valamint az archivált adatokhoz (előzetes verzió) használt tárolási rétegek
 
 ## <a name="overview"></a>Áttekintés
 
-Az Azure Storage három tárolási réteget kínál a Blob-objektumok tároláshoz, hogy adatait a legköltséghatékonyabb módon tárolhassa a használat függvényében. hello Azure **gyakran használt adatok tárolási rétege** gyakran használt adatok tárolására van optimalizálva. hello Azure **ritkán használt adatok tárolási** ritkán érhető el, és legalább egy hónapig tárolódnak adatok tárolására van optimalizálva. Hello [archív tárolási réteg (előzetes verzió)](https://azure.microsoft.com/blog/announcing-the-public-preview-of-azure-archive-blob-storage-and-blob-level-tiering) ritkán érhető el, és legalább hat hónapos rugalmas késésre vonatkozó követelmény (a óra hello sorrendben) tárolt adatok tárolására van optimalizálva. Hello *archív* rétege csak akkor használható, hello blob szinten, nem pedig hello teljes tárfiókot. Adatok hello ritkán használt adatok tárolási rétegében tűri ugyan alacsonyabb rendelkezésre állás, de továbbra is szükséges a magas tartósság és hasonló időben való hozzáférésre és átviteli gyakran használt adatokkal egyező. A ritkán használt és az archív adatok esetében a valamelyest alacsonyabb rendelkezésre állási szolgáltatási szintek és magasabb hozzáférési költségek elfogadható kompromisszumot jelentenek az alacsonyabb tárolási költségek ellenében.
+Az Azure Storage három tárolási réteget kínál a Blob-objektumok tároláshoz, hogy adatait a legköltséghatékonyabb módon tárolhassa a használat függvényében. Az Azure **tárolási rétege gyakran használt adatokhoz** a gyakran használt adatok tárolására van optimalizálva. Az Azure **tárolási rétege ritkán használt adatokhoz** a ritkábban használt adatok egy havi és annál hosszabb idejű tárolására van optimalizálva. Az Azure [tárolási rétege archivált adatokhoz (előzetes verzió)](https://azure.microsoft.com/blog/announcing-the-public-preview-of-azure-archive-blob-storage-and-blob-level-tiering) az alig használt adatok hat havi és annál hosszabb idejű, rugalmas (órákban mért) késési követelményekkel rendelkező tárolására van optimalizálva. Az *archív* tárolási réteg csak a blobok szintjén érhető el, a teljes tárfiókén nem. A ritkán használt adatok tárolási rétegében lévő adatok esetében ugyan alacsonyabb rendelkezésre állás is elegendő lehet, azonban továbbra is magas tartósság és a gyakran használt adatokkal egyező hozzáférési idő és teljesítmény szükséges. A ritkán használt és az archív adatok esetében a valamelyest alacsonyabb rendelkezésre állási szolgáltatási szintek és magasabb hozzáférési költségek elfogadható kompromisszumot jelentenek az alacsonyabb tárolási költségek ellenében.
 
-Napjainkban hello felhőben tárolt adatok mennyisége exponenciálisan nő nő. a növekvő tárolási szükségletek toomanage költségei, az adatok tulajdonságai, például a gyakoriság elérés alapján, és a tervezett megőrzési időtartam hasznos tooorganize. Hello felhőben tárolt adatok hogyan azt létrehozása, feldolgozása és az élettartamuk során elért tekintetében eltérő lehet. Egyes adatokat aktívan használnak és módosítanak teljes élettartamuk során. Bizonyos adatokat élettartamuk, gyakran korai elérik a hozzáférések mennyisége drasztikusan hello adatok életkorának. Néhány adat hello felhőben tétlen és ritkán, ha valaha is, azonos egyszer tárolja.
+Napjainkban a felhőben tárolt adatok mennyisége exponenciálisan nő. A növekvő tárolási szükségletek költségeinek kezelése érdekében hasznos lehet az adatokat olyan attribútumok alapján szervezni, mint a hozzáférés gyakorisága vagy a tervezett megőrzési időtartam. A felhőben tárolt adatok az előállítás, a feldolgozás és a hozzáférés tekintetében különbözőek lehetnek az élettartamuk során. Egyes adatokat aktívan használnak és módosítanak teljes élettartamuk során. Egyes adatokat élettartamuk korai szakaszában sokat használnak, az adatok életkorának növekedésével azonban a hozzáférések mennyisége drasztikusan csökken. Egyes adatok pedig inaktívan a felhőben maradnak, és a tárolást követően csak nagyon ritkán használják őket, ha használják őket egyáltalán.
 
 Az egyes adathozzáférési forgatókönyvek esetében számos előnyt biztosít az olyan rétegelt tárolási megoldás, amely egy adott hozzáférési mintára van optimalizálva. A gyakran és a ritkán használt, valamint az archivált adatok tárolási rétegeivel az Azure Blob Storage a különböző tárolási igényeket célozza meg különböző árképzési modellekkel.
 
 ## <a name="blob-storage-accounts"></a>Blob Storage-fiókok
 
-A **Blob Storage-fiókok** speciális tárfiókok a strukturálatlan adatok blobként (objektumokként) való tárolására az Azure Storage-ban. A Blob storage-fiókok most választhat működés, és ritkán használt adatok tárolási rétegek fiók szintjén vagy működés, cool, és archiválja a rétegek hello blob szinten, a hozzáférési minták alapján. A ritkán használt ritkán használt adatok hello legalacsonyabb tárolási költség, kevesebb mint közbeni, és tárolja a gyakrabban használt kiemelt adatokhoz hello legalacsonyabb hozzáférési költség költsége alacsonyabb tárolási gyakran használt adatok tárolására. BLOB storage-fiókok hasonló tooyour meglévő általános célú tárfiókok és megosztása hello szintű tartósságot, rendelkezésre állását, méretezhetőségét és teljesítményt nyújtanak, amelyekkel még ma, beleértve a 100 %-os API-konzisztenciát a blokkblobokhoz és hozzáfűzése blobok.
+A **Blob Storage-fiókok** speciális tárfiókok a strukturálatlan adatok blobként (objektumokként) való tárolására az Azure Storage-ban. A Blob Storage-fiókok esetében a fiók szintjén a gyakran és a ritkán használt, az egyes blobok szintjén pedig a gyakran és a ritkán használt, valamint az archivált adatok tárolási rétege közül választhat az adathozzáférési forgatókönyveknek megfelelően. Az alig használt adatokat a legalacsonyabb tárolási költséggel, a ritkábban használt adatokat a gyakran használtaknál alacsonyabb tárolási költséggel, a gyakrabban használt adatokat pedig a legalacsonyabb hozzáférési költséggel tárolhatja. A Blob Storage-fiókok hasonlóak a meglévő általános célú tárfiókjaihoz, és a jelenlegi rendszereivel megegyező szintű tartósságot, rendelkezésre állást, méretezhetőséget és teljesítményt nyújtanak, beleértve a 100 százalékos API-konzisztenciát a blokkblobokhoz és a hozzáfűző blobokhoz.
 
 > [!NOTE]
 > A Blob Storage-fiókok csak a blokkblobokat és a hozzáfűző blobokat támogatják, a lapblobokat nem.
 
-A BLOB storage-fiókokban elérhető hello **hozzáférési szint** attribútum, amely lehetővé teszi toospecify hello tárolási réteg **gyakran használt adatok** vagy **lassú** attól függően, hogy a hello hello adataihoz fiók. Az adatok használati módja hello változása esetén is válthat a tárolási rétegek között. hello archív réteg (előzetes verzió) csak hello blob szinten alkalmazható.
+A Blob Storage-fiókokban elérhető a **Hozzáférési réteg** attribútum, amely segítségével megadhatja, hogy a tárolási réteg **gyakran használt adatok** vagy **ritkán használt adatok** tárolására szolgáljon a fiókban tárolt adatoktól függően. Ha változik az adatok használati módja, bármikor válthat a tárolási rétegek között. Az archív réteg (előzetes verzió) csak a blobok szintjén alkalmazható.
 
 > [!NOTE]
-> Változó hello rétege további díjakat vonhat. Lásd: hello [árképzési és számlázási](#pricing-and-billing) című szakaszban talál további információt.
+> A tárolási rétegek módosítása további díjakat vonhat maga után. További részleteket a következő szakaszban talál: [Árak és számlázás](#pricing-and-billing).
 
 ### <a name="hot-access-tier"></a>Gyakran használt adatok hozzáférési szintje
 
-Példa használati forgatókönyvek hello gyakran használt adatok a következők:
+Példa használati forgatókönyvek a gyakran használt adatok tárolási rétegéhez:
 
-* Az aktív használatból vagy várható toobe rendszeren elérhető (az olvasási és írva) gyakran adatokat.
-* A feldolgozásra és esetleges áttelepítési toohello tárolási rétege ritkán előkészített adatok.
+* Adatok, amelyeket aktívan használnak, vagy amelyekhez várhatóan gyakran szeretnének hozzáférni (olvasás vagy írás formájában).
+* A feldolgozásra és a későbbiekben a ritkán használt adatok tárolási rétegébe való áttelepítésre előkészített adatok.
 
 ### <a name="cool-access-tier"></a>Ritkán használt adatok hozzáférési szintje
 
-Példa használati forgatókönyvek hello ritkán használt adatok a következők:
+Példa használati forgatókönyvek a ritkán használt adatok tárolási rétegéhez:
 
 * Rövid távú biztonsági mentési és vészhelyreállítási adatkészletek.
-* Régebbi nem gyakran többé megtekinthetők, de esetén várható toobe érhető el azonnal érhető el.
-* Nagy méretű adatkészletekhez toobe igénylő közben további adatok későbbi feldolgozásra alatt gyűjtött hatékonyan tárolja költség. (*Például* tudományos adatok vagy gyártási létesítményből származó nyers telemetriaadatok hosszú távú tárolása)
+* Régebbi, már csak ritkán megtekintett médiatartalmak, amelyek elérésére igény esetén azonban azonnal szükség van.
+* Nagyobb adatkészletek, amelyeket költséghatékonyan kell tárolni, amíg a későbbi feldolgozáshoz szükséges többi adat gyűjtése még folyamatban van. (*Például* tudományos adatok vagy gyártási létesítményből származó nyers telemetriaadatok hosszú távú tárolása)
 
 ### <a name="archive-access-tier-preview"></a>Archivált adatok hozzáférési szintje (előzetes verzió)
 
-[Archivált adatok](https://azure.microsoft.com/blog/announcing-the-public-preview-of-azure-archive-blob-storage-and-blob-level-tiering) hello legalacsonyabb költségeket, és magasabb adatok lekérését képest költségek toohot és ritkán használt adatok tárolására van.
+Az [archív tároló](https://azure.microsoft.com/blog/announcing-the-public-preview-of-azure-archive-blob-storage-and-blob-level-tiering) a gyakran és a ritkán használt adatok tárolásához képest a legalacsonyabb tárolási költségekkel, viszont magasabb adatlekérési költségekkel rendelkezik.
 
-Az archív tárolóban lévő blobok nem olvashatók, másolhatók, írhatók felül vagy módosíthatók. Az archív tárolóban lévő blobokról pillanatképek sem készíthetők. Azonban, előfordulhat, hogy használja a meglévő operations toodelete, listában, a blob tulajdonságai/metaadatot beszerezni vagy a blob hello szintjének módosítása. archivált adatok tooread adatokat, először módosítania kell hello blob toohot vagy eszközterület hello szintjének. Ez a folyamat rehidratálása nevezik, és too15 óra toocomplete az 50 GB-nál kisebb blobok vesz igénybe. Nagyobb blobok szükséges további idő művelettől hello blob átviteli korlátot.
+Az archív tárolóban lévő blobok nem olvashatók, másolhatók, írhatók felül vagy módosíthatók. Az archív tárolóban lévő blobokról pillanatképek sem készíthetők. A törlés, listázás, a blobtulajdonságok/metaadatok lekérése vagy a blob tárolási rétegének módosítása azonban elvégezhető. Az archív tárolóban lévő adatok olvasásához előbb módosítania kell a blob rétegét a gyakran vagy ritkán használt adatok tárolási rétegére. Ezt a folyamatot rehidratálásnak nevezik, és 50 GB alatti méretű blobok esetében akár 15 órát is igénybe vehet. A nagyobb méretű blobok esetében még több időt vesz igénybe a blob átviteli sebességkorlátjának függvényében.
 
-Során rehidratálása előfordulhat, hogy ellenőrizze a hello "archív állapota" blob tulajdonság tooconfirm, ha hello réteg megváltozott. hello állapotát olvassa be a "rehydrate-függőben lévő-az-közbeni" vagy "rehydrate-függőben lévő-az-ritkán" hello cél réteg függően. Befejezési, hello blob tulajdonság "archiválására állapota" eltávolítva és hello "hozzáférési szint" bináris tulajdonság hello gyors vagy lassú réteg tükrözi.  
+A rehidratálás során a blob „archív állapot” tulajdonságának ellenőrzésével bizonyosodhat meg arról, hogy a réteg módosítása befejeződött-e. Az állapot a célrétegtől függően „rehydrate-pending-to-hot” (rehidratálás-folyamatban-a-gyakran-használt-rétegbe) vagy „rehydrate-pending-to-cool” (rehidratálás-folyamatban-a-ritkán-használt-rétegbe) lehet. A folyamat befejeztével a blob „archív állapot” tulajdonsága törlődik, és a „hozzáférési szint” tulajdonság mutatja, hogy a gyakran vagy a ritkán használt rétegről van-e szó.  
 
-Példa használati forgatókönyvek hello archív a következők:
+Példa használati forgatókönyvek az archív adatok tárolási rétegéhez:
 
 * Hosszú távú biztonsági mentési, archiválási és vészhelyreállítási adatkészletek.
 * Eredeti (nyers) adatok, amelyeket a végső használható formába való feldolgozásukat követően is meg kell őrizni. (*Például* nyers médiafájlok a más formátumba való átkódolásukat követően)
-* Megfelelőségi és archiválási adatok toobe igénylő hosszú ideig tárolja, és ritkán érhető el. (*Például* biztonsági kamerák felvételei, egészségügyi intézmények régi röntgen-/MRI-felvételei, pénzügyi szolgáltatók ügyfélszolgálati hívásainak hangfelvételei és átiratai)
+* Megfelelőségi és archiválási adatok, amelyeket hosszú ideig kell tárolni, azonban nagyon ritkán kell hozzáférni. (*Például* biztonsági kamerák felvételei, egészségügyi intézmények régi röntgen-/MRI-felvételei, pénzügyi szolgáltatók ügyfélszolgálati hívásainak hangfelvételei és átiratai)
 
 ### <a name="recommendations"></a>Javaslatok
 
 A tárfiókokkal kapcsolatos további információk: [Tudnivalók az Azure Storage-fiókokról](../common/storage-create-storage-account.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json).
 
-Blokkolása és hozzáfűző blobok tárolását igénylő csak alkalmazásokhoz, javasoljuk a Blob storage-fiókok használatával, hello tootake előnyeit differenciált árképzési modelljének előnyei rétegzett tárolás. Tisztában vagyunk azonban azzal az nem lehet bizonyos körülmények között lehetséges ahol fiókok lenne általános célú tárfiókok használata hello módon toogo, például:
+A csak blokk- és hozzáfűző blobok tárolását igénylő alkalmazásokhoz javasoljuk a Blob Storage-fiókok használatát, így kiaknázhatóak a rétegelt tárolás differenciált árképzési modelljének előnyei. Tisztában vagyunk azonban azzal, hogy ez bizonyos körülmények között esetleg nem lehetséges, ahol inkább az általános célú tárfiókok használata célszerű, például:
 
-* Toouse táblák, üzenetsorok, van szüksége, vagy fájlokat, és tárolja a blobok szeretné hello ugyanazt a tárfiókot. Vegye figyelembe, hogy egyetlen műszaki előnye toostoring ezeket a hello fiókot használja eltérő rendelkező hello ugyanazt a megosztott kulcsok szükségesek.
+* Ha táblákat, üzenetsorokat vagy fájlokat kell használnia, és szeretné, ha a blobok ugyanabban a tárfiókban lennének tárolva. Vegye figyelembe, hogy ezek azonos tárfiókban való tárolásának egyetlen műszaki előnye, hogy ugyanazok a megosztott kulcsok szükségesek hozzájuk.
 
-* Szüksége van az toouse hello klasszikus telepítési modellt. BLOB storage-fiókok csak az hello Azure Resource Manager üzembe helyezési modellben keresztül érhetők el.
+* Ugyanúgy a hagyományos telepítési modellt kell alkalmaznia. A Blob Storage-fiókok kizárólag az Azure Resource Manager-alapú üzemi modellben érhetőek el.
 
-* Toouse lapblobokat van szüksége. A Blob Storage-fiókok nem támogatják a lapblobokat. Általában a blokkblobok használatát javasoljuk, kivéve, ha valamiért kifejezetten lapblobokra van szüksége.
+* Lapblobokat kell használnia. A Blob Storage-fiókok nem támogatják a lapblobokat. Általában a blokkblobok használatát javasoljuk, kivéve, ha valamiért kifejezetten lapblobokra van szüksége.
 
-* Hello verziót [Storage szolgáltatások REST API felülete](https://msdn.microsoft.com/library/azure/dd894041.aspx) 2014-02-14-nál korábbi, vagy a verziójával egy ügyféloldali kódtár 4.x-nél alacsonyabb, és nem tudja frissíteni az alkalmazást.
+* A [Storage szolgáltatások REST API felülete](https://msdn.microsoft.com/library/azure/dd894041.aspx) 2014. 02. 14-nél korábbi verzióját vagy egy 4.x-nél korábbi verziójú ügyfélkódtárat használ, és nem tudja frissíteni az alkalmazást.
 
 > [!NOTE]
 > A Blob Storage-fiókok jelenleg az Azure-régiók mindegyikében támogatottak.
@@ -91,25 +91,25 @@ Blokkolása és hozzáfűző blobok tárolását igénylő csak alkalmazásokhoz
 
 ## <a name="blob-level-tiering-feature-preview"></a>Blobszintű rétegzési szolgáltatás (előzetes verzió)
 
-BLOB szintű rétegezéséhez mostantól lehetővé teszi az adatok nevű egyetlen művelettel hello objektum szinten toochange hello szintjének [Blob szint beállítása](/rest/api/storageservices/set-blob-tier). Könnyen hello hozzáférési réteg a gyakran használt adatok, a ritkán használt adatok hello között BLOB vagy archívum rétegek szerint módosíthatja használati minták módosítása, anélkül, hogy toomove adatok fiókokba. Az archív blobok rehidratálásától eltekintve a rétegváltások azonnal megtörténnek. Blobot, amely minden három tároló belül rétegeket is létezhetnek ugyanazzal a fiókkal hello. Minden blob egy explicit módon hozzárendelt réteg nem rendelkező hello réteg örököl hello fiók hozzáférési szint beállítása.
+A blobszintű rétegzés segítségével az adatok rétege mostantól egyetlen művelet, a [Blobréteg beállítása](/rest/api/storageservices/set-blob-tier) használatával módosítható az objektum szintjén. A blobok hozzáférési szintje a használati forgatókönyvek változásával könnyen állítható a gyakran és ritkán használt, valamint az archív rétegek közt anélkül, hogy az adatokat át kellene helyezni egyik fiókból a másikba. Az archív blobok rehidratálásától eltekintve a rétegváltások azonnal megtörténnek. Egy adott fiók tartalmazhat blobokat egyszerre akár mindhárom rétegben is. Azok a blobok, amelyekhez nincs kifejezetten hozzárendelve szint, a fiók hozzáférési szintjének beállítását öröklik.
 
-toouse ezeket a szolgáltatásokat a képen hello hello utasításokat követve [Azure archiválási és a Blob-szintű rétegezéséhez blog közlemény](https://azure.microsoft.com/blog/announcing-the-public-preview-of-azure-archive-blob-storage-and-blob-level-tiering).
+Ha szeretné ezeket az előzetes verzióban elérhető szolgáltatásokat használni, kövesse az [Azure Archive and Blob-Level Tiering (Archív és blobszintű rétegzés az Azure-ban) című blogbejelentésben](https://azure.microsoft.com/blog/announcing-the-public-preview-of-azure-archive-blob-storage-and-blob-level-tiering) közzétett utasításokat.
 
-hello kövesse bizonyos korlátozások vonatkoznak, amelyek érvényesek a blob-szintű rétegezéséhez előzetes sorolja fel:
+Az alábbiakban felsorolunk néhány, az előzetes verzióban a blobszintű rétegzésre vonatkozó korlátozást:
 
 * Az előzetes verzióra való sikeres regisztrációt követően csak az USA 2. keleti régiójában létrehozott új Blob Storage-fiókok támogatják az archív tárolást.
 
 * Az előzetes verzióra való sikeres regisztrációt követően csak a nyilvános régiókban létrehozott új Blob Storage-fiókok támogatják a blobszintű rétegzést.
 
-* A blobszintű rétegzés és az archív tárolás csak az [LRS] (../common/storage-redundancy.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json#locally-redundant-storage) tárolóban támogatottak. [Georedundáns](../common/storage-redundancy.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json#geo-redundant-storage) és [RA-GRS](../common/storage-redundancy.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json#read-access-geo-redundant-storage) jövőbeli hello támogatott.
+* A blobszintű rétegzés és az archív tárolás csak az [LRS] (../common/storage-redundancy.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json#locally-redundant-storage) tárolóban támogatottak. A [GRS](../common/storage-redundancy.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json#geo-redundant-storage) és az [RA-GRS](../common/storage-redundancy.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json#read-access-geo-redundant-storage) támogatása a jövőben valósul meg.
 
-* Hello szintjének egy blobot a pillanatképek nem módosítható.
+* A pillanatképekkel rendelkező blobok rétegének módosítása nem lehetséges.
 
 * Az archív tárolóban lévő blobok nem másolhatók, és pillanatképek sem készíthetők róluk.
 
-## <a name="comparison-of-hello-storage-tiers"></a>Hello tárolási Rétegek összehasonlítása
+## <a name="comparison-of-the-storage-tiers"></a>A tárolási rétegek összehasonlítása
 
-a következő táblázat hello hello gyakran és ritkán használt adatok tárolási Rétegek összehasonlítása jeleníti meg. hello archív blob szintű érvényben lévő korlát miatt Preview, ezért jelenleg nem az SLA-k.
+Az alábbi táblázat a gyakran és ritkán használt adatok tárolási rétegeit hasonlítja össze. Az archív blobszintű tárolás még csak előzetes verzióban érhető el, ezért nincsenek vonatkozó SLA-k.
 
 | | **Gyakran használt adatok tárolási rétege** | **Ritkán használt adatok tárolási rétege** |
 | ---- | ----- | ----- |
@@ -118,237 +118,237 @@ a következő táblázat hello hello gyakran és ritkán használt adatok tárol
 | **Használati díjak** | Magasabb tárolási, alacsonyabb hozzáférési és tranzakciós költségek | Alacsonyabb tárolási, magasabb hozzáférési és tranzakciós költségek |
 | **Minimális objektumméret** | N/A | N/A |
 | **Minimális tárolási időtartam** | N/A | N/A |
-| **Késés** <br> **(Idő toofirst bájt)** | ezredmásodperc | ezredmásodperc |
+| **Késés** <br> **(Az első bájtig eltelt idő)** | ezredmásodperc | ezredmásodperc |
 | **Méretezhetőségi és teljesítménycélok** | Ugyanazok, mint az általános célú tárfiókok esetében | Ugyanazok, mint az általános célú tárfiókok esetében |
 
 > [!NOTE]
-> BLOB-tároló fiókok támogatási hello azonos teljesítményének és méretezhetőségének célozza, általános célú tárfiókok esetében. További információkért lásd: [Azure Storage Scalability and Performance Targets](../common/storage-scalability-targets.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json) (Az Azure Storage méretezhetőségi és teljesítménycéljai).
+> A Blob Storage-fiókok ugyanazokat a méretezhetőségi és teljesítménycélokat támogatják, mint az általános célú tárfiókok. További információkért lásd: [Azure Storage Scalability and Performance Targets](../common/storage-scalability-targets.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json) (Az Azure Storage méretezhetőségi és teljesítménycéljai).
 
 
 ## <a name="pricing-and-billing"></a>Árak és számlázás
-BLOB storage-fiókok árképzési modellt használ a blob storage hello tárolási réteg alapján. A Blob storage-fiók használata esetén alkalmazza a következő számlázási szempontok hello:
+A Blob Storage-fiókok a tárolási rétegen alapuló árképzési modellt alkalmaznak a blobtároláshoz. A Blob Storage-fiókok használatakor az alábbi számlázási szempontok érvényesek:
 
-* **Tárolási költségek**: továbbá tárolt adatok mennyisége toohello, az adattárolás díja hello függ hello rétege. hello gigabájtonkénti költsége alacsonyabb hello ritkán használt adatok tárolási rétegben, mint az hello gyakran használt adatok tárolási rétegek.
+* **Tárolási költségek**: Az adattárolás díja a tárolt adatok mennyisége mellett a tárolási rétegtől függ. A ritkán használt adatok tárolási rétegének gigabájtonkénti költsége alacsonyabb, mint a gyakran használt adatok tárolási rétegéé.
 
-* **Adathozzáférési költségek**: hello ritkán használt adatok tárolási rétegében adatok, az olvasási és írási gigabájtonkénti data access járnak van szó.
+* **Adat-hozzáférési költségek**: A ritkán használt adatok tárolási rétege esetében gigabájtonkénti adat-hozzáférési díjat kell fizetni az adatolvasásokért és -írásokért.
 
-* **Tranzakciós költségek**: Mindkét réteg esetében tranzakciónkénti díjat kell fizetni. Hello tranzakciónkénti költség hello ritkán használt adatok tárolási réteg azonban nagyobb, mint az hello gyakran használt adatok tárolási rétegek.
+* **Tranzakciós költségek**: Mindkét réteg esetében tranzakciónkénti díjat kell fizetni. A tranzakciónkénti költség azonban magasabb a ritkán használt adatok, mint a gyakran használt adatok tárolási rétegének esetében.
 
-* **Georeplikációs adatátviteli költségek**: Ez a georeplikációt konfigurálva, beleértve a GRS és az RA-GRS csak érvényes tooaccounts. A georeplikációs adatátvitel gigabájtonkénti díj ellenében érhető el.
+* **Georeplikációs adatátviteli költségek**: Ez csak a georeplikációval konfigurált fiókok esetében érvényes, beleértve a GRS-t és az RA-GRS-t. A georeplikációs adatátvitel gigabájtonkénti díj ellenében érhető el.
 
 * **Kimenő adatátviteli költségek**: A kimenő adatátvitel (azaz az adott Azure-régióból kivitt adatok) esetében gigabájtalapú sávszélesség-használati díjak lépnek fel, csakúgy, mint az általános célú tárfiókok esetében.
 
-* **Változó hello rétege**: hello rétege rétegéről a ritkán használt adatok toohot azt eredményezi azok háromszorosa kell fizetni egyenlő tooreading minden váltás esetében hello tárfiókban lévő összes hello adatokon. Hello hello rétege rétegéről a gyakran használt adatok toocool, ugyanakkor az díjmentes.
+* **A tárolási réteg módosítása**: a tárolási rétegnek a ritkán használt adatok rétegéről a gyakran használt adatok rétegére való váltása esetében felmerülő díj minden váltás esetében megegyezik a tárfiókban lévő összes adat beolvasásának költségével. A gyakran használt adatok tárolási rétegéről a ritkán használt adatok tárolási rétegére való váltás azonban díjmentes.
 
 > [!NOTE]
-> A modell Blob storage-fiókok árképzési hello további részletekért lásd: [Azure Storage szolgáltatás díjszabása](https://azure.microsoft.com/pricing/details/storage/) lap. Hello kimenő adatátviteli díjakkal kapcsolatos további részletekért lásd: [adatforgalmi díjszabás](https://azure.microsoft.com/pricing/details/data-transfers/) lap.
+> A Blob Storage-fiókok árképzési modelljével kapcsolatos további részletekért lásd [Az Azure Storage szolgáltatás díjszabása](https://azure.microsoft.com/pricing/details/storage/) lapot. A kimenő adatátviteli díjakkal kapcsolatos további részletekért lásd az [Adatforgalmi díjszabás](https://azure.microsoft.com/pricing/details/data-transfers/) lapot.
 
 ## <a name="quickstart"></a>Első lépések
 
-Ebben a szakaszban a bemutatjuk, a következő forgatókönyveket hello Azure-portál használatával hello:
+Ebben a szakaszban bemutatjuk a következő forgatókönyveket az Azure Portal használatával kapcsolatban:
 
-* Hogyan toocreate Blob storage-fiók.
-* Hogyan toomanage Blob storage-fiók.
+* Blob Storage-fiók létrehozása.
+* Blob Storage-fiók kezelése.
 
-A következő példák, mert ez a beállítás érvényes toohello teljes tárfiókot hello hello hozzáférési réteg tooarchive nincs beállítva. Az archív réteg csak egy adott blobra vonatkozóan állítható be.
+A következő példákban nem állíthatja a hozzáférés szintet archívra, mivel ez a beállítás a teljes tárfiókra vonatkozik. Az archív réteg csak egy adott blobra vonatkozóan állítható be.
 
-### <a name="create-a-blob-storage-account-using-hello-azure-portal"></a>Hello Azure-portál használatával Blob storage-fiók létrehozása
+### <a name="create-a-blob-storage-account-using-the-azure-portal"></a>Blob Storage-fiók létrehozása az Azure Portal használatával
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+1. Jelentkezzen be az [Azure portálra](https://portal.azure.com).
 
-2. Hello központ menüben válassza ki a **új** > **adatok + tárolás** > **tárfiók**.
+2. A Központ menüben válassza az **Új** > **Adatok + tárolás** > **Tárfiók** elemet.
 
 3. Adja meg a tárfiók nevét.
    
-    Ez a név nem globálisan egyedi; hello URL-cím része használt tooaccess hello objektumok hello tárfiók használható.  
+    A névnek globálisan egyedinek kell lennie. A név része lesz a tárfiókban található objektumok elérése használt URL-címnek.  
 
-4. Válassza ki **erőforrás-kezelő** hello telepítési modell.
+4. Válassza a **Resource Manager** lehetőséget üzemi modellként.
    
-    Rétegzett tárolás csak használható erőforrás-kezelő tárfiókok; Ez az ajánlott telepítési modell az új erőforrások hello. További információkért tekintse meg a hello [Azure Resource Manager áttekintése](../../azure-resource-manager/resource-group-overview.md).  
+    A rétegezett tárolás csak a Resource Manager tárfiókjaival használható. Ez az új erőforrások ajánlott üzembe helyezési modellje. További információk: [Az Azure Resource Manager áttekintése](../../azure-resource-manager/resource-group-overview.md).  
 
-5. Hello fiók típusa legördülő listában válassza ki a **Blob Storage**.
+5. A Fiók típusa legördülő listában válassza a **Blobtároló** elemet.
    
-    Ez azért, ahol ki kell választania hello típusú tárfiókot. Rétegzett tárolás nem érhető el az általános célú tárfiókok; csak akkor érhető el a hello Blob storage-fiók.     
+    Itt választhatja ki a tárfiók típusát. A rétegezett tárolás nem érhető el az általános célú tárolóknál, csak a Blobtároló típusú fiókban.     
    
-    Vegye figyelembe, hogy ha ezt választja, hello teljesítményszinttel tooStandard beállításai. Rétegzett tárolás és hello prémium szintű teljesítmény réteg nem érhető el.
+    Vegye figyelembe, hogy ha ezt választja, a teljesítményréteg beállítása Standard lesz. A rétegezett tárolás nem érhető el a Prémium teljesítményrétegnél.
 
-6. A beállításnak a hello replikációs hello tárfiók: **LRS**, **Georedundáns**, vagy **RA-GRS**. hello alapértelmezett érték a **RA-GRS**.
+6. Válassza ki a tárfiók replikálási beállítását: **LRS**, **GRS** vagy **RA-GRS**. Az alapértelmezett beállítás az **RA-GRS**.
    
-    LRS = helyileg redundáns tárolás; Georedundáns = georedundáns tárolás (2 régiókban); RA-GRS az írásvédett georedundáns tárolás (2 régiók olvasási hozzáférés toohello második).
+    LRS = helyileg redundáns tárolás, GRS = georedundáns tárolás (2 régió), RA-GRS = olvasási hozzáférésű georedundáns tárolás (2 régió, olvasási hozzáférés a másodikhoz).
    
     Az Azure Storage replikálási beállításaival kapcsolatos további részleteket lásd: [Azure Storage replication](../common/storage-redundancy.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json) (Az Azure Storage replikációja).
 
-7. Jelölje be hello jobb rétege az igényeinek: Set hello **hozzáférési szint** tooeither **lassú** vagy **gyakran használt adatok**. hello alapértelmezett érték a **gyakran használt adatok**. 
+7. Válassza ki az igényeinek megfelelő tárolási réteget: a **Hozzáférési szint** beállításnál válassza a **Ritka** vagy a **Gyakori** lehetőséget. Az alapértelmezett réteg a **gyakran használt adatok**. 
 
-8. Válassza ki a kívánt toocreate hello új tárfiók hello előfizetést.
+8. Válassza ki az előfizetést, amelyikben az új tárfiókot létre szeretné hozni.
 
 9. Adjon meg egy új erőforráscsoportot, vagy válasszon ki egy meglévőt. További információ az erőforráscsoportokkal kapcsolatban: [Az Azure Resource Manager áttekintése](../../azure-resource-manager/resource-group-overview.md).
 
-10. Válassza ki a tárfiók hello régióban.
+10. Válassza ki a tárfiók régióját.
 
-11. Kattintson a **létrehozása** toocreate hello tárfiók.
+11. Kattintson a **Létrehozás** parancsra a tárfiók létrehozásához.
 
-### <a name="change-hello-storage-tier-of-a-blob-storage-account-using-hello-azure-portal"></a>A Blob storage-fiók hello Azure-portál használatával hello tárolási szintjének módosítása
+### <a name="change-the-storage-tier-of-a-blob-storage-account-using-the-azure-portal"></a>Blob Storage-fiók tárolási rétegének módosítása az Azure Portal használatával
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+1. Jelentkezzen be az [Azure portálra](https://portal.azure.com).
 
-2. toonavigate tooyour storage-fiók esetén válassza ki az összes erőforrást, majd válassza ki a tárfiók.
+2. A tárfiókjának eléréséhez válassza az Összes erőforrás lehetőséget, majd válassza ki a tárfiókját.
 
-3. Hello-beállítások panelen kattintson **konfigurációs** tooview és/vagy módosítsa a hello konfigurációs.
+3. A Beállítások panelen kattintson a **Konfiguráció** elemre a fiók konfigurációjának megtekintéséhez és/vagy megváltoztatásához.
 
-4. Jelölje be hello jobb rétege az igényeinek: Set hello **hozzáférési szint** tooeither **lassú** vagy **gyakran használt adatok**...
+4. Válassza ki az igényeinek megfelelő tárolási réteget: a **Hozzáférési szint** beállításnál válassza a **Ritka** vagy a **Gyakori** lehetőséget.
 
-5. Kattintson a Mentés hello panel hello tetején.
+5. Kattintson a panel tetején lévő Mentés elemre.
 
 > [!NOTE]
-> Változó hello rétege további díjakat vonhat. Lásd: hello [árak és számlázás](#pricing-and-billing) című szakaszban talál további információt.
+> A tárolási rétegek módosítása további díjakat vonhat maga után. További részleteket a következő szakaszban talál: [Árak és számlázás](#pricing-and-billing).
 
 
-## <a name="evaluating-and-migrating-tooblob-storage-accounts"></a>Értékelése és tooBlob storage-fiókok áttelepítése
-hello ebben a szakaszban célja toohelp felhasználók toomake zavartalan áttérés toousing Blob storage-fiókok. Két felhasználói forgatókönyv közül választhat:
+## <a name="evaluating-and-migrating-to-blob-storage-accounts"></a>A lehetőség mérlegelése és áttérés a Blob Storage-fiókokra
+Ennek a résznek a célja, hogy segítséget nyújtson a felhasználóknak a Blob Storage-fiókok használatára való zökkenőmentes váltásban. Két felhasználói forgatókönyv közül választhat:
 
-* Meglévő általános célú tárfiók, és a módosítás tooa Blob storage-fiók hello jobb rétege tooevaluate szeretné.
-* A Blob storage-fiók toouse mellett döntött vagy már rendelkezik egy és tooevaluate szeretné, hogy hello gyors vagy lassú tárolási réteg kell használnia.
+* Rendelkezik egy meglévő általános célú tárfiókkal, és szeretné kiértékelni a Blob Storage-fiók megfelelő tárolási rétegére való áttérést.
+* Úgy döntött, hogy Blob Storage-fiókot fog használni, vagy már van egy ilyen fiókja, és szeretné meghatározni, hogy a gyakran használt adatok tárolási rétegét vagy a ritkán használt adatok tárolási rétegét célszerű-e használnia.
 
-Mindkét esetben hello első rendelés az üzleti tooestimate hello költségét tárolja, és a Blob storage-fiók tárolt adatok elérése és összehasonlításhoz, amely az aktuális költségeit.
+Mindkét esetben az első teendő a Blob Storage-fiókban tárolt adataihoz kapcsolódó tárolási és hozzáférési költségek kiszámítása, és az eredmények összehasonlítása az aktuális költségekkel.
 
 ## <a name="evaluating-blob-storage-account-tiers"></a>A Blob Storage-fiókok rétegeinek kiértékelése
 
-A sorrend tooestimate hello költségét tárolja, és a Blob storage-fiók adataihoz fér hozzá tooevaluate kell az aktuális használati mintáját, vagy a várható használati szokások hozzávetőleges. Általában kívánt tooknow:
+A Blob Storage-fiókban lévő adatok tárolási és hozzáférési költségeire vonatkozó becslés elkészítéséhez ki kell értékelnie a jelenlegi használati módot vagy a várható használati módot. Általában a következőket érdemes figyelembe venni:
 
 * Tárhelyhasználat – Mennyi adatot tárol, és ez milyen mértékben változik havi szinten?
 
-* A tárolási minták – mennyi adatot folyamatban van. számú és írásbeli toohello fiók (beleértve az új adatok)? Hány tranzakciót használ az adatok eléréséhez, és ezek milyen típusú tranzakciók?
+* Tároló-hozzáférési minta – Mennyi adatot olvas és ír a fiókba (beleértve az új adatokat is)? Hány tranzakciót használ az adatok eléréséhez, és ezek milyen típusú tranzakciók?
 
 ## <a name="monitoring-existing-storage-accounts"></a>A meglévő tárfiókok figyelése
 
-toomonitor a meglévő tárhely fiókok, és ezek az adatok összegyűjtése, hogy használja az Azure Storage Analytics hajtja végre a naplózás és a metrikák adatokat biztosít a tárfiókon. Tárolási analitika tárolhatja, amely tartalmazza az összevont tranzakció statisztikák és a kapacitás adatait kérelmek toohello Blob storage szolgáltatást is általános célú tárfiókok, valamint a Blob storage-fiókok metrikákat. Ezeket az adatokat a hello jól ismert táblában tárolja ugyanabban a tárfiókban.
+A meglévő tárfiókok figyeléséhez és az ezzel kapcsolatos adatgyűjtéshez nyújt segítséget az Azure Storage Analytics, amellyel naplózhatja a tárfiókokat, és a fiókokra vonatkozó mérőszámokat kaphat. A Storage Analytics olyan mérőszámokat tárol, amelyek a Blob Storage szolgáltatáshoz érkező kérések összesített tranzakcióstatisztikáját és kapacitási adatait tartalmazzák mind az általános célú tárfiókok, mind a Blob Storage-fiókok esetében. Ezeket az adatokat a jól ismert táblák tárolják az adott tárfiókban.
 
 A további részleteket lásd: [About Storage Analytics Metrics](https://msdn.microsoft.com/library/azure/hh343258.aspx) (A Storage Analytics mérőszámainak áttekintése) és [Storage Analytics Metrics Table Schema](https://msdn.microsoft.com/library/azure/hh343264.aspx) (A Storage Analytics mérőszámainak táblasémája).
 
 > [!NOTE]
-> A BLOB storage-fiókokban elérhető hello table szolgáltatási végpont csak történő tárolásához és hello metrikai adatok fiók eléréséhez.
+> A Blob Storage-tárfiókok a tábla szolgáltatásvégpontját csak az adott fiók mérőszámadatainak tárolásához és eléréséhez jelenítik meg.
 
-toomonitor hello tároló fogyasztása a Blob storage szolgáltatás hello kell tooenable hello kapacitási mérőszámokat.
-Engedélyezve van a kapacitás adatok naponta rögzítik egy tárfiók a Blob szolgáltatás, és toohello írt tábla bejegyzésének rögzített *$MetricsCapacityBlob* tábla hello belül ugyanaz a tárfiók.
+A Blob Storage szolgáltatás tárolófelhasználásának figyeléséhez engedélyeznie kell a kapacitási mérőszámot.
+Ha ez a mérőszám engedélyezve van, a rendszer naponta rögzíti a tárfiók Blob szolgáltatásának kapacitásadatait, és létrehoz egy táblabejegyzést az adott tárfiók *$MetricsCapacityBlob* táblájában.
 
-toomonitor hello adatok hozzáférési mintázatát hello Blob storage szolgáltatásban, tooenable hello óránkénti tranzakció metrikákat, az API-szintet van szüksége. Ennek engedélyezve van, egy API tranzakciók óránként összesítve, és toohello írt tábla bejegyzésének rögzített *$MetricsHourPrimaryTransactionsBlob* tábla hello belül ugyanaz a tárfiók. Hello *$MetricsHourSecondaryTransactionsBlob* tábla rekordok hello tranzakciók toohello másodlagos végponti RA-GRS tárfiókok használata esetén.
+A Blob Storage szolgáltatás adat-hozzáférési mintájának figyeléséhez engedélyeznie kell az óránkénti tranzakció-mérőszámot az API szintjén. Amikor engedélyezve van ez a mérőszám, a rendszer óránként összesíti az API-tranzakciókat, és táblabejegyzést hoz létre az adott tárfiók *$MetricsHourPrimaryTransactionsBlob* táblájában. A *$MetricsHourSecondaryTransactionsBlob* tábla a másodlagos végpontra rögzíti a tranzakciókat RA-GRS-tárfiókok használata esetében.
 
 > [!NOTE]
-> Abban az esetben, ha rendelkezik egy általános célú tárfiókkal, amelyben lapblobokat és virtuálisgép-lemezek tárol a blokkblobok és a hozzáfűző blobok adatai mellett, akkor ez a becslési folyamat nem alkalmazható. Ennek az az oka nincs lehetőség bizonyos esetekben a kapacitás, és a tranzakció mérőszámok alapján hello blob csak blokkolása és hozzáfűző blobok, amelyek is át tooa Blob storage-fiók.
+> Abban az esetben, ha rendelkezik egy általános célú tárfiókkal, amelyben lapblobokat és virtuálisgép-lemezek tárol a blokkblobok és a hozzáfűző blobok adatai mellett, akkor ez a becslési folyamat nem alkalmazható. Ennek az az oka, hogy nem lehet megkülönböztetni a kapacitás és a tranzakciók mérőszámait a blob típusa alapján az olyan blokkblobok és hozzáfűző blobok esetében, amelyek áttelepíthetők a Blob Storage-tárfiókba.
 
-Válassza ki a megőrzési idő, amely jellemző a normál használati hello metrikákat, és extrapolálják javasoljuk az adatok felhasználása és minták egy jó közelítéséről tooget. Egy elem tooretain hello metrikai adatok 7 nap és a gyűjtés hello adatok minden héten hello hónap végén hello elemzés céljából. Lehetősége tooretain hello metrikai adatok hello az elmúlt 30 napban és adatgyűjtés és -elemzés hello hello végén lévő hello 30 napos időtartamon belül.
+Azt javasoljuk, hogy az adatfelhasználás és -hozzáférés megfelelő mintájának előállításához olyan megőrzési időszakot válasszon a mérőszámhoz, amely a megfelel az Ön használati szokásainak, és extrapolálja az adatokat. Az egyik lehetőség az, hogy 7 napig őrzi meg a mérőszámadatokat, és minden héten összegyűjti az adatokat a hónap végén elvégzendő elemzéshez. A másik lehetőség az, hogy az utolsó 30 nap mérőszámadatait őrzi meg, és a 30 napos időszak végén hajtja végre az adatok összegyűjtését és elemzését.
 
 További tudnivalók a mérőszámadatok engedélyezésével, gyűjtésével és megtekintésével kapcsolatban: [Enabling Azure Storage metrics and viewing metrics data](../common/storage-enable-and-view-metrics.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json) (Az Azure Storage mérőszámainak engedélyezése és a mérőszámadatok megtekintése).
 
 > [!NOTE]
 > Az elemzési adatok tárolása, elérése és letöltése ugyanúgy díjhoz kötött, mint a normál felhasználói adatok használata.
 
-### <a name="utilizing-usage-metrics-tooestimate-costs"></a>Használati metrikák tooestimate költségek használata
+### <a name="utilizing-usage-metrics-to-estimate-costs"></a>Költségbecslés a használati mérőszámok alapján
 
 ### <a name="storage-costs"></a>Tárolási költségek
 
-legújabb bejegyzés hello kapacitás metrikák táblázatban hello *$MetricsCapacityBlob* hello sor kulccsal *"data"* mutat be a felhasználói adatok által használt tárolókapacitás hello. legújabb bejegyzés hello kapacitás metrikák táblázatban hello *$MetricsCapacityBlob* hello sor kulccsal *"analytics"* látható hello hello analytics naplók által használt tárolókapacitás.
+A kapacitási mérőszám *$MetricsCapacityBlob* táblájának *„data”* sorkulcsú utolsó bejegyzése mutatja a felhasználói adatok által igénybe vett tárolókapacitást. A kapacitási mérőszám *$MetricsCapacityBlob* táblájának *„analytics”* sorkulcsú utolsó bejegyzése mutatja az elemzési naplók által igénybe vett tárolókapacitást.
 
-A teljes kapacitás használni mindkét felhasználói adatok és analitikák naplók (Ha engedélyezve van), majd lehet tooestimate hello költségét hello tárfiókban lévő adatok tárolására használt. hello ugyanezt a módszert a tárolási költségek letiltása a becsléséhez is használható, és a hozzáfűző blobok az általános célú tárfiókok esetében.
+A felhasználói adatok és az elemzési naplók (ha engedélyezve vannak) által igénybe vett teljes kapacitás alapján lehet megbecsülni a tárfiókban lévő adatok tárolási költségét. Ugyanezzel a módszerrel becsülhetők meg a blokkblobok és a hozzáfűző blobok tárolási költségei az általános célú tárfiókokban.
 
 ### <a name="transaction-costs"></a>Tranzakciós költségek
 
-hello összege *"TotalBillableRequests"*, az API-nak hello tranzakció minden bejegyzésben metrikák táblázat hello tranzakciók száma összesen, hogy az adott API-hoz. *Például*, száma hello *"GetBlob"* egy adott időszakban tranzakciók kerülhet sor számlázható kérelmek teljes száma az összes bejegyzés hello összege hello sor kulccsal *"felhasználói; GetBlob "*.
+A tranzakciók mérőszámának táblájában az adott API-hoz tartozó bejegyzések *„TotalBillableRequests”* összege mutatja az adott API tranzakcióinak teljes számát. *Például* az adott időszakba eső *„GetBlob”* tranzakciók száma a *„user;GetBlob”* sorkulcsú bejegyzések összes számlázható kérelmének összege alapján számítható ki.
 
-A sorrend tooestimate tranzakciós költségek Blob storage-fiókok kell toobreak hello tranzakciók három csoportokba le óta másképp áron.
+A Blob Storage-tárfiókok tranzakciós költségeinek kiszámításához a tranzakciókat három csoportra kell felosztania, mivel ezekhez különböző árak tartoznak.
 
 * Írási tranzakciók, például *„PutBlob”*, *„PutBlock”*, *„PutBlockList”*, *„AppendBlock”*, *„ListBlobs”*, *„ListContainers”*, *„CreateContainer”*, *„SnapshotBlob”* és *„CopyBlob”*.
 * Törlési tranzakciók, például *„DeleteBlob”* és *„DeleteContainer”*.
 * Minden egyéb tranzakció.
 
-A sorrend tooestimate tranzakciós költségek általános célú tárfiókok kell tooaggregate hello művelet/API függetlenül minden tranzakciót.
+Az általános célú tárfiókok tranzakciós költségeinek becsléséhez összesítenie kell az összes tranzakciót, függetlenül a művelettől és az API-tól.
 
 ### <a name="data-access-and-geo-replication-data-transfer-costs"></a>Az adatok hozzáférésének és a georeplikációs adatok átvitelének költségei
 
-Míg tárolási analitika nyújt hello adatmennyiség olvassa be, illetve tooa tárfiók írt, nagyjából becslése hello tranzakció metrikák tábla megtekintésével. hello összege *"TotalIngress"* minden bejegyzésnél egy API-nak hello tranzakció metrikák tábla bájtban érkező adatok teljes mennyiségének hello jelzi, hogy az adott API-hoz. Hasonlóképpen hello összege *"TotalEgress"* hello teljes adatmennyiség kilépő, bájtban jelzi.
+Bár a tároló elemzése nem jelzi a tárfiókból olvasott és a tárfiókba írt adatok mennyiségét, a tranzakciók mérőszámának táblája alapján lehetőség van megközelítőleges becslésre. A tranzakciók mérőszámának táblájában az adott API-hoz tartozó bejegyzések *„TotalIngress”* összege mutatja az adott API bejövő adatainak teljes mennyiségét bájtban. Hasonlóképpen a *„TotalEgress”* összege a kimenő adatok teljes mennyiségét mutatja bájtban.
 
-A sorrend tooestimate hello adatok hozzáférési költségek Blob storage-fiókok kell toobreak hello tranzakciók két csoportra bontják le. 
+A Blob Storage-tárfiókok adat-hozzáférési költségeinek kiszámításához a tranzakciókat két csoportra kell felosztania. 
 
-* hello adatmennyiség hello tárfiókból hello összege alapján becsülhető *"TotalEgress"* a elsősorban hello *"GetBlob"* és *"CopyBlob"* műveletek.
+* A tárfiókból lekért adatok mennyisége a *„TotalEgress”* összegéből becsülhető meg, elsődlegesen a *„GetBlob”* és a *„CopyBlob”* művelet alapján.
 
-* hello toohello tárfiók írt adatok mennyiségét hello összege alapján becsülhető *"TotalIngress"* a elsősorban hello *"PutBlob"*, *"PutBlock"*, *"CopyBlob"* és *"AppendBlock"* műveletek.
+* A tárfiókba írt lekért adatok mennyisége a *„TotalIngress”* összegéből becsülhető meg, elsődlegesen a *„PutBlob”*, a *„PutBlock”*, a *„CopyBlob”* és az *„AppendBlock”* művelet alapján.
 
-georeplikálási adatforgalom a BLOB storage-fiókok is hello adatmennyiség grs-re vagy RA-GRS-tárfiókot használ, ha hello becsült használatával kell kiszámítani hello költségét.
+A Blob Storage-tárfiókok georeplikációs adatátviteli költségei szintén az írt adatok mennyiségének becslése alapján számítható ki GRS- vagy RA-GRS-tárfiókok használata esetében.
 
 > [!NOTE]
-> Kiszámítása hello költségeit hello gyors vagy lassú tárolási rétegek használatával kapcsolatos további részletes például tekintse meg a hello – gyakori kérdések című *"Mik azok a gyakran használt adatok és ritkán hozzáférési rétegek, és hogyan kell eldönteni, mely egy toouse?"* a hello [Azure Storage árképzést ismertető oldalra](https://azure.microsoft.com/pricing/details/storage/).
+> Ha részletesebb példát szeretne látni a gyakran használt és a ritkán használt adatok tárolási rétegének használatához kapcsolódó költségek kiszámítására, tekintse át a *„What are Hot and Cool access tiers and how should I determine which one to use?”* (Mi a gyakran használt adatok rétege és a ritkán használt adatok rétege, és hogyan határozhatom meg, hogy melyiket kell használnom?) című gyakori kérdéseket az [Azure Storage díjszabását tartalmazó oldalon](https://azure.microsoft.com/pricing/details/storage/).
  
 ## <a name="migrating-existing-data"></a>Meglévő adatok áttelepítése
 
-A Blob Storage-fiókok kifejezetten blokkblobok és hozzáfűző blobok tárolására készültek. Meglévő általános célú tárfiókok esetében, amelyek lehetővé teszik a toostore táblák, üzenetsorok, fájlok, és a lemezek, valamint blobok, átalakított tooBlob tárfiókok nem lehet. toouse hello tárolási rétegeket, a szükséges toocreate új Blob storage-fiókok és a meglévő adatokat áttelepíteni hello az újonnan létrehozott fiókok.
+A Blob Storage-fiókok kifejezetten blokkblobok és hozzáfűző blobok tárolására készültek. A meglévő általános célú tárfiókok, amelyek a blobok mellett táblák, üzenetsorok, fájlok és lemezek tárolását is lehetővé teszik, nem konvertálhatóak Blob Storage-fiókká. A tárolási rétegek használatához létre kell hoznia egy új Blob Storage-fiókot, és áttelepíteni meglévő adatait az újonnan létrehozott fiókra.
 
-Használhatja a következő módszerek toomigrate meglévő adatok a Blob storage-fiókok, a helyszíni tárolási eszközökről, külső felhőtárolási szolgáltatóktól vagy az Azure-ban a meglévő általános célú tárfiókok hello:
+A meglévő adatok helyszíni tárolóeszközökről, külső felhőtárolási szolgáltatókból vagy meglévő általános célú Azure-tárfiókokból Blob Storage-fiókokba való áttelepítéséhez az alábbi módszereket használhatja:
 
 ### <a name="azcopy"></a>AzCopy
 
-AzCopy egy Windows parancssori segédprogram készült Azure Storage-ból adatokat tooand másolását nagy teljesítményű. Is használhatja a Blob storage-fiók a meglévő általános célú tárfiókok esetében az AzCopy toocopy adatok, vagy tooupload adatokat a helyszíni tárolási eszközökről a Blob storage-fiók.
+Az AzCopy egy Windows parancssori segédprogram, amely az adatok az Azure Storage szolgáltatásba vagy onnan máshová való nagyteljesítményű másolására lett kifejlesztve. Az AzCopy használatával adatait átmásolhatja Blob Storage-fiókjába meglévő általános célú tárfiókjából, vagy feltölthet adatokat helyi tárolóeszközeiről a Blob Storage-fiókba.
 
-További részletekért lásd: [adatátvitel az AzCopy parancssori segédprogram hello](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json).
+További részletekért lásd: [Transfer data with the AzCopy Command-Line Utility](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json) (Adatátvitel az AzCopy parancssori segédprogrammal).
 
 ### <a name="data-movement-library"></a>Adatátviteli könyvtár
 
-Az Azure Storage adatátviteli könyvtár a .NET-hez hello alapvető adatátviteli keretrendszeren azcopyt működtető alapul. hello szalagtár végzi a nagy teljesítményű, megbízható, és könnyű adatátviteli műveletek hasonló tooAzCopy. Ez lehetővé teszi minden előnyét tootake hello szolgáltatások azcopy által az alkalmazás natív módon fut, és az AzCopy külső példányait monitoring toodeal nélkül.
+Az Azure Storage a .NET-keretrendszerhez készült adatátviteli könyvtára az AzCopyt működtető alapvető adatátviteli keretrendszeren alapul. A könyvtár az AzCopyhoz hasonló nagy teljesítményű, megbízható és könnyű adatátviteli műveletekhez készült. Így az AzCopy által kínált szolgáltatások előnyeit teljes mértékben kiaknázhatja alkalmazásában natív módon, anélkül, hogy ehhez az AzCopy külső példányait kellene futtatnia vagy felügyelnie.
 
 További részletek: [Azure Storage adatátviteli könyvtár a .Net-keretrendszerhez](https://github.com/Azure/azure-storage-net-data-movement)
 
 ### <a name="rest-api-or-client-library"></a>REST API vagy ügyfélkódtár
 
-Az adatok egy egyéni alkalmazást toomigrate létrehozása a Blob storage-fiók hello Azure ügyfélkódtárai egyikének használatával, vagy hello Azure storage szolgáltatások REST API-t. Az Azure Storage gazdag ügyfélkódtárakat biztosít több nyelvhez és platformhoz is, beleértve a következőket: .NET, Java, C++, Node.JS, PHP, Ruby és Python. hello ügyfélkódtárak olyan fejlett képességeket biztosítanak, például újrapróbálkozási logika, a naplózás vagy a párhuzamos feltöltések. Is fejleszthet közvetlenül a REST API, amely bármely olyan nyelvvel, amely lehetővé teszi a HTTP/HTTPS-kéréseket hívható hello szemben.
+Az adatok a Blob Storage-fiókra való áttelepítéséhez létrehozhat egy egyéni alkalmazást az Azure ügyfélkódtárai vagy az Azure Storage szolgáltatások REST API felülete segítségével. Az Azure Storage gazdag ügyfélkódtárakat biztosít több nyelvhez és platformhoz is, beleértve a következőket: .NET, Java, C++, Node.JS, PHP, Ruby és Python. Az ügyfélkódtárak olyan fejlett képességeket biztosítanak, mint az újrapróbálkozási logika, a naplózás vagy a párhuzamos feltöltések. Fejleszthet közvetlenül a REST API-n is, amely minden, HTTP-/HTTPS-kérelmek létrehozására alkalmas nyelven meghívható.
 
 További részletekért lásd: [Ismerkedés az Azure Blob Storage szolgáltatással](storage-dotnet-how-to-use-blobs.md).
 
 > [!NOTE]
-> Az ügyféloldali titkosítással titkosított blobok a titkosítással kapcsolatos metaadatok hello blobbal együtt tárolni tárolja. Elengedhetetlen fontosságú, hogy a másolási műveletek győződjön meg arról, hogy hello blob metaadatai, és különösen hello titkosítással kapcsolatos metaadatok, megőrzi a. Ha hello blobokat a metaadatok nélkül másolja, hello blob tartalma nem lehet beolvasni újra. A titkosítással kapcsolatos metaadatok további részletei: [Az Azure Storage ügyféloldali titkosítása](../common/storage-client-side-encryption.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json).
+> Az ügyféloldali titkosítással titkosított blobok a titkosítással kapcsolatos metaadatokat a blobbal együtt tárolják. Ezért elengedhetetlen, hogy a másolási műveletek során a blob metaadatai, különösen a titkosítással kapcsolatos metaadatok megmaradjanak. Ha a blobokat a metaadatok nélkül másolja, a blob tartalma nem lesz újból lekérhető. A titkosítással kapcsolatos metaadatok további részletei: [Az Azure Storage ügyféloldali titkosítása](../common/storage-client-side-encryption.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json).
  
 ## <a name="faq"></a>GYIK
 
 1. **A meglévő tárfiókok továbbra is elérhetőek?**
    
-    Igen, a meglévő tárfiókok továbbra is elérhetőek változatlan árképzéssel és funkcionalitással.  Azok a tárolási réteg nem kell hello képességét toochoose, és nem lesz rétegezési képességek a jövőbeli hello.
+    Igen, a meglévő tárfiókok továbbra is elérhetőek változatlan árképzéssel és funkcionalitással.  Nem érhető el hozzájuk a tárolási rétegek kiválasztásának lehetősége, és a jövőben sem rendelkeznek majd ezzel a képességgel.
 
 2. **Miért és mikor érdemes elkezdenem Blob Storage-fiókot használni?**
    
-    BLOB storage-fiókok kifejezetten blobok tárolására, és lehetővé teszik a számunkra toointroduce új blobközpontú szolgáltatások. Következő lépésként Blob storage-fiókok, az ilyen típusú alapján ajánlott módszer a blobok tárolására, mivel a későbbi képességek, például a hierarchikus tárolás és rétegezéséhez hello lesz bevezetve. Célszerű tooyou fel, ha azt szeretné, hogy az üzleti követelmények alapján toomigrate.
+    A Blob Storage-fiókok kifejezetten blobok tárolására készültek, így új blobközpontú szolgáltatások érhetők el hozzájuk. A továbbiakban a Blob Storage-fiók az ajánlott módszer a blobok tárolására, mivel a későbbi képességek, például a hierarchikus tárolás és a rétegválasztás ezen fióktípus alapján lesz bevezetve. Azonban Ön döntheti el üzleti igényei alapján, mikor kíván áttérni.
 
-3. **A meglévő tárolási fiók tooa Blob storage-fiók tud konvertálni?**
+3. **Konvertálhatom meglévő tárfiókomat Blob Storage-fiókká?**
    
     Nem. A Blob Storage-fiók egy eltérő jellegű tárfiók, és ezért új fiókként kell létrehoznia, és az adatokat a korábbiakban leírtak szerint áttelepítenie.
 
-4. **Tárolhatok objektumokat mindkét hello a tárolási rétegek a ugyanazt a fiókot?**
+4. **Tárolhatok objektumokat mindkét tárolási rétegben egyazon fiók esetében?**
    
-    Hello *"Hozzáférési szint"* attribútum hello értékét állítsa be a fiók szintjén hello rétege tartalmazza, és alkalmazza a fiókhoz tartozó tooall objektumok. Azonban hello blob-szintű rétegezési (előzetes verzió) szolgáltatás lehetővé teszi a megadott BLOB, tooset hello hozzáférési szint, és ezzel felülírja hello hello fiók hozzáférési szint beállítása. 
+    A *„Hozzáférési szint”* attribútum a fiók szintjén beállított tárolási réteg értékét jelzi, és a fiókban lévő összes objektumra vonatkozik. A blobszintű rétegzés (előzetes verzió) szolgáltatással azonban külön megadhatja a hozzáférési szintet az adott blobokon, amely felülírja majd a fiókon beállított hozzáférési szintet. 
 
-5. **Módosíthatja a hello rétege a Blob storage-fiókom?**
+5. **Módosíthatom a Blob Storage-fiókom tárolási rétegét?**
    
-    Igen. Hello rétege hello beállítást módosíthatja *"Hozzáférési szint"* hello tárfiók attribútum. Változó hello rétege hello fiókban tárolt tooall objektumok vonatkozik. Változó hello tárolási réteg a gyakran használt adatok toocool nem számítunk fel díjakat, amíg rétegéről a ritkán használt adatok toohot negatívan befolyásolja a Gigabájtonkénti beolvasási költséggel hello fiók összes hello adatok olvasásához.
+    Igen. A tárolási réteget úgy változtathatja meg, hogy a tárfiókban megadja a *„Hozzáférési szint”* attribútum kívánt értékét. A tárolási réteg módosítása az adott fiókban lévő összes objektumra vonatkozik. A tárolási rétegnek a gyakran használt adatok rétegéről a ritkán használt adatok rétegére való váltása nem jár többletköltséggel, a ritkán használt adatok rétegéről a gyakran használt adatok rétegére való váltás azonban gigabájtonkénti beolvasási költséggel jár a fiókban lévő összes adatra vonatkozóan.
 
-6. **Milyen gyakran módosíthatom hello rétege a Blob storage-fiókom?**
+6. **Milyen gyakran módosíthatom a Blob Storage-fiókom tárolási rétegét?**
    
-    Amíg nem határoztunk meg korlátozást hello tárolási réteg módosításának milyen gyakran, vegye figyelembe, hogy hello rétege rétegéről a ritkán használt adatok toohot is fel Önnek jelentős költségekkel jár. Hello tárolási rétege gyakran módosítása nem ajánlott.
+    Bár nem határoztunk meg korlátozást a tárolási réteg módosításának gyakoriságára vonatkozóan, vegye figyelembe, hogy a tárolási rétegnek a ritkán használt adatok rétegéről a gyakran használt adatok rétegére való váltása jelentős költségekkel jár. Nem javasoljuk, hogy gyakran váltson a tárolási rétegek között.
 
-7. **Tegye hello blobok hello ritkán használt adatok tárolási rétegében eltérően viselkednek, mint a hello hello tároláselérési rétegében azokat?**
+7. **A gyakran használt adatok tárolási rétegében és a ritkán használt adatok tárolási rétegében eltérően viselkednek a blobok?**
    
-    Hello tároláselérési rétegében a blobok rendelkezik hello ugyanolyan késéssel, mint az általános célú tárfiókok esetében. Hello ritkán használt adatok tárolási rétegében a blobok (ezredmásodpercben), blobok hasonló késéssel rendelkeznek, az általános célú tárfiókok esetében.
+    A gyakran használt adatok tárolási rétegében a blobok ugyanolyan késéssel rendelkeznek, mint az általános célú tárfiókok esetében. A ritkán használt adatok tárolási rétegében a blobok hasonló késéssel rendelkeznek (ezredmásodpercben), mint az általános célú tárfiókok esetében.
    
-    Hello ritkán használt adatok tárolási rétegében a blobok a valamelyest alacsonyabb rendelkezésre állási szolgáltatási szintek (SLA) mint hello tároláselérési rétegében tárolt hello blobok rendelkezik. További információkért lásd: [SLA a következőhöz: Storage](https://azure.microsoft.com/support/legal/sla/storage).
+    A ritkán használt adatok tárolási rétegében a blobok rendelkezésre állási szolgáltatási szintje (SLA) kissé alacsonyabb, mint a gyakran használt adatok tárolási rétegében. További információkért lásd: [SLA a következőhöz: Storage](https://azure.microsoft.com/support/legal/sla/storage).
 
 8. **Tárolhatok lapblobokat és virtuális gépek lemezeit a Blob Storage-fiókban?**
    
-    A Blob Storage-fiókok csak a blokkblobokat és a hozzáfűző blobokat támogatják, a lapblobokat nem. Azure virtuális gépek lemezeit a lapblobokat üzemelnek, és ennek eredményeképpen a Blob storage-fiókok nem lehet használt toostore virtuálisgép-lemezeket. Azonban már lehetséges toostore hello virtuális gépek lemezeinek biztonsági másolatait blokkblobként Blob storage-fiók.
+    A Blob Storage-fiókok csak a blokkblobokat és a hozzáfűző blobokat támogatják, a lapblobokat nem. Az Azure virtuális gépek lemezei lapblobokon alapulnak, ezért a Blob Storage-fiókok nem használhatóak virtuális gépek lemezeinek tárolására. Azonban lehetséges a virtuális gépek lemezeinek biztonsági másolatait blokkblobként tárolni a Blob Storage-fiókokban.
 
-9. **Szükséges toochange a meglévő alkalmazások toouse Blob storage-fiókok?**
+9. **Módosítanom kell a meglévő alkalmazásaimat a Blob Storage-fiókok használatához?**
    
-    A Blob Storage-fiókok 100%-ban API-konzisztensek az általános célú tárfiókokkal a blokkblobok és a hozzáfűző blobok esetében. Mindaddig, amíg az alkalmazás blokkblobok használatát, vagy hozzáfűző blobokat és hello hello 2014-02-14-es verzióját használja [Storage szolgáltatások REST API felülete](https://msdn.microsoft.com/library/azure/dd894041.aspx) vagy annál nagyobb az alkalmazás kell működnie. Hello protokoll egy régebbi verzióját használja, ha majd frissítenie kell a toouse hello új Alkalmazásverzió toowork, így zökkenőmentesen mindkét típusú tárfiókkal együtt. Általánosságban elmondható mindig ajánlott hello legújabb verzió, függetlenül attól, milyen típusú tárfiókok használata.
+    A Blob Storage-fiókok 100%-ban API-konzisztensek az általános célú tárfiókokkal a blokkblobok és a hozzáfűző blobok esetében. Ha az alkalmazás blokkblobokat vagy hozzáfűző blobokat használ, és a [Storage szolgáltatások REST API felülete](https://msdn.microsoft.com/library/azure/dd894041.aspx) 2014. 02. 14-i vagy újabb verzióját használja, az alkalmazásnak működnie kellene. Ha a protokoll egy régebbi verzióját használja, frissítenie kell az alkalmazást, hogy az az új verziót használja, és mindkét típusú tárfiókkal zökkenőmentesen működjön. Általánosságban véve mindig a legújabb verzió használatát javasoljuk, függetlenül a használt tárfiók típusától.
 
 10. **Változik a felhasználói élmény?**
     
-    BLOB storage-fiókok nagyon hasonló tooa általános célú tárfiókok blokk tárolásához és hozzáfűző blobok, és támogatja az Azure-tároló, beleértve a magas tartósság és a rendelkezésre állási, a méretezhetőséget, a teljesítmény és a biztonsági összes hello funkciói. Hello szolgáltatásait és korlátozások adott tooBlob storage-fiókok és a tárolási rétegek, amelyek a fenti mindent feltüntettük kívül más marad hello azonos.
+    A Blob Storage-fiókok nagyon hasonlóak az általános célú tárfiókokhoz a blokk- és hozzáfűző blobok tárolása tekintetében, és támogatják az Azure Storage minden lényeges szolgáltatását, beleértve a nagy tartósságot, valamint a magas szintű rendelkezésre állást, méretezhetőséget, teljesítményt és biztonságot. A Blob Storage-fiókokra jellemző konkrét szolgáltatásoktól és korlátozásoktól, valamint a fent kiemelt tárolási rétegektől eltekintve minden más változatlan marad.
 
 ## <a name="next-steps"></a>Következő lépések
 
@@ -366,8 +366,8 @@ További részletekért lásd: [Ismerkedés az Azure Blob Storage szolgáltatás
 
 [Ismerkedés az Azure Blob Storage szolgáltatással](storage-dotnet-how-to-use-blobs.md)
 
-[Adatok tooand áthelyezése az Azure Storage-ból](../common/storage-moving-data.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json)
+[Adatok áthelyezése az Azure Storage szolgáltatásba vagy onnan máshová](../common/storage-moving-data.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json)
 
-[Adatátvitel az AzCopy parancssori segédprogram hello](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json)
+[Adatátvitel az AzCopy parancssori segédprogrammal](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json)
 
 [A tárfiókok tallózása és felfedezése](http://storageexplorer.com/)

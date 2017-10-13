@@ -1,6 +1,6 @@
 ---
-title: "virtuális gép több hálózati adapter - Azure CLI 1.0 és aaaCreate |} Microsoft Docs"
-description: "Ismerje meg, hogyan használja több hálózati adapterrel rendelkező virtuális gép toocreate hello Azure CLI 1.0."
+title: "Hozzon létre egy virtuális gép több hálózati adapter - Azure CLI 1.0 |} Microsoft Docs"
+description: "Útmutató az Azure CLI 1.0 használatával több hálózati adapterrel rendelkező virtuális gép létrehozása."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,32 +16,32 @@ ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 07c660b632bcdc004365a6f910ecf8a5c13cbc6d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b95bcb38664718bf25ec6981c803415790c6da3d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="create-a-vm-with-multiple-nics-using-hello-azure-cli-10"></a>Azure CLI 1.0 hello segítségével több hálózati adapterrel rendelkező virtuális gép létrehozása
+# <a name="create-a-vm-with-multiple-nics-using-the-azure-cli-10"></a>Az Azure CLI 1.0 használatával több hálózati adapterrel rendelkező virtuális gép létrehozása
 
 [!INCLUDE [virtual-network-deploy-multinic-arm-selectors-include.md](../../includes/virtual-network-deploy-multinic-arm-selectors-include.md)]
 
 [!INCLUDE [virtual-network-deploy-multinic-intro-include.md](../../includes/virtual-network-deploy-multinic-intro-include.md)]
 
 > [!NOTE]
-> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../resource-manager-deployment-model.md).  Ez a cikk ismerteti a használatával a Microsoft azt javasolja, a legtöbb új központi telepítés helyett hello hello Resource Manager üzembe helyezési modellben [klasszikus üzembe helyezési modellel](virtual-network-deploy-multinic-classic-cli.md).
+> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../resource-manager-deployment-model.md).  Ez a cikk a Resource Manager-alapú üzemi modell használatát ismerteti, amelyet a Microsoft a legtöbb új telepítéshez a [klasszikus üzemi modell](virtual-network-deploy-multinic-classic-cli.md) helyett javasol.
 >
 
 [!INCLUDE [virtual-network-deploy-multinic-scenario-include.md](../../includes/virtual-network-deploy-multinic-scenario-include.md)]
 
-hello következő lépések használják nevű erőforráscsoport *IaaSStory* hello webkiszolgálók és az erőforráscsoport neve *IaaSStory-háttérrendszer* hello DB kiszolgálók. Hajthatja végre ezt a feladatot az Azure CLI 1.0 (Ez a cikk) hello vagy hello [Azure CLI 2.0](virtual-network-deploy-static-pip-arm-cli.md). az értékek hello "" hello lépések hello változók erőforrások létre hello forgatókönyvet beállításokkal. Hello értékek, a környezetének megfelelő módosítására.
+Az alábbi lépéseket használja nevű erőforráscsoport *IaaSStory* a webkiszolgálók és az erőforráscsoport neve *IaaSStory-háttérrendszer* adatbázis-kiszolgálók. Hajthatja végre ezt a feladatot az Azure CLI 1.0 (Ez a cikk) vagy a [Azure CLI 2.0](virtual-network-deploy-static-pip-arm-cli.md). Az értékeket a "" a következő lépések a változók létre erőforrásokat tudja kihozni a forgatókönyvből beállításokkal. Módosítsa az értékeket, a környezetének megfelelő.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Mielőtt hello DB kiszolgálók hozhat létre, meg kell-e toocreate hello *IaaSStory* erőforráscsoport összes hello szükséges erőforrások ehhez a forgatókönyvhöz. toocreate ezeket az erőforrásokat, végezze el hello a következő lépéseket:
+Az adatbázis-kiszolgálók létrehozása előtt kell létrehoznia a *IaaSStory* erőforráscsoport ehhez a forgatókönyvhöz szükséges minden erőforráshoz. Ezek az erőforrások létrehozásához kövesse az alábbi lépéseket:
 
-1. Keresse meg a túl[hello sablonlap](https://github.com/Azure/azure-quickstart-templates/tree/master/IaaS-Story/11-MultiNIC).
-2. Hello sablon lapon jobbra toohello **szülő erőforráscsoport**, kattintson a **tooAzure telepítése**.
-3. Szükség esetén módosítsa a hello paraméterértékeket, majd hello lépésekkel hello Azure betekintő portál toodeploy hello erőforráscsoportban.
+1. Navigáljon a [sablonlap](https://github.com/Azure/azure-quickstart-templates/tree/master/IaaS-Story/11-MultiNIC).
+2. A sablon lap jobb oldalán lévő **szülő erőforráscsoport**, kattintson a **az Azure telepítéséhez**.
+3. Ha szükséges, paraméterértékek módosításához, majd kövesse a telepítéséhez az erőforráscsoportot az Azure betekintő portálon.
 
 > [!IMPORTANT]
 > Győződjön meg arról, hogy a tárfiókok neve egyedi. Ismétlődő tárfiókok neve nem lehet az Azure-ban.
@@ -49,17 +49,17 @@ Mielőtt hello DB kiszolgálók hozhat létre, meg kell-e toocreate hello *IaaSS
 
 [!INCLUDE [azure-cli-prerequisites-include.md](../../includes/azure-cli-prerequisites-include.md)]
 
-## <a name="create-hello-back-end-vms"></a>Hello háttér virtuális gépek létrehozása
-hello háttér virtuális gépek hello létrehozása a következő erőforrások hello függ:
+## <a name="create-the-back-end-vms"></a>A háttér-virtuális gépek létrehozása
+A háttér-virtuális gépek létrehozását a következő erőforrások függ:
 
-* **Az adatlemezek tárfiók**. A jobb teljesítmény érdekében a hello adatbázis-kiszolgálóin hello adatlemezek tartós állapotú meghajtót (SSD) technológiát, amely a prémium szintű tárfiók szükséges fogja használni. Győződjön meg arról, hogy hello Azure-beli hely toosupport prémium szintű storage telepít.
+* **Az adatlemezek tárfiók**. A jobb teljesítmény érdekében az adatlemezek az adatbázis-kiszolgálók a tartós állapotú meghajtót (SSD) technológiát, amely a prémium szintű tárfiók szükséges fogja használni. Győződjön meg arról, hogy az Azure-hely támogatja a prémium szintű storage telepít.
 * **Hálózati adapter**. Minden virtuális gép lesz a két hálózati adapterrel, egy adatbázis-hozzáférési és felügyeleti egyet.
-* **A rendelkezésre állási csoport**. Minden adatbázis-kiszolgálók megkapja tooa egyetlen rendelkezésre állási csoportot, hello virtuális gépek közül legalább egy tooensure megfelelően működik, és karbantartás során.
+* **A rendelkezésre állási csoport**. Minden adatbázis-kiszolgálók egyetlen rendelkezésre állási értékre, akkor ellenőrizze, hogy a virtuális gépek közül legalább egy, és a karbantartás során fut hozzáadandó.
 
 ### <a name="step-1---start-your-script"></a>1. lépés – a parancsfájl futtatásához
-Letöltheti használt hello teljes bash parancsfájl [Itt](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/11-MultiNIC/arm/virtual-network-deploy-multinic-arm-cli.sh). Kövesse az alábbi toochange hello parancsfájl toowork környezetében hello lépéseket.
+Letöltheti használt teljes bash parancsfájl [Itt](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/11-MultiNIC/arm/virtual-network-deploy-multinic-arm-cli.sh). Módosíthatja a parancsfájlnak a környezetben az alábbi lépésekkel.
 
-1. Hello hello-változók értékeit az alábbi a meglévő erőforráscsoport üzembe helyezett fent alapján módosítása [Előfeltételek](#Prerequisites).
+1. A meglévő erőforráscsoport üzembe helyezett fent alapján az alábbi változók értékeinek módosítása [Előfeltételek](#Prerequisites).
 
     ```azurecli
     existingRGName="IaaSStory"
@@ -68,7 +68,7 @@ Letöltheti használt hello teljes bash parancsfájl [Itt](https://raw.githubuse
     backendSubnetName="BackEnd"
     remoteAccessNSGName="NSG-RemoteAccess"
     ```
-2. Hello értékek módosítása hello alábbi változók hello értékek alapján kívánt toouse a háttér-telepítéshez.
+2. A háttérrendszer telepítéshez használni kívánt értékek alapján az alábbi változók értékeinek módosítása.
 
     ```azurecli
     backendRGName="IaaSStory-Backend"
@@ -90,7 +90,7 @@ Letöltheti használt hello teljes bash parancsfájl [Itt](https://raw.githubuse
     numberOfVMs=2
     ```
 
-3. Beolvasni hello hello Azonosítóját `BackEnd` alhálózati, ahol a virtuális gépek hello létrejön. Szüksége toodo mivel hello hálózati adapterek tartozó toobe toothis alhálózat egy másik erőforráscsoportban található.
+3. Az azonosító lekérése a `BackEnd` alhálózati, ahol a virtuális gépek létrejön. Mivel a kell lennie az alhálózathoz társított hálózati adapter egy másik erőforráscsoportban található ehhez szüksége.
 
     ```azurecli
     subnetId="$(azure network vnet subnet show --resource-group $existingRGName \
@@ -100,10 +100,10 @@ Letöltheti használt hello teljes bash parancsfájl [Itt](https://raw.githubuse
     ```
 
    > [!TIP]
-   > első parancs által használt fent hello [grep](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_04_02.html) és [karakterlánc-manipuláció](http://tldp.org/LDP/abs/html/string-manipulation.html) (pontosabban a substring eltávolítása).
+   > Az első parancs által használt fent [grep](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_04_02.html) és [karakterlánc-manipuláció](http://tldp.org/LDP/abs/html/string-manipulation.html) (pontosabban a substring eltávolítása).
    >
 
-4. Beolvasni hello hello Azonosítóját `NSG-RemoteAccess` NSG. Toodo ez szükséges hálózati adapterek toobe hello társított NSG van egy másik erőforráscsoportban található toothis óta.
+4. Az azonosító lekérése a `NSG-RemoteAccess` NSG. Mivel az NSG társítandó a hálózati adaptert egy másik erőforráscsoportban található ehhez szüksége.
 
     ```azurecli
     nsgId="$(azure network nsg show --resource-group $existingRGName \
@@ -113,13 +113,13 @@ Letöltheti használt hello teljes bash parancsfájl [Itt](https://raw.githubuse
 
 ### <a name="step-2---create-necessary-resources-for-your-vms"></a>2. lépés - a szükséges erőforrásokat létrehozni a virtuális géphez
 
-1. Hozzon létre egy új erőforráscsoportot összes háttér-erőforrás. Értesítés hello használata hello `$backendRGName` hello az erőforráscsoport neve, a változó és `$location` a hello Azure-régiót.
+1. Hozzon létre egy új erőforráscsoportot összes háttér-erőforrás. Figyelje meg a a `$backendRGName` az erőforráscsoport neve, a változó és `$location` az Azure-régiót.
 
     ```azurecli
     azure group create $backendRGName $location
     ```
 
-2. Hozzon létre egy prémium szintű storage-fiók hello az operációs rendszer és a saját virtuális gépek által használt adatok lemezek toobe.
+2. Az operációs rendszer és az adatlemezek saját virtuális gépek által használható egy prémium szintű storage-fiók létrehozása.
 
     ```azurecli
     azure storage account create $prmStorageAccountName \
@@ -128,7 +128,7 @@ Letöltheti használt hello teljes bash parancsfájl [Itt](https://raw.githubuse
         --type PLRS
     ```
 
-3. Rendelkezésre állási készlet hello virtuális gépek létrehozása.
+3. Állítsa be a virtuális gépek rendelkezésre állási létrehozása.
 
     ```azurecli
     azure availset create --resource-group $backendRGName \
@@ -136,9 +136,9 @@ Letöltheti használt hello teljes bash parancsfájl [Itt](https://raw.githubuse
         --name $avSetName
     ```
 
-### <a name="step-3---create-hello-nics-and-back-end-vms"></a>3. lépés – hello hálózati adapter és a háttér-virtuális gépek létrehozása
+### <a name="step-3---create-the-nics-and-back-end-vms"></a>3. lépés - a hálózati adapterek és a háttér-virtuális gépek létrehozása
 
-1. Indítsa el a hurok toocreate több virtuális géphez, hello alapján `numberOfVMs` változók.
+1. Indítsa el a hurok alapján több virtuális gép létrehozásához a `numberOfVMs` változók.
 
     ```azurecli
     for ((suffixNumber=1;suffixNumber<=numberOfVMs;suffixNumber++));
@@ -158,7 +158,7 @@ Letöltheti használt hello teljes bash parancsfájl [Itt](https://raw.githubuse
         --subnet-id $subnetId
     ```
 
-3. Az egyes virtuális gépek hozzon létre egy hálózati Adaptert a távoli hozzáféréshez. Értesítés hello `--network-security-group` paraméter, a használt tooassociate hello NIC tooan NSG.
+3. Az egyes virtuális gépek hozzon létre egy hálózati Adaptert a távoli hozzáféréshez. Figyelje meg a `--network-security-group` paraméter, a hálózati adapterről egy NSG hozzárendelésére.
 
     ```azurecli
     nic2Name=$nicNamePrefix$suffixNumber-RA
@@ -172,7 +172,7 @@ Letöltheti használt hello teljes bash parancsfájl [Itt](https://raw.githubuse
         --network-security-group-id $nsgId
     ```
 
-4. Hello virtuális gép létrehozása.
+4. A virtuális gép létrehozása.
 
     ```azurecli
     azure vm create --resource-group $backendRGName \
@@ -191,7 +191,7 @@ Letöltheti használt hello teljes bash parancsfájl [Itt](https://raw.githubuse
         --admin-password $password
     ```
 
-5. Az egyes virtuális gépek, hozzon létre két adatok lemezek és záró hello hurok hello `done` parancsot.
+5. Az egyes virtuális gépek, hozzon létre két adatlemezek, és a hurok végén a `done` parancsot.
 
     ```azurecli
     azure vm disk attach-new --resource-group $backendRGName \
@@ -212,10 +212,10 @@ Letöltheti használt hello teljes bash parancsfájl [Itt](https://raw.githubuse
         done
     ```
 
-### <a name="step-4---run-hello-script"></a>4. lépés: hello parancsfájl futtatása
-Most, hogy a letöltött és módosított hello parancsfájl futtatása vissza hello parancsfájl toocreate hello igényei szerint végén adatbázis virtuális gépek több hálózati adapterrel rendelkező.
+### <a name="step-4---run-the-script"></a>4. lépés: a parancsfájl futtatása
+Most, hogy a letöltött és a parancsfájl a igények alapján megváltozott, futtassa a hozzon létre a háttérbeli adatbázis virtuális gépek több hálózati adapter.
 
-1. Mentse a parancsfájlt, és futtassa azt a **Bash** terminál. Hello kezdeti kimenetben alább látható módon jelenik meg.
+1. Mentse a parancsfájlt, és futtassa azt a **Bash** terminál. A kezdeti kimenetet fog látni, alább látható módon.
    
         info:    Executing command group create
         info:    Getting resource group IaaSStory-Backend
@@ -232,13 +232,13 @@ Most, hogy a letöltött és módosított hello parancsfájl futtatása vissza h
         info:    Creating storage account
         info:    storage account create command OK
         info:    Executing command availset create
-        info:    Looking up hello availability set "ASDB"
+        info:    Looking up the availability set "ASDB"
         info:    Creating availability set "ASDB"
         info:    availset create command OK
         info:    Executing command network nic create
-        info:    Looking up hello network interface "NICDB1-DA"
+        info:    Looking up the network interface "NICDB1-DA"
         info:    Creating network interface "NICDB1-DA"
-        info:    Looking up hello network interface "NICDB1-DA"
+        info:    Looking up the network interface "NICDB1-DA"
         data:    Id                              : /subscriptions/[Subscription ID]/resourceGroups/IaaSStory-Backend/providers/Microsoft.Network/networkInterfaces/NICDB1-DA
         data:    Name                            : NICDB1-DA
         data:    Type                            : Microsoft.Network/networkInterfaces
@@ -254,9 +254,9 @@ Most, hogy a letöltött és módosított hello parancsfájl futtatása vissza h
         data:
         info:    network nic create command OK
         info:    Executing command network nic create
-        info:    Looking up hello network interface "NICDB1-RA"
+        info:    Looking up the network interface "NICDB1-RA"
         info:    Creating network interface "NICDB1-RA"
-        info:    Looking up hello network interface "NICDB1-RA"
+        info:    Looking up the network interface "NICDB1-RA"
         data:    Id                              : /subscriptions/[Subscription ID]/resourceGroups/IaaSStory-Backend/providers/Microsoft.Network/networkInterfaces/NICDB1-RA
         data:    Name                            : NICDB1-RA
         data:    Type                            : Microsoft.Network/networkInterfaces
@@ -273,34 +273,34 @@ Most, hogy a letöltött és módosított hello parancsfájl futtatása vissza h
         data:
         info:    network nic create command OK
         info:    Executing command vm create
-        info:    Looking up hello VM "DB1"
-        info:    Using hello VM Size "Standard_DS3"
-        info:    hello [OS, Data] Disk or image configuration requires storage account
-        info:    Looking up hello storage account wtestvnetstorageprm
-        info:    Looking up hello availability set "ASDB"
+        info:    Looking up the VM "DB1"
+        info:    Using the VM Size "Standard_DS3"
+        info:    The [OS, Data] Disk or image configuration requires storage account
+        info:    Looking up the storage account wtestvnetstorageprm
+        info:    Looking up the availability set "ASDB"
         info:    Found an Availability set "ASDB"
-        info:    Looking up hello NIC "NICDB1-DA"
-        info:    Looking up hello NIC "NICDB1-RA"
+        info:    Looking up the NIC "NICDB1-DA"
+        info:    Looking up the NIC "NICDB1-RA"
         info:    Creating VM "DB1"
-2. Néhány perc elteltével hello végrehajtása leáll, és látni fogja a hello részeinek hello kimeneti alább látható módon.
+2. Néhány perc múlva a végrehajtása leáll, és látni fogja a kimeneti részeinek alább látható módon.
    
         info:    vm create command OK
         info:    Executing command vm disk attach-new
-        info:    Looking up hello VM "DB1"
-        info:    Looking up hello storage account wtestvnetstorageprm
+        info:    Looking up the VM "DB1"
+        info:    Looking up the storage account wtestvnetstorageprm
         info:    New data disk location: https://wtestvnetstorageprm.blob.core.windows.net/vhds/datadisk1-1.vhd
         info:    Updating VM "DB1"
         info:    vm disk attach-new command OK
         info:    Executing command vm disk attach-new
-        info:    Looking up hello VM "DB1"
-        info:    Looking up hello storage account wtestvnetstorageprm
+        info:    Looking up the VM "DB1"
+        info:    Looking up the storage account wtestvnetstorageprm
         info:    New data disk location: https://wtestvnetstorageprm.blob.core.windows.net/vhds/datadisk1-2.vhd
         info:    Updating VM "DB1"
         info:    vm disk attach-new command OK
         info:    Executing command network nic create
-        info:    Looking up hello network interface "NICDB2-DA"
+        info:    Looking up the network interface "NICDB2-DA"
         info:    Creating network interface "NICDB2-DA"
-        info:    Looking up hello network interface "NICDB2-DA"
+        info:    Looking up the network interface "NICDB2-DA"
         data:    Id                              : /subscriptions/[Subscription ID]/resourceGroups/IaaSStory-Backend/providers/Microsoft.Network/networkInterfaces/NICDB2-DA
         data:    Name                            : NICDB2-DA
         data:    Type                            : Microsoft.Network/networkInterfaces
@@ -316,9 +316,9 @@ Most, hogy a letöltött és módosított hello parancsfájl futtatása vissza h
         data:
         info:    network nic create command OK
         info:    Executing command network nic create
-        info:    Looking up hello network interface "NICDB2-RA"
+        info:    Looking up the network interface "NICDB2-RA"
         info:    Creating network interface "NICDB2-RA"
-        info:    Looking up hello network interface "NICDB2-RA"
+        info:    Looking up the network interface "NICDB2-RA"
         data:    Id                              : /subscriptions/[Subscription ID]/resourceGroups/IaaSStory-Backend/providers/Microsoft.Network/networkInterfaces/NICDB2-RA
         data:    Name                            : NICDB2-RA
         data:    Type                            : Microsoft.Network/networkInterfaces
@@ -335,25 +335,25 @@ Most, hogy a letöltött és módosított hello parancsfájl futtatása vissza h
         data:
         info:    network nic create command OK
         info:    Executing command vm create
-        info:    Looking up hello VM "DB2"
-        info:    Using hello VM Size "Standard_DS3"
-        info:    hello [OS, Data] Disk or image configuration requires storage account
-        info:    Looking up hello storage account wtestvnetstorageprm
-        info:    Looking up hello availability set "ASDB"
+        info:    Looking up the VM "DB2"
+        info:    Using the VM Size "Standard_DS3"
+        info:    The [OS, Data] Disk or image configuration requires storage account
+        info:    Looking up the storage account wtestvnetstorageprm
+        info:    Looking up the availability set "ASDB"
         info:    Found an Availability set "ASDB"
-        info:    Looking up hello NIC "NICDB2-DA"
-        info:    Looking up hello NIC "NICDB2-RA"
+        info:    Looking up the NIC "NICDB2-DA"
+        info:    Looking up the NIC "NICDB2-RA"
         info:    Creating VM "DB2"
         info:    vm create command OK
         info:    Executing command vm disk attach-new
-        info:    Looking up hello VM "DB2"
-        info:    Looking up hello storage account wtestvnetstorageprm
+        info:    Looking up the VM "DB2"
+        info:    Looking up the storage account wtestvnetstorageprm
         info:    New data disk location: https://wtestvnetstorageprm.blob.core.windows.net/vhds/datadisk2-1.vhd
         info:    Updating VM "DB2"
         info:    vm disk attach-new command OK
         info:    Executing command vm disk attach-new
-        info:    Looking up hello VM "DB2"
-        info:    Looking up hello storage account wtestvnetstorageprm
+        info:    Looking up the VM "DB2"
+        info:    Looking up the storage account wtestvnetstorageprm
         info:    New data disk location: https://wtestvnetstorageprm.blob.core.windows.net/vhds/datadisk2-2.vhd
         info:    Updating VM "DB2"
         info:    vm disk attach-new command OK

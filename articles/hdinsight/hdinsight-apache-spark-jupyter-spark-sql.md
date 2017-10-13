@@ -1,10 +1,10 @@
 ---
-title: "aaaCreate az Apache Spark on Azure hdinsight fürt |} Microsoft Docs"
-description: "Hogyan toocreate az Apache Spark on hdinsight fürt a HDInsight Spark gyorsindítási."
+title: "Apache Spark-fürt létrehozása az Azure HDInsightban | Microsoft Docs"
+description: "HDInsight Spark rövid útmutató az Apache Spark-fürtök HDInsightban történő létrehozásáról."
 keywords: "spark gyorsútmutató,interaktív spark,interaktív lekérdezés,hdinsight spark,azure spark"
 services: hdinsight
 documentationcenter: 
-author: nitinme
+author: maxluk
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
@@ -15,19 +15,19 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 07/21/2017
-ms.author: nitinme
-ms.openlocfilehash: 002f71b3cd4fb315d4a556cebc9263026515ec4a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.date: 09/07/2017
+ms.author: maxluk
+ms.openlocfilehash: e64720efa168a84193dc3f351def0e58979f7f86
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-an-apache-spark-cluster-in-azure-hdinsight"></a>Apache Spark-fürt létrehozása az Azure HDInsightban
 
-Ebből a cikkből megismerheti, hogyan toocreate az Apache Spark on Azure hdinsight fürt. A Spark on HDInsight további információiért lásd: [Áttekintés: Apache Spark on Azure HDInsight](hdinsight-apache-spark-overview.md).
+Ebből a cikkből megtudhatja, hogyan hozható létre egy Apache Spark-fürt az Azure HDInsightban, majd hogyan futtatható Spark SQL-lekérdezés egy Hive-táblán. A Spark on HDInsight további információiért lásd: [Áttekintés: Apache Spark on Azure HDInsight](hdinsight-apache-spark-overview.md).
 
-   ![Gyors üzembe helyezés diagram lépéseket toocreate Apache Spark-fürt leíró on Azure HDInsight](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-quickstart-interactive-spark-query-flow.png "Spark gyors üzembe helyezés, Apache Spark on HDInsight használatával. Szemléltetett lépések: fürt létrehozása; interaktív Spark-lekérdezés futtatása")
+   ![Gyorsútmutató-diagram, amely leírja az Apache Spark-fürtök Azure HDInsight rendszeren való létrehozásának lépéseit](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-quickstart-interactive-spark-query-flow.png "Spark gyorsútmutató az Apache Spark használatához a HDInsight rendszeren. Szemléltetett lépések: fürt létrehozása; interaktív Spark-lekérdezés futtatása")
 
 ## <a name="prerequisites"></a>Előfeltételek
 
@@ -37,90 +37,96 @@ Ebből a cikkből megismerheti, hogyan toocreate az Apache Spark on Azure hdinsi
 
 Ebben a szakaszban egy HDInsight Spark-fürtöt hozhat létre egy [Azure Resource Manager-sablonnal](https://azure.microsoft.com/resources/templates/101-hdinsight-spark-linux/). Egyéb fürtlétrehozási módszerek: [HDInsight-fürtök létrehozása](hdinsight-hadoop-provision-linux-clusters.md).
 
-1. Kattintson a következő kép tooopen hello sablon hello Azure-portálon hello.         
+1. Az alábbi képre kattintva megnyithatja a sablont az Azure Portalon.         
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-spark-linux%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-apache-spark-jupyter-spark-sql/deploy-to-azure.png" alt="Deploy tooAzure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-spark-linux%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-apache-spark-jupyter-spark-sql/deploy-to-azure.png" alt="Deploy to Azure"></a>
 
-2. Adja meg a következő értékek hello:
+2. Írja be a következő értékeket:
 
     ![HDInsight Spark-fürt létrehozása egy Azure Resource Manager-sablonnal](./media/hdinsight-apache-spark-jupyter-spark-sql/create-spark-cluster-in-hdinsight-using-azure-resource-manager-template.png "Spark-fürt létrehozása a HDInsightban egy Azure Resource Manager-sablonnal")
 
     * **Előfizetés**: Válassza ki a fürthöz használni kívánt Azure-előfizetést.
-    * **Erőforráscsoport**: Hozzon létre egy erőforráscsoportot, vagy válasszon ki egy meglévőt. Erőforráscsoport van használt toomanage a projektek Azure-erőforrások.
-    * **Hely**: hello erőforráscsoport helyének kiválasztására. hello sablon hello fürt létrehozásának, valamint mint hello alapértelmezett fürttároló ezen a helyen használja.
-    * **ClusterName**: Adjon meg egy nevet, amelyet az toocreate hello HDInsight-fürthöz.
-    * **Spark-verziójú**: válasszon **2.0** , amelyet az hello fürtön tooinstall hello verzióként.
-    * **A fürt bejelentkezési nevet és jelszót**: hello alapértelmezett bejelentkezési név az admin.
+    * **Erőforráscsoport**: Hozzon létre egy erőforráscsoportot, vagy válasszon ki egy meglévőt. Az erőforráscsoport kezeli a projektek Azure-erőforrásait.
+    * **Hely**: Válasszon egy helyet az erőforráscsoportnak. A sablon ezt a helyet használja a fürt létrehozásához, valamint az alapértelmezett fürttárolóhoz.
+    * **ClusterName**: Adjon nevet a létrehozni kívánt HDInsight-fürtnek.
+    * **Spark-verzió**Válassza ki a **2.0**-s verziót a fürtön telepíteni kívánt verzióként.
+    * **A fürt bejelentkezési neve és jelszava**: Az alapértelmezett bejelentkezési név az admin.
     * **SSH-felhasználónév és -jelszó**.
 
-   Jegyezze fel ezeket az értékeket.  Már szükség hello oktatóanyag későbbi részében.
+   Jegyezze fel ezeket az értékeket.  Az oktatóanyag későbbi részében szüksége lesz rájuk.
 
-3. Válassza ki **toohello feltételek és kikötések fenti elfogadom**, jelölje be **PIN-kód toodashboard**, és kattintson a **beszerzési**. Ekkor egy új csempe jelenik meg Submitting deployment for Template deployment (Üzemelő példány elküldése sablon üzemelő példányhoz) címmel. Körülbelül 20 percet toocreate hello fürt vesz igénybe.
+3. Jelölje be az **Elfogadom a fenti feltételeket** és a **Rögzítés az irányítópulton** lehetőséget, majd kattintson a **Vásárlás** elemre. Ekkor egy új csempe jelenik meg Submitting deployment for Template deployment (Üzemelő példány elküldése sablon üzemelő példányhoz) címmel. A fürt létrehozása nagyjából 20 percet vesz igénybe.
 
-Ha a HDInsight-fürtök létrehozása problémát tapasztal, lehet, hogy nem rendelkezik megfelelő engedélyekkel toodo hello így. További információért tekintse meg [a hozzáférés-vezérlésre vonatkozó követelményeket](hdinsight-administer-use-portal-linux.md#create-clusters).
+Ha problémába ütközik a HDInsight-fürtök létrehozása során, előfordulhat, hogy nem rendelkezik a szükséges engedélyekkel. További információért tekintse meg [a hozzáférés-vezérlésre vonatkozó követelményeket](hdinsight-administer-use-portal-linux.md#create-clusters).
 
 > [!NOTE]
-> Ebben a cikkben létrehoz egy Spark-fürt által használt [Azure Storage Blobs, hello tárolási fürt](hdinsight-hadoop-use-blob-storage.md). Létrehozhat egy Spark-fürt által használt [Azure Data Lake Store](hdinsight-hadoop-use-data-lake-store.md) hello alapértelmezett tárolóként. Útmutatás: [Create an HDInsight cluster with Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md) (HDInsight-fürt létrehozása a Data Lake Store-ral).
+> A cikkben leírt eljárás létrehoz egy Spark-fürtöt, amely [Azure Storage-blobokat használ fürttárolóként](hdinsight-hadoop-use-blob-storage.md). Olyan Spark-fürtöt is létrehozhat, amely az [Azure Data Lake Store](hdinsight-hadoop-use-data-lake-store.md)-t használja alapértelmezett tárolóként. Útmutatás: [Create an HDInsight cluster with Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md) (HDInsight-fürt létrehozása a Data Lake Store-ral).
 >
 >
 
-## <a name="run-a-hive-query-using-spark-sql"></a>Hive-lekérdezés futtatása a Spark SQL-lel
+## <a name="run-spark-sql-statements-on-a-hive-table"></a>Spark SQL-utasítások futtatása Hive-táblán
 
-A HDInsight Spark-fürt konfigurált Jupyter notebook használatakor egy előre definiált kap `sqlContext` használható toorun Hive-lekérdezések Spark SQL használatával. Ebben a szakaszban megismerheti, hogyan toostart Jupyter notebook, majd futtassa az alapszintű Hive-lekérdezések.
+Az SQL az adatok lekérdezéséhez és meghatározásához leggyakrabban és legszélesebb körben használt nyelv. A Spark megalkotói ezt a tudást kihasználva megnyitották ezt a jól ismert adatlekérdezési nyelvet az elemzők szélesebb rétege előtt, akik Hadoop elosztott fájlrendszeren (HDFS-en) tárolt adatokkal szeretnének dolgozni. Ez az ajánlat a Spark SQL. A Spark SQL az Apache Spark bővítményeként működik a strukturált adatok ismerős SQL szintaxissal való feldolgozásához.
 
-1. Nyissa meg hello [Azure-portálon](https://portal.azure.com/).
+A Spark SQL az SQL és a HiveQL lekérdezési nyelvet is támogatja. A segítségével kötés végezhető Pythonban, Scalában és Javában. Ezzel számos különféle helyen, például külső adatbázisokban, strukturált adatfájlokban (például: JSON) és Hive-táblákban tárolt adatok kérdezhetők le.
 
-2. Ha toopin hello fürt toohello irányítópult választotta, kattintson a hello fürt csempe hello irányítópult toolaunch hello fürt paneljén.
+### <a name="running-spark-sql-on-an-hdinsight-cluster"></a>A Spark SQL futtatása HDInsight-fürtön
 
-    Ha nem volt rögzíti hello fürt toohello irányítópult, hello bal oldali ablaktáblában kattintson **a HDInsight-fürtök**, majd kattintson a létrehozott hello fürt.
+Ha a HDInsight Spark-fürthöz konfigurált Jupyter notebookot használja, egy előre beállított `sqlContext` elemet kap, amelyet Hive-lekérdezések Spark SQL-lel végzett futtatásához használhat. Ebben a szakaszban megtudhatja, hogyan indíthat egy Jupyter notebookot, és ezután hogyan futtathat egy alapszintű Spark SQL-lekérdezést az összes HDInsight-fürtön elérhető meglévő Hive-táblán (**hivesampletable**).
 
-3. A **Gyorshivatkozások** menüben kattintson a **Fürt irányítópultjai** lehetőségre, majd a **Jupyter Notebook** elemre. Ha a rendszer kéri, adja meg hello fürt hello rendszergazdai hitelesítő adataival.
+1. Nyissa meg az [Azure portált](https://portal.azure.com/).
 
-   ![Nyissa meg Jupyter notebook toorun interaktív Spark SQL-lekérdezés](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-open-jupyter-interactive-spark-sql-query.png "nyitott Jupyter notebook toorun interaktív Spark SQL-lekérdezés")
+2. Ha rögzítette a fürtöt az irányítópulton, a fürt paneljének megnyitásához kattintson a fürt csempéjére az irányítópulton.
+
+    Ha nem rögzítette a fürtöt az irányítópulton, a bal oldali panelen kattintson a **HDInsight-fürtök** elemre, majd a létrehozott fürtre.
+
+3. A **Gyorshivatkozások** menüben kattintson a **Fürt irányítópultjai** lehetőségre, majd a **Jupyter Notebook** elemre. Ha a rendszer felkéri rá, adja meg a fürthöz tartozó rendszergazdai hitelesítő adatokat.
+
+   ![A Jupyter notebook megnyitása interaktív Spark SQL-lekérdezés futtatásához](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-open-jupyter-interactive-spark-sql-query.png "A Jupyter notebook megnyitása interaktív Spark SQL-lekérdezés futtatásához")
 
    > [!NOTE]
-   > A fürt URL-címet a böngészőben a következő megnyitásakor hello által hello Jupyter notebook is elérhetők. Cserélje le **CLUSTERNAME** hello néven a fürt:
+   > A fürthöz tartozó Jupyter notebookot az alábbi URL-cím böngészőben történő megnyitásával is elérheti. Cserélje le a **CLUSTERNAME** elemet a fürt nevére:
    >
    > `https://CLUSTERNAME.azurehdinsight.net/jupyter`
    >
    >
 3. Hozzon létre egy notebookot. Kattintson a **New** (Új), majd a **PySpark** elemre.
 
-   ![A Jupyter notebook toorun interaktív Spark SQL-lekérdezés létrehozása](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-create-jupyter-interactive-Spark-SQL-query.png "a Jupyter notebook toorun interaktív Spark SQL-lekérdezés létrehozása")
+   ![Jupyter notebook létrehozása interaktív Spark SQL-lekérdezés futtatásához](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-create-jupyter-interactive-spark-sql-query.png "Jupyter notebook létrehozása interaktív Spark SQL-lekérdezés futtatásához")
 
-   Új notebook létrejött, és hello nevű Untitled(Untitled.pynb).
+   Az új notebook létrejött, és Untitled(Untitled.pynb) néven nyílt meg.
 
-4. Hello notebook neve hello tetején kattintson, és adja meg egy rövid nevet, ha szeretné.
+4. Ha a felső részen a notebook nevére kattint, megadhat egy könnyen megjegyezhető nevet.
 
-    ![Adjon meg egy nevet hello Jupter notebook toorun interaktív Spark-lekérdezést](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-jupyter-notebook-name.png "adjon meg egy nevet hello Jupter notebook toorun interaktív Spark lekérdezése")
+    ![A Jupyter notebook elnevezése, amelyből interaktív Spark lekérdezést futtat](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-jupyter-notebook-name.png "A Jupyter notebook elnevezése, amelyből interaktív Spark lekérdezést futtat")
 
-5.  Beillesztés hello következő kód egy üres cellába, és nyomja le az **SHIFT + ENTER** toorun hello kódot. Az alábbi kód hello `%%sql` (hívott hello sql magic) közli a Jupyter notebook toouse hello beállított `sqlContext` toorun hello Hive-lekérdezést. hello lekérdezés hello első 10 sorok egy táblából struktúra (**hivesampletable**), amely alapértelmezés szerint mindig elérhető az összes HDInsight-fürtök.
+5.  Illessze be a következő kódot egy üres cellába, majd nyomja le a **SHIFT + ENTER** billentyűkombinációt annak futtatásához. A lenti kódban az (sql magic nevű) `%%sql` megadja a Jupyter notebook számára, hogy az előre beállított `sqlContext` elemet használja a Hive-lekérdezés futtatásához. A lekérdezés lekérdezi az első 10 sort egy Hive-táblából (**hivesampletable**), amely alapértelmezés szerint minden HDInsight-fürtben elérhető.
 
         %%sql
         SELECT * FROM hivesampletable LIMIT 10
 
     ![Hive-lekérdezés a HDInsight Sparkban](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-get-started-hive-query.png "Hive-lekérdezés a HDInsight Sparkban")
 
-    További információ a hello `%%sql` magic és hello beállított környezeteket, lásd: [Jupyter kernelek a HDInsight-fürtök rendelkezésre](hdinsight-apache-spark-jupyter-notebook-kernels.md).
+    Az `%%sql` magicről és az előre beállított környezetekről a [HDInsight-fürtökhöz elérhető Jupyter-kerneleket ismertető cikkben](hdinsight-apache-spark-jupyter-notebook-kernels.md) talál további információt.
 
     > [!NOTE]
-    > Minden alkalommal, amikor lekérdezést futtat a Jupyter, a webböngésző ablakának címsorában látható egy **(foglalt)** állapot hello notebook neve mellett. Egy teli kör következő toohello is látni **PySpark** hello jobb felső sarokban lévő szöveg. Hello feladat befejezése után tooa jel üres körre változik.
+    > Minden alkalommal, amikor a Jupyterben lekérdezést futtat, a webböngésző ablakának címsorában **(Foglalt)** állapot jelenik meg a notebook neve mellett. A jobb felső sarokban lévő **PySpark** felirat mellett ekkor egy teli kör is megjelenik. A feladat befejezése után ez a jel üres körre változik.
     >
     >
     
-6. üdvözlő képernyőt tooshow hello lekérdezés kimeneti kell frissíteni.
+6. A képernyő frissül, és megjeleníti a lekérdezés kimenetelét.
 
     ![Hive-lekérdezés kimenete a HDInsight Sparkban](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-get-started-hive-query-output.png "Hive-lekérdezés kimenete a HDInsight Sparkban")
 
-7. Hello notebook toorelease hello fürterőforrások leállítása hello alkalmazást futtató befejezése után. toodo Igen, a hello **fájl** hello notebook menüjében kattintson **zárja be és Halt**.
+7. Az alkalmazás futtatása után állítsa le a notebookot a fürt erőforrásainak felszabadítása érdekében. Ehhez a notebook **File** (Fájl) menüjében kattintson a **Close and Halt** (Bezárás és leállítás) elemre.
 
-8. Ha toocomplete hello lépések egy későbbi időpontban, ellenőrizze, hogy ez a cikk létrehozott hello HDInsight-fürt törlése. 
+8. Ha később tervezi végrehajtani a következő lépéseket, törölje a jelen cikkben létrehozott HDInsight-fürtöt. 
 
-    [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
+[!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 ## <a name="next-step"></a>Következő lépés 
 
-Ebben a cikkben megtanulta, hogyan toocreate egy HDInsight Spark fürt és a Futtatás alapvető Spark SQL-lekérdezésben. Előzetes toohello hogyan toouse egy HDInsight Spark fürt tovább cikk toolearn toorun interaktív lekérdezések a mintaadatokat.
+Ebből a cikkből megtudhatta, hogyan hozható létre egy HDInsight Spark-fürt és hogyan futtatható egy alapszintű Spark SQL-lekérdezés. Folytassa a következő cikkel, amelyben megtudhatja, hogyan használhatja a HDInsight Spark-fürtöt interaktív lekérdezések mintaadatokon való futtatására.
 
 > [!div class="nextstepaction"]
 >[Interaktív lekérdezések futtatása HDInsight Spark-fürtön](hdinsight-apache-spark-load-data-run-query.md)

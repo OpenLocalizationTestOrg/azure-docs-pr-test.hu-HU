@@ -1,6 +1,6 @@
 ---
-title: "aaaReliable szolgáltatások WCF kommunikációs verem |} Microsoft Docs"
-description: "hello beépített WCF kommunikációs verem a Service Fabric-ügyfélszolgáltatás WCF kommunikáció Reliable Services biztosítja."
+title: "Megbízható szolgáltatások WCF kommunikációs verem |} Microsoft Docs"
+description: "A beépített WCF kommunikációs verem a Service Fabric-ügyfélszolgáltatás WCF kommunikációt a Reliable Services biztosít."
 services: service-fabric
 documentationcenter: .net
 author: BharatNarasimman
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 06/07/2017
 ms.author: bharatn
-ms.openlocfilehash: 7feebef4d46a6ae66d05129f47f9b5911e82aec9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7037620ebdc26a9f18531064bf45d058f5060e39
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="wcf-based-communication-stack-for-reliable-services"></a>WCF-alapú kommunikációs verem a Reliable Services
-lehetővé teszi a keretrendszer hello Reliable Services szolgáltatás szerzők toochoose hello kommunikációs verem toouse szeretnék a szolgáltatás számára. Azok az általuk választott keresztül hello hello kommunikációs verem csatlakoztatható **ICommunicationListener** hello által visszaadott [CreateServiceReplicaListeners vagy CreateServiceInstanceListeners](service-fabric-reliable-services-communication.md) módszerek. hello keretrendszer által biztosított szolgáltatás szerzők számára, akik toouse WCF-alapú kommunikációt hello Windows Communication Foundation (WCF) alapuló hello kommunikációs verem megvalósítása.
+A Reliable Services keretrendszer lehetővé teszi, hogy a szolgáltatás szerzők kiválasztása a kommunikációs verem, amelyeket be szeretne használni a szolgáltatáshoz. Azok a kommunikációs verem az általuk választott keresztül is csatlakoztathatja a **ICommunicationListener** által visszaadott a [CreateServiceReplicaListeners vagy CreateServiceInstanceListeners](service-fabric-reliable-services-communication.md) módszerek. A keretrendszer a kommunikációs verem, a Windows Communication Foundation (WCF) szolgáltatást szeretné használni a WCF-alapú kommunikációt szerzőknek alapú megvalósítását.
 
 ## <a name="wcf-communication-listener"></a>WCF kommunikációs figyelő
-WCF-specifikus hello végrehajtásának **ICommunicationListener** hello által biztosított **Microsoft.ServiceFabric.Services.Communication.Wcf.Runtime.WcfCommunicationListener** osztály.
+A WCF-specifikus végrehajtásának **ICommunicationListener** biztosítja a **Microsoft.ServiceFabric.Services.Communication.Wcf.Runtime.WcfCommunicationListener** osztály.
 
 Közpénzek ne mondja ki a szolgáltatási szerződés típusú tudunk.`ICalculator`
 
@@ -37,7 +37,7 @@ public interface ICalculator
 }
 ```
 
-A következő módon hello szolgáltatás hello azt hozhat létre egy WCF-kommunikáció figyelő.
+A szolgáltatás a következő módon létrehozhatunk olyan WCF kommunikációs figyelő.
 
 ```csharp
 
@@ -48,13 +48,13 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
             wcfServiceObject:this,
             serviceContext:context,
             //
-            // hello name of hello endpoint configured in hello ServiceManifest under hello Endpoints section
-            // that identifies hello endpoint that hello WCF ServiceHost should listen on.
+            // The name of the endpoint configured in the ServiceManifest under the Endpoints section
+            // that identifies the endpoint that the WCF ServiceHost should listen on.
             //
             endpointResourceName: "WcfServiceEndpoint",
 
             //
-            // Populate hello binding information that you want hello service toouse.
+            // Populate the binding information that you want the service to use.
             //
             listenerBinding: WcfUtility.CreateTcpListenerBinding()
         )
@@ -63,8 +63,8 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
 
 ```
 
-## <a name="writing-clients-for-hello-wcf-communication-stack"></a>Ügyfelek hello WCF kommunikációs verem írása
-WCF, hello keretrendszer használatával szolgáltatásokkal toocommunicate biztosít az ügyfelek írásra **WcfClientCommunicationFactory**, ez a WCF-specifikus hello végrehajtásának [ClientCommunicationFactoryBase](service-fabric-reliable-services-communication.md).
+## <a name="writing-clients-for-the-wcf-communication-stack"></a>A WCF kommunikációs verem ügyfelek írása
+Ügyfelek szolgáltatásokkal kommunikálni a WCF írásra, a keretrendszer által biztosított **WcfClientCommunicationFactory**, vagyis a WCF-specifikus végrehajtásának [ClientCommunicationFactoryBase](service-fabric-reliable-services-communication.md).
 
 ```csharp
 
@@ -76,7 +76,7 @@ public WcfCommunicationClientFactory(
     object callback = null);
 ```
 
-hello WCF kommunikációs csatorna számára elérhető hello **WcfCommunicationClient** hello által létrehozott **WcfCommunicationClientFactory**.
+A WCF kommunikációs csatornát érhetők el a **WcfCommunicationClient** hozta létre a **WcfCommunicationClientFactory**.
 
 ```csharp
 
@@ -90,7 +90,7 @@ public class WcfCommunicationClient : ServicePartitionClient<WcfCommunicationCli
 
 ```
 
-Ügyfélkód használható hello **WcfCommunicationClientFactory** együtt hello **WcfCommunicationClient** mely valósít meg **ServicePartitionClient** toodetermine Szolgáltatásvégpont hello és hello szolgáltatásra.
+Ügyfélkód használhatja a **WcfCommunicationClientFactory** együtt a **WcfCommunicationClient** mely valósít meg **ServicePartitionClient** meghatározásához a végpont szolgáltatást, és a szolgáltatásra.
 
 ```csharp
 // Create binding
@@ -102,7 +102,7 @@ var wcfClientFactory = new WcfCommunicationClientFactory<ICalculator>
     (clientBinding: binding, servicePartitionResolver: partitionResolver);
 
 //
-// Create a client for communicating with hello ICalculator service that has been created with the
+// Create a client for communicating with the ICalculator service that has been created with the
 // Singleton partition scheme.
 //
 var calculatorServiceCommunicationClient =  new WcfCommunicationClient(
@@ -111,14 +111,14 @@ var calculatorServiceCommunicationClient =  new WcfCommunicationClient(
                 ServicePartitionKey.Singleton);
 
 //
-// Call hello service tooperform hello operation.
+// Call the service to perform the operation.
 //
 var result = calculatorServiceCommunicationClient.InvokeWithRetryAsync(
                 client => client.Channel.Add(2, 3)).Result;
 
 ```
 > [!NOTE]
-> hello alapértelmezett ServicePartitionResolver azt feltételezi, hogy hello ügyfél futtatja a fürtön, amelyen hello szolgáltatást. Ha, amely nem hello esetben ServicePartitionResolver objektum létrehozása, és hello fürt kapcsolati végpontok adjon át.
+> Az alapértelmezett ServicePartitionResolver feltételezi, hogy az ügyfél fut a fürtön, amelyen a szolgáltatás. Ha ez nem ez a helyzet, ServicePartitionResolver objektum létrehozása, és a fürt kapcsolati végpontok adjon át.
 > 
 > 
 

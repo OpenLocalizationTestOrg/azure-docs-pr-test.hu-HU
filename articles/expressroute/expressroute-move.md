@@ -1,6 +1,6 @@
 ---
-title: "a klasszikus tooResource Manager áramkörök aaaMoving ExpressRoute |} Microsoft Docs"
-description: "Ezen a lapon egy áttekintést nyújt az alábbiakra lesz szüksége tooknow adatközponthíd-képzés klasszikus hello és hello Resource Manager üzembe helyezési modellel kapcsolatos."
+title: "ExpressRoute-kapcsolatcsoportok módosítása klasszikusról Resource Manager-alapúra | Microsoft Docs"
+description: "Ez az oldal a klasszikus és a Resource Manager-alapú üzemi modellek áthidalásához szükséges ismeretek áttekintését tartalmazza."
 documentationcenter: na
 services: expressroute
 author: ganesr
@@ -14,94 +14,94 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/02/2017
 ms.author: ganesr
-ms.openlocfilehash: c901d2cda01aec409b528d29fc937ac6afaea511
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7f8386b518ada850fc03e23c5cae3b159b3b213e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="moving-expressroute-circuits-from-hello-classic-toohello-resource-manager-deployment-model"></a>ExpressRoute-Kapcsolatcsoportok áthelyezése hello klasszikus toohello Resource Manager telepítési modell
-Ez a cikk áttekintést jelentés toomove hello klasszikus toohello Azure Resource Manager üzembe helyezési modellben az Azure ExpressRoute-kapcsolatcsoportot.
+# <a name="moving-expressroute-circuits-from-the-classic-to-the-resource-manager-deployment-model"></a>ExpressRoute-kapcsolatcsoportok áthelyezése a klasszikusból a Resource Manager-alapú üzemi modellbe
+Ez a cikk azt tekinti át, hogy az Azure ExpressRoute-kapcsolatcsoportok hogyan helyezhetők át a klasszikusból az Azure Resource Manager-alapú üzemi modellbe.
 
-Egy egyetlen ExpressRoute körön tooconnect toovirtual hálózatok telepített klasszikus hello és hello Resource Manager üzembe helyezési modellel egyaránt használható. ExpressRoute-kapcsolatcsoportot, függetlenül attól, hogy létrehozták, most már toovirtual hálózat összekapcsolása között két üzembe helyezési modell.
+Egyetlen ExpressRoute-kapcsolatcsoporttal csatlakozhat a klasszikus és a Resource Manager-alapú üzemi modellekbe telepített virtuális hálózatokhoz. Az ExpressRoute-kapcsolatcsoportok mostantól a létrehozási módjuktól függetlenül képesek virtuális hálózatokhoz csatlakozni mindkét üzemi modellben.
 
-![Amely a toovirtual hálózatok két üzembe helyezési modell között ExpressRoute-kapcsolatcsoportot](./media/expressroute-move/expressroute-move-1.png)
+![Mindkét üzemi modellben működő virtuális hálózatokhoz csatlakozó ExpressRoute-kapcsolatcsoport](./media/expressroute-move/expressroute-move-1.png)
 
-## <a name="expressroute-circuits-that-are-created-in-hello-classic-deployment-model"></a>Hello klasszikus üzembe helyezési modellel létrehozott ExpressRoute-Kapcsolatcsoportok
-Hello klasszikus üzembe helyezési modellel létrehozott ExpressRoute-Kapcsolatcsoportok kell áthelyezni toobe toohello erőforrás-kezelő központi telepítési modell első tooenable kapcsolat tooboth hello klasszikus és hello Resource Manager üzembe helyezési modellek. A kapcsolatok áthelyezésekor a kapcsolat nem veszik el, illetve nem szakad meg. Minden kapcsolat – virtuális hálózati kapcsolat hello klasszikus üzembe helyezési modellben (belül azonos hello előfizetés és az előfizetések közötti) megmaradnak.
+## <a name="expressroute-circuits-that-are-created-in-the-classic-deployment-model"></a>A klasszikus üzemi modellben létrehozott ExpressRoute-kapcsolatcsoportok
+A klasszikus és a Resource Manager-alapú üzemi modellek csatlakozásának engedélyezéséhez a klasszikus üzemi modellben létrehozott ExpressRoute-kapcsolatcsoportokat először át kell helyezni a Resource Manager-alapú üzemi modellbe. A kapcsolatok áthelyezésekor a kapcsolat nem veszik el, illetve nem szakad meg. A kapcsolatcsoportok és virtuális hálózatok között a klasszikus üzemi modellben meglévő összes kapcsolat megmarad (ugyanabban az előfizetésben és az előfizetések között is).
 
-Hello áthelyezése után sikeresen befejeződött, hello ExpressRoute-kapcsolatcsoportot keres, hajt végre, és pontosan érzi hello Resource Manager üzembe helyezési modellel létrehozott ExpressRoute-kapcsolatcsoportot. Mostantól létrehozhat kapcsolatok toovirtual hálózatok hello Resource Manager üzembe helyezési modellben.
+Az áthelyezés sikeres végrehajtása után az ExpressRoute-kapcsolatcsoport megjelenése és működése ugyanolyan lesz, mint egy Resource Manager-alapú üzemi modellben létrehozott ExpressRoute-kapcsolatcsoporté. Ezek után a Resource Manager-alapú üzemi modellben létrehozhatja a kapcsolatokat a virtuális hálózatokhoz.
 
-ExpressRoute-kapcsolatcsoportot áthelyezett toohello Resource Manager üzembe helyezési modellben után kezelheti hello életciklusának hello ExpressRoute-kapcsolatcsoportot csak hello Resource Manager telepítési modell használatával. Ez azt jelenti, hogy műveleteket végezhet például hozzáadása/frissítése/törlése esetében (például a sávszélesség, SKU és számlázási típusa) kapcsolat tulajdonságainak frissítése, és csak a hello Resource Manager üzembe helyezési modellben a kapcsolatok törlése. Tekintse meg a toohello című szakaszt a Kapcsolatcsoportok hello Resource Manager üzembe helyezési modellel további tájékoztatást talál arról, hogyan kezelheti a hozzáférést tooboth üzembe helyezési modellel létrehozott.
+Miután egy ExpressRoute-kapcsolatcsoportot áthelyezett a Resource Manager-alapú üzemi modellbe, az ExpressRoute-kapcsolatcsoport életciklusát csak a Resource Manager-alapú üzemi modell segítségével kezelheti. Ez azt jelenti, hogy az olyan műveletek, mint a társviszonyok hozzáadása/frissítése/törlése, a kapcsolatcsoport tulajdonságainak (például a sávszélesség, termékváltozat és számlázási típus) frissítése, valamint a kapcsolatcsoportok törlése, csak a Resource Manager-alapú üzemi modellben végezhetők el. A hozzáférés mindkét üzemi modellben történő kezelésének további részleteiért olvassa el a Resource Manager-alapú üzemi modellben létrehozott kapcsolatcsoportokkal kapcsolatos alábbi szakaszokat.
 
-A kapcsolat szolgáltató tooperform hello áthelyezése tooinvolve nem rendelkeznek.
+A kapcsolat szolgáltatóját nem kell bevonnia az áthelyezésbe.
 
-## <a name="expressroute-circuits-that-are-created-in-hello-resource-manager-deployment-model"></a>Hello Resource Manager üzembe helyezési modellel létrehozott ExpressRoute-Kapcsolatcsoportok
-A létrehozott hello Resource Manager deployment model toobe érhető el a két üzembe helyezési modell ExpressRoute-Kapcsolatcsoportok engedélyezheti. Az előfizetés bármely ExpressRoute-kapcsolatcsoportot lehet engedélyezett toobe két üzembe helyezési modell érhető el.
+## <a name="expressroute-circuits-that-are-created-in-the-resource-manager-deployment-model"></a>A Resource Manager-alapú üzemi modellben létrehozott ExpressRoute-kapcsolatcsoportok
+Engedélyezheti, hogy a Resource Manager-alapú üzemi modellben létrehozott ExpressRoute-kapcsolatcsoportok mindkét üzemi modellből elérhetők legyenek. Az előfizetésben lévő bármely ExpressRoute-kapcsolatcsoport esetében engedélyezhető, hogy mindkét üzemi modellből elérhető legyen.
 
-* Hello Resource Manager üzembe helyezési modellel létrehozott ExpressRoute-Kapcsolatcsoportok alapértelmezés szerint nem rendelkezik hozzáféréssel toohello klasszikus üzembe helyezési modellben.
-* Alapértelmezés szerint két üzembe helyezési modell hello klasszikus telepítési modell toohello Resource manager üzembe helyezési modellben áthelyezett ExpressRoute-Kapcsolatcsoportok elérhetőek.
-* ExpressRoute-kapcsolatcsoportot mindig hozzáférés toohello Resource Manager telepítési modell, függetlenül attól, hogy készült hello erőforrás-kezelő vagy a klasszikus üzembe helyezési modellel rendelkezik. A Ez azt jelenti, hogy létrehozhat toovirtual hálózatok létre kapcsolatokat hello az utasításokat követve által Resource Manager üzembe helyezési modellben [hogyan toolink virtuális hálózatok](expressroute-howto-linkvnet-arm.md).
-* Hozzáférés toohello klasszikus üzembe helyezési modellel hello vezérli **allowClassicOperations** hello ExpressRoute-kapcsolatcsoportot paramétere.
+* A Resource Manager-alapú üzemi modellben létrehozott ExpressRoute-kapcsolatcsoportok alapértelmezés szerint nem rendelkeznek hozzáféréssel a klasszikus üzemi modellhez.
+* A klasszikus üzemi modellből a Resource Manager-alapú üzemi modellbe áthelyezett ExpressRoute-kapcsolatcsoportok alapértelmezés szerint mindkét üzemi modellből elérhetők.
+* Az ExpressRoute-kapcsolatcsoportok mindig hozzáférhetnek a Resource Manager-alapú üzemi modellhez, függetlenül attól, hogy a Resource Manager-alapú vagy a klasszikus üzemi modellben jöttek létre. Ez azt jelenti, hogy a [csatlakozás virtuális hálózatokhoz](expressroute-howto-linkvnet-arm.md) című szakasz utasításai alapján létrehozhat kapcsolatokat virtuális hálózatokhoz a Resource Manager-alapú üzemi modellben.
+* A klasszikus üzemi modellhez való hozzáférést az ExpressRoute-kapcsolatcsoport **allowClassicOperations** paramétere vezérli.
 
 > [!IMPORTANT]
-> Hello ismertetett összes kvóták [szolgáltatási korlátait](../azure-subscription-service-limits.md) lap alkalmazni. Tegyük fel szabványos expressroute-kapcsolatcsoporthoz mind a klasszikus hello, mind a hello Resource Manager üzembe helyezési modellel rendelkezhet, legfeljebb 10 virtuális hálózati hivatkozások/kapcsolatok.
+> A [szolgáltatásokra vonatkozó korlátozások](../azure-subscription-service-limits.md) oldalon ismertetett összes kvóta érvényben van. Egy szabványos kapcsolatcsoport például legfeljebb 10 virtuális hálózati kapcsolattal/csatlakozással rendelkezhet a klasszikus és a Resource Manager-alapú üzemi modellekben.
 > 
 > 
 
-## <a name="controlling-access-toohello-classic-deployment-model"></a>Ellenőrző hozzáférési toohello klasszikus telepítési modell
-Engedélyezheti a egyetlen ExpressRoute körön toolink toovirtual hálózatok két üzembe helyezési modell hello beállítása **allowClassicOperations** hello ExpressRoute-kapcsolatcsoportot paramétere.
+## <a name="controlling-access-to-the-classic-deployment-model"></a>A klasszikus üzemi modellekhez való hozzáférés vezérlése
+Az ExpressRoute-kapcsolatcsoport **allowClassicOperations** paraméterének beállításával engedélyezheti egyetlen ExpressRoute-kapcsolatcsoport számára, hogy mindkét üzemi modellben csatlakozzon virtuális hálózatokhoz.
 
-Beállítás **allowClassicOperations** tooTRUE lehetővé teszi a virtuális hálózatokat toolink mindkét központi telepítési modellek toohello ExpressRoute-kapcsolatcsoportot. Kapcsolhat toovirtual hálózatok hello klasszikus telepítési modell a következő útmutatást a [hogyan toolink lévő virtuális hálózatok hello klasszikus üzembe helyezési modellel](expressroute-howto-linkvnet-classic.md). Kapcsolhat toovirtual hálózatok hello Resource Manager üzembe helyezési modellel következő útmutatást a [hogyan toolink lévő virtuális hálózatok hello Resource Manager üzembe helyezési modellben](expressroute-howto-linkvnet-arm.md).
+Az **allowClassicOperations** paraméter TRUE értékre állítása lehetővé teszi, hogy mindkét üzemi modellből csatlakoztasson virtuális hálózatokat az ExpressRoute-kapcsolatcsoporthoz. A [virtuális hálózatok a klasszikus üzemi modellben való csatlakoztatását](expressroute-howto-linkvnet-classic.md) ismertető témakör utasításai szerint csatlakozhat virtuális hálózatokhoz a klasszikus üzemi modellben. A [virtuális hálózatok Resource Manager-alapú üzemi modellben való csatlakoztatását](expressroute-howto-linkvnet-arm.md) ismertető témakör utasításai szerint csatlakozhat virtuális hálózatokhoz a Resource Manager-alapú üzemi modellben.
 
-Beállítás **allowClassicOperations** tooFALSE blokkolja toohello áramkör hozzáférést hello klasszikus telepítési modellből. Minden virtuális hálózati kapcsolat hello klasszikus üzembe helyezési modellben azonban megmaradnak. Ebben az esetben nincs látható hello klasszikus üzembe helyezési modellel hello ExpressRoute-kapcsolatcsoportot.
+Ha az **allowClassicOperations** paramétert FALSE értékre állítja, azzal blokkolhatja a kapcsolatcsoport elérését a klasszikus üzemi modellből. A virtuális hálózatok klasszikus üzemi modellben meglévő összes kapcsolata azonban megmarad. Ebben az esetben az ExpressRoute-kapcsolatcsoport nem látható a klasszikus üzemi modellben.
 
-## <a name="supported-operations-in-hello-classic-deployment-model"></a>Támogatott műveletek hello klasszikus üzembe helyezési modellel
-a következő klasszikus műveletek hello támogatottak az ExpressRoute áramkör mikor **allowClassicOperations** tooTRUE beállítása:
+## <a name="supported-operations-in-the-classic-deployment-model"></a>Támogatott műveletek a klasszikus üzemi modellben
+Az ExpressRoute-kapcsolatcsoportokon a következő klasszikus műveletek támogatottak, ha az **allowClassicOperations** TRUE értékre van állítva:
 
 * Az ExpressRoute-kapcsolatcsoport információinak lekérése
-* Virtuális hálózat létrehozása/frissítése/get/törlés tooclassic virtuális hálózatok hivatkozásokat tartalmaz.
+* Virtuális hálózati kapcsolatok létrehozása/frissítése/lekérése/törlése klasszikus virtuális hálózatokkal
 * Virtuális hálózati kapcsolatok hitelesítéseinek létrehozása/frissítése/lekérése/törlése előfizetések közötti kapcsolatokhoz
 
-Nem hajtható végre a következő klasszikus műveletek hello amikor **allowClassicOperations** tooTRUE beállítása:
+A következő műveleteket nem hajthatja végre, ha az **allowClassicOperations** TRUE értékre van állítva:
 
 * Border Gateway Protocol- (BGP-) társviszonyok létrehozása/frissítése/lekérése/törlése Azure privát, Azure nyilvános és Microsoft társviszony-létesítéshez
 * ExpressRoute-kapcsolatcsoportok törlése
 
-## <a name="communication-between-hello-classic-and-hello-resource-manager-deployment-models"></a>Klasszikus hello és hello Resource Manager üzembe helyezési modellek közötti kommunikáció
-hello ExpressRoute-kapcsolatcsoportot egyfajta hidat klasszikus hello és hello Resource Manager üzembe helyezési modellek között. Ha mindkét virtuális hálózat csatolt toohello migrálhatók hello klasszikus üzembe helyezési modellel virtuális hálózatok és hello erőforrás-kezelő telepítési modell adatfolyamok ExpressRoute keresztül a virtuális hálózatok közötti forgalom azonos ExpressRoute-kapcsolatcsoportot.
+## <a name="communication-between-the-classic-and-the-resource-manager-deployment-models"></a>Kommunikáció a klasszikus és a Resource Manager-alapú üzemi modellek között
+Az ExpressRoute-kapcsolatcsoport hídként működik a klasszikus és a Resource Manager-alapú üzemi modellek között A klasszikus üzemi modellben lévő virtuális hálózatok virtuális gépei és a Resource Manager-alapú üzemi modellben lévő virtuális hálózatok közötti forgalom keresztülhalad az ExpressRoute-on, ha mindkét virtuális hálózat ugyanahhoz az ExpressRoute-kapcsolatcsoporthoz csatlakozik.
 
-Összesített hello átviteli kapacitásának hello virtuális hálózati átjáró korlátozza. Forgalom nem lép hello kapcsolat szolgáltatójánál hálózatok és a hálózati ebben az esetben. Hello virtuális hálózatok közötti adatforgalom teljes hello Microsoft hálózati tartalmazza.
+Az összesített átviteli sebességet a virtuális hálózati átjáró átviteli kapacitása korlátozza. Ilyen esetekben a forgalom nem lép be a kapcsolat szolgáltatójának hálózataiba vagy az Ön hálózataiba. A virtuális hálózatok közötti forgalom teljes mértékben a Microsoft hálózatán keresztül halad át.
 
-## <a name="access-tooazure-public-and-microsoft-peering-resources"></a>Hozzáférés tooAzure nyilvános és a Microsoft társviszony-létesítési erőforrások
-Folytatás tooaccess erőforrásokat, amelyek általában elérhető az Azure nyilvános társviszony-létesítést, és a Microsoft társviszony-létesítés bármely megszakítása nélkül.  
+## <a name="access-to-azure-public-and-microsoft-peering-resources"></a>Azure nyilvános és Microsoft társviszony-létesítési erőforrások elérése
+Továbbra is zavartalanul elérheti a jellemzően Azure nyilvános társviszonyon és Microsoft-társviszonyon keresztül elérhető erőforrásokat.  
 
 ## <a name="whats-supported"></a>Támogatott műveletek
 Ez a szakasz az ExpressRoute-kapcsolatcsoportok esetében támogatott műveleteket ismerteti:
 
-* Egy egyetlen ExpressRoute körön tooaccess virtuális hálózatok vannak telepítve, a klasszikus hello és hello Resource Manager üzembe helyezési modellel is használhatja.
-* Hello klasszikus toohello Resource Manager üzembe helyezési modellben az ExpressRoute-kapcsolatcsoportot helyezhetők. Áthelyezés, miután a hello ExpressRoute-kapcsolatcsoportot keres, érzi, és mint bármely más ExpressRoute-kapcsolatcsoportot hello Resource Manager üzembe helyezési modellel létrehozott.
-* Áthelyezheti csak hello ExpressRoute-kapcsolatcsoportot. A kapcsolatcsoportok kapcsolatai, a virtuális hálózatok és a VPN-átjárók nem helyezhetők át ezzel a művelettel.
-* ExpressRoute-kapcsolatcsoportot áthelyezett toohello Resource Manager üzembe helyezési modellben után kezelheti hello életciklusának hello ExpressRoute-kapcsolatcsoportot csak hello Resource Manager telepítési modell használatával. Ez azt jelenti, hogy műveleteket végezhet például hozzáadása/frissítése/törlése esetében (például a sávszélesség, SKU és számlázási típusa) kapcsolat tulajdonságainak frissítése, és csak a hello Resource Manager üzembe helyezési modellben a kapcsolatok törlése.
-* hello ExpressRoute-kapcsolatcsoportot egyfajta hidat klasszikus hello és hello Resource Manager üzembe helyezési modellek között. Ha mindkét virtuális hálózat csatolt toohello migrálhatók hello klasszikus üzembe helyezési modellel virtuális hálózatok és hello erőforrás-kezelő telepítési modell adatfolyamok ExpressRoute keresztül a virtuális hálózatok közötti forgalom azonos ExpressRoute-kapcsolatcsoportot.
-* Klasszikus hello és hello Resource Manager üzembe helyezési modellel is támogatott előfizetések közötti kapcsolathoz.
-* Miután ExpressRoute-kapcsolatcsoportot áthelyezése hello Klasszikus modell toohello Azure Resource Manager modellt, [hello virtuális hálózatok csatolt toohello ExpressRoute-kapcsolatcsoportot áttelepítése](expressroute-migration-classic-resource-manager.md).
+* Egyetlen ExpressRoute-kapcsolatcsoportot használhat a klasszikus és a Resource Manager-alapú üzemi modellekbe telepített virtuális hálózatok eléréséhez.
+* Áthelyezhet egy ExpressRoute-kapcsolatcsoportot a klasszikusból a Resource Manager-alapú üzemi modellbe. Az áthelyezés után az ExpressRoute-kapcsolatcsoport megjelenése és működése ugyanolyan lesz, mint bármely más, a Resource Manager-alapú üzemi modellben létrehozott ExpressRoute-kapcsolatcsoporté.
+* Csak az ExpressRoute-kapcsolatcsoportot tudja áthelyezni. A kapcsolatcsoportok kapcsolatai, a virtuális hálózatok és a VPN-átjárók nem helyezhetők át ezzel a művelettel.
+* Miután egy ExpressRoute-kapcsolatcsoportot áthelyezett a Resource Manager-alapú üzemi modellbe, az ExpressRoute-kapcsolatcsoport életciklusát csak a Resource Manager-alapú üzemi modell segítségével kezelheti. Ez azt jelenti, hogy az olyan műveletek, mint a társviszonyok hozzáadása/frissítése/törlése, a kapcsolatcsoport tulajdonságainak (például a sávszélesség, termékváltozat és számlázási típus) frissítése, valamint a kapcsolatcsoportok törlése, csak a Resource Manager-alapú üzemi modellben végezhetők el.
+* Az ExpressRoute-kapcsolatcsoport hídként működik a klasszikus és a Resource Manager-alapú üzemi modellek között A klasszikus üzemi modellben lévő virtuális hálózatok virtuális gépei és a Resource Manager-alapú üzemi modellben lévő virtuális hálózatok közötti forgalom keresztülhalad az ExpressRoute-on, ha mindkét virtuális hálózat ugyanahhoz az ExpressRoute-kapcsolatcsoporthoz csatlakozik.
+* Az előfizetések közötti kapcsolat a klasszikus és a Resource Manager-alapú üzemi modellekben is támogatott.
+* Miután áthelyezett egy ExpressRoute-kapcsolatcsoportot a klasszikusból az Azure Resource Manager-alapú modellbe, [áttelepítheti az ExpressRoute-kapcsolatcsoporthoz kapcsolt virtuális hálózatokat](expressroute-migration-classic-resource-manager.md) is.
 
 ## <a name="whats-not-supported"></a>Nem támogatott műveletek
 Ez a szakasz az ExpressRoute-kapcsolatcsoportok esetében nem támogatott műveleteket ismerteti:
 
-* ExpressRoute-kapcsolatcsoportot hello életciklusának kezelésére hello klasszikus telepítési modellből.
-* Szerepköralapú hozzáférés-vezérlés (RBAC) támogatása hello klasszikus üzembe helyezési modellben. Nem hajtható végre RBAC vezérlők tooa áramkör hello klasszikus üzembe helyezési modellben. Minden rendszergazda/coadministrator hello előfizetés csatolása vagy leválasztása a virtuális hálózatok toohello kör is.
+* ExpressRoute-kapcsolatcsoportok életciklusának kezelése a klasszikus üzemi modellből.
+* Szerepköralapú hozzáférés-vezérlés (RBAC) támogatása a klasszikus üzemi modell esetében. A klasszikus üzemi modellben nem hajthat végre RBAC-vezérlési műveleteket a kapcsolatcsoportokon. Az előfizetés bármelyik rendszergazdája/társrendszergazdája csatlakoztathat virtuális hálózatokat a kapcsolatcsoporthoz, illetve leválaszthatja azokat.
 
 ## <a name="configuration"></a>Konfiguráció
-Útmutatás alapján hello ismertetett [ExpressRoute-kapcsolatcsoportot áthelyezése hello klasszikus toohello Resource Manager üzembe helyezési modellben](expressroute-howto-move-arm.md).
+Kövesse az [ExpressRoute-kapcsolatcsoportok áthelyezése a klasszikusból a Resource Manager-alapú üzemi modellbe](expressroute-howto-move-arm.md) című szakaszban ismertetett utasításokat.
 
 ## <a name="next-steps"></a>Következő lépések
-* [Hello virtuális hálózatok csatolt toohello ExpressRoute-kapcsolatcsoportot át hello Klasszikus modell toohello Azure Resource Manager modellt](expressroute-migration-classic-resource-manager.md)
+* [ExpressRoute-kapcsolatcsoporthoz kapcsolt virtuális hálózatok áttelepítése a klasszikusból az Azure Resource Manager-alapú modellbe](expressroute-migration-classic-resource-manager.md)
 * További információkért lásd: [ExpressRoute-kapcsolatcsoportok kiépítési munkafolyamatai és kapcsolatcsoport-állapotok](expressroute-workflows.md).
-* tooconfigure az ExpressRoute-kapcsolatot:
+* Az ExpressRoute-kapcsolat konfigurálása:
   
   * [ExpressRoute-kapcsolatcsoport létrehozása](expressroute-howto-circuit-arm.md)
   * [Útválasztás konfigurálása](expressroute-howto-routing-arm.md)
-  * [Hivatkozásra egy virtuális hálózati tooan ExpressRoute-kapcsolatcsoportot](expressroute-howto-linkvnet-arm.md)
+  * [Virtuális hálózat összekapcsolása egy ExpressRoute-kapcsolatcsoporttal](expressroute-howto-linkvnet-arm.md)
 

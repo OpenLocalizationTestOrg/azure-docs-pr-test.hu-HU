@@ -1,6 +1,6 @@
 ---
-title: "aaaSetting Azure Active Directory fel az önkiszolgáló alkalmazáshozzáférés-kezeléshez |} Microsoft Docs"
-description: "Önkiszolgáló csoportfelügyelet lehetővé teszi, hogy a felhasználók toocreate és biztonsági csoportok vagy az Azure Active Directory és ajánlatok felhasználók hello lehetőségét toorequest biztonsági vagy Office 365-csoporttagságot Office 365-csoportok kezelése"
+title: "Alkalmazások önkiszolgáló hozzáférés-kezelésének beállítása az Azure Active Directoryban | Microsoft Docs"
+description: "Biztonsági vagy Office 365-csoportok létrehozása és kezelése az Azure Active Directoryban, valamint biztonsági és Office 365-csoporttagság igénylése"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -12,42 +12,40 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 07/27/2017
+ms.date: 09/07/2017
 ms.author: curtand
 ms.reviewer: kairaz.contractor
 ms.custom: oldportal;it-pro;
-ms.openlocfilehash: 2a73f4ed2532d41143fe5abe2fef1322d971a5c0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7a7370eb076ba8602a58a260a14bb863c55bc803
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="setting-up-azure-active-directory-for-self-service-group-management"></a>Az Azure Active Directory beállítása önkiszolgáló csoportkezelésre
-Önkiszolgáló csoportfelügyelet lehetővé teszi, hogy a felhasználók toocreate, és kezelheti a biztonsági vagy Office 365-csoportokat az Azure Active Directory (Azure AD). A felhasználó biztonsági csoport vagy az Office 365-csoporttagságot is kérhet, és majd hello hello csoport tulajdonosa is jóváhagyására vagy visszautasítására tagságát. Ily módon a csoporttagság napi szintű felügyelete meghatalmazott toopeople ki, akik az adott tagság hello az üzleti környezet tisztában lehet. Az önkiszolgáló csoportkezelési szolgáltatások kizárólag biztonsági és Office 365-csoportok esetében érhetőek el, levelezési címmel rendelkező biztonsági csoportok vagy terjesztési listák esetében nem.
+# <a name="set-up-azure-active-directory-for-self-service-group-management"></a>Az Azure Active Directory beállítása önkiszolgáló csoportkezelésre
+A felhasználók saját biztonsági vagy Office 365-csoportokat hozhatnak létre és kezelhetnek az Azure Active Directoryban (Azure AD-ben). A felhasználók ezenkívül biztonsági és Office 365-csoporttagságot igényelhetnek, amelyet ezután a csoport tulajdonosa elfogadhat vagy elutasíthat. A csoporttagság napi szintű felügyelete olyan személyeknek adható ki, akik tisztában vannak az adott tagság üzleti környezetével. Az önkiszolgáló csoportkezelési szolgáltatások kizárólag biztonsági és Office 365-csoportok esetében érhetőek el, levelezési címmel rendelkező biztonsági csoportok vagy terjesztési listák esetében nem.
 
-> [!IMPORTANT]
-> A Microsoft azt javasolja, hogy a hello használata az Azure AD kezelése [az Azure AD felügyeleti központban](https://aad.portal.azure.com) hello az Azure portál használata helyett hello hivatkozott ebben a cikkben a klasszikus Azure portálon.
+Az önkiszolgáló csoportkezelési szolgáltatás jelenleg két alapvető alkalmazási helyzetet szolgál ki: a delegált és az önkiszolgáló csoportkezelést.
 
-Az önkiszolgáló csoportkezelési szolgáltatás jelenleg két alapvető alkalmazási helyzetet tartalmaz: a delegált és az önkiszolgáló csoportkezelést.
+* **Delegált csoportkezelés** – Jellemző példa rá egy olyan rendszergazda, aki a vállalata által használt SaaS-alkalmazás hozzáférésének kezelését végzi. E hozzáférési jogosultságok kezelése nehézkessé válik, így a rendszergazda új csoport létrehozására kéri fel a vállalat tulajdonosát. A rendszergazda hozzáférést ad az új csoportnak az alkalmazáshoz, és hozzáadja a csoporthoz az összes olyan személyt, aki már hozzáféréssel rendelkezik az alkalmazáshoz. A vállalat tulajdonosa ezt követően további felhasználókat vehet fel a csoportba, akik automatikusan hozzáférést kapnak az alkalmazáshoz. A vállalat tulajdonosának nem kell a rendszergazdára várnia a felhasználók hozzáférésének kezeléséhez. Ha a rendszergazda ugyanezt az engedélyt biztosítja egy vezetőnek egy eltérő üzleti csoportban, akkor a személy a saját felhasználóinak a hozzáférését is kezelheti. Sem a vállalat tulajdonosa, sem pedig a vezető nem tekintheti meg vagy kezelheti egymás felhasználóit. A rendszergazda továbbra is megtekintheti az alkalmazáshoz hozzáféréssel rendelkező összes felhasználó listáját, és blokkolhatja is a hozzáférést, ha szükséges.
+* **Önkiszolgáló csoportkezelés** – Jellemző példa rá két olyan felhasználó, akik egyaránt rendelkeznek egymástól függetlenül üzembe helyezett SharePoint Online-webhelyekkel. Ezek a felhasználók szeretnének egymás csapatának hozzáférést adni a saját webhelyükhöz. Ennek megvalósítása érdekében létrehozhatnak egy csoportot az Azure AD-ben, majd a SharePoint Online felületén mindketten kiválaszthatják ezt a csoportot, így biztosítva hozzáférést a webhelyeikhez. Ha valaki hozzáférést igényel, azt a hozzáférési panelen igényelheti, és ha kérését jóváhagyják, automatikusan hozzáférést kap mindkét SharePoint Online-webhelyhez. Ezt követően egyikük dönthet úgy, hogy a webhelyhez hozzáféréssel rendelkező összes felhasználó számára egy adott SaaS-alkalmazáshoz is hozzáférést ad. A SaaS-alkalmazás rendszergazdája adhat hozzáférési jogot a SharePoint Online webhelyhez tartozó alkalmazáshoz. Ettől kezdve az elfogadott kérések mindkét SharePoint Online-webhelyhez és az SaaS-alkalmazáshoz is hozzáférést biztosítanak.
 
-* **Delegált csoportkezelés** példa, hogy a rendszergazda hozzáférést tooa SaaS-alkalmazás hello vállalat által használt kezelő. E hozzáférési jogosultságok kezelése nehézkessé válik, így a rendszergazda kéri hello üzleti tulajdonosa toocreate egy új csoportot. hello rendszergazda hello toohello új alkalmazáscsoportba tartozó hozzáférési jogosultságot rendel, és hozzáadja a toohello csoport összes személyek toohello alkalmazás már elérésének. hello tulajdonos majd adhat hozzá további felhasználókat, és ezek a felhasználók automatikusan kiosztott toohello alkalmazás. hello üzleti tulajdonosa nem szükséges toowait hello rendszergazdai toomanage hozzáférés a felhasználók számára. Ha engedélyezi a hello rendszergazda hello azonos engedély tooa manager egy másik üzleti csoportban, majd az adott személyt is kezelhetők a saját felhasználók hozzáférésének. Hello tulajdonos sem hello manager megtekintheti vagy egymás felhasználók kezeléséhez. hello rendszergazdai hozzáférés toohello alkalmazás és a blokk hozzáférési jogok szükség esetén rendelkező felhasználók is látható.
-* **Önkiszolgáló csoportkezelés** – Jellemző példa rá két olyan felhasználó, akik egyaránt rendelkeznek egymástól függetlenül üzembe helyezett SharePoint Online-webhelyekkel. Minden saját csapatának hozzáférést tootheir helyek toogive kívánják. tooaccomplish, egy csoportot az Azure AD hozhatnak létre, és a SharePoint Online azok választja ki, hogy csoport tooprovide hozzáférés tootheir helyek. Ha valaki hozzáférést igényel, a hozzáférési Panel hello kérnek, és a jóváhagyás után hozzáférhetnének tooboth SharePoint Online-webhelyhez automatikusan. Később az egyik legyen úgy dönt, hogy minden férnek hozzá a hello webhely is szeretne küldeni hozzáférés tooa adott SaaS-alkalmazáshoz. SaaS-alkalmazás hello hello rendszergazdája adhat hozzá hozzáférési jogosultságokat a(z) hello alkalmazás toohello SharePoint Online-webhelyhez. Ettől a jóváhagyott beolvasása kéréseit lehetőséget nyújt az access toohello két SharePoint Online-webhelyhez, és is toothis SaaS-alkalmazás.
+## <a name="make-a-group-available-for-user-self-service"></a>Csoport elérhetővé tétele önkiszolgáló felhasználói tevékenységhez
+1. Jelentkezzen be az [Azure AD felügyeleti központba](https://aad.portal.azure.com) egy olyan fiókkal, amely a címtár globális rendszergazdája.
+2. Válassza a **Felhasználók és csoportok** lehetőséget, majd válassza a **Csoportbeállítások** elemet.
+3. Állítsa az **Önkiszolgáló csoportkezelés engedélyezve** elemet **Igen** értékűre.
+4. Állítsa **A felhasználók létrehozhatnak biztonsági csoportokat** vagy **A felhasználók létrehozhatnak Office 365-csoportokat** elemet **Igen** értékűre.
+  * Ha ezek a beállítások engedélyezve vannak, a címtárban lévő összes felhasználó létrehozhat új biztonsági csoportokat, és tagokat vehet fel ezekbe a csoportokba. Ezek az új csoportok szintén valamennyi felhasználó számára láthatóvá válnak a hozzáférési panelen. Ha pedig a csoport házirend-beállítása ezt lehetővé teszi, más felhasználók is kérhetik a felvételüket a csoportokba. 
+  * Ha ezek a beállítások le vannak tiltva, a felhasználók nem hozhatnak létre csoportokat, és nem módosíthatják azokat a meglévő csoportokat, amelyeknek a tulajdonosai. Ugyanakkor továbbra is kezelhetik az ilyen csoportok tagságát, és elfogadhatják más felhasználók csoportfelvételi kéréseit.
 
-## <a name="making-a-group-available-for-end-user-self-service"></a>Csoport elérhetővé tétele önkiszolgáló végfelhasználói tevékenységhez
-1. A hello [a klasszikus Azure portálon](https://manage.windowsazure.com), nyissa meg az Azure AD-címtár.
-2. A hello **konfigurálása** lapon **delegált csoportkezelés** tooEnabled.
-3. Állítsa be **felhasználók létrehozhatnak biztonsági csoportokat** vagy **felhasználók létrehozhatnak Office-csoportokat** tooEnabled.
+A **Biztonsági csoportok kezelésére jogosult felhasználók** és az **Office 365-csoportok kezelésére jogosult felhasználók** beállítás használatával még részletesebben vezérelheti a felhasználók önkiszolgáló csoportkezelési hozzáférését. Ha **A felhasználók létrehozhatnak csoportokat** beállítás engedélyezve van, a bérlőben lévő összes felhasználó létrehozhat új csoportokat, és tagokat vehet fel ezekbe a csoportokba. Ha ezeket **Néhány** értékre állítja be, a csoportkezelést egyes felhasználói csoportokra korlátozza. Ha ez a kapcsoló **Some** értékre (bizonyos felhasználókra) van állítva, hozzá kell adnia a felhasználókat az SSGMSecurityGroupsUsers csoporthoz, mielőtt új csoportokat hozhatnának létre és felhasználókat adhatnának hozzájuk. Ha az **Önkiszolgáló biztonságicsoport-kezelésre jogosult felhasználók** és az **Office 365 csoportok kezelésére jogosult felhasználók** **Minden felhasználó** értékre van beállítva, a bérlő összes felhasználója számára lehetővé válik új csoportok létrehozása.
 
-Ha **felhasználók létrehozhatnak biztonsági csoportokat** van engedélyezve van, a címtárban szereplő összes felhasználó számára engedélyezett toocreate új biztonsági csoportokat és adja hozzá toothese csoportok tagjai. Ezek az új csoportok is tenné jelennek meg az hello hozzáférési Panel összes többi felhasználó számára. Ha hello csoport hello csoportházirend-beállítás engedélyezi, más felhasználók hozhatnak létre kérelmek toojoin ezeket a csoportokat. Ha a **Users can create security groups** (A felhasználók létrehozhatnak biztonsági csoportokat) beállítás le van tiltva, a felhasználók nem hozhatnak létre csoportokat, és nem módosíthatják azokat a meglévő csoportokat, amelyeknek a tulajdonosai. Azonban ugyanakkor továbbra is kezelheti hello ilyen csoportok tagságát, és hagyja jóvá a más felhasználók toojoin érkező kéréseket a csoporthoz.
-
-Is **önkiszolgáló biztonsági csoportok használó felhasználók** tooachieve még hozzáférés-vezérlés keresztül önkiszolgáló csoportkezelési a felhasználók számára. Ha **felhasználók létrehozhatnak csoportokat** van engedélyezve van, a címtárban szereplő összes felhasználó számára engedélyezett toocreate új csoportokat és adja hozzá toothese csoportok tagjai. Úgy is **önkiszolgáló biztonsági csoportok használó felhasználók** tooSome, áll csoportkezelést csoport felügyeleti tooonly korlátozott csoport számára. Ha a kapcsoló értéke tooSome, hozzá kell adnia felhasználók toohello csoport SSGMSecurityGroupsUsers ahhoz, hogy hozzon létre új csoportokat, és adja hozzá a tagok toothem. Úgy, hogy **önkiszolgáló biztonsági csoportok használó felhasználók** tooAll, az összes felhasználó a directory toocreate új csoportok.
-
-Is használhatja a hello **csoport, a biztonsági csoportokat is használhatják az önkiszolgáló** toospecify egy egyéni nevet a csoport tagjai használhatják az önkiszolgáló mezőben.
+A **Biztonsági csoportok kezelésére jogosult csoport** és az **Office 365 csoportok kezelésére jogosult csoport** használatával megadhat egyetlen csoportot, amelynek tagjai használhatják az önkiszolgáló funkciót.
 
 ## <a name="next-steps"></a>Következő lépések
 E cikkekben további információk találhatók az Azure Active Directoryval kapcsolatban.
 
-* [Hozzáférés tooresources kezelése az Azure Active Directoryval](active-directory-manage-groups.md)
+* [Erőforrások hozzáférésének kezelése Azure Active Directory-csoportokkal](active-directory-manage-groups.md)
 * [Azure Active Directory-parancsmagok csoportbeállítások konfigurálásához](active-directory-accessmanagement-groups-settings-cmdlets.md)
 * [Az Azure Active Directory segítségével végzett alkalmazásfelügyeletre vonatkozó cikkek jegyzéke](active-directory-apps-index.md)
 * [Mi az az Azure Active Directory?](active-directory-whatis.md)

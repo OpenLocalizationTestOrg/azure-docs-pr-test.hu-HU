@@ -1,6 +1,6 @@
 ---
-title: az Azure Search aaaIndexers |} Microsoft Docs
-description: "Azure SQL database, Azure Cosmos DB vagy az Azure storage tooextract kereshető adatokat bejárható és feltöltése az Azure Search-index."
+title: "Indexelők az Azure Search szolgáltatásban | Microsoft Docs"
+description: "Feltérképezi az Azure SQL Database, az Azure Cosmos DB vagy az Azure Storage tárolókat a kereshető adatok kinyeréséhez és az Azure Search-index feltöltéséhez."
 services: search
 documentationcenter: 
 author: HeidiSteen
@@ -15,11 +15,11 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 05/01/2017
 ms.author: heidist
-ms.openlocfilehash: 6a816252ec5d6032491a12651c05cb1fe77d3d1a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1ea9dfcaec188bac2e92909f4811568b589357d4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="indexers-in-azure-search"></a>Indexelők az Azure Search szolgáltatásban
 > [!div class="op_single_selector"]
@@ -33,9 +33,9 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-Egy **indexelő** az Azure Search olyan kapcsolat, amely kereshető adatokat és a metaadatokat a külső adatforráshoz, és feltölti az index alapján mezők hozzárendelések hello index és az adatforrás között. Ez a megközelítés oka néha hivatkozott tooas egy lekéréses modell hello szolgáltatás kéri le az adatok anélkül, hogy toowrite leküldéses értesítések adatok tooan index összes kódot.
+Az Azure Search szolgáltatás **indexelője** egy olyan webbejáró, amely külső adatforrásból nyer ki kereshető adatokat és metaadatokat, illetve az index és az adatforrás közötti, mezőről mezőre haladó leképezések alapján tölti fel az indexet. Ezt a megközelítést néha „lekérési modellnek” is nevezik, mivel a szolgáltatás anélkül végzi az adatok lekérését, hogy az adatokat az indexbe küldő kód írására szükség lenne.
 
-Az indexelő használnak, amikor egyetlen hello azt jelenti, hogy adatfeldolgozást, vagy az hello használata az indexelő feltöltését csupán néhány hello az indexében lévő mezőket tartalmazó módszerek egyfajta kombinációját alkalmazza.
+Az indexelőt használhatja kizárólag adatfeldolgozásra, illetve olyan kombinált műveletekben is, amelyek részeként az indexelő használatával csak az index bizonyos mezőinek betöltése történik meg.
 
 Az indexelők futtatása történhet igény szerint vagy ismétlődő adatfrissítési ütemterv alapján, akár 15 perces gyakorisággal is. Az ennél gyakoribb frissítésekhez olyan leküldési modellre van szükség, amely egyszerre frissíti az adatokat az Azure Search szolgáltatásban és a külső adatforrásban is.
 
@@ -47,30 +47,30 @@ Az olyan, mindenki számára elérhető indexelők esetében, mint az Azure SQL 
 * [.NET SDK](https://msdn.microsoft.com/library/azure/microsoft.azure.search.iindexersoperations.aspx)
 
 ## <a name="basic-configuration-steps"></a>Alapszintű konfigurációs lépések
-Indexelő kínálhat egyedi toohello adatforrás funkciókat. Ezért az indexelő- vagy az adatforrás-konfiguráció egyes szempontjai az indexelő típusától függően változnak. Azonban az összes indexelő megosztása hello ugyanazon alapvető összetételűnek és követelményeit. Közös tooall indexelők tartoznak az alábbi lépéseket.
+Az indexelők az adott adatforrások esetében egyedi funkciókat biztosítanak. Ezért az indexelő- vagy az adatforrás-konfiguráció egyes szempontjai az indexelő típusától függően változnak. Az alapvető felépítés és követelmények azonban minden indexelő esetében azonosak. Az alábbiakban az összes indexelőre érvényes lépések láthatóak.
 
 ### <a name="step-1-create-an-index"></a>1. lépés: Index létrehozása
-Az indexelő fog automatizálhatja az egyes feladatok kapcsolódó toodata adatfeldolgozást, de az index létrehozása nem közül. Előfeltételként olyan előre meghatározott indexre van szükség, amelynek mezői egyeznek a külső adatforrás mezőivel. További információk az indexek strukturálásáról: [Index létrehozása (Azure Search REST API)](https://msdn.microsoft.com/library/azure/dn798941.aspx).
+Az indexelők képesek egyes, az adatfeldolgozással kapcsolatos feladat automatikussá tételére, de az index létrehozása nem tartozik ezek közé. Előfeltételként olyan előre meghatározott indexre van szükség, amelynek mezői egyeznek a külső adatforrás mezőivel. További információk az indexek strukturálásáról: [Index létrehozása (Azure Search REST API)](https://msdn.microsoft.com/library/azure/dn798941.aspx).
 
 ### <a name="step-2-create-a-data-source"></a>2. lépés: Adatforrás létrehozása
-Az indexelők olyan **adatforrásokból** kérnek le adatokat, amelyek például kapcsolati karakterláncokat tartalmaznak. Jelenleg a következő adatforrások hello támogatottak:
+Az indexelők olyan **adatforrásokból** kérnek le adatokat, amelyek például kapcsolati karakterláncokat tartalmaznak. Jelenleg a következő adatforrások támogatottak:
 
 * [Azure SQL Database vagy SQL Server egy Azure virtuális gépen](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
 * [Azure Cosmos DB](search-howto-index-documentdb.md)
-* [Az Azure Blob storage](search-howto-indexing-azure-blob-storage.md), PDF, Office-dokumentumok, HTML vagy XML tooextract szöveg használt
+* [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md) egyes tartalomtípusokhoz
 * [Azure Table Storage](search-howto-indexing-azure-tables.md)
 
-Adatforrások konfigurálva és felügyelni azokat, ami azt jelenti, egy adatforrás több indexelők tooload által használható egynél több index egyszerre használó hello indexelők függetlenül.
+Az adatforrások konfigurálása és kezelése az azokat használó indexelőktől függetlenül történik, ami azt jelenti, hogy egy adatforrást több indexelő is használhat egyidejűleg, egynél több index betöltésére.
 
-### <a name="step-3create-and-schedule-hello-indexer"></a>3. lépés: hozzon létre, és ütemezés szerinti hello indexelő
-hello indexelő meghatározása egy olyan konstrukció hello index, az adatforrás és egy ütemezés szerint. Az indexelő hivatkozhat egy adatforrást egy másik szolgáltatástól, feltéve, hogy az adatforrás tartozik hello ugyanahhoz az előfizetéshez. További információk az indexelők strukturálásáról: [Indexelő létrehozása (Azure Search REST API)](https://msdn.microsoft.com/library/azure/dn946899.aspx).
+### <a name="step-3create-and-schedule-the-indexer"></a>3. lépés: Az indexelő létrehozása és ütemezése
+Az indexelődefiníció egy olyan konstrukció, amely megadja az indexet, az adatforrást és az ütemezést. Az indexelők egy másik szolgáltatásból is hivatkozhatnak egy adatforrásra, ha az adott adatforrás ugyanabból az előfizetésből származik. További információk az indexelők strukturálásáról: [Indexelő létrehozása (Azure Search REST API)](https://msdn.microsoft.com/library/azure/dn946899.aspx).
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy alapszintű hello-érdemes, hello következő lépésre tooreview követelmények és feladatok adott tooeach adatforrás típusa.
+Az alapok megismerése után következő lépés a követelmények és az egyes adatforrástípusokra jellemző feladatok áttekintése.
 
 * [Azure SQL Database vagy SQL Server egy Azure virtuális gépen](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
 * [Azure Cosmos DB](search-howto-index-documentdb.md)
-* [Az Azure Blob Storage](search-howto-indexing-azure-blob-storage.md), PDF, Office-dokumentumok, HTML vagy XML tooextract szöveg használt
+* [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md)
 * [Azure Table Storage](search-howto-indexing-azure-tables.md)
-* [Az indexelő CSV blobok használatával hello Azure keresési Blob indexelő](search-howto-index-csv-blobs.md)
+* [CSV-blobok indexelése az Azure Search Blob indexelőjével](search-howto-index-csv-blobs.md)
 * [JSON-blobok indexelése az Azure Search Blob indexelőjével](search-howto-index-json-blobs.md)

@@ -5,6 +5,7 @@
 ## Runbook-oktatóanyag
 ### [Grafikus runbook létrehozása](automation-first-runbook-graphical.md)
 ### [PowerShell-alapú runbook létrehozása](automation-first-runbook-textual-powershell.md)
+### [Az első Python-runbookom](automation-first-runbook-textual-python2.md)
 ### [PowerShell-alapú munkafolyamati runbook létrehozása](automation-first-runbook-textual.md)
 # Útmutató
 ## Hitelesítés és biztonság
@@ -34,17 +35,21 @@
 ### [Runbook beállításainak módosítása](automation-runbook-settings.md)
 ### [Azure Automation-adatok kezelése](automation-managing-data.md)
 ### [Azure Automation-runbook hívása Log Analytics-riasztásból](automation-invoke-runbook-from-omsla-alert.md)
-### [Adjon át egy JSON-objektum tooan Azure Automation-forgatókönyv](automation-pass-json-string.md)
+### [JSON-objektum továbbítása Azure Automation-runbookba](automation-pass-json-string.md)
 ## hibrid runbook-feldolgozó
 ### [Hibrid runbook-feldolgozó üzembe helyezése](automation-hybrid-runbook-worker.md)
+### [Az Azure Automation hibrid runbook-feldolgozója Windowsra](automation-windows-hrw-install.md)
+### [Az Azure Automation hibrid runbook-feldolgozója Linuxra](automation-linux-hrw-install.md)
 ### [Runbookok futtatása feldolgozón](automation-hrw-run-runbooks.md)
+### [Az Azure Automation hibrid runbook-feldolgozóinak eltávolítása](automation-remove-hrw.md)
 ## Konfigurációkezelés (DSC) üzembe helyezése
 ### [A célállapot-konfiguráló (DSC) áttekintése](automation-dsc-overview.md)
 ### [Első lépések](automation-dsc-getting-started.md)
+### [Kiszolgálók célállapotba történő konfigurálása és eltéréskezelés az Azure Automation használatával](tutorial-configure-servers-desired-state.md)
 ### [Gépek előkészítése kezelésre](automation-dsc-onboarding.md)
 ### [Célállapot-konfigurálók fordítása](automation-dsc-compile.md)
 ### [Folyamatos üzembe helyezés a Chocolatey használatával](automation-dsc-cd-chocolatey.md)
-### [Azure Automation DSC jelentési adatok tooOMS Naplóelemzési továbbítsa](automation-dsc-diagnostics.md)
+### [Az Azure Automation DSC jelentési adatainak továbbítása az OMS Log Analyticsbe](automation-dsc-diagnostics.md)
 ## Eszközök kezelése
 ### [Tanúsítványok](automation-certificates.md)
 ### [Kapcsolatok](automation-connections.md)
@@ -64,11 +69,15 @@
 ### [Azure Automation-runbook hívása Log Analytics-riasztásból](automation-invoke-runbook-from-omsla-alert.md)
 ### [Azure Resource Manager-sablon üzembe helyezése Azure Automation PowerShell-runbookban](automation-deploy-template-runbook.md)
 ## Megoldások
-### [Változáskövetés](../log-analytics/log-analytics-change-tracking.md)
 ### [Frissítéskezelés](../operations-management-suite/oms-solution-update-management.md)
+#### [Frissítések kezelése több virtuális gép esetén](manage-update-multi.md)
+#### [SCCM-integráció OMS-frissítéskezeléssel](oms-solution-updatemgmt-sccmintegration.md)
+### [Változások követése](../log-analytics/log-analytics-change-tracking.md)
+### [Virtuális gépek változásainak követése](automation-vm-change-tracking.md)
+### [Virtuális gépek kezelése leltár használatával](automation-vm-inventory.md)
 ### [Virtuális gépek indítása és leállítása munkaidőn kívül](automation-solution-vm-management.md)
 ## Figyelés
-### [Azure Automation-feladat adatok tooLog Analytics továbbítsa](automation-manage-send-joblogs-log-analytics.md)
+### [Azure Automation-feladat adatainak továbbítása a Log Analyticsbe](automation-manage-send-joblogs-log-analytics.md)
 ### [Azure Automation-fiók leválasztása a Log Analyticsről](automation-unlink-from-log-analytics.md)
 ## Migrate (Áttelepítés)
 ### [Áttelepítés az Orchestratorból](automation-orchestrator-migration.md)
@@ -77,8 +86,8 @@
 ### [Gyakori hibák elhárítása](automation-troubleshooting-automation-errors.md)
 ### [A hibrid runbook-feldolgozó hibaelhárítása](automation-troubleshooting-hybrid-runbook-worker.md)
 # Referencia
-## [PowerShell](/powershell/module/azurerm.automation)
-## [PowerShell (klasszikus)](/powershell/module/azure/?view=azuresmps-3.7.0)
+## [Azure PowerShell](/powershell/module/azurerm.automation)
+## [Azure PowerShell (klasszikus)](/powershell/module/azure/?view=azuresmps-3.7.0)
 ## [.NET](/dotnet/api/microsoft.azure.management.automation)
 ## [REST](/rest/api/automation)
 ## [REST (klasszikus)](https://msdn.microsoft.com/library/azure/mt163781)

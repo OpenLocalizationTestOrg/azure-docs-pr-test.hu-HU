@@ -1,8 +1,8 @@
 ---
-title: "Biztalk szolgáltatások dokumentációja - aaaAzure oktatóanyagok |} Microsoft Docs"
-description: "Ismerje meg, hogyan toouse BizTalk tooprovide felhő tooon helyszíni és az SAP, Oracle EBS, SQL Server és PeopleSoft sor üzleti alkalmazás integrációs szolgáltatások."
+title: "Az Azure BizTalk Services dokumentációja – oktatóanyagok | Microsoft Docs"
+description: "Ismerje meg, hogy a BizTalk Services segítségével hogyan valósítható meg az SAP, az Oracle EBS, az SQL Server és a PeopleSoft rendszereken futó kulcsfontosságú alkalmazások felhő és helyszíni környezetek közötti integrációja."
 services: biztalk-services
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 06411e211b987a96d4b79a93871e66157f7ecdb6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8aef3ad31551b0a4c5048e418cf8b1456bd4f274
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="biztalk-services-documentation"></a>BizTalk Services – dokumentáció
 
-Ismerje meg, hogyan toouse BizTalk tooprovide felhő tooon helyszíni és az SAP, Oracle EBS, SQL Server és PeopleSoft sor üzleti alkalmazás integrációs szolgáltatások. Oktatóanyagok és egyéb dokumentációt, megtudhatja, hogyan toointegrate hello vállalati és hello felhő.
+Ismerje meg, hogy a BizTalk Services segítségével hogyan valósítható meg az SAP, az Oracle EBS, az SQL Server és a PeopleSoft rendszereken futó kulcsfontosságú alkalmazások felhő és helyszíni környezetek közötti integrációja. Az oktatóanyagok és egyéb dokumentációk bemutatják a zökkenőmentes integrációt a vállalat és a felhő között.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ Ismerje meg, hogyan toouse BizTalk tooprovide felhő tooon helyszíni és az SAP
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Ismerkedés a BizTalk szolgáltatások hello Azure portál használatával</h3>
+                        <h3>Bevezetés a BizTalk Services Azure Portallal való használatába</h3>
                     </div>
                 </div>
             </div>

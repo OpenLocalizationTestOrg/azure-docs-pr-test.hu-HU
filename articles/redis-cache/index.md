@@ -1,8 +1,8 @@
 ---
-title: "Redis gyorsítótár dokumentációja – oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
-description: "Ismerje meg, hogyan toouse Azure Redis Cache, egy biztonságos gyorsítótár és a gyors alkalmazások biztosító üzenetkezelési broker hozzáférés toodata. Oktatóanyagok, API-referenciák és egyebek."
+title: "Az Azure Redis Cache dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogy az Azure Redis Cache biztonságos adatgyorsítótár és üzenetközvetítő hogyan használható az alkalmazások gyors adathozzáférésének biztosítására. Oktatóanyagok, API-referenciák és egyebek."
 services: redis-cache
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 1344e242321b84fe2fbd3bc466a3cb82aba177f4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6528d900ba3641189f8000db8d2535c9b215d148
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 #<a name="redis-cache-documentation"></a>Redis Cache – dokumentáció
 
-Ismerje meg, hogyan toouse Azure Redis Cache, egy biztonságos adatgyorsítótár és üzenetkezelési broker, amely nagyobb teljesítményt és alacsony késésű hozzáférést toodata biztosít az alkalmazások számára. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt mutatja be bármely alkalmazásból az Azure Redis Cache toouse.
+Ismerje meg, hogy az Azure Redis Cache biztonságos adatgyorsítótár és üzenetközvetítő hogyan használható az alkalmazások nagy sávszélességű és kis késleltetésű adathozzáférésének biztosítására. Oktatóanyagok, API-referenciák és egyéb dokumentáció, amelyekből megtudhatja, hogyan használhatja a Redis Cache-t bármely Azure-alkalmazásból.
 
 <ul class="panelContent cardsFTitle">
     <li>

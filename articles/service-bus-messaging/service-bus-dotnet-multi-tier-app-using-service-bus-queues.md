@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Bus használatával aaa.NET többrétegű alkalmazást |} Microsoft Docs"
-description: "A .NET-oktatóanyaga, amely segít az Azure Service Bus-üzenetsorok toocommunicate rétegek közötti használó többrétegű alkalmazást fejleszthet."
+title: "Többrétegű .NET-alkalmazás az Azure Service Bus használatával | Microsoft Docs"
+description: "Ezen .NET-oktatóanyag segítségével többrétegű alkalmazást fejleszthet az Azure-ban, amely Service Bus-üzenetsorokkal kommunikál a rétegek között."
 services: service-bus-messaging
 documentationcenter: .net
 author: sethmanheim
@@ -14,100 +14,100 @@ ms.devlang: dotnet
 ms.topic: get-started-article
 ms.date: 04/11/2017
 ms.author: sethm
-ms.openlocfilehash: 485910ff1d3b8b0a709ee14ede32e57cf873829a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8b502f5ac5d89801d390a872e7a8b06e094ecbba
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="net-multi-tier-application-using-azure-service-bus-queues"></a>Többrétegű .NET-alkalmazás Azure Service Bus-üzenetsorok használatával
 ## <a name="introduction"></a>Bevezetés
-Microsoft Azure a Visual Studio használatával könnyen és hello ingyenes Azure SDK for .NET fejlesztés. Ez az oktatóanyag bemutatja, hogyan hello lépéseket toocreate használó több Azure-erőforrások a helyi környezetben futó alkalmazások.
+A Visual Studio és az ingyenes Azure SDK for .NET használatával könnyen fejleszthet a Microsoft Azure platformra. Ez az oktatóanyag végigvezeti egy olyan alkalmazás létrehozásának a lépésein, amely több, a helyi környezetben futó Azure-erőforrást használ.
 
-Hello következő témák köre:
+Az alábbiakat sajátítja majd el:
 
-* Hogyan tooenable a számítógép egyetlen Azure fejlesztési töltse le és telepítse.
-* Hogyan toouse Visual Studio toodevelop az Azure-bA.
-* Hogyan toocreate egy többrétegű alkalmazást az Azure-ban webes és feldolgozói szerepköröket.
-* Hogyan toocommunicate közötti tiers Service Bus-üzenetsorok használatával.
+* A számítógép felkészítése az Azure-fejlesztésre egyetlen letöltéssel és telepítéssel.
+* A Visual Studio használata az Azure platformra való fejlesztéshez.
+* Többrétegű alkalmazások létrehozása az Azure-ban webes és feldolgozói szerepkörök használatával.
+* A rétegek közötti kommunikáció módja Service Bus-üzenetsorok használatával.
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-Ez az oktatóanyag lesz hozza létre és hello többrétegű alkalmazást futtat egy Azure felhőszolgáltatást. hello előtér egy ASP.NET MVC webes szerepkör, és hello háttér feldolgozói szerepkör Service Bus-üzenetsort használó. Létrehozhat olyan webes projekt, telepített tooan a felhőszolgáltatás helyett az Azure webhelyén, a hello előtér ugyanezen többrétegű alkalmazást hello. Hello is kipróbálhatja [.NET helyszíni/felhőbeli hibridalkalmazást](../service-bus-relay/service-bus-dotnet-hybrid-app-using-service-bus-relay.md) oktatóanyag.
+Az oktatóanyagban egy Azure-felhőszolgáltatásban hozza létre és futtatja majd a többrétegű alkalmazást. Az előtér egy ASP.NET MVC webes szerepkör, a háttér pedig egy Service Bus-üzenetsort használó feldolgozói szerepkör. Ugyanezen többrétegű alkalmazást létrehozhatja úgy is, hogy az előtér olyan webes projekt legyen, amely a felhőszolgáltatás helyett egy Azure-webhelyen helyezhető üzembe. Elvégezheti a [.NET helyszíni/felhőalapú hibridalkalmazással](../service-bus-relay/service-bus-dotnet-hybrid-app-using-service-bus-relay.md) foglalkozó oktatóanyagot is.
 
-hello következő képernyőfelvétel a hello befejeződött alkalmazás.
+Az alábbi képernyőfelvételen a kész alkalmazás látható.
 
 ![][0]
 
 ## <a name="scenario-overview-inter-role-communication"></a>Forgatókönyv áttekintése: szerepkörök közötti kommunikáció
-a feldolgozási, hello előtér felhasználói felületi összetevőnek hello webes szerepkörben futó kérés toosubmit együtt kell működnie hello feldolgozói szerepkörben futó hello középső rétegbeli logikával. A példa Service Bus üzenetkezelés hello-hello rétegek közötti kommunikációhoz.
+A feldolgozási kérés küldéséhez a webes szerepkörben futó előtér felhasználói felületi összetevőnek együtt kell működnie a feldolgozói szerepkörben futó középső rétegbeli logikával. Ez a példa Service Bus-üzenetkezelést használ a rétegek közötti kommunikációhoz.
 
-A Service Bus használatával hello webes és a középső réteg között üzenetküldési elválasztja a két összetevőt. Ezzel szemben toodirect messaging (vagyis TCP- vagy HTTP), hello webes réteg nem csatlakozik közvetlenül; toohello középső réteg hanem a munkaegységeket munka, üzenetekként le a Service Busba, amely megbízhatóan megőrzi azokat, amíg a hello középső réteg kész tooconsume és dolgozza fel őket.
+A webes és a középső réteg között használt Service Bus-üzenetkezelés elválasztja a két összetevőt. A közvetlen (vagyis TCP- vagy HTTP-alapú) üzenettovábbítással szemben a webes réteg nem közvetlenül kapcsolódik a középső réteghez, hanem a munkaegységeket üzenetekként küldi le a Service Busba, amely megbízhatóan megőrzi azokat, amíg a középső réteg kész fogadni és feldolgozni azokat.
 
-Service Bus biztosít két entitások toosupport brokered messaging: üzenetsorok és témakörök. Az üzenetsorok esetében minden üzenetet küldött toohello várólista egyetlen fogadó használja fel. Témakörök, amelyben minden egyes közzétett üzenetek legyen elérhető tooa előfizetéssel hello témakör hello közzététel/előfizetés mintát támogatják. Az egyes előfizetések logikai módon tartják fenn a saját üzenetsorukat. Előfizetések, amelyek korlátozzák a hello átadott üzenetek készletét a hello előfizetés várólista toothose hello szűrőnek szűrési szabályokkal is konfigurálható. hello alábbi példa Service Bus-üzenetsorok.
+A Service Bus kétfajta entitást biztosít a közvetítőalapú üzenettovábbítás támogatásához: üzenetsorokat és témaköröket. Az üzenetsorok esetén az egyes üzenetsorokra küldött üzeneteket egyetlen fogadó használja fel. A témakörök a közzététel/előfizetés mintát támogatják, amelyben az egyes közzétett üzenetek az adott témakörre való előfizetéssel érhetők el. Az egyes előfizetések logikai módon tartják fenn a saját üzenetsorukat. Az előfizetések konfigurálhatók szűrési szabályokkal is, amelyek az előfizetés üzenetsorába továbbított üzeneteket az adott szűrővel egyező üzenetekre korlátozzák. Az alábbi példa Service Bus-üzenetsorokat használ.
 
 ![][1]
 
 Ennek a kommunikációs mechanizmusnak több előnye is van a közvetlen üzenettovábbítással szemben:
 
-* **Időbeli elválasztás.** Hello aszinkron üzenettovábbítási mintának köszönhetően a létrehozóknak és a felhasználóknak nem kell online hello ugyanannyi időt vesz igénybe. A Service Bus megbízhatóan tárolja az üzeneteket, amíg hello fogyasztó fél készen áll a fogadásukra. Ez lehetővé teszi a hello összetevői hello elosztott alkalmazás toobe, akár önkéntesen, például karbantartási, vagy leválasztása miatt tooa összetevő összeomlása, a rendszer egészének befolyásolása nélkül. Ezenkívül hello fel az alkalmazás csak módosítania kell toocome online hello nap bizonyos időpontjaiban.
-* **Terheléskiegyenlítés.** Számos alkalmazás rendszerterhelés időnként eltérő, míg egyes Munkaegységek szükséges hello feldolgozási idő jellemzően állandó marad. Közé üzenetek létrehozói és felhasználói üzenetsorokat azt jelenti, hogy fel az alkalmazás (hello munkavégző) csak igények toobe hello kiépített csúcsterhelés helyett tooaccommodate átlagos terhelés. hello várólista hello mélysége növekszik és csökken, mivel változik hello bejövő terhelés. Ez közvetlen megtakarításokkal pénz infrastruktúra szükséges tooservice hello alkalmazásterhelés hello mennyisége tekintetében.
-* **Terheléselosztás.** A terhelés növekedésével további feldolgozó folyamatok adhatók hozzá tooread hello üzenetsorból. Minden üzenetet csak az egyik hello munkavégző folyamatok dolgoz fel. Ezenkívül a lekérésalapú terheléselosztás lehetővé teszi, hogy hello feldolgozó gépek optimális használatát akkor is, ha azok feldolgozási teljesítménye eltérő módon kérik le a saját maximális díj üzeneteket. Ezt a mintát gyakran nevezik hello *versengő felhasználó* mintát.
+* **Időbeli elválasztás.** Az aszinkron üzenettovábbítási mintának köszönhetően a létrehozóknak és a felhasználóknak nem kell egyszerre online lenniük. A Service Bus megbízhatóan tárolja az üzeneteket, amíg a felhasználó fél készen nem áll a fogadásukra. Ez lehetővé teszi az elosztott alkalmazás összetevőinek leválasztását, akár önkéntesen – például karbantartási céllal –, akár egy összetevő összeomlása miatt, anélkül, hogy ez az egész rendszerre hatással lenne. Emellett a felhasználó alkalmazásnak elég mindössze a nap bizonyos időpontjaiban online lennie.
+* **Terheléskiegyenlítés.** Számos alkalmazásban a rendszerterhelés időnként eltérő, míg az egyes munkaegységek feldolgozásához szükséges idő jellemzően állandó marad. Az üzenetek létrehozói és felhasználói közé üzenetsorokat helyezve a felhasználó alkalmazást (a feldolgozót) csak az átlagos terhelés, és nem a csúcsterhelés figyelembe vételével kell létrehozni. A bejövő terhelés változásával az üzenetsor hossza nő vagy csökken. Ez közvetlen megtakarításokkal jár az alkalmazásterhelés kiszolgálásához szükséges infrastruktúraméret költségei tekintetében.
+* **Terheléselosztás.** A terhelés növekedésével további feldolgozó folyamatok adhatók hozzá az üzenetsorból való olvasásra. Az egyes üzeneteket a feldolgozó folyamatoknak csak az egyike dolgozza fel. Ez a lekérésalapú terheléselosztás akkor is lehetővé teszi a feldolgozó gépek optimális használatát, ha azok feldolgozási teljesítménye eltérő, mivel az egyes gépek az üzeneteket a saját maximális sebességüknek megfelelően kérik le. Ezt a mintát gyakran a *versengő felhasználó* mintának hívják.
   
   ![][2]
 
-hello a következő szakaszok az architektúrát megvalósító kódot hello tárgyalja.
+Az alábbi szakaszok az architektúrát megvalósító kódot ismertetik.
 
-## <a name="set-up-hello-development-environment"></a>Hello fejlesztési környezet beállítása
-Csak akkor használhatja az Azure-alkalmazások fejlesztésével, hello eszközök lekérni, és állítsa be a fejlesztési környezetet.
+## <a name="set-up-the-development-environment"></a>A fejlesztési környezet kialakítása
+Az Azure-alkalmazások fejlesztésének megkezdése előtt szerezze be az eszközöket és állítsa be a fejlesztési környezetet.
 
-1. Hello Azure SDK telepítse a .NET hello SDK [letöltési oldalon](https://azure.microsoft.com/downloads/).
-2. A hello **.NET** oszlopban kattintson hello verziója [Visual Studio](http://www.visualstudio.com) használ. hello lépéseit az oktatóanyag Visual Studio 2015-öt használja, de ezek a Visual Studio 2017 is működnek.
-3. Ha toorun kéri, vagy hello telepítő mentéséhez, kattintson **futtatása**.
-4. A hello **Webplatform-telepítő**, kattintson a **telepítése** és hello a telepítés folytatásához.
-5. Hello telepítés befejezése után, hogy minden szükséges toostart toodevelop hello alkalmazást. hello SDK olyan eszközöket tartalmaz, amelyekkel könnyedén fejleszthet Azure-alkalmazásokat a Visual Studio.
+1. Telepítse az Azure SDK for .NET-et az SDK [letöltési oldaláról](https://azure.microsoft.com/downloads/).
+2. A **.NET** oszlopban kattintson a használt [Visual Studio](http://www.visualstudio.com)-verzióra. A jelen oktatóanyagban szereplő lépések a Visual Studio 2015-öt használják, de ezek a Visual Studio 2017-ben is működnek.
+3. A telepítő futtatásának vagy mentésének kérdésére válaszolva kattintson a **Futtatás** gombra.
+4. A **Webplatform-telepítőben** kattintson a **Telepítés** gombra, és folytassa a telepítést.
+5. A telepítés végén az alkalmazás fejlesztésének megkezdéséhez szükséges összes eszközzel rendelkezni fog. Az SDK olyan eszközöket tartalmaz, amelyekkel könnyedén fejleszthet Azure-alkalmazásokat a Visual Studióban.
 
 ## <a name="create-a-namespace"></a>Névtér létrehozása
-következő lépés hello toocreate egy névtér, és egy közös hozzáférésű Jogosultságkód (SAS) kulcs beszerzése. A névtér egy alkalmazáshatárt biztosít a Service Buson keresztül közzétett minden alkalmazáshoz. Az SAS-kulcsot a hello rendszer jön létre, amikor egy névtér jön létre. névtér és SAS-kulcs hello kombinációja a Service Bus tooauthenticate hozzáférés tooan alkalmazás hello hitelesítő adatokat tartalmazza.
+A következő lépés egy szolgáltatásnévtér létrehozása, valamint egy közös hozzáférésű jogosultságkód (SAS-) kulcs beszerzése. A névtér egy alkalmazáshatárt biztosít a Service Buson keresztül közzétett minden alkalmazáshoz. Az SAS-kulcsot a rendszer állítja elő a névtér létrehozásakor. A névtér és az SAS-kulcs együttes használata hitelesítő adatokat biztosít a Service Bus számára, amellyel hitelesíti a hozzáférést egy alkalmazáshoz.
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
 ## <a name="create-a-web-role"></a>Webes szerepkör létrehozása
-Ebben a szakaszban az alkalmazás előtérrendszerét hello hoz létre. Először hozza létre az alkalmazás által megjelenített hello oldalakat.
-Ezt követően adja hozzá a kódot, amely elküldi a cikkek tooa Service Bus-üzenetsorba, és hello várólista állapotadatait jeleníti meg.
+Ebben a szakaszban az alkalmazás előtérrendszerét hozza létre. Először létrehozza az alkalmazás által megjelenített oldalakat.
+Ezt követően hozzáadja a kódot, amely elemeket küld el a Service Bus-üzenetsorba, és megjeleníti az üzenetsor állapotára vonatkozó információkat.
 
-### <a name="create-hello-project"></a>Hello projekt létrehozása
-1. Rendszergazdai jogosultságokkal indítsa el a Visual Studio: kattintson a jobb gombbal hello **Visual Studio** programikonra, és kattintson a **Futtatás rendszergazdaként**. hello Azure compute emulator, ebben a cikkben korábban tárgyalt van szükség, hogy a Visual Studio rendszergazdai jogosultságokkal indítja el.
+### <a name="create-the-project"></a>A projekt létrehozása
+1. Rendszergazdai jogosultságokkal indítsa el a Visual Studio alkalmazást: kattintson a jobb gombbal a **Visual Studio** programikonra, majd kattintson a **Futtatás rendszergazdaként** parancsra. A cikkben korábban tárgyalt Azure Compute Emulatorhoz a Visual Studiót rendszergazdai jogosultságokkal kell elindítani.
    
-   A Visual Studio, a hello **fájl** menüben kattintson a **új**, és kattintson a **projekt**.
-2. Az **Installed Templates** (Telepített sablonok) lap **Visual C#** területén kattintson a **Cloud** (Felhő), majd az **Azure Cloud Service** (Azure-felhőszolgáltatás) elemre. Név hello projekt **MultiTierApp**. Ezután kattintson az **OK** gombra.
+   A Visual Studio programban, a **File** (Fájl) menüben kattintson a **New** (Új) elemre, majd kattintson a **Project** (Projekt) elemre.
+2. Az **Installed Templates** (Telepített sablonok) lap **Visual C#** területén kattintson a **Cloud** (Felhő), majd az **Azure Cloud Service** (Azure-felhőszolgáltatás) elemre. Adja a projektnek a **MultiTierApp** nevet. Ezután kattintson az **OK** gombra.
    
    ![][9]
 3. A **.NET Framework 4.5** (.NET-keretrendszer 4.5) szerepkörök között kattintson duplán az **ASP.NET Web Role** (ASP.NET webes szerepkör) elemre.
    
    ![][10]
-4. Vigye **WebRole1** alatt **Azure Cloud Service megoldás**, hello ceruza ikonra, és nevezze át a hello webes szerepkör túl**FrontendWebRole**. Ezután kattintson az **OK** gombra. (Ügyeljen, hogy a „Frontend” nevet kis „e” betűvel írja, és ne „FrontEnd” formában.)
+4. Vigye a mutatót a **WebRole1** elem fölé az **Azure Cloud Service solution** (Azure-felhőszolgáltatási megoldás) alatt, kattintson a ceruza ikonra, és írja át a webes szerepkör nevét a következőre: **FrontendWebRole**. Ezután kattintson az **OK** gombra. (Ügyeljen, hogy a „Frontend” nevet kis „e” betűvel írja, és ne „FrontEnd” formában.)
    
    ![][11]
-5. A hello **új ASP.NET projekt** párbeszédpanel hello **válasszon olyan sablont,** listában, kattintson **MVC**.
+5. A **New ASP.NET Project** (Új ASP.NET-projekt) párbeszédpanel **Select a template** (Sablon kiválasztása) listáján kattintson az **MVC** elemre.
    
    ![][12]
-6. Továbbra is a hello **új ASP.NET-projekt** párbeszédpanelen kattintson az hello **hitelesítés módosítása** gomb. A hello **hitelesítés módosítása** párbeszédpanel, kattintson a **nem hitelesítési**, és kattintson a **OK**. Ebben az oktatóanyaghoz egy olyan alkalmazást hoz létre, amelyhez nincs szükség felhasználói bejelentkezésre.
+6. Továbbra is a **New ASP.NET Project** (Új ASP.NET-projekt) párbeszédpanelen kattintson a **Change Authentication** (Hitelesítés módosítása) gombra. A **Change Authentication** (Hitelesítés módosítása) párbeszédpanelen kattintson a **No Authentication** (Nincs hitelesítés) elemre, majd az **OK** gombra. Ebben az oktatóanyaghoz egy olyan alkalmazást hoz létre, amelyhez nincs szükség felhasználói bejelentkezésre.
    
     ![][16]
-7. Vissza a hello **új ASP.NET projekt** párbeszédpanel, kattintson a **OK** toocreate hello projekt.
-8. A **Solution Explorer**, a hello **FrontendWebRole** projektre, kattintson a jobb gombbal **hivatkozások**, majd kattintson a **NuGet-csomagok kezelése**.
-9. Kattintson a hello **Tallózás** lapra, és keresse meg `Microsoft Azure Service Bus`. Jelölje be hello **WindowsAzure.ServiceBus** csomagot, kattintson a **telepítése**, és el kell fogadnia a használati feltételek hello.
+7. A **New ASP.NET Project** (Új ASP.NET-projekt) párbeszédpanelen kattintson az **OK** gombra a projekt létrehozásához.
+8. A **Megoldáskezelőben** a **FrontendWebRole** projektben kattintson a jobb gombbal a **References** (Hivatkozások) elemre, majd kattintson a **Manage NuGet Packages** (NuGet-csomagok kezelése) parancsra.
+9. Kattintson a **Browse** (Tallózás) lapra, és keressen a következőre: `Microsoft Azure Service Bus`. Válassza ki a **WindowsAzure.ServiceBus** csomagot, kattintson a **Telepítés** elemre, és fogadja el a használati feltételeket.
    
    ![][13]
    
-   Vegye figyelembe, hogy hello szükséges ügyfélszerelvények most már hivatkozottak és hozzáadott néhány új kódot fájlt.
-10. A **Megoldáskezelőben** kattintson a jobb gombbal a **Models** (Modellek) elemre, kattintson az **Add** (Hozzáadás) parancsra, majd kattintson a **Class** (Osztály) elemre. A hello **neve** mezőbe, írja be a hello nevet **OnlineOrder.cs**. Ezután kattintson az **Add** (Hozzáadás) gombra.
+   Vegye figyelembe, hogy a rendszer létrehozta a szükséges ügyfélszerelvényekre mutató hivatkozásokat, és hozzáadott néhány új kódfájlt.
+10. A **Megoldáskezelőben** kattintson a jobb gombbal a **Models** (Modellek) elemre, kattintson az **Add** (Hozzáadás) parancsra, majd kattintson a **Class** (Osztály) elemre. A **Name** (Név) mezőbe írja be az **OnlineOrder.cs** nevet. Ezután kattintson az **Add** (Hozzáadás) gombra.
 
-### <a name="write-hello-code-for-your-web-role"></a>A webes szerepkör hello kód írása
-Ebben a szakaszban az alkalmazás által megjelenített különféle oldalakat hello hoz létre.
+### <a name="write-the-code-for-your-web-role"></a>A webes szerepkör kódjának megírása
+Ebben a szakaszban az alkalmazás által megjelenített különféle oldalakat hozza létre.
 
-1. Visual Studio hello OnlineOrder.cs fájlban cserélje le a meglévő névtér-definíciót hello a következő kódot:
+1. A Visual Studióban az OnlineOrder.cs fájlban cserélje le a meglévő névtér-definíciót az alábbi kódra:
    
    ```csharp
    namespace FrontendWebRole.Models
@@ -119,14 +119,14 @@ Ebben a szakaszban az alkalmazás által megjelenített különféle oldalakat h
        }
    }
    ```
-2. A **Megoldáskezelőben** kattintson duplán a **Controllers\HomeController.cs** elemre. Adja hozzá a következő hello **használatával** hello hello tetején utasítások tooinclude hello névtereknek az imént létrehozott modellbe, valamint a Service Bus az fájlt.
+2. A **Megoldáskezelőben** kattintson duplán a **Controllers\HomeController.cs** elemre. Adja hozzá az alábbi **using** utasításokat a fájl elejéhez a névtereknek az imént létrehozott modellbe, valamint a Service Busba való foglalásához.
    
    ```csharp
    using FrontendWebRole.Models;
    using Microsoft.ServiceBus.Messaging;
    using Microsoft.ServiceBus;
    ```
-3. Is Visual Studio hello HomeController.cs fájlban cserélje le a meglévő névtér-definíciót a következő kód hello. Ez a kód elemek toohello várólista hello küldésének kezelésére vonatkozó metódusokat tartalmaz.
+3. Szintén a Visual Studióban a HomeController.cs fájlban cserélje le a meglévő névtér-definíciót az alábbi kódra. A kód az elemeknek az üzenetsorba való küldésének kezelésére vonatkozó metódusokat tartalmaz.
    
    ```csharp
    namespace FrontendWebRole.Controllers
@@ -135,7 +135,7 @@ Ebben a szakaszban az alkalmazás által megjelenített különféle oldalakat h
        {
            public ActionResult Index()
            {
-               // Simply redirect tooSubmit, since Submit will serve as the
+               // Simply redirect to Submit, since Submit will serve as the
                // front page of this application.
                return RedirectToAction("Submit");
            }
@@ -146,7 +146,7 @@ Ebben a szakaszban az alkalmazás által megjelenített különféle oldalakat h
            }
    
            // GET: /Home/Submit.
-           // Controller method for a view you will create for hello submission
+           // Controller method for a view you will create for the submission
            // form.
            public ActionResult Submit()
            {
@@ -156,17 +156,17 @@ Ebben a szakaszban az alkalmazás által megjelenített különféle oldalakat h
            }
    
            // POST: /Home/Submit.
-           // Controller method for handling submissions from hello submission
+           // Controller method for handling submissions from the submission
            // form.
            [HttpPost]
-           // Attribute toohelp prevent cross-site scripting attacks and
+           // Attribute to help prevent cross-site scripting attacks and
            // cross-site request forgery.  
            [ValidateAntiForgeryToken]
            public ActionResult Submit(OnlineOrder order)
            {
                if (ModelState.IsValid)
                {
-                   // Will put code for submitting tooqueue here.
+                   // Will put code for submitting to queue here.
    
                    return RedirectToAction("Submit");
                }
@@ -178,34 +178,34 @@ Ebben a szakaszban az alkalmazás által megjelenített különféle oldalakat h
        }
    }
    ```
-4. A hello **Build** menüben kattintson a **megoldás fordítása** eddigi munkája pontosságát tootest hello.
-5. Most, a hello hello nézetet létrehoznia `Submit()` módszer a korábban létrehozott. Kattintson a jobb gombbal hello `Submit()` metódus (hello túlterhelése `Submit()` -túlterhelésbe), és válassza a **nézet hozzáadása**.
+4. A **Build** (Létrehozás) menüben kattintson a **Build Solution** (Megoldás létrehozása) elemre az eddigi munkája pontosságának ellenőrzésére.
+5. Most hozza létre a korábban létrehozott `Submit()` metódus nézetét. Kattintson a jobb gombbal a `Submit()` metódusban (a paraméterekkel nem rendelkező `Submit()`-túlterhelésbe), majd válassza az **Add View** (Nézet hozzáadása) elemet.
    
    ![][14]
-6. Megjelenik egy párbeszédpanel hello nézet létrehozásához. A hello **sablon** menüben válassza ki **létrehozása**. A hello **Model class** listában, kattintson a hello **OnlineOrder** osztály.
+6. Megjelenik egy párbeszédpanel a nézet létrehozásához. A **Template** (Sablon) listában válassza a **Create** (Létrehozás) lehetőséget. A **Model class** (Modellosztály) listában kattintson az **OnlineOrder** osztályra.
    
    ![][15]
 7. Kattintson az **Add** (Hozzáadás) parancsra.
-8. Módosítsa az alkalmazás hello megjelenített nevét. A **Megoldáskezelőben**, kattintson duplán a **Views\Shared\\_Layout.cshtml** tooopen fájlt azt hello Visual Studio szerkesztőjében.
+8. Módosítsa az alkalmazás megjelenő nevét. A **Megoldáskezelőben** kattintson duplán a **Views\Shared\\_Layout.cshtml** fájlra a Visual Studio-szerkesztőben való megnyitásához.
 9. Cserélje le a **My ASP.NET Application** (Saját ASP.NET-alkalmazás) minden előfordulását **LITWARE's Products** (LITWARE-termékek) értékre.
-10. Távolítsa el a hello **Home**, **kapcsolatos**, és **forduljon** hivatkozásokat. Törölje a kiemelt hello kódot:
+10. Távolítsa el a **Home** (Kezdőlap), **About** (Névjegy) és **Contact** (Kapcsolatfelvétel) hivatkozást. Törölje a kiemelt kódot:
     
     ![][28]
-11. Végül módosítsa hello küldésének lap tooinclude hello várólista kapcsolatos információkat. A **Megoldáskezelőben**, kattintson duplán a **Views\Home\Submit.cshtml** tooopen fájlt azt hello Visual Studio szerkesztőjében. Adja hozzá a következő sor után hello `<h2>Submit</h2>`. Most hello `ViewBag.MessageCount` üres. Később fogja majd feltölteni.
+11. Végül módosítsa úgy az elküldési lapot, hogy az megjelenítse az üzenetsorral kapcsolatos információkat. A **Megoldáskezelőben** kattintson duplán a **Views\Home\Submit.cshtml** fájlra a Visual Studio-szerkesztőben való megnyitásához. Adja hozzá a következő sort a `<h2>Submit</h2>` után. A `ViewBag.MessageCount` jelenleg üres. Később fogja majd feltölteni.
     
     ```html
-    <p>Current number of orders in queue waiting toobe processed: @ViewBag.MessageCount</p>
+    <p>Current number of orders in queue waiting to be processed: @ViewBag.MessageCount</p>
     ```
-12. Megvalósította a felhasználói felületet. Lenyomhatja **F5** toorun az alkalmazást, és győződjön meg arról, hogy várakozásainak megfelelően várt.
+12. Megvalósította a felhasználói felületet. Az **F5** billentyű lenyomásával futtathatja az alkalmazást, és ellenőrizheti, hogy várakozásainak megfelelően jelenik-e meg.
     
     ![][17]
 
-### <a name="write-hello-code-for-submitting-items-tooa-service-bus-queue"></a>Elemek tooa Service Bus-üzenetsorba küldéséhez hello kód írása
-Ezután adja hozzá a kód elküldésekor elemek tooa várólista. Először hozza létre a Service Bus-üzenetsor kapcsolati adatait tartalmazó osztályt. Ezután inicializálja a kapcsolatot a Global.aspx.cs osztályból. Végül frissítse a korábban a HomeController.cs tooactually submit elemek tooa Service Bus-üzenetsorba létrehozott hello elküldési kódot.
+### <a name="write-the-code-for-submitting-items-to-a-service-bus-queue"></a>Az elemeknek a Service Bus-üzenetsorba történő elküldésére szolgáló kód megírása
+Adja hozzá az elemeknek a Service Bus-üzenetsorba történő elküldésére szolgáló kódot. Először hozza létre a Service Bus-üzenetsor kapcsolati adatait tartalmazó osztályt. Ezután inicializálja a kapcsolatot a Global.aspx.cs osztályból. Végül frissítse a korábban a HomeController.cs osztályban létrehozott elküldési kódot az elemek tényleges elküldéséhez a Service Bus-üzenetsorba.
 
-1. A **Megoldáskezelőben**, kattintson a jobb gombbal **FrontendWebRole** (kattintson a jobb gombbal hello projekt, nem hello szerepkör). Kattintson az **Add** (Hozzáadás), majd a **Class** (Osztály) elemre.
-2. Hello osztály neve **QueueConnector.cs**. Kattintson a **Hozzáadás** toocreate hello osztály.
-3. Ezután adja hozzá a kódot, amely magában foglalja a hello kapcsolati adatokat, és inicializálja az hello kapcsolat tooa Service Bus-üzenetsorba. Cserélje le a QueueConnector.cs teljes tartalmát hello hello a következő kódot, és adja meg az értékeket `your Service Bus namespace` (névtér neve) és `yourKey`, vagyis hello **elsődleges kulcs** korábban szerzett hello Azure portál.
+1. A **Megoldáskezelőben** kattintson a jobb gombbal a **FrontendWebRole** projektre (a projektre, ne a szerepkörre kattintson a jobb gombbal). Kattintson az **Add** (Hozzáadás), majd a **Class** (Osztály) elemre.
+2. Adja az osztálynak a **QueueConnector.cs** nevet. Kattintson az **Add** (Hozzáadás) gombra az osztály létrehozásához.
+3. Adja hozzá a kapcsolati adatokat tartalmazó és a Service Bus-üzenetsorral létesített kapcsolatot inicializáló kódot. Cserélje le a QueueConnector.cs teljes tartalmát a következő kódra, és adjon meg értéket a `your Service Bus namespace` (névtér neve) és a `yourKey` számára, amely az az **elsődleges kulcs**, amelyet korábban az Azure Portalon szerzett be.
    
    ```csharp
    using System;
@@ -223,15 +223,15 @@ Ezután adja hozzá a kód elküldésekor elemek tooa várólista. Először hoz
            // on every request.
            public static QueueClient OrdersQueueClient;
    
-           // Obtain these values from hello portal.
+           // Obtain these values from the portal.
            public const string Namespace = "your Service Bus namespace";
    
-           // hello name of your queue.
+           // The name of your queue.
            public const string QueueName = "OrdersQueue";
    
            public static NamespaceManager CreateNamespaceManager()
            {
-               // Create hello namespace manager which gives you access to
+               // Create the namespace manager which gives you access to
                // management operations.
                var uri = ServiceBusEnvironment.CreateServiceUri(
                    "sb", Namespace, String.Empty);
@@ -242,21 +242,21 @@ Ezután adja hozzá a kód elküldésekor elemek tooa várólista. Először hoz
    
            public static void Initialize()
            {
-               // Using Http toobe friendly with outbound firewalls.
+               // Using Http to be friendly with outbound firewalls.
                ServiceBusEnvironment.SystemConnectivity.Mode =
                    ConnectivityMode.Http;
    
-               // Create hello namespace manager which gives you access to
+               // Create the namespace manager which gives you access to
                // management operations.
                var namespaceManager = CreateNamespaceManager();
    
-               // Create hello queue if it does not exist already.
+               // Create the queue if it does not exist already.
                if (!namespaceManager.QueueExists(QueueName))
                {
                    namespaceManager.CreateQueue(QueueName);
                }
    
-               // Get a client toohello queue.
+               // Get a client to the queue.
                var messagingFactory = MessagingFactory.Create(
                    namespaceManager.Address,
                    namespaceManager.Settings.TokenProvider);
@@ -267,39 +267,39 @@ Ezután adja hozzá a kód elküldésekor elemek tooa várólista. Először hoz
    }
    ```
 4. Ellenőrizze, hogy az **Initialize** metódus meghívása megtörténik. A **Megoldáskezelőben** kattintson duplán a **Global.asax\Global.asax.cs** elemre.
-5. Adja hozzá a következő kódsort hello hello végén hello **Application_Start** metódust.
+5. Adja hozzá az alábbi kódsort az **Application_Start** metódus végén.
    
    ```csharp
    FrontendWebRole.QueueConnector.Initialize();
    ```
-6. Végül frissítse a korábban létrehozott elemek toohello várólista elküldeni hello webes kódját. A **Megoldáskezelőben** kattintson duplán a **Controllers\HomeController.cs** elemre.
-7. Frissítés hello `Submit()` metódust (hello rendelkező túlterhelést paraméter nélküli) az alábbiak szerint tooget üdvözlőüzenetére száma hello várólista.
+6. Végül frissítse a korábban létrehozott webkódot az elemek elküldéséhez az üzenetsorba. A **Megoldáskezelőben** kattintson duplán a **Controllers\HomeController.cs** elemre.
+7. Frissítse a `Submit()` metódust (a paraméterekkel nem rendelkező túlterhelést) az alábbiak szerint, hogy megkapja az üzenetsorban lévő üzenetek számát.
    
    ```csharp
    public ActionResult Submit()
    {
-       // Get a NamespaceManager which allows you tooperform management and
+       // Get a NamespaceManager which allows you to perform management and
        // diagnostic operations on your Service Bus queues.
        var namespaceManager = QueueConnector.CreateNamespaceManager();
    
-       // Get hello queue, and obtain hello message count.
+       // Get the queue, and obtain the message count.
        var queue = namespaceManager.GetQueue(QueueConnector.QueueName);
        ViewBag.MessageCount = queue.MessageCount;
    
        return View();
    }
    ```
-8. Frissítés hello `Submit(OnlineOrder order)` metódust (hello rendelkező túlterhelést egy paraméter) az alábbiak szerint toosubmit sorrendben információk toohello várólista.
+8. Frissítse a `Submit(OnlineOrder order)` metódust (az egy paraméterrel rendelkező túlterhelést) az alábbiak szerint, hogy elküldje a rendelésinformációkat az üzenetsorba.
    
    ```csharp
    public ActionResult Submit(OnlineOrder order)
    {
        if (ModelState.IsValid)
        {
-           // Create a message from hello order.
+           // Create a message from the order.
            var message = new BrokeredMessage(order);
    
-           // Submit hello order.
+           // Submit the order.
            QueueConnector.OrdersQueueClient.Send(message);
            return RedirectToAction("Submit");
        }
@@ -309,63 +309,63 @@ Ezután adja hozzá a kód elküldésekor elemek tooa várólista. Először hoz
        }
    }
    ```
-9. Most futtathatja hello az alkalmazást. Minden alkalommal, amikor elküld egy rendelést hello üzenetek száma nőni fog.
+9. Most ismét futtathatja az alkalmazást. Minden egyes alkalommal, amikor elküld egy rendelést, az üzenetek száma nőni fog.
    
    ![][18]
 
-## <a name="create-hello-worker-role"></a>Hello feldolgozói szerepkör létrehozása
-Mostantól létrehozhat hello feldolgozói szerepkör, amely feldolgozza a hello elküldött rendeléseket. Ez a példa hello **feldolgozói szerepkör Service Bus-üzenetsorba való** Visual Studio-projektsablont. Hello portálról beszerzett hello szükséges hitelesítő adatok már.
+## <a name="create-the-worker-role"></a>A feldolgozói szerepkör létrehozása
+Most létrehozza a feldolgozói szerepkört, amely feldolgozza az elküldött rendeléseket. Ez a példa a **Worker Role with Service Bus Queue** (Feldolgozói szerepkör Service Bus-üzenetsorral) Visual Studio-projektsablont használja. A szükséges hitelesítő adatokat már beszerezte a portálról.
 
-1. Győződjön meg arról, hogy csatlakozott a Visual Studio tooyour Azure-fiók.
-2. A Visual Studio a **Megoldáskezelőben** kattintson a jobb gombbal a **szerepkörök** hello mappája **MultiTierApp** projekt.
-3. Kattintson az **Add** (Hozzáadás), majd a **New Worker Role Project** (Új feldolgozói szerepkör projekt) elemre. Hello **új szerepkör projekt hozzáadása** párbeszédpanel jelenik meg.
+1. Ellenőrizze, hogy társította-e a Visual Studiót az Azure-fiókjával.
+2. A Visual Studio **Megoldáskezelőjében** kattintson a jobb gombbal a **Roles** (Szerepkörök) mappára a **MultiTierApp** projekt alatt.
+3. Kattintson az **Add** (Hozzáadás), majd a **New Worker Role Project** (Új feldolgozói szerepkör projekt) elemre. Megjelenik az **Add New Role Project** (Új szerepkör projekt hozzáadása) párbeszédpanel.
    
    ![][26]
-4. A hello **új szerepkör projekt hozzáadása** párbeszédpanel, kattintson a **feldolgozói szerepkör Service Bus-üzenetsorba való**.
+4. Az **Add New Role Project** (Új szerepkör projekt hozzáadása) párbeszédpanelen kattintson a **Worker Role with Service Bus Queue** (Feldolgozói szerepkör Service Bus-üzenetsorral) lehetőségre.
    
    ![][23]
-5. A hello **neve** mezőbe, a név hello projekt **OrderProcessingRole**. Ezután kattintson az **Add** (Hozzáadás) gombra.
-6. Másolás hello kapcsolati karakterláncot, amely hello "Service Bus-névtér létrehozása" szakasz toohello vágólapra 9. lépésben beolvasott.
-7. A **Megoldáskezelőben**, kattintson a jobb gombbal hello **OrderProcessingRole** 5. lépésben létrehozott (Győződjön meg arról, hogy a jobb gombbal **OrderProcessingRole** alatt **Szerepkörök**, és nem hello osztály). Ezután kattintson a **Properties** (Tulajdonságok) elemre.
-8. A hello **beállítások** hello lapján **tulajdonságok** párbeszédpanelen kattintson belül hello **érték** mezőjének **value**, majd illessze be a 6. lépésben másolt végpontértéket hello.
+5. A **Name** (Név) mezőben adja az **OrderProcessingRole** nevet a projektnek. Ezután kattintson az **Add** (Hozzáadás) gombra.
+6. Másolja a „Service Bus-névtér létrehozása” szakasz 9. lépésében beszerzett kapcsolati karakterláncot a vágólapra.
+7. A **Megoldáskezelőben** kattintson a jobb gombbal az 5. lépésben létrehozott **OrderProcessingRole** szerepkörre (az **OrderProcessingRole** szerepkörre kattintson a jobb gombbal a **Roles** (Szerepkörök) részen, és ne az osztályra). Ezután kattintson a **Properties** (Tulajdonságok) elemre.
+8. A **Properties** (Tulajdonságok) párbeszédpanel **Settings** (Beállítások) lapján kattintson a **Microsoft.ServiceBus.ConnectionString** **Value** (Érték) mezőjébe, és illessze be a 6. lépésben másolt végpontértéket.
    
    ![][25]
-9. Hozzon létre egy **OnlineOrder** toorepresent hello rendelések osztályt hello várólistából feldolgozni. Használhat egy korábban létrehozott osztályt. A **Megoldáskezelőben**, kattintson a jobb gombbal hello **OrderProcessingRole** osztály (kattintson a jobb gombbal hello osztály ikonjára, ne hello szerepkörre). Kattintson az **Add** (Hozzáadás), majd az **Existing Item** (Meglévő elem) elemre.
-10. Keresse meg az almappát toohello **FrontendWebRole\Models**, majd kattintson duplán **OnlineOrder.cs** tooadd azt toothis projekt.
-11. A **WorkerRole.cs**, hello hello értékének módosítása **QueueName** változót `"ProcessingQueue"` túl`"OrdersQueue"` hello kód a következő ábrán.
+9. Hozza létre az **OnlineOrder** osztályt az üzenetsorból feldolgozott rendelések jelölésére. Használhat egy korábban létrehozott osztályt. A **Megoldáskezelőben** kattintson a jobb gombbal az **OrderProcessingRole** osztályra (az osztály ikonjára, ne a szerepkörre kattintson a jobb gombbal). Kattintson az **Add** (Hozzáadás), majd az **Existing Item** (Meglévő elem) elemre.
+10. Nyissa meg a **FrontendWebRole\Models** almappát, majd kattintson duplán az **OnlineOrder.cs** elemre a projekthez való hozzáadásához.
+11. A **WorkerRole.cs** osztályban az alábbi kódban látható módon módosítsa a **QueueName** változó `"ProcessingQueue"` értékét `"OrdersQueue"` értékre.
     
     ```csharp
-    // hello name of your queue.
+    // The name of your queue.
     const string QueueName = "OrdersQueue";
     ```
-12. Adja hozzá hello következő using utasítást hello hello WorkerRole.cs fájl elejéhez.
+12. Adja hozzá a következő using utasítást a WorkerRole.cs fájl elejéhez.
     
     ```csharp
     using FrontendWebRole.Models;
     ```
-13. A hello `Run()` függvény belül hello `OnMessage()` hívható meg, hogy lecseréli a hello hello tartalmát `try` a következő kód hello záradékot.
+13. Az `OnMessage()` hívás `Run()` függvényében cserélje le a `try` záradék tartalmát az alábbi kódra.
     
     ```csharp
     Trace.WriteLine("Processing", receivedMessage.SequenceNumber.ToString());
-    // View hello message as an OnlineOrder.
+    // View the message as an OnlineOrder.
     OnlineOrder order = receivedMessage.GetBody<OnlineOrder>();
     Trace.WriteLine(order.Customer + ": " + order.Product, "ProcessingMessage");
     receivedMessage.Complete();
     ```
-14. Hello alkalmazás befejeződött. Kattintson a jobb gombbal a hello MultiTierApp projektre a Megoldáskezelőben, tesztelheti hello teljes alkalmazás kiválasztása **beállítás kezdőprojektként**, majd nyomja le az F5 billentyűt. Vegye figyelembe, hogy az üzenetek száma nem nő, mert hello feldolgozói szerepkör feldolgozza hello várólistában lévő elemeket, és befejezettként jelöli meg azokat. A feldolgozói szerepkör nyomkövetési kimenetét hello megtekintésével hello Azure Compute Emulator felhasználói felületén tekintheti meg. Ehhez kattintson a jobb gombbal a hello emulátor ikonjára a tálca értesítési területén hello és kiválasztásával **Show Compute Emulator felhasználói felületén**.
+14. Befejezte az alkalmazást. A teljes alkalmazás teszteléséhez kattintson a jobb gombbal a MultiTierApp projektre a Megoldáskezelőben, válassza a **Set as Startup Project** (Beállítás kezdőprojektként) lehetőséget, majd nyomja le az F5 billentyűt. Láthatja, hogy az üzenetek száma nem nő, mert a feldolgozói szerepkör feldolgozza az üzenetsorban lévő elemeket, és befejezettként jelöli meg azokat. A feldolgozói szerepkör nyomkövetési kimenetét az Azure Compute Emulator felhasználói felületén tekintheti meg. Ehhez kattintson a jobb gombbal az emulátor ikonjára a tálca értesítési területén, és válassza a **Show Compute Emulator UI** (A Compute Emulator felhasználói felületének megjelenítése) lehetőséget.
     
     ![][19]
     
     ![][20]
 
 ## <a name="next-steps"></a>Következő lépések
-toolearn Service Bus kapcsolatos további információkért tekintse meg a következő erőforrások hello:  
+A Service Busról a következő forrásanyagokban találhat további információkat:  
 
 * [Az Azure Service Bus dokumentációja][sbdocs]  
 * [Service Bus szolgáltatás oldala][sbacom]  
-* [Hogyan tooUse Service Bus-üzenetsorok][sbacomqhowto]  
+* [A Service Bus-üzenetsorok használata][sbacomqhowto]  
 
-További információ a többrétegű konfigurációkat, toolearn lásd:  
+További információ a többrétegű forgatókönyvekkel kapcsolatban:  
 
 * [Többrétegű .NET-alkalmazások tárolótáblák, üzenetsorok és blobok használatával][mutitierstorage]  
 

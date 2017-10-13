@@ -1,6 +1,6 @@
 ---
-title: "az Azure MFA felhőben vagy a kiszolgáló közötti aaaChoose |} Microsoft Docs"
-description: "Válassza ki a hello a multi-factor authentication biztonsági megoldás, amely az Ön számára legmegfelelőbb azzal, hogy, milyen am I toosecure majd hol vannak a felhasználók található.  Ezután válassza a felhő, az MFA-kiszolgáló vagy az AD FS lehetőséget."
+title: "Az Azure MFA-felhő vagy -kiszolgáló kiválasztása | Microsoft Docs"
+description: "Az Önnek legmegfelelőbb többtényezős hitelesítési biztonsági megoldás kiválasztásához döntse el, mit szeretne biztonságossá tenni, és hol tárolja a rendszer a felhasználóit.  Ezután válassza a felhő, az MFA-kiszolgáló vagy az AD FS lehetőséget."
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -12,38 +12,38 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 04/23/2017
+ms.date: 08/25/2017
 ms.author: kgremban
-ms.openlocfilehash: bd9639e5f744f586d9143c6e90b105ed645eecb6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: cc5a0a8ff789b878cd5afb62176ae8bcf3f80902
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="choose-hello-azure-multi-factor-authentication-solution-for-you"></a>Válassza ki a hello Azure multi-factor Authentication megoldást
-Mivel több verziója Azure multi-factor Authentication (MFA), azt a néhány kérdések toofigure verziószámának ki van hello megfelelő egy toouse válaszolnia kell.  A kérdések a következők:
+# <a name="choose-the-azure-multi-factor-authentication-solution-for-you"></a>Az Azure Multi-Factor Authentication-megoldás kiválasztása
+Mivel az Azure Multi-Factor Authentication (MFA) számos változata használható, meg kell válaszolni néhány kérdést annak eldöntéséhez, hogy melyiket érdemes használni.  A kérdések a következők:
 
-* [Mi I kísérlet toosecure](#what-am-i-trying-to-secure)
-* [Hol található a hello felhasználók](#where-are-the-users-located)
+* [Mit próbálok biztonságossá tenni?](#what-am-i-trying-to-secure)
+* [Hol tárolja a rendszer a felhasználókat?](#where-are-the-users-located)
 * [Mely szolgáltatásokra van szükségem?](#what-featured-do-i-need)
 
-hello alábbi szakaszok nyújtanak útmutatást ezek a válaszok mindegyikére meghatározásának.
+A következő szakaszok útmutatást nyújtanak az egyes kérdések megválaszolásához.
 
-## <a name="what-am-i-trying-toosecure"></a>Mi I kísérlet toosecure?
-toodetermine hello megfelelő kétlépéses ellenőrzés megoldás, először azt válaszolnia kell, miközben a rendszer toosecure egy második hitelesítési eljárást is, melyek hello kérdését.  Egy alkalmazást az Azure-ban?  Vagy egy távelérésű rendszert?  Mi keressük meghatározásával toosecure, hogy meg tudja válaszolni, hello kérdés, amikor a multi-factor Authentication toobe engedélyezni kell.  
+## <a name="what-am-i-trying-to-secure"></a>Mit próbálok biztonságossá tenni?
+A megfelelő kétlépéses ellenőrzési megoldás meghatározásához először meg kell válaszolni azt a kérdést, hogy mit szeretnénk biztonságossá tenni egy második hitelesítési módszerrel.  Egy alkalmazást az Azure-ban?  Vagy egy távelérésű rendszert?  Annak meghatározásával, hogy mit szeretne biztonságossá tenni, választ kap arra a kérdésre, hogy hol szükséges engedélyezni a többtényezős hitelesítést.  
 
-| Mik azok a közben toosecure | Többtényezős hitelesítés hello felhőben | MFA-kiszolgáló |
+| Mit próbál biztonságossá tenni? | MFA a felhőben | MFA-kiszolgáló |
 | --- |:---:|:---:|
 | Belső Microsoft-alkalmazások |● |● |
-| SaaS-alkalmazásokat az hello alkalmazásgyűjtemény |● |  |
+| SaaS-alkalmazások az alkalmazáskatalógusban |● |  |
 | Az Azure AD-alkalmazásproxyn keresztül közzétett webalkalmazások |● |  |
 | Nem az Azure AD-alkalmazásproxyn keresztül közzétett IIS-alkalmazások | |● |
 | Távelérés, például VPN vagy RDG | ● | ● |
 
-## <a name="where-are-hello-users-located"></a>Hol található a hello felhasználók
-A következő megnézi a felhasználóinkat, hol találhatók a toodetermine hello megfelelő megoldás toouse, segítségével a hello felhő, vagy a helyszíni használatával hello MFA kiszolgáló.
+## <a name="where-are-the-users-located"></a>Hol tárolja a rendszer a felhasználókat?
+Ezután annak alapján, hogy a rendszer hol tárolja a felhasználókat, meghatározhatja a megfelelő megoldást, legyen az a felhőben, vagy a helyszínen az MFA-kiszolgálót használva.
 
-| Felhasználó helye | Többtényezős hitelesítés hello felhőben | MFA-kiszolgáló |
+| Felhasználó helye | MFA a felhőben | MFA-kiszolgáló |
 | --- |:---:|:---:|
 | Azure Active Directory |● | |
 | Azure AD és helyszíni AD összevonással az AD FS-sel |● |● |
@@ -52,9 +52,9 @@ A következő megnézi a felhasználóinkat, hol találhatók a toodetermine hel
 | Helyszíni Active Directory | |● |
 
 ## <a name="what-features-do-i-need"></a>Mely szolgáltatásokra van szükségem?
-hello alábbi táblázat összehasonlítja hello elérhető funkcióját, és a többtényezős hitelesítés hello felhőben és a multi-factor Authentication kiszolgáló hello.
+A következő táblázat a felhőbeli Multi-Factor Authentication és a Multi-Factor Authentication-kiszolgáló szolgáltatásait hasonlítja össze.
 
-| Szolgáltatás | Többtényezős hitelesítés hello felhőben | MFA-kiszolgáló |
+| Szolgáltatás | MFA a felhőben | MFA-kiszolgáló |
 | --- |:---:|:---:|
 | Mobilalkalmazásos értesítés második tényezőként | ● | ● |
 | Mobilalkalmazásos ellenőrzőkód második tényezőként | ● | ● |
@@ -77,11 +77,8 @@ hello alábbi táblázat összehasonlítja hello elérhető funkcióját, és a 
 
 ## <a name="next-steps"></a>Következő lépések
 
-Most, hogy azt észlelte toouse felhőalapú többtényezős hitelesítést vagy hello MFA kiszolgáló a helyszíni, hogy azt is elkezdheti beállításával és Azure multi-factor Authentication használatával. **Válassza ki a forgatókönyv hello ikonjára**
+Most, hogy tisztában van a különbséggel a felhőalapú Azure Multi-Factor Authentication és a helyszíni MFA-kiszolgáló között, beállíthatja és használatba veheti az Azure Multi-Factor Authenticationt. **Válassza ki az ikont, amely a forgatókönyvéhez tartozik**
 
 <center>
 
-
-
-
-[![Felhőalapú](./media/multi-factor-authentication-get-started/cloud2.png)](multi-factor-authentication-get-started-cloud.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![Kiszolgáló](./media/multi-factor-authentication-get-started/server2.png)](multi-factor-authentication-get-started-server.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center>
+[![MFA a felhőben](./media/multi-factor-authentication-get-started/cloud2.png)](multi-factor-authentication-get-started-cloud.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![MFA-kiszolgáló](./media/multi-factor-authentication-get-started/server2.png)](multi-factor-authentication-get-started-server.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center>

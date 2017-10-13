@@ -1,12 +1,12 @@
 ---
-title: "aaaIntel Edison toocloud (C) - csatlakozás Intel Edison tooAzure IoT-központ |} Microsoft Docs"
-description: "Megtudhatja, hogyan toosetup, és ebben az oktatóanyagban Intel Edison tooAzure IoT-központ Intel Edison toosend adatok toohello Azure cloud platform csatlakoznak."
+title: "Intel Edison felhőbe (C) - Intel Edison csatlakozzon az Azure IoT Hub |} Microsoft Docs"
+description: "Megtudhatja, hogyan kell beállítania, és Azure IoT-központ Intel Edison adatokat küldeni az Azure felhőalapú platform ebben az oktatóanyagban Intel Edison csatlakozni."
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timlt
 tags: 
-keywords: "az Azure iot intel edison, intel edison iot-központot, intel edison küldése adatok toocloud, intel edison toocloud"
+keywords: "az Azure iot intel edison, intel edison iot-központot, intel edison adatküldés intel felhőbe edison felhőbe"
 ms.assetid: 4885fa2c-c2ee-4253-b37f-ccd55f92b006
 ms.service: iot-hub
 ms.devlang: c
@@ -16,17 +16,17 @@ ms.workload: na
 ms.date: 4/17/2017
 ms.author: xshi
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: d0928e6c7870d724ff2044280937a45a9e032c75
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: edbdbe0230f742cd7228f04a4a83c9bd567527e8
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="connect-intel-edison-tooazure-iot-hub-c"></a>Intel Edison tooAzure IoT Hub (C) csatlakozás
+# <a name="connect-intel-edison-to-azure-iot-hub-c"></a>Csatlakozás Azure IoT Hub (C) Intel Edison
 
 [!INCLUDE [iot-hub-get-started-device-selector](../../includes/iot-hub-get-started-device-selector.md)]
 
-Ebben az oktatóanyagban akkor először hello használatának alapjait Intel Edison tanulási. Majd megismerheti, hogyan tooseamlessly összekapcsolni használatával eszközök toohello felhőalapú [Azure IoT Hub](iot-hub-what-is-iot-hub.md).
+Ebben az oktatóanyagban akkor először tanulás alapjainak Intel Edison használata. Majd megtudhatja, hogyan kapcsolódhat zökkenőmentesen az eszközök a felhőbe [Azure IoT Hub](iot-hub-what-is-iot-hub.md).
 
 Még nem rendelkezik egy csomagot? Start [Itt](https://azure.microsoft.com/develop/iot/starter-kits)
 
@@ -35,41 +35,41 @@ Még nem rendelkezik egy csomagot? Start [Itt](https://azure.microsoft.com/devel
 * A telepítő Intel Edison és és Groove-modulok.
 * Létrehoz egy IoT-központot.
 * Eszköz regisztrálása az Edison az IoT hub a.
-* Futtassa a mintaalkalmazást Edison toosend érzékelő adatokat tooyour IoT-központ.
+* Futtassa a mintaalkalmazást érzékelő adatokat küldeni az IoT hub Edison.
 
-Csatlakoztassa az Intel Edison tooan IoT-központ az Ön által létrehozott. Majd, futtassa a mintaalkalmazást Edison toocollect hőmérséklet és a páratartalom adatok Groove hőmérséklet-érzékelő. Végül el kell küldenie hello érzékelő adatokat tooyour IoT-központot.
+Az IoT-központ az Ön által létrehozott Intel Edison csatlakozni. Majd futtassa a mintaalkalmazást a Edison hőmérséklet és a páratartalom adatokat gyűjteni a Groove hőmérséklet-érzékelő. Végezetül az érzékelő adatokat küldött az IoT hub.
 
 ## <a name="what-you-learn"></a>Ismertetett témák
 
-* Hogyan toocreate az Azure IoT-központ és az új eszköz kapcsolati karakterláncot.
-* Hogyan tooconnect Edison rendelkező Groove hőmérséklet-érzékelő.
-* Hogyan toocollect érzékelőadatait Edison mintaalkalmazás futtatásával.
-* Hogyan toosend érzékelő adatokat tooyour IoT-központot.
+* Megtudhatja, hogyan hozzon létre egy Azure IoT-központot, és az új eszköz kapcsolati karakterláncot.
+* Hogyan Edison kapcsolódni egy Groove hőmérséklet-érzékelő.
+* Megtudhatja, hogyan futtatja a mintaalkalmazás Edison érzékelő adatok gyűjtéséért felelős ügyfélfeladatot.
+* Hogyan érzékelő adatokat küldeni az IoT hub.
 
 ## <a name="what-you-need"></a>Mi szükséges
 
 ![Mi szükséges](media/iot-hub-intel-edison-kit-c-get-started/0_kit.png)
 
-* hello Intel Edison board
+* Az Intel Edison Tanács
 * Arduino bővítése tábla
 * Aktív Azure-előfizetés. Ha az Azure-fiók nem rendelkezik [hozzon létre egy Azure próbafiókot](https://azure.microsoft.com/free/) csak néhány perc múlva.
 * A Mac vagy a Windows vagy Linux rendszerű számítógép.
 * Az internethez.
-* Egy Micro B tooType egy USB-kábellel
+* A típus egy USB-kábel Micro B
 * A közvetlen aktuális (DC) tápegység. A tápegység kell tekinthető meg az alábbiak szerint:
   - 7-15V TARTOMÁNYVEZÉRLŐ
   - Legalább 1500mA
-  - hello center/belső PIN-kód hello pozitív sarkpontot hello energiaellátás kell lennie.
+  - A Központ/belső PIN-kódot kell lennie a pozitív sarkpontot az energiaellátás
 
-a következő elemek hello nem kötelező:
+A következő elemek nem kötelező:
 
 * Groove alap pajzs V2
 * Groove - hőmérséklet-érzékelő
 * Groove kábel
-* Bármely Oszlopelválasztó sávok vagy csavart hello csomagolása, beleértve a két csavart toofasten hello modul toohello bővítése board és négy csavart és műanyag térköztartók szerepel.
+* Bármely Oszlopelválasztó sávok vagy csavart a csomagban, beleértve a két csavart vizsgálókocsihoz a bővítés board és négy csavart és műanyag térköztartók modul a része.
 
 > [!NOTE] 
-Ezek az elemek nem kötelező, mert hello kód a minta támogatási szimulált érzékelőadatait.
+Ezek az elemek nem kötelező, mert a kód a minta támogatási szimulált érzékelőadatait.
 
 [!INCLUDE [iot-hub-get-started-create-hub-and-device](../../includes/iot-hub-get-started-create-hub-and-device.md)]
 
@@ -77,23 +77,23 @@ Ezek az elemek nem kötelező, mert hello kód a minta támogatási szimulált �
 
 ### <a name="assemble-your-board"></a>A tábla összeállítása
 
-Jelen szakaszban található lépéseket tooattach az Intel® Edison modul tooyour bővítése tábla.
+Ez a szakasz az Intel® Edison modul csatlakoztatni a bővítés board lépéseket tartalmazza.
 
-1. A bővítés üzenőfalon, hello lyuk hello modul hello csavart hello bővítése táblán a sorba állítása hello Intel® Edison modul belül fehér hello vázlat helyezze el.
+1. A bővítés üzenőfalon, a bővítés táblán csavart, a modul a lyuk sorba állítása az Intel® Edison modul, a fehér vázlatban helyezze el.
 
-2. Nyomja le a hello modul hello szavak alatt `What will you make?` csak úgy érzi, hogy a beépülő modult.
+2. Nyomja le a modul a szavakat alatt `What will you make?` csak úgy érzi, hogy a beépülő modult.
 
    ![indítópanel 2 összeállítása](media/iot-hub-intel-edison-kit-c-get-started/1_assemble_board2.jpg)
 
-3. A két hello (hello csomagban található) hexadecimális nuts toosecure hello modul toohello bővítése tábla használatával.
+3. A bővítés board modul védelmére használja a két hexadecimális nuts (a csomagban található).
 
    ![indítópanel 3 összeállítása](media/iot-hub-intel-edison-kit-c-get-started/2_assemble_board3.jpg)
 
-4. Helyezze be a elment hello négy sarok lyukat hello bővítése táblán egyikében. Csavarás és szigoríthatja fehér hello műanyag térköztartók alakzatot hello csavart egyikét.
+4. Helyezze be elment egyet a négy sarok lyuk a bővítés táblán. Csavarás és szigoríthatja a csavart alakzatot fehér műanyag térköztartók egyikét.
 
    ![indítópanel 4 összeállítása](media/iot-hub-intel-edison-kit-c-get-started/3_assemble_board4.jpg)
 
-5. Ismételje meg a másik három sarok térköztartók hello.
+5. Ismételje meg a másik három sarok térköztartók.
 
    ![indítópanel 5 összeállítása](media/iot-hub-intel-edison-kit-c-get-started/4_assemble_board5.jpg)
 
@@ -101,15 +101,15 @@ Most már a üzenőfalon kész.
 
    ![üzenőfalon kész](media/iot-hub-intel-edison-kit-c-get-started/5_assembled_board.jpg)
 
-### <a name="connect-hello-grove-base-shield-and-hello-temperature-sensor"></a>Hello Groove talál pajzs és hello hőmérséklet-érzékelő
+### <a name="connect-the-grove-base-shield-and-the-temperature-sensor"></a>Csatlakoztassa a Groove talál pajzs és a hőmérséklet-érzékelő
 
-1. Hely hello Groove talál pajzs tooyour táblán. Győződjön meg arról, hogy a tábla szorosan csatlakoztatott összes PIN-kód.
+1. Jelölje be a tábla a Groove talál pajzs. Győződjön meg arról, hogy a tábla szorosan csatlakoztatott összes PIN-kód.
    
    ![Groove alap pajzs ikon](media/iot-hub-intel-edison-kit-c-get-started/6_grove_base_sheild.jpg)
 
-2. Használjon Groove kábel tooconnect Groove hőmérséklet-érzékelő alakzatot hello Groove talál pajzs **A0** port.
+2. Groove kábellel csatlakoztassa a Groove talál pajzs alakzatot Groove hőmérséklet-érzékelő **A0** port.
 
-   ![Csatlakozás tootemperature érzékelő](media/iot-hub-intel-edison-kit-c-get-started/7_temperature_sensor.jpg)
+   ![Csatlakozás hőmérséklet-érzékelő](media/iot-hub-intel-edison-kit-c-get-started/7_temperature_sensor.jpg)
    
    ![Edison és érzékelő kapcsolat](media/iot-hub-intel-edison-kit-c-get-started/16_edion_sensor.png)
 
@@ -117,78 +117,78 @@ Most már készen áll az érzékelő.
 
 ### <a name="power-up-edison"></a>Energiagazdálkodási Edison mentése
 
-1. Beépülő modul hello tápegység.
+1. Csatlakoztassa a tápegység.
 
    ![Beépülő modul tápegység](media/iot-hub-intel-edison-kit-c-get-started/8_plug_power.jpg)
 
-2. A zöld LED-jét (DS1 feliratú a hello Arduino * bővítése board) kell bonyolít le, és megvilágítottnak maradnak.
+2. A zöld LED-jét (DS1 feliratú a táblán Arduino * bővítése) kell bonyolít le, és megvilágítottnak maradnak.
 
-3. Várjon egy percet a hello board toofinish másolatából végrehajtott indítása.
+3. Várjon egy percet a kártya a rendszerindítás befejezéséhez.
 
    > [!NOTE]
-   > Ha egy tartományvezérlő tápegység nem rendelkezik, akkor is power hello board USB-porton keresztül. Lásd: `Connect Edison tooyour computer` című szakaszban talál információt. A tábla, ilyen módon működtetéséhez azt eredményezheti, hogy a tábláról előre nem látható viselkedéshez különösen akkor, ha a Wi-Fi használatával, vagy befolyásoló tényezők motorok.
+   > Ha nem rendelkezik a tartományvezérlő tápegység, továbbra is a USB-porton keresztül board power. Lásd: `Connect Edison to your computer` című szakaszban talál információt. A tábla, ilyen módon működtetéséhez azt eredményezheti, hogy a tábláról előre nem látható viselkedéshez különösen akkor, ha a Wi-Fi használatával, vagy befolyásoló tényezők motorok.
 
-### <a name="connect-edison-tooyour-computer"></a>Edison tooyour számítógép
+### <a name="connect-edison-to-your-computer"></a>Edison kapcsolódni a számítógéphez
 
-1. Váltás le hello mikrokapcsoló felé hello két micro USB-porttal, így Edison eszköz módban van. Az eszköz és a gazdagép üzemmód közötti különbségeket, tekintse át [Itt](https://software.intel.com/en-us/node/628233#usb-device-mode-vs-usb-host-mode).
+1. Váltás a két micro USB-porttal felé mikrokapcsoló le, hogy Edison eszköz módban van. Az eszköz és a gazdagép üzemmód közötti különbségeket, tekintse át [Itt](https://software.intel.com/en-us/node/628233#usb-device-mode-vs-usb-host-mode).
 
-   ![Váltás a hello mikrokapcsoló](media/iot-hub-intel-edison-kit-c-get-started/9_toggle_down_microswitch.jpg)
+   ![Váltás a mikrokapcsoló le](media/iot-hub-intel-edison-kit-c-get-started/9_toggle_down_microswitch.jpg)
 
-2. Hello micro USB-kábellel csatlakoztassa hello felső micro USB-porttal.
+2. A micro USB-kábellel csatlakoztassa a felső micro USB-porttal.
 
    ![Felső micro USB-port](media/iot-hub-intel-edison-kit-c-get-started/10_top_usbport.jpg)
 
-3. Plug hello USB-kábel másik végén a számítógépbe.
+3. Másik végén USB-kábellel csatlakoztassa a számítógépet.
 
    ![Számítógép USB](media/iot-hub-intel-edison-kit-c-get-started/11_computer_usb.jpg)
 
 4. Tudni fogják, hogy a tábla teljes inicializálását, amikor a számítógép csatlakoztat egy új meghajtót (hasonlóan egy SD-kártya beszúrása a számítógép).
 
-## <a name="download-and-run-hello-configuration-tool"></a>Hello konfigurációs eszköz letöltése és futtatása
-Hello legújabb konfiguráló eszköz az beszerzése [Ez a hivatkozás](https://software.intel.com/en-us/iot/hardware/edison/downloads) alatt hello feltüntetve `Installers` fejléc. Hello eszköz hajtható végre, és kövesse a képernyőn megjelenő utasításokat, amennyiben szükséges Tovább gombra kattint
+## <a name="download-and-run-the-configuration-tool"></a>A konfigurációs eszköz letöltése és futtatása
+A legfrissebb konfigurációs eszköz az beszerzése [erre a hivatkozásra](https://software.intel.com/en-us/iot/hardware/edison/downloads) tartozó a `Installers` fejléc. Az eszköz hajtható végre, és kövesse a képernyőn megjelenő utasításokat, amennyiben szükséges Tovább gombra kattint
 
 ### <a name="flash-firmware"></a>Belső vezérlőprogram Flash
-1. A hello `Set up options` kattintson `Flash Firmware`.
-2. Válassza ki a hello kép tooflash alakzatot a tábla hello következő tevékenységek végrehajtásával:
-   - toodownload és a flash hello legújabb belső vezérlőprogram lemezképpel érhetők el az Intel, a tábla válasszon `Download hello latest image version xxxx`.
-   - tooflash a tábla olyan képpel már mentette a számítógépen, válassza ki `Select hello local image`. Keresse meg a tooand válassza hello kép tooflash tooyour board szeretné.
-3. hello telepítő eszköz tooflash kísérli meg a tábla. hello teljes villogó folyamat too10 percig is tarthat.
+1. Az a `Set up options` kattintson `Flash Firmware`.
+2. Válassza ki a lemezképet flash alakzatot a tábla a következő módszerek valamelyikével:
+   - Töltse le, és a tábla a legújabb belső vezérlőprogram lemezképpel érhetők el az Intel flash, jelölje be `Download the latest image version xxxx`.
+   - A tábla már mentette a számítógépen lemezképhez flash, jelölje be `Select the local image`. Keresse meg és jelölje ki a flash a kártyához kívánt lemezképet.
+3. A telepítő eszköz megkísérli a tábla flash. A teljes villogó folyamat akár 10 percet is igénybe vehet.
 
 ### <a name="set-password"></a>Jelszó beállítása
-1. A hello `Set up options` kattintson `Enable Security`.
+1. Az a `Set up options` kattintson `Enable Security`.
 2. Az Intel® Edison board egyéni nevet állíthatja be. Ez nem kötelező.
 3. Adja meg a tábla jelszavát, majd kattintson az `Set password`.
-4. Üzemszünetének hello jelszót, amelyre később szolgál.
+4. A jelszót, amely később üzemszünetének.
 
 ### <a name="connect-wi-fi"></a>Wi-Fi csatlakozás
-1. A hello `Set up options` kattintson `Connect Wi-Fi`. Várjon, amíg fel tooone perc, a számítógép vizsgálatok elérhető Wi-Fi-hálózatok.
-2. A hello `Detected Networks` legördülő listára, válassza ki a hálózaton.
-3. A hello `Security` legördülő listában, jelölje be hello hálózati biztonság típusa.
+1. Az a `Set up options` kattintson `Connect Wi-Fi`. Várjon, amíg legfeljebb egy percig a számítógép elérhető Wi-Fi hálózatok keres.
+2. Az a `Detected Networks` legördülő listára, válassza ki a hálózaton.
+3. Az a `Security` legördülő listára, válassza ki a hálózati biztonság típusa.
 4. Adja meg a felhasználónevet és jelszót információkat, majd kattintson az `Configure Wi-Fi`.
-5. Üzemszünetének hello IP-címet, amely később szolgál.
+5. Az IP-cím, amely később üzemszünetének.
 
 > [!NOTE]
-> Győződjön meg arról, hogy Edison ugyanaz, mint a számítógép hálózati csatlakoztatott toohello. A számítógép csatlakozik a tooyour Edison hello IP-cím használatával.
+> Győződjön meg arról, hogy Edison és a számítógép ugyanahhoz a hálózathoz csatlakozik. A számítógép csatlakozik a Edison az IP-cím használatával.
 
-   ![Csatlakozás tootemperature érzékelő](media/iot-hub-intel-edison-kit-c-get-started/12_configuration_tool.png)
+   ![Csatlakozás hőmérséklet-érzékelő](media/iot-hub-intel-edison-kit-c-get-started/12_configuration_tool.png)
 
 Gratulálunk! Sikeresen konfigurálta az Edison.
 
 ## <a name="run-a-sample-application-on-intel-edison"></a>Futtassa a mintaalkalmazást az Intel Edison
 
-### <a name="prepare-hello-azure-iot-device-sdk"></a>Hello Azure IoT eszköz SDK előkészítése
+### <a name="prepare-the-azure-iot-device-sdk"></a>Az Azure IoT eszköz SDK előkészítése
 
-1. A fogadó számítógép tooconnect tooyour Intel Edison az SSH-ügyfél következő hello egyikét használhatja. hello IP-cím hello konfigurációs eszköze, hello jelszó pedig egy adott eszköz a beállított hello.
+1. A számítógép a következő SSH-ügyfél használatával az Intel Edison csatlakozni. Az IP-cím származik-e a konfigurációs eszközt, és a jelszót, az egy adott eszköz a beállított.
     - [A puTTY](http://www.putty.org/) Windows.
-    - hello beépített SSH-ügyfél Ubuntu vagy macOS (Futtatás `ssh root@"hello IP address"`).
+    - A beépített SSH-ügyfél Ubuntu vagy macOS (Futtatás `ssh root@"the IP address"`).
 
-2. Klónozás hello sample app tooyour ügyféleszközön. 
+2. Klónozza a mintaalkalmazást ügyfél az eszközre. 
    
    ```bash
    git clone https://github.com/Azure-Samples/iot-hub-c-intel-edison-client-app.git
    ```
 
-3. Navigáljon a toohello tárház mappa toorun hello a következő parancs toobuild Azure IoT-SDK
+3. Keresse meg a tárház mappa a következő parancsot hozhat létre Azure IoT-SDK
 
    ```bash
    cd iot-hub-c-intel-edison-client-app
@@ -197,9 +197,9 @@ Gratulálunk! Sikeresen konfigurálta az Edison.
    ./buildSDK.sh
    ```
 
-### <a name="configure-hello-sample-application"></a>Hello mintaalkalmazás konfigurálása
+### <a name="configure-the-sample-application"></a>A mintaalkalmazás konfigurálása
 
-1. Nyissa meg a konfigurációs fájl hello hello a következő parancsok futtatásával:
+1. Nyissa meg a konfigurációs fájlban a következő parancsok futtatásával:
 
    ```bash
    nano config.h
@@ -207,36 +207,36 @@ Gratulálunk! Sikeresen konfigurálta az Edison.
 
    ![A konfigurációs fájl](media/iot-hub-intel-edison-kit-c-get-started/13_configure_file.png)
 
-   Két makrók van ebben a fájlban configurate is. hello először egy van `INTERVAL`, amely megadja, hogy két toocloud küldött üzenetek hello időközét. második hello `SIMULATED_DATA`, vagyis az, hogy toouse szimulált-e érzékelőadatait vagy nem logikai értéket.
+   Két makrók van ebben a fájlban configurate is. Az első egy `INTERVAL`, amely megadja, hogy két felhőbe küldött üzeneteket közötti időközt. A második érték `SIMULATED_DATA`, vagyis az, hogy szimulált érzékelőadatait vagy nem logikai értéket.
 
-   Ha Ön **nincs hello érzékelő**, beállíthatja hello `SIMULATED_DATA` érték túl`1` toomake hello mintaalkalmazás létrehozása, és használjon szimulált érzékelőadatait.
+   Ha Ön **nem rendelkezik az érzékelő**, beállíthatja a `SIMULATED_DATA` egy érték `1` a minta kérelem létrehozása és használata a szimulált érzékelőadatait.
 
 2. Mentse és zárja be a vezérlő-O billentyűkombináció lenyomásával > Enter > CTRL-X.
 
-### <a name="build-and-run-hello-sample-application"></a>Hozza létre és hello mintaalkalmazás futtatása
+### <a name="build-and-run-the-sample-application"></a>Hozza létre, és futtassa a mintaalkalmazást
 
-1. Build hello mintaalkalmazás hello a következő parancs futtatásával:
+1. A mintaalkalmazás összeállítása a következő parancs futtatásával:
 
    ```bash
    cmake . && make
    ```
    ![Kimeneti összeállítása](media/iot-hub-intel-edison-kit-c-get-started/14_build_output.png)
 
-1. Futtassa a mintaalkalmazást hello hello a következő parancs futtatásával:
+1. Futtassa a mintaalkalmazást a következő parancs futtatásával:
 
    ```bash
    sudo ./app '<your Azure IoT hub device connection string>'
    ```
 
    > [!NOTE] 
-   Győződjön meg arról, hogy Ön-e beillesztési hello eszköz kapcsolati karakterláncot a hello szimpla idézőjelben.
+   Győződjön meg arról, hogy Ön-e beillesztési az eszköz kapcsolati karakterláncát azokat a szimpla idézőjelben.
 
-Meg kell jelennie a hello parancskimenet, hogy látható hello érzékelő adatokat és hello küldött üzenetek tooyour IoT-központot.
+A következő kimeneti bemutatja az érzékelő adatokat és az IoT hub küldött üzenetek kell megjelennie.
 
-![Kimeneti - érzékelő adatokat küldött az Intel Edison tooyour IoT-központ](media/iot-hub-intel-edison-kit-c-get-started/15_message_sent.png)
+![Kimeneti - érzékelő adatokat küldött az Intel Edison az IoT hubhoz](media/iot-hub-intel-edison-kit-c-get-started/15_message_sent.png)
 
 ## <a name="next-steps"></a>Következő lépések
 
-Egy alkalmazás toocollect érzékelő mintaadatok már futtatta, és elküldi a tooyour IoT-központot.
+Egy mintaalkalmazás érzékelő adatokat gyűjteni, és küldje el az IoT hub futtatását.
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]

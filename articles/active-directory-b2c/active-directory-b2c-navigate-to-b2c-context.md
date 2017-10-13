@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Active Directory B2C: Váltás tooa B2C bérlő |} Microsoft Docs"
-description: "Hogyan tooswitch való a Active Directory B2C hello kontextusában bérlői"
+title: "Azure Active Directory B2C: Átváltás B2C-bérlőre | Microsoft Docs"
+description: "Útmutató az Active Directory B2C-bérlői kontextusára történő átváltáshoz"
 services: active-directory-b2c
 documentationcenter: 
 author: parakhj
@@ -14,33 +14,33 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 4/13/2017
 ms.author: parakhj
-ms.openlocfilehash: 572f9ab283ecac68d284bb04fdfc98575bcf9393
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 40d8d57d974a949fbdc0a06eeceb2d06bfbaa09f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="switching-tooyour-azure-ad-b2c-tenant"></a>Váltás tooyour az Azure AD B2C bérlő
+# <a name="switching-to-your-azure-ad-b2c-tenant"></a>Átváltás az Azure AD B2C-bérlőre
 
-Rendelés tooconfigure az Azure AD B2C az Azure AD B2C-bérlő hello környezetében toobe kell.
+Az Azure AD B2C konfigurálásához az Azure AD B2C-bérlői kontextusában kell lennie.
 
 ## <a name="log-into-azure-ad-b2c-tenant"></a>Bejelentkezés az Azure AD B2C-bérlőre
 
-az Azure AD B2C-bérlőben toonavigate tooyour, be kell jelentkeznie az Azure-portálon hello hello Azure AD B2C bérlő globális rendszergazdaként.
+Az Azure AD B2C-bérlőre való navigáláshoz az Azure AD B2C-bérlő globális rendszergazdájaként kell bejelentkeznie az Azure Portalra.
 
-1. Jelentkezzen be a hello [Azure-portálon](http://portal.azure.com).
-1. Váltás a bérlők az e-mail cím vagy a kép hello jobb felső sarokban kattintva.
-1. A hello `Directory` lista, amely akkor jelenik meg, hogy kívánja-e toomanage válassza hello Azure AD B2C bérlő.
+1. Jelentkezzen be az [Azure Portalra](http://portal.azure.com).
+1. A bérlők között az e-mail-címére vagy a jobb felső sarokban található képre kattintva válthat.
+1. A megjelenő `Directory` listában válassza ki a kezelni kívánt Azure AD B2C-bérlőt.
 
-hello Azure Portal frissíti a rendszer.  Most már Ön bejelentkezett hello Azure portálon az Azure AD B2C-bérlő hello környezetében.
+Az Azure Portal megjelenítése ekkor frissül.  Sikeresen bejelentkezett az Azure Portalra az Azure AD B2C-bérlője kontextusában.
 
-## <a name="navigate-toohello-b2c-features-blade"></a>Keresse meg a toohello B2C funkciók panelje
+## <a name="navigate-to-the-b2c-features-blade"></a>Lépjen a B2C funkciók paneljére
 
-1. Kattintson a **Tallózás** hello bal oldali navigációs.
-1. Kattintson a **> További szolgáltatások** majd keresse meg a `Azure AD B2C` hello bal oldali navigációs ablaktáblán.  (toopin tooyour bal Kezdőpulton, kattintson az Azure AD B2C hello csillag toohello balra)
-1. Kattintson a **az Azure AD B2C** tooaccess hello B2C funkciók panelje.
+1. Kattintson a képernyő bal oldalán található **Tallózás** navigációs elemre.
+1. Kattintson a **További szolgáltatások** elemre, majd keresse meg az `Azure AD B2C` elemet a bal oldali navigációs panelen.  (A bal oldali kezdőpulthoz való rögzítéshez kattintson az Azure AD B2C-től balra található csillagra.)
+1. A B2C-funkciók paneljéhez való hozzáféréshez kattintson az **Azure AD B2C** elemre.
    
-    ![Kattintás a Tallózás tooB2C funkciók panelje](./media/active-directory-b2c-get-started/b2c-browse.png)
+    ![A B2C-funkciók panel tallózásának képernyőképe](./media/active-directory-b2c-get-started/b2c-browse.png)
 
 > [!IMPORTANT]
-> Toobe hello B2C bérlő toobe képes tooaccess hello B2C funkciók panelje globális rendszergazdájának kell. Más bérlők globális rendszergazdái vagy felhasználói nem férhetnek hozzá a panelhez.  Átválthat tooyour B2C-bérlő hello jobb felső sarkában hello Azure-portálon hello bérlői kapcsoló használatával.
+> A B2C bérlő globális rendszergazdájának kell lennie ahhoz, hogy hozzáférhessen a B2C funkciók panelhez. Más bérlők globális rendszergazdái vagy felhasználói nem férhetnek hozzá a panelhez.  A B2C-bérlőre az Azure Portal jobb felső sarkában található bérlőváltó használatával válthat át.

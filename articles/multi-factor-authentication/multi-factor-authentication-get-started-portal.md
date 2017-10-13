@@ -1,6 +1,6 @@
 ---
-title: "Azure MFA kiszolgáló aaaUser portál |} Microsoft Docs"
-description: "Ez a hello Azure többtényezős hitelesítés lap, amely leírja, hogyan tooget el az Azure MFA és hello felhasználói portálon."
+title: "Felhasználói portál az Azure MFA-kiszolgálóhoz | Microsoft Docs"
+description: "Ez az Azure Multi-Factor Authentication-oldal leírja, hogyan kezdheti el az Azure MFA és a felhasználói portál használatát."
 services: multi-factor-authentication
 documentationcenter: 
 author: MicrosoftGuyJFlo
@@ -15,170 +15,170 @@ ms.date: 08/23/2017
 ms.author: joflore
 ms.reviewer: alexwe
 ms.custom: it-pro
-ms.openlocfilehash: 0e36644c3d780249fb98d5da654e9d267c63561a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a4eb403d3d21b7dbe63c2645b488a7bddb6d39fd
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="user-portal-for-hello-azure-multi-factor-authentication-server"></a>Hello Azure multi-factor Authentication kiszolgáló felhasználói portál
+# <a name="user-portal-for-the-azure-multi-factor-authentication-server"></a>Felhasználói portál az Azure Multi-Factor Authentication-kiszolgálóhoz
 
-hello felhasználói portál, amely lehetővé teszi, hogy a felhasználók tooenroll Azure multi-factor Authentication (MFA) és a fiókok karbantartásához IIS-webhelyet. Egy felhasználó lehet, hogy módosíthatják telefonszámukat, módosíthatják PIN-kódjukat, vagy válasszon toobypass kétlépéses ellenőrzés a következő bejelentkezés során.
+A felhasználói portál egy IIS-webhely, ahol a felhasználók regisztrálhatnak az Azure Multi-Factor Authenticationre (MFA), és kezelhetik a fiókjaikat. A felhasználók megváltoztathatják a telefonszámukat és a PIN-kódjukat, vagy választhatják a kétlépéses ellenőrzés mellőzését a következő bejelentkezéskor.
 
-Felhasználók toohello felhasználói portálra normál felhasználónevükkel és jelszó bejelentkezés, majd vagy a kétlépéses ellenőrzés telefonhívásának vagy biztonsági kérdéseket toocomplete válaszolja meg a hitelesítés. Milyen felhasználói regisztrációk engedélyezettek, ha felhasználók konfigurálása telefonszámukat és PIN-kód hello első bejelentkezése toohello felhasználói portálon.
+A felhasználók a szokványos felhasználónevükkel és jelszavukkal jelentkeznek be a felhasználói portálra, majd egy kétlépéses ellenőrző hívással vagy biztonsági kérdésekre adott válaszokkal végzik el a hitelesítést. Ha a felhasználók regisztrációja engedélyezett, a felhasználók a felhasználói portálra való első bejelentkezéskor konfigurálják a telefonszámukat és PIN-kódjukat.
 
-Felhasználói portál rendszergazdái beállítása és kap engedélyt tooadd új felhasználók és a meglévő felhasználók frissítése történhet.
+A felhasználói portálhoz rendszergazdák állíthatók be, akik az új felhasználók hozzáadására és a meglévő felhasználók frissítésére vonatkozó engedélyt kaphatnak.
 
-A használt környezettől függően célszerű lehet toodeploy hello felhasználói portált a hello Azure multi-factor Authentication kiszolgáló vagy egy másik kiszolgálón, az internet felé néző ugyanarra a kiszolgálóra.
+A felhasználói portált a környezettől függően érdemes lehet az Azure Multi-Factor Authentication-kiszolgálóval megegyező kiszolgálóra, illetve egy másik, internetkapcsolattal rendelkező kiszolgálóra telepíteni.
 
 ![MFA felhasználói portál](./media/multi-factor-authentication-get-started-portal/portal.png)
 
 > [!NOTE]
-> hello felhasználói portálra csak érhető el a multi-factor Authentication kiszolgálóval. Ha használ multi-factor Authentication hello felhő, tekintse meg a felhasználók toohello [beállításról a fiók a kétlépéses ellenőrzéshez](./end-user/multi-factor-authentication-end-user-first-time.md) vagy [kezelheti a kétlépéses ellenőrzés beállításait](./end-user/multi-factor-authentication-end-user-manage-settings.md).
+> A felhasználói portál csak a Multi-Factor Authentication-kiszolgálóval érhető el. Ha a Multi-Factor Authenticationt a felhőben használja, hívja fel a felhasználói figyelmét a [fiók kétlépéses ellenőrzéshez történő beállítására](./end-user/multi-factor-authentication-end-user-first-time.md) vagy a [beállítások kétlépéses ellenőrzésnél történő kezelésére](./end-user/multi-factor-authentication-end-user-manage-settings.md).
 
-## <a name="install-hello-web-service-sdk"></a>Hello webszolgáltatási SDK telepítése
+## <a name="install-the-web-service-sdk"></a>A Web Service SDK telepítése
 
-Mindkét esetben ha hello Azure multi-factor Authentication webszolgáltatási SDK, **nem** hello Azure multi-factor Authentication (MFA) kiszolgáló telepítve, teljes hello lépések olvashat.
+Mindkét forgatókönyvre érvényes, hogy ha az Azure Multi-Factor Authentication Web Service SDK még **nincs** telepítve az Azure Multi-Factor Authentication- (MFA-) kiszolgálón, akkor végre kell hajtania a következő lépéseket.
 
-1. Nyissa meg a hello multi-factor Authentication kiszolgáló konzol.
-2. Nyissa meg toohello **webszolgáltatási SDK** válassza **webszolgáltatási SDK telepítése**.
-3. Hello alapértelmezett beállításaival, kivéve, ha szüksége toochange teljes hello telepítés bármilyen okból őket.
-4. Az IIS-ben az SSL-tanúsítvány toohello hely kötése.
+1. Nyissa meg a Multi-Factor Authentication-kiszolgáló konzolját.
+2. Lépjen a **Web Service SDK** részre, majd válassza a **Web Service SDK telepítése** lehetőséget.
+3. Végezze el a telepítést az alapértelmezett értékekkel, hacsak nem kell valamilyen okból módosítania őket.
+4. Kössön egy SSL-tanúsítványt a helyhez az IIS-ben.
 
-Ha kérdései SSL-tanúsítvány konfigurálása az IIS-kiszolgálón, olvassa el hello [hogyan tooSet be SSL IIS](https://docs.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis).
+Ha kérdései vannak az SSL-tanúsítvány IIS-kiszolgálón történő konfigurálásáról, olvassa el [Az SSL beállítása az IIS-en](https://docs.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis) cikket.
 
-Webszolgáltatási SDK hello az SSL-tanúsítványt kell biztosítani. Erre a célra megfelel egy önaláírt tanúsítvány. Importálja hello hello "Megbízható legfelső szintű hitelesítésszolgáltatók" tárolóban hello helyi számítógépfiók hello felhasználói portál webkiszolgálón úgy, hogy a tanúsítvány bízik hello SSL-kapcsolat kezdeményezésekor.
+A Web Service SDK védelméhez SSL-tanúsítvány használata szükséges. Erre a célra megfelel egy önaláírt tanúsítvány. Importálja a tanúsítványt a felhasználói portál webkiszolgálójának helyi számítógépfiókja „Megbízható legfelső szintű hitelesítésszolgáltatók” tárolójába, hogy az megbízhatónak tekintse ezt a tanúsítványt az SSL-kapcsolat elindításakor.
 
 ![MFA-kiszolgáló konfigurálása – Web Service SDK](./media/multi-factor-authentication-get-started-portal/sdk.png)
 
-## <a name="deploy-hello-user-portal-on-hello-same-server-as-hello-azure-multi-factor-authentication-server"></a>Hello felhasználói portált a hello telepítheti ugyanarra a kiszolgálóra hello Azure multi-factor Authentication kiszolgáló
+## <a name="deploy-the-user-portal-on-the-same-server-as-the-azure-multi-factor-authentication-server"></a>A felhasználói portál üzembe helyezése az Azure Multi-Factor Authentication-kiszolgálóval megegyező kiszolgálón
 
-hello Előfeltételek szükséges tooinstall hello felhasználói portált a hello **ugyanarra a kiszolgálóra** , az Azure multi-factor Authentication kiszolgáló hello:
+A következő előfeltételeknek kell teljesülniük, ha a felhasználói portált az Azure Multi-Factor Authentication-kiszolgálóval **megegyező kiszolgálóra** szeretné telepíteni:
 
 * IIS, beleértve az ASP.NET-et és az IIS 6 metabázisával való kompatibilitási funkciót (IIS 7 vagy újabb verzió esetén)
-* Egy fiók rendszergazdai jogosultságokkal a hello számítógép és a tartományhoz, ha van ilyen. hello fiókot kell engedélyek toocreate Active Directory biztonsági csoportokat.
-* Felhasználói portál biztonságos hello az SSL-tanúsítványt.
-* Biztonságos hello Azure multi-factor Authentication webszolgáltatási SDK egy SSL-tanúsítvánnyal.
+* Egy fiók rendszergazdai jogosultságokkal a számítógéphez és a tartományhoz, ha szükséges. A fióknak engedéllyel kell rendelkeznie Active Directory-biztonságicsoportok létrehozásához.
+* A felhasználói portál védelméhez SSL-tanúsítványt kell használni.
+* Az Azure Multi-Factor Authentication Web Service SDK védelmét egy SSL-tanúsítvánnyal kell biztosítani.
 
-toodeploy hello felhasználói portál, kövesse ezeket a lépéseket:
+A felhasználói portál üzembe helyezéséhez kövesse az alábbi lépéseket:
 
-1. Nyissa meg a hello Azure multi-factor Authentication kiszolgáló konzol, kattintson a hello **felhasználói portál** hello ikonra bal oldali menüben, majd kattintson a **felhasználói portál telepítése**.
-2. Hello alapértelmezett beállításaival, kivéve, ha szüksége toochange teljes hello telepítés bármilyen okból őket.
-3. Az IIS-ben az SSL-tanúsítvány toohello hely kötése
+1. Nyissa meg az Azure Multi-Factor Authentication-kiszolgáló konzolját, kattintson a bal oldali menüben lévő **Felhasználói portál** ikonra, majd kattintson a **Felhasználói portál telepítése** parancsra.
+2. Végezze el a telepítést az alapértelmezett értékekkel, hacsak nem kell valamilyen okból módosítania őket.
+3. Kössön egy SSL-tanúsítványt a webhelyhez az IIS-ben
 
    > [!NOTE]
    > Ez az SSL-tanúsítvány általában egy nyilvánosan aláírt SSL-tanúsítvány.
 
-4. Nyisson meg egy webböngészőt bármely olyan számítógépről, és keresse meg a toohello URL-címe, ahová a hello felhasználói portál telepítve van (például: https://mfa.contoso.com/MultiFactorAuth). Győződjön meg arról, hogy nem látható tanúsítvánnyal kapcsolatos figyelmeztetés vagy hiba.
+4. Nyisson meg egy webböngészőt valamelyik számítógépről, és lépjen arra az URL-címre, ahol a felhasználói portál telepítve van (például: https://mfa.contoso.com/MultiFactorAuth). Győződjön meg arról, hogy nem látható tanúsítvánnyal kapcsolatos figyelmeztetés vagy hiba.
 
 ![MFA-kiszolgáló felhasználói portáljának telepítése](./media/multi-factor-authentication-get-started-portal/install.png)
 
-Ha kérdései SSL-tanúsítvány konfigurálása az IIS-kiszolgálón, olvassa el hello [hogyan tooSet be SSL IIS](https://docs.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis).
+Ha kérdései vannak az SSL-tanúsítvány IIS-kiszolgálón történő konfigurálásáról, olvassa el [Az SSL beállítása az IIS-en](https://docs.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis) cikket.
 
-## <a name="deploy-hello-user-portal-on-a-separate-server"></a>Egy különálló kiszolgálón hello felhasználói portál telepítése
+## <a name="deploy-the-user-portal-on-a-separate-server"></a>A felhasználói portál telepítése különálló kiszolgálón
 
-Ha hello Azure multi-factor Authentication kiszolgálót futtató kiszolgáló internetre irányuló nincs, telepítse hello felhasználói portál egy **külön, internetre irányuló kiszolgáló**.
+Ha az Azure Multi-Factor Authentication-kiszolgálót futtató kiszolgáló nem internetes elérésű, egy **külön, internetes elérésű kiszolgálón** kell telepítenie a felhasználói portált.
 
-Ha a szervezet által használt Microsoft Authenticator alkalmazás hello hello hitelesítési módszerek egyikét, és toodeploy hello felhasználói portált a saját kiszolgáló, végezze el a következő követelmények hello:
+Ha a szervezete egyik ellenőrzési módszerként a Microsoft Authenticator appot használja, és telepíteni szeretné a felhasználói portált a saját kiszolgálóján, az alábbi feltételeknek kell teljesülniük:
 
-* V6.0 használata vagy a hello Azure multi-factor Authentication kiszolgáló újabb verzióját.
-* Hello felhasználói portál telepítése az internetre irányuló webkiszolgálón fut a Microsoft internet Information Services (IIS) 6.x vagy újabb verzióját.
-* Ha az IIS-sel 6.x, győződjön meg arról, az ASP.NET v2.0.50727 van regisztrált, és állítsa be a túl**engedélyezett**.
+* Az Azure Multi-Factor Authentication-kiszolgáló 6.0-s vagy újabb verzióját kell használnia.
+* A felhasználói portált a Microsoft Internet Information Services (IIS) 6.x-es vagy újabb verzióját futtató internetes webkiszolgálóra kell telepítenie.
+* Az IIS 6.x használatakor győződjön meg arról, hogy az ASP.NET 2.0.50727-es verziója telepítve van, regisztrálva van, és a beállítása **Engedélyezve**.
 * Az IIS 7.x vagy újabb verzió használatakor IIS, beleértve az alapszintű hitelesítést, az ASP.NET-et és az IIS 6 metabázisával való kompatibilitási funkciót.
-* Felhasználói portál biztonságos hello az SSL-tanúsítványt.
-* Biztonságos hello Azure multi-factor Authentication webszolgáltatási SDK egy SSL-tanúsítvánnyal.
-* Győződjön meg arról, hogy hello felhasználói portál SSL-en keresztül kapcsolódhatnak toohello Azure multi-factor Authentication webszolgáltatási SDK.
-* Győződjön meg arról, hogy hello felhasználói portál hitelesítheti toohello Azure multi-factor Authentication webszolgáltatási SDK hello szolgáltatásfiók hitelesítő adatainak használatával hello "PhoneFactor Admins" biztonsági csoporthoz. A szolgáltatásfiók és csoportfelügyeletű léteznie kell az Active Directory hello Azure multi-factor Authentication kiszolgáló egy tartományhoz csatlakoztatott kiszolgálón fut. Ha. A szolgáltatásfiók és csoportfelügyeletű található helyileg a hello Azure multi-factor Authentication kiszolgáló Ha nincs csatlakoztatott tooa tartományhoz.
+* A felhasználói portál védelméhez SSL-tanúsítványt kell használni.
+* Az Azure Multi-Factor Authentication Web Service SDK védelmét egy SSL-tanúsítvánnyal kell biztosítani.
+* A felhasználói portálnak képesnek kell lennie arra, hogy SSL-en keresztül csatlakozzon az Azure Multi-Factor Authentication Web Service SDK-hoz.
+* A felhasználói portálnak képesnek kell lennie arra, hogy a „PhoneFactor-adminisztrátorok” nevű biztonsági csoportban található szolgáltatásfiók hitelesítő adataival végezzen hitelesítést az Azure Multi-Factor Authentication Web Service SDK-ban. Ez a szolgáltatásfiók és csoport az Active Directoryban található meg, ha az Azure Multi-Factor Authentication-kiszolgáló tartományhoz csatlakoztatott kiszolgálón fut. Ez a szolgáltatásfiók és csoport helyben található meg az Azure Multi-Factor Authentication-kiszolgálón, ha az nincs tartományhoz csatlakoztatva.
 
-Azon hello Azure multi-factor Authentication kiszolgálót telepíteni hello felhasználói portál szükséges lépések hello:
+A felhasználói portál az Azure Multi-Factor Authentication-kiszolgálótól eltérő kiszolgálón való telepítésének lépései a következők:
 
-1. **Az MFA kiszolgáló hello**, keresse meg a telepítési útvonalat toohello (Példa: C:\Program Files\Multi-Factor Authentication kiszolgáló), és hello fájl másolása **MultiFactorAuthenticationUserPortalSetup64** tooa helye elérhető toohello internetre kiszolgáló fogja telepíteni.
-2. **Hello internetre webkiszolgálón**, hello MultiFactorAuthenticationUserPortalSetup64 telepítési fájl futtatása rendszergazdaként, hello hely módosítása, ha szükséges, és módosítsa a hello virtuális könyvtár tooa rövid nevét, ha azt szeretné.
-3. Az IIS-ben az SSL-tanúsítvány toohello hely kötése.
+1. **Az MFA-kiszolgálón** lépjen a telepítés helyére (például C:\Program Files\Multi-Factor Authentication Server), majd másolja a **MultiFactorAuthenticationUserPortalSetup64** fájlt egy olyan helyre, ahol hozzáférhet az interneteléréssel rendelkező kiszolgáló, amelyen telepíteni szeretné.
+2. **Az interneteléréssel rendelkező webkiszolgálón** futtassa a Multi-Factor AuthenticationMobileAppWebServiceSetup telepítőfájlt rendszergazdaként, szükség esetén módosítsa a Hely beállítást, és tetszés szerint adjon meg egy rövid nevet a virtuális címtár számára.
+3. Kössön egy SSL-tanúsítványt a helyhez az IIS-ben.
 
    > [!NOTE]
    > Ez az SSL-tanúsítvány általában egy nyilvánosan aláírt SSL-tanúsítvány.
 
-4. Keresse meg a túl**C:\inetpub\wwwroot\MultiFactorAuth**
-5. Hello Web.Config fájlt a Jegyzettömb szerkesztése
+4. Lépjen a **C:\inetpub\wwwroot\MultiFactorAuth** helyre.
+5. Szerkessze a Web.config fájlt a Jegyzettömbben.
 
-    * Hello kulcs található **"USE_WEB_SERVICE_SDK"** , és módosítsa **érték = "false"** túl**érték = "true"**
-    * Hello kulcs található **"WEB_SERVICE_SDK_AUTHENTICATION_USERNAME"** , és módosítsa **érték = ""** túl**érték = "Tartomány\felhasználónév"** tartomány\felhasználó esetén, amely része a szolgáltatásfiók "PhoneFactor Admins" csoporthoz.
-    * Hello kulcs található **"Web_service_sdk_authentication_password értékét"** , és módosítsa **érték = ""** túl**érték = a "Password"** hello jelszó hello szolgáltatást a jelszó esetén Hello előző sorban megadott fiók.
-    * Hello értékének **https://www.contoso.com/MultiFactorAuthWebServiceSdk/PfWsSdk.asmx** , és módosítsa a helyőrző URL-cím toohello webszolgáltatási SDK URL-címe telepítettük a 2. lépésben.
-    * Hello Web.Config fájlt mentse és zárja be a Jegyzettömböt.
+    * Keresse meg a **"USE_WEB_SERVICE_SDK"** kulcsot, és módosítsa **value="false"** értékről **value="true"** értékre.
+    * Keresse meg a **„WEB_SERVICE_SDK_AUTHENTICATION_USERNAME”** kulcsot, és módosítsa a **value=""** értéket **value="DOMAIN\User"** értékre, ahol a DOMAIN\User egy olyan szolgáltatásfiók, amely a „PhoneFactor-adminisztrátorok” csoport tagja.
+    * Keresse meg a **„WEB_SERVICE_SDK_AUTHENTICATION_PASSWORD”** kulcsot, és módosítsa a **value=""** értéket **value="Password"** értékre, ahol a Password az előző sorban megadott szolgáltatásfiókhoz tartozó jelszó.
+    * Keresse meg a **https://www.contoso.com/MultiFactorAuthWebServiceSdk/PfWsSdk.asmx** értéket, és módosítsa ezt a helyőrző URL-címet arra a címre, amelyre a Web Service SDK-t telepítette a 2. lépésben.
+    * Mentse a Web.Config fájlt, és zárja be a Jegyzettömböt.
 
-6. Nyisson meg egy webböngészőt bármely olyan számítógépről, és keresse meg a toohello URL-címe, ahová a hello felhasználói portál telepítve van (például: https://mfa.contoso.com/MultiFactorAuth). Győződjön meg arról, hogy nem látható tanúsítvánnyal kapcsolatos figyelmeztetés vagy hiba.
+6. Nyisson meg egy webböngészőt valamelyik számítógépről, és lépjen arra az URL-címre, ahol a felhasználói portál telepítve van (például: https://mfa.contoso.com/MultiFactorAuth). Győződjön meg arról, hogy nem látható tanúsítvánnyal kapcsolatos figyelmeztetés vagy hiba.
 
-Ha kérdései SSL-tanúsítvány konfigurálása az IIS-kiszolgálón, olvassa el hello [hogyan tooSet be SSL IIS](https://docs.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis).
+Ha kérdései vannak az SSL-tanúsítvány IIS-kiszolgálón történő konfigurálásáról, olvassa el [Az SSL beállítása az IIS-en](https://docs.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis) cikket.
 
-## <a name="configure-user-portal-settings-in-hello-azure-multi-factor-authentication-server"></a>Hello Azure multi-factor Authentication kiszolgáló a felhasználói portál beállításainak konfigurálása
+## <a name="configure-user-portal-settings-in-the-azure-multi-factor-authentication-server"></a>A felhasználói portál beállításainak konfigurálása az Azure Multi-Factor Authentication-kiszolgálón
 
-Most, hogy hello felhasználói portál telepítése tooconfigure hello Azure multi-factor Authentication kiszolgáló toowork hello portálon kell.
+Most, hogy telepítette a felhasználói portált, konfigurálnia kell az Azure Multi-Factor Authentication-kiszolgálót, hogy működjön a portállal.
 
-1. Hello Azure multi-factor Authentication kiszolgáló konzolon kattintson a hello **felhasználói portál** ikonra. Hello beállítások lapon adja meg hello URL-cím toohello felhasználói portál hello **felhasználói portál URL-CÍMÉT** szövegmező. Ha e-mailek funkció engedélyezve van, az URL-cím szerepel hello e-mailek toousers küldött hello Azure multi-factor Authentication kiszolgáló történő importálásakor.
-2. Hello beállításokat, hogy szeretné-e a felhasználói portál hello toouse. Például, ha a felhasználók számára engedélyezett toochoose a hitelesítési módszereket, győződjön meg arról, hogy **engedélyezése a felhasználók tooselect metódus** be van jelölve, valamint hello módszerek közül választhatnak.
-3. Adja meg, akik kell rendszergazdák hello **rendszergazdák** fülre. Hello checkboxes és a legördülő lista használatával hello hozzáadása/szerkesztése mezőkbe részletes felügyeleti engedélyeket is létrehozhat.
+1. Az Azure Multi-Factor Authentication-kiszolgáló konzoljában kattintson a **Felhasználói portál** ikonra. A Beállítások lapon írja be a felhasználói portál URL-címét a **Felhasználói portál URL-címe** szövegmezőbe. Ez az URL-cím a felhasználóknak küldött e-mailekben szerepel a felhasználók Azure Multi-Factor Authentication-kiszolgálóra való importálásakor, ha az e-mailes funkció engedélyezve van.
+2. Válassza ki a felhasználói portálon használni kívánt beállításokat. Ha például a felhasználók választhatják ki a hitelesítési módszereket, győződjön meg arról, hogy a **Módszer kiválasztásának engedélyezése a felhasználóknak** jelölőnégyzet be van jelölve azokkal a módszerekkel együtt, amelyek közül választhatnak.
+3. A **Rendszergazdák** lapon adja meg, kik legyenek a rendszergazdák. A részletes rendszergazdai engedélyek létrehozásához használja a Hozzáadás/Szerkesztés mezők jelölőnégyzeteit és legördülő listáit.
 
 Választható konfiguráció:
-- **Biztonsági kérdések** -megadása jóváhagyott biztonsági kérdéseket a környezet és hello nyelven jelennek meg.
+- **Biztonsági kérdések** – Jóváhagyott biztonsági kérdéseket adhat meg a környezetéhez, továbbá a kérdések nyelvét is beállíthatja.
 - **Elvégzett munkamenetek** – Konfigurálhatja a felhasználói portál integrációját egy űrlapalapú webhellyel az MFA használatával.
-- **Megbízható IP-címek** -felhasználók tooskip többtényezős hitelesítés engedélyezése, ha a listájából hitelesítése megbízható IP-címeket vagy címtartományokat.
+- **Megbízható IP-címek** – Engedélyezheti a felhasználóknak az MFA kihagyását, ha a hitelesítést egy olyan helyről végzik, amely szerepel a megbízható IP-címek vagy tartományok listáján.
 
 ![MFA-kiszolgáló felhasználói portáljának konfigurálása](./media/multi-factor-authentication-get-started-portal/config.png)
 
-Az Azure multi-factor Authentication kiszolgáló felhasználói portál hello számos lehetőséget biztosít. hello következő táblázat felsorolja ezeket a beállításokat és a használatuk leírását.
+Az Azure Multi-Factor Authentication-kiszolgáló több lehetőséget nyújt a felhasználói portálhoz. A következő táblázat tartalmazza ezen lehetőségek listáját és annak magyarázatát, hogy mire szolgálnak.
 
 | Felhasználói portál beállításai | Leírás |
 |:--- |:--- |
-| Felhasználói portál URL-címe | Adja meg a hello URL-cím, ahol hello portal tárolása. |
-| Elsődleges hitelesítés | Adja meg a hitelesítési toouse hello típusú toohello portal bejelentkezéskor. Ez Windows-, Radius- vagy LDAP-hitelesítés lehet. |
-| A felhasználók toolog engedélyezése | Lehetővé teszi felhasználók tooenter felhasználónév és jelszó hello hello felhasználói portál bejelentkezési oldalán. Ha ez a beállítás nincs bejelölve, a hello mezőkbe szürkén jelennek meg. |
-| Felhasználó beléptetésének engedélyezése | Egy felhasználó tooenroll engedélyezése a multi-factor Authentication révén azokat tooa telepítő megjelenő megerősítést kér a további információkat, például telefonszáma. Rákérdezés a tartalék telefonszám lehetővé teszi, hogy felhasználók toospecify egy másodlagos telefonszámot. Rákérdezés a harmadik féltől származó OATH-tokennel lehetővé teszi a felhasználók toospecify egy harmadik féltől származó OATH jogkivonattal. |
-| Felhasználók tooinitiate egyszeri megkerülés engedélyezése | Az egyszeri Mellőzés lehetővé teszi a felhasználók tooinitiate. Ha a felhasználó beállítja ezt a beállítást, eltarthat hatás hello legközelebb hello felhasználó jelentkezik be. Rákérdezés a Mellőzés másodpercben hello felhasználói dobozban biztosít hello alapértelmezett 300 másodperc módosíthassák. Ellenkező esetben az egyszeri Mellőzés hello tulajdonság csak jó 300 másodpercig. |
-| Lehetővé teszi a felhasználók tooselect módszer | Lehetővé teszi a felhasználók toospecify az elsődleges kapcsolattartási módszerként. Ez lehet telefonhívás, szöveges üzenet, mobilalkalmazás vagy OATH token. |
-| Lehetővé teszi a felhasználók tooselect nyelv | Engedélyezi a felhasználók toochange hello nyelvi hello telefonhívás, szöveges üzenet, mobilalkalmazás vagy OATH token használt. |
-| Lehetővé teszi a felhasználók tooactivate mobilalkalmazás | Lehetővé teszi a felhasználók toogenerate egy aktiválási kódot toocomplete hello mobilalkalmazás aktiválási folyamat hello server használt.  Azt is beállíthatja aktiválásához eszközök hello száma, 1 és 10 közötti hello alkalmazást. |
-| Biztonsági kérdések használata tartalék megoldásként | Engedélyezi a biztonsági kérdések használatát, ha a kétlépéses ellenőrzés sikertelennek bizonyul. Megadhatja a biztonsági kérdéseket kell sikeresen hello száma. |
-| Lehetővé teszi a felhasználók tooassociate harmadik féltől származó OATH jogkivonat | Lehetővé teszi a felhasználók toospecify egy harmadik féltől származó OATH jogkivonattal. |
-| OATH token használata tartalékként | Lehetővé teszik a OATH-tokenek hello használata, ha kétlépéses ellenőrzést nem sikeres. Hello munkamenet időkorlátja percben is megadható. |
-| Naplózás engedélyezése | Hello felhasználói portál naplózásának engedélyezése. hello naplófájlok helye: C:\Program Files\Multi-Factor Authentication Server\Logs. |
+| Felhasználói portál URL-címe | Adja meg a portál üzemeltetési helyének URL-címét. |
+| Elsődleges hitelesítés | Adja meg a portálra való bejelentkezéskor használandó hitelesítési típust. Ez Windows-, Radius- vagy LDAP-hitelesítés lehet. |
+| Felhasználók bejelentkezésének engedélyezése | Lehetővé teszi, hogy a felhasználók beírjanak egy felhasználónevet és jelszót a bejelentkezési oldalon a felhasználói portálhoz. Ha ez a lehetőség nincs bejelölve, a mezők szürkén jelennek meg. |
+| Felhasználó beléptetésének engedélyezése | Lehetővé teszi, hogy a felhasználók regisztráljanak a Multi-Factor Authenticationben egy olyan beállítási képernyő megjelenítésével, amely további információk, például a telefonszám megadását kéri. A másodlagos telefonszámra való rákérdezéskor a felhasználók megadhatnak egy másodlagos telefonszámot. A külső OATH tokenre való rákérdezéskor a felhasználók megadhatnak egy külső OATH tokent. |
+| Egyszeri megkerülés kezdeményezésének engedélyezése a felhasználóknak | Lehetővé teszi, hogy a felhasználók egyszeri mellőzést kezdeményezzenek. Ha a felhasználó megadja ezt a beállítást, a következő bejelentkezésekor lép életbe. A mellőzés másodperceire való rákérdezéskor a felhasználók egy mezőben módosíthatják az alapértelmezett 300 másodpercet. Egyéb esetben az egyszeri mellőzés csak 300 másodpercig érvényes. |
+| Módszer kiválasztásának engedélyezése a felhasználóknak | Lehetővé teszi, hogy a felhasználók megadják az elsődleges kapcsolatfelvételi módot. Ez lehet telefonhívás, szöveges üzenet, mobilalkalmazás vagy OATH token. |
+| Nyelv kiválasztásának engedélyezése a felhasználóknak | Lehetővé teszi, hogy a felhasználó módosítsa a telefonhíváshoz, szöveges üzenethez, mobilalkalmazáshoz vagy OATH tokenhez használt nyelvet. |
+| Mobilalkalmazás aktiválásának engedélyezése a felhasználóknak | Lehetővé teszi, hogy a felhasználók aktiválási kódot hozzanak létre a kiszolgálóval használt mobilalkalmazás-aktiválási folyamat elvégzéséhez.  Megadhatja azon eszközök 1 és 10 közötti számát is, amelyeken ezt az alkalmazást aktiválhatják. |
+| Biztonsági kérdések használata tartalék megoldásként | Engedélyezi a biztonsági kérdések használatát, ha a kétlépéses ellenőrzés sikertelennek bizonyul. Megadhatja a sikeresen megválaszolandó biztonsági kérdések számát. |
+| Harmadik féltől származó OATH token hozzárendelésének engedélyezése a felhasználóknak | Lehetővé teszi, hogy a felhasználók megadhassanak egy külső OATH tokent. |
+| OATH token használata tartalékként | Lehetővé teszi egy OATH token használatát, ha a kétlépéses ellenőrzés sikertelennek bizonyul. Ezenkívül a munkamenet időtúllépését is megadhatja percben. |
+| Naplózás engedélyezése | Lehetővé teszi a naplózást a felhasználói portálon. A naplófájlok a következő helyen találhatók: C:\Program Files\Multi-Factor Authentication Server\Logs. |
 
-Ezek a beállítások látható toohello felhasználói hello portálon vált, amennyiben engedélyezve vannak, és a felhasználói portál toohello bejelentkezés.
+Ezen beállítások láthatóvá válnak a portálon a felhasználók számára, ha engedélyezettek és be vannak jelentkezve a felhasználói portálra.
 
 ![Felhasználói portál beállításai](./media/multi-factor-authentication-get-started-portal/portalsettings.png)
 
 ### <a name="self-service-user-enrollment"></a>Önkiszolgáló felhasználói regisztráció
 
-Ha szeretné, hogy a felhasználók toosign, és regisztrálta, ki kell választania hello **engedélyezése a felhasználók toolog** és **felhasználó regisztrálásának engedélyezése** beállítások hello beállítások lapon. Ne feledje, hogy a hello beállításoktól hello felhasználói bejelentkezési élmény hatással.
+Ha azt szeretné, hogy a felhasználók bejelentkezzenek és regisztráljanak, a Beállítások lapon be kell jelölnie a **Felhasználók bejelentkezésének engedélyezése** és a **Felhasználó beléptetésének engedélyezése** jelölőnégyzetet. Ne feledje, hogy a kiválasztott beállítások hatással vannak a felhasználó bejelentkezési élményére.
 
-Például amikor egy felhasználó első alkalommal jelentkezik be toohello felhasználói portálon azon hello számára, azok majd készít toohello Azure multi-factor Authentication felhasználó beállítása lap. Attól függően, hogy az Azure multi-factor Authentication hogyan lettek konfigurálva, hello felhasználói is képes tooselect kell a hitelesítési módszert.
+Amikor például egy felhasználó először jelentkezik be a felhasználói portálra, az Azure Multi-Factor Authentication felhasználói beállítási lapjára kerül. Az Azure Multi-Factor Authentication konfigurációjától függően lehet, hogy a felhasználó kiválaszthatja a hitelesítési módszert.
 
-Ha azok hello hang hívás ellenőrzési módszer kiválasztása vagy előre beállított toouse Ez a módszer, hello lap megadását kéri az hello felhasználói tooenter az elsődleges telefonszám és a bővítmény, ha van ilyen. Az is lehetséges engedélyezett tooenter a tartalék telefonszám mellékét.
+Ha a felhasználók a Hanghívás ellenőrzési módszert választják vagy ha ez a módszer van előre konfigurálva, a felhasználóknak a lapon meg kell adniuk az elsődleges telefonszámukat és melléküket, ha van ilyen. Lehet, hogy másodlagos telefonszámot is megadhatnak.
 
 ![Elsődleges és másodlagos telefonszámok regisztrálása](./media/multi-factor-authentication-get-started-portal/backupphone.png)
 
-Ha hello felhasználó PIN-kód szükséges toouse hitelesítéshez, a hello lap megerősítést kér toocreate PIN-kódot. A telefon száma és (ha van ilyen) PIN-kód bevitele, után hello kattintva hello **hitelesítő hívást kérek tooAuthenticate** gombra. Az Azure multi-factor Authentication hajt végre a telefonhívás ellenőrzési toohello felhasználó elsődleges telefonszámot. hello felhasználói hello telefonhívás és írja be a PIN-KÓDJUKBAN (ha van ilyen) és nyomja le a # toomove toohello hello önálló regisztrációs folyamat következő lépése.
+Ha a felhasználóknak PIN-kódot kell használniuk a hitelesítéskor, a lap PIN-kód létrehozását is kéri. A telefonszám(ok) és a PIN-kód (ha van) megadása után a felhasználó a **Hívjon fel a hitelesítéshez** gombra kattint. Az Azure Multi-Factor Authentication telefonhíváson alapuló ellenőrzést kezdeményez a felhasználó elsődleges telefonszámának használatával. A felhasználónak fogadnia kell a hívást, és meg kell adnia a PIN-kódját (ha van), majd meg kell nyomnia a # gombot az önregisztrációs folyamat következő lépésére való továbblépéshez.
 
-Ha hello felhasználói hello szöveges üzenet ellenőrzési módszert választja, vagy ez a módszer már előre konfigurált toouse, hello oldal kéri hello a mobiltelefon számával. Ha hello felhasználó PIN-kód szükséges toouse hitelesítéshez, hello lap is megerősítést kér tooenter PIN-kódot.  Bevitele telefonszámukat és PIN-kódot (ha van ilyen), után hello kattintva hello **szöveges üzenetet kérek tooAuthenticate** gombra. Az Azure multi-factor Authentication egy SMS ellenőrzési toohello felhasználó mobiltelefon hajt végre. hello felhasználó megkapja hello szöveges üzenetet egy-alapú egyszeri-jelszót (OTP), majd a válaszok toohello üzenet, hogy egyszeri jelszavas hitelesítés és a PIN-KÓDJUKBAN (ha van ilyen).
+Ha a felhasználók a szöveges üzenetes ellenőrzési módszert választják, vagy ha ez a módszer van előre konfigurálva, a lapon meg kell adniuk a mobiltelefonszámukat. Ha a felhasználóknak PIN-kódot kell használniuk a hitelesítéskor, a lap PIN-kód megadását is kéri.  A telefonszám és a PIN-kód (ha van) beírása után a felhasználó a **Küldjön SMS-t a hitelesítéshez** gombra kattint. Az Azure Multi-Factor Authentication SMS-ellenőrzést kezdeményez a felhasználó mobiltelefonszáma használatával. A felhasználó egyszeri jelszót (one-time-passcode, OTP) tartalmazó SMS-t kap, és válaszol az üzenetre az OTP-vel és a PIN-kódjával (ha van).
 
 ![Felhasználói portál SMS](./media/multi-factor-authentication-get-started-portal/text.png)
 
-Hello felhasználói hello mobilalkalmazás ellenőrzési módszert választja ki, ha hello lap kérni fogja a hello felhasználói tooinstall hello Microsoft Authenticator alkalmazást az eszközükön, és új aktiváló kód előállításához. Hello alkalmazás telepítése után a hello felhasználó hello aktiváló kód generálása gombra kattint.
+Ha a felhasználó a mobilalkalmazásos ellenőrzési módszert választja, az oldal felkéri, hogy telepítse a Microsoft Authenticator alkalmazást az eszközére, és hozzon létre egy aktiválási kódot. Az alkalmazás telepítése után a felhasználónak az Aktiváló kód előállítása gombra kell kattintania.
 
 > [!NOTE]
-> toouse hello Microsoft Authenticator alkalmazást, hello felhasználói engedélyeznie kell a leküldéses értesítések az eszközön.
+> A Microsoft Authenticator alkalmazás használatához a felhasználónak engedélyeznie kell a leküldéses értesítéseket az eszközén.
 
-hello lap majd jeleníti meg az aktiváló kódot és URL-címet és egy vonalkódképet. Ha hello felhasználó PIN-kód szükséges toouse hitelesítéshez, hello lap továbbá megerősítést kér tooenter PIN-kódot. hello felhasználói hello aktiváló kódot és URL-cím köt hello Microsoft Authenticator alkalmazást, vagy hello vonalkód képolvasó tooscan hello vonalkódképet használ, és hello aktiválás gombra kattint.
+A lap ezután megjelenít egy aktiválási kódot és egy URL-címet egy vonalkód képével együtt. Ha a felhasználóknak PIN-kódot kell használniuk a hitelesítéskor, a lap PIN-kód megadását is kéri. A felhasználó beírja az aktiválási kódot és az URL-címet a Microsoft Authenticator alkalmazásba, vagy a vonalkódolvasóval beolvassa a vonalkódot, majd az Aktiválás gombra kattint.
 
-Hello az aktiválás után hello kattintva hello **hitelesítés most** gombra. Az Azure multi-factor Authentication ellenőrző toohello felhasználó mobilalkalmazás hajt végre. hello felhasználói kell adja meg a PIN-KÓDJUKBAN (ha van ilyen), és kattintson az hello hitelesítés gombot az a mobilalkalmazás toomove toohello hello önálló regisztrációs folyamat következő lépése.
+Az aktiválás elvégzése után a felhasználó a **Hitelesítsen most** gombra kattint. Az Azure Multi-Factor Authentication ellenőrzést végez a felhasználó mobilalkalmazásában. A felhasználónak meg kell adnia a PIN-kódját (ha van) és a mobilalkalmazásban a Hitelesítés gombra kell kattintania, hogy az önregisztrációs folyamat következő lépésére ugorjon.
 
-Ha hello rendszergazdák konfigurált hello Azure multi-factor Authentication kiszolgáló toocollect biztonsági kérdéseit és válaszait, hello felhasználói majd szükséges toohello biztonsági kérdések lap. hello felhasználói négy biztonsági kérdést válasszon, majd lerövidíti a kiválasztott tootheir kérdéseket.
+Ha a rendszergazdák úgy konfigurálták az Azure Multi-Factor Authentication-kiszolgálót, hogy biztonsági kérdéseket és válaszokat gyűjtsön, a felhasználó a Biztonsági kérdések lapra kerül. A felhasználónak ki kell választania négy biztonsági kérdést, és meg kell válaszolnia azokat.
 
 ![A felhasználói portál biztonsági kérdései](./media/multi-factor-authentication-get-started-portal/secq.png)
 
-hello felhasználói önregisztráció befejeződött, és hello van bejelentkezett felhasználó toohello felhasználói portálon. Felhasználók bejelentkezhet vissza toohello felhasználói portál hello jövőbeli toochange bármikor a telefonszámokat, a PIN-kód, a hitelesítési módszerek és a biztonsági kérdések módosítása a módszerek a rendszergazdák által engedélyezett.
+A felhasználó önregisztrációja ezzel befejeződött, és a felhasználó be van jelentkezve a felhasználói portálra. Ezután bármikor újra bejelentkezhet a felhasználói portálra a telefonszáma, PIN-kódja, hitelesítési módszere és biztonsági kérdései módosításához, ha ezt a rendszergazdáik engedélyezték.
 
 ## <a name="next-steps"></a>Következő lépések
 
-- [Hello Azure multi-factor Authentication kiszolgáló mobilalkalmazás webszolgáltatásának telepítése](multi-factor-authentication-get-started-server-webservice.md)
+- [Az Azure Multi-Factor Authentication-kiszolgáló Mobile App Web Service szolgáltatásának telepítése](multi-factor-authentication-get-started-server-webservice.md)

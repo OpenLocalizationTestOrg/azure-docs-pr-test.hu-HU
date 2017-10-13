@@ -1,6 +1,6 @@
 ---
-title: "egy Azure Media Services-fiók az Azure-portálon hello aaaCreate |} Microsoft Docs"
-description: "Ez az oktatóanyag végigvezeti hello hello Azure-portálon az Azure Media Services-fiók létrehozása."
+title: "Azure Media Services-fiók létrehozása az Azure Portal használatával | Microsoft Docs"
+description: "Ez az oktatóanyag végigvezeti azokon a lépéseken, amelyek segítségével Azure Media Services-fiókot hozhat létre az Azure Portal használatával."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -12,43 +12,46 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 07/10/2017
+ms.date: 09/03/2017
 ms.author: juliako
-ms.openlocfilehash: fdad93d5d470fc08380670ec0f6c2d33468b1492
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4e811dee81bfbd01b3cbe7f78a57b2ce92d1c0f9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-an-azure-media-services-account-using-hello-azure-portal"></a>Hozzon létre egy Azure Media Services-fiók hello Azure-portál használatával
+# <a name="create-an-azure-media-services-account-using-the-azure-portal"></a>Azure Media Services-fiók létrehozása az Azure Portal használatával
 > [!div class="op_single_selector"]
 > * [Portál](media-services-portal-create-account.md)
 > * [PowerShell](media-services-manage-with-powershell.md)
 > * [REST](https://docs.microsoft.com/rest/api/media/mediaservice)
 > 
 > [!NOTE]
-> toocomplete ebben az oktatóanyagban egy Azure-fiókra van szüksége. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/). 
+> Az oktatóanyag elvégzéséhez egy Azure-fiókra lesz szüksége. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/). 
 > 
 > 
 
-hello Azure portál segítségével tooquickly Azure Media Services (AMS)-fiók létrehozása. A fiók tooaccess Media Services-meg toostore engedélyezése, titkosítására, kódolására, kezelése és az Azure media adatfolyamként is használhatja. Hello a Media Services-fiók létrehozása során, akkor is egy kapcsolódó tárfiók létrehozása (vagy használjon egy meglévőt) a hello, hello Media Services-fiókkal azonos földrajzi régióban.
+Az Azure Portalon gyorsan létrehozhat egy Azure Media Services- (AMS-) fiókot. A fiókkal hozzáférhet olyan Media Services-szogáltatásokhoz, amelyekkel médiatartalmakat tárolhat, titkosíthat, kódolhat, kezelhet és továbbíthat az Azure környezetben. A Media Services-fiók létrehozásával egy időben létrejön egy kapcsolódó tárfiók is (illetve egy már meglévőt is használhat) ugyanabban a földrajzi régióban, ahol a Media Services-fiók is található.
 
-Ez a cikk ismerteti néhány gyakori fogalmak, és bemutatja, hogyan toocreate egy Media Services fiók hello Azure-portálon.
-
-## <a name="concepts"></a>Alapelvek
-A Media Services szolgáltatásainak eléréséhez két kapcsolódó fiók szükséges:
-
-* Egy Media Services-fiók. A biztosít hozzáférést a Media Services felhőalapú tooa készlete, amelyek az Azure-ban elérhető. A Media Services-fiók nem tárol tényleges médiatartalmakat. Ehelyett metaadatokat tárol hello médiatartalmak és médiafeldolgozási feladatokról a fiókban. Időben hello hello fiókot létrehoznia válassza ki az elérhető Media Services-régiót. hello választott régió egy adatközpont, amely a fiókhoz tartozó metaadat-bejegyzéseket hello tárolja.
-  
-* Egy Azure-tárfiók. Storage-fiókok hello kell elhelyezni, hello Media Services-fiókkal azonos földrajzi régióban. Egy Media Services-fiók létrehozásakor választhat meglévő tárfiók hello ugyanabban a régióban, vagy létrehozhat egy új tárfiókot a hello ugyanabban a régióban. Egy Media Services-fiók törlése esetén a kapcsolódó tárfiókban lévő hello blobok nem törlődnek.
+Ez a cikk néhány általánosan használt fogalmat tárgyal, illetve bemutatja, hogyan hozhat létre Media Services-fiókot az Azure Portal használatával.
 
 > [!NOTE]
 > A különböző régiókban lévő Azure Media Services-funkciók elérhetőségéről további információért lásd [az AMS-funkciók elérhetőségét az egyes adatközpontokban](scenarios-and-availability.md#availability).
 
-## <a name="create-an-ams-account"></a>AMS-fiók létrehozása
-hello lépéseket ezen témakör megjelenítése hogyan toocreate az AMS-fiók.
+## <a name="concepts"></a>Alapelvek
+A Media Services szolgáltatásainak eléréséhez két kapcsolódó fiók szükséges:
 
-1. Jelentkezzen be hello [Azure-portálon](https://portal.azure.com/).
+* Egy Media Services-fiók. A fiók hozzáférést biztosít több felhőalapú, az Azure szolgáltatásban elérhető Media Services-szolgáltatáshoz. A Media Services-fiók nem tárol tényleges médiatartalmakat. Ehelyett metaadatokat tárol a fiókban található médiatartalmakról és médiafeldolgozási feladatokról. A fiók létrehozásakor ki kell választania egy elérhető Media Services-régiót. A választott régió egy adatközpont, amely a fiók metaadat-rekordjait tárolja.
+  
+* Egy Azure-tárfiók. A tárfiókoknak a Media Services-fiókkal azonos földrajzi régióban kell lenniük. Egy Media Services-fiók létrehozásakor választhat, hogy egy ugyanabban a régióban található, meglévő tárfiókot használ, vagy létrehoz egy újat ugyanabban a régióban. Egy Media Services-fiók törlésekor a kapcsolódó tárfiókban található blobok nem törlődnek.
+
+  > [!NOTE]
+  > A Media Services kiköti, hogy az elsődleges tárfióknak **Általános célú tárfióknak** kell lennie táblákkal, üzenetsorokkal. További információ a tárolási típusokról: [Tudnivalók az Azure Storage-fiókokról](https://docs.microsoft.com/azure/storage/common/storage-create-storage-account).
+
+## <a name="create-an-ams-account"></a>AMS-fiók létrehozása
+A jelen szakaszban ismertetett lépések bemutatják az AMS-fiók létrehozásának módját.
+
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com/).
 2. Kattintson a **+New** > **Web + Mobile** > **Media Services** elemre.
    
     ![Media Services, létrehozás](./media/media-services-create-account/media-services-new1.png)
@@ -56,31 +59,31 @@ hello lépéseket ezen témakör megjelenítése hogyan toocreate az AMS-fiók.
    
     ![Media Services, létrehozás](./media/media-services-create-account/media-services-new3.png)
    
-   1. A **fióknév**, adja meg az új AMS-fiók hello hello nevét. Egy Media Services-fiók nevének minden kisbetűket és számokat, szóközök nélkül, és 3 too24 karakter hosszúságú.
-   2. Az előfizetést hello Azure-előfizetések rendelkezik hozzáféréssel közül választhat.
-   3. A **erőforráscsoport**, válassza ki az új és meglévő erőforráscsoportokra hello.  Az erőforráscsoport közös életciklussal, engedélyekkel és házirendekkel rendelkező erőforrások gyűjteménye. További információkat [itt](../azure-resource-manager/resource-group-overview.md#resource-groups) talál.
-   4. A **hely**, válassza ki a földrajzi régiót, amelyben lesz használt toostore hello media és metaadat-bejegyzéseket a Media Services-fiókhoz tartozó hello. Ebben a régióban rendszer használt tooprocess, majd streamelni a médiafájlokat. Csak hello elérhető Media Services-régiók hello legördülő listában jelennek meg. 
-   5. A **Tárfiók**, válassza ki a tárolási fiók tooprovide blob-tároló hello médiatartalom a Media Services-fiókhoz. Hello kiválaszthat egy meglévő tárfiókot használ, a Media Services-fiókját, vagy azonos földrajzi régióban hozhat létre egy tárfiókot. Egy új tárfiók létrehozása a hello azonos régióban. hello szabályok tárfiók neve hello ugyanaz, mint a Media Services-fiókok.
+   1. Az **Account Name** (Fiók neve) mezőben adja meg az új AMS-fiók nevét. A Media Services-fiók neve csak számokat és kisbetűket tartalmazhat, nem tartalmazhat szóközöket, és 3–24 karakterből állhat.
+   2. A Subscription (Előfizetés) résznél válasszon az elérhető Azure-előfizetések közül.
+   3. A **Resource Group** (Erőforráscsoport) résznél válasszon egy új vagy meglévő erőforrást.  Az erőforráscsoport közös életciklussal, engedélyekkel és házirendekkel rendelkező erőforrások gyűjteménye. További információkat [itt](../azure-resource-manager/resource-group-overview.md#resource-groups) talál.
+   4. A **Location** (Hely) részben válassza ki azt a földrajzi régiót, amelyben tárolni fogja a Media Services-fiókhoz tartozó médiafájlokat és metaadat-bejegyzéseket. A rendszer e régió alapján fogja feldolgozni, illetve streamelni a médiafájlokat. A legördülő listában csak a Media Services szolgáltatásban elérhető régiók jelennek meg. 
+   5. A **Storage Account** (Tárfiók) résznél válasszon egy tárfiókot, amely Blob Storage tárolót fog biztosítani a Media Services-fiókhoz tartozó médiatartalmak számára. Választhat, hogy egy meglévő, a Media Services-fiókkal azonos földrajzi régióban található tárfiókot használ, vagy létrehoz egy másik tárfiókot. Az újonnan létrehozott tárfiókok ugyanabban a régióban jönnek létre. A tárfiók nevére ugyanazok a szabályok vonatkoznak, mint a Media Services-fiókok nevére.
       
        További információkat a tárhelyről [itt](../storage/common/storage-introduction.md) talál.
-   6. Válassza ki **PIN-kód toodashboard** toosee hello hello fiók központi telepítés végrehajtási állapotát.
-4. Kattintson a **létrehozása** hello hello képernyő alsó részén.
+   6. A fióklétrehozás előrehaladásának megtekintéséhez kattintson a **Rögzítés az irányítópulton** elemre.
+4. Kattintson az űrlap alján található **Létrehozás** lehetőségre.
    
-    Hello fiók sikeres létrehozását követően – áttekintés oldalra tölti be. Hello streaming endpoint tábla hello fiókja rendelkeznek egy alapértelmezett streamvégpontból a hello **leállítva** állapotát. 
+    A fiók sikeres létrehozása után betöltődik az áttekintési oldal. A streamvégpont-táblázatban a fiók alapértelmezett streamvégpontja **Leállítva** állapotban lesz. 
 
     >[!NOTE]
-    >Az AMS-fiók létrehozásakor egy **alapértelmezett** adatfolyam-továbbítási végpontra tooyour fiók kerül hello **leállítva** állapotát. a dinamikus csomagolás és a dinamikus titkosítás tartalmat, és hajtsa végre a megfelelő előnyeit streaming toostart hello streamvégpontra, amelyből el kívánja toostream tartalom toobe rendelkezik hello **futtató** állapotát. 
+    >Az AMS-fiók létrehozásakor a rendszer hozzáad egy **alapértelmezett** streamvégpontot a fiókhoz **Leállítva** állapotban. A tartalom streamelésének megkezdéséhez, valamint a dinamikus csomagolás és a dinamikus titkosítás kihasználásához a tartalomstreameléshez használt streamvégpontnak **Fut** állapotban kell lennie. 
    
-## <a name="toomanage-your-ams-account"></a>toomanage az AMS-fiók
+## <a name="to-manage-your-ams-account"></a>Az AMS-fiók kezelése
 
-toomanage az AMS-fiók (például toohello AMS API programozott módon való kapcsolódás, videók feltöltése, kódolása, a tartalom védelmének konfigurálása, feladatok előrehaladásának figyeléséhez) kiválasztása **beállítások** a bal oldalán található hello portal hello. A hello **beállítások**, keresse meg a rendelkezésre álló paneleken hello tooone (például: **API-hozzáférés**, **eszközök**, **feladatok**, **Védelmi tartalom**).
+Az AMS-fiók kezeléséhez (például az AMS API-hoz való programozott kapcsolódáshoz, videók feltöltéséhez, objektumok kódolásához, tartalomvédelem konfigurálásához, a feladatok előrehaladásának figyeléséhez) válassza a portál bal oldalán lévő **Beállítások** elemet. A **Beállítások** területen keresse meg az egyik elérhető panelt (például: **API-hozzáférés**, **Objektumok**, **Feladatok**, **Tartalomvédelem**).
 
 
 ## <a name="next-steps"></a>Következő lépések
 
 Most már feltölthet fájlokat AMS-fiókjába. További információk: [Fájlok feltöltése](media-services-portal-upload-files.md).
 
-Ha programozottan tooaccess AMS API, lásd: [hozzáférés hello Azure Media Services API az Azure AD-alapú hitelesítés](media-services-use-aad-auth-to-access-ams-api.md).
+Ha programozott módon szeretné elérni az AMS API-t, lásd [az Azure Media Services Azure AD-hitelesítéssel történő elérését](media-services-use-aad-auth-to-access-ams-api.md) ismertető cikket.
 
 ## <a name="media-services-learning-paths"></a>Media Services képzési tervek
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

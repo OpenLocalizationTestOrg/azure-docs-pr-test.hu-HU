@@ -1,6 +1,6 @@
 ---
-title: "aaaAdd hello Facebook-összekötőt a Logic Apps a |} Microsoft Docs"
-description: "A REST API paraméterekkel hello Facebook-összekötő áttekintése"
+title: "Adja hozzá a Facebook-összekötőt a Logic Apps |} Microsoft Docs"
+description: "A REST API-paraméterekkel rendelkező Facebook-összekötő áttekintése"
 services: 
 documentationcenter: 
 author: MandiOhlinger
@@ -15,34 +15,34 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/07/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 962c6ed5d36e465de9d485d50e5c6dca6d44f470
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e10a30ccef3e81cb3d7749696453d82b8958d076
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="get-started-with-hello-facebook-connector"></a>Hello Facebook-összekötő az első lépései
-Csatlakozás tooFacebook és tooa ütemterv utáni, hírcsatorna oldal, és több. A Facebook a következőket teheti:
+# <a name="get-started-with-the-facebook-connector"></a>A Facebook-összekötő az első lépései
+Csatlakozni a Facebookhoz és idővonalon, hírcsatorna oldal, és több. A Facebook a következőket teheti:
 
-* Hozhat létre. az üzleti folyamat kap Facebook hello adatok alapján. 
+* Az üzleti folyamat Facebook származó adatok alapján történő létrehozása. 
 * Egy eseményindító használni, új post fogadásakor.
-* Tooyour ütemterv utáni használata műveleteket hírcsatorna oldal, és több kapják meg. Ezeket a műveleteket válaszol, és végezze el hello kimeneti más műveletek érhető el. Például, ha van egy új post az ütemterven, igénybe a feladás egy vagy több, és leküldeni tooyour Twitter hírcsatorna. 
+* Küldje el a ütemterv használatát műveleteket hírcsatorna oldal, és több kapják meg. Ezeket a műveleteket válaszol, és végezze el a kimeneti más műveletek érhető el. Például, ha van egy új post az ütemterven, igénybe a feladás egy vagy több, és hogy a Twitter hírcsatorna. 
 
 Most hozzon létre egy logic app kezdheti, lásd: [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-a-connection-toofacebook"></a>Egy kapcsolat tooFacebook létrehozása
-Amikor ez összekötő tooyour a logic apps, engedélyeznie kell a logic apps tooconnect tooyour Facebook-on.
+## <a name="create-a-connection-to-facebook"></a>Kapcsolatot létesíthet a Facebook-on
+Ezt az összekötőt a logic apps hozzáadásakor engedélyeznie kell a logic apps csatlakozni a Facebookhoz.
 
-1. Jelentkezzen be tooyour Facebook-fiókkal
-2. Válassza ki **engedélyezés**, és a logic apps tooconnect engedélyezése és használata a Facebook-on. 
+1. Jelentkezzen be a Facebook-fiókba
+2. Válassza ki **engedélyezés**, és teszi lehetővé a logic Apps alkalmazásokat csatlakozzon, és használja a Facebook-on. 
 
-> [!INCLUDE [Steps toocreate a connection tooFacebook](../../includes/connectors-create-api-facebook.md)]
+> [!INCLUDE [Steps to create a connection to Facebook](../../includes/connectors-create-api-facebook.md)]
 > 
 
 
 ## <a name="connector-specific-details"></a>Összekötő-specifikus részletei
 
-Bármely eseményindítók és hello swagger definiált műveletek megtekintése, és semmilyen határnak hello a Lásd még: [connector részleteket](/connectors/facebook/).
+Bármely eseményindítók és a swagger definiált műveletek megtekintése, és semmilyen határnak a Lásd még: a [connector részleteket](/connectors/facebook/).
 
 ## <a name="more-connectors"></a>További összekötők
-Lépjen vissza toohello [API-k lista](apis-list.md).
+Lépjen vissza a [API-k lista](apis-list.md).

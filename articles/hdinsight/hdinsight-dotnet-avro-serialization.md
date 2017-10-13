@@ -1,6 +1,6 @@
 ---
-title: a Hadoop - Microsoft Avro Library - Azure aaaSerialize adatok |} Microsoft Docs
-description: "Megtudhatja, hogyan tooserialize és hello Microsoft Avro Library toopersist toomemory, adatbázis, vagy fájl segítségével hdinsight Hadoop az adatokat."
+title: "Szerializálni az adatokat a Hadoop - Microsoft Avro Library - Azure-ban |} Microsoft Docs"
+description: "Megtudhatja, hogyan lehet szerializálni, és adatokat a Hadoop on HDInsight használatával a Microsoft az Avro Library megőrizni a memória, egy adatbázis vagy a fájl."
 keywords: az avro, hadoop avro
 services: hdinsight
 documentationcenter: 
@@ -17,109 +17,109 @@ ms.topic: article
 ms.date: 08/09/2017
 ms.author: jgao
 ms.custom: hdiseo17may2017
-ms.openlocfilehash: f364f8e855a54c0fc160e9a106ec8d5b30c6db23
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d06bf8ff4a21e4f4b29593bac32bfa2b32601fc4
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="serialize-data-in-hadoop-with-hello-microsoft-avro-library"></a>Hello Microsoft Avro Library a Hadoop adatok szerializálása
+# <a name="serialize-data-in-hadoop-with-the-microsoft-avro-library"></a>A Microsoft az Avro Library Hadoop adatok szerializálása
 
 >[!NOTE]
->a Microsoft hello Avro SDK már nem támogatott. hello könyvtár támogatott nyílt forráskódú közösségi. hello szalagtár hello források találhatók [Github](https://github.com/Azure/azure-sdk-for-net/tree/master/src/ServiceManagement/HDInsight/Microsoft.Hadoop.Avro).
+>Az Avro SDK a Microsoft már nem támogatott. A könyvtárban, nyílt forráskódú közösségi támogatott. A szalagtár források találhatók [Github](https://github.com/Azure/azure-sdk-for-net/tree/master/src/ServiceManagement/HDInsight/Microsoft.Hadoop.Avro).
 
-Ez a témakör bemutatja, hogyan toouse hello [Microsoft Avro Library](https://github.com/Azure/azure-sdk-for-net/tree/master/src/ServiceManagement/HDInsight/Microsoft.Hadoop.Avro) tooserialize objektumok és egyéb adatok szerkezet adatfolyamok toopersist be őket toomemory, adatbázis vagy egy fájlt. Azt is bemutatja, hogyan toodeserialize toorecover hello eredeti objektumok őket.
+Ez a témakör bemutatja, hogyan használja a [Microsoft Avro Library](https://github.com/Azure/azure-sdk-for-net/tree/master/src/ServiceManagement/HDInsight/Microsoft.Hadoop.Avro) objektumok és egyéb adatstruktúrák szerializálni az adatfolyamok megőrizni a memória, adatbázis vagy egy fájlt. Azt is bemutatja, hogyan őket helyreállítása az eredeti objektum deszerializálása.
 
 [!INCLUDE [windows-only](../../includes/hdinsight-windows-only.md)]
 
 ## <a name="apache-avro"></a>Apache Avro
-Hello <a href="https://hadoopsdk.codeplex.com/wikipage?title=Avro%20Library" target="_blank">Microsoft Avro Library</a> valósít meg hello Apache Avro adatok szerializálási rendszer hello Microsoft.NET környezethez. Apache Avro kompakt bináris adatcsere adatformátum szerializálási biztosít. Használja <a href="http://www.json.org" target="_blank">JSON</a> toodefine egy nyelvtől független sémát, amely lehetővé teszi a nyelvi együttműködést. Több nyelven érhetőek szerializált adatok olvashatók egy másik. Jelenleg a C, C++, C#, Java, PHP, Python és Ruby támogatottak. Hello részletes információk találhatók hello <a href="http://avro.apache.org/docs/current/spec.html" target="_blank">Apache Avro specifikációjában</a>. 
+A <a href="https://hadoopsdk.codeplex.com/wikipage?title=Avro%20Library" target="_blank">Microsoft Avro Library</a> valósítja meg az Apache Avro szerializálási rendszer Microsoft.NET környezetre. Apache Avro kompakt bináris adatcsere adatformátum szerializálási biztosít. Használja <a href="http://www.json.org" target="_blank">JSON</a> egy nyelvtől független sémát, amely lehetővé teszi a nyelvi együttműködést meghatározásához. Több nyelven érhetőek szerializált adatok olvashatók egy másik. Jelenleg a C, C++, C#, Java, PHP, Python és Ruby támogatottak. A részletes információk találhatók a <a href="http://avro.apache.org/docs/current/spec.html" target="_blank">Apache Avro specifikációjában</a>. 
 
 >[!NOTE]
->az Avro Library Microsoft hello nem támogatja a hello távoli eljáráshívásnak (RPC) hívások részét ezt a beállítást.
+>A Microsoft az Avro Library nem támogatja a távoli eljáráshívásnak (RPC) hívások részét ez az előírás.
 >
 
-az objektumok hello Avro rendszer szerializált hello ábrázolását két részből áll: séma, a tényleges érték. az Avro-séma hello hello nyelvfüggetlen adatmodell az hello szerializált adatok JSON ismerteti. A bináris adatok megjelenítése és jelölőnégyzetként jelenik. Minden objektum toobe készült nincs érték terhek, így szerializálási gyors és hello ábrázolását kis hello séma elkülönül a bináris megjelenítése hello rendelkező lehetővé teszi.
+Az Avro rendszerben objektum szerializált ábrázolását két részből áll: séma, a tényleges érték. Az Avro-séma a nyelvfüggetlen az a szerializált adatok JSON adatmodell ismerteti. A bináris adatok megjelenítése és jelölőnégyzetként jelenik. Rendelkező elkülönül a bináris megjelenítése a séma lehetővé teszi az egyes objektumok nem érték terhek, így gyors szerializálási, és a ábrázolását kis írni.
 
-## <a name="hello-hadoop-scenario"></a>hello Hadoop forgatókönyv
-hello Apache Avro szerializálási formátum széles körben használt Azure HDInsight és egyéb Apache Hadoop-környezetekben. Az Avro biztosít egy kényelmes módszert arra toorepresent összetett adatstruktúra Hadoop MapReduce feladatot. az Avro-fájlok (Avro tároló fájlt) hello formátuma lett tervezett toosupport hello elosztott MapReduce programozási modellt. hello kulcs szolgáltatása, amely lehetővé teszi, hogy a hello terjesztési, az, hogy hello fájlok "feloszthatók" hello értelemben, hogy egy fájl bármely pontot kikereshet, és az egy adott blokktól kezdheti-e.
+## <a name="the-hadoop-scenario"></a>A Hadoop-forgatókönyv
+Az Apache Avro szerializálási formátum széles körben használt Azure HDInsight és egyéb Apache Hadoop-környezetekben. Az Avro Hadoop MapReduce feladatot összetett adatstruktúra képviselő kényelmes megoldást kínál. Az Avro-fájlok (Avro tároló fájlt) formátuma támogatja az elosztott MapReduce programozási modellt tervezték. A kulcs szolgáltatása, amely lehetővé teszi, hogy a terjesztési, az, hogy a fájlok "feloszthatók", abban az értelemben, hogy egy fájl bármely pontot kikereshet, és az egy adott blokktól kezdheti-e.
 
 ## <a name="serialization-in-avro-library"></a>Az Avro könyvtárban szerializálási
-hello .NET könyvtár az Avro támogatja a szerializálási objektumok két módon:
+A .NET könyvtár az avro-hoz támogatja a szerializálási objektumok két módon:
 
-* **Fejlécreflexiós** -hello JSON-séma hello típusok automatikusan beépített hello adatokból hello .NET típusok toobe szerializált szerződés attribútumait.
-* **általános rekord** -A JSON-séma explicit módon megadott hello által képviselt rekordban [ **AvroRecord** ](http://msdn.microsoft.com/library/microsoft.hadoop.avro.avrorecord.aspx) indulásakor nem .NET típusok a következők hello adatok toobe jelen toodescribe hello séma szerializálni.
+* **Fejlécreflexiós** -a JSON-séma a következő típusokhoz automatikusan össze az adatokat a .NET típusú szerializálandó szerződés attribútumok.
+* **általános rekord** -A JSON-séma explicit módon megadott által képviselt rekordban a [ **AvroRecord** ](http://msdn.microsoft.com/library/microsoft.hadoop.avro.avrorecord.aspx) Ha nincs .NET-típus megadásával írhatja le a sémát, az adatok a meglévő osztály szerializálni.
 
-Ha hello adatkulcsokat ismert tooboth hello író és ahhoz való olvasóra hello adatfolyam, hello adatküldés sémájú nélkül. Azokban az esetekben az Avro objektum tároló fájllal, hello séma tárolja hello fájlban. Más paraméterek, például az adatok tömörítésének használt hello kodek adható meg. Ezek a forgatókönyvek részletesen ismertetett és mutatja be a következő példák hello:
+Ha az adatok séma ismert író és az adatfolyam olvasó, az adatküldés sémájú nélkül. Azokban az esetekben az Avro objektum tároló fájl használata esetén a séma tárolja a fájlon belül. Más paraméterek, például a használt adatok tömörítési kodek adható meg. Ezek a forgatókönyvek részletesen ismertetett és a következő kód példákban szereplő megoldásokat:
 
 ## <a name="install-avro-library"></a>Telepítse az Avro-könyvtár
-hello következők szükségesek, hello könyvtár telepítése előtt:
+A következőkre szükség a szalagtár telepítése előtt:
 
 * <a href="http://www.microsoft.com/download/details.aspx?id=17851" target="_blank">A Microsoft .NET-keretrendszer 4</a>
 * <a href="http://james.newtonking.com/json" target="_blank">Newtonsoft Json.NET</a> (6.0.4 vagy újabb)
 
-Vegye figyelembe, hogy hello Newtonsoft.Json.dll függőségi automatikusan letöltött hello Microsoft Avro Library hello összetevőnek. hello eljárás hello a következő szakaszban találhatók:
+Vegye figyelembe, hogy a Newtonsoft.Json.dll függőség a Microsoft az Avro Library a telepítés automatikusan le. Az eljárás a következő szakaszban találhatók:
 
-az Avro Library Microsoft hello eljárást követő hello keresztül telepíthető a Visual Studio NuGet-csomag terjesztése:
+A Microsoft az Avro Library az alábbi eljárás segítségével telepíthető a Visual Studio NuGet-csomag terjesztése:
 
-1. Jelölje be hello **projekt** lapon -> **NuGet-csomagok kezelése...**
-2. Keresse meg a "Microsoft.Hadoop.Avro" hello a **keresési Online** mezőbe.
-3. Kattintson a hello **telepítése** gomb melletti túl**Microsoft Azure HDInsight Avro könyvtár**.
+1. Válassza ki a **projekt** lapon -> **NuGet-csomagok kezelése...**
+2. Keressen a "Microsoft.Hadoop.Avro" kifejezésre a **keresési Online** mezőbe.
+3. Kattintson a **telepítése** gombra **Microsoft Azure HDInsight Avro könyvtár**.
 
-Vegye figyelembe, hogy hello Newtonsoft.Json.dll (> = 6.0.4) függőségi hello Microsoft Avro Library együtt is letöltődik automatikusan.
+Vegye figyelembe, hogy a Newtonsoft.Json.dll (> = 6.0.4) függőségi együtt a Microsoft az Avro Library is letöltődik automatikusan.
 
-Microsoft Avro Library forráskód hello érhető el: [Github](https://github.com/Azure/azure-sdk-for-net/tree/master/src/ServiceManagement/HDInsight/Microsoft.Hadoop.Avro).
+A Microsoft az Avro Library a forráskód nem érhető el [Github](https://github.com/Azure/azure-sdk-for-net/tree/master/src/ServiceManagement/HDInsight/Microsoft.Hadoop.Avro).
 
 ## <a name="compile-schemas-using-avro-library"></a>Az Avro szalagtárat használó sémák fordítása
-az Avro Library Microsoft hello egy segédprogram, amely lehetővé teszi, hogy létrehozása a C# típusok hello alapján automatikusan korábban megadott JSON-séma kódgenerálás tartalmazza. hello kód generálása segédprogram nem winphonesspbootstrapper.exe végrehajtható bináris, de könnyen építhetők eljárást követő hello keresztül:
+A Microsoft az Avro Library tartalmaz egy kód generálása segédprogram, amely lehetővé teszi, hogy a korábban meghatározott JSON-séma alapján automatikusan C# típusok létrehozása. A kód generálása segédprogram nem terjesztése egy bináris végrehajtható fájlt, de az alábbi eljárás segítségével könnyen építhetők:
 
-1. A HDInsight SDK forráskódjának hello legújabb verziójával hello .zip fájl letöltése <a href="http://hadoopsdk.codeplex.com/SourceControl/latest#" target="_blank">Microsoft .NET SDK a Hadoop</a>. (Kattintson a hello **letöltése** ikonra, nem hello **letölti** lapon.)
-2. Bontsa ki a HDInsight SDK tooa directory hello gépen a .NET-keretrendszer 4 telepítve, és a szükséges függőség NuGet-csomagok letöltése a toohello Internet kapcsolat hello. Az alábbiakban azt feltételezik, hogy hello forráskód kibontott tooC:\SDK.
-3. Nyissa meg toohello mappa C:\SDK\src\Microsoft.Hadoop.Avro.Tools, és futtassa a build.bat. (hello fájl hívásait MSBuild hello 32 bites terjesztése hello .NET-keretrendszer. Ha szeretné toouse hello 64 bites verziója, szerkesztése build.bat, a következő hello megjegyzések hello fájl.) Győződjön meg arról, hogy hello build sikeres. (Egyes rendszerek MSBuild készíthet figyelmeztetéseket. Ezek a figyelmeztetések nem befolyásolják hello segédprogram mindaddig, amíg nincsenek build hibák.)
-4. lefordított hello segédprogram C:\SDK\Bin\Unsigned\Release\Microsoft.Hadoop.Avro.Tools található.
+1. Töltse le a .zip fájlt forráskódjának HDInsight SDK legújabb verziójával <a href="http://hadoopsdk.codeplex.com/SourceControl/latest#" target="_blank">Microsoft .NET SDK a Hadoop</a>. (Kattintson a **letöltése** ikonra, nem a **letölti** lapon.)
+2. A HDInsight SDK a kivonatot egy könyvtár a .NET-keretrendszer 4 gépen telepítve, és csatlakozik az internethez szükséges függőség NuGet-csomagok letöltéséhez. Az alábbiakban feltételezzük, hogy a forráskód C:\SDK kicsomagolta.
+3. A mappában C:\SDK\src\Microsoft.Hadoop.Avro.Tools, és futtassa a build.bat. (A fájl hívások MSBuild a 32 bites terjesztési a .NET-keretrendszer. Ha azt szeretné, hogy 64 bites verzióját használja, szerkesztése build.bat, a megjegyzéseket, a fájlban a következő.) Győződjön meg arról, hogy a build sikeres. (Egyes rendszerek MSBuild készíthet figyelmeztetéseket. Ezek a figyelmeztetések nem befolyásolják a segédprogram mindaddig, amíg nincsenek build hibák.)
+4. A lefordított segédprogram C:\SDK\Bin\Unsigned\Release\Microsoft.Hadoop.Avro.Tools található.
 
-hello parancssori szintaxist, ismernie tooget parancs követően – hello mappáját hello kód generálása segédprogram hello hajtható végre:`Microsoft.Hadoop.Avro.Tools help /c:codegen`
+Ahhoz, hogy ismeri a parancssori szintaxist, a mappából, ahol a kód generálása segédprogram-e végre az alábbi parancsot:`Microsoft.Hadoop.Avro.Tools help /c:codegen`
 
-tootest hello segédprogram, a C# osztályok hozhat létre a hello minta JSON sémafájl hello forráskód biztosított. A következő parancs hello hajtható végre:
+A segédprogram teszteléséhez C# osztályokat is generálása a megadott forráskódja minta JSON-fájl. Hajtsa végre a következő parancsot:
 
     Microsoft.Hadoop.Avro.Tools codegen /i:C:\SDK\src\Microsoft.Hadoop.Avro.Tools\SampleJSON\SampleJSONSchema.avsc /o:
 
-Hello aktuális könyvtárban található a várt tooproduce két C#-fájlok: SensorData.cs és Location.cs.
+Ez az aktuális könyvtárban található fájlok két C# létrehozásához kellene: SensorData.cs és Location.cs.
 
-toounderstand hello logikát használó hello kód generálása segédprogram konvertálásakor tooC # hello JSON sématípusok, tekintse meg a GenerationVerification.feature található C:\SDK\src\Microsoft.Hadoop.Avro.Tools\Doc hello fájlt.
+A programot, amely a JSON-séma C# típusú konvertálása során használja a kód generálása segédprogram ismertetése: a fájl GenerationVerification.feature C:\SDK\src\Microsoft.Hadoop.Avro.Tools\Doc található.
 
-Névterek kinyert hello JSON-séma hello előző bekezdésben szereplő esetekben hello fájlban leírt hello logika használatával. Hello séma kinyert névterek élveznek függetlenül biztosított hello n paraméterrel hello segédprogram parancssorban. Ha azt szeretné, hogy toooverride hello névterek hello séma belül található, használja a hello /nf paramétert. Például toochange hello SampleJSONSchema.avsc toomy.own.nspace, az összes névtér hajtható végre hello a következő parancsot:
+Névterek kinyert a JSON-séma, a fájlban, az előző bekezdésben szereplő esetekben ismertetett logika használatával. A séma kinyert névterek élveznek függetlenül biztosított parancssori segédprogram, az n paraméterrel. Ha azt szeretné, felülbírálhatja a névterek, a séma belül található, akkor használja a /nf paramétert. Például a SampleJSONSchema.avsc my.own.nspace az összes névtér módosításához hajtsa végre a következő parancsot:
 
     Microsoft.Hadoop.Avro.Tools codegen /i:C:\SDK\src\Microsoft.Hadoop.Avro.Tools\SampleJSON\SampleJSONSchema.avsc /o:. /nf:my.own.nspace
 
-## <a name="about-hello-samples"></a>Kapcsolatos hello minták
-Ebben a témakörben bemutatott hat példák bemutatják a Microsoft Avro Library hello által támogatott különböző forgatókönyveket. az Avro Library Microsoft hello az adatfolyam-tervezett toowork. Ezekben a példákban-adatok n keresztül memória adatfolyamok helyett, fájl adatfolyamok vagy az egyszerűség és konzisztenciáját. éles környezetben hello megközelítést hello pontos forgatókönyv-követelményeinek, az adatforrás és a kötet, a teljesítmény korlátozások és a más tényezőktől függ.
+## <a name="about-the-samples"></a>Tudnivalók a minták
+Ebben a témakörben bemutatott hat példák bemutatják a Microsoft az Avro Library által támogatott különböző forgatókönyveket. A Microsoft az Avro Library tervezték az adatfolyam. Ezekben a példákban-adatok n keresztül memória adatfolyamok helyett, fájl adatfolyamok vagy az egyszerűség és konzisztenciáját. Éles környezetben a megközelítést a pontos forgatókönyv-követelményeinek, az adatforrás és a kötet, a teljesítmény korlátozások és a más tényezőktől függ.
 
-Hogyan hello első két példa megjelenítése tooserialize és adatok deszerializálása memória adatfolyam pufferek az általános és a reflexió használatával. hello két esetben a séma feltételezett hello olvasók és írók között megosztott toobe sávon kívüli.
+Az első két példák bemutatják, hogyan szerializálása és deszerializálása adatok memória adatfolyam pufferek az általános és a reflexió használatával. Két esetben a séma feltételezett, hogy az olvasók és írók között meg kell osztani a sávon kívüli.
 
-hello harmadik és negyedik példák megjelenítése hogyan tooserialize és adatok deszerializálása hello Avro objektum tároló fájlok használatával. Adatok az Avro-tároló fájl tárolja, amikor a séma mindig tárolása vele, mert hello séma meg kell osztani a deszerializáláshoz.
+A harmadik és negyedik példák bemutatják, hogyan lehet szerializálni, és az Avro objektum tároló fájlokkal adatok deszerializálása. Adatok az Avro-tároló fájl tárolja, amikor a séma mindig tárolása vele, mert a séma meg kell osztani a deszerializáláshoz.
 
-hello mintát tartalmazó hello első négy példák tölthető le: hello <a href="http://code.msdn.microsoft.com/Serialize-data-with-the-86055923" target="_blank">Azure mintakódok</a> hely.
+A minta az első négy példák tartalmazó tölthető le: a <a href="http://code.msdn.microsoft.com/Serialize-data-with-the-86055923" target="_blank">Azure mintakódok</a> hely.
 
-ötödik példa azt mutatja meg hello hogyan toouse az avro-hoz egy egyéni tömörítési kodek objektum tárolófájlokba. Egy minta hello kódot tartalmazó, az ebben a példában tölthető le: hello <a href="http://code.msdn.microsoft.com/Serialize-data-with-the-67159111" target="_blank">Azure mintakódok</a> hely.
+Az ötödik példa bemutatja, hogyan használható egy egyéni tömörítési kodek Avro objektum tárolófájlokba. Az ebben a példában letölthető szükséges kódot tartalmazó minta a <a href="http://code.msdn.microsoft.com/Serialize-data-with-the-67159111" target="_blank">Azure mintakódok</a> hely.
 
-hello hatodik példa bemutatja, hogyan toouse Avro szerializálási tooupload adatok tooAzure Blob-tároló, és majd elemezni egy HDInsight (Hadoop) fürthöz való Hive használatával. Le is tölthetők: hello <a href="https://code.msdn.microsoft.com/Using-Avro-to-upload-data-ae81b1e3" target="_blank">Azure mintakódok</a> hely.
+A hatodik minta bemutatja, hogyan használható Avro szerializálása feltölteni az adatokat az Azure Blob storage és majd elemezni egy HDInsight (Hadoop) fürthöz való Hive használatával. Le is tölthetők: a <a href="https://code.msdn.microsoft.com/Using-Avro-to-upload-data-ae81b1e3" target="_blank">Azure mintakódok</a> hely.
 
-Az alábbiakban hivatkozások toohello hat minták hello témakör ismertet:
+Az alábbiakban a hat minták, a témakörben tárgyalt mutató hivatkozásokat:
 
-* <a href="#Scenario1">**A reflexió szerializálási** </a> -hello JSON-séma szerializált típusok toobe automatikusan beépített hello adatokból szerződés attribútumok.
-* <a href="#Scenario2">**Általános rekordot tartalmazó szerializálási** </a> -hello JSON-séma explicit módon megadott rekord elérhető reflexióra nincs .NET típus esetén.
-* <a href="#Scenario3">**Objektum tároló fájlok használata a reflexió szerializálási** </a> -hello JSON-séma automatikusan összeállítása és megosztott együtt hello szerializált adatok keresztül az Avro tároló fájlt.
-* <a href="#Scenario4">**Általános rekordot tartalmazó objektum tárolófájlokba használatával szerializálási** </a> -hello JSON-séma explicit módon hello szerializálási előtt meg és megosztott együtt hello adatokat egy Avro tároló fájlt.
-* <a href="#Scenario5">**Objektum tárolófájlokba használata egy egyéni tömörítési kodek szerializálási** </a> -hello példa bemutatja, hogyan toocreate egy Avro objektum tároló fájl egy testreszabott .NET végrehajtásának hello Deflate adatok tömörítési kodek.
-* <a href="#Scenario6">**Az Avro tooupload adatok használatával a Microsoft Azure HDInsight szolgáltatás hello** </a> -hello példa azt mutatja be, hogyan kommunikál az Avro szerializálási hello HDInsight-szolgáltatás. Egy aktív Azure előfizetés és a hozzáférés tooan Azure HDInsight fürt vannak szükséges toorun ebben a példában.
+* <a href="#Scenario1">**A reflexió szerializálási** </a> -típusok szerializálandó a JSON-séma automatikusan össze az adatokat szerződés attribútumok.
+* <a href="#Scenario2">**Általános rekordot tartalmazó szerializálási** </a> -a JSON-séma explicit módon megadott rekord elérhető reflexióra nincs .NET típus esetén.
+* <a href="#Scenario3">**Objektum tároló fájlok használata a reflexió szerializálási** </a> -a JSON-séma automatikusan összeállítása és megosztott együtt a szerializált adatok keresztül az Avro tároló fájlt.
+* <a href="#Scenario4">**Általános rekordot tartalmazó objektum tárolófájlokba használatával szerializálási** </a> -a JSON-séma explicit módon megadott előtt a szerializálás és az Avro objektum tárolót fájlon keresztül az adatok és megosztott.
+* <a href="#Scenario5">**Objektum tárolófájlokba használata egy egyéni tömörítési kodek szerializálási** </a> -a példa bemutatja, hogyan hozzon létre egy Avro objektum tároló fájlt egy testreszabott .NET megvalósításáról a Deflate adatok tömörítési kodek.
+* <a href="#Scenario6">**Az Avro használatával feltölteni az adatokat a Microsoft Azure HDInsight szolgáltatás** </a> -a példa bemutatja, hogyan kommunikál az Avro szerializálási a HDInsight-szolgáltatás. Ez a példa futtatásához szükséges egy aktív Azure-előfizetés és Azure HDInsight-fürtök a hozzáférést.
 
 ## <a name="Scenario1"></a>1. példa: Szerializálási a reflexió
-hello JSON-séma hello típusok automatikusan épül fel Microsoft Avro Library hello hello adatokból reflexió útján hello C# objektumok toobe szerializált szerződés attribútumait. hello Microsoft Avro Library létrehoz egy [ **IAvroSeralizer<T>**  ](http://msdn.microsoft.com/library/dn627341.aspx) tooidentify hello mezők toobe szerializálni.
+A JSON-séma a következő típusokhoz automatikusan épül fel az adatokat a reflexió használatával a Microsoft az Avro Library a C# objektumokat szerializálni szerződés attribútumait. A Microsoft az Avro Library létrehoz egy [ **IAvroSeralizer<T>**  ](http://msdn.microsoft.com/library/dn627341.aspx) szerializálandó mezők azonosításához.
 
-Ebben a példában objektumokat (egy **SensorData** tag osztályra **hely** struct) szerializált tooa memóriafolyam, és ez az adatfolyam pedig deszerializálva.. hello eredménye akkor összehasonlított toohello kezdeti példány tooconfirm adott hello **SensorData** objektum helyre az eredeti azonos toohello.
+Ebben a példában objektumokat (egy **SensorData** tag osztályra **hely** struct) szerializálva vannak memória adatfolyamba, és az adatfolyam pedig deszerializálva.. Az eredmény ezután annak ellenőrzésére, hogy a kezdeti példányszámnak a rendszer összehasonlítja a **SensorData** az eredeti helyre objektum megegyezik.
 
-hello séma ebben a példában feltételezzük, hogy megosztott hello olvasók és írók, között, így nincs szükség hello Avro objektum tárolóformátummal toobe. A példa bemutatja, hogyan tooserialize deszerializálni az adatokat, és a memória pufferek használatával reflexiós hello objektum tároló formátumú hello séma meg kell osztani a hello adatokat, lásd: <a href="#Scenario3">szerializálási reflexiósobjektumtárolófájlokhasználata</a>.
+Ebben a példában a séma feltételezett, hogy között meg kell osztani az olvasók és írók, így nincs szükség az Avro objektum tárolóformátummal. Példa bemutatja, hogyan szerializálása és deszerializálása adatok a memóriában puffereli használatával reflexiós a tároló objektum formátumban, abban az esetben, ha a séma meg kell osztani az adatokat, lásd: <a href="#Scenario3">objektum tároló fájlok használata a reflexiószerializálási</a>.
 
     namespace Microsoft.Hadoop.Avro.Sample
     {
@@ -154,7 +154,7 @@ hello séma ebben a példában feltételezzük, hogy megosztott hello olvasók �
         }
 
         //This class contains all methods demonstrating
-        //hello usage of Microsoft Avro Library
+        //the usage of Microsoft Avro Library
         public class AvroSample
         {
 
@@ -176,21 +176,21 @@ hello séma ebben a példában feltételezzük, hogy megosztott hello olvasók �
                     //Create a data set by using sample class and struct
                     var expected = new SensorData { Value = new byte[] { 1, 2, 3, 4, 5 }, Position = new Location { Room = 243, Floor = 1 } };
 
-                    //Serialize hello data toohello specified stream
+                    //Serialize the data to the specified stream
                     avroSerializer.Serialize(buffer, expected);
 
 
                     Console.WriteLine("Deserializing Sample Data Set...");
 
-                    //Prepare hello stream for deserializing hello data
+                    //Prepare the stream for deserializing the data
                     buffer.Seek(0, SeekOrigin.Begin);
 
-                    //Deserialize data from hello stream and cast it toohello same type used for serialization
+                    //Deserialize data from the stream and cast it to the same type used for serialization
                     var actual = avroSerializer.Deserialize(buffer);
 
                     Console.WriteLine("Comparing Initial and Deserialized Data Sets...");
 
-                    //Finally, verify that deserialized data matches hello original one
+                    //Finally, verify that deserialized data matches the original one
                     bool isEqual = this.Equal(expected, actual);
 
                     Console.WriteLine("Result of Data Set Identity Comparison is {0}", isEqual);
@@ -219,16 +219,16 @@ hello séma ebben a példában feltételezzük, hogy megosztott hello olvasók �
                 //illustrating different serializing approaches
                 AvroSample Sample = new AvroSample();
 
-                //Serialization toomemory using reflection
+                //Serialization to memory using reflection
                 Sample.SerializeDeserializeObjectUsingReflection();
 
                 Console.WriteLine(sectionDivider);
-                Console.WriteLine("Press any key tooexit.");
+                Console.WriteLine("Press any key to exit.");
                 Console.Read();
             }
         }
     }
-    // hello example is expected toodisplay hello following output:
+    // The example is expected to display the following output:
     // SERIALIZATION USING REFLECTION
     //
     // Serializing Sample Data Set...
@@ -236,15 +236,15 @@ hello séma ebben a példában feltételezzük, hogy megosztott hello olvasók �
     // Comparing Initial and Deserialized Data Sets...
     // Result of Data Set Identity Comparison is True
     // ----------------------------------------
-    // Press any key tooexit.
+    // Press any key to exit.
 
 
 ## <a name="sample-2-serialization-with-a-generic-record"></a>2. példa: Szerializálási általános rekordot tartalmazó
-A JSON-séma adható explicit módon meg egy általános rekordban Ha reflexiós nem használható, mert hello adatok nem reprezentálhatók egy adategyezmény a .NET-osztályok keresztül. Ez a módszer akkor lassabb, mint a következőt reflexió használatával. Ilyen esetekben hello séma hello adatok is lehet dinamikus, ez azt jelenti, hogy nem ismeri a fordítás során. Vesszővel tagolt (CSV) fájlt, amelynek séma ismeretlen amíg átalakítására kerül toohello az Avro formátum futás közben látható egy példa az ilyen dinamikus forgatókönyv ábrázolva adatokat.
+A JSON-séma adható explicit módon meg egy általános rekordban Ha reflexiós nem használható, mert az adatok nem reprezentálhatók egy adategyezmény a .NET-osztályok keresztül. Ez a módszer akkor lassabb, mint a következőt reflexió használatával. Ilyen esetben a sémát is lehet dinamikus, ez azt jelenti, hogy nem ismeri a fordítás során. Vesszővel tagolt (CSV) fájlok, amelyek séma nem ismeretlen, amíg a futási időben az Avro formátum rendszer átalakítja-ként adata az ilyen dinamikus forgatókönyv egy példát.
 
-A példa bemutatja, hogyan toocreate, és egy [ **AvroRecord** ](http://msdn.microsoft.com/library/microsoft.hadoop.avro.avrorecord.aspx) tooexplicitly adja meg a JSON-séma, hogyan toopopulate azt hello adatokat, és ezután hogyan tooserialize és deszerializálhatja azt. hello eredmény majd össze lesz hasonlítva toohello a kezdeti példányszámnak tooconfirm, amely hello rekord helyre az eredeti azonos toohello.
+Ez a példa bemutatja, hogyan létrehozhat és használhat egy [ **AvroRecord** ](http://msdn.microsoft.com/library/microsoft.hadoop.avro.avrorecord.aspx) való explicit módon adja meg a JSON-séma, hogyan töltse fel adatokkal az adatokat, és majd szerializálása és deszerializálása azt. Az eredmény ezután összeveti a kezdeti példányszámnak annak ellenőrzéséhez, hogy a rekord helyreállítani az eredeti azonos.
 
-hello séma ebben a példában feltételezzük, hogy megosztott hello olvasók és írók, között, így nincs szükség hello Avro objektum tárolóformátummal toobe. A példa bemutatja, hogyan tooserialize deszerializálni az adatokat, és a memória pufferek használatával egy általános rekordban hello objektum tároló formátumú hello séma szerepelnie kell a szerializált hello adatokat, lásd: hello <a href="#Scenario4">szerializálási objektum tároló használatával általános rekordot tartalmazó fájlok</a> példa.
+Ebben a példában a séma feltételezett, hogy között meg kell osztani az olvasók és írók, így nincs szükség az Avro objektum tárolóformátummal. Példa bemutatja, hogyan szerializálása és deszerializálása adatok a memóriában puffereli használatával egy általános rekordban a tároló objektum formátumban, ha a séma szerepelnie kell a szerializált adatok a, tekintse meg a <a href="#Scenario4">objektum tároló fájlokkal rendelkező szerializálási általános rekord</a> példa.
 
     namespace Microsoft.Hadoop.Avro.Sample
     {
@@ -258,20 +258,20 @@ hello séma ebben a példában feltételezzük, hogy megosztott hello olvasók �
     using Microsoft.Hadoop.Avro;
 
     //This class contains all methods demonstrating
-    //hello usage of Microsoft Avro Library
+    //the usage of Microsoft Avro Library
     public class AvroSample
     {
 
         //Serialize and deserialize sample data set by using a generic record.
-        //A generic record is a special class with hello schema explicitly defined in JSON.
-        //All serialized data should be mapped toohello fields of hello generic record,
+        //A generic record is a special class with the schema explicitly defined in JSON.
+        //All serialized data should be mapped to the fields of the generic record,
         //which in turn is then serialized.
         public void SerializeDeserializeObjectUsingGenericRecords()
         {
             Console.WriteLine("SERIALIZATION USING GENERIC RECORD\n");
-            Console.WriteLine("Defining hello Schema and creating Sample Data Set...");
+            Console.WriteLine("Defining the Schema and creating Sample Data Set...");
 
-            //Define hello schema in JSON
+            //Define the schema in JSON
             const string Schema = @"{
                                 ""type"":""record"",
                                 ""name"":""Microsoft.Hadoop.Avro.Specifications.SensorData"",
@@ -294,14 +294,14 @@ hello séma ebben a példában feltételezzük, hogy megosztott hello olvasók �
                                     ]
                             }";
 
-            //Create a generic serializer based on hello schema
+            //Create a generic serializer based on the schema
             var serializer = AvroSerializer.CreateGeneric(Schema);
             var rootSchema = serializer.WriterSchema as RecordSchema;
 
             //Create a memory stream buffer
             using (var stream = new MemoryStream())
             {
-                //Create a generic record toorepresent hello data
+                //Create a generic record to represent the data
                 dynamic location = new AvroRecord(rootSchema.GetField("Location").TypeSchema);
                 location.Floor = 1;
                 location.Room = 243;
@@ -312,19 +312,19 @@ hello séma ebben a példában feltételezzük, hogy megosztott hello olvasók �
 
                 Console.WriteLine("Serializing Sample Data Set...");
 
-                //Serialize hello data
+                //Serialize the data
                 serializer.Serialize(stream, expected);
 
                 stream.Seek(0, SeekOrigin.Begin);
 
                 Console.WriteLine("Deserializing Sample Data Set...");
 
-                //Deserialize hello data into a generic record
+                //Deserialize the data into a generic record
                 dynamic actual = serializer.Deserialize(stream);
 
                 Console.WriteLine("Comparing Initial and Deserialized Data Sets...");
 
-                //Finally, verify hello results
+                //Finally, verify the results
                 bool isEqual = expected.Location.Floor.Equals(actual.Location.Floor);
                 isEqual = isEqual && expected.Location.Room.Equals(actual.Location.Room);
                 isEqual = isEqual && ((byte[])expected.Value).SequenceEqual((byte[])actual.Value);
@@ -341,33 +341,33 @@ hello séma ebben a példában feltételezzük, hogy megosztott hello olvasók �
             //illustrating different serializing approaches
             AvroSample Sample = new AvroSample();
 
-            //Serialization toomemory using generic record
+            //Serialization to memory using generic record
             Sample.SerializeDeserializeObjectUsingGenericRecords();
 
             Console.WriteLine(sectionDivider);
-            Console.WriteLine("Press any key tooexit.");
+            Console.WriteLine("Press any key to exit.");
             Console.Read();
         }
     }
     }
-    // hello example is expected toodisplay hello following output:
+    // The example is expected to display the following output:
     // SERIALIZATION USING GENERIC RECORD
     //
-    // Defining hello Schema and creating Sample Data Set...
+    // Defining the Schema and creating Sample Data Set...
     // Serializing Sample Data Set...
     // Deserializing Sample Data Set...
     // Comparing Initial and Deserialized Data Sets...
     // Result of Data Set Identity Comparison is True
     // ----------------------------------------
-    // Press any key tooexit.
+    // Press any key to exit.
 
 
 ## <a name="sample-3-serialization-using-object-container-files-and-serialization-with-reflection"></a>3. példa: Szerializálási a reflexió objektum tároló fájlok és a szerializálási használja
-Ebben a példában a hasonló toohello lehetőséget a hello <a href="#Scenario1"> első példában</a>, ahol hello séma implicit módon megadott a licencjelentésben. hello különbség az, hogy itt hello séma nem feltételezi azt deserializes toohello olvasó ismert toobe. Hello **SensorData** szerializált objektumok toobe és implicit módon megadott sémák fájlban vannak tárolva az Avro objektum tároló hello által képviselt [ **AvroContainer** ](http://msdn.microsoft.com/library/microsoft.hadoop.avro.container.avrocontainer.aspx) az osztály.
+Ebben a példában a forgatókönyv hasonlít a <a href="#Scenario1"> első példában</a>, ahol a séma implicit módon megadott a reflexió. A különbség, hogy itt, a séma nem feltételezett, hogy az olvasó deserializes azt, hogy ismert. A **SensorData** szerializálható objektumok és azok implicit módon megadott séma fájlban vannak tárolva az Avro objektum tároló által képviselt a [ **AvroContainer** ](http://msdn.microsoft.com/library/microsoft.hadoop.avro.container.avrocontainer.aspx) osztály.
 
-Ebben a példában a szerializált adatok hello [ **SequentialWriter<SensorData>**  ](http://msdn.microsoft.com/library/dn627340.aspx) és a deszerializált [ **SequentialReader<SensorData>** ](http://msdn.microsoft.com/library/dn627340.aspx). hello majd eredménye összehasonlított toohello kezdeti példányok tooensure identitás.
+Ebben a példában a szerializált adatok [ **SequentialWriter<SensorData>**  ](http://msdn.microsoft.com/library/dn627340.aspx) és a deszerializált [ **SequentialReader<SensorData>**  ](http://msdn.microsoft.com/library/dn627340.aspx). Az eredmény ezután a rendszer összehasonlítja a kezdeti példányok identitás biztosításához.
 
-hello a hello adatobjektumot tároló fájl tömörített keresztül hello alapértelmezett [ **Deflate** ] [ deflate-100] tömörítési kodek a .NET-keretrendszer 4. Lásd: hello <a href="#Scenario5"> ötödik példa</a> az ebben a témakörben toolearn hogyan toouse hello újabb és felső szintű verziója [ **Deflate** ] [ deflate-110] tömörítés a kodek .NET-keretrendszer 4.5 érhető el.
+A rendszer tömöríti az adatokat a objektum tároló fájlban az alapértelmezett keresztül [ **Deflate** ] [ deflate-100] tömörítési kodek a .NET-keretrendszer 4. Tekintse meg a <a href="#Scenario5"> ötödik példa</a> ebben a témakörben további információt az újabb és felső szintű verzióját használja a [ **Deflate** ] [ deflate-110] tömörítési kodek .NET-keretrendszer 4.5 érhető el.
 
     namespace Microsoft.Hadoop.Avro.Sample
     {
@@ -402,12 +402,12 @@ hello a hello adatobjektumot tároló fájl tömörített keresztül hello alap�
         }
 
         //This class contains all methods demonstrating
-        //hello usage of Microsoft Avro Library
+        //the usage of Microsoft Avro Library
         public class AvroSample
         {
 
-            //Serializes and deserializes hello sample data set by using reflection and Avro object container files.
-            //Serialized data is compressed with hello Deflate codec.
+            //Serializes and deserializes the sample data set by using reflection and Avro object container files.
+            //Serialized data is compressed with the Deflate codec.
             public void SerializeDeserializeUsingObjectContainersReflection()
             {
 
@@ -423,25 +423,25 @@ hello a hello adatobjektumot tároló fájl tömörített keresztül hello alap�
                             new SensorData { Value = new byte[] { 6, 7, 8, 9 }, Position = new Location { Room = 244, Floor = 1 } }
                         };
 
-                //Serializing and saving data toofile.
+                //Serializing and saving data to file.
                 //Creating a memory stream buffer.
                 using (var buffer = new MemoryStream())
                 {
                     Console.WriteLine("Serializing Sample Data Set...");
 
-                    //Create a SequentialWriter instance for type SensorData, which can serialize a sequence of SensorData objects toostream.
-                    //Data is compressed using hello Deflate codec.
+                    //Create a SequentialWriter instance for type SensorData, which can serialize a sequence of SensorData objects to stream.
+                    //Data is compressed using the Deflate codec.
                     using (var w = AvroContainer.CreateWriter<SensorData>(buffer, Codec.Deflate))
                     {
                         using (var writer = new SequentialWriter<SensorData>(w, 24))
                         {
-                            // Serialize hello data toostream by using hello sequential writer
+                            // Serialize the data to stream by using the sequential writer
                             testData.ForEach(writer.Write);
                         }
                     }
 
-                    //Save stream toofile
-                    Console.WriteLine("Saving serialized data toofile...");
+                    //Save stream to file
+                    Console.WriteLine("Saving serialized data to file...");
                     if (!WriteFile(buffer, path))
                     {
                         Console.WriteLine("Error during file operation. Quitting method");
@@ -464,17 +464,17 @@ hello a hello adatobjektumot tároló fájl tömörített keresztül hello alap�
 
                     Console.WriteLine("Deserializing Sample Data Set...");
 
-                    //Prepare hello stream for deserializing hello data
+                    //Prepare the stream for deserializing the data
                     buffer.Seek(0, SeekOrigin.Begin);
 
-                    //Create a SequentialReader instance for type SensorData, which deserializes all serialized objects from hello given stream.
-                    //It allows iterating over hello deserialized objects because it implements hello IEnumerable<T> interface.
+                    //Create a SequentialReader instance for type SensorData, which deserializes all serialized objects from the given stream.
+                    //It allows iterating over the deserialized objects because it implements the IEnumerable<T> interface.
                     using (var reader = new SequentialReader<SensorData>(
                         AvroContainer.CreateReader<SensorData>(buffer, true)))
                     {
                         var results = reader.Objects;
 
-                        //Finally, verify that deserialized data matches hello original one
+                        //Finally, verify that deserialized data matches the original one
                         Console.WriteLine("Comparing Initial and Deserialized Data Sets...");
                         int count = 1;
                         var pairs = testData.Zip(results, (serialized, deserialized) => new { expected = serialized, actual = deserialized });
@@ -487,7 +487,7 @@ hello a hello adatobjektumot tároló fájl tömörített keresztül hello alap�
                     }
                 }
 
-                //Delete hello file
+                //Delete the file
                 RemoveFile(path);
             }
 
@@ -501,7 +501,7 @@ hello a hello adatobjektumot tároló fájl tömörített keresztül hello alap�
                 return left.Position.Equals(right.Position) && left.Value.SequenceEqual(right.Value);
             }
 
-            //Saving memory stream tooa new file with hello given path
+            //Saving memory stream to a new file with the given path
             private bool WriteFile(MemoryStream InputStream, string path)
             {
                 if (!File.Exists(path))
@@ -517,7 +517,7 @@ hello a hello adatobjektumot tároló fájl tömörített keresztül hello alap�
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("hello following exception was thrown during creation and writing toohello file \"{0}\"", path);
+                        Console.WriteLine("The following exception was thrown during creation and writing to the file \"{0}\"", path);
                         Console.WriteLine(e.Message);
                         return false;
                     }
@@ -530,7 +530,7 @@ hello a hello adatobjektumot tároló fájl tömörített keresztül hello alap�
                 }
             }
 
-            //Reading a file content by using hello given path tooa memory stream
+            //Reading a file content by using the given path to a memory stream
             private bool ReadFile(MemoryStream OutputStream, string path)
             {
                 try
@@ -543,7 +543,7 @@ hello a hello adatobjektumot tároló fájl tömörített keresztül hello alap�
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("hello following exception was thrown during reading from hello file \"{0}\"", path);
+                    Console.WriteLine("The following exception was thrown during reading from the file \"{0}\"", path);
                     Console.WriteLine(e.Message);
                     return false;
                 }
@@ -560,7 +560,7 @@ hello a hello adatobjektumot tároló fájl tömörített keresztül hello alap�
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("hello following exception was thrown during deleting hello file \"{0}\"", path);
+                        Console.WriteLine("The following exception was thrown during deleting the file \"{0}\"", path);
                         Console.WriteLine(e.Message);
                     }
                 }
@@ -579,35 +579,35 @@ hello a hello adatobjektumot tároló fájl tömörített keresztül hello alap�
                 //illustrating different serializing approaches
                 AvroSample Sample = new AvroSample();
 
-                //Serialization using reflection tooAvro object container file
+                //Serialization using reflection to Avro object container file
                 Sample.SerializeDeserializeUsingObjectContainersReflection();
 
                 Console.WriteLine(sectionDivider);
-                Console.WriteLine("Press any key tooexit.");
+                Console.WriteLine("Press any key to exit.");
                 Console.Read();
             }
         }
     }
-    // hello example is expected toodisplay hello following output:
+    // The example is expected to display the following output:
     // SERIALIZATION USING REFLECTION AND AVRO OBJECT CONTAINER FILES
     //
     // Serializing Sample Data Set...
-    // Saving serialized data toofile...
+    // Saving serialized data to file...
     // Reading data from file...
     // Deserializing Sample Data Set...
     // Comparing Initial and Deserialized Data Sets...
     // For Pair 1 result of Data Set Identity Comparison is True
     // For Pair 2 result of Data Set Identity Comparison is True
     // ----------------------------------------
-    // Press any key tooexit.
+    // Press any key to exit.
 
 
 ## <a name="sample-4-serialization-using-object-container-files-and-serialization-with-generic-record"></a>4. példa: Szerializálási általános rekordot tartalmazó objektum tárolófájlokba és szerializálási használatával
-Ebben a példában a hasonló toohello lehetőséget a hello <a href="#Scenario2"> második példáját</a>, ahol hello séma explicit módon megadott rendelkező JSON-NÁ. hello különbség az, hogy itt hello séma nem feltételezi azt deserializes toohello olvasó ismert toobe.
+Ebben a példában a forgatókönyv hasonlít a <a href="#Scenario2"> második példáját</a>, ahol a séma explicit módon megadott rendelkező JSON-NÁ. A különbség, hogy itt, a séma nem feltételezett, hogy az olvasó deserializes azt, hogy ismert.
 
-hello TesztKészlet adatokat gyűjt egy [ **AvroRecord** ](http://msdn.microsoft.com/library/microsoft.hadoop.avro.avrorecord.aspx) explicit módon megadott JSON-séma segítségével objektumokat, és ott hello által képviselt objektum tároló fájlban [ **AvroContainer** ](http://msdn.microsoft.com/library/microsoft.hadoop.avro.container.avrocontainer.aspx) osztály. A tároló fájlt hoz létre egy író használt tooserialize hello adatok tömörítetlen, majd mentett tooa fájl tooa memóriafolyam. Hello [ **Codec.Null** ](http://msdn.microsoft.com/library/microsoft.hadoop.avro.container.codec.null.aspx) hello-olvasó létrehozásakor használt paraméter határozza meg, hogy ezek az adatok nem tömöríti.
+Egy gyűjtött adatok TesztKészlet [ **AvroRecord** ](http://msdn.microsoft.com/library/microsoft.hadoop.avro.avrorecord.aspx) keresztül explicit módon megadott JSON-séma objektumokat, és egy objektum tároló fájl által képviselt majd tárolja a [  **AvroContainer** ](http://msdn.microsoft.com/library/microsoft.hadoop.avro.container.avrocontainer.aspx) osztály. A tároló fájlt hoz létre egy író szerializálni az adatokat, majd a fájl mentett memória adatfolyamba tömörítetlen használt. A [ **Codec.Null** ](http://msdn.microsoft.com/library/microsoft.hadoop.avro.container.codec.null.aspx) az olvasó létrehozásakor használt paraméter határozza meg, hogy ezek az adatok nem tömöríti.
 
-hello adatokat, majd hello fájl olvasásának és deszerializálni az objektumok gyűjteménye. Ez a gyűjtemény rendszer összehasonlított toohello kezdeti Avro rekordok tooconfirm azok egyezését.
+Az adatok majd kiolvasni a fájlból és az objektumok gyűjteménye deszerializálni. Ez a gyűjtemény a rendszer összehasonlítja a kiindulási lista az Avro rekordok annak ellenőrzéséhez, hogy azok egyezését.
 
     namespace Microsoft.Hadoop.Avro.Sample
     {
@@ -621,7 +621,7 @@ hello adatokat, majd hello fájl olvasásának és deszerializálni az objektumo
         using Microsoft.Hadoop.Avro;
 
         //This class contains all methods demonstrating
-        //hello usage of Microsoft Avro Library
+        //the usage of Microsoft Avro Library
         public class AvroSample
         {
 
@@ -634,9 +634,9 @@ hello adatokat, majd hello fájl olvasásának és deszerializálni az objektumo
                 //Path for Avro object container file
                 string path = "AvroSampleGenericRecordNullCodec.avro";
 
-                Console.WriteLine("Defining hello Schema and creating Sample Data Set...");
+                Console.WriteLine("Defining the Schema and creating Sample Data Set...");
 
-                //Define hello schema in JSON
+                //Define the schema in JSON
                 const string Schema = @"{
                                 ""type"":""record"",
                                 ""name"":""Microsoft.Hadoop.Avro.Specifications.SensorData"",
@@ -659,11 +659,11 @@ hello adatokat, majd hello fájl olvasásának és deszerializálni az objektumo
                                     ]
                             }";
 
-                //Create a generic serializer based on hello schema
+                //Create a generic serializer based on the schema
                 var serializer = AvroSerializer.CreateGeneric(Schema);
                 var rootSchema = serializer.WriterSchema as RecordSchema;
 
-                //Create a generic record toorepresent hello data
+                //Create a generic record to represent the data
                 var testData = new List<AvroRecord>();
 
                 dynamic expected1 = new AvroRecord(rootSchema);
@@ -682,26 +682,26 @@ hello adatokat, majd hello fájl olvasásának és deszerializálni az objektumo
                 expected2.Value = new byte[] { 6, 7, 8, 9 };
                 testData.Add(expected2);
 
-                //Serializing and saving data toofile.
+                //Serializing and saving data to file.
                 //Create a MemoryStream buffer.
                 using (var buffer = new MemoryStream())
                 {
                     Console.WriteLine("Serializing Sample Data Set...");
 
-                    //Create a SequentialWriter instance for type SensorData, which can serialize a sequence of SensorData objects toostream.
+                    //Create a SequentialWriter instance for type SensorData, which can serialize a sequence of SensorData objects to stream.
                     //Data is not compressed (Null compression codec).
                     using (var writer = AvroContainer.CreateGenericWriter(Schema, buffer, Codec.Null))
                     {
                         using (var streamWriter = new SequentialWriter<object>(writer, 24))
                         {
-                            // Serialize hello data toostream by using hello sequential writer
+                            // Serialize the data to stream by using the sequential writer
                             testData.ForEach(streamWriter.Write);
                         }
                     }
 
-                    Console.WriteLine("Saving serialized data toofile...");
+                    Console.WriteLine("Saving serialized data to file...");
 
-                    //Save stream toofile
+                    //Save stream to file
                     if (!WriteFile(buffer, path))
                     {
                         Console.WriteLine("Error during file operation. Quitting method");
@@ -709,7 +709,7 @@ hello adatokat, majd hello fájl olvasásának és deszerializálni az objektumo
                     }
                 }
 
-                //Reading and deserializing hello data.
+                //Reading and deserializing the data.
                 //Create a memory stream buffer.
                 using (var buffer = new MemoryStream())
                 {
@@ -724,11 +724,11 @@ hello adatokat, majd hello fájl olvasásának és deszerializálni az objektumo
 
                     Console.WriteLine("Deserializing Sample Data Set...");
 
-                    //Prepare hello stream for deserializing hello data
+                    //Prepare the stream for deserializing the data
                     buffer.Seek(0, SeekOrigin.Begin);
 
-                    //Create a SequentialReader instance for type SensorData, which deserializes all serialized objects from hello given stream.
-                    //It allows iterating over hello deserialized objects because it implements hello IEnumerable<T> interface.
+                    //Create a SequentialReader instance for type SensorData, which deserializes all serialized objects from the given stream.
+                    //It allows iterating over the deserialized objects because it implements the IEnumerable<T> interface.
                     using (var reader = AvroContainer.CreateGenericReader(buffer))
                     {
                         using (var streamReader = new SequentialReader<object>(reader))
@@ -737,7 +737,7 @@ hello adatokat, majd hello fájl olvasásának és deszerializálni az objektumo
 
                             Console.WriteLine("Comparing Initial and Deserialized Data Sets...");
 
-                            //Finally, verify hello results
+                            //Finally, verify the results
                             var pairs = testData.Zip(results, (serialized, deserialized) => new { expected = (dynamic)serialized, actual = (dynamic)deserialized });
                             int count = 1;
                             foreach (var pair in pairs)
@@ -752,7 +752,7 @@ hello adatokat, majd hello fájl olvasásának és deszerializálni az objektumo
                     }
                 }
 
-                //Delete hello file
+                //Delete the file
                 RemoveFile(path);
             }
 
@@ -760,7 +760,7 @@ hello adatokat, majd hello fájl olvasásának és deszerializálni az objektumo
             //Helper methods
             //
 
-            //Saving memory stream tooa new file with hello given path
+            //Saving memory stream to a new file with the given path
             private bool WriteFile(MemoryStream InputStream, string path)
             {
                 if (!File.Exists(path))
@@ -776,7 +776,7 @@ hello adatokat, majd hello fájl olvasásának és deszerializálni az objektumo
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("hello following exception was thrown during creation and writing toohello file \"{0}\"", path);
+                        Console.WriteLine("The following exception was thrown during creation and writing to the file \"{0}\"", path);
                         Console.WriteLine(e.Message);
                         return false;
                     }
@@ -789,7 +789,7 @@ hello adatokat, majd hello fájl olvasásának és deszerializálni az objektumo
                 }
             }
 
-            //Reading a file content by using hello given path tooa memory stream
+            //Reading a file content by using the given path to a memory stream
             private bool ReadFile(MemoryStream OutputStream, string path)
             {
                 try
@@ -802,13 +802,13 @@ hello adatokat, majd hello fájl olvasásának és deszerializálni az objektumo
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("hello following exception was thrown during reading from hello file \"{0}\"", path);
+                    Console.WriteLine("The following exception was thrown during reading from the file \"{0}\"", path);
                     Console.WriteLine(e.Message);
                     return false;
                 }
             }
 
-            //Deleting file by using hello given path
+            //Deleting file by using the given path
             private void RemoveFile(string path)
             {
                 if (File.Exists(path))
@@ -819,7 +819,7 @@ hello adatokat, majd hello fájl olvasásának és deszerializálni az objektumo
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("hello following exception was thrown during deleting hello file \"{0}\"", path);
+                        Console.WriteLine("The following exception was thrown during deleting the file \"{0}\"", path);
                         Console.WriteLine(e.Message);
                     }
                 }
@@ -834,44 +834,44 @@ hello adatokat, majd hello fájl olvasásának és deszerializálni az objektumo
 
                 string sectionDivider = "---------------------------------------- ";
 
-                //Create an instance of hello AvroSample class and invoke methods
+                //Create an instance of the AvroSample class and invoke methods
                 //illustrating different serializing approaches
                 AvroSample Sample = new AvroSample();
 
-                //Serialization using generic record tooAvro object container file
+                //Serialization using generic record to Avro object container file
                 Sample.SerializeDeserializeUsingObjectContainersGenericRecord();
 
                 Console.WriteLine(sectionDivider);
-                Console.WriteLine("Press any key tooexit.");
+                Console.WriteLine("Press any key to exit.");
                 Console.Read();
             }
         }
     }
-    // hello example is expected toodisplay hello following output:
+    // The example is expected to display the following output:
     // SERIALIZATION USING GENERIC RECORD AND AVRO OBJECT CONTAINER FILES
     //
-    // Defining hello Schema and creating Sample Data Set...
+    // Defining the Schema and creating Sample Data Set...
     // Serializing Sample Data Set...
-    // Saving serialized data toofile...
+    // Saving serialized data to file...
     // Reading data from file...
     // Deserializing Sample Data Set...
     // Comparing Initial and Deserialized Data Sets...
     // For Pair 1 result of Data Set Identity Comparison is True
     // For Pair 2 result of Data Set Identity Comparison is True
     // ----------------------------------------
-    // Press any key tooexit.
+    // Press any key to exit.
 
 
 
 
 ## <a name="sample-5-serialization-using-object-container-files-with-a-custom-compression-codec"></a>5. példa: Szerializálási egy egyéni tömörítési kodek objektum tároló fájlok használata
-ötödik példa azt mutatja meg hello hogyan toouse az avro-hoz egy egyéni tömörítési kodek objektum tárolófájlokba. Egy minta hello kódot tartalmazó, az ebben a példában tölthető le: hello [Azure mintakódok](http://code.msdn.microsoft.com/Serialize-data-with-the-67159111) hely.
+Az ötödik példa bemutatja, hogyan használható egy egyéni tömörítési kodek Avro objektum tárolófájlokba. Az ebben a példában letölthető szükséges kódot tartalmazó minta a [Azure mintakódok](http://code.msdn.microsoft.com/Serialize-data-with-the-67159111) hely.
 
-Hello [Avro specifikációjában](http://avro.apache.org/docs/current/spec.html#Required+Codecs) lehetővé teszi, hogy egy nem kötelező tömörítési kodek használatát (továbbá túl**Null** és **Deflate** alapértelmezett). Ebben a példában nem implementálja az Snappy például egy új kodek (egy támogatott választható kodek hello az említett [Avro specifikációjában](http://avro.apache.org/docs/current/spec.html#snappy)). Azt illusztrálja, hogyan toouse hello hello .NET-keretrendszer 4.5 végrehajtásának [ **Deflate** ] [ deflate-110] kodek, amely hello alapjánjobbalgoritmustbiztosít[zlib](http://zlib.net/) hello alapértelmezett .NET-keretrendszer 4 verziónál tömörítési könyvtárat.
+A [Avro specifikációjában](http://avro.apache.org/docs/current/spec.html#Required+Codecs) lehetővé teszi, hogy egy nem kötelező tömörítési kodek használatát (kívül **Null** és **Deflate** alapértelmezett). Ebben a példában nem implementálja az Snappy például egy új kodek (egy támogatott választható kodek az említett a [Avro specifikációjában](http://avro.apache.org/docs/current/spec.html#snappy)). Azt illusztrálja, hogyan használata a .NET-keretrendszer 4.5 megvalósítása a [ **Deflate** ] [ deflate-110] kodek, így jobban tömörítési algoritmust alapján a [zlib ](http://zlib.net/) verziójú, mint az alapértelmezett .NET-keretrendszer 4-tömörítési könyvtárat.
 
     //
-    // This code needs toobe compiled with hello parameter Target Framework set as ".NET Framework 4.5"
-    // tooensure hello desired implementation of hello Deflate compression algorithm is used.
+    // This code needs to be compiled with the parameter Target Framework set as ".NET Framework 4.5"
+    // to ensure the desired implementation of the Deflate compression algorithm is used.
     // Ensure your C# project is set up accordingly.
     //
 
@@ -914,13 +914,13 @@ Hello [Avro specifikációjában](http://avro.apache.org/docs/current/spec.html#
         #region Defining custom codec based on .NET Framework V.4.5 Deflate
         //Avro.NET codec class contains two methods,
         //GetCompressedStreamOver(Stream uncompressed) and GetDecompressedStreamOver(Stream compressed),
-        //which are hello key ones for data compression.
-        //tooenable a custom codec, one needs tooimplement these methods for hello required codec.
+        //which are the key ones for data compression.
+        //To enable a custom codec, one needs to implement these methods for the required codec.
 
         #region Defining Compression and Decompression Streams
         //DeflateStream (class from System.IO.Compression namespace that implements Deflate algorithm)
         //cannot be directly used for Avro because it does not support vital operations like Seek.
-        //Thus one needs tooimplement two classes inherited from stream
+        //Thus one needs to implement two classes inherited from stream
         //(one for compressed and one for decompressed stream)
         //that use Deflate compression and implement all required features.
         internal sealed class CompressionStreamDeflate45 : Stream
@@ -930,7 +930,7 @@ Hello [Avro specifikációjában](http://avro.apache.org/docs/current/spec.html#
 
             public CompressionStreamDeflate45(Stream buffer)
             {
-                Debug.Assert(buffer != null, "Buffer is not allowed toobe null.");
+                Debug.Assert(buffer != null, "Buffer is not allowed to be null.");
 
                 this.compressionStream = new DeflateStream(buffer, CompressionLevel.Fastest, true);
                 this.buffer = buffer;
@@ -1086,7 +1086,7 @@ Hello [Avro specifikációjában](http://avro.apache.org/docs/current/spec.html#
         #endregion
 
         #region Define Codec
-        //Define hello actual codec class containing hello required methods for manipulating streams:
+        //Define the actual codec class containing the required methods for manipulating streams:
         //GetCompressedStreamOver(Stream uncompressed) and GetDecompressedStreamOver(Stream compressed).
         //Codec class uses classes for compressed and decompressed streams defined above.
         internal sealed class DeflateCodec45 : Codec
@@ -1123,9 +1123,9 @@ Hello [Avro specifikációjában](http://avro.apache.org/docs/current/spec.html#
         #endregion
 
         #region Define modified Codec Factory
-        //Define modified codec factory toobe used in hello reader.
-        //It catches hello attempt toouse "Deflate" and provide  a custom codec.
-        //For all other cases, it relies on hello base class (CodecFactory).
+        //Define modified codec factory to be used in the reader.
+        //It catches the attempt to use "Deflate" and provide  a custom codec.
+        //For all other cases, it relies on the base class (CodecFactory).
         internal sealed class CodecFactoryDeflate45 : CodecFactory
         {
 
@@ -1143,14 +1143,14 @@ Hello [Avro specifikációjában](http://avro.apache.org/docs/current/spec.html#
 
         #region Sample Class with demonstration methods
         //This class contains methods demonstrating
-        //hello usage of Microsoft Avro Library
+        //the usage of Microsoft Avro Library
         public class AvroSample
         {
 
             //Serializes and deserializes sample data set by using reflection and Avro object container files.
-            //Serialized data is compressed with hello custom compression codec (Deflate of .NET Framework 4.5).
+            //Serialized data is compressed with the custom compression codec (Deflate of .NET Framework 4.5).
             //
-            //This sample uses memory stream for all operations related tooserialization, deserialization and
+            //This sample uses memory stream for all operations related to serialization, deserialization and
             //object container manipulation, though file stream could be easily used.
             public void SerializeDeserializeUsingObjectContainersReflectionCustomCodec()
             {
@@ -1167,28 +1167,28 @@ Hello [Avro specifikációjában](http://avro.apache.org/docs/current/spec.html#
                             new SensorData { Value = new byte[] { 6, 7, 8, 9 }, Position = new Location { Room = 244, Floor = 1 } }
                         };
 
-                //Serializing and saving data toofile.
+                //Serializing and saving data to file.
                 //Creating a memory stream buffer.
                 using (var buffer = new MemoryStream())
                 {
                     Console.WriteLine("Serializing Sample Data Set...");
 
-                    //Create a SequentialWriter instance for type SensorData, which can serialize a sequence of SensorData objects toostream.
-                    //Here hello custom codec is introduced. For convenience, hello next commented code line shows how toouse built-in Deflate.
-                    //Note that because hello sample deals with different IMPLEMENTATIONS of Deflate, built-in and custom codecs are interchangeable
+                    //Create a SequentialWriter instance for type SensorData, which can serialize a sequence of SensorData objects to stream.
+                    //Here the custom codec is introduced. For convenience, the next commented code line shows how to use built-in Deflate.
+                    //Note that because the sample deals with different IMPLEMENTATIONS of Deflate, built-in and custom codecs are interchangeable
                     //in read-write operations.
                     //using (var w = AvroContainer.CreateWriter<SensorData>(buffer, Codec.Deflate))
                     using (var w = AvroContainer.CreateWriter<SensorData>(buffer, new DeflateCodec45()))
                     {
                         using (var writer = new SequentialWriter<SensorData>(w, 24))
                         {
-                            // Serialize hello data toostream using hello sequential writer
+                            // Serialize the data to stream using the sequential writer
                             testData.ForEach(writer.Write);
                         }
                     }
 
-                    //Save stream toofile
-                    Console.WriteLine("Saving serialized data toofile...");
+                    //Save stream to file
+                    Console.WriteLine("Saving serialized data to file...");
                     if (!WriteFile(buffer, path))
                     {
                         Console.WriteLine("Error during file operation. Quitting method");
@@ -1211,20 +1211,20 @@ Hello [Avro specifikációjában](http://avro.apache.org/docs/current/spec.html#
 
                     Console.WriteLine("Deserializing Sample Data Set...");
 
-                    //Prepare hello stream for deserializing hello data
+                    //Prepare the stream for deserializing the data
                     buffer.Seek(0, SeekOrigin.Begin);
 
                     //Because of SequentialReader<T> constructor signature, an AvroSerializerSettings instance is required
                     //when codec factory is explicitly specified.
-                    //You may comment hello line below if you want toouse built-in Deflate (see next comment).
+                    //You may comment the line below if you want to use built-in Deflate (see next comment).
                     AvroSerializerSettings settings = new AvroSerializerSettings();
 
-                    //Create a SequentialReader instance for type SensorData, which deserializes all serialized objects from hello given stream.
-                    //It allows iterating over hello deserialized objects because it implements hello IEnumerable<T> interface.
-                    //Here hello custom codec factory is introduced.
-                    //For convenience, hello next commented code line shows how toouse built-in Deflate
+                    //Create a SequentialReader instance for type SensorData, which deserializes all serialized objects from the given stream.
+                    //It allows iterating over the deserialized objects because it implements the IEnumerable<T> interface.
+                    //Here the custom codec factory is introduced.
+                    //For convenience, the next commented code line shows how to use built-in Deflate
                     //(no explicit Codec Factory parameter is required in this case).
-                    //Note that because hello sample deals with different IMPLEMENTATIONS of Deflate, built-in and custom codecs are interchangeable
+                    //Note that because the sample deals with different IMPLEMENTATIONS of Deflate, built-in and custom codecs are interchangeable
                     //in read-write operations.
                     //using (var reader = new SequentialReader<SensorData>(AvroContainer.CreateReader<SensorData>(buffer, true)))
                     using (var reader = new SequentialReader<SensorData>(
@@ -1232,7 +1232,7 @@ Hello [Avro specifikációjában](http://avro.apache.org/docs/current/spec.html#
                     {
                         var results = reader.Objects;
 
-                        //Finally, verify that deserialized data matches hello original one
+                        //Finally, verify that deserialized data matches the original one
                         Console.WriteLine("Comparing Initial and Deserialized Data Sets...");
                         bool isEqual;
                         int count = 1;
@@ -1246,7 +1246,7 @@ Hello [Avro specifikációjában](http://avro.apache.org/docs/current/spec.html#
                     }
                 }
 
-                //Delete hello file
+                //Delete the file
                 RemoveFile(path);
             }
         #endregion
@@ -1259,7 +1259,7 @@ Hello [Avro specifikációjában](http://avro.apache.org/docs/current/spec.html#
                 return left.Position.Equals(right.Position) && left.Value.SequenceEqual(right.Value);
             }
 
-            //Saving memory stream tooa new file with hello given path
+            //Saving memory stream to a new file with the given path
             private bool WriteFile(MemoryStream InputStream, string path)
             {
                 if (!File.Exists(path))
@@ -1275,7 +1275,7 @@ Hello [Avro specifikációjában](http://avro.apache.org/docs/current/spec.html#
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("hello following exception was thrown during creation and writing toohello file \"{0}\"", path);
+                        Console.WriteLine("The following exception was thrown during creation and writing to the file \"{0}\"", path);
                         Console.WriteLine(e.Message);
                         return false;
                     }
@@ -1288,7 +1288,7 @@ Hello [Avro specifikációjában](http://avro.apache.org/docs/current/spec.html#
                 }
             }
 
-            //Reading file content by using hello given path tooa memory stream
+            //Reading file content by using the given path to a memory stream
             private bool ReadFile(MemoryStream OutputStream, string path)
             {
                 try
@@ -1301,7 +1301,7 @@ Hello [Avro specifikációjában](http://avro.apache.org/docs/current/spec.html#
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("hello following exception was thrown during reading from hello file \"{0}\"", path);
+                    Console.WriteLine("The following exception was thrown during reading from the file \"{0}\"", path);
                     Console.WriteLine(e.Message);
                     return false;
                 }
@@ -1318,7 +1318,7 @@ Hello [Avro specifikációjában](http://avro.apache.org/docs/current/spec.html#
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("hello following exception was thrown during deleting hello file \"{0}\"", path);
+                        Console.WriteLine("The following exception was thrown during deleting the file \"{0}\"", path);
                         Console.WriteLine(e.Message);
                     }
                 }
@@ -1338,58 +1338,58 @@ Hello [Avro specifikációjában](http://avro.apache.org/docs/current/spec.html#
                 //illustrating different serializing approaches
                 AvroSample Sample = new AvroSample();
 
-                //Serialization using reflection tooAvro object container file using custom codec
+                //Serialization using reflection to Avro object container file using custom codec
                 Sample.SerializeDeserializeUsingObjectContainersReflectionCustomCodec();
 
                 Console.WriteLine(sectionDivider);
-                Console.WriteLine("Press any key tooexit.");
+                Console.WriteLine("Press any key to exit.");
                 Console.Read();
             }
         }
     }
-    // hello example is expected toodisplay hello following output:
+    // The example is expected to display the following output:
     // SERIALIZATION USING REFLECTION, AVRO OBJECT CONTAINER FILES AND CUSTOM CODEC
     //
     // Serializing Sample Data Set...
-    // Saving serialized data toofile...
+    // Saving serialized data to file...
     // Reading data from file...
     // Deserializing Sample Data Set...
     // Comparing Initial and Deserialized Data Sets...
     // For Pair 1 result of Data Set Identity Comparison is True
     //For Pair 2 result of Data Set Identity Comparison is True
     // ----------------------------------------
-    // Press any key tooexit.
+    // Press any key to exit.
 
-## <a name="sample-6-using-avro-tooupload-data-for-hello-microsoft-azure-hdinsight-service"></a>6. példa: Avro tooupload adatok használata a Microsoft Azure HDInsight szolgáltatás hello
-hello hatodik példa bemutatja az egyes programozási módszerek kapcsolódó toointeracting hello Azure HDInsight szolgáltatással. Egy minta hello kódot tartalmazó, az ebben a példában tölthető le: hello [Azure mintakódok](https://code.msdn.microsoft.com/Using-Avro-to-upload-data-ae81b1e3) hely.
+## <a name="sample-6-using-avro-to-upload-data-for-the-microsoft-azure-hdinsight-service"></a>6. példa: Avro feltölteni az adatokat a Microsoft Azure HDInsight szolgáltatás használatával.
+A hatodik példa bemutatja az egyes programozási módszerek használják az Azure HDInsight szolgáltatással kapcsolatos. Az ebben a példában letölthető szükséges kódot tartalmazó minta a [Azure mintakódok](https://code.msdn.microsoft.com/Using-Avro-to-upload-data-ae81b1e3) hely.
 
-hello minta a következő feladatok hello:
+A minta a következő feladatokat hajtja végre:
 
-* Tooan meglévő HDInsight-szolgáltatás fürthöz csatlakozik.
-* Rendezi sorba több CSV-fájlt, és feltölti a hello eredmény tooAzure Blob Storage tárolóban. (hello CSV-fájlok együtt hello minta küld, és megfelelnek-e terjesztve mellékletben készlet előzményadatokat kivonatát [Infochimps](http://www.infochimps.com/) 1970-2010 hello időszakra. hello minta CSV-fájl adatokat olvas, konvertálja a hello rekordok tooinstances hello **készlet** osztály, és ezután rendezi sorba őket reflexió használatával. Készlet definíciójának egy JSON-séma hello Microsoft Avro Library kód generálása segédprogram használatával készült.
-* Táblázatot hoz létre új külső nevű **készletek** a Hive, és csatolja azt toohello adatok hello előző lépésben feltöltve.
-* A lekérdezés végrehajtja a Hive használatával hello keresztül **készletek** tábla.
+* Csatlakozik egy meglévő HDInsight-fürtre.
+* Rendezi sorba több CSV-fájlt és feltölti az eredményt az Azure Blob Storage tárolóban. (A CSV-fájlok a minta együtt küld, és megfelelnek-e terjesztve mellékletben készlet előzményadatokat kivonatát [Infochimps](http://www.infochimps.com/) 1970-2010 időszakra. A minta CSV-fájl adatokat olvas, alakítja át a rekordok példányait a **készlet** osztály, és ezután rendezi sorba őket reflexió használatával. A JSON-séma segítségével a Microsoft az Avro Library kód generálása segédprogram készlet definíciójának készült.
+* Táblázatot hoz létre új külső nevű **készletek** a Hive és a hivatkozásokat úgy, hogy az adatok feltöltése az előző lépésben.
+* A lekérdezés végrehajtja a Hive használatával keresztül a **készletek** tábla.
 
-Ezenkívül hello minta folyamatot hajt végre a karbantartás előtt és után fő műveletet hajt végre. Során hello karbantartás minden hello kapcsolódó Azure-Blob adatok és mappákat eltávolítsa, és hello Hive tábla megszakad. Hello karbantartás eljárás hello minta parancssorból is hívhat meg.
+Emellett a minta folyamatot hajt végre a karbantartás előtt és után fő műveletet hajt végre. Során a karbantartás minden a kapcsolódó Azure-Blob adatok és a mappák törlődnek, és a Hive tábla megszakad. A karbantartás eljárás a minta parancssorból is hívhat meg.
 
-hello minta a következő előfeltételek hello rendelkezik:
+A minta előfeltételei a következők:
 
 * Egy aktív Microsoft Azure-előfizetést és az előfizetés-azonosító.
-* Felügyeleti tanúsítvány hello előfizetés hello megfelelő titkos kulccsal. hello aktuális felhasználói személyes tárolót a hello használt géppel toorun hello minta hello tanúsítványt kell telepíteni.
+* Egy felügyeleti tanúsítványt, az előfizetés, a megfelelő titkos kulccsal. A tanúsítványt kell telepíteni, az aktuális felhasználó titkos tárolási a minta futtatásához használt számítógépen.
 * Aktív HDInsight-fürtöt.
-* Egy Azure Storage-fiók kapcsolódó toohello HDInsight fürt hello előző előfeltétel együtt hello megfelelő elsődleges vagy másodlagos elérési kulcsot.
+* A HDInsight-fürthöz az előző előfeltétel, és a megfelelő elsődleges vagy másodlagos elérési kulcsot a kapcsolódó Azure Storage-fiók.
 
-Minden hello Előfeltételek hello információt kell megadott toohello minta konfigurációs fájlt, hello minta futtatása előtt. Nincsenek a két lehetséges módjait toodo azt:
+Minden adatot a Előfeltételek kell adni a minta konfigurációs fájl a minta futtatása előtt. Ehhez két lehetséges módja van:
 
-* Hello minta gyökérkönyvtár hello app.config fájl szerkesztése, és majd kialakítható hello minta
-* Először a hello minta létrehozása, és szerkessze a AvroHDISample.exe.config hello build könyvtárban
+* Szerkessze az app.config fájlt, a minta gyökérkönyvtárában, és majd kialakítható a minta
+* A minta először létre, és szerkessze a AvroHDISample.exe.config a build könyvtárban
 
-Mindkét esetben minden módosításokat kell végezni a hello  **<appSettings>**  beállítások szakaszban. Hajtsa végre a hello megjegyzések hello fájlban.
-hello minta fut hello parancssorból futtassa a következő parancsot (amelyben hello hello mintát tartalmazó .zip fájl volt feltételezve, hogy a kibontott toobe tooC:\AvroHDISample; Ha vonatkozó hello-e ellenkező esetben használja fájl elérési útja) hello:
+Mindkét esetben minden módosításokat kell végezni a  **<appSettings>**  beállítások szakaszban. Kövesse a megjegyzéseket, a fájlban.
+A minta futtatása a parancssorból futtassa a következő parancsot (amelyben a .zip-fájlt a mintával lett feltételezi, hogy kibontott C:\AvroHDISample; Ha ellenkező esetben használja a megfelelő elérési útja):
 
     AvroHDISample run C:\AvroHDISample\Data
 
-hello fürt, futtassa a következő parancs hello tooclean:
+A fürt karbantartása, a következő parancsot:
 
     AvroHDISample clean
 

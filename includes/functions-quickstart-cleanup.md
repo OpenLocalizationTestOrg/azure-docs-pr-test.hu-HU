@@ -1,5 +1,5 @@
-Az ebben a gyűjteményben lévő többi rövid útmutató erre a rövid útmutatóra épít. Toocontinue toowork későbbi gyors üzembe helyezések vagy hello oktatóanyagok tervezi, ha a gyors létrehozott hello erőforrások karbantartása indításának mellőzése. 
+Az ebben a gyűjteményben lévő többi rövid útmutató erre a rövid útmutatóra épít. Ha azt tervezi, hogy az ezt rövid útmutatókkal vagy az oktatóanyagokkal dolgozik tovább, akkor ne törölje az ebben a rövid útmutatóban létrehozott erőforrásokat. 
 
-Ha nem tervezi toocontinue, kattintson a hello **erőforráscsoport** hello függvény alkalmazás hello portálon, és kattintson a **törlése**. 
+Ha folytatja a munkát, kattintson a függvényalkalmazáshoz tartozó **Erőforráscsoport** elemre a portálon, és kattintson a **Törlés** gombra. 
 
-![Válassza ki a hello erőforrás csoport toodelete hello függvény alkalmazásból.](./media/functions-quickstart-cleanup/functions-app-delete-resource-group.png)
+![Válassza ki a függvényalkalmazásból törölni kívánt erőforráscsoportot.](./media/functions-quickstart-cleanup/functions-app-delete-resource-group.png)

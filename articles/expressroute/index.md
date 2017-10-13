@@ -1,8 +1,8 @@
 ---
-title: "az ExpressRoute dokumentációja – oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
-description: "Megtudhatja, hogyan tooconfigure és egy személyes ExpressRoute kapcsolat tooMicrosoft felhőszolgáltatások kezelése a helyszíni infrastruktúra vagy a közös elhelyezést eszközökhöz."
+title: "Az Azure ExpressRoute dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogyan konfigurálhat és kezelhet egy, a Microsoft felhőszolgáltatáshoz a helyszíni infrastruktúráról vagy közös elhelyezési létesítményből csatlakozó privát ExpressRoute-kapcsolatot."
 services: expressroute
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: aad3408378b3d492ffa3c9c11a7bb5066567bb8f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8c12fd74d131538e736d6357da586c5debb9929c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 #<a name="expressroute-documentation"></a>Az ExpressRoute dokumentációja
 
-Ismerje meg, hogyan toouse ExpressRoute tooset fel egy gyors, személyes kapcsolat tooMicrosoft felhőalapú szolgáltatást, a helyszíni infrastruktúra vagy a közös elhelyezést eszközökhöz. Oktatóanyagok, REST API-k és egyéb dokumentáció, amelyek segítségével konfigurálhat és kezelhet egy ExpressRoute-kapcsolatcsoportot.
+Ismerje meg, hogyan használhatja az ExpressRoute-ot egy gyors privát kapcsolat beállításához a Microsoft felhőszolgáltatáshoz a helyszíni infrastruktúráról vagy közös elhelyezési létesítményből. Oktatóanyagok, REST API-k és egyéb dokumentáció, amelyek segítségével konfigurálhat és kezelhet egy ExpressRoute-kapcsolatcsoportot.
 
 <ul class="panelContent cardsFTitle">
     <li>

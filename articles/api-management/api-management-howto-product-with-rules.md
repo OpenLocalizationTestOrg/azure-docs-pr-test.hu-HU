@@ -1,6 +1,6 @@
 ---
-title: "aaaProtect az API-t az Azure API Management szolgáltatással |} Microsoft Docs"
-description: "Megtudhatja, hogyan tooprotect kvóták és sávszélesség-szabályozás (sebességhatárolt) házirendek az API-t."
+title: "Az API-k védelme az Azure API Management szolgáltatással | Microsoft Docs"
+description: "Megtudhatja, hogyan védheti meg az API-kat kvótákkal és szabályozási (sebességhatároló) házirendekkel."
 services: api-management
 documentationcenter: 
 author: vladvino
@@ -14,106 +14,106 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 3113fd277d434da0c051b8b90fd629a102bf4867
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 300b1d762a61c810dbffde5aaacd8a85f12c9fca
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="protect-your-api-with-rate-limits-using-azure-api-management"></a>Az API-k védelme sebességkorlátokkal az Azure API Management használatával
-Ez az útmutató bemutatja, milyen egyszerűen a háttér-API tooadd védelmét az Azure API Management arány korlátozás és a kvóta házirendek konfigurálásával.
+Ez az útmutató ismerteti, milyen könnyen adhat védelmet a háttérrendszerben futó API-khoz az Azure API Management szolgáltatásban a sebességkorlát- és kvótaházirendek konfigurálásával.
 
-Ebben az oktatóanyagban létrehoz egy "Ingyenes" API-terméket, amely lehetővé teszi a fejlesztők toomake too10 hívások száma percenként és mentése tooa legfeljebb 200 hívásszám hét tooyour API használatával hello [korlát hívás arány előfizetésenként](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate) és [ Set memóriahasználati kvóta előfizetésenként](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota) házirendek. Majd közzéteszi hello API és hello arány korlát házirend tesztelése.
+Ebben az oktatóanyagban létre fog hozni egy „Ingyenes próbaverzió” API-terméket, amely lehetővé teszi a fejlesztők számára, hogy percenként 10 hívást, hetente pedig legfeljebb 200 hívást indítsanak az API felé a [Hívások sebességének korlátozása előfizetésenként](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate) és a [Használati kvóta beállítása előfizetésenként](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota) házirendek használatával. Ezután közzéteszi az API-t és teszteli a sebességkorlátozási házirendet.
 
-További speciális forgatókönyveket hello használatával szabályozás [arány-korlát-által-kulcs](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRateByKey) és [a kulcs-kvóta](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuotaByKey) házirendek, lásd: [speciális kérelmet az Azure API Management-szabályozás](api-management-sample-flexible-throttling.md).
+A [rate-limit-by-key](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRateByKey) és a [quota-by-key](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuotaByKey) házirendeket használó speciálisabb szabályozási forgatókönyvekért tekintse meg a [Speciális kérésszabályzás az Azure API Management szolgáltatással](api-management-sample-flexible-throttling.md) szakaszt.
 
-## <a name="create-product"></a>toocreate termék
+## <a name="create-product"></a>Termék létrehozása
 Ebben a lépésben létrehoz egy Ingyenes próbaverzió terméket, amely nem igényel jóváhagyott előfizetést.
 
 > [!NOTE]
-> Ha már konfigurált egy termék, és szeretné toouse az ehhez az oktatóanyaghoz, de is ugorhat azokat, amelyek túl[konfigurálása hívás arány korlátozás és a kvóta házirendek] [ Configure call rate limit and quota policies] és az oktatóanyag hello ott használhatná a terméket helyett hello ingyenes próbaverziója.
+> Ha már konfigurált egy terméket, és azt szeretné használni az oktatóanyaghoz, továbbléphet [A hívások sebességének korlátozása és a kvótaházirendek konfigurálása][Configure call rate limit and quota policies] című lépésre, és onnan már az Ingyenes próbaverzió termék helyett a saját termékével követheti az oktatóanyagot.
 > 
 > 
 
-tooget elindítani, kattintson a **Publisher portal** a hello Azure portál, az API Management szolgáltatás.
+Első lépésként kattintson a **Közzétevő portál** elemre az API Management szolgáltatás Azure Portalján.
 
 ![Közzétevő portál][api-management-management-console]
 
-> Ha még nem hozott létre az API Management szolgáltatáspéldány, lásd: [hozzon létre egy API-kezelés szolgáltatás példányt] [ Create an API Management service instance] a hello [kezelése az Azure API Management az első API] [ Manage your first API in Azure API Management] oktatóanyag.
+> Ha még nem hozott létre API Management szolgáltatáspéldányt, tekintse meg [Az első API kezelése az Azure API Management szolgáltatásban][Manage your first API in Azure API Management] oktatóanyag [API Management szolgáltatáspéldány létrehozása][Create an API Management service instance] című szakaszát.
 > 
 > 
 
-Kattintson a **termékek** a hello **API Management** hello bal oldali toodisplay hello menüjének **termékek** lap.
+Kattintson a bal oldali **API Management** menü **Termékek** lehetőségére a **Termékek** oldal megjelenítéséhez.
 
 ![Termék hozzáadása][api-management-add-product]
 
-Kattintson a **Hozzáadás termék** toodisplay hello **hozzáadása új termék** párbeszédpanel megnyitásához.
+Kattintson a **Termék hozzáadása** lehetőségre az **Új termék hozzáadása** párbeszédpanel megjelenítéséhez.
 
 ![Új termék hozzáadása][api-management-new-product-window]
 
-A hello **cím** mezőbe írja be **ingyenes**.
+A **Cím** mezőbe írja be az **Ingyenes próbaverzió** kifejezést.
 
-A hello **leírás** mezőbe, a következő szöveg típusú hello: **előfizetők lesz képes toorun 10 hívások/perces tooa legfeljebb 200 hívások/hét után, amely a hozzáférés megtagadva.**
+A **Leírás** mezőbe írja be az alábbi szöveget: **Az előfizetők percenként 10 hívást indíthatnak, hetente pedig akár 200 hívást, ami után meg lesz tagadva a hozzáférés.**
 
-Az API Management termékei védettek vagy nyitottak lehetnek. Védett termékek kell előfizetett toobefore is használhatók. A nyitott termékeket előfizetés nélkül is lehet használni. Győződjön meg arról, hogy **előfizetés szükséges** kijelölt toocreate van egy védett terméket, amely a előfizetést igényel. Ez az hello alapértelmezett beállítása.
+Az API Management termékei védettek vagy nyitottak lehetnek. A védett termékeket csak az előfizetők használhatják. A nyitott termékeket előfizetés nélkül is lehet használni. Győződjön meg arról, hogy az **Előfizetés szükséges** lehetőség ki van választva, ha egy előfizetést igénylő védett terméket kíván létrehozni. Ez az alapértelmezett beállítás.
 
-Ha szeretné, hogy egy rendszergazda tooreview, és fogadja el vagy utasítsa el az előfizetés toothis termék kísérletek, válassza ki a **előfizetés jóváhagyás szükséges**. Ha hello jelölőnégyzet nincs bejelölve, a előfizetés kísérletek lesz automatikusan jóváhagyta. Ebben a példában előfizetések automatikus jóváhagyása, így hello be nem jelöli be.
+Ha szeretné, hogy a termékre történő előfizetési kísérleteket egy rendszergazda ellenőrizze, és elfogadja vagy elutasítsa azt, válassza ki a **Előfizetés jóváhagyása szükséges** lehetőséget. Ha a jelölőnégyzet nincs bejelölve, az előfizetési kísérletek automatikusan el lesznek fogadva. Ebben a példában az előfizetések jóváhagyása automatikus, ezért ne jelölje be a jelölőnégyzetet.
 
-tooallow fejlesztői fiókok toosubscribe többször toohello új terméket, jelölje be hello **lehetővé teszi több egyidejű előfizetések** jelölőnégyzetet. Ez az oktatóanyag nem használ több egyidejű előfizetést, ezért ne jelölje ezt be.
+Ha engedélyezni szeretné a fejlesztői fiókok számára, hogy többször is előfizethessenek egy új termékre, jelölje be a **Több egyidejű előfizetés engedélyezése** jelölőnégyzetet. Ez az oktatóanyag nem használ több egyidejű előfizetést, ezért ne jelölje ezt be.
 
-Miután az összes érték lett megadva, kattintson **mentése** toocreate hello termék.
+Miután az összes értéket megadta, kattintson a **Mentés** gombra a termék létrehozásához.
 
 ![Hozzáadott termék][api-management-product-added]
 
-Alapértelmezés szerint új termékeket a hello látható toousers **rendszergazdák** csoport. Tooadd hello fogjuk **fejlesztők** csoport. Kattintson a **ingyenes**, és kattintson a hello **látható** fülre.
+Alapértelmezés szerint a **Rendszergazdák** csoport tagjai látják az új termékeket. Hozzá fogjuk adni a **Fejlesztők** csoportot. Kattintson az **Ingyenes próbaverzió** lehetőségre, majd kattintson a **Láthatóság** lapra.
 
-> Az API Management csoportok olyan termékek toodevelopers használt toomanage hello láthatóságát. Termékek adjon látható toogroups és fejlesztők tekintheti meg és előfizetés toohello terméket, amelyre látható toohello csoportok, amelyben tartoznak. További információkért lásd: [hogyan toocreate és -felhasználási csoportosítja az Azure API Management][How toocreate and use groups in Azure API Management].
+> Az API Management szolgáltatásban csoportok használatával szabályozható a fejlesztők hozzáférése a termékhez. A csoportok számára a termékek biztosítanak láthatóságot, a fejlesztők pedig megtekinthetik a csoportjuk számára látható termékeket és előfizethetnek rájuk. További információkért lásd: [Csoportok létrehozása és használata az Azure API Management szolgáltatásban][How to create and use groups in Azure API Management].
 > 
 > 
 
 ![Fejlesztői csoport hozzáadása][api-management-add-developers-group]
 
-Jelölje be hello **fejlesztők** jelölőnégyzetet, majd kattintson a **mentése**.
+Jelölje be a **Fejlesztők** jelölőnégyzetet, majd kattintson a **Mentés** gombra.
 
-## <a name="add-api"></a>tooadd az API-k toohello termék
-Ebben a lépésben hello oktatóanyag adunk hozzá hello Echo API toohello új ingyenes próbaverziója.
+## <a name="add-api"></a>API hozzáadása a termékhez
+Az oktatóanyag ezen lépésében hozzáadjuk az Echo API-t az új Ingyenes próbaverzió termékhez.
 
-> Minden API Management service-példány az Echo API-k, melyek a használt tooexperiment és API-kezeléssel kapcsolatos további tudnivalók az előre konfigurált származnak. További információkért lásd: [Az első API kezelése az Azure API Management szolgáltatásban][Manage your first API in Azure API Management].
+> Minden API Management szolgáltatáspéldányhoz előre konfigurálva van egy kipróbálható Echo API, amely segít megismerni az API Management szolgáltatást. További információkért lásd: [Az első API kezelése az Azure API Management szolgáltatásban][Manage your first API in Azure API Management].
 > 
 > 
 
-Kattintson a **termékek** a hello **API Management** hello maradt, és válassza a menü **ingyenes** tooconfigure hello termék.
+Kattintson a bal oldali **API Management** menü **Termékek** elemére, majd kattintson az **Ingyenes próbaverzió** lehetőségre a termék konfigurálásához.
 
 ![Termék konfigurálása][api-management-configure-product]
 
-Kattintson a **hozzáadása API tooproduct**.
+Kattintson az **API hozzáadása termékhez** lehetőségre.
 
-![API tooproduct hozzáadása][api-management-add-api]
+![API hozzáadása termékhez][api-management-add-api]
 
 Válassza ki az **Echo API** elemet, majd kattintson a **Mentés** gombra.
 
 ![Echo API hozzáadása][api-management-add-echo-api]
 
-## <a name="policies"></a>tooconfigure hívás arány korlátozás és a kvóta házirendek
-Sebességhatárok és kvóták hello Helyicsoportházirend-szerkesztő vannak konfigurálva. Ebben az oktatóanyagban bővítjük hello két házirendek nincsenek hello [korlát hívás arány előfizetésenként](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate) és [Set memóriahasználati kvóta előfizetésenként](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota) házirendek. Ezek a házirendek hello termék hatókörben kell alkalmazni.
+## <a name="policies"></a>A hívások sebességkorlátozása és a kvótaházirendek konfigurálása
+A sebességkorlátokat és a kvótákat a házirendszerkesztőben lehet konfigurálni. A két szabályzat, amelyet ebben az oktatóanyagban hozzáadunk a [Hívások számának korlátozása előfizetésenként](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate) és a [Használati kvóta beállítása előfizetésenként](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota). Ezeket a szabályzatokat termékszinten kell alkalmazni.
 
-Kattintson a **házirendek** alatt hello **API Management** hello bal oldali menüben. A hello **termék** listában, kattintson **ingyenes**.
+Kattintson a bal oldali **API Management** menü alatt található**Házirendek** lehetőségre. A **Termék** listán kattintson az **Ingyenes próbaverzió** lehetőségre.
 
 ![Termékházirend][api-management-product-policy]
 
-Kattintson a **házirend hozzáadása** tooimport Házirendsablon hello és hello arány korlátozás és a kvóta házirendek létrehozásának megkezdéséhez.
+Kattintson a **Házirend hozzáadása** lehetőségre a házirendsablon importálásához, hogy elkezdje létrehozni a sebességkorlát- és kvótaházirendeket.
 
 ![Házirend hozzáadása][api-management-add-policy]
 
-Sebesség korlátozás és a kvóta házirendek olyan bejövő házirendek, így pozíció hello kurzor hello bejövő elemben.
+A sebességkorlát- és kvótaházirendek bejövő házirendek, ezért vigye a kurzort az „inbound” elemre.
 
 ![Házirendszerkesztő][api-management-policy-editor-inbound]
 
-Görgessen végig hello házirendek listájában, és keresse meg a hello **korlát hívás arány előfizetésenként** házirend bejegyzést.
+Görgessen végig a szabályzatok listáján, és keresse meg a **Hívások számának korlátozása előfizetésenként** szabályzatbejegyzést.
 
 ![Házirend-utasítások][api-management-limit-policies]
 
-Hello után létrejön a hello kurzor **bejövő** házirend elem hello melletti nyílra **korlát hívás arány előfizetésenként** tooinsert a sablont.
+Miután a kurzort odavitte az **inbound** házirend elemre, kattintson a **Hívások számának korlátozása előfizetésenként** melletti nyílra a házirendsablon beillesztéséhez.
 
 ```xml
 <rate-limit calls="number" renewal-period="seconds">
@@ -123,21 +123,21 @@ Hello után létrejön a hello kurzor **bejövő** házirend elem hello melletti
 </rate-limit>
 ```
 
-Hello kódrészletben láthatja, hello házirend korlátozása hello termék API-k, illetve műveletek köszönhetően. Az oktatóanyag azt fogja nem használja ezt a funkciót, így törlése hello **api** és **művelet** hello elemek **sebességhatár** elemben, úgy, hogy csak a külső hello**sebességhatár** elem marad, ahogy az alábbi példa hello.
+Ahogy a kódrészletből is látható, ezzel a szabályzattal korlátozások állíthatók be a termék API-jaira és műveleteire vonatkozóan. Ebben az oktatóanyagban nem használjuk ezt a képességet, ezért törölje az **api** és az **operation** elemet a **rate-limit** elemből, hogy csak a külső **rate-limit** elem maradjon az alábbi példában látható módon.
 
 ```xml
 <rate-limit calls="number" renewal-period="seconds">
 </rate-limit>
 ```
 
-A hello ingyenes termék hello maximális megengedhető hívás sebesség 10 hívások száma percenként, kell megadni, **10** hello hello értékként **hívások** attribútum, és **60** a hello **megújítási időszak** attribútum.
+Az Ingyenes próbaverzió termékben a maximálisan engedélyezett hívások száma percenként 10, ezért írjon be **10**-et a **calls** attribútum értékéhez, és **60**-at a **renewal-period** attribútum értékéhez.
 
 ```xml
 <rate-limit calls="10" renewal-period="60">
 </rate-limit>
 ```
 
-tooconfigure hello **Set memóriahasználati kvóta előfizetésenként** házirend, pozíció hello alatt közvetlenül a kurzor újonnan hozzáadott **sebességhatár** hello elemet **bejövő** elemet, majd keresse meg és hello nyíl toohello bal oldalán kattintson **Set memóriahasználati kvóta előfizetésenként**.
+A **Használati kvóta beállítása előfizetésenként** szabályzat konfigurálásához helyezze az egérmutatót az újonnan hozzáadott **rate-limit** elem alá az **inbound** elemen belül, majd keresse meg és kattintson a **Használati kvóta beállítása előfizetésenként** szabályzat bal oldalán lévő nyílra.
 
 ```xml
 <quota calls="number" bandwidth="kilobytes" renewal-period="seconds">
@@ -147,32 +147,32 @@ tooconfigure hello **Set memóriahasználati kvóta előfizetésenként** házir
 </quota>
 ```
 
-Hasonlóképpen toohello **Set memóriahasználati kvóta előfizetésenként** házirend, **Set memóriahasználati kvóta előfizetésenként** házirend lehetővé teszi, hogy a caps beállítás hello termék API-k és a műveletek. Az oktatóanyag azt fogja nem használja ezt a funkciót, így törlése hello **api** és **művelet** hello elemek **kvóta** elem, ahogy az alábbi példa hello.
+A **Hívások számának korlátozása előfizetésenként** szabályzathoz hasonlóan a **Használati kvóta beállítása előfizetésenként** szabályzattal korlátokat adhat meg a termék API-jaira és műveleteire vonatkozóan. Ebben az oktatóanyagban nem használjuk ezt a képességet, ezért törölje az **api** és az **operation** elemet a **quota** elemből az alábbi példában látható módon.
 
 ```xml
 <quota calls="number" bandwidth="kilobytes" renewal-period="seconds">
 </quota>
 ```
 
-Kvóták alapulhat hello eseményenkénti hívásszám időköz, sávszélesség vagy mindkettőt. Az oktatóanyag azt vannak nem alapján sávszélesség szabályozása, ezért törölje a hello **sávszélesség** attribútum.
+A kvóták alapulhatnak az időközönként indított hívások számán, a sávszélességen, vagy mindkettőn. Ebben az oktatóanyagban nem a sávszélesség alapján szabályozunk, ezért törölje a **bandwidth** attribútumot.
 
 ```xml
 <quota calls="number" renewal-period="seconds">
 </quota>
 ```
 
-A hello ingyenes termék hello kvótát hetente 200 hívások. Adja meg **200** hello hello értékként **hívások** attribútumot, és adja meg **604800** hello hello értékként **megújítási időszak** az attribútum.
+Az Ingyenes próbaverzió termékben a kvóta 200 hívás hetente. Adja meg a **200**-at a **calls** attribútum értékeként, majd adja meg a **604800**-at a **renewal-period** attribútum értékeként.
 
 ```xml
 <quota calls="200" renewal-period="604800">
 </quota>
 ```
 
-> A házirendidőközök másodpercekben vannak megadva. egy hét toocalculate hello intervallumát is szorzási hello hány napig (7) által hello száma óra szerint egy óra alatt (60) egy perc alatt (60) másodperc hello számú percek száma hello naponta (24): 7 * 24 * 60 * 60 = 604800.
+> A házirendidőközök másodpercekben vannak megadva. A heti időköz kiszámításához szorozza össze a napok számát (7) a nap óráinak számával (24), az óra perceinek számával (60) és a perc másodperceinek számával (60): 7 * 24 * 60 * 60 = 604 800.
 > 
 > 
 
-Hello házirend konfigurálása után, akkor meg kell felelnie a következő példa hello.
+A házirendnek a konfigurálás után meg kell egyeznie az alábbi példával.
 
 ```xml
 <policies>
@@ -192,27 +192,27 @@ Hello házirend konfigurálása után, akkor meg kell felelnie a következő pé
 </policies>
 ```
 
-Miután hello szükséges házirendek hogyan vannak konfigurálva, kattintson **mentése**.
+Miután konfigurálta a kívánt házirendeket, kattintson a **Mentés** gombra.
 
 ![Házirend mentése][api-management-policy-save]
 
-## <a name="publish-product"></a> toopublish hello termék
-Most, hogy hello hello API-k hozzáadásával és hello házirendek hogyan vannak konfigurálva, hello termék közzé kell tenni, hogy a fejlesztők használhatják. Kattintson a **termékek** a hello **API Management** hello maradt, és válassza a menü **ingyenes** tooconfigure hello termék.
+## <a name="publish-product"></a>A termék közzététele
+Most, hogy hozzáadta az API-kat és konfigurálta a házirendeket, közzé kell tenni a terméket, hogy a fejlesztők használhassák. Kattintson a bal oldali **API Management** menü **Termékek** elemére, majd kattintson az **Ingyenes próbaverzió** lehetőségre a termék konfigurálásához.
 
 ![Termék konfigurálása][api-management-configure-product]
 
-Kattintson a **közzététel**, és kattintson a **Igen, azt közzé** tooconfirm.
+Kattintson a **Közzététel** elemre, majd kattintson az **Igen, közzéteszem** lehetőségre a megerősítéshez.
 
 ![Termék közzététele][api-management-publish-product]
 
-## <a name="subscribe-account"></a>toosubscribe toohello termék fejlesztői fiók
-Most, hogy hello termék közzé van téve, a fejlesztők által használt előfizetett elérhető toobe tooand is.
+## <a name="subscribe-account"></a>Előfizetés a termékre egy fejlesztői fiók nevében
+Most, hogy a termék közzé lett téve, a fejlesztők elő tudnak rá fizetni és használni tudják.
 
-> Az API Management-példány a rendszergazdák automatikusan előfizetett tooevery termék. Útmutató ezt a lépést azt fogja előfizetés hello fejlesztői nem rendszergazdai fiókok toohello ingyenes termék egyikét. Ha a fejlesztői fiókba hello Rendszergazdák szerepkör tagja, majd kövesse ezt a lépést, valamint annak ellenére, hogy már előfizetett.
+> Az API Management példányok rendszergazdái automatikusan előfizetnek az összes termékre. Az oktatóanyag ezen lépésében elő fogunk fizetni az egyik nem rendszergazdai fejlesztői fiókkal az Ingyenes próbaverzió termékre. Ha a fejlesztői fiókja a rendszergazdai szerepkör része, követheti a lépés utasításait, akkor is, ha már előfizetett.
 > 
 > 
 
-Kattintson a **felhasználók** a hello **API Management** hello menüjének maradt, és kattintson a hello a developer-fiók nevét. A jelen példában használjuk hello **Clayton Gragg** fejlesztői fiókjába.
+Kattintson a bal oldali **API Management** menü **Felhasználók** lehetőségére, majd kattintson a fejlesztői fiókja nevére. Ebben a példában a **Clayton Gragg** fejlesztői fiókot használjuk.
 
 ![Fejlesztő konfigurálása][api-management-configure-developer]
 
@@ -225,23 +225,23 @@ Válassza ki az **Ingyenes próbaverzió** elemet, majd kattintson az **Előfize
 ![Előfizetés hozzáadása][api-management-add-subscription]
 
 > [!NOTE]
-> Ebben az oktatóanyagban több egyidejű előfizetések nem engedélyezettek hello ingyenes próbaverziója. Ha azok, lehetővé válik felszólító tooname hello előfizetés, ahogy az alábbi példa hello.
+> Ebben az oktatóanyagban az Ingyenes próbaverzió terméknél nincs engedélyezve a több egyidejű előfizetés. Ha engedélyezve lenne, a rendszer megkérné, hogy nevezze el az előfizetést az alábbi példában látható módon.
 > 
 > 
 
 ![Előfizetés hozzáadása][api-management-add-subscription-multiple]
 
-Miután rákattintott **előfizetés**, hello termék megjelenik a hello **előfizetés** hello felhasználó listáját.
+Miután az **Előfizetés** lehetőségre kattint, a termék megjelenik a felhasználó számára az **Előfizetés** listán.
 
 ![Előfizetés hozzáadva][api-management-subscription-added]
 
-## <a name="test-rate-limit"></a>toocall egy művelet és a vizsgálati hello sávszélesség-korlátjának
-Hello ingyenes próbaverziója van konfigurálva, és közzétett, azt hívja az egyes műveletek, és hello arány korlát tesztszabályzat.
-Kapcsoló toohello fejlesztői portálján kattintva **fejlesztői portálján** hello jobb felső menüjében.
+## <a name="test-rate-limit"></a>Művelet meghívása és a sebességkorlátozás tesztelése
+Most, hogy konfigurálta és közzétette az Ingyenes próbaverzió terméket, meghívhatunk néhány műveletet, és tesztelhetjük a sebességkorlát-házirendet.
+Váltson át a fejlesztői portálra a jobb felső menü **Fejlesztői portál** lehetőségére kattintva.
 
 ![Fejlesztői portál][api-management-developer-portal-menu]
 
-Kattintson a **API-k** a felső menüben hello, és kattintson a **Echo API**.
+Kattintson az **API-k** elemre a felső menüben, majd kattintson az **Echo API** lehetőségre.
 
 ![Fejlesztői portál][api-management-developer-portal-api-menu]
 
@@ -249,29 +249,29 @@ Kattintson a **GET Resource** elemre, majd kattintson a **Kipróbálom** gombra.
 
 ![Konzol megnyitása][api-management-open-console]
 
-Tartsa hello alapértelmezett paraméterértékek, és válassza ki az Előfizetés kulcs hello ingyenes termék.
+Tartsa meg az alapértelmezett paraméterértékeket, majd válassza ki az Ingyenes próbaverzió termék előfizetői azonosítóját.
 
 ![Előfizetői azonosító][api-management-select-key]
 
 > [!NOTE]
-> Ha több előfizetéssel rendelkezik, lehet, hogy tooselect hello kulcsa **ingyenes**, vagy más hello házirendek hello előző lépésben beállított nem lesz érvényben.
+> Ha több előfizetéssel rendelkezik, győződjön meg arról, hogy az **Ingyenes próbaverzió** azonosítóját választja, különben az előző lépésekben konfigurált házirendek nem lesznek érvényben.
 > 
 > 
 
-Kattintson a **küldése**, majd tekintse meg hello válasz. Megjegyzés: hello **válaszállapot** a **200 OK**.
+Kattintson a **Küldés** gombra, majd tekintse meg a választ. Figyelje meg, hogy a **Válaszállapot****200 OK**.
 
 ![A művelet eredményei][api-management-http-get-results]
 
-Kattintson a **küldése** hello arány korlát házirend 10 percenként intézett hívások nagyobb sebességgel. Miután hello arány korlát házirend túllépi, állapotú **429-es jelű túl sok kérelem** adja vissza.
+Kattintson a **Küldés** gombra egy olyan értékkel, amely meghaladja a 10 hívás percenként sebességkorláti házirendet. Ha túllépi a sebességkorlát-házirend értékét, a rendszer a **429 Too Many Requests** válaszállapotot küldi vissza.
 
 ![A művelet eredményei][api-management-http-get-429]
 
-Hello **válasz tartalom** jelzi hello fennmaradó időköz, mielőtt újrapróbálkozások sikeres lesz.
+A **Válasz tartalma** jelzi a hátralévő időközt, amely leteltével az újrapróbálkozások sikeresek lesznek.
 
-Ha hello sebessége korlát házirend 10 percenként intézett hívások érvényben van, ezt sikertelen lesz, a hello 60 másodperc elteltével első hello 10 sikeres hívás toohello termék előtt hello arány korlát túllépése. Ebben a példában a fennmaradó időköz hello: 54 másodperc.
+Ha a 10 hívás percenként sebességkorlátozási házirend van érvényben, a későbbi hívások sikertelenek lesznek, amíg el nem telik 60 másodperc a sebességkorlát átlépése előtti 10 sikeres termékhívás első hívását követően. Ebben a példában a hátralévő időköz 54 másodperc.
 
 ## <a name="next-steps"></a>Következő lépések
-* Tekintse meg a bemutatója a következő videó hello sebességhatárok és a kvóták beállítását.
+* A sebességkorlátok és a kvóták beállításáról az alábbi videó kínál egy bemutatót.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Rate-Limits-and-Quotas/player]
 > 
@@ -304,24 +304,24 @@ Ha hello sebessége korlát házirend 10 percenként intézett hívások érvén
 [api-management-subscription-added]: ./media/api-management-howto-product-with-rules/api-management-subscription-added.png
 [api-management-add-subscription-multiple]: ./media/api-management-howto-product-with-rules/api-management-add-subscription-multiple.png
 
-[How tooadd operations tooan API]: api-management-howto-add-operations.md
-[How tooadd and publish a product]: api-management-howto-add-products.md
+[How to add operations to an API]: api-management-howto-add-operations.md
+[How to add and publish a product]: api-management-howto-add-products.md
 [Monitoring and analytics]: ../api-management-monitoring.md
-[Add APIs tooa product]: api-management-howto-add-products.md#add-apis
+[Add APIs to a product]: api-management-howto-add-products.md#add-apis
 [Publish a product]: api-management-howto-add-products.md#publish-product
 [Manage your first API in Azure API Management]: api-management-get-started.md
-[How toocreate and use groups in Azure API Management]: api-management-howto-create-groups.md
-[View subscribers tooa product]: api-management-howto-add-products.md#view-subscribers
+[How to create and use groups in Azure API Management]: api-management-howto-create-groups.md
+[View subscribers to a product]: api-management-howto-add-products.md#view-subscribers
 [Get started with Azure API Management]: api-management-get-started.md
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance
 [Next steps]: #next-steps
 
 [Create a product]: #create-product
 [Configure call rate limit and quota policies]: #policies
-[Add an API toohello product]: #add-api
-[Publish hello product]: #publish-product
-[Subscribe a developer account toohello product]: #subscribe-account
-[Call an operation and test hello rate limit]: #test-rate-limit
+[Add an API to the product]: #add-api
+[Publish the product]: #publish-product
+[Subscribe a developer account to the product]: #subscribe-account
+[Call an operation and test the rate limit]: #test-rate-limit
 
 [Limit call rate]: https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate
 [Set usage quota]: https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota

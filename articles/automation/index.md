@@ -1,8 +1,8 @@
 ---
-title: "aaaAzure Automation dokumentációjából - oktatóanyagok API-referencia |} Microsoft Docs"
-description: "Ismerje meg, hogyan toouse Automation tooautomate folyamatok és konfigurációkezelés rendelés toosave az idő és felügyeleti feladatok szokásos megbízhatósága növelése."
+title: "Az Azure Automation dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogyan automatizálhatja a folyamatokat és a konfigurációkezelést az Automation használatával, hogy időt takarítson meg és növelje a rendszeres adminisztratív feladatok megbízhatóságát."
 services: automation
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: eda979bac2434d9b4a91a4e661f5b46a6540a1d2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ed25b6abaacbdd44b718a1a5febce5a02dacc334
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="automation-documentation"></a>Automation – dokumentáció
 
-Ismerje meg, hogyan toouse Automation toosave idő és növelje az hello fontosságú egy felhőalapú környezetben végrehajtott rendszeres felügyeleti feladatok megbízhatóságát. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt, megtudhatja, hogyan tooautomate dolgozza fel a runbookok használata vagy a célállapot-konfiguráció használata konfigurációkezelés automatizálhatja.
+Ismerje meg, hogyan takaríthat meg időt és növelheti a felhőkörnyezetben végrehajtott rendszeres adminisztratív feladatok megbízhatóságát az Automation használatával. Az oktatóanyagok, API-referenciák és az egyéb dokumentációk bemutatják, hogyan automatizálhatja a folyamatokat forgatókönyvek segítségével, és hogyan automatizálhatja a konfigurációkezelést a célállapot-konfigurációkkal (DSC).
 
 <ul class="panelContent cardsFTitle">
     <li>

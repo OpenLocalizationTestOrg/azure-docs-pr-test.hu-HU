@@ -1,6 +1,6 @@
 ---
 title: "Első lépések: Azure-adatbázis létrehozása MySQL-kiszolgálóhoz - Azure Portal | Microsoft Docs"
-description: "Ez a cikk lépéseket használatával végigvezeti az Azure portál tooquickly hello öt perc MySQL kiszolgáló minta Azure-adatbázis létrehozása."
+description: "Ez a cikk lépésről lépésre bemutatja, hogyan hozhat létre egy minta Azure-adatbázist MySQL-kiszolgálóhoz az Azure Portal használatával öt perc alatt."
 services: mysql
 author: v-chenyh
 ms.author: v-chenyh
@@ -10,117 +10,126 @@ ms.service: mysql-database
 ms.custom: mvc
 ms.topic: hero-article
 ms.date: 08/15/2017
-ms.openlocfilehash: d5754fe7a6f0f0f4b3fa19d456c4e15e64ca396c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 46aee37a00a923addc08dd185ce0326a64ccb48c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-an-azure-database-for-mysql-server-using-azure-portal"></a>Azure-adatbázis létrehozása MySQL-kiszolgálóhoz az Azure Portal használatával
-Azure MySQL-adatbázis egy felügyelt szolgáltatás, amely lehetővé teszi toorun, kezelése, és magas rendelkezésre állású MySQL-adatbázisok hello felhőben méretezni. A gyors üzembe helyezés bemutatja, hogyan toocreate egy Azure-adatbázis hello Azure-portál használatával KB MySQL-kiszolgáló esetében. 
+# <a name="create-an-azure-database-for-mysql-server-by-using-the-azure-portal"></a>Azure-adatbázis létrehozása MySQL-kiszolgálóhoz az Azure Portal használatával
+A MySQL-hez készült Azure Database egy felügyelt szolgáltatás, amellyel a magas rendelkezésre állású MySQL-adatbázisokat futtathatja, kezelheti és skálázhatja a felhőben. Ez a rövid útmutató bemutatja, hogyan hozhat létre nagyjából öt perc alatt egy Azure-adatbázist MySQL-kiszolgálóhoz az Azure Portal használatával.  
 
-Ha nem rendelkezik Azure-előfizetéssel, első lépésként mindössze néhány perc alatt létrehozhat egy [ingyenes](https://azure.microsoft.com/free/) fiókot.
+Ha nem rendelkezik Azure-előfizetéssel, mindössze néhány perc alatt létrehozhat egy [ingyenes Azure-fiókot](https://azure.microsoft.com/free/) a virtuális gép létrehozásának megkezdése előtt.
 
-## <a name="log-in-tooazure"></a>Jelentkezzen be tooAzure
-Nyissa meg a webböngészőt, és keresse meg a toohello [Microsoft Azure-portálon](https://portal.azure.com/). Adja meg a hitelesítő adatok toosign toohello portálon. az alapértelmezett nézet hello a szolgáltatás irányítópultján.
+## <a name="sign-in-to-azure"></a>Bejelentkezés az Azure-ba
+Nyissa meg a webböngészőjét, és keresse fel az [Azure Portalt](https://portal.azure.com/). Adja meg a hitelesítő adatait a Portalra való bejelentkezéshez. Az alapértelmezett nézet a szolgáltatási irányítópult.
 
-## <a name="create-azure-database-for-mysql-server"></a>Azure-adatbázis létrehozása MySQL-kiszolgálóhoz
-A MySQL-kiszolgálóhoz készült Azure-adatbázis [számítási és tárolási erőforrások](./concepts-compute-unit-and-storage.md) egy meghatározott készletével együtt jön létre. hello server belül létrejön egy [Azure erőforráscsoport](../azure-resource-manager/resource-group-overview.md).
+## <a name="create-an-azure-database-for-mysql-server"></a>Azure-adatbázis létrehozása MySQL-kiszolgálóhoz
+A MySQL-kiszolgálóhoz való Azure-adatbázist [számítási és tárolási erőforrások](./concepts-compute-unit-and-storage.md) egy meghatározott készletével együtt fogja létrehozni. A kiszolgálót egy [Azure-erőforráscsoporton](../azure-resource-manager/resource-group-overview.md) belül hozza létre.
 
-Kövesse ezeket a lépéseket toocreate egy MySQL-kiszolgálóhoz tartozó Azure-adatbázis:
+Kövesse az alábbi lépéseket egy, a MySQL-kiszolgálóhoz készült Azure-adatbázis létrehozásához:
 
-1. Kattintson a hello **új** hello bal felső sarkában hello Azure-portálon található (+) gombra.
+1. A portál bal felső sarkában válassza az **Új** gombot (+).
 
-2. Válassza ki **adatbázisok** a hello **új** lapon, és válassza ki **MySQL az Azure-adatbázis** a hello **adatbázisok** lap. Is beírhat **MySQL** a hello új lap keresési mezőbe toofind hello szolgáltatást.
-![Azure Portal - új - adatbázis - MySQL](./media/quickstart-create-mysql-server-database-using-azure-portal/2_navigate-to-mysql.png)
+2. Válassza a **Databases** > **Azure Database for MySQL** lehetőséget. A keresőmezőbe be is írhatja a **MySQL** szöveget, hogy gyorsan megtalálja a szolgáltatást.
 
-3. Hello új kiszolgáló részletei űrlap kitöltése a következő információ, hello kép megelőző hello szerint:
+    ![Az Azure Database for MySQL menüpont](./media/quickstart-create-mysql-server-database-using-azure-portal/2_navigate-to-mysql.png)
+
+4. Töltse ki az új kiszolgáló adatainak űrlapját az alábbi információkkal az előző képen látható módon:
 
     **Beállítás** | **Ajánlott érték** | **Mező leírása** 
     ---|---|---
-    Kiszolgálónév | myserver4demo | Válasszon egy egyedi nevet, amely azonosítja a MySQL-kiszolgálóhoz készült Azure-adatbázist. hello tartománynév *mysql.database.azure.com* ad meg az alkalmazások tooconnect a hozzáfűzött toohello kiszolgálónév. hello kiszolgálónév csak kisbetűket, számokat és kötőjel (-) karakter hello tartalmazhat, és 3 és 63 karakter kell tartalmaznia.
-    Előfizetés | Az Ön előfizetése | hello Azure-előfizetést, amelyet az toouse a kiszolgáló. Ha több előfizetéssel rendelkezik, válassza ki a hello amelyben hello erőforrás lesz számlázva, a megfelelő előfizetést.
-    Erőforráscsoport | myResourceGroup | Meghatározhat egy új erőforráscsoport-nevet, vagy használhat egy meglévőt az előfizetéséből.
-    Kiszolgáló-rendszergazdai bejelentkezés | myadmin | Ellenőrizze a saját bejelentkezési fiók toouse toohello kiszolgálóhoz kapcsolódáskor. hello rendszergazda bejelentkezési név nem lehet "azure_superuser", "admin", "rendszergazda", "Gyökér", "Vendég" vagy "public".
-    Jelszó | *A választása szerint* | Hozzon létre egy új jelszót hello kiszolgáló rendszergazdai fiókot. A 8 too128 karaktereket kell tartalmaznia. A jelszó tartalmaznia kell legalább hármat a következő kategóriák hello – az angol ábécé betűket, angol ábécé kisbetűi, számok (0-9) és egyéb karakterek (!, $, #, %, stb.).
-    Jelszó megerősítése | *A választása szerint*| Erősítse meg a hello rendszergazdai fiók jelszavát.
-    Hely | *hello régió legközelebbi tooyour felhasználók*| Válassza ki a legközelebbi tooyour felhasználók vagy más Azure-alkalmazások hello helyet.
-    Verzió | *Válassza ki a hello legújabb verziója*| Válassza ki hello legújabb verziót, hacsak nem rendelkezik konkrét követelmények.
-    Tarifacsomag | **Alapszintű**, **50 számítási egység****50 GB** | Kattintson a **tarifacsomag** toospecify hello és teljesítményszintet szolgáltatásszint az új adatbázishoz. Válasszon **alapszintű rétegben** hello lapon hello tetején. Kattintson a bal szélső hello hello **számítási egység** csúszkát tooadjust hello érték toohello legalább összeg érhető el a gyors üzembe helyezés a. Kattintson a **Ok** toosave hello tarifacsomag kiválasztása. Tekintse meg a következő képernyőkép hello.
-    PIN-kód toodashboard | Jelölőnégyzet | Ellenőrizze a hello **PIN-kód toodashboard** beállítás tooallow könnyű nyomon a kiszolgáló hello első irányítópult oldalán, az Azure-portálon.
+    Kiszolgálónév | myserver4demo | Egy egyedi név, amely azonosítja a MySQL-kiszolgálóhoz készült Azure-adatbázist. A rendszer hozzáfűzi a *mysql.database.azure.com* tartománynevet a megadott kiszolgálónévhez. A kiszolgálónév csak kisbetűket, számokat és a kötőjel (-) karaktert tartalmazhatja. 3–63 karakter hosszúságú lehet.
+    Előfizetés | Az Ön előfizetése | A kiszolgálóhoz használni kívánt Azure-előfizetés. Ha több előfizetéssel rendelkezik, válassza ki azt az előfizetést, amely részeként fizet az erőforrásért.
+    Erőforráscsoport | myResourceGroup | Egy új vagy létező erőforráscsoport neve.
+    Kiszolgáló-rendszergazdai bejelentkezés | myadmin | A kiszolgálóhoz való csatlakozáshoz használni kívánt bejelentkezési fiók. A rendszergazdai bejelentkezési név nem lehet **azure_superuser**, **admin**, **administrator**, **root**, **guest** vagy **public**.
+    Jelszó | *A választása szerint* | Egy új jelszó a kiszolgálói rendszergazdai fiók számára. 8–128 karakter hosszúságú lehet. A jelszónak tartalmaznia kell karaktereket a következő kategóriák közül legalább háromból: angol nagybetűs karakterek, angol kisbetűs karakterek, számjegyek (0–9) és nem alfanumerikus karakterek (!, $, #, % stb.).
+    Jelszó megerősítése | *A választása szerint*| A rendszergazdafiók megerősített jelszava.
+    Hely | *A felhasználókhoz legközelebb eső régió*| A felhasználókhoz vagy más Azure-alkalmazásokhoz legközelebb eső hely.
+    Verzió | *A legújabb verzió*| A legújabb verzió (ha nincsenek más verzió használatát megkövetelő egyedi igényei).
+    Tarifacsomag | **Alapszintű**, **50 számítási egység**, **50 GB** | Az új adatbázis szolgáltatás- és teljesítményszintje. Válassza a felső fülön az **Alapszintű tarifacsomagot**. Válassza a **Számítási egységek** csúszka bal oldali végét az ebben a rövid útmutatóban elérhető legkisebb mennyiség kiválasztásához. Kattintson az **OK** gombra a tarifacsomag beállításának mentéséhez. További információkért tekintse meg a következő képernyőképet.
+    Rögzítés az irányítópulton | Jelölőnégyzet | Egyszerűen nyomon követheti a kiszolgálót az Azure Portal irányítópultjának első lapján.
 
     > [!IMPORTANT]
-    > hello kiszolgáló-rendszergazdai bejelentkezés és a jelszót, amely az itt megadott is szükséges toolog toohello Server és az adatbázisok későbbi szakaszában a gyors üzembe helyezés. Jegyezze meg vagy jegyezze fel ezt az információt későbbi használatra.
+    > A kiszolgáló itt megadott rendszergazdai bejelentkezési nevét és jelszavát kell majd használnia a rövid útmutató későbbi szakaszaiban a kiszolgálóra és az adatbázisaira való bejelentkezéshez. Jegyezze meg vagy jegyezze fel ezt az információt későbbi használatra.
     > 
 
-    ![Azure portál – MySQL, adja meg a szükséges hello űrlap bemeneti létrehozása](./media/quickstart-create-mysql-server-database-using-azure-portal/3_create-server.png)
+    ![Azure Portal – A MySQL létrehozása az űrlap kitöltésével](./media/quickstart-create-mysql-server-database-using-azure-portal/3_create-server.png)
 
-4.  Kattintson a **létrehozása** tooprovision hello kiszolgáló. Kiépítés néhány percet vesz igénybe, mentése too20 perc maximális.
+4.  A kiszolgáló üzembe helyezéséhez válassza a **Létrehozás** lehetőséget. Az üzembe helyezés akár 20 percet is igénybe vehet.
    
-5.  Hello eszköztáron kattintson **értesítések** (harang ikonra) toomonitor hello telepítési folyamat.
+5.  Az eszköztáron válassza az **Értesítések** elemet (a harang ikont) az üzembehelyezési folyamat nyomon követéséhez.
 
 ## <a name="configure-a-server-level-firewall-rule"></a>Kiszolgálószintű tűzfalszabály konfigurálása
 
-hello Azure adatbázis MySQL szolgáltatás tűzfal hello kiszolgáló-szintjén hoz létre. A tűzfal megakadályozza, hogy külső alkalmazások és eszközök csatlakozás toohello kiszolgáló és azon tárolt adatbázisokhoz hello kiszolgáló, kivéve, ha egy tűzfalszabály tooopen hello tűzfal adott IP-címekhez. 
+A MySQL szolgáltatáshoz készült Azure-adatbázis a kiszolgáló szintjén hoz létre tűzfalat. Ez megakadályozza, hogy külső alkalmazások és eszközök csatlakozzanak a kiszolgálóhoz vagy a kiszolgálón lévő adatbázisokhoz, kivéve, ha olyan tűzfalszabályt hoz létre, amely adott IP-címek számára megnyitja a tűzfalat. 
 
-1.  Keresse meg a kiszolgáló, hello központi telepítés befejezése után. Ha szükséges, használja a keresési funkciót. Kattintson például **összes erőforrás** hello bal oldali menüből és hello kiszolgálónevet írja be (például hello példa *myserver4demo*) az újonnan létrehozott kiszolgáló toosearch. Kattintson a kiszolgáló nevét, a hello keresési eredmény jelenik meg. Hello **áttekintése** lapon, a kiszolgáló megnyílik, és további konfigurációs lehetőségeket.
+1.   Az üzembe helyezés végeztével keresse meg a kiszolgálót. Ha szükséges, használja a keresési funkciót. Válassza például a **Minden erőforrás** elemet a bal oldali menüben. Ezután írja be a kiszolgáló nevét (például: **myserver4demo**) az újonnan létrehozott kiszolgáló megkereséséhez. Válassza ki a keresési eredmények listájában a kiszolgálónevet. Megnyílik a kiszolgáló **Áttekintés** oldala, amely további konfigurációs lehetőségeket biztosít.
 
-2. Hello kiszolgáló lapon válassza **kapcsolatbiztonsági**.
+2. A kiszolgáló lapján válassza a **Kapcsolatbiztonság** elemet.
 
-3.  A hello **tűzfal-szabályok** hello üres szövegmezőben a hello elemcsoportban kattintson **szabálynév** oszlop toobegin hello tűzfalszabály létrehozása. 
+3.  A **Tűzfalszabályok** szakaszban kattintson az üres mezőbe a **Szabály neve** oszlopban egy új tűzfalszabály létrehozásának megkezdéséhez. 
 
-    A gyors üzembe helyezés, a most oszthatja az IP-címek hello server kitöltésével hello szövegmezőben az egyes oszlopok a következő értékek hello:
+    Ebben a rövid útmutatóban engedélyezünk minden bemenő IP-címet a kiszolgálón. Ehhez adjuk meg az egyes oszlopok mezőjében a következő értékeket:
 
     Szabály neve | Kezdő IP-cím | Záró IP-cím 
     ---|---|---
     AllowAllIps |  0.0.0.0 | 255.255.255.255
 
-4. A felső eszköztárán hello hello **kapcsolatbiztonsági** lapján kattintson **mentése**. Várjon néhány percet, és figyelje meg hello értesítést jelenít meg, hogy kapcsolatbiztonsági frissítése sikeresen befejeződött a folytatás előtt.
+4. A **Kapcsolatbiztonság** lap felső eszköztárában kattintson a **Mentés** gombra. A folytatás előtt várjon, amíg meg nem jelenik a frissítés sikeres befejezését jelző értesítés. 
 
     > [!NOTE]
-    > Kapcsolatok tooAzure MySQL adatbázis 3306 porton keresztül kommunikálnak. Ha a vállalati hálózatból származó tooconnect, a hálózati tűzfal előfordulhat, hogy nem engedélyezett a port 3306 kimenő forgalmát. Ha igen, csak akkor tudja tooconnect tooyour server kivéve, ha az IT-részleg 3306 portot nyit meg.
+    > A MySQL-hez készült Azure-adatbázis kapcsolatai a 3306-os porton keresztül kommunikálnak. Ha vállalati hálózaton belülről próbál csatlakozni, elképzelhető, hogy nem engedélyezett a kimenő forgalom a 3306-as porton keresztül. Ebben az esetben addig nem tud csatlakozni a kiszolgálóhoz, amíg az informatikai részleg meg nem nyitja a 3306-os portot.
     > 
 
-## <a name="get-hello-connection-information"></a>Hello kapcsolatadatok beolvasása
-tooconnect tooyour adatbázis-kiszolgáló, tooremember hello teljes kiszolgáló nevét és a rendszergazdai bejelentkezési hitelesítő adatok szükségesek. Előfordulhat, hogy a feljegyzett ezeket az értékeket hello gyors üzembe helyezés cikk korábbi részében. Abban az esetben, ha nem, könnyedén megtalálhatja a hello kiszolgáló nevét és a bejelentkezési adatok hello kiszolgálóról **áttekintése** lap vagy hello **tulajdonságok** hello Azure portálra a lap.
+## <a name="get-the-connection-information"></a>Kapcsolatadatok lekérése
+Az adatbázis-kiszolgálóhoz való csatlakozáshoz szüksége van a teljes kiszolgálónévre és a rendszergazdai bejelentkezési hitelesítő adatokra. Ezeket a rövid útmutatóban korábban már feljegyezhette. Ha nem jegyezte fel, a kiszolgáló nevét és bejelentkezési adatait megtalálja a kiszolgáló **Áttekintés** vagy **Tulajdonságok** lapján az Azure Portalon.
 
-1. Nyissa meg kiszolgáló **Áttekintés** lapját. Jegyezze fel a hello **kiszolgálónév** és **kiszolgálói rendszergazda bejelentkezési név**. 
-    A kurzorral rámutat minden mező, és hello másolás ikon toohello jobb hello szöveg jelenik meg. Kattintson a hello másolás ikon szükséges toocopy hello értékként.
+A kikeresésükhöz: 
 
-    Ebben a példában hello kiszolgáló neve, *myserver4demo.mysql.database.azure.com*, és a kiszolgáló-rendszergazdai bejelentkezés hello  *myadmin@myserver4demo* .
+1. Nyissa meg kiszolgáló **Áttekintés** lapját. Jegyezze fel a **Kiszolgálónevet** és a **Kiszolgáló-rendszergazdai bejelentkezési nevet**. 
 
-## <a name="connect-toomysql-using-mysql-command-line-tool"></a>Csatlakozás tooMySQL mysql parancssori eszközzel
-Több alkalmazások használható tooconnect tooyour Azure adatbázis MySQL-kiszolgáló. Első alkalommal a hello [mysql](https://dev.mysql.com/doc/refman/5.7/en/mysql.html) parancssori eszköz hogyan tooillustrate tooconnect toohello kiszolgáló.  Egy webes böngésző is használhat, és hello Azure Cloud rendszerhéj nélkül hello itt leírt módon kell tooinstall további szoftvereket. Ha helyileg van telepítve, a saját számítógépre hello mysql segédprogram, ott is lehet csatlakoztatni.
+2. Helyezze az egérmutatót az egyes mezők fölé. Ekkor a szövegtől jobbra megjelenik a másolási ikon. Az értékek másolásához kattintson a másolási ikonra.
 
-1. Indítsa el az Azure felhőalapú rendszerhéj hello keresztül hello terminál ikon (> _) hello a felső, jobb oldalán hello Azure portál weblap.
+Ebben a példában a kiszolgáló neve **myserver4demo.mysql.database.azure.com**, a kiszolgáló-rendszergazdai bejelentkezési név pedig **myadmin@myserver4demo**.
 
-2. hello Azure Cloud rendszerhéj megnyitása a böngészőben, amely lehetővé teszi, tootype bash rendszerhéjat parancsok.
+## <a name="connect-to-mysql-by-using-the-mysql-command-line-tool"></a>Csatlakozás a MySQL-hez a mysql parancssori eszköz használatával
+Számos különféle alkalmazással csatlakozhat a MySQL-kiszolgálóhoz készült Azure-adatbázishoz. 
 
-    ![Parancssor - mysql parancssor példa](./media/quickstart-create-mysql-server-database-using-azure-portal/7_connect-to-server.png)
+Először használjuk a [mysql](https://dev.mysql.com/doc/refman/5.7/en/mysql.html) parancssori eszközt a kiszolgálóhoz való csatlakozás bemutatásához. Az itt leírtak szerint használhatja a webböngészőt és az Azure Cloud Shellt is, anélkül, hogy valamilyen más szoftvert telepítenie kéne. Ha helyileg telepítve van a mysql segédprogram, onnan is csatlakozhat.
 
-3. Hello felhő rendszerhéj parancssorába csatlakoztassa a MySQL-kiszolgáló Azure-adatbázis tooyour beírásával hello mysql parancssori zöld hello.
+1. Indítsa el az Azure Cloud Shellt az Azure Portal jobb felső részén található terminálikonnal (**>_**).
 
-    a következő formátumban hello használt tooconnect tooan Azure adatbázis hello mysql segédprogram MySQL-kiszolgáló:
+2.  Az Azure Cloud Shell megnyílik a böngészőben, ami lehetővé teszi Bash rendszerhéjparancsok beírását.
+
+    ![Parancssor – mysql parancssori példa](./media/quickstart-create-mysql-server-database-using-azure-portal/7_connect-to-server.png)
+
+3. A Cloud Shell parancssorában csatlakozzon a MySQL-kiszolgálóhoz készült Azure-adatbázishoz. Ehhez írja be a mysql parancsot.
+
+    A következő szintaxissal kapcsolódhat a mysql segédprogrammal egy MySQL-kiszolgálóhoz készült Azure-adatbázishoz:
+
     ```bash
     mysql --host <yourserver> --user <server admin login> --password
     ```
 
-    Például a következő parancs hello tooour példa kiszolgáló csatlakozik:
+    Például a következő paranccsal a példakiszolgálónkhoz csatlakozhat:
+
     ```azurecli-interactive
     mysql --host myserver4demo.mysql.database.azure.com --user myadmin@myserver4demo --password
     ```
 
     mysql-paraméter |Ajánlott érték|Leírás
     ---|---|---
-    --host | *kiszolgáló neve* | Adja meg a hello kiszolgálónév hello Azure adatbázis MySQL a korábban létrehozott használt. Az itt látható példakiszolgáló a myserver4demo.mysql.database.azure.com. Hello teljesen minősített tartománynevét használja (\*. mysql.database.azure.com) hello példában látható módon. Kövesse hello hello előző szakasz tooget hello kapcsolati adatokat, ha nem emlékszik a kiszolgáló nevét. 
-    --user | *kiszolgáló-rendszergazdai bejelentkezési név* |Írja be a hello server admin bejelentkezési felhasználónevének megadni, ha az Azure-adatbázis hello MySQL a korábban létrehozott. Ha nem emlékszik hello felhasználónév, kövesse a hello előző szakasz tooget hello kapcsolatadatok hello lépéseit.  hello formátuma  *username@servername* .
-    --password | *várjon a hitelesítőadat-kérésig* | Kérni fogja túl adja meg a "Jelszó megadni" követően a hello parancsot. Amikor a rendszer kéri, írja be a hello azonos hello kiszolgáló létrehozásakor megadott jelszót.  Megjegyzés: hello írta be a jelszó karakterek nem látható a hello bash Rákérdezés amikor beírja őket. Nyomja le az enter adta meg az összes hello karakterek tooauthenticate és csatlakozás után.
+    --host | *Kiszolgálónév* | Az a kiszolgálónév, amelyet korábban a MySQL-hez készült Azure-adatbázis létrehozásakor használt. A példakiszolgáló a **myserver4demo.mysql.database.azure.com**. Használja a teljes tartománynevet (**\*.mysql.database.azure.com**), ahogyan az a példában látható. Ha nem emlékszik a kiszolgáló nevére, a kapcsolati adatok lekéréséhez kövesse az előző szakasz lépéseit. 
+    --user | *Kiszolgáló-rendszergazdai bejelentkezési név* |A kiszolgáló-rendszergazdai bejelentkezési felhasználónév, amelyet korábban a MySQL-kiszolgálóhoz készült Azure-adatbázis létrehozásakor adott meg. Ha nem emlékszik a felhasználónévre, a kapcsolati adatok lekéréséhez kövesse az előző szakasz lépéseit. A formátum *username@servername*.
+    --password | *Várjon a hitelesítőadat-kérésig* |Az a jelszó, amelyet a kiszolgáló létrehozásakor adott meg. Vegye figyelembe, hogy a beírt jelszókarakterek nem jelennek meg a Bash parancssorban, amikor beírja őket. A jelszó beírása után nyomja le az **Enter** billentyűt.
 
-   A csatlakozás után hello mysql segédprogram megjeleníti a `mysql>` Rákérdezés tootype parancsok meg. 
+   Miután csatlakozott, a mysql segédprogram egy `mysql>` parancssort jelenít meg a parancsok beviteléhez. 
 
-    Példa a mysql-kimenetre:
+   A következő egy példa a mysql-kimenetre:
+
     ```bash
-    Welcome toohello MySQL monitor.  Commands end with ; or \g.
+    Welcome to the MySQL monitor.  Commands end with ; or \g.
     Your MySQL connection id is 65505
     Server version: 5.6.26.0 MySQL Community Server (GPL)
     
@@ -130,82 +139,89 @@ Több alkalmazások használható tooconnect tooyour Azure adatbázis MySQL-kisz
     affiliates. Other names may be trademarks of their respective
     owners.
 
-    Type 'help;' or '\h' for help. Type '\c' tooclear hello current input statement.
+    Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
     
     mysql>
     ```
     > [!TIP]
-    > Ha hello tűzfal nincs konfigurálva a tooallow hello IP-címe hello Azure Cloud rendszerhéj, hello alábbi hiba akkor fordul elő:
+    > Ha a tűzfal nincs konfigurálva az Azure Cloud Shell IP-címének engedélyezésére, a következő hiba jelenik meg:
     >
-    > Hiba (28000) 2003: Ügyfél IP-cím 123.456.789.0 tooaccess hello kiszolgáló nem engedélyezett.
+    > HIBA 2003 (28000): A következő IP-címmel rendelkező ügyfél nem rendelkezik hozzáféréssel a kiszolgálóhoz: 123.456.789.0
     >
-    > tooresolve hello hiba, győződjön meg arról, hogy hello kiszolgáló konfigurációja megfelel hello hello szükséges lépések *konfigurálása egy kiszolgálószintű tűzfalszabályt* hello című szakaszban.
+    > A hiba elhárításához győződjön meg róla, hogy a kiszolgáló konfigurációja megegyezik a cikk „Kiszolgálószintű tűzfalszabály konfigurálása” részében található lépésekkel.
 
-4. Nézet kiszolgáló állapota tooensure hello kapcsolat működőképességét. Típus `status` : hello mysql > kérni, ha van csatlakoztatva.
+4. Annak ellenőrzéséhez, hogy a kapcsolat működőképes-e, a mysql> parancssorba írja be a `status` parancsot a kiszolgáló állapotának megtekintéséhez.
+
     ```sql
     status
     ```
 
    > [!TIP]
-   > További parancsokért lásd: [az MySQL 5.7 referenciaútmutatójának 4.5.1-es fejezetét](https://dev.mysql.com/doc/refman/5.7/en/mysql.html).
+   > További parancsokért lásd [a MySQL 5.7 referencia-útmutatójának 4.5.1-es fejezetét](https://dev.mysql.com/doc/refman/5.7/en/mysql.html).
 
-5.  Hozzon létre egy üres adatbázist hello mysql > Rákérdezés hello a következő parancs beírásával:
+5.  Hozzon létre egy üres adatbázist a következő parancs **mysql>** parancssorba való beírásával:
     ```sql
     CREATE DATABASE quickstartdb;
     ```
-    Hello parancsot is igénybe vehet néhány percet toocomplete. 
+    A parancs teljesítése pár percet is igénybe vehet. 
 
-    A MySQL-kiszolgálóhoz létrehozott Azure-adatbázisban egy vagy több adatbázist is létrehozhat. Részt vesz egy önálló adatbázis / server tooutilize toocreate hello erőforrások, vagy hozzon létre több adatbázisok tooshare hello erőforrásokat. Nem hozható létre adatbázis korlát toohello száma, de több adatbázis közös hello ugyanahhoz a kiszolgáló erőforrásait. 
+    A MySQL-kiszolgálóhoz létrehozott Azure-adatbázisban egy vagy több adatbázist is létrehozhat. Dönthet úgy, hogy az erőforrások teljes kihasználása érdekében kiszolgálónként egy adatbázist hoz létre, vagy úgy, hogy több adatbázis létrehozásával megosztja az erőforrásokat. A létrehozható adatbázisok száma nincs korlátozva, de több adatbázis ugyanazokon a kiszolgáló-erőforrásokon osztozik. 
 
-6. Hello mysql hello adatbázisaiban listában > Rákérdezés hello a következő parancs beírásával:
+6. Jelenítse meg az adatbázisok listáját a következő parancs **mysql>** parancssorba való beírásával:
 
     ```sql
     SHOW DATABASES;
     ```
 
-7.  Típus `\q` , és nyomja le az ENTER tooquit hello mysql eszköz. Hello Azure Cloud rendszerhéj bezárhatja, miután befejezte az.
+7.  A mysql segédprogramból való kilépéshez írja be a `\q` karakterláncot, majd nyomja le az **Enter** billentyűt. Miután végzett, bezárhatja az Azure Cloud Shellt.
 
-Most már rendelkezik Azure-adatbázis toohello MySQL a kapcsolat, és létrehozott egy üres felhasználói adatbázist. Toohello következő szakasz toorepeat egy hasonló a gyakorlatban tooconnect toohello továbbra is ugyanazon a kiszolgálón egy másik közös eszközzel, MySQL-munkaterületet.
+Ezzel csatlakozott a MySQL-kiszolgálóhoz készült Azure-adatbázishoz, és létrehozott egy üres felhasználói adatbázist. Folytassa a következő szakasszal, ha további gyakorlatokat szeretne végrehajtani. A következő gyakorlatban megtudhatja, hogyan csatlakozhat ugyanazon kiszolgálóhoz egy másik ismert eszköz, a MySQL Workbench segítségével.
 
-## <a name="connect-toohello-server-using-hello-mysql-workbench-gui-tool"></a>Csatlakoztassa a kiszolgálót hello MySQL munkaterület grafikus felhasználói Felülettel eszközzel toohello
-tooconnect tooAzure MySQL kiszolgáló grafikus felhasználói Felülettel hello eszközzel MySQL-munkaterületet:
+## <a name="connect-to-the-server-by-using-the-mysql-workbench-gui-tool"></a>Csatlakozás a kiszolgálóhoz a MySQL Workbench GUI eszközzel
+Ha a MySQL Workbench GUI eszközzel szeretne csatlakozni a kiszolgálóhoz, végezze el a következő lépéseket:
 
-1.  Indítsa el a hello MySQL munkaterület alkalmazás az ügyfélszámítógépre. A MySQL Workbench-et [innen](https://dev.mysql.com/downloads/workbench/) töltheti le és telepítheti.
+1.  Nyissa meg a MySQL Workbench alkalmazást az ügyfélszámítógépen. A MySQL Workbench-et [a MySQL Workbench letöltési](https://dev.mysql.com/downloads/workbench/) oldaláról töltheti le és telepítheti.
 
-2.  A **új kapcsolat beállítása** párbeszédpanelen adja meg következő információ hello **paraméterek** lapon:
+2.  A **Setup New Connection** (Új kapcsolat beállítása) párbeszédpanelen adja meg a következő információkat a **Parameters** (Paraméterek) lapon:
 
-    ![új kapcsolat beállítása](./media/quickstart-create-mysql-server-database-using-azure-portal/setup-new-connection.png)
+    ![Új kapcsolat beállítása](./media/quickstart-create-mysql-server-database-using-azure-portal/setup-new-connection.png)
 
-    | **Beállítás** | **Ajánlott érték** | **Mező leírása** |
+    |Beállítás |Ajánlott érték|Mező leírása|
     |---|---|---|
-    |   Kapcsolat neve | Bemutató kapcsolat | Adjon meg egy címkét a kapcsolathoz. |
-    | Kapcsolati módszer | Standard (TCP/IP) | A Standard (TCP/IP) elégséges. |
-    | Gazdanév | *kiszolgáló neve* | Adja meg a hello kiszolgálónév hello Azure adatbázis MySQL a korábban létrehozott használt. Az itt látható példakiszolgáló a myserver4demo.mysql.database.azure.com. Hello teljesen minősített tartománynevét használja (\*. mysql.database.azure.com) hello példában látható módon. Kövesse hello hello előző szakasz tooget hello kapcsolati adatokat, ha nem emlékszik a kiszolgáló nevét.  |
-    | Port | 3306 | Mindig használjon port 3306 MySQL adatbázis tooAzure kapcsolódáskor. |
-    | Felhasználónév |  *kiszolgáló-rendszergazdai bejelentkezési név* | Írja be a hello server admin bejelentkezési felhasználónevének megadni, ha az Azure-adatbázis hello MySQL a korábban létrehozott. A példában szereplő felhasználónév a következő: myadmin@myserver4demo. Ha nem emlékszik hello felhasználónév, kövesse a hello előző szakasz tooget hello kapcsolatadatok hello lépéseit. hello formátuma  *username@servername* .
-    | Jelszó | az ön jelszava | Kattintson a tárolóban... gombra toosave hello jelszó tárolásához. |
+     Kapcsolat neve | Bemutató kapcsolat | A kapcsolat címkéje. |
+    Kapcsolati módszer | Standard (TCP/IP) | A Standard (TCP/IP) elégséges. |
+    Gazdanév | *Kiszolgálónév* | Az a kiszolgálónév, amelyet korábban a MySQL-hez készült Azure-adatbázis létrehozásakor használt. A példakiszolgáló a **myserver4demo.mysql.database.azure.com**. Használja a teljes tartománynevet (**\*.mysql.database.azure.com**), ahogyan az a példában látható. Ha nem emlékszik a kiszolgáló nevére, a kapcsolati adatok lekéréséhez kövesse az előző szakasz lépéseit.|
+     Port | 3306 | A MySQL-kiszolgálóhoz készült Azure-adatbázishoz való csatlakozáskor használandó port. |
+    Felhasználónév |  *Kiszolgáló-rendszergazdai bejelentkezési név* | A kiszolgáló-rendszergazdai bejelentkezési információk, amelyeket korábban a MySQL-kiszolgálóhoz készült Azure-adatbázis létrehozásakor adott meg. A példában szereplő felhasználónév a következő: **myadmin@myserver4demo**. Ha nem emlékszik a felhasználónévre, a kapcsolati adatok lekéréséhez kövesse az előző szakasz lépéseit. A formátum *username@servername*.
+    Jelszó | *Az Ön jelszava* | A jelszó mentéséhez kattintson a **Store in Vault...** (Tárolás a tárolóban) gombra. |
 
-    Kattintson a **kapcsolat tesztelése** tootest, ha az összes paraméter megfelelően vannak konfigurálva. Kattintson az OK toosave hello kapcsolat. 
+3. Válassza a **Test Connection** (Kapcsolat tesztelése) lehetőséget annak teszteléséhez, hogy minden paraméter helyesen lett-e konfigurálva. Ezután a kapcsolat mentéséhez kattintson az **OK** gombra. 
 
     > [!NOTE]
-    > SSL alapértelmezés szerint a kiszolgálón érvényben van, és további konfigurálást igényli a rendelés tooconnect sikeresen megtörtént. Lásd: [konfigurálása az SSL-kapcsolat az alkalmazás toosecurely a MySQL adatbázis tooAzure kapcsolati](./howto-configure-ssl.md).  A gyors üzembe helyezés toodisable SSL használni szeretne, ha látogasson el a hello Azure-portálon, és kattintson hello kapcsolat biztonsági lap toodisable hello kényszerítése SSL kapcsolat váltása gombra.
+    > Alapértelmezés szerint az SSL kényszerítve van a kiszolgálón, és további konfigurációt igényel a sikeres csatlakozás érdekében. További információkért lásd [Az SSL-kapcsolatok a MySQL-hez készült Azure Database-hez való kapcsolódásra az alkalmazásban való konfigurálását](./howto-configure-ssl.md) bemutató cikket. Ha le szeretné tiltani a rövid útmutató során az SSL-t, látogasson el az Azure Portalra. A Kapcsolatbiztonság lapon használja az **SSL-kapcsolat kikényszerítése** váltógombot.
 
 ## <a name="clean-up-resources"></a>Az erőforrások eltávolítása
-Hello gyors üzembe helyezés létrehozott hello erőforrások karbantartása vagy törlésével hello [Azure erőforráscsoport](../azure-resource-manager/resource-group-overview.md), amely erőforrásokat is magában foglalja az összes hello hello erőforráscsoportban vagy egy kiszolgáló-erőforrás hello törlésével, ha azt szeretné tookeep hello egyéb erőforrások változatlanok maradnak.
+Kétféleképpen távolíthatja el a rövid útmutatóban létrehozott erőforrásokat. Törölheti az [Azure-erőforráscsoportot](../azure-resource-manager/resource-group-overview.md), amely tartalmazza az erőforráscsoportban lévő összes erőforrást. Ha a többi erőforrást érintetlenül szeretné hagyni, csak egy kiszolgálói erőforrást töröljön.
 
 > [!TIP]
-> Az ebben a gyűjteményben lévő többi rövid útmutató erre a rövid útmutatóra épül. Ha toocontinue, a következő toowork quickstarts, így nem karbantartáshoz hello a gyors üzembe helyezés a létrejött erőforrásokat. Ha nem tervezi toocontinue, használja a hello által a hello Azure-portálon található gyors üzembe helyezési lépéseket toodelete összes erőforrás létrehozása után.
+> Az ebben a gyűjteményben található többi rövid útmutató erre a rövid útmutatóra épül. Ha azt tervezi, hogy folytatja ezen rövid útmutatók használatát, akkor ne törölje az ebben a rövid útmutatóban létrehozott erőforrásokat. Ha nem folytatja a munkát, akkor a következő lépésekkel törölheti a rövid útmutatóval létrehozott összes erőforrást.
 >
 
-toodelete hello teljes erőforráscsoport található, újonnan létrehozott hello server beleértve:
-1.  Keresse meg az erőforráscsoport hello Azure-portálon. A hello hello Azure-portálon a bal oldali menüből, kattintson az **erőforráscsoportok** majd például a fenti példában az erőforráscsoport neve hello **myresourcegroup**.
-2.  Az erőforráscsoport oldalán kattintson a **Törlés** parancsra. Az erőforráscsoport, például a fenti példában majd típusának hello neve **myresourcegroup**, a hello szöveg mezőben tooconfirm törlésre, és kattintson **törlése**.
+Ha az újonnan létrehozott kiszolgálót is magában foglaló teljes erőforráscsoportot törölni szeretné, végezze el a következő lépéseket:
 
-Vagy ehelyett toodelete hello az újonnan létrehozott kiszolgálón:
-1.  Ha nincs megnyitva, keresse meg a kiszolgáló hello Azure-portálon. A hello Azure-portálon a bal oldali menüből, kattintson az **összes erőforrás**, majd keresse meg a létrehozott hello kiszolgáló.
-2.  A hello **áttekintése** hello kattintson **törlése** hello felső ablaktábla gombjára.
-![MySQL-hez készült Azure-adatbázis – kiszolgáló törlése](./media/quickstart-create-mysql-server-database-using-azure-portal/delete-server.png)
-3.  Erősítse meg a kiszolgálónév hello toodelete szeretne, és hello tartozó adatbázisok érintett megjelenítése. Adja meg a kiszolgáló nevét hello szövegmezőben, például a fenti példában **myserver4demo**, és kattintson a **törlése**.
+1.  Keresse meg az erőforráscsoportot az Azure Portalon. A bal oldali menüben válassza az **Erőforráscsoportok** elemet, majd válassza ki az erőforráscsoport nevét (ami a példánkban a **myresourcegroup**).
+
+2.  Az erőforráscsoport oldalán kattintson a **Törlés** parancsra. Írja be az erőforrás nevét (a példánkban: **myresourcegroup**) a mezőbe a törlés megerősítéséhez, majd kattintson a **Törlés** gombra.
+
+Ha csak az újonnan létrehozott kiszolgálót szeretné törölni, végezze el a következő lépéseket:
+
+1.  Keresse meg a kiszolgálóját az Azure Portalon, ha még nincs megnyitva. Az Azure Portal bal oldali menüjében válassza a **Minden erőforrás** elemet. Ezután keressen rá az Ön által létrehozott kiszolgálóra.
+
+2.  Az **Áttekintés** oldalon válassza a **Törlés** elemet. 
+
+    ![Azure Database for MySQL – Kiszolgáló törlése](./media/quickstart-create-mysql-server-database-using-azure-portal/delete-server.png)
+
+3.  Erősítse meg a törölni kívánt kiszolgáló nevét, és jelenítse meg az érintett adatbázisokat. Írja be a kiszolgáló nevét (a példánkban: **myserver4demo**) a mezőbe. Válassza a **Törlés** elemet.
 
 ## <a name="next-steps"></a>Következő lépések
 

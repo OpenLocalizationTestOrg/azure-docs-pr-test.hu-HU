@@ -1,6 +1,6 @@
 ---
-title: "aaaViewing és állomásnevekkel módosítása |} Microsoft Docs"
-description: "Hogyan tooview, és módosítsa az Azure virtuális gépek állomásnevek webes és feldolgozói szerepkörök névfeloldás"
+title: "Megtekintése és módosítása az állomásnevek |} Microsoft Docs"
+description: "Hogyan megtekintése és módosítása az Azure virtuális gépek állomásnevek, webes és feldolgozói szerepkörök névfeloldás"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -14,48 +14,48 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/27/2016
 ms.author: jdial
-ms.openlocfilehash: 17d0dd7911754a94db3f37b924b4687da1c70aca
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9a3a1e1b58dcb828e2d2d09c18f1aab6d46051aa
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="viewing-and-modifying-hostnames"></a>Megtekintése és módosítása az állomásnevek
-állomásnév által hivatkozott a szerepkör-példányok toobe tooallow, akkor hello névhez hello értékre kell állítani az egyes szerepkörökhöz hello szolgáltatás konfigurációs fájljában. Így tesz, amely szükséges hello állomás neve toohello hozzáadásával **vmName** hello attribútumának **szerepkör** elemet. hello értékének hello **vmName** attribútum hello névhez az összes szerepkör-példány alapjaként van használatban. Például ha **vmName** van *webrole típusról* , de az adott szerepkör három alkalmazáspéldányra, hello állomásnevek hello példányok lesz *webrole0*, *webrole1* , és *webrole2*. Mert a virtuális gép állomásneve hello hello virtuálisgép-név alapján van feltöltve, nem kell toospecify egy nevet a virtuális gépek hello konfigurációs fájlban. A Microsoft Azure-szolgáltatás konfigurálásával kapcsolatos további információkért lásd: [Azure szolgáltatás konfigurációs séma (.cscfg fájl)](https://msdn.microsoft.com/library/azure/ee758710.aspx)
+Az állomásnév lehet hivatkozni a szerepkörpéldányok engedélyezéséhez meg kell adni az állomásnév értéke a konfigurációs fájlban az egyes szerepkörökhöz. A kívánt gazdagép nevét hozzáadása ehhez a **vmName** attribútuma a **szerepkör** elemet. Értékét a **vmName** attribútum alapjaként van használatban a névhez, az összes szerepkör-példány. Például ha **vmName** van *webrole típusról* , de az adott szerepkör három alkalmazáspéldányra, az állomásneveket példánya lesz *webrole0*, *webrole1*, és *webrole2*. Meg kell a virtuális gépek gazdagépnevet adjon meg a konfigurációs fájlban, mivel egy virtuális gép állomásnevét a virtuális gép neve alapján van feltöltve. A Microsoft Azure-szolgáltatás konfigurálásával kapcsolatos további információkért lásd: [Azure szolgáltatás konfigurációs séma (.cscfg fájl)](https://msdn.microsoft.com/library/azure/ee758710.aspx)
 
 ## <a name="viewing-hostnames"></a>Állomásnevek megtekintése
-A felhőszolgáltatás a virtuális gépek és a szerepkörpéldányok hello állomásnevek hello eszközök az alábbi használatával tekintheti meg.
+Az alábbi eszközök egyikével szerepkörpéldányokat és a virtuális gépek állomás nevét a felhőszolgáltatás tekintheti meg.
 
 ### <a name="azure-portal"></a>Azure Portal
-Használhatja a hello [Azure-portálon](http://portal.azure.com) tooview hello állomásnevek hello áttekintése panelen a virtuális gép virtuális gépekhez. Ne feledje, hogy hello panelen látható értéket **neve** és **állomásnév**. Annak ellenére, hogy kezdetben hello azonos hello gazdagép nevének módosítása esetén nem változik hello virtuális gép vagy szerepkörpéldány hello nevét.
+Használhatja a [Azure-portálon](http://portal.azure.com) a virtuális gépek – áttekintés panelen a virtuális gépek állomás nevének megtekintéséhez. Ne feledje, hogy a panel látható értéket **neve** és **állomásnév**. Habár ezek kezdetben, az állomásnév módosítását nem módosítja a virtuális gép vagy szerepkörpéldány neve.
 
-Szerepkörpéldányok a hello Azure-portálon is megtekinthetők, de listában hello-példány egy felhőalapú szolgáltatás, hello állomás név nem jelenik meg. Látni fogja az összes olyan példány nevét, de ugyanez a neve nem felel meg a hello állomásnevet.
+Szerepkörpéldányokat is megtekinthetők az Azure portálon, de ha felsorolja a példány egy felhőalapú szolgáltatás, az állomás neve nem jelenik meg. Látni fogja az összes olyan példány nevét, de ugyanez a neve nem felel meg a gazdagép nevét.
 
 ### <a name="service-configuration-file"></a>Szolgáltatás konfigurációs fájlja
-Hello szolgáltatás konfigurációs fájlja egy telepített szolgáltatáshoz letölthető hello **konfigurálása** panel hello szolgáltatás hello Azure-portálon. Majd keressen hello **vmName** hello attribútuma **szerepkörnév** elem toosee hello állomás neve. Ne feledje, hogy a állomásnevet alapjaként szolgál minden szerepkörpéldányt hello állomásnevét. Például ha **vmName** van *webrole típusról* , de az adott szerepkör három alkalmazáspéldányra, hello állomásnevek hello példányok lesz *webrole0*, *webrole1* , és *webrole2*.
+A szolgáltatás konfigurációs fájlja egy telepített szolgáltatáshoz a letöltheti a **konfigurálása** panel az Azure-portálon a szolgáltatást. Majd kereshet a **vmName** az attribútum a **szerepkörnév** elem gazdagép nevének megtekintéséhez. Ne feledje, hogy a állomásnevet alapjaként nem használja az összes szerepkör-példány az állomás neve. Például ha **vmName** van *webrole típusról* , de az adott szerepkör három alkalmazáspéldányra, az állomásneveket példánya lesz *webrole0*, *webrole1*, és *webrole2*.
 
 ### <a name="remote-desktop"></a>A távoli asztal
-Miután engedélyezte a távoli asztal (Windows), a Windows PowerShell távoli eljáráshívás (Windows) vagy a SSH (Linux és Windows rendszerekhez) kapcsolatok tooyour virtuális gépek vagy a szerepkörpéldányok, megtekintheti a hello állomásnévvel aktív távoli asztali kapcsolat különböző módokon:
+Miután engedélyezte a távoli asztal (Windows), a Windows PowerShell távoli eljáráshívás (Windows) vagy a virtuális gépek vagy a szerepkörpéldányok (Linux és Windows rendszerekhez) SSH-kapcsolatok, megtekintheti az állomásnév aktív távoli asztali kapcsolat különböző módokon:
 
-* Írja be az állomásnév hello parancssor vagy a Terminálszolgáltatások SSH.
-* Írja be az ipconfig/minden a hello parancs felszólítja (csak Windows).
-* Nézet hello számítógépnév hello rendszer beállításai (csak Windows).
+* Írja be a parancssort vagy a Terminálszolgáltatások SSH állomásnév.
+* Írja be az ipconfig/minden parancsot a parancssorba (csak Windows).
+* A számítógép nevének megtekintéséhez a rendszer beállításai (csak Windows).
 
 ### <a name="azure-service-management-rest-api"></a>Azure szolgáltatásfelügyelet REST API-n
 A többi ügyfél kövesse az alábbi utasításokat:
 
-1. Győződjön meg arról, hogy rendelkezik-e ügyfél tooconnect toohello Azure-portálon. egy ügyféltanúsítványt, tooobtain lépésekkel hello szereplő [hogyan: letöltése és közzététele beállításokat importálhatja adatait és előfizetési információit](https://msdn.microsoft.com/library/dn385850.aspx). 
+1. Győződjön meg arról, hogy rendelkezik-e csatlakozni az Azure-portálon ügyféltanúsítványt. Szerezzen be ügyféltanúsítványt, kövesse a megjelenő lépéseket [hogyan: letöltése és közzététele beállításokat importálhatja adatait és előfizetési információit](https://msdn.microsoft.com/library/dn385850.aspx). 
 2. Állítsa be egy x-ms-version értéke az 2013-11-01 nevű fejlécében bejegyzést.
-3. Kérés küldése a hello a következő formátumban: https://management.core.windows.net/\<subscrition-azonosító\>/services/hostedservices/\<szolgáltatásnév\>? beágyazása részletei = true
-4. Hello keressen **állomásnév** minden elem **RoleInstance** elemet.
+3. Kérés küldése a következő formátumban: https://management.core.windows.net/\<subscrition-azonosító\>/services/hostedservices/\<szolgáltatásnév\>? beágyazása detail = true
+4. Keresse meg a **állomásnév** minden elem **RoleInstance** elemet.
 
 > [!WARNING]
-> Megtekintheti hello belső tartományi utótag a felhőalapú szolgáltatás, a REST-hívást válasz hello hello ellenőrzésével **InternalDnsSuffix** elem, vagy futtassa az ipconfig/minden a távoli asztali munkamenetben (Windows), a parancssor vagy futó cat /etc/resolv.conf SSH terminálról (Linux).
+> Megtekintheti a belső tartomány utótag a felhőalapú szolgáltatás, a REST-hívást válaszban szereplő ellenőrzésével a **InternalDnsSuffix** elem, vagy futtassa az ipconfig/minden a parancssorba a távoli asztali munkamenetben (Windows), vagy futtassa a macskaeledel /etc/resolv.conf SSH terminálról (Linux).
 > 
 > 
 
 ## <a name="modifying-a-hostname"></a>Az állomásnév módosítása
-Módosíthatja a virtuális gép vagy szerepkörpéldány hello host name egy módosított szolgáltatáskonfigurációs fájlt feltölteni, vagy a távoli asztali munkamenetből hello számítógép átnevezése.
+Módosíthatja a virtuális gép vagy szerepkörpéldány állomásneve egy módosított szolgáltatáskonfigurációs fájlt feltölteni, vagy a távoli asztali munkamenetből a számítógép átnevezése.
 
 ## <a name="next-steps"></a>Következő lépések
 [Névfeloldás (DNS)](virtual-networks-name-resolution-for-vms-and-role-instances.md)

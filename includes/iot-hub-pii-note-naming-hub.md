@@ -1,3 +1,3 @@
 > [!IMPORTANT]
-> az IoT-központ hello fogja nyilvánosan felderíthető egy DNS-végpontként kell, ezért győződjön meg arról, hogy tooavoid elnevezése során bizalmas információk.
+> Az IoT Hub DNS-végpontként nyilvánosan észlelhető lesz, ezért ügyeljen arra, hogy az elnevezésekor ne adjon meg bizalmas adatokat.
 >

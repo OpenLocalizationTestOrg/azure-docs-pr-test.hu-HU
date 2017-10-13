@@ -1,5 +1,5 @@
 ---
-title: "aaaMobile Engagement – fogalmak |} Microsoft Docs"
+title: "Mobile Engagement – fogalmak | Microsoft Docs"
 description: "Azure Mobile Engagement – fogalmak"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,72 +14,72 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 5aa7f28c00cd641a36a6e040c6b13d802ea6ae41
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8450651528007b4527366b89a6ad7615169f93c0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-mobile-engagement-concepts"></a>Azure Mobile Engagement – fogalmak
-A Mobile engagement néhány fogalmak közös tooall támogatott platformokat. Ez a cikk röviden ismerteti ezen fogalmakat.
+A Mobile Engagement néhány általános, minden támogatott platform esetén érvényes fogalmat használ. Ez a cikk röviden ismerteti ezen fogalmakat.
 
-Ez a cikk remek kezdőpont, ha új tooMobile Engagement. Emellett győződjön meg arról, hogy tooread hello dokumentáció adott toohello platformot használ, mert az pontosítja további részletek és példák, valamint lehetséges korlátozásokkal ebben a cikkben ismertetett hello fogalmakat.
+A cikk remek kezdőpont, ha a Mobile Engagement új felhasználója. Emellett mindenképpen olvassa el a használt platformra vonatkozó dokumentációt, mert az pontosítja az ebben a cikkben ismertetett fogalmakat további információval, példákkal és lehetséges korlátozásokkal.
 
 ## <a name="devices-and-users"></a>Eszközök és felhasználók
-A Mobile Engagement az egyes eszközök számára létrehozott egyedi azonosítóval azonosítja a felhasználókat. Ezen azonosító neve eszközazonosító hello (vagy `deviceid`). Úgy, hogy a futó összes alkalmazás hello azonos állítja elő eszköz megosztás hello ugyanazon eszközazonosítót használja.
+A Mobile Engagement az egyes eszközök számára létrehozott egyedi azonosítóval azonosítja a felhasználókat. Ezen azonosító neve eszközazonosító (vagy `deviceid`). A létrehozása olyan módon történik, hogy az ugyanazon eszközön futó összes alkalmazás ugyanazon eszközazonosítót használja.
 
-Ez lényegében azt jelenti, hogy a Mobile Engagement úgy tekinti, egy eszköz toobelong tooexactly egy felhasználót, és így, felhasználók és eszközök is egyenértékű fogalmak.
+Ez lényegében azt jelenti, hogy a Mobile Engagement úgy tekinti, egy eszközhöz pontosan egy felhasználó tartozik, ezért a felhasználók és az eszközök egyenértékű fogalmak.
 
 ## <a name="sessions-and-activities"></a>Munkamenetek és tevékenységek
-A munkamenet, a hello idő hello felhasználó, felhasználó által végrehajtott hello alkalmazás használatát elindítja a befejezéséig tart hello felhasználói leáll.
+A munkamenet a felhasználó által használt alkalmazás egy használati alkalma, amely az alkalmazás használatának a kezdetétől a befejezéséig tart.
 
-Egy tevékenység készen egy része hello alkalmazás alrészének egy felhasználó általi egyszeri használata (általában egy képernyő, de semmi megfelelő toohello alkalmazás lehet).
+A tevékenység az alkalmazás egy alrészének egy felhasználó általi egyszeri használata (ez általában egy képernyő, de az alkalmazás bármely megfelelő része lehet).
 
 Egy felhasználó egyszerre csak egy tevékenységet végezhet.
 
-Egy tevékenység nevét (korlátozott too64 karakter) által azonosított, és tartalmazhatnak néhány további adatokat (a hello a legfeljebb 1024 bájt mennyiségben).
+A tevékenységek névvel azonosíthatók (legfeljebb 64 karakter hosszúságban), és tartalmazhatnak további adatokat (legfeljebb 1024 bájt mennyiségben).
 
-A felhasználó által végrehajtott műveletek sorozata hello a munkamenetek számítása automatikusan történik. A munkamenet akkor kezdődik, amikor hello felhasználó elindítja az első tevékenységet, és befejezésével ér véget, hogy az utolsó tevékenység. Ez azt jelenti, hogy a munkamenetet nem kell külön elindítani vagy leállítani toobe. Helyette a tevékenységeket kell külön elindítani és leállítani. Ha nincs jelentett tevékenység, jelentett munkamenet sincs.
+A munkamenetek számítása automatikusan történik a felhasználó által végrehajtott műveletek sorozata alapján. A munkamenet akkor kezdődik, amikor a felhasználó elindítja az első tevékenységet, és az utolsó tevékenység befejezésével ér véget. Ez azt jelenti, hogy a munkamenetet nem kell külön elindítani vagy leállítani. Helyette a tevékenységeket kell külön elindítani és leállítani. Ha nincs jelentett tevékenység, jelentett munkamenet sincs.
 
 ## <a name="events"></a>Események
-Eseményeket használt tooreport azonnali műveletek (például milyen gombokra vagy mely cikkeket olvasta el felhasználók) is.
+Az események azonnali műveletek (például milyen gombokra kattintott a felhasználó, vagy mely cikkeket olvasta el) jelentésére szolgálnak.
 
-Egy esemény lehet kapcsolódó toohello aktuális munkamenet tooa feladat fut, vagy lehet különálló esemény.
+Az esemény kapcsolódhat az aktuális munkamenethez, egy futó feladathoz vagy lehet különálló esemény.
 
-Az esemény nevét (korlátozott too64 karakter) által azonosított, és tartalmazhatnak néhány további adatokat (a hello a legfeljebb 1024 bájt mennyiségben).
+Az események névvel azonosíthatók (legfeljebb 64 karakter hosszúságban), és tartalmazhatnak további adatokat (legfeljebb 1024 bájt mennyiségben).
 
 ## <a name="error"></a>Hiba
-Hibák (például hibás felhasználói műveletek vagy sikertelen API-hívások) hello alkalmazás által helyesen észlelt használt tooreport problémák.
+A hibák az alkalmazás által helyesen észlelt problémák jelentésére használhatók (például hibás felhasználói műveletek vagy sikertelen API-hívások).
 
-Hiba lehet kapcsolódó toohello aktuális munkamenet tooa feladat fut, vagy lehet különálló hiba.
+A hiba kapcsolódhat az aktuális munkamenethez, egy futó feladathoz vagy lehet különálló hiba.
 
-Hiba történt a nevét (korlátozott too64 karakter) által azonosított, és tartalmazhatnak néhány további adatokat (a hello a legfeljebb 1024 bájt mennyiségben).
+A hibák névvel azonosíthatók (legfeljebb 64 karakter hosszúságban), és tartalmazhatnak további adatokat (legfeljebb 1024 bájt mennyiségben).
 
 ## <a name="job"></a>Feladat
-Feladatok olyan időtartammal használt tooreport műveletek (például API-hívások időtartama jelenik meg a hirdetések, időtartama, háttérfeladatok vagy felhasználói műveletek időtartama).
+A feladatok időtartammal rendelkező műveletek jelentésére használhatók (például az API-hívások hossza, a hirdetések megjelenítésének időtartama, háttérfeladatok vagy felhasználói műveletek időtartama).
 
-Egy feladat nincs kapcsolódó tooa munkamenet, mert egy feladat elvégezhető hello háttérben, felhasználói beavatkozás nélkül.
+A feladatok nem kapcsolódnak munkamenethez, mert egy feladat elvégezhető a háttérben is, felhasználói interakció nélkül.
 
-A feladat nevét (korlátozott too64 karakter) által azonosított, és tartalmazhatnak néhány további adatokat (a hello a legfeljebb 1024 bájt mennyiségben).
+A feladatok névvel azonosíthatók (legfeljebb 64 karakter hosszúságban), és tartalmazhatnak további adatokat (legfeljebb 1024 bájt mennyiségben).
 
 ## <a name="crash"></a>Összeomlás
-Összeomlásokat automatikusan bocsátja hello Mobile Engagement SDK tooreport alkalmazás összeomlás-hibák, ahol hello alkalmazás nem észlelt problémák teszik.
+Az összeomlásokat automatikusan bocsátja ki a Mobile Engagement SDK olyan alkalmazáshibák jelentésére, amelyeket nem észlel az alkalmazás és összeomlik miattuk.
 
 ## <a name="application-information"></a>Alkalmazásadatok
-Alkalmazással kapcsolatos adatok (vagy alkalmazásadatok) van használt tootag felhasználók, ez azt jelenti, hogy tooassociate egyes adatok toohello felhasználók egy alkalmazás (Ez a hasonló tooweb cookie-kat, azzal a különbséggel, hogy az alkalmazásadatok tárolása azonban hello kiszolgáló oldalán a hello Azure Mobile Engagement platformján).
+Az alkalmazásadatok a felhasználók címkézéséhez használhatók, vagyis adatoknak egy alkalmazás felhasználóihoz való társítására (a webes cookie-khoz hasonlóan, az alkalmazásadatok tárolása azonban a kiszolgálói oldalon történik az Azure Mobile Engagement platformján).
 
-Alkalmazásadatok regisztrálható hello Mobile Engagement SDK API használatával, vagy hello a Mobile Engagement platform eszköz API használatával.
+Az alkalmazásadatok regisztrálhatóak a Mobile Engagement SDK API-jának vagy a Mobile Engagement platform eszköz API-jának használatával.
 
-Alkalmazásadatok a kulcs/érték pár társított tooa eszközről szó. hello kulcsa hello neve hello alkalmazásadat (korlátozott too64 ASCII-betűből [a-zA-Z], [0-9] számok és aláhúzásjelből (_)). hello érték (korlátozott too1024 karakter) bármilyen karakterlánc, egész szám, dátum (éééé-hh-nn) vagy logikai (IGAZ vagy hamis) lehet.
+Az alkalmazásadatok az eszközhöz rendelt kulcs/érték párok. A kulcs az alkalmazásadat neve (legfeljebb 64 ASCII-betűből (a–z, A–Z), számokból (0–9) és aláhúzásjelből (_) állhat). Az érték (legfeljebb 1024 karakter hosszú lehet) bármilyen karakterlánc, egész szám, dátum (éééé-hh-nn) vagy logikai érték (true vagy false) lehet.
 
-Bármennyi alkalmazásadat a kapcsolódó tooa eszköz, hello Mobile Engagement díjszabási feltételei által meghatározott hello határokon belül lehet. Egy adott kulcsra vonatkozóan a Mobile Engagement csak nyomon követi az hello legutóbbi értékét követi (az előzményeket nem). Beállítása vagy módosítása egy alkalmazásadat hello érték kényszeríti a Mobile Engagement toore-célközönségre vonatkozó feltételeket az alkalmazás beállítása kiértékelése információ (ha van ilyen), tehát az alkalmazásadatok használt tootrigger valós idejű leküldések lehet.
+Bármennyi alkalmazásadat társítható egy eszközhöz a Mobile Engagement díjszabási feltételei által meghatározott keretek között. Egy adott kulcsra vonatkozóan a Mobile Engagement a kulcsnak csak a legutóbbi értékét követi nyomon (az előzményeket nem). Az alkalmazásadatok értékének beállítása vagy módosítása arra kényszeríti a Mobile Engagement alkalmazást, hogy újraértékelje a célközönséghez kapcsolódó feltételek az alkalmazásadatok alapján (ha vannak), tehát az alkalmazásadatok használhatók valós idejű leküldések eseményindítóiként.
 
 ## <a name="extra-data"></a>További adatok
-További adatokat (vagy kiegészítő funkciók) olyan tetszőleges adatok, amelyek csatlakoztatott tooevents, hibákat, tevékenységeket és feladatok lehetnek.
+A további adatok olyan tetszőleges adatok, amelyek eseményekhez, hibákhoz, tevékenységekhez és feladatokhoz csatolhatók.
 
-Kiegészítő funkciók felépítése tooJSON objektumok hasonlóképpen: a kulcs/érték párok fa épülnek. A kulcsokban korlátozott too64 ASCII-betűből [a-zA-Z], [0-9] számok és aláhúzásjelből (_)), és kiegészítő funkciók hello teljes mérete (egyszer kódolású JSON hello Mobile Engagement SDK által) korlátozott too1024 karaktereket.
+A további adatok szerkezete hasonlít a JSON-objektumokhoz: a kulcs/érték párok fájából állnak. A kulcsok legfeljebb 64 ASCII-betűből [a–z, A–Z], számból [0–9] és aláhúzásjelből (_) állhatnak, a további adatok teljes mérete pedig legfeljebb 1024 karakter lehet (miután a Mobile Engagement SDK JSON-formátumba kódolja azokat).
 
-hello kulcs/érték párok teljes fájának tárolása JSON-objektum. Mindazonáltal csak hello első kulcs/érték szintje lebontott toobe közvetlenül elérhető toosome speciális funkciók szegmensekhez (például egyszerűen definiálhat egy szegmenset "Sci-fi-rajongók", amely az összes felhasználó legalább 10 alkalommal hello esemény elküldését nevű "tartalmazza, akik" további kulccsal hello "content_type" a készlet toohello érték "scifi" hello előző hónap). Ezért ajánlott toosend csak kiegészítő funkciók olyan egyszerű listákból a kulcs/érték párok skaláris értékek (például karakterláncok, dátumok, egész szám vagy logikai).
+A kulcs/érték párok teljes fájának tárolása JSON-objektumként történik. A kulcs/érték pároknak azonban csupán az első szintjét bontja fel a rendszer, hogy közvetlenül elérhetők legyenek néhány olyan fejlett funkció számára, amilyen például a Segments (Szegmensek) (egyszerűen definiálhat például egy „Sci-Fi-rajongók” szegmenset, amely az összes olyan felhasználót tartalmazza, akik legalább 10 alkalommal küldték el a „content_viewed” eseményt az elmúlt hónapban a „scifi” értékű „content_type” további kulccsal kiegészítve). Ezért erősen ajánlott csak olyan egyszerű listákból álló további adatokat elküldeni, amelyekben a kulcs/érték párok skaláris értékek (például karakterláncok, dátumok, egész számok és logikai értékek).
 
 ## <a name="next-steps"></a>Következő lépések
 * [Windows Universal SDK és Azure Mobile Engagement – áttekintés](mobile-engagement-windows-store-sdk-overview.md)

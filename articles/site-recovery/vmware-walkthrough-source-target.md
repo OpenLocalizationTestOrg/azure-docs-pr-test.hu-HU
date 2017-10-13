@@ -1,6 +1,6 @@
 ---
-title: "hello forrás és cél VMware replikációs tooAzure az Azure Site Recovery aaaSet |} Microsoft Docs"
-description: "Hello lépéseket tooset forrása és célja beállítások megadása a VMware virtuális gépek tooAzure tárolás az Azure Site Recovery replikációs összesíti"
+title: "A forrás és cél a VMware-replikáció az Azure szolgáltatásban az Azure Site Recovery beállítása |} Microsoft Docs"
+description: "A forrás és cél beállítások megadása a VMware virtuális gépek replikálása az Azure storage az Azure Site Recovery ismertetett lépéseket foglalja"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,88 +14,88 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: ef33a44bc5da17afb0442be63f576925f5b9a8b2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 94b629a62c3a54eee69ee397b2f27e3f20b753d5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="step-8-set-up-hello-source-and-target-for-vmware-replication-tooazure"></a>8. lépés: Hello forrása és célja a VMware-replikáció tooAzure beállítása
+# <a name="step-8-set-up-the-source-and-target-for-vmware-replication-to-azure"></a>8. lépés: A forrás- és a cél a VMware-replikáció az Azure beállítása
 
-Ez a cikk ismerteti, hogyan tooconfigure forrás és cél beállításai replikálása esetén a helyszíni VMware virtuális gépek tooAzure, használatával hello [Azure Site Recovery](site-recovery-overview.md) szolgáltatással hello Azure-portálon.
+A cikk ismerteti a forrás és cél beállítások konfigurálása, ha a helyszíni VMware virtuális gépek replikálása Azure-ba, használja a [Azure Site Recovery](site-recovery-overview.md) szolgáltatás az Azure portálon.
 
-Ez a cikk vagy a hello hello alsó megjegyzések és kérdések utáni [Azure Recovery Services fórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Ebben a cikkben, vagy az alsó megjegyzések és kérdéseket küldje a [Azure Recovery Services fórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
-## <a name="set-up-hello-source-environment"></a>Hello forráskörnyezet beállítása
+## <a name="set-up-the-source-environment"></a>A forráskörnyezet beállítása
 
-Hello konfigurációs kiszolgáló, regisztrálja azt hello tárolóban, és virtuális gépek felderítése.
+Állítsa be a konfigurációs kiszolgáló, és regisztrálja őket a tárolóban lévő virtuális gépek felderítése.
 
 1. Kattintson a **helyreállítási hely** > **1. lépés: infrastruktúra előkészítése** > **forrás**.
 2. Ha nem rendelkezik a konfigurációs kiszolgáló, kattintson a **+ konfigurációs kiszolgáló**.
 3. A **kiszolgáló hozzáadása**, ellenőrizze, hogy **konfigurációs kiszolgáló** megjelenik **kiszolgálótípus**.
-4. Töltse le a hello Site Recovery az egységes telepítő telepítőfájlját.
-5. Hello tárolóbeli regisztrációs kulcs letöltése. Ez szükséges az egységes telepítő futtatásakor. hello kulcs a generálásától öt napig esetén érvényes.
+4. Töltse le a Site Recovery az egységes telepítő telepítőfájlját.
+5. Töltse le a tárolóregisztrációs kulcsot. Ez szükséges az egységes telepítő futtatásakor. A kulcs a generálásától számított öt napig érvényes.
 
    ![A forrás beállítása](./media/vmware-walkthrough-source-target/set-source2.png)
 
 
-## <a name="register-hello-configuration-server-in-hello-vault"></a>Hello tároló hello konfigurációs kiszolgáló regisztrálása
+## <a name="register-the-configuration-server-in-the-vault"></a>Regisztrálja a konfigurációs kiszolgálót a tárolóban
 
-Tegye hello következő előtt indítsa el, majd futtassa az egységes telepítő tooinstall hello konfigurációs kiszolgáló, hello folyamatkiszolgáló és fő célkiszolgáló hello.
+Tegye a következőket előtt indítsa el, majd az egységes telepítőjének futtatásával telepítse a konfigurációs kiszolgáló, a folyamatkiszolgáló és a fő célkiszolgáló.
     - Gyors áttekintő videó beolvasása
 
         > [!VIDEO https://channel9.msdn.com/Series/Azure-Site-Recovery/VMware-to-Azure-with-ASR-Video1-Source-Infrastructure-Setup/player]
 
-    - Hello konfigurációs kiszolgálón VM, győződjön meg arról, hogy hello rendszeróra szinkronizálva van a [kiszolgálót](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-time-service). Meg kell felelnie. Ha az előtérben 15 perc vagy mögött található, a telepítés meghiúsulhat.
-    - Futtassa a telepítőt a helyi rendszergazdájaként hello virtuális gép konfigurációs kiszolgálón.
-    - Győződjön meg arról, hogy a TLS 1.0 engedélyezve van a virtuális gép hello.
+    - A konfigurációs kiszolgálón VM, győződjön meg arról, hogy a rendszer órája szinkronizálva van a [kiszolgálót](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-time-service). Meg kell felelnie. Ha az előtérben 15 perc vagy mögött található, a telepítés meghiúsulhat.
+    - Futtassa a telepítőt a helyi rendszergazda, a virtuális gép konfigurációs kiszolgálón.
+    - Győződjön meg arról, hogy a TLS 1.0 engedélyezve van a virtuális Gépen.
 
 
 [!INCLUDE [site-recovery-add-configuration-server](../../includes/site-recovery-add-configuration-server.md)]
 
 > [!NOTE]
-> hello konfigurációs kiszolgálón is telepíthető [hello parancssorból](http://aka.ms/installconfigsrv).
+> A konfigurációs kiszolgáló is telepíthető [a parancssorból](http://aka.ms/installconfigsrv).
 
 
 
-## <a name="connect-toovmware-servers"></a>Csatlakozás tooVMware kiszolgálók
+## <a name="connect-to-vmware-servers"></a>VMware-kiszolgálókkal
 
-tooallow Azure Site Recovery toodiscover futó virtuális gépek a helyszíni környezetben, kell tooconnect a VMware vCenter-kiszolgáló vagy vSphere ESXi-gazdagépek Site Recovery szolgáltatással. Vegye figyelembe a következő hello megkezdése előtt:
+Ahhoz, hogy az Azure Site Recovery számára a helyszíni környezetben futó virtuális gépek felderítése, meg kell kapcsolni a VMware vCenter-kiszolgáló vagy vSphere ESXi-gazdagépek a Site Recovery. Mielőtt elkezdené, vegye figyelembe a következőket:
 
-- Ha hello vCenter-kiszolgáló vagy vSphere állomások tooSite helyreállítási rendszergazdai jogosultságok nélküli fiókkal hello kiszolgálón, a hello fiókot kell ezeket a jogokat engedélyezve:
+- Ha a vCenter-kiszolgáló vagy vSphere-gazdagép Site Recovery rendszergazdai jogosultságok nélküli fiókkal ad hozzá a kiszolgálón, a fiók ezeket a jogokat engedélyezett van szüksége:
     - Datacenter, Datastore, mappa, állomás, hálózati, erőforrás, a virtuális gép, vSphere elosztott kapcsoló.
-    - hello vCenter-kiszolgálót kell tárolási nézetek engedélyekkel.
-- VMware-kiszolgálók tooSite helyreállítási hozzáadásakor 15 percig is tarthat, vagy hosszabb ideig őket tooappear hello portálon.
+    - A vCenter-kiszolgálót kell tárolási nézetek engedélyekkel.
+- Amikor VMware-kiszolgálók ad hozzá a Site Recovery, 15 percbe is telhet, vagy hosszabb, hogy megjelenjenek a portálon.
 
-### <a name="add-hello-account-for-automatic-discovery"></a>Automatikus felderítés hello fiók hozzáadása
+### <a name="add-the-account-for-automatic-discovery"></a>Adja hozzá a fiókot a automatikus felderítése
 
 [!INCLUDE [site-recovery-add-vcenter-account](../../includes/site-recovery-add-vcenter-account.md)]
 
 ### <a name="set-up-a-connection"></a>Kapcsolat beállítása
 
-Csatlakozás a tooservers az alábbiak szerint:
+Kapcsolódás a kiszolgálók az alábbiak szerint:
 
-1. Válassza ki **+ vCenter** toostart VMware vCenter-kiszolgáló vagy egy VMware vSphere ESXi-állomáson.
-2. A **vCenter hozzáadása**, adjon meg egy rövid nevet hello vSphere gazdagép vagy a vCenter-kiszolgálóhoz, és adja meg a hello IP-cím vagy hello kiszolgáló teljes Tartományneve.
-3. Hello port hagyja 443-as, kivéve, ha a VMware Server kérések egy másik portra beállított toolisten. Válassza ki a hello fiók, amely tooconnect toohello VMware vCenter vagy vSphere ESXi-kiszolgálón. Kattintson az **OK** gombra.
-4. A Site Recovery csatlakoztatja tooVMware kiszolgálókat hello segítségével megadott beállításokat, és felderíti a virtuális gépek.
+1. Válassza ki **+ vCenter** elindítani a VMware vCenter-kiszolgáló vagy egy VMware vSphere ESXi-állomáson.
+2. A **vCenter hozzáadása** területen adjon meg egy rövid nevet a vSphere-gazdagép vagy a vCenter-kiszolgáló számára, majd adja meg a kiszolgáló IP-címét vagy teljes tartománynevét.
+3. A 443-as portot csak akkor módosítsa, ha a VMware-kiszolgálók úgy vannak konfigurálva, hogy más porton figyeljék a kéréseket. Válassza ki a VMware vCenter- vagy vSphere ESXi-kiszolgálóhoz csatlakoztatni kívánt fiókot. Kattintson az **OK** gombra.
+4. A Site Recovery VMware-kiszolgálók, a megadott beállítások csatlakozik, és felderíti a virtuális gépek.
 
 > [!NOTE]
-> Egy kiszolgáló vagy egy olyan fiókkal, amely nem rendelkezik rendszergazdai jogosultságokkal hello vCenter vagy a gazdagép-kiszolgálói gazdagép hozzáadása, győződjön meg arról, hogy hello fiókja rendelkezik-e ezek a jogosultságok engedélyezve: Datacenter, Datastore, mappa, Host, hálózati, erőforrás, a virtuális gép, és a vSphere elosztott kapcsoló. Emellett hello VMware vCenter kiszolgálót kell hello tárolási nézetek jogosultság engedélyezve van.
+> Ha a kiszolgáló vagy a gazdagép egy olyan fiókkal, amely nem rendelkezik rendszergazdai jogosultságokkal a vCenter vagy a gazdagép-kiszolgálón, győződjön meg arról, hogy a fiók rendelkezik-e ezek a jogosultságok engedélyezve: Datacenter, Datastore, mappa, Host, hálózati, erőforrás, a virtuális gép, és a vSphere elosztott kapcsoló. Emellett a VMware vCenter-kiszolgálót kell a tárolási nézetek jogosultság engedélyezve van.
 
 
-## <a name="set-up-hello-target-environment"></a>Hello célkörnyezet beállítása
+## <a name="set-up-the-target-environment"></a>A célkörnyezet beállítása
 
-Hello célkörnyezet beállítása előtt győződjön meg arról, hogy az Azure storage-fiók és a virtuális hálózat beállítása.
+A célkörnyezet beállítása előtt győződjön meg arról, hogy az Azure storage-fiók és a virtuális hálózat beállítása.
 
-1. Kattintson a **infrastruktúra előkészítése** > **cél**, és válassza ki a kívánt toouse Azure-előfizetés hello.
+1. Kattintson az **Infrastruktúra előkészítése** > **Cél** elemre, majd válassza ki a használni kívánt Azure-előfizetést.
 2. Adja meg-e a cél telepítési modell a Resource Manager-alapú, vagy a klasszikus.
 3. A Site Recovery ellenőrzi, hogy rendelkezik-e legalább egy kompatibilis Azure-tárfiókkal és -hálózattal.
 
    ![cél](./media/vmware-walkthrough-source-target/gs-target.png)
-4. Ha még nem hozott létre a storage-fiók vagy a hálózaton, kattintson a **+ tárfiók** vagy **+ hálózat**, egy erőforrás-kezelő fiók vagy a hálózati beágyazott toocreate.
+4. Ha még nem hozott létre a storage-fiók vagy a hálózaton, kattintson a **+ tárfiók** vagy **+ hálózat**, az erőforrás-kezelő fiók létrehozása vagy szövegközi hálózati.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Nyissa meg túl[9. lépés: a replikációs házirend beállítása](vmware-walkthrough-replication.md)
+Ugrás a [9. lépés: a replikációs házirend beállítása](vmware-walkthrough-replication.md)

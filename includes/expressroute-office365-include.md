@@ -1,9 +1,9 @@
-ExpressRoute tooMicrosoft felhőszolgáltatások magánhálózati kapcsolatot biztosít. A hálózati architektúra és a teljesítménnyel kapcsolatos szempontok figyelembe vétele gyakran előnyös lehet az Azure-ban futó infrastruktúra- és platformszolgáltatások számára. Ezért javasoljuk a vállalatok számára az ExpressRoute használatát az Azure-hoz.
+Az ExpressRoute magánhálózati kapcsolatot biztosít a Microsoft-felhőszolgáltatásokhoz. A hálózati architektúra és a teljesítménnyel kapcsolatos szempontok figyelembe vétele gyakran előnyös lehet az Azure-ban futó infrastruktúra- és platformszolgáltatások számára. Ezért javasoljuk a vállalatok számára az ExpressRoute használatát az Azure-hoz.
 
-A szolgáltatásajánlatok, mint az Office 365 és Dynamics 365 szoftverként biztonságosan és megbízhatóan hello interneten keresztül elért toobe lettek létrehozva.  Ezért az egyedi forgatókönyvekben csak az ExpressRoute használatát javasoljuk ezen alkalmazások esetén.
+A szoftverszolgáltatásokat, például az Office 365-öt és a Dynamics 365-öt úgy hozták létre, hogy biztonságosan és megbízhatóan el lehessen érni őket az interneten keresztül.  Ezért az egyedi forgatókönyvekben csak az ExpressRoute használatát javasoljuk ezen alkalmazások esetén.
 
 > [!IMPORTANT]
-> ExpressRoute tooaccess Azure használata **ajánlott** összes vállalatok számára. Útmutató ExpressRoute segítségével tooaccess Office 365 a Microsoft [http://aka.ms/ExpressRouteOffice365](http://aka.ms/ExpressRouteOffice365).
+> Minden vállalat számára **ajánlott**, hogy az Azure-t az ExpressRoute használatával érjék el. Útmutató az Office 365 ExpressRoute használatával történő eléréséhez: [http://aka.ms/ExpressRouteOffice365](http://aka.ms/ExpressRouteOffice365).
 > 
 > 
 

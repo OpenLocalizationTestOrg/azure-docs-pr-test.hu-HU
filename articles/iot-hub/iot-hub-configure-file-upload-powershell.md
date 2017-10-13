@@ -1,6 +1,6 @@
 ---
-title: "aaaUse hello Azure PowerShell tooconfigure fájlfeltöltés |} Microsoft Docs"
-description: "Hogyan toouse hello Azure PowerShell parancsmagok tooconfigure a IoT hub tooenable fájlfeltöltések csatlakoztatott eszközökről. Hello cél Azure storage-fiók konfigurálásával kapcsolatos információkat tartalmazza."
+title: "Fájl feltöltése konfigurálása az Azure PowerShell használatával |} Microsoft Docs"
+description: "Az IoT hub fájl engedélyezéséhez konfigurálja az Azure PowerShell-parancsmagok segítségével feltölti a csatlakoztatott eszközökről. A cél Azure storage-fiók konfigurálásával kapcsolatos információkat tartalmazza."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/08/2017
 ms.author: dobett
-ms.openlocfilehash: 9dcdc41693c09cece411921b30c91d7b3db47395
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a72bda794b2da3e044c46249559610d06b1f1843
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="configure-iot-hub-file-uploads-using-powershell"></a>Konfigurálja az IoT-központ fájlfeltöltések a PowerShell használatával
 
 [!INCLUDE [iot-hub-file-upload-selector](../../includes/iot-hub-file-upload-selector.md)]
 
-toouse hello [feltöltés funkció fájlt az IoT-központ][lnk-upload], először társítania kell egy Azure storage-fiókot az IoT hub. Meglévő tárfiók használata, vagy hozzon létre egy újat.
+Használatához a [feltöltés funkció fájlt az IoT-központ][lnk-upload], először társítania kell egy Azure storage-fiókot az IoT hub. Meglévő tárfiók használata, vagy hozzon létre egy újat.
 
-toocomplete ebben az oktatóanyagban a következő hello szüksége:
+Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
 
 * Aktív Azure-fiók. Ha nincs fiókja, néhány perc alatt létrehozhat egy [ingyenes fiókot][lnk-free-trial].
 * [Az Azure PowerShell-parancsmagok][lnk-powershell-install].
-* Az Azure IoT-központ. Ha nem rendelkezik az IoT-központ, használhatja a hello [New-AzureRmIoTHub parancsmag] [ lnk-powershell-iothub] láthatóak, illetve egy toocreate hello portal túl[létrehoz egy IoT-központot] [ lnk-portal-hub].
-* Egy Azure-tárfiók. Ha egy Azure storage-fiók nem rendelkezik, használhatja a hello [Azure Storage PowerShell parancsmagjainak] [ lnk-powershell-storage] láthatóak, illetve egy toocreate hello portal túl[hozzon létre egy tárfiókot] [ lnk-portal-storage].
+* Az Azure IoT-központ. Ha még nem rendelkezik az IoT-központ, használhatja a [New-AzureRmIoTHub parancsmag] [ lnk-powershell-iothub] hozzon létre egyet, vagy használja a portál [létrehoz egy IoT-központot][lnk-portal-hub].
+* Egy Azure-tárfiók. Ha egy Azure storage-fiók nem rendelkezik, használhatja a [Azure Storage PowerShell parancsmagjainak] [ lnk-powershell-storage] hozzon létre egyet, vagy használja a portál [hozzon létre egy tárfiókot][lnk-portal-storage].
 
 ## <a name="sign-in-and-set-your-azure-account"></a>Jelentkezzen be, és állítsa be az Azure-fiókjával
 
-Jelentkezzen be Azure-fiók tooyour, és jelölje ki az előfizetését.
+Jelentkezzen be az Azure-fiókjával, és jelölje ki az előfizetését.
 
-1. Hello PowerShell parancssorból futtassa a hello **Login-AzureRmAccount** parancsmagot:
+1. A PowerShell parancssorból futtassa a **Login-AzureRmAccount** parancsmagot:
 
     ```powershell
     Login-AzureRmAccount
     ```
 
-1. Ha több Azure-előfizetéssel rendelkezik, birtokában tooall hozzáférhet tooAzure bejelentkezés hello Azure-előfizetéssel társított hitelesítő adatait. A következő parancs toolist hello Azure-előfizetések elérhető az Ön toouse hello használata:
+1. Ha több Azure-előfizetéssel rendelkezik, a jelentkezik be az Azure ad hozzáférést az összes Azure-előfizetést a hitelesítő adatok társított. Használja a következő parancsot a rendelkezésre álló használata Azure-előfizetések listázásához:
 
     ```powershell
     Get-AzureRMSubscription
     ```
 
-    A következő parancs tooselect előfizetést, amelyet toouse toorun hello parancsok toomanage az IoT hub hello használata. Hello előfizetés név vagy azonosító hello kimenetből hello előző parancs használható:
+    A következő parancs segítségével válassza ki, hogy az IoT hub kezelésére szolgáló parancsok futtatásához használni kívánt előfizetést. Az előfizetés neve vagy azonosítója is használhatja, ha az előző parancs kimenetében:
 
     ```powershell
     Select-AzureRMSubscription `
@@ -58,9 +58,9 @@ Jelentkezzen be Azure-fiók tooyour, és jelölje ki az előfizetését.
 
 ## <a name="retrieve-your-storage-account-details"></a>A tárfiókadatok beolvasása
 
-hello következő lépések feltételezik, hogy a storage-fiókra hello **erőforrás-kezelő** üzembe helyezési modellt, és nem hello **klasszikus** üzembe helyezési modellben.
+A következő lépések feltételezik, hogy a tárolási fiók használata a **erőforrás-kezelő** telepítési modell, és nem a **klasszikus** üzembe helyezési modellben.
 
-tooconfigure fájlfeltöltések az eszközökről, hello kapcsolati karakterlánc egy Azure storage-fiók szükséges. hello tárfiók hello kell lennie az IoT hub tárolóként ugyanazt az előfizetést. Meg kell hello tárfiók a blob-tároló hello nevét is. A következő parancs tooretrieve hello használja a tárfiók kulcsait:
+Fájlfeltöltéseket adott területen működő eszközök konfigurálásához szükséges a kapcsolati karakterlánc egy Azure storage-fiókot. A tárfiók ugyanahhoz az előfizetéshez, mint az IoT hub kell lennie. A tárfiók a blob-tároló neve is kell. A következő paranccsal lekérni a tárfiók kulcsait:
 
 ```powershell
 Get-AzureRmStorageAccountKey `
@@ -68,11 +68,11 @@ Get-AzureRmStorageAccountKey `
   -ResourceGroupName {your storage account resource group}
 ```
 
-Jegyezze fel a hello **key1** tárolási fiók kulcs értékét. Az alábbi lépésekkel hello van szükség.
+Jegyezze fel a **key1** tárolási fiók kulcs értékét. A következő lépésekben van szükség.
 
 Meglévő blob tároló használata a fájl feltöltéshez, vagy hozzon létre újat:
 
-* toolist hello meglévő blob tárolók tárfiókba, a következő parancsok hello használata:
+* A meglévő blob tárolók a tárfiókban lévő listájában, használja a következő parancsokat:
 
     ```powershell
     $ctx = New-AzureStorageContext `
@@ -81,7 +81,7 @@ Meglévő blob tároló használata a fájl feltöltéshez, vagy hozzon létre �
     Get-AzureStorageContainer -Context $ctx
     ```
 
-* a blob-tároló tárfiókba, a következő parancsok használata hello toocreate:
+* A tárfiók a blob-tároló létrehozásához használja a következő parancsokat:
 
     ```powershell
     $ctx = New-AzureStorageContext `
@@ -95,21 +95,21 @@ Meglévő blob tároló használata a fájl feltöltéshez, vagy hozzon létre �
 
 ## <a name="configure-your-iot-hub"></a>Az IoT hub konfigurálása
 
-Mostantól konfigurálhatja az IoT hub tooenable [fájl feltöltése funkció] [ lnk-upload] a tárfiókadatok használatával.
+Mostantól konfigurálhatja az IoT hub engedélyezése [fájl feltöltése funkció] [ lnk-upload] a tárfiókadatok használatával.
 
-hello konfigurációjában szerepelnie kell a következő értékek hello:
+A konfiguráció szükséges a következő értékeket:
 
-**A tároló**: egy blob tároló, az a jelenlegi Azure-előfizetés tooassociate az IoT hubbal egy Azure storage-fiókot. Hello szükséges tárfiók adatait az előző szakaszban hello lekért. Ezek a fájlok feltöltése az IoT-központ automatikusan létrehozza SAS URI-azonosítók az írási engedélyek toothis blob tároló eszközök toouse.
+**A tároló**: egy blob tároló, az Azure-tárfiók az IoT hub társítja a jelenlegi Azure-előfizetésben. A szükséges tárfiók adatait az előző szakaszban leírt lekért. Az IoT-központ automatikusan létrehozza a SAS URI-azonosítók eszközöket használja, ha ezek a fájlok feltöltése a blob tároló írási engedéllyel rendelkező.
 
 **A feltöltött fájlok értesítéseket**: engedélyezheti vagy tilthatja le a fájl feltöltése értesítések.
 
-**SAS-élettartam**: Ez a beállítás akkor idő élettartamát a SAS URI-azonosítók toohello eszköz vissza az IoT-központ hello hello. Alapértelmezés szerint tooone óra beállítva.
+**SAS-élettartam**: Ez a beállítás akkor a idő élettartamát az az eszközt az IoT-központ által visszaadott SAS URI-azonosítók. Alapértelmezés szerint egyórás beállítva.
 
-**Az értesítési beállítások alapértelmezett élettartam**: hello idő TTL fájl feltöltése értesítés előtt lejárt. Alapértelmezés szerint tooone nap meg.
+**Az értesítési beállítások alapértelmezett élettartam**: az idő TTL-fájl feltöltése értesítési, előtt lejárt. Alapértelmezés szerint egy nap beállítva.
 
-**Értesítési maximális száma fájl**: hello számú alkalommal fordult elő az IoT-központ kísérletek toodeliver fájl feltöltése értesítést hello. Alapértelmezés szerint too10 beállítva.
+**Értesítési maximális száma fájl**: A szám, ahányszor az IoT Hub megpróbál egy fájl feltöltése értesítést. Alapértelmezés szerint 10-re állítva.
 
-Az IoT hub PowerShell parancsmag tooconfigure hello fájl feltöltési beállításokat követően hello használata:
+Használja a következő PowerShell-parancsmag segítségével konfigurálhatja a fájl feltöltése az IoT hub beállításainak:
 
 ```powershell
 Set-AzureRmIotHub `
@@ -125,19 +125,19 @@ Set-AzureRmIotHub `
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az IoT-központ hello fájl feltöltése képességeivel kapcsolatos további információkért lásd: [egy eszközről tölt fel][lnk-upload].
+Az IoT-központ a fájl feltöltése képességeivel kapcsolatos további információk: [egy eszközről tölt fel][lnk-upload].
 
-Kövesse az alábbi hivatkozások toolearn Azure IoT Hub kezelésével kapcsolatos további:
+Az alábbi hivatkozásokból tudhat meg többet az Azure IoT Hub kezelése:
 
 * [Tömeges az IoT-eszközök kezelése][lnk-bulk]
 * [Az IoT-központ metrikák][lnk-metrics]
 * [Figyelési műveletek][lnk-monitor]
 
-toofurther megismerkedhet az IoT-központ hello képességeit, lásd:
+Az IoT-központ képességeit további megismeréséhez lásd:
 
 * [IoT Hub fejlesztői útmutató][lnk-devguide]
 * [Egy eszköz szimulálva IoT oldala][lnk-iotedge]
-* [Az IoT-megoldásból hello szabad a biztonságos][lnk-securing]
+* [Az IoT-megoldásból az alapoktól biztonságos mentése][lnk-securing]
 
 [lnk-upload]: iot-hub-devguide-file-upload.md
 

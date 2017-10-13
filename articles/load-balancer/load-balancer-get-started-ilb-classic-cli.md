@@ -1,9 +1,9 @@
 ---
-title: "aaaCreate egy belső terheléselosztó - klasszikus Azure CLI |} Microsoft Docs"
-description: "Ismerje meg, hogyan egy belső terheléselosztó használatával toocreate hello hello klasszikus üzembe helyezési modellel Azure parancssori felület"
+title: "Belső terheléselosztó létrehozása – klasszikus Azure CLI | Microsoft Docs"
+description: "Ismerje meg, hogyan hozható létre belső terheléselosztó az Azure parancssori felület használatával a klasszikus üzembehelyezési modellben"
 services: load-balancer
 documentationcenter: na
-author: kumudd
+author: KumudD
 manager: timlt
 editor: 
 tags: azure-service-management
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: ef29dfda5f7a75a411bbabe8b688a31c6bf81113
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f740633230b2479f77d7d09a31dbbf3f72ffb174
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-started-creating-an-internal-load-balancer-classic-using-hello-azure-cli"></a>Elsajátíthatja a belső terheléselosztót (klasszikus) hello Azure parancssori felület használatával
+# <a name="get-started-creating-an-internal-load-balancer-classic-using-the-azure-cli"></a>Bevezetés a belső terheléselosztó (klasszikus) létrehozásába az Azure parancssori felület használatával
 
 > [!div class="op_single_selector"]
 > * [PowerShell](../load-balancer/load-balancer-get-started-ilb-classic-ps.md)
@@ -31,24 +31,24 @@ ms.lasthandoff: 10/06/2017
 [!INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 > [!IMPORTANT]
-> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md).  Ez a cikk hello klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén hello Resource Manager modellt használja. Ismerje meg, hogyan túl[hello Resource Manager modellt használja a következő lépésekkel](load-balancer-get-started-ilb-arm-cli.md).
+> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md).  Ez a cikk a klasszikus üzembehelyezési modellt ismerteti. A Microsoft azt javasolja, hogy az új telepítések esetén a Resource Manager modellt használja. [ Ismerje meg, hogyan ](load-balancer-get-started-ilb-arm-cli.md)hajthatja végre ezeket a lépéseket a Resource Manager-modell használatával.
 
 [!INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
-## <a name="toocreate-an-internal-load-balancer-set-for-virtual-machines"></a>toocreate belső terheléselosztót beállítani a virtuális gépek
+## <a name="to-create-an-internal-load-balancer-set-for-virtual-machines"></a>Belső terheléselosztó készlet létrehozása a virtuális gépekhez
 
-belső terheléselosztót beállítani, és szeretne küldeni a forgalom tooit kiszolgálók hello toocreate, el kell végeznie a következő hello:
+Belső terheléselosztó készlet, illetve a forgalmukat a készletnek küldő kiszolgálók konfigurálásához tegye a következőket:
 
-1. Belső terheléselosztás hello végpont egy elosztott terhelésű készlet hello kiszolgálóin bejövő forgalom toobe terhelés leendő példányt létrehozni.
-2. Hello bejövő forgalmat fog kapni toohello virtuális gépek megfelelő végpont-hozzáadáshoz.
-3. Hello forgalom toobe az elosztott terhelésű toosend a forgalom toohello virtuális IP-cím (VIP) cím hello belső terheléselosztás példány küldi hello kiszolgálók konfigurálása.
+1. Hozzon létre egy belső terheléselosztási példányt, amely annak a bejövő forgalomnak a végpontja, amelynek a terhelését el kell osztani az elosztott terhelésű készlet kiszolgálóin.
+2. Adja hozzá a virtuális gépekhez rendelt végpontokat, amelyek a bejövő forgalmat tudják fogadni.
+3. Konfigurálja úgy a kiszolgálókat, hogy a forgalmat a belső terheléselosztási példány virtuális IP-címére (VIP) küldjék.
 
 ## <a name="step-by-step-creating-an-internal-load-balancer-using-cli"></a>Belső terheléselosztó parancssori felület használatával történő létrehozásának lépései
 
-Ez az útmutató bemutatja, hogyan toocreate belső terheléselosztót alapján a fenti forgatókönyvben hello.
+Ez az útmutató bemutatja, hogyan hozhat létre belső terheléselosztót a fenti forgatókönyv alapján.
 
-1. Ha még sosem használta az Azure parancssori felület, lásd: [telepítése és konfigurálása az Azure parancssori felület hello](../cli-install-nodejs.md) hello utasítások mentése toohello pont, ahol ki kell választania az Azure-fiókja és -előfizetést.
-2. Futtassa a hello **azure config mód** tooswitch tooclassic üzemmód, alább látható módon.
+1. Ha még sosem használta az Azure CLI-t, akkor tekintse meg [Install and Configure the Azure CLI](../cli-install-nodejs.md) (Az Azure CLI telepítése és konfigurálása) részt, és kövesse az utasításokat addig a pontig, ahol ki kell választania az Azure-fiókot és -előfizetést.
+2. Az **azure config mode** parancs futtatásával váltson a klasszikus módra, a lent látható módon.
 
     ```azurecli
     azure config mode asm
@@ -60,11 +60,11 @@ Ez az útmutató bemutatja, hogyan toocreate belső terheléselosztót alapján 
 
 ## <a name="create-endpoint-and-load-balancer-set"></a>Végpont és terheléselosztó készlet létrehozása
 
-hello forgatókönyv azt feltételezi, hogy a virtuális gépek "D1" és "DB2" hello "mytestcloud" nevű felhőszolgáltatás. Mindkét virtuális gép a „testvnet” nevű virtuális hálózatot használja, a „alhalozat-1” nevű alhálózattal.
+A forgatókönyv azt feltételezi, hogy a „mytestcloud” nevű felhőszolgáltatásban létre van hozva két virtuális gép, a „DB1” és a „DB2”. Mindkét virtuális gép a „testvnet” nevű virtuális hálózatot használja, a „alhalozat-1” nevű alhálózattal.
 
 Ez az útmutató létrehoz egy belső terheléselosztó készletet: az 1433-as portot használja nyilvános portként, és az 1433-as portot használja helyi portként.
 
-Ez egy webfarmos közös hello háttér használata egy belső terheléselosztó tooguarantee hello adatbázis-kiszolgálók nem érhetők el közvetlenül a egy nyilvános IP-címet használja az SQL virtuális gépek esetében.
+Ez egy gyakori forgatókönyv, amelyben a háttér SQL virtuális gépei terheléselosztót használnak annak a biztosítására, hogy az adatbázis-kiszolgálók ne legyenek közvetlenül elérhetők a használt nyilvános IP-cím miatt.
 
 ### <a name="step-1"></a>1. lépés
 
@@ -76,9 +76,9 @@ azure service internal-load-balancer add --serviceName mytestcloud --internalLBN
 
 További információ: `azure service internal-load-balancer --help`.
 
-Hello belső terheléselosztó tulajdonságai hello paranccsal ellenőrizheti `azure service internal-load-balancer list` *felhőszolgáltatás neve*.
+A belső terheléselosztó tulajdonságait a következő paranccsal ellenőrizheti: `azure service internal-load-balancer list` *felhőszolgáltatás neve*.
 
-Hello kimeneti példát a következő:
+A kimenet például a következő lehet:
 
     azure service internal-load-balancer list my-testcloud
     info:    Executing command service internal-load-balancer list
@@ -91,7 +91,7 @@ Hello kimeneti példát a következő:
 
 ### <a name="step-2"></a>2. lépés
 
-Hello belső elosztott terhelésű készlet a hello első végpont hozzáadásakor konfigurálja. Hello végpont, a virtuális gép és a mintavételi portot toohello belső elosztott terhelésű készlet ebben a lépésben fog társítani.
+A belső terheléselosztó készlet konfigurálását az első végpont hozzáadásakor kell elvégezni. Ebben a lépésben a végpontot, a virtuális gépet és a mintavételi portot társíthatja a belső terheléselosztó készlethez.
 
 ```azurecli
 azure vm endpoint create db1 1433 --local-port 1433 --protocol tcp --probe-port 1433 --probe-protocol tcp --probe-interval 300 --probe-timeout 600 --internal-load-balancer-name ilbset
@@ -99,13 +99,13 @@ azure vm endpoint create db1 1433 --local-port 1433 --protocol tcp --probe-port 
 
 ### <a name="step-3"></a>3. lépés
 
-Ellenőrizze a hello terhelés terheléselosztó használt konfiguráció `azure vm show` *virtuális gép neve*
+Ellenőrizze a terheléselosztó konfigurációját a következő használatával: `azure vm show` *virtuális gép neve*
 
 ```azurecli
 azure vm show DB1
 ```
 
-hello kimenet lesz:
+A kimenet a következő:
 
     azure vm show DB1
     info:    Executing command vm show
@@ -156,7 +156,7 @@ hello kimenet lesz:
 
 ## <a name="create-a-remote-desktop-endpoint-for-a-virtual-machine"></a>Hozzon létre egy távoli asztali végpontot a virtuális géphez
 
-Nyilvános port tooa helyi port, egy adott virtuális gép használata a távoli asztali végpont tooforward hálózati forgalom létrehozhat `azure vm endpoint create`.
+Létrehozhat egy távoli asztali végpontot a hálózati forgalom nyilvános portról helyi portra történő továbbításához egy adott virtuális géphez a `azure vm endpoint create` parancs használatával.
 
 ```azurecli
 azure vm endpoint create web1 54580 -k 3389
@@ -164,9 +164,9 @@ azure vm endpoint create web1 54580 -k 3389
 
 ## <a name="remove-virtual-machine-from-load-balancer"></a>Virtuális gép eltávolítása a terheléselosztóból
 
-A virtuális gépek eltávolíthatja a kapcsolódó hello végpont törlése által beállított belső terheléselosztót. Hello végpont eltávolítást követően hello virtuális gép toohello elosztott terhelésű készlet már nem tartozik.
+A virtuális gépet a hozzárendelt végpont törlésével lehet eltávolítani a belső terheléselosztó készletből. Miután megtörtént a végpont eltávolítása, a virtuális gép többé nem tartozik a terheléselosztó készlethez.
 
-A fenti hello példáját eltávolíthat létrehozott virtuális gép "D1" hello végpont belső terheléselosztó "ilbset" hello paranccsal `azure vm endpoint delete`.
+A fenti példa használatával eltávolíthatja a „DB1” virtuális géphez létrehozott végpontot az „lbset” belső terheléselosztóból a következő parancs használatával: `azure vm endpoint delete`.
 
 ```azurecli
 azure vm endpoint delete DB1 tcp-1433-1433

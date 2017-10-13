@@ -1,6 +1,6 @@
 ---
-title: a Notification Hubs Python aaaHow toouse
-description: "Megtudhatja, hogyan toouse Azure Notification Hubs Python háttér-a."
+title: "A Notification Hubs használata Python"
+description: "Ismerje meg, hogy a Python háttér-Azure Notification Hubs használatával."
 services: notification-hubs
 documentationcenter: 
 author: ysxu
@@ -14,19 +14,19 @@ ms.devlang: php
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: 21d5aaf7fc24c9936fac8e0a8de640c66c51ab0a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9ceedb9940759427fc8cec74a1307e42472563a6
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toouse-notification-hubs-from-python"></a>Hogyan toouse Notification Hubs Python
+# <a name="how-to-use-notification-hubs-from-python"></a>Notification Hubs Python használatával
 [!INCLUDE [notification-hubs-backend-how-to-selector](../../includes/notification-hubs-backend-how-to-selector.md)]
 
-Java/PHP/Python vagy Ruby háttér-összes értesítési központok szolgáltatás érhető el hello Notification Hub REST interfész használatával hello MSDN-témakörben leírtak szerint [Notification hub REST API-k](http://msdn.microsoft.com/library/dn223264.aspx).
+A Java/PHP/Python vagy Ruby-háttér használata a Notification Hub REST interfész, az MSDN-témakörben leírtak szerint minden értesítési központok szolgáltatás érhető el [Notification hub REST API-k](http://msdn.microsoft.com/library/dn223264.aspx).
 
 > [!NOTE]
-> Ez a minta hivatkozás megvalósítása megvalósításának hello értesítést küld a Python és nem hello hivatalosan értesítések Hub Python SDK támogatott.
+> Ez a minta hivatkozás megvalósítása megvalósításához a értesítést küld a Python és nem a hivatalosan támogatott értesítések Hub Python SDK.
 > 
 > Ez a minta a Python 3.4 leírva.
 > 
@@ -35,42 +35,42 @@ Java/PHP/Python vagy Ruby háttér-összes értesítési központok szolgáltat�
 Ebben a témakörben megmutatjuk, hogyan:
 
 * A Notification Hubs-szolgáltatások a Python egy REST-ügyfél felépítéséhez.
-* Hello Python felület toohello Notification Hub REST API-k használatával értesítések küldéséhez. 
-* Első hello HTTP REST kérelem-válasz egy kiírást hibakeresés/oktatási célra. 
+* A Python felületén a Notification Hub REST API-k értesítések küldéséhez. 
+* Adja a HTTP REST-kérelem/válasz lekérése hibakeresés/oktatási célra. 
 
-Hajtsa végre az hello [Get bemutató](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md) választott, Python hello háttér-részét valósít meg a mobil platformra.
+Kövesse a [Get bemutató](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md) választás a mobil platform megvalósításához a háttér-rész a Python.
 
 > [!NOTE]
-> hello hello minta hatóköre csak korlátozott toosend értesítéseket, és minden olyan regisztrációs felügyeleti nem.
+> A minta a hatókör csak korlátozott mértékben értesítések küldéséhez, és minden olyan regisztrációs felügyeleti nem.
 > 
 > 
 
 ## <a name="client-interface"></a>Ügyféloldali felület
-fő hello felületet biztosít hello ugyanazokat a módszereket, amelyek hello elérhető [.NET Notification Hubs SDK](http://msdn.microsoft.com/library/jj933431.aspx). Ez lehetővé teszi toodirectly állomásneveket, az összes hello oktatóanyagok és ezen a helyen aktuálisan elérhető mintákat és hello hello Közösség által közzétett internetes.
+A fő ügyféloldali felületen elérhető ugyanazokat a módszereket biztosít a [.NET Notification Hubs SDK](http://msdn.microsoft.com/library/jj933431.aspx). Ez lehetővé teszi az oktatóanyagok és ezen a helyen aktuálisan elérhető mintákat közvetlenül fordítása, és az interneten a Közösség által közzétett.
 
-Az összes elérhető hello hello kód található [Python REST burkoló minta].
+Az összes elérhető kód megtalálhatja a [Python REST burkoló minta].
 
-Például toocreate ügyfél:
+Ha például egy ügyfél létrehozásához:
 
     isDebug = True
     hub = NotificationHub("myConnectionString", "myNotificationHubName", isDebug)
 
-a Windows toosend poharad értesítés:
+Windows bejelentési értesítés küldése:
 
     wns_payload = """<toast><visual><binding template=\"ToastText01\"><text id=\"1\">Hello world!</text></binding></visual></toast>"""
     hub.send_windows_notification(wns_payload)
 
 ## <a name="implementation"></a>Megvalósítás
-Ha még nem tette, kövesse a [Get bemutató] akár toohello utolsó szakasza tooimplement hello háttér-esetében.
+Ha még nem tette, kövesse a [Get bemutató] akár utolsó szakasz esetében a háttér-megvalósításához.
 
-Összes hello teljes REST-burkoló található Részletek tooimplement [MSDN](http://msdn.microsoft.com/library/dn530746.aspx). Ez a szakasz a rendszer hello fő lépésből szükséges tooaccess Notification hub REST-végpontok hello Python végrehajtását ismertetik és értesítések küldéséhez
+Egy teljes REST-burkoló megvalósításához a részleteit található [MSDN](http://msdn.microsoft.com/library/dn530746.aspx). Ebben a szakaszban azt ismerteti, a fő Notification hub REST-végpontok elérését, és értesítések küldéséhez szükséges lépéseket a Python végrehajtása
 
-1. Hello kapcsolati karakterlánc elemzése
-2. Hello engedélyezési jogkivonat létrehozása
+1. Kapcsolati karakterlánc elemzése
+2. Az engedélyezési jogkivonat létrehozása
 3. A HTTP REST API használatával értesítést küldeni
 
-### <a name="parse-hello-connection-string"></a>Hello kapcsolati karakterlánc elemzése
-Íme hello hello ügyfél, amelynek konstruktor elemez hello kapcsolati karakterlánc végrehajtási fő osztályban:
+### <a name="parse-the-connection-string"></a>Kapcsolati karakterlánc elemzése
+Az ügyfél, amelynek konstruktor elemzi a kapcsolati karakterlánc végrehajtási fő osztály itt található:
 
     class NotificationHub:
         API_VERSION = "?api-version=2013-10"
@@ -95,8 +95,8 @@ Ha még nem tette, kövesse a [Get bemutató] akár toohello utolsó szakasza to
 
 
 ### <a name="create-security-token"></a>Biztonsági jogkivonat létrehozása
-hello biztonsági jogkivonat-létrehozási hello részletei érhetők el [Itt](http://msdn.microsoft.com/library/dn495627.aspx).
-hello következőkkel rendelkezik hozzáadott toobe toohello **NotificationHub** osztály toocreate hello token hello URI hello aktuális kérelem és hello kapcsolati karakterlánc kinyert hello hitelesítő adatok alapján.
+A részleteket a biztonsági jogkivonat-létrehozási [Itt](http://msdn.microsoft.com/library/dn495627.aspx).
+Az alábbi módszerek kell hozzáadni a **NotificationHub** a jogkivonat létrehozásához osztály alapján a jelenlegi kérelem és a hitelesítő adatokat a kapcsolati karakterlánc kinyert URI.
 
     @staticmethod
     def get_expiry():
@@ -134,7 +134,7 @@ Először is, hogy használja értesítést képviselő osztályt határozza meg
             if not any(x in notification_format for x in valid_formats):
                 raise Exception(
                     "Invalid Notification format. " +
-                    "Must be one of hello following - 'template', 'apple', 'gcm', 'windows', 'windowsphone', 'adm', 'baidu'")
+                    "Must be one of the following - 'template', 'apple', 'gcm', 'windows', 'windowsphone', 'adm', 'baidu'")
 
             self.format = notification_format
             self.payload = payload
@@ -147,9 +147,9 @@ Először is, hogy használja értesítést képviselő osztályt határozza meg
 
 Ez az osztály egy natív értesítési vagy sablon értesítést, a fejléc formátuma (natív platform vagy sablon) és a platform-specifikus tulajdonságok (például az Apple lejárati tulajdonság és WNS fejlécekkel együtt) tartalmazó készlettel esetén tulajdonságait tárolója .
 
-Tekintse meg a toohello [Notification hub REST API-k dokumentáció](http://msdn.microsoft.com/library/dn495827.aspx) és hello adott értesítési platformok formátumok, az összes rendelkezésre álló lehetőségek hello.
+Tekintse meg a [Notification hub REST API-k dokumentáció](http://msdn.microsoft.com/library/dn495827.aspx) és az összes rendelkezésre álló beállítások az adott értesítési platformok formázza az adathordozót.
 
-Most már ehhez az osztályhoz, azt írhat hello send notification módszerek hello belül **NotificationHub** osztály.
+Most már ehhez az osztályhoz, azt írhat a send notification módszerek belül a **NotificationHub** osztály.
 
     def make_http_request(self, url, payload, headers):
         parsed_url = urllib.parse.urlparse(url)
@@ -157,7 +157,7 @@ Most már ehhez az osztályhoz, azt írhat hello send notification módszerek he
 
         if self.Debug > 0:
             connection.set_debuglevel(self.Debug)
-            # adding this querystring parameter gets detailed information about hello PNS send notification outcome
+            # adding this querystring parameter gets detailed information about the PNS send notification outcome
             url += self.DEBUG_SEND
             print("--- REQUEST ---")
             print("URI: " + url)
@@ -205,11 +205,11 @@ Most már ehhez az osztályhoz, azt írhat hello send notification módszerek he
         else:
             tag_list = tag_or_tag_expression
 
-        # add hello tags/tag expressions toohello headers collection
+        # add the tags/tag expressions to the headers collection
         if tag_list != "":
             headers.update({'ServiceBusNotification-Tags': tag_list})
 
-        # add any custom headers toohello headers collection that hello user may have added
+        # add any custom headers to the headers collection that the user may have added
         if notification.headers is not None:
             headers.update(notification.headers)
 
@@ -257,23 +257,23 @@ Most már ehhez az osztályhoz, azt írhat hello send notification módszerek he
         nh = Notification("template", properties)
         self.send_notification(nh, tags)
 
-hello módszerek fent egy HTTP POST kérelem toohello /messages végpontot az értesítési központ hello megfelelő szervezet és a fejlécek toosend hello értesítés küldése.
+A fenti módszerek HTTP POST-kérelmet küld a /messages végpont az értesítési központ, és a megfelelő törzs és -fejléceket elküldeni az értesítést.
 
-### <a name="using-debug-property-tooenable-detailed-logging"></a>Hibakeresési tulajdonság tooenable használatával részletes naplózás
-Értesítési központ hello inicializálása során hibakeresési tulajdonság engedélyezése fog kiírni, hello HTTP részletes naplózás információt kérés és válasz memóriakép, valamint részletes értesítési üzenetet küldeni az eredménye. Ez a tulajdonság neve nemrégiben hozzáadott [Notification Hubs TestSend tulajdonság](http://msdn.microsoft.com/library/microsoft.servicebus.notifications.notificationhubclient.enabletestsend.aspx) hello értesítés küldése kimenetelét részletes információt ad vissza, amely. toouse azt - hello alábbi inicializálása:
+### <a name="using-debug-property-to-enable-detailed-logging"></a>Hibakeresési tulajdonság használatával a részletes naplózás engedélyezése
+Debug tulajdonság engedélyezése az értesítési központ inicializálása során lesz naplózási részletes információt a HTTP-kérelem és válasz memóriakép, valamint részletes értesítési üzenet küldése eredménye. Ez a tulajdonság neve nemrégiben hozzáadott [Notification Hubs TestSend tulajdonság](http://msdn.microsoft.com/library/microsoft.servicebus.notifications.notificationhubclient.enabletestsend.aspx) az értesítés küldési kimenetelét részletes információt ad vissza, amely. A használatára - használatával a következő inicializálása:
 
     hub = NotificationHub("myConnectionString", "myNotificationHubName", isDebug)
 
-hello Notification Hub küldési kérelem HTTP URL-cím beolvasása kiegészül a "test" lekérdezési karakterlánc eredményeképpen. 
+A Notification Hub kérés küldése HTTP URL-cím beolvasása kiegészül a "test" lekérdezési karakterlánc eredményeképpen. 
 
-## <a name="complete-tutorial"></a>Teljes hello oktatóanyag
-Most már a Python háttér-hello értesítés küldésével hello első lépéseket bemutató oktatóanyaghoz hajthatja végre.
+## <a name="complete-tutorial"></a>Az oktatóanyag befejezése
+Az első lépéseket bemutató oktatóanyaghoz most az értesítés küldésével a Python háttér-hajthatja végre.
 
-A Notification Hubs-ügyfél inicializálása (hello kapcsolati karakterláncot és a központ neve helyettesítő hello útmutatását [Get bemutató]):
+A Notification Hubs-ügyfél inicializálása (útmutatását, helyettesítse be a kapcsolati karakterlánc és a központ nevét a [Get bemutató]):
 
     hub = NotificationHub("myConnectionString", "myNotificationHubName")
 
-Majd adja hozzá a hello küldési kódot attól függően, hogy a célként megadott mobilplatformot. Ez a minta is hozzáad a magasabb szintű módszerek tooenable hello platform pl. Windows; send_windows_notification alapján értesítések küldése (az apple) send_apple_notification stb. 
+Majd adja hozzá a küldési kódot, attól függően, hogy a célként megadott mobilplatformot. Ez a minta is hozzáad a magasabb szintű módszerek, például Windows; send_windows_notification platformtípus alapján küldő értesítések engedélyezése (az apple) send_apple_notification stb. 
 
 ### <a name="windows-store-and-windows-phone-81-non-silverlight"></a>Windows áruház és Windows Phone 8.1 (nem Silverlight)
     wns_payload = """<toast><visual><binding template=\"ToastText01\"><text id=\"1\">Test</text></binding></visual></toast>"""
@@ -322,33 +322,33 @@ A Python kódja egy értesítés jelenik meg a céleszközön kell előállítan
 
 ## <a name="examples"></a>Példák:
 ### <a name="enabling-debug-property"></a>Debug tulajdonság engedélyezése
-Amikor engedélyezi a hibakeresési jelző hello NotificationHub inicializálásakor, látni fogja, majd részletes HTTP-kérelem-válasz memóriakép, valamint a NotificationOutcome hasonló hello ahol megismerheti, milyen HTTP-fejlécek átadott hello kérelemben és milyen HTTP Értesítési központ hello érkezett válasz:![][1]
+Amikor engedélyezi a hibakeresési jelző a NotificationHub inicializálásakor, akkor láthatja részletes HTTP-kérelem és válasz memóriakép, valamint NotificationOutcome a következő ahol megismerheti, milyen HTTP-fejlécek át lettek adva, a kérelem és milyen HTTP-válasz az értesítési központ érkezett:![][1]
 
 Látni fogja, pl. részletes értesítési központ eredménye 
 
-* Ha hello sikeresen üzenettel toohello leküldéses értesítéseket kezelő szolgáltatásában. 
+* Ha az üzenet sikeresen elküldte a leküldéses értesítési szolgáltatáshoz. 
   
-        <Outcome>hello Notification was successfully sent toohello Push Notification System</Outcome>
-* Ha voltak célok megadva a leküldéses értesítésekhez található, akkor valószínűleg fog toosee hello következő hello választ (amely azt jelzi, hogy történtek-e toodeliver hello értesítési valószínűleg található, mert a hello regisztrációk volt néhány regisztrációt nem megfelelő címkékkel)
+        <Outcome>The Notification was successfully sent to the Push Notification System</Outcome>
+* Ha nem voltak célok megadva a leküldéses értesítésekhez található majd valószínűleg kívánja a következő a válasz (amely azt jelzi, hogy történtek-e az értesítési valószínűleg biztosítanak, mert a regisztrációk volt néhány nem megfelelő címke található regisztrációt)
   
         '<NotificationOutcome xmlns="http://schemas.microsoft.com/netservices/2010/10/servicebus/connect" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><Success>0</Success><Failure>0</Failure><Results i:nil="true"/></NotificationOutcome>'
 
-### <a name="broadcast-toast-notification-toowindows"></a>Bejelentési értesítés tooWindows szórási
-Figyelje meg hello fejlécek beolvasása kiküldött tooWindows ügyfél szórási bejelentési értesítés küldéséhez. 
+### <a name="broadcast-toast-notification-to-windows"></a>Szórási Windows bejelentési értesítés
+Figyelje meg a fejlécek beolvasása kiküldött, ha a Windows-ügyfélhez egy szórási bejelentési értesítést küld. 
 
     hub.send_windows_notification(wns_payload)
 
 ![][2]
 
 ### <a name="send-notification-specifying-a-tag-or-tag-expression"></a>Egy tag (vagy egy címke kifejezés) megadása értesítés küldése
-Értesítés hello címkék HTTP-fejléc lekérdezi hozzáadott toohello HTTP-kérelem (hello az alábbi példában azt küldenek hello értesítési csak tooregistrations "Sport" hasznos)
+Figyelje meg, a címkék HTTP-fejléc, amely lekérdezi a HTTP-kérelem fel (az alábbi példában azt küldi az értesítés csak a "Sport" tartalom regisztrációk)
 
     hub.send_windows_notification(wns_payload, "sports")
 
 ![][3]
 
 ### <a name="send-notification-specifying-multiple-tags"></a>Több címkék megadásával értesítés küldése
-Figyelje meg, hogyan hello címkék HTTP-fejléc változik, ha több címke küld. 
+Figyelje meg, hogyan változik a címkék HTTP-fejléc, több címke elküldésekor. 
 
     tags = {'sports', 'politics'}
     hub.send_windows_notification(wns_payload, tags)
@@ -356,14 +356,14 @@ Figyelje meg, hogyan hello címkék HTTP-fejléc változik, ha több címke kül
 ![][4]
 
 ### <a name="templated-notification"></a>Értesítési sablon
-Figyelje meg, hogy hello formátum HTTP-fejléc módosításokat, és hasznos törzs hello hello HTTP-kérés törzsében részeként zajlik:
+Figyelje meg, hogy a formátum HTTP-fejléc módosítja és a tartalom törzsében van küldi el a HTTP-kérelem törzse:
 
 **Ügyféloldali - regisztrált sablon**
 
         var template =
                         @"<toast><visual><binding template=""ToastText01""><text id=""1"">$(greeting_en)</text></binding></visual></toast>";
 
-**Kiszolgálóoldali - hello tartalom küldése**
+**Kiszolgálóoldali – a tartalom küldése**
 
         template_payload = {'greeting_en': 'Hello', 'greeting_fr': 'Salut'}
         hub.send_template_notification(template_payload)
@@ -371,17 +371,17 @@ Figyelje meg, hogy hello formátum HTTP-fejléc módosításokat, és hasznos t�
 ![][5]
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben a témakörben azt bemutatta, hogyan toocreate egy egyszerű Python REST-a Notification Hubs-ügyfél. Itt a következőket teheti:
+Ebben a témakörben azt bemutatta, hogyan hozhat létre egy egyszerű Python REST a Notification Hubs. Itt a következőket teheti:
 
-* Teljes hello letöltése [Python REST burkoló minta], amely tartalmazza a fenti hello kódot.
-* Folytathatja az értesítési központok szolgáltatás hello szerinti címkézését [Megtörje hírek oktatóanyag]
-* Folytathatja az értesítési központok sablonok funkció a hello [azaz hírek oktatóanyag]
+* Töltse le a teljes [Python REST burkoló minta], amely tartalmazza a fenti kódot.
+* Folytathatja az címkézés funkciót a Notification Hubs a [Megtörje hírek oktatóanyag]
+* A Notification Hubs sablonok funkcióival kapcsolatos folytathatja a [azaz híreket az oktatóanyag]
 
 <!-- URLs -->
 [Python REST burkoló minta]: https://github.com/Azure/azure-notificationhubs-samples/tree/master/notificationhubs-rest-python
 [Get bemutató]: http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-get-started/
 [Megtörje hírek oktatóanyag]: http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-send-breaking-news/
-[azaz hírek oktatóanyag]: http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-send-localized-breaking-news/
+[azaz híreket az oktatóanyag]: http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-send-localized-breaking-news/
 
 <!-- Images. -->
 [1]: ./media/notification-hubs-python-backend-how-to/DetailedLoggingInfo.png

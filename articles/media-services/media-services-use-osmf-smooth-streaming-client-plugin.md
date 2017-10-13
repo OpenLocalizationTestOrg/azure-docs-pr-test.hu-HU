@@ -1,6 +1,6 @@
 ---
-title: "aaaSmooth hello forrás-adathordozó nyílt keretrendszert Streaming beépülő modul"
-description: "Ismerje meg, hogyan toouse hello Azure Media Services Smooth Streaming beépülő modul hello Adobe nyílt forrás Media keretrendszert."
+title: "A nyílt forráskódú Media keretrendszer zökkenőmentes adatfolyam beépülő modul"
+description: "Ismerje meg, hogyan használható az Azure Media Services Smooth Streaming beépülő modul az Adobe nyílt forrás Media keretrendszert."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
-ms.openlocfilehash: 3cf8e4679279344cf79c3f0e5b28f63adf88179d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9c764f176ae75085320882de3fb26d8e7d52daaf
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-toouse-hello-microsoft-smooth-streaming-plugin-for-hello-adobe-open-source-media-framework"></a>Hogyan tooUse hello hello Adobe nyílt forrás Media keretrendszert a Microsoft Smooth Streaming beépülő modul
+# <a name="how-to-use-the-microsoft-smooth-streaming-plugin-for-the-adobe-open-source-media-framework"></a>A Microsoft Smooth Streaming beépülő modul az Adobe nyílt forráskódú Media keretrendszer használata
 ## <a name="overview"></a>Áttekintés
-hello Microsoft Smooth Streaming beépülő modul megnyitása forrás Media keretrendszer 2.0-s (SS a OSMF) bővíti OSMF hello alapértelmezett képességeit, és hozzáad a tartalom lejátszását toonew Microsoft Smooth Streaming, valamint a meglévő OSMF játékosok. hello beépülő modul hozzáadja a lejátszás képességek tooStrobe Smooth Streaming Media lejátszás (SMP) is.
+A Microsoft Smooth Streaming beépülő modul megnyitása forrás Media keretrendszer 2.0-s (SS a OSMF) OSMF alapértelmezett bővíti ki, és hozzáadja a tartalom lejátszását Microsoft Smooth Streaming új és meglévő OSMF játékosok. A beépülő modul villogó Media lejátszás (SMP) is hozzáadja Smooth Streaming lejátszás képességeit.
 
 SS OSMF a beépülő modul két verziója tartalmazza:
 
 * Statikus Smooth Streaming beépülő modul OSMF (.swc)
 * Dinamikus Smooth Streaming beépülő modul OSMF (.swf)
 
-Jelen dokumentum céljából feltételezzük, hogy rendelkezik-e OSMF és OSMF általános ismeretét hello olvasó beépülő modulok. OSMF kapcsolatos további információkért tekintse meg hello dokumentáció hello [hivatalos OSMF webhely](http://osmf.org/).
+Jelen dokumentum céljából feltételezzük, hogy az olvasó rendelkezik OSMF és OSMF általános ismeretét beépülő modulok. OSMF kapcsolatos további információkért tekintse meg a dokumentáció a [hivatalos OSMF webhely](http://osmf.org/).
 
 ### <a name="smooth-streaming-plugin-for-osmf-20"></a>OSMF 2.0 Smooth Streaming beépülő modul
-hello beépülő modul betöltése és igény szerinti Smooth Streaming tartalom lejátszását támogatja a következő funkciók hello:
+A beépülő modul betöltése és igény szerinti, Smooth Streaming a következő funkciókkal tartalom lejátszását támogatja:
 
 * Igény szerinti Smooth Streaming lejátszás (Play, szüneteltetése, Seek, Stop)
 * Élő Smooth Streaming lejátszás (lejátszás)
@@ -46,18 +46,18 @@ hello beépülő modul betöltése és igény szerinti Smooth Streaming tartalom
 * Ebben a verzióban csak a OSMF 2.0 támogatja.
 
 ## <a name="supported-features-and-known-issues"></a>Támogatott szolgáltatások és ismert problémák
-Támogatott szolgáltatások, a nem támogatott funkciókat és az ismert problémák teljes listáját lásd túl[Ez a dokumentum](http://download.microsoft.com/download/3/1/B/31B63D97-574E-4A8D-BF8D-170744181724/Smooth_Streaming_Plugin_for_OSMF.pdf).
+Támogatott szolgáltatások, a nem támogatott funkciókat és az ismert problémák teljes listáját lásd [Ez a dokumentum](http://download.microsoft.com/download/3/1/B/31B63D97-574E-4A8D-BF8D-170744181724/Smooth_Streaming_Plugin_for_OSMF.pdf).
 
-## <a name="loading-hello-plugin"></a>Beépülő modul betöltése hello
-OSMF beépülő modulok tölthetők be statikusan (fordítás során) vagy dinamikusan (futásidőben). hello Smooth Streaming beépülő modul OSMF le a dinamikus és statikus verziójával együtt.
+## <a name="loading-the-plugin"></a>A beépülő modul betöltése
+OSMF beépülő modulok tölthetők be statikusan (fordítás során) vagy dinamikusan (futásidőben). A Smooth Streaming beépülő modul OSMF le a dinamikus és statikus verziójával együtt.
 
-* Statikus betöltése: tooload statikusan, a statikus könyvtárat (SWC) fájl megadása kötelező. Statikus beépülő modulok hozzá szeretné adni egy hivatkozást toohello projektek és egyesítési belül hello végső kimenetet fájl hello fordítás során.
-* Dinamikus betöltése: tooload dinamikusan, a lefordított (SWF) fájl megadása kötelező. Dinamikus beépülő modulok hello futásidejű töltődnek be és nem szerepel a hello projekt kimeneti. (Lefordított kimeneti) Dinamikus beépülő modulok tölthetők be HTTP- és protokollok használatával.
+* Statikus betöltése: statikusan betöltése, a statikus könyvtárat (SWC) fájl megadása kötelező. A projektek és a végső kimenetet fájl egyesítése mutató hivatkozás statikus beépülő modulok hozzá szeretné adni a fordítás során.
+* Dinamikus betöltése: dinamikusan betöltéséhez a lefordított (SWF) fájl megadása kötelező. Dinamikus beépülő modulok betöltése a futásidejű, és nem szerepel a projekt kimenet. (Lefordított kimeneti) Dinamikus beépülő modulok tölthetők be HTTP- és protokollok használatával.
 
-A statikus és dinamikus betöltése további információkért lásd: hello hivatalos [OSMF beépülő modul oldal](http://osmf.org/dev/osmf/OtherPDFs/osmf_plugin_dev_guide.pdf).
+A statikus és dinamikus betöltése további információkért lásd: a hivatalos [OSMF beépülő modul oldal](http://osmf.org/dev/osmf/OtherPDFs/osmf_plugin_dev_guide.pdf).
 
 ### <a name="ss-for-osmf-static-loading"></a>SS OSMF statikus be
-hello kódrészletben jeleníti meg, hogyan tooload statikusan hello SS beépülő modul OSMF és OSMF MediaFactory osztály alapvető videó lejátszása. Mielőtt hello SS OSMF kódot, győződjön meg arról, hogy hello projektbe egy hivatkozást tartalmaz-e a "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swc" hello statikus beépülő modul.
+Az alábbi kódrészlet a SS beépülő modul betöltése a OSMF statikusan és OSMF MediaFactory osztály alapvető videó lejátszása ismerteti. Többek között a következő OSMF: SS, előtt győződjön meg arról, hogy a projektbe egy hivatkozást tartalmaz-e a "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swc" statikus beépülő modul.
 
 ```
 package 
@@ -94,24 +94,24 @@ package
         private function initMediaPlayer():void
         {
 
-            // Create hello container (sprite) for managing display and layout
+            // Create the container (sprite) for managing display and layout
             _mediaPlayerSprite = new MediaPlayerSprite();    
             _mediaPlayerSprite.addEventListener(MediaErrorEvent.MEDIA_ERROR, onPlayerFailed);
             _mediaPlayerSprite.addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onPlayerStateChange);
             _mediaPlayerSprite.scaleMode = ScaleMode.NONE;
             _mediaPlayerSprite.width = stage.stageWidth;
             _mediaPlayerSprite.height = stage.stageHeight;
-            //Adds hello container toohello stage
+            //Adds the container to the stage
             addChild(_mediaPlayerSprite);
 
             // Create a mediafactory instance
             _mediaFactory = new DefaultMediaFactory();
 
-            // Add hello listeners for PLUGIN_LOADING
+            // Add the listeners for PLUGIN_LOADING
             _mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD,onPluginLoaded);
             _mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD_ERROR, onPluginLoadFailed );
 
-            // Load hello plugin class 
+            // Load the plugin class 
             loadAdaptiveStreamingPlugin( );  
 
         }
@@ -126,15 +126,15 @@ package
 
         private function onPluginLoaded( event:MediaFactoryEvent ):void
         {
-            // hello plugin is loaded successfully.
-            // Your web server needs toohost a valid crossdomain.xml file tooallow plugin toodownload Smooth Streaming files.
+            // The plugin is loaded successfully.
+            // Your web server needs to host a valid crossdomain.xml file to allow plugin to download Smooth Streaming files.
         loadMediaSource("http://devplatem.vo.msecnd.net/Sintel/Sintel_H264.ism/manifest")
 
         }
 
         private function onPluginLoadFailed( event:MediaFactoryEvent ):void
         {
-            // hello plugin is failed tooload ...
+            // The plugin is failed to load ...
         }
 
 
@@ -148,12 +148,12 @@ package
             {
                 case MediaPlayerState.LOADING: 
 
-                    // A new source is started tooload.
+                    // A new source is started to load.
 
                     break;
 
                 case  MediaPlayerState.READY :   
-                    // Add code toodeal with Player Ready when it is hit hello first load after a source is loaded. 
+                    // Add code to deal with Player Ready when it is hit the first load after a source is loaded. 
 
                     break;
 
@@ -174,7 +174,7 @@ package
 
         private function loadMediaSource(sourceURL : String):void 
         {
-            // Take an URL of SmoothStreamingSource's manifest and add it toohello page.
+            // Take an URL of SmoothStreamingSource's manifest and add it to the page.
 
             var resource:URLResource= new URLResource( sourceURL );
 
@@ -183,7 +183,7 @@ package
             _mediaPlayerSprite.width = stage.stageWidth;
             _mediaPlayerSprite.height = stage.stageHeight;
 
-            // Add hello media element
+            // Add the media element
             _mediaPlayerSprite.media = element;
         }     
 
@@ -193,7 +193,7 @@ package
 
 
 ### <a name="ss-for-osmf-dynamic-loading"></a>SS OSMF dinamikus be
-hello kódrészletben látható, hogyan tooload hello SS beépülő modul OSMF dinamikusan és videolejátszás egy alapszintű hello OSMF MediaFactory osztály használatával. Mielőtt hello SS OSMF kódot, hello "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swf" dinamikus beépülő modul toohello projekt mappa másolása Ha azt szeretné tooload fájl protokoll használatával, vagy másolja a webkiszolgálón a HTTP-terhelés. Nincs szükség tooinclude "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swc" hello a projekt hivatkozásainak van.
+Az alábbi kódrészlet szemlélteti a SS beépülő modul betöltése a OSMF dinamikusan és alapvető lejátszása videót a OSMF MediaFactory osztály használatával. Többek között a következő OSMF: SS, mielőtt a "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swf" dinamikus beépülő modul másolása a projekt mappába, ha betölti a fájl protokoll használatával, vagy a webkiszolgálóra HTTP terhelést másolja. Nincs szükség ahhoz, hogy a projekt referenciáihoz "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swc" szerepeljen.
 
 csomag {
 
@@ -208,7 +208,7 @@ csomag {
     import flash.system.Capabilities;
 
 
-    //Sets hello size of hello SWF
+    //Sets the size of the SWF
 
     [SWF(width="1024", height="768", backgroundColor='#405050', frameRate="25")]
     public class TestPlayer extends Sprite
@@ -227,22 +227,22 @@ csomag {
         private function initMediaPlayer():void
         {
 
-            // Create hello container (sprite) for managing display and layout
+            // Create the container (sprite) for managing display and layout
             _mediaPlayerSprite = new MediaPlayerSprite();    
             _mediaPlayerSprite.addEventListener(MediaErrorEvent.MEDIA_ERROR, onPlayerFailed);
             _mediaPlayerSprite.addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onPlayerStateChange);
 
-            //Adds hello container toohello stage
+            //Adds the container to the stage
             addChild(_mediaPlayerSprite);
 
             // Create a mediafactory instance
             _mediaFactory = new DefaultMediaFactory();
 
-            // Add hello listeners for PLUGIN_LOADING
+            // Add the listeners for PLUGIN_LOADING
             _mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD,onPluginLoaded);
             _mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD_ERROR, onPluginLoadFailed );
 
-            // Load hello plugin class 
+            // Load the plugin class 
             loadAdaptiveStreamingPlugin( );  
 
         }
@@ -252,7 +252,7 @@ csomag {
             var pluginResource:MediaResourceBase;
             var adaptiveStreamingPluginUrl:String;
 
-            // Your dynamic plugin web server needs toohost a valid crossdomain.xml file tooallow loading plugins.
+            // Your dynamic plugin web server needs to host a valid crossdomain.xml file to allow loading plugins.
 
             adaptiveStreamingPluginUrl = "http://yourdomain/MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swf";
             pluginResource = new URLResource(adaptiveStreamingPluginUrl);
@@ -262,16 +262,16 @@ csomag {
 
         private function onPluginLoaded( event:MediaFactoryEvent ):void
         {
-            // hello plugin is loaded successfully.
+            // The plugin is loaded successfully.
 
-            // Your web server needs toohost a valid crossdomain.xml file tooallow plugin toodownload Smooth Streaming files.
+            // Your web server needs to host a valid crossdomain.xml file to allow plugin to download Smooth Streaming files.
 
     loadMediaSource("http://devplatem.vo.msecnd.net/Sintel/Sintel_H264.ism/manifest")
         }
 
         private function onPluginLoadFailed( event:MediaFactoryEvent ):void
         {
-            // hello plugin is failed tooload ...
+            // The plugin is failed to load ...
         }
 
 
@@ -285,12 +285,12 @@ csomag {
             {
                 case MediaPlayerState.LOADING: 
 
-                    // A new source is started tooload.
+                    // A new source is started to load.
 
                     break;
 
                 case  MediaPlayerState.READY :   
-                    // Add code toodeal with Player Ready when it is hit hello first load after a source is loaded. 
+                    // Add code to deal with Player Ready when it is hit the first load after a source is loaded. 
 
                     break;
 
@@ -311,7 +311,7 @@ csomag {
 
         private function loadMediaSource(sourceURL : String):void 
         {
-            // Take an URL of SmoothStreamingSource's manifest and add it toohello page.
+            // Take an URL of SmoothStreamingSource's manifest and add it to the page.
 
             var resource:URLResource= new URLResource( sourceURL );
 
@@ -319,22 +319,22 @@ csomag {
             _mediaPlayerSprite.scaleMode = ScaleMode.LETTERBOX;
             _mediaPlayerSprite.width = stage.stageWidth;
             _mediaPlayerSprite.height = stage.stageHeight;
-            // Add hello media element
+            // Add the media element
             _mediaPlayerSprite.media = element;
         }     
 
     }
 }
 
-## <a name="strobe-media--playback-with-hello-ss-odmf-dynamic-plugin"></a>Villogó Media lejátszás hello SS ODMF dinamikus beépülő modul
-hello a Smooth Streaming OSMF dinamikus beépülő modul összeegyeztethető [villogó Media lejátszás (SMP)](http://osmf.org/strobe_mediaplayback.html). Hello SS OSMF beépülő modul tooadd Smooth Streaming tartalom lejátszását tooSMP használhat. toodo, példány "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swf" egy webkiszolgálón a HTTP-terhelést, használja a következő hello lépések:
+## <a name="strobe-media--playback-with-the-ss-odmf-dynamic-plugin"></a>Az SS ODMF dinamikus beépülő modul villogó Media lejátszás
+OSMF dinamikus beépülő modul Smooth Streaming összeegyeztethető [villogó Media lejátszás (SMP)](http://osmf.org/strobe_mediaplayback.html). A SS a OSMF beépülő modul segítségével adja hozzá a tartalom lejátszását Smooth Streaming SMP. Ehhez másolja "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swf" alatt webkiszolgálón a HTTP-terhelést, az alábbi lépéseket követve:
 
-1. Keresse meg a hello [villogó Media lejátszás telepítőből](http://osmf.org/dev/2.0gm/setup.html). 
-2. Állítsa be a hello src tooa Smooth Streaming forrás, (pl. http://devplatem.vo.msecnd.net/Sintel/Sintel_H264.ism/manifest) 
-3. Hello szükséges konfigurációs módosításokat, majd kattintson a kép és a frissítés.
+1. Keresse meg a [villogó Media lejátszás telepítőből](http://osmf.org/dev/2.0gm/setup.html). 
+2. Állítsa be az src Smooth Streaming forráshoz, (pl. http://devplatem.vo.msecnd.net/Sintel/Sintel_H264.ism/manifest) 
+3. A kívánt konfigurációs módosításokat, majd kattintson a kép és a frissítés.
    
    **Megjegyzés:** a tartalom webkiszolgáló kell egy érvényes crossdomain.xml. 
-4. Másolással illessze be a hello kód tooa egyszerű HTML-weblap kedvenc szövegszerkesztőjével, többek között a következő példa hello használatával:
+4. Másolja és illessze be a kódot egy egyszerű HTML-weblap kedvenc szövegszerkesztőjével, többek között az alábbi példa használatával:
 
         <html>
         <body>
@@ -359,7 +359,7 @@ hello a Smooth Streaming OSMF dinamikus beépülő modul összeegyeztethető [vi
 
 
 
-1. Adja hozzá a Smooth Streaming OSMF beépülő modul toohello beágyazási kódot, és mentse.
+1. Smooth Streaming OSMF beépülő modul hozzáadása a beágyazási kódot, és mentse.
    
         <html>
         <object width="920" height="640"> 
@@ -379,10 +379,10 @@ hello a Smooth Streaming OSMF dinamikus beépülő modul összeegyeztethető [vi
         </embed>
         </object>
         </html>
-2. Mentse a HTML-lapot, és tegye közzé a tooa webkiszolgáló. Tallózás toohello közzétett weblapot a kedvenc Flash&reg; Player internetböngésző (az Internet Explorer, Chrome, Firefox, így tovább) engedélyezve van.
+2. Mentse a HTML-lapot, és tegye közzé a webkiszolgálóhoz. Keresse meg a közzétett weblapot a kedvenc Flash&reg; Player internetböngésző (az Internet Explorer, Chrome, Firefox, így tovább) engedélyezve van.
 3. Adobe belüli Smooth Streaming tartalom élvez&reg; Flash&reg; Player.
 
-Az általános OSMF fejlesztési további információkért lásd: hello hivatalos [OSMF fejlesztési lap](http://osmf.org/resources.html).
+Az általános OSMF fejlesztési további információkért lásd: a hivatalos [OSMF fejlesztési lap](http://osmf.org/resources.html).
 
 ## <a name="media-services-learning-paths"></a>Media Services képzési tervek
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

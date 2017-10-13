@@ -1,8 +1,8 @@
 ---
-title: "aaaAzure Resource Manager dokumentációjához - oktatóanyagok API-referencia |} Microsoft Docs"
-description: "Megtudhatja, hogyan toouse erőforrás-kezelő toodeploy és következetes és ismételhető erőforrás telepítési csoport és toocreate sablonként megoldás erőforrások kezelése."
+title: "Az Azure Resource Manager dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogyan használhatja a Resource Managert a megoldásokkal kapcsolatos forrásanyagok csoportként történő üzembe helyezésére és kezelésére, valamint a sablonok létrehozására az erőforrások egységes és megismételhető üzembe helyezéséhez."
 services: azure-resource-manager
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: dc920b14e84bbad1a178fc91a61a1d2642d644b1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ab6725298c9e9c496d2e20b4e68ff72af1432bb2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 #<a name="azure-resource-manager-documentation"></a>Azure Resource Manager – dokumentáció
 
-Ismerje meg, hogyan toouse erőforrás-kezelő toodeploy figyelése és megoldás erőforrások kezelése csoportként. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt, megtudhatja, hogyan erőforrást tooset csoportnak, és hogy következetes és ismételhető központi telepítési sablonok létrehozása.
+Ismerje meg, hogyan használhatja a Resource Managert a megoldásokkal kapcsolatos forrásanyagok csoportként történő üzembe helyezésére, felügyeletére és kezelésére. Az oktatóanyagok, API-referenciák és az egyéb dokumentáció bemutatják az erőforráscsoportok beállítását, valamint a sablonok létrehozását az erőforrások egységes és megismételhető üzembe helyezéséhez.
 
 <ul class="panelContent cardsFTitle">
     <li>

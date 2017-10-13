@@ -1,5 +1,5 @@
 ---
-title: "aaaWindows Phone Silverlight SDK frissítési eljárások"
+title: "Windows Phone Silverlight SDK frissítési eljárások"
 description: "Windows Phone Silverlight SDK frissítési eljárásokat és Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,51 +14,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: d72e7b8a59ef2c0a95b22efbf1e5257271399ddc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f87f65788075c7f4067e77946e1bcbc8f3709317
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="windows-phone-silverlight-sdk-upgrade-procedures"></a>Windows Phone Silverlight SDK frissítési eljárások
-Ha Ön már rendelkezik integrált egy régebbi verzióját az SDK az alkalmazásba, hogy tooconsider hello hello SDK frissítéskor a következő pontok.
+Ha Ön már rendelkezik integrált egy régebbi verzióját az SDK az alkalmazásba, hogy az SDK-val történő frissítése során, vegye figyelembe a következő szempontokat.
 
-Előfordulhat, hogy toofollow számos eljárást, ha nem fogadta hello SDK a különböző verzióiban. Például ha telepít át 0.10.1 hello kövesse toofirst rendelkezik too0.11.0 "0.9.0-s a too0.10.1" eljárást akkor hello "0.10.1 a too0.11.0" eljárás.
+Előfordulhat, hogy kell eljárnia számos eljárást, ha nem fogadta az SDK a különböző verzióiban. Például ha áttelepít 0.10.1 0.11.0 először hajtsa végre a "from a 0.10.1 0.9.0-s" eljárást kell majd a "from a 0.11.0 0.10.1" eljárást.
 
-## <a name="from-200-too330"></a>A 2.0.0 too3.3.0
+## <a name="from-200-to-330"></a>A 2.0.0 3.3.0 számára
 ### <a name="test-logs"></a>Vizsgálati naplók
-Hello SDK által előállított konzolnaplófájlokban mostantól lehet engedélyezve vagy letiltva/szűrve. toocustomize a, frissítés hello tulajdonság `EngagementAgent.Instance.TestLogEnabled` hello érték hello elérhető tooone `EngagementTestLogLevel` számbavételi, például:
+Az SDK által előállított konzolnaplófájlokban mostantól lehet engedélyezve vagy letiltva/szűrve. Ez testreszabásához frissítse a tulajdonságát `EngagementAgent.Instance.TestLogEnabled` egy érhetők el az érték a `EngagementTestLogLevel` számbavételi, például:
 
             EngagementAgent.Instance.TestLogLevel = EngagementTestLogLevel.Verbose;
             EngagementAgent.Instance.Init();
 
-## <a name="from-111-too200"></a>1.1.1 a too2.0.0
-hello következő ismerteti, hogyan toomigrate az SDK-integráció a hello Capptain szolgáltatás által kínált Capptain SAS technológiával az Azure Mobile Engagement az alkalmazásba. 
+## <a name="from-111-to-200"></a>A 1.1.1 2.0.0 számára
+A következő ismerteti, hogyan telepíthetők át az SDK-integráció az alkalmazásba az Azure Mobile Engagement technológiával Capptain SAS által kínált Capptain szolgáltatás. 
 
 > [!IMPORTANT]
-> Capptain és a Mobile Engagement nem hello azonos szolgáltatások és hello alábbi eljárás csak emel ki, hogyan toomigrate hello ügyfélalkalmazást. Áttelepítése hello SDK hello alkalmazásban rendszer nem telepíti át az adatokat a hello Capptain kiszolgálók toohello a Mobile Engagement kiszolgálókról
+> Capptain és a Mobile Engagement nem ugyanazok a szolgáltatások és az alábbi eljárás csak emel ki, hogyan telepítheti át az ügyfélalkalmazás. Az SDK-t az alkalmazás áttelepítése rendszer nem telepíti át az adatok a Capptain kiszolgálókról a Mobile Engagement-kiszolgálókon
 > 
 > 
 
-Ha egy korábbi verziójáról telepít, adjon hello Capptain webhely toomigrate too1.1.1 először tekintse át, akkor alkalmazza a következő eljárás hello
+Ha egy korábbi verziójáról telepít, tekintse meg a Capptain webhely 1.1.1 először át, akkor alkalmazza az alábbi eljárás
 
 ### <a name="nuget-package"></a>Nuget-csomag
 Cserélje le **Capptain.WindowsPhone** által **MicrosoftAzure.MobileEngagement** Nuget-csomagot.
 
 ### <a name="applying-mobile-engagement"></a>Mobilmarketing alkalmazása
-hello SDK hello kifejezést használja `Engagement`. A projekt toomatch kell tooupdate ezt a módosítást.
+Az SDK-t használ a kifejezés `Engagement`. Frissítenie kell a módosítás megfelelő a projekthez.
 
-Az aktuális Capptain nuget-csomagot kell toouninstall. Vegye figyelembe, hogy eltávolítja-e Capptain erőforrások mappában összes módosítást. Ha azt szeretné, hogy tookeep azokat a fájlokat készítsen egy másolatot kapnak.
+El kell távolítania a jelenlegi Capptain nuget-csomagot. Vegye figyelembe, hogy eltávolítja-e Capptain erőforrások mappában összes módosítást. Ha meg szeretné tartani ezeket a fájlokat készítsen egy másolatot kapnak.
 
-Ezt követően telepítse a projekt hello új Microsoft Azure Engagement nuget-csomagot. Megtalálhatja közvetlenül a [Nuget](http://www.nuget.org/packages/MicrosoftAzure.MobileEngagement). Ez a művelet cserél összes erőforrás fájlok Engagement használják, és hozzáadja a hello új Engagement DLL tooyour projektre hivatkozik.
+Ezt követően a Microsoft Azure Engagement új nuget-csomag telepítése a projekten. Megtalálhatja közvetlenül a [Nuget](http://www.nuget.org/packages/MicrosoftAzure.MobileEngagement). Ez a művelet lecseréli a bevonási által használt összes erőforrások fájlokat, és az új Engagement DLL ad hozzá a projekt hivatkozásait.
 
-Hogy tooclean a projekt hivatkozásait Capptain DLL hivatkozások törlésével. Ha ez nem teszi meg, Capptain hello verziója ütközésbe fognak kerülni, és hiba történik.
+A projekt hivatkozásait tisztítása Capptain DLL hivatkozások törlésével rendelkezik. Ha ez nem teszi meg, Capptain verziója ütközésbe fognak kerülni, és hiba történik.
 
-Ha testreszabott Capptain erőforrások, a régi fájlok tartalmát, és illessze be őket hello új Engagement fájlokat. Vegye figyelembe, hogy xaml-és cs is rendelkezik-e a frissített toobe.
+Ha testre szabott Capptain erőforrásokat, a régi fájlok tartalmát, és illessze be őket az új Engagement fájlok. Vegye figyelembe, hogy az xaml-és cs is frissítenie kell őket.
 
-Ha ezek lépéseket csak akkor kell Capptain hivatkozásai tooreplace hello új Engagement hivatkozást.
+Ha ezek lépéseket csak akkor kell cserélje le az új Engagement hivatkozást Capptain hivatkozásai.
 
-1. Összes Capptain névtér toobe frissíteni kell.
+1. Összes Capptain névteret kell frissíteni.
    
     Mielőtt áttelepítése:
    
@@ -108,18 +108,18 @@ Ha ezek lépéseket csak akkor kell Capptain hivatkozásai tooreplace hello új 
         xmlns:engagement="clr-namespace:Microsoft.Azure.Engagement;assembly=Microsoft.Azure.Engagement.EngagementAgent.WP"
         ...
         </engagement:EngagementPage>
-4. Hello a további erőforrások, például a Capptain képek, ne feledje, hogy azok is történt átnevezett toouse "Engagement".
+4. Az egyéb erőforrások például Capptain képek vegye figyelembe, hogy azok is átnevezték használható az "Engagement".
 
 ### <a name="application-id--sdk-key"></a>Alkalmazásazonosító / SDK kulcs
-Bevonási egy kapcsolati karakterláncot használ. Egy alkalmazás Azonosítót és egy Mobile Engagement SDK kulcs toospecify nincs, így nem toospecify egy kapcsolati karakterláncot. Állíthat be azt a EngagementConfiguration fájlokat.
+Bevonási egy kapcsolati karakterláncot használ. Nincs a Mobile Engagement egy alkalmazás és az SDK kulcs adható meg, csak akkor adjon meg egy kapcsolati karakterláncot. Állíthat be azt a EngagementConfiguration fájlokat.
 
-hello Engagement konfigurációs állítható be a `Resources\EngagementConfiguration.xml` fájlt a projekt.
+A bevonási konfigurációs állítható be a `Resources\EngagementConfiguration.xml` fájlt a projekt.
 
-A fájl toospecify szerkesztése:
+Adja meg, hogy a fájl szerkesztése:
 
 * Az alkalmazás kapcsolati karakterlánc címkék között `<connectionString>` és `<\connectionString>`.
 
-Ha azt szeretné, hogy a futtatókörnyezet ehelyett hívása hello következő toospecify metódus hello Engagement ügynök inicializálása előtt:
+Ha azt szeretné, ehelyett meg futásidőben, hívása előtt az Engagement ügynök inicializálása a következő metódust:
 
         /* Engagement configuration. */
         EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
@@ -128,10 +128,10 @@ Ha azt szeretné, hogy a futtatókörnyezet ehelyett hívása hello következő 
         /* Initialize Engagement angent with above configuration. */
         EngagementAgent.Instance.Init(engagementConfiguration);
 
-hello kapcsolati karakterlánc az alkalmazás hello klasszikus Azure portálon jelenik meg.
+A kapcsolati karakterlánc az alkalmazás a klasszikus Azure-portálon jelenik meg.
 
 ### <a name="items-name-change"></a>Elemek kiszolgálónév-változás
-Minden elem nevű *capptain* megnevezett *engagement*. Ehhez hasonlóan az *Capptain* túl*Engagement*.
+Minden elem nevű *capptain* megnevezett *engagement*. Ehhez hasonlóan az *Capptain* való *Engagement*.
 
 Példák a gyakran használt Capptain elemeket:
 

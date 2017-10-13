@@ -1,5 +1,5 @@
 ---
-title: "aaaVirtual gép bővítményeket és szolgáltatásokat a Windows Azure-ban |} Microsoft Docs"
+title: "Virtuálisgép-bővítmények és a szolgáltatások a Windows Azure-ban |} Microsoft Docs"
 description: "Ismerje meg, milyen bővítmények érhetők el, mi akkor adja meg, vagy javítania szerint csoportosítva, az Azure virtuális gépeken."
 services: virtual-machines-windows
 documentationcenter: 
@@ -16,41 +16,41 @@ ms.workload: infrastructure-services
 ms.date: 03/06/2017
 ms.author: nepeters
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 61ccfd696b38e9be1026d836d5796c2346fd650f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1ce0eebd2585c9457d7f922898d7f2fa3e7ffad7
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="virtual-machine-extensions-and-features-for-windows"></a>Virtuálisgép-bővítmények és a Windows szolgáltatások
 
-Az Azure virtuálisgép-bővítmények kis alkalmazásokat, amelyek telepítés utáni konfigurációs és automatizálási feladatok Azure virtuális gépeken. Például ha egy virtuális gépet a Szoftvertelepítés, a víruskereső védelmet, vagy a Docker konfigurációs igényel, a Virtuálisgép-bővítmény is használt toocomplete kell ezeket a feladatokat. Az Azure Virtuálisgép-bővítmények hello Azure CLI PowerShell, Azure Resource Manager sablonok segítségével futtathatja, és hello Azure-portálon. Bővítmények mellékelhető egy új virtuálisgép-telepítést, vagy bármely létező rendszert futtathat.
+Az Azure virtuálisgép-bővítmények kis alkalmazásokat, amelyek telepítés utáni konfigurációs és automatizálási feladatok Azure virtuális gépeken. Például ha egy virtuális gépet a Szoftvertelepítés, a víruskereső védelmet, vagy a Docker konfigurációs igényel, a Virtuálisgép-bővítmény segítségével ezeket a feladatokat. Az Azure Virtuálisgép-bővítmények futtathatja az Azure parancssori felület, PowerShell, az Azure Resource Manager-sablonok és az Azure-portál használatával. Bővítmények mellékelhető egy új virtuálisgép-telepítést, vagy bármely létező rendszert futtathat.
 
-Ez a dokumentum áttekintést virtuálisgép-bővítmények, hogyan toodetect, kezeléséhez, és távolítsa el a virtuálisgép-bővítmények a virtuálisgép-bővítmények és útmutatás használatának előfeltételei. A dokumentum általános információkat tartalmaz a Virtuálisgép-bővítmények érhetők el, mert egyes potenciálisan egyedi konfigurációval. Minden egyes dokumentum adott toohello egyedi bővítmény részletei bővítmény-specifikus megtalálhatók.
+Ez a dokumentum áttekintést virtuálisgép-bővítmények, virtuálisgép-bővítmények és útmutatás észleléséhez, kezeléséhez, és távolítsa el a virtuálisgép-bővítmények használatának előfeltételei. A dokumentum általános információkat tartalmaz a Virtuálisgép-bővítmények érhetők el, mert egyes potenciálisan egyedi konfigurációval. Bővítmény felhasználóspecifikus adatainak található minden a dokumentumban a egyéni bővítmény egyedi.
 
 ## <a name="use-cases-and-samples"></a>Használati esetek és minták
 
 Nincsenek elérhető számos különböző Azure Virtuálisgép-bővítmények, az adott használati eset. Néhány példa használati esetek a következők:
 
-- Alkalmazza a PowerShell kívánt állapot konfigurációk tooa virtuális gép Windows hello DSC-bővítmény használatával. További információkért lásd: [Azure kívánt állapot konfigurációs kiterjesztése](extensions-dsc-overview.md).
-- Konfigurálja a virtuális gép figyelése hello Microsoft Monitoring Agent Virtuálisgép-bővítmény használatával. További információkért lásd: [csatlakozás Azure virtuális gépek tooLog Analytics](../../log-analytics/log-analytics-azure-vm-extension.md).
-- Az Azure infrastruktúra hello Datadog bővítmény a figyelés konfigurálása. További információkért lásd: hello [Datadog blog](https://www.datadoghq.com/blog/introducing-azure-monitoring-with-one-click-datadog-deployment/).
+- A virtuális gépek a DSC-bővítményt a Windows PowerShell kívánt állapot konfiguráció alkalmazása. További információkért lásd: [Azure kívánt állapot konfigurációs kiterjesztése](extensions-dsc-overview.md).
+- Konfigurálja a virtuális gép figyelése a Microsoft Monitoring Agent Virtuálisgép-bővítmény használatával. További információkért lásd: [Log Analyticshez való csatlakozás Azure virtuális gépek](../../log-analytics/log-analytics-azure-vm-extension.md).
+- Az Azure infrastruktúra Datadog kiterjesztésű figyelés konfigurálása. További információkért lásd: a [Datadog blog](https://www.datadoghq.com/blog/introducing-azure-monitoring-with-one-click-datadog-deployment/).
 - Konfiguráljon egy Azure virtuális gép Chef. További információkért lásd: [automatizálása Azure virtuális gépek telepítése a Chef](chef-automation.md).
 
-Továbbá tooprocess-specifikus bővítmények, egy egyéni parancsprogramok futtatására szolgáló bővítmény érhető el a Windows és Linux virtuális gépek. Egyéni parancsprogramok futtatására szolgáló bővítmény Windows hello lehetővé teszi, hogy a PowerShell parancsfájl toobe futtasson egy virtuális gépen. Ez akkor hasznos, amikor az identitásfelügyelet Azure-környezetekhez, hogy milyen natív Azure tooling biztosíthat túl beállításokra van szükség. További információkért lásd: [Windows virtuális gép egyéni parancsprogramok futtatására szolgáló bővítmény](extensions-customscript.md).
+Folyamatokra vonatkozó bővítmények mellett egy egyéni parancsprogramok futtatására szolgáló bővítmény érhető el a Windows és a Linux virtuális gépekhez. Az egyéni parancsprogramok futtatására szolgáló bővítmény Windows lehetővé teszi, hogy minden virtuális gépen futtatandó PowerShell-parancsfájlt. Ez akkor hasznos, amikor az identitásfelügyelet Azure-környezetekhez, hogy milyen natív Azure tooling biztosíthat túl beállításokra van szükség. További információkért lásd: [Windows virtuális gép egyéni parancsprogramok futtatására szolgáló bővítmény](extensions-customscript.md).
 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Minden egyes virtuálisgép-bővítmény is rendelkeznek a saját előfeltételek. Például hello Docker Virtuálisgép-bővítmény van egy támogatott Linux-disztribúció előfeltétele. Egyes bővítmények követelményeinek részletes leírást talál hello bővítmény vonatkozó dokumentációt.
+Minden egyes virtuálisgép-bővítmény is rendelkeznek a saját előfeltételek. Például a Docker Virtuálisgép-bővítmény van egy támogatott Linux-disztribúció előfeltétele. Egyes bővítmények követelményeinek részletes leírást talál a bővítmény-specifikus dokumentációját.
 
 ### <a name="azure-vm-agent"></a>Azure virtuálisgép-ügynök
-hello Azure Virtuálisgép-ügynök kezelése az Azure virtuális gép és a hello Azure fabric controller közötti interakció. hello Virtuálisgép-ügynök telepítése és kezelése az Azure virtuális gépeken, beleértve a Virtuálisgép-bővítmények futtató sok működési jellemzői felelős. hello Azure Virtuálisgép-ügynök telepítve van az Azure piactéren elérhető rendszerkép és támogatott operációs rendszerekre telepíthető.
+Az Azure Virtuálisgép-ügynök kezeli az Azure virtuális gép és az Azure fabric controller közötti interakció. A Virtuálisgép-ügynök telepítése és kezelése az Azure virtuális gépeken, beleértve a Virtuálisgép-bővítmények futtató sok működési jellemzői felelős. Az Azure Virtuálisgép-ügynök telepítve van az Azure piactéren elérhető rendszerkép, és támogatott operációs rendszerekre telepíthető.
 
 Információ a támogatott operációs rendszerek és a telepítési utasításokat: [Azure virtuális gépi ügynöke](agent-user-guide.md).
 
 ## <a name="discover-vm-extensions"></a>Virtuálisgép-bővítmények felderítése
-Számos különböző Virtuálisgép-bővítmények állnak rendelkezésre az Azure virtuális gépekkel. toosee teljes listáját, futtassa a következő parancs hello Azure Resource Manager PowerShell modullal hello. Győződjön meg arról, hogy toospecify hello szükséges hely jelenik meg a parancsot.
+Számos különböző Virtuálisgép-bővítmények állnak rendelkezésre az Azure virtuális gépekkel. Teljes listájának megtekintéséhez futtassa a következő parancsot az Azure Resource Manager PowerShell-modul. Ügyeljen arra, hogy adja meg a kívánt helyre, ha futtatja a parancsot.
 
 ```powershell
 Get-AzureRmVmImagePublisher -Location WestUS | `
@@ -60,19 +60,19 @@ Get-AzureRmVMExtensionImage | Select Type, Version
 
 ## <a name="run-vm-extensions"></a>Futtassa a Virtuálisgép-bővítmények
 
-Azure virtuálisgép-bővítmények futtathatja a meglévő virtuális gépeken, amelyek akkor hasznos, ha a szükséges konfigurációs módosítások toomake, vagy állítsa helyre a kapcsolatot egy már telepített virtuális gépen. Virtuálisgép-bővítmények is Azure Resource Manager sablon központi telepítéseket is telepíthet. Bővítmények a Resource Manager-sablonok segítségével engedélyezheti az Azure virtuális gépek toobe üzembe helyezését és konfigurálását hello telepítés utáni beavatkozás nélkül.
+Azure virtuálisgép-bővítmények futtathatja a meglévő virtuális gépeken, amelyek akkor hasznos, ha a konfigurációs módosításokat, vagy állítsa helyre a kapcsolatot egy már telepített virtuális gépen kell. Virtuálisgép-bővítmények is Azure Resource Manager sablon központi telepítéseket is telepíthet. Bővítmények a Resource Manager-sablonok segítségével engedélyezheti az Azure virtuális gépek telepítése és a telepítés utáni beavatkozás nélkül konfigurálva.
 
-a következő módszerek hello használt toorun egy bővítmény egy meglévő virtuális gépek ellen lehet.
+Az alábbi eljárások segítségével bővítmény futtathat egy meglévő virtuális gépet.
 
 ### <a name="powershell"></a>PowerShell
 
-Több PowerShell-parancsok futtatása az egyes bővítmények léteznek. toosee a listáját, és futtassa a következő PowerShell-parancsok hello.
+Több PowerShell-parancsok futtatása az egyes bővítmények léteznek. Listájának megtekintéséhez futtassa a következő PowerShell-parancsokat.
 
 ```powershell
 get-command Set-AzureRM*Extension* -Module AzureRM.Compute
 ```
 
-Ez a kimeneti hasonló toohello következőket biztosítja:
+Ez biztosítja, hogy a kimenet az alábbihoz hasonló:
 
 ```powershell
 CommandType     Name                                               Version    Source
@@ -91,7 +91,7 @@ Cmdlet          Set-AzureRmVMExtension                             2.2.0      Az
 Cmdlet          Set-AzureRmVMSqlServerExtension                    2.2.0      AzureRM.Compute
 ```
 
-hello alábbi példa hello Custom Script bővítmény toodownload parancsfájlt használ a egy GitHub-tárházban települ hello cél virtuális gépre, majd futtassa hello parancsfájl. Az egyéni parancsprogramok futtatására szolgáló bővítmény hello további információkért lásd: [egyéni parancsfájl-bővítmény áttekintése](extensions-customscript.md).
+A következő példa az egyéni parancsprogramok futtatására szolgáló bővítmény parancsfájl letölthető a GitHub-tárházban települ a cél virtuális gépre, és futtassa a parancsfájlt. Az egyéni parancsprogramok futtatására szolgáló bővítmény további információkért lásd: [egyéni parancsfájl-bővítmény áttekintése](extensions-customscript.md).
 
 ```powershell
 Set-AzureRmVMCustomScriptExtension -ResourceGroupName "myResourceGroup" `
@@ -100,7 +100,7 @@ Set-AzureRmVMCustomScriptExtension -ResourceGroupName "myResourceGroup" `
     -Run "Create-File.ps1" -Location "West US"
 ```
 
-Ebben a példában a hello VM hozzáférési bővítmény használt tooreset hello rendszergazdai jelszót egy Windows virtuális gép. A virtuális gép hozzáférési bővítmény hello további információkért lásd: [alaphelyzetbe állítja a távoli asztal szolgáltatás egy Windows virtuális gépre](reset-rdp.md).
+Ebben a példában a virtuális gép hozzáférési bővítmény segítségével Windows rendszerű virtuális gép rendszergazdai jelszavát. A virtuális gép hozzáférési bővítmény további információkért lásd: [alaphelyzetbe állítja a távoli asztal szolgáltatás egy Windows virtuális gépre](reset-rdp.md).
 
 ```powershell
 $cred=Get-Credential
@@ -110,22 +110,22 @@ Set-AzureRmVMAccessExtension -ResourceGroupName "myResourceGroup" -VMName "myVM"
     -Password $cred.GetNetworkCredential().Password -typeHandlerVersion "2.0"
 ```
 
-Hello `Set-AzureRmVMExtension` parancs lehet használt toostart Virtuálisgép-bővítmény. További információkért lásd: hello [Set-AzureRmVMExtension hivatkozás](https://msdn.microsoft.com/en-us/library/mt603745.aspx).
+A `Set-AzureRmVMExtension` parancs segítségével indítsa el a Virtuálisgép-bővítmény. További információkért lásd: a [Set-AzureRmVMExtension hivatkozás](https://msdn.microsoft.com/en-us/library/mt603745.aspx).
 
 
 ### <a name="azure-portal"></a>Azure Portal
 
-A Virtuálisgép-bővítmény alkalmazott tooan meglévő virtuális gép hello Azure-portálon keresztül lehet. toodo úgy, válassza ki a virtuális gép hello toouse szeretne, válassza a **bővítmények**, és kattintson a **Hozzáadás**. Ez a rendelkezésre álló bővítmények listáját tartalmazza. Válassza ki a hello egy szeretné, hajtsa végre a hello hello varázsló lépéseit.
+A Virtuálisgép-bővítmény egy meglévő virtuális gépet az Azure portálon keresztül is alkalmazható. Ehhez az szükséges, válassza ki a virtuális gép szeretne használni, válasszon **bővítmények**, és kattintson a **Hozzáadás**. Ez a rendelkezésre álló bővítmények listáját tartalmazza. Jelölje ki a kívánt, és kövesse a varázsló lépéseit.
 
-hello következő kép bemutatja hello hello hello Azure-portál a Microsoft Antimalware-bővítmény telepítése.
+A következő kép bemutatja az Azure-portálról a Microsoft Antimalware-bővítmény telepítése.
 
 ![Kártevőirtó-kiterjesztés telepítése](./media/extensions-features/installantimalwareextension.png)
 
 ### <a name="azure-resource-manager-templates"></a>Azure Resource Manager-sablonok
 
-Virtuálisgép-bővítmények hozzáadott tooan Azure Resource Manager-sablon és hello sablon hello telepítés végrehajtása. Központi telepítése és egy sablon létrehozása esetén hasznos teljesen konfigurált Azure-környezetekhez. Például hello következő JSON származik a Resource Manager-sablon, amely telepíti az elosztott terhelésű virtuális gépek és az Azure SQL-adatbázis, és ezután telepíti a .NET Core alkalmazások minden egyes virtuális gépen. Virtuálisgép-bővítmény hello hello Szoftvertelepítés gondoskodik.
+Virtuálisgép-bővítmények felvehető az Azure Resource Manager-sablon és a sablon a központi telepítés végrehajtása. Központi telepítése és egy sablon létrehozása esetén hasznos teljesen konfigurált Azure-környezetekhez. Például a következő JSON származik a Resource Manager-sablon, amely telepíti az elosztott terhelésű virtuális gépek és Azure SQL-adatbázis, és ezután telepíti a .NET Core alkalmazások minden egyes virtuális gépen. A Virtuálisgép-bővítmény gondoskodik a szoftver telepítését.
 
-További információkért lásd: hello [teljes Resource Manager-sablon](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-windows).
+További információkért lásd: a [teljes Resource Manager-sablon](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-windows).
 
 ```json
 {
@@ -161,9 +161,9 @@ További információkért lásd: [szerzői Azure Resource Manager-sablon is van
 
 ## <a name="secure-vm-extension-data"></a>Virtuálisgép-bővítmény adatvédelem
 
-Ha egy Virtuálisgép-bővítmény, szükséges tooinclude bizalmas információk, például a hitelesítő adatokat, a tárfiókok neve és a fiók tárelérési kulcsok lehet. Több Virtuálisgép-bővítmények közé tartozik a védett konfigurációkat, amelyek titkosítja az adatokat, és csak visszafejti hello cél virtuális gépen belül. Minden bővítmény rendelkezik egy adott védett konfigurációs sémában, amely a bővítmény-specifikus dokumentációjának nyilatkozatát.
+Jelenik meg a Virtuálisgép-bővítmény, akkor lehet szükség, például a hitelesítő adatokat, a tárfiókok neve és a fiók tárelérési kulcsok bizalmas adatokat tartalmazza. Több Virtuálisgép-bővítmények közé tartozik a védett konfigurációkat, amelyek titkosítja az adatokat, és csak visszafejti a cél virtuális gépen belül. Minden bővítmény rendelkezik egy adott védett konfigurációs sémában, amely a bővítmény-specifikus dokumentációjának nyilatkozatát.
 
-a következő példa hello Windows hello egyéni parancsprogramok futtatására szolgáló bővítmény példányának jelennek meg. Figyelje meg, hogy hello parancs tooexecute hitelesítő adatokat tartalmazza. Ebben a példában hello parancs tooexecute nem lesznek titkosítva.
+A következő példa bemutatja az egyéni parancsprogramok futtatására szolgáló bővítmény példányának Windows. Figyelje meg, hogy a parancs végrehajtásának tartalmazza-e a hitelesítő adatokat. Ebben a példában a parancs végrehajtása nem lesznek titkosítva.
 
 
 ```json
@@ -194,7 +194,7 @@ a következő példa hello Windows hello egyéni parancsprogramok futtatására 
 }
 ```
 
-Biztonságos hello végrehajtási karakterlánc hello mozgatásával **parancs tooexecute** tulajdonság toohello **védett** konfigurációs.
+A végrehajtási karakterlánc biztonságos át a **végrehajtandó parancs** tulajdonságot a **védett** konfigurációs.
 
 ```json
 {
@@ -228,19 +228,19 @@ Biztonságos hello végrehajtási karakterlánc hello mozgatásával **parancs t
 
 ## <a name="troubleshoot-vm-extensions"></a>Virtuálisgép-bővítmények hibaelhárítása
 
-Előfordulhat, hogy az egyes Virtuálisgép-bővítmény adott hibaelhárítási lépéseket. Például ha egyéni parancsprogramok futtatására szolgáló bővítmény hello használata esetén parancsfájl végrehajtásának részletes adatai található helyileg hello bővítmény futtatása hello virtuális gépen. Bővítmény-specifikus hibaelhárítási lépéseket részletes leírást talál bővítmény vonatkozó dokumentációt.
+Előfordulhat, hogy az egyes Virtuálisgép-bővítmény adott hibaelhárítási lépéseket. Például az egyéni parancsprogramok futtatására szolgáló bővítmény használatakor parancsfájl végrehajtásának részletes adatai található helyileg a virtuális gépen, amelyen a bővítmény futott. Bővítmény-specifikus hibaelhárítási lépéseket részletes leírást talál bővítmény vonatkozó dokumentációt.
 
-a következő hibaelhárítási lépéseket hello tooall virtuálisgép-bővítmények alkalmazni.
+A következő hibaelhárítási lépéseket az összes virtuálisgép-bővítmény vonatkozik.
 
 ### <a name="view-extension-status"></a>Bővítmény állapotának megtekintése
 
-Egy virtuálisgép-bővítmény futtatása a virtuális gépek ellen, után használja a PowerShell parancs tooreturn bővítmény állapota a következő hello. Példa paraméterneveknek cserélje le a saját értékeit. Hello `Name` paramétert fogad hello neve toohello bővítmény a végrehajtás során.
+A virtuálisgép-bővítmény futtatása a virtuális gépek ellen, után a következő PowerShell-parancs segítségével térjen vissza a bővítmény állapotát. Példa paraméterneveknek cserélje le a saját értékeit. A `Name` paraméter szükséges a bővítmény a végrehajtás során a megadott név.
 
 ```PowerShell
 Get-AzureRmVMExtension -ResourceGroupName myResourceGroup -VMName myVM -Name myExtensionName
 ```
 
-hello kimeneti következőhöz hasonló hello:
+A kimenet a következőképpen néznek:
 
 ```json
 ResourceGroupName       : myResourceGroup
@@ -261,21 +261,21 @@ AutoUpgradeMinorVersion : False
 ForceUpdateTag          :
 ```
 
-Bővítmény végrehajtási állapotát hello Azure-portálon is megtalálhatók. egy bővítmény, jelölje be hello virtuális gép, tooview hello állapotának kiválasztása **bővítmények**, és válassza ki a kívánt bővítmény hello.
+Bővítmény végrehajtási állapotát az Azure portálon is található. Egy bővítmény állapotának megtekintéséhez válassza ki a virtuális gépet, kattintson a **bővítmények**, és jelölje ki a kívánt bővítményt.
 
 ### <a name="rerun-vm-extensions"></a>Futtassa újra a Virtuálisgép-bővítmények
 
-Előfordulhat, hogy esetekben, ahol a virtuálisgép-bővítmény kell toobe futtassa újra. Ehhez hello bővítmény eltávolítása, és ezután futtassa újból a hello bővítmény egy végrehajtási módszer az Ön által választott. egy bővítmény tooremove futtassa a következő parancs hello Azure PowerShell modul hello. Példa paraméterneveknek cserélje le a saját értékeit.
+Előfordulhatnak olyan esetekben, ahol egy virtuálisgép-bővítmény futtatható kell. Ehhez a bővítmény eltávolítása, és majd futtassa újból a kiterjesztés egy végrehajtási módszer az Ön által választott. Egy bővítmény eltávolításához futtassa a következő parancsot az Azure PowerShell modullal. Példa paraméterneveknek cserélje le a saját értékeit.
 
 ```powershell
 Remove-AzureRmVMExtension -ResourceGroupName myResourceGroup -VMName myVM -Name myExtensionName
 ```
 
-Egy bővítmény hello Azure-portál használatával is eltávolítható. toodo így:
+Egy bővítmény is távolítható el az Azure portál használatával. Ehhez tegye a következőket:
 
 1. Válasszon ki egy virtuális gépet.
 2. Válassza ki **bővítmények**.
-3. Válassza ki a kívánt hello bővítmény.
+3. Válassza ki a kívánt bővítményt.
 4. Válassza ki **eltávolítása**.
 
 ## <a name="common-vm-extensions-reference"></a>Közös Virtuálisgép-bővítmények hivatkozása

@@ -4,13 +4,13 @@
 
 # Első lépések
 ## [Adatbázisok és táblák azonosítása](/sql/sql-server/stretch-database/stretch-database-databases-and-tables-stretch-database-advisor)
-## [Hello varázsló futtatása](/sql/sql-server/stretch-database/get-started-by-running-the-enable-database-for-stretch-wizard)
+## [A varázsló futtatása](/sql/sql-server/stretch-database/get-started-by-running-the-enable-database-for-stretch-wizard)
 
 # Útmutató
 ## Bekapcsolás
 ### [Adatbázis engedélyezése](/sql/sql-server/stretch-database/enable-stretch-database-for-a-database)
 ### [Tábla engedélyezése](/sql/sql-server/stretch-database/enable-stretch-database-for-a-table)
-### [Válassza ki a sorok toomigrate](/sql/sql-server/stretch-database/select-rows-to-migrate-by-using-a-filter-function-stretch-database)
+### [Áttelepítendő sorok kiválasztása](/sql/sql-server/stretch-database/select-rows-to-migrate-by-using-a-filter-function-stretch-database)
 ## Kezelés
 ### [Az adatáttelepítés figyelése](/sql/sql-server/stretch-database/monitor-and-troubleshoot-data-migration-stretch-database)
 ### [Az áttelepítés felfüggesztése és folytatása](/sql/sql-server/stretch-database/pause-and-resume-data-migration-stretch-database)

@@ -1,16 +1,16 @@
-Az API-alkalmazás hello Azure CLI tooget hello távoli telepítés URL-CÍMÉT használja. Hello a következő parancsban cserélje le  *\<alkalmazás_neve >* a webalkalmazás-névvel.
+Az Azure CLI használatával megszerezheti az API-alkalmazás távoli üzembe helyezési URL-címét. A következő parancsban az *\<app_name>* helyett használja a webalkalmazás nevét.
 
 ```azurecli-interactive
 az webapp deployment source config-local-git --name <app_name> --resource-group myResourceGroup --query url --output tsv
 ```
 
-A helyi Git telepítési toobe képes toopush toohello távoli konfigurálása.
+A Git helyi üzemelő példányának konfigurálásával végezhet leküldést a távoli mappába.
 
 ```bash
 git remote add azure <URI from previous step>
 ```
 
-Leküldéses toohello Azure távoli toodeploy az alkalmazást. A korábban létrehozott hello központi felhasználói létrehozásakor hello jelszó megadását kéri. Győződjön meg arról, hogy hello jelszó megadását létrehozott hello gyors üzembe helyezés során korábban küldje el, és nem hello jelszó toolog toohello Azure-portált használja.
+A távoli Azure-mappához történő küldéssel helyezze üzembe az alkalmazást. A rendszer rákérdez az előzőleg, az üzembe helyező felhasználó létrehozásakor létrehozott jelszóra. Ügyeljen arra, hogy a gyors útmutató korábbi szakaszában létrehozott jelszót adja meg, ne azt, amelyet az Azure Portalra való bejelentkezéshez használ.
 
 ```bash
 git push azure master

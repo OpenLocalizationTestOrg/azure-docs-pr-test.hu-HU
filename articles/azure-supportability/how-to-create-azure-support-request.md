@@ -1,6 +1,6 @@
 ---
-title: "az Azure támogatási kérelmet aaaHow toocreate |} Microsoft Docs"
-description: "Egy Azure toocreate hogyan támogatják a kérelmet."
+title: "Az Azure támogatási kérelem létrehozása |} Microsoft Docs"
+description: "Útmutató az Azure támogatási kérelmet szeretne létrehozni."
 services: Azure Supportability
 documentationcenter: 
 author: ganganarayanan
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/25/2016
 ms.author: gangan
-ms.openlocfilehash: 19283a8cc1c4fc6b8277efdc60640bec8a90d40a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 70a4762383d64dc8d568c628cf260ebd8f2d179d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toocreate-an-azure-support-request"></a>Hogyan támogatják a különböző toocreate egy Azure kérelem
+# <a name="how-to-create-an-azure-support-request"></a>Támogatási kérések létrehozása az Azure-hoz
 ## <a name="summary"></a>Összefoglalás
-Azure-ügyfél hozhat létre és hello Azure-portálon, a támogatási kérelmek kezelése [https://portal.azure.com](https://portal.azure.com).
+Azure-ügyfél hozhat létre, és az Azure portálon, a támogatási kérelmek kezelése [https://portal.azure.com](https://portal.azure.com).
 
 > [!NOTE]
-> A Németországi Azure-portál [https://portal.microsoftazure.de](https://portal.microsoftazure.de) hello az Amerikai Egyesült Államok kormánya Azure-portál [https://portal.azure.us](https://portal.azure.us).
+> A Németországi Azure-portál [https://portal.microsoftazure.de](https://portal.microsoftazure.de) az Egyesült Államok kormánya Azure-portál [https://portal.azure.us](https://portal.azure.us).
 > 
 > 
 
-A felhasználói visszajelzések alapján hello támogatási kérelem élmény toofocus három fő célok frissítettük:
+A felhasználói visszajelzések alapján frissítettük a támogatási kérelem szolgáltatásokat arra összpontosít, három fő célok:
 
-* **Zökkenőmentes**: kattintások és panelen toomake hello folyamat egy támogatási kérést egyszerű benyújtásától csökkentése.
-* **Integrált**: Ha egy Azure-erőforrás problémát elhárítani, könnyen tooopen egy támogatási kérést az adott erőforrás környezetben váltás nélkül kell.
-* **Hatékony**: összefog hello kapcsolatos információkat a támogatási szakértőhöz tooefficiently kell megoldani a problémát.
+* **Zökkenőmentes**: Csökkentse a kattintások és annak érdekében, a támogatási kérelem elküldése egyszerű panelen.
+* **Integrált**: Ha egy Azure-erőforrás problémát elhárítani, kell lennie az adott erőforrás támogatási kérést nyithat nélkül környezetben váltás könnyen.
+* **Hatékony**: a támogatási szakértőhöz kell hatékonyan sikerül megoldani a problémát a kulcs adatainak összegyűjtése.
 
 ## <a name="getting-started"></a>Bevezetés
-Létrehozhat egy támogatási kérést hello felső navigációs menü illetve közvetlenül egy erőforrás panel.
+Egy támogatási kérést is létrehozhat, a felső navigációs menü illetve közvetlenül egy erőforrás panel.
 
-**A hello felső navigációs sáv**
+**Az a felső navigációs sáv**
 
 ![Új támogatási kérelem](./media/how-to-create-azure-support-request/NewSupportRequest.png)
 
@@ -47,10 +47,10 @@ Létrehozhat egy támogatási kérést hello felső navigációs menü illetve k
 ![A környezetben](./media/how-to-create-azure-support-request/Incontext.png)
 
 ## <a name="basics"></a>Alapvető beállítások
-hello hello támogatási kérelem folyamatának első lépésében alapszintű adatokat gyűjt a problémát és a támogatási csomagja.
+A támogatási kérelem folyamatának első lépése a problémát, és a támogatási csomag alapszintű adatokat gyűjt.
 
 Vegyünk egy példát: most nehézségekkel műszaki a virtuális géphez, és a hálózati probléma feltételezhető.
-Válassza ki a hello szolgáltatást ("Windows rendszerű virtuális gép"), majd hello folyamatának első lépésében hello varázsló indítása hello kapcsolatos segítség kérése a probléma, az erőforrás (a virtuális gép nevének hello) hello.
+A szolgáltatás ("Windows rendszerű virtuális gép") és az erőforrás (a virtuális gép neve) kiválasztja az első lépés a varázsló elindítja a folyamatot, az kapcsolatos segítség kérése a probléma.
 
 ![Alapvető beállítások panel](./media/how-to-create-azure-support-request/Basics.png)
 
@@ -60,49 +60,49 @@ Válassza ki a hello szolgáltatást ("Windows rendszerű virtuális gép"), maj
 > 
 
 ## <a name="problem"></a>Probléma
-hello varázsló második lépése hello összegyűjti hello problémával kapcsolatos további részletek. Ebben a lépésben pontos feltárja lehetővé teszi az eset toohello legjobb támogatási tervezését hello kiadás és a lehető leghamarabb diagnosztizálása hello probléma toobegin tooroute.
+A varázsló második lépése összegyűjti a problémával kapcsolatos további részletek. Ebben a lépésben pontos feltárja lehetővé teszi, hogy irányíthatja az Ön esetében a legjobb támogatási szakértőnek a problémára, valamint a probléma diagnosztizálása minél hamarabb megkezdéséhez.
 
 ![Probléma panel](./media/how-to-create-azure-support-request/Problem.png)
 
-Hello virtuális gép kapcsolat példa a fenti folytatva, kitölthet, az űrlap tooindicate hálózati probléma, és meg szeretné további részleteket biztosítanak arról hello probléma, beleértve a hello megközelítőleges időpont, amikor amikor hello tapasztal a probléma.
+A virtuális gép kapcsolat példa a fenti folytatva, kitölthet hálózati probléma jelzi ezt az űrlapot, és meg kellene adnia további információkhoz juthat a problémáról, beleértve a becsült időt, amikor a problémát tapasztal.
 
 ## <a name="related-help"></a>Kapcsolódó súgó
-Bizonyos problémák, a hivatkozások tootroubleshoot hello probléma kapcsolódó súgó a Microsoft biztosítja. Hello javasolt dokumentumok nem nyújtanak segítséget, ha folytathatja hello folyamat toocreate keresztül támogatási kérést.
+Bizonyos problémák azt adja meg a probléma elhárítása érdekében kapcsolódó súgóhivatkozások. Ha a javasolt dokumentumok nem nyújtanak segítséget, folytathatja támogatási kérelmet szeretne létrehozni a folyamatot.
 ![Kapcsolódó súgó](./media/how-to-create-azure-support-request/RelatedHelp.png)
 
 ## <a name="contact-information"></a>Kapcsolattartási adatok
-hello varázsló utolsó lépése hello megerősíti, hogy a kapcsolattartási adatait, hogy tudjuk, hogyan tooreach meg.
+A varázsló utolsó lépése megerősíti a kapcsolattartási adatait, hogy tudjuk, hogyan lehet elérni Önt.
 ![Kapcsolattartási adatok](./media/how-to-create-azure-support-request/ContactInformation.png)
 
-Attól függően, hogy a probléma súlyossága hello, előfordulhat, hogy kérni tooindicate Ha szeretné toocontact meg munkaidő, vagy ha inkább 24 x 7 választ, ami azt jelenti, hogy kapcsolatba lépjünk Önnel bármikor során.
+Attól függően, hogy a probléma súlyossága előfordulhat, hogy kérni azt jelzi, ha azt szeretné, során munkaidő, vagy ha egy 24 x 7 válaszok, ami azt jelenti, hogy kapcsolatba lépjünk Önnel bármikor szeretne kapcsolatba lépni velünk.
 ![Kapcsolattartási adatok 24 x 7](./media/how-to-create-azure-support-request/ContactInformation-2.png)
 
 ## <a name="manage-support-requests"></a>Támogatási kérelmek kezelése
-Hello támogatási kérelem létrehozása után megtekintheti a hello hello adataiból **támogatja vonatkozó kérések kezelése** lap.
+A támogatási kérelem létrehozása után megtekintheti a részleteket a **támogatja vonatkozó kérések kezelése** lap.
 
-**A hello felső navigációs sáv**
+**Az a felső navigációs sáv**
 
 ![Támogatási kérelem kapcsolat kezelése](./media/how-to-create-azure-support-request/ManageSupportRequest-link.png)
 
-A hello **támogatási kérelmek kezelése** lapon megtekintheti az összes támogatási kérelmek és azok állapotát.
+Az a **támogatási kérelmek kezelése** lapon megtekintheti az összes támogatási kérelmek és azok állapotát.
 ![Támogatási kérelem kezelése](./media/how-to-create-azure-support-request/ManageSupportRequest.png)
 
-Válassza ki a hello támogatási kérelem tooview adatait, többek között a súlyosság és a támogatási szakértőhöz toorespond eltarthat várt hello idő.
+Válassza ki a támogatási kérelem, beleértve a súlyosság és a várt időn belül fog tartani, amíg egy támogatási szakértőhöz, hogy válaszoljon a, a részletek megtekintéséhez.
 ![VID](./media/how-to-create-azure-support-request/VID.png)
 
-Hello kérelem toochange hello súlyossága, kattintson a hello **Üzletmenetre gyakorolt hatás** csempére. Hello portáladatbázis előző példában hello kérelem jelenleg van beállítva tooSeverity a c kiszolgálóra.
+Ha a kérelem súlyossága módosítani szeretné, kattintson a **Üzletmenetre gyakorolt hatás** csempére. A portáladatbázis előző példában a kérelem jelenleg értéke súlyossági a c kiszolgálóra.
 
-Hello csempe mutat be, akkor hello rendelhet fokozatok listája kattintva tooan nyissa meg a támogatási kérelem.
+A csempére kattintva megjelenik a lista fokozatok rendelhet egy megnyitott támogatási kérelem.
 
 > [!NOTE]
-> hello maximális súlyossági szintet a támogatási csomagja függ. [További információ a támogatási csomagokat](https://azure.microsoft.com/support/plans).
+> Maximális fontossági szint a támogatási csomagja függ. [További információ a támogatási csomagokat](https://azure.microsoft.com/support/plans).
 > 
 > 
 
 ![VID-2](./media/how-to-create-azure-support-request/VID-2.png)
 
 ## <a name="feedback"></a>Visszajelzés
-Azt a rendszer mindig megnyitott toofeedback és javaslatok! Kérjük, küldjön a [javaslatok](https://feedback.azure.com/forums/266794-support-feedback). Emellett képes betartásának vizsgálatára keresztül megszólítása [Twitter](https://twitter.com/azuresupport) vagy hello [MSDN fórumain](https://social.msdn.microsoft.com/Forums/azure).
+Azt mindig nyitva a visszajelzések és tanácsok! Kérjük, küldjön a [javaslatok](https://feedback.azure.com/forums/266794-support-feedback). Emellett képes betartásának vizsgálatára keresztül megszólítása [Twitter](https://twitter.com/azuresupport) vagy a [MSDN fórumain](https://social.msdn.microsoft.com/Forums/azure).
 
 ## <a name="learn-more"></a>Részletek
 [Azure-támogatás – gyakori kérdések](https://azure.microsoft.com/support/faq)

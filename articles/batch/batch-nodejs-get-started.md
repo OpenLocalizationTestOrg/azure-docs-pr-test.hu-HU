@@ -1,6 +1,6 @@
 ---
-title: "aaaTutorial - használata hello Azure Batch ügyféloldali kódtára a Node.js |} Microsoft Docs"
-description: "Ismerje meg az Azure Batch hello alapvető fogalmait, és egy egyszerű Node.js segítségével megoldás kiépítését."
+title: "Oktatóanyag – Az Azure Batch Node.js-es ügyfélkódtárának használata | Microsoft Docs"
+description: "Megismerheti az Azure Batch alapvető fogalmait, és létrehozhat egy egyszerű megoldást a Node.js használatával."
 services: batch
 author: shwetams
 manager: timlt
@@ -11,11 +11,11 @@ ms.topic: hero-article
 ms.workload: big-compute
 ms.date: 05/22/2017
 ms.author: shwetams
-ms.openlocfilehash: d2b0ecbe764e7100affd7b02839aef3077b073cc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c48171d8634a651718a0775183414f463c6a468c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-batch-sdk-for-nodejs"></a>Ismerkedés a Node.js-hez készült Batch SDK-val
 
@@ -26,58 +26,58 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-A Node.js használatával kötegelt ügyfél kialakításának hello alapvető [Azure Batch Node.js SDK](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/). Részletes, lépésekre osztott módon ismerkedhet meg a Batch-alkalmazásokhoz tartozó forgatókönyvekkel és azok a Node.js-ügyfél használatával történő beállításával.  
+Ebben a cikkben megismerheti a Batch-ügyfelek kiépítésének alapjait Node.js-ben, az [Azure Batch Node.js SDK](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/) használatával. Részletes, lépésekre osztott módon ismerkedhet meg a Batch-alkalmazásokhoz tartozó forgatókönyvekkel és azok a Node.js-ügyfél használatával történő beállításával.  
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ez a cikk a Node.js és a Linux gyakorlati ismeretét feltételezi. Azt is feltételezi, hogy rendelkezik-e az Azure-fiók hozzáférési jogok toocreate Batch- és tárolási szolgáltatások telepítése.
+Ez a cikk a Node.js és a Linux gyakorlati ismeretét feltételezi. Azt is feltételezi, hogy rendelkezik egy, a Batch- és Storage-szolgáltatások létrehozásához szükséges hozzáférési jogosultságokkal ellátott Azure-fiókkal.
 
-Azt javasoljuk, hogy olvasási [Azure Batch műszaki áttekintés](batch-technical-overview.md) előtt halad át a hello lépéseket ebben a cikkben leírt.
+A jelen cikk lépéseinek végrehajtása előtt javasoljuk, hogy olvassa el az [Azure Batch technikai áttekintését](batch-technical-overview.md).
 
-## <a name="hello-tutorial-scenario"></a>hello útmutató forgatókönyv
-Ossza meg velünk megértéséhez hello kötegelt munkafolyamat forgatókönyv. Kell egy egyszerű-parancsfájl, amely letölti a Python minden csv egy Azure Blob storage tárolók fájljainak és tooJSON alakítja át. tooprocess több tárolási fiók tárolók párhuzamosan, telepíthetünk egy Azure kötegelt hello parancsfájl.
+## <a name="the-tutorial-scenario"></a>Az oktatóanyagban használt forgatókönyv
+Ismerkedjünk meg a Batch-munkafolyamat forgatókönyvével. Ez a Pythonban írt egyszerű szkript letölti az összes CSV-fájlt egy Azure Blob Storage-tárolóból, és konvertálja azokat JSON formátumba. Több tárfióktároló párhuzamos feldolgozásához Azure Batch-feladatként helyezheti üzembe a szkriptet.
 
 ## <a name="azure-batch-architecture"></a>Azure Batch-architektúra
-hello következő ábra szemlélteti azt hogyan hello Python-parancsfájl segítségével történő Azure Batch és a Node.js-ügyfelet is méretezhető.
+Az alábbi ábra bemutatja, hogyan történik a Python-szkript méretezése az Azure Batch és egy Node.js-ügyfél használatával.
 
 ![Azure Batch-forgatókönyv](./media/batch-nodejs-get-started/BatchScenario.png)
 
-hello node.js ügyfél telepíti egy kötegelt (viszonylag részletesen később) előkészítő feladat és feladatokhoz attól függően, hogy a tárfiók hello tárolók hello száma. Hello github-tárházban hello parancsfájlokat is letölthető.
+A Node.js-ügyfél üzembe helyez egy előkészítő feladattal ellátott Batch-feladatot (részletesen lásd később), valamint – a tárfiókban lévő tárolók számától függően – egy feladatkészletet. A szkripteket a GitHub-adattárból töltheti le.
 
 * [Node.js-ügyfél](https://github.com/Azure/azure-batch-samples/blob/master/Node.js/GettingStarted/nodejs_batch_client_sample.js)
 * [Előkészítési tevékenységhez kapcsolódó héjszkriptek](https://github.com/Azure/azure-batch-samples/blob/master/Node.js/GettingStarted/startup_prereq.sh)
-* [Python csv tooJSON processzor](https://github.com/Azure/azure-batch-samples/blob/master/Node.js/GettingStarted/processcsv.py)
+* [Python CSV – JSON feldolgozó](https://github.com/Azure/azure-batch-samples/blob/master/Node.js/GettingStarted/processcsv.py)
 
 > [!TIP]
-> hello Node.js ügyfél hello hivatkozásban megadott nem tartalmaz adott kód toobe telepített Azure függvény alkalmazásként. Olvassa el a következő hivatkozások utasításokat toocreate egy toohello.
+> A megadott hivatkozásban szereplő Node.js-ügyfél nem tartalmaz Azure-függvényalkalmazásként üzembe helyezendő kódot. Az alábbi hivatkozások azon útmutatásokra mutatnak, amelyek segítségével létrehozhatja azt.
 > - [Függvényalkalmazás létrehozása](../azure-functions/functions-create-first-azure-function.md)
 > - [Időzítő által aktivált függvény létrehozása](../azure-functions/functions-bindings-timer.md)
 >
 >
 
-## <a name="build-hello-application"></a>Hello alkalmazás létrehozása
+## <a name="build-the-application"></a>Az alkalmazás létrehozása
 
-Most, ossza meg velünk hello eljárást követve lépésről lépésre történő kialakításának hello Node.js ügyfél:
+Az alábbiakban lépésenként követjük a Node.js-ügyfél felépítésének folyamatát:
 
 ### <a name="step-1-install-azure-batch-sdk"></a>1. lépés: Az Azure Batch SDK telepítése
 
-Azure Batch SDK for Node.js használatával hello npm telepítési parancs telepítése.
+A Node.js-hez készült Azure Batch SDK telepítése az npm install paranccsal történik.
 
 `npm install azure-batch`
 
-Ez a parancs hello azure-köteg csomópont SDK legújabb verzióját telepíti.
+Ezzel a paranccsal telepítheti az Azure Batch Node SDK legújabb verzióját.
 
 >[!Tip]
-> Egy Azure-függvény alkalmazásban elvégezheti a túl "Kudu konzol" hello Azure függvény a beállítások lapon toorun hello npm telepítési parancsaival. Az az eset tooinstall Azure Batch SDK for Node.js.
+> Egy Azure-függvényalkalmazásban az npm install parancs futtatása az alkalmazás Beállítások lapjának „Kudu konzol” felületéről történik. Ebben az esetben a Node.js-hez készült Azure Batch SDK-t telepíti.
 >
 >
 
 ### <a name="step-2-create-an-azure-batch-account"></a>2. lépés: Azure Batch-fiók létrehozása
 
-Létrehozhat a hello [Azure-portálon](batch-account-create-portal.md) vagy a parancssorból ([Powershell](batch-powershell-cmdlets-get-started.md) /[Azure cli](https://docs.microsoft.com/cli/azure/overview)).
+A fiókot az [Azure Portalon](batch-account-create-portal.md) vagy a parancssorból ([Powershell](batch-powershell-cmdlets-get-started.md) /[Azure CLI](https://docs.microsoft.com/cli/azure/overview)) hozhatja létre.
 
-Az alábbiakban hello parancsok toocreate egy Azure parancssori felületen keresztül.
+Az alábbi parancsokkal az Azure CLI-n keresztül hozhat létre egy fiókot.
 
-Hozzon létre egy erőforráscsoportot, kihagyhatja ezt a lépést, ha már rendelkezik egy kívánt toocreate hello Batch-fiókhoz:
+Hozzon létre egy erőforráscsoportot (hagyja ki ezt a lépést, ha a Batch-fiók létrehozásának helyén már található ilyen):
 
 `az group create -n "<resource-group-name>" -l "<location>"`
 
@@ -85,14 +85,14 @@ A következő lépés az Azure Batch-fiók létrehozása.
 
 `az batch account create -l "<location>"  -g "<resource-group-name>" -n "<batch-account-name>"`
 
-Minden egyes Batch-fiók megfelelő hozzáférési kulcsokkal rendelkezik. Ezeket a kulcsokat olyan szükséges toocreate további erőforrások az Azure batch-fiókhoz. Az éles környezetben célszerű van toouse Azure Key Vault toostore ezeket a kulcsokat. Ezután létrehozhat egy szolgáltatás egyszerű hello alkalmazáshoz. Ehhez a szolgáltatásalkalmazáshoz egyszerű hello segítségével hozhat létre az OAuth jogkivonat tooaccess kulcsok hello kulcstároló.
+Minden egyes Batch-fiók megfelelő hozzáférési kulcsokkal rendelkezik. Ezekre a kulcsokra szükség van további erőforrások az Azure Batch-fiókban történő létrehozásához. Éles környezetben a kulcsok tárolására tanácsos az Azure Key Vaultot használni. Ezután létrehozhatja az alkalmazáshoz tartozó egyszerű szolgáltatást. Ezen egyszerű szolgáltatás használatával az alkalmazás képes OAuth-token létrehozására a Key Vaultban tárolt kulcsokhoz történő hozzáféréshez.
 
 `az batch account keys list -g "<resource-group-name>" -n "<batch-account-name>"`
 
-Másolja, és a későbbi lépésekben hello használt hello kulcs toobe tárolja.
+Másolja és mentse a következő lépésekben használni kívánt kulcsot.
 
 ### <a name="step-3-create-an-azure-batch-service-client"></a>3. lépés: Azure Batch-szolgáltatásügyfél létrehozása
-Következő kódrészletet először importálja az hello azure-köteg Node.js modult, és létrehozza a Batch szolgáltatás ügyfél. Toofirst kell hozzon létre egy SharedKeyCredentials objektum hello hello előző lépésben másolt kötegelt a fiókkulcsot.
+Az alábbi kódrészlet először importálja az Azure Batch Node.js modult, majd létrehoz egy Batch-szolgáltatásügyfelet. Először létre kell hoznia egy SharedKeyCredentials objektumot az előző lépésből átmásolt Batch-fiókkulccsal.
 
 ```nodejs
 // Initializing Azure Batch variables
@@ -115,64 +115,64 @@ var batch_client = new batch.ServiceClient(credentials,accountUrl);
 
 ```
 
-hello Azure Batch URI hello Azure-portálon hello áttekintése lapján található. Hello formátum van:
+Az Azure Batch URI az Azure Portal Áttekintés lapján található. Ennek formátuma:
 
 `https://accountname.location.batch.azure.com`
 
-Tekintse meg a toohello képernyőkép:
+Tekintse meg a következő képernyőképet:
 
 ![Azure Batch URI](./media/batch-nodejs-get-started/azurebatchuri.png)
 
 
 
 ### <a name="step-4-create-an-azure-batch-pool"></a>4. lépés: Azure Batch-készlet létrehozása
-Az Azure Batch-készlet több virtuális gépből áll (ezek Batch-csomópontokként is ismertek). Azure Batch szolgáltatás telepíti ezeket a csomópontokat hello feladatokat, és kezeli őket. A következő konfigurációs paraméterek, a készlet hello adhat meg.
+Az Azure Batch-készlet több virtuális gépből áll (ezek Batch-csomópontokként is ismertek). Az Azure Batch-szolgáltatás elvégzi a feladatok központi telepítését ezeken a csomópontokon, és kezeli azokat. A készlet esetében az alábbi konfigurációs paramétereket adhatja meg.
 
 * A virtuális gép rendszerképének típusa
 * A virtuálisgép-csomópontok métere
 * A virtuálisgép-csomópontok száma
 
 > [!Tip]
-> hello méretét és a virtuális gép csomópontok száma nagy mértékben függ hello szeretné a toorun párhuzamosan is maga hello feladat feladatok száma. Ajánlott a tesztelés toodetermine hello ideális számát és méretét.
+> A virtuálisgép-csomópontok mérete és száma nagymértékben a párhuzamosan futtatni kívánt feladatok számától és magától a feladattól függ. Javasoljuk, hogy teszteléssel határozza meg az ideális számot és méretet.
 >
 >
 
-hello következő kódrészletet hello konfigurációs paraméter-objektumokat hoz létre.
+Az alábbi kódrészlet a konfigurációsparaméter-objektumokat hozza létre.
 
 ```nodejs
 // Creating Image reference configuration for Ubuntu Linux VM
 var imgRef = {publisher:"Canonical",offer:"UbuntuServer",sku:"14.04.2-LTS",version:"latest"}
 
-// Creating hello VM configuration object with hello SKUID
+// Creating the VM configuration object with the SKUID
 var vmconfig = {imageReference:imgRef,nodeAgentSKUId:"batch.node.ubuntu 14.04"}
 
-// Setting hello VM size tooStandard F4
+// Setting the VM size to Standard F4
 var vmSize = "STANDARD_F4"
 
-//Setting number of VMs in hello pool too4
+//Setting number of VMs in the pool to 4
 var numVMs = 4
 ```
 
 > [!Tip]
-> Azure Batch és az SKU-azonosítók elérhető Linux Virtuálisgép-rendszerképek hello listájáért lásd: [virtuálisgép-rendszerképek listája](batch-linux-nodes.md#list-of-virtual-machine-images).
+> Az Azure Batch számára elérhető linuxos virtuális gépek rendszerképét és azok termékváltozat-azonosítóinak listáját a [virtuálisgép-rendszerképek listája](batch-linux-nodes.md#list-of-virtual-machine-images) tartalmazza.
 >
 >
 
-Miután hello készlet definiált, hello Azure Batch-készlet hozhatók létre. hello kötegparancsban készletet hoz létre az Azure virtuális gép csomópontok, és felkészítheti őket toobe készen tooreceive feladatok tooexecute. Mindegyik készletnek egyedi azonosítóval kell rendelkeznie a következő lépésekben történő hivatkozáshoz.
+A készletkonfiguráció megadását követően létrehozhatja az Azure Batch-készletet. A Batch-készlet parancs Azure-beli virtuálisgép-csomópontokat hoz létre, és felkészíti azokat a végrehajtandó feladatok fogadására. Mindegyik készletnek egyedi azonosítóval kell rendelkeznie a következő lépésekben történő hivatkozáshoz.
 
-a következő kódrészletet hello hoz létre az Azure Batch-készlet.
+Az alábbi kódrészlet egy Azure Batch-készletet hoz létre.
 
 ```nodejs
 // Create a unique Azure Batch pool ID
 var poolid = "pool" + customerDetails.customerid;
 var poolConfig = {id:poolid, displayName:poolid,vmSize:vmSize,virtualMachineConfiguration:vmconfig,targetDedicatedComputeNodes:numVms,enableAutoScale:false };
-// Creating hello Pool for hello specific customer
+// Creating the Pool for the specific customer
 var pool = batch_client.pool.add(poolConfig,function(error,result){
     if(error!=null){console.log(error.response)};
 });
 ```
 
-Hello állapotának hello készlet létrehozása, és ügyeljen arra, hogy hello állapota "aktív" folytassa a feladat toothat készlet elküldése előtt.
+Ellenőrizheti a létrehozott készlet állapotát, és a készletbe történő feladatbeküldés előtt meggyőződhet arról, hogy a készlet „aktív” állapotban van.
 
 ```nodejs
 var cloudPool = batch_client.pool.get(poolid,function(error,result,request,response){
@@ -199,7 +199,7 @@ var cloudPool = batch_client.pool.get(poolid,function(error,result,request,respo
         });
 ```
 
-Az alábbiakban látható egy minta eredményobjektum hello pool.get függvény által visszaadott.
+Az alábbiakban a pool.get függvény által visszaadott objektumra láthat példát.
 
 ```
 { id: 'processcsv_201721152',
@@ -261,46 +261,46 @@ Az alábbiakban látható egy minta eredményobjektum hello pool.get függvény 
 
 
 ### <a name="step-4-submit-an-azure-batch-job"></a>4. lépés: Azure Batch-feladat elküldése
-Az Azure Batch-feladatok hasonló feladatok logikai csoportjai. A mi esetünkben esetében "Folyamat csv tooJSON." Minden egyes itt szereplő feladat képes az Azure Storage-tárolókban lévő CSV-fájlok feldolgozására.
+Az Azure Batch-feladatok hasonló feladatok logikai csoportjai. Ebben az esetben ez a következő: „CSV – JSON feldolgozás”. Minden egyes itt szereplő feladat képes az Azure Storage-tárolókban lévő CSV-fájlok feldolgozására.
 
-Ezek a feladatok párhuzamosan futnak, és telepített hello Azure Batch szolgáltatás által összehangolva. több csomópont között.
+E feladatok párhuzamosan futtathatók és több csomóponton üzembe helyezhetők, a vezénylésüket az Azure Batch-szolgáltatás végzi.
 
 > [!Tip]
-> Használhatja a hello [maxTasksPerNode](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Pool.html#add) tulajdonság toospecify feladatok maximális száma, amelyek egyetlen csomóponton egyidejűleg is futtathatók.
+> A [maxTasksPerNode](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Pool.html#add) tulajdonság segítségével az egyetlen csomóponton egyidejűleg futtatható feladatok maximális száma adható meg.
 >
 >
 
 #### <a name="preparation-task"></a>Előkészítő feladat
 
-hello VM csomópontja létre üres Ubuntu csomópontok. Programok tooinstall gyakran, előfeltételként szükséges.
-Linux-csomópontok általában egy héjparancsfájlt is hello Előfeltételek hello tényleges feladatok futtatása előtt kell is. Ez azonban bármilyen programozható végrehajtható fájl lehet.
-Hello [rendszerhéj-parancsfájl](https://github.com/shwetams/azure-batchclient-sample-nodejs/blob/master/startup_prereq.sh) ebben a példában telepíti a Python-pip és hello Azure Storage szolgáltatás SDK Python.
+A virtuálisgép-csomópontok üres Ubuntu-csomópontokat hoztak létre. Gyakori eset, hogy előfeltételként néhány programot kell telepíteni.
+Linux-csomópontok esetében általában rendelkezhet olyan héjszkripttel, amely az aktuális feladatok futtatása előtt telepíti az előfeltételeket. Ez azonban bármilyen programozható végrehajtható fájl lehet.
+Az e példában szereplő [héjszkript](https://github.com/shwetams/azure-batchclient-sample-nodejs/blob/master/startup_prereq.sh) telepíti a Python-PIP-et és a Pythonhoz készült Azure Storage SDK-t.
 
-Egy Azure Storage-fiók hello parancsfájl feltöltése, és a SAS URI tooaccess hello parancsfájl létrehozása. Ez a folyamat hello Azure Storage Node.js SDK használatával is automatikus.
+Feltöltheti a szkriptet egy Azure Storage-fiókba, és létrehozhat egy SAS URI-t a szkripthez történő hozzáféréshez. Az Azure Storage Node.js SDK használatával ez a folyamat automatizálható.
 
 > [!Tip]
-> Csak csomópontján hello VM fusson a feladat előkészítése feladat amikor hello adott feladatot kell toorun. Ha azt szeretné, hogy a rajta futó feladatok hello függetlenül összes csomópontján telepítve Előfeltételek toobe, használhatja a hello [startTask](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Pool.html#add) tulajdonság a készlet hozzáadása közben. Előkészítő feladat meghatározása referenciaként a következő hello is használhatja.
+> Az adott feladathoz tartozó előkészítő feladat csak azokon a virtuálisgép-csomópontokon fut, ahol az adott feladatnak futnia kell. Ha azt szeretné, hogy az előfeltételek az összes csomóponton telepítve legyenek (függetlenül az azokon futó feladatoktól), készlet hozzáadásakor használhatja a [startTask](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Pool.html#add) tulajdonságot. Referenciaként az alábbi előkészítőfeladat-meghatározás használható.
 >
 >
 
-Előkészítő feladat végzett leadásakor hello Azure kötegelt van megadva. Következő előkészítő feladat konfigurációs paraméterek vannak hello:
+Az Azure Batch-feladat beküldése során megtörténik egy előkészítő feladat meghatározása. Az előkészítő feladat konfigurációs paraméterei a következők:
 
-* **Azonosító**: hello előkészítése tevékenység egyedi azonosítója
-* **commandLine**: parancssor tooexecute hello végrehajtható feladat
-* **resourceFiles**: a fájlok részleteit objektumokból álló tömb le ez a feladat toorun toobe szükséges.  Ennek beállítási lehetőségei a következők:
-    - blobSource: hello SAS URI-jának hello fájl
-    - fájl elérési útja: helyi elérési út toodownload és hello fájl mentése
+* **ID**: Az előkészítő feladat egyedi azonosítója.
+* **commandLine**: A feladat végrehajtható fájljának végrehajtására szolgáló parancssor.
+* **resourceFiles**: A jelen feladat futtatásához letöltendő fájlok részletes adatait biztosító objektumtömbök.  Ennek beállítási lehetőségei a következők:
+    - blobSource: A fájl SAS URI-ja.
+    - filePath: A fájl helyi letöltési és mentési elérési útja.
     - fileMode: Csak Linux-csomópontokra vonatkozik, a fileMode formátuma oktális, alapértelmezett értéke 0770.
-* **waitForSuccess**: Ha set tootrue, hello feladat nem futtatható előkészítő feladat hibáihoz
-* **runElevated**: állítsa be tootrue emelt szintű jogosultságokkal szükséges toorun hello feladat esetén.
+* **waitForSuccess**: Ha a beállítása igaz, a feladat nem fut előkészítőtevékenység-hibák esetében.
+* **runElevated**: Állítsa igaz értékre, ha a feladat futtatásához emelt szintű jogosultságokra van szükség.
 
-Következő kódrészletet hello előkészítő feladat parancsfájl konfigurációs minta mutatja:
+Az alábbi kódrészleten az előkészítő feladat egy szkriptkonfigurációs mintáját láthatjuk:
 
 ```nodejs
 var job_prep_task_config = {id:"installprereq",commandLine:"sudo sh startup_prereq.sh > startup.log",resourceFiles:[{'blobSource':'Blob SAS URI','filePath':'startup_prereq.sh'}],waitForSuccess:true,runElevated:true}
 ```
 
-Ha nincs telepítve a feladatok toorun Előfeltételek toobe, kihagyhatja hello előkészítő feladatok. Az alábbi kód „CSV-fájlok feldolgozása” megjelenített névvel ellátott feladatot hoz létre.
+Ha a feladatok futtatásához nem szükséges előfeltételeket telepíteni, kihagyhatja az előkészítő tevékenységeket. Az alábbi kód „CSV-fájlok feldolgozása” megjelenített névvel ellátott feladatot hoz létre.
 
  ```nodejs
  // Setting up Batch pool configuration
@@ -308,7 +308,7 @@ Ha nincs telepítve a feladatok toorun Előfeltételek toobe, kihagyhatja hello 
  // Setting up Job configuration along with preparation task
  var jobId = "processcsvjob"
  var job_config = {id:jobId,displayName:"process csv files",jobPreparationTask:job_prep_task_config,poolInfo:pool_config}
- // Adding Azure batch job toohello pool
+ // Adding Azure batch job to the pool
  var job = batch_client.job.add(job_config,function(error,result){
      if(error != null)
      {
@@ -319,14 +319,14 @@ Ha nincs telepítve a feladatok toorun Előfeltételek toobe, kihagyhatja hello 
 
 ### <a name="step-5-submit-azure-batch-tasks-for-a-job"></a>5. lépés: Azure Batch-feladatok elküldése egy feladathoz
 
-A CSV-feldolgozási feladat létrehozását követően hozzunk létre tevékenységeket ehhez a feladathoz. Ha tudunk négy tárolók, tudunk toocreate négy feladatok, minden egyes tároló egyik.
+A CSV-feldolgozási feladat létrehozását követően hozzunk létre tevékenységeket ehhez a feladathoz. Feltételezve, hogy négy tárolóval rendelkezünk, négy tevékenységet hozunk létre – minden tárolóhoz egyet.
 
-Ha úgy tekintünk hello [Python-parancsfájl](https://github.com/shwetams/azure-batchclient-sample-nodejs/blob/master/processcsv.py), két paramétert fogad:
+A [Python-szkript](https://github.com/shwetams/azure-batchclient-sample-nodejs/blob/master/processcsv.py) két paramétert fogad el:
 
-* tároló neve: hello tárolási tároló toodownload fájlok
+* container name: Az a Storage-tároló, amelyből a fájlokat letöltjük.
 * pattern: A fájlnév-minta választható paramétere.
 
-Ha tudunk négy tárolók "con1", "con2", "con3", "con4" következő kódot feladatok toohello az Azure batch feladat "folyamat fürt megosztott kötetei szolgáltatás" korábban létrehozott elküldése jeleníti meg.
+Feltételezve, hogy négy tárolóval („con1”, „con2”, „con3”, „con4”) rendelkezünk, az alábbi kód a korábban létrehozott „CSV-feldolgozás” nevű Azure Batch-feladat számára történő négy tevékenység beküldését mutatja be.
 
 ```nodejs
 // storing container names in an array
@@ -353,12 +353,12 @@ var container_list = ["con1","con2","con3","con4"]
     });
 ```
 
-hello kód több feladatok toohello készletet ad hozzá. És minden hello feladatok végrehajtása hello készlet létrehozott virtuális gépek egyik csomópontján. Hello feladatok száma meghaladja a hello virtuális gépek számát a készlet vagy hello maxTasksPerNode tulajdonság, ha a hello feladatok Várjon, amíg a csomópont szeretné elérhetővé tenni. Ennek vezénylését az Azure Batch automatikusan elvégzi.
+A kód több tevékenységet ad hozzá a készlethez. Minden egyes tevékenység a létrehozott virtuális gépek készletének egyik csomópontján lesz végrehajtva. Ha a tevékenységek száma meghaladja az adott készletben lévő virtuális gépek számát vagy a maxTasksPerNode tulajdonság értékét, a rendszer a csomópont elérhetővé válásáig várakoztatja a tevékenységeket. Ennek vezénylését az Azure Batch automatikusan elvégzi.
 
-hello portál rendelkezik részletes nézeteket hello feladatok és a feladatok állapota. Is hello a listában, és lekérése funkciók hello Azure csomópont SDK-t. Részletek szerepelnek hello dokumentáció [hivatkozás](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Job.html).
+A portálon részletesen megtekinthetők a tevékenységek és a feladatok állapotai. Használhatja az Azure Node SDK listázási és lekérési funkcióit is. Részletes információkat a dokumentáció [hivatkozását](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Job.html) megnyitva talál.
 
 ## <a name="next-steps"></a>Következő lépések
 
-- Felülvizsgálati hello [áttekintés az Azure Batch funkcióinak](batch-api-basics.md) cikk, amely ajánlott, ha még új toohello szolgáltatás.
-- Lásd: hello [kötegelt Node.js hivatkozás](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/) tooexplore hello kötegelt API.
+- Ha korábban nem használta a szolgáltatást, olvassa el [az Azure Batch szolgáltatásainak áttekintését](batch-api-basics.md) tartalmazó cikket.
+- A Batch API megismeréséhez lásd a [Batch – Node.js-referenciát](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/).
 

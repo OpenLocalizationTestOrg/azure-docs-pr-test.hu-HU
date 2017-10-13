@@ -1,8 +1,8 @@
 ---
-title: "HDInsight-dokumentáció – oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
-description: "Információk a HDInsight-alapú Hadoopról. Dokumentációja bemutatja, hogyan toouse Hadoop, Spark, HBase, R-kiszolgáló, és további tooprocess elemzése és a big Data típusú adatok megismerésében."
+title: "Az Azure HDInsight dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Információk a HDInsight-alapú Hadoopról. A dokumentációból megismerheti a Hadoop, Spark, HBase, R-Server stb. használatát a big data-betekintések feldolgozásához, elemzéséhez és kinyeréséhez."
 services: hdinsight
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 592c31863df2e90886c9e9596b1a24edea79e990
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7d639ca03261f3a9cad537dd92103c5aa6cd0af9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 #<a name="azure-hdinsight-documentation"></a>Azure HDInsight – dokumentáció
 
-Ismerje meg, hogyan toouse Hadoop hello a felhőalapú HDInsight tooanalyze adatfolyam-továbbítási vagy korábbi adatokon. Oktatóanyagok és egyéb dokumentációt is láthat hogyan toocreate fürtök feldolgozni big Data típusú adatok elemzéséhez és a Hadoop, Spark, HBase, megoldások fejlesztésére R-kiszolgáló, a Storm és más technológiák hello Hadoop ökoszisztémájának.
+Ismerje meg, hogyan használhatja a Hadoopot a HDInsight alatt futó felhőben streamelt vagy előzményadatok elemzésére. Oktatóanyagok és egyéb dokumentáció, amelyek bemutatják a fürtök létrehozását, big data feldolgozását és elemzését, illetve megoldások fejlesztését Hadoop, Spark, HBase, R-Server, Storm vagy a Hadoop-ökoszisztémában található egyéb technológiák használatával.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -125,6 +125,24 @@ Ismerje meg, hogyan toouse Hadoop hello a felhőalapú HDInsight tooanalyze adat
                     </div>
                     <div class="cardText">
                         <h3>Ismerkedés a HDInsight Apache Storm-fürttel való használatával</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li>
+<li>
+        <a href="https://github.com/hdinsight/hdinsight-dev-guide/blob/master/HDInsight%20Developer%20Guide.pdf">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="media/index/tutorial.svg" alt="" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>HDInsight fejlesztői útmutató</h3>
                     </div>
                 </div>
             </div>

@@ -1,14 +1,14 @@
 ### <a name="prerequisites"></a>Előfeltételek
 * Egy [FTP](https://wikipedia.org/wiki/File_Transfer_Protocol) fiók  
 
-Az FTP-fiók a logikai alkalmazás használata előtt engedélyeznie kell a hello logic app tooconnect tooyour az FTP-fiók. Szerencsére ehhez egyszerűen a a logikai alkalmazásban a hello Azure portálon.  
+Az FTP-fiók a logikai alkalmazás használata előtt engedélyeznie kell a logikai alkalmazást az FTP-fiókhoz való csatlakozáshoz. Szerencsére ehhez egyszerűen a a logikai alkalmazásban, az Azure portálon.  
 
-Az alábbiakban hello lépéseket tooauthorize logic app tooconnect tooyour FTP fiókja:  
+A Logic Apps alkalmazást FTP-fiókhoz való csatlakozáshoz engedélyezni lépései a következők:  
 
-1. toocreate egy kapcsolat tooFTP hello logic app Designer kiválasztása **megjelenítése Microsoft felügyelt API-k** hello a legördülő listából, majd adja meg *FTP* hello Keresés mezőbe. Hello eseményindító vagy lesz, például a toouse művelet kiválasztása:  
+1. FTP-, VPN-kapcsolat létrehozásához a logic app tervezőben, válassza ki a **megjelenítése Microsoft felügyelt API-k** a legördülő listában adja meg *FTP* be a keresőmezőbe. Válassza ki az eseményindító vagy művelet fogjuk használni kívánt:  
    ![FTP-kapcsolat létrehozása lépés](./media/connectors-create-api-ftp/ftp-1.png)  
-2. Bármely kapcsolatok tooFTP előtt még nem hozott létre, ha később is lesz felszólító tooprovide FTP hitelesítő adatait. Ezeket a hitelesítő adatokat kell használt tooauthorize a logic app tooconnect számára, és az FTP-fiók adatok eléréséhez:  
+2. Ha még nem hozott létre a kapcsolatokat az FTP-előtt, a rendszer FTP hitelesítő adatok megadása fog kérni. Ezeket a hitelesítő adatokat engedélyezik a Logic Apps alkalmazást való kapcsolódáshoz használt, és az FTP-fiók adatok eléréséhez:  
    ![FTP-kapcsolat létrehozása lépés](./media/connectors-create-api-ftp/ftp-2.png)  
-3. Figyelje meg hello kapcsolat létrejött, és most a Logic Apps alkalmazást az egyéb hello szabad tooproceed szükséges lépések:  
+3. Figyelje meg, a kapcsolat létrejött, és szabadon most folytatja a Logic Apps alkalmazást más lépéseket:  
    ![FTP-kapcsolat létrehozása lépés](./media/connectors-create-api-ftp/ftp-3.png)  
 

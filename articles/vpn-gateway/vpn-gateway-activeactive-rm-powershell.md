@@ -15,51 +15,51 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/16/2017
 ms.author: yushwang
-ms.openlocfilehash: 964eedc7698e42bf0e082f0105845f2a339daf57
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a9f71b566ffdb163f95634835f64589a700d712f
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="configure-active-active-s2s-vpn-connections-with-azure-vpn-gateways"></a>Az Azure VPN Gatewayek aktív-aktív S2S VPN-kapcsolatok konfigurálása
 
-Ez a cikk bemutatja, hogyan hello lépéseket toocreate aktív-aktív létesítmények közötti és VNet – VNet kapcsolatokhoz hello Resource Manager üzembe helyezési modellben és a PowerShell használatával.
+Ez a cikk végigvezeti a aktív-aktív létesítmények közötti és VNet – VNet kapcsolatokhoz a Resource Manager üzembe helyezési modellben és a PowerShell használatával létrehozni.
 
 ## <a name="about-highly-available-cross-premises-connections"></a>Magas rendelkezésre állású létesítmények közötti kapcsolatok
-tooachieve magas rendelkezésre állású létesítmények közötti és VNet – VNet-kapcsolatot, kell több VPN-átjáró telepítése és a hálózatok és az Azure közötti több párhuzamos kapcsolatok létesítéséhez. Ellenőrizze a [magas rendelkezésre álló létesítmények közötti és VNet – VNet-kapcsolatot](vpn-gateway-highlyavailable.md) kapcsolati lehetőségek és topológiájának áttekintését.
+A létesítmények közötti és VNet – VNet-kapcsolatot a magas rendelkezésre állás eléréséhez kell több VPN-átjáró telepítése, és a hálózatok és az Azure közötti több párhuzamos kapcsolatok létesítéséhez. Ellenőrizze a [magas rendelkezésre álló létesítmények közötti és VNet – VNet-kapcsolatot](vpn-gateway-highlyavailable.md) kapcsolati lehetőségek és topológiájának áttekintését.
 
-Ez a cikk bemutatja, hello fel egy aktív-aktív tooset létesítmények közötti VPN-kapcsolat és két virtuális hálózatok közötti aktív-aktív kapcsolat:
+Ez a cikk leírja egy aktív-aktív létesítmények közötti VPN-kapcsolat és két virtuális hálózatok közötti aktív-aktív kapcsolat beállításához:
 
 * [1. rész – létrehozása és konfigurálása az Azure VPN gateway aktív-aktív módban](#aagateway)
 * [2. rész – aktív-aktív létesítmények közötti kapcsolatot.](#aacrossprem)
 * [3. rész – aktív-aktív VNet – VNet-kapcsolatot létrehozni](#aav2v)
 * [4. rész - frissítés meglévő átjáró aktív-aktív és aktív-készenléti állapotban lévő között](#aaupdate)
 
-Ezek együtt toobuild egy összetettebb, magas rendelkezésre állású hálózati topológia az igényeinek megfelelő kombinálhatja.
+Ezek együtt egy összetettebb, magas rendelkezésre állású hálózati topológia az igényeinek megfelelő létrehozásához kombinálhatja.
 
 > [!IMPORTANT]
-> Vegye figyelembe, hogy hello aktív-aktív üzemmód használja a következő termékváltozatok csak hello: 
+> Vegye figyelembe, hogy a az aktív-aktív mód csak a következő termékváltozatok használja: 
   * VpnGw1, VpnGw2, VpnGw3
   * (A régi örökölt SKU) HighPerformance
 > 
 > 
 
 ## <a name ="aagateway"></a>1. rész – létrehozása és aktív-aktív VPN-átjárók konfigurálása
-a lépéseket követve hello konfigurálja az Azure VPN gateway aktív-aktív üzemmódban. hello hello aktív-aktív és az aktív-készenléti állapotban lévő átjárók közötti fontosabb különbségeket:
+Az alábbi lépéseket az Azure VPN gateway állít be aktív-aktív módot. Az aktív-aktív és az aktív-készenléti állapotban lévő átjárók közötti legfőbb különbségek:
 
-* Két átjáró IP-konfigurációk toocreate két nyilvános IP-címmel van szüksége
-* Hello EnableActiveActiveFeature jelzőt kell beállítani
-* hello gateway SKU VpnGw1, VpnGw2, VpnGw3 vagy HighPerformance (örökölt SKU) kell lennie.
+* Két nyilvános IP-címekkel rendelkező két átjáró IP-konfigurációk létrehozásához szükséges
+* Be kell állítania a EnableActiveActiveFeature jelzőt
+* Az átjáró-Termékváltozat VpnGw1, VpnGw2, VpnGw3 vagy HighPerformance (örökölt SKU) kell lennie.
 
-hello más tulajdonságainak vannak hello ugyanaz, mint a hello nem aktív-aktív átjárókat. 
+A többi tulajdonság ugyanazok, mint a nem aktív-aktív átjárókat. 
 
 ### <a name="before-you-begin"></a>Előkészületek
 * Győződjön meg arról, hogy rendelkezik Azure-előfizetéssel. Ha még nincs Azure-előfizetése, aktiválhatja [MSDN-előfizetői előnyeit](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/), vagy regisztrálhat egy [ingyenes fiókot](https://azure.microsoft.com/pricing/free-trial/).
-* Tooinstall hello Azure Resource Manager PowerShell-parancsmagok lesz szüksége. Lásd: [áttekintés az Azure PowerShell](/powershell/azure/overview) hello PowerShell-parancsmagok telepítéséről további információt.
+* Előfordulhat, hogy telepítenie kell az Azure Resource Manager PowerShell-parancsmagjait. Lásd: [áttekintés az Azure PowerShell](/powershell/azure/overview) a PowerShell-parancsmagok telepítéséről további információt.
 
 ### <a name="step-1---create-and-configure-vnet1"></a>1. lépés – létrehozása és VNet1 konfigurálása
 #### <a name="1-declare-your-variables"></a>1. A változók deklarálása
-Ezt a gyakorlatot a változók deklarálásával kezdjük. az alábbi példa hello hello értékekkel ehhez a gyakorlathoz hello változók deklarálja. Lehet, hogy tooreplace hello értékeket a saját üzemi konfigurálásakor. Ezek a változók is használhatja, ha ismeri a konfiguráció az ilyen típusú hello lépéseket toobecome keresztül futtatja. Hello változók módosítása, majd másolja és illessze be a PowerShell-konzolban.
+Ezt a gyakorlatot a változók deklarálásával kezdjük. Az alábbi példa a gyakorlathoz használt értékekkel deklarálja a változókat. Az éles konfigurációhoz ne felejtse el ezeket az értékeket a saját értékeire cserélni. Ezeket a változókat akkor használhatja, ha azért hajtja végre a lépéseket, hogy megismerje ezt a konfigurációtípust. Módosítsa a változókat, majd másolja és illessze be őket a PowerShell-konzolra.
 
 ```powershell
 $Sub1 = "Ross"
@@ -86,10 +86,10 @@ $Connection151 = "VNet1toSite5_1"
 $Connection152 = "VNet1toSite5_2"
 ```
 
-#### <a name="2-connect-tooyour-subscription-and-create-a-new-resource-group"></a>2. Csatlakozás tooyour előfizetés, és hozzon létre egy új erőforráscsoportot
-Váltson át tooPowerShell mód toouse hello erőforrás-kezelő parancsmagokat. További információ: [A Windows PowerShell használata a Resource Managerrel](../powershell-azure-resource-manager.md).
+#### <a name="2-connect-to-your-subscription-and-create-a-new-resource-group"></a>2. Csatlakozás az előfizetéshez, és hozzon létre egy új erőforráscsoportot
+A Resource Manager parancsmagjainak használatához váltson át PowerShell módba. További információ: [A Windows PowerShell használata a Resource Managerrel](../powershell-azure-resource-manager.md).
 
-Nyissa meg a PowerShell-konzolt, és csatlakozzon a tooyour fiók. A következő minta toohelp csatlakozás hello használata:
+Nyissa meg a PowerShell konzolt, és csatlakozzon a fiókjához. A következő minta segíthet a kapcsolódásban:
 
 ```powershell
 Login-AzureRmAccount
@@ -98,7 +98,7 @@ New-AzureRmResourceGroup -Name $RG1 -Location $Location1
 ```
 
 #### <a name="3-create-testvnet1"></a>3. A TestVNet1 létrehozása
-hello minta az alábbi nevű TestVNet1 és három alhálózatok, egy hívott GatewaySubnet, egy hívott előtér és egy hívott háttér virtuális hálózatot hoz létre. Az értékek behelyettesítésekor fontos, hogy az átjáróalhálózat neve mindenképp GatewaySubnet legyen. Ha ezt másként nevezi el, az átjáró létrehozása meghiúsul.
+Az alábbi minta létrehoz egy TestVNet1 nevű virtuális hálózatot és három alhálózatot, amelyek neve a következő: GatewaySubnet, FrontEnd és Backend. Az értékek behelyettesítésekor fontos, hogy az átjáróalhálózat neve mindenképp GatewaySubnet legyen. Ha ezt másként nevezi el, az átjáró létrehozása meghiúsul.
 
 ```powershell
 $fesub1 = New-AzureRmVirtualNetworkSubnetConfig -Name $FESubName1 -AddressPrefix $FESubPrefix1
@@ -108,9 +108,9 @@ $gwsub1 = New-AzureRmVirtualNetworkSubnetConfig -Name $GWSubName1 -AddressPrefix
 New-AzureRmVirtualNetwork -Name $VNetName1 -ResourceGroupName $RG1 -Location $Location1 -AddressPrefix $VNetPrefix11,$VNetPrefix12 -Subnet $fesub1,$besub1,$gwsub1
 ```
 
-### <a name="step-2---create-hello-vpn-gateway-for-testvnet1-with-active-active-mode"></a>2. lépés – hello VPN-átjáró létrehozása TestVNet1 aktív-aktív üzemmódban
-#### <a name="1-create-hello-public-ip-addresses-and-gateway-ip-configurations"></a>1. Hello nyilvános IP-címek és az átjáró IP-konfigurációk létrehozása
-Kérelem két nyilvános IP-címek toobe lefoglalt toohello átjáró fog létrehozni a virtuális hálózat számára. Hello alhálózatot és IP-konfiguráció szükséges is fogja definiálni.
+### <a name="step-2---create-the-vpn-gateway-for-testvnet1-with-active-active-mode"></a>2. lépés – a VPN-átjáró létrehozása TestVNet1 aktív-aktív üzemmódban
+#### <a name="1-create-the-public-ip-addresses-and-gateway-ip-configurations"></a>1. A nyilvános IP-címek és átjáró IP-konfigurációk létrehozása
+Kérelem osztható ki a Vnethez tartozó létrehozhat az átjáró két nyilvános IP-címeket. Az alhálózat és a szükséges IP-konfigurációk is fogja definiálni.
 
 ```powershell
 $gw1pip1 = New-AzureRmPublicIpAddress -Name $GW1IPName1 -ResourceGroupName $RG1 -Location $Location1 -AllocationMethod Dynamic
@@ -122,15 +122,15 @@ $gw1ipconf1 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GW1IPconf1 -Subnet
 $gw1ipconf2 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GW1IPconf2 -Subnet $subnet1 -PublicIpAddress $gw1pip2
 ```
 
-#### <a name="2-create-hello-vpn-gateway-with-active-active-configuration"></a>2. Aktív-aktív konfigurációval hello VPN-átjáró létrehozása
-TestVNet1 hello virtuális hálózati átjáró létrehozása Vegye figyelembe, hogy két GatewayIpConfig bejegyzést is tartalmaz, és hello EnableActiveActiveFeature jelző be van állítva. Átjáró létrehozása időt vehet igénybe (45 perc vagy több toocomplete).
+#### <a name="2-create-the-vpn-gateway-with-active-active-configuration"></a>2. A VPN-átjáró aktív-aktív konfiguráció létrehozása
+Hozza létre a TestVNet1 virtuális hálózati átjáróját. Vegye figyelembe, hogy két GatewayIpConfig bejegyzést is tartalmaz, és a EnableActiveActiveFeature jelző be van állítva. Az átjáró létrehozása akár 45 percet vagy hosszabb időt is igénybe vehet.
 
 ```powershell
 New-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1 -Location $Location1 -IpConfigurations $gw1ipconf1,$gw1ipconf2 -GatewayType Vpn -VpnType RouteBased -GatewaySku VpnGw1 -Asn $VNet1ASN -EnableActiveActiveFeature -Debug
 ```
 
-#### <a name="3-obtain-hello-gateway-public-ip-addresses-and-hello-bgp-peer-ip-address"></a>3. Hello átjáró nyilvános IP-címek és hello BGP-Társgép IP-cím beszerzése
-Hello átjáró létrehozása után kell tooobtain hello hello Azure VPN Gateway a BGP-Társgép IP-cím. Ez a cím szükséges tooconfigure hello Azure VPN Gateway, mint a BGP-partner a helyszíni VPN-eszközök.
+#### <a name="3-obtain-the-gateway-public-ip-addresses-and-the-bgp-peer-ip-address"></a>3. Az átjáró nyilvános IP-címek és a BGP-Társgép IP-cím beszerzése
+Az átjáró létrehozása után szüksége lesz az Azure VPN Gateway a BGP-Társgép IP-cím beszerzése. Ez a cím konfigurálása az Azure VPN Gateway a BGP-partner a helyszíni VPN-eszközök esetében van szükség.
 
 ```powershell
 $gw1pip1 = Get-AzureRmPublicIpAddress -Name $GW1IPName1 -ResourceGroupName $RG1
@@ -138,7 +138,7 @@ $gw1pip2 = Get-AzureRmPublicIpAddress -Name $GW1IPName2 -ResourceGroupName $RG1
 $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1
 ```
 
-A következő parancsmagok tooshow hello két nyilvános IP-címet a VPN-átjáró és az egyes átjárópéldány megfelelő BGP-Társgép IP-címeit számára lefoglalt hello használata:
+Az alábbi parancsmagok segítségével a VPN-átjáró és az egyes átjárópéldány megfelelő BGP-Társgép IP-címeit számára lefoglalt két nyilvános IP-címe:
 
 ```powershell
 
@@ -156,20 +156,20 @@ A következő parancsmagok tooshow hello két nyilvános IP-címet a VPN-átjár
     }
 ```
 
-hello ahhoz, hogy hello példányai és a megfelelő BGP társviszony-létesítés cím hello hello nyilvános IP-címek hello azonos. Ebben a példában hello átjáró nyilvános IP-címe 40.112.190.5 rendelkező virtuális gépet a BGP társviszony-létesítés cím 10.12.255.4 fog használni, és 138.91.156.129 hello átjáró 10.12.255.5 fogja használni. Ezek az információk szükségesek beállításakor a helyszíni összekötő toohello aktív-aktív átjáró VPN-eszközök. hello átjáró összes címre alatt hello ábrán látható:
+A nyilvános IP sorrendjének szünteti meg a példány, és a megfelelő BGP társviszony-létesítés címek megegyeznek. Ebben a példában az átjáró nyilvános IP-címe 40.112.190.5 rendelkező virtuális gépet fog használni a BGP társviszony-létesítés cím 10.12.255.4, és az átjáró 138.91.156.129 10.12.255.5 fogja használni. Ezek az információk szükségesek a az aktív-aktív átjáró csatlakozik a helyi VPN-eszközök beállításához. Az átjáró összes címre alatt az ábrán látható:
 
 ![aktív-aktív átjáró](./media/vpn-gateway-activeactive-rm-powershell/active-active-gw.png)
 
-Hello átjáró létrehozása után a átjáró tooestablish aktív-aktív létesítmények közötti és VNet – VNet-kapcsolatot is használhatja. a következő szakaszok hello keresztül hello lépéseket toocomplete hello gyakorlat részletesen ismerteti.
+Az átjáró létrehozása után az átjáró segítségével aktív-aktív létesítmények közötti és VNet – VNet-kapcsolatot létesíteni. A következő szakaszok haladhat végig a lépéseken a gyakorlatban befejezéséhez.
 
 ## <a name ="aacrossprem"></a>2. rész – egy aktív-aktív létesítmények közötti kapcsolat
-tooestablish létesítmények közötti kapcsolatot, a helyi hálózati átjáró toorepresent toocreate szüksége, és a helyszíni VPN-eszköz kapcsolat tooconnect hello Azure VPN-átjáró hello helyi hálózati átjáró. Ebben a példában hello Azure VPN gateway aktív-aktív módban van. Ennek eredményeképpen ellenére, hogy csak az egyiket a helyszíni VPN-eszközön (helyi hálózati átjáró) és egy kapcsolati erőforrást, mindkét Azure VPN gateway példányok fog létrehozni a S2S VPN-alagutat hello helyszíni eszköz.
+A létesítmények közötti kapcsolatot szüksége a helyszíni VPN-eszköz képviselő helyi hálózati átjáró és a kapcsolat az Azure VPN gateway kapcsolódni a helyi hálózati átjáró létrehozásához. Ebben a példában az Azure VPN gateway aktív-aktív módban van. Ennek eredményeképpen ellenére, hogy csak az egyiket a helyszíni VPN-eszközön (helyi hálózati átjáró) és egy kapcsolati erőforrást, mindkét Azure VPN gateway példányok fog létrehozni a S2S VPN-alagutat a helyszíni eszközök.
 
 A folytatás előtt ellenőrizze, hogy befejeződött [1. rész](#aagateway) ebben a gyakorlatban.
 
-### <a name="step-1---create-and-configure-hello-local-network-gateway"></a>1. lépés – létrehozása és hello helyi hálózati átjáró konfigurálása
+### <a name="step-1---create-and-configure-the-local-network-gateway"></a>1. lépés – létrehozása és a helyi hálózati átjáró konfigurálása
 #### <a name="1-declare-your-variables"></a>1. A változók deklarálása
-Ebben a gyakorlatban továbbra is toobuild hello konfigurációs hello ábrán is látható. Lehet, hogy tooreplace hello értékeket hasonlíthatja hello megjeleníteni kívánt toouse a konfigurációhoz.
+Ebben a gyakorlatban továbbra is a konfiguráció az ábrán is látható. Ne felejtse el az értékeket olyanokra cserélni, amelyeket a saját konfigurációjához kíván használni.
 
 ```powershell
 $RG5 = "TestAARG5"
@@ -181,57 +181,57 @@ $LNGASN5 = 65050
 $BGPPeerIP51 = "10.52.255.253"
 ```
 
-Néhány dolgot toonote hello helyi hálózati átjáró paraméterek kapcsolatban:
+Több helyi hálózati átjáró paraméterek kapcsolatban ügyeljen a következőkre:
 
-* hello helyi hálózati átjáró lehetnek azonos hello, vagy más helyre és az erőforrás csoport mint hello VPN-átjáró. Ez a példa bemutatja azokat a különböző erőforráscsoportokra, de hello Azure ugyanazon a helyen.
-* Ha csak egy helyszíni VPN-eszköz a fentiek szerint, hello aktív-aktív kapcsolat együttműködhet, függetlenül a BGP protokollt. A példa BGP hello létesítmények közötti kapcsolathoz.
-* Ha a BGP engedélyezve van, a toodeclare hello helyi hálózati átjáró szükséges hello előtag az hello állomás címe a VPN-eszköz a BGP-Társgép IP-cím. Egy /32 ebben az esetben a "10.52.255.253/32" előtaggal.
-* Ne feledje a helyszíni hálózatokhoz és az Azure VNet közötti különböző BGP ASN kell használnia. Ha azok hello vannak ugyanaz, meg kell toochange a VNet ASN Ha a helyszíni VPN-eszköz már használ hello ASN toopeer más BGP szomszédok.
+* A helyi hálózati átjáró lehet az ugyanazon vagy másik helyen és az erőforráscsoport a VPN-átjáróként. Ez a példa bemutatja azokat a különböző erőforráscsoportokra, de az azonos Azure-hely.
+* Ha csak egy helyszíni VPN-eszköz a fentiek szerint, az aktív-aktív kapcsolat együttműködhet, függetlenül a BGP protokollt. A példa BGP a létesítmények közötti kapcsolathoz.
+* A BGP engedélyezve van, a előtagot kell deklarálni helyi hálózati átjáró esetén az állomás címe a VPN-eszköz a BGP-Társgép IP-cím. Egy /32 ebben az esetben a "10.52.255.253/32" előtaggal.
+* Ne feledje a helyszíni hálózatokhoz és az Azure VNet közötti különböző BGP ASN kell használnia. Ha a egyeznek, a virtuális hálózat ASN módosításához, ha a helyszíni VPN-eszköz már használja az ASN a más BGP szomszédok egyenrangú szüksége.
 
-#### <a name="2-create-hello-local-network-gateway-for-site5"></a>2. Site5 hello helyi hálózati átjáró létrehozása
-A folytatás előtt győződjön meg arról, hogy továbbra is csatlakoztatott tooSubscription 1. Hello erőforráscsoport létrehozása, ha az még nem jött létre.
+#### <a name="2-create-the-local-network-gateway-for-site5"></a>2. A helyi hálózati átjáró létrehozása Site5
+Mielőtt folytatja, győződjön meg arról, hogy továbbra is csatlakozik az 1. előfizetéshez. Az erőforráscsoport létrehozása, ha az még nem jött létre.
 
 ```powershell
 New-AzureRmResourceGroup -Name $RG5 -Location $Location5
 New-AzureRmLocalNetworkGateway -Name $LNGName51 -ResourceGroupName $RG5 -Location $Location5 -GatewayIpAddress $LNGIP51 -AddressPrefix $LNGPrefix51 -Asn $LNGASN5 -BgpPeeringAddress $BGPPeerIP51
 ```
 
-### <a name="step-2---connect-hello-vnet-gateway-and-local-network-gateway"></a>2. lépés – hello hálózatok átjáró és a helyi hálózati átjáró
-#### <a name="1-get-hello-two-gateways"></a>1. Hello két átjáró beolvasása
+### <a name="step-2---connect-the-vnet-gateway-and-local-network-gateway"></a>2. lépés – a virtuális hálózat átjáró és a helyi hálózati átjáró
+#### <a name="1-get-the-two-gateways"></a>1. A két átjáró beolvasása
 
 ```powershell
 $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1  -ResourceGroupName $RG1
 $lng5gw1 = Get-AzureRmLocalNetworkGateway  -Name $LNGName51 -ResourceGroupName $RG5
 ```
 
-#### <a name="2-create-hello-testvnet1-toosite5-connection"></a>2. Hello TestVNet1 tooSite5 kapcsolat létrehozása
-Ebben a lépésben együtt fogja létrehozni hello kapcsolat a TestVNet1 tooSite5_1 túl beállítása "EnableBGP" $True.
+#### <a name="2-create-the-testvnet1-to-site5-connection"></a>2. A TestVNet1 Site5 kapcsolat létrehozása
+Ebben a lépésben hoz létre a kapcsolat a TestVNet1 való Site5_1 a "EnableBGP" $True értékre.
 
 ```powershell
 New-AzureRmVirtualNetworkGatewayConnection -Name $Connection151 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -LocalNetworkGateway2 $lng5gw1 -Location $Location1 -ConnectionType IPsec -SharedKey 'AzureA1b2C3' -EnableBGP True
 ```
 
 #### <a name="3-vpn-and-bgp-parameters-for-your-on-premises-vpn-device"></a>3. A helyszíni VPN-eszköz VPN és BGP paraméterei
-az alábbi példa hello beírja hello BGP konfigurációs szakasz azokat a helyszíni VPN-eszköz ebben a gyakorlatban hello paramétereket tartalmazza:
+Az alábbi példa az ebben a gyakorlatban a helyszíni VPN-eszköz a BGP konfigurációs szakaszba módba lép paramétereket tartalmazza:
 
     - Site5 ASN: 65050
     - BGP-IP-Site5: 10.52.255.253
-    - Előtagok tooannounce: (példa) 10.51.0.0/16 és 10.52.0.0/16
+    - Értesítés előtagok: (példa) 10.51.0.0/16 és 10.52.0.0/16
     - Az Azure VNet ASN: 65010
-    - Az Azure VNet BGP-IP-1: 10.12.255.4 az alagutat too40.112.190.5
-    - Az Azure VNet BGP IP 2: 10.12.255.5 az alagutat too138.91.156.129
-    - Statikus útvonal: cél 10.12.255.4/32, a következő ugrás hello VPN alagút felület too40.112.190.5 cél 10.12.255.5/32, a következő ugrás hello VPN alagút felület too138.91.156.129
-    - Többszörös ugrási eBGP: az ebgp-t az eszközön engedélyezve van, ha szükséges, győződjön meg arról, hogy hello "Többszörös ugrási" beállítás
+    - Az Azure VNet BGP-IP-1: 10.12.255.4 az alagutat a 40.112.190.5
+    - Az Azure VNet BGP IP 2: 10.12.255.5 az alagutat a 138.91.156.129
+    - Statikus útvonal: cél 10.12.255.4/32, a következő ugrás a VPN-alagút csatoló 40.112.190.5 a cél 10.12.255.5/32, a következő ugrás 138.91.156.129 a csatoló a VPN-alagút
+    - Többszörös ugrási eBGP: az ebgp-t az eszközön engedélyezve van, ha szükséges, győződjön meg arról, hogy a "Többszörös ugrási" lehetőséget
 
-hello kell kapcsolatot után néhány percet, és hello BGP társviszony-létesítési munkamenetet hello IPsec-kapcsolat létrejötte után elindul. Ebben a példában, amennyiben van beállítva csak egy helyszíni VPN-eszközön, lent látható módon hello diagram eredményezi:
+A kapcsolatot kell kialakítani, néhány perc múlva, és a BGP társviszony-létesítési munkamenetet IPsec-kapcsolat létrejötte után indul el. Ebben a példában, amennyiben csak egy helyszíni VPN-eszköz, ami azt eredményezi, az alábbi ábrán van beállítva:
 
 ![aktív-aktív-crossprem](./media/vpn-gateway-activeactive-rm-powershell/active-active.png)
 
-### <a name="step-3---connect-two-on-premises-vpn-devices-toohello-active-active-vpn-gateway"></a>3. lépés - csatlakozás két helyszíni VPN eszközök toohello aktív-aktív VPN-átjáró
-Ha két VPN-eszközök: hello megegyezik a helyszíni hálózat, kettős redundancia érhet el, kapcsolódó hello Azure VPN gateway toohello második VPN-eszköz.
+### <a name="step-3---connect-two-on-premises-vpn-devices-to-the-active-active-vpn-gateway"></a>3. lépés - a két helyszíni VPN-eszközök csatlakozni az aktív-aktív VPN-átjáró
+Ha két VPN-eszközök, a helyi hálózaton, kettős redundancia érhet el, a második VPN-eszköz az Azure VPN gatewayhez csatlakozó.
 
-#### <a name="1-create-hello-second-local-network-gateway-for-site5"></a>1. Site5 hello második helyi hálózati átjáró létrehozása
-Vegye figyelembe, hogy hello átjáró IP-cím, a címelőtagot és hello második helyi hálózati átjáró BGP társviszony-létesítési címe nem lehet átfedésben hello hello előző helyi hálózati átjáró megegyezik a helyi hálózaton.
+#### <a name="1-create-the-second-local-network-gateway-for-site5"></a>1. A második helyi hálózati átjáró létrehozása Site5
+Vegye figyelembe, hogy az átjáró IP-címe, a címelőtagot és a BGP társviszony-létesítési címét, a második helyi hálózati átjáró nem lehet átfedésben az előző helyi hálózati átjáró ugyanabban a helyi hálózaton.
 
 ```powershell
 $LNGName52 = "Site5_2"
@@ -242,8 +242,8 @@ $BGPPeerIP52 = "10.52.255.254"
 New-AzureRmLocalNetworkGateway -Name $LNGName52 -ResourceGroupName $RG5 -Location $Location5 -GatewayIpAddress $LNGIP52 -AddressPrefix $LNGPrefix52 -Asn $LNGASN5 -BgpPeeringAddress $BGPPeerIP52
 ```
 
-#### <a name="2-connect-hello-vnet-gateway-and-hello-second-local-network-gateway"></a>2. Hello hálózatok átjáró és hello második helyi hálózati átjáró
-Hozzon létre hello kapcsolat a TestVNet1 tooSite5_2 túl beállítása "EnableBGP" $True
+#### <a name="2-connect-the-vnet-gateway-and-the-second-local-network-gateway"></a>2. Csatlakoztassa a virtuális hálózat átjáró, a második helyi hálózati átjáró
+Hozza létre a kapcsolatot TestVNet1 Site5_2 a "EnableBGP" $True értékre
 
 ```powershell
 $lng5gw2 = Get-AzureRmLocalNetworkGateway -Name $LNGName52 -ResourceGroupName $RG5
@@ -252,36 +252,36 @@ New-AzureRmVirtualNetworkGatewayConnection -Name $Connection152 -ResourceGroupNa
 ```
 
 #### <a name="3-vpn-and-bgp-parameters-for-your-second-on-premises-vpn-device"></a>3. A második a helyszíni VPN-eszköz VPN és BGP paraméterei
-Hasonlóan alábbi listák hello paraméter megadja a hello második VPN-eszköz:
+Ehhez hasonlóan listája alább a paraméterek megadja azokat a második VPN-eszköz:
 
 ```
 - Site5 ASN            : 65050
 - Site5 BGP IP         : 10.52.255.254
-- Prefixes tooannounce : (for example) 10.51.0.0/16 and 10.52.0.0/16
+- Prefixes to announce : (for example) 10.51.0.0/16 and 10.52.0.0/16
 - Azure VNet ASN       : 65010
-- Azure VNet BGP IP 1  : 10.12.255.4 for tunnel too40.112.190.5
-- Azure VNet BGP IP 2  : 10.12.255.5 for tunnel too138.91.156.129
-- Static routes        : Destination 10.12.255.4/32, nexthop hello VPN tunnel interface too40.112.190.5
-                         Destination 10.12.255.5/32, nexthop hello VPN tunnel interface too138.91.156.129
-- eBGP Multihop        : Ensure hello "multihop" option for eBGP is enabled on your device if needed
+- Azure VNet BGP IP 1  : 10.12.255.4 for tunnel to 40.112.190.5
+- Azure VNet BGP IP 2  : 10.12.255.5 for tunnel to 138.91.156.129
+- Static routes        : Destination 10.12.255.4/32, nexthop the VPN tunnel interface to 40.112.190.5
+                         Destination 10.12.255.5/32, nexthop the VPN tunnel interface to 138.91.156.129
+- eBGP Multihop        : Ensure the "multihop" option for eBGP is enabled on your device if needed
 ```
 
-Miután hello (alagutak) van kapcsolat, meg kell kettős redundáns VPN-eszközök és a helyszíni hálózat és az Azure csatlakozás alagutak:
+Miután létrejött a kapcsolat (alagutak) is meg kell kettős redundáns VPN-eszközök és a helyszíni hálózat és az Azure csatlakozás alagutak:
 
 ![kettős-redundancia-crossprem](./media/vpn-gateway-activeactive-rm-powershell/dual-redundancy.png)
 
 ## <a name ="aav2v"></a>3. rész – egy aktív-aktív VNet – VNet-kapcsolatot létesíteni
 Ez a szakasz egy aktív-aktív VNet – VNet-kapcsolatot hoz létre a BGP. 
 
-az alábbi utasítások hello hello előző lépéseiből fent felsorolt továbbra is. Meg kell adnia a [1. rész](#aagateway) toocreate hello VPN Gateway a BGP és TestVNet1 konfigurálni. 
+Az alábbi útmutató a fent leírt lépések folytatása. Meg kell adnia a [1. rész](#aagateway) létrehozása és konfigurálása a TestVNet1 és a VPN-átjáró BGP-hez. 
 
-### <a name="step-1---create-testvnet2-and-hello-vpn-gateway"></a>1. lépés – TestVNet2 és hello VPN-átjáró létrehozása
-Fontos, hogy egyetlen virtuális hálózat tartományt nem átfedésben hello IP-címtér hello új virtuális hálózat TestVNet2, toomake.
+### <a name="step-1---create-testvnet2-and-the-vpn-gateway"></a>1. lépés – TestVNet2 és a VPN-átjáró létrehozása
+Győződjön meg arról, hogy az új virtuális hálózat, TestVNet2, az IP-címtér nem fedi át a virtuális hálózat tartomány egyik fontos.
 
-Ebben a példában a virtuális hálózatok hello toohello tartozik ugyanahhoz az előfizetéshez. Beállíthatja a VNet – VNet kapcsolatokhoz különböző előfizetések; Tekintse meg a túl[VNet – VNet-kapcsolatot konfiguráló](vpn-gateway-vnet-vnet-rm-ps.md) toolearn további részletek. Ellenőrizze, hogy hello "-EnableBgp $True" Ha hello kapcsolatok tooenable BGP létrehozása.
+Ebben a példában a virtuális hálózatok ugyanahhoz az előfizetéshez tartozik. Beállíthatja a VNet – VNet kapcsolatokhoz különböző előfizetések; Tekintse meg [VNet – VNet-kapcsolatot konfiguráló](vpn-gateway-vnet-vnet-rm-ps.md) többet is megtudhat. Mindenképpen adja hozzá a "-EnableBgp $True" a BGP engedélyezéséhez kapcsolatok létrehozásakor.
 
 #### <a name="1-declare-your-variables"></a>1. A változók deklarálása
-Lehet, hogy tooreplace hello értékeket hasonlíthatja hello megjeleníteni kívánt toouse a konfigurációhoz.
+Ne felejtse el az értékeket olyanokra cserélni, amelyeket a saját konfigurációjához kíván használni.
 
 ```powershell
 $RG2 = "TestAARG2"
@@ -306,7 +306,7 @@ $Connection21 = "VNet2toVNet1"
 $Connection12 = "VNet1toVNet2"
 ```
 
-#### <a name="2-create-testvnet2-in-hello-new-resource-group"></a>2. TestVNet2 hello új erőforráscsoport létrehozása
+#### <a name="2-create-testvnet2-in-the-new-resource-group"></a>2. TestVNet2 az új erőforráscsoport létrehozása
 
 ```powershell
 New-AzureRmResourceGroup -Name $RG2 -Location $Location2
@@ -318,8 +318,8 @@ $gwsub2 = New-AzureRmVirtualNetworkSubnetConfig -Name $GWSubName2 -AddressPrefix
 New-AzureRmVirtualNetwork -Name $VNetName2 -ResourceGroupName $RG2 -Location $Location2 -AddressPrefix $VNetPrefix21,$VNetPrefix22 -Subnet $fesub2,$besub2,$gwsub2
 ```
 
-#### <a name="3-create-hello-active-active-vpn-gateway-for-testvnet2"></a>3. TestVNet2 hello aktív-aktív VPN-átjáró létrehozása
-Kérelem két nyilvános IP-címek toobe lefoglalt toohello átjáró fog létrehozni a virtuális hálózat számára. Hello alhálózatot és IP-konfiguráció szükséges is fogja definiálni.
+#### <a name="3-create-the-active-active-vpn-gateway-for-testvnet2"></a>3. Az aktív-aktív VPN-átjáró TestVNet2 létrehozása
+Kérelem osztható ki a Vnethez tartozó létrehozhat az átjáró két nyilvános IP-címeket. Az alhálózat és a szükséges IP-konfigurációk is fogja definiálni.
 
 ```powershell
 $gw2pip1 = New-AzureRmPublicIpAddress -Name $GW2IPName1 -ResourceGroupName $RG2 -Location $Location2 -AllocationMethod Dynamic
@@ -331,17 +331,17 @@ $gw2ipconf1 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GW2IPconf1 -Subnet
 $gw2ipconf2 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GW2IPconf2 -Subnet $subnet2 -PublicIpAddress $gw2pip2
 ```
 
-MINT száma és hello "EnableActiveActiveFeature" jelző hello hello VPN-átjáró hozható létre. Vegye figyelembe, hogy az Azure VPN gatewayek kell bírálja felül hello alapértelmezett ASN. hello ASN-eket a hello csatlakoztatott Vnetekhez különböző tooenable BGP és a tranzit útválasztást kell lennie.
+Hozzon létre a VPN-átjáró AS számát és a "EnableActiveActiveFeature" jelzőt. Vegye figyelembe, hogy az Azure VPN gatewayek kell bírálja felül az alapértelmezett ASN. Az ASN-eket a csatlakoztatott Vnetek a BGP és a tranzit Útválasztás engedélyezése különbözőnek kell lennie.
 
 ```powershell
 New-AzureRmVirtualNetworkGateway -Name $GWName2 -ResourceGroupName $RG2 -Location $Location2 -IpConfigurations $gw2ipconf1,$gw2ipconf2 -GatewayType Vpn -VpnType RouteBased -GatewaySku VpnGw1 -Asn $VNet2ASN -EnableActiveActiveFeature
 ```
 
-### <a name="step-2---connect-hello-testvnet1-and-testvnet2-gateways"></a>2. lépés – hello TestVNet1 és TestVNet2 átjárók csatlakozás
-Ebben a példában mindkét átjárók vannak hello ugyanahhoz az előfizetéshez. Ennek végrehajtásáról a hello ugyanazon PowerShell-munkamenetben.
+### <a name="step-2---connect-the-testvnet1-and-testvnet2-gateways"></a>2. lépés - a TestVNet1 és TestVNet2 átjárók csatlakozás
+Ebben a példában két átjáró ugyanahhoz az előfizetéshez vannak. Ebben a lépésben a PowerShell-munkamenetben hajthatja végre.
 
 #### <a name="1-get-both-gateways"></a>1. Mindkét átjárók beolvasása
-Ellenőrizze, hogy jelentkezzen be, és csatlakozzon a tooSubscription 1.
+Jelentkezzen be, és kapcsolódjon az 1. előfizetéshez.
 
 ```powershell
 $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1
@@ -349,7 +349,7 @@ $vnet2gw = Get-AzureRmVirtualNetworkGateway -Name $GWName2 -ResourceGroupName $R
 ```
 
 #### <a name="2-create-both-connections"></a>2. Mindkét kapcsolatok létrehozása
-Ebben a lépésben létre fog hozni TestVNet1 tooTestVNet2 hello kapcsolatát, illetve hello kapcsolat TestVNet2 tooTestVNet1 a.
+Ebben a lépésben hoz létre a kapcsolat TestVNet1 és TestVNet2, és a kapcsolat a TestVNet2 TestVNet1 számára.
 
 ```powershell
 New-AzureRmVirtualNetworkGatewayConnection -Name $Connection12 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -VirtualNetworkGateway2 $vnet2gw -Location $Location1 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3' -EnableBgp $True
@@ -358,25 +358,25 @@ New-AzureRmVirtualNetworkGatewayConnection -Name $Connection21 -ResourceGroupNam
 ```
 
 > [!IMPORTANT]
-> Lehet, hogy tooenable BGP mindkét kapcsolatokhoz.
+> Győződjön meg arról, a BGP engedélyezéséhez mindkét kapcsolatokhoz.
 > 
 > 
 
-A lépések elvégzése után hello kapcsolat fog létrehozni, néhány perc múlva, és hello BGP társviszony-létesítési munkamenetet kell mentése hello VNet – VNet-kapcsolatot kettős redundanciával befejezése után:
+Társviszony-létesítési munkamenetet a kapcsolat néhány percet, és a BGP kell meghatározzák ezeket a lépéseket befejezését követően lesz mentése után a VNet – VNet kapcsolódást kettős redundanciával:
 
 ![aktív-aktív-v2v](./media/vpn-gateway-activeactive-rm-powershell/vnet-to-vnet.png)
 
 ## <a name ="aaupdate"></a>4. rész - frissítés meglévő átjáró aktív-aktív és aktív-készenléti állapotban lévő között
-hello utolsó részből megtudhatja, hogyan konfigurálhat egy meglévő Azure VPN gateway aktív tooactive aktív készenléti, vagy fordítva.
+Az utolsó szakasza ismerteti, hogyan konfigurálhat egy meglévő Azure VPN-átjárót aktív-készenléti állapotban lévő aktív-aktív módban, vagy fordítva.
 
 > [!NOTE]
-> Ez a szakasz egy már létrehozott VPN-átjáró a szabványos tooHighPerformance hello lépéseket tooresize egy örökölt Termékváltozat (régi SKU) tartalmazza. Ezeket a lépéseket ne frissítse egy régi örökölt SKU tooone hello az új SKU.
+> Ez a szakasz a lépésekből áll egy örökölt Termékváltozat (régi SKU) átméretezni egy már létrehozott VPN-átjáró a normál HighPerformance. Ezeket a lépéseket ne frissítse egy régi örökölt SKU egy új SKU.
 > 
 > 
 
-### <a name="configure-an-active-standby-gateway-tooactive-active-gateway"></a>Egy aktív-készenléti állapotban lévő tooactive aktív átjárók konfigurálása
+### <a name="configure-an-active-standby-gateway-to-active-active-gateway"></a>Egy aktív-készenléti állapotban lévő átjáró aktív-aktív átjáró konfigurálása
 #### <a name="1-gateway-parameters"></a>1. Átjáró paraméterek
-a következő példa hello egy aktív-készenléti állapotban lévő átjáró alakít át egy aktív-aktív átjárót. Toocreate kell egy másik nyilvános IP-címet, majd adja hozzá a második átjáró IP-konfigurációt. Az alábbi hello paramétereket használni:
+A következő példa egy aktív-készenléti állapotban lévő átjáró alakít át egy aktív-aktív átjárót. Hozzon létre egy másik nyilvános IP-címet, majd adja hozzá a második átjáró IP-konfiguráció kell. Alább látható használt paraméterek:
 
 ```powershell
 $GWName = "TestVNetAA1GW"
@@ -391,25 +391,25 @@ $gw = Get-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG
 $location = $gw.Location
 ```
 
-#### <a name="2-create-hello-public-ip-address-then-add-hello-second-gateway-ip-configuration"></a>2. Hello nyilvános IP-cím létrehozása, és vegye fel a hello második átjáró IP-konfiguráció
+#### <a name="2-create-the-public-ip-address-then-add-the-second-gateway-ip-configuration"></a>2. A nyilvános IP-cím létrehozása, majd adja hozzá a második átjáró IP-konfiguráció
 
 ```powershell
 $gwpip2 = New-AzureRmPublicIpAddress -Name $GWIPName2 -ResourceGroupName $RG -Location $location -AllocationMethod Dynamic
 Add-AzureRmVirtualNetworkGatewayIpConfig -VirtualNetworkGateway $gw -Name $GWIPconf2 -Subnet $subnet -PublicIpAddress $gwpip2
 ```
 
-#### <a name="3-enable-active-active-mode-and-update-hello-gateway"></a>3. Aktív-aktív mód és a frissítés hello átjáró engedélyezése
-Meg kell adni hello átjáró objektum PowerShell tootrigger hello tényleges frissítés. hello hello virtuális hálózati átjáró Termékváltozata is módosítani kell (átméretezett) tooHighPerformance szabványként korábban létrehozása óta.
+#### <a name="3-enable-active-active-mode-and-update-the-gateway"></a>3. Aktív-aktív mód engedélyezése és az átjáró frissítése
+Meg kell adni az átjáróobjektum a PowerShellben a tényleges frissítés indításához. A virtuális hálózati átjáró Termékváltozata is kell változtatni (átméretezett) HighPerformance szabványként korábban létrehozása óta.
 
 ```powershell
 Set-AzureRmVirtualNetworkGateway -VirtualNetworkGateway $gw -EnableActiveActiveFeature -GatewaySku HighPerformance
 ```
 
-A frissítés too45 30 percet is igénybe vehet.
+A frissítés a 30-45 percet is igénybe vehet.
 
-### <a name="configure-an-active-active-gateway-tooactive-standby-gateway"></a>Egy aktív-aktív tooactive-készenléti átjárók konfigurálása
+### <a name="configure-an-active-active-gateway-to-active-standby-gateway"></a>Egy aktív-aktív átjáró aktív-készenléti állapotban lévő átjáró konfigurálása
 #### <a name="1-gateway-parameters"></a>1. Átjáró paraméterek
-Használjon hello azonos, a fenti paraméterek hello IP-konfigurációt kívánja hello nevének beolvasása tooremove.
+Az ugyanezen paraméterekkel a fenti használatához el az eltávolítani kívánt IP-konfiguráció neve.
 
 ```powershell
 $GWName = "TestVNetAA1GW"
@@ -419,15 +419,15 @@ $gw = Get-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG
 $ipconfname = $gw.IpConfigurations[1].Name
 ```
 
-#### <a name="2-remove-hello-gateway-ip-configuration-and-disable-hello-active-active-mode"></a>2. Távolítsa el a hello átjáró IP-konfigurációt, és hello aktív-aktív mód letiltása
-Hasonlóképpen be kell állítani a hello átjáró objektum PowerShell tootrigger hello tényleges frissítés.
+#### <a name="2-remove-the-gateway-ip-configuration-and-disable-the-active-active-mode"></a>2. Távolítsa el az átjáró IP-konfiguráció és az aktív-aktív mód letiltása
+Hasonlóképpen be kell állítani a az átjáróobjektum PowerShell indításához az aktuális frissítés.
 
 ```powershell
 Remove-AzureRmVirtualNetworkGatewayIpConfig -Name $ipconfname -VirtualNetworkGateway $gw
 Set-AzureRmVirtualNetworkGateway -VirtualNetworkGateway $gw -DisableActiveActiveFeature
 ```
 
-A frissítés be too30 túl 45 percig is tarthat.
+A frissítés 45 percig is eltarthat 30-ig.
 
 ## <a name="next-steps"></a>Következő lépések
-Ha a kapcsolat befejeződött, a virtuális gépek tooyour virtuális hálózatok is hozzáadhat. A lépésekért lásd: [Virtuális gép létrehozása](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Miután a kapcsolat létrejött, hozzáadhat virtuális gépeket a virtuális hálózataihoz. A lépésekért lásd: [Virtuális gép létrehozása](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).

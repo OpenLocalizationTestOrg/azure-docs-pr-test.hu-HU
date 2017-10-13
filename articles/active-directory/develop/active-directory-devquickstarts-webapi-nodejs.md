@@ -1,6 +1,6 @@
 ---
-title: "Első lépések AD Node.js aaaAzure |} Microsoft Docs"
-description: "Hogyan toobuild egy Node.js REST webes API, amely integrálható az Azure AD használatára a hitelesítéshez."
+title: "Ismerkedés az Azure AD Node.js |} Microsoft Docs"
+description: "Hogyan hozhat létre a többi Node.js webes API-k, amely az Azure AD használatára a hitelesítéshez."
 services: active-directory
 documentationcenter: nodejs
 author: navyasric
@@ -15,98 +15,98 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: nacanuma
 ms.custom: aaddev
-ms.openlocfilehash: 512ae6de9acfde8b58c0447ab4a6b573fb6407c3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4f58177f540c14172d7ece8b4bc8c8a2b9787f8f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="get-started-with-web-apis-for-nodejs"></a>A Node.js webes API-knak az első lépései
 [!INCLUDE [active-directory-devguide](../../../includes/active-directory-devguide.md)]
 
-A *Passport* a Node.js-hez készült közbenső hitelesítési szoftver. Rugalmas és, moduláris Passport diszkréten eldobása tooany az Express-alapú vagy Restify webalkalmazás. Stratégiák széles választékát támogatja a hitelesítés és az felhasználónév és jelszó, Facebook, Twitter, és több. Kidolgoztunk is stratégiát a Microsoft Azure Active Directory (Azure AD). Azt telepítenie kell a modult, és vegye fel a Microsoft Azure Active Directory hello `passport-azure-ad` beépülő modult.
+A *Passport* a Node.js-hez készült közbenső hitelesítési szoftver. Rugalmas és, moduláris Passport diszkréten eldobja bármely Express-alapú vagy Restify webes alkalmazást. Stratégiák széles választékát támogatja a hitelesítés és az felhasználónév és jelszó, Facebook, Twitter, és több. Kidolgoztunk is stratégiát a Microsoft Azure Active Directory (Azure AD). Azt telepítenie kell a modult, és vegye fel a Microsoft Azure Active Directory `passport-azure-ad` beépülő modult.
 
-toodo, kell:
+Ehhez a következőket kell tennie:
 
 1. Alkalmazás regisztrálása az Azure AD-ben.
-2. Állítsa be az alkalmazás toouse Passport által `passport-azure-ad` beépülő modult.
-3. Ügyfél alkalmazás toocall hello tooDo lista webes API-k konfigurálása.
+2. Az alkalmazás beállítása a Passport által használandó `passport-azure-ad` beépülő modult.
+3. A teendőlista webes API hívásához ügyfélalkalmazás konfigurálása.
 
-az oktatóanyag kódjának hello kezelt [a Githubon](https://github.com/Azure-Samples/active-directory-node-webapi).
+Az oktatóanyag kódjának [karbantartása a GitHubon történik](https://github.com/Azure-Samples/active-directory-node-webapi).
 
 > [!NOTE]
-> Ez a cikk nem fedi le, hogyan tooimplement bejelentkezés, -előfizetés, vagy az Azure AD B2C felügyeleti profilt. A cikk foglalkozik a hívó webes API-k hello felhasználó már hitelesítése után.  Azt javasoljuk, hogy a kiindulási pont [hogyan Azure Active Directory dokumentummal toointegrate](active-directory-how-to-integrate.md) toolearn hello alapokról az Azure Active Directory.
+> A cikk nem tér ki, megvalósítható bejelentkezési, regisztrációs vagy Azure AD B2C profilok kezelése. A cikk foglalkozik hívó Web API-kat a felhasználó már hitelesítése után.  Azt javasoljuk, hogy a kiindulási pont [integrálása az Azure Active Directory-dokumentum](active-directory-how-to-integrate.md) az Azure Active Directory alapjainak megismeréséhez.
 >
 >
 
-A futó példa github MIT licenccel, az összes hello forráskódja már megjelent úgy érzi, hogy szabad tooclone (vagy még jobban elágazás), és visszajelzést, és lekéréses kérelmeket.
+Azt is, amely a futó példa github MIT licenccel a forráskód, így nyugodtan klón (vagy még jobban elágazás), és visszajelzést és lekéréses kérelmek.
 
 ## <a name="about-nodejs-modules"></a>A Node.js modulok kapcsolatos
-Ebben a bemutatóban a Node.js modulok használjuk. A modulokra betölthető JavaScript-csomagok, amelyek bizonyos funkciók biztosítanak az alkalmazáshoz. Általában modulok használatával telepítse az NPM parancssori eszköz Node.js hello hello NPM telepítési könyvtárában. Azonban néhány modulok, például HTTP-modulja hello hello core Node.js csomagban található.
+Ebben a bemutatóban a Node.js modulok használjuk. A modulokra betölthető JavaScript-csomagok, amelyek bizonyos funkciók biztosítanak az alkalmazáshoz. Általában telepítése modult az NPM telepítési könyvtárában a Node.js egy NPM parancssori eszköz használatával. Azonban néhány modulok, például a HTTP-modulja az alapvető Node.js csomagban található.
 
-Telepített modulok menti a hello **node_modules** könyvtárhoz, a Node.js telepítési könyvtár hello gyökerében. Minden hello modulja **node_modules** directory kezeli a saját **node_modules** , amelyektől függ modulokat tartalmazó könyvtárat. Emellett minden egyes szükséges a modulnak a **node_modules** könyvtár. A rekurzív könyvtárstruktúrát hello függőségi lánc jelöli.
+Telepített modulok lesznek mentve a **node_modules** könyvtárhoz, a Node.js telepítőkönyvtár gyökerében. Minden modulja a **node_modules** directory kezeli a saját **node_modules** , amelyektől függ modulokat tartalmazó könyvtárat. Emellett minden egyes szükséges a modulnak a **node_modules** könyvtár. A rekurzív könyvtárstruktúrát a függőségi láncból jelöli.
 
-Ez a függőségi lánc struktúra egy nagyobb alkalmazás erőforrásigényét eredményez. De azt is garantálja, hogy minden függőség teljesülnek, és adott hello verziójának hello modulok fejlesztési használt termelési is használja. Ez sokkal kiszámíthatóbbá teszi hello éles alkalmazása működését, és megakadályozza, hogy a versioning problémák, amelyek hatással lehetnek a felhasználók.
+Ez a függőségi lánc struktúra egy nagyobb alkalmazás erőforrásigényét eredményez. De azt is biztosítja, hogy az összes függősége teljesítésének és szolgál, hogy a modulok szolgál a fejlesztői verzióját is éles. Ez sokkal kiszámíthatóbbá teszi a termelési alkalmazása működését, és megakadályozza, hogy a versioning problémák, amelyek hatással lehetnek a felhasználók.
 
 ## <a name="step-1-register-an-azure-ad-tenant"></a>1. lépés: Az Azure AD-bérlő regisztrálása
-toouse ez mintát, az Azure Active Directory-bérlő van szüksége. Ha nem tudja, milyen a bérlő vagy hogyan tooget, lásd [hogyan tooget az Azure AD bérlői](active-directory-howto-tenant.md).
+Ez a minta használatához szüksége van az Azure Active Directory-bérlő. Ha még nem meg arról, hogy milyen a bérlő vagy az beszerzése, lásd: [az Azure AD-bérlő beszerzése](active-directory-howto-tenant.md).
 
 ## <a name="step-2-create-an-application"></a>2. lépés: Az alkalmazás létrehozása
-Ezután alkalmazást hoz létre a címtárban, hogy az Azure AD által biztosított információkat, hogy kell-e toosecurely kommunikálni az alkalmazást.  Hello ügyfélalkalmazást és a webes API jelölik egyetlen **Alkalmazásazonosító** ebben az esetben, mert alkalmazássá logikai.  hajtsa végre az alkalmazást, és egy toocreate [ezeket az utasításokat](active-directory-how-applications-are-added.md). A sor üzleti alkalmazás készítésekor [hasznosak lehetnek a további utasítások](../active-directory-applications-guiding-developers-for-lob-applications.md).
+Ezután hoz létre egy alkalmazást a címtárában, amely biztosítja, hogy az alkalmazás biztonságos kommunikációhoz szükséges információkat az Azure AD.  Az ügyfélalkalmazást és a webes API-t egyetlen jelölik **Alkalmazásazonosító** ebben az esetben, mert alkalmazássá logikai.  Az alkalmazást a következő [utasítások](active-directory-how-applications-are-added.md) alapján hozza létre. A sor üzleti alkalmazás készítésekor [hasznosak lehetnek a további utasítások](../active-directory-applications-guiding-developers-for-lob-applications.md).
 
-egy alkalmazás toocreate:
+Alkalmazás létrehozása:
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
 
-2. A hello felső menüben válassza ki a fiókját. Ekkor a hello **Directory** menüben válassza ki a kívánt tooregister hello Active Directory-bérlőt az alkalmazást.
+2. A felső menüben válassza ki a fiókját. Ekkor a a **Directory** menüben válassza ki, hol szeretné az alkalmazás regisztrálása az Active Directory-bérlő.
 
-3. Hello hello bal oldali menüben válasszon ki **több szolgáltatások**, majd válassza ki **Azure Active Directory**.
+3. A bal oldali menüben válasszon ki **több szolgáltatások**, majd válassza ki **Azure Active Directory**.
 
 4. Válassza ki **App regisztrációk**, majd válassza ki **Hozzáadás**.
 
-5. Kövesse az utasításokat toocreate hello egy **webalkalmazás és/vagy WebAPI**.
+5. Kövesse a megjelenő utasításokat hozzon létre egy **webalkalmazás és/vagy WebAPI**.
 
-      * Hello **neve** hello az alkalmazás az alkalmazás tooend felhasználók ismerteti.
+      * A **neve** , az alkalmazás írja le az alkalmazást a végfelhasználók számára.
 
-      * Hello **bejelentkezési URL-cím** hello alap URL-cím az alkalmazás.  az alapértelmezett URL-címe hello mintakód hello `https://localhost:8080`.
+      * A **bejelentkezési URL-cím** az alkalmazás alap URL-címe.  Az alapértelmezett URL-címe mintakódot `https://localhost:8080`.
 
-6. Miután regisztrálta, az Azure AD rendeli hozzá az alkalmazás egy egyedi azonosítót. Ez az érték kell a következő szakaszok hello, ezért másolja hello alkalmazás oldalról.
+6. Miután regisztrálta, az Azure AD rendeli hozzá az alkalmazás egy egyedi azonosítót. Ez az érték kell a következő szakaszokban lévő, másolja az alkalmazás oldalról.
 
-7. A hello **beállítások** -> **tulajdonságok** az alkalmazás lapján hello App ID URI frissítése. Hello **App ID URI** az alkalmazás egyedi azonosítója. hello konvenció: toouse `https://<tenant-domain>/<app-name>`, például: `https://contoso.onmicrosoft.com/my-first-aad-app`.
+7. Az a **beállítások** -> **tulajdonságok** az alkalmazás lapján frissítse a App ID URI. A **App ID URI** az alkalmazás egyedi azonosítója. Az egyezmény használandó `https://<tenant-domain>/<app-name>`, például: `https://contoso.onmicrosoft.com/my-first-aad-app`.
 
-8. Hozzon létre egy **kulcs** hello az alkalmazás **beállítások** lapon, majd másolja ki valahová. Szüksége lehet rájuk hamarosan.
+8. Hozzon létre egy **kulcs** az alkalmazás a **beállítások** lapon, majd másolja ki valahová. Szüksége lehet rájuk hamarosan.
 
 ## <a name="step-3-download-nodejs-for-your-platform"></a>3. lépés: A Node.js letöltése a platformra
-toosuccessfully Ez a minta használatához rendelkeznie kell a Node.js telepített és működő.
+A minta használatához rendelkeznie kell a Node.js telepített és működő verziójával.
 
 Telepítse a Node.js-t [http://nodejs.org](http://nodejs.org).
 
 ## <a name="step-4-install-mongodb-on-your-platform"></a>4. lépés: Telepítse MongoDB a platformon
-toosuccessfully Ez a minta használatához rendelkeznie kell a MongoDB telepített és működő. MongoDB toomake hello állandó REST API különböző kiszolgálópéldányok közötti használhatja.
+Ez a minta használatához a MongoDB telepített és működő kell rendelkeznie. A mongodb a REST API különböző kiszolgálópéldányok közötti állandó ellenőrizze.
 
 Telepítse a mongodb-t a [http://mongodb.org](http://www.mongodb.org).
 
 > [!NOTE]
-> Ez a forgatókönyv azt feltételezi, hogy a használt hello alapértelmezett telepítését és kiszolgálóvégpontjait mongodb, amelyek írásának időpontjában hello mongodb://localhost.
+> Ez a forgatókönyv azt feltételezi, hogy kell használni az alapértelmezett telepítését és kiszolgálóvégpontjait a MongoDB, amely írásának időpontjában mongodb://localhost.
 >
 >
 
-## <a name="step-5-install-hello-restify-modules-in-your-web-api"></a>5. lépés: Hello Restify-modulok telepítése a webes API
-Használunk Restify toobuild REST API-n. A restify egy minimális igényű és rugalmas Node.js alkalmazási keretrendszer származó Express van. Számos hatékony funkciót kínál a Connectre épített REST API-k létrehozásához.
+## <a name="step-5-install-the-restify-modules-in-your-web-api"></a>5. lépés: A Restify-modulok telepítése a webes API
+Restify hozhat létre REST API-n használjuk. A restify egy minimális igényű és rugalmas Node.js alkalmazási keretrendszer származó Express van. Számos hatékony funkciót kínál a Connectre épített REST API-k létrehozásához.
 
 ### <a name="install-restify"></a>A Restify telepítése
-1. Hello parancssorból módosítsa a könyvtárakat toohello **azuread** könyvtár. Ha hello **azuread** könyvtár nem létezik, hozza létre.
+1. A parancssorban lépjen a **azuread** könyvtár. Ha a **azuread** könyvtár nem létezik, hozza létre.
 
         `cd azuread - or- mkdir azuread; cd azuread`
 
-2. Írja be a következő parancs hello:
+2. Írja be a következő parancsot:
 
     `npm install restify`
 
     Ez a parancs elvégzi a Restify telepítését.
 
 #### <a name="did-you-get-an-error"></a>Hibaüzenetet kapott?
-Egyes operációs rendszerek NPM használata esetén előfordulhat, hogy hibaüzenet, amely szerint **hiba: EPERM, chmod "/ usr/helyi/bin /..."** és, hogy rendszergazdaként futó hello fiók megpróbál javaslatot. Ha ez történik, a hello sudo parancs toorun NPM magasabb jogosultsági szinten.
+Egyes operációs rendszerek NPM használata esetén előfordulhat, hogy hibaüzenet, amely szerint **hiba: EPERM, chmod "/ usr/helyi/bin /..."** és rendszergazdaként futtatja a figyelembe próbálja javaslatot. Ha ez történik, a sudo utasítás használatával NPM futtassa magasabb jogosultsági szinten.
 
 #### <a name="did-you-get-an-error-regarding-dtrace"></a>Vonatkozó DTRACE hibaüzenetet kapott?
 Ilyen hiba láthatja a Restify telepítése során:
@@ -129,7 +129,7 @@ npm WARN optional dep failed, continuing dtrace-provider@0.2.8
 ```
 A Restify a DTrace segítségével biztosít a REST-hívások követésére szolgáló funkciókat. Számos operációs rendszer azonban nem rendelkezik DTrace. Ezeket a hibákat nyugodtan figyelmen kívül hagyhatja.
 
-a parancs kimenetének hello alábbihoz hasonló toohello kimenete a következő:
+Ez a parancs kimenete a következő kimeneti hasonlóan kell kinéznie:
 
     restify@2.6.1 node_modules/restify
     ├── assert-plus@0.1.4
@@ -154,17 +154,17 @@ a parancs kimenetének hello alábbihoz hasonló toohello kimenete a következő
 
 
 ## <a name="step-6-install-passportjs-in-your-web-api"></a>6. lépés: Telepítse Passport.js a webes API
-A [Passport](http://passportjs.org/) a Node.js-hez készült közbenső hitelesítési szoftver. Rugalmas és, moduláris Passport diszkréten eldobása tooany az Express-alapú vagy Restify webalkalmazás. Stratégiák széles választékát támogatja a hitelesítés és az felhasználónév és jelszó, Facebook, Twitter, és több.
+A [Passport](http://passportjs.org/) a Node.js-hez készült közbenső hitelesítési szoftver. Rugalmas és, moduláris Passport diszkréten eldobja bármely Express-alapú vagy Restify webes alkalmazást. Stratégiák széles választékát támogatja a hitelesítés és az felhasználónév és jelszó, Facebook, Twitter, és több.
 
-Az Azure Active Directory kidolgoztunk is stratégiát. Azt telepítenie kell a modult, és adja hozzá a hello Azure Active Directory stratégiai bővítményt.
+Az Azure Active Directory kidolgoztunk is stratégiát. Azt telepítenie kell a modult, és adja hozzá az Azure Active Directory stratégiai bővítményt.
 
-1. Hello parancssorból módosítsa a könyvtárakat toohello **azuread** könyvtár.
+1. A parancssorban lépjen a **azuread** könyvtár.
 
-2. tooinstall passport.js, adja meg a következő parancs hello:
+2. Passport.js telepítéséhez adja meg a következő parancsot:
 
     `npm install passport`
 
-    hello parancs kimenetében hello alábbihoz hasonló toohello következő:
+    A parancs a következőhöz hasonlóan kell kinéznie:
 
 ``
         passport@0.1.17 node_modules\passport
@@ -172,21 +172,21 @@ Az Azure Active Directory kidolgoztunk is stratégiát. Azt telepítenie kell a 
         └── pkginfo@0.2.3
 ``
 
-## <a name="step-7-add-passport-azure-ad-tooyour-web-api"></a>7. lépés:, Adja hozzá a Passport-Azure-AD tooyour webes API
-Ezután azt hozzá hello OAuth stratégiát `passport-azure-ad`, a stratégiacsomag szolgál, amelyek kapcsolódnak az Azure Active Directory tooPassport. Ez a stratégia használható a tulajdonosi jogkivonatokhoz a REST API minta használjuk.
+## <a name="step-7-add-passport-azure-ad-to-your-web-api"></a>7. lépés: A Passport-Azure-AD hozzá a web API
+Ezután azt hozzá az OAuth stratégiát `passport-azure-ad`, a stratégiacsomag szolgál az Azure Active Directory Passport-hez. Ez a stratégia használható a tulajdonosi jogkivonatokhoz a REST API minta használjuk.
 
 > [!NOTE]
-> Bár az OAuth2 keretrendszerében, amelyben bármely ismert jogkivonat típus kibocsáthatja, csak bizonyos tokentípusokat gyakran használják. Tulajdonosi jogkivonatok olyan végpontok védelmére szolgáló leggyakrabban használt hello jogkivonatok. Az OAuth2 token legszélesebb körben kiadott hello típusú. Számos implementáció eleve feltételezik, hogy hello csak ilyen típusú kiállított jogkivonatokat tulajdonosi jogkivonatoknak nevezzük.
+> Bár az OAuth2 keretrendszerében, amelyben bármely ismert jogkivonat típus kibocsáthatja, csak bizonyos tokentípusokat gyakran használják. Tulajdonosi jogkivonatok a leggyakrabban használt jogkivonatokat a végpontok védelmére. A leggyakrabban kibocsátott típusú lexikális elem szerepel az OAuth2. Számos implementáció eleve feltételezik, hogy csak az ilyen típusú kiadott jogkivonatokat, tulajdonosi jogkivonatoknak nevezzük.
 >
 >
 
-Hello parancssorból módosítsa a könyvtárakat toohello **azuread** könyvtár.
+A parancssorban lépjen a **azuread** könyvtár.
 
-Típus hello következő parancsot a tooinstall hello Passport.js `passport-azure-ad module`:
+Telepítéséhez írja be a következő parancsot a Passport.js `passport-azure-ad module`:
 
 `npm install passport-azure-ad`
 
-hello hello parancs kimenete a következő kimeneti hasonló toohello kell kinéznie:
+A parancs a következő kimeneti hasonlóan kell kinéznie:
 
 
     passport-azure-ad@1.0.0 node_modules/passport-azure-ad
@@ -204,32 +204,32 @@ hello hello parancs kimenete a következő kimeneti hasonló toohello kell kiné
 
 
 
-## <a name="step-8-add-mongodb-modules-tooyour-web-api"></a>8. lépés: A MongoDB modulok tooyour webes API hozzáadása
-Az adattároló azt a mongodb. Éppen ezért ellenőriznünk kell tooinstall hello széles körben használt beépülő modul hívott Mongoose toomanage modellek és sémák. Mongodb-protokolltámogatással (amelyet a MongoDB is neveznek) kell tooinstall hello adatbázis-illesztőprogramot is.
+## <a name="step-8-add-mongodb-modules-to-your-web-api"></a>8. lépés: A MongoDB-modulok hozzáadása a webes API-hoz
+Az adattároló azt a mongodb. Ezért azt telepítenie kell a széles körben használt beépülő modul hívott Mongoose modellek és sémák kezelésére. Azt is telepítenie kell az adatbázis-illesztőprogramját mongodb-protokolltámogatással (amelyet a MongoDB is neveznek).
 
  `npm install mongoose`
 
 ## <a name="step-9-install-additional-modules"></a>9. lépés: További modulok telepítése
-Ezután a fennmaradó szükséges modulokat hello telepítjük.
+Ezután a további szükséges modulokat telepítésére.
 
-1. Hello parancssorból módosítsa a könyvtárakat toohello **azuread** mappát, ha már nem létezik.
+1. A parancssorban lépjen a **azuread** mappát, ha már nem létezik.
 
     `cd azuread`
 
-2. Adja meg a következő parancsok tooinstall hello ezeket a modulokat a **node_modules** könyvtár:
+2. Adja meg a következő parancsok futtatásával telepítse ezeket a modulokat a **node_modules** könyvtár:
 
     * `npm install assert-plus`
     * `npm install bunyan`
     * `npm update`
 
 ## <a name="step-10-create-a-serverjs-with-your-dependencies"></a>10. lépés: Hozzon létre egy server.js a függőségek
-hello server.js fájl hello funkcióinak többségét biztosít a webes API-kiszolgálóhoz. Azt adja hozzá a kódfájl toothis része. Élesben való használat esetén javasoljuk, hogy Ön azonosítóterületen kisebb fájlok, például különálló útvonalak és vezérlők hello funkciókat. Ebben a bemutatóban a server.js használjuk funkcióhoz.
+A server.js fájl legtöbb funkciója biztosítja a web API-kiszolgálóhoz. Jelenleg felvenni található kód jelentős részét ehhez a fájlhoz. Élesben való használat azt javasoljuk, hogy refactor-e a kisebb fájlok, például különálló útvonalak és vezérlők funkciókat. Ebben a bemutatóban a server.js használjuk funkcióhoz.
 
-1. Hello parancssorból módosítsa a könyvtárakat toohello **azuread** mappát, ha már nem létezik.
+1. A parancssorban lépjen a **azuread** mappát, ha már nem létezik.
 
     `cd azuread`
 
-2. Hozzon létre egy `server.js` a kedvenc szerkesztő fájlt, és adja hozzá a következő információ hello:
+2. Hozzon létre egy `server.js` a kedvenc szerkesztő fájlt, és adja meg a következő információkat:
 
     ```Javascript
         'use strict';
@@ -250,50 +250,50 @@ hello server.js fájl hello funkcióinak többségét biztosít a webes API-kisz
       var BearerStrategy = require('passport-azure-ad').BearerStrategy;
     ```
 
-3. Hello fájl mentéséhez. Tooit hamarosan még visszatérünk.
+3. Mentse a fájlt. Még visszatérünk rá hamarosan.
 
-## <a name="step-11-create-a-config-file-toostore-your-azure-ad-settings"></a>11. lépés: Hozzon létre egy konfigurációs fájl toostore az Azure AD-beállítások
-Ez a kódfájl hello konfigurációs paraméterek az Azure Active Directory portálon tooPassport.js a adja át. Ezeket a konfigurációs értékeket létrehozott hello webes API toohello portál hello forgatókönyv első része hello való hozzáadásakor. Milyen tooput hello értékeket a következő paraméterek közül azt ismertetik, hello kód másolását követően.
+## <a name="step-11-create-a-config-file-to-store-your-azure-ad-settings"></a>11. lépés: Az Azure AD-beállítások tárolására konfigurációs fájl létrehozása
+Ez a kódfájl adja át a konfigurációs paraméterek az Azure Active Directory portálon Passport.js. A webes API-t a portálhoz, a forgatókönyv első része az hozzáadásakor létrehozta ezeket a konfigurációs értékeket. A paraméterek kitöltésének módját a kód másolását követően ismertetjük.
 
-1. Hello parancssorból módosítsa a könyvtárakat toohello **azuread** mappát, ha már nem létezik.
+1. A parancssorban lépjen a **azuread** mappát, ha már nem létezik.
 
     `cd azuread`
 
-2. Hozzon létre egy `config.js` a kedvenc szerkesztő fájlt, és adja hozzá a következő információ hello:
+2. Hozzon létre egy `config.js` a kedvenc szerkesztő fájlt, és adja meg a következő információkat:
 
     ```Javascript
          exports.creds = {
              mongoose_auth_local: 'mongodb://localhost/tasklist', // Your mongo auth uri goes here
              clientID: 'your client ID',
              audience: 'your application URL',
-            // you cannot have users from multiple tenants sign in tooyour server unless you use hello common endpoint
+            // you cannot have users from multiple tenants sign in to your server unless you use the common endpoint
           // example: https://login.microsoftonline.com/common/.well-known/openid-configuration
              identityMetadata: 'https://login.microsoftonline.com/<your tenant id>/.well-known/openid-configuration',
-             validateIssuer: true, // if you have validation on, you cannot have users from multiple tenants sign in tooyour server
+             validateIssuer: true, // if you have validation on, you cannot have users from multiple tenants sign in to your server
              passReqToCallback: false,
-             loggingLevel: 'info' // valid are 'info', 'warn', 'error'. Error always goes toostderr in Unix.
+             loggingLevel: 'info' // valid are 'info', 'warn', 'error'. Error always goes to stderr in Unix.
 
          };
     ```
-3. Hello fájl mentéséhez.
+3. Mentse a fájlt.
 
-## <a name="step-12-add-configuration-values-tooyour-serverjs-file"></a>12. lépés: A konfigurációs értékek tooyour server.js fájl felvétele
-Igazolnia kell tooread ezeket az értékeket a hello .config fájlból létrehozott alkalmazás között. toodo, jelenleg felvenni hello .config kiterjesztésű fájlt kötelező erőforrásként az alkalmazásban. Majd hello globális változók toomatch hello változók hivatott hello config.js dokumentum.
+## <a name="step-12-add-configuration-values-to-your-serverjs-file"></a>12. lépés: A konfigurációs értékek hozzáadása a server.js fájlhoz
+Igazolnia kell olvasni ezeket az értékeket az alkalmazás között létrehozott .config kiterjesztésű fájl. Ehhez az szükséges, jelenleg felvenni a .config fájl kötelező erőforrásként az alkalmazásban. Majd hivatott meg kell egyeznie a változók a config.js dokumentumban a globális változókat.
 
-1. Hello parancssorból módosítsa a könyvtárakat toohello **azuread** mappát, ha már nem létezik.
+1. A parancssorban lépjen a **azuread** mappát, ha már nem létezik.
 
     `cd azuread`
 
-2. Nyissa meg a `server.js` a kedvenc szerkesztő fájlt, és adja hozzá a következő információ hello:
+2. Nyissa meg a `server.js` a kedvenc szerkesztő fájlt, és adja meg a következő információkat:
 
     ```Javascript
     var config = require('./config');
     ```
-3. Majd adja hozzá az új szakasz túl`server.js` a hello a következő kódot:
+3. Adja meg az új szakasz `server.js` az alábbi kódra:
 
     ```Javascript
     var options = {
-        // hello URL of hello metadata document for your app. We will put hello keys for token validation from hello URL found in hello jwks_uri tag of hello in hello metadata.
+        // The URL of the metadata document for your app. We will put the keys for token validation from the URL found in the jwks_uri tag of the in the metadata.
         identityMetadata: config.creds.identityMetadata,
         clientID: config.creds.clientID,
         validateIssuer: config.creds.validateIssuer,
@@ -303,7 +303,7 @@ Igazolnia kell tooread ezeket az értékeket a hello .config fájlból létrehoz
 
     };
 
-    // Array toohold logged in users and hello current logged in user (owner).
+    // Array to hold logged in users and the current logged in user (owner).
     var users = [];
     var owner = null;
 
@@ -323,7 +323,7 @@ Igazolnia kell tooread ezeket az értékeket a hello .config fájlból létrehoz
             }, ]
     });
 
-      // If hello logging level is specified, switch tooit.
+      // If the logging level is specified, switch to it.
       if (config.creds.loggingLevel) { log.levels("console", config.creds.loggingLevel); }
 
     // MongoDB setup.
@@ -332,42 +332,42 @@ Igazolnia kell tooread ezeket az értékeket a hello .config fájlból létrehoz
     var serverURI = (process.env.PORT) ? config.creds.mongoose_auth_mongohq : config.creds.mongoose_auth_local;
     ```
 
-4. Hello fájl mentéséhez.
+4. Mentse a fájlt.
 
-## <a name="step-13-add-hello-mongodb-model-and-schema-information-by-using-mongoose"></a>13. lépés: Hello MongoDB modell és séma információk hozzáadása a Mongoose segítségével
-Ez a felkészítés most toostart fizető, mivel ezek a fájlok egy REST API-szolgáltatásba kombinációja lesz.
+## <a name="step-13-add-the-mongodb-model-and-schema-information-by-using-mongoose"></a>13. lépés: A MongoDB-modellre és -sémára információk hozzáadása a Mongoose segítségével
+Ez a felkészítés érintetlen most fizető, mivel ezek a fájlok egyesítése azt REST API-szolgáltatás elindításához.
 
-Ennél a bemutatónál használjuk MongoDB toostore a feladatok, lásd a 4. lépés.
+Jelen kalauz használatához a MongoDB a feladatok tárolására, lásd a 4. lépés használjuk.
 
-A hello `config.js` fájlt, hogy a 11. lépésben létrehozott, az adatbázis hívtuk `tasklist`, mert, hogy mi azt put hello végén a **mogoose_auth_local** kapcsolat URL-címet. Ez az adatbázis előre a MongoDB-ben nem kell toocreate. Ehelyett MongoDB hoz létre ez az USA hello először futtassa a kiszolgálói alkalmazás (feltéve, hogy hello az adatbázis nem létezik).
+Az a `config.js` fájlt, hogy a 11. lépésben létrehozott, az adatbázis hívtuk `tasklist`, mert, hogy mi azt put végén a **mogoose_auth_local** kapcsolat URL-címet. Ezt az adatbázist nem szükséges előre létrehozni a MongoDB-ben. Ehelyett MongoDB hoz létre ez az USA első alkalommal történő futtatásakor a kiszolgálói alkalmazás (feltéve, hogy az adatbázis nem létezik).
 
-Most, hogy megadta, hogy rendelkezik hello server melyik MongoDB-adatbázist toouse tapasztalatairól, igazolnia kell toowrite néhány további kódrészletet toocreate hello modell és séma a kiszolgálói feladatokhoz.
+Most, hogy megadta, hogy rendelkezik a kiszolgáló melyik MongoDB-adatbázist kell használni, azt kell írnia a tartozó modell és séma a kiszolgálói feladatok létrehozásához további kódot.
 
-### <a name="discussion-of-hello-model"></a>Az ismertető hello modell
+### <a name="discussion-of-the-model"></a>Az ismertető a modell
 A sémamodell felettébb egyszerű. Szükség szerint bontsa ki.
 
-: Hello név hello személy, aki hozzá van rendelve toohello feladat. A **karakterlánc**.
+: A név a feladathoz rendelt személy. A **karakterlánc**.
 
-FELADAT: hello feladat magát. A **karakterlánc**.
+FELADAT: A feladat magát. A **karakterlánc**.
 
-: Hello dátum hello tevékenység egy lejárt. A **DATETIME**.
+DÁTUM: Az a dátum, a feladat miatt. A **DATETIME**.
 
-BEFEJEZŐDÖTT: Ha hello feladat befejeződött-e. A **LOGIKAI**.
+BEFEJEZŐDÖTT: Ha a feladat befejeződött-e. A **LOGIKAI**.
 
-### <a name="creating-hello-schema-in-hello-code"></a>Hello kódban hello séma létrehozása
-1. Hello parancssorból módosítsa a könyvtárakat toohello **azuread** mappát, ha már nem létezik.
+### <a name="creating-the-schema-in-the-code"></a>A kódban a séma létrehozása
+1. A parancssorban lépjen a **azuread** mappát, ha már nem létezik.
 
     `cd azuread`
 
-2. Nyissa meg a `server.js` a kedvenc szerkesztő fájlt, és adja hozzá a következő információ hello konfigurációs bejegyzés alatt hello:
+2. Nyissa meg a `server.js` a kedvenc szerkesztő fájlt, és adja meg a következő adatokat a konfigurációs bejegyzés alatt:
 
     ```Javascript
-    // Connect tooMongoDB.
+    // Connect to MongoDB.
     global.db = mongoose.connect(serverURI);
     var Schema = mongoose.Schema;
     log.info('MongoDB Schema loaded');
 
-    // Here we create a schema toostore our tasks and users. It's a fairly simple schema for now.
+    // Here we create a schema to store our tasks and users. It's a fairly simple schema for now.
     var TaskSchema = new Schema({
         owner: String,
         task: String,
@@ -375,17 +375,17 @@ BEFEJEZŐDÖTT: Ha hello feladat befejeződött-e. A **LOGIKAI**.
         date: Date
     });
 
-    // Use hello schema tooregister a model.
+    // Use the schema to register a model.
     mongoose.model('Task', TaskSchema);
     var Task = mongoose.model('Task');
     ```
-Hello kódból állapítható meg, mivel azt először hozza létre a séma. Majd a modellobjektumot, amelyet az adatok teljes hello code, amikor meghatároztuk toostore használjuk létrehozhatunk a **útvonalak**.
+Megadható, hogy a kód, mivel azt először hozza létre a séma. Ezután a modellobjektumot, amelyet az adatok a kód egészében tárolja, amikor meghatároztuk használatával hoz létre, azt a **útvonalak**.
 
 ## <a name="step-14-add-our-routes-for-our-task-rest-api-server"></a>14. lépés: A feladat REST API-kiszolgálóhoz az mutató útvonalak hozzáadása
-Most, hogy egy adatbázis-modell toowork rendelkező, adjuk hozzá hello útvonalak folyamatos használata dolgozunk a REST API-kiszolgálóhoz.
+Most, hogy egy adatbázismodell együttműködni, adjuk hozzá a REST API-kiszolgálóhoz használni fogjuk útvonalak.
 
 ### <a name="about-routes-in-restify"></a>Az útvonalak működése a Restify programban
-Útvonalak használhatók Restify hello azonos módon azokat a hello Express verem. Útvonalak megadása hello hello ügyfél alkalmazások toocall várható URI segítségével. Az útvonalakat általában külön fájlban definiálni. A célokra azt helyezze el az útvonalakat hello server.js fájl. Azt javasoljuk, hogy a saját üzemi használatra fájlba figyelembe ezeket az útvonalakat.
+Útvonalak az Express verem az azonos módon működnek működése a Restify programban. Az útvonalakat azon URI használatával kell meghatározni, amelyet elképzelései szerint az ügyfélalkalmazások meg fognak hívni. Az útvonalakat általában külön fájlban definiálni. A célokra azt helyezze el az útvonalakat a server.js fájlt. Azt javasoljuk, hogy a saját üzemi használatra fájlba figyelembe ezeket az útvonalakat.
 
 A Restify-útvonal egy tipikus mintája a következőképpen történik:
 
@@ -398,7 +398,7 @@ function createObject(req, res, next) {
 
  ///...
 
-return next(); // Keep hello server going.
+return next(); // Keep the server going.
 }
 
 ....
@@ -408,16 +408,16 @@ server.post('/service/:add/:object', createObject); // Calls createObject on rou
 ```
 
 
-Ez az a legalapvetőbb szinten hello mintát. A restify (és az Express) sokkal összetettebb funkciók, például velük az alkalmazástípusokat és a különböző végpontok között összetett útválasztási adja meg. A célból hogy megakadályozzák ezeket az útvonalakat egyszerű.
+Ez a minta legalapvetőbb megjelenése. A restify (és az Express) sokkal összetettebb funkciók, például velük az alkalmazástípusokat és a különböző végpontok között összetett útválasztási adja meg. A célból hogy megakadályozzák ezeket az útvonalakat egyszerű.
 
-### <a name="add-default-routes-tooour-server"></a>Alapértelmezett útvonalak tooour kiszolgáló hozzáadása
-A Microsoft most hozzáadása hello alapvető CRUD-útvonalakat: létrehozása, beolvasása, frissítése és törlése.
+### <a name="add-default-routes-to-our-server"></a>A kiszolgáló alapértelmezett útvonalak hozzáadása
+A Microsoft most hozzáadása az alapszintű CRUD-útvonalakat létrehozása, beolvasása, frissítése és törlése.
 
-1. Hello parancssorból módosítsa a könyvtárakat toohello **azuread** mappát, ha már nem létezik:
+1. A parancssorban lépjen a **azuread** mappát, ha már nem létezik:
 
     `cd azuread`
 
-2. Nyissa meg hello `server.js` a kedvenc szerkesztő fájlt, és adja hozzá a következő információ alább hello előző adatbázis bejegyzések hello:
+2. Nyissa meg a `server.js` a kedvenc szerkesztőben fájlt, és adja meg a következő információkat végzett korábbi adatbázis-bejegyzések alá:
 
 ```Javascript
 
@@ -430,13 +430,13 @@ A Microsoft most hozzáadása hello alapvető CRUD-útvonalakat: létrehozása, 
 
 function createTask(req, res, next) {
 
-    // Restify currently has a bug which doesn't allow you tooset default headers.
-    // These headers comply with CORS and allow us toomongodbServer our response tooany origin.
+    // Restify currently has a bug which doesn't allow you to set default headers.
+    // These headers comply with CORS and allow us to mongodbServer our response to any origin.
 
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
-    // Create a new task model, fill it, and save it tooMongodb.
+    // Create a new task model, fill it, and save it to Mongodb.
     var _task = new Task();
 
     if (!req.params.task) {
@@ -451,7 +451,7 @@ function createTask(req, res, next) {
 
     _task.save(function(err) {
         if (err) {
-            req.log.warn(err, 'createTask: unable toosave');
+            req.log.warn(err, 'createTask: unable to save');
             next(err);
         } else {
             res.send(201, _task);
@@ -474,7 +474,7 @@ function removeTask(req, res, next) {
     }, function(err) {
         if (err) {
             req.log.warn(err,
-                'removeTask: unable toodelete %s',
+                'removeTask: unable to delete %s',
                 req.params.task);
             next(err);
         } else {
@@ -503,7 +503,7 @@ function getTask(req, res, next) {
         owner: owner
     }, function(err, data) {
         if (err) {
-            req.log.warn(err, 'get: unable tooread %s', owner);
+            req.log.warn(err, 'get: unable to read %s', owner);
             next(err);
             return;
         }
@@ -514,11 +514,11 @@ function getTask(req, res, next) {
     return next();
 }
 
-/// Simple returns hello list of TODOs that were loaded.
+/// Simple returns the list of TODOs that were loaded.
 
 function listTasks(req, res, next) {
-    // Restify currently has a bug which doesn't allow you tooset default headers.
-    // These headers comply with CORS and allow us toomongodbServer our response tooany origin.
+    // Restify currently has a bug which doesn't allow you to set default headers.
+    // These headers comply with CORS and allow us to mongodbServer our response to any origin.
 
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -538,7 +538,7 @@ function listTasks(req, res, next) {
         }
 
         if (!data.length) {
-            log.warn(err, "There is no tasks in hello database. Did you initialize hello database as stated in hello README?");
+            log.warn(err, "There is no tasks in the database. Did you initialize the database as stated in the README?");
         }
 
         if (!owner) {
@@ -558,7 +558,7 @@ function listTasks(req, res, next) {
 ### <a name="add-error-handling-in-our-apis"></a>Az API-Jainkkal a hibakezelés
 ```
 
-///--- Errors for communicating something interesting back toohello client.
+///--- Errors for communicating something interesting back to the client.
 
 function MissingTaskError() {
     restify.RestError.call(this, {
@@ -606,9 +606,9 @@ util.inherits(TaskNotFoundError, restify.RestError);
 
 
 ## <a name="step-15-create-your-server"></a>15. lépés: A kiszolgáló létrehozása
-Az adatbázis definiáltuk, és az útvonalak legyenek érvényben. hello utolsó lépésként toodo van adja hozzá a hívásokat kezelő hello server-példányt.
+Az adatbázis definiáltuk, és az útvonalak legyenek érvényben. Az utolsó lépés, adja hozzá a hívásokat kezelő kiszolgálópéldányt.
 
-A Restify (és az Express) teheti a nagy mennyiségű testreszabási egy REST API-kiszolgálóhoz, de újra fogjuk toouse hello most az alapszintű beállításokat a célokra.
+A Restify (és az Express) teheti a nagy mennyiségű testreszabási egy REST API-kiszolgálóhoz, de ismét fogjuk használni a legalapvetőbb beállítása a célokra.
 
 ```Javascript
 /**
@@ -633,32 +633,32 @@ server.pre(restify.pre.userAgentConnection());
 // Set a per request bunyan logger (with requestid filled in).
 server.use(restify.requestLogger());
 
-// Allow five requests per second by IP, and burst too10.
+// Allow five requests per second by IP, and burst to 10.
 server.use(restify.throttle({
     burst: 10,
     rate: 5,
     ip: true,
 }));
 
-// Use hello common stuff you probably want.
+// Use the common stuff you probably want.
 server.use(restify.acceptParser(server.acceptable));
 server.use(restify.dateParser());
 server.use(restify.queryParser());
 server.use(restify.gzipResponse());
 server.use(restify.bodyParser({
     mapParams: true
-})); // Allow for JSON mapping tooREST.
+})); // Allow for JSON mapping to REST.
 ```
 
-## <a name="step-16-add-hello-routes-toohello-server-without-authentication-for-now"></a>16. lépés: Hello útvonalak toohello kiszolgáló (hitelesítés nélkül most) hozzáadása
+## <a name="step-16-add-the-routes-to-the-server-without-authentication-for-now"></a>16. lépés: Az útvonalak hozzáadása a kiszolgálóhoz (hitelesítés nélkül a lépést)
 ```Javascript
-/// Now hello real handlers. Here we just CRUD.
+/// Now the real handlers. Here we just CRUD.
 /**
 /*
 /* Each of these handlers is protected by our OIDCBearerStrategy by invoking 'oidc-bearer'.
-/* In hello pasport.authenticate() method. We set 'session: false' because REST is stateless and
-/* we don't need toomaintain session state. You can experiment with removing API protection
-/* by removing hello passport.authenticate() method as follows:
+/* In the pasport.authenticate() method. We set 'session: false' because REST is stateless and
+/* we don't need to maintain session state. You can experiment with removing API protection
+/* by removing the passport.authenticate() method as follows:
 /*
 /* server.get('/tasks', listTasks);
 /*
@@ -694,29 +694,29 @@ server.listen(serverPort, function() {
 var consoleMessage = '\n Microsoft Azure Active Directory Tutorial';
 consoleMessage += '\n +++++++++++++++++++++++++++++++++++++++++++++++++++++';
 consoleMessage += '\n %s server is listening at %s';
-consoleMessage += '\n Open your browser too%s/tasks\n';
+consoleMessage += '\n Open your browser to %s/tasks\n';
 consoleMessage += '+++++++++++++++++++++++++++++++++++++++++++++++++++++ \n';
-consoleMessage += '\n !!! why not try a $curl -isS %s | json tooget some ideas? \n';
+consoleMessage += '\n !!! why not try a $curl -isS %s | json to get some ideas? \n';
 consoleMessage += '+++++++++++++++++++++++++++++++++++++++++++++++++++++ \n\n';
 });
 ```
 
-## <a name="step-17-run-hello-server-before-adding-oauth-support"></a>17. lépés: Futtatása hello server (OAuth-támogatás hozzáadása)
+## <a name="step-17-run-the-server-before-adding-oauth-support"></a>17. lépés: A kiszolgáló futtatása (előtt OAuth-támogatás hozzáadása)
 Ahhoz, hogy fel hitelesítési tesztelje a kiszolgálót.
 
-hello legegyszerűbb módja tootest a kiszolgáló van, a parancssorban curl használatával. Nézzük meg, igazolnia kell egy segédprogram, amely lehetővé teszi tooparse kimeneti adatok JSON-ként.
+A legegyszerűbben úgy lehet ellenőrizni a kiszolgáló van, a parancssorban curl használatával. Nézzük meg, igazolnia kell egy segédprogram, amely lehetővé teszi, hogy a kimeneti adatok JSON-ként értelmezni.
 
-1. Telepítse a következő (a következő példák az összes hello ezzel az eszközzel) JSON-segédprogramot hello:
+1. Telepítse a következő JSON-segédprogramot, (az alábbi példák ezzel az eszközzel):
 
     `$npm install -g jsontool`
 
-    Ezzel globálisan telepíti a hello JSON-segédprogramot. Most, hogy azt már valósítható meg, amely, most lejátszása hello kiszolgálóval:
+    Ezzel globálisan telepíti a JSON-segédprogramot. Most, hogy azt már valósítható meg, amely, most lejátszása a kiszolgálóval:
 
 2. Először is győződjön meg arról, hogy fut-e a mongoDB-példány:
 
     `$sudo mongod`
 
-3. Ezután módosítsa toohello könyvtárat, és sütővasak start:
+3. Ezután nyissa meg azt a könyvtárat, és indítsa el a sütővasak:
 
     `$ cd azuread` `$ node server.js`
 
@@ -743,7 +743,7 @@ hello legegyszerűbb módja tootest a kiszolgáló van, a parancssorban curl has
 
     `$ curl -isS -X POST http://127.0.0.1:8080/tasks/brandon/Hello`
 
-    hello választ kell kapnia:
+    A következő választ kell kapnia:
 
         ```Shell
         HTTP/1.1 201 Created
@@ -759,21 +759,21 @@ hello legegyszerűbb módja tootest a kiszolgáló van, a parancssorban curl has
 
         `$ curl -isS http://127.0.0.1:8080/tasks/brandon/`
 
-Ha minden minden megfelelően működik, a rendszer készen áll a tooadd OAuth toohello REST API-kiszolgálóhoz.
+Ez akkor működik, ha még hozzáadhatja az OAuth a REST API-kiszolgálóhoz.
 
 MongoDB-vel futó REST API-kiszolgáló rendelkezik!
 
-## <a name="step-18-add-authentication-tooour-rest-api-server"></a>18. lépés: A hitelesítés tooour REST API-kiszolgáló hozzáadása
+## <a name="step-18-add-authentication-to-our-rest-api-server"></a>18. lépés: Hitelesítés hozzáadása a REST API-kiszolgálóhoz
 Most, hogy a futó REST API-t, először az Azure ad-val hasznos információkkal.
 
-Hello parancssorból módosítsa a könyvtárakat toohello **azuread** mappát, ha már nem létezik.
+A parancssorban lépjen a **azuread** mappát, ha már nem létezik.
 
 `cd azuread`
 
-### <a name="use-hello-oidcbearerstrategy-that-is-included-with-passport-azure-ad"></a>Hello részét passport-azure-ad részét képező OIDCBearerStrategy használata
+### <a name="use-the-oidcbearerstrategy-that-is-included-with-passport-azure-ad"></a>A passport-azure-ad részét képező OIDCBearerStrategy használata
 Mi építettünk, amennyiben egy tipikus REST TODO kiszolgálót hitelesítés nélkül. Ez azért, ha először üzembe, amelyek.
 
-1. Először igazolnia kell, hogy szeretnénk toouse Passport tooindicate. Ez a jogosultság helyezze a másik kiszolgáló konfigurációja után:
+1. Először azt kell jelezheti, hogy kívánja-e használni a Passport. Ez a jogosultság helyezze a másik kiszolgáló konfigurációja után:
 
     ```Javascript
             // Let's start using Passport.js.
@@ -782,19 +782,19 @@ Mi építettünk, amennyiben egy tipikus REST TODO kiszolgálót hitelesítés n
             server.use(passport.session()); // Provides session support.
     ```
     > [!TIP]
-    > Amikor ír API-k, javasoljuk, hogy mindig kapcsolja hello adatok toosomething egyedi felhasználói hello hello jogkivonatból nem tudnak jogosulatlanul hozzáférni. Ha a kiszolgáló tárolja a TODO elemeket tárolja őket hello Objektumazonosító hello felhasználó hello jogkivonatot (a token.OID), amelyeket a Microsoft hello "tulajdonos" mező alapján. Ez biztosítja, hogy csak adott felhasználó hozzáférhet-e a TODOs. Nincs nem jelenik meg sehol hello API "tulajdonos", a külső felhasználó kérhet hello TODOs mások, még akkor is, ha hitelesített.                    
+    > API-k írásakor azt javasoljuk, hogy Ön mindig kapcsolja az adatokat egy egyedi, amely a felhasználói nem tudnak jogosulatlanul hozzáférni a jogkivonatból. Ha a kiszolgáló tárolja a TODO elemeket tárolja őket (a token.OID), a jogkivonatot, amely a "tulajdonos" mező be azt a felhasználó objektum azonosítója alapján. Ez biztosítja, hogy csak adott felhasználó hozzáférhet-e a TODOs. Nincs nem jelenik meg sehol a "tulajdonos" API-ban, a külső felhasználó kérhet mások TODOs, még akkor is, ha hitelesített.                    
 
-2. Következő most használja az hello tulajdonosi stratégia `passport-azure-ad`. Tekintse meg most hello kódot, és hamarosan elmagyarázzuk hello rest. Be az alábbiakat a fentiekben beillesztett:
+2. Következő most használja az rendelkező részét képező tulajdonosi stratégiát `passport-azure-ad`. Most tekintse meg a kódot, és a többi azt ismertetjük, hamarosan. Be az alábbiakat a fentiekben beillesztett:
 
 ```Javascript
     /**
     /*
-    /* Calling hello OIDCBearerStrategy and managing users.
+    /* Calling the OIDCBearerStrategy and managing users.
     /*
-    /* Passport pattern provides hello need toomanage users and info tokens
-    /* with a FindorCreate() method that must be provided by hello implementor.
+    /* Passport pattern provides the need to manage users and info tokens
+    /* with a FindorCreate() method that must be provided by the implementor.
     /* Here we just auto-register any user and implement a FindById().
-    /* You'll want toodo something smarter.
+    /* You'll want to do something smarter.
     **/
 
     var findById = function(id, fn) {
@@ -811,8 +811,8 @@ Mi építettünk, amennyiben egy tipikus REST TODO kiszolgálót hitelesítés n
 
     var bearerStrategy = new BearerStrategy(options,
         function(token, done) {
-            log.info('verifying hello user');
-            log.info(token, 'was hello token retreived');
+            log.info('verifying the user');
+            log.info(token, 'was the token retreived');
             findById(token.sub, function(err, user) {
                 if (err) {
                     return done(err);
@@ -833,17 +833,17 @@ Mi építettünk, amennyiben egy tipikus REST TODO kiszolgálót hitelesítés n
     passport.use(bearerStrategy);
 ```
 
-A Passport az összes stratégia (Twitter-, Facebook-on, és így tovább), amely stratégiafejlesztő a hasonló mintát alkalmaz. Hello stratégia megnézi, láthatja azt adja át azt egy függvényt, amely rendelkezik egy jogkivonat és egy kész hello paraméterekként. hello stratégia előre vissza toous, miután a tevékenységeket végez el. Igen, miután tároljuk hello felhasználói és stash hello jogkivonat, nem szükséges tooask azt újra.
+A Passport az összes stratégia (Twitter-, Facebook-on, és így tovább), amely stratégiafejlesztő a hasonló mintát alkalmaz. Megnézzük a stratégiát, láthatja azt adja át, amely rendelkezik a jogkivonatot, és kész paraméterek függvényt. A stratégia ismét elérhető lesz a számunkra után a tevékenységeket végez el. Miután Igen, azt tárolni a felhasználót, és menteni a jogkivonatot, így azt nem kell megismételni.
 
 > [!IMPORTANT]
-> hello előző kód minden olyan felhasználó, akkor fordul elő, tooauthenticate tooour kiszolgáló vesz igénybe. Ez az úgynevezett automatikus regisztráció. Az üzemi kiszolgálók, azt javasoljuk, ne engedélyezze, hogy bárki, aki nélkül őket keresse meg, amelyeket a regisztrációs folyamatot. Ez általában akkor hello megoldást látjuk a fogyasztói alkalmazásokba, lehetővé teszi a Facebook tooregister, de majd megkérdezi, hogy toofill meg további információkat. Ha a cserét nem parancssori program, kinyerhettük volna hello e-mailt a hello jogkivonat-objektumból, amely adott vissza, és felkérhettük volna hello felhasználói toofill meg további információkat. Mivel ez egy tesztkiszolgálón, egyszerűen hozzáadjuk a őket toohello memóriában lévő adatbázishoz.
+> Az előző kód készít minden olyan felhasználó, hogy a kiszolgáló hitelesítésére történik. Ez az úgynevezett automatikus regisztráció. Az üzemi kiszolgálók, azt javasoljuk, ne engedélyezze, hogy bárki, aki nélkül őket keresse meg, amelyeket a regisztrációs folyamatot. Ez általában az a megoldást látjuk a fogyasztói alkalmazásoknál, melyek lehetővé teszik regisztrálni a Facebook, de majd kérje meg, hogy további adatokat. Ha a cserét nem parancssori program, kinyerhettük volna az e-mailt jogkivonat-objektumból, amely adott vissza, és felkérhettük volna a felhasználót, hogy további adatokat. Mivel a kiszolgáló csak ellenőrzési célokat szolgál, most egyszerűen hozzáadjuk őket a memóriában lévő adatbázishoz.
 >
 >
 
 ### <a name="protect-some-endpoints"></a>Egyes végpontok védelme
-Védelmet biztosít a végpontoknak hello megadásával `passport.authenticate()` hívás hello protokoll, amelyet az toouse.
+Védelmet biztosít a végpontoknak megadásával a `passport.authenticate()` hívja meg a használni kívánt protokollt.
 
-a kiszolgálóoldali kódban tegye valami további érdekes toomake most Szerkesztés hello útvonal.
+Szeretné, hogy a kiszolgálóoldali kódban valami ennél is érdekesebb megoldást, a most Szerkesztés az útvonal.
 
 ```Javascript
 server.get('/tasks', passport.authenticate('oauth-bearer', {
@@ -882,13 +882,13 @@ next();
 ```
 
 ## <a name="step-19-run-your-server-application-again-and-ensure-it-rejects-you"></a>19. lépés: Futtassa újra a kiszolgálóalkalmazás, és győződjön meg arról, hogy elutasítja
-Most használja `curl` újra toosee szemben a végpontok most megfelelő OAuth2-védelem. Ez a vizsgálat előtt futtató az ügyfél-SDK-kat a végponton végezzük. hello visszakapott fejlécek alapján legyen elég tootell, ha az oktatóanyagban módosítjuk hello jó úton jár le.
+Most használja `curl` ismételt használatával ellenőrizheti, ha már tudunk OAuth2-védelem a végpontok ellen. Ez a vizsgálat előtt futtató az ügyfél-SDK-kat a végponton végezzük. A visszakapott fejlécek alapján kell lennie ahhoz, hogy adja meg, ha az oktatóanyagban módosítjuk jó úton jár le.
 
 1. Először is győződjön meg arról, hogy fut-e a mongoDB-példány:
 
     `$sudo mongod`
 
-2. Ezután módosítsa toohello könyvtárat, és sütővasak start.
+2. Ezután nyissa meg azt a könyvtárat, és indítsa el a sütővasak.
 
       `$ cd azuread` `$ node server.js`
 
@@ -904,16 +904,16 @@ Most használja `curl` újra toosee szemben a végpontok most megfelelő OAuth2-
     Transfer-Encoding: chunked
     ```
 
-A 401-es hello választ keres itt. Ez a válasz azt jelzi, hogy a hello Passport réteg próbál tooredirect toohello engedélyezett végpontot, amely pontosan mit szeretne.
+A 401-es értéke a keresett Itt választ. Ez a válasz azt jelzi, hogy a Passport réteg megpróbálja átirányítani a engedélyezett végpontot, amely pontosan mit szeretne.
 
 ## <a name="next-steps"></a>Következő lépések
-Ön már megtettünk mindent, ami az OAuth2-kompatibilis ügyfél használata nélkül is ezen a kiszolgálón. Szüksége lesz egy további forgatókönyv keresztül toogo.
+Ön már megtettünk mindent, ami az OAuth2-kompatibilis ügyfél használata nélkül is ezen a kiszolgálón. Szüksége lesz egy további forgatókönyv keresztül halad.
 
-Most már tudja, hogyan tooimplement segítségével egy REST API Restify és OAuth2. Azt is, hogy a szolgáltatás fejlesztés és megismerését több mint elég kód tookeep hogyan ebben a példában a toobuild.
+Most már tudja, hogyan egy REST API Restify és OAuth2 segítségével megvalósítható. Lehetősége van több mint elég tartani a szolgáltatás fejlesztés, és hogyan hozhat létre ebben a példában a kódot is.
 
-Ha érdekli hello lépések a a ADAL használatában, az alábbiakban néhány azt javasoljuk, hogy tovább dolgozik a támogatott ADAL ügyfelek.
+Ha érdekli a következő lépéseket a a ADAL használatában, az alábbiakban néhány azt javasoljuk, hogy tovább dolgozik a támogatott ADAL ügyfelek.
 
-Lefelé tooyour fejlesztői gép klónozását, és hello forgatókönyv megadottak szerint.
+Klónozza a fejlesztői gépen le, és konfigurálja a bemutatóban leírtak szerint.
 
 [Az IOS-es ADAL](https://github.com/MSOpenTech/azure-activedirectory-library-for-ios)
 

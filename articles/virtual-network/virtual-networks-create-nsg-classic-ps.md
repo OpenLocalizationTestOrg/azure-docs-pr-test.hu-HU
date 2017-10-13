@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate hálózati biztonsági csoportok (klasszikus) Azure - PowerShell |} Microsoft Docs"
-description: "Megtudhatja, hogyan toocreate és NSG-k telepítése a klasszikus módban PowerShell használatával"
+title: "Hálózati biztonsági csoportokat (klasszikus) Azure - PowerShell létre |} Microsoft Docs"
+description: "Megtudhatja, hogyan hozhat létre és telepíthet az NSG-k klasszikus módban PowerShell használatával"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,29 +15,29 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
-ms.openlocfilehash: 835097c9f23cdd551f97797e142c6c2a3c978cd8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e3f84e4757e3854fc63e3069e179446174f0c0bd
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toocreate-nsgs-classic-in-powershell"></a>Hogyan toocreate NSG-k (klasszikus) a PowerShellben
+# <a name="how-to-create-nsgs-classic-in-powershell"></a>Az NSG-k (klasszikus) létrehozása a PowerShell
 [!INCLUDE [virtual-networks-create-nsg-selectors-classic-include](../../includes/virtual-networks-create-nsg-selectors-classic-include.md)]
 
 [!INCLUDE [virtual-networks-create-nsg-intro-include](../../includes/virtual-networks-create-nsg-intro-include.md)]
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-Ez a cikk ismerteti a hello klasszikus üzembe helyezési modellben. Emellett [NSG-k létrehozása hello Resource Manager üzembe helyezési modellel](virtual-networks-create-nsg-arm-ps.md).
+Ez a cikk a klasszikus üzembehelyezési modellt ismerteti. Emellett [NSG-k létrehozása a Resource Manager üzembe helyezési modellel](virtual-networks-create-nsg-arm-ps.md).
 
 [!INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
-hello minta az alábbi parancsok várt már létrehozott egy egyszerű környezetben PowerShell fenti hello forgatókönyv alapján. Ha toorun hello parancsok ebben a dokumentumban megjelenített, először létre tesztkörnyezetben hello által [létre virtuális hálózatok](virtual-networks-create-vnet-classic-netcfg-ps.md).
+A minta az alábbi parancsok várt már létrehozott egy egyszerű környezetben PowerShell a fenti forgatókönyv alapján. Ha szeretné a parancsokat a jelen dokumentum megjelenített, először által a tesztkörnyezet felépítéséhez [létre virtuális hálózatok](virtual-networks-create-vnet-classic-netcfg-ps.md).
 
-## <a name="how-toocreate-hello-nsg-for-hello-front-end-subnet"></a>Hogyan toocreate hello NSG hello előtér-alhálózat
-az NSG nevű toocreate nevű **NSG-előtérbeli** kövesse a fenti hello forgatókönyv alapján, hello alábbi lépéseket:
+## <a name="how-to-create-the-nsg-for-the-front-end-subnet"></a>Az NSG az előtér-alhálózat létrehozása
+Hozzon létre egy NSG nevű nevű **NSG-előtérbeli** a fenti forgatókönyv alapján, kövesse az alábbi lépéseket:
 
-1. Ha még sosem használta az Azure PowerShell, lásd: [hogyan tooInstall és konfigurálása az Azure PowerShell](/powershell/azure/overview) és az útmutatás hello összes hello módon toohello toosign befejezése az Azure, és jelölje ki az előfizetését.
+1. Ha még nem használta az Azure PowerShellt, tekintse meg [How to Install and Configure Azure PowerShell](/powershell/azure/overview) (Az Azure PowerShell telepítése és konfigurálása) című részt, majd kövesse az utasításokat egészen az utolsó lépésig az Azure-ba való bejelentkezéshez és az előfizetése kiválasztásához.
 2. Hozzon létre egy hálózati biztonsági csoport nevű **NSG-előtérbeli**.
    
         New-AzureNetworkSecurityGroup -Name "NSG-FrontEnd" -Location uswest `
@@ -49,7 +49,7 @@ az NSG nevű toocreate nevű **NSG-előtérbeli** kövesse a fenti hello forgat�
         
         NSG-FrontEnd West US     Front end subnet NSG
 
-3. Engedélyezi a hozzáférést a hello Internet tooport 3389-es biztonsági szabály létrehozása.
+3. Hozzon létre egy biztonsági szabályt, amely engedélyezi webtartalmak elérését az internetről 3389-es port.
    
         Get-AzureNetworkSecurityGroup -Name "NSG-FrontEnd" `
         | Set-AzureNetworkSecurityRule -Name rdp-rule `
@@ -85,7 +85,7 @@ az NSG nevű toocreate nevű **NSG-előtérbeli** kövesse a fenti hello forgat�
                    OUTBOUND                                                                                                      
                    DENY ALL OUTBOUND    65500     Deny     *               *             *                *              *
 
-1. Engedélyezi a hozzáférést a hello Internet tooport 80 biztonsági szabály létrehozása.
+1. Hozzáférés engedélyezése az internetről a 80-as port biztonsági szabály létrehozása.
    
         Get-AzureNetworkSecurityGroup -Name "NSG-FrontEnd" `
         | Set-AzureNetworkSecurityRule -Name web-rule `
@@ -123,7 +123,7 @@ az NSG nevű toocreate nevű **NSG-előtérbeli** kövesse a fenti hello forgat�
                    OUTBOUND                                                                                                      
                    DENY ALL OUTBOUND    65500     Deny     *               *             *                *              *   
 
-## <a name="how-toocreate-hello-nsg-for-hello-back-end-subnet"></a>Hogyan toocreate hello NSG hello vissza a záró alhálózat
+## <a name="how-to-create-the-nsg-for-the-back-end-subnet"></a>Az NSG a háttérbeli alhálózat létrehozása
 1. Hozzon létre egy hálózati biztonsági csoport nevű **NSG-háttérrendszer**.
    
         New-AzureNetworkSecurityGroup -Name "NSG-BackEnd" -Location uswest `
@@ -134,7 +134,7 @@ az NSG nevű toocreate nevű **NSG-előtérbeli** kövesse a fenti hello forgat�
         Name        Location   Label              
         
         NSG-BackEnd West US    Back end subnet NSG
-2. Engedélyezi a hozzáférést a hello előtér alhálózati tooport alapértelmezett 1433-as (SQL Server által használt) biztonsági szabály létrehozása.
+2. A 1433-as port (alapértelmezett SQL Server által használt) az előtér-alhálózatból hozzáférést a biztonsági szabály létrehozása.
    
         Get-AzureNetworkSecurityGroup -Name "NSG-FrontEnd" `
         | Set-AzureNetworkSecurityRule -Name rdp-rule `
@@ -170,7 +170,7 @@ az NSG nevű toocreate nevű **NSG-előtérbeli** kövesse a fenti hello forgat�
                    OUTBOUND                                                                                                      
                    DENY ALL OUTBOUND    65500     Deny     *               *             *                *              *      
 
-1. Blokkolja a hozzáférést a hello alhálózati toohello internetes biztonsági szabály létrehozása.
+1. Hozzon létre egy biztonsági szabály blokkolja a hozzáférést az alhálózatból az internethez.
    
         Get-AzureNetworkSecurityGroup -Name "NSG-BackEnd" `
         | Set-AzureNetworkSecurityRule -Name block-internet `

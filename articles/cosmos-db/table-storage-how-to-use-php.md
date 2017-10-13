@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toouse a table storage php-ből |} Microsoft Docs"
-description: "Ismerje meg, hogyan toouse hello PHP toocreate a Table szolgáltatás, és egy tábla, és a Beszúrás, a delete és a lekérdezéstábla hello törlése."
+title: "Php-ből a table storage használata |} Microsoft Docs"
+description: "Használata php-ből a Table szolgáltatás létrehozásához, és törölni kívánja a táblázatot, és helyezze, törlése, és a tábla lekérdezése."
 services: cosmos-db
 documentationcenter: php
 author: mimig1
@@ -14,41 +14,41 @@ ms.devlang: php
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: mimig
-ms.openlocfilehash: 5b7c92221069d1c2a6ca951c06ae8eea8bb8478c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7a48446a11c5c6db0c9f4fdd8872b1e3c12e85c3
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-toouse-table-storage-from-php"></a>Hogyan toouse table storage php-ből
+# <a name="how-to-use-table-storage-from-php"></a>Php-ből a table storage használata
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
 [!INCLUDE [storage-table-cosmos-db-langsoon-tip-include](../../includes/storage-table-cosmos-db-langsoon-tip-include.md)]
 
 ## <a name="overview"></a>Áttekintés
-Ez az útmutató bemutatja, hogyan tooperform szolgáltatást használó általános forgatókönyvhöz hello Azure Table szolgáltatás. hello minták PHP nyelven íródtak, és használja a hello [Azure SDK for PHP][download]. hello tárgyalt forgatókönyvekben szerepel a **létrehozása és egy tábla törlésével és beszúrását, törlését és entitások egy tábla lekérdezése**. Hello Azure Table szolgáltatás további információkért lásd: hello [további lépések](#next-steps) szakasz.
+Ez az útmutató bemutatja, hogyan hajthat végre a gyakori forgatókönyvek az Azure Table szolgáltatással. A mintákat a PHP és -felhasználási nyelven íródtak a [Azure SDK for PHP][download]. Az ismertetett forgatókönyvek **létrehozása és egy tábla törlésével és beszúrását, törlését és entitások egy tábla lekérdezése**. Az Azure Table szolgáltatás további információkért tekintse meg a [további lépések](#next-steps) szakasz.
 
 [!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
 ## <a name="create-a-php-application"></a>PHP-alkalmazás létrehozása
-egyetlen hello Azure Table szolgáltatás hozzáférő PHP-alkalmazások létrehozására vonatkozó követelmény az hello hello való hivatkozás hello Azure SDK-t az osztályokat a php a kód. A fejlesztői eszközök toocreate használhatja az alkalmazás, például a Jegyzettömbbel.
+A csak az Azure Table szolgáltatás hozzáférő PHP-alkalmazások létrehozására vonatkozó mérete a hivatkozási osztályok az Azure SDK-ban a php a kód. A fejlesztői eszközök hozhat létre az alkalmazás, például a Jegyzettömbbel.
 
 Ebben az útmutatóban hívható a PHP-alkalmazás helyileg, vagy egy Azure webes szerepkörről, a feldolgozói szerepkör vagy a webhely belül futó tábla szolgáltatás funkciók használatára.
 
-## <a name="get-hello-azure-client-libraries"></a>Hello Azure Ügyfélkódtárai beolvasása
+## <a name="get-the-azure-client-libraries"></a>Az Azure Ügyfélkódtárai beolvasása
 [!INCLUDE [get-client-libraries](../../includes/get-client-libraries.md)]
 
-## <a name="configure-your-application-tooaccess-hello-table-service"></a>Az alkalmazás tooaccess hello Table szolgáltatás konfigurálása
-toouse hello Azure Table szolgáltatás API-k, kell:
+## <a name="configure-your-application-to-access-the-table-service"></a>Állítsa be az alkalmazását, a Table szolgáltatás eléréséhez
+Az Azure Table szolgáltatás API-kat használ, meg kell:
 
-1. Hello robotjába referenciafájlban hello segítségével [require_once] [ require_once] utasítást, és
+1. A robotot fájl használatával hivatkozik a [require_once] [ require_once] utasítást, és
 2. Bármely osztályok segítségével lehet hivatkozni.
 
-hello következő példa bemutatja, hogyan tooinclude hello robotjába fájl- és referenciainformációkat hello **ServicesBuilder** osztály.
+A következő példa bemutatja, hogyan a robotot fájl és a hivatkozás a **ServicesBuilder** osztály.
 
 > [!NOTE]
-> Ebben a cikkben a hello példák feltételezik, hogy telepítette hello PHP Klienskódtárak segítségével az Azure-szerkesztő használatával. Ha manuálisan telepítette a hello szalagtárak, meg kell-e tooreference hello <code>WindowsAzure.php</code> robotjába fájlt.
+> Ebben a cikkben szereplő példák azt feltételezik, hogy telepítette az Azure-szerkesztő segítségével, a PHP Klienskódtárak segítségével. Ha a könyvtárak manuálisan telepítette, hivatkoznia kell a <code>WindowsAzure.php</code> robotjába fájlt.
 >
 >
 
@@ -57,10 +57,10 @@ require_once 'vendor/autoload.php';
 use WindowsAzure\Common\ServicesBuilder;
 ```
 
-Hello a következő példa a hello `require_once` utasítás mindig megjelenik, de csak hello osztályok hello példa tooexecute szükséges hivatkozott.
+Az alábbi példákban a `require_once` utasítás mindig megjelenik, de csak a szükséges végrehajtandó például osztályok hivatkozott.
 
 ## <a name="set-up-an-azure-storage-connection"></a>Az Azure storage-kapcsolat beállítása
-az Azure Table szolgáltatásügyfél tooinstantiate, először rendelkeznie kell érvényes kapcsolati karakterláncot. hello hello tábla szolgáltatás kapcsolati karakterláncának formátuma:
+Az Azure Table szolgáltatásügyfél hozható létre, először egy érvényes kapcsolati karakterláncot kell rendelkeznie. A szolgáltatás kapcsolati karakterlánc formátuma:
 
 Élő szolgáltatások elérésére:
 
@@ -68,20 +68,20 @@ az Azure Table szolgáltatásügyfél tooinstantiate, először rendelkeznie kel
 DefaultEndpointsProtocol=[http|https];AccountName=[yourAccount];AccountKey=[yourKey]
 ```
 
-Hello emulátor tárolóinak eléréséhez:
+Az emulátor tárolóinak eléréséhez:
 
 ```php
 UseDevelopmentStorage=true
 ```
 
-toocreate bármely Azure szolgáltatás ügyfele toouse hello kell **ServicesBuilder** osztály. A következőket teheti:
+Bármely Azure szolgáltatás ügyfele létrehozásához kell használnia a **ServicesBuilder** osztály. A következőket teheti:
 
-* átadni hello kapcsolati karakterlánc közvetlenül tooit vagy
-* hello használata **CloudConfigurationManager (CCM)** toocheck több külső adatforrások hello kapcsolati karakterláncot kell megadnia:
+* a kapcsolati karakterláncot adja át a közvetlenül vagy
+* használja a **CloudConfigurationManager (CCM)** ellenőrizze a kapcsolati karakterlánc több külső forrás:
   * Alapértelmezés szerint mellékelt egy külső adatforrás - környezeti változók támogatása
-  * hozzáadhat új források hello kiterjesztésével **ConnectionStringSource** osztály
+  * új forrásból történő kiterjesztésével adhat hozzá a **ConnectionStringSource** osztály
 
-Itt vázolt hello példákért hello kapcsolati karakterlánc közvetlenül fog adható át.
+Az itt leírt példák a kapcsolati karakterlánc közvetlenül fog adható át.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -92,7 +92,7 @@ $tableRestProxy = ServicesBuilder::getInstance()->createTableService($connection
 ```
 
 ## <a name="create-a-table"></a>Tábla létrehozása
-A **TableRestProxy** objektum lehetővé teszi, hogy hozzon létre egy táblát hello **createTable** metódust. Egy tábla létrehozásakor beállíthatja hello tábla szolgáltatás időtúllépés. (Hello tábla szolgáltatás időtúllépési kapcsolatos további információkért lásd: [időtúllépések beállítása a szolgáltatási műveletek tábla][table-service-timeouts].)
+A **TableRestProxy** objektum lehetővé teszi, hogy a tábla létrehozása a **createTable** metódust. Ha a táblázatok létrehozásáról, beállíthatja a Table szolgáltatás időtúllépés. (A Table szolgáltatás időtúllépési kapcsolatos további információkért lásd: [időtúllépések beállítása a szolgáltatási műveletek tábla][table-service-timeouts].)
 
 ```php
 require_once 'vendor\autoload.php';
@@ -116,10 +116,10 @@ catch(ServiceException $e){
 }
 ```
 
-Táblanevek vonatkozó megkötésekkel kapcsolatos információkért lásd: [ismertetése hello tábla szolgáltatás adatmodell][table-data-model].
+Táblanevek vonatkozó megkötésekkel kapcsolatos információkért lásd: [ismertetése a Table szolgáltatás adatmodell][table-data-model].
 
-## <a name="add-an-entity-tooa-table"></a>Egy entitás tooa táblázat hozzáadása
-egy entitás tooa tábla tooadd hozzon létre egy új **entitás** objektumot, és adja át túl**TableRestProxy -> insertEntity**. Vegye figyelembe, hogy egy entitás létrehozásakor meg kell adnia egy `PartitionKey` és `RowKey`. Ezek hello egy entitás egyedi azonosítót, és olyan értékek, amelyek sokkal gyorsabb, mint más entitás tulajdonságai kérdezhetők le. hello rendszer `PartitionKey` tooautomatically hello tábla entitások terjesztése számos tárolási csomópont feladatait. Az entitások hello azonos `PartitionKey` hello tárolt ugyanahhoz a csomóponthoz. (Több entitás hello ugyanahhoz a csomóponthoz hajtsa végre a tárolt műveletek jobb, mint a más csomópontjai között tárolt entitásokat.) Hello `RowKey` hello egy partíció egy entitás egyedi azonosítója.
+## <a name="add-an-entity-to-a-table"></a>Entitás hozzáadása a táblához
+Egy entitás felvételére egy táblához, hozzon létre egy új **entitás** objektumot, és adja át a **TableRestProxy -> insertEntity**. Vegye figyelembe, hogy egy entitás létrehozásakor meg kell adnia egy `PartitionKey` és `RowKey`. Egy entitás egyedi azonosítói azok és értékek, amelyek sokkal gyorsabb, mint más entitás tulajdonságai kérdezhetők le. A rendszer használja `PartitionKey` automatikusan terjesztené a táblaentitásokat számos tárolási csomópont feladatait. Entitások azonos `PartitionKey` ugyanazon a csomóponton találhatók. (Ugyanazon a csomóponton tárolt entitásokat műveletek végrehajtása jobb, mint a más csomópontjai között tárolt entitásokat.) A `RowKey` egy partíció egy entitás egyedi azonosítója.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -135,7 +135,7 @@ $tableRestProxy = ServicesBuilder::getInstance()->createTableService($connection
 $entity = new Entity();
 $entity->setPartitionKey("tasksSeattle");
 $entity->setRowKey("1");
-$entity->addProperty("Description", null, "Take out hello trash.");
+$entity->addProperty("Description", null, "Take out the trash.");
 $entity->addProperty("DueDate",
                         EdmType::DATETIME,
                         new DateTime("2012-11-05T08:15:00-08:00"));
@@ -153,9 +153,9 @@ catch(ServiceException $e){
 }
 ```
 
-További információ a táblázat tulajdonságai és típusok: [ismertetése hello tábla szolgáltatás adatmodell][table-data-model].
+További információ a táblázat tulajdonságai és típusok: [ismertetése a Table szolgáltatás adatmodell][table-data-model].
 
-Hello **TableRestProxy** osztály entitások beszúrására szolgáló két alternatív módszert kínál: **insertOrMergeEntity** és **insertOrReplaceEntity**. toouse módszerekhez, hozzon létre egy új **entitás** , és adja át paraméter tooeither módszerként. Az egyes módszerek szúrnak hello entitás, ha nem létezik. Ha már létezik hello entitás, **insertOrMergeEntity** tulajdonságértékek frissíti, ha hello tulajdonságai már léteznek, és hozzáadja az új tulajdonságok ha azok nem léteznek, miközben **insertOrReplaceEntity** teljesen lecseréli a meglévő entitás. a következő példa azt mutatja meg hogyan hello toouse **insertOrMergeEntity**. Ha az entitás hello `PartitionKey` "tasksSeattle" és `RowKey` "1" már nem létezik, szúrja be. Azonban ha azt korábban beszúrt (a fenti példa hello), hello `DueDate` tulajdonság frissülni fog, és hello `Status` tulajdonság megkapja. Hello `Description` és `Location` tulajdonságok is frissülnek, de értékekkel, amely hatékonyan hagyja őket változatlan marad. Ha ez utóbbi a tulajdonság nem hozzáadott hello példában látható módon, de hello célentitás létezett, meglévő értékeik változatlan marad.
+A **TableRestProxy** osztály entitások beszúrására szolgáló két alternatív módszert kínál: **insertOrMergeEntity** és **insertOrReplaceEntity**. Ezeket a módszereket használja, hozzon létre egy új **entitás** , és adja át paraméterként mindkét módszer. Az egyes módszerek szúrnak az entitás, ha nem létezik. Ha már létezik az entitás, **insertOrMergeEntity** tulajdonságértékek frissíti, ha a tulajdonságai már léteznek, és hozzáadja az új tulajdonságok ha azok nem léteznek, miközben **insertOrReplaceEntity** teljesen lecseréli a meglévő entitás. A következő példa bemutatja, hogyan használható **insertOrMergeEntity**. Ha az entitás `PartitionKey` "tasksSeattle" és `RowKey` "1" már nem létezik, szúrja be. Azonban ha azt korábban beszúrt (a fenti példa szerint), a `DueDate` tulajdonság frissülni fog, és a `Status` tulajdonság megkapja. A `Description` és `Location` tulajdonságok is frissülnek, de értékekkel, amely hatékonyan hagyja őket változatlan marad. Ha ez utóbbi a tulajdonság a volt nem szerepel a példában látható módon, de a célentitás már létezett, meglévő értékeik változatlan marad.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -177,14 +177,14 @@ $entity->setRowKey("1");
 
 // If entity exists, existing properties are updated with new values and
 // new properties are added. Missing properties are unchanged.
-$entity->addProperty("Description", null, "Take out hello trash.");
-$entity->addProperty("DueDate", EdmType::DATETIME, new DateTime()); // Modified hello DueDate field.
+$entity->addProperty("Description", null, "Take out the trash.");
+$entity->addProperty("DueDate", EdmType::DATETIME, new DateTime()); // Modified the DueDate field.
 $entity->addProperty("Location", EdmType::STRING, "Home");
 $entity->addProperty("Status", EdmType::STRING, "Complete"); // Added Status field.
 
 try    {
     // Calling insertOrReplaceEntity, instead of insertOrMergeEntity as shown,
-    // would simply replace hello entity with PartitionKey "tasksSeattle" and RowKey "1".
+    // would simply replace the entity with PartitionKey "tasksSeattle" and RowKey "1".
     $tableRestProxy->insertOrMergeEntity("mytable", $entity);
 }
 catch(ServiceException $e){
@@ -198,7 +198,7 @@ catch(ServiceException $e){
 ```
 
 ## <a name="retrieve-a-single-entity"></a>Egyetlen entitás lekérdezése
-Hello **TableRestProxy -> getEntity** módszer lehetővé teszi a tooretrieve által végzett lekérdezés egyetlen entitás az `PartitionKey` és `RowKey`. Hello az alábbi példában a partíciós kulcs hello `tasksSeattle` és sorkulcsa `1` toohello átadott **getEntity** metódust.
+A **TableRestProxy -> getEntity** módszer lehetővé teszi egyetlen entitás lekérdezése által végzett lekérdezés a `PartitionKey` és `RowKey`. A partíciós kulcs az alábbi példában a `tasksSeattle` és sorkulcsa `1` kerülnek átadásra a **getEntity** metódust.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -227,7 +227,7 @@ echo $entity->getPartitionKey().":".$entity->getRowKey();
 ```
 
 ## <a name="retrieve-all-entities-in-a-partition"></a>Egy partíció összes entitásának lekérése
-Entitás lekérdezések össze szűrők használata (további információkért lásd: [lekérdezése táblákat és entitásokat][filters]). tooretrieve partíció összes entitásának hello szűrő használata "PartitionKey eq *partíció_neve*". a következő példa azt mutatja meg hogyan hello tooretrieve hello összes entitásának `tasksSeattle` úgy, hogy a szűrő toohello partíció **queryEntities** metódust.
+Entitás lekérdezések össze szűrők használata (további információkért lásd: [lekérdezése táblákat és entitásokat][filters]). A partíció összes entitásának lekérése, a szűrő használata "PartitionKey eq *partíció_neve*". A következő példa bemutatja, hogyan összes entitásának lekérése a `tasksSeattle` partíció úgy, hogy egy szűrőt, amely a **queryEntities** metódust.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -260,7 +260,7 @@ foreach($entities as $entity){
 ```
 
 ## <a name="retrieve-a-subset-of-entities-in-a-partition"></a>Partíció entitástartományának részhalmazát
-hello előző példában használt ugyanilyen mintájú hello lehet használt tooretrieve partíció entitástartományának csoportját. visszaállíthatja az entitások hello részhalmazát hello szűrő használata határozza meg (további információkért lásd: [lekérdezése táblákat és entitásokat][filters]) a következő példa azt mutatja meg hogyan .hello toouse egy szűrő tooretrieve egy adott rendelkező összes entitás `Location` és egy `DueDate` kisebb, mint a megadott dátum.
+Az előző példában használt ugyanilyen mintájú segítségével bármely részét partíció entitástartományának lekérése. Az entitások lekérése részhalmazát határozza meg a szűrő használata (további információkért lásd: [lekérdezése táblákat és entitásokat][filters]). A következő példa bemutatja, hogyan szűrő segítségével egy adott összes entitásának lekérése `Location` és egy `DueDate` kisebb, mint a megadott dátum.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -293,7 +293,7 @@ foreach($entities as $entity){
 ```
 
 ## <a name="retrieve-a-subset-of-entity-properties"></a>Entitás tulajdonságai részhalmazát
-A lekérdezés Entitástulajdonságok egy részének kérheti le. Ezzel a módszerrel nevű *leképezése*, csökkenti a sávszélesség, és javíthatja a lekérdezési teljesítményt, különösen olyan nagyméretű entitásokat. toospecify egy tulajdonság toobe beolvasni, hello tulajdonság toohello hello nevét át **-> addSelectField** metódust. Ez a metódus többször tooadd további tulajdonságok is meghívható. Végrehajtása után **TableRestProxy -> queryEntities**, hello visszaadott entitások csak van kiválasztva hello tulajdonságok. (Ha azt szeretné, hogy tooreturn táblaentitásokat részhalmazát, használjon szűrőt hello lekérdezések a fenti ábrán.)
+A lekérdezés Entitástulajdonságok egy részének kérheti le. Ezzel a módszerrel nevű *leképezése*, csökkenti a sávszélesség, és javíthatja a lekérdezési teljesítményt, különösen olyan nagyméretű entitásokat. Kérhető tulajdonság megadásához adja át a tulajdonság nevét a **-> addSelectField** metódust. Ön a metódus hívása többször fel további tulajdonságokat. Végrehajtása után **TableRestProxy -> queryEntities**, a visszaadott entitások csak van a megadott tulajdonságokat. (Ha táblaentitásokat részhalmazát adja vissza, használjon szűrőt a lekérdezések a fenti ábrán.)
 
 ```php
 require_once 'vendor/autoload.php';
@@ -320,9 +320,9 @@ catch(ServiceException $e){
     echo $code.": ".$error_message."<br />";
 }
 
-// All entities in hello table are returned, regardless of whether
-// they have hello Description field.
-// toolimit hello results returned, use a filter.
+// All entities in the table are returned, regardless of whether
+// they have the Description field.
+// To limit the results returned, use a filter.
 $entities = $result->getEntities();
 
 foreach($entities as $entity){
@@ -332,7 +332,7 @@ foreach($entities as $entity){
 ```
 
 ## <a name="update-an-entity"></a>Egy entitás frissítése
-Meglévő entitás hello használatával frissíthető **entitás -> setProperty** és **entitás -> addProperty** hello entitáshoz, és ezután hívása metódusai **TableRestProxy updateEntity ->** . hello alábbi példa egy entitás lekéri, módosítja egy tulajdonságot, egy másik tulajdonságának eltávolítja és új tulajdonsággal. Vegye figyelembe, hogy egy tulajdonság értéke túl beállításával eltávolíthatja**null**.
+Meglévő entitás használatával frissíthető a **entitás -> setProperty** és **entitás -> addProperty** entitást, és ezután hívása módszerek **TableRestProxy updateEntity ->**. A következő példa egy entitás lekéri, módosítja egy tulajdonságot, egy másik tulajdonságának eltávolítja és új tulajdonsággal. Vegye figyelembe, hogy eltávolításához a tulajdonság érték beállítása **null**.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -369,7 +369,7 @@ catch(ServiceException $e){
 ```
 
 ## <a name="delete-an-entity"></a>Entitás törlése
-egy entitás toodelete átadni hello táblanév és hello entitás `PartitionKey` és `RowKey` toohello **TableRestProxy -> deleteEntity** metódust.
+Entitás törlése, adja át a táblázat nevét, és az entitás `PartitionKey` és `RowKey` számára a **TableRestProxy -> deleteEntity** metódus.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -394,10 +394,10 @@ catch(ServiceException $e){
 }
 ```
 
-Vegye figyelembe, hogy párhuzamossági ellenőrzések állíthatók be hello Etag egy entitás toobe hello használatával törli a **DeleteEntityOptions -> setEtag** metódus és sikeres hello **DeleteEntityOptions** objektum túl**deleteEntity** negyedik paraméterként.
+Vegye figyelembe, hogy párhuzamossági ellenőrzések állíthatók be a Etag, hogy egy entitás használatával a törlendő a **DeleteEntityOptions -> setEtag** metódus és a sikeres a **DeleteEntityOptions** objektum **deleteEntity** negyedik paraméterként.
 
 ## <a name="batch-table-operations"></a>Kötegelt tábla műveletek
-Hello **TableRestProxy -> kötegelt** metódus tooexecute lehetővé teszi több művelet egyetlen kérelemben. hello mintát itt magában foglalja a műveletek túl hozzáadása**BatchRequest** objektumot, és ezután átadja az hello **BatchRequest** toohello objektum **TableRestProxy -> kötegelt** metódust. egy művelet tooa tooadd **BatchRequest** objektum hívása a következő módszerek többször hello bármelyikét:
+A **TableRestProxy -> kötegelt** módszer lehetővé teszi egyetlen kérelem több műveletek végrehajtása. A mintát itt magában foglalja a műveletek hozzáadása **BatchRequest** objektumot, és ezután átadja a **BatchRequest** az objektum a **TableRestProxy -> kötegelt** metódust. A művelet hozzáadása egy **BatchRequest** objektum többször hívása a következő módszerek egyikét:
 
 * **addInsertEntity** (hozzáad egy insertEntity művelet)
 * **addUpdateEntity** (hozzáad egy updateEntity művelet)
@@ -406,7 +406,7 @@ Hello **TableRestProxy -> kötegelt** metódus tooexecute lehetővé teszi több
 * **addInsertOrMergeEntity** (hozzáad egy insertOrMergeEntity művelet)
 * **addDeleteEntity** (hozzáad egy deleteEntity művelet)
 
-a következő példa azt mutatja meg hogyan hello tooexecute **insertEntity** és **deleteEntity** egyetlen kérelem műveletek:
+A következő példa bemutatja, hogyan hajthat végre **insertEntity** és **deleteEntity** egyetlen kérelem műveletek:
 
 ```php
 require_once 'vendor/autoload.php';
@@ -432,10 +432,10 @@ $entity1->addProperty("DueDate",
                         new DateTime("2012-11-05T08:15:00-08:00"));
 $entity1->addProperty("Location", EdmType::STRING, "Home");
 
-// Add operation toolist of batch operations.
+// Add operation to list of batch operations.
 $operations->addInsertEntity("mytable", $entity1);
 
-// Add operation toolist of batch operations.
+// Add operation to list of batch operations.
 $operations->addDeleteEntity("mytable", "tasksSeattle", "1");
 
 try    {
@@ -454,7 +454,7 @@ catch(ServiceException $e){
 Tábla műveletek kötegelése kapcsolatos további információkért lásd: [entitás csoport tranzakciók végrehajtása][entity-group-transactions].
 
 ## <a name="delete-a-table"></a>Tábla törlése
-Végül adja át a toodelete egy tábla hello tábla neve toohello **TableRestProxy -> deleteTable** metódust.
+Végezetül törölni kívánja a táblázatot, adja át a táblázat nevét, hogy a **TableRestProxy -> deleteTable** metódust.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -480,9 +480,9 @@ catch(ServiceException $e){
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy megismerte hello Azure Table szolgáltatás hello alapjait, kövesse az összetettebb tárolási feladatok elvégzéséről kapcsolatos alábbi hivatkozások toolearn.
+Most, hogy megismerte az Azure Table szolgáltatás alapjait, az alábbi hivatkozásokból tájékozódhat az összetettebb tárolási feladatok elvégzéséről.
 
-* [A Microsoft Azure Tártallózó](../vs-azure-tools-storage-manage-with-storage-explorer.md) egy ingyenes, különálló alkalmazás, amely lehetővé teszi toowork vizuálisan macOS, Linux és a Windows Azure Storage-adatokat a Microsoft.
+* A [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) egy ingyenes, önálló alkalmazás, amelynek segítségével vizuálisan dolgozhat Azure Storage-adatokkal Windows, macOS és Linux rendszereken.
 
 * [A PHP fejlesztői központ](/develop/php/).
 

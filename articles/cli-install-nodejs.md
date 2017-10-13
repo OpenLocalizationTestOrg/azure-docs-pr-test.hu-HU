@@ -1,6 +1,6 @@
 ---
-title: aaaInstall hello Azure CLI 1.0 |} Microsoft Docs
-description: "Hello Azure CLI 1.0 a Mac, Linux és Windows toostart az Azure szolgáltatások telepítése"
+title: "Telepítse az Azure parancssori felület 1.0 |} Microsoft Docs"
+description: "Telepítse az Azure CLI 1.0 Mac, Linux és a Windows Azure-szolgáltatások használatának megkezdéséhez"
 editor: 
 manager: timlt
 documentationcenter: 
@@ -15,96 +15,96 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: rasquill
-ms.openlocfilehash: a8cd4e38fde6e4b17a768a7caecd280cd91a70f2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 63b35ed25b809a16b61b685fd35aa67474b0a369
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="install-hello-azure-cli-10"></a>Hello Azure CLI 1.0 telepítése
+# <a name="install-the-azure-cli-10"></a>Az Azure parancssori felület 1.0-s telepítése
 > [!div class="op_single_selector"]
 > * [PowerShell](/powershell/azure/overview)
 > * [Azure CLI 1.0](cli-install-nodejs.md)
 > * [Azure CLI 2.0](/cli/azure/install-azure-cli)
 
 > [!IMPORTANT]
-> Ez a témakör ismerteti, hogyan tooinstall hello Azure CLI 1.0, amely nodeJs épül, és minden klasszikus üzembe helyezési API támogatja továbbá az erőforrás-kezelő telepítési műveletek nagy számú hívja. Használjon hello [Azure CLI 2.0](/cli/azure/overview) új vagy előretekintő CLI-telepítések és kezelésére.
+> Ez a témakör ismerteti, hogyan telepítheti az Azure CLI 1.0, amely nodeJs épül, és támogatja a klasszikus üzembe helyezési minden API-hívások, valamint a nagy mennyiségű erőforrás-kezelő telepítési tevékenységet. Használjon a [Azure CLI 2.0](/cli/azure/overview) új vagy előretekintő CLI-telepítések és kezelésére.
 
-Gyors telepítés hello Azure parancssori felület (Azure CLI 1.0) toouse nyílt forráskódú-alapú parancsokat létrehozására és kezelésére a Microsoft Azure erőforrásait. Van több beállítások tooinstall ezen platformfüggetlen-eszközök a számítógépen:
+Gyorsan telepíti az Azure parancssori felület (Azure CLI 1.0-s)-alapú parancsokat nyílt forráskódú használandó létrehozása és kezelése a Microsoft Azure erőforrásait. Az platformfüggetlen-eszközök telepítése a számítógépre több lehetőség közül választhat:
 
-* **npm csomag** - futtatási npm (hello Csomagkezelőt a JavaScript) tooinstall hello legújabb Azure CLI 1.0 csomag a Linux-disztribúció vagy az operációs rendszer. Szükséges, node.js és npm a számítógépen.
+* **npm csomag** -npm (a Csomagkezelőt a JavaScript) futtassa a Linux-disztribúció vagy az operációs rendszer a legújabb Azure CLI 1.0 csomag telepítéséhez. Szükséges, node.js és npm a számítógépen.
 * **Telepítő** -könnyen Mac vagy Windows-telepítést telepítőjének letöltése.
-* **Docker-tároló** – hello segítségével Start legújabb CLI készen áll a futásra Docker-tároló. A számítógépen a Docker gazdagépet igényel.
+* **Docker-tároló** - Start készen áll a futásra Docker-tároló a legújabb parancssori felület használatával. A számítógépen a Docker gazdagépet igényel.
 
-A további beállítások és a háttérben, tekintse meg hello projekt tárház [GitHub](https://github.com/azure/azure-xplat-cli).
+A további beállítások és a háttérben, tekintse meg a projekt tárház [GitHub](https://github.com/azure/azure-xplat-cli).
 
-Hello Azure CLI 1.0-s telepítése után [csatlakoztassa az Azure előfizetéssel rendelkező](xplat-cli-connect.md) és futtatási hello **azure** a parancssori felület (Bash, Terminálszolgáltatások, parancssort, és így tovább) parancsok a toowork az Azure-erőforrások.
+Az Azure CLI 1.0-s telepítése után [csatlakoztassa az Azure előfizetéssel rendelkező](xplat-cli-connect.md) , és futtassa a **azure** az Azure-erőforrások kezelésére használható a parancssori felületről (Bash, Terminálszolgáltatások, parancssort, és így tovább) parancsokat.
 
 ## <a name="option-1-install-an-npm-package"></a>1. lehetőség: Egy npm csomag telepítése
-tooinstall hello CLI az npm-csomagból, győződjön meg arról, letöltött és telepített hello [legújabb Node.js és npm](https://nodejs.org/en/download/package-manager/). Ezután futtassa **npm telepítése** tooinstall hello azure-cli csomagot:
+A parancssori felület telepítése npm-csomagból, ellenőrizze, hogy már letöltötte és telepítette a [legújabb Node.js és npm](https://nodejs.org/en/download/package-manager/). Ezután futtassa **npm telepítése** az azure-cli csomag telepítése:
 
 ```bash
 npm install -g azure-cli
 ```
 
-A Linux terjesztéseket, szükség lehet a toouse **sudo** futtatása toosuccessfully hello **npm** parancs, az alábbiak szerint:
+A Linux terjesztéseket, előfordulhat, hogy szüksége **sudo** sikeresen futtatni a **npm** parancs, az alábbiak szerint:
 
 ```bash
 sudo npm install -g azure-cli
 ```
 
 > [!NOTE]
-> Ha tooinstall kell, vagy frissítse a Node.js és a Linux-disztribúció vagy az operációs rendszer npm, ajánlott hello legutóbbi Node.js LTS verzió (4.x) telepítését. Ha egy régebbi verzióját használja, előfordulhat, hogy hibaüzenet telepítését.
+> Ha telepíteni vagy frissíteni a Node.js és a Linux-disztribúció vagy az operációs rendszer npm van szüksége, azt javasoljuk, hogy telepítse a Node.js LTS legfrissebb (4.x). Ha egy régebbi verzióját használja, előfordulhat, hogy hibaüzenet telepítését.
 
-Tetszés szerint töltse le a legfrissebb Linux hello [bont fájl] [ linux-installer] hello npm a csomag helyileg. Majd telepítse az alábbiak szerint hello npm letöltött csomagot (a Linux terjesztéseket szükség lehet a toouse **sudo**):
+Ha szeretné, töltse le a legfrissebb Linux [bont fájl] [ linux-installer] helyileg az npm-csomag. Majd telepítse az alábbiak szerint a letöltött npm csomagot (a Linux terjesztéseket, előfordulhat, hogy szeretné használni, **sudo**):
 
 ```bash
-npm install -g <path toodownloaded tar file>
+npm install -g <path to downloaded tar file>
 ```
 
 ## <a name="option-2-use-an-installer"></a>2. lehetőség: Egy telepítővel
-Ha egy Mac vagy Windows-számítógépet használ, a következő parancssori Felületet telepítőcsomagokat hello letölthetők:
+Ha egy Mac vagy Windows-számítógépet használ, a következő parancssori Felületet telepítőcsomagokat letölthetők:
 
 * [Mac OS X telepítőjét][mac-installer]
 * [Windows MSI][windows-installer]
 
 > [!TIP]
-> A Windows rendszeren is letöltheti hello [Webplatform-telepítő](https://go.microsoft.com/?linkid=9828653) tooinstall hello CLI-t. A telepítő által biztosított lehetőséget tooinstall hello meg további Azure SDK-t és parancssori eszközök telepítése után hello CLI-t.
+> A Windows rendszeren is letöltheti a [Webplatform-telepítő](https://go.microsoft.com/?linkid=9828653) a parancssori felület telepítése. A telepítő lehetővé teszi a parancssori felület telepítése után további Azure SDK-t és parancssori eszközök telepítése lehetőséget.
 
 ## <a name="option-3-use-a-docker-container"></a>3. lehetőség: Egy Docker-tároló használata
-Ha úgy állította be a számítógépre, a [Docker](https://docs.docker.com/engine/understanding-docker/) állomás, futtathatja egy Docker-tároló az Azure CLI legújabb 1.0 hello. Futtatási hello következő parancsot (a Linux terjesztéseket szükség lehet a toouse **sudo**):
+Ha úgy állította be a számítógépre, a [Docker](https://docs.docker.com/engine/understanding-docker/) állomás, futtathatja az Azure CLI legújabb 1.0 egy Docker-tároló. A következő parancsot (a Linux terjesztéseket, előfordulhat, hogy szeretné használni, **sudo**):
 
 ```bash
 docker run -it microsoft/azure-cli
 ```
 
 ## <a name="run-azure-cli-10-commands"></a>Azure CLI 1.0-parancsok futtatása
-Hello Azure CLI 1.0-s telepítése után futtassa a hello **azure** parancsot a parancssori felületén (Bash, Terminálszolgáltatások, parancssort, és így tovább). Például a toorun hello help parancsot, írja be a hello következő:
+Az Azure CLI 1.0-s telepítése után futtassa a **azure** parancsot a parancssori felületén (Bash, Terminálszolgáltatások, parancssort, és így tovább). A Súgó parancs futtatásához írja be például a következőket:
 
 ```azurecli
 azure help
 ```
 
 > [!NOTE]
-> Az egyes Linux terjesztéseket, előfordulhat, hogy hibaüzenet hasonló túl`/usr/bin/env: ‘node’: No such file or directory`. Ez a hiba a legújabb telepítendő /usr/bin/nodejs, Node.js-telepítések származik. toofix, a szimbolikus hivatkozást túl/usr/bin/csomópont létrehozása a következő parancs futtatásával:
+> Egyes Linux terjesztésekről hasonló hiba jelenhet `/usr/bin/env: ‘node’: No such file or directory`. Ez a hiba a legújabb telepítendő /usr/bin/nodejs, Node.js-telepítések származik. Megjavítani, ez a parancs futtatásával hozzon létre /usr/bin/node a szimbolikus hivatkozást:
 
 ```bash
 sudo ln -s /usr/bin/nodejs /usr/bin/node
 ```
 
-hello Azure CLI 1.0 telepíti, akkor a következő típus hello toosee hello verziója:
+Az Azure CLI 1.0 telepített verziójának megtekintéséhez írja be a következőt:
 
 ```azurecli
 azure --version
 ```
 
-Most már készen áll! minden tooaccess hello CLI parancsok toowork saját erőforrásokkal [hello Azure CLI Azure-előfizetés tooyour kapcsolódó](xplat-cli-connect.md).
+Most már készen áll! A saját erőforrásokat parancssori felület parancsai eléréséhez [csatlakozzon az Azure-előfizetéshez az Azure parancssori felületen](xplat-cli-connect.md).
 
 > [!NOTE]
-> Első használata alkalmával érdemes az Azure parancssori felület, megjelenik egy üzenet megkérdezi, tooallow Microsoft toocollect használati adatait. Részvétel önkéntes történik. Ha úgy dönt, hogy tooparticipate, le is bármikor futtatásával `azure telemetry --disable`. bármikor, tooenable részvételét futtassa `azure telemetry --enable`.
+> Ha először használja az Azure parancssori felület, megjelenik egy üzenet rákérdez, hogy a Microsoft használati adatokat gyűjthet a. Részvétel önkéntes történik. Ha a részvétel mellett dönt, le is bármikor futtatásával `azure telemetry --disable`. Részvétel bármikor engedélyezéséhez futtassa `azure telemetry --enable`.
 
-## <a name="update-hello-cli"></a>Frissítés hello parancssori felület
-Microsoft gyakran kiadott hello Azure CLI frissített verzióit. Telepítse újra a CLI hello installer használatával az operációs rendszer hello, vagy futtassa az hello legújabb Docker-tároló. Vagy, ha legújabb Node.js és npm telepítve rendelkezik hello, frissítse a következő hello (a Linux terjesztéseket szükség lehet a toouse **sudo**).
+## <a name="update-the-cli"></a>A parancssori felület frissítése
+A Microsoft gyakran ad az Azure parancssori felület frissített verzióit. Telepítse újra a telepítő használatával az operációs rendszer CLI, vagy futtassa a legújabb Docker-tároló. Vagy, ha a legfrissebb Node.js és npm telepítve van, frissítse a következő (a Linux terjesztéseket, előfordulhat, hogy szeretné használni, **sudo**).
 
 ```bash
 npm update -g azure-cli
@@ -113,13 +113,13 @@ npm update -g azure-cli
 ## <a name="enable-tab-completion"></a>Kiegészítés engedélyezése
 A parancssori felület parancsait kiegészítést Mac és Linux esetén támogatott.
 
-tooenable zsh, a futtatni:
+Engedélyezze a zsh, futtassa:
 
 ```bash
 echo '. <(azure --completion)' >> .zshrc
 ```
 
-tooenable a bash futtatni:
+Engedélyezze a bash, futtassa:
 
 ```bash
 azure --completion >> ~/azure.completion.sh
@@ -128,9 +128,9 @@ echo 'source ~/azure.completion.sh' >> ~/.bash_profile
 
 
 ## <a name="next-steps"></a>Következő lépések
-* [Csatlakoztatja a hello CLI tooyour Azure-előfizetés](xplat-cli-connect.md) toocreate és az Azure-erőforrások kezeléséhez.
-* toolearn hello Azure parancssori Felülettel kapcsolatos további információkért töltse le a forráskódot, jelentse az esetleges problémákat, vagy toohello projekt közre, látogasson el a hello [hello Azure CLI GitHub-tárházban](https://github.com/azure/azure-xplat-cli).
-* Ha az Azure parancssori felület hello, vagy Azure használatával kapcsolatos kérdésekre, keresse fel a hello [Azure fórumok](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurescripting).
+* [Csatlakoztassa a CLI Azure-előfizetése](xplat-cli-connect.md) létrehozásához és kezeléséhez az Azure-erőforrások.
+* További tudnivalók az Azure parancssori felület, letöltési forráskódját, kapcsolatos problémákat, vagy a projekt hozzájárul, látogasson el a [az Azure parancssori felület GitHub-tárházban](https://github.com/azure/azure-xplat-cli).
+* Ha az Azure parancssori felület, vagy az Azure használatával kapcsolatos kérdésekre, keresse fel a [Azure fórumok](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurescripting).
 
 
 [mac-installer]: http://aka.ms/mac-azure-cli

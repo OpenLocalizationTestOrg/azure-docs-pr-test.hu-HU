@@ -1,6 +1,6 @@
 ---
-title: Analysis Services Excel aaaConnect tooAzure |} Microsoft Docs
-description: "Ismerje meg, hogyan tooconnect tooan Azure Analysis Services Excel használatával."
+title: "Kapcsolódás Azure Analysis Services Excel |} Microsoft Docs"
+description: "Útmutató az Azure Analysis Services-kiszolgálóhoz kapcsolódni az Excel használatával."
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -15,30 +15,30 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: owend
-ms.openlocfilehash: 175b83e7d936716a626aa4b3bf22b5598bb983d2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d51b6980120f1cf9bc8d053d463a73ac600b915f
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="connect-with-excel"></a>Csatlakozás az Excellel
 
-Miután elkészítette a kiszolgáló Azure-ban, és telepített egy táblázatos modell tooit, Ön készen tooconnect és adatok megkezdéséhez.
+Miután elkészítette a kiszolgáló Azure-ban, és telepített egy táblázatos modell, készen áll csatlakozni, és az adatok megkezdéséhez.
 
 
 ## <a name="connect-in-excel"></a>Csatlakozás az Excel programban
 
-Kapcsolódás Excel tooa kiszolgáló támogatja az Excel 2016 adatok beolvasása paranccsal. Nem támogatott a Kapcsolódás a Power Pivot hello importálása varázsló használatával. 
+Adatok beolvasása használata az Excel 2016 az Excel programban a kiszolgálóhoz való kapcsolódás esetén támogatott. Nem támogatott a Kapcsolódás a Power Pivot tábla importálása varázsló használatával. 
 
-**az Excel 2016 tooconnect**
+**Az Excel 2016 kapcsolódni**
 
-1. Az Excel 2016, az hello **adatok** menüszalag, kattintson a **külső adatok beolvasása** > **egyéb forrásokból származó** > **Analysis Services** .
+1. Az Excel 2016-ot, a **adatok** menüszalag, kattintson a **külső adatok beolvasása** > **egyéb forrásokból származó** > **Analysis Services** .
 
-2. A hello Adatkapcsolat varázsló, a **kiszolgálónév**, többek között a protokollt és URI hello kiszolgálónevet adja meg. Ezt követően a **bejelentkezési adatok**, jelölje be **a következő felhasználónevet és jelszót használja hello**, majd írja be például a hello szervezeti felhasználónevet, nancy@adventureworks.com, és a jelszót.
+2. Az Adatkapcsolat varázsló a **kiszolgálónév**, adja meg a kiszolgáló nevét, többek között a protokollt és URI-t. Ezt követően a **bejelentkezési adatok**, jelölje be **használja a következő felhasználónév és jelszó**, és írja be a szervezeti felhasználók nevét, például nancy@adventureworks.com, és a jelszót.
 
     ![Az Excel bejelentkezéstől csatlakozás](./media/analysis-services-connect-excel/aas-connect-excel-logon.png)
 
-3. A **adatbázis és tábla kijelölése**, hello adatbázis és a modell vagy perspektíva, és kattintson a **Befejezés**.
+3. A **adatbázis és tábla kijelölése**, az adatbázis és a modell vagy perspektíva, és kattintson a **Befejezés**.
    
     ![Kapcsolódás Excel válassza modellből](./media/analysis-services-connect-excel/aas-connect-excel-select.png)
 

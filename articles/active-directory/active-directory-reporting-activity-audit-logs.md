@@ -1,6 +1,6 @@
 ---
-title: "aaaAudit tevékenység jelentések hello Azure Active Directory portálon |} Microsoft Docs"
-description: "Bevezetés toohello naplózási Tevékenységjelentések hello Azure Active Directory portálon"
+title: "Naplózott tevékenységekre vonatkozó jelentések az Azure Active Directory portálon | Microsoft Docs"
+description: "Naplózott tevékenységekre vonatkozó jelentések az Azure Active Directory portálon – bevezetés"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,66 +15,66 @@ ms.workload: identity
 ms.date: 07/19/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 1567673f5030fc707b017c069f2ba7587962e5cb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f2d0332d815c82d7d47625e020de2e9c5099deeb
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="audit-activity-reports-in-hello-azure-active-directory-portal"></a>Naplózási Tevékenységjelentések hello Azure Active Directory portálon 
+# <a name="audit-activity-reports-in-the-azure-active-directory-portal"></a>Naplózott tevékenységekre vonatkozó jelentések az Azure Active Directory portálon 
 
-A jelentéskészítés az Azure Active Directory (Azure AD), toodetermine hogyan működik a környezetében szükséges hello információkat kaphat.
+Az Azure Portalon az Azure Active Directory (Azure AD) jelentéskészítési funkciójával minden szükséges információhoz hozzájuthat a környezetével kapcsolatban.
 
-a következő összetevők hello architektúra az Azure AD reporting hello foglalja magában:
+Az Azure AD jelentéskészítési architektúrája a következő elemekből áll:
 
 - **Tevékenység** 
-    - **Bejelentkezési tevékenységek** – kezelt alkalmazások és a felhasználói bejelentkezési tevékenységek hello használatával kapcsolatos információért
+    - **Bejelentkezési tevékenységek** – A felügyelt alkalmazások használatával és a felhasználók bejelentkezési tevékenységeivel kapcsolatos információk
     - **Naplók** – Rendszertevékenység információk a felhasználó- és csoportfelügyeletre, valamint a felügyelt alkalmazásokra és a címtártevékenységekre vonatkozóan.
 - **Biztonság** 
-    - **Kockázatos bejelentkezések** -kockázatos bejelentkezés egy bejelentkezési kísérlet, amely előfordulhat, hogy nincs egy felhasználói fiókot hello jogos tulajdonosa, aki elvégezte mutatója. További részletek: Kockázatos bejelentkezések.
+    - **Kockázatos bejelentkezések** – A kockázatos bejelentkezés egy olyan bejelentkezési kísérletet jelöl, amelyet elképzelhető, hogy olyan személy hajtott végre, aki nem a felhasználói fiók jogos tulajdonosa. További részletek: Kockázatos bejelentkezések.
     - **Kockázatosként megjelölt felhasználók** – A kockázatos felhasználó egy olyan felhasználói fiókot jelöl, amelynek elképzelhető, hogy sérült a biztonsága. További részletek: Kockázatosként megjelölt felhasználók.
 
-Ez a témakör áttekintést nyújt a hello naplózási tevékenységek.
+Ezen témakör áttekintést nyújt a naplózási tevékenységekről.
  
-## <a name="who-can-access-hello-data"></a>Hello adatok hozzáférő felhasználók?
-* Hello biztonsági rendszergazda vagy a biztonsági olvasó szerepet betöltő felhasználók
+## <a name="who-can-access-the-data"></a>Ki férhet hozzá az adatokhoz?
+* A biztonsági rendszergazda vagy biztonsági olvasó szerepkörű felhasználók
 * A globális rendszergazdák
 * Az egyedi (nem rendszergazda jogosultságú) felhasználók csak a saját tevékenységüket láthatják
 
 
 ## <a name="audit-logs"></a>Naplók
 
-hello naplók az Azure Active Directoryban adja meg a rendszer tevékenységek megfelelőségi rögzíti.  
-Az első belépési pont tooall adatok naplózása van **naplók** a hello **tevékenység** szakasza **Azure Active Directory**.
+Az Azure Active Directory naplói a rendszertevékenységek rekordjait tartalmazzák megfelelőségi célokból.  
+A **Naplók** menüponton át vezet az út az összes naplózott adathoz – a menüpont az **Azure Active Directory** **Tevékenység** szakaszában található.
 
 ![Naplók](./media/active-directory-reporting-activity-audit-logs/61.png "Naplók")
 
 Az auditnapló alapértelmezett listanézete az alábbi adatokat jeleníti meg:
 
-- hello dátum és idő hello előfordulás
-- hello kezdeményező / aktor (*ki*) tevékenység 
-- tevékenység hello (*mi*) 
-- hello cél
+- az előfordulás dátuma és időpontját
+- a tevékenység kezdeményezőjét / szereplőjét (*ki?*) 
+- a tevékenységet (*mi?*) 
+- a célt
 
 ![Naplók](./media/active-directory-reporting-activity-audit-logs/18.png "Naplók")
 
-Testre szabhatja hello listanézet kattintva **oszlopok** hello eszköztáron.
+A listanézetet az eszköztár **Oszlopok** elemére kattintva lehet testre szabni.
 
 ![Naplók](./media/active-directory-reporting-activity-audit-logs/19.png "Naplók")
 
-Ez lehetővé teszi a toodisplay további mezőket, vagy távolítsa el a mezőket, amelyeknek már jelennek meg.
+További mezőket jeleníthet meg, vagy eltávolíthatja a már megjelenített mezőket.
 
 ![Naplók](./media/active-directory-reporting-activity-audit-logs/21.png "Naplók")
 
 
-Hello listanézet elemére kattintva kap az összes rendelkezésre álló részleteit.
+A listanézet egyik elemére kattintva megtekintheti annak elérhető összes részletét.
 
 ![Naplók](./media/active-directory-reporting-activity-audit-logs/22.png "Naplók")
 
 
 ## <a name="filtering-audit-logs"></a>Auditnaplók szűrése
 
-lefelé hello toonarrow jelentette, hogy az Ön működik, végezhet hello naplózási adatok használatával a következő mezők hello tooa szintnek:
+A jelentésben lévő adatok megfelelő szintű szűkítéséhez az alábbi mezőkkel szűrheti a naplózott adatokat:
 
 - Dátumtartomány
 - Kezdeményező (Szereplő)
@@ -85,7 +85,7 @@ lefelé hello toonarrow jelentette, hogy az Ön működik, végezhet hello napl�
 ![Naplók](./media/active-directory-reporting-activity-audit-logs/23.png "Naplók")
 
 
-Hello **dátumtartományának** szűrő lehetővé teszi, hogy tooyou toodefine a hello időkereteket adatokat adott vissza.  
+A **dátumtartomány** szűrővel időkeretet lehet meghatározni a visszaadott adatokhoz.  
 Lehetséges értékek:
 
 - 1 hónap
@@ -95,9 +95,9 @@ Lehetséges értékek:
 
 Egyéni időkeret kiválasztásakor beállíthatja a kezdő és a záró időpontot.
 
-Hello **által kezdeményezett** szűrő lehetővé teszi, hogy Ön toodefine egy szereplő nevét vagy annak univerzális egyszerű felhasználónév (UPN).
+A **Kezdeményező** szűrő lehetővé teszi egy szereplő nevének vagy UPN-jének megadását.
 
-Hello **kategória** szűrő tooselect a következő szűrő hello lehetővé teszi:
+A **kategória** szűrővel az alábbi szűrők egyikét választhatja ki:
 
 - Összes
 - Alapvető kategória
@@ -110,7 +110,7 @@ Hello **kategória** szűrő tooselect a következő szűrő hello lehetővé te
 - Identity Protection
 - B2C
 
-Hello **tevékenység erőforrástípus** szűrő lehetővé teszi tooselect hello következő szűrése:
+A **tevékenység erőforrástípusa** szűrővel az alábbi szűrők egyikét választhatja ki:
 
 - Összes 
 - Csoport
@@ -121,29 +121,29 @@ Hello **tevékenység erőforrástípus** szűrő lehetővé teszi tooselect hel
 - Eszköz
 - Egyéb
 
-Ha bejelöli **csoport** , **tevékenység erőforrástípus**, tooalso kap egy kiegészítő szűrőt kategóriát, amely lehetővé teszi, adjon meg egy **forrás**:
+Ha a **Csoport** elemet választja a **tevékenység erőforrástípusaként**, kap egy kiegészítő szűrőkategóriát, amelyben megadhatja a **forrást**:
 
 - Azure AD
 - O365
 
 
-Hello **tevékenység** szűrő hello kategória és tevékenység erőforrás típusa választott ki alapul. Kiválaszthatja, hogy egy adott tevékenységre, válassza ki az összes vagy toosee szeretné. 
+A **tevékenység** szűrő a kiválasztott kategórián és tevékenység-erőforrástípuson alapul. Választhat egy adott tevékenységet, amelyet meg szeretne tekinteni, vagy kiválaszthatja az összeset. 
 
-Kaphat az összes naplózási tevékenység hello listája tenantdomain/tevékenységek/auditActivityTypes hello Graph API https://graph.windows.net/$ használatával? api-version = beta, ahol $tenantdomain = a tartomány nevét, vagy tekintse meg a toohello cikk [ellenőrzési jelentés események](active-directory-reporting-audit-events.md).
+A Graph API (https://graph.windows.net/$tenantdomain/activities/auditActivityTypes?api-version=beta) használatával lekérheti az összes naplózási tevékenység listáját, ahol a $tenantdomain a tartománynév, vagy tekintse meg a [naplózási jelentési eseményekkel kapcsolatos](active-directory-reporting-audit-events.md) cikket.
 
 
 ## <a name="audit-logs-shortcuts"></a>Rövidebb utak a naplók eléréséhez
 
-Ezenkívül túl**Azure Active Directory**, hello Azure-portál lehetővé teszi két további belépési pontok tooaudit adatokat:
+Az **Azure Active Directory** mellett az Azure Portal két további lehetőséget biztosít a naplózási adatok elérésére:
 
 - Felhasználók és csoportok
 - Vállalati alkalmazások
 
 ### <a name="users-and-groups-audit-logs"></a>Felhasználók és csoportok auditnaplói
 
-A felhasználó és csoport alapuló naplózási jelentések kaphat a válaszok tooquestions többek között:
+A felhasználó- és csoportalapú naplózási jelentésekkel az alábbi kérdésekre kaphat választ:
 
-- Milyen típusú frissítések lettek alkalmazott hello felhasználók?
+- Milyen típusú frissítéseket telepítettek a felhasználók?
 
 - Hány felhasználó lett módosítva?
 
@@ -151,38 +151,38 @@ A felhasználó és csoport alapuló naplózási jelentések kaphat a válaszok 
 
 - Mit csinált a rendszergazda egy adott címtárban?
 
-- Mik azok a hozzáadott hello csoportok?
+- Mely csoportok lettek hozzáadva?
 
 - Történt-e tagsági változás valamelyik csoportban?
 
-- Megváltoztatta a csoport tulajdonosainak hello?
+- Változtak-e a csoportok tulajdonosai?
 
-- Milyen licencek tooa csoport vagy felhasználó hozzárendelt?
+- Milyen licencek lettek hozzárendelve egy adott csoporthoz vagy felhasználóhoz?
 
-Ha csak naplózási adatokat, amelyek kapcsolódó toousers és csoportok tooreview, egy szűrt nézet alatt található **naplók** a hello **tevékenység** hello szakasza **felhasználók és csoportok**. Ennél a lehetőségnél a **Felhasználók és csoportok** van előre kiválasztva **tevékenység-erőforrástípusként**.
+Ha csak át szeretné tekinteni a felhasználókhoz és csoportokhoz kapcsolódó naplózási adatokat, megnyithat egy szűrt nézetet az **Auditnaplók** menüpontból, amely a **Felhasználók és csoportok** **Tevékenység** szakaszában található. Ennél a lehetőségnél a **Felhasználók és csoportok** van előre kiválasztva **tevékenység-erőforrástípusként**.
 
 ![Naplók](./media/active-directory-reporting-activity-audit-logs/93.png "Naplók")
 
 ### <a name="enterprise-applications-audit-logs"></a>Vállalati alkalmazások naplói
 
-Az alkalmazás-alapú naplózási jelentések, akkor létrehozhat válaszok tooquestions többek között:
+Az alkalmazásalapú naplózási jelentésekkel az alábbi kérdésekre kaphat választ:
 
-* Mik azok a hozzáadott vagy frissített hello alkalmazások?
-* Mik azok a hello alkalmazások, amelyek el lettek távolítva?
+* Mely alkalmazások lettek hozzáadva vagy frissítve?
+* Mely alkalmazások lettek eltávolítva?
 * Megváltozott valamelyik alkalmazás egyszerű szolgáltatásneve?
-* Megváltoztatta a kérelmek hello nevek?
-* Hozzájárulás tooan alkalmazás számára megadott?
+* Történt változás az alkalmazások nevében?
+* Ki hagyott jóvá egy adott alkalmazást?
 
-Ha csak naplózási adatokat, amelyek kapcsolódó tooyour alkalmazások tooreview, egy szűrt nézet alatt található **naplók** a hello **tevékenység** hello szakasza **vállalati alkalmazások**  panelen. Ennél a lehetőségnél a **Vállalati alkalmazások** van előre kiválasztva **tevékenység-erőforrástípusként**.
+Ha csak át szeretné tekinteni az alkalmazásaihoz kapcsolódó naplózási adatokat, megnyithat egy szűrt nézetet az **Auditnaplók** menüpontból, amely a **Vállalati alkalmazások** panel **Tevékenység** szakaszában található. Ennél a lehetőségnél a **Vállalati alkalmazások** van előre kiválasztva **tevékenység-erőforrástípusként**.
 
 ![Naplók](./media/active-directory-reporting-activity-audit-logs/134.png "Naplók")
 
-Szűrheti a nézet további le toojust **csoportok** vagy csak **felhasználók**.
+A nézetet tovább szűrheti csak a **csoportok** vagy csak a **felhasználók** megjelenítéséhez.
 
 ![Naplók](./media/active-directory-reporting-activity-audit-logs/25.png "Naplók")
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-Jelentéskészítési áttekintését lásd: hello [Azure Active Directory reporting](active-directory-reporting-azure-portal.md).
+A jelentéskészítés áttekintéséért lásd: [Jelentéskészítés az Azure Active Directoryban](active-directory-reporting-azure-portal.md).
 

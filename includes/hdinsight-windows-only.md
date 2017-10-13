@@ -1,5 +1,5 @@
 > [!NOTE]
-> a dokumentumban szereplő információk hello tooWindows-alapú HDInsight-fürtök csak érvényes.
+> A jelen dokumentumban szereplő információk csak a Windows-alapú HDInsight-fürtök vonatkozik.
 > 
 > 
 

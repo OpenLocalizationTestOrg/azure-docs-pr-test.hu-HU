@@ -1,6 +1,6 @@
 ---
-title: "aaaDiagnostics eszközt a StorSimple 8000 tootroubleshoot eszköz |} Microsoft Docs"
-description: "Hello StorSimple eszköz módokat ismerteti és bemutatja hogyan toouse Windows PowerShell a StorSimple toochange hello eszköz mód."
+title: "Diagnosztikai eszköz, a StorSimple 8000 eszköz hibáinak elhárítása |} Microsoft Docs"
+description: "A StorSimple eszköz módok és használatához a Windows PowerShell-lel módosíthatja eszköz módját ismerteti."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,86 +14,86 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/27/2017
 ms.author: alkohli
-ms.openlocfilehash: e8b7fdbc44d2533973b63da841335ba73ba0014b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8fae7bb357f8e5e8eff249edfe3a2aaafe04283c
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="use-hello-storsimple-diagnostics-tool-tootroubleshoot-8000-series-device-issues"></a>Használja a hello StorSimple diagnosztikai eszköz tootroubleshoot 8000 sorozat eszközökkel kapcsolatos problémákat
+# <a name="use-the-storsimple-diagnostics-tool-to-troubleshoot-8000-series-device-issues"></a>A StorSimple diagnosztikai eszköz segítségével 8000 sorozat eszközök kapcsolatos problémák elhárítása
 
 ## <a name="overview"></a>Áttekintés
 
-StorSimple diagnosztikai eszköz hello diagnosztizálja a problémák kapcsolódó toosystem, a teljesítmény, a hálózati és a StorSimple eszköz hardver összetevő állapotát. hello diagnosztikai eszköz használható a különböző forgatókönyvekben. Ilyen például, alkalmazások és szolgáltatások tervezése, a StorSimple eszköz üzembe helyezése, hello hálózati környezet értékeléséhez és egy operatív eszköz hello teljesítményének meghatározására. Ez a cikk áttekintést hello diagnosztikai eszköz, és ismerteti, hogyan használható hello eszközt a StorSimple eszköz.
+A StorSimple diagnosztikai eszköz diagnosztizálja a rendszer, a teljesítmény, a hálózati és a hardver összetevő állapota a StorSimple eszköz kapcsolatos problémákat. A diagnosztikai eszköz használható a különböző forgatókönyvekben. Ilyen például, alkalmazások és szolgáltatások tervezése, a StorSimple eszköz üzembe helyezése, a hálózati környezet értékeléséhez és az operatív eszközök teljesítményének meghatározására. Ez a cikk áttekintést a diagnosztikai eszköz, és ismerteti, hogyan használható az eszközt a StorSimple eszköz.
 
-hello diagnosztikai eszköz elsődlegesen a StorSimple 8000 series a helyszíni eszközök (8100 és 8600).
+A diagnosztikai eszköz elsődlegesen a StorSimple 8000 series a helyszíni eszközök (8100 és 8600).
 
 ## <a name="run-diagnostics-tool"></a>Diagnosztikai eszköz futtatása
 
-Ezt az eszközt a StorSimple eszköz hello Windows PowerShell felületén keresztül is futtatható. Tooaccess hello az eszköz helyi kapcsolat két módja van:
+Ezt az eszközt a StorSimple eszköz a Windows PowerShell felületén keresztül is futtatható. A helyi kapcsolat az eszköz eléréséhez két módja van:
 
-* [Használjon PuTTY tooconnect toohello eszköz soros konzoljához](storsimple-deployment-walkthrough-u2.md#use-putty-to-connect-to-the-device-serial-console).
-* [Hello eszköz hello Windows PowerShell használatával távolról el a StorSimple](storsimple-remote-connect.md).
+* [A PuTTY használata az eszköz soros konzoljához való csatlakozáshoz](storsimple-deployment-walkthrough-u2.md#use-putty-to-connect-to-the-device-serial-console).
+* [Távoli eléréséhez a Windows PowerShell eszközt a StorSimple](storsimple-remote-connect.md).
 
-Ebben a cikkben azt feltételezzük, hogy csatlakozott-e toohello eszköz soros konzolon keresztül PuTTY.
+Ebben a cikkben azt feltételezzük, hogy az eszköz soros konzoljához PuTTY keresztül csatlakoztatott.
 
-#### <a name="toorun-hello-diagnostics-tool"></a>toorun hello diagnosztikai eszköz
+#### <a name="to-run-the-diagnostics-tool"></a>A diagnosztikai eszköz futtatása
 
-Ha a Windows PowerShell-felületet toohello hello eszköz csatlakozott, hajtsa végre a következő lépéseket toorun hello parancsmag hello.
-1. Jelentkezzen be toohello eszköz soros konzoljához hello utasításait követve [PuTTY használata tooconnect toohello eszköz soros konzoljához](storsimple-deployment-walkthrough-u2.md#use-putty-to-connect-to-the-device-serial-console).
+Miután csatlakozott az eszköz a Windows PowerShell felületén, hajtsa végre az alábbi lépéseket a parancsmag futtatásához.
+1. Jelentkezzen be az eszköz soros konzoljához lépéseit követve [a PuTTY használata az eszköz soros konzoljához való csatlakozáshoz](storsimple-deployment-walkthrough-u2.md#use-putty-to-connect-to-the-device-serial-console).
 
-2. Írja be a következő parancs hello:
+2. Írja be a következő parancsot:
 
     `Invoke-HcsDiagnostics`
 
-    Ha hello hatókör-paraméter nincs megadva, a hello parancsmag minden hello diagnosztikai tesztek hajtja végre. Ezek a tesztek közé tartozik a rendszer, a hardver összetevő állapotát, a hálózati és a teljesítményt. 
+    Ha a hatókör-paraméter nincs megadva, a parancsmag a diagnosztikai tesztek hajtja végre. Ezek a tesztek közé tartozik a rendszer, a hardver összetevő állapotát, a hálózati és a teljesítményt. 
     
-    csak egy adott teszt toorun hello hatókör-paramétert adja meg. Például toorun csak hello hálózati vizsgálat típusa
+    Csak egy adott teszt futtatásához, adja meg a hatókör-paramétert. Például csak a hálózati tesztek futtatásához írja be
 
     `Invoke-HcsDiagnostics -Scope Network`
 
-3. Válassza ki és másolja hello kimeneti hello PuTTY ablak egy szövegfájlba további elemzés céljából.
+3. Jelölje ki, és a kimeneti másolja a PuTTY ablakból egy szövegfájlba további elemzés céljából.
 
-## <a name="scenarios-toouse-hello-diagnostics-tool"></a>Forgatókönyvek toouse hello diagnosztikai eszköz
+## <a name="scenarios-to-use-the-diagnostics-tool"></a>A diagnosztikai eszköz forgatókönyvek
 
-Hello diagnosztikai eszköz tootroubleshoot hello hálózati, a teljesítmény, a rendszer és a hardver állapotát hello rendszer használja. Az alábbiakban néhány lehetséges forgatókönyv szerint:
+A diagnosztikai eszköz segítségével hibaelhárítása a rendszer a hálózaton, a teljesítmény, a rendszer és a hardver állapotát. Az alábbiakban néhány lehetséges forgatókönyv szerint:
 
-* **Az eszköz offline** -a StorSimple 8000 series eszköz offline állapotban. Azonban hello Windows PowerShell felületén, úgy tűnik, hogy mindkét hello tartományvezérlők megfelelően működik.
-    * Ezzel az eszközzel használható toothen hello hálózati állapot meghatározásához.
+* **Az eszköz offline** -a StorSimple 8000 series eszköz offline állapotban. Azonban a Windows PowerShell felületén, úgy tűnik, hogy mindkét vezérlőhöz megfelelően működik.
+    * Az eszköz segítségével ellenőrizze a hálózati állapotot.
          
          > [!NOTE]
-         > Használja az eszköz tooassess teljesítmény és a hálózati beállítások egy eszköz előtt hello regisztrációs (vagy a telepítő varázsló segítségével konfigurálása). Egy érvényes IP-cím hozzá van rendelve a toohello eszköz telepítővarázslóját, és a regisztráció során. Olyan eszköz, amely nincs regisztrálva, a hardver és a rendszer ezt a parancsmagot futtathatja. Használjon a hello hatókör-paraméter, például:
+         > Az eszköz nem használható fel annak ellenőrzéséhez, teljesítmény- és hálózati beállításokat a regisztrációs (vagy keresztül telepítővarázsló konfigurálása) előtt egy eszközön. Egy érvényes IP-cím hozzá van rendelve az eszköz telepítővarázslóját, és a regisztráció során. Olyan eszköz, amely nincs regisztrálva, a hardver és a rendszer ezt a parancsmagot futtathatja. Használja például a hatókör-paramétert:
          >
          > `Invoke-HcsDiagnostics -Scope Hardware`
          >
          > `Invoke-HcsDiagnostics -Scope System`
 
-* **Állandó eszközökkel kapcsolatos problémákat** -eszközökkel kapcsolatos problémákat, amelyek az adatok toopersist tapasztalja. Például regisztrációja sikertelen. Sikerült is lehet tapasztal eszközökkel kapcsolatos problémákat hello eszköz után sikeresen regisztrált és működési egy ideig.
-    * Ebben az esetben ezzel az eszközzel előzetes hibaelhárítási, mielőtt bejelentkezik egy szolgáltatási kérelem Microsoft Support. Azt javasoljuk, hogy az eszköz és a rögzítési hello kimeneti az eszköz. A kimeneti tooSupport tooexpedite hibaelhárítási majd meg.
+* **Állandó eszközökkel kapcsolatos problémákat** -eszközökkel kapcsolatos problémákat, amelyek az adatok megőrzéséhez tapasztalja. Például regisztrációja sikertelen. Sikerült is lehet tapasztal eszközökkel kapcsolatos problémákat Miután az eszköz sikeresen regisztrált és működési egy ideig.
+    * Ebben az esetben ezzel az eszközzel előzetes hibaelhárítási, mielőtt bejelentkezik egy szolgáltatási kérelem Microsoft Support. Azt javasoljuk, hogy az eszköz futtatásához, és ez az eszköz kimenetét rögzíti. Ezután az hibaelhárítás elősegítésére támogatáshoz adja meg a kimenetet.
     * Minden összetevő vagy a fürt hardverhibák esetén be kell jelentkezni egy támogatási kérést.
 
 * **Kevés a Teljesítmény eszköz** -a StorSimple eszköz lassú.
-    * Ebben az esetben futtassa ezt a parancsmagot a hatókör-paraméter beállítása tooperformance. Hello kimeneti elemzése. Hello felhő írható-olvasható késések beolvasása. Használjon hello jelentett késések maximális elérhető célként, figyelembe a hello belső adatkezelési némi többletterhelést okoz, és hello munkaterhelések hello rendszeren telepíteni. További információ: túl[hello hálózati teszt tootroubleshoot eszköz teljesítményű](#network-test).
+    * Ebben az esetben futtassa ezt a parancsmagot a teljesítmény beállítása hatókör-paramétert. Vizsgálja meg a kimenetet. A felhő írható-olvasható késések beolvasása. A jelentésben szereplő késleltetések maximális elérhető célként használni, számításba a némi többletterhelést okoz, a belső az adatok feldolgozásához, és telepíteni a feladatait, a rendszer. További információkért látogasson el [a hálózati tesztek segítségével eszköz elhárítása](#network-test).
 
 
 ## <a name="diagnostics-test-and-sample-outputs"></a>Diagnosztika teszt- és minta kimenet
 
 ### <a name="hardware-test"></a>Hardver ellenőrzése
 
-Ez a vizsgálat hello hardverösszetevők, hello legpontosabb Beállításhoz belső vezérlőprogram és hello lemez belső vezérlőprogramját a rendszeren futó hello állapota határozza meg.
+Ez a vizsgálat meghatározza a hardverösszetevők, a legpontosabb Beállításhoz belső vezérlőprogram és a lemez belső vezérlőprogramját a rendszeren futó állapotát.
 
-* jelentett hello hardverösszetevők ezek az összetevők adott sikertelen hello teszt vagy hello rendszerben.
-* hello legpontosabb Beállításhoz belső vezérlőprogram és lemez a belső vezérlőprogram verzióinak hello vezérlő 0, a vezérlő 1 jelzett, és a rendszer a megosztott összetevőit. A teljes listáját, és hardverösszetevők Ugrás:
+* A jelentett hardverösszetevőket összetevőket, a teszt sikertelen, vagy nincsenek jelen a rendszerben.
+* A legpontosabb Beállításhoz belső vezérlőprogram és lemez belsővezérlőprogram-verziók a vezérlő 0, a vezérlő 1 jelzett, és a rendszer a megosztott összetevőit. A teljes listáját, és hardverösszetevők Ugrás:
 
     * [Elsődleges szolgáltatással összetevők](storsimple-monitor-hardware-status.md#component-list-for-primary-enclosure-of-storsimple-device)
     * [Összetevők EBOD szolgáltatással](storsimple-monitor-hardware-status.md#component-list-for-ebod-enclosure-of-storsimple-device)
 
 > [!NOTE]
-> Ha az hello hardveren végzett ellenőrzéshez összetevő, [jelentkezzen be Microsoft Support szolgáltatáskérés](storsimple-contact-microsoft-support.md).
+> Ha a hardver teszt eredményeként összetevő, [jelentkezzen be Microsoft Support szolgáltatáskérés](storsimple-contact-microsoft-support.md).
 
 #### <a name="sample-output-of-hardware-test-run-on-an-8100-device"></a>Minta kimenet hardveren végzett ellenőrzéshez egy 8100-eszközön fut
 
-Íme egy minta kimenet egy StorSimple 8100 eszközről. A hello 8100-as modell eszközhöz hello EBOD ház nincs jelen. Emiatt hello EBOD vezérlő összetevők nem jelennek meg.
+Íme egy minta kimenet egy StorSimple 8100 eszközről. A EBOD ház nincs jelen a 8100-as modell eszközhöz. Emiatt a EBOD vezérlő összetevők nem jelennek meg.
 
 ```
 Controller0>Invoke-HcsDiagnostics -Scope Hardware
@@ -205,17 +205,17 @@ DisksFirmware       : SmrtStor:TXA2D20400GA6XYR:KZ50
 
 ### <a name="system-test"></a>Rendszer-teszt
 
-Ez a vizsgálat hello Rendszerinformáció, hello a rendelkezésre álló frissítések, hello fürtinformációkat és hello szolgáltatás adatait az eszköz jelentéseket.
+Ez a vizsgálat a rendszer-információkat, a rendelkezésre álló frissítések, a fürt információkat és a szolgáltatás adatait az eszköz jelentéseket.
 
-* hello Rendszerinformáció hello modell, sorozatszámát, időzóna, tartományvezérlő állapotát és hello részletes szoftververzió hello rendszeren futó tartalmaz. különböző rendszer paraméterek jelentett hello kimeneti, nyissa meg túl toounderstand hello[Rendszerinformáció értelmezése](#appendix-interpreting-system-information).
+* A rendszer-információkat tartalmazza a modell, sorozatszámát, időzóna, tartományvezérlő állapotát, és a rendszeren futó részletes szoftververzió. A kimeneti jelentett különböző rendszer paraméterek megértéséhez, keresse fel [Rendszerinformáció értelmezése](#appendix-interpreting-system-information).
 
-* hello frissítés rendelkezésre állási jelenti, hogy elérhetők-e a hello rendszeres és karbantartási mód és a csomaghoz kapcsolódó nevek. Ha `RegularUpdates` és `MaintenanceModeUpdates` vannak `false`, ez azt jelzi, hogy hello frissítések nem érhetők el. Az eszköz naprakész állapotban.
-* hello fürtinformációkat összes hello HCS fürtcsoport és hozzájuk megfelelő állapotok hello logikai összetevők információkat tartalmaz. Ha megjelenik egy kapcsolat nélküli fürtcsoport ebben a szakaszban hello jelentés [forduljon a Microsoft Support](storsimple-contact-microsoft-support.md).
-* hello szolgáltatás adatait hello nevét és az összes hello HCS állapotok és az eszközön futó CiS szolgáltatásokat tartalmazza. Ez az információ a Microsoft Support hello hasznosak hello eszköz hiba elhárításához.
+* A frissítés rendelkezésre állási jelenti, hogy elérhetők-e a normál és a karbantartási mód és a csomaghoz kapcsolódó nevek. Ha `RegularUpdates` és `MaintenanceModeUpdates` vannak `false`, ez azt jelzi, hogy a frissítések nem érhetők el. Az eszköz naprakész állapotban.
+* A fürt adatokat a a HCS fürt összes csoport és a hozzájuk megfelelő állapotok logikai összetevők információt tartalmaz. Ha megjelenik egy kapcsolat nélküli fürtcsoport ebben a szakaszban a jelentés [forduljon a Microsoft Support](storsimple-contact-microsoft-support.md).
+* A szolgáltatás információk közé tartozik, a neveket és az eszközön futó összes HCS és a CIS szükségességét Services állapotok. Ez az információ akkor hasznos, for a Microsoft Support az eszköz a probléma elhárításához.
 
 #### <a name="sample-output-of-system-test-run-on-an-8100-device"></a>Minta kimenet egy 8100-eszközön fut, a rendszer vizsgálat
 
-Íme egy minta kimenet hello rendszer vizsgálat futtatása egy 8100-eszközön.
+Íme egy minta kimenet, a rendszer vizsgálat futtatása egy 8100-as eszközön.
 
 ```
 Controller0>Invoke-HcsDiagnostics -Scope System
@@ -322,20 +322,20 @@ hcs_startup                                   Stopped hcs_startup
 
 ### <a name="network-test"></a>Hálózati tesztek
 
-Hello hello hálózati adapterek, portok, DNS és NTP kapcsolat a kiszolgálóval, SSL tanúsítvány, tárfiók hitelesítő adatainak, kapcsolat toohello Update-kiszolgálókról, és állapotának webes proxy kapcsolatot a StorSimple eszköz ellenőrzi.
+A hálózati adapterek, portok, a DNS és NTP kapcsolat a kiszolgálóval, SSL tanúsítvány, tárfiók hitelesítő adatait, a frissítési kiszolgálók és webes proxy kapcsolatot a StorSimple eszköz állapotát ellenőrzi.
 
 #### <a name="sample-output-of-network-test-when-only-data0-is-enabled"></a>Minta kimenet hálózat csak DATA0 engedélyezésekor a rendszer tesztelése
 
-Íme egy minta kimenet hello 8100-as eszköz. Hello kimenetében láthatja, hogy:
+Íme egy minta kimenet a 8100-eszköz. A kimenet látható, amely:
 * Csak DATA 0 DATA 1 hálózati adapter engedélyezve és konfigurálva.
-* 2 – 5 adatok hello portálon nem engedélyezettek.
-* hello DNS-kiszolgáló konfigurációja érvényes és hello eszköz keresztül hello DNS-kiszolgáló képes kapcsolódni.
-* hello NTP-kiszolgáló kapcsolatát is rendben.
-* 80-as és 443-as port nyitva. Azonban 9354-es port blokkolva van. Hello alapján [hálózati rendszerkövetelmények](storsimple-system-requirements.md), portra van szüksége tooopen a hello service bus-kommunikációhoz.
-* hello SSL-tanúsítvány érvénytelen.
-* hello eszközök csatlakozhatnak toohello tárfiók: _myss8000storageacct_.
-* hello kapcsolat tooUpdate kiszolgálók esetén érvényes.
-* hello webes proxy nincs beállítva ezen az eszközön.
+* 2 – 5 adatok nincsenek engedélyezve a portálon.
+* Érvénytelen, a DNS-kiszolgáló konfigurációját, és az eszközök csatlakozhatnak a DNS-kiszolgálón keresztül.
+* Az NTP-kiszolgáló kapcsolatát is rendben.
+* 80-as és 443-as port nyitva. Azonban 9354-es port blokkolva van. Alapján a [hálózati rendszerkövetelmények](storsimple-system-requirements.md), meg kell nyitni ezt a portot, a service bus való kommunikációhoz.
+* Az SSL-tanúsítvány érvénytelen.
+* Az eszközök csatlakozhatnak a tárfiók: _myss8000storageacct_.
+* Az Update-kiszolgálókon kapcsolat érvénytelen.
+* A webalkalmazás-proxy nincs beállítva ezen az eszközön.
 
 #### <a name="sample-output-of-network-test-when-data0-and-data1-are-enabled"></a>Minta kimenet hálózati vizsgálat DATA0 és adat1 engedélyezésekor.
 
@@ -367,29 +367,29 @@ Web proxy                               Not enabled         Web proxy is not...
 
 ### <a name="performance-test"></a>Teljesítményteszt
 
-Ez a vizsgálat jelentések hello felhő teljesítmény keresztül hello felhő írható-olvasható késések fordulnak elő az eszközhöz. Ez az eszköz lehet használt tooestablish hello felhő alapteljesítményének, amelyek a StorSimple érhet el. hello eszköz jelentések hello maximális teljesítmény (ajánlott eset az olvasási és írási késések), amely a kapcsolat kaphat.
+Ez a vizsgálat a jelentés a felhő teljesítmény keresztül a felhő írható-olvasható késések fordulnak elő az eszközhöz. Ez az eszköz segítségével érhető el a StorSimple felhő teljesítménybeli meghatározásához. Az eszköz a maximális teljesítmény (ajánlott eset az olvasási és írási késések), amely a kapcsolat kaphat jelenti.
 
-Hello eszköz hello elérhető Teljesítménycentrikus jelzi, hogy használatával tárolók telepítése során a munkaterhelések hello jelentett hello írható-olvasható késések fordulnak elő.
+Az eszköz jelenti a legnagyobb elérhető teljesítmény, azt használatával a jelentésben szereplő késleltetések írható-olvasható célként a munkaterhelések telepítésekor.
 
-hello teszt hello blob mérete hello másik kötetre típusok hello eszközön társított szimulálja. Rendszeres rétegzett, és a helyileg rögzített kötetek biztonsági mentések használja a 64 KB-os blob mérete. Rétegzett kötetek archív beállítás be van jelölve a 512 KB blob adatok mérete. Ha az eszköznek rétegzett és helyileg rögzített kötetek konfigurált, csak hello teszt megfelelő too64 KB blob adatméret futtatása.
+A vizsgálat a blob mérete, a másik kötetre típusok, az eszközön társított szimulálja. Rendszeres rétegzett, és a helyileg rögzített kötetek biztonsági mentések használja a 64 KB-os blob mérete. Rétegzett kötetek archív beállítás be van jelölve a 512 KB blob adatok mérete. Ha az eszköznek rétegzett és helyileg rögzített kötetek konfigurált, csak a megfelelő adatok mérete futtatása 64 KB-os blob vizsgálat.
 
-toouse ez eszközzel, hajtsa végre az alábbi lépésekkel hello:
+Az eszköz használatához hajtsa végre az alábbi lépéseket:
 
-1.  Először hozzon létre a rétegzett kötetek és a rétegzett kötetek archivált beállítás be van jelölve. Ez a művelet biztosítja, hogy hello eszköz hello teszteket 64 KB-os és 512 KB blob mérete.
+1.  Először hozzon létre a rétegzett kötetek és a rétegzett kötetek archivált beállítás be van jelölve. Ez a művelet biztosítja, hogy az eszköz a teszteket 64 KB-os és 512 KB blob mérete.
 
-2. Miután létrehozott és beállított hello kötetek hello parancsmag futtatása Típus:
+2. Miután létrehozott és a kötetek konfigurált, futtassa a parancsmagot. Típus:
 
     `Invoke-HcsDiagnostics -Scope Performance`
 
-3. Jegyezze fel a hello írható-olvasható késések hello eszköz által jelentett. Ez a vizsgálat előtt a rendszer jelzi, hogy hello eredmények is igénybe vehet néhány percet toorun.
+3. Jegyezze fel az eszköz által jelentett írható-olvasható késések fordulnak elő. Ez a vizsgálat futtatása előtt a rendszer jelzi, hogy az eredmények több percig is eltarthat.
 
-4. Ha hello kapcsolat vannak összes hello a várt tartományon, akkor hello késések hello eszköz által használható maximális elérhető célként hello munkaterhelések telepítésekor. Figyelembe a belső adatkezelési némi többletterhelést okoz.
+4. Ha a kapcsolat a várt tartományon a vannak, majd a késések fordulnak elő a eszköz által használható maximális elérhető célként a munkaterhelések telepítésekor. Figyelembe a belső adatkezelési némi többletterhelést okoz.
 
-    Ha hello írható-olvasható késések jelentett hello diagnosztikai eszköz magas:
+    Ha az írható-olvasható késések fordulnak elő a diagnosztikai eszköz által jelentett magas:
 
-    1. Tárolási analitika konfigurálása a blob-szolgáltatásokhoz, és elemezze hello kimeneti toounderstand hello késések hello Azure storage-fiók. Részletes információkra van szüksége, lépjen túl[engedélyezheti és konfigurálhatja a tárolási analitika](../storage/common/storage-enable-and-view-metrics.md). Ha ezek is magas és összehasonlítható toohello számok kapott hello StorSimple diagnosztikai eszköz, akkor szüksége toolog egy szolgáltatási kérelmet az Azure storage.
+    1. Tárolási analitika konfigurálása a blob-szolgáltatásokhoz, és elemezheti az az Azure storage-fiók késések megértése. A részletes utasításokat lásd [engedélyezheti és konfigurálhatja a tárolási analitika](../storage/common/storage-enable-and-view-metrics.md). Ha ezek késések is magas és a StorSimple diagnosztikai eszköz kapott számok hasonló, majd kell bejelentkeznie egy szolgáltatási kérelmet az Azure storage szolgáltatással.
 
-    2. Ha hello tárolási fiók késések alacsony, forduljon a hálózati rendszergazda tooinvestigate bármely késési problémák a hálózaton.
+    2. Ha a tárolási fiók késések alacsony, a hálózati rendszergazdától vizsgálja meg a hálózati késés hibát.
 
 #### <a name="sample-output-of-performance-test-run-on-an-8100-device"></a>Minta kimenet teljesítmény vizsgálat futtatása egy 8100-eszközön
 
@@ -411,34 +411,34 @@ Controller0>
 
 ## <a name="appendix-interpreting-system-information"></a>A függelék: rendszeradatok értelmezése
 
-Ez a táblázat mely hello rendszer-információkat a különböző Windows PowerShell paraméterek leképezése hello:. 
+Ez a táblázat a különböző Windows PowerShell paraméterek a rendszer adatokat leképezés:. 
 
 | PowerShell-paraméter    | Leírás  |
 |-------------------------|------------------|
 | Instance ID (Példányazonosító)             | Minden tartományvezérlő egyedi azonosítóval rendelkezik, vagy a vele társított egy GUID Azonosítót.|
-| Név                    | hello hello Azure-portálon keresztül eszköz telepítése során konfigurált hello eszköz rövid neve. hello alapértelmezett valódi neve: hello eszköz sorozatszámát. |
-| Modell                   | a StorSimple 8000 series eszköz hello modellje. hello modell 8100 vagy 8600 lehet.|
-| Sorozatszám            | hello eszköz sorozatszámát hello gyárban hozzá van rendelve, és 15 karakter hosszú. Például 8600-SHX0991003G44HT jelzi:<br> 8600 – hello eszközmodell van.<br>SHX – van hello gyártási hely.<br> 0991003 - termékekkel is. <br> Utolsó 5 számjegy G44HT hello toocreate egyedi sorozatszámokat növekszik. Ez nem lehet egy soros készlet.|
-| Időzóna                | hello eszköz időzóna szerint elavultnak hello Azure-portálon eszköz üzembe helyezése során.|
-| CurrentController       | hello vezérlő, hogy-e csatlakoztatott toothrough hello Windows PowerShell felületet a StorSimple eszköz.|
-| ActiveController        | hello tartományvezérlőre, amely az eszköz aktív, és minden hello hálózati és lemez műveletet vezérli. Ez lehet vezérlő 0 vagy 1 vezérlő.  |
-| Controller0Status       | hello állapota vezérlő 0 az eszközön. lehet, hogy hello vezérlő állapotát normál, helyreállítási módban, vagy nem érhető el.|
-| Controller1Status       | hello állapota a vezérlő 1 az eszközön.  lehet, hogy hello vezérlő állapotát normál, helyreállítási módban, vagy nem érhető el.|
-| SystemMode              | a StorSimple eszköz az általános állapotának hello. lehet, hogy hello Eszközállapot normál, karbantartási, vagy leszerelt (az Azure-portálon hello toodeactivated felel meg).|
-| FriendlySoftwareVersion | hello rövid karakterlánc, amely megfelel a toohello eszköz szoftverének verziójával. Az operációs rendszert futtató Update 4 hello rövid szoftverének verziójával lenne a StorSimple 8000 Series Update 4.0-s verzióját.|
-| HcsSoftwareVersion      | hello HCS szoftver verziója fut az eszközön. Például hello HCS szoftver verziója megfelelő tooStorSimple 8000 Series Update 4.0 6.3.9600.17820. |
-| ApiVersion              | a Windows PowerShell API hello HCS eszköz hello hello szoftverének verziójával.|
-| VhdVersion              | a teljesített hello gyári lemezképről, amely az eszköz hello hello szoftverének verziójával. Ha alaphelyzetbe állítja az eszköz toofactory alapértelmezett beállításokat, majd azt a szoftver verzióját futtatja.|
-| OSVersion               | hello hello eszközön futó Windows Server operációs rendszer hello szoftverének verziójával. hello StorSimple eszközt a Windows Server 2012 R2 too6.3.9600 megfelelő hello épül.|
-| CisAgentVersion         | a Konfigurációelemek ügynök, a StorSimple eszközön futó hello verziója. Ez az ügynök segít kommunikálni hello StorSimple Manager szolgáltatás fut az Azure-ban.|
-| MdsAgentVersion         | hello verziója megfelelő toohello Mds ügynök fut a StorSimple eszköz. Ez az ügynök helyezi át az adatokat toohello megfigyelési és diagnosztikai szolgáltatás (MDS).|
-| Lsisas2Version          | hello verziója megfelelő toohello LSI illesztőprogramokat a StorSimple eszköz.|
-| Kapacitás                | hello bájtban hello eszközök teljes kapacitását.|
-| RemoteManagementMode    | Azt jelzi, hogy hello eszköz távolról felügyelhetik a Windows PowerShell felületén keresztül. |
-| FipsMode                | Azt jelzi, hogy hello az Amerikai Egyesült Államok Federal Information Processing Standard (FIPS) mód engedélyezve van-e az eszközön. hello FIPS 140 szabvány határozza meg a bizalmas adatok védelmének hello amerikai szövetségi kormányzati számítógépes rendszerek által jóváhagyott titkosítási algoritmusokat. 4 vagy újabb frissítés rendszerű eszközöket FIPS-módban alapértelmezés szerint engedélyezve van. |
+| Név                    | Az eszköz üzembe helyezése során az Azure portálon keresztül konfigurált eszköz rövid neve. Az alapértelmezett felhasználóbarát név az eszköz sorozatszámát. |
+| Modell                   | A StorSimple 8000 series eszköz modelljét. A modell 8100 vagy 8600 lehet.|
+| Sorozatszám            | Az eszköz sorozatszámát gyári hozzá van rendelve, és 15 karakter hosszú. Például 8600-SHX0991003G44HT jelzi:<br> 8600 – az eszköz típusa van.<br>SHX – a gyártási hely.<br> 0991003 - termékekkel is. <br> G44HT – az utolsó 5 számjegy eggyel növekszik, egyedi sorozatszámokat létrehozásához. Ez nem lehet egy soros készlet.|
+| Időzóna                | Az eszköz időzóna eszköz üzembe helyezése során az Azure portálon konfigurált módon.|
+| CurrentController       | A tartományvezérlő a StorSimple eszközt a Windows PowerShell felületén keresztül csatlakoznak.|
+| ActiveController        | A vezérlő aktív, az eszközön, és a hálózati és lemez műveletek vezérli. Ez lehet vezérlő 0 vagy 1 vezérlő.  |
+| Controller0Status       | A vezérlő 0, az eszköz állapota. Lehet, hogy a vezérlő állapotát normál, helyreállítási módban, vagy nem érhető el.|
+| Controller1Status       | A vezérlő 1 állapotát az eszköz.  Lehet, hogy a vezérlő állapotát normál, helyreállítási módban, vagy nem érhető el.|
+| SystemMode              | A StorSimple eszköz általános állapota. Lehet, hogy az eszköz állapotát normál, karbantartási, vagy leszerelt (felel meg az Azure portálon inaktiválása).|
+| FriendlySoftwareVersion | A rövid karakterlánc, amely megfelel az eszköz szoftverének verziójával. Az operációs rendszert futtató Update 4 a rövid szoftververzió lenne a StorSimple 8000 Series Update 4.0-s verzióját.|
+| HcsSoftwareVersion      | Az eszközön futó HCS szoftverének verziójával. A StorSimple 8000 Series Update 4.0 megfelelő HCS szoftververzió például 6.3.9600.17820. |
+| ApiVersion              | A Windows PowerShell API a HCS eszköz szoftverének verziójával.|
+| VhdVersion              | A gyári lemezképről, az eszköz a teljesített szoftverének verziójával. Ha az eszköz visszaállítása a gyári beállítások, majd azt a szoftver verzióját futtatja.|
+| OSVersion               | A szoftver az eszközön futó Windows Server operációs rendszer verziója. A StorSimple eszközt a Windows Server 2012 R2 6.3.9600 megfelelő épül.|
+| CisAgentVersion         | A StorSimple eszköz futó a Cis ügynök verzióját. Ez az ügynök segít kommunikálni az Azure-beli StorSimple Manager szolgáltatással.|
+| MdsAgentVersion         | A megfelelő az Mds-ügynököt a StorSimple eszközön futó verziója. Ez az ügynök mozgatja az adatokat a megfigyelési és diagnosztikai szolgáltatás (MDS).|
+| Lsisas2Version          | A verzió a LSI illesztőprogramokat, a StorSimple eszköz megfelelő.|
+| Kapacitás                | Az eszköz bájtban teljes kapacitását.|
+| RemoteManagementMode    | Azt jelzi, hogy az eszköz távolról felügyelhetik a Windows PowerShell felületén keresztül. |
+| FipsMode                | Azt jelzi, hogy az Amerikai Egyesült Államokban Federal Information Processing Standard (FIPS) mód engedélyezve van-e az eszközön. A FIPS 140 szabvány határozza meg a bizalmas adatok védelmének amerikai szövetségi kormányzati számítógépes rendszerek által jóváhagyott titkosítási algoritmusokat. 4 vagy újabb frissítés rendszerű eszközöket FIPS-módban alapértelmezés szerint engedélyezve van. |
 
 ## <a name="next-steps"></a>Következő lépések
 
-* Ismerje meg, hello [hello Invoke-HcsDiagnostics parancsmag szintaxisa](https://technet.microsoft.com/library/mt795371.aspx).
+* Ismerje meg a [az Invoke-HcsDiagnostics parancsmag szintaxisa](https://technet.microsoft.com/library/mt795371.aspx).
 
-* További tudnivalók túl[telepítési problémák elhárításához](storsimple-troubleshoot-deployment.md) a StorSimple eszköz.
+* További tudnivalók a [telepítési problémák elhárításához](storsimple-troubleshoot-deployment.md) a StorSimple eszköz.

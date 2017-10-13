@@ -1,6 +1,6 @@
 ---
-title: "aaaDeploy hello Site Recovery mobilitási szolgáltatás az Azure Automation DSC Szolgáltatásban |} Microsoft Docs"
-description: "Ismerteti, hogyan toouse Azure Automation DSC tooautomatically üzembe hello Azure Site Recovery mobilitási szolgáltatás és az Azure-ügynököt a VMware virtuális gép és a fizikai kiszolgáló replikációs tooAzure"
+title: "Az Azure Automation DSC Szolgáltatásban a Site Recovery mobilitási szolgáltatás üzembe helyezése |} Microsoft Docs"
+description: "Azure Automation DSC használata az Azure Site Recovery mobilitási szolgáltatás és az Azure agent automatikus telepítése a VMware virtuális gép és a fizikai kiszolgáló replikálás az Azure-bA"
 services: site-recovery
 documentationcenter: 
 author: krnese
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/01/2017
 ms.author: krnese
-ms.openlocfilehash: 52cdd13ceb61718a21137180c55db86919af5929
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bcc5f11afbecac8fe63935f3401dd3e2d767e8aa
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="deploy-hello-mobility-service-with-azure-automation-dsc-for-replication-of-vm"></a>Hello mobilitási szolgáltatás az Azure Automation DSC Szolgáltatásban a replikáció a virtuális gép üzembe helyezése
+# <a name="deploy-the-mobility-service-with-azure-automation-dsc-for-replication-of-vm"></a>Telepíteni a mobilitási szolgáltatást a replikáció a virtuális gépet az Azure Automation DSC Szolgáltatásban
 Az Operations Management Suite azt biztosít egy átfogó biztonsági mentési és vész-helyreállítási megoldást, amely az üzletmenet folytonosságát biztosító terve részeként is használhatja.
 
-A Hyper-V együtt út indította Hyper-V-replika használatával. De tudunk bővített toosupport heterogén telepítő mert azok felhők ügyfelek több hipervizorok és platformok.
+A Hyper-V együtt út indította Hyper-V-replika használatával. De azt kibővítette a heterogén telepítő támogatásához, mert a felhő ügyfelek több hipervizorok és platformok.
 
-Ha futtat VMware munkaterhelések és/vagy fizikai kiszolgálók ma, egy felügyeleti kiszolgálót futtatja összes hello Azure Site Recovery-összetevők a környezet toohandle hello kommunikáció és replikálás az Azure-a cél Azure esetén.
+Futtat VMware munkaterhelések és/vagy fizikai kiszolgálók ma, ha a felügyeleti kiszolgáló futtatja az Azure Site Recovery-összetevőket a kommunikáció és replikálás az Azure-ral, kezeléséhez, a cél Azure esetén a környezetben.
 
-## <a name="deploy-hello-site-recovery-mobility-service-by-using-automation-dsc"></a>Hello Site Recovery mobilitási szolgáltatás telepítését az Automation DSC
+## <a name="deploy-the-site-recovery-mobility-service-by-using-automation-dsc"></a>A Site Recovery mobilitási szolgáltatás telepítését Automation DSC
 Kezdjük gyors részletes információkat a felügyeleti kiszolgáló funkciója végrehajtásával.
 
-hello felügyeleti kiszolgáló számos kiszolgálói szerepkört futtatja. Ezek a szerepkörök egyik *konfigurációs*, amely kommunikáció koordinálását, és kezeli az adatokat replikálás és helyreállítási folyamatok.
+A felügyeleti kiszolgáló számos kiszolgálói szerepkört futtatja. Ezek a szerepkörök egyik *konfigurációs*, amely kommunikáció koordinálását, és kezeli az adatokat replikálás és helyreállítási folyamatok.
 
-Ezenkívül hello *folyamat* szerepkör replikációs átjáróként. Ezt a szerepkört kap replikációs adatokat védett forrásgépek, gyorsítótárazás, tömörítés és titkosítás segítségével optimalizálja őket, és visszaküldi az tooan Azure storage-fiók. Hello funkciók hello folyamat szerepkör egyik is hello mobilitási szolgáltatás tooprotected gépek toopush telepítését, és a VMware virtuális gépek automatikus észlelését.
+Emellett a *folyamat* szerepkör replikációs átjáróként. Ezt a szerepkört kap replikációs adatokat védett forrásgépek, gyorsítótárazás, tömörítés és titkosítás segítségével optimalizálja őket, és küld egy Azure storage-fiókot. A funkciók a folyamat szerepkör egyik is védett gépek leküldéssel telepíteni a mobilitási szolgáltatást, és végezze el a VMware virtuális gépek automatikus észlelése.
 
-Ha a feladat-visszavétel az Azure-ból, hello *fő* szerepkör hello replikációs adatok kezelésére, ez a művelet részeként.
+Ha a feladat-visszavétel, az Azure-ból a *fő* szerepkör Ez a művelet részeként fogja kezelni a replikációs adatokat.
 
-Hello védett gépek, a Microsoft hello támaszkodjon *mobilitásiszolgáltatás*. Ez az összetevő telepített tooevery machine (VMware virtuális gép vagy fizikai kiszolgálón), amelyet az tooreplicate tooAzure áll. Hello gépen végbemenő adatírásokat, és továbbítja őket toohello felügyeleti kiszolgáló (folyamat szerepkör).
+A védett gépek azt támaszkodhat a *mobilitásiszolgáltatás*. Ez az összetevő van telepítve minden gépen (VMware virtuális gép vagy fizikai kiszolgálón), amely az Azure-bA replikálni kívánt. A gépen végbemenő adatírásokat, és továbbítja őket a felügyeleti kiszolgáló (folyamat szerepkör).
 
-Üzleti folytonosság kezelése, esetén fontos toounderstand a munkaterhelések, az infrastruktúra és a hello összetevők szerepet játszanak. A helyreállítási idő célkitűzése (RTO) és a helyreállítási időkorlát (RPO) hello követelményei majd megfelelhetnek. Ebben a környezetben hello mobilitásiszolgáltatás a kulcs tooensuring a munkaterhelések védett módon teheti meg.
+Üzleti folytonosság kezelése, fontos a munkaterhelések, az infrastruktúra és az érintett összetevők megismerése. Majd is megfelel a követelményeknek a helyreállítási idő célkitűzése (RTO) és a helyreállítási időkorlát (RPO). Ebben a környezetben a mobilitási szolgáltatás a kulcs annak biztosításához, hogy a munkaterhelések védelmének módon teheti meg.
 
 Igen, hogyan, egy optimalizált módon biztosíthatja, hogy rendelkezik-e súgó néhány Operations Management Suite összetevői egy megbízható védett telepítése?
 
-Ez a cikk bemutatja, hogyan használhatók az Azure Automation szükséges konfiguráló (DSC), és a hely helyreállítását követően tooensure együttes, amelyek:
+Ez a cikk bemutatja, hogyan használhatók az Azure Automation szükséges konfiguráló (DSC), és a hely helyreállítását követően annak érdekében, hogy:
 
-* hello mobilitási szolgáltatás és Azure Virtuálisgép-ügynök a telepített toohello windowsos gépekre, amelyet az tooprotect.
-* hello mobilitási szolgáltatás és az Azure Virtuálisgép-ügynök mindig futnak, amikor Azure hello replikációs cél.
+* A mobilitási szolgáltatás és az Azure Virtuálisgép-ügynök a védeni kívánt Windows gépek vannak telepítve.
+* A mobilitási szolgáltatás és az Azure Virtuálisgép-ügynök mindig futnak, amikor Azure a replikációs cél.
 
 ## <a name="prerequisites"></a>Előfeltételek
-* A tárház toostore szükséges hello beállítása
-* A tárház toostore hello szükséges jelszót tooregister hello felügyeleti kiszolgálóval
+* A tárház tárolja a szükséges telepítés
+* A tárház tárolja a szükséges jelszót regisztrálása a management Server kiszolgálón
 
   > [!NOTE]
-  > Minden felügyeleti kiszolgáló létrejön egy egyedi jelszót. Ha több felügyeleti kiszolgálót fog toodeploy, hogy tooensure, hogy helyes-e jelszót hello passphrase.txt fájl tárolja hello.
+  > Minden felügyeleti kiszolgáló létrejön egy egyedi jelszót. Ha több felügyeleti kiszolgálót telepíteni kívánja, akkor győződjön meg arról, hogy a helyes jelszót a passphrase.txt fájl tárolja.
   >
   >
-* A Windows Management Framework (WMF) telepítve, amelyet az tooenable (előfeltétele annak, hogy Automation DSC) védelemre hello gépen 5.0
+* A Windows Management Framework (WMF) 5.0-védelmi (előfeltétele annak, hogy Automation DSC) engedélyezni kívánt számítógépeken telepítve van
 
   > [!NOTE]
-  > Ha azt szeretné, hogy toouse DSC for Windows gépeken, amelyek WMF 4.0-s verziójával, című hello [DSC használata a kapcsolat nélküli környezetben](## Use DSC in disconnected environments).
+  > A DSC-ből a Windows gépeken, amelyek WMF 4.0-s verziójával használni kívánt, szakaszában olvashat [DSC használata a kapcsolat nélküli környezetben](## Use DSC in disconnected environments).
   
 
-hello mobilitásiszolgáltatás hello parancssor használatával is telepíthető, és több argumentumot fogad el. Ezért kell toohave hello bináris fájlokat (ezt követően ezeket a telepítésből), és tárolja őket egy helyen, ahol helyreállíthatók a DSC-konfiguráció használatával.
+A mobilitási szolgáltatást a parancssor használatával is telepíthető, és több argumentumot fogad el. Ezért a bináris fájlok rendelkezik (után azokat a telepítő kibontása), és tárolja őket egy helyen, ahol helyreállíthatók a DSC-konfiguráció használatával.
 
 ## <a name="step-1-extract-binaries"></a>1. lépés: Kivonat bináris fájlok
-1. a telepítéshez szükséges tooextract hello fájlokat keresse meg a toohello címtár a felügyeleti kiszolgálón a következő:
+1. Bontsa ki az ehhez a telepítéshez szükséges, hogy keresse meg a felügyeleti kiszolgálón a következő könyvtárra:
 
     **\Microsoft azure hely Recovery\home\svsystems\pushinstallsvc\repository**
 
@@ -72,28 +72,28 @@ hello mobilitásiszolgáltatás hello parancssor használatával is telepíthet�
 
     **Microsoft-ASR_UA_version_Windows_GA_date_Release.exe**
 
-    A következő parancs tooextract hello telepítő hello használata:
+    Az alábbi parancs segítségével bontsa ki a telepítő:
 
     **.\Microsoft-ASR_UA_9.1.0.0_Windows_GA_02May2016_release.exe /q /x:C:\Users\Administrator\Desktop\Mobility_Service\Extract**
-2. Válassza ki az összes fájlt, és küldje el tooa tömörített mappa.
+2. Válassza ki az összes fájlt, és küldje el a tömörített mappa.
 
-Most már rendelkezik hello bináris fájlokat, hogy kell-e a mobilitási szolgáltatás hello tooautomate hello telepítése Automation DSC használatával.
+Most már rendelkezik a bináris fájlokat, amelyekre szüksége van a mobilitási szolgáltatást a telepítés automatizálása Automation DSC használatával.
 
 ### <a name="passphrase"></a>Hozzáférési kód
-A következő lépésben toodetermine kívánt tooplace a tömörített mappából. Egy Azure storage-fiók látható későbbi, toostore hello jelszót, amelyekre szüksége van az hello telepítő is használhatja. hello ügynök ezután regisztrálja az hello felügyeleti kiszolgáló hello folyamat részeként.
+Ezután meg kell határoznia, ahová a tömörített mappából. Egy Azure storage-fiók is használhatja, ahogy újabb, a jelszót, amelyet a telepítő kell tárolni. Az ügynök ezután regisztrálja az a felügyeleti kiszolgáló, a folyamat részeként.
 
-hello jelszót hello felügyeleti kiszolgáló telepítésekor portáltól menthető tooa szövegfájl passphrase.txt.
+A jelszót, amelyet a felügyeleti kiszolgáló telepítésekor portáltól passphrase.txt szövegfájlba menthető.
 
-Mind a hello tömörített mappából, és a hello jelszót tegyen egy dedikált tárolójára hello Azure storage-fiók.
+Az Azure storage-fiók egy dedikált tárolójára tegyen mind a tömörített mappából, és a jelszót.
 
 ![Mappa helye](./media/site-recovery-automate-mobilitysevice-install/folder-and-passphrase-location.png)
 
-Ha jobban szeret tookeep ezeket a fájlokat egy megosztást a hálózaton, megteheti. Egyszerűen tooensure, hogy az Ön által használt később hello DSC-erőforrás hozzáfér, és hello beállítása és a jelszót.
+Ha szeretné megtartani ezeket a fájlokat egy megosztást a hálózaton, megteheti. Csak akkor kell győződjön meg arról, hogy az Ön által használt később DSC erőforrás hozzáfér, és a telepítés és a jelszót.
 
-## <a name="step-2-create-hello-dsc-configuration"></a>2. lépés: Hello DSC-konfiguráció létrehozása
-hello beállítása WMF 5.0 függ. Hello gép toosuccessfully alkalmazni hello konfigurációs keresztül Automation DSC, WMF 5.0 toobe jelen van szüksége.
+## <a name="step-2-create-the-dsc-configuration"></a>2. lépés: A DSC-konfiguráció létrehozása
+A telepítő WMF 5.0 függ. A gép sikeresen alkalmazta a konfiguráció keresztül Automation DSC WMF 5.0 kell elhelyezkednie.
 
-hello környezetben használja a következő példa DSC-konfiguráció hello:
+A környezetben használja a következő példa DSC-konfiguráció:
 
 ```powershell
 configuration ASRMobilityService {
@@ -190,42 +190,42 @@ configuration ASRMobilityService {
     }
 }
 ```
-hello konfigurációs hajt végre a következő hello:
+A konfigurációs rendszer tegye a következőket:
 
-* hello változók hello konfigurációs megtudhatja, hol tooget hello-e binárist hello mobilitási szolgáltatás és a hello Azure Virtuálisgép-ügynök, ha tooget hello jelszót, és ha toostore hello kimeneti.
-* hello konfigurációs importálja a hello xPSDesiredStateConfiguration DSC erőforrás, így használhatja `xRemoteFile` toodownload hello fájlok adattárból hello.
-* hello konfigurációs létrehoz egy könyvtárat, ahová toostore hello bináris fájljait.
-* hello archív erőforrás hello tömörített mappából hello fájlt csomagolja ki.
-* hello csomag telepítési erőforrás hello mobilitásiszolgáltatás telepíthessenek hello UNIFIEDAGENT. A következő EXE telepítő hello megadott argumentumokkal. (hello argumentumok összeállításához hello változók kell megváltozott toobe tooreflect meg a környezetben.)
-* hello csomag AzureAgent erőforrás hello Azure Virtuálisgép-ügynök, ez az ajánlott minden Azure-ban futó virtuális gépre telepíti. hello Azure Virtuálisgép-ügynök is teszi lehetséges tooadd bővítmények toohello virtuális gép a feladatátvételt követően.
-* hello szolgáltatást vagy erőforrást biztosítja, hogy hello kapcsolatos mobilitási szolgáltatásokat és hello Azure-szolgáltatások mindig futnak.
+* A változók jelzi a konfigurációs Honnan szerezhetők be a bináris fájlok a mobilitási szolgáltatás és az Azure Virtuálisgép-ügynök, honnan szerezhetők be a jelszót, és a kimeneti tárolási helyét.
+* A konfigurációs xPSDesiredStateConfiguration DSC erőforrás importálja, hogy használható `xRemoteFile` töltse le a fájlokat a tárházból.
+* A konfigurációs hoz létre egy könyvtárat, ahová a bináris fájlok tárolására.
+* Az archív erőforrás lesz csomagolja ki a fájlokat a tömörített mappából.
+* A csomag telepítési erőforrás a UNIFIEDAGENT a telepíti a mobilitási szolgáltatást. A megadott argumentumokkal telepítő exe-fájl. (A változókat, amelyek az argumentumok összeállítani a környezetnek megfelelően módosítani kell.)
+* A csomag AzureAgent erőforrás telepíti az Azure Virtuálisgép-ügynök, ez az ajánlott minden Azure-ban futó virtuális gépen. Az Azure Virtuálisgép-ügynök is lehetővé teszi bővítmények hozzáadása a virtuális gép a feladatátvételt követően.
+* A szolgáltatás vagy erőforrást biztosítja, hogy a kapcsolódó mobilitási szolgáltatás és az Azure-szolgáltatások mindig futnak.
 
-Mentés hello konfigurációt **ASRMobilityService**.
+Mentse a konfigurációt **ASRMobilityService**.
 
 > [!NOTE]
-> Ne felejtse el tooreplace hello CSIP a konfigurációs tooreflect hello tényleges felügyeleti kiszolgálóján, így hello ügynök megfelelően csatlakoztatva és hello helyes jelszót fogja használni.
+> Ne felejtse el cserélje le a CSIP a konfiguráció megfelelően a tényleges felügyeleti kiszolgálót, hogy az ügynök megfelelően csatlakoztatva, és a helyes jelszót fogja használni.
 >
 >
 
-## <a name="step-3-upload-tooautomation-dsc"></a>3. lépés: Töltse fel a tooAutomation DSC
-Mivel végzett hello DSC-konfiguráció importálni fogja a szükséges DSC erőforrásmodul (xPSDesiredStateConfiguration), meg kell tooimport az automatizálás modult hello DSC-konfiguráció feltöltés előtt.
+## <a name="step-3-upload-to-automation-dsc"></a>3. lépés: Töltse fel az Automation DSC
+A DSC-konfiguráció végzett importálni fogja a szükséges DSC erőforrásmodul (xPSDesiredStateConfiguration), mert kell importálni az automatizálás modult, mielőtt feltölti a DSC-konfiguráció.
 
-Tooyour Automation-fiók bejelentkezési Tallózás túl**eszközök** > **modulok**, és kattintson a **Tallózás gyűjtemény**.
+Jelentkezzen be az Automation-fiók, keresse meg a **eszközök** > **modulok**, és kattintson a **Tallózás gyűjtemény**.
 
-Itt kereshet hello modul és importálja a tooyour fiók.
+Itt kereshet a modult, és importálja a fiókjába.
 
 ![Modul importálása](./media/site-recovery-automate-mobilitysevice-install/search-and-import-module.png)
 
-Ha ezzel végzett, nyissa meg tooyour gép hello Azure Resource Manager-modulok telepítése esetében, és folytatható tooimport az újonnan létrehozott hello DSC-konfiguráció.
+Ha ezzel végzett, a számítógépen nyissa meg az Azure Resource Manager-modulok telepítése esetében, és folytassa az újonnan létrehozott DSC-konfiguráció importálásakor.
 
 ### <a name="import-cmdlets"></a>Importálási parancsmagokat
-A PowerShell a bejelentkezés tooyour Azure-előfizetés. Hello parancsmagok tooreflect módosítása a környezetben, és rögzítheti az automatizálási fiók adatait egy változóban:
+A PowerShellben jelentkezzen be az Azure-előfizetéshez. Módosítsa a parancsmagok segítségével a környezetnek megfelelően, és rögzítheti az automatizálási fiók adatait egy változóban:
 
 ```powershell
 $AAAccount = Get-AzureRmAutomationAccount -ResourceGroupName 'KNOMS' -Name 'KNOMSAA'
 ```
 
-Töltse fel a hello konfigurációs tooAutomation DSC hello a következő parancsmag használatával:
+Automation DSC konfigurációját feltölteni a következő parancsmag használatával:
 
 ```powershell
 $ImportArgs = @{
@@ -236,44 +236,44 @@ $ImportArgs = @{
 $AAAccount | Import-AzureRmAutomationDscConfiguration @ImportArgs
 ```
 
-### <a name="compile-hello-configuration-in-automation-dsc"></a>Hello konfiguráció az Automation DSC-fordítási
-A következő lépésben toocompile hello konfiguráció Automation DSC, így tooregister csomópontok tooit megkezdése. Érhetők el, amely hello a következő parancsmag futtatásával:
+### <a name="compile-the-configuration-in-automation-dsc"></a>A konfiguráció az Automation DSC-fordítási
+Ezt követően kell a konfiguráció az Automation DSC-fordítási, hogy regisztrálja azt csomópontok megkezdése. Érhetők el, amely a következő parancsmagot:
 
 ```powershell
 $AAAccount | Start-AzureRmAutomationDscCompilationJob -ConfigurationName ASRMobilityService
 ```
 
-Ez is igénybe vehet néhány percet, mert alapvetően telepít hello konfigurációs üzemeltetett toohello DSC lekérési szolgáltatás.
+Ez is igénybe vehet néhány percet, mert a konfiguráció az üzemeltett szolgáltatásban, DSC lekérési alapvetően telepít.
 
-Után hello konfigurációs lefordításához hello feladatinformációkat powershellel (Get-AzureRmAutomationDscCompilationJob) vagy hello segítségével kérheti le [Azure-portálon](https://portal.azure.com/).
+Miután a konfiguráció fordítása le az adatok PowerShell (Get-AzureRmAutomationDscCompilationJob) használatával, vagy a a [Azure-portálon](https://portal.azure.com/).
 
 ![Feladat beolvasása](./media/site-recovery-automate-mobilitysevice-install/retrieve-job.png)
 
-Most már sikeresen közzé, és a DSC-konfiguráció tooAutomation DSC feltöltve.
+Most már sikeresen közzé, és feltölti a DSC-konfiguráció Automation DSC.
 
-## <a name="step-4-onboard-machines-tooautomation-dsc"></a>4. lépés: A bevezetni gépek tooAutomation DSC
+## <a name="step-4-onboard-machines-to-automation-dsc"></a>4. lépés: A bevezetni gépek Automation DSC
 > [!NOTE]
-> Ez a forgatókönyv befejezése hello előfeltételei egyike, hogy a Windows-alapú gépek hello WMF legújabb verziójára frissít. Töltse le, és telepítse a hello megfelelő verzióját a platformhoz való hello [letöltőközpontból](https://www.microsoft.com/download/details.aspx?id=50395).
+> Ez a forgatókönyv befejezése előfeltételeit egyike, hogy a Windows-alapú gépek WMF legújabb verziójára frissít. Töltse le, és a rendszernek a megfelelő verziót telepítse a [letöltőközpontból](https://www.microsoft.com/download/details.aspx?id=50395).
 >
 >
 
-Most, hogy érvényesek-e tooyour csomópontok DSC létrehozandó egy metaconfig. Ennek toosucceed, kell tooretrieve hello URL-cím és hello elsődleges végpontkulcs a kijelölt Automation-fiókhoz az Azure-ban. Ezek az értékek alapján is megtalálhatja **kulcsok** a hello **összes beállítás** hello Automation-fiók paneljén.
+Egy metaconfig most létrehozza a DSC, akkor a csomópontra érvényes lesz. A sikeres, szeretné beolvasni a végponti URL-cím és az elsődleges kulcsát a kijelölt Automation-fiók az Azure-ban. Ezek az értékek alapján is megtalálhatja **kulcsok** a a **összes beállítás** az Automation-fiók paneljén.
 
 ![Értékek](./media/site-recovery-automate-mobilitysevice-install/key-values.png)
 
-Ebben a példában egy megjeleníteni kívánt tooprotect Site Recovery segítségével fizikai Windows Server 2012 R2-kiszolgálóval rendelkezik.
+Ebben a példában a Site Recovery segítségével védeni kívánt fizikai Windows Server 2012 R2-kiszolgálóval rendelkezik.
 
-### <a name="check-for-any-pending-file-rename-operations-in-hello-registry"></a>Minden függőben lévő fájlátnevezési művelet hello beállításjegyzék ellenőrzése
-Mielőtt tooassociate hello server hello Automation DSC-végponthoz, azt javasoljuk, hogy ellenőrizze az összes függőben lévő fájlműveletek átnevezése hello beállításjegyzékben. A befejezési miatt előfordulhat, hogy tiltják hello beállítása tooa függőben lévő újraindítás.
+### <a name="check-for-any-pending-file-rename-operations-in-the-registry"></a>Ellenőrizze az összes függőben lévő fájlműveletek nevezze át a beállításjegyzékben
+A kiszolgáló társítja a Automation DSC végponthoz megkezdése előtt javasoljuk, hogy ellenőrizze az összes függőben lévő fájlműveletek nevezze át a beállításjegyzékben. A telepítő előfordulhat, hogy tiltják a befejezési miatt függőben lévő újraindítás.
 
-Futtassa a következő parancsmag tooverify, hogy nincs-e hello kiszolgálón nincs függőben lévő újraindítás hello:
+Futtassa az alábbi parancsmagot, ellenőrizze, hogy a kiszolgálón nincs függőben lévő újraindítás:
 
 ```powershell
 Get-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\' | Select-Object -Property PendingFileRenameOperations
 ```
-Ez azt mutatja, üres, ha OK tooproceed áll. Ha nem, eleget kell tennie a karbantartási időszak alatt hello server újraindításával.
+Ez azt mutatja, üres, ha az OK gombra a folytatáshoz áll. Ha nem, eleget kell tennie a karbantartási időszak alatt a kiszolgáló újraindításával.
 
-tooapply hello konfigurációs hello kiszolgálón indítsa el a hello PowerShell integrált parancsfájlkezelési környezet (ISE), és futtassa a következő parancsfájl hello. Ez a beállítás lényegében egy DSC helyi hello helyi Configuration Manager motor tooregister az Automation DSC szolgáltatás hello utasítani és hello konfigurációs (ASRMobilityService.localhost) beolvasása.
+A konfiguráció alkalmazása a kiszolgálón, indítsa el a PowerShell integrált parancsfájlkezelési környezet (ISE), és futtassa a következő parancsfájlt. Ez a lényegében egy DSC helyi konfiguráció, amely arra utasítja a helyi Configuration Manager motor regisztrálása az Automation DSC szolgáltatásban, és a megadott konfigurációs (ASRMobilityService.localhost) beolvasása.
 
 ```powershell
 [DSCLocalConfigurationManager()]
@@ -314,63 +314,63 @@ metaconfig -URL 'https://we-agentservice-prod-1.azure-automation.net/accounts/<Y
 Set-DscLocalConfigurationManager .\metaconfig -Force -Verbose
 ```
 
-Ez a konfiguráció miatt hello helyi Configuration Manager motor tooregister magát az Automation DSC Szolgáltatásban. Azt is meghatározza hello motor hogyan működjön, mit kell tenni, ha a konfigurációs eltéréseket (ApplyAndAutoCorrect), és hogyan, kell folytatni a hello konfigurációs Ha újraindításra szükség.
+Ezt a konfigurációt, akkor a helyi Configuration Manager motor az Automation DSC regisztrálja magát. Azt is meghatározza a motor hogyan működjön, mit kell tenni, ha a konfigurációs eltéréseket (ApplyAndAutoCorrect), és hogyan azt kell a konfigurálás folytatásához Ha újraindításra szükség.
 
-Ez a parancsfájl futtatása után hello csomópont tooregister kell kezdenie az Automation DSC Szolgáltatásban.
+Ez a parancsfájl futtatása után a csomópont az Automation DSC Szolgáltatásban regisztrálni kell kezdődnie.
 
 ![Folyamatban van a csomópont regisztrációs](./media/site-recovery-automate-mobilitysevice-install/register-node.png)
 
-Azure-portálon toohello vissza, ha hello újonnan regisztrált csomóponton most már megjelent a portál hello látható.
+Ha vissza az Azure-portálon, láthatja, hogy az újonnan regisztrált csomópont már megjelent a portál.
 
-![Hello portálon regisztrált csomópont](./media/site-recovery-automate-mobilitysevice-install/registered-node.png)
+![A portál regisztrált csomópontja](./media/site-recovery-automate-mobilitysevice-install/registered-node.png)
 
-Hello kiszolgálón futtatható hello PowerShell parancsmag tooverify, hogy a csomópont hello megfelelően regisztrálva van a következő:
+A kiszolgálón futtathatja a következő PowerShell-parancsmag segítségével győződjön meg arról, hogy a csomópont megfelelően van regisztrálva:
 
 ```powershell
 Get-DscLocalConfigurationManager
 ```
 
-Hello konfigurációs lekért és alkalmazott toohello server után ezt hello a következő parancsmag futtatásával ellenőrizheti:
+Miután a konfigurációs lekért, és a a kiszolgálóra alkalmazza, ezt a következő parancsmag futtatásával ellenőrizheti:
 
 ```powershell
 Get-DscConfigurationStatus
 ```
 
-hello az alábbiakat mutatja be, hello kiszolgálón sikeresen hívja elő a konfigurációban:
+A kimeneti jeleníti meg, hogy a kiszolgáló sikeresen hívja elő a konfigurációban:
 
 ![Kimenet](./media/site-recovery-automate-mobilitysevice-install/successful-config.png)
 
-Ezenkívül hello mobilitási szolgáltatás telepítő rendelkezik-e a saját naplóban, amely a következő *SystemDrive*\ProgramData\ASRSetupLogs.
+Emellett a mobilitási szolgáltatás telepítő rendelkezik-e a saját naplóban, amely a következő *SystemDrive*\ProgramData\ASRSetupLogs.
 
-Ennyi az egész. Most már sikeresen telepített és regisztrált hello mobilitási szolgáltatás, amelyet az tooprotect Site Recovery segítségével hello gépen. A DSC-ből fog győződjön meg arról, hogy hello szükséges szolgáltatások mindig futnak.
+Ennyi az egész. Most már sikeresen telepített és regisztrált a mobilitási szolgáltatást a Site Recovery segítségével védeni kívánt számítógépen. A DSC-ből fog győződjön meg arról, hogy a szükséges szolgáltatások mindig futnak.
 
 ![Sikeres telepítés](./media/site-recovery-automate-mobilitysevice-install/successful-install.png)
 
-Miután hello felügyeleti kiszolgáló észleli-hello sikeres telepítés, konfigurálja a védelmet, és replikáció engedélyezése gépen hello Site Recovery segítségével.
+Miután a felügyeleti kiszolgáló észleli a sikeres telepítés, konfigurálja a védelmet, és a gép replikációs engedélyezése a Site Recovery segítségével.
 
 ## <a name="use-dsc-in-disconnected-environments"></a>A DSC használata a kapcsolat nélküli környezetekben
-Ha a gépek nem csatlakoztatott toohello Internet, továbbra is DSC toodeploy támaszkodnak és hello mobilitási szolgáltatás konfigurálása, hogy szeretné-e tooprotect hello munkaterhelések.
+Ha a gépek nem kapcsolódik az internethez, továbbra is támaszkodhat a DSC telepítheti és konfigurálhatja a mobilitási szolgáltatás a védeni kívánt munkaterhelések.
 
-A környezetben a saját DSC lekérési kiszolgálójával példányosítható tooessentially biztosítanak hello Automation DSC hogy azonos képességekkel. Ez azt jelenti, hogy hello ügyfelek fogja lekérni a konfigurációs hello (regisztráció) után toohello DSC végpont. Egy másik nincs azonban toomanually leküldéses hello DSC konfigurációs tooyour gépek, helyileg vagy távolról.
+A saját DSC lekérési kiszolgálójával példányosítható lényegében arra, hogy Automation DSC ugyanazokat a képességeket a környezetben. Ez azt jelenti, hogy az ügyfelek fogja lekérni a konfigurációs (regisztráció) után a DSC-végponthoz. Azonban egy másik lehetőség egy manuális leküldése a DSC-konfiguráció a gépek helyileg vagy távolról.
 
-Vegye figyelembe, hogy ebben a példában egy hozzáadott paraméter hello számítógép neveként. hello távoli most találhatók egy távoli megosztáson elérhetőnek kell lennie, amelyet az tooprotect hello gépek. hello parancsfájl hello vége hello konfigurációs ír elő, és ezután elindítja az tooapply hello DSC konfigurációs toohello célszámítógépen.
+Vegye figyelembe, hogy ebben a példában egy hozzáadott paraméter, a számítógép neveként. A távoli fájlok most már található távoli megosztásra mutat, amely érhető el, a védeni kívánt gépek. A parancsfájl végén ír elő a konfigurációs, és ezután elindítja a DSC-konfiguráció alkalmazása a célszámítógépen.
 
 ### <a name="prerequisites"></a>Előfeltételek
-Győződjön meg arról, hogy hello xPSDesiredStateConfiguration PowerShell modul telepítve van-e. Windows-alapú gépek WMF 5.0 futtató telepítheti hello xPSDesiredStateConfiguration modul hello parancsmag hello célszámítógépen a következő futtatásával:
+Győződjön meg arról, hogy a xPSDesiredStateConfiguration PowerShell-modul telepítve van-e. Windows-alapú gépek WMF 5.0 futtató a célszámítógépen a következő parancsmag futtatásával telepítheti a xPSDesiredStateConfiguration modul:
 
 ```powershell
 Find-Module -Name xPSDesiredStateConfiguration | Install-Module
 ```
 
-Is töltse le és mentse hello modul, abban az esetben toodistribute kell azt tooWindows gépeken, amelyek WMF 4.0-s verzióját. Futtassa ezt a parancsmagot egy számítógépen, ha jelen-e PowerShellGet (WMF 5.0):
+Letöltheti, és mentse a modul, abban az esetben kell terjesztenie windowsos gépeken, amelyek WMF 4.0-s verzióját. Futtassa ezt a parancsmagot egy számítógépen, ha jelen-e PowerShellGet (WMF 5.0):
 
 ```powershell
 Save-Module -Name xPSDesiredStateConfiguration -Path <location>
 ```
 
-Is WMF 4.0, győződjön meg arról, hogy hello [Windows 8.1 update KB2883200](https://www.microsoft.com/download/details.aspx?id=40749) a hello készülékre van telepítve.
+Is WMF 4.0-s, győződjön meg arról, hogy a [Windows 8.1 update KB2883200](https://www.microsoft.com/download/details.aspx?id=40749) számítógépeken telepítve van.
 
-hello következő konfigurációs továbbíthatja tooWindows gépeken, amelyek WMF 5.0 és WMF 4.0:
+A következő konfigurációs windowsos gépeken, amelyek WMF 5.0 és WMF 4.0 lehet leküldeni:
 
 ```powershell
 configuration ASRMobilityService {
@@ -471,28 +471,28 @@ ASRMobilityService -ComputerName 'MyTargetComputerName'
 Start-DscConfiguration .\ASRMobilityService -Wait -Force -Verbose
 ```
 
-Ha azt szeretné tooinstantiate saját DSC lekérési kiszolgálójával be a vállalati hálózat toomimic hello képességeket, amelyek Automation DSC letölthető, lásd: [DSC lekérési webkiszolgáló beállítása](https://msdn.microsoft.com/powershell/dsc/pullserver?f=255&MSPPError=-2147217396).
+Ha szeretné példányosítani saját DSC lekérési kiszolgálójával, hogy utánozzák funkciója, amelyek Automation DSC lekérheti a vállalati hálózaton, lásd: [DSC lekérési webkiszolgáló beállítása](https://msdn.microsoft.com/powershell/dsc/pullserver?f=255&MSPPError=-2147217396).
 
 ## <a name="optional-deploy-a-dsc-configuration-by-using-an-azure-resource-manager-template"></a>Választható lehetőség: Telepítését a DSC-konfiguráció Azure Resource Manager-sablonnal
-Ez a cikk fordította hogyan hozhatja létre saját DSC-konfiguráció tooautomatically hello mobilitási szolgáltatás és az Azure Virtuálisgép-ügynök – hello telepítéséhez, és győződjön meg arról, hogy futnak a hello gépeken, amelyet az tooprotect. Azt is, hogy az Azure Resource Manager sablon, amely telepíti a DSC konfigurációs tooa új vagy meglévő Azure Automation-fiók. hello sablon bemeneti paraméterek toocreate Automation eszközök, amely a környezetnek hello változók fogja tartalmazni fogja használni.
+Ez a cikk fordította hogyan hozhatja létre saját DSC-konfiguráció automatikusan telepíteni a mobilitási szolgáltatás és az Azure Virtuálisgép-ügynök –, és győződjön meg arról, hogy a védeni kívánt gépeken futnak. Azt is, amely egy új vagy meglévő Azure Automation-fiók telepíti ezen DSC-konfiguráció Azure Resource Manager-sablonokban. A sablon bemeneti paraméterek segítségével Automation eszközöket, mely tartalmazni fogja a környezetnek a változókat létrehozni.
 
-Hello sablon telepítése után olvassa el a egyszerűen a Ez az útmutató tooonboard 4 toostep a gépek.
+A sablon telepítése után egyszerűen hivatkozhat előkészítésére jelen útmutató 4. lépés a gépek.
 
-hello sablon hajt végre a következő hello:
+A sablon fog tegye a következőket:
 
 1. Használjon meglévő Automation-fiókot, vagy hozzon létre egy újat
 2. A bemeneti paraméterek igénybe, hogy:
-   * ASRRemoteFile – hello mobilitási szolgáltatás beállítása tároló hello helye
-   * ASRPassphrase – hello passphrase.txt fájl tároló hello helye
-   * ASRCSEndpoint – hello IP-címet a felügyeleti kiszolgáló
-3. Hello xPSDesiredStateConfiguration PowerShell modul importálása
-4. Hozzon létre és hello DSC-konfiguráció-fordítási
+   * ASRRemoteFile--a mobilitási szolgáltatás beállítása tároló helyét
+   * ASRPassphrase--a passphrase.txt fájl tároló helyét
+   * ASRCSEndpoint – a felügyeleti kiszolgáló IP-címe
+3. A xPSDesiredStateConfiguration PowerShell modul importálása
+4. Hozzon létre, és a DSC-konfiguráció-fordítási
 
-A fenti lépéseket minden hello hello megfelelő sorrendben, történik meg, hogy elindíthatja bevezetése az ügyfélgépek.
+Az előző lépések a megfelelő sorrendben történik meg, hogy a bevezetése az ügyfélgépek is elindítható.
 
-hello sablon üzembe helyezés esetén utasításokkal található [GitHub](https://github.com/krnese/AzureDeploy/tree/master/OMS/MSOMS/DSC).
+A sablon üzembe helyezés esetén utasításokkal található [GitHub](https://github.com/krnese/AzureDeploy/tree/master/OMS/MSOMS/DSC).
 
-Hello sablon üzembe helyezése a PowerShell használatával:
+A sablon üzembe helyezése a PowerShell használatával:
 
 ```powershell
 $RGDeployArgs = @{
@@ -509,4 +509,4 @@ New-AzureRmResourceGroupDeployment @RGDeployArgs -Verbose
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-Miután hello mobilitási szolgáltatás ügynökök telepítésére, [engedélyezze a replikálást](site-recovery-vmware-to-azure.md) hello virtuális gépekhez.
+A mobilitási szolgáltatás ügynökök telepítése után is [engedélyezze a replikálást](site-recovery-vmware-to-azure.md) a virtuális gépekhez.

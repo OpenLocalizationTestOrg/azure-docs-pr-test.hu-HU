@@ -1,6 +1,6 @@
 ---
-title: "Vegyen fel egy virtuális hálózati átjáró tooa VNet ExpressRoute: PowerShell: Azure |} Microsoft Docs"
-description: "Ez a cikk végigvezeti egy már létrehozott ExpressRoute az erőforrás-kezelő VNet hálózatok átjáró tooan hozzáadása."
+title: "Vegyen fel egy virtuális hálózat virtuális hálózati átjáró ExpressRoute: PowerShell: Azure |} Microsoft Docs"
+description: "Ez a cikk bemutatja, hogyan ExpressRoute egy már létrehozott erőforrás-kezelő virtuális hálózatot a virtuális hálózat átjárót ad hozzá."
 documentationcenter: na
 services: expressroute
 author: charwen
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/17/2017
 ms.author: charwen
-ms.openlocfilehash: 8983430b426ad7c4af766294fa16427c5e9df5c3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3aeddd03e0be548933775164ae790ba208fc13ae
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="configure-a-virtual-network-gateway-for-expressroute-using-powershell"></a>Az ExpressRoute virtuális hálózati átjáróinak konfigurálása a PowerShell-lel
 > [!div class="op_single_selector"]
@@ -30,14 +30,14 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Ez a cikk bemutatja, hogyan hello lépéseket tooadd, méretezze át, és távolítsa el a virtuális hálózathoz (VNet) átjáró egy már meglévő vnet. hello ehhez a konfigurációhoz lépésekre kifejezetten a Vnetek hello Resource Manager telepítési modell ExpressRoute konfigurációban használt használatával létrehozott. További információ a virtuális hálózati átjárók és az átjáró konfigurációs beállításainak ExpressRoute: [kapcsolatos az ExpressRoute virtuális hálózati átjárók](expressroute-about-virtual-network-gateways.md). 
+Ez a cikk végigvezeti a lépéseken hozzáadásához átméretezése, és távolítsa el a virtuális hálózathoz (VNet) átjáró egy már meglévő vnet. Ehhez a konfigurációhoz lépésekre, kifejezetten a Vnetek létrehozott erőforrás-kezelő telepítési modellel, amely egy ExpressRoute-konfigurációt fogja használni. További információ a virtuális hálózati átjárók és az átjáró konfigurációs beállításainak ExpressRoute: [kapcsolatos az ExpressRoute virtuális hálózati átjárók](expressroute-about-virtual-network-gateways.md). 
 
 
 ## <a name="before-beginning"></a>Mielőtt hozzálát
-Győződjön meg arról, hogy telepítette-e az hello legújabb Azure PowerShell-parancsmagokat. Ha még nem telepítette a hello legújabb parancsmagok, szükség van-e toodo Igen hello konfigurációs lépések megkezdése előtt. További információk: [Az Azure PowerShell telepítése és konfigurálása](/powershell/azure/overview).
+Győződjön meg arról, hogy telepítette-e a legújabb Azure PowerShell-parancsmagokat. Ha még nem telepítette a legújabb parancsmagok, ehhez a konfigurációs lépések megkezdése előtt szüksége. További információk: [Az Azure PowerShell telepítése és konfigurálása](/powershell/azure/overview).
 
 [!INCLUDE [expressroute-gateway-rm-ps](../../includes/expressroute-gateway-rm-ps-include.md)]
 
 ## <a name="next-steps"></a>Következő lépések
-Hello hálózatok átjáró létrehozása után a virtuális hálózat tooan ExpressRoute-kapcsolatcsoportot társíthatja. Lásd: [csatolni a virtuális hálózati tooan ExpressRoute-kapcsolatcsoportot](expressroute-howto-linkvnet-arm.md).
+Miután létrehozta a virtuális hálózat átjáró, a virtuális hálózat hozzákapcsolhatja egy ExpressRoute-kapcsolatcsoportot. Lásd: [virtuális hálózat csatolása ExpressRoute-kapcsolatcsoportot](expressroute-howto-linkvnet-arm.md).
 

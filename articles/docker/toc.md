@@ -5,7 +5,7 @@
 ## [Python-webapp a Docker és a PostgreSQL használatával](/azure/app-service-web/app-service-web-tutorial-docker-python-postgresql-app)
 ## [CI/CD – Docker Swarm és VSTS](/azure/container-service/container-service-docker-swarm-mode-setup-ci-cd-acs-engine)
 ## [CI/CD a Docker, a Jenkins és a Linux használatával](/azure/virtual-machines/linux/tutorial-jenkins-github-docker-cicd)
-# Hogyan-tooguides
+# Útmutatók
 ## [Docker virtuálisgép-bővítmény](/azure/virtual-machines/linux/dockerextension)
 ## [Docker Machine](/azure/virtual-machines/linux/docker-machine)
 ## [Docker tárolóregisztrációs adatbázis](/azure/container-registry/container-registry-get-started-portal)

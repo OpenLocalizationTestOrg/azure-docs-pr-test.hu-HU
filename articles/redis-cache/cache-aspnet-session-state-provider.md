@@ -1,6 +1,6 @@
 ---
-title: "ASP.NET munkamenetállapot-szolgáltatóját aaaCache |} Microsoft Docs"
-description: "Megtudhatja, hogyan toostore az ASP.NET munkamenet állapot Azure Redis Cache használata"
+title: "Gyorsítótár ASP.NET munkamenetállapot-szolgáltató |} Microsoft Docs"
+description: "Útmutató: Azure Redis Cache használatának az ASP.NET munkamenet-állapot tárolása"
 services: redis-cache
 documentationcenter: na
 author: steved0x
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: cache-redis
 ms.workload: tbd
 ms.date: 05/01/2017
 ms.author: sdanie
-ms.openlocfilehash: 9ea84cf67b9314b15dce696f596d399921194510
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0f3683939ac9646565a0669e19b4c82811d621fc
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="aspnet-session-state-provider-for-azure-redis-cache"></a>Az Azure Redis Cache ASP.NET munkamenetállapot-szolgáltatója
-Azure Redis Cache biztosít a munkamenetállapot-szolgáltatóját, hogy toostore használhatja a munkamenet-állapot gyorsítótár helyett a memória, vagy egy SQL Server-adatbázis. toouse hello gyorsítótárazási munkamenetállapot-szolgáltatóját, először konfigurálja a gyorsítótárhoz, és konfigurálja az ASP.NET-alkalmazás gyorsítótár hello Redis gyorsítótár munkamenet állapota NuGet csomag segítségével.
+Azure Redis Cache biztosít a munkamenetállapot-szolgáltatóját, amelyek segítségével a munkamenet-állapot tárolása helyett a memória gyorsítótárban, vagy az SQL Server-adatbázisban. A gyorsítótárazási munkamenetállapot-szolgáltatóját használatához először konfigurálja a gyorsítótárhoz, és konfigurálja az ASP.NET-alkalmazás a Redis gyorsítótár munkamenet állapota NuGet csomag segítségével gyorsítótár.
 
-Nincs gyakran egy valós cloud app tooavoid állapot egyaránt működik valamilyen formában tárolja a felhasználói munkamenet a gyakorlati, de néhány megközelítések hatással lehet a teljesítmény és méretezhetőség több mint mások. Toostore állapotban van, ha a hello legjobban megfelelő megoldást állapot kis mennyiségű tookeep hello, és a cookie-kban tárolja. Amely nem megvalósítható, hello következő legjobban megfelelő megoldást akkor toouse az ASP.NET munkamenet-állapot elosztott, memóriában lévő gyorsítótárhoz szolgáltatóhoz. hello legrosszabb megoldás teljesítményére és méretezhetőségére szempontból toouse egy adatbázis biztonsági munkamenetállapot-szolgáltatóját. Ez a témakör hello ASP.NET munkamenetállapot-szolgáltatóját használja az Azure Redis Cache nyújt útmutatást. A más munkamenet-állapotra vonatkozó információkért lásd: [az ASP.NET munkamenet-állapot beállításai](#aspnet-session-state-options).
+Nincs gyakran gyakorlati állapot egyaránt működik valamilyen formában tárolja a felhasználói munkamenet elkerülése érdekében valós felhő alkalmazásban, de néhány módszerek hatással lehet a teljesítmény és méretezhetőség több, mint a többire. Ha állapot tárolására, a legjobb megoldás, hogy maradjon kicsi a mennyiség szerinti és cookie-kban tárolja. Amely nem valósítható meg, ha a következő legjobb megoldás az ASP.NET munkamenet-állapot használandó szolgáltató elosztott, memóriában lévő gyorsítótárhoz. A teljesítmény és méretezhetőség tükrözik a legrosszabb megoldást az adatbázis biztonsági munkamenetállapot-szolgáltatóját. Ez a témakör az ASP.NET munkamenetállapot-szolgáltatóját használja az Azure Redis Cache nyújt útmutatást. A más munkamenet-állapotra vonatkozó információkért lásd: [az ASP.NET munkamenet-állapot beállításai](#aspnet-session-state-options).
 
-## <a name="store-aspnet-session-state-in-hello-cache"></a>Az ASP.NET munkamenet-állapot tárolása hello gyorsítótárban
-tooconfigure egy ügyfélalkalmazást, a Visual Studio használatával hello Redis gyorsítótár munkamenet állapota NuGet-csomagot, kattintson a **NuGet-Csomagkezelő**, **Csomagkezelő konzol** a hello **Eszközök** menü.
+## <a name="store-aspnet-session-state-in-the-cache"></a>Store ASP.NET session state in the cache (ASP.NET munkamenet-állapot tárolása a gyorsítótárban)
+Ügyfélalkalmazás konfigurálása a Visual Studio használatával a Redis gyorsítótár munkamenet állapota NuGet-csomagot, kattintson a **NuGet-Csomagkezelő**, **Csomagkezelő konzol** a a **eszközök** menü.
 
-Futtatási hello következő parancsot a hello `Package Manager Console` ablak.
+Futtassa az alábbi parancsot a `Package Manager Console` ablakából.
     
 ```
 Install-Package Microsoft.Web.RedisSessionStateProvider
 ```
 
 > [!IMPORTANT]
-> Hello prémium csomagban a fürtszolgáltatáshoz hello használatakor használjon [RedisSessionStateProvider](https://www.nuget.org/packages/Microsoft.Web.RedisSessionStateProvider) 2.0.1 vagy magasabb vagy kivétel lépett fel. Too2.0.1 áthelyezése vagy magasabb használhatatlanná tévő változást; További információkért lásd: [v2.0.0 Megtörje Változásrészletek](https://github.com/Azure/aspnet-redis-providers/wiki/v2.0.0-Breaking-Change-Details). A cikk frissítés hello időpontban hello aktuális Ez a csomag verziószáma 2.2.3.
+> Ha a fürtszolgáltatást a prémium tarifacsomagra használ, akkor kell használnia [RedisSessionStateProvider](https://www.nuget.org/packages/Microsoft.Web.RedisSessionStateProvider) 2.0.1 vagy magasabb vagy kivétel lépett fel. Helyezze át a 2.0.1 vagy újabb rendszerre használhatatlanná tévő változást; További információkért lásd: [v2.0.0 Megtörje Változásrészletek](https://github.com/Azure/aspnet-redis-providers/wiki/v2.0.0-Breaking-Change-Details). Ez a cikk a frissítés során ez a csomag aktuális verziója 2.2.3.
 > 
 > 
 
-hello Redis munkamenet állapota szolgáltató NuGet-csomag függőségi hello StackExchange.Redis.StrongName csomag kapcsolatban van. Hello StackExchange.Redis.StrongName csomag nincs jelen a projektben, ha telepíti a rendszer.
+A Redis munkamenet állapota szolgáltató NuGet-csomagot a StackExchange.Redis.StrongName csomag függőség rendelkezik. Ha a StackExchange.Redis.StrongName csomag nincs jelen a projektben, telepíti a rendszer.
 
 >[!NOTE]
->Továbbá toohello erős névvel ellátott StackExchange.Redis.StrongName csomagban van is hello StackExchange.Redis nem-erős névvel ellátott verzió. Ha projektjéhez hello nem-erős névvel ellátott StackExchange.Redis verzióját el kell távolítani a használ, ellenkező esetben azt lekérése ütközése a projekt. Ezeket a csomagokat kapcsolatos további információkért lásd: [konfigurálása .NET-gyorsítótárazási ügyfelek számára](cache-dotnet-how-to-use-azure-redis-cache.md#configure-the-cache-clients).
+>Az erős névvel ellátott StackExchange.Redis.StrongName csomag mellett is van a StackExchange.Redis nem-erős névvel ellátott verzióra. A projekt távolítsa el a nem-erős névvel ellátott StackExchange.Redis verzióját használja, ha más módon meg beolvasása ütközése a projektben. Ezeket a csomagokat kapcsolatos további információkért lásd: [konfigurálása .NET-gyorsítótárazási ügyfelek számára](cache-dotnet-how-to-use-azure-redis-cache.md#configure-the-cache-clients).
 >
 >
 
-hello NuGet csomag tölti le, és hozzáadja a hello szerelvény hivatkozik, és hozzáadja a következő szakasz a web.config fájlba hello szükséges. Ez a szakasz az ASP.NET alkalmazás toouse hello Redis gyorsítótár munkamenetállapot-szolgáltatóját hello kötelező beállítani.
+A NuGet-csomagot tölti le, és hozzáadja a szükséges összeállítási referenciát, és hozzáadja az alábbi szakasz a web.config fájlt. Ez a szakasz az ASP.NET-alkalmazás a Redis gyorsítótár munkamenetállapot-szolgáltatóját használja a szükséges konfigurációját tartalmazza.
 
 ```xml
 <sessionState mode="Custom" customProvider="MySessionStateStore">
@@ -70,25 +70,25 @@ hello NuGet csomag tölti le, és hozzáadja a hello szerelvény hivatkozik, és
 </sessionState>
 ```
 
-hello megjegyzésként szakasz egy példát hello attribútumokat és minta beállításait minden attribútum.
+A megjegyzésként szakasz és a minta-beállítások minden attribútum példaként szolgál.
 
-A gyorsítótár paneljét hello Microsoft Azure-portálon hello értékeivel hello attribútumainak beállítása és konfigurálása hello tetszés szerint más értékek. A gyorsítótár tulajdonságai elérése, lásd: [konfigurálása Redis gyorsítótár beállításainak](cache-configure.md#configure-redis-cache-settings).
+Az attribútumok konfigurálása a Microsoft Azure-portálon a gyorsítótár paneljét értékeivel, és konfigurálja a többi érték tetszés szerint. A gyorsítótár tulajdonságai elérése, lásd: [konfigurálása Redis gyorsítótár beállításainak](cache-configure.md#configure-redis-cache-settings).
 
 * **állomás** – adja meg a gyorsítótár végpontjához.
-* **port** – használja a nem SSL port vagy az SSL-port, attól függően, hogy hello ssl-beállítások.
-* **accessKey** – a gyorsítótár vagy hello elsődleges vagy másodlagos kulcsot használja.
-* **SSL** – igaz, ha azt szeretné, hogy toosecure gyorsítótár vagy ügyfél-kommunikáció SSL; ellenkező esetben hamis. Lehet, hogy toospecify hello portjának.
-  * hello nem SSL port az új gyorsítótárakhoz alapértelmezés szerint le van tiltva. Adja meg ezt a beállítást toouse hello SSL-port igaz. Hello nem SSL port engedélyezésével kapcsolatos további információkért lásd: hello [hozzáférési portok](cache-configure.md#access-ports) hello szakasz [gyorsítótár konfigurálása](cache-configure.md) témakör.
-* **throwOnError** – igaz, ha azt szeretné, hogy egy kivétel toobe vált ki, ha van hiba vagy hamis értéket, ha azt szeretné, hello művelet toofail beavatkozás nélkül. Hello statikus Microsoft.Web.Redis.RedisSessionStateProvider.LastException tulajdonság ellenőrizheti hibája miatt. hello alapértelmezett értéke true.
-* **retryTimeoutInMilliseconds** – sikertelen műveletek ismétlődnek, ezen időszakban, ezredmásodpercben megadva. hello próbálkozik újra 20 ezredmásodperc után következik be, és majd próbálkozások másodpercenként eléréséig hello retryTimeoutInMilliseconds időköz. Az intervallum után azonnal hello műveletet a rendszer ismét megkísérli egy befejező időpontja. Ha továbbra sem sikerül hello művelet, hello kivétel történt vissza toohello hívó, attól függően, hogy hello throwOnError beállítást. hello alapértelmezett értéke 0, ami azt jelenti, hogy nincs újrapróbálás.
-* **databaseId** – adja meg, melyik adatbázis toouse gyorsítótár kimeneti adatokat. Ha nincs megadva, hello alapértelmezett érték 0 lesz érvényben.
-* **applicationName** – kulcsok vannak tárolva, a redis `{<Application Name>_<Session ID>}_Data`. Az elnevezési sémát lehetővé teszi, hogy a több-alkalmazása tooshare hello ugyanazt a Redis-példányt. Ez a paraméter nem kötelező, és ha nem ad meg, egy alapértelmezett értéket használja.
-* **connectionTimeoutInMilliseconds** – Ez a beállítás lehetővé teszi toooverride hello connectTimeout hello StackExchange.Redis ügyfél-ban történő beállítását. Ha nincs megadva, hello alapértelmezett connectTimeout 5000 beállítással. További információkért lásd: [StackExchange.Redis konfigurációs modell](http://go.microsoft.com/fwlink/?LinkId=398705).
-* **operationTimeoutInMilliseconds** – Ez a beállítás lehetővé teszi toooverride hello syncTimeout hello StackExchange.Redis ügyfél-ban történő beállítását. Ha nincs megadva, hello alapértelmezett syncTimeout 1000 beállítással. További információkért lásd: [StackExchange.Redis konfigurációs modell](http://go.microsoft.com/fwlink/?LinkId=398705).
+* **port** – használja a nem SSL port vagy az SSL-port, attól függően, hogy az ssl-beállítások.
+* **accessKey** – az elsődleges vagy másodlagos kulcsot használja a gyorsítótárhoz.
+* **SSL** – igaz, ha azt szeretné, hogy biztonságos SSL/gyorsítótárügyfél kommunikációhoz; ellenkező esetben hamis. Mindenképp adja meg a megfelelő porthoz.
+  * A nem SSL port az új gyorsítótárakhoz alapértelmezés szerint le van tiltva. Adja meg az IGAZ állítja ezt a beállítást, az SSL-port használatára. A nem SSL port engedélyezésével kapcsolatos további információkért lásd: a [hozzáférési portok](cache-configure.md#access-ports) szakasz a [gyorsítótár konfigurálása](cache-configure.md) témakör.
+* **throwOnError** – igaz, ha azt szeretné, hogy a kivételt jelezni, ha a hiba, illetve a hamis Ha azt szeretné, hogy a művelet csendes meghiúsul. A statikus Microsoft.Web.Redis.RedisSessionStateProvider.LastException tulajdonság ellenőrizheti hibája miatt. Az alapértelmezett érték igaz.
+* **retryTimeoutInMilliseconds** – sikertelen műveletek ismétlődnek, ezen időszakban, ezredmásodpercben megadva. Az első újrapróbálkozásnál 20 ezredmásodperc után következik be, és az újrapróbálkozások kerül sor, amíg a retryTimeoutInMilliseconds időköz másodpercenként. Az intervallum után azonnal a műveletet a rendszer ismét megkísérli egy befejező időpontja. Ha a művelet továbbra is sikertelen, a kivétel történt vissza a hívónak, attól függően, hogy a throwOnError beállítást. Az alapértelmezett értéke 0, ami azt jelenti, hogy nincs újrapróbálás.
+* **databaseId** – adja meg a kimeneti adatok gyorsítótárazása használandó adatbázis. Ha nincs megadva, az alapértelmezett érték a 0 szolgál.
+* **applicationName** – kulcsok vannak tárolva, a redis `{<Application Name>_<Session ID>}_Data`. Az elnevezési sémát lehetővé teszi, hogy több alkalmazás közösen a Redis-példányt. Ez a paraméter nem kötelező, és ha nem ad meg, egy alapértelmezett értéket használja.
+* **connectionTimeoutInMilliseconds** – Ez a beállítás lehetővé teszi a StackExchange.Redis-ügyfélben connectTimeout-beállításának felülbírálása. Ha nincs megadva, az alapértelmezett connectTimeout 5000 beállítással. További információkért lásd: [StackExchange.Redis konfigurációs modell](http://go.microsoft.com/fwlink/?LinkId=398705).
+* **operationTimeoutInMilliseconds** – Ez a beállítás lehetővé teszi a StackExchange.Redis-ügyfélben syncTimeout-beállításának felülbírálása. Ha nincs megadva, az alapértelmezett syncTimeout 1000 beállítással. További információkért lásd: [StackExchange.Redis konfigurációs modell](http://go.microsoft.com/fwlink/?LinkId=398705).
 
-Ezek a Tulajdonságok kapcsolatos további információkért lásd: hello eredeti blogbejegyzésben található: [bejelentése ASP.NET munkamenetállapot-szolgáltatóját a Redis](http://blogs.msdn.com/b/webdev/archive/2014/05/12/announcing-asp-net-session-state-provider-for-redis-preview-release.aspx).
+Ezeket a tulajdonságokat kapcsolatos további információkért tekintse meg az eredeti blogbejegyzésben található: [bejelentése ASP.NET munkamenetállapot-szolgáltatóját a Redis](http://blogs.msdn.com/b/webdev/archive/2014/05/12/announcing-asp-net-session-state-provider-for-redis-preview-release.aspx).
 
-Ne feledje toocomment kimenő hello szabványos InProc munkamenet állapota szolgáltató szakasz a Web.config fájlban.
+Ne feledje megjegyzéssé a szabványos InProc munkamenet állapota szolgáltató szakasz a Web.config fájlban.
 
 ```xml
 <!-- <sessionState mode="InProc"
@@ -103,20 +103,20 @@ Ne feledje toocomment kimenő hello szabványos InProc munkamenet állapota szol
 </sessionState> -->
 ```
 
-A lépések elvégzése után az alkalmazás konfigurált toouse hello Redis gyorsítótár munkamenetállapot-szolgáltatóját. A munkamenet-állapot az alkalmazás használatakor Azure Redis Cache példány tárolódik.
+A lépések elvégzése után az alkalmazás a Redis gyorsítótár munkamenetállapot-szolgáltatóját használatára van konfigurálva. A munkamenet-állapot az alkalmazás használatakor Azure Redis Cache példány tárolódik.
 
 > [!IMPORTANT]
-> Hello gyorsítótárban tárolt adatok kell szerializálható, eltérően hello tárolt adatok hello alapértelmezett memórián belüli ASP.NET munkamenetállapot-szolgáltatóját. Hello munkamenetállapot-szolgáltatóját a Redis használata esetén lehet, hogy a munkamenet-állapot tárolt adattípusokat hello szerializálható.
+> A gyorsítótárban tárolt adatok szerializálhatónak kell lennie, eltérően az adatokat, az alapértelmezett tárolható memórián belüli az ASP.NET munkamenet szolgáltató állapot. A munkamenetállapot-szolgáltatóját a Redis használata esetén győződjön meg, hogy szerializálható-e a munkamenet-állapot tárolt adatok típusát.
 > 
 > 
 
 ## <a name="aspnet-session-state-options"></a>Az ASP.NET munkamenet-állapot beállításai
-* Ez a szolgáltató memória munkamenetállapot-szolgáltató - hello munkamenet-állapot a memóriában tárolja. Ez a szolgáltató használatának előnye hello gyorsan és egyszerűen. A webalkalmazások azonban használata a memória-szolgáltató nem elosztott óta nem méretezhető.
-* SQL Server munkamenetállapot-szolgáltató - szolgáltató Sql Server munkamenet-állapot hello tárolja. Használja ezt a szolgáltatót, ha azt szeretné, toostore hello munkamenet-állapot az állandó tároló. A webalkalmazás méretezheti, de használata az Sql Server munkamenet teljesítmény hatást gyakorol a webalkalmazás.
-* Elosztott a memória munkamenetállapot-szolgáltatóját például a Redis gyorsítótár munkamenetállapot-szolgáltatóját – a szolgáltató által biztosított, akkor mindkét világot legjobb hello. A webes alkalmazás lehet egy egyszerű, gyors és méretezhető munkamenetállapot-szolgáltatóját. Mert a szolgáltató tárolók hello a gyorsítótár, az alkalmazás munkamenet-állapot tootake veszi figyelembe az összes kapcsolódó, amikor tooa memória-gyorsítótárban, például az átmeneti hálózati hibák elosztott van szó, jellemzőkkel hello. Gyakorlati tanácsok a gyorsítótár használatával, lásd: [útmutatást gyorsítótárazás](../best-practices-caching.md) Microsoft Patterns & eljárások [Azure Cloud alkalmazás tervezési és megvalósítási útmutatást](https://github.com/mspnp/azure-guidance).
+* Ez a szolgáltató memória munkamenetállapot-szolgáltató - tárolja a munkamenet-állapot, a memória. Ez a szolgáltató használatának előnye gyorsan és egyszerűen. A webalkalmazások azonban használata a memória-szolgáltató nem elosztott óta nem méretezhető.
+* SQL Server munkamenetállapot-szolgáltató - szolgáltató Sql Server tárolja a munkamenet-állapot. Használja ezt a szolgáltatót, ha azt szeretné, hogy a munkamenet-állapot tárolásához az állandó tároló. A webalkalmazás méretezheti, de használata az Sql Server munkamenet teljesítmény hatást gyakorol a webalkalmazás.
+* Elosztott a memória munkamenetállapot-szolgáltatóját például a Redis gyorsítótár munkamenetállapot-szolgáltatóját – Ez a szolgáltató lehetővé teszi a legjobb mindkét világot. A webes alkalmazás lehet egy egyszerű, gyors és méretezhető munkamenetállapot-szolgáltatóját. Ez a szolgáltató gyorsítótárban tárolja a munkamenet-állapot, mert az alkalmazás ki a kapcsolódó, amikor egy elosztott a gyorsítótárban, például az átmeneti hálózati hibák való jellemzők melyeket figyelembe venni. Gyakorlati tanácsok a gyorsítótár használatával, lásd: [útmutatást gyorsítótárazás](../best-practices-caching.md) Microsoft Patterns & eljárások [Azure Cloud alkalmazás tervezési és megvalósítási útmutatást](https://github.com/mspnp/azure-guidance).
 
 További információ a munkamenet-állapot és egyéb bevált gyakorlatokat: [webes fejlesztési gyakorlati tanácsok (épület valós felhőalapú alkalmazásokat az Azure-ral)](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/web-development-best-practices).
 
 ## <a name="next-steps"></a>Következő lépések
-Tekintse meg a hello [az ASP.NET kimeneti gyorsítótár-szolgáltató Azure Redis Cache](cache-aspnet-output-cache-provider.md).
+Tekintse meg a [az ASP.NET kimeneti gyorsítótár-szolgáltató Azure Redis Cache](cache-aspnet-output-cache-provider.md).
 

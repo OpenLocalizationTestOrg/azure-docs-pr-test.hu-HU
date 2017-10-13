@@ -1,6 +1,6 @@
 ---
-title: "(vízszintes particionálás) kiterjesztett felhő az adatbázisok közötti aaaReport |} Microsoft Docs"
-description: "Hogyan toouse kereszt-adatbázis adatbázis-lekérdezések"
+title: "A jelentés (vízszintes particionálás) kiterjesztett felhő az adatbázisok közötti |} Microsoft Docs"
+description: "több adatbázis adatbázis-lekérdezések használata"
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -14,53 +14,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2016
 ms.author: mlandzic
-ms.openlocfilehash: e34f398f8d408cffd91a70fc2cfbda73daec3550
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8eb56d44c3a261f6325d4fc91f169d09bf108160
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="report-across-scaled-out-cloud-databases-preview"></a>Jelentés közötti kiterjesztett felhő (előzetes verzió)
-A több Azure SQL-adatbázisok egyetlen kapcsolódási pont használatával jelentéseket hozhat létre egy [rugalmas lekérdezési](sql-database-elastic-query-overview.md). hello adatbázisok vízszintesen kell particionálni (más néven "szilánkos").
+A több Azure SQL-adatbázisok egyetlen kapcsolódási pont használatával jelentéseket hozhat létre egy [rugalmas lekérdezési](sql-database-elastic-query-overview.md). Az adatbázisok vízszintesen kell particionálni (más néven "szilánkos").
 
-Ha egy meglévő adatbázist, olvassa el [áttelepítése a meglévő adatbázis tooscaled kibővített adatbázis](sql-database-elastic-convert-to-use-elastic-tools.md).
+Ha egy meglévő adatbázist, olvassa el [kiterjesztett adatbázisok áttelepítése a meglévő adatbázisok](sql-database-elastic-convert-to-use-elastic-tools.md).
 
-toounderstand hello SQL objektumok szükséges tooquery című [vízszintesen particionált az adatbázisok közötti lekérdezés](sql-database-elastic-query-horizontal-partitioning.md).
+A lekérdezni szükséges SQL objektumok ismertetése: [vízszintesen particionált az adatbázisok közötti lekérdezés](sql-database-elastic-query-horizontal-partitioning.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
-Töltse le és futtassa a hello [Ismerkedés a rugalmas adatbázis eszközök minta](sql-database-elastic-scale-get-started.md).
+Töltse le és futtassa a [Ismerkedés a rugalmas adatbázis eszközök minta](sql-database-elastic-scale-get-started.md).
 
-## <a name="create-a-shard-map-manager-using-hello-sample-app"></a>A shard térkép létrehozásához-kezelőt hello mintaalkalmazás
-Itt hoz létre a shard térképre manager együtt több szilánkok hello szilánkok be az adatok beszúrását követ. Ha véletlenül tooalready szilánkok telepítő szilánkos adatokkal rendelkezik rajtuk, hello lépéseket kihagyhatja, és helyezze át a következő szakaszban toohello.
+## <a name="create-a-shard-map-manager-using-the-sample-app"></a>Hozzon létre egy shard mintaalkalmazás térkép-kezelőt
+Itt hoz létre a shard térképre manager több szegmensben osztják, az adatok beszúrását követi azokat a szilánkok együtt. Ha már rendelkezik a bennük foglalt horizontálisan skálázott adatok szilánkok telepítése történhet meg, hagyja ki a következő lépéseket, és helyezze át a következő szakaszban.
 
-1. Hozza létre, és futtassa a hello **Ismerkedés a rugalmas adatbáziseszközöket** mintaalkalmazást. Amíg hello szakasz 7. lépés hello lépésekkel [hello minta alkalmazás letöltése és futtatása](sql-database-elastic-scale-get-started.md#download-and-run-the-sample-app). A 7. lépés hello végén jelenik meg a következő parancssor hello:
+1. Hozza létre, és futtassa a **Ismerkedés a rugalmas adatbáziseszközöket** mintaalkalmazást. Kövesse a lépéseket, amíg a szakasz a 7. lépés [töltse le és futtassa a mintaalkalmazást](sql-database-elastic-scale-get-started.md#download-and-run-the-sample-app). 7. lépés végén jelenik meg a következő parancssort:
 
     ![parancssor][1]
-2. Hello parancsablakot, írja be az "1", és nyomja le az ENTER **Enter**. Hello shard térkép manager hoz létre, és két szilánkok toohello kiszolgálót. Ezután írja be a "3", és nyomja le az ENTER **Enter**; hello művelet megismétlése négy alkalommal. Ez a szilánkok minta adatsorok szúrja be.
-3. Hello [Azure-portálon](https://portal.azure.com) jelenítsen meg három új adatbázist a kiszolgálón:
+2. A parancsablakban írja be a "1", és nyomja le az ENTER **Enter**. Létrehozza a shard térkép manager, és két szilánkok hozzáadása a kiszolgálóhoz. Ezután írja be a "3", és nyomja le az ENTER **Enter**; a művelet megismétlése négy alkalommal. Ez a szilánkok minta adatsorok szúrja be.
+3. A [Azure-portálon](https://portal.azure.com) jelenítsen meg három új adatbázist a kiszolgálón:
 
    ![A Visual Studio-jóváhagyás][2]
 
-   Ezen a ponton a kereszt-adatbázis-lekérdezések hello Elastic Database ügyféloldali kódtáraknál keresztül támogatottak. Például hello parancsablakban használja a 4. lehetőséget. hello egy lekérdezés eredményeként előálló több shard a rendszer mindig egy **UNION ALL** összes szilánkok hello eredményeinek.
+   Ezen a ponton adatbázisok közötti-lekérdezések használata támogatott a Elastic Database ügyféloldali kódtáraknál keresztül. Például használja a 4. lehetőséget a parancsablakban. A lekérdezés eredményeként előálló egy több shard a rendszer mindig egy **UNION ALL** az összes szilánkok az eredményeket.
 
-   Hello a következő szakaszban létrehozhatunk egy minta adatbázis végponttal, amely támogatja a gazdagabb lekérdezése hello adatok szilánkok között.
+   A következő szakaszban létrehozhatunk egy minta adatbázis végponttal, amely támogatja a gazdagabb lekérdezése az adatok között szilánkok.
 
 ## <a name="create-an-elastic-query-database"></a>A lekérdezés rugalmas adatbázis létrehozása
-1. Nyissa meg hello [Azure-portálon](https://portal.azure.com) , és jelentkezzen be.
-2. Hozzon létre egy új Azure SQL database hello ugyanarra a kiszolgálóra a shard beállításai. Név hello adatbázis "ElasticDBQuery."
+1. Nyissa meg a [Azure-portálon](https://portal.azure.com) , és jelentkezzen be.
+2. Új Azure SQL-adatbázis létrehozása a shard beállításai ugyanarra a kiszolgálóra. Neve az adatbázis "ElasticDBQuery."
 
     ![Azure-portál és a tarifacsomag][3]
 
     > [!NOTE]
-    > használhat egy meglévő adatbázist. Ha így tesz, nem lehet, hogy szeretné-e tooexecute hello szilánkok egyikét a lekérdezések. Ez az adatbázis hello metaadatok objektumok egy rugalmas adatbázis-lekérdezés létrehozásához használható.
+    > használhat egy meglévő adatbázist. Ha így tesz, nem lehet egy a szilánkok, amelyeket szeretne, a-lekérdezéseket hajt végre. Ezt az adatbázist a metaadat-objektumok egy rugalmas adatbázis-lekérdezés létrehozásához használható.
     >
 
 ## <a name="create-database-objects"></a>Adatbázis-objektumok létrehozása
 ### <a name="database-scoped-master-key-and-credentials"></a>Adatbázis-hatókörű főkulcs és a hitelesítő adatok
-Ezek a kulcsok használt tooconnect toohello shard térkép manager és a hello szilánkok:
+Ezek használhatók a shard térkép manager és a szilánkok való csatlakozáshoz:
 
 1. Nyissa meg az SQL Server Management Studio vagy Visual Studio SQL Server Data Tools összetevővel.
-2. Csatlakozás tooElasticDBQuery adatbázis, és hajtsa végre a következő T-SQL parancsokkal hello:
+2. Csatlakozzon az ElasticDBQuery adatbázisához, és a következő T-SQL-parancsok:
 
         CREATE MASTER KEY ENCRYPTION BY PASSWORD = '<password>';
 
@@ -68,10 +68,10 @@ Ezek a kulcsok használt tooconnect toohello shard térkép manager és a hello 
         WITH IDENTITY = '<username>',
         SECRET = '<password>';
 
-    "felhasználónév" és a "password" kell kell hello ugyanaz, mint a 6. lépésében használt bejelentkezési adatok [hello minta alkalmazás letöltése és futtatása](sql-database-elastic-scale-get-started.md#download-and-run-the-sample-app) a [Ismerkedés a rugalmas adatbáziseszközöket](sql-database-elastic-scale-get-started.md).
+    "felhasználónév" és a "password" legyen ugyanaz, mint a 6. lépésében használt bejelentkezési adatok [töltse le és futtassa a mintaalkalmazást](sql-database-elastic-scale-get-started.md#download-and-run-the-sample-app) a [Ismerkedés a rugalmas adatbáziseszközöket](sql-database-elastic-scale-get-started.md).
 
 ### <a name="external-data-sources"></a>Külső adatforrások
-toocreate egy külső adatforrásból parancs következő hello ElasticDBQuery adatbázison hello hajtható végre:
+A külső létrehozásához a ElasticDBQuery adatbázison végre az alábbi parancsot:
 
     CREATE EXTERNAL DATA SOURCE MyElasticDBQueryDataSrc WITH
       (TYPE = SHARD_MAP_MANAGER,
@@ -81,10 +81,10 @@ toocreate egy külső adatforrásból parancs következő hello ElasticDBQuery a
        SHARD_MAP_NAME = 'CustomerIDShardMap'
     ) ;
 
- "CustomerIDShardMap" esetén hello hello shard leképezés, ha létrehozott hello shard térkép és shard térkép hello rugalmas adatbázis eszközök minta-kezelőt. Azonban ha az egyéni telepítő ezt a mintát használja, majd kell hello shard leképezésnév választja, az alkalmazás.
+ "CustomerIDShardMap" shard leképezés neve esetén a shard térkép és shard térkép-kezelőt a rugalmas adatbázis eszközök minta létrehozott. Azonban ha az egyéni telepítő ezt a mintát használja, majd azt névnek kell lennie a shard térkép választja, az alkalmazás.
 
 ### <a name="external-tables"></a>Külső táblák
-Hozzon létre egy külső táblát, amely megfelel a hello ügyfelek tábla hello szilánkok a parancs következő ElasticDBQuery adatbázison hello végrehajtásával:
+Hozzon létre egy külső táblát, amely megfelel a szilánkok ügyfelek tábla a következő ElasticDBQuery adatbázis a következő parancs futtatásával:
 
     CREATE EXTERNAL TABLE [dbo].[Customers]
     ( [CustomerId] [int] NOT NULL,
@@ -98,33 +98,33 @@ Hozzon létre egy külső táblát, amely megfelel a hello ügyfelek tábla hell
 ## <a name="execute-a-sample-elastic-database-t-sql-query"></a>Egy minta rugalmas adatbázis T-SQL-lekérdezés végrehajtása
 A külső adatforrást és a külső táblák meghatározása után a külső táblákon végrehajtott most már használhatja a teljes T-SQL.
 
-Hello ElasticDBQuery adatbázison hajtsa végre a lekérdezést:
+Hajtsa végre a lekérdezést a ElasticDBQuery adatbázison:
 
     select count(CustomerId) from [dbo].[Customers]
 
-Megfigyelheti, hogy hello lekérdezés az összes hello szilánkok összesíti az eredményeket, és lehetőséget ad a következő kimeneti hello:
+Megfigyelheti, hogy a lekérdezés eredményeit összesíti a szilánkok a, és lehetőséget ad a következő kimeneti:
 
 ![Kimeneti részletei][4]
 
-## <a name="import-elastic-database-query-results-tooexcel"></a>A rugalmas adatbázis-lekérdezés eredménye tooExcel importálása
- A lekérdezés tooan Excel fájl eredményei hello importálhatja.
+## <a name="import-elastic-database-query-results-to-excel"></a>A rugalmas adatbázis-lekérdezések eredményének Excel importálása
+ Importálhatja az eredményeket a lekérdezés egy Excel-fájlhoz.
 
 1. Indítsa el az Excel 2013.
-2. Keresse meg a toohello **adatok** menüszalagján.
+2. Keresse meg a **adatok** menüszalagján.
 3. Kattintson a **egyéb forrásokból származó** kattintson **az SQL Server**.
 
    ![Excel importálása más forrásokból][5]
-4. A hello **Adatkapcsolat varázsló** írja be a hello kiszolgálónév és hitelesítő adatait. Ezután kattintson a **Next** (Tovább) gombra.
-5. Hello párbeszédpanelen **hello adatokat tartalmazó adatbázis válassza hello**, jelölje be hello **ElasticDBQuery** adatbázis.
-6. Jelölje be hello **ügyfelek** hello listanézetben táblázatban, majd kattintson **következő**. Kattintson a **Befejezés**.
-7. A hello **és adatokat importálhat** űrlap **válassza ki, hogy tooview ezeket az adatokat a munkafüzet**, jelölje be **tábla** kattintson **OK**.
+4. Az a **Adatkapcsolat varázsló** írja be a kiszolgáló nevét és a bejelentkezési hitelesítő adatokat. Ezután kattintson a **Next** (Tovább) gombra.
+5. A párbeszédpanelen **válassza ki a kívánt adatokat tartalmazó adatbázis**, jelölje be a **ElasticDBQuery** adatbázis.
+6. Válassza ki a **ügyfelek** táblázatban a lista nézetben, majd kattintson **következő**. Kattintson a **Befejezés**.
+7. Az a **és adatokat importálhat** űrlap **válassza ki, hogy az adatok megtekintéséhez a munkafüzet**, jelölje be **tábla** kattintson **OK**.
 
-Az összes sorát hello **ügyfelek** a különböző szilánkok tárolt tábla feltöltéséhez hello Excel-táblában.
+Összes sorát **ügyfelek** tábla különböző szilánkok tárolt feltölti az Excel-táblában.
 
-Most már használhatja az Excel hatékony képi megjelenítés funkciók. A kiszolgáló nevét, az adatbázisnév hello kapcsolati karakterlánc használatával, és a hitelesítő adatok tooconnect a BI és az integráció eszközök toohello rugalmas adatbázis lekérdezése. Győződjön meg arról, hogy az SQL Server támogatja-e az eszköz adatforrásként. Olvassa el a toohello rugalmas lekérdezési adatbázis és a külső táblák csakúgy, mint bármely más SQL Server-adatbázis és, hogy Ön kapcsolódnának toowith az eszköz az SQL Server-táblákra.
+Most már használhatja az Excel hatékony képi megjelenítés funkciók. A kiszolgáló nevét, az adatbázis neve és a hitelesítő adatok adatbázishoz való kapcsolódáshoz a BI és az integráció eszközök a Rugalmas lekérdezési használhatja a kapcsolati karakterláncot. Győződjön meg arról, hogy az SQL Server támogatja-e az eszköz adatforrásként. A Rugalmas lekérdezési adatbázis és a külső táblák csakúgy, mint bármely más SQL Server-adatbázis és SQL Server-táblázatot, amely kíván csatlakozni, a eszközzel is hivatkozik.
 
 ### <a name="cost"></a>Költségek
-Nem kell külön fizetni hello rugalmas adatbázis-lekérdezés szolgáltatás használatára vonatkozó van.
+Nem kell külön fizetni a rugalmas adatbázis-lekérdezés szolgáltatás használatára vonatkozó van.
 
 Díjszabási információkért lásd: [SQL adatbázis díjszabás](https://azure.microsoft.com/pricing/details/sql-database/).
 

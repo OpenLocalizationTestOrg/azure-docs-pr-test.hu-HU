@@ -22,4 +22,4 @@
 | Sablonok mérete |1 MB |1 MB |
 | A paraméter mérete |64 KB |64 KB |
 
-Néhány sablon korlátot azért lépheti túl a beágyazott sablon használatával. További információkért lásd: [kapcsolt sablonok használata az Azure-erőforrások telepítésekor](../articles/azure-resource-manager/resource-group-linked-templates.md). tooreduce hello száma paramétereket, változók vagy kimenetek, kombinálható több értéket egy objektumot. További információkért lásd: [paraméterekként objektumok](../articles/azure-resource-manager/resource-manager-objects-as-parameters.md).
+Néhány sablon korlátot azért lépheti túl a beágyazott sablon használatával. További információkért lásd: [kapcsolt sablonok használata az Azure-erőforrások telepítésekor](../articles/azure-resource-manager/resource-group-linked-templates.md). A paraméterek, változók vagy kimenetek számának csökkentése érdekében kombinálható egy objektum több értéket. További információkért lásd: [paraméterekként objektumok](../articles/azure-resource-manager/resource-manager-objects-as-parameters.md).

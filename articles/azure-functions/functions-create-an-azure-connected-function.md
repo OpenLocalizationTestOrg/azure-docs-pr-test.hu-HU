@@ -1,6 +1,6 @@
 ---
-title: "egy függvény, amely a tooAzure szolgáltatások aaaCreate |} Microsoft Docs"
-description: "Használja az Azure Functions toocreate egy kiszolgáló nélküli alkalmazást, amely a tooother Azure szolgáltatások."
+title: "Az Azure-szolgáltatásokhoz csatlakozó függvény létrehozása | Microsoft Docs"
+description: "Az Azure Functions segítségével létrehozhat egy kiszolgáló nélküli alkalmazást, amely más Azure-szolgáltatásokhoz kapcsolódik."
 services: functions
 documentationcenter: dev-center-name
 author: yochay
@@ -17,49 +17,49 @@ ms.workload: na
 ms.date: 03/01/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 9d1f7d3b236f8d2c1a404c76aee410f6d458fb7a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 65964a322f0adab4f648fb350bedb77b46bf9054
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="use-azure-functions-toocreate-a-function-that-connects-tooother-azure-services"></a>Használja az Azure Functions toocreate egy függvénynek, amely a tooother Azure szolgáltatások
+# <a name="use-azure-functions-to-create-a-function-that-connects-to-other-azure-services"></a>Az Azure Functions segítségével létrehozhat egy függvényt, amely más Azure-szolgáltatásokhoz kapcsolódik.
 
-Ez a témakör bemutatja, hogyan toocreate egy függvényt, amely figyeli a egy Azure Storage várólista és másolatok hello toomessages Azure Functions üzenetek toorows egy Azure Storage táblában. Egy időzítő indított függvény használt tooload üzenetek hello várólistán. Egy második funkció hello várólistából beolvassa és üzenetek toohello tábla. Hello várólista és a hello tábla jön létre az Azure Functions hello kötés definíciók alapján. 
+Ez a témakör olyan függvény létrehozását mutatja be az Azure Functionsben, amely egy Azure Storage-üzenetsor üzeneteit figyeli, és egy Azure Storage-táblába másolja azokat. Az üzeneteknek az üzenetsorba való betöltése egy időzítő által aktivált függvénnyel történik. Egy másik függvény beolvassa az üzeneteket az üzenetsorból, és a táblába írja azokat. Az üzenetsort és a táblát az Azure Functions hozza létre a kötési meghatározások alapján. 
 
-toomake dolgot ennél is érdekesebb megoldást, egy függvény JavaScript nyelven írt van, és más hello parancsfájl C# nyelven van megírva. Ez bemutatja, hogy egy függvényalkalmazás különféle nyelveken írt függvényekkel is rendelkezhet. 
+A dolgokat még érdekesebbé teszi, az egyik függvény JavaScript, a másik pedig C# nyelven lett megírva. Ez bemutatja, hogy egy függvényalkalmazás különféle nyelveken írt függvényekkel is rendelkezhet. 
 
 Ezt a forgatókönyvet a [Channel 9 blog egyik videója](https://channel9.msdn.com/Series/Windows-Azure-Web-Sites-Tutorials/Create-an-Azure-Function-which-binds-to-an-Azure-service/player) mutatja be.
 
-## <a name="create-a-function-that-writes-toohello-queue"></a>Egy függvény írja az toohello várólista létrehozása
+## <a name="create-a-function-that-writes-to-the-queue"></a>Az üzenetsorba író függvény létrehozása
 
-Tooa storage üzenetsorába csatlakozáskor toocreate hello üzenet-várólista betöltő függvényt kell. A JavaScript a funkció egy időzítő indítófeltételt toohello üzenet-várólista 10 másodpercenként írja. Ha még nem rendelkezik Azure-fiókra, tekintse meg a hello [próbálja az Azure Functions](https://functions.azure.com/try) tapasztal, vagy [az ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/free/).
+Mielőtt egy tárterületi üzenetsorhoz kapcsolódna, létre kell hoznia egy függvényt, amely betölti az üzenetsort. Ez a JavaScript-függvény időzítő aktiválót használ, amely 10 másodpercenként üzenetet ír a sorba. Ha még nem rendelkezik Azure-fiókkal, keresse fel az [Azure Functions kipróbálását](https://functions.azure.com/try) lehetővé tévő webhelyet, vagy [hozzon létre egy ingyenes Azure-fiókot](https://azure.microsoft.com/free/).
 
-1. Nyissa meg toohello Azure-portálon, és keresse meg a függvény alkalmazást.
+1. Nyissa meg az Azure Portalt, és keresse meg a függvényalkalmazást.
 
 2. Kattintson a **New Function** (Új függvény)  > **TimeTrigger - JavaScript** elemre. 
 
-3. Hello függvény neve **FunctionsBindingsDemo1**, adja meg a cron-kifejezés érték `0/10 * * * * *` a **ütemezés**, és kattintson a **létrehozása**.
+3. Adja a függvénynek a **FunctionsBindingsDemo1** nevet, adja meg a `0/10 * * * * *` cron kifejezésértéket a **Schedule** (Ütemezés) számára, és kattintson a **Create** (Létrehozás) elemre.
    
     ![Időzítő által aktivált hozzáadása](./media/functions-create-an-azure-connected-function/new-trigger-timer-function.png)
 
     Létrehozott egy időzítő által aktivált függvényt, amely 10 másodpercenként fut.
 
-5. A hello **Develop** lapra, majd **naplók** és hello naplóban hello tevékenységének megtekintéséhez. 10 másodpercenként írt naplóbejegyzéseket láthat.
+5. A **Develop** (Fejlesztés) lapon kattintson a **Logs** (Naplók) elemre, és tekintse meg a tevékenységet a naplóban. 10 másodpercenként írt naplóbejegyzéseket láthat.
    
-    ![Hello napló tooverify hello függvény works megtekintése](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-view-log.png)
+    ![A napló megtekintésével ellenőrizze a függvény működését](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-view-log.png)
 
 ## <a name="add-a-message-queue-output-binding"></a>Üzenetsor kimeneti kötésének hozzáadása
 
-1. A hello **integráció** lapra, majd **új kimeneti** > **Azure Queue Storage** > **válasszon**.
+1. Az **Integrate** (Integrálás) lapon válassza a **New Output** (Új kimenet) > **Azure Queue Storage** > **Select** (Kiválasztás) elemet.
 
     ![Eseményindító időzítő függvény hozzáadása](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-integrate-tab.png)
 
-2. Adja meg `myQueueItem` a **üzenet paraméternév** és `functions-bindings` a **várólista neve**, válasszon ki egy létező **fiók tárolókapcsolat** , vagy kattintson a **új** toocreate tárolási fiók kapcsolat, és kattintson a **mentése**.  
+2. Adja meg a `myQueueItem` értéket a **Message parameter name** (Üzenetparaméter neve), illetve a `functions-bindings` értéket a **Queue name** (Üzenetsor neve) beállítás számára, válasszon ki egy meglévő kapcsolatot a **Storage account connection** (Tárfiókkapcsolat) mezőben, vagy kattintson a **new** (új) elemre egy tárfiókkapcsolat létrehozásához, majd kattintson a **Save** (Mentés) gombra.  
 
-    ![Hello kimeneti kötése toohello tárolási üzenetsor létrehozása](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-integrate-tab2.png)
+    ![Kimeneti kötés létrehozása a tárterület üzenetsorával](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-integrate-tab2.png)
 
-1. Vissza a hello **Develop** lapon, a következő kód toohello függvény hello hozzáfűzése:
+1. A **Develop** (Fejlesztés) lapon egészítse ki a függvényt a következő kóddal:
    
     ```javascript
    
@@ -72,7 +72,7 @@ Tooa storage üzenetsorába csatlakozáskor toocreate hello üzenet-várólista 
     }
    
     ```
-2. Keresse meg a hello *Ha* utasítás körülbelül sor 9 hello függvény, és a Beszúrás hello következő kódot adott utasítás után.
+2. Keresse meg az *if* utasítást a függvény 9. sorának közelében, és szúrja be az alábbi kódot az utasítás után.
    
     ```javascript
    
@@ -82,55 +82,55 @@ Tooa storage üzenetsorába csatlakozáskor toocreate hello üzenet-várólista 
    
     ```  
    
-    Ez a kód létrehoz egy **myQueueItem** , és beállítja a **idő** tulajdonság toohello aktuális időbélyeg. Hozzáadja hello új várólista elem toohello környezet által **myQueueItem** kötés.
+    Ez a kód egy **myQueueItem** elemet hoz létre, és az **idő** tulajdonságot az aktuális timeStamp értékére állítja. Ezután az új üzenetsorelemet a kontextus **myQueueItem** kötéséhez adja.
 
 3. Kattintson a **Mentés és futtatás** gombra.
 
 ## <a name="view-storage-updates-by-using-storage-explorer"></a>A tárterület frissítéseinek áttekintése a Storage Explorerrel
-A funkció működésének létrehozott hello várólistában lévő üzenetek megtekintésével ellenőrizheti.  Tooyour storage üzenetsorába Cloud Explorerben a Visual Studio használatával is elérheti. Azonban hello portál segítségével könnyen tooconnect tooyour storage-fiók használatával a Microsoft Azure Tártallózó.
+A függvény működését a létrehozott sorban található üzenetek megtekintésével ellenőrizheti.  A Visual Studio Cloud Explorer eszközével kapcsolódhat a tárterület üzenetsorához. A portálon azonban egyszerűen kapcsolódhat a tárfiókhoz a Microsoft Azure Storage Explorerrel.
 
-1. A hello **integráció** lapra, majd a várólista kimeneti kötése > **dokumentáció**, majd a tárfiók kapcsolati karakterlánc hello felfedése és hello értéket másol. Az érték tooconnect tooyour tárfiókot használni.
+1. Az **Integrate** (Integrálás) lapon kattintson az üzenetsor kimeneti kötésére, majd a **Documentation** (Dokumentáció) elemre, jelenítse meg tárfiók kapcsolati karakterláncát, és másolja az értéket. Ezt az értéket használja a tárfiókhoz való kapcsolódáshoz.
 
     ![Az Azure Storage Explorer letöltése](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-integrate-tab3.png)
 
 
 2. Ha még nem tette meg, töltse le és telepítse a [Microsoft Azure Storage Explorert](http://storageexplorer.com). 
  
-3. A Tártallózó, kattintson a hello tooAzure Kiszolgálótárhely ikon csatlakozzon, illessze be a hello kapcsolati karakterláncot hello mezőben, és hello varázsló befejezéséhez.
+3. A Storage Explorerben kattintson az Azure Storage-hoz való kapcsolódásra szolgáló ikonra, illessze be a kapcsolati karakterláncot a mezőbe, és haladjon végig a varázslón.
 
     ![Storage Explorer – kapcsolat hozzáadása](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-storage-explorer.png)
 
-4. A **helyi és csatlakoztatott**, bontsa ki a **Tárfiókok** > a tárfiók > **várólisták** > **funkciók-kötések**, és ellenőrizze, hogy üzenetek írt toohello várólista.
+4. A **Local and attached** (Helyi és csatolt) részen bontsa ki a **Storage Accounts** (Tárfiókok) > tárfiók > **Queues** (Üzenetsorok)  > **functions-bindings** csomópontot, és ellenőrizze, hogy az üzenetek írása az üzenetsorba megtörténik-e.
 
-    ![Hello várólistában lévő üzenetek ábrázolása](./media/functions-create-an-azure-connected-function/functionsbindings-azure-storage-explorer.png)
+    ![Az üzenetsorban szereplő üzenetek nézete](./media/functions-create-an-azure-connected-function/functionsbindings-azure-storage-explorer.png)
 
-    Ha hello várólista nem létezik, vagy üres, valószínűleg probléma van a függvénykötés vagy kóddal.
+    Ha az üzenetsor nem létezik vagy üres, nagy valószínűséggel a függvénykötéssel vagy a kóddal van probléma.
 
-## <a name="create-a-function-that-reads-from-hello-queue"></a>Hello várólistából olvasó függvény létrehozása
+## <a name="create-a-function-that-reads-from-the-queue"></a>Az üzenetsorból olvasó függvény létrehozása
 
-Most, hogy rendelkezik a hozzáadni kívánt toohello várólista üzenetek, létrehozhat egy másik függvényen olvasó hello várólistából, és az írási műveletek hello üzenetek véglegesen tooan Azure Storage tábla.
+Most, hogy rendelkezik az üzenetsorhoz adott üzenetekkel, létrehozhat egy másik függvényt, amely az üzenetsorból olvas, és az üzeneteket véglegesen egy Azure Storage-táblába írja.
 
 1. Kattintson a **New Function** (Új függvény) > **QueueTrigger-CSharp** elemre. 
  
-2. Hello függvény neve `FunctionsBindingsDemo2`, adja meg **funkciók-kötések** a hello **üzenetsornév** mezőben válasszon egy meglévő tárfiókot, vagy hozzon létre egyet, majd kattintson a **létrehozása**.
+2. Adja a függvénynek a `FunctionsBindingsDemo2` nevet, írja be a **functions-bindings** szöveget a **Queue name** (Üzenetsor neve) mezőbe, válasszon ki egy meglévő tárfiókot, vagy hozzon létre egyet, majd kattintson a **Create** (Létrehozás) gombra.
 
     ![Kimeneti üzenetsor időzítő függvényének hozzáadása](./media/functions-create-an-azure-connected-function/function-demo2-new-function.png) 
 
-3. (Választható) Azt, hogy működik-e új függvény hello Tártallózó, mielőtt új várólista hello megtekintésével ellenőrizheti. A Visual Studio Cloud Explorer eszközét is használhatja.  
+3. (Nem kötelező) Az új függvény működését az új üzenetsornak a Storage Explorerben való megtekintésével ellenőrizheti, ahogy korábban is. A Visual Studio Cloud Explorer eszközét is használhatja.  
 
-4. (Választható) Frissítse a hello **funkciók-kötések** várólistára, és figyelje meg, hogy a cikkek hello várólistából eltávolították. hello eltávolítását okozza, hogy hello függvény kötött toohello **funkciók-kötések** várólistára, egy bemeneti eseményindító és hello függvény hello várólista olvassa be. 
+4. (Nem kötelező) Frissítse a **functions-bindings** üzenetsort, és figyelje meg, hogy elemek lettek eltávolítva az üzenetsorból. Az eltávolítás azért történt, mert a függvény a **functions-bindings** üzenetsorhoz van kötve bemeneti eseményindítóként, és a függvény az üzenetsort olvassa. 
  
 ## <a name="add-a-table-output-binding"></a>Tábla kimeneti kötésének hozzáadása
 
 1. A FunctionsBindingsDemo2 részen kattintson az **Integrate** (Integrálás) > **New Output** (Új kimenet) > **Azure Table Storage** > **Select** (Kiválasztás) elemre.
 
-    ![A kötés tooan Azure Storage tábla hozzáadása](./media/functions-create-an-azure-connected-function/functionsbindingsdemo2-integrate-tab.png) 
+    ![Kötés hozzáadása Azure Storage-táblához](./media/functions-create-an-azure-connected-function/functionsbindingsdemo2-integrate-tab.png) 
 
 2. Adja meg a `functionbindings` értéket a **Table name** (Tábla neve), illetve a `myTable` értéket a **Table parameter name** (Táblaparaméter neve) beállítás számára, válasszon ki egy meglévő kapcsolatot a **Storage account connection** (Tárfiókkapcsolat) mezőben, vagy hozzon létre egy új kapcsolatot, majd kattintson a **Save** (Mentés) gombra.
 
-    ![Hello tárolási táblakötéssel konfigurálása](./media/functions-create-an-azure-connected-function/functionsbindingsdemo2-integrate-tab2.png)
+    ![A Storage-tábla kötésének konfigurálása](./media/functions-create-an-azure-connected-function/functionsbindingsdemo2-integrate-tab2.png)
    
-3. A hello **Develop** lapon, hogy lecseréli a meglévő funkciókódot hello hello következőre:
+3. A **Develop** (Fejlesztés) lapon cserélje a meglévő függvénykódot az alábbira:
    
     ```cs
     
@@ -147,7 +147,7 @@ Most, hogy rendelkezik a hozzáadni kívánt toohello várólista üzenetek, lé
             OriginalTime = myQueueItem.Time    
         };
         
-        // Add hello item toohello table binding collection.
+        // Add the item to the table binding collection.
         myTable.Add(myItem);
     
         log.Verbose($"C# Queue trigger function processed: {myItem.RowKey} | {myItem.Msg} | {myItem.Time}");
@@ -168,27 +168,27 @@ Most, hogy rendelkezik a hozzáadni kívánt toohello várólista üzenetek, lé
         public string Time { get; set;}
     }
     ```
-    Hello **TableItem** osztály hello tárolási tábla sorának jelöli, és hozzáadhat hello elem toohello `myTable` gyűjteménye **TableItem** objektumok. Meg kell adni a hello **PartitionKey** és **RowKey** tulajdonságok toobe képes tooinsert hello táblába.
+    A **TableItem** osztály egy sort képvisel a tárolási táblában, és az elemet adja hozzá a **TableItem** objektumok `myTable` gyűjteményéhez. A **PartitionKey** és a **RowKey** tulajdonságot be kell állítania a táblába való beszúrás lehetővé tételéhez.
 
-4. Kattintson a **Save** (Mentés) gombra.  Végezetül hello függvény works ellenőrizheti Tártallózóval vagy a Visual Studio Cloud Explorer hello tábla megtekintésével.
+4. Kattintson a **Save** (Mentés) gombra.  Végül, ellenőrizheti a függvény működését a Storage Explorerben vagy a Visual Studio Cloud Explorer eszközében.
 
-5. (Választható) Bontsa ki a tárfiók a Tártallózó **táblák** > **functionsbindings** , és ellenőrizze, hogy a sorok hozzáadásakor toohello tábla. Mindent hello ugyanaz a Cloud Explorerben a Visual Studióban.
+5. (Nem kötelező) A Storage Explorerben található tárfiókban bontsa ki a **Tables** (Táblák) > **functionsbindings** csomópontot, és ellenőrizze, hogy a sorok hozzáadása a táblához megtörtént-e. Ugyanezt megteheti a Visual Studio Cloud Explorer eszközében is.
 
-    ![Hello tábla sorainak ábrázolása](./media/functions-create-an-azure-connected-function/functionsbindings-azure-storage-explorer2.png)
+    ![A tábla sorainak nézete](./media/functions-create-an-azure-connected-function/functionsbindings-azure-storage-explorer2.png)
 
-    Ha hello tábla nem létezik, vagy üres, valószínűleg probléma van a függvénykötés vagy kóddal. 
+    Ha a tábla nem létezik vagy üres, nagy valószínűséggel a függvénykötéssel vagy a kóddal van probléma. 
  
 [!INCLUDE [More binding information](../../includes/functions-bindings-next-steps.md)]
 
 ## <a name="next-steps"></a>Következő lépések
-Az Azure Functions kapcsolatos további információkért tekintse meg a következő témakörök hello:
+Az Azure Functions használatával kapcsolatos további tudnivalókért tekintse át az alábbi témaköröket:
 
 * [Az Azure Functions fejlesztői segédanyagai](functions-reference.md)  
   Programozói segédanyagok függvények kódolásához, valamint eseményindítók és kötések meghatározásához.
 * [Az Azure Functions tesztelése](functions-test-a-function.md)  
   Különböző függvénytesztelési eszközöket és technikákat ír le.
-* [Hogyan tooscale Azure Functions](functions-scale.md)  
-  Ismerteti az Azure Functions, beleértve a hello fogyasztás üzemeltetési terv, és hogyan toochoose hello megfelelő csomag elérhető service-csomagokról. 
+* [Az Azure Functions méretezése](functions-scale.md)  
+  Az Azure Functions szolgáltatáshoz elérhető szolgáltatáscsomagokat ismerteti, köztük a Használatalapú futtatási csomagot, és segít a megfelelő csomag kiválasztásában. 
 
 [!INCLUDE [Getting help note](../../includes/functions-get-help.md)]
 

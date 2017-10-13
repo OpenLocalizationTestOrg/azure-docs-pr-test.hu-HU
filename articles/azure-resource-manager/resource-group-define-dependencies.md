@@ -1,6 +1,6 @@
 ---
-title: "az Azure-erőforrások aaaSet deploymentorder |} Microsoft Docs"
-description: "Ismerteti, hogyan tooset egy erőforrást, erőforrástól függ másik során telepítési tooensure erőforrásai hello megfelelő sorrendben legyenek telepítve."
+title: "Állítsa be a telepítési sorrendet, az Azure-erőforrások |} Microsoft Docs"
+description: "Útmutatás állítja be egy erőforrást egy másik erőforrástól függő erőforrások a megfelelő sorrendben legyenek telepítve. Ellenőrizze a telepítés során."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/03/2017
 ms.author: tomfitz
-ms.openlocfilehash: 2f658f4c85236966c46b34a65aafb8426c92806c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3d6a46116ae9d7d940bc10dfa832540f42c0af7e
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="define-hello-order-for-deploying-resources-in-azure-resource-manager-templates"></a>Hello ahhoz, hogy az Azure Resource Manager sablonokban erőforrásokat üzembe helyezi meghatározása
-A megadott erőforrás lehet más erőforrások, amelyek már léteznie kell hello erőforrás van telepítve. Például egy SQL server léteznie kell egy SQL-adatbázis toodeploy megkísérlése előtt. Megadhatja a kapcsolat hello függenek, egy erőforrás megjelölésével egyéb erőforrásokat. Megadhatja a hello függőség **dependsOn** elem, vagy hello segítségével **hivatkozás** függvény. 
+# <a name="define-the-order-for-deploying-resources-in-azure-resource-manager-templates"></a>Adja meg a ahhoz, hogy az Azure Resource Manager sablonokban erőforrások telepítése
+A megadott erőforrás lehet más erőforrások, amelyek már léteznie kell az erőforrás van telepítve. Például egy SQL server léteznie kell egy SQL-adatbázis telepítése előtt. Ez a kapcsolat egy erőforrást, mint a más erőforrástól függő megjelölésével határozza meg. A függőség megadhatja a **dependsOn** elem, vagy használatával a **hivatkozás** függvény. 
 
-Erőforrás-kezelő erőforrások közti függőségeket hello kiértékeli, és telepíti azokat a függő sorrendben. Ha nincsenek függő erőforrások, erőforrás-kezelő telepíti azokat párhuzamosan. Elegendő toodefine függőségek hello üzembe helyezett erőforrások ugyanazt a sablont. 
+Erőforrás-kezelő kiértékeli az erőforrások közti függőségeket, és telepíti azokat a függő sorrendben. Ha nincsenek függő erőforrások, erőforrás-kezelő telepíti azokat párhuzamosan. Csak akkor kell megadni telepített erőforrások függőségek ugyanabban a sablonban. 
 
 ## <a name="dependson"></a>dependsOn
-A sablonon belül hello dependsOn elem lehetővé teszi toodefine egy erőforrást, egy vagy több erőforrást egy függ. Az érték lehet erőforrásnevek vesszővel tagolt listája. 
+A sablonon belül a dependsOn elem teszi meghatározni egy erőforrást, egy vagy több erőforrást egy függ. Az érték lehet erőforrásnevek vesszővel tagolt listája. 
 
-hello következő példa bemutatja a virtuálisgép-méretezési csoport, amely egy adott terheléselosztóhoz, a virtuális hálózati és a több tárfiókot létrehozó hurkot függ. Ezeket az erőforrásokat a következő példa hello nem láthatók, de tooexist máshol hello sablonban kell.
+A következő példában egy virtuálisgép-méretezési csoport, amely egy adott terheléselosztóhoz, a virtuális hálózati és a több tárfiókot létrehozó hurkot függ. Ezeket az erőforrásokat nem jelennek meg az alábbi példában, de a sablonban máshol léteznie kell.
 
 ```json
 {
@@ -48,9 +48,9 @@ hello következő példa bemutatja a virtuálisgép-méretezési csoport, amely 
 }
 ```
 
-A fenti példa hello, egy függőségi szerepel-e a másolási ciklust nevű keresztül létrehozott hello erőforrások **storageLoop**. Egy vonatkozó példáért lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).
+A fenti példában egy függőséget szerepel-e az erőforrásokat, a másolási ciklust nevű keresztül létrehozott **storageLoop**. Egy vonatkozó példáért lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).
 
-Függőségek meghatározásakor hello erőforrás szolgáltató névtér és az erőforrás típusa tooavoid kétértelműség is megadhat. Például tooclarify egy terheléselosztó és a virtuális hálózat, amelyek azonos nevek egyéb erőforrásokat, a következő használatát hello hello formázása:
+Függőségek meghatározásakor az erőforrás-szolgáltató névtere és a félreérthetőség elkerülése érdekében erőforrástípus lehetnek. Elmagyarázza, a terheléselosztó és a virtuális hálózat, amelyek az azonos nevű más erőforrások, például a következő formátumban kell megadni:
 
 ```json
 "dependsOn": [
@@ -59,14 +59,14 @@ Függőségek meghatározásakor hello erőforrás szolgáltató névtér és az
 ]
 ``` 
 
-Ferde toouse dependsOn toomap kapcsolatok lehet, ha az erőforrások között, de napjainkban fontos toounderstand miért végzett azt. Például, milyen erőforrásokat kötik, toodocument dependsOn nincs hello megfelelő módszert. Nem lehet lekérdezni, mely erőforrásokhoz a telepítés utáni hello dependsOn elemben definiált. DependsOn tulajdonság használatával, potenciálisan hatással van az telepítési idő mert erőforrás-kezelő nem telepíti a függőségi viszonyban párhuzamos két erőforrásokat. erőforrások toodocument kapcsolatai inkább [erőforrás linking](/rest/api/resources/resourcelinks).
+Akkor lehet, hogy az erőforrások közötti kapcsolatok DependsOn tulajdonság használatával kell dönteni, de napjainkban fontos tudni, miért végzett azt. Például hogyan erőforrásokat kötik dokumentum dependsOn nincs a megfelelő módszert. Nem lehet lekérdezni, mely erőforrásokat telepítést követően a DependsOn tulajdonság elemben definiált. DependsOn tulajdonság használatával, potenciálisan hatással van az telepítési idő mert erőforrás-kezelő nem telepíti a függőségi viszonyban párhuzamos két erőforrásokat. A dokumentum erőforrásainak kapcsolatai helyette használja a [erőforrás linking](/rest/api/resources/resourcelinks).
 
 ## <a name="child-resources"></a>Gyermek-erőforrások
-hello erőforrások tulajdonság teszi lehetővé, amelyek a múltbeli kapcsolódó toohello erőforrás toospecify gyermekerőforrásait. Gyermek erőforrások csak meghatározott öt szintnél mélyebb lehet. Fontos toonote, amely egy implicit függőség nem hoz létre egy gyermek és hello szülő típusú erőforrást között. Gyermek-erőforrás toobe hello szülő erőforrás után kell hello, hello dependsOn tulajdonság függőséget explicit módon meg kell adni. 
+Az erőforrás-tulajdonság adja meg, amely kapcsolódik a múltbeli erőforrás gyermekerőforrásait teszi lehetővé. Gyermek erőforrások csak meghatározott öt szintnél mélyebb lehet. Fontos megjegyezni, hogy egy implicit függőség nem jön létre a gyermek-erőforrás és a szülő erőforrás között. A gyermek-erőforrás a szülő erőforrás után telepítésre van szüksége, a dependsOn tulajdonság függőséget explicit módon meg kell adni. 
 
-Minden szülő erőforrás csak bizonyos típusú erőforrások gyermekerőforrásait fogad el. hello elfogadott erőforrástípusok esetében meg van határozva a hello [sablonséma](https://github.com/Azure/azure-resource-manager-schemas) hello szülő erőforrás. gyermek erőforrástípus neve hello tartalmaz hello neve hello szülő erőforrástípusra, például **Microsoft.Web/sites/config** és **Microsoft.Web/sites/extensions** mindkét hello agyermek-erőforrás **Microsoft.Web/sites**.
+Minden szülő erőforrás csak bizonyos típusú erőforrások gyermekerőforrásait fogad el. Az elfogadott erőforrás típusok vannak megadva a [sablonséma](https://github.com/Azure/azure-resource-manager-schemas) a szülő erőforrás. A gyermek erőforrástípus neve tartalmazza a szülő erőforrástípus nevét, mint **Microsoft.Web/sites/config** és **Microsoft.Web/sites/extensions** mindkét alsóbb szintű erőforrásai vannak a **Microsoft.Web/sites**.
 
-a következő példa hello jeleníti meg, egy SQL server és SQL-adatbázis. Figyelje meg, hogy egy explicit függőség hello SQL database és SQL server között van-e definiálva annak ellenére, hogy hello adatbázis hello server gyermeke.
+A következő példában egy SQL server és SQL-adatbázis. Figyelje meg, hogy egy explicit függőség között nincs definiálva a SQL database és SQL server, annak ellenére, hogy az adatbázis egy alárendelt kiszolgáló.
 
 ```json
 "resources": [
@@ -107,13 +107,13 @@ a következő példa hello jeleníti meg, egy SQL server és SQL-adatbázis. Fig
 ```
 
 ## <a name="reference-function"></a>hivatkozás függvény
-Hello [függvényre](resource-group-template-functions-resource.md#reference) lehetővé teszi egy kifejezés tooderive más JSON név-érték párok vagy futásidejű erőforrások az értékét. Hivatkozási kifejezések implicit módon deklarálja, hogy egy erőforrást egy másik függ. hello általános formátuma:
+A [függvényre](resource-group-template-functions-resource.md#reference) lehetővé teszi, hogy a kifejezés értéke származik más JSON név-érték párok vagy futásidejű erőforrásokat. Hivatkozási kifejezések implicit módon deklarálja, hogy egy erőforrást egy másik függ. Az általános formátuma:
 
 ```json
 reference('resourceName').propertyPath
 ```
 
-A következő példa hello a CDN-végpontok explicit módon függ hello CDN-profilt, és a implicit módon függ a webes alkalmazás.
+A következő példában a CDN-végpontok explicit módon függ a CDN-profilt, és implicit módon függ a webes alkalmazás.
 
 ```json
 {
@@ -130,32 +130,32 @@ A következő példa hello a CDN-végpontok explicit módon függ hello CDN-prof
     }
 ```
 
-Ezen elem vagy a hello dependsOn elem toospecify függőségeket is használhat, de nem kell mindkét toouse hello az azonos függő erőforrást. Amikor csak lehetséges, használjon egy implicit hivatkozási tooavoid szükségtelen-függőség felvétele.
+Függőségeket használhatja ezt az elemet vagy a dependsOn elem, de nem szeretné használni, mind az azonos függő erőforráshoz. Amikor csak lehetséges, használjon egy implicit hivatkozási szükségtelen-függőség felvétele elkerülése érdekében.
 
-több, lásd: toolearn [függvényre](resource-group-template-functions-resource.md#reference).
+További tudnivalókért lásd: [függvényre](resource-group-template-functions-resource.md#reference).
 
 ## <a name="recommendations-for-setting-dependencies"></a>Javaslatok függőségek beállítása
 
-Amikor eldönti, milyen függőségek tooset, használja a következő irányelveket hello:
+Amikor eldönti, milyen függőségek beállításához, kövesse az alábbi iránymutatásokat:
 
 * A lehető legkevesebb függőségek beállítása.
 * Állítsa be a gyermek-erőforrás a szülő erőforrás függ.
-* Használjon hello **hivatkozás** tooset tooshare tulajdonság szükséges erőforrások közötti implicit függőségek működik. Ne vegyen fel egy explicit függőség (**dependsOn**) Ha már megadta egy implicit függőség. Ez a megközelítés hello kockázatot szükségtelen függőségek csökkenti. 
-* Amikor az erőforrás nem lehet a függőség beállítása **létrehozott** nélkül egy másik erőforrás funkciói. Ne állítson be egy függőséget hello erőforrások csak interaktív telepítés után.
-* Lehetővé függőségek cascade explicit módon beállítás nélkül. Például a virtuális gép virtuális hálózati adapteren, valamint hello virtuális hálózati adapter függ a virtuális hálózat és a nyilvános IP-címeket. Ezért hello virtuális gép telepített összes három erőforrások, de nincs explicit módon beállítva az hello virtuális gép összes három erőforrástól függ. Ez a megközelítés hello függőségi sorrend tisztázza, így könnyebben toochange hello sablon később.
-* Ha a telepítés előtt értéket lehet meghatározni, próbálja hello erőforrás függőség nélküli telepítése. Például ha egy konfigurációs értéke egy másik erőforrás hello nevét, nem szükség lehet egy függőséget. Ez az útmutató nem mindig működik, mert egyes erőforrásokat hello hello létezésének ellenőrzése egyéb erőforrásokat. Ha hibaüzenetet kap, hozzáadjon egy függőséget. 
+* Használja a **hivatkozás** függvényt kell megosztani egy tulajdonság erőforrások közötti implicit függőségek beállítása. Ne vegyen fel egy explicit függőség (**dependsOn**) Ha már megadta egy implicit függőség. Ez a megközelítés csökkenti a szükségtelen függőségek kockázatot. 
+* Amikor az erőforrás nem lehet a függőség beállítása **létrehozott** nélkül egy másik erőforrás funkciói. Ne állítson be egy függőséget az erőforrások csak interaktív telepítés után.
+* Lehetővé függőségek cascade explicit módon beállítás nélkül. Például a virtuális gép virtuális hálózati adapteren, valamint a virtuális hálózati adapter függ a virtuális hálózat és a nyilvános IP-címeket. Ezért a virtuális gép telepített összes három erőforrások, de nincs explicit módon beállítva a virtuális gép összes három erőforrástól függ. Ez a megközelítés a függőségi sorrend tisztázza, és megkönnyíti a sablon később módosítható.
+* Ha a telepítés előtt értéket lehet meghatározni, próbálja üzembe helyezni a függőség nélküli erőforrás. Például ha egy konfigurációs értéke egy másik erőforrás nevét, nem szükség lehet egy függőséget. Ez az útmutató nem mindig működik, mert egyes erőforrásokat ellenőriznie az egyéb erőforrásokat. Ha hibaüzenetet kap, hozzáadjon egy függőséget. 
 
-Erőforrás-kezelő körkörös függőségi viszony azonosítja a sablon érvényesítése során. Ha hibaüzenet jelenik meg, amely meghatározza, hogy, hogy létezik-e körkörös függőséget, a sablon toosee kiértékelheti, hogy bármely függőségek esetén nem szükséges, és távolíthatja el. Ha függőségek nem segít, elkerülhető körkörös függőségi viszony, néhány telepítési művelet áthelyezése gyermekszintű erőforrása, amely után hello erőforrásokat, amelyek hello körkörös függőségi viszonyban vannak telepítve. Tegyük fel például, két olyan virtuális gépet telepít, de a tulajdonságok az egyes más toohello hivatkozó meg kell adni. A sorrend hello telepíthetné őket:
+Erőforrás-kezelő körkörös függőségi viszony azonosítja a sablon érvényesítése során. Ha hibaüzenet jelenik meg, amely meghatározza, hogy, hogy létezik-e körkörös függőséget, értékelje ki, hogy összes függőséget nem szükségesek, és el kell távolítani a sablont. Ha függőségek nem segít, elkerülhető körkörös függőségi viszony, néhány telepítési művelet áthelyezése gyermekszintű erőforrása, amely után az erőforrásokat, amelyek a körkörös függőségi viszonyban vannak telepítve. Tegyük fel például, két olyan virtuális gépet telepít, de a tulajdonságokat meg kell adni az egyes, amely a másikra hivatkozik. A következő sorrendben telepíthetők:
 
 1. vm1
 2. vm2 virtuális gépnek
-3. Vm1 kiterjesztés vm1 és vm2 virtuális gépnek függ. hello bővítmény, amely azt lekérése vm2 virtuális gépnek vm1 értékek beállítása.
-4. Bővítmény vm2 virtuális gépnek a vm1 és vm2 virtuális gépnek függ. hello bővítmény értékek beállítása, amely azt lekérése vm1 vm2 virtuális gépnek.
+3. Vm1 kiterjesztés vm1 és vm2 virtuális gépnek függ. A bővítmény beállítása, amely azt lekérése vm2 virtuális gépnek vm1 értékeket.
+4. Bővítmény vm2 virtuális gépnek a vm1 és vm2 virtuális gépnek függ. A bővítmény beállítása értékek, amelyek azt lekérése vm1 vm2 virtuális gépnek.
 
-Felmérése hello telepítési sorrendje: és függőségi hibák feloldására vonatkozó információkért lásd: [hibaelhárítás általános az Azure-telepítés az Azure Resource Manager](resource-manager-common-deployment-errors.md).
+Értékelése a telepítési sorrendet, és a függőségi hibák feloldására vonatkozó információkért lásd: [hibaelhárítás általános az Azure-telepítés az Azure Resource Manager](resource-manager-common-deployment-errors.md).
 
 ## <a name="next-steps"></a>Következő lépések
-* a telepítés során függőségek hibaelhárítással kapcsolatos toolearn lásd: [hibaelhárítás általános az Azure-telepítés az Azure Resource Manager](resource-manager-common-deployment-errors.md).
-* toolearn, Azure Resource Manager-sablonok létrehozásával kapcsolatban lásd: [sablonok készítése](resource-group-authoring-templates.md). 
-* Hello elérhető funkciók egy listáját lásd: [sablonfüggvényei](resource-group-template-functions.md).
+* Függőségek telepítése során hibaelhárítással kapcsolatos információkért lásd: [hibaelhárítás általános az Azure-telepítés az Azure Resource Manager](resource-manager-common-deployment-errors.md).
+* Azure Resource Manager-sablonok létrehozásával kapcsolatos további tudnivalókért lásd: [sablonok készítése](resource-group-authoring-templates.md). 
+* A sablon elérhető funkciókat listájáért lásd: [sablonfüggvényei](resource-group-template-functions.md).
 

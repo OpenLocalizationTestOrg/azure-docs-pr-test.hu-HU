@@ -1,6 +1,6 @@
 ---
-title: "a HDInsight a Data Lake Tools for Visual Studio használatával aaaConnect tooAzure |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooinstall és -felhasználási Data Lake Tools for Visual Studio tooconnect tooHadoop fürtök Azure HDInsight és Hive-lekérdezések futtatása."
+title: "Kapcsolódás az Azure HDInsighthoz a Data Lake Tools for Visual Studio használatával | Microsoft Docs"
+description: "A cikk azt ismerteti, hogyan telepíthetők és használhatók a Visual Studio Data Lake-eszközök Hadoop-fürtök csatlakoztatásához az Azure HDInsightban és Hive-lekérdezések futtatásához."
 keywords: "hadoop-eszközök,hive-lekérdezés,visual studio,visual studio hadoop"
 services: HDInsight
 documentationcenter: 
@@ -17,166 +17,166 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/23/2017
 ms.author: jgao
-ms.openlocfilehash: ff5819a64bebe5f4ab3cf763ce6c45c81aa34b19
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f7eff70ece5e8dc7e0c5983871d40bd1f6eafff2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="connect-tooazure-hdinsight-and-run-hive-queries-using-data-lake-tools-for-visual-studio"></a>TooAzure HDInsight csatlakozzon és Hive-lekérdezéseket a Data Lake Tools for Visual Studio használatával futtassa
+# <a name="connect-to-azure-hdinsight-and-run-hive-queries-using-data-lake-tools-for-visual-studio"></a>Kapcsolódás az Azure HDInsighthoz és Hive-lekérdezések futtatása a Data Lake Tools for Visual Studio használatával
 
-Ismerje meg, hogyan toouse Data Lake Tools a Visual Studio tooconnect tooHadoop a fürtök [Azure HDInsight](hdinsight-hadoop-introduction.md) , és küldje el a Hive-lekérdezéseket. HDInsight használatával kapcsolatos további információkért lásd: [bemutatása tooHDInsight](hdinsight-hadoop-introduction.md) és [első lépései a hdinsight eszközzel](hdinsight-hadoop-linux-tutorial-get-started.md). Csatlakozás tooa Storm-fürt kapcsolatos további információkért lásd: [fejlesztésére C#-topológiák futó Apache stormra a Visual Studio használatával HDInsight](hdinsight-storm-develop-csharp-visual-studio-topology.md).
+Megtudhatja, hogyan használhatja a Visual Studio Data Lake-eszközöket Hadoop-fürtök csatlakoztatásához az [Azure HDInsightban](hdinsight-hadoop-introduction.md) és Hive-lekérdezések beküldéséhez. További információ a HDInsight használatáról: [A HDInsight bemutatása](hdinsight-hadoop-introduction.md) és [HDInsight – első lépések](hdinsight-hadoop-linux-tutorial-get-started.md). További információ a Storm-fürtökhöz való csatlakozásról: [C#-topológiák fejlesztése HDInsighton futó Apache Stormra a Visual Studióval](hdinsight-storm-develop-csharp-visual-studio-topology.md).
 
-A Data Lake Tools for Visual Studio használt tooaccess lehet Data Lake Analytics és a HDInsight.  A Data Lake Tools hello tudnivalókat lásd: [oktatóanyag: Data Lake Tools for Visual Studio használatával U-SQL-parancsfájlok fejlesztése](../data-lake-analytics/data-lake-analytics-data-lake-tools-get-started.md).
+A Data Lake Tools for Visual Studio mind a Data Lake Analytics, mind a HDInsight eléréséhez használható.  A Data Lake-eszközökkel kapcsolatos információkért lásd: [Oktatóanyag: U-SQL-parancsfájlok fejlesztése Data Lake Tools for Visual Studio használatával](../data-lake-analytics/data-lake-analytics-data-lake-tools-get-started.md).
 
 **Előfeltételek**
 
-Ez az oktatóanyag és -felhasználási hello Data Lake Visual Studio eszközök toocomplete, hello alábbi lesz szüksége:
+Ezen oktatóprogram elvégzéséhez és a Data Lake-eszközök Visual Studio programban történő használatához a következőkre van szüksége:
 
-* Egy Azure HDInsight fürt: toocreate egy, lásd: [Ismerkedés a Linux-alapú HDInsight eszközzel](hdinsight-hadoop-linux-tutorial-get-started.md)
-* A munkaállomás, amelyen a következő szoftver hello:
+* Egy Azure HDInsight-fürt. Ennek létrehozását lásd [a Linux-alapú HDInsight használatának első lépéseivel](hdinsight-hadoop-linux-tutorial-get-started.md) foglalkozó témakörben.
+* Egy munkaállomás a következő szoftverrel:
   
   * Windows 10, Windows 8.1, Windows 8 vagy Windows 7.
   * Visual Studio 2013/2015/2017.
     
     > [!NOTE]
-    > Jelenleg hello a Data Lake Tools for Visual Studio csak kapható hello angol nyelvű.
+    > Jelenleg a Data Lake Tools for Visual Studio csak angol nyelvű verzióban kapható.
     > 
     > 
 
 ## <a name="install-data-lake-tools-for-visual-studio"></a>A Data Lake Tools for Visual Studio telepítése
 
-A Data Lake Tools alapértelmezés szerint a Visual Studio 2017-tel együtt települ. Régebbi verzióira telepítheti ezt hello [Webplatform-telepítő](https://www.microsoft.com/web/downloads/). Hello egyet választhat, amely megfelel a Visual Studio verziójának. Ha nincs telepítve a Visual Studio, telepítheti legújabb Visual Studio Community és Azure SDK-t használó hello hello [Webplatform-telepítő](https://www.microsoft.com/web/downloads/):
+A Data Lake Tools alapértelmezés szerint a Visual Studio 2017-tel együtt települ. A régebbi verziókat a [Webplatform-telepítővel](https://www.microsoft.com/web/downloads/) telepítheti. Ki kell választania azt, amely megfelel a Visual Studio verziójának. Ha nincs telepítve a Visual Studio, a legújabb Visual Studio Community- és Azure SDK-eszközöket a [Webplatform-telepítővel](https://www.microsoft.com/web/downloads/) telepítheti:
 
-![A Data Lake Tools for Visual Studio Webplatform-telepítő. ] (./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.visual.studio.tools.wpi.png "A Data Lake Tools for Visual Studio Webplatform-telepítő használata tooinstall")
+![Data Lake Tools for Visual Studio Webplatform-telepítő.](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.visual.studio.tools.wpi.png "Data Lake Tools for Visual Studio telepítése a Webplatform-telepítővel")
 
-## <a name="connect-tooazure-subscriptions"></a>Csatlakozás tooAzure előfizetések
-A Data Lake Tools a Visual Studio lehetővé teszi a tooconnect tooyour HDInsight fürtökhöz, néhány alapvető felügyeleti műveletet végrehajtani, és futtathat Hive-lekérdezéseket.
+## <a name="connect-to-azure-subscriptions"></a>Csatlakozás Azure-előfizetésekhez
+A Data Lake Tools for Visual Studio lehetővé teszi, hogy csatlakozzon a HDInsight-fürtökhöz, néhány alapvető felügyeleti műveletet végezzen, és Hive-lekérdezéseket futtasson.
 
 > [!NOTE]
-> Információk a kapcsolódó tooa általános Hadoop fürthöz: [írása, és küldje el a Hive-lekérdezések Visual Studio használatával](http://blogs.msdn.com/b/xiaoyong/archive/2015/05/04/how-to-write-and-submit-hive-queries-using-visual-studio.aspx).
+> Az általános Hadoop fürthöz végzett csatlakozásról információkért lásd: [Write and submit Hive queries using Visual Studio](http://blogs.msdn.com/b/xiaoyong/archive/2015/05/04/how-to-write-and-submit-hive-queries-using-visual-studio.aspx) (Hive-lekérdezések írása és elküldése a Visual Studio eszközzel).
 > 
 > 
 
-**tooconnect tooyour Azure-előfizetés**
+**Csatlakozás az Azure-előfizetéshez**
 
 1. Nyissa meg a Visual Studiót.
-2. A hello **nézet** menüben kattintson a **Server Explorer** tooopen hello Server Explorer ablak.
+2. A **View** (Nézet) menüben kattintson a **Server Explorer** elemre a Server Explorer ablak megnyitásához.
 3. Bontsa ki az **Azure** elemet, majd bontsa ki a **HDInsight** elemet.
    
    > [!NOTE]
-   > Értesítés hello **HDInsight feladatlista** ablaknak nyitva kell lennie. Ha nem látja, kattintson a **más Windows** a hello **nézet** menüben, majd kattintson **HDInsight feladat lista ablakban**.  
+   > Figyelje meg, hogy a **HDInsight TaskList** (HDInsight feladatlista) ablaknak nyitva kell lennie. Ha nem látja, kattintson az **Other Windows** (Egyéb ablakok) elemre a **View** (Nézet) menüben, majd kattintson a **HDInsight TaskList** (HDInsight feladatlista) ablakra.  
    > 
    > 
-4. Írja be az Azure-előfizetés hitelesítő adatait, majd kattintson a **Sign In** (Bejelentkezés) gombra. Erre csak akkor van szükség, ha soha nem csatlakozott-e be a toohello Azure-előfizetéshez a Visual Studio eszközből ezen a munkaállomáson.
-5. A Server Explorer eszközben meglévő HDInsight-fürtök listáját láthatja. Ha nincsenek fürtjei, létrehozhat egy hello Azure-portálon, az Azure PowerShell vagy a hello HDInsight SDK használatával. További információ: [HDInsight-fürtök létrehozása](hdinsight-hadoop-provision-linux-clusters.md).
+4. Írja be az Azure-előfizetés hitelesítő adatait, majd kattintson a **Sign In** (Bejelentkezés) gombra. Erre csak akkor van szükség, ha még soha nem csatlakozott az Azure-előfizetéshez a Visual Studio eszközből ezen a munkaállomáson.
+5. A Server Explorer eszközben meglévő HDInsight-fürtök listáját láthatja. Ha nincsenek fürtjei, létrehozhat egyet az Azure Portal, az Azure PowerShell vagy a HDInsight SDK használatával. További információ: [HDInsight-fürtök létrehozása](hdinsight-hadoop-provision-linux-clusters.md).
    
    ![Fürtök listája a Data Lake Tools for Visual Studio Kiszolgálókezelőjében](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.visual.studio.tools.server.explorer.png "Data Lake Tools for Visual Studio Kiszolgálókezelő")
-6. Bontson ki egy HDInsight-fürtöt. Látja a **Hive adatbázisokat**, egy alapértelmezett tárfiókot, a társított tárfiókokat és a **Hadoop szolgáltatásnaplót**. Ennél jobban is kibonthatja hello entitásokat.
+6. Bontson ki egy HDInsight-fürtöt. Látja a **Hive adatbázisokat**, egy alapértelmezett tárfiókot, a társított tárfiókokat és a **Hadoop szolgáltatásnaplót**. Ennél jobban is kibonthatja az elemeket.
 
-Azure-előfizetés tooyour csatlakoztatása után tudja toodo hello következő lesz:
+Miután csatlakozott az Azure-előfizetéshez, a következőket teheti:
 
-**tooconnect toohello a Visual Studio Azure-portálon**
+**Csatlakozás az Azure Portalhoz a Visual Studióból**
 
 * A kiszolgálóböngészőből bontsa ki az **Azure** > **HDInsight** elemet, kattintson a jobb gombbal egy HDInsight-fürtre, majd kattintson a **Manage Cluster in Azure Portal** (Fürt kezelése az Azure Portalon) parancsra.
 
-**tooask kérdések és visszajelzés küldése a Visual Studio eszközből**
+**Kérdések felvetése és visszajelzés a Visual Studióból**
 
-* A hello **eszközök** menü kattintson **HDInsight**, és kattintson a **MSDN fórum** tooask kérdéseket, vagy kattintson a **visszajelzés**.
+* A **Tools** (Eszközök) menüben kattintson a **HDInsight** elemre, majd kattintson az **MSDN Forum** elemre kérdések felvetéséhez, vagy kattintson a **Give Feedback** (Visszajelzés küldése) parancsra.
 
-## <a name="navigate-hello-linked-resources"></a>Keresse meg a hello kapcsolódó erőforrások
-A Server Explorer eszközből láthatja hello alapértelmezett tárfiókot és az összes kapcsolt tárfiókot. Ha kibontja hello alapértelmezett tárfiókot, láthatja a hello tárolók hello tárfiók. hello alapértelmezett tárfiók és hello alapértelmezett tároló meg van jelölve. Akkor is a jobb gombbal bármelyik hello tárolók tooview hello tartalma.
+## <a name="navigate-the-linked-resources"></a>Navigálás a kapcsolt erőforrásokban
+A Server Explorer eszközből láthatja az alapértelmezett tárfiókot és az összes kapcsolt tárfiókot. Ha kibontja az alapértelmezett tárfiókot, láthatja a tárfiókon lévő tárolókat. Az alapértelmezett tárfiók és az alapértelmezett tároló meg van jelölve. Bármely tárolóra a jobb gombbal kattintva azok tartalmát is megtekintheti.
 
 ![Kapcsolt erőforrások listázása a Data Lake Tools for Visual Studio kiszolgálókezelőjével](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.visual.studio.tools.linked.resources.png "kapcsolt erőforrások listázása")
 
-A tároló megnyitása, után hello gombok tooupload, törlés és letöltési blobot a következő használható:
+Egy tároló megnyitása után a következő gombokkal tölthet fel, törölhet vagy tölthet le blobokat:
 
 ![Blobműveletek a Data Lake Tools for Visual Studio kiszolgálókezelőjével](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.visual.studio.tools.blob.operations.png "blobok feltöltése, törlése és letöltése")
 
 ## <a name="run-a-hive-query"></a>Hive-lekérdezések futtatása
 Az [Apache Hive](http://hive.apache.org) egy Hadoop-alapú adattárház-infrastruktúra, amely adatösszegzéseket, lekérdezéseket és elemzéseket biztosít. A Data Lake Tools for Visual Studio támogatja a Hive-lekérdezések Visual Studióból végzett futtatását. További információ a Hive-ról: [A Hive használata a HDInsightban](hdinsight-use-hive.md).
 
-HDInsight fürtökhöz képest időigényes tootest Hive parancsfájlokat is. Percekbe vagy akár több időbe is telhet. A Data Lake Tools for Visual Studio által képes érvényesíteni a Hive parancsfájlokat helyileg nélkül csatlakozó tooa élő fürthöz.
+Időigényes a Hive parancsfájlok tesztelése a HDInsight fürtökhöz képest időigényes. Percekbe vagy akár több időbe is telhet. A Data Lake Tools for Visual Studio képes helyben érvényesíteni a Hive-parancsfájlokat anélkül, hogy egy élő fürthöz csatlakozna.
 
-A Data Lake Tools for Visual Studio is lehetővé teszi a felhasználók toosee belül hello Hive feladat Ha begyűjti és felszínre hozhatják bizonyos Hive-feladatok YARN naplóit hello újdonságai.
+A Data Lake Tools for Visual Studio azt is lehetővé teszi, hogy a felhasználók lássák, mi található a Hive-feladatokban. Ehhez begyűjthetik és a felszínre hozhatják bizonyos Hive-feladatok YARN-naplóit.
 
-### <a name="view-hello-hivesampletable"></a>Nézet hello **hivesampletable**
-Az összes HDInsight-fürt a *hivesampletable* nevű minta Hive táblát tartalmazza. Fogjuk használni a tábla tooshow, hogy hogyan toolist Hive táblák, hello táblasémákat megtekintése, és hello sorok listája hello Hive tábla.
+### <a name="view-the-hivesampletable"></a>A **hivesampletable** megtekintése
+Az összes HDInsight-fürt a *hivesampletable* nevű minta Hive táblát tartalmazza. Ezzel a táblával mutatjuk be, hogyan listázhatja a Hive táblákat, hogyan tekintheti meg a táblasémákat és hogyan listázhatja a Hive táblában lévő sorokat.
 
-**toolist Hive táblákat, és a Hive táblaséma megtekintése**
+**A Hive-táblák listázása és a Hive-táblaséma megtekintése**
 
-1. A **Server Explorer**, bontsa ki a **Azure** > **HDInsight** > hello választott fürt > **Hive adatbázisokat**  >  **Alapértelmezett** > **hivesampletable** toosee hello tábla sémáját.
-2. Kattintson a jobb gombbal **hivesampletable**, és kattintson a **View Top 100 sor** toolist hello sorokat. A következő Hive-lekérdezés Hive ODBC-illesztőprogram használatával egyenértékű toorunning hello:
+1. A **Server Explorer** eszközből bontsa ki az **Azure** > **HDInsight** > a választott fürt > **Hive Databases** >  (Hive adatbázisok) **Deafult** > **hivesampletable** (Alapértelmezett) elemet a táblaséma megtekintéséhez.
+2. Kattintson a jobb gombbal a **hivesampletable** elemre, majd kattintson a **View Top 100 Rows** (Első 100 sor megtekintése) parancsra a sorok listázásához. Ez a következő Hive-lekérdezés Hive ODBC-illesztővel végzett futtatásával egyenlő:
    
      SELECT * FROM hivesampletable LIMIT 100
    
-   Testre szabhatja a hello sorok számát.
+   Testreszabhatja a sorok számát.
    
    ![Data Lake Tools: HDInsight Hive Visual Studio sémalekérdezés](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.visual.studio.tools.hive.schema.png "Hive-lekérdezés eredményei")
 
 ### <a name="create-hive-tables"></a>Hive táblák létrehozása
-Hello grafikus felhasználói Felülettel toocreate Hive tábla használja, vagy Hive-lekérdezéseket használhat. A Hive-lekérdezésekkel kapcsolatban információért lásd: [Run Hive queries](#run.queries) (Hive-lekérdezések futtatása).
+A grafikus felhasználói felülettel Hive táblákat hozhat létre, vagy Hive-lekérdezéseket használhat. A Hive-lekérdezésekkel kapcsolatban információért lásd: [Run Hive queries](#run.queries) (Hive-lekérdezések futtatása).
 
-**Hive tábla toocreate**
+**Hive-tábla létrehozása**
 
 1. A **Server Explorer** eszközből bontsa ki az **Azure** > **HDInsight-fürtök** egy HDInsight-fürt > **Hive Databases** (Hive-adatbázisok) elemet, majd kattintson a jobb gombbal az **alapértelmezett** elemre, és kattintson a **Create Table** (Tábla létrehozása) parancsra.
-2. Konfigurálja a hello táblázatot.
-3. Kattintson a **Create Table** toosubmit hello feladat toocreate hello új Hive tábla.
+2. Konfigurálja a táblát.
+3. Kattintson a **Create Table** (Tábla létrehozása) parancsra, hogy elküldje az új Hive tábla létrehozására szolgáló feladatot.
    
     ![Data Lake Tools: HDInsight Visual Studio-eszközök Hive-tábla létrehozásához](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.visual.studio.tools.create.hive.table.png "Hive-tábla létrehozása")
 
 ### <a name="run.queries"></a>Hive-lekérdezések érvényesítése és futtatása
-Nincsenek kétféleképpen toocreate és Hive-lekérdezések futtatása:
+Kétféleképpen hozhat létre és futtathat Hive-lekérdezéseket:
 
 * Alkalmi lekérdezések létrehozása
 * Hive alkalmazás létrehozása
 
-**toocreate, érvényesítése és alkalmi lekérdezések futtatása**
+**Alkalmi lekérdezések létrehozása, érvényesítése és futtatása**
 
 1. A **Server Explorer** eszközből bontsa ki az **Azure** elemet, majd bontsa ki a **HDInsight Clusters** (HDInsight-fürtök) elemet.
-2. Kattintson a jobb gombbal hello fürt, ahol szeretné toorun hello lekérdezés, és kattintson a **Hive lekérdezés írása**.
-3. Adja meg a hello Hive-lekérdezéseket. Értesítés hello Hive szerkesztő támogatja az IntelliSense eszközt. A Data Lake Tools for Visual Studio támogatja hello távoli metaadatok, a Hive parancsfájl szerkesztésekor. Például amikor "SELECT * FROM", hello IntelliSense listázza az összes hello javasolt táblanevet. Ha meg van adva egy Táblanév, hello oszlopnevek hello IntelliSense alapján vannak listázva. hello eszközök szinte minden Hive DML-utasítások, segédlekérdezésekben, támogatja, és beépített felhasználó által megadott függvények hello.
+2. Kattintson a jobb gombbal a fürtre, ahol futtatni szeretné a lekérdezést, majd kattintson a **Write a Hive Query** (Hive-lekérdezés írása) parancsra.
+3. Adja meg a Hive-lekérdezéseket. Figyelje meg, hogy a Hive szerkesztő támogatja az IntelliSense eszközt. A Data Lake Tools for Visual Studio támogatja a távoli metaadatok betöltését a Hive-parancsfájl szerkesztésekor. Amikor például a "SELECT * FROM" parancsot írja be, az IntelliSense listázza az összes javasolt táblanevet. Amikor meg van adva egy táblanév, az oszlopnevek az IntelliSense alapján vannak listázva. Az eszköz szinte az összes Hive DML-utasítást, -segédlekérdezést és beépített UDF-et támogatja.
    
     ![Data Lake Tools: HDInsight Visual Studio Tools IntelliSense](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.visual.studio.tools.intellisense.table.names.png "U-SQL IntelliSense")
    
     ![Data Lake Tools: HDInsight Visual Studio Tools IntelliSense](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.visual.studio.tools.intellisense.column.names.png "U-SQL IntelliSense")
    
    > [!NOTE]
-   > Csak hello metaadatait hello fürtöket a HDInsight eszköztáron kijelölt lesz a javasolt.
+   > A rendszer csak a HDInsight eszköztáron kijelölt fürtök metaadatait javasolja.
    > 
    > 
-4. (Nem kötelező): kattintson a **parancsfájl érvényesítése** toocheck hello parancsfájl szintaxishibáinak.
+4. (Elhagyható): Kattintson a **Parancsfájl érvényesítése** gombra a parancsfájl szintaxishibáinak ellenőrzéséhez.
    
     ![Data Lake Tools: Data Lake Tools for Visual Studio helyi érvényesítés](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.visual.studio.tools.validate.hive.script.png "parancsfájl érvényesítése")
-5. Kattintson a **Submit** (Küldés) vagy a **Submit (Advanced)** (Küldés (Speciális)) elemre. Konfigurálhatja a speciális küldés lehetőséggel hello, **feladatnév**, **argumentumok**, **további konfigurációs**, és **állapot Directory**hello parancsfájlhoz:
+5. Kattintson a **Submit** (Küldés) vagy a **Submit (Advanced)** (Küldés (Speciális)) elemre. A speciális küldés lehetőséggel konfigurálja a parancsfájl **Job Name** (Feladat neve), **Arguments** (Argumentumok), **Additional Configurations** (További konfigurációk) és **Status Directory** (Állapot könyvtár) elemeit:
    
     ![HDInsight Hadoop Hive-lekérdezés](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.visual.studio.tools.submit.jobs.advanced.png "Lekérdezések beküldése")
    
-    Hello feladat elküldése után megjelenik egy **Hive feladat összegzése** ablak.
+    A feladat elküldése után egy **Hive Job Summary** (Hive-feladat összegzése) ablakot lát.
    
     ![HDInsight Hadoop Hive-lekérdezés összegzése](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.visual.studio.tools.run.hive.job.summary.png "Hive-feladat összegzése")
-6. Használjon hello **frissítése** tooupdate hello állapot gombra addig hello feladat állapotának megváltozásakor túl**befejezve**.
-7. Kattintson hello alsó toosee hello következő hello hivatkozásait: **feladat lekérdezés**, **Job Output**, **Job log**, vagy **Yarn naplók**.
+6. A **Refresh** (Frissítés) gombbal frissítheti az állapotot, amíg a feladat állapota **Completed** (Befejezve) állapotúvá nem válik.
+7. Kattintson az alul lévő hivatkozásokra a következők megtekintéséhez: **Job Query** (Feladat lekérdezése), **Job Output** (Feladatkimenet), **Job log** (Feladatnapló) vagy **Yarn log** (Yarn napló).
 
-**toocreate és run Hive megoldás**
+**Hive-megoldás létrehozása és futtatása**
 
-1. A hello **fájl** menüben kattintson a **új**, és kattintson a **projekt**.
-2. Válassza ki **HDInsight** hello bal oldali ablaktáblában jelölje ki a **Hive alkalmazás** hello középső ablaktábláján, adja meg a hello tulajdonságait, és kattintson **OK**.
+1. Kattintson a **File** (Fájl) menüben a **New** (Új), majd a **Project** (Projekt) elemre.
+2. Válassza ki a bal oldali panelen a **HDInsight** elemet, válassza a középső panelen a **Hive Application** (Hive alkalmazás) elemet, írja be a tulajdonságokat, majd kattintson az **OK** gombra.
    
     ![A Data Lake Tools: HDInsight Visual Studio-eszközök Új Hive-projekt](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.visual.studio.tools.new.hive.project.png "Hive-alkalmazások létrehozása a Visual Studióból")
-3. A **Megoldáskezelőben**, kattintson duplán a **Script.hql** tooopen azt.
-4. toovalidate hello Hive parancsfájl hello kattinthat **parancsfájl érvényesítése** gombra, vagy kattintson a jobb gombbal a hello parancsfájl hello Hive szerkesztőben, majd **parancsfájl érvényesítése** hello helyi menüből.
+3. A **Solution Explorer** (Megoldáskezelő) ablakban kattintson duplán a **Script.hql** fájlra a megnyitásához.
+4. A Hive-parancsfájl érvényesítéséhez a **Validate Script** (Parancsfájl érvényesítése) gombra kattinthat, vagy kattintson a jobb gombbal a parancsfájlra a Hive szerkesztőben, majd kattintson a **Validate Script** (Parancsfájl érvényesítése) parancsra a helyi menüben.
 
 ### <a name="view-hive-jobs"></a>Hive-feladatok megtekintése
-Megtekintheti a Hive-feladatok feladatlekérdezéseit, feladatkiemenetét, feladatnaplóit és Yarn naplóit. További információkért tekintse meg a hello előző képernyőképet.
+Megtekintheti a Hive-feladatok feladatlekérdezéseit, feladatkiemenetét, feladatnaplóit és Yarn naplóit. További információért tekintse meg az előző képernyőképet.
 
-hello hello eszközök legújabb kiadására lehetővé teszi a toosee Mi az a Hive-feladatokban belül által begyűjti és felszínre hozza a YARN naplóit. A YARN naplók segíthetnek a teljesítménnyel kapcsolatos problémák vizsgálatában. További információ arról, hogy a HDInsight hogyan gyűjti be a YARN-naplókat: [HDInsight alkalmazásnaplók szoftveres elérése](hdinsight-hadoop-access-yarn-app-logs.md).
+Az eszköz legújabb kiadásával láthatja, mi van a Hive-feladatokban, ha begyűjti és felszínre hozza a YARN-naplókat. A YARN naplók segíthetnek a teljesítménnyel kapcsolatos problémák vizsgálatában. További információ arról, hogy a HDInsight hogyan gyűjti be a YARN-naplókat: [HDInsight alkalmazásnaplók szoftveres elérése](hdinsight-hadoop-access-yarn-app-logs.md).
 
-**tooview Hive-feladatok**
+**Hive-feladatok megtekintése**
 
 1. A **Server Explorer** eszközből bontsa ki az **Azure** elemet, majd bontsa ki a **HDInsight** elemet.
-2. Kattintson a jobb gombbal egyyyy HDInsight-fürtre, majd kattintson a **View Jobs** (Feladatok megyytekintése) parancsra. Hive hello fürtön futtatott feladatok hello listáját láthatja.
-3. Kattintson egy feladatra hello feladat lista tooselect, azt, majd használja hello **Hive feladat összegzése** ablak tooopen **feladat lekérdezés**, **Job Output**, **Job Log**, vagy **Yarn naplók**.
+2. Kattintson a jobb gombbal egyyyy HDInsight-fürtre, majd kattintson a **View Jobs** (Feladatok megyytekintése) parancsra. Láthatja azon Hive-feladatok listáját, amelyek a fürtön futottak.
+3. Kattintson egy feladatra a feladatlistában a kiválasztásához, majd a **Hive Job Summary** (Hive feladat összegzése) ablakban nyissa meg a **Job Query** (Feladat lekérdezése), **Job Output** (Feladatkimenet), **Job Log** (Feladatnapló) vagy **Yarn log** (Yarn napló) elemet.
    
     ![Data Lake Tools: HDInsight Visual Studio-eszközök – Hive-feladatok megtekintése](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.visual.studio.tools.view.hive.jobs.png "Hive-feladatok megtekintése")
 
@@ -186,31 +186,31 @@ hello hello eszközök legújabb kiadására lehetővé teszi a toosee Mi az a H
 > 
 > 
 
-hello Data Lake Tools használt toosubmit Hive-feladatok keresztül [WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat) (más néven Templeton). Feladat részleteinek tartott egy hosszú ideig tooreturn és a hiba adatait.
-A sorrend toosolve ezen teljesítményprobléma, végrehajtja a Data Lake Tools hello, kihagyva az RDP/SSH Hive feladatok közvetlenül hello fürtben hiveserver2-n keresztül.
-Továbbá toobetter teljesítmény, a felhasználók is Hive Tez ábrákat megtekintheti, és hello feladat részletei.
+A Hive-feladatok [WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat) ( más néven Templeton) -eszközön keresztül végzett küldéséhez használt Data Lake-eszközök. Hosszú időbe telt a feladatrészletek és a hibainformációk visszaadása.
+Ezen teljesítményprobléma megoldása érdekében a Data Lake-eszközök közvetlenül a fürtön futtatják a Hive-feladatokat a HiveServer2-n keresztül, kihagyva az RDP/SSH-védelmet.
+A jobb teljesítmény mellett a felhasználók Hive on Tez ábrákat és a feladat részleteit is megtekinthetik.
 
 A HDInsight-fürt 3.2-es vagy újabb verziói esetén egy **Execute via HiveServer2** (Végrehajtás HiveServer2-n keresztül) gomb látható:
 
 ![Data Lake Visual Studio Tools: Végrehajtás HiveServer2-n keresztül](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.visual.studio.tools.execute.via.hiveserver2.png "Hive-lekérdezések futtatása a HiveServer2-n keresztül")
 
-És hello streamelt naplók valós idejű talál, és ha hello Hive-lekérdezést a tezben futtatja, lásd: hello feladatok grafikonjai.
+A továbbított naplók valós időben láthatók, és megtekintheti a feladatábrákat is, ha a Hive-lekérdezést a Tezben futtatja.
 
 ![Data Lake Visual Studio Tools: Hive-végrehajtás gyors elérési úton](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.fast.path.hive.execution.png "Feladatgrafikonok megjelenítése")
 
 **A lekérdezések HiveServer2-n végzett végrehajtása és a lekérdezések WebHCaten keresztüli elküldése közötti különbségek**
 
-Bár a lekérdezések HiveServer2-n keresztül végzett végrehajtásának számos előnnyel rendelkezik a teljesítmény szempontjából, vannak korlátozásai is. Hello korlátozások némelyike nem megfelelő az éles használathoz. hello következő táblázatban láthatók a hello különbségek:
+Bár a lekérdezések HiveServer2-n keresztül végzett végrehajtásának számos előnnyel rendelkezik a teljesítmény szempontjából, vannak korlátozásai is. A korlátozások némelyike nem megfelelő az éles használathoz. Az alábbi táblázat a különbségeket mutatja:
 
 |  | Végrehajtás HiveServer2-n keresztül | Elküldés WebHCaten keresztül |
 | --- | --- | --- |
-| Lekérdezések végrehajtása |Megszünteti a webhcat ("amely elindítja a MapReduce feladatot TempletonControllerJob" nevű) hello terhelést. |Amikor a WebHCaten keresztül hajtja végre a lekérdezést, a WebHCat elindít MapReduce feladatot, amely további késleltetést okoz. |
-| Stream naplók vissza |Majdnem valós időben. |hello feladatvégrehajtási naplók csak akkor, ha hello feladat elvégzése után érhetők el. |
-| Feladatelőzmények megtekintése |Ha egy lekérdezést a HiveServer2-n keresztül futtat, a feladatelőzményei (feladatnapló, feladatkimenet) nem maradnak meg. hello alkalmazás a YARN felhasználói felületen tekinthető korlátozott információkkal. |Ha egy lekérdezést a WebHCaten keresztül futtat, a feladatelőzményei (feladatnapló, feladatkimenet) megmaradnak és megtekinthetők a Visual Studio/HDInsight SDK/PowerShell használatával. |
-| Ablak bezárása |Végrehajtás hiveserver2-n keresztül egy "szinkronos" módot, így mindig hello nyissa meg a windows; Ha be van zárva, hello windows hello lekérdezés-végrehajtás lehet megszakítani. |Elküldés Webhcaten keresztül módja a "aszinkron" hello elküldés Webhcaten keresztül, és zárja be a Visual Studio. Bármikor visszatérhet, és bármikor hello eredmények megtekintéséhez. |
+| Lekérdezések végrehajtása |Kiküszöböli a WebHCat többletterhelését (amely elindítja a „TempletonControllerJob” nevű MapReduce feladatot). |Amikor a WebHCaten keresztül hajtja végre a lekérdezést, a WebHCat elindít MapReduce feladatot, amely további késleltetést okoz. |
+| Stream naplók vissza |Majdnem valós időben. |A feladatvégrehajtási naplók csak a feladat elvégzése után érhetők el. |
+| Feladatelőzmények megtekintése |Ha egy lekérdezést a HiveServer2-n keresztül futtat, a feladatelőzményei (feladatnapló, feladatkimenet) nem maradnak meg. Az alkalmazás a YARN felhasználói felületen tekinthető meg korlátozott információkkal. |Ha egy lekérdezést a WebHCaten keresztül futtat, a feladatelőzményei (feladatnapló, feladatkimenet) megmaradnak és megtekinthetők a Visual Studio/HDInsight SDK/PowerShell használatával. |
+| Ablak bezárása |A HiveServer2-n keresztüli végrehajtás „szinkronos” módot jelent, így nyitva kell hagynia az ablakokat; ha bezárja az ablakokat, akkor megszakítja a lekérdezés végrehajtását. |A WebHCaten keresztül végzett küldés „aszinkronos” mód, így elküldheti a lekérdezést a WebHCaten keresztül, és bezárhatja a Visual Studio eszközt. Bármikor visszatérhet és megtekintheti az eredményeket. |
 
 ### <a name="tez-hive-job-performance-graph"></a>Tez Hive feladat teljesítménye ábra
-hello Data Lake Tools támogatja teljesítményi ábráinak hello Hive-feladatok hello Tez végrehajtómotor által végrehajtott. További információ a Tez engedélyezéséről: [A Hive használata a HDInsightban](hdinsight-use-hive.md). Elküldése után a Visual Studio, a Visual Studio projekt elsajátíthatja, hogy a struktúra hello graph hello feladat elvégzésekor.  Előfordulhat, hogy tooclick hello **frissítése** tooget hello legfrissebb feladatállapot lekérdezéséhez gombra.
+A Data Lake-eszközök támogatják a Tez végrehajtómotor által elvégzett Hive-feladatok teljesítményi ábráinak megjelenítését. További információ a Tez engedélyezéséről: [A Hive használata a HDInsightban](hdinsight-use-hive.md). Miután elküldött egy Hive-feladatot a Visual Studióban, a Visual Studio megjeleníti az ábrát a feladat elvégzésekor.  Elképzelhető, hogy a **Refresh** (Frissítés) gombra kell kattintania a legfrissebb feladatállapot lekérdezéséhez.
 
 > [!NOTE]
 > Ez a szolgáltatás csak a HDInsight-fürt 3.2.4.593-as vagy újabb verzióihoz érhető el, és csak a befejezett feladatokhoz működik (ha a WebHCaten keresztül küldte el a feladatot; ez az ábra akkor jelenik meg, ha a lekérdezést a HiveServer2-n keresztül futtatja). Ez Windows- és Linux-alapú fürtök esetén is működik.
@@ -219,23 +219,23 @@ hello Data Lake Tools támogatja teljesítményi ábráinak hello Hive-feladatok
 
 ![hadoop hive tez teljesítmény ábra](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.hive.tez.performance.graph.png "Feladat állapota")
 
-a Hive tisztában toohelp jobb lekérdezéséhez hello eszközök hello Hive operátor nézet hozzáadása ebben a kiadásban. Egyszerűen toodouble kattintással a hello feladatgrafikon hello csúcspont, és láthatja a hello csúcspont összes hello operátort. Akkor is is vigye a mutatót a egy adott operátor tooview részletesebben ezzel a művelettel.
+Hogy jobban megértse a Hive-lekérdezést, ez a kiadás a Hive-operátor hozzáadása nézettel bővült. Csak duplán kell kattintania a feladatábra csúcsaira, és láthatja a csúcsponton belüli lévő összes operátort. Egy adott operátor fölé helyezve a mutatót további részleteket is megtudhat az operátorról.
 
 ### <a name="task-execution-view-for-hive-on-tez-jobs"></a>Feladatvégrehajtási nézet a Hive on Tez feladatokhoz
-hello feladatvégrehajtási nézet a Hive on Tez feladatokhoz használható tooget strukturált és ábrázolt információkat a Hive-feladatok, és további részletek a feladatot. Ha nincs teljesítményproblémákat, hello nézet tooget további részleteket is használhatja. Például hogyan minden feladat működik, és hello részletes információt kaphat mindegyik feladatról (adatok olvasási/írási, ütemezés/kezdő/záró idő stb.), így észlelheti a feladat konfigurációja vagy a rendszer-architektúra hello ábrázolt adatok alapján.
+A feladatvégrehajtási nézet a Hive on Tez feladatokhoz eszközzel strukturált és ábrázolt információkat szerezhet be a Hive-feladatokhoz, és további részleteket a feladatokról. Ahol probléma van a teljesítménnyel, a nézettel szerezhet be további részleteket. Például arról, hogyan működnek az egyes feladatok, és részletes információt kaphat mindegyik feladatról (adatírás/-olvasás, ütemezés/kezdő/záró idő stb.), hogy a megjelenített információk alapján hangolhassa a feladatkonfigurációkat vagy a rendszerarchitektúrát.
 
 ![Data Lake Visual Studio Tools: feladat-végrehajtási nézet](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.visual.studio.tools.task.execution.view.png "feladat-végrehajtási nézet")
 
 ## <a name="run-pig-scripts"></a>Pig-parancsfájlok futtatása
-A Data Lake Tools for Visual Studio létrehozását támogatja, és küldje el a Pig-parancsfájlok tooHDInsight fürtök. A felhasználók Pig-projektet létrehozása sablonból, és küldje el a hello parancsfájl tooHDInsight fürtök.
+A Data Lake Tools for Visual Studio támogatja a Pig-parancsfájlok létrehozását és HDInsight-fürtökbe való elküldését. A felhasználók Pig-projektet hozhatnak létre sablonból, majd elküldhetik a parancsfájlt a HDInsight-fürtökhöz.
 
 ## <a name="feedbacks--known-issues"></a>Visszajelzések és ismert problémák
 * Jelenleg a HiveServer2 eredmények tiszta szöveggel jelennek meg, ami nem ideális. Dolgozunk ennek megoldásán.
-* Hello eredmények NULL értékekkel indulnak el, ha jelenleg hello eredmények nem jelennek meg. A Microsoft megoldottuk ezt a problémát, és ha elakad ennél a hibánál érzi, hogy szabad toodrop nekünk e-mailek, vagy forduljon a támogatási csoport.
-* Visual Studio által létrehozott hello HQL parancsfájl attól függően, hogy a felhasználó helyi régió beállításának van kódolva. Akkor lehet, hogy nem fut megfelelően, ha felhasználó feltölt hello parancsfájl toocluster bináris formában.
+* Ha az eredmények NULL értékekkel kezdődnek, az eredmények jelenleg nem jelennek meg. Megoldottuk ezt a problémát, és ha elakad ennél a hibánál, nyugodtan küldjön egy e-mailt, vagy lépjen kapcsolatba a Terméktámogatással.
+* A Visual Studio által létrehozott HQL-parancsfájl a felhasználó helyi régióbeállításaitól függően kódolt. Lehet, hogy nem fut megfelelően, ha a felhasználó binárisként tölti fel a parancsfájlt a fürtbe.
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben a cikkben megtanulta, hogyan tooconnect tooHDInsight a Visual Studio eszközből hello Data Lake (HDInsight) használó fürtök eszközcsomag, és hogyan toorun Hive-lekérdezések. További információkért lásd:
+Ebben a cikkben megtanulta, hogyan csatlakozhat a HDInsight-fürtökhöz a Visual Studio-eszközből a Data Lake (HDInsight) -eszközök csomaggal, és hogyan futtathat Hive-lekérdezéseket. További információkért lásd:
 
 * [A Hadoop Hive használata a HDInsightban](hdinsight-use-hive.md)
 * [A Hadoop első lépései a HDInsightban](hdinsight-hadoop-linux-tutorial-get-started.md)

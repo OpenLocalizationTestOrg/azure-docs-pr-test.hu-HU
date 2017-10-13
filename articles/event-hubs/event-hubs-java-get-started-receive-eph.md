@@ -1,5 +1,5 @@
 ---
-title: "az Azure Event Hubs Java használatával aaaReceive események |} Microsoft Docs"
+title: "Események fogadása az Azure Event Hubs Java használatával |} Microsoft Docs"
 description: "Első lépések fogadását az Event Hubs Java használatával"
 services: event-hubs
 documentationcenter: 
@@ -14,49 +14,49 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: 05414a22e6616296752c678bb0af887d6f070c12
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3c1b455e6298367dc50f0943b58f6cf1e7f1c5fd
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="receive-events-from-azure-event-hubs-using-java"></a>Események fogadása az Azure Event Hubs Java használatával
 
 
 ## <a name="introduction"></a>Bevezetés
-Az Event Hubs egy kiválóan méretezhető fogadórendszer, melyek több millió eseményt másodpercenként, egy alkalmazás tooprocess engedélyezése és elemezheti az adatokat a csatlakoztatott eszközök és alkalmazások által létrehozott nagy mennyiségű hello. Az adatoknak az Event Hubs szolgáltatásban való összegyűjtését követően, az adatokat átalakíthatja és tárolhatja bármilyen valós idejű elemzési szolgáltató vagy tárolási fürt használatával.
+Az Event Hubs egy kiválóan méretezhető fogadórendszer, amely is több millió eseményt másodpercenként, az alkalmazás engedélyezése feldolgozni, és elemezze a nagy mennyiségű adatot a csatlakoztatott eszközök és alkalmazások által létrehozott. Az adatoknak az Event Hubs szolgáltatásban való összegyűjtését követően, az adatokat átalakíthatja és tárolhatja bármilyen valós idejű elemzési szolgáltató vagy tárolási fürt használatával.
 
-További információkért lásd: hello [Event Hubs – áttekintés][Event Hubs overview].
+További információkért lásd: a [Event Hubs – áttekintés][Event Hubs overview].
 
-Ez az oktatóanyag bemutatja, hogyan használja a Java nyelven írt konzolalkalmazással eseményközpontnak tooreceive események.
+Ez az oktatóanyag bemutatja, hogyan használja a Java nyelven írt konzolalkalmazással eseményközpontnak események fogadásához.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-A sorrend toocomplete ebben az oktatóanyagban kell hello a következő előfeltételek:
+Az oktatóanyag teljesítéséhez szüksége van a következő előfeltételek teljesülését:
 
 * A Java-fejlesztőkörnyezet. Ebben az oktatóanyagban feltételezzük, hogy [Eclipse](https://www.eclipse.org/).
 * Aktív Azure-fiók. <br/>Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes fiókot. További információkért lásd: <a href="http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fdevelop%2Fmobile%2Ftutorials%2Fget-started%2F" target="_blank">Ingyenes Azure-fiók létrehozása</a>.
 
 ## <a name="receive-messages-with-eventprocessorhost-in-java"></a>Üzenetek fogadása az EventProcessorHost használatával Javában
 
-**EventProcessorHost** egy Java-osztály, amely leegyszerűsíti az események fogadását az Event Hubs kezeli az állandó ellenőrzőpontokat és párhuzamos fogadásokat az adott Event hubs Eseményközpontokból. EventProcessorHost használ, akkor is feloszthatja az eseményeket több fogadóra, akkor is, ha különböző csomópontokon üzemelnek. A példa bemutatja, hogyan toouse EventProcessorHost egyetlen fogadóhoz.
+**EventProcessorHost** egy Java-osztály, amely leegyszerűsíti az események fogadását az Event Hubs kezeli az állandó ellenőrzőpontokat és párhuzamos fogadásokat az adott Event hubs Eseményközpontokból. EventProcessorHost használ, akkor is feloszthatja az eseményeket több fogadóra, akkor is, ha különböző csomópontokon üzemelnek. Ez a példa bemutatja, hogyan használható az EventProcessorHost egyetlen fogadóhoz.
 
 ### <a name="create-a-storage-account"></a>Create a storage account
-toouse EventProcessorHost, rendelkeznie kell egy [Azure Storage-fiók][Azure Storage account]:
+EventProcessorHost használatához rendelkeznie kell egy [Azure Storage-fiók][Azure Storage account]:
 
-1. Jelentkezzen be toohello [Azure-portálon][Azure portal], és kattintson a **+ új** hello hello képernyő bal oldalán.
-2. Kattintson a **Tárolás**, majd a **Tárfiók** elemre. A hello **storage-fiók létrehozása** panelen adja meg a hello storage-fiók nevét. Végezze el a többi hello hello mezők, válassza ki a kívánt régiót, és kattintson **létrehozása**.
+1. Jelentkezzen be a [Azure-portálon][Azure portal], és kattintson a **+ új** a képernyő bal oldalán.
+2. Kattintson a **Tárolás**, majd a **Tárfiók** elemre. A **Tárfiókok létrehozása** panelen írja be a tárfiók nevét. Fejezze be a mezőket, válassza ki a kívánt régiót, és kattintson **létrehozása**.
    
     ![](./media/event-hubs-dotnet-framework-getstarted-receive-eph/create-storage2.png)
 
-3. Kattintson az újonnan létrehozott hello tárfiókra, és kattintson a **elérési kulcsok kezelése**:
+3. Kattintson az imént létrehozott tárfiókra, majd a **Manage Access Keys** (Elérési kulcsok kezelése) lehetőségre:
    
     ![](./media/event-hubs-dotnet-framework-getstarted-receive-eph/create-storage3.png)
 
-    Hello elsődleges elérési kulcs tooa ideiglenes helyre, az oktatóanyag későbbi részében toouse másolja.
+    Másolja az elsődleges elérési kulcsot egy ideiglenes helyre, az oktatóanyag későbbi részében használni.
 
-### <a name="create-a-java-project-using-hello-eventprocessor-host"></a>Hozzon létre egy Java-projektet hello EventProcessor állomás használata
-hello Java ügyféloldali kódtára a Event Hubs Maven-projektek a hello használható [Maven központi tárházban][Maven Package], és a függőségi deklaráció található a következő hello használatával lehet hivatkozni a Maven project fájlt:    
+### <a name="create-a-java-project-using-the-eventprocessor-host"></a>Java-projekt létrehozása az EventProcessor Hosttal
+Az Event Hubs Java ügyfélkódtár a Maven-projektek használható a [Maven központi tárházban][Maven Package], és a következő függőségi nyilatkozat az Maven project fájl használatával lehet hivatkozni:    
 
 ```xml
 <dependency>
@@ -76,9 +76,9 @@ hello Java ügyféloldali kódtára a Event Hubs Maven-projektek a hello haszná
 </dependency>
 ```
 
-A különböző típusú buildkörnyezeteket, explicit módon szerezhet be legfrissebb kiadott hello JAR fájlok hello [Maven központi tárházban] [ Maven Package] vagy [hello kiadás terjesztési pontot a GitHub](https://github.com/Azure/azure-event-hubs/releases).  
+A különböző típusú buildkörnyezeteket, explicit módon beszerezheti a legfrissebb kiadott JAR fájlok a [Maven központi tárházban] [ Maven Package] vagy [a kiadási terjesztési pontot a Githubon](https://github.com/Azure/azure-event-hubs/releases).  
 
-1. A következő minta hello először létre kell hoznia egy új Maven project konzol/rendszerhéj alkalmazáshoz a kedvenc Java fejlesztői környezetben. hello osztály `ErrorNotificationHandler`.     
+1. A következő mintában először hozzon létre egy új Maven-projektet egy konzol/felületalkalmazáshoz a kedvenc Java-fejlesztőkörnyezetében. Az osztály `ErrorNotificationHandler`.     
    
     ```java
     import java.util.function.Consumer;
@@ -93,7 +93,7 @@ A különböző típusú buildkörnyezeteket, explicit módon szerezhet be legfr
         }
     }
     ```
-2. Használjon hello következő kódot egy új osztályt nevű toocreate `EventProcessor`.
+2. A következő kóddal hozzon létre egy `EventProcessor` nevű új osztályt.
    
     ```java
     import com.microsoft.azure.eventhubs.EventData;
@@ -146,7 +146,7 @@ A különböző típusú buildkörnyezeteket, explicit módon szerezhet be legfr
         }
     }
     ```
-3. Hozzon létre egy további osztályt `EventProcessorSample`a következő kód hello.
+3. Hozzon létre egy további osztályt `EventProcessorSample`, az alábbi kód használatával.
    
     ```java
     import com.microsoft.azure.eventprocessorhost.*;
@@ -192,7 +192,7 @@ A különböző típusú buildkörnyezeteket, explicit módon szerezhet be legfr
                 }
             }
    
-            System.out.println("Press enter toostop");
+            System.out.println("Press enter to stop");
             try
             {
                 System.in.read();
@@ -211,7 +211,7 @@ A különböző típusú buildkörnyezeteket, explicit módon szerezhet be legfr
         }
     }
     ```
-4. Cserélje le a következő mezők hello event hub és a storage-fiók létrehozásakor használt hello értékekkel hello.
+4. Cserélje le a következő mezőket a event hub és a tárolási fiók létrehozásakor használt értékek.
    
     ```java
     final String namespaceName = "----ServiceBusNamespaceName-----";
@@ -225,12 +225,12 @@ A különböző típusú buildkörnyezeteket, explicit módon szerezhet be legfr
     ```
 
 > [!NOTE]
-> Ez az oktatóprogram az EventProcessorHost egyetlen példányát használja. tooincrease átviteli, ajánlott a futtatott EventProcessorHost, több példánya lehetőleg külön gépeken.  Ez biztosítja a redundanciát is. Ezekben az esetekben hello különböző példányok automatikusan egyeztessen egymáshoz rendelés tooload egyenleg hello a fogadott események. Ha azt szeretné, hogy több fogadóval tooeach folyamat *összes* események, hello hello kell használnia **ConsumerGroup** fogalom. Események fogadása különböző számítógépeken, ha azokat a lehet hasznos toospecify EventProcessorHost példányok hello gépeken (vagy szerepkörökön) alapuló neveket.
+> Ez az oktatóprogram az EventProcessorHost egyetlen példányát használja. Átviteli sebesség növelése érdekében ajánlott, hogy futtatja az EventProcessorHost, több példánya lehetőleg külön gépeken.  Ez biztosítja a redundanciát is. Ilyen esetekben a különböző példányok automatikusan koordinálnak egymással a fogadott események terhelésének kiegyenlítéséhez. Ha több fogadóval szeretné feldolgoztatni az *összes* eseményt, a **ConsumerGroup** szolgáltatást kell használnia. Ha több gépről fogad eseményeket, célszerű lehet az azokat futtató gépeken (vagy szerepkörökön) alapuló neveket adni az EventProcessorHost példányoknak.
 > 
 > 
 
 ## <a name="next-steps"></a>Következő lépések
-További információ az Event Hubs érhetők el a következő hivatkozások hello:
+Az alábbi webhelyeken további információt talál az Event Hubsról:
 
 * [Event Hubs – áttekintés](event-hubs-what-is-event-hubs.md)
 * [Event Hub létrehozása](event-hubs-create.md)

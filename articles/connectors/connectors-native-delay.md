@@ -1,6 +1,6 @@
 ---
-title: "a logic apps késés aaaAdd |} Microsoft Docs"
-description: "Hello áttekintése késleltetés és a késleltetés-műveletek, amíg és hogyan toouse őket az az Azure Logic Apps alkalmazást."
+title: "Adja hozzá a logic apps késleltetést |} Microsoft Docs"
+description: "A késleltetés és a késleltetés áttekintése-műveletek, és hogyan érdemes azokat használni az Azure Logic Apps alkalmazást."
 services: 
 documentationcenter: 
 author: jeffhollan
@@ -15,62 +15,62 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/18/2016
 ms.author: jehollan
-ms.openlocfilehash: e5bc9d639adbddc01ee0f6a4c68716f586d4344a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5f4f7052d48b4ca4ed91212d970551141e78e852
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="get-started-with-hello-delay-and-delay-until-actions"></a>Ismerkedés a hello késleltetés és a késleltetés-amíg műveletek
-Hello késleltetés használatával és a "késleltetés-amíg" műveletek, befejezheti a munkafolyamatokban.
+# <a name="get-started-with-the-delay-and-delay-until-actions"></a>Bevezetés az a késleltetés és a késleltetés-ig műveletek
+A késleltetés használatával és a "késleltetés-amíg" műveletek, befejezheti a munkafolyamatokban.
 
 Megteheti például a következőt:
 
-* Várjon, amíg a hét napja toosend állapot frissítése keresztül e-mailt.
-* Késleltetés hello munkafolyamat csak egy HTTP-hívás idő toofinish rendelkezik folytatása és hello eredmény beolvasása előtt.
+* Várjon, amíg a hét napja állapotfrissítés keresztül e-mailek küldése.
+* A munkafolyamat elhalasztani, amíg egy HTTP-hívás befejezését, mielőtt folytatja a futtatását, és az eredmény beolvasása idő tartozik.
 
-tooget lépések hello késleltetés műveletével logikai alkalmazás, lásd: [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).
+Első lépések egy logikai alkalmazás késleltetés műveletével, lásd: [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="use-hello-delay-actions"></a>Hello késleltetés műveletek használata
-Egy művelet során, amely logikai alkalmazás definiált hello munkafolyamat végzi. [További információ a műveletek](connectors-overview.md).
+## <a name="use-the-delay-actions"></a>A késleltetés műveletek használata
+Egy művelet során, amely a logikai alkalmazás definiált munkafolyamat végzi. [További információ a műveletek](connectors-overview.md).
 
-Íme egy parancssorozat-példa hogyan toouse késleltetést logikai alkalmazás lépést:
+Íme egy parancssorozat-példa a logikai alkalmazás egy késleltetés lépés használata:
 
-1. A felvett egy eseményindítót, kattintson a **új lépés** tooadd műveletet.
-2. Keresse meg **késedelem** toobring hello késleltetés műveletek. Ebben a példában, azt fogja kiválasztani **késleltetés**.
+1. A felvett egy eseményindítót, kattintson a **új lépés** művelet hozzáadása.
+2. Keresse meg **késleltetés** a késleltetés műveletek elindítani. Ebben a példában, azt fogja kiválasztani **késleltetés**.
    
     ![Késleltetés műveletek](./media/connectors-native-delay/using-action-1.png)
-3. Hajtsa végre a hello művelet tulajdonságok tooconfigure hello késedelem.
+3. A művelet tulajdonságait, a késés konfigurálásához hajtsa végre.
    
     ![Késleltetési konfiguráció](./media/connectors-native-delay/using-action-2.png)
-4. Kattintson a **mentése** toopublish és hello logikai alkalmazás aktiválása.
+4. Kattintson a **mentése** közzététele, és aktiválja a logikai alkalmazást.
 
 ## <a name="action-details"></a>A művelet részletei
-hello ismétlődési eseményindító következő konfigurálható tulajdonságai hello rendelkezik.
+Az ismétlődési eseményindító tulajdonságai a következők konfigurálható.
 
 ### <a name="delay-action"></a>Késleltetés művelet
-Ez a művelet késleltetése hello futtassa egy meghatározott időtartam alatt.
+Ez a művelet késlelteti a Futtatás egy meghatározott időtartam alatt.
 A * azt jelenti, hogy mezőt kötelező kitölteni.
 
 | Megjelenített név | Tulajdonság neve | Leírás |
 | --- | --- | --- |
-| Száma * |Száma |idő egységek toodelay hello száma |
-| Egység * |egység |hello időegység: `Second`, `Minute`, `Hour`, vagy`Day` |
+| Száma * |Száma |A késleltetési idő egységek száma |
+| Egység * |egység |Időegység: `Second`, `Minute`, `Hour`, vagy`Day` |
 
 <br>
 
 ### <a name="delay-until-action"></a>Késleltetés-amíg művelet
-Ez a művelet a megadott dátum és idő futását hello késlelteti.
+Ez a művelet késlelteti a Futtatás csak a megadott dátum és idő.
 A * azt jelenti, hogy mezőt kötelező kitölteni.
 
 | Megjelenített név | Tulajdonság neve | Leírás |
 | --- | --- | --- |
-| Év * |időbélyeg |hello év toodelay amíg (GMT) |
-| Hónap * |időbélyeg |hello hónap toodelay amíg (GMT) |
-| Nap * |időbélyeg |hello nap toodelay amíg (GMT) |
+| Év * |időbélyeg |Az év (GMT) amíg késleltetése |
+| Hónap * |időbélyeg |A hónap (GMT) amíg késleltetése |
+| Nap * |időbélyeg |A nap (GMT) amíg késleltetése |
 
 <br>
 
 ## <a name="next-steps"></a>Következő lépések
-Most, próbálja ki hello platform és [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md). Ismerje meg a hello más rendelkezésre álló összekötők logic Apps alkalmazások felmérésével a [API-k lista](apis-list.md).
+Most, próbálja ki a platformot és [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md). Az egyéb rendelkezésre álló összekötők logic Apps alkalmazások felmérésével felfedezheti a [API-k lista](apis-list.md).
 

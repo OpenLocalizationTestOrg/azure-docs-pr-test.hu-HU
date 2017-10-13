@@ -1,6 +1,6 @@
 ---
-title: "aaaNo felhasználók folyamatban van a kiépített tooan az Azure AD-gyűjtemény alkalmazás |} Microsoft Docs"
-description: "Hogyan tootroubleshoot kapcsolatos gyakori hibák tapasztalt felhasználók jelennek meg nem jelenik meg az Azure AD egy gyűjtemény alkalmazás már konfigurálta a felhasználók átadása az Azure ad-vel"
+title: "Egy felhasználó sem törlődnek alatt egy Azure AD-katalógusában alkalmazás |} Microsoft Docs"
+description: "Kapcsolatos gyakori hibák elhárítása tapasztalt felhasználók jelennek meg nem jelenik meg az Azure AD egy gyűjtemény alkalmazás már konfigurálta a felhasználók átadása az Azure ad-vel"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,55 +13,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: asteen
-ms.openlocfilehash: 4d9693a202ed657e1de5571b50e5d499bef1bb3f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 30db71c0706de1dcc0d48fb72fa5d62475a14ba7
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="no-users-are-being-provisioned-tooan-azure-ad-gallery-application"></a>Egy felhasználó sem folyamatban van a kiépített tooan az Azure AD-gyűjtemény alkalmazás
+# <a name="no-users-are-being-provisioned-to-an-azure-ad-gallery-application"></a>Egy felhasználó sem törlődnek alatt egy Azure AD-katalógusában alkalmazáshoz
 
-Egyszer automatikus kiépítés konfigurálták az alkalmazáshoz (beleértve az ellenőrzése, hogy hello app megadott hitelesítő adatok, tooAzure AD tooconnect toohello app érvényesek). Majd a felhasználók és/vagy csoportok kiosztott toohello alkalmazást, és határozza meg a következő dolgot hello:
+Amennyiben az Automatikus kiépítés konfigurálták az alkalmazáshoz (beleértve az ellenőrzése, hogy a alkalmazást az Azure AD-be az alkalmazáshoz megadott hitelesítő adatok érvényesek). Majd a felhasználók és/vagy csoportok törlődnek az alkalmazásba, és határozza meg a következőket:
 
--   Amelyek felhasználókat és csoportokat **hozzárendelt** toohello alkalmazás. A hozzárendelés további információkért lásd: [hozzárendelése egy felhasználóhoz vagy csoporthoz tooan vállalati alkalmazást az Azure Active Directoryban](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal).
+-   Amelyek felhasználókat és csoportokat **hozzárendelt** az alkalmazáshoz. A hozzárendelés további információkért lásd: [egy felhasználó vagy csoport hozzárendelése egy vállalati alkalmazás Azure Active Directoryban](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal).
 
--   E **attribútum-hozzárendelések** az Azure AD toohello alkalmazásból engedélyezett és konfigurált toosync attribútum. Attribútum-leképezésekhez további információkért lásd: [testreszabása felhasználói kiépítés attribútum-leképezésekhez az SaaS-alkalmazásokhoz az Azure Active Directoryban](https://docs.microsoft.com/azure/active-directory/active-directory-saas-customizing-attribute-mappings).
+-   E **attribútum-hozzárendelések** engedélyezni és konfigurálni az alkalmazást az Azure AD érvényes attribútumok szinkronizálása. Attribútum-leképezésekhez további információkért lásd: [testreszabása felhasználói kiépítés attribútum-leképezésekhez az SaaS-alkalmazásokhoz az Azure Active Directoryban](https://docs.microsoft.com/azure/active-directory/active-directory-saas-customizing-attribute-mappings).
 
 -   Van-e egy **tartalmazó szűrő** jelen van, hogy felhasználók egyedi attribútum értékek alapján. A helyezése hatókörszűrőkkel további információkért lásd: [alkalmazások Attribútumalapú üzembe helyezése hatókörszűrőkkel](https://docs.microsoft.com/azure/active-directory/active-directory-saas-scoping-filters).
 
-Tartják be, hogy felhasználók nem alatt törlődnek, ha további részleteket a hello vizsgálati naplóit Azure AD-ben, és keresse meg a naplóbejegyzések adott felhasználó.
+Amikor tartják be, hogy felhasználók nem alatt törlődnek, tekintse meg a felügyeleti naplók az Azure ad-ben, és keresse meg naplóbejegyzések adott felhasználó.
 
-kiépítés naplók hello hello hello Azure portálon érhetők el **Azure Active Directory &gt; vállalati alkalmazások &gt; \[alkalmazásnév\] &gt; vizsgálati naplókban**fülre. Szűrő hello bejelentkezik hello **fiók** kategória tooonly, tekintse meg az adott alkalmazáshoz események kiépítés hello. Felhasználók hello "egyező ID" attribútum-leképezésekhez hello számukra konfigurált alapján is kereshet. Például, ha hello "egyszerű felhasználónév" vagy "e-mail cím" hello Azure AD oldalon attribútum megfelelő hello, konfigurálta, és nem kiépítés hello felhasználó érték "audrey@contoso.com". Kereshet az hello a naplókban talál "audrey@contoso.com", és tekintse át ezt követően eredményt adott vissza.
+A telepítési naplók érhetők el az Azure portálon, a **Azure Active Directory &gt; vállalati alkalmazások &gt; \[alkalmazásnév\] &gt; vizsgálati naplókban** fülre. A naplók szűrést végezni a **fiók** kategóriát csak az adott alkalmazáshoz létesítési események megjelenítéséhez. A "egyező ID" attribútum-leképezésekhez számukra konfigurált alapján is kereshet. Például, ha az "egyszerű felhasználónév" vagy "e-mail cím" az Azure AD-oldalán a megfelelő attribútumaként konfigurálva, és a felhasználó nem kiépítés értéke "audrey@contoso.com". Majd keresse meg a naplókban talál "audrey@contoso.com", és tekintse át ezt követően eredményt adott vissza.
 
-kiépítés naplózási hello naplózza az összes hello hello létesítési szolgáltatás, így az Azure AD-hez hozzárendelt felhasználók hatókörébe kiépítés, azoknak a felhasználóknak hello megléte hello cél alkalmazás lekérdezése, hello összehasonlításával lekérdezése által végrehajtott műveletek rekord felhasználói objektumok hello rendszer között. Majd adja hozzá, frissíteni vagy hello felhasználói fiók letiltása hello célrendszerben hello összehasonlítás alapján.
+A létesítési naplók az összes műveletet végzi el a létesítési szolgáltatás, így az Azure AD-hez hozzárendelt felhasználók hatókörébe kiépítés, a cél alkalmazás meglétét azoknak a felhasználóknak az lekérdezése, a felhasználói objektumok között a rendszer összehasonlítja a lekérdezése rekord. Majd adja hozzá, frissíteni vagy tiltsa le a felhasználói fiókot a célrendszeren, az összehasonlítás alapján.
 
-## <a name="general-problem-areas-with-provisioning-tooconsider"></a>Általános problémás területek tooconsider szolgáltatáskiépítéssel
+## <a name="general-problem-areas-with-provisioning-to-consider"></a>A Szolgáltatáskiépítéssel megfontolandó általános problémás területek
 
-Az alábbiakban felsoroljuk a hello részletezhető Ha egy ötletet, ahol általános problématerületeket toostart.
+Az alábbiakban olvashat egy listát részletezhető Ha egy meghatározni, hogy hol kell elkezdeni az általános probléma területet.
 
-* [Szolgáltatás kiépítését nem jelenik meg toostart](#provisioning-service-does-not-appear-to-start)
+* [Szolgáltatás kiépítését nem jelenik meg elindítani](#provisioning-service-does-not-appear-to-start)
 * [Naplók mondja ki a felhasználók figyelmen hagyja, és nincs telepítve, akkor is, ha hozzárendeli őket](#audit-logs-say-users-are-skipped-and-not-provisioned-even-though-they-are-assigned)
 
-## <a name="provisioning-service-does-not-appear-toostart"></a>Szolgáltatás kiépítését nem jelenik meg toostart
+## <a name="provisioning-service-does-not-appear-to-start"></a>Szolgáltatás kiépítését nem jelenik meg elindítani
 
-Ha hello **kiépítési állapot** toobe **a** a hello **Azure Active Directory &gt; vállalati alkalmazások &gt; \[alkalmazásneve\] &gt;Kiépítési** hello Azure-portálon szakasza. Azonban nem más állapot részletei jelennek meg a lap után további Újratölti valószínű, hogy hello szolgáltatás fut, de a kezdeti szinkronizálás még nem fejeződött be. Ellenőrizze a hello **naplók** toodetermine a fent leírt milyen műveletek hello szolgáltatás működik-e, és ha hiba történik.
+Ha a **kiépítési állapot** kell **a** a a **Azure Active Directory &gt; vállalati alkalmazások &gt; \[alkalmazásnév\] &gt;kiépítési** szakasza az Azure-portálon. Azonban nem más állapot részletei jelennek meg a lap után további betölti, valószínű, hogy a szolgáltatás fut, de egy kezdeti szinkronizálást még nem fejeződött be. Ellenőrizze a **naplók** milyen műveleteket hajt végre a szolgáltatást, hogy a fent leírt, és ha hiba történik.
 
 >[!NOTE]
->Egy kezdeti szinkronizálást is igénybe vehet 20 perc tooseveral óra, hello Azure AD-címtár és a felhasználók kialakítási hatókörében hello száma hello méretétől függően. Hello kezdeti szinkronizálás után az ezt követő szinkronizálások gyorsabb, mint hello szolgáltatás kiépítését tárolja, amelyek megfelelnek a hello állapot mindkét rendszer hello kezdeti szinkronizálás után vízjelek. Ez javítja ezt követő szinkronizálások teljesítményét.
+>Egy kezdeti szinkronizálást is igénybe vehet 20 percet az Azure AD-címtár és a felhasználók kialakítási hatókörében számát méretétől függően több órát. A kezdeti szinkronizálás után az ezt követő szinkronizálások nem gyorsabb, mivel a létesítési szolgáltatás, amelyben a kezdeti szinkronizálás után mindkét állapota egy vízjelek tárolja. Ez javítja ezt követő szinkronizálások teljesítményét.
 >
 >
 
 ## <a name="audit-logs-say-users-are-skipped-and-not-provisioned-even-though-they-are-assigned"></a>Naplók mondja ki a felhasználók figyelmen hagyja, és nincs telepítve, akkor is, ha hozzárendeli őket
 
-A felhasználó megjelenik, mint "kimarad a" hello naplókat, esetén nagyon fontos tooread hello kiterjesztett hello napló üzenet toodetermine hello OK részleteit. Az alábbiakban gyakori okok és megoldások:
+Amikor a felhasználó megjelenik, a "kihagyva" a naplófájlban, nagyon fontos olvasni a kiterjesztett részleteit a napló üzenet okának megállapításához. Az alábbiakban gyakori okok és megoldások:
 
--   **Hatókörként szűrő konfigurációja** **, amely van kiszűrése hello felhasználói egy attribútum-érték alapján**. A helyezése hatókörszűrőkkel további információkért lásd: <https://docs.microsoft.com/azure/active-directory/active-directory-saas-scoping-filters>.
+-   **Hatókörként szűrő konfigurációja** **, amely van kiszűrése a felhasználói egy attribútum-érték alapján**. A helyezése hatókörszűrőkkel további információkért lásd: <https://docs.microsoft.com/azure/active-directory/active-directory-saas-scoping-filters>.
 
--   **"nem hatékony joga" Hello felhasználó.** Ha hibaüzenet jelenik meg, azért, mert probléma hello Azure AD-ben tárolt felhasználói hozzárendelési bejegyzés. toofix a probléma megszüntetése felhasználói (vagy a csoport) hello hello alkalmazásból, és újból rendelje hozzá újra. A hozzárendelés további információkért lásd: <https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal>.
+-   **A felhasználó az "nem hatékony jogosult".** Ha hibaüzenet jelenik meg, azért, mert az Azure AD-ben tárolt felhasználói hozzárendelés rekord problémáját. Hárítsa el a problémát, megszüntetése a felhasználó (vagy csoport) az alkalmazásból, és újból rendelje hozzá újra. A hozzárendelés további információkért lásd: <https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal>.
 
--   **Egy kötelező attribútum hiányzik vagy nem ki van töltve egy felhasználó.** Ha kiépítés beállítása tooreview egy fontos tooconsider hello attribútum-leképezésekhez és munkafolyamatok, amelyek meghatározzák, milyen felhasználói (vagy a csoport) tulajdonságok folyamata az Azure AD toohello alkalmazásból és konfigurálása. Ez magában foglalja, hello "egyező tulajdonság" beállítása használt toouniquely kell azonosítani és felel meg a felhasználók/csoportok hello két rendszerek között. További információ a fontos folyamatban: [testreszabása felhasználói kiépítés attribútum-leképezésekhez az SaaS-alkalmazásokhoz az Azure Active Directoryban](https://docs.microsoft.com/azure/active-directory/active-directory-saas-customizing-attribute-mappings).
+-   **Egy kötelező attribútum hiányzik vagy nem ki van töltve egy felhasználó.** Kiépítés beállítása során figyelembe kell venni egy fontos dolog lehet áttekintése és konfigurálása a attribútum-leképezésekhez és a munkafolyamatok, amelyek meghatározzák, milyen felhasználói (vagy a csoport) tulajdonságok folyamata az Azure AD az alkalmazásnak. Ez magában foglalja a "egyező property" beállítás használható egyedileg azonosíthatja és felel meg a felhasználókat/csoportokat a két rendszer között. További információ a fontos folyamatban: [testreszabása felhasználói kiépítés attribútum-leképezésekhez az SaaS-alkalmazásokhoz az Azure Active Directoryban](https://docs.microsoft.com/azure/active-directory/active-directory-saas-customizing-attribute-mappings).
 
-  * **Azon csoportok attribútum:** hello telepítése csoport név és csoportosítási részleteket, továbbá toohello tagokat, ha egyes alkalmazások esetében támogatott. Engedélyezheti vagy letilthatja ezt a funkciót engedélyezésével vagy letiltásával hello **leképezési** a csoport objektumainak hello látható **kiépítési** fülre. Ha csoportok kiépítés engedélyezve van, ne feledje tooreview hello attribútum hozzárendelések tooensure egy megfelelő mező használatos "Azonosítóval egyező" hello. Ez lehet hello megjelenítési nevet vagy e-mail címét), hello csoportot és annak tagjait nem lehet biztosított Ha hello megfelelő tulajdonság értéke üres vagy nem ki van töltve a csoport az Azure ad-ben.
+  * **Azon csoportok attribútum:** telepítése a csoport nevét és a csoport részletes adatait, a tagok, ha az egyes alkalmazásokra támogatott mellett. Engedélyezheti vagy letilthatja ezt a funkciót engedélyezésével vagy letiltásával a **leképezési** a csoport objektumainak látható a **kiépítési** fülre. Ha csoportok kiépítés engedélyezve van, feltétlenül olvassa el a attribútum-leképezésekhez ellenőrizze a megfelelő mezőben használja a "egyező azonosító". Ez lehet a megjelenített nevet vagy e-mail címét), mert a csoport és annak tagjait nem építhető ki, ha a megfelelő tulajdonság értéke üres vagy nem ki van töltve a csoport az Azure AD.
 
 ## <a name="next-steps"></a>Következő lépések
 [Azure AD Connect szinkronizálása: Understanding deklaratív kiépítés](active-directory-aadconnectsync-understanding-declarative-provisioning.md)

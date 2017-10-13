@@ -1,6 +1,6 @@
 ---
-title: "az Apache Kafka - Azure HDInsight aaaHigh elérhetősége |} Microsoft Docs"
-description: "Megtudhatja, hogyan tooensure a magas rendelkezésre állás, az Azure HDInsight az Apache Kafka. Ismerje meg, hogyan toorebalance partíció-e a Kafka replikákat, hogy a különböző tartalék tartományok hello belül legyenek az Azure-régió, amely tartalmazza a HDInsight."
+title: "Magas rendelkezésre állás az Apache Kafka platformmal – Azure HDInsight | Microsoft Docs"
+description: "Útmutató magas rendelkezésre állás biztosításához az Apache Kafka platformmal az Azure HDInsight szolgáltatásban. Megtudhatja, hogyan egyensúlyozza ki újra a partíciók replikáit a Kafkában, hogy különböző tartalék tartományban legyenek a HDInsightot tartalmazó Azure régióban."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -12,30 +12,30 @@ ms.devlang:
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 06/26/2017
+ms.date: 09/20/2017
 ms.author: larryfr
-ms.openlocfilehash: 337468f36b531f83c2999e87907de89cf3d19dd4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3edec2e68356604562af2219ccd498732c564ec5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="high-availability-of-your-data-with-apache-kafka-preview-on-hdinsight"></a>Magas rendelkezésre állású adatok a HDInsightban az Apache Kafka platformmal (előzetes verzió)
 
-Ismerje meg, hogyan tooconfigure partíció replikák Kafka témakörök tootake előny az alapul szolgáló hardver állványra konfigurációs. Ez a konfiguráció hello Apache Kafka a HDInsight-on tárolt adatok rendelkezésre állását biztosítja.
+Útmutató partícióreplikák Kafka-témakörökhöz való konfigurálásához az alapul szolgáló hardverállvány-konfiguráció előnyeinek kihasználásához. Ez a konfiguráció biztosítja a HDInsighton az Apache Kafka platformon tárolt adatok rendelkezésre állását.
 
 ## <a name="fault-and-update-domains-with-kafka"></a>Tartalék és frissítési tartományok a Kafka platformmal
 
-A tartalék tartomány az alapul szolgáló hardver logikai csoportosítása egy Azure-adatközpontban. Mindegyik tartalék tartomány közös áramforrással és hálózati kapcsolóval rendelkezik. a tartalék tartományok elosztott hello virtuális gépek és a felügyelt lemezek, amelyek megvalósítják az hello egy HDInsight-fürt csomópontja. Ez az architektúra korlátozza hello célgyűjtemény fizikai hardver meghibásodása.
+A tartalék tartomány az alapul szolgáló hardver logikai csoportosítása egy Azure-adatközpontban. Mindegyik tartalék tartomány közös áramforrással és hálózati kapcsolóval rendelkezik. A HDInsight-fürtön belül a csomópontokat implementáló virtuális gépek és felügyelt lemezek ezek között a tartalék tartományok között vannak elosztva. Ez az architektúra csökkenti a fizikai hardverhibák lehetséges hatását.
 
-Mindegyik Azure-régió meghatározott számú tartalék tartománnyal rendelkezik. Tartományok és a tartalék tartományok bennük hello száma listájáért lásd: hello [rendelkezésre állási készletek](../virtual-machines/linux/regions-and-availability.md#availability-sets) dokumentációját.
+Mindegyik Azure-régió meghatározott számú tartalék tartománnyal rendelkezik. A tartományok listáját és a bennük található tartalék tartományok számát a [Rendelkezésre állási készletek](../virtual-machines/linux/regions-and-availability.md#availability-sets) dokumentációjában találja.
 
 > [!IMPORTANT]
-> A Kafka nem kezeli a tartalék tartományokat. Amikor létrehoz egy témát a Kafka, hello az összes partíció replika tárolja azonos tartalék tartományban. toosolve probléma nyújtunk hello [Kafka partíció egyensúlyozza ki újra eszköz](https://github.com/hdinsight/hdinsight-kafka-tools).
+> A Kafka nem kezeli a tartalék tartományokat. Amikor létrehoz egy témakört a Kafkában, az lehet hogy minden partícióreplikát ugyanabban a tartalék tartományban tárol. Ennek a problémának a megoldásához biztosítjuk a [Kafka partíció-újraegyensúlyozó eszközt](https://github.com/hdinsight/hdinsight-kafka-tools).
 
-## <a name="when-toorebalance-partition-replicas"></a>Ha toorebalance partícióazonosító replikák
+## <a name="when-to-rebalance-partition-replicas"></a>Mikor van szükség a partícióreplikák újraegyensúlyozására?
 
-tooensure hello lehető legmagasabb rendelkezésre állásának Kafka adatait, a témakör a következő alkalommal hello kell egyensúlyba hello partíció replikák:
+A Kafka-adatok lehető legmagasabb rendelkezésre állásának biztosításához a következő időpontokban kell újra egyensúlyoznia a partícióreplikákat a témaköréhez:
 
 * Új témakör vagy partíció létrehozásakor
 
@@ -46,15 +46,15 @@ tooensure hello lehető legmagasabb rendelkezésre állásának Kafka adatait, a
 > [!IMPORTANT]
 > Javasoljuk, hogy olyan Azure-régiót használjon, amely három tartalék tartományt tartalmaz, és használjon 3-as replikációs tényezőt.
 
-Ha csak két tartalék tartományok tartalmazó egy régiót kell használnia, replikációs tényezőt használni 4 toospread hello replikák egyenletesen hello két tartalék tartományok között.
+Ha kénytelen olyan régiót használni, amely csak két tartalék tartomány tartalmaz, használjon 4-es replikációs tényezőt, hogy egyenletesen ossza el a replikákat a két tartalék tartományban.
 
-Üzenettémák és -beállítás hello replikációs tényező létrehozására láthat példát, lásd: hello [indítsa el a HDInsight Kafka](hdinsight-apache-kafka-get-started.md) dokumentum.
+A témakörök létrehozására és a replikációs tényező beállítására példát a [Kezdő lépések a Kafkával a HDInsightban](hdinsight-apache-kafka-get-started.md) dokumentumban talál.
 
-## <a name="how-toorebalance-partition-replicas"></a>Hogyan toorebalance partícióazonosító replikák
+## <a name="how-to-rebalance-partition-replicas"></a>A partícióreplikák újraegyensúlyozása
 
-Használjon hello [Kafka partíció egyensúlyozza ki újra eszköz](https://github.com/hdinsight/hdinsight-kafka-tools) toorebalance témakör kijelölve. Ez az eszköz kell futott, egy SSH munkamenet toohello központi csomópontból a Kafka fürt.
+A kiválasztott témakörök újraegyensúlyozására használja a [Kafka partíció-újraegyensúlyozó eszközt](https://github.com/hdinsight/hdinsight-kafka-tools). Ezt az eszközt egy SSH-munkamenetből kell futtatni a Kafka-fürt főcsomópontjához.
 
-Az SSH használatával tooHDInsight kapcsolódás további információkért lásd: a [az SSH a Hdinsighttal](hdinsight-hadoop-linux-use-ssh-unix.md) dokumentum.
+A HDInsight-hoz SSH-val való kapcsolódásról további információért lásd az [SSH használata a HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md) dokumentumot.
 
 ## <a name="next-steps"></a>Következő lépések
 

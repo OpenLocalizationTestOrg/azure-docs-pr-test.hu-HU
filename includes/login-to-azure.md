@@ -1,6 +1,6 @@
-## <a name="log-in-tooazure"></a>Jelentkezzen be tooAzure
+## <a name="log-in-to-azure"></a>Jelentkezzen be az Azure-ba
 
-Az Azure-ban hello Azure CLI toocreate hello szükséges erőforrásokat toohost az alkalmazás fogja használni. Azure parancssori felület parancsait hello felhő rendszerhéj futtatja, ha már jelentkezett be. toorun Azure parancssori felület parancsait helyileg, jelentkezzen be Azure előfizetés hello tooyour [az bejelentkezési](/cli/azure/#login) parancsot, és kövesse hello képernyőn megjelenő utasításokat.
+Az Azure CLI-vel létre fogja hozni az alkalmazás Azure-beli üzemeltetéséhez szükséges erőforrásokat. Ha az Azure CLI parancsait a Cloud Shellben futtatja, már bejelentkezett. Az Azure CLI parancsainak helyi futtatásához jelentkezzen be az Azure-előfizetésébe az [az login](/cli/azure/#login) paranccsal, és kövesse a képernyőn látható utasításokat.
 
 ```azurecli
 az login

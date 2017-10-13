@@ -1,6 +1,6 @@
 ---
-title: "aaaGet lépések a Visual Studio MVC-projektek az Azure AD-val |} Microsoft Docs"
-description: "Hogyan tooget el az Azure Active Directoryval MVC projekt létrehozása a Visual Studio használatával Azure AD tooor csatlakoztatása után kapcsolódó szolgáltatások"
+title: "Ismerkedés az Azure AD-t a Visual Studio MVC-projektek |} Microsoft Docs"
+description: "Ismerkedés az Azure Active Directoryval MVC projektek, miután csatlakozik, vagy hozzon létre egy Visual Studio használatával Azure AD kapcsolódó szolgáltatások"
 services: active-directory
 documentationcenter: 
 author: kraigb
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 03/01/2017
 ms.author: kraigb
 ms.custom: aaddev
-ms.openlocfilehash: 807824dd6e4e57e443f8a7322cf2e5326384316d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c4d49cfc9887e422b3eaed2b96348c99eca48881
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="getting-started-with-azure-active-directory-and-visual-studio-connected-services-mvc-projects"></a>Ismerkedés az Azure Active Directory és a Visual Studio csatlakoztatva (MVC projektek) szolgáltatások
 > [!div class="op_single_selector"]
@@ -28,11 +28,11 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-## <a name="requiring-authentication-tooaccess-controllers"></a>Hitelesítési tooaccess tartományvezérlők megkövetelése
-A projekt lévő összes volt adorned a hello **engedélyezés** attribútum. Ez az attribútum szükséges hello felhasználói toobe hitelesített ezen vezérlők elérése előtt. tooallow hello vezérlő toobe érhető el névtelen hozzáféréssel, ez az attribútum eltávolítása hello vezérlőről. Ha azt szeretné, hogy részletesebb szinten tooset hello engedélyek, alkalmazza a hello attribútum tooeach módszer, amely engedélyezési helyett toohello vezérlőosztály telepítené azt.
+## <a name="requiring-authentication-to-access-controllers"></a>Hozzáférés-vezérlők hitelesítést igénylő
+A projekt lévő összes rendelkező volt adorned a **engedélyezés** attribútum. Ez az attribútum a felhasználónak hitelesíteni ezeket a tartományvezérlőket elérése előtt. Ahhoz, hogy a tartományvezérlőt a névtelenül elérhető, távolítsa el ezt az attribútumot a vezérlő. Ha szeretne egy részletesebb szinten adja meg az engedélyeket, az attribútumot minden módszer, amely helyett telepítené azt a vezérlő osztályhoz engedélyezési alkalmazza.
 
 ## <a name="adding-signin--signout-controls"></a>Bejelentkezés felvétele / SignOut szabályozza
-tooadd hello SignIn/SignOut tooyour nézet szabályozza, használhatja a hello **_LoginPartial.cshtml** részleges nézet tooadd hello funkció tooone a nézetek. Példa hello funkció hozzáadott toohello standard **_Layout.cshtml** nézet. (Megjegyzés: hello utolsó elem az hello div rendelkező osztály navigációs sávja összecsukása):
+A bejelentkezés/SignOut vezérlők hozzáadása a megtekintése, használhatja a **_LoginPartial.cshtml** részleges nézetre, és a Funkciók hozzáadása a nézetek közül. Példa a normál hozzáadott funkcióinak **_Layout.cshtml** nézet. (Megjegyzés: az utolsó elem az a osztály navigációs sávja összecsukása div):
 
 <pre>
     &lt;!DOCTYPE html&gt; 

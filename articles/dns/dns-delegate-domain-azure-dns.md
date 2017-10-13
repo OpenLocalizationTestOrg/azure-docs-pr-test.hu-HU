@@ -1,6 +1,6 @@
 ---
-title: "aaaDelegate a tartomány tooAzure DNS |} Microsoft Docs"
-description: "Ismerje meg, hogyan toochange tartományok delegálását és használata Azure DNS neve kiszolgálók tooprovide tartomány üzemeltetéséhez."
+title: "Tartomány delegálása az Azure DNS-be | Microsoft Docs"
+description: "Ismerje meg, hogyan módosíthatja a tartományok delegálását és használhatja tartományszolgáltatóként az Azure DNS-névkiszolgálóit."
 services: dns
 documentationcenter: na
 author: georgewallace
@@ -13,62 +13,62 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/12/2017
 ms.author: gwallace
-ms.openlocfilehash: f780bdaa416150e5e3afe6c6845dc75ba54b6203
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 33b3ec24432ff1268860b9a2e9d5098600a8dedc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="delegate-a-domain-tooazure-dns"></a>A tartomány tooAzure DNS delegálása
+# <a name="delegate-a-domain-to-azure-dns"></a>Tartomány delegálása az Azure DNS-be
 
-Az Azure DNS lehetővé teszi a DNS-zóna toohost, és egy tartományhoz az Azure-ban hello DNS-rekordok kezelése. Ahhoz, hogy a tartomány tooreach Azure DNS-ben a DNS-lekérdezések, hello tartomány rendelkezik toobe hello szülőtartomány tooAzure DNS átadva. Ne feledje Azure DNS nincs hello tartományregisztráló. Ez a cikk azt ismerteti, hogyan toodelegate a tartomány tooAzure DNS.
+Az Azure DNS használatával DNS-zónákat üzemeltethet, és kezelheti a tartomány DNS-rekordjait az Azure felületén. Egy tartomány DNS-lekérdezései csak akkor érik el az Azure DNS-t, ha a tartomány delegálva van az Azure DNS-be a szülőtartományból. Ne feledje: nem az Azure DNS a tartományregisztráló. Ez a cikk a tartomány delegálását ismerteti az Azure DNS-be.
 
-A tartományokhoz a regisztráló vásárolt a regisztráló kínál hello beállítás tooset be ezeket a Névkiszolgálói rekordokat. Nincs tooown egy tartományi toocreate ezt a nevet a DNS-zóna Azure DNS-ben. Azonban hello regisztráló tooown hello tartomány tooset hello delegálás tooAzure DNS mentése szükséges.
+A tartományregisztrálótól vásárolt tartományokhoz a regisztráló felajánlja, hogy beállítja ezeket a névkiszolgálói rekordokat. Nem kell ahhoz egy tartománnyal rendelkeznie, hogy az adott tartománynévvel létrehozzon egy DNS-zónát az Azure DNS-ben. Azonban a tartományregisztrálóval az Azure DNS-be való delegáláshoz már meg kell vásárolnia a tartományt.
 
-Tegyük fel például, a "contoso.net" hello tartomány vásárlása, és hozzon létre egy hello neve "contoso.net" zónát az Azure DNS. Hello tartomány hello tulajdonosaként a regisztráló kínál, a tartomány hello beállítás tooconfigure hello névkiszolgáló-címet (Ez azt jelenti, hogy hello Névkiszolgálói rekordokat). hello regisztráló ezeket a Névkiszolgálói rekordokat hello szülőtartományban, ebben az esetben ".net" tárolja. Hello world különböző pontjain található ügyfelek majd lehet irányított tooyour tartományhoz az Azure DNS-zóna tooresolve DNS-rekordokat a "contoso.net" tett kísérlet során.
+Tegyük fel például, hogy megvette a „contoso.net” tartományt, és létrehozott egy „contoso.net” nevű zónát az Azure DNS-ben. A tartomány tulajdonosaként a regisztráló felajánlja, hogy konfigurálja a tartomány névkiszolgálóinak címeit (azaz a névkiszolgálói rekordokat). A regisztráló ezeket a névkiszolgálói rekordokat a szülőtartományban, ebben az esetben a „.net” tartományban tárolja. A világ különböző pontjain található ügyfelek ekkor az Azure DNS-zónabeli tartományához irányíthatók, amikor megpróbálják feloldani a „contoso.net” DNS-rekordjait.
 
 ## <a name="create-a-dns-zone"></a>DNS-zóna létrehozása
 
-1. Jelentkezzen be toohello Azure-portálon
-1. Hello központ menüben kattintson, majd **új > Hálózat >** , majd **DNS-zóna** tooopen hello hozzon létre DNS-zóna panelen.
+1. Jelentkezzen be az Azure Portalra
+1. A központi menüben kattintson az **Új > Hálózatkezelés >** elemre, majd kattintson a **DNS-zóna** elemre a DNS-zóna létrehozása panel megnyitásához.
 
     ![DNS-zóna](./media/dns-domain-delegation/dns.png)
 
-1. A hello **hozzon létre DNS-zóna** panelen adja meg a következő értékek hello, majd kattintson a **létrehozása**:
+1. A **DNS-zóna létrehozása** panelen adja meg a következő értékeket, majd kattintson a **Létrehozás** elemre:
 
    | **Beállítás** | **Érték** | **Részletek** |
    |---|---|---|
-   |**Name (Név)**|contoso.net|hello hello DNS-zóna neve|
-   |**Előfizetés**|[Az Ön előfizetése]|Válasszon egy előfizetés toocreate hello Alkalmazásátjáró a.|
-   |**Erőforráscsoport**|**Új létrehozása:** contosoRG|Hozzon létre egy erőforráscsoportot. az erőforráscsoport neve hello kiválasztott hello előfizetésen belül egyedinek kell lennie. További tudnivalók az erőforráscsoportokról, olvassa el a hello toolearn [erőforrás-kezelő](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fdns%2ftoc.json#resource-groups) a cikk áttekintése.|
+   |**Name (Név)**|contoso.net|A DNS-zóna neve|
+   |**Előfizetés**|[Az Ön előfizetése]|Válasszon ki egy előfizetést, amelyben létrehozza az alkalmazásátjárót.|
+   |**Erőforráscsoport**|**Új létrehozása:** contosoRG|Hozzon létre egy erőforráscsoportot. Az erőforráscsoport nevének egyedinek kell lennie a kiválasztott előfizetésen belül. Az erőforráscsoportokkal kapcsolatos további információkért olvassa el [A Resource Manager](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fdns%2ftoc.json#resource-groups) áttekintése című cikket.|
    |**Hely**|USA nyugati régiója||
 
 > [!NOTE]
-> hello erőforráscsoport hello erőforráscsoport toohello helyre hivatkozik, és nincs hatással van a hello DNS-zónát. mindig "globális" Hello DNS-zóna helyét, és nem jelenik meg.
+> Az erőforráscsoport az erőforráscsoport helyére vonatkozik, és nincs hatással a DNS-zónára. A DNS-zóna helye mindig „globális”, és nem jelenik meg.
 
 ## <a name="retrieve-name-servers"></a>Névkiszolgálók lekérdezése
 
-A DNS-zóna tooAzure DNS delegálhatja, mielőtt először tooknow hello névkiszolgálói neveket a zóna. Minden zóna létrehozásakor az Azure DNS egy névkiszolgálói készletből választ ki egyet.
+Mielőtt DNS-zónáját az Azure DNS-be delegálhatná, meg kell tudnia a zóna névkiszolgálóinak neveit. Minden zóna létrehozásakor az Azure DNS egy névkiszolgálói készletből választ ki egyet.
 
-1. A hello DNS-zóna hello Azure-portálon létrehozott **Kedvencek** ablaktáblán kattintson a **összes erőforrás**. Kattintson a hello **contoso.net** hello DNS-zónát **összes erőforrás** panelen. Ha már kiválasztott hello előfizetés több erőforrást tartalmaz, megadhatja **contoso.net** a hello szűrő név szerint... mezőbe tooeasily hozzáférés hello Alkalmazásátjáró. 
+1. Ha létrehozta a DNS-zónát, az Azure Portal **Kedvencek** panelén kattintson az **Összes erőforrás** elemre. Az **Összes erőforrás** panelen kattintson a **contoso.net** DNS-zónára. Ha a kiválasztott előfizetésben már több erőforrás szerepel, az alkalmazásátjáró egyszerű eléréséhez beírhatja a **contoso.net** nevet a Szűrés név alapján... mezőbe. 
 
-1. Hello névkiszolgálók lekérése hello DNS-zóna panelen. Ebben a példában a "contoso.net" zónához hello rendelték névkiszolgálókat "ns1-01.azure-dns.com", "ns2-01.azure-DNS.NET", "ns3-01.azure-dns.org", és "ns4-01.azure-dns.info":
+1. Kérdezze le a névkiszolgálókat a DNS-zóna panelen. Ebben a példában a „contoso.net” zónához a következő névkiszolgálók tartoznak: „ns1-01.azure-dns.com”, „ns2-01.azure-dns.net”, „ns3-01.azure-dns.org” és „ns4-01.azure-dns.info”:
 
  ![DNS-névkiszolgáló](./media/dns-domain-delegation/viewzonens500.png)
 
-Az Azure DNS automatikusan létrehozza a mérvadó Névkiszolgálói rekordokat, amelyek a zónához hozzárendelt névkiszolgálók hello tartalmazó.  toosee hello névkiszolgáló nevek Azure PowerShell vagy Azure parancssori felületen keresztül, egyszerűen szükséges tooretrieve ezeket a rekordokat.
+Az Azure DNS automatikusan létrehozza a zóna mérvadó névkiszolgálói rekordjait, amelyek a zónához rendelt névkiszolgálókat tartalmazzák.  A névkiszolgálók neveit az Azure PowerShellen vagy az Azure parancssori felületén keresztül is megtekintheti ezeknek a rekordoknak a lekérésével.
 
-hello következő példákban is lépéseit írják le hello tooretrieve hello névkiszolgálók az PowerShell és az Azure CLI Azure DNS-zóna.
+Az alábbi példák bemutatják az egyes zónák névkiszolgálói lekérdezésének lépéseit az Azure DNS-ben a PowerShell és az Azure CLI használatával.
 
 ### <a name="powershell"></a>PowerShell
 
 ```powershell
-# hello record name "@" is used toorefer toorecords at hello top of hello zone.
+# The record name "@" is used to refer to records at the top of the zone.
 $zone = Get-AzureRmDnsZone -Name contoso.net -ResourceGroupName contosoRG
 Get-AzureRmDnsRecordSet -Name "@" -RecordType NS -Zone $zone
 ```
 
-a következő példa hello hello válasz.
+A következő példa a válasz.
 
 ```
 Name              : @
@@ -88,7 +88,7 @@ Metadata          :
 az network dns record-set show --resource-group contosoRG --zone-name contoso.net --type NS --name @
 ```
 
-a következő példa hello hello válasz.
+A következő példa a válasz.
 
 ```json
 {
@@ -116,25 +116,25 @@ a következő példa hello hello válasz.
 }
 ```
 
-## <a name="delegate-hello-domain"></a>Delegált hello tartomány
+## <a name="delegate-the-domain"></a>A tartomány delegálása
 
-Most, hogy hello DNS-zóna jön létre, és el kell hello névkiszolgálókat, hello szülőtartomány kell toobe hello Azure DNS névkiszolgálóit frissült. Minden tartományregisztráló a saját DNS felügyeleti eszközök toochange hello névkiszolgálójának rekordjai egy tartományhoz tartozik. Hello regisztráló DNS kezelése lapon hello NS rekord szerkesztését, és cserélje le hello Névkiszolgálói rekordokat Azure DNS-ben létrehozott hello néhányat a meglévők közül.
+Most, hogy létrehozta a DNS-zónát, és megvannak a névkiszolgálók is, frissítenie kell a szülőtartományt az Azure DNS-névkiszolgálókkal. Minden tartományregisztráló a saját DNS-kezelési eszközeit használja a tartományok névkiszolgálói rekordjainak módosítására. A regisztráló DNS-kezelési oldalán szerkessze a névkiszolgálói rekordokat, és cserélje le őket az Azure DNS által létrehozottakra.
 
-Amikor delegálása a tartományi tooAzure DNS, az Azure DNS által nyújtott hello névkiszolgálói neveket kell használnia. Ajánlott minden toouse négy kiszolgálók nevei, függetlenül a tartomány nevét hello neve. Tartományok delegálását nem kell hello neve server name toouse hello a tartomány legfelső szintű tartományában.
+Amikor egy tartományt az Azure DNS-be delegál, az Azure DNS által nyújtott névkiszolgálói neveket kell használnia. Ajánlott használni mind a négy névkiszolgálói nevet, a tartomány nevétől függetlenül. A tartománydelegáláshoz nem szükséges, hogy a névkiszolgálói név ugyanazt a legfelső szintű tartományt használja, mint az Ön tartománya.
 
-Mivel a következő IP-címek megváltozhatnak a jövőben ne használjon "összetartó rekordokat" toopoint toohello Azure DNS neve kiszolgáló IP-címek. A saját zónájában történő, névkiszolgálói neveket használó delegálásokat – más néven „személyes névkiszolgálókat” – az Azure DNS jelenleg nem támogatja.
+Ne használjon „összetartó rekordokat” az Azure DNS névkiszolgálói IP-címeire való rámutatáshoz, mert ezek az IP-címek megváltozhatnak a jövőben. A saját zónájában történő, névkiszolgálói neveket használó delegálásokat – más néven „személyes névkiszolgálókat” – az Azure DNS jelenleg nem támogatja.
 
 ## <a name="verify-name-resolution-is-working"></a>A névfeloldás működésének ellenőrzése
 
-Hello delegálás befejezése után ellenőrizheti, hogy névfeloldás működik-e olyan eszköz, például az "nslookup" tooquery hello SOA rekordot a zóna (amely szintén automatikusan létrejön hello zóna létrehozásakor) használatával.
+A delegálás befejezése után ellenőrizheti, hogy a névfeloldás működik-e. Ezt például az „nslookup” vagy egy hasonló eszköz segítségével teheti meg, amely lekérdezi a zónája SOA típusú rekordját (amely szintén automatikusan létrejön a zóna létrehozásakor).
 
-Nem rendelkezik toospecify hello Azure DNS névkiszolgálóit, ha hello delegálás beállítása helyes, hello normál DNS-feloldási folyamat megkeresi hello névkiszolgálók automatikusan.
+Nem kell megadnia az Azure DNS névkiszolgálóit, mivel ha a delegálást helyesen végezte el, a hagyományos DNS-feloldási folyamat automatikusan megtalálja a névkiszolgálókat.
 
 ```
 nslookup -type=SOA contoso.com
 ```
 
-hello az alábbiakban látható egy példa egy válasz az előző parancs hello:
+Az alábbiakban egy példát láthat az előző parancsra adott válaszra:
 
 ```
 Server: ns1-04.azure-dns.com
@@ -152,81 +152,81 @@ default TTL = 300 (5 mins)
 
 ## <a name="delegate-sub-domains-in-azure-dns"></a>Altartományok delegálása az Azure DNS-ben
 
-Ha azt szeretné, hogy fel egy különálló gyermekzónát tooset, delegálhat egy altartomány Azure DNS-ben. Például, hogy beállítása és delegált "contoso.net" Azure DNS-beli tegyük fel, hogy tooset fel egy különálló gyermekzónát szeretne "partners.contoso.net".
+Ha különálló gyermekzónát szeretne létrehozni, azt megteheti egy altartomány Azure DNS-beli delegálásával. Tegyük fel például, hogy a „contoso.net” Azure DNS-beli beállítása és delegálása után szeretne egy különálló gyermekzónát is létrehozni, „partners.contoso.net” néven.
 
-1. Hozzon létre hello gyermek zóna "partners.contoso.net" Azure DNS-ben.
-2. Kereshet a mérvadó Névkiszolgálói rekordokat hello hello gyermek zóna tooobtain hello üzemeltető névkiszolgálókat hello gyermekzónát az Azure DNS-ben.
-3. Delegálja a gyermekzónát hello hello gyermekzónára toohello gyermekzónát a Névkiszolgálói rekordok konfigurálásával.
+1. Hozza létre a „partners.contoso.net” gyermekzónát az Azure DNS-ben.
+2. Keresse meg a mérvadó névkiszolgálói rekordokat a gyermekzónában, így megtalálja a gyermekzónát az Azure DNS-ben üzemeltető névkiszolgálókat.
+3. A gyermekzónára mutató szülőzónában delegálja a gyermekzónát a névkiszolgálói rekordok konfigurálásával.
 
 ### <a name="create-a-dns-zone"></a>DNS-zóna létrehozása
 
-1. Jelentkezzen be toohello Azure-portálon
-1. Hello központ menüben kattintson, majd **új > Hálózat >** , majd **DNS-zóna** tooopen hello hozzon létre DNS-zóna panelen.
+1. Jelentkezzen be az Azure Portalra
+1. A központi menüben kattintson az **Új > Hálózatkezelés >** elemre, majd kattintson a **DNS-zóna** elemre a DNS-zóna létrehozása panel megnyitásához.
 
     ![DNS-zóna](./media/dns-domain-delegation/dns.png)
 
-1. A hello **hozzon létre DNS-zóna** panelen adja meg a következő értékek hello, majd kattintson a **létrehozása**:
+1. A **DNS-zóna létrehozása** panelen adja meg a következő értékeket, majd kattintson a **Létrehozás** elemre:
 
    | **Beállítás** | **Érték** | **Részletek** |
    |---|---|---|
-   |**Name (Név)**|partners.contoso.net|hello hello DNS-zóna neve|
-   |**Előfizetés**|[Az Ön előfizetése]|Válasszon egy előfizetés toocreate hello Alkalmazásátjáró a.|
-   |**Erőforráscsoport**|**Meglévő használata:** contosoRG|Hozzon létre egy erőforráscsoportot. az erőforráscsoport neve hello kiválasztott hello előfizetésen belül egyedinek kell lennie. További tudnivalók az erőforráscsoportokról, olvassa el a hello toolearn [erőforrás-kezelő](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fdns%2ftoc.json#resource-groups) a cikk áttekintése.|
+   |**Name (Név)**|partners.contoso.net|A DNS-zóna neve|
+   |**Előfizetés**|[Az Ön előfizetése]|Válasszon ki egy előfizetést, amelyben létrehozza az alkalmazásátjárót.|
+   |**Erőforráscsoport**|**Meglévő használata:** contosoRG|Hozzon létre egy erőforráscsoportot. Az erőforráscsoport nevének egyedinek kell lennie a kiválasztott előfizetésen belül. Az erőforráscsoportokkal kapcsolatos további információkért olvassa el [A Resource Manager](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fdns%2ftoc.json#resource-groups) áttekintése című cikket.|
    |**Hely**|USA nyugati régiója||
 
 > [!NOTE]
-> hello erőforráscsoport hello erőforráscsoport toohello helyre hivatkozik, és nincs hatással van a hello DNS-zónát. mindig "globális" Hello DNS-zóna helyét, és nem jelenik meg.
+> Az erőforráscsoport az erőforráscsoport helyére vonatkozik, és nincs hatással a DNS-zónára. A DNS-zóna helye mindig „globális”, és nem jelenik meg.
 
 ### <a name="retrieve-name-servers"></a>Névkiszolgálók lekérdezése
 
-1. A hello DNS-zóna hello Azure-portálon létrehozott **Kedvencek** ablaktáblán kattintson a **összes erőforrás**. Kattintson a hello **partners.contoso.net** hello DNS-zónát **összes erőforrás** panelen. Ha már kiválasztott hello előfizetés több erőforrást tartalmaz, megadhatja **partners.contoso.net** a hello szűrő név szerint... mezőbe tooeasily hozzáférés hello DNS-zónát.
+1. Ha létrehozta a DNS-zónát, az Azure Portal **Kedvencek** panelén kattintson az **Összes erőforrás** elemre. Az **Összes erőforrás** panelen kattintson a **partners.contoso.net** DNS-zónára. Ha a kiválasztott előfizetésben már több erőforrás szerepel, a DNS-zóna egyszerű eléréséhez beírhatja a **partners.contoso.net** nevet a Szűrés név alapján... mezőbe.
 
-1. Hello névkiszolgálók lekérése hello DNS-zóna panelen. Ebben a példában a "contoso.net" zónához hello rendelték névkiszolgálókat "ns1-01.azure-dns.com", "ns2-01.azure-DNS.NET", "ns3-01.azure-dns.org", és "ns4-01.azure-dns.info":
+1. Kérdezze le a névkiszolgálókat a DNS-zóna panelen. Ebben a példában a „contoso.net” zónához a következő névkiszolgálók tartoznak: „ns1-01.azure-dns.com”, „ns2-01.azure-dns.net”, „ns3-01.azure-dns.org” és „ns4-01.azure-dns.info”:
 
  ![DNS-névkiszolgáló](./media/dns-domain-delegation/viewzonens500.png)
 
-Az Azure DNS automatikusan létrehozza a mérvadó Névkiszolgálói rekordokat, amelyek a zónához hozzárendelt névkiszolgálók hello tartalmazó.  toosee hello névkiszolgáló nevek Azure PowerShell vagy Azure parancssori felületen keresztül, egyszerűen szükséges tooretrieve ezeket a rekordokat.
+Az Azure DNS automatikusan létrehozza a zóna mérvadó névkiszolgálói rekordjait, amelyek a zónához rendelt névkiszolgálókat tartalmazzák.  A névkiszolgálók neveit az Azure PowerShellen vagy az Azure parancssori felületén keresztül is megtekintheti ezeknek a rekordoknak a lekérésével.
 
 ### <a name="create-name-server-record-in-parent-zone"></a>Névkiszolgáló-rekord létrehozása a szülőzónában
 
-1. Keresse meg a toohello **contoso.net** hello Azure-portálon DNS-zónát.
+1. Az Azure Portalon lépjen a **contoso.net** DNS-zónára.
 1. Kattintson a **+ Rekordhalmaz** gombra.
-1. A hello **adja hozzá a rekordhalmaz** panelen adja meg a következő értékek hello, majd kattintson a **OK**:
+1. A **Rekordhalmaz hozzáadása** panelen adja meg az alábbi értékeket, és kattintson az **OK** gombra:
 
    | **Beállítás** | **Érték** | **Részletek** |
    |---|---|---|
-   |**Name (Név)**|partners|hello hello gyermek DNS-zóna neve|
+   |**Name (Név)**|partners|A gyermek DNS-zóna neve|
    |**Típus**|NS|A névkiszolgálók esetében használja az NS típust.|
-   |**TTL**|1|Az idő toolive.|
-   |**TTL mértékegysége**|Óra|Beállítja az időt toolive egység toohours|
-   |**NÉVKISZOLGÁLÓ**|{névkiszolgálók a partners.contoso.net zónából}|Adja meg minden 4 hello névkiszolgálók partners.contoso.net zónából. |
+   |**TTL**|1|Élettartam.|
+   |**TTL mértékegysége**|Óra|Az élettartam mértékegységét órára állítja.|
+   |**NÉVKISZOLGÁLÓ**|{névkiszolgálók a partners.contoso.net zónából}|Adja meg mind a négy névkiszolgálót a partners.contoso.net zónából. |
 
    ![DNS-névkiszolgáló](./media/dns-domain-delegation/partnerzone.png)
 
 
 ### <a name="delegating-sub-domains-in-azure-dns-with-other-tools"></a>Altartományok delegálása az Azure DNS-ben más eszközökkel
 
-hello alábbi példák megadják hello lépéseket toodelegate altartományok a PowerShell és a CLI Azure DNS-ben:
+Az alábbi példák az altartományok delegálásának lépéseit mutatják be az Azure DNS-ben a PowerShell és a CLI használatával:
 
 #### <a name="powershell"></a>PowerShell
 
-hello a következő PowerShell-példa bemutatja ennek működését. Ugyanezek a lépések hello Azure-portálon keresztül hajtható végre, vagy keresztül hello platformfüggetlen Azure CLI hello.
+Az alábbi PowerShell-példa bemutatja ennek működését. Ugyanezek a lépések az Azure-portálon vagy az Azure platformfüggetlen parancssori felületén keresztül is végrehajthatók.
 
 ```powershell
-# Create hello parent and child zones. These can be in same resource group or different resource groups as Azure DNS is a global service.
+# Create the parent and child zones. These can be in same resource group or different resource groups as Azure DNS is a global service.
 $parent = New-AzureRmDnsZone -Name contoso.net -ResourceGroupName contosoRG
 $child = New-AzureRmDnsZone -Name partners.contoso.net -ResourceGroupName contosoRG
 
-# Retrieve hello authoritative NS records from hello child zone as shown in hello next example. This contains hello name servers assigned toohello child zone.
+# Retrieve the authoritative NS records from the child zone as shown in the next example. This contains the name servers assigned to the child zone.
 $child_ns_recordset = Get-AzureRmDnsRecordSet -Zone $child -Name "@" -RecordType NS
 
-# Create hello corresponding NS record set in hello parent zone toocomplete hello delegation. hello record set name in hello parent zone matches hello child zone name, in this case "partners".
+# Create the corresponding NS record set in the parent zone to complete the delegation. The record set name in the parent zone matches the child zone name, in this case "partners".
 $parent_ns_recordset = New-AzureRmDnsRecordSet -Zone $parent -Name "partners" -RecordType NS -Ttl 3600
 $parent_ns_recordset.Records = $child_ns_recordset.Records
 Set-AzureRmDnsRecordSet -RecordSet $parent_ns_recordset
 ```
 
-Használjon `nslookup` tooverify, hogy minden helyesen van beállítva hello hello gyermekzóna SOA típusú rekordjának megkeresésével.
+Az `nslookup` használatával a gyermekzóna SOA típusú rekordjának megkeresésével ellenőrizze, hogy minden helyesen van-e beállítva.
 
 ```
 nslookup -type=SOA partners.contoso.com
@@ -251,12 +251,12 @@ partners.contoso.com
 ```azurecli
 #!/bin/bash
 
-# Create hello parent and child zones. These can be in same resource group or different resource groups as Azure DNS is a global service.
+# Create the parent and child zones. These can be in same resource group or different resource groups as Azure DNS is a global service.
 az network dns zone create -g contosoRG -n contoso.net
 az network dns zone create -g contosoRG -n partners.contoso.net
 ```
 
-Hello névkiszolgálóit hello beolvasása `partners.contoso.net` zóna hello kimenetből.
+Kérdezze le a `partners.contoso.net` zóna névkiszolgálóit a kimenetből.
 
 ```
 {
@@ -278,12 +278,12 @@ Hello névkiszolgálóit hello beolvasása `partners.contoso.net` zóna hello ki
 }
 ```
 
-Hozzon létre hello rekordhalmaz és minden névkiszolgáló rekordjait.
+Hozza létre a rekordkészletet és a névkiszolgálói rekordokat mindegyik névkiszolgálóhoz.
 
 ```azurecli
 #!/bin/bash
 
-# Create hello record set
+# Create the record set
 az network dns record-set ns create --resource-group contosorg --zone-name contoso.net --name partners
 
 # Create a ns record for each name server.
@@ -295,11 +295,11 @@ az network dns record-set ns add-record --resource-group contosorg --zone-name c
 
 ## <a name="delete-all-resources"></a>Az összes erőforrás törlése
 
-toodelete összes erőforrás létrehozása ebben a cikkben teljes hello a következő lépéseket:
+A jelen cikkben létrehozott összes erőforrás törléséhez hajtsa végre az alábbi lépéseket:
 
-1. Az Azure-portálon hello **Kedvencek** ablaktáblán kattintson a **összes erőforrás**. Kattintson a hello **contosorg** erőforráscsoport hello az összes erőforrás panel. Ha már kiválasztott hello előfizetés több erőforrást tartalmaz, megadhatja **contosorg** a hello **Szűrés név alapján...** mezőbe tooeasily hozzáférés hello erőforráscsoportot.
-1. A hello **contosorg** panelen kattintson a hello **törlése** gomb.
-1. hello portal meg tootype hello nevét, amelyet az toodelete hello erőforrás csoport tooconfirm azt. Típus *contosorg* hello erőforráscsoport-nevet, majd kattintson **törlése**. Erőforráscsoport törlésével törli az összes erőforrás hello erőforráscsoporton belül, ezért mindig meg arról, hogy tooconfirm erőforráscsoport hello tartalmának törlése előtt. hello portal hello erőforráscsoporton belül található összes erőforrást törli, majd törli a hello erőforráscsoport magát. Ez a folyamat több percig is eltarthat.
+1. Az Azure Portal **Kedvencek** panelén kattintson az **Összes erőforrás** elemre. Az Összes erőforrás panelen kattintson a **contosorg** erőforráscsoportra. Ha a kiválasztott előfizetésben már több erőforrás szerepel, az erőforráscsoport egyszerű eléréséhez beírhatja a **contosorg** nevet a **Szűrés név alapján...** mezőbe.
+1. A **contosorg** panelen kattintson a **Törlés** gombra.
+1. A portál megköveteli, hogy az erőforráscsoport törlésének megerősítéséhez beírja annak nevét. Írja be a *contosorg* nevet az erőforráscsoport nevéhez, majd kattintson a **Törlés** gombra. Az erőforráscsoport törlésével az abban foglalt összes erőforrás törölve lesz, ezért mindenképp ellenőrizze az erőforráscsoportok tartalmát azok törlése előtt. A portál törli az erőforráscsoportban lévő összes erőforrást, majd magát az erőforráscsoportot is. Ez a folyamat több percig is eltarthat.
 
 ## <a name="next-steps"></a>Következő lépések
 

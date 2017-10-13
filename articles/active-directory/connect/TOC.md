@@ -16,7 +16,7 @@
 ### [Egyéni beállítások](active-directory-aadconnect-get-started-custom.md)
 ### [Frissítés a DirSync szolgáltatásról](active-directory-aadconnect-dirsync-upgrade-get-started.md)
 ### [Frissítés korábbi verzióról](active-directory-aadconnect-upgrade-previous-version.md)
-
+### [Telepítés meglévő ADSync-adatbázis használatával](active-directory-aadconnect-existing-database.md)
 
 # Útmutató
 ## Tervezés és kialakítás
@@ -27,6 +27,7 @@
 ### [Ha már rendelkezik az Azure AD-vel](active-directory-aadconnect-existing-tenant.md)
 ## [Az Azure AD Connect kezelése](active-directory-aadconnect-whats-next.md)
 ### [O365- és Azure AD-tanúsítványok megújítása](active-directory-aadconnect-o365-certs.md)
+### [Active Directory összevonási szolgáltatások- (AD FS-) farm SSL-tanúsítványának frissítése](active-directory-aadconnectfed-ssl-update.md)
 ### [Eszközvisszaírás engedélyezése](active-directory-aadconnect-feature-device-writeback.md)
 ### [Felhasználói bejelentkezési lehetőségek](active-directory-aadconnect-user-signin.md)
 #### [Közvetlen egyszeri bejelentkezés](active-directory-aadconnect-sso.md)
@@ -42,6 +43,7 @@
 ##### [Intelligens zárolás](active-directory-aadconnect-pass-through-authentication-smart-lockout.md)
 ##### [Gyakori kérdések](active-directory-aadconnect-pass-through-authentication-faq.md)
 ##### [Hibaelhárítás](active-directory-aadconnect-troubleshoot-pass-through-authentication.md)
+##### [A biztonság részletes bemutatása](active-directory-aadconnect-pass-through-authentication-security-deep-dive.md)
 ### [Többtartományos támogatás összevonási szolgáltatásokhoz](active-directory-aadconnect-multiple-domains.md)
 ### [Automatikus frissítés](active-directory-aadconnect-feature-automatic-upgrade.md)
 ### [SAML 2.0 identitásszolgáltató használata egyszeri bejelentkezéshez](active-directory-aadconnect-federation-saml-idp.md)
@@ -53,13 +55,13 @@
 ### [Jelszó-szinkronizálás](active-directory-aadconnectsync-implement-password-synchronization.md)
 ### [Azure AD-szolgáltatásfiók](active-directory-aadconnectsync-howto-azureadaccount.md)
 ### [Telepítő varázsló](active-directory-aadconnectsync-installation-wizard.md)
-### [Hello alapértelmezett konfigurációjának módosítása](active-directory-aadconnectsync-best-practices-changing-default-configuration.md)
+### [Az alapértelmezett konfiguráció módosítása](active-directory-aadconnectsync-best-practices-changing-default-configuration.md)
 ### [A szűrés konfigurálása](active-directory-aadconnectsync-configure-filtering.md)
 ### [Scheduler](active-directory-aadconnectsync-feature-scheduler.md)
 ### [Címtárbővítmények](active-directory-aadconnectsync-feature-directory-extensions.md)
 
-### [Hello Azure AD Sync szolgáltatásfiók jelszavának módosítása](active-directory-aadconnectsync-change-serviceacct-pass.md)
-### [Hello AD DS fiók jelszavának módosítása](active-directory-aadconnectsync-change-addsacct-pass.md)
+### [Az Azure AD Sync szolgáltatásfiók jelszavának módosítása](active-directory-aadconnectsync-change-serviceacct-pass.md)
+### [Az AD DS-fiók jelszavának módosítása](active-directory-aadconnectsync-change-addsacct-pass.md)
 ### [AD lomtárának engedélyezése](active-directory-aadconnectsync-recycle-bin.md)
 
 ### [Szinkronizálási szolgáltatáskezelő](active-directory-aadconnectsync-service-manager-ui.md)
@@ -80,7 +82,7 @@
 ### [Az objektum nincs szinkronizálva](active-directory-aadconnectsync-troubleshoot-object-not-syncing.md)
 ### [Jelszó-szinkronizálás](active-directory-aadconnectsync-troubleshoot-password-synchronization.md)
 ### [userCertificate által okozott LargeObject hiba](active-directory-aadconnectsync-largeobjecterror-usercertificate.md)
-### [Hogyan toorecover LocalDB 10 GB-os korlát](active-directory-aadconnect-recover-from-localdb-10gb-limit.md)
+### [Helyreállítás 10 GB-ra korlátozott LocalDB adatbázisból](active-directory-aadconnect-recover-from-localdb-10gb-limit.md)
 
 # Referencia
 ## [Kódminták](https://azure.microsoft.com/en-us/resources/samples/?service=active-directory)
@@ -91,7 +93,7 @@
 ## [Fiókok és engedélyek](active-directory-aadconnect-accounts-permissions.md)
 
 ## Az Azure AD Connect szinkronizálása
-### [Attribútumok szinkronizálva tooAzure Active Directory](active-directory-aadconnectsync-attributes-synchronized.md)
+### [Az Azure Active Directoryval szinkronizált attribútumok](active-directory-aadconnectsync-attributes-synchronized.md)
 ### [Összekötő verziókiadásai](active-directory-aadconnectsync-connector-version-history.md)
 ### [Függvényreferencia](active-directory-aadconnectsync-functions-reference.md)
 ### [Üzemeltetési feladatok és szempontok](active-directory-aadconnectsync-operations.md)
@@ -103,7 +105,7 @@
 
 
 # Kapcsolódó
-## [A helyszíni identitás infrastruktúra és a szinkronizálási szolgáltatások hello felhő figyelése](../connect-health/active-directory-aadconnect-health.md)
+## [A helyszíni identitás-infrastruktúra és a szinkronizálási szolgáltatások megfigyelése a felhőben](../connect-health/active-directory-aadconnect-health.md)
 ## [Hibrid identitáskezelés – kialakítási útmutató](https://azure.microsoft.com/documentation/articles/active-directory-hybrid-identity-design-considerations-overview/)
 
 

@@ -1,6 +1,6 @@
 ---
-title: "a StorSimple virtuális tömb aaaInstall frissítések |} Microsoft Docs"
-description: "Ismerteti, hogyan toouse hello StorSimple virtuális tömb webes felhasználói felület tooapply frissítések segítségével hello Azure portál és a gyorsjavítások módszer"
+title: "Telepítse a frissítéseket a StorSimple virtuális tömb |} Microsoft Docs"
+description: "A StorSimple virtuális tömb webes felhasználói felület használata az Azure portál és a gyorsjavítások metódussal frissítés alkalmazása"
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,95 +14,95 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 02/07/2017
 ms.author: alkohli
-ms.openlocfilehash: 6165b305fb0d404b404cf3a11dd0ade2f2f13b2f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3fb246b1515e7a637e6cff6499bf324c3f80dd45
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="install-update-04-on-your-storsimple-virtual-array"></a>A StorSimple virtuális tömb 0,4 frissítés telepítése
 
 ## <a name="overview"></a>Áttekintés
 
-Ez a cikk ismerteti a hello lépéseket szükséges tooinstall frissítés 0,4 a StorSimple virtuális tömb hello Azure-portálon és hello helyi webes felhasználói felületen keresztül. Meg kell tooapply szoftver frissítéseket vagy gyorsjavításokat tookeep a StorSimple virtuális tömb naprakész. 
+Ez a cikk ismerteti a StorSimple virtuális tömb 0,4 frissítés telepítéséhez, és az Azure-portál a helyi webes felhasználói felületen keresztül szükséges lépéseket. Szeretné alkalmazni a szoftverfrissítések vagy gyorsjavítások a StorSimple virtuális tömb naprakész állapotban tartása érdekében. 
 
-Ne feledje, hogy egy frissítés vagy gyorsjavítás telepítése az eszköz újraindul. Adott meg, hogy a StorSimple virtuális tömb hello egycsomópontos eszköz, folyamatban lévő összes i/o megszakad, és az eszköz leállást észlel. 
+Ne feledje, hogy egy frissítés vagy gyorsjavítás telepítése az eszköz újraindul. Fényében, hogy a StorSimple virtuális tömb a egycsomópontos eszközről szó, a folyamatban lévő összes i/o megszakad, és az eszköz leállást észlel. 
 
-Egy frissítés alkalmazása előtt ajánlott végrehajtása hello kötetek vagy megosztások offline hello először meg, és ezután hello eszköz. Ez minimalizálja az adatvesztést lehetőségét.
+Egy frissítés alkalmazása előtt javasoljuk, hogy szánjon a kötetek vagy megosztások offline állapotba a gazdagépen első, majd az eszközről. Ez minimalizálja az adatvesztést lehetőségét.
 
 > [!IMPORTANT]
-> Ha futtatja a frissítési 0,1 vagy GA szoftververziók, hello helyi webes felhasználói felület tooinstall Update 0,3 hello gyorsjavítás metódust kell használnia. Ha a frissítés 0,2 futtatja, vagy később, akkor javasoljuk, hogy telepítenie hello frissítések hello Azure-portálon keresztül.
+> Ha a frissítés 0,1 vagy GA szoftver verziója fut, a gyorsjavítás módszer a helyi webes felhasználói felületen keresztül frissítés 0,3 kell használnia. Ha a frissítés 0,2 futtatja, vagy később, akkor javasoljuk, hogy az Azure-portálon a frissítések telepítése.
  
 
-## <a name="use-hello-local-web-ui"></a>Hello helyi webes felhasználói felület használata
+## <a name="use-the-local-web-ui"></a>A helyi webes felhasználói felület használata
 
-Két lépésből áll hello helyi webes felhasználói felület használata esetén:
+Két lépésben történik a helyi webes felhasználói felület használata esetén:
 
-* Hello frissítést vagy gyorsjavítást hello letöltése
-* Hello frissítés vagy gyorsjavítás hello telepítése
+* A frissítés vagy gyorsjavítás letöltése
+* A frissítés vagy gyorsjavítás telepítése
 
-### <a name="download-hello-update-or-hello-hotfix"></a>Hello frissítést vagy gyorsjavítást hello letöltése
+### <a name="download-the-update-or-the-hotfix"></a>A frissítés vagy gyorsjavítás letöltése
 
-Hajtsa végre a következő lépéseket toodownload hello szoftverfrissítést a Microsoft Update katalógus hello hello.
+Hajtsa végre a következő lépéseket a szoftverfrissítés a Microsoft Update katalógusból történő letöltéséhez.
 
-#### <a name="toodownload-hello-update-or-hello-hotfix"></a>toodownload hello frissítés vagy hello gyorsjavítás.
+#### <a name="to-download-the-update-or-the-hotfix"></a>A frissítés vagy gyorsjavítás letöltése
 
-1. Indítsa el az Internet Explorert, és keresse meg a túl[http://catalog.update.microsoft.com](http://catalog.update.microsoft.com).
+1. Indítsa el az Internet Explorert, és keresse fel a [http://catalog.update.microsoft.com](http://catalog.update.microsoft.com) címet.
 
-2. Ha az első alkalommal használja a Microsoft Update katalógus hello ezen a számítógépen, kattintson a **telepítése** amikor felszólító tooinstall hello bővítmény a Microsoft Update katalógusból.
+2. Ha most használja először a Microsoft Update katalógust ezen a számítógépen, kattintson a **Telepítés** gombra, amikor a rendszer a Microsoft Update katalógus beépülő moduljának telepítésére kéri.
 
-3. A Microsoft Update katalógus hello hello a keresési mezőbe, írja be a hello Tudásbázis (KB) száma hello gyorsjavítás toodownload szeretné. Adja meg **3216577** frissítési 0,4, és kattintson a **keresési**.
+3. A keresési mezőbe, a Microsoft Update katalógus adja meg a Tudásbázis (KB) le szeretné tölteni a gyorsjavítást. Adja meg **3216577** frissítési 0,4, és kattintson a **keresési**.
    
-    hello gyorsjavítás lista megjelenik, például **StorSimple virtuális tömb frissítés 0,4**.
+    A gyorsjavítás-lista megjelenik, például **StorSimple virtuális tömb frissítés 0,4**.
    
     ![Keresés a katalógusban](./media/storsimple-virtual-array-install-update-04/download1.png)
 
-4. Kattintson az **Add** (Hozzáadás) parancsra. hello frissítés hozzá legyen adva toohello kosár.
+4. Kattintson az **Add** (Hozzáadás) parancsra. Ezzel a frissítést hozzáadja a kosárhoz.
 
 5. Kattintson a **Kosár megtekintése** gombra.
 
-6. Kattintson a **Letöltés** gombra. Adja meg vagy **Tallózás** tooa helyi helyének hello tooappear tölti le. hello frissítések letöltése toohello megadott helyre, majd egy almappát azonos nevet hello frissítésként hello helyezi. hello mappába másolt tooa hálózati megosztásra, amely elérhető hello eszköz is lehet.
+6. Kattintson a **Letöltés** gombra. Adja meg vagy **tallózással** válassza ki a helyet, ahová a fájlokat le szeretné tölteni. A frissítések a megadott helyre lesznek letöltve, azon belül az egyes frissítések nevével egyező nevű almappákba. A mappa átmásolható egy, az eszközről elérhető hálózati megosztásra is.
 
-7. Nyitott hello mappába másolta, a Microsoft Update önálló csomagfájl kell megjelennie `WindowsTH-KB3011067-x64`. Ez a fájl használt tooinstall hello frissítést vagy gyorsjavítást.
+7. Nyissa meg a másolt mappát, a Microsoft Update önálló csomagfájl kell megjelennie `WindowsTH-KB3011067-x64`. A frissítés vagy gyorsjavítás telepítése a fájllal.
 
-### <a name="install-hello-update-or-hello-hotfix"></a>Hello frissítés vagy gyorsjavítás hello telepítése
+### <a name="install-the-update-or-the-hotfix"></a>A frissítés vagy gyorsjavítás telepítése
 
-Előzetes toohello frissítés vagy gyorsjavítás telepítési, győződjön meg arról, hogy hello frissítést vagy hello gyorsjavítás letöltése vagy a gazdagépen helyileg vagy egy hálózati megosztáson keresztül érhető el. 
+A frissítés vagy gyorsjavítás telepítése előtt győződjön meg arról, hogy a frissítést, vagy a gyorsjavítás letöltése vagy a gazdagépen helyileg vagy egy hálózati megosztáson keresztül érhető el. 
 
-A metódus tooinstall frissítések használatához GA futtató eszközök, vagy 0,1 szoftververziók frissítése. Ez az eljárás kisebb, mint 2 percet toocomplete vesz igénybe. Hajtsa végre a következő hello lépések tooinstall hello frissítést vagy gyorsjavítást.
+Ezt a módszert egy GA futtató eszközre telepítse a frissítéseket, vagy 0,1 szoftververziók frissítésére. Ez az eljárás kisebb, mint 2 percet is igénybe vehet. Hajtsa végre a következő lépésekkel telepíti a frissítést vagy gyorsjavítást.
 
-#### <a name="tooinstall-hello-update-or-hello-hotfix"></a>tooinstall hello frissítés vagy hello gyorsjavítás.
+#### <a name="to-install-the-update-or-the-hotfix"></a>A frissítés vagy gyorsjavítás telepítése
 
-1. Hello helyi webes felhasználói felületén, nyissa meg túl**karbantartási** > **szoftverfrissítés**.
+1. A helyi webes felhasználói felület váltson **karbantartási** > **szoftverfrissítés**.
    
     ![eszköz frissítése](./media/storsimple-virtual-array-install-update/update1m.png)
 
-2. A **frissítés fájl elérési útját**adja meg a fájlnevet hello hello frissítés vagy gyorsjavítás hello. Toohello frissítés vagy gyorsjavítás telepítési fájl is megkeresheti, ha egy hálózati megosztáson. Kattintson az **Alkalmaz** gombra.
+2. A **frissítés fájl elérési útját**, írja be a fájl nevét, a frissítés vagy gyorsjavítás. A frissítés vagy gyorsjavítás telepítési fájl is tallózással, ha egy hálózati megosztáson. Kattintson az **Alkalmaz** gombra.
    
     ![eszköz frissítése](./media/storsimple-virtual-array-install-update/update2m.png)
 
-3. A figyelmeztetés akkor jelenik meg. Ez a megadott van egy egycsomópontos eszköz után hello frissítés, hello eszköz újraindul, és nincs leállás. Kattintson a pipa ikonra hello.
+3. A figyelmeztetés akkor jelenik meg. Ez a megadott van egy egycsomópontos eszköz után a frissítés nincs alkalmazva, az eszköz újraindul, és nincs leállás. Kattintson a pipa ikonra.
    
    ![eszköz frissítése](./media/storsimple-virtual-array-install-update/update3m.png)
 
-4. hello frissítés elindul. Hello eszköz sikeres frissítése után újraindul. hello helyi felhasználói felület mpelement nem érhető el ennek az időtartamnak.
+4. A frissítés elindul. Az eszköz sikeres frissítése után újraindul. Ennek az időtartamnak a helyi felhasználói felülete nem érhető el.
    
     ![eszköz frissítése](./media/storsimple-virtual-array-install-update/update5m.png)
 
-5. Hello újraindítás befejezése után a következő lépés az toohello **bejelentkezés** lap. tooverify hello eszközhöz frissített, hello helyi webes felhasználói felületén, nyissa meg túl**karbantartási** > **szoftverfrissítés**. megjelenített hello szoftverének verziójával kell **10.0.0.0.0.10289.0** 0,4 frissítés.
+5. Az újraindítás befejeződése után kattintva megnyílik a **bejelentkezés** lap. Győződjön meg arról, hogy az eszköz szoftvere frissítette, a helyi webes felhasználói felület, keresse fel **karbantartási** > **szoftverfrissítés**. A megjelenített szoftverfrissítési verziót kell **10.0.0.0.0.10289.0** 0,4 frissítés.
    
    > [!NOTE]
-   > A Microsoft hello helyi webes felhasználói felület némileg eltérő módon hello szoftververziók jelentést, és hello Azure-portálon. Például a helyi webes felhasználói felület jelentések hello **10.0.0.0.0.10289** és az Azure portál jelentések hello **10.0.10289.0** hello az azonos verzióját.
+   > A szoftver verziójával egy némileg eltérő módon a helyi webes felhasználói felület és az Azure-portálon jelentés azt. Például a helyi webes felhasználói Felületét jelent **10.0.0.0.0.10289** és az Azure portál jelentések **10.0.10289.0** azonos verziójához.
    
     ![eszköz frissítése](./media/storsimple-virtual-array-install-update/update6m.png)
 
-## <a name="use-hello-azure-portal"></a>Hello Azure portál használata
+## <a name="use-the-azure-portal"></a>Az Azure Portal használata
 
-Update futtatása 0,2 és újabb verziók, azt javasoljuk, hogy telepítse a frissítéseket hello Azure-portálon keresztül. hello portál eljáráshoz szükséges hello felhasználói tooscan, töltse le és telepítse a hello frissítések. Ezzel az eljárással toocomplete körülbelül 7 percet vesz igénybe. Hajtsa végre a következő hello lépések tooinstall hello frissítést vagy gyorsjavítást.
+Ha Update futtatása 0,2 és újabb verziók, azt javasoljuk, hogy telepítse a frissítéseket az Azure portálon keresztül. A portál eljárás a felhasználónak kell vizsgálat, töltse le és telepítse a frissítéseket. Ez az eljárás befejezéséhez körülbelül 7 perc. Hajtsa végre a következő lépésekkel telepíti a frissítést vagy gyorsjavítást.
 
 [!INCLUDE [storsimple-virtual-array-install-update-via-portal](../../includes/storsimple-virtual-array-install-update-via-portal-04.md)]
 
-Hello után egy telepítés befejeződött (a feladatok állapota a 100 %-os), nyissa meg tooyour StorSimple Device Manager szolgáltatást. Válassza ki **eszközök** majd válassza ki, és kattintson a kívánt eszközök csatlakoztatott toothis szolgáltatás hello listája tooupdate hello eszköz. A hello **beállítások** panelen, lépjen túl**kezelése** válassza ki azt **eszközfrissítésekhez**. megjelenített hello szoftverének verziójával kell **10.0.10289.0**.
+A telepítés befejezése után (a feladatok állapota a 100 %-os), nyissa meg a StorSimple eszköz Manager szolgáltatáshoz. Válassza ki **eszközök** majd jelölje ki, és kattintson az eszközre, ezt a szolgáltatást a csatlakoztatott eszközök közül frissíti. Az a **beállítások** paneljén lépjen **kezelése** válassza ki azt **eszközfrissítésekhez**. A megjelenített szoftverfrissítési verziót kell **10.0.10289.0**.
 
 
 ## <a name="next-steps"></a>Következő lépések

@@ -1,6 +1,6 @@
 ---
-title: "az Exchange server tooAzure Azure Backup Server biztonsági másolatának mentése aaaBack |} Microsoft Docs"
-description: "Megtudhatja, hogyan mentése az Exchange server tooAzure tooback biztonsági mentése Azure Backup Server használatával"
+title: "Készítsen biztonsági mentést egy Exchange-kiszolgálóhoz az Azure biztonsági mentés az Azure Backup Server |} Microsoft Docs"
+description: "Útmutató: biztonsági mentése az Exchange-kiszolgáló Azure Backup szolgáltatás használatával az Azure Backup Server"
 services: backup
 documentationcenter: 
 author: pvrk
@@ -14,98 +14,98 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: pullabhk
-ms.openlocfilehash: db874161151fc57c5b79c41531e18d577f567f66
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 60b784fd00013c2b9504f8635c6b5c4c592563be
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="back-up-an-exchange-server-tooazure-backup-with-azure-backup-server"></a>Készítsen biztonsági másolatot az Exchange server tooAzure biztonsági mentéshez az Azure Backup Server
-Ez a cikk ismerteti, hogyan tooconfigure Microsoft Azure Backup Server (MABS) tooback be egy Microsoft Exchange server tooAzure.  
+# <a name="back-up-an-exchange-server-to-azure-backup-with-azure-backup-server"></a>Biztonsági mentése az Exchange-kiszolgáló Azure Backup szolgáltatás az Azure Backup Server
+Ez a cikk ismerteti, hogyan konfigurálása a Microsoft Azure Backup Server (MABS) biztonsági mentése egy Microsoft Exchange-kiszolgálóhoz az Azure-bA.  
 
 ## <a name="prerequisites"></a>Előfeltételek
 A folytatás előtt győződjön meg arról, hogy Azure Backup Server [telepítve és előkészített](backup-azure-microsoft-azure-backup.md).
 
 ## <a name="mabs-protection-agent"></a>MABS védelmi ügynök
-tooinstall hello MABS védelmi ügynök hello Exchange-kiszolgálón, kövesse az alábbi lépéseket:
+Az Exchange kiszolgálón a MABS védelmi ügynök telepítéséhez kövesse az alábbi lépéseket:
 
-1. Győződjön meg arról, hogy hello tűzfalak helyesen van-e konfigurálva. Lásd: [hello ügynök tűzfalkivétel konfigurálása](https://technet.microsoft.com/library/Hh758204.aspx).
-2. Hello ügynök telepíthető hello Exchange-kiszolgálóhoz gombra kattintva **felügyeleti > ügynökökkel > telepítése** MABS felügyeleti konzolon. Lásd: [hello MABS védelmi ügynök telepítéséhez](https://technet.microsoft.com/library/hh758186.aspx?f=255&MSPPError=-2147217396) a részletes lépéseket.
+1. Győződjön meg arról, hogy a tűzfalak konfigurációja megfelelő. Lásd: [tűzfalkivétel konfigurálása az ügynök számára](https://technet.microsoft.com/library/Hh758204.aspx).
+2. Az Exchange-kiszolgálóhoz gombra kattintva a ügynök telepíthető **felügyeleti > ügynökök > telepítése** MABS felügyeleti konzolon. Lásd: [a MABS védelmi ügynök telepítése](https://technet.microsoft.com/library/hh758186.aspx?f=255&MSPPError=-2147217396) a részletes lépéseket.
 
-## <a name="create-a-protection-group-for-hello-exchange-server"></a>Hello Exchange-kiszolgáló védelmi csoport létrehozása
-1. Hello MABS felügyeleti konzolt, kattintson **védelmi**, és kattintson a **új** a hello eszköz menüszalag tooopen hello **új védelmi csoport létrehozása** varázsló.
-2. A hello **üdvözlő** hello varázslóban kattintson a képernyő **következő**.
-3. A hello **védelmi csoport típusának kiválasztása** képernyőn, jelölje be **kiszolgálók** kattintson **következő**.
-4. Jelölje be hello Exchange server-adatbázis tooprotect szeretné, majd kattintson **következő**.
+## <a name="create-a-protection-group-for-the-exchange-server"></a>Az Exchange-kiszolgáló védelmi csoport létrehozása
+1. A MABS felügyeleti konzolon kattintson a **védelmi**, és kattintson a **új** megnyitásához az eszközsávon a **új védelmi csoport létrehozása** varázsló.
+2. Az a **üdvözlő** képernyőjén kattintson a varázsló **következő**.
+3. Az a **védelmi csoport típusának kiválasztása** képernyőn, jelölje be **kiszolgálók** kattintson **következő**.
+4. Válassza ki az Exchange server-adatbázis védelmét, és kattintson a kívánt **következő**.
 
    > [!NOTE]
-   > Ha az Exchange 2013 védelmét, ellenőrizze a hello [Exchange 2013 előfeltételei](https://technet.microsoft.com/library/dn751029.aspx).
+   > Ha az Exchange 2013 védelmét, ellenőrizze a [Exchange 2013 előfeltételei](https://technet.microsoft.com/library/dn751029.aspx).
    >
    >
 
-    A következő példa hello hello Exchange 2010 adatbázis van kiválasztva.
+    A következő példában az Exchange 2010 adatbázis van kiválasztva.
 
     ![Csoporttagok kiválasztása](./media/backup-azure-backup-exchange-server/select-group-members.png)
-5. Hello adatvédelmi módszer kiválasztása.
+5. Az adatvédelmi módszer kiválasztása.
 
-    Hello védelmi csoport neve, majd válassza ki mindkét alábbi beállítások hello:
+    A védelmi csoport neve, majd válassza ki a következők mindegyikét:
 
    * Rövid távú lemezes védelmet szeretnék.
    * Online védelmet szeretnék.
 6. Kattintson a **Tovább** gombra.
-7. Jelölje be hello **futtassa az Eseutil toocheck adatintegritást** lehetőséget, ha azt szeretné, hogy az Exchange Server-adatbázisok hello toocheck hello integritását.
+7. Válassza ki a **Eseutil futtatása az adatok sértetlenségének ellenőrzéséhez** lehetőséget, ha azt szeretné, hogy az Exchange Server-adatbázisok sértetlenségének ellenőrzéséhez.
 
-    Miután kiválasztotta ezt a beállítást, biztonsági mentés konzisztencia-ellenőrzést fog futni a MABS tooavoid hello i/o-forgalmat hello futtatásával **eseutil** parancs hello Exchange-kiszolgálón.
+    Miután kiválasztotta ezt a beállítást, biztonsági mentés konzisztencia-ellenőrzést fog futni a MABS az i/o-forgalmat futtatásával elkerülése érdekében a **eseutil** parancsot az Exchange-kiszolgálón.
 
    > [!NOTE]
-   > toouse ezt a beállítást, hello Ese.dll és az Eseutil.exe fájlok toohello C:\Program Files\Microsoft Azure Backup\DPM\DPM\bin könyvtár hello MAB kiszolgálón kell átmásolnia. Ellenkező esetben a következő hiba hello akkor váltódik ki:  
+   > Használja ezt a beállítást, át kell másolnia az Ese.dll és az Eseutil.exe fájloknak a C:\Program Files\Microsoft Azure Backup\DPM\DPM\bin könyvtárához a MAB. Ellenkező esetben aktiválódik, a következő hibával:  
    > ![az Eseutil hiba](./media/backup-azure-backup-exchange-server/eseutil-error.png)
    >
    >
 8. Kattintson a **Tovább** gombra.
-9. A SELECT hello adatbázis **másolásos biztonsági mentésre**, és kattintson a **következő**.
+9. Válassza ki az adatbázist a **másolásos biztonsági mentésre**, és kattintson a **következő**.
 
    > [!NOTE]
    > Ha nincs bejelölve a "Teljes biztonsági másolat" adatbázis másolatának legalább egy DAG, naplók nem lesznek csonkolva.
    >
    >
-10. Hello célokat konfigurálása **rövid távú biztonsági mentés**, és kattintson a **következő**.
-11. Tekintse át a hello rendelkezésre álló szabad lemezterület, majd **következő**.
-12. Válassza ki a hello idő, mely hello MAB kiszolgáló létrehoz hello kezdeti replikálást, és kattintson a **következő**.
-13. Hello konzisztencia-ellenőrzési beállítások kiválasztása, és kattintson **következő**.
-14. Adja meg, hogy szeretné, hogy tooback tooAzure fel, és kattintson hello adatbázis **következő**. Példa:
+10. Konfigurálja a célokat **rövid távú biztonsági mentés**, és kattintson a **következő**.
+11. Tekintse át a rendelkezésre álló lemezterület, majd a **következő**.
+12. Válassza ki azt az időpontot, ahol a MAB kiszolgáló létrehoz a kezdeti replikálást, és kattintson a **következő**.
+13. A konzisztencia-ellenőrzési beállítások kiválasztása, és kattintson **következő**.
+14. Adja meg az adatbázis biztonsági mentése az Azure-ba, és kattintson a kívánt **következő**. Példa:
 
     ![Online védelem adatainak megadása](./media/backup-azure-backup-exchange-server/specify-online-protection-data.png)
-15. Hello ütemezésének megadása **Azure biztonsági mentés**, és kattintson a **következő**. Példa:
+15. Adja meg a ütemezését **Azure biztonsági mentés**, és kattintson a **tovább**. Példa:
 
     ![Adja meg az online biztonsági mentés ütemezése](./media/backup-azure-backup-exchange-server/specify-online-backup-schedule.png)
 
     > [!NOTE]
-    > Jegyezze fel az Online helyreállítási pontok alapuló Expressz teljes helyreállítási pontokat. Ezért úgy kell ütemeznie hello online helyreállítási pont hello később megadott hello az expressz teljes helyreállítási pontot.
+    > Jegyezze fel az Online helyreállítási pontok alapuló Expressz teljes helyreállítási pontokat. Az online helyreállítási pontot, ezért úgy kell ütemeznie után az idő megadott az expressz teljes helyreállítási pont.
     >
     >
-16. Hello megőrzési házirend konfigurálásában az **Azure biztonsági mentés**, és kattintson a **következő**.
+16. Konfigurálja az adatmegőrzési **Azure biztonsági mentés**, és kattintson a **következő**.
 17. Válasszon egy online replikációs lehetőséget, és kattintson a **következő**.
 
-    Ha nagy adatbázis, a kezdeti biztonsági mentési toobe hello hello hálózaton keresztül létrehozott hosszú ideig eltarthat. tooavoid probléma hozhat létre offline biztonsági másolat.  
+    Ha nagy adatbázis, a kezdeti biztonsági másolatot a hálózaton keresztül a létrehozandó hosszú ideig eltarthat. A probléma elkerülése érdekében, létrehozhat egy offline biztonsági másolat.  
 
     ![Online megőrzési szabály megadása](./media/backup-azure-backup-exchange-server/specify-online-retention-policy.png)
-18. Erősítse meg hello beállításait, és kattintson a **csoport létrehozása**.
+18. Hagyja jóvá a beállításokat, és kattintson a **csoport létrehozása**.
 19. Kattintson a **Bezárás** gombra.
 
-## <a name="recover-hello-exchange-database"></a>Hello Exchange-adatbázis helyreállítása
-1. Kattintson az Exchange-adatbázis toorecover **helyreállítási** hello MABS felügyeleti konzol a.
-2. Keresse meg, hogy szeretné-e toorecover hello Exchange-adatbázis.
-3. Az online helyreállítási pontot válasszon hello *helyreállításkor* legördülő listából.
-4. Kattintson a **helyreállítása** toostart hello **helyreállítási varázsló**.
+## <a name="recover-the-exchange-database"></a>Az Exchange-adatbázis helyreállítása
+1. Exchange-adatbázis helyreállítása, kattintson a **helyreállítási** MABS felügyeleti konzolján.
+2. Keresse meg a helyreállítani kívánt Exchange-adatbázis.
+3. Válassza ki az online helyreállítási pontot a *helyreállításkor* legördülő listából.
+4. Kattintson a **helyreállítása** elindítani a **helyreállítási varázsló**.
 
 Az online helyreállítási pontok, öt helyreállítási típusa van:
 
-* **Helyreállítás toooriginal Exchange-kiszolgálón:** hello adatokat kell helyreállított toohello eredeti Exchange-kiszolgálón.
-* **Exchange Server tooanother adatbázis helyreállítása:** hello adatokat kell helyreállított tooanother egy másik Exchange server-adatbázisba.
-* **Helyreállítás helyreállítási adatbázisba tooa:** hello adatokat fogja a helyreállított tooan Exchange helyreállítási adatbázis (Rekordadatbázis).
-* **Tooa hálózati mappa másolása:** hello adatokat fogja a helyreállított tooa hálózati mappába.
-* **Másolja a tootape:** Ha rendelkezik egy szalagtárat, vagy egy önálló szalagos meghajtót csatlakoztatott és a beállított MABS, hello helyreállítási pont lesz tooa szabad szalagra másolni.
+* **Helyreállítás az eredeti Exchange-kiszolgálón:** fogja visszaállítani az adatokat az eredeti Exchange-kiszolgálóhoz.
+* **Helyreállítás az Exchange-kiszolgáló egy másik adatbázisba:** fogja visszaállítani az adatokat egy másik egy másik Exchange server-adatbázisba.
+* **Helyreállítás helyreállítási adatbázisba:** lesz az adatok helyreállítása egy Exchange helyreállítási adatbázis (Rekordadatbázis).
+* **Másolás hálózati mappába:** fogja visszaállítani az adatokat egy hálózati mappába.
+* **Másolás szalagra:** egy szalagtárat vagy egy önálló szalagos meghajtót csatlakoztatott, de MABS konfigurálva van, ha a helyreállítási pont egy szabad szalagra kerülnek-e.
 
     ![Válassza ki az online replikációs](./media/backup-azure-backup-exchange-server/choose-online-replication.png)
 

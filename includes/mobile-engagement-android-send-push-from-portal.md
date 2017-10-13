@@ -1,44 +1,44 @@
-### <a name="grant-mobile-engagement-access-tooyour-gcm-api-key"></a>Engedélyezze a Mobile Engagement hozzáférés tooyour GCM API-kulcs
-tooallow a Mobile Engagement toosend leküldéses értesítések az Ön nevében, meg kell azt tooyour API-kulcs hozzáférési toogrant. Ez történik, konfigurálásával és a kulcs megadása hello a Mobile Engagement portált.
+### <a name="grant-mobile-engagement-access-to-your-gcm-api-key"></a>A GCM API-kulcshoz való hozzáférés biztosítása a Mobile Engagement számára
+Ha engedélyezni szeretné, hogy a Mobile Engagement leküldéses értesítéseket küldjön az Ön nevében, hozzáférést kell biztosítania számára az API-kulcshoz. Ezt a kulcs konfigurálásával, valamint annak a Mobile Engagement portálon történő megadásával teheti meg.
 
-1. A klasszikus Azure portálon, ellenőrizze a van a hello alkalmazás azt a projekt használ, és kattintson a hello **Engage** hello alsó gombra:
+1. A klasszikus Azure portálon győződjön meg arról, hogy be van lépve a projekthez használt alkalmazásba, majd kattintson a lap alján található **Engage** (Aktiválás) gombra:
    
     ![](./media/mobile-engagement-android-send-push/engage-button.png)
-2. Kattintson a hello **beállítások** -> **natív leküldés** szakasz tooenter a GCM-kulcs:
+2. Ezután kattintson a **Beállítások** -> **Natív leküldés** elemre a GCM-kulcs megadásához:
    
     ![](./media/mobile-engagement-android-send-push/engagement-portal.png)
-3. Hello kattintson **szerkesztése** elé ikon **API-kulcs** a hello **GCM-beállítások** szakasz a lent látható módon:
+3. Kattintson az **API-kulcs** melletti **Szerkesztés** ikonra a **GCM-beállítások** szakaszban, ahogy az ábra is mutatja:
    
     ![](./media/mobile-engagement-android-send-push/native-push-settings.png)
-4. Hello előugró ablakban illessze be a hello előtt beszerzett GCM kiszolgálói kulcsot, és kattintson a **Ok**.
+4. A felugró ablakban illessze be az előzőleg beszerzett GCM-kiszolgálókulcsot, majd kattintson az **OK** gombra.
    
     ![](./media/mobile-engagement-android-send-push/api-key.png)
 
-## <a id="send"></a>Egy értesítési tooyour app küldése
-Most létrehozunk egy egyszerű leküldéses értesítési kampányt, amely elküld egy leküldéses értesítési tooour alkalmazást.
+## <a id="send"></a>Értesítés küldése az alkalmazásnak
+Ezután létrehozunk egy egyszerű leküldéses értesítési kampányt, amely elküld egy leküldéses értesítést az alkalmazásnak.
 
-1. Keresse meg a toohello **ELÉRNI** a Mobile Engagement portálra a lap.
-2. Kattintson a **új hirdetmény** toocreate a leküldéses értesítési kampány.
+1. Lépjen a Mobile Engagement portál **REACH** (ELÉRÉS) lapjára.
+2. Kattintson a **New announcement** (Új értesítés) elemre a leküldéses értesítési kampány létrehozásához.
    
     ![](./media/mobile-engagement-android-send-push/new-announcement.png)
-3. A következő lépéseket hello kampány első mezőjét hello beállítása:
+3. Állítsa be a kampány első mezőjét a következő lépésekkel:
    
     ![](./media/mobile-engagement-android-send-push/campaign-first-params.png)
    
     a. Nevezze el a kampányt.
    
-    b. Jelölje be hello **kézbesítési típust** , *Rendszerértesítés -> egyszerű*: Ez az hello egyszerű Android leküldéses értesítési típus, amely egy címet és egy rövid szöveges sort.
+    b. A Kézbesítési típust (**Delivery type**) állítsa *System notification -> Simple* (Rendszerértesítés -> Egyszerű) lehetőségre. Ez egy egyszerű Android leküldéses értesítési típus, amely egy címet és egy rövid szöveges sort tartalmaz.
    
-    c. Válassza ki **kézbesítési időhöz** , *bármikor* tooallow hello app tooreceive értesítést, hogy hello alkalmazás elindult-e.
+    c. A **Delivey time** (Kézbesítés időpontja) beállítást állítsa *Any time* (Bármikor) értékre. Így az alkalmazás akkor is megkapja az értesítéseket, ha nincs elindítva.
    
-    d. A hello értesítési szöveg típusú hello **cím** amely szerepelni fog a hello leküldéses üzenetben félkövérrel.
+    d. Az értesítés szövegéhez adja meg a címet (**Title**), amely a leküldéses üzenetben félkövérrel szedve jelenik majd meg.
    
     e. Ezután írja be az üzenetét a **Message** (Üzenet) mezőbe
-4. Görgessen lefelé, és a hello **tartalom** szakaszban jelölje be **csak értesítés**.
+4. Görgessen lefelé, és a **Content** (Tartalom) szakaszban válassza a **Notification only** (Csak értesítés) lehetőséget.
    
     ![](./media/mobile-engagement-android-send-push/campaign-content.png)
-5. Elkészült a beállítással hello lehető legegyszerűbb kampányt lehetséges. Görgessen lefelé, és kattintson a hello **létrehozása** toosave gombra a kampány.
-6. Utolsó lépés: kattintson a **aktiválás** tooactivate a kampány toosend leküldéses értesítéseket.
+5. Ezzel beállította a lehető legegyszerűbb kampányt. Görgessen újra le, és kattintson a **Create** (Létrehozás) gombra a kampány mentéséhez.
+6. Utolsó lépés: Kattintson az **Activate** (Aktiválás) lehetőségre a kampány aktiválásához és a leküldéses értesítések küldésének megkezdéséhez.
    
     ![](./media/mobile-engagement-android-send-push/campaign-activate.png)
 

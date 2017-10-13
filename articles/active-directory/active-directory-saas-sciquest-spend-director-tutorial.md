@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált SciQuest töltött igazgató |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és SciQuest töltött igazgató között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és SciQuest töltött igazgató között."
 services: active-directory
 documentationcenter: 
 author: jeevansd
@@ -14,223 +14,223 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/17/2017
 ms.author: jeedes
-ms.openlocfilehash: 47c46f1297054fd96b86c1d8c66e1a55ec151497
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 84b707668dc45e92e6151f422f1c919f638533b1
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-sciquest-spend-director"></a>Oktatóanyag: Azure Active Directoryval integrált SciQuest töltött igazgató
-hello Ez az oktatóanyag célja tooshow, hogyan toointegrate SciQuest töltött igazgató az Azure Active Directoryval (Azure AD).  
-SciQuest töltött igazgató integrálása az Azure AD lehetővé teszi a következő előnyöket hello: 
+Ez az oktatóanyag célja SciQuest töltött igazgató integrálása az Azure Active Directory (Azure AD) mutatjuk be.  
+SciQuest töltött igazgató integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja: 
 
-* Megadhatja a hozzáférés tooSciQuest ráfordítás igazgató rendelkező Azure AD-ben 
-* Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooSciQuest ráfordítás igazgató (egyszeri bejelentkezés) a saját Azure AD-fiókok
-* Kezelheti a fiókokat, egy központi helyen - hello a klasszikus Azure portálon
+* Megadhatja a SciQuest töltött igazgató hozzáféréssel rendelkező Azure AD-ben 
+* Az Azure AD-fiókok a engedélyezheti a felhasználóknak, hogy automatikusan lekérni bejelentkezett SciQuest töltött igazgató (egyszeri bejelentkezés)
+* Kezelheti a fiókokat, egy központi helyen - a klasszikus Azure portálon
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
-tooconfigure SciQuest töltött igazgató az Azure AD integrálása, a következő elemek hello kell:
+Konfigurálása az Azure AD-integrációs SciQuest töltött igazgató, a következőkre van szükség:
 
 * Az Azure AD szolgáltatásra
 * Egy SciQuest töltött igazgató egyszeri bejelentkezés engedélyezve van az előfizetésben
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 > 
 > 
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 * Ne használja az éles környezetben, ha ez nem szükséges.
 * Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/). 
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-hello Ez az oktatóanyag célja tooenable meg tootest az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben.  
-Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ez az oktatóanyag célja ahhoz, hogy egy tesztkörnyezetben az Azure AD az egyszeri bejelentkezés tesztelése.  
+Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. Hello gyűjteményből SciQuest töltött igazgató hozzáadása 
+1. A gyűjteményből SciQuest töltött igazgató hozzáadása 
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-sciquest-spend-director-from-hello-gallery"></a>Hello gyűjteményből SciQuest töltött igazgató hozzáadása
-tooconfigure hello integrációs SciQuest töltött igazgató, az Azure AD-be, meg kell tooadd SciQuest töltött igazgató hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-sciquest-spend-director-from-the-gallery"></a>A gyűjteményből SciQuest töltött igazgató hozzáadása
+Az Azure AD integrálása a SciQuest töltött igazgató konfigurálásához kell hozzáadnia SciQuest töltött igazgató a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
 
-**tooadd SciQuest töltött igazgató hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
+**A gyűjteményből SciQuest töltött igazgató hozzáadásához hajtsa végre az alábbi lépéseket:**
 
-1. A hello **a klasszikus Azure portálon**, a hello bal oldali navigációs panelen, kattintson a **Active Directory**. 
+1. Az a **a klasszikus Azure portálon**, a bal oldali navigációs ablaktábláján kattintson **Active Directory**. 
    
     ![Active Directory][1]
 
-2. A hello **Directory** listában, jelölje be hello directory kívánt tooenable címtár-integráció.
+2. Az a **Directory** listára, válassza ki a könyvtárat, amelyhez a címtár-integrációs engedélyezni szeretné.
 
-3. tooopen hello alkalmazások megtekintése, hello könyvtár nézetben kattintson **alkalmazások** hello felső menüjében.
+3. A könyvtár nézetben a alkalmazások nézet megnyitásához kattintson **alkalmazások** a felső menüben.
    
     ![Alkalmazások][2]
 
-4. Kattintson a **Hozzáadás** hello lap hello alján.
+4. Kattintson a **Hozzáadás** az oldal alján.
    
     ![Alkalmazások][3]
 
-5. A hello **miről szeretne toodo** párbeszédpanel, kattintson **hello gyűjteményből alkalmazás hozzáadása**.
+5. Az a **mi történjen a teendő** párbeszédpanel, kattintson a **hozzáadhat egy alkalmazást a katalógusból**.
    
     ![Alkalmazások][4]
 
-6. Hello keresési mezőbe, írja be a **sciQuest töltött igazgató**.
+6. Írja be a keresőmezőbe, **sciQuest töltött igazgató**.
    
     ![Alkalmazások][5]
 
-7. Hello eredmények ablaktábláján jelöljön ki **SciQuest töltött igazgató**, és kattintson a **Complete** tooadd hello alkalmazás.
+7. Az eredmények ablaktáblájában válassza **SciQuest töltött igazgató**, és kattintson a **Complete** az alkalmazás hozzáadása.
    
     ![Alkalmazások][6]
 
 ## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
-hello ebben a szakaszban célja tooshow hogyan tooconfigure és az Azure AD az egyszeri bejelentkezés SciQuest töltött igazgató-teszthez alapján "Britta Simon" nevű tesztfelhasználó.
+Ez a szakasz célja bemutatják a konfigurálás és tesztelés az Azure AD az egyszeri bejelentkezés SciQuest töltött igazgató "Britta Simon" nevű tesztfelhasználó alapján.
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó SciQuest töltött igazgató tooan felhasználó Azure AD-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználói hello SciQuest töltött Director közötti kapcsolat kapcsolatot kell létrehozni toobe.  
-Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** SciQuest töltött Director.
+Az egyszeri bejelentkezés működéséhez az Azure AD tudnia kell, a partner felhasználó SciQuest töltött igazgató egy olyan felhasználó számára az Azure ad-ben van. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó SciQuest töltött Director közötti kapcsolat kapcsolatot kell létrehozni.  
+Ez a hivatkozás kapcsolat létesíti értéket rendeli az **felhasználónév** értékeként Azure AD-ben a **felhasználónév** SciQuest töltött Director.
 
-tooconfigure és az Azure AD az egyszeri bejelentkezés SciQuest töltött igazgató-teszthez, a következő építőelemeket toocomplete hello szüksége:
+Az Azure AD egyszeri bejelentkezést a SciQuest töltött igazgató tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD egy egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-3. **[SciQuest töltött igazgató tesztfelhasználó létrehozása](#creating-a-halogen-software-test-user)**  -toohave Britta Simon SciQuest töltött Director, amely az Azure AD csatolt toohello ábrázolása rá, hogy valami.
-4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD egy egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+3. **[SciQuest töltött igazgató tesztfelhasználó létrehozása](#creating-a-halogen-software-test-user)**  - való egy megfelelője a Britta Simon SciQuest töltött igazgató, amely csatolva van rá, hogy az Azure AD ábrázolása.
+4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configuring-azure-ad-single-single-sign-on"></a>Az Azure AD egy egyszeri bejelentkezés konfigurálása
-hello ebben a szakaszban célja az Azure AD tooenable egyszeri bejelentkezés a klasszikus Azure portálon hello és tooconfigure egyszeri bejelentkezést az SciQuest töltött igazgató alkalmazásban.
+Ez a szakasz célja engedélyezése az Azure AD az egyszeri bejelentkezés a klasszikus Azure portálon, és konfigurálása egyszeri bejelentkezéshez az SciQuest töltött igazgató alkalmazásban.
 
-**SciQuest töltött igazgató, az Azure AD az egyszeri bejelentkezés tooconfigure hajtsa végre a lépéseket követve hello:**
+**Az Azure AD az egyszeri bejelentkezés konfigurálása SciQuest töltött igazgató, hajtsa végre az alábbi lépéseket:**
 
-1. A klasszikus Azure portálon, a hello hello **SciQuest töltött igazgató** alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** tooopen hello **konfigurálása egyszeri bejelentkezéshez**párbeszédpanel.
+1. A klasszikus Azure portálon a a **SciQuest töltött igazgató** alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** megnyitásához a **konfigurálása egyszeri bejelentkezéshez** párbeszédpanel.
    
     ![Egyszeri bejelentkezés konfigurálása][8]
 
-2. A hello **hogyan szeretné tooSciQuest ráfordítás igazgató a felhasználók toosign** lapon jelölje be **az Azure AD az egyszeri bejelentkezés**, és kattintson a **következő**.
+2. A a **hová bejelentkezni SciQuest töltött igazgató felhasználók** lapon jelölje be **az Azure AD az egyszeri bejelentkezés**, és kattintson a **következő**.
    
     ![Az Azure AD-egyszeri bejelentkezés][9]
 
-3. A hello **Alkalmazásbeállítások konfigurálása** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello: 
+3. Az a **Alkalmazásbeállítások konfigurálása** párbeszédpanel lapon, a következő lépésekkel: 
    
     ![Alkalmazásbeállítások konfigurálása][10]
    
-     a. A hello **URL-cím bejelentkezési** szövegmező, írja be az URL-címet használják-e a felhasználók toosign tooyour SciQuest töltött igazgató alkalmazásra mintát a következő hello használata: *https://.* sciquest.com/.**
+     a. Az a **URL-cím bejelentkezési** szövegmező, írja be az URL-cím segítségével a felhasználók jelentkezzen be a SciQuest töltött igazgató alkalmazást a következő mintát: *https://.* sciquest.com/.**
    
-     b. A hello **válasz URL-CÍMEN** szövegmező, hello típusa megegyezik az értékre, amely rendelkezik hello **URL-cím bejelentkezési** szövegmező. 
+     b. Az a **válasz URL-CÍMEN** szövegmezőhöz beírt ugyanazt az értéket írja be a **URL-cím bejelentkezési** szövegmező. 
    
      c. Kattintson a **Tovább** gombra.
 
-4. A hello **konfigurálhatja az egyszeri bejelentkezés SciQuest töltött igazgató** lapján kattintson **metaadatok letöltése**, és mentse helyileg a számítógépen hello metaadatait tartalmazó fájl.
+4. A a **konfigurálhatja az egyszeri bejelentkezés SciQuest töltött igazgató** lapján kattintson **metaadatok letöltése**, és mentse helyileg a számítógépen a metaadatait tartalmazó fájl.
    
     ![Mi az az Azure AD Connect?][11]
 
-5. Lépjen kapcsolatba a SciQuest támogatási tooenable a fent letöltött hello metaadatok segítségével hitelesítési módszerrel.
+5. Kapcsolattartási SciQuest támogatja ezt a hitelesítési módszert a fent letöltött metaadatok segítségével engedélyezéséhez.
 
-6. Hello a klasszikus Azure portálon, jelölje ki a hello egyszeri bejelentkezés konfigurációs megerősítő, és kattintson a **Complete** tooclose hello **konfigurálása egyszeri bejelentkezés** párbeszédpanel. 
+6. A klasszikus Azure portálon, válassza ki az egyszeri bejelentkezés konfigurációs megerősítő, és kattintson **Complete** bezárásához a **konfigurálása egyszeri bejelentkezés** párbeszédpanel. 
    
     ![Mi az az Azure AD Connect?][15]
 
-7. A hello **az egyszeri bejelentkezés megerősítő** kattintson **Complete**.  
+7. Az a **az egyszeri bejelentkezés megerősítő** kattintson **Complete**.  
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-hello ebben a szakaszban célja toocreate hello Britta Simon neve a klasszikus Azure portálon a tesztfelhasználó.
+Ez a szakasz célja a tesztfelhasználó létrehozása a klasszikus Azure portálon Britta Simon nevezik.
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello **a klasszikus Azure portálon**, a hello bal oldali navigációs panelen, kattintson a **Active Directory**.
+1. Az a **a klasszikus Azure portálon**, a bal oldali navigációs ablaktábláján kattintson **Active Directory**.
    
     ![Mi az az Azure AD Connect?][100] 
 
-2. A hello **Directory** listában, jelölje be hello directory kívánt tooenable címtár-integráció.
+2. Az a **Directory** listára, válassza ki a könyvtárat, amelyhez a címtár-integrációs engedélyezni szeretné.
 
-3. toodisplay hello azoknak a felhasználóknak, hello menüben található hello felső részén kattintson **felhasználók**.
+3. A felhasználók listájának megjelenítéséhez a felső menüben, kattintson a **felhasználók**.
    
     ![Mi az az Azure AD Connect?][101] 
 
-4. tooopen hello **felhasználó hozzáadása** párbeszédpanelen hello eszköztár hello alján, kattintson a **felhasználó hozzáadása**. 
+4. Lehetőségre a **felhasználó hozzáadása** párbeszédpanel alján, az eszköztárban kattintson **felhasználó hozzáadása**. 
    
     ![Mi az az Azure AD Connect?][102] 
 
-5. A hello **adja meg azt a felhasználó** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+5. Az a **adja meg azt a felhasználó** párbeszédpanel lapon, a következő lépésekkel:
    
     ![Mi az az Azure AD Connect?][103] 
    
     a. Mint **felhasználó típusa**, jelölje be **a szervezet új felhasználó**.
    
-    b. A felhasználónév hello **szövegmező**, típus **BrittaSimon**.
+    b. A felhasználó nevében **szövegmező**, típus **BrittaSimon**.
    
     c. Kattintson a **Tovább** gombra.
 
-6. A hello **felhasználói profil** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello: 
+6. Az a **felhasználói profil** párbeszédpanel lapon, a következő lépésekkel: 
    
     ![Mi az az Azure AD Connect?][104] 
    
-    a. A hello **Utónév** szövegmezőhöz típus **Britta**.  
+    a. Az a **Utónév** szövegmezőhöz típus **Britta**.  
    
-    b. A hello **Vezetéknév** txtbox, típusa, **Simon**.
+    b. Az a **Vezetéknév** txtbox, típusa, **Simon**.
    
-    c. A hello **megjelenített név** szövegmezőhöz típus **Britta Simon**.
+    c. Az a **megjelenített név** szövegmezőhöz típus **Britta Simon**.
    
-    d. A hello **szerepkör** listáról válassza ki **felhasználói**.
+    d. Az a **szerepkör** listáról válassza ki **felhasználói**.
    
     e. Kattintson a **Tovább** gombra.
 
-7. A hello **ideiglenes jelszó beszerzése** párbeszédpanel lap, kattintson a **létrehozása**.
+7. Az a **ideiglenes jelszó beszerzése** párbeszédpanel lap, kattintson a **létrehozása**.
    
     ![Mi az az Azure AD Connect?][105]  
 
-8. A hello **ideiglenes jelszó beszerzése** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+8. Az a **ideiglenes jelszó beszerzése** párbeszédpanel lapon, a következő lépésekkel:
    
     ![Mi az az Azure AD Connect?][106]   
    
-    a. Írja le hello hello értékének **új jelszó**.
+    a. Jegyezze fel az értéket a **új jelszó**.
    
     b. Kattintson a **Befejezés** gombra.   
 
 ### <a name="creating-a-sciquest-spend-director-test-user"></a>SciQuest töltött igazgató tesztfelhasználó létrehozása
-hello ebben a szakaszban célja toocreate SciQuest töltött igazgató Britta Simon nevű felhasználó.
+Ez a szakasz célja SciQuest töltött igazgató Britta Simon nevű felhasználót létrehozni.
 
-Toocontact a SciQuest töltött igazgató támogatási csoportjához kell, és adja a teszt fiók tooget létrehozást kapcsolatos hello részleteit.
+Szeretné a SciQuest töltött igazgató támogatási csoportjához, és adja meg a teszt fiókját is létre részleteit.
 
 Másik lehetőségként is kihasználhatja just-in-time kiépítés, egyetlen bejelentkezés szolgáltatásként SciQuest töltött igazgató által támogatott.  
-Ha közvetlenül az időponthoz kötött kiépítés engedélyezve van, felhasználók automatikusan létrejönnek SciQuest töltött igazgató egy egyszeri bejelentkezési kísérlet során, ha azok még nem léteznek. Ez a szolgáltatás hello szükségtelenné teszi toomanually egyszeri bejelentkezés tartozó felhasználók létrehozásához.
+Ha közvetlenül az időponthoz kötött kiépítés engedélyezve van, felhasználók automatikusan létrejönnek SciQuest töltött igazgató egy egyszeri bejelentkezési kísérlet során, ha azok még nem léteznek. Ez a funkció nem kell létrehoznia az egyszeri bejelentkezés tartozó felhasználók.
 
-tooget just-in-time kiépítés, akkor szükséges toocontact még a SciQuest töltött igazgató támogatási csoportjához.
+Közvetlenül az időponthoz kötött kiépítés engedélyezve beszerzéséhez kapcsolatba kell lépnie még a SciQuest töltött igazgató támogatási csoportjához.
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
-hello ebben a szakaszban célja tooenabling Britta Simon toouse Azure egyszeri bejelentkezéshez használt hozzáférés tooSciQuest ráfordítás igazgató megadásával.
+### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
+Ez a szakasz célja Britta Simon nyújtó saját SciQuest töltött igazgató használandó Azure egyszeri bejelentkezés engedélyezése.
 
 ![Mi az az Azure AD Connect?][200]
 
-**tooassign Britta Simon tooSciQuest ráfordítás igazgató, hajtsa végre a következő lépéseket hello:**
+**Britta Simon hozzárendelése SciQuest töltött igazgató, hajtsa végre az alábbi lépéseket:**
 
-1. A hello Azure klasszikus portál tooopen hello alkalmazások megtekintése, hello könyvtár nézetben kattintson **alkalmazások** hello felső menüjében.
+1. A klasszikus Azure portálon, a könyvtár nézetben a alkalmazások nézet megnyitásához kattintson **alkalmazások** a felső menüben.
    
     ![Mi az az Azure AD Connect?][201]
 
-2. Hello alkalmazások listában válassza ki a **SciQuest töltött igazgató**.
+2. Az alkalmazások listában válassza ki a **SciQuest töltött igazgató**.
    
     ![Mi az az Azure AD Connect?][202]
 
-3. Hello hello felső menüben kattintson a **felhasználók**.
+3. Kattintson a felső menüben **felhasználók**.
    
     ![Mi az az Azure AD Connect?][203]
 
-4. Hello felhasználók listában válassza ki a **Britta Simon**.
+4. A felhasználók listában válassza ki a **Britta Simon**.
    
     ![Mi az az Azure AD Connect?][204]
 
-5. Hello alján hello eszköztárában kattintson **hozzárendelése**.
+5. Kattintson az alsó eszköztár **hozzárendelése**.
    
     ![Mi az az Azure AD Connect?][205]
 
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
-hello ebben a szakaszban célja tootest az egyszeri bejelentkezés konfigurációs használatával hello a hozzáférési Panel.  
-Ha a hozzáférési Panel hello hello SciQuest töltött igazgató csempe gombra kattint, automatikusan bejelentkezett tooyour SciQuest töltött igazgató alkalmazás szerezheti be.
+Ez a szakasz célja tesztelése az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen.  
+Ha a hozzáférési panelen SciQuest töltött igazgató csempére kattint, meg kell beolvasása automatikusan bejelentkezett az SciQuest töltött igazgató alkalmazására.
 
 ## <a name="additional-resources"></a>További források
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

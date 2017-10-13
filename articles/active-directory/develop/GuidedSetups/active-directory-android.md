@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure AD v2 Android bevezetés |} Microsoft Docs"
+title: "Ismerkedés az Azure AD v2 Android |} Microsoft Docs"
 description: "Android-alkalmazás hogyan szereznie egy hozzáférési jogkivonatot és hívható meg Microsoft Graph API-val vagy a hozzáférési jogkivonatok az Azure Active Directory v2 végpont igénylő API-k"
 services: active-directory
 documentationcenter: dev-center-name
@@ -15,11 +15,11 @@ ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: 496eab239ba315588b6110cbb32a6d42e9dc407c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2cf30b1cba4a942df8ac08356cd4f7482d6b7938
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 [!INCLUDE [1. Introduction](active-directory-mobileanddesktopapp-android-introduction.md)]
 [!INCLUDE [2. Setup](active-directory-mobileanddesktopapp-android-setup.md)]

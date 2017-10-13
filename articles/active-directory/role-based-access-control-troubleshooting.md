@@ -1,5 +1,5 @@
 ---
-title: Azure RBAC aaaTroubleshoot |} Microsoft Docs
+title: "Az Azure RBAC hibaelhárítása |} Microsoft Docs"
 description: "Segítség problémák vagy a szerepköralapú hozzáférés-vezérlés erőforrások kapcsolatos kérdésekre."
 services: azure-portal
 documentationcenter: na
@@ -14,25 +14,25 @@ ms.topic: article
 ms.date: 07/12/2017
 ms.author: andredm
 ms.reviewer: rqureshi
-ms.openlocfilehash: 15feced32d8459d90c4c246d335932f90e1fc91f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 407c030ea159915d4d7ac21760a3d17ec2204372
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="role-based-access-control-troubleshooting"></a>Szerepköralapú hozzáférés-vezérlés hibaelhárítása
 
-Ez a dokumentum a cikk kapcsolatos kérdésekre ad közös hello speciális hozzáférési jogok, amelyeket a szerepkörök, megállapításához, hogy milyen tooexpect használatával hello hello Azure-portálon a szerepkörök és hozzáférési problémák megoldása is. Ezek a szerepkörök az összes erőforrástípus terjed ki:
+A dokumentum cikk a szerepköröket, meghatározott hozzáférési jogosultságai kapcsolatos gyakori kérdésekre ad választ, megállapításához, hogy mi történik, ha használja a szerepkörök az Azure portál és a részleg-hozzáférési problémák megoldása. Ezek a szerepkörök az összes erőforrástípus terjed ki:
 
 * Tulajdonos  
 * Közreműködő  
 * Olvasó  
 
-Tulajdonos és közreműködő szerepkörrel rendelkező személyek mindkét rendelkezik teljes körű hozzáférési toohello felügyeleti tapasztalhat, de egy közreműködői nem adhat hozzáférést tooother felhasználókat vagy csoportokat. Részek lesznek még ennél is érdekesebb megoldást hello olvasó szerepkört, az, hogy az adott azt fogja szánjon némi időt. Lásd: hello [szerepköralapú hozzáférés-vezérlés a get-started cikk](role-based-access-control-configure.md) miként férhetnek hozzá az toogrant leírását.
+Tulajdonos és közreműködő szerepkörrel rendelkező személyek mindkét megoldást vezet a teljes hozzáféréssel rendelkeznek, de a közreműködői nem hozzáférést más felhasználóknak vagy csoportoknak. Részek lesznek még ennél is érdekesebb megoldást az olvasó szerepkört, hogy az adott azt fogja szánjon némi időt. Tekintse meg a [szerepköralapú hozzáférés-vezérlés a get-started cikk](role-based-access-control-configure.md) talál részletes hozzáférést.
 
 ## <a name="app-service-workloads"></a>App service munkaterhelések
 ### <a name="write-access-capabilities"></a>Írási képességek
-Ha a felhasználó csak olvasási hozzáféréssel tooa egyetlen webalkalmazás biztosít, néhány funkció le vannak tiltva, hogy nem várt. a következő felügyeleti képességeket hello szükséges **írási** férnek hozzá a tooa web app (tulajdonos vagy közreműködő), és nem érhetők el a olyan írásvédett forgatókönyv.
+Ha megadta a felhasználói csak olvasható hozzáférést egyetlen webalkalmazáshoz, néhány funkció le vannak tiltva, hogy nem várt. A következő felügyeleti képességeket szükséges **írási** egy webalkalmazást (tulajdonos vagy közreműködő) által elérhető, és nem érhetők el a olyan írásvédett forgatókönyv.
 
 * Parancsok (például a start, stop, stb.)
 * Általános konfiguráció, a skálázási beállításokat, a biztonsági mentés beállításait és a figyelési beállítások például beállítások módosítása
@@ -43,54 +43,54 @@ Ha a felhasználó csak olvasási hozzáféréssel tooa egyetlen webalkalmazás 
 * Aktív és a legutóbbi központi telepítéseket (helyi git folyamatos üzembe helyezés)
 * Becsült töltött
 * Webteszt
-* Virtuális hálózat (csak látható tooa olvasó Ha egy virtuális hálózat már be lett állítva egy írási hozzáféréssel rendelkező felhasználónak).
+* Virtuális hálózat (csak egy olvasó, ha egy virtuális hálózat már be lett állítva egy írási hozzáféréssel rendelkező felhasználó számára látható).
 
-Ha sem tudja már használni ezen csempék, akkor tooask a rendszergazda közreműködői hozzáférés toohello webalkalmazás.
+Ha sem tudja már használni ezen csempék, kérje a rendszergazdától, közreműködő eléréséhez a webalkalmazás szeretné.
 
 ### <a name="dealing-with-related-resources"></a>Kapcsolódó erőforrások kezelése
-Webalkalmazások vannak bonyolítja néhány különböző erőforrások együttműködés hello jelenlétét. Íme néhány webhelyekkel tipikus erőforráscsoport:
+Webalkalmazások vannak bonyolítja néhány különböző erőforrások együttműködés jelenlétét. Íme néhány webhelyekkel tipikus erőforráscsoport:
 
 ![Webes alkalmazás erőforráscsoport](./media/role-based-access-control-troubleshooting/website-resource-model.png)
 
-Ennek eredményeképpen ha valaki biztosít hozzáférést toojust hello webalkalmazás, nagy részét hello webhely panel az Azure-portálon hello hello funkciói le van tiltva.
+Ennek eredményeképpen ha biztosít valaki csak a web app, nagy részét a funkciói a webhely paneljén az Azure-portálon való hozzáférés le van tiltva.
 
-Ezek az elemek szükség **írási** toohello hozzáférési **App Service-csomag** , amely megfelel a tooyour webhely:  
+Ezek az elemek szükség **írási** a hozzáférést a **App Service-csomag** , amely megfelel a webhely:  
 
-* Megtekintés hello webalkalmazás tartozó IP-címek (ingyenes vagy normál)  
+* A webes alkalmazás megtekintése a tarifacsomag (ingyenes vagy normál)  
 * Skála configuration (a példányok, a virtuális gép méretét, az automatikus skálázási beállítások száma)  
 * Kvóták (tároló, a sávszélesség, a CPU)  
 
-Ezek az elemek szükség **írási** teljes hozzáférési toohello **erőforráscsoport** , amely tartalmazza a webhely:  
+Ezek az elemek szükség **írási** a teljes hozzáférés **erőforráscsoport** , amely tartalmazza a webhely:  
 
-* SSL-tanúsítványok és kötések (hello a helyek közötti SSL-tanúsítványok megoszthatók ugyanazt az erőforráscsoportot és földrajzi helyhez)  
+* SSL-tanúsítványokat és a kötések (SSL-tanúsítványok megoszthatók ugyanabban az erőforráscsoportban a helyek és a földrajzi helyhez között)  
 * A riasztási szabályok  
 * automatikus skálázási beállításokat  
 * Application insights összetevőinek  
 * Webteszt  
 
 ## <a name="virtual-machine-workloads"></a>Virtuális gépek terheléséhez
-Sokkal például a web apps, bizonyos funkcióinak hello virtuális gépek paneljét szükségük van írási toohello virtuális gép, illetve tooother erőforrások hello erőforráscsoportban.
+Sokkal hasonlóan a web apps, a virtuális gépek paneljét bizonyos funkcióinak írási hozzáférés szükséges a virtuális gépet, vagy további erőforrások az erőforráscsoportban.
 
-Virtuális gépek a kapcsolódó tooDomain nevek, virtuális hálózatok, storage-fiókok és a riasztási szabályok.
+Virtuális gépek tartomány nevét, virtuális hálózatok, storage-fiókok és a riasztási szabályok kapcsolódnak.
 
-Ezek az elemek szükség **írási** toohello hozzáférési **virtuális gép**:
+Ezek az elemek szükség **írási** a hozzáférést a **virtuális gép**:
 
 * Végpontok  
 * IP-címek  
 * Lemezek  
 * Bővítmények  
 
-Szükséges **írási** hozzáférés tooboth hello **virtuális gép**, és hello **erőforráscsoport** (együtt hello nevét), hogy az informatikai van:  
+Szükséges **írási** is a hozzáférést a **virtuális gép**, és a **erőforráscsoport** (valamint a tartomány nevét), hogy az informatikai van:  
 
 * Rendelkezésre állási csoport  
 * Elosztott terhelésű készlethez  
 * A riasztási szabályok  
 
-Ha sem tudja már használni ezen csempék, kérje meg a rendszergazdát, közreműködő hozzáférés toohello erőforráscsoport.
+Ha sem tudja már használni ezen csempék, kérje meg a rendszergazdát az erőforráscsoport közreműködői elérésére.
 
 ## <a name="see-more"></a>Részletek
-* [Szerepköralapú hozzáférés-vezérlés](role-based-access-control-configure.md): első lépések az RBAC a hello Azure-portálon.
-* [Beépített szerepkörök](role-based-access-built-in-roles.md): részletes információkat szolgáltatva hello szerepköröket, az RBAC szabványos tartalmazza.
-* [Egyéni szerepkörök az Azure RBAC](role-based-access-control-custom-roles.md): megtudhatja, hogyan toocreate egyéni szerepkörök toofit hozzáférését kell.
+* [Szerepköralapú hozzáférés-vezérlés](role-based-access-control-configure.md): az RBAC első lépései az Azure portálon.
+* [Beépített szerepkörök](role-based-access-built-in-roles.md): részletes információkat szolgáltatva a szerepköröket, az RBAC szabványos tartalmazza.
+* [Egyéni szerepkörök az Azure RBAC](role-based-access-control-custom-roles.md): megtudhatja, hogyan hozzon létre egyéni szerepkörök az access igényeihez.
 * [Access módosítási előzményeit jelentés létrehozása](role-based-access-control-access-change-history-report.md): nyomon követjük, hogy az RBAC más szerepkörök hozzárendeléséről.
 

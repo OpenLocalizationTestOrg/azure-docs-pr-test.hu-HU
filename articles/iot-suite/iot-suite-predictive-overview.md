@@ -1,6 +1,6 @@
 ---
-title: "aaaPredictive karbantartási megoldás előre konfigurált |} Microsoft Docs"
-description: "Leírását hello Azure IoT Suite prediktív karbantartási megoldás előre konfigurált."
+title: "Prediktív karbantartási előre konfigurált megoldás | Microsoft Docs"
+description: "Az Azure IoT Suite prediktív karbantartási előre konfigurált megoldás ismertetése."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,125 +15,125 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: dobett
-ms.openlocfilehash: 2d09801467d33db6b7d6333fa071aea2bf573f20
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8bad198488c4940a83eb32ec02122a91d47ca86c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="predictive-maintenance-preconfigured-solution-overview"></a>A prediktív karbantartási előre konfigurált megoldás áttekintése
 
-Hello *prediktív karbantartási* [előre konfigurált megoldás] [ lnk_preconfigured_solutions] hello egyike [Microsoft Azure IoT Suite] [ lnk_iot_suite] előre konfigurált megoldások. Ez a megoldás a valós idejű eszköztelemetria-gyűjtést az [Azure Machine Learning][lnk-machine-learning] használatával létrehozott prediktív modellel integrálja.
+A *prediktív karbantartás* [előre konfigurált megoldás][lnk_preconfigured_solutions] a [Microsoft Azure IoT Suite][lnk_iot_suite] előre konfigurált megoldásainak egyike. Ez a megoldás a valós idejű eszköztelemetria-gyűjtést az [Azure Machine Learning][lnk-machine-learning] használatával létrehozott prediktív modellel integrálja.
 
-Azure IoT Suite gyorsan és könnyen tooand figyelő eszközök csatlakozni, és valós idejű irányítópultokat és képi megjelenítéseket telemetriai adatok elemzéséhez. A prediktív karbantartási megoldás hello hello irányítópultok és a képi megjelenítések biztosít, amely a meghajtó hatékonyság és javítása érdekében a bevétel adatfolyamok új eszközintelligencia.
+Az Azure IoT Suite segítségével gyorsan és könnyedén figyelheti az objektumokat és csatlakozhatnak hozzájuk, valamint valós időben elemezheti a telemetriát irányítópultok és látványtervek segítségével. A prediktív karbantartási megoldás irányítópultjai és látványtervei hatékonyságot és a bevételeket növelő új elemzéseket biztosítanak.
 
-## <a name="hello-scenario"></a>hello forgatókönyv
+## <a name="the-scenario"></a>A forgatókönyv
 
-A Fabrikam egy regionális légitársaság, amely a nagyszerű ügyfélélményre összpontosít versenyképes árakon. A járatok késésének egyik okai a karbantartási problémák, és a repülőmotorok karbantartása különösen nagy kihívást jelent. Fabrikam kerülni kell motor hiba felé továbbított folyamán minden áron, hogy annak rendszeresen megvizsgálja az ütemezi a karbantartási terv tooa szerint. Azonban motorok nem mindig viselniük repülőgép hello azonos. Időnként feleslegesen végeznek karbantartást a motorokon. Még fontosabb, hogy olyan problémák merülnek fel, amelyek miatt a repülő nem szállhat fel a karbantartásig. Ha repülőgép egy helyen ahol hello jobb technikusok vagy tartalék részei nem érhetők el, ezek a problémák különösen költséges lehet.
+A Fabrikam egy regionális légitársaság, amely a nagyszerű ügyfélélményre összpontosít versenyképes árakon. A járatok késésének egyik okai a karbantartási problémák, és a repülőmotorok karbantartása különösen nagy kihívást jelent. A Fabrikamnak minden áron el kell kerülnie a repülés közbeni motorhibákat, így rendszeresen megvizsgálja a motorokat, és tervszerűen ütemezi a karbantartást. A repülők motorja azonban nem mindig ugyanolyan ütemben használódik el. Időnként feleslegesen végeznek karbantartást a motorokon. Még fontosabb, hogy olyan problémák merülnek fel, amelyek miatt a repülő nem szállhat fel a karbantartásig. Ezek a problémák különösen költségesek lehetnek, ha egy repülő olyan helyen van, ahol nincsenek megfelelő szerelők vagy pótalkatrészek.
 
-Fabrikam repülőgép hello motorok az érzékelők motor feltételek figyelő felé továbbított folyamán vannak tagolva. Fabrikam hello prediktív karbantartási megoldás toocollect hello érzékelő során gyűjtött adatok hello felhőszolgáltató közötti átviteléhez használja. Halmozódó év-kezelő motor működési és adatai, után Fabrikam adatszakértőkön egy módon toopredict hello fennmaradó élettartama (Szabályainak) repülőgép motor van modellezve. hello modellje négy hello motor érzékelők adatait és motor elhasználódását, amely visszavezet tooeventual hiba közötti kapcsolat. Fabrikam tooperform rendszeres vizsgálatokat tooensure biztonsági folytatódik, amíg azt már a hello modellek toocompute hello Szabályainak minden motor után minden felhőszolgáltató közötti átviteléhez. hello modellje hello motorok hello repülési során gyűjtött hello telemetriáját. A Fabrikam így előre jelezheti a jövőbeli meghibásodási pontokat, és megtervezheti a karbantartást és a javítást.
+A Fabrikam repülőmotorjai olyan érzékelőkkel vannak felszerelve, amelyek megfigyelik a motor állapotát repülés közben. A Fabrikam a prediktív karbantartási megoldás használatával gyűjti be a repülés alatt begyűjtött érzékelőadatokat. A motor működési és meghibásodási adatainak többéves begyűjtése után a Fabrikam adatszakértői olyan módszert alkottak meg, amely előrejelzi a repülőmotor fennmaradó hasznos élettartamát (RUL). A modell a négy motorérzékelőből érkező adatok és a meghibásodáshoz vezető motorkopás közötti összefüggést alkalmazza. A Fabrikam továbbra is rendszeres vizsgálatokat végez a biztonság érdekében, azonban mostantól a modellek használatával kiszámíthatja mindegyik motor RUL értékét minden egyes repülőút után. A modell a repülőút alatt a motorokból gyűjtött telemetriát használja. A Fabrikam így előre jelezheti a jövőbeli meghibásodási pontokat, és megtervezheti a karbantartást és a javítást.
 
 > [!NOTE]
-> hello megoldás modellje motor tényleges elhasználódását adatokat.
+> A megoldásmodell tényleges motorkopási adatokat használ.
 
-Előrejelzésére hello pontot, ha karbantartási szükség, amelyet a Fabrikam optimalizálhatja műveletek tooreduce költségeit.
+A karbantartás várható idejének előrejelzésével a Fabrikam optimalizálhatja a műveleteket a költségek csökkentése érdekében.
 
 A karbantartási koordinátorok és a menetrendek készítői együttműködve elvégzik a következőket:
 
-- Egy adott helyen leállítása repülőgép toocoincide karbantartási terv.
-- Gondoskodjon arról, hogy elegendő idő áll rendelkezésre hello repülőgép toobe nem működik az ütemezés megszakítása nélkül.
-- tooschedule technikusok tooensure, hogy repülőgép a terjesztéskezelő hatékonyan várakozási idő nélkül.
+- Megtervezik a karbantartást, hogy az egybeessen a repülő adott helyen való megállásával.
+- Biztosítják, hogy elegendő idő maradjon a repülő karbantartására a menetrend megzavarása nélkül.
+- Beosztják a technikusokat, hogy biztosítsák a repülőgépek hatékony, várakozás nélküli szervizelését.
 
 A készletgazdálkodási vezetők karbantartási terveket kapnak, hogy optimalizálhassák a rendelési folyamatokat és a pótalkatrészek készletét.
 
-Ezek a tevékenységek Fabrikam toominimize repülőgép ground idő engedélyezése, és a működési költségek csökkentése során a hello utasok és a személyzet biztonságát.
+A Fabrikam mindezeknek köszönhetően képes minimálisra csökkenteni a repülő földön töltött idejét és csökkenteni a működési költségeket, miközben az utasok és a személyzet biztonságát is garantálja.
 
-toounderstand hogyan [Azure IoT Suite] [ lnk_iot_suite] biztosít hello képességek kell toorealize hello lehetőségeket kínál a prediktív karbantartási, tekintse át a [infographic] [lnk_infographic].
+Annak megértéséhez, hogy az [Azure IoT Suite][lnk_iot_suite] hogyan nyújt az ügyfeleknek olyan képességeket, amelyekre a prediktív karbantartás lehetőségeinek kiaknázásához szükségük van, tekintse át ezt az [információs grafikát][lnk_infographic].
 
-## <a name="how-hello-predictive-maintenance-solution-is-built"></a>Hogyan hello prediktív karbantartási megoldás épül.
+## <a name="how-the-predictive-maintenance-solution-is-built"></a>A prediktív karbantartási megoldás felépítése
 
-hello megoldást használja egy meglévő Azure Machine Learning modell egy sablon tooshow ezeket a képességeket IoT Suite szolgáltatás segítségével gyűjtött telemetriát dolgozik. A Microsoft létrehozta a [regressziós modell] [ lnk_regression_model] nyilvánosan elérhető adatok alapján repülőgép motor<sup>\[1\]</sup>, és lépésről lépésre Hogyan toouse hello modell útmutatást.
+A megoldás egy sablonként elérhető meglévő Azure Machine Learning-modellel mutatja be ezeket a képességeket, amely az IoT Suite szolgáltatásokon keresztül gyűjtött eszköztelemetriából dolgozik. A Microsoft nyilvánosan elérhető adatok alapján<sup>\[1\]</sup> felépítette egy repülőmotor [regressziós modelljét][lnk_regression_model] és a modell használatának lépésenkénti útmutatóját.
 
-hello Azure IoT prediktív karbantartási megoldás a sablon alapján létrehozott hello regressziós modellt használja. hello modell központilag telepítik az Azure-előfizetéshez, és elérhetővé tett egy automatikusan létrehozott API-n keresztül. hello megoldás tesztelési 4 (a teljes 100) képviselő adatokat hello egy részét tartalmazza motorok és hello 4 (az összesen 21) érzékelő adatfolyamot. Ezek az adatok megfelelő tooprovide hello betanított modell egy pontos eredménye.
+Az Azure IoT prediktív karbantartási megoldás az ebből a sablonból létrehozott regressziós modellt használja. A rendszer az Azure-előfizetésben helyezi üzembe a modellt, és egy automatikusan létrehozott API-n keresztül teszi közzé. A megoldásban a tesztadatok egy része szerepel, amely (összesen 100-ból) 4 motort és (összesen 21-ből) 4 érzékelőadat-streamet ábrázol. Ezek az adatok elegendők ahhoz, hogy pontos eredményt biztosítsanak a betanított modellből.
 
 *\[1\] A. Saxena és K. Goebel (2008). „Turbofan Engine Degradation Simulation Data Set”, NASA Ames Prognostics Data Repository (http://ti.arc.nasa.gov/tech/dash/pcoe/prognostic-data-repository/), NASA Ames Research Center, Moffett Field, CA*
 
 ## <a name="get-started-with-predictive-maintenance"></a>Ismerkedés a prediktív karbantartással
 
-Az oktatóanyag bemutatja, hogyan tooprovision hello prediktív karbantartási megoldás. Azt is bemutatja, hogyan hello prediktív karbantartási megoldás hello alapvető funkcióit. Ezek a szolgáltatások számos hello megoldás irányítópultja együtt előre konfigurált hello megoldás központi telepítését végző keresztül érheti el.
+Ez az oktatóanyag bemutatja, hogyan építheti ki a prediktív karbantartási megoldást. Emellett a prediktív karbantartási megoldás alapszintű funkcióin is végigvezeti. Ezek közül számos szolgáltatáshoz a megoldás irányítópultján keresztül férhet hozzá, amelyet a rendszer az előre konfigurált megoldással együtt telepít.
 
-toocomplete ebben az oktatóanyagban aktív Azure-előfizetés szükséges.
+Az oktatóanyag elvégzéséhez aktív Azure-előfizetésre lesz szüksége.
 
 > [!NOTE]
 > Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információ: [Ingyenes Azure-fiók létrehozása][lnk_free_trial].
 
-1. Jelentkezzen be túl[azureiotsuite.com] [ lnk-azureiotsuite] az Azure használatával fiók hitelesítő adatait, és kattintson a  **+**  toocreate megoldást.
-1. Kattintson a **válasszon** hello **prediktív karbantartási** csempére.
+1. Jelentkezzen be az [azureiotsuite.com][lnk-azureiotsuite] címre az Azure-fiókja hitelesítő adataival, majd kattintson a **+** elemre egy megoldás létrehozásához.
+1. Kattintson a **Kiválasztás** elemre, majd a **Prediktív karbantartás** csempére.
 1. Adja meg a **Megoldásnevet** az előre konfigurált prediktív karbantartási megoldáshoz.
-1. Jelölje be hello **régió** és **előfizetés** kívánt toouse tooprovision hello megoldás.
-1. Kattintson a **megoldás létrehozása** toobegin hello létesítésének folyamatát kell használnia. Ez a folyamat általában több percet toorun időt vesz igénybe.
+1. Válassza ki a megoldás kiépítéséhez használni kívánt **Régiót** és **Előfizetést**.
+1. Kattintson a **Megoldás létrehozása** gombra a kiépítés elkezdéséhez. Ez a folyamat általában több percig tart.
 
-### <a name="wait-for-hello-provisioning-process-toocomplete"></a>Várjon, amíg a kiépítési folyamat toocomplete hello
+### <a name="wait-for-the-provisioning-process-to-complete"></a>Várjon, amíg a kiépítési folyamat befejeződik
 
-1. Kattintson a megoldás a hello csempe **kiépítési** állapotát.
-1. Értesítés hello **állapotok kiépítés** , Azure-szolgáltatások vannak telepítve az Azure-előfizetéshez.
-1. Miután kiépítése befejeződött, hello állapotmódosítások túl**készen**.
-1. A megoldás hello jobb oldali ablaktáblában hello csempe toosee hello Részletek gombra. Ebben az ablaktáblában indítja el a hello megoldás-irányítópult és az access hello Machine Learning munkaterülettel.
+1. Kattintson a megoldás **Kiépítési** állapotát jelző csempére.
+1. Megtekintheti a **Kiépítési állapotokat**, miközben az Azure-szolgáltatások telepítése megtörténik az Azure-előfizetésben.
+1. A kiépítés befejezése után az állapot **Kész** értékre változik.
+1. Kattintson a csempére, és a jobb oldali panelen láthatja a megoldás részleteit. Erről a panelről indíthatja el a megoldás irányítópultját, és innen férhet hozzá a Machine Learning-munkaterülethez.
 
 > [!NOTE]
-> Ha hibát tapasztal előre konfigurált hello megoldás telepítésének, tekintse át a [hello azureiotsuite.com hely engedélyeinek] [ lnk-permissions] és hello [gyakran ismételt kérdések] [ lnk-faq]. Ha hello problémák továbbra is fennáll, hozzon létre szolgáltatásjegyet a hello [portal][lnk-portal].
+> Ha problémái vannak az előre konfigurált megoldás telepítésekor, tekintse meg az [Engedélyek az azureiotsuite.com webhelyen][lnk-permissions] és a [GYIK][lnk-faq] fejezetet. Ha a problémák továbbra is fennállnak, hozzon létre egy szolgáltatásjegyet a [portálon][lnk-portal].
 
-Vannak-e részletek toosee teheti meg, amelyek nem jelennek meg a megoldáshoz? A [felhasználói visszajelzési webhelyen](https://feedback.azure.com/forums/321918-azure-iot) elküldheti a szolgáltatásokkal kapcsolatos javaslatait.
+Hiányol bizonyos részleteket a megoldásával kapcsolatban? A [felhasználói visszajelzési webhelyen](https://feedback.azure.com/forums/321918-azure-iot) elküldheti a szolgáltatásokkal kapcsolatos javaslatait.
 
-## <a name="view-hello-solution"></a>Hello megoldás megtekintése
+## <a name="view-the-solution"></a>A megoldás megtekintése
 
-Ez a szakasz végigvezeti hello megoldás felhasználói felületén.
+Ez a szakasz végigvezeti a megoldás felhasználói felületén.
 
 ### <a name="predictive-maintenance-dashboard"></a>Prediktív karbantartási irányítópult
 
-Ez a lap hello webalkalmazásban használ a Power bi JavaScript vezérlők (lásd: hello [Power bi-látványelemek tárház][lnk-powerbi]) toovisualize:
+A webalkalmazás ezen oldala PowerBI JavaScript-vezérlőket használ (lásd a [PowerBI-vizualizációk tárát][lnk-powerbi]) a következők megjelenítéséhez:
 
-* a blob Storage tárolóban hello Stream Analytics-feladatok hello kimeneti adatait.
-* hello Szabályainak és ciklus (Event) számának repülőgép motor.
+* A Blob Storage-ban lévő Stream Analytics-feladatok kimeneti adatai.
+* Az RUL és a ciklusszám repülőmotoronként.
 
-### <a name="observing-hello-behavior-of-hello-cloud-solution"></a>Hello viselkedését betartásával hello felhőalapú megoldás
+### <a name="observing-the-behavior-of-the-cloud-solution"></a>A felhőmegoldás viselkedésének megfigyelése
 
-A hello Azure-portálon, keresse meg a toohello erőforráscsoport hello megoldás nevű úgy döntött, hogy tooview a kiosztott erőforrásokat.
+A kiépített erőforrások megtekintéséhez az Azure Portalon keresse meg a kiválasztott megoldásnévvel rendelkező erőforráscsoportot.
 
 ![][img-resource-group]
 
-Ha előre konfigurált hello megoldás, kap e-mailben található hivatkozásra toohello Machine Learning munkaterülettel. Is megtalálhatja a hello toohello Machine Learning-munkaterület [azureiotsuite.com] [ lnk-azureiotsuite] lap kiosztott megoldást. Egy csempe esetén érhető el ezen a lapon hello megoldás a hello **készen** állapotát.
+Az előre konfigurált megoldás kiépítésekor egy e-mailt kap, amely tartalmazza a Machine Learning-munkaterületre mutató hivatkozást. Az [azureiotsuite.com][lnk-azureiotsuite] oldalon is elérheti ezt a Machine Learning-munkaterületet a kiépített megoldáshoz. Amikor a megoldás **Kész** állapotban van, elérhetővé válik egy csempe ezen az oldalon.
 
 ![][img-machine-learning]
 
-Hello megoldás portálon láthatja, hogy hello minta ki van építve négy szimulált eszköz toorepresent két repülőgép / repülőgép, egyenként négy érzékelők két motorral. Amikor először toohello megoldás portal, hello szimuláció le van állítva.
+A megoldás portálján láthatja, hogy a minta négy szimulált eszközzel van kiépítve, amelyek két repülőt jeleznek, repülőnként két motorral és motoronként négy érzékelővel. Amikor először keresi fel a megoldás portálját, a szimuláció leáll.
 
 ![][img-simulation-stopped]
 
-Kattintson a **indítsa el a szimuláció** toobegin hello szimulálása. hello érzékelő előzmények, Szabályainak, ciklusokat és Szabályainak előzmények hello irányítópult feltöltéséhez.
+Kattintson a **Start simulation** (Szimuláció indítása) elemre a szimuláció elindításához. Az irányítópultot az érzékelő előzményei, az RUL, a ciklusok és az RUL előzményei töltik ki.
 
 ![][img-simulation-running]
 
-Ha Szabályainak kisebb, mint 160 (egy tetszőleges bemutatásra szolgál a kiválasztott küszöbérték), a hello megoldás portál egy figyelmeztetés szimbólum következő toohello Szabályainak megjelenítése jeleníti meg. hello megoldás portálon is hello repülőgép motor sárga mutatja be. Figyelje meg, hogyan hello Szabályainak értékek rendelkezik teljes általános csökkenő tendenciát, de az egyes toobounce felfelé és lefelé. Ez a viselkedés hello különböző ciklus hosszak és hello modell pontosságát az eredménye.
+Ha az RUL 160-nál kisebb (amely egy bemutatási célra véletlenszerűen kiválasztott küszöbérték), a megoldás portálja egy figyelmeztető szimbólumot jelenít meg az RUL kijelzése mellett. A megoldásportál emellett a repülő motorját sárga színnel emeli ki. Látható, hogy az RUL értékek összesítve jellemzően csökkennek, de felfelé és lefelé is változnak. Ez a viselkedés a változó ciklushosszokból és modellpontosságból következik.
 
 ![][img-simulation-warning]
 
-hello teljes szimuláció körülbelül 35 perc toocomplete 148 ciklusok vesz igénybe. a hello hello 160 Szabályainak küszöbérték körülbelül 5 percig, először teljesül, és mindkét motorok hello küszöbérték találati körülbelül 8 perccel.
+A teljes szimuláció 148 ciklusának elvégzése körülbelül 35 percet vesz igénybe. Először körülbelül 5 perc után éri el a 160 RUL-es küszöbértéket, és körülbelül 8 perc után éri el mindkét motor a küszöbértéket.
 
-hello szimuláció keresztül hello teljes adatkészlet 148 ciklus fut, és a végső Szabályainak és ciklus értékek rendezi.
+A szimuláció 148 cikluson halad végig a teljes adatkészleten, és megállapítja a RUL és a ciklus végső értékeit.
 
-Hello szimuláció bármikor leállíthatja, pont, de a gombra kattintva **indítsa el a szimuláció** felhasználásait hello hello dataset hello indítás szimulálása.
+Bármikor leállíthatja a szimulációt, de a **Start Simulation** (Szimuláció indítása) gombra kattintva az adatkészlet elejétől indul újra a szimuláció.
 
 ## <a name="next-steps"></a>Következő lépések
 
-További információk miként prediktív karbantartási forgatókönyvben olvassa el az Azure IoT toolearn [hello az eszközök internetes hálózatát értéket rögzítése][lnk_capture_value].
+További információ arról, hogyan teszi lehetővé az Azure IoT a prediktív karbantartási forgatókönyveket: [Capture value from the Internet of Things][lnk_capture_value] (Érték rögzítése az eszközök internetes hálózatáról).
 
-Igénybe vehet egy [forgatókönyv] [ lnk-predictive-walkthrough] hello prediktív karbantartási megoldás.
+Tekintse át a prediktív karbantartási megoldás [bemutatóját][lnk-predictive-walkthrough].
 
-Akkor is is felfedezheti hello más szolgáltatásokat és képességeket hello előre konfigurált IoT Suite megoldások:
+Megismerheti az IoT Suite előre konfigurált megoldásának egyéb szolgáltatásait és funkcióit is:
 
 * [Gyakran ismételt kérdések az IoT Suite-ról][lnk-faq]
-* [A hello IoT biztonsági szabad][lnk-security-groundup]
+* [IoT-biztonság létrehozása az alapoktól][lnk-security-groundup]
 
 [img-resource-group]: media/iot-suite-predictive-overview/resource-group.png
 [img-simulation-stopped]: media/iot-suite-predictive-overview/simulation-stopped.png

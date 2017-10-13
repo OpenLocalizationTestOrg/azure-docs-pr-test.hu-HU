@@ -1,6 +1,6 @@
 ---
-title: "Webes alkalmazás a Redis Cache aaaProvision"
-description: "Azure Resource Manager sablon toodeploy webes alkalmazás használata a Redis Cache."
+title: "Redis gyorsítótár Webalkalmazásnál kiépítése"
+description: "Webes alkalmazás a Redis Cache telepítéséhez használható Azure Resource Manager-sablon."
 services: app-service
 documentationcenter: 
 author: steved0x
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/06/2017
 ms.author: sdanie
-ms.openlocfilehash: b95b5e230dc40c1157940c2017cba836975b6930
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 810c1cedd4fe0bd6ecdf9bd32dfb241f5f345300
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-a-web-app-plus-redis-cache-using-a-template"></a>Hozzon létre egy webalkalmazást és a Redis Cache-sablon használatával
-Ez a témakör megtudhatja, hogyan toocreate egy Azure Resource Manager-sablon, amely az Azure Web Apps a Redis gyorsítótár telepít. Megtudhatja, hogyan toodefine erőforrások vannak telepítve, és hogyan toodefine paramétereket megadott, amikor hello központi telepítés végrehajtása. Ez a sablon használhat saját rendszerekhez, vagy testre szabhatja, toomeet igényeinek.
+Ebben a témakörben elsajátíthatja lesz egy Azure Resource Manager-sablon, amely telepíti az Azure Web Apps a Redis gyorsítótár létrehozása. Megtudhatja, hogyan határozza meg, mely erőforrásokat központilag telepíti, és hogyan adhat meg a paramétereket, amelyek megadott, amikor a központi telepítés végrehajtása. Ez a sablont használhatja a saját környezeteiben, vagy testre is szabhatja a saját követelményeinek megfelelően.
 
 Sablonok létrehozásával kapcsolatos további információkért lásd: [Azure Resource Manager sablonok készítése](../azure-resource-manager/resource-group-authoring-templates.md).
 
-Hello teljes sablon, lásd: [webes alkalmazás a Redis Cache sablon](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-with-redis-cache/azuredeploy.json).
+Tekintse meg a teljes sablon [webes alkalmazás a Redis Cache sablon](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-with-redis-cache/azuredeploy.json).
 
 ## <a name="what-you-will-deploy"></a>Mit fog üzembe helyezni
 Ha a sablonban telepíti:
@@ -33,17 +33,17 @@ Ha a sablonban telepíti:
 * Azure Web App
 * Azure Redis Cache.
 
-toorun telepítési hello automatikusan, kattintson a következő gombra hello:
+Az automatikus üzembe helyezéshez kattintson az alábbi gombra:
 
-[![TooAzure telepítése](./media/cache-web-app-arm-with-redis-cache-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-with-redis-cache%2Fazuredeploy.json)
+[![Üzembe helyezés az Azure-ban](./media/cache-web-app-arm-with-redis-cache-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-with-redis-cache%2Fazuredeploy.json)
 
-## <a name="parameters-toospecify"></a>Paraméterek toospecify
+## <a name="parameters-to-specify"></a>Paraméterek megadása
 [!INCLUDE [app-service-web-deploy-web-parameters](../../includes/app-service-web-deploy-web-parameters.md)]
 
 [!INCLUDE [cache-deploy-parameters](../../includes/cache-deploy-parameters.md)]
 
 ## <a name="variables-for-names"></a>Nevek változói
-Ez a sablon változók tooconstruct csoportneveket hello erőforrások használja. Hello használ [uniqueString](../azure-resource-manager/resource-group-template-functions-string.md#uniquestring) tooconstruct értéket az erőforráscsoport azonosítója alapján működnek.
+Ez a sablon nevét az erőforrások létrehozásához változókat használ. Használja a [uniqueString](../azure-resource-manager/resource-group-template-functions-string.md#uniquestring) függvény értéket összeállítani az erőforráscsoport azonosítója alapján.
 
     "variables": {
       "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
@@ -52,13 +52,13 @@ Ez a sablon változók tooconstruct csoportneveket hello erőforrások használj
     },
 
 
-## <a name="resources-toodeploy"></a>Erőforrások toodeploy
+## <a name="resources-to-deploy"></a>Üzembe helyezendő erőforrások
 [!INCLUDE [app-service-web-deploy-web-host](../../includes/app-service-web-deploy-web-host.md)]
 
 ### <a name="redis-cache"></a>Redis Cache
-Azure Redis Cache hello webalkalmazás használt hello hoz létre. hello gyorsítótár hello neve van megadva az hello **cacheName** változó.
+A webalkalmazásban használt Azure Redis Cache hoz létre. A gyorsítótár neve van megadva az a **cacheName** változó.
 
-hello sablont hoz létre hello gyorsítótár hello hello erőforráscsoport és ugyanazon a helyen.
+A sablon létrehozza a gyorsítótár az erőforráscsoporttal megegyező ugyanazon a helyen.
 
     {
       "name": "[variables('cacheName')]",
@@ -80,9 +80,9 @@ hello sablont hoz létre hello gyorsítótár hello hello erőforráscsoport és
 
 
 ### <a name="web-app"></a>Webalkalmazás
-Létrehozza a hello webalkalmazást hello megadott nevű **webSiteName** változó.
+A megadott nevű létrehozza a webalkalmazást a **webSiteName** változó.
 
-Figyelje meg, hogy hello webalkalmazás tulajdonságokat, amelyek lehetővé teszik a Redis Cache hello toowork alkalmazás van konfigurálva. A beállítások dinamikusan jönnek létre alkalmazást a telepítés során megadott értékek alapján.
+Figyelje meg, hogy a webes alkalmazás van konfigurálva, amelyek lehetővé teszik, hogy a Redis Cache használata app beállításának tulajdonságai. A beállítások dinamikusan jönnek létre alkalmazást a telepítés során megadott értékek alapján.
 
     {
       "apiVersion": "2015-08-01",
@@ -117,7 +117,7 @@ Figyelje meg, hogy hello webalkalmazás tulajdonságokat, amelyek lehetővé tes
       ]
     }
 
-## <a name="commands-toorun-deployment"></a>Parancsok toorun központi telepítés
+## <a name="commands-to-run-deployment"></a>Az üzembe helyezést futtató parancsok
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
 ### <a name="powershell"></a>PowerShell

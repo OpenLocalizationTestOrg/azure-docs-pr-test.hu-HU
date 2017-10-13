@@ -1,5 +1,5 @@
 ---
-title: "az OMS szolgáltatáshoz CollectD aaaCollect adatait |} Microsoft Docs"
+title: "Adatgyűjtés a CollectD az OMS szolgáltatáshoz |} Microsoft Docs"
 description: "CollectD egy nyílt forráskódú Linux-démon, amely rendszeres időközönként gyűjti az adatokat az alkalmazások és a rendszer a szintre vonatkozó információ.  Ez a cikk tájékoztatást nyújt a Naplóelemzési CollectD adatainak begyűjtése."
 services: log-analytics
 documentationcenter: 
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/02/2017
 ms.author: magoedte
-ms.openlocfilehash: 7ad82c9c67a664aabd44f08bef2253d84cd2dfba
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a63b15ca5126b45451f0694c9ee75d7b67b1ceaf
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="collect-data-from-collectd-on-linux-agents-in-log-analytics"></a>Gyűjti az adatokat a CollectD Naplóelemzési Linux-ügynökök
-[CollectD](https://collectd.org/) van egy nyílt forráskódú Linux-démon rendszeresen teljesítménymutatók az összegyűjtő alkalmazások és a rendszer a szintre vonatkozó információ. Példa alkalmazások hello Java virtuális gép (JVM), a MySQL-kiszolgáló és a Nginx tartalmazza. Ez a cikk tájékoztatást nyújt teljesítményadatok összegyűjtése a Naplóelemzési CollectD.
+[CollectD](https://collectd.org/) van egy nyílt forráskódú Linux-démon rendszeresen teljesítménymutatók az összegyűjtő alkalmazások és a rendszer a szintre vonatkozó információ. Példa alkalmazások közé tartoznak a Java virtuális gép (JVM), a MySQL-kiszolgáló és a Nginx. Ez a cikk tájékoztatást nyújt teljesítményadatok összegyűjtése a Naplóelemzési CollectD.
 
 Elérhető beépülő modulok teljes listája megtalálható [beépülő modulok tábla](https://collectd.org/wiki/index.php/Table_of_Plugins).
 
 ![CollectD áttekintése](media/log-analytics-data-sources-collectd/overview.png)
 
-hello következő CollectD konfiguráció része a Linux tooroute CollectD adatok toohello OMS-ügynököt az OMS-ügynököt hello Linux.
+A következő CollectD konfiguráció megtalálható az OMS-ügynököt Linux útvonal CollectD az adatokat az OMS-ügynököt Linux.
 
     LoadPlugin write_http
 
@@ -39,7 +39,7 @@ hello következő CollectD konfiguráció része a Linux tooroute CollectD adato
          </Node>
     </Plugin>
 
-Emellett ha egy collectD verzióját használja, ehelyett a következő konfigurációs hello 5.5 használatához.
+Emellett ha egy collectD verzióját használja, mielőtt 5.5 helyette használja az alábbi konfigurációt.
 
     LoadPlugin write_http
 
@@ -50,12 +50,12 @@ Emellett ha egy collectD verzióját használja, ehelyett a következő konfigur
        </URL>
     </Plugin>
 
-hello CollectD konfiguráció használja hello alapértelmezett`write_http` beépülő modul toosend metrika teljesítményadatokat keresztül port 26000 tooOMS Linux-ügynök. 
+Az alapértelmezett értéket használja, a CollectD konfigurációs`write_http` adatokat küldeni a teljesítmény metrika 26000 porton keresztül OMS-ügynököt a Linux rendszerhez használt beépülő modult. 
 
 > [!NOTE]
-> Ezt a portot lehet egyénileg definiált konfigurált tooa port, ha szükséges.
+> Ez a port beállítható úgy, hogy egy egyénileg definiált port szükség esetén.
 
-hello Linux OMS-ügynököt is porton figyel 26000 CollectD metrikáihoz, és adja őket az tooOMS séma metrikák alakítja. hello az alábbiakban az OMS-ügynököt hello Linux konfiguráció `collectd.conf`.
+Linux OMS-ügynököt is porton figyel 26000 CollectD metrikáihoz, és majd alakítja át ezeket OMS séma metrikákat. Az alábbiakban található a Linux-konfigurációhoz OMS-ügynököt `collectd.conf`.
 
     <source>
       type http
@@ -74,15 +74,15 @@ hello Linux OMS-ügynököt is porton figyel 26000 CollectD metrikáihoz, és ad
 
 
 ## <a name="configuration"></a>Konfiguráció
-Az alábbiakban hello CollectD adatok Naplóelemzési a lépéseken tooconfigure gyűjteménye.
+Az alábbi lépések alapvető Naplóelemzési CollectD adatgyűjtés konfigurálásához.
 
-1. CollectD toosend adatok toohello OMS-ügynököt konfigurálása Linux hello write_http beépülő modul használatával.  
-2. A Linux toolisten hello CollectD adatok az OMS-ügynököt hello konfigurálása hello megfelelő portot.
+1. Szeretnék adatokat küldeni a az OMS-ügynököt a write_http beépülő modul használata Linux CollectD konfigurálása.  
+2. A CollectD adatok a megfelelő porton figyeljen Linux az OMS-ügynök konfigurálása.
 3. Indítsa újra a CollectD és Linux OMS-ügynököt.
 
-### <a name="configure-collectd-tooforward-data"></a>CollectD tooforward adatok konfigurálása 
+### <a name="configure-collectd-to-forward-data"></a>Adatok CollectD konfigurálása 
 
-1. tooroute CollectD adatok toohello Linux, OMS-ügynököt `oms.conf` igényeinek toobe hozzáadott tooCollectD tartozó konfigurációs könyvtára. a fájl hello cél hello Linux distro a gép függ.
+1. Az OMS-ügynököt, Linux, az útvonal CollectD adatokat `oms.conf` hozzá kell adni a CollectD tartozó konfigurációs könyvtárba. Ez a fájl és a gép a Linux distro függ.
 
     Ha a CollectD konfigurációs könyvtár /etc/collectd.d/ találhatók:
 
@@ -93,20 +93,20 @@ Az alábbiakban hello CollectD adatok Naplóelemzési a lépéseken tooconfigure
         sudo cp /etc/opt/microsoft/omsagent/sysconf/omsagent.d/oms.conf /etc/collectd/collectd.conf.d/oms.conf
 
     >[!NOTE]
-    >5.5 előtt CollectD verzióihoz fog toomodify hello címkék `oms.conf` a fentiek szerint.
+    >A címkék módosításához hogy CollectD verzióihoz 5.5 előtt `oms.conf` a fentiek szerint.
     >
 
-2. Másolja a collectd.conf szükséges toohello munkaterület omsagent konfigurációs könyvtára.
+2. Collectd.conf másolja a kívánt munkaterület omsagent konfigurációs könyvtárba.
 
         sudo cp /etc/opt/microsoft/omsagent/sysconf/omsagent.d/collectd.conf /etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/
         sudo chown omsagent:omiusers /etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/collectd.conf
 
-3. Indítsa újra a CollectD és az OMS-ügynököt Linux a következő parancsok hello.
+3. Indítsa újra a CollectD és az OMS-ügynököt Linux az alábbi parancsokkal.
 
     sudo szolgáltatás collectd sudo /opt/microsoft/omsagent/bin/service_control újraindítás
 
-## <a name="collectd-metrics-toolog-analytics-schema-conversion"></a>CollectD metrikák tooLog Analytics séma átalakítás
-toomaintain séma-hozzárendeléséhez a következő hello használt CollectD által gyűjtött egy ismerős modell infrastruktúra mérőszámokat már OMS-ügynök a Linux és hello új mérőszámok között:
+## <a name="collectd-metrics-to-log-analytics-schema-conversion"></a>A Naplóelemzési séma alakításához CollectD metrikák
+CollectD által gyűjtött egy ismerős modell infrastruktúra mérőszámokat már OMS-ügynök a Linux és az új mérőszámok között a következő séma-hozzárendeléséhez karbantartásához használja:
 
 | CollectD metrika mező | Log Analytics mező |
 |:--|:--|
@@ -120,6 +120,6 @@ toomaintain séma-hozzárendeléséhez a következő hello használt CollectD á
 | [érték] | Ellenértéknek |
 
 ## <a name="next-steps"></a>Következő lépések
-* További tudnivalók [keresések jelentkezzen](log-analytics-log-searches.md) tooanalyze hello adatokat gyűjteni az adatforrások és megoldásokat. 
-* Használjon [egyéni mezők](log-analytics-custom-fields.md) tooparse adatainak syslog rekordból egyes mezőkbe.
+* További tudnivalók [keresések jelentkezzen](log-analytics-log-searches.md) az adatforrások és a megoldások gyűjtött adatok elemzésére. 
+* Használjon [egyéni mezők](log-analytics-custom-fields.md) syslog rekordokban levő adatok elemzése az egyes mezőkbe.
 

@@ -1,6 +1,6 @@
 ---
-title: az Azure Table storage aaaOverview |} Microsoft Docs
-description: "Azure Table storage, egy NoSQL-adattár hello felhőbe strukturált adat tárolása."
+title: "Az Azure Table Storage áttekintése | Microsoft Docs"
+description: "Az Azure Table Storage, amely egy NoSQL-adattár, a strukturált adatok felhőben való tárolásához használható."
 services: cosmos-db
 documentationcenter: .net
 author: mimig1
@@ -14,29 +14,29 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 08/23/2017
 ms.author: mimig
-ms.openlocfilehash: 8643cc666f000e078644981381a086e1ccc44067
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9099e90c402185b371495379db943d64fb82cdb8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-table-storage-overview"></a>Az Azure Table Storage áttekintése
 
 [!INCLUDE [storage-table-cosmos-db-tip-include](../../includes/storage-table-cosmos-db-tip-include.md)]
 
-Azure Table storage egy olyan szolgáltatás, amely strukturált NoSQL hello felhőben biztosít egy kulcsattribútum adattároló séma nélküli kialakítás tárolja. Mivel a Table storage séma nélküli, akkor egyszerűen tooadapt alkalmazás igényeinek változásával kell hello az adatokat. Hozzáférés tooTable tárolási adatok gyors és költséghatékony, számos különböző típusú alkalmazásokat, és általában kevesebb költséggel jár, mint a hagyományos SQL hasonló adatmennyiséggel.
+Az Azure Table Storage szolgáltatás strukturált NoSQL-adatokat tárol a felhőben, így séma nélküli kulcs-/attribútumtárat biztosítva. Mivel a Table Storage séma nélküli, az adatokat könnyen az alkalmazás változó igényeihez igazíthatja. A Table Storage adataihoz számos alkalmazástípus gyorsan és költséghatékonyan férhet hozzá, a költségei pedig jellemzően alacsonyabbak, mint a hagyományos SQL hasonló mennyiségű adathoz való használata esetében.
 
-Webes alkalmazásokhoz, címtárakat, eszközadatokat és egyéb metaadatokat a szolgáltatásnak szüksége van a Table storage toostore rugalmas adatkészleteket például a felhasználói adatok is használhatja. Korlátlan számú entitást tárolhat egy táblát, és a storage-fiókok tartalmazhat korlátlan számú táblát toohello kapacitásán belül hello storage-fiók mentése.
+A Table Storage segítségével olyan rugalmas adatkészleteket tárolhat, mint például webalkalmazások felhasználói adatai, címtárak, eszközadatok és bármilyen egyéb metaadat, amelyre a szolgáltatásnak szüksége van. Egy táblán korlátlan számú entitást tárolhat, és egy tárfiók a kapacitásán belül korlátlan számú táblát tartalmazhat.
 
 [!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
 
 ## <a name="next-steps"></a>Következő lépések
 
-* [A Microsoft Azure Tártallózó](../vs-azure-tools-storage-manage-with-storage-explorer.md) egy ingyenes, különálló alkalmazás, amely lehetővé teszi toowork vizuálisan macOS, Linux és a Windows Azure Storage-adatokat a Microsoft.
+* A [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) egy ingyenes, önálló alkalmazás, amelynek segítségével vizuálisan dolgozhat Azure Storage-adatokkal Windows, macOS és Linux rendszereken.
 
 * [Az Azure Table Storage használatának első lépései a .NET-keretrendszerrel](table-storage-how-to-use-dotnet.md)
 
-* Nézet hello tábla szolgáltatás elérhető API-kat vonatkozó dokumentációját:
+* A Table Service elérhető API-kat részletesen ismertető referenciadokumentációjának megtekintése:
 
     * [Az Azure Storage .NET-hez készült ügyféloldali kódtára – referencia](http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409)
 

@@ -1,23 +1,23 @@
-### <a name="determine-hello-dns-name-of-hello-virtual-machine"></a>Határozza meg a virtuális gép hello hello DNS-neve
-tooconnect toohello SQL Server adatbázismotorhoz egy másik számítógépről, ismernie kell a tartománynévrendszer (DNS) hello hello virtuális gép nevét. (Ez a hello neve hello internet által használt tooidentify hello virtuális gépet. Hello IP-címet is használhat, de hello IP-cím változhat, amikor Azure redundancia vagy karbantartás erőforrásokat helyez át. hello DNS-neve lesz stabil, mert azok tooa új IP-cím átirányítva.)  
+### <a name="determine-the-dns-name-of-the-virtual-machine"></a>A virtuális gép DNS-nevének meghatározása
+Ha egy másik számítógépről szeretne az SQL Server Adatbázismotorhoz csatlakozni, ismernie kell a virtuális gép Tartománynév-szolgáltatójának (DNS) nevét. (Az internet ezzel a névvel azonosítja a virtuális gépet. Az IP-címet is használhatja, azonban az megváltozhat, ha az Azure erőforrásokat helyez át redundancia vagy karbantartás miatt. A DNS-név mindig stabil, mivel átirányítható egy új IP-címre.)  
 
-1. Az Azure portál hello (vagy hello előző lépésben), válassza ki a **virtuális gépek (klasszikus)**.
+1. Az Azure Portalon (vagy az előző lépésben) válassza a **Virtuális gépek (klasszikus)** lehetőséget.
 2. Válassza ki az SQL virtuális gépét.
-3. A hello **virtuális gép** panelen, a Másolás hello **DNS-név** hello virtuális géphez.
+3. A **Virtuális gép** panelen másolja ki a virtuális gép **DNS-nevét**.
    
     ![DNS-név](./media/virtual-machines-sql-server-connection-steps/sql-vm-dns-name.png)
 
-### <a name="connect-toohello-database-engine-from-another-computer"></a>Adatbázis-kezelő toohello Csatlakozás másik számítógépről
-1. Egy számítógép csatlakozik a toohello internet, nyissa meg az SQL Server Management Studio eszközt.
-2. A hello **tooServer csatlakozás** vagy **tooDatabase motor csatlakozás** párbeszédpanel hello **kiszolgálónév** hello virtuális számítógép (meghatározott hello hello DNS-nevét adja meg előző tevékenység) és egy nyilvános végpontot portszámot hello formátumban *DNSName, portszám* például **mysqlvm.cloudapp.net,57500**.
+### <a name="connect-to-the-database-engine-from-another-computer"></a>Csatlakozás az adatbázismotorhoz egy másik számítógépről
+1. Nyissa meg az SQL Server Management Studio alkalmazást egy internethez csatlakozó számítógépen.
+2. A **Kapcsolódás a kiszolgálóhoz** vagy a **Kapcsolódás az Adatbázismotorhoz** párbeszédpanel **Kiszolgálónév** mezőjében adja meg a virtuális gép DNS-nevét (amelyet az előző feladatban határozott meg), valamint egy nyilvános végponthoz tartozó portszámot az alábbi formátumban: *DNSNév, portszám*, például **mysqlvm.cloudapp.net,57500**.
    
     ![Csatlakozás az SSMS használatával](./media/virtual-machines-sql-server-connection-steps/33Connect-SSMS.png)
    
-    Ha nem emlékszik hello nyilvános végpontot portszám korábban létrehozott, az hello található **végpontok** hello területe **virtuális gép** panelen.
+    Ha nem emlékszik a korábban létrehozott nyilvános végpont portszámára, azt megtalálhatja a **Virtuális gép** panel **Végpontok** területén.
    
     ![Nyilvános port](./media/virtual-machines-sql-server-connection-steps/sql-vm-port-number.png)
-3. A hello **hitelesítési** mezőben válassza **SQL Server-hitelesítés**.
-4. A hello **bejelentkezési** be, olyan bejelentkezési azonosítót, egy korábbi feladatban létrehozott hello nevét.
-5. A hello **jelszó** mezőbe, írja be a jelszót hello az Ön által létrehozott korábbi feladat hello bejelentkezési adatokat.
+3. A **Hitelesítés** mezőben válassza az **SQL Server-hitelesítés** lehetőséget.
+4. A **Bejelentkezés** mezőbe írja be egy korábbi feladatban létrehozott bejelentkezés nevét.
+5. A **Jelszó** mezőbe írja be a korábbi feladatban létrehozott bejelentkezés jelszavát.
 6. Kattintson a **Connect** (Csatlakozás) gombra.
 

@@ -1,6 +1,6 @@
 ---
-title: "a HDInsight .NET SDK - Azure használatával aaaSubmit MapReduce-feladatok |} Microsoft Docs"
-description: "Ismerje meg, hogyan toosubmit MapReduce feladatok tooAzure HDInsight Hadoop HDInsight .NET SDK használatával."
+title: "Küldje el a MapReduce-feladatok használata a HDInsight .NET SDK - Azure |} Microsoft Docs"
+description: "Megtudhatja, hogyan elküldeni a MapReduce-feladatok az Azure HDInsight Hadoop HDInsight .NET SDK használatával."
 editor: cgronlun
 manager: jhubbard
 services: hdinsight
@@ -16,38 +16,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: jgao
-ms.openlocfilehash: d00e31400b8fa47982c31d00bfdcdb304bcb0b59
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 015435270c31bafea0ebf5303b459338755c1410
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="run-mapreduce-jobs-using-hdinsight-net-sdk"></a>A HDInsight .NET SDK használatával MapReduce-feladatok futtatása
 [!INCLUDE [mapreduce-selector](../../includes/hdinsight-selector-use-mapreduce.md)]
 
-Ismerje meg, hogyan toosubmit MapReduce feladatok HDInsight .NET SDK használatával. HDInsight fürtök rendelkeznek egy bizonyos MapReduce-minták a jar-fájlra. hello jar-fájlra van */example/jars/hadoop-mapreduce-examples.jar*.  Hello minták egyik *wordcount*. A C# konzol alkalmazás toosubmit a wordcount feladathoz fejleszt.  hello feladat beolvassa hello */example/data/gutenberg/davinci.txt* fájlt, és kimenetek hello eredmények túl*/example/data/davinciwordcount*.  Ha azt szeretné, hogy toorerun hello alkalmazás, kell tisztítása hello kimeneti mappa.
+Megtudhatja, hogyan elküldeni a MapReduce-feladatok HDInsight .NET SDK használatával. HDInsight fürtök rendelkeznek egy bizonyos MapReduce-minták a jar-fájlra. A jar-fájlra van */example/jars/hadoop-mapreduce-examples.jar*.  A minták egyik *wordcount*. A C# Konzolalkalmazás a wordcount feladat elküldése fejleszt.  A feladat beolvassa a */example/data/gutenberg/davinci.txt* fájlt, és az eredmények */example/data/davinciwordcount*.  Ha szeretné újra futtatni az alkalmazást, a kimeneti mappa kell tisztítása.
 
 > [!NOTE]
-> egy Windows ügyfél hello cikkben leírt lépéseket kell végrehajtani. A tájékoztatást a Linux, OS X vagy UNIX rendszerű ügyfél toowork struktúra használja a hello lapon választó hello hello cikk tetején látható.
+> A cikkben leírt lépéseket egy Windows ügyfél kell elvégezni. Kapcsolatos információkért használata a Linux, OS X vagy UNIX rendszerű ügyfélnél Hive használata a lap választó, a cikk tetején látható.
 > 
 > 
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ez a cikk megkezdése előtt rendelkeznie kell a következő elemek hello:
+Ez a cikk megkezdése előtt rendelkeznie kell a következő elemek:
 
 * **Hdinsight Hadoop-fürthöz**. Lásd: [hdinsight Linux-alapú Hadoop használatának megkezdésében](./hdinsight-hadoop-linux-tutorial-get-started.md).
 * **A Visual Studio 2013 vagy 2015/2017**.
 
 ## <a name="submit-mapreduce-jobs-using-hdinsight-net-sdk"></a>A HDInsight .NET SDK használatával MapReduce-feladatok elküldése
-hello HDInsight .NET SDK biztosít a .NET ügyféloldali kódtáraknál, így azokat könnyebben toowork a .NET-HDInsight-fürtökkel. 
+A HDInsight .NET SDK biztosít a .NET ügyféloldali kódtáraknál, így azokat könnyebben működéséhez a .NET-HDInsight-fürtökkel. 
 
-**tooSubmit feladatok**
+**Feladatok küldéséhez**
 
 1. Hozzon létre egy C# konzolalkalmazást a Visual Studióban.
-2. Hello Nuget Package Manager Console futtassa a következő parancs hello:
+2. A Nuget-Csomagkezelő konzolról futtassa a következő parancsot:
    
         Install-Package Microsoft.Azure.Management.HDInsight.Job
-3. A következő kód hello használata:
+3. A következő kód használható:
    
         using System.Collections.Generic;
         using System.IO;
@@ -79,14 +79,14 @@ hello HDInsight .NET SDK biztosít a .NET ügyféloldali kódtáraknál, így az
    
                 static void Main(string[] args)
                 {
-                    System.Console.WriteLine("hello application is running ...");
+                    System.Console.WriteLine("The application is running ...");
    
                     var clusterCredentials = new BasicAuthenticationCloudCredentials { Username = existingClusterUsername, Password = existingClusterPassword };
                     _hdiJobManagementClient = new HDInsightJobManagementClient(existingClusterUri, clusterCredentials);
    
                     SubmitMRJob();
    
-                    System.Console.WriteLine("Press ENTER toocontinue ...");
+                    System.Console.WriteLine("Press ENTER to continue ...");
                     System.Console.ReadLine();
                 }
    
@@ -101,13 +101,13 @@ hello HDInsight .NET SDK biztosít a .NET ügyféloldali kódtáraknál, így az
                         Arguments = args
                     };
    
-                    System.Console.WriteLine("Submitting hello MR job toohello cluster...");
+                    System.Console.WriteLine("Submitting the MR job to the cluster...");
                     var jobResponse = _hdiJobManagementClient.JobManagement.SubmitMapReduceJob(paras);
                     var jobId = jobResponse.JobSubmissionJsonResponse.Id;
                     System.Console.WriteLine("Response status code is " + jobResponse.StatusCode);
                     System.Console.WriteLine("JobId is " + jobId);
    
-                    System.Console.WriteLine("Waiting for hello job completion ...");
+                    System.Console.WriteLine("Waiting for the job completion ...");
    
                     // Wait for job completion
                     var jobDetail = _hdiJobManagementClient.JobManagement.GetJob(jobId).JobDetail;
@@ -124,15 +124,15 @@ hello HDInsight .NET SDK biztosít a .NET ügyféloldali kódtáraknál, így az
         
                     if (jobDetail.ExitValue == 0)
                     {
-                        // Create hello storage account object
+                        // Create the storage account object
                         CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=" + 
                             defaultStorageAccountName + 
                             ";AccountKey=" + defaultStorageAccountKey);
         
-                        // Create hello blob client.
+                        // Create the blob client.
                         CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
         
-                        // Retrieve reference tooa previously created container.
+                        // Retrieve reference to a previously created container.
                         CloudBlobContainer container = blobClient.GetContainerReference(defaultStorageContainerName);
         
                         CloudBlockBlob blockBlob = container.GetBlockBlobReference(outputFolder.Substring(1) + "/part-r-00000");
@@ -163,18 +163,18 @@ hello HDInsight .NET SDK biztosít a .NET ügyféloldali kódtáraknál, így az
                 }
             }
         }
-4. Nyomja le az **F5** toorun hello alkalmazás.
+4. Az alkalmazás futtatásához nyomja le az **F5** billentyűt.
 
-toorun hello feladat ebben az esetben meg kell változtatnia hello feladat kimeneti mappa neve, hello mintában, a "/ Példa/data/davinciwordcount".
+Futtassa újra a feladatot, módosítania kell a feladat kimeneti mappa nevét, a példában az "/ Példa/data/davinciwordcount".
 
-Ha hello feladat sikeresen befejeződik, a hello alkalmazás nyomtat hello kimeneti fájl "rész-r-00000" hello tartalma.
+Ha a feladat sikeresen befejeződik, az alkalmazás a kimeneti fájl "rész-r-00000" tartalom nyomtatása.
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben a cikkben megtanulta rendelkezik számos módon toocreate HDInsight-fürtöt. toolearn több, tekintse meg a következő cikkek hello:
+Ebben a cikkben megtanulta rendelkezik többféle módon hozhat létre HDInsight-fürtöt. További tudnivalókért tekintse meg a következő cikkeket:
 
 * A Hive feladat elküldése, lásd: [HDInsight .NET SDK használatával futtassa Hive lekérdezések](hdinsight-hadoop-use-hive-dotnet-sdk.md).
 * A HDInsight-fürtök létrehozására, lásd: [hdinsight létrehozása Linux-alapú Hadoop-fürtök](hdinsight-hadoop-provision-linux-clusters.md).
 * A HDInsight-fürtök kezelése, lásd: [Hadoop kezelése a HDInsight-fürtök](hdinsight-administer-use-portal-linux.md).
-* Tanulási hello HDInsight .NET SDK, lásd: [HDInsight .NET SDK referenciáit](https://msdn.microsoft.com/library/mt271028.aspx).
-* A nem interaktív hitelesítés tooAzure, lásd: [.NET HDInsight-alkalmazások létrehozása a nem interaktív hitelesítés](hdinsight-create-non-interactive-authentication-dotnet-applications.md).
+* A HDInsight .NET SDK tanulási, lásd: [HDInsight .NET SDK referenciáit](https://msdn.microsoft.com/library/mt271028.aspx).
+* A nem interaktív hitelesítés az Azure-ba, lásd: [.NET HDInsight-alkalmazások létrehozása a nem interaktív hitelesítés](hdinsight-create-non-interactive-authentication-dotnet-applications.md).
 

@@ -1,6 +1,6 @@
 ---
-title: az Azure PowerShell aaaExport Resource Manager-sablon |} Microsoft Docs
-description: "Használja az Azure Resource Manager és az Azure PowerShell tooexport egy sablon, egy erőforráscsoportot."
+title: "Az Azure PowerShell Resource Manager sablon exportálása |} Microsoft Docs"
+description: "Azure Resource Manager és az Azure PowerShell használatával sablonokat exportálhat egy erőforráscsoportot."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -13,26 +13,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: 9a239b7bce8209326c0e267a4d3d69f7014bdaed
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7543811eb9448222b6e7c266756e68debc7d54be
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="export-azure-resource-manager-templates-with-powershell"></a>A PowerShell-lel Azure Resource Manager-sablonok exportálása
 
-Erőforrás-kezelő lehetővé teszi a Resource Manager-sablon a meglévő erőforrást az előfizetésében tooexport. A létrehozott sablon toolearn kapcsolatos hello sablon szintaxis vagy tooautomate hello a megoldás újbóli telepítését igény szerint is használhatja.
+A Resource Manager lehetővé teszi az előfizetéshez tartozó meglévő erőforrások Resource Manager-sablonjainak exportálását. Az így létrehozott sablon használatával megismerheti a sablonok szintaxisát, illetve igény szerint automatizálhatja a megoldás újbóli telepítését.
 
-Fontos, hogy nincsenek két különböző módon tooexport sablon toonote:
+Fontos megjegyezni, hogy sablonokat két különböző módon lehet exportálni:
 
-* Hello tényleges sablon, amelyet a központi telepítéshez használt exportálhatja. hello exportált sablon tartalmaz minden hello paraméterek és változók pontosan úgy, mint ahogy az eredeti sablon hello. Ez a módszer akkor hasznos, ha egy sablon tooretrieve van szüksége.
-* Exportálhatja a sablont, amely hello hello erőforráscsoport aktuális állapotát jeleníti meg. hello exportált sablon nem alapul, amely a központi telepítéshez használt sablonokat. Ehelyett az alkalmazás létrehozza a sablont, amely hello erőforráscsoportban található egy pillanatfelvétel. hello exportált sablonjának sok változtatható értékek és valószínűleg nem annyi megadott paraméterek általában határozzák meg. Ez a módszer akkor hasznos, ha hello erőforráscsoport módosította. A továbbiakban létre kell toocapture hello erőforráscsoport sablonként.
+* Exportálhatja az üzembe helyezéshez is használt tényleges sablont. Ebben az esetben az exportált sablon pontosan úgy tartalmazza a különböző paramétereket és változókat, ahogy azok az eredeti sablonban szerepeltek. Ez a módszer akkor hasznos, ha egy sablon visszakeresését.
+* A másik megoldás, hogy úgy exportálja a sablont, hogy az az erőforráscsoport aktuális állapotát tükrözze. Ebben az esetben az exportált sablon nem az üzembe helyezéshez használt sablonon alapul. A rendszer ehelyett új sablont hoz létre az erőforráscsoport aktuális állapota alapján. Az exportált sablon számos nem módosítható értéket tartalmaz, és valószínűleg kevesebb paraméter található benne, mint amennyit általában használni szokott. Ez a módszer akkor hasznos, ha módosította az erőforráscsoportot. és most szeretne létrehozni egy sablont az így létrejött egyedi erőforráscsoport alapján.
 
 Ebben a témakörben mind a két megoldást bemutatjuk.
 
 ## <a name="deploy-a-solution"></a>A megoldás üzembe helyezéséhez
 
-mindkét tooillustrate megközelíti a sablon exportálása, először megoldás tooyour előfizetés telepítése. Ha már van erőforráscsoport, amelyet az tooexport előfizetését, nincs toodeploy ebben a megoldásban. Azonban hello a cikk hátralévő része toohello sablon ehhez a megoldáshoz hivatkozik. hello a példaként megadott parancsfájlt a storage-fiók telepíti.
+A sablon exportálása mindkét megközelítés mutatja be, először egy megoldás telepítésére az előfizetéséhez. Ha már rendelkezik egy erőforráscsoportot az előfizetés az exportálni kívánt, nem rendelkeznek a megoldás üzembe helyezéséhez. Ez a cikk fennmaradó azonban ez a megoldás sablonját hivatkozik. A példaként megadott parancsfájlt a storage-fiók telepíti.
 
 ```powershell
 New-AzureRmResourceGroup -Name ExampleGroup -Location "South Central US"
@@ -43,13 +43,13 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup `
 
 ## <a name="save-template-from-deployment-history"></a>Menti a sablont a központi telepítés előzményei
 
-Beolvasható egy sablont az üzembe helyezési előzményeket hello segítségével [mentés-AzureRmResourceGroupDeploymentTemplate](/powershell/module/azurerm.resources/save-azurermresourcegroupdeploymenttemplate) parancsot. a következő példa menti hello sablont, amely korábban központilag hello:
+Beolvasható egy sablont az üzembe helyezési előzményeket használva a [mentés-AzureRmResourceGroupDeploymentTemplate](/powershell/module/azurerm.resources/save-azurermresourcegroupdeploymenttemplate) parancsot. Az alábbi példa menti a sablont, amely korábban központilag:
 
 ```powershell
 Save-AzureRmResourceGroupDeploymentTemplate -ResourceGroupName ExampleGroup -DeploymentName NewStorage
 ```
 
-Hello sablon hello helyét adja vissza.
+A sablon elérési útját adja vissza.
 
 ```powershell
 Path
@@ -57,17 +57,17 @@ Path
 C:\Users\exampleuser\NewStorage.json
 ```
 
-Nyissa meg hello fájlt, és figyelje meg, hogy a rendszer hello pontos sablon központi telepítéshez használt. hello paraméterek és változók megfelelő hello sablont a Githubból. Ez a sablon központilag telepítheti.
+Nyissa meg a fájlt, és figyelje meg, hogy a rendszer a központi telepítéshez használt pontos sablont. A paraméterek és változók felel meg a sablont a Githubból. Ez a sablon központilag telepítheti.
 
 ## <a name="export-resource-group-as-template"></a>Erőforráscsoportok exportálása sablonként
 
-Egy sablon fogadása hello üzembe helyezési előzményeket, helyett a sablont, amely hello az erőforráscsoport aktuális állapotát jeleníti meg hello segítségével kérheti le [Export-AzureRmResourceGroup](/powershell/module/azurerm.resources/export-azurermresourcegroup) parancsot. Ez a parancs használni, amikor sok módosítások tooyour erőforráscsoport el, és nincs meglévő sablon változtatásainak hello jelöli.
+Helyett egy sablon fogadása az üzembe helyezési előzményeket, a sablont, amely az erőforráscsoport aktuális állapotát jeleníti meg használatával kérheti le a [Export-AzureRmResourceGroup](/powershell/module/azurerm.resources/export-azurermresourcegroup) parancsot. Ez a parancs használni, amikor sok módosításokat végzett az erőforráscsoporton, és nincs meglévő sablon jelenti. a módosításokat.
 
 ```powershell
 Export-AzureRmResourceGroup -ResourceGroupName ExampleGroup
 ```
 
-Hello sablon hello helyét adja vissza.
+A sablon elérési útját adja vissza.
 
 ```powershell
 Path
@@ -75,7 +75,7 @@ Path
 C:\Users\exampleuser\ExampleGroup.json
 ```
 
-Nyissa meg hello fájlt, és figyelje meg, hogy nem egyezik a Githubon hello sablont. Különböző paraméterek és változók nem rendelkezik. hello tárolási SKU és hely érték is kódolt toovalues. hello alábbi példa bemutatja hello exportált sablon, de a sablon némileg eltérő névvel rendelkezik:
+Nyissa meg a fájlt, és figyelje meg, hogy nem egyezik a GitHub-sablon. Különböző paraméterek és változók nem rendelkezik. A tárolási SKU és hely érték nem módosítható értékeket is. A következő példa bemutatja az exportált sablon, de a sablon némileg eltérő névvel rendelkezik:
 
 ```json
 {
@@ -107,7 +107,7 @@ Nyissa meg hello fájlt, és figyelje meg, hogy nem egyezik a Githubon hello sab
 }
 ```
 
-Ez a sablon központilag telepítheti, de egy egyedi nevet a tárfiók hello találgatás igényel. a paraméter neve hello kis mértékben eltér.
+Ez a sablon központilag telepítheti, de egy egyedi nevet a tárfiók találgatás igényel. A paraméter neve kis mértékben eltér.
 
 ```powershell
 New-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup `
@@ -117,13 +117,13 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup `
 
 ## <a name="customize-exported-template"></a>Exportált sablon személyre szabása
 
-Módosíthatja a sablon toomake azt toouse egyszerűbb és rugalmasabb. további helyeket, a módosítás hello hely tulajdonság toouse tooallow hello hello erőforráscsoport és ugyanazon a helyen:
+Ez a sablon használatával egyszerűbbé és rugalmasabbá módosíthatja. Engedélyezi a további helyeket, módosítsa a helyet jelölő tulajdonsághoz használandó ugyanazon a helyen az erőforráscsoport:
 
 ```json
 "location": "[resourceGroup().location]",
 ```
 
-tooavoid rendelkező tooguess tárfiókot, távolítsa el a hello paraméter hello a tárfiók nevének uniques nevét. Tárolási névutótag, és egy tárolási SKU paraméter hozzáadása:
+Ne kelljen kitalálni a tárfiók uniques nevét, távolítsa el a paramétert a tárfiók nevét. Tárolási névutótag, és egy tárolási SKU paraméter hozzáadása:
 
 ```json
 "parameters": {
@@ -146,7 +146,7 @@ tooavoid rendelkező tooguess tárfiókot, távolítsa el a hello paraméter hel
 },
 ```
 
-Adja hozzá egy változó, amely hello tárfióknév hello uniqueString függvénnyel hoz létre:
+Adja hozzá egy változó, amely a tárfiók nevét a uniqueString függvénnyel hoz létre:
 
 ```json
 "variables": {
@@ -154,13 +154,13 @@ Adja hozzá egy változó, amely hello tárfióknév hello uniqueString függvé
   },
 ```
 
-Hello hello tárolási fiók toohello változó nevének megadása:
+A változó értéke a tárfiók nevét:
 
 ```json
 "name": "[variables('storageAccountName')]",
 ```
 
-Hello SKU toohello paraméter beállítása:
+A paraméter értéke a Termékváltozat:
 
 ```json
 "sku": {
@@ -215,9 +215,9 @@ A sablon most a következőképpen néz ki:
 }
 ```
 
-Hello módosított sablon újratelepítése.
+A módosított sablon újbóli.
 
 ## <a name="next-steps"></a>Következő lépések
-* Hello portál tooexport egy sablon használatával kapcsolatos információkért lásd: [Azure Resource Manager-sablonok exportálása létező erőforrásokból](resource-manager-export-template.md).
-* a sablon toodefine paraméterek lásd [sablonok készítése](resource-group-authoring-templates.md#parameters).
+* Sablon exportálása a portál használatával kapcsolatos információkért lásd: [Azure Resource Manager-sablonok exportálása létező erőforrásokból](resource-manager-export-template.md).
+* Sablon paraméterek megadásához tekintse meg a [sablonok készítése](resource-group-authoring-templates.md#parameters).
 * Tippek az általános telepítési hibák feloldására, lásd: [hibaelhárítás általános az Azure-telepítés az Azure Resource Manager](resource-manager-common-deployment-errors.md).

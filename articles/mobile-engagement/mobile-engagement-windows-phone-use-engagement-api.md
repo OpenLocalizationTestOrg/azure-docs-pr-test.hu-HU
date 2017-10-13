@@ -1,6 +1,6 @@
 ---
-title: aaaHow tooUse hello Engagement API a Windows Phone Silverlight
-description: Hogyan tooUse hello Engagement API a Windows Phone Silverlight
+title: "A bevonási API használata a Windows Phone Silverlight"
+description: "A bevonási API használata a Windows Phone Silverlight"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 1e84be95cc910be7f1227b4ae60eb483a1939284
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ec8b6c13ea052c8063dfde4321cdd286ab6cb817
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toouse-hello-engagement-api-on-windows-phone-silverlight"></a>Hogyan tooUse hello Engagement API a Windows Phone Silverlight
-Ez a dokumentum egy bővítmény toohello dokumentum [hogyan a Windows Phone Silverlight-alkalmazást a Mobile Engagement toointegrate](mobile-engagement-windows-phone-integrate-engagement.md). A mélység adatait hogyan toouse hello Engagement API tooreport az alkalmazás statisztikái biztosít.
+# <a name="how-to-use-the-engagement-api-on-windows-phone-silverlight"></a>A bevonási API használata a Windows Phone Silverlight
+Ez a dokumentum az bővítménye a dokumentum [a Windows Phone Silverlight-alkalmazást a Mobile Engagement integrálása](mobile-engagement-windows-phone-integrate-engagement.md). A mélység részletei jelentés az alkalmazás statisztikái az Engagement API használatával biztosít.
 
-Ha munkamenetek, a tevékenységek, a összeomlásokat és a technikai információkat az alkalmazás csak szeretné Engagement tooreport, akkor a legegyszerűbb hello eltérő módon minden toomake a `PhoneApplicationPage` alosztályokat örökölhet hello `EngagementPage` osztály.
+Ha csak a bevonási jelenti a munkamenetek, a tevékenységek, a összeomlásokat és a technikai információkat az alkalmazás szeretné, akkor a legegyszerűbb módja, hogy minden a `PhoneApplicationPage` alosztályokat örökli a `EngagementPage` osztály.
 
-Ha azt szeretné, hogy toodo további, például ha tooreport adott eseményeket, hibákat és feladatok van szüksége, vagy ha tooreport az alkalmazás tevékenységei eltérő módon, mint egy hello megvalósított hello `EngagementPage` osztályokat, akkor szükséges, hogy toouse hello Bevonási API.
+Ha szeretne többet, például ha adott eseményeket, hibákat és feladatok, jelentenie, vagy ha a jelentés az alkalmazás tevékenységei eltérő módon, mint az egyik valósult meg, hogy a `EngagementPage` osztályokat, akkor használja az Engagement API szükséges.
 
-hello Engagement API által biztosított hello `EngagementAgent` osztály. Toothose módszerek keresztül érheti el `EngagementAgent.Instance`.
+A bevonási API által biztosított a `EngagementAgent` osztály. Azokat a módszereket használatával tudja elérni `EngagementAgent.Instance`.
 
-Akkor is, ha hello ügynök modul nem lett inicializálva, minden hívás toohello API késleltetve, és végrehajtja újra elérhető hello ügynök esetén.
+Akkor is, ha az ügynök modul inicializálása nem történt meg, az API-t minden egyes hívásakor késleltetve, és végrehajtja újra, amikor az ügynök nem érhető el.
 
 ## <a name="engagement-concepts"></a>Engagement – fogalmak
-a következő részek hello hello Mobile Engagement fogalmait hello Windows Phone platform szűkítéséhez.
+A következő részek a Mobile Engagement fogalmait a Windows Phone platform szűkítéséhez.
 
 ### <a name="session-and-activity"></a>`Session` és `Activity`
-Egy *tevékenység* általában egy oldal, amely toosay hello hello alkalmazás társított *tevékenység* kezdődik, amikor hello oldal jelenik meg, és hello lap bezárásakor leáll: hello eset, amikor hello Hello segítségével integrált engagement SDK `EngagementPage` osztály.
+Egy *tevékenység* tartozik általában az alkalmazás egy oldalnyi, azaz a *tevékenység* kezdődik, amikor az oldal jelenik meg, és leállítja a lap bezárásakor: Ez a helyzet, amikor az Engagement SDK használatával integrálva van a `EngagementPage` osztály.
 
-De *tevékenységek* is szabályozhatja manuálisan hello Engagement API használatával. Így toosplit egy adott oldal több sub részek tooget kapcsolatos további részletekért hello használata ezen a lapon (például milyen gyakran tooknown és mennyi ideig párbeszédpanelek használt ezen a lapon belül).
+De *tevékenységek* is szabályozhatja manuálisan az Engagement API használatával. Ez lehetővé teszi több sub részből további részletes információkat az ezen a lapon (például hogy milyen gyakran ismert, és mennyi ideig párbeszédpanelek ezen a lapon belül használt) használatát egy adott lap felosztása.
 
 ## <a name="reporting-activities"></a>Jelentéskészítési tevékenység
 ### <a name="user-starts-a-new-activity"></a>Felhasználó elindítja az új tevékenység
 #### <a name="reference"></a>Referencia
             void StartActivity(string name, Dictionary<object, object> extras = null)
 
-Toocall kell `StartActivity()` minden alkalommal hello felhasználói tevékenység változik. hello első hívás toothis függvény új felhasználói munkamenet indítása.
+Meg kell hívnia `StartActivity()` minden egyes alkalommal, amikor a felhasználói tevékenység módosul. Ez a függvény az első hívás új felhasználói munkamenet indítása.
 
 > [!IMPORTANT]
-> hello SDK automatikusan metódushívás hello EndActivity hello alkalmazás bezárásakor. Ebből kifolyólag javasoljuk toocall hello StartActivity metódus amikor hello felhasználó módosítása és hello EndActivity metódus a metódus hívása óta kényszeríti hello aktuális munkamenet toobe tooNEVER hívás hello tevékenység befejeződött.
+> Az SDK automatikusan a EndActivity metódust hívja, ha az alkalmazás le van zárva. Ebből kifolyólag javasoljuk a StartActivity metódus meghívására, amikor a tevékenység, a felhasználó módosítása, és soha EndActivity metódus hívható, mert a metódus hívása az aktuális munkamenet be kell fejezni kényszeríti.
 > 
 > 
 
@@ -58,7 +58,7 @@ Toocall kell `StartActivity()` minden alkalommal hello felhasználói tevékenys
 #### <a name="reference"></a>Referencia
             void EndActivity()
 
-Toocall kell `EndActivity()` legalább egyszer amikor hello felhasználó befejezi az utolsó tevékenység. Ebben értesíti az Engagement SDK-t, hogy a hello felhasználó jelenleg inaktív, és, hogy a felhasználói munkamenet hello toobe kell lezárt egyszer hello munkamenet időkorlátja lejár hello (ha meghívja a `StartActivity()` hello munkamenet időkorlátja lejár, mielőtt hello munkamenet egyszerűen továbbra is).
+Meg kell hívnia `EndActivity()` legalább egyszer amikor a felhasználó befejezi az utolsó tevékenység. Ebben értesíti az Engagement SDK-t, hogy a felhasználó jelenleg inaktív, valamint, hogy a felhasználói munkamenet kell egyszer lezárni a munkamenet időkorlátja lejár (ha meghívja a `StartActivity()` előtt a munkamenet időkorlátja lejár, a munkamenet egyszerűen továbbra is).
 
 #### <a name="example"></a>Példa
             EngagementAgent.Instance.EndActivity();
@@ -68,12 +68,12 @@ Toocall kell `EndActivity()` legalább egyszer amikor hello felhasználó befeje
 #### <a name="reference"></a>Referencia
             void StartJob(string name, Dictionary<object, object> extras = null)
 
-Hello feladat tootrack: bizonyos feladatokat is használhat egy meghatározott időtartamra vonatkozóan.
+A feladatot használhatja egy meghatározott időtartamra vonatkozóan: bizonyos feladatok követése céljából.
 
 #### <a name="example"></a>Példa
             // An upload begins...
 
-            // Set hello extras
+            // Set the extras
             var extras = new Dictionary<object, object>();
             extras.Add("title", "avatar");
             extras.Add("type", "image");
@@ -84,11 +84,11 @@ Hello feladat tootrack: bizonyos feladatokat is használhat egy meghatározott i
 #### <a name="reference"></a>Referencia
             void EndJob(string name)
 
-Amint egy tevékenység követi nyomon a feladat le lett állítva, meg kell hívnia hello EndJob metódust a feladat úgy, hogy megadja a hello feladat neve.
+Amint egy tevékenység követi nyomon a feladat le lett állítva, meg kell a EndJob metódus hívható meg a feladat úgy, hogy megadja a feladat neve.
 
 #### <a name="example"></a>Példa
-            // In hello previous section, we started an upload tracking with a job
-            // Then, hello upload ends
+            // In the previous section, we started an upload tracking with a job
+            // Then, the upload ends
 
             EngagementAgent.Instance.EndJob("uploadData");
 
@@ -103,7 +103,7 @@ A következő három típusú eseményeket:
 #### <a name="reference"></a>Referencia
             void SendEvent(string name, Dictionary<object, object> extras = null)
 
-Önálló események is előfordulhatnak kívül hello egy munkamenet környezetében.
+Önálló események is előfordulhatnak kívül egy munkamenet környezetében.
 
 #### <a name="example"></a>Példa
             EngagementAgent.Instance.SendEvent("event", extra);
@@ -112,7 +112,7 @@ A következő három típusú eseményeket:
 #### <a name="reference"></a>Referencia
             void SendSessionEvent(string name, Dictionary<object, object> extras = null)
 
-Munkamenet-eseményeket általában használt tooreport hello műveletek során a munkamenet a felhasználó által végrehajtott is.
+A munkamenet során a felhasználó által végrehajtott műveletek jelentésére általában használhatók munkamenet események.
 
 #### <a name="example"></a>Példa
 **Adatok: nélkül**
@@ -133,7 +133,7 @@ Munkamenet-eseményeket általában használt tooreport hello műveletek során 
 #### <a name="reference"></a>Referencia
             void SendJobEvent(string eventName, string jobName, Dictionary<object, object> extras = null)
 
-Feladat eseményeket általában használt tooreport hello műveletek során a feladat felhasználó által végrehajtott is.
+Feladat események általában a felhasználó által a feldolgozás során végrehajtott műveletek jelentésére használt.
 
 #### <a name="example"></a>Példa
             EngagementAgent.Instance.SendJobEvent("eventName", "jobName", extras);
@@ -149,7 +149,7 @@ A következő három típusú hibák:
 #### <a name="reference"></a>Referencia
             void SendError(string name, Dictionary<object, object> extras = null)
 
-Ellenkező toosession hibák önálló hibák adódhatnak kívül hello egy munkamenet környezetében.
+Munkamenet hibák ellentétesen önálló felléphetnek a kívül egy munkamenet környezetében.
 
 #### <a name="example"></a>Példa
             EngagementAgent.Instance.SendError("errorName", extras);
@@ -158,7 +158,7 @@ Ellenkező toosession hibák önálló hibák adódhatnak kívül hello egy munk
 #### <a name="reference"></a>Referencia
             void SendSessionError(string name, Dictionary<object, object> extras = null)
 
-Munkamenet olyan hello felhasználói érintő a munkamenet során általában használt tooreport hello hibákat tartalmaznak.
+Munkamenet a hibák általában használhatók a a munkamenet során a felhasználót érintő hibák jelentését.
 
 #### <a name="example"></a>Példa
             EngagementAgent.Instance.SendSessionError("errorName", extra);
@@ -167,13 +167,13 @@ Munkamenet olyan hello felhasználói érintő a munkamenet során általában h
 #### <a name="reference"></a>Referencia
             void SendJobError(string errorName, string jobName, Dictionary<object, object> extras = null)
 
-Hibák lehetnek feldolgozás alatt álló helyett kapcsolódó tooa kapcsolódó toohello jelenlegi felhasználói munkamenetet.
+Hibák a jelenlegi felhasználói munkamenet való helyett egy futó feladat kapcsolódhat.
 
 #### <a name="example"></a>Példa
             EngagementAgent.Instance.SendJobError("errorName", "jobname", extra);
 
 ## <a name="reporting-crashes"></a>Jelentéskészítési összeomlik
-hello ügynök biztosít két módszer toodeal összeomlik.
+Az ügynök az összeomlások kezelésére két módszert biztosít.
 
 ### <a name="send-an-exception"></a>Kivétel küldése
 #### <a name="reference"></a>Referencia
@@ -184,26 +184,26 @@ Bármikor kivétel meghívásával küldheti el:
 
             EngagementAgent.Instance.SendCrash(aCatchedException);
 
-Is használhat egy nem kötelező paraméter tooterminate hello engagement munkamenet hello ugyanannyi időt vesz igénybe, mint hello összeomlási küldésekor. Ebben az esetben hívható toodo:
+Egy nem kötelező paraméter segítségével állítsa le a engagement munkamenet, mint a összeomlási egyszerre. Ehhez hívja meg:
 
             EngagementAgent.Instance.SendCrash(new Exception("example"), terminateSession: true);
 
-Ha így tesz, a hello munkamenet és feladatok csak hello összeomlási elküldése után megszűnik.
+Ha így tesz, a munkamenet és feladatok csak az összeomlás elküldése után megszűnik.
 
 ### <a name="send-an-unhandled-exception"></a>Nem kezelt kivétel küldése
 #### <a name="reference"></a>Referencia
             void SendCrash(ApplicationUnhandledExceptionEventArgs e)
 
-Engagement is biztosít a metódus nem kezelt toosend kivételek. Ez különösen akkor hasznos, ha hello silverlight UnhandledException eseménykezelő használni.
+Engagement küldése nem kezelt kivételek módszert is biztosít. Ez különösen akkor hasznos, ha a silverlight UnhandledException eseménykezelő használni.
 
-Ezt a módszert fog **mindig** hello engagement munkamenet és feladatok meghívott után leáll.
+Ezt a módszert fog **mindig** a bevonási munkamenet és feladatok meghívott után leáll.
 
 #### <a name="example"></a>Példa
-Használat tooimplement saját UnhandledException kezelő (különösen akkor, ha a jelentéskészítési funkció bekapcsolása hello automatikus összeomlási le van tiltva). Például a hello `Application_UnhandledException` hello metódusában `App.xaml.cs` fájlt:
+Használhatja a saját UnhandledException eseménykezelő megvalósítása (különösen akkor, ha le van tiltva az automatikus összeomlási jelentéskészítési funkció bekapcsolása). Például a `Application_UnhandledException` metódusában a `App.xaml.cs` fájlt:
 
             // In your App.xaml.cs file
 
-            // Code tooexecute on Unhandled Exceptions
+            // Code to execute on Unhandled Exceptions
             private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
             {
               // your own code
@@ -215,15 +215,15 @@ Használat tooimplement saját UnhandledException kezelő (különösen akkor, h
 ### <a name="reference"></a>Referencia
             void OnActivated(ActivatedEventArgs e)
 
-Amikor hello felhasználók megnyitják továbbítás, egy alkalmazást, másik lapra hello inaktív egy esemény jelenik meg, miután hello operációs rendszer megpróbál tooput hello alkalmazás alvó állapotba. Ezt követően a hello alkalmazás kijelölése törlésre. A folyamat a rendszer megszakítja a kérelmet, de hello alkalmazás és az egyes lapok hello hello alkalmazáson belül hello állapotával kapcsolatos néhány adat megőrződik.
+Amikor a felhasználók megnyitják előre, egy alkalmazást, másik lapra után az inaktív egy esemény jelenik meg, az operációs rendszer megkísérli az alkalmazás alvó állapotba helyezni. Az alkalmazás akkor törlésre. A folyamat a rendszer megszakítja a kérelmet, de az alkalmazás és az alkalmazáson belül az egyes lapokon állapotára vonatkozó néhány adat megőrződik.
 
-Tooinsert rendelkezik `EngagementAgent.Instance.OnActivated(e)` a hello `Application_Activated` hello App.xaml.cs fájlt tooreset hello Engagement ügynök amikor hello alkalmazás lett a törlésre kijelölt metódust.
+Helyezze be, hogy `EngagementAgent.Instance.OnActivated(e)` a a `Application_Activated` az App.xaml.cs fájlt, az Engagement ügynök alaphelyzetbe állítani, ha az alkalmazás már a törlésre kijelölt metódust.
 
 ### <a name="example"></a>Példa
             // Inside your App.xaml.cs file
 
-            // Code tooexecute when hello application is activated (brought tooforeground)
-            // This code will not execute when hello application is first launched
+            // Code to execute when the application is activated (brought to foreground)
+            // This code will not execute when the application is first launched
             private void Application_Activated(object sender, ActivatedEventArgs e)
             {
               EngagementAgent.Instance.OnActivated(e);
@@ -232,12 +232,12 @@ Tooinsert rendelkezik `EngagementAgent.Instance.OnActivated(e)` a hello `Applica
 ## <a name="device-id"></a>Eszközazonosító
             String GetDeviceId()
 
-A metódus hívása kaphat hello engagement-eszközazonosító.
+A metódus hívása kaphat az engagement-eszközazonosító.
 
 ## <a name="extras-parameters"></a>Kiegészítő funkciók paraméterek
-Lehet, hogy az adatokat tetszőleges csatolt tooan esemény, a hiba, a tevékenység vagy a feladat. Ezen adatok segítségével dictionary szervezhetők. Kulcsok és értékek bármilyen típusú lehet.
+Egy esemény, a hiba, a tevékenység vagy a feladat tetszőleges adatok csatolható. Ezen adatok segítségével dictionary szervezhetők. Kulcsok és értékek bármilyen típusú lehet.
 
-Kiegészítő funkciók adatok szerializálva vannak, így ha azt szeretné, tooinsert a saját típusát, a kiegészítő funkciók kell tooadd egy adategyezmény ehhez a típushoz.
+Kiegészítő funkciók adatokat, ha be szeretné szúrni a saját típusát a kiegészítő funkciók fel kell vennie egy típus adategyezmény szerializálva vannak.
 
 ### <a name="example"></a>Példa
 Azt a hozzon létre egy új osztályt "Személy".
@@ -273,7 +273,7 @@ Azt a hozzon létre egy új osztályt "Személy".
               }
             }
 
-Ezt követően adunk hozzá egy `Person` példány tooan extra.
+Ezt követően adunk hozzá egy `Person` egy további példányt.
 
             Person person = new Person("Engagement Haddock", 51);
             var extras = new Dictionary<object, object>();
@@ -282,28 +282,28 @@ Ezt követően adunk hozzá egy `Person` példány tooan extra.
             EngagementAgent.Instance.SendEvent("Event", extras);
 
 > [!WARNING]
-> Ha más típusú objektumokat, győződjön meg arról a ToString() módszer megvalósított tooreturn emberi olvasható karakterláncnak.
+> Ha más típusú objektumokat, ellenőrizze, hogy azok ToString() metódus megvalósítása emberi olvasható karakterláncot.
 > 
 > 
 
 ### <a name="limits"></a>Korlátok
 #### <a name="keys"></a>Kulcsok
-Minden kulcs hello objektumban meg kell egyeznie a következő reguláris kifejezésnek hello:
+Az objektum minden egyes kulcsot meg kell egyeznie a következő reguláris kifejezésnek:
 
 `^[a-zA-Z][a-zA-Z_0-9]*$`
 
 Ez azt jelenti, hogy kulcsok betűk, számok és aláhúzásjelek követ legalább egy betűvel kell kezdődnie (\_).
 
 #### <a name="size"></a>Méret
-Kiegészítő funkciók korlátozva túl**1024** hívás karakteres.
+Kiegészítő funkciók korlátozva **1024** hívás karakteres.
 
 ## <a name="reporting-application-information"></a>Jelentéskészítési alkalmazással kapcsolatos adatok
 ### <a name="reference"></a>Referencia
             void SendAppInfo(Dictionary<object, object> appInfos)
 
-Követés hello SendAppInfo() függvény használatával információkat (vagy egyéb alkalmazás konkrét információkat) kézzel jelentést.
+A SendAppInfo() használatával információkat (vagy más alkalmazás egyedi információt) követési függvény manuálisan jelentést.
 
-Vegye figyelembe, hogy ezek az információt elküldi Növekményesen: az adott eszköz folyamatosan csak hello legújabb egy adott kulcs értékét. Esemény kiegészítő funkciók, például egy szótár használata\<objektum, objektum\> tooattach informations.
+Vegye figyelembe, hogy ezek az információt elküldi Növekményesen: a megadott kulcs csak a legutóbbi értékét az adott eszköz megmarad. Esemény kiegészítő funkciók, például egy szótár használata\<objektum, objektum\> informations csatlakoztatni.
 
 ### <a name="example"></a>Példa
             Dictionary<object, object> appInfo = new Dictionary<object, object>()
@@ -316,23 +316,23 @@ Vegye figyelembe, hogy ezek az információt elküldi Növekményesen: az adott 
 
 ### <a name="limits"></a>Korlátok
 #### <a name="keys"></a>Kulcsok
-Minden kulcs hello objektumban meg kell egyeznie a következő reguláris kifejezésnek hello:
+Az objektum minden egyes kulcsot meg kell egyeznie a következő reguláris kifejezésnek:
 
 `^[a-zA-Z][a-zA-Z_0-9]*$`
 
 Ez azt jelenti, hogy kulcsok betűk, számok és aláhúzásjelek követ legalább egy betűvel kell kezdődnie (\_).
 
 #### <a name="size"></a>Méret
-Alkalmazásadatok esetén egyre korlátozódik túl**1024** hívás karakteres.
+Alkalmazásadatok esetén egyre korlátozódik **1024** hívás karakteres.
 
-Hello az előző példában hello toohello server elküldött JSON 44 karakter hosszú:
+Az előző példában a a kiszolgálónak küldött JSON-ja 44 karakter:
 
             {"subscription":"2013-12-07","premium":"true"}
 
 ## <a name="logging"></a>Naplózás
 ### <a name="enable-logging"></a>Naplózás engedélyezése
-hello SDK konfigurált tooproduce vizsgálati naplók hello IDE konzolon lehet.
-Ezek a naplók alapértelmezés szerint nincsenek aktiválva. toocustomize a, frissítés hello tulajdonság `EngagementAgent.Instance.TestLogEnabled` hello érték hello elérhető tooone `EngagementTestLogLevel` számbavételi, például:
+Az SDK beállítható úgy, hogy az IDE-konzolon a vizsgálati naplók eredményez.
+Ezek a naplók alapértelmezés szerint nincsenek aktiválva. Ez testreszabásához frissítse a tulajdonságát `EngagementAgent.Instance.TestLogEnabled` egy érhetők el az érték a `EngagementTestLogLevel` számbavételi, például:
 
             EngagementAgent.Instance.TestLogLevel = EngagementTestLogLevel.Verbose;
             EngagementAgent.Instance.Init();

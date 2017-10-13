@@ -1,6 +1,6 @@
 ---
-title: "az Azure felhőalapú szolgáltatásairól és ASP.NET lépései aaaGet |} Microsoft Docs"
-description: "Megtudhatja, hogyan toocreate egy többrétegű alkalmazást ASP.NET MVC és az Azure használatával. hello alkalmazás fut egy felhőszolgáltatás, webes és feldolgozói szerepkörben. Entity Framework, SQL Database és Azure Storage üzenetsorokat és blobokat használ."
+title: "Ismerkedés az Azure Cloud Services szolgáltatással és az ASP.NET keretrendszerrel | Microsoft Docs"
+description: "Ismerje meg, hogyan hozhat létre többrétegű alkalmazást az ASP.NET MVC és az Azure használatával. Az alkalmazás felhőszolgáltatásban fut webes és feldolgozói szerepkörben. Entity Framework, SQL Database és Azure Storage üzenetsorokat és blobokat használ."
 services: cloud-services, storage
 documentationcenter: .net
 author: Thraka
@@ -14,187 +14,187 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 05/15/2017
 ms.author: adegeo
-ms.openlocfilehash: 86271c29b79fad3f01f8ea0e88fd00c7aefc970c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: bb5897a392e500de685421769c414441ddfeb6a3
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-azure-cloud-services-and-aspnet"></a>Ismerkedés az Azure Cloud Services szolgáltatással és az ASP.NET keretrendszerrel
 
 ## <a name="overview"></a>Áttekintés
-Ez az oktatóanyag bemutatja, hogyan toocreate előtér-, az ASP.NET mvc többrétegű .NET-alkalmazásokat, és telepítse azt tooan [Azure-felhőszolgáltatásban](cloud-services-choose-me.md). alkalmazás által használt hello [Azure SQL Database](http://msdn.microsoft.com/library/azure/ee336279), hello [Azure Blob szolgáltatás](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/unstructured-blob-storage), és hello [Azure Queue szolgáltatás](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/queue-centric-work-pattern). Is [hello Visual Studio-projekt letöltése](http://code.msdn.microsoft.com/Simple-Azure-Cloud-Service-e01df2e4) a hello MSDN Kódgalériából.
+Ebből az oktatóanyagból megtudhatja, hogyan hozhat létre többrétegű .NET-alkalmazást ASP.NET MVC kezelőfelülettel, illetve hogyan telepítheti azt egy [Azure-felhőszolgáltatásban](cloud-services-choose-me.md). Az alkalmazás az [Azure SQL Database](http://msdn.microsoft.com/library/azure/ee336279) szolgáltatást, az [Azure Blob szolgáltatást](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/unstructured-blob-storage) és az [Azure Queue szolgáltatást](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/queue-centric-work-pattern) használja. A [Visual Studio projekt letölthető](http://code.msdn.microsoft.com/Simple-Azure-Cloud-Service-e01df2e4) az MSDN kódgalériából.
 
-hello oktatóanyag bemutatja, hogyan toobuild, és futtassa hello alkalmazás helyileg, hogyan toodeploy azt tooAzure, és futtassa a hello felhőalapú, és hogyan toobuild az alapoktól. Indítsa el az alapoktól a felépítést, és ezután teszt hello és telepítés lépéseit, ha szeretné.
+Ebből az oktatóanyagból megtudhatja, hogyan állíthatja össze és futtathatja az alkalmazást helyileg, hogyan telepítheti az Azure-ban, hogyan futtathatja a felhőben, valamint hogyan építheti fel az alapoktól kezdve. Ha szeretné, kezdheti az alapoktól a felépítést, majd később elvégezheti a tesztelés és a telepítés lépéseit.
 
 ## <a name="contoso-ads-application"></a>Contoso Ads alkalmazás
-hello alkalmazás egy hirdetőtábla. A felhasználók szöveg megadásával és egy kép feltöltésével hoznak létre hirdetéseket. Láthatják a hirdetések miniatűr képekkel ellátott listáját, és amikor kiválasztanak egy ad toosee hello részletek láthatják hello teljes méretű kép.
+Ez az alkalmazás egy hirdetőtábla. A felhasználók szöveg megadásával és egy kép feltöltésével hoznak létre hirdetéseket. Láthatják a hirdetések miniatűr képekkel ellátott listáját, majd teljes méretben is megtekinthetik a képet, amikor kiválasztanak egy hirdetést a részletek megtekintése céljából.
 
 ![Hirdetéslista](./media/cloud-services-dotnet-get-started/list.png)
 
-hello alkalmazás használ hello [várólista-központú](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/queue-centric-work-pattern) toooff-betöltési hello processzorigényes munkáján miniatűrök tooa háttér-folyamat létrehozása.
+Az alkalmazás [üzenetsor-központú munkasémát](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/queue-centric-work-pattern) használ, hogy áthelyezze a miniatűrök létrehozásának processzorigényes feladatát egy háttérfolyamatra.
 
 ## <a name="alternative-architecture-websites-and-webjobs"></a>Alternatív architektúra: Websites és WebJobs
-Ez az oktatóanyag bemutatja, hogyan toorun előtér- és háttér-egy Azure cloud service. A másik lehetőség az előtér-toorun hello egy [Azure-webhelyen](/services/web-sites/) és hello [WebJobs](http://go.microsoft.com/fwlink/?LinkId=390226) szolgáltatást (jelenleg előzetes verzió) hello háttér-a. Webjobs-feladatok alkalmazó oktatóanyagot, lásd: [Ismerkedés az Azure WebJobs SDK hello](../app-service-web/websites-dotnet-webjobs-sdk-get-started.md). Hogyan toochoose hello szolgáltatás, amely legjobban információt adott esetben fér el, a következő témakörben: [Azure Websites, a Cloud Services és a virtuális gépek összevetése](../app-service-web/choose-web-site-cloud-service-vm.md).
+Ebből az oktatóanyagból megtudhatja, hogyan futtathat előtér- és háttéralkalmazásokat egyaránt az Azure felhőszolgáltatásban. Alternatív megoldásként az előtér-alkalmazást futtathatja egy [Azure-webhelyen](/services/web-sites/), a háttéralkalmazás esetében pedig használhatja a [WebJobs](http://go.microsoft.com/fwlink/?LinkId=390226) szolgáltatást (jelenleg előzetes verzióban érhető el). A WebJobs szolgáltatást alkalmazó oktatóanyagot a [Get Started with the Azure WebJobs SDK](https://github.com/Azure/azure-webjobs-sdk/wiki) (Ismerkedés az Azure WebJobs SDK-val) című részben találja. A forgatókönyvéhez leginkább illő szolgáltatások kiválasztásával kapcsolatos információkért lásd: [Az Azure Websites, a Cloud Services és a Virtual Machines összevetése](../app-service/choose-web-site-cloud-service-vm.md).
 
 ## <a name="what-youll-learn"></a>Ismertetett témák
-* Hogyan tooenable Azure fejlesztési telepítésével, a gép hello Azure SDK-t.
-* Hogyan toocreate a Visual Studio cloud service-projekt egy ASP.NET MVC webes és feldolgozói szerepkörök.
-* Hogyan tootest hello felhőszolgáltatás-projekt helyi, hello Azure storage emulator használatával.
-* Hogyan toopublish hello felhő projekt tooan Azure felhőalapú szolgáltatás, és tesztelése egy Azure storage-fiók használatával.
-* Hogyan tooupload fájlok, illetve hello Azure Blob szolgáltatásban tárolja őket.
-* Hogyan toouse hello Azure Queue szolgáltatás rétegek közötti kommunikációhoz.
+* A gép alkalmassá tétele az Azure-alapú fejlesztésre az Azure SDK telepítésével.
+* Visual Studio felhőszolgáltatás-projekt létrehozása ASP.NET MVC webes és feldolgozói szerepkörök alkalmazásával.
+* A felhőszolgáltatás-projekt helyi tesztelése az Azure Storage Emulator használatával.
+* A felhőprojekt közzététele egy Azure-felhőszolgáltatásban és tesztelése egy Azure-tárfiók használatával.
+* Fájlok feltöltése és tárolása az Azure Blob szolgáltatásban.
+* Az Azure Queue szolgáltatás használata a rétegek közötti kommunikációhoz.
 
 ## <a name="prerequisites"></a>Előfeltételek
-hello oktatóanyag feltételezi, hogy tudomásul veszi [alapfogalmaival Azure cloud services](cloud-services-choose-me.md) például *webes szerepkör* és *feldolgozói szerepkör* terminológiát.  Azt is feltételezi, hogy tudja, hogyan rendelkező toowork [ASP.NET MVC](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started) vagy [Web Forms](http://www.asp.net/web-forms/tutorials/aspnet-45/getting-started-with-aspnet-45-web-forms/introduction-and-overview) Visual studióban. hello mintaalkalmazás MVC-t használja, de a legtöbb hello oktatóanyag is vonatkoznak tooWeb űrlapok.
+Az oktatóanyag feltételezi, hogy tisztában van az [Azure-felhőszolgáltatások alapfogalmaival](cloud-services-choose-me.md), például a *webes szerepkör* és a *feldolgozói szerepkör* terminológiájával.  Továbbá azt is feltételezi, hogy az [ASP.NET MVC](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started) és a [Web Forms](http://www.asp.net/web-forms/tutorials/aspnet-45/getting-started-with-aspnet-45-web-forms/introduction-and-overview) Visual Studióban való használatának módját is ismeri. A mintaalkalmazás az MVC-t használja, de az oktatóanyag nagy része a Web Forms esetében is alkalmazható.
 
-Hello alkalmazás helyileg Azure-előfizetés nélkül is futtathatja, de egy toodeploy hello alkalmazás toohello felhő lesz szüksége. Ha nincs fiókja, [aktiválhatja az MSDN előfizetői előnyeit](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A55E3C668), vagy [regisztrálhat egy ingyenes próbaverzióra](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A55E3C668).
+Helyileg Azure-előfizetés nélkül is futtathatja az alkalmazást, de a felhőben való közzétételhez előfizetés szükséges. Ha nincs fiókja, [aktiválhatja az MSDN előfizetői előnyeit](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A55E3C668), vagy [regisztrálhat egy ingyenes próbaverzióra](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A55E3C668).
 
-hello oktatóanyagban szereplő utasítások vagy a következő termékek hello használata:
+Az oktatóanyag utasításai az alábbi termékek bármelyikére alkalmazhatók:
 
 * Visual Studio 2013
 * Visual Studio 2015
 * Visual Studio 2017
 
-Ha ezek egyikét nincs, a Visual Studio is települ automatikusan hello Azure SDK telepítésekor.
+Ha egyikkel sem rendelkezik, lehet, hogy az Azure SDK telepítésekor a Visual Studio automatikusan telepítve lesz.
 
 ## <a name="application-architecture"></a>Alkalmazásarchitektúra
-hello alkalmazást használó Entity Framework Code First toocreate hello táblák és -hozzáférési hello adatok SQL-adatbázisban tárolja a hirdetéseket. Az egyes hirdetések hello adatbázis tárolók két URL-címet, egy a teljes méretű kép, a másik hello miniatűr hello.
+Az alkalmazás SQL-adatbázisban tárolja a hirdetéseket, amihez az Entity Framework Code First megoldást használja a táblák létrehozásához és az adatok eléréséhez. Az egyes hirdetések esetében az adatbázis két URL-címet tárol, egyet a teljes méretű képhez, egyet pedig a miniatűrhöz.
 
 ![Hirdetés tábla](./media/cloud-services-dotnet-get-started/adtable.png)
 
-Amikor egy felhasználó feltölt egy képet, hello előtér-futó webes szerepkör tárolja hello lemezképet egy [Azure blob](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/unstructured-blob-storage), és hello ad adatokat toohello blob URL-CÍMMEL rendelkező hello adatbázisban tárolja. At hello azonos időben, egy üzenet tooan Azure üzenetsor-kezelési ír. A feldolgozói szerepkör rendszeres időközönként futó háttér-folyamat kérdezze le az új üzenetek hello várólista. Egy új üzenet jelenik meg, amikor hello feldolgozói szerepkör létrehozza a kép miniatűrjét, és a frissítések hello Miniatűr URL-adatbázis mező az adott Active Directory. hello alábbi ábra bemutatja hogyan működnek együtt hello hello alkalmazás részei.
+Amikor egy felhasználó feltölt egy képet, a webes szerepkörrel rendelkező előtér-alkalmazás egy [Azure-blobban](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/unstructured-blob-storage) tárolja azt, a hirdetés információit pedig az adatbázisban a blobra mutató URL-címmel együtt. Ezzel egy időben üzenetet ír egy Azure-üzenetsorba. A feldolgozói szerepkörrel futó háttérfolyamat rendszeres időközönként lekérdezi az új üzeneteket az üzenetsorról. Amikor egy új üzenet jelenik meg, a feldolgozói szerepkör létrehozza a kép miniatűrjét, és frissíti a miniatűr URL-címét a hirdetés adatbázismezőjében. Az alábbi ábra bemutatja, hogyan működnek együtt az alkalmazás részei.
 
 ![Contoso Ads architektúra](./media/cloud-services-dotnet-get-started/apparchitecture.png)
 
 [!INCLUDE [install-sdk](../../includes/install-sdk-2017-2015-2013.md)]
 
-## <a name="download-and-run-hello-completed-solution"></a>Befejeződött hello megoldás letöltése és futtatása
-1. Töltse le és csomagolja ki a hello [kész megoldást](http://code.msdn.microsoft.com/Simple-Azure-Cloud-Service-e01df2e4).
+## <a name="download-and-run-the-completed-solution"></a>A kész megoldás letöltése és futtatása
+1. Töltse le és csomagolja ki a [kész megoldást](http://code.msdn.microsoft.com/Simple-Azure-Cloud-Service-e01df2e4).
 2. Indítsa el a Visual Studiót.
-3. A hello **fájl** menüben válassza **nyissa meg a projekt**, és keresse meg a letöltött hello megoldás toowhere, majd nyissa meg a megoldásfájlt hello.
-4. Nyomja le a CTRL + SHIFT + B toobuild hello megoldás.
+3. Válassza a **Fájl** menü **Projekt megnyitása** elemét, keresse meg a letöltött megoldást, majd nyissa meg a megoldásfájlt.
+4. Nyomja le a Ctrl+Shift+B billentyűkombinációt a megoldás felépítéséhez.
 
-    Alapértelmezés szerint a Visual Studio automatikusan visszaállítja hello NuGet-csomag tartalmát, amely nem szerepel a hello *.zip* fájlt. Hello csomagok nem állnak vissza, ha a telepítést, manuálisan is toohello **NuGet-csomagok kezelése megoldáshoz** párbeszédpanel megnyitásához, majd kattintson a hello **visszaállítása** hello felső jobb oldali gomb.
-5. A **Megoldáskezelőben**, győződjön meg arról, hogy **ContosoAdsCloudService** hello indítási projekt legyen kijelölve.
-6. Visual Studio 2015-öt használ, vagy a magasabb módosítani a hello SQL Server kapcsolati karakterlánc hello alkalmazásban *Web.config* fájl hello ContosoAdsWeb projekt és hello *ServiceConfiguration.Local.cscfg* hello ContosoAdsCloudService projekt fájlt. Minden esetben módosítsa "(localdb) \v11.0" túl "(localdb) \MSSQLLocalDB".
-7. Nyomja le a CTRL + F5 toorun hello alkalmazás.
+    Alapértelmezés szerint a Visual Studio automatikusan visszaállítja a NuGet-csomag tartalmát, amelyet a *.zip* fájl nem tartalmazott. Ha a csomagok nem állnak vissza, telepítse őket manuálisan. Ehhez lépjen a **Manage NuGet Packages for Solution** (Megoldás NuGet-csomagjainak kezelése) párbeszédpanelre, és kattintson a **Restore** (Visszaállítás) gombra a jobb felső sarokban.
+5. A **Megoldáskezelőben** győződjön meg arról, hogy a **ContosoAdsCloudService** van kiválasztva kiindulási projektként.
+6. Ha a Visual Studio 2015-öt használja, módosítsa az SQL Server kapcsolati karakterláncát az alkalmazás *Web.config* fájljában a ContosoAdsWeb projekt esetében, illetve a *ServiceConfiguration.Local.cscfg* fájlt a ContosoAdsCloudService projekt esetében. Mindkét esetben módosítsa a „(localdb)\v11.0” elemet a következőre: „(localdb)\MSSQLLocalDB”.
+7. Az alkalmazás futtatásához nyomja le a Ctrl+F5 billentyűkombinációt.
 
-    Amikor helyileg futtat egy felhőszolgáltatás-projekt, a Visual Studio automatikusan meghívja-e a hello Azure *compute emulator* és az Azure *storage emulator*. hello számítási emulátor használ, a számítógép erőforrások toosimulate hello webes és feldolgozói szerepkörök környezeteit. hello storage emulator használ egy [SQL Server Express LocalDB](http://msdn.microsoft.com/library/hh510202.aspx) adatbázis-toosimulate Azure felhőalapú tárolást.
+    Amikor helyileg futtat egy felhőszolgáltatás-projektet, a Visual Studio automatikusan meghívja az Azure *Compute Emulator* és az Azure *Storage Emulator* eszközöket. A Compute Emulator a számítógép erőforrásait felhasználva szimulálja a webes és a feldolgozói szerepkörök környezeteit. A Storage Emulator egy [SQL Server Express LocalDB](http://msdn.microsoft.com/library/hh510202.aspx) adatbázis használatával szimulálja az Azure felhőalapú tárolást.
 
-    hello egy felhőszolgáltatás-projekt első futtatásakor szükséges egy percet hello emulátorok toostart fel. Ha az emulátorok elindulását, hello alapértelmezett böngésző megnyitja toohello alkalmazás kezdőlapját.
+    Egy felhőszolgáltatás-projekt első futtatásakor nagyjából egy percet vesz igénybe az emulátorok elindítása. Az emulátorok elindulását követően az alapértelmezett böngésző megnyitja az alkalmazás kezdőlapját.
 
     ![Contoso Ads architektúra](./media/cloud-services-dotnet-get-started/home.png)
 8. Kattintson a **Create an Ad** (Hirdetés létrehozása) gombra.
-9. Adjon meg néhány tesztadatot, és válassza ki a *.jpg* tooupload lemezképet, és kattintson a **létrehozása**.
+9. Adjon meg néhány tesztadatot, és válasszon ki egy feltölteni kívánt *.jpg* formátumú képet, majd kattintson a **Create** (Létrehozás) elemre.
 
     ![Lap létrehozása](./media/cloud-services-dotnet-get-started/create.png)
 
-    hello app toohello Index lapra kerül, de hello új hirdetés miniatűrje nem jelenik meg, mert a feldolgozása még nem történt meg.
-10. Várjon egy kicsit, majd frissítse a hello Index lap toosee hello miniatűr.
+    Az alkalmazás az Index lapra ugrik, de az új hirdetés miniatűrje nem jelenik meg, mert a feldolgozása még nem történt meg.
+10. Várjon egy kicsit, majd frissítse az Index lapot a miniatűr megjelenítéséhez.
 
      ![Index lap](./media/cloud-services-dotnet-get-started/list.png)
-11. Kattintson a **részletek** a ad toosee hello teljes méretű kép.
+11. Kattintson a hirdetés **Details** (Részletek) elemére a teljes méretű kép megjelenítéséhez.
 
      ![Részletek lap](./media/cloud-services-dotnet-get-started/details.png)
 
-Ön már futott hello alkalmazás teljes egészében a helyi számítógépen, a felhő nélküli kapcsolat toohello. hello storage emulator hello várólista tárolja, és egy SQL Server Express LocalDB adatbázisban, és hello alkalmazás Blobadatok egy másik LocalDB adatbázisban tárolja az hello ad adatokat. Entity Framework Code First automatikusan létrehozott hello ad adatbázis hello hello webalkalmazás próbált tooaccess először azt.
+Az alkalmazást teljes mértékben helyi számítógépén futtatja, a felhőhöz való csatlakozás nélkül. A Storage Emulator az üzenetsor és a blob adatait egy SQL Server Express LocalDB adatbázisban tárolja, az alkalmazás pedig egy másik LocalDB adatbázisban tárolja a hirdetés adatait. Az Entity Framework Code First automatikusan létrehozta a hirdetés-adatbázist, amikor a webalkalmazás első alkalommal próbált hozzáférni ahhoz.
 
-A következő szakasz hello hello megoldás toouse Azure felhőbeli erőforrások üzenetsorok, blobok és hello adatbázis hello felhőben futtatott kell majd konfigurálnia. Ha helyileg toocontinue toorun szeretett volna, de felhőalapú tárolási és adatbázis erőforrásainak használatához, megteheti, hogy. Csak egy függetlenül attól, hogy a kapcsolati karakterláncok, amelyek láthatja beállítása hogyan toodo.
+A következő szakaszban konfigurálhatja a megoldást az Azure felhőbeli erőforrások használatára az üzenetsorok, blobok és alkalmazás-adatbázisok esetében a felhőben való futtatásakor. A helyi futtatásra felhőalapú tárolás és adatbázis-erőforrások használata esetén is van lehetőség. Mindössze csak a kapcsolati sztringeket kell beállítani az útmutató alapján.
 
-## <a name="deploy-hello-application-tooazure"></a>Hello alkalmazás tooAzure telepítése
-El kell végeznie a következő lépéseket toorun hello alkalmazás hello felhőben hello:
+## <a name="deploy-the-application-to-azure"></a>Az alkalmazás központi telepítése az Azure-ban
+Az alkalmazás felhőben való futtatásához az alábbi lépéseket kell végrehajtania:
 
 * Hozzon létre egy Azure-felhőszolgáltatást.
 * Hozzon létre egy Azure SQL-adatbázist.
 * Hozzon létre egy Azure-tárfiókot.
-* Konfigurálása hello megoldás toouse az Azure SQL database az Azure-ban futtatott.
-* Hello megoldás toouse az Azure storage fiók beállítása az Azure-ban futtatott.
-* Hello projekt tooyour Azure felhőalapú szolgáltatás üzembe helyezése.
+* Konfigurálja a megoldást arra, hogy az Azure-ban való futáskor az Azure SQL-adatbázist használja.
+* Konfigurálja a megoldást arra, hogy az Azure-ban való futáskor az Azure-tárfiókot használja.
+* Telepítse a projektet az Azure-felhőszolgáltatásában.
 
 ### <a name="create-an-azure-cloud-service"></a>Azure-felhőszolgáltatás létrehozása
-Azure-felhőszolgáltatás hello környezet hello alkalmazás futni fog.
+Az Azure-felhőszolgáltatás az a környezet, amelyben az alkalmazás futni fog.
 
-1. A böngészőben nyissa meg a hello [Azure-portálon](https://portal.azure.com).
+1. Nyissa meg az [Azure Portalt](https://portal.azure.com) a böngészőjében.
 2. Kattintson az **Új > Számítás > Felhőszolgáltatás** elemre.
 
-3. Hello DNS nevét beviteli mezőbe írja be egy URL-előtagját: hello felhőalapú szolgáltatás.
+3. A DNS-név beviteli mezőben adja meg a felhőszolgáltatáshoz tartozó URL-előtagot.
 
-    Az URL-cím egyedi toobe rendelkezik.  Lesz jelenik meg hibaüzenet, ha úgy dönt, hello előtag már használatban van.
-4. Adjon meg egy új erőforráscsoportot hello szolgáltatást. Kattintson a **hozzon létre új** és adjon meg egy nevet hello erőforrás csoport beviteli mezőbe, például a CS_contososadsRG.
+    Ennek az URL-nek egyedinek kell lennie.  Ha olyan előtagot választ, amely már használatban van, hibaüzenetet kap.
+4. Adja meg a szolgáltatáshoz tartozó új erőforráscsoportot. Kattintson az **Új létrehozása** elemre, majd adja meg a nevet az Erőforráscsoport beviteli mezőjében, például CS_contososadsRG.
 
-5. Hello régió, ahol szeretné toodeploy hello alkalmazás kiválasztása.
+5. Válassza ki a régiót, ahol telepíteni szeretné az alkalmazást.
 
-    Ez a mező határozza meg, hogy a felhőszolgáltatása melyik adatközpontban fog üzemelni. Termelési alkalmazások esetében válassza hello régió legközelebbi tooyour ügyfelek. A jelen oktatóanyag esetében válassza ki a hello régió legközelebbi tooyou.
-5. Kattintson a **Create** (Létrehozás) gombra.
+    Ez a mező határozza meg, hogy a felhőszolgáltatása melyik adatközpontban fog üzemelni. Termelési alkalmazások esetében az ügyfeleihez legközelebb eső régiót kellene kiválasztania. A jelen oktatóanyag esetében válassza az Önhöz legközelebbi régiót.
+5. Kattintson a **Létrehozás** gombra.
 
-    A kép a következő hello egy felhőalapú szolgáltatás URL-cím CSvccontosoads.cloudapp.net hello hozza létre.
+    Az alábbi képen egy CSvccontosoads.cloudapp.net URL-címmel ellátott felhőszolgáltatás létrehozása történik.
 
     ![Új felhőszolgáltatás](./media/cloud-services-dotnet-get-started/newcs.png)
 
 ### <a name="create-an-azure-sql-database"></a>Azure SQL-adatbázis létrehozása
-Hello alkalmazás futtatásakor hello felhőben, felhőalapú adatbázist fog használni.
+Amikor az alkalmazás a felhőben fut, felhőalapú adatbázist fog használni.
 
-1. A hello [Azure-portálon](https://portal.azure.com), kattintson a **új > adatbázisok > SQL-adatbázis**.
-2. A hello **adatbázisnév** adja meg a *contosoads*.
-3. A hello **erőforráscsoport**, kattintson a **meglévő** és select hello erőforráscsoport hello felhőalapú szolgáltatás használt.
-4. Hello lemezképet, a következő kattintson **kiszolgáló - kötelező beállítások konfigurálása** és **hozzon létre egy új kiszolgálót**.
+1. Az [Azure Portalon](https://portal.azure.com) kattintson az **Új > Adatbázisok > SQL-adatbázis** elemre.
+2. Az **Adatbázis neve** mezőbe írja be a következőt: *contosoads*.
+3. Az **Erőforráscsoport** szakaszban kattintson a **Meglévő használata** elemre, majd válassza ki a felhőszolgáltatáshoz használt erőforráscsoportot.
+4. Az alábbi kép alapján kattintson a **Kiszolgáló – kötelező beállítások konfigurálása** és az **Új kiszolgáló létrehozása** elemre.
 
-    ![Bújtatási toodatabase kiszolgáló](./media/cloud-services-dotnet-get-started/newdb.png)
+    ![Az adatbázis-kiszolgálóhoz vezető alagút](./media/cloud-services-dotnet-get-started/newdb.png)
 
-    Azt is megteheti Ha az előfizetés már rendelkezik egy kiszolgálóra, kiválaszthatja, hogy a kiszolgáló hello legördülő listából.
-5. A hello **kiszolgálónév** adja meg a *csvccontosodbserver*.
+    Amennyiben az előfizetéséhez már tartozik egy kiszolgáló, alternatív megoldásként azt is kiválaszthatja a legördülő listából.
+5. A **Kiszolgálónév** mezőben adja meg a *csvccontosodbserver* nevet.
 
 6. Adjon meg egy rendszergazdai **Bejelentkezési nevet** és **Jelszót**.
 
-    Ha az **Új kiszolgáló létrehozása** elemet választotta, nem meglévő nevet és jelszót kell megadnia. Adta meg egy új nevet és jelszót, amely akkor most toouse később hello adatbázis elérésekor. Ha egy korábban létrehozott server, kéri hello jelszó toohello rendszergazdai felhasználói fiókhoz már létrehozott.
-7. Válasszon azonos hello **hely** hello felhőszolgáltatás választott.
+    Ha az **Új kiszolgáló létrehozása** elemet választotta, nem meglévő nevet és jelszót kell megadnia. Olyan új nevet és jelszót adjon meg, amelyet a későbbiekben az adatbázis eléréséhez fog használni. Ha korábban létrehozott adatbázist választott, akkor a rendszer a már létrehozott rendszergazdai felhasználói fiók jelszavát kéri.
+7. Válassza ki ugyanazt a **helyet**, amelyet a felhőszolgáltatás számára is választott.
 
-    Ha a hello felhőalapú szolgáltatás és az adatbázis van különböző adatközpontokban (különböző régiókban), a késés mértéke megnő, és hello adatközponton kívül használt sávszélességért fizetnie kell. Az adatközponton belül használt sávszélesség ingyenes.
-8. Ellenőrizze **engedélyezése az azure szolgáltatások tooaccess server**.
-9. Kattintson a **válasszon** hello új kiszolgálóhoz.
+    Ha a felhőszolgáltatás és az adatbázis különböző adatközpontokban van (különböző régiókban), a késés mértéke megnő, és az adatközponton kívül használt sávszélességért fizetnie kell. Az adatközponton belül használt sávszélesség ingyenes.
+8. Jelölje be az **Azure-szolgáltatások kiszolgálói hozzáférésének engedélyezése** jelölőnégyzetet.
+9. Kattintson a **Kiválasztás** elemre az új kiszolgáló kijelöléséhez.
 
     ![Új SQL Database-kiszolgáló](./media/cloud-services-dotnet-get-started/newdbserver.png)
 10. Kattintson a **Létrehozás** gombra.
 
 ### <a name="create-an-azure-storage-account"></a>Azure-tárfiók létrehozása
-Azure-tárfiók forrásokat biztosít hello felhőben üzenetsor és a blob adatainak tárolásához.
+Az Azure-tárfiók erőforrásokat biztosít az üzenetsor és a blob adatainak felhőbeli tárolásához.
 
 Egy valós alkalmazás esetében általában külön fiókot hozna létre az alkalmazás adatai és a naplózási adatok, illetve a tesztadatok és a termelési adatok számára is. Ebben az oktatóanyagban csak egy fiókot fog használni.
 
-1. A hello [Azure-portálon](https://portal.azure.com), kattintson a **új > tárolás > tárfiók - blob, a fájl, a tábla, a várólista**.
-2. A hello **neve** mezőbe írjon be egy URL-előtagot.
+1. Az [Azure Portalon](https://portal.azure.com) kattintson az **Új > Tár > Tárfiók – blob, fájl, tábla, üzenetsor**.
+2. A **Név** mezőbe írjon be egy URL-előtagot.
 
-    A hello mező alatt látható előtag plus hello szöveg hello egyedi URL-cím tooyour tárfiók lesz. Ha valaki más hello előtag már használatban van, akkor kell toochoose különböző előtag.
-3. Set hello **telepítési modell** túl*klasszikus*.
+    Ez az előtag és a mező alatt látható szöveg képezi a tárfiók egyedi URL-címét. Ha a megadott előtag már használatban van, másikat kell választania.
+3. Állítsa be az **üzembe helyezési modellt** *klasszikus* értékre.
 
-4. Set hello **replikációs** legördülő lista túl**helyileg redundáns tárolás**.
+4. A **Replikáció** legördülő listában válassza a **Helyileg redundáns tárolás** elemet.
 
-    A georeplikáció engedélyezve van a tárfiók, hello tárolt tartalom esetén meg kell replikált tooa másodlagos adatközpontba tooenable feladatátvételi hello elsődleges helyen jelentős katasztrófa esetén. A georeplikáció további költségeket vonhat maga után. A vizsgálati és fejlesztői fiókok esetében általában nem érdemes toopay a georeplikációért. További információ: [Tárfiók létrehozása, kezelése vagy törlése](../storage/common/storage-create-storage-account.md).
+    Ha a georeplikáció engedélyezve van a tárfiókban, a tárolt tartalom replikálása egy másodlagos adatközpontba történik, amely ezáltal a feladatátvétel helyévé válik, amennyiben az elsődleges helyen jelentős katasztrófa következik be. A georeplikáció további költségeket vonhat maga után. A teszt- és fejlesztői fiókok esetében általában nem érdemes fizetni a georeplikációért. További információ: [Tárfiók létrehozása, kezelése vagy törlése](../storage/common/storage-create-storage-account.md).
 
-5. A hello **erőforráscsoport**, kattintson a **meglévő** és select hello erőforráscsoport hello felhőalapú szolgáltatás használt.
-6. Set hello **hely** legördülő lista toohello ugyanabban a régióban hello felhőszolgáltatás számára is választott.
+5. Az **Erőforráscsoport** szakaszban kattintson a **Meglévő használata** elemre, majd válassza ki a felhőszolgáltatáshoz használt erőforráscsoportot.
+6. A **Hely** legördülő listában válassza ugyanazt a régiót, amelyet a felhőszolgáltatás számára is választott.
 
-    Ha a hello felhőalapú szolgáltatás és a tárolási fiók különböző adatközpontokban van (különböző régiókban), a késés mértéke megnő, és hello adatközponton kívül használt sávszélességért fizetnie kell. Az adatközponton belül használt sávszélesség ingyenes.
+    Ha a felhőszolgáltatás és a tárfiók különböző adatközpontokban van (különböző régiókban), a késés mértéke megnő, és az adatközponton kívül használt sávszélességért fizetnie kell. Az adatközponton belül használt sávszélesség ingyenes.
 
-    Azure-affinitáscsoportok egy erőforrást egy adatközpontban, ami csökkentheti a késés mechanizmus toominimize hello távolságát adja meg. A jelen oktatóanyag nem használ affinitáscsoportokat. További információkért lásd: [hogyan tooCreate kapcsolatot csoportosítani az Azure-ban](http://msdn.microsoft.com/library/jj156209.aspx).
-7. Kattintson a **Create** (Létrehozás) gombra.
+    Az Azure-affinitáscsoportok egy olyan mechanizmust biztosítanak, amely minimálisra csökkenti az erőforrások között lévő távolságot az adatközpontban, csökkentve ezáltal a késés mértékét is. A jelen oktatóanyag nem használ affinitáscsoportokat. További információ: [Affinitáscsoportok létrehozása az Azure-ban](http://msdn.microsoft.com/library/jj156209.aspx).
+7. Kattintson a **Létrehozás** gombra.
 
     ![Új tárfiók](./media/cloud-services-dotnet-get-started/newstorage.png)
 
-    Hello kép, a tárfiók létrehozása hello URL-CÍMMEL rendelkező `csvccontosoads.core.windows.net`.
+    Az alábbi képen egy `csvccontosoads.core.windows.net` URL-címmel ellátott tárfiók lesz létrehozva.
 
-### <a name="configure-hello-solution-toouse-your-azure-sql-database-when-it-runs-in-azure"></a>Konfigurálja a az Azure SQL-adatbázis hello megoldás toouse futáskor az Azure-ban
-webes projekt hello és hello feldolgozói szerepkör projekt minden a saját adatbázis-kapcsolati karakterláncot, és minden egyes kell toopoint toohello Azure SQL database az Azure-ban hello alkalmazás futtatásakor.
+### <a name="configure-the-solution-to-use-your-azure-sql-database-when-it-runs-in-azure"></a>A megoldás konfigurálása arra, hogy az Azure-ban való futáskor az Azure SQL-adatbázist használja
+A webes projekt és a feldolgozói szerepkör is saját adatbázis-kapcsolati karakterlánccal rendelkezik, és mindkettőnek az Azure SQL-adatbázisra kell mutatnia az alkalmazás Azure-ban való futásakor.
 
-Fogja használni a [Web.config transzformálása](http://www.asp.net/mvc/tutorials/deployment/visual-studio-web-deployment/web-config-transformations) hello webes szerepkör és a felhő környezet szolgáltatásbeállításra hello feldolgozói szerepkör esetében.
+A webes szerepkör esetében [Web.config transzformálása](http://www.asp.net/mvc/tutorials/deployment/visual-studio-web-deployment/web-config-transformations), a feldolgozói szerepkör esetében pedig felhőszolgáltatás környezeti beállítást kell alkalmaznia.
 
 > [!NOTE]
-> A jelen szakaszban és a következő szakaszban hello tárolt hitelesítő adatokat projektfájlokban. [Ne tároljon bizalmas adatokat nyilvános forráskódú adattárakban.](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control#secrets)
+> Ebben és a következő szakaszban a hitelesítő adatokat projektfájlokban fogja tárolni. [Ne tároljon bizalmas adatokat nyilvános forráskódú adattárakban.](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control#secrets)
 >
 >
 
-1. Hello ContosoAdsWeb projektben nyissa meg a hello *Web.Release.config* hello alkalmazás átalakítófájlt *Web.config* fájljához, törölje a hello Megjegyzésblokk, amely tartalmaz egy `<connectionStrings>` elem és a Beillesztés a következő kód helyette hello.
+1. A ContosoAdsWeb projektben nyissa meg a *Web.Release.config* átalakítófájlt az alkalmazás *Web.config* fájljához, törölje a `<connectionStrings>` elemet tartalmazó megjegyzésblokkot, és illessze be a helyére az alábbi kódot.
 
     ```xml
     <connectionStrings>
@@ -203,56 +203,56 @@ Fogja használni a [Web.config transzformálása](http://www.asp.net/mvc/tutoria
     </connectionStrings>
     ```
 
-    Hagyja nyitva a szerkesztéshez hello fájlt.
-2. A hello [Azure-portálon](https://portal.azure.com), kattintson a **SQL-adatbázisok** hello bal oldali ablaktáblában kattintson ehhez az oktatóanyaghoz létrehozott hello adatbázisra, majd **kapcsolati karakterláncok megjelenítése**.
+    Hagyja megnyitva a fájlt a szerkesztéshez.
+2. Az [Azure Portalon](https://portal.azure.com) kattintson a bal oldali ablaktáblában található **SQL-adatbázisok** elemre, kattintson az oktatóanyaghoz létrehozott adatbázisra, majd kattintson a **Kapcsolati karakterláncok megjelenítése** elemre.
 
     ![Kapcsolati karakterláncok megjelenítése](./media/cloud-services-dotnet-get-started/showcs.png)
 
-    hello portál megjeleníti a kapcsolati karakterláncokat helyőrzővel helyettesített hello jelszó.
+    A portál megjeleníti a kapcsolati karakterláncokat helyőrzővel helyettesített jelszóval.
 
     ![Kapcsolati karakterláncok](./media/cloud-services-dotnet-get-started/connstrings.png)
-3. A hello *Web.Release.config* fájl átalakítása, akkor törölje `{connectionstring}` és illessze be a hely hello hello Azure portálról származó ADO.NET kapcsolati karakterláncot.
-4. Kapcsolat-karakterláncban hello hello beillesztett *Web.Release.config* fájl átalakítása, cserélje le `{your_password_here}` hello új SQL-adatbázis létrehozott hello jelszóval.
-5. Hello fájl mentéséhez.  
-6. Válassza ki, és másolja a hello kapcsolati karakterláncot (nélkül hello idézőjelek közé foglalt) hello feldolgozói szerepkör projekt konfigurálásának lépéseit a következő hello használható.
-7. A **Megoldáskezelőben**, a **szerepkörök** hello felhőszolgáltatás-projekt, kattintson a jobb egérgombbal **ContosoAdsWorker** majd **tulajdonságok**.
+3. A *Web.Release.config* átalakítófájlban törölje a `{connectionstring}` elemet, és illessze be a helyére az Azure Portalról származó ADO.NET kapcsolati karakterláncot.
+4. A *Web.Release.config* átalakítófájlba beillesztett kapcsolati karakterláncban helyettesítse a `{your_password_here}` elemet az új SQL-adatbázis számára létrehozott jelszóval.
+5. Mentse a fájlt.  
+6. Jelölje ki és másolja a kapcsolati karakterláncot (az idézőjelek nélkül) a feldolgozóiszerepkör-projekt konfigurálásának alábbi lépéseiben való használatra.
+7. A **Megoldáskezelőben** a felhőszolgáltatás-projekt **Szerepkörök** területén kattintson a jobb gombbal a **ContosoAdsWorker**, majd a **Tulajdonságok** elemre.
 
     ![Szerepkör tulajdonságai](./media/cloud-services-dotnet-get-started/rolepropertiesworker.png)
-8. Kattintson a hello **beállítások** fülre.
-9. Változás **szolgáltatáskonfiguráció** túl**felhő**.
-10. Jelölje be hello **érték** hello mezőt `ContosoAdsDbConnectionString` beállításával, és illessze be az hello hello az oktatóanyag előző szakaszából másolt hello kapcsolati karakterláncot.
+8. Kattintson a **Beállítások** fülre.
+9. Módosítsa a **Szolgáltatás konfigurációja** beállítását a következőre: **Felhő**.
+10. Jelölje ki a `ContosoAdsDbConnectionString` beállítás **Érték** mezőjét, majd illessze be az oktatóanyag előző szakaszából másolt kapcsolati karakterláncot.
 
      ![A feldolgozói szerepkör adatbázis-kapcsolati karakterlánca](./media/cloud-services-dotnet-get-started/workerdbcs.png)
 11. Mentse a módosításokat.  
 
-### <a name="configure-hello-solution-toouse-your-azure-storage-account-when-it-runs-in-azure"></a>Konfigurálja a Azure-tárfiókot hello megoldás toouse futáskor az Azure-ban
-Az Azure storage kapcsolati karakterláncainak hello webes szerepkör projekt és hello feldolgozói szerepkör projekt hello felhőszolgáltatás-projekt környezeti beállításokban vannak tárolva. Minden olyan projekthez nincs az alkalmazás futásakor, hello helyileg használt beállítások toobe külön készletét, és mikor fusson a hello felhőben. Hello felhőkörnyezet beállításait a webes és feldolgozói szerepkör projektek frissíteni fogja.
+### <a name="configure-the-solution-to-use-your-azure-storage-account-when-it-runs-in-azure"></a>A megoldás konfigurálása az Azure-tárfiók használatára az Azure-ban való futás során
+Az Azure-tárfiók kapcsolati karakterláncainak tárolása a webes- és a feldolgozóiszerepkör-projektek esetében egyaránt környezeti beállításokban történik a felhőszolgáltatás-projektben. Az egyes projektek esetén külön beállításokat kell alkalmazni, ha az alkalmazás helyileg vagy a felhőben fut. A felhőkörnyezet beállításait a webes és a feldolgozóiszerepkör-projektek esetében egyaránt frissíteni fogja.
 
-1. A **Megoldáskezelőben**, kattintson a jobb gombbal **ContosoAdsWeb** alatt **szerepkörök** a hello **ContosoAdsCloudService** projektre, és kattintson a **Tulajdonságok**.
+1. A **Megoldáskezelőben** a **ContosoAdsCloudService** projekt **Szerepkörök** területén kattintson a jobb gombbal a **ContosoAdsWeb** elemre, majd kattintson a **Tulajdonságok** lehetőségre.
 
     ![Szerepkör tulajdonságai](./media/cloud-services-dotnet-get-started/roleproperties.png)
-2. Kattintson a hello **beállítások** fülre. A hello **szolgáltatáskonfiguráció** legördülő listán válassza ki **felhő**.
+2. Kattintson a **Beállítások** fülre. A **Szolgáltatás konfigurációja** legördülő mezőben válassza a **Felhő** elemet.
 
     ![Felhő konfigurálása](./media/cloud-services-dotnet-get-started/sccloud.png)
-3. Jelölje be hello **StorageConnectionString** bejegyzést, és megjelenik egy három pontot (**...** ) hello jobb oldali végén hello gombra. Kattintson a hello három pont gombra tooopen hello **tárolási fiók kapcsolati karakterlánc létrehozása** párbeszédpanel megnyitásához.
+3. Jelölje ki a **StorageConnectionString** bejegyzést, és megjelenik egy három pontot (**...**) ábrázoló gomb a sor jobb oldali végén. Kattintson a három pontot ábrázoló gombra a **Create Storage Account Connection String** (Tárfiók kapcsolati karakterláncának létrehozása) párbeszédpanel megnyitásához.
 
     ![A Kapcsolati karakterlánc létrehozása mező megnyitása](./media/cloud-services-dotnet-get-started/opencscreate.png)
-4. A hello **tárolási kapcsolati karakterlánc létrehozása** párbeszédpanel, kattintson a **az előfizetés**, válassza ki a korábban létrehozott hello tárfiók, és kattintson a **OK**. Ha még nincs bejelentkezve, a rendszer az Azure-fiókja hitelesítő adatait kéri.
+4. A **Create Storage Connection String** (Tárfiók kapcsolati karakterláncának létrehozása) párbeszédpanelen kattintson a **Your subscription** (Saját előfizetés) elemre, válassza a korábban létrehozott tárfiókot, majd kattintson az **OK** gombra. Ha még nincs bejelentkezve, a rendszer az Azure-fiókja hitelesítő adatait kéri.
 
     ![Tárfiók kapcsolati karakterláncának létrehozása](./media/cloud-services-dotnet-get-started/createstoragecs.png)
 5. Mentse a módosításokat.
-6. Kövesse hello ugyanazt az eljárást, a hello `StorageConnectionString` kapcsolati karakterlánc tooset hello `Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString` kapcsolati karakterláncot.
+6. A `Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString` kapcsolati karakterlánc beállításához kövesse ugyanazt az eljárást, mint a `StorageConnectionString` kapcsolati karakterlánc esetében.
 
     Ez a kapcsolati karakterlánc naplózásra használható.
-7. Kövesse hello ugyanazt az eljárást, a hello **ContosoAdsWeb** szerepkör tooset mindkét kapcsolati karakterláncának hello **ContosoAdsWorker** szerepkör. Ne feledje tooset **szolgáltatáskonfiguráció** túl**felhő**.
+7. A **ContosoAdsWorker** szerepkör mindkét kapcsolati karakterláncának beállításához kövesse ugyanazt az eljárást, mint a **ContosoAdsWeb** szerepkör esetében. Ne felejtse el a **Szolgáltatás konfigurációja** beállítását a következőre módosítani: **Felhő**.
 
-Visual Studio felhasználói felületén hello segítségével konfigurált hello beállítások következő fájlok hello ContosoAdsCloudService projektben hello vannak tárolva:
+A Visual Studio felhasználói felületén keresztül konfigurált szerepkörnyezeti beállítások a ContosoAdsCloudService projekt alábbi fájljaiban lesznek tárolva:
 
-* *ServiceDefinition.csdef* -hello beállításneveket határozza meg.
-* *ServiceConfiguration.Cloud.cscfg* – értékeket biztosít hello felhőben hello alkalmazás futtatásakor.
-* *ServiceConfiguration.Local.cscfg* – értékeket biztosít amikor hello alkalmazás helyi futtatásához.
+* *ServiceDefinition.csdef* – Meghatározza a beállításneveket.
+* *ServiceConfiguration.Cloud.cscfg* – Értékeket biztosít az alkalmazás felhőben való futtatásához.
+* *ServiceConfiguration.Local.cscfg* – Értékeket biztosít az alkalmazás helyi futtatásához.
 
-Hello ServiceDefinition.csdef például a következő definíciókat hello tartalmazza:
+A ServiceDefinition.csdef például az alábbi definíciókat tartalmazza:
 
 ```xml
 <ConfigurationSettings>
@@ -261,7 +261,7 @@ Hello ServiceDefinition.csdef például a következő definíciókat hello tarta
 </ConfigurationSettings>
 ```
 
-És hello *ServiceConfiguration.Cloud.cscfg* fájl ezeket a beállításokat, a Visual Studio megadott hello értékeket tartalmaz.
+A *ServiceConfiguration.Cloud.cscfg* fájl pedig azokat az értékeket tartalmazza, amelyeket a beállításokhoz adott meg a Visual Studióban.
 
 ```xml
 <Role name="ContosoAdsWorker">
@@ -277,42 +277,42 @@ Hello ServiceDefinition.csdef például a következő definíciókat hello tarta
 </Role>
 ```
 
-Hello `<Instances>` beállítással a virtuális gépek futó Azure hello feldolgozói szerepkör kódját hello száma. Hello [további lépések](#next-steps) szakasz tartalmaz hivatkozásokat toomore információkat a felhőalapú szolgáltatás, kiterjesztése
+Az `<Instances>` beállítás megadja azon virtuális gépek számát, amelyeken az Azure a feldolgozói szerepkör kódját fogja futtatni. A [További lépések](#next-steps) szakasz hivatkozásokat tartalmaz a felhőszolgáltatás kiterjesztésére vonatkozó további információkra.
 
-### <a name="deploy-hello-project-tooazure"></a>Hello projekt tooAzure telepítése
-1. A **Megoldáskezelőben**, kattintson a jobb gombbal hello **ContosoAdsCloudService** felhőprojektre, és válassza ki **közzététel**.
+### <a name="deploy-the-project-to-azure"></a>A projekt központi telepítése az Azure-ban
+1. A **Megoldáskezelőben** kattintson a jobb gombbal a **ContosoAdsCloudService** felhőprojektre, majd válassza a **Közzététel** lehetőséget.
 
    ![Közzététel menü](./media/cloud-services-dotnet-get-started/pubmenu.png)
-2. A hello **jelentkezzen be a** hello lépését **Azure-alkalmazás közzététele** varázsló, kattintson a **következő**.
+2. Az **Publish Azure Application** (Azure-alkalmazás közzététele) varázsló **Bejelentkezés** lépésében kattintson a **Tovább** gombra.
 
     ![Bejelentkezés lépés](./media/cloud-services-dotnet-get-started/pubsignin.png)
-3. A hello **beállítások** lépés hello varázsló, kattintson a **következő**.
+3. A varázsló **Beállítások** lépésében kattintson a **Tovább** gombra.
 
     ![Beállítások lépés](./media/cloud-services-dotnet-get-started/pubsettings.png)
 
-    alapértelmezett beállítások a hello hello **speciális** lapon ez az oktatóanyag rendben. További információ a Speciális lap hello: [Azure alkalmazás közzététele varázsló](http://msdn.microsoft.com/library/hh535756.aspx).
-4. A hello **összegzés** lépésre, a **közzététel**.
+    A **Speciális** lapon szereplő alapértelmezett beállítások megfelelnek a jelen oktatóanyag céljainak. A Speciális lappal kapcsolatos további információkért lásd: [Publish Azure Application Wizard](http://msdn.microsoft.com/library/hh535756.aspx) (Azure-alkalmazás közzététele varázsló).
+4. Az **Összegzés** lépésben kattintson a **Közzététel** lehetőségre.
 
     ![Összegzés lépés](./media/cloud-services-dotnet-get-started/pubsummary.png)
 
-   Hello **Azure tevékenységnapló** ablak a Visual Studióban.
-5. Hello jobbra mutató nyíl ikon tooexpand hello központi telepítés a Részletek gombra.
+   Megnyílik az **Azure tevékenységnapló** ablak a Visual Studióban.
+5. Kattintson a jobbra mutató nyíl ikonra a telepítés részleteinek kibontásához.
 
-    hello telepítési too5 perc vagy több toocomplete is eltarthat.
+    A telepítés akár 5 percet vagy több időt is igénybe vehet.
 
     ![Azure tevékenységnapló ablak](./media/cloud-services-dotnet-get-started/waal.png)
-6. Ha hello központi telepítési állapot befejeződött, kattintson a hello **webes alkalmazás URL-címhez** toostart hello alkalmazás.
-7. Most tesztelheti hello app létrehozásával, megtekintésével és szerkesztésével hirdetések, hello alkalmazás helyileg futtatta hasonló módon.
+6. Amikor a telepítés befejeződött, kattintson a **Webalkalmazás URL-címe** elemre az alkalmazás elindításához.
+7. Most már hirdetések létrehozásával, megtekintésével és szerkesztésével tesztelheti az alkalmazást, ugyanúgy, mint amikor helyileg futtatta.
 
 > [!NOTE]
-> Amikor végzett a tesztelési, törölje vagy állítsa le a hello felhőalapú szolgáltatás. Akkor is, ha nem használ hello felhőalapú szolgáltatás, keletkezhetnek költségek, mivel a virtuálisgép-erőforrások vannak lefoglalva számára. Ha hagyja, hogy továbbra is fusson, bárki, aki rátalál az URL-címére, létrehozhat és megtekinthet hirdetéseket. A hello [Azure-portálon](https://portal.azure.com), toohello lépjen **áttekintése** a felhőszolgáltatás fülre, majd hello **törlése** hello oldal hello tetején gombra. Ha csak tootemporarily megakadályozni, hogy mások hozzáférni hello webhelyhez, kattintson a **leállítása** helyette. Ebben az esetben díjakat továbbra is tooaccrue. Egy hasonló művelet toodelete hello SQL-adatbázis és a tárolási fiók is hajtsa végre, amikor már nincs szüksége.
+> Ha befejezte a tesztelést, törölje vagy állítsa le a felhőszolgáltatást. Akkor is keletkezhetnek költségek, ha nem használja a felhőszolgáltatást, mivel virtuálisgép-erőforrások vannak lefoglalva számára. Ha hagyja, hogy továbbra is fusson, bárki, aki rátalál az URL-címére, létrehozhat és megtekinthet hirdetéseket. Az [Azure Portalon](https://portal.azure.com) lépjen a felhőszolgáltatás **Áttekintés** lapjára, és kattintson a lap tetején található **Törlés** gombra. Ha csak ideiglenesen szeretné megakadályozni, hogy mások hozzáférjenek a webhelyhez, kattintson a **Leállítás** gombra. Ebben az esetben továbbra is keletkeznek költségek. Hasonló eljárással törölheti az SQL-adatbázist és a tárfiókot, ha már nincs szüksége rájuk.
 >
 >
 
-## <a name="create-hello-application-from-scratch"></a>Teljesen új hello alkalmazás létrehozása
-Ha még nem töltötte le [befejeződött hello alkalmazás](http://code.msdn.microsoft.com/Simple-Azure-Cloud-Service-e01df2e4), most tegye. Ön fájlokat fog átmásolni hello letöltött projektet hello új projektbe.
+## <a name="create-the-application-from-scratch"></a>Teljesen új alkalmazás létrehozása
+Ha még nem töltötte le a [kész alkalmazást](http://code.msdn.microsoft.com/Simple-Azure-Cloud-Service-e01df2e4), most tegye meg. Fájlokat fog átmásolni a letöltött projektből az új projektbe.
 
-A lépéseket követve hello hello Contoso Ads alkalmazás létrehozása foglal magában:
+A Contoso Ads alkalmazás létrehozása az alábbi lépésekből áll:
 
 * Hozzon létre egy Visual Studio felhőszolgáltatás-megoldást.
 * Frissítse és adja hozzá a NuGet-csomagokat.
@@ -320,53 +320,53 @@ A lépéseket követve hello hello Contoso Ads alkalmazás létrehozása foglal 
 * Konfigurálja a kapcsolati karakterláncokat.
 * Adja hozzá a kódfájlokat.
 
-Hello megoldás létrehozása után áttekinti hello kód, mely az egyedi toocloud service projektek és Azure blobokat és üzenetsorokat.
+A megoldás létrehozása után áttekinti a felhőszolgáltatás-projektekre nézve egyedi kódot, valamint az Azure-blobokat és üzenetsorokat.
 
 ### <a name="create-a-cloud-service-visual-studio-solution"></a>Visual Studio felhőszolgáltatás-megoldás létrehozása
-1. A Visual Studio felületén válassza **új projekt** a hello **fájl** menü.
-2. Hello hello bal oldali ablaktáblájában **új projekt** párbeszédpanelen bontsa ki **Visual C#** válassza **felhő** sablonokat, és válassza a hello **Azure Cloud Service** sablont.
-3. Hello projektet és a megoldás ContosoAdsCloudService nevet, és kattintson **OK**.
+1. A Visual Studio **Fájl** menüjében válassza az **Új projekt** lehetőséget.
+2. Az **Új projekt** párbeszédpanel bal oldali ablaktáblájában bontsa ki a **Visual C#** elemet, és válassza ki a **Felhő** sablonokat, majd az **Azure Cloud Service** sablont.
+3. Adja a ContosoAdsCloudService nevet a projektnek és a megoldásnak, majd kattintson az **OK** gombra.
 
     ![Új projekt](./media/cloud-services-dotnet-get-started/newproject.png)
-4. A hello **új Azure Cloud Service** párbeszédpanelen adjon hozzá egy webes és feldolgozói szerepkörök. Hello webes szerepkörnek adja a ContosoAdsWeb, és a hello feldolgozói szerepkör ContosoAdsWorker nevet. (Használ hello ceruza ikonra hello jobb oldali toochange hello alapértelmezett nevének hello szerepkörök.)
+4. Az **Új Azure Cloud Service** párbeszédpanelen adjon hozzá egy webes és egy feldolgozói szerepkört. A webes szerepkörnek adja a ContosoAdsWeb, a feldolgozói szerepkörnek pedig a ContosoAdsWorker nevet. (A szerepkörök alapértelmezett nevének módosításához használja a jobb oldali ablaktáblában található ceruza ikont.)
 
     ![Új Cloud Service-projekt](./media/cloud-services-dotnet-get-started/newcsproj.png)
-5. Amikor megjelenik a hello **új ASP.NET projekt** párbeszédpanel hello webes szerepkör, válassza ki a hello MVC-sablont, és kattintson **hitelesítés módosítása**.
+5. Amikor megjelenik a webes szerepkör **Új ASP.NET-projekt** párbeszédpanele, válassza az MVC-sablont, majd kattintson a **Hitelesítés módosítása** elemre.
 
     ![Hitelesítés módosítása](./media/cloud-services-dotnet-get-started/chgauth.png)
-6. A hello **hitelesítés módosítása** párbeszédpanelen válassza ki **nem hitelesítési**, és kattintson a **OK**.
+6. A **Change Authentication** (Hitelesítés módosítása) párbeszédpanelen kattintson a **No Authentication** (Nincs hitelesítés) elemre, majd az **OK** gombra.
 
     ![Nincs hitelesítés](./media/cloud-services-dotnet-get-started/noauth.png)
-7. A hello **új ASP.NET projekt** párbeszédpanel, kattintson a **OK**.
-8. A **Megoldáskezelőben**, kattintson a jobb gombbal a hello megoldás (nem egy hello projektek), és válassza a **Hozzáadás – új projekt**.
-9. A hello **új** párbeszédpanelen válassza ki **Windows** alatt **Visual C#** a hello bal oldali ablaktáblán, és kattintson a hello **Class Library** sablon.  
-10. Név hello projekt *ContosoAdsCommon*, és kattintson a **OK**.
+7. A **New ASP.NET Project** (Új ASP.NET-projekt) párbeszédpanelen kattintson az **OK** gombra.
+8. A **Megoldáskezelőben** kattintson a jobb gombbal a megoldásra (ne a projektek egyikére), és válassza az **Add - New Project** (Hozzáadás – Új projekt) lehetőséget.
+9. Az **Add New Project** (Új projekt hozzáadása) párbeszédpanelen válassza a bal oldali ablaktáblában lévő **Visual C#** elem alatt található **Windows** lehetőséget, majd kattintson az **Class Library** (Osztálytár) sablonra.  
+10. Adja a *ContosoAdsCommon* nevet a projektnek, majd kattintson az **OK** gombra.
 
-    Tooreference hello Entity Framework hello és az adatmodell a webes és feldolgozói szerepkör projekt van szüksége. Alternatív megoldásként sikerült hello webes szerepkör projekt hello EF-hez kapcsolódó osztályokat definiálja, és hello feldolgozói szerepkör projekt hivatkozik erre a projektre. De hello alternatív módszert használja, a feldolgozói szerepkör projekt kellene egy tooweb referenciaszerelvények, amely nem igényel.
+    A webes és a feldolgozói szerepkörből is hivatkoznia kell az Entity Framework-környezetre és az adatmodellre. Alternatív megoldásként definiálhatja az EF-hez kapcsolódó osztályokat a webesszerepkör-projektben, majd hivatkozhat erre a projektre a feldolgozói szerepkörből. Az alternatív megoldás részeként azonban a feldolgozói szerepkör projektje egy olyan webes szerelvényre is hivatkozni fog, amelyre nincs szüksége.
 
 ### <a name="update-and-add-nuget-packages"></a>NuGet-csomagok frissítése és hozzáadása
-1. Nyissa meg hello **NuGet-csomagok kezelése** hello megoldás párbeszédpanel.
-2. Hello ablak hello tetején válassza **frissítések**.
-3. Keresse meg hello *windowsazure.Storage kifejezésre* csomagot, majd ha hello listában, jelölje ki, majd válassza ki a hello webes és feldolgozói projektek tooupdate legyen, és kattintson **frissítés**.
+1. Nyissa meg a megoldáshoz tartozó **Manage NuGet Packages** (NuGet-csomagok kezelése) párbeszédpanelt.
+2. Az ablak tetején válassza az **Updates** (Frissítések) elemet.
+3. Keresse meg a *WindowsAzure.Storage* csomagot, és ha szerepel a listában, jelölje ki, majd válassza ki, hogy melyik webes és feldolgozói projektben kívánja frissíteni, és végül kattintson az **Update** (Frissítés) gombra.
 
-    hello storage ügyféloldali kódtár gyakrabban Visual Studio projektsablonjai, így gyakran tapasztalhatja, hogy hello verziót egy újonnan létrehozott projektben igények toobe frissítése a frissül.
-4. Hello ablak hello tetején válassza **Tallózás**.
-5. Hello található *EntityFramework* NuGet csomagot, majd telepítse mind a három projektben.
-6. Hello található *Microsoft.WindowsAzure.ConfigurationManager* NuGet csomagot, majd telepítse hello feldolgozói szerepkör projektben.
+    A Storage ügyféloldali kódtár gyakrabban frissül, mint a Visual Studio projektsablonjai, így gyakran tapasztalhatja, hogy egy újonnan létrehozott projektben lévő verziót frissíteni kell.
+4. Az ablak tetején válassza a **Browse** (Tallózás) elemet.
+5. Keresse meg az *EntityFramework* NuGet-csomagot, majd telepítse mind a három projektben.
+6. Keresse meg a *Microsoft.WindowsAzure.ConfigurationManager* NuGet-csomagot, majd telepítse a feldolgozói szerepkör projektben.
 
 ### <a name="set-project-references"></a>A projekt hivatkozásainak beállítása
-1. Hello ContosoAdsWeb projektben állítson be egy hivatkozást toohello ContosoAdsCommon projektre. Kattintson a jobb gombbal a ContosoAdsWeb projektben hello, és kattintson **hivatkozások** - **hivatkozások hozzáadása**. A hello **hivatkozáskezelő** párbeszédpanelen jelölje ki **megoldás – projektek** hello bal oldali ablaktáblában jelöljön ki **ContosoAdsCommon**, és kattintson a **OK**.
-2. Hello ContosoAdsWorker projektben állítson be egy hivatkozást toohello ContosAdsCommon projektre.
+1. A ContosoAdsWeb projektben állítson be egy hivatkozást a ContosoAdsCommon projektre. Kattintson a jobb gombbal a ContosoAdsWeb projektre, majd kattintson a **References** - **Add References** (Hivatkozások, Hivatkozások hozzáadása) elemre. A **Hivatkozáskezelő** párbeszédpanelen válassza a bal oldali ablaktáblában lévő **Megoldás – Projektek**, majd a **ContosoAdsCommon** lehetőséget, és végül kattintson az **OK** gombra.
+2. A ContosoAdsWorker projektben állítson be egy hivatkozást a ContosAdsCommon projektre.
 
-    ContosoAdsCommon tartalmazza hello Entity Framework adatok adatmodellt és a környezeti osztályt, amely mindkét hello előtér- és használják.
-3. Hello ContosoAdsWorker projektben állítson be egy hivatkozást túl`System.Drawing`.
+    A ContosoAdsCommon tartalmazza az Entity Framework-adatmodellt és a környezeti osztályt, amelyet az elő- és a háttéralkalmazás egyaránt használ.
+3. A ContosoAdsWorker projektben állítson be egy hivatkozást a következőre: `System.Drawing`.
 
-    Ez a szerelvény hello háttér-tooconvert képek toothumbnails használják.
+    Ezt a szerelvényt a háttéralkalmazás használja a képek miniatűrökké való átalakításához.
 
 ### <a name="configure-connection-strings"></a>Csatlakozási karakterláncok konfigurálása
-Ebben a szakaszban Azure Storage- és SQL-kapcsolati sztringeket fog konfigurálni helyi tesztelés céljából. hello korábbi telepítési utasításai hello az oktatóanyag azt ismertetik, hogyan hello kapcsolat tooset karakterláncok a hello alkalmazás futtatásakor hello felhőben.
+Ebben a szakaszban Azure Storage- és SQL-kapcsolati sztringeket fog konfigurálni helyi tesztelés céljából. Az oktatóanyag korábbi telepítési utasításai ismertetik a kapcsolati karakterláncok beállításának módját, amikor az alkalmazás a felhőben fut.
 
-1. Hello ContosoAdsWeb projektre, nyissa meg hello alkalmazás Web.config fájljában és insert hello következő `connectionStrings` elem után hello `configSections` elemet.
+1. A ContosoAdsWeb projektben nyissa meg az alkalmazás Web.config fájlját, és illessze be a következő `connectionStrings` elemet a `configSections` elem után.
 
     ```xml
     <connectionStrings>
@@ -376,52 +376,52 @@ Ebben a szakaszban Azure Storage- és SQL-kapcsolati sztringeket fog konfigurál
 
     A Visual Studio 2015 vagy újabb használata esetén cserélje le a „v11.0” elemet az „MSSQLLocalDB” elemre.
 2. Mentse a módosításokat.
-3. Hello ContosoAdsCloudService projektben kattintson a jobb gombbal a ContosoAdsWeb **szerepkörök**, és kattintson a **tulajdonságok**.
+3. A ContosoAdsCloudService projektben a **Szerepkörök** területen kattintson a jobb gombbal a ContosoAdsWeb elemre, majd kattintson a **Tulajdonságok** elemre.
 
     ![Szerepkör tulajdonságai](./media/cloud-services-dotnet-get-started/roleproperties.png)
-4. A hello **Conosoadsweb [szerepkör]** tulajdonságai ablakban maradva kattintson hello **beállítások** fülre, majd **beállítás hozzáadása**.
+4. A **ConosoAdsWeb [Szerepkör]** tulajdonságok ablakában kattintson a **Beállítások** lapra, majd kattintson a **Beállítás hozzáadása** elemre.
 
-    Hagyja **szolgáltatáskonfiguráció** túl beállítása**összes konfiguráció**.
-5. Adjon hozzá egy *StorageConnectionString* névvel ellátott beállítást. Állítsa be **típus** túl*ConnectionString*, és állítsa be **érték** túl*UseDevelopmentStorage = true*.
+    A **Service Configuration** (Szolgáltatáskonfiguráció) **All Configurations** (Minden konfiguráció) értékét ne módosítsa.
+5. Adjon hozzá egy *StorageConnectionString* névvel ellátott beállítást. A **Típus** beállítása legyen *ConnectionString*, az **Érték** beállítása pedig *UseDevelopmentStorage=true*.
 
     ![Új kapcsolati karakterlánc](./media/cloud-services-dotnet-get-started/scall.png)
 6. Mentse a módosításokat.
-7. Hajtsa végre hello azonos eljárás tooadd egy tárolási kapcsolat karakterláncát a hello Contosoadsweb szerepkör tulajdonságaihoz.
-8. Még tart a hello **ContosoAdsWorker [szerepkör]** tulajdonságai ablakban maradva adja hozzá egy másik kapcsolati karakterláncot:
+7. Kövesse ugyanezt az eljárást egy tárolási kapcsolati karakterlánc hozzáadásához a ContosoAdsWeb szerepkör tulajdonságaihoz.
+8. A **ContosoAdsWorker [Szerepkör]** tulajdonságai ablakban maradva adjon hozzá egy másik kapcsolati karakterláncot:
 
    * Név: ContosoAdsDbConnectionString
    * Típus: Karakterlánc
-   * Érték: Illessze be hello azonos hello webes szerepkör projekt esetében használt kapcsolati karakterlánc. (a Visual Studio 2013 a hello a következő példa. Ne feledje toochange hello adatforrás Ha ezt a példát, és a Visual Studio 2015-ös vagy újabb rendszer használata esetén.)
+   * Érték: Illessze be ugyanazt a kapcsolati karakterláncot, amelyet a webes szerepkör projekt esetében használt. (Az alábbi példa a Visual Studio 2013 kiadásra vonatkozik. (Ne feledje módosítani az Adatforrást, ha ezt a példát a Visual Studio 2015 vagy újabb kiadás használata mellett követi.)
 
        ```
        Data Source=(localdb)\v11.0; Initial Catalog=ContosoAds; Integrated Security=True; MultipleActiveResultSets=True;
        ```
 
 ### <a name="add-code-files"></a>Kódfájlok hozzáadása
-Ebben a szakaszban, átmásolja kódfájlok hello letöltött megoldásból hello új megoldás. hello következő szakaszok bemutatják és ismertetik a kód legfontosabb részeit.
+Ebben a szakaszban kódfájlokat fog másolni a letöltött megoldásból az új megoldásba. A következő szakaszok bemutatják és ismertetik a kód legfontosabb részeit.
 
-tooadd fájlok tooa projekt vagy egy mappát, kattintson a jobb gombbal hello projekt vagy mappa és kattintson **Hozzáadás** - **meglévő cikk**. Válassza ki a hello kívánt fájlokat, és kattintson a **Hozzáadás**. Ha a rendszer rákérdez, hogy kívánja-e tooreplace meglévő fájlokat, kattintson a **Igen**.
+Fájlok hozzáadásához egy projekthez vagy mappához kattintson a jobb gombbal a projektre vagy a mappára, majd kattintson a **Hozzáadás** - **Létező elem** lehetőségre. Jelölje ki a kívánt fájlokat, majd kattintson az **Add** (Hozzáadás) gombra. Ha a rendszer rákérdez, hogy lecseréli-e a meglévő fájlokat, kattintson a **Yes** (Igen) gombra.
 
-1. Hello ContosoAdsCommon projektben törölje a hello *Class1.cs* fájlt, és a hely hello *Ad.cs* és *ContosoAdscontext.cs* hello fájlok letöltése.
-2. Hello ContosoAdsWeb projektben adja hozzá a következő fájlok hello letöltött projektből hello.
+1. A ContosoAdsCommon projektben törölje a *Class1.cs* fájlt, és a helyére illessze be az *Ad.cs* és a *ContosoAdscontext.cs* fájlt a letöltött projektből.
+2. A ContosoAdsWeb projektben adja hozzá az alábbi fájlokat a letöltött projektből.
 
    * *Global.asax.cs*.  
-   * A hello *Views\Shared* mappa:  *\_Layout.cshtml*.
-   * A hello *Views\Home* mappa: *Index.cshtml*.
-   * A hello *tartományvezérlők* mappa: *AdController.cs*.
-   * A hello *Views\Ad* mappában (először hozza létre hello mappa): öt *.cshtml* fájlokat.
-3. Hello ContosoAdsWorker projektben adja hozzá *WorkerRole.cs* hello a letöltött projektet.
+   * A *Views\Shared* mappában: *\_Layout.cshtml*.
+   * A *Views\Home* mappában: *Layout.cshtml*.
+   * A *Controllers* mappában: *AdController.cs*.
+   * A*Views\Ad* mappában (először hozza létre a mappát): öt *.cshtml* fájl.
+3. A ContosoAdsWorker projektben adja hozzá a *WorkerRole.cs* fájlt a letöltött projektből.
 
-Most már létrehozhatja és hello alkalmazás futtatásához hello az oktatóanyag korábbi utasításai szerint, és hello alkalmazás fogja használni a helyi adatbázis és a storage emulator erőforrásait.
+Most már létrehozhatja és futtathatja az alkalmazást az oktatóanyag korábbi utasításai szerint, amely a helyi adatbázist és a Storage Emulator erőforrásait fogja használni.
 
-hello alábbi szakaszok ismertetik a hello kód a kapcsolódó tooworking hello Azure-környezetéhez, blobokat és üzenetsorokat. Ez az oktatóanyag nem tartalmazza az hogyan toocreate MVC-vezérlők és nézetek használatával állványok, toowrite Entity Framework-kód, amelyek működése a SQL Server-adatbázisok, vagy az ASP.NET 4.5 aszinkron programozás alapjait hello. Ezek a témakörök kapcsolatos információkért lásd: a következő erőforrások hello:
+Az alábbi szakaszok az Azure-környezetek, -blobok és -üzenetsorok használatával kapcsolatos kódot ismerteti. A jelen oktatóanyag nem tartalmazza az MVC-vezérlők és nézetek szerkezet használatával történő létrehozásának vagy az SQL Server-adatbázisokkal együttműködő Entity Framework-kód megírásának módját, illetve az ASP.NET 4.5-ben való aszinkron programozás alapjait. Ezen témakörökről az alábbi forrásanyagokban talál információt:
 
 * [Bevezetés az MVC 5 használatába](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started)
 * [Bevezetés az EF 6 és az MVC 5 használatába](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc)
-* [Bevezetés tooasynchronous programozásba a .NET 4.5](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/web-development-best-practices#async).
+* [Bevezetés az aszinkron programozásba a .NET 4.5 rendszerben](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/web-development-best-practices#async).
 
 ### <a name="contosoadscommon---adcs"></a>ContosoAdsCommon – Ad.cs
-hello Ad.cs fájl megad, egy felsorolást a kategóriákhoz és egy POCO entitásosztályt a hirdetés információihoz.
+Az Ad.cs fájl megad egy felsorolást a kategóriákhoz és egy POCO entitásosztályt a hirdetés információihoz.
 
 ```csharp
 public enum Category
@@ -465,7 +465,7 @@ public class Ad
 ```
 
 ### <a name="contosoadscommon---contosoadscontextcs"></a>ContosoAdsCommon – ContosoAdsContext.cs
-hello ContosoAdsContext osztály megadja, hogy hello Ad osztály egy DbSet gyűjteményben, amely Entity Framework SQL-adatbázisban tárolja történjen.
+A ContosoAdsContext osztály megadja, hogy az Ad osztály egy DbSet gyűjteményben lesz használva, amelyet az Entity Framework egy SQL-adatbázisban tárol.
 
 ```csharp
 public class ContosoAdsContext : DbContext
@@ -481,19 +481,19 @@ public class ContosoAdsContext : DbContext
 }
 ```
 
-hello osztály két konstruktorral rendelkezik. először hello hello webes projekt használja valamelyiket, és annak hello hello Web.config fájlban tárolt kapcsolati karakterlánc nevét adja meg. hello második konstruktor lehetővé teszi toopass hello tényleges kapcsolati karakterlánc hello feldolgozói szerepkör projekt által használt, mivel nem rendelkezik a Web.config fájlt. A korábban Ha a kapcsolati karakterlánc tárolásának, és láthatja, hogyan később hello kód keresi hello kapcsolati karakterlánc elindítja hello DbContext osztályt.
+Az osztály két konstruktorral rendelkezik. Az elsőt a webes projekt használja, és a Web.config fájlban tárolt kapcsolati karakterlánc nevét adja meg. A második konstruktorral adhatja meg a feldolgozói szerepkör projektje által használt tényleges kapcsolati sztringet, mivel a projektben nem található Web.config fájl. Korábban már látta a kapcsolati karakterlánc tárolásának helyét, a későbbiekben pedig láthatja, hogyan kérdezi le a kód a kapcsolati karakterláncot, amikor elindítja a DbContext osztályt.
 
 ### <a name="contosoadsweb---globalasaxcs"></a>ContosoAdsWeb – Global.asax.cs
-Hello meghívott kód `Application_Start` hoz létre egy *képek* blobtárolót és egy *képek* üzenetsort, amennyiben még nem léteznek. Ez biztosítja, hogy valahányszor új tárfiókot használ, vagy indításakor hello storage emulator használatával új számítógépre, hello szükséges blobtároló és üzenetsor automatikusan létrejön.
+Az `Application_Start` metódusból meghívott kód létrehoz egy *képek* blobtárolót és egy *képek* üzenetsort, amennyiben még nem léteznek. Ez biztosítja, hogy valahányszor új tárfiókot kezd használni, vagy egy új számítógépen használja a Storage Emulatort, a szükséges blobtároló és üzenetsor automatikusan létrejöjjön.
 
-kód lekérdezi hozzáférés toohello tárfiók hello származó hello hello tárolási kapcsolati karakterlánc használatával *.cscfg* fájlt.
+A kód a *.cscfg*-fájlból származó tárolási kapcsolati karakterlánc használatával fér hozzá a tárfiókhoz.
 
 ```csharp
 var storageAccount = CloudStorageAccount.Parse
     (RoleEnvironment.GetConfigurationSettingValue("StorageConnectionString"));
 ```
 
-Ezután egy hivatkozás toohello *képek* blobtárolóhoz, létrehozza a hello tárolót, ha még nem létezik, és beállítja a hozzáférési engedélyeket hello új tárolóra. Alapértelmezés szerint új tárolók csak rendelkező ügyfeleknek engedélyezik a tárfiók hitelesítő adatok tooaccess blobokat. hello webhely kell hello toobe nyilvános blobok, úgy, hogy az URL-címekkel, hogy pont toohello kép blobok képeket jeleníthessen meg.
+Ezután hivatkozást kap a *képek* blobtárolóhoz, létrehozza a tárolót, ha az még nem létezik, és beállítja a hozzáférési engedélyeket az új tárolóhoz. Alapértelmezés szerint az új tárolók csak tárfiók-hitelesítő adatokkal rendelkező ügyfeleknek engedélyezik a blobokhoz való hozzáférést. A webhely szempontjából szükséges, hogy a blobok nyilvánosak legyenek, hogy képeket jeleníthessen meg a képblobokra mutató URL-címek használatával.
 
 ```csharp
 var blobClient = storageAccount.CreateCloudBlobClient();
@@ -508,7 +508,7 @@ if (imagesBlobContainer.CreateIfNotExists())
 }
 ```
 
-Hasonló kód jogosultságot kap a hivatkozás toohello *képek* várólistára, és létrehoz egy új üzenetsort. Ebben az esetben nincs szükség az engedélyek módosítására.
+Egy hasonló kód a *képek* üzenetsor hivatkozását szerzi be, majd létrehoz egy új üzenetsort. Ebben az esetben nincs szükség az engedélyek módosítására.
 
 ```csharp
 CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
@@ -517,10 +517,10 @@ imagesQueue.CreateIfNotExists();
 ```
 
 ### <a name="contosoadsweb---layoutcshtml"></a>ContosoAdsWeb – \_Layout.cshtml
-Hello *_Layout.cshtml* fájl hello alkalmazásnév beállítja az hello fejlécében és láblécében, és létrehoz egy "Ads" menübejegyzést.
+A *_Layout.cshtml* fájl beállítja az alkalmazás nevét a fejlécben és a láblécben, és létrehoz egy „Ads” menübejegyzést.
 
 ### <a name="contosoadsweb---viewshomeindexcshtml"></a>ContosoAdsWeb – Views\Home\Index.cshtml
-Hello *Views\Home\Index.cshtml* fájl kategóriahivatkozásokat jelenít meg hello kezdőlapján. hello hivatkozások átadják hello egész értéket hello `Category` felsorolás egy lekérdezési karakterlánc változó toohello Ads indexlapnak a.
+A *Views\Home\Index.cshtml* fájl kategóriahivatkozásokat jelenít meg a kezdőlapon. A hivatkozások átadják a `Category` felsorolás egy lekérdezési karakterlánc változóban lévő egész számú értékét az Ads indexlapnak.
 
 ```razor
 <li>@Html.ActionLink("Cars", "Index", "Ad", new { category = (int)Category.Cars }, null)</li>
@@ -530,9 +530,9 @@ Hello *Views\Home\Index.cshtml* fájl kategóriahivatkozásokat jelenít meg hel
 ```
 
 ### <a name="contosoadsweb---adcontrollercs"></a>ContosoAdsWeb – AdController.cs
-A hello *AdController.cs* fájl, hello konstruktor hívások hello `InitializeStorage` metódus toocreate Azure Storage ügyféloldali kódtár objektumok, amelyek az API-k használata a blobokat és üzenetsorokat.
+Az *AdController.cs* fájlban lévő konstruktor meghívja az `InitializeStorage` metódust az Azure Storage ügyfélkódtár objektumainak létrehozásához, amelyek egy API-t biztosítanak a blobok és az üzenetsorok használatához.
 
-Ezután hello kód jogosultságot kap a hivatkozás toohello *képek* blobtárolóra, ahogy azt korábban a *Global.asax.cs*. Mindeközben beállít egy webalkalmazásokhoz használható alapértelmezett [újrapróbálkozási házirendet](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/transient-fault-handling). hello alapértelmezett exponenciális leállítási újrapróbálkozási házirend le több mint egy perc egy átmeneti hiba miatti ismételt próbálkozás hello webalkalmazás. Itt megadott hello újrapróbálkozási házirend minden próbálkozás mentése toothree próbálkozás után három másodperc alatt vár.
+Ezután a kód lekér egy hivatkozást a *képek* blobtárolóra, ahogy azt korábban a *Global.asax.cs* esetében is láthatta. Mindeközben beállít egy webalkalmazásokhoz használható alapértelmezett [újrapróbálkozási házirendet](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/transient-fault-handling). Az alapértelmezett exponenciális leállítási újrapróbálkozási házirend egy átmeneti hiba miatti ismételt próbálkozás esetén egy percnél hosszabb időre állíthatja le a webalkalmazást. Az itt megadott újrapróbálkozási szabályzat minden próbálkozás után három másodpercet vár, legfeljebb három alkalommal.
 
 ```csharp
 var blobClient = storageAccount.CreateCloudBlobClient();
@@ -540,7 +540,7 @@ blobClient.DefaultRequestOptions.RetryPolicy = new LinearRetry(TimeSpan.FromSeco
 imagesBlobContainer = blobClient.GetContainerReference("images");
 ```
 
-Hasonló kód jogosultságot kap a hivatkozás toohello *képek* várólista.
+Egy hasonló kód a *képek* üzenetsorra kér le hivatkozást.
 
 ```csharp
 CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
@@ -548,7 +548,7 @@ queueClient.DefaultRequestOptions.RetryPolicy = new LinearRetry(TimeSpan.FromSec
 imagesQueue = queueClient.GetQueueReference("images");
 ```
 
-A legtöbb hello vezérlőkód jellemzően egy DbContext osztályt használó Entity Framework-adatmodell. Egy kivétel: hello HttpPost `Create` metódus, amely feltölt egy fájlt, és menti a blob Storage tárolóban. hello biztosít egy [HttpPostedFileBase](http://msdn.microsoft.com/library/system.web.httppostedfilebase.aspx) toohello metódus objektum.
+A vezérlőkód nagy része jellemzően egy DbContext osztályt használó Entity Framework-adatmodellel történő használatra való. Kivétel ez alól a HttpPost `Create` metódus, amely feltölti és blobtárolóba menti a fájlokat. A modellkötő [HttpPostedFileBase](http://msdn.microsoft.com/library/system.web.httppostedfilebase.aspx) objektumot biztosít a metódus számára.
 
 ```csharp
 [HttpPost]
@@ -558,7 +558,7 @@ public async Task<ActionResult> Create(
     HttpPostedFileBase imageFile)
 ```
 
-Egy fájl tooupload hello felhasználói választásakor hello kód feltölt hello fájlt, egy blobba menti, és frissíti a hirdetés adatbázisrekordot hello toohello blob URL-CÍMMEL.
+Ha a felhasználó feltöltésre jelöl ki egy fájlt, a kód feltölti és egy blobba menti azt, majd frissíti a Hirdetés adatbázisrekordot a blobra mutató URL-címmel.
 
 ```csharp
 if (imageFile != null && imageFile.ContentLength != 0)
@@ -568,7 +568,7 @@ if (imageFile != null && imageFile.ContentLength != 0)
 }
 ```
 
-hello kódot, amely hello feltöltés van hello `UploadAndSaveBlobAsync` metódust. Létrehoz egy GUID nevet hello blob, a feltöltéseket és az eredményobjektumokat hello fájl, és egy hivatkozási mentve toohello blob adja vissza.
+A feltöltést végző kód az `UploadAndSaveBlobAsync` metódusban található. Létrehoz egy GUID nevet a blob számára, feltölti és menti a fájlt, majd visszaad egy hivatkozást a mentett blobra.
 
 ```csharp
 private async Task<CloudBlockBlob> UploadAndSaveBlobAsync(HttpPostedFileBase imageFile)
@@ -583,7 +583,7 @@ private async Task<CloudBlockBlob> UploadAndSaveBlobAsync(HttpPostedFileBase ima
 }
 ```
 
-Miután a hello HttpPost `Create` metódus feltölt egy blobot és frissítések hello adatbázist, létrehoz egy várólista üzenet tooinform, hogy egy kép készen áll a átalakítás tooa miniatűr háttér-folyamat.
+Miután a HttpPost `Create` metódus feltölt egy blobot és frissíti az adatbázist, létrehoz egy üzenetsor-üzenetet, amely tájékoztatja a háttérfolyamatot arról, hogy egy kép készen áll a miniatűrré való átalakításra.
 
 ```csharp
 string queueMessageString = ad.AdId.ToString();
@@ -591,7 +591,7 @@ var queueMessage = new CloudQueueMessage(queueMessageString);
 await queue.AddMessageAsync(queueMessage);
 ```
 
-hello HttpPost kódját hello `Edit` módszer a hasonló, azzal a különbséggel, hogy ha hello felhasználó kiválaszt egy új képfájlt minden létező blobot törölni kell.
+A HttpPost `Edit` metódus kódja is hasonló, azzal a különbséggel, hogy ha a felhasználó egy új képfájlt jelöl ki, minden létező blobot törölni kell.
 
 ```csharp
 if (imageFile != null && imageFile.ContentLength != 0)
@@ -602,7 +602,7 @@ if (imageFile != null && imageFile.ContentLength != 0)
 }
 ```
 
-hello következő példa bemutatja, blobok törlése, ha töröl egy ad hello kódját.
+A következő példa bemutatja a kódot, amely a hirdetés törlésekor törli a blobokat.
 
 ```csharp
 private async Task DeleteAdBlobsAsync(Ad ad)
@@ -627,45 +627,45 @@ private static async Task DeleteAdBlobAsync(Uri blobUri)
 ```
 
 ### <a name="contosoadsweb---viewsadindexcshtml-and-detailscshtml"></a>ContosoAdsWeb – Views\Ad\Index.cshtml és Details.cshtml
-Hello *Index.cshtml* fájlt tartalmazó miniatűrt jelenít meg hello hirdetés többi adatát.
+Az *Index.cshtml* fájl a hirdetés többi adatát tartalmazó miniatűrt jelenít meg.
 
 ```razor
 <img src="@Html.Raw(item.ThumbnailURL)" />
 ```
 
-Hello *Details.cshtml* fájl hello teljes méretű képet jeleníti meg.
+A *Details.cshtml* fájl a teljes méretű képet jeleníti meg.
 
 ```razor
 <img src="@Html.Raw(Model.ImageURL)" />
 ```
 
 ### <a name="contosoadsweb---viewsadcreatecshtml-and-editcshtml"></a>ContosoAdsWeb – Views\Ad\Create.cshtml és Edit.cshtml
-Hello *Create.cshtml* és *Edit.cshtml* fájlok megadják az űrlap kódolását, hogy a lehetővé teszi, hogy a tartományvezérlő tooget hello hello `HttpPostedFileBase` objektum.
+A *Create.cshtml* és az *Edit.cshtml* fájlok megadják az űrlap kódolását, amely lehetővé teszi a vezérlő számára a `HttpPostedFileBase` objektum lekérését.
 
 ```razor
 @using (Html.BeginForm("Create", "Ad", FormMethod.Post, new { enctype = "multipart/form-data" }))
 ```
 
-Egy `<input>` elem jelzi hello böngésző tooprovide egy Fájlkiválasztási párbeszédpanelt.
+Egy `<input>` elem jelzi a böngészőnek, hogy biztosítson egy fájlkiválasztási párbeszédpanelt.
 
 ```razor
 <input type="file" name="imageFile" accept="image/*" class="form-control fileupload" />
 ```
 
 ### <a name="contosoadsworker---workerrolecs---onstart-method"></a>ContosoAdsWorker – WorkerRole.cs – OnStart metódus
-hello Azure feldolgozói szerepkör környezet meghívja a hello `OnStart` metódus a hello `WorkerRole` indulásakor hello feldolgozói szerepkör, és meghívja hello `Run` metódusban, amikor hello `OnStart` metódus befejeződik.
+A feldolgozói szerepkör indulásakor az Azure feldolgozóiszerepkör-környezet meghívja a `WorkerRole` osztályban lévő `OnStart` metódust, az `OnStart` metódus befejezésekor pedig a `Run` metódust.
 
-Hello `OnStart` metódus hello adatbázis-kapcsolati karakterlánc lekérése hello *.cscfg* fájlt, és átadja toohello Entity Framework DbContext osztálynak. hello SQLClient szolgáltató alapértelmezés szerint van használatban, így hello szolgáltató nincs megadva toobe.
+Az `OnStart` metódus lekéri az adatbázis-kapcsolati karakterláncot a *.cscfg*-fájlból, és átadja az Entity Framework DbContext osztálynak. Alapértelmezés szerint az SQLClient szolgáltató van használatban, így azt nem kell megadni.
 
 ```csharp
 var dbConnString = CloudConfigurationManager.GetSetting("ContosoAdsDbConnectionString");
 db = new ContosoAdsContext(dbConnString);
 ```
 
-Ezt követően hello metódus lekérdezi a hivatkozás toohello tárfiók, és hello blobtároló és üzenetsor létrehozása, ha azok még nem léteznek. hello tartozó kód hasonló toowhat hello webes szerepkör már látott `Application_Start` metódust.
+Ezután a metódus lekér egy hivatkozást a tárfiókra, valamint létrehozza a blobtárolót és az üzenetsort, ha azok még nem léteznek. Az ehhez tartozó kód hasonló ahhoz, amelyet a webes szerepkör `Application_Start` metódusában látott.
 
 ### <a name="contosoadsworker---workerrolecs---run-method"></a>ContosoAdsWorker – WorkerRole.cs – Run metódus
-Hello `Run` metódus lehívásra kerül, ha hello `OnStart` metódus inicializálási feladatának befejezése után. hello metódus elindít egy végtelen ciklust, amely új üzeneteit figyeli, és feldolgozza őket, amikor azok beérkeznek.
+A `Run` metódus az `OnStart` metódus inicializálási feladatának befejezése után lesz meghívva. A metódus elindít egy végtelen ciklust, amely az üzenetsor új üzeneteit figyeli, és a beérkezésükkor feldolgozza azokat.
 
 ```csharp
 public override void Run()
@@ -698,9 +698,9 @@ public override void Run()
 }
 ```
 
-Hello ciklus egyes ismétlései után található nincs üzenet, ha hello program alvó állapotban marad, a második. Ez megakadályozza, hogy a hello feldolgozói szerepkör túl sok CPU idő- és tárolási tranzakciós költségeket halmozzon. hello Microsoft Ügyféltanácsadói csapatának van egy története egy fejlesztőről, aki elfelejtette tooinclude, tooproduction telepíti, és elment nyaralni. Mire vissza, a figyelmetlensége többe hello szabadsága-nál.
+Ha a ciklus egyes ismétlései után nem található üzenet, a program egy másodpercre alvó állapotba vált. Ez megakadályozza, hogy a feldolgozói szerepkör túl sok CPU-időt használjon és további tárolási tranzakciós költségeket halmozzon fel. A Microsoft ügyféltanácsadói csapatának van egy története egy fejlesztőről, aki ezt elfelejtette beépíteni, elvégezte az éles környezetbe való telepítést, azután elment nyaralni. Mire visszatért, a figyelmetlensége többe került, mint az egész nyaralás.
 
-A várólista üzenet tartalma hello néha hibát okoz a feldolgozása. Ez a lehetőség egy *az elhalt üzenet*, és ha csak naplózott egy hibát és hello hurok újraindul, akkor feldolgozásával a végtelenségig próbálkozhat tooprocess üzenetet.  Ezért hello catch blokk tartalmaz egy if utasítást, amely ellenőrzi a toosee hányszor hello app megpróbálta tooprocess hello aktuális üzenetet, és ha több mint 5-ször volt, üdvözlőüzenetére törli a várólistáról hello.
+Néha előfordul, hogy az üzenetsor egyik üzenetének tartalma feldolgozási hibát okoz. Az ilyet *ártalmas üzenetnek* nevezik, és ha épp naplózott egy hibát, majd újraindította a ciklust, akkor az üzenet feldolgozásával a végtelenségig próbálkozhat.  Ezért a catch blokk tartalmaz egy if utasítást, amely ellenőrzi, hogy az alkalmazás hány alkalommal próbálta feldolgozni az aktuális üzenetet, és amennyiben több mint 5 alkalommal, az üzenet törlődik az üzenetsorból.
 
 `ProcessQueueMessage`akkor lesz meghívva, ha az üzenetsorban található üzenet.
 
@@ -733,49 +733,49 @@ private void ProcessQueueMessage(CloudQueueMessage msg)
 }
 ```
 
-Ez a kód beolvassa hello adatbázis tooget hello kép URL-címe, hello kép tooa miniatűr alakít, hello miniatűrt egy blobba menti, frissíti hello adatbázist hello miniatűr blob URL- és hello üzenetsor törli.
+Ez a kód beolvassa az adatbázist a kép URL-címének lekéréséhez, miniatűrré alakítja a képet, a miniatűrt egy blobba menti, frissíti az adatbázist a miniatűr blob URL-címével, és törli az üzenetsorban lévő üzenetet.
 
 > [!NOTE]
-> hello kód hello `ConvertImageToThumbnailJPG` metódus hello System.Drawing névtérben-osztályokat használja az egyszerűség érdekében. A névtérben lévő osztályok hello azonban a Windows-űrlapokkal való használatra lettek tervezve. Windows- vagy ASP.NET-szolgáltatásban való használatuk nem támogatott. További információk a képfeldolgozási beállításokról: [Dynamic Image Generation](http://www.hanselman.com/blog/BackToBasicsDynamicImageGenerationASPNETControllersRoutingIHttpHandlersAndRunAllManagedModulesForAllRequests.aspx) (Dinamikus képek létrehozása) és [Deep Inside Image Resizing](http://www.hanselminutes.com/313/deep-inside-image-resizing-and-scaling-with-aspnet-and-iis-with-imageresizingnet-author-na) (A képek átméretezésének részletei).
+> Az egyszerűség kedvéért a `ConvertImageToThumbnailJPG` metódusban lévő kód osztályokat alkalmaz a System.Drawing névtérben. A névtérben lévő osztályok viszont a Windows-űrlapokkal való használatra lettek tervezve. Windows- vagy ASP.NET-szolgáltatásban való használatuk nem támogatott. További információk a képfeldolgozási beállításokról: [Dynamic Image Generation](http://www.hanselman.com/blog/BackToBasicsDynamicImageGenerationASPNETControllersRoutingIHttpHandlersAndRunAllManagedModulesForAllRequests.aspx) (Dinamikus képek létrehozása) és [Deep Inside Image Resizing](http://www.hanselminutes.com/313/deep-inside-image-resizing-and-scaling-with-aspnet-and-iis-with-imageresizingnet-author-na) (A képek átméretezésének részletei).
 >
 >
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
-Abban az esetben, ha valami nem működik, ebben az oktatóanyagban hello utasítások követése, az alábbiakban néhány gyakori hibák, és hogyan tooresolve őket.
+Ha az oktatóanyag utasításainak követése ellenére valami mégsem működne, íme néhány gyakran előforduló hiba és azok megoldása.
 
 ### <a name="serviceruntimeroleenvironmentexception"></a>ServiceRuntime.RoleEnvironmentException
-Hello `RoleEnvironment` objektum Azure által biztosított, az alkalmazás az Azure-ban való futtatásakor, vagy helyileg a hello Azure compute emulator használatával futtatásakor.  Ha ez a hiba a helyi futtatás során, akkor győződjön meg arról, hogy hello ContosoAdsCloudService projektet állította hello indítási projektként. Hello projekt toorun hello Azure compute emulator használatával állít be.
+A `RoleEnvironment` objektumot az Azure biztosítja az alkalmazás Azure-ban való futtatásakor, vagy az Azure Compute Emulator használatával történő helyi futtatáskor.  Ha a helyi futtatás során ez a hiba jelenik meg, ellenőrizze, hogy a ContosoAdsCloudService projektet állította-e be kiindulási projektként. Beállítja a projektet, hogy az Azure Compute Emulator használatával fusson.
 
-Hello alkalmazás által használt hello Azure roleenvironment-et hello dolog tooget hello kapcsolati karakterlánc-értékek hello tárolt *.cscfg* fájlokat, ezért ez a kivétel egy másik oka egy hiányzó kapcsolati karakterlánc. Győződjön meg arról, hogy létrehozta hello StorageConnectionString beállítást felhő és a helyi konfigurációiban hello ContosoAdsWeb projektben, és mindkét kapcsolati karakterláncot mindkét konfigurációjában létrehozta hello ContosoAdsWorker projektben. Ha így tesz egy **található összes** keresési StorageConnectionString hello teljes megoldásban, a kell megjelennie 9 alkalommal 6 fájlban.
+Az alkalmazás többek között a *.cscfg*-fájlokban tárolt kapcsolati karakterlánc-értékek lekérésére használja az Azure RoleEnvironment-et, ezért a kivétel egy másik oka egy hiányzó kapcsolati karakterlánc. Győződjön meg arról, hogy a ContosoAdsWeb projekt Felhő- és a Helyi konfigurációiban is létrehozta a StorageConnectionString beállítást, illetve arról is, hogy a ContosoAdsWorker projekt mindkét konfigurációjában létrehozta mindkét kapcsolati karakterláncot. Ha a **Find All** (Összes keresése) funkció használatával keres a StorageConnectionString kifejezésre a megoldás egészében, 6 fájlban, 9 alkalommal kell megjelennie.
 
-### <a name="cannot-override-tooport-xxx-new-port-below-minimum-allowed-value-8080-for-protocol-http"></a>Tooport xxx metódus nem bírálhatja felül. Az új port a HTTP protokoll esetében megengedett legalacsonyabb, 8080 érték alatt van
-Próbálja meg módosítani a hello hello webes projekt által használt portszámot. Kattintson a jobb gombbal a ContosoAdsWeb projektben hello, és kattintson **tulajdonságok**. Kattintson a hello **webes** lapra, és módosítsa a portszámot hello hello **projekt URL-címe** beállítást.
+### <a name="cannot-override-to-port-xxx-new-port-below-minimum-allowed-value-8080-for-protocol-http"></a>A felülbírálás nem alkalmazható a(z) xxx portra. Az új port a HTTP protokoll esetében megengedett legalacsonyabb, 8080 érték alatt van
+Próbálja módosítani a webes projekt által használt port számát. Kattintson a jobb gombbal a ContosoAdsWeb projektre, majd kattintson a **Properties** (Tulajdonságok) elemre. Kattintson a **Web** lapra, majd módosítsa a port számát a **Projekt URL-címe** beállításban.
 
-Alternatív hello probléma megoldására tekintse meg a következő szakasz hello.
+A probléma megoldására irányuló alternatív megoldásért tekintse meg a következő szakaszt.
 
 ### <a name="other-errors-when-running-locally"></a>A helyi futtatás során felmerülő egyéb hibák
-Alapértelmezett új cloud service projektek hello Azure compute emulator express toosimulate hello Azure környezetben használják. Ez hello teljes compute emulator egyszerűsített verziója, és bizonyos feltételek hello a teljes emulátor fognak működni, amikor hello express verzió nem.  
+Alapértelmezés szerint az új felhőszolgáltatás-projektek az Azure Compute Emulator Express használatával szimulálják az Azure-környezetet. Ez a teljes Compute Emulator egyszerűsített verziója, és bizonyos körülmények között előfordulhat, hogy a teljes emulátor akkor is működik, amikor az Express verzió nem.  
 
-toochange hello projekt toouse hello teljes emulátor, kattintson a jobb gombbal a ContosoAdsCloudService projekt hello, és kattintson a **tulajdonságok**. A hello **tulajdonságok** ablakban kattintson a hello **webes** fülre, majd hello **teljes emulátor használata** választógombot.
+Ha a teljes emulátor használatára szeretné módosítani a projekt beállítását, kattintson a jobb gombbal a ContosoAdsCloudService projektre, majd kattintson a **Tulajdonságok** lehetőségre. A **Tulajdonságok** ablakban kattintson a **Web** lapra, majd kattintson a **Use Full Emulator** (Teljes emulátor használata) választógombra.
 
-Rendelés toorun hello alkalmazás hello teljes emulátorral tooopen Visual Studio rendszergazdai jogosultságokkal rendelkezik.
+Az alkalmazás teljes emulátorral való futtatásához rendszergazdai jogosultságokkal kell megnyitnia a Visual Studiót.
 
 ## <a name="next-steps"></a>Következő lépések
-hello Contoso Ads alkalmazás kialakítása szándékosan egyszerű-bevezető oktatóanyag. Például az nem implementálja a következőt [függőségi beszúrást](http://www.asp.net/mvc/tutorials/hands-on-labs/aspnet-mvc-4-dependency-injection) vagy hello [adattárát és egységét működik minták](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/advanced-entity-framework-scenarios-for-an-mvc-web-application#repo), nem [használ felületet a naplózáshoz](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/monitoring-and-telemetry#log), nemhasznál[ EF Code First áttelepítést](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application) toomanage adatok modell módosítások vagy [EF-kapcsolati rugalmasságot](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application) toomanage átmeneti hálózati hibák, és így tovább.
+A Contoso Ads alkalmazás kialakítása szándékosan egyszerű az első lépéseket ismertető oktatóanyag kedvéért. Nem valósítja meg például a [függőségi beszúrást](http://www.asp.net/mvc/tutorials/hands-on-labs/aspnet-mvc-4-dependency-injection) vagy a [működési minták adattárát és egységét](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/advanced-entity-framework-scenarios-for-an-mvc-web-application#repo), nem [használ felületet a naplózáshoz](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/monitoring-and-telemetry#log), nem használ [EF Code First áttelepítést](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application) az adatmodellek kezeléséhez vagy [EF-kapcsolati rugalmasságot](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application) az átmeneti hálózati hibák kezeléséhez stb.
 
-Az alábbiakban néhány felhőszolgáltatás-alkalmazásokra, amelyek több valós kódolási gyakorlatot alkalmaz, az összetett kevésbé összetett toomore felsorolt bemutatása:
+Az alábbiakban példákat talál felhőszolgáltatás-alkalmazásokra, amelyek több valós kódolási gyakorlatot mutatnak be az egyszerűbbektől az összetettebbekig:
 
-* [PhluffyFotos](http://code.msdn.microsoft.com/PhluffyFotos-Sample-7ecffd31). Hasonlít a tooContoso Ads elvéhez, de több funkciót és több valós kódolási gyakorlatot alkalmaz.
-* [Azure Cloud Service Multi-Tier Application with Tables, Queues, and Blobs](http://code.msdn.microsoft.com/windowsazure/Windows-Azure-Multi-Tier-eadceb36) (Többrétegű Azure-felhőszolgáltatás táblákkal, üzenetsorokkal és blobokkal). Ismerteti az Azure Storage-táblákat, valamint a blobokat és üzenetsorokat. A .NET-alapú hello Azure SDK-t egy régebbi verziójú, néhány módosítás toowork hello aktuális verziójával van szükség.
-* [Cloud Service Fundamentals in Microsoft Azure](http://code.msdn.microsoft.com/Cloud-Service-Fundamentals-4ca72649) (A Felhőszolgáltatás alapjai a Microsoft Azure-ban). Gyakorlati tanácsok hello Microsoft Patterns és gyakorlatok csoportja által előállított széles skáláját bemutató, átfogó példák.
+* [PhluffyFotos](http://code.msdn.microsoft.com/PhluffyFotos-Sample-7ecffd31). Az elve hasonló a Contoso Ads elvéhez, de több funkciót és valós kódolási gyakorlatot alkalmaz.
+* [Azure Cloud Service Multi-Tier Application with Tables, Queues, and Blobs](http://code.msdn.microsoft.com/windowsazure/Windows-Azure-Multi-Tier-eadceb36) (Többrétegű Azure-felhőszolgáltatás táblákkal, üzenetsorokkal és blobokkal). Ismerteti az Azure Storage-táblákat, valamint a blobokat és üzenetsorokat. Az Azure SDK for .NET egy korábbi verzióján alapul. Az aktuális verzióval való használathoz néhány módosítást kell végrehajtani.
+* [Cloud Service Fundamentals in Microsoft Azure](http://code.msdn.microsoft.com/Cloud-Service-Fundamentals-4ca72649) (A Felhőszolgáltatás alapjai a Microsoft Azure-ban). A Microsoft Minták és gyakorlatok csoportja által létrehozott, ajánlott eljárások széles skáláját bemutató, átfogó példák.
 
-Hello felhő fejlesztésével kapcsolatos általános információkért lásd: [épület valós Felhőalkalmazások Azure](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/introduction).
+Általános információk a felhőalapú fejlesztésről: [Building Real-World Cloud Apps with Azure](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/introduction) (Valódi felhőalapú alkalmazások létrehozása az Azure használatával).
 
-A videó tooAzure tárolási az ajánlott eljárások és minták című [Microsoft Azure Storage –, ajánlott eljárások és minták](http://channel9.msdn.com/Events/Build/2014/3-628).
+Bemutató videó az Azure Storage ajánlott eljárásairól és mintáiról: [Microsoft Azure Storage – What's New, Best Practices and Patterns](http://channel9.msdn.com/Events/Build/2014/3-628) (Microsoft Azure Storage – Újdonságok, ajánlott eljárások és minták).
 
-További információkért tekintse meg a következő erőforrások hello:
+További információkért lásd a következőket:
 
 * [Azure Cloud Services – 1. rész: Bevezetés](http://justazure.com/microsoft-azure-cloud-services-part-1-introduction/)
-* [Toomanage Cloud Services](cloud-services-how-to-manage.md)
+* [A Cloud Services kezelése](cloud-services-how-to-manage.md)
 * [Azure Storage](/documentation/services/storage/)
-* [Hogyan toochoose felhő szolgáltató](https://azure.microsoft.com/overview/choosing-a-cloud-service-provider/)
+* [Felhőszolgáltató kiválasztása](https://azure.microsoft.com/overview/choosing-a-cloud-service-provider/)

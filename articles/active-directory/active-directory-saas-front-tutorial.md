@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált első |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és az első között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és az első között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,114 +14,114 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/25/2017
 ms.author: jeedes
-ms.openlocfilehash: 4be363a3d338ec9268f3324daab4a80346ec3131
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d936bc50a66ac2a3c17038ff08351edf9902c99f
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-front"></a>Oktatóanyag: Azure Active Directoryval integrált első
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate előre hozása az Azure Active Directoryval (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja első integrálása az Azure Active Directory (Azure AD).
 
-Első integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
+Első integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
 
-- Az Azure AD hozzáférési tooFront rendelkező szabályozhatja.
-- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooFront (egyszeri bejelentkezés) a saját Azure AD-fiókok.
-- A fiók egyetlen központi helyen - hello Azure-portálon kezelheti.
+- Az Azure AD, aki hozzáfér első szabályozhatja.
+- Engedélyezheti a felhasználóknak, hogy automatikusan lekérni bejelentkezett Előrehozás (egyszeri bejelentkezés) a saját Azure AD-fiókok.
+- A fiók egyetlen központi helyen – az Azure-portálon kezelheti.
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Első tooconfigure az Azure AD integrálása, a következő elemek hello kell:
+Az Azure AD-integráció konfigurálása az első, a következőkre van szükség:
 
 - Az Azure AD szolgáltatásra
 - Egy első egyszeri bejelentkezés engedélyezve van az előfizetés
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, akkor [egy hónapos próbaverzió beszerzése](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. Első hozzáadása hello gyűjteményből
+1. Első hozzáadása a gyűjteményből
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-front-from-hello-gallery"></a>Első hozzáadása hello gyűjteményből
-tooconfigure hello integrációs első, az Azure AD-be, meg kell tooadd első hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-front-from-the-gallery"></a>Első hozzáadása a gyűjteményből
+Az Azure AD integrálása első konfigurálásához kell hozzáadnia első a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
 
-**tooadd első hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
+**A gyűjtemény első hozzáadásához hajtsa végre az alábbi lépéseket:**
 
-1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
+1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
 
-    ![hello Azure Active Directory gomb][1]
+    ![Az Azure Active Directory gomb][1]
 
-2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
+2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
 
-    ![hello vállalati alkalmazások panel][2]
+    ![A vállalati alkalmazások panel][2]
     
-3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
+3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
 
-    ![hello új alkalmazás gomb][3]
+    ![Az új alkalmazás gomb][3]
 
-4. Hello keresési mezőbe, írja be a **első**, jelölje be **első** eredmény panelen kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
+4. Írja be a keresőmezőbe, **első**, jelölje be **első** eredmény panelen kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
 
-    ![Első hello eredmények listájában](./media/active-directory-saas-front-tutorial/tutorial_front_addfromgallery.png)
+    ![Az eredménylistában első](./media/active-directory-saas-front-tutorial/tutorial_front_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés tesztelése és konfigurálása
 
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD az egyszeri bejelentkezés első "Britta Simon" nevű tesztfelhasználó alapján.
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello tartozó felhasználói elöl tooa felhasználó az Azure ad-ben. Ez azt jelenti hello elöl kapcsolódó felhasználói és az Azure AD-felhasználó közötti kapcsolat kapcsolatot kell létrehozni toobe.
+Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó elöl a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználói elöl közötti kapcsolat kapcsolatot kell létrehozni.
 
-Az előtérben, rendelje az hello hello értékét **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
+Az előtérben, rendelje az értékét a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
 
-tooconfigure és az első Azure AD az egyszeri bejelentkezés tesztelése, a következő építőelemeket toocomplete hello szüksége:
+Az Azure AD egyszeri bejelentkezést az első tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configure-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Hozzon létre egy Azure AD-teszt felhasználó](#create-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-3. **[Első tesztfelhasználó létrehozása](#create-a-front-test-user)**  -toohave egy megfelelője a Britta Simon elöl csatolt toohello az Azure AD felhasználói ábrázolása.
-4. **[Rendelje hozzá az Azure AD hello tesztfelhasználó](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-5. **[Egyszeri bejelentkezés tesztelése](#test-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configure-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Hozzon létre egy Azure AD-teszt felhasználó](#create-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+3. **[Első tesztfelhasználó létrehozása](#create-a-front-test-user)**  - kell rendelkeznie a megfelelője a Britta Simon elöl, amely csatolva van a felhasználó az Azure AD-ábrázolását.
+4. **[Rendelje hozzá az Azure AD-teszt felhasználó](#assign-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+5. **[Egyszeri bejelentkezés tesztelése](#test-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD az egyszeri bejelentkezés az Azure-portálon hello engedélyezése és konfigurálása egyszeri bejelentkezéshez az első alkalmazás.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és az első alkalmazás egyszeri bejelentkezés konfigurálása.
 
-**az első, az Azure AD az egyszeri bejelentkezés tooconfigure hajtsa végre a lépéseket követve hello:**
+**Az Azure AD az egyszeri bejelentkezés konfigurálása az első, hajtsa végre az alábbi lépéseket:**
 
-1. Az Azure portál, a hello hello **első** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portálon a a **első** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés kapcsolat konfigurálása][4]
 
-2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
+2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
  
     ![Egyszeri bejelentkezés párbeszédpanel](./media/active-directory-saas-front-tutorial/tutorial_front_samlbase.png)
 
-3. A hello **első tartomány és az URL-címek** szakaszban, ha tooconfigure hello alkalmazás **IDP** kezdeményezett mód:
+3. Az a **első tartomány és az URL-címek** szakaszban, ha szeretne beállítani az alkalmazás **IDP** kezdeményezett mód:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-front-tutorial/tutorial_front_url1.png)
 
-    a. A hello **azonosító** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<companyname>.frontapp.com`
+    a. Az a **azonosító** szövegmező, adja meg a következő minta használatával URL-címe:`https://<companyname>.frontapp.com`
 
-    b. A hello **válasz URL-CÍMEN** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<companyname>.frontapp.com/sso/saml/callback`
+    b. Az a **válasz URL-CÍMEN** szövegmező, adja meg a következő minta használatával URL-címe:`https://<companyname>.frontapp.com/sso/saml/callback`
 
-4. Ellenőrizze **megjelenítése speciális URL-beállításainak**, ha tooconfigure hello alkalmazás **SP** kezdeményezett mód:
+4. Ellenőrizze **megjelenítése speciális URL-beállításainak**, ha szeretne beállítani az alkalmazás **SP** kezdeményezett mód:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-front-tutorial/tutorial_front_url2.png)
 
-    A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<companyname>.frontapp.com`
+    Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://<companyname>.frontapp.com`
      
     > [!NOTE] 
-    > Ezek az értékek nincsenek valós. Ezeket az értékeket a hello tényleges azonosítója, válasz URL-CÍMEN és bejelentkezési URL-cím amelyeket később az oktatóanyag, vagy forduljon a frissítés [első ügyfél-támogatási csoport](mailto:support@frontapp.com) tooget ezeket az értékeket. 
+    > Ezek az értékek nincsenek valós. Frissítheti ezeket az értékeket a a tényleges azonosítója, válasz URL-CÍMEN, és a bejelentkezési URL-cím szakaszban találhatók később oktatóanyag, vagy forduljon a [első ügyfél-támogatási csoport](mailto:support@frontapp.com) beolvasni ezeket az értékeket. 
 
-5. A hello **SAML-aláíró tanúsítványa** kattintson **Certificate(Base64)** , és mentse a hello tanúsítványfájlt a számítógépen.
+5. Az a **SAML-aláíró tanúsítványa** kattintson **Certificate(Base64)** , és mentse a tanúsítványfájlt, a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-front-tutorial/tutorial_front_certificate.png) 
 
@@ -129,13 +129,13 @@ Ebben a szakaszban az Azure AD az egyszeri bejelentkezés az Azure-portálon hel
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-front-tutorial/tutorial_general_400.png)
     
-7. A hello **első konfigurációs** kattintson **első konfigurálása** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **Sign-Out URL-címet, a SAML entitás azonosítója és a SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**
+7. A a **első konfigurációs** kattintson **első konfigurálása** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **Sign-Out URL-címet, a SAML entitás azonosítója és a SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-front-tutorial/tutorial_front_configure.png) 
 
-8. Bejelentkezés tooyour első Bérlői rendszergazda.
+8. Bejelentkezés az első bérlő rendszergazdaként.
 
-9. Nyissa meg túl**beállítások (fogaskerék ikonjára ikon hello bal oldalsávon hello alján) > Beállítások**.
+9. Ugrás a **beállítások (fogaskerék ikonjára ikonra a bal oldali oldalsávon alján) > Beállítások**.
    
     ![Egyszeri bejelentkezés az alkalmazás ügyféloldali konfigurálása](./media/active-directory-saas-front-tutorial/tutorial_front_000.png)
 
@@ -143,93 +143,93 @@ Ebben a szakaszban az Azure AD az egyszeri bejelentkezés az Azure-portálon hel
    
     ![Egyszeri bejelentkezés az alkalmazás ügyféloldali konfigurálása](./media/active-directory-saas-front-tutorial/tutorial_front_001.png)
 
-11. Válassza ki **SAML** hello legördülő listájában **egyszeri bejelentkezés**.
+11. Válassza ki **SAML** legördülő listájában **egyszeri bejelentkezés**.
    
     ![Egyszeri bejelentkezés az alkalmazás ügyféloldali konfigurálása](./media/active-directory-saas-front-tutorial/tutorial_front_002.png)
 
-12. A hello **belépési pont** szövegmezőbe írja be a hello értéket **egyszeri bejelentkezési URL-címe** az Azure AD alkalmazás-konfigurációs varázsló.
+12. Az a **belépési pont** szövegmezőbe írja be az értéket a **egyszeri bejelentkezési URL-címe** az Azure AD alkalmazás-konfigurációs varázsló.
     
     ![Egyszeri bejelentkezés az alkalmazás ügyféloldali konfigurálása](./media/active-directory-saas-front-tutorial/tutorial_front_003.png)
 
-13. Nyissa meg a letöltött **Certificate(Base64)** fájlt a Jegyzettömbben, a vágólapra tartalmának másolása hello és toohello Beillesztés **tanúsítvány aláírása** szövegmező.
+13. Nyissa meg a letöltött **Certificate(Base64)** fájlt a Jegyzettömbben, annak tartalmának másolása a vágólapra és illessze be azt a **tanúsítvány aláírása** szövegmező.
     
     ![Egyszeri bejelentkezés az alkalmazás ügyféloldali konfigurálása](./media/active-directory-saas-front-tutorial/tutorial_front_004.png)
 
-14. A hello **szolgáltató Szolgáltatásbeállítások** csoportjában hajtsa végre az alábbi lépésekkel hello:
+14. Az a **szolgáltató Szolgáltatásbeállítások** területen tegye a következőket:
 
     ![Egyszeri bejelentkezés az alkalmazás ügyféloldali konfigurálása](./media/active-directory-saas-front-tutorial/tutorial_front_005.png)
 
-    a. Hello értékének másolása **Entitásazonosító** és illessze be hello **azonosító** textbox **első tartomány és az URL-címek** szakaszban az Azure portálon.
+    a. Értékének másolása **Entitásazonosító** és illessze be azt a **azonosító** textbox **első tartomány és az URL-címek** szakaszban az Azure portálon.
 
-    b. Hello értékének másolása **ACS URL-cím** és illessze be hello **bejelentkezési URL-cím** textbox **első tartomány és az URL-címek** szakaszban az Azure portálon.
+    b. Értékének másolása **ACS URL-cím** és illessze be azt a **bejelentkezési URL-cím** textbox **első tartomány és az URL-címek** szakaszban az Azure portálon.
     
 15. Kattintson a **mentése** gombra.
 
 > [!TIP]
-> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Hozzon létre egy Azure AD-teszt felhasználó
 
-hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
+Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
 
    ![Hozzon létre egy Azure AD-teszt felhasználó][100]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello Azure-portálon, hello bal oldali ablaktáblában kattintson a hello **Azure Active Directory** gombra.
+1. Az Azure portálon a bal oldali ablaktáblán kattintson a **Azure Active Directory** gombra.
 
-    ![hello Azure Active Directory gomb](./media/active-directory-saas-front-tutorial/create_aaduser_01.png)
+    ![Az Azure Active Directory gomb](./media/active-directory-saas-front-tutorial/create_aaduser_01.png)
 
-2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok**, és kattintson a **minden felhasználó**.
+2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok**, és kattintson a **minden felhasználó**.
 
-    ![hello "Felhasználók és csoportok" és "Minden felhasználó" hivatkozások](./media/active-directory-saas-front-tutorial/create_aaduser_02.png)
+    ![A "felhasználók és csoportok" és "Minden felhasználó" hivatkozások](./media/active-directory-saas-front-tutorial/create_aaduser_02.png)
 
-3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello hello tetején **minden felhasználó** párbeszédpanel megnyitásához.
+3. Megnyitásához a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** tetején a **minden felhasználó** párbeszédpanel megnyitásához.
 
-    ![hello Hozzáadás gomb](./media/active-directory-saas-front-tutorial/create_aaduser_03.png)
+    ![A Hozzáadás gombra.](./media/active-directory-saas-front-tutorial/create_aaduser_03.png)
 
-4. A hello **felhasználói** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello:
+4. Az a **felhasználói** párbeszédpanelen hajtsa végre az alábbi lépéseket:
 
-    ![hello felhasználó párbeszédpanel](./media/active-directory-saas-front-tutorial/create_aaduser_04.png)
+    ![A felhasználó párbeszédpanel](./media/active-directory-saas-front-tutorial/create_aaduser_04.png)
 
-    a. A hello **neve** mezőbe írja be **BrittaSimon**.
+    a. Az a **neve** mezőbe írja be **BrittaSimon**.
 
-    b. A hello **felhasználónév** mezőben, a felhasználó Britta Simon típus hello e-mail címét.
+    b. Az a **felhasználónév** mezőbe írja be a felhasználó e-mail címe az Britta Simon.
 
-    c. Jelölje be hello **megjelenítése jelszó** jelölje be a jelölőnégyzetet, és jegyezze fel a hello hello érték **jelszó** mezőbe.
+    c. Válassza ki a **megjelenítése jelszó** jelölje be a jelölőnégyzetet, és jegyezze fel a megjelenített érték a **jelszó** mezőbe.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="create-a-front-test-user"></a>Első tesztfelhasználó létrehozása
 
-Ebben a szakaszban egy Britta Simon elöl nevű felhasználót hoz létre. Együttműködve [első ügyfél-támogatási csoport](mailto:support@frontapp.com) felhasználót is hozzáadhat hello hello első platform. Felhasználók kell létrehoznia és aktiválni az egyszeri bejelentkezés használata előtt.
+Ebben a szakaszban egy Britta Simon elöl nevű felhasználót hoz létre. Együttműködve [első ügyfél-támogatási csoport](mailto:support@frontapp.com) a felhasználók hozzáadása az első platform. Felhasználók kell létrehoznia és aktiválni az egyszeri bejelentkezés használata előtt.
 
-### <a name="assign-hello-azure-ad-test-user"></a>Rendelje hozzá az Azure AD hello tesztfelhasználó számára
+### <a name="assign-the-azure-ad-test-user"></a>Rendelje hozzá az Azure AD-teszt felhasználó
 
-Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooFront megadásával engedélyeznie.
+Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés első Azure egyszeri bejelentkezéshez használandó.
 
-![Hello felhasználói szerepkör hozzárendelése][200] 
+![A felhasználói szerepkör hozzárendelése][200] 
 
-**tooassign Britta Simon tooFront, hajtsa végre a következő lépéseket hello:**
+**Az első Britta Simon rendeléséhez hajtsa végre az alábbi lépéseket:**
 
-1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Hello alkalmazások listában válassza ki a **első**.
+2. Az alkalmazások listában válassza ki a **első**.
 
-    ![hello első hivatkozásra hello alkalmazások listája](./media/active-directory-saas-front-tutorial/tutorial_front_app.png)  
+    ![Az alkalmazások listáját az első hivatkozás](./media/active-directory-saas-front-tutorial/tutorial_front_app.png)  
 
-3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
 
-    ![hello "Felhasználók és csoportok" hivatkozásra.][202]
+    ![A "Felhasználók és csoportok" hivatkozásra][202]
 
 4. Kattintson a **Hozzáadás** gombra. Válassza ki **felhasználók és csoportok** a **hozzáadása hozzárendelés** párbeszédpanel.
 
-    ![hello hozzárendelés hozzáadása panelen][203]
+    ![A hozzárendelés hozzáadása panelen][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -237,13 +237,13 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáfé
     
 ### <a name="test-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-hello ebben a szakaszban célja tootest hozzáférési Panel az Azure AD SSOconfiguration használatával hello.
+Ez a szakasz célja tesztelése az Azure AD SSOconfiguration a hozzáférési panelen.
 
-Hello első csempe a hozzáférési Panel hello kattintáskor automatikusan bejelentkezett tooyour első alkalmazás kapja meg. 
+Ha az első csempe a hozzáférési panelen gombra kattint, akkor kell beolvasása automatikusan bejelentkezett az első alkalmazáshoz. 
 
 ## <a name="additional-resources"></a>További források
 
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

@@ -1,6 +1,6 @@
 ---
-title: "aaaGet a Python és az Azure Cloud Services használatába |} Microsoft Docs"
-description: "Python Tools for Visual Studio toocreate Azure felhőszolgáltatások, például webes és feldolgozói szerepkörök használatával áttekintése."
+title: "Ismerkedés a Pythonnal és az Azure Cloud Serviceszel | Microsoft Docs"
+description: "Azure felhőszolgáltatások, például webes és feldolgozói szerepkörök létrehozása a Python Tools for Visual Studio eszközzel."
 services: cloud-services
 documentationcenter: python
 author: thraka
@@ -14,15 +14,15 @@ ms.devlang: python
 ms.topic: hero-article
 ms.date: 07/18/2017
 ms.author: adegeo
-ms.openlocfilehash: f5fd85e754839f146abe912351c59dc4a148c990
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 030a09c05ac4b480c9326b8a9ebc585339f312b5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="python-web-and-worker-roles-with-python-tools-for-visual-studio"></a>Python webes és feldolgozói szerepkörök a Visual Studio eszközzel
 
-Ez a cikk a Python webes és feldolgozói szerepkörök [Python Tools for Visual Studio][Python Tools for Visual Studio] eszközben történő használatát ismerteti. Megtudhatja, hogyan toouse Visual Studio toocreate és központi telepítése egy alapszintű felhőalapú szolgáltatás, amely a Pythont használja.
+Ez a cikk a Python webes és feldolgozói szerepkörök [Python Tools for Visual Studio][Python Tools for Visual Studio] eszközben történő használatát ismerteti. Megtudhatja, hogyan hozhat létre és telepíthet egy Pythont használó alapszintű felhőszolgáltatást a Visual Studióval.
 
 ## <a name="prerequisites"></a>Előfeltételek
 * [Visual Studio 2013, 2015 vagy 2017](https://www.visualstudio.com/)
@@ -35,45 +35,45 @@ Ez a cikk a Python webes és feldolgozói szerepkörök [Python Tools for Visual
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
 ## <a name="what-are-python-web-and-worker-roles"></a>Mik a Python webes és feldolgozói szerepkörök?
-Az Azure három számítási modellt biztosít az alkalmazások futtatásához: [Web Apps szolgáltatás az Azure App Service-ben][execution model-web sites], [Azure Virtual Machines][execution model-vms] és [Azure Cloud Services][execution model-cloud services]. Mindhárom modell támogatja a Python eszközt. A webes és feldolgozói szerepköröket is tartalmazó Cloud Services *platformszolgáltatást (PaaS)* kínál. Belül egy felhőalapú szolgáltatás a webes szerepkör lehetővé teszi egy dedikált Internet Information Services (IIS) webes server toohost előtérbeli webes, míg a feldolgozói szerepkör aszinkron, hosszan futó vagy folyamatos feladatokat futtat függetlenül a felhasználói interakcióktól vagy bemenettől futtatható.
+Az Azure három számítási modellt biztosít az alkalmazások futtatásához: [Web Apps szolgáltatás az Azure App Service-ben][execution model-web sites], [Azure Virtual Machines][execution model-vms] és [Azure Cloud Services][execution model-cloud services]. Mindhárom modell támogatja a Python eszközt. A webes és feldolgozói szerepköröket is tartalmazó Cloud Services *platformszolgáltatást (PaaS)* kínál. A felhőszolgáltatásban a webes szerepkör egy külön Internet Information Services (IIS) webkiszolgálót biztosít az előtéri webalkalmazásokhoz, míg a feldolgozói szerepkör aszinkron, hosszan futó vagy folyamatos feladatokat futtat függetlenül a felhasználói műveletektől vagy bemenettől.
 
 További információ: [Mi az a Cloud Service?].
 
 > [!NOTE]
-> *Egy egyszerű webhely toobuild szüksége?*
-> Ha csak egy egyszerű webhely előtér, fontolja meg az Azure App Service hello egyszerűsített Web Apps szolgáltatásának használatát. A webhely növekszik és a követelmények változnak könnyedén frissíthet Cloud Service tooa. Lásd: hello <a href="/develop/python/">Python fejlesztői központ</a> az Azure App Service-ben hello Web Apps szolgáltatásának fejlesztését ismertető cikkeket.
+> *Egyszerű webhelyet szeretne készíteni?*
+> Ha egy egyszerű webhely előterét kívánja futtatni, fontolja meg az Azure App Service egyszerűsített Web Apps szolgáltatásának használatát. Könnyedén frissíthet Cloud Service szolgáltatásra, ha a webhely növekszik és a követelmények változnak. A <a href="/develop/python/">Python fejlesztői központban</a> találhat az Azure App Service Web Apps szolgáltatásának fejlesztését ismertető cikkeket.
 > <br />
 > 
 > 
 
 ## <a name="project-creation"></a>Projekt létrehozása
-A Visual Studio kiválaszthatja **Azure Cloud Service** a hello **új projekt** párbeszédpanel **Python**.
+A Visual Studio eszközben válassza az **Azure Cloud Service** lehetőséget az **Új projekt** párbeszédpanelen a **Python** területen.
 
 ![Új projekt párbeszédpanel](./media/cloud-services-python-ptvs/new-project-cloud-service.png)
 
-Hello Azure Cloud Service varázslóban létrehozhat új webes és feldolgozói szerepköröket.
+Az Azure Cloud Service varázslóban létrehozhat új webes és feldolgozói szerepköröket.
 
 ![Azure Cloud Service párbeszédpanel](./media/cloud-services-python-ptvs/new-service-wizard.png)
 
-hello feldolgozói szerepkör sablonok bolierplate kóddal tooconnect tooan Azure storage-fiók vagy Azure Service Bus tartalmaz.
+A feldolgozói szerepkör sablonja sablonkóddal rendelkezik, hogy csatlakozhasson egy Azure-tárfiókhoz vagy az Azure Service Bus szolgáltatáshoz.
 
 ![Cloud Service megoldás](./media/cloud-services-python-ptvs/worker.png)
 
-Bármikor hozzáadhat webes vagy feldolgozói szerepkörök tooan létező felhőalapú szolgáltatást.  Válassza ki a tooadd meglévő projekteket a megoldásban, vagy hozzon létre újakat.
+Egy meglévő felhőszolgáltatáshoz bármikor hozzáadhat webes vagy feldolgozói szerepköröket.  Hozzáadhat a megoldásában már meglévő projekteket, vagy létrehozhat újakat.
 
 ![Szerepkör hozzáadása parancs](./media/cloud-services-python-ptvs/add-new-or-existing-role.png)
 
 A felhőszolgáltatás tartalmazhat különböző nyelveken kialakított szerepköröket.  Például kialakíthat egy Python webes szerepkört Django, Python vagy C# feldolgozói szerepkör használatával.  A szerepkörök között egyszerűen kommunikálhat Service Bus üzenetsorok vagy tárolási sorok használatával.
 
-## <a name="install-python-on-hello-cloud-service"></a>Python hello felhőalapú szolgáltatás telepítése
+## <a name="install-python-on-the-cloud-service"></a>A Python telepítése a felhőszolgáltatáson
 > [!WARNING]
-> (időben hello Ez a cikk utolsó frissítés), a Visual Studio telepített hello beállítása parancsfájlok nem működnek. A megoldást ez a szakasz ismerteti.
+> A Visual Studióval települt telepítési parancsfájlok (a cikk utolsó frissítésekor) erre a célra nem használhatók. A megoldást ez a szakasz ismerteti.
 > 
 > 
 
-hello hello beállítása parancsfájlok fő problémája, hogy azok ne telepítse a python. Először határozza meg két [indítási feladatok](cloud-services-startup-tasks.md) a hello [ServiceDefinition.csdef](cloud-services-model-and-package.md#servicedefinitioncsdef) fájlt. a feladat első hello (**PrepPython.ps1**) letölti és telepíti a Python-futtatókörnyezet hello. hello második feladata (**PipInstaller.ps1**) pip tooinstall összes függőséget, előfordulhat, hogy futtatja.
+A telepítési szkriptek fő problémája, hogy nem telepítik a Pythont. Először határozzon meg két [indítási feladatot](cloud-services-startup-tasks.md) a [ServiceDefinition.csdef](cloud-services-model-and-package.md#servicedefinitioncsdef) fájlban. Az első feladat (**PrepPython.ps1**) letölti és telepíti a Python-futtatókörnyezetet. A második feladat (**PipInstaller.ps1**) a pipet futtatja a vonatkozó függőségek telepítéséhez.
 
-a következő parancsfájlok hello készültek, célzás Python 3.5-ös verzióját. Ha azt szeretné, hogy toouse hello verzió a python, set hello 2.x **PYTHON2** változó fájl túl**a** hello két indítási feladatok és hello futásidejű feladat: `<Variable name="PYTHON2" value="<mark>on</mark>" />`.
+Az alábbi parancsfájlok a Python 3.5-ös verziójára vonatkoznak. Ha a Python 2.x verzióját szeretné használni, állítsa a **PYTHON2** változófájlt **be** értékre a két indítási és a futtatókörnyezeti feladathoz: `<Variable name="PYTHON2" value="<mark>on</mark>" />`.
 
 ```xml
 <Startup>
@@ -100,7 +100,7 @@ a következő parancsfájlok hello készültek, célzás Python 3.5-ös verziój
 </Startup>
 ```
 
-Hello **PYTHON2** és **PYPATH** változók toohello munkavégző indítási tevékenységhez hozzá kell adni. Hello **PYPATH** változó csak akkor használatos, ha hello **PYTHON2** változó értéke túl**a**.
+A **PYTHON2** és a **PYPATH** változókat hozzá kell adnia a feldolgozó indítási feladatához. A **PYPATH** változót csak akkor használja a rendszer, ha a **PYTHON2** változó **be** értékű.
 
 ```xml
 <Runtime>
@@ -166,10 +166,10 @@ Hello **PYTHON2** és **PYPATH** változók toohello munkavégző indítási tev
 
 
 
-Ezután hozzon létre hello **PrepPython.ps1** és **PipInstaller.ps1** hello fájlok **. / bin** mappában található a szerepkör.
+Ezután hozza létre a **PrepPython.ps1** és a **PipInstaller.ps1** fájlokat a szerepkör **./bin** mappájában.
 
 #### <a name="preppythonps1"></a>PrepPython.ps1
-Ez a parancsfájl telepíti a Pythont. Ha hello **PYTHON2** környezeti változó értéke túl**a**, majd a Python 2.7 telepítve van, ellenkező esetben a Python 3.5 telepítve van.
+Ez a parancsfájl telepíti a Pythont. Ha a **PYTHON2** környezeti változó értéke **on**, akkor a rendszer a Python 2.7-et telepíti. Egyéb esetben a Python 3.5 lesz telepítve.
 
 ```powershell
 $is_emulated = $env:EMULATED -eq "true"
@@ -195,7 +195,7 @@ if (-not $is_emulated){
             $outFile = "${env:TEMP}\python-2.7.12.amd64.msi"
         }
 
-        Write-Output "Not found, downloading $url too$outFile$nl"
+        Write-Output "Not found, downloading $url to $outFile$nl"
         Invoke-WebRequest $url -OutFile $outFile
         Write-Output "Installing$nl"
 
@@ -215,7 +215,7 @@ if (-not $is_emulated){
 ```
 
 #### <a name="pipinstallerps1"></a>PipInstaller.ps1
-Ez a parancsfájl meghívja a pip, és telepíti a teljes hello függőségek hello **requirements.txt** fájlt. Ha hello **PYTHON2** környezeti változó értéke túl**a**, majd a Python 2.7 szolgál, ellenkező esetben a Python 3.5 szolgál.
+Ez a parancsfájl meghívja a pipet, és telepíti a **requirements.txt** fájlban található összes függőséget. Ha a **PYTHON2** környezeti változó értéke **on**, akkor a rendszer a Python 2.7-et használja, egyéb esetben pedig a Python 3.5-öt.
 
 ```powershell
 $is_emulated = $env:EMULATED -eq "true"
@@ -244,13 +244,13 @@ if (-not $is_emulated){
 
 #### <a name="modify-launchworkerps1"></a>A LaunchWorker.ps1 módosítása
 > [!NOTE]
-> Hello esetében egy **feldolgozói szerepkör** projektben **LauncherWorker.ps1** szükséges tooexecute hello indítási fájl. Az egy **webes szerepkör** projektre, hello indítási fájl helyette meghatározott hello projekt tulajdonságait.
+> **Feldolgozói szerepkörű** projekt esetében az indítófájl végrehajtásához **LauncherWorker.ps1** fájl szükséges. **Webes szerepkörű** projekt esetében az indítófájl definiálása nem ebben a fájlban, hanem a projekt tulajdonságaiban történik.
 > 
 > 
 
-Hello **bin\LaunchWorker.ps1** eredetileg toodo nagy mennyiségű előkészítő munka, de valójában nem működik. Cserélje ki a következő parancsfájl hello hello tartalmát, az adott fájlban.
+A **bin\LaunchWorker.ps1** eredetileg azért jött létre, hogy előkészítési munkákat végezzen, de nem igazán működik. Cserélje le a fájl tartalmát a következő parancsfájllal.
 
-Ez a parancsfájl meghívja a hello **worker.py** fájl a python projektből. Ha hello **PYTHON2** környezeti változó értéke túl**a**, majd a Python 2.7 szolgál, ellenkező esetben a Python 3.5 szolgál.
+A parancsfájl meghívja a **worker.py** fájlt a Python-projektből. Ha a **PYTHON2** környezeti változó értéke **on**, akkor a rendszer a Python 2.7-et használja, egyéb esetben pedig a Python 3.5-öt.
 
 ```powershell
 $is_emulated = $env:EMULATED -eq "true"
@@ -274,7 +274,7 @@ else
 {
     Write-Output "Running (EMULATED) worker.py$nl"
 
-    # Customize tooyour local dev environment
+    # Customize to your local dev environment
 
     if ($is_python2) {
         cd..
@@ -288,7 +288,7 @@ else
 ```
 
 #### <a name="pscmd"></a>ps.cmd
-hozza létre a Visual Studio sablonok hello egy **ps.cmd** hello fájlban **. / bin** mappát. A parancsfájl kimenő hello PowerShell meghívja a fenti burkoló parancsfájlok és hello PowerShell burkoló nevű hello neve alapján-naplózást végez. Ha a fájl nem jött létre, itt láthatja, minek kéne benne lennie. 
+A Visual Studio-sablonoknak létre kellett hozniuk egy **ps.cmd** fájlt a **./bin** mappában. Ez a héjparancsfájl kiemeli a fenti PowerShell burkoló parancsfájlokat, és a meghívott PowerShell burkoló neve alapján biztosít naplózást. Ha a fájl nem jött létre, itt láthatja, minek kéne benne lennie. 
 
 ```bat
 @echo off
@@ -302,38 +302,38 @@ if not exist "%DiagnosticStore%\LogFiles" mkdir "%DiagnosticStore%\LogFiles"
 
 
 ## <a name="run-locally"></a>Helyi futtatás
-Ha a felhőszolgáltatási projektet állítja be hello kezdőprojektként, és nyomja le az F5 billentyűt, hello felhőszolgáltatás hello helyi Azure emulátorban futtatja.
+Ha a felhőszolgáltatási projektet állítja be kiindulási projektnek, és lenyomja az F5 billentyűt, a felhőszolgáltatás a helyi Azure-emulátorban fut.
 
-Bár a PVTS támogatja indítást hello emulátorban, a hibakeresés (például töréspontok keresése) nem működik.
+Bár a PVTS támogatja az emulátorban való indítást, a hibakeresés (például a töréspontok keresése) nem működik.
 
-toodebug a webes és feldolgozói szerepkörök állíthat hello szerepkör projekt hello indítási projektként, és helyette, amely debug.  Beállíthat több kiindulási projektet is.  Kattintson a jobb gombbal a hello megoldás, és válassza ki **indítási projektek beállítása**.
+A webes és feldolgozói szerepkörök hibakereséséhez állítsa be a szerepkörprojektet kiindulási projektként, és végezzen azon hibakeresést  Beállíthat több kiindulási projektet is.  Kattintson a jobb gombbal a megoldásra, majd válassza az **Indítási projektek beállítása** lehetőséget.
 
 ![A megoldás kiindulási projektjének tulajdonságai](./media/cloud-services-python-ptvs/startup.png)
 
-## <a name="publish-tooazure"></a>TooAzure közzététele
-toopublish, kattintson a jobb gombbal a hello megoldás hello felhőszolgáltatási projektre, és válassza ki **közzététel**.
+## <a name="publish-to-azure"></a>Közzététel az Azure platformon
+A közzétételhez kattintson a jobb gombbal a felhőszolgáltatási projektre a megoldásban, majd kattintson a **Közzététel** gombra.
 
 ![Bejelentkezés a Microsoft Azure közzétételhez](./media/cloud-services-python-ptvs/publish-sign-in.png)
 
-Hajtsa végre a hello varázsló. Szükség esetén engedélyezze a távoli asztal használatát. A távoli asztal akkor hasznos, ha szüksége toodebug valamit.
+Kövesse a varázsló utasításait. Szükség esetén engedélyezze a távoli asztal használatát. A távoli asztal akkor hasznos, amikor valamilyen okból hibakeresést kell végeznie.
 
 Ha elkészült a beállítások konfigurálásával, kattintson a **Közzététel** gombra.
 
-Hello kimeneti ablakban egy folyamatjelző jelenik meg, majd hello Microsoft Azure tevékenységnapló ablak látható.
+Egy folyamatjelző jelenik meg a kimeneti ablakban, majd megnyílik a Microsoft Azure-tevékenységnapló ablak.
 
 ![Microsoft Azure tevékenységnapló ablak](./media/cloud-services-python-ptvs/publish-activity-log.png)
 
-Központi telepítés több percet toocomplete, majd a webes vesz igénybe, és/vagy feldolgozói szerepkörök futtatásához Azure!
+Az üzembe helyezés néhány percet vesz igénybe, majd a webes és/vagy feldolgozói szerepkörök el is indulnak az Azure-ban!
 
 ### <a name="investigate-logs"></a>Naplók vizsgálata
-Miután hello felhőalapú szolgáltatás virtuális gép elindul, és telepíti a Python, vessen egy pillantást hello naplók toofind esetleges hibaüzenetek. Ezek a naplók találhatók hello **C:\Resources\Directory\\{szerepkör} \LogFiles** mappa. **PrepPython.err.txt** a amikor hello parancsfájl kísérli meg toodetect, ha telepítve van a Python rendelkezik legalább egy hibát és **PipInstaller.err.txt** panaszkodnak előfordulhat, hogy a pip elavult verziójára.
+A felhőszolgáltatás virtuális gépének elindulása és a Python telepítése után áttekintheti, hogy vannak-e a naplókban hibaüzenetek. Ezek a naplók a **C:\Resources\Directory\\{szerepkör}\LogFiles** mappában találhatók. A **PrepPython.err.txt** fájlban legalább egy hiba található, amely akkor keletkezik, amikor a szkript megpróbálja észlelni, hogy a Python telepítve van-e. Az is előfordulhat, hogy a **PipInstaller.err.txt** jelzi a pip elavult verziójának használatát.
 
 ## <a name="next-steps"></a>Következő lépések
-Webes és feldolgozói szerepkörök Python Tools for Visual Studio használatával kapcsolatos részletes információkért lásd: hello PVTS dokumentációban:
+A PVTS dokumentációban további információkat találhat a webes és feldolgozói szerepkörök használatáról Python Tools for Visual Studio eszközben:
 
 * [Cloud Service-projektek][Cloud Service Projects]
 
-A webes és feldolgozói szerepköröket, például az Azure Storage vagy a Service Bus, az Azure-szolgáltatások használatával kapcsolatos további részletekért tekintse meg a következő cikkek hello:
+Ha további részletekre kíváncsi az Azure-szolgáltatások webes és feldolgozói szerepkörökből történő használatáról, például az Azure Storage vagy a Service Bus használatáról, olvassa el a következő cikkeket:
 
 * [Blob Service][Blob Service]
 * [Table Service][Table Service]
@@ -344,7 +344,7 @@ A webes és feldolgozói szerepköröket, például az Azure Storage vagy a Serv
 <!--Link references-->
 
 [Mi az a Cloud Service?]: cloud-services-choose-me.md
-[execution model-web sites]: ../app-service-web/app-service-web-overview.md
+[execution model-web sites]: ../app-service/app-service-web-overview.md
 [execution model-vms]:../virtual-machines/windows/overview.md
 [execution model-cloud services]: cloud-services-choose-me.md
 [Python Developer Center]: /develop/python/

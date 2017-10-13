@@ -1,5 +1,5 @@
 ---
-title: "Application Insights Telemetria adatmodell - aaaAzure Kivételtelemetria |} Microsoft Docs"
+title: "Azure Application Insights Telemetria-adatmodell - Kivételtelemetria |} Microsoft Docs"
 description: "Application Insights – kivételtelemetria tartozó adatmodell"
 services: application-insights
 documentationcenter: .net
@@ -12,19 +12,19 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: bwren
-ms.openlocfilehash: 4c2b7d1ac3816d5623db9a35819a48a68a13a9cd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6b220b0cb6719bac606f599d657d08ab847c7590
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="exception-telemetry-application-insights-data-model"></a>– Kivételtelemetria: Application Insights adatmodell
 
-A [Application Insights](app-insights-overview.md), kivétel példányának jelöli egy figyelt hello alkalmazás végrehajtása közben történt kezelt vagy nem kezelt kivétel.
+A [Application Insights](app-insights-overview.md), kivétel példányának jelöli egy kezelt vagy nem kezelt kivétel a figyelt alkalmazás végrehajtása során.
 
 ## <a name="problem-id"></a>Problémaazonosító
 
-Azonosítója, ahol kód hello kivétel lépett fel. Csoportosítás kivételek használatos. Általában kombinációja kivétel típusát és a függvényt a hello hívási verem.
+Ahol a kivétel a kód azonosítója. Csoportosítás kivételek használatos. Általában kombinációja kivétel típusát és egy, a hívási verem származó függvényt.
 
 Maximális hossz: 1024 karakter hosszú lehet
 
@@ -34,7 +34,7 @@ Nyomkövetési súlyossági szint. Az érték lehet `Verbose`, `Information`, `W
 
 ## <a name="exception-details"></a>A kivétel részletei
 
-(a kiterjesztett toobe)
+(A kiterjesztett)
 
 ## <a name="custom-properties"></a>Egyéni tulajdonságok
 
@@ -47,5 +47,5 @@ Nyomkövetési súlyossági szint. Az érték lehet `Verbose`, `Information`, `W
 ## <a name="next-steps"></a>Következő lépések
 
 - Lásd: [adatmodell](application-insights-data-model.md) Application Insights-típusok és az adatok modell.
-- Ismerje meg, hogyan túl[kivételek az Application insights szolgáltatással a webalkalmazások diagnosztizálásához](app-insights-asp-net-exceptions.md).
+- Megtudhatja, hogyan [kivételek az Application insights szolgáltatással a webalkalmazások diagnosztizálásához](app-insights-asp-net-exceptions.md).
 - Tekintse meg [platformok](app-insights-platforms.md) Application Insights által támogatott.

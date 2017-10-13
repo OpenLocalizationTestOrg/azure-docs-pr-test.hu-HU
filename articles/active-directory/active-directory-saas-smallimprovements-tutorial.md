@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directory-integráció kis javításait |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és kis fejlesztései között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és kis fejlesztései között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,111 +13,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: jeedes
-ms.openlocfilehash: 33213fe4b61f5005cf78bee2c05b2b1e5e71ae8b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 49a8cd3acfc6df15ef6a51171c8421162bc94efc
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-small-improvements"></a>Oktatóanyag: Azure Active Directoryval integrált kis fejlesztései
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate az Azure Active Directory (Azure AD) kis fejlesztései.
+Ebben az oktatóanyagban elsajátíthatja kis fejlesztései integrálása az Azure Active Directory (Azure AD).
 
-Kis fejlesztései integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
+Kis fejlesztései integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
 
-- Megadhatja a hozzáférés tooSmall fejlesztései rendelkező Azure AD-ben
-- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooSmall fejlesztései (egyszeri bejelentkezés) a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
+- Szabályozhatja az Azure AD, aki hozzáférhet kis fejlesztései
+- Az Azure AD-fiókok a engedélyezheti a felhasználóknak, hogy automatikusan lekérni aláírt a kis fejlesztései (egyszeri bejelentkezés)
+- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-tooconfigure az Azure AD integrálása kisméretű fejlesztései, a következő elemek hello kell:
+Az Azure AD-integrációs konfigurálásához kis javításait, a következőkre van szükség:
 
 - Az Azure AD szolgáltatásra
 - Egy kis fejlesztései az egyszeri bejelentkezés engedélyezve van az előfizetés
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió Itt kaphat [próbaverzió ajánlat](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. Kis fejlesztései hozzáadása hello gyűjteményből
+1. Kis fejlesztései hozzáadása a gyűjteményből
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-small-improvements-from-hello-gallery"></a>Kis fejlesztései hozzáadása hello gyűjteményből
-tooconfigure hello integrálása kisméretű fejlesztései az Azure AD-be, meg kell tooadd kis fejlesztései hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-small-improvements-from-the-gallery"></a>Kis fejlesztései hozzáadása a gyűjteményből
+Az Azure AD integrálása kisméretű fejlesztései konfigurálásához kell hozzáadnia kis fejlesztései a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
 
-**tooadd kis fejlesztései hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
+**Adja hozzá a kis fejlesztései a gyűjteményből, hajtsa végre az alábbi lépéseket:**
 
-1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
+1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
+2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
+3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
 
     ![Alkalmazások][3]
 
-4. Hello keresési mezőbe, írja be a **kis fejlesztései**.
+4. Írja be a keresőmezőbe, **kis fejlesztései**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_search.png)
 
-5. A hello eredmények panelen válassza ki a **kis fejlesztései**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
+5. Az eredmények panelen válassza ki a **kis fejlesztései**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon" nevű tesztfelhasználó alapján kis fejlesztései.
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó kis fejlesztései tooa felhasználói az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello kis fejlesztései közötti kapcsolat kapcsolatot kell létrehozni toobe.
+Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó kis fejlesztései a felhasználó Azure AD-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó a kis fejlesztései közötti kapcsolat kapcsolatot kell létrehozni.
 
-Kis fejlesztései, rendelje hozzá hello hello értékének **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
+Kis fejlesztései, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
 
-tooconfigure és kis javításait az Azure AD az egyszeri bejelentkezés tesztelése, a következő építőelemeket toocomplete hello szüksége:
+Az Azure AD az egyszeri bejelentkezés kis javításait tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-3. **[Kis fejlesztései tesztfelhasználó létrehozása](#creating-a-small-improvements-test-user)**  -toohave Britta Simon a csatolt toohello az Azure AD felhasználói ábrázolása kis fejlesztésekkel egy megfelelője.
-4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+3. **[Kis fejlesztései tesztfelhasználó létrehozása](#creating-a-small-improvements-test-user)**  - való egy megfelelője a Britta Simon kis fejlesztései, amely csatolva van a felhasználó az Azure AD-ábrázolását.
+4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD az egyszeri bejelentkezés az Azure-portálon hello engedélyezése, és kis fejlesztései alkalmazásában egyszeri bejelentkezés beállítása.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és kis fejlesztései alkalmazásában egyszeri bejelentkezés konfigurálása.
 
-**az Azure AD tooconfigure egyszeri bejelentkezés kis javításait, hajtsa végre a lépéseket követve hello:**
+**Kis javításait konfigurálása az Azure AD egyszeri bejelentkezést, hajtsa végre az alábbi lépéseket:**
 
-1. Az Azure portál, a hello hello **kis fejlesztései** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portálon a a **kis fejlesztései** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
+2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_samlbase.png)
 
-3. A hello **kis fejlesztései tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
+3. Az a **kis fejlesztései tartomány és az URL-címek** területen tegye a következőket:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_url.png)
 
-    a. A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<subdomain>.small-improvements.com`
+    a. Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://<subdomain>.small-improvements.com`
 
-    b. A hello **azonosító** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<subdomain>.small-improvements.com`
+    b. Az a **azonosító** szövegmező, adja meg a következő minta használatával URL-címe:`https://<subdomain>.small-improvements.com`
 
     > [!NOTE] 
-    > Ezek az értékek nincsenek valós. Frissítse a bejelentkezési URL-cím és azonosító a hello tényleges értékek. Ügyfél [kis fejlesztései ügyfél-támogatási csoport](mailto:support@small-improvements.com) tooget ezeket az értékeket. 
+    > Ezek az értékek nincsenek valós. Frissítheti ezeket az értékeket a tényleges bejelentkezési URL-cím és azonosítója. Ügyfél [kis fejlesztései ügyfél-támogatási csoport](mailto:support@small-improvements.com) beolvasni ezeket az értékeket. 
  
-4. A hello **SAML-aláíró tanúsítványa** kattintson **tanúsítvány (Base64)** , és mentse a hello tanúsítványfájlt a számítógépen.
+4. A a **SAML-aláíró tanúsítványa** kattintson **tanúsítvány (Base64)** , és mentse a tanúsítványfájlt, a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_certificate.png) 
 
@@ -125,80 +125,80 @@ Ebben a szakaszban az Azure AD az egyszeri bejelentkezés az Azure-portálon hel
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-smallimprovements-tutorial/tutorial_general_400.png)
 
-6. A hello **kis fejlesztései konfigurációs** területén kattintson **kis fejlesztései konfigurálása** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**
+6. A a **kis fejlesztései konfigurációs** kattintson **kis fejlesztései konfigurálása** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_configure.png) 
 
-7. Egy másik böngészőablakban bejelentkezéskor tooyour kis fejlesztései vállalati hely rendszergazdaként.
+7. Egy másik böngészőablakban jelentkezzen be a kis fejlesztései vállalati webhely rendszergazdaként.
 
-8. A hello fő irányítópult-oldalon, kattintson az **felügyeleti** hello bal oldali gomb.
+8. A fő irányítópult-oldalon, kattintson az **felügyeleti** a bal oldali gomb.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_06.png) 
 
-9. Kattintson a hello **SAML SSO** gombot **integrációja** szakasz.
+9. Kattintson a **SAML SSO** gombot **integrációja** szakasz.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_07.png) 
 
-10. Hello egyszeri bejelentkezés beállítása lapon hajtsa végre a lépéseket követve hello:
+10. Az egyszeri bejelentkezés beállítása lapon hajtsa végre a következő lépéseket:
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_08.png)  
 
-    a. A hello **HTTP-végpont** szövegmezőhöz Beillesztés hello értékének **SAML-alapú egyszeri bejelentkezési URL-címe**, amely az Azure-portálon másolta.
+    a. Az a **HTTP-végpont** szövegmezőhöz illessze be az értékét **SAML-alapú egyszeri bejelentkezési URL-címe**, amely az Azure-portálon másolta.
 
-    b. Nyissa meg a letöltött tanúsítvány a Jegyzettömbben, másolása hello tartalom, és illessze be hello **x509 tanúsítvány** szövegmező. 
+    b. A letöltött tanúsítvány megnyitása a Jegyzettömbben, másolja a tartalmat, és illessze be azt a **x509 tanúsítvány** szövegmező. 
 
-    c. Ha a toohave egyszeri bejelentkezés és bejelentkezés hitelesítési lehetőséget a felhasználók, majd ellenőrizze a hello **bejelentkezési azonosító és jelszó hozzáférésének engedélyezése túl** lehetőséget.  
+    c. Ha szeretne az egyszeri bejelentkezés és bejelentkezés hitelesítési lehetőséget a felhasználók rendelkeznek, majd ellenőrizze a **bejelentkezési azonosító és jelszó hozzáférésének engedélyezése túl** lehetőséget.  
 
-    d. Adja meg a hello megfelelő értéket a tooName hello Egyszeri bejelentkezési gomb hello **SAML Rákérdezés** szövegmező.  
+    d. Adja meg a megfelelő értéket, az Egyszeri bejelentkezés gombra, a nevet a **SAML Rákérdezés** szövegmező.  
 
     e. Kattintson a **Save** (Mentés) gombra.
 
 > [!TIP]
-> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
+Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
+1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-smallimprovements-tutorial/create_aaduser_01.png) 
 
-2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
+2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-smallimprovements-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
+3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-smallimprovements-tutorial/create_aaduser_03.png) 
 
-4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-smallimprovements-tutorial/create_aaduser_04.png) 
 
-    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
+    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-small-improvements-test-user"></a>Kis fejlesztései tesztfelhasználó létrehozása
 
-az Azure AD tooenable felhasználók toolog tooSmall fejlesztései, a azok ki kell építenie a kis fejlesztései. Kis fejlesztései hello esetben egy kézi tevékenység.
+Ahhoz, hogy az Azure AD-felhasználók kis fejlesztései bejelentkezni, akkor ki kell építenie kis fejlesztései be. Kis fejlesztései, ha egy kézi tevékenység.
 
-**tooprovision egy felhasználói fiókot, hajtsa végre a következő lépéseket hello:**
+**Felhasználói fiók létrehozásához hajtsa végre az alábbi lépéseket:**
 
-1. Bejelentkezés tooyour kis fejlesztései vállalati hely rendszergazdaként.
+1. Bejelentkezés a kis fejlesztései vállalati webhely rendszergazdaként.
 
-2. Hello kezdőlapról lépjen a bal oldali hello toohello menüben, kattintson a **felügyeleti**.
+2. A kezdőlapról, nyissa meg a bal oldali, kattintson a menühöz **felügyeleti**.
 
-3. Hello kattintson **felhasználói Directory** gomb felhasználókezelés szakaszából. 
+3. Kattintson a **felhasználói Directory** gomb felhasználókezelés szakaszából. 
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_10.png) 
 
@@ -206,37 +206,37 @@ az Azure AD tooenable felhasználók toolog tooSmall fejlesztései, a azok ki ke
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_11.png) 
 
-5. A hello **felhasználó hozzáadása** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello: 
+5. Az a **felhasználó hozzáadása** párbeszédpanelen hajtsa végre a következő lépéseket: 
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_12.png)
     
-    a. Adja meg a hello **Utónév** például a felhasználó **Britta**.
+    a. Adja meg a **Utónév** például a felhasználó **Britta**.
 
-    b. Adja meg a hello **Vezetéknév** például a felhasználó **Simon**.
+    b. Adja meg a **Vezetéknév** például a felhasználó **Simon**.
 
-    c. Adja meg a hello **E-mail** például a felhasználó  **brittasimon@contoso.com** . 
+    c. Adja meg a **E-mail** például a felhasználó  **brittasimon@contoso.com** . 
 
-    d. Másik lehetőségként tooenter személyes üdvözlőüzenetére hello **értesítő e-mail küldése** mezőbe. Ha nem kíván toosend hello értesítési, majd törölje ezt a jelölőnégyzetet.
+    d. Másik lehetőségként a személyes üzenetet adhat meg a **értesítő e-mail küldése** mezőbe. Ha nem szeretne az értesítés elküldéséhez, majd törölje a jelet a jelölőnégyzetből.
 
     e. Kattintson a **létrehozása a felhasználók**.
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
+### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
 
-Ebben a szakaszban engedélyezése Azure egyszeri bejelentkezés Britta Simon toouse tooSmall fejlesztései hozzáférés biztosítása.
+Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés kis fejlesztései Azure egyszeri bejelentkezéshez használandó.
 
 ![Felhasználó hozzárendelése][200] 
 
-**tooassign Britta Simon tooSmall fejlesztései, hajtsa végre a lépéseket követve hello:**
+**Britta Simon hozzárendelése kis fejlesztései, hajtsa végre az alábbi lépéseket:**
 
-1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Hello alkalmazások listában válassza ki a **kis fejlesztései**.
+2. Az alkalmazások listában válassza ki a **kis fejlesztései**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_app.png) 
 
-3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -244,7 +244,7 @@ Ebben a szakaszban engedélyezése Azure egyszeri bejelentkezés Britta Simon to
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -252,13 +252,13 @@ Ebben a szakaszban engedélyezése Azure egyszeri bejelentkezés Britta Simon to
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-hello ebben a szakaszban célja tootest hozzáférési Panel az Azure AD SSO konfigurációs használatával hello.  
+Ez a szakasz célja a hozzáférési panelen az Azure AD SSO-konfigurációjának tesztelése.  
 
-Hello kis fejlesztései hello hozzáférési Panel csempére kattintva kapja meg automatikusan bejelentkezett tooyour kis fejlesztései alkalmazás.
+Ha a hozzáférési Panel kis fejlesztései mozaik gombra kattint, akkor kell beolvasása automatikusan bejelentkezett kis fejlesztései Alkalmazásmódosítások.
 
 ## <a name="additional-resources"></a>További források
 
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

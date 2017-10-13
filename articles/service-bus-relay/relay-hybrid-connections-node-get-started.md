@@ -1,5 +1,5 @@
 ---
-title: "aaaGet Azure hibrid kapcsolatok csomópontban használatába |} Microsoft Docs"
+title: "Ismerkedés az Azure Relay Hibrid-kapcsolatokkal a Node-ban | Microsoft Docs"
 description: "Node.js-konzolalkalmazást hozhat létre a hibrid Azure Relay-kapcsolatokhoz."
 services: service-bus-relay
 documentationcenter: node
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: node
 ms.workload: na
 ms.date: 07/07/2017
 ms.author: sethm
-ms.openlocfilehash: 235548399570074f7fd160fec28de8d3633625c5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c3bfc45969f250059988129f532edd12dfe3dcfe
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-relay-hybrid-connections"></a>Ismerkedés a hibrid Relay-kapcsolatokkal
 
 [!INCLUDE [relay-selector-hybrid-connections](../../includes/relay-selector-hybrid-connections.md)]
 
-Ez az oktatóanyag bemutatja túl[Azure hibrid kapcsolatok](relay-what-is-it.md#hybrid-connections), és bemutatja, hogyan toouse Node.js toocreate egy ügyfél-alkalmazás által küldött üzenetek tooa megfelelő figyelő alkalmazás. 
+Ez az oktatóprogram bevezetést nyújt a [hibrid Azure Relay-kapcsolatok](relay-what-is-it.md#hybrid-connections) használatába, és bemutatja egy olyan ügyfélalkalmazás Node.js használatával való létrehozását, amely üzeneteket küld egy kapcsolódó figyelőalkalmazásnak. 
 
 ## <a name="what-will-be-accomplished"></a>Az oktatóanyag célja
 
-A hibrid kapcsolatokhoz egy ügyfélre és egy kiszolgáló-összetevőre is szükség van, így ebben az oktatóanyagban két konzolalkalmazást hozunk létre. Az alábbiakban hello lépéseket:
+A hibrid kapcsolatokhoz egy ügyfélre és egy kiszolgáló-összetevőre is szükség van, így ebben az oktatóanyagban két konzolalkalmazást hozunk létre. A lépések a következők:
 
-1. Hello Azure-portál használatával, továbbító névtér létrehozása.
-2. Hozzon létre egy hibrid kapcsolat hello Azure-portál használatával.
-3. A kiszolgáló konzol alkalmazás tooreceive üzenetet írni.
-4. Egy ügyfél konzol alkalmazás toosend üzenetet írni.
+1. Relay-névtér létrehozása az Azure Portal használatával.
+2. Hibrid kapcsolat létrehozása az Azure Portal használatával.
+3. Kiszolgálói konzolalkalmazás írása üzenetfogadási céllal.
+4. Ügyfél-konzolalkalmazás írása üzenetküldési céllal.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
@@ -42,35 +42,35 @@ A hibrid kapcsolatokhoz egy ügyfélre és egy kiszolgáló-összetevőre is sz�
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-## <a name="1-create-a-namespace-using-hello-azure-portal"></a>1. Hello Azure-portál használatával névtér létrehozása
+## <a name="1-create-a-namespace-using-the-azure-portal"></a>1. Névtér létrehozása az Azure Portal használatával
 
-Ha már létrehozott egy továbbító névtér, jump toohello [hello Azure portál használata hibrid kapcsolat létrehozása](#2-create-a-hybrid-connection-using-the-azure-portal) szakasz.
+Ha a Relay-névteret már létrehozta, folytassa a [Hibrid kapcsolat létrehozása az Azure Portal használatával](#2-create-a-hybrid-connection-using-the-azure-portal) szakasszal.
 
 [!INCLUDE [relay-create-namespace-portal](../../includes/relay-create-namespace-portal.md)]
 
-## <a name="2-create-a-hybrid-connection-using-hello-azure-portal"></a>2. A hibrid kapcsolat létrehozása használatával hello Azure-portálon
+## <a name="2-create-a-hybrid-connection-using-the-azure-portal"></a>2. Hibrid kapcsolat létrehozása az Azure Portal használatával
 
-Ha már rendelkezik egy hibrid kapcsolat létrehozása, jump toohello [hozzon létre egy kiszolgálói alkalmazás](#3-create-a-server-application-listener) szakasz.
+Ha már rendelkezik egy létrehozott hibrid kapcsolattal, folytassa a [Kiszolgálói alkalmazás létrehozása](#3-create-a-server-application-listener) szakasszal.
 
 [!INCLUDE [relay-create-hybrid-connection-portal](../../includes/relay-create-hybrid-connection-portal.md)]
 
 ## <a name="3-create-a-server-application-listener"></a>3. Kiszolgálói alkalmazás (figyelő) létrehozása
 
-toolisten és üzenetek fogadása hello továbbító, a Node.js-Konzolalkalmazás írja azt.
+Node.js konzolalkalmazást írunk az üzenetek figyeléséhez és a Relay-től való fogadásához.
 
 [!INCLUDE [relay-hybrid-connections-node-get-started-server](../../includes/relay-hybrid-connections-node-get-started-server.md)]
 
 ## <a name="4-create-a-client-application-sender"></a>4. Ügyfélalkalmazás létrehozása (küldő)
 
-toosend üzenetek toohello továbbítási, azt fogja írni a Node.js-Konzolalkalmazás.
+Node.js konzolalkalmazást írunk az üzenetek Relay-be való küldéséhez.
 
 [!INCLUDE [relay-hybrid-connections-node-get-started-client](../../includes/relay-hybrid-connections-node-get-started-client.md)]
 
-## <a name="5-run-hello-applications"></a>5. Hello alkalmazások futtatásához
+## <a name="5-run-the-applications"></a>5. Az alkalmazások futtatása
 
-1. Hello server alkalmazás futtatásához: Node.js parancssori típusból `node listener.js`.
-2. Hello ügyfélalkalmazás futtatása: a Node.js parancssori típusból `node sender.js`, és adjon meg szöveget.
-3. Győződjön meg arról, hogy hello kiszolgálón alkalmazás konzol kimenetek hello szöveg hello ügyfélalkalmazás megadott.
+1. Futtassa a kiszolgálóalkalmazást: egy Node.js-parancssorba írja be a következőt: `node listener.js`.
+2. Futtassa az ügyfélalkalmazást: egy Node.js parancssorba írja be a `node sender.js` parancsot, majd írjon be szöveget.
+3. Győződjön meg arról, hogy az alkalmazás konzolja kiírja a szöveget, amely az ügyfélalkalmazásban lett megadva.
 
 ![running-applications](./media/relay-hybrid-connections-node-get-started/running-applications.png)
 

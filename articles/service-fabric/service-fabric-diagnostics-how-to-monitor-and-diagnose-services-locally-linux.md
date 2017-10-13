@@ -1,6 +1,6 @@
 ---
-title: "a Linux Azure mikroszolgáltatások aaaDebug |} Microsoft Docs"
-description: "Megtudhatja, hogyan toomonitor és diagnosztizálhatja a szolgáltatások egy helyi fejlesztési gépen a Microsoft Azure Service Fabric használatával készítettek."
+title: "A Linux Azure mikroszolgáltatások hibakeresése |} Microsoft Docs"
+description: "Megtudhatja, hogyan figyelése és diagnosztizálása a szolgáltatások egy helyi fejlesztési gépen a Microsoft Azure Service Fabric használatával készítettek."
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: bee47bbabcf6b84ff2da14079e026529e36a198b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4bc73f581f4855ebc724df19dd56fab8bf103854
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="monitor-and-diagnose-services-in-a-local-machine-development-setup"></a>Figyelése és diagnosztizálása szolgáltatásai a helyi számítógép fejlesztési beállítása
 
@@ -29,16 +29,16 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-Figyelés, észlelésére, diagnosztizálása és hibaelhárítási lehetővé teszi a minimális megszakítás toohello felhasználói élmény szolgáltatások toocontinue. Megfigyelési és diagnosztikai kritikusak tényleges telepített éles környezetben. Hasonló modell bevezetése közben a szolgáltatások fejlesztéséhez biztosítja, hogy hello diagnosztikai csővezeték működik tooa éles környezetben áthelyezésekor. A Service Fabric megkönnyíti a szolgáltatás a fejlesztők tooimplement diagnosztikai, amely zökkenőmentesen használható legyen a helyi fejlesztési egyszámítógépes beállításokat és a valós üzemi fürt beállításokat.
+Figyelés, észlelésére, diagnosztizálása és hibaelhárítási lehetővé teszi a felhasználói élmény minimális megszakadását folytatásához szolgáltatások. Megfigyelési és diagnosztikai kritikusak tényleges telepített éles környezetben. Egy hasonló modell bevezetése során a szolgáltatások fejlesztéséhez biztosítja, hogy a diagnosztikai csővezeték működik-e éles környezetben való áthelyezésekor. A Service Fabric megkönnyíti a szolgáltatás fejlesztők számára, amely zökkenőmentesen használható legyen a helyi fejlesztési egyszámítógépes beállításokat és a valós üzemi fürt beállítások diagnosztika megvalósításához.
 
 
 ## <a name="debugging-service-fabric-java-applications"></a>Service Fabric Java-alkalmazások hibakeresés
 
-Java-alkalmazások [több naplózási keretrendszer](http://en.wikipedia.org/wiki/Java_logging_framework) érhetők el. Mivel a `java.util.logging` hello alapértelmezett beállítás a hello JRE, is használható hello [github-kódpéldák](http://github.com/Azure-Samples/service-fabric-java-getting-started).  hello következő vitafórum azt ismerteti, hogyan tooconfigure hello `java.util.logging` keretrendszer.
+Java-alkalmazások [több naplózási keretrendszer](http://en.wikipedia.org/wiki/Java_logging_framework) érhetők el. Mivel a `java.util.logging` az alapértelmezett beállítás a JRE együtt is használható a [github-kódpéldák](http://github.com/Azure-Samples/service-fabric-java-getting-started).  A következő ismertető ismerteti, hogyan konfigurálhatja a `java.util.logging` keretrendszer.
 
-Toomemory, a Kimeneti folyamok, a konzol fájlok vagy a sockets naplók java.util.logging átirányíthatja az alkalmazás segítségével. Mindkét beállítás vonatkoznak-e már szerepel a hello keretrendszer alapértelmezett kezelők. Létrehozhat egy `app.properties` fájl tooconfigure hello fájlkezelő a az alkalmazás összes tooredirect tooa helyi fájl naplózza.
+Java.util.logging használatával is átirányítja az alkalmazásnaplók memória, a Kimeneti folyamok, a konzol fájlok vagy a sockets. Mindkét beállítás vonatkoznak-e már szerepel a keretrendszer alapértelmezett kezelők. Létrehozhat egy `app.properties` fájl konfigurálása a fájlkezelő összes napló átirányítása egy helyi fájl az alkalmazáshoz.
 
-a következő kódrészletet hello egy példa konfiguráció tartalmazza:
+A következő kódrészlet egy példa konfiguráció tartalmazza:
 
 ```java
 handlers = java.util.logging.FileHandler
@@ -50,34 +50,34 @@ java.util.logging.FileHandler.count = 10
 java.util.logging.FileHandler.pattern = /tmp/servicefabric/logs/mysfapp%u.%g.log             
 ```
 
-hello mappa hegyes tooby hello `app.properties` fájlnak léteznie kell. Hello után `app.properties` jön létre, tooalso kell módosítani a belépési pont parancsfájl `entrypoint.sh` a hello `<applicationfolder>/<servicePkg>/Code/` mappa tooset hello tulajdonság `java.util.logging.config.file` túl`app.propertes` fájl. hello bejegyzés a következő kódrészletet hello hasonlóan kell kinéznie:
+A mappa által hivatkozott a `app.properties` fájlnak léteznie kell. Után a `app.properties` jön létre, a belépési pont parancsfájlt is módosítani kell `entrypoint.sh` a a `<applicationfolder>/<servicePkg>/Code/` mappa a tulajdonság beállítása `java.util.logging.config.file` való `app.propertes` fájlt. A bejegyzés a következő kódrészletet hasonlóan kell kinéznie:
 
 ```sh
-java -Djava.library.path=$LD_LIBRARY_PATH -Djava.util.logging.config.file=<path tooapp.properties> -jar <service name>.jar
+java -Djava.library.path=$LD_LIBRARY_PATH -Djava.util.logging.config.file=<path to app.properties> -jar <service name>.jar
 ```
 
 
-Ez a konfiguráció eredményez, egy forgó módon gyűjtött naplók `/tmp/servicefabric/logs/`. hello naplófájl ebben az esetben nevű mysfapp%u.%g.log ahol:
-* **%u** van egy egyedi szám tooresolve egyidejű Java-folyamatai közötti ütközések.
-* **%g** hello generációs számú toodistinguish naplók elforgatása között van.
+Ez a konfiguráció eredményez, egy forgó módon gyűjtött naplók `/tmp/servicefabric/logs/`. A naplófájl ebben az esetben nevű mysfapp%u.%g.log ahol:
+* **%u** egyidejű Java-folyamatai közötti ütközések feloldása egyedi szám.
+* **%g** naplók elforgatása megkülönböztetésére generációs száma.
 
-Alapértelmezés szerint ha leíróval explicit módon van konfigurálva, hello konzol kezelő regisztrálva van. Hello naplók /var/log/syslog a syslog egy tekinthető meg.
+Alapértelmezés szerint ha leíróval explicit módon van konfigurálva, a konzol kezelő regisztrálva van. A naplók /var/log/syslog a syslog egy tekinthető meg.
 
-További információkért lásd: hello [github-kódpéldák](http://github.com/Azure-Samples/service-fabric-java-getting-started).  
+További információkért lásd: a [github-kódpéldák](http://github.com/Azure-Samples/service-fabric-java-getting-started).  
 
 
 ## <a name="debugging-service-fabric-c-applications"></a>Service Fabric C# alkalmazások hibakeresése
 
 
-Több elérhetők keretrendszerek CoreCLR alkalmazások Linux nyomkövetés. További információkért lásd: [GitHub: naplózás](http:/github.com/aspnet/logging).  Mivel EventSource megszokott tooC #-fejlesztők számára "Ebben a cikkben az EventSource a nyomkövetés a Linux CoreCLR mintában.
+Több elérhetők keretrendszerek CoreCLR alkalmazások Linux nyomkövetés. További információkért lásd: [GitHub: naplózás](http:/github.com/aspnet/logging).  Mivel a EventSource ismerős a C#-fejlesztők számára "Ebben a cikkben az EventSource a nyomkövetés a Linux CoreCLR mintában.
 
-hello első lépéseként tooinclude System.Diagnostics.Tracing, úgy, hogy a naplók toomemory, Kimeneti folyamok vagy konzol fájlok írhat.  Naplózás EventSource használ, adja hozzá a következő projekt tooyour project.json hello:
+Az első lépés annak System.Diagnostics.Tracing tartalmazza, így a memória, a Kimeneti folyamok vagy a konzol fájlok írhat a naplók.  Az EventSource naplózni, adja hozzá a következő projekt a project.json:
 
 ```
     "System.Diagnostics.StackTrace": "4.0.1"
 ```
 
-Használjon egy egyéni eseményfigyelő Visszahívásán toolisten hello szolgáltatás eseményhez, és majd megfelelően átirányítja őket tootrace fájlokat. hello következő kódrészletet mutatja egy EventSource és egy egyéni eseményfigyelő Visszahívásán naplózási minta megvalósításában:
+Egy egyéni eseményfigyelő Visszahívásán segítségével a szolgáltatás esemény figyeli, és ezután megfelelően átirányítja őket a nyomkövetési fájlok. A következő kódrészletet a minta megvalósításának naplózás EventSource és egy egyéni eseményfigyelő Visszahívásán jeleníti meg:
 
 
 ```csharp
@@ -96,7 +96,7 @@ Használjon egy egyéni eseményfigyelő Visszahívásán toolisten hello szolg�
             }
         }
 
-        // TBD: Need tooadd method for sample event.
+        // TBD: Need to add method for sample event.
 
 }
 
@@ -130,16 +130,16 @@ Használjon egy egyéni eseményfigyelő Visszahívásán toolisten hello szolg�
 ```
 
 
-hello előző részlet kimenete hello naplók tooa fájl `/tmp/MyServiceLog.txt`. Ezt a fájlnevet toobe megfelelően frissíteni kell. Abban az esetben, ha azt szeretné, hogy tooredirect hello naplók tooconsole, használja a következő kódrészletet a testreszabott eseményfigyelő Visszahívásán osztályban hello:
+Az előző részlet kimenete egy fájlra a naplók `/tmp/MyServiceLog.txt`. Ezt a fájlnevet megfelelően frissíteni kell. Abban az esetben, ha át szeretné irányítani a naplókat a konzolon, a következő kódrészletet használja a testreszabott eseményfigyelő Visszahívásán osztályban:
 
 ```csharp
 public static TextWriter Out = Console.Out;
 ```
 
-minták hello [C# minták](https://github.com/Azure-Samples/service-fabric-dotnet-core-getting-started) EventSource és egy egyéni eseményfigyelő Visszahívásán toolog események tooa fájlt használja.
+A minták [C# minták](https://github.com/Azure-Samples/service-fabric-dotnet-core-getting-started) EventSource és egy egyéni eseményfigyelő Visszahívásán naplózza az eseményeket egy fájl segítségével.
 
 
 
 ## <a name="next-steps"></a>Következő lépések
-hello felvett azonos nyomkövetési kód tooyour alkalmazás is együttműködik az alkalmazás Azure fürtökön hello diagnosztika. Ezek a cikkek, amely különböző lehetőségeket hello hello eszközök tárgyalja, és leírja kivételét hogyan tooset be őket.
-* [Hogyan toocollect naplózza az Azure Diagnostics](service-fabric-diagnostics-how-to-setup-lad.md)
+A diagnosztika az alkalmazás egy Azure fürt ugyanazt a nyomkövetés kódot az alkalmazásba felvett is működik. Tekintse meg a cikkek ismertetik az eszközök a különböző lehetőségek közül, és bemutatják, hogyan állíthatja be azokat.
+* [Az Azure diagnosztikai naplók gyűjtéséről](service-fabric-diagnostics-how-to-setup-lad.md)

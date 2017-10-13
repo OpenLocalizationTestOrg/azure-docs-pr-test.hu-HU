@@ -1,16 +1,16 @@
 ### <a name="prerequisites"></a>Előfeltételek
 * A [Yammer](https://www.yammer.com/) fiók 
 
-A Yammer-fiókjába a logikai alkalmazás használata előtt engedélyeznie kell a hello Logic app tooconnect tooyour Yammer-fiókjába. Szerencsére ehhez egyszerűen a a logikai alkalmazásban a hello Azure portálon. 
+A Yammer-fiókjába a logikai alkalmazás használata előtt engedélyeznie kell a logikai alkalmazás Yammer-fiókjához. Szerencsére ehhez egyszerűen a a logikai alkalmazásban, az Azure portálon. 
 
-Az alábbiakban hello lépéseket tooauthorize a Logic app tooconnect tooyour Yammer-fiókot:
+A Logic Apps alkalmazást Yammer-fiókjához történő engedélyezéséhez lépései a következők:
 
-1. toocreate egy kapcsolat tooYammer hello Logic app Designer kiválasztása **megjelenítése Microsoft felügyelt API-k** hello a legördülő listából, majd adja meg *Yammer* hello Keresés mezőbe. Hello eseményindító vagy lesz, például a toouse művelet kiválasztása:  
+1. A Logic app designer Yammer, kapcsolat létrehozásához válassza **megjelenítése Microsoft felügyelt API-k** a legördülő listában adja meg *Yammer-* be a keresőmezőbe. Válassza ki az eseményindító vagy művelet fogjuk használni kívánt:  
    ![](./media/connectors-create-api-yammer/yammer-1.png)
-2. Ha bármely kapcsolatok tooYammer előtt még nem hozott létre, később is lesz felszólító tooprovide Yammer-adatait. Ezeket a hitelesítő adatokat kell használt tooauthorize a Logic app tooconnect számára, és a Yammer-fiókjába adatok eléréséhez:  
+2. Ha még nem hozott létre előtt Yammer fennálló kapcsolatokat, a rendszer Yammer hitelesítő adatok megadása fog kérni. Ezeket a hitelesítő adatokat engedélyezik a Logic Apps alkalmazást való kapcsolódáshoz használt, és a Yammer-fiókjába adatok eléréséhez:  
    ![](./media/connectors-create-api-yammer/yammer-2.png)
-3. Adja meg a Yammer-felhasználó nevét és jelszavát tooauthorize a Logic Apps alkalmazást:  
+3. A Yammer-felhasználónevet és jelszót kell megadniuk a Logic Apps alkalmazást engedélyezése:  
    ![](./media/connectors-create-api-yammer/yammer-3.png)   
-4. Figyelje meg hello kapcsolat létrejött, és most a Logic Apps alkalmazást az egyéb hello szabad tooproceed szükséges lépések:  
+4. Figyelje meg, a kapcsolat létrejött, és szabadon most folytatja a Logic Apps alkalmazást más lépéseket:  
    ![](./media/connectors-create-api-yammer/yammer-4.png)   
 

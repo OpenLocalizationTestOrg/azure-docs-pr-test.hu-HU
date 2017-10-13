@@ -1,6 +1,6 @@
 ---
-title: "a számítógépes aaaMicrosoft szolgáltatások |} Microsoft Docs"
-description: "hello a cikk a Microsoft-szolgáltatásokhoz kapcsolódó toocybersecurity kapcsolatos bevezető információkat és hogyan tooobtain a szolgáltatásokkal kapcsolatos további információk."
+title: "A számítógépes Microsoft-szolgáltatások |} Microsoft Docs"
+description: "A cikk bemutatja számítógépes és a szolgáltatásokkal kapcsolatos további információk beszerzése a Microsoft-szolgáltatásokkal kapcsolatos."
 services: security
 documentationcenter: na
 author: TomShinder
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/09/2017
 ms.author: yurid
-ms.openlocfilehash: d29832f0ffa10020ab44ff69306971e55d393b97
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1560ea8b224be0f6bc723f64d8f154805b2771e5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="microsoft-services-in-cybersecurity"></a>A számítógépes Microsoft-szolgáltatások
-A Microsoft Services egy átfogó megközelítés toosecurity, identitás- és számítógépes biztosít. Microsoft Services biztonsági tömbje biztosít, és identitás-szolgáltatásainak stratégia tervezéséről, megvalósítás, és folyamatban lévő támogatási, amelyek segíthetnek a vállalati ügyfelek megfelel-e a stratégiai célok körű biztonsági megoldások megvalósítását.
+Microsoft Services biztonsági, identitás- és számítógépes átfogó megközelítését ismerteti. Microsoft Services biztonsági tömbje biztosít, és identitás-szolgáltatásainak stratégia tervezéséről, megvalósítás, és folyamatban lévő támogatási, amelyek segíthetnek a vállalati ügyfelek megfelel-e a stratégiai célok körű biztonsági megoldások megvalósítását.
 
-A közvetlen hozzáférés a fejlesztési csapat tooproduct azt hozható létre termékekről, amelyekbe beépül, hello legújabb biztonság növelése és a termékek toohelp identitási képességeibe illetően vásárlói üzleti és meghajtó innováció védelme.
+A termék a fejlesztési csapat közvetlen hozzáférést azt hozhat létre termékekről, amelyekbe beépül, és javítják a legújabb biztonsági és identitási képességeibe termékeink illetően vásárlói üzleti és meghajtó innováció védelme érdekében.
 
-Műszaki szakemberek különböző csoportunk áll megbízott védelmét, és lehetővé teszik a hello world legnagyobb szervezetek, magas képzett szakértők kínálnak a számos biztonsági és identitás.
+Műszaki szakemberek különböző csoportunk áll megbízott védelmét, és a világ legnagyobb szervezetek, magas képzett szakértők kínálnak a számos biztonsági és identitás.
 
 További tudnivalók a Microsoft Services által nyújtott szolgáltatások:
 

@@ -1,9 +1,9 @@
 ---
-title: "aaa Ismerkedés az Azure Automation szolgáltatásban |} Microsoft Docs"
-description: "Ez a cikk áttekintést Azure Automation szolgáltatás előkészítése tooonboard hello Azure piactérről ajánlat hello tervezésének és megvalósításának részletei alapján."
+title: "Bevezetés az Azure Automation használatába | Microsoft Docs"
+description: "Ez a cikk a kialakítás és az implementálás részleteinek áttekintésével áttekintést nyújt az Azure Automation szolgáltatásról az Azure Marketplace-ről származó ajánlat bevezetésének előkészítéséhez."
 services: automation
 documentationcenter: 
-author: mgoedtel
+author: eslesar
 manager: carmonm
 editor: 
 ms.assetid: 
@@ -12,39 +12,39 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 08/18/2017
+ms.date: 08/31/2017
 ms.author: magoedte
-ms.openlocfilehash: 434e8ea28c55ff9bda1d2e46a7a6b8378a3baa0a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: fad13053895c5d6e3c41835fea3cf0bdd3380cd4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="getting-started-with-azure-automation"></a>Bevezetés az Azure Automation használatába
 
-Az első lépésekről szóló útmutatót az alapvető fogalmakat kapcsolódó toohello telepítése Azure Automation vezet be. Ha új tooAutomation az Azure-ban vagy már ismerik a automation munkafolyamat szoftverek, mint a System Center Orchestrator, az útmutató segítségével megtudhatja, hogy hogyan tooprepare és az alaplapi automatizálás.  Ezután lesz kell előkészített toobegin fejlesztése runbookok folyamat automation igényei támogatásához. 
+Ez a kezdeti lépéseket ismertető útmutató az Azure Automation üzembe helyezésével kapcsolatos alapfogalmakat mutatja be. Ha még nem ismeri az Azure Automationt, vagy nincs tapasztalata a System Center Orchestratorhöz hasonló munkafolyamat-automatizálási szoftverekkel, ez az útmutató bemutatja az Automation előkészítését és bevezetését.  Ezt követően már felkészült lesz a folyamatautomatizálási szükségletek támogatására szolgáló runbookfejlesztés megkezdésére. 
 
 
 ## <a name="automation-architecture-overview"></a>Az Automation-architektúra áttekintése
 
 ![Az Azure Automation áttekintése](media/automation-offering-get-started/automation-infradiagram-networkcomms.png)
 
-Azure Automation a szoftver, mint egy szolgáltatott szoftverként (SaaS) alkalmazást, amely méretezhető és megbízható, több-bérlős környezet tooautomate dolgozza fel a runbookokkal és kezelheti a konfigurációs módosítások tooWindows és Linux rendszerek célállapot-konfiguráció használata (DSC) Azure, más felhőalapú szolgáltatásokat, vagy a helyszínen. Az Automation-fiókban tárolt entitások, például a runbookok, az adategységek, és a futtató fiókok elkülönülnek az adott előfizetésen és az egyéb előfizetéseken belüli Automation-fiókoktól.  
+Az Azure Automation olyan szolgáltatott szoftverként (SaaS) biztosított alkalmazás, amely megbízható és méretezhető, több-bérlős környezetet nyújt a folyamatok runbookok segítségével történő automatizálásához, illetve a Windows és Linux konfigurációs változásainak kezeléséhez a Célállapot-konfiguráció (DSC) szolgáltatással az Azure-ban, egyéb felhőszolgáltatókon, vagy a helyszíni erőforrásokon. Az Automation-fiókban tárolt entitások, például a runbookok, az adategységek, és a futtató fiókok elkülönülnek az adott előfizetésen és az egyéb előfizetéseken belüli Automation-fiókoktól.  
 
-Az Azure-ban futtatott runbookok Automation-tesztkörnyezetekben futnak, amelyek szolgáltatásként nyújtott platformalapú (PaaS) Azure virtuális gépeken üzemelnek.  Az Automation-tesztkörnyezetek a runbookok futtatásának minden aspektusában biztosítják a bérlők elkülönítését, legyen szó modulokról, tárterületről, memóriáról, hálózati kommunikációról, feladatstreamekről stb. Ez a szerepkör hello szolgáltatás kezeli, és nem érhető el az Azure vagy az Azure Automation-fiókjához, toocontrol.         
+Az Azure-ban futtatott runbookok Automation-tesztkörnyezetekben futnak, amelyek szolgáltatásként nyújtott platformalapú (PaaS) Azure virtuális gépeken üzemelnek.  Az Automation-tesztkörnyezetek a runbookok futtatásának minden aspektusában biztosítják a bérlők elkülönítését, legyen szó modulokról, tárterületről, memóriáról, hálózati kommunikációról, feladatstreamekről stb. Ezt a szerepkört a szolgáltatás felügyeli, és a vezérlése nem érhető el az Ön Azure- vagy Azure Automation-fiókjából.         
 
-tooautomate hello telepítése és kezelése a helyi adatközpontban, illetve az Automation-fiók létrehozása után más felhőszolgáltatásaival erőforrások jelölhet ki egy vagy több gépek toorun hello [hibrid forgatókönyv-feldolgozó (HRW)](automation-hybrid-runbook-worker.md) szerepkör.  Minden egyes HRW hello Microsoft Management Agent ügynököt a kapcsolat tooa Naplóelemzési munkaterület és Automation-fiók szükséges.  Naplóelemzési egy használt toobootstrap hello telepített, karbantartása hello Microsoft Management Agent ügynököt, és figyelje a hello HRW hello funkcióit.  Azure Automation hajtja végre őket a runbookok és hello utasítás toorun hello kézbesítését.
+A helyi adatközpontban vagy egyéb felhőszolgáltatásban tárolt erőforrások automatikus üzembe helyezéséhez vagy felügyeletéhez – Automation-fiók létrehozását követően – megadhat egy vagy több olyan gépet, amely a [hibrid runbook-feldolgozó (HRW)](automation-hybrid-runbook-worker.md) szerepkört futtatja.  Minden HRW-hez szükség van egy Log Analytics-munkaterülethez csatlakozó Microsoft Management Agentre és egy Automation-fiókra.  A Log Analytics a telepítés indításához, a Microsoft Management Agent karbantartásához és a HRW funkcióinak monitorozásához használható.  A runbookok kézbesítését és a futtatási utasítást az Azure Automation végzi.
 
-A runbookok telepítése több HRW tooprovide magas rendelkezésre állású, egyenleg runbook feladatok betöltése, és egyes esetekben jelölt ki azokat az adott munkaterhelés vagy környezetekben.  hello HRW a Microsoft Monitoring Agent hello kezdeményezi a kommunikációt az Automation szolgáltatás hello 443-as TCP-porton keresztül, és nincs tűzfal bejövő vonatkozó követelmény.  Miután egy HRW hello környezeten belül futó runbook rendelkezik, és szeretné, hogy hello runbook tooperform felügyeleti feladatok szemben a más gépeket vagy szolgáltatásokat, hogy a környezetben, lehet, hogy van más hello portokat kell runbook hozzá kell férnie.  Ha az IT-biztonsági házirendeknek nem engedélyezi a hálózati tooconnect toohello Internet a számítógépek, tekintse át a hello cikk [OMS átjáró](../log-analytics/log-analytics-oms-gateway.md), mely hello HRW toocollect proxyjaként tevékenységéért feladat állapota, és fogadni a konfigurációs adatait az Automation-fiók.
+Több HRW-t is üzembe helyezhet a runbook magas rendelkezésre állásának biztosításához, a runbookfeladatok terheléselosztásához, és bizonyos esetekben adott számítási feladatokhoz vagy környezetekhez való kiosztásukhoz.  A Microsoft Monitoring Agent a HRW-n kommunikációt kezdeményez az Automation szolgáltatással a 443-as TCP-porton, bejövő tűzfalra vonatkozó követelmények nélkül.  Ha már van a környezet egyik HRW-jén futó runbookja, és szeretné, hogy a runbook kezelési feladatokat végezzen a környezet más gépekein vagy szolgáltatásain, akkor előfordulhat, hogy más portokhoz is hozzáférést kell biztosítania a runbooknak.  Ha az informatikai biztonsági szabályzatok nem engedélyezik, hogy a hálózat számítógépei kapcsolódjanak az internetre, olvassa el az [OMS-átjáró](../log-analytics/log-analytics-oms-gateway.md) című cikket. Az átjáró proxyként működik a HRW számára, és gyűjti a feladatállapotokat, valamint konfigurációs információkat fogad az Automation-fióktól.
 
-Egy HRW hello hello hello számítógépen helyi rendszerfiók környezetében futnak a futó Runbookok, amelyek hello ajánlott biztonsági környezet hello helyi számítógépen a Windows felügyeleti műveletek végrehajtása során. Ha azt szeretné, hogy hello runbook toorun feladatok kívül a helyi számítógép hello erőforrásokon, szükség lehet a biztonságos hitelesítő adatok eszközök toodefine hello Automation-fiók, hogy hello runbookból elérheti és tooauthenticate használata hello külső erőforrás. Használhat [hitelesítő adat](automation-credentials.md), [tanúsítvány](automation-certificates.md), és [kapcsolat](automation-connections.md) eszközök parancsmagokat, amelyek lehetővé teszik toospecify hitelesítő adatokat, azokat hitelesítheti a runbookban.
+A HRW-n futó runbookok a számítógép helyi rendszerfiókjának kontextusában futnak, ami a helyi Windows-gép adminisztrációs műveleteinek végrehajtásához ajánlott biztonsági kontextus. Ha azt szeretné, hogy a runbook a helyi gépen kívüli erőforrásokon futtasson feladatokat, akkor lehetséges, hogy biztonságos hitelesítési objektumokat kell megadnia az Automation-fiókban, amelyeket elérhet a runbookból és használhat a külső erőforrással való hitelesítéshez. A [Hitelesítő adat](automation-credentials.md), [Tanúsítvány](automation-certificates.md) és [Kapcsolat](automation-connections.md) adategységeket olyan parancsmagokkal használhatja a runbookban, amelyekben hitelesítő adatokat is megadhat a hitelesítéshez.
 
-Tárolódnak az Azure Automation DSC-konfigurációk közvetlenül alkalmazott tooAzure virtuális gépek is lehet. Egyéb fizikai és virtuális gépek használói kérhetnek konfigurációk hello Azure Automation DSC lekérési kiszolgálójával.  A helyi fizikai vagy virtuális Windows és Linux rendszerek konfigurációk kezelése, nincs szükség toodeploy bármilyen infrastruktúra toosupport hello Automation DSC lekérési kiszolgálójával, csak kimenő Internet-hozzáférést a minden rendszer toobe kezeli az Automation DSC ,-en keresztüli kommunikációra TCP 443-as porton toohello OMS szolgáltatáshoz.   
+Az Azure Automationben tárolt DSC-konfigurációk közvetlenül alkalmazhatók az Azure-beli virtuális gépekre. Egyéb fizikai és virtuális gépek az Azure Automation DSC lekérési kiszolgálóról kérhetnek konfigurációkat.  A helyszíni fizikai vagy virtuális Windows és Linux rendszerek konfigurációinak kezeléséhez nincs szükség az Automation DSC lekérési kiszolgálót támogató infrastruktúra üzembe helyezésére, csak arra, hogy az egyes rendszerek kimenő internetkapcsolatát az Automation DSC kezelje, és az OMS szolgáltatással kommunikáció a 443-as TCP porton keresztül történjen.   
 
 ## <a name="prerequisites"></a>Előfeltételek
 
 ### <a name="automation-dsc"></a>Automation DSC
-Az Azure Automation DSC lehet használt toomanage különböző gépek:
+Az Azure Automation DSC különféle gépek felügyeletéhez használható:
 
 * Windows vagy Linux rendszerű (klasszikus) Azure-beli virtuális gépek
 * Windows vagy Linux rendszerű Azure-beli virtuális gépek
@@ -52,73 +52,73 @@ Az Azure Automation DSC lehet használt toomanage különböző gépek:
 * Fizikai/virtuális Windows rendszerű számítógépek a helyszínen, illetve nem Azure- és AWS-alapú felhőben
 * Fizikai/virtuális Linux-számítógépek a helyszínen, illetve nem Azure- és AWS-alapú felhőben
 
-a WMF 5 legújabb verziójának hello hello PowerShell DSC ügynök Windows toobe toocommunicate tudja az Azure Automation szolgáltatásban, a rendszerre telepíthető. hello legújabb verziójának hello [PowerShell DSC Linux-ügynök](https://www.microsoft.com/en-us/download/details.aspx?id=49150) Linux toobe képes toocommunicate Azure Automation telepítve kell lennie.
+Ahhoz, hogy a PowerShell DSC Windows-ügynök kommunikálni tudjon az Azure Automationnel, a WMF 5 legújabb verziója szükséges. Ahhoz, hogy a Linux kommunikálni tudjon az Azure Automationnel, a [PowerShell DSC Linux-ügynök](https://www.microsoft.com/en-us/download/details.aspx?id=49150) legfrissebb verziója szükséges.
 
 ### <a name="hybrid-runbook-worker"></a>hibrid runbook-feldolgozó  
-Egy számítógép toorun hibrid forgatókönyv kijelölésekor feladatok, a számítógép hello következő kell rendelkeznie:
+A hibrid runbookfeladatok futtatására kijelölt számítógépnek az alábbiakkal kell rendelkeznie:
 
 * Windows Server 2012 vagy újabb
-* Windows PowerShell 4.0 vagy újabb.  Azt javasoljuk, hogy a Windows PowerShell 5.0 telepítése nagyobb megbízhatóságot hello számítógépre. Hello új verziója letölthető hello [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=50395)
+* Windows PowerShell 4.0 vagy újabb.  A megbízhatóság növelése érdekében javasoljuk a Windows PowerShell 5.0 telepítését. A legújabb verziót letöltheti a [Microsoft letöltőközpontból](https://www.microsoft.com/download/details.aspx?id=50395)
 * Minimum két mag
 * Legalább 4 GB RAM
 
-### <a name="permissions-required-toocreate-automation-account"></a>Toocreate Automation-fiók szükséges jogosultságok
-toocreate vagy frissítés Automation-fiók, rendelkeznie kell a következő bizonyos jogokat hello és engedélyek szükséges toocomplete ebben a témakörben.   
+### <a name="permissions-required-to-create-automation-account"></a>Az Automation-fiók létrehozásához szükséges engedélyek
+Automation-fiók létrehozásához vagy frissítéséhez az alábbi, a jelen témakör végrehajtásához szükséges jogosultságokkal és engedélyekkel kell rendelkeznie.   
  
-* A sorrend toocreate Automation-fiók, az AD-felhasználói fiókot igények toobe hozzáadott tooa szerepkör-engedélyek egyenértékű toohello tulajdonosi szerepkör Microsoft.Automation erőforrások cikkben leírt módon történő [szerepköralapú hozzáférés-vezérlés az Azure Automationben ](automation-role-based-access-control.md).  
-* Ha hello App regisztrációk beállítás értéke túl**Igen**, az Azure AD-bérlő nem rendszergazdai felhasználók számára is [AD-alkalmazásokat regisztrálni](../azure-resource-manager/resource-group-create-service-principal-portal.md#check-azure-subscription-permissions).  Ha hello app regisztrációk beállítás értéke túl**nem**, a művelet végrehajtása hello felhasználói globális rendszergazdának kell lennie az Azure ad-ben. 
+* Automation-fiók létrehozásához az AD-felhasználói fiókot a [Szerepköralapú hozzáférés-vezérlés az Azure Automationben](automation-role-based-access-control.md) című cikkben ismertetett módon egy olyan szerepkörhöz kell hozzáadni, amely a Microsoft Automation-erőforrások tulajdonosi szerepkörével egyenértékű engedélyekkel rendelkezik.  
+* Ha az Alkalmazásregisztrációk beállítás értéke **Igen**, az Azure AD-bérlő nem rendszergazda jogosultságú felhasználói is elvégezhetik az [AD-alkalmazások regisztrálását](../azure-resource-manager/resource-group-create-service-principal-portal.md#check-azure-subscription-permissions).  Ha az Alkalmazásregisztrációk beállítás értéke **Nem**, ezt a műveletet csak az Azure AD globális rendszergazdái hajthatják végre. 
 
-Ha nem tagja Active Directory-példányban hello előfizetés toohello globális rendszergazda/járművezető-administrator szerepkör hello előfizetés vannak adása előtt, akkor tooActive Directory vendégként kerülnek. Ebben az esetben a megjelenik a "nem rendelkezik engedélyekkel toocreate..." Figyelmeztetés-hello **Automation-fiók hozzáadása** panelen. Felhasználók, akik toohello globális rendszergazda/járművezető-administrator szerepkör először eltávolíthatja hello előfizetés Active Directory-példányban, és újból hozzáadták toomake hozzáadták azokat a teljes felhasználói az Active Directoryban. tooverify ebben az esetben a hello **Azure Active Directory** hello Azure portálon, válassza a panelen **felhasználók és csoportok**, jelölje be **minden felhasználó** és hello kiválasztása után adott felhasználó, jelölje be **profil**. hello értékének hello **felhasználótípust** attribútum hello felhasználó profil alapján nem értékűnek kell lennie **vendég**.
+Ha nem tagja az előfizetéshez tartozó Active Directory-példánynak, mielőtt hozzáadják Önt az előfizetés globális rendszergazdai vagy társadminisztrátori szerepköréhez, vendégként lesz hozzáadva az Active Directoryhoz. Ebben az esetben „Nincs engedélye létrehozni…” figyelmeztető üzenetet kap az **Automation-fiók hozzáadása** panelen. A globális rendszergazdai vagy társadminisztrátori szerepkörhöz hozzáadott felhasználók először eltávolíthatók az előfizetéshez tartozó Active Directory-példányból, majd újra hozzáadhatók, így teljes jogú felhasználók lehetnek az Active Directoryban. Ez a helyzet úgy ellenőrizhető, ha az Azure Portal **Azure Active Directory** panelén a **Felhasználók és csoportok** és a **Minden felhasználó** elemre kattint, majd a konkrét felhasználó kiválasztása után a **Profil** elemet választja. A felhasználók profilja alatti **Felhasználó típusa** attribútum értéke ne legyen **Guest** (vendég).
 
 ## <a name="authentication-planning"></a>A hitelesítés tervezése
-Azure Automation szolgáltatással tooautomate feladatok erőforrásokon Azure, a helyszínen, és más szolgáltatók.  Ahhoz, hogy egy runbook tooperform a szükséges műveleteket kell rendelkeznie engedélyek toosecurely hello erőforrások eléréséhez szükséges hello előfizetésen belül hello minimális jogosultságokkal.  
+Az Azure Automation lehetővé teszi a feladatok automatizálását az Azure-beli és helyszíni erőforrásokon, illetve egyéb felhőszolgáltatókon.  Annak érdekében, hogy a forgatókönyv elvégezze a szükséges műveleteket, engedélyekkel kell rendelkeznie az erőforrások biztonságos eléréséhez az előfizetésben szükséges minimális jogokkal.  
 
 ### <a name="what-is-an-automation-account"></a>Mi az az Automation-fiók? 
-Minden hello automatizálási feladatok hello Azure-parancsmagokat használ az Azure Automationben erőforrásokon Azure Active Directory szervezeti azonosító hitelesítőadat-alapú hitelesítést használó tooAzure hitelesítéséhez.  Automation-fiók nem azonos hello fiókra toohello portál tooconfigure toosign használata Azure-erőforrások használatára.  Egy olyan fiókkal szerepeltetett Automation erőforrásokat hello következő:
+Minden automatizálási feladatot, amelyet az Azure Automation parancsmagjaival hajt végre az erőforrásokon, hitelesíteni kell az Azure Active Directory szervezeti identitáshitelesítésével.  Az Automation-fiók nem azonos az Azure-erőforrások konfigurációjakor és használatakor a portálra való bejelentkezéshez használt fiókkal.  Az egyes fiókokban a következő Automation-erőforrások találhatóak meg:
 
 * **Tanúsítványok** – runbookból vagy DSC-konfigurációból történő hitelesítéshez vagy azok hozzáadásához használt tanúsítványt tartalmaz.
-* **Kapcsolatok** -hitelesítés és a konfiguráció szükséges adatokat tooconnect tooan külső szolgáltatás vagy alkalmazás a runbookot vagy a DSC-konfiguráció tartalmazza.
-* **Hitelesítő adatok** – például egy felhasználónév és jelszó szükséges hitelesítő adatokat tartalmazó PSCredential objektum tooauthenticate egy runbookot vagy a DSC-konfiguráció.
-* **Integrációs modulok** -rendszer részét képező parancsmagok runbookok és a DSC-konfigurációk belül az egy Azure Automation toomake használatának PowerShell-modulok.
+* **Kapcsolatok** – olyan hitelesítési és konfigurációs adatokat tartalmaz, amelyek egy runbook vagy DSC-konfiguráció és egy külső szolgáltatás vagy alkalmazás közötti kapcsolathoz szükségesek.
+* **Hitelesítő adatok** – PSCredential objektum, amely olyan biztonsági hitelesítő adatokat tartalmaz, mint a runbookból vagy DSC-konfigurációból történő hitelesítéshez szükséges felhasználónév és jelszó.
+* **Integrációs modulok** – Az Azure Automation-fiókok részét képező PowerShell-modulok a parancsmagok runbookokon vagy DSC-konfigurációkon belüli használatához.
 * **Ütemezések** – a runbookokat adott időpontban elindító vagy leállító ütemezéseket tartalmaz, beleértve az ismétlődő gyakoriságot is.
 * **Változók** – runbookból vagy DSC-konfigurációból elérhető értékeket tartalmaznak.
-* **A DSC-konfigurációk** -PowerShell-parancsfájlok, amely ismerteti, hogyan tooconfigure az operációs rendszer szolgáltatása vagy beállítása, vagy egy alkalmazás telepítése a Windows vagy Linux számítógépen.  
+* **DSC-konfigurációk** – PowerShell-szkriptek, amelyek útmutatás nyújtanak az operációs rendszer egy szolgáltatásának vagy beállításának konfigurálásához, vagy egy alkalmazás Windows vagy Linux rendszerű számítógépre történő telepítéséhez.  
 * **Runbookok** – feladatkészletek, amelyek bizonyos automatizált folyamatokat hajtanak végre az Azure Automationben a Windows PowerShell alapján.    
 
-hello Automation erőforrások minden Automation-fiókhoz társított egyetlen Azure-régió, de az Automation-fiók kezelhető az összes hello erőforrást az előfizetésében. Különböző régiókban Automation-fiók létrehozása, ha házirendekben, amelyek az adatok és erőforrások toobe adott elkülönített tooa-terület szükséges.
+Az Azure-fiókokhoz tartozó Automation-erőforrások egy Azure-régióhoz tartoznak, de az Automation-fiókok képesek az előfizetés összes erőforrását kezelni. Ha olyan szabályzatokkal rendelkezik, amelyek az adatok és erőforrások adott régióban való elkülönítését írják elő, hozzon létre Automation-fiókokat különböző régiókban.
 
 > [!NOTE]
-> Automation-fiókok és hello erőforrásokat tartalmaznak, amelyek hello Azure-portálon létrehozott, a klasszikus Azure portálon hello nem érhető el. Ha azt szeretné toomanage ezeket a fiókokat, vagy a Windows PowerShell-lel erőforrásaikat, hello Azure Resource Manager modulok kell használnia.
+> Az Azure portálon létrehozott Automation-fiókok, valamint a rajtuk tárolt erőforrások nem érhetők el a klasszikus Azure portálról. Ha ezeket fiókokat vagy az erőforrásaikat Windows PowerShellel felügyeli, az Azure Resource Manager modulokat kell használnia.
 > 
 
-Automation-fiók létrehozásakor a hello Azure-portál automatikusan két hitelesítési entitás hozza létre:
+Amikor létrehoz egy Automation-fiókot az Azure Portalon, automatikusan két hitelesítési entitás jön létre:
 
-* Egy futtató fiók. Ez a fiók létrehoz egy egyszerű szolgáltatást az Azure Active Directory-ban (Azure AD), valamint egy tanúsítványt. Azt is rendel hello közreműködői szerepköralapú hozzáférés-vezérlést (RBAC), amely kezeli a Resource Managerhez tartozó erőforrások runbookok használatával.
-* Egy klasszikus futtató fiókot. Ez a fiók feltölt egy felügyeleti tanúsítványt, amely használt toomanage hagyományos erőforrások runbookok használatával.
+* Egy futtató fiók. Ez a fiók létrehoz egy egyszerű szolgáltatást az Azure Active Directory-ban (Azure AD), valamint egy tanúsítványt. Emellett kiosztja a Közreműködő szerepköralapú hozzáférés-vezérlést (RBAC), amely runbookok használatával kezeli a Resource Manager-erőforrásokat.
+* Egy klasszikus futtató fiókot. Ez a fiók feltölt egy felügyeleti tanúsítványt, amellyel runbookok használatával kezelheti a klasszikus erőforrásokat.
 
-Szerepköralapú hozzáférés-vezérlés érhető el az Azure Resource Manager toogrant engedélyezett műveletek tooan Azure AD-felhasználói fiókot és a Futtatás mint fiókot, és a szolgáltatás egyszerű hitelesítést.  Olvasási [szerepköralapú hozzáférés-vezérlés az Azure Automation-cikkben](automation-role-based-access-control.md) további tájékoztatást talál toohelp fejlesztése a kezelésének Automation engedélyek modelljét.  
+A szerepköralapú hozzáférés-vezérlés az Azure Resource Managerben érhető el, hogy hozzáférést adjon az engedélyezett műveleteknek egy Azure AD-felhasználói fiókhoz és futtatófiókhoz, és hitelesítse az egyszerű szolgáltatást.  Az Automation-engedélyek kezelésére használt modell fejlesztésére vonatkozó további információkért olvassa el [Az Azure Automation szerepköralapú hozzáférés-vezérlése](automation-role-based-access-control.md) című cikket.  
 
 #### <a name="authentication-methods"></a>Hitelesítési módszerek
-hello alábbi táblázat foglalja össze különböző hitelesítési módszerekkel hello Azure Automation által támogatott környezetben.
+A következő táblázat összefoglalja az Azure Automation által támogatott összes környezet különböző hitelesítési módszereit.
 
 | Módszer | Környezet 
 | --- | --- | 
 | Azure futtató és klasszikus futtató fiókok |Azure Resource Manager és klasszikus Azure üzemelő példány |  
 | Azure AD felhasználói fiók |Azure Resource Manager és klasszikus Azure üzemelő példány |  
-| Windows-hitelesítés |Helyi adatközpontban, illetve a más felhőszolgáltatóként hello hibrid forgatókönyv-feldolgozók használata |  
+| Windows-hitelesítés |Hibrid runbook-feldolgozót használó helyszíni adatközpont vagy egyéb felhőszolgáltató |  
 | AWS hitelesítő adatok |Amazon webszolgáltatások |  
 
-A hello **hogyan to\Authentication és biztonsági** szakaszban, támogatja a cikkek biztosító áttekintése és megvalósítási lépéseket tooconfigure hitelesítés az adott környezetben, vagy egy meglévő vagy új fiókot, Ezek az adott környezetben.  Hello Azure-beli futtató és a klasszikus futtató fiókot, a témakör hello [frissítés Automation Futtatás mint fiók](automation-create-runas-account.md) ismerteti, hogyan tooupdate a meglévő Automation-fiókot a hello futtató fiókok hello portál vagy a PowerShell használatával, ha az nem volt eredetileg konfigurálták a Futtatás mint vagy a klasszikus futtató fiókkal. Ha azt szeretné toocreate egy olyan futtató és a klasszikus futtató fiókot a vállalati hitelesítésszolgáltató (CA) által kiadott tanúsítvánnyal, tekintse át a cikk toolearn hogyan toocreate hello fiókok ezt a konfigurációt.     
+Az **Útmutató\Hitelesítés és biztonság** szakaszban támogató cikkeket talál, amelyek áttekintést nyújtanak a témáról, és bemutatják a szóban forgó környezetek hitelesítésének konfigurálásához szükséges implementációs lépéseket az adott környezethez kijelölt meglévő vagy új fiók esetén.  Azure-beli futtató fiók és klasszikus futtató fiók esetében az [Automation futtató fiók frissítésével kapcsolatos](automation-create-runas-account.md) témakör mutatja be, hogyan frissíthető a futtató fiókokat tartalmazó meglévő Automation-fiók a portálról vagy a PowerShell-lel, ha eredetileg nem lett futtató vagy klasszikus futtató fiókkal konfigurálva. Ha egy futtató és egy klasszikus futtató fiókot szeretne létrehozni a vállalati hitelesítésszolgáltató által kibocsátott tanúsítvánnyal, ebből a cikkből betekintést nyerhet a fiókoknak ezen konfigurációval történő létrehozásába.     
  
 ## <a name="network-planning"></a>Hálózattervezés
-Hello hibrid forgatókönyv-feldolgozó tooconnect tooand regisztrálása a Microsoft Operations Management Suite (OMS), az access toohello portszámot kell rendelkeznie, és hello URL-címeket az alábbiakban.  Ez a továbbá toohello [portok és a szükséges URL-címek hello Microsoft-Figyelőügynök](../log-analytics/log-analytics-windows-agents.md#network) tooconnect tooOMS. Ha hello ügynök és hello OMS közötti kommunikáció proxykiszolgálót használ, meg kell, hogy elérhetők-e a megfelelő erőforrásokon hello tooensure. Ha a tűzfal toorestrict Internet access toohello használja, tooconfigure a tűzfal toopermit hozzáférés szükséges.
+Ahhoz, hogy a hibrid runbook-feldolgozó kapcsolódni és regisztrálni tudjon a Microsoft Operations Management Suite (OMS) szolgáltatásban, hozzáféréssel kell rendelkeznie az alább ismertetett portszámokhoz és URL-címekhez.  Ez kiegészítésként szolgál a [Microsoft Monitoring Agent OMS-csatlakozásához szükséges portok és URL-címek](../log-analytics/log-analytics-windows-agents.md#network) listájához. Ha proxykiszolgálót használ az ügynök és az OMS szolgáltatás közötti kommunikációhoz, győződjön meg arról, hogy a megfelelő erőforrások elérhetők. Ha tűzfallal korlátozza az internethez való hozzáférést, akkor a tűzfalat úgy kell beállítani, hogy engedélyezze a hozzáférést.
 
-hello információ alatti lista hello port és URL-címek hello hibrid forgatókönyv-feldolgozó toocommunicate az Automation szolgáltatásban, a szükséges.
+Az alábbi lista a hibrid runbook-feldolgozó és az Automation szolgáltatás közötti kommunikációhoz szükséges portokat és URL-címeket tartalmazza.
 
 * Port: a kimenő internetkapcsolathoz csak a 443-as TCP port szükséges
 * Globális URL: *.azure-automation.net
 
-Ha egy adott területre definiált Automation-fiók rendelkezik, és azt szeretné, hogy a regionális adatközpontok toorestrict kommunikál, hello következő táblázat hello DNS-rekord mindegyik régióhoz.
+Ha rendelkezik egy adott régióhoz meghatározott Automation-fiókkal, és szeretné korlátozni a régió adatközpontjával való kommunikációt, az egyes régiók DNS-rekordját az alábbi táblázatban találja.
 
 | **Régió** | **DNS-rekord** |
 | --- | --- |
@@ -135,60 +135,59 @@ Ha egy adott területre definiált Automation-fiók rendelkezik, és azt szeretn
 | Az Egyesült Királyság déli régiója | uks-jobruntimedata-prod-su1.azure-automation.net |
 | USA-beli államigazgatás – Virginia | usge-jobruntimedata-prod-su1.azure-automation.us |
 
-Nevek helyett IP-címek listájának megtekintéséhez töltse le, és tekintse át a hello [Azure Datacenter IP-cím](https://www.microsoft.com/download/details.aspx?id=41653) hello Microsoft Download Center az XML-fájl. 
+Ha a nevek helyet az IP-címek listájára van szüksége, töltse le és tekintse át az [Azure-adatközponti IP-címeket](https://www.microsoft.com/download/details.aspx?id=41653) tartalmazó XML-fájlt a Microsoft letöltőközpontból. 
 
 > [!NOTE]
-> Ez a fájl hello használt IP-címtartományok (beleértve a számítási, SQL-és tárolási) a Microsoft Azure Adatközpontjaiban hello tartalmazza. A frissített fáljra visszaküldi hetente amely tükrözi a jelenleg telepített hello tartományokkal és a jövőbeni változtatásokról toohello IP-címtartományok. Új tartományok hello fájlban szereplő nem használható hello adatközpontokban legalább egy hétig. Adja a letöltési hello új xml minden héten fájlt, és hajtsa végre a szükséges módosításokat hello a következőn: toocorrectly azonosításához az Azure-ban futó szolgáltatásokat. Expressz útvonal előfordulhat, hogy figyelembe ezt a fájlt tooupdate hello BGP-hirdetményt a hello Azure terület minden hónap első hetében használja. 
+> Ez a fájl azokat az IP-címtartományokat (beleértve Compute, SQL és Storage tartományokat) tartalmazza, amelyeket a Microsoft Azure adatközpontokban használnak. Hetente közzétesznek egy frissített fájlt, amely bemutatja a jelenleg üzembe helyezett tartományokat és minden, az IP tartományokat érintő közelgő változást. A fájlban megjelenő új tartományokat legalább egy hétig nem használják még az adatközpontok. Töltse le az új XML-fájlt minden héten, és végezze el a szükséges változtatásokat oldalán, hogy helyesen azonosítsa az Azure-ban futó szolgáltatásokat. Az Express Route felhasználóinak feltűnhet, hogy régen ez a fájl frissítette az Azure címterületek BGP-közzétételét minden hónap első hetében. 
 > 
 
 ## <a name="creating-an-automation-account"></a>Automation-fiók létrehozása
 
-Többféleképpen hello Azure-portálon létrehozhat egy Automation-fiók.  a következő táblázat hello üzembe helyezését és a kettő közötti vezet be.  
+Az Automation-fiók többféleképpen létrehozható az Azure Portalon.  Az alábbi táblázat az üzembe helyezés különböző típusait és a köztük lévő különbségeket ismerteti.  
 
 |Módszer | Leírás |
 |-------|-------------|
-| Jelölje be automatizálási és vezérlő hello piactér | Az ajánlat, amely létrehoz egy Automation-fiók és az OMS-munkaterület kapcsolódó tooone másik hello ugyanazt az erőforráscsoportot és régióban.  OMS integrációja is magában foglalja a Naplóelemzési toomonitor használatának előnye hello és elemez runbook feladat állapotát és a feladat adatfolyamok időbeli és szolgáltatás használ a speciális funkciók tooescalate vagy vizsgálja meg a problémákat. hello ajánlat is telepíti a hello változáskövetési & frissítéskezelés megoldások, amelyek alapértelmezés szerint engedélyezve vannak. |
-| Válassza ki Automation hello piactér | Létrehoz egy új vagy meglévő erőforráscsoportot, ami nem csatolt tooan OMS-munkaterület, és nem tartalmaz minden elérhető megoldásokat hello Automation & vezérlő ajánlat az Automation-fiók. Ez egy alapkonfiguráció tooAutomation szolgáltatásban, és megtudhatja, hogyan toowrite runbookokat, a DSC-konfigurációk és használatra hello hello szolgáltatás képességeket nyújt segítséget. |
-| Kiválasztott felügyeleti megoldások | Ha a megoldás –  **[frissítéskezelés](../operations-management-suite/oms-solution-update-management.md)**,  **[indítása/leállítása virtuális gépek során munkaidőn kívüli](automation-solution-vm-management.md)**, vagy  **[ A változáskövetés](../log-analytics/log-analytics-change-tracking.md)**  tooselect egy meglévő Automation és az OMS-munkaterület kéri, vagy akkor is, az előfizetésében telepített hello megoldás toobe kötelező beállítás toocreate hello kínálnak. |
+| Az Automatizálás és vezérlés kiválasztása a Marketplace-en | Olyan ajánlat, amely egy egymáshoz kapcsolódó Automation-fiókot és OMS-munkaterületet hoz létre ugyanabban az erőforráscsoportban és régióban.  Az OMS-integráció révén a runbookfeladatok állapotának és a feladatstreamek időbeli monitorozásához és elemzéséhez, valamint a problémák eszkalálására és kivizsgálására alkalmas speciális szolgáltatások használatához elérhető a Log Analytics szolgáltatás. Az ajánlat az alapértelmezés szerint engedélyezett változáskövetési és frissítéskezelési megoldásokat is üzembe helyezi. |
+| Az Automatizálás elem kiválasztása a Marketplace-en | Létrehoz egy Automation-fiókot egy új vagy meglévő erőforráscsoportban. A fiók nem kapcsolódik OMS-munkaterülethez, és nem tartalmazza az Automatizálás és vezérlés ajánlatban elérhető megoldásokat. Ez az alapkonfiguráció bevezetésként szolgál az Automation szolgáltatásba, segít a runbookírás és a DSC-konfigurációk elsajátításában, valamint bemutatja a szolgáltatás képességeinek használatát. |
+| Kiválasztott felügyeleti megoldások | Ha kiválaszt egy megoldást – **[Frissítéskezelés](../operations-management-suite/oms-solution-update-management.md)**, **[Virtuális gépek indítása és leállítása munkaidőn kívül](automation-solution-vm-management.md)**, vagy **[Változáskövetés](../log-analytics/log-analytics-change-tracking.md)**, akkor ki kell választania egy meglévő Automation-fiókot és OMS-munkaterületet, vagy a rendszer felkínálja, hogy mindkettőt hozza létre az előfizetésben üzembe helyezni kívánt megoldás szükségletei alapján. |
 
-Ez a témakör bemutatja, hogyan bevezetési hello Automation & vezérlő ajánlat az Automation-fiók és az OMS-munkaterület létrehozása.  Automation-fiók tesztelési, illetve toopreview hello szolgáltatás, a következő cikkben tekintse át hello önálló toocreate [önálló Automation-fiók létrehozása](automation-create-standalone-account.md).  
+Ez a témakör bemutatja az Automation-fiók és az OMS-munkaterület létrehozását az Automatizálás és vezérlés ajánlat bevezetésével.  A tesztelésre és a szolgáltatás kipróbálására szolgáló önálló Automation-fiók létrehozásáról tekintse meg a következő cikket: [Önálló Automation-fiók létrehozása](automation-create-standalone-account.md).  
 
 ### <a name="create-automation-account-integrated-with-oms"></a>OMS-sel integrált Automation-fiók létrehozása
-hello ajánlott módszer tooonboard Automation hello Automation & vezérlő ajánlat kijelölésével hello piactér van.  Ez mindkét automatizálási fiókot hoz létre, és létrehozza az OMS-munkaterület, beleértve a hello beállítás tooinstall hello megoldások hello ajánlat elérhető hello integrációja.  
+Az Automation bevezetésének ajánlott módja a Marketplace Automatizálás és vezérlés ajánlatának használata.  Ez létrehoz egy Automation-fiókot, és biztosítja az integrációt egy OMS-munkaterülettel, valamint lehetőséget nyújt az ajánlattal együtt elérhető kezelési megoldások telepítésére.  
 
-1. Bejelentkezés toohello egy olyan fiókkal, amely hello előfizetés-Rendszergazdák szerepkör tagja, és hello előfizetés társadminisztrátoraként Azure-portálon.
+1. Jelentkezzen be az Azure Portal webhelyre egy olyan fiókkal, amely tagja az Előfizetés-adminisztrátorok szerepkörhöz tartozó csoportnak, és emellett az előfizetés társadminisztrátorának is számít.
 
 2. Kattintson az **Új** lehetőségre.<br><br> ![Válassza az Új lehetőséget az Azure Portalon](media/automation-offering-get-started/automation-portal-martketplacestart.png)<br>  
 
-3. Keresse meg **Automation** és majd hello a keresési eredményeket megjelenítő válassza **Automation & vezérlő***.<br><br> ![Az Automatizálás és vezérlés elem keresése és kiválasztása a Marketplace-en](media/automation-offering-get-started/automation-portal-martketplace-select-automationandcontrol.png).<br>   
+3. Keressen rá az **Automatizálás** kifejezésre, majd a találatok listájában válassza az **Automatizálás és vezérlés*** lehetőséget.<br><br> ![Az Automatizálás és vezérlés elem keresése és kiválasztása a Marketplace-en](media/automation-offering-get-started/automation-portal-martketplace-select-automationandcontrol.png).<br>   
 
-4. Olvasási hello ajánlat hello leírását, után kattintson a **létrehozása**.  
+4. Az ajánlat leírásának elolvasása után kattintson a **Létrehozás** gombra.  
 
-5. A hello **Automation & vezérlő** beállítási paneljén válassza **OMS-munkaterület**.  A hello **OMS-munkaterület** panelen válassza ki az OMS társított munkaterület toohello azonos Azure-előfizetéshez Automation-fiók hello van, vagy hozzon létre egy OMS-munkaterület.  Ha nem rendelkezik az OMS-munkaterület, válassza ki a **új munkaterület létrehozása** a hello **OMS-munkaterület** panel hello következőket hajthatja végre: 
-   - Adjon meg egy nevet az új hello **OMS-munkaterület**.
-   - Válassza ki a **előfizetés** toolink tooby kijelölésével hello legördülő lista esetén hello alapértelmezett beállítás nem megfelelő.
+5. Az **Automatizálás és vezérlés** beállításainak paneljén válassza az **OMS-munkaterület** elemet.  Az **OMS-munkaterületek** panelen válassza ki az Automation-fiókot tartalmazó Azure-előfizetéshez kapcsolódó OMS-munkaterületet, vagy hozzon létre egy újat.  Ha nem rendelkezik OMS-munkaterülettel, válassza az **Új munkaterület létrehozása** lehetőséget, és az **OMS-munkaterület** panelen végezze el az alábbiakat: 
+   - Adja meg az új **OMS-munkaterület** nevét.
+   - A legördülő listából válassza ki azt az **előfizetést**, amelyikhez kapcsolódni szeretne, ha az alapértelmezett kiválasztás nem megfelelő.
    - Az **Erőforráscsoport** területen létrehozhat egy erőforráscsoportot, vagy kiválaszthat egy meglévőt.  
-   - Válasszon ki egy **helyet**.  Hello csak helyeken érhető el jelenleg **Ausztrália délkeleti**, **USA keleti régiója**, **Délkelet-Ázsia**, **nyugati középső Régiójában**, és  **Nyugat-Európában**.
-   - Válasszon egy tarifacsomagot a **Tarifacsomag** területen.  a két réteg tartományregisztráció hello megoldás: Szabadítson fel, és egy csomópont (OMS) szinten.  ingyenes szint hello hello összeg naponta, megőrzési időtartam és runbook-feladat futásidejű perc adatgyűjtés van korlátozva.  hello / csomópont (OMS) réteg nincs maximális hello naponta gyűjtött adatok mennyiségét.  
-   - Válassza az **Automation-fiók** elemet.  Új OMS-munkaterület létrehozásakor, a következőket kell végrehajtania tooalso, amely kapcsolódik hello új OMS-munkaterület megadott korábbi, beleértve a Azure-előfizetéssel, az erőforráscsoport és a terület az Automation-fiók létrehozása.  Kiválaszthatja **Automation-fiók létrehozása** a hello **Automation-fiók** panelen adja meg a következő hello: 
-  - A hello **neve** mezőbe írja be a hello hello Automation-fiók nevét.
+   - Válasszon ki egy **helyet**.  További információkért tekintse meg, hogy [mely régiókban érhető el az Azure Automation](https://azure.microsoft.com/regions/services/).  A megoldások két tarifacsomagban érhetők el: ingyenes és csomópontalapú (OMS-) csomagban.  Az ingyenes csomagnál korlátozva van a naponta összegyűjtött adatok mennyisége, a megőrzési időtartam és a runbook-feladatok futásideje (perc).  A csomópontalapú (OMS) csomagnál a naponta összegyűjtött adatok mennyisége nincs korlátozva.  
+   - Válassza az **Automation-fiók** elemet.  Új OMS-munkaterület létrehozásakor egy hozzá társított új Automation-fiókot is létre kell hoznia, valamint meg kell adnia az Azure-előfizetését, az erőforráscsoportot és a régiót.  Kiválaszthatja az **Automation-fiók létrehozása** lehetőséget, és az **Automation-fiók** panelen megadhatja a következő adatokat: 
+  - A **Név** mezőbe írja be az Automation-fiók nevét.
 
-    Egyéb beállítások automatikusan fel van töltve hello OMS-munkaterület kijelölt alapján, és ezek a beállítások nem módosíthatók.  Egy Azure-beli futtató fiókot a hello alapértelmezett hitelesítési módszer a hello ajánlat.  Miután rákattintott **OK**, hello konfigurációs beállításokat érvényesíti, és hello Automation-fiók jön létre.  A folyamat állapotát nyomon követheti **értesítések** hello menüből. 
+    A rendszer a kiválasztott OMS-munkaterület alapján automatikusan kitölti az összes többi beállítást, amelyek utána nem módosíthatók.  Az ajánlat alapértelmezett hitelesítési módszere egy Azure futtató fiók.  Miután rákattintott az **OK** gombra, a rendszer érvényesíti a konfigurációs beállításokat, és létrehozza az Automation-fiókot.  Az **Értesítések** menüpont alatt nyomon követheti a folyamat előrehaladását. 
 
-    Ellenkező esetben válasszon egy meglévő Automation futtató fiókot.  választja hello fiók már nem lehet csatolt tooanother OMS-munkaterület, ellenkező esetben számára jelenik meg egy értesítési üzenetet hello panelen.  Már kapcsolódik, ha egy másik Automation Futtatás mint fiók tooselect kell, vagy hozzon létre egyet.
+    Ellenkező esetben válasszon egy meglévő Automation futtató fiókot.  Nem választhat másik OMS-munkaterülethez már kapcsolódó fiókot, ellenkező esetben a panelen egy figyelmeztető üzenet jelenik meg.  Ha a kiválasztott fiók már össze van kapcsolva a munkaterülettel, egy másik Automation futtató fiókot kell választania, vagy létre kell hoznia egyet.
 
-    Szükséges hello adatokat befejezése után kattintson **létrehozása**.  hello információ ellenőrzése és hello Automation-fiókot és futtató fiókok létrehozásához szükségesek.  A rendszer visszairányítja toohello **OMS-munkaterület** panel automatikusan.  
+    A szükséges információk megadása után kattintson a **Létrehozás** elemre.  A rendszer ellenőrzi a megadott adatokat, majd létrehozza az Automation futtató fiókokat.  Ezután automatikusan visszairányítja az **OMS-munkaterület** panelre.  
 
-6. A hello hello szükséges információkat biztosít után **OMS-munkaterület** panelen kattintson a **létrehozása**.  Hello információk ellenőrizve, és hello munkaterület jön létre, nyomon követheti a folyamat állapotát **értesítések** hello menüből.  A rendszer visszairányítja toohello **megoldás hozzáadása** panelen.  
+6. Miután az **OMS-munkaterület** panelen megadta a szükséges adatokat, kattintson a **Létrehozás** gombra.  Az **Értesítések** menüpontot kiválasztva nyomon követheti, hogyan ellenőrzi a rendszer az adatokat, és hogyan hozza létre a munkaterületet.  Ezután visszatér a **Megoldás hozzáadása** panelre.  
 
-7. A hello **Automation & vezérlő** beállítási paneljén jóváhagyásához tooinstall hello ajánlott az előre kijelölt megoldásokat. Ha bármelyiket kihagyja, később külön is telepítheti.  
+7. Az **Automatizálás és vezérlés** beállításainak paneljén erősítse meg, hogy telepíteni kívánja az előre kiválasztott megoldásokat. Ha bármelyiket kihagyja, később külön is telepítheti.  
 
-8. Kattintson a **létrehozása** tooproceed bevezetési automatizálási és az OMS-munkaterület. Minden beállítás ellenőrzését, és majd megkísérel toodeploy hello ajánlat az előfizetésében.  A folyamat eltarthat néhány másodpercig toocomplete, és nyomon követheti a folyamat állapotát **értesítések** hello menüből. 
+8. Kattintson a **Létrehozás** elemre, és folytassa az eljárást az Automation és az OMS-munkaterület bevezetésével. A rendszer érvényesíti az összes beállítást, majd megpróbálja üzembe helyezni az ajánlatot az előfizetésében.  A folyamat eltarthat néhány másodpercig, az előrehaladását nyomon követheti az **Értesítések** menüpont alatt. 
 
-Miután hello ajánlat előkészítve, runbookokat hello használata engedélyezte a megoldások létrehozásának megkezdéséhez, központi telepítése egy [hibrid forgatókönyv-feldolgozó](automation-hybrid-runbook-worker.md) szerepkör, illetve a munka megkezdéséhez [Naplóelemzési](https://docs.microsoft.com/azure/log-analytics) a felhő vagy a helyszíni környezetben erőforrások által létrehozott toocollect adatokat.   
+Az ajánlat bevezetését követően hozzáláthat a runbookok létrehozásához, az engedélyezett felügyeleti megoldások használatához, egy [hibrid runbook-feldolgozó](automation-hybrid-runbook-worker.md) szerepkör üzembe helyezéséhez, vagy a felhőalapú vagy helyszíni környezet erőforrásai által előállított adatok [Log Analytics](https://docs.microsoft.com/azure/log-analytics) segítségével történő gyűjtéséhez.   
 
 ## <a name="next-steps"></a>Következő lépések
 * Ellenőrizheti, hogy az új Automation-fiók el tudja végezni a hitelesítést az Azure-erőforrásokkal: [Azure Automation futtató fiók hitelesítésének tesztelése](automation-verify-runas-authentication.md).
-* a runbookok létrehozása használatába tooget, először tekintse át a hello [automatizálási runbook típusokat](automation-runbook-types.md) támogatott és a kapcsolódó szempontok, mielőtt elkezdené a szerzői műveletekhez.
+* A runbookok létrehozásának első lépéseihez először tekintse át a támogatott [Automation-runbooktípusokat](automation-runbook-types.md) és a kapcsolódó szempontokat.
 
 

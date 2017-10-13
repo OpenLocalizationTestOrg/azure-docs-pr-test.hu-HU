@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Suite aaaCustomize csatlakoztatott gyári |} Microsoft Docs"
-description: "Hogyan toocustomize hello viselkedését hello csatlakoztatva gyári leírása előre konfigurált megoldás."
+title: "Azure IoT Suite csatlakoztatott gyári testreszabása |} Microsoft Docs"
+description: "Az előre konfigurált csatlakoztatott gyári megoldás beállításainak testreszabása leírását."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,72 +15,72 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: dobett
-ms.openlocfilehash: 53f2fef7a76b5d8e6ad023945a7812dc7fabd12c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 90a6172dbd887ecda5a9f5d9082a4e136092bc10
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="customize-how-hello-connected-factory-solution-displays-data-from-your-opc-ua-servers"></a>Hogyan hello csatlakoztatva a OPC EE-kiszolgálóiról gyári megoldás jelenít meg adatokat testreszabása
+# <a name="customize-how-the-connected-factory-solution-displays-data-from-your-opc-ua-servers"></a>Testre szabhatja, hogy a csatlakoztatott gyári megoldás OPC EE-kiszolgálóinak adatait jeleníti meg
 
 ## <a name="introduction"></a>Bevezetés
 
-hello csatlakoztatott gyári megoldás összesíti és hello OPC EE kiszolgálók csatlakoztatott toohello megoldás adatait jeleníti meg. Keresse meg és kiszolgálók parancsok toohello OPC EE küldhet a megoldásban. OPC EE kapcsolatos további információkért lásd: hello [gyári gyakran ismételt kérdések csatlakoztatott](iot-suite-faq-cf.md).
+A csatlakoztatott gyári megoldás összesíti, és a megoldás kapcsolódó OPC EE-kiszolgálók adatait jeleníti meg. Keresse meg, és parancsainak elküldését a OPC EE-kiszolgálók a megoldásban. Az OPC UA architektúráról a [Csatlakoztatott gyár – GYIK](iot-suite-faq-cf.md) fejezetben talál további információt.
 
-Összesített adatot hello megoldás például hello általános berendezések hatékonyságát (OEE) és fő teljesítménymutatók (KPI-k), megtekintheti a hello irányítópult hello gyári, a sor és az állomás szintjén. hello alábbi képernyőfelvételen látható hello OEE és KPI értékeit hello **szerelvény** állomás, a **termelési sor 1**, a hello **München** gyári:
+Összesített adatai a megoldás például a teljes berendezések hatékonyságát (OEE) és fő teljesítménymutatók (KPI-k), megtekinthető az irányítópulton a gyári, a sor és az állomás szintjén. Az alábbi képernyőfelvételen látható OEE és KPI értékeit a **szerelvény** állomás, a **termelési sor 1**, a a **München** gyári:
 
-![OEE és KPI értékek hello megoldás – példa][img-oee-kpi]
+![A megoldás OEE és a KPI értékének – példa][img-oee-kpi]
 
-hello megoldás lehetővé teszi, hogy Ön tooview részletes információkat az adott adatok tételekhez hello nevezett OPC EE-kiszolgálók *állomások*. hello alábbi képernyőfelvételen látható függvényében hello elemszáma gyártott egy adott állomásról:
+A megoldás lehetővé teszi a OPC EE-kiszolgálókról, úgynevezett adott adatelemek részletes információk megtekintése *állomások*. Az alábbi képernyőfelvételen látható függvényében egy adott állomásról előállított elemek száma:
 
 ![Felvétel az előállított elemek száma.][img-manufactured-items]
 
-Ha egy grafikonon hello gombra kattint, ismerje meg a hello adatokat, és további időt adatsorozat Insights (ÁME):
+A diagramokon választásakor ismerheti meg az adatokat további időt adatsorozat Insights (ÁME):
 
 ![Adatokba idő adatsorozat Insights segítségével][img-tsi]
 
 Ez a cikk ismerteti:
 
-- Hogyan hello adatok legyen elérhető toohello különböző nézetek hello megoldásban.
-- Hogyan szabhatja testre hello módon hello megoldás hello adatokat jeleníthet meg.
+- Hogyan adatokat szeretné elérhetővé tenni a különböző nézetek a megoldásban.
+- Hogyan szabhatja testre a módját a megoldás adatait jeleníti meg.
 
 ## <a name="data-sources"></a>Adatforrások
 
-hello csatlakoztatott gyári megoldás adatait jeleníti meg hello OPC EE kiszolgálók csatlakoztatott toohello megoldás. hello alapértelmezett telepítése magában foglalja a gyári szimuláció futtató több OPC EE. A saját OPC EE-kiszolgálót is hozzáadhat, amelyek [átjárón keresztül csatlakozni] [ lnk-connect-cf] tooyour megoldás.
+A csatlakoztatott gyári megoldás a megoldás kapcsolódó OPC EE-kiszolgálók adatait jeleníti meg. Az alapértelmezett telepítés magában foglalja a gyári szimuláció futtató több OPC EE. A saját OPC EE-kiszolgálót is hozzáadhat, amelyek [átjárón keresztül csatlakozni] [ lnk-connect-cf] a megoldáshoz.
 
-Tallózással is kikeresheti, hogy a csatlakoztatott OPC EE-kiszolgáló küldhet-e a tooyour megoldás hello irányítópulton hello adatelemek:
+A csatlakoztatott OPC EE-kiszolgáló küldhet a megoldás az irányítópulton adatelemek tallózással:
 
-1. Keresse meg a toohello **jelöljön ki egy OPC EE** megtekintése:
+1. Keresse meg a **jelöljön ki egy OPC EE** megtekintése:
 
-    ![Keresse meg a toohello válasszon egy OPC EE-kiszolgáló megtekintése][img-select-server]
+    ![Navigáljon a válassza egy OPC EE-kiszolgáló megtekintése][img-select-server]
 
-1. Válasszon kiszolgálót, majd kattintson a **Connect**. Kattintson a **folytatása** hello biztonsági figyelmeztetés megjelenésekor.
+1. Válasszon kiszolgálót, majd kattintson a **Connect**. Kattintson a **folytatása** Ha a biztonsági figyelmeztetés jelenik meg.
 
     > [!NOTE]
-    > Ez a figyelmeztetés csak egyszer jelenik meg minden olyan kiszolgálón, és hello megoldás irányítópultja és hello kiszolgáló közötti megbízhatósági kapcsolatot létesít.
+    > Ez a figyelmeztetés csak egyszer jelenik meg minden olyan kiszolgálón, és a megoldás irányítópult és a kiszolgáló közötti megbízhatósági kapcsolatot létesít.
 
-1. Most Tallózás hello adatelemek hello server küldhet toohello megoldás is. Toohello megoldás küldött elemeket zöld pipa rendelkezik:
+1. A kiszolgáló elküldheti a megoldáshoz adatelemek tallózhatnak. A megoldáshoz küldött útjuk zöld pipa jelzi:
 
     ![Közzétett elemek][img-published]
 
-1. Ha Ön egy *rendszergazda* hello megoldást választhatja ki toopublish egy adatok elem toomake hello elérhető csatlakoztatva gyári megoldás. A rendszergazdák is adatelemek hello értékének módosítása és hívható meg metódus hello OPC EE-kiszolgáló.
+1. Ha Ön egy *rendszergazda* a megoldást választhatja ki elérhetővé a csatlakoztatott gyári megoldásban adatelemet közzététele. A rendszergazdák is adatelemek értékének módosítása és hívható meg metódus a OPC EE-kiszolgálón.
 
-## <a name="map-hello-data"></a>Hello adatok leképezése
+## <a name="map-the-data"></a>Az adatok leképezése
 
-hello gyári megoldás maps csatlakoztatva, és összesítések hello közzétett adatelemek hello OPC EE server toohello a különböző nézetek hello megoldásban. hello csatlakoztatott gyári megoldás telepíti tooyour Azure-fiók amikor hello megoldás. A JSON-fájl, a Visual Studio csatlakoztatott gyári megoldás hello a leképezési információkat tárolja. Megtekintheti és módosíthatja a JSON-konfigurációs fájl hello csatlakoztatott gyárban Visual Studio megoldás. A módosítást követően központilag telepítheti hello megoldás.
+A csatlakoztatott gyári megoldás le, és a közzétett adatelemeket összesíti a OPC EE-kiszolgálóról a különböző nézetek a megoldásban. Ha a megoldás a csatlakoztatott gyári megoldás központilag telepíti az Azure-fiókjával. A JSON-fájl, a Visual Studio csatlakoztatott gyári megoldásban ez leképezési információkat tárolja. Megtekintheti és módosíthatja a Visual Studio megoldás a csatlakoztatott gyárban JSON-konfigurációs fájlt. A módosítást követően központilag telepítheti a megoldás.
 
-A konfigurációs fájlt hello használhatja:
+A konfigurációs fájlt is használhatja:
 
-- Hello meglévő szimulált előállítók, éles sorok és állomások szerkesztése.
-- Képezze le a csatlakozni, toohello megoldás valós OPC EE-kiszolgálóról származó adatok.
+- A meglévő szimulált előállítók, éles sorok és állomások szerkesztése.
+- Valós OPC EE-kiszolgálókhoz, amelyek a megoldással az adatok leképezése.
 
-hello másolatát tooclone gyári Visual Studio megoldás, a következő parancsot a git használata hello csatlakoztatva:
+Klónozza a csatlakoztatott gyári Visual Studio megoldás egy példányát, a következő git paranccsal:
 
 `git clone https://github.com/Azure/azure-iot-connected-factory.git`
 
-hello fájl **ContosoTopologyDescription.json** társítást hello OPC EE-kiszolgálóadatok elemek toohello nézetek hello csatlakoztatott gyári megoldás irányítópultjának hello határozza meg. A konfigurációs fájl található hello **Contoso\Topology** hello mappájában **WebApp** projektre a Visual Studio megoldás hello.
+A fájl **ContosoTopologyDescription.json** a leképezés a OPC EE-kiszolgáló az elemeket a nézetek meghatározása a csatlakoztatott gyári megoldás irányítópulton. A konfigurációs fájlban található a **Contoso\Topology** mappájában a **WebApp** projektet a Visual Studio-megoldásban.
 
-hello JSON-fájl tartalmának hello gyári, termelési sor és állomás csomópontok hierarchikus vannak rendezve. Ezt a hierarchiát hello navigációs hierarchia hello csatlakoztatott gyári irányítópult határozza meg. Minden egyes csomóponton hello hierarchia értékek meghatározzák, hogy hello irányítópulton megjelenő hello információ. Például hello JSON-fájl tartalmazza a következő értékek hello München gyári hello:
+A JSON-fájl tartalmának gyári, termelési sor és állomás csomópontok hierarchikus vannak rendezve. Ezt a hierarchiát a navigációs hierarchia a csatlakoztatott gyári irányítópult határozza meg. A hierarchia minden egyes csomóponton értékek meghatározzák, hogy az irányítópulton megjelenő információkat. Például a JSON-fájl tartalmazza a következő értékek München a beépített:
 
 ```json
 "Guid": "73B534AE-7C7E-4877-B826-F1C0EA339F65",
@@ -95,31 +95,31 @@ hello JSON-fájl tartalmának hello gyári, termelési sor és állomás csomóp
 "Image": "munich.jpg"
 ```
 
-hello nevét, leírását és helyen jelennek meg ebben a nézetben hello irányítópulton:
+A nevét, leírását és helyen jelennek meg ebben a nézetben az irányítópulton:
 
-![München adatok hello irányítópult][img-munich]
+![Az irányítópult München adatok][img-munich]
 
-Minden egyes gyári, a termelési sor és a állomás van az image tulajdonság. A JPEG-fájlok találhatók hello **Content\img** hello mappájában **WebApp** projekt. A kép fájlok hello csatlakoztatott gyári irányítópult jeleníti meg.
+Minden egyes gyári, a termelési sor és a állomás van az image tulajdonság. Ezeket a JPEG-fájlok találhatók a **Content\img** mappájában a **WebApp** projekt. A kép fájlok megjelenítése a csatlakoztatott gyári irányítópulton.
 
-Minden állomás több társítást hello OPC EE adatelemek hello meghatározó részletes tulajdonságok tartalmazza. Ezeket a tulajdonságokat ismerteti a következő részekben hello:
+Minden állomás több részletes meghatározó tulajdonságok biztosítása a leképezés a OPC EE adatelemek tartalmazza. A következő szakaszok ismertetik ezeket a tulajdonságokat:
 
 ### <a name="opcuri"></a>OpcUri
 
-Hello **OpcUri** értéke hello OPC EE alkalmazás URI, amely egyedileg azonosítja a hello OPC EE-kiszolgáló. Például hello **OpcUri** hello szerelvény állomás éles sor 1 München a következőhöz hasonló hello értéke: **urn: scada2194:ua:munich:productionline0:assemblystation**.
+A **OpcUri** értéke az EE OPC-alkalmazás, amely egyedileg azonosítja a OPC EE-kiszolgáló URI. Például a **OpcUri** a szerelvény állomás éles sor 1 München a következőhöz hasonló, a következő érték: **urn: scada2194:ua:munich:productionline0:assemblystation**.
 
-Hello URI-azonosítók csatlakoztatott hello OPC EE-kiszolgálók hello megoldás irányítópultja tekintheti meg:
+Az URI-azonosítók a csatlakoztatott OPC EE-kiszolgálók a megoldás irányítópultjának tekintheti meg:
 
 ![Nézet OPC EE kiszolgáló URI-azonosítók][img-server-uris]
 
 ### <a name="simulation"></a>Szimuláció
 
-hello információk hello **szimuláció** csomópont adott toohello OPC EE szimuláció futó hello OPC EE-kiszolgálók alapértelmezés szerint törlődnek. A valós OPC EE-kiszolgáló nem szolgál.
+Az információk a **szimuláció** csomópont csak a OPC EE szimuláció, amelyen a OPC EE-kiszolgálókon alapértelmezés szerint törlődnek az. A valós OPC EE-kiszolgáló nem szolgál.
 
 ### <a name="kpi1-and-kpi2"></a>Kpi1 és Kpi2
 
-Ezek a csomópontok ismertetik, hogyan hello állomás adatait hozzájárul toohello két KPI értékek hello irányítópulton. Alapértelmezett telepítésében ezen KPI értékei óránként egységek és óránként kWh. hello megoldás kiszámítja a KPI vales állomás hello szintjén, és összesíti a hello termelési sor és a gyári szintjén.
+Ezek a csomópontok ismertetik, hogyan hozzájárul az adatok az állomásról a két KPI érték az irányítópulton. Alapértelmezett telepítésében ezen KPI értékei óránként egységek és óránként kWh. A megoldás kiszámítja a KPI vales állomás szintjén, és összesíti azokat az éles sor és a gyári szintjén.
 
-Egyes KPI-KET egy minimális, maximális és célértékéhez rendelkezik. Minden KPI értéket adhat meg csatlakoztatott hello gyári megoldás tooperform riasztási műveletek. hello alábbi kódrészletben láthatja hello KPI definícióit hello szerelvény állomás éles sor München 1:
+Egyes KPI-KET egy minimális, maximális és célértékéhez rendelkezik. Minden KPI értéket adhat meg riasztási műveletek végrehajtásához a csatlakoztatott gyári megoldás. Az alábbi kódrészletben láthatja a KPI-definíciókat a szerelvény állomás éles sor München 1:
 
 ```json
 "Kpi1": {
@@ -139,41 +139,41 @@ Egyes KPI-KET egy minimális, maximális és célértékéhez rendelkezik. Minde
 }
 ```
 
-hello alábbi képernyőfelvételen látható hello KPI adatok hello irányítópulton.
+Az alábbi képernyőfelvételen a KPI adatainak megjelenítése az irányítópulton.
 
-![Hello irányítópulton KPI-információk][lnk-kpi]
+![Az irányítópult KPI-információk][lnk-kpi]
 
 ### <a name="opcnodes"></a>OpcNodes
 
-Hello **OpcNodes** csomópontok azonosítása hello hello OPC EE-kiszolgáló a közzétett adatelemeket, és adja meg, hogyan tooprocess adatokat.
+A **OpcNodes** csomópontok azonosíthatja a közzétett adatelemeket a OPC EE-kiszolgálóról, és adja meg, hogyan kell feldolgozni az adatokat.
 
-Hello **NodeId** érték azonosítja hello hello OPC EE-kiszolgáló az adott OPC EE NodeID. első csomópontjának hello hello szerelvény állomás gyártási sor München 1 értékű **ns = 2, i = 385**. A **NodeId** érték határozza meg, hello adatok elem tooread hello OPC EE-kiszolgáló és a hello **melynek** egy felhasználóbarát név toouse hello irányítópulton biztosítja az adatok.
+A **NodeId** érték azonosítja az adott OPC EE NodeID a OPC EE-kiszolgálóról. A szerelvény állomás gyártási sor München 1 első csomópontjának értéke **ns = 2, i = 385**. A **NodeId** érték határozza meg, az elem olvasni a OPC EE-kiszolgálóról, és a **melynek** biztosít egy felhasználóbarát nevet a az irányítópulton az adatok.
 
-Más csomópontokra társított értékek hello a következő táblázat foglalja össze:
+Más csomópontokra társított értékek a következő táblázat tartalmazza:
 
 | Érték | Leírás |
 | ----- | ----------- |
-| Találati pontosság  | hello KPI-t és OEE értékek ezek az adatok hozzájárul. |
-| Műveleti kód     | Hogyan hello adatok összesíti. |
-| egység      | hello egységek toouse hello irányítópulton.  |
-| Látható    | E toodisplay ez értéket hello irányítópult. Egyes értékek számítások szerepel, de nem jelenik meg.  |
-| Maximális    | hello maximális érték, amely riasztást hello irányítópulton. |
-| MaximumAlertActions | Egy művelet tootake válasz tooan riasztásban. A parancs tooa állomás küldenek például. |
+| Találati pontosság  | A KPI-t és OEE értékek hozzájárul az adatok. |
+| Műveleti kód     | Hogyan összesíti az adatokat. |
+| egység      | Az irányítópult használatához egység.  |
+| Látható    | Hogy megjelenjenek-e ezt az értéket az irányítópulton. Egyes értékek számítások szerepel, de nem jelenik meg.  |
+| Maximális    | A maximális érték, amely a riasztást az irányítópulton. |
+| MaximumAlertActions | A riasztás válasz műveletet. Például egy vonatkozó parancs küldése a állomáshoz. |
 | ConstValue | A számításhoz használt konstans érték. |
 
-## <a name="deploy-hello-changes"></a>Hello módosítása
+## <a name="deploy-the-changes"></a>A módosítások telepítése
 
-Miután végzett a végzett módosítások toohello **ContosoTopologyDescription.json** fájlt, újra kell telepítenie hello gyári megoldás tooyour Azure-fiók csatlakoztatva.
+Miután végzett a módosítások elvégzése az **ContosoTopologyDescription.json** fájlt, újra kell telepítenie a csatlakoztatott gyári megoldás az Azure-fiókjába.
 
-Hello **azure iot-csatlakoztatott-gyári** tárház tartalmaz egy **build.ps1** PowerShell-parancsfájlt használhatja toorebuild és hello megoldás üzembe helyezéséhez.
+A **azure iot-csatlakoztatott-gyári** tárház tartalmaz egy **build.ps1** PowerShell parancsprogram, amellyel újraépítéséhez és a megoldás üzembe helyezéséhez.
 
 ## <a name="next-steps"></a>Következő lépések
 
-További információ csatlakoztatott hello előre konfigurált gyári megoldásról által olvasása hello a következő cikkeket:
+További információ a csatlakoztatott gyári előre konfigurált megoldásról elolvasni a következő cikkeket:
 
 * [Előre konfigurált csatlakoztatott gyár megoldás – bemutató][lnk-rm-walkthrough]
 * [A beépített csatlakoztatott egy átjáró üzembe helyezéséhez][lnk-connect-cf]
-* [Engedélyek hello azureiotsuite.com webhelyen][lnk-permissions]
+* [Engedélyek az azureiotsuite.com webhelyen][lnk-permissions]
 * [Csatlakoztatott gyár – GYIK](iot-suite-faq-cf.md)
 * [GYAKORI KÉRDÉSEK][lnk-faq]
 

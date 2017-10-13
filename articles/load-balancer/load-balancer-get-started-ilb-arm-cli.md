@@ -1,9 +1,9 @@
 ---
-title: "aaaCreate egy belső terheléselosztó - Azure parancssori Felülettel |} Microsoft Docs"
-description: "Ismerje meg, hogyan toocreate a belső terheléselosztók használatával hello Azure CLI az erőforrás-kezelőben"
+title: "Belső terheléselosztó létrehozása – Azure CLI | Microsoft Docs"
+description: "Ismerje meg, hogyan hozható létre belső terheléselosztó az Azure parancssori felület használatával a Resource Managerben"
 services: load-balancer
 documentationcenter: na
-author: kumudd
+author: KumudD
 manager: timlt
 tags: azure-resource-manager
 ms.assetid: c7a24e92-b4da-43c0-90f2-841c1b7ce489
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/23/2017
+ms.date: 09/25/2017
 ms.author: kumud
-ms.openlocfilehash: 3aea6fdb07600f0d661ec6b8ffc784b03380a127
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 83cf027d95018de61ea906268d8f24700203e0c0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-an-internal-load-balancer-by-using-hello-azure-cli"></a>Hozzon létre egy belső elosztott terhelésű hello Azure parancssori felület használatával
+# <a name="create-an-internal-load-balancer-by-using-the-azure-cli"></a>Belső terheléselosztó létrehozása az Azure parancssori felület használatával
 
 > [!div class="op_single_selector"]
 > * [Azure Portal](../load-balancer/load-balancer-get-started-ilb-arm-portal.md)
@@ -28,31 +28,33 @@ ms.lasthandoff: 10/06/2017
 > * [Azure CLI](../load-balancer/load-balancer-get-started-ilb-arm-cli.md)
 > * [Sablon](../load-balancer/load-balancer-get-started-ilb-arm-template.md)
 
+[!INCLUDE [load-balancer-basic-sku-include.md](../../includes/load-balancer-basic-sku-include.md)]
+
 [!INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 > [!NOTE]
-> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md).  Ez a cikk ismerteti a használatával a Microsoft azt javasolja, a legtöbb új központi telepítés helyett hello hello Resource Manager üzembe helyezési modellben [klasszikus üzembe helyezési modellel](load-balancer-get-started-ilb-classic-cli.md).
+> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md).  Ez a cikk a Resource Manager-alapú üzemi modell használatát ismerteti, amelyet a Microsoft a legtöbb új telepítéshez a [klasszikus üzemi modell](load-balancer-get-started-ilb-classic-cli.md) helyett javasol.
 
 [!INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
-## <a name="deploy-hello-solution-by-using-hello-azure-cli"></a>Hello megoldás telepítése hello Azure parancssori felület használatával
+## <a name="deploy-the-solution-by-using-the-azure-cli"></a>A megoldás üzembe helyezése az Azure parancssori felület használatával
 
-hello lépések bemutatják, hogyan toocreate egy internetre irányuló terheléselosztó CLI Azure Resource Manager használatával. Az Azure Resource Manager az egyes erőforrások jön létre, és egyenként konfigurálni, majd tegye együtt toocreate erőforrás.
+A következő lépések bemutatják, hogyan lehet internetes elérésű terheléselosztót létrehozni az Azure Resource Manager és a parancssori felület használatával. Az Azure Resource Manager lehetővé teszi, hogy az egyes erőforrások konfigurálása egyenként történjen, majd az összerakásukkal jöjjön létre egy erőforrás.
 
-Toocreate kell, és a következő objektumok toodeploy terheléselosztó hello konfigurálása:
+A terheléselosztó üzembe helyezéséhez a következő objektumokat kell létrehozni és konfigurálni:
 
 * **Előtérbeli IP-konfiguráció**: a nyilvános IP-címeket tartalmazza a bejövő hálózati forgalomhoz
-* **Háttér-címkészlet**: tartalmaz, amelyek lehetővé teszik a hello virtuális gépek tooreceive hálózati forgalmat a hello terheléselosztó hálózati adapterek (NIC)
-* **Terheléselosztási szabályok**: hello load balancer tooport hello háttér-címkészletbeli nyilvános port hozzárendelését szabályokat tartalmaz
-* **Bejövő NAT-szabályok**: hello terhelés terheléselosztó tooa port egy adott virtuális gép hello háttér-címkészletbeli nyilvános port hozzárendelését szabályokat tartalmaz
-* **Vizsgálat**: tartalmaz, amelyek a virtuális gépek példánya hello háttér címkészletet használt toocheck hello rendelkezésre állási állapotát mintavételt
+* **Háttércímkészlet**: hálózati adaptereket (NIC) tartalmaz, amelyek lehetővé teszik a virtuális gépek számára a terheléselosztóról érkező hálózati forgalom fogadását
+* **Terheléselosztási szabályok**: olyan szabályokat tartalmaz, amelyek a terheléselosztó nyilvános portját rendelik hozzá a háttér címkészletben levő porthoz
+* **Bejövő NAT-szabályok**: olyan szabályokat tartalmaz, amelyek a terheléselosztó nyilvános portjait rendelik hozzá egy adott virtuális gép portjához a háttércímkészletben
+* **Mintavételezők**: állapotfigyelő mintavételezőket tartalmaz, amelyek a virtuálisgép-példányok rendelkezésre állását ellenőrzik a háttércímkészletben
 
 A további információkat az [Azure Resource Manager support for Load Balancer](load-balancer-arm.md) (Azure Resource Manager-támogatás a terheléselosztóhoz) című rész tartalmazza.
 
-## <a name="set-up-cli-toouse-resource-manager"></a>Parancssori felület toouse erőforrás-kezelő beállítása
+## <a name="set-up-cli-to-use-resource-manager"></a>A parancssori felület beállítása a Resource Manager használatához
 
-1. Ha még sosem használta az Azure parancssori felület, lásd: [telepítése és konfigurálása az Azure parancssori felület hello](../cli-install-nodejs.md). Hello követésével mentése toohello pont, ahol ki kell választania az Azure-fiókja és -előfizetést.
-2. Futtassa a hello **azure config mód** tooswitch tooResource kezelő módra, az alábbiak szerint parancsot:
+1. Ha még soha nem használta az Azure parancssori felületét, lásd: [Install and configure the Azure CLI](../cli-install-nodejs.md) (Azure parancssori felület (CLI) telepítése és konfigurálása). Kövesse az utasításokat az Azure-fiók és -előfizetés kiválasztásáig.
+2. Az **azure config mode** parancs futtatásával váltson Resource Manager módra, a következők szerint:
 
     ```azurecli
     azure config mode arm
@@ -64,7 +66,7 @@ A további információkat az [Azure Resource Manager support for Load Balancer]
 
 ## <a name="create-an-internal-load-balancer-step-by-step"></a>Belső terheléselosztó létrehozásának lépései
 
-1. Jelentkezzen be tooAzure.
+1. Jelentkezzen be az Azure-ba.
 
     ```azurecli
     azure login
@@ -72,7 +74,7 @@ A további információkat az [Azure Resource Manager support for Load Balancer]
 
     Amikor a rendszer erre kéri, adja meg Azure rendszerbeli hitelesítő adatait.
 
-2. Módosítsa a hello parancs eszközök tooAzure Resource Manager módra.
+2. Módosítsa a parancssori eszközöket az Azure Resource Manager módra.
 
     ```azurecli
     azure config mode arm
@@ -90,24 +92,24 @@ azure group create <resource group name> <location>
 
 1. Hozzon létre egy belső terheléselosztót
 
-    USA keleti régiójában hello forgatókönyv a következő, a nrprg nevű erőforráscsoport jön létre.
+    A következő forgatókönyv esetében az nrprg nevű erőforráscsoportot hozzuk létre az Egyesült Államok keleti régiójában.
 
     ```azurecli
     azure network lb create --name nrprg --location eastus
     ```
 
    > [!NOTE]
-   > Belső terheléselosztók, például a virtuális hálózatok és virtuális hálózati alhálózat összes erőforrás kell hello ugyanabban az erőforráscsoportban, és a hello azonos régióban.
+   > A belső terheléselosztók összes erőforrásának (például virtuális hálózatok és virtuális alhálózatok) ugyanabban az erőforráscsoportban és ugyanabban a régióban kell lennie.
 
-2. Hozzon létre egy hello belső terheléselosztó előtér-IP-címet.
+2. Hozzon létre egy előtérbeli IP-címet a belső terheléselosztó számára.
 
-    hello IP-cím, amelyekkel a virtuális hálózat hello alhálózati tartományba kell lennie.
+    Az IP-címnek kötelező a virtuális hálózat alhálózati tartományában lennie.
 
     ```azurecli
     azure network lb frontend-ip create --resource-group nrprg --lb-name ilbset --name feilb --private-ip-address 10.0.0.7 --subnet-name nrpvnetsubnet --subnet-vnet-name nrpvnet
     ```
 
-3. Hello háttér-címkészlet létrehozása.
+3. Hozza létre a háttércímkészletet.
 
     ```azurecli
     azure network lb address-pool create --resource-group nrprg --lb-name ilbset --name beilb
@@ -115,9 +117,9 @@ azure group create <resource group name> <location>
 
     Miután megtörtént az előtérbeli IP-cím, valamint a háttércímkészlet definiálása, létre lehet hozni a terheléselosztási szabályokat, a bejövő NAT-szabályokat, valamint a testre szabott állapotfigyelő mintavételezőket.
 
-4. Hozzon létre olyan terheléselosztó szabályhoz hello belső terheléselosztóhoz.
+4. Hozzon létre egy terheléselosztási szabályt a belső terheléselosztóhoz.
 
-    Hello előző lépések végrehajtásával, ha hello parancs hoz létre egy terheléselosztó szabály, figyelő tooport 1433 a hello előtér-készlet és a küldő terhelésű hálózati forgalom toohello háttér címkészletet, továbbá használatával az 1433-as port.
+    Az előző lépések végrehajtásakor a parancs olyan terheléselosztási szabályt hoz létre, amelyik az 1433-as portot figyeli az előtérkészletben, és a háttér címkészletre szintén az 1433-as port használatával küldi az elosztott terhelésű hálózati forgalmat.
 
     ```azurecli
     azure network lb rule create --resource-group nrprg --lb-name ilbset --name ilbrule --protocol tcp --frontend-port 1433 --backend-port 1433 --frontend-ip-name feilb --backend-address-pool-name beilb
@@ -125,7 +127,7 @@ azure group create <resource group name> <location>
 
 5. Hozza létre a bejövő NAT-szabályokat.
 
-    Bejövő NAT-szabályok olyan használt toocreate végpontok egy terheléselosztó, amely tooa adott virtuálisgép-példányt. hello előző lépést a távoli asztal két NAT-szabályok létrehozása.
+    A bejövő NAT-szabályok olyan végpontok létrehozásához használhatók a terheléselosztóban, amelyek egy adott virtuálisgép-példányhoz tartoznak. Az előző lépések két NAT-szabályt hoztak létre a távoli asztalhoz.
 
     ```azurecli
     azure network lb inbound-nat-rule create --resource-group nrprg --lb-name ilbset --name NATrule1 --protocol TCP --frontend-port 5432 --backend-port 3389
@@ -133,23 +135,23 @@ azure group create <resource group name> <location>
     azure network lb inbound-nat-rule create --resource-group nrprg --lb-name ilbset --name NATrule2 --protocol TCP --frontend-port 5433 --backend-port 3389
     ```
 
-6. Hozzon létre állapotfigyelő mintavételt hello terheléselosztóhoz.
+6. Hozzon létre állapotfigyelő mintavételezőket a terheléselosztóhoz.
 
-    Egy állapotmintáihoz ellenőrzi az összes virtuális gép példányok toomake meg arról, hogy a hálózati forgalom elküldése lehetséges. hello virtuálisgép-példány sikertelen mintavételi ellenőrzések hello terheléselosztó törlődik, amíg újra online állapotba kerül, és a mintavétel-ellenőrzés határozza meg, hogy a rendszer kifogástalan.
+    Az állapotfigyelő mintavételező az összes virtuálisgép-példányt ellenőrzi, hogy biztosan képesek legyenek hálózati forgalom küldésére. A mintavételező tesztjén elbukó virtuálisgép-példányokat a rendszer eltávolítja a terheléselosztóból, és így is maradnak, amíg ismét online állapotúak nem lesznek, és a mintavételező tesztje azt nem jelzi, hogy megfelelő az állapotuk.
 
     ```azurecli
     azure network lb probe create --resource-group nrprg --lb-name ilbset --name ilbprobe --protocol tcp --interval 300 --count 4
     ```
 
     > [!NOTE]
-    > hello Microsoft Azure platform különféle felügyeleti forgatókönyvekhez, amik egy nyilvánosan elérhető, statikus IPv4-címet használ. hello IP-cím 168.63.129.16. Ezt az IP-címet nem blokkolhatja egy tűzfal sem, mert ez nem várt viselkedést okozhat.
-    > A tekintetben tooAzure belső terheléselosztás, az IP-címet használják mintavételt hello load balancer toodetermine hello állapotát a virtuális gépek egy elosztott terhelésű készlet figyelése. Ha egy hálózati biztonsági csoportot használt toorestrict forgalom tooAzure virtuális gépek egy belső elosztott terhelésű készlet vagy alkalmazott tooa virtuális hálózati alhálózat, győződjön meg arról, hogy a hálózati biztonsági szabály legyen-e adva a 168.63.129.16 tooallow forgalom.
+    > A Microsoft Azure platform egy statikus, nyilvánosan irányítható IPv4-címet használ számos különböző felügyeleti forgatókönyvhöz. Az IP-cím a 168.63.129.16. Ezt az IP-címet nem blokkolhatja egy tűzfal sem, mert ez nem várt viselkedést okozhat.
+    > Az Azure belső terheléselosztás esetében ezt az IP-címet használják a terheléselosztó figyelési mintavételezői az elosztott terhelésű készlet virtuális gépeinek állapotmeghatározásához. Ha egy belső elosztott terhelésű készletben hálózati biztonsági csoportot használnak az Azure virtuális gépekre irányuló forgalom korlátozásához, vagy egy virtuális alhálózaton alkalmazzák, győződjön meg arról, hogy a 168.63.129.16 címről érkező adatforgalom engedélyezéséhez felvettek egy hálózati biztonsági szabályt.
 
 ## <a name="create-nics"></a>Hálózati adapterek létrehozása
 
-Toocreate hálózati adapterrel kell (vagy módosíthatja a meglévőket), és rendelje hozzá őket tooNAT szabályok, load balancer szabályok és mintavételek menüpontban.
+Hálózati adaptereket kell létrehoznia (vagy a meglévőket is módosíthatja), és hozzá kell rendelnie őket a NAT-szabályokhoz, a terheléselosztási szabályokhoz és a mintavételezőkhöz.
 
-1. Hozzon létre egy olyan hálózati adapter nevű *lb nic1 kell*, és társíthatja hello *rdp1* NAT szabály és hello *beilb* háttér címkészletet.
+1. Hozzon létre egy hálózati adaptert *lb-nic1-be* néven, majd társítsa az *rdp1* NAT-szabályhoz és a *beilb* háttércímkészlethez.
 
     ```azurecli
     azure network nic create --resource-group nrprg --name lb-nic1-be --subnet-name nrpvnetsubnet --subnet-vnet-name nrpvnet --lb-address-pool-ids "/subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/backendAddressPools/beilb" --lb-inbound-nat-rule-ids "/subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/inboundNatRules/rdp1" --location eastus
@@ -158,10 +160,10 @@ Toocreate hálózati adapterrel kell (vagy módosíthatja a meglévőket), és r
     Várt kimenet:
 
         info:    Executing command network nic create
-        + Looking up hello network interface "lb-nic1-be"
-        + Looking up hello subnet "nrpvnetsubnet"
+        + Looking up the network interface "lb-nic1-be"
+        + Looking up the subnet "nrpvnetsubnet"
         + Creating network interface "lb-nic1-be"
-        + Looking up hello network interface "lb-nic1-be"
+        + Looking up the network interface "lb-nic1-be"
         data:    Id                              : /subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/networkInterfaces/lb-nic1-be
         data:    Name                            : lb-nic1-be
         data:    Type                            : Microsoft.Network/networkInterfaces
@@ -181,21 +183,21 @@ Toocreate hálózati adapterrel kell (vagy módosíthatja a meglévőket), és r
         data:
         info:    network nic create command OK
 
-2. Hozzon létre egy olyan hálózati adapter nevű *lb nic2 kell*, és társíthatja hello *rdp2* NAT szabály és hello *beilb* háttér címkészletet.
+2. Hozzon létre egy hálózati adaptert *lb-nic2-be* néven, majd társítsa az *rdp2* NAT-szabályhoz és a *beilb* háttércímkészlethez.
 
     ```azurecli
     azure network nic create --resource-group nrprg --name lb-nic2-be --subnet-name nrpvnetsubnet --subnet-vnet-name nrpvnet --lb-address-pool-ids "/subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/backendAddressPools/beilb" --lb-inbound-nat-rule-ids "/subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/inboundNatRules/rdp2" --location eastus
     ```
 
-3. Nevű virtuális gép létrehozása *D1*, és társíthatja hello nevű hálózati *lb nic1 kell*. A tárfiók neve *web1nrp* hello a következő parancs futtatása előtt hozza létre:
+3. Hozzon létre egy virtuális gépet *DB1* néven, és társítsa az *lb-nic1-be* nevű hálózati adapterrel. A következő parancs futtatása előtt létrejön a *web1nrp* nevű tárfiók:
 
     ```azurecli
     azure vm create --resource--resource-grouproup nrprg --name DB1 --location eastus --vnet-name nrpvnet --vnet-subnet-name nrpvnetsubnet --nic-name lb-nic1-be --availset-name nrp-avset --storage-account-name web1nrp --os-type Windows --image-urn MicrosoftWindowsServer:WindowsServer:2012-R2-Datacenter:4.0.20150825
     ```
     > [!IMPORTANT]
-    > A betöltési terheléselosztó kell toobe a virtuális gépek hello azonos rendelkezésre állási csoportot. Használjon `azure availset create` toocreate rendelkezésre állási készlet.
+    > A terheléselosztó virtuális gépeinek ugyanabban a rendelkezésre állási készletben kell lenniük. Használja az `azure availset create` parancsot a rendelkezésre állási készlet létrehozásához.
 
-4. Hozzon létre egy virtuális gépet (VM) nevű *DB2*, és társíthatja hello nevű hálózati *lb nic2 kell*. A tárfiók neve *web1nrp* hello a következő parancs futtatása előtt lett létrehozva.
+4. Hozzon létre egy virtuális gépet (VM) *DB2* néven, és társítsa az *lb-nic2-be* nevű hálózati adapterhez. A következő parancs futtatása előtt létrejön a *web1nrp* nevű tárfiók.
 
     ```azurecli
     azure vm create --resource--resource-grouproup nrprg --name DB2 --location eastus --vnet-name nrpvnet --vnet-subnet-name nrpvnetsubnet --nic-name lb-nic2-be --availset-name nrp-avset --storage-account-name web2nrp --os-type Windows --image-urn MicrosoftWindowsServer:WindowsServer:2012-R2-Datacenter:4.0.20150825
@@ -203,7 +205,7 @@ Toocreate hálózati adapterrel kell (vagy módosíthatja a meglévőket), és r
 
 ## <a name="delete-a-load-balancer"></a>Terheléselosztó törlése
 
-egy terhelés-kiegyenlítő tooremove hello a következő parancsot használja:
+A terheléselosztó eltávolításához használja a következő parancsot:
 
 ```azurecli
 azure network lb delete --resource-group nrprg --name ilbset

@@ -1,6 +1,6 @@
 ---
-title: "az SQL Data Warehouse szolgáltatáshoz aaaAll témakörök |} Microsoft Docs"
-description: "Tábla hello Azure szolgáltatás az összes témakörök nevű SQL Data Warehouse a http://azure.microsoft.com/documentation/articles/, címét és leírását."
+title: "Az SQL Data Warehouse szolgáltatást minden témakörök |} Microsoft Docs"
+description: "Az Azure-szolgáltatás az összes témakörök tábla nevű SQL Data Warehouse a http://azure.microsoft.com/documentation/articles/, címét és leírását."
 services: sql-data-warehouse
 documentationcenter: 
 author: barbkess
@@ -15,42 +15,42 @@ ms.topic: article
 ms.custom: reference
 ms.date: 03/30/2017
 ms.author: barbkess
-ms.openlocfilehash: 6f71d35b76b50764a5904525445675dafaa56b85
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9fe41f12960dc099700e01573b4f03ebf63f8749
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="all-topics-for-azure-sql-data-warehouse-service"></a>Az Azure SQL Data Warehouse szolgáltatást minden kapcsolatos témakörök
-Ez a témakör felsorolja a minden közvetlenül toohello témakörnek **SQL Data Warehouse** Azure szolgáltatást. A weblap kulcsszavak használatával kereshet **Ctrl + F**, toofind hello témakörök aktuális iránt.
+Ez a témakör felsorolja minden témakörnek a közvetlenül a **SQL Data Warehouse** Azure szolgáltatást. A weblap kulcsszavak használatával kereshet **Ctrl + F**, az aktuális érdeklő témakörök kereséséhez.
 
 ## <a name="new"></a>új
 | &nbsp; | Cím | Leírás |
 | ---:|:--- |:--- |
-| 1 |[Az SQL Data Warehouse biztonsági mentések](sql-data-warehouse-backups.md) |Ismerje meg, amelyek lehetővé teszik toorestore SQL Data Warehouse beépített mentéseket egy Azure SQL Data Warehouse tooa visszaállítási pont vagy egy másik földrajzi régióban. |
+| 1 |[Az SQL Data Warehouse biztonsági mentések](sql-data-warehouse-backups.md) |Ismerje meg az SQL Data Warehouse beépített adatbázis biztonsági mentését, amelyek segítségével állíthatja vissza az Azure SQL Data Warehouse visszaállítási pont vagy egy másik földrajzi régióban. |
 
 ## <a name="updated-articles-sql-data-warehouse"></a>Frissített cikkeket, az SQL Data Warehouse
-Ez a rész felsorolja a cikket, amely nemrég volt frissítve, ahol hello frissítése vagy volt a nagy jelentős. Minden egyes frissített cikk egy durva szövegrészletet hello hozzáadott markdown szöveg jelenik meg. hello cikkek frissültek belül hello dátumtartománya **2016-08-22** túl**2016-10-05**.
+Ez a rész felsorolja cikkei, amelyek frissültek, ahol a frissítési nagy vagy jelentős volt-e. Minden egyes frissített cikk egy durva szövegrészletet a hozzáadott markdown jelenik meg. A cikkek frissültek dátum közötti tartományba **2016-08-22** való **2016-10-05**.
 
 | &nbsp; | Cikk | Frissített szöveg, a részlet | Ha frissítése |
 | ---:|:--- |:--- |:--- |
-| 2 |[Adatok betöltése az Azure blob storage az SQL Data warehouse-ba (PolyBase)](sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md) |a/tootrack bájtok és fájlok r.command, s.request_id, r.status, count (különböző input_name) nbr_files, válassza ki, a sum (s.bytes_processed) / 1024/1024, sys.dm_pdw_exec_requests r belső illesztés sys.dm_pdw_dms_external_work s r.request_id gb_processed, = s.request_id WHERE r. címke = "CTAS: terhelés cso. DimProduct "OR r. címke = "CTAS: terhelés cso. FactOnlineSales' GROUP BY r.command, s.request_id, r.status ORDER BY nbr_files desc, gb_processed desc; |2016-09-07 |
-| 3 |[Az SQL Data Warehouse visszaállítása](sql-data-warehouse-restore-database-overview.md) |** Állíthatók vissza egy felfüggesztett data warehouse? ** toorestore egy adattárháza, amely fel van függesztve, kell toofirst azt újra online állapotba kerüljön. Hello adatraktár újra online állapotba kerül, követően a visszaállítási pontok toochoose a hét nap. ** Visszaállítása tooa georedundáns régió ** hello georedundáns tárolás használatakor hello adatok adatraktár tooyour párosított adatközpont más földrajzi régióban is helyreállíthatja. hello adatraktár hello utolsó napi biztonsági másolatból állítottak vissza. ** Visszaállítása ütemterv ** visszaállíthatja egy adatbázis tooany visszaállítási pont belül hello elmúlt hét napban. A pillanatképek tooeight négy óránként start és hét napja. Ha pillanatkép régebbi, mint hét nap, jár le, és a helyreállítási pont már nem érhető el. ** A visszaállított hello adatraktár hello prémium szintű Azure Storage díj lesz számlázva, a költségek ** hello tárolási kell fizetni visszaállítása. Ha egy visszaállított adatraktár felfüggesztéséhez van szó, a tárolási hello prémium szintű Azure Storage díj. hello felfüggesztéséhez előnye nem kell fizetni |2016-09-29 |
+| 2 |[Adatok betöltése az Azure blob storage az SQL Data warehouse-ba (PolyBase)](sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md) |/-Nyomon követéséhez bájt és fájlok VÁLASSZA r.command, s.request_id, r.status, count (különböző input_name) nbr_files, mint a sum (s.bytes_processed) / 1024/1024, sys.dm_pdw_exec_requests r belső illesztés sys.dm_pdw_dms_external_work s r.request_id gb_processed = s.request_id WHERE r. címke = "CTAS: terhelés cso. DimProduct "OR r. címke = "CTAS: terhelés cso. FactOnlineSales' GROUP BY r.command, s.request_id, r.status ORDER BY nbr_files desc, gb_processed desc; |2016-09-07 |
+| 3 |[Az SQL Data Warehouse visszaállítása](sql-data-warehouse-restore-database-overview.md) |** Állíthatók vissza egy felfüggesztett data warehouse? ** szüneteltetett adatraktár visszaállításához először újra elérhetővé kell. Az adatraktár újra online állapotba kerül, követően választható visszaállítási pontok hét nap. ** Állítsa vissza a georedundáns régió ** a georedundáns tárolás használata visszaállíthatja az adatraktár az párosított adatközpont más földrajzi régióban. Az adatraktár az utolsó napi biztonsági másolatból állítottak vissza. ** Visszaállítása ütemterv ** visszaállíthatja egy adatbázist a helyreállítási pont az utóbbi hét napban. A pillanatképek négy és nyolc óránként start és hét napja. Ha pillanatkép régebbi, mint hét nap, jár le, és a helyreállítási pont már nem érhető el. ** Visszaállítása költségek ** a tárolási költség a visszaállított adatraktár a prémium szintű Azure Storage díj terheli. A visszaállított adatok adatraktár szünetelteti, ha van szó, a prémium szintű Azure Storage díj tárolására. Felfüggesztés előnye nem kell fizetni |2016-09-29 |
 
 ## <a name="get-started"></a>Bevezetés
 | &nbsp; | Cím | Leírás |
 | ---:|:--- |:--- |
-| 4 |[Az SQL Data Warehouse hitelesítési tooAzure](sql-data-warehouse-authentication.md) |Az Azure Active Directory (AAD) és az SQL Server hitelesítési tooAzure SQL Data Warehouse. |
+| 4 |[Hitelesítés az Azure SQL Warehouse-szal](sql-data-warehouse-authentication.md) |Az Azure Active Directory (AAD) és az SQL Server hitelesítés az Azure SQL Data Warehouse. |
 | 5 |[Ajánlott eljárások az Azure SQL Data Warehouse-hoz](sql-data-warehouse-best-practices.md) |Javaslatok és ajánlott eljárások, amelyeket érdemes tudni az Azure SQL Data Warehouse-megoldások fejlesztésekor. Ezek segítségével a megoldások jobban sikerülhetnek. |
 | 6 |[Az Azure SQL Data Warehouse illesztőprogramok](sql-data-warehouse-connection-strings.md) |A kapcsolati karakterláncokat és az SQL Data Warehouse illesztőprogramok |
-| 7 |[Csatlakozás az SQL Data Warehouse tooAzure](sql-data-warehouse-connect-overview.md) |Hogyan toofind hello kiszolgáló nevét és a kapcsolati karakterlánc-az SQL Data Warehouse tooAzure |
-| 8 |[Azure Machine Learning adatok elemzése](sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md) |Használja az Azure Machine Learning toobuild egy prediktív gépi tanulási modellt az Azure SQL Data Warehouse tárolt adatok alapján. |
-| 9 |[Lekérdezés Azure SQL Data Warehouse (sqlcmd)](sql-data-warehouse-get-started-connect-sqlcmd.md) |Azure SQL Data Warehouse lekérdezése hello Sqlcmd parancssori segédprogram. |
-| 10 |[Az SQL Data Warehouse-adatbázis létrehozása a Transact-SQL (TSQL) használatával](sql-data-warehouse-get-started-create-database-tsql.md) |Ismerje meg, hogyan toocreate egy Azure SQL Data Warehouse a TSQL használatával |
-| 11 |[Hogyan toocreate támogatási jegyet az SQL Data Warehouse](sql-data-warehouse-get-started-create-support-ticket.md) |Hogyan toocreate támogatási jegyet az Azure SQL Data Warehouse. |
-| 12 |[Adatok betöltése az Azure Data Factoryvel](sql-data-warehouse-get-started-load-with-azure-data-factory.md) |További tudnivalók az Azure Data Factory tooload adatok |
-| 13 |[Adatok betöltése a PolyBase az SQL Data Warehouse](sql-data-warehouse-get-started-load-with-polybase.md) |Ismerje meg a PolyBase-t, és hogyan toouse az adatraktározási forgatókönyvekben. |
-| 14 |[Egy Azure SQL Data Warehouse létrehozása](sql-data-warehouse-get-started-provision.md) |Ismerje meg, hogyan toocreate egy Azure SQL Data Warehouse a hello Azure-portálon |
+| 7 |[Csatlakozás az Azure SQL Data Warehouse](sql-data-warehouse-connect-overview.md) |Az Azure SQL Data Warehouse kiszolgálónevének és kapcsolati karakterláncának lekérdezése |
+| 8 |[Azure Machine Learning adatok elemzése](sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md) |Az Azure Machine Learning segítségével létrehozhat egy prediktív gépi tanulási modellt, amely az Azure SQL Data Warehouse-ban tárolt adatokon alapul. |
+| 9 |[Lekérdezés Azure SQL Data Warehouse (sqlcmd)](sql-data-warehouse-get-started-connect-sqlcmd.md) |Az Azure SQL Data Warehouse lekérdezése az sqlcmd parancssori segédprogram használatával. |
+| 10 |[Az SQL Data Warehouse-adatbázis létrehozása a Transact-SQL (TSQL) használatával](sql-data-warehouse-get-started-create-database-tsql.md) |Tudnivalók Azure SQL Data Warehouse a TSQL használatával történő létrehozásáról |
+| 11 |[Az SQL Data Warehouse egy támogatási jegy létrehozása](sql-data-warehouse-get-started-create-support-ticket.md) |Támogatási jegy létrehozása az SQL Data Warehouse-hoz. |
+| 12 |[Adatok betöltése az Azure Data Factoryvel](sql-data-warehouse-get-started-load-with-azure-data-factory.md) |Sajátítsa el az adatok betöltését az Azure Data Factoryvel |
+| 13 |[Adatok betöltése a PolyBase az SQL Data Warehouse](sql-data-warehouse-get-started-load-with-polybase.md) |Megismerheti a PolyBase-t és az adatraktározási forgatókönyvekben való használatát. |
+| 14 |[Egy Azure SQL Data Warehouse létrehozása](sql-data-warehouse-get-started-provision.md) |Tudnivalók Azure SQL Data Warehouse létrehozásáról az Azure Portalon |
 | 15 |[PowerShell-lel SQL Data Warehouse létrehozása](sql-data-warehouse-get-started-provision-powershell.md) |SQL Data Warehouse létrehozása PowerShell használatával |
 | 16 |[Adatok megjelenítése Power BI használatával](sql-data-warehouse-get-started-visualize-with-power-bi.md) |SQL-adatraktár adatainak megjelenítése Power BI használatával |
 | 17 |[Az Azure SQL Data Warehouse lekérdezése (Visual Studio)](sql-data-warehouse-query-visual-studio.md) |Az SQL Data Warehouse lekérdezése a Visual Studióval. |
@@ -60,10 +60,10 @@ Ez a rész felsorolja a cikket, amely nemrég volt frissítve, ahol hello friss�
 | ---:|:--- |:--- |
 | 18 |[Az SQL Data Warehouse tranzakciók optimalizálása](sql-data-warehouse-develop-best-practices-transactions.md) |Az Azure SQL Data Warehouse hatékony tranzakció frissítések írásáról bevált gyakorlatokat tartalmazó útmutatóval |
 | 19 |[Párhuzamossági és munkaterhelés-kezelés az SQL Data Warehouse](sql-data-warehouse-develop-concurrency.md) |Ismerje meg a feldolgozási és munkaterhelés-kezelés az Azure SQL Data Warehouse adattárházzal történő, megoldások. |
-| 20 |[Select (CTAS) tábla az SQL Data Warehouse létrehozása](sql-data-warehouse-develop-ctas.md) |Tippek a hello kódolási (CTAS) utasítás válasszon ki az Azure SQL Data Warehouse adattárházzal történő, megoldások tábla létrehozása. |
+| 20 |[Select (CTAS) tábla az SQL Data Warehouse létrehozása](sql-data-warehouse-develop-ctas.md) |Tippek a létrehozás táblával kódolás szerint select (CTAS) utasítás az Azure SQL Data Warehouse adattárházzal történő, megoldások. |
 | 21 |[Az SQL Data Warehouse dinamikus SQL](sql-data-warehouse-develop-dynamic-sql.md) |Tippek az Azure SQL Data Warehouse adattárházzal történő, megoldások dinamikus SQL használatát. |
 | 22 |[Az SQL Data Warehouse beállítások szerint kell csoportosítani](sql-data-warehouse-develop-group-by-options.md) |Ötletek a csoport beállításai az Azure SQL Data Warehouse adattárházzal történő, megoldások. |
-| 23 |[Az SQL Data Warehouse címkék tooinstrument lekérdezések használata](sql-data-warehouse-develop-label.md) |Tippek az Azure SQL Data Warehouse adattárházzal történő, megoldások címkék tooinstrument lekérdezések használatát. |
+| 23 |[Az eszköz-lekérdezésekre címkék használata az SQL Data Warehouse](sql-data-warehouse-develop-label.md) |Tippek az eszköz lekérdezések címkék használata az Azure SQL Data Warehouse adattárházzal történő, megoldások. |
 | 24 |[Az SQL Data Warehouse hurkok](sql-data-warehouse-develop-loops.md) |Tippek a Transact-SQL hurkok és az Azure SQL Data Warehouse adattárházzal történő, megoldások tagjára kurzorok. |
 | 25 |[Az SQL Data Warehouse tárolt eljárások](sql-data-warehouse-develop-stored-procedures.md) |Tippek a tárolt eljárások végrehajtása az Azure SQL Data Warehouse adattárházzal történő, megoldások. |
 | 26 |[Az SQL Data Warehouse-tranzakciók](sql-data-warehouse-develop-transactions.md) |Ötletek a tranzakciók az Azure SQL Data Warehouse adattárházzal történő, megoldások. |
@@ -75,15 +75,15 @@ Ez a rész felsorolja a cikket, amely nemrég volt frissítve, ahol hello friss�
 ## <a name="manage"></a>Kezelés
 | &nbsp; | Cím | Leírás |
 | ---:|:--- |:--- |
-| 31 |[Kezelheti a számítási teljesítményt az Azure SQL Data Warehouse (áttekintés)](sql-data-warehouse-manage-compute-overview.md) |Az Azure SQL Data Warehouse képességek kibővítési teljesítményét. Horizontális felskálázás dwu-k módosításával vagy és sablonok felfüggesztése és folytatása a számítási erőforrások toosave költségeket. |
-| 32 |[Kezelheti a számítási teljesítményt az Azure SQL Data Warehouse (Azure-portál)](sql-data-warehouse-manage-compute-portal.md) |Az Azure portál feladatok toomanage számítási teljesítményt. Skála dwu-k beállításával számítási erőforrásokat. Vagy, és sablonok felfüggesztése és folytatása a számítási erőforrások toosave költségeket. |
-| 33 |[Az Azure SQL Data Warehouse (PowerShell) a számítási teljesítmény kezelése](sql-data-warehouse-manage-compute-powershell.md) |PowerShell feladatok toomanage számítási teljesítményt. Skála dwu-k beállításával számítási erőforrásokat. Vagy, és sablonok felfüggesztése és folytatása a számítási erőforrások toosave költségeket. |
-| 34 |[Számítási teljesítményt az Azure SQL Data Warehouse (REST) kezelése](sql-data-warehouse-manage-compute-rest-api.md) |PowerShell feladatok toomanage számítási teljesítményt. Skála dwu-k beállításával számítási erőforrásokat. Vagy, és sablonok felfüggesztése és folytatása a számítási erőforrások toosave költségeket. |
-| 35 |[Számítási teljesítményt az Azure SQL Data Warehouse (T-SQL) kezelése](sql-data-warehouse-manage-compute-tsql.md) |Transact-SQL (T-SQL) feladatok tooscale kibővített teljesítmény dwu-k beállításával. Költségeket takaríthat vissza csúcsidőszakon kívüli időszakokban. |
-| 36 |[számítási feladatok DMV-vel végzett megfigyelésével](sql-data-warehouse-manage-monitor.md) |Megtudhatja, hogyan toomonitor a számítási feladatok dinamikus felügyeleti nézetek használatával. |
+| 31 |[Kezelheti a számítási teljesítményt az Azure SQL Data Warehouse (áttekintés)](sql-data-warehouse-manage-compute-overview.md) |Az Azure SQL Data Warehouse képességek kibővítési teljesítményét. Horizontális felskálázás dwu-k módosításával vagy és sablonok felfüggesztése és folytatása a számítási erőforrásokat költségek csökkentése érdekében. |
+| 32 |[Kezelheti a számítási teljesítményt az Azure SQL Data Warehouse (Azure-portál)](sql-data-warehouse-manage-compute-portal.md) |Az Azure portál feladatok kezelésére számítási teljesítményt. Skála dwu-k beállításával számítási erőforrásokat. Vagy, és sablonok felfüggesztése és folytatása a számítási erőforrásokat költségek csökkentése érdekében. |
+| 33 |[Az Azure SQL Data Warehouse (PowerShell) a számítási teljesítmény kezelése](sql-data-warehouse-manage-compute-powershell.md) |PowerShell-feladatok kezelésére számítási teljesítményt. Skála dwu-k beállításával számítási erőforrásokat. Vagy, és sablonok felfüggesztése és folytatása a számítási erőforrásokat költségek csökkentése érdekében. |
+| 34 |[Számítási teljesítményt az Azure SQL Data Warehouse (REST) kezelése](sql-data-warehouse-manage-compute-rest-api.md) |PowerShell-feladatok kezelésére számítási teljesítményt. Skála dwu-k beállításával számítási erőforrásokat. Vagy, és sablonok felfüggesztése és folytatása a számítási erőforrásokat költségek csökkentése érdekében. |
+| 35 |[Számítási teljesítményt az Azure SQL Data Warehouse (T-SQL) kezelése](sql-data-warehouse-manage-compute-tsql.md) |Transact-SQL (T-SQL) feladatok kibővített teljesítmény dwu-k beállításával. Költségeket takaríthat vissza csúcsidőszakon kívüli időszakokban. |
+| 36 |[számítási feladatok DMV-vel végzett megfigyelésével](sql-data-warehouse-manage-monitor.md) |Útmutató: a dinamikus felügyeleti nézetek használatával számítási feladat figyeléséhez. |
 | 37 |[Az Azure SQL Data Warehouse adatbázisok kezelése](sql-data-warehouse-overview-manage.md) |SQL Data Warehouse-adatbázisokban kezelésének áttekintése. Felügyeleti eszközök, a dwu-k és kibővített teljesítmény, lekérdezési teljesítményt, a helyes biztonsági házirendek létrehozása, és egy adatbázis visszaállításához adatsérülés akár regionális kimaradás hibaelhárítási tartalmazza. |
-| 38 |[Az Azure SQL Data Warehouse felhasználói lekérdezések figyelése](sql-data-warehouse-overview-manage-user-queries.md) |Hello szempontok, ajánlott eljárások és feladatok az Azure SQL Data Warehouse felhasználói lekérdezések Figyelés áttekintése |
-| 39 |[Az SQL Data Warehouse visszaállítása](sql-data-warehouse-restore-database-overview.md) |Áttekintés a hello adatbázis visszaállítási lehetőségek az Azure SQL Data Warehouse adatbázis helyreállítása. |
+| 38 |[Az Azure SQL Data Warehouse felhasználói lekérdezések figyelése](sql-data-warehouse-overview-manage-user-queries.md) |A szempontok, ajánlott eljárások és a feladatokat az Azure SQL Data Warehouse felhasználói lekérdezések Figyelés áttekintése |
+| 39 |[Az SQL Data Warehouse visszaállítása](sql-data-warehouse-restore-database-overview.md) |Az Azure SQL Data Warehouse adatbázis helyreállítása adatbázis visszaállítási lehetőségek áttekintése. |
 | 40 |[Állítsa vissza az Azure SQL Data Warehouse (portál)](sql-data-warehouse-restore-database-portal.md) |Az Azure portál feladatok Azure SQL Data Warehouse visszaállítására. |
 | 41 |[Állítsa vissza az Azure SQL Data Warehouse (PowerShell)](sql-data-warehouse-restore-database-powershell.md) |PowerShell feladatok Azure SQL Data Warehouse visszaállítására. |
 | 42 |[Állítsa vissza az Azure SQL Data Warehouse (REST API-t)](sql-data-warehouse-restore-database-rest-api.md) |Azure SQL Data Warehouse visszaállítására feladatok REST API-t. |
@@ -111,25 +111,25 @@ Ez a rész felsorolja a cikket, amely nemrég volt frissítve, ahol hello friss�
 ## <a name="load"></a>Betöltés
 | &nbsp; | Cím | Leírás |
 | ---:|:--- |:--- |
-| 55 |[Adatok betöltése az Azure blob storage az Azure SQL Data Warehouse (Azure Data Factory)](sql-data-warehouse-load-from-azure-blob-storage-with-data-factory.md) |További tudnivalók az Azure Data Factory tooload adatok |
-| 56 |[Adatok betöltése az Azure blob storage az SQL Data warehouse-ba (PolyBase)](sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md) |Ismerje meg, hogyan toouse PolyBase tooload adatok Azure blob-tároló az SQL Data Warehouse. A nyilvános adatok hello Contoso kereskedelmi adatraktár sémába néhány táblák betöltése. |
-| 57 |[Adatok betöltése az SQL Serverről az Azure SQL Data Warehouse-(ba AZCopy)](sql-data-warehouse-load-from-sql-server-with-azcopy.md) |Az Azure SQL Data Warehouse bcp tooexport adatokat SQL Server tooflat fájlok, az AZCopy tooimport adatok tooAzure blob-tároló és a PolyBase tooingest hello adatokat használ. |
-| 58 |[Adatok betöltése az SQL Serverről az Azure SQL Data Warehouse (egybesimított fájlok)](sql-data-warehouse-load-from-sql-server-with-bcp.md) |Kisebb adatméret esetében a bcp tooexport adatait az SQL Server tooflat fájlok és használja hello és adatokat importálhat közvetlenül az Azure SQL Data Warehouse. |
-| 59 |[Adatok betöltése az SQL Server be Azure SQL Data Warehouse (SSIS)](sql-data-warehouse-load-from-sql-server-with-integration-services.md) |Bemutatja, hogyan toocreate egy SQL Server Integration Services (SSIS) csomag toomove adatokat az adatok különböző forrásokból tooSQL Data warehouse-bA. |
-| 60 |[Adatok betöltése a PolyBase az SQL Data Warehouse](sql-data-warehouse-load-from-sql-server-with-polybase.md) |Az Azure SQL Data Warehouse bcp tooexport adatokat SQL Server tooflat fájlok, az AZCopy tooimport adatok tooAzure blob-tároló és a PolyBase tooingest hello adatokat használ. |
+| 55 |[Adatok betöltése az Azure blob storage az Azure SQL Data Warehouse (Azure Data Factory)](sql-data-warehouse-load-from-azure-blob-storage-with-data-factory.md) |Sajátítsa el az adatok betöltését az Azure Data Factoryvel |
+| 56 |[Adatok betöltése az Azure blob storage az SQL Data warehouse-ba (PolyBase)](sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md) |Útmutató az Azure blob storage adatok betöltése az SQL Data Warehouse PolyBase segítségével. A nyilvános adatok a Contoso kereskedelmi adatraktár sémába néhány táblák betöltése. |
+| 57 |[Adatok betöltése az SQL Serverről az Azure SQL Data Warehouse-(ba AZCopy)](sql-data-warehouse-load-from-sql-server-with-azcopy.md) |A bcp segítségével exportál adatokat az SQL Serverről egybesimított fájlokba, az AzCopy segítségével importál adatokat az Azure Blob Storage-ban, és a PolyBase használatával viszi be az adatokat az SQL Data Warehouse-ba. |
+| 58 |[Adatok betöltése az SQL Serverről az Azure SQL Data Warehouse (egybesimított fájlok)](sql-data-warehouse-load-from-sql-server-with-bcp.md) |Kisebb adatméret esetében a bcp segítségével exportál adatokat az SQL Serverről egybesimított fájlokba, majd közvetlenül az SQL Data Warehouse-ba importálja őket. |
+| 59 |[Adatok betöltése az SQL Server be Azure SQL Data Warehouse (SSIS)](sql-data-warehouse-load-from-sql-server-with-integration-services.md) |Bemutatja, hogyan tárolt adatok mozgatása az adatforrások széles SQL-adatraktár SQL Server Integration Services (SSIS) csomag létrehozásához. |
+| 60 |[Adatok betöltése a PolyBase az SQL Data Warehouse](sql-data-warehouse-load-from-sql-server-with-polybase.md) |A bcp segítségével exportál adatokat az SQL Serverről egybesimított fájlokba, az AzCopy segítségével importál adatokat az Azure Blob Storage-ban, és a PolyBase használatával viszi be az adatokat az SQL Data Warehouse-ba. |
 | 61 |[Útmutató az SQL Data Warehouse PolyBase használatával](sql-data-warehouse-load-polybase-guide.md) |Irányelvek és javaslatok a PolyBase az SQL Data Warehouse forgatókönyvekben. |
 | 62 |[Mintaadatok betöltése az SQL Data Warehouse-ba](sql-data-warehouse-load-sample-databases.md) |Mintaadatok betöltése az SQL Data Warehouse adatbázisba |
-| 63 |[Adatok betöltése a bcp használatával](sql-data-warehouse-load-with-bcp.md) |Ismerje meg a bcp-t, és hogyan toouse az adatraktározási forgatókönyvekben. |
-| 64 |[Adatok betöltése az Azure SQL Data Warehouse-ba](sql-data-warehouse-overview-load.md) |Ismerje meg az adatok betöltése az SQL Data Warehouse hello gyakori forgatókönyvei. Ezek közé tartozik a PolyBase, az Azure blob Storage tárolóban, egybesimított fájlokba és lemez szállítási használatával. Külső eszközöket használhatja. |
+| 63 |[Adatok betöltése a bcp használatával](sql-data-warehouse-load-with-bcp.md) |Megismerheti a bcp-t és az adatraktározási forgatókönyvekben való használatát. |
+| 64 |[Adatok betöltése az Azure SQL Data Warehouse-ba](sql-data-warehouse-overview-load.md) |Ismerje meg, hogy az adatok betöltése az SQL Data Warehouse gyakori forgatókönyvei. Ezek közé tartozik a PolyBase, az Azure blob Storage tárolóban, egybesimított fájlokba és lemez szállítási használatával. Külső eszközöket használhatja. |
 
 ## <a name="migrate"></a>Migrate (Áttelepítés)
 | &nbsp; | Cím | Leírás |
 | ---:|:--- |:--- |
-| 65 |[Az SQL-kódot tooSQL adatraktár áttelepítése](sql-data-warehouse-migrate-code.md) |Tippek az SQL-kódot tooAzure SQL Data Warehouse adattárházzal történő, megoldások áttelepítéséhez. |
-| 66 |[Adatok áttelepítése](sql-data-warehouse-migrate-data.md) |Tippek az adatok tooAzure SQL Data Warehouse adattárházzal történő, megoldások áttelepítéséhez. |
-| 67 |[Data Warehouse Fájláttelepítő segédprogram (előzetes verzió)](sql-data-warehouse-migrate-migration-utility.md) |Telepítse át a tooSQL Data warehouse-bA. |
-| 68 |[A séma tooSQL adatraktár áttelepítése](sql-data-warehouse-migrate-schema.md) |Tippek a séma tooAzure SQL Data Warehouse adattárházzal történő, megoldások áttelepítéséhez. |
-| 69 |[A megoldás tooSQL adatraktár áttelepítése](sql-data-warehouse-overview-migrate.md) |Áttelepítési útmutató annak érdekében, hogy a megoldás tooAzure SQL Data Warehouse platform. |
+| 65 |[Az SQL Data Warehouse az SQL-kódot áttelepítése](sql-data-warehouse-migrate-code.md) |Tippek az SQL-kódot az Azure SQL Data Warehouse adattárházzal történő, megoldások történő áttelepítéséhez. |
+| 66 |[Adatok áttelepítése](sql-data-warehouse-migrate-data.md) |Tippek az adatok áttelepítése az Azure SQL Data Warehouse adattárházzal történő, megoldások. |
+| 67 |[Data Warehouse Fájláttelepítő segédprogram (előzetes verzió)](sql-data-warehouse-migrate-migration-utility.md) |Az SQL Data Warehouse telepíthet át. |
+| 68 |[A séma áttelepítése az SQL Data Warehouse](sql-data-warehouse-migrate-schema.md) |Tippek a séma áttelepítése az Azure SQL Data Warehouse adattárházzal történő, megoldások. |
+| 69 |[Megoldás áttelepítése az SQL Data Warehouse-ba](sql-data-warehouse-overview-migrate.md) |Áttelepítési útmutató az Azure SQL Data Warehouse platform, hogy a megoldás. |
 
 ## <a name="partners"></a>Partnerek
 | &nbsp; | Cím | Leírás |
@@ -142,10 +142,10 @@ Ez a rész felsorolja a cikket, amely nemrég volt frissítve, ahol hello friss�
 | &nbsp; | Cím | Leírás |
 | ---:|:--- |:--- |
 | 73 |[Az SQL Data Warehouse referencia-témakörei](sql-data-warehouse-overview-reference.md) |Az SQL Data Warehouse referencia tartalom hivatkozások. |
-| 74 |[PowerShell-parancsmagok és a REST API-k, az SQL Data Warehouse](sql-data-warehouse-reference-powershell-cmdlets.md) |Az Azure SQL Data Warehouse hello felső PowerShell-parancsmagok található egyebek között toopause és egy adatbázis folytatása. |
-| 75 |[Nyelvi elemei](sql-data-warehouse-reference-tsql-language-elements.md) |Az SQL Data Warehouse használt hello Transact-SQL nyelvi elemei hivatkozások tooreference tartalmának listáját. |
-| 76 |[Transact-SQL kapcsolatos témakörök](sql-data-warehouse-reference-tsql-statements.md) |Hivatkozások tooreference tartalom hello Transact-SQL témaköröket az SQL Data Warehouse használják. |
-| 77 |[Rendszernézetek](sql-data-warehouse-reference-tsql-system-views.md) |Hivatkozások toosystem nézetek tartalom az SQL Data Warehouse. |
+| 74 |[PowerShell-parancsmagok és a REST API-k, az SQL Data Warehouse](sql-data-warehouse-reference-powershell-cmdlets.md) |A felső PowerShell-parancsmagok az Azure SQL Data Warehouse figyeléséről, valamint szüneteltetéséről és folytatásáról adatbázis található. |
+| 75 |[Nyelvi elemei](sql-data-warehouse-reference-tsql-language-elements.md) |Az SQL Data Warehouse használt Transact-SQL nyelvi elem esetén referenciatartalmat listája. |
+| 76 |[Transact-SQL kapcsolatos témakörök](sql-data-warehouse-reference-tsql-statements.md) |A Transact-SQL témaköröket, használja az SQL Data Warehouse referenciatartalmat mutató hivatkozásokat. |
+| 77 |[Rendszernézetek](sql-data-warehouse-reference-tsql-system-views.md) |Rendszer mutató hivatkozásokat tartalmaz az SQL Data Warehouse megtekinti a tartalmat. |
 
 ## <a name="security"></a>Biztonság
 | &nbsp; | Cím | Leírás |
@@ -160,8 +160,8 @@ Ez a rész felsorolja a cikket, amely nemrég volt frissítve, ahol hello friss�
 | &nbsp; | Cím | Leírás |
 | ---:|:--- |:--- |
 | 83 |[A Visual Studio és az SSDT telepítése SQL Data Warehouse](sql-data-warehouse-install-visual-studio.md) |A Visual Studio és az SQL Server Development Tools (SSDT) telepítése az Azure SQL Data Warehouse-hoz |
-| 84 |[Áttelepítési tooPremium tárolási részletei](sql-data-warehouse-migrate-to-premium-storage.md) |Áttelepítését egy meglévő SQL Data Warehouse toopremium tárhely |
-| 85 |[A fenyegetésészlelés az első lépései](sql-data-warehouse-security-threat-detection.md) |Tooget indításának fenyegetések észlelése |
+| 84 |[Prémium szintű Storage adatainak áttelepítése](sql-data-warehouse-migrate-to-premium-storage.md) |Prémium szintű storage történő áttelepítéséhez egy meglévő SQL-adatraktár |
+| 85 |[A fenyegetésészlelés az első lépései](sql-data-warehouse-security-threat-detection.md) |A Fenyegetésészlelés az első lépések |
 | 86 |[Az SQL Data Warehouse kapacitáskorlátait](sql-data-warehouse-service-capacity-limits.md) |A kapcsolatok, adatbázisok, táblák és az SQL Data Warehouse lekérdezések maximális értékeket. |
 | 87 |[Azure SQL Data Warehouse hibaelhárítása](sql-data-warehouse-troubleshoot.md) |Hibaelhárítás az Azure SQL Data Warehouse. |
 

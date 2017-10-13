@@ -1,6 +1,6 @@
 ---
-title: az Azure Event Hubs .NET Framework API-k hello aaaOverview |} Microsoft Docs
-description: "Egyes hello kulcs Event Hubs .NET-keretrendszer ügyfél API-k összefoglalása."
+title: "Az Azure Event Hubs .NET-keretrendszer API-k áttekintése |} Microsoft Docs"
+description: "A kulcs Event Hubs .NET-keretrendszer ügyfél API-k részének összefoglalása."
 services: event-hubs
 documentationcenter: na
 author: sethmanheim
@@ -14,23 +14,23 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: b0e12e43f91b025d7aa4ca03e664b9ff31b04097
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bc525e7ca8b21e9e5f1e36b3152d71420b041700
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="event-hubs-net-framework-api-overview"></a>Event Hubs .NET-keretrendszer API – áttekintés
-Ez a cikk foglal össze néhányat hello kulcs Event Hubs .NET-keretrendszer ügyfél API-k. Két kategóriába sorolhatók: felügyeleti és futásidejű API-kat. Futásidejű API-k üzenetet kap, és minden szükséges műveletek toosend állnak. Felügyeleti műveletek engedélyezése az Event Hubs entitásállapot létrehozása, frissítése és törlése entitások toomanage.
+Ez a cikk foglal össze néhányat a kulcs Event Hubs .NET-keretrendszer ügyfél API-k. Két kategóriába sorolhatók: felügyeleti és futásidejű API-kat. Futásidejű API-k küldeni és fogadni az üzenetet szükséges összes műveletek alkotják. Felügyeleti műveletek lehetővé teszik az Event Hubs entitásállapot létrehozása, frissítése és törlése entitások kezelését.
 
-Figyelési helyzeteket span felügyeleti és a futásidőben. Részletes ismertető dokumentációjában a hello .NET API-k, lásd: hello [Service Bus .NET](/dotnet/api/microsoft.servicebus.messaging) és [EventProcessorHost API](/dotnet/api/microsoft.azure.eventhubs.processor) hivatkozik.
+Figyelési helyzeteket span felügyeleti és a futásidőben. Részletes útmutató a .NET API-k dokumentációja, tekintse meg a [Service Bus .NET](/dotnet/api/microsoft.servicebus.messaging) és [EventProcessorHost API](/dotnet/api/microsoft.azure.eventhubs.processor) hivatkozik.
 
 ## <a name="management-apis"></a>API-val
-tooperform hello a következő felügyeleti műveleteket, rendelkeznie kell **kezelése** hello Event Hubs névtér engedélyeket:
+A következő felügyeleti műveletek végrehajtásához rendelkeznie kell **kezelése** az Event Hubs névtéren engedélyek:
 
 ### <a name="create"></a>Létrehozás
 ```csharp
-// Create hello event hub
+// Create the event hub
 var ehd = new EventHubDescription(eventHubName);
 ehd.PartitionCount = SampleManager.numPartitions;
 await namespaceManager.CreateEventHubAsync(ehd);
@@ -62,7 +62,7 @@ var eventHubClient = EventHubClient.Create("Event Hub name");
 
 ### <a name="publish-message"></a>Üzenet közzététele
 ```csharp
-// Create hello device/temperature metric
+// Create the device/temperature metric
 var info = new MetricEvent() { DeviceId = random.Next(SampleManager.NumDevices), Temperature = random.Next(100) };
 var data = new EventData(new byte[10]); // Byte array
 var data = new EventData(Stream); // Stream 
@@ -80,10 +80,10 @@ await client.SendAsync(data);
 
 ### <a name="create-consumer"></a>Felhasználó létrehozása
 ```csharp
-// Create hello Event Hubs client
+// Create the Event Hubs client
 var eventHubClient = EventHubClient.Create(EventHubName);
 
-// Get hello default consumer group
+// Get the default consumer group
 var defaultConsumerGroup = eventHubClient.GetDefaultConsumerGroup();
 
 // All messages
@@ -109,11 +109,11 @@ msg = UnicodeEncoding.UTF8.GetString(info);
 ```
 
 ## <a name="event-processor-host-apis"></a>Esemény processzor állomás API-k
-Ezen API-k olyan rugalmassági tooworker folyamatok, elérhetetlenné válhatnak a, partíciók keresztül elérhető munkavállalók elosztásával.
+Ezen API-k munkavégző folyamatokat, amelyek egyaránt elérhetetlenné válhatnak, partíciók keresztül elérhető munkavállalók elosztásával rugalmasságot biztosítanak.
 
 ```csharp
-// Checkpointing is done within hello SimpleEventProcessor and on a per-consumerGroup per-partition basis, workers resume from where they last left off.
-// Use hello EventData.Offset value for checkpointing yourself, this value is unique per partition.
+// Checkpointing is done within the SimpleEventProcessor and on a per-consumerGroup per-partition basis, workers resume from where they last left off.
+// Use the EventData.Offset value for checkpointing yourself, this value is unique per partition.
 
 var eventHubConnectionString = System.Configuration.ConfigurationManager.AppSettings["Microsoft.ServiceBus.ConnectionString"];
 var blobConnectionString = System.Configuration.ConfigurationManager.AppSettings["AzureStorageConnectionString"]; // Required for checkpoint/state
@@ -122,11 +122,11 @@ var eventHubDescription = new EventHubDescription(EventHubName);
 var host = new EventProcessorHost(WorkerName, EventHubName, defaultConsumerGroup.GroupName, eventHubConnectionString, blobConnectionString);
 await host.RegisterEventProcessorAsync<SimpleEventProcessor>();
 
-// tooclose
+// To close
 await host.UnregisterEventProcessorAsync();
 ```
 
-Hello [IEventProcessor](/dotnet/api/microsoft.servicebus.messaging.ieventprocessor) felületet a következők:
+A [IEventProcessor](/dotnet/api/microsoft.servicebus.messaging.ieventprocessor) felületet a következők:
 
 ```csharp
 public class SimpleEventProcessor : IEventProcessor
@@ -169,12 +169,12 @@ public class SimpleEventProcessor : IEventProcessor
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-További információ az Event Hubs-forgatókönyvekkel toolearn látogasson el ezeket a hivatkozásokat:
+Az Event Hubs-forgatókönyvekkel kapcsolatos további információkért látogasson el a következő hivatkozásokra:
 
 * [Mi az Azure Event Hubs?](event-hubs-what-is-event-hubs.md)
 * [Event Hubs programozási útmutató](event-hubs-programming-guide.md)
 
-hello .NET API hivatkozásokat itt áll:
+A .NET API-hivatkozások jelenleg itt:
 
 * [Microsoft.ServiceBus.Messaging](/dotnet/api/microsoft.servicebus.messaging)
 * [Microsoft.Azure.EventHubs.EventProcessorHost](/dotnet/api/microsoft.azure.eventhubs.processor.eventprocessorhost)

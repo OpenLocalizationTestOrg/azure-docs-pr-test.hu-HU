@@ -1,6 +1,6 @@
 ---
-title: "az Operations Management Suite biztonsági és naplózási megoldás alapvető alapkonfiguráció értékelése aaaWeb |} Microsoft Docs"
-description: "Ez a dokumentum azt ismerteti, hogyan toouse webes alapkonfiguráció értékelése az OMS biztonsági és hitelesítési megoldás tooperform egy alapkonfiguráció megfelelőségi és biztonsági célra minden figyelt webkiszolgálók értékelése."
+title: "A webes alapkonfiguráció értékelése az Operations Management Suite biztonsági és auditálási megoldásának alapkonfigurációjában | Microsoft Docs"
+description: "Ez a dokumentum ismerteti, hogyan lehet használni a webes alapkonfiguráció értékelését az OMS biztonsági és auditálási megoldásban az összes monitorozott webkiszolgáló alapkonfigurációjának megfelelőségi és biztonsági célú értékelésére."
 services: operations-management-suite
 documentationcenter: na
 author: YuriDio
@@ -15,67 +15,67 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/18/2017
 ms.author: yurid
-ms.openlocfilehash: dafa9d3d93fae31748306b60ee40b285dd59c802
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 40b0c6ca933ea02ac9f5fe3bfaaf87a310542a8d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="web-baseline-assessment-in-operations-management-suite-security-and-audit-solution"></a>A webes alapkonfiguráció értékelése az Operations Management Suite biztonsági és auditálási megoldásában
-Ez a dokumentum segít az OMS biztonsági és naplózási webes alapkonfiguráció értékelése képességek tooaccess hello a figyelt erőforrások biztonsági állapotát.
+Ez a dokumentum segít az OMS biztonsági és auditálási megoldás webes alapkonfiguráció-értékelési képességeinek használatában, hogy hozzáférhessen a monitorozott erőforrások biztonsági állapotához.
 
 ## <a name="what-is-web-baseline-assessment"></a>Mi az a webes alapkonfiguráció-értékelés?
-Jelenleg az OMS biztonsági megoldása biztosít alapkonfiguráció-értékelést az operációs rendszerekhez. Hello az operációs rendszer beállításait a kiszolgálók 24 óránként keres, és sebezhető beállítások nézetét jeleníti meg. Ezzel kapcsolatban további információkat olvashat [az alapkonfiguráció az Operations Management Suite biztonsági és auditálási megoldásában történő értékelését](https://docs.microsoft.com/azure/operations-management-suite/oms-security-baseline) ismertető cikkben.
+Jelenleg az OMS biztonsági megoldása biztosít alapkonfiguráció-értékelést az operációs rendszerekhez. 24 óránként ellenőrzi a kiszolgálók operációsrendszer-beállításait, és lehetővé teszi a potenciálisan sebezhető beállítások áttekintését. Ezzel kapcsolatban további információkat olvashat [az alapkonfiguráció az Operations Management Suite biztonsági és auditálási megoldásában történő értékelését](https://docs.microsoft.com/azure/operations-management-suite/oms-security-baseline) ismertető cikkben.
 
-hello hello webes alapkonfiguráció értékelése célja toofind sebezhető webkiszolgálói beállítások. három elsődleges források hello a hello webes alapterv konfigurációk a következők: .NET, az ASP.NET és az IIS konfigurációját.  Ugyanúgy, mint az operációs rendszer alapkonfiguráció értékelése hello, OMS biztonsági érintetlen tooscan a webkiszolgálón minden 24hrs és azok biztonsági állapotának áttekintése.  Az Internet Information Service (IIS), konfigurációk olyan nagy mértékben testre szabható, amely lehetővé teszi, hogy a különböző helyek és alkalmazások szintek toobe felülbírálható. hello képolvasó hello beállítások hozzáadása toohello alapértelmezett gyökérszinten minden egyes alkalmazás-vagy helyvédelmi szinten ellenőrzi. Ez segít tooidentify sebezhető beállításait, és gyorsan javítása, valamint a javaslatok ezeket a beállításokat.
+A webes alapkonfiguráció-értékelés célja a potenciálisan sebezhető webkiszolgáló-beállítások megkeresése. A három elsődleges forrás a webes alapkonfigurációkhoz a .NET-, az ASP.NET- és az IIS-konfiguráció.  Az operációs rendszer alapkonfigurációjának értékeléséhez hasonlóan az OMS biztonsági megoldása 24 óránként fogja ellenőrizni a webkiszolgálóit, majd lehetővé teszi azok biztonsági állapotának áttekintését.  Az Internet Information Services-ben (IIS) a konfigurációk nagy mértékben testreszabhatók, ez pedig lehetővé teszi számos hely- és alkalmazásszint felülbírálását. A vizsgáló az alapértelmezett gyökérszinten felül minden alkalmazás-/helyszinten ellenőrzi a beállításokat. Ez segít a potenciálisan sebezhető beállítások azonosításában és gyors javításában, valamint javaslatokat tesz ezekre a beállításokra.
 
 >[!NOTE] 
->Letöltheti a hello közös konfigurációs azonosítókat és az OMS biztonsági által használt alapkonfigurációs szabályok [lap](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335?redir=0).
+>Az OMS Security által használt gyakori konfigurációs azonosítók és alapkonfigurációs szabályok [ezen az oldalon](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335?redir=0) tölthetők le.
 
 
 ## <a name="web-security-baseline-assessment"></a>A webes biztonsági alapkonfiguráció értékelése
 
-Az előzetes verzió hello szolgáltatás hello OMS keresési lehetőség, és az OMS biztonsági hello és a naplózási irányítópult keresztül elérhető. Kövesse az alábbi tooperform sajátíthatja hello lekérdezés hello lépéseket:
+Ebben az előzetes verzióban ez a funkció az OMS keresési szolgáltatásán, valamint az OMS biztonsági és auditálási irányítópultján keresztül érhető el. A megfelelő lekérdezés végrehajtásához kövesse az alábbi lépéseket:
 
-1. A hello **a Microsoft Operations Management Suite** fő irányítópult kattintson **biztonsági és naplózási** csempére.
-2. A hello **biztonsági és naplózási** az irányítópult hello webes alapterv perspektíva következő toohello OS alapterv perspektíva látható.
+1. A **Microsoft Operations Management Suite** fő irányítópultján kattintson a **Biztonság és auditálás** csempére.
+2. A **Security and Audit** (Biztonság és auditálás) irányítópulton a webes alapkonfiguráció perspektívája az operációs rendszer alapkonfigurációjának perspektívája mellett látható.
    
     ![A webes biztonsági alapkonfiguráció értékelése az OMS biztonsági és auditálási irányítópultján](./media/oms-security-web-baseline/oms-security-web-baseline-fig5.png)
 
-3. hello bal oldali ablaktáblán hello számának képest webkiszolgálók toohello alapterv, szabályok, amelyek kiértékelése hello minden olyan kiszolgálón átadott hello hányada és hello volt értékelni kiszolgálók listája látható.
-4. jobb oldali ablaktábla listázza a hello egyedi hello szabályok által sikertelenül *súlyossági*, és *RuleType*. Bármely hello jobb oldali szabályok kattint, megjelenik a szabály hello részleteit. Egy példa az alábbi kép hello. hello szabály, amely ki lesz értékelve megtalálható-e *szabály beállításai*. Hello *AzId* mező, amelyben az egyes szabályokhoz nyomon követése hello alapkonfigurációs szabályok a Microsoft által használt egyedi azonosítója. Ezenkívül toothat értesülhet hello *várt eredmény* (a Microsoft ajánlott érték), és egyéb részletek vonatkozó hello biztonsági következményei hello szabály.
+3. A bal oldali panelen a webkiszolgálók alapkonfigurációhoz viszonyított száma, az összes kiértékelt kiszolgálón sikeresen vizsgált szabályok átlagos százalékos aránya, valamint a kiértékelt kiszolgálók száma látható.
+4. A jobb oldali panelen az egyes meghiúsult szabályok láthatóak *Súlyosság* és *RuleType* szerint. A jobb oldali panelen az egyes szabályokra kattintva megjelenítheti a részleteiket. Az alábbi képen látható erre egy példa. A kiértékelt szabály a *Szabály beállítása* területen látható. Az *AzId* mező a Microsoft által az egyes alapkonfigurációs szabályok követéséhez használt egyedi azonosítót tartalmazza. Emellett a felhasználó a *Várt eredményt* (a Microsoft által ajánlott értéket), valamint a szabály biztonsági hatásaival kapcsolatos egyéb részleteket is megtekintheti.
     
     ![Lekérdezés](./media/oms-security-web-baseline/oms-security-web-baseline-fig6.png)
 
-5. A saját lekérdezések tooreview hello eredményeket hozhat létre. 
+5. Az eredmények áttekintéséhez létrehozhat saját lekérdezéseket is. 
 
-hello első lekérdezés használható hello **webes alapterv felmérésének összegzése**. A hello **Begin Keresés itt** mezőbe írja be a lekérdezést: *típus = SecurityBaselineSummary BaselineType webes =*. hello az alábbiakban egy kimeneti példa látható:
+Az első használható lekérdezés a **Webes alapkonfiguráció-értékelés összegzése**. A **Kezdje itt a keresést** mezőbe írja be a következő lekérdezést: *Type=SecurityBaselineSummary BaselineType=Web*. Az alábbi példa egy lehetséges kimenetet mutat be:
 
 ![Lekérdezés eredménye](./media/oms-security-web-baseline/oms-security-web-baseline-fig7.png)
 
 >[!NOTE] 
 >Ebben a lekérdezésben minden rekord egy kiszolgáló értékelési összegzését jelöli.
 
-Miután belépett hello **naplófájl-keresési**, beírhatja különböző lekérdezéseket tooobtain hello webes alapkonfiguráció értékelése további információt. Továbbá toohello előző lekérdezést, használhatja a következő azokat, ebben az előzetes verzióban hello:
+Ha már a **Naplók keresése** területen van, különböző lekérdezéseket megadva több információt szerezhet be a webes alapkonfiguráció-értékelésről. Az előző lekérdezésen túl ebben az előzetes verzióban az alábbiakat is használhatja.
 
-**Webes alapkonfigurációsszabály-értékelés**: Minden rekord egy kiszolgáló webes alapkonfigurációsszabály-értékelését jelöli. Tartalmazza a sikertelen szabályt, minden adatát hello *SitePath* mely hello a szabály értékelése, hello *várt eredmény*, és hello *tényleges eredmény*.
+**Webes alapkonfigurációsszabály-értékelés**: Minden rekord egy kiszolgáló webes alapkonfigurációsszabály-értékelését jelöli. Tartalmazza a sikertelen szabályok összes adatát, a szabály kiértékelése során az eléréshez használt *SitePath* útvonalat, a *Várt eredményt* és a *Tényleges eredményt*.
 
 Lekérdezés: *Type=SecurityBaseline BaselineType=Web AnalyzeResult=Failed*
 
 ![2. lekérdezés eredménye](./media/oms-security-web-baseline/oms-security-web-baseline-fig8.png)
 
-**Egy adott kiszolgálóhoz tartozó összes találat megjelenítése**: Ez a lekérdezés bemutatja, hogyan toosee eredménye egy adott kiszolgáló: lekérdezés: *típus = SecurityBaseline BaselineType webes számítógép = = BaselineTestVM1*
+**Egy adott kiszolgálóra vonatkozó összes eredmény megjelenítése**: Ez a lekérdezés az egy adott kiszolgálóhoz tartozó összes eredményt megjeleníti: Lekérdezés: *Type=SecurityBaseline BaselineType=Web Computer=BaselineTestVM1*
 
 ![3. lekérdezés eredménye](./media/oms-security-web-baseline/oms-security-web-baseline-fig3.png)
 
-A rekordok/lekérdezések toocreate használhatja a saját irányítópultok, jelentések és értesítések. Íme egy minta felhasználói felületének vezérlői tooyour irányítópult adhat hozzá. Azt is megtudhatja, hogyan toovisualize OMS Nézettervező használata esetén az adatok [Itt](https://blogs.technet.microsoft.com/msoms/2016/06/30/oms-view-designer-visualize-your-data-your-way/). az alábbi üdvözlő képernyőt például hogyan hello csempe fog megjelenni a testreszabás után.
+Ezekkel a rekordokkal és lekérdezésekkel létrehozhatja a saját irányítópultjait, jelentéseit vagy riasztásait. Alább egy mintát láthat egy felhasználói felületi vezérlőre, amelyet hozzáadhat az irányítópulthoz. [Itt](https://blogs.technet.microsoft.com/msoms/2016/06/30/oms-view-designer-visualize-your-data-your-way/) megtudhatja, hogyan készíthet vizualizációt az adataiból az OMS Nézettervezőjével. Az alábbi képernyő mintául szolgál arra, hogyan fog kinézni a csempe a testreszabás végrehajtása után.
 
 ![irányítópult](./media/oms-security-web-baseline/oms-security-web-baseline-fig4.png)
 
 ## <a name="see-also"></a>Lásd még:
-Ebben a dokumentumban az OMS biztonsági és auditálási megoldásának webes alapkonfiguráció-értékeléséről olvashatott. További információ az OMS biztonsági toolearn tekintse meg a következő cikkek hello:
+Ebben a dokumentumban az OMS biztonsági és auditálási megoldásának webes alapkonfiguráció-értékeléséről olvashatott. Az OMS által nyújtott védelemmel kapcsolatos további információkat a következő cikkek tartalmaznak:
 
 * [Az Operations Management Suite (OMS) áttekintése](operations-management-suite-overview.md)
-* [Figyelés és a válaszoló tooSecurity riasztásait az Operations Management Suite biztonsági és naplózási megoldás](oms-security-responding-alerts.md)
+* [A biztonsági riasztások figyelése és megválaszolása az Operations Management Suite biztonsági és auditálási megoldásban](oms-security-responding-alerts.md)
 * [Az erőforrások figyelése az Operations Management Suite biztonsági és auditálási megoldásban](oms-security-monitoring-resources.md)
 

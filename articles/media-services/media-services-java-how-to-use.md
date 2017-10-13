@@ -1,6 +1,6 @@
 ---
-title: "aaaGet használatába Java segítségével igény szerinti tartalomtovábbítás |} Microsoft Docs"
-description: "Ez az oktatóanyag végigvezeti hello végrehajtási egy alapszintű Video-on-Demand (VoD) tartalomtovábbító szolgáltatás használata Java Azure Media Services (AMS) alkalmazással."
+title: "Igény szerinti tartalomtovábbítás Java használatával | Microsoft Docs"
+description: "Ez az oktatóanyag végigvezeti a lépéseken, amelyek segítségével alapszintű igény szerinti videotartalom-továbbítási szolgáltatást hozhat létre a Java segítségével, az Azure Media Services (AMS) alkalmazással."
 services: media-services
 documentationcenter: java
 author: juliako
@@ -14,38 +14,38 @@ ms.devlang: java
 ms.topic: get-started-article
 ms.date: 01/10/2017
 ms.author: juliako
-ms.openlocfilehash: b13eb88e35fb0d7a1ec1a213293080bad8aa1806
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2294f3de094389f8aa500c75472e753339b18358
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-delivering-content-on-demand-using-java"></a>Igény szerinti tartalomtovábbítás Java használatával
 [!INCLUDE [media-services-selector-get-started](../../includes/media-services-selector-get-started.md)]
 
-Ez az oktatóanyag végigvezeti hello végrehajtási egy alapszintű Video-on-Demand (VoD) tartalomtovábbító szolgáltatás használata Java Azure Media Services (AMS) alkalmazással.
+Ez az oktatóanyag végigvezeti a lépéseken, amelyek segítségével alapszintű igény szerinti videotartalom-továbbítási szolgáltatást hozhat létre a Java segítségével, az Azure Media Services (AMS) alkalmazással.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az alábbiakban hello szükséges toocomplete hello oktatóanyag:
+Az ismertetett eljárás végrehajtásához a következők szükségesek:
 
 * Egy Azure-fiók. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/). 
-* Egy Media Services-fiók. egy Media Services-fiók toocreate lásd [hogyan tooCreate Media Services-fiók](media-services-portal-create-account.md).
-* Azure-könyvtárakban Java, amely hello telepítheti hello [Azure Java fejlesztői központból][Azure Java Developer Center].
+* Egy Media Services-fiók. A Media Services-fiók létrehozásáról a [Media Services-fiók létrehozása](media-services-portal-create-account.md) című cikk nyújt tájékoztatást.
+* A Javához készült Azure-könyvtárak, amelyeket az [Azure Java fejlesztői központból][Azure Java Developer Center] lehet telepíteni.
 
 ## <a name="how-to-use-media-services-with-java"></a>Útmutató: A Media Services használata Javával
 
 >[!NOTE]
->Az AMS-fiók létrehozásakor egy **alapértelmezett** adatfolyam-továbbítási végpontra tooyour fiók kerül hello **leállítva** állapotát. a dinamikus csomagolás és a dinamikus titkosítás tartalmat, és hajtsa végre a megfelelő előnyeit streaming toostart hello streamvégpontra, amelyből el kívánja toostream tartalom toobe rendelkezik hello **futtató** állapotát. 
+>Az AMS-fiók létrehozásakor a rendszer hozzáad egy **alapértelmezett** streamvégpontot a fiókhoz **Leállítva** állapotban. A tartalom streamelésének megkezdéséhez, valamint a dinamikus csomagolás és a dinamikus titkosítás kihasználásához a tartalomstreameléshez használt streamvégpontnak **Fut** állapotban kell lennie. 
 
 >[!NOTE]
->A különböző AMS-szabályzatok (például a Locator vagy a ContentKeyAuthorizationPolicy) esetében a korlát 1 000 000 szabályzat. Használjon hello azonos házirend-azonosítója mindig használata hello azonos nap / hozzáférési engedélyek, például a lokátorokat, amelyek a helyen tervezett tooremain hosszú ideje (nem feltöltés házirendek) házirendek. További információ [ebben](media-services-dotnet-manage-entities.md#limit-access-policies) a témakörben érhető el.
+>A különböző AMS-szabályzatok (például a Locator vagy a ContentKeyAuthorizationPolicy) esetében a korlát 1 000 000 szabályzat. Ha mindig ugyanazokat a napokat/hozzáférési engedélyeket használja (például olyan keresők szabályzatait, amelyek hosszú ideig érvényben maradnak, vagyis nem feltöltött szabályzatokat), a szabályzatazonosítónak is ugyanannak kell lennie. További információ [ebben](media-services-dotnet-manage-entities.md#limit-access-policies) a témakörben érhető el.
 
-hello következő kód bemutatja, hogyan toocreate egy eszköz feltöltése a media fájl toohello eszköz, a feladat tootransform hello eszköz feladat futtatása, és hozzon létre egy lokátor toostream a videót.
+A következő kód bemutatja, hogyan hozhat létre egy adategységet, tölthet fel az adategységbe egy médiafájlt, futtathat le egy feladatot az adategység átalakításához, és hozhat létre egy keresőt a videó továbbításához.
 
-A kód használatához szüksége tooset Media Services-fiók mentése. Egy fiók beállításával kapcsolatos információkért lásd: [hogyan tooCreate Media Services-fiók](media-services-portal-create-account.md).
+A kód használatához először létre kell hoznia egy Media Services-fiókot. A fiók létrehozásával kapcsolatos információk: [Media Services-fiók létrehozása](media-services-portal-create-account.md)
 
-Helyettesítse be a hello "clientId" és "clientSecret" változók értékeit. hello kód egy helyileg tárolt fájlt is használ. A saját fájl toouse kell tooprovide.
+A „clientId” és „clientSecret” változó helyére helyettesítse be a saját értékeit. A kód egy helyileg tárolt fájlt is használ. Meg kell adnia a saját használandó fájlját.
 
     import java.io.*;
     import java.security.NoSuchAlgorithmException;
@@ -93,22 +93,22 @@ Helyettesítse be a hello "clientId" és "clientSecret" változók értékeit. h
         {
 
             try {
-                // Set up hello MediaContract object toocall into hello Media Services account
+                // Set up the MediaContract object to call into the Media Services account
                 Configuration configuration = MediaConfiguration.configureWithOAuthAuthentication(
                 mediaServiceUri, oAuthUri, clientId, clientSecret, scope);
                 mediaService = MediaService.create(configuration);
 
 
-                // Upload a local file tooan Asset
+                // Upload a local file to an Asset
                 AssetInfo uploadAsset = uploadFileAndCreateAsset("BigBuckBunny.mp4");
                 System.out.println("Uploaded Asset Id: " + uploadAsset.getId());
 
 
-                // Transform hello Asset
+                // Transform the Asset
                 AssetInfo encodedAsset = encode(uploadAsset);
                 System.out.println("Encoded Asset Id: " + encodedAsset.getId());
 
-                // Create hello Streaming Origin Locator
+                // Create the Streaming Origin Locator
                 String url = getStreamingOriginLocator(encodedAsset);
 
                 System.out.println("Origin Locator URL: " + url);
@@ -140,24 +140,24 @@ Helyettesítse be a hello "clientId" és "clientSecret" változók értékeit. h
             uploadAccessPolicy = mediaService
                 .create(AccessPolicy.create("uploadAccessPolicy", 15.0, EnumSet.of(AccessPolicyPermission.WRITE)));
 
-            // Create a Locator using hello AccessPolicy and Asset
+            // Create a Locator using the AccessPolicy and Asset
             uploadLocator = mediaService
                 .create(Locator.create(uploadAccessPolicy.getId(), resultAsset.getId(), LocatorType.SAS));
 
-            // Create hello Blob Writer using hello Locator
+            // Create the Blob Writer using the Locator
             uploader = mediaService.createBlobWriter(uploadLocator);
 
             File file = new File("BigBuckBunny.mp4"); 
 
-            // hello local file that will be uploaded tooyour Media Services account
+            // The local file that will be uploaded to your Media Services account
             InputStream input = new FileInputStream(file);
 
             System.out.println("Uploading " + fileName);
 
-            // Upload hello local file toohello asset
+            // Upload the local file to the asset
             uploader.createBlockBlob(fileName, input);
 
-            // Inform Media Services about hello uploaded files
+            // Inform Media Services about the uploaded files
             mediaService.action(AssetFile.createFileInfos(resultAsset.getId()));
             System.out.println("Uploaded Asset File " + fileName);
 
@@ -167,15 +167,15 @@ Helyettesítse be a hello "clientId" és "clientSecret" változók értékeit. h
             return resultAsset;
         }
 
-        // Create a Job that contains a Task tootransform hello Asset
+        // Create a Job that contains a Task to transform the Asset
         private static AssetInfo encode(AssetInfo assetToEncode)
             throws ServiceException, InterruptedException {
 
-            // Retrieve hello list of Media Processors that match hello name
+            // Retrieve the list of Media Processors that match the name
             ListResult<MediaProcessorInfo> mediaProcessors = mediaService
                             .list(MediaProcessor.list().set("$filter", String.format("Name eq '%s'", preferedEncoder)));
 
-            // Use hello latest version of hello Media Processor
+            // Use the latest version of the Media Processor
             MediaProcessorInfo mediaProcessor = null;
             for (MediaProcessorInfo info : mediaProcessors) {
                 if (null == mediaProcessor || info.getVersion().compareTo(mediaProcessor.getVersion()) > 0) {
@@ -185,7 +185,7 @@ Helyettesítse be a hello "clientId" és "clientSecret" változók értékeit. h
 
             System.out.println("Using Media Processor: " + mediaProcessor.getName() + " " + mediaProcessor.getVersion());
 
-            // Create a task with hello specified Media Processor
+            // Create a task with the specified Media Processor
             String outputAssetName = String.format("%s as %s", assetToEncode.getName(), encodingPreset);
             String taskXml = "<taskBody><inputAsset>JobInputAsset(0)</inputAsset>"
                     + "<outputAsset assetCreationOptions=\"0\"" // AssetCreationOptions.None
@@ -194,27 +194,27 @@ Helyettesítse be a hello "clientId" és "clientSecret" változók értékeit. h
             Task.CreateBatchOperation task = Task.create(mediaProcessor.getId(), taskXml)
                     .setConfiguration(encodingPreset).setName("Encoding");
 
-            // Create hello Job; this automatically schedules and runs it.
+            // Create the Job; this automatically schedules and runs it.
             Job.Creator jobCreator = Job.create()
-                    .setName(String.format("Encoding %s too%s", assetToEncode.getName(), encodingPreset))
+                    .setName(String.format("Encoding %s to %s", assetToEncode.getName(), encodingPreset))
                     .addInputMediaAsset(assetToEncode.getId()).setPriority(2).addTaskCreator(task);
             JobInfo job = mediaService.create(jobCreator);
 
             String jobId = job.getId();
             System.out.println("Created Job with Id: " + jobId);
 
-            // Check toosee if hello Job has completed
+            // Check to see if the Job has completed
             checkJobStatus(jobId);
-            // Done with hello Job
+            // Done with the Job
 
-            // Retrieve hello output Asset
+            // Retrieve the output Asset
             ListResult<AssetInfo> outputAssets = mediaService.list(Asset.list(job.getOutputAssetsLink()));
             return outputAssets.get(0);
         }
 
 
         public static String getStreamingOriginLocator(AssetInfo asset) throws ServiceException {
-            // Get hello .ISM AssetFile
+            // Get the .ISM AssetFile
             ListResult<AssetFileInfo> assetFiles = mediaService.list(AssetFile.list(asset.getAssetFilesLink()));
             AssetFileInfo streamingAssetFile = null;
             for (AssetFileInfo file : assetFiles) {
@@ -232,7 +232,7 @@ Helyettesítse be a hello "clientId" és "clientSecret" változók értékeit. h
             originAccessPolicy = mediaService.create(
                     AccessPolicy.create("Streaming policy", durationInMinutes, EnumSet.of(AccessPolicyPermission.READ)));
 
-            // Create a Locator using hello AccessPolicy and Asset
+            // Create a Locator using the AccessPolicy and Asset
             originLocator = mediaService
                     .create(Locator.create(originAccessPolicy.getId(), asset.getId(), LocatorType.OnDemandOrigin));
 
@@ -247,7 +247,7 @@ Helyettesítse be a hello "clientId" és "clientSecret" változók értékeit. h
                 // Sleep for 5 seconds
                 Thread.sleep(5000);
 
-                // Query hello updated Job state
+                // Query the updated Job state
                 jobState = mediaService.get(Job.get(jobId)).getState();
                 System.out.println("Job state: " + jobState);
 

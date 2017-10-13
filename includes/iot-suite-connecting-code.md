@@ -1,24 +1,24 @@
-## <a name="specify-hello-behavior-of-hello-iot-device"></a>Az IoT-eszközök hello hello viselkedésének megadása
+## <a name="specify-the-behavior-of-the-iot-device"></a>Az IoT eszköz viselkedésének meghatározása
 
-az IoT-központ szerializáló ügyféloldali kódtár hello használ a modell toospecify hello hello fióktartományokban hello eszközt az IoT-központ.
+Az IoT Hub szerializáló ügyfélkódtára egy modell alapján határozza meg az eszköz és az IoT Hub közötti üzenetek formátumát.
 
-1. Adja hozzá a következő változók deklarációja után hello hello `#include` utasításokat. Cserélje le a hello helyőrző értékeket [eszközazonosító] és [eszközkulcs] az eszköz a távoli felügyeleti megoldás irányítópultja hello feljegyzett értékekkel. Hello megoldás irányítópult tooreplace [IOT hubbal Name] az IoT Hub állomásnév hello használata. Ha például az IoT Hub gazdaneve **contoso.azure-devices.net**, cserélje le az [IoTHub Name] helyőrzőt a **contoso** értékre:
+1. Adja hozzá a következő változódeklarációkat az `#include` utasítások után. Cserélje le a [Device Id] és a [Device Key] helyőrzőértékeket az eszközhöz tartozó értékekre a távoli figyelési megoldás irányítópultja alapján. Cserélje le az [IoTHub Name] értéket a megoldás irányítópultján található IoT Hub gazdanévre. Ha például az IoT Hub gazdaneve **contoso.azure-devices.net**, cserélje le az [IoTHub Name] helyőrzőt a **contoso** értékre:
    
     ```c
     static const char* deviceId = "[Device Id]";
     static const char* connectionString = "HostName=[IoTHub Name].azure-devices.net;DeviceId=[Device Id];SharedAccessKey=[Device Key]";
     ```
 
-1. Adja hozzá a következő kód toodefine hello modell, amely lehetővé teszi az IoT hubbal hello eszköz toocommunicate hello. Ez a modell adott hello eszközt adja meg:
+1. Adja hozzá a következő kódot az eszköz és az IoT Hub kommunikációját lehetővé tévő modell létrehozásához. Ez a modell meghatározza, hogy az eszköz:
 
    - A hőmérsékletre, a külső hőmérsékletre és a páratartalomra vonatkozó adatokat, valamint egy eszközazonosítót küldhet telemetriaként.
-   - Elküldheti hello eszköz tooIoT Hub metaadatait. hello eszköz alapvető metaadatok elküldi egy **deviceinfo információja** indításkor objektum.
-   - Elküldheti a jelentett tulajdonságok toohello eszköz iker az IoT-központot. Ezek a jelentett tulajdonságok konfigurációs, eszköz- és rendszertulajdonságok szerint vannak csoportosítva.
-   - Is kap, és a kívánt tulajdonsága nincs beállítva a hello eszköz iker az IoT hubon rájuk.
-   - Válaszolhassanak toohello **újraindítás** és **InitiateFirmwareUpdate** közvetlen metódusokra hello megoldás portálon keresztül. hello eszköz küldi hello közvetlen módszerekkel kapcsolatos információk jelentett tulajdonságok használatát támogatja.
+   - Metaadatokat küldhet az eszközzel kapcsolatban az IoT Hub számára. Az eszköz az alapszintű metaadatokat egy **DeviceInfo** objektumban küldi el indításkor.
+   - Jelentett tulajdonságokat küldhet az IoT Hubban található ikereszköznek. Ezek a jelentett tulajdonságok konfigurációs, eszköz- és rendszertulajdonságok szerint vannak csoportosítva.
+   - Fogadhatja az IoT Hubban található ikereszköz kívánt tulajdonságait, és reagálhat rájuk.
+   - Válaszolhat a megoldásportálon meghívott **Reboot** és **InitiateFirmwareUpdate** közvetlen metódusokra. Az eszköz jelentett tulajdonságokkal küld információkat azokról a közvetlen metódusokról, amelyeket támogat.
    
     ```c
-    // Define hello Model
+    // Define the Model
     BEGIN_NAMESPACE(Contoso);
 
     /* Reported properties */
@@ -74,7 +74,7 @@ az IoT-központ szerializáló ügyféloldali kódtár hello használ a modell t
       WITH_DESIRED_PROPERTY(double, TemperatureMeanValue, onDesiredTemperatureMeanValue),
       WITH_DESIRED_PROPERTY(uint8_t, TelemetryInterval, onDesiredTelemetryInterval),
 
-      /* Direct methods implemented by hello device */
+      /* Direct methods implemented by the device */
       WITH_METHOD(Reboot),
       WITH_METHOD(InitiateFirmwareUpdate, ascii_char_ptr, FwPackageURI),
 
@@ -85,15 +85,15 @@ az IoT-központ szerializáló ügyféloldali kódtár hello használ a modell t
     END_NAMESPACE(Contoso);
     ```
 
-## <a name="implement-hello-behavior-of-hello-device"></a>Hello viselkedés hello eszköz
-Ezután adja hozzá a kódot, amely hello modellben definiált hello viselkedését.
+## <a name="implement-the-behavior-of-the-device"></a>Az eszköz viselkedésének megvalósítása
+Most adja hozzá a kódot, amely megvalósítja a modellben meghatározott viselkedést.
 
-1. Adja hozzá a következő funkciók, amelyet kezelni kívánt hello tulajdonsága nincs beállítva a hello megoldás irányítópultja hello. A kívánt tulajdonságok hello modell határozzák meg:
+1. Adja hozzá a következő függvényeket, amelyek a megoldás irányítópultján beállított kívánt tulajdonságokat kezelik. A modellben a következő kívánt tulajdonságok vannak meghatározva:
 
     ```c
     void onDesiredTemperatureMeanValue(void* argument)
     {
-      /* By convention 'argument' is of hello type of hello MODEL */
+      /* By convention 'argument' is of the type of the MODEL */
       Thermostat* thermostat = argument;
       printf("Received a new desired_TemperatureMeanValue = %f\r\n", thermostat->TemperatureMeanValue);
 
@@ -101,13 +101,13 @@ Ezután adja hozzá a kódot, amely hello modellben definiált hello viselkedés
 
     void onDesiredTelemetryInterval(void* argument)
     {
-      /* By convention 'argument' is of hello type of hello MODEL */
+      /* By convention 'argument' is of the type of the MODEL */
       Thermostat* thermostat = argument;
       printf("Received a new desired_TelemetryInterval = %d\r\n", thermostat->TelemetryInterval);
     }
     ```
 
-1. Adja hozzá a következő funkciók, amelyek kezelik a hello közvetlen módszerek hello IoT-központ elindításra hello. Közvetlen módszerekhez hello modell határozzák meg:
+1. Adja hozzá a következő függvényeket, amelyek az IoT Hubon keresztül meghívott közvetlen metódusokat kezelik. A modellben a következő közvetlen metódusok vannak meghatározva:
 
     ```c
     /* Handlers for direct methods */
@@ -130,26 +130,26 @@ Ezután adja hozzá a kódot, amely hello modellben definiált hello viselkedés
     }
     ```
 
-1. Adja hozzá a következő függvény által küldött üzenet előre konfigurált toohello megoldás hello:
+1. Adja hozzá a következő függvényt, amely egy üzenetet küld az előre konfigurált megoldásnak:
    
     ```c
-    /* Send data tooIoT Hub */
+    /* Send data to IoT Hub */
     static void sendMessage(IOTHUB_CLIENT_HANDLE iotHubClientHandle, const unsigned char* buffer, size_t size)
     {
       IOTHUB_MESSAGE_HANDLE messageHandle = IoTHubMessage_CreateFromByteArray(buffer, size);
       if (messageHandle == NULL)
       {
-        printf("unable toocreate a new IoTHubMessage\r\n");
+        printf("unable to create a new IoTHubMessage\r\n");
       }
       else
       {
         if (IoTHubClient_SendEventAsync(iotHubClientHandle, messageHandle, NULL, NULL) != IOTHUB_CLIENT_OK)
         {
-          printf("failed toohand over hello message tooIoTHubClient");
+          printf("failed to hand over the message to IoTHubClient");
         }
         else
         {
-          printf("IoTHubClient accepted hello message for delivery\r\n");
+          printf("IoTHubClient accepted the message for delivery\r\n");
         }
 
         IoTHubMessage_Destroy(messageHandle);
@@ -158,7 +158,7 @@ Ezután adja hozzá a kódot, amely hello modellben definiált hello viselkedés
     }
     ```
 
-1. Adja hozzá a következő fut, amikor az eszköz hello küldött új jelentett tulajdonságértékek előre konfigurált toohello megoldás visszahívás-kezelő hello:
+1. Adja hozzá a következő visszahíváskezelőt, amely akkor fut, ha az eszköz új jelentett tulajdonságértékeket küldött az előre konfigurált megoldásnak:
 
     ```c
     /* Callback after sending reported properties */
@@ -169,15 +169,15 @@ Ezután adja hozzá a kódot, amely hello modellben definiált hello viselkedés
     }
     ```
 
-1. Hello következő tooconnect az előre konfigurált toohello megoldás hello felhőben működik, és exchange-adatok hozzáadása. Ezt a funkciót hajtja végre a lépéseket követve hello:
+1. Adja hozzá a következő függvényt, amely összekapcsolja az eszközt az előre konfigurált megoldással a felhőben, és adatcserét végez. Ez a függvény a következő lépéseket hajtja végre:
 
-    - Hello platform inicializál.
-    - Hello szerializálási függvénytár hello Contoso névtér regisztrálja.
-    - Inicializálja hello ügyfél hello eszköz kapcsolati karakterlánccal.
-    - Hello példányt létrehozni **termosztát** modell.
+    - Inicializálja a platformot.
+    - Regisztrálja a Contoso névteret a szerializációs kódtárban.
+    - Inicializálja az ügyfelet az eszközkapcsolati karakterlánccal.
+    - Létrehozza a **Thermostat** modell egy példányát.
     - Létrehozza és elküldi a jelentett tulajdonságértékeket.
     - Elküld egy **DeviceInfo** objektumot.
-    - Létrehoz egy hurok toosend telemetriai másodpercenként.
+    - Létrehoz egy hurkot, és másodpercenként telemetriát küld.
     - Deinicializálja az összes erőforrást.
 
       ```c
@@ -185,13 +185,13 @@ Ezután adja hozzá a kódot, amely hello modellben definiált hello viselkedés
       {
         if (platform_init() != 0)
         {
-          printf("Failed tooinitialize hello platform.\n");
+          printf("Failed to initialize the platform.\n");
         }
         else
         {
           if (SERIALIZER_REGISTER_NAMESPACE(Contoso) == NULL)
           {
-            printf("Unable tooSERIALIZER_REGISTER_NAMESPACE\n");
+            printf("Unable to SERIALIZER_REGISTER_NAMESPACE\n");
           }
           else
           {
@@ -203,10 +203,10 @@ Ezután adja hozzá a kódot, amely hello modellben definiált hello viselkedés
             else
             {
       #ifdef MBED_BUILD_TIMESTAMP
-              // For mbed add hello certificate information
+              // For mbed add the certificate information
               if (IoTHubClient_SetOption(iotHubClientHandle, "TrustedCerts", certificates) != IOTHUB_CLIENT_OK)
               {
-                  printf("Failed tooset option \"TrustedCerts\"\n");
+                  printf("Failed to set option \"TrustedCerts\"\n");
               }
       #endif // MBED_BUILD_TIMESTAMP
               Thermostat* thermostat = IoTHubDeviceTwin_CreateThermostat(iotHubClientHandle);
@@ -229,17 +229,17 @@ Ezután adja hozzá a kódot, amely hello modellben definiált hello viselkedés
                 thermostat->System.Platform = "Plat 9.75";
                 thermostat->System.Processor = "i3-7";
                 thermostat->System.SerialNumber = "SER21";
-                /* Specify hello signatures of hello supported direct methods */
-                thermostat->SupportedMethods = "{\"Reboot\": \"Reboot hello device\", \"InitiateFirmwareUpdate--FwPackageURI-string\": \"Updates device Firmware. Use parameter FwPackageURI toospecifiy hello URI of hello firmware file\"}";
+                /* Specify the signatures of the supported direct methods */
+                thermostat->SupportedMethods = "{\"Reboot\": \"Reboot the device\", \"InitiateFirmwareUpdate--FwPackageURI-string\": \"Updates device Firmware. Use parameter FwPackageURI to specifiy the URI of the firmware file\"}";
 
-                /* Send reported properties tooIoT Hub */
+                /* Send reported properties to IoT Hub */
                 if (IoTHubDeviceTwin_SendReportedStateThermostat(thermostat, deviceTwinCallback, NULL) != IOTHUB_CLIENT_OK)
                 {
                   printf("Failed sending serialized reported state\n");
                 }
                 else
                 {
-                  printf("Send DeviceInfo object tooIoT Hub at startup\n");
+                  printf("Send DeviceInfo object to IoT Hub at startup\n");
       
                   thermostat->ObjectType = "DeviceInfo";
                   thermostat->IsSimulatedDevice = 0;
@@ -296,7 +296,7 @@ Ezután adja hozzá a kódot, amely hello modellben definiált hello viselkedés
       }
     ```
    
-    Összehasonlításul, Íme egy minta **Telemetriai** üzenet toohello előre konfigurált megoldást:
+    Referenciaként itt egy példa az előre konfigurált megoldás számára küldött **telemetria** üzenetekre:
    
     ```
     {"DeviceId":"mydevice01", "Temperature":50, "Humidity":50, "ExternalTemperature":55}

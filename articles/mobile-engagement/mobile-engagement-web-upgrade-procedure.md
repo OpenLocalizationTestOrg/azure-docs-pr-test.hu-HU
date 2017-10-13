@@ -1,6 +1,6 @@
 ---
-title: "Mobile Engagement webes SDK frissítési eljárásait aaaAzure |} Microsoft Docs"
-description: "Azure Mobile Engagement hello legújabb frissítésekről és hello webes SDK eljárásai"
+title: "Az Azure Mobile Engagement webes SDK frissítési eljárásait |} Microsoft Docs"
+description: "A legújabb frissítéseket és a webszolgáltatási SDK az Azure Mobile Engagement eljárásai"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,40 +14,40 @@ ms.devlang: js
 ms.topic: article
 ms.date: 06/07/2016
 ms.author: piyushjo
-ms.openlocfilehash: a2df65904c6b56584ce6588ed26a9b79f3aa27ea
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: afa8037dcb7a53042fa606e2c4014b442d4be326
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-mobile-engagement-web-sdk-upgrade-procedures"></a>Az Azure Mobile Engagement webes SDK frissítési eljárások
-Ha hello Azure Mobile Engagement webszolgáltatási SDK egy korábbi verziója már a webes alkalmazás van integrálva, akkor tooconsider hello hello SDK frissítéskor a következő pontok.
+Ha az Azure Mobile Engagement webszolgáltatási SDK egy korábbi verzióját már a webes alkalmazás van integrálva, vegye figyelembe a következő szempontokat, amikor frissít, az SDK-t szeretné.
 
-Ha több hello Mobile Engagement SDK-t webes verzió kihagyott, akkor toocomplete számos eljárást hello frissítési folyamat során. Például, ha telepít át 1.4.0 too1.6.0, első kövesse hello eljárások tooupgrade a 1.4.0 too1.5.0. Ezután kövesse a 1.5.0 hello eljárások tooupgrade too1.6.0.
+Ha kihagyja a Mobile Engagement webes SDK több verziója, szükség lehet a frissítési folyamat során számos műveletek végrehajtásához. Például ha áttelepít 1.4.0 1.6.0, először eljárások a 1.5.0 1.4.0 frissítésével. Ezután kövesse 1.6.0 1.5.0 frissítésével.
 
-Bármelyik verzióra frissít, bármely korábbi verziója hello fájl azure-engagement.js cserélje hello hello fájl legújabb verzióját.
+Bármelyik verzióra frissít, a fájl azure-engagement.js korábbi verzióját cserélje le a legújabb verzióját.
 
-## <a name="upgrade-from-121-too200"></a>Frissítés a 1.2.1-es too2.0.0
-Ez a szakasz ismerteti, hogyan toomigrate egy Mobile Engagement webes SDK-integráció hello Capptain szolgáltatásból által kínált Capptain SAS tooan Azure Mobile Engagement-alkalmazást. Ha az áttelepítés egy korábbi adjon tájékoztatást hello Capptain webhely toofirst too1.2.1 át, és ezután alkalmazza az alábbi eljárásokat hello.
+## <a name="upgrade-from-121-to-200"></a>2.0.0 1.2.1-es frissítésével
+Ez a szakasz ismerteti, hogyan telepíthetők át a Mobile Engagement webes SDK-integráció a Capptain szolgáltatás, amelyet Capptain SAS-alkalmazásokhoz az Azure Mobile Engagement. Ha egy korábbi verziójáról telepít, tekintse át a Capptain webhely 1.2.1-es először át, és ezután alkalmazza az alábbi eljárásokat.
 
-Mobile Engagement webes SDK hello ezen verziója nem támogatja a Samsung intelligens TV, Opera TV, webOS vagy hello Reach szolgáltatás.
+A Mobile Engagement webes SDK ezen verziója nem támogatja a Samsung intelligens TV, Opera TV, webOS vagy a Reach-szolgáltatás.
 
 > [!IMPORTANT]
-> Capptain és Azure Mobile Engagement vannak nem hello ugyanazt a szolgáltatást. a következő eljárás hello mutatja be, hogyan csak toomigrate hello ügyfélalkalmazás. Áttelepítése a Mobile Engagement webes SDK hello alkalmazásban hello rendszer nem telepíti át az adatokat egy Capptain server tooa a Mobile Engagement kiszolgálóról.
+> Capptain és Azure Mobile Engagement nincsenek ugyanazt a szolgáltatást. Az alábbi eljárás csak hogyan telepítheti át az ügyfélalkalmazás mutatja be. A Mobile Engagement webes SDK az alkalmazás áttelepítése rendszer nem telepíti át az adatok egy Capptain kiszolgálóról a Mobile Engagement-kiszolgálóhoz.
 > 
 > 
 
 ### <a name="javascript-files"></a>JavaScript-fájlok
-Csere hello fájl capptain-sdk.js hello az azure-engagement.js fájlt, és ennek megfelelően módosítsa a parancsfájl importálja.
+A fájl capptain sdk.js cserélje le az azure-engagement.js fájlt, és ennek megfelelően módosítsa a parancsfájl importálja.
 
 ### <a name="remove-capptain-reach"></a>Capptain Reach eltávolítása
-Mobile Engagement webes SDK hello ezen verziója nem támogatja a hello Reach szolgáltatás. Az alkalmazás Capptain Reach integrálva, ha szüksége van-e tooremove azt.
+A Mobile Engagement webes SDK ezen verziója nem támogatja a Reach-szolgáltatás. Ha az alkalmazás Capptain Reach integrálva, el kell távolítania azt.
 
-Távolítsa el a hello elérni CSS importálása a lapról, és törölje a hello kapcsolódó .css-fájljában (capptain-reach.css, alapértelmezés szerint).
+Távolítsa el a CSS elérni importálása a lapról, és törli a kapcsolódó .css-fájl (capptain-reach.css, alapértelmezés szerint).
 
-Törölje a következő Reach erőforrások hello: hello Bezárás kép (capptain-close.png, alapértelmezés szerint) és hello márka ikon (capptain-értesítés-ikonra, alapértelmezés szerint).
+A következő Reach erőforrások törlése: a Bezárás lemezkép (capptain-close.png, alapértelmezés szerint) és a márka ikon (capptain-értesítés-ikonra, alapértelmezés szerint).
 
-Távolítsa el a hello UI elérni az alkalmazásbeli értesítések. hello alapértelmezett elrendezési így néz ki:
+Távolítsa el az alkalmazásbeli értesítésekben elérni felhasználói felülete. Az alapértelmezett elrendezési így néz ki:
 
     <!-- capptain notification -->
     <div id="capptain_notification_area" class="capptain_category_default">
@@ -64,7 +64,7 @@ Távolítsa el a hello UI elérni az alkalmazásbeli értesítések. hello alap�
       </div>
     </div>
 
-Távolítsa el a hello UI elérni a szöveg és a webes hirdetmények és szavazások esetén. hello alapértelmezett elrendezési így néz ki:
+Távolítsa el a szöveget és webes mutató hirdetmények és szavazások esetén elérni felhasználói felület. Az alapértelmezett elrendezési így néz ki:
 
     <div id="capptain_overlay" class="capptain_category_default">
       <button id="capptain_overlay_close">x</button>
@@ -77,7 +77,7 @@ Távolítsa el a hello UI elérni a szöveg és a webes hirdetmények és szavaz
       </div>
     </div>
 
-Távolítsa el a hello `reach` a konfigurációját, ha van ilyen objektum. Néz ki:
+Távolítsa el a `reach` a konfigurációját, ha van ilyen objektum. Néz ki:
 
     window.capptain = {
       [...]
@@ -89,16 +89,16 @@ Távolítsa el a hello `reach` a konfigurációját, ha van ilyen objektum. Néz
 Távolítsa el bármilyen egyéb Reach testreszabása: például kategóriák.
 
 ### <a name="remove-deprecated-apis"></a>Távolítsa el az elavult API-k
-Néhány API-kat Capptain a Mobile Engagement webes SDK hello elavultak.
+Néhány API-kat Capptain a Mobile Engagement webes SDK elavult.
 
-Távolítsa el a következő API-k hívások toohello: `agent.connect`, `agent.disconnect`, `agent.pause`, és `agent.sendMessageToDevice`.
+Távolítsa el a következő API-k bármely hívások: `agent.connect`, `agent.disconnect`, `agent.pause`, és `agent.sendMessageToDevice`.
 
-Távolítsa el a következő visszahívások a Capptain konfigurációból hello minden példányát: `onConnected`, `onDisconnected`, `onDeviceMessageReceived`, és `onPushMessageReceived`.
+Távolítsa el a következő visszahívások minden példányát a Capptain konfigurációjából: `onConnected`, `onDisconnected`, `onDeviceMessageReceived`, és `onPushMessageReceived`.
 
 ### <a name="configuration"></a>Konfiguráció
-A Mobile Engagement egy kapcsolati karakterlánc tooconfigure SDK azonosítók, például hello azonosítót használja.
+A Mobile Engagement SDK-azonosítókat, például az alkalmazásazonosító konfigurálása egy kapcsolati karakterláncot használ.
 
-Hello Alkalmazásazonosító cserélje le a kapcsolati karakterláncot. Vegye figyelembe, hogy hello globális objektum hello SDK konfigurációs módosul a `capptain` túl`azureEngagement`.
+Az Alkalmazásazonosító cserélje le a kapcsolati karakterláncot. Vegye figyelembe, hogy az SDK-konfigurációhoz a globális objektum-ről változik `capptain` való `azureEngagement`.
 
 Mielőtt áttelepítése:
 
@@ -114,10 +114,10 @@ Mielőtt áttelepítése:
       [...]
     };
 
-hello kapcsolati karakterlánc az alkalmazás hello Azure-portálon jelenik meg.
+A kapcsolati karakterlánc az alkalmazás az Azure-portálon jelenik meg.
 
 ### <a name="javascript-apis"></a>JavaScript API-k
-hello globális JavaScript objektum `window.capptain` át lett nevezve `window.azureEngagement` hello is használhat, de `window.engagement` alias az API-hívásokhoz. Hello alias toodefine hello SDK konfigurációja nem használható.
+A globális JavaScript objektum `window.capptain` át lett nevezve `window.azureEngagement` is használhat, de a `window.engagement` alias az API-hívásokhoz. Az alias nem használható az SDK-konfiguráció.
 
 Például `capptain.deviceId` válik `engagement.deviceId`, `capptain.agent.startActivity` válik `engagement.agent.startActivity`, és így tovább.
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaA gyakorlati útmutatóban toodesigning biztonságos állapotfigyelő gondot megoldások Azure-ban |} Microsoft Docs"
-description: " Ez a cikk segít megérteni, hogyan tooimprove biztonsági a egészségügyi megoldások Azure-szolgáltatások és szolgáltatásokat hello segítségével konfigurálja. "
+title: "Az Azure-ban biztonságos egészségügyi megoldások gyakorlati útmutatóban |} Microsoft Docs"
+description: " Ez a cikk segítségével megismerheti, hogyan lehet fokozni a egészségügyi megoldások biztonságát az Azure-szolgáltatások és a konfigurált szolgáltatások használatával. "
 services: security
 documentationcenter: na
 author: TomShinder
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/07/2017
 ms.author: terrylan
-ms.openlocfilehash: bf8812402c2181f033f5d71e1814fd1b4ee4fb2f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 34ded89eb7fe005be2341f96e5b883ec73d9e0a5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="a-practical-guide-toodesigning-secure-health-care-solutions-in-azure"></a>A gyakorlati útmutatóban toodesigning biztonságos egészségügyi megoldások Azure-ban
-Állapotfigyelő iparági indítások, rendszerintegrátorok (SIs), független szoftvergyártók (ISV-k) és annak eldöntéséhez, hogy a move tooAzure egészségügyi intézmények útmutatást, amely segít az átfogó biztonsági vezérlők toomeet megfelelőségi kötelezettségek keres.
+# <a name="a-practical-guide-to-designing-secure-health-care-solutions-in-azure"></a>Az Azure-ban biztonságos egészségügyi megoldások gyakorlati útmutatóban
+Állapotfigyelő iparági indítások, rendszerintegrátorok (SIs), független szoftvergyártók (ISV-k) és annak eldöntéséhez, hogy az Azure-bA áthelyezésre útmutatást, amely segít keres egészségügyi intézmények átfogó biztonsági vezérlők a megfelelőségi kötelezettségek teljesítése érdekében.
 
-[A gyakorlati útmutatóban tooDesigning biztonságos egészségügy megoldások a Microsoft Azure-ban](https://aka.ms/azureindustrysecurity) , valamit megismerheti, hogyan javíthatja biztonsági segítségével a megoldások hello Azure-szolgáltatásokat és funkciókat, amelyeket konfigurálhat a követelmények alapján.
-hello tartalom három fő szakaszra oszlik:
+[A biztonságos-megoldások egészségügy tervezése a Microsoft Azure-ban gyakorlati útmutatóban](https://aka.ms/azureindustrysecurity) , valamit megismerheti, hogyan javíthatja biztonsági számára a megoldások Azure-szolgáltatásokat és funkciókat, amelyeket konfigurálhat a követelmények alapján.
+A tartalom három fő szakaszra oszlik:
 
 1. Szempontok útmutató technológiával felhő kockázatkezelés, beleértve a megosztott felelőssége, egy információs biztonsági felügyeleti rendszer, ismertetése iparág és helyi szabályozásainak megfelelően, és a szabványos működési eljárásainak létrehozó.
-2. Kulcs biztonsági alapelvek, amelyek mindkét igazítva tooa az általános információkat biztonsági management szabványos, például ISO 27001, és a szabványos fejlesztési folyamatokkal, például a Microsoft biztonságos fejlesztési Életciklussal (SDL).
-3. Alkalmazására alapelv toouse hello bemutatásához igazítás egy megoldás olyan esetekben tervezővel perspektíva igazított toohello biztonsági információkezelés szabványos követelmények hello megoldások esetén.
+2. Egy általános információkat biztonsági felügyeleti standard például ISO 27001, és a szokásos fejlesztési folyamatokkal, például a Microsoft biztonságos fejlesztési Életciklussal (SDL) illeszkednek, amelyek mind kulcsfontosságú biztonsági alapelveket.
+3. A kulcs alapelvek esetekben szerint használandó bemutatásához igazítás megoldás felelős mérnök szempontjából, ahol a megoldás követelményei a biztonsági információkezelés szabványos igazodik alkalmazása.
 
-Reméljük, látnia [A gyakorlati útmutatóban tooDesigning biztonságos egészségügy megoldások](https://aka.ms/azureindustrysecurity) hasznos lehet, és ha esetleges kérdéseivel és a javaslatok, ossza meg velünk által az alábbi megjegyzést.
+Reméljük, látnia [biztonságos egészségügy megoldások kialakítása A gyakorlati útmutatóban](https://aka.ms/azureindustrysecurity) hasznos lehet, és ha esetleges kérdéseivel és a javaslatok, ossza meg velünk által az alábbi megjegyzést.

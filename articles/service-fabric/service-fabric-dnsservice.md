@@ -1,6 +1,6 @@
 ---
-title: "Service Fabric DNS-szolgáltatás aaaAzure |} Microsoft Docs"
-description: "Használja a Service Fabric DNS-szolgáltatás felderítéséhez a mikroszolgáltatások hello fürtben található."
+title: "Az Azure Service Fabric DNS-szolgáltatás |} Microsoft Docs"
+description: "A Service Fabric dns szolgáltatás mikroszolgáltatások létrehozására az a fürtben található felderítésének segítségével."
 services: service-fabric
 documentationcenter: .net
 author: msfussell
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 7/27/2017
 ms.author: msfussell
-ms.openlocfilehash: fa536f0e41f52c4942702d0a1bdcd3ed7d418d6d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9871bc5aa4e74ab0faef401d67c4e9558eb5e14b
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="dns-service-in-azure-service-fabric"></a>Az Azure Service Fabric DNS-szolgáltatás
-hello DNS-szolgáltatás egy opcionális-szolgáltatás, amely a fürt toodiscover engedélyezheti az egyéb szolgáltatások hello DNS protokoll használatát.
+A DNS szolgáltatás nem egy választható-szolgáltatás, amely a fürt felderíteni a más szolgáltatásokkal, DNS protokoll használatával engedélyezheti.
 
-Számos szolgáltatás, főleg indexelése szolgáltatások lehet egy meglévő URL-címet, és képes tooresolve őket hello szabványos DNS protokoll (helyett hello szolgáltatás protokoll) használatával kívánatos, különösen a "növekedési és az eltolás mértékét megadó" forgatókönyvek. hello DNS-szolgáltatás lehetővé teszi, hogy Ön toomap DNS-nevek tooa szolgáltatás neve, és ezért a végpont IP-címeket feloldani. 
+Számos szolgáltatás, főleg indexelése szolgáltatások lehet egy meglévő URL-címet, és tudnak majd hárítsa el őket a szabványos DNS protokoll (ahelyett, hogy a szolgáltatás protokoll) használatával kívánatos, különösen a "növekedési és az eltolás mértékét megadó" forgatókönyvek. A DNS-szolgáltatás lehetővé teszi, hogy a DNS-nevek hozzárendelése egy szolgáltatásnevet, és ezért a végpont IP-címeket feloldani. 
 
-a maps pedig hello szolgáltatás tooreturn hello szolgáltatási végpont által megoldott DNS-nevek tooservice nevek hello DNS-szolgáltatás. hello DNS-név hello szolgáltatás létrehozása a hello időpontjában valósul meg. 
+A DNS-szolgáltatás DNS-nevek viszont szünteti meg a szolgáltatás a szolgáltatás végpontjának vissza szolgáltatásnevek rendeli hozzá. A szolgáltatás DNS-nevét a létrehozás időpontjában valósul meg. 
 
 ![Szolgáltatás-végpontok][0]
 
-## <a name="enabling-hello-dns-service"></a>Hello DNS szolgáltatás engedélyezése
-Először tooenable hello DNS-szolgáltatás szükséges a fürt. Hello sablon lekérése hello fürt, amelyet az toodeploy. Vagy használjon hello is [mintasablon használatával](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype) vagy Resource Manager-sablon létrehozása. Hello DNS-szolgáltatás engedélyezéséhez az alábbi lépésekkel hello:
+## <a name="enabling-the-dns-service"></a>A DNS szolgáltatás engedélyezése
+Először lehetővé kell tenni a DNS-szolgáltatás a fürtön. Szerezze be a sablon a fürt, amely számára telepíteni kívánja. Használhatja a [mintasablon használatával](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype) vagy Resource Manager-sablon létrehozása. Engedélyezheti a DNS-szolgáltatás a következő lépéseket:
 
-1. Ellenőrizze, hogy hello `apiversion` értéke túl`2017-07-01-preview` a hello `Microsoft.ServiceFabric/clusters` erőforrás, és ha nem, frissítheti a következő kódrészletet hello látható:
+1. Ellenőrizze, hogy a `apiversion` értékre van állítva `2017-07-01-preview` a a `Microsoft.ServiceFabric/clusters` erőforrás, és ha nem, frissítheti a következő kódrészletben látható:
 
     ```json
     {
@@ -44,7 +44,7 @@ Először tooenable hello DNS-szolgáltatás szükséges a fürt. Hello sablon l
     }
     ```
 
-2. Most lehetővé teszi a hello DNS-szolgáltatás hello következő hozzáadásával `addonFeatures` szakasz után hello `fabricSettings` szakaszban, ahogy az alábbi részlet hello: 
+2. Most lehetővé teszi a DNS-szolgáltatás a következő `addonFeatures` szakasz után a `fabricSettings` szakaszban, ahogy az a következő kódrészletet: 
 
     ```json
         "fabricSettings": [
@@ -55,18 +55,18 @@ Először tooenable hello DNS-szolgáltatás szükséges a fürt. Hello sablon l
         ],
     ```
 
-3. Miután a fürt sablon a módosítások megelőző hello frissít, alkalmazza azokat, és lehetővé teszik a frissítés befejeződött hello. Művelet befejeződése után hello DNS-rendszer szolgáltatás elindul a fürtön is nevezett `fabric:/System/DnsService` rendszer szolgáltatás szakaszban hello Service Fabric explorer. 
+3. A fürt sablon előző módosításainak frissítése után alkalmazza őket, és lehetővé teszik a frissítés befejeződött. Művelet befejeződése után a DNS-rendszer szolgáltatás elindul a fürtön is nevezett `fabric:/System/DnsService` rendszer szolgáltatás szakaszban a Service Fabric explorer. 
 
-Azt is megteheti a fürt létrehozása hello időpontjában hello DNS-szolgáltatás hello portálon keresztül is engedélyezheti. hello DNS-szolgáltatás a hello négyzet bejelölésével engedélyezhető `Include DNS service` a hello `Cluster configuration` menü, ahogy az alábbi képernyőfelvétel a hello:
+Azt is megteheti a DNS-szolgáltatás a portálon keresztül is engedélyezheti a fürt létrehozása során. A négyzet bejelölésével engedélyezheti a DNS-szolgáltatás `Include DNS service` a a `Cluster configuration` menü a következő képernyőfelvételen látható módon:
 
-![Hello portálon keresztül a DNS szolgáltatás engedélyezése][2]
+![A portálon keresztül a DNS szolgáltatás engedélyezése][2]
 
 
-## <a name="setting-hello-dns-name-for-your-service"></a>A szolgáltatás DNS-nevét hello beállítása
-Ha hello DNS-szolgáltatás fut a fürtön, állíthatja be a szolgáltatás egy DNS-nevet vagy deklaratív módon az alapértelmezett szolgáltatások hello `ApplicationManifest.xml` vagy Powershell-parancsok használatával.
+## <a name="setting-the-dns-name-for-your-service"></a>A szolgáltatás DNS-nevének beállítása
+Miután a DNS-szolgáltatás fut a fürtön, beállíthat egy DNS-nevet a szolgáltatások deklaratív módon az alapértelmezett szolgáltatások vagy a `ApplicationManifest.xml` vagy Powershell-parancsok használatával.
 
-### <a name="setting-hello-dns-name-for-a-default-service-in-hello-applicationmanifestxml"></a>Hello ApplicationManifest.xml hello DNS-név egy alapértelmezett szolgáltatás beállítása
-Nyissa meg a projektet a Visual Studio vagy a kedvenc szerkesztőt, és nyissa meg a hello `ApplicationManifest.xml` fájlt. Nyissa meg toohello alapértelmezett szolgáltatások szakaszt, és minden egyes szolgáltatás Hozzáadás hello `ServiceDnsName` attribútum. hello a következő példa bemutatja, hogyan a tooset hello hello szolgáltatás DNS-neve túl`service1.application1`
+### <a name="setting-the-dns-name-for-a-default-service-in-the-applicationmanifestxml"></a>A DNS-nevét, egy alapértelmezett szolgáltatás a ApplicationManifest.xml beállítását
+Nyissa meg a projektet a Visual Studio vagy a kedvenc szerkesztőt, és nyissa meg a `ApplicationManifest.xml` fájlt. Nyissa meg az alapértelmezett szolgáltatások szakaszt, és minden egyes szolgáltatás hozzáadása a `ServiceDnsName` attribútum. A következő példa bemutatja, hogyan kell beállítani a szolgáltatás DNS-neve`service1.application1`
 
 ```xml
     <Service Name="Stateless1" ServiceDnsName="service1.application1">
@@ -75,12 +75,12 @@ Nyissa meg a projektet a Visual Studio vagy a kedvenc szerkesztőt, és nyissa m
     </StatelessService>
     </Service>
 ```
-Hello alkalmazás lett telepítve, ha a Service Fabric explorer hello hello szolgáltatáspéldány hello DNS-neve az adott példány látható, a hello a következő ábrán látható módon: 
+Ha az alkalmazás központi telepítése, a szolgáltatáspéldány a Service Fabric Explorer ebben az esetben a DNS-nevét jeleníti meg az alábbi ábrán látható módon: 
 
 ![Szolgáltatás-végpontok][1]
 
-### <a name="setting-hello-dns-name-for-a-service-using-powershell"></a>DNS-nevét hello Powershell szolgáltatás beállítása
-Beállíthatja a hello DNS-név szolgáltatás hello segítségével létrehozásakor `New-ServiceFabricService` Powershell. hello alábbi példa létrehoz egy új állapotmentes szolgáltatások hello DNS-név`service1.application1`
+### <a name="setting-the-dns-name-for-a-service-using-powershell"></a>A DNS-nevét, a Powershell szolgáltatás beállítása
+A szolgáltatás DNS-neve használatával létrehozásakor beállíthatja a `New-ServiceFabricService` Powershell. Az alábbi példa létrehoz egy új állapotmentes szolgáltatást a DNS-névvel`service1.application1`
 
 ```powershell
     New-ServiceFabricService `
@@ -94,9 +94,9 @@ Beállíthatja a hello DNS-név szolgáltatás hello segítségével létrehozá
 ```
 
 ## <a name="using-dns-in-your-services"></a>A szolgáltatások a DNS-sel
-Ha egynél több szolgáltatást telepít, az egyéb szolgáltatások toocommunicate hello végpontjai található egy DNS-név használatával. hello DNS-szolgáltatás is csak megfelelő toostateless szolgáltatások, mivel hello DNS protokoll állapotalapú szolgáltatások nem tudnak kommunikálni. Állapotalapú szolgáltatások esetén használható hello beépített fordított proxy http hívások toocall egy adott szolgáltatáshoz partíció.
+Ha egynél több szolgáltatást telepít, a többi szolgáltatás egy DNS-név használatával kommunikálni végpontok is megtalálhatja. A DNS-szolgáltatás tulajdonság csak állapotmentes szolgáltatások vonatkozik, mert a DNS protokoll állapotalapú szolgáltatások nem tudnak kommunikálni. Állapotalapú szolgáltatások esetén a http-hívásokban beépített fordított proxy használatával hívható meg egy adott szolgáltatáshoz partíció.
 
-hello következő kód bemutatja, hogyan toocall egy másik szolgáltatás, amely egyszerűen csak egy normál http hívás ahol meg kell adnia hello port és a választható elérési hello URL-cím részeként.
+A következő kód bemutatja, hogyan hívhatja meg egy másik szolgáltatás, amely egyszerűen csak egy normál http hívás ahol meg kell adnia a port és bármilyen opcionális elérési utat az URL-cím részeként.
 
 ```csharp
 public class ValuesController : Controller
@@ -125,7 +125,7 @@ public class ValuesController : Controller
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-További információk a szolgáltatások közötti kommunikáció hello fürtön belül [csatlakozzon és szolgáltatásokkal kommunikálni](service-fabric-connect-and-communicate-with-services.md)
+További információ a fürtön belül a szolgáltatások közötti kommunikáció [csatlakozzon és szolgáltatásokkal kommunikálni](service-fabric-connect-and-communicate-with-services.md)
 
 [0]: ./media/service-fabric-connect-and-communicate-with-services/dns.png
 [1]: ./media/service-fabric-dnsservice/servicefabric-explorer-dns.PNG

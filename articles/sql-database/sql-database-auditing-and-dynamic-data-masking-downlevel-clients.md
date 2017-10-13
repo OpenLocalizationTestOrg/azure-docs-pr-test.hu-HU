@@ -1,5 +1,5 @@
 ---
-title: "aaaTable naplózási, TDS átirányítást, és az Azure SQL Database IP-végpontok |} Microsoft Docs"
+title: "Naplózás, TDS átirányítás miatt a táblázat és az Azure SQL Database IP-végpontok |} Microsoft Docs"
 description: "További tudnivalók naplózását, TDS-átirányítási és IP-végpont módosításokat az Azure SQL Database naplózási táblázat végrehajtása során."
 services: sql-database
 documentationcenter: 
@@ -15,42 +15,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/31/2017
 ms.author: giladm
-ms.openlocfilehash: 966c23f92fab6fa459a515ad841bb2d5f75436aa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d4a7e6658ec65a70bd7e07859e2a69acee58b7b5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="sql-database----downlevel-clients-support-and-ip-endpoint-changes-for-table-auditing"></a>SQL adatbázis - a régebbi típusú ügyfeleknek támogatja, és IP-végponton megváltoztatja a táblázat naplózás
 
 > [!IMPORTANT]
-> Ez a dokumentum érvényes csak tooTable naplózás, amely **elavult**.<br>
-> Használjon új hello [Blobnaplózási funkció](sql-database-auditing.md) metódus, amely **nem** szükséges korábbi verziójú ügyfél kapcsolati karakterlánc módosítani. További információ a Blobnaplózási funkció található [Ismerkedés az SQL-adatbázis naplózásának](sql-database-auditing.md).
+> Ez a dokumentum csak érvényes tábla naplózás, amely **elavult**.<br>
+> Használja az új [Blobnaplózási funkció](sql-database-auditing.md) metódus, amely **nem** szükséges korábbi verziójú ügyfél kapcsolati karakterlánc módosítani. További információ a Blobnaplózási funkció található [Ismerkedés az SQL-adatbázis naplózásának](sql-database-auditing.md).
 
-[Adatbázis naplózási](sql-database-auditing.md) TDS átirányítást támogató SQL-ügyfelek automatikusan működik. Vegye figyelembe, hogy az átirányítási hello Blobnaplózási funkció módszer használata esetén nem érvényes.
+[Adatbázis naplózási](sql-database-auditing.md) TDS átirányítást támogató SQL-ügyfelek automatikusan működik. Vegye figyelembe, hogy az átirányítási nem vonatkozik a Blobnaplózási funkció módszer használata esetén.
 
 ## <a id="subheading-1"></a>Alacsonyabb szintű ügyfelek támogatása
-Bármely olyan ügyfél, amely TDS 7.4 kell is támogatja az átirányítást. Kivételek toothis közé tartoznak JDBC 4.0 mely hello átirányítási nem teljes mértékben támogatja és Tedious a Node.JS, amelyben átirányítás nincs megvalósítva.
+Bármely olyan ügyfél, amely TDS 7.4 kell is támogatja az átirányítást. A kivételek közé tartozik a JDBC 4.0-s verzióját, amelyben az átirányítás nem teljes mértékben támogatja, és a Node.JS mely funkcióhoz Tedious nem lett megvalósítva.
 
-"Régebbi ügyfelek" azaz TDS 7.3-as verzió támogatja és az alábbiakban - hello kiszolgálójának teljes Tartományneve hello kapcsolat-karakterláncban kell módosítani:
+Az "Alsószintű ügyfelek" azaz mely támogatási TDS verzió 7.3 és az alacsonyabb – a kiszolgáló teljes Tartománynevét a kapcsolat-karakterlánc kell módosítani:
 
-A kapcsolati karakterláncban hello eredeti kiszolgálójának teljes Tartományneve: <*kiszolgálónév*>. database.windows.net
+A kapcsolódási karakterláncban eredeti kiszolgálójának teljes Tartományneve: <*kiszolgálónév*>. database.windows.net
 
-Módosított kiszolgálójának teljes Tartományneve hello kapcsolati karakterlánc: <*kiszolgálónév*> .database. **biztonságos**. windows.net
+A kapcsolati karakterláncban a módosított kiszolgálójának teljes Tartományneve: <*kiszolgálónév*> .database. **biztonságos**. windows.net
 
 "A régebbi típusú ügyfeleknek" részleges listáját tartalmazza:
 
 * A .NET 4.0-s vagy régebbi verzió,
 * ODBC 10.0-s vagy régebbi verzió.
-* JDBC (közben JDBC támogatja a TDS 7.4, hello TDS átirányítási nem teljes mértékben támogatja)
+* JDBC (JDBC támogatja a TDS 7.4, a TDS-átirányítási funkció még nem teljes mértékben támogatott)
 * (A Node.JS) fárasztó
 
-**Megjegyzés:** hello fent server FQDN módosítása során is hasznos egy SQL Server szint naplózási házirend alkalmazása nélkül konfiguráció szükséges lépést az egyes adatbázisok (ideiglenes megoldás).
+**Megjegyzés:** lehet, hogy a fenti kiszolgáló FQDN módosítását is hasznos egy SQL Server szint naplózási házirend alkalmazása nélkül konfiguráció szükséges lépést az egyes adatbázisok (ideiglenes megoldás).
 
 ## <a id="subheading-2"></a>IP-végponton vált, ha engedélyezve van a naplózás
-Vegye figyelembe, hogy tábla naplózásának engedélyezéséhez hello IP-végponton az adatbázis is megváltoznak. Ha szigorú tűzfal beállításait, frissítse ezeket a tűzfal beállításainak megfelelően.
+Vegye figyelembe, hogy ha a tábla a naplózás engedélyezése az IP-végpontot az adatbázis változik. Ha szigorú tűzfal beállításait, frissítse ezeket a tűzfal beállításainak megfelelően.
 
-Új adatbázis IP-végponton hello hello adatbázis-terület függ:
+Az új adatbázis IP-végpontot az adatbázis-terület függ:
 
 | Adatbázis-terület | Lehetséges IP-végpontok |
 | --- | --- |

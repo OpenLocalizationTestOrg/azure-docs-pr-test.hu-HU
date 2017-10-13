@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate az első virtuális gép egy tesztkörnyezetben, a Azure DevTest Labs szolgáltatásban |} Microsoft Docs"
-description: "Megtudhatja, hogyan toocreate az első virtuális gép egy tesztkörnyezetben, a Azure DevTest Labs szolgáltatásban"
+title: "Az első virtuális gép létrehozása egy tesztkörnyezetben, a Azure DevTest Labs szolgáltatásban |} Microsoft Docs"
+description: "Útmutató az első virtuális gép létrehozása a Azure DevTest Labs szolgáltatásban egy tesztkörnyezetben"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,42 +14,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/24/2017
 ms.author: tarcher
-ms.openlocfilehash: 4c3257efca9be6fdd190eaac1db731464e07fcfd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: aa6b60b799e1e98815cf288d5612f98cd77cc00e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-your-first-vm-in-a-lab-in-azure-devtest-labs"></a>Az első virtuális gép létrehozása az Azure DevTest Labs szolgáltatásban egy tesztkörnyezetben
 
-Kezdetben DevTest Labs eléréséhez, és szeretné, hogy az első virtuális gép toocreate, akkor lesz valószínűleg megteheti segítségével előre betöltött [alap Piactéri lemezképhez](devtest-lab-configure-marketplace-images.md). Később a is lesz a képes toochoose egy [egyéni lemezképet, és egy képletet](devtest-lab-add-vm.md) további virtuális gépek létrehozásakor. 
+Kezdetben DevTest Labs eléréséhez és az első virtuális gép létrehozásához, akkor lesz valószínűleg megteheti segítségével előre betöltött [alap Piactéri lemezképhez](devtest-lab-configure-marketplace-images.md). Később a is képes lesz választhat egy [egyéni lemezképet, és egy képletet](devtest-lab-add-vm.md) további virtuális gépek létrehozásakor. 
 
-Ez az oktatóanyag bemutatja, hogyan hello Azure portál tooadd használatával a virtuális gép első tooa labor a DevTest Labs szolgáltatásban.
+Ez az oktatóanyag végigvezeti az első virtuális gép hozzáadása egy laborhoz a DevTest Labs szolgáltatásban az Azure portál használatával.
 
-## <a name="steps-tooadd-your-first-vm-tooa-lab-in-azure-devtest-labs"></a>Lépések tooadd az első virtuális gép tooa tesztlabor a Azure DevTest Labs szolgáltatásban
-1. Jelentkezzen be toohello [Azure-portálon](http://go.microsoft.com/fwlink/p/?LinkID=525040).
-1. Válassza ki **több szolgáltatások**, majd válassza ki **DevTest Labs** hello listából.
-1. Labs hello listáról válassza ki a használni kívánt virtuális gép toocreate hello hello labor.  
-1. A hello labor **áttekintése** panelen válassza **+ Hozzáadás**.  
+## <a name="steps-to-add-your-first-vm-to-a-lab-in-azure-devtest-labs"></a>Lépések végrehajtásával adja hozzá az első virtuális gép egy tesztkörnyezetet a Azure DevTest Labs szolgáltatásban
+1. Jelentkezzen be az [Azure Portalra](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Válassza ki **több szolgáltatások**, majd válassza ki **DevTest Labs** a listából.
+1. Labs listában jelölje ki a labor kívánja a virtuális gép létrehozása.  
+1. A tesztlabor a **áttekintése** panelen válassza **+ Hozzáadás**.  
 
     ![Adja hozzá a virtuális gép gomb](./media/devtest-lab-add-vm/devtestlab-home-blade-add-vm.png)
 
-1. A hello **base válasszon** panelen válassza a Piactéri lemezképet a virtuális gép hello.
-1. A hello **virtuális gép** panelen hello hello új virtuális gép nevét adja meg **virtuálisgép-nevet** szövegmezőben.
+1. Az a **base válasszon** panelen válassza a Piactéri lemezképet a virtuális gép számára.
+1. Az a **virtuális gép** panelen adjon meg egy nevet az új virtuális gép a **virtuálisgép-nevet** szövegmezőben.
 
     ![Labor VM panel](./media/devtest-lab-add-vm/devtestlab-lab-add-first-vm.png)
 
-1. Adjon meg egy **felhasználónév** kap, amely rendszergazdai jogosultságokkal hello virtuális gépen.  
-1. Címkével hello szövegmezőbe írja be a jelszót **írjon be egy értéket**.
-1. Hello **virtuális gép lemeztípus** határozza meg, hogy milyen típusú hello virtuális gépek hello tesztkörnyezetben.
-1. Válassza ki **virtuálisgép-méret** hello közül előre meg hello Processzormagok, a RAM memória méretét és a merevlemez méretének hello hello VM toocreate elemekre.
-1. Válassza ki **összetevők** és - műtermék - hello listából válassza ki és konfigurálja, amelyet az tooadd toohello alapjául szolgáló lemezképhez hello összetevők.
-    **Megjegyzés:** Ha új tooDevTest Labs vagy konfigurálása összetevők, tekintse meg a toohello [hozzáadása egy meglévő virtuális gép összetevő tooa](./devtest-lab-add-vm.md#add-an-existing-artifact-to-a-vm) szakaszt, és térjen vissza ide befejezésekor.
-1. Válassza ki **létrehozása** tooadd hello megadott virtuális gép toohello labor.
+1. Adjon meg egy **felhasználónév** kap, amely rendszergazdai jogosultságokkal a virtuális gépen.  
+1. Adjon meg egy jelszót a szövegmező feliratú **írjon be egy értéket**.
+1. A **virtuális gép lemeztípus** határozza meg, hogy milyen típusú a virtuális gépek a tesztkörnyezetben.
+1. Válassza ki **virtuálisgép-méret** , és válassza ki a Processzormagok RAM memória méretét és a merevlemez mérete a virtuális gép létrehozásához adjon meg előre meghatározott elemek.
+1. Válassza ki **összetevők** és - műtermék - listából válassza ki és konfigurálja az alapjául szolgáló lemezképhez hozzáadni kívánt összetevők.
+    **Megjegyzés:** Ha ismerkedik a DevTest Labs szolgáltatásban, vagy tekintse meg az összetevők, konfigurálása a [meglévő összetevő felvétele a virtuális gépek](./devtest-lab-add-vm.md#add-an-existing-artifact-to-a-vm) szakaszt, és térjen vissza ide befejezésekor.
+1. Válassza ki **létrehozása** a megadott virtuális gép hozzáadása a labor.
 
-   hello labor panel állapotát jeleníti meg az hello hello virtuális gép létrehozás - először mint **létrehozása**, majd, mint a **futtató** hello virtuális gép elindítása után.
+   A tesztkörnyezet panel állapotát jeleníti meg a virtuális gép létrehozás - először mint **létrehozása**, majd, mint a **futtató** a virtuális gép elindítása után.
 
 ## <a name="next-steps"></a>Következő lépések
-* Egyszer hello a virtuális gép létrehozása, csatlakoztathatja toohello virtuális gép kiválasztásával **Connect** hello VM panelen.
-* Tekintse meg [VM tooa labor hozzáadása](devtest-lab-add-vm.md) bővebb információt a további virtuális gépek hozzáadása a tesztkörnyezetben.
-* Fedezze fel hello [Office DevTest Labs Azure Resource Manager gyorsindítási sablonok](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates).
+* A virtuális gép létrehozása után keresztül csatlakozhat a virtuális gép kiválasztásával **Connect** a virtuális gép paneljén.
+* Tekintse meg [virtuális gép hozzáadása egy laborhoz](devtest-lab-add-vm.md) bővebb információt a további virtuális gépek hozzáadása a tesztkörnyezetben.
+* Megismerkedhet a [Office DevTest Labs Azure Resource Manager gyorsindítási sablonok](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates).

@@ -1,6 +1,6 @@
 ---
-title: "Válasszon ki (CTAS) az SQL Data Warehouse aaaCreate tábla |} Microsoft Docs"
-description: "Tippek a hello kódolási (CTAS) utasítás válasszon ki az Azure SQL Data Warehouse adattárházzal történő, megoldások tábla létrehozása."
+title: "Válasszon ki (CTAS) az SQL Data Warehouse tábla létrehozása |} Microsoft Docs"
+description: "Tippek a létrehozás táblával kódolás szerint select (CTAS) utasítás az Azure SQL Data Warehouse adattárházzal történő, megoldások."
 services: sql-data-warehouse
 documentationcenter: NA
 author: shivaniguptamsft
@@ -15,14 +15,14 @@ ms.workload: data-services
 ms.custom: queries
 ms.date: 01/30/2017
 ms.author: shigu;barbkess
-ms.openlocfilehash: e381601a0a4d94e189d8f9115bf2e7593025410b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cb08313726e8135feaa9b413937c2197ea397f4b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-table-as-select-ctas-in-sql-data-warehouse"></a>Select (CTAS) tábla az SQL Data Warehouse létrehozása
-Válassza ki a táblázatban létrehozása vagy `CTAS` az hello egyik legfontosabb T-SQL funkciókat érhető el. Egy teljes mértékben parallelized művelet, amely táblát hoz létre új hello kimeneti SELECT utasítás alapján. `CTAS`hello legegyszerűbb módja toocreate van egy tábla egy példányát. Ez a dokumentum nyújt, példák és ajánlott eljárásai `CTAS`.
+Válassza ki a táblázatban létrehozása vagy `CTAS` egyike a legfontosabb T-SQL funkciókat érhető el. Egy teljes mértékben parallelized művelet, amely új táblát hoz létre a kimeneti SELECT utasítás alapján. `CTAS`a rendszer a legegyszerűbb módja a tábla létrehozásához. Ez a dokumentum nyújt, példák és ajánlott eljárásai `CTAS`.
 
 ## <a name="selectinto-vs-ctas"></a>VÁLASSZON... A Visual Studio. CTAS
 Érdemes lehet `CTAS` felső szinten megterhelni változata `SELECT..INTO`.
@@ -35,11 +35,11 @@ INTO    [dbo].[FactInternetSales_new]
 FROM    [dbo].[FactInternetSales]
 ```
 
-A fenti példában hello `[dbo].[FactInternetSales_new]` , ezek a hello tábla alapértelmezett beállításokat az Azure SQL Data Warehouse rajta a FÜRTÖZÖTT OSZLOPCENTRIKUS INDEXSZEL rendelkező ROUND_ROBIN elosztott táblázatként létrehozott.
+A fenti példában szereplő `[dbo].[FactInternetSales_new]` mivel ezek az Azure SQL Data warehouse tábla alapértelmezett rajta a FÜRTÖZÖTT OSZLOPCENTRIKUS INDEXSZEL rendelkező ROUND_ROBIN elosztott táblázatként létrehozott.
 
-`SELECT..INTO`azonban nem teszi lehetővé toochange hello terjesztési metódus vagy hello index írja be a hello művelet részeként. Ez akkor, ha `CTAS` érkezik.
+`SELECT..INTO`azonban nem teszi lehetővé a művelet részeként a telepítési módszer vagy a Indextípus módosításához. Ez akkor, ha `CTAS` érkezik.
 
-tooconvert túl hello fent`CTAS` meglehetősen egyszerű feladat:
+A fenti konvertálható `CTAS` meglehetősen egyszerű feladat:
 
 ```sql
 CREATE TABLE [dbo].[FactInternetSales_new]
@@ -54,17 +54,17 @@ FROM    [dbo].[FactInternetSales]
 ;
 ```
 
-A `CTAS` képes toochange áll mindkét hello terjesztési hello tábla adatai, valamint a hello táblatípus. 
+A `CTAS` megváltoztatása a tábla adatai, valamint a táblatípus mindkét a terjesztési válik. 
 
 > [!NOTE]
-> Ha csak a toochange hello indexe a `CTAS` művelet és hello forrástábla elosztott kivonatoló, majd a `CTAS` műveletet hajt végre legjobb, ha a hello azonos terjesztési oszlop és adatok típusát. Így elkerülhető, terjesztési adatmozgás közötti hatékonyabb hello művelet során.
+> Ha csak kívánt indexe, módosítsa a `CTAS` művelet és a forrástábla elosztott kivonatoló, majd a `CTAS` művelet legjobb hajtja végre, ha a terjesztési oszlop és adatok ugyanolyan. Így elkerülhető, közötti terjesztési adatátvitelt jelölik a hatékonyabb művelet során.
 > 
 > 
 
-## <a name="using-ctas-toocopy-a-table"></a>Egy tábla CTAS toocopy használatával
-Lehet, hogy egyik leggyakoribb hello használja a `CTAS` hoz létre egy tábla egy példányát, hogy hello DDL bármikor módosíthatja. Ha például eredetileg létrehozott a táblázatban `ROUND_ROBIN` és most kívánja megváltoztatni a tooa táblázat egy olyan oszloptól, terjesztés `CTAS` hogyan megváltozna hello terjesztési oszlop van. `CTAS`akkor is használt toochange particionálás, indexelő vagy oszlop.
+## <a name="using-ctas-to-copy-a-table"></a>Másolja át egy táblázatot a CTAS használatával
+Lehet, hogy a leggyakoribb egyikét használja a `CTAS` hoz létre egy tábla egy példányát, hogy a DDL bármikor módosíthatja. Ha például eredetileg létrehozott a táblázatban `ROUND_ROBIN` és most kívánja módosítani egy táblához, egy olyan oszloptól, a terjesztés `CTAS` hogyan megváltozna a terjesztési oszlop van. `CTAS`is használható a particionálás, indexelő vagy oszlop típusának módosítása.
 
-Tegyük fel, ez a táblázat hello alapértelmezett eloszlási típusát használatával létrehozott `ROUND_ROBIN` elosztott, mivel nincs terjesztési oszlop van megadva a hello `CREATE TABLE`.
+Tegyük fel, ez a táblázat alapértelmezett eloszlási típusát használatával létrehozott `ROUND_ROBIN` elosztott, mivel nincs terjesztési oszlop van megadva a a `CREATE TABLE`.
 
 ```sql
 CREATE TABLE FactInternetSales
@@ -95,7 +95,7 @@ CREATE TABLE FactInternetSales
 );
 ```
 
-Most szeretné ezt a táblázatot a fürtözött Oszlopcentrikus indexszel rendelkező új toocreate, hogy a fürtözött Oszloptárindexű táblákat hello teljesítményének előnyeit élvezheti. Szeretné toodistribute ezt a táblázatot a ProductKey vannak előrejelző illesztések ettől az oszloptól, és szeretné, hogy tooavoid adatátvitel során a ProductKey illesztések óta. Végül is érdemes tooadd particionálás OrderDateKey az, hogy a régi adatok régi partíciók ejtésével gyorsan törölhetők. Itt található hello CTAS kimutatásban, amely a régi tábla szeretné másolni egy új táblába.
+Most szeretne létrehozni a fürtözött Oszlopcentrikus indexszel rendelkező Ez a táblázat másolatát, így kihasználhatja a fürtözött Oszloptárindexű táblákat teljesítményének. Is szeretné, hogy ezt a táblázatot a ProductKey terjesztéséhez, mert meg vannak előrejelző illesztések ettől az oszloptól, és el szeretné kerülni az adatátvitel során a ProductKey illesztéseket. Végül is hozzáadandó OrderDateKey a particionálás, hogy a régi adatok régi partíciók ejtésével gyorsan törölhetők. Ez a CTAS kimutatásban, amely a régi tábla szeretné másolni egy új táblába.
 
 ```sql
 CREATE TABLE FactInternetSales_new
@@ -116,36 +116,36 @@ WITH
 AS SELECT * FROM FactInternetSales;
 ```
 
-Végül az új tábla nevezze át a táblák tooswap és majd dobja el a régi táblát.
+Végül átnevezheti a táblákat a új tábla felcserélése, és majd dobja el a régi táblát.
 
 ```sql
-RENAME OBJECT FactInternetSales tooFactInternetSales_old;
-RENAME OBJECT FactInternetSales_new tooFactInternetSales;
+RENAME OBJECT FactInternetSales TO FactInternetSales_old;
+RENAME OBJECT FactInternetSales_new TO FactInternetSales;
 
 DROP TABLE FactInternetSales_old;
 ```
 
 > [!NOTE]
-> Az Azure SQL Data Warehouse még nem támogatja a statisztikák automatikus létrehozását és frissítését.  A sorrend tooget hello legjobb teljesítmény elérése érdekében a lekérdezéseket a fontos létrehozni statisztikákat a táblák összes oszlopához hello első betöltés után, vagy hello adatok minden lényeges módosítását fordul elő.  A statisztika részletes ismertetése, lásd: hello [statisztika] [ Statistics] hello fejlesztés témakörcsoport témakörében.
+> Az Azure SQL Data Warehouse még nem támogatja a statisztikák automatikus létrehozását és frissítését.  A legjobb lekérdezési teljesítmény eléréséhez fontos létrehozni statisztikákat a táblák összes oszlopához az első betöltés után, illetve az adatok minden lényeges módosítását követően.  A statisztika részletes ismertetését a Fejlesztés témakörcsoport [Statisztika][Statistics] témakörében találja.
 > 
 > 
 
-## <a name="using-ctas-toowork-around-unsupported-features"></a>Nem támogatott szolgáltatások köré CTAS toowork használatával
-`CTAS`számos alább felsorolt nem támogatott hello szolgáltatást körül használt toowork is lehet. Ez gyakran bizonyítja toobe win/win helyzet nem csak a kód lesznek megfelelőek, de ez gyakran végrehajtja a gyorsabb SQL Data warehouse. Ez egy, a teljes parallelized kialakításakor miatt. Dolgozhat körül CTAS a forgatókönyvek a következők:
+## <a name="using-ctas-to-work-around-unsupported-features"></a>CTAS használata nem támogatott funkciókat megoldása
+`CTAS`is használható a nem támogatott funkciókat alább felsorolt számos megoldása. Ez gyakran bizonyítja, hogy egy Windows/win helyzet lehet, mert nem csak a kód lesznek megfelelőek, de ez gyakran végrehajtja a gyorsabb SQL Data warehouse. Ez egy, a teljes parallelized kialakításakor miatt. Dolgozhat körül CTAS a forgatókönyvek a következők:
 
 * A frissítések ANSI ILLESZTÉSEK
 * Törli a ANSI illesztések
 * MERGE utasítást
 
 > [!NOTE]
-> Próbálja meg toothink "CTAS első". Ha úgy gondolja, hogy egy probléma segítségével megoldható `CTAS` akkor az általában hello legjobb módja tooapproach, - akkor is, ha emiatt több adatot ír.
+> Gondolja, hogy megpróbálja "CTAS első". Ha úgy gondolja, hogy egy probléma segítségével megoldható `CTAS` majd, amely általában a legjobb módszer az oldalról - akkor is, ha emiatt több adatot ír.
 > 
 > 
 
 ## <a name="ansi-join-replacement-for-update-statements"></a>Update utasításokban ANSI illesztési váltja fel
-Előfordulhat, hogy egy összetett frissítést, amelyhez csatlakozik, több mint két tábla ANSI való csatlakozás szintaxis tooperform hello használata a frissítés vagy törlés.
+Előfordulhat, hogy egy összetett frissítést, amelyhez csatlakozik, több mint két tábla végrehajtani a frissítési vagy törlési ANSI való csatlakozás szintaxis használata.
 
-Képzelje el ezt a táblázatot kellett tooupdate:
+Képzelje el ezt a táblázatot frissíteni kellett:
 
 ```sql
 CREATE TABLE [dbo].[AnnualCategorySales]
@@ -160,7 +160,7 @@ WITH
 ;
 ```
 
-hello eredeti lekérdezés előfordulhat, hogy rendelkezik kikeresi például ehhez hasonló:
+Az eredeti lekérdezés előfordulhat, hogy rendelkezik kikeresi például ehhez hasonló:
 
 ```sql
 UPDATE    acs
@@ -185,9 +185,9 @@ AND    [acs].[CalendarYear]                = [fis].[CalendarYear]
 ;
 ```
 
-Mivel az SQL Data Warehouse nem támogatja az ANSI társítások (JOIN) hello `FROM` záradékában egy `UPDATE` utasítás, nem lehet másolni a kódot keresztül némileg módosítás nélkül.
+Mivel az SQL Data Warehouse nem támogatja az ANSI társítások (JOIN) az `FROM` záradékában egy `UPDATE` utasítás, nem lehet másolni a kódot keresztül némileg módosítás nélkül.
 
-A kombinációját is használja a `CTAS` és egy implicit csatlakozás tooreplace ezt a kódot:
+A kombinációját is használja a `CTAS` és egy implicit illesztési, ha ezt a kódot:
 
 ```sql
 -- Create an interim table
@@ -208,7 +208,7 @@ GROUP BY
 ,        [CalendarYear]
 ;
 
--- Use an implicit join tooperform hello update
+-- Use an implicit join to perform the update
 UPDATE  AnnualCategorySales
 SET     AnnualCategorySales.TotalSalesAmount = CTAS_ACS.TotalSalesAmount
 FROM    CTAS_acs
@@ -216,13 +216,13 @@ WHERE   CTAS_acs.[EnglishProductCategoryName] = AnnualCategorySales.[EnglishProd
 AND     CTAS_acs.[CalendarYear]               = AnnualCategorySales.[CalendarYear]
 ;
 
---Drop hello interim table
+--Drop the interim table
 DROP TABLE CTAS_acs
 ;
 ```
 
 ## <a name="ansi-join-replacement-for-delete-statements"></a>ANSI illesztési helyettesíti a törlési utasítást
-Egyes esetekben hello legjobb módszer az adatok törlése az toouse `CTAS`. Ahelyett, hogy törli a hello adatot egyszerűen jelölje ki a kívánt tookeep hello adatokat. Ez különösen igaz `DELETE` utasítás szintaxisa csatlakoztatása, mivel az SQL Data Warehouse nem támogatja az ANSI illesztések hello ansi használó `FROM` záradékában egy `DELETE` utasítást.
+Néha adatok törléséhez a legjobb módszer az, hogy használjon `CTAS`. Ahelyett, hogy az adatok törlése egyszerűen jelölje ki a megőrizni kívánt adatokat. Ez különösen igaz `DELETE` ansi csatlakozó szintaxis, mert az SQL Data Warehouse nem támogatja az ANSI társítások (JOIN) használó utasítások a `FROM` záradékában egy `DELETE` utasítást.
 
 A konvertált DELETE utasításban példát alább érhető el:
 
@@ -232,7 +232,7 @@ WITH
 (   Distribution=HASH(ProductKey)
 ,   CLUSTERED INDEX (ProductKey)
 )
-AS -- Select Data you wish tookeep
+AS -- Select Data you wish to keep
 SELECT     p.ProductKey
 ,          p.EnglishProductName
 ,          p.Color
@@ -241,12 +241,12 @@ RIGHT JOIN dbo.stg_DimProduct s
 ON         p.ProductKey = s.ProductKey
 ;
 
-RENAME OBJECT dbo.DimProduct        tooDimProduct_old;
-RENAME OBJECT dbo.DimProduct_upsert tooDimProduct;
+RENAME OBJECT dbo.DimProduct        TO DimProduct_old;
+RENAME OBJECT dbo.DimProduct_upsert TO DimProduct;
 ```
 
 ## <a name="replace-merge-statements"></a>Cserélje le a merge utasítások
-Merge utasításokban cserélhetősége, legalább a részben a `CTAS`. A konszolidáció hello `INSERT` és hello `UPDATE` be egy utasítás. Minden olyan törölt rekord kellene zárni egy második utasításban toobe.
+Merge utasításokban cserélhetősége, legalább a részben a `CTAS`. Képes egyesíteni a `INSERT` és a `UPDATE` be egy utasítás. Minden olyan törölt rekord kellene le kell zárni a második utasításban.
 
 Például egy `UPSERT` alatt érhető el:
 
@@ -275,8 +275,8 @@ WHERE NOT EXISTS
 )
 ;
 
-RENAME OBJECT dbo.[DimProduct]          too[DimProduct_old];
-RENAME OBJECT dbo.[DimpProduct_upsert]  too[DimProduct];
+RENAME OBJECT dbo.[DimProduct]          TO [DimProduct_old];
+RENAME OBJECT dbo.[DimpProduct_upsert]  TO [DimProduct];
 
 ```
 
@@ -297,9 +297,9 @@ SELECT @d*@f
 ;
 ```
 
-Érdemes instinctively át kell telepítenie a kód tooa CTAS és lenne megfelelő. Van azonban egy rejtett probléma.
+Instinctively érdemes ezt a kódot át kell telepíteni a CTAS és lenne megfelelő. Van azonban egy rejtett probléma.
 
-hello alábbira nem fed fel ugyanazt az eredményt hello:
+A következő kódot a ugyanazt az eredményt nem fed fel:
 
 ```sql
 DECLARE @d decimal(7,2) = 85.455
@@ -313,9 +313,9 @@ SELECT @d*@f as result
 ;
 ```
 
-Figyelje meg, győződjön meg arról, hogy hello oszlop "eredménye" előre hello adatok típusát és nullázhatóságának hello kifejezésben szereplő végzi. Ha még nem gondosan meg kell, ez is járhat toosubtle eltérésekre értékeket.
+Figyelje meg, hogy az oszlop "eredménye" hordoz magában, ha előre az adatok típusát és nullázhatóságának a kifejezésben szereplő érték. Finom eltérések az értékek ez is vezethet, ha még nem óvatos.
 
-Próbálkozzon hello következő egy példa:
+Próbálkozzon a következő példa:
 
 ```sql
 SELECT result,result*@d
@@ -327,17 +327,17 @@ from ctas_r
 ;
 ```
 
-hello tárolt eredmény értéke eltérő. Hello megőrzött értékét hello eredményoszlop használja más kifejezések hello hiba még jelentősebb válik.
+A tárolt eredményt értéke eltérő. A megőrzött a eredményoszlop értékét használja a többi kifejezésében hiba még jelentősebb válik.
 
 ![][1]
 
-Ez különösen fontos az adatok áttelepítése. Annak ellenére, hogy hello második lekérdezés késései pontosabb probléma van. hello adatok különböző összehasonlított toohello forrásrendszerben és integritásának tooquestions hello áttelepítés eredményezi. Ez az egyik ezeket bizonyos ritkán előforduló esetekben, amikor hello "hibás" válasz ténylegesen hello jobbról egy!
+Ez különösen fontos az adatok áttelepítése. Annak ellenére, hogy a második lekérdezés késései pontosabb probléma van. Az adatokat eltérő lenne a forrásrendszerben képest, és sértetlenségének áttelepítésének kérdésekre eredményezi. Ez az egyik ezen bizonyos ritkán előforduló esetekben, amikor a "hibás" válasz ténylegesen a megfelelőt.
 
-hello oka a hello két eredmények eltérései látható, lefelé tooimplicit adattípusokról írja be. Első példa hello tábla hello határozza meg a hello oszlop definíciójában. Az implicit típuskonverzió átalakítás akkor fordul elő, amikor hello sor kerül. Hello második példában nincs nincs implicit konvertálása, hello kifejezés határozza meg a hello oszlop adattípusát. Figyelje meg is, hogy hello oszlop hello második példában definiálva van nullázható oszlopot, mivel az első példában hello nem. Hello tábla létrehozásakor hello első példa oszlop nullázhatósági explicit módon van definiálva. Hello második példában az lett csak elhagyta toohello kifejezés, és alapértelmezés szerint ez eredményeznének NULL definícióját.  
+Ez a két eredményt eltérései látható oka implicit típuskonverzió adattípusokról le. Az első példában a tábla határozza meg az oszlop definíciójában. Az implicit típuskonverzió átalakítás akkor fordul elő, amikor a sor kerül. A második példában nincs nincs implicit konvertálása, a kifejezés határozza meg az oszlop adattípusát. Is vegye figyelembe, hogy a második példában az oszlop definiálva van egy nullázható oszlopot, mivel az első nem. A táblázat létrehozásának a példa első oszlop nullázhatóságával explicit módon van definiálva. A második példában az lett csak bal oldali kifejezésnek és alapértelmezés szerint ez NULL definícióját eredményezne.  
 
-Ezek kapcsolatban, hogy tooresolve explicit módon be kell hello konvertálásához és nullázhatóságának hello `SELECT` hello része `CTAS` utasítást. Nem állítható be a tulajdonságokat az hello létrehozni tábla.
+A problémák megoldásához explicit módon be kell a típuskonverziós és a nullázhatósági a `SELECT` része a `CTAS` utasítást. Create table részében ezen tulajdonságai nem állíthatók be.
 
-hello az alábbi példa bemutatja, hogyan toofix hello kódot:
+Az alábbi példa bemutatja, hogyan javítsa ki a kódot:
 
 ```sql
 DECLARE @d decimal(7,2) = 85.455
@@ -349,19 +349,19 @@ AS
 SELECT ISNULL(CAST(@d*@f AS DECIMAL(7,2)),0) as result
 ```
 
-Vegye figyelembe a következőket hello:
+Vegye figyelembe a következőket:
 
 * CAST vagy CONVERT sikerült fel lett használva
-* ISNULL használt tooforce nullázhatósági nem COALESCE
-* ISNULL hello legkülső függvény
-* hello második hello ISNULL része egy állandó például 0
+* ISNULL nullázhatósági nem COALESCE kötelező használhatja
+* ISNULL, akkor a legkülső függvény
+* A ISNULL második része egy állandó például 0
 
 > [!NOTE]
-> Hello nullázhatósági toobe megfelelően beállítani az létfontosságú toouse `ISNULL` és nem `COALESCE`. `COALESCE`nem determinisztikus-tól, és így hello hello kifejezés eredménye mindig lesz NULLable. `ISNULL`nem egyezik. Determinisztikus. Ezért ha hello hello második része `ISNULL` függvény egy állandó vagy -szövegkonstans, akkor a hello az eredményül kapott érték nem null értékű.
+> A nullázhatósági kell megfelelően állítsa be a létfontosságú használandó `ISNULL` és nem `COALESCE`. `COALESCE`nem determinisztikus-tól, és ezért a kifejezés eredménye mindig lesz NULLable. `ISNULL`nem egyezik. Determinisztikus. Ezért ha második része a `ISNULL` függvény egy állandó vagy -szövegkonstans, akkor az eredményül kapott érték lesz nem null értékű.
 > 
 > 
 
-Ez tipp nincs csak akkor hasznos, a számítások hello integritásának biztosításához. Fontos továbbá tábla partíciós átállításához. Képzelje el ezt a táblázatot a tény definiálva van:
+Ez tipp nincs csak akkor hasznos, a számítások integritásának biztosításához. Fontos továbbá tábla partíciós átállításához. Képzelje el ezt a táblázatot a tény definiálva van:
 
 ```sql
 CREATE TABLE [dbo].[Sales]
@@ -384,9 +384,9 @@ WITH
 ;
 ```
 
-Azonban hello érték mező nem egy része nem hello forrásadatok számított kifejezés.
+Azonban az érték mező értéke már nem a forrásadatok része számított kifejezés.
 
-toocreate a particionált adatkészlet-érdemes toodo ezt:
+A particionált adatkészlet-érdemes ehhez létrehozása:
 
 ```sql
 CREATE TABLE [dbo].[Sales_in]
@@ -410,7 +410,7 @@ OPTION (LABEL = 'CTAS : Partition IN table : Create')
 ;
 ```
 
-hello lekérdezés tökéletesen finom fog futni. hello probléma tooperform hello partíció kapcsolójának meg előre. hello definíciói nem egyeznek. toomake hello definíciói hello CTAS toobe módosítani kell egyeznie.
+A lekérdezés tökéletesen finom fog futni. A probléma hajtsa végre a partíció kapcsolójának próbál származik. A tábla definícióit nem egyeznek. Ellenőrizze a felel meg a CTAS definíciói kell módosítani.
 
 ```sql
 CREATE TABLE [dbo].[Sales_in]
@@ -433,9 +433,9 @@ FROM [stg].[source]
 OPTION (LABEL = 'CTAS : Partition IN table : Create');
 ```
 
-Látható ezért, hogy típus konzisztencia és karbantartása a CTAS nullázhatósági tulajdonságainak jó mérnöki ajánlott. Segít a számítások toomaintain integritását, és is biztosítja, hogy a partíció váltás lehetséges.
+Látható ezért, hogy típus konzisztencia és karbantartása a CTAS nullázhatósági tulajdonságainak jó mérnöki ajánlott. Segít a számítások egységének fenntartására szolgáló módszert, és is biztosítja, hogy a partíció váltás lehetséges.
 
-Tekintse meg a további információk az tooMSDN [CTAS][CTAS]. Hello legfontosabb utasítások az Azure SQL Data Warehouse egyike. Győződjön meg arról, hogy alaposan ismertetése.
+További információk az MSDN tekintse meg [CTAS][CTAS]. A legfontosabb utasításokat az Azure SQL Data Warehouse egyike. Győződjön meg arról, hogy alaposan ismertetése.
 
 ## <a name="next-steps"></a>Következő lépések
 További fejlesztési tippek, lásd: [fejlesztői áttekintés][development overview].

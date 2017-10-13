@@ -1,6 +1,6 @@
 ---
-title: "aaaDeploy tooAzure Analysis Services SSDT használatával |} Microsoft Docs"
-description: "Ismerje meg, hogyan toodeploy egy táblázatos modell tooan Azure Analysis Services-kiszolgáló SSDT használatával."
+title: "Üzembe helyezés az Azure Analysis Servicesben az SSDT-vel | Microsoft Docs"
+description: "Megismerheti, hogyan helyezhet üzembe egy táblázatos modellt az Azure Analysis Servicesre az SSDT-vel."
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -15,51 +15,51 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/01/2017
 ms.author: owend
-ms.openlocfilehash: e3f3771fe32a37b9e0173c274080c647152edd4c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e9a3aedfb6e55696e1525e226fada1062fd5eda8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="deploy-a-model-from-ssdt"></a>Modell üzembe helyezése SSDT-ről
-A létrehozását követően a kiszolgáló az Azure-előfizetése, most készen áll a toodeploy egy táblázatos modell adatbázis tooit. SQL Server Data Tools (SSDT) toobuild használja, és dolgozunk a táblázatos modell projekt telepítése. 
+Miután létrehozott egy kiszolgálót az Azure-előfizetésében, készen áll a táblázatos modelladatbázis üzembe helyezésére. Az SQL Server Data Tools (SSDT) segítségével létrehozhatja és üzembe helyezheti a táblázatosmodell-projektet, amelyen dolgozik. 
 
 ## <a name="prerequisites"></a>Előfeltételek
-tooget elindult, lesz szüksége:
+A kezdéshez a következők szükségesek:
 
-* **Analysis Services-kiszolgáló** az Azure-ban. több, lásd: toolearn [hozzon létre egy Azure Analysis Services-kiszolgáló](analysis-services-create-server.md).
-* **A táblázatos modell projekt** SSDT vagy meglévő hello 1200-as vagy magasabb kompatibilitási szintű táblázatos modell. Korábban még nem hozott létre egyet sem? Próbálja meg hello [Adventure Works Internet értékesítési táblázatos modellezési oktatóanyag](https://msdn.microsoft.com/library/hh231691.aspx).
-* **A helyszíni átjáró** – Ha egy vagy több adatforrást a vállalati hálózathoz a helyszíni, tooinstall kell egy [helyszíni adatátjáró](analysis-services-gateway.md). hello átjáró szükség, az a kiszolgáló hello felhőben csatlakozás tooyour a helyszíni adatok források tooprocess és frissítési adatok hello modellben.
+* **Analysis Services-kiszolgáló** az Azure-ban. További információkért lásd [az Azure Analysis Services-kiszolgáló létrehozásával kapcsolatos](analysis-services-create-server.md) témakört.
+* **Táblázatosmodell-projekt** az SSDT-n, vagy egy meglévő táblázatos modell az 1200-as vagy magasabb kompatibilitási szinten. Korábban még nem hozott létre egyet sem? Próbálkozzon [az Adventure Works internetes értékesítési modell központi telepítésének útmutatójával](https://msdn.microsoft.com/library/hh231691.aspx).
+* **Helyszíni átjáró** – Ha a szervezete hálózatában egy vagy több helyszíni adatforrás található, telepítenie kell egy [helyszíni adatátjárót](analysis-services-gateway.md). Az átjáróra azért van szükség, hogy a felhőben található kiszolgálója csatlakozni tudjon a helyszíni adatforrásaihoz a modellben található adatok feldolgozásához és frissítéséhez.
 
 > [!TIP]
-> Ahhoz, hogy telepíteni, győződjön meg arról is feldolgozhat hello adatok a táblázatban. Az SSDT-ben kattintson a **Modell** > **Feldolgozás** > **Az összes feldolgozása** lehetőségre. Ha a feldolgozás meghiúsul, nem fog sikerülni a telepítés.
+> Az üzembe helyezés előtt győződjön meg róla, hogy a tábláiban található adatok feldolgozhatók. Az SSDT-ben kattintson a **Modell** > **Feldolgozás** > **Az összes feldolgozása** lehetőségre. Ha a feldolgozás meghiúsul, nem fog sikerülni a telepítés.
 > 
 > 
 
-## <a name="toodeploy-a-tabular-model-from-ssdt"></a>a táblázatos modellek az SSDT toodeploy
+## <a name="to-deploy-a-tabular-model-from-ssdt"></a>Táblázatos modell üzembe helyezése az SSDT-ből
 
-1. Telepít, meg kell tooget hello kiszolgáló nevét. A **Azure-portálon** > server > **áttekintése** > **kiszolgálónév**, hello server példányneve.
+1. Az üzembe helyezés előtt kérje le a kiszolgáló nevét. Másolja a kiszolgáló nevét az **Azure Portal** > kiszolgáló > **Áttekintés** > **Kiszolgálónév** részéből.
    
     ![A kiszolgáló nevének lekérése az Azure-ban](./media/analysis-services-deploy/aas-deploy-get-server-name.png)
-2. Az SSDT > **Megoldáskezelőben**, kattintson a jobb gombbal hello project > **tulajdonságok**. Ezt a **telepítési** > **Server** illessze be a hello kiszolgáló nevét.   
+2. Az SSDT > **Megoldáskezelőben** kattintson a jobb gombbal a projektre, majd kattintson a **Tulajdonságok** lehetőségre. Ezután az **Üzembe helyezés** > **Kiszolgáló** területre illessze be a kiszolgáló nevét.   
    
     ![Az üzembehelyezési kiszolgáló tulajdonságához illessze be a kiszolgáló nevét.](./media/analysis-services-deploy/aas-deploy-deployment-server-property.png)
-3. A **Megoldáskezelőben** kattintson a jobb gombbal a **Tulajdonságok** elemre, majd kattintson az **Üzembe helyezés** lehetőségre. Előfordulhat, hogy a tooAzure rákérdezéses toosign.
+3. A **Megoldáskezelőben** kattintson a jobb gombbal a **Tulajdonságok** elemre, majd kattintson az **Üzembe helyezés** lehetőségre. Lehet, hogy a rendszer arra kéri, hogy jelentkezzen be az Azure-ba.
    
-    ![Tooserver telepítése](./media/analysis-services-deploy/aas-deploy-deploy.png)
+    ![Üzembe helyezés kiszolgálóra](./media/analysis-services-deploy/aas-deploy-deploy.png)
    
-    Telepítés állapota akkor jelenik meg, mindkét hello kimeneti ablakban és a telepítés.
+    Az üzembe helyezés állapota látható a kimeneti ablakban és az Üzembe helyezés területen is.
    
     ![Üzembe helyezés állapota](./media/analysis-services-deploy/aas-deploy-status.png)
 
-Ez minden nincs tooit!
+Ennyi az egész!
 
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
-Ha nem sikerül a telepítés, metaadatok telepítésekor, valószínű, mert az SSDT tooyour kiszolgáló nem tudott kapcsolódni. Ellenőrizze, hogy tooyour server SSMS használatával is elérheti. Végezze el, hogy megfelelő-e a központi telepítési kiszolgáló tulajdonság hello projekt hello.
+Ha a metaadatok telepítésekor a telepítés sikertelen, annak valószínűleg az az oka, hogy az SSDT nem tudott csatlakozni a kiszolgálóhoz. Győződjön meg róla, hogy tud csatlakozni a kiszolgálóhoz az SSMS használatával. Ezt követően ellenőrizze, hogy helyes a projekt Üzembehelyezési kiszolgáló tulajdonsága.
 
-Ha táblán nem sikerül a telepítés, valószínű, mert a kiszolgáló nem tudott kapcsolódni a tooa adatforrás. Ha az adatforrás a vállalati hálózathoz a helyszíni, hogy meg arról, hogy tooinstall egy [helyszíni adatátjáró](analysis-services-gateway.md).
+Ha a telepítés egy táblán sikertelen, annak valószínűleg az az oka, hogy a kiszolgálója nem tudott csatlakozni egy adatforráshoz. Ha a szervezete hálózatában helyszíni adatforrás található, mindenképp telepítsen egy [helyszíni adatátjárót](analysis-services-gateway.md).
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy a táblázatos modell telepített tooyour kiszolgáló, most készen áll a tooconnect tooit. Is [tooit kapcsolattartásnak SSMS](analysis-services-manage.md) toomanage azt. Ráadásul, [tooit ügyfél eszköz használatával csatlakoztassa](analysis-services-connect.md) például a Power bi-ban, a Power BI Desktopban, vagy az Excel és a jelentések létrehozásának indítása.
+Miután sikeresen telepítette a kiszolgálóra a táblázatos modellt, azonnal csatlakozhat is hozzá. A kezeléséhez [csatlakozzon hozzá az SSMS-sel](analysis-services-manage.md). Továbbá [csatlakozhat hozzá ügyféleszközzel](analysis-services-connect.md) is, például Power BI, Power BI Desktop vagy Excel segítségével, és megkezdheti a jelentések létrehozását.
 

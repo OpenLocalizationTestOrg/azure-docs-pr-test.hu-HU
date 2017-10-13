@@ -1,6 +1,6 @@
 
-### <a name="update-manifest-file-tooenable-notifications"></a>Frissítse a jegyzékfájlt tooenable értesítések
-Hello alkalmazáson belüli alábbi üzenetküldési erőforrásokat hello között a Manifest.xml fájlba másolni `<application>` és `</application>` címkék.
+### <a name="update-manifest-file-to-enable-notifications"></a>A jegyzékfájl frissítése az értesítések engedélyezéséhez
+Másolja át az alkalmazáson belüli alábbi üzenetküldési erőforrásokat a Manifest.xml fájlba, az `<application>` és `</application>` címkék közé.
 
         <activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementTextAnnouncementActivity" android:theme="@android:style/Theme.Light" android:exported="false">
               <intent-filter>
@@ -45,32 +45,32 @@ Hello alkalmazáson belüli alábbi üzenetküldési erőforrásokat hello köz�
         </receiver>
 
 ### <a name="specify-an-icon-for-notifications"></a>Az értesítések ikonjának megadása
-XML-részletet a manifest.XML fájlba hello között a következő Beillesztés hello `<application>` és `</application>` címkék.
+Illessze be a következő XML-részletet a Manifest.xml fájlba, az `<application>` és `</application>` címkék közé.
 
         <meta-data android:name="engagement:reach:notification:icon" android:value="engagement_close"/>
 
-Ez határozza meg a hello mind a rendszer és az alkalmazásbeli értesítésekben megjelenő ikont. A használata alkalmazásbeli értesítések esetén nem, rendszerértesítések esetén viszont kötelező. Az Android rendszer elutasítja az érvénytelen ikonnal rendelkező rendszerértesítéseket.
+Ez meghatározza a rendszerben, valamint az alkalmazásbeli értesítésekben megjelenő ikont. A használata alkalmazásbeli értesítések esetén nem, rendszerértesítések esetén viszont kötelező. Az Android rendszer elutasítja az érvénytelen ikonnal rendelkező rendszerértesítéseket.
 
-Győződjön meg arról, hogy létezik-e ikont használ egy hello **rajzolható** mappák (például ``engagement_close.png``). A **mipmap** mappa nem támogatott.
+Győződjön meg arról, hogy olyan ikont használ, amely megtalálható a **drawable** (rajzolható) mappák egyikében (pl. ``engagement_close.png``). A **mipmap** mappa nem támogatott.
 
 > [!NOTE]
-> Ne használjon hello **indítója** ikonra. Más felbontással rendelkezik, és általában megtalálható hello mipmap-mappákban nem támogatottak.
+> Ne használja az **indító**ikont. Az indítóikon más felbontással rendelkezik, és általában a nem támogatott mipmap-mappákban található.
 > 
 > 
 
 Valós alkalmazások esetén használjon olyan ikont, amely az [Android tervezési útmutatója](http://developer.android.com/design/patterns/notifications.html) szerint használható értesítésekhez.
 
 > [!TIP]
-> toobe meg arról, hogy toouse helyes ikonméretet, vessen egy pillantást [ezekben a példákban](https://www.google.com/design/icons).
-> Görgessen lefelé toohello **értesítési** szakaszt, kattintson egy ikonra, és kattintson a `PNGS` hello rajzolható ikonkészlet toodownload. Láthatja, hogy melyik rajzolható mappa és melyik megoldás toouse hello ikon egyes verzióihoz.
+> Az [alábbi példák](https://www.google.com/design/icons) megtekintésével meggyőződhet arról, hogy a helyes ikonméretet használja-e.
+> Görgessen le a **Notification** (Értesítés) szakaszhoz, kattintson egy ikonra, majd kattintson a `PNGS` gombra a rajzolható ikonkészlet letöltéséhez. Itt láthatja, hogy melyik rajzolható mappa és melyik méret használható az ikon egyes verzióihoz.
 > 
 > 
 
-### <a name="enable-your-app-tooreceive-gcm-push-notifications"></a>Az alkalmazás tooreceive GCM leküldéses értesítések engedélyezése
-1. Illessze be a következő hello hello között a Manifest.xml fájlba `<application>` és `</application>` hello cseréje után címkék **Küldőazonosító** a Firebase projekt konzolból beszerzett. hello \n azért így, ezért győződjön meg arról, hogy befejezi a hello projektszám.
+### <a name="enable-your-app-to-receive-gcm-push-notifications"></a>GCM leküldéses értesítések fogadásának engedélyezése az alkalmazásban
+1. Illessze be a következőt a Manifest.xml fájlba, az `<application>` és `</application>` címkék közé, miután kicserélte a Firebase-konzolból beszerzett **Feladóazonosítót**. Az \n rész szándékosan került bele, ezért győződjön meg arról, hogy odaírja a projektszám végére.
    
         <meta-data android:name="engagement:gcm:sender" android:value="************\n" />
-2. Illessze be az alábbi hello kódot hello között a Manifest.xml fájlba `<application>` és `</application>` címkék. Cserélje le a csomag neve hello <Your package name>.
+2. Illessze be az alábbi kódot a Manifest.xml fájlba, az `<application>` és `</application>` címkék közé. Cserélje ki az alábbi csomagnevet: <Your package name>.
    
         <receiver android:name="com.microsoft.azure.engagement.gcm.EngagementGCMEnabler"
         android:exported="false">
@@ -86,7 +86,7 @@ Valós alkalmazások esetén használjon olyan ikont, amely az [Android tervezé
                 <category android:name="<Your package name>" />
             </intent-filter>
         </receiver>
-3. Adja hozzá a hello utolsó engedélykészletüket előtt hello kiemelt `<application>` címke. Cserélje le `<Your package name>` által az alkalmazás hello csomag tényleges neve.
+3. Adja hozzá a kiemelt utolsó engedélykészletet az `<application>` címke elé. Cserélje ki a `<Your package name>` részt az alkalmazás tényleges csomagnevére.
    
         <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
         <uses-permission android:name="<Your package name>.permission.C2D_MESSAGE" />

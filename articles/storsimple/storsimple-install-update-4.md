@@ -1,6 +1,6 @@
 ---
-title: "a StorSimple eszköz Update 4 aaaInstall |} Microsoft Docs"
-description: "Azt ismerteti, hogyan tooinstall a StorSimple 8000 Series Update 4 a StorSimple 8000 series eszközön."
+title: "A StorSimple eszköz Update 4 telepítése |} Microsoft Docs"
+description: "Ismerteti a StorSimple 8000 Series Update 4 telepítése a StorSimple 8000 series eszközön."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,48 +14,48 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 05/30/2017
 ms.author: alkohli
-ms.openlocfilehash: 62c0ae94afdbb1027d3075962afa04d49fd1f60a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7dc2f29db64218b9db17eaf555c43a7ad282ea07
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="install-update-4-on-your-storsimple-device"></a>A StorSimple eszköz Update 4 telepítése
 
 ## <a name="overview"></a>Áttekintés
 
-Ez az oktatóanyag azt ismerteti, hogyan hello tooinstall Update 4 a StorSimple eszköz egy korábbi verzióját szoftver keresztül, a klasszikus Azure portálon, és hello gyorsjavítások a módszerrel. hello gyorsjavítás módszer használható egy átjáró konfigurálva van a hálózati adaptert, mint a DATA 0 hello StorSimple eszköz és a frissítés előtti 1 szoftver verziójából származó tooupdate próbált.
+Ez az oktatóanyag azt ismerteti, hogyan Update 4 telepíthető a StorSimple eszköz egy korábbi verzióját szoftver a klasszikus Azure portálon keresztül, és a gyorsjavítások a módszerrel. Amikor egy átjáró konfigurálva van a hálózati adaptert, mint a DATA 0 a StorSimple eszköz és a frissítés előtti 1 szoftver verziójából származó frissíteni kívánt a gyorsjavítás módszert használják.
 
-Update 4 eszköz szoftver, a legpontosabb Beállításhoz belső vezérlőprogram, LSI illesztőprogram és a belső vezérlőprogram, Storport és Spaceport, az operációs rendszer biztonsági frissítések és az állomást, más operációs rendszer frissítéseit tartalmazza.  hello eszköz szoftver, a legpontosabb Beállításhoz belső vezérlőprogram, Spaceport, Storport és más operációs rendszer frissítése nem zavaró frissítések érhetők el. hello rendszeres vagy nem zavaró frissítések hello a klasszikus Azure portálon keresztül vagy hello gyorsjavítások a módszerrel lehet alkalmazni. hello lemez belső vezérlőprogram-frissítésekre zavaró frissítések érhetők el, és csak akkor érvényesíthetők, hello gyorsjavítások a módszerrel hello eszköz hello Windows PowerShell felületén. 
+Update 4 eszköz szoftver, a legpontosabb Beállításhoz belső vezérlőprogram, LSI illesztőprogram és a belső vezérlőprogram, Storport és Spaceport, az operációs rendszer biztonsági frissítések és az állomást, más operációs rendszer frissítéseit tartalmazza.  Az eszközhöz, a legpontosabb Beállításhoz belső vezérlőprogram, Spaceport, Storport és más operációs rendszer frissítése érdekében nem zavaró frissítések. A nem zavaró vagy rendszeres frissítés akkor alkalmazható, a klasszikus Azure portálon keresztül vagy a gyorsjavítások a módszerrel. A lemez belső vezérlőprogram-frissítésekre zavaró frissítések érhetők el, és a gyorsjavítások a módszerrel a Windows PowerShell felületén az eszköz csak akkor érvényesíthetők. 
 
 > [!IMPORTANT]
-> * Manuális és automatikus előtti ellenőrzés végzett előzetes toohello telepítés toodetermine hello eszközök állapotának tekintetében a hardver állapotát és a hálózati kapcsolatot. Az előzetes ellenőrzések csak akkor, ha a klasszikus Azure portálon hello hello frissítések telepítését végzik.
-> * Azt javasoljuk, hogy hello szoftver- és egyéb hello a klasszikus Azure portálon keresztül rendszeres frissítéseket telepíti. Ha hello frissítés előtti átjáró ellenőrzés sikertelen hello portálon toohello Windows PowerShell-felületet hello eszköz (tooinstall frissítések) csak kell lépjen. Attól függően, hello verzióra frissít, a, hello frissítések órát is igénybe vehet 4 (vagy újabb) tooinstall. hello eszköz hello Windows PowerShell felületén keresztül hello karbantartási mód frissítéseket is telepíteni kell. Karbantartási mód frissítések zavaró frissítések érhetők el, mert ezek jár le egyszerre az eszközhöz.
-> * Ha fut a választható StorSimple Snapshot Manager hello, győződjön meg arról, hogy frissítette a Snapshot Manager verzió tooUpdate 4 előzetes tooupdating hello eszköz.
+> * Manuális és automatikus előtti ellenőrzés történik az eszköz állapotának hardver állapot és hálózati kapcsolatok tekintetében telepítése előtt. Az előzetes ellenőrzések csak akkor, ha a frissítések telepítését a klasszikus Azure-portálon történik.
+> * Azt javasoljuk, hogy telepítse a szoftver- és egyéb rendszeres frissítéseket, a klasszikus Azure portálon keresztül. Csak abban az csak lépjen a Windows PowerShell felületét (a frissítések telepítése) az eszköz, ha a frissítés előtti átjáró ellenőrzés sikertelen, a portálon. Attól függően, a verzióra frissít, a, a frissítések órát is igénybe vehet 4 (vagy újabb) telepítéséhez. A karbantartási mód frissítéseket is telepíteni kell az eszköz a Windows PowerShell felületén keresztül. Karbantartási mód frissítések zavaró frissítések érhetők el, mert ezek jár le egyszerre az eszközhöz.
+> * Ha a választható StorSimple Snapshot Manager fut, győződjön meg arról, hogy frissítette a Snapshot Manager verziójának Update 4 az eszköz frissítése előtt.
 
 
 [!INCLUDE [storsimple-preparing-for-update](../../includes/storsimple-preparing-for-updates.md)]
 
-## <a name="install-update-4-via-hello-azure-classic-portal"></a>Telepítse az Update 4 hello a klasszikus Azure portálon keresztül
-Túl hajtsa végre a következő lépéseket tooupdate hello-az eszköz[Update 4](storsimple-update4-release-notes.md).
+## <a name="install-update-4-via-the-azure-classic-portal"></a>A klasszikus Azure portálon keresztül Update 4 telepítése
+Az eszköz frissítése a következő lépésekkel [Update 4](storsimple-update4-release-notes.md).
 
 > [!NOTE]
-> Ha Ön alkalmazzák a 2. frissítés vagy újabb verziók (beleértve a 2.1-es frissítés), a Microsoft lesz képes toopull további diagnosztikai adatokat hello eszközről. Ennek eredményeképpen a műveletek csapat azonosítja az eszközöket, amelyek problémákat tapasztal, amikor azt jobb felszerelt toocollect információkkal hello eszközről és problémák elemzéséhez. 2. frissítés vagy újabb elfogadásával, hogy lehetővé teszik a számunkra tooprovide a proaktív támogatás. 
+> Ha Ön alkalmazzák a 2. frissítés vagy újabb verziók (beleértve a 2.1-es frissítés), a Microsoft fog tudni lekéréses további diagnosztikai adatok az eszközről. Ennek eredményeképpen ha a műveleti csapata az eszközöket, amelyek problémákat tapasztal, vagy folyamatban, jobban ellátni a adatokat gyűjthetnek az eszköz és a problémák diagnosztizálásához. Elfogadásával Update 2 vagy újabb, hogy lehetővé teszik a számunkra a proaktív támogatásához. 
 
 [!INCLUDE [storsimple-install-update2-via-portal](../../includes/storsimple-install-update2-via-portal.md)]
 
-Győződjön meg arról, hogy az eszköz fut. **a StorSimple 8000 Series Update 4 (6.3.9600.17820)**. Hello **utolsó frissítés dátuma** is módosítani kell. 
+Győződjön meg arról, hogy az eszköz fut. **a StorSimple 8000 Series Update 4 (6.3.9600.17820)**. A **utolsó frissítés dátuma** is módosítani kell. 
 
-* Most láthatja, hogy hello karbantartási mód frissítések érhetők el (Ez az üzenet továbbra is fel too24 óra telepítése után hello frissítések megjelenített toobe). Karbantartási mód frissítések zavaró frissítések eszköz állásidőt eredményezhettek, és csak akkor érvényesíthetők, az eszköz hello Windows PowerShell felületén keresztül érhetők el.
+* Most láthatja, hogy a karbantartási mód frissítések érhetők el (Ez az üzenet előfordulhat, hogy továbbra is megjelennek a frissítések telepítése után legfeljebb 24 órában). Karbantartási mód frissítések zavaró frissítések eszköz állásidőt eredményezhettek, és csak akkor érvényesíthetők, az eszköz a Windows PowerShell felületén keresztül érhetők el.
  
-* Hello karbantartási mód frissítések letöltése felsorolt hello lépések segítségével [toodownload gyorsjavítások](#to-download-hotfixes) toosearch számára, és töltse le a KB4011837, amely telepíti a belső vezérlőprogram-frissítésekre (hello más frissítések már telepítve kell lennie mostanra). Kövesse a felsorolt hello lépéseket [telepítse, és ellenőrizze a karbantartási mód gyorsjavítások](#to-install-and-verify-maintenance-mode-hotfixes) tooinstall hello karbantartási mód frissítések. 
+* A karbantartási mód frissítések letöltése a felsorolt lépéseket követve [gyorsjavítások letöltése](#to-download-hotfixes) keresését, és töltse le a KB4011837, mely telepíti lemez belső vezérlőprogram-frissítésekre (a más frissítések már telepítve kell lennie mostanra). Kövesse a felsorolt lépéseket [telepítse, és ellenőrizze a karbantartási mód gyorsjavítások](#to-install-and-verify-maintenance-mode-hotfixes) a karbantartási mód telepítendő frissítések. 
 
 ## <a name="install-update-4-as-a-hotfix"></a>Update 4 telepíti egy gyorsjavítás
-hello ajánlott módszer tooinstall Update 4 van hello a klasszikus Azure portálon keresztül.
+Update 4 telepítése az ajánlott módszer van a klasszikus Azure portálon keresztül.
 
-Ez az eljárás használható, ha tooinstall hello frissítések hello a klasszikus Azure portálon keresztül közben nem sikerül hello átjáró ellenőrzése. hello az ellenőrzés sikertelen, a hozzárendelt tooa nem DATA 0 hálózati adapterén átjáró és az eszköz fut-e a szoftver verziója előzetes tooUpdate 1.
+Ez az eljárás használható, ha az átjáró ellenőrzése sikertelen, a klasszikus Azure portálon keresztül frissítések telepítése közben. Az ellenőrzés sikertelen, egy nem DATA 0 hálózati adapterén rendelt átjáró és az eszköz 1. frissítés előtti szoftvert verziót futtat.
 
-hello szoftververziók, amelyekre hello gyorsjavítások a módszerrel frissítheti a következők:
+A gyorsjavítások a módszerrel frissíthető szoftver verziók az alábbiak:
 
 * Frissítéskezelés 0,1 vagy 0,2 0,3
 * 1., 1.1-es, 1.2 frissítése
@@ -63,15 +63,15 @@ hello szoftververziók, amelyekre hello gyorsjavítások a módszerrel frissíth
 * Frissítés 3 3.1. 
 
 
-hello gyorsjavítás módszer a következő három lépésből hello foglalja magában:
+A gyorsjavítás metódus a következő három lépést foglal magában:
 
-1. A Microsoft Update katalógus hello hello gyorsjavításokat töltheti le.
-2. Telepítse, és ellenőrizze a hello rendszeres mód gyorsjavítások.
-3. Telepítse a, és ellenőrizze a hello karbantartási mód gyorsjavítás.
+1. Töltse le a gyorsjavítás a Microsoft Update katalógusból.
+2. Telepítse a, és ellenőrizze a normál üzemmód gyorsjavítások.
+3. Telepítse a, és ellenőrizze a karbantartási mód gyorsjavítást.
 
 #### <a name="download-updates-for-your-device"></a>Az eszköz frissítéseinek letöltése
 
-Kell töltse le és telepítse a következő hello gyorsjavítások hello előírt sorrendben, és javasolt mappák hello:
+Töltse le, és a gyorsjavítások telepítése az előírt sorrendben és a javasolt mappák:
 
 | Sorrendje | KB | Leírás | Frissítés típusa | Telepítés időpontja |A mappa telepítéséhez|
 | --- | --- | --- | --- | --- | --- |
@@ -80,7 +80,7 @@ Kell töltse le és telepítse a következő hello gyorsjavítások hello előí
 | 2B. |KB3139398, KB3108381 <br> KB3205400, KB3142030 <br> KB3197873, KB3192392  <br> KB3153704, KB3174644 <br> KB3139914  |Az operációs rendszer biztonsági frissítések csomag |Rendszeres <br></br>A nem zavaró |- |SecondOrderUpdate|
 | 2C. |KB3210083, KB3103616 <br> KB3146621, KB3121261 <br> KB3123538 |Az operációs rendszer frissítéseinek csomag |Rendszeres <br></br>A nem zavaró |- |SecondOrderUpdate|
 
-Tooinstall lemez belső vezérlőprogram-frissítésekre felett megjelenő hello előző táblák összes hello frissítések is szükség lehet. Ellenőrizheti, hogy kell-e belső vezérlőprogram-frissítésekre hello hello futtatásával `Get-HcsFirmwareVersion` parancsmag. Ha ezek a belső vezérlőprogram verzióinak futtatja: `XMGJ`, `XGEG`, `KZ50`, `F6C2`, `VR08`, `N002`, `0106`, akkor nem szükséges tooinstall ezeket a frissítéseket.
+Előfordulhat, hogy is telepítendő fölött a fenti táblázatokban látható frissítések lemez belső vezérlőprogram-frissítésekre. Ellenőrizheti, hogy szükséges-e a lemez belső vezérlőprogram-frissítésekre futtatásával a `Get-HcsFirmwareVersion` parancsmag. Ha ezek a belső vezérlőprogram verzióinak futtatja: `XMGJ`, `XGEG`, `KZ50`, `F6C2`, `VR08`, `N002`, `0106`, akkor nem szükséges a frissítések telepítéséhez.
 
 | Sorrendje | KB | Leírás | Frissítés típusa | Telepítés időpontja | A mappa telepítéséhez|
 | --- | --- | --- | --- | --- | --- |
@@ -89,16 +89,16 @@ Tooinstall lemez belső vezérlőprogram-frissítésekre felett megjelenő hello
 <br></br>
 
 > [!IMPORTANT]
-> * Ez az eljárás igények toobe csak egyszer végre tooapply Update 4. Hello Azure klasszikus portál tooapply soron következő frissítések is használhatja.
-> * Ha frissíti a 3. frissítés vagy 3.1, hello teljes telepítés ideje Bezárás too4 óra.
-> * Ez az eljárás tooapply hello használata előtt frissíteni, győződjön meg arról, hogy mindkét hello eszközvezérlők online állapotban, és minden hello hardverösszetevőinek kifogástalan.
+> * Ez az eljárás csak egyszer hajtható végre Update 4 alkalmazni kell. A klasszikus Azure portál segítségével soron következő frissítések alkalmazásához.
+> * 3. frissítés vagy 3.1 frissítését, a teljes telepítési idő akkor megközelítőleg 4 óra.
+> * Ez az eljárás használata a frissítés előtt győződjön róla, hogy mind a eszközvezérlők online állapotban és a hardverösszetevők kifogástalan.
 
-Hajtsa végre a következő lépéseket toodownload hello és hello gyorsjavításainak telepítéséhez.
+A következő lépésekkel töltse le és telepítse a gyorsjavítást.
 
 [!INCLUDE [storsimple-install-update4-hotfix](../../includes/storsimple-install-update4-hotfix.md)]
 
 [!INCLUDE [storsimple-install-troubleshooting](../../includes/storsimple-install-troubleshooting.md)]
 
 ## <a name="next-steps"></a>Következő lépések
-További tudnivalók hello [Update 4 kiadás](storsimple-update4-release-notes.md).
+További információ a [Update 4 kiadás](storsimple-update4-release-notes.md).
 

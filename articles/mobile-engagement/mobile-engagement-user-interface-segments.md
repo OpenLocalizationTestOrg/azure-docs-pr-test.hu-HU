@@ -1,6 +1,6 @@
 ---
-title: "Mobile Engagement felhasználói felület – aaaAzure szegmensek"
-description: "Megtudhatja, hogyan toocreate és kezelheti a szegmenseket, az Azure Mobile Engagementet használó felhasználók tooidentify használati minták"
+title: "Az Azure Mobile Engagement felhasználói felület - szegmensek"
+description: "Útmutató: az Azure Mobile Engagement segítségével használati minták azonosításához felhasználók szegmenseinek létrehozása és kezelése"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,63 +14,63 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: bb214c45d05ebfbf243978658a7e331d4a7c6e0e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 087f4a1fef420abe9669f8dfe2b84c7a847ce263
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toocreate-and-manage-segments-of-users-tooidentify-usage-patterns"></a>Hogyan toocreate és kezelheti a szegmenseket felhasználók tooidentify használati minták
-Ez a cikk ismerteti a hello **SZEGMENSEK** hello lapján **a Mobile Engagement** portálon. Hello használata **a Mobile Engagement** portál toomonitor és a mobilalkalmazások kezelése.
+# <a name="how-to-create-and-manage-segments-of-users-to-identify-usage-patterns"></a>Hogyan kell a használati minták azonosításához felhasználók szegmenseinek létrehozása és kezelése
+Ez a cikk ismerteti a **SZEGMENSEK** lapján a **a Mobile Engagement** portálon. Használja a **a Mobile Engagement** portal felügyeletét és kezelését a mobile apps szolgáltatásban.
 
-felhasználói felület hello hello szegmensek szakasza lehetővé teszi toowork szegmentálja a felhasználók hello másképp viselkednek és elemzés, amelyet az alkalmazás hello kérheti le és hello szegmensek API keresztül is elérheti a. Szegmensek először vannak számított 24 órával azt követően hozza létre őket, és azok vannak recomputed 24 óránként hello legújabb analytics adatok alapján. Miután egy szegmens kiszámítása, azt jeleníti meg a "Nap tooday előzmények" naponta.
+A felhasználói felület szegmensek szakasza lehetővé teszi a felhasználók különböző viselkedését és érheti el az alkalmazást, és a szegmensek API-n keresztül is elérheti analytics alapján szegmentálja a. Szegmensek először vannak számított 24 órával azt követően hozza létre őket, és azok vannak recomputed 24 óránként legújabb analytics információk alapján. Miután egy szegmens kiszámítása, azt jeleníti meg a "Day nap előzményei" naponta.
 
 > [!NOTE]
-> Hello sok szakasza **a Mobile Engagement** portál felhasználói felületének tartalmazhat hello **megjelenítése SÚGÓ** gombra. Nyomja meg a gomb tooget szakasz környezetfüggő tájékozódhat.
+> Sok szakasza a **a Mobile Engagement** portál felhasználói felületének tartalmaz a **megjelenítése SÚGÓ** gombra. Nyomja le az erre a gombra kattintva szakasz környezetfüggő ismertetése.
 > 
 > 
 
 ## <a name="create-segments"></a>Szegmensek létrehozása
-A szegmens hello too60 napokat be egy adott időszakban a too10 feltételek alapján hozhat létre múltbeli hello analytics szakaszából. Például egy szegmens hello személyeket, akik bizonyos oldalait vagy keresni az alkalmazáson belül hello belül adott tartalomtípusok 10 napja alapján is létrehozhat. Ez az információ hello analytics szakaszában érhető el. Igen, toocreate egy szegmens használják, és hozzon létre egy leküldéses értesítési tootarget a felhasználók tooget részhalmazát őket toocome hátsó toohello alkalmazás. 
+Létrehozhat egy szegmens legfeljebb 10 feltétel alapján a meghatározott időtartamra fel az elmúlt 60 napra analytics szakaszából. Például egy szegmens a személyeket, akik bizonyos oldalait vagy az utolsó 10 napon belül az adott tartalomhoz az alkalmazáson belül keres alapján is létrehozhat. Ez az információ analytics szakaszában érhető el. Igen segítségével azt hoznia egy szegmenst, és majd állítsa be úgy, hogy a felhasználók részhalmazát célozza leküldéses értesítés azokat a térjen vissza az alkalmazást. 
 
 > [!NOTE]
-> Miután egy szegmens kiszámított, ezért nem lehet szerkeszteni; azt is csak klónozáshoz (másolt) vagy megsemmisül (törölve). Egy szegmens belül hello klónozható ugyanahhoz az alkalmazáshoz (az azonos AppID hello), és azt is klónozható más alkalmazásokba (a különböző AppID). 
+> Miután egy szegmens kiszámított, ezért nem lehet szerkeszteni; azt is csak klónozáshoz (másolt) vagy megsemmisül (törölve). A szegmens klónozható a (ugyanazon alkalmazásazonosítóval rendelkező azonos AppID) belül, és azt is klónozható más alkalmazásokba (a különböző AppID). 
 
  ![segments1][35] 
 
 ## <a name="examples-segments"></a>Példák szegmensek
  ![segments2][36]
 
-Szegmensek toosegment hello végfelhasználók számára az alkalmazás lehetővé teszi.
-A felhasználók szegmentálásával egy fontos marketing stratégia. Az Azure Mobile Engagement lehetővé teszi a tooget régebbi adatok, és hozzon létre egyéni szegmensek. Az erőteljes eszköz lehetővé teszi az alkalmazás a felhasználók tapasztalatairól toolearn. Egyszerűen elemezheti a szegmenseket, és használja a szegmenseket leküldéses célként.
-Egy gyakori használati eset, amelyet egy értesítési tooencourage leküldéses toosend a végfelhasználók toorate hello áruházban az alkalmazás. Ahelyett, hogy egy értesítési tooall küld a végfelhasználók számára, létrehozhat kellene megadnia csak azok a felhasználók, amelyek az alkalmazás minden nap az előző hónap hello használt, és rendelkezésére állt-e a kiváló felhasználói felülettel szegmenssel. Kevesebb, jól célzott leküldéses értesítéseket küldeni, a jobb Megtérülési nyílik meg.
+Szegmensek lehetővé teszi a szegmenseket, a végfelhasználók számára az alkalmazás.
+A felhasználók szegmentálásával egy fontos marketing stratégia. Az Azure Mobile Engagement lehetővé teszi a régebbi adatok, és hozzon létre egyéni szegmensek. Az erőteljes eszköz lehetővé teszi az alkalmazás a felhasználók tapasztalatai megismerése. Egyszerűen elemezheti a szegmenseket, és használja a szegmenseket leküldéses célként.
+Egy gyakori használati eset az, hogy szeretne-e leküldéses bátorítva használatával minősítheti az alkalmazás az áruházban a végfelhasználók értesítést küldeni. Ahelyett, hogy a végfelhasználók értesítést küld, az alkalmazás minden nap használtak az elmúlt hónapban, és rendelkezésére állt-e a kiváló felhasználói felület csak felhasználók kellene megadnia szegmenssel hozhat létre. Kevesebb, jól célzott leküldéses értesítéseket küldeni, a jobb Megtérülési nyílik meg.
 
  ![segments3][37]
 
-### <a name="segments-you-can-create-based-on-hello-major-azure-mobile-engagement-elements"></a>Létrehozhat alapuló szegmens hello fő Azure Mobile Engagement elemet:
-* Esemény: hozzon létre egy szegmenst a célokat egy adott esemény hello alkalmazás, amely hetente legfeljebb kétszer került sor. 
-* Munkamenet: hozzon létre egy részének a több mint 5 alkalommal múlt héten hello alkalmazást használó felhasználókat.
+### <a name="segments-you-can-create-based-on-the-major-azure-mobile-engagement-elements"></a>Szegmensek hozhat létre a fő Azure Mobile Engagement elemet alapján:
+* Esemény: hozzon létre egy szegmenst, hogy célokat egy adott esemény az alkalmazás, amely hetente legfeljebb kétszer került sor. 
+* Munkamenet: hozzon létre egy részének a az alkalmazás több mint 5 alkalommal múlt héten használó felhasználókat.
 * Tevékenység: hozzon létre egy részének a használó felhasználókat egy oldal, vagy a tartalom több vagy kevesebb mint 10 ideje elmúlt hónapban.
 * Feladat: a szegmens, amely naponta legfeljebb kétszer befejeződött egy feladat létrehozása.
-* Összeomlási: hozzon létre egy szegmens az összes olyan hello felhasználó 10 szintnél mélyebben múlt héten crash volt. (Ebben a szegmensben egy Bocsánatkérő vagy akár egy ráta sikerült leküldéses!)
-* Hiba: a szegmens, amely több mint 100 alkalommal 3 napnál korábban hibába hello felhasználók létrehozása.
-* Alkalmazásadat: hozzon létre egy szegmenst, amelynek célja egy egyéni App-Info 25 napja hello során történt.
+* Összeomlási: hozzon létre egy szegmens az összes olyan felhasználó, amely 10 szintnél mélyebben múlt héten crash volt. (Ebben a szegmensben egy Bocsánatkérő vagy akár egy ráta sikerült leküldéses!)
+* Hiba: a szegmens az összes olyan felhasználó, amelyek több mint 100 alkalommal 3 napnál korábban hibába hozható létre.
+* Alkalmazásadat: hozzon létre egy szegmenst, amelynek célja egy egyéni App-Info, amelyek az elmúlt 25 napban történtek.
   
   ![segments4][38]
 
-toouse szegmens optimálisan, még kell meg egy testreszabott hello SDK integrációja "Alkalmazásadatok" címkék címkézési tervvel az alkalmazásban.
-Folytassa a kezdőlap toohello hello illesztőfelület, ki hello alkalmazást, majd kattintson a hello "Szegmensek" szakasz.
+Szegmens optimálisan használatához még kell meg egy testreszabott integrációt az SDK az alkalmazás "Alkalmazásadatok" címkék címkézési tervvel.
+Ezt követően folytassa a felület kezdőlapján, válassza ki az alkalmazást, majd kattintson a "Szegmensek" szakasz.
 
-1. Válassza ki a hello "Szegmensek" szakaszt.
-2. Kattintson az "Új szegmens" hello toocreate új szegmens gombra kattint.
+1. Válassza ki a "Szegmensek" szakaszt.
+2. Kattintson az "új szegmens" gombra kattintva hozzon létre egy új szegmenst.
 
 ## <a name="real-life-example-create-a-simple-segment-based-on-session-information"></a>Valós élettartama. példa: Hozzon létre egy egyszerű szegmens "Munkamenet" adatok alapján
-Hozzon létre egy szegmens az összes hello végfelhasználók számára, amely használták az alkalmazást legalább 50 alkalommal hello múlt héten. Ott csak az alkalmazás munkamenetenként legalább 30 másodperces töltötték hello végfelhasználók található. Ez az alkalmazás egy pozitív élményt rendelkező összes hello végfelhasználók jelennek meg. Ezután létre hello szegmens használt toopush egy értesítési toothese végfelhasználók tooask lehet őket toorate az alkalmazást a hello tárolja.
+Hozzon létre egy szegmens az összes a végfelhasználók számára használták az alkalmazást legalább 50 alkalommal az elmúlt hét. Ott csak a végfelhasználók számára, amelyekkel töltötték legalább 30 másodperces munkamenetenként az alkalmazásban található. Ez az alkalmazás egy pozitív élményt rendelkező összes végfelhasználók jelennek meg. Ezt követően létre szegmens is leküldéses értesítést a végfelhasználóknak, amiben megkéri, hogy értékeljék az alkalmazást a tárolóban.
 
  ![segments5][39]
 
-1. Nevezze el a szegmensek a rendelés toofind legyen gyorsan hello "Szegmens" lista.
-2. Kattintson a hello "Létrehozás" gombra.
+1. Nevezze el a szegmensek ahhoz, hogy gyorsan megtalálhatja a "Szegmens" listában.
+2. Kattintson a "Létrehozás" gombra.
    
    ![segments6][40]
 
@@ -78,34 +78,34 @@ Jelölje ki a munkamenetet.
 
  ![segments7][41]
 
-1. Válassza az "Elmúlt hét" hello időszak.
+1. Válassza ki az "Elmúlt hét" időszak.
 2. Kattintson a Tovább gombra.
    
    ![segments8][42]
-3. SELECT hello között hello lista fontos operátor: =; ≥, ≤.
-4. Adja meg a hello kívánt száma.
-5. Válassza ki a kívánt előfordulási hello. 
+3. Válassza ki azt az operátort, fontos listájában: =; ≥, ≤.
+4. Adja meg a kívánt szám.
+5. Válassza ki a kívánt előfordulása. 
 6. Kattintson a Tovább gombra.
-   Ebben a példában van beállítva, így az adott over hello múlt héten egyezés felhasználók, amelyek legalább 50 munkamenetek történtek.
+   Ebben a példában van beállítva, így a múlt héten keresztül megfelelő felhasználók, amelyek legalább 50 munkamenetek történtek.
    
    ![segments9][43]
 
-Hello munkamenet szegmentálását kiválaszthatja feltételként munkamenetenként hello hossza.
+A munkamenet Szegmentálás esetén dönthet úgy, a munkamenet feltételként hossza.
 
-1. Válassza ki a hello operátor hello listából.
-2. Adja meg a hello hossza munkamenetenként.
+1. Válassza ki a listából az operátor.
+2. Adja meg a munkamenet hossza.
 3. Kattintson a Next (Tovább) gombra.
-   Ebben a példában a felirat látható, hogy folyamatosan hello munkamenetek, amelyek rendelkeznek lett szegmentált hello előfordulási szakasz, jelölje ki a csak hello felhasználókat, akik rendelkeznek a munkamenetenként több mint 30 másodperc.
+   Ebben a példában a felirat látható, hogy a munkamenet, amely rendelkezik a előfordulási szakasz lett szegmentált, jelölje be a felhasználókra, akik rendelkeznek a munkamenetenként több mint 30 másodperc.
    
    ![segments10][44]
 
-Nevet a feltételnek rendelés tooretrieve legyen hello végezze el a tölcsér, és kattintson a Befejezés gombra.
+A feltétel neve a teljes tölcsér a webkiszolgálótól, és kattintson a Befejezés gombra.
 
  ![segments11][45]
 
-Miután végzett a beállítás mentése a feltételnek, a hello szegmens tölcsér jelenik meg.
+Miután végzett a beállítás mentése a feltételnek, a szegmens tölcsérhez jelenik meg.
 A szegmens analytics adatokon alapul, mert a szegmensek naponta egyszer kiszámítása a történik.
-Ebben a példában 47,7 hello teljes végfelhasználók % hello feltételnek megfelel. Hello felhasználók rendelkezésére állt-e a megfelelő környezet kell őket, és fog kell egy magasabb értékelése, ha értesítést leküldéses őket valószínűleg tooprovide kéri a felhasználót toorate hello alkalmazás hello áruházban.
+Ebben a példában 47,7 a teljes végfelhasználók % megfelel a feltételnek. A felhasználók rendelkezésére állt-e a megfelelő környezet és várhatóan magasabb minősítést adja meg, ha a értékelje az áruházban az alkalmazás kéri a felhasználót értesítést leküldéses őket kell őket.
 
 ## <a name="see-also"></a>Lásd még:
 * [Alapfogalmak][Link 6]

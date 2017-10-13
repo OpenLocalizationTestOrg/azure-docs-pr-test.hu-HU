@@ -1,6 +1,6 @@
 ---
-title: "hello Azure CDN szabálymotor aaaOverride HTTP viselkedésének |} Microsoft Docs"
-description: "hello szabálymotor lehetővé teszi a HTTP-kérések kezelésének módja Azure CDN által például blokkolja a tartalom bizonyos típusú hello kézbesítési toocustomize, a gyorsítótárazási házirend határozza meg és módosíthatja a HTTP-fejlécek."
+title: "Az Azure CDN szabályok motor használata HTTP működés felülbírálásához |} Microsoft Docs"
+description: "A szabályok motor teszi lehetővé testre szabhatja a HTTP-kérések kezelésének módja Azure CDN által például blokkolja-e a tartalom bizonyos típusú kézbesítését, gyorsítótárazási házirend határozza meg és módosíthatja a HTTP-fejlécek."
 services: cdn
 documentationcenter: 
 author: zhangmanling
@@ -14,66 +14,66 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: dd7194be9dbda43180c64568d3e1f52c5c513a7e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: abfe283476206b181018d187675b47112dc5ad2f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="override-http-behavior-using-hello-azure-cdn-rules-engine"></a>Bírálja felül a HTTP viselkedés hello Azure CDN szabályok motor használata
+# <a name="override-http-behavior-using-the-azure-cdn-rules-engine"></a>Az Azure CDN szabálymotor HTTP viselkedésének felülbírálása
 [!INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
 
 ## <a name="overview"></a>Áttekintés
-hello szabálymotor lehetővé teszi a HTTP-kérések kezelésének módja, például tartalom bizonyos típusú hello kézbesítési blokkolja, a gyorsítótárazási házirend meghatározása és a HTTP-fejlécek módosítása toocustomize.  Ez az oktatóanyag mutatni szabályt hoz létre a CDN eszközök gyorsítótárazásának hello változik.  Nincs is videotartalom hello érhető el "[lásd még:](#see-also)" szakasz.
+A szabályok motor lehetővé teszi, hogy segítségével testre szabhatja a HTTP-kérések kezelésének módja, például bizonyos típusú tartalom kézbesítésével blokkolja, a gyorsítótárazási házirend meghatározása és a HTTP-fejlécek módosítása.  Ez az oktatóanyag mutatni szabályt hoz létre a gyorsítótár-viselkedést CDN eszközök változik.  Nincs is videotartalom érhető el a "[lásd még:](#see-also)" szakasz.
 
    > [!TIP] 
-   > Egy hivatkozási toohello szintaxis részletesen, lásd: [szabályok motor hivatkozás](cdn-rules-engine-reference.md).
+   > Részletes szintaxisa referenciáért lásd: [szabályok motor hivatkozás](cdn-rules-engine-reference.md).
    > 
 
 
 ## <a name="tutorial"></a>Oktatóanyag
-1. A CDN-profil panelje hello, kattintson a hello **kezelése** gombra.
+1. A CDN-profil panelje, kattintson a **kezelése** gombra.
    
     ![CDN-profil panelje kezelése gomb](./media/cdn-rules-engine/cdn-manage-btn.png)
    
-    Megnyílik a hello CDN felügyeleti portálon.
-2. Kattintson a hello **HTTP nagy** fülre, majd **szabálymotor**.
+    Megnyitja a CDN-felügyeleti portálon.
+2. Kattintson a **HTTP nagy** fülre, majd **szabálymotor**.
    
     Új szabály beállításait jelennek meg.
    
     ![Új CDN-szabály beállítások](./media/cdn-rules-engine/cdn-new-rule.png)
    
    > [!IMPORTANT]
-   > a több szabály listán hello rendelés van hatással, kezelésének módját. Egy későbbi szabály felülbírálhatják az előző szabályok által megadott hello műveletek.
+   > A több szabály listán sorrendje befolyásolja kezelésének módját. A következő szabály felülbírálhatják az előző szabályok által meghatározott műveleteket.
    > 
    > 
-3. Adjon meg egy nevet a hello **neve / leírása** szövegmező.
-4. Azonosítsa a hello típusú kérelmek hello szabály vonatkozik.  Alapértelmezés szerint hello **mindig** egyezés feltétel meg van jelölve.  Fogjuk **mindig** ehhez az oktatóanyaghoz, így hagyja kiválasztott.
+3. Írjon be egy nevet a **neve / leírása** szövegmező.
+4. Azonosítja a kéréseket a szabály vonatkozik.  Alapértelmezés szerint a **mindig** egyezés feltétel meg van jelölve.  Fogjuk **mindig** ehhez az oktatóanyaghoz, így hagyja kiválasztott.
    
    ![CDN-egyeztetés feltétel](./media/cdn-rules-engine/cdn-request-type.png)
    
    > [!TIP]
-   > Nincsenek megfelelő számos különböző feltételek hello legördülő érhetők el.  Kék hello információs ikon toohello kattintva balra hello egyezés feltétel alapján meghatározható, jelenleg kijelölt hello feltétel részletesen.
+   > Nincsenek számos különböző típusú egyezik meg a legördülő listában elérhető feltételek.  A bal oldalra, az egyeztetés feltétel kék információs ikonra kattint alapján meghatározható a jelenleg kijelölt feltételt részletesen.
    > 
-   >  Hello teljes listája a feltételes kifejezések részletesen [szabályok motor feltételes kifejezések](cdn-rules-engine-reference-match-conditions.md).
+   >  Részletes feltételes kifejezések teljes listáját lásd: [szabályok motor feltételes kifejezések](cdn-rules-engine-reference-match-conditions.md).
    >  
-   > Hello teljes listája megtalálható egyezés feltételek részletesen, [szabályok motor megfelelő feltételek](cdn-rules-engine-reference-match-conditions.md).
+   > Egyezés feltételek részletesen teljes listáját lásd: [szabályok motor megfelelő feltételek](cdn-rules-engine-reference-match-conditions.md).
    > 
    > 
-5. Kattintson a hello  **+**  gomb melletti túl**szolgáltatások** tooadd új szolgáltatása.  Hello legördülő hello bal oldali menüben válassza ki **kényszerített belső maximális életkora**.  Hello szövegmezőben, amely akkor jelenik meg, írja be a **300**.  Alapértelmezett értékek fennmaradó hello hagyja.
+5. Kattintson a  **+**  gombra **szolgáltatások** hozzáadni egy új funkciót.  A bal oldali legördülő menüben válassza ki **kényszerített belső maximális életkora**.  A szövegmezőben, amely akkor jelenik meg, írja be a **300**.  Hagyja a további alapértelmezett értékei.
    
    ![CDN-szolgáltatás](./media/cdn-rules-engine/cdn-new-feature.png)
    
    > [!NOTE]
-   > Mivel feltételek egyeznek, a kék hello információs ikon toohello kattintva balra hello az új szolgáltatás jelenik meg részleteket ezzel a funkcióval kapcsolatban.  Hello esetében **kényszerített belső maximális életkora**, azt mérvadóak hello eszköz **Cache-Control** és **Expires** fejlécek toocontrol hello CDN élcsomópont hello fog frissítése után eszköz hello a forrásból.  300 másodperc példában azt jelenti, hogy hello CDN élcsomópont gyorsítótárazhatják az hello eszköz 5 perccel az eredetéül hello eszköz frissítése előtt.
+   > Mint feltételek egyeznek, a bal oldalán a új szolgáltatás a kék információs ikonra kattintva jelenik meg ez a szolgáltatás adatait.  A következőket **kényszerített belső maximális életkora**, azt mérvadóak az eszköz **Cache-Control** és **Expires** fejlécek szabályozására, ha a CDN élcsomópont frissíti az eszköz a forrás.  300 másodperc példában azt jelenti, hogy a CDN élcsomópont gyorsítótárazhatják az eszköz 5 perccel eredetéül az eszköz frissítése előtt.
    > 
-   > A szolgáltatások részletes hello teljes listáját, lásd: [szabályok motor a szolgáltatás részletei](cdn-rules-engine-reference-features.md).
+   > A részletes szolgáltatások teljes listájáért lásd: [szabályok motor a szolgáltatás részletei](cdn-rules-engine-reference-features.md).
    > 
    > 
-6. Kattintson a hello **Hozzáadás** gomb toosave hello új szabályt.  Új szabály hello most jóváhagyására vár. Amennyiben jóváhagyták, hello állapota változik **függőben lévő XML** túl**aktív XML**.
+6. Kattintson a **Hozzáadás** gombra kattintva mentse az új szabályt.  Az új szabály most jóváhagyására vár. Miután engedélyezte, az állapot változik **függőben lévő XML** való **aktív XML**.
    
    > [!IMPORTANT]
-   > Szabályok módosítások too90 perc toopropagate hello CDN keresztül is tarthat.
+   > Szabályok módosítások keresztül a CDN propagálása 90 percig is eltarthat.
    > 
    > 
 
@@ -83,5 +83,5 @@ hello szabálymotor lehetővé teszi a HTTP-kérések kezelésének módja, pél
 * [Szabályok motor egyezés feltételek](cdn-rules-engine-reference-match-conditions.md)
 * [Szabályok motor feltételes kifejezések](cdn-rules-engine-reference-conditional-expressions.md)
 * [Szabályok adatbázismotor-szolgáltatások](cdn-rules-engine-reference-features.md)
-* [Alapértelmezett HTTP működés használata hello szabályok felülbírálása](cdn-rules-engine.md)
+* [A szabályok használata alapértelmezett HTTP működés felülbírálata](cdn-rules-engine.md)
 * [Az Azure péntekenként: Az Azure CDN új Premium szolgáltatással](https://azure.microsoft.com/documentation/videos/azure-cdns-powerful-new-premium-features/) (videó)

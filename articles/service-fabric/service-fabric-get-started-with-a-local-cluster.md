@@ -1,6 +1,6 @@
 ---
-title: "aaaDeploy, és végezze el az Azure mikroszolgáltatások helyileg |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooset be egy helyi Service Fabric-fürt egy meglévő alkalmazás tooit, és frissítse az alkalmazást."
+title: "Azure mikroszolgáltatások helyi telepítése és frissítése | Microsoft Docs"
+description: "Megtudhatja, hogyan állítson be egy helyi Service Fabric-fürtöt, helyezzen üzembe rajta egy meglévő alkalmazást, majd frissítse az adott alkalmazást."
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/13/2017
 ms.author: ryanwi;mikhegn
-ms.openlocfilehash: e5f5adc9edb71433b2a7635e9d661ff92a4b18ec
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 359677972c7e1fa3f7435052021ddfae5b1ed85e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-deploying-and-upgrading-applications-on-your-local-cluster"></a>A helyi fürtön lévő alkalmazások üzembe helyezésének és frissítésének elsajátítása
-hello Azure Service Fabric SDK teljes helyi fejlesztőkörnyezetet, melyekkel tartalmaz tooquickly telepítése és kezelése a helyi fürtön lévő alkalmazások első lépések. Ebben a cikkben létrehoz egy helyi fürtöt, központi telepítése egy meglévő alkalmazás tooit, és frissítse az adott tooa új verziója, mindezt a Windows PowerShell.
+Az Azure Service Fabric SDK teljes helyi fejlesztőkörnyezetet tartalmaz, amely segítségével gyorsan megismerkedhet a helyi fürtön lévő alkalmazások üzembe helyezésével és kezelésével. Ebben a cikkben létrehoz egy helyi fürtöt, üzembe helyez rajta egy meglévő alkalmazást, majd új verzióra frissíti, és mindezt a Windows PowerShellből fogja elvégezni.
 
 > [!NOTE]
 > A cikk feltételezi, hogy Ön már [beállította a fejlesztőkörnyezetet](service-fabric-get-started.md).
@@ -29,11 +29,11 @@ hello Azure Service Fabric SDK teljes helyi fejlesztőkörnyezetet, melyekkel ta
 > 
 
 ## <a name="create-a-local-cluster"></a>Helyi fürt létrehozása
-A Service Fabric-fürt olyan hardver-erőforrások készletét képviseli, amelyeken alkalmazásokat helyezhet üzembe. Általában egy fürt áll bárhol az öt toomany több ezer gépek. Service Fabric SDK hello azonban egy gépen futtatható fürtkonfiguráció tartalmaz.
+A Service Fabric-fürt olyan hardver-erőforrások készletét képviseli, amelyeken alkalmazásokat helyezhet üzembe. Egy fürt általában tetszőleges számú gépből épül fel, a számuk öttől akár több ezerig terjedhet. A Service Fabric azonban SDK olyan fürtkonfigurációt tartalmaz, amely csak egyetlen gépen futhat.
 
-Fontos toounderstand, amely hello Service Fabric helyi fürtje nem emulátor vagy szimulátor. Az futtatása hello ugyanazt a platformkódot is megtalálható a többgépes fürtök. hello egyetlen különbség, hogy fut-e hello platform folyamatok, amelyek általában öt számítógép egy számítógépen vannak elosztva.
+Fontos tisztában lenni azzal, hogy a Service Fabric helyi fürtje nem emulátor vagy szimulátor. Ugyanazt a platformkódot futtatja, mint ami a több számítógépes fürtökön található. Az egyetlen különbség, hogy az általában öt számítógép között elosztott platformfolyamatokat egyetlen számítógépen futtatja.
 
-hello SDK biztosít a helyi fürt két módon tooset: a Windows PowerShell parancsfájl és hello Local Cluster Manager rendszertálca alkalmazásban. Ebben az oktatóanyagban hello PowerShell-parancsfájlt használjuk.
+Az SDK két lehetőséget biztosít a helyi fürt beállításához: egy Windows PowerShell-parancsfájlt és a Local Cluster Manager rendszertálca-alkalmazást. Ebben az oktatóanyagban a PowerShell-szkriptet használjuk.
 
 > [!NOTE]
 > Ha a Visual Studióból egy alkalmazás üzembe helyezésével már létrehozott egy a helyi fürtöt, ezt a szakaszt kihagyhatja.
@@ -41,7 +41,7 @@ hello SDK biztosít a helyi fürt két módon tooset: a Windows PowerShell paran
 > 
 
 1. Nyisson meg egy új PowerShell-ablakot rendszergazdaként.
-2. Futtassa a fürtbeállítási parancsfájlt hello hello SDK mappából:
+2. Futtassa a fürtbeállítási parancsfájlt az SDK-mappából:
    
     ```powershell
     & "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\ClusterSetup\DevClusterSetup.ps1"
@@ -51,109 +51,109 @@ hello SDK biztosít a helyi fürt két módon tooset: a Windows PowerShell paran
    
     ![A fürtbeállítás kimenete][cluster-setup-success]
    
-    Most már áll készen tootry alkalmazás tooyour fürt telepítése.
+    Most már készen arra, hogy megpróbáljon üzembe helyezni egy alkalmazást a fürtön.
 
 ## <a name="deploy-an-application"></a>Alkalmazás üzembe helyezése
-Service Fabric SDK hello alkalmazások létrehozásához szükséges keretrendszerek és fejlesztőeszközök gazdag készletét tartalmazza. Ha érdekli, hogyan toocreate alkalmazásokat a Visual Studio: tanulási [az első Service Fabric-alkalmazás létrehozása a Visual Studio](service-fabric-create-your-first-application-in-visual-studio.md).
+A Service Fabric SDK az alkalmazások létrehozásához szükséges keretrendszerek és fejlesztőeszközök gazdag készletét tartalmazza. Ha meg szeretné ismerni az alkalmazások létrehozási módját a Visual Studióban, tekintse meg [Az első Service Fabric-alkalmazás létrehozása a Visual Studióban](service-fabric-create-your-first-application-in-visual-studio.md) témakört.
 
-Ebben az oktatóanyagban használhat egy meglévő mintaalkalmazást (a neve WordCount), hogy hello kezelést a hello platform összpontosíthat: telepítés, a figyelés és a frissítés.
+Ebben az oktatóanyag egy meglévő mintaalkalmazást (a neve WordCount) használ, így a platformkezelési szempontokra (üzembe helyezés, figyelés és frissítés) összpontosíthat.
 
 1. Nyisson meg egy új PowerShell-ablakot rendszergazdaként.
-2. Hello Service Fabric SDK PowerShell modul importálásához.
+2. Importálja a Service Fabric SDK PowerShell-modulját.
    
     ```powershell
     Import-Module "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\Tools\PSModule\ServiceFabricSDK\ServiceFabricSDK.psm1"
     ```
-3. Hozzon létre egy könyvtár toostore hello alkalmazás letöltése és telepítése, például: C:\ServiceFabric.
+3. Hozzon létre a letöltendő és üzembe helyezendő alkalmazás tárolására szolgáló könyvtárat, például: C:\ServiceFabric.
    
     ```powershell
     mkdir c:\ServiceFabric\
     cd c:\ServiceFabric\
     ```
-4. [Töltse le a WordCount alkalmazás hello](http://aka.ms/servicefabric-wordcountapp) létrehozott toohello helyre.  Megjegyzés: hello Microsoft Edge böngésző menti hello fájlt egy *.zip* bővítmény.  Hello fájlkiterjesztés túl módosítása*.sfpkg*.
-5. Csatlakozás a helyi fürt toohello:
+4. [Töltse le a WordCount alkalmazást](http://aka.ms/servicefabric-wordcountapp) a létrehozott helyre.  Megjegyzés: A Microsoft Edge böngésző *.zip* kiterjesztéssel menti a fájlt.  Módosítsa a fájl kiterjesztését a következőre: *.sfpkg*.
+5. Csatlakozzon a helyi fürthöz:
    
     ```powershell
     Connect-ServiceFabricCluster localhost:19000
     ```
-6. Hozzon létre egy új alkalmazást hello SDK telepítési parancs használata egy nevet és egy elérési utat toohello alkalmazáscsomagot.
+6. Az SDK telepítési parancsának használatával hozzon létre egy új alkalmazást, adjon meg hozzá egy nevet és egy, az alkalmazáscsomagra mutató elérési utat.
    
     ```powershell  
    Publish-NewServiceFabricApplication -ApplicationPackagePath c:\ServiceFabric\WordCountV1.sfpkg -ApplicationName "fabric:/WordCount"
     ```
    
-    Ha minden megfelelően működik, a következő kimeneti hello kell megjelennie:
+    Ha minden megfelelően működik, a következő kimenetnek kell megjelennie:
    
-    ![Az alkalmazás toohello helyi fürt központi telepítése][deploy-app-to-local-cluster]
-7. a művelet toosee hello alkalmazás hello böngésző indítása, és keresse meg a túl[http://localhost: 8081/WordCount/index.HTML](http://localhost:8081/wordcount/index.html). A következőnek kell megjelennie:
+    ![Alkalmazás üzembe helyezése a helyi fürtön][deploy-app-to-local-cluster]
+7. Ha szeretné az alkalmazást működés közben megtekinteni, indítsa el a böngészőt, és navigáljon a következő webhelyre: [http://localhost:8081/wordcount/index.html](http://localhost:8081/wordcount/index.html). A következőnek kell megjelennie:
    
     ![Az üzembe helyezett alkalmazás felhasználói felülete][deployed-app-ui]
    
-    hello WordCount alkalmazás egyszerű. Ez magában foglalja az ügyféloldali JavaScript code toogenerate véletlenszerű öt karakterből álló "szavak", amely majd továbbítódnak toohello alkalmazás ASP.NET Web API-n keresztül. Az állapotalapú szolgáltatás nyomon követi az hello számlált szavak száma. Ezek particionáltak hello hello szó első karaktere alapján. Hello forráskód hello WordCount alkalmazás hello található [klasszikus bevezetés minták](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/classic/Services/WordCount).
+    A WordCount alkalmazás egyszerűen használható. Ügyféloldali JavaScript-kódot tartalmaz öt karakterből álló „szavak” véletlenszerű előállításához, amelyek aztán az ASP.NET Web API-n keresztül továbbítódnak az alkalmazásnak. Az állapotalapú szolgáltatások nyomon követik a szavak számának változását. Ezek particionálása a szó első karaktere alapján történik. A WordCount alkalmazás forráskódját a [klasszikus első lépéseket ismertető minták](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/classic/Services/WordCount) könyvtárában érheti el.
    
-    hello üzembe helyezett alkalmazás négy partíciót tartalmaz. Így az A – G kezdetű szavak hello első partíció vannak tárolva, H – N kezdetű szavak vannak tárolva hello második partíció, és így tovább.
+    Az üzembe helyezett alkalmazás négy partíciót tartalmaz. Az A–G kezdetű szavak az első partícióban, a H–N kezdetű szavak a második partícióban vannak tárolva és így tovább.
 
 ## <a name="view-application-details-and-status"></a>Az alkalmazás részleteinek és állapotának megtekintése
-Most, hogy a Microsoft hello alkalmazást telepített, vizsgáljuk meg néhány hello alkalmazás adatait a PowerShellben.
+Miután üzembe helyeztük az alkalmazást, nézzük meg a PowerShellben az alkalmazás egyes részleteit.
 
-1. Hello fürt összes üzembe helyezett alkalmazásának lekérdezése:
+1. A fürt összes üzembe helyezett alkalmazásának lekérdezése:
    
     ```powershell
     Get-ServiceFabricApplication
     ```
    
-    Feltételezve, hogy csak telepített hello WordCount alkalmazást, akkor valami hasonló:
+    Feltételezve, hogy kizárólag a WordCount alkalmazás lett üzembe helyezve, egy ehhez hasonló képernyőnek kell megjelennie:
    
     ![Az összes üzembe helyezett alkalmazás lekérdezése a PowerShellben][ps-getsfapp]
-2. Nyissa meg a toohello új szintre hello WordCount alkalmazásban szereplő hello készlete lekérdezésével.
+2. Lépjen a következő szintre a WordCount alkalmazásban szereplő szolgáltatáskészlet lekérdezésével.
    
     ```powershell
     Get-ServiceFabricService -ApplicationName 'fabric:/WordCount'
     ```
    
-    ![PowerShell hello alkalmazáshoz használható szolgáltatások listája][ps-getsfsvc]
+    ![Az alkalmazáshoz használható szolgáltatások listája a PowerShellben][ps-getsfsvc]
    
-    hello alkalmazás áll két szolgáltatást, hello előtér-webkiszolgáló és hello állapotalapú szolgáltatásból, amely hello szavakat kezeli.
-3. Végül tekintse meg hello partícióinak listáját a WordCountService:
+    Az alkalmazás két szolgáltatásból áll: a webes kezelőfelületből és az állapotalapú szolgáltatásból, amely a szavakat kezeli.
+3. Végül tekintse meg a WordCountService partícióinak listáját:
    
     ```powershell
     Get-ServiceFabricPartition 'fabric:/WordCount/WordCountService'
     ```
    
-    ![Hello szolgáltatáspartíciók megtekintése a PowerShellben][ps-getsfpartitions]
+    ![A szolgáltatáspartíciók megtekintése a PowerShellben][ps-getsfpartitions]
    
-    hello használt, például az összes Service Fabric PowerShell-parancsok parancsokat, érhetők el, hogy előfordulhat, hogy kapcsolódni, helyi vagy távoli fürthöz.
+    Az Ön által használt parancsok készlete, például a Service Fabric PowerShell-parancsok, bármilyen (helyi vagy távoli) fürt számára elérhetők, amelyekhez kapcsolódni tud.
    
-    Egy vizuálisabban módon toointeract hello fürttel, használhatja hello webalapú Service Fabric Explorer eszközt túl navigálva[19080/Explorer](http://localhost:19080/Explorer) hello böngészőben.
+    Ha vizuálisabban szeretne kommunikálni a fürttel, használhatja a webalapú Service Fabric Explorer eszközt is, ha a böngészőben megnyitja a [http://localhost:19080/Explorer](http://localhost:19080/Explorer) weblapot.
    
     ![Az alkalmazás részleteinek megtekintése a Service Fabric Explorerben][sfx-service-overview]
    
    > [!NOTE]
-   > További információ a Service Fabric Explorer toolearn lásd [a fürt megjelenítése a Service Fabric Explorer](service-fabric-visualizing-your-cluster.md).
+   > A Service Fabric Explorer használatával kapcsolatos további tudnivalókért lásd: [A fürt megjelenítése a Service Fabric Explorerrel](service-fabric-visualizing-your-cluster.md).
    > 
    > 
 
 ## <a name="upgrade-an-application"></a>Alkalmazás frissítése
-A Service Fabric állásidő nélküli frissítéseket biztosít a hello hello alkalmazás állapotának figyelésével, miközben megtörténik a bevezetése hello fürtön. Hajtsa végre a hello WordCount alkalmazás frissítését.
+A Service Fabric állásidő nélküli frissítéseket biztosít az alkalmazás állapotának figyelésével, miközben megtörténik a bevezetése az egész fürtön. Végezze el a WordCount alkalmazás frissítését.
 
-most már a hello alkalmazás új verziójának hello száma csak a magánhangzóval kezdődő szavakat. Hello frissítés bevezeti, mivel két változást hello alkalmazás viselkedését látható. Első lépésként hello sebesség, amellyel hello számok növekedésének le kell lassulnia, mivel kevesebb szót kell megszámolni. Második mivel hello első partíció két magánhangzót tartalmaz (A és E), és az összes többi partíció mindegyike csak egyet, a számláló végül elindul toooutpace hello mások.
+Az alkalmazás új verziója kizárólag a magánhangzóval kezdődő szavakat számolja össze. A frissítés előre haladtával két változást vehet észre az alkalmazás viselkedésében. Az első az a sebesség, amelynél a számok növekedésének le kell lassulnia, mivel kevesebb szót kell megszámolni. A második, mivel az első partíció két magánhangzót tartalmaz (A és E), és az összes többi partíció mindegyike csak egyet, az első partíciónál a szám gyorsabban fog növekedni, mint a többinél.
 
-1. [Hello WordCount 2-es csomag](http://aka.ms/servicefabric-wordcountappv2) toohello hello az 1-es csomag kezelőportálon ugyanazon a helyen.
-2. Térjen vissza a tooyour PowerShell-ablakot, és hello SDK frissítési parancsával tooregister hello hello fürt új verziót használja. Majd lásson hello fabric: / WordCount alkalmazás.
+1. [Töltse le a WordCount 2-es verziójának csomagját](http://aka.ms/servicefabric-wordcountappv2) ugyanarra a helyre, ahová az 1-es verzió csomagját letöltötte.
+2. Térjen vissza a PowerShell-ablakhoz, és az SDK frissítési parancsával regisztrálja az új verziót a fürtben. Ezután indítsa el a fabric:/WordCount alkalmazás frissítését.
    
     ```powershell
     Publish-UpgradedServiceFabricApplication -ApplicationPackagePath C:\ServiceFabric\WordCountV2.sfpkg -ApplicationName "fabric:/WordCount" -UpgradeParameters @{"FailureAction"="Rollback"; "UpgradeReplicaSetCheckTimeout"=1; "Monitored"=$true; "Force"=$true}
     ```
    
-    Meg kell jelennie a PowerShell kimeneti, a frissítés hello hello következő kezdődik.
+    A frissítés indításakor a következő kimenetnek kell megjelennie a PowerShellben.
    
     ![Folyamatban lévő frissítés a PowerShellben][ps-appupgradeprogress]
-3. Míg hello frissítési eljárás, előfordulhat, hogy találja könnyebb toomonitor annak állapotát a Service Fabric Explorerből. Indítsa el a böngészőablakot, és keresse meg a túl[19080/Explorer](http://localhost:19080/Explorer). Bontsa ki a **alkalmazások** hello bal oldali fában hello, majd válassza a **WordCount**, és végül **fabric: / WordCount**. Hello alapvető erőforrások lapon látható hello állapot hello frissítési tartományain keresztül hello fürt frissítési tartományt.
+3. A frissítés folyamán lehet, hogy egyszerűbb az állapot figyelése a Service Fabric Explorerből. Nyisson meg egy böngészőablakot, és navigáljon a [http://localhost:19080/Explorer](http://localhost:19080/Explorer) weboldalra. A bal oldali fában bontsa ki az **Alkalmazások** elemet, majd válassza ki a **WordCount**, végül a **fabric:/WordCount** elemet. Az alapvető erőforrások lapján láthatja a frissítés állapotát a fürt frissítési tartományaiban.
    
     ![A frissítés folyamata a Service Fabric Explorerben][sfx-upgradeprogress]
    
-    Hello frissítés előrehalad az egyes tartományokon keresztül, állapot-ellenőrzési eredményeire során a rendszer elvégezte tooensure, amely hello alkalmazás megfelelően működik-e.
-4. Ha Újrafuttatja hello korábbi lekérdezése a szolgáltatások hello háló hello készlete: / WordCount alkalmazás, figyelje meg, hogy hello WordCountService verziója megváltozott, de hello wordcountwebservice verziója verziója nem történt meg:
+    Ahogy a frissítés előrehalad az egyes tartományokon keresztül, a rendszer mindig állapotellenőrzést végez annak érdekében, hogy biztosítsa az alkalmazás megfelelő viselkedését.
+4. Ha újra futtatja a korábbi, a fabric:/WordCount alkalmazás szolgáltatáskészletére irányuló lekérdezést, azt láthatja, hogy a WordCountService szolgáltatás verziószáma megváltozott, a WordCountWebService szolgáltatásé viszont nem:
    
     ```powershell
     Get-ServiceFabricService -ApplicationName 'fabric:/WordCount'
@@ -161,52 +161,52 @@ most már a hello alkalmazás új verziójának hello száma csak a magánhangz�
    
     ![Az alkalmazásszolgáltatások lekérdezése frissítés után][ps-getsfsvc-postupgrade]
    
-    Ez a példa rávilágít arra, hogyan kezeli a Service Fabric az alkalmazásfrissítéseket. Csak hello beállítása (vagy a kód, illetve konfigurációs csomagokat ezekbe a szolgáltatásokba belül), amelyek megváltoztak, ezáltal gyorsabb és megbízhatóbb frissítésének hello folyamata érinti.
-5. Végül térjen vissza a toohello böngésző tooobserve hello viselkedését hello új verziója. Elvárás lassabban hello száma történik, és hello első partíció valamivel nagyobb hello kötet fejeződik be.
+    Ez a példa rávilágít arra, hogyan kezeli a Service Fabric az alkalmazásfrissítéseket. Csak azokat a szolgáltatásokat (vagy a szolgáltatásokban található kódokat, illetve konfigurációs csomagokat) érinti, amelyek megváltoztak, ezáltal a frissítés folyamata sokkal gyorsabb és megbízhatóbb lesz.
+5. Végül térjen vissza a böngészőhöz, és figyelje meg az új alkalmazásverzió működését. A számláló a vártnak megfelelően lassabban számol, és az első partíció valamivel nagyobb kötettel fejeződik be.
    
-    ![Nézet hello alkalmazás új verzióját hello hello böngészőben][deployed-app-ui-v2]
+    ![Az alkalmazás új verziójának megtekintése a böngészőben][deployed-app-ui-v2]
 
 ## <a name="cleaning-up"></a>Takarítás
-Lezárása előtt fontos, hogy a helyi fürt hello tooremember valós. Alkalmazások továbbra is toorun hello háttérben, amíg el nem távolítja azokat.  Az alkalmazások hello természetétől függően a futó alkalmazások jelentős erőforrásokat a számítógépen is eltarthat. Több beállítások toomanage alkalmazások és hello fürt rendelkezik:
+A téma lezárása előtt fontos megjegyezni, hogy a helyi fürt valós. Az alkalmazások futtatása azonban a háttérben tovább folytatódik mindaddig, amíg el nem távolítja azokat.  Az alkalmazások jellegétől függően azok jelentős erőforrásokat is igénybe vehetnek a gépen. Az alkalmazás és a fürt kezelésére számos lehetősége van:
 
-1. tooremove az egyes alkalmazások és az összes azt tartozó adatok, futtassa a következő parancs hello:
+1. Egyedi alkalmazások és azok adatainak eltávolításához futtassa a következő parancsot:
    
     ```powershell
     Unpublish-ServiceFabricApplication -ApplicationName "fabric:/WordCount"
     ```
    
-    Vagy hello alkalmazás törlése a Service Fabric Explorer hello **műveletek** vagy hello helyi menüjének hello bal alkalmazás listanézetben.
+    Másik megoldásként törölje az alkalmazást a Service Fabric Explorer **MŰVELETEK** menüjéből, vagy a bal oldali alkalmazáslista-nézet helyi menüjéből.
    
     ![Alkalmazás törlése a Service Fabric Explorerrel][sfe-delete-application]
-2. Ha töröl hello alkalmazás hello fürtből, regisztrációjának törlése 1.0.0 és a WordCount alkalmazás típusának hello 2.0.0 verziói. Törlés hello alkalmazáscsomagok, beleértve hello kód és a konfigurációt, a hello fürt lemezképtárolóhoz törli.
+2. Az alkalmazás a fürtről történő törlését követően törölje a WordCount alkalmazástípus 1.0.0-s és 2.0.0-s verziójának regisztrációját is. A törléssel eltávolítja az alkalmazáscsomagokat a fürt lemezképtárolójából, beleértve a kódot és a konfigurációt is.
    
     ```powershell
     Remove-ServiceFabricApplicationType -ApplicationTypeName WordCount -ApplicationTypeVersion 2.0.0
     Remove-ServiceFabricApplicationType -ApplicationTypeName WordCount -ApplicationTypeVersion 1.0.0
     ```
    
-    Vagy a Service Fabric Explorerben válassza **Unprovision típus** hello alkalmazáshoz.
-3. tooshut hello fürt, de tartsa hello alkalmazásadatok és nyomkövetési adatok, kattintson a **helyi fürt leállítása** a hello rendszertálca alkalmazásban.
-4. toodelete hello fürt teljesen, kattintson a **helyi fürt eltávolítása** a hello rendszertálca alkalmazásban. Ez a beállítás egy másik lassú üzembe helyezést hello legközelebb a Visual Studióban lenyomja az F5 okozza. Hello helyi fürt eltávolítása csak akkor, ha nem szeretné toouse azt egy kis ideig, vagy ha szüksége van-e tooreclaim erőforrásokat.
+    Esetleg a Service Fabric Explorerben válassza az **Unprovision Type** (Típus telepítésének visszavonása) lehetőséget az adott alkalmazás esetében.
+3. A fürt leállításához, ugyanakkor az alkalmazás adatainak és nyomkövetéseinek megtartásához a rendszertálca alkalmazásban kattintson a **Stop Local Cluster** (Helyi fürt leállítása) parancsra.
+4. A fürt teljes törléséhez a rendszertálca alkalmazásban kattintson a **Remove Local Cluster** (Helyi fürt eltávolítása) parancsra. Ez a beállítás egy másik lassú üzembe helyezést fog eredményezni, amikor legközelebb a Visual Studióban lenyomja az F5 billentyűt. A helyi fürtöt csak abban az esetben távolítsa el, ha egy ideig nem kívánja azt használni, vagy ha erőforrásokat kíván felszabadítani.
 
 ## <a name="one-node-and-five-node-cluster-mode"></a>Egycsomópontos és ötcsomópontos fürt üzemmód
-Alkalmazások fejlesztésekor gyakran hajtja végre a kódírás, a hibakeresés, a kódmódosítás és a hibakeresés gyors iterációit. toohelp optimalizálása ezt a folyamatot, hello helyi fürt két módban futtatható: egycsomópontos vagy öt csomópontból. Mindkét fürt üzemmódnak megvannak az előnyei. Öt csomópontból álló fürt mód lehetővé teszi egy valódi fürttel toowork. Tesztelheti a feladatátvételi forgatókönyveket, a szolgáltatások több példányát és replikáját használhatja. Optimalizált toodo gyors telepítéshez és nyilvántartási szolgáltatások, gyorsan érvényesítése kód megadása a Service Fabric-futtatókörnyezet hello toohelp egy csomópontos fürtre módja.
+Alkalmazások fejlesztésekor gyakran hajtja végre a kódírás, a hibakeresés, a kódmódosítás és a hibakeresés gyors iterációit. A folyamat optimalizálása érdekében a helyi fürt két módban futhat: egycsomópontos és ötcsomópontos módban. Mindkét fürt üzemmódnak megvannak az előnyei. Az ötcsomópontos fürt üzemmód lehetővé teszi, hogy egy valódi fürtön dolgozzon. Tesztelheti a feladatátvételi forgatókönyveket, a szolgáltatások több példányát és replikáját használhatja. Az egycsomópontos fürt üzemmód a gyors üzembe helyezésre és szolgáltatásregisztrációra van optimalizálva, így gyorsan ellenőrizheti a kódot a Service Fabric-futtatókörnyezettel.
 
-Sem az egycsomópontos sem az ötcsomópontos fürt üzemmód nem emulátor vagy szimulátor. hello helyi fejlesztési fürtök futtatásakor hello ugyanazt a platformkódot is megtalálható a többgépes fürtök.
+Sem az egycsomópontos sem az ötcsomópontos fürt üzemmód nem emulátor vagy szimulátor. A helyi fejlesztési fürt ugyanazt a platformkódot futtatja, mint ami a többgépes fürtökön található.
 
 > [!WARNING]
-> Hello fürt mód módosításakor a jelenlegi fürthöz hello eltávolítják a rendszerből, és egy új fürt létrehozása. hello fürt hello adat törlődik a fürt mód módosításakor.
+> Amikor módosítja a fürt üzemmódját, az aktuális fürtöt a rendszer eltávolítja, és egy új fürtöt hoz létre. A fürtben tárolt adatok törlődnek a fürt üzemmódjának váltásakor.
 > 
 > 
 
-toochange hello mód tooone csomópontos fürt esetén jelölje be **kapcsoló fürt mód** a Service Fabric Local Cluster Manager hello.
+Az üzemmód egycsomópontos fürtre módosításához válassza a **Fürt üzemmód átkapcsolása** lehetőséget a Service Fabric Local Cluster Manager alkalmazásában.
 
 ![Fürt üzemmód átkapcsolása][switch-cluster-mode]
 
-Vagy hello fürt módváltás PowerShell használatával:
+Vagy módosítsa a fürt üzemmódját a PowerShell-lel:
 
 1. Nyisson meg egy új PowerShell-ablakot rendszergazdaként.
-2. Futtassa a fürtbeállítási parancsfájlt hello hello SDK mappából:
+2. Futtassa a fürtbeállítási parancsfájlt az SDK-mappából:
    
     ```powershell
     & "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\ClusterSetup\DevClusterSetup.ps1" -CreateOneNodeCluster
@@ -218,8 +218,8 @@ Vagy hello fürt módváltás PowerShell használatával:
 
 ## <a name="next-steps"></a>Következő lépések
 * Most, hogy már üzembe helyezett és frissített néhány előre létrehozott alkalmazást, [megpróbálhatja felépíteni a saját alkalmazását a Visual Studióban](service-fabric-create-your-first-application-in-visual-studio.md).
-* Ebben a cikkben hello helyi fürtön végzett összes hello műveletet lehetne végrehajtani egy [Azure-fürttel](service-fabric-cluster-creation-via-portal.md) is.
-* Ebben a cikkben végrehajtott frissítés hello alapszintű volt. Lásd: hello [frissítési dokumentációjában](service-fabric-application-upgrade.md) toolearn hello hatékonyságát és rugalmasságát Service Fabric frissítéskezelésének többet.
+* A jelen cikkben a helyi fürttel elvégzett összes művelet elvégezhető egy [Azure-fürttel](service-fabric-cluster-creation-via-portal.md) is.
+* A jelen cikkben végrehajtott frissítés alapszintű volt. A Service Fabric frissítéskezelésének hatékonyságát és rugalmasságát a [frissítési dokumentációból](service-fabric-application-upgrade.md) ismerheti meg.
 
 <!-- Images -->
 

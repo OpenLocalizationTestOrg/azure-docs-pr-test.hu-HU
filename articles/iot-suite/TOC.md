@@ -1,11 +1,11 @@
 # Áttekintés
 ## [Az Azure és az IoT](iot-suite-what-is-azure-iot.md)
 ## [Mi az az IoT Suite?](iot-suite-overview.md)
-## [Mik azok a előre konfigurált hello megoldások?](iot-suite-what-are-preconfigured-solutions.md)
+## [Mik azok az előre konfigurált megoldások?](iot-suite-what-are-preconfigured-solutions.md)
 
 
 # Első lépések
-## [Ismerkedés az előre konfigurált hello megoldások](iot-suite-getstarted-preconfigured-solutions.md)
+## [Első lépések az előre konfigurált megoldásokkal](iot-suite-getstarted-preconfigured-solutions.md)
 ## [Engedélyek az azureiotsuite.com webhelyen](iot-suite-permissions.md)
 ## [A prediktív karbantartási megoldás áttekintése](iot-suite-predictive-overview.md)
 ## [Csatlakoztatott factory-megoldás áttekintése](iot-suite-connected-factory-overview.md)
@@ -30,11 +30,11 @@
 ### [C Windowson](iot-suite-connecting-devices.md)
 ### [C Linuxon](iot-suite-connecting-devices-linux.md)
 ### [Node.js](iot-suite-connecting-devices-node.md)
-## [Csatlakozás a Logic App toohello távoli figyelési megoldás](iot-suite-logic-apps-tutorial.md)
+## [Logikai alkalmazás csatlakoztatása a távoli figyelési megoldáshoz](iot-suite-logic-apps-tutorial.md)
 ## [Előre konfigurált megoldás testreszabása](iot-suite-guidance-on-customizing-preconfigured-solutions.md)
-## [Dinamikus telemetriai adatok használata a távoli felügyeleti megoldás hello](iot-suite-dynamic-telemetry.md)
-## [Hozzon létre egy egyéni szabály hello távoli figyelési megoldást igényelnek](iot-suite-custom-rule.md)
-## [A távoli felügyeleti megoldás hello eszköz adatai](iot-suite-remote-monitoring-device-info.md)
+## [Dinamikus telemetria használata a távoli figyelési megoldással](iot-suite-dynamic-telemetry.md)
+## [Egyéni szabály létrehozása a távoli figyelési megoldásban](iot-suite-custom-rule.md)
+## [Eszközinformációk a távoli figyelési megoldásban](iot-suite-remote-monitoring-device-info.md)
 ## [Átjáró telepítése csatlakoztatott factoryhoz](iot-suite-connected-factory-gateway-deployment.md)
 ## [Csatlakoztatott factory testreszabása](iot-suite-connected-factory-customize.md)
 
@@ -42,7 +42,7 @@
 ## [Biztonsági architektúra](iot-security-architecture.md)
 ## [Ajánlott biztonsági eljárások](iot-security-best-practices.md)
 ## [Az IoT-környezet biztonságossá tétele](iot-suite-security-deployment.md)
-## [Biztonsági szabad hello a](securing-iot-ground-up.md)
+## [Biztonság az alapoktól](securing-iot-ground-up.md)
 
 # Kapcsolódó
 ## [Stream Analytics](/azure/stream-analytics/)

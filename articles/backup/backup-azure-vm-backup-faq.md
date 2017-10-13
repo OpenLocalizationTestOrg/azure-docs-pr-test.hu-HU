@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure virtuális gép biztonsági mentése – gyakori kérdések |} Microsoft Docs"
-description: "Toocommon kérdésekre vonatkozó: hogyan Azure virtuális gép biztonsági mentési működik, korlátozások és mi történik, ha módosítások toopolicy történik"
+title: "Azure VM Backup – gyakori kérdések | Microsoft Docs"
+description: "Válaszok a következő gyakori kérdésekre: hogyan működik az Azure-beli virtuális gépek biztonsági mentése, mik a korlátozások, és mi történik, ha módosítások történnek a szabályzatban"
 services: backup
 documentationcenter: 
 author: trinadhk
@@ -15,48 +15,48 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/18/2017
 ms.author: trinadhk;pullabhk;
-ms.openlocfilehash: a1ad2cb3a379577a8c4258c8207ce75809e11a4a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1372a9e05cb47f6c68240bffccd46b0fbebb5464
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="questions-about-hello-azure-vm-backup-service"></a>Hello Azure virtuális gép biztonsági mentési szolgáltatás kapcsolatos kérdések
-Ez a cikk válaszok toocommon kérdések toohelp hello Azure virtuális gép biztonsági mentése összetevők gyorsan tisztában van. Hello válaszok némelyike nincsenek hivatkozások toohello cikket, amely átfogó információkat. A hello is beküldheti hello Azure Backup szolgáltatás kapcsolatos kérdéseket [vitafóruma](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazureonlinebackup).
+# <a name="questions-about-the-azure-vm-backup-service"></a>Kérdések az Azure VM Backup szolgáltatással kapcsolatban
+A cikk gyakori kérdésekre adott válaszokat tartalmazó szakaszaiban gyorsan áttekinthető az Azure VM Backup összetevőinek működése. Egyes válaszokban részletes információkat tartalmazó cikkekre mutató hivatkozások találhatók. Emellett egy fórumbejegyzésben is feltehet kérdéseket az Azure Backup szolgáltatással kapcsolatban a [vitafórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazureonlinebackup).
 
 ## <a name="configure-backup"></a>Biztonsági mentés konfigurálása
 ### <a name="do-recovery-services-vaults-support-classic-vms-or-resource-manager-based-vms-br"></a>A Recovery Services-tárolók támogatják a klasszikus vagy a Resource Manager alapú virtuális gépeket? <br/>
-A Recovery Services-tárolók mindkét modellt támogatják.  A biztonsági másolatot a klasszikus virtuális gépek (hello klasszikus portálon létre), vagy egy erőforrás-kezelő virtuális gép (hello Azure-portálon létrehozott) tooa Recovery Services-tároló készíthet.
+A Recovery Services-tárolók mindkét modellt támogatják.  Mind a klasszikus (azaz a klasszikus portálon létrehozott), mind a Resource Manager-alapú (azaz az Azure Portalon létrehozott) virtuális gépekről készíthet biztonsági mentést egy Recovery Services-tárolóba.
 
 ### <a name="what-configurations-are-not-supported-by-azure-vm-backup-"></a>Mely konfigurációkat nem támogatja az Azure VM Backup?
 Tekintse át a [támogatott operációs rendszereket](backup-azure-arm-vms-prepare.md#supported-operating-system-for-backup) és a [virtuális gépek biztonsági mentésének korlátozásait](backup-azure-arm-vms-prepare.md#limitations-when-backing-up-and-restoring-a-vm)
 
 ### <a name="why-cant-i-see-my-vm-in-configure-backup-wizard"></a>Miért nem látom a virtuális gépemet a Biztonsági mentés konfigurálása varázslóban?
 A Biztonsági mentés konfigurálása varázslóban az Azure Backup csak a következő virtuális gépeket jeleníti meg:
-* Már nem védett - ellenőrizheti a virtuális gépek biztonsági mentési állapotának hello tooVM panelen lesz, és ellenőrzi a biztonsági mentés állapot panelről hello-beállítások menüjében. További tudnivalókért, hogyan túl[a virtuális gépek biztonsági mentési állapotának ellenőrzése](backup-azure-vms-first-look-arm.md#configure-the-backup-job-from-the-vm-management-blade)
-* Toosame régió tartozik, mint a virtuális gép
+* Még nem védettek – A virtuális gépek állapotát úgy ellenőrizheti, hogy a virtuális gép paneljének Beállítások menüjében ellenőrzi a Biztonsági mentés állapotát. További információ a [Virtuális gép biztonsági mentési állapotának ellenőrzéséről](backup-azure-vms-first-look-arm.md#configure-the-backup-job-from-the-vm-management-blade)
+* A virtuális géppel azonos régióba tartozik
 
 ## <a name="backup"></a>Biztonsági mentés
 ### <a name="will-on-demand-backup-job-follow-same-retention-schedule-as-scheduled-backups"></a>Az igény szerinti biztonsági mentési feladatok ugyanazt a megőrzési ütemezést követik, mint az ütemezett biztonsági mentések?
-Nem. Egy igény szerinti biztonsági mentéshez toospecify hello megőrzési időtartamot kell. A megőrzési idő alapértelmezés szerint 30 nap, ha a portálról indítja el a feladatot. 
+Nem. Az igény szerinti biztonsági mentési feladatokhoz meg kell adnia a megőrzési tartományt. A megőrzési idő alapértelmezés szerint 30 nap, ha a portálról indítja el a feladatot. 
 
-### <a name="i-recently-enabled-azure-disk-encryption-on-some-vms-will-my-backups-continue-toowork"></a>Nemrég engedélyeztem az Azure Disk Encryption szolgáltatást néhány virtuális gépen. A biztonsági másolatok továbbra is toowork?
-Az Azure Backup szolgáltatás tooaccess Key Vault toogive jogosultság szükséges. Ezeket az engedélyeket a PowerShellben adhatja meg, a [PowerShell-dokumentáció](backup-azure-vms-automation.md) *Biztonsági mentés engedélyezése* szakaszában található lépések végrehajtásával.
+### <a name="i-recently-enabled-azure-disk-encryption-on-some-vms-will-my-backups-continue-to-work"></a>Nemrég engedélyeztem az Azure Disk Encryption szolgáltatást néhány virtuális gépen. A biztonsági mentések továbbra is működni fognak?
+Engedélyeznie kell az Azure Backup szolgáltatásnak a Key Vault elérését. Ezeket az engedélyeket a PowerShellben adhatja meg, a [PowerShell-dokumentáció](backup-azure-vms-automation.md) *Biztonsági mentés engedélyezése* szakaszában található lépések végrehajtásával.
 
-### <a name="i-migrated-disks-of-a-vm-toomanaged-disks-will-my-backups-continue-toowork"></a>A virtuális gép toomanaged lemezt a lemezek I át. A biztonsági másolatok továbbra is toowork?
-Igen, biztonsági mentések zökkenőmentesen működjön, és nincs szükség toore-biztonsági mentés konfigurálása. 
+### <a name="i-migrated-disks-of-a-vm-to-managed-disks-will-my-backups-continue-to-work"></a>Egy virtuális gép lemezeit felügyelt lemezekre migráltam. A biztonsági mentések továbbra is működni fognak?
+Igen, a biztonsági mentések problémamentesen fognak működni, és nem kell újrakonfigurálnia a biztonsági mentést. 
 
 ## <a name="restore"></a>Visszaállítás
 ### <a name="how-do-i-decide-between-restoring-disks-versus-full-vm-restore"></a>A lemezek visszaállítását vagy a teljes virtuális gép visszaállítását válasszam?
-Az Azure-beli virtuális gép teljes visszaállítása a visszaállított virtuális gép gyors létrehozásának lehetőségeként is értelmezhető. Állítsa vissza a virtuális gép lehetőséget lemezek hello neve módosul, lemezek, a nyilvános IP-címek, a hálózati adapter által használt tárolók egyedi-e az első virtuális gép létrehozásának részeként létrehozott erőforrások neve. Azt is nem adja hozzá hello a virtuális gép tooavailability csoportjának. 
+Az Azure-beli virtuális gép teljes visszaállítása a visszaállított virtuális gép gyors létrehozásának lehetőségeként is értelmezhető. A virtuális gép visszaállítása módosítja a lemezek nevét, a lemezek által használt tárolókat, a nyilvános IP-címeket és a hálózati adapterek nevét, hogy a virtuális gép létrehozásakor létrejövő erőforrások egyediek legyenek. Ezenkívül nem adja hozzá a virtuális gépet a rendelkezésre állási csoporthoz. 
 
 A lemezek visszaállítását a következőkhöz használhatja:
-* Hello időpontjának beállítása például hello méretének módosítása a biztonsági mentési konfigurációhoz pontjáról lekérdezi létrehozott virtuális gép testreszabása
-* Adja hozzá a konfigurációkat, amelyek nincsenek jelen hello biztonsági mentése 
-* Erőforrások első létrehozott vezérlő hello elnevezési
-* A virtuális gép tooavailability csoportjának hozzáadása
+* Olyan virtuális gép testreszabásához, amely az időponthoz kötött konfigurációból jön létre, például a biztonsági mentés konfigurációjában megadott méret módosításával
+* Olyan konfigurációk hozzáadásához, amelyek nincsenek jelen a biztonsági mentés idején 
+* A létrejövő erőforrások elnevezési konvencióinak vezérléséhez
+* Virtuális gép hozzáadása rendelkezésre állási csoporthoz
 * Olyan konfigurációval rendelkezik, amely csak a PowerShell vagy deklaratív sablondefiníció használatával érhető el
 
 ## <a name="manage-vm-backups"></a>Virtuális gép biztonsági mentéseinek kezelése
 ### <a name="what-happens-when-i-change-a-backup-policy-on-vms"></a>Mi történik, ha módosítom a biztonsági mentési szabályzatot a virtuális gépen vagy gépeken?
-Egy új házirend alkalmazása esetén a virtuális gép van, ütemezés és a megőrzési hello új házirend követni kell. Ha megőrzési ki van terjesztve, a meglévő helyreállítási pontok lesz megjelölve tookeep őket az új házirend szerint. Megőrzési csökken, ha a hello következő karbantartási feladat a törlésre megjelölve, és törli. 
+Amikor új szabályzatot alkalmaznak egy virtuális gépen, az új szabályzat ütemezése és megőrzése lesz érvényes. Ha növeli a megőrzési időtartamot, a meglévő helyreállítási pontok az új szabályzatnak megfelelően megmaradnak. Ha csökkenti a megőrzési időtartamot, a helyreállítási pontok a következő tisztítás során törlendőként lesznek megjelölve. 

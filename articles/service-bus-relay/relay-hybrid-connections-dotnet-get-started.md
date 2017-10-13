@@ -1,5 +1,5 @@
 ---
-title: "aaaGet Azure hibrid kapcsolatok a .NET használatába |} Microsoft Docs"
+title: "Ismerkedés az Azure Relay Hibrid-kapcsolatokkal a .NET-ben | Microsoft Docs"
 description: "C#-konzolalkalmazást hozhat létre a hibrid Azure Relay-kapcsolatokhoz."
 services: service-bus-relay
 documentationcenter: .net
@@ -14,58 +14,58 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 07/07/2017
 ms.author: sethm
-ms.openlocfilehash: 1e4af28e7cd4393c8ca965a149a0b83ebcc44f22
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1af23bfd46dd7d3781505473f7c1d86e65ea9bc7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-relay-hybrid-connections"></a>Ismerkedés a hibrid Relay-kapcsolatokkal
 [!INCLUDE [relay-selector-hybrid-connections](../../includes/relay-selector-hybrid-connections.md)]
 
-Ez az oktatóanyag bemutatja túl[Azure hibrid kapcsolatok](relay-what-is-it.md#hybrid-connections), és bemutatja, hogyan toouse .NET toocreate egy ügyfél-alkalmazás által küldött üzenetek tooa megfelelő figyelő alkalmazás. 
+Ez az oktatóprogram bevezetést nyújt a [hibrid Azure Relay-kapcsolatok](relay-what-is-it.md#hybrid-connections) használatába, és bemutatja egy olyan ügyfélalkalmazás .NET-tel való létrehozását, amely üzeneteket küld egy kapcsolódó figyelőalkalmazásnak. 
 
 ## <a name="what-will-be-accomplished"></a>Az oktatóanyag célja
-Hibrid kapcsolatok egy ügyfél és kiszolgáló-összetevők van szükség, mert a hello oktatóanyag két konzol alkalmazást hoz létre. Az alábbiakban hello lépéseket:
+Mivel a hibrid kapcsolatokhoz szükség van egy ügyfélre és egy kiszolgáló-összetevőre is, ebben az oktatóanyagban két konzolalkalmazást hozunk létre. A lépések a következők:
 
-1. Hello Azure-portál használatával, továbbító névtér létrehozása.
-2. A hibrid kapcsolat létrehozása az adott névtérben, hello Azure-portál használatával.
-3. A kiszolgáló (figyelő) konzol alkalmazás tooreceive üzenetet írni.
-4. Egy ügyfélkonzol (küldő) alkalmazás toosend üzenetet írni.
+1. Relay-névtér létrehozása az Azure Portal használatával.
+2. Hibrid kapcsolat létrehozása ezen a névtéren az Azure Portal használatával.
+3. Kiszolgálói (figyelő) konzolalkalmazás írása üzenetfogadási céllal.
+4. Ügyfél-konzolalkalmazás (küldő) írása üzenetküldési céllal.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-toocomplete ebben az oktatóanyagban szüksége lesz a következő előfeltételek hello:
+Az oktatóanyag teljesítéséhez az alábbi előfeltételeknek kell megfelelnie:
 
-1. [Visual Studio 2015 vagy újabb](http://www.visualstudio.com). az oktatóanyagban szereplő példák hello használja a Visual Studio 2017.
+1. [Visual Studio 2015 vagy újabb](http://www.visualstudio.com). A jelen oktatóanyag példái a Visual Studio 2017-et használják.
 2. Azure-előfizetés.
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-## <a name="1-create-a-namespace-using-hello-azure-portal"></a>1. Hello Azure-portál használatával névtér létrehozása
-Ha már létrehozott egy továbbító névtér, jump toohello [hello Azure portál használata hibrid kapcsolat létrehozása](#2-create-a-hybrid-connection-using-the-azure-portal) szakasz.
+## <a name="1-create-a-namespace-using-the-azure-portal"></a>1. Névtér létrehozása az Azure Portal használatával
+Ha már létrehozta a Relay-névteret, lépjen a [Hibrid kapcsolat létrehozása az Azure Portal használatával](#2-create-a-hybrid-connection-using-the-azure-portal) szakaszra.
 
 [!INCLUDE [relay-create-namespace-portal](../../includes/relay-create-namespace-portal.md)]
 
-## <a name="2-create-a-hybrid-connection-using-hello-azure-portal"></a>2. A hibrid kapcsolat létrehozása használatával hello Azure-portálon
-Ha már létrehozott egy hibrid kapcsolat, jump toohello [hozzon létre egy kiszolgálói alkalmazás](#3-create-a-server-application-listener) szakasz.
+## <a name="2-create-a-hybrid-connection-using-the-azure-portal"></a>2. Hibrid kapcsolat létrehozása az Azure Portal használatával
+Ha már létrehozott egy hibrid kapcsolatot, lépjen a [Kiszolgálói alkalmazás létrehozása](#3-create-a-server-application-listener) szakaszra.
 
 [!INCLUDE [relay-create-hybrid-connection-portal](../../includes/relay-create-hybrid-connection-portal.md)]
 
 ## <a name="3-create-a-server-application-listener"></a>3. Kiszolgálói alkalmazás (figyelő) létrehozása
-toolisten és üzeneteket fogadni a hello továbbítási, azt fog kiírni, a C# konzolalkalmazást a Visual Studio használatával.
+A Visual Studio használatával C# konzolalkalmazást írunk az üzenetek figyeléséhez és a Relay-től való fogadásához.
 
 [!INCLUDE [relay-hybrid-connections-dotnet-get-started-server](../../includes/relay-hybrid-connections-dotnet-get-started-server.md)]
 
 ## <a name="4-create-a-client-application-sender"></a>4. Ügyfélalkalmazás létrehozása (küldő)
-toosend üzenetek toohello továbbítják, azt fogja írni egy C#-konzolalkalmazást a Visual Studio használatával.
+A Visual Studio használatával C# konzolalkalmazást írunk az üzenetek Relay-be való küldéséhez.
 
 [!INCLUDE [relay-hybrid-connections-dotnet-get-started-client](../../includes/relay-hybrid-connections-dotnet-get-started-client.md)]
 
-## <a name="5-run-hello-applications"></a>5. Hello alkalmazások futtatásához
-1. Futtassa a hello server alkalmazást.
-2. Hello ügyfélalkalmazás futtatása, és adjon meg szöveget.
-3. Győződjön meg arról, hogy hello kiszolgálón alkalmazás konzol kimenetek hello szöveg hello ügyfélalkalmazás megadott.
+## <a name="5-run-the-applications"></a>5. Az alkalmazások futtatása
+1. Futtassa a kiszolgálóalkalmazást.
+2. Futtassa az ügyfélalkalmazást, és adjon meg szöveget.
+3. Győződjön meg arról, hogy az alkalmazás konzolja kiírja a szöveget, amely az ügyfélalkalmazásban lett megadva.
 
 ![running-applications](./media/relay-hybrid-connections-dotnet-get-started/running-applications.png)
 

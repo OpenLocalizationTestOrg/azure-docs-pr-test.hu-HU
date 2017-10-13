@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált Samanage |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és Samanage között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és Samanage között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,111 +13,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: jeedes
-ms.openlocfilehash: c8edc29f113b8088438618a731e97c0f4f155b9c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c54dbe407145a29a712acc3c0fb549a38ac26bed
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-samanage"></a>Oktatóanyag: Azure Active Directoryval integrált Samanage
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Samanage az Azure Active Directoryval (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja Samanage integrálása az Azure Active Directory (Azure AD).
 
-Samanage integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
+Samanage integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
 
-- Megadhatja a hozzáférés tooSamanage rendelkező Azure AD-ben
-- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooSamanage (egyszeri bejelentkezés) a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
+- Megadhatja a Samanage hozzáféréssel rendelkező Azure AD-ben
+- Engedélyezheti a felhasználóknak, hogy automatikusan beolvasása bejelentkezett Samanage (egyszeri bejelentkezés) számára a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-az Azure AD integrálása Samanage tooconfigure, kell a következő elemek hello:
+Konfigurálása az Azure AD-integrációs Samanage, a következőkre van szükség:
 
 - Az Azure AD szolgáltatásra
 - Egy Samanage egyszeri bejelentkezés engedélyezve van az előfizetés
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. Hello gyűjteményből Samanage hozzáadása
+1. A gyűjteményből Samanage hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-samanage-from-hello-gallery"></a>Hello gyűjteményből Samanage hozzáadása
-tooconfigure hello integrációja Samanage az Azure AD-be, meg kell tooadd Samanage hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-samanage-from-the-gallery"></a>A gyűjteményből Samanage hozzáadása
+Az Azure AD integrálása a Samanage konfigurálásához kell hozzáadnia Samanage a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
 
-**tooadd Samanage hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
+**A gyűjteményből Samanage hozzáadásához hajtsa végre az alábbi lépéseket:**
 
-1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
+1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
+2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
+3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
 
     ![Alkalmazások][3]
 
-4. Hello keresési mezőbe, írja be a **Samanage**.
+4. Írja be a keresőmezőbe, **Samanage**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-samanage-tutorial/tutorial_samanage_search.png)
 
-5. A hello eredmények panelen válassza ki a **Samanage**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
+5. Az eredmények panelen válassza ki a **Samanage**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-samanage-tutorial/tutorial_samanage_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon" nevű tesztfelhasználó alapján Samanage.
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó Samanage tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello Samanage közötti kapcsolat kapcsolatot kell létrehozni toobe.
+Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó Samanage a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a Samanage közötti kapcsolat kapcsolatot kell létrehozni.
 
-Samanage, rendelje hozzá hello hello értékének **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
+Samanage, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
 
-tooconfigure és az Azure AD az egyszeri bejelentkezés Samanage-teszthez, a következő építőelemeket toocomplete hello szüksége:
+Az Azure AD egyszeri bejelentkezést a Samanage tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-3. **[Samanage tesztfelhasználó létrehozása](#creating-a-samanage-test-user)**  -toohave egy megfelelője a Britta Simon a Samanage, amely a felhasználó csatolt toohello az Azure AD ábrázolása.
-4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+3. **[Samanage tesztfelhasználó létrehozása](#creating-a-samanage-test-user)**  - való Britta Simon valami Samanage, amely csatolva van a felhasználó az Azure AD-ábrázolását.
+4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az Samanage alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az Samanage alkalmazásban.
 
-**az Azure AD tooconfigure egyszeri bejelentkezést a Samanage, hajtsa végre a lépéseket követve hello:**
+**Konfigurálása az Azure AD az egyszeri bejelentkezés Samanage, hajtsa végre az alábbi lépéseket:**
 
-1. Az Azure portál, a hello hello **Samanage** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portálon a a **Samanage** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
+2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samanage-tutorial/tutorial_samanage_samlbase.png)
 
-3. A hello **Samanage tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
+3. Az a **Samanage tartomány és az URL-címek** területen tegye a következőket:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samanage-tutorial/tutorial_samanage_url.png)
 
-    a. A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<Company Name>.samanage.com/saml_login/<Company Name>`
+    a. Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://<Company Name>.samanage.com/saml_login/<Company Name>`
 
-    b. A hello **azonosító** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<Company Name>.samanage.com`
+    b. Az a **azonosító** szövegmező, adja meg a következő minta használatával URL-címe:`https://<Company Name>.samanage.com`
 
     > [!NOTE] 
-    > Ezek az értékek nincsenek valós. Frissítheti ezeket az értékeket a hello tényleges bejelentkezési URL-cím és azonosítója, amelynek az ismertetése hello oktatóanyag későbbi részében. További részletekért forduljon [Samanage ügyfél-támogatási csoport](https://www.samanage.com/support).    
+    > Ezek az értékek nincsenek valós. Frissítheti ezeket az értékeket és a tényleges bejelentkezési URL-cím és -azonosítót, amelynek az ismertetése, az oktatóanyag későbbi részében. További részletekért forduljon [Samanage ügyfél-támogatási csoport](https://www.samanage.com/support).    
  
-4. A hello **SAML-aláíró tanúsítványa** kattintson **Certificate(Base64)** , és mentse a hello tanúsítványfájlt a számítógépen.
+4. Az a **SAML-aláíró tanúsítványa** kattintson **Certificate(Base64)** , és mentse a tanúsítványfájlt, a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samanage-tutorial/tutorial_samanage_certificate.png) 
 
@@ -125,7 +125,7 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálo
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samanage-tutorial/tutorial_general_400.png)
 
-6. A hello **Samanage konfigurációs** kattintson **konfigurálása Samanage** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **Sign-Out URL-címet, és a SAML Entitásazonosító** a hello **rövid összefoglaló szakasz.**
+6. A a **Samanage konfigurációs** kattintson **konfigurálása Samanage** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **Sign-Out URL-címet, és a SAML Entitásazonosító** a a **rövid összefoglaló szakasz.**
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samanage-tutorial/tutorial_samanage_configure.png) 
 
@@ -139,66 +139,66 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálo
    
     ![Egyszeri bejelentkezés](./media/active-directory-saas-samanage-tutorial/tutorial_samanage_002.png "egyszeri bejelentkezés")
 
-10. Keresse meg a túl**SAML használatával bejelentkezési** csoportjában hajtsa végre az alábbi lépésekkel hello:
+10. Navigáljon a **SAML használatával bejelentkezési** területen tegye a következőket:
    
     ![Bejelentkezés SAML](./media/active-directory-saas-samanage-tutorial/tutorial_samanage_003.png "bejelentkezési SAML használatával")
  
     a. Kattintson a **engedélyezése egyszeri bejelentkezéshez a SAML**.  
  
-    b. A hello **identitási szolgáltató URL-cím** szövegmezőhöz Beillesztés hello értékének **SAML Entitásazonosító** ami Azure-portálon másolta.    
+    b. Az a **identitási szolgáltató URL-cím** szövegmezőhöz illessze be az értékét **SAML Entitásazonosító** ami Azure-portálon másolta.    
  
-    c. Hello megerősítése **bejelentkezési URL-cím** egyező hello **URL-cím bejelentkezési** a **Samanage tartomány és az URL-címek** szakaszban az Azure portálon.
+    c. Erősítse meg a **bejelentkezési URL-cím** megegyezik a **URL-cím bejelentkezési** a **Samanage tartomány és az URL-címek** szakaszban az Azure portálon.
  
-    d. A hello **kijelentkezési URL-cím** szövegmezőhöz hello értékének megadása **Sign-Out URL-cím** ami Azure-portálon másolta.
+    d. Az a **kijelentkezési URL-cím** szövegmezőhöz értékének megadása **Sign-Out URL-cím** ami Azure-portálon másolta.
  
-    e. A hello **SAML kibocsátó** szövegmezőhöz típus hello app id URI be az identitásszolgáltató.
+    e. Az a **SAML kibocsátó** szövegmező, írja be az alkalmazásazonosító URI a az identitásszolgáltató beállítása.
  
-    f. A base-64 kódolású tanúsítvány a Jegyzettömbben, a vágólapra tartalmának másolása hello Azure portálról letöltött megnyitása és toohello Beillesztés **illessze be az identitásszolgáltató x.509 tanúsítvány az alábbi** szövegmező.
+    f. Nyissa meg a base-64 kódolású tanúsítvány a Jegyzettömbben az Azure portálról letöltött, annak tartalmának másolása a vágólapra és illessze be azt a **illessze be az identitásszolgáltató x.509 tanúsítvány az alábbi** szövegmező.
  
     g. Kattintson a **felhasználók létrehozása, ha azok nem léteznek Samanage**.
  
     h. Kattintson a **frissítés**.
 
 > [!TIP]
-> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
  
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
+Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
+1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-samanage-tutorial/create_aaduser_01.png) 
 
-2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
+2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-samanage-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
+3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-samanage-tutorial/create_aaduser_03.png) 
 
-4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-samanage-tutorial/create_aaduser_04.png) 
 
-    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
+    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-samanage-test-user"></a>Samanage tesztfelhasználó létrehozása
 
-az Azure AD tooenable felhasználók toolog a tooSamanage, akkor ki kell építenie Samanage be.  
-Samanage hello esetben egy kézi tevékenység.
+Ahhoz, hogy az Azure AD-felhasználók Samanage bejelentkezni, akkor ki kell építenie a Samanage.  
+Samanage, ha egy kézi tevékenység.
 
-**tooprovision egy felhasználói fiókot, hajtsa végre a következő lépéseket hello:**
+**Felhasználói fiók létrehozásához hajtsa végre az alábbi lépéseket:**
 
 1. Jelentkezzen be a Samanage vállalati webhely rendszergazdaként.
 
@@ -206,7 +206,7 @@ Samanage hello esetben egy kézi tevékenység.
    
     ![A telepítő](./media/active-directory-saas-samanage-tutorial/tutorial_samanage_001.png "beállítása")
 
-3. Kattintson a hello **felhasználók** lap
+3. Kattintson a **felhasználók** lap
    
     ![Felhasználók](./media/active-directory-saas-samanage-tutorial/tutorial_samanage_006.png "felhasználók")
 
@@ -214,30 +214,30 @@ Samanage hello esetben egy kézi tevékenység.
    
     ![Új felhasználó](./media/active-directory-saas-samanage-tutorial/tutorial_samanage_007.png "új felhasználó")
 
-5. Típus hello **neve** és hello **E-mail cím** tooprovision ki, majd kattintson egy Azure Active Directory-fiók **a felhasználó létrehozása**.
+5. Típus a **neve** és a **E-mail cím** egy Azure Active Directory-fiók ellátásához, majd kattintson a kívánt **a felhasználó létrehozása**.
    
     ![Hozzon létre felhasználói](./media/active-directory-saas-samanage-tutorial/tutorial_samanage_008.png "felhasználó létrehozása")
    
    >[!NOTE]
-   >hello Azure Active Directory fióktulajdonos fog egy e-maileket, és kövesse a fiókjuk egy hivatkozás tooconfirm mielőtt aktívvá válik. Bármely más Samanage felhasználói fiók létrehozása eszközök vagy Samanage tooprovision Azure Active Directory által nyújtott API-k felhasználói fiókokat.
+   >Az Azure Active Directory fióktulajdonos fog egy e-maileket és hivatkozásra a fiók megerősítéséhez, mielőtt aktívvá válik. Bármely más Samanage felhasználói fiók létrehozása eszközök vagy API-k által biztosított Samanage kiépítését Azure Active Directory felhasználói fiókokat.
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
+### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
 
-Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooSamanage megadásával engedélyeznie.
+Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés Samanage Azure egyszeri bejelentkezéshez használandó.
 
 ![Felhasználó hozzárendelése][200] 
 
-**tooassign Britta Simon tooSamanage, hajtsa végre a következő lépéseket hello:**
+**Britta Simon hozzárendelése Samanage, hajtsa végre az alábbi lépéseket:**
 
-1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Hello alkalmazások listában válassza ki a **Samanage**.
+2. Az alkalmazások listában válassza ki a **Samanage**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samanage-tutorial/tutorial_samanage_app.png) 
 
-3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -245,7 +245,7 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáfé
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -253,14 +253,14 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáfé
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
 
-Ha a hozzáférési Panel hello hello Samanage csempe gombra kattint, automatikusan bejelentkezett tooyour Samanage alkalmazás szerezheti be.
-További információ a hozzáférési Panel hello: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).
+Ha a hozzáférési panelen Samanage csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az Samanage alkalmazására.
+A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>További források
 
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

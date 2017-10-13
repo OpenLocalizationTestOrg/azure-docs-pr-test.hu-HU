@@ -1,6 +1,6 @@
 ---
-title: "aaaPublish Azure Media Services tartalom REST segítségével"
-description: "Megtudhatja, hogyan toocreate egy kereső, amely használt toobuild egy adatfolyam-továbbítási URL-címet. hello kód REST API-t használja."
+title: "Használja a többi Azure Media Services tartalom közzététele"
+description: "Megtudhatja, hogyan hozhat létre egy keresőt a streamelési URL-cím létrehozásához használt. A kód REST API-t használja."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,55 +14,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: f849e21b3103b9b33bc652e886b2016ea495b19a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d1e0a112040f6aa4cfa9e8c323507b1c0a223f3e
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="publish-azure-media-services-content-using-rest"></a>Használja a többi Azure Media Services tartalom közzététele
 > [!div class="op_single_selector"]
 > * [.NET](media-services-deliver-streaming-content.md)
 > * [REST](media-services-rest-deliver-streaming-content.md)
-> * [Portál](media-services-portal-publish.md)
+> * [Portal](media-services-portal-publish.md)
 > 
 > 
 
 ## <a name="overview"></a>Áttekintés
-Egy adaptív sávszélességű MP4 típusú beállításkészlettel egy adatfolyam-továbbítási OnDemand-kereső létrehozásával, és a streamelési URL-cím összeállítása is adatfolyam. Hello [egy eszköz kódolás](media-services-rest-encode-asset.md) a témakör bemutatja, hogyan tooencode be egy adaptív sávszélességű MP4 állíthatja. Ha a tartalom titkosított, objektumtovábbítási szabályzat konfigurálása (leírtak szerint [ez](media-services-rest-configure-asset-delivery-policy.md) témakör) egy lokátor létrehozása előtt. 
+Egy adaptív sávszélességű MP4 típusú beállításkészlettel egy adatfolyam-továbbítási OnDemand-kereső létrehozásával, és a streamelési URL-cím összeállítása is adatfolyam. A [egy eszköz kódolás](media-services-rest-encode-asset.md) a témakör bemutatja, hogyan kódolása egy adaptív sávszélességű MP4 állítsa be. Ha a tartalom titkosított, objektumtovábbítási szabályzat konfigurálása (leírtak szerint [ez](media-services-rest-configure-asset-delivery-policy.md) témakör) egy lokátor létrehozása előtt. 
 
-Streamelési locator toobuild URL-címek, hogy pont tooMP4 fájlokat fokozatosan letölthető OnDemand is használható.  
+OnDemand-lokátor segítségével is MP4-fájlokat fokozatosan letölthető mutató URL-címek létrehozása.  
 
-Ez a témakör bemutatja, hogyan toocreate egy adatfolyam-továbbítási OnDemand-lokátort a rendezés toopublish az eszköz és a Smooth, MPEG DASH vagy HLS-streamelési URL-címek létrehozása. Azt is bemutatja, működés közbeni toobuild progresszív letöltési URL-címeket.
+Ez a témakör bemutatja, hogyan hozzon létre egy OnDemand-lokátor tegye közzé az adategységet, és egy Smooth, MPEG DASH vagy HLS streamelési URL-címek létrehozása céljából. Azt is bemutatja, működés közbeni hozhat létre a progresszív letöltési URL-címeket.
 
-Hello [következő](#types) szakasz mutatja hello enum típusok, amelynek értékeket fogja használni a hello REST-hívások.   
+A [következő](#types) szakasz az a számbavételi típusok, amelynek értékeket fogja használni a többi hívásokat jeleníti meg.   
 
 > [!NOTE]
 > A Media Services entitások elérésekor be kell meghatározott fejlécmezők és értékek a HTTP-kérelmekre. További információkért lásd: [a Media Services REST API fejlesztési telepítő](media-services-rest-how-to-use.md).
 > 
 
-## <a name="connect-toomedia-services"></a>Connect tooMedia szolgáltatások
+## <a name="connect-to-media-services"></a>Kapcsolódás a Media Services szolgáltatáshoz
 
-Hogyan tooconnect toohello AMS API-ról: kapcsolatos [hozzáférés hello Azure Media Services API az Azure AD-alapú hitelesítés](media-services-use-aad-auth-to-access-ams-api.md). 
+Az AMS API-hoz kapcsolódáshoz információkért lásd: [elérni az Azure Media Services API-t az Azure AD-alapú hitelesítés](media-services-use-aad-auth-to-access-ams-api.md). 
 
 >[!NOTE]
->Toohttps://media.windows.net sikeres csatlakozás után kapni fog egy másik Media Services URI megadása 301 átirányítást. Meg kell nyitnia a további hívások toohello új URI.
+>Sikeresen csatlakoztassa a https://media.windows.net, adja meg egy másik Media Services URI 301 átirányítást fog kapni. Meg kell nyitnia az új URI későbbi hívásokat.
 
 ## <a name="create-an-ondemand-streaming-locator"></a>Hozzon létre egy OnDemand-lokátor
-toocreate hello OnDemand-lokátor, és a következő toodo hello kell URL-címek lekérése:
+Az OnDemand-lokátor létrehozása és URL-címek lekérése kell a következőket teheti:
 
-1. Ha hello tartalom titkosítása, határozza meg a hozzáférési házirendben.
+1. Ha a tartalom titkosított, adja meg a hozzáférési házirendek.
 2. Hozzon létre egy OnDemand-lokátor.
-3. Ha azt tervezi, toostream, get hello streaming hello eszköz a jegyzékfájl (.ism). 
+3. Ha azt tervezi, hogy adatfolyamként küldje el, beolvasása a folyamatos átviteli jegyzékfájl (.ism) az eszközt. 
    
-   Ha azt tervezi, tooprogressively letöltési, beolvasása hello eszköz MP4 fájlok hello nevét. 
-4. URL-címek toohello jegyzékfájl vagy MP4-fájlok létrehozása. 
+   Ha azt tervezi, fokozatosan letölteni, beolvasása az eszköz a MP4-fájlok nevét. 
+4. A jegyzékfájl vagy MP4-fájlok összeállítása a URL-címek. 
 5. Vegye figyelembe, hogy a streamelési lokátorok létrehozásához, amely tartalmaz egy AccessPolicy használatával nem hozhat létre írási vagy törlési jogosultságot.
 
 ### <a name="create-an-access-policy"></a>Hozzáférési házirend létrehozása
 
 >[!NOTE]
->A különböző AMS-szabályzatok (például a Locator vagy a ContentKeyAuthorizationPolicy) esetében a korlát 1 000 000 szabályzat. Használjon hello azonos házirend-azonosítója mindig használata hello azonos nap / hozzáférési engedélyek, például a lokátorokat, amelyek a helyen tervezett tooremain hosszú ideje (nem feltöltés házirendek) házirendek. További információ [ebben](media-services-dotnet-manage-entities.md#limit-access-policies) a témakörben érhető el.
+>A különböző AMS-szabályzatok (például a Locator vagy a ContentKeyAuthorizationPolicy) esetében a korlát 1 000 000 szabályzat. Ha mindig ugyanazokat a napokat/hozzáférési engedélyeket használja (például olyan keresők szabályzatait, amelyek hosszú ideig érvényben maradnak, vagyis nem feltöltött szabályzatokat), a szabályzatazonosítónak is ugyanannak kell lennie. További információ [ebben](media-services-dotnet-manage-entities.md#limit-access-policies) a témakörben érhető el.
 
 A kérelem:
 
@@ -100,7 +100,7 @@ Válasz:
     {"odata.metadata":"https://media.windows.net/api/$metadata#AccessPolicies/@Element","Id":"nb:pid:UUID:69c80d98-7830-407f-a9af-e25f4b0d3e5f","Created":"2015-02-18T06:52:09.8862191Z","LastModified":"2015-02-18T06:52:09.8862191Z","Name":"access policy","DurationInMinutes":43200.0,"Permissions":1}
 
 ### <a name="create-an-ondemand-streaming-locator"></a>Hozzon létre egy OnDemand-lokátor
-Hello lokátor hello meghatározott eszközhöz és eszköz-házirend létrehozása.
+A megadott eszköz és az eszköz házirend lokátor létrehozása.
 
 A kérelem:
 
@@ -138,7 +138,7 @@ Válasz:
     {"odata.metadata":"https://media.windows.net/api/$metadata#Locators/@Element","Id":"nb:lid:UUID:be245661-2bbd-4fc6-b14f-9cf9a1492e5e","ExpirationDateTime":"2015-03-20T06:34:47.267872+00:00","Type":2,"Path":"http://amstest1.streaming.mediaservices.windows.net/be245661-2bbd-4fc6-b14f-9cf9a1492e5e/","BaseUri":"http://amstest1.streaming.mediaservices.windows.net","ContentAccessComponent":"be245661-2bbd-4fc6-b14f-9cf9a1492e5e","AccessPolicyId":"nb:pid:UUID:1480030d-c481-430a-9687-535c6a5cb272","AssetId":"nb:cid:UUID:cc1e445d-1500-80bd-538e-f1e4b71b465e","StartTime":"2015-02-18T06:34:47.267872+00:00","Name":null}
 
 ### <a name="build-streaming-urls"></a>Build a streaming URL-címek
-Használjon hello **elérési** érték. a visszaadott hello lokátor toobuild hello hello létrehozása után Smooth, HLS és MPEG DASH URL-címeket. 
+Használja a **elérési** értéket adott vissza a lokátor hozhat létre a Smooth, HLS és MPEG DASH URL-címek létrehozása után. 
 
 Smooth Streaming: **elérési** + a jegyzékfájl neve + "/ manifest"
 
@@ -161,7 +161,7 @@ Példa:
 
 
 ### <a name="build-progressive-download-urls"></a>Progresszív letöltési URL-címeket összeállítása
-Használjon hello **elérési** hello hello lokátor toobuild hello progresszív letöltési URL-cím létrehozása után visszaadott érték.   
+Használja a **elérési** értéket adott vissza a progresszív letöltési URL-cím létrehozásához a lokátor létrehozása után.   
 
 URL-címe: **elérési** + eszköz mp4 fájlnév
 

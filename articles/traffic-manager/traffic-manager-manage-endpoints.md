@@ -1,5 +1,5 @@
 ---
-title: "aaaManage végpontok Azure Traffic Managerben |} Microsoft Docs"
+title: "Végpontok kezelése az Azure Traffic Managerben | Microsoft Docs"
 description: "Ez a cikk a végpontok Azure Traffic Managerben végzett felvételében, eltávolításában, engedélyezésében és letiltásában segít."
 services: traffic-manager
 documentationcenter: 
@@ -14,66 +14,66 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/08/2017
 ms.author: kumud
-ms.openlocfilehash: fc65874ae2eaeb6fca5d8c4f33403c258307bdb0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 765d12bc283d991783fb3190ce7917b573f9fc78
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="add-disable-enable-or-delete-endpoints"></a>Végpontok felvétele, letiltása, engedélyezése és törlése
 
-hello Azure App Service Web Apps szolgáltatása is biztosít feladatátvételi és ciklikus időszeletelési forgalom-útválasztási funkciót az adatközponton, függetlenül hello webhely működési belüli webhelyekhez. Az Azure Traffic Manager lehetővé teszi toospecify feladatátvételi és ciklikus időszeletelési forgalom-útválasztás webhelyek és felhőszolgáltatások szolgáltatások különböző adatközpontokban. hello első lépés szükséges tooprovide, hogy a funkció tooadd hello felhőalapú szolgáltatás, vagy a webhely végpont tooTraffic Manager is.
+Az Azure App Service Web Apps szolgáltatása is biztosít feladatátvételi és ciklikus időszeletelési forgalom-útválasztási funkciót az adatközponton belüli webhelyekhez, a webhely működési módjától függetlenül. Az Azure Traffic Manager azonban lehetővé teszi a feladatátvételi és a ciklikus időszeletelési forgalom-útválasztás beállítását a különböző adatközpontokban elhelyezett webhelyek és felhőszolgáltatások esetén is. A funkció üzembe állításának első lépése a felhőszolgáltatás vagy a webhely típusú végpont felvétele a Traffic Manager szolgáltatásba.
 
-A Traffic Manager-profil részét képező egyedi végpontok is letilthatók. A végpont letiltása elhagyja hello-profil részeként, de hello-profil úgy viselkedik, mintha hello végpont nem szerepelne benne. Ez a művelet a karbantartási módban lévő vagy újratelepítés alatt álló végpont átmeneti eltávolítására való. Ha hello végpont újra működik, engedélyezhető.
+A Traffic Manager-profil részét képező egyedi végpontok is letilthatók. A végpont letiltása után a végpont a profil része marad, de a profil úgy viselkedik, mintha a végpont nem szerepelne benne. Ez a művelet a karbantartási módban lévő vagy újratelepítés alatt álló végpont átmeneti eltávolítására való. Amint a végpont újra működik, engedélyezhető.
 
 > [!NOTE]
-> A végpont letiltása rendelkezik semmi toodo rendszerbeli üzembe helyezési állapotát az Azure-ban. A kifogástalan állapotú végpontok maradjon naprakész, és képes forgalom tooreceive, akkor is, ha le van tiltva a Traffic Manager. Továbbá a végpont egyik profilban végzett letiltása nem befolyásolja a többi profilban érvényes állapotát.
+> A végpont letiltása nem érinti a végpont Azure rendszerbeli üzembe helyezési állapotát. Egy megfelelően működő végpont a Traffic Managerben történő letiltás után is aktív marad és képes az adatforgalom fogadására. Továbbá a végpont egyik profilban végzett letiltása nem befolyásolja a többi profilban érvényes állapotát.
 
-## <a name="tooadd-a-cloud-service-or-an-app-service-endpoint-tooa-traffic-manager-profile"></a>egy felhőalapú szolgáltatás tooadd vagy egy App service végpont tooa Traffic Manager-profil
+## <a name="to-add-a-cloud-service-or-an-app-service-endpoint-to-a-traffic-manager-profile"></a>Felhőszolgáltatás- vagy App Service-végpont hozzáadása Traffic Manager-profilhoz
 
-1. Egy böngészőből toohello bejelentkezés [Azure-portálon](http://portal.azure.com).
-2. A hello portal keresősávban, keresse meg a hello **Traffic Manager-profil** nevet, hogy szeretné, hogy toomodify, majd kattintson a hello hello Traffic Manager-profil annak az eredménye, hogy hello jelenik meg.
-3. A hello **Traffic Manager-profil** paneljén, hello **beállítások** kattintson **végpontok**.
-4. A hello **végpontok** panel, amelyen megjelenik, kattintson a **Hozzáadás**.
-5. A hello **végpont hozzáadása** panelen, befejeződött, az alábbi módon:
+1. Egy böngészőben jelentkezzen be az [Azure Portalra](http://portal.azure.com).
+2. A portál keresősávjában keressen rá a módosítani kívánt **Traffic Manager-profil** nevére, majd kattintson a Traffic Manager-profilra a megjelenített eredmények között.
+3. A **Traffic Manager-profil** panel **Beállítások** szakaszában kattintson a **Végpontok** elemre.
+4. A megjelenő **Végpontok** panelen kattintson a **Hozzáadás** gombra.
+5. A **Végpont hozzáadása** panelt töltse ki az alábbiak szerint:
     1. A **Típusnál** kattintson az **Azure-végpont** lehetőségre.
-    2. Adjon meg egy **neve** alapjául toorecognize ezen a végponton.
-    3. A **céloz erőforrástípus**, a legördülő lista hello, válasszon hello megfelelő erőforrástípust.
-    4. A **célerőforrás**, a legördülő hello, majd a megfelelő célerőforrása hello tooshow hello listaelem alatt lévő erőforrások hello ugyanahhoz az előfizetéshez a hello **erőforrások panel**. A hello **erőforrás** panel akkor jelenik meg, mentse hello szolgáltatást, amelyet tooadd, hello első végpont.
-    5. A **Prioritásnál** válassza az **1-es** értéket. Az eredmény teljes forgalmat toothis végpont kifogástalan esetén.
+    2. Adjon meg egy **Nevet**, amelyről felismeri majd a végpontot.
+    3. A **Célerőforrás típusánál** válassza ki a megfelelő erőforrástípust a legördülő listából.
+    4. A **Célerőforrásnál** válassza ki a megfelelő célerőforrást a legördülő listából az előfizetéshez tartozó, az **Erőforrások panelen** listázott erőforrások megjelenítéséhez. A megjelenő **Erőforrás** panelen válassza ki az első végpontként hozzáadni kívánt szolgáltatást.
+    5. A **Prioritásnál** válassza az **1-es** értéket. Ennek eredményeképpen a teljes forgalom erre a végpontra irányul, ha ez nem befolyásolja a rendszer megfelelő működését.
     6. A **Beállítás letiltottként** jelölőnégyzetet ne jelölje ki.
     7. Kattintson az **OK** gombra
-6.  Ismételje meg a 4. és 5 tooadd hello következő Azure végpontot. Győződjön meg arról, hogy tooadd azt a **prioritás** beállított érték **2**.
-7.  Ha mindkét végpont hello hozzáadása befejeződött, azok megjelennek hello **Traffic Manager-profil** panelről és figyelési állapotuk **Online**.
+6.  A 4–5. lépés megismétlésével adja hozzá a következő Azure-végpontot. Ennek a **Prioritása** mindenképpen **2-es** legyen.
+7.  Miután mindkét végpontot hozzáadta, azok megjelennek a **Traffic Manager-profil** panelen, **Online** figyelési állapottal.
 
 > [!NOTE]
-> Ad hozzá, vagy távolítsa el a végpont a profilnak az hello *feladatátvételi* forgalom-útválasztási módszer, hello feladatátvételi prioritási listát rendelhetik azok igényeinek megfelelően. Hello sorrendjének hello feladatátvételi prioritási listát hello konfigurálása lapon állíthatja be. További információkért tekintse meg a [Feladatátvételi forgalom-útválasztás beállítása](traffic-manager-configure-failover-routing-method.md) szakaszt.
+> Miután a *Feladatátvitel* forgalom-útválasztási módszer segítségével hozzáad vagy eltávolít egy végpontot a profilból, előfordulhat, hogy a feladatátvitel prioritási listát nem rendezheti át úgy, ahogy szeretné. A feladatátvétel prioritási lista sorrendjét a konfigurációs lapon adhatja meg. További információkért tekintse meg a [Feladatátvételi forgalom-útválasztás beállítása](traffic-manager-configure-failover-routing-method.md) szakaszt.
 
-## <a name="toodisable-an-endpoint"></a>a végpont toodisable
+## <a name="to-disable-an-endpoint"></a>A végpontok letiltása
 
-1. Egy böngészőből toohello bejelentkezés [Azure-portálon](http://portal.azure.com).
-2. A hello portal keresősávban, keresse meg a hello **Traffic Manager-profil** , hogy azt szeretné, hogy toomodify, és kattintson a hello hello megjelenített eredmények a Traffic Manager-profil neve.
-3. A hello **Traffic Manager-profil** paneljén, hello **beállítások** kattintson **végpontok**. 
-4. Kattintson hello végpontra, amelyet az toodisable, majd a hello **végpont** panel, amelyen megjelenik, kattintson **szerkesztése**.
-5. A hello **végpont** panelen állapotmódosítás hello végpont túl**letiltott**, és kattintson a **mentése**.
-6. Ügyfelek toosend forgalom toohello endpoint idejére hello idő élettartamát (TTL) továbbra is. Hello TTL hello hello Traffic Manager-profil konfiguráció lapján módosítható.
+1. Egy böngészőben jelentkezzen be az [Azure Portalra](http://portal.azure.com).
+2. A portál keresősávjában keressen rá a módosítani kívánt **Traffic Manager-profil** nevére, majd kattintson a Traffic Manager-profilra a megjelenített eredmények között.
+3. A **Traffic Manager-profil** panel **Beállítások** szakaszában kattintson a **Végpontok** elemre. 
+4. Kattintson a letiltani kívánt végpontra, majd a megjelenő **Végpont** panelen a **Szerkesztés** gombra.
+5. A **Végpont** panelen állítsa a végpontot **Letiltva** állapotba, majd kattintson a **Mentés** gombra.
+6. Az ügyfelek az élettartam (TTL) végéig továbbítják az adatforgalmat a végpont felé. Az élettartamot a Traffic Manager profil konfigurációs panelén módosíthatja.
 
-## <a name="tooenable-an-endpoint"></a>a végpont tooenable
+## <a name="to-enable-an-endpoint"></a>A végpontok engedélyezése
 
-1. Egy böngészőből toohello bejelentkezés [Azure-portálon](http://portal.azure.com).
-2. A hello portal keresősávban, keresse meg a hello **Traffic Manager-profil** , hogy azt szeretné, hogy toomodify, és kattintson a hello hello megjelenített eredmények a Traffic Manager-profil neve.
-3. A hello **Traffic Manager-profil** paneljén, hello **beállítások** kattintson **végpontok**. 
-4. Kattintson hello végpontra, amelyet az toodisable, majd a hello **végpont** panel, amelyen megjelenik, kattintson **szerkesztése**.
-5. A hello **végpont** panelen állapotmódosítás hello végpont túl**engedélyezve**, és kattintson a **mentése**.
-6. Ügyfelek toosend forgalom toohello endpoint idejére hello idő élettartamát (TTL) továbbra is. Hello TTL hello hello Traffic Manager-profil konfiguráció lapján módosítható.
+1. Egy böngészőben jelentkezzen be az [Azure Portalra](http://portal.azure.com).
+2. A portál keresősávjában keressen rá a módosítani kívánt **Traffic Manager-profil** nevére, majd kattintson a Traffic Manager-profilra a megjelenített eredmények között.
+3. A **Traffic Manager-profil** panel **Beállítások** szakaszában kattintson a **Végpontok** elemre. 
+4. Kattintson a letiltani kívánt végpontra, majd a megjelenő **Végpont** panelen a **Szerkesztés** gombra.
+5. A **Végpont** panelen állítsa a végpontot **Engedélyezve** állapotba, majd kattintson a **Mentés** gombra.
+6. Az ügyfelek az élettartam (TTL) végéig továbbítják az adatforgalmat a végpont felé. Az élettartamot a Traffic Manager profil konfigurációs panelén módosíthatja.
 
-## <a name="toodelete-an-endpoint"></a>a végpont toodelete
+## <a name="to-delete-an-endpoint"></a>Végpont törlése
 
-1. Egy böngészőből toohello bejelentkezés [Azure-portálon](http://portal.azure.com).
-2. A hello portal keresősávban, keresse meg a hello **Traffic Manager-profil** , hogy azt szeretné, hogy toomodify, és kattintson a hello hello megjelenített eredmények a Traffic Manager-profil neve.
-3. A hello **Traffic Manager-profil** paneljén, hello **beállítások** kattintson **végpontok**. 
-4. Kattintson hello végpontra, amelyet az toodisable, majd a hello **végpont** panel, amelyen megjelenik, kattintson **szerkesztése**.
-5. A hello **végpont** panelen állapotmódosítás hello végpont túl**engedélyezve**, és kattintson a **mentése**.
+1. Egy böngészőben jelentkezzen be az [Azure Portalra](http://portal.azure.com).
+2. A portál keresősávjában keressen rá a módosítani kívánt **Traffic Manager-profil** nevére, majd kattintson a Traffic Manager-profilra a megjelenített eredmények között.
+3. A **Traffic Manager-profil** panel **Beállítások** szakaszában kattintson a **Végpontok** elemre. 
+4. Kattintson a letiltani kívánt végpontra, majd a megjelenő **Végpont** panelen a **Szerkesztés** gombra.
+5. A **Végpont** panelen állítsa a végpontot **Engedélyezve** állapotba, majd kattintson a **Mentés** gombra.
 
 
 ## <a name="next-steps"></a>Következő lépések

@@ -1,6 +1,6 @@
 ---
-title: "aaaYou nem érheti el a hello itt egy Windows-eszköz az Azure portálon |} Microsoft Docs"
-description: "Ismerje meg, ahol nem get van helyről származik és mit ellenőrizheti, ezen a párbeszédpanelen rendszert futtató tooavoid."
+title: "Innen nem érheti el az Azure Portalon Windows-eszközről| Microsoft Docs"
+description: "Ismerje meg, honnan származik az „Innen nem érheti el” üzenet, és mely tényezőknek az ellenőrzésével előzheti meg, hogy belefusson."
 services: active-directory
 keywords: "eszközalapú feltételes hozzáférés, eszközregisztráció, eszközregisztráció engedélyezése, eszközregisztráció és MDM"
 documentationcenter: 
@@ -15,17 +15,17 @@ ms.topic: get-started-article
 ms.date: 07/05/2017
 ms.author: markvi
 ms.reviewer: jairoc
-ms.openlocfilehash: eda2aa10fbff5b3e515723219f61c1cb6f634e29
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d86e47507f7a578e8a0affb690b6d96673b6b69a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="you-cant-get-there-from-here-on-a-windows-device"></a>Innen nem érheti el Windows-eszközről
 
-Ha például a szervezet SharePoint Online intranetéhez próbál hozzáférni, megjelenhet egy oldal a következő üzenettel: *Innen nem érheti el*. Ez a lap azért jelent meg, mert a rendszergazda által megadott egy feltételes hozzáférési szabályzatot, amely megakadályozza, hogy bizonyos feltételek hozzáférés tooyour szervezet erőforrásaihoz. Bár szükséges toocontact ügyfélszolgálathoz vagy a rendszergazda tooget, ez a probléma megoldódott, dolgot néhány próbálhatja ki saját kezűleg, először.
+Ha például a szervezet SharePoint Online intranetéhez próbál hozzáférni, megjelenhet egy oldal a következő üzenettel: *Innen nem érheti el*. Az oldal azért jelenik meg, mert a rendszergazda olyan hozzáférési szabályzatot állított be, amely bizonyos feltételek szerint megakadályozza a vállalat erőforrásaihoz való hozzáférést. Bár lehetséges, hogy a probléma megoldásához végül az ügyfélszolgálathoz vagy a rendszergazdához kell fordulni, érdemes először megpróbálkozni néhány lépéssel.
 
-Ha használ egy **Windows** eszközt, jelölje be a következő hello:
+Ha **Windows**-eszközt használ, ellenőrizze a következőket:
 
 - Támogatott böngészőt használ?
 
@@ -42,116 +42,116 @@ Ha használ egy **Windows** eszközt, jelölje be a következő hello:
 
 Ha a rendszergazda feltételes hozzáférési szabályzatot állított be, akkor csak támogatott böngészővel férhet hozzá a szervezet erőforrásaihoz. Windows-eszközön csak az **Internet Explorer** és az **Edge** támogatott.
 
-Egyszerűen azonosíthatja, hogy nem fér hozzá egy erőforrás miatt tooan nem támogatott böngészőt hello részletes adatait tartalmazó részben hello hibalap megtekintésével:
+Ha egy erőforráshoz egy nem támogatott böngésző miatt nem férhet hozzá, azt könnyen megállapíthatja a hibaoldal részletek szakaszának megtekintésével:
 
 ![„Innen nem érheti el” üzenetek nem támogatott böngészők esetén](./media/active-directory-conditional-access-device-remediation/02.png "Forgatókönyv")
 
-hello csak szervizelési toouse hello alkalmazás támogatja-e az eszközplatformnál böngészőt. A támogatott böngészők teljes listáját a [támogatott böngészők](active-directory-conditional-access-supported-apps.md#supported-browsers-for-device-based-policies) című témakörben találja.  
+Az egyetlen javítási megoldás egy olyan böngésző használata, amelyet az alkalmazás támogat az adott eszközplatformon. A támogatott böngészők teljes listáját a [támogatott böngészők](active-directory-conditional-access-supported-apps.md) című témakörben találja.  
 
 
 ## <a name="supported-versions-of-windows"></a>A Windows támogatott verziói
 
-hello következő hello Windows operációs rendszer eszközére vonatkozó teljesülnie kell: 
+A következő feltételeknek kell teljesülnie az eszközön futó Windows operációs rendszer esetében: 
 
-- Windows asztali operációs rendszert használ az eszközt, hogy szükséges-toobe Windows 7 vagy újabb.
-- Egy Windows server operációs rendszert használ az eszközt, hogy szükséges-e toobe Windows Server 2008 R2 vagy újabb. 
+- Ha eszközén Windows asztali operációs rendszert használ, annak verziója Windows 7 vagy újabb kell, hogy legyen.
+- Ha eszközén Windows kiszolgálói operációs rendszert használ, annak verziója Windows Server 2008 R2 vagy újabb kell, hogy legyen. 
 
 
 ## <a name="compliant-device"></a>Megfelelő eszköz
 
-Előfordulhat, hogy a rendszergazda engedélyezte egy feltételes hozzáférési szabályzatot, amely lehetővé teszi, hogy csak az előírásoknak megfelelő eszközök hozzáférési tooyour szervezet erőforrásaihoz. kompatibilis, az eszköznek meg kell mindkét illesztett tooyour toobe a helyszíni Active Directory vagy tooyour Azure Active Directory tartományhoz.
+Lehetséges, hogy a rendszergazda olyan feltételes hozzáférési szabályzatot állított be, amely a vállalat erőforrásaihoz való hozzáférést csak megfelelő eszközökről engedélyezi. A megfeleléshez az eszköznek csatlakoznia kell a helyszíni Active Directoryhez vagy az Azure Active Directoryhez.
 
-Könnyen azonosíthatja, hogy miatt tooa eszköz, amely nem kompatibilis hello részletes adatait tartalmazó részben hello hibalap megtekintésével erőforrás nem tud hozzáférni:
+Ha egy erőforráshoz egy nem megfelelő eszköz miatt nem férhet hozzá, azt könnyedén megállapíthatja a hibaoldal részletek szakaszának megtekintésével:
  
 ![„Innen nem érheti el” üzenetek nem regisztrált eszközök esetén](./media/active-directory-conditional-access-device-remediation/01.png "Forgatókönyv")
 
 
-### <a name="is-your-device-joined-tooan-on-premises-active-directory"></a>A csatlakoztatott eszköz tooan a helyszíni Active Directory?
+### <a name="is-your-device-joined-to-an-on-premises-active-directory"></a>Az eszköz egy helyszíni Active Directoryhez csatlakozik?
 
-**Ha az eszköz csatlakoztatva van tooan a helyszíni Active Directory a szervezetében:**
+**Ha az eszköz egy helyszíni Active Directoryhez csatlakozik a szervezeten belül:**
 
-1. Győződjön meg arról, hogy bejelentkezik tooWindows be munkahelyi fiókjával (az Active Directory-fiókot).
-2. Csatlakozás tooyour a vállalati hálózathoz a DirectAccess vagy virtuális magánhálózati (VPN) keresztül.
-3. Miután csatlakozott, nyomja le az hello Windows billentyű + hello L kulcs toolock a Windows-munkamenet.
+1. Győződjön meg róla, hogy a munkahelyi fiókot (Active Directory-fiókját) használva lépett be a Windowsba.
+2. Csatlakozzon a vállalati hálózathoz virtuális magánhálózaton (VPN) vagy DirectAccessen keresztül.
+3. Miután csatlakozott, zárolja a Windows-munkamenetet a Windows-gomb és az L billentyű lenyomásával.
 4. Oldja fel a Windows-munkamenet zárolását a munkahelyi fiókjához tartozó hitelesítő adatok beírásával.
-5. Várjon egy percet, és próbálja meg újból tooaccess hello alkalmazást vagy szolgáltatást.
-6. Ha látja hello azonos lapján kattintson a hello **további részleteket** hivatkozásra, és forduljon a rendszergazdához hello adatokkal.
+5. Várjon egy percet, majd próbálja meg újból elérni az alkalmazást vagy a szolgáltatást.
+6. Ha ugyanazt a lapot látja, kattintson a **További részletek** hivatkozásra, és az ott található információt adja át a rendszergazdának.
 
 
-### <a name="is-your-device-not-joined-tooan-on-premises-active-directory"></a>Az eszköz nincs tartományhoz csatlakoztatva tooan a helyszíni Active Directory?
+### <a name="is-your-device-not-joined-to-an-on-premises-active-directory"></a>Az eszköz nem csatlakozik egy helyszíni Active Directoryhez?
 
-Ha az eszköz nincs tartományhoz csatlakoztatva tooan a helyszíni Active Directory és a Windows 10 rendszerű, két lehetőség közül választhat:
+Ha az eszköze nem csatlakozik egy helyszíni Active Directoryhez, és Windows 10 rendszert futtat, két lehetőség áll rendelkezésre:
 
 * Futtassa az Azure AD Joint
-* Adja hozzá a munkahelyi vagy iskolai fiók tooWindows
+* Adja hozzá a munkahelyi vagy iskolai fiókját a Windowshoz
 
 További információt a két megoldás közötti különbségekről itt talál: [Windows 10-es eszközök használata a munkahelyen ](active-directory-azureadjoin-windows10-devices.md).  
 Ha az eszköz:
 
-- Tooyour szervezet tartozik, az Azure AD Join kell futtatnia.
-- Személyes eszköz vagy Windows Phone-eszközön, adja hozzá a munkahelyi vagy iskolai fiók tooWindows kell 
+- A szervezethez tartozik, futtassa az Azure AD Joint.
+- Egy személyes eszköz vagy Windows-telefon, adja hozzá a munkahelyi vagy iskolai fiókját a Windowshoz 
 
 
 
 #### <a name="azure-ad-join-on-windows-10"></a>Azure AD Join a Windows 10 rendszeren
 
-hello lépéseket toojoin az eszköz tooAzure AD vannak társítva hello futnak a kiszolgálón Windows 10-es verzióját. a Windows 10 operációs rendszer hello toodetermine hello verziójának **winver** parancs: 
+Az eszköz Azure AD-hez való csatlakoztatásának lépései az eszközön futó Windows 10 verziójához vannak kötve. A Windows 10 operációs rendszer verziójának megállapításához futtassa a **winver** parancsot: 
 
 ![Windows-verzió](./media/active-directory-conditional-access-device-remediation/03.png )
 
 
 **Windows 10 évfordulós frissítés (1607-es verzió):**
 
-1. Nyissa meg hello **beállítások** alkalmazást.
+1. Nyissa meg a **Gépházat**.
 2. Kattintson a **Fiókok** > **Hozzáférés munkahelyi vagy iskolai rendszerhez** elemre.
 3. Kattintson a **Connect** (Csatlakozás) gombra.
-4. Kattintson a **az eszköz tooAzure AD Join**.
-5. Tooyour szervezet hitelesítéshez, adja meg a többtényezős hitelesítést, amikor a program kéri, majd hajtsa végre hello látható.
+4. Kattintson az **Eszköz csatlakoztatása az Azure AD-hez** elemre.
+5. Hitelesítse magát szervezeténél, biztosítson többtényezős hitelesítési adatokat, ha szükséges, majd kövesse a bemutatott lépéseket.
 6. Jelentkezzen ki, majd jelentkezzen be a munkahelyi fiókjával.
-7. Próbálja meg újra tooaccess hello alkalmazás.
+7. Próbálja meg újból elérni az alkalmazást.
 
 **Windows 10, 2015 novemberi frissítés (1511-es verzió):**
 
-1. Nyissa meg hello **beállítások** alkalmazást.
+1. Nyissa meg a **Gépházat**.
 2. Kattintson a **Rendszer** > **Névjegy** elemre.
 3. Kattintson a **Csatlakozás az Azure AD-hez** elemre.
-4. Tooyour szervezet hitelesítéshez, adja meg a többtényezős hitelesítést, amikor a program kéri, majd hajtsa végre hello látható.
+4. Hitelesítse magát szervezeténél, biztosítson többtényezős hitelesítési adatokat, ha szükséges, majd kövesse a bemutatott lépéseket.
 5. Jelentkezzen ki, majd jelentkezzen be a munkahelyi fiókjával (Azure AD-fiókjával).
-6. Próbálja meg újra tooaccess hello alkalmazás.
+6. Próbálja meg újból elérni az alkalmazást.
 
 
 #### <a name="workplace-join-on-windows-81"></a>Munkahelyi csatlakoztatás Windows 8.1 rendszeren
 
-Az eszköz nincs tartományhoz és a munkahelyi csatlakoztatás Windows 8.1, toodo fut, és a Microsoft Intune-beli regisztrálásakor, hello a következő lépéseket:
+Ha az eszköze nincs tartományhoz csatlakoztatva és Windows 8.1 rendszert futtat, munkahelyi csatlakoztatást hajthat végre, és regisztrálhat a Microsoft Intune-ba a következők elvégzésével:
 
 1. Nyissa meg a **Gépházat**.
 2. Kattintson a **Hálózat** > **Munkahely** elemre.
 3. Kattintson a **Csatlakozás** parancsra.
-4. Tooyour szervezet hitelesítéshez, adja meg a többtényezős hitelesítést, amikor a program kéri, majd hajtsa végre hello látható.
+4. Hitelesítse magát szervezeténél, biztosítson többtényezős hitelesítési adatokat, ha szükséges, majd kövesse a bemutatott lépéseket.
 5. Kattintson a **Bekapcsolás** elemre.
-6. Próbálja meg újra tooaccess hello alkalmazás.
+6. Próbálja meg újból elérni az alkalmazást.
 
 
 
-#### <a name="add-your-work-or-school-account-toowindows"></a>Adja hozzá a munkahelyi vagy iskolai fiók tooWindows 
+#### <a name="add-your-work-or-school-account-to-windows"></a>Adja hozzá a munkahelyi vagy iskolai fiókját a Windowshoz 
 
 
 **Windows 10 évfordulós frissítés (1607-es verzió):**
 
-1. Nyissa meg hello **beállítások** alkalmazást.
+1. Nyissa meg a **Gépházat**.
 2. Kattintson a **Fiókok** > **Hozzáférés munkahelyi vagy iskolai rendszerhez** elemre.
 3. Kattintson a **Connect** (Csatlakozás) gombra.
-4. Tooyour szervezet hitelesítéshez, adja meg a többtényezős hitelesítést, amikor a program kéri, majd hajtsa végre hello látható.
-5. Próbálja meg újra tooaccess hello alkalmazás.
+4. Hitelesítse magát szervezeténél, biztosítson többtényezős hitelesítési adatokat, ha szükséges, majd kövesse a bemutatott lépéseket.
+5. Próbálja meg újból elérni az alkalmazást.
 
 
 **Windows 10, 2015 novemberi frissítés (1511-es verzió):**
 
-1. Nyissa meg hello **beállítások** alkalmazást.
+1. Nyissa meg a **Gépházat**.
 2. Kattintson a **Fiókok** > **Saját fiókok** elemre.
 3. Kattintson a **Munkahelyi vagy iskolai fiók beállítása** elemre.
-4. Tooyour szervezet hitelesítéshez, adja meg a többtényezős hitelesítést, amikor a program kéri, majd hajtsa végre hello látható.
-5. Próbálja meg újra tooaccess hello alkalmazás.
+4. Hitelesítse magát szervezeténél, biztosítson többtényezős hitelesítési adatokat, ha szükséges, majd kövesse a bemutatott lépéseket.
+5. Próbálja meg újból elérni az alkalmazást.
 
 
 

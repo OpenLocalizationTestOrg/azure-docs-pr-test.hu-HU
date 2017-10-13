@@ -1,6 +1,6 @@
 ---
-title: "a virtuális gépek Azure DevTest Labs toocreate aaaManage képletek |} Microsoft Docs"
-description: "Megtudhatja, hogyan tooupdate és eltávolítás Azure DevTest Labs képlet"
+title: "A virtuális gépek létrehozásához Azure DevTest Labs szolgáltatásban képletek kezelése |} Microsoft Docs"
+description: "Megtudhatja, hogyan frissítése és eltávolítása az Azure DevTest Labs képletek"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -15,119 +15,119 @@ ms.topic: article
 ms.date: 03/07/2017
 ms.author: tarcher
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 855debe46f3b70cc45ea5d55869663b64e225124
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bfdab5def50158f9b764bbb1e50c2624cc6d5fb3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="manage-azure-devtest-labs-formulas"></a>Azure DevTest Labs képletek kezelése
 
 [!INCLUDE [devtest-lab-formula-definition](../../includes/devtest-lab-formula-definition.md)]
 
-Ez a cikk bemutatja, hogyan toocreate base (egyéni lemezképet, Piactéri lemezképhez vagy egy másik képlet) vagy a meglévő virtuális képletet. Ez a cikk is végigvezeti Önt meglévő képletek kezelése.
+Ez a cikk bemutatja, hogyan képlet base (egyéni lemezképet, Piactéri lemezképhez vagy egy másik képlet) vagy egy meglévő virtuális gép létrehozásához. Ez a cikk is végigvezeti Önt meglévő képletek kezelése.
 
 ## <a name="create-a-formula"></a>Létrehozhat egy képletet
-Bárki, aki DevTest Labs *felhasználók* engedélyek képes toocreate virtuális gépek képlettel alapjaként. Két módon toocreate képletek: 
+Bárki, aki DevTest Labs *felhasználók* engedélyek létre tudja hozni a virtuális gépek képlettel alapjaként. Képletek létrehozása két módja van: 
 
-* A base - használni, ha szeretné toodefine hello képlet összes hello jellemzőit.
-* Az egy meglévő Virtuálisgép - tesztkörnyezet használja, ha azt szeretné, hogy toocreate képlet beállításai alapján a hello egy meglévő virtuális gép.
+* A base - használja, ha be szeretné állítani a képlet jellemzői.
+* Az egy meglévő Virtuálisgép - tesztkörnyezet használja, ha szeretne létrehozni egy képletet egy meglévő virtuális gép beállításai alapján.
 
 Felhasználók és engedélyek hozzáadásával kapcsolatos további információkért lásd: [tulajdonosa és a felhasználók hozzáadása az Azure DevTest Labs](./devtest-lab-add-devtest-user.md).
 
 ### <a name="create-a-formula-from-a-base"></a>A base létrehozhat egy képletet
-a lépéseket követve hello hello folyamatot, amely egy egyéni lemezképet, Piactéri lemezképhez vagy egy másik képlet képletek létrehozását ismerteti.
+A következő lépések végigvezetik egy egyéni lemezképet, Piactéri lemezképhez vagy egy másik képlet képlet létrehozásának folyamatán.
 
-1. Jelentkezzen be toohello [Azure-portálon](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Jelentkezzen be az [Azure Portalra](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
-2. Válassza ki **több szolgáltatások**, majd válassza ki **DevTest Labs** hello listából.
+2. Válassza ki **több szolgáltatások**, majd válassza ki **DevTest Labs** a listából.
 
-3. Labs hello listában jelölje ki hello kívánt labor.  
+3. Válassza ki a kívánt labor labs listájának megtekintéséhez.  
 
-4. Hello labor paneljén válassza **képletek (újrafelhasználható körrel)**.
+4. A labor paneljén válassza **képletek (újrafelhasználható körrel)**.
    
     ![Képletadat menü](./media/devtest-lab-create-formulas/lab-settings-formulas.png)
 
-5. A hello **képletek** panelen válassza **+ Hozzáadás**.
+5. Az a **képletek** panelen válassza **+ Hozzáadás**.
    
     ![A képlet hozzáadása](./media/devtest-lab-create-formulas/add-formula.png)
 
-6. A hello **base válasszon** panelen, jelölje be hello alapja (egyéni lemezképet, Piactéri lemezképhez vagy képlet), amelyből el kívánja toocreate hello képlet.
+6. Az a **base válasszon** panelen válassza ki, amelyből el kívánja az alaposztály (egyéni lemezképet, Piactéri lemezképhez vagy képlet) létrehozása a képlet.
    
     ![Kiinduló lista](./media/devtest-lab-create-formulas/base-list.png)
 
-7. A hello **képletet** panelen adja meg a következő értékek hello:
+7. Az a **képletet** panelen adja meg a következő értékeket:
    
-    * **Képlet neve** -adja meg a képlet nevét. Ez az érték alap képek hello listája jelenik meg a virtuális gépek létrehozásakor. Írja be azt, és nem érvényes, ha egy üzenet azt jelzi-e egy érvényes nevet hello követelményei hello nevének érvényességét.
-    * **Leírás** -adja meg a képlet beszédes leírást. Ezt az értéket a virtuális gép létrehozása esetén hello képlet helyi menüjéből érhető el.
+    * **Képlet neve** -adja meg a képlet nevét. Ez az érték alap képek listája jelenik meg a virtuális gépek létrehozásakor. A név van hitelesítve, írja be azt, és nem érvényes, ha egy üzenet azt jelzi-e egy érvényes nevet a követelményei.
+    * **Leírás** -adja meg a képlet beszédes leírást. Ezt az értéket a virtuális gép létrehozása esetén a képlet helyi menüjéből érhető el.
     * **Felhasználónév** -adjon meg egy felhasználónevet, amely rendszergazdai jogosultságokkal engedélyezett.
-    * **Jelszó** – írja be - vagy hello legördülő menüből válassza - hello titkos kulcs (jelszó), amelyet az toouse hello megadott felhasználó társított egy értéket. Hello titkok kapcsolatos további információkért lásd: [Azure DevTest Labs: titkos tárolójának](https://azure.microsoft.com/updates/azure-devtest-labs-keep-your-secrets-safe-and-easy-to-use-with-the-new-personal-secret-store/).
-    * **Virtuális gép lemeztípus** : Adja meg vagy HDD (merevlemez-meghajtóra), vagy mely tárolási lemez típusa (SSD-meghajtóra) SSD tooindicate hello virtuális gépek üzembe helyezve az alapjául szolgáló lemezképhez használata esetén engedélyezett.
-    * ** Virtuális gép mérete ** – hello processzormag, a RAM memória méretét és a merevlemez méretének hello hello VM toocreate meghatározó előre definiált hello elemek közül. 
-    * **Az összetevők** -válassza tooopen hello **vegye fel az összetevők** , amelyben akkor válassza ki, és beállíthatja, amelyet az tooadd toohello alapjául szolgáló lemezképhez hello összetevők paneljén. Az összetevők kapcsolatos további információkért lásd: [kezelése Virtuálisgép-összetevők a Azure DevTest Labs szolgáltatásban](./devtest-lab-add-vm-with-artifacts.md).
-    * **Speciális beállítások** -válassza tooopen hello **speciális** hello a következő beállítások konfigurálására szolgáló panel:
-        * **Virtuális hálózati** -adja meg a hello virtuális hálózat szükséges.
-        * **Alhálózati** -szükséges hello alhálózatot adjon meg.    
-        * **IP-címkonfigurációt** -adja meg, ha hello Public, Private vagy megosztott IP-címeket. További információ a megosztott IP-címek: [megértése megosztott IP-címek az Azure DevTest Labs](./devtest-lab-shared-ip.md).
-        * **Ellenőrizze a gép claimable** -és a gép "claimable" azt jelenti, hogy a rendszer nem hozzárendel tulajdonjoga hello létrehozása során. Ehelyett a labor felhasználók fognak képes tootake tulajdonosi ("jogcím") hello gép hello labor panelen.     
-    * **Kép** – Ez a mező neve hello alapjául szolgáló lemezképhez kiválasztott hello előző panelen. 
+    * **Jelszó** – írja be - vagy a legördülő listából válassza ki - társított a titkos kulcsot (jelszó), amely a megadott felhasználó használni kívánt értéket. A titkos kulcsok kapcsolatos további információkért lásd: [Azure DevTest Labs: titkos tárolójának](https://azure.microsoft.com/updates/azure-devtest-labs-keep-your-secrets-safe-and-easy-to-use-with-the-new-personal-secret-store/).
+    * **Virtuális gép lemeztípus** : Adja meg vagy HDD (merevlemez-meghajtóra), vagy SSD (SSD-meghajtóra), milyen típusú jelzi a virtuális gépek üzembe helyezve az alapjául szolgáló lemezképhez használata esetén engedélyezett.
+    * ** Virtuális gép mérete ** – válasszon ki egy előre meghatározott elemek adja meg a Processzormagok, RAM memória méretét és a merevlemez mérete a virtuális gép létrehozásához. 
+    * **Az összetevők** - megnyitásához válassza a **vegye fel az összetevők** panel, ahol válassza ki, és az alapjául szolgáló lemezképhez hozzáadni kívánt az összetevők konfigurálása. Az összetevők kapcsolatos további információkért lásd: [kezelése Virtuálisgép-összetevők a Azure DevTest Labs szolgáltatásban](./devtest-lab-add-vm-with-artifacts.md).
+    * **Speciális beállítások** – Itt adhatja meg megnyitni a **speciális** panel, ahol konfigurálhatja a következő beállításokat:
+        * **Virtuális hálózati** -adja meg a kívánt virtuális hálózatot.
+        * **Alhálózati** -adja meg a kívánt alhálózatot.    
+        * **IP-címkonfigurációt** -adja meg, ha a Public, Private vagy megosztott IP-címeket. További információ a megosztott IP-címek: [megértése megosztott IP-címek az Azure DevTest Labs](./devtest-lab-shared-ip.md).
+        * **Ellenőrizze a gép claimable** -és a gép "claimable" azt jelenti, hogy a rendszer nem hozzárendel tulajdonjoga létrehozásának időpontjában. Ehelyett labor felhasználók fognak tudni tulajdonba ("jogcím") a gép a labor panelen.     
+    * **Kép** – Ez a mező neve az alapjául szolgáló lemezképhez, választotta az előző panel. 
      
        ![Képlet létrehozása](./media/devtest-lab-create-formulas/create-formula.png)
 
-8. Válassza ki **létrehozása** toocreate hello képlet.
+8. Válassza ki **létrehozása** a képlet létrehozásához.
 
-9. Hello képlet létrehozásakor hello hello listája megjeleníti **képletek** panelen.
+9. A képlet létrehozásakor megjeleníti a listában a **képletek** panelen.
 
 ### <a name="create-a-formula-from-a-vm"></a>Létrehozhat egy képletet a virtuális gépről
-hello következő lépések végigvezetik hello egy meglévő virtuális Gépen alapuló képlet létrehozásának folyamatán. 
+A következő lépések végigvezetik a meglévő virtuális alapuló képlet létrehozásának folyamatán. 
 
 > [!NOTE]
-> egy virtuális géptől képlet toocreate, hello VM kell létrehozni után, 2016. március 30.. 
+> A képletet a virtuális gépről, a virtuális gép kell létrehozni után 2016. március 30. 
 > 
 > 
 
-1. Jelentkezzen be toohello [Azure-portálon](http://go.microsoft.com/fwlink/p/?LinkID=525040).
-2. Válassza ki **több szolgáltatások**, majd válassza ki **DevTest Labs** hello listából.
-3. Labs hello listában jelölje ki hello kívánt labor.  
-4. A hello labor **áttekintése** panel, amelyen toocreate hello képlet kívánja válassza hello VM.
+1. Jelentkezzen be az [Azure Portalra](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+2. Válassza ki **több szolgáltatások**, majd válassza ki **DevTest Labs** a listából.
+3. Válassza ki a kívánt labor labs listájának megtekintéséhez.  
+4. A tesztlabor a **áttekintése** panelen válassza ki a virtuális gép, amelyből létre szeretne hozni a képlet.
    
     ![Labs virtuális gépek](./media/devtest-lab-create-formulas/my-vms.png)
-5. Hello virtuális gép paneljén válassza **képletet (újrafelhasználható alap)**.
+5. A virtuális gép paneljén válassza **képletet (újrafelhasználható alap)**.
    
     ![Képlet létrehozása](./media/devtest-lab-create-formulas/create-formula-menu.png)
-6. A hello **képletet** panelen adjon meg egy **neve** és **leírása** az új képlet.
+6. A a **képletet** panelen adjon meg egy **neve** és **leírás** az új képlet.
    
     ![Képletadat panel létrehozása](./media/devtest-lab-create-formulas/create-formula-blade.png)
-7. Válassza ki **OK** toocreate hello képlet.
+7. Válassza ki **OK** a képlet létrehozásához.
 
 ## <a name="modify-a-formula"></a>A képlet módosítása
-toomodify képlet, kövesse az alábbi lépéseket:
+A képlet módosításához kövesse az alábbi lépéseket:
 
-1. Jelentkezzen be toohello [Azure-portálon](http://go.microsoft.com/fwlink/p/?LinkID=525040).
-2. Válassza ki **több szolgáltatások**, majd válassza ki **DevTest Labs** hello listából.
-3. Labs hello listában jelölje ki hello kívánt labor.  
-4. Hello labor paneljén válassza **képletek (újrafelhasználható körrel)**.
+1. Jelentkezzen be az [Azure Portalra](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+2. Válassza ki **több szolgáltatások**, majd válassza ki **DevTest Labs** a listából.
+3. Válassza ki a kívánt labor labs listájának megtekintéséhez.  
+4. A labor paneljén válassza **képletek (újrafelhasználható körrel)**.
    
     ![Képletadat menü](./media/devtest-lab-manage-formulas/lab-settings-formulas.png)
-5. A hello **labor képletek** panelen, jelölje be hello képlet toomodify kívánja.
-6. A hello **képlet frissítése** panelen szükséges hello Szerkesztés, és válassza ki **frissítés**.
+5. Az a **labor képletek** panelen válassza ki a módosítani kívánt képletet.
+6. Az a **képlet frissítése** panelen elvégezni a kívánt módosításokat, és válassza ki **frissítés**.
 
 ## <a name="delete-a-formula"></a>Képlet törlése
-toodelete képlet, kövesse az alábbi lépéseket:
+A képlet törléséhez kövesse az alábbi lépéseket:
 
-1. Jelentkezzen be toohello [Azure-portálon](http://go.microsoft.com/fwlink/p/?LinkID=525040).
-2. Válassza ki **több szolgáltatások**, majd válassza ki **DevTest Labs** hello listából.
-3. Labs hello listában jelölje ki hello kívánt labor.  
-4. A tesztkörnyezet hello **beállítások** panelen válassza **képletek**.
+1. Jelentkezzen be az [Azure Portalra](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+2. Válassza ki **több szolgáltatások**, majd válassza ki **DevTest Labs** a listából.
+3. Válassza ki a kívánt labor labs listájának megtekintéséhez.  
+4. A tesztlabor a **beállítások** panelen válassza **képletek**.
    
     ![Képletadat menü](./media/devtest-lab-manage-formulas/lab-settings-formulas.png)
-5. A hello **labor képletek** panelen, jelölje be hello három pont toohello sarkában hello képlet toodelete kívánja.
+5. Az a **labor képletek** panelen válassza ki a törölni kívánt képlet jobb a három pont.
    
     ![Képletadat menü](./media/devtest-lab-manage-formulas/lab-formulas-blade.png)
-6. Hello képlet helyi menüben, válassza ki a **törlése**.
+6. Válassza ki a képletet helyi menüben, **törlése**.
    
     ![Képletadat helyi menü](./media/devtest-lab-manage-formulas/formula-delete-context-menu.png)
-7. Válassza ki **Igen** toohello törlési megerősítés.
+7. Válassza ki **Igen** a törlési megerősítés párbeszédpanel.
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
@@ -135,5 +135,5 @@ toodelete képlet, kövesse az alábbi lépéseket:
 * [Egyéni lemezképek vagy képletek?](https://blogs.msdn.microsoft.com/devtestlab/2016/04/06/custom-images-or-formulas/)
 
 ## <a name="next-steps"></a>Következő lépések
-Miután létrehozta a képlet használható virtuális gép létrehozásakor, hello tovább túl van-e[VM tooyour labor hozzáadása](devtest-lab-add-vm-with-artifacts.md).
+Miután létrehozta a képlet használható virtuális gép létrehozásakor, a következő lépés, hogy [a virtuális gépek hozzáadása a labor](devtest-lab-add-vm-with-artifacts.md).
 

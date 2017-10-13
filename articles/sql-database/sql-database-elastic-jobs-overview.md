@@ -1,6 +1,6 @@
 ---
-title: "aaaManaging kiterjesztett felhő adatbázisok |} Microsoft Docs"
-description: "Bemutatja a hello rugalmas feladat szolgáltatás"
+title: "Kiterjesztett felhő adatbázisok kezelése |} Microsoft Docs"
+description: "Mutatja be a rugalmas adatbázis-feladat szolgáltatás"
 metakeywords: azure sql database elastic databases
 services: sql-database
 documentationcenter: 
@@ -15,26 +15,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
-ms.openlocfilehash: b6d330cd712421b8cba781e835830772e6e5b77e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8e84562115a866c0df5e0dee6c7f66c036a74737
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="managing-scaled-out-cloud-databases"></a>Kiterjesztett felhő adatbázisok kezelése
-toomanage kiterjesztett szilánkos adatbázisok hello **rugalmas adatbázis-feladatok** funkció (előzetes verzió) lehetővé teszi, hogy Ön tooreliably Transact-SQL (T-SQL) parancsprogram végrehajtása adatbázisok, beleértve a csoportja között:
+Kiterjesztett szilánkos adatbázisok, kezelheti a **rugalmas adatbázis-feladatok** (előzetes verzió) funkciója lehetővé teszi megbízhatóan között egy csoportot az adatbázisok, beleértve a Transact-SQL (T-SQL) parancsprogram végrehajtása:
 
 * (az alábbiakban ismertetett) adatbázisok egyénileg definiált gyűjteménye
 * az összes adatbázis egy [rugalmas készlet](sql-database-elastic-pool.md)
 * a shard készletének (használatával létrehozott [Elastic Database ügyféloldali kódtárának](sql-database-elastic-database-client-library.md)). 
 
 ## <a name="documentation"></a>Dokumentáció
-* [Hello rugalmas feladat összetevőinek telepítése](sql-database-elastic-jobs-service-installation.md). 
+* [A rugalmas adatbázis-feladat összetevők telepítéséhez](sql-database-elastic-jobs-service-installation.md). 
 * [Ismerkedés a rugalmas feladatok](sql-database-elastic-jobs-getting-started.md).
 * [PowerShell-lel feladatok létrehozásához és kezeléséhez](sql-database-elastic-jobs-powershell.md).
 * [Létrehozásához és kezeléséhez kimenő Azure SQL-adatbázisok méretezése](sql-database-elastic-jobs-getting-started.md)
 
-**Rugalmas adatbázis-feladatok** jelenleg egy ügyfél által szolgáltatott, Azure Cloud Service, amely lehetővé teszi az ad hoc és ütemezett felügyeleti feladatokat, melyekhez nevezzük hello végrehajtásának **feladatok**. A feladatok könnyen, és megbízhatóan kezelése az Azure SQL-adatbázisok nagy mennyiségű felügyeleti műveletek a Transact-SQL-parancsfájlok tooperform futtatásával. 
+**Rugalmas adatbázis-feladatok** jelenleg egy ügyfél által szolgáltatott, Azure Cloud Service, amely lehetővé teszi az ad hoc és ütemezett felügyeleti feladatokat, melyekhez nevezzük végrehajtása **feladatok**. A feladatok könnyen, és megbízhatóan kezelése az Azure SQL-adatbázisok nagy mennyiségű felügyeleti műveletek elvégzéséhez Transact-SQL-parancsfájlok futtatásával. 
 
 ![Rugalmas feladat szolgáltatás][1]
 
@@ -49,49 +49,49 @@ Egy Azure SQL-adatbázisok gyűjteményét egyetlen táblát összesített adato
 
 **Terhelés csökkentése**
 
-Általában kell csatlakoztatni a tooeach adatbázis egymástól függetlenül rendelés toorun Transact-SQL-utasítások, vagy más felügyeleti feladatok. Egy feladat hello feladat tooeach adatbázisban, hello célcsoport-naplózás kezeli. Akkor is meghatározását, karbantartása és megőrizni a Transact-SQL-parancsfájlok toobe hajtotta végre az Azure SQL-adatbázisok csoport között.
+Alapesetben az egyes adatbázis-egymástól függetlenül ahhoz, hogy a Transact-SQL-utasítások futtatása vagy más felügyeleti feladatok kell csatlakoztatni. Egy feladat kezeli a feladat a célcsoportban minden adatbázis történő bejelentkezéshez. Akkor is meghatározását, karbantartása és megőrizni a Transact-SQL-parancsfájlok használatával hajtható végre, az Azure SQL-adatbázisok csoport között.
 
 **Nyilvántartás**
 
-Feladatok futtatása hello parancsfájl és a napló hello állapotát az egyes adatbázisok végrehajtása. Hiba esetén is kap automatikus próbálkozzon újra.
+Feladatok futtassa a parancsfájlt, és az egyes adatbázisok végrehajtási állapot. Hiba esetén is kap automatikus próbálkozzon újra.
 
 **Rugalmasság**
 
 Azure SQL-adatbázisok egyéni csoportot, és fut egy feladat ütemezésének meghatározását.
 
 > [!NOTE]
-> Hello Azure-portálon csak egy meghatározott funkciókat korlátozott tooSQL Azure rugalmas készletek érhető el. Hello PowerShell API-k tooaccess hello teljes készletét a jelenlegi funkcionalitás használatára.
+> Az Azure-portálon SQL Azure rugalmas készletek korlátozott funkciók csak korlátozott készlete áll rendelkezésre. A PowerShell API-k segítségével hozzáférés a teljes aktuális funkciót.
 > 
 > 
 
 ## <a name="applications"></a>Alkalmazások
 * Felügyeleti feladatok, például egy új séma telepítését.
 * Hivatkozás adatok-termékinformációk közös frissítése összes adatbázis között. Vagy az ütemezések automatikus frissítések minden hétköznap, óra múlva.
-* Építse újra az indexek tooimprove lekérdezések teljesítményét. hello újraépítése lehet konfigurált tooexecute közötti ismétlődő módon, adatbázisok gyűjteménye, mint csúcsidőn.
-* Gyűjtése lekérdezés eredményeit az adatbázisok közül egy központi táblába folyamatos jelleggel. Teljesítmény-lekérdezések folyamatosan hajtható végre, és végre tootrigger további feladatok toobe konfigurálva.
-* Az adatbázisok elvégzése nagyobb hosszabb futó adatfeldolgozási-lekérdezéseket hajt végre, például hello ügyfél telemetriai gyűjteménye. Eredmények további elemzés céljára egyetlen céltáblába történő összegyűjtése.
+* Lekérdezés teljesítmény javítása érdekében indexek újraépítése. A újraépítése beállítható úgy, hogy hajtható végre közötti ismétlődő módon, adatbázisok gyűjteménye, mint végezze alacsony forgalmú időszakban.
+* Gyűjtése lekérdezés eredményeit az adatbázisok közül egy központi táblába folyamatos jelleggel. Teljesítmény-lekérdezések lehetnek folyamatosan végre és konfigurált eseményindító további feladatokat hajthatnak végre.
+* Hajtsa végre a hosszabb futó adatfeldolgozási lekérdezéseket elvégzése nagyobb az adatbázisok, például a telemetriai ügyfél gyűjteménye. Eredmények további elemzés céljára egyetlen céltáblába történő összegyűjtése.
 
 ## <a name="elastic-database-jobs-end-to-end"></a>Rugalmas adatbázis-feladatok: végpont
-1. Telepítse a hello **rugalmas adatbázis-feladatok** összetevőket. További információkért lásd: [rugalmas adatbázis telepítése feladatok](sql-database-elastic-jobs-service-installation.md). Ha hello telepítése meghiúsul, tekintse meg a [hogyan toouninstall](sql-database-elastic-jobs-uninstall.md).
-2. Használja a PowerShell API-k tooaccess hello további funkciókat, például az adatbázis egyénileg definiált gyűjtemények, ütemezések hozzáadása és/vagy adatgyűjtési eredmények beállítása létrehozásáról. Hello-portál használata egyszerű telepítés és a feladatok létrehozása/figyelési korlátozott elleni tooexecution egy **rugalmas készlet**. 
-3. A feladat-végrehajtás titkosított hitelesítő adatok létrehozása és [hello felhasználói (vagy szerepkör) tooeach adatbázis hozzáadása hello csoport](sql-database-security-overview.md).
-4. Hozzon létre egy idempotent T-SQL parancsfájl hello csoport minden adatbázison futtatható. 
-5. Hajtsa végre a következő lépések toocreate feladatokat hello Azure-portál használatával: [létrehozása és a rugalmas adatbázis-feladatok kezelése](sql-database-elastic-jobs-create-and-manage.md). 
+1. Telepítse a **rugalmas adatbázis-feladatok** összetevőket. További információkért lásd: [rugalmas adatbázis telepítése feladatok](sql-database-elastic-jobs-service-installation.md). Ha a telepítés sikertelen lesz, lásd: [eltávolítása](sql-database-elastic-jobs-uninstall.md).
+2. A PowerShell API-k használatával további funkciókat, például az adatbázis egyénileg definiált gyűjtemények, ütemezések hozzáadása és/vagy adatgyűjtési eredmények beállítása létrehozásáról hozzáférhetnek. Egyszerű telepítés és a feladatok végrehajtásának korlátozódik létrehozása/figyelésére használni a portált egy **rugalmas készlet**. 
+3. A feladat-végrehajtás titkosított hitelesítő adatok létrehozása és [vegye fel a felhasználó (vagy a szerepkör) a csoportban lévő egyes adatbázisok](sql-database-security-overview.md).
+4. Hozzon létre egy idempotent T-SQL-parancsfájl, amely a csoport minden adatbázison futtatható. 
+5. Kövesse az alábbi lépéseket az Azure portál használatával feladatok létrehozására: [létrehozása és a rugalmas adatbázis-feladatok kezelése](sql-database-elastic-jobs-create-and-manage.md). 
 6. Vagy a PowerShell-parancsfájlok használata: [létrehozása a PowerShell (előzetes verzió) használatával SQL Database rugalmas adatbázis-feladatok kezelése és](sql-database-elastic-jobs-powershell.md).
 
 ## <a name="idempotent-scripts"></a>Az Idempotent parancsfájlok
-hello parancsfájlok kell [idempotent](https://en.wikipedia.org/wiki/Idempotence). Egyszerű fogalmazva "idempotent" azt jelenti, hogy ha hello parancsfájl sikeres, és újra fut, hello ugyanazt az eredményt következik be. A parancsfájl meghiúsulhat, tootransient hálózati problémák miatt. Ebben az esetben hello feladat automatikusan megpróbálja hello parancsfájl futtatását egy előre definiált ennyiszer desisting előtt. Az idempotent parancsfájl hello azonos vezethet, még akkor is, ha korábban már sikeresen futott kétszer van. 
+A parancsfájlok kell [idempotent](https://en.wikipedia.org/wiki/Idempotence). Egyszerű fogalmazva "idempotent" azt jelenti, hogy a parancsfájl sikeres, és újra fut, ha ugyanazt az eredményt következik be. Átmeneti hálózati probléma miatt sikertelenek lehetnek a parancsfájl. Ebben az esetben a feladat automatikusan megpróbálja a parancsfájl futtatása előtt desisting előre definiált ennyiszer. Az idempotent parancsfájl ugyanazt az eredményt rendelkezik, akkor is, ha korábban már sikeresen futott kétszer. 
 
-Egy egyszerű tactic tootest hello meglétét az objektum létrehozása az előtt.  
+Egy egyszerű tactic, hogy azt létrehozása előtt egy objektum létezését teszteléséhez.  
 
     IF NOT EXIST (some_object)
-    -- Create hello object 
-    -- If it exists, drop hello object before recreating it.
+    -- Create the object 
+    -- If it exists, drop the object before recreating it.
 
-Ehhez hasonlóan egy parancsfájlt kell lennie képes tooexecute sikeresen logikailag teszteléséhez a, és azokat a feltételeket elleni talál.
+Ehhez hasonlóan a parancsfájl sikeresen végrehajtható legyen a logikailag teszteléséhez képesnek kell lennie, és azokat a feltételeket elleni talál.
 
 ## <a name="failures-and-logs"></a>Hibák és a naplókat
-Ha több próbálkozást követően a parancsfájl futása sikertelen, a hello feladat hello hiba jelentkezik, és továbbra is fennáll. A feladat befejeződését követően (azaz a Futtatás elleni hello csoportban lévő összes adatbázis), ellenőrizheti a sikertelen bejelentkezési kísérletek listáját. hello naplók toodebug hibás parancsfájlok részletekkel szolgálnak. 
+Ha több próbálkozást követően a parancsfájl futása sikertelen, a feladat naplózza a hibát, és továbbra is fennáll. A feladat befejeződését követően (azaz a csoportban lévő összes adatbázisokhoz futtató), ellenőrizheti a sikertelen bejelentkezési kísérletek listáját. A naplók hibás parancsfájlok hibakeresése részletekkel szolgálnak. 
 
 ## <a name="group-types-and-creation"></a>Csoport típusok és létrehozása
 A csoportok két fő típusba sorolhatók: 
@@ -99,43 +99,43 @@ A csoportok két fő típusba sorolhatók:
 1. A shard beállítása
 2. Egyéni csoportok
 
-Shard set csoportok hozhatók létre hello [skálázáshoz rugalmas adatbáziseszközöket](sql-database-elastic-scale-introduction.md). A szilánkok set csoport létrehozásakor adatbázisok hozzáadásakor vagy eltávolításakor automatikusan hello csoportból. Például egy új shard lesz automatikusan hello csoport Ha hozzáadja toohello shard leképezés. Egy feladat majd is futtathatók hello csoport.
+A shard set csoportok használatával hozhatók létre a [skálázáshoz rugalmas adatbáziseszközöket](sql-database-elastic-scale-introduction.md). A szilánkok set csoport létrehozásakor adatbázisok hozzáadásakor vagy eltávolításakor automatikusan a csoportból. Például egy új shard lesz automatikusan a csoportban található a szilánkcímtárban leképezés hozzáadásakor. Egy feladat futtathatja a csoporton.
 
-Egyéni csoportok a hello ugyanakkor, szigorúan definiálhatók. Meg kell explicit módon adja hozzá, vagy távolítsa el az adatbázisok egyéni csoportokból. Egy adatbázis hello csoport megszakadásakor hello feladat megpróbál toorun hello parancsfájl hello adatbázison végzett végleges hibát eredményez. Hello Azure-portál jelenleg használatával létrehozott csoportok olyan egyéni csoportok. 
+Egyéni, másrészt, szigorúan történik. Meg kell explicit módon adja hozzá, vagy távolítsa el az adatbázisok egyéni csoportokból. Ha egy adatbázist a csoport megszakad, a feladat megpróbálja futtassa a parancsfájlt az adatbázis végleges hibát eredményez. Jelenleg az Azure portál használatával létrehozott csoportok olyan egyéni csoportok. 
 
 ## <a name="components-and-pricing"></a>Összetevők és az árképzés terén
-hello következő összetevők működnek együtt az Azure felhőalapú szolgáltatás, amely lehetővé teszi az alkalmi felügyeleti feladatok végrehajtásának toocreate. hello összetevők telepítése és konfigurálása automatikusan történik az előfizetés a telepítés során. Hello szolgáltatások azonosíthatja, mindannyian rendelkezik hello azonos az automatikusan generált név. hello neve egyedi, és hello előtag "edj" követően 21 véletlenszerűen létrehozott karaktereket tartalmaz.
+A következő összetevők működnek együtt az Azure felhőalapú szolgáltatás, amely lehetővé teszi az alkalmi felügyeleti feladatok végrehajtásának létrehozásához. Az összetevők telepítése és konfigurálása automatikusan történik az előfizetés a telepítés során. A szolgáltatások összes rendelkeznek az automatikusan létrehozott névvel azonosíthatók. A név egyedi, és az előtag "edj" követően 21 véletlenszerűen létrehozott karaktereket tartalmaz.
 
-* **Azure Cloud Service**: rugalmas adatbázis-feladatok (előzetes verzió) Azure felhasználói által szolgáltatott felhők kerül hello szolgáltatás tooperform végrehajtásának kért feladatok. Hello portálról hello szolgáltatás telepítése és megtalálható a Microsoft Azure-előfizetése. hello telepített alapértelmezett szolgáltatás fut, a magas rendelkezésre álláshoz két feldolgozói szerepkörök hello legalább. minden egyes feldolgozói szerepkör (ElasticDatabaseJobWorker) hello alapértelmezett mérete a A0 példánya fut. Díjszabási, lásd: [árképzési felhőszolgáltatások](https://azure.microsoft.com/pricing/details/cloud-services/). 
-* **Az Azure SQL Database**: hello szolgáltatást használ egy Azure SQL Database hello néven **feladatvezérlő adatbázishoz** toostore hello feladat metaadatai mindegyikét. hello alapértelmezett szolgáltatásréteget egy S0. Díjszabási, lásd: [SQL Database – díjszabás](https://azure.microsoft.com/pricing/details/sql-database/).
-* **Az Azure Service Bus**: az Azure Service Bus koordinációs hello munka hello Azure Cloud Service belül van. Lásd: [Service Bus árképzési](https://azure.microsoft.com/pricing/details/service-bus/).
-* **Az Azure Storage**: az Azure Storage-fiók használatos diagnosztikai toostore kimeneti hello esemény igénylő problémát további hibakeresési naplózás (lásd: [diagnosztika engedélyezésével az Azure Cloud Services és a virtuális gépek](../cloud-services/cloud-services-dotnet-diagnostics.md)). Díjszabási, lásd: [Azure Storage szolgáltatás díjszabása](https://azure.microsoft.com/pricing/details/storage/).
+* **Azure Cloud Service**: rugalmas adatbázis-feladatok (előzetes verzió) ügyfél-kiszolgálón futó Azure felhő alapú szolgáltatásként végrehajtani a kért feladat végrehajtásának kerül. A portálról a szolgáltatás telepített és megtalálható a Microsoft Azure-előfizetése. Az alapértelmezett telepített szolgáltatás fut, a legalább két feldolgozói szerepkörök magas rendelkezésre állásra. Minden egyes feldolgozói szerepkör (ElasticDatabaseJobWorker) alapértelmezett mérete a A0 példánya fut. Díjszabási, lásd: [árképzési felhőszolgáltatások](https://azure.microsoft.com/pricing/details/cloud-services/). 
+* **Az Azure SQL Database**: A szolgáltatás használja az Azure SQL Database néven a **feladatvezérlő adatbázishoz** az összes feladat metaadatok tárolására. Az alapértelmezett szolgáltatási réteg egy S0. Díjszabási, lásd: [SQL Database – díjszabás](https://azure.microsoft.com/pricing/details/sql-database/).
+* **Az Azure Service Bus**: az Azure Service Bus van az Azure Cloud Service belül a munka összehangolását. Lásd: [Service Bus árképzési](https://azure.microsoft.com/pricing/details/service-bus/).
+* **Az Azure Storage**: az Azure Storage-fiók fogja tárolni a diagnosztikai kimenetet arra az esetre, ha probléma van szükség, további hibakeresési naplózás (lásd: [diagnosztika engedélyezésével az Azure Cloud Services és a virtuális gépek](../cloud-services/cloud-services-dotnet-diagnostics.md)). Díjszabási, lásd: [Azure Storage szolgáltatás díjszabása](https://azure.microsoft.com/pricing/details/storage/).
 
 ## <a name="how-elastic-database-jobs-work"></a>A rugalmas adatbázis-feladatok működése
 1. Egy Azure SQL Database jelöl ki egy **feladatvezérlő adatbázishoz** amely tárolja az összes metaadat-adatainak és állapotának adatokat.
-2. hello feladatvezérlő adatbázishoz illetéktelen hello **szolgáltatás feladat** toolaunch és nyomon követése feladatok tooexecute.
-3. Két különböző szerepkörök kommunikálnak hello feladatvezérlő adatbázishoz: 
-   * Tartományvezérlő: Meghatározza, hogy milyen típusú feladatok szükséges feladatok tooperform hello kért feladat, és az ismételt próbálkozás sikertelen feladatok hozzon létre új feladat feladatok.
-   * Feladat a feladat a végrehajtás: Hello feladat feladatokat végzi.
+2. A feladatvezérlő adatbázishoz hozzáfér a **szolgáltatás feladat** indítsa el, és nyomon követéséhez a feladatok végrehajtásához.
+3. Két különböző szerepkörök kommunikálnak a feladatvezérlő adatbázishoz: 
+   * Tartományvezérlő: Meghatározza, hogy milyen típusú feladatok feladatokat végrehajtani a kért feladat, és az ismételt próbálkozás sikertelen feladatok hozzon létre új feladat feladatok kell.
+   * Feladat a feladat a végrehajtás: A feladat feladatokat végzi.
 
 ### <a name="job-task-types"></a>Feladattípusok feladat
 Több feladat feladatokat hajthat végre feladatok végrehajtásának típusa van:
 
-* ShardMapRefresh: Lekérdezések hello shard térkép toodetermine szilánkok használt összes hello adatbázis
-* ScriptSplit: Hello parancsfájl felosztja a kötegek "Ugrás" kimutatásait között
+* ShardMapRefresh: Lekérdezi a shard térkép szilánkok használt összes adatbázist meghatározásához
+* ScriptSplit: Felosztja a parancsfájl kötegek "Ugrás" kimutatásait között
 * ExpandJob: Gyermek feladatok létrehozása az egyes adatbázisok a feladatból, amelynek célpontja adatbázisok csoportja
 * ScriptExecution: Végrehajtja a megadott hitelesítő adatok használatával egy adott adatbázison parancsfájl
-* Dacpac: Vonatkozik DACPAC tooa adott adatbázishoz adott hitelesítő adatok használatával
+* Dacpac: Egy DACPAC vonatkozik egy adott adatbázis adott hitelesítő adatok használatával
 
 ## <a name="end-to-end-job-execution-work-flow"></a>Végpontok közötti feladat-végrehajtási-munkafolyamat
-1. Hello portál vagy a PowerShell API hello használ, a feladatok bekerülnek hello **feladatvezérlő adatbázishoz**. hello feladat a megadott hitelesítő adatok használatával adatbázisok csoportja elleni Transact-SQL parancsfájl végrehajtását kéri.
-2. hello vezérlő hello új feladat azonosítja. Munka feladatai jönnek létre, és végre toosplit hello parancsfájl és toorefresh hello csoport adatbázisok. Új feladat utolsó lépésként létrejön, tooexpand hello feladat végrehajtása, és hozzon létre új gyermek feladatok, ahol minden gyermek folyamat megadott tooexecute hello Transact-SQL parancsfájl hello csoportban lévő egyes adatbázison.
-3. hello vezérlő gyermek feladatok létrehozott hello azonosítja. Az egyes feladatokhoz hello vezérlő hoz létre, és elindítja egy feladat tooexecute hello feladatparancsfájl adatbázis. 
-4. Minden feladat feladat befejezése után hello vezérlő frissíti hello feladatok befejeződött tooa állapotát. 
-   Feladat végrehajtása során bármikor hello PowerShell API lehet használt tooview hello feladat végrehajtása aktuális állapotát. Az összes idő a PowerShell API-k jelennek meg az UTC hello által visszaadott. Ha szükséges, a lemondási kérelmet kezdeményezett toostop egy feladat lehet. 
+1. A portál vagy a PowerShell API használatával, a feladatok bekerülnek a **feladatvezérlő adatbázishoz**. A feladat a megadott hitelesítő adatok használatával adatbázisok csoportja elleni Transact-SQL parancsfájl végrehajtását kéri.
+2. A vezérlő azonosítja az új projektbe. Feladat feladatok létrehozása és hajtotta végre a parancsfájl felosztása és a csoporthoz tartozó adatbázisok frissítéséhez. Végül egy új feladatot létrehozni és bontsa ki a feladatot, és hozzon létre feladatokat, ahol minden gyermek feladat van megadva, a csoportban lévő egyes adatbázison a Transact-SQL parancsfájl végrehajtása az új gyermek végrehajtani.
+3. A vezérlő azonosítja a létrehozott gyermek feladatok. Minden feladat a vezérlő hoz létre, és elindítja egy feladatot az adatbázis futtassa a parancsfájlt. 
+4. Feladataival feladat befejezése után a vezérlő frissíti a feladat kész állapotba. 
+   Feladat végrehajtása során bármikor a PowerShell API segítségével megtekintheti a feladat végrehajtása aktuális állapotát. Az összes idő a PowerShell API-k által visszaadott UTC formátumban vannak megadva. Ha szükséges, a lemondási kérelmet leállíthat feladatot is kezdeményezhető. 
 
 ## <a name="next-steps"></a>Következő lépések
-[Hello összetevőinek telepítése](sql-database-elastic-jobs-service-installation.md), majd [létrehozása és hozzáadása a napló a tooeach adatbázisban az adatbázisok csoportja hello](sql-database-manage-logins.md). toofurther megérteni a feladat létrehozása és kezelése című [rugalmas adatbázis-feladatok létrehozását és kezelését](sql-database-elastic-jobs-create-and-manage.md). Lásd még: [Ismerkedés a rugalmas feladatok](sql-database-elastic-jobs-getting-started.md).
+[Az összetevők telepítéséhez](sql-database-elastic-jobs-service-installation.md), majd [létrehozása és hozzáadása a napló az egyes adatbázis-adatbázisok csoport](sql-database-manage-logins.md). Feladat létrehozása és kezelése további ismertetése: [rugalmas adatbázis-feladatok létrehozását és kezelését](sql-database-elastic-jobs-create-and-manage.md). Lásd még: [Ismerkedés a rugalmas feladatok](sql-database-elastic-jobs-getting-started.md).
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 

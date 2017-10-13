@@ -1,4 +1,4 @@
-a következő korlátozások hello tooAzure biztonsági mentés alkalmazni.
+A következő korlátozások vonatkoznak az Azure biztonsági mentés.
 
 | Korlát azonosítója | Alapértelmezett korlát |
 | --- | --- |
@@ -6,7 +6,7 @@ a következő korlátozások hello tooAzure biztonsági mentés alkalmazni.
 | Egy adatforrás tároló Azure storage-ban tárolt adatok mérete |54400 GB maximális<sup>1</sup> |
 | Mentési tárolók hozható létre az egyes Azure-előfizetések száma |25 (mentési tárolókban) <br/> Régiónként tároló 25 helyreállítási szolgáltatások |
 | Ennyiszer naponta biztonsági mentés ütemezése |a Windows Server vagy Windows-ügyfélen naponta 3 <br/> az SCDPM naponta 2 <br/> Infrastruktúra-szolgáltatási virtuális gépek naponta egyszer |
-| Adatlemezt csatolni tooan Azure virtuális gép biztonsági mentése |16 |
+| A biztonsági mentéshez Azure virtuális géphez csatolt adatok lemezek |16 |
 
-* <sup>1</sup>hello 54400 GB-os korlátot nem érvényes tooIaaS virtuális gép biztonsági mentése.
+* <sup>1</sup>infrastruktúra-szolgáltatási virtuális gép biztonsági mentése nem vonatkozik a 54400 GB-os korlátot.
 

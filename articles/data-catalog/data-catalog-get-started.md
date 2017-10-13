@@ -1,6 +1,6 @@
 ---
-title: "a Data Catalog használatába aaaGet |} Microsoft Docs"
-description: "Végpont oktatóanyag hello forgatókönyvek és az Azure Data Catalog képességeinek."
+title: "Bevezetés a Data Catalog használatába | Microsoft Docs"
+description: "Átfogó oktatóanyag az Azure Data Catalog forgatókönyveiről és képességeiről."
 documentationcenter: 
 services: data-catalog
 author: steelanddata
@@ -15,351 +15,351 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/03/2017
 ms.author: spelluru
-ms.openlocfilehash: 7652918b5a8254f5cff9e32d77b1fd3e1bf59d59
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5a3445aee7722579405b67830ca49ef8c0b29d0e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-azure-data-catalog"></a>Ismerkedés az Azure Data Catalog szolgáltatással
 Az Azure Data Catalog teljes körűen felügyelt felhőszolgáltatás, amely vállalati adategységek regisztrációs és felderítőrendszereként szolgál. A szolgáltatás részletes bemutatásáért olvassa el a [Mi az az Azure Data Catalog?](data-catalog-what-is-data-catalog.md) című cikket.
 
-Ez az oktatóanyag az Azure Data Catalog használatának megkezdésébe vezeti be a felhasználót. Ez az oktatóanyag az alábbi eljárásokat hello elvégezhető:
+Ez az oktatóanyag az Azure Data Catalog használatának megkezdésébe vezeti be a felhasználót. Az oktatóanyagban az alábbi eljárásokat fogja végrehajtani:
 
 | Eljárás | Leírás |
 |:--- |:--- |
-| [A Data Catalog kiépítése](#provision-data-catalog) |Az eljárás keretében el fogja végezni az Azure Data Catalog kiépítését vagy beállítását. Ez a lépés csak akkor, ha hello katalógus nem beállítása előtt hajtsa végre. Szervezetenként (Microsoft Azure Active Directory-tartományonként) csupán egyetlen adatkatalógussal rendelkezhet, még akkor is, ha Azure-fiókjához több előfizetés is tartozik. |
-| [Adategységek regisztrálása](#register-data-assets) |Ezzel az eljárással regisztrált adategységeket hello AdventureWorks2014 minta adatbázisból hello a data catalog. Regisztráció az például nevek, típusok és helyek hello adatforrás és a metaadatok toohello katalógus másolása kibontása fő szerkezeti metaadatok hello folyamatán. hello adatforrás és az adategységek maradnak. Ha vannak, de hello metaadatok hello katalógus toomake használatával könnyebben feltárhatóvá és értelmezhetővé őket. |
-| [Adategységek felderítése](#discover-data-assets) |Ez az eljárás használhatja az hello Azure Data Catalog portál toodiscover adategységeket hello előző lépésben regisztrált. Egy adatforrás regisztrálva van az Azure Data Catalog szolgáltatással, miután a metaadatait indexelik hello szolgáltatást, hogy a felhasználók könnyen kereshet hello adatok van szükségük. |
-| [Adategységek ellátása dekorációkkal](#annotate-data-assets) |Ezzel az eljárással, jegyzetek (például a leírásokat, címkéket, dokumentáció vagy szakértők adatait) hello az adategységeket. Ezt az információt kiegészíti hello adatforrás hello metaadatokat, és toomake hello adatforrás többen érthető toomore. |
-| [Csatlakozás toodata eszközök](#connect-to-data-assets) |Ebben az eljárásban adategységeket fog megnyitni integrált ügyféleszközökkel (például az Excellel és az SQL Server Data Tools eszközzel), valamint egy nem integrált eszközzel (SQL Server Management Studio). |
-| [Adategységek felügyelete](#manage-data-assets) |Ebben az eljárásban fogja elvégezni az adategységek biztonságának beállítását. A Data Catalog nem nyújt a felhasználóknak hozzáférést toohello adatokat mozgatná. hello adatforrás hello tulajdonosának adatelérési szabályozza. <br/><br/> A Data Catalog felderíthetők az adatforrások és a nézet hello **metaadatok** hello katalógusban regisztrált toohello adatforrások kapcsolatos. Előfordulhatnak olyan esetekben, azonban az adatforrások kell látható csak toospecific felhasználók vagy az adott csoportok toomembers. Ezek a forgatókönyvek regisztrált adategységeket belül hello katalógus és vezérlés hello látható-e saját hello eszközök tulajdonjogát a Data Catalog tootake is használhatja. |
-| [Adategységek eltávolítása](#remove-data-assets) |Ebben az eljárásban megismerheti, hogyan tooremove adategységeket a hello a data catalog. |
+| [A Data Catalog kiépítése](#provision-data-catalog) |Az eljárás keretében el fogja végezni az Azure Data Catalog kiépítését vagy beállítását. Erre a lépésre csak akkor van szükség, ha a katalógust korábban még nem hozták létre. Szervezetenként (Microsoft Azure Active Directory-tartományonként) csupán egyetlen adatkatalógussal rendelkezhet, még akkor is, ha Azure-fiókjához több előfizetés is tartozik. |
+| [Adategységek regisztrálása](#register-data-assets) |Ebben az eljárásban az AdventureWorks2014 példaadatbázisból fog adategységeket regisztrálni az adatkatalógusban. A regisztráció az a folyamat, amelynek során a rendszer kinyeri az adatforrásból a fő szerkezeti metaadatokat (például nevek, típusok és helyek), majd bemásolja ezeket a katalógusba. Az adatforrás és az adategységek az eredeti helyükön maradnak, de a metaadatok használatával a katalógus könnyebben feltárhatóvá és értelmezhetővé teszi őket. |
+| [Adategységek felderítése](#discover-data-assets) |Ebben az eljárásban az Azure Data Catalog portál segítségével fogja felderíteni az előző lépésben regisztrált adategységeket. Azt követően, hogy az adatforrást regisztrálja az Azure Data Catalogban, a szolgáltatás indexeli metaadatait, hogy a felhasználók egyszerűen megtalálják az általuk keresett adatokat. |
+| [Adategységek ellátása dekorációkkal](#annotate-data-assets) |Ebben az eljárásban dekorációkkal (olyan információkkal, mint például a leírások, címkék, dokumentációk vagy szakértők) fogja ellátni az adategységeket. Ezt az információt kiegészíti az adatforrásból kinyer metaadatokat, és az adatforrást az emberi szem számára érhetőbbé teszi. |
+| [Csatlakozás adategységekhez](#connect-to-data-assets) |Ebben az eljárásban adategységeket fog megnyitni integrált ügyféleszközökkel (például az Excellel és az SQL Server Data Tools eszközzel), valamint egy nem integrált eszközzel (SQL Server Management Studio). |
+| [Adategységek felügyelete](#manage-data-assets) |Ebben az eljárásban fogja elvégezni az adategységek biztonságának beállítását. A Data Catalog nem ad hozzáférést a felhasználóknak magukhoz az adatokhoz. Az adatok elérését az adatforrás tulajdonosa szabályozza. <br/><br/> A Data Catalog szolgáltatás arra szolgál, hogy Ön adatforrásokat derítsen fel, és megtekintse a katalógusban regisztrált forrásokhoz tartozó **metaadatokat**. Előfordulhat azonban, hogy az adatforrásokat csak bizonyos felhasználók, illetve adott csoportok tagjai számára szeretné láthatóvá tenni. Ebben az esetben a Data Catalog használatával átveheti a katalógusban regisztrált adategységek tulajdonjogát, és beállíthatja a birtokában lévő adategységek láthatóságát. |
+| [Adategységek eltávolítása](#remove-data-assets) |Ebben az eljárásban megismerheti, hogyan távolíthat el adategységeket az adatkatalógusból. |
 
 ## <a name="tutorial-prerequisites"></a>Az oktatóanyag előfeltételei
 ### <a name="azure-subscription"></a>Azure-előfizetés
-tooset be Azure Data Catalog hello tulajdonosa vagy egy Azure-előfizetés társtulajdonos kell lennie.
+Az Azure Data Catalog szolgáltatás beállítását kizárólag Azure-előfizetések tulajdonosai vagy társtulajdonosai végezhetik el.
 
-Azure-előfizetések megkönnyítik toocloud hasonlóan az Azure Data Catalog szolgáltatás erőforrások eléréséhez. Ezenfelül az előfizetés révén azt is megszabhatja, hogy hogyan szeretne jelentést készíteni az erőforrások használatáról, hogy hogyan számlázzák ki azt Önnek, illetve, hogy hogyan szeretne fizetni érte. Az egyes előfizetésekhez eltérő számlázási és fizetési beállítások tartozhatnak, így osztályonként, projektenként, területi képviseletenként stb. különböző előfizetési és fizetési megoldásokat használhat. Minden felhőalapú szolgáltatás tooa előfizetéshez tartozik, és meg kell, hogy toohave előfizetésem az Azure Data Catalog beállítása előtt. több, lásd: toolearn [kezelhetők a fiókok, előfizetések és rendszergazdai szerepkörök](../active-directory/active-directory-how-subscriptions-associated-directory.md).
+Az Azure-előfizetés segít rendszerezni a felhőszolgáltatás-erőforrások, például az Azure Data Catalog elérését. Ezenfelül az előfizetés révén azt is megszabhatja, hogy hogyan szeretne jelentést készíteni az erőforrások használatáról, hogy hogyan számlázzák ki azt Önnek, illetve, hogy hogyan szeretne fizetni érte. Az egyes előfizetésekhez eltérő számlázási és fizetési beállítások tartozhatnak, így osztályonként, projektenként, területi képviseletenként stb. különböző előfizetési és fizetési megoldásokat használhat. A felhőszolgáltatásokat mindig egy előfizetéshez kell rendelni, ezért ahhoz, hogy beállítsa az Azure Data Catalog szolgáltatást, rendelkeznie kell előfizetéssel. További információkat a [fiókok, előfizetések és rendszergazdai szerepkörök kezeléséről](../active-directory/active-directory-how-subscriptions-associated-directory.md) szóló cikkben talál.
 
 Ha nem rendelkezik előfizetéssel, mindössze néhány perc alatt létrehozhat egy ingyenes próbafiókot. A részletekért lásd: [Ingyenes próbafiók](https://azure.microsoft.com/pricing/free-trial/).
 
 ### <a name="azure-active-directory"></a>Azure Active Directory
-tooset be Azure Data Catalog, be kell jelentkeznie be egy Azure Active Directory (Azure AD) felhasználói fiókkal. Hello tulajdonosa vagy egy Azure-előfizetés társtulajdonos kell lennie.  
+Az Azure Data Catalog beállításához be kell jelentkeznie egy Azure Active Directory (Azure AD) felhasználói fiókkal. Önnek egy Azure-előfizetés tulajdonosának vagy társtulajdonosának kell lennie.  
 
-Az Azure AD az üzleti toomanage identitás és hozzáférés, egyszerre hello felhőben és helyszíni egyszerű módszert biztosít. Is használhatja a egyetlen munkahelyi vagy iskolai fiók toosign tooany felhőben, vagy a helyszíni webalkalmazást. Az Azure Data Catalog használja az Azure AD tooauthenticate bejelentkezés. több, lásd: toolearn [Mi az Azure Active Directory](../active-directory/active-directory-whatis.md).
+Az Azure AD egyszerű módot kínál vállalkozásának az identitás és a hozzáférés kezelésére, mind a felhőben, mind a helyszínen. Ön egyetlen munkahelyi vagy iskolai fiók segítségével bejelentkezhet bármely felhőben futó vagy helyszíni webalkalmazásba. Az Azure Data Catalog az Azure AD segítségével hitelesíti a bejelentkező felhasználókat. További információk: [Mi az az Azure Active Directory?](../active-directory/active-directory-whatis.md)
 
 ### <a name="azure-active-directory-policy-configuration"></a>Azure Active Directory-szabályzat konfigurálása
-Olyan helyzet állhat elő, ahol bejelentkezhet toohello Azure Data Catalog-portált, de az adatforrás-regisztráló eszköz toohello toosign tett kísérlet során, olyan hibaüzenetet, amely megakadályozza, hogy aláírási észlel. Ez a hiba akkor fordulhat elő, amikor hello vállalati hálózaton, vagy ha külső hello vállalati hálózathoz csatlakozik.
+Előfordulhat, hogy ugyan be tud lépni az Azure Data Catalog portálra, de amikor megpróbál bejelentkezni az adatforrás-regisztrációs eszközbe, hibaüzenet jelenik meg, amely meggátolja a belépést. Ez a hiba a céges hálózatról, illetve a céges hálózaton kívülről történő csatlakozás esetében egyaránt előfordulhat.
 
-hello regisztrációs eszköz használja *űrlapos hitelesítés* toovalidate felhasználói bejelentkezések Azure Active Directoryban. Sikeres bejelentkezés, az Azure Active Directory-rendszergazda engedélyeznie kell a hello az űrlapos hitelesítés *globális hitelesítési házirend*.
+A regisztrációs eszköz *űrlapos hitelesítés* segítségével veti össze a felhasználói bejelentkezéseket az Azure Active Directory adatbázisával. Ahhoz, hogy a bejelentkezés sikeres legyen, az Azure Active Directory rendszergazdájának engedélyeznie kell az űrlapos hitelesítést a *globális hitelesítési szabályzatban*.
 
-Hello globális hitelesítési házirend engedélyezheti külön-külön az intranetes és extranetes kapcsolatok hitelesítési hello kép a következő ábrán. Bejelentkezési hiba akkor fordulhat elő, ha a hello hálózati kapcsolat, amelyből nincs engedélyezve az űrlapos hitelesítés.
+Ahogy az az alábbi képen is látható, a globális hitelesítési szabályzat segítségével különböző hitelesítést engedélyezhet az intranetes és az extranetes kapcsolatokhoz. Ha nincs engedélyezve az űrlapos hitelesítés azon a hálózaton, amelyről csatlakozik, bejelentkezési hiba léphet fel.
 
  ![Az Azure Active Directory globális hitelesítési szabályzata](./media/data-catalog-prerequisites/global-auth-policy.png)
 
 További információkért lásd a [Hitelesítési házirendek konfigurálása](https://technet.microsoft.com/library/dn486781.aspx) című cikket.
 
 ## <a name="provision-data-catalog"></a>Adatkatalógus létrehozása
-Szervezetenként (Azure Active Directory-tartományonként) mindössze egy adatkatalógust hozhat létre. Ezért hello tulajdonosa vagy a társtulajdonos az Azure-előfizetés toothis Azure Active Directory-tartományba tartozó már létrehozott egy katalógust, ha csak akkor tudja toocreate katalógus újra még akkor is, ha több Azure-előfizetéssel rendelkezik. hogy egy adatkatalógus az Azure Active Directory-tartományban, a felhasználó hozott létre Ugrás toohello tootest [Azure Data Catalog-kezdőlap](http://azuredatacatalog.com) , és ellenőrizze, hogy megjelenik-e hello katalógus. Ha már létrehoztak egy katalógust meg, hagyja ki a következő eljárást, majd a toohello következő szakasz hello.    
+Szervezetenként (Azure Active Directory-tartományonként) mindössze egy adatkatalógust hozhat létre. Ez azt jelenti, hogy ha az Önnel megegyező Azure Active Directory-tartományhoz tartozó Azure-előfizetés tulajdonosa vagy társtulajdonosa már létrehozott egy katalógust, Ön nem fog tudni katalógust létrehozni, még akkor sem, ha több Azure-előfizetéssel rendelkezik. Ha szeretné megnézni, hogy az Ön Azure Active Directory-tartományában hozott-e már létre adatkatalógust valamelyik felhasználó, lépjen az [Azure Data Catalog honlapjára](http://azuredatacatalog.com), és ellenőrizze, hogy lát-e katalógust. Ha valaki már létrehozta a katalógust, ugorja át az itt látható eljárást, és folytassa a következő résszel.    
 
-1. Nyissa meg toohello [Data Catalog szolgáltatás lapján](https://azure.microsoft.com/services/data-catalog) kattintson **Ismerkedés**.
+1. Nyissa meg a [Data Catalog szolgáltatás weboldalát](https://azure.microsoft.com/services/data-catalog), és kattintson **Az első lépések** lehetőségre.
    
     ![Azure Data Catalog – marketinges kezdőlap](media/data-catalog-get-started/data-catalog-marketing-landing-page.png)
-2. Jelentkezzen be egy felhasználói fiókot, amely hello tulajdonosa, vagy egy Azure-előfizetés társtulajdonos. A bejelentkezés után a lap következő hello láthatja.
+2. Jelentkezzen be egy olyan felhasználói fiókkal, amely Azure-előfizetés tulajdonosa vagy társtulajdonosa. A bejelentkezést követően megjelenik az alábbi oldal.
    
     ![Azure Data Catalog – adatkatalógus létrehozása](media/data-catalog-get-started/data-catalog-create-azure-data-catalog.png)
-3. Adjon meg egy **neve** hello adatkatalógus hello **előfizetés** toouse szeretne, és hello **hely** hello katalógus.
+3. Adja meg az adatkatalógus **nevét**, a használni kívánt **előfizetést**, valamint a katalógus kívánt **helyét**.
 4. Bontsa ki az **Árképzés** csomópontot, és válassza ki az Azure Data Catalog **kiadását** (Ingyenes vagy Standard).
     ![Azure Data Catalog – kiadás kiválasztása](media/data-catalog-get-started/data-catalog-create-catalog-select-edition.png)
-5. Bontsa ki a **katalógus felhasználói** kattintson **Hozzáadás** a hello data catalog tooadd felhasználók. Toothis csoport automatikusan tagjává válnak.
+5. Bontsa ki a **Katalógus felhasználói** csomópontot, majd kattintson a **Hozzáadás** gombra, és adja hozzá a kívánt felhasználókat az adatkatalógushoz. Önt a rendszer automatikusan hozzáadja ehhez a csoporthoz.
     ![Azure Data Catalog – felhasználók](media/data-catalog-get-started/data-catalog-add-catalog-user.png)
-6. Bontsa ki a **katalógus-rendszergazdák** kattintson **Hozzáadás** tooadd további rendszergazdák a hello data catalog. Toothis csoport automatikusan tagjává válnak.
+6. Bontsa ki a **Katalógus-rendszergazdák** csomópontot, majd kattintson a **Hozzáadás** gombra, így további rendszergazdákat rendelhet hozzá az adatkatalógushoz. Önt a rendszer automatikusan hozzáadja ehhez a csoporthoz.
     ![Azure Data Catalog – rendszergazdák](media/data-catalog-get-started/data-catalog-add-catalog-admins.png)
-7. Kattintson a **katalógus létrehozása** toocreate hello adatkatalógus a szervezet számára. Hello kezdőlapja a hello data catalog létrehozása után megjelenik.
+7. A szervezet adatkatalógusának létrehozásához kattintson a **Katalógus létrehozása** lehetőségre. Az adatkatalógus létrehozása után a rendszer megjeleníti annak kezdőlapját.
     ![Azure Data Catalog – létrehozva](media/data-catalog-get-started/data-catalog-created.png)    
 
-### <a name="find-a-data-catalog-in-hello-azure-portal"></a>A data catalog található hello Azure-portálon
-1. Egy külön lapján hello webböngészőben, vagy egy külön webkiszolgáló böngészőablakban nyissa meg toohello [Azure-portálon](https://portal.azure.com) , és jelentkezzen be az hello ugyanazt a fiókot, hogy Ön használt toocreate hello adatkatalógus hello előző lépésben.
+### <a name="find-a-data-catalog-in-the-azure-portal"></a>Adatkatalógus megkeresése az Azure Portalon
+1. A böngésző egy másik lapján, illetve egy másik böngésző ablakában nyissa meg az [Azure Portalt](https://portal.azure.com), és jelentkezzen be ugyanazzal a fiókkal, amelyet az előző lépésnél az adatkatalógus létrehozásához használt.
 2. Válassza a **Tallózás** lehetőséget, majd kattintson a **Data Catalog** elemre.
    
-    ![Az Azure Data Catalog – keresse meg az Azure](media/data-catalog-get-started/data-catalog-browse-azure-portal.png) katalógus létrehozott hello adatokat látja.
+    ![Azure Data Catalog--Tallózás az Azure rendszerben](media/data-catalog-get-started/data-catalog-browse-azure-portal.png) Látni fogja a korábban létrehozott adatkatalógust.
    
     ![Azure Data Catalog – katalóguslista megtekintése](media/data-catalog-get-started/data-catalog-azure-portal-show-catalog.png)
-3. Kattintson a létrehozott hello katalógus. Megjelenik a hello **Data Catalog** hello portál panel.
+3. Kattintson a korábban létrehozott katalógusra. Megjelenik a portál **Data Catalog** panele.
    
    ![Azure Data Catalog – panel a portálon ](media/data-catalog-get-started/data-catalog-blade-azure-portal.png)
-4. A data catalog hello tulajdonságainak megtekintése, és frissítse azokat. Kattintson például **tarifacsomag** és hello kiadását módosítani.
+4. Itt megtekintheti az adatkatalógus tulajdonságait, illetve frissítheti is őket. Kattintson például a **Tarifacsomag** elemre, és módosítsa a kiadást.
    
     ![Azure Data Catalog – tarifacsomag](media/data-catalog-get-started/data-catalog-change-pricing-tier.png)
 
 ### <a name="adventure-works-sample-database"></a>Az Adventure Works példaadatbázisa
-Ebben az oktatóanyagban adategységek (táblák) regisztrálja az SQL Server adatbázismotor hello hello AdventureWorks2014 adatbázist, de bármilyen támogatott adatforrást használhat, ha szeretne ismerős és megfelelő tooyour szerepkört adatokkal toowork. A támogatott adatforrások listájáért lásd: [Supported data sources](data-catalog-dsr.md) (Támogatott adatforrások).
+Ebben a példában az AdventureWorks2014 példaadatbázisban található adategységeket (táblákat) fog regisztrálni az SQL Server adatbázismotor számára. Bármilyen támogatott adatforrást használhat, ha inkább olyan adatokkal szeretne dolgozni, amelyeket ismer, vagy amelyek munkaköre szempontjából relevánsak. A támogatott adatforrások listájáért lásd: [Supported data sources](data-catalog-dsr.md) (Támogatott adatforrások).
 
-### <a name="install-hello-adventure-works-2014-oltp-database"></a>Hello Adventure Works 2014 OLTP adatbázis telepítése
-hello Adventure Works adatbázisa szabványos online tranzakció-feldolgozási forgatókönyvek egy fiktív kerékpárgyártó (Adventure Works Cycles), beleértve a termékek, értékesítési, és a beszerzési támogatja. Ebben az oktatóanyagban termékekre vonatkozó információkat fog regisztrálni az Azure Data Catalogba.
+### <a name="install-the-adventure-works-2014-oltp-database"></a>Az Adventure Works 2014 OLTP adatbázis telepítése
+Az Adventure Works adatbázisa olyan szabványos online tranzakciófeldolgozási forgatókönyveket támogat, melyeket egy fiktív kerékpárgyártó (az Adventure Works Cycles) használhat például a termékek, az értékesítések és a vásárlások követésére. Ebben az oktatóanyagban termékekre vonatkozó információkat fog regisztrálni az Azure Data Catalogba.
 
-tooinstall hello Adventure Works példaadatbázisának:
+Az Adventure Works példaadatbázisának telepítése:
 
 1. Töltse le az [Adventure Works 2014 Full Database Backup.zip](https://msftdbprodsamples.codeplex.com/downloads/get/880661) fájlt a CodePlex oldalról.
-2. a számítógépre, toorestore hello adatbázis hello utasításokat követve [egy adatbázis biztonsági másolatának visszaállítása az SQL Server Management Studio használatával](http://msdn.microsoft.com/library/ms177429.aspx), vagy a következő lépések végrehajtásával:
-   1. Nyissa meg az SQL Server Management Studio eszközt, és csatlakozzon az SQL Server adatbázismotor toohello.
+2. Állítsa vissza az adatbázist a gépére. Ehhez kövesse a [Restore a Database Backup by using SQL Server Management Studio](http://msdn.microsoft.com/library/ms177429.aspx) (Adatbázis biztonsági másolatának visszaállítása az SQL Server Management Studio segítségével) című cikk utasításait, vagy az alábbi lépéseket:
+   1. Nyissa meg az SQL Server Management Studiót, és kapcsolódjon az SQL Server adatbázismotorjához.
    2. Kattintson jobb gombbal a **Databases** (Adatbázisok) lehetőségre, majd a **Restore Database** (Adatbázis visszaállítása) elemre.
-   3. A **Restore Database**, hello kattintson **eszköz** választás, **forrás** kattintson **Tallózás**.
+   3. A **Restore Database** (Adatbázis visszaállítása) területen kattintson a **Source** (Forrás) beállításhoz tartozó **Device** (Eszköz) lehetőségre, majd a **Browse** (Tallózás) gombra.
    4. A **Select backup devices** (Biztonsági mentési eszközök kiválasztása) lehetőségnél kattintson az **Add** (Hozzáadás) lehetőségre.
-   5. Nyissa meg toohello mappa hello esetében **AdventureWorks2014.bak** fájlt, jelölje be hello fájlt, majd kattintson **OK** tooclose hello **keresse meg a biztonságimásolat-fájl** párbeszédpanel megnyitásához.
-   6. Kattintson a **OK** tooclose hello **válassza ki a biztonsági mentési eszközöket** párbeszédpanel megnyitásához.    
-   7. Kattintson a **OK** tooclose hello **Restore Database** párbeszédpanel megnyitásához.
+   5. Keresse meg a mappát, amelyben az **AdventureWorks2014.bak** fájlt tárolja, jelölje ki a fájlt, kattintson az **OK** gombra, majd zárja be a **Locate Backup File** (Biztonsági mentési fájl megkeresése) párbeszédpanelt.
+   6. Kattintson az **OK** gombra a **Select backup devices** (Biztonsági mentési eszközök kiválasztása) párbeszédpanel bezárásához.    
+   7. Kattintson az **OK** gombra a **Restore Database** (Adatbázis visszaállítása) párbeszédpanel bezárásához.
 
-Ezután már regisztrálhatnak Azure Data Catalog használatával az hello Adventure Works példaadatbázisát az adategységeket.
+Mostantól regisztrálhatja az Adventure Works példaadatbázisból származó adategységeket az Azure Data Catalog segítségével.
 
 ## <a name="register-data-assets"></a>Adategységek regisztrálása
-Ebben a gyakorlatban hello regisztrációs eszköz tooregister adategységeket hello Adventure Works adatbázisból hello katalógussal együtt használja. Regisztráció az hello folyamat például nevek, típusok és helyek fő szerkezeti metaadatok beolvasása a hello adatforrás és hello eszközöket tartalmaz, és a metaadatok toohello katalógus másolása. hello adatforrás és az adategységek maradnak. Ha vannak, de hello metaadatok hello katalógus toomake használatával könnyebben feltárhatóvá és értelmezhetővé őket.
+Ebben a gyakorlatban a regisztrációs eszközt használva regisztrálja az Adventure Works adatbázisból származó adategységeket a katalógusban. A regisztráció az a folyamat, amelynek során az adatforrásból és a benne található adategységekből kinyert fő szerkezeti metaadatok (például nevek, típusok és helyek) hozzáadódnak a katalógushoz. Az adatforrás és az adategységek az eredeti helyükön maradnak, de a metaadatok használatával a katalógus könnyebben feltárhatóvá és értelmezhetővé teszi őket.
 
 ### <a name="register-a-data-source"></a>Adatforrás regisztrálása
-1. Nyissa meg toohello [Azure Data Catalog-kezdőlap](http://azuredatacatalog.com) kattintson **adatok közzététele**.
+1. Nyissa meg az [Azure Data Catalog kezdőlapját](http://azuredatacatalog.com), és kattintson az **Adatok közzététele** elemre.
    
    ![Azure Data Catalog – Adatok közzététele gomb](media/data-catalog-get-started/data-catalog-publish-data.png)
-2. Kattintson a **alkalmazás indítása** toodownload, telepítése és futtatása hello frissítésregisztráló eszköz a számítógépen.
+2. A regisztrációs eszköz letöltéséhez, telepítéséhez, majd a számítógépen való futtatásához kattintson az **Alkalmazás indítása** gombra.
    
    ![Azure Data Catalog – Indítás gomb](media/data-catalog-get-started/data-catalog-launch-application.png)
-3. A hello **üdvözli** kattintson **jelentkezzen be a** hitelesítő adataival.     
+3. A **Kezdőlapon** kattintson a **Bejelentkezés** elemre, és adja meg a hitelesítő adatait.     
    
     ![Azure Data Catalog – Kezdőlap](media/data-catalog-get-started/data-catalog-welcome-dialog.png)
-4. A hello **Microsoft Azure Data Catalog** kattintson **SQL Server** és **következő**.
+4. A **Microsoft Azure Data Catalog** lapon kattintson az **SQL Server** lehetőségre, majd a **Next** (Tovább) gombra.
    
     ![Azure Data Catalog – adatforrások](media/data-catalog-get-started/data-catalog-data-sources.png)
-5. Adja meg a hello SQL Server csatlakozási tulajdonságokat az **AdventureWorks2014** (lásd a következő példa hello), majd **CONNECT**.
+5. Adja meg az **AdventureWorks2014** adatbázishoz tartozó SQL Server-kapcsolati tulajdonságokat (lásd az alábbi példát), majd kattintson a **CONNECT** (CSATLAKOZÁS) lehetőségre.
    
    ![Azure Data Catalog – SQL Server-kapcsolati tulajdonságok](media/data-catalog-get-started/data-catalog-sql-server-connection.png)
-6. Regisztrálja a adategységet hello metaadatait. Ebben a példában regisztrálása **Production/Product** objektumok hello AdventureWorks Production névtérből:
+6. Regisztrálja az adategység metaadatait. Ebben a példában a **Production/Product** objektumait regisztrálja az AdventureWorks Production névtérből:
    
-   1. A hello **kiszolgálói hierarchia** fán, bontsa ki a **AdventureWorks2014** kattintson **éles**.
+   1. A **Kiszolgálóhierarchia** fában bontsa ki az **AdventureWorks2014** lehetőséget, majd kattintson **Production** elemre.
    2. A Ctrl+kattintás módszerrel jelölje ki egyszerre a következőket: **Product**, **ProductCategory**, **ProductDescription** és **ProductPhoto**.
-   3. Kattintson a hello **helyezze át a kiválasztott nyíl** (**>**). Ez a művelet az összes kijelölt objektumot áthelyezi hello **regisztrált objektumok toobe** listája.
+   3. Kattintson a **kiválasztott elemeket áthelyező nyílra** (**>**). Ez a művelet az összes kiválasztott objektumot áthelyezi az **Objects to be registered** (Regisztrálandó objektumok) listára.
       
       ![Azure Data Catalog oktatóanyag – objektumok megkeresése és kiválasztása](media/data-catalog-get-started/data-catalog-server-hierarchy.png)
-   4. Válassza ki **előképet** tooinclude hello adatok pillanatkép előnézetét. hello pillanatkép too20 rekordok egyes tartalmazza, és hello katalógusba való másolás.
-   5. Válassza ki **adatok profillal együtt** tooinclude hello objektum statisztikai adatok hello-profil pillanatképe (például: minimális, maximális és átlagos értéket vár egy oszlophoz, a sorok számát).
-   6. A hello **címkéket** mezőbe írja be **adventure works, ciklusok**. Ez a művelet hozzáadja az adategységekhez a keresési címkéket. Címkék nagyszerű módját toohelp felhasználók keresése egy bizonyos regisztrált adatforrást.
-   7. Hello nevét adja meg egy **szakértői** ezeken az adatokon (nem kötelező).
+   4. Ha szeretne pillanatképes előnézetet is hozzáadni az adatokról, jelölje be az **Előnézet belefoglalása** jelölőnégyzetet. A pillanatkép legfeljebb 20 bejegyzést tartalmazhat az egyes táblákból. A rendszer a katalógusba másolja az előnézetet.
+   5. Ha szeretné, hogy az adatprofil objektumstatisztikáit (például: minimális, maximális és átlagos értékek az oszlopban, sorok száma) bemutató pillanatképet is tartalmazza a katalógus, válassza az **Adatprofil belefoglalása** lehetőséget.
+   6. A **Címkék felvétele** mezőbe írja be a következőket: **adventure works, cycles**. Ez a művelet hozzáadja az adategységekhez a keresési címkéket. A címkék nagy segítséget nyújtanak abban, hogy a felhasználók megtaláljanak egy bizonyos regisztrált adatforrást.
+   7. Adja meg az adatokhoz kapcsolódó **szakértő** nevét (kihagyható).
       
-      ![Azure Data Catalog útmutató – objektumok toobe regisztrálva](media/data-catalog-get-started/data-catalog-objects-register.png)
-   8. Kattintson a **REGISTER** (REGISZTRÁLÁS) gombra. Az Azure Data Catalog regisztrálja a kiválasztott objektumokat. Ebben a gyakorlatban az Adventure Works kiválasztott hello objektumok van regisztrálva. hello frissítésregisztráló eszköz metaadatait a hello adategységet, és másolja át az adatokat hello Azure Data Catalog szolgáltatásba. hello adatok marad, ahol jelenleg van, és hello irányítását hello rendszergazdák és a házirendek hello aktuális rendszer alatt marad.
+      ![Azure Data Catalog oktatóanyag – regisztrálandó objektumok](media/data-catalog-get-started/data-catalog-objects-register.png)
+   8. Kattintson a **REGISTER** (REGISZTRÁLÁS) gombra. Az Azure Data Catalog regisztrálja a kiválasztott objektumokat. Ebben a gyakorlatban az Adventure Works kiválasztott objektumai lesznek regisztrálva. A regisztrációs eszköz kinyeri a metaadatokat az adategységből, majd az Azure Data Catalogba másolja az adatokat. Az adatok helye nem változik, ahogy az sem, hogy mely rendszergazdák felügyelik az adatokat, és milyen szabályzatok érvényesek rájuk.
       
       ![Azure Data Catalog – regisztrált objektumok](media/data-catalog-get-started/data-catalog-registered-objects.png)
-   9. toosee a regisztrált adatforrás-objektumok, kattintson a **View Portal**. Hello Azure Data Catalog-portált győződjön meg arról, hogy látni minden négy táblák és hello adatbázis hello táblázatos nézetben.
+   9. A regisztrált adatforrás-objektumok megtekintéséhez kattintson a **View Portal** (Portál megtekintése) lehetőségre. Az Azure Data Catalog-portálon ellenőrizze, hogy a rácsnézetben látja-e mind a négy táblát, illetve az adatbázist.
       
-      ![Az objektumok hello Azure Data Catalog-portál ](media/data-catalog-get-started/data-catalog-view-portal.png)
+      ![Objektumok az Azure Data Catalog-portálon ](media/data-catalog-get-started/data-catalog-view-portal.png)
 
-Ebben a gyakorlatban regisztrálta az Adventure Works példaadatbázisának hello objektumok, hogy azok könnyen megtalálhatók legyenek felhasználók a szervezeten belüli. Hello következő gyakorlatból elsajátíthatja, hogyan toodiscover regisztrált adategységeket.
+Ebben a gyakorlatban az Adventure Works példaadatbázisából regisztrált néhány objektumot, amelyeket mostantól a szervezet bármelyik felhasználója könnyen megtalálhat. A következő gyakorlatból elsajátíthatja, hogyan találhatja meg a regisztrált adategységeket.
 
 ## <a name="discover-data-assets"></a>Adategységek felderítése
 Az Azure Data Catalog felderítési funkciója elsődlegesen két mechanizmust használ: keresés és szűrés.
 
-Tervezett toobe elsajátítható és hatékony keresést. Alapértelmezés szerint a keresési feltételek elleni hello katalógusban, beleértve a felhasználó által megadott jegyzetek egyik tulajdonságnak sem teljesül.
+A keresés nem csupán magától értetődő, de rendkívül hatékony is. Alapértelmezés szerint a keresőkifejezéseket a rendszer összeveti a katalógusban szereplő összes tulajdonsággal, még a felhasználók által beírt dekorációkkal is.
 
-Szűrés úgy van kialakítva, toocomplement keresése. Kiválaszthatja, hogy adott jellemzőiket, például a szakértők, adatforrástípust, objektumtípus, és címkék tooview megfelelő adategységeket és tooconstrain keresési eredmények toomatching eszközök.
+A szűrés a keresést hivatott kiegészíteni. Különböző jellemzőket (például szakértők, adatforrástípusok, objektumtípusok és címkék) adhat meg, és megtekintheti az azokkal egyező adategységeket, illetve az egyezést mutató adategységekre szűkítheti a találatokat.
 
-A Keresés és szűrés együttes használatával gyorsan navigálhat hello adatforrások regisztrált az Azure Data Catalog toodiscover hello adategységeket van szüksége.
+A keresés és szűrés együttes használatával egyszerűen navigálhat az Azure Data Catalog szolgáltatásban regisztrált adatforrások között, így könnyen megtalálja a keresett adategységeket.
 
-Ebben a gyakorlatban hello Azure Data Catalog portál toodiscover adategységeket hello előző gyakorlat regisztrált használja. A keresési szintaxissal kapcsolatban lásd: [Data Catalog Search syntax reference](https://msdn.microsoft.com/library/azure/mt267594.aspx) (A Data Catalog keresési szintaxisának leírása).
+Ebben a gyakorlatban az Azure Data Catalog-portál segítségével fogja felderíteni az előző gyakorlat során regisztrált adategységeket. A keresési szintaxissal kapcsolatban lásd: [Data Catalog Search syntax reference](https://msdn.microsoft.com/library/azure/mt267594.aspx) (A Data Catalog keresési szintaxisának leírása).
 
-Az alábbiakban néhány példa az adategységek hello katalógusban.  
+Az alábbiakban különböző példákat hozunk a katalógusban szereplő adategységek felderítésére.  
 
 ### <a name="discover-data-assets-with-basic-search"></a>Adategységek felderítése az alapszintű kereséssel
-Az alapszintű kereséssel egy vagy több keresőkifejezést megadva végezhet keresést a katalógusban. A eredményei bármely eszközök, amelyek bármely tulajdonság egy vagy több megadott hello feltételek egyeznek.
+Az alapszintű kereséssel egy vagy több keresőkifejezést megadva végezhet keresést a katalógusban. Megjelenik az összes olyan adategység, amelynek tulajdonságai egyeznek egy vagy több megadott kifejezéssel.
 
-1. Kattintson a **Home** hello Azure Data Catalog-portál. Hello böngésző bezárása után, nyissa meg toohello [Azure Data Catalog-kezdőlap](https://www.azuredatacatalog.com).
-2. Hello keresési mezőbe, írja be a `cycles` nyomja le az ENTER **ENTER**.
+1. Kattintson az Azure Data Catalog portál **Kezdőlap** lehetőségére. Ha már bezárta a böngészőt, nyissa meg az [Azure Data Catalog kezdőlapját](https://www.azuredatacatalog.com).
+2. A keresőmezőbe írja be a `cycles` kifejezést, majd nyomja le az **ENTER** billentyűt.
    
     ![Azure Data Catalog – alapszintű szöveges keresés](media/data-catalog-get-started/data-catalog-basic-text-search.png)
-3. Ellenőrizze, hogy az összes négy táblák és hello adatbázis (AdventureWorks2014) hello eredmények látható-e. Válthat **rácsnézethez** és **listanézet** gombjaival hello eszköztár hello kép a következő ábrán. Figyelje meg, hogy hello keresési kulcsszót a találatok között hello van jelölve, mert hello **kiemelése** lehetőség **ON**. Azt is megadhatja, hány hello **laponként eredmények** a találatok között.
+3. Ellenőrizze, hogy a találatok között látja-e mind a négy táblát, valamint az adatbázist (AdventureWorks2014). Ahogy az az alábbi képen látható, az eszköztárban található gombokra kattintva válthat a **rácsnézet** és a **listanézet** között. Figyelje meg, hogy a kereséshez használt kulcsszót a rendszer kijelöli a találatok között. Ez azért van, mert a **Kiemelés** funkció **BE** értékre van állítva. Megadhatja az **eredmények száma oldalanként** beállítás értékét is.
    
     ![Azure Data Catalog – alapszintű szöveges keresés, találatok](media/data-catalog-get-started/data-catalog-basic-text-search-results.png)
    
-    Hello **keresések** panel bal oldali hello és hello egy **tulajdonságok** panel jobb hello megtalálható. A hello **keresések** panelen, módosítsa a keresési feltételt, és eredmények szűrésére. Hello **tulajdonságok** panel hello rács vagy listáját jeleníti meg a kiválasztott objektum tulajdonságait.
-4. Kattintson a **termék** hello keresési eredmények között. Hello kattintson **előzetes**, **oszlopok**, **adatok profil**, és **dokumentáció** lapokon, vagy kattintson a hello nyíl tooexpand hello alsó ablaktáblán láthatóvá válnak.  
+    A **Keresések** panel bal oldalon, a **Tulajdonságok** panel jobb oldalon található. A **Keresések** panelen módosíthatja a keresési feltételeket, valamint szűrheti a találatokat. A **Tulajdonságok** panelen láthatja a rácsban vagy a listában kiválasztott objektum tulajdonságait.
+4. Kattintson a találatok között látható **Product** elemre. Kattintson az **Előnézet**, **Oszlopok**, **Adatprofil** és **Dokumentáció** lapfülekre, vagy kattintson a nyílra az alsó panel kibontásához.  
    
     ![Azure Data Catalog – alsó panel](media/data-catalog-get-started/data-catalog-data-asset-preview.png)
    
-    A hello **előzetes** lapon levő hello hello adatok előnézetének megtekintéséhez **termék** tábla.  
-5. Hello kattintson **oszlopok** lapon oszlopok toofind adatait (például **neve** és **adattípus**) a hello adategységet.
-6. Hello kattintson **adatok profil** lapon toosee hello profilkészítési adatokat (például: a sorok, adatokat vagy egy oszlop legkisebb érték méretének száma) a hello adategységet.
-7. Hello eredmények szűrése **szűrők** hello bal oldalon. Kattintson például **tábla** a **objektumtípus**, és tekintse meg a csak négy hello táblák, nem az adatbázis hello.
+    A **Preview** (Előnézet) lapon a **Product** táblában szereplő adatok előnézete látható.  
+5. Az **Oszlopok** lapon az adategységben szereplő oszlopok részletes adatait tekintheti meg (például **név** és **adattípus**).
+6. Az adategységben szereplő adatok profiljának (például sorok száma, adatok mérete, adott oszlop legalacsonyabb értéke) megtekintéséhez kattintson az **Adatprofil** lapfülre.
+7. A bal oldalt található **szűrők** segítségével szűrheti a találatokat. Ha például az **Object Type** (Objektumtípus) szűrőnél a **Table** (Tábla) lehetőséget választja, csak a négy tábla jelenik meg, maga az adatbázis nem.
    
     ![Azure Data Catalog – találatok szűrése](media/data-catalog-get-started/data-catalog-filter-search-results.png)
 
 ### <a name="discover-data-assets-with-property-scoping"></a>Adategységek felderítése tulajdonságértékekben való kereséssel
-A megadott tulajdonságérték azt tapasztalja, ahol hello keresési kifejezés egyeztetve van-e hello adategységeket segít hatókörének tulajdonság.
+A tulajdonságértékekben való keresés segítségével megkeresheti azokat az adategységeket, amelyeknél a keresőkifejezés és a megadott tulajdonság között egyezés található.
 
-1. Törölje a jelet hello **tábla** alapján szűrni **objektumtípus** a **szűrők**.  
-2. Hello keresési mezőbe, írja be a `tags:cycles` nyomja le az ENTER **ENTER**. Lásd: [Data Catalog keresési szintaxist hivatkozás](https://msdn.microsoft.com/library/azure/mt267594.aspx) az összes hello is használhatja a Keresés a data catalog hello tulajdonságait.
-3. Ellenőrizze, hogy az összes négy táblák és hello adatbázis (AdventureWorks2014) hello eredmények látható-e.  
+1. A **Szűrők** menü **Objektumtípus** szűrőjének **Tábla** beállításánál törölje az oda korábban esetleg beírt értéket.  
+2. A keresőmezőbe írja be a `tags:cycles` kifejezést, majd nyomja le az **ENTER** billentyűt. Az adatkatalógusban való kereséshez használható összes tulajdonság megtekintéséhez lásd: [Data Catalog Search syntax reference](https://msdn.microsoft.com/library/azure/mt267594.aspx) (A Data Catalog keresési szintaxisának leírása).
+3. Ellenőrizze, hogy a találatok között látja-e mind a négy táblát, valamint az adatbázist (AdventureWorks2014).  
    
     ![Data Catalog – tulajdonságértékekben való keresés, találatok](media/data-catalog-get-started/data-catalog-property-scoping-results.png)
 
-### <a name="save-hello-search"></a>Hello Keresés mentése
-1. A hello **keresések** hello ablaktábláján **aktuális keresés** szakaszt, adjon meg egy nevet a hello keresés, és kattintson **mentése**.
+### <a name="save-the-search"></a>A keresés mentése
+1. Az **Aktuális keresés** rész **Keresések** paneljén adjon nevet a keresésnek, majd kattintson a **Mentés** gombra.
    
     ![Azure Data Catalog – keresés mentése](media/data-catalog-get-started/data-catalog-save-search.png)
-2. Győződjön meg róla, alapján jeleníti meg, hogy a Keresés mentése hello **mentett keresések**.
+2. Ellenőrizze, hogy a mentett keresés megjelent-e a **Mentett keresések** menüben.
    
     ![Azure Data Catalog – mentett keresések](media/data-catalog-get-started/data-catalog-saved-search.png)
-3. Válasszon ki egy hello elvégezhető műveletekhez nyújtanak a hello mentett keresés (**átnevezése**, **törlése**, **mentése alapértelmezettként** keresési).
+3. Válasszon a mentett kereséseken elvégezhető műveletek közül (**Átnevezés**, **Törlés**, **Mentés alapértelmezettként**).
    
     ![Azure Data Catalog – mentett kereséseken elvégezhető műveletek](media/data-catalog-get-started/data-catalog-saved-search-options.png)
 
 ### <a name="boolean-operators"></a>Logikai operátorok
 A keresést logikai operátorok segítségével bővítheti vagy szűkítheti.
 
-1. Hello keresési mezőbe, írja be a `tags:cycles AND objectType:table`, és nyomja le az ENTER **ENTER**.
-2. Győződjön meg arról, hogy csak olyan táblákra (nem hello adatbázis) hello eredmények látni.  
+1. A keresőmezőbe írja be a `tags:cycles AND objectType:table` kifejezést, majd nyomja le az **ENTER** billentyűt.
+2. Ellenőrizze, hogy a találatok között csak a táblák jelennek-e meg (maga az adatbázis nem).  
    
     ![Azure Data Catalog – keresés logikai operátorokkal](media/data-catalog-get-started/data-catalog-search-boolean-operator.png)
 
 ### <a name="grouping-with-parentheses"></a>Csoportosítás zárójelekkel
-Csoportosítási kifejezést, amelyet csoportosíthatja hello lekérdezés tooachieve logikai elkülönítés érdekében, különösen a logikai operátorokkal együtt részeit.
+Zárójelek segítségével csoportosítva különböző logikai egységekre bonthatja a lekérdezés részeit, ami különösen a logikai operátorokkal együtt alkalmazva lehet hasznos.
 
-1. Hello keresési mezőbe, írja be a `name:product AND (tags:cycles AND objectType:table)` nyomja le az ENTER **ENTER**.
-2. Ellenőrizze, hogy látható-e csak hello **termék** tábla hello keresési eredmények között.
+1. A keresőmezőbe írja be a `name:product AND (tags:cycles AND objectType:table)` kifejezést, majd nyomja le az **ENTER** billentyűt.
+2. Ellenőrizze, hogy a találatok között csak a **Product** tábla jelent-e meg.
    
     ![Azure Data Catalog – keresések csoportosítása](media/data-catalog-get-started/data-catalog-grouping-search.png)   
 
 ### <a name="comparison-operators"></a>Összehasonlító operátorok
 Az összehasonlító operátorok segítségével a szám és adat adattípusú tulajdonságok esetében a nem egyenlő összehasonlítások is használhatók.
 
-1. Hello keresési mezőbe, írja be a `lastRegisteredTime:>"06/09/2016"`.
-2. Törölje a jelet hello **tábla** alapján szűrni **objektumtípus**.
+1. A keresőmezőbe írja be a `lastRegisteredTime:>"06/09/2016"` kifejezést.
+2. Az **Objektumtípus** szűrő **Tábla** beállításánál törölje az oda korábban esetleg beírt értéket.
 3. Nyomja le az **ENTER** billentyűt.
-4. Ellenőrizze, hogy látható-e hello **termék**, **ProductCategory**, **ProductDescription**, és **ProductPhoto** táblák és hello AdventureWorks2014 adatbázis regisztrálta a találatok között.
+4. Ellenőrizze, hogy a találatok között csak a **Product**, **ProductCategory**, **ProductDescription** és a **ProductPhoto** tábla, illetve a korábban regisztrált AdventureWorks2014 adatbázis jelent-e meg.
    
     ![Azure Data Catalog – összehasonlító találatok](media/data-catalog-get-started/data-catalog-comparison-operator-results.png)
 
-Lásd: [hogyan toodiscover adategységek](data-catalog-how-to-discover.md) adategységek kapcsolatos részletes információkat és [Data Catalog keresési szintaxist hivatkozás](https://msdn.microsoft.com/library/azure/mt267594.aspx) keresési szintaxis.
+Az [adategységek felderítésével](data-catalog-how-to-discover.md) kapcsolatos cikkben a felderítés módjáról olvashat részletesen, a keresési szintaxissal kapcsolatban pedig a [Data Catalog Search syntax reference](https://msdn.microsoft.com/library/azure/mt267594.aspx) (A Data Calatog keresési szintaxisának leírása) című cikkben talál további információt.
 
 ## <a name="annotate-data-assets"></a>Adategységek ellátása dekorációkkal
-Ebben a gyakorlatban hello Azure Data Catalog-portál tooannotate használ (például a leírásokat, címkéket és szakértők hozzáadása) hello katalógusban korábban regisztrált adategységeket. hello jegyzetek kiegészíti az és javítása érdekében hello kinyert metaadatokat hello adatforrás regisztráció során és teszi hello adategységeket sokkal könnyebb toodiscover és megérteni.
+Ebben a gyakorlatban az Azure Data Catalog portál használatával dekorációkat fog fűzni a katalógusban korábban regisztrált adategységekhez (azaz különféle információkat, például leírásokat, címkéket vagy szakértőket fog fűzni hozzájuk). A dekorációk kiegészítik és megerősítik az adatforrásból a regisztrálás során kinyert metaadatokat, és sokkal könnyebben megtalálhatóvá és értelmezhetővé teszik az adategységeket.
 
-Ebben a gyakorlatban egyetlen adategységet (ProductPhoto) fogunk dekorációkkal ellátni. Hozzáadhat egy felhasználóbarát név és leírás toohello ProductPhoto adategységet.  
+Ebben a gyakorlatban egyetlen adategységet (ProductPhoto) fogunk dekorációkkal ellátni. Hozzáadunk egy rövid nevet és egy leírást a ProductPhoto adategységhez.  
 
-1. Nyissa meg toohello [Azure Data Catalog-kezdőlap](https://www.azuredatacatalog.com) és a keresési `tags:cycles` toofind hello regisztrált adategységeket.  
+1. Nyissa meg az [Azure Data Catalog kezdőlapját](https://www.azuredatacatalog.com), és a `tags:cycles` kifejezés megadásával keresse meg a korábban regisztrált adategységeket.  
 2. Kattintson a találatok között a **ProductPhoto** elemre.  
-3. Adja meg **Termékképek** a **rövid név** és **termékfényképek marketingcélú** a hello **leírás**.
+3. A **Rövid név** mezőbe írja be: **Product images**, a **Leírás** mezőbe pedig a következőt: **Product photos for marketing materials**.
    
     ![Azure Data Catalog – ProductPhoto leírása](media/data-catalog-get-started/data-catalog-productphoto-description.png)
    
-    Hello **leírás** segít másoknak feltárni és értelmezni, miért és hogyan toouse hello kiválasztott adategységet. Lehetősége van további címkék hozzáadására és oszlopok megtekintésére is. Most megpróbálhatja keresési és szűrési toodiscover adategységeket hello leíró metaadatok használatával felvett toohello katalógus.
+    A **Description** (Leírás) mező segít másoknak megismerni és értelmezni, hogy miért és hogyan használják a kiválasztott adategységet. Lehetősége van további címkék hozzáadására és oszlopok megtekintésére is. Most megpróbálhatja az adategységeket a katalógushoz hozzáadott leíró metaadatok használatával megkeresni és szűrni.
 
-Azt is megteheti hello ezen a lapon a következő:
+Az oldalon a következő műveleteket is elvégezheti:
 
-* Adja hozzá a hello adategységet szakértői. Kattintson a **Hozzáadás** a hello **szakértők** területen.
-* Címkék hozzáadása hello dataset szinten. Kattintson a **Hozzáadás** a hello **címkék** területen. A címke lehet felhasználói vagy szószedetcímke. hello a Data Catalog Standard kiadása egy üzleti szószedetet, amelyek segítségével a katalógus-rendszergazdák egy központi üzleti elnevezési rendszert megadása tartalmaz. A katalógus felhasználói ezután a szószedet kifejezéseivel jelölhetik meg az adategységeket. További információkért lásd: [hogyan mentése tooset hello szabályozott címkézésre üzleti szószedet](data-catalog-how-to-business-glossary.md)
-* Címkék hozzáadása hello szinten. Kattintson a **Hozzáadás** alatt **címkék** hello oszlop tooannotate keresi.
-* Adjon meg leírást hello szinten. Töltse ki az oszlop **Leírás** mezőjét. Hello adatforrás hello leírás metaadatokat is megtekintheti.
-* Adja hozzá **hozzáférés kérése** információt, amely mutatja a felhasználók hogyan férhetnek hozzá a toorequest toohello adategységet.
+* Szakértőket adhat az adategységekhez. Kattintson a **Szakértők** részen található **Hozzáadás** gombra.
+* Címkéket adhat hozzá az adatkészlet szintjén. Kattintson a **Címkék** részen található **Hozzáadás** gombra. A címke lehet felhasználói vagy szószedetcímke. A Data Catalog Standard kiadása tartalmaz egy üzleti szószedetet is, amelynek segítségével a katalógus-rendszergazdák megalkothatják a központi üzleti elnevezési rendszert. A katalógus felhasználói ezután a szószedet kifejezéseivel jelölhetik meg az adategységeket. További információk: [How to set up the Business Glossary for Governed Tagging](data-catalog-how-to-business-glossary.md) (Az irányított címkézéshez használt üzleti szószedet összeállítása)
+* Címkéket adhat hozzá az oszlopok szintjén. Kattintson annak az oszlopnak a **Címkék** részénél található **Hozzáadás** gombra, amelyhez dekorációt kíván fűzni.
+* Leírást adhat hozzá az oszlopok szintjén. Töltse ki az oszlop **Leírás** mezőjét. Megtekintheti az adatforrásból kinyert leírási metaadatokat.
+* Adjon hozzá **Hozzáférés kérése** típusú információkat, amelyekből a felhasználók megtudhatják, hogyan kérhetnek hozzáférést az adategységhez.
   
     ![Azure Data Catalog – címkék és leírások hozzáadása](media/data-catalog-get-started/data-catalog-add-tags-experts-descriptions.png)
-* Válassza ki a hello **dokumentáció** lapra, és adja meg a hello adategységet dokumentációját. Az Azure Data Catalog dokumentációja az adatkatalógus akár egy tartalomtárházban toocreate egy teljes leírását az adategységet is használhatja.
+* Válassza a **Dokumentáció** lapfület, és adja meg az adategységhez tartozó dokumentációt. Az Azure Data Catalog dokumentációs funkciójával az adatkatalógus egyben tartalomtárként is használható, amely bemutatja az adategységek közötti összefüggéseket is.
   
     ![Azure Data Catalog – Dokumentáció lap](media/data-catalog-get-started/data-catalog-documentation.png)
 
-Azt is megteheti egy jegyzet toomultiple adategységeket. Például minden hello adatok eszközök regisztrálása, és adja meg számukra szakértő.
+Ugyanazt a dekorációt egyszerre több adategységhez is hozzáadhatja. Kiválaszthatja például a korábban regisztrált összes adategységet, és megadhat hozzájuk egy szakértőt.
 
 ![Azure Data Catalog – dekoráció készítése több adategységhez](media/data-catalog-get-started/data-catalog-multi-select-annotate.png)
 
-Az Azure Data Catalog egy tömeg irányítására forrás megközelítés tooannotations támogatja. A Data Catalog felhasználók hozzáadhatnak címkék (felhasználó vagy szószedet), leírások és egyéb metaadatokat, hogy bármely felhasználó, akinek meglátásai vannak egy adategységet és használatát is, hogy rögzített szempontjából, illetve a rendelkezésre álló tooother felhasználók.
+Az Azure Data Catalog közösségi kiszervezést alkalmazó megközelítést használ a dekorációknál. A Data Catalog bármelyik felhasználója felvehet (felhasználói vagy szószedet-) címkéket, leírásokat és más típusú metaadatokat, így bárki, aki ismeri az adategységet, rögzítheti és elérhetővé teheti meglátásait.
 
-Lásd: [hogyan tooannotate adategységek](data-catalog-how-to-annotate.md) ellátása megjegyzésekkel adategységeket kapcsolatos részletes információkat.
+Az adategységek dekorációkkal való ellátásával kapcsolatban [az adategységek dekorálását bemutató cikkben](data-catalog-how-to-annotate.md) olvashat részletesen.
 
-## <a name="connect-toodata-assets"></a>Csatlakozás toodata eszközök
+## <a name="connect-to-data-assets"></a>Csatlakozás adategységekhez
 Ebben a gyakorlatban a kapcsolatadatok segítségével az adategységeket egy integrált ügyféleszközben (Excel) és egy nem integrált eszközben (SQL Server Management Studio) is meg fogja nyitni.
 
 > [!NOTE]
-> Fontos, hogy az Azure Data Catalog nem biztosítanak tooremember adatforrásának toohello tényleges – egyszerűen csak megkönnyíti az Ön toodiscover és megértette. Sikeres csatlakozás tooa adatforrás esetén hello ügyfélalkalmazás úgy dönt, hogy a Windows-felhasználó hitelesítő adatait, és kéri a hitelesítő adatokat, szükség esetén használja. Ha Ön nem korábban kapott hozzáférési toohello adatforrás, hozzáférést kap, mielőtt az csatlakozna toobe kell.
+> Nem szabad elfelejteni, hogy az Azure Data Catalog nem ad hozzáférést magához az adatforráshoz, csupán megkönnyíti a felderítését és a megértését. Amikor Ön csatlakozik egy adatforráshoz, a választott ügyfélalkalmazás a windowsos hitelesítési adatokat fogja használni, illetve ha szükséges, felszólítja Önt a hitelesítési adatok megadására. Ha korábban még nem kapott hozzáférést az adatforráshoz, akkor a csatlakozáshoz hozzáférést kell kapnia.
 > 
 > 
 
-### <a name="connect-tooa-data-asset-from-excel"></a>Csatlakozás tooa adategységet az Excelből
-1. A találatok közül válassza ki a **Product** elemet. Kattintson a **Megnyitás a következőben** elemre, majd hello eszköztár **Excel**.
+### <a name="connect-to-a-data-asset-from-excel"></a>Csatlakozás adategységhez az Excelből
+1. A találatok közül válassza ki a **Product** elemet. Kattintson a **Megnyitás a következőben:** lehetőségre, majd válassza az **Excel** elemet.
    
-    ![Az Azure Data Catalog – kapcsolódás toodata eszköz](media/data-catalog-get-started/data-catalog-connect1.png)
-2. Kattintson a **nyitott** hello letöltési előugró ablakban. Ez a felület hello böngésző függően változhat.
+    ![Azure Data Catalog – csatlakozás adategységhez](media/data-catalog-get-started/data-catalog-connect1.png)
+2. Kattintson a **Megnyitás** gombra a letöltési előugró ablakban. Ez böngészőnként eltérően jelenhet meg.
    
     ![Azure Data Catalog – exceles csatlakozási fájl letöltése](media/data-catalog-get-started/data-catalog-download-open.png)
-3. A hello **Microsoft Excel biztonsági figyelmeztetés** ablak, kattintson a **engedélyezése**.
+3. A **Microsoft Excel Security Notice** (Microsoft Excel biztonsági figyelmeztetés) ablakban kattintson az **Enable** (Engedélyezés) gombra.
    
     ![Azure Data Catalog – Excel biztonsági előugró ablak](media/data-catalog-get-started/data-catalog-excel-security-popup.png)
-4. Ne hello alapértelmezett hello **és adatokat importálhat** párbeszédpanel megnyitásához, és kattintson **OK**.
+4. Az **Adatok beolvasása** párbeszédpanelen tartsa meg az alapértelmezéseket, majd kattintson az **OK** gombra.
    
     ![Azure Data Catalog – Excel, adatok beolvasása](media/data-catalog-get-started/data-catalog-excel-import-data.png)
-5. Nézet hello az adatforrás az Excel programban.
+5. Tekintse meg az adatforrást az Excelben.
    
     ![Azure Data Catalog – terméktábla az Excelben](media/data-catalog-get-started/data-catalog-connect2.png)
 
-Ebben a gyakorlatban Azure Data Catalog módszerével észlelt toodata eszközök csatlakoztatva. Hello Azure Data Catalog-portált, és kapcsolódhatnak közvetlenül a hello hello integrált ügyfélalkalmazások használatával **Megnyitás** menü. Bármilyen alkalmazással, ha úgy dönt, hello kapcsolat helyére vonatkozó információkat hello eszköz metaadatok szereplő használatával is kapcsolódhatnak. Például használhatja az SQL Server Management Studio tooconnect toohello AdventureWorks2014 adatbázis tooaccess hello adatok hello ebben az oktatóanyagban regisztrált adategységeket.
+Ebben a gyakorlatban az Azure Data Catalog segítségével felderített adategységekhez fog csatlakozni. Az Azure Data Catalog-portál segítségével közvetlenül, a **Open in** (Megnyitás a következőben) menüben elérhető integrált ügyfélalkalmazásokkal végezheti el a csatlakozást. Ezenfelül tetszőleges alkalmazáshoz csatlakozhat az adategység metaadataiban szereplő csatlakozási helyadatok segítségével. Például az SQL Server Management Studio használatával csatlakozhat az AdventureWorks2014 adatbázishoz, és elérheti az oktatóanyag korábbi részében regisztrált adategységekben szereplő adatokat.
 
 1. Nyissa meg az **SQL Server Management Studiót**.
-2. Hello a **tooServer csatlakozás** párbeszédpanelen adja meg a kiszolgálónév hello hello a **tulajdonságok** hello Azure Data Catalog-portál ablaktábláján.
-3. Használja a megfelelő hitelesítési és a hitelesítő adatok tooaccess hello adategységet. Nem rendelkezik hozzáféréssel, az információt használja a hello **hozzáférés kérése** mező tooget azt.
+2. A **Kapcsolódás kiszolgálóhoz** párbeszédpanelen írja be a kiszolgáló nevét az Azure Data Catalog portál **Tulajdonságok** paneljéről.
+3. Adja meg az adategység eléréséhez szükséges megfelelő hitelesítési és bejelentkezési adatokat. Ha nincs hozzáférése, használja a **Hozzáférés kérése** mezőben szereplő adatokat, és kérjen hozzáférést.
    
     ![Azure Data Catalog – hozzáférés kérése](media/data-catalog-get-started/data-catalog-request-access.png)
 
-Kattintson a **nézet kapcsolati karakterláncok** tooview, és másolja ODBC, OLEDB és az ADF.NET kapcsolati karakterláncok toohello vágólapra az alkalmazás számára.
+Kattintson a **Kapcsolati karakterláncok megtekintése** elemre, tekintse meg, majd másolja a vágólapra az ADF.NET, ODBC és OLEDB kapcsolati karakterláncokat, amelyekre az alkalmazásban szükség lesz.
 
 ## <a name="manage-data-assets"></a>Adategységek felügyelete
-Ebben a lépésben lásd: hogyan tooset biztonsági az adategységeket. A Data Catalog nem nyújt a felhasználóknak hozzáférést toohello adatokat mozgatná. hello adatforrás hello tulajdonosának adatelérési szabályozza.
+Ebben a lépésben bemutatjuk, hogyan állítható be az adategységek biztonsága. A Data Catalog nem ad hozzáférést a felhasználóknak magukhoz az adatokhoz. Az adatok elérését az adatforrás tulajdonosa szabályozza.
 
-Használhatja a Data Catalog toodiscover adatforrások és tooview hello metaadatok kapcsolódó hello katalógusban regisztrált toohello adatforrások. Előfordulhatnak olyan helyzetek, azonban ha adatforrások használatuk csak akkor látható toospecific felhasználók vagy az adott csoportok toomembers. Ezek a forgatókönyvek használhatja regisztrált adategységeket hello katalógus belül a Data Catalog tootake tulajdonjogát, és toothen hello láthatóságának hello eszközök Ön a tulajdonosa.
+A Data Catalog szolgáltatás arra szolgál, hogy adatforrásokat derítsen fel, és megtekintse a katalógusban regisztrált forrásokhoz tartozó metaadatokat. Előfordulhat azonban, hogy az adatforrásokat csak bizonyos felhasználók, illetve adott csoportok tagjai számára szeretné láthatóvá tenni. Ebben az esetben a Data Catalog használatával átveheti a katalógusban regisztrált adategységek tulajdonjogát, és beállíthatja a birtokában lévő adategységek láthatóságát.
 
 > [!NOTE]
-> Ebben a gyakorlatban leírt hello felügyeleti lehetőségek csak a Standard Edition Azure Data Catalog hello, nem a hello ingyenes kiadásban.
-> Az Azure Data Catalog az adategységek saját tulajdonba, társtulajdonosok toodata eszközök hozzáadása és hello adategységek láthatóságának beállítása.
+> Az ebben a gyakorlatban leírt felügyeleti funkciók kizárólag az Azure Data Catalog Standard kiadásában érhetők el, az ingyenes kiadásban nem.
+> Az Azure Data Catalog lehetőséget nyújt az adategységek saját tulajdonba vételére, társtulajdonosok hozzáadására, valamint az adategységek láthatóságának beállítására.
 > 
 > 
 
 ### <a name="take-ownership-of-data-assets-and-restrict-visibility"></a>Adategységek birtokbavétele és láthatóságának korlátozása
-1. Nyissa meg toohello [Azure Data Catalog-kezdőlap](https://www.azuredatacatalog.com). A hello **keresési** szöveget adja meg a `tags:cycles` nyomja le az ENTER **ENTER**.
-2. Hello eredménylista bármely elemére, és kattintson a **tulajdonba** hello eszköztáron.
-3. A hello **felügyeleti** hello szakasza **tulajdonságok** panelen, kattintson a **tulajdonba**.
+1. Nyissa meg az [Azure Data Catalog honlapját](https://www.azuredatacatalog.com). A **Search** (Keresés) mezőbe írja be a `tags:cycles` kifejezést, majd nyomja le az **ENTER** billentyűt.
+2. Kattintson a kívánt elemre a találatok listájában, majd kattintson az eszköztár **Saját tulajdonba vétel** elemére.
+3. A **Tulajdonságok** panel **Felügyelet** részénél kattintson a **Saját tulajdonba vétel** elemre.
    
     ![Azure Data Catalog – saját tulajdonba vétel](media/data-catalog-get-started/data-catalog-take-ownership.png)
-4. toorestrict látható, válassza a **tulajdonosok és ezek felhasználók** a hello **látható** szakaszt, és kattintson **Hozzáadás**. Adja meg a felhasználó e-mail címéhez hello szövegmezőbe, majd nyomja le az **ENTER**.
+4. A láthatóság korlátozásához a **Láthatóság** résznél válassza a **Tulajdonosok és ezek a felhasználók** lehetőséget, majd kattintson a **Hozzáadás** gombra. A szövegmezőbe írja be a kívánt e-mail-címet, majd nyomja le az **ENTER** billentyűt.
    
     ![Azure Data Catalog – hozzáférés korlátozása](media/data-catalog-get-started/data-catalog-ownership.png)
 
 ## <a name="remove-data-assets"></a>Adategységek eltávolítása
-Ebben a gyakorlatban hello Azure Data Catalog portál tooremove preview regisztrált adategységeket adatait használja, és törölje az adategységet hello katalógusból.
+Ebben a gyakorlatban az Azure Data Catalog-portál használatával el fogja távolítani az előnézeti adatokat a regisztrált adategységekből, valamint adategységeket fog törölni a katalógusból.
 
 Az Azure Data Catalogban az adategységek egyesével és csoportosan is törölhetők.
 
-1. Nyissa meg toohello [Azure Data Catalog-kezdőlap](https://www.azuredatacatalog.com).
-2. A hello **keresési** szöveg adja meg a `tags:cycles` kattintson **ENTER**.
-3. Hello eredménylista kiválaszt egy elemet, és kattintson a **törlése** hello eszköztáron látható hello kép a következő módon:
+1. Nyissa meg az [Azure Data Catalog honlapját](https://www.azuredatacatalog.com).
+2. A **Search** (Keresés) mezőbe írja be a `tags:cycles` kifejezést, majd nyomja le az **ENTER** billentyűt.
+3. Ahogy az az alábbi képen is látható, válasszon egy elemet a találatok listájában, és kattintson az eszköztár **Delete** (Törlés) elemére.
    
     ![Azure Data Catalog – rácselem törlése](media/data-catalog-get-started/data-catalog-delete-grid-item.png)
    
-    Hello listanézet használ, hello jelölőnégyzet be hello elem toohello balra látható hello kép a következő módon:
+    Ahogy az az alábbi képen is látható, ha a listanézetet használja, a jelölőnégyzet az elemtől balra látható.
    
     ![Azure Data Catalog – listaelem törlése](media/data-catalog-get-started/data-catalog-delete-list-item.png)
    
-    Válassza ki egyszerre több adategységet is, és törölje azokat, ahogy az a következő kép hello:
+    Ahogy az az alábbi képen is látható, egyszerre több adategységet is kiválaszthat:
    
     ![Azure Data Catalog – több adategység törlése](media/data-catalog-get-started/data-catalog-delete-assets.png)
 
 > [!NOTE]
-> hello katalógus alapértelmezett viselkedése hello van tooallow bármely felhasználó tooregister minden adatforrás és tooallow bármely felhasználó toodelete bármely regisztrált adategységet. Standard Edition Azure Data Catalog hello szereplő hello felügyeleti képességek saját tulajdonba az eszközök, akik feltérképezésére is korlátozása, és korlátozhatók a törölhetik az eszközök számára további lehetőségeket biztosít.
+> A katalógus alapértelmezett viselkedése szerint bármely felhasználó regisztrálhat bármilyen adatforrást, és bármely felhasználó törölhet bármilyen regisztrált adatforrást. Az Azure Data Catalog Standard kiadásának felügyeleti lehetőségei további lehetőségeket nyújtanak, amelyekkel az adategységek saját tulajdonba vehetők, és korlátozható az adategységeket felderíteni és törölni jogosult felhasználók köre.
 > 
 > 
 
 ## <a name="summary"></a>Összefoglalás
-Ebben az oktatóanyagban bemutattuk az Azure Data Catalog alapvető funkcióit, például a regisztrálást, a dekorálást, a felderítést és a vállalati adategységek felügyeletét. Most, hogy végrehajtotta hello oktatóanyag, a rendszer idő tooget elindult. A munkatársai figyelmét Ön és csapata támaszkodnak hello adatforrások nyilvántartására, és a fióknevet, munkatársakat toouse hello katalógus.
+Ebben az oktatóanyagban bemutattuk az Azure Data Catalog alapvető funkcióit, például a regisztrálást, a dekorálást, a felderítést és a vállalati adategységek felügyeletét. Most, hogy teljesítette az oktatóprogramot, ideje megkezdeni a használatot. Regisztrálja az adatforrásokat, amelyeket a csapatával használ, és hívja fel a munkatársai figyelmét is a katalógus használatára.
 
 ## <a name="references"></a>Referencia
-* [Hogyan tooregister adategységeket](data-catalog-how-to-register.md)
-* [Hogyan toodiscover adategységeket](data-catalog-how-to-discover.md)
-* [Hogyan tooannotate adategységeket](data-catalog-how-to-annotate.md)
-* [Hogyan toodocument adategységeket](data-catalog-how-to-documentation.md)
-* [Hogyan tooconnect toodata eszközök](data-catalog-how-to-connect.md)
-* [Hogyan toomanage adategységeket](data-catalog-how-to-manage.md)
+* [Adategységek regisztrálása](data-catalog-how-to-register.md)
+* [Adategységek felderítése](data-catalog-how-to-discover.md)
+* [Adategységek dekorálása](data-catalog-how-to-annotate.md)
+* [Adategységek dokumentálása](data-catalog-how-to-documentation.md)
+* [Adategységekhez való kapcsolódás](data-catalog-how-to-connect.md)
+* [Adategységek felügyelete](data-catalog-how-to-manage.md)
 

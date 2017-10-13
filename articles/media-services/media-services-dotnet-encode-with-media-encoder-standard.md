@@ -1,6 +1,6 @@
 ---
-title: "egy eszköz, a Media Encoder Standard használatával .NET aaaEncode |} Microsoft Docs"
-description: "Ez a témakör bemutatja, hogyan toouse .NET tooencode Media Encoder Strandard keresztül."
+title: "Egy eszköz kódolása a Media Encoder Standard .NET használatával |} Microsoft Docs"
+description: "Ez a témakör bemutatja, hogyan .NET használatával kódolása a Media Encoder Strandard keresztül."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: juliako;anilmur
-ms.openlocfilehash: 25e274c3b67168f4afc8b8ab04af2d654c9dd6e4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 929592368501c54277748bf46b2160c9058db3fb
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="encode-an-asset-with-media-encoder-standard-using-net"></a>Egy eszköz kódolása a Media Encoder Standard .NET használatával
-Kódolási feladatok olyan hello leggyakoribb feldolgozási műveletek a Media Services. Kódolási feladatok tooconvert médiafájlok hoz létre egy kódolási tooanother. Amikor kódolására, hello Media Services beépített Media Encoder is használhatja. Egy Media Services partner; által biztosított kódoló is használható harmadik féltől származó kódolók hello Azure piactéren keresztül érhetők el. 
+A kódolási feladat a Media Services egyik leggyakrabban használt művelete. A kódolási feladat a médiafájlokat alakítja át egy meghatározott kódolásból egy másikra. Amikor a kódolására, a Media Services beépített Media Encoder is használhatja. Egy Media Services partner; által biztosított kódoló is használható harmadik féltől származó kódolókkal az Azure piactéren keresztül érhetők el. 
 
-Ez a témakör bemutatja, hogyan toouse .NET tooencode az eszközök a Media Encoder Standard (MES). Media Encoder Standard segítségével konfigurálható: az egyik hello kódoló készletek leírt [Itt](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409).
+Ez a témakör bemutatja, hogyan lehet .NET segítségével a kódolása a Media Encoder Standard (MES). Media Encoder Standard segítségével konfigurálható: az egyik a kódoló készletek leírt [Itt](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409).
 
-Tooalways a forrásfájl kódolása egy adaptív sávszélességű MP4 állítsa be, és alakítsa át hello beállítása toohello kívánt formátumot hello használata javasolt [dinamikus becsomagolás](media-services-dynamic-packaging-overview.md). 
+Javasoljuk, hogy mindig kódolása egy adaptív sávszélességű MP4 állítsa be a forrásfájlokat, és a set átalakítása a kívánt formátum használatával az [dinamikus becsomagolás](media-services-dynamic-packaging-overview.md). 
 
 Ha az kimeneti adategységen tárolótitkosítást alkalmaz, konfigurálnia kell az adategység továbbítási házirendjét. További információ: [objektumtovábbítási szabályzat konfigurálása](media-services-dotnet-configure-asset-delivery-policy.md).
 
 > [!NOTE]
-> Olyan nevet, amely a kimeneti fájl első 32 karakterét hello MES előállított hello bemeneti fájl nevét. hello neve alapján hello előre definiált fájl megadottal. Például a "fájlnevet": "{Index} {bővítmény} {Basename} _". {Basename} helyébe hello hello bemeneti fájl nevének első 32 karakter.
+> MES hoz létre a kimeneti fájl a bemeneti fájl nevét az első 32 karakternél néven. A név alapján Mi az előre definiált fájlban megadott. Például a "fájlnevet": "{Index} {bővítmény} {Basename} _". {Basename} helyébe az első 32 karakter megegyezik a bemeneti fájl.
 > 
 > 
 
@@ -38,36 +38,36 @@ Ha az kimeneti adategységen tárolótitkosítást alkalmaz, konfigurálnia kell
 [Formátumok és kodekek](media-services-media-encoder-standard-formats.md)
 
 ### <a name="mes-presets"></a>MES-beállításkészletek
-Media Encoder Standard segítségével konfigurálható: az egyik hello kódoló készletek leírt [Itt](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409).
+Media Encoder Standard segítségével konfigurálható: az egyik a kódoló készletek leírt [Itt](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409).
 
 ### <a name="input-and-output-metadata"></a>Bemeneti és kimeneti metaadatok
-Amikor kódol MES használatával egy bemeneti eszköz (vagy eszközök), a kimeneti eszköz beolvasása hello: sikeres befejezését, amely feladat kódolása. hello kimeneti eszköz tartalmazza a videó, hang, miniatűröket, jegyzék, stb. alapján hello kódolási beállításkészlet használja.
+Amikor kódol MES használatával egy bemeneti eszköz (vagy eszközök), a kimeneti eszköz, a sikeres beolvasása, amely megvalósításának feladat kódolása. A kimeneti adategységen videó, hang, miniatűröket, jegyzék, stb. alapján használja a kódolási beállításkészlet tartalmazza.
 
-hello kimeneti adategységen hello bemeneti eszköz metaadatait tartalmazó fájl is tartalmaz. hello hello metaadatok XML-fájl neve van hello a következő formátumban: < asset_id > _metadata.xml (például 41114ad3-eb5e - 4c 57-8d 92-5354e2b7d4a4_metadata.xml), ahol a < asset_id > hello bemeneti eszköz hello AssetId értéke. hello sémája a bemeneti XML metaadatok leírását [Itt](media-services-input-metadata-schema.md).
+A kimeneti adategységen is tartalmaz a bemeneti eszköz metaadatait tartalmazó fájl. A metaadatok XML-fájl nevének formátuma a következő: < asset_id > _metadata.xml (például 41114ad3-eb5e - 4c 57-8d 92-5354e2b7d4a4_metadata.xml), ahol a < asset_id > a bemeneti eszköz AssetId értékét. A bemeneti XML metaadatok sémája leírt [Itt](media-services-input-metadata-schema.md).
 
-hello kimeneti adategységen hello kimeneti adategységen vonatkozó metaadatok fájlt is tartalmaz. hello hello metaadatok XML-fájl neve van hello a következő formátumban: < source_file_name > _manifest.xml (például BigBuckBunny_manifest.xml). a kimeneti metaadatok XML leírt hello sémája [Itt](media-services-output-metadata-schema.md).
+A kimeneti adategységen a kimeneti adategységen vonatkozó metaadatok fájlt is tartalmaz. A metaadatok XML-fájl nevének formátuma a következő: < source_file_name > _manifest.xml (például BigBuckBunny_manifest.xml). A kimeneti metaadatok XML leírt sémája [Itt](media-services-output-metadata-schema.md).
 
-Ha azt szeretné, tooexamine vagy hello két Metaadatfájlok, hozzon létre egy SAS-kereső, és töltse le a hello fájl tooyour helyi számítógép. Megtalálhatja például a hogyan toocreate egy SAS-kereső és a letöltési egy fájl használata hello Media Services .NET SDK-bővítmények.
+Ha meg szeretné vizsgálni a két Metaadatfájlok valamelyikét, hozzon létre egy SAS-kereső, és töltse le a helyi számítógépen. Egy példa található SAS-kereső létrehozásával, és töltse le a fájlt, a Media Services .NET SDK-bővítmények használatával.
 
 ## <a name="download-sample"></a>Minta letöltése
-Get, és futtasson egy mintát, amely bemutatja, hogyan tooencode a MES rendelkező [Itt](https://azure.microsoft.com/documentation/samples/media-services-dotnet-on-demand-encoding-with-media-encoder-standard/).
+Lekérni, és futtasson egy mintát, amely bemutatja, hogyan rendelkező a MES kódolni [Itt](https://azure.microsoft.com/documentation/samples/media-services-dotnet-on-demand-encoding-with-media-encoder-standard/).
 
 ## <a name="net-sample-code"></a>.NET mintakód
 
-a következő példakód hello Media Services .NET SDK tooperform hello feladatok a következő használja:
+Az alábbi példakód Media Services .NET SDK-t használja a következő feladatok végezhetők el:
 
 * Hozzon létre egy kódolási feladat.
-* Egy hivatkozási toohello Media Encoder Standard encoder beolvasása.
-* Adja meg a toouse hello [adaptív Streameléshez](media-services-autogen-bitrate-ladder-with-mes.md) előre. 
-* Adjon hozzá egy kódolási feladat toohello feladatban. 
-* Adjon meg bemeneti hello eszköz toobe kódolású.
-* Hozzon létre egy kimeneti eszköz, amely kódolású hello eszköz fogja tartalmazni.
-* Adjon hozzá egy esemény kezelő toocheck hello feladat előrehaladását.
-* Hello feladat küldése
+* A Media Encoder Standard encoder mutató hivatkozás beszerzése.
+* Adja meg, hogy használja a [adaptív Streameléshez](media-services-autogen-bitrate-ladder-with-mes.md) előre. 
+* Egy kódolási feladat hozzáadása a projekthez. 
+* Adja meg a bemeneti eszköz kódolni kell.
+* Hozzon létre egy kimeneti eszközt, amely tartalmazza majd a kódolt objektumhoz.
+* Adjon hozzá egy eseménykezelő, ellenőrizze a feladat előrehaladását.
+* A feladat elküldéséhez.
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>Egy Visual Studio-projekt létrehozása és konfigurálása
 
-A fejlesztési környezet kialakítása és feltöltése hello app.config fájl kapcsolatadatok, a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-use.md). 
+Állítsa be a fejlesztési környezetet, és töltse fel az app.config fájlt a kapcsolatadatokkal a [.NET-keretrendszerrel történő Media Services-fejlesztést](media-services-dotnet-how-to-use.md) ismertető dokumentumban leírtak szerint. 
 
 #### <a name="example"></a>Példa 
 
@@ -103,7 +103,7 @@ A fejlesztési környezet kialakítása és feltöltése hello app.config fájl 
                     // Get an uploaded asset.
                     var asset = _context.Assets.FirstOrDefault();
 
-                    // Encode and generate hello output using hello "Adaptive Streaming" preset.
+                    // Encode and generate the output using the "Adaptive Streaming" preset.
                     EncodeToAdaptiveBitrateMP4Set(asset);
 
                     Console.ReadLine();
@@ -113,22 +113,22 @@ A fejlesztési környezet kialakítása és feltöltése hello app.config fájl 
                 {
                     // Declare a new job.
                     IJob job = _context.Jobs.Create("Media Encoder Standard Job");
-                    // Get a media processor reference, and pass tooit hello name of hello 
-                    // processor toouse for hello specific task.
+                    // Get a media processor reference, and pass to it the name of the 
+                    // processor to use for the specific task.
                     IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-                    // Create a task with hello encoding details, using a string preset.
+                    // Create a task with the encoding details, using a string preset.
                     // In this case "Adaptive Streaming" preset is used.
                     ITask task = job.Tasks.AddNew("My encoding task",
                         processor,
                         "Adaptive Streaming",
                         TaskOptions.None);
 
-                    // Specify hello input asset toobe encoded.
+                    // Specify the input asset to be encoded.
                     task.InputAssets.Add(asset);
-                    // Add an output asset toocontain hello results of hello job. 
+                    // Add an output asset to contain the results of the job. 
                     // This output is specified as AssetCreationOptions.None, which 
-                    // means hello output asset is not encrypted. 
+                    // means the output asset is not encrypted. 
                     task.OutputAssets.AddNew("Output asset",
                         AssetCreationOptions.None);
 
@@ -189,6 +189,6 @@ A fejlesztési környezet kialakítása és feltöltése hello app.config fájl 
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="next-steps"></a>Következő lépések
-[Hogyan .NET Media Encoder Standard használatával toogenerate miniatűr](media-services-dotnet-generate-thumbnail-with-mes.md)
+[.NET Media Encoder Standard használatával miniatűr létrehozásával](media-services-dotnet-generate-thumbnail-with-mes.md)
 [Media Services kódolási áttekintése](media-services-encode-asset.md)
 

@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált föld Gorilla ügyfél |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és a föld Gorilla között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és a föld Gorilla között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,72 +13,72 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/13/2017
 ms.author: jeedes
-ms.openlocfilehash: e95a30551e636108fe22a7ab6d1827bc12d7f9a0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 744c420aa0298c59c44e645b95a716ad876752de
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-land-gorilla-client"></a>Oktatóanyag: Azure Active Directoryval integrált föld Gorilla ügyfél
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate föld Gorilla ügyfél az Azure Active Directoryval (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja föld Gorilla ügyfél integrálása az Azure Active Directory (Azure AD).
 
-Föld Gorilla ügyfél integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
+Föld Gorilla ügyfél integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
 
-- Megadhatja a hozzáférés tooLand Gorilla ügyfél, aki Azure AD-ben
-- Az Azure AD-fiókok a engedélyezheti a felhasználók tooautomatically get bejelentkezett tooLand Gorilla ügyfél (egyszeri bejelentkezés)
-- Kezelheti a fiókokat, egy központi helyen - hello Azure felügyeleti portálon
+- Megadhatja a föld Gorilla ügyfél hozzáféréssel rendelkező Azure AD-ben
+- Az Azure AD-fiókok a engedélyezheti a felhasználóknak, hogy automatikusan lekérni bejelentkezett föld Gorilla ügyfélnek (egyszeri bejelentkezés)
+- Kezelheti a fiókokat, egy központi helyen – az Azure felügyeleti portálon
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-tooconfigure az Azure AD-integráció a föld Gorilla ügyfél, a következő elemek hello kell:
+Az Azure AD-integráció konfigurálása a föld Gorilla ügyféllel, a következőkre van szükség:
 
 - Az Azure AD szolgáltatásra
 - A föld Gorilla ügyfél egyszeri bejelentkezés engedélyezve van az előfizetésben
 
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 - Ne használja az éles környezetben, ha ez nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. Hello gyűjteményből föld Gorilla ügyfél hozzáadása
+1. A gyűjteményből föld Gorilla ügyfél hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
 
-## <a name="adding-land-gorilla-client-from-hello-gallery"></a>Hello gyűjteményből föld Gorilla ügyfél hozzáadása
-tooconfigure hello integrációs föld Gorilla ügyfél, az Azure AD-be, meg kell tooadd föld Gorilla ügyfél hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-land-gorilla-client-from-the-gallery"></a>A gyűjteményből föld Gorilla ügyfél hozzáadása
+Az Azure AD integrálása a föld Gorilla ügyfél konfigurálásához kell hozzáadnia föld Gorilla ügyfél a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
 
-**tooadd föld Gorilla ügyfél hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
+**Adja hozzá a föld Gorilla ügyfél a gyűjteményből, hajtsa végre az alábbi lépéseket:**
 
-1. A hello  **[Azure felügyeleti portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
+1. Az a  **[Azure felügyeleti portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
+2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Kattintson a **Hozzáadás** hello párbeszédpanel tetején hello gombjára.
+3. Kattintson a **Hozzáadás** gombra a párbeszédpanel tetején.
 
     ![Alkalmazások][3]
 
-4. Hello keresési mezőbe, írja be a **föld Gorilla ügyfél**.
+4. Írja be a keresőmezőbe, **föld Gorilla ügyfél**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-landgorilla-tutorial/tutorial_landgorilla_search.png)
 
-5. A hello eredmények panelen válassza a **föld Gorilla ügyfél**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
+5. Az eredmények panelen válassza ki a **föld Gorilla ügyfél**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-landgorilla-tutorial/tutorial_landgorilla_addfromgallery.png)
 
@@ -86,43 +86,43 @@ tooconfigure hello integrációs föld Gorilla ügyfél, az Azure AD-be, meg kel
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD az egyszeri bejelentkezés föld Gorilla ügyfél "Britta Simon" nevű tesztfelhasználó alapján.
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello tartozó felhasználói föld Gorilla ügyfél tooa felhasználói az Azure ad-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználói hello föld Gorilla ügyfél közötti kapcsolat kapcsolatot kell létrehozni toobe.
+Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a föld Gorilla ügyfél megfelelőjére felhasználót a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a föld Gorilla ügyfél közötti kapcsolat kapcsolatot kell létrehozni.
 
-Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** föld Gorilla ügyfél.
+Ez a hivatkozás kapcsolat létesíti értéket rendeli az **felhasználónév** értékeként Azure AD-ben a **felhasználónév** föld Gorilla ügyfél.
 
-tooconfigure és föld Gorilla ügyféllel az Azure AD az egyszeri bejelentkezés tesztelése, a következő építőelemeket toocomplete hello szüksége:
+Az Azure AD egyszeri bejelentkezést a föld Gorilla ügyfél tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD az egyszeri bejelentkezés korlátozott csoporttal.
-3. **[A föld Gorilla tesztfelhasználó létrehozása](#creating-a-land-gorilla-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  - tesztelése az Azure AD az egyszeri bejelentkezés korlátozott csoporttal.
+3. **[A föld Gorilla tesztfelhasználó létrehozása](#creating-a-land-gorilla-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel hello Azure felügyeleti portálon, és a föld Gorilla ügyfélalkalmazás konfigurálása egyszeri bejelentkezéshez.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure felügyeleti portálon, és a föld Gorilla ügyfélalkalmazás konfigurálása egyszeri bejelentkezéshez.
 
-**a föld Gorilla ügyfél, az Azure AD az egyszeri bejelentkezés tooconfigure lépések hello hajtsa végre:**
+**Konfigurálása az Azure AD az egyszeri bejelentkezés föld Gorilla ügyfél, hajtsa végre az alábbi lépéseket:**
 
-1. Hello Azure felügyeleti portálon, a hello **föld Gorilla ügyfél** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure felügyeleti portálján a a **föld Gorilla ügyfél** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. A hello **egyszeri bejelentkezés** párbeszédpanel, mint **mód** kiválasztása **SAML-alapú bejelentkezés** tooenable az egyszeri bejelentkezés.
+2. A a **egyszeri bejelentkezés** párbeszédpanel, mint **mód** kiválasztása **SAML-alapú bejelentkezés** a engedélyezése az egyszeri bejelentkezéshez.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-landgorilla-tutorial/tutorial_landgorilla_samlbase.png)
 
-3. A hello **föld Gorilla ügyfél tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
+3. Az a **föld Gorilla ügyfél tartomány és az URL-címek** területen tegye a következőket:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-landgorilla-tutorial/tutorial_landgorilla_url_02.png)
 
-    a. A hello **azonosító** szövegmezőhöz típusú hello érték a következő mintát hello egyikének használatával: 
+    a. Az a **azonosító** szövegmező, írja be az értéket a következő mintát egyikének használatával: 
     
     `https://<customer domain>.landgorilla.com/` 
     
     `https://www.<customer domain>.landgorilla.com`
 
-    b. A hello **válasz URL-CÍMEN** szövegmező, adja meg a következő mintát hello egyikével URL-címe:
+    b. Az a **válasz URL-CÍMEN** szövegmező, adja meg a következő mintát egyikével URL-címe:
 
     `https://<customer domain>.landgorilla.com/simplesaml/module.php/core/authenticate.php`
 
@@ -133,9 +133,9 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel hello Azure felügyele
     `https://www.<customer domain>.landgorilla.com/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp`
 
     > [!NOTE] 
-    > Ne feledje, hogy ezek nincsenek hello valódi értékek. Tooupdate rendelkezik ezekkel az értékekkel rendelkező hello tényleges azonosítója és válasz URL-címet. Itt javasoljuk, hogy Ön toouse hello egyedi karakterlánc értéke a hello azonosítója. Ügyfél [föld Gorilla ügyfél team](https://www.landgorilla.com/support/) tooget ezeket az értékeket. 
+    > Ne feledje, hogy ezek nincsenek a valódi értékek. Akkor kell frissíteni ezeket az értékeket a tényleges azonosítóját és válasz URL-CÍMEN. Itt javasoljuk, hogy az azonosító a karakterlánc egyedi értéket használja. Ügyfél [föld Gorilla ügyfél team](https://www.landgorilla.com/support/) beolvasni ezeket az értékeket. 
 
-4. A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello XML-fájlt a számítógépen.
+4. Az a **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse az XML-fájlt a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-landgorilla-tutorial/tutorial_landgorilla_certificate.png) 
 
@@ -143,61 +143,61 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel hello Azure felügyele
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-landgorilla-tutorial/tutorial_general_400.png) 
 
-6. a föld Gorilla végén, lépjen kapcsolatba az alkalmazás teljes tooget SSO konfigurációs [föld Gorilla ügyfél-támogatási csoport](https://www.landgorilla.com/support/) és adja meg a letöltött hello **"metaadatainak XML-kódja** fájl.
+6. Szolgálattól kérhet SSO konfigurációs teljes föld Gorilla végén az alkalmazás, [föld Gorilla ügyfél-támogatási csoport](https://www.landgorilla.com/support/) és adja meg a letöltött **"metaadatok XML** fájlt.
 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-hello ebben a szakaszban célja toocreate tesztfelhasználó Britta Simon nevű hello Azure felügyeleti portálon.
+Ez a szakasz célja a tesztfelhasználó létrehozása az Azure felügyeleti portálján Britta Simon nevezik.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello **Azure Management portal**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
+1. Az a **Azure Management portal**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-landgorilla-tutorial/create_aaduser_01.png) 
 
-2. Nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó** toodisplay hello azoknak a felhasználóknak.
+2. Ugrás a **felhasználók és csoportok** kattintson **minden felhasználó** azon felhasználók listájának megjelenítéséhez.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-landgorilla-tutorial/create_aaduser_02.png) 
 
-3. Hello párbeszédpanel hello tetején kattintson **Hozzáadás** tooopen hello **felhasználói** párbeszédpanel.
+3. Kattintson a párbeszédpanel tetején **Hozzáadás** megnyitásához a **felhasználói** párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-landgorilla-tutorial/create_aaduser_03.png) 
 
-4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-landgorilla-tutorial/create_aaduser_04.png) 
 
-    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
+    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra. 
 
 ### <a name="creating-a-land-gorilla-test-user"></a>A föld Gorilla tesztfelhasználó létrehozása
 
-Adjon együttműködve [föld Gorilla támogatási csoport](https://www.landgorilla.com/support/) tooadd hello felhasználók hello föld Gorilla platform.
+Adjon együttműködve [föld Gorilla támogatási csoport](https://www.landgorilla.com/support/) a felhasználók hozzáadása a föld Gorilla platform.
     
-### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
+### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
 
-Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés saját hozzáférés tooLand Gorilla ügyfél megadásával engedélyeznie.
+Ebben a szakaszban Britta Simon saját hozzáférést biztosít a föld Gorilla ügyfél által használandó Azure egyszeri bejelentkezés engedélyezése.
 
 ![Felhasználó hozzárendelése][200] 
 
-**tooassign Britta Simon tooLand Gorilla ügyfél, hajtsa végre a lépéseket követve hello:**
+**Britta Simon hozzárendelése föld Gorilla ügyfél, hajtsa végre az alábbi lépéseket:**
 
-1. Hello Azure felügyeleti portálján, nyissa meg a hello alkalmazások megtekintése, majd toohello könyvtár nézetben keresse meg, és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Az Azure felügyeleti portálra, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Hello alkalmazások listában válassza ki a **föld Gorilla ügyfél**.
+2. Az alkalmazások listában válassza ki a **föld Gorilla ügyfél**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-landgorilla-tutorial/tutorial_landgorilla_app.png) 
 
-3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -205,7 +205,7 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés saját ho
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -215,14 +215,14 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés saját ho
 
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
 
-Hello föld Gorilla ügyfél csempe a hozzáférési Panel hello kattintáskor automatikusan bejelentkezett tooyour föld Gorilla ügyfélalkalmazás szerezheti be.
+Ha a hozzáférési Panel föld Gorilla ügyfél mozaik gombra kattint, akkor kell beolvasása automatikusan bejelentkezett a föld Gorilla ügyfélalkalmazás.
 
 
 ## <a name="additional-resources"></a>További források
 
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

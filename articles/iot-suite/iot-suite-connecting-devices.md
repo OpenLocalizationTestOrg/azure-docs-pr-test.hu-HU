@@ -1,6 +1,6 @@
 ---
-title: "egy eszköz a Windows C használatával aaaConnect |} Microsoft Docs"
-description: "Ismerteti, hogyan tooconnect egy eszköz toohello Azure IoT Suite előre konfigurált távoli figyelési megoldást igényelnek a C Windows rendszeren futó alkalmazást használ."
+title: "Csatlakozás egy eszközt a Windows C |} Microsoft Docs"
+description: "Eszköz csatlakoztatása az Azure IoT Suite előre konfigurált távoli figyelési megoldást a Windows rendszeren futó C alkalmazással ismerteti."
 services: 
 suite: iot-suite
 documentationcenter: na
@@ -15,48 +15,48 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 51041e0cec113a5cfa006ab2276096baf928eef5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d222bcbd64f288d4091acb0ecd2922b9ceee57e5
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="connect-your-device-toohello-remote-monitoring-preconfigured-solution-windows"></a>Csatlakozás az eszköz toohello távoli felügyeleti előkonfigurált megoldás (Windows)
+# <a name="connect-your-device-to-the-remote-monitoring-preconfigured-solution-windows"></a>Csatlakoztassa az eszközt a távoli felügyeleti előkonfigurált megoldás (Windows)
 [!INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
 ## <a name="create-a-c-sample-solution-on-windows"></a>C minta megoldás létrehozása a Windows rendszeren
-hello lépések bemutatják, hogyan toocreate hello távoli megfigyelési kommunikáló ügyfélalkalmazás előre konfigurált megoldás. Ez az alkalmazás a C és beépített, és futtassa a Windows.
+A következő lépések bemutatják a hozzon létre egy ügyfélalkalmazást, amely kommunikál a távoli felügyeleti előkonfigurált megoldás. Ez az alkalmazás a C és beépített, és futtassa a Windows.
 
-Hozzon létre egy alapszintű projektet a Visual Studio 2015-öt vagy a Visual Studio 2017 és hello IoT Hub eszköz ügyfél NuGet-csomagok hozzáadása:
+Hozzon létre egy alapszintű projektet a Visual Studio 2015-öt vagy a Visual Studio 2017, és az IoT Hub eszköz ügyfél NuGet-csomagok hozzáadása:
 
-1. A Visual Studio, a Visual C++ hello segítségével C Konzolalkalmazás létrehozása **Win32 Konzolalkalmazás** sablont. Név hello projekt **RMDevice**.
-2. A hello **Alkalmazásbeállítások** hello lap **Win32 alkalmazás varázsló**, ügyeljen arra, hogy **Konzolalkalmazás** van kiválasztva, és törölje a jelet **Precompiled fejléc** és **biztonságos fejlesztési Életciklussal (SDL) ellenőrzi**.
-3. A **Megoldáskezelőben**, hello fájlok stdafx.h, targetver.h és stdafx.cpp törléséhez.
-4. A **Megoldáskezelőben**, nevezze át a hello fájl RMDevice.cpp tooRMDevice.c.
-5. A **Megoldáskezelőben**, kattintson a jobb gombbal a hello **RMDevice** projektre, majd kattintson **kezelése NuGet-csomagok**. Kattintson a **Tallózás**, majd keresse meg, és telepítse a következő NuGet-csomagok hello:
+1. A Visual Studio, hozzon létre egy C-konzolalkalmazást a Visual C++ használatával **Win32 Konzolalkalmazás** sablont. Nevet a projektnek **RMDevice**.
+2. Az a **Alkalmazásbeállítások** lapját a **Win32 alkalmazás varázsló**, ügyeljen arra, hogy **Konzolalkalmazás** van kiválasztva, és törölje a jelet **Precompiled fejléc** és **biztonságos fejlesztési Életciklussal (SDL) ellenőrzi**.
+3. A **Megoldáskezelőben**, a fájlok stdafx.h, targetver.h és stdafx.cpp törléséhez.
+4. A **Megoldáskezelőben**, nevezze át a fájlt RMDevice.cpp RMDevice.c.
+5. A **Megoldáskezelőben**, kattintson a jobb gombbal a **RMDevice** projektre, majd kattintson **kezelése NuGet-csomagok**. Kattintson a **Tallózás**, majd keresse meg, és telepítse a következő NuGet-csomagok:
    
    * Microsoft.Azure.IoTHub.Serializer
    * Microsoft.Azure.IoTHub.IoTHubClient
    * Microsoft.Azure.IoTHub.MqttTransport
-6. A **Megoldáskezelőben**, kattintson a jobb gombbal a hello **RMDevice** projektre, majd kattintson **tulajdonságok** tooopen hello projekt **tulajdonságlapjain**párbeszédpanel megnyitásához. További információkért lásd: [beállításának Visual C++ projekt tulajdonságai][lnk-c-project-properties]. 
-7. Hello kattintson **Linker** mappát, majd kattintson a hello **bemeneti** tulajdonságlapján.
-8. Adja hozzá **crypt32.lib** toohello **további függőségek** tulajdonság. Kattintson a **OK** , majd **OK** újra toosave hello tulajdonság értékek.
+6. A **Solution Explorer**, kattintson a jobb gombbal a **RMDevice** projektre, majd kattintson **tulajdonságok** nyissa meg a projektet a **tulajdonságlapjain** a párbeszédpanel. További információkért lásd: [beállításának Visual C++ projekt tulajdonságai][lnk-c-project-properties]. 
+7. Kattintson a **Linker** mappát, majd kattintson a **bemeneti** tulajdonságlapján.
+8. Adja hozzá **crypt32.lib** számára a **további függőségek** tulajdonság. Kattintson a **OK** , majd **OK** újra mentésére a projekt tulajdonságok értékeit.
 
-Adja hozzá a hello Parson JSON könyvtár toohello **RMDevice** projektre, majd adja hozzá a szükséges hello `#include` utasításokat:
+A Parson JSON könyvtár hozzáadása a **RMDevice** projektre, és adja hozzá a szükséges `#include` utasításokat:
 
-1. A megfelelő mappát a számítógépén klónozni hello Parson GitHub-tárházban hello a következő parancs használatával:
+1. A megfelelő mappát a számítógépén klónozza a Parson GitHub-tárházban, a következő parancsot:
 
     ```
     git clone https://github.com/kgabis/parson.git
     ```
 
-1. Hello parson.h és parson.c fájlok másolása helyi másolatot hello hello Parson tárház tooyour **RMDevice** projekt mappájából.
+1. A parson.h és parson.c fájlok másolását a Parson tárház helyi példányát a **RMDevice** projekt mappájából.
 
-1. A Visual Studióban, kattintson a jobb gombbal hello **RMDevice** projektre, kattintson **Hozzáadás**, és kattintson a **meglévő cikk**.
+1. A Visual Studióban, kattintson a jobb gombbal a **RMDevice** projektre, kattintson **Hozzáadás**, és kattintson a **meglévő cikk**.
 
-1. A hello **meglévő elem hozzáadása** párbeszédpanelen jelölje be hello parson.h és parson.c fájlok hello **RMDevice** projekt mappájából. Kattintson a **Hozzáadás** tooadd ezek két fájlt tooyour projekt.
+1. Az a **meglévő elem hozzáadása** párbeszédpanelen válassza a parson.h és parson.c-fájlok a **RMDevice** projekt mappájából. Kattintson a **Hozzáadás** két fájlt hozzáadása a projekthez.
 
-1. A Visual Studióban nyissa meg a hello RMDevice.c fájlt. Lecseréli a meglévő hello `#include` utasítások hello a következő kódot:
+1. A Visual Studióban nyissa meg a RMDevice.c fájlt. Cserélje le a meglévő `#include` utasítások a következő kóddal:
    
     ```c
     #include "iothubtransportmqtt.h"
@@ -70,15 +70,15 @@ Adja hozzá a hello Parson JSON könyvtár toohello **RMDevice** projektre, majd
     ```
 
     > [!NOTE]
-    > Most már ellenőrizheti, hogy rendelkezik-e a projekt hello helyes függőség az épület beállítása.
+    > Most már ellenőrizheti, hogy a projekt rendelkezik-e a helyes függőség az épület beállítása.
 
 [!INCLUDE [iot-suite-connecting-code](../../includes/iot-suite-connecting-code.md)]
 
-## <a name="build-and-run-hello-sample"></a>Hozza létre és futtasson hello mintát
+## <a name="build-and-run-the-sample"></a>Hozza létre, és futtathatja a
 
-Adja hozzá a kódot tooinvoke hello **távoli\_figyelési\_futtatása** funkciót, majd létre és hello eszköz alkalmazás futtatásához.
+Adja hozzá a meghívni kívánt kódot a **távoli\_figyelési\_futtatása** működéséhez majd összeállítása, és futtassa az alkalmazást.
 
-1. Cserélje le a hello **fő** függvényt a következő kód tooinvoke hello **távoli\_figyelési\_futtatása** függvény:
+1. Cserélje le a **fő** függvény hívása a következő kóddal a **távoli\_figyelési\_futtatása** függvény:
    
     ```c
     int main()
@@ -88,9 +88,9 @@ Adja hozzá a kódot tooinvoke hello **távoli\_figyelési\_futtatása** funkci�
     }
     ```
 
-1. Kattintson a **Build** , majd **megoldás fordítása** toobuild hello alkalmazást.
+1. Kattintson a **Build** , majd **megoldás fordítása** hozható létre az eszköz alkalmazás.
 
-1. A **Megoldáskezelőben**, kattintson a jobb gombbal hello **RMDevice** projektre, kattintson **Debug**, és kattintson a **Start új példány** toorun hello minta. hello konzol üzeneteket jelenít meg, mint hello alkalmazás elküldi minta telemetriai toohello előre konfigurált megoldás, hello megoldás irányítópultja beállítani kívánt tulajdonságértékek kap, és meghívni a hello megoldás irányítópultja toomethods válaszol.
+1. A **Megoldáskezelőben**, kattintson a jobb gombbal a **RMDevice** projektre, kattintson **Debug**, és kattintson a **Start új példány** a minta futtatásához. A konzol üzeneteket jelenít meg, az alkalmazás minta telemetriai adatokat küld az előkonfigurált megoldás, a megoldás irányítópultjának beállítani kívánt tulajdonságértékek kap, és válaszol-e a megoldás irányítópultja metódusokra.
 
 [!INCLUDE [iot-suite-visualize-connecting](../../includes/iot-suite-visualize-connecting.md)]
 

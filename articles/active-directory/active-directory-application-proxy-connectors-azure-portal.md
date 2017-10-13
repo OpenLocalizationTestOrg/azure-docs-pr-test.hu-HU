@@ -1,6 +1,6 @@
 ---
-title: "külön hálózatok és helyek összekötő csoportokat használnak az Azure AD alkalmazás Proxy aaaPublishing alkalmazásokhoz |} Microsoft Docs"
-description: "Magában foglalja az hogyan toocreate és az Azure AD alkalmazásproxy összekötők csoportok kezelése."
+title: "Külön hálózatok és helyek összekötő csoportokat használnak az Azure AD alkalmazás Proxy alkalmazások közzététele |} Microsoft Docs"
+description: "Bemutatja, hogyan adhat az Azure AD alkalmazásproxy összekötők csoportok létrehozásához és kezeléséhez."
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,11 +15,11 @@ ms.date: 08/23/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: H1Hack27Feb2017; it-pro
-ms.openlocfilehash: 8c9a84b365eab28eaaeb343d4d1e2e6990537fec
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1b08a0b376cbcae8522364c9b6ef22e9c0176438
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="publish-applications-on-separate-networks-and-locations-using-connector-groups"></a>Külön hálózatok és helyek összekötő csoportokat használnak az alkalmazások közzététele
 > [!div class="op_single_selector"]
@@ -27,36 +27,36 @@ ms.lasthandoff: 10/06/2017
 > * [klasszikus Azure portál](active-directory-application-proxy-connectors.md)
 >
 
-Az Azure AD-alkalmazásproxy több és több forgatókönyvek és az alkalmazások használatát. Így hajtottunk alkalmazásnak Proxy rugalmasabb még további topológiák engedélyezésével. Alkalmazásproxy-összekötő csoportokat hozhat létre, így rendelhet adott összekötők tooserve bizonyos alkalmazásokat. Ez a funkció lehetővé teszi az további ellenőrzési és módon toooptimize Application Proxy telepítéssel. 
+Az Azure AD-alkalmazásproxy több és több forgatókönyvek és az alkalmazások használatát. Így hajtottunk alkalmazásnak Proxy rugalmasabb még további topológiák engedélyezésével. Alkalmazásproxy-összekötő csoportokat is létrehozhat, úgy, hogy egyes alkalmazások kiszolgálására adott összekötők rendelhet. Ez a funkció lehetőséget további és a Proxy telepítésének optimalizálása. 
 
-Minden alkalmazásproxy-összekötőhöz tooa összekötő csoport van hozzárendelve. Az összes hello azonos összekötő csoport működni a magas rendelkezésre állás és a terheléselosztási külön egységként toohello tartozó összekötőket. Összekötők tooa összekötő csoport tartozik. Ne hozzon létre csoportokat, ha az összekötők alapértelmezett csoport vannak. A rendszergazda új csoportok létrehozása és hozzárendelése összekötők toothem a hello Azure-portálon. 
+Minden alkalmazásproxy-összekötőhöz egy összekötő csoportjához van hozzárendelve. Az összekötő egy csoportba tartozó összes összekötőt külön egységként a magas rendelkezésre állású működni, és a terheléselosztás. Összekötő csoporthoz tartozó összes összekötőt. Ne hozzon létre csoportokat, ha az összekötők alapértelmezett csoport vannak. A rendszergazda új csoportok létrehozása és hozzárendelése összekötők őket az Azure portálon. 
 
-Minden alkalmazás tooa összekötő csoporthoz vannak rendelve. Ha nem hozza létre a csoportokat, majd az alkalmazások hozzárendelt tooa alapértelmezett csoport. De ha az összekötők csoportokba minden alkalmazás toowork megadhatja egy adott összekötőt csoporttal. Ebben az esetben csak hello összekötők csoport kiszolgálására hello alkalmazás kérésre. Ez a szolgáltatás akkor hasznos, ha az alkalmazások más-más helyen üzemeltetett. Összekötő csoportok alapján a hely, hozhat létre, így az alkalmazások mindig rendelkezésre, amelyek fizikailag Bezárás toothem összekötők által.
+Minden alkalmazás összekötő csoporthoz rendelt. Ha nem hozza létre a csoportokat, majd az alkalmazások rendelt alapértelmezett csoporthoz. De ha az összekötők csoportokba egyes alkalmazásokat, egy adott összekötőt csoport együttműködve állíthatja be. Ebben az esetben csak az adott csoport összekötők kiszolgálására kérés alapján az alkalmazás. Ez a szolgáltatás akkor hasznos, ha az alkalmazások más-más helyen üzemeltetett. Összekötő csoportok alapján a hely, hozhat létre, így az alkalmazások mindig rendelkezésre, amelyek fizikailag közel őket összekötők által.
 
 >[!TIP] 
->Ha nagy alkalmazásproxy-telepítést, ne rendeljen bármely alkalmazások toohello alapértelmezett összekötő csoport. Ezzel a módszerrel új összekötőket nem bármely élő forgalom fogadására amíg hozzá nem rendeli azokat tooan aktív összekötő csoport. Ez a konfiguráció lehetővé teszi egy tétlen üzemmódban tooput összekötők hátsó toohello alapértelmezett csoport áthelyezéssel, hogy a karbantartási a felhasználók befolyásolása nélkül végezheti el.
+>Ha nagy alkalmazásproxy-telepítést, ne rendelje az alkalmazásokat, az alapértelmezett összekötő csoporthoz. Ezzel a módszerrel új összekötőket nem bármely élő forgalom fogadására amíg hozzá nem rendeli azokat egy aktív összekötő csoporthoz. Ez a konfiguráció lehetővé teszi, amelyre az összekötők egy tétlen üzemmódban áthelyezéssel vissza az alapértelmezett csoporthoz, hogy a karbantartási a felhasználók befolyásolása nélkül végezheti el.
 
 ## <a name="prerequisites"></a>Előfeltételek
-toogroup az összekötők toomake meg arról, hogy Ön [több összekötő telepítve](active-directory-application-proxy-enable.md). Új összekötő telepítésekor automatikusan bekerül hello **alapértelmezett** összekötő csoport.
+Az összekötők csoportban, győződjön meg arról, hogy rendelkezik [több összekötő telepítve](active-directory-application-proxy-enable.md). Új összekötő telepítésekor automatikusan bekerül a **alapértelmezett** összekötő csoport.
 
 ## <a name="create-connector-groups"></a>Összekötő csoportok létrehozása
-Használja ezeket a lépéseket toocreate összekötő csoportok. 
+Ezen lépések segítségével összekötő csoportok létrehozása. 
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
 1. Válassza ki **Azure Active Directory** > **vállalati alkalmazások** > **alkalmazásproxy**.
-2. Válassza ki **új összekötő csoport**. hello új összekötő panel jelenik meg.
+2. Válassza ki **új összekötő csoport**. Az új összekötő panel jelenik meg.
 
    ![Új összekötő csoport kiválasztása](./media/active-directory-application-proxy-connectors-azure-portal/new-group.png)
 
-3. Nevezze el az új összekötő csoporthoz, majd hello legördülő menü tooselect az ebbe a csoportba tartozó összekötők használatával.
+3. Nevezze el az új összekötő csoporthoz, majd válassza ki, melyik összekötők tartozik ennek a csoportnak a legördülő menü segítségével.
 4. Kattintson a **Mentés** gombra.
 
-## <a name="assign-applications-tooyour-connector-groups"></a>Alkalmazások tooyour összekötő csoportok hozzárendelése
-Ezen lépések közzétett minden alkalmazáshoz az alkalmazásproxy. Amikor először közzététele, vagy ezek lépéseket toochange hello-hozzárendeléssel azt is meghatározhatja, bármikor tooa összekötő alkalmazáscsoport rendelhet hozzá.   
+## <a name="assign-applications-to-your-connector-groups"></a>Az összekötő csoportokhoz hozzárendelni
+Ezen lépések közzétett minden alkalmazáshoz az alkalmazásproxy. Egy alkalmazás egy összekötő csoporthoz először közzététele, vagy ezeket a lépéseket segítségével módosíthatja a hozzárendelés, bármikor rendelhet hozzá.   
 
-1. Hello kezelési irányítópult a címtáron, válassza ki **vállalati alkalmazások** > **összes alkalmazás** > tooassign tooa összekötő csoport kívánt alkalmazás hello >  **Alkalmazásproxy**.
-2. Használjon hello **összekötő csoport** legördülő menü tooselect hello csoport kívánt alkalmazás toouse hello.
-3. Válassza ki **mentése** tooapply hello módosítása.
+1. Válassza ki a kezelési irányítópult a címtáron, **vállalati alkalmazások** > **összes alkalmazás** > összekötő csoporthoz hozzárendelni kívánt alkalmazás > **Alkalmazásproxy**.
+2. Használja a **összekötő csoport** legördülő menüre kattintva válassza ki a használni kívánt alkalmazást a csoportot.
+3. Válassza ki **mentése** a módosítás alkalmazására.
 
 ## <a name="use-cases-for-connector-groups"></a>Összekötő csoportok alkalmazási helyzetei 
 
@@ -64,46 +64,46 @@ Ezen lépések közzétett minden alkalmazáshoz az alkalmazásproxy. Amikor el�
 
 ### <a name="sites-with-multiple-interconnected-datacenters"></a>A több összekapcsolt adatközpontokkal helyek
 
-Számos szervezet rendelkezik több összekapcsolt adatközpontokban. Ebben az esetben érdemes tookeep mértékű forgalom hello adatközponton belül a lehető mert kereszt-datacenter hivatkozások drága, és a lassú. Minden egyes datacenter tooserve csak hello alkalmazásokhoz hello adatközponton belül összekötők telepítése. Ez a megközelítés minimálisra csökkenti a kereszt-datacenter hivatkozások, és teljesen átlátszó élményt nyújt akkor tooyour felhasználók.
+Számos szervezet rendelkezik több összekapcsolt adatközpontokban. Ebben az esetben meg szeretné tartani az adatközponton belül mértékű forgalom lehető mert kereszt-datacenter hivatkozások drága, és a lassú. Csak az adatközponton belül a alkalmazásokhoz kiszolgálására mindkét adatközpont összekötők telepítése. Ezt a módszert minimálisra csökkenti a kereszt-datacenter hivatkozásokat, és teljes mértékben transzparens élményt nyújt a felhasználók számára.
 
 ### <a name="applications-installed-on-isolated-networks"></a>Elkülönített hálózatok a telepített alkalmazások
 
-Alkalmazások hálózatokban, amelyek nincsenek hello fő vállalati hálózat részei lehet üzemeltetni. Összekötő csoportok dedikált tooinstall összekötők elkülönített hálózatok tooalso elkülönítheti alkalmazások toohello hálózaton használható. Ez általában akkor fordul elő, ha egy külső gyártó kezeli a szervezet számára az adott alkalmazást. 
+Alkalmazások hálózatokban, amelyek nem részei a fő vállalati hálózat lehet üzemeltetni. Összekötő csoportok segítségével dedikált összekötők telepítése is különítheti el a hálózati alkalmazások elkülönített hálózatokon. Ez általában akkor fordul elő, ha egy külső gyártó kezeli a szervezet számára az adott alkalmazást. 
 
-Összekötő csoportok lehetővé teszik a akkor tooinstall dedikált ezekhez a hálózatokhoz, amely csak bizonyos alkalmazásokat, így megkönnyíti közzétenni az összekötők és biztonságosabb toooutsource Alkalmazáskezelés, toothird féltől.
+Összekötő csoportok lehetővé teszik, hogy csak bizonyos alkalmazások közzétételéhez hálózatok a dedikált összekötők telepítése egyszerűbbé és biztonságosabb, harmadik féltől alkalmazáskezelésével kihelyező tétele.
 
 ### <a name="applications-installed-on-iaas"></a>Infrastruktúra-szolgáltatási a telepített alkalmazások 
 
-Összekötő csoportok felhőalapú férhetnek hozzá az infrastruktúra-szolgáltatási a telepített alkalmazások, adja meg a közös szolgáltatás toosecure hello hozzáférés tooall hello alkalmazások. Összekötő csoportok nem további függőség létrehozása a vállalati hálózaton, vagy darabolható hello felhasználói élményt. Összekötők minden felhőbeli adatközpontot is telepíthető, és csak erre a hálózatra telepített alkalmazások kiszolgálására. Több összekötők tooachieve magas rendelkezésre állású telepítése.
+Összekötő csoportok felhőalapú férhetnek hozzá az infrastruktúra-szolgáltatási a telepített alkalmazások, adja meg egy közös szolgáltatás a hozzáférés az alkalmazásokhoz. Összekötő csoportok nem további függőség létrehozása a vállalati hálózaton, vagy a felhasználói élményt darabolható. Összekötők minden felhőbeli adatközpontot is telepíthető, és csak erre a hálózatra telepített alkalmazások kiszolgálására. Magas rendelkezésre állás biztosítása érdekében több összekötő is telepítheti.
 
-Olyan szervezet, amely több virtuális gépet csatlakoztatott tootheir saját üzemeltetett IaaS virtuális hálózati példaként érvénybe. az alkalmazottak toouse tooallow ezek az alkalmazások e magánhálózatok csatlakoztatott toohello vállalati hálózati telephelyek közötti VPN használatával. A megfelelő környezet biztosít az alkalmazottak, amelyek a helyszínen. Azonban nem lehet ideális, ha távoli alkalmazottak, mert további helyszíni infrastruktúra tooroute hozzáférés, ahogy az alábbi ábrán hello látja:
+Olyan szervezet, amely több virtuális gépet a saját IaaS csatlakozó virtuális hálózati üzemeltetett példaként érvénybe. Ahhoz, hogy az alkalmazottak ezek az alkalmazások használatát, e magánhálózatok csatlakoznak a vállalati hálózati telephelyek közötti VPN használatával. A megfelelő környezet biztosít az alkalmazottak, amelyek a helyszínen. Azonban nem lehet ideális, ha távoli alkalmazottak, mert további helyszíni infrastruktúra irányíthatja az access, az alábbi ábrán látható módon:
 
 ![Infrastruktúra-szolgáltatási hálózati AzureAD](./media/application-proxy-publish-apps-separate-networks/application-proxy-iaas-network.png)
   
-Azure AD alkalmazásproxy-összekötő csoportokkal engedélyezheti a közös szolgáltatás toosecure hello tooall alkalmazásokat a vállalati hálózaton további függőség létrehozása nélkül:
+Az Azure AD-alkalmazásproxy-összekötő csoportokkal engedélyezheti a közös szolgáltatás az összes alkalmazás-hozzáférés biztonságossá a vállalati hálózaton további függőség létrehozása nélkül:
 
 ![AzureAD infrastruktúra több felhőalapú szállítók](./media/application-proxy-publish-apps-separate-networks/application-proxy-multiple-cloud-vendors.png)
 
 ### <a name="multi-forest--different-connector-groups-for-each-forest"></a>Többerdős – különböző összekötő csoportok az egyes erdőkhöz
 
-A legtöbb ügyfelek, akik alkalmazásproxy telepítették az egyszeri bejelentkezéses (SSO) képességeket használ Kerberos által korlátozott delegálás (KCD) elvégzésével. tooachieve ez hello csatlakozó gépek kell toobe illesztett tooa tartományhoz, amely delegálhatja hello felhasználók hello alkalmazás felé. Kerberos által korlátozott Delegálás támogatja az erdők közötti képességeit. De különböző Többerdős környezetben egymás között nincs megbízhatóság rendelkező vállalatok esetében egyetlen összekötőt nem használható az összes erdőben. 
+A legtöbb ügyfelek, akik alkalmazásproxy telepítették az egyszeri bejelentkezéses (SSO) képességeket használ Kerberos által korlátozott delegálás (KCD) elvégzésével. Ennek érdekében az összekötő gépeknek el kell csatlakoztatni kell egy tartományhoz, amely delegálhatja a felhasználók az alkalmazás felé. Kerberos által korlátozott Delegálás támogatja az erdők közötti képességeit. De különböző Többerdős környezetben egymás között nincs megbízhatóság rendelkező vállalatok esetében egyetlen összekötőt nem használható az összes erdőben. 
 
-Ebben az esetben adott összekötők erdőnként is telepíthető, és a közzétett tooserve volt beállítva tooserve alkalmazások csak a felhasználók az adott erdőben hello. Minden egyes összekötőt csoport egy másik erdőben jelöli. Hello bérlő és a legtöbb hello élmény az összes erdőben van egyesített, amíg a felhasználók tootheir erdő az alkalmazásoknak az Azure AD-csoportok rendelhetők.
+Ebben az esetben adott összekötők is telepítése erdőnként, és állítsa be, csak az adott erdőben felhasználók kiszolgálására közzétett alkalmazások kiszolgálására. Minden egyes összekötőt csoport egy másik erdőben jelöli. Amíg a bérlő és a felhasználói élmény a legtöbb van egységesített összes erdőben, az erdő alkalmazásaikat, az Azure AD-csoportok használata felhasználók is hozzárendelhető.
  
 ### <a name="disaster-recovery-sites"></a>Vész-helyreállítási helyeken
 
 Kétféleképpen különböző egy vész-helyreállítási helyen, attól függően, hogy a helyek kialakításával hogyan hajthatók végre:
 
-* A vész-Helyreállítási hely épül, ahol pontosan például hello fő helye van, és rendelkezik aktív-aktív módban hello azonos hálózati és az AD-beállítások, létrehozhat hello hello vész-Helyreállítási hely hello összekötők azonos összekötő csoport hello fő helyként. Ez lehetővé teszi, hogy az Azure AD toodetect feladatátvételek meg.
-* Ha a vész-Helyreállítási hely külön hello fő helyről, létrehozhat egy másik összekötő csoportot hello vész-Helyreállítási helyen, és akár 1.) kell biztonsági mentést végző alkalmazások vagy a 2.) manuálisan átirányít az hello meglévő toohello vész-Helyreállítási összekötő alkalmazáscsoport igény szerint.
+* A vész-Helyreállítási hely épül, ahol pontosan például a fő helye és az azonos hálózati és az AD-beállítások aktív-aktív módban, ha az összekötők is létrehozhat ugyanahhoz a összekötő tartozik, mint a fő helye a vész-Helyreállítási helyen. Ez lehetővé teszi az Azure AD-észleli a feladatátvételeket meg.
+* Ha a vész-Helyreállítási hely nem azonos az elsődleges helyről, létrehozhat egy másik összekötő csoportot a vész-Helyreállítási helyen, és akár 1.) kell biztonsági mentést végző alkalmazások vagy a meglévő alkalmazáshoz, a vész-Helyreállítási összekötő csoporthoz 2) manuálisan átirányít, igény szerint.
  
 ### <a name="serve-multiple-companies-from-a-single-tenant"></a>Több vállalat kiszolgálására egyetlen bérlőtől
 
-A modell egyetlen szolgáltatót telepíti és kezeli az Azure AD tooimplement kapcsolódó több vállalatot-szolgáltatások számos különböző módja van. Összekötő csoportok segítségével hello összekötők és az alkalmazások különböző csoportok elkülönítse Üdvözöljük a rendszergazdákat. Van toohave egyetlen egyik módja, amely megfelelő kisvállalkozások, míg a hello a különböző vállalatok a saját tartomány neve és a hálózatok Azure AD-bérlő. Ez igaz is M & A forgatókönyvek és helyzetekben ahol egyetlen IT-részleg szolgál több vállalat szabályozási és üzleti okokból. 
+Nincsenek a számos különböző módja a modelltől, amelyben egyetlen szolgáltatót telepíti és kezeli az Azure AD megvalósításához kapcsolódó szolgáltatások több vállalatok esetén engedélyeket. Összekötő csoportok segítségként a rendszergazdának a elkülönítse az összekötők és az alkalmazások különböző csoportokba. Egyik módja, amely megfelelő kisvállalkozások, egy egyetlen Azure AD bérlői, míg a különböző vállalatok a saját tartomány neve és a hálózatok. Ez igaz is M & A forgatókönyvek és helyzetekben ahol egyetlen IT-részleg szolgál több vállalat szabályozási és üzleti okokból. 
 
 ## <a name="sample-configurations"></a>A minta-konfigurációk
 
-Amely is alkalmazható, például a következő összekötő-csoportok hello.
+Amely is alkalmazható, például a következő összekötő-csoportokat.
  
 ### <a name="default-configuration--no-use-for-connector-groups"></a>Alapértelmezett konfigurációja – összekötő csoportok nem használható
 
@@ -115,15 +115,15 @@ Ez a konfiguráció is elegendő a kisebb telepítésekhez és teszteket. Is, ha
  
 ### <a name="default-configuration-and-an-isolated-network"></a>Alapértelmezett konfiguráció és az elkülönített hálózat
 
-Ez a konfiguráció még hello alapértelmezett, ahol van egy adott alkalmazást, amely egy elkülönített hálózaton, például a virtuális hálózati infrastruktúra fut: 
+Ez a konfiguráció még az alapértelmezett, ahol van egy adott alkalmazást, amely egy elkülönített hálózaton, például a virtuális hálózati infrastruktúra fut: 
 
 ![AzureAD összekötő csoport](./media/application-proxy-publish-apps-separate-networks/application-proxy-sample-config-2.png)
  
 ### <a name="recommended-configuration--several-specific-groups-and-a-default-group-for-idle"></a>Ajánlott konfiguráció – több meghatározott csoportok és egy alapértelmezett csoport üresjárati
 
-a nagy és összetett konfigurációs ajánlott hello toohave hello alapértelmezett összekötő csoport, mint egy csoportot, amely lehessen az alkalmazásokat, és inaktív vagy újonnan telepített összekötők használható. Minden alkalmazás szolgáltatott egyéni összekötő csoportok használatával. Ez lehetővé teszi, hogy a fent leírt hello forgatókönyvek összes hello összetettsége.
+Az ajánlott konfiguráció bonyolult és nagy szervezetek számára, hogy az alapértelmezett összekötő csoport, amely lehessen az alkalmazásokat, és inaktív vagy újonnan telepített összekötők használható csoportként. Minden alkalmazás szolgáltatott egyéni összekötő csoportok használatával. Ez lehetővé teszi, hogy a fent leírt forgatókönyvek összetettsége.
 
-Hello az alábbi példában hello vállalati van két adatközpont, A és B, az átadott minden hely két összekötőt. Minden hely rendelkezik a különböző alkalmazások, amelyek akkor futnak. 
+Az alábbi példában a vállalati van két adatközpont, A és B, az átadott minden hely két összekötőt. Minden hely rendelkezik a különböző alkalmazások, amelyek akkor futnak. 
 
 ![AzureAD összekötő csoport](./media/application-proxy-publish-apps-separate-networks/application-proxy-sample-config-3.png)
  

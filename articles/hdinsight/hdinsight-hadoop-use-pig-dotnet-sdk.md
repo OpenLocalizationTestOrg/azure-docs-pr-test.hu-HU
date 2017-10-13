@@ -1,6 +1,6 @@
 ---
-title: a Hadoop - Azure HDInsight .NET SDK-val feladatok aaaRun Apache Pig |} Microsoft Docs
-description: Ismerje meg, hogyan toouse hello .NET SDK-val a HDInsight Hadoop toosubmit Pig feladatok tooHadoop.
+title: "Apache Pig feladatok futtatásához a .NET SDK-val a Hadoop - Azure HDInsight |} Microsoft Docs"
+description: "Megtudhatja, hogyan használhatja a .NET SDK a Hadoop-elküldeni a Pig-feladatokhoz és a hdinsight Hadoop."
 services: hdinsight
 documentationcenter: .net
 author: Blackmist
@@ -16,38 +16,38 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/15/2017
 ms.author: larryfr
-ms.openlocfilehash: 1d4ceebd7c168372d23fe29a088f04676686de30
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e40d152821b36852c447d5a3adfd39114edbbace
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="run-pig-jobs-using-hello-net-sdk-for-hadoop-in-hdinsight"></a>A hdinsight Hadoop hello .NET SDK használatával a Pig-feladatok futtatása
+# <a name="run-pig-jobs-using-the-net-sdk-for-hadoop-in-hdinsight"></a>A .NET SDK használatával a hdinsight Hadoop Pig feladatok futtatása
 
 [!INCLUDE [pig-selector](../../includes/hdinsight-selector-use-pig.md)]
 
-Ismerje meg, hogyan toouse hello .NET SDK a Hadoop toosubmit Apache Pig feladatok tooHadoop on Azure HDInsight.
+Megtudhatja, hogyan használható a .NET SDK a Hadoop on Azure HDInsight Hadoop Apache Pig feladatok elküldéséhez.
 
-HDInsight .NET SDK hello .NET ügyféloldali kódtáraknál, amely megkönnyíti a HDInsight-fürtökkel a .NET-könnyebb toowork biztosít. Pig lehetővé teszi toocreate MapReduce műveletek modellezési adatátalakítást sorozata alapján. Ez a dokumentum elsajátíthatja, hogyan feladat toouse alapvető C# alkalmazás toosubmit a Pig-tooan HDInsight-fürthöz.
+A HDInsight .NET SDK .NET ügyféloldali kódtáraknál, amely megkönnyíti a HDInsight-fürtök a .NET-együttműködve biztosítja. A Pig hozhat létre MapReduce műveletek modellezési adatátalakítást sorozata alapján. Ebből a dokumentumból megismerheti, hogyan elküldeni a Pig feladatot egy HDInsight-fürthöz egy alapszintű C#-alkalmazás használatával.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-toocomplete hello cikkben leírt lépéseket, hello következő kell.
+A cikkben leírt lépéseket a következőkre lesz szüksége.
 
 * (A HDInsight Hadoop) Azure HDInsight-fürtök (vagy a Windows vagy Linux-alapú).
 
   > [!IMPORTANT]
-  > Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+  > A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 * A Visual Studio 2012, 2013, 2015-öt vagy 2017.
 
-## <a name="create-hello-application"></a>Hello alkalmazás létrehozása
+## <a name="create-the-application"></a>Az alkalmazás létrehozása
 
-hello HDInsight .NET SDK biztosít a .NET ügyféloldali kódtáraknál, így azokat könnyebben toowork a .NET-HDInsight-fürtökkel.
+A HDInsight .NET SDK biztosít a .NET ügyféloldali kódtáraknál, így azokat könnyebben működéséhez a .NET-HDInsight-fürtökkel.
 
-1. A hello **fájl** elemét a Visual Studióban, válassza ki **új** majd **projekt**.
+1. Az a **fájl** elemét a Visual Studióban, válassza ki **új** majd **projekt**.
 
-2. Hello új projekt Ha típusa, vagy jelölje be a következő hello értékeket:
+2. Az új projektbe futnak írja be vagy válassza ki a következő értékeket:
 
    | Tulajdonság | Érték |
    | ------ | ------ |
@@ -55,15 +55,15 @@ hello HDInsight .NET SDK biztosít a .NET ügyféloldali kódtáraknál, így az
    | Sablon | Konzolalkalmazás |
    | Név | SubmitPigJob |
 
-3. Kattintson a **OK** toocreate hello projekt.
+3. A projekt létrehozásához kattintson az **OK** gombra.
 
-4. A hello **eszközök** menüjében válassza **Kódtárcsomag-kezelő** vagy **Nuget-Csomagkezelő**, majd válassza ki **Csomagkezelő konzol**.
+4. Az a **eszközök** menüjében válassza **Kódtárcsomag-kezelő** vagy **Nuget-Csomagkezelő**, majd válassza ki **Csomagkezelő konzol**.
 
-5. tooinstall hello .NET SDK csomagot, a következő parancs hello használata:
+5. A .NET SDK-csomagok telepítéséhez használja a következő parancsot:
 
         Install-Package Microsoft.Azure.Management.HDInsight.Job
 
-6. A Megoldáskezelőben kattintson duplán a **Program.cs** tooopen azt. Cserélje le a meglévő kódot hello hello következő.
+6. A Megoldáskezelőben kattintson duplán a **Program.cs** való megnyitásához. Cserélje le a meglévő kódot a következő.
 
     ```csharp
     using Microsoft.Azure.Management.HDInsight.Job;
@@ -83,14 +83,14 @@ hello HDInsight .NET SDK biztosít a .NET ügyféloldali kódtáraknál, így az
 
             static void Main(string[] args)
             {
-                System.Console.WriteLine("hello application is running ...");
+                System.Console.WriteLine("The application is running ...");
 
                 var clusterCredentials = new BasicAuthenticationCloudCredentials { Username = ExistingClusterUsername, Password = ExistingClusterPassword };
                 _hdiJobManagementClient = new HDInsightJobManagementClient(ExistingClusterUri, clusterCredentials);
 
                 SubmitPigJob();
 
-                System.Console.WriteLine("Press ENTER toocontinue ...");
+                System.Console.WriteLine("Press ENTER to continue ...");
                 System.Console.ReadLine();
             }
 
@@ -107,30 +107,30 @@ hello HDInsight .NET SDK biztosít a .NET ügyféloldali kódtáraknál, így az
                                 DUMP RESULT;"
                 };
 
-                System.Console.WriteLine("Submitting hello Pig job toohello cluster...");
+                System.Console.WriteLine("Submitting the Pig job to the cluster...");
                 var response = _hdiJobManagementClient.JobManagement.SubmitPigJob(parameters);
-                System.Console.WriteLine("Validating that hello response is as expected...");
+                System.Console.WriteLine("Validating that the response is as expected...");
                 System.Console.WriteLine("Response status code is " + response.StatusCode);
-                System.Console.WriteLine("Validating hello response object...");
+                System.Console.WriteLine("Validating the response object...");
                 System.Console.WriteLine("JobId is " + response.JobSubmissionJsonResponse.Id);
             }
         }
     }
     ```
 
-7. toostart hello alkalmazás, nyomja meg az **F5**.
+7. Az alkalmazás elindításához nyomja le az **F5**.
 
-8. tooexit hello alkalmazás, nyomja meg az **ENTER**.
+8. Kilép az alkalmazásból, nyomja le az **ENTER**.
 
 ## <a name="summary"></a>Összefoglalás
 
-Ahogy látja, a .NET SDK for Hadoop hello lehetővé teszi toocreate .NET alkalmazások elküldeni a Pig feladatot tooan HDInsight-fürt, amely hello feladat állapotának figyelésére.
+Ahogy látja, a .NET SDK a Hadoop lehetővé teszi egy HDInsight-fürt Pig feladatok elküldéséhez .NET-alkalmazások létrehozása, és figyelheti a feladat állapotát.
 
 ## <a name="next-steps"></a>Következő lépések
 
 Információk a hdinsight Pig: [a Pig használata a hdinsight Hadoop](hdinsight-use-pig.md).
 
-A HDInsight Hadoop használatával kapcsolatos további információkért tekintse meg a következő dokumentumok hello:
+A HDInsight Hadoop használatával kapcsolatos további információkért lásd a következő dokumentumokat:
 
 * [A Hive használata a hdinsight Hadoop](hdinsight-use-hive.md)
 * [A HDInsight Hadoop MapReduce használata](hdinsight-use-mapreduce.md)

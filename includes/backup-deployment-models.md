@@ -1,4 +1,4 @@
-hello Azure Backup szolgáltatás tárolók - hello Backup-tárolóban és a Recovery Services-tároló hello két típusa van. hello biztonsági mentés tárolójának első kapott. Recovery Services-tároló hello majd mentén toosupport kibontva hello Resource Manager üzembe helyezések kapott. A Microsoft a Resource Managerrel történő üzembe helyezés használatát javasolja, ha nem kifejezetten Klasszikus üzembe helyezésre van szükség.
+Az Azure Backup szolgáltatás két típusú tárolóval rendelkezik – a Backup-tárolóval és a Recovery Services-tárolóval. A Backup-tároló vált elsőként elérhetővé. Utána következett a Recovery Services-tároló a kibővített, Resource Managerrel történő üzembe helyezések támogatása érdekében. A Microsoft a Resource Managerrel történő üzembe helyezés használatát javasolja, ha nem kifejezetten Klasszikus üzembe helyezésre van szükség.
 
 | **Üzembe helyezés** | **Portál** | **Tároló** |
 | --- | --- | --- |
@@ -6,7 +6,7 @@ hello Azure Backup szolgáltatás tárolók - hello Backup-tárolóban és a Rec
 | Resource Manager |[Azure](https://portal.azure.com) |Recovery Services |
 
 > [!NOTE]
-> A Backup-tárolók nem tudják megvédeni a Resource Manager által üzembe helyezett megoldásokat. Azonban egy helyreállítási szolgáltatások segítségével tároló tooprotect classically telepített kiszolgálók és virtuális gépek.  
+> A Backup-tárolók nem tudják megvédeni a Resource Manager által üzembe helyezett megoldásokat. A klasszikus módon üzembe helyezett kiszolgálók és virtuális gépek védelmére Recovery Services-tárolót használhat.  
 > 
 > 
 

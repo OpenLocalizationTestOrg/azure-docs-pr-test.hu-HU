@@ -1,8 +1,8 @@
 ---
-title: "aaaAzure esemény hubok dokumentációja – oktatóanyagok API-referencia |} Microsoft Docs"
-description: "Ismerje meg, hogyan toouse Event Hubs tooingest több millió esemény másodpercenként csatlakoztatva az IoT-eszközök és az alkalmazások platformok széles körét."
+title: "Az Azure Event Hubs dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogy az Event Hubs hogyan használható másodpercenként több milliónyi esemény feldolgozására, amelyek a csatlakoztatott IoT-eszközökből és alkalmazásokból érkeznek, számos különböző platformról."
 services: event-hubs
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: b75a4f958f66afdbca2fc612e2359df241164818
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d24139de04b36044bbb88d0e9b9a1feb6d8edfa8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="event-hubs-documentation"></a>Event Hubs – dokumentáció
 
-Megtudhatja, hogyan toouse Event Hubs toocollect és események másodpercenként több millió csatlakoztatott IoT-eszközök és alkalmazások kezelése. Az oktatóanyagok, API-referenciák, és egyéb dokumentációk bemutatják, hogy a számos platformon hogyan állíthat be méretezhető eseményfeldolgozást.
+Ismerje meg, hogy az Event Hubs hogyan használható másodpercenként több milliónyi esemény begyűjtésére és kezelésére, amelyek a csatlakoztatott IoT-eszközökből és alkalmazásokból érkeznek. Az oktatóanyagok, API-referenciák, és egyéb dokumentációk bemutatják, hogy a számos platformon hogyan állíthat be méretezhető eseményfeldolgozást.
 
 <ul class="panelContent cardsFTitle">
      <li>
@@ -70,7 +70,7 @@ Megtudhatja, hogyan toouse Event Hubs toocollect és események másodpercenkén
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Hello Event Hubs programozási útmutató az első lépései</h3>
+                        <h3>Event Hubs-programozási útmutató – első lépések</h3>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@ Megtudhatja, hogyan toouse Event Hubs toocollect és események másodpercenkén
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Ismerkedés az Event Hubs hello Azure-portál használatával</h3>
+                        <h3>Bevezetés az Event Hubs Azure Portallal való használatába</h3>
                     </div>
                 </div>
             </div>

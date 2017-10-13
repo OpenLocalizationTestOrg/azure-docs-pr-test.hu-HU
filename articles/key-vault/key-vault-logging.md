@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Key Vault naplózása |} Microsoft Docs"
-description: "Használja az Azure Key Vault használatának első lépéseit az oktatóanyag toohelp naplózása."
+title: "Az Azure Key Vault naplózása | Microsoft Docs"
+description: "Ez az oktatóanyag segít megismerkedni az Azure Key Vault naplózásával."
 services: key-vault
 documentationcenter: 
 author: cabailey
@@ -14,88 +14,88 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 07/19/2017
 ms.author: cabailey
-ms.openlocfilehash: 38a173297948748bef45e3d857c06b50b3e21e74
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e9a4f16f048833dab49f7db79892fe47a5aeff37
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-key-vault-logging"></a>Az Azure Key Vault naplózása
-Az Azure Key Vault a legtöbb régióban elérhető. További információkért lásd: hello [Key Vault díjszabása](https://azure.microsoft.com/pricing/details/key-vault/).
+Az Azure Key Vault a legtöbb régióban elérhető. További információ: [A Key Vault díjszabása](https://azure.microsoft.com/pricing/details/key-vault/).
 
 ## <a name="introduction"></a>Bevezetés
-Miután létrehozott egy vagy több kulcstároló naplófájljainak, érdemes toomonitor használt, és ki hogyan és mikor történjen a kulcs-tárolók. Ehhez engedélyezze a Key Vault naplózását, amely egy Ön által megadott Azure-tárfiókba menti az adatokat. A megadott tárfiókhoz automatikusan létrehozunk egy **insights-logs-auditevent** nevű tárolót, amelyet több kulcstároló naplófájljainak tárolására is használhat.
+Egy vagy több kulcstároló létrehozása után célszerű figyelni, hogy hogyan, mikor és kik férnek hozzá a kulcstárolókhoz. Ehhez engedélyezze a Key Vault naplózását, amely egy Ön által megadott Azure-tárfiókba menti az adatokat. A megadott tárfiókhoz automatikusan létrehozunk egy **insights-logs-auditevent** nevű tárolót, amelyet több kulcstároló naplófájljainak tárolására is használhat.
 
-Elérheti a naplóinformációkat legfeljebb, hello kulcs követő 10 percen kulcstároló műveletei. A legtöbb esetben azonban ez nem fog ennyi ideig tartani.  Hogy működik-e tooyou toomanage a tárfiók naplófájljait:
+A kulcstároló műveletei után legfeljebb 10 perccel már elérheti a naplóinformációkat. A legtöbb esetben azonban ez nem fog ennyi ideig tartani.  A tárfiók naplófájljait Önnek kell kezelnie:
 
-* A naplók az Azure szabványos hozzáférés-vezérlési módszerek toosecure használatára korlátozza, hogy ki férhet hozzá.
-* Törölje a megjeleníteni nem kívánt tookeep a tárfiókban lévő naplókat.
+* Az Azure szabványos hozzáférés-vezérlési módszereivel korlátozhatja a naplókhoz való hozzáférést, így megvédheti azokat.
+* Törölje azokat a naplókat, amelyeket nem kíván megőrizni a tárfiókban.
 
-Az Azure Key Vault naplózása, toocreate használatának első lépéseit az oktatóanyag toohelp használja a tárfiók naplózását, és hello összegyűjtött naplóinformációk értelmezésével.  
+Ez az oktatóanyag segít megismerkedni az Azure Key Vault naplózásával, a tárfiók létrehozásával, a naplózás engedélyezésével és az összegyűjtött naplóinformációk értelmezésével.  
 
 > [!NOTE]
-> Ez az oktatóanyag nem tartalmazza a hogyan toocreate tárolók, a kulcsok vagy titkos kulcs. Ezekről a [Get started with Azure Key Vault](key-vault-get-started.md) (Bevezetés az Azure Key Vault használatába) című cikkben találhat információt. A platformfüggetlen parancssori felületre vonatkozó utasításokat megtekintheti [ebben a megfelelő oktatóanyagban](key-vault-manage-with-cli2.md).
+> Az oktatóanyag nem tartalmazza a kulcstárolók, a kulcsok és titkos kulcsok létrehozásának lépéseit. Ezekről a [Get started with Azure Key Vault](key-vault-get-started.md) (Bevezetés az Azure Key Vault használatába) című cikkben találhat információt. A platformfüggetlen parancssori felületre vonatkozó utasításokat megtekintheti [ebben a megfelelő oktatóanyagban](key-vault-manage-with-cli2.md).
 >
-> Jelenleg nem konfigurálhatja az Azure Key Vault hello Azure-portálon. Ehelyett kövesse ezeket az Azure PowerShell-utasításokat.
+> Az Azure Key Vault jelenleg nem konfigurálható az Azure-portálon. Ehelyett kövesse ezeket az Azure PowerShell-utasításokat.
 >
 >
 
 Áttekintést az Azure Key Vaultról a [What is Azure Key Vault?](key-vault-whatis.md) (Mi az az Azure Key Vault?) című cikkben találhat.
 
 ## <a name="prerequisites"></a>Előfeltételek
-toocomplete ebben az oktatóanyagban rendelkeznie kell a következő hello:
+Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
 
 * Egy meglévő kulcstároló.  
-* Az Azure PowerShell **legalább 1.0.1-es verziója**. Azure PowerShell tooinstall és rendelje hozzá azt az Azure-előfizetéssel, lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview). Ha már telepítette az Azure PowerShell, és nem tudja hello verzió hello Azure PowerShell-konzolon, írja be a `(Get-Module azure -ListAvailable).Version`.  
+* Az Azure PowerShell **legalább 1.0.1-es verziója**. Az Azure PowerShell telepítéséről és az Azure-előfizetéssel való társításáról további információt a [How to install and configure Azure PowerShell](/powershell/azure/overview) (Az Azure PowerShell telepítése és konfigurálása) című cikkben találhat. Ha már telepítette az Azure PowerShellt, de nem tudja, melyik verziót, írja be az Azure PowerShell-konzolon az alábbi parancsot: `(Get-Module azure -ListAvailable).Version`.  
 * A Key Vault naplóihoz elegendő tárhely az Azure-ban.
 
-## <a id="connect"></a>Csatlakozás tooyour előfizetések
-Indítson el egy Azure PowerShell-munkamenetet, és jelentkezzen be Azure-fiók tooyour hello a következő parancsot:  
+## <a id="connect"></a>Csatlakozás az előfizetésekhez
+Indítson el egy Azure PowerShell-munkamenetet, és jelentkezzen be az Azure-fiókjába az alábbi paranccsal:  
 
     Login-AzureRmAccount
 
-Hello előugró böngészőablakban adja meg a Azure-fiók felhasználói nevét és jelszavát. Az Azure PowerShell beolvassa hello előfizetéseket, amelyek társítva ezzel a fiókkal, és alapértelmezés szerint, használja az elsőt hello.
+Az előugró böngészőablakban adja meg az Azure-fiókja felhasználónevét és jelszavát. Az Azure PowerShell megkeresi az összes olyan előfizetést, amely ehhez a fiókhoz van rendelve, és alapértelmezés szerint kiválasztja az elsőt.
 
-Ha több előfizetéssel rendelkezik, lehetséges, hogy toospecify, de a használt toocreate melyiket az Azure Key Vault. Írja be a fiókhoz toosee hello előfizetések a következő hello:
+Ha több előfizetése van, előfordulhat, hogy meg kell adnia azt, amelyikkel az Azure Key Vault tárolóját létrehozta. Írja be az alábbi parancsot a fiókhoz tartozó előfizetések megjelenítéséhez:
 
     Get-AzureRmSubscription
 
-Ezt követően toospecify hello előfizetés, amely a kulcstartót akkor lesz naplózás, típusa van társítva:
+Ezt követően a naplózandó kulcstárolóhoz tartozó előfizetés megadásához írja be a következő parancsot:
 
     Set-AzureRmContext -SubscriptionId <subscription ID>
 
 > [!NOTE]
-> Ez egy nagyon fontos lépés, és különösen hasznosnak bizonyulhat, ha több előfizetés tartozik a fiókjához. Egy hiba tooregister Microsoft.Insights is megjelenhet, ha ez a lépés kimarad.
+> Ez egy nagyon fontos lépés, és különösen hasznosnak bizonyulhat, ha több előfizetés tartozik a fiókjához. Egy, a Microsoft.Insights-regisztrációról szóló hibaüzenetet kaphat, ha kihagyja ezt a lépést.
 >   
 >
 
-Azure PowerShell konfigurálásával kapcsolatos további információkért lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview).
+További információ az Azure PowerShell konfigurálásáról: [How to install and configure Azure PowerShell](/powershell/azure/overview) (Az Azure PowerShell telepítése és konfigurálása).
 
 ## <a id="storage"></a>Új tárfiók létrehozása a naplóknak
-Bár a naplók használhat meglévő tárfiókot, mi létrehozunk egy új tárfiókot, amely dedikált tooKey Vault naplóinak lesz. Kényelmi kell toospecify ezt később, azt fogja tárolni hello részletek egy változóba nevű **sa**.
+Bár meglévő tárfiókot is használhat a naplózáshoz, mi létrehozunk egy újat, amely kimondottan a Key Vault naplóinak tárolására szolgál majd. Ezt később kell csak megadni, így addig a vonatkozó részleteket egy **sa** nevű változóban tároljuk.
 
-Az egyszerű, a is használjuk hello ugyanabban az erőforráscsoportban, mint a kulcstároló tartalmazó hello. A hello [használatába bevezető oktatóanyagot](key-vault-get-started.md), ez az erőforráscsoport neve **ContosoResourceGroup** és toouse hello Kelet-Ázsia helyét is. Az alábbi értékeket helyettesítse a sajátjainak megfelelőkkel:
+Az egyszerű használat érdekében ugyanazt az erőforráscsoportot használjuk, amelyben a kulcstároló is található. Az [oktatóanyagból](key-vault-get-started.md) kiindulva az erőforráscsoport neve **ContosoResourceGroup** lesz, a helye pedig továbbra is Kelet-Ázsia. Az alábbi értékeket helyettesítse a sajátjainak megfelelőkkel:
 
     $sa = New-AzureRmStorageAccount -ResourceGroupName ContosoResourceGroup -Name contosokeyvaultlogs -Type Standard_LRS -Location 'East Asia'
 
 
 > [!NOTE]
-> Ha úgy dönt, hogy a meglévő tárfiók toouse, azt kell használnia hello ugyanahhoz az előfizetéshez, mint a kulcstartót és hello Resource Manager üzembe helyezési modellben, nem pedig hello klasszikus telepítési modellt kell használnia.
+> Ha egy meglévő tárfiók használata mellett dönt, azt ugyanazzal az előfizetéssel kell használnia, mint a kulcstárolót, és a Resource Manager-alapú üzemi modellt kell alkalmaznia, nem a klasszikust.
 >
 >
 
-## <a id="identify"></a>Hello a naplók kulcstárolójának azonosítása
-Az oktatóanyagban a kulcstároló neve lett **ContosoKeyVault**, így az is, amelyek neve és a tárolás a hello részletek nevű változó toouse **kv**:
+## <a id="identify"></a>A naplók kulcstárolójának azonosítása
+Az oktatóanyagban a kulcstároló neve **ContosoKeyVault** volt, így a továbbiakban is azt használjuk, a részleteket pedig egy **kv** nevű változóban tároljuk:
 
     $kv = Get-AzureRmKeyVault -VaultName 'ContosoKeyVault'
 
 
 ## <a id="enable"></a>Naplózás engedélyezése
-tooenable Key Vault naplózását, hello Set-AzureRmDiagnosticSetting parancsmaggal fogjuk használni, az új tárfiók és a key vault létrehozott hello változók együtt. Hello is be **-engedélyezve** túl jelzőt**$true** hello kategória tooAuditEvent (hello egyetlen kategóriája Key Vault naplózása), és:
+A Key Vault naplózását a Set-AzureRmDiagnosticSetting parancsmaggal és az újonnan létrehozott tárfiók és kulcstároló változóival engedélyezheti. Az **-Enabled** jelzőt emellett **$true**, a kategóriát pedig AuditEvent (a Key Vault naplózásának egyetlen kategóriája) értékre állítjuk:
 
     Set-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId -StorageAccountId $sa.Id -Enabled $true -Categories AuditEvent
 
-hello kimenet tartalmazza:
+Ennek a kimenete az alábbiakat tartalmazza:
 
     StorageAccountId   : /subscriptions/<subscription-GUID>/resourceGroups/ContosoResourceGroup/providers/Microsoft.Storage/storageAccounts/ContosoKeyVaultLogs
     ServiceBusRuleId   :
@@ -108,30 +108,30 @@ hello kimenet tartalmazza:
         Days    : 0
 
 
-Ez megerősíti, hogy naplózás engedélyezve van a kulcstartót információk tooyour storage-fiók mentése.
+Ezzel megerősíti, hogy a naplózás be lett kapcsolva a kulcstárolóban, így az információk a tárfiókba lesznek mentve.
 
-Opcionálisan beállíthat egy megtartási házirendet a naplóihoz, így a régebbi naplófájlok automatikusan törlődni fognak. Például a megőrzési házirend használatával be **- RetentionEnabled** túl jelzőt**$true** és **- RetentionInDays** paraméter túl**90** , hogy a naplófájlok 90 napnál régebbi automatikusan törölve lesznek.
+Opcionálisan beállíthat egy megtartási házirendet a naplóihoz, így a régebbi naplófájlok automatikusan törlődni fognak. Például állítsa be a megtartási házirendet a **-RetentionEnabled** jelző használatával a **$true** értékre, majd állítsa a **-RetentionInDays** paramétert **90** értékre, így a 90 napnál régebbi naplófájlok automatikusan törlődnek.
 
     Set-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId -StorageAccountId $sa.Id -Enabled $true -Categories AuditEvent -RetentionEnabled $true -RetentionInDays 90
 
 Mi kerül naplózásra?
 
 * Minden hitelesített REST API-kérés naplózásra kerül, beleértve a hozzáférési engedélyekből, rendszerhibákból vagy hibás kérésekből adótó sikertelen kérelmeket is.
-* Műveletek hello kulcsot tároló magát, beleértve a létrehozás, törlés, beállítás kulcstároló hozzáférési szabályzatainak, és címkéket, mint a kulcstároló tulajdonságainak frissítése.
-* Műveletek a kulcsok és titkos hello a key vaultban, amely tartalmazza a létrehozása, módosítása vagy törlése a kulcsok vagy titkos; Műveletek, például a bejelentkezési, győződjön meg arról, titkosítás, visszafejtése, burkolja és kulcsok kicsomagolásához, titkos kulcsok, listában kulcsok és titkos kulcsok és a verzióját.
+* A magán a kulcstárolón elvégzett műveletek, beleértve a létrehozást, az eltávolítást, a kulcstároló hozzáférési szabályzatainak beállítását és a kulcstároló tulajdonságainak (például címkéinek) frissítését.
+* A kulcstároló kulcsain és titkos kulcsain elvégzett műveletek, beleértve a létrehozást, a módosítást és a kulcsok vagy titkos kulcsok törlését; az olyan műveletek, mint az aláírás, az ellenőrzés, a titkosítás, a visszafejtés, a kulcsok be- és kicsomagolása, a titkos kulcsok lekérése, valamint a kulcsok és titkos kulcsok és azok verzióinak listázása.
 * A 401-es választ eredményező, nem hitelesített kérelmek. Ilyenek például azok a kérelmek, amelyek nem rendelkeznek tulajdonosi jogkivonattal, helytelen formátumúak vagy lejártak, vagy érvénytelen a jogkivonatuk.  
 
 ## <a id="access"></a>A naplók elérése
-Kulcstároló naplófájljainak tárolása a hello **insights-logs-auditevent** hello storage-fiók a megadott tárolóhoz. toolist valamennyi hello BLOB a tárolóban található írja be:
+A kulcstároló naplóit a rendszer a megadott tárfiók **insights-logs-auditevent** nevű tárolójában tárolja. A tároló összes blobjának megjelenítéséhez írja be az alábbi parancsot:
 
-Először hozzon létre egy változót hello tároló neve. Ez fogja használni a teljes hello lépésein végighaladva hello többi részétől.
+Először hozzon létre egy változót a tároló nevéhez. A rendszer ezt használja majd az útmutató többi részében.
 
     $container = 'insights-logs-auditevent'
 
-toolist valamennyi hello BLOB a tárolóban található írja be:
+A tároló összes blobjának megjelenítéséhez írja be az alábbi parancsot:
 
     Get-AzureStorageBlob -Container $container -Context $sa.Context
-hello kimeneti valami hasonló toothis fog kinézni:
+A kimenet ehhez hasonló lesz:
 
 **Tároló URI-ja: https://contosokeyvaultlogs.blob.core.windows.net/insights-logs-auditevent**
 
@@ -144,13 +144,13 @@ hello kimeneti valami hasonló toothis fog kinézni:
 
 **resourceId=/SUBSCRIPTIONS/361DA5D4-A47A-4C79-AFDD-XXXXXXXXXXXX/RESOURCEGROUPS/CONTOSORESOURCEGROUP/PROVIDERS/MICROSOFT.KEYVAULT/VAULTS/CONTOSOKEYVAULT/y=2016/m=01/d=04/h=18/m=00/PT1H.json****
 
-Mivel a kimenetből látható, hello blobok egy elnevezési konvenciója: **resourceId =<ARM resource ID>/y =<year>/m =<month>/d =<day of month>/h =<hour>/m =<minute>/fájlnév.JSON**
+Ahogyan a kimenetből látható, a blobok az alábbi elnevezési módszert alkalmazzák: **erőforrás-azonosító=<ARM resource ID>/é=<year>/h=<month>/n=<day of month>/ó=<hour>/p=<minute>/fájlnév.json**
 
-hello dátum- és időértékek az UTC használata.
+A dátum- és időértékek az UTC hivatkozási időzónát használják.
 
-Mivel a hello ugyanazt a tárfiókot több erőforrást használt toocollect naplókat, hello hello blob nevének teljes erőforrás-azonosító nem tooaccess nagyon hasznos vagy szükséges letöltési csak hello blobokat. De előtte még a nem, azt először érintünk hogyan toodownload összes hello blobokat.
+Mivel ugyanazt a tárfiókot több erőforrásból gyűjtött naplók tárolására is használhatja, a blob nevének teljes erőforrás-azonosítója segít abban, hogy csak a szükséges blobokat töltse le, illetve csak azokhoz férjen hozzá. Előtte azonban nézzük meg, hogyan tölthető le az összes blob.
 
-Először hozzon létre egy mappát toodownload hello blobokat. Példa:
+Elsőként hozzon létre egy mappát, amelybe letölti a blobokat. Példa:
 
     New-Item -Path 'C:\Users\username\ContosoKeyVaultLogs' -ItemType Directory -Force
 
@@ -158,28 +158,28 @@ Majd kérje le az összes blob listáját:
 
     $blobs = Get-AzureStorageBlob -Container $container -Context $sa.Context
 
-Ebben a listában, a "Get-AzureStorageBlobContent" toodownload hello blobok átadhatja a célként megadott mappába:
+A listát a „Get-AzureStorageBlobContent” paranccsal töltse le a mappába:
 
     $blobs | Get-AzureStorageBlobContent -Destination 'C:\Users\username\ContosoKeyVaultLogs'
 
-A második parancs futtatásakor hello  **/**  hello blob nevének határolója hozzon létre egy teljes mapparendszert hello célmappát, és ez a struktúra lesz használt toodownload tároló hello blobok és -fájlok formájában.
+A második parancs futtatásakor a blob nevének **/** elválasztója egy teljes mapparendszert létrehoz a célmappában, és a program ebben a rendszerben tárolja majd fájlokként a letöltött blobokat.
 
-tooselectively blobok letöltéséhez használjon helyettesítő karaktereket. Példa:
+A blobok egyenkénti letöltéséhez használjon helyettesítő elemeket. Példa:
 
-* Ha több kulcstárolóval rendelkezik, és toodownload naplók csak egy kulcstartót, csak a contosokeyvault3 nevűhöz szeretne:
+* Ha több kulcstárolóval rendelkezik, de csak a CONTOSOKEYVAULT3 nevűhöz szeretne naplókat letölteni:
 
         Get-AzureStorageBlob -Container $container -Context $sa.Context -Blob '*/VAULTS/CONTOSOKEYVAULT3
-* Ha több erőforráscsoportban, és szeretné toodownload naplók csak egy erőforráscsoport, `-Blob '*/RESOURCEGROUPS/<resource group name>/*'`:
+* Ha több erőforráscsoporttal rendelkezik, de csak egyhez szeretne naplókat letölteni, használja a `-Blob '*/RESOURCEGROUPS/<resource group name>/*'` parancsot:
 
         Get-AzureStorageBlob -Container $container -Context $sa.Context -Blob '*/RESOURCEGROUPS/CONTOSORESOURCEGROUP3/*'
-* Programmal toodownload összes hello napló 2016. január hello hónap, `-Blob '*/year=2016/m=01/*'`:
+* Ha 2016 januárjának összes naplóját szeretné letölteni, használja a `-Blob '*/year=2016/m=01/*'` parancsot:
 
         Get-AzureStorageBlob -Container $container -Context $sa.Context -Blob '*/year=2016/m=01/*'
 
-Most, hogy most már készen áll a hello megnézi toostart naplózza. Mielőtt ezt a két paramétert a Get-azurermdiagnosticsetting parancshoz, hogy szükség lehet a tooknow azonban:
+Most már készen áll a naplók tartalmának megtekintésére. Mielőtt azonban belekezdenénk, érdemes feljegyeznie ezt a két paramétert a Get-AzureRmDiagnosticSetting parancshoz:
 
-* a kulcstároló erőforrásához tartozó diagnosztikai beállítások tooquery hello állapota:`Get-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId`
-* a kulcstároló erőforrásához toodisable naplózás:`Set-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId -StorageAccountId $sa.Id -Enabled $false -Categories AuditEvent`
+* A kulcstároló erőforrásához tartozó diagnosztikai beállítások állapotának lekérdezése:`Get-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId`
+* A kulcstároló erőforrása naplózásának letiltása:`Set-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId -StorageAccountId $sa.Id -Enabled $false -Categories AuditEvent`
 
 ## <a id="interpret"></a>A Key Vault naplóinak értelmezése
 Az egyes blobok JSON-blobként, szöveges formában vannak tárolva. Íme egy példa a `Get-AzureRmKeyVault -VaultName 'contosokeyvault'` parancsot futtató naplóbejegyzésre:
@@ -206,31 +206,31 @@ Az egyes blobok JSON-blobként, szöveges formában vannak tárolva. Íme egy p�
     }
 
 
-hello következő táblázatban hello mezők neveit és leírásait.
+Az alábbi táblázat a mezők neveit és leírásait sorolja fel.
 
 | Mező neve | Leírás |
 | --- | --- |
 | time |Dátum és idő (UTC). |
-| resourceId |Az Azure Resource Manager szerinti erőforrás-azonosító. A Key Vault-naplók esetében mindig ez hello Key Vault erőforrás-azonosító. |
-| operationName |Hello művelet, a következő tábla hello ismertetett neve. |
-| operationVersion |Ez a hello hello ügyfél által kért REST API-verzió. |
-| category |A Key Vault-naplók AuditEvent érték hello egyetlen, érhető el. |
+| resourceId |Az Azure Resource Manager szerinti erőforrás-azonosító. A Key Vault-naplók esetében mindig ez a Key Vault erőforrás-azonosítója. |
+| operationName |A művelet neve, ahogy a következő táblázat is mutatja. |
+| operationVersion |Az ügyfél által kért REST API verziója. |
+| category |A Key Vault naplóihoz az AuditEvent az egyetlen elérhető érték. |
 | resultType |A REST API-kérelem eredménye. |
 | resultSignature |A HTTP-állapot. |
-| resultDescription |Hello eredmény, ha elérhető további leírása. |
-| durationMs |Idő, ezredmásodpercben megadva tooservice hello REST API-kérelem. Hello hálózati késés, ez nem vonatkozik, ezért mérni a hello ügyféloldalon hello idő nem egyeznek meg a megadott idő. |
-| callerIpAddress |Hello kérelmet leadó hello ügyfél IP-címe. |
-| correlationId |Egy nem kötelező GUID, amely az ügyfél hello teljen toocorrelate ügyféloldali naplók és a Szolgáltatásoldali (Key Vault) naplók. |
-| identity |Hello tokenben hello REST API-kérelem meghozásakor szereplő identitás. Ez általában egy „felhasználó”, „egyszerű szolgáltatásnév” vagy „felhasználó + alkalmazás-azonosító”, az Azure PowerShell-parancsmagok által eredményezett kérelmekhez hasonlóan. |
-| properties |Ez a mező alapján hello művelettől (operationName) kapcsolatos különféle információk fogja tartalmazni. A legtöbb esetben ügyféladatokat (hello sztringjét hello ügyfél), tartalmaz pontos REST API-kérelem URI-azonosítója és a HTTP-állapotkód: hello. Továbbá amikor egy kérelem (például a KeyCreate vagy a VaultGet) eredményeként ad vissza egy objektumot is tartalmaz hello kulcs URI-JÁT ("id"), a tároló URI vagy a titkos kulcs URI. |
+| resultDescription |Az eredmény további leírása, amennyiben elérhető. |
+| durationMs |A REST API-kérelem végrehajtásának ideje ezredmásodpercben. Ebbe nincs beleszámítva a hálózati késés, így az ügyféloldalon mért idő ettől eltérhet. |
+| callerIpAddress |A kérelmet leadó ügyfél IP-címe. |
+| correlationId |Egy nem kötelező GUID, amelyet az ügyfél alkalmazhat az ügyféloldali és a szolgáltatásoldali (Key Vault) naplók egyeztetéséhez. |
+| identity |A REST API-kérelemhez megadott tokenben szereplő identitás. Ez általában egy „felhasználó”, „egyszerű szolgáltatásnév” vagy „felhasználó + alkalmazás-azonosító”, az Azure PowerShell-parancsmagok által eredményezett kérelmekhez hasonlóan. |
+| properties |Ez a mező a művelettől (operationName) függően más-más adatokat tartalmaz. A legtöbb esetben ügyféladatokat (az ügyfél által használt felhasználói ügynök sztringjét), a REST API-kérelem pontos URI-ját és a HTTP-állapot kódját tartalmazza. Ezenkívül ha egy objektumot a rendszer egy kérelem (például a KeyCreate vagy a VaultGet) eredményeként ad vissza, a kulcs URI-ját („id”), a tároló URI-ját vagy a titkos kulcs URI-ját is tartalmazza. |
 
-Hello **operationName** mező értékei ObjectVerb formátumúak. Példa:
+Az **operationName** mező értékei ObjectVerb formátumúak. Példa:
 
-* Minden kulcstárolón elvégzett művelet hello "tárolóban`<action>`" formátumú, például `VaultGet` és `VaultCreate`.
-* Minden kulcson elvégzett művelet hello "kulcs`<action>`" formátumú, például `KeySign` és `KeyList`.
-* Minden titkos kulcson elvégzett művelet hello "Secret`<action>`" formátumú, például `SecretGet` és `SecretListVersions`.
+* Minden kulcstárolón elvégzett művelet „Vault`<action>`” formátumú, például `VaultGet` és `VaultCreate`.
+* Minden kulcson elvégzett művelet „Key`<action>`” formátumú, például `KeySign` és `KeyList`.
+* Minden titkos kulcson elvégzett művelet „Secret`<action>`” formátumú, például `SecretGet` és `SecretListVersions`.
 
-hello a következő táblázat felsorolja a hello operationname műveleteket és a megfelelő REST API-parancsot.
+Az alábbi táblázat az operationName műveleteket és a megfelelő REST API-parancsokat listázza.
 
 | operationName | REST API-parancs |
 | --- | --- |
@@ -253,8 +253,8 @@ hello a következő táblázat felsorolja a hello operationname műveleteket és
 | KeyEncrypt |[Titkosítás kulccsal](https://msdn.microsoft.com/en-us/library/azure/dn878060.aspx) |
 | KeyDecrypt |[Visszafejtés kulccsal](https://msdn.microsoft.com/en-us/library/azure/dn878097.aspx) |
 | KeyUpdate |[Kulcs frissítése](https://msdn.microsoft.com/en-us/library/azure/dn903616.aspx) |
-| KeyList |[Egy tároló kulcsainak hello listája](https://msdn.microsoft.com/en-us/library/azure/dn903629.aspx) |
-| KeyListVersions |[A kulcs verzióinak listázása hello](https://msdn.microsoft.com/en-us/library/azure/dn986822.aspx) |
+| KeyList |[Egy tároló kulcsainak listázása](https://msdn.microsoft.com/en-us/library/azure/dn903629.aspx) |
+| KeyListVersions |[Kulcs verzióinak listázása](https://msdn.microsoft.com/en-us/library/azure/dn986822.aspx) |
 | SecretSet |[Titkos kulcs létrehozása](https://msdn.microsoft.com/en-us/library/azure/dn903618.aspx) |
 | SecretGet |[Titkos kulcs lekérése](https://msdn.microsoft.com/en-us/library/azure/dn903633.aspx) |
 | SecretUpdate |[Titkos kulcs frissítése](https://msdn.microsoft.com/en-us/library/azure/dn986818.aspx) |
@@ -264,13 +264,13 @@ hello a következő táblázat felsorolja a hello operationname műveleteket és
 
 ## <a id="loganalytics"></a>A Log Analytics használata
 
-A Naplóelemzési tooreview naplózza az Azure Key Vault AuditEvent hello Azure Key Vault megoldás is használhatja. További információt, beleértve a hogyan tooset, ez: [Naplóelemzési megoldás az Azure Key Vault](../log-analytics/log-analytics-azure-key-vault.md). A cikk utasításokat is tartalmaz, ha toomigrate hello régi Key Vault-megoldásból által kínált hello Naplóelemzési előzetes, amelyen először átirányítva a naplók tooan Azure Storage-fiók, és ott Naplóelemzési tooread konfigurálva kell.
+A Log Analyticsben az Azure Key Vault megoldással áttekintheti az Azure Key Vault AuditEvent-naplókat. További információért és a beállítás módjának ismertetéséért olvassa el [az Azure Key Vault megoldás a Log Analyticsben](../log-analytics/log-analytics-azure-key-vault.md) történő használatát ismertető cikket. Ez a cikk útmutatást biztosít a Log Analytics előzetes verziójában elérhető, korábbi Key Vault megoldásról történő migráláshoz is, amelynek során először a naplókat kellett átirányítani egy Azure Storage-fiókra, majd konfigurálni a Log Analyticset, hogy onnan lehessen olvasni.
 
 ## <a id="next"></a>Következő lépések
 Az Azure Key Vault webalkalmazásban való használatáról a [Use Azure Key Vault from a Web Application](key-vault-use-from-web-application.md) (Az Azure Key Vault webalkalmazással való használata) című témakörben találhat útmutatást.
 
-Programozási hivatkozások: [hello Azure Key Vault fejlesztői útmutatója](key-vault-developers-guide.md).
+Programozási hivatkozások: [Azure Key Vault developer’s guide](key-vault-developers-guide.md) (Az Azure Key Vault fejlesztői útmutatója).
 
 Az Azure Key Vaultra vonatkozó Azure PowerShell 1.0-parancsmagok listáját az [Azure Key Vault Cmdlets](/powershell/module/azurerm.keyvault/#key_vault) (Az Azure Key Vault parancsmagjai) című témakörben találja.
 
-Kulcs rotációjával és az Azure Key Vault naplózása napló oktatóanyag, lásd: [hogyan end tooend a Key Vault toosetup kulcs elforgatás és naplózási](key-vault-key-rotation-log-monitoring.md).
+A kulcsrotálással és a naplózással kapcsolatos oktatóanyag: [How to setup Key Vault with end to end key rotation and auditing](key-vault-key-rotation-log-monitoring.md) (A Key Vault beállítása átfogó kulcsrotálással és naplózással).

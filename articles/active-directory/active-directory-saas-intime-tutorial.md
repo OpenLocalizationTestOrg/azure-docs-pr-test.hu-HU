@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált InTime |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és InTime között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és InTime között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,109 +14,109 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: jeedes
-ms.openlocfilehash: 63652f0f098aeac95e89a2500b46a18440e34698
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4bb22c92ad7f6963be6ca15073f7f01da99ba2bb
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-intime"></a>Oktatóanyag: Azure Active Directoryval integrált InTime
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate InTime az Azure Active Directoryval (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja InTime integrálása az Azure Active Directory (Azure AD).
 
-InTime integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
+InTime integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
 
-- Az Azure AD hozzáférési tooInTime rendelkező szabályozhatja.
-- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooInTime (egyszeri bejelentkezés) a saját Azure AD-fiókok.
-- A fiók egyetlen központi helyen - hello Azure-portálon kezelheti.
+- Az Azure AD, aki hozzáfér InTime szabályozhatja.
+- Engedélyezheti a felhasználóknak, hogy automatikusan beolvasása bejelentkezett InTime (egyszeri bejelentkezés) számára a saját Azure AD-fiókok.
+- A fiók egyetlen központi helyen – az Azure-portálon kezelheti.
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-az Azure AD integrálása InTime tooconfigure, kell a következő elemek hello:
+Konfigurálása az Azure AD-integrációs InTime, a következőkre van szükség:
 
 - Az Azure AD szolgáltatásra
 - Egy InTime egyszeri bejelentkezés engedélyezve van az előfizetés
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, akkor [egy hónapos próbaverzió beszerzése](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. Hello gyűjteményből InTime hozzáadása
+1. A gyűjteményből InTime hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-intime-from-hello-gallery"></a>Hello gyűjteményből InTime hozzáadása
-tooconfigure hello integrációja InTime az Azure AD-be, meg kell tooadd InTime hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-intime-from-the-gallery"></a>A gyűjteményből InTime hozzáadása
+Az Azure AD integrálása a InTime konfigurálásához kell hozzáadnia InTime a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
 
-**tooadd InTime hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
+**A gyűjteményből InTime hozzáadásához hajtsa végre az alábbi lépéseket:**
 
-1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
+1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
 
-    ![hello Azure Active Directory gomb][1]
+    ![Az Azure Active Directory gomb][1]
 
-2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
+2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
 
-    ![hello vállalati alkalmazások panel][2]
+    ![A vállalati alkalmazások panel][2]
     
-3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
+3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
 
-    ![hello új alkalmazás gomb][3]
+    ![Az új alkalmazás gomb][3]
 
-4. Hello keresési mezőbe, írja be a **InTime**, jelölje be **InTime** eredmény panelen kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
+4. Írja be a keresőmezőbe, **InTime**, jelölje be **InTime** eredmény panelen kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
 
-    ![Hello eredménylistában InTime](./media/active-directory-saas-intime-tutorial/tutorial_intime_addfromgallery.png)
+    ![Az eredménylistában InTime](./media/active-directory-saas-intime-tutorial/tutorial_intime_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés tesztelése és konfigurálása
 
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon" nevű tesztfelhasználó alapján InTime.
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó InTime tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello InTime közötti kapcsolat kapcsolatot kell létrehozni toobe.
+Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó InTime a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a InTime közötti kapcsolat kapcsolatot kell létrehozni.
 
-InTime, rendelje hozzá hello hello értékének **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
+InTime, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
 
-tooconfigure és az Azure AD az egyszeri bejelentkezés InTime-teszthez, a következő építőelemeket toocomplete hello szüksége:
+Az Azure AD egyszeri bejelentkezést a InTime tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configure-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Hozzon létre egy Azure AD-teszt felhasználó](#create-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-3. **[InTime tesztfelhasználó létrehozása](#create-a-intime-test-user)**  -toohave egy megfelelője a Britta Simon a InTime, amely a felhasználó csatolt toohello az Azure AD ábrázolása.
-4. **[Rendelje hozzá az Azure AD hello tesztfelhasználó](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-5. **[Egyszeri bejelentkezés tesztelése](#test-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configure-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Hozzon létre egy Azure AD-teszt felhasználó](#create-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+3. **[InTime tesztfelhasználó létrehozása](#create-a-intime-test-user)**  - való Britta Simon valami InTime, amely csatolva van a felhasználó az Azure AD-ábrázolását.
+4. **[Rendelje hozzá az Azure AD-teszt felhasználó](#assign-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+5. **[Egyszeri bejelentkezés tesztelése](#test-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD az egyszeri bejelentkezés az Azure-portálon hello engedélyezése, és az InTime alkalmazásban egyszeri bejelentkezés beállítása.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az InTime alkalmazásban.
 
-**az Azure AD tooconfigure egyszeri bejelentkezést a InTime, hajtsa végre a lépéseket követve hello:**
+**Konfigurálása az Azure AD az egyszeri bejelentkezés InTime, hajtsa végre az alábbi lépéseket:**
 
-1. Az Azure portál, a hello hello **InTime** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portálon a a **InTime** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés kapcsolat konfigurálása][4]
 
-2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
+2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
  
     ![Egyszeri bejelentkezés párbeszédpanel](./media/active-directory-saas-intime-tutorial/tutorial_intime_samlbase.png)
 
-3. A hello **InTime tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
+3. Az a **InTime tartomány és az URL-címek** területen tegye a következőket:
 
     ![Az egyszeri bejelentkezés információkat inTime tartomány- és URL-címek](./media/active-directory-saas-intime-tutorial/tutorial_intime_url.png)
 
-    a. A hello **bejelentkezési URL-cím** szövegmezőhöz típus hello URL-címe:`https://intime6.intimesoft.com/mytime/login/login.xhtml`
+    a. Az a **bejelentkezési URL-cím** szövegmező, írja be az URL-cím:`https://intime6.intimesoft.com/mytime/login/login.xhtml`
 
-    b. A hello **azonosító** szövegmezőhöz típus hello URL-címe:`https://auth.intimesoft.com/auth/realms/master`
+    b. Az a **azonosító** szövegmező, írja be az URL-cím:`https://auth.intimesoft.com/auth/realms/master`
 
-4. A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello metaadatait tartalmazó fájl a számítógépen.
+4. Az a **SAML-aláíró tanúsítványa** területen kattintson **metaadatainak XML-kódja** és mentse a metaadat-fájlt a számítógépen.
 
-    ![hello tanúsítvány letöltési hivatkozását](./media/active-directory-saas-intime-tutorial/tutorial_intime_certificate.png) 
+    ![A tanúsítvány letöltési hivatkozását](./media/active-directory-saas-intime-tutorial/tutorial_intime_certificate.png) 
 
-5. A InTime alkalmazás hello SAML helyességi feltételek vár egy meghatározott formátumban, és hogy tooadd egyéni attribútum hozzárendelések tooyour SAML token attribútumok konfigurációt igényel. a következő képernyőkép hello ezen mutat egy példát. az alapértelmezett érték hello **felhasználói azonosító** van **user.userprincipalname** InTime vár a toobe hello a felhasználó e-mail címét leképezve, de. Az adott használhatja **user.mail** hello lista attribútumot, vagy használja a szervezet konfiguráció alapján hello megfelelő attribútum értéke 
+5. A InTime alkalmazás a SAML helyességi feltételek egy meghatározott formátumban, amelyek megkövetelik olyan egyéni attribútum-leképezésekhez hozzáadása a SAML-jogkivonat attribútumok konfigurációs vár. Az alábbi képernyőfelvételen látható egy példa a. Az alapértelmezett érték **felhasználói azonosító** van **user.userprincipalname** de InTime vár a képezhető le a felhasználó e-mail címmel. Az adott használhatja **user.mail** attribútumot a listából, vagy használja a megfelelő attribútum értéket a szervezet konfiguráció alapján 
 
     ![Attribútum konfigurálása](./media/active-directory-saas-intime-tutorial/tutorial_intime_attribute.png)
 
@@ -124,77 +124,77 @@ Ebben a szakaszban az Azure AD az egyszeri bejelentkezés az Azure-portálon hel
 
     ![Egyszeri bejelentkezés Mentés gombra konfigurálása](./media/active-directory-saas-intime-tutorial/tutorial_general_400.png)
 
-7. A hello **InTime konfigurációs** kattintson **InTime konfigurálása** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **Sign-Out URL-címet, és a SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**
+7. Az a **InTime konfigurációs** kattintson **InTime konfigurálása** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **Sign-Out URL-címet, és a SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**
 
     ![InTime konfiguráció](./media/active-directory-saas-intime-tutorial/tutorial_intime_configure.png) 
 
-8. tooconfigure egyszeri bejelentkezést a **InTime** oldalon kell letöltött toosend hello **metaadatainak XML-kódja**, **Sign-Out URL-címet, és a SAML-alapú egyszeri bejelentkezési URL-címe** túl[InTime támogatási csoport](mailto:hdollard@intimesoft.com). Maguk állítják be ezt a beállítást toohave hello SAML SSO kapcsolat mindkét oldalán megfelelően beállítva.
+8. Egyszeri bejelentkezés konfigurálása **InTime** oldalon kell küldeniük a letöltött **metaadatainak XML-kódja**, **Sign-Out URL-címet, és a SAML-alapú egyszeri bejelentkezési URL-címe** való [ InTime támogatási csoport](mailto:hdollard@intimesoft.com). Akkor állítsa be ezt a beállítást, hogy a SAML SSO kapcsolat mindkét oldalán megfelelően beállítva.
 
 > [!TIP]
-> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Hozzon létre egy Azure AD-teszt felhasználó
 
-hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
+Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
 
    ![Hozzon létre egy Azure AD-teszt felhasználó][100]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello Azure-portálon, hello bal oldali ablaktáblában kattintson a hello **Azure Active Directory** gombra.
+1. Az Azure portálon a bal oldali ablaktáblán kattintson a **Azure Active Directory** gombra.
 
-    ![hello Azure Active Directory gomb](./media/active-directory-saas-intime-tutorial/create_aaduser_01.png)
+    ![Az Azure Active Directory gomb](./media/active-directory-saas-intime-tutorial/create_aaduser_01.png)
 
-2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok**, és kattintson a **minden felhasználó**.
+2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok**, és kattintson a **minden felhasználó**.
 
-    ![hello "Felhasználók és csoportok" és "Minden felhasználó" hivatkozások](./media/active-directory-saas-intime-tutorial/create_aaduser_02.png)
+    ![A "felhasználók és csoportok" és "Minden felhasználó" hivatkozások](./media/active-directory-saas-intime-tutorial/create_aaduser_02.png)
 
-3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello hello tetején **minden felhasználó** párbeszédpanel megnyitásához.
+3. Megnyitásához a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** tetején a **minden felhasználó** párbeszédpanel megnyitásához.
 
-    ![hello Hozzáadás gomb](./media/active-directory-saas-intime-tutorial/create_aaduser_03.png)
+    ![A Hozzáadás gombra.](./media/active-directory-saas-intime-tutorial/create_aaduser_03.png)
 
-4. A hello **felhasználói** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello:
+4. Az a **felhasználói** párbeszédpanelen hajtsa végre az alábbi lépéseket:
 
-    ![hello felhasználó párbeszédpanel](./media/active-directory-saas-intime-tutorial/create_aaduser_04.png)
+    ![A felhasználó párbeszédpanel](./media/active-directory-saas-intime-tutorial/create_aaduser_04.png)
 
-    a. A hello **neve** mezőbe írja be **BrittaSimon**.
+    a. Az a **neve** mezőbe írja be **BrittaSimon**.
 
-    b. A hello **felhasználónév** mezőben, a felhasználó Britta Simon típus hello e-mail címét.
+    b. Az a **felhasználónév** mezőbe írja be a felhasználó e-mail címe az Britta Simon.
 
-    c. Jelölje be hello **megjelenítése jelszó** jelölje be a jelölőnégyzetet, és jegyezze fel a hello hello érték **jelszó** mezőbe.
+    c. Válassza ki a **megjelenítése jelszó** jelölje be a jelölőnégyzetet, és jegyezze fel a megjelenített érték a **jelszó** mezőbe.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="create-a-intime-test-user"></a>InTime tesztfelhasználó létrehozása
 
-Ebben a szakaszban egy InTime Britta Simon nevű felhasználót hoz létre. Együttműködve [InTime támogatási csoport](mailto:hdollard@intimesoft.com) tooadd hello felhasználók hello InTime platform. Felhasználók kell létrehoznia és aktiválni az egyszeri bejelentkezés használata előtt.
+Ebben a szakaszban egy InTime Britta Simon nevű felhasználót hoz létre. Együttműködve [InTime támogatási csoport](mailto:hdollard@intimesoft.com) a felhasználók hozzáadása a InTime platform. Felhasználók kell létrehoznia és aktiválni az egyszeri bejelentkezés használata előtt.
 
-### <a name="assign-hello-azure-ad-test-user"></a>Rendelje hozzá az Azure AD hello tesztfelhasználó számára
+### <a name="assign-the-azure-ad-test-user"></a>Rendelje hozzá az Azure AD-teszt felhasználó
 
-Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooInTime megadásával engedélyeznie.
+Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés InTime Azure egyszeri bejelentkezéshez használandó.
 
-![Hello felhasználói szerepkör hozzárendelése][200] 
+![A felhasználói szerepkör hozzárendelése][200] 
 
-**tooassign Britta Simon tooInTime, hajtsa végre a következő lépéseket hello:**
+**Britta Simon hozzárendelése InTime, hajtsa végre az alábbi lépéseket:**
 
-1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Hello alkalmazások listában válassza ki a **InTime**.
+2. Az alkalmazások listában válassza ki a **InTime**.
 
-    ![hello InTime hello alkalmazások listáját a hivatkozás](./media/active-directory-saas-intime-tutorial/tutorial_intime_app.png)  
+    ![Az alkalmazások listáját a InTime hivatkozásra](./media/active-directory-saas-intime-tutorial/tutorial_intime_app.png)  
 
-3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
 
-    ![hello "Felhasználók és csoportok" hivatkozásra.][202]
+    ![A "Felhasználók és csoportok" hivatkozásra][202]
 
 4. Kattintson a **Hozzáadás** gombra. Válassza ki **felhasználók és csoportok** a **hozzáadása hozzárendelés** párbeszédpanel.
 
-    ![hello hozzárendelés hozzáadása panelen][203]
+    ![A hozzárendelés hozzáadása panelen][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -202,13 +202,13 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáfé
     
 ### <a name="test-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
 
-Hello InTime csempére kattintva a hozzáférési Panel hello, hello bejelentkezési oldalt a InTime alkalmazás kapja meg. Kattintson a hello **bejelentkezési** gombra, majd IdPs sorozata gombok listája megjelenik. Kattintson a **IDP neve** által megadott [InTime támogatási csoport](mailto:hdollard@intimesoft.com) toologin az InTime alkalmazásba. A hozzáférési Panel kapcsolatos további információkért lásd: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md). 
+Ha InTime csempére kattint a hozzáférési panelen, a bejelentkezési oldalt a InTime alkalmazás kapja meg. Kattintson a **bejelentkezési** gombra, majd IdPs sorozata gombok listája megjelenik. Kattintson a **IDP neve** által megadott [InTime támogatási csoport](mailto:hdollard@intimesoft.com) használatát a bejelentkezéshez az InTime alkalmazásba. A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>További források
 
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

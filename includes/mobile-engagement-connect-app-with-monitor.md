@@ -1,11 +1,11 @@
-Ez a szakasz bemutatja, hogyan tooconnect az alkalmazás toohello Mobile Engagement háttérrendszeréhez a Mobile Engagement hello segítségével a valós idejű figyelési funkció. 
+Ez a szakasz bemutatja, hogyan csatlakoztathatja az alkalmazást a Mobile Engagement háttérrendszeréhez a Mobile Engagement valós idejű megfigyelés funkciójának használatával. 
 
-1. Az a **Azure Mobile Engagement** fiókot, győződjön meg arról, hogy hello hello app toomonitor kívánja és kezelése lehetőséget választja **a Mobile Engagement** portálon. Keresse meg a Mobile Engagement portál tooyour hello kattintva **Engage** hello alsó gombra. 
+1. Az **Azure Mobile Engagement** fiókban győződjön meg arról, hogy a **Mobile Engagement** portálon felügyelni és kezelni kívánt alkalmazás van kiválasztva. Lépjen a Mobile Engagement portálra a lap alján található **Engage** (Aktiválás) gombra kattintva. 
    
      ![](./media/mobile-engagement-connect-app-with-monitor/engage-button.png)
-2. Ekkor megnyílik a Mobile Engagement portál hello. Ha hello figyelő lapon nincs bejelölve, kattintson a hello **figyelő**.
-3. hello figyelőjének értéke a kész tooshow meg valós időben, az alkalmazást elindító bármilyen eszközről.
-4. Most indítsa el az alkalmazást. Hello figyelőben egyetlen munkamenet Ha integráció helyes, ami azt jelenti, hogy az alkalmazás most már csatlakoztatott toohello Mobile Engagement háttérrendszeréhez, és küld adatokat tooit kell megjelennie.  
+2. Ekkor megnyílik a Mobile Engagement portál. Ha a **Monitor** (Figyelő) lap nincs kijelölve, kattintson rá.
+3. A figyelő most már készen áll az alkalmazást elindító eszközök valós idejű megjelenítésére.
+4. Most indítsa el az alkalmazást. Ha az integráció helyes, a figyelőben egyetlen munkamenet jelenik meg. Ez azt jelenti, hogy az alkalmazás csatlakoztatva van a Mobile Engagement háttérrendszeréhez, és adatokat továbbít felé.  
    
      ![](./media/mobile-engagement-connect-app-with-monitor/monitor.png)
 

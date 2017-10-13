@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooUse Twilio hang-és SMS (Ruby) |} Microsoft Docs"
-description: "Ismerje meg, hogyan toomake telefonhívást, majd küldje el a SMS üzenet hello Twilio API szolgáltatásban az Azure-on. Kódminták Ruby."
+title: "Hang-és SMS (Ruby) Twilio használata |} Microsoft Docs"
+description: "Útmutató a telefonhívás, és a Twilio API szolgáltatás SMS üzenet küldése az Azure-on. Kódminták Ruby."
 services: 
 documentationcenter: ruby
 author: devinrader
@@ -14,80 +14,80 @@ ms.devlang: ruby
 ms.topic: article
 ms.date: 11/25/2014
 ms.author: MicrosoftHelp@twilio.com
-ms.openlocfilehash: aca5ccb4663ff03c9c1f39c848469415f06dfb45
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 69e50e7fe0e1f302e96c309878b8dea6869dff4a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toouse-twilio-for-voice-and-sms-capabilities-in-ruby"></a>Hogyan tooUse Twilio hang-és Ruby SMS képességei
-Ez az útmutató ismerteti, hogyan tooperform leggyakoribb programozási feladatok hello Twilio API az Azure-szolgáltatás. a tárgyalt hello forgatókönyvekben szerepel, így telefonhívást, és egy rövid üzenetet szolgáltatás (SMS) üzenet küldésekor. A Twilio- és hang- és SMS használata az alkalmazások további információkért lásd: hello [lépések](#NextSteps) szakasz.
+# <a name="how-to-use-twilio-for-voice-and-sms-capabilities-in-ruby"></a>Hang-és SMS képességei Ruby Twilio használata
+Ez az útmutató bemutatja, hogyan Azure a Twilio API szolgáltatás közös programozási feladatok elvégzéséhez. A tárgyalt forgatókönyvekben szerepel, így a telefonhívás, és egy rövid üzenetet szolgáltatás (SMS) üzenet küldésekor. A Twilio- és hang- és SMS használata az alkalmazások további információkért lásd: a [lépések](#NextSteps) szakasz.
 
 ## <a id="WhatIs"></a>Mi az, hogy a Twilio?
-Twilio egy telefonos webszolgáltatás API, amely lehetővé teszi, hogy a meglévő webes nyelv és képességek toobuild hang- és SMS-alkalmazások. Twilio egy olyan külső szolgáltatás (nem az Azure szolgáltatásai és nem Microsoft-termékek).
+Twilio egy telefonos webszolgáltatás API, amely lehetővé teszi, hogy a meglévő webes nyelv és képességeik felhasználásával hang- és SMS alkalmazások készítéséhez. Twilio egy olyan külső szolgáltatás (nem az Azure szolgáltatásai és nem Microsoft-termékek).
 
-**Twilio hang** lehetővé teszi, hogy az alkalmazások toomake és telefonhívásokat fogadja. **Twilio SMS** lehetővé teszi, hogy az alkalmazások toomake és az SMS-üzeneteket fogadni. **Twilio-ügyfél** lehetővé teszi az alkalmazások tooenable hang kommunikációt meglévő hálózati kapcsolatok használata esetén, beleértve a mobil kapcsolatok.
+**Twilio hang** lehetővé teszi, hogy az alkalmazások és a telefonhívásokat fogadja. **Twilio SMS** lehetővé teszi, hogy az alkalmazások és az SMS-üzeneteket fogadni. **Twilio-ügyfél** lehetővé teszi, hogy a meglévő internetes kapcsolattal, többek között a mobil kapcsolatok hang kommunikáció engedélyezése az alkalmazások.
 
 ## <a id="Pricing"></a>Twilio árak és a különleges ajánlatokkal
-Információk a díjszabásról Twilio érhető el: [Twilio árképzési][twilio_pricing]. Az Azure-ügyfelek egy [a különleges ajánlat][special_offer]: 1000 szövegek szabad követel vagy bejövő perc 1000. Ez feliratkozott toosign ajánlat vagy további információért, látogasson el a [http://ahoy.twilio.com/azure][special_offer].  
+Információk a díjszabásról Twilio érhető el: [Twilio árképzési][twilio_pricing]. Az Azure-ügyfelek egy [a különleges ajánlat][special_offer]: 1000 szövegek szabad követel vagy bejövő perc 1000. Iratkozzon fel a szolgáltatásokat, vagy további információért látogasson el [http://ahoy.twilio.com/azure][special_offer].  
 
 ## <a id="Concepts"></a>Alapfogalmak
-hello Twilio API egy RESTful API, hang- és SMS-funkciókat biztosít az alkalmazások számára. Ügyféloldali kódtáraknál érhetők el több nyelven is; az útmutató, [Twilio API függvénytárai][twilio_libraries].
+A Twilio API egy RESTful API, hang- és SMS-funkciókat biztosít az alkalmazások számára. Ügyféloldali kódtáraknál érhetők el több nyelven is; az útmutató, [Twilio API függvénytárai][twilio_libraries].
 
 ### <a id="TwiML"></a>TwiML
-TwiML egy olyan XML-alapú utasításokat, amelyek tájékoztatják, hogy hogyan Twilio tooprocess hívás vagy SMS.
+TwiML olyan XML-alapú utasításokat, amelyek tájékoztatják a Twilio hogyan lehet feldolgozni a hívást vagy SMS készlete.
 
-Tegyük fel, a következő TwiML hello hello szöveg volna átalakítása **Hello World** toospeech.
+Tegyük fel, a következő TwiML a szöveg volna átalakítása **Hello World** beszéddé.
 
     <?xml version="1.0" encoding="UTF-8" ?>
     <Response>
        <Say>Hello World</Say>
     </Response>
 
-Minden TwiML dokumentum rendelkezik `<Response>` , mint a legfelső szintű elem. Ott Twilio-műveletek toodefine hello viselkedést az alkalmazás használja.
+Minden TwiML dokumentum rendelkezik `<Response>` , mint a legfelső szintű elem. Ott segítségével Twilio-műveletek az alkalmazás viselkedésének meghatározása.
 
 ### <a id="Verbs"></a>TwiML műveletek
-Twilio-műveletek a következők: XML-címkék, amelyek megadják Twilio mi túl**tegye**. Például hello  **&lt;szóbeli&gt;**  parancs utasítja Twilio tooaudibly kézbesítése hívás üzenet. 
+Twilio-műveletek a következők: XML-címkék, hogy a Twilio arról, mit kell **tegye**. Például a  **&lt;szóbeli&gt;**  parancs utasítja a Twilio hallhatóan hívás az üzenet kézbesítését. 
 
-hello az alábbiakban olvashat egy listát a Twilio-műveleteket.
+A Twilio-műveletek listáját a következő:
 
-* **&lt;Telefonos kapcsolat&gt;**: hello hívó tooanother phone csatlakozik.
-* **&lt;Gyűjtsön&gt;**: hello telefon billentyűzetén beírt számjegyeket gyűjti.
+* **&lt;Telefonos kapcsolat&gt;**: a hívó kapcsolódik egy másik telefonon.
+* **&lt;Gyűjtsön&gt;**: adta meg a telefon billentyűzetén számjegyek gyűjti.
 * **&lt;Vonalbontás&gt;**: hívás véget ér.
 * **&lt;Lejátszási&gt;**: hangfájl lejátszása.
 * **&lt;Felfüggesztés&gt;**: Csendes megvárja-e a megadott számú másodpercnél tovább.
-* **&lt;Rekord&gt;**: hello hívó hang rögzíti és hello rögzítése tartalmazó fájl URL-címet adja vissza.
-* **&lt;Átirányítási&gt;**: átirányítja a hívást vagy SMS toohello TwiML egy másik URL-címen.
-* **&lt;Elutasítása&gt;**: elutasítások egy bejövő hívás tooyour Twilio szám anélkül, hogy számlázási
-* **&lt;Tegyük fel például&gt;**: konvertálja szöveg toospeech hívás készült.
+* **&lt;Rekord&gt;**: a hívó hang rögzíti, és a felvétel tartalmazó fájl URL-címet adja vissza.
+* **&lt;Átirányítási&gt;**: hívás vagy SMS irányítását átviszi a TwiML egy másik URL-címen.
+* **&lt;Elutasítása&gt;**: a Twilio-szám egy bejövő hívás elutasítása a nélkül, számlázási
+* **&lt;Tegyük fel például&gt;**: konvertálja szöveg-beszéd átalakítás hívás készült.
 * **&lt;SMS&gt;**: SMS üzenetet küld.
 
-Twilio műveletek, az attribútumokat és TwiML kapcsolatos további információkért lásd: [TwiML][twiml]. Hello Twilio API kapcsolatos további információkért lásd: [Twilio API][twilio_api].
+Twilio műveletek, az attribútumokat és TwiML kapcsolatos további információkért lásd: [TwiML][twiml]. A Twilio API-val kapcsolatos további információkért lásd: [Twilio API][twilio_api].
 
 ## <a id="CreateAccount"></a>Twilio-fiók létrehozása
-Amikor készen áll a tooget Twilio-fiókja, Regisztráljon a [próbálja Twilio][try_twilio]. Egy ingyenes fiókot kezdődnie, és később frissítse a fiókját.
+Amikor készen áll arra, hogy a Twilio-fiókot, feliratkozhat [próbálja Twilio][try_twilio]. Egy ingyenes fiókot kezdődnie, és később frissítse a fiókját.
 
-Amikor regisztrál egy Twilio-fiókot, később is lesz egy ingyenes telefonszámot az alkalmazáshoz. Egy fiók SID azonosítója és egy hitelesítési jogkivonatot is kap. Egyaránt lesz szükséges toomake Twilio API-hívásokat. nem engedélyezett tooprevent tooyour fiók eléréséhez, a hitelesítési jogkivonat biztonsága. A fiók SID azonosítója és a hitelesítési jogkivonat is megtekinthető, hello [Twilio fióklapját][twilio_account], a mezők feliratú hello **fiók SID** és **hitelesítési TOKEN** , illetve.
+Amikor regisztrál egy Twilio-fiókot, később is lesz egy ingyenes telefonszámot az alkalmazáshoz. Egy fiók SID azonosítója és egy hitelesítési jogkivonatot is kap. Is szükség lesz Twilio API-hívások indítása. Jogosulatlan hozzáférés elkerülése érdekében a fiókját, hogy a hitelesítési jogkivonat biztonságának megőrzése. A fiók SID azonosítója és a hitelesítési jogkivonat is látható, a [Twilio fióklapját][twilio_account], a mezőket, címkével **fiók SID** és **hitelesítési JOGKIVONAT**, kulcsattribútumokkal.
 
 ### <a id="VerifyPhoneNumbers"></a>Ellenőrizze a telefonszámok
-Lehetősége van által Twilio hozzáadása toohello szám számok szabályozhatja (azaz a mobiltelefon vagy otthoni telefonszámot) számára az alkalmazások is ellenőrizheti. 
+A szám kívül lehetősége van által Twilio, azt is ellenőrizheti, hogy legyen az alkalmazások által vezérelt (azaz a mobiltelefon vagy otthoni telefonszámot) számok. 
 
-Információ tooverify egy telefonszám, lásd: [kezelése számok][verify_phone].
+Hogyan lehet ellenőrizni a telefonszám további információkért lásd: [kezelése számok][verify_phone].
 
 ## <a id="create_app"></a>Ruby-alkalmazás létrehozása
-Egy Ruby alkalmazás, amely hello Twilio szolgáltatást használ, és az Azure-ban fut. ugyanolyan helyzetet teremt, mint bármely más Ruby alkalmazás hello Twilio szolgáltatást használ. Amíg Twilio-szolgáltatások RESTful, és a Ruby többféleképpen hívható, ez a cikk összpontosítanak hogyan toouse Twilio szolgáltatásokhoz [Twilio segítő kódtára a Rubyhoz][twilio_ruby].
+Egy Ruby alkalmazás, amely a Twilio-szolgáltatás és az Azure-ban fut. ugyanolyan helyzetet teremt, mint bármely más Ruby használó alkalmazások a Twilio szolgáltatáshoz. Amíg Twilio-szolgáltatások RESTful, és a Ruby többféleképpen hívható, ez a cikk a Twilio-szolgáltatások használatával összpontosítanak [Twilio segítő kódtára a Rubyhoz][twilio_ruby].
 
-Első, [beállításról egy új Azure Linux virtuális gép] [ azure_vm_setup] tooact új Ruby webes alkalmazás gazdagépként. Ugorja át hello használata esetén egy sínek alkalmazáshoz, csak a telepítés hello VM hello létrehozását. Ellenőrizze, hogy egy külső port a 80-as és egy belső portjával 5000 hozzon létre egy végpontot.
+Első, [beállításról egy új Azure Linux virtuális gép] [ azure_vm_setup] új Ruby webes alkalmazás állomás nevében járhasson el. Hagyja figyelmen kívül használata esetén egy sínek alkalmazáshoz, csak beállításról a virtuális gép létrehozásának lépéseit. Ellenőrizze, hogy egy külső port a 80-as és egy belső portjával 5000 hozzon létre egy végpontot.
 
-Hello a következő példa a fogjuk használni [Sinatra][sinatra], egy nagyon egyszerű webes keretrendszer, a Ruby. De alapértékekkel használható hello Twilio segédkódtárba helyezni a Rubyhoz bármely más webes keretrendszer, többek között a Ruby sínen.
+Az alábbi példákban fogjuk használni [Sinatra][sinatra], egy nagyon egyszerű webes keretrendszer, a Ruby. De alapértékekkel használata a Twilio-segédkódtárba helyezni a Rubyhoz bármely más webes keretrendszer, többek között a Ruby sínen.
 
-SSH-ból az új virtuális gép, és hozzon létre egy könyvtárat, az új alkalmazás. Adott könyvtárán belül hozzon létre egy Gemfile, és másolja hello kód bele a következő nevű fájlt:
+SSH-ból az új virtuális gép, és hozzon létre egy könyvtárat, az új alkalmazás. Hozzon létre egy Gemfile nevű fájlt, és a következő kódot bemásolhatja belül könyvtárban:
 
     source 'https://rubygems.org'
     gem 'sinatra'
     gem 'thin'
 
-Futtassa parancssorból hello `bundle install`. Ez a hello függőségeket telepíti. Ezután hozzon létre egy nevű fájlt `web.rb`. Ez lesz, ahol a webalkalmazás hello kód él. Illessze be a kódot bele a következő hello:
+A parancssorban futtassa `bundle install`. Ez telepíti az alábbi függőségeket. Ezután hozzon létre egy nevű fájlt `web.rb`. Ez lesz, ahol a kódot a webalkalmazás él. Az alábbi kód beillesztése azt:
 
     require 'sinatra'
 
@@ -95,43 +95,43 @@ Futtassa parancssorból hello `bundle install`. Ez a hello függőségeket telep
         "Hello Monkey!"
     end
 
-Ezen a ponton érdemes futtatni tudja hello hello parancs `ruby web.rb -p 5000`. Ez fogja léptetéses-legfeljebb 5000-es port kis webkiszolgáló. El tudja toobrowse toothis alkalmazást a böngészőben hello URL-cím felkeresésével beállításról az Azure virtuális gép számára. A webalkalmazás hello böngészőben érheti el, ha készen áll a toostart Twilio-alkalmazás elkészítése az Ön.
+Ekkor meg kell majd futtassa a parancsot `ruby web.rb -p 5000`. Ez fogja léptetéses-legfeljebb 5000-es port kis webkiszolgáló. Meg kell tudni keresse ki ezt az alkalmazást a böngészőben az URL-cím felkeresésével meg beállításról az Azure virtuális gép. A webalkalmazás a böngészőben érheti el, ha készen áll a Twilio-alkalmazások készítéséhez.
 
-## <a id="configure_app"></a>Alkalmazás tooUse Twilio konfigurálása
-A web app toouse hello Twilio könyvtár frissítése úgy állíthatja be a `Gemfile` tooinclude ezt a sort:
+## <a id="configure_app"></a>Állítsa be az alkalmazását Twilio használata
+Beállíthatja, hogy a Twilio-könyvtár használata frissítésével a webalkalmazás a `Gemfile` ezt a sort tartalmazza:
 
     gem 'twilio-ruby'
 
-Hello parancssorban futtassa `bundle install`. Most nyissa meg a `web.rb` és a sor hello bal felső, így:
+A parancssorban futtassa `bundle install`. Most nyissa meg a `web.rb` és a sor tetején, így:
 
     require 'twilio-ruby'
 
-Most, hogy most már minden beállítva toouse hello Twilio segédkódtárba helyezni a Rubyhoz a web app alkalmazásban.
+Most már készen is szeretné használni a Twilio-segédkódtárba helyezni a Ruby a webes alkalmazást.
 
 ## <a id="howto_make_call"></a>Hogyan: végezhet
-a következő hello bemutatja, hogyan egy kimenő toomake hívja. Főbb fogalmait tartalmazza a REST API-hívások Ruby toomake hello Twilio segédkódtárba helyezni használja, és TwiML megjelenítése. Helyettesítse a saját értékeit hello **a** és **való** telefonszámokat, és győződjön meg arról, hogy ellenőrizze a hello **a** telefonszámot a Twilio fiók előzetes toorunning hello kódot.
+A következő bemutatja, hogyan végezhet. Alapfogalmak közé tartozik a REST API-hívások indítása a Twilio segítő kódtára a Rubyhoz segítségével, és TwiML megjelenítése. Helyettesítse a saját értékeit a **a** és **való** telefonszámokat, és győződjön meg arról, hogy ellenőrizze a **a** telefonszám a Twilio-fiók a kód futtatása előtt.
 
-Ez a funkció hozzáadása túl`web.md`:
+Adja hozzá ezt a funkciót `web.md`:
 
     # Set your account ID and authentication token.
     sid = "your_twilio_account_sid";
     token = "your_twilio_authentication_token";
 
-    # hello number of hello phone initiating hello hello call.
+    # The number of the phone initiating the the call.
     # This should either be a Twilio number or a number that you've verified
     from = "NNNNNNNNNNN";
 
-    # hello number of hello phone receiving call.
-    too= "NNNNNNNNNNN";
+    # The number of the phone receiving call.
+    to = "NNNNNNNNNNN";
 
-    # Use hello Twilio-provided site for hello TwiML response.
+    # Use the Twilio-provided site for the TwiML response.
     url = "http://yourdomain.cloudapp.net/voice_url";
 
     get '/make_call' do
-      # Create hello call client.
+      # Create the call client.
       client = Twilio::REST::Client.new(sid, token);
 
-      # Make hello call
+      # Make the call
       client.account.calls.create(to: to, from: from, url: url)
     end
 
@@ -141,36 +141,36 @@ Ez a funkció hozzáadása túl`web.md`:
        </Response>"
     end
 
-Ha Ön nyílt felfelé `http://yourdomain.cloudapp.net/make_call` egy böngészőben, amely elindítja a hello hívás toohello Twilio API toomake hello telefonhívás. az első két paraméterek hello `client.account.calls.create` magától értetődő viszonylag: hello számú hello hívás `from` és hello számú hello hívás `to`. 
+Ha Ön nyílt felfelé `http://yourdomain.cloudapp.net/make_call` egy böngészőben, amely akkor indul el, a telefonhívás a Twilio API hívása. Az első két paraméterek `client.account.calls.create` magától értetődő viszonylag: száma a hívás nem `from` és szám a hívás nem `to`. 
 
-hello a harmadik paraméter (`url`), hogy a Twilio hello hívás csatlakoztatása után kérelmek milyen toodo tooget utasításokat hello URL-cím. Ebben az esetben azt URL-címet a telepítés (`http://yourdomain.cloudapp.net`), amely egy egyszerű TwiML dokumentumot ad vissza, és használja a hello `<Say>` néhány szöveg-beszéd átalakítás, és mondja ki fogadó "Hello Monkey" toohello személy hello művelet toodo hívja.
+A harmadik paraméter (`url`) az URL-cím, amelyet Twilio utasításokat hozzáférhet Mi a teendő, ha a csatlakozás igényel. Ebben az esetben azt URL-címet a telepítés (`http://yourdomain.cloudapp.net`), amely egy egyszerű TwiML dokumentumot ad vissza, és használja a `<Say>` hajtsa végre az egyes szöveg-beszéd átalakítás, és mondja ki a "Hello, Monkey" annak a személynek a hívás fogadása.
 
 ## <a id="howto_recieve_sms"></a>Útmutató: az SMS-üzenet fogadása
-Az előző példában hello azt kezdeményezett egy **kimenő** telefonhívás. Ez alkalommal, most használja az, hogy a Twilio-előfizetési tooprocess során megadott telefonszám hello egy **bejövő** SMS-üzenet.
+Az előző példában a Microsoft által kezdeményezett egy **kimenő** telefonhívás. Ez alkalommal, most használja a telefonszámot, amelyet a Twilio megadott során regisztrációs folyamat egy **bejövő** SMS-üzenet.
 
-Első, a bejelentkezés tooyour [Twilio-irányítópult][twilio_account]. Kattintson a "Numbers" hello felső NAV, majd a hello Twilio-szám lett megadva. Látni fogja, két URL-címeket, amelyeket konfigurálhat. Egy hang kérelem URL-CÍMÉT és az SMS kérelem URL-CÍMÉT. Ezek hello URL-címek készített Twilio hívásokat, amikor egy telefonhívást vagy SMS küldött tooyour számát. hello URL-címek "webes hurkok" is nevezik.
+Első, jelentkezzen be a [Twilio-irányítópult][twilio_account]. Kattintson a "Numbers" a felső navigációs, és kattintson a Twilio számára lett megadva. Látni fogja, két URL-címeket, amelyeket konfigurálhat. Egy hang kérelem URL-CÍMÉT és az SMS kérelem URL-CÍMÉT. Ezek a Twilio meghívja a phone kezdeményezték, és az SMS a rendszer elküldi a használni kívánt URL-címek. Az URL-címek "webes hurkok" is nevezik.
 
-Szeretnénk tooprocess bejövő SMS-t, így érdemes hello URL-címe túl frissítése`http://yourdomain.cloudapp.net/sms_url`. Lépjen tovább, és kattintson a módosítások mentése hello lap hello alján. Most, újból `web.rb` tegyük a programot az alkalmazás toohandle ezt:
+Bejövő SMS-üzenetek feldolgozásához, ezért frissíti az URL-CÍMÉT kell `http://yourdomain.cloudapp.net/sms_url`. Lépjen tovább, és kattintson a módosítások mentése a lap alján. Most, újból `web.rb` ennek kezelése az alkalmazás most program:
 
     post '/sms_url' do
       "<Response>
-         <Message>Hey, thanks for hello ping! Twilio and Azure rock!</Message>
+         <Message>Hey, thanks for the ping! Twilio and Azure rock!</Message>
        </Response>"
     end
 
-Hello módosítás után győződjön meg arról, hogy toore indítási a webes alkalmazást. Most vegye ki a telefonjára, és küldjön egy SMS-tooyour Twilio-szám. Azonnal kapja meg az SMS-válasz, amely szerint "Hey, hello ping Köszönjük! Twilio és az Azure rock! ".
+A módosítás után győződjön meg arról, hogy indítsa újra a webes alkalmazást. Most vegye ki a telefonjára, és a Twilio-szám SMS küldése. Azonnal kapja meg az SMS-válasz, amely szerint "Hey, a ping Köszönjük! Twilio és az Azure rock! ".
 
 ## <a id="additional_services"></a>Útmutató: további Twilio-szolgáltatásokkal
-Továbbá toohello példák Twilio kínál webes API-k, amely itt megjelenik tooleverage további Twilio-funkciót használhatja az Azure-alkalmazás. Teljes további információkért lásd: hello [Twilio API-JÁNAK dokumentációja][twilio_api_documentation].
+Az itt bemutatott példák Twilio lehetőséget biztosít webes API-k segítségével kihasználhatja az Azure alkalmazásról további Twilio-funkciókat. Teljes részletekért lásd: a [Twilio API-JÁNAK dokumentációja][twilio_api_documentation].
 
 ### <a id="NextSteps"></a>Következő lépések
-Most, hogy megismerte a Twilio szolgáltatáshoz hello hello alapjait, kövesse a további hivatkozások toolearn:
+Most, hogy megismerte a Twilio szolgáltatáshoz alapjait, az alábbi hivatkozásokból további:
 
 * [Twilio biztonsági irányelvek][twilio_security_guidelines]
 * [Twilio HowTos és példakódot][twilio_howtos]
 * [Twilio gyors üzembe helyezési oktatóanyag][twilio_quickstarts] 
 * [A Githubon Twilio][twilio_on_github]
-* [Forduljon a támogatási tooTwilio][twilio_support]
+* [Kérdezze meg a Twilio-támogatás][twilio_support]
 
 [twilio_ruby]: https://www.twilio.com/docs/ruby/install
 

@@ -1,6 +1,6 @@
 ---
-title: "Felügyeleti csomag (OMS) architektúra aaaOperations |} Microsoft Docs"
-description: "A Microsoft Operations Management Suite (OMS) a Microsoft felhőalapú informatikai felügyeleti megoldása, amely segít a helyszíni és a felhőalapú infrastruktúra kezelésében és védelmében.  Ez a cikk hello különböző szolgáltatásait az OMS azonosítja, és hivatkozások tootheir részletes tartalmat."
+title: "Az Operations Management Suite (OMS) architektúrája | Microsoft Docs"
+description: "A Microsoft Operations Management Suite (OMS) a Microsoft felhőalapú informatikai felügyeleti megoldása, amely segít a helyszíni és a felhőalapú infrastruktúra kezelésében és védelmében.  Ez a cikk azonosítja az OMS különböző szolgáltatásait, és a részletes tartalmukra mutató hivatkozásokat tartalmaz."
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -14,67 +14,67 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/11/2017
 ms.author: bwren
-ms.openlocfilehash: fa3227aa9c19219009ebe363b7fd2d6565cec59c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 76f69946724b5297b1f9a1f715819c69c4a4a51d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="oms-architecture"></a>OMS-architektúra
-Az [Operations Management Suite (OMS)](https://azure.microsoft.com/documentation/services/operations-management-suite/) felhőalapú szolgáltatások gyűjteménye a helyszíni és a felhőalapú környezet kezeléséhez.  Ez a cikk ismerteti a hello különböző helyszíni és felhőalapú összetevőinek OMS és magas szintű felhőalapú számítási architektúráját.  Minden egyes szolgáltatás további részletekért olvassa el a toohello dokumentációját.
+Az [Operations Management Suite (OMS)](https://azure.microsoft.com/documentation/services/operations-management-suite/) felhőalapú szolgáltatások gyűjteménye a helyszíni és a felhőalapú környezet kezeléséhez.  Ez a cikk az OMS különböző helyszíni és felhőalapú összetevőit és az összetevők magas szintű felhőszámítási architektúráját ismerteti.  További részleteket az egyes szolgáltatásokhoz tartozó dokumentáció tartalmaz.
 
 ## <a name="log-analytics"></a>Log Analytics
-Gyűjtött összes adat [Naplóelemzési](https://azure.microsoft.com/documentation/services/log-analytics/) hello OMS-tárházban, amely az Azure-ban üzemeltetett tárolja.  Csatlakoztatott adatforrások hozhat létre a történő hello OMS tárházba összegyűjtött adatokat.  Jelenleg háromféle csatlakoztatott forrás támogatott.
+A [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics/) által gyűjtött minden adat az OMS-tárházba kerül, amelyet az Azure üzemeltet.  A csatlakoztatott források által előállított adatokat a rendszer az OMS-tárházba gyűjti.  Jelenleg háromféle csatlakoztatott forrás támogatott.
 
-* Egy telepített ügynök egy [Windows](../log-analytics/log-analytics-windows-agents.md) vagy [Linux](../log-analytics/log-analytics-linux-agents.md) tooOMS közvetlenül csatlakoztatott számítógép.
-* A System Center Operations Manager (SCOM) felügyeleti csoport [tooLog Analytics csatlakoztatott](../log-analytics/log-analytics-om-agents.md) .  SCOM-ügynököt az események és a teljesítmény adatok tooLog Analytics felügyeleti kiszolgálókat toocommunicate továbbra is.
+* Közvetlenül az OMS-hez csatlakoztatott [Windows](../log-analytics/log-analytics-windows-agents.md) vagy [Linux](../log-analytics/log-analytics-linux-agents.md) rendszerű számítógépre telepített ügynök.
+* A [Log Analytics-hez csatlakoztatott](../log-analytics/log-analytics-om-agents.md) System Center Operations Manager (SCOM) felügyeleti csoport.  Az SCOM-ügynökök továbbra is a felügyeleti kiszolgálókkal kommunikálnak, amelyek az eseményeket és a teljesítményadatokat a Log Analytics-nek továbbítják.
 * [Azure-tárfiók,](../log-analytics/log-analytics-azure-storage.md) amely [Azure Diagnostics](../cloud-services/cloud-services-dotnet-diagnostics.md)-adatokat gyűjt feldolgozói szerepkörből, webes szerepkörből vagy virtuális gépről az Azure-ban.
 
-Adatforrások Naplóelemzési gyűjti össze az csatlakoztatott móddal, többek között a eseménynaplóit és a teljesítményszámlálók hello adatok megadása.  Megoldások funkció tooOMS hozzáadása, és könnyen felveheti tooyour munkaterület a hello [OMS megoldások gyűjtemény](../log-analytics/log-analytics-add-solutions.md).  Néhány megoldás egy közvetlen kapcsolat tooLog Analytics az SCOM-ügynökök lehet szükség, míg más esetekben előfordulhat, hogy egy további ügynök toobe telepítve.
+A Log Analytics által a csatakoztatott forrásokból gyűjtött adatokat, többek között az eseménynaplókat és teljesítményszámlálókat az adatforrások határozzák meg.  A megoldások funkciókkal bővítik az OMS-t, és könnyen hozzáadhatók a munkaterülethez az [OMS megoldástárából](../log-analytics/log-analytics-add-solutions.md).  Egyes megoldások közvetlen kapcsolatot igényelhetnek az SCOM-ügynöktől a Log Analytics szolgáltatáshoz, míg másokhoz szükség lehet további ügynök telepítésére.
 
-A Naplóelemzési rendelkezik egy webes portál, hogy toomanage OMS-erőforrások használata, hozzáadása és konfigurálása az OMS-megoldások, és tekintheti meg és elemezhetik a hello OMS-tárházban.
+A Log Analytics olyan webalapú portállal rendelkezik, amelyet OMS-erőforrások kezelésére, OMS-megoldások hozzáadására és konfigurálására, valamint az OMS-tárház adatainak megtekintésére és elemzésére használhat.
 
 ![A Log Analytics magas szintű architektúrája](media/operations-management-suite-architecture/log-analytics.png)
 
 ## <a name="azure-automation"></a>Azure Automation
-[Azure Automation runbookjai](http://azure.microsoft.com/documentation/services/automation) hello Azure felhőben való végrehajtásakor, és érhetik el erőforrásokat, amelyek az Azure, a felhőszolgáltatásokra vagy érhető el a nyilvános interneten hello.  A helyi adatközpont helyszíni gépeit is kijelölheti [hibrid runbook-feldolgozó](../automation/automation-hybrid-runbook-worker.md) használatával, hogy a runbookok elérhessenek helyi erőforrásokat.
+Az [Azure Automation runbookjainak](http://azure.microsoft.com/documentation/services/automation) végrehajtása az Azure-felhőben történik, és képes hozzáférni az Azure-ban, más felhőszolgáltatásokban lévő vagy a nyilvános internetről elérhető erőforrásokhoz.  A helyi adatközpont helyszíni gépeit is kijelölheti [hibrid runbook-feldolgozó](../automation/automation-hybrid-runbook-worker.md) használatával, hogy a runbookok elérhessenek helyi erőforrásokat.
 
-[A DSC-konfigurációk](../automation/automation-dsc-overview.md) közvetlenül alkalmazott tooAzure virtuális gépek az Azure Automationben tárolt lehet.  Egyéb fizikai és virtuális gépek használói kérhetnek konfigurációk hello Azure Automation DSC lekérési kiszolgálójával.
+Az Azure Automationben tárolt [DSC-konfigurációk](../automation/automation-dsc-overview.md) azonnal alkalmazhatók az Azure virtuális gépekre.  Egyéb fizikai és virtuális gépek az Azure Automation DSC lekérési kiszolgálóról kérhetnek konfigurációkat.
 
-Azure Automation szolgáltatásbeli rendelkezik egy OMS-megoldás, amely statisztikáit jeleníti meg, és hivatkozásokat tartalmaz toolaunch hello Azure-portálon a műveleteket.
+Az Azure Automation olyan OMS-megoldással rendelkezik, amely statisztikákat jelenít meg, valamint hivatkozásokat az Azure-portál indításához bármely művelethez.
 
 ![Az Azure Automation magas szintű architektúrája](media/operations-management-suite-architecture/automation.png)
 
 ## <a name="azure-backup"></a>Azure Backup
-Az [Azure Backup](http://azure.microsoft.com/documentation/services/backup) védett adatainak tárolása egy meghatározott földrajzi régióban elhelyezkedő biztonságimásolat-tárolóban történik.  hello adatait replikálja a rendszer belül hello ugyanabban a régióban, és, tároló hello típusától függően is lehet további redundancia replikált tooanother régióját.
+Az [Azure Backup](http://azure.microsoft.com/documentation/services/backup) védett adatainak tárolása egy meghatározott földrajzi régióban elhelyezkedő biztonságimásolat-tárolóban történik.  Az adatok ugyanazon a régión belül replikálódnak, és a tároló típusától függően a nagyobb redundancia érdekében egy másik régióban is replikálódhatnak.
 
 Az Azure Backup három alapvető alkalmazási helyzetben használható.
 
-* Windows rendszerű gép Azure Backup-ügynökkel.  Ez lehetővé teszi, hogy toobackup fájlokat és mappákat a Windows server vagy az ügyfél közvetlenül tooyour Azure mentési tárolóval.  
-* System Center Data Protection Manager (DPM) vagy Microsoft Azure Backup Server. Ez lehetővé teszi, hogy Ön tooleverage DPM vagy a Microsoft Azure Backup Server toobackup fájlok és mappák továbbá tooapplication munkaterhelések, például az SQL és a SharePoint toolocal tárolási és majd replikálása tooyour Azure mentési tárolóval.
-* Azure Virtual Machine Extensions.  Ez lehetővé teszi toobackup Azure virtuális gépek tooyour Azure mentési tárolóval.
+* Windows rendszerű gép Azure Backup-ügynökkel.  Ez lehetővé teszik bármely Windows-kiszolgáló fájljainak és mappáinak biztonsági mentését közvetlenül az Azure-beli biztonsági mentési tárba.  
+* System Center Data Protection Manager (DPM) vagy Microsoft Azure Backup Server. Ez lehetővé teszi a DPM vagy a Microsoft Azure Backup Server használatát az alkalmazások, például az SQL és a SharePoint munkaterhelései mellett fájlok és mappák biztonsági másolatának elkészítésére helyi tárba, majd ezek replikálását az Azure-beli biztonsági mentési tárba.
+* Azure Virtual Machine Extensions.  Lehetővé teszi az Azure-beli virtuális gépek biztonsági másolatának elkészítését az Azure-beli biztonsági mentési tárba.
 
-Azure biztonsági mentés egy OMS-megoldás, amely statisztikáit jeleníti meg, és hivatkozásokat tartalmaz toolaunch hello Azure-portál a műveleteket sem rendelkezik.
+Az Azure Backup olyan OMS-megoldással rendelkezik, amely statisztikákat jelenít meg, valamint hivatkozásokat az Azure-portál indításához bármely művelethez.
 
 ![Az Azure Backup magas szintű architektúrája](media/operations-management-suite-architecture/backup.png)
 
 ## <a name="azure-site-recovery"></a>Azure Site Recovery
-Az [Azure Site Recovery](http://azure.microsoft.com/documentation/services/site-recovery) koordinálja a virtuális gépek és a fizikai kiszolgálók replikálását, feladatátvételét és feladat-visszavételét. A replikációs adatcsere Hyper-V-gazdagépek, VMware hipervizorok és az elsődleges és másodlagos adatközpontjaiban fizikai kiszolgálók között, vagy hello adatközpont és az Azure storage között.  A Site Recovery a metaadatokat meghatározott földrajzi Azure-régióban elhelyezkedő tárolókban tárolja. Nem replikált adatok hello Site Recovery szolgáltatásban tárolja.
+Az [Azure Site Recovery](http://azure.microsoft.com/documentation/services/site-recovery) koordinálja a virtuális gépek és a fizikai kiszolgálók replikálását, feladatátvételét és feladat-visszavételét. A replikációs adatok cseréje a Hyper-V-gazdagépek, a VMware-hipervizorok és az elsődleges és a másodlagos adatközpontokban elhelyezkedő fizikai kiszolgáló között, vagy az adatközpont és az Azure Storage között történik.  A Site Recovery a metaadatokat meghatározott földrajzi Azure-régióban elhelyezkedő tárolókban tárolja. A Site Recovery szolgáltatás nem tárol replikált adatokat.
 
 Az Azure Site Recovery három alapvető replikációs helyzetben használható.
 
 **Hyper-V virtuális gépek replikálása**
 
-* Ha a Hyper-V virtuális gépek VMM-felhőkben felügyelt, tooa másodlagos center vagy tooAzure adattárolás replikálhatja.  Replikációs tooAzure van egy biztonságos internetkapcsolaton keresztül.  Replikációs tooa másodlagos adatközpontba hello LAN felett van.
-* Hyper-V virtuális gépek nem a VMM felügyelete alatt, ha csak a tárolási tooAzure replikálhatja.  Replikációs tooAzure van egy biztonságos internetkapcsolaton keresztül.
+* Ha a Hyper-V virtuális gépek felügyelete VMM-felhőkben történik, replikálást végezhet másodlagos adatközpontba vagy az Azure Storage-ba.  A replikálás az Azure-ba biztonságos internetkapcsolaton keresztül történik.  A replikálás a másodlagos adatközpontba a helyi hálózaton keresztül történik.
+* Ha a Hyper-V virtuális gépet nem a VMM felügyeli, csak az Azure Storage-ba végezhet replikálást.  A replikálás az Azure-ba biztonságos internetkapcsolaton keresztül történik.
 
 **VMWare virtuális gépek replikálása**
 
-* VMware virtuális gépek tooa másodlagos adatközpontba VMware vagy tooAzure tárolási futtató replikálhatja.  Replikációs tooAzure akkor fordulhat elő, a pont-pont VPN vagy Azure ExpressRoute vagy biztonságos internetkapcsolaton keresztül. Replikációs tooa másodlagos adatközpontba hello InMage Scout adatcsatornán keresztül történik.
+* A VMware virtuális gépeket VMware-t futtató másodlagos adatközpontba vagy az Azure Storage-ba replikálhatja.  A replikálás az Azure-ba történhet helyek közötti VPN-en, illetve Azure ExpressRoute-on keresztül vagy biztonságos internetkapcsolaton át. A másodlagos adatközpontba a replikálás az InMage Scout adatcsatornáján keresztül történik.
 
 **A fizikai Windows- és Linux-kiszolgálók replikálása** 
 
-* Fizikai kiszolgálók tooa datacenter vagy tooAzure háttértár replikálhatja. Replikációs tooAzure akkor fordulhat elő, a pont-pont VPN vagy Azure ExpressRoute vagy biztonságos internetkapcsolaton keresztül. Replikációs tooa másodlagos adatközpontba hello InMage Scout adatcsatornán keresztül történik.  Az Azure Site Recovery egy OMS megoldást, amely megjeleníti a statisztikai adatokat tartalmaz, de a műveleteket hello Azure-portálon kell használnia.
+* A fizikai kiszolgálókat replikálhatja másodlagos adatközpontokba vagy az Azure Storage-ba. A replikálás az Azure-ba történhet helyek közötti VPN-en, illetve Azure ExpressRoute-on keresztül vagy biztonságos internetkapcsolaton át. A másodlagos adatközpontba a replikálás az InMage Scout adatcsatornáján keresztül történik.  Az Azure Site Recovery olyan OMS-megoldással rendelkezik, amely megjelenít néhány statisztikát, de az Azure portált kell használnia minden művelethez.
 
 ![Az Azure Site Recovery magas szintű architektúrája](media/operations-management-suite-architecture/site-recovery.png)
 

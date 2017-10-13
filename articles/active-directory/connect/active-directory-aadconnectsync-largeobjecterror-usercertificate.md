@@ -1,6 +1,6 @@
 ---
 title: "Azure AD Connect szinkronizálása: userCertificate attribútum által okozott kezelése LargeObject hibákat |} Microsoft Docs"
-description: "Ez a témakör hello javítási lépéseket userCertificate attribútum által okozott LargeObject hibákat."
+description: "Ez a témakör a javítási lépéseket userCertificate attribútum által okozott LargeObject hibákat."
 services: active-directory
 documentationcenter: 
 author: cychua
@@ -14,77 +14,77 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: e547fb5f601b92f6f5154de9997651b1f28c51b4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2a5418ff61e07793fceca5a8207c1c5aa18847b4
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-ad-connect-sync-handling-largeobject-errors-caused-by-usercertificate-attribute"></a>Azure AD Connect szinkronizálása: userCertificate attribútum által okozott kezelése LargeObject hibák
 
-Az Azure AD érvénybe lépteti a jelenlegi maximális műveletszámot **15** hello értékét tanúsítvány **userCertificate** attribútum. Az Azure AD Connect több mint 15 értékek tooAzure AD objektum exportálása, az Azure AD vissza egy **LargeObject** hiba történt a következő üzenetet:
+Az Azure AD érvénybe lépteti a jelenlegi maximális műveletszámot **15** értékek a tanúsítvány a **userCertificate** attribútum. Az Azure AD Connect több mint 15 értékekkel rendelkező objektum exportálja az Azure AD, az Azure AD vissza egy **LargeObject** hiba történt a következő üzenetet:
 
->*"hello telepített objektum mérete túl nagy. Trim hello számát ezen az objektumon. hello műveletet ismét megkísérli hello a következő szinkronizálási ciklusban..."*
+>*"A telepített objektum mérete túl nagy. Trim a számát ezen az objektumon. A műveletet ismét megkísérli a következő szinkronizálási ciklusban..."*
 
-hello LargeObject hiba okozhatja más AD attribútumok. valóban okozta hello userCertificate attribútum tooconfirm, kell tooverify hello objektum vagy a helyszíni AD ellen, vagy a hello [Synchronization Service Managert Metaverzum-keresés](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnectsync-service-manager-ui-mvsearch).
+A LargeObject hiba okozhatja más AD attribútumok. Ellenőrizze, valóban okozta a userCertificate attribútum, vissza kell igazolnia, vagy a helyszíni AD-objektuma alapján, vagy a a [Synchronization Service Managert Metaverzum-keresés](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnectsync-service-manager-ui-mvsearch).
 
-az Ön bérlőjében LargeObject hibákkal objektumok listájának tooobtain hello hello a következő módszerek valamelyikével:
+Szerezze be a bérlő LargeObject hibákkal objektumok listáját, használja a következő módszerek egyikét:
 
- * Ha a bérlő az Azure AD Connect Health szinkronizálási szolgáltatás engedélyezve van, olvassa el a toohello [szinkronizálási esetleges hibajelentésben való megjelenítéshez](https://docs.microsoft.com/azure/active-directory/connect-health/active-directory-aadconnect-health-sync#object-level-synchronization-error-report-preview) megadott.
+ * Ha a bérlő az Azure AD Connect Health szinkronizálási szolgáltatás engedélyezve van, olvassa el a [szinkronizálási esetleges hibajelentésben való megjelenítéshez](https://docs.microsoft.com/azure/active-directory/connect-health/active-directory-aadconnect-health-sync#object-level-synchronization-error-report-preview) megadott.
  
- * hello értesítő e-mailt a címtár-szinkronizálási hibák hello végén lévő minden egyes szinkronizálási ciklusban küldött rendelkezik hello LargeObject hibákkal objektumok listája. 
- * Hello [Synchronization Service Manager Operations lapon](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnectsync-service-manager-ui-operations) LargeObject hibákkal objektumok hello listáját jeleníti meg, ha hello legújabb tooAzure AD exportálás kattint.
+ * Az egyes szinkronizálási ciklusok végén küldött értesítő e-mail a címtár-szinkronizálási hibák rendelkezik LargeObject hibákkal objektumok listáját. 
+ * A [Synchronization Service Manager Operations lapon](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnectsync-service-manager-ui-operations) LargeObject hibákkal objektumok listáját jeleníti meg, ha az Azure AD művelet legújabb exportálás kattint.
  
 ## <a name="mitigation-options"></a>Megoldás beállításai
-Hello LargeObject hiba megoldásáig más attribútum módosítások toohello ugyanazt az objektumot nem lehet exportálni tooAzure AD. tooresolve hello hiba, érdemes lehet a következő beállítások hello:
+Csak a LargeObject hiba megoldása után, más Attribútummódosítások ugyanazon az objektumon nem lehet exportálni az Azure AD. A hiba megoldása érdekében vegye figyelembe az alábbiakat:
 
- * Az Azure AD Connect toobuild 1.1.524.0 frissítése vagy után. Az Azure AD Connectben build 1.1.524.0, hogy hello out-of-box szinkronizálási szabályok frissített toonot exportálási attribútumok userCertificate és userSMIMECertificate Ha hello attribútumok értéke meghaladja a 15. Kapcsolatos részletes tudnivalókért tooupgrade az Azure AD Connect, tekintse meg a tooarticle [az Azure AD Connect: frissítés a legújabb egy korábbi verziója toohello](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect-upgrade-previous-version).
+ * Frissítse az Azure AD Connect 1.1.524.0 létrehozásához vagy után. Az Azure AD Connectben build 1.1.524.0, out-of-box szinkronizálási szabályok nem exportálhatja a attribútumok userCertificate és userSMIMECertificate Ha az attribútumok több mint 15 értéke frissítve lett. Az Azure AD Connect frissítése a részletekért tekintse meg a cikk [az Azure AD Connect: frissítés egy korábbi verziójáról a legújabb](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect-upgrade-previous-version).
 
- * Alkalmazzon egy **kimenő szinkronizálási szabályt** az Azure AD Connectben exportálhatók egy **null érték helyett hello tényleges értékek-objektumok több mint 15 tanúsítvány értékekkel**. Ez a beállítás akkor megfelelő, ha nincs szüksége a hello tanúsítvány értékek exportált toobe tooAzure AD objektumok több mint 15 értékekkel. Részletes tájékoztatás a szinkronizálási szabály, tekintse meg a toonext szakasz tooimplement [megvalósítása szinkronizálási szabály toolimit exportálási userCertificate attribútum](#implementing-sync-rule-to-limit-export-of-usercertificate-attribute).
+ * Alkalmazzon egy **kimenő szinkronizálási szabályt** az Azure AD Connectben exportálhatók egy **null érték helyett a tényleges értékek objektumok több mint 15 tanúsítvány értékekkel**. Ez a beállítás akkor megfelelő, ha nincs szüksége valamely az Azure AD-objektumok több mint 15 értékekkel exportálandó tanúsítványt értékét. A szinkronizálási szabály megvalósításához további tájékoztatást a következő szakaszban [megvalósítása szinkronizálási szabály, amely korlátozza az Exportálás userCertificate attribútum](#implementing-sync-rule-to-limit-export-of-usercertificate-attribute).
 
- * Tanúsítvány értékek a hello hello számának csökkentése a helyszíni AD-objektum (legfeljebb 15), amelyeket már nem használja a szervezet értékek eltávolításával. Ez a megfelelő, ha a lejárt vagy nem használt tanúsítványok hello attribútum túlzott növekedést okozta. Használhatja a hello [PowerShell parancsfájl érhető el itt](https://gallery.technet.microsoft.com/Remove-Expired-Certificates-0517e34f) toohelp található, biztonsági mentését, és törli a lejárt tanúsítványokat a helyszíni AD. Hello tanúsítványok törlése, előtt ajánlott, hogy ellenőrizze a hello nyilvános-kulcs-infrastruktúra rendszergazdái a szervezetében.
+ * Adjon meg kevesebb tanúsítvány értékek a helyszíni AD-objektum (legfeljebb 15), amelyeket már nem használja a szervezet értékek eltávolításával. Ez a megfelelő, ha az attribútum túlzott növekedést lejárt vagy nem használt tanúsítványok. Használhatja a [PowerShell parancsfájl érhető el itt](https://gallery.technet.microsoft.com/Remove-Expired-Certificates-0517e34f) megtalálásához, biztonsági mentését, és törli a lejárt tanúsítványokat a helyszíni AD. Mielőtt törölné a tanúsítványokat, javasoljuk, hogy ellenőrizze a nyilvános kulcs-infrastrukturális rendszergazdákkal a szervezetében.
 
- * Konfigurálja az Azure AD Connect tooexclude hello userCertificate attribútum nem exportált tooAzure AD. Általában nem ezt a beállítást ajánlott, mivel hello attribútum is használható a Microsoft Online Services tooenable meghatározott forgatókönyvek szerint. Ebben az esetben:
-    * hello userCertificate attribútum hello User objektum használják az Exchange Online és az Outlook ügyfelek üzenet aláíráshoz és titkosításhoz. További információ az ezzel a funkcióval toolearn tekintse meg a tooarticle [S/MIME, az üzenet aláírási és titkosítási](https://technet.microsoft.com/library/dn626158(v=exchg.150).aspx).
+ * Ha szeretne kizárni a userCertificate attribútum az Azure AD-exportálás alatt álló Azure AD Connect konfigurálására. Általában nem ajánlott ezt a beállítást, mert az attribútum előfordulhat, hogy használja a Microsoft Online Services által meghatározott forgatókönyvek engedélyezhetők. Ebben az esetben:
+    * A userCertificate attribútum a User objektum használják az Exchange Online és az Outlook ügyfelek üzenet aláíráshoz és titkosításhoz. Ezzel a funkcióval kapcsolatban további tudnivalókért tekintse meg a cikk [S/MIME, az üzenet aláírási és titkosítási](https://technet.microsoft.com/library/dn626158(v=exchg.150).aspx).
 
-    * az Azure AD tooallow Windows 10 helyi tartományhoz csatlakozó eszközök tooconnect tooAzure AD hello userCertificate attribútum hello számítógép-objektum használja. További információ az ezzel a funkcióval toolearn tekintse meg a tooarticle [csatlakozni a tartományhoz csatlakozó eszközök tooAzure AD, a Windows 10 észlel](https://docs.microsoft.com/azure/active-directory/active-directory-azureadjoin-devices-group-policy).
+    * A számítógép-objektum a userCertificate attribútum használatos Azure ad lehetővé teszi a helyszíni Windows 10-es tartományhoz csatlakoztatott eszközök csatlakoztatása az Azure AD. Ezzel a funkcióval kapcsolatban további tudnivalókért tekintse meg a cikk [tartományhoz csatlakozó eszközök csatlakoztatása az Azure AD, a Windows 10 észlel](https://docs.microsoft.com/azure/active-directory/active-directory-azureadjoin-devices-group-policy).
 
-## <a name="implementing-sync-rule-toolimit-export-of-usercertificate-attribute"></a>Szinkronizálási szabály toolimit exportálási userCertificate attribútum megvalósítása
-tooresolve hello LargeObject hiba hello userCertificate attribútum által okozott, is létrehozható egy kimenő szinkronizálási szabályt az Azure AD Connectben exportálhatók egy **null érték helyett hello tényleges értékek objektumok több mint 15 tanúsítvány értékek**. Ez a szakasz ismerteti a hello lépéseket szükséges tooimplement hello szinkronizálási szabály **felhasználói** objektumok. hello lépéseket is módosítani kell a **forduljon** és **számítógép** objektumok.
+## <a name="implementing-sync-rule-to-limit-export-of-usercertificate-attribute"></a>Exportálás userCertificate attribútum korlátozni végrehajtási szinkronizálási szabály
+A userCertificate attribútum által okozott LargeObject hiba elhárítása érdekében az Azure AD Connectben által is létrehozható egy kimenő szinkronizálási szabályt egy **null érték helyett a tényleges értékek objektumok több mint 15 tanúsítvány értékekkel**. Ez a szakasz ismerteti a szinkronizálási szabály a végrehajtásához szükséges lépéseket **felhasználói** objektumok. A lépéseket a hozzáigazítható **forduljon** és **számítógép** objektumok.
 
 > [!IMPORTANT]
-> Értékek korábban exportált sikeresen tooAzure AD tanúsítvány exportálása a null érték eltávolítja.
+> A tanúsítvány értékek korábban már sikeresen exportálva az Azure AD-exportáló null értéket eltávolítja.
 
-hello lépéseket összegezhető:
+A lépéseket összegezhető:
 
 1. Tiltsa le a szinkronizálásütemező, és ellenőrizze, hogy nincs folyamatban szinkronizálás.
-3. Hello meglévő kimenő szinkronizálási szabály található userCertificate attribútum.
-4. Szükséges hello kimenő szinkronizálási szabály létrehozása.
-5. Ellenőrizze az új szinkronizálási szabály hello LargeObject hibával objektum.
-6. Hello új szinkronizálási szabály tooremaining objektumok LargeObject hibával alkalmazni.
-7. Ellenőrizze, hogy nincsenek exportált toobe tooAzure AD Várakozás váratlan módosítások.
-8. Exportálja a hello módosítások tooAzure AD.
+3. A meglévő kimenő szinkronizálási szabály található userCertificate attribútum.
+4. A szükséges kimenő szinkronizálási szabály létrehozása.
+5. Ellenőrizze az új szinkronizálási szabály LargeObject hibával objektum.
+6. Szabály alkalmazása az új szinkronizálási LargeObject hibával hátralévő objektumokhoz.
+7. Ellenőrizze, hogy nincsenek az Azure ad Szolgáltatásba exportálni váró váratlan módosítások.
+8. Exportálja a módosításokat az Azure AD.
 9. Engedélyezze újra a szinkronizálásütemező.
 
 ### <a name="step-1-disable-sync-scheduler-and-verify-there-is-no-synchronization-in-progress"></a>1. lépés Tiltsa le a szinkronizálásütemező, és ellenőrizze, hogy nincs folyamatban lévő szinkronizálás
-Ellenőrizze a szinkronizálás nem történik meg, amíg egy új szinkronizálási végrehajtási hello középső szabály tooavoid nem változik lesznek exportált tooAzure AD. toodisable hello beépített szinkronizálásütemezési:
-1. Indítsa el a PowerShell-munkamenetet a hello Azure AD Connect-kiszolgáló.
+Győződjön meg arról, szinkronizálás nem történik meg, amíg nem szándékolt módosításokat az Azure AD-exportálás alatt álló elkerülése érdekében új szinkronizálási szabály végrehajtási közepén. A beépített szinkronizálásütemezési letiltása:
+1. Indítsa el a PowerShell-munkamenetben az Azure AD Connect-kiszolgálón.
 
 2. Tiltsa le az ütemezett szinkronizálás parancsmag futtatásával:`Set-ADSyncScheduler -SyncCycleEnabled $false`
 
 > [!Note]
-> hello előző lépések csak megfelelő toonewer verziója (1.1.xxx.x) az Azure AD Connect és hello beépített ütemező. Az Azure AD Connect Windows Feladatütemezőt használó régebbi verziók (1.0.xxx.x) használ, vagy használja a saját egyéni Feladatütemező (általános) tootrigger rendszeresen szinkronizálja, ha szüksége van-e toodisable őket ennek megfelelően.
+> Az előző lépések az Azure AD Connect a beépített ütemezési és újabb verziók (1.1.xxx.x) csak vonatkoznak. Ha (általános) saját egyéni Feladatütemező segítségével rendszeres szinkronizálás indítható el, vagy régebbi verziójú (1.0.xxx.x) az Azure AD Connect Windows Feladatütemezőt használó használja, ennek megfelelően tiltsa le szeretné.
 
-3. Indítsa el a hello **Synchronization Service Managert** fog tooSTART → által szinkronizálási szolgáltatás.
+3. Indítsa el a **Synchronization Service Managert** START → szinkronizálási szolgáltatás címen.
 
-4. Nyissa meg toohello **műveletek** lapra, és ellenőrizze, nincs művelet, amelynek állapota *"folyamatban."*
+4. Lépjen a **műveletek** lapra, és ellenőrizze, nincs művelet, amelynek állapota *"folyamatban."*
 
-### <a name="step-2-find-hello-existing-outbound-sync-rule-for-usercertificate-attribute"></a>2. lépés Hello meglévő kimenő szinkronizálási szabály található userCertificate attribútum
-Meglévő szinkronizálási szabály engedélyezve van, és konfigurált felhasználói objektumok tooAzure AD tooexport userCertificate attribútumot kell lennie. Keresse meg a szinkronizálási szabály toofind ki a **sorrend** és **tartalmazó szűrő** konfiguráció:
+### <a name="step-2-find-the-existing-outbound-sync-rule-for-usercertificate-attribute"></a>2. lépés A meglévő kimenő szinkronizálási szabály található userCertificate attribútum
+Meglévő szinkronizálási szabály, hogy engedélyezve van, és az Azure AD userCertificate attribútum esetén a felhasználói objektumok exportálása konfigurálva kell lennie. Keresse meg a szinkronizálási szabály megállapítása a **sorrend** és **tartalmazó szűrő** konfigurációs:
 
-1. Indítsa el a hello **szinkronizálási szabályok szerkesztő** fog tooSTART → által szinkronizálási szabályok szerkesztő.
+1. Indítsa el a **szinkronizálási szabályok szerkesztő** START → szinkronizálási szabályok szerkesztő címen.
 
-2. A következő értékek hello hello keresési szűrők konfigurálása:
+2. A keresési szűrők konfigurálására a következő értékekkel:
 
     | Attribútum | Érték |
     | --- | --- |
@@ -94,88 +94,88 @@ Meglévő szinkronizálási szabály engedélyezve van, és konfigurált felhasz
     | Összekötő objektum típusa |**felhasználó** |
     | MV-attribútum |**userCertificate** |
 
-3. Ha sávon kívüli (out-of-box) szinkronizálási szabályok tooAzure AD összekötő tooexport userCertficiate attribútum esetén a felhasználói objektumok használ, meg kell visszakapnia hello *"lejárt tooAAD – felhasználói ExchangeOnline"* szabály.
-4. Jegyezze fel a hello **sorrend** értékét a szinkronizálási szabály.
-5. Jelöljön ki hello szinkronizálási szabályt, majd **szerkesztése**.
-6. A hello *"Fenntartott szabály megerősítő szerkesztése"* előugró párbeszédpanelen kattintson a **nem**. (Ne aggódjon, nem fogjuk toomake bármely toothis szinkronizálási szabály módosítása).
-7. Hello Szerkesztés képernyőn válassza ki a hello **Scoping szűrő** fülre.
-8. Jegyezze fel hello hatókörére szűrő konfigurálása. Ha hello OOB szinkronizálási szabályt használ, pontosan kell **egy hatókört szűrő csoportja két záradékok**, többek között a következőket:
+3. Ha sávon kívüli (out-of-box) szinkronizálási szabályokat és az Azure AD-összekötő segítségével userCertficiate attribútum esetén a felhasználói objektumok exportálása, kell visszakapnia a *"Ki az aad-ben – felhasználói ExchangeOnline"* szabály.
+4. Jegyezze fel a **sorrend** értékét a szinkronizálási szabály.
+5. Jelölje ki a szinkronizálási szabályt, és kattintson a **szerkesztése**.
+6. Az a *"Fenntartott szabály megerősítő szerkesztése"* előugró párbeszédpanelen kattintson a **nem**. (Ne aggódjon, nem fogjuk módosítja a szinkronizálási szabály).
+7. A Szerkesztés szolgáló képernyőn válassza ki a **Scoping szűrő** fülre.
+8. Jegyezze fel a tartalmazó szűrő konfigurálása. A sávon kívüli szinkronizálási szabályt használ, ha pontosan kell **egy hatókört szűrő csoportja két záradékok**, többek között a következőket:
 
     | Attribútum | Operátor | Érték |
     | --- | --- | --- |
     | sourceObjectType | EGYENLŐ | Felhasználó |
     | cloudMastered | NOTEQUAL | True (Igaz) |
 
-### <a name="step-3-create-hello-outbound-sync-rule-required"></a>3. lépés Szükséges hello kimenő szinkronizálási szabály létrehozása
-hello új szinkronizálási szabályt kell rendelkeznie hello azonos **tartalmazó szűrő** és **magasabb prioritással** , mint a meglévő szinkronizálási szabály hello. Ez biztosítja, hogy hello új szinkronizálási szabály azonos állítja be az objektumok hello meglévő szinkronizálási szabályok és felülbírálások hello meglévő szinkronizálási szabályok hello userCertificate attribútum toohello vonatkozik. toocreate hello szinkronizálási szabályt:
-1. A szinkronizálási szabályok szerkesztő hello, kattintson a hello **új szabály hozzáadása** gombra.
-2. A hello **Leírás lapon**, adja meg a következő konfigurációs hello:
+### <a name="step-3-create-the-outbound-sync-rule-required"></a>3. lépés A szükséges kimenő szinkronizálási szabály létrehozása
+Az új szinkronizálási szabály kell rendelkeznie, ugyanez **tartalmazó szűrő** és **magasabb prioritással** mint a meglévő szinkronizálási szabály. Ez biztosítja, hogy az új szinkronizálási szabály ugyanazokat az objektumok a meglévő szinkronizálási szabály vonatkozik, és felülírja a meglévő szinkronizálási szabály a userCertificate attribútum. A szinkronizálási szabályának létrehozása:
+1. Szinkronizálási szabályok szerkesztőben kattintson a **új szabály hozzáadása** gombra.
+2. Az a **Leírás lapon**, adja meg a következő konfigurációt:
 
     | Attribútum | Érték | Részletek |
     | --- | --- | --- |
-    | Név | *Adjon meg egy nevet* | Például *"Kimenő tooAAD – egyéni felülírása userCertificate"* |
+    | Név | *Adjon meg egy nevet* | Például *"Ki az aad-be – egyéni felülírása userCertificate"* |
     | Leírás | *Adjon meg egy leírást* | Például *"UserCertificate attribútum több mint 15 értékkel rendelkezik, ha exportálja NULL."* |
-    | Csatlakoztatott rendszer | *Válassza ki a hello Azure AD Connectoron* |
+    | Csatlakoztatott rendszer | *Válassza ki az Azure AD Connectoron* |
     | Objektumtípus csatlakoztatva | **felhasználó** | |
     | Metaverzum-objektum típusa | **személy** | |
     | Kapcsolat típusa | **Csatlakozás** | |
-    | Sorrend | *1 és 99 közötti számnak választott* | hello számra megválasztani nem használhatja a meglévő szinkronizálási szabály és alsó értéke (és így magasabb prioritással), mint a meglévő szinkronizálási szabály hello. |
+    | Sorrend | *1 és 99 közötti számnak választott* | A szám választott nem kell a meglévő szinkronizálási szabályok által használt, és egy alacsonyabb értékű (és így magasabb prioritással) mint a meglévő szinkronizálási szabály. |
 
-3. Nyissa meg toohello **Scoping szűrő** lapra, és azonos tartalmazó szűrő hello meglévő szinkronizálási szabály által használt hello megvalósításához.
-4. Kihagyás hello **szabályok csatlakozás** fülre.
-5. Nyissa meg toohello **átalakítások** tooadd egy új átalakítása használatával konfigurációs következő lapon:
+3. Lépjen a **Scoping szűrő** lapra, és ugyanazt a hatókört szűrőt a meglévő szinkronizálási szabály által használt megvalósításához.
+4. Ugrás a **szabályok csatlakozás** lapon.
+5. Lépjen a **átalakítások** fülre kattintva vegyen fel új átalakítás konfigurációs következő használatával:
 
     | Attribútum | Érték |
     | --- | --- |
     | Típusa |**Kifejezés** |
     | TARGET attribútuma |**userCertificate** |
-    | Adatforrás-attribútum |*A következő kifejezés használata hello*:`IIF(IsNullOrEmpty([userCertificate]), NULL, IIF((Count([userCertificate])> 15),AuthoritativeNull,[userCertificate]))` |
+    | Adatforrás-attribútum |*A következő kifejezés használata*:`IIF(IsNullOrEmpty([userCertificate]), NULL, IIF((Count([userCertificate])> 15),AuthoritativeNull,[userCertificate]))` |
     
-6. Kattintson a hello **Hozzáadás** gomb toocreate hello szinkronizálási szabály.
+6. Kattintson a **Hozzáadás** a szinkronizálási szabály létrehozása gombra.
 
-### <a name="step-4-verify-hello-new-sync-rule-on-an-existing-object-with-largeobject-error"></a>4. lépés Ellenőrizze az új szinkronizálási szabály hello LargeObject hibával objektum
-Ez az, hogy a szinkronizálási hello tooverify létrehozott szabály megfelelően működik-e egy meglévő AD-objektum LargeObject hiba: a alkalmazása előtt tooother objektumok:
-1. Nyissa meg toohello **műveletek** lapján hello Synchronization Service Managert.
-2. Válassza ki a hello legutóbbi tooAzure AD exportálás, majd kattintson a LargeObject hibákkal hello objektumok közül.
-3.  Hello Összekötőtér-objektum tulajdonságai előugró képernyő, kattintson a hello **előzetes** gombra.
-4. Hello Preview előugró képernyőn válassza ki a **teljes szinkronizálás** kattintson **véglegesítése előzetes**.
-5. Hello előnézet képernyőn és hello Összekötőtér-objektum tulajdonságai képernyő bezárása.
-6. Nyissa meg toohello **összekötők** lapján hello Synchronization Service Managert.
-7. Kattintson a jobb gombbal a hello **az Azure AD** összekötő, és válassza ki **futtatása...**
-8. Hello futtatása összekötő előugró ablakban válassza **exportálása** . lépés:, és kattintson a **OK**.
-9. Várjon, amíg az Exportálás tooAzure AD toocomplete, és ellenőrizze, nincs több LargeObject hiba ezen az objektumon.
+### <a name="step-4-verify-the-new-sync-rule-on-an-existing-object-with-largeobject-error"></a>4. lépés Ellenőrizze a LargeObject hiba az objektum az új szinkronizálási szabály
+Ez az ellenőrizze, hogy a szinkronizálási szabályt létrehozva megfelelően működik, egy meglévő AD-objektum LargeObject hiba: a más objektumokra alkalmazása előtt:
+1. Lépjen a **műveletek** lapon a Synchronization Service Managert.
+2. Válassza ki az Azure AD művelet való legutóbbi exportálás, majd kattintson az egyik LargeObject hibákkal objektumot.
+3.  Az Összekötőtér-objektum tulajdonságai előugró képernyőn kattintson a a **előzetes** gombra.
+4. Az előzetes előugró képernyőn válassza ki a **teljes szinkronizálás** kattintson **véglegesítése előzetes**.
+5. Zárja be a nyomtatási kép képernyőjén és a Összekötőtér-objektum tulajdonságai képernyő.
+6. Lépjen a **összekötők** lapon a Synchronization Service Managert.
+7. Kattintson a jobb gombbal a **az Azure AD** összekötő, és válassza ki **futtatása...**
+8. Az összekötő futtatásához előugró ablakban válassza ki a **exportálása** . lépés:, és kattintson a **OK**.
+9. Várjon, amíg befejeződik, majd erősítse meg, nincs több LargeObject hiba ezt az objektumot az Azure Active Directoryba való exportálás.
 
-### <a name="step-5-apply-hello-new-sync-rule-tooremaining-objects-with-largeobject-error"></a>5. lépés Hello új szinkronizálási szabály tooremaining objektumok LargeObject hibával alkalmazása
-Miután hello szinkronizálási szabály hozzá lett adva, a teljes szinkronizálás lépéshez hello Címtárösszekötőben toorun kell:
-1. Nyissa meg toohello **összekötők** lapján hello Synchronization Service Managert.
-2. Kattintson a jobb gombbal a hello **AD** összekötő, és válassza ki **futtatása...**
-3. Hello futtatása összekötő előugró ablakban válassza **teljes szinkronizálás** . lépés:, és kattintson a **OK**.
-4. Várjon, amíg hello teljes szinkronizálás lépés toocomplete.
-5. Ismételje meg a fennmaradó AD összekötők, ha egynél több AD összekötők hello hello a fenti lépéseket. Általában több összekötő szükség, ha több helyszíni címtárakban.
+### <a name="step-5-apply-the-new-sync-rule-to-remaining-objects-with-largeobject-error"></a>5. lépés Szabály alkalmazása az új szinkronizálási fennmaradó objektumok LargeObject hiba:
+Ha a szinkronizálási szabály hozzá lett adva, az AD Connectoron egy teljes szinkronizálást lépés futtatásához szükséges:
+1. Lépjen a **összekötők** lapon a Synchronization Service Managert.
+2. Kattintson a jobb gombbal a **AD** összekötő, és válassza ki **futtatása...**
+3. Az összekötő futtatásához előugró ablakban válassza ki a **teljes szinkronizálás** . lépés:, és kattintson a **OK**.
+4. Várjon, amíg a teljes szinkronizálás lépés befejezéséhez.
+5. Ha egynél több AD összekötők ismételje meg a fenti lépéseket a fennmaradó AD összekötők. Általában több összekötő szükség, ha több helyszíni címtárakban.
 
-### <a name="step-6-verify-there-are-no-unexpected-changes-waiting-toobe-exported-tooazure-ad"></a>6. lépés Ellenőrizze, hogy nincsenek exportált toobe tooAzure AD Várakozás váratlan módosítások
-1. Nyissa meg toohello **összekötők** lapján hello Synchronization Service Managert.
-2. Kattintson a jobb gombbal a hello **az Azure AD** összekötő, és válassza ki **Összekötőtér keresési**.
-3. Összekötőtér keresési előugró hello:
-    1. Hatókör beállítása túl**függőben lévő exportálása**.
+### <a name="step-6-verify-there-are-no-unexpected-changes-waiting-to-be-exported-to-azure-ad"></a>6. lépés Ellenőrizze, hogy nincsenek az Azure ad Szolgáltatásba exportálni váró váratlan módosítások
+1. Lépjen a **összekötők** lapon a Synchronization Service Managert.
+2. Kattintson a jobb gombbal a **az Azure AD** összekötő, és válassza ki **Összekötőtér keresési**.
+3. Az Összekötőtér keresési előugró:
+    1. Hatókör beállítása **exportálási függőben lévő**.
     2. Ellenőrizze a 3 jelölőnégyzeteket, beleértve a **Hozzáadás**, **módosítás** és **törlése**.
-    3. Kattintson a **keresési** gomb tooreturn minden exportált toobe tooAzure AD Várakozás módosításokkal objektumokat.
-    4. Ellenőrizze, hogy nincsenek váratlan módosítások. egy adott objektum tooexamine hello módosítások kattintson duplán a hello objektum.
+    3. Kattintson a **keresési** gombra kattintva visszaállíthatja az összes objektum az Azure ad Szolgáltatásba exportálni váró módosításokkal.
+    4. Ellenőrizze, hogy nincsenek váratlan módosítások. Vizsgálja meg az adott objektum a módosításokat, kattintson duplán az objektum.
 
-### <a name="step-7-export-hello-changes-tooazure-ad"></a>7. lépés Hello módosítások tooAzure AD exportálása
-tooexport hello módosítások tooAzure AD:
-1. Nyissa meg toohello **összekötők** lapján hello Synchronization Service Managert.
-2. Kattintson a jobb gombbal a hello **az Azure AD** összekötő, és válassza ki **futtatása...**
-4. Hello futtatása összekötő előugró ablakban válassza **exportálása** . lépés:, és kattintson a **OK**.
-5. Várjon, amíg az Exportálás tooAzure AD toocomplete, és ellenőrizze, hogy nincsenek további LargeObject hibák.
+### <a name="step-7-export-the-changes-to-azure-ad"></a>7. lépés A módosításokat az Azure AD exportálása
+A módosítások exportálása az Azure AD:
+1. Lépjen a **összekötők** lapon a Synchronization Service Managert.
+2. Kattintson a jobb gombbal a **az Azure AD** összekötő, és válassza ki **futtatása...**
+4. Az összekötő futtatásához előugró ablakban válassza ki a **exportálása** . lépés:, és kattintson a **OK**.
+5. Várjon, amíg befejeződik, majd erősítse meg a további LargeObject hibák nem találhatók az Azure Active Directoryba való exportálás.
 
 ### <a name="step-8-re-enable-sync-scheduler"></a>8. lépés. Engedélyezze újra a szinkronizálásütemező
-Most, hogy hello probléma megoldódik, engedélyezze újra a beépített szinkronizálásütemezési hello:
+Most, hogy a probléma megoldódott, engedélyezze újra a beépített szinkronizálásütemezési:
 1. Indítsa el a PowerShell-munkamenetben.
 2. Újra engedélyezi az ütemezett szinkronizálás parancsmag futtatásával:`Set-ADSyncScheduler -SyncCycleEnabled $true`
 
 > [!Note]
-> hello előző lépések csak megfelelő toonewer verziója (1.1.xxx.x) az Azure AD Connect és hello beépített ütemező. Az Azure AD Connect Windows Feladatütemezőt használó régebbi verziók (1.0.xxx.x) használ, vagy használja a saját egyéni Feladatütemező (általános) tootrigger rendszeresen szinkronizálja, ha szüksége van-e toodisable őket ennek megfelelően.
+> Az előző lépések az Azure AD Connect a beépített ütemezési és újabb verziók (1.1.xxx.x) csak vonatkoznak. Ha (általános) saját egyéni Feladatütemező segítségével rendszeres szinkronizálás indítható el, vagy régebbi verziójú (1.0.xxx.x) az Azure AD Connect Windows Feladatütemezőt használó használja, ennek megfelelően tiltsa le szeretné.
 
 ## <a name="next-steps"></a>Következő lépések
 További információ: [Helyszíni identitások integrálása az Azure Active Directoryval](active-directory-aadconnect.md).

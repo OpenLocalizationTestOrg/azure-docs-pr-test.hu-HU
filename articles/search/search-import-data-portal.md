@@ -1,6 +1,6 @@
 ---
-title: "aaaImport adatok Azure Search szolgáltatásba történő hello portálon |} Microsoft Docs"
-description: "Használja a hello Azure keresési adatok importálása varázslót a hello Azure Portal toocrawl az Azure data nosql-alapú Azure Cosmos DB Blob tároló, a table storage, SQL Database és SQL Server Azure virtuális gépeken."
+title: "Adatok importálása az Azure Search szolgáltatásba a portálon | Microsoft Docs"
+description: "Az Azure Portalon az Azure Search Adatok importálása varázslójával bejárhatja az Azure-beli virtuális gépeken található NoSQL Azure Cosmos DB-ben, Blob Storage-ban, Table Storage-ban, SQL Database-ben és SQL Serverben tárolt Azure-adatokat."
 services: search
 documentationcenter: 
 author: HeidiSteen
@@ -15,30 +15,30 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 05/01/2017
 ms.author: heidist
-ms.openlocfilehash: 00b0e59594560c0cdaea748df196518e9fba3834
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a3e6dd66197a17bfdc80c04130e198b787692a58
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="import-data-tooazure-search-using-hello-portal"></a>Importálja az adatokat tooAzure keresési hello portál használatával
-hello Azure-portált biztosít egy **adatimportálás** varázsló hello Azure Search Irányítópulton az adatok betöltését az index. 
+# <a name="import-data-to-azure-search-using-the-portal"></a>Adatok importálása az Azure Search szolgáltatásba a portál használatával
+Az Azure portál Azure Search irányítópultján található **Adatok importálása** varázsló segítségével az adatok betölthetők egy indexbe. 
 
-  ![Adatokat importálhat hello parancssávon][1]
+  ![A parancssáv Adatok importálása eleme][1]
 
-Belsőleg, hello varázsló konfigurálja, és elindítja egy *indexelő*, automatizálása a folyamat indexelő hello számos lépést: 
+Belső használatra a varázsló konfigurál és meghív egy *indexelőt*, és automatizálja az indexelési folyamat több lépését: 
 
-* Csatlakozás külső adatforrás tooan hello azonos Azure-előfizetés
-* Módosíthatóvá index sémát hello forrás adatszerkezet alapján létre
-* JSON-dokumentumok betöltése a hello adatforrás lekért sorkészlet használatával
+* Csatlakozás az ugyanabban az Azure-előfizetésben található külső adatforráshoz
+* Módosítható indexséma létrehozása a forrás-adatszerkezet alapján
+* JSON-dokumentumok betöltése egy indexbe az adatforrásból beolvasott sorhalmaz használatával
 
-Az Azure Cosmos DB-adatbázisból vett mintaadatokkal kipróbálhatja ezt a munkafolyamatot. Látogasson el [bevezetés hello Azure Portal az Azure Search használatába](search-get-started-portal.md) utasításokat.
+Az Azure Cosmos DB-adatbázisból vett mintaadatokkal kipróbálhatja ezt a munkafolyamatot. Az utasításokért tekintse meg az [Ismerkedés az Azure Search szolgáltatással az Azure portálon](search-get-started-portal.md) részt.
 
 > [!NOTE]
-> Indítja el a hello **adatimportálás** hello Azure Cosmos DB irányítópult toosimplify az adott adatforrás indexelő a varázslót. A bal oldali navigációs sávon, váltson túl**gyűjtemények** > **hozzáadása Azure Search** tooget elindult.
+> Az Azure Cosmos DB irányítópultjáról elindíthatja az **Adatok importálása** varázslót, amellyel egyszerűbbé válik az adatforrás indexelése. A kezdéshez lépjen a bal oldali navigációs menüben a **Gyűjtemények** > **Azure Search hozzáadása** elemre.
 
-## <a name="data-sources-supported-by-hello-import-data-wizard"></a>Adatok importálása varázsló hello által támogatott adatforrások
-hello adatok importálása varázsló a következő adatforrások hello támogatja: 
+## <a name="data-sources-supported-by-the-import-data-wizard"></a>Az Adatok importálása varázsló által támogatott adatforrások
+Az Adatok importálása varázsló az alábbi adatforrások használatát támogatja: 
 
 * Azure SQL Database
 * Az SQL Server relációs adatai egy Azure virtuális gépen
@@ -46,71 +46,71 @@ hello adatok importálása varázsló a következő adatforrások hello támogat
 * Azure Blob Storage
 * Azure Table Storage
 
-Egybesimított adatkészlet a kötelező bemenet. Az importálás kizárólag egyedi táblából, adatbázisnézetből és egyenértékű adatszerkezetből végezhető el. Ezen adatok szerkezete hello varázsló futtatása előtt kell létrehozni.
+Egybesimított adatkészlet a kötelező bemenet. Az importálás kizárólag egyedi táblából, adatbázisnézetből és egyenértékű adatszerkezetből végezhető el. Az adatszerkezetet a varázsló futtatása előtt létre kell hoznia.
 
-## <a name="connect-tooyour-data"></a>Csatlakozás tooyour adatok
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) és a nyitott hello szolgáltatás irányítópultját. Kattinthat **további szolgáltatások** a hello Ugrás sávon toosearch meglévő "keresési szolgáltatások" hello az aktuális előfizetésben. 
-2. Kattintson a **és adatokat importálhat** a hello parancssávon tooslide nyitott hello adatokat importálhat panelen.  
-3. Kattintson a **tooyour adatok csatlakozás** toospecify egy indexelőt által használt adatforrás-definíciót. Hello varázsló intra-előfizetés adatforrások, általában észleli és olvasása kapcsolat adatainak minimalizálja a teljes konfiguráció.
+## <a name="connect-to-your-data"></a>Csatlakozás az adatokhoz
+1. Jelentkezzen be a [Azure Portalra](https://portal.azure.com), és nyissa meg a szolgáltatás irányítópultját. Az gyorselérési sávon a **További szolgáltatások** elemre kattintva kereshet az aktuális előfizetésben meglévő „keresési szolgáltatásokat”. 
+2. Az Adatok importálása panel csúsztatott megnyitásához kattintson a parancssávon található **Adatok importálása** elemre.  
+3. Az indexelő által használt adatforrás-definíció megadásához kattintson a **Csatlakozás az adatokhoz** lehetőségre. Előfizetésen belüli adatforrások esetében a varázsló általában észleli és elolvassa a kapcsolatadatokat, és minimalizálja az általános konfigurációs követelményeket.
 
 |  |  |
 | --- | --- |
 | **Meglévő adatforrás** |Ha a Search-szolgáltatásban már meg vannak adva indexelők, másik importálási folyamathoz kiválaszthat egy meglévő adatforrás-definíciót. |
-| **Azure SQL Database** |Szolgáltatás nevét, egy adatbázis-felhasználó olvasási engedéllyel rendelkező hitelesítő adatait, és az adatbázis nevét hello lapon vagy az ADO.NET kapcsolati karakterlánc használatával adható meg. Válassza ki a hello kapcsolati karakterlánc beállítást tooview vagy tulajdonságainak testreszabása. <br/><br/>hello tábla vagy nézet, hello sorhalmaz biztosító hello oldalon meg kell adni. Ez a beállítás hello csatlakozás sikeres, egyúttal jogosultságot ad a legördülő listából válassza ki, így biztosíthatja, hogy a kijelölt jelenik meg. |
-| **Azure virtuális gépen futó SQL Server** |Adjon meg egy teljesen minősített szolgáltatásnevet, felhasználóazonosítót és jelszót, illetve egy adatbázist kapcsolati karakterláncként. toouse ezt az adatforrást kell korábban telepített tanúsítvány hello hello kapcsolat titkosítja a helyi tárolóban levő. Útmutatásért lásd: [SQL virtuális gép kapcsolat tooAzure keresési](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md). <br/><br/>hello tábla vagy nézet, hello sorhalmaz biztosító hello oldalon meg kell adni. Ez a beállítás hello csatlakozás sikeres, egyúttal jogosultságot ad a legördülő listából válassza ki, így biztosíthatja, hogy a kijelölt jelenik meg. |
-| **Azure Cosmos DB** |Követelmények a következők: hello fiók, adatbázis és gyűjtemény. Hello gyűjteményben lévő összes dokumentumot hello index fognak szerepelni. Adja meg a lekérdezés tooflatten, vagy hello sorkészlet szűrésére vagy toodetect módosítása a dokumentumok későbbi frissítési műveletek. |
-| **Azure Blob Storage** |Követelmények a következők: hello tárfiók és a tároló. Másik lehetőségként blob nevének egy virtuális elnevezési konvenciója csoportosítás céljából, hello neve hello virtuális könyvtár része a tárolóban mappaként is megadhat. A további információkat [a Blob Storage indexelését](search-howto-indexing-azure-blob-storage.md) ismertető témakör tartalmazza. |
-| **Azure Table Storage** |Követelmények hello storage-fiókot és egy tábla nevét tartalmazza. Szükség esetén a lekérdezés tooretrieve hello táblák egy részét is megadhat. A további információkat [a Table Storage indexelését](search-howto-indexing-azure-tables.md) ismertető témakör tartalmazza. |
+| **Azure SQL Database** |A szolgáltatás neve, az olvasási engedéllyel rendelkező adatbázis-felhasználó hitelesítő adatai, valamint az adatbázis neve megadható vagy az oldalon, vagy az ADO.NET kapcsolati karakterlánc használatával. A tulajdonságok megtekintéséhez vagy testreszabásához válassza ki a kapcsolati karakterlánc lehetőséget. <br/><br/>Az oldalon meg kell adni a sorhalmazt biztosító táblát vagy nézetet. Ez a lehetőség a sikeres csatlakozás után jelenik meg: egy legördülő listából választhatja ki a kívánt elemet. |
+| **Azure virtuális gépen futó SQL Server** |Adjon meg egy teljesen minősített szolgáltatásnevet, felhasználóazonosítót és jelszót, illetve egy adatbázist kapcsolati karakterláncként. Az adatforrás használatához a helyi tárolóban rendelkeznie kell egy korábban telepített tanúsítvánnyal, amely titkosítja a kapcsolatot. Részletes útmutatásért lásd az [SQL virtuális gép az Azure Search-höz történő csatlakoztatását](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md) ismertető témakört. <br/><br/>Az oldalon meg kell adni a sorhalmazt biztosító táblát vagy nézetet. Ez a lehetőség a sikeres csatlakozás után jelenik meg: egy legördülő listából választhatja ki a kívánt elemet. |
+| **Azure Cosmos DB** |A követelmények a következőket tartalmazzák: a fiók, az adatbázis és a gyűjtemény. Az index tartalmazza a gyűjteményben szereplő összes dokumentumot. Definiálhat egy lekérdezést a sorkészlet egybesimításához vagy szűréséhez, illetve a módosított dokumentumok észleléséhez a későbbi adatfrissítési műveletek elvégzése érdekében. |
+| **Azure Blob Storage** |A követelmények a következőket tartalmazzák: a tárolási fiók és egy tároló. Szükség esetén, ha csoportosítási célból a blob-nevek egy virtuális elnevezési konvenciót követnek, akkor a név virtuáliskönyvtár-részét a tárolóban található mappa neveként is megadhatja. A további információkat [a Blob Storage indexelését](search-howto-indexing-azure-blob-storage.md) ismertető témakör tartalmazza. |
+| **Azure Table Storage** |A követelmények a következőket tartalmazzák: a tárolási fiók és egy táblanév. Szükség esetén megadhat egy lekérdezést a táblák részhalmazának beolvasásához. A további információkat [a Table Storage indexelését](search-howto-indexing-azure-tables.md) ismertető témakör tartalmazza. |
 
 ## <a name="customize-target-index"></a>Célindex testreszabása
-Előzetes index általában következtetni hello adatkészletből. Hozzáadása, szerkesztése vagy törlése a mezők toocomplete hello séma. Emellett attribútumainak beállítása hello mező szintű toodetermine, a következő keresési viselkedések.
+Általában az adatkészletből kikövetkeztetett előzetes index. A séma elkészítéséhez mezőket adhat hozzá, szerkeszthet vagy törölhet. Továbbá mezőszinten attribútumokat állíthat be az index későbbi keresési viselkedésének meghatározása érdekében.
 
-1. A **testreszabás cél index**, hello nevét adja meg, és egy **kulcs** használt toouniquely azonosíthatja minden dokumentumot. hello kulcs karakterláncnak kell lennie. Ha a mezőértékek szóközökkel vagy kötőjelekkel lehet, hogy tooset további beállítások **importálhatja az adatokat** toosuppress hello ezek a karakterek érvényességi ellenőrzését.
-2. Tekintse át, és vizsgálja felül a fennmaradó mezők hello. A mező neve és típusa általában már ki van töltve. Hello adattípus módosítható, amíg hello index jön létre. Ha ezt követően szeretné módosítani, újra kell építeni az indexet.
+1. A **Célindex testreszabása** lapon adja meg a nevet és egy **kulcsot**, amelyet az egyes dokumentumok egyedi azonosításához kell használni. A kulcsnak karakterláncnak kell lennie. Ha a mezőértékek szóközöket vagy kötőjeleket tartalmaznak, ügyeljen arra, hogy az **Adatok importálása** lapon meg kell adnia a speciális beállításokat ezeknek a karaktereknek az érvényességét ellenőrző művelet letiltásához.
+2. Tekintse át és módosítsa a fennmaradó mezőket. A mező neve és típusa általában már ki van töltve. Az adattípus az index létrehozásának pillanatáig módosítható. Ha ezt követően szeretné módosítani, újra kell építeni az indexet.
 3. Állítsa be az egyes mezőkhöz tartozó indexattribútumokat:
    
-   * Lekérhető hello mező a keresési eredmények között adja vissza.
-   * Szűrhető lehetővé teszi, hogy hello mező toobe szűrőkifejezéseket hivatkozik.
-   * Rendezhető lehetővé teszi, hogy a hello mező toobe egy rendezési szerepel.
-   * Kategorizálható lehetővé teszi, hogy a jellemzőalapú navigáció hello mezője.
+   * A lekérdezhető attribútum a keresési eredmények között visszaadja a mező értékét.
+   * A szűrhető attribútum hivatkozhatóvá teszi az adott mezőt a szűrőkifejezésekben.
+   * A rendezhető attribútum segítségével az adott mezőt használhatjuk egy rendezés alapjaként.
+   * Az értékkorlátozó attribútum értékkorlátozott navigációt tesz lehetővé az adott mező esetében.
    * A kereshető attribútum lehetővé teszi a teljes szöveges keresést.
-4. Kattintson a hello **Analyzer** lapon, ha azt szeretné, hogy a nyelvi elemzőt hello mező szinten toospecify. Ekkor csak a nyelvi elemzőket adhatja meg. Egyéni elemző vagy nem nyelvi elemző, például kulcsszó, minta és hasonló elemek használata esetén szükség van a kódra.
+4. Nyelvi elemző mezőszinten történő megadásához kattintson az **Elemző** lapra. Ekkor csak a nyelvi elemzőket adhatja meg. Egyéni elemző vagy nem nyelvi elemző, például kulcsszó, minta és hasonló elemek használata esetén szükség van a kódra.
    
-   * Kattintson a **kereshető** toodesignate teljes szöveges keresés hello mező, és engedélyezze a hello Analyzer legördülő lista.
-   * Válassza ki a kívánt hello analyzer. Részletes információk: [Több nyelven elérhető dokumentumok indexének létrehozása](search-language-support.md).
-5. Kattintson a hello **javaslattevő** tooenable begépelt lekérdezési javaslatok a kijelölt mezőket.
+   * Kattintson a **Kereshető** elemre, hogy teljes szöveges keresést jelöljön ki a mezőhöz, és engedélyezze a Elemző legördülő listáját.
+   * Válassza ki a kívánt elemzőt. Részletes információk: [Több nyelven elérhető dokumentumok indexének létrehozása](search-language-support.md).
+5. A kijelölt mezőkre vonatkozó gépelés közbeni lekérdezési javaslatok engedélyezéséhez kattintson a **Javaslatok** elemre.
 
 ## <a name="import-your-data"></a>Adatok importálása
-1. A **importálhatja az adatokat**, adja meg hello indexelő nevét. Hello termék visszahívása hello adatok importálása varázsló az indexelőt. Később Ha szeretné, hogy tooview, vagy szerkesztheti, szüksége lesz rá hello portálról, nem pedig hello varázsló ismételt futtatásával. 
-2. Adja meg a hello ütemezését, hello regionális időzóna, amelyben hello szolgáltatás ki van építve alapján.
-3. Speciális beállítások toospecify küszöbértékek meg e indexelő továbbra is egy dokumentum megszakad. Megadhatja, hogy **kulcs** mezők toocontain szóközöket és perjeleket tartalmazó engedélyezettek.  
-4. Kattintson a **OK** toocreate hello index és hello adatok importálása.
+1. Az **Adatok importálása** mezőben adja meg az indexelő nevét. Ne felejtse el, hogy az Adatok importálása varázsló terméke egy indexelő. Később, ha szeretné megtekinteni vagy módosítani, a portálról kiválaszthatja, és nem kell újból lefuttatnia a varázslót. 
+2. Adja meg az ütemezést annak a regionális időzónának az alapján, amelyben a szolgáltatás létrejött.
+3. Adja meg azokra a küszöbértékekre vonatkozó speciális beállításokat, amelyeknél az indexelés akkor is folytatódik, ha a dokumentumot elvetik. Ezenkívül azt is megadhatja, hogy a **kulcs**mezők tartalmazhatnak-e szóközöket és perjeleket.  
+4. Az index létrehozásához és az adatok importálásához kattintson az **OK** gombra.
 
-Hello portálon indexelő figyelheti. Dokumentumok töltődnek be, mert hello dokumentum száma nő definiált hello index. Egyes esetekben hello portállapon toopick hello legújabb frissítéseket fel néhány percet vesz igénybe.
+Az indexelés állapotát figyelemmel követheti a portálon. A dokumentumok betöltésével a meghatározott index dokumentumszámlálója növekszik. Néha beletelik néhány percbe, mire a portál oldala tükrözi a legfrissebb adatokat.
 
-hello indexe készen tooquery, amint hello dokumentumokat be van töltve.
+Miután az összes dokumentum betöltődött, az index azonnal lekérdezhető.
 
 ## <a name="query-an-index-using-search-explorer"></a>Index lekérdezése a Keresési ablak használatával
 
-hello portál tartalmaz **keresési ablak** , hogy az index lekérdezése az anélkül, hogy toowrite összes kódot. A [Keresési ablak](search-explorer.md) bármely indexen használható.
+A portál tartalmaz egy **Keresési ablakot**, amelynek segítségével kód írása nélkül kérdezheti le az indexeket. A [Keresési ablak](search-explorer.md) bármely indexen használható.
 
-hello keresési élményt biztosít a alapul alapértelmezett beállítások, például hello [egyszerű Szintaxishiba](https://docs.microsoft.com/rest/api/searchservice/simple-query-syntax-in-azure-search) és az alapértelmezett [searchMode lekérdezési paramétert (https://docs.microsoft.com/rest/api/searchservice/search-documents). 
+A keresési funkció alapértelmezett beállításokon alapul, [egyszerű szintaxist](https://docs.microsoft.com/rest/api/searchservice/simple-query-syntax-in-azure-search) használ és az alapértelmezett [searchMode lekérdezési paramétert(https://docs.microsoft.com/rest/api/searchservice/search-documents) követi. 
 
-A JSON-ban, az eredmények visszaadása a részletes formátumban, akkor történik, úgy, hogy a teljes dokumentum hello vizsgálhatja meg.
+A rendszer az eredményeket JSON-formátumban nagy részletességgel adja vissza, így a teljes dokumentum vizsgálható.
 
 ## <a name="edit-an-existing-indexer"></a>Meglévő indexelő szerkesztése
-Amint hello adatok importálása varázsló létrehoz egy **indexelő**, amely egy önálló szerkezet hello portálon módosíthatja.
+Ahogy azt már említettük, az Adatok importálása varázsló létrehoz egy **indexelőt**, amely a portálon önálló szerkezetként módosítható.
 
-Hello szolgáltatás irányítópultján kattintson duplán a hello indexelő csempe tooslide ki az előfizetéssel létrehozott összes indexelők listájának. Kattintson duplán a hello indexelők toorun, szerkesztheti, és törölheti azt. Hello index cserélje le egy másik meglévőt, hello adatforrás módosítani, ezért vonatkozó beállítások megadása a Hibaküszöb indexelés során.
+A szolgáltatás irányítópultján kattintson duplán az Indexelő csempére az előfizetéshez létrehozott összes indexelő listájának kicsúsztatásához. Az indexelők futtatásához, szerkesztéséhez és törléséhez kattintson rájuk duplán. Lecserélheti az indexet egy másik létező indexre, módosíthatja az adatforrást, és beállíthatja az indexelés során érvényes hibaküszöböket.
 
 ## <a name="edit-an-existing-index"></a>Meglévő index szerkesztése
-hello varázsló is létrejön egy **index**. Az Azure Search strukturális frissítések tooan index szükséges egy adott index rebuild. Egy rebuild módosított sémával rendelkező hello módosításokat, és az adatok újbóli betöltése hello index újbóli létrehozása, törlése hello index terjed ki. A strukturális frissítések közé tartozik az adattípusok módosítása és a mezők átnevezése vagy törlése.
+A varázsló emellett létrehozott egy **indexet** is. Az Azure Search szolgáltatásban az index strukturális frissítéséhez az index újjáépítésére van szükség. Az újjáépítés az index törlését, a kívánt módosításokat tartalmazó átalakított séma mentén való újbóli létrehozását, majd az adatok újbóli betöltését jelenti. A strukturális frissítések közé tartozik az adattípusok módosítása és a mezők átnevezése vagy törlése.
 
 Az újjáépítést nem igénylő szerkesztési műveletek közé tartozik az új mezők hozzáadása, illetve a pontozási profilok, a javaslatok vagy a nyelvelemzők módosítása. További információ: [Update Index](https://msdn.microsoft.com/library/azure/dn800964.aspx) (Index frissítése).
 
 
 ## <a name="next-steps"></a>Következő lépések
-Tekintse át az alábbi hivatkozások toolearn indexelők kapcsolatos további:
+Az alábbi hivatkozások további információkat nyújtanak az indexelőkről:
 
 * [Az Azure SQL Database indexelése](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
 * [Az Azure Cosmos DB indexelése](search-howto-index-documentdb.md)

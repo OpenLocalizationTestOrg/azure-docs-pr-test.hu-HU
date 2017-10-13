@@ -1,6 +1,6 @@
 ---
-title: "LDAP-összekötő aaaGeneric |} Microsoft Docs"
-description: "Ez a cikk ismerteti, hogyan tooconfigure Microsoft általános LDAP-összekötő."
+title: "Általános LDAP-összekötő |} Microsoft Docs"
+description: "Ez a cikk ismerteti a Microsoft általános LDAP-összekötő konfigurálása."
 services: active-directory
 documentationcenter: 
 author: AndKjell
@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 25031b4da196bd073902b04b0705762bfa0118b9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: adb174526bc377f484be5fb0a71b28e8daaaa6fd
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="generic-ldap-connector-technical-reference"></a>Általános LDAP-összekötő műszaki útmutatója
-Ez a cikk ismerteti a hello általános LDAP-összekötő. hello cikk vonatkozik toohello a következő termékek:
+Ez a cikk ismerteti az általános LDAP-összekötő. A cikk vonatkozik a következő termékek:
 
 * A Microsoft Identity Manager 2016 (MIM2016)
 * A Forefront Identity Manager 2010 R2 (FIM2010R2)
   * Kell használnia a 4.1.3671.0 gyorsjavítás vagy újabb [KB3092178](https://support.microsoft.com/kb/3092178).
 
-MIM2016 és FIM2010R2, hello összekötő rendelkezésre áll hello letölthető [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=717495).
+MIM2016 és FIM2010R2, az összekötő rendelkezésre áll egy letölthető a [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=717495).
 
-Hivatkozni tooIETF RFC-dokumentumokat, ez a dokumentum használ hello formátuma (RFC [RFC szám] / [section RFC dokumentumban]), például (RFC 4512/4.3).
-A http://tools.ietf.org/html/rfc4500 (a szükséges tooreplace 4500 hello helyes RFC szám) talál további információkat.
+Kontextusban való megnevezésekor IETF RFC-dokumentumokat, ez a dokumentum a formátumot használja (RFC [RFC szám] / [section RFC dokumentumban]), például (RFC 4512/4.3).
+A http://tools.ietf.org/html/rfc4500 (kell 4500 cserélje le a megfelelő RFC-azonosító) talál további információkat.
 
-## <a name="overview-of-hello-generic-ldap-connector"></a>Általános LDAP-összekötő hello áttekintése
-hello általános LDAP-összekötő lehetővé teszi, hogy Ön toointegrate hello szinkronizálási szolgáltatás az LDAP v3-kiszolgálóval.
+## <a name="overview-of-the-generic-ldap-connector"></a>Az általános LDAP-összekötő áttekintése
+Az általános LDAP-összekötő lehetővé teszi a szinkronizálási szolgáltatás integrálása egy LDAP v3-kiszolgálóval.
 
-Bizonyos műveleteket és a séma elemei, például a szükséges tooperform különbözeti importálás, nincsenek megadva hello IETF RFC. Ezeket a műveleteket csak explicit módon megadott LDAP-címtárak esetén támogatottak.
+Az IETF RFC-dokumentumokat bizonyos műveleteket és a séma elemei, például a különbözeti importálás végrehajtásához szükséges nincs megadva. Ezeket a műveleteket csak explicit módon megadott LDAP-címtárak esetén támogatottak.
 
-Magas szintű szempontjából a következő funkciók hello hello hello összekötő aktuális kiadása támogatja:
+A következő szolgáltatásokat a magas szintű szempontjából, a jelenlegi kiadásban az összekötő támogatja:
 
 | Szolgáltatás | Támogatás |
 | --- | --- |
-| Csatlakoztatott adatforrás |hello összekötő minden LDAP v3-as kiszolgáló (RFC 4510 szabványnak megfelelő) használata támogatott. Hello következő tesztelték: <li>Microsoft Active Directory Lightweight Directory-szolgáltatások (AD LDS)</li><li>Microsoft Active Directory globális katalógus (GC-AD)</li><li>A címtárkiszolgáló 389</li><li>Apache címtárkiszolgálóra</li><li>IBM Tivoli DS</li><li>Isode könyvtár</li><li>NetIQ eDirectory</li><li>Novell eDirectory</li><li>Nyissa meg DJ</li><li>Nyissa meg DS</li><li>Nyissa meg az LDAP (openldap.org)</li><li>Oracle (korábban Sun) Directory Server Enterprise Edition</li><li>RadiantOne virtuális könyvtár Server (VDS)</li><li>Egy Sun Directory Server</li>**Nem támogatott a figyelmet a jelentősebb könyvtárak:** <li>Microsoft Active Directory tartományi szolgáltatások (AD DS) [használata hello beépített Active Directory-összekötő helyette]</li><li>Oracle Internet könyvtár (OID)</li> |
+| Csatlakoztatott adatforrás |Az összekötő minden LDAP v3-as kiszolgáló (RFC 4510 szabványnak megfelelő) használata támogatott. A következő tesztelték: <li>Microsoft Active Directory Lightweight Directory-szolgáltatások (AD LDS)</li><li>Microsoft Active Directory globális katalógus (GC-AD)</li><li>A címtárkiszolgáló 389</li><li>Apache címtárkiszolgálóra</li><li>IBM Tivoli DS</li><li>Isode könyvtár</li><li>NetIQ eDirectory</li><li>Novell eDirectory</li><li>Nyissa meg DJ</li><li>Nyissa meg DS</li><li>Nyissa meg az LDAP (openldap.org)</li><li>Oracle (korábban Sun) Directory Server Enterprise Edition</li><li>RadiantOne virtuális könyvtár Server (VDS)</li><li>Egy Sun Directory Server</li>**Nem támogatott a figyelmet a jelentősebb könyvtárak:** <li>Microsoft Active Directory tartományi szolgáltatások (AD DS) [a beépített Active Directory-összekötőt használja helyette]</li><li>Oracle Internet könyvtár (OID)</li> |
 | Forgatókönyvek |<li>Objektum életciklusának kezelésére</li><li>Csoportok kezelése</li><li>Jelszókezelés</li> |
-| Műveletek |a következő műveletek hello támogatottak minden LDAP-könyvtárak: <li>Teljes importálás</li><li>Exportálás</li>a következő műveletek hello csak a meghatározott könyvtárakban támogatottak:<li>Különbözeti importálás</li><li>Jelszó beállítása, a jelszó módosítása</li> |
-| Séma |<li>Séma észlelésekor hello LDAP séma (RFC3673 és RFC4512/4.2)</li><li>Támogatja a szerkezeti osztályok, aux osztályok és extensibleObject objektumosztály (RFC4512/4.3)</li> |
+| Műveletek |A következő műveletek támogatottak minden LDAP-könyvtárak: <li>Teljes importálás</li><li>Exportálás</li>A következő műveletek csak a meghatározott könyvtárakban támogatottak:<li>Különbözeti importálás</li><li>Jelszó beállítása, a jelszó módosítása</li> |
+| Séma |<li>Az LDAP-séma (RFC3673 és RFC4512/4.2) séma észlelésekor</li><li>Támogatja a szerkezeti osztályok, aux osztályok és extensibleObject objektumosztály (RFC4512/4.3)</li> |
 
 ### <a name="delta-import-and-password-management-support"></a>Különbözeti importálás és a jelszó támogatása
 Különbözeti importálás és a jelszófelügyeletet támogatott könyvtárak:
@@ -93,31 +93,31 @@ Különbözeti importálás és a jelszófelügyeletet támogatott könyvtárak:
   * Támogatja a állítsa be a jelszót és a jelszó módosítása
 
 ### <a name="prerequisites"></a>Előfeltételek
-Összekötő hello használata előtt győződjön meg arról hello következő hello szinkronizálási kiszolgálón rendelkezik:
+Az összekötő használatához győződjön meg arról, hogy a szinkronizálási kiszolgálón a következő:
 
 * Microsoft keretrendszer 4.5.2-es vagy újabb verzió
 
-### <a name="detecting-hello-ldap-server"></a>Hello LDAP-kiszolgáló észlelése
-hello összekötő különböző módszereket toodetect alapul, és hello LDAP-kiszolgáló azonosítására szolgál. hello összekötő által használt hello legfelső szintű DSE, a gyártó neve/verziója, és azt megvizsgálja a hello séma toofind egyedi objektumok és attribútumok az egyes LDAP-kiszolgálókba tooexist ismert. Ezeket az adatokat, ha található, a használt toopre-hello konfigurációs beállítások hello összekötő feltöltéséhez.
+### <a name="detecting-the-ldap-server"></a>Az LDAP-kiszolgáló észlelése
+Az összekötő ismeri fel és azonosítja az LDAP-kiszolgáló különböző módszerekkel alapul. Az összekötőt használja, a legfelső szintű DSE, a gyártó neve/verziója, és azt ellenőrzi, hogy a séma egyedi objektumok és attribútumok közismert, hogy az egyes LDAP-kiszolgálókon található. Ezeket az adatokat, ha található, az összekötő a konfigurációs beállítások előre feltöltésére használt eszköz.
 
 ### <a name="connected-data-source-permissions"></a>Csatlakoztatott adatforrás-engedélyek
-tooperform importálása és exportálása a műveletek olyan objektumokon, hello hello csatlakoztatott könyvtárban, hello összekötő fiókja megfelelő engedélyekkel kell rendelkeznie. hello összekötő engedélyek toobe képes tooexport írási és olvasási engedélyek toobe képes tooimport kell. Engedély konfigurációs hello felhasználói élmény mellett magát hello cél könyvtár belül történik.
+Importálás végrehajtása, és exportálja a műveletek olyan objektumokon, a csatlakoztatott könyvtárban, az összekötő fiókjaként megfelelő engedélyekkel kell rendelkeznie. Az összekötő írási engedéllyel kell exportálni, és olvasási engedéllyel képes importálni kell. Engedély konfigurációs a felhasználói élmény mellett a célkönyvtárat, maga a belül történik.
 
 ### <a name="ports-and-protocols"></a>Portok és protokollok
-hello összekötő hello konfigurációban, amely alapértelmezés szerint 389 LDAP, és a LDAPS 636 hello portszámot használja.
+Az összekötő a konfigurációban, amely alapértelmezés szerint 389 LDAP, és a LDAPS 636 portszámot használja.
 
 LDAPS SSL 3.0 és TLS kell használnia. Az SSL 2.0 nem támogatott, és nem lehet aktiválni.
 
 ### <a name="required-controls-and-features"></a>Szükséges vezérlők és a szolgáltatások
-hello következő LDAP-vezérlők/szolgáltatások rendelkezésre kell állnia hello LDAP-kiszolgáló hello összekötő toowork megfelelően:  
+A következő LDAP vezérlők/szolgáltatások az LDAP-kiszolgáló, az összekötő helyes működéséhez rendelkezésre kell állnia:  
 `1.3.6.1.4.1.4203.1.5.3`Igaz/hamis szűrők
 
-hello igaz/hamis szűrő gyakran jelentése nem támogatja az LDAP-könyvtárak, előfordulhat, hogy a hello **globális lap** alatt **kötelező funkciók nem található**. Használt toocreate **vagy** szűrők az LDAP-lekérdezések, például amikor több Objektumtípusok importálása. Ha egynél több objektumtípus importálásához az LDAP-kiszolgáló támogatja ezt a szolgáltatást.
+A True/False szűrő gyakran jelentése nem támogatja az LDAP-könyvtárak, előfordulhat, hogy az a **globális lap** alatt **kötelező funkciók nem található**. Létrehozásához használt **vagy** szűrők az LDAP-lekérdezések, például amikor több Objektumtípusok importálása. Ha egynél több objektumtípus importálásához az LDAP-kiszolgáló támogatja ezt a szolgáltatást.
 
-Ha egy könyvtárat használhatja, ahol van egy egyedi azonosítóra hello horgonyzási hello következő is elérhetőnek kell lennie (további információkért lásd: hello [horgonyok konfigurálása](#configure-anchors) szakaszban):  
+Ha egy könyvtárat a horgony esetén az egyedi azonosító a következő is elérhetőnek kell lennie (további információkért lásd: a [horgonyok konfigurálása](#configure-anchors) szakaszt):  
 `1.3.6.1.4.1.4203.1.5.1`Az összes műveleti attribútumok
 
-Ha hello directory mi egy hívás toohello címtárban fér több objektum van, majd ajánlott toouse lapozást. Lapozófájl toowork szükséges hello alábbi beállítások egyikét:
+Ha a könyvtár több objektum mi is elfér egy hívás a könyvtárba, majd javasoljuk, hogy lapozás használata. Lapozófájl működjön, szükséges a következő lehetőségek közül:
 
 **1. lehetőség:**  
 `1.2.840.113556.1.4.319`pagedResultsControl
@@ -126,122 +126,122 @@ Ha hello directory mi egy hívás toohello címtárban fér több objektum van, 
 `2.16.840.1.113730.3.4.9`VLVControl  
 `1.2.840.113556.1.4.473`SortControl
 
-Ha mindkét lehetőség engedélyezve vannak a hello összekötő-konfiguráció, pagedResultsControl szolgál.
+Ha az összekötő-konfiguráció engedélyezve van a mindkét lehetőség használata, pagedResultsControl szolgál.
 
 `1.2.840.113556.1.4.417`ShowDeletedControl
 
-ShowDeletedControl csak az hello USNChanged különbözeti importálás módszer toobe képes toosee törölt objektumok használják.
+ShowDeletedControl csak a törölt objektumok láthatók a USNChanged különbözeti importálás módszer segítségével.
 
-hello összekötő megkísérli toodetect hello beállítások jelen hello kiszolgálón. Hello-beállítások nem észlelhető, ha figyelmeztetés a globális lap hello hello összekötő tulajdonságainál. Nem minden LDAP kiszolgálókon található összes vezérlők/funkciókat támogatja, és akkor is, ha ez a figyelmeztetés megtalálható, hello összekötő működhetnek hibák nélkül.
+Az összekötő megkísérli észlelni a beállításokat a kiszolgálón található. A beállítások nem észlelhető, ha a figyelmeztetés az összekötő tulajdonságainak a globális lapon jelen. Nem minden LDAP-kiszolgálókba található összes vezérlők/szolgáltatások támogatják, és akkor is, ha ezt a figyelmeztetést meg adva, a connector működik-e hibák nélkül.
 
 ### <a name="delta-import"></a>Különbözeti importálás
-Különbözeti importálás csak akkor használható, ha egy támogatási könyvtárat már telepítve van. a következő módszerek hello jelenleg használatban van:
+Különbözeti importálás csak akkor használható, ha egy támogatási könyvtárat már telepítve van. Az alábbi módszerek jelenleg használatban van:
 
 * LDAP Accesslog. Lásd: [http://www.openldap.org/doc/admin24/overlays.html#Access naplózás](http://www.openldap.org/doc/admin24/overlays.html#Access Logging)
 * LDAP változásnaplója. Lásd: [http://tools.ietf.org/html/draft-good-ldap-changelog-04](http://tools.ietf.org/html/draft-good-ldap-changelog-04)
-* Timestamp típusú. Novell/NetIQ eDirectory hello összekötő által használt utolsó dátum/idő tooget létrehozott, és objektumokat frissíteni. Novell/NetIQ eDirectory nem biztosít egy azzal egyenértékű azt jelenti, hogy a törölt tooretrieve objektumok. Ezt a lehetőséget is használható, ha nincs más különbözeti importálás módszer aktív hello LDAP-kiszolgálón. Ez a beállítás akkor nem tudja tooimport törölt objektumok.
+* Timestamp típusú. Az összekötő Novell/NetIQ eDirectory utolsó időpontját használja megszerezni a létrehozott és a frissített objektumokat. Novell/NetIQ eDirectory nem biztosít egy azzal egyenértékű azt jelenti, hogy a törölt objektumok beolvasása. Ezt a lehetőséget is használható, ha nincs más különbözeti importálás módszer aktív, az LDAP-kiszolgálón. Ez a beállítás nincs hogy objektum törölt importálása.
 * USNChanged. Lásd: [https://msdn.microsoft.com/library/ms677627.aspx](https://msdn.microsoft.com/library/ms677627.aspx)
 
 ### <a name="not-supported"></a>Nem támogatott
-a következő LDAP szolgáltatások hello nem támogatottak:
+A következő LDAP-funkciók nem támogatottak:
 
 * LDAP-átirányítások (RFC 4511/4.1.10) kiszolgálók között
 
 ## <a name="create-a-new-connector"></a>Új összekötő létrehozása
-Általános LDAP-összekötő tooCreate, a **szinkronizálási szolgáltatás** válassza ki **kezelőügynök** és **létrehozása**. Jelölje be hello **általános LDAP (Microsoft)** összekötő.
+Egy általános LDAP-összekötő létrehozásához az **szinkronizálási szolgáltatás** válasszon **kezelőügynök** és **létrehozása**. Válassza ki a **általános LDAP (Microsoft)** összekötő.
 
 ![CreateConnector](./media/active-directory-aadconnectsync-connector-genericldap/createconnector.png)
 
 ### <a name="connectivity"></a>Kapcsolatok
-Hello kapcsolat oldalon meg kell adnia hello Host, Port és kötés. Attól függően, amelyek kötés kijelölt, további információt a következő részekben hello lehet adni.
+A kapcsolat lapon meg kell adnia a Host, Port és kötés. Attól függően, amelyek kötés kijelölt, további információt a következő szakaszokban előfordulhat, hogy adni.
 
 ![Kapcsolatok](./media/active-directory-aadconnectsync-connector-genericldap/connectivity.png)
 
-* hello kapcsolódási időtúllépés beállítása csak hello első kapcsolat toohello kiszolgálóhoz használt amikor hello séma észlelése.
+* A kapcsolódási időkorlát beállítást csak akkor használja az első csatlakozni a kiszolgálóhoz, ha a séma észlelésére.
 * Ha a kötés névtelen, majd sem felhasználónév / jelszó és a tanúsítvány nem használható.
 * Más kötésekben, írja be adatokat vagy a felhasználónév / jelszó, vagy válasszon egy tanúsítványt.
-* Ha Kerberos tooauthenticate használ, majd adni hello tartomány/tartomány hello felhasználó.
+* Ha használ Kerberos hitelesítéshez, majd adni a tartomány/tartomány felhasználó.
 
-Hello **aliasok attribútum** szövegmező RFC4522 szintaxissal hello sémában meghatározott attribútumok szolgál. Ezek az attribútumok séma észlelési nem észlelhető, és hello összekötő kell az azok tooidentify támogatása. Például a következő kell beírni hello attribútum aliasok mezőben toocorrectly hello határozza hello userCertificate attribútum bináris attribútumaként:
+A **aliasok attribútum** szövegmező RFC4522 szintaxissal a sémában meghatározott attribútumok szolgál. Ezek az attribútumok séma észlelési nem észlelhető, és az összekötő kell azok alapján. Például a következő kell beírni a attribútum aliasok, ha azt szeretné, hogy helyesen azonosítani a userCertificate attribútum bináris attribútumként:
 
 `userCertificate;binary`
 
-hello az alábbiakban látható egy példa hogyan Ez a konfiguráció nézhet:
+A következő egy példa a hogyan Ez a konfiguráció nézhet:
 
 ![Kapcsolatok](./media/active-directory-aadconnectsync-connector-genericldap/connectivityattributes.png)
 
-Jelölje be hello **működési attribútumait tartalmazza a sémában** jelölőnégyzet tooalso hello kiszolgáló által létrehozott attribútumait tartalmazza. Ezek közé tartozik például amikor hello objektum lett létrehozva, és a legutóbbi frissítésének ideje attribútumok.
+Válassza ki a **működési attribútumait tartalmazza a sémában** jelölőnégyzetet is az a kiszolgáló által létrehozott attribútumait tartalmazza. Ezek közé tartozik például amikor az objektum lett létrehozva, és a legutóbbi frissítésének ideje attribútumok.
 
-Válassza ki **bővíthető attribútumait tartalmazza a sémában** Ha bővíthető objektumok (RFC4512/4.3) használja, és ez a beállítás lehetővé teszi, hogy minden attribútum toobe használt összes objektum. Ezzel a beállítással lehetővé teszi hello séma túl nagy, kivéve ha hello csatlakoztatott címtárhoz használ a szolgáltatás hello javaslaton-e tookeep hello beállítást.
+Válassza ki **bővíthető attribútumait tartalmazza a sémában** Ha bővíthető objektumok (RFC4512/4.3) használja, és ez a beállítás lehetővé teszi, hogy a használni kívánt összes objektum minden attribútum. Ezzel a beállítással lehetővé teszi a séma túl nagy, kivéve, ha a csatlakoztatott címtárhoz van ezzel a szolgáltatással javasolt az adatok megőrzése a beállítást.
 
 ### <a name="global-parameters"></a>Globális paraméterek
-Hello globális paraméterek lapján konfigurálja a hello DN toohello különbözeti Változásnapló és további LDAP-szolgáltatások. hello abban az előre megadott hello LDAP-kiszolgáló által biztosított hello adatokkal.
+Globális paraméterek lap különbözeti Változásnapló és további LDAP funkciók DN konfigurálhatja. A lap az LDAP-kiszolgáló által előre megadott jelenti.
 
 ![Kapcsolatok](./media/active-directory-aadconnectsync-connector-genericldap/globalparameters.png)
 
-hello felső részében a hello kiszolgálójának nevével, például hello nevét hello kiszolgáló által biztosított információit tartalmazza. Összekötő hello is ellenőrzi, hogy hello kötelező vezérlők hello legfelső szintű DSE szerepel. Ezek az intézkedések nem szerepelnek a listán, ha figyelmeztetés jelenik meg. Egyes LDAP-könyvtárak nem szerepelhet a legfelső szintű DSE hello összes szolgáltatás, és előfordulhat, hogy a hello hibák nélkül a Connector működik, akkor is, ha jelen egy figyelmeztetés.
+A felső részében a kiszolgálójának nevével, például a nevét, a kiszolgáló által biztosított információit tartalmazza. Az összekötő is ellenőrzi, hogy a kötelező szabályozza a legfelső szintű DSE szerepel. Ezek az intézkedések nem szerepelnek a listán, ha figyelmeztetés jelenik meg. Egy LDAP-könyvtárak nem szerepelhet a legfelső szintű DSE az összes szolgáltatás, és előfordulhat, hogy a Connector működik hibák nélkül akkor is, ha jelen egy figyelmeztetés.
 
-Hello **vezérlők támogatott** checkboxes szabályozhatja az egyes műveletek hello működését:
+A **vezérlők támogatott** replikációból bizonyos műveletek működését:
 
-* A kiválasztott fa törlése, a hierarchia törlődik egy LDAP-hívással. A fa törlése nincs bekapcsolva hello összekötő rekurzív törlési funkciója, szükség esetén.
-* A kiválasztott lapozható eredmények összekötő hello nem lapozható importálási futtatása hello lépéseket a megadott hello méret.
-* hello VLVControl SortControl pedig egy LDAP-címtár hello alternatív toohello pagedResultsControl tooread adatait.
-* Ha mind a három beállítást (pagedResultsControl, VLVControl és SortControl) nincsenek bejelölve hello összekötő importálja az összes objektum meghiúsulhat, ha nagy könyvtár egy műveletben.
-* ShowDeletedControl csak akkor használja, ha hello különbözeti importálás módszer USNChanged.
+* A kiválasztott fa törlése, a hierarchia törlődik egy LDAP-hívással. A fa törlése nincs bejelölve az összekötő rekurzív törlési funkciója, szükség esetén.
+* A kiválasztott lapozható eredmények az összekötő nem lapozható importálása a futtatási lépéseket a megadott méret.
+* A VLVControl SortControl pedig adatokat olvasni az LDAP-címtár pagedResultsControl helyett.
+* Ha mind a három beállítást (pagedResultsControl, VLVControl és SortControl) nincsenek bejelölve, az összekötő importálja az összes objektum meghiúsulhat, ha nagy könyvtár egy műveletben.
+* ShowDeletedControl csak akkor használja, ha a különbözeti importálás módszer USNChanged.
 
-hello Változásnapló DN hello névhasználati környezet használják a különbözeti Változásnapló hello, például **cn = változásnaplója**. Ennek az értéknek kell lennie a megadott toobe képes toodo különbözeti importálás.
+A módosítási napló DN például használják a különbözeti Változásnapló névhasználati környezet **cn = változásnaplója**. Különbözeti importálás elvégzéséhez meg kell adni ezt az értéket.
 
-hello az alábbiakban olvashat egy listát alapértelmezett módosítási napló DNs:
+A következő egy alapértelmezett Változásnapló DNs listáját:
 
 | Címtár | Különbözeti Változásnapló |
 | --- | --- |
 | Microsoft AD LDS és AD globális Katalógus |Automatikusan észleli. USNChanged. |
 | Apache címtárkiszolgálóra |Nem érhető el. |
-| Directory 389 |Változásnapló. Alapértelmezett érték toouse: **cn = változásnaplója** |
-| IBM Tivoli DS |Változásnapló. Alapértelmezett érték toouse: **cn = változásnaplója** |
-| Isode könyvtár |Változásnapló. Alapértelmezett érték toouse: **cn = változásnaplója** |
-| Novell/NetIQ eDirectory |Nem érhető el. Timestamp típusú. hello összekötő által használt utolsó frissített dátum/idő tooget hozzáadja, és rögzíti. |
-| Nyissa meg a DJ/DS-ben |Változásnapló.  Alapértelmezett érték toouse: **cn = változásnaplója** |
-| Nyissa meg az LDAP |Hozzáférési napló. Alapértelmezett érték toouse: **cn = accesslog** |
-| Oracle DSEE |Változásnapló. Alapértelmezett érték toouse: **cn = változásnaplója** |
-| A virtuális Lemezszolgáltatás RadiantOne |Virtuális könyvtár. Hello kapcsolódó directory tooVDS függ. |
-| Egy Sun Directory Server |Változásnapló. Alapértelmezett érték toouse: **cn = változásnaplója** |
+| Directory 389 |Változásnapló. Alapértelmezett érték használata: **cn = változásnaplója** |
+| IBM Tivoli DS |Változásnapló. Alapértelmezett érték használata: **cn = változásnaplója** |
+| Isode könyvtár |Változásnapló. Alapértelmezett érték használata: **cn = változásnaplója** |
+| Novell/NetIQ eDirectory |Nem érhető el. Timestamp típusú. Az összekötő által használt utolsó frissítés dátum/idő beolvasandó hozzáadja, és rögzíti. |
+| Nyissa meg a DJ/DS-ben |Változásnapló.  Alapértelmezett érték használata: **cn = változásnaplója** |
+| Nyissa meg az LDAP |Hozzáférési napló. Alapértelmezett érték használata: **cn = accesslog** |
+| Oracle DSEE |Változásnapló. Alapértelmezett érték használata: **cn = változásnaplója** |
+| A virtuális Lemezszolgáltatás RadiantOne |Virtuális könyvtár. A VDS csatlakozik directory függ. |
+| Egy Sun Directory Server |Változásnapló. Alapértelmezett érték használata: **cn = változásnaplója** |
 
-hello jelszó attribútum hello attribútum hello összekötő neve hello használandó tooset hello jelszavát a jelszó módosítása és a jelszó set műveletek.
-Ez az érték az alapértelmezett értéke túl**userPassword** , de egy adott LDAP-rendszer szükség esetén módosítható.
+A password attribútum az összekötő segítségével állítsa be a jelszavát a jelszó módosítása a nevét, és jelszót kell beállítani, műveletek.
+Ez az érték az alapértelmezett értéke **userPassword** , de egy adott LDAP-rendszer szükség esetén módosítható.
 
-Hello további partíciók listája hogy a rendszer lehetséges tooadd további névteret automatikusan nem észlelt. Például használható ezt a beállítást, ha több kiszolgáló logikai fürt, amely az összes importálni kell: hello ugyanannyi időt vesz igénybe. Ahogy az Active Directory képes több tartományban vannak egy erdőben, de minden olyan tartománynál megosztása több séma is ebbe a mezőbe írja be a hello további névteret szimulált azonos hello. Minden névtér különböző kiszolgálókról származó importálhatja, és további hello konfigurálása partíciók és hierarchiák lapon van konfigurálva. Használja a Ctrl + Enter tooget új sor.
+A további partíciókat listában is lehet további névterek automatikusan nem észlelt. Ez a beállítás például használható, ha több kiszolgáló logikai fürt, amely az összes importálni kell egy időben. Active Directory egy erdő több tartományban is vannak, de minden olyan tartománynál megosztani egy séma, mint az azonos is lehet szimulált ebben a mezőben írja be a további névteret. Minden névtér különböző kiszolgálókról származó importálhatja, és további van-e konfigurálva a konfigurálása partíciók és hierarchiák lapon. Ctrl + Enter ezen új sor.
 
 ### <a name="configure-provisioning-hierarchy"></a>Kiépítési hierarchia konfigurálása
-Ezen a lapon egy használt toomap hello DN összetevő, például OU toohello objektum típus, amely kell megadva lennie, például organizationalUnit.
+Ezen a lapon a megkülönböztető név összetevő, például OU hozzárendelése az objektumtípus, amely kell megadva lennie, például organizationalUnit szolgál.
 
 ![Telepítési hierarchia](./media/active-directory-aadconnectsync-connector-genericldap/provisioninghierarchy.png)
 
-Kiépítési hierarchia konfigurálása, beállíthatja hello összekötő tooautomatically hozzon létre egy struktúra, amikor szükséges. Például ha egy névtér dc = contoso, dc = com és egy új objektum cn Joe, ou = = budapesti, c = US, dc = contoso, dc = com ki van építve, majd hello összekötő objektum típusa ország az USA és egy organizationalUnit Budapest számára hozhat létre, ha azok még nem hello könyvtárban található.
+Kiépítési hierarchia konfigurálása, beállíthatja az összekötő egy struktúra, szükség esetén automatikusan létrehozásához. Például, ha egy névtér dc = contoso, dc = com és egy új objektum cn Joe, ou = = budapesti, c = US, dc = contoso, dc = com ki van építve, akkor az összekötő objektum típusa ország az USA és egy organizationalUnit Budapest számára hozhat létre, ha azok még nem érhetők el a címtárban.
 
 ### <a name="configure-partitions-and-hierarchies"></a>Partíciók és hierarchiák konfigurálása
-Hello partíciók és hierarchiák lapon jelölje be az összes névterek objektumok megtervezése tooimport és exportálása.
+A partíciók és hierarchiák lapon válassza ki az összes névtér objektumok importálni és exportálni szeretné.
 
 ![Partíciók](./media/active-directory-aadconnectsync-connector-genericldap/partitions.png)
 
-Minden névtér esetében is, akkor bírálja felül a hello kapcsolat képernyőn megadott hello értékek lehetséges tooconfigure kapcsolati beállításai. Ha ezek az értékek tootheir alapértelmezett üres érték megmaradnak, hello hello kapcsolat képernyőjéről adatok.
+Minden névtér esetében akkor is, amely akkor bírálja felül a kapcsolat képernyőn megadott értékek kapcsolat beállításainak konfigurálása. Ha ezeket az értékeket alapértelmezett értékét üresen marad, a a kapcsolat képernyőről adatok.
 
-Akkor is lehetséges tooselect mely tárolók és szervezeti egységek hello összekötő importálhat és exportálhat.
+Úgy is is válassza ki, melyik tárolók és szervezeti egységek, az összekötő kell importálhat és exportálhat.
 
-Keresés végrehajtása során ez a hello partíció az összes tároló keresztül történik. Azokban az esetekben, ahol nagyszámú tárolók e működés tooperformance teljesítménycsökkenést.
+Keresés végrehajtása során ez a partíció az összes tároló keresztül történik. Azokban az esetekben, ahol nagyszámú tárolók e működés teljesítménycsökkenést.
 
 >[!NOTE]
-Hello 2017. márciusi frissítés toohello általános LDAP kezdve összekötő keresések hatókör tooonly kijelölt hello tárolókban lévő korlátozott a is. Ezt megteheti "Keresési csak a kijelölt tárolók a" hello jelölőnégyzet kiválasztásával, az alábbi hello ábrán látható módon.
+Az általános LDAP 2017. márciusi frissítés indítása összekötő keresések lehet korlátozni hatókörrel, hogy csak a kijelölt tárolók. Ezt megteheti "Keresés csak a kijelölt tárolók" jelölőnégyzet bejelölésével, az alábbi ábrán látható módon.
 
 ![Keresés csak a kijelölt tároló](./media/active-directory-aadconnectsync-connector-genericldap/partitions-only-selected-containers.png)
 
 ### <a name="configure-anchors"></a>Horgonyok konfigurálása
-Ezen a lapon mindig rendelkezik előre beállított értékkel, és nem módosítható. Ha hello server szállító van megadva, majd hello horgonyzási előfordulhat, hogy megjelenni megváltoztathatatlan attribútum, például hello GUID egy objektum. Ha nem észlelhető, vagy toonot ismert attribútum nem módosítható rendelkezik, majd hello összekötő használ hello kapcsolatainak megkülönböztető név (megkülönböztető neve).
+Ezen a lapon mindig rendelkezik előre beállított értékkel, és nem módosítható. Ha a kiszolgáló szállító azonosítása, majd a horgony előfordulhat, hogy lehet megadni, nem módosítható attribútumot, például egy objektum a GUID. Ha nem észlelhető, vagy ismert, hogy nem rendelkezik az attribútum nem módosítható, majd az összekötő használ kapcsolatainak megkülönböztető név (megkülönböztető neve).
 
 ![a központi jellegűek](./media/active-directory-aadconnectsync-connector-genericldap/anchors.png)
 
 
-hello az alábbiakban olvashat az LDAP-kiszolgálókba és hello horgonyzási használja listáját:
+A következő egy LDAP-kiszolgálókba és a horgony használja listáját:
 
 | Címtár | Horgonyattribútum |
 | --- | --- |
@@ -258,14 +258,14 @@ hello az alábbiakban olvashat az LDAP-kiszolgálókba és hello horgonyzási ha
 | Egy Sun Directory Server |megkülönböztető név |
 
 ## <a name="other-notes"></a>Egyéb megjegyzések
-Ez a szakasz az adott toothis összekötő vagy egyéb okból fontos tooknow szempontok információival.
+Ez a szakasz szempontok az összekötő jellemző vagy más okból fontos tudni, hogy információkat nyújt.
 
 ### <a name="delta-import"></a>Különbözeti importálás
-Nyissa meg az LDAP hello különbözeti vízjel UTC dátum/idő. Emiatt hello FIM szinkronizálási szolgáltatás, és nyissa meg az LDAP hello között kell szinkronizálni. Ha nem, akkor néhány elemet hello különbözeti módosítási naplóban lehet megadva.
+Az LDAP-kiszolgálón nyissa meg a különbözeti vízjel UTC dátum/idő. Emiatt a FIM szinkronizálási szolgáltatás és a nyitott LDAP között kell szinkronizálni. Ha nem, előfordulhat, hogy lehet hagyni a különbözeti Változásnapló néhány elemet.
 
-Novell eDirectory a hello különbözeti importálás nem érzékeli bármely objektum törlése. Ezért fontos toorun teljes rendszeresen toofind az összes törölt objektumokat importálhat.
+Novell eDirectory, az a különbözeti importálás nem érzékeli bármely objektum törlése. Ezért fontos rendszeresen az összes törölt objektumok kereséséhez teljes importálást futtatásához.
 
-A különbözeti mappák módosításnapló dátum és idő alapján, magas van-e toorun rendszeres időközönként a teljes importálás ajánlott. Ez a folyamat lehetővé teszi, hogy hello szinkronizálási motor toofind és eltérő hello LDAP-kiszolgáló és a jelenleg a kapcsolódási térbe hello között.
+A dátum és idő alapján a különbözeti módosítási napló-címtárak esetén ajánlott rendszeres időközönként teljes importálást futtatásához. Ez a folyamat lehetővé teszi, hogy a szinkronizálási motor kereséséhez és az LDAP-kiszolgáló és a jelenleg a a kapcsolódási térbe között eltérő.
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
-* Hogyan tooenable naplózási tootroubleshoot hello összekötő információkért lásd: hello [hogyan ETW-nyomkövetés összekötők tooEnable](http://go.microsoft.com/fwlink/?LinkId=335731).
+* Az összekötő hibaelhárítása naplózásának engedélyezése a további információkért lásd: a [hogyan ETW-nyomkövetés engedélyezése a csatlakozók](http://go.microsoft.com/fwlink/?LinkId=335731).

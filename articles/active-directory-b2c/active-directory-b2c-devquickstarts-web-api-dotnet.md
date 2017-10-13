@@ -1,6 +1,6 @@
 ---
-title: Active Directory B2C aaaAzure |} Microsoft Docs
-description: "Hogyan toobuild .NET webalkalmazás és hívja meg a webes api Azure Active Directory B2C és az OAuth 2.0 hozzáférési jogkivonatok használatával."
+title: Az Azure Active Directory B2C |} Microsoft Docs
+description: "Hogyan kell a .NET-webalkalmazás létrehozása, és hívja meg a webes api Azure Active Directory B2C és az OAuth 2.0 hozzáférési jogkivonatok használatával."
 services: active-directory-b2c
 documentationcenter: .net
 author: parakhj
@@ -14,56 +14,56 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/17/2017
 ms.author: parakhj
-ms.openlocfilehash: 9b248e3bf18968e12aae73c07083fa8278befb3b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 48452eb68f826d1c7aa61d5e5531f941ac1422b0
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="azure-ad-b2c-call-a-net-web-api-from-a-net-web-app"></a>Az Azure AD B2C: .NET webes API-hívás .NET-webalkalmazásból
 
-Az Azure AD B2C segítségével hatékony identity management szolgáltatások tooyour webalkalmazások és webes API-kat is hozzáadhat. Ez a cikk ismerteti, hogyan toorequest hozzáférési jogkivonatok, valamint a hívásokat a .NET-"Feladatlista" webes alkalmazás tooa .NET webes API-t.
+Az Azure AD B2C segítségével hatékony identitáskezelési funkciókat adhat hozzá a webalkalmazások és webes API-k. A cikkből megtudhatja, hogyan kérjen hozzáférési jogkivonatok és ellenőrizze a .NET "Feladatlista" webes alkalmazás a .NET webes API-t.
 
-Ez a cikk nem foglalkozik hogyan tooimplement bejelentkezés, regisztrációs profil-kezelés az Azure AD B2C és. A cikk foglalkozik a hívó webes API-k hello felhasználó már hitelesítése után. Ha még nem tette meg, a következőket:
+Ez a cikk nem foglalkozik megvalósítható bejelentkezési, regisztrációs és profilkezelési Azure AD B2C. A cikk foglalkozik hívó Web API-kat a felhasználó már hitelesítése után. Ha még nem tette meg, a következőket:
 
 * Első lépések egy [.NET-webalkalmazás](active-directory-b2c-devquickstarts-web-dotnet-susi.md)
 * Első lépések egy [.NET webes API-t](active-directory-b2c-devquickstarts-api-dotnet.md)
 
 ## <a name="prerequisite"></a>Előfeltétel
 
-toobuild egy webes alkalmazás, amely meghívja a webes API-t kell:
+Hozható létre olyan webes alkalmazás, amely behívja a webes API-t kell:
 
 1. [Az Azure AD B2C bérlő létrehozása](active-directory-b2c-get-started.md).
 2. [Regisztrálja a webes api](active-directory-b2c-app-registration.md#register-a-web-api).
 3. [A webes alkalmazás regisztrálása](active-directory-b2c-app-registration.md#register-a-web-app).
 4. [Házirendek beállítása](active-directory-b2c-reference-policies.md).
-5. [Támogatás hello web app engedélyek toouse hello webes API-t](active-directory-b2c-access-tokens.md#publishing-permissions).
+5. [Engedélyeket kap a webes alkalmazás használja a web api](active-directory-b2c-access-tokens.md#publishing-permissions).
 
 > [!IMPORTANT]
-> hello ügyfélalkalmazást és a webes API hello ugyanazt az Azure AD B2C-címtárban kell használnia.
+> Az ügyfélalkalmazásnak és a webes API-nak ugyanazt az Azure AD B2C könyvtárat kell használnia.
 >
 
-## <a name="download-hello-code"></a>Hello kód letöltése
+## <a name="download-the-code"></a>A kód letöltése
 
-az oktatóanyag kódjának hello fenntartott [GitHub](https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-and-webapi). Hello minta klónozhat futtatásával:
+Az oktatóanyag kódjának kezelése a [GitHubon](https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-and-webapi) történik. A minta klónozásához futtassa a következőt:
 
 ```console
 git clone https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-and-webapi.git
 ```
 
-Hello mintakód letöltése után nyissa meg hello Visual Studio .sln fájlt tooget elindult. hello megoldásfájl két projektet tartalmaz: `TaskWebApp` és `TaskService`. `TaskWebApp`az MVC webalkalmazás hello felhasználó kommunikál. `TaskService`minden felhasználói feladatlistát tároló hello app webes API van. Ez a cikk nem tér ki az épület hello `TaskWebApp` webalkalmazás vagy hello `TaskService` webes API-t. toolearn hogyan toobuild hello .NET webalkalmazás-alkalmazásokhoz az Azure AD B2C használatával tekintse meg a [.NET web app oktatóanyag](active-directory-b2c-devquickstarts-web-dotnet-susi.md). Hogyan toobuild hello .NET webes API-t az Azure AD B2C használatával biztonságossá toolearn tekintse meg a [.NET webes API-k oktatóanyag](active-directory-b2c-devquickstarts-api-dotnet.md).
+Miután letöltötte a mintakódot, nyissa meg a Visual Studio .sln fájlt a kezdéshez. A megoldásfájl két projektet tartalmaz: `TaskWebApp` és `TaskService`. `TaskWebApp`a felhasználó kommunikál MVC webalkalmazás van. A `TaskService` az alkalmazás webes API háttérszolgáltatása, amely tárolja a felhasználók feladatlistáit. Ez a cikk nem tér ki az épület a `TaskWebApp` webes alkalmazás vagy a `TaskService` webes API-t. Megtudhatja, hogyan hozhat létre az Azure AD B2C segítségével .NET web app, tekintse meg a [.NET web app oktatóanyag](active-directory-b2c-devquickstarts-web-dotnet-susi.md). Megtudhatja, hogyan hozhat létre a .NET webes API-t az Azure AD B2C használatával biztonságossá téve, tekintse meg a [.NET webes API-k oktatóanyag](active-directory-b2c-devquickstarts-api-dotnet.md).
 
-### <a name="update-hello-azure-ad-b2c-configuration"></a>Az Azure AD B2C hello konfiguráció frissítése
+### <a name="update-the-azure-ad-b2c-configuration"></a>Az Azure AD B2C konfiguráció frissítése
 
-A minta rendszer konfigurált toouse hello házirendek és az ügyfél-Azonosítóját a bemutató bérlő. Ha azt szeretné, hogy toouse saját bérlőt:
+A minta úgy van konfigurálva, hogy a bemutató bérlőnk házirendjeit és ügyfél-azonosítóját használja. Ha azt szeretné, használhatja a saját bérlőt:
 
-1. Nyissa meg `web.config` a hello `TaskService` projektre, és cserélje le a hello értékei
+1. Nyissa meg a `web.config` fájlt a `TaskService` projektben, és a következőképpen cserélje le az értékeket:
 
     * Az `ida:Tenant` helyett szerepeljen a bérlő neve
     * `ida:ClientId`a webes api-alkalmazás azonosítójú
     * Az `ida:SignUpSignInPolicyId` helyett szerepeljen a „regisztrálási vagy bejelentkezési” házirend neve
 
-2. Nyissa meg `web.config` a hello `TaskWebApp` projektre, és cserélje le a hello értékei
+2. Nyissa meg a `web.config` fájlt a `TaskWebApp` projektben, és a következőképpen cserélje le az értékeket:
 
     * Az `ida:Tenant` helyett szerepeljen a bérlő neve
     * Az `ida:ClientId` helyett szerepeljen a webapp alkalmazásazonosítója
@@ -76,11 +76,11 @@ A minta rendszer konfigurált toouse hello házirendek és az ügyfél-Azonosít
 
 ## <a name="requesting-and-saving-an-access-token"></a>A kért és mentése egy hozzáférési jogkivonatot:
 
-### <a name="specify-hello-permissions"></a>Hello engedélyek megadásához
+### <a name="specify-the-permissions"></a>Az engedélyek megadásához
 
-Rendelés toomake hello hívás toohello webes API-t kell tooauthenticate hello felhasználói (a sign-Close-Up/bejelentkezési házirend használatával) és [olyan hozzáférési jogkivonatot kap](active-directory-b2c-access-tokens.md) az Azure AD B2C. A sorrend tooreceive olyan hozzáférési jogkivonatot először meg kell hello access token toogrant milyen hello engedélyek. hello engedélyek meg van határozva a hello `scope` paraméter, amikor hello kérelem toohello `/authorize` végpont. Például egy hozzáférési jogkivonat hello "olvasási" engedély toohello erőforrás alkalmazás tooacquire hello App ID URI-azonosítója `https://contoso.onmicrosoft.com/tasks`, hello hatókör lenne `https://contoso.onmicrosoft.com/tasks/read`.
+Annak érdekében, hogy a webes API-hívás, szeretné hitelesíteni a felhasználót (a sign-Close-Up/bejelentkezési házirend használatával) és [olyan hozzáférési jogkivonatot kap](active-directory-b2c-access-tokens.md) az Azure AD B2C. Ahhoz, hogy olyan hozzáférési jogkivonatot kap, először meg kell azt szeretné, hogy a hozzáférési jogkivonat megadását az engedélyeket. Az engedélyek vannak megadva a `scope` paraméter, amikor a kérést a `/authorize` végpont. Ahhoz például, hogy egy hozzáférési jogkivonat App ID URI-azonosítója az erőforrás alkalmazás "olvasási" engedéllyel rendelkező `https://contoso.onmicrosoft.com/tasks`, a hatókör lenne `https://contoso.onmicrosoft.com/tasks/read`.
 
-a minta, nyissa meg hello fájlban toospecify hello hatókör `App_Start\Startup.Auth.cs` , és adja meg a hello `Scope` OpenIdConnectAuthenticationOptions változóját.
+A hatókör a mintában szereplő, nyissa meg a fájlt `App_Start\Startup.Auth.cs` , és adja meg a `Scope` OpenIdConnectAuthenticationOptions változóját.
 
 ```CSharp
 // App_Start\Startup.Auth.cs
@@ -90,16 +90,16 @@ a minta, nyissa meg hello fájlban toospecify hello hatókör `App_Start\Startup
         {
             ...
 
-            // Specify hello scope by appending all of hello scopes requested into one string (seperated by a blank space)
+            // Specify the scope by appending all of the scopes requested into one string (seperated by a blank space)
             Scope = $"{OpenIdConnectScopes.OpenId} {ReadTasksScope} {WriteTasksScope}"
         }
     );
 }
 ```
 
-### <a name="exchange-hello-authorization-code-for-an-access-token"></a>Exchange hello engedélyezési kód egy hozzáférési jogkivonatot:
+### <a name="exchange-the-authorization-code-for-an-access-token"></a>Exchange-hozzáférési tokent az engedélyezési kódot
 
-Egy felhasználó hello-előfizetés és a bejelentkezési élmény befejezése után az alkalmazás kap egy engedélyezési kód az Azure AD B2C. hello OWIN OpenID Connect köztes hello kódot fogja tárolni, de nem cserélnek azt a hozzáférési tokent. Használhatja a hello [MSAL könyvtár](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) toomake hello exchange. A mintában szereplő konfigurált a lekérdezésértesítési visszahívást hello OpenID Connect köztes be, amikor egy engedélyezési kód érkezik. A hello visszahívási azt MSAL tooexchange hello kód használata a jogkivonat és mentse hello token hello gyorsítótárába.
+Egy felhasználót a regisztráció és a bejelentkezési élmény befejezése után az alkalmazás kap egy engedélyezési kód az Azure AD B2C. Az OWIN OpenID Connect köztes fogja tárolni a kódot, de nem cserélnek azt a hozzáférési tokent. Használhatja a [MSAL könyvtár](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) az exchange végrehajtásához. A mintában szereplő konfigurált a lekérdezésértesítési visszahívást az OpenID Connect köztes be, amikor egy engedélyezési kód érkezik. A visszahívási MSAL használjuk a jogkivonat kód csere, és menteni a jogkivonatot a gyorsítótárba.
 
 ```CSharp
 /*
@@ -107,14 +107,14 @@ Egy felhasználó hello-előfizetés és a bejelentkezési élmény befejezése 
 */
 private async Task OnAuthorizationCodeReceived(AuthorizationCodeReceivedNotification notification)
 {
-    // Extract hello code from hello response notification
+    // Extract the code from the response notification
     var code = notification.Code;
 
     var userObjectId = notification.AuthenticationTicket.Identity.FindFirst(ObjectIdElement).Value;
     var authority = String.Format(AadInstance, Tenant, DefaultPolicy);
     var httpContext = notification.OwinContext.Environment["System.Web.HttpContextBase"] as HttpContextBase;
 
-    // Exchange hello code for a token. Make sure toospecify hello necessary scopes
+    // Exchange the code for a token. Make sure to specify the necessary scopes
     ClientCredential cred = new ClientCredential(ClientSecret);
     ConfidentialClientApplication app = new ConfidentialClientApplication(authority, Startup.ClientId,
                                             RedirectUri, cred, new NaiveSessionCache(userObjectId, httpContext));
@@ -122,19 +122,19 @@ private async Task OnAuthorizationCodeReceived(AuthorizationCodeReceivedNotifica
 }
 ```
 
-## <a name="calling-hello-web-api"></a>Hello webes API meghívása
+## <a name="calling-the-web-api"></a>A webes API meghívása
 
-Ez a szakasz ismerteti, hogyan toouse hello jogkivonatot kapott sign-Close-Up/bejelentkezés az Azure AD B2C sorrendben tooaccess hello webes API-t.
+Ez a szakasz ismerteti, amelyek használata során kapott jogkivonat sign-Close-Up/bejelentkezés az Azure AD B2C a webes API-k eléréséhez.
 
-### <a name="retrieve-hello-saved-token-in-hello-controllers"></a>A hello, tartományvezérlői mentett hello-jogkivonatot lekérdezni
+### <a name="retrieve-the-saved-token-in-the-controllers"></a>A mentett lexikális elem szerepel a vezérlők beolvasása
 
-Hello `TasksController` felelős hello webes API-k kommunikál a HTTP-kérelmek toohello API tooread küld, hozzon létre és törölheti a feladatokat. Mivel hello API védi-e az Azure AD B2C, meg kell toofirst hello/token lekérése a fenti lépés hello mentette.
+A `TasksController` felelős kommunikál a webes API-t és HTTP-kérelmek küldéséhez az API használatával olvasását, létrehozását és törölheti a feladatokat. Az API-t az Azure AD B2C által védett, mert kell először kérjen le a jogkivonatot az előző lépésben mentett.
 
 ```CSharp
 // Controllers\TasksController.cs
 
 /*
-* Uses MSAL tooretrieve hello token from hello cache
+* Uses MSAL to retrieve the token from the cache
 */
 private async void acquireToken(String[] scope)
 {
@@ -143,7 +143,7 @@ private async void acquireToken(String[] scope)
 
     ClientCredential credential = new ClientCredential(Startup.ClientSecret);
 
-    // Retrieve hello token using hello provided scopes
+    // Retrieve the token using the provided scopes
     ConfidentialClientApplication app = new ConfidentialClientApplication(authority, Startup.ClientId,
                                         Startup.RedirectUri, credential,
                                         new NaiveSessionCache(userObjectID, this.HttpContext));
@@ -153,9 +153,9 @@ private async void acquireToken(String[] scope)
 }
 ```
 
-### <a name="read-tasks-from-hello-web-api"></a>Feladatok olvasni hello webes API-k
+### <a name="read-tasks-from-the-web-api"></a>Feladatok olvasni a webes API-k
 
-Ha megkapta a jogkivonatot, csatolhatók toohello HTTP `GET` hello kérést `Authorization` fejléc toosecurely hívás `TaskService`:
+Ha megkapta a jogkivonatot, csatolhat azt a HTTP `GET` kérheti a `Authorization` biztonságosan hívására fejléc `TaskService`:
 
 ```CSharp
 // Controllers\TasksController.cs
@@ -164,13 +164,13 @@ public async Task<ActionResult> Index()
 {
     try {
 
-        // Retrieve hello token with hello specified scopes
+        // Retrieve the token with the specified scopes
         acquireToken(new string[] { Startup.ReadTasksScope });
 
         HttpClient client = new HttpClient();
         HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, apiEndpoint);
 
-        // Add token toohello Authorization header and make hello request
+        // Add token to the Authorization header and make the request
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         HttpResponseMessage response = await client.SendAsync(request);
 
@@ -179,11 +179,11 @@ public async Task<ActionResult> Index()
 
 ```
 
-### <a name="create-and-delete-tasks-on-hello-web-api"></a>Hozzon létre vagy töröljön a feladatokat a hello webes API-k
+### <a name="create-and-delete-tasks-on-the-web-api"></a>Hozzon létre vagy töröljön a webes API-k feladatai
 
-Hajtsa végre hello azonos mintát küldésekor `POST` és `DELETE` a hello gyorsítótárban levő MSAL tooretrieve hello hozzáférési jogkivonat kérelmek toohello webes API-t használ.
+Ugyanezt a mintát követik küldésekor `POST` és `DELETE` kéréseket a webes API-hoz, MSAL segítségével kéri le a hozzáférési jogkivonatot a gyorsítótárból.
 
-## <a name="run-hello-sample-app"></a>Hello mintaalkalmazás futtatása
+## <a name="run-the-sample-app"></a>Mintaalkalmazás futtatása
 
-Végezetül hozza létre, és mindkét hello alkalmazásainak futtatásához. Regisztráció és bejelentkezés és hozzon létre feladatokat hello bejelentkezett felhasználó. Kijelentkezés és bejelentkezés másik felhasználóként. Hozzon létre feladatokat ennek a felhasználónak. Figyelje meg, hogyan hello feladatok felhasználónként tárolja a hello API, mert hello API hello felhasználói identitás kiolvassa a hello jogkivonatot kap. Próbálja meg is játszott hello hatókörként. Távolítsa el hello engedélyt túl "write", és próbálja meg újból felvenni a feladatok. Csak győződjön meg arról, hogy toosign kimenő hello hatókör minden módosításakor.
+Végezetül hozza létre, és mindkét az alkalmazások futtatása. Regisztráció és bejelentkezés, és hozzon létre feladatokat a bejelentkezett felhasználó. Kijelentkezés és bejelentkezés másik felhasználóként. Hozzon létre feladatokat ennek a felhasználónak. Figyelje meg, hogyan feladatok felhasználónként tárolja a API, mivel az API kinyeri a felhasználó identitását a jogkivonatból kap. Próbálja meg is játszik és a hatókörök. Távolítsa el a "write", és próbálja meg újból felvenni a feladatok engedéllyel. Ne feledje Kijelentkezés a hatókör minden módosításakor.
 

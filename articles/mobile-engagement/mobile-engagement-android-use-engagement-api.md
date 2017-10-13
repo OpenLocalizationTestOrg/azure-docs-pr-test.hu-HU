@@ -1,6 +1,6 @@
 ---
-title: aaaHow tooUse hello Engagement API Android rendszeren
-description: "Legújabb Android SDK - hogyan tooUse hello Engagement API Android rendszeren"
+title: "A bevonási API használatával Android rendszeren"
+description: "Legújabb Android SDK - az Engagement API használatával Android rendszeren"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,55 +14,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/25/2016
 ms.author: piyushjo;ricksal
-ms.openlocfilehash: e0b2d484616c0c7874e77c5283d94c3063949ed2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d353cd2fe47c54a0282cc5bb1b22b4a56e0cd82c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toouse-hello-engagement-api-on-android"></a>Hogyan tooUse hello Engagement API Android rendszeren
-Ez a dokumentum egy bővítmény toohello dokumentum [speciális jelentéskészítési lehetőségek a Mobile Engagement Android SDK](mobile-engagement-android-advanced-reporting.md). A mélység adatait hogyan toouse hello Engagement API tooreport az alkalmazás statisztikái biztosít.
+# <a name="how-to-use-the-engagement-api-on-android"></a>A bevonási API használatával Android rendszeren
+Ez a dokumentum az bővítménye a dokumentum [speciális jelentéskészítési lehetőségek a Mobile Engagement Android SDK](mobile-engagement-android-advanced-reporting.md). A mélység részletei jelentés az alkalmazás statisztikái az Engagement API használatával biztosít.
 
-Vegye figyelembe, hogy ha csak szeretné Engagement tooreport munkamenetek, a tevékenységek, a összeomlásokat és a technikai információkat az alkalmazás, majd hello legegyszerűbb módja a rendszer minden toomake a `Activity` alosztályokat örökölhet hello megfelelő `EngagementActivity` osztály.
+Ne feledje, hogy ha Engagement jelenti a munkamenetek, a tevékenységek, a összeomlásokat és a technikai információkat az alkalmazás csak szeretne, majd a legegyszerűbb módja a rendszer minden ahhoz a `Activity` alosztályokat öröklik a megfelelő `EngagementActivity` osztály.
 
-Ha azt szeretné, hogy toodo további, például ha tooreport adott eseményeket, hibákat és feladatok van szüksége, vagy ha tooreport az alkalmazás tevékenységei eltérő módon, mint egy hello megvalósított hello `EngagementActivity` osztályokat, akkor szükséges, hogy toouse hello Bevonási API.
+Ha szeretne többet, például ha adott eseményeket, hibákat és feladatok, jelentenie, vagy ha a jelentés az alkalmazás tevékenységei eltérő módon, mint az egyik valósult meg, hogy a `EngagementActivity` osztályokat, akkor használja az Engagement API szükséges.
 
-hello Engagement API által biztosított hello `EngagementAgent` osztály. Ez az osztály példánya lekérhetők hívó hello `EngagementAgent.getInstance(Context)` statikus metódus (vegye figyelembe, hogy hello `EngagementAgent` objektumot adott vissza az Egypéldányos).
+A bevonási API által biztosított a `EngagementAgent` osztály. Ez az osztály példánya meghívásával lehet beolvasni a `EngagementAgent.getInstance(Context)` statikus metódus (vegye figyelembe, hogy a `EngagementAgent` objektumot adott vissza az Egypéldányos).
 
 ## <a name="engagement-concepts"></a>Engagement – fogalmak
-hello következő részekből pontosítsa közös hello [Mobile Engagement fogalmait](mobile-engagement-concepts.md), hello Android platformhoz.
+A következő részekből finomíthatja a közös [Mobile Engagement fogalmait](mobile-engagement-concepts.md), az Android platformhoz.
 
 ### <a name="session-and-activity"></a>`Session` és `Activity`
-Ha hello felhasználó több mint néhány másodpercen belül két között tétlen marad *tevékenységek*, majd a sorozatát *tevékenységek* van szétosztva két különböző *munkamenetek*. Ezek néhány másodpercig hello "munkamenet időkorlátja" nevezzük.
+Ha a felhasználó több mint néhány másodpercen belül két között tétlen marad *tevékenységek*, majd a sorozatát *tevékenységek* van szétosztva két különböző *munkamenetek*. Ezek néhány másodpercet a "munkamenet időkorlátja" nevezzük.
 
-Egy *tevékenység* általában egy képernyő hello alkalmazás, amely toosay hello társított *tevékenység* kezdődik, amikor hello képernyő jelenik meg, és leállítja az üdvözlő képernyőt bezárásakor: Ez a hello eset, amikor hello Engagement SDK integrálva van a hello segítségével `EngagementActivity` osztályok.
+Egy *tevékenység* tartozik általában egy képernyő az alkalmazás, azaz a *tevékenység* kezdődik, amikor a képernyő jelenik meg, és leállítja a képernyő bezárásakor: Ez a helyzet, amikor az Engagement SDK használatával integrálva van a `EngagementActivity` osztályok.
 
-De *tevékenységek* is szabályozhatja manuálisan hello Engagement API használatával. Így toosplit egy adott képernyő több sub részek tooget kapcsolatos további részletekért hello használata ezen a képernyőn (például milyen gyakran tooknown és mennyi ideig párbeszédpanelek használt ezen a képernyőn belül).
+De *tevékenységek* is szabályozhatja manuálisan az Engagement API használatával. Ez lehetővé teszi több sub pontján további részletes információkat az ezen a képernyőn (például hogy milyen gyakran ismert, és mennyi ideig párbeszédpanelek ezen a képernyőn belül használt) használatát egy adott képernyő felosztása.
 
 ## <a name="reporting-activities"></a>Jelentéskészítési tevékenység
 > [!IMPORTANT]
-> Nem kell tooreport tevékenységek, például a hello használata ebben a szakaszban leírt `EngagementActivity` osztály és annak változataihoz, ahogy hello hogyan tooIntegrate Engagement Android dokumentum.
+> Ebben a szakaszban ismertetett használata tevékenységek, például jelentés nem kell a `EngagementActivity` osztály és annak változataihoz Android dokumentumon integrálni engagement hogyan leírtak szerint.
 > 
 > 
 
 ### <a name="user-starts-a-new-activity"></a>Felhasználó elindítja az új tevékenység
             EngagementAgent.getInstance(this).startActivity(this, "MyUserActivity", null);
-            // Passing hello current activity is required for Reach toodisplay in-app notifications, passing null will postpone such announcements and polls.
+            // Passing the current activity is required for Reach to display in-app notifications, passing null will postpone such announcements and polls.
 
-Toocall kell `startActivity()` minden alkalommal hello felhasználói tevékenység változik. hello első hívás toothis függvény új felhasználói munkamenet indítása.
+Meg kell hívnia `startActivity()` minden egyes alkalommal, amikor a felhasználói tevékenység módosul. Ez a függvény az első hívás új felhasználói munkamenet indítása.
 
-Ez a funkció csak az egyes tevékenységek a legjobb hely toocall hello `onResume` visszahívás.
+Ez a függvény hívása a legjobb hely van, minden tevékenység `onResume` visszahívás.
 
 ### <a name="user-ends-his-current-activity"></a>Felhasználói karakterlánccal végződik-e aktuális tevékenysége
             EngagementAgent.getInstance(this).endActivity();
 
-Toocall kell `endActivity()` legalább egyszer amikor hello felhasználó befejezi az utolsó tevékenység. Ebben értesíti az Engagement SDK-t, hogy a hello felhasználó jelenleg inaktív, és, hogy a felhasználói munkamenet hello toobe kell lezárt egyszer hello munkamenet időkorlátja lejár hello (ha meghívja a `startActivity()` előtt hello munkamenet időkorlátja lejár, a hello munkamenet egyszerűen folytatva).
+Meg kell hívnia `endActivity()` legalább egyszer amikor a felhasználó befejezi az utolsó tevékenység. Ebben értesíti az Engagement SDK-t, hogy a felhasználó jelenleg inaktív, valamint, hogy a felhasználói munkamenet kell egyszer lezárni a munkamenet időkorlátja lejár (ha meghívja a `startActivity()` előtt a munkamenet időkorlátja lejár, egyszerűen folytatni a munkamenetet).
 
-Ez a funkció csak az egyes tevékenységek a legjobb hely toocall hello `onPause` visszahívás.
+Ez a függvény hívása a legjobb hely van, minden tevékenység `onPause` visszahívás.
 
 ## <a name="reporting-events"></a>Jelentési eseményeket
 ### <a name="session-events"></a>Munkamenet-események
-Munkamenet-eseményeket általában használt tooreport hello műveletek során a munkamenet a felhasználó által végrehajtott is.
+A munkamenet során a felhasználó által végrehajtott műveletek jelentésére általában használhatók munkamenet események.
 
 **További adatok nélkül. példa:**
 
@@ -89,11 +89,11 @@ Munkamenet-eseményeket általában használt tooreport hello műveletek során 
             }
 
 ### <a name="standalone-events"></a>Önálló események
-Ellenkező toosession események, a kívül egy munkamenet környezetében hello önálló események is előfordulhatnak.
+Munkamenet események ellentétesen önálló események egy munkamenet környezetében kívül is előfordulhatnak.
 
 **Példa**
 
-Tegyük fel, hogy a szórásos receiver kiváltásakor bekövetkező tooreport események:
+Tegyük fel, a szórásos receiver kiváltásakor bekövetkező jelentés események:
 
             /** Triggered by Intent.ACTION_BATTERY_LOW */
             public BatteryLowReceiver extends BroadcastReceiver {
@@ -107,16 +107,16 @@ Tegyük fel, hogy a szórásos receiver kiváltásakor bekövetkező tooreport e
 
 ## <a name="reporting-errors"></a>Hibát jelentett
 ### <a name="session-errors"></a>Munkamenet-hibák
-Munkamenet olyan hello felhasználói érintő a munkamenet során általában használt tooreport hello hibákat tartalmaznak.
+Munkamenet a hibák általában használhatók a a munkamenet során a felhasználót érintő hibák jelentését.
 
 **Példa**
 
-            /** hello user has entered invalid data in a form */
+            /** The user has entered invalid data in a form */
             public MyActivity extends EngagementActivity {
               [...]
               public void onMyFormSubmitted(MyForm form) {
                 [...]
-                /* hello user has entered an invalid email address */
+                /* The user has entered an invalid email address */
                 getEngagementAgent().sendSessionError("sign_up_email", null);
                 [...]
               }
@@ -124,11 +124,11 @@ Munkamenet olyan hello felhasználói érintő a munkamenet során általában h
             }
 
 ### <a name="standalone-errors"></a>Önálló hibák
-Ellenkező toosession hibák önálló hibák adódhatnak kívül hello egy munkamenet környezetében.
+Munkamenet hibák ellentétesen önálló felléphetnek a kívül egy munkamenet környezetében.
 
 **Példa**
 
-hello következő példa bemutatja, hogyan tooreport hiba történt, amikor hello memória válik alacsony hello telefonján, az alkalmazás folyamat közben fut-e.
+A következő példa bemutatja, hogyan hiba jelentését, amikor a memória válik alacsony a telefonján, az alkalmazás folyamat futása közben.
 
             public MyApplication extends EngagementApplication {
 
@@ -140,12 +140,12 @@ hello következő példa bemutatja, hogyan tooreport hiba történt, amikor hell
 
 ## <a name="reporting-jobs"></a>Feladatok jelentése
 ### <a name="example"></a>Példa
-Tegyük fel, hogy a bejelentkezési folyamat tooreport hello időtartama:
+Tegyük fel, hogy szeretne jelentést készíteni a bejelentkezési folyamat időtartama:
 
             [...]
             public void signIn(Context context, ...) {
 
-              /* We need an Android context toocall hello Engagement API, if you are extending Activity, Service, you can pass "this" */
+              /* We need an Android context to call the Engagement API, if you are extending Activity, Service, you can pass "this" */
               EngagementAgent engagementAgent = EngagementAgent.getInstance(context);
 
               /* Report sign in job has started */
@@ -159,28 +159,28 @@ Tegyük fel, hogy a bejelentkezési folyamat tooreport hello időtartama:
             [...]
 
 ### <a name="report-errors-during-a-job"></a>A feladat során hibák jelentése
-Hibák lehetnek feldolgozás alatt álló helyett kapcsolódó tooa kapcsolódó toohello jelenlegi felhasználói munkamenetet.
+Hibák a jelenlegi felhasználói munkamenet való helyett egy futó feladat kapcsolódhat.
 
 **Példa**
 
-Tegyük fel, hogy azt szeretné, hogy tooreport során, akkor hiba bejelentkezési folyamat:
+Tegyük fel, hogy során hiba bejelentkezési folyamat jelentést szeretne:
 
 [...] nyilvános "void" signIn (helyi környezet,...) {
 
-              /* We need an Android context toocall hello Engagement API, if you are extending Activity, Service, you can pass "this" */
+              /* We need an Android context to call the Engagement API, if you are extending Activity, Service, you can pass "this" */
               EngagementAgent engagementAgent = EngagementAgent.getInstance(context);
 
               /* Report sign in job has been started */
               engagementAgent.startJob("sign_in", null);
 
-              /* Try toosign in */
+              /* Try to sign in */
               while(true)
                 try {
                   trySignin();
                   break;
                 }
                 catch(Exception e) {
-                  /* Report hello error tooEngagement */
+                  /* Report the error to Engagement */
                   engagementAgent.sendJobError("sign_in_error", "sign_in", null);
 
                   /* Retry after a moment */
@@ -193,13 +193,13 @@ Tegyük fel, hogy azt szeretné, hogy tooreport során, akkor hiba bejelentkezé
             [...]
 
 ### <a name="reporting-events-during-a-job"></a>A feladat során jelentési eseményeket
-Események lehet feldolgozás alatt álló helyett kapcsolódó tooa kapcsolódó toohello jelenlegi felhasználói munkamenetet.
+Események egy futó feladat helyett a jelenlegi felhasználói munkamenet való kapcsolódhat.
 
 **Példa**
 
-Tegyük fel, közösségi hálózata, és egy feladat tooreport hello teljes ideje mely hello felhasználói pedig csatlakoztatott toohello server használjuk. hello felhasználói is maradhat háttérben akkor is, ha azt egy másik alkalmazás használja, vagy ha hello phone alvó állapotban van, így nincs munkamenet sincs.
+Tegyük fel, közösségi hálózata, és a teljes idő, ameddig a felhasználó csatlakozik-e a kiszolgáló egy feladatot, amely a jelentés használjuk. A felhasználó is maradhat háttérben még akkor is, ha azt egy másik alkalmazás használja, vagy ha a telefonszám alvó állapotban van, így nincs munkamenet sincs.
 
-hello felhasználói fogadhat üzeneteket az ismerősök, ez az esemény feladat.
+A felhasználó fogadhat üzeneteket az ismerősök, ez az esemény feladat.
 
             [...]
             public void signin(Context context, ...) {
@@ -219,12 +219,12 @@ hello felhasználói fogadhat üzeneteket az ismerősök, ez az esemény feladat
             [...]
 
 ## <a name="extra-parameters"></a>További paraméterek
-Lehet, hogy az adatokat tetszőleges csatolt tooevents, hibákat, tevékenységeket és feladatokat.
+Tetszőleges adatok csatolható események, hibákat, tevékenységeket és feladatokat.
 
 Ezek az adatok szervezhetők, Android tartozó csomagot osztály használ (ténylegesen, akkor működik, mint az Android leképezések kiegészítő paraméterekkel). Vegye figyelembe, hogy a csomag egyik Gyermekszoftver-tömb, vagy egy másik köteg példányokat tartalmazhat.
 
 > [!IMPORTANT]
-> Ha parcelable vagy szerializálható paraméterek be, ellenőrizze, hogy azok `toString()` metódus megvalósított tooreturn emberek számára olvasható karakterláncnak. Szerializálható nem átmeneti, amelyek nem szerializálható mezőket tartalmazó osztályokat megkönnyítő Android összeomlási hívásakor lesz`bundle.putSerializable("key",value);`
+> Ha parcelable vagy szerializálható paraméterek be, ellenőrizze, hogy azok `toString()` metódus megvalósítása emberek számára olvasható karakterláncot. Szerializálható nem átmeneti, amelyek nem szerializálható mezőket tartalmazó osztályokat megkönnyítő Android összeomlási hívásakor lesz`bundle.putSerializable("key",value);`
 > 
 > [!WARNING]
 > A további paraméterek ritka tömbök használata nem támogatott, ez azt jelenti, hogy nem szerializálható tömbként. Meg kell alakíthatja át őket a szabványos tömbök további paraméterek használatához.
@@ -239,28 +239,28 @@ Ezek az adatok szervezhetők, Android tartozó csomagot osztály használ (tény
 
 ### <a name="limits"></a>Korlátok
 #### <a name="keys"></a>Kulcsok
-Minden kulcs hello `Bundle` meg kell egyeznie a következő reguláris kifejezésnek hello:
+Az egyes kulcsok a `Bundle` meg kell egyeznie a következő reguláris kifejezésnek:
 
 `^[a-zA-Z][a-zA-Z_0-9]*`
 
 Ez azt jelenti, hogy kulcsok betűk, számok és aláhúzásjelek követ legalább egy betűvel kell kezdődnie (\_).
 
 #### <a name="size"></a>Méret
-Kiegészítő funkciók korlátozva túl**1024** karakter / hívás (egyszer kódolású JSON hello Engagement szolgáltatás).
+Kiegészítő funkciók korlátozva **1024** karakter / hívás (egyszer kódolású a JSON-ban az Engagement szolgáltatás).
 
-Hello az előző példában hello toohello server elküldött JSON 58 karakter hosszú:
+Az előző példában a a kiszolgálónak küldött JSON-ja 58 karakter:
 
             {"ref_click":"http:\/\/foobar.com\/blog","video_id":"123"}
 
 ## <a name="reporting-application-information"></a>Jelentéskészítési alkalmazással kapcsolatos adatok
-Manuálisan jelentheti a nyomkövetési adatokat (vagy más alkalmazás egyedi információt) hello `sendAppInfo()` függvény.
+Manuálisan jelentheti a nyomkövetési adatokat (vagy más alkalmazás egyedi információt) használatával a `sendAppInfo()` függvény.
 
-Vegye figyelembe, hogy ezek az információt elküldi Növekményesen: az adott eszköz folyamatosan csak hello legújabb egy adott kulcs értékét.
+Vegye figyelembe, hogy ezek az információt elküldi Növekményesen: a megadott kulcs csak a legutóbbi értékét az adott eszköz megmarad.
 
-Esemény kiegészítő funkciók, például hello köteg osztály használt tooabstract alkalmazással kapcsolatos információk, vegye figyelembe, hogy tömbállandó vagy részterv bundles minősül, egyszerű karakterlánc (JSON-szerializálás).
+Esemény kiegészítő funkciók, például a csomag osztály szolgál az alkalmazással kapcsolatos adatok absztrakt, vegye figyelembe, hogy tömbök vagy alárendelt kötegek minősül, egyszerű karakterlánc (JSON-szerializálás).
 
 ### <a name="example"></a>Példa
-Ez a kód a minta toosend felhasználói nemét és születési dátumot:
+Ez a kódminta, a felhasználó nemét és születési dátumot küldését:
 
             Bundle appInfo = new Bundle();
             appInfo.putString("status", "premium");
@@ -269,15 +269,15 @@ Ez a kód a minta toosend felhasználói nemét és születési dátumot:
 
 ### <a name="limits"></a>Korlátok
 #### <a name="keys"></a>Kulcsok
-Minden kulcs hello `Bundle` meg kell egyeznie a következő reguláris kifejezésnek hello:
+Az egyes kulcsok a `Bundle` meg kell egyeznie a következő reguláris kifejezésnek:
 
 `^[a-zA-Z][a-zA-Z_0-9]*`
 
 Ez azt jelenti, hogy kulcsok betűk, számok és aláhúzásjelek követ legalább egy betűvel kell kezdődnie (\_).
 
 #### <a name="size"></a>Méret
-Alkalmazásadatok esetén egyre korlátozódik túl**1024** karakter / hívás (egyszer kódolású JSON hello Engagement szolgáltatás).
+Alkalmazásadatok esetén egyre korlátozódik **1024** karakter / hívás (egyszer kódolású a JSON-ban az Engagement szolgáltatás).
 
-Hello az előző példában hello toohello server elküldött JSON 44 karakter hosszú:
+Az előző példában a a kiszolgálónak küldött JSON-ja 44 karakter:
 
             {"expiration":"2016-12-07","status":"premium"}

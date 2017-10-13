@@ -1,6 +1,6 @@
 ---
-title: "aaaRun Java-alkalmazáskiszolgáló a klasszikus Azure virtuális gép |} Microsoft Docs"
-description: "Ebben az oktatóanyagban létre hello klasszikus üzembe helyezési modellel, és bemutatja hogyan erőforrást használ, egy Windows virtuális toocreate számítógéphez, és konfigurálja azt toorun Apache Tomcat alkalmazáskiszolgáló."
+title: "A klasszikus Azure virtuális gép futtatásához a Java-alkalmazáskiszolgáló |} Microsoft Docs"
+description: "Ez az oktatóanyag a klasszikus üzembe helyezési modellel létrehozott erőforrást használ, és bemutatja, hogyan hozzon létre egy Windows virtuális gépet, és konfigurálja úgy, hogy az Apache Tomcat alkalmazáskiszolgáló futtatásához."
 services: virtual-machines-windows
 documentationcenter: java
 author: rmcmurray
@@ -15,123 +15,123 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 03/16/2017
 ms.author: robmcm
-ms.openlocfilehash: 2d9f586c9f628d3738522b320996b95b078d7454
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6e02f42613808bcb13c0057e9f8fcc1c02273e77
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toorun-a-java-application-server-on-a-virtual-machine-created-with-hello-classic-deployment-model"></a>Hogyan toorun egy Java-alkalmazáskiszolgáló virtuális gépen létre hello klasszikus telepítési modell
+# <a name="how-to-run-a-java-application-server-on-a-virtual-machine-created-with-the-classic-deployment-model"></a>Javás alkalmazáskiszolgáló futtatása hagyományos módon üzembe helyezett virtuális gépen
 > [!IMPORTANT]
-> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../resource-manager-deployment-model.md). Ez a cikk hello klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén hello Resource Manager modellt használja. A Resource Manager sablon toodeploy Java 8 és Tomcat egy webalkalmazást, lásd: [Itt](https://azure.microsoft.com/documentation/templates/201-web-app-java-tomcat/).
+> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../resource-manager-deployment-model.md). Ez a cikk a klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén a Resource Manager modellt használja. A Resource Manager-sablon egy Java 8 és Tomcat webalkalmazás telepítése, lásd: [Itt](https://azure.microsoft.com/documentation/templates/201-web-app-java-tomcat/).
 
-A virtuális gép tooprovide server funkcióinak használata az Azure-ban. Például egy Azure-on futó virtuális gép konfigurált toohost egy Java-alkalmazáskiszolgáló, például az Apache Tomcat is lehet.
+Az Azure-egy virtuális gép segítségével adja meg a kiszolgálói szolgáltatásokat. Például egy Azure-on futó virtuális gép beállítható úgy, hogy egy Java-alkalmazáskiszolgáló, például az Apache Tomcat üzemeltetésére.
 
-Ez az útmutató befejezése után fog megértéséhez toocreate egy virtuális gépet az Azure-on fut, és konfigurálja a Java-alkalmazáskiszolgáló toorun. Ismerje meg lesz, és hajtsa végre a következő feladatok hello:
+Ez az útmutató befejezése után fog Azure-on futó virtuális gép létrehozása, és konfigurálja úgy, hogy futtassa egy Java-alkalmazáskiszolgáló ismeretét. Először ismerje meg, a következő feladatokat:
 
-* Hogyan toocreate egy virtuális gépet, amely egy Java fejlesztői készlet (JDK) már telepítve van.
-* Tooremotely hogyan tooyour virtuálisgép jelentkezni.
-* Hogyan tooinstall egy Java-alkalmazáskiszolgáló--Apache Tomcat – a virtuális gépen.
-* Hogyan toocreate egy végpontot a virtuális géphez.
-* Hogyan tooopen hello egy portot az alkalmazás-kiszolgáló tűzfal.
+* Megtudhatja, hogyan hozzon létre egy virtuális gépet, amely egy Java fejlesztői készlet (JDK) már telepítve van.
+* Távolról jelentkeznek be a virtuális géphez tudnivalók.
+* Hogyan telepíthet egy Java-alkalmazáskiszolgáló--Apache Tomcat – a virtuális gépen.
+* Hozzon létre egy végpontot a virtuális géphez tudnivalók.
+* Nyisson meg egy portot a tűzfalon az alkalmazáskiszolgáló módjáról.
 
-hello befejeződött a virtuális gépen futó Tomcat telepítési eredményez.
+A virtuális gépen futó Tomcat telepítése befejeződött eredményez.
 
 ![Apache Tomcat rendszerű virtuális gép][virtual_machine_tomcat]
 
 [!INCLUDE [create-account-and-vms-note](../../../../includes/create-account-and-vms-note.md)]
 
-## <a name="toocreate-a-virtual-machine"></a>a virtuális gépek toocreate
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).  
-2. Kattintson a **új**, kattintson a **számítási**, majd kattintson a **láthatja az összes** hello a **a kiemelt alkalmazások**.
-3. Kattintson a **JDK**, kattintson a **JDK 8** a hello **JDK** ablaktáblán.  
-   Virtuálisgép-lemezképek támogató **JDK 6** és **JDK 7** érhető el, ha örökölt alkalmazásokat, amelyek nem kész toorun JDK 8-ban.
-4. Hello JDK 8 ablaktáblában jelölje ki **klasszikus**, majd kattintson a **létrehozása**.
-5. A hello **alapjai** panel:
-   1. Adja meg a hello virtuális gép nevét.
-   2. Adja meg egy nevet a hello rendszergazda hello **felhasználónév** mező. Ne feledje ezt a nevet, és ahhoz tartozó jelszót, a következő mező hello követő hello. Már szükség Amikor távolról jelentkeznek toohello virtuális gépen.
-   3. Adjon meg egy jelszót hello **új jelszó** mezőben, majd adja meg újból hello **jelszó megerősítése** mező. Ezt a jelszót a rendszergazdai fiók hello szolgál.
-   4. Jelölje be hello megfelelő **előfizetés**.
-   5. A hello **erőforráscsoport**, kattintson a **hozzon létre új** és adja meg egy új erőforráscsoportot hello nevét. Vagy kattintson a **meglévő** , és válassza ki az elérhető erőforráscsoportok hello.
-   6. Jelöljön ki egy helyet, ahol hello virtuális gép található, mint például **déli középső Régiójában**.
+## <a name="to-create-a-virtual-machine"></a>Virtuális gép létrehozása
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).  
+2. Kattintson a **új**, kattintson a **számítási**, majd kattintson a **láthatja az összes** a a **a kiemelt alkalmazások**.
+3. Kattintson a **JDK**, kattintson a **JDK 8** a a **JDK** ablaktáblán.  
+   Virtuálisgép-lemezképek támogató **JDK 6** és **JDK 7** érhető el, ha örökölt alkalmazásokat, amelyek nem kész a JDK 8-ban.
+4. A JDK 8 ablaktábla, válassza a **klasszikus**, majd kattintson a **létrehozása**.
+5. Az a **alapjai** panel:
+   1. Adja meg a virtuális gép nevét.
+   2. Adja meg a rendszergazdát a nevét a **felhasználónév** mező. Ne felejtse el ezt a nevet és egy ahhoz tartozó jelszót, amely a következő mezőben a következő. Már szükség Amikor távolról jelentkeznek be a virtuális gép.
+   3. Adja meg egy jelszót a **új jelszó** mezőben, majd még egyszer a **jelszó megerősítése** mező. Ezt a jelszót a rendszergazdai fiók van.
+   4. Válassza ki a megfelelő **előfizetés**.
+   5. Az a **erőforráscsoport**, kattintson a **hozzon létre új** , és írja be az új erőforráscsoport nevét. Vagy kattintson a **meglévő** , és válassza ki az elérhető erőforráscsoportok.
+   6. Jelöljön ki egy helyet, ahol a virtuális gép található, mint például **déli középső Régiójában**.
 6. Kattintson a **Tovább** gombra.
-7. A hello **virtuálisgép-lemezkép mérete** panelen válassza **A1 szabványos** vagy egy másik megfelelő lemezképet.
+7. Az a **virtuálisgép-lemezkép mérete** panelen válassza **A1 szabványos** vagy egy másik megfelelő lemezképet.
 8. Kattintson a **Kiválasztás** gombra.
 
-9. A hello **beállítások** panelen kattintson a **OK**. Azure által biztosított hello alapértelmezett értékeket is használhat.  
-10. A hello **összegzés** panelen kattintson a **OK**.
+9. Az a **beállítások** panelen kattintson a **OK**. Az Azure által biztosított alapértelmezett értékeket is használhat.  
+10. Az a **összegzés** panelen kattintson a **OK**.
 
-## <a name="tooremotely-sign-in-tooyour-virtual-machine"></a>virtuális gép tooyour tooremotely bejelentkezés
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
-2. Kattintson a **virtuális gépek (klasszikus)**. Ha szükséges, kattintson a **további szolgáltatások** : hello bal alsó sarokban a hello szolgáltatás kategóriák. Hello **virtuális gépek (klasszikus)** bejegyzés szerepel hello **számítási** csoport.
-3. Kattintson a kívánt toosign a hello virtuális gép hello nevére.
-4. Miután elindult hello virtuális gép, hello hello ablaktábla tetején a menüben kapcsolatait fogadja.
+## <a name="to-remotely-sign-in-to-your-virtual-machine"></a>A távolról jelentkeznek be a virtuális gép
+1. Jelentkezzen be az [Azure Portal](https://portal.azure.com).
+2. Kattintson a **virtuális gépek (klasszikus)**. Ha szükséges, kattintson a **további szolgáltatások** , a szolgáltatás kategóriák bal alsó sarokban. A **virtuális gépek (klasszikus)** bejegyzés szerepel-e a **számítási** csoport.
+3. Kattintson a nevére, a virtuális gép, amelyet szeretne bejelentkezni.
+4. Miután a virtuális gép elindult, a menü, ha a panel tetején engedélyezi a csatlakozást.
 5. Kattintson a **Connect** (Csatlakozás) gombra.
-6. Válaszoljon toohello kérni fogja a szükséges tooconnect toohello virtuális gépként. Általában megnyitásakor vagy mentésekor hello .rdp fájlt, amely hello kapcsolódási adatait tartalmazza. Előfordulhat, hogy rendelkezik toocopy hello URL-cím: port hello hello .rdp fájl első sorának hello utolsó része, és illessze be a távoli bejelentkezési alkalmazás.
+6. Szükség esetén a virtuális géphez történő csatlakozáshoz, kövesse a megjelenő utasításokat. Általában mentse, vagy nyissa meg a .rdp fájlt, amely tartalmazza a kapcsolat adatai. Lehetséges, hogy az URL-cím: port másolása az .rdp fájl első sorának utolsó részeként, és illessze be a távoli bejelentkezési alkalmazás.
 
-## <a name="tooinstall-a-java-application-server-on-your-virtual-machine"></a>a virtuális gép Java-alkalmazáskiszolgáló tooinstall
-Másolhatja Java application server tooyour virtuális gépet, vagy a telepítő keresztül Java-alkalmazáskiszolgáló telepítése.
+## <a name="to-install-a-java-application-server-on-your-virtual-machine"></a>A Java-alkalmazáskiszolgáló telepítése a virtuális gépen
+Egy Java-alkalmazáskiszolgáló másolhatja a virtuális gép, vagy telepítheti egy Java-alkalmazáskiszolgáló telepítő keresztül.
 
-Ez az oktatóanyag hello Java application server tooinstall Tomcat használja.
+Ez az oktatóanyag Tomcat használja, a Java-alkalmazáskiszolgáló telepítése.
 
-1. Ha be van jelentkezve tooyour virtuális gép, nyissa meg a böngésző-munkamenet túl[Apache Tomcat](http://tomcat.apache.org/download-80.cgi).
-2. Kattintson duplán az hello hivatkozásának **32-bites vagy 64 bites Windows Service telepítőjét**. Ez a módszer használatával Tomcat telepíti egy Windows-szolgáltatás.
-3. Amikor a rendszer kéri, válassza ki a toorun hello telepítő.
-4. Hello belül **Apache Tomcat telepítő** varázslóban kövesse hello tooinstall Tomcat kéri. Ez az oktatóanyag hello céljából hello Alapértelmezések elfogadása rendben. Amikor eléri a hello **Apache Tomcat telepítővarázsló befejezése hello** párbeszédpanelen opcionálisan ellenőrizheti a **futtassa: Apache Tomcat** toohave Tomcat start most. Kattintson a **Befejezés** toocomplete hello Tomcat telepítési folyamat.
+1. Ha be van jelentkezve a virtuális gép, nyissa meg a böngésző-munkamenet az [Apache Tomcat](http://tomcat.apache.org/download-80.cgi).
+2. Kattintson a hivatkozásra duplán **32-bites vagy 64 bites Windows Service telepítőjét**. Ez a módszer használatával Tomcat telepíti egy Windows-szolgáltatás.
+3. Amikor a rendszer kéri, kattintson a telepítő futtatásához.
+4. Belül a **Apache Tomcat telepítő** varázsló, kövesse a megjelenő utasításokat Tomcat telepítéséhez. Ez az oktatóanyag céljából az alapértelmezett értékek elfogadásával rendben. Amikor eléri a **Apache Tomcat telepítővarázslójának befejezése** párbeszédpanelen opcionálisan ellenőrizheti a **futtassa: Apache Tomcat** Tomcat most rendelkeznie. Kattintson a **Befejezés** a Tomcat telepítési folyamat befejezéséhez.
 
-## <a name="toostart-tomcat"></a>toostart Tomcat
+## <a name="to-start-tomcat"></a>Tomcat elejéig
 
-Nyissa meg a virtuális gép és a futó hello parancsot a parancssorba manuálisan is kezdeményezhető Tomcat **nettó&nbsp;start&nbsp;Tomcat8**.
+Nyisson meg egy parancssort, a virtuális gépen, és futtassa a parancsot manuálisan is kezdeményezhető Tomcat **nettó&nbsp;start&nbsp;Tomcat8**.
 
-Miután Tomcat fut, elérheti hello URL-cím megadásával Tomcat <8080> hello virtuális gép böngészőben.
+Ha Tomcat fut, hozzáférhet az URL-cím megadásával Tomcat <8080> a virtuális gép böngészőben.
 
-toosee Tomcat külső gépeken futtatja, akkor toocreate egy olyan végpont szükséges, és nyissa meg egy portot.
+A külső gépekről futtató Tomcat megtekintéséhez szükség hozzon létre egy végpontot, és nyisson meg egy portot.
 
-## <a name="toocreate-an-endpoint-for-your-virtual-machine"></a>a virtuális gép végpont toocreate
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+## <a name="to-create-an-endpoint-for-your-virtual-machine"></a>A végpont a virtuális gép létrehozása
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
 2. Kattintson a **virtuális gépek (klasszikus)**.
-3. Kattintson a hello hello virtuális gép nevét, a Java-alkalmazáskiszolgáló futtató.
+3. Kattintson a virtuális gépet, hogy fut a Java-alkalmazáskiszolgáló nevét.
 4. Kattintson a **Végpontok** elemre.
 5. Kattintson az **Add** (Hozzáadás) parancsra.
-6. A hello **végpont hozzáadása** párbeszédpanel:
-   1. Adjon meg egy nevet a hello végpont; például **HttpIn**.
-   2. Válassza ki **TCP** hello protokollhoz.
-   3. Adja meg **80** hello nyilvános port.
-   4. Adja meg **8080** hello magánhálózati port.
-   5. Válassza ki **letiltott** hello fix IP-cím számára.
-   6. Hello hozzáférés-vezérlési lista, hagyja üresen.
-   7. Kattintson a hello **OK** tooclose hello párbeszédpanel gombra, és hello végpont létrehozásához.
+6. Az a **végpont hozzáadása** párbeszédpanel:
+   1. Adjon meg egy nevet a végpont; például **HttpIn**.
+   2. Válassza ki **TCP** a protokoll.
+   3. Adja meg **80** a nyilvános port.
+   4. Adja meg **8080** a magánhálózati port.
+   5. Válassza ki **letiltott** a fix IP-cím.
+   6. A hozzáférés-vezérlési lista, hagyja üresen.
+   7. Kattintson a **OK** gombra kattintva zárja be a párbeszédpanelt, és a végpont létrehozásához.
 
-## <a name="tooopen-a-port-in-hello-firewall-for-your-virtual-machine"></a>a virtuális gép hello tűzfal port tooopen
-1. Tooyour virtuálisgép jelentkezni.
+## <a name="to-open-a-port-in-the-firewall-for-your-virtual-machine"></a>Nyisson meg egy portot a tűzfalon a virtuális gép számára
+1. Jelentkezzen be a virtuális gép.
 2. Kattintson a **Windows Start**.
 3. Kattintson a **vezérlőpultot**.
 4. Kattintson a **rendszer és biztonság**, kattintson a **Windows tűzfal**, és kattintson a **speciális beállítások**.
 5. Kattintson a **bejövő szabályok**, és kattintson a **új szabály**.  
    ![Új bejövő szabály][NewIBRule]
-6. A hello **szabálytípus**, jelölje be **Port**, és kattintson a **következő**.  
+6. Az a **szabálytípus**, jelölje be **Port**, és kattintson a **következő**.  
    ![Új bejövő szabály port][NewRulePort]
-7. A hello **protokoll és portok** képernyőn válassza ki **TCP**, adja meg **8080-as** hello, **adott helyi port**, majd kattintson az **Következő**.  
+7. Az a **protokoll és portok** képernyőn válassza ki **TCP**, adja meg **8080** , a **adott helyi port**, és kattintson a  **Következő**.  
   ![Új bejövő szabály][NewRuleProtocol]
-8. A hello **művelet** képernyőn válassza ki **hello csatlakozás engedélyezése**, és kattintson a **következő**.
+8. Az a **művelet** képernyőn válassza ki **a kapcsolat engedélyezéséhez**, és kattintson a **következő**.
    ![Új bejövő szabály művelet][NewRuleAction]
-9. A hello **profil** képernyőn **tartomány**, **titkos**, és **nyilvános** van kiválasztva, és kattintson **tovább** .
+9. Az a **profil** képernyőn **tartomány**, **titkos**, és **nyilvános** van kiválasztva, és kattintson **tovább**.
    ![Új bejövő szabály profil][NewRuleProfile]
-10. A hello **neve** képernyőn, adjon meg egy nevet hello szabályhoz, például **HttpIn** (hello szabály neve nincs szükség toomatch hello végpont nevét, azonban), és kattintson a **Befejezés**.  
+10. Az a **neve** képernyőn, adja meg a szabály nevét, például a **HttpIn** (a szabály neve nem szükséges azonban felel meg a végpont neve), és kattintson a **Befejezés**.  
     ![Új bejövő szabály neve][NewRuleName]
 
-Ezen a ponton a Tomcat webhely egy külső böngészőből megtekinthető legyen. A böngésző hello cím ablakban írja be a hello URL-cím  **http://*a\_DNS\_neve*. cloudapp.net**, ahol ***a\_DNS\_neve*** hello virtuális gép létrehozásakor megadott hello DNS-neve.
+Ezen a ponton a Tomcat webhely egy külső böngészőből megtekinthető legyen. A webböngésző cím ablakban írja be az URL-cím a  **http://*a\_DNS\_neve*. cloudapp.net**, ahol ***a\_DNS\_neve*** a virtuális gép létrehozásakor adott meg DNS-neve.
 
 ## <a name="application-lifecycle-considerations"></a>Alkalmazás életciklusa kapcsolatos szempontok
-* Nem sikerült létrehozni a saját webalkalmazások archívumából (WAR) és toohello adja hozzá **webapps** mappa. Például egy alapszintű Java szolgáltatás lap (JSP) dinamikus webes projekt létrehozása és exportálni kell a WAR-fájlt. Ezután másolja hello WAR toohello Apache Tomcat **webapps** mappa hello virtuális gépen, majd futtassa a böngészőben.
-* Alapértelmezés szerint hello Tomcat-szolgáltatás telepítve van, ha van állítva, akkor toostart manuálisan. Megváltoztathatja azt toostart automatikusan hello szolgáltatások beépülő modul használatával. Hello szolgáltatások beépülő modul indításához kattintson **Windows Start**, **felügyeleti eszközök**, majd **szolgáltatások**. Kattintson duplán a hello **Apache Tomcat** szolgáltatást, és állítsa **indítási típus** túl**automatikus**.
+* Nem sikerült létrehozni a saját webalkalmazások archívumából (WAR), és hozzá kell adnia a **webapps** mappa. Például egy alapszintű Java szolgáltatás lap (JSP) dinamikus webes projekt létrehozása és exportálni kell a WAR-fájlt. Ezután másolja a WAR az Apache Tomcat **webapps** mappa a virtuális gépen, majd futtassa a böngészőben.
+* Alapértelmezés szerint a Tomcat-szolgáltatás telepítve van, ha van állítva, akkor kézi elindításához. A szolgáltatások beépülő modul használatával automatikus indításra válthat. A szolgáltatások beépülő modul indításához kattintson **Windows Start**, **felügyeleti eszközök**, majd **szolgáltatások**. Kattintson duplán a **Apache Tomcat** szolgáltatást, és állítsa **indítási típus** való **automatikus**.
 
-    ![A szolgáltatás toostart beállítása automatikusan][service_automatic_startup]
+    ![A szolgáltatás automatikus indításra beállítása][service_automatic_startup]
 
-    Hello, hogy automatikusan elinduljon Tomcat előnye, hogy futásának indításakor hello virtuális gép újraindításakor, (például a számítógép újraindítása szükséges szoftverfrissítések telepítése után).
+    Az, hogy automatikusan elinduljon Tomcat előnye, hogy kezdődik futtatásakor, amikor a virtuális gép újraindítása után (például a számítógép újraindítása szükséges szoftverfrissítések telepítése után).
 
 ## <a name="next-steps"></a>Következő lépések
-Érdemes lehet egyéb szolgáltatások (például az Azure Storage, service bus és SQL-adatbázis) megismerheti a Java-alkalmazások tooinclude. Rendelkezésre álló hello információk megtekintéséhez hello [Java fejlesztői központ](https://azure.microsoft.com/develop/java/).
+Érdemes lehet felvenni a Java-alkalmazások és egyéb szolgáltatások (például az Azure Storage, service bus és SQL-adatbázis) olvashat. A rendelkezésre álló információk megtekintése a [Java fejlesztői központ](https://azure.microsoft.com/develop/java/).
 
 [virtual_machine_tomcat]:media/java-run-tomcat-app-server/WA_VirtualMachineRunningApacheTomcat.png
 
@@ -153,8 +153,8 @@ Ezen a ponton a Tomcat webhely egy külső böngészőből megtekinthető legyen
 [NewRuleProfile]:media/java-run-tomcat-app-server/NewRuleProfile.png
 
 
-<!-- Deleted from hello "toocreate an ednpoint for your virtual mache" 3/17/2017,
-     toouse hello new portal.
-6. In hello **Add endpoint** dialog box, ensure **Add standalone endpoint** is selected, and then click **Next**.
-7. In hello **New endpoint details** dialog box:
+<!-- Deleted from the "To create an ednpoint for your virtual mache" 3/17/2017,
+     to use the new portal.
+6. In the **Add endpoint** dialog box, ensure **Add standalone endpoint** is selected, and then click **Next**.
+7. In the **New endpoint details** dialog box:
 -->

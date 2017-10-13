@@ -1,9 +1,9 @@
 ---
-title: "AAA \"Azure Analysis Services Adventure Works oktatóanyag |} Microsoft dokumentumok\""
-description: "Hello Adventure Works az oktatóanyag bemutatja az Azure Analysis Services"
+title: "Azure Analysis Services – Az Adventure Works oktatóanyaga | Microsoft Docs"
+description: "Az Azure Analysis Serviceshez készült Adventure Works-oktatóanyagot ismerteti"
 services: analysis-services
 documentationcenter: 
-author: minewiskan
+author: Minewiskan
 manager: erikre
 editor: 
 tags: 
@@ -15,67 +15,67 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 06/01/2017
 ms.author: owend
-ms.openlocfilehash: 2df8b3ab4e8c4ffbe0086418d60fd2e2abd35e7d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 81a378c6b1a15cc240ca30fa19b557312ca54922
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-analysis-services---adventure-works-tutorial"></a>Azure Analysis Services – Adventure Works-oktatóanyag
 
 [!INCLUDE[analysis-services-appliesto-aas-sql2017-later](../../../includes/analysis-services-appliesto-aas-sql2017-later.md)]
 
-Ez az oktatóanyag során tapasztalatokat ez hogyan toocreate és telepítését a hello 1 400 kompatibilitási szinttel rendelkező táblázatos modellek [SQL Server Data Tools (SSDT)](https://docs.microsoft.com/sql/ssdt/download-sql-server-data-tools-ssdt).  
+Ez az oktatóanyag azzal kapcsolatos leckéket tartalmaz, hogyan hozhat létre és helyezhet üzembe táblázatos modelleket az 1400-as kompatibilitási szinten az [SQL Server Data Tools (SSDT)](https://docs.microsoft.com/sql/ssdt/download-sql-server-data-tools-ssdt) használatával.  
 
-Ha új tooAnalysis szolgáltatások és a táblázatos modellezési, az oktatóprogram hello leggyorsabb módon toolearn hogyan toocreate és központi telepítése egy alapszintű táblázatos modell. Ha elvégezte a hello Előfeltételek helyben, elméletileg két toothree óra toocomplete között.  
+Ha most ismerkedik az Analysis Services szolgáltatással és a táblázatos modellezéssel, akkor ebből az oktatóanyagból sajátíthatja el leggyorsabban az alapszintű táblázatos modellek létrehozását és üzembe helyezését. Ha az előfeltételek teljesültek, két-három óra szükséges a befejezésig.  
   
 ## <a name="what-you-learn"></a>Ismertetett témák   
   
--   Hogyan toocreate egy új táblázatos modell: hello projekt **1 400 kompatibilitási szint** SSDT-ben.
+-   Új táblázatosmodell-projekt létrehozása az **1400-as kompatibilitási szinten** az SSDT-ben.
   
--   Hogyan egy relációs adatbázis egy táblázatos modell projektbe tooimport adatait.  
+-   Adatok importálása relációs adatbázisból táblázatosmodell-projektbe.  
   
--   Hogyan toocreate és kezelheti a hello modell táblák közötti kapcsolatokat.  
+-   A modellben található táblák közötti kapcsolatok létrehozása és kezelése.  
   
--   Hogyan toocreate számított oszlopokat, mértékeket és fő teljesítménymutatók, amelyek segítik a felhasználókat a kritikus fontosságú üzleti mérőszámok elemzése.  
+-   Számított oszlopok, mértékek és fő teljesítménymutatók létrehozása, amelyek segítenek a felhasználóknak a kritikus fontosságú üzleti metrikák elemzésében.  
   
--   Hogyan toocreate és perspektívák kezelhetők, és olyan hierarchiájára, amely segítségével a felhasználók könnyebben üzleti és alkalmazás-specifikus nézőpontok megadásával keresse meg a modell adatai.  
+-   Perspektívák és hierarchiák létrehozása és kezelése, amelyekkel vállalkozás- és alkalmazásspecifikus szempontokat adhat meg, így egyszerűbben tallózhat a modelladatok között.  
   
--   Hogyan toocreate partíciók, amely felosztani táblaadatok kisebb logikai részekkel rendelkeznek, amely független a többi partíciók feldolgozhatók.  
+-   Partíciók létrehozása, amelyek kisebb, a többi partíciótól függetlenül is feldolgozható logikai részekre osztják a táblaadatokat.  
   
--   Hogyan toosecure modell objektumok és adatok tagjaival felhasználói szerepkörök létrehozásával.  
+-   Modellobjektumok és -adatok védelme szerepkörökkel rendelkező felhasználói tagok létrehozásával.  
   
--   Hogyan toodeploy egy táblázatos modell tooan **Azure Analysis Services** vagy a helyszíni SQL Server 2017 Analysis Services-kiszolgáló.  
+-   Táblázatos modell üzembe helyezése egy **Azure Analysis Services**-kiszolgálón vagy egy helyszíni SQL Server 2017 Analysis Services-kiszolgálón.  
   
 ## <a name="prerequisites"></a>Előfeltételek  
-toocomplete ebben az oktatóanyagban szüksége:  
+Az oktatóanyag elvégzéséhez a következőkre lesz szüksége:  
   
--   Az Azure Analysis Services vagy az SQL Server 2017 Analysis Services-példány toodeploy a modellt. Regisztráljon az [Azure Analysis Services ingyenes próbaverziójára](https://azure.microsoft.com/services/analysis-services/), és [hozzon létre egy kiszolgálót](../analysis-services-create-server.md). Vagy regisztráljon, és töltse le az [SQL Server 2017 Community Technology Preview verziót](https://www.microsoft.com/evalcenter/evaluate-sql-server-vnext-ctp). 
+-   Egy Azure Analysis Services- vagy SQL Server 2017 Analysis Services-példány, amelyen üzembe helyezheti a modelljét. Regisztráljon az [Azure Analysis Services ingyenes próbaverziójára](https://azure.microsoft.com/services/analysis-services/), és [hozzon létre egy kiszolgálót](../analysis-services-create-server.md). Vagy regisztráljon, és töltse le az [SQL Server 2017 Community Technology Preview verziót](https://www.microsoft.com/evalcenter/evaluate-sql-server-vnext-ctp). 
 
--   Egy SQL Server Data Warehouse vagy az Azure SQL Data Warehouse hello [AdventureWorksDW2014 mintaadatbázis](http://go.microsoft.com/fwlink/?LinkID=335807). Ez a minta adatbázis hello adatok szükséges toocomplete ebben az oktatóanyagban magában foglalja. Töltse le az [SQL Server egyik ingyenes verzióját](https://www.microsoft.com/sql-server/sql-server-downloads). Vagy regisztráljon az [Azure SQL Database ingyenes próbaverziójára](https://azure.microsoft.com/services/sql-database/). 
+-   Egy SQL Server- vagy Azure SQL Database-adattárház, amely rendelkezik az [AdventureWorksDW2014 mintaadatbázissal](http://go.microsoft.com/fwlink/?LinkID=335807). Ez a mintaadatbázis tartalmazza a jelen oktatóanyag elvégzéséhez szükséges adatokat. Töltse le az [SQL Server egyik ingyenes verzióját](https://www.microsoft.com/sql-server/sql-server-downloads). Vagy regisztráljon az [Azure SQL Database ingyenes próbaverziójára](https://azure.microsoft.com/services/sql-database/). 
 
-    **Fontos:** Ha hello mintaadatbázis egy helyi SQL Server telepítése, és a modell tooan Azure Analysis Services-kiszolgálóhoz, telepít egy [helyszíni adatátjáró](../analysis-services-gateway.md) szükséges.
+    **Fontos:** Ha egy helyszíni SQL Server-kiszolgálóra telepíti a mintaadatbázist, és egy Azure Analysis Services-kiszolgálón helyezi üzembe a modellt, akkor szükség van egy [helyszíni adatátjáróra](../analysis-services-gateway.md).
 
--   hello legújabb verziójának [SQL Server Data Tools (SSDT)](https://msdn.microsoft.com/library/mt204009.aspx).
+-   Az [SQL Server Data Tools (SSDT)](https://msdn.microsoft.com/library/mt204009.aspx) legújabb verziója.
 
--   hello legújabb verziójának [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms).    
+-   Az [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms) legújabb verziója.    
 
 -   Egy ügyfélalkalmazás (pl. [Power BI Desktop](https://powerbi.microsoft.com/desktop/) vagy Excel). 
 
 ## <a name="scenario"></a>Forgatókönyv  
-Ez az oktatóanyag az Adventures Works Cycles nevű kitalált vállalatra épül. Az Adventure Works egy olyan nagyméretű, nemzetközi gyártási vállalat hoz létre, majd továbbítja a kerékpárt részek és Kellékek toocommercial piacok Észak-Amerikában, Európában és Ázsiában. hello vállalati 500 munkavállalók funkcióit használja. Az Adventure Works továbbá számos regionális értékesítési csapatot alkalmaz a különböző piacokon. A projekt toocreate egy táblázatos modell az értékesítési és marketing felhasználók tooanalyze hello AdventureWorksDW adatbázis Internet értékesítési adatait.  
+Ez az oktatóanyag az Adventures Works Cycles nevű kitalált vállalatra épül. Az Adventure Works egy nagy, multinacionális gyártócég, amely kerékpárokat, alkatrészeket és kiegészítőket gyárt Észak-Amerika, Európa és Ázsia kereskedelmi piacaira. A vállalat 500 alkalmazottat foglalkoztat. Az Adventure Works továbbá számos regionális értékesítési csapatot alkalmaz a különböző piacokon. A projekt célja egy táblázatos modell létrehozása az értékesítési és marketing felhasználók számára, amely elemzi az AdventureWorksDW adatbázis internetes értékesítési adatait.  
   
-az oktatóanyag hello toocomplete, el kell végeznie különböző során tapasztalatokat. Minden leckén belül feladatok várnak Önre. Minden egyes elvégzésével sorrendben szükség hello lecke befejezése. Előfordulhat, hogy egy bizonyos leckén belül több feladat is hasonló eredményt hoz, de a végrehajtásuk módja kismértékben különbözik. A metódus azt mutatja be, gyakran több mint egyirányú toocomplete egy feladatot, és képességek segítségével, hogy megismerte az előző megszerzett és feladatok toochallenge.  
+Az oktatóanyag befejezéséhez különféle leckéket kell majd elvégeznie. Minden leckén belül feladatok várnak Önre. A leckék teljesítéséhez sorban kell végrehajtania a feladatokat. Előfordulhat, hogy egy bizonyos leckén belül több feladat is hasonló eredményt hoz, de a végrehajtásuk módja kismértékben különbözik. Ez a módszer bemutatja, hogy egy feladat gyakran többféleképpen teljesíthető, valamint a korábbi leckékben és feladatokban elsajátított készségeit is próbára teszi.  
   
-hello hello megszerzett célja tooguide SSDT le a szerzői egy alapszintű táblázatos modell használatával számos hello szolgáltatást tartalmazza. Az egyes hello előző lecke épít, mert hello során tapasztalatokat, ahhoz el kell végeznie.
+A leckék célja, hogy végigvezessék Önt egy alapszintű táblázatos modell létrehozásán, amelyhez az SSDT-ben elérhető funkciókat használhatja. Mivel minden lecke az előző leckére épül, érdemes a megadott sorrendben elvégezni őket.
   
-Ez az oktatóanyag nem biztosít egy kiszolgálóhoz az Azure-portálon egy kiszolgálón vagy adatbázisban kezelése az SSMS használatával, vagy használja az ügyfél felügyeletével kapcsolatos megszerzett alkalmazás toobrowse modell adatokat. 
+Ez az oktatóanyag nem tartalmaz leckéket a következőkről: kiszolgáló kezelése az Azure Portalon, kiszolgáló vagy adatbázis kezelése az SSMS használatával vagy ügyfélalkalmazás használata a modelladatok közötti navigáláshoz. 
 
 
 ## <a name="lessons"></a>Leckék  
-Ez az oktatóanyag során tapasztalatokat következő hello tartalmazza:  
+Az oktatóanyag a következő leckéket tartalmazza:  
   
-|Lecke|Becsült idő toocomplete|  
+|Lecke|Az oktatóanyag elvégzésének várható időtartama|  
 |----------|------------------------------|  
 |[1 – Új táblázatos modellprojekt létrehozása](../tutorials/aas-lesson-1-create-a-new-tabular-model-project.md)|10 perc|  
 |[2 – Az adatok beszerzése](../tutorials/aas-lesson-2-get-data.md)|10 perc|  
@@ -92,9 +92,9 @@ Ez az oktatóanyag során tapasztalatokat következő hello tartalmazza:
 |[13 – Üzembe helyezés](../tutorials/aas-lesson-13-deploy.md)|5 perc|  
   
 ## <a name="supplemental-lessons"></a>Kiegészítő leckék  
-Ezek a tapasztalatok nem szükséges toocomplete hello oktatóanyag, de jobb megértése speciális táblázatos modellben szolgáltatások szerzői hasznos lehet.  
+Ezek a leckék nem kötelezők az oktatóanyag elvégzéséhez, de hasznosak lehetnek az összetettebb táblázatos modellek létrehozásával kapcsolatos funkciók megismerésében.  
   
-|Lecke|Becsült idő toocomplete|  
+|Lecke|Az oktatóanyag elvégzésének várható időtartama|  
 |----------|------------------------------|  
 |[Részletsorok](../tutorials/aas-supplemental-lesson-detail-rows.md)|10 perc|
 |[Dinamikus biztonság](../tutorials/aas-supplemental-lesson-dynamic-security.md)|30 perc|
@@ -102,7 +102,7 @@ Ezek a tapasztalatok nem szükséges toocomplete hello oktatóanyag, de jobb meg
 
   
 ## <a name="next-steps"></a>Következő lépések  
-tooget indult el, lásd: [lecke 1: hozzon létre egy új táblázatos modell projektet](../tutorials/aas-lesson-1-create-a-new-tabular-model-project.md).  
+Az első lépéseket lásd: [1. lecke: Új táblázatosmodell-projekt létrehozása](../tutorials/aas-lesson-1-create-a-new-tabular-model-project.md).  
   
   
   

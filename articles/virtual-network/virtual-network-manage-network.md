@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate, módosítsa vagy törölje az Azure virtuális hálózat |} Microsoft Docs"
-description: "Ismerje meg, hogyan toocreate, módosítsa vagy törölje a virtuális hálózat az Azure-ban."
+title: "Létrehozása, módosítása vagy törlése az Azure virtuális hálózat |} Microsoft Docs"
+description: "Megtudhatja, hogyan létrehozása, módosítása vagy törlése az Azure virtuális hálózat."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,67 +15,67 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/10/2017
 ms.author: jdial
-ms.openlocfilehash: 7dfe6632753182eae2a13bb0327f03f75e03d057
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 74aace2136136c25bc56327d38cfbab168265401
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="create-change-or-delete-a-virtual-network"></a>Létrehozása, módosítása vagy a virtuális hálózat törlése
 
-Ismerje meg, hogyan toocreate, törölje a virtuális hálózati és a módosítási beállítások, például a DNS-kiszolgálók és IP-cím szóközt tartalmaz, a meglévő virtuális hálózat.
+Megtudhatja, hogyan létrehozása és egy virtuális hálózat törlése és módosítása céljából beállításaihoz, például a DNS-kiszolgálók és az IP-címterek, meglévő virtuális hálózat.
 
-Egy virtuális hálózat a saját hálózati hello felhőben megjelenítése. A virtuális hálózat hello Azure felhőben, amely dedikált tooyour Azure-előfizetés logikai elkülönítése. Minden virtuális hálózathoz, az Ön által létrehozott a következő műveletek végezhetők el:
-- Válasszon egy cím terület tooassign. Egy vagy több címtartományai Classless Inter-Domain Routing (CIDR) jelölésrendszer, például a 10.0.0.0/16 által meghatározott egy áll.
-- Toouse hello Azure által biztosított DNS-kiszolgálót válasszon, vagy a saját DNS-kiszolgáló használatára. Csatlakoztatott toohello virtuális hálózati erőforrásait a DNS-kiszolgáló tooresolve nevek hello virtuális hálózaton belül vannak hozzárendelve.
-- Szegmens hello virtuális hálózati alhálózatokra, mindegyiket a saját címtartomány hello címtartomány a virtuális hálózat hello belül. Hogyan toocreate, módosítása és törlése alhálózatok: toolearn [hozzáadása, módosítása vagy törlése alhálózatok](virtual-network-manage-subnet.md).
+Egy virtuális hálózat a felhőben saját hálózati ábrázolása. A virtuális hálózat, amely az Azure-előfizetéshez Azure-felhő logikai elkülönítése. Minden virtuális hálózathoz, az Ön által létrehozott a következő műveletek végezhetők el:
+- Válassza ki a címteret hozzárendelni. Egy vagy több címtartományai Classless Inter-Domain Routing (CIDR) jelölésrendszer, például a 10.0.0.0/16 által meghatározott egy áll.
+- Válassza ki az Azure által biztosított DNS-kiszolgáló használatára, vagy a saját DNS-kiszolgáló használatára. A virtuális hálózathoz csatlakozó összes erőforrást a DNS-kiszolgáló feloldani a virtuális hálózaton belül vannak hozzárendelve.
+- A virtuális hálózati szegmenseket alhálózatokra külön-külön címtartományt, a virtuális hálózat a címtér. Létrehozása, módosítása és alhálózatok törlése, lásd: [hozzáadása, módosítása vagy törlése alhálózatok](virtual-network-manage-subnet.md).
 
-Ez a cikk azt ismerteti, hogyan toocreate, módosítsa, majd törölje a virtuális hálózatok hello Azure Resource Manager telepítési modell használatával.
+Ez a cikk azt ismerteti, hogyan létrehozása, módosítása és törlése a virtuális hálózatok az Azure Resource Manager telepítési modell használatával.
 
 ## <a name="before"></a>Előkészületek
 
-Ebben a cikkben ismertetett hello feladatok megkezdése előtt hajtsa végre a következő előfeltételek hello:
+Az ebben a cikkben ismertetett feladatok megkezdése előtt hajtsa végre a következő előfeltételek teljesülését:
 
-- Ha új tooworking virtuális hálózatokat, azt javasoljuk, hogy tekintse át a hello gyakorlat [az első Azure virtuális hálózat létrehozása](virtual-network-get-started-vnet-subnet.md). Ebben a gyakorlatban segítségével Megismerkedés a virtuális hálózatok.
-- virtuális hálózatok, tekintse át az határértékeit kapcsolatos toolearn [Azure korlátozását](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits).
-- Jelentkezzen be Azure-portálon toohello, hello Azure parancssori eszköz (Azure CLI), vagy az Azure PowerShell használatával az Azure-fiókjával. Ha nem rendelkezik Azure-fiókja, regisztráljon egy [ingyenes próbafiók](https://azure.microsoft.com/free).
-- Ha azt tervezi, hogy a PowerShell-parancsok ebben a cikkben ismertetett toocomplete hello feladatok toouse, először [Azure PowerShell telepítése és konfigurálása](/powershell/azureps-cmdlets-docs?toc=%2fazure%2fvirtual-network%2ftoc.json). Győződjön meg arról, hogy rendelkezik-e hello legújabb verziója található hello Azure PowerShell-parancsmagjai telepítve vannak-e. Adja meg a PowerShell-parancsok hello példák tooget súgóját `get-help <command> -full`.
-- Ha azt tervezi, hogy az Azure parancssori felület parancsai ebben a cikkben ismertetett toocomplete hello feladatok toouse, először [telepítése és konfigurálása az Azure parancssori felület](/cli/azure/install-azure-cli?toc=%2fazure%2fvirtual-network%2ftoc.json). Győződjön meg arról, hogy rendelkezik-e telepítve az Azure parancssori felület legújabb verziójának hello. Azure parancssori felület parancsait tooget segítségre meg `az <command> --help`.
+- Ha most ismerkedik a virtuális hálózatok használata, azt javasoljuk, hogy tekintse át a gyakorlatban [az első Azure virtuális hálózat létrehozása](virtual-network-get-started-vnet-subnet.md). Ebben a gyakorlatban segítségével Megismerkedés a virtuális hálózatok.
+- Virtuális hálózatok korlátairól kapcsolatos információkért tekintse át a [Azure korlátozását](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits).
+- Jelentkezzen be az Azure-portálon, az Azure parancssori eszköz (Azure CLI) vagy az Azure PowerShell használatával az Azure-fiókjával. Ha nem rendelkezik Azure-fiókja, regisztráljon egy [ingyenes próbafiók](https://azure.microsoft.com/free).
+- Ha azt tervezi, a jelen cikkben ismertetett feladatok végrehajtásához PowerShell-parancsok használata, először [Azure PowerShell telepítése és konfigurálása](/powershell/azureps-cmdlets-docs?toc=%2fazure%2fvirtual-network%2ftoc.json). Győződjön meg arról, hogy rendelkezik-e a legújabb verziója található az Azure PowerShell-parancsmagjai telepítve vannak-e. A példákban PowerShell-parancsok súgójának megjelenítéséhez írja be a következőt `get-help <command> -full`.
+- Ha azt tervezi, a jelen cikkben ismertetett feladatok végrehajtásához Azure parancssori felület parancsai használni, először [telepítése és konfigurálása az Azure parancssori felület](/cli/azure/install-azure-cli?toc=%2fazure%2fvirtual-network%2ftoc.json). Győződjön meg arról, hogy rendelkezik-e telepítve az Azure parancssori felület legújabb verziója. Ha segítséget szeretne kérni az Azure parancssori felület parancsait, adja meg a `az <command> --help`.
 
 
 ## <a name="create-vnet"></a>Virtuális hálózat létrehozása
 
-a virtuális hálózati toocreate:
+Virtuális hálózat létrehozása:
 
-1. Jelentkezzen be toohello [portal](https://portal.azure.com) olyan fiókkal, amely hozzá van rendelve a hello hálózati közreműködői szerepkör (minimum) az előfizetéshez tartozó engedélyeit. toolearn szerepköröket és engedélyeket tooaccounts hozzárendelése bővebben lásd: [Azure szerepköralapú hozzáférés-vezérlés beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor).
+1. Jelentkezzen be a [portal](https://portal.azure.com) egy olyan fiókkal, amely hozzá van rendelve a hálózat közreműködő szerepkört az előfizetés (minimum) engedélyeit. Szerepkörök és engedélyek hozzárendelése a fiókok kapcsolatos további információkért lásd: [Azure szerepköralapú hozzáférés-vezérlés beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor).
 2. Kattintson a **új** > **hálózati** > **virtuális hálózati**.
-3. A hello **virtuális hálózati** paneljén, hello **telepítési modell kiválasztása** mezőben hagyja **erőforrás-kezelő** kiválasztva, és kattintson **létrehozása**.
-4. A hello **virtuális hálózat létrehozása** panelen adja meg vagy válassza ki a következő beállítások hello értékeit, majd kattintson **létrehozása**:
-    - **Név**: hello egyedinek kell lennie a hello [erőforráscsoport](../azure-glossary-cloud-terminology.md?toc=%2fazure%2fvirtual-network%2ftoc.json#resource-group) toocreate hello virtuális hálózatot a választ. Hello neve nem módosítható, hello virtuális hálózat létrejötte után. Több virtuális hálózat adott idő alatt is létrehozhat. A elnevezésére vonatkozó javaslatokat, lásd: [elnevezési konvenciói](/azure/architecture/best-practices/naming-conventions.md?toc=%2fazure%2fvirtual-network%2ftoc.json#naming-rules-and-restrictions). A következő elnevezési segíthet az egyszerűbb toomanage több virtuális hálózat.
-    - **Címtér**: hello címterület CIDR-formátumban adja meg. Megadhatja hello címterület public vagy private (az RFC 1918) lehet. Hello címterület nyilvánosként vagy magánként határozza meg, hogy hello címterület érhető el csak hello virtuális hálózathoz csatlakozó virtuális hálózatot, és a helyszíni hálózatokhoz, hogy csatlakozott-e toohello virtuális hálózati belül. Nem adható hozzá a következő címterek hello:
+3. Az a **virtuális hálózati** panelen, a a **telepítési modell kiválasztása** mezőben hagyja **erőforrás-kezelő** kiválasztva, és kattintson **létrehozása**.
+4. Az a **virtuális hálózat létrehozása** panelen adja meg vagy válassza ki a következő beállítások értékeit, majd kattintson **létrehozása**:
+    - **Név**: A névnek egyedinek kell lennie a [erőforráscsoport](../azure-glossary-cloud-terminology.md?toc=%2fazure%2fvirtual-network%2ftoc.json#resource-group) válassza ki a virtuális hálózat létrehozásához. A név nem módosítható, a virtuális hálózat létrejötte után. Több virtuális hálózat adott idő alatt is létrehozhat. A elnevezésére vonatkozó javaslatokat, lásd: [elnevezési konvenciói](/azure/architecture/best-practices/naming-conventions.md?toc=%2fazure%2fvirtual-network%2ftoc.json#naming-rules-and-restrictions). Következő elnevezési segítségével könnyebben több virtuális hálózat kezeléséhez.
+    - **Címtér**: Adja meg a címtartomány CIDR-formátumban. A címterület adhat meg a public vagy private (az RFC 1918) lehet. A címtartomány nyilvános vagy titkos határozza meg, hogy a címtartomány érhető el csak a virtuális hálózathoz csatlakozó virtuális hálózatot, és a helyszíni hálózatokhoz a virtuális hálózathoz csatlakozó belül. Nem adható hozzá a következő címterek:
         - 224.0.0.0/4 (csoportos küldés)
         - 255.255.255.255/32 (közvetítés)
         - 127.0.0.0/8 (visszacsatolás)
         - 169.254.0.0/16 (kapcsolatszintű)
         - 168.63.129.16/32 (belső DNS)
 
-      Bár csak egy címterület hello virtuális hálózat létrehozásakor definiálhat, további címterületeket hello virtuális hálózat létrejötte után adhat hozzá. toolearn hogyan tooadd egy címet a lemezterület-tooan már meglévő virtuális hálózatot, lásd: [hozzáadása vagy eltávolítása egy](#add-address-spaces) ebben a cikkben.
+      Bár csak egy címtartomány a virtuális hálózat létrehozásakor definiálhat, további címterületeket a virtuális hálózat létrejötte után adhat hozzá. Egy meglévő virtuális hálózat hozzáadása, lásd: [hozzáadása vagy eltávolítása egy](#add-address-spaces) ebben a cikkben.
 
       >[!WARNING]
-      >Ha egy virtuális hálózati cím szóközt tartalmaz, amelyek átfedik a másik virtuális hálózati vagy a helyszíni hálózattal, a két hello hálózatok nem lehet csatlakozni. Definiálása előtt célszerű egy címtartománnyal, vegye figyelembe, hogy érdemes tooconnect hello virtuális hálózati tooother virtuális hálózatok és a helyszíni hálózatokhoz hello a jövőbeli.
+      >Ha egy virtuális hálózati cím szóközt tartalmaz, amely egy másik virtuális hálózati átfedésben vagy a helyszíni hálózat, a két hálózat nem lehet csatlakozni. Definiálása előtt célszerű egy, fontolja meg, akkor előfordulhat, hogy kívánja-e csatlakozni a virtuális hálózat más virtuális hálózatok és a helyszíni hálózatokhoz a jövőben.
       >
       >
 
-    - **Alhálózati név**: hello alhálózati név hello virtuális hálózaton belül egyedinek kell lennie. Hello alhálózat neve nem módosítható, miután hello alhálózat létre van hozva. hello portálhoz szükséges, érdemes megadni egy alhálózatot egy virtuális hálózatban, létrehozásakor annak ellenére, hogy a virtuális hálózat nem szükséges toohave alhálózatokkal. Hello portál csak egy alhálózat segítségével megadhatja, ha a virtuális hálózat létrehozása. Hello virtuális hálózat létrejötte után később adhat hozzá a virtuális hálózati további alhálózatokat toohello. tooadd alhálózati tooa virtuális hálózat, lásd: [hozzon létre egy alhálózatot](virtual-network-manage-subnet.md#create-subnet) a [létrehozása, módosítása vagy törlése alhálózatok](virtual-network-manage-subnet.md). Virtuális hálózat már több alhálózat működik az Azure parancssori felület vagy a PowerShell használatával is létrehozhat.
+    - **Alhálózati név**: az alhálózat neve a virtuális hálózaton belül egyedinek kell lennie. Az alhálózat neve nem módosítható, miután az alhálózat létre van hozva. A portálhoz szükséges, hogy adhat meg egy alhálózatot egy virtuális hálózatban, létrehozásakor annak ellenére, hogy a virtuális hálózat nem rendelkezik alhálózatokkal szükséges. A portál csak egy alhálózat segítségével megadhatja, ha a virtuális hálózat létrehozása. Adhat hozzá további alhálózatokat a virtuális hálózati később, a virtuális hálózat létrejötte után. Adjon hozzá egy alhálózatot a virtuális hálózat, lásd: [hozzon létre egy alhálózatot](virtual-network-manage-subnet.md#create-subnet) a [létrehozása, módosítása vagy törlése alhálózatok](virtual-network-manage-subnet.md). Virtuális hálózat már több alhálózat működik az Azure parancssori felület vagy a PowerShell használatával is létrehozhat.
 
       >[!TIP]
-      >Egyes esetekben rendszergazdák hozzon létre külön alhálózatokon toofilter vagy vezérlési forgalom-útválasztási hello alhálózatok között. Definiálása előtt célszerű alhálózatok, fontolja meg, hogyan lehet toofilter szeretne, és irányíthatja a forgalmat az alhálózatok között. toolearn alhálózatok között, a forgalom kapcsolatos további információkért lásd: [hálózati biztonsági csoportok](virtual-networks-nsg.md). Az Azure automatikusan útvonalak forgalom között az alhálózatokat, de szeretné felülbírálni az Azure alapértelmezett útvonalak. toolearn hogyan toooverride Azure alapértelmezett alhálózati a forgalom útválasztásához, lásd: [felhasználó által definiált útvonalak](virtual-networks-udr-overview.md).
+      >Egyes esetekben rendszergazdák hozzon létre különböző alhálózatokon való vagy szabályozza a forgalom útválasztásához az alhálózatok között. Definiálása előtt célszerű alhálózatok, fontolja meg, hogyan lehet szűrni kívánt és irányíthatja a forgalmat az alhálózatok között. Az alhálózatok közötti forgalmat szűrő kapcsolatos további információkért lásd: [hálózati biztonsági csoportok](virtual-networks-nsg.md). Az Azure automatikusan útvonalak forgalom között az alhálózatokat, de szeretné felülbírálni az Azure alapértelmezett útvonalak. További információt az Azure alapértelmezett alhálózati a forgalom útválasztásához, lásd: [felhasználó által definiált útvonalak](virtual-networks-udr-overview.md).
       >
 
-    - **Alhálózati címtartományt**: hello hello virtuális hálózathoz megadott hello címterület belül kell lennie. hello legkisebb tartományt is megadhat, amely lehetővé teszi nyolc IP-címek hello alhálózati /29,. Azure tartalék hello először, és minden alhálózatban protokoll megfelelési legutóbbi címek. Három további címek az Azure szolgáltatás használati számára vannak fenntartva. Ennek eredményeképpen a virtuális hálózat /29 alhálózati cím tartománnyal csak három használható IP-címmel rendelkezik. Ha azt tervezi, hogy a virtuális hálózati tooa VPN-átjáró tooconnect, létre kell hoznia egy átjáró-alhálózatot. További információ [adott cím tartomány szempontjai átjáró alhálózatok](../vpn-gateway/vpn-gateway-about-vpn-gateway-settings.md?toc=%2fazure%2fvirtual-network%2ftoc.json#gwsub). Hello címtartomány meghatározott feltételek hello alhálózati létrehozása után módosíthatja. Hogyan toochange a alhálózati címtartományt: toolearn [alhálózati beállítások módosítása](#change-subnet) a [hozzáadása, módosítása vagy törlése alhálózatok](virtual-network-manage-subnet.md).
-    - **Előfizetés**: Válasszon egy [előfizetés](../azure-glossary-cloud-terminology.md?toc=%2fazure%2fvirtual-network%2ftoc.json#subscription). Hello nem használhatja ugyanazt a virtuális hálózatot egynél több Azure-előfizetésben. Azonban egy előfizetés másik előfizetés toovirtual hálózatokhoz a virtuális hálózat is elérheti. virtuális hálózatok tooconnect különböző előfizetésekhez használja az Azure VPN Gateway vagy a virtuális hálózati társviszony-létesítés. Az Azure-erőforrásokkal, hogy a virtuális hálózati toohello csatlakozni kell hello hello virtuális hálózatnak ugyanahhoz az előfizetéshez.
-    - **Erőforráscsoport**: Válasszon ki egy létező [erőforráscsoport](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#resource-groups) vagy hozzon létre egy újat. Egy Azure-erőforrás, hogy a virtuális hálózati toohello csatlakozni lehet a hello ugyanabban az erőforráscsoportban hello virtuális hálózatot, vagy egy másik erőforráscsoportban található.
-    - **Hely**: válassza ki az Azure [hely](https://azure.microsoft.com/regions/), más néven egy régiót. Virtuális hálózat csak egy Azure-beli hely lehet. Egy hely tooa virtuális hálózat egy másik helyre a virtuális hálózat azonban VPN-átjáró használatával is elérheti. Az Azure-erőforrásokkal, hogy a virtuális hálózati toohello csatlakozni kell hello hello virtuális hálózat ugyanazon a helyen.
+    - **Alhálózati címtartományt**: a megadott virtuális hálózat a címtér kell lennie. A legkisebb megadható tartománya /29, biztosító nyolc IP-cím az alhálózat. Azure fenntartja az első és utolsó cím protokoll megfelelési minden alhálózatban. Három további címek az Azure szolgáltatás használati számára vannak fenntartva. Ennek eredményeképpen a virtuális hálózat /29 alhálózati cím tartománnyal csak három használható IP-címmel rendelkezik. Ha azt tervezi, VPN-átjáró egy virtuális hálózathoz csatlakozni, létre kell hoznia egy átjáró-alhálózatot. További információ [adott cím tartomány szempontjai átjáró alhálózatok](../vpn-gateway/vpn-gateway-about-vpn-gateway-settings.md?toc=%2fazure%2fvirtual-network%2ftoc.json#gwsub). A címtartomány meghatározott feltételek mellett az alhálózat létrehozása után módosíthatja. A alhálózati címtartományt módosításáról további tudnivalókért lásd: [alhálózati beállítások módosítása](#change-subnet) a [hozzáadása, módosítása vagy törlése alhálózatok](virtual-network-manage-subnet.md).
+    - **Előfizetés**: Válasszon egy [előfizetés](../azure-glossary-cloud-terminology.md?toc=%2fazure%2fvirtual-network%2ftoc.json#subscription). Egynél több Azure-előfizetés nem használhatja ugyanazt a virtuális hálózatot. Azonban keresztül csatlakozhat egy előfizetésben található virtuális hálózat virtuális hálózatok más előfizetésekhez. Csatlakoztassa a virtuális hálózatok különböző előfizetésekhez, használja az Azure VPN Gateway vagy a virtuális hálózati társviszony-létesítés. Az Azure-erőforrásokkal, a virtuális hálózathoz csatlakozó virtuális hálózatnak ugyanahhoz az előfizetéshez kell lennie.
+    - **Erőforráscsoport**: Válasszon ki egy létező [erőforráscsoport](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#resource-groups) vagy hozzon létre egy újat. Egy Azure-erőforrás a virtuális hálózathoz csatlakozó lehet, mint a virtuális hálózat ugyanabban az erőforráscsoportban vagy egy másik erőforráscsoportban található.
+    - **Hely**: válassza ki az Azure [hely](https://azure.microsoft.com/regions/), más néven egy régiót. Virtuális hálózat csak egy Azure-beli hely lehet. Azonban csatlakozhat egy helyet a virtuális hálózat egy másik helyre a virtuális hálózat VPN-átjáró használatával. Az Azure-erőforrásokkal, a virtuális hálózathoz csatlakozó ugyanazon a helyen, ahol a virtuális hálózatot kell lennie.
 
 **Parancsok**
 
@@ -86,25 +86,25 @@ a virtuális hálózati toocreate:
 
 ## <a name = "view-vnet"></a>Virtuális hálózatok megjelenítése és beállítások
 
-tooview virtuális hálózatok és a beállítások:
+Virtuális hálózatok és beállítások megtekintéséhez:
 
-1. Jelentkezzen be toohello [portal](https://portal.azure.com) olyan fiókkal, amely hozzá van rendelve a hello hálózati közreműködői szerepkör (minimum) az előfizetéshez tartozó engedélyeit. toolearn szerepköröket és engedélyeket tooaccounts hozzárendelése bővebben lásd: [Azure szerepköralapú hozzáférés-vezérlés beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor).
-2. Hello portál keresési mezőbe, írja be a **virtuális hálózatok**. Hello keresési eredmények között kattintson **virtuális hálózatok**.
-3. A hello **virtuális hálózatok** paneljén kattintson hello virtuális hálózathoz, amelyet tooview beállításait.
-4. hello következő beállításai láthatók a kiválasztott virtuális hálózat hello hello panelen:
-    - **Áttekintés**: hello virtuális hálózat, beleértve a címterület és a DNS-kiszolgálók információt nyújt. hello alábbi képernyőfelvételen látható a virtuális hálózat nevű hello áttekintése beállításainak **MyVNet**:
+1. Jelentkezzen be a [portal](https://portal.azure.com) egy olyan fiókkal, amely hozzá van rendelve a hálózat közreműködő szerepkört az előfizetés (minimum) engedélyeit. Szerepkörök és engedélyek hozzárendelése a fiókok kapcsolatos további információkért lásd: [Azure szerepköralapú hozzáférés-vezérlés beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor).
+2. A portál keresési mezőbe, írja be a **virtuális hálózatok**. A keresési eredmények között kattintson **virtuális hálózatok**.
+3. Az a **virtuális hálózatok** panelen kattintson a virtuális hálózatra, hogy meg szeretné tekinteni a beállításokat.
+4. A panel a kiválasztott virtuális hálózat szerepel a következő beállításokat:
+    - **Áttekintés**: információkat nyújt azokról a virtuális hálózat, beleértve a címterület és a DNS-kiszolgálók. Az alábbi képernyőfelvételen látható egy virtuális hálózat nevű áttekintése beállításainak **MyVNet**:
 
         ![Hálózati illesztő – áttekintés](./media/virtual-network-manage-network/vnet-overview.png)
 
-      A hello **áttekintése** panelen áthelyezheti egy virtuális hálózati tooa másik előfizetés vagy az erőforrás csoporthoz. Hogyan toomove egy virtuális hálózat: toolearn [erőforrások tooa másik erőforráscsoportba vagy előfizetésbe áthelyezése](../azure-resource-manager/resource-group-move-resources.md?toc=%2fazure%2fvirtual-network%2ftoc.json). hello cikk Előfeltételek, és hogyan toomove erőforrásokat a hello Azure-portálon, PowerShell és az Azure parancssori felület sorolja fel. Csatlakoztatott toohello virtuális hálózati erőforrásait hello virtuális hálózathoz kell áthelyeznie.
-    - **Címtér**: toohello virtuális hálózati hozzárendelt címterek hello vannak felsorolva. Hogyan tooadd és eltávolítása egy címtartománnyal kész toolearn hello lépéseit [hozzáadása vagy eltávolítása egy](#address-spaces) ebben a cikkben.
-    - **Csatlakoztatott eszközök**: találhatók, amelyek csatlakoztatott toohello virtuális hálózati erőforrásokat. A fenti képernyőfelvételen hello három hálózati adapterrel és egy terheléselosztó olyan csatlakoztatott toohello virtuális hálózati. Bármely új erőforrások létrehozása, és a virtuális hálózat toohello vannak felsorolva. Ha töröl egy erőforrást, de a virtuális hálózathoz csatlakoztatott toohello, akkor nem fog többé megjelenni hello lista.
-    - **Alhálózatok**: hello virtuális hálózaton belül található alhálózatok listája látható. Hogyan tooadd és eltávolítása egy alhálózaton: toolearn [hozzon létre egy alhálózatot](virtual-network-manage-subnet.md#create-subnet) és [alhálózat törlése](virtual-network-manage-subnet.md#delete-subnet) a [hozzáadása, módosítása vagy törlése alhálózatok](virtual-network-manage-subnet.md).
-    - **DNS-kiszolgálók**: megadhatja, hogy hello Azure belső DNS-kiszolgáló vagy egy egyéni DNS-kiszolgálót biztosít névfeloldás csatlakoztatott toohello virtuális hálózati eszközöket. Hello Azure-portál használatával egy virtuális hálózatot hoz létre, amikor Azure DNS-kiszolgálók névfeloldásra a virtuális hálózaton belül által használt alapértelmezett. lépések teljes hello toomodify hello DNS-kiszolgálók, [hozzáadása, módosítása vagy eltávolítása a DNS-kiszolgáló](#dns-servers) ebben a cikkben.
-    - **Társviszony**: Ha nincsenek meglévő társviszony hello az előfizetést, akkor az itt felsorolt. Meglévő társviszony beállítások megtekintése vagy létrehozása, módosítása vagy törlése esetében. toolearn esetében, kapcsolatos további információkért lásd: [virtuális hálózati társviszony-létesítés](virtual-network-peering-overview.md).
-    - **Tulajdonságok**: beállításainak megjelenítése készül hello virtuális hálózat, beleértve a hello virtuális hálózati erőforrás-azonosító és az Azure-előfizetés hello.
-    - **Diagram**: hello diagram csatlakoztatott toohello virtuális hálózat összes eszköz vizuális ábrázolását biztosítja. hello diagram néhány hello eszközökkel kapcsolatos legfontosabb tudnivalókat tartalmaz. Ebben a nézetben hello diagramon eszköz toomanage kattintson hello eszközre.
-    - **Közös Azure beállításai**: toolearn közös Azure beállításokkal, kapcsolatos további információkért tekintse meg a következő információ hello:
+      Az a **áttekintése** panelen áthelyezheti egy virtuális hálózat egy másik előfizetés vagy az erőforrás-csoporthoz. Hogyan kívánja áthelyezni a virtuális hálózat kapcsolatban [erőforrások áthelyezése egy másik erőforráscsoportban vagy előfizetés](../azure-resource-manager/resource-group-move-resources.md?toc=%2fazure%2fvirtual-network%2ftoc.json). A cikk felsorolja az előfeltételeket és erőforrások áthelyezése az Azure portál, a PowerShell és az Azure parancssori felület használatával. A virtuális hálózathoz csatlakozó összes erőforrás át kell helyezni a virtuális hálózathoz.
+    - **Címtér**: A a virtuális hálózati hozzárendelt címterek vannak felsorolva. Megtudhatja, hogyan hozzá és távolíthat el egy címtartománnyal, hajtsa végre a lépéseket a [hozzáadása vagy eltávolítása egy](#address-spaces) ebben a cikkben.
+    - **Csatlakoztatott eszközök**: minden olyan erőforrásnál, amely a virtuális hálózathoz kapcsolódó találhatók. Az előző képernyőképet három hálózati adapterrel és egy terheléselosztó a virtuális hálózathoz csatlakoznak. Új erőforrásokat hoz létre, és a virtuális hálózat jelennek meg. Ha töröl egy erőforrást, a virtuális hálózathoz csatlakozó, már nem szerepel a listában.
+    - **Alhálózatok**: a virtuális hálózaton belül található alhálózatok listája látható. Rendszerdémon hozzáadása és eltávolítása az alhálózat, lásd: [hozzon létre egy alhálózatot](virtual-network-manage-subnet.md#create-subnet) és [alhálózat törlése](virtual-network-manage-subnet.md#delete-subnet) a [hozzáadása, módosítása vagy törlése alhálózatok](virtual-network-manage-subnet.md).
+    - **DNS-kiszolgálók**: megadhatja, hogy az Azure belső DNS-kiszolgáló vagy egy egyéni DNS-kiszolgálót biztosít a névfeloldást a virtuális hálózathoz csatlakozó eszközöket. Ha virtuális hálózat létrehozása az Azure portál használatával, Azure DNS-kiszolgálókat használ a névfeloldáshoz, a virtuális hálózaton belül alapértelmezés szerint. A DNS-kiszolgálók módosításához végrehajtásához a [hozzáadása, módosítása vagy eltávolítása a DNS-kiszolgáló](#dns-servers) ebben a cikkben.
+    - **Társviszony**: Ha nincsenek meglévő társviszony az előfizetést, akkor az itt felsorolt. Meglévő társviszony beállítások megtekintése vagy létrehozása, módosítása vagy törlése esetében. Társviszony kapcsolatos további információkért lásd: [virtuális hálózati társviszony-létesítés](virtual-network-peering-overview.md).
+    - **Tulajdonságok**: a virtuális hálózat, beleértve a virtuális hálózati erőforrás-azonosító és az Azure-előfizetésre vonatkozó beállításokat jeleníti meg.
+    - **Diagram**: A diagram összes eszközről, amelyen a virtuális hálózathoz kapcsolódó vizuális ábrázolását biztosítja. A diagram van néhány alapvető tudnivalók az eszközök. Ebben a nézetben a diagramon eszköz kezeléséhez kattintson arra az eszközre.
+    - **Közös Azure beállításai**: közös Azure beállításaival kapcsolatos további tudnivalókért tekintse meg a következő információkat:
         *   [Tevékenységnapló](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#activity-logs)
         *   [Hozzáférés-vezérlés (IAM)](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#access-control)
         *   [Címkék](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#tags)
@@ -121,7 +121,7 @@ tooview virtuális hálózatok és a beállítások:
 
 ## <a name="add-address-spaces"></a>Hozzáadni vagy eltávolítani egy címtartománnyal
 
-Adja hozzá, és távolítsa el a virtuális hálózat-címterét. A címterület CIDR-formátumban kell megadni, és nem lehetnek átfedésben más címterek hello belül az azonos virtuális hálózaton. Megadhatja hello címterek public vagy private (az RFC 1918) lehet. Hello címterület nyilvánosként vagy magánként határozza meg, hogy hello címterület érhető el csak hello virtuális hálózathoz csatlakozó virtuális hálózatot, és a helyszíni hálózatokhoz, hogy csatlakozott-e toohello virtuális hálózati belül. Nem adható hozzá a következő címterek hello:
+Adja hozzá, és távolítsa el a virtuális hálózat-címterét. Egy címterület CIDR-formátumban kell megadni, és nem lehet átfedésben más címterületeket a virtuális hálózaton belül. Megadhatja a címterek public vagy private (az RFC 1918) lehet. A címtartomány nyilvános vagy titkos határozza meg, hogy a címtartomány érhető el csak a virtuális hálózathoz csatlakozó virtuális hálózatot, és a helyszíni hálózatokhoz a virtuális hálózathoz csatlakozó belül. Nem adható hozzá a következő címterek:
 
 - 224.0.0.0/4 (csoportos küldés)
 - 255.255.255.255/32 (közvetítés)
@@ -129,15 +129,15 @@ Adja hozzá, és távolítsa el a virtuális hálózat-címterét. A címterüle
 - 169.254.0.0/16 (kapcsolatszintű)
 - 168.63.129.16/32 (belső DNS)
 
-tooadd, vagy távolítsa el az-címtér:
+Adja hozzá, vagy távolítsa el az-címtér:
 
-1. Jelentkezzen be toohello [portal](https://portal.azure.com) olyan fiókkal, amely hozzá van rendelve a hello hálózati közreműködői szerepkör (minimum) az előfizetéshez tartozó engedélyeit. toolearn szerepköröket és engedélyeket tooaccounts hozzárendelése bővebben lásd: [Azure szerepköralapú hozzáférés-vezérlés beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor).
-2. Hello portál keresési mezőbe, írja be a **virtuális hálózatok**. Hello keresési eredmények között, válassza ki a **virtuális hálózatok**.
-3. A hello **virtuális hálózatok** panelen kattintson a virtuális hálózat hello, amelynek szeretné, hogy tooadd, vagy távolítsa el a címteret.
-4. Hello virtuális hálózati panelen a **beállítások**, kattintson a **Címtéren**.
-5. A hello címterület hello panelen végezze el hello alábbi beállítások egyikét:
-    - **Egy címtartomány felvétele**: hello új címtartományt adjon meg. meglévő címterület hello virtuális hálózathoz definiált hello címterület nem lehet átfedésben.
-    - **Távolítsa el az címtéren**: kattintson a jobb gombbal a címteret, és kattintson **eltávolítása**. Ha alhálózat létezik-e hello címtérben, hello címterület nem távolítható el. egy tooremove, először törölnie kell alhálózatok (és minden olyan erőforrásnál, amelyek csatlakoztatott toohello alhálózatok), amely létezik hello címterületen belülre.
+1. Jelentkezzen be a [portal](https://portal.azure.com) egy olyan fiókkal, amely hozzá van rendelve a hálózat közreműködő szerepkört az előfizetés (minimum) engedélyeit. Szerepkörök és engedélyek hozzárendelése a fiókok kapcsolatos további információkért lásd: [Azure szerepköralapú hozzáférés-vezérlés beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor).
+2. A portál keresési mezőbe, írja be a **virtuális hálózatok**. A keresési eredmények között, válassza ki a **virtuális hálózatok**.
+3. Az a **virtuális hálózatok** panelen kattintson a virtuális hálózat legyen lehet hozzáadni vagy eltávolítani egy címtartománnyal.
+4. A virtuális hálózati panelen a **beállítások**, kattintson a **Címtéren**.
+5. A címterület paneljén hajtsa végre az alábbi lehetőségek közül:
+    - **Egy címtartomány felvétele**: Adja meg az új címtartományt. A címtartomány a virtuális hálózathoz definiált meglévő címterület nem lehet átfedésben.
+    - **Távolítsa el az címtéren**: kattintson a jobb gombbal a címteret, és kattintson **eltávolítása**. Ha alhálózat létezik-e a címterületen belülre, nem távolítható el a címterület. Egy eltávolításához először törölnie kell alhálózatok (és az alhálózatok kapcsolódó erőforrásokat), amely létezik a címterületen belülre.
 6. Kattintson a **Save** (Mentés) gombra.
 
 **Parancsok**
@@ -149,21 +149,21 @@ tooadd, vagy távolítsa el az-címtér:
 
 ## <a name="dns-servers"></a>Hozzáadása, módosítása vagy eltávolítása a DNS-kiszolgáló
 
-Minden virtuális gép csatlakoztatott toohello virtuális hálózatokon hello hello virtuális hálózathoz megadott DNS-kiszolgálók regisztrálása. Használják hello megadott DNS-kiszolgáló a névfeloldáshoz. Mindegyik hálózati interfész (NIC) a virtuális gép lehet a saját DNS-kiszolgáló beállításai. Ha egy hálózati Adaptert a saját DNS-kiszolgáló beállításait, azok felülírják hello hello virtuális hálózat DNS-kiszolgáló beállításait. toolearn hálózati adapter DNS beállításokkal kapcsolatos további információkért lásd: [hálózati illesztő feladatok és a beállítások](virtual-network-network-interface.md#change-dns-servers). toolearn névfeloldás virtuális gépek és az Azure Felhőszolgáltatások, szerepkörpéldányok kapcsolatos további információkért lásd: [névfeloldását virtuális gépek és a szerepkörpéldányok](virtual-networks-name-resolution-for-vms-and-role-instances.md). tooadd, módosítása vagy a DNS-kiszolgáló eltávolítása:
+Minden virtuális gépek csatlakoznak-e a virtuális hálózati register állít be a virtuális hálózat DNS-kiszolgálókkal. Névfeloldás használata a megadott DNS-kiszolgáló is. Mindegyik hálózati interfész (NIC) a virtuális gép lehet a saját DNS-kiszolgáló beállításai. Ha egy hálózati Adaptert a saját DNS-kiszolgáló beállításait, a virtuális hálózat DNS-kiszolgáló beállításai felülbírálják a. A hálózati adapter DNS-beállítások kapcsolatos további információkért lásd: [hálózati illesztő feladatok és a beállítások](virtual-network-network-interface.md#change-dns-servers). További információt a névfeloldást a virtuális gépek és az Azure Felhőszolgáltatások szerepkörpéldányok, lásd: [névfeloldását virtuális gépek és a szerepkörpéldányok](virtual-networks-name-resolution-for-vms-and-role-instances.md). Hozzáadása, módosítása, vagy távolítsa el a DNS-kiszolgáló:
 
-1. Jelentkezzen be toohello [portal](https://portal.azure.com) olyan fiókkal, amely hozzá van rendelve a hello hálózati közreműködői szerepkör (minimum) az előfizetéshez tartozó engedélyeit. toolearn szerepköröket és engedélyeket tooaccounts hozzárendelése bővebben lásd: [Azure szerepköralapú hozzáférés-vezérlés beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor).
-2. Hello portál keresési mezőbe, írja be a **virtuális hálózatok**. Hello keresési eredmények között, válassza ki a **virtuális hálózatok**.
-3. A hello **virtuális hálózatok** panelen kattintson a hello toochange a DNS beállításokat a virtuális hálózat.
-4. Hello virtuális hálózati panelen a **beállítások**, kattintson a **DNS-kiszolgálók**.
-5. Válasszon egyet az alábbi beállítások a DNS-kiszolgálók felsoroló hello panelen hello:
-    - **Alapértelmezett (Azure által biztosított)**: összes erőforrás nevét és privát IP-címek olyan automatikusan regisztrált toohello Azure DNS-kiszolgálók. Minden olyan erőforrásnál, amelyek csatlakoztatott toohello között oldhatja ugyanazt a virtuális hálózatot. Nem használhatja a beállításnevek tooresolve virtuális hálózatok között. virtuális hálózatok közötti tooresolve nevét, egy egyéni DNS-kiszolgálót kell használnia.
-    - **Egyéni**: egy vagy több kiszolgáló hozzáadása is be toohello Azure korlátozza a virtuális hálózat. toolearn DNS-kiszolgálókra vonatkozó korlátok, kapcsolatos további információkért lásd: [Azure korlátozását](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#virtual-networking-limits-classic). Hello alábbi beállítások közül választhat:
-        - **Adjon hozzá egy címet**: hello server tooyour virtuális hálózat DNS-kiszolgálók listája hozzáadja. Ez a beállítás hello DNS-kiszolgáló is regisztrálja az Azure-ral. Ha már egy DNS-kiszolgáló már regisztrálva van az Azure, kiválaszthatja, hogy a DNS-kiszolgáló hello listában.
-        - **Távolítsa el az címet**: kattintson a következő toohello kiszolgálóra, amelyet az tooremove, **X**. Törlése hello kiszolgáló eltávolítása hello server csak a virtuális hálózatok listája. hello DNS-kiszolgáló továbbra is az Azure-ban a többi virtuális hálózatok toouse regisztrált.
-        - **DNS-kiszolgálócímek átrendezése**: fontos, hogy a DNS-kiszolgálók hello felsorolja tooverify javítsa ki a ahhoz, hogy a környezetében. DNS-kiszolgálók listáját használt hello ahhoz, hogy azokat. A ciklikus multiplexelési telepítési nem működik. Hello lista hello első DNS-kiszolgáló elérhető, ha a hello ügyfél használja a DNS-kiszolgáló, függetlenül attól, hogy hello DNS-kiszolgáló megfelelően működik-e. Távolítsa el az összes felsorolt hello DNS-kiszolgáló, és adja őket újra a hello megfelelő.
-        - **Módosítsa a címet**: hello DNS-kiszolgáló hello listában jelölje ki, és írja be hello új nevét.
+1. Jelentkezzen be a [portal](https://portal.azure.com) egy olyan fiókkal, amely hozzá van rendelve a hálózat közreműködő szerepkört az előfizetés (minimum) engedélyeit. Szerepkörök és engedélyek hozzárendelése a fiókok kapcsolatos további információkért lásd: [Azure szerepköralapú hozzáférés-vezérlés beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor).
+2. A portál keresési mezőbe, írja be a **virtuális hálózatok**. A keresési eredmények között, válassza ki a **virtuális hálózatok**.
+3. Az a **virtuális hálózatok** panelen kattintson a virtuális hálózat DNS-beállításait módosítani szeretné.
+4. A virtuális hálózati panelen a **beállítások**, kattintson a **DNS-kiszolgálók**.
+5. Válassza ki a DNS-kiszolgálók felsoroló panelen a következő lehetőségek közül:
+    - **Alapértelmezett (Azure által biztosított)**: összes erőforrás nevét és privát IP-címek automatikusan regisztrálva van az Azure DNS-kiszolgálók. Feloldhatja a nevek közötti minden olyan erőforrásnál, amely ugyanahhoz a virtuális hálózathoz csatlakoznak. Virtuális hálózatok közötti névfeloldás Ez a beállítás nem használható. Névfeloldás a virtuális hálózatok közötti, egy egyéni DNS-kiszolgálót kell használnia.
+    - **Egyéni**: legfeljebb a Azure virtuális hálózat egy vagy több kiszolgálót is hozzáadhat. DNS-kiszolgálói korlátok kapcsolatos további információkért lásd: [Azure korlátozását](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#virtual-networking-limits-classic). A következő lehetőségek közül választhat:
+        - **Adjon hozzá egy címet**: a kiszolgáló hozzáadása a virtuális hálózat DNS-kiszolgálók listájához. Ezt a lehetőséget is regisztrálja a DNS-kiszolgáló Azure. Ha már egy DNS-kiszolgáló már regisztrálva van az Azure, kiválaszthatja, hogy a DNS-kiszolgáló a listában.
+        - **Távolítsa el az címet**: a kiszolgálót, amely el szeretné távolítani, mellett kattintson **X**. A kiszolgáló törlésével eltávolítja a kiszolgáló csak a virtuális hálózatok listája. A DNS-kiszolgáló használatára a virtuális hálózatok az Azure-ban regisztrált marad.
+        - **DNS-kiszolgálócímek átrendezése**: fontos, hogy ellenőrizze, hogy a DNS-kiszolgálók, a környezetnek a megfelelő sorrendben felsorolja. DNS-kiszolgálók listáját akkor megadott sorrendben használhatók. A ciklikus multiplexelési telepítési nem működik. A listán az első DNS-kiszolgáló elérhető, ha az ügyfél használja a DNS-kiszolgáló, függetlenül attól, hogy a DNS-kiszolgáló megfelelően működik-e. Távolítson el minden felsorolt DNS-kiszolgálót, és adja őket újra a kívánt sorrendben.
+        - **Módosítsa a címet**: Jelölje ki a DNS-kiszolgáló, a listában, és írja be az új nevet.
 6. Kattintson a **Save** (Mentés) gombra.
-7. Indítsa újra a hello virtuális gépek, amelyek csatlakoztatott toohello virtuális hálózaton, így rendelt hello új DNS-kiszolgáló beállításai. Virtuális gépek továbbra is toouse az aktuális DNS-beállítások azok újraindításáig.
+7. Indítsa újra a virtuális gépek, amelyek a virtuális hálózathoz kapcsolódnak, hozzárendeli az új DNS-kiszolgáló beállításai. Virtuális gépek továbbra is az aktuális DNS-beállítások azok újraindításáig.
 
 **Parancsok**
 
@@ -174,14 +174,14 @@ Minden virtuális gép csatlakoztatott toohello virtuális hálózatokon hello h
 
 ## <a name="delete-vnet"></a>A virtuális hálózat törlése
 
-Nincsenek erőforrások csatlakoztatott tooit esetén csak egy virtuális hálózati törölheti. Ha nincsenek erőforrások csatlakoztatott tooany alhálózati hello virtuális hálózaton belül, először törölnie kell hello erőforrásokat, amelyek csatlakoztatott tooall alhálózatok hello virtuális hálózaton belül. hello lépései toodelete erőforrás hello erőforrás függenek. Hogyan csatlakoztatott toosubnets toodelete erőforráshoz olvasási toolearn hello dokumentáció minden erőforrástípus toodelete keresi. a virtuális hálózati toodelete:
+Virtuális hálózat csak akkor, ha nincsenek erőforrások csatlakozik, vagy törölheti. Ha nincsenek erőforrások csatlakoznak bármely alhálózatot a virtuális hálózaton belül, először törölnie kell az erőforrásokat, amelyek a virtuális hálózat összes alhálózatát csatlakoznak. Erőforrás törlése lépései eltérőek attól függően, hogy az erőforrás. Az alhálózatokhoz kapcsolódó erőforrások törlése, olvassa el minden erőforrástípus törli dokumentációját. A virtuális hálózat törlése:
 
-1. Jelentkezzen be toohello [portal](https://portal.azure.com) egy olyan fiókkal, amely hozzárendelt (minimum) engedélyeinek hello hálózat közreműködő szerepkört az előfizetés. toolearn szerepköröket és engedélyeket tooaccounts hozzárendelése bővebben lásd: [Azure szerepköralapú hozzáférés-vezérlés beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor).
-2. Hello portál keresési mezőbe, írja be a **virtuális hálózatok**. Hello keresési eredmények között kattintson **virtuális hálózatok**.
-3. A hello **virtuális hálózatok** panelen, jelölje be hello virtuális hálózatot toodelete szeretné.
-4. Hello virtuális hálózati paneljén, hogy nincsenek-e eszközök tooconfirm csatlakoztatott toohello virtuális hálózati, a **beállítások**, kattintson a **csatlakoztatott eszközök**. Ha csatlakoztatott eszközön, törölnie kell azokat hello virtuális hálózat törlése előtt. Ha nincsenek csatlakoztatott eszközök, kattintson a **áttekintése**.
-5. Hello hello panel felső részén kattintson hello **törlése** ikonra.
-6. tooconfirm hello törlésének hello virtuális hálózatot, kattintson a **Igen**.
+1. Jelentkezzen be a [portal](https://portal.azure.com) egy olyan fiókkal, amely a hálózat közreműködő szerepkört az előfizetés (minimum) hozzárendelt engedélyeit. Szerepkörök és engedélyek hozzárendelése a fiókok kapcsolatos további információkért lásd: [Azure szerepköralapú hozzáférés-vezérlés beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor).
+2. A portál keresési mezőbe, írja be a **virtuális hálózatok**. A keresési eredmények között kattintson **virtuális hálózatok**.
+3. Az a **virtuális hálózatok** panelen válassza ki a törölni kívánt virtuális hálózatot.
+4. A virtuális hálózat panel annak ellenőrzéséhez, hogy nincsenek-e eszközök a virtuális hálózathoz csatlakozik, a **beállítások**, kattintson a **csatlakoztatott eszközök**. Ha csatlakoztatott eszközön, törölnie kell azokat a virtuális hálózat törlése előtt. Ha nincsenek csatlakoztatott eszközök, kattintson a **áttekintése**.
+5. Kattintson a panel tetején a **törlése** ikonra.
+6. A virtuális hálózat a törlés megerősítéséhez kattintson **Igen**.
 
 
 **Parancsok**
@@ -194,7 +194,7 @@ Nincsenek erőforrások csatlakoztatott tooit esetén csak egy virtuális háló
 
 ## <a name="next-steps"></a>Következő lépések
 
-- a virtuális gépek toocreate és tooa virtuális hálózathoz csatlakozzon, lásd: [hozzon létre egy virtuális hálózatot, és csatlakozzon a virtuális gépek](virtual-network-get-started-vnet-subnet.md#create-vms).
-- Tekintse meg a toofilter hálózati forgalmat a virtuális hálózaton belül alhálózatok között [hálózati biztonsági csoportok létrehozása a](virtual-networks-create-nsg-arm-pportal.md).
-- Tekintse meg a virtuális hálózat tooanother virtuális hálózat, toopeer [hozzon létre egy virtuális hálózati társviszony-létesítés](virtual-network-create-peering.md#portal).
-- Csatlakozás a virtuális hálózat tooan a helyszíni hálózati beállításokkal kapcsolatos toolearn lásd [VPN-átjáró](../vpn-gateway/vpn-gateway-about-vpngateways.md?toc=%2fazure%2fvirtual-network%2ftoc.json#diagrams).
+- Hozzon létre egy virtuális Gépet, és csatlakoztassa a virtuális hálózat, [hozzon létre egy virtuális hálózatot, és csatlakozzon a virtuális gépek](virtual-network-get-started-vnet-subnet.md#create-vms).
+- A virtuális hálózaton belül alhálózatok közötti hálózati forgalom szűrésére, lásd: [hálózati biztonsági csoportok létrehozása a](virtual-networks-create-nsg-arm-pportal.md).
+- Egyenrangú egy virtuális hálózat egy másik virtuális hálózathoz, lásd: [hozzon létre egy virtuális hálózati társviszony-létesítés](virtual-network-create-peering.md#portal).
+- Egy a helyszíni hálózathoz való csatlakozás a virtuális hálózati beállításokkal kapcsolatos további tudnivalókért lásd: [VPN-átjáró](../vpn-gateway/vpn-gateway-about-vpngateways.md?toc=%2fazure%2fvirtual-network%2ftoc.json#diagrams).

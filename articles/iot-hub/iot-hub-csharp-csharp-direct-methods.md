@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub aaaUse közvetlen módszerek (.NET/.NET) |} Microsoft Docs"
-description: "Hogyan toouse Azure IoT Hub közvetlen módszerek. Hello Azure IoT-eszközök SDK használata .NET tooimplement a szimulált eszköz alkalmazást, amely magában foglalja a közvetlen módszer és hello Azure IoT szolgáltatás SDK .NET tooimplement, amely hello közvetlen metódust hívja service-alkalmazást."
+title: "Közvetlen Azure IoT Hub-módszerekkel (.NET/.NET) |} Microsoft Docs"
+description: "Hogyan használható az Azure IoT Hub közvetlen módszerek. Az Azure IoT-eszközök a .NET SDK használatával valósítja meg a szimulált eszköz alkalmazást, amely közvetlen módszer és a Azure IoT szolgáltatást a service-alkalmazást, amely hívja meg a közvetlen módszer végrehajtásához .NET SDK tartalmazza."
 services: iot-hub
 documentationcenter: 
 author: dsk-2015
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/18/2017
 ms.author: dkshir
-ms.openlocfilehash: d4fa093a99558ec6faf294c2583a14a722b9ac03
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9ce1fbebb6417c10618aa182e3c1d9ddf8132fb6
+ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/29/2017
 ---
 # <a name="use-direct-methods-netnet"></a>Közvetlen módszerekkel (.NET/.NET)
 [!INCLUDE [iot-hub-selector-c2d-methods](../../includes/iot-hub-selector-c2d-methods.md)]
 
-Ebben az oktatóanyagban dolgozunk folyamatos toodevelop két .NET konzol alkalmazások:
+Ebben az oktatóanyagban fogjuk két .NET konzol alkalmazások fejlesztéséhez:
 
-* **CallMethodOnDevice**, egy háttér-alkalmazást, mert metódus meghívja a szimulált eszköz app hello és hello válasz jeleníti meg.
-* **SimulateDeviceMethods**, egy konzolalkalmazás tooyour IoT-központ összeköti a korábban létrehozott hello eszközidentitás eszköz szimulálja, és válaszolhat hello felhő által meghívott toohello metódus.
+* **CallMethodOnDevice**, egy háttér-alkalmazást, amely metódus meghívja a szimulált eszköz alkalmazásban, és a válasz megjeleníti.
+* **SimulateDeviceMethods**, korábban létrehozott egy konzolalkalmazás szimulálja egy eszköz csatlakoztatása az IoT hub eszköz azonosítóját és a felhő által meghívott metódus megválaszolja.
 
 > [!NOTE]
-> hello cikk [Azure IoT SDK-k] [ lnk-hub-sdks] használható toobuild mindkét alkalmazások toorun eszközökön és a megoldás háttérrendszeréhez hello Azure IoT SDK-k információt nyújt.
+> Az Azure IoT SDK-kat használhatja az eszközökön és a megoldás háttérrendszerén futó alkalmazások összeállításához egyaránt. Ezekről az [Azure IoT SDK-k][lnk-hub-sdks] című témakörben talál további információt.
 > 
 > 
 
-toocomplete ebben az oktatóanyagban szüksége:
+Az oktatóanyag elvégzéséhez a következőkre lesz szüksége:
 
 * Visual Studio 2015 vagy Visual Studio 2017.
 * Aktív Azure-fiók. (Ha nincs fiókja, létrehozhat egy [ingyenes fiókot][lnk-free-trial] néhány perc alatt.)
@@ -42,31 +42,31 @@ toocomplete ebben az oktatóanyagban szüksége:
 
 [!INCLUDE [iot-hub-get-started-create-device-identity-portal](../../includes/iot-hub-get-started-create-device-identity-portal.md)]
 
-Ha azt szeretné toocreate hello eszközidentitás programozott módon helyette, olvassa el a megfelelő szakasz hello hello [csatlakoztassa a szimulált eszköz tooyour IoT hubot .NET használatával] [ lnk-device-identity-csharp] cikk.
+Ha szeretne létrehozni az eszközidentitást programozott módon helyette, olvassa el a megfelelő részt a [a szimulált eszköz csatlakoztatása az IoT hub .NET használatával] [ lnk-device-identity-csharp] cikk.
 
 
 ## <a name="create-a-simulated-device-app"></a>Szimulált eszközalkalmazás létrehozása
-Ebben a szakaszban egy .NET-Konzolalkalmazás, amely válaszol a hello megoldás háttérrendszere által meghívott end tooa metódus hoz létre.
+Ebben a szakaszban egy .NET-Konzolalkalmazás, amely válaszol a végfelhasználók által a megoldás háttérrendszere nevű metódust hoz létre.
 
-1. A Visual Studio, a Visual C# klasszikus Windows asztal projekt toohello aktuális megoldás hozzáadása hello segítségével **Konzolalkalmazás** projektsablon. Név hello projekt **SimulateDeviceMethods**.
+1. A Visual Studióban adjon hozzá egy Visual C# nyelvű Windows klasszikus asztalialkalmazás-projektet az aktuális megoldáshoz a **Console Application** (Konzolalkalmazás) projektsablonnal. Nevet a projektnek **SimulateDeviceMethods**.
    
     ![Új Visual C# klasszikus Windows-eszköz alkalmazás][img-createdeviceapp]
     
-1. A Megoldáskezelőben kattintson a jobb gombbal hello **SimulateDeviceMethods** projektre, és kattintson a **NuGet-csomagok kezelése...** .
-1. A hello **NuGet-Csomagkezelő** ablakban válassza ki **Tallózás** keresse meg a **microsoft.azure.devices.client**. Válassza ki **telepítése** tooinstall hello **Microsoft.Azure.Devices.Client** csomagot, majd fogadja el hello használati feltételeket. Ez az eljárás tölti le, telepíti, és hozzáad egy hivatkozást toohello [Azure IoT-eszközök SDK] [ lnk-nuget-client-sdk] NuGet csomag és annak függőségeit.
+1. A Megoldáskezelőben kattintson a jobb gombbal a **SimulateDeviceMethods** projektre, és kattintson a **NuGet-csomagok kezelése...** .
+1. Az a **NuGet-Csomagkezelő** ablakban válassza ki **Tallózás** keresse meg a **microsoft.azure.devices.client**. Válassza ki **telepítése** telepítéséhez a **Microsoft.Azure.Devices.Client** csomagot, majd fogadja el a használati feltételeket. Ez az eljárás tölti le, telepíti, és hozzáad egy hivatkozást a [Azure IoT-eszközök SDK] [ lnk-nuget-client-sdk] NuGet csomag és annak függőségeit.
    
     ![NuGet-Csomagkezelő ablak ügyfélalkalmazás][img-clientnuget]
-1. Adja hozzá a következő hello `using` hello hello tetején utasítások **Program.cs** fájlt:
+1. Adja hozzá a következő `using` utasításokat a **Program.cs** fájl elejéhez:
    
         using Microsoft.Azure.Devices.Client;
         using Microsoft.Azure.Devices.Shared;
 
-1. Adja hozzá a következő mezők toohello hello **Program** osztály. Hello helyőrző értékét lecserélheti egy hello eszköz kapcsolati karakterláncot, amely az előző szakaszban hello feljegyzett.
+1. Adja hozzá a **Program** osztályhoz a következő mezőket: Cserélje le a helyőrző értékét az előző szakaszban feljegyzett eszköz kapcsolati karakterlánccal.
    
         static string DeviceConnectionString = "HostName=<yourIotHubName>.azure-devices.net;DeviceId=<yourIotDeviceName>;SharedAccessKey=<yourIotDeviceAccessKey>";
         static DeviceClient Client = null;
 
-1. Adja hozzá a következő tooimplement hello közvetlen módszer hello eszközön hello:
+1. Adja hozzá a következőt valósítja meg a közvetlen az eszközön:
 
         static Task<MethodResponse> WriteLineToConsole(MethodRequest methodRequest, object userContext)
         {
@@ -74,25 +74,25 @@ Ebben a szakaszban egy .NET-Konzolalkalmazás, amely válaszol a hello megoldás
             Console.WriteLine("\t{0}", methodRequest.DataAsJson);
             Console.WriteLine("\nReturning response for method {0}", methodRequest.Name);
 
-            string result = "'Input was written toolog.'";
+            string result = "'Input was written to log.'";
             return Task.FromResult(new MethodResponse(Encoding.UTF8.GetBytes(result), 200));
         }
 
-1. Végül adja hozzá a következő kód toohello hello **fő** metódus tooopen hello kapcsolat tooyour IoT hub és inicializálási hello metódus figyelő:
+1. Végül adja hozzá az alábbi kódot a **fő** módszert, nyissa meg a kapcsolatot az IoT hub és a metódus figyelő inicializálása:
    
         try
         {
-            Console.WriteLine("Connecting toohub");
+            Console.WriteLine("Connecting to hub");
             Client = DeviceClient.CreateFromConnectionString(DeviceConnectionString, TransportType.Mqtt);
 
             // setup callback for "writeLine" method
             Client.SetMethodHandlerAsync("writeLine", WriteLineToConsole, null).Wait();
-            Console.WriteLine("Waiting for direct method call\n Press enter tooexit.");
+            Console.WriteLine("Waiting for direct method call\n Press enter to exit.");
             Console.ReadLine();
 
             Console.WriteLine("Exiting...");
 
-            // as a good practice, remove hello "writeLine" handler
+            // as a good practice, remove the "writeLine" handler
             Client.SetMethodHandlerAsync("writeLine", null, null).Wait();
             Client.CloseAsync().Wait();
         }
@@ -102,38 +102,38 @@ Ebben a szakaszban egy .NET-Konzolalkalmazás, amely válaszol a hello megoldás
             Console.WriteLine("Error in sample: {0}", ex.Message);
         }
         
-1. A Visual Studio Solution Explorer hello, kattintson a jobb gombbal a megoldás, és kattintson **indítási projektek beállítása...** . Válassza ki **egyetlen kezdőprojekt**, majd válassza ki a hello **SimulateDeviceMethods** projektre a hello legördülő menüre.        
+1. A Visual Studio Solution Explorerben kattintson a jobb gombbal a megoldás, és kattintson **indítási projektek beállítása...** . Válassza ki **egyetlen kezdőprojekt**, majd válassza ki a **SimulateDeviceMethods** projekt legördülő menüből.        
 
 > [!NOTE]
-> Ez az oktatóanyag tookeep dolgot egyszerű, nem valósítja meg semmilyen újrapróbálkozási házirendje. Az éles kódban, meg kell valósítania újrapróbálkozási szabályzatok (például újrapróbálkozási), hello MSDN-cikkben leírtak [átmeneti hiba kezelése][lnk-transient-faults].
+> Az egyszerűség kedvéért ez az oktatóanyag nem valósít meg semmilyen újrapróbálkozási házirendet. Az éles kódban, meg kell valósítania újrapróbálkozási szabályzatok (például újrapróbálkozási), az MSDN-cikkben leírtak [átmeneti hiba kezelése][lnk-transient-faults].
 > 
 > 
 
 ## <a name="call-a-direct-method-on-a-device"></a>A közvetlen metódus hívása az eszközön
-Ebben a szakaszban egy .NET-Konzolalkalmazás metódus meghívja a hello szimulált eszköz app, majd megjeleníti a hello válasz hoz létre.
+Ebben a szakaszban egy .NET-Konzolalkalmazás, amely egy metódus meghívja a szimulált eszköz alkalmazás és a válasz megjeleníti hoz létre.
 
-1. A Visual Studio, a Visual C# klasszikus Windows asztal projekt toohello aktuális megoldás hozzáadása hello segítségével **Konzolalkalmazás** projektsablon. Győződjön meg arról, hogy hello .NET-keretrendszer 4.5.1 vagy újabb. Név hello projekt **CallMethodOnDevice**.
+1. A Visual Studióban adjon hozzá egy Visual C# nyelvű Windows klasszikus asztalialkalmazás-projektet az aktuális megoldáshoz a **Console Application** (Konzolalkalmazás) projektsablonnal. A Microsoft .NET-keretrendszer 4.5.1-es vagy újabb verzióját használja. Nevet a projektnek **CallMethodOnDevice**.
    
     ![Új Visual C# Windows klasszikus asztalialkalmazás-projekt][img-createserviceapp]
-2. A Megoldáskezelőben kattintson a jobb gombbal hello **CallMethodOnDevice** projektre, és kattintson a **NuGet-csomagok kezelése...** .
-3. A hello **NuGet-Csomagkezelő** ablakban válassza ki **Tallózás**, keressen **microsoft.azure.devices**, jelölje be **telepítése** tooinstall Hello **Microsoft.Azure.Devices** csomagot, majd fogadja el hello használati feltételeket. Ez az eljárás tölti le, telepíti, és hozzáad egy hivatkozást toohello [Azure IoT szolgáltatás SDK] [ lnk-nuget-service-sdk] NuGet csomag és annak függőségeit.
+2. A Megoldáskezelőben kattintson a jobb gombbal a **CallMethodOnDevice** projektre, és kattintson a **NuGet-csomagok kezelése...** .
+3. A **NuGet Package Manager** (NuGet-csomagkezelő) ablakban válassza a **Browse** (Tallózás) lehetőséget, keresse meg a **microsoft.azure.devices** csomagot, válassza a **Install** (Telepítés) lehetőséget a **Microsoft.Azure.Devices** csomag telepítéséhez, és fogadja el a használati feltételeket. Ez az eljárás letölti és telepíti az [Azure IoT Service SDK][lnk-nuget-service-sdk] (Azure IoT szolgáltatás SDK) NuGet-csomagot és annak függőségeit, valamint hozzáad egy rá mutató hivatkozást is.
    
     ![NuGet Package Manager (NuGet-csomagkezelő) ablak][img-servicenuget]
 
-4. Adja hozzá a következő hello `using` hello hello tetején utasítások **Program.cs** fájlt:
+4. Adja hozzá a következő `using` utasításokat a **Program.cs** fájl elejéhez:
    
         using System.Threading.Tasks;
         using Microsoft.Azure.Devices;
-5. Adja hozzá a következő mezők toohello hello **Program** osztály. Hello helyőrző értékét lecserélheti egy hello hello hub hello előző szakaszban létrehozott IoT-központ kapcsolati karakterláncot.
+5. Adja hozzá a **Program** osztályhoz a következő mezőket: A helyőrző értékét cserélje le az előző szakaszban létrehozott IoT Hub kapcsolati karakterláncra.
    
         static ServiceClient serviceClient;
         static string connectionString = "{iot hub connection string}";
-6. Adja hozzá a következő metódus toohello hello **Program** osztály:
+6. Adja hozzá a **Program** osztályhoz a következő módszert:
    
         private static async Task InvokeMethod()
         {
             var methodInvocation = new CloudToDeviceMethod("writeLine") { ResponseTimeout = TimeSpan.FromSeconds(30) };
-            methodInvocation.SetPayloadJson("'a line toobe written'");
+            methodInvocation.SetPayloadJson("'a line to be written'");
 
             var response = await serviceClient.InvokeDeviceMethodAsync("myDeviceId", methodInvocation);
 
@@ -141,38 +141,38 @@ Ebben a szakaszban egy .NET-Konzolalkalmazás metódus meghívja a hello szimul�
             Console.WriteLine(response.GetPayloadAsJson());
         }
    
-    Ez a metódus meghívja a közvetlen módszer nevű `writeLine` a hello `myDeviceId` eszköz. Ezután ír a hello konzolon hello eszköz által biztosított hello válasz. Ne feledje, hogy lehetséges toospecify hello eszköz toorespond időtúllépési értéket.
-7. Végül adja hozzá a következő sorokat toohello hello **fő** módszert:
+    Ez a metódus meghívja a közvetlen módszer nevű `writeLine` a a `myDeviceId` eszköz. Ezután ír a választ, a konzolon az eszköz által biztosított. Ne feledje, hogy az eszköz válaszára időtúllépési értéket.
+7. Végül adja a következő sorokat a **Main** metódushoz:
    
         serviceClient = ServiceClient.CreateFromConnectionString(connectionString);
         InvokeMethod().Wait();
-        Console.WriteLine("Press Enter tooexit.");
+        Console.WriteLine("Press Enter to exit.");
         Console.ReadLine();
 
-1. A Visual Studio Solution Explorer hello, kattintson a jobb gombbal a megoldás, és kattintson **indítási projektek beállítása...** . Válassza ki **egyetlen kezdőprojekt**, majd válassza ki a hello **CallMethodOnDevice** projektre a hello legördülő menüre.
+1. A Visual Studio Solution Explorerben kattintson a jobb gombbal a megoldás, és kattintson **indítási projektek beállítása...** . Válassza ki **egyetlen kezdőprojekt**, majd válassza ki a **CallMethodOnDevice** projekt legördülő menüből.
 
-## <a name="run-hello-applications"></a>Hello alkalmazások futtatásához
-Most már áll készen toorun hello alkalmazások.
+## <a name="run-the-applications"></a>Az alkalmazások futtatása
+Most már készen áll az alkalmazások futtatására.
 
-1. Hello .NET eszköz alkalmazás **SimulateDeviceMethods**. Akkor kell megkezdeni a figyelést az IoT Hub a metódushívások: 
+1. A .NET-eszköz alkalmazás futtatása **SimulateDeviceMethods**. Akkor kell megkezdeni a figyelést az IoT Hub a metódushívások: 
 
     ![Eszköz-alkalmazás futtatása][img-deviceapprun]
-1. Most, hogy hello eszköz csatlakoztatva van, és metódus meghívásához várakozik, futtassa a hello .NET **CallMethodOnDevice** tooinvoke hello használata hello szimulált eszköz alkalmazásban. Hello eszköz válasz írása hello konzolon kell megjelennie.
+1. Most, hogy az eszköz csatlakoztatva van, és várakozik a metódus meghívásához, futtassa a .NET **CallMethodOnDevice** app a szimulált eszköz alkalmazás metódus meghívására. Az eszköz válasza a konzol írt kell megjelennie.
    
     ![Szolgáltatás-alkalmazás futtatása][img-serviceapprun]
-1. hello eszköz majd reagál toohello metódus által nyomtatás ezt az üzenetet:
+1. Az eszköz majd reagál a metódus által nyomtatás ezt az üzenetet:
    
-    ![Hello eszközön meghívott közvetlen módszer][img-directmethodinvoked]
+    ![Az eszközön meghívott közvetlen módszer][img-directmethodinvoked]
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben az oktatóanyagban egy új IoT hub konfigurálva hello Azure-portálon, és hozza létre a hello IoT hub identitásjegyzékhez egy eszközidentitás. Az eszköz identitás tooenable hello szimulált eszköz alkalmazás tooreact toomethods hello felhő által meghívott használta. Is létrehozott egy alkalmazást, amely hello eszközön módszereket hív, és megjeleníti hello válasz hello eszközről. 
+Ebben az oktatóanyagban egy új IoT Hubot konfigurált az Azure-portálon, majd létrehozott egy eszközidentitást az IoT Hub identitásjegyzékében. Ez az eszközazonosító segítségével engedélyezheti a felhő által meghívott módszerek reagálni a szimulált eszköz alkalmazás. Létrehozott egy alkalmazást, amely meghívja a módszerek az eszközön, és megjeleníti az eszköz válaszára is. 
 
-első lépések toocontinue az IoT Hub és tooexplore más IoT-forgatókönyvek esetén, lásd:
+További bevezetés az IoT Hub használatába, valamint egyéb IoT-forgatókönyvek megismerése:
 
 * [Ismerkedés az IoT-központ]
 * [Több eszközön feladatok ütemezése][lnk-devguide-jobs]
 
-toolearn hogyan tooextend az IoT megoldás és az ütemezések metódus meghívja a több eszközön, tekintse meg a hello [ütemezés és a szórásos feladatok] [ lnk-tutorial-jobs] oktatóanyag.
+Megtudhatja, hogyan terjeszthető ki az IoT-megoldás és az ütemezések metódushívások több eszközön, tekintse meg a [ütemezés és a szórásos feladatok] [ lnk-tutorial-jobs] oktatóanyag.
 
 <!-- Images. -->
 [img-createdeviceapp]: ./media/iot-hub-csharp-csharp-direct-methods/create-device-app.png

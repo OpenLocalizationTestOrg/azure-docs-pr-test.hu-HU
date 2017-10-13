@@ -1,6 +1,6 @@
 ---
-title: "aaaConfigure VirtualBox Docker gazdagépet |} Microsoft Docs"
-description: "Részletes útmutatás tooconfigure Docker alapértelmezett példány Docker gép és VirtualBox használatával"
+title: "Állítson be egy Docker-állomás VirtualBox |} Microsoft Docs"
+description: "Részletes útmutatás a Docker gép és VirtualBox alapértelmezett Docker példányok konfigurálása"
 services: azure-container-service
 documentationcenter: na
 author: mlearned
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 06/08/2016
 ms.author: mlearned
-ms.openlocfilehash: 1df2da4482444a803d05e413e019edcc57269062
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e9465afb560a73d74f853c19094b3ee75b8c470c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="configure-a-docker-host-with-virtualbox"></a>VirtualBox egy Docker-állomás konfigurálása
 ## <a name="overview"></a>Áttekintés
-Ez a cikk végigvezeti Önt egy Docker-számítógép és VirtualBox alapértelmezett Docker-példány konfigurálása. Hello használata [Docker for Windows beta](http://beta.docker.com/), ez a konfiguráció nincs szükség.
+Ez a cikk végigvezeti Önt egy Docker-számítógép és VirtualBox alapértelmezett Docker-példány konfigurálása. Használata esetén a [Docker for Windows beta](http://beta.docker.com/), ez a konfiguráció nincs szükség.
 
 ## <a name="prerequisites"></a>Előfeltételek
-hello következő eszközök kell toobe telepítve.
+A következő eszközök telepítve kell lennie.
 
 * [Docker eszközkészlet](https://www.docker.com/products/overview#/docker_toolbox)
 
-## <a name="configuring-hello-docker-client-with-windows-powershell"></a>Hello Docker-ügyfél konfigurálása a Windows PowerShell használatával
-tooconfigure egy Docker-ügyfelet, egyszerűen nyissa meg a Windows Powershellt, és hajtsa végre az alábbi lépésekkel hello:
+## <a name="configuring-the-docker-client-with-windows-powershell"></a>A Docker-ügyfél konfigurálása a Windows PowerShell használatával
+Egy Docker-ügyfél konfigurálásához, egyszerűen nyissa meg a Windows Powershellt, és hajtsa végre a következő lépéseket:
 
 1. Hozzon létre alapértelmezett docker-állomás példányt.
    
     ```PowerShell
     docker-machine create --driver virtualbox default
     ```
-2. Győződjön meg arról hello alapértelmezett példány, konfigurálni és futtatni. (Látnia kell egy futtató a "default" nevű példány.
+2. Ellenőrizze, hogy az alapértelmezett példány, konfigurálni és futtatni. (Látnia kell egy futtató a "default" nevű példány.
    
     ```PowerShell
     docker-machine ls 
     ```
    
     ![docker-gép ls kimeneti][0]
-3. Alapértelmezett hello aktuális gazdagépként, és a rendszerhéj konfigurálása.
+3. Alapértelmezett állítja be az aktuális állomás, és konfigurálja a rendszerhéj.
    
     ```PowerShell
     docker-machine env default | Invoke-Expression
     ```
-4. Hello active Docker-tárolók megjelenítéséhez. hello lista üresnek kell lennie.
+4. Megjeleníti az aktív Docker-tárolókat. Lehet, hogy a lista üres.
    
     ```PowerShell
     docker ps
@@ -58,8 +58,8 @@ tooconfigure egy Docker-ügyfelet, egyszerűen nyissa meg a Windows Powershellt,
     ![docker ps kimeneti][1]
 
 > [!NOTE]
-> Minden alkalommal, amikor a fejlesztői számítógépén, indítsa újra kell toorestart az helyi docker-állomás.
-> toodo, ez a probléma hello a következő parancsot a parancssorba: `docker-machine start default`.
+> Minden alkalommal, amikor a fejlesztői számítógépén, indítsa újra lesz szüksége a helyi docker host újraindítására.
+> Ehhez adja ki a következő parancsot a parancssorba: `docker-machine start default`.
 > 
 > 
 

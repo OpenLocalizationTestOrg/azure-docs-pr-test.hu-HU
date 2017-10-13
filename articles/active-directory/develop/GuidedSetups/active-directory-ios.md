@@ -1,5 +1,5 @@
 ---
-title: "Első lépések aaaAzure AD v2 iOS |} Microsoft Docs"
+title: "Ismerkedés az Azure AD v2 iOS |} Microsoft Docs"
 description: "Hogyan iOS (Swift) alkalmazások Azure Active Directory-v2 végpontja hozzáférési jogkivonatok igénylő API meghívása"
 services: active-directory
 documentationcenter: dev-center-name
@@ -15,11 +15,11 @@ ms.workload: identity
 ms.date: 08/22/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: 93a9ca2527a001265697203f0d2bfb883f8ff8fe
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 608fe00d478945516b25b672709cd358c5e55ddb
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 [!INCLUDE [1. Introduction](active-directory-mobileanddesktopapp-ios-introduction.md)]
 [!INCLUDE [2. Setup](active-directory-mobileanddesktopapp-ios-setup.md)]

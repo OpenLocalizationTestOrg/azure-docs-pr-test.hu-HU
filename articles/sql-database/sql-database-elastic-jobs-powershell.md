@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate és a PowerShell segítségével a rugalmas feladatok kezelése |} Microsoft Docs"
-description: "PowerShell használt toomanage Azure SQL Database-készletek"
+title: "PowerShell-lel rugalmas feladatok létrehozásához és kezeléséhez |} Microsoft Docs"
+description: "Az Azure SQL Database-készletek kezelésére szolgáló PowerShell"
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
-ms.openlocfilehash: f6c18aecfa7e8c0b102a3b7cd2f266f5542ae400
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b4c97e8f51581f9a3f7c5a8d8e82562255fe7b48
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-and-manage-sql-database-elastic-jobs-using-powershell-preview"></a>SQL Database PowerShell (előzetes verzió) segítségével a rugalmas feladatok létrehozásához és kezeléséhez
 
-hello PowerShell API-k a **rugalmas adatbázis-feladatok** (az előzetes verzió), lehetővé teszik, hogy olyan adatbázisok, amely végrehajtja a parancsfájlok csoportját. Ez a cikk bemutatja, hogyan toocreate és kezelése **rugalmas adatbázis-feladatok** PowerShell-parancsmagok használatával. Lásd: [rugalmas feladatok áttekintése](sql-database-elastic-jobs-overview.md). 
+A PowerShell API-khoz, **rugalmas adatbázis-feladatok** (az előzetes verzió), lehetővé teszik, hogy olyan adatbázisok, amely végrehajtja a parancsfájlok csoportját. Ez a cikk bemutatja, hogyan hozhatja létre és kezelheti **rugalmas adatbázis-feladatok** PowerShell-parancsmagok használatával. Lásd: [rugalmas feladatok áttekintése](sql-database-elastic-jobs-overview.md). 
 
 ## <a name="prerequisites"></a>Előfeltételek
 * Azure-előfizetés. Ingyenes próbaverzió, lásd: [ingyenes egy hónapos próbaverzió](https://azure.microsoft.com/pricing/free-trial/).
-* Hello rugalmas adatbázis eszközzel létrehozott adatbázisok készleteit. Lásd: [Ismerkedés a rugalmas adatbáziseszközöket](sql-database-elastic-scale-get-started.md).
-* Azure PowerShell. Részletes információkért lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](https://docs.microsoft.com/powershell/azure/overview).
+* A rugalmas adatbázis eszközzel létrehozott adatbázisok készleteit. Lásd: [Ismerkedés a rugalmas adatbáziseszközöket](sql-database-elastic-scale-get-started.md).
+* Azure PowerShell. Részletes információk: [Az Azure PowerShell telepítése és konfigurálása](https://docs.microsoft.com/powershell/azure/overview).
 * **Rugalmas adatbázis-feladatok** PowerShell csomag: lásd: [telepítése rugalmas adatbázis-feladatok](sql-database-elastic-jobs-service-installation.md)
 
 ### <a name="select-your-azure-subscription"></a>Válassza ki az Azure-előfizetéshez
-az előfizetés-azonosítót kell tooselect hello előfizetés (**- SubscriptionId**) vagy előfizetés neve (**- SubscriptionName**). Ha több előfizetéssel rendelkezik futtatása hello **Get-AzureRmSubscription** parancsmag és a példány hello szükséges hello eredményhalmazából előfizetési adatokat. Miután az előfizetési adatai, futtassa a következő parancsmag tooset hello ehhez az előfizetéshez hello alapértelmezett, nevezetesen a cél a feladatok létrehozását és kezelését hello:
+Válassza ki az előfizetést az előfizetés-azonosítót kell (**- SubscriptionId**) vagy az előfizetés nevét (**- SubscriptionName**). Ha több előfizetéssel rendelkezik futtathatja a **Get-AzureRmSubscription** parancsmagot, és másolja a kívánt előfizetés-adatokat, az eredmény az beállítása. Miután az előfizetési adatai, futtassa az alapértelmezett, nevezetesen a cél a feladatok létrehozását és kezelését az előfizetés beállításához a következő parancsmagot:
 
     Select-AzureRmSubscription -SubscriptionId {SubscriptionID}
 
-Hello [PowerShell ISE](https://technet.microsoft.com/library/dd315244.aspx) használati toodevelop ajánlott, és a PowerShell-parancsfájlok elleni hello rugalmas adatbázis-feladatok végrehajtása.
+A [PowerShell ISE](https://technet.microsoft.com/library/dd315244.aspx) ajánlott használatra történő fejlesztéséhez és a PowerShell-szkriptek használatát a rugalmas adatbázis-feladatok végrehajtása.
 
 ## <a name="elastic-database-jobs-objects"></a>A rugalmas adatbázis-feladatok objektumok
-a következő táblázat fel minden hello objektum típusú hello **rugalmas adatbázis-feladatok** együtt a leírása és a megfelelő PowerShell API-k.
+A következő táblázat felsorolja az összes objektum típusú kimenő **rugalmas adatbázis-feladatok** együtt a leírása és a megfelelő PowerShell API-k.
 
 <table style="width:100%">
   <tr>
@@ -48,14 +48,14 @@ a következő táblázat fel minden hello objektum típusú hello **rugalmas ada
   </tr>
   <tr>
     <td>Hitelesítő adat</td>
-    <td>Felhasználónév és jelszó toouse parancsprogramok végrehajtását vagy DACPACs alkalmazásának toodatabases kapcsolódáskor. <p>hello jelszó titkosított hello rugalmas adatbázis-feladatok adatbázis tárolási tooand elküldése előtt.  hello jelszó visszafejti hello rugalmas adatbázis-feladatok szolgáltatás hello hitelesítő adat létrehozása és fel kell tölteni a hello telepítési parancsfájl használatával.</td>
+    <td>Felhasználónév és jelszó parancsprogramok végrehajtását vagy DACPACs alkalmazásának adatbázisok való kapcsolódáskor használ. <p>A jelszó küldése és a rugalmas adatbázis-feladatok adatbázis tárolási előtt titkosítva.  A rugalmas adatbázis-feladatok szolgáltatás a hitelesítő adat létrehozása és fel kell tölteni a telepítési parancsfájl segítségével visszafejti a jelszót.</td>
     <td><p>Get-AzureSqlJobCredential</p>
     <p>Új AzureSqlJobCredential</p><p>Set-AzureSqlJobCredential</p></td></td>
   </tr>
 
   <tr>
     <td>Szkript</td>
-    <td>Transact-SQL parancsfájl toobe az adatbázisok közötti végrehajtási használatos.  hello parancsfájl kell lennie a szerzői toobe idempotent, mivel hello szolgáltatás újra próbálkozik a hibák után hello parancsprogram végrehajtása.
+    <td>Transact-SQL parancsfájl végrehajtása az adatbázisok közötti használt.  A parancsfájl a kell kell lennie az idempotent, mivel a szolgáltatás megpróbálja hibák után a parancsfájl végrehajtása lett létrehozva.
     </td>
     <td>
     <p>Get-AzureSqlJobContent</p>
@@ -67,7 +67,7 @@ a következő táblázat fel minden hello objektum típusú hello **rugalmas ada
 
   <tr>
     <td>DACPAC</td>
-    <td><a href="https://msdn.microsoft.com/library/ee210546.aspx">Adatrétegbeli alkalmazás </a> alkalmazza az adatbázisok közötti toobe csomag.
+    <td><a href="https://msdn.microsoft.com/library/ee210546.aspx">Adatrétegbeli alkalmazás </a> az adatbázisok közötti alkalmazni kívánt csomagot.
 
     </td>
     <td>
@@ -78,7 +78,7 @@ a következő táblázat fel minden hello objektum típusú hello **rugalmas ada
   </tr>
   <tr>
     <td>Adatbázis-cél</td>
-    <td>Adatbázis és a kiszolgáló neve mutató tooan Azure SQL Database.
+    <td>Egy Azure SQL-adatbázisra mutató adatbázis és a kiszolgáló nevét.
 
     </td>
     <td>
@@ -88,7 +88,7 @@ a következő táblázat fel minden hello objektum típusú hello **rugalmas ada
   </tr>
   <tr>
     <td>A shard térkép cél</td>
-    <td>Egy adatbázis cél és a hitelesítő adatok toobe használt toodetermine adatok egy rugalmas adatbázist shard leképezés tárolja.
+    <td>Egy adatbázis célként és egy rugalmas adatbázist shard leképezés tárolt információk meghatározásához használt hitelesítő adatot kombinációja.
     </td>
     <td>
     <p>Get-AzureSqlJobTarget</p>
@@ -98,7 +98,7 @@ a következő táblázat fel minden hello objektum típusú hello **rugalmas ada
   </tr>
 <tr>
     <td>Egyéni gyűjtemény célja</td>
-    <td>Adatbázisok toocollectively meghatározott csoportjára használja a végrehajtáshoz.</td>
+    <td>A végrehajtás együttesen használandó adatbázisok meghatározott csoportja.</td>
     <td>
     <p>Get-AzureSqlJobTarget</p>
     <p>Új AzureSqlJobTarget</p>
@@ -116,7 +116,7 @@ a következő táblázat fel minden hello objektum típusú hello **rugalmas ada
 <tr>
     <td>Feladat</td>
     <td>
-    <p>Paraméterek használt tootrigger végrehajtási vagy toofulfill ütemezett feladat meghatározását.</p>
+    <p>Egy feladat végrehajtásának elindítása vagy ütemezés szerint teljesítéséhez használható paramétereinek meghatározása.</p>
     </td>
     <td>
     <p>Get-AzureSqlJob</p>
@@ -128,7 +128,7 @@ a következő táblázat fel minden hello objektum típusú hello **rugalmas ada
 <tr>
     <td>Feladat végrehajtása</td>
     <td>
-    <p>Tároló szükséges toofulfill tevékenységek a parancsfájl végrehajtása vagy a hitelesítő adatok használatával az adatbázis-kapcsolat hibákkal DACPAC tooa target alkalmazása kezelje a megfelelően tooan végrehajtási házirend.</p>
+    <p>Egy parancsfájl vagy egy DACPAC alkalmazott hitelesítő adatok használatával az adatbázis-kapcsolat hibákkal célja az teljesítéséhez szükséges feladatokat tartalmazó tároló egy végrehajtási házirend megfelelően kezeli.</p>
     </td>
     <td>
     <p>Get-AzureSqlJobExecution</p>
@@ -140,8 +140,8 @@ a következő táblázat fel minden hello objektum típusú hello **rugalmas ada
 <tr>
     <td>A feladat a végrehajtás feladat</td>
     <td>
-    <p>Munkahelyi toofulfill egy feladatot egyetlen egységként.</p>
-    <p>Ha egy feladat nem tud toosuccessfully hajtható végre, hello eredményül kapott Kivételüzenet naplózza a rendszer és egy új egyező feladata létrejön és hajtotta végre a megadott összhangban toohello végrehajtási házirendet.</p></p>
+    <p>Egyetlen munkaegység a feladatok teljesítése érdekében kapcsolódott.</p>
+    <p>Ha egy feladat sikeresen nem képes hajtható végre, az eredményül kapott Kivételüzenet naplózza a rendszer, és egy új egyező feladata létrejön és a megadott végrehajtási házirend megfelelően hajtotta végre.</p></p>
     </td>
     <td>
     <p>Get-AzureSqlJobExecution</p>
@@ -166,7 +166,7 @@ a következő táblázat fel minden hello objektum típusú hello **rugalmas ada
 <tr>
     <td>Ütemezés</td>
     <td>
-    <p>Ideje végrehajtási tootake hely feladatról intervallumban vagy egyetlen egyszerre specifikáció alapján.</p>
+    <p>Ideje alapján kerül sor, vagy a feladatról időköz, vagy egy alkalommal végrehajtási előírása.</p>
     </td>
     <td>
     <p>Get-AzureSqlJobSchedule</p>
@@ -178,7 +178,7 @@ a következő táblázat fel minden hello objektum típusú hello **rugalmas ada
 <tr>
     <td>Feladat indítja el</td>
     <td>
-    <p>Egy feladat és egy ütemezés tootrigger feladat végrehajtása toohello ütemezés szerint közötti leképezést.</p>
+    <p>A feladatok és az ütemezés szerint eseményindító feladat végrehajtása a kívánt ütemezést közötti leképezést.</p>
     </td>
     <td>
     <p>Új AzureSqlJobTrigger</p>
@@ -188,50 +188,50 @@ a következő táblázat fel minden hello objektum típusú hello **rugalmas ada
 </table>
 
 ## <a name="supported-elastic-database-jobs-group-types"></a>Támogatott rugalmas adatbázis-feladatok csoportban típusok
-hello feladat végrehajtja a Transact-SQL (T-SQL) parancsfájlok vagy DACPACs alkalmazásának adatbázisok csoportja között. Ha egy feladat végrehajtása között elküldött toobe egy csoportot az adatbázisok, hello feladat "kibontja" hello gyermek feladatok, ahol minden egyes végez hello kért végrehajtási hello csoport egyetlen adatbázis. 
+A feladat végrehajtja a Transact-SQL (T-SQL) parancsfájlok vagy DACPACs alkalmazásának adatbázisok csoportja között. Amikor egy feladat adatbázisok csoportja között hajtható végre, a feladat "kiterjeszti" a gyermek feladatok, ahol minden egyes hajtja végre a kért végrehajtási egyetlen adatbázis csoport be. 
 
 A csoportokat, amelyek hozhat létre két típusa van: 
 
-* [A shard térkép](sql-database-elastic-scale-shard-map-management.md) csoport: Ha egy feladat elküldött tootarget shard térképet, hello feladat hello shard térkép toodetermine lekérdezi az aktuális készletében lévő szilánkok, és majd létrehoz gyermek minden shard feladataihoz hello shard leképezés.
-* Egyéni gyűjtési csoportjának: egy egyénileg definiált adatbázisok készleteit. Ha egy feladat egyéni gyűjtemény célozza, hozna létre gyermek feladatokat az egyes adatbázisok jelenleg hello egyéni gyűjtéshez.
+* [A shard térkép](sql-database-elastic-scale-shard-map-management.md) csoport: amikor egy feladatot, amelyekre a shard térképet, a feladat lekérdezi az aktuális meg a szilánkok a shard térkép, és majd létrehozza gyermek minden shard feladataihoz a shard térkép.
+* Egyéni gyűjtési csoportjának: egy egyénileg definiált adatbázisok készleteit. Ha egy feladat egyéni gyűjtemény célja, azt gyermek feladatok létrehozása az egyes adatbázisok jelenleg az egyéni gyűjteményben.
 
-## <a name="tooset-hello-elastic-database-jobs-connection"></a>tooset hello rugalmas adatbázis-feladatok kapcsolat
-A kapcsolat kell toohello feladatok toobe beállítása *feladatvezérlő adatbázishoz* előzetes toousing hello feladatok API-k. A hitelesítő adatok ablak toopop fel a kért hello felhasználónevet és jelszót a rugalmas adatbázis-feladatok telepítésekor létrehozott futtatja ezt a parancsmagot váltja ki. Ebben a témakörben közölt összes példák feltételezik, hogy az első lépéshez már végbementek.
+## <a name="to-set-the-elastic-database-jobs-connection"></a>Állítsa be a rugalmas feladatok a kapcsolat
+A kapcsolat kell állítani a feladat *feladatvezérlő adatbázishoz* a feladatok API-k használata előtt. Egy hitelesítő adat ablakot, ahol a felhasználónevet és a rugalmas feladatok telepítésekor létrehozott jelszót kérő felugró futtatja ezt a parancsmagot váltja ki. Ebben a témakörben közölt összes példák feltételezik, hogy az első lépéshez már végbementek.
 
-Nyissa meg a kapcsolat toohello rugalmas feladatok:
+Nyissa meg a rugalmas feladatok kapcsolatot:
 
     Use-AzureSqlJobConnection -CurrentAzureSubscription 
 
-## <a name="encrypted-credentials-within-hello-elastic-database-jobs"></a>Hello rugalmas adatbázis-feladatok belül titkosított hitelesítő adatokat
-Adatbázis-hitelesítő adatok szúrhatók be hello feladatok *feladatvezérlő adatbázishoz* a jelszóval titkosított. Akkor szükséges toostore hitelesítő adatok tooenable feladatok toobe egy későbbi időpontban végre (a feladatok ütemezésének használatával).
+## <a name="encrypted-credentials-within-the-elastic-database-jobs"></a>A rugalmas feladatok belül titkosított hitelesítő adatokat
+Adatbázis-hitelesítő adatok szúrhatók be, a feladatok *feladatvezérlő adatbázishoz* a jelszóval titkosított. Fontos engedélyezhetik a feladatokat hajthatnak végre egy későbbi időpontban (használatával a feladatok ütemezésének) hitelesítő adatok tárolását.
 
-Titkosítási működik keresztül hello telepítési parancsfájl részeként létrehozott tanúsítványt. hello telepítési parancsfájlja létrehozza, és az Azure Cloud Service hello hello visszafejtése a feltöltések hello tanúsítvány titkosított jelszavak. Azure Cloud Service hello később hello nyilvános kulcsot hello feladatok belül tárolja *feladatvezérlő adatbázishoz* amely hello PowerShell API-t vagy a klasszikus Azure portál felület tooencrypt megadott jelszóval lehetővé anélkül, hogy hello tanúsítvány helyileg telepített toobe.
+Titkosítási működik, hozza létre a telepítési parancsfájl részeként tanúsítvány keresztül. A telepítési parancsfájlt hoz létre, és a tanúsítvány tölt be az Azure-Felhőszolgáltatásban tárolt titkosított jelszavak visszafejtéséhez. Az Azure Cloud Service később tárolja a nyilvános kulcsot a feladatok belül *feladatvezérlő adatbázishoz* lehetővé teszi a megadott jelszóval titkosításához anélkül, hogy helyileg telepíteni kell a tanúsítványt a PowerShell API-t vagy a klasszikus Azure portál felület.
 
-titkosított és védett tooElastic adatbázis-feladatok objektumok csak olvasási hozzáféréssel rendelkező felhasználókat a rendszer a hello hitelesítő adat jelszavak. Azonban lehetséges, hogy egy rosszindulatú felhasználó olvasási és írási hozzáférése tooElastic adatbázis feladatok objektumok tooextract jelszót. Hitelesítő adatok tervezett toobe feladat végrehajtások ismételten. Hitelesítő adatok tootarget adatbázisok átadott kapcsolatok létesítéséhez. Jelenleg nincs korlátozás az egyes hitelesítési használt hello céladatbázisokhoz, rosszindulatú felhasználó hozzáadhat egy adatbázis cél adatbázis a hello támadásokat. hello felhasználó később volt az adatbázis toogain hello hitelesítő adatához tartozó jelszó célzó feladat indítása.
+A hitelesítő adatok jelszavak titkosított és védett, csak olvasási hozzáféréssel rendelkező felhasználók a rugalmas adatbázis-feladatok objektumok. Azonban lehetséges, hogy egy rosszindulatú felhasználó rugalmas adatbázis-feladatok objektumok olvasási és írási hozzáféréssel rendelkező bontsa ki a jelszót. Hitelesítő adatok is felhasználják feladat végrehajtások készültek. Hitelesítő adatai továbbítódnak céladatbázisokhoz kapcsolatok létesítéséhez. Jelenleg nincs korlátozás az egyes hitelesítő adatot használja a céladatbázisokhoz, rosszindulatú felhasználó hozzáadhatja a rosszindulatú felhasználók vezérlése alatt adatbázis egy adatbázis cél. A felhasználó később volt az adatbázis ahhoz, hogy a hitelesítésre szolgáló jelszó célzó feladat indítása.
 
 Ajánlott biztonsági eljárások a rugalmas adatbázis-feladatok a következők:
 
-* Hello API-k tootrusted egyének-használatát korlátozása.
-* Hitelesítő adatok lehetnek hello legalacsonyabb jogosultságok szükséges tooperform hello feladata.  További információ látható belül ez [engedélyezési és engedélyek](https://msdn.microsoft.com/library/bb669084.aspx) SQL Server MSDN-cikk tárgyalja.
+* A megbízható személyek API-használatát korlátozása.
+* Hitelesítő adatok a feladat végrehajtásához szükséges a lehető legkevesebb jogosultsággal kell rendelkeznie.  További információ látható belül ez [engedélyezési és engedélyek](https://msdn.microsoft.com/library/bb669084.aspx) SQL Server MSDN-cikk tárgyalja.
 
-### <a name="toocreate-an-encrypted-credential-for-job-execution-across-databases"></a>egy titkosított hitelesítő adatokat, a feladat végrehajtása az adatbázisok közötti toocreate
-egy új titkosított toocreate hitelesítőadat-, hello [ **Get-Credential parancsmag** ](https://technet.microsoft.com/library/hh849815.aspx) megadását kéri a felhasználónevet és jelszót, amelyek átadhatók toohello [ **New-AzureSqlJobCredential a parancsmag**](/powershell/module/elasticdatabasejobs/new-azuresqljobcredential).
+### <a name="to-create-an-encrypted-credential-for-job-execution-across-databases"></a>Az adatbázisok közötti egy titkosított hitelesítő adatokat, a feladat végrehajtása létrehozásához
+Egy új titkosított hitelesítő adat létrehozása a [ **Get-Credential parancsmag** ](https://technet.microsoft.com/library/hh849815.aspx) egy felhasználónevet és jelszót, amely átadhatók kérni fogja a [ **New-AzureSqlJobCredential parancsmag**](/powershell/module/elasticdatabasejobs/new-azuresqljobcredential).
 
     $credentialName = "{Credential Name}"
     $databaseCredential = Get-Credential
     $credential = New-AzureSqlJobCredential -Credential $databaseCredential -CredentialName $credentialName
     Write-Output $credential
 
-### <a name="tooupdate-credentials"></a>tooupdate hitelesítő adatok
-Ha jelszavak módosításához használja a hello [ **Set-AzureSqlJobCredential parancsmag** ](/powershell/module/elasticdatabasejobs/set-azuresqljobcredential) és set hello **CredentialName** paraméter.
+### <a name="to-update-credentials"></a>Hitelesítő adatok frissítése
+Ha jelszó módosításához használja a [ **Set-AzureSqlJobCredential parancsmag** ](/powershell/module/elasticdatabasejobs/set-azuresqljobcredential) és állítsa be a **CredentialName** paraméter.
 
     $credentialName = "{Credential Name}"
     Set-AzureSqlJobCredential -CredentialName $credentialName -Credential $credential 
 
-## <a name="toodefine-an-elastic-database-shard-map-target"></a>egy rugalmas adatbázist shard térkép célhoz toodefine
-tooexecute egy feladat shard csoportban lévő összes adatbázis ellen (használatával létrehozott [Elastic Database ügyféloldali kódtárának](sql-database-elastic-database-client-library.md)), használja a shard leképezését hello adatbázis célként. Ebben a példában létrehozott hello Elastic Database ügyféloldali kódtárának szilánkos alkalmazás szükséges. Lásd: [Ismerkedés a rugalmas adatbázis eszközök minta](sql-database-elastic-scale-get-started.md).
+## <a name="to-define-an-elastic-database-shard-map-target"></a>Egy rugalmas adatbázist shard térkép célhoz meghatározása
+Shard csoportban lévő összes adatbázisokhoz egy feladat végrehajtásához (használatával létrehozott [Elastic Database ügyféloldali kódtárának](sql-database-elastic-database-client-library.md)), használja a shard leképezését adatbázis céljaként. Ebben a példában az Elastic Database ügyféloldali kódtár használatával létrehozott szilánkos alkalmazás szükséges. Lásd: [Ismerkedés a rugalmas adatbázis eszközök minta](sql-database-elastic-scale-get-started.md).
 
-hello shard manager adatbázist be kell állítani egy adatbázis célként, és majd hello adott shard térkép meg kell adni, célként.
+A szilánkok manager adatbázist be kell állítani egy adatbázis célként, és majd a megadott shard térkép meg kell adni, célként.
 
     $shardMapCredentialName = "{Credential Name}"
     $shardMapDatabaseName = "{ShardMapDatabaseName}" #example: ElasticScaleStarterKit_ShardMapManagerDb
@@ -242,9 +242,9 @@ hello shard manager adatbázist be kell állítani egy adatbázis célként, és
     Write-Output $shardMapTarget
 
 ## <a name="create-a-t-sql-script-for-execution-across-databases"></a>Az adatbázisok közötti végrehajtási T-SQL parancsfájl létrehozása
-T-SQL-parancsfájlok végrehajtásra létrehozásakor ajánlott toobuild őket toobe [idempotent](https://en.wikipedia.org/wiki/Idempotence) és refs-hibákkal szemben. Rugalmas adatbázis-feladatok parancsfájl végrehajtásának próbálkozik, ha végrehajtási hiba, függetlenül hello besorolás hello hiba észlel.
+T-SQL-parancsfájlok végrehajtásra létrehozásakor ajánlott hozhat létre, azok [idempotent](https://en.wikipedia.org/wiki/Idempotence) és refs-hibákkal szemben. Rugalmas adatbázis-feladatok parancsfájl végrehajtásának próbálkozik, ha végrehajtási hiba, függetlenül a besorolás, a hiba lép fel.
 
-Használjon hello [ **New-AzureSqlJobContent parancsmag** ](/powershell/module/elasticdatabasejobs/new-azuresqljobcontent) toocreate és mentse a parancsfájlt a végrehajtás, és állítsa be a hello **- ContentName** és **- CommandText**paraméterek.
+Használja a [ **New-AzureSqlJobContent parancsmag** ](/powershell/module/elasticdatabasejobs/new-azuresqljobcontent) létrehozása és mentése a parancsfájl végrehajtása és a beállított a **- ContentName** és **- CommandText** paraméterek.
 
     $scriptName = "Create a TestTable"
 
@@ -264,21 +264,21 @@ Használjon hello [ **New-AzureSqlJobContent parancsmag** ](/powershell/module/e
     Write-Output $script
 
 ### <a name="create-a-new-script-from-a-file"></a>Új parancsfájl létrehozása fájlból
-Ha a T-SQL parancsfájl hello fájlban van definiálva, a tooimport hello parancsprogram használata:
+Ha a T-SQL parancsfájl fájlban van definiálva, ennek segítségével importálja a parancsfájl:
 
     $scriptName = "My Script Imported from a File"
-    $scriptPath = "{Path tooSQL File}"
+    $scriptPath = "{Path to SQL File}"
     $scriptCommandText = Get-Content -Path $scriptPath
     $script = New-AzureSqlJobContent -ContentName $scriptName -CommandText $scriptCommandText
     Write-Output $script
 
-### <a name="tooupdate-a-t-sql-script-for-execution-across-databases"></a>az adatbázisok közötti végrehajtásra tooupdate egy T-SQL parancsfájl
-A PowerShell parancsfájl frissítések hello T-SQL egy meglévő parancsfájl parancsszövege.
+### <a name="to-update-a-t-sql-script-for-execution-across-databases"></a>Az adatbázisok közötti egy T-SQL-parancsfájlt végrehajtó frissítése
+A PowerShell parancsfájl a T-SQL egy meglévő parancsfájl parancsszövege frissíti.
 
-A következő változók tooreflect hello beállítása hello parancsfájl definition toobe set szükséges:
+Állítsa be a következő változókat kell beállítani a kívánt parancsfájl definíciójának megfelelően:
 
     $scriptName = "Create a TestTable"
-    $scriptUpdateComment = "Adding AdditionalInformation column tooTestTable"
+    $scriptUpdateComment = "Adding AdditionalInformation column to TestTable"
     $scriptCommandText = "
     IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'TestTable')
     BEGIN
@@ -299,13 +299,13 @@ A következő változók tooreflect hello beállítása hello parancsfájl defin
     INSERT INTO TestTable(InsertionTime, AdditionalInformation) VALUES (sysutcdatetime(), 'test');
     GO"
 
-### <a name="tooupdate-hello-definition-tooan-existing-script"></a>tooupdate hello definition tooan meglévő parancsfájl
+### <a name="to-update-the-definition-to-an-existing-script"></a>A definíció frissíteni egy meglévő parancsfájl
     Set-AzureSqlJobContentDefinition -ContentName $scriptName -CommandText $scriptCommandText -Comment $scriptUpdateComment 
 
-## <a name="toocreate-a-job-tooexecute-a-script-across-a-shard-map"></a>egy feladat tooexecute keresztül shard térképre parancsfájl toocreate
+## <a name="to-create-a-job-to-execute-a-script-across-a-shard-map"></a>A parancsfájl végrehajtása shard térképre között feladat létrehozása
 A PowerShell parancsfájl keresztül minden shard rugalmasan méretezhető shard leképezés indít el egy parancsfájl végrehajtásának feladatot.
 
-A következő változók tooreflect hello beállítása hello szükséges parancsfájl és a cél:
+Állítsa be a következő változókat, hogy tükrözze a kívánt parancsfájlt és a cél:
 
     $jobName = "{Job Name}"
     $scriptName = "{Script Name}"
@@ -317,30 +317,30 @@ A következő változók tooreflect hello beállítása hello szükséges paranc
     $job = New-AzureSqlJob -ContentName $scriptName -CredentialName $credentialName -JobName $jobName -TargetId $shardMapTarget.TargetId
     Write-Output $job
 
-## <a name="tooexecute-a-job"></a>egy feladat tooexecute
+## <a name="to-execute-a-job"></a>A feladat végrehajtásához
 A PowerShell-parancsfájl egy létező feladat végrehajtása:
 
-Frissítés hello változó tooreflect hello kívánt feladat neve toohave hajtotta végre a következő:
+Frissítse a következő változót a kívánt feladat neve végrehajtott megfelelően:
 
     $jobName = "{Job Name}"
     $jobExecution = Start-AzureSqlJobExecution -JobName $jobName 
     Write-Output $jobExecution
 
-## <a name="tooretrieve-hello-state-of-a-single-job-execution"></a>egyetlen feladat-végrehajtás tooretrieve hello állapota
-Használjon hello [ **Get-AzureSqlJobExecution parancsmag** ](/powershell/module/elasticdatabasejobs/get-azuresqljobexecution) és set hello **JobExecutionId** paraméter tooview hello állapotának feladat végrehajtása.
+## <a name="to-retrieve-the-state-of-a-single-job-execution"></a>Egyetlen feladat-végrehajtási állapotának beolvasása
+Használja a [ **Get-AzureSqlJobExecution parancsmag** ](/powershell/module/elasticdatabasejobs/get-azuresqljobexecution) és állítsa be a **JobExecutionId** paraméter segítségével megtekintheti a feladat végrehajtási állapotát.
 
     $jobExecutionId = "{Job Execution Id}"
     $jobExecution = Get-AzureSqlJobExecution -JobExecutionId $jobExecutionId
     Write-Output $jobExecution
 
-Használja az azonos hello **Get-AzureSqlJobExecution** hello parancsmagot **IncludeChildren** paraméter tooview hello állapotának gyermek feladat végrehajtások, nevezetesen hello minden egyes feladatok végrehajtásának meghatározott állapotban hello feladat által megcélzott adatbázis.
+Ugyanazon **Get-AzureSqlJobExecution** parancsmagot a **IncludeChildren** paraméter gyermek feladat végrehajtások, nevezetesen a minden feladat végrehajtása a feladat által megcélzott minden adatbázison meghatározott állapotban állapotának megtekintéséhez.
 
     $jobExecutionId = "{Job Execution Id}"
     $jobExecutions = Get-AzureSqlJobExecution -JobExecutionId $jobExecutionId -IncludeChildren
     Write-Output $jobExecutions 
 
-## <a name="tooview-hello-state-across-multiple-job-executions"></a>több feladat végrehajtások közötti tooview hello állapota
-Hello [ **Get-AzureSqlJobExecution parancsmag** ](/powershell/module/elasticdatabasejobs/new-azuresqljob) több nem kötelező paraméter, amely használt toodisplay több feladat végrehajtások, megadott hello paramétereknek szűrve van. hello következő hello lehetséges módjait toouse Get-AzureSqlJobExecution némelyike mutatja be:
+## <a name="to-view-the-state-across-multiple-job-executions"></a>Több feladat végrehajtások közötti az állapot megtekintése
+A [ **Get-AzureSqlJobExecution parancsmag** ](/powershell/module/elasticdatabasejobs/new-azuresqljob) több választható paraméterek: több feladat végrehajtások, a megadott paramétereknek szűrt megjelenítéséhez használható. A következő mutatja be a Get-AzureSqlJobExecution használatának lehetséges módjai közül:
 
 Lekéri az összes aktív felső szintű feladat végrehajtások:
 
@@ -375,7 +375,7 @@ Lekéri az összes feladat a megadott egyéni gyűjtemény, beleértve az inakt�
     $target = Get-AzureSqlJobTarget -CustomCollectionName $customCollectionName
     Get-AzureSqlJobExecution -TargetId $target.TargetId -IncludeInactive
 
-Feladat feladat végrehajtások belül egy adott feladat végrehajtási hello listájának beolvasása:
+Feladat feladat végrehajtások belül egy adott feladat végrehajtási listájának beolvasása:
 
     $jobExecutionId = "{Job Execution Id}"
     $jobTaskExecutions = Get-AzureSqlJobTaskExecution -JobExecutionId $jobExecutionId
@@ -383,14 +383,14 @@ Feladat feladat végrehajtások belül egy adott feladat végrehajtási hello li
 
 Feladat végrehajtási részlete beolvasása:
 
-a következő PowerShell-parancsfájl hello lehet egy feladat a feladat a végrehajtás, amely akkor különösen hasznos, ha végrehajtási hibakeresésére használt tooview hello részleteit.
+A következő PowerShell-parancsfájl segítségével egy feladat a feladat a végrehajtás, amely akkor különösen hasznos, ha végrehajtási hibakeresésére részleteinek megtekintéséhez.
 
     $jobTaskExecutionId = "{Job Task Execution Id}"
     $jobTaskExecution = Get-AzureSqlJobTaskExecution -JobTaskExecutionId $jobTaskExecutionId
     Write-Output $jobTaskExecution
 
-## <a name="tooretrieve-failures-within-job-task-executions"></a>feladat feladat végrehajtások belül tooretrieve hibák
-Hello **JobTaskExecution objektum** hello életciklus hello feladat egy üzenettulajdonság együtt egy tulajdonság tartalmazza. Ha egy feladat a feladat végrehajtása sikertelen volt, hello életciklus tulajdonság túl állítható*sikertelen* és hello üzenettulajdonság lesz toohello eredményül kapott hibaüzenetet, és a verem. Ha egy feladat sikertelen volt, akkor fontos tooview hello részleteit munka feladatai, amelyek egy adott feladat sikertelen volt.
+## <a name="to-retrieve-failures-within-job-task-executions"></a>Sikertelen feladat feladat végrehajtások belül beolvasása
+A **JobTaskExecution objektum** egy tulajdonság az életciklus a feladat együtt egy üzenettulajdonságot tartalmaz. Ha egy feladat a feladat végrehajtása sikertelen volt, a életciklus tulajdonság úgy lesz beállítva, *sikertelen* és üzenettulajdonság állítja be az eredményül kapott hibaüzenetet, és a verem. Ha egy feladat sikertelen volt, fontos, amely egy adott feladat sikertelen feladat-feladatok részletes adatainak megtekintéséhez.
 
     $jobExecutionId = "{Job Execution Id}"
     $jobTaskExecutions = Get-AzureSqlJobTaskExecution -JobExecutionId $jobExecutionId
@@ -402,8 +402,8 @@ Hello **JobTaskExecution objektum** hello életciklus hello feladat egy üzenett
             }
         }
 
-## <a name="toowait-for-a-job-execution-toocomplete"></a>a feladat végrehajtási toocomplete a toowait
-a következő PowerShell-parancsfájl hello lehet egy feladat feladat toocomplete a használt toowait:
+## <a name="to-wait-for-a-job-execution-to-complete"></a>Várjon a feladat-végrehajtás befejeződésére
+A következő PowerShell-parancsfájl segítségével Várjon, amíg a feladat feladat elvégzéséhez:
 
     $jobExecutionId = "{Job Execution Id}"
     Wait-AzureSqlJobExecution -JobExecutionId $jobExecutionId 
@@ -413,14 +413,14 @@ Rugalmas adatbázis-feladatok feladat indításakor alkalmazható egyéni végre
 
 Végrehajtási házirendek definiálása jelenleg engedélyezése:
 
-* Name: Azonosítója hello végrehajtási házirendet.
+* Name: A végrehajtási házirend azonosítója.
 * Feladat időtúllépése: Teljes idő előtt rugalmas adatbázis-feladatok megszakítja a feladatot.
-* Kezdeti újrapróbálkozási időköz: Intervallum toowait előtt próbálkozik újra.
-* Maximális újrapróbálkozási időköz: Az újrapróbálkozási intervallumok toouse kap.
-* Újrapróbálkozási időköz leállítási együttható: Együttható használt toocalculate hello következő intervallum újrapróbálkozások között.  hello alábbi képlet használható: (kezdeti újrapróbálkozási időközét) * Math.pow ((időköz leállítási együttható), (próbálkozások száma) - 2). 
-* Kísérletek maximális száma: hello maximális száma újrapróbálkozási kísérletek tooperform feladat.
+* Kezdeti újrapróbálkozási időköz: Intervallum várjon próbálkozik újra.
+* Maximális újrapróbálkozási időköz: Cap újrapróbálkozási intervallumok használatára.
+* Újrapróbálkozási időköz leállítási együttható: A következő intervallum próbálkozások közötti különbség kifejezésére szolgáló együttható.  Az alábbi képlet használható: (kezdeti újrapróbálkozási időközét) * Math.pow ((időköz leállítási együttható), (próbálkozások száma) - 2). 
+* Kísérletek maximális száma: Az újrapróbálkozások maximális számát megkísérel végrehajtani egy feladatot belül.
 
-hello alapértelmezett végrehajtási házirend hello a következő értékeket használja:
+Az alapértelmezett végrehajtási házirendet a következő értékeket használja:
 
 * Name: Alapértelmezett végrehajtási házirend
 * Feladat időtúllépése: 1 hét
@@ -429,7 +429,7 @@ hello alapértelmezett végrehajtási házirend hello a következő értékeket 
 * Ismételje meg a időköz együttható: 2. régiója
 * Kísérletek maximális száma: 2 147 483 647
 
-Szükségeskonfiguráció-hello végrehajtási szabályzat létrehozása:
+A kívánt végrehajtási szabályzat létrehozása:
 
     $executionPolicyName = "{Execution Policy Name}"
     $initialRetryInterval = New-TimeSpan -Seconds 10
@@ -442,7 +442,7 @@ Szükségeskonfiguráció-hello végrehajtási szabályzat létrehozása:
     Write-Output $executionPolicy
 
 ### <a name="update-a-custom-execution-policy"></a>Egy egyéni végrehajtási házirend frissítése
-Frissítés hello végrehajtási házirend tooupdate szükséges:
+A frissíteni kívánt végrehajtási házirend frissítése:
 
     $executionPolicyName = "{Execution Policy Name}"
     $initialRetryInterval = New-TimeSpan -Seconds 15
@@ -454,65 +454,65 @@ Frissítés hello végrehajtási házirend tooupdate szükséges:
     Write-Output $updatedExecutionPolicy
 
 ## <a name="cancel-a-job"></a>Feladatok megszakítása
-Rugalmas adatbázis-feladatok a feladatok megszakítását kérelmeket támogatja.  Rugalmas adatbázis-feladatok jelenleg végrehajtás alatt álló feladat a lemondási kérelmet észleli, ha a program megpróbálja toostop hello feladat.
+Rugalmas adatbázis-feladatok a feladatok megszakítását kérelmeket támogatja.  Ha a rugalmas adatbázis-feladatok jelenleg végrehajtás alatt álló feladat a lemondási kérelmet észlel, akkor megkísérli a feladat leállítása.
 
 Rugalmas adatbázis-feladatok is hajtsa végre a megszakítási két különböző módja van:
 
-1. Jelenleg feldolgozás alatt álló feladatok Mégse: törlése közben jelenleg fut egy feladat észleli, ha a megszakítási belül jelenleg végrehajtás alatt álló hello feladat aspektusa hello történt kísérlet.  Példa: Ha egy hosszú ideig tartó jelenleg végrehajtás alatt álló lekérdezés törlése megkísérelt van, nem lesznek egy kísérlet toocancel hello lekérdezést.
-2. Tevékenység-újrapróbálkozások megszakítása: törlése észlelésekor hello vezérlő szál feladat a végrehajtás elindítása előtt hello vezérlő szál elkerülése hello feladat elindítása és hello kérelem deklarálható megszakítottként.
+1. Jelenleg feldolgozás alatt álló feladatok Mégse: törlése közben jelenleg fut egy feladat észleli, ha a megszakítási kísérli meg a rendszer a jelenleg végrehajtás alatt álló szempontja, hogy a feladat belül.  Példa: Ha egy hosszú ideig tartó jelenleg végrehajtás alatt álló lekérdezés során a törlése megkísérlése, az a lekérdezés kísérlet lesz.
+2. Tevékenység-újrapróbálkozások megszakítása: törlése a vezérlő szál észlelésekor feladat a végrehajtás elindítása előtt, a vezérlő szál elkerülése érdekében a feladat futtatására és a kérelem deklarálható megszakítottként.
 
-Ha a feladat megszakításának szülő-feladat van szükség, hello lemondási kérelmet szerződéses kötelezettségeket a hello szülő feladat és összes a gyermek-feladatokkal.
+A feladat megszakításának szülő-feladat van szükség, ha a lemondási kérelmet szembeni szerződéses kötelezettségeket a szülő feladat és összes a gyermek-feladatokkal.
 
-a megszakítási kérelmet, toosubmit hello használata [ **Stop-AzureSqlJobExecution parancsmag** ](/powershell/module/elasticdatabasejobs/stop-azuresqljobexecution) és set hello **JobExecutionId** paraméter.
+Megszakítási kérelmet küldeni, használja a [ **Stop-AzureSqlJobExecution parancsmag** ](/powershell/module/elasticdatabasejobs/stop-azuresqljobexecution) és állítsa be a **JobExecutionId** paraméter.
 
     $jobExecutionId = "{Job Execution Id}"
     Stop-AzureSqlJobExecution -JobExecutionId $jobExecutionId
 
-## <a name="toodelete-a-job-and-job-history-asynchronously"></a>egy feladat toodelete és aszinkron módon feladatelőzmények
-Rugalmas adatbázis-feladatok támogatja az aszinkron feladatok törlése. Egy feladat is törlésre, és hello rendszer törölni fogja a hello feladat és a feladatelőzményekben összes feladat végrehajtások hello feladat befejezése után. hello rendszer nem fogja automatikusan megszakítja a aktív feladat végrehajtások.  
+## <a name="to-delete-a-job-and-job-history-asynchronously"></a>Törli a feladatot, és aszinkron módon feladatelőzmények
+Rugalmas adatbázis-feladatok támogatja az aszinkron feladatok törlése. Egy feladat is törlésre, és a rendszer törli a feladatot, és a feladatelőzményekben összes feladat végrehajtások a feladat befejezése után. A rendszer nem fogja automatikusan megszakítja a aktív feladat végrehajtások.  
 
-Invoke [ **Stop-AzureSqlJobExecution** ](/powershell/module/elasticdatabasejobs/stop-azuresqljobexecution) toocancel aktív feladat végrehajtások.
+Invoke [ **Stop-AzureSqlJobExecution** ](/powershell/module/elasticdatabasejobs/stop-azuresqljobexecution) megszakítja az aktív feladat végrehajtások.
 
-tootrigger feladat törlése, használjon hello [ **Remove-AzureSqlJob parancsmag** ](/powershell/module/elasticdatabasejobs/remove-azuresqljob) és set hello **JobName** paraméter.
+Törlési feladat indításához használja a [ **Remove-AzureSqlJob parancsmag** ](/powershell/module/elasticdatabasejobs/remove-azuresqljob) és állítsa be a **JobName** paraméter.
 
     $jobName = "{Job Name}"
     Remove-AzureSqlJob -JobName $jobName
 
-## <a name="toocreate-a-custom-database-target"></a>Egyéni adatbázis target toocreate
-Egyéni adatbázis célok közvetlen végrehajtásra vagy egy egyéni adatbázis csoportban foglalható adhat meg. Például mert **rugalmas készletek** van még nem támogatott PowerShell API-val, létrehozhat egy egyéni adatbázis célként és egy egyéni adatbázis gyűjtemény célként, ami magában foglalja az összes hello adatbázis hello készletben.
+## <a name="to-create-a-custom-database-target"></a>Egy egyéni adatbázis-tároló létrehozása
+Egyéni adatbázis célok közvetlen végrehajtásra vagy egy egyéni adatbázis csoportban foglalható adhat meg. Például mert **rugalmas készletek** van még nem támogatott PowerShell API-val, létrehozhat egy egyéni adatbázis célként és egy egyéni adatbázis gyűjtemény célként, ami magában foglalja a készlet összes adatbázisát.
 
-Állítsa be a következő változók tooreflect hello szükséges adatbázis-információ hello:
+Állítsa be a következő változókat, hogy tükrözze a kívánt adatbázis adatait:
 
     $databaseName = "{Database Name}"
     $databaseServerName = "{Server Name}"
     New-AzureSqlJobDatabaseTarget -DatabaseName $databaseName -ServerName $databaseServerName 
 
-## <a name="toocreate-a-custom-database-collection-target"></a>Egyéni adatbázis gyűjtemény célja toocreate
-Használjon hello [ **New-AzureSqlJobTarget** ](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget) parancsmag toodefine egy egyéni adatbázis gyűjtemény cél tooenable végrehajtása több meghatározott adatbázis cél között. Egy adatbázis-csoport létrehozása után adatbázisok társítható hello egyéni gyűjtemény célja.
+## <a name="to-create-a-custom-database-collection-target"></a>Egy egyéni adatbázis gyűjtemény tároló létrehozásához
+Használja a [ **New-AzureSqlJobTarget** ](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget) parancsmag végrehajtásának engedélyezéséhez több meghatározott adatbázis cél között egyéni adatbázis gyűjtemény célja meghatározásához. Egy adatbázis-csoport létrehozása után adatbázisok társítható egyéni gyűjtemény célja.
 
-Állítsa be a következő változók tooreflect hello kívánt egyéni gyűjtemény konfigurációjához hello:
+Állítsa be a kívánt egyéni gyűjtemény konfigurációjához megfelelően a következő változókat:
 
     $customCollectionName = "{Custom Database Collection Name}"
     New-AzureSqlJobTarget -CustomCollectionName $customCollectionName 
 
-### <a name="tooadd-databases-tooa-custom-database-collection-target"></a>tooadd adatbázisok tooa egyéni adatbázis gyűjtemény célja
-egy adatbázis tooa egyéni gyűjteményre tooadd hello használata [ **Add-AzureSqlJobChildTarget** ](/powershell/module/elasticdatabasejobs/add-azuresqljobchildtarget) parancsmag.
+### <a name="to-add-databases-to-a-custom-database-collection-target"></a>Adatbázisok hozzáadása egy egyéni adatbázis-gyűjtemény célja
+Egy adatbázis hozzáadása egy adott egyéni gyűjtemény használja a [ **Add-AzureSqlJobChildTarget** ](/powershell/module/elasticdatabasejobs/add-azuresqljobchildtarget) parancsmag.
 
     $databaseServerName = "{Database Server Name}"
     $databaseName = "{Database Name}"
     $customCollectionName = "{Custom Database Collection Name}"
     Add-AzureSqlJobChildTarget -CustomCollectionName $customCollectionName -DatabaseName $databaseName -ServerName $databaseServerName 
 
-#### <a name="review-hello-databases-within-a-custom-database-collection-target"></a>Tekintse át a hello adatbázisok belül egy egyéni adatbázis-gyűjtemény célja
-Használjon hello [ **Get-AzureSqlJobTarget** ](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget) parancsmag tooretrieve hello gyermek adatbázis egy egyéni adatbázis-gyűjtemény célja. 
+#### <a name="review-the-databases-within-a-custom-database-collection-target"></a>Tekintse át az adatbázisokat egy egyéni adatbázis gyűjtemény a cél
+Használja a [ **Get-AzureSqlJobTarget** ](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget) parancsmag egyéni adatbázis gyűjtemény célja a gyermek adatbázis beolvasása. 
 
     $customCollectionName = "{Custom Database Collection Name}"
     $target = Get-AzureSqlJobTarget -CustomCollectionName $customCollectionName
     $childTargets = Get-AzureSqlJobTarget -ParentTargetId $target.TargetId
     Write-Output $childTargets
 
-### <a name="create-a-job-tooexecute-a-script-across-a-custom-database-collection-target"></a>Hozzon létre egy feladat tooexecute egy parancsprogramot egy egyéni adatbázis-gyűjtemény célja között
-Használjon hello [ **New-AzureSqlJob** ](/powershell/module/elasticdatabasejobs/new-azuresqljob) parancsmag toocreate egy feladatot, egy egyéni adatbázis gyűjtemény tároló által definiált adatbázisok csoportja ellen. Rugalmas adatbázis-feladatok hello feladat kibővítése minden megfelelő tooa adatbázis társított hello egyéni adatbázis-gyűjtemény célja, és győződjön meg arról, hogy minden egyes adatbázison hello parancsfájl végrehajtása több gyermek feladat. Ebben az esetben fontos, hogy a parancsfájlok az idempotent toobe rugalmas tooretries.
+### <a name="create-a-job-to-execute-a-script-across-a-custom-database-collection-target"></a>Hozzon létre egy feladatot, a parancsfájl végrehajtása egy egyéni adatbázis-gyűjtemény célja között
+Használja a [ **New-AzureSqlJob** ](/powershell/module/elasticdatabasejobs/new-azuresqljob) parancsmag segítségével hozzon létre egy feladatot, egy egyéni adatbázis gyűjtemény tároló által definiált adatbázisok csoportja ellen. Rugalmas adatbázis-feladatok fog kibővítheti a feladat több gyermek feladat minden egyes adatbázis megfelelő társított egyéni adatbázis gyűjtemény célja, és győződjön meg arról, hogy a parancsfájl végrehajtása minden egyes adatbázison. Ebben az esetben fontos, hogy-e parancsfájlokat idempotent való ismételt próbálkozás rugalmasak lehetnek.
 
     $jobName = "{Job Name}"
     $scriptName = "{Script Name}"
@@ -523,13 +523,13 @@ Használjon hello [ **New-AzureSqlJob** ](/powershell/module/elasticdatabasejobs
     Write-Output $job
 
 ## <a name="data-collection-across-databases"></a>Az adatbázisok közötti adatok gyűjtése
-Egy feladat tooexecute lekérdezés használja az adatbázisok csoportja és küldhet hello eredmények tooa adott táblához. hello tábla hello tény toosee hello lekérdezés eredményében minden adatbázisból után kérdezhetők le. Így lehetővé teszi egy aszinkron metódus tooexecute lekérdezés több adatbázis közötti. Sikertelen bejelentkezési kísérletek újrapróbálkozások keresztül automatikusan kezeli.
+Egy feladat használatával lekérdezés végrehajtása adatbázisok csoportja között, és az eredményt elküldik egy adott táblához. A tábla minden egyes adatbázisból a lekérdezési eredmények megtekintése érdekében bekövetkeztek kérdezhetők le. Ez a lekérdezés végrehajtása több adatbázis közötti aszinkron módszert kínál. Sikertelen bejelentkezési kísérletek újrapróbálkozások keresztül automatikusan kezeli.
 
-hello megadott céltábla automatikusan létrejön, ha még nem létezik. Új tábla hello eredményhalmazt adott hello hello sémája megegyezik. Egy parancsfájl több eredménykészlet adja vissza, ha a rugalmas adatbázis-feladatok csak küldi hello első toohello célként megadott táblája.
+A megadott célhely tábla automatikusan létrejön, ha még nem létezik. Az új táblázat felel meg a séma, a visszaadott eredményhalmaz. A parancsfájl több eredménykészlet adja vissza, ha a rugalmas adatbázis-feladatok csak küldeni az első a célként megadott táblája.
 
-hello következő PowerShell-parancsfájl végrehajtja egy parancsfájlt, és összegyűjti az eredményeket egy megadott táblába. Ez a parancsfájl feltételezi, hogy egy T-SQL parancsfájl létrejött-e amelyek kimenete egy eredményhalmaz és, hogy létrejött-e egy egyéni adatbázis-gyűjtemény célja.
+A következő PowerShell-parancsfájl hajt végre egy parancsfájlt, és összegyűjti az eredményeket egy megadott táblába. Ez a parancsfájl feltételezi, hogy egy T-SQL parancsfájl létrejött-e amelyek kimenete egy eredményhalmaz és, hogy létrejött-e egy egyéni adatbázis-gyűjtemény célja.
 
-A parancsfájl a hello [ **Get-AzureSqlJobTarget** ](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget) parancsmag. A parancsfájl, a hitelesítő adatokat és a végrehajtási cél hello paraméterek beállítása:
+A parancsfájl a [ **Get-AzureSqlJobTarget** ](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget) parancsmag. A parancsfájl, a hitelesítő adatokat és a végrehajtási cél paraméterek beállításához:
 
     $jobName = "{Job Name}"
     $scriptName = "{Script Name}"
@@ -542,8 +542,8 @@ A parancsfájl a hello [ **Get-AzureSqlJobTarget** ](/powershell/module/elasticd
     $destinationTableName = "{Destination Table Name}"
     $target = Get-AzureSqlJobTarget -CustomCollectionName $customCollectionName
 
-### <a name="toocreate-and-start-a-job-for-data-collection-scenarios"></a>toocreate és kezdő egy feladatot az adatok gyűjtése forgatókönyvek
-A parancsfájl a hello [ **Start-AzureSqlJobExecution** ](/powershell/module/elasticdatabasejobs/start-azuresqljobexecution) parancsmag.
+### <a name="to-create-and-start-a-job-for-data-collection-scenarios"></a>Hozzon létre, és elindíthat egy feladatot a adatáttelepítések gyűjtemény esetében
+A parancsfájl a [ **Start-AzureSqlJobExecution** ](/powershell/module/elasticdatabasejobs/start-azuresqljobexecution) parancsmag.
 
     $job = New-AzureSqlJob -JobName $jobName 
     -CredentialName $executionCredentialName 
@@ -558,8 +558,8 @@ A parancsfájl a hello [ **Start-AzureSqlJobExecution** ](/powershell/module/ela
     $jobExecution = Start-AzureSqlJobExecution -JobName $jobName
     Write-Output $jobExecution
 
-## <a name="tooschedule-a-job-execution-trigger"></a>a feladat végrehajtási eseményindító tooschedule
-a következő PowerShell-parancsfájl hello lehet használt toocreate ismétlődő ütemezés szerint. A parancsfájl a perces időközt, de [ **New-AzureSqlJobSchedule** ](/powershell/module/elasticdatabasejobs/new-azuresqljobschedule) - DayInterval, - HourInterval, - MonthInterval, és - WeekInterval paramétereket is támogatja. Csak egyszer hajtható végre ütemezéseket is létrehozható, hogy - alkalommal.
+## <a name="to-schedule-a-job-execution-trigger"></a>A feladat végrehajtási eseményindító ütemezése
+A következő PowerShell-parancsfájl segítségével hozzon létre egy ismétlődő ütemezés szerint. A parancsfájl a perces időközt, de [ **New-AzureSqlJobSchedule** ](/powershell/module/elasticdatabasejobs/new-azuresqljobschedule) - DayInterval, - HourInterval, - MonthInterval, és - WeekInterval paramétereket is támogatja. Csak egyszer hajtható végre ütemezéseket is létrehozható, hogy - alkalommal.
 
 Új ütemezés létrehozása:
 
@@ -572,10 +572,10 @@ a következő PowerShell-parancsfájl hello lehet használt toocreate ismétlőd
     -StartTime $startTime 
     Write-Output $schedule
 
-### <a name="tootrigger-a-job-executed-on-a-time-schedule"></a>a feladat végrehajtása ütemezéssel tootrigger
-Egy feladat eseményindító lehet meghatározott toohave egy feladat végrehajtása függően tooa ütemezéssel. a következő PowerShell-parancsfájl hello lehet használt toocreate feladat eseményindítót.
+### <a name="to-trigger-a-job-executed-on-a-time-schedule"></a>Elindítható egy feladat végrehajtása ütemezéssel
+Egy feladat eseményindító szeretné, hogy a feladat végrehajtása idő ütemezés szerint lehet megadni. A következő PowerShell-parancsfájl segítségével hozzon létre egy feladat eseményindító.
 
-Használjon [New-AzureSqlJobTrigger](/powershell/module/elasticdatabasejobs/new-azuresqljobtrigger) és hello beállítása a következő változók toocorrespond toohello kívánt feladat és ütemezése:
+Használjon [New-AzureSqlJobTrigger](/powershell/module/elasticdatabasejobs/new-azuresqljobtrigger) és a következő változókat, hogy a kívánt feladat és ütemezése:
 
     $jobName = "{Job Name}"
     $scheduleName = "{Schedule Name}"
@@ -584,8 +584,8 @@ Használjon [New-AzureSqlJobTrigger](/powershell/module/elasticdatabasejobs/new-
     -JobName $jobName
     Write-Output $jobTrigger
 
-### <a name="tooremove-a-scheduled-association-toostop-job-from-executing-on-schedule"></a>tooremove egy ütemezett társítás toostop feladat futtatásának ütemezés szerint
-Ismétlődés feladat végrehajtása a feladat eseményindítót, hello feladat eseményindító keresztül toodiscontinue távolítható el. Távolítsa el a egy feladat eseményindító toostop egy feladat a végrehajtás alatt álló hello függően tooa ütemezés [ **Remove-AzureSqlJobTrigger parancsmag**](/powershell/module/elasticdatabasejobs/remove-azuresqljobtrigger).
+### <a name="to-remove-a-scheduled-association-to-stop-job-from-executing-on-schedule"></a>A feladat ütemezés futtatásának leállítása ütemezett társításának megszüntetése
+Megszüntetheti a feladatról feladat végrehajtása a feladat indítási keresztül, a feladat indítási távolíthatja el. Távolítsa el a feladat eseményindító megfelelően egy ütemezés használatával végrehajtott egy feladatot leállítja a [ **Remove-AzureSqlJobTrigger parancsmag**](/powershell/module/elasticdatabasejobs/remove-azuresqljobtrigger).
 
     $jobName = "{Job Name}"
     $scheduleName = "{Schedule Name}"
@@ -593,38 +593,38 @@ Ismétlődés feladat végrehajtása a feladat eseményindítót, hello feladat 
     -ScheduleName $scheduleName 
     -JobName $jobName
 
-### <a name="retrieve-job-triggers-bound-tooa-time-schedule"></a>Eseményindítók kötött tooa idő ütemezett feladat beolvasása
-a következő PowerShell-parancsfájl hello használt tooobtain lehetnek és hello eseményindítók regisztrált tooa adott időpontban az ütemezett feladat megjelenítése.
+### <a name="retrieve-job-triggers-bound-to-a-time-schedule"></a>Feladat eseményindítók ütemezést kötve beolvasása
+A következő PowerShell-parancsfájl segítségével beszerzése és megjelenítése a feladat eseményindítók adott ütemezést regisztrálva.
 
     $scheduleName = "{Schedule Name}"
     $jobTriggers = Get-AzureSqlJobTrigger -ScheduleName $scheduleName
     Write-Output $jobTriggers
 
-### <a name="tooretrieve-job-triggers-bound-tooa-job"></a>tooretrieve feladat eseményindítók kötött tooa feladat
-Használjon [Get-AzureSqlJobTrigger](/powershell/module/elasticdatabasejobs/get-azuresqljobtrigger) egy regisztrált feladatot tartalmazó tooobtain és megjelenítési ütemezéseket.
+### <a name="to-retrieve-job-triggers-bound-to-a-job"></a>Egy feladat kötött feladat eseményindítók beolvasása
+Használjon [Get-AzureSqlJobTrigger](/powershell/module/elasticdatabasejobs/get-azuresqljobtrigger) beszerzése és tartalmazó regisztrált feladat ütemezésének megjelenítése.
 
     $jobName = "{Job Name}"
     $jobTriggers = Get-AzureSqlJobTrigger -JobName $jobName
     Write-Output $jobTriggers
 
-## <a name="toocreate-a-data-tier-application-dacpac-for-execution-across-databases"></a>az adatbázisok közötti végrehajtásra adatrétegbeli alkalmazás (DACPAC) toocreate
-egy DACPAC toocreate lásd [Adatrétegbeli alkalmazások](https://msdn.microsoft.com/library/ee210546.aspx). egy DACPAC toodeploy hello használata [New-AzureSqlJobContent parancsmag](/powershell/module/elasticdatabasejobs/new-azuresqljobcontent). hello DACPAC elérhető toohello szolgáltatásnak kell lennie. Az ajánlott tooupload létrehozott DACPAC tooAzure tárolási, és hozzon létre egy [közös hozzáférésű Jogosultságkód](../storage/common/storage-dotnet-shared-access-signature-part-1.md) hello DACPAC számára.
+## <a name="to-create-a-data-tier-application-dacpac-for-execution-across-databases"></a>Az adatbázisok közötti végrehajtásra adatrétegbeli alkalmazás (DACPAC) létrehozása
+Egy DACPAC létrehozásához lásd: [Adatrétegbeli alkalmazások](https://msdn.microsoft.com/library/ee210546.aspx). Egy DACPAC telepítéséhez használja a [New-AzureSqlJobContent parancsmag](/powershell/module/elasticdatabasejobs/new-azuresqljobcontent). A DACPAC a szolgáltatás elérhetőnek kell lennie. Javasoljuk, hogy a létrehozott DACPAC feltöltése az Azure Storage, és hozzon létre egy [közös hozzáférésű Jogosultságkód](../storage/common/storage-dotnet-shared-access-signature-part-1.md) a DACPAC számára.
 
     $dacpacUri = "{Uri}"
     $dacpacName = "{Dacpac Name}"
     $dacpac = New-AzureSqlJobContent -DacpacUri $dacpacUri -ContentName $dacpacName 
     Write-Output $dacpac
 
-### <a name="tooupdate-a-data-tier-application-dacpac-for-execution-across-databases"></a>az adatbázisok közötti végrehajtásra adatrétegbeli alkalmazás (DACPAC) tooupdate
-Rugalmas adatbázis-feladatok belül regisztrálva meglévő DACPACs frissített toopoint toonew URI lehet. Használjon hello [ **Set-AzureSqlJobContentDefinition parancsmag** ](/powershell/module/elasticdatabasejobs/set-azuresqljobcontentdefinition) tooupdate hello DACPAC URI egy olyan regisztrált DACPAC:
+### <a name="to-update-a-data-tier-application-dacpac-for-execution-across-databases"></a>Az adatbázisok közötti egy adatrétegbeli alkalmazás (DACPAC) végrehajtásra frissítése
+Rugalmas adatbázis-feladatok belül regisztrálva meglévő DACPACs frissíthető új URI mutasson. Használja a [ **Set-AzureSqlJobContentDefinition parancsmag** ](/powershell/module/elasticdatabasejobs/set-azuresqljobcontentdefinition) frissítésére a meglévő DACPAC URI regisztrált DACPAC:
 
     $dacpacName = "{Dacpac Name}"
     $newDacpacUri = "{Uri}"
     $updatedDacpac = Set-AzureSqlJobDacpacDefinition -ContentName $dacpacName -DacpacUri $newDacpacUri
     Write-Output $updatedDacpac
 
-## <a name="toocreate-a-job-tooapply-a-data-tier-application-dacpac-across-databases"></a>egy feladat tooapply egy adatrétegbeli alkalmazás (DACPAC) az adatbázisok közötti toocreate
-Miután egy DACPAC rugalmas adatbázis-feladatok belül létrehozott, egy feladat hozhatók létre tooapply hello DACPAC adatbázisok csoportja között. a következő PowerShell-parancsfájl hello használt toocreate DACPAC feladat lehet egy egyéni gyűjtéshez. az adatbázisok között:
+## <a name="to-create-a-job-to-apply-a-data-tier-application-dacpac-across-databases"></a>Az adatbázisok közötti egy adatrétegbeli alkalmazás (DACPAC) alkalmazandó feladat létrehozása
+Miután egy DACPAC rugalmas adatbázis-feladatok belül létrehozott, egy feladat a DACPAC alkalmazhatók a adatbázisok csoportja is létrehozható. A következő PowerShell-parancsfájl segítségével hozzon létre egy DACPAC feladatot egy egyéni gyűjtéshez. az adatbázisok között:
 
     $jobName = "{Job Name}"
     $dacpacName = "{Dacpac Name}"

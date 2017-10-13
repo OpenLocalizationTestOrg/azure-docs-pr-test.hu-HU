@@ -1,23 +1,23 @@
 ## <a name="route-tables"></a>Az útvonaltáblák
-Útválasztási táblázat erőforrások hogyan a forgalom az Azure-infrastruktúra belül használt útvonalak toodefine tartalmazza. Felhasználó által definiált útvonalak (UDR) toosend használhatja egy adott alhálózaton tooa virtuális készüléknek, például egy tűzfal vagy behatolás észlelési rendszert (Azonosítók) származó összes forgalmat. Egy útvonal tábla toosubnets lehet társítani. 
+Útválasztási táblázat erőforrások hogyan a forgalom belül az Azure-infrastruktúra meghatározásához használt útvonalak tartalmazza. Felhasználó által megadott útvonalakat (UDR) segítségével az összes forgalom küldése az adott alhálózat virtuális készülékre, például egy tűzfal vagy behatolás észlelési rendszert (Azonosítók). Az alhálózatokhoz egy útválasztási táblázatot lehet társítani. 
 
-Az útvonaltáblák hello következő tulajdonságai tartalmaznak.
+Az útvonaltáblák az alábbi tulajdonságokat tartalmazzák.
 
 | Tulajdonság | Leírás | Példaértékek |
 | --- | --- | --- |
-| **útvonalak** |Felhasználó által megadott útvonalak hello útvonaltábla |Lásd: [felhasználó által megadott útvonalak](#User-defined-routes) |
-| **alhálózatok** |Alhálózatok hello útvonaltábla gyűjteménye túl vonatkozik.|Lásd: [alhálózatok](#Subnets) |
+| **útvonalak** |Felhasználó által megadott útvonalak útvonaltábla |Lásd: [felhasználó által megadott útvonalak](#User-defined-routes) |
+| **alhálózatok** |Az útvonaltábla vonatkozik, az alhálózatok gyűjteménye |Lásd: [alhálózatok](#Subnets) |
 
 ### <a name="user-defined-routes"></a>Felhasználó által definiált útvonalak
-Létrehozhat udr-EK toospecify, ahol forgalmat kell küldeni, a cél címe alapján. Az eltolásokat tekintheti útvonal hello alapértelmezett átjáró definíciófrissítések a hálózati csomagok hello célcím alapján.
+Létrehozhat udr-EK adhatja meg, ha forgalmat kell küldeni, a cél címe alapján. Az eltolásokat tekintheti útvonal az alapértelmezett átjáró definíciófrissítések a hálózati csomagok célcím alapján.
 
-Udr-EK hello következő tulajdonságai tartalmaznak. 
+Udr-EK az alábbi tulajdonságokat tartalmazzák. 
 
 | Tulajdonság | Leírás | Példaértékek |
 | --- | --- | --- |
-| **addressPrefix** |Cím előtagján vagy a teljes IP-cím hello cél |192.168.1.0/24, 192.168.1.101 |
-| **nexthoptype elem** |Eszköz hello forgalomtípushoz túl küld|VirtualAppliance, VPN-átjárót, az Internet |
-| **nexthopipaddress eleme** |Hello következő ugrás IP-címe |192.168.1.4 |
+| **addressPrefix** |Cím előtagján vagy a teljes IP-címet a cél |192.168.1.0/24, 192.168.1.101 |
+| **nexthoptype elem** |A forgalom kapnak eszköz típusa |VirtualAppliance, VPN-átjárót, az Internet |
+| **nexthopipaddress eleme** |A következő ugrás IP-címe |192.168.1.4 |
 
 A minta útvonaltábla JSON formátumban:
 
@@ -52,6 +52,6 @@ A minta útvonaltábla JSON formátumban:
 
 ### <a name="additional-resources"></a>További források
 * További információk [udr-EK](../articles/virtual-network/virtual-networks-udr-overview.md).
-* Olvasási hello [REST API referenciadokumentációt](https://msdn.microsoft.com/library/azure/mt502549.aspx) az útválasztási táblázatokat.
-* Olvasási hello [REST API referenciadokumentációt](https://msdn.microsoft.com/library/azure/mt502539.aspx) felhasználó által megadott útvonalak (udr-EK).
+* Olvassa el a [REST API referenciadokumentációt](https://msdn.microsoft.com/library/azure/mt502549.aspx) az útválasztási táblázatokat.
+* Olvassa el a [REST API referenciadokumentációt](https://msdn.microsoft.com/library/azure/mt502539.aspx) felhasználó által megadott útvonalak (udr-EK).
 

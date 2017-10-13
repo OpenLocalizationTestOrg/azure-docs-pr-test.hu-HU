@@ -1,6 +1,6 @@
 ---
 title: "Azure AD Connect szinkronizálása: működtetési feladatok és szempontok |} Microsoft Docs"
-description: "Ez a témakör ismerteti az Azure AD Connect szinkronizálási szolgáltatás működési feladatokat, és hogyan tooprepare működtetéséhez ezt az összetevőt."
+description: "Ez a témakör ismerteti az operatív feladatok az Azure AD Connect szinkronizálási szolgáltatás és előkészítése operációs ezt az összetevőt."
 services: active-directory
 documentationcenter: 
 author: AndKjell
@@ -14,34 +14,34 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: e6b21262e0924785808888d66f08a04a56581edc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b7583a1556bb1113f349a78890768451e39c6878
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-ad-connect-sync-operational-tasks-and-consideration"></a>Azure AD Connect szinkronizálása: működtetési feladatok és szempont
-hello Ez a témakör célja toodescribe operatív feladatok az Azure AD Connect szinkronizálási szolgáltatás.
+Ez a témakör célja az Azure AD Connect szinkronizálási szolgáltatás működési feladatokat írják le.
 
 ## <a name="staging-mode"></a>Átmeneti mód
 Az átmeneti környezetű üzemmód használható több forgatókönyvek, köztük:
 
 * Magas rendelkezésre állású.
 * Tesztelése és telepítése az új konfigurációs módosításokat.
-* Új kiszolgáló esetében, és régi hello leszereléséhez.
+* Új kiszolgáló esetében, és a régi leszereléséhez.
 
-Átmeneti módban a kiszolgálóval, módosíthatja módosítások toohello konfigurációs és preview hello előtt hello kiszolgáló aktív. Azt is lehetővé teszi toorun teljes importálást és teljes szinkronizálást tooverify változik, hogy minden változást várható előtt ezeket az éles környezetben.
+Átmeneti módban a kiszolgálóval a konfigurációs módosításokat, és tekintse meg a módosítások elvégzése előtt a kiszolgáló aktív. Lehetővé teszi teljes importálást és teljes szinkronizálás győződjön meg arról, hogy minden módosítás előtt ezeket a módosításokat az éles környezetében várható futtatásához.
 
-A telepítés során kiválaszthatja a hello server toobe **átmeneti módban**. Ez a művelet kiszolgálóvá hello importálása és szinkronizálás aktív, de nem futtatható bármely exportálja. Átmeneti módban nem fut a jelszó-szinkronizálás és jelszóvisszaíró, még akkor is, ha ezek a szolgáltatások telepítésekor kiválasztott. Az átmeneti környezetű üzemmód letiltása esetén hello server exportálása elindul, lehetővé teszi, hogy a jelszó-szinkronizálást, és lehetővé teszi, hogy a jelszóvisszaíró.
+A telepítés során válassza ki a kiszolgálót a **átmeneti módban**. Ez a művelet lehetővé teszi a kiszolgáló importálása és szinkronizálás aktív, de nem futtatható bármely exportálja. Átmeneti módban nem fut a jelszó-szinkronizálás és jelszóvisszaíró, még akkor is, ha ezek a szolgáltatások telepítésekor kiválasztott. Az átmeneti környezetű üzemmód letiltása esetén a kiszolgáló kezdődik, exportálása, lehetővé teszi, hogy a jelszó-szinkronizálást, és lehetővé teszi, hogy a jelszóvisszaíró.
 
-Az export hello synchronization service Managert használatával továbbra is kényszeríthető.
+Az export továbbra is kényszerítheti a synchronization service manager használatával.
 
-Átmeneti módban továbbra is fennáll, az Active Directoryból és az Azure AD tooreceive módosításokat. Keresztül hello kötelezettségeit, egy másik kiszolgáló egy másolattal hello legutóbbi módosítások és a részleg nagyon gyorsan elvégezhető mindig rendelkezik. Ha konfigurációs módosítások tooyour elsődleges kiszolgáló, a felelősség toomake hello azonos módosítások toohello kiszolgáló átmeneti módban.
+Átmeneti módban továbbra is kaphat a módosítást az Active Directoryból és az Azure AD. Azt mindig van egy példányát a legutóbbi módosítások és a részleg nagyon gyorsan elvégezhető a kötelezettségeit, egy másik kiszolgálóra. Ha konfigurációs módosítások az elsődleges kiszolgálóval, feladata a ugyanazt a módosításokat a kiszolgáló átmeneti módban.
 
-A mellékelt régebbi szinkronizálási technológiák ismerete átmeneti módban hello különbözik mivel hello server csak a saját SQL-adatbázis. Ez az architektúra lehetővé teszi, hogy a hello átmeneti mód server toobe ugyanabban az adatközpontban található.
+Azok a régebbi szinkronizálási technológiák ismerete is az átmeneti környezetű üzemmód nem azonos mivel a kiszolgáló csak a saját SQL-adatbázis. Ez az architektúra lehetővé teszi, hogy az átmeneti mód kiszolgáló ugyanabban az adatközpontban található.
 
-### <a name="verify-hello-configuration-of-a-server"></a>A kiszolgáló hello konfigurációjának ellenőrzése
-tooapply ebben az esetben kövesse az alábbi lépéseket:
+### <a name="verify-the-configuration-of-a-server"></a>A kiszolgáló konfigurációjának ellenőrzése
+Ha szeretné alkalmazni ezt a módszert, kövesse az alábbi lépéseket:
 
 1. [Előkészítése](#prepare)
 2. [Konfigurálás](#configuration)
@@ -50,70 +50,70 @@ tooapply ebben az esetben kövesse az alábbi lépéseket:
 5. [Az active server kapcsoló](#switch-active-server)
 
 #### <a name="prepare"></a>Előkészítés
-1. Azure AD Connectet telepíti, válassza ki **átmeneti módban**, és kikapcsolni **a szinkronizálás megkezdéséhez** hello hello telepítési varázsló utolsó lapján. Ez a mód lehetővé teszi toorun hello szinkronizálási motor manuálisan.
+1. Azure AD Connectet telepíti, válassza ki **átmeneti módban**, és kikapcsolni **a szinkronizálás megkezdéséhez** a varázsló utolsó lapján. Ebben a módban a szinkronizálási motor manuális futtatása teszi lehetővé.
    ![ReadyToConfigure](./media/active-directory-aadconnectsync-operations/readytoconfigure.png)
-2. Jelentkezzen ki/bejelentkezés és hello a start menüből válassza **szinkronizálási szolgáltatás**.
+2. Jelentkezzen ki/sign és a start menüből válassza a **szinkronizálási szolgáltatás**.
 
 #### <a name="configuration"></a>Konfiguráció
-Ha a kiszolgáló átmeneti hello végrehajtott az egyéni módosítások toohello elsődleges kiszolgáló és a kívánt toocompare hello konfigurációs használja [az Azure AD Connect konfigurációs dokumentáló](https://github.com/Microsoft/AADConnectConfigDocumenter).
+Ha egyéni módosításokat végzett az elsődleges kiszolgáló, és a átmeneti kiszolgálóval konfigurációt szeretne, majd használja [az Azure AD Connect konfigurációs dokumentáló](https://github.com/Microsoft/AADConnectConfigDocumenter).
 
 #### <a name="import-and-synchronize"></a>Importálja és szinkronizálja
-1. Válassza ki **összekötők**, és válassza ki a hello típusú első összekötő hello **Active Directory tartományi szolgáltatások**. Kattintson a **futtatása**, jelölje be **teljes importálás**, és **OK**. Hajtsa végre ezeket a lépéseket az összes ilyen típusú-összekötőhöz.
-2. Válassza ki a Connector típusú hello **Azure Active Directoryban (Microsoft)**. Kattintson a **futtatása**, jelölje be **teljes importálás**, és **OK**.
-3. Győződjön meg arról, hogy hello lapon összekötők aktív marad. Minden típusú összekötő **Active Directory tartományi szolgáltatások**, kattintson a **futtatása**, jelölje be **különbözeti szinkronizálás**, és **OK**.
-4. Válassza ki a Connector típusú hello **Azure Active Directoryban (Microsoft)**. Kattintson a **futtatása**, jelölje be **különbözeti szinkronizálás**, és **OK**.
+1. Válassza ki **összekötők**, és válassza ki az első összekötőt típusú **Active Directory tartományi szolgáltatások**. Kattintson a **futtatása**, jelölje be **teljes importálás**, és **OK**. Hajtsa végre ezeket a lépéseket az összes ilyen típusú-összekötőhöz.
+2. Válassza ki az összekötő típusú **Azure Active Directoryban (Microsoft)**. Kattintson a **futtatása**, jelölje be **teljes importálás**, és **OK**.
+3. Győződjön meg arról, hogy a lap összekötők aktív marad. Minden típusú összekötő **Active Directory tartományi szolgáltatások**, kattintson a **futtatása**, jelölje be **különbözeti szinkronizálás**, és **OK**.
+4. Válassza ki az összekötő típusú **Azure Active Directoryban (Microsoft)**. Kattintson a **futtatása**, jelölje be **különbözeti szinkronizálás**, és **OK**.
 
-Lehetősége van most előkészített exportálás tooAzure AD módosításai és a helyszíni AD (ha az Exchange hibrid telepítést használ). hello lépések lehetővé teszik a tooinspect Újdonságok kapcsolatos toochange toohello könyvtárak hello exportálása ténylegesen megkezdése előtt.
+Most előkészítette rendelkezik exportálási módosításai az Azure AD és a helyszíni AD (ha az Exchange hibrid telepítést használ). A következő lépéseket lehetővé teszi a vizsgálandó ténylegesen a könyvtárakat az exportálás megkezdése előtt megváltoztatta újdonságai.
 
 #### <a name="verify"></a>Ellenőrzés
-1. Indítsa el egy parancssort, és nyissa meg túl`%ProgramFiles%\Microsoft Azure AD Sync\bin`
-2. Futtatás: `csexport "Name of Connector" %temp%\export.xml /f:x` hello összekötő hello neve található szinkronizálási szolgáltatás. Rendelkezik egy neve hasonló too"contoso.com – AAD" az Azure AD.
-3. Hello PowerShell parancsfájl másolása hello szakasz [CSAnalyzer](#appendix-csanalyzer) tooa fájlt `csanalyzer.ps1`.
-4. Nyisson meg egy PowerShell-ablakot, és keresse meg a toohello mappa, amelyben létrehozta hello PowerShell-parancsfájlt.
+1. Indítsa el egy parancssort, és navigáljon a`%ProgramFiles%\Microsoft Azure AD Sync\bin`
+2. Futtatás: `csexport "Name of Connector" %temp%\export.xml /f:x` a nevét, az összekötő szinkronizálási szolgáltatás található. A "contoso.com – AAD" hasonló névvel rendelkezik az Azure AD.
+3. A szakasz a PowerShell parancsfájl másolása [CSAnalyzer](#appendix-csanalyzer) nevű fájlba `csanalyzer.ps1`.
+4. Nyisson meg egy PowerShell-ablakot, és keresse meg a mappát, amelyben létrehozta a PowerShell-parancsfájlt.
 5. Futtatás: `.\csanalyzer.ps1 -xmltoimport %temp%\export.xml`.
-6. Most már rendelkezik egy fájlt **processedusers1.csv** , amely a Microsoft Excel kell vizsgálni. Minden előkészített módosítások exportált toobe tooAzure AD ebben a fájlban találhatók.
-7. A szükséges módosításokat toohello adatok vagy konfiguráció, és ezeket a lépéseket újra (importálás és szinkronizálás és ellenőrzése) futását a változtatásokat, hogy exportált toobe kapcsolatos várható hello.
+6. Most már rendelkezik egy fájlt **processedusers1.csv** , amely a Microsoft Excel kell vizsgálni. Az Azure ad Szolgáltatásba exportálni előkészített összes módosítást a fájlban találhatók.
+7. Hajtsa végre a módosításokat az adatok vagy konfiguráció, és futtassa ezeket a lépéseket újra (importálás és szinkronizálás és ellenőrzése) addig, amíg az exportálni kívánt módosításokkal várható.
 
 #### <a name="switch-active-server"></a>Az active server kapcsoló
-1. A jelenleg aktív kiszolgálói hello vagy kapcsolja ki a hello server (DirSync vagy FIM vagy az Azure AD Sync), így azt nem exportálnia kell tooAzure AD, vagy állítsa az átmeneti módban (az Azure AD Connect).
-2. Hello telepítővarázslójának futtatása a hello kiszolgálón **átmeneti módban** és tiltsa le a **átmeneti módban**.
+1. A jelenleg aktív kiszolgálón vagy kapcsolja ki a kiszolgálót (a DirSync vagy FIM vagy az Azure AD Sync), akkor nem exportálása az Azure ad Szolgáltatásba, vagy állítsa az átmeneti módban (az Azure AD Connect).
+2. A telepítővarázsló futtatása a kiszolgálón a **átmeneti módban** és tiltsa le a **átmeneti módban**.
    ![ReadyToConfigure](./media/active-directory-aadconnectsync-operations/additionaltasks.png)
 
 ## <a name="disaster-recovery"></a>Vészhelyreállítás
-Hello megvalósítási terv része a milyen toodo tooplan abban az esetben, ha van egy olyan vészhelyzet esetén hol elvesznek a hello szinkronizálási kiszolgálót. Nincsenek különböző modell toouse és mely egy toouse többek között számos tényezőtől függ:
+A megvalósítási terv részét képezi, mi a teendő, ha van egy olyan vészhelyzet esetén Ha elveszti a sync-kiszolgáló tervezését. Számos különböző képességekkel és melyiket használja többek között számos tényezőtől függ:
 
-* Mi az a tűrés, azzal nem tud ellenőrizze tooobjects hello leállások során az Azure AD-ben?
-* A jelszó-szinkronizálás használatakor tegye hello felhasználók fogadja el, hogy rendelkeznek toouse hello régi jelszó az Azure AD abban az esetben, ha azok megváltoztatnia a helyszínen?
+* Mi az a tűrés, nem tudja ellenőrizze a objektumok változásait az Azure AD a leállások során?
+* Ha használja a jelszó-szinkronizálás, tegye a felhasználók fogadja el, hogy kell-e a régi jelszót használja az Azure AD abban az esetben, ha azok megváltoztatnia a helyszíni?
 * Rendelkezik a valós idejű műveletek, például a jelszóvisszaírás függőség?
 
-Attól függően, hogy hello válaszok toothese kérdések és a szervezet házirendje hello következő stratégiák egyikét is kell végrehajtani:
+Attól függően, hogy ezek a kérdések és a szervezet házirendje a választ a következő stratégiák egyikét is kell végrehajtani:
 
 * Építse újra, amikor szükséges.
 * Tartalék készenléti kiszolgáló, úgynevezett **átmeneti módban**.
 * Használja a virtuális gépek.
 
-Ha nem használja a hello beépített SQL Express adatbázist, majd tekintse meg hello [SQL magas rendelkezésre állású](#sql-high-availability) szakasz.
+Ha nem használja a beépített SQL Express adatbázist, majd tekintse meg a [SQL magas rendelkezésre állású](#sql-high-availability) szakasz.
 
 ### <a name="rebuild-when-needed"></a>Szükség esetén újraépítése
-Életképes stratégia tooplan egy kiszolgáló újjáépítése szükség esetén a rendszer. Általában telepítése szinkronizálási motor hello és hello kezdeti importálása és szinkronizálás néhány órán belül végrehajtható. Tartalék kiszolgáló nem érhető el, ha egy tartomány tartományvezérlői toohost hello szinkronizálási motor lehetséges tootemporarily használatát is.
+Életképes stratégiát, hogy szükség esetén egy kiszolgáló újjáépítése tervezése. A szinkronizálási motor és a kezdeti importálás és szinkronizálás elvégezhető néhány órán belül nem általában telepítése. Ha tartalék kiszolgáló nem érhető el, akkor lehet a ideiglenesen tartományvezérlő is tárolni a szinkronizálási motor.
 
-hello a Szinkronizáló vezérlő kiszolgálója nem tárol hello objektumokról olyan állapotokat, hello adatbázis is építhető újra, az Active Directory és az Azure AD hello adataiból. Hello **sourceAnchor** attribútum használt toojoin hello objektumokat a helyszíni és felhőalapú hello. Újraépítése hello kiszolgáló meglévő objektumokat a helyszíni és hello felhő, majd hello tényleges szinkronizálási motor megfelel azokat az objektumokat újra újratelepítés együtt. hello toodocument kell, és mentse a dolog hello konfigurációs módosítások toohello kiszolgálót, például szűrési és szinkronizálási szabályok. Ezen egyéni konfigurációk kell kell újra alkalmazza a szinkronizálás megkezdése előtt.
+A Szinkronizáló vezérlő kiszolgálója nem tárolja az objektumok olyan állapotokat, az adatbázis is építhető újra, az Active Directory és az Azure AD az adatokból. A **sourceAnchor** attribútum segítségével csatlakoztassa az objektumokat a helyszíni és felhőben. A meglévő objektumokat a helyszíni és a felhő kiszolgáló újraépítése, majd a szinkronizálási motor megegyezik azokat az objektumokat együtt újra az újratelepítést. A dokumentum, és menteni kell minden olyan a kiszolgálót, például a szűrés és szinkronizálási szabályok konfigurációs módosításait. Ezen egyéni konfigurációk kell kell újra alkalmazza a szinkronizálás megkezdése előtt.
 
 ### <a name="have-a-spare-standby-server---staging-mode"></a>Tartalék készenléti kiszolgáló - átmeneti módban
-Ha összetettebb környezetben, akkor ajánlott, ha egy vagy több készenléti kiszolgálót. A telepítés során engedélyezheti a kiszolgáló toobe a **átmeneti módban**.
+Ha összetettebb környezetben, akkor ajánlott, ha egy vagy több készenléti kiszolgálót. A telepítés során engedélyezheti a server a **átmeneti módban**.
 
 További információkért lásd: [átmeneti módban](#staging-mode).
 
 ### <a name="use-virtual-machines"></a>Virtuális gépek használata
-A közös és támogatott metódus toorun hello szinkronizálási motor egy virtuális gépen. Abban az esetben hello állomás egy hibát tartalmaz, hello a Szinkronizáló vezérlő kiszolgálója hello rendszerképének áttelepített tooanother kiszolgáló lehet.
+A közös és támogatott módja, hogy a szinkronizálási motor egy virtuális gép futtatásához. Abban az esetben, ha a gazdagép egy hibát tartalmaz, a kép és a Szinkronizáló vezérlő kiszolgálója áttelepíthetők egy másik kiszolgálóra.
 
 ### <a name="sql-high-availability"></a>Az SQL magas rendelkezésre állás
-Ha nem használ SQL Server Express, az Azure AD Connect előre hello, majd az SQL Server magas rendelkezésre állás is meg kell fontolni. támogatott hello magas rendelkezésre állás megoldásai a következők: SQL-fürtözés és AOA (az Always On rendelkezésre állási csoportok). Nem támogatott megoldásai a következők tükrözés.
+Ha nem használ az SQL Server Express, az Azure AD Connect előre, majd az SQL Server magas rendelkezésre állás is meg kell fontolni. A támogatott magas rendelkezésre állás megoldásai a következők: SQL-fürtözés és AOA (az Always On rendelkezésre állási csoportok). Nem támogatott megoldásai a következők tükrözés.
 
-Az SQL AOA támogatást kaptak tooAzure AD Connect 1.1.524.0 verzióban. Az Azure AD Connect telepítése előtt engedélyeznie kell az SQL AOA. A telepítés során az Azure AD Connect észleli a megadott hello SQL-példány engedélyezve van az SQL AOA-e nem. Ha SQL AOA engedélyezve van, az Azure AD Connect további adatok Ha SQL AOA-e a konfigurált toouse szinkron replikáció vagy aszinkron replikáció. Hello rendelkezésre állási csoport figyelőjének beállításakor javasoljuk, hogy állítsa a hello RegisterAllProvidersIP tulajdonság too0. Ennek az az oka az Azure AD Connect jelenleg használ SQL Native Client tooconnect tooSQL és az SQL natív ügyfél nem támogatja a MultiSubNetFailover tulajdonság hello használatával.
+SQL AOA támogatása az Azure AD Connect 1.1.524.0 verziójában lett hozzáadva. Az Azure AD Connect telepítése előtt engedélyeznie kell az SQL AOA. A telepítés során az Azure AD Connect észleli, hogy a megadott SQL-példány engedélyezve van az SQL AOA vagy nem. Ha SQL AOA engedélyezve van, az Azure AD Connect további adatok Ha SQL AOA replikáció szinkron vagy aszinkron replikáció használatára van konfigurálva. A rendelkezésre állási csoport figyelőjének beállításakor javasoljuk, hogy a RegisterAllProvidersIP tulajdonságot 0 értékre állítja. Ennek az az oka az Azure AD Connect jelenleg használ SQL Native Client kapcsolódni az SQL és az SQL natív ügyfél nem támogatja a MultiSubNetFailover tulajdonság használatával.
 
 ## <a name="appendix-csanalyzer"></a>A függelék CSAnalyzer
-Című rész hello [ellenőrizze](#verify) hogyan toouse ezt a parancsfájlt.
+Című témakör [ellenőrizze](#verify) a parancsfájl használatával.
 
 ```
 Param(
@@ -133,16 +133,16 @@ Param(
 #XML must be generated using "csexport "Name of Connector" export.xml /f:x"
 write-host "Importing XML" -ForegroundColor Yellow
 
-#XmlReader.Create won't properly resolve hello file location,
+#XmlReader.Create won't properly resolve the file location,
 #so expand and then resolve it
 $resolvedXMLtoimport=Resolve-Path -Path ([Environment]::ExpandEnvironmentVariables($xmltoimport))
 
-#use an XmlReader toodeal with even large files
+#use an XmlReader to deal with even large files
 $result=$reader = [System.Xml.XmlReader]::Create($resolvedXMLtoimport) 
 $result=$reader.ReadToDescendant('cs-object')
 do 
 {
-    #create hello object placeholder
+    #create the object placeholder
     #adding them up here means we can enforce consistency
     $objOutputUser=New-Object psobject
     Add-Member -InputObject $objOutputUser -MemberType NoteProperty -Name ID -Value ""
@@ -180,7 +180,7 @@ do
     if ($showOutput) {Write-Host Operation: $outOperation}
     $objOutputUser.operation=$outOperation
 
-    #now that we have hello basics, go get hello details
+    #now that we have the basics, go get the details
 
     foreach ($attr in $user.Element('unapplied-export-hologram').Element('entry').Elements("attr"))
     {
@@ -221,26 +221,26 @@ do
 
     Write-Progress -activity "Processing ${xmltoimport} in batches of ${batchsize}" -status "Batch ${outputfilecount}: " -percentComplete (($objOutputUsers.Count / $batchsize) * 100)
 
-    #every so often, dump hello processed users in case we blow up somewhere
+    #every so often, dump the processed users in case we blow up somewhere
     if ($count % $batchsize -eq 0)
     {
-        Write-Host Hit hello maximum users processed without completion... -ForegroundColor Yellow
+        Write-Host Hit the maximum users processed without completion... -ForegroundColor Yellow
 
-        #export hello collection of users as as CSV
+        #export the collection of users as as CSV
         Write-Host Writing processedusers${outputfilecount}.csv -ForegroundColor Yellow
         $objOutputUsers | Export-Csv -path processedusers${outputfilecount}.csv -NoTypeInformation
 
-        #increment hello output file counter
+        #increment the output file counter
         $outputfilecount+=1
 
-        #reset hello collection and hello user counter
+        #reset the collection and the user counter
         $objOutputUsers = $null
         $count=0
     }
 
     $count+=1
 
-    #need toobail out of hello loop if no more users tooprocess
+    #need to bail out of the loop if no more users to process
     if ($reader.NodeType -eq [System.Xml.XmlNodeType]::EndElement)
     {
         break
@@ -248,8 +248,8 @@ do
 
 } while ($reader.Read)
 
-#need toowrite out any users that didn't get picked up in a batch of 1000
-#export hello collection of users as as CSV
+#need to write out any users that didn't get picked up in a batch of 1000
+#export the collection of users as as CSV
 Write-Host Writing processedusers${outputfilecount}.csv -ForegroundColor Yellow
 $objOutputUsers | Export-Csv -path processedusers${outputfilecount}.csv -NoTypeInformation
 ```

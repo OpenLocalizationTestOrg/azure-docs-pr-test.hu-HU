@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate B2B megoldások - Azure Logic Apps |} Microsoft Docs"
-description: "Adatfogadás logic Apps alkalmazásokat a vállalati integrációs csomag hello hello B2B szolgáltatások segítségével"
+title: "Hozzon létre B2B megoldások - Azure Logic Apps |} Microsoft Docs"
+description: "Adatfogadás logic Apps alkalmazásokat a vállalati integrációs csomag a B2B szolgáltatások segítségével"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: msftman
@@ -14,83 +14,83 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2016
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 8f01318a0415d81c37b216f9b991c060edec2053
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0625787ddcbc0091e70b111f687e25929720ad15
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="receive-data-in-logic-apps-with-hello-b2b-features-in-hello-enterprise-integration-pack"></a>Adatfogadás a logic apps funkcióival hello B2B hello vállalati integrációs csomag
+# <a name="receive-data-in-logic-apps-with-the-b2b-features-in-the-enterprise-integration-pack"></a>Adatfogadás a logic apps B2B funkcióit a vállalati integrációs csomag
 
-Miután létrehozta a partnerek és megállapodások integrációs fiókkal, készen áll a toocreate üzleti toobusiness (B2B) munkamenet-e a logikai alkalmazásnak a hello [vállalati integrációs csomag](logic-apps-enterprise-integration-overview.md).
+Miután létrehozta a partnerek és megállapodások integrációs fiókkal, készen áll a Logic Apps alkalmazást, a vállalatok számára (B2B) munkafolyamat létrehozása a [vállalati integrációs csomag](logic-apps-enterprise-integration-overview.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-toouse hello AS2 és X12 műveleteket, rendelkeznie kell egy vállalati integrációs fiók. Ismerje meg, [hogyan toocreate vállalati integrációs fiók](../logic-apps/logic-apps-enterprise-integration-accounts.md).
+Az AS2 és X12 műveleteket, rendelkeznie kell egy vállalati integrációs fiók. Ismerje meg, [vállalati integrációs fiók létrehozása](../logic-apps/logic-apps-enterprise-integration-accounts.md).
 
 ## <a name="create-a-logic-app-with-b2b-connectors"></a>Hozzon létre egy logic app B2B összekötők
 
-Kövesse az alábbi lépéseket toocreate a B2B logikai alkalmazás hello AS2 és X12 használó műveletek tooreceive adatait egy kereskedelmi partner:
+Kövesse az alábbi lépéseket az AS2 és X12 használó B2B logikai alkalmazás létrehozása az adatok fogadására a kereskedelmi partnertől műveletek:
 
-1. Hozzon létre egy logikai alkalmazást, majd [a app tooyour integrációs fiókját](../logic-apps/logic-apps-enterprise-integration-accounts.md).
+1. Hozzon létre egy logikai alkalmazást, majd [az alkalmazás a integrációs fiókkal összekapcsolni](../logic-apps/logic-apps-enterprise-integration-accounts.md).
 
-2. Adja hozzá a **kérelem - amikor egy HTTP-kérelem érkezik** eseményindító tooyour logikai alkalmazást.
+2. Adja hozzá a **kérelem - amikor egy HTTP-kérelem érkezik** eseményindító a logikai alkalmazáshoz.
 
     ![](./media/logic-apps-enterprise-integration-b2b/flatfile-1.png)
 
-3. tooadd hello **dekódolása AS2** művelet, jelölje be **művelet hozzáadása**.
+3. Hozzáadása a **dekódolása AS2** művelet, jelölje be **művelet hozzáadása**.
 
     ![](./media/logic-apps-enterprise-integration-b2b/transform-2.png)
 
-4. toofilter összes műveletek toohello egy használni kívánt, adja meg a hello word **as2** hello Keresés mezőbe.
+4. Ha szeretne szűrni a használni kívánt összes műveleteket, adja meg a word **as2** be a keresőmezőbe.
 
     ![](./media/logic-apps-enterprise-integration-b2b/b2b-5.png)
 
-5. Jelölje be hello **AS2 - dekódolási AS2 üzenet** művelet.
+5. Válassza ki a **AS2 - dekódolási AS2 üzenet** művelet.
 
     ![](./media/logic-apps-enterprise-integration-b2b/b2b-6.png)
 
-6. Adja hozzá a hello **törzs** , amelyet az toouse bemeneti adatként. Ebben a példában válassza ki, hogy az eseményindítók hello logikai alkalmazás hello HTTP-kérelem hello törzsét. Adjon meg egy kifejezést, amely a bemeneti hello fejlécének hello vagy **FEJLÉCEK** mező:
+6. Adja hozzá a **törzs** bemenetként használni kívánt. Ebben a példában válassza ki, amely elindítja a logikai alkalmazás a HTTP-kérelem törzsét. Adjon meg egy kifejezést, amely a bemeneti fejlécének vagy a **FEJLÉCEK** mező:
 
     @triggerOutputs(["fejléc"])
 
-7. Adja hozzá a szükséges hello **fejlécek** az AS2, amely hello HTTP-kérelemfejlécekben található. Ebben a példában válassza hello fejléceket a HTTP-kérelem hello eseményindító hello logikai alkalmazást.
+7. Adja hozzá a szükséges **fejlécek** az AS2, amelyek a HTTP-kérelmek fejléceinek található. Ebben a példában válassza ki, amelynek hatására a logikai alkalmazást a HTTP-kérés fejlécébe.
 
-8. Mostantól hozzáadhatja azok hello dekódolási X12 üzenet művelet. Válassza ki **művelet hozzáadása**.
+8. Most adja hozzá a dekódolási X12 üzenet művelet. Válassza ki **művelet hozzáadása**.
 
     ![](./media/logic-apps-enterprise-integration-b2b/b2b-9.png)
 
-9. toofilter összes műveletek toohello egy használni kívánt, adja meg a hello word **x12** hello Keresés mezőbe.
+9. Ha szeretne szűrni a használni kívánt összes műveleteket, adja meg a word **x12** be a keresőmezőbe.
 
     ![](./media/logic-apps-enterprise-integration-b2b/b2b-10.png)
 
-10. Jelölje be hello **X12-dekódolási X12 üzenet** művelet.
+10. Válassza ki a **X12-dekódolási X12 üzenet** művelet.
 
     ![](./media/logic-apps-enterprise-integration-b2b/b2b-as2message.png)
 
-11. Most meg kell adnia hello bemeneti toothis műveletet. A bemeneti érték hello előző AS2 művelet hello kimenetét.
+11. Ez a művelet bemeneti most meg kell adnia. A bemeneti érték az előző AS2 művelet eredményének.
 
-    hello tényleges üzenet tartalma egy JSON-objektum és base64-kódolású, ezért meg kell adnia egy kifejezés hello bemeneti adatként. 
-    Adja meg a következő kifejezés hello hello **X12 lapos fájl üzenet tooDECODE** beviteli mezőt:
+    A tényleges üzenet tartalma egy JSON-objektum és base64-kódolású, ezért meg kell adnia egy kifejezést a bemeneti adatként. 
+    Adja meg a következő kifejezésre a **X12 lapos fájl üzenet TO DEKÓDOLÁSI** beviteli mezőt:
     
     @base64ToString(body('Decode_AS2_message')? ["AS2Message']? ["Tartalom"])
 
-    Most vegyen fel olyan lépéseket toodecode hello X12 adatok kereskedelmi partner hello kapott, és a kimeneti JSON-objektum elemek. 
-    adatok hello toonotify hello partner érkezett, küldhet vissza a válaszban hello AS2 üzenet törlése értesítés (MDN) a HTTP-válasz művelethez.
+    Most vegyen fel olyan lépéseket a X12 adatok kereskedelmi partneren, és egy JSON-objektum elemeinek kimeneti dekódolására. 
+    Az értesítés a partner, hogy az adatokat fogadta a program, küldhet vissza egy válaszban az AS2 üzenet törlése értesítés (MDN) a HTTP-válasz művelethez.
 
-12. tooadd hello **válasz** művelet, válassza a **művelet hozzáadása**.
+12. Hozzáadása a **válasz** művelet, válassza a **művelet hozzáadása**.
 
     ![](./media/logic-apps-enterprise-integration-b2b/b2b-14.png)
 
-13. toofilter összes műveletek toohello egy használni kívánt, adja meg a hello word **válasz** hello Keresés mezőbe.
+13. Ha szeretne szűrni a használni kívánt összes műveleteket, adja meg a word **válasz** be a keresőmezőbe.
 
     ![](./media/logic-apps-enterprise-integration-b2b/b2b-15.png)
 
-14. Jelölje be hello **válasz** művelet.
+14. Válassza ki a **válasz** művelet.
 
     ![](./media/logic-apps-enterprise-integration-b2b/b2b-16.png)
 
-15. tooaccess MDN hello hello hello kimenetét a **dekódolási X12 üzenet** művelet, a set hello válasz **törzs** mezőt a ebben a kifejezésben:
+15. A MDN elérje a kimenetét a **dekódolási X12 üzenet** művelet, állítsa be a válasz **törzs** mezőt a ebben a kifejezésben:
 
     @base64ToString(body('Decode_AS2_message')? ["OutgoingMdn']? ["Tartalom"])
 
@@ -100,14 +100,14 @@ Kövesse az alábbi lépéseket toocreate a B2B logikai alkalmazás hello AS2 é
 
     ![](./media/logic-apps-enterprise-integration-b2b/transform-5.png)  
 
-Most már befejezte a B2B logikai alkalmazás beállítása. Egy valós alkalmazás érdemes toostore hello dekódolni X12 adatok-üzletági (LOB) alkalmazás vagy adatok tárolóban. tooconnect a saját ÜZLETÁGI alkalmazásai és ezen API-k használata a Logic Apps alkalmazást, vagy adhat hozzá további műveletek írása egyéni API-k.
+Most már befejezte a B2B logikai alkalmazás beállítása. Egy valós alkalmazás, előfordulhat, hogy tárolni szeretné a dekódolt X12 adatok-üzletági (LOB) alkalmazás vagy adatok tárolóban. Kapcsolódás saját LOB-alkalmazások, és ezen API-k használata a Logic Apps alkalmazást, adhat hozzá további műveletek vagy egyéni API-k írása.
 
 ## <a name="features-and-use-cases"></a>Szolgáltatások és a használati esetek
 
-* hello AS2 és X12 dekódolni, és műveletek kódolása lehetővé, hogy adatcserében működik közre a logic apps iparági szabványos protokollok segítségével kereskedelmi partnerek között.
-* tooexchange adatok az üzleti partnerekkel való, használható AS2 és X12 vagy anélkül egymással.
-* hello B2B műveletek segítséget nyújt a partnerek és a megállapodások az integráció fiókban könnyen létrehozását és felhasználását azokat a logikai alkalmazás.
+* Az AS2 és X12 dekódolni, és műveletek kódolása lehetővé, hogy adatcserében működik közre a logic apps iparági szabványos protokollok segítségével kereskedelmi partnerek között.
+* Az exchange-adatok az üzleti partnerekkel való, használhatja AS2 és X12 vagy anélkül egymással.
+* A B2B műveletek hogyan hozhat létre partnerek és megállapodások könnyen integrációs fiókjában, és felhasználni azokat a logikai alkalmazás.
 * A Logic Apps alkalmazást az egyéb műveletek bővítésekor küldhet és fogadhat adatokat más alkalmazásokat és szolgáltatásokat, mint a SalesForce között.
 
 ## <a name="learn-more"></a>Részletek
-[További tudnivalók hello vállalati integrációs csomag](logic-apps-enterprise-integration-overview.md)
+[További tudnivalók a vállalati integrációs csomag](logic-apps-enterprise-integration-overview.md)

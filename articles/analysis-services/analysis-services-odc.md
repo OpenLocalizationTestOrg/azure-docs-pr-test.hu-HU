@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate egy .odc fájl tooconnect tooan Azure Analysis Services-kiszolgáló |} Microsoft Docs"
-description: "Ismerje meg, hogyan toocreate egy Office Data Connection fájl tooconnect tooand adatokat lekérni az Analysis Services-kiszolgálóhoz, az Azure-ban."
+title: "Hozzon létre egy Azure Analysis Services-kiszolgálóhoz való kapcsolódáshoz .odc fájl |} Microsoft Docs"
+description: "Megtudhatja, hogyan hozzon létre egy Office Data Connection fájlt adatokat lekérni az Azure-ban egy Analysis Services-kiszolgálóhoz való csatlakozáshoz."
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -15,30 +15,30 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/23/2017
 ms.author: owend
-ms.openlocfilehash: 9c8c8df23b17f19905d7ec51af4eb63eb995045e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 530f3b5c9e90cb45ffb6e12d0d08a35f8d687471
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-an-office-data-connection-file"></a>Office Data Connection-fájl létrehozása
 
-A cikkben szereplő információkat ismerteti, hogyan hozhatja létre az Office Data Connection fájl tooconnect tooan Azure Analysis Services-kiszolgáló verziószáma 16.0.7369.2117 Excel 2016 vagy korábbi, vagy az Excel 2013. Egy frissített [MSOLAP.7 szolgáltató](analysis-services-data-providers.md) is szükség.
+A cikkben szereplő információkat ismerteti, hogyan hozhat létre az Office Data Connection fájl Excel 2016 verziószáma 16.0.7369.2117 egy Azure Analysis Services-kiszolgálóhoz való kapcsolódáshoz és a korábbi verziók, vagy az Excel 2013. Egy frissített [MSOLAP.7 szolgáltató](analysis-services-data-providers.md) is szükség.
 
 
-1. Minta hello kapcsolat alábbi fájl másolása, és illessze be a szövegszerkesztőben. 
+1. Másolja az alábbi minta kapcsolat fájl, és illessze be a szövegszerkesztőben. 
 
-2. A `odc:ConnectionString`, módosítsa a következő tulajdonságai hello:
+2. A `odc:ConnectionString`, módosítsa a következő tulajdonságokkal:
 
-    *   A `Data Source=asazure://<region>.asazure.windows.net/<servername>;` módosítása `<region>` toohello területet az Analysis Services-kiszolgálónak és `<servername>` toohello a kiszolgáló nevét.
+    *   A `Data Source=asazure://<region>.asazure.windows.net/<servername>;` módosítása `<region>` a két régiónak az Analysis Services-kiszolgáló és `<servername>` a kiszolgáló nevét.
 
-    *   A `Initial Catalog=<database>;` módosítása `<database>` toohello az adatbázis nevére.
+    *   A `Initial Catalog=<database>;` módosítása `<database>` az adatbázis nevét.
 
-3. A `<odc:CommandText>Model</odc:CommandText>` módosítása `Model` toohello a modell vagy perspektíva nevét. 
+3. A `<odc:CommandText>Model</odc:CommandText>` módosítása `Model` a modell vagy perspektíva nevét. 
 
-4. Mentse a hello fájlt egy `.odc` bővítmény toohello C:\Users\\*felhasználónév*\Documents\My adatforrások mappa.
+4. Mentse a fájlt egy `.odc` a C:\Users bővítmény\\*felhasználónév*\Documents\My adatforrások mappát.
 
-5. Kattintson a jobb gombbal a hello fájlt, és kattintson **Megnyitás az Excelben**. Vagy az Excel programban, a hello **adatok** menüszalag, kattintson a **meglévő kapcsolatok**, válassza ki a fájlt, és kattintson a **nyitott**.
+5. Kattintson jobb gombbal a fájlra, és kattintson **Megnyitás az Excelben**. Vagy az Excel programban a a **adatok** menüszalag, kattintson a **meglévő kapcsolatok**, válassza ki a fájlt, és kattintson a **nyitott**.
 
 
 

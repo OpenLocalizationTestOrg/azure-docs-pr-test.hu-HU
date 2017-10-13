@@ -1,6 +1,6 @@
 ---
-title: "aaaMicrosoft Azure StorSimple virtuális tömb áttekintése |} Microsoft Docs"
-description: "A StorSimple virtuális tömb, egy integrált tárolási megoldás, amely kezeli a Microsoft Azure felhőalapú tárolást és a helyszíni virtuális tömb közötti tárolási feladatok elvégzéséről hello ismerteti."
+title: "A Microsoft Azure StorSimple virtuális tömb áttekintése |} Microsoft Docs"
+description: "A StorSimple virtuális tömb, egy integrált tárolási megoldás, amely kezeli a Microsoft Azure felhőalapú tárolást és a helyszíni virtuális tömb közötti tárolási feladatok elvégzéséről ismerteti."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,58 +14,58 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 12/09/2016
 ms.author: alkohli
-ms.openlocfilehash: 8978e074142940748857150cc93b37272349d53d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 100eed4694d2017333ef25eca86034d17cce78d1
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="introduction-toohello-storsimple-virtual-array"></a>Bevezetés toohello StorSimple virtuális tömb
+# <a name="introduction-to-the-storsimple-virtual-array"></a>A StorSimple virtuális tömb bemutatása
 ## <a name="overview"></a>Áttekintés
-a Microsoft Azure StorSimple virtuális tömb hello egy integrált tárolási megoldás, amely kezeli a tárolási feladatok elvégzéséről a hipervizor és a Microsoft Azure felhőalapú tárolást futtató helyszíni virtuális tömb között. hello virtuális egy hatékony, költséghatékony és egyszerűen kezelhető fájl- vagy iSCSI-kiszolgálói megoldás, amely kiküszöböli számos hello problémák és a vállalati tárolás és az adatvédelem társított is. hello virtuális tömbjének értéke különösen jól alkalmazható, távoli office/fiókirodák számára.
+A Microsoft Azure StorSimple virtuális tömb egy integrált tárolási megoldás, amely kezeli a tárolási feladatok elvégzéséről a hipervizor és a Microsoft Azure felhőalapú tárolást futtató helyszíni virtuális tömb között. A virtuális tömbjének értéke egy hatékony, költséghatékony és egyszerűen kezelhető fájl- vagy iSCSI-kiszolgálói megoldás, amely kiküszöböli a problémák és a vállalati tárolás és az adatvédelem társított is számos. A virtuális tömbjének értéke különösen jól alkalmazható, távoli office/fiókirodák számára.
 
-Ez a témakör áttekintést hello virtuális tömb – az alábbiakban néhány egyéb erőforrások:
+Ez a témakör áttekintést a virtuális tömb – az alábbiakban néhány egyéb erőforrások:
 
 * Gyakorlati tanácsok, lásd: [StorSimple virtuális tömb gyakorlati tanácsok](storsimple-ova-best-practices.md).
-* Hello StorSimple 8000 sorozat eszközeire áttekintéséhez lépjen túl[StorSimple 8000 series: hibrid felhő megoldás](storsimple-overview.md). 
-* A StorSimple 5000/7000-es hello adatsorozat eszközökkel kapcsolatos információkért lásd az túl[StorSimple Online súgó](http://onlinehelp.storsimple.com/).
+* A StorSimple 8000 sorozat eszközeire áttekintését Ugrás [StorSimple 8000 series: hibrid felhő megoldás](storsimple-overview.md). 
+* A StorSimple 5000/7000-es adatsorozat eszközökkel kapcsolatos információkért látogasson el [StorSimple Online súgó](http://onlinehelp.storsimple.com/).
 
-hello virtuális tömb hello iSCSI vagy Server Message Block (SMB) protokollt támogatja. A meglévő hipervizor infrastruktúra fut, és rétegezési toohello felhő, felhőbeli biztonsági mentését, gyors visszaállítási, elemszintű helyreállítás és vész-helyreállítási szolgáltatás.
+A virtuális tömb támogatja az iSCSI- vagy Server Message Block (SMB) protokoll. A meglévő hipervizor infrastruktúra fut, és biztosítja, hogy a felhő, a felhőbeli biztonsági mentését, a gyors helyreállítás, a elemszintű helyreállítás és a vész-helyreállítási szolgáltatás rétegezéséhez.
 
-hello következő táblázat összefoglalja hello fontosabb funkciói a StorSimple virtuális tömb hello.
+A következő táblázat összefoglalja a StorSimple virtuális tömb fontos szolgáltatásokat.
 
 | Szolgáltatás | StorSimple Virtual Array |
 | --- | --- |
 | Telepítési követelmények |Használja a virtualizálási infrastruktúrában (Hyper-V vagy VMware) |
 | Rendelkezésre állás |Egyetlen csomópont |
-| Teljes kapacitás (például felhő) |Too64 TB használható kapacitás virtuális tömb mentése |
-| Helyi kapacitás |390 GB too6.4 TB használható kapacitás virtuális tömb (kell tooprovision 500 GB too8 TB lemezterület) |
+| Teljes kapacitás (például felhő) |Akár 64 TB használható kapacitás virtuális rendszerenként |
+| Helyi kapacitás |6.4-es TB használható kapacitás virtuális tömb (kell kiépíteni és 8 TB 500 GB szabad lemezterület) / 390 GB |
 | Natív protokollok |iSCSI- vagy SMB |
 | Helyreállítási időre vonatkozó célkitűzés (RTO) |iSCSI: függetlenül mérete kisebb, mint 2 perc |
 | Helyreállítási időkorlát (RPO) |Napi és igény szerinti biztonsági mentés |
-| Tároló rétegezésével |Felhasználási melegítsük leképezési toodetermine milyen adatokat kell helyezhető el a bejövő vagy kimenő |
-| Támogatás |Virtualizálási infrastruktúrájával hello szállító által támogatott |
+| Tároló rétegezésével |Használja a leképezés csak akkor határozza meg, milyen adatokat kell helyezhető el a bejövő vagy kimenő melegítsük |
+| Támogatás |A szolgáltató által támogatott virtualizációs infrastruktúra |
 | Teljesítmény |Függ az alapul szolgáló infrastruktúra |
-| Adatok mobilitási |Visszaállíthatja a toohello ugyanarra az eszközre vagy elemszintű helyreállítás (fájlkiszolgáló) |
+| Adatok mobilitási |Visszaállíthatja a ugyanarra az eszközre vagy elemszintű helyreállítás (fájlkiszolgáló) |
 | A tárolási rétegek |Helyi hipervizor tárolás és a felhő |
-| A fájlmegosztás méretének |Rétegzett: mentése too20 TB; helyileg rögzített: akár too2 TB |
-| Kötet mérete |Rétegzett: 500 GB too5 TB; helyileg rögzített: 50 GB too500 GB |
-| Kötet mérete |Rétegzett: mentése too5 TB; helyileg rögzített: akár too500 GB |
+| A fájlmegosztás méretének |Szintezett: legfeljebb 20 TB; helyileg rögzített: legfeljebb 2 TB |
+| Kötet mérete |Rétegzett: 500 GB-tól 5 TB; helyileg rögzített: 50 GB 500 GB |
+| Kötet mérete |Szintezett: legfeljebb 5 TB; helyileg rögzített: legfeljebb 500 GB-ig |
 | A pillanatképek |Összeomlás-konzisztens |
 | Elemszintű helyreállítás |Igen; felhasználók visszaállíthatják a megosztások |
 
 ## <a name="why-use-storsimple"></a>StorSimple miért érdemes használni?
-StorSimple-felhasználók és a kiszolgálók tooAzure tárolási csatlakozik (percben), az alkalmazás módosítás nélkül.
+StorSimple csatlakozik a felhasználók és a kiszolgálók az Azure storage perc alkalmazás módosítás nélkül.
 
-hello alábbi táblázat néhány hello nagy előnye, hogy a megoldás a StorSimple virtuális tömb hello.
+A következő táblázat ismerteti a StorSimple virtuális tömb megoldás biztosító kulcs előnyöket nyújtja.
 
 | Szolgáltatás | Előny |
 | --- | --- |
-| Transzparens integráció |hello virtuális tömb hello iSCSI vagy hello SMB protokollt támogatja. zökkenőmentes és átlátható toohello felhasználó az hello adatmozgatás hello helyi rétegen és hello felhő szint között. |
-| Alacsonyabb tárolási költségek |A StorSimple kiépítése elegendő helyi tárolók toomeet aktuális terén a leggyakrabban használt hello gyakran használt adatokkal. Tárolási igényei nő, mivel a StorSimple rétegek ritkán használt adatok költséghatékony a felhőbeli tárhelyén. hello az adatok deduplikációja és tömörített toohello felhő elküldése előtt toofurther csökken a tárhellyel kapcsolatos követelmények és a költségeket. |
-| Egyszerűsített tárolók kezelése |StorSimple több eszközt a StorSimple Device Manager toomanage hello felhőbe központi kezelésére ad lehetőséget. |
-| Továbbfejlesztett vész-helyreállítási és megfelelőség |StorSimple elősegíti a gyorsabb vész-helyreállítási hello metaadatok azonnal visszaállítása, és igény szerint hello adat-visszaállítást. Ez azt jelenti, hogy a normál működés minimális megszakítás folytatása. |
-| Adatok mobilitási |Az adatok rétegzett toohello felhő elérhetők a helyreállítási és áttelepítési célokból más helyekre. Vegye figyelembe, hogy visszaállíthassa-e az adatok csak toohello eredeti virtuális tömb. Azonban használható vész helyreállítási funkciók toorestore hello teljes virtuális tömb tooanother virtuális tömb. |
+| Transzparens integráció |A virtuális tömbhöz az iSCSI- vagy SMB protokollt támogatja. Az adatátvitelt jelölik a helyi szint és a felhő szintjén között, zökkenőmentes és a felhasználó számára. |
+| Alacsonyabb tárolási költségek |A StorSimple kiépítése a leggyakrabban használt gyakran használt adatokkal az aktuális követelményeinek megfelelő helyi tárterület. Tárolási igényei nő, mivel a StorSimple rétegek ritkán használt adatok költséghatékony a felhőbeli tárhelyén. Az adatok deduplikációja és tömörített további a tárhellyel kapcsolatos követelmények és költségek csökkentése érdekében a felhőbe történő elküldése előtt. |
+| Egyszerűsített tárolók kezelése |StorSimple több eszköz kezelése a StorSimple Device Manager segítségével a felhőben központosított felügyeletet biztosít. |
+| Továbbfejlesztett vész-helyreállítási és megfelelőség |StorSimple gyorsabb vész-helyreállítási könnyíti meg a metaadatok azonnali visszaállítása és az adatok helyreállításához, igény szerint. Ez azt jelenti, hogy a normál működés minimális megszakítás folytatása. |
+| Adatok mobilitási |A felhőbe rétegzett adatok érhetők el a helyreállítási és áttelepítési célokból más helyekre. Vegye figyelembe, hogy visszaállíthatja az eredeti virtuális tömb csak az adatokat. Vész-helyreállítási szolgáltatás azonban egy másik virtuális tömb állítsa vissza a teljes virtuális tömb használhatja. |
 
 ## <a name="storsimple-workload-summary"></a>StorSimple a számítási feladatok összefoglalása
 
@@ -76,118 +76,118 @@ Támogatott StorSimple munkaterhelések összefoglalását az alábbi táblázat
 |ROBO együttműködés |Fájlmegosztás     |Igen      |Lásd: [fájlkiszolgáló határok](storsimple-ova-limits.md).<br></br>Lásd: [támogatott SMB verzióját rendszerkövetelményei](storsimple-ova-system-requirements.md).| Az összes verzió     |
 
 ## <a name="workflows"></a>Munkafolyamatok
-a StorSimple virtuális tömb hello különösen alkalmas munkafolyamatok következő hello:
+A StorSimple virtuális tömbjének értéke a következő munkafolyamatok különösen alkalmas:
 
 * [Felhőalapú tárolók kezelése](#cloud-based-storage-management)
 * [Független hely biztonsági mentése](#location-independent-backup)
 * [Adatok védelme és katasztrófa-helyreállítás](#data-protection-and-disaster-recovery)
 
 ### <a name="cloud-based-storage-management"></a>felhőalapú tárolók kezelése
-Hello StorSimple Device Manager szolgáltatás fut, az Azure portál toomanage adatok több eszközön tárolt hello több helyen is használhatja. Ez különösen fontos elosztott fiókirodai forgatókönyvben. Vegye figyelembe, hogy hello StorSimple Device Manager szolgáltatás toomanage virtuális tömbök és a fizikai StorSimple eszközökhöz külön példányát kell létrehozni. Ne feledje, hogy hello virtuális tömb most már használja a hello új Azure-portálon helyett hello a klasszikus Azure portálon.
+A StorSimple Device Manager szolgáltatás fut az Azure portál segítségével több eszközön, és több helyen tárolt adatok kezelését. Ez különösen fontos elosztott fiókirodai forgatókönyvben. Vegye figyelembe, hogy virtuális tömbök és a fizikai StorSimple eszközök kezelésére a StorSimple Device Manager szolgáltatás külön példányát kell létrehozni. Ne feledje, hogy a virtuális tömb most használja az új Azure-portálon a helyett a klasszikus Azure portálon.
 
 ![felhőalapú tárolók kezelése](./media/storsimple-ova-overview/cloud-based-storage-management.png)
 
 ### <a name="location-independent-backup"></a>Független hely biztonsági mentése
-Hello virtuális tömb felhőalapú pillanatfelvételek tartalmaz egy kötetet vagy megosztást helyfüggetlen, pont időponthoz kötött másolata. Felhőalapú pillanatfelvételek alapértelmezés szerint engedélyezve vannak, és nem tiltható le. Minden kötetek és megosztások biztonsági mentése hello, azonos időben keresztül napi biztonsági mentési házirend, és választhat, hogy további ad hoc biztonsági mentés minden szükséges.
+A virtuális tömbbel rendelkező felhőalapú pillanatfelvételek adjon meg egy kötetet vagy megosztást helyfüggetlen, pont időponthoz kötött másolata. Felhőalapú pillanatfelvételek alapértelmezés szerint engedélyezve vannak, és nem tiltható le. Minden kötetek és megosztások biztonsági mentése keresztül napi biztonsági mentési házirend egy időben, és további alkalmi biztonsági mentések minden szükséges vehet igénybe.
 
 ### <a name="data-protection-and-disaster-recovery"></a>Adatok védelme és katasztrófa-helyreállítás
-hello virtuális tömb támogatja az adatok védelme és vészhelyreállítási forgatókönyvek a következő hello:
+A virtuális tömb a következő adatok védelmére és vész-helyreállítási eljárással támogatja:
 
-* **Kötetet vagy megosztást visszaállítási** – hello visszaállítási használják az új munkafolyamat toorecover egy kötet vagy megosztás. Ez a megközelítés toorecover hello teljes kötetet vagy megosztást használja.
-* **Elemszintű helyreállítási** – megosztások hozzáférést egyszerűsített toorecent biztonsági mentéseket. Könnyen kártérítés fájlhoz egy speciális *.backup* hello felhőben elérhető mappát. A visszaállítási funkció felhasználói és rendszergazdai beavatkozás nélküli szükség.
-* **Vész-helyreállítási** – használható hello feladatátvételi képesség toorecover összes kötetek vagy megosztások tooa új virtuális tömb. Hozzon létre új virtuális tömb hello és hello StorSimple eszköz Manager szolgáltatásban való regisztrálása, majd átadja az eredeti virtuális tömb hello. új virtuális tömb hello azt fogja feltételezni hello kiosztott erőforrásokat. 
+* **Kötetet vagy megosztást visszaállítási** – segítségével a visszaállítás új munkafolyamatként helyreállíthat egy kötetet vagy megosztást. Ezt a módszert használja a teljes kötetet vagy megosztást helyreállításához.
+* **Elemszintű helyreállítási** – megosztások egyszerűsített hozzáférés legutóbbi biztonsági mentés engedélyezése. Könnyen kártérítés fájlhoz egy speciális *.backup* mappa elérhetővé a felhőben. A visszaállítási funkció felhasználói és rendszergazdai beavatkozás nélküli szükség.
+* **Vész-helyreállítási** – a feladatátvételi képességének használata helyreállítása a minden kötetek vagy megosztások egy új virtuális tömbhöz. Az új virtuális tömb létrehozása és a StorSimple eszköz Manager szolgáltatásban való regisztrálása, majd az eredeti virtuális tömb feladatátvételt. Az új virtuális tömb majd fogja feltételezni, hogy a kiosztott erőforrásokat. 
 
 ## <a name="storsimple-virtual-array-components"></a>A StorSimple virtuális tömb összetevők
-hello virtuális tömb hello a következő összetevőket tartalmazza:
+A virtuális tömb összetevői a következők:
 
 * [Virtuális tömb](#virtual-array) – egy hibrid felhő tárolóeszköz létre a virtuális környezet vagy a hipervizor a virtuális gép alapján.  
-* [StorSimple Device Manager szolgáltatás](#storsimple-device-manager-service) – az Azure-portál, amely lehetővé teszi egy vagy több StorSimple eszközt, amely földrajzilag különböző helyeken érhető el egyetlen webes felhasználói felületen keresztüli kezelését hello kiterjesztését. Akkor is hello StorSimple Device Manager szolgáltatás toocreate használja és szolgáltatások, megtekintheti és kezelheti az eszközöket és a riasztások, valamint kezelheti és kötetek, megosztások és a meglévő pillanatképeket.
-* [Helyi webes felhasználói felület](#local-web-user-interface) – egy webes felhasználói felület, amely használt tooconfigure hello eszközt, hogy azt toohello helyi hálózat, és regisztrálja a hello eszköz hello StorSimple Device Manager szolgáltatással. 
-* [Parancssori felület](#command-line-interface) – egy Windows PowerShell-felületet használható egy támogatási munkamenet toostart hello virtuális tömbben.
-  hello alábbi szakaszok ismertetik ezeket az összetevőket nagyobb részletességgel és azt ismertetik, hogyan hello megoldás adatok elrendezése, foglal helyet, és elősegíti a tárolók kezelése és az adatok védelmére.
+* [StorSimple Device Manager szolgáltatás](#storsimple-device-manager-service) – egy bővítményt, az Azure portál, amely lehetővé teszi egy vagy több StorSimple eszközt, amely földrajzilag különböző helyeken érhető el egyetlen webes felhasználói felületen keresztüli kezelését. A StorSimple Device Manager szolgáltatás segítségével hozzon létre és szolgáltatások, megtekintheti és kezelheti az eszközöket és a riasztások, valamint kezelheti és kötetek, megosztások és a meglévő pillanatképeket.
+* [Helyi webes felhasználói felület](#local-web-user-interface) – egy webes felhasználói felület, amellyel konfigurálja úgy az eszközt, hogy képes csatlakozni a helyi hálózathoz, és regisztrálja az eszközt a StorSimple eszköz Manager szolgáltatásban. 
+* [Parancssori felület](#command-line-interface) – egy Windows PowerShell felületet, amely segítségével a virtuális tömbben támogatási munkamenet indításához.
+  Az alábbi szakaszok ismertetik részletesebben ezeket az összetevőket, és azt ismertetik, hogyan a megoldás adatok elrendezése, foglal helyet, és elősegíti a tárolók kezelése és az adatok védelmére.
 
 ### <a name="virtual-array"></a>Virtuális tömb
-hello virtuális tömbjének értéke egy egy csomópontos tárolási megoldás, amely elsődleges tárolására szolgál, a felhőalapú tárolással kommunikációt kezeli, és segít tooensure hello biztonsági és az adatok bizalmas mivoltát összes hello eszközön tárolt.
+A virtuális tömbjének értéke egy egy csomópontos tárolási megoldás, amely elsődleges tárolására szolgál, kezeli a felhő tárolóeszközökkel való kommunikációhoz, és biztosítja a biztonsági és az eszközön tárolt összes adat bizalmasságát.
 
-egy olyan modell, amely letölthető hello virtuális tömb érhető el. hello virtuális tömb maximális kapacitása nem 6.4-es TB hello eszközt (az egy alapul szolgáló tárolási követelmény 8 TB-os) és 64 TB-ot, így a felhőbeli tárhelyén. 
+A virtuális tömb, amely letölthető egy modell érhető el. A virtuális tömb maximális kapacitása nem 6.4-es TB az eszközt (az egy alapul szolgáló tárolási követelmény 8 TB-os) és 64 TB-ot, így a felhőbeli tárhelyén. 
 
-hello virtuális tömb rendelkezik a következő funkciók hello:
+A virtuális tömb a következő funkciókkal rendelkezik:
 
 * Költséghatékony. Azt elérhetővé válnak a meglévő virtualizációs infrastruktúra használatára és a meglévő Hyper-V vagy VMware hipervizor telepíthetők.
-* Hello datacenter fájlcsoportban helyezkedik el, és az iSCSI-kiszolgáló vagy egy fájlkiszolgáló konfigurálhatók. 
-* Integrálva van a hello felhőalapú.
-* Biztonsági mentések hello felhőben, amely katasztrófa utáni helyreállítás elősegítheti és egyszerűbbé válik a elemszintű helyreállítás (ILR) vannak tárolva. 
-* Frissítések toohello virtuális tömb, is alkalmazhat, mint tooa fizikai eszköz akkor vonatkozik rájuk.
+* Az adatközpontban található, és az iSCSI-kiszolgáló vagy egy fájlkiszolgáló konfigurálhatók. 
+* Integrálva van a felhővel.
+* Biztonsági másolatai a felhőben, amely katasztrófa utáni helyreállítás elősegítheti és egyszerűbbé válik a elemszintű helyreállítás (ILR). 
+* A virtuális tömb frissítések alkalmazhatja, ugyanúgy, mint a lenne egy fizikai eszköz vonatkozik.
 
 > [!NOTE]
-> Egy virtuális tömb nem bonthatók ki. Ezért nagyon fontos tooprovision megfelelő tárolási hello virtuális tömb létrehozásakor. 
+> Egy virtuális tömb nem bonthatók ki. Ezért fontos a megfelelő tárolót létesíteni, a virtuális tömb létrehozásakor. 
 > 
 > 
 
 ### <a name="storsimple-device-manager-service"></a>A StorSimple eszköz kezelő szolgáltatás
-A Microsoft Azure StorSimple egy webes felhasználói felületet biztosít, amely lehetővé teszi, hogy toocentrally StorSimple Device Manager szolgáltatás hello StorSimple tárterület kezelése. Használhatja a hello StorSimple Device Manager szolgáltatás tooperform hello a következő feladatokat:
+Microsoft Azure StorSimple webes felhasználói felületet, a StorSimple eszköz kezelő szolgáltatás, amelynek segítségével központilag kezelheti a StorSimple tárolási biztosít. A StorSimple Device Manager szolgáltatás segítségével a következő feladatokat:
 
 * Egyetlen szolgáltatás több StorSimple virtuális tömbök kezelése. 
-* Konfigurálása és kezelése a StorSimple virtuális tömbök biztonsági beállításait. (A hello felhő titkosításra a Microsoft Azure API-k függ.)
+* Konfigurálása és kezelése a StorSimple virtuális tömbök biztonsági beállításait. (A felhő titkosításra a Microsoft Azure API-k függ.)
 * Tárfiók hitelesítő adatainak és a tulajdonságok konfigurálása.
 * Konfigurálása és kezelése a kötetek vagy megosztások.
 * Készítsen biztonsági másolatot, és a kötetek vagy megosztások adatairól.
 * Figyelemmel kísérni a teljesítményét.
 * Tekintse át a rendszer beállításait, és lehetséges problémák azonosításához.
 
-Hello StorSimple Device Manager szolgáltatás tooperform napi felügyeleti a virtuális tömb használhatja.
+A StorSimple Device Manager szolgáltatás a virtuális tömb napi felügyeleti használható.
 
-További információ: túl[használata hello StorSimple Device Manager szolgáltatás tooadminister a StorSimple eszköz](storsimple-virtual-array-manager-service-administration.md).
+További információkért látogasson el [felügyelete a StorSimple eszközt a StorSimple Device Manager szolgáltatással](storsimple-virtual-array-manager-service-administration.md).
 
 ### <a name="local-web-user-interface"></a>Helyi webes felhasználói felülete
-hello virtuális tömb magában foglalja a webes felhasználói Felületet, amely egyszeri konfigurálásának és regisztrációjának hello StorSimple Device Manager szolgáltatás hello eszköz szolgál. Akkor le tooshut használni és indítsa újra a hello virtuális tömb, diagnosztikai tesztek futtatása, szoftverek frissítése, hello eszköz rendszergazdai jelszavának módosítása, megtekintheti rendszer naplóit, és forduljon a Microsoft Support toofile szolgáltatási kérelem. 
+A virtuális tömb egy webes felhasználói felület egyszeri konfigurálásának és regisztrációjának az eszköz StorSimple Device Manager szolgáltatásban használt tartalmazza. Állítsa le és indítsa újra a virtuális tömb, diagnosztikai tesztek futtatása, szoftverek frissítése, az eszköz rendszergazdai jelszava, megtekintheti a rendszer naplóit, és kérje a Microsoft Support fájlt egy szolgáltatási kérelem használhatja. 
 
-További információ a webes felhasználói felület hello, nyissa meg túl[használata hello webes felhasználói felület tooadminister a StorSimple virtuális tömb](storsimple-ova-web-ui-admin.md).
+A webes felhasználói felület használatával kapcsolatos információkért látogasson el [a webes felhasználói felület segítségével felügyelheti a StorSimple virtuális tömb](storsimple-ova-web-ui-admin.md).
 
 ### <a name="command-line-interface"></a>Parancssori felület
-hello szereplő Windows PowerShell-felületet lehetővé teszi egy támogatási munkamenet Microsoft Support tooinitiate így meghatározhatja, hogy és a virtuális tömb előforduló megoldását.
+A belefoglalt Windows PowerShell-felületet lehetővé teszi a Microsoft Support támogatási munkamenetet kezdeményezni, így meghatározhatja, hogy és a virtuális tömb előforduló megoldását.
 
 ## <a name="storage-management-technologies"></a>Felügyeleti tárolótechnológiák
-Ezen felül virtuális tömb toohello és más olyan összetevők, hello StorSimple megoldás által használt hello technológiák tooprovide gyorselérési tooimportant szoftveradatokat a következő, csökkenthető a tároló fogyasztása és a virtuális tömb-on tárolt adatok védelme:
+A StorSimple megoldásban mellett a virtuális tömb és más olyan összetevők, a következő szoftver technológiákat használ a fontos adatok gyors hozzáférést biztosítanak, csökkenthető a tároló fogyasztása és a virtuális tömb-on tárolt adatok védelme:
 
 * [Automatikus tárolórétegzés](#automatic-storage-tiering) 
 * [Helyileg rögzített megosztásokat és -kötetek](#locally-pinned-shares-and-volumes)
-* [A deduplikáció és az adatok tömörítése rétegzett vagy biztonsági másolat toohello felhő](#deduplication-and-compression-for-data-tiered/backed-up-to-the-cloud) 
+* [A deduplikáció és az adatok tömörítése rétegzett, vagy a felhő biztonsági mentése](#deduplication-and-compression-for-data-tiered/backed-up-to-the-cloud) 
 * [Ütemezett és igény szerinti biztonsági mentések tiltása](#scheduled-and-on-demand-backups)
 
 ### <a name="automatic-storage-tiering"></a>Automatikus tárolórétegzés
-hello virtuális tömb hello virtuális tömb és hello felhő egy új rétegezési toomanage tárolt adatokat használ. Nincsenek csak két: hello helyi virtuális tárolótömböt és az Azure felhőbeli tárhelyén. a StorSimple virtuális tömb hello automatikusan hello rétegek hőtérkép, amely nyomon követi az aktuális használati, a korszűrő és a kapcsolatokat tooother adatok alapján történő rendezése a adatok. Adatokat, amelyek a legtöbb aktív (hottest) helyileg van tárolva, miközben kevesebb az aktív és inaktív adatokat a rendszer automatikusan át toohello felhő. (Minden biztonsági mentés hello felhőben vannak tárolva.) StorSimple állítja be, és újrarendezi az adatokat, és a használati minták tárolási hozzárendelését módosítsa. Például bizonyos adatokat válhatnak kevésbé aktív adott idő alatt. Fokozatosan kevésbé aktív válik, mivel azt többszintű toohello felhő ki. Ha ugyanazokat az adatokat ismét aktívvá válik, többszintű toohello tárolótömbhöz.
+A virtuális tömb új rétegezési mechanizmust alkalmaz a virtuális tömb és a felhőben tárolt adatok kezelését. Nincsenek csak két: a helyi virtuális tömb és az Azure felhőbeli tárhelyén. A StorSimple virtuális tömb adatok automatikusan elrendezi a rétegek hőtérkép, amely nyomon követi az aktuális használatát, kor, és kapcsolatok más adatok alapján történő. Adatok, amelyeket a legtöbb aktív (hottest) helyileg van tárolva, miközben kevesebb az aktív és inaktív adatok automatikusan át a felhőbe. (Az összes biztonsági másolatot a felhőben vannak tárolva.) StorSimple állítja be, és újrarendezi az adatokat, és a használati minták tárolási hozzárendelését módosítsa. Például bizonyos adatokat válhatnak kevésbé aktív adott idő alatt. Fokozatosan kevésbé aktív válik, mivel azt többszintű ki a felhőbe. Ha ugyanazokat az adatokat ismét aktívvá válik, akkor többszintű a tárolótömbhöz.
 
-Egy adott rétegzett fájlmegosztás vagy kötet adatait garantáltan a saját helyi rétegen terület. (körülbelül 10 %-a hello összes kiosztott lemezterület az adott fájlmegosztás vagy kötet). Ez csökkenti a rendelkezésre álló tár hello hello virtuális tömbben az adott fájlmegosztás vagy kötet, miközben biztosítja, hogy egy fájlmegosztás vagy kötet tárolótömbökhöz nem érinti hello rétegezési további kötetek vagy megosztások igényeinek. Így egy fájlmegosztás vagy kötet foglalt terhelése nem kényszerítheti ki más munkaterhelések toohello felhő. 
+Egy adott rétegzett fájlmegosztás vagy kötet adatait garantáltan a saját helyi rétegen terület. (körülbelül 10 %-a a teljes kiosztott lemezterület az adott fájlmegosztás vagy kötet). Ez csökkenti a rendelkezésre álló tár az adott fájlmegosztás vagy kötet virtuális tömbben, miközben biztosítja, hogy egy fájlmegosztás vagy kötet tárolótömbökhöz nem érinti a további kötetek vagy megosztások rétegezési igényeinek. Így egy fájlmegosztás vagy kötet foglalt terhelése nem kényszerítheti ki a felhőbe az összes többi munkaterhelését. 
 
 ![Automatikus tárolórétegzés](./media/storsimple-ova-overview/automatic-storage-tiering.png)
 
 > [!NOTE]
-> A helyileg rögzített kötet is megadhat, ebben az esetben a hello adatok hello virtuális tömb marad, és soha ne rétegzett toohello felhő. További információ: túl[helyileg rögzített megosztásokat és -kötetek](#locally-pinned-shares-and-volumes).
+> A helyileg rögzített kötet is megadhat, ebben az esetben az adatokat a virtuális tömbben marad, és soha ne rétegzett a felhőbe. További információkért látogasson el [helyileg rögzített megosztásokat és -kötetek](#locally-pinned-shares-and-volumes).
 > 
 > 
 
 ### <a name="locally-pinned-shares-and-volumes"></a>Helyileg rögzített megosztásokat és -kötetek
-Megfelelő megosztások és a helyileg rögzített kötetek is létrehozhat. Ez a funkció biztosítja, hogy a kritikus alkalmazások által megkövetelt adatok hello virtuális tömb marad, és soha ne rétegzett toohello felhő. Helyileg rögzített megosztásokat és -kötetek rendelkezik a következő funkciók hello: 
+Megfelelő megosztások és a helyileg rögzített kötetek is létrehozhat. Ez a funkció biztosítja, hogy a kritikus alkalmazások által megkövetelt adatok marad a virtuális tömbben, és soha nem többszintű a felhőbe. Helyileg rögzített megosztásokat és -kötetek az alábbi funkciókkal rendelkeznek: 
 
-* Nincsenek tulajdonos toocloud késések vagy kapcsolódási problémák.
+* Nincsenek felhő késések vagy kapcsolódási problémák.
 * Továbbra is részesülnek StorSimple felhőalapú biztonsági mentés és katasztrófa helyreállítási szolgáltatást.
 
 Visszaállíthatja egy helyileg rögzített vagy, rétegzett kötet vagy egy rétegzett fájlmegosztás vagy kötet, helyileg rögzített. 
 
-A helyileg rögzített kötetekhez kapcsolatos további információkért lásd az túl[hello StorSimple Device Manager szolgáltatás toomanage köteteket](storsimple-virtual-array-manage-volumes.md).
+További információ a helyileg rögzített kötetekhez Ugrás [kötetek kezelése a StorSimple Device Manager szolgáltatással](storsimple-virtual-array-manage-volumes.md).
 
-### <a name="deduplication-and-compression-for-data-tiered-or-backed-up-toohello-cloud"></a>A deduplikáció és az adatok tömörítése rétegzett vagy biztonsági másolat toohello felhő
-StorSimple használja a deduplikáció és az adatok tömörítésének toofurther csökkenti a tárolási követelményeket hello felhőben. A deduplikáció csökkenti hello tárolt hello adatkészlet redundanciájának kiküszöbölése révén tárolt adatok teljes mennyisége. Információk változásával StorSimple figyelmen kívül hagyja változatlanul hello adatok, és csak a hello változtatásokat rögzíti. Emellett a StorSimple csökkenti tárolt adatok mennyisége hello azonosításához, és eltávolítja az ismétlődő adatokat. 
+### <a name="deduplication-and-compression-for-data-tiered-or-backed-up-to-the-cloud"></a>A deduplikáció és az adatok tömörítése rétegzett, vagy a felhő biztonsági mentése
+StorSimple deduplikációs és az adatok tömörítésének használatával további csökkentése érdekében a felhőben. A deduplikáció összességében jelentősen csökkenti a tárolt adatkészlet redundanciájának kiküszöbölése révén tárolt adatok. Adat változik, StorSimple figyelmen kívül hagyja a nem módosított adatainak és csak a változtatásokat rögzíti. Továbbá a StorSimple csökkenti a tárolt adatok mennyisége azonosításával és az ismétlődő adatok eltávolítása. 
 
 > [!NOTE]
-> A virtuális tömb hello tárolt adatokat nem deduplikált vagy tömörített. Minden deduplikációs és tömörítés következik be, mielőtt hello adatküldést toohello felhő.
+> A virtuális tömb-on tárolt adatok nem deduplikált vagy tömörített. Minden deduplikációs, és tömörítés akkor fordul elő, előtt a adatküldést a felhőbe.
 > 
 > 
 
 ### <a name="scheduled-and-on-demand-backups"></a>Ütemezett és igény szerinti biztonsági mentések tiltása
-StorSimple adatbiztonsági funkciók lehetővé teszik a toocreate igény szerinti biztonsági mentéseket. Emellett egy alapértelmezett biztonsági mentés ütemezése biztosítja, hogy az adatokról napi fel. Biztonsági mentések hello felhőben tárolt növekményes pillanatképek hello formában készül. Csak hello változások rögzítéséhez hello utolsó biztonsági mentés óta, pillanatképeket hozható létre és gyorsan visszaállítva. Ezeket a pillanatképeket különösen fontos a vész-helyreállítási eljárással lehet, mert cserélje le a másodlagos tárterületre rendszerek (például a szalagos biztonsági mentés), és lehetővé teszik adatok tooyour datacenter vagy tooalternate helyek toorestore szükség esetén.
+StorSimple adatbiztonsági funkciók lehetővé teszik a igény szerinti biztonsági mentések létrehozását. Emellett egy alapértelmezett biztonsági mentés ütemezése biztosítja, hogy az adatokról napi fel. Biztonsági mentés készül növekményes pillanatképet, amely a felhőben vannak tárolva formájában. Jegyezze fel a módosítások csak az utolsó biztonsági mentés óta, pillanatképeket hozható létre és gyorsan visszaállítva. Ezeket a pillanatképeket különösen fontos a vész-helyreállítási eljárással lehet, mert cserélje le a másodlagos tárterületre rendszerek (például a szalagos biztonsági mentés), és lehetővé teszik az adatok helyreállítását a datacenter vagy a másodlagos helyek szükség esetén.
 
 ## <a name="next-steps"></a>Következő lépések
-Ismerje meg, hogyan túl[hello virtuális tömb portal előkészítése](storsimple-virtual-array-deploy1-portal-prep.md).
+Megtudhatja, hogyan [készítse elő a virtuális tömb portal](storsimple-virtual-array-deploy1-portal-prep.md).
 

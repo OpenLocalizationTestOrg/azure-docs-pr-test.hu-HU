@@ -1,6 +1,6 @@
 ## <a name="prerequisites"></a>Előfeltételek 
-toocomplete ebben az oktatóanyagban rendelkeznie kell egy virtuális merevlemez feltöltött fájl toohello tárfiók társított hello labor hello egyéni lemezkép létrehozásához. Válassza ki valamelyik a következő hivatkozások tooupload hello egy VHD-fájlt:
+Az oktatóanyag elvégzéséhez egy VHD-fájl feltöltése a tárolási fiók, amelyben az egyéni lemezképet hoz létre a labor társított kell rendelkeznie. A VHD-fájl feltöltése az alábbi hivatkozások közül választhat:
 
-- [Hello AzCopy parancssori segédprogrammal feltöltése](../articles/devtest-lab/devtest-lab-upload-vhd-using-azcopy.md)
-- [Töltse fel a Microsoft Azure Tártallózó hello használata](../articles/devtest-lab/devtest-lab-upload-vhd-using-storage-explorer.md)
-- [Töltse fel a hello PowerShell konzol használata](../articles/devtest-lab/devtest-lab-upload-vhd-using-powershell.md)
+- [Töltse fel az AzCopy parancssori segédprogrammal](../articles/devtest-lab/devtest-lab-upload-vhd-using-azcopy.md)
+- [Töltse fel a Microsoft Azure Tártallózó használatával](../articles/devtest-lab/devtest-lab-upload-vhd-using-storage-explorer.md)
+- [Töltse fel a PowerShell-konzollal](../articles/devtest-lab/devtest-lab-upload-vhd-using-powershell.md)

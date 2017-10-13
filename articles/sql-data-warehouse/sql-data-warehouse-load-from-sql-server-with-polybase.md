@@ -1,6 +1,6 @@
 ---
-title: "aaaLoad adatokat az SQL Serverről az Azure SQL Data Warehouse-(ba PolyBase) |} Microsoft Docs"
-description: "Az Azure SQL Data Warehouse bcp tooexport adatokat SQL Server tooflat fájlok, az AZCopy tooimport adatok tooAzure blob-tároló és a PolyBase tooingest hello adatokat használ."
+title: "Adatok betöltése az SQL Serverről az Azure SQL Data Warehouse-ba (PolyBase) | Microsoft Docs"
+description: "A bcp segítségével exportál adatokat az SQL Serverről egybesimított fájlokba, az AzCopy segítségével importál adatokat az Azure Blob Storage-ban, és a PolyBase használatával viszi be az adatokat az SQL Data Warehouse-ba."
 services: sql-data-warehouse
 documentationcenter: NA
 author: ckarst
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: loading
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
-ms.openlocfilehash: 1346fb016e0538a44426671bf4e29358cb24f7ab
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 966100094f98bae41bf90df500d005fa78b31ec3
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="load-data-with-polybase-in-sql-data-warehouse"></a>Adatok betöltése a PolyBase-zel az SQL Data Warehouse-ba
 > [!div class="op_single_selector"]
@@ -29,32 +29,32 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Ez az oktatóanyag bemutatja, hogyan tooload adatokat az SQL Data Warehouse-bA az AzCopy és a PolyBase használatával. Az oktatóanyag végére elsajátíthatja a következőket:
+Ez az oktatóanyag bemutatja, hogyan lehet adatokat betölteni az SQL Data Warehouse-ba az AzCopy és a PolyBase segítségével. Az oktatóanyag végére elsajátíthatja a következőket:
 
-* AzCopy toocopy adatok tooAzure blob storage használata
-* Adatbázis-objektumok toodefine hello adatok létrehozása
-* Futtassa a T-SQL lekérdezés tooload hello adatok
+* Adatok másolása az Azure Blob Storage-ba az AzCopy segítségével
+* Adatbázis-objektumok létrehozása az adatok meghatározásához
+* T-SQL lekérdezés futtatása az adatok betöltéséhez
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Loading-data-with-PolyBase-in-Azure-SQL-Data-Warehouse/player]
 > 
 > 
 
 ## <a name="prerequisites"></a>Előfeltételek
-az oktatóanyag teljesítéséhez toostep, szüksége
+Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
 
 * Egy SQL Data Warehouse-adatbázis.
 * Egy standard helyileg redundáns tárolás (Standard-LRS), standard georedundáns tárolás (Standard-GRS) vagy standard írásvédett georedundáns tárolás (Standard-RAGRS) típusú Azure Storage-fiók.
-* AzCopy parancssori segédprogram Töltse le és telepítse a hello [az AzCopy legújabb verzióját] [ latest version of AzCopy] amely hello Microsoft Azure Storage-eszközökkel együtt települ.
+* AzCopy parancssori segédprogram Töltse le és telepítse [az AzCopy legújabb verzióját][latest version of AzCopy], amely a Microsoft Azure Storage-eszközökkel együtt települ.
   
     ![Azure Storage-eszközök](./media/sql-data-warehouse-get-started-load-with-polybase/install-azcopy.png)
 
-## <a name="step-1-add-sample-data-tooazure-blob-storage"></a>1. lépés: A minta adatok tooAzure blob-tároló hozzáadása
-Rendelés tooload adatok igazolnia kell tooput néhány adatot az Azure blob storage-be. Ebben a lépésben feltöltünk egy Azure Storage-blobot mintaadatokkal. Később használjuk a PolyBase tooload ezeket a mintaadatokat az SQL Data Warehouse-adatbázisba.
+## <a name="step-1-add-sample-data-to-azure-blob-storage"></a>1. lépés: Mintaadatok felvétele az Azure Blob Storage-ba
+Az adatok betöltéséhez mintaadatokat kell helyeznünk egy Azure blobtárolóba. Ebben a lépésben feltöltünk egy Azure Storage-blobot mintaadatokkal. Később a PolyBase segítségével töltjük majd be ezeket a mintaadatokat az SQL Data Warehouse-adatbázisba.
 
 ### <a name="a-prepare-a-sample-text-file"></a>A. Minta szöveges fájl előkészítése
-minta szöveges fájl tooprepare:
+Minta szöveges fájl előkészítése:
 
-1. Nyissa meg a Jegyzettömbben, és másolja hello az alábbi adatsorokat egy új fájlba. % Temp%\DimDate2.txt a tooyour helyi ideiglenes könyvtárba menteni.
+1. Nyissa meg a Jegyzettömböt, és másolja az alábbi adatsorokat egy új fájlba. Mentse a fájlt a helyi átmeneti könyvtárba %temp%\DimDate2.txt néven.
 
 ```
 20150301,1,3
@@ -72,11 +72,11 @@ minta szöveges fájl tooprepare:
 ```
 
 ### <a name="b-find-your-blob-service-endpoint"></a>B. A Blob-szolgáltatásvégpont megkeresése
-toofind a blob-szolgáltatásvégpont:
+A Blob-szolgáltatásvégpont megkeresése:
 
-1. Hello Azure portálon válassza **Tallózás** > **Tárfiókok**.
-2. Kattintson a kívánt toouse hello tárfiókra.
-3. Hello Storage-fiók panelen kattintson a Blobok elemre
+1. Az Azure Portalon válassza a **Tallózás** > **Storage-fiókok** lehetőséget.
+2. Kattintson a használni kívánt tárfiókra.
+3. A Storage-fiók panelen kattintson a Blobok elemre
    
     ![Kattintson a Blobok elemre](./media/sql-data-warehouse-get-started-load-with-polybase/click-blobs.png)
 4. Mentse a Blob-szolgáltatásvégpontot későbbi használatra.
@@ -84,67 +84,67 @@ toofind a blob-szolgáltatásvégpont:
     ![Blob-szolgáltatásvégpont](./media/sql-data-warehouse-get-started-load-with-polybase/blob-service.png)
 
 ### <a name="c-find-your-azure-storage-key"></a>C. Az Azure Storage-kulcs megkeresése
-toofind az Azure storage-kulcs:
+Az Azure Storage-kulcs megkeresése:
 
-1. Hello Azure portált, válassza ki **Tallózás** > **Tárfiókok**.
-2. Kattintson a kívánt toouse hello tárfiók.
+1. Az Azure Portalon válassza a **Tallózás** > **Storage-fiókok** lehetőséget.
+2. Kattintson a használni kívánt tárfiókra.
 3. Válassza az **Összes beállítás** > **Hívóbetűk** lehetőséget.
-4. Kattintson a hello másolási mezőben toocopy a hozzáférési kulcsok toohello vágólapra egyikét.
+4. Kattintson a másolás mezőre az egyik hívóbetű vágólapra másolásához.
    
     ![Az Azure Storage-kulcs másolása](./media/sql-data-warehouse-get-started-load-with-polybase/access-key.png)
 
-### <a name="d-copy-hello-sample-file-tooazure-blob-storage"></a>D. Másolja a hello minta fájl tooAzure blob-tároló
-toocopy az adatok tooAzure blob-tároló:
+### <a name="d-copy-the-sample-file-to-azure-blob-storage"></a>D. A mintafájl Azure Blob Storage-ba másolása
+Adatok másolása az Azure Blob Storage-ba:
 
-1. Nyisson meg egy parancssort, és módosítsa a könyvtárakat toohello AzCopy telepítési könyvtárára. Ez a parancs módosítja egy 64 bites Windows-ügyfelén toohello alapértelmezett telepítési könyvtárra.
+1. Nyisson meg egy parancssort, és módosítsa a könyvtárakat az AzCopy telepítési könyvtárára. Ez a parancs az alapértelmezett telepítési könyvtárra vált egy 64 bites Windows-ügyfélen.
    
     ```
     cd /d "%ProgramFiles(x86)%\Microsoft SDKs\Azure\AzCopy"
     ```
-2. Futtassa a következő parancs tooupload hello fájl hello. Adja meg a(z) <blob service endpoint URL> Blob-szolgáltatásvégpont URL-jét és az <azure_storage_account_key> Azure Storage-fiók kulcsát.
+2. A fájl feltöltéséhez futtassa az alábbi parancsot. Adja meg a(z) <blob service endpoint URL> Blob-szolgáltatásvégpont URL-jét és az <azure_storage_account_key> Azure Storage-fiók kulcsát.
    
     ```
     .\AzCopy.exe /Source:C:\Temp\ /Dest:<blob service endpoint URL> /datacontainer/datedimension/ /DestKey:<azure_storage_account_key> /Pattern:DimDate2.txt
     ```
 
-Lásd még: [Ismerkedés az AzCopy parancssori segédprogram hello][latest version of AzCopy].
+Lásd még [az AzCopy parancssori segédprogram használatát ismertető][latest version of AzCopy] részt.
 
 ### <a name="e-explore-your-blob-storage-container"></a>E. A Blob Storage-tároló áttekintése
-toosee hello tooblob tárolási feltöltött fájlban:
+A Blob Storage-ba feltöltött fájl megtekintése:
 
-1. Lépjen vissza a tooyour Blob szolgáltatás panelre.
+1. Térjen vissza a Blob szolgáltatás panelre.
 2. A Tárolók területen kattintson duplán a **datacontainer** elemre.
-3. tooexplore hello elérési tooyour adatokat, kattintson a hello mappa **datedimension** és látni fogja a feltöltött fájl **DimDate2.txt**.
-4. tooview tulajdonságait, kattintson a **DimDate2.txt**.
-5. Vegye figyelembe, hogy a hello Blob tulajdonságai panelen letöltheti és hello fájl törlése.
+3. Az adatok elérési útjának megtekintéséhez kattintson a **datedimension** elemre, és megjelenik a **DimDate2.txt** nevű feltöltött fájl.
+4. A tulajdonságok megtekintéséhez kattintson a **DimDate2.txt** elemre.
+5. Ne feledje, hogy a Blob tulajdonságai panelen letöltheti és törölheti a fájlt.
    
     ![Az Azure Storage-blob megtekintése](./media/sql-data-warehouse-get-started-load-with-polybase/view-blob.png)
 
-## <a name="step-2-create-an-external-table-for-hello-sample-data"></a>2. lépés: Mintaadatok hello a külső tábla létrehozása
-Ebben a szakaszban létrehozhatunk egy külső táblát, amely meghatározza a hello mintaadatok.
+## <a name="step-2-create-an-external-table-for-the-sample-data"></a>2. lépés: Külső tábla létrehozása a mintaadatokhoz
+Ebben a szakaszban létrehozunk külső táblát, amely a mintaadatokat határozza meg.
 
-A polybase külső táblák tooaccess adatok Azure blob Storage tárolóban. Hello adatok nem tárolja az SQL Data Warehouse, mivel a PolyBase kezeli a hitelesítési toohello külső adatokat egy adatbázishoz kötődő hitelesítő adatok használatával.
+A PolyBase külső táblák segítségével fér hozzá az adatokhoz az Azure Blob Storage-ban. Mivel a rendszer nem az SQL Data Warehouse-ban az adatokat, a PolyBase adatbázis-alapú kötődő hitelesítési adatokkal végzi a külső adatok hitelesítését.
 
-hello példa ebben a lépésben a Transact-SQL utasítás toocreate a külső tábla használja.
+Az ebben a példában található példa a következő Transact-SQL utasításokkal hoz létre külső táblákat.
 
-* [Hozzon létre Master Key (Transact-SQL)] [ Create Master Key (Transact-SQL)] tooencrypt hello titka az adatbázishoz kötődő hitelesítő adatok.
-* [Hozzon létre Database Scoped Credential (Transact-SQL)] [ Create Database Scoped Credential (Transact-SQL)] toospecify hitelesítési adatainak megadása az Azure storage-fiók.
-* [Külső adatforrás (Transact-SQL) létrehozása] [ Create External Data Source (Transact-SQL)] az Azure blob storage toospecify hello helyét.
-* [Hozzon létre a külső fájlformátumot (Transact-SQL)] [ Create External File Format (Transact-SQL)] toospecify hello adatformátum.
-* [Hozzon létre a külső tábla (Transact-SQL)] [ Create External Table (Transact-SQL)] toospecify hello tábladefiníció és helyének hello adatokat.
+* [Create Master Key (Transact-SQL)][Create Master Key (Transact-SQL)] (Mesterkulcs létrehozása) az adatbázishoz kötődő hitelesítő adatok titkosításához.
+* [Create Database Scoped Credential (Transact-SQL)][Create Database Scoped Credential (Transact-SQL)] (Adatbázishoz kötődő hitelesítő adatok létrehozása) az Azure Storage-fiókhoz tartozó hitelesítési adatok megadásához.
+* [Create External Data Source (Transact-SQL)][Create External Data Source (Transact-SQL)] (Külső adatforrás létrehozása) az Azure Blob Storage helyének megadásához.
+* [Create External File Format (Transact-SQL)][Create External File Format (Transact-SQL)] (Külső fájlformátum létrehozása) az adatformátum megadásához.
+* [Create External Table (Transact-SQL)][Create External Table (Transact-SQL)] (Külső tábla létrehozása) a tábladefiníció és az adatok helyének megadásához.
 
-Futtassa ezt a lekérdezést az SQL Data Warehouse-adatbázison. Egy külső táblát dimdate2external néven hello dbo sémában, amely toohello DimDate2.txt mintaadataira mutat hello Azure blob Storage tárolóban hoz létre.
+Futtassa ezt a lekérdezést az SQL Data Warehouse-adatbázison. Létrehoz egy külső táblát DimDate2External néven a dbo sémában, amely az Azure Blob Storage DimDate2.txt mintaadataira mutat.
 
 ```sql
 -- A: Create a master key.
 -- Only necessary if one does not already exist.
--- Required tooencrypt hello credential secret in hello next step.
+-- Required to encrypt the credential secret in the next step.
 
 CREATE MASTER KEY;
 
 
 -- B: Create a database scoped credential
--- IDENTITY: Provide any string, it is not used for authentication tooAzure storage.
+-- IDENTITY: Provide any string, it is not used for authentication to Azure storage.
 -- SECRET: Provide your Azure storage account key.
 
 
@@ -156,9 +156,9 @@ WITH
 
 
 -- C: Create an external data source
--- TYPE: HADOOP - PolyBase uses Hadoop APIs tooaccess data in Azure blob storage.
+-- TYPE: HADOOP - PolyBase uses Hadoop APIs to access data in Azure blob storage.
 -- LOCATION: Provide Azure storage account name and blob container name.
--- CREDENTIAL: Provide hello credential created in hello previous step.
+-- CREDENTIAL: Provide the credential created in the previous step.
 
 CREATE EXTERNAL DATA SOURCE AzureStorage
 WITH (
@@ -180,10 +180,10 @@ WITH (
 );
 
 
--- E: Create hello external table
--- Specify column names and data types. This needs toomatch hello data in hello sample file.
--- LOCATION: Specify path toofile or directory that contains hello data (relative toohello blob container).
--- toopoint tooall files under hello blob container, use LOCATION='.'
+-- E: Create the external table
+-- Specify column names and data types. This needs to match the data in the sample file.
+-- LOCATION: Specify path to file or directory that contains the data (relative to the blob container).
+-- To point to all files under the blob container, use LOCATION='.'
 
 CREATE EXTERNAL TABLE dbo.DimDate2External (
     DateId INT NOT NULL,
@@ -197,25 +197,25 @@ WITH (
 );
 
 
--- Run a query on hello external table
+-- Run a query on the external table
 
 SELECT count(*) FROM dbo.DimDate2External;
 
 ```
 
 
-Az SQL Server Object Explorerben a Visual Studio láthatja, hogy hello külső fájlformátumot, a külső adatforrást és a hello DimDate2External táblát.
+Az SQL Server Object Explorerben a Visual Studióban megtekintheti a külső fájlformátumot, a külső adatforrást és a DimDate2External táblát.
 
 ![Külső tábla megtekintése](./media/sql-data-warehouse-get-started-load-with-polybase/external-table.png)
 
 ## <a name="step-3-load-data-into-sql-data-warehouse"></a>3. lépés: Adatok betöltése az SQL Data Warehouse-ba
-Hello külső tábla létrehozása után hello adatok betöltése az új tábla, vagy szúrja be egy meglévő táblába.
+Ha létrejött a külső tábla, betöltheti az adatokat egy új táblába, vagy beszúrhatja őket egy meglévő táblába.
 
-* tooload hello adatok új táblába, futtassa a hello [CREATE TABLE AS SELECT (Transact-SQL)] [ CREATE TABLE AS SELECT (Transact-SQL)] utasítást. hello új tábla tartalmazza hello hello lekérdezésben szereplő oszlopokat. hello oszlopok adattípusai hello fog egyezni hello adattípusok a hello külső tábla definíciójában.
-* tooload hello adatok meglévő táblába, használja a hello [INSERT... SELECT (Transact-SQL)] [ INSERT...SELECT (Transact-SQL)] utasítást.
+* Az adatok új táblába való betöltéséhez futtassa a [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)] utasítást. Az új tábla tartalmazza a lekérdezésben szereplő oszlopokat. Az oszlopok adattípusai megfelelnek a külső tábla definíciójában szereplő adattípusoknak.
+* Az adatok meglévő táblába való betöltéséhez használja az [INSERT ---SELECT (Transact-SQL)][INSERT...SELECT (Transact-SQL)] utasítást.
 
 ```sql
--- Load hello data from Azure blob storage tooSQL Data Warehouse
+-- Load the data from Azure blob storage to SQL Data Warehouse
 
 CREATE TABLE dbo.DimDate2
 WITH
@@ -228,9 +228,9 @@ SELECT * FROM [dbo].[DimDate2External];
 ```
 
 ## <a name="step-4-create-statistics-on-your-newly-loaded-data"></a>4. lépés: Statisztikák létrehozása az újonnan betöltött adatokról
-Az SQL Data Warehouse nem tudja automatikus létrehozni és frissíteni a statisztikákat. Ezért tooachieve a lekérdezési teljesítmény, fontos toocreate statisztika hello után minden tábla minden oszlopához először betölteni. Célszerű is fontos tooupdate statisztika hello adatok lényeges módosításai után.
+Az SQL Data Warehouse nem tudja automatikus létrehozni és frissíteni a statisztikákat. A lekérdezési teljesítmény eléréséhez ezért fontos statisztikákat létrehozni minden tábla minden oszlopához az első betöltéskor. Fontos a statisztikák frissítése is az adatok lényeges módosításai után.
 
-Ez a példa egyoszlopos statisztikát hoz létre hello új DimDate2 táblához.
+Ez a példa egyoszlopos statisztikát hoz létre az új DimDate2 táblához.
 
 ```sql
 CREATE STATISTICS [DateId] on [DimDate2] ([DateId]);
@@ -238,10 +238,10 @@ CREATE STATISTICS [CalendarQuarter] on [DimDate2] ([CalendarQuarter]);
 CREATE STATISTICS [FiscalQuarter] on [DimDate2] ([FiscalQuarter]);
 ```
 
-több, lásd: toolearn [statisztika][Statistics].  
+További tudnivalók: [Statisztika][Statistics].  
 
 ## <a name="next-steps"></a>Következő lépések
-Lásd: hello [PolyBase-útmutatóban] [ PolyBase guide] -t a PolyBase használó megoldások fejlesztéséről további információkat.
+A PolyBase-t használó megoldások fejlesztéséről a [PolyBase-útmutatóban][PolyBase guide] találhat további információt.
 
 <!--Image references-->
 

@@ -1,8 +1,8 @@
 ---
-title: "SQL Server Stretch Database dokumentációjában - aaaAzure oktatóanyagok |} Microsoft Docs"
-description: "Ismerje meg, hogyan toouse SQL Server Stretch Database toomigrate ritkán használt adatok biztonságosan módosítása nélkül tooAzure lekérdezi és alkalmazásokat. Oktatóanyagok és egyéb dokumentációk."
+title: "Az Azure SQL Server Stretch Database dokumentációja – oktatóanyagok | Microsoft Docs"
+description: "Megismerheti, hogyan használhatja az SQL Server Stretch Database-t a ritkán használt adatok biztonságos áttelepítésére az Azure-ba a lekérdezések vagy alkalmazások módosítása nélkül. Oktatóanyagok és egyéb dokumentációk."
 services: sql-server-stretch-database
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 2b009d80224a62d940ec8b11de22ad8c0865d869
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: cbdd210f2fe46228daa8c138815826df2b3b0fd7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 #<a name="sql-server-stretch-database-documentation"></a>Az SQL Server Stretch Database dokumentációja
 
-Megtudhatja, hogyan toouse SQL Server Stretch-adatbázis használati ideje toomigrate ritkán használt adatok transzparens módon és biztonságosan toohello Azure cloud. Oktatóanyagok és egyéb dokumentáció súgó beállítása olyan adatbázisok esetén költséghatékony elérhetőségét a ritkán használt adatok anélkül, hogy a módosítások tooexisting lekérdezéseket vagy alkalmazásokat.
+Megismerheti, hogyan használhatja az SQL Server Stretch Database-t a ritkán használt adatok átlátható és biztonságos áttelepítésére az Azure-felhőbe. Az oktatóanyagok és egyéb dokumentációk segítenek a ritkábban használt adatokat tartalmazó adatbázisok költséghatékony rendelkezésre állásának beállításában anélkül, hogy a meglévő lekérdezéseket vagy alkalmazásokat módosítani kellene.
 
 
 <ul class="panelContent cardsFTitle">
@@ -89,7 +89,7 @@ Megtudhatja, hogyan toouse SQL Server Stretch-adatbázis használati ideje toomi
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Hello SQL Server Stretch Database varázsló használatának megkezdése</h3>
+                        <h3>A használat megkezdése az SQL Server Stretch Database varázslóval</h3>
                     </div>
                 </div>
             </div>

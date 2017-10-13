@@ -1,6 +1,6 @@
 ---
-title: "Hálózati biztonsági aaaAzure |} Microsoft Docs"
-description: "További információk a felhőalapú számítási szolgáltatás, amely tartalmazza a számítási példányokért széles kijelölt & szolgáltatások automatikusan toomeet hello igényeinek az alkalmazás vagy a vállalati fel és le is méretezhető."
+title: "Az Azure hálózati biztonság |} Microsoft Docs"
+description: "További információk a felhőalapú számítási szolgáltatás, amely tartalmazza a számítási példányokért széles kijelölt & szolgáltatások, amely is fel-le automatikusan az alkalmazás vagy a vállalat igényeinek."
 services: security
 documentationcenter: na
 author: UnifyCloud
@@ -14,56 +14,56 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/24/2017
 ms.author: TomSh
-ms.openlocfilehash: 7dae83bbe338a2727575447583a7fb773527dd59
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6ab59dd02391287a1effc0b51502bb7eb90db319
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="azure-network-security"></a>Az Azure hálózati biztonság
 
-Tudjuk, hogy biztonsági-e a feladat hello felhőben, és hogy mennyire fontos, hogy található-e az Azure biztonsági pontos és időben információt. Hello legjobb okok toouse Azure az alkalmazások és szolgáltatások egyik tootake Azure széles köréről a biztonsági eszközök és képességek előnyeit. Ezekkel az eszközökkel és képességek segítségével lehetséges toocreate biztonságos megoldások elérhetővé hello Azure platformon.
+Tudjuk, hogy biztonsági-e a feladat a felhőben, és hogy mennyire fontos, hogy található-e az Azure biztonsági pontos és időben információt. A legjobb okok miatt az alkalmazások és szolgáltatások Azure használandó egyik széles köréről Azure a biztonsági eszközök és képességek előnyeit. Ezekkel az eszközökkel és képességek segítségével történő biztonságos megoldások létrehozása az Azure platformon.
 
-A Microsoft Azure a titkosítás, integritás és rendelkezésre állás ügyféladatok, biztosítása átlátszó elszámolási kötelezettségéről szóló biztosít. toohelp jobban megismerte hálózati biztonsági vezérlők hello az ügyfél szempontjából a Microsoft Azure-ban végrehajtott hello gyűjteménye, ez, "Azure hálózati biztonság", a cikk tooprovide egy átfogó pillantást hello hálózati biztonság a vezérlő érhető el a Microsoft Azure-ban.
+A Microsoft Azure a titkosítás, integritás és rendelkezésre állás ügyféladatok, biztosítása átlátszó elszámolási kötelezettségéről szóló biztosít. Segítséget jobb megértése érdekében a hálózati biztonsági vezérlők megvalósítva a Microsoft Azure-ban, az ügyfél szempontjából gyűjteménye, ez, "Azure hálózati biztonság", a cikk biztosításához egy átfogó nézze meg a hálózati biztonsági vezérlő érhető el a Microsoft Azure-ban.
 
-A dokumentum célja hello azokat a hálózati kapcsolatban szabályozza, hogy tooinform tooenhance hello biztonsági telepít hello megoldások konfigurálhatja az Azure-ban. Ha érdekli milyen Microsoft does toosecure hello hálózati háló a hello Azure platformon, magát, a hello hello Azure biztonsági című [Microsoft Trust Center](https://www.microsoft.com/trustcenter/security/azure-security).
+A célja, hogy azonosítható, hogy a hálózati vezérlő kell továbbfejleszteni a biztonságot a megoldások Azure központi telepítését konfigurálhatja széles körét. Ha érdekli a Microsoft nem biztonságos a hálózati háló az Azure platform magát, az Azure biztonsági szakaszában talál a [Microsoft Trust Center](https://www.microsoft.com/trustcenter/security/azure-security).
 
 ## <a name="azure-platform"></a>Azure-platform
 
-Azure egy nyilvános felhőszolgáltatási platform, amely támogatja az operációs rendszerek, programozási nyelvek, keretrendszerek, eszközök, adatbázisok és eszközök széles körű kijelölés.  Linux-tárolók futtatható a Docker integrációja; alkalmazások, JavaScript, Python, .NET, PHP, Java és Node.js; build vissza-végpontok iOS, Android és Windows eszközökhöz. Azure felhőszolgáltatások hello azonos technológiák több millió fejlesztők és informatikai szakemberek számára már alapulnak, és megbízható támogatja.
+Azure egy nyilvános felhőszolgáltatási platform, amely támogatja az operációs rendszerek, programozási nyelvek, keretrendszerek, eszközök, adatbázisok és eszközök széles körű kijelölés.  Linux-tárolók futtatható a Docker integrációja; alkalmazások, JavaScript, Python, .NET, PHP, Java és Node.js; build vissza-végpontok iOS, Android és Windows eszközökhöz. Azure felhőszolgáltatások támogatja a fejlesztők milliói technológiát és informatikai szakemberek számára már alapulnak, és megbízható.
 
-Amikor létrehozása vagy áttelepítése informatikai eszközök, egy nyilvános felhőszolgáltatóhoz, akkor vannak hagyatkoznia adott szervezet képességek tooprotect az alkalmazások és adatok hello szolgáltatások és hello vezérlők toomanage hello biztonságát, a felhő alapú biztosítanak eszközök.
+Létrehozása vagy áttelepítése informatikai eszközök, a nyilvános felhőbeli szolgáltatás szolgáltatója, akkor vannak támaszkodva az alkalmazások és a szolgáltatások és a biztonsági a felhő alapú eszközök kezelésére adathordozóira vezérlők adatok védelme érdekében, hogy szervezete képességek.
 
-Azure infrastruktúrája a hello létesítmény tooapplications felhasználók millióit egyidejűleg üzemeltetéséhez készült, és egy megbízható foundation, amelyre vállalatok megfelel a biztonsági követelményeknek biztosít. Emellett Azure biztosít konfigurálható biztonsági beállítások és hello képességét toocontrol rengeteg őket, hogy a biztonsági toomeet hello egyéni követelményeinek a szervezet központi telepítések szabhatja testre.
+Azure infrastruktúrája alkalmazások felhasználók millióit egyidejűleg üzemeltetéséhez a létesítmény a készült, és biztosít egy megbízható foundation, amelyre vállalatok megfelel a biztonsági követelményeknek. Emellett Azure biztosít konfigurálható biztonsági beállítások és képes azokat, hogy testre szabhatja a szervezet központi telepítések egyedi követelményeinek biztonsági széles körű gyűjteménye.
 
 ## <a name="abstract"></a>Absztrakt
 
-Nyilvános felhőalapú Microsoft-szolgáltatás biztosításához kapacitású szolgáltatások és az infrastruktúra, a vállalati szintű képességet és a számos választhat való hibrid kapcsolathoz. Választhat tooaccess hello interneten keresztül vagy a magánhálózati kapcsolatot biztosít, az Azure ExpressRoute ezeket a szolgáltatásokat. hello Microsoft Azure platform lehetővé teszi a tooseamlessly hello felhőbe bővítheti a infrastruktúrát, és hozhat létre többrétegű architektúrák. Emellett harmadik felek engedélyezéséhez bővített szolgáltatásokat nyújtó biztonsági szolgáltatásait és a virtuális készülékek.
+Nyilvános felhőalapú Microsoft-szolgáltatás biztosításához kapacitású szolgáltatások és az infrastruktúra, a vállalati szintű képességet és a számos választhat való hibrid kapcsolathoz. Választhat, ezeket a szolgáltatásokat, vagy az interneten keresztül, vagy Azure ExpressRoute, amely magánhálózati kapcsolatot biztosít az elérésére. A Microsoft Azure platform zökkenőmentesen bővítheti az infrastruktúrát kiterjeszti a felhőbe, és hozhat létre többrétegű architektúrák számára teszi lehetővé. Emellett harmadik felek engedélyezéséhez bővített szolgáltatásokat nyújtó biztonsági szolgáltatásait és a virtuális készülékek.
 
-Azure hálózati szolgáltatások maximalizálása érdekében a rugalmasságot, a rendelkezésre állási, a rugalmasság, a biztonságának és integritásának úgy lett kialakítva. Ez a dokumentum biztosít hello Azure hálózati funkcióit a részletek és a felhasználók használatát Azure natív biztonsági szolgáltatások toohelp információk védelme információs.
+Azure hálózati szolgáltatások maximalizálása érdekében a rugalmasságot, a rendelkezésre állási, a rugalmasság, a biztonságának és integritásának úgy lett kialakítva. Ez a dokumentum az Azure és az ügyfelek használatát Azure natív biztonsági funkcióival információs védelme érdekében a hálózati funkciók részleteit.
 
-hello készült e tanulmány célközönség tartalmazza:
+E tanulmány a megfelelő célközönség a következők:
 
 - Műszaki kezelők, a hálózati rendszergazdák és fejlesztők számára elérhető és támogatott az Azure biztonsági megoldásokat keres.
 
--   Kis-és középvállalkozások vagy üzleti folyamat vezetők számára, akik tooget magas szintű áttekintését hello Azure hálózati technológiákat és szolgáltatásokat beszélgetéseket körül hello Azure nyilvános felhőjében a hálózati biztonság szempontjából.
+-   Kis-és középvállalkozások vagy üzleti folyamat vezető szeretné, hogy a magas szintű áttekintését, az Azure hálózati technológiákat és szolgáltatásokat, amelyek kapcsolódnak az Azure nyilvános felhőjében a hálózati biztonsági körül beszélgetéseket.
 
 ## <a name="azure-networking-big-picture"></a>Azure-hálózat nagy vonalakban tekinti
-Microsoft Azure tartalmaz egy robusztus hálózati infrastruktúra toosupport, az alkalmazás és szolgáltatás hálózati kapcsolati követelményeinek. Hálózati kapcsolat lehetséges helyszíni között, az Azure-ban lévő erőforrások között, és Azure megtalálható erőforrásokhoz, és az hello Internet tooand és az Azure.
+A Microsoft Azure tartalmazza az alkalmazás és szolgáltatás hálózati kapcsolati követelményeinek támogatására robusztus hálózati infrastruktúrát. Helyszíni között, az Azure-ban lévő erőforrások közötti hálózati kapcsolatot, és Azure üzemeltetett erőforrásokhoz, és hogy, és az internetről és az Azure.
 
 ![Azure-hálózat nagy vonalakban tekinti](media/azure-network-security/azure-network-security-fig-1.png)
 
-Hello [Azure hálózati infrastruktúra](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-networking-guidelines) lehetővé teszi, hogy toosecurely Csatlakozás más Azure-erőforrások tooeach virtuális hálózatokról (Vnetekről). A virtuális hálózat a saját hálózati hello felhőben megjelenítése. Egy virtuális hálózat a logikai elkülönítés hello Azure felhőben dedikált hálózati tooyour előfizetés. Vnetek tooyour helyszíni hálózatokhoz is elérheti.
+A [Azure hálózati infrastruktúra](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-networking-guidelines) lehetővé teszi, hogy biztonságosan kapcsolódjanak a Azure-erőforrások egymástól a virtuális hálózatokon (Vnetek). A virtuális hálózat a felhőben saját hálózati ábrázolása. A virtuális hálózat a hálózat az előfizetésre kijelölt Azure-felhőbe hálózati logikai elkülönítése. A helyszíni hálózatokhoz Vnetek csatlakozhatnak.
 
-Az Azure által támogatott dedikált WAN-kapcsolaton kapcsolat tooyour a helyszíni hálózat és egy Azure virtuális hálózat [ExpressRoute](https://docs.microsoft.com/azure/expressroute/expressroute-introduction). hello hivatkozás Azure és a webhely között, amelyek nem halad át hello dedikált kapcsolatot használ nyilvános internethez. Ha több adatközpontot az Azure alkalmazás fut, akkor használhatja [Azure Traffic Manager](https://docs.microsoft.com/azure/traffic-manager/traffic-manager-overview) tooroute kérelmeinek intelligens módon különböző hello alkalmazás példányát. Nem fut az Azure-ban, ha azok elérhetők a hello internetes forgalom tooservices is irányíthatja.
+Az Azure által támogatott dedikált WAN-kapcsolaton kapcsolat a helyszíni hálózat és az Azure virtuális hálózat [ExpressRoute](https://docs.microsoft.com/azure/expressroute/expressroute-introduction). A hely és az Azure közötti kapcsolat, amely nem halad át a nyilvános internethez dedikált kapcsolatot használ. Ha több adatközpontot az Azure alkalmazás fut, akkor használhatja [Azure Traffic Manager](https://docs.microsoft.com/azure/traffic-manager/traffic-manager-overview) a felhasználók ezután több példányát kérelmek. Is irányíthatja a forgalmat a szolgáltatás nem fut az Azure-ban, ha azok elérhetők az internetről.
 
 ## <a name="enterprise-view-of-azure-networking-components"></a>Vállalati nézet Azure hálózati összetevők
-Azure számos hálózati összetevők, amelyek megfelelő toonetwork biztonsági beszélgetéseket rendelkezik. azt ismerteti, hogy a hálózati összetevők, és helyezi a hangsúlyt hello biztonsági problémák kapcsolódó toothem.
+Azure rendelkezik, amely kapcsolódik a hálózati biztonsági beszélgetéseket számos hálózati összetevők. azt írja le a hálózati összetevők pedig a őket kapcsolatos biztonsági problémák.
 
 > [!Note]
-> Nem minden szempontját Azure hálózatkezelés ismerteti – arról lesz szó csak azok tér toobe döntő tervezése és kialakítása során a biztonságos hálózati infrastruktúra a szolgáltatások és alkalmazások központi telepítése az Azure-ban.
+> Nem minden szempontját Azure hálózatkezelés ismerteti – arról lesz szó csak azok tervezését és a biztonságos hálózati infrastruktúra a szolgáltatások és alkalmazások központi telepítése az Azure-ban kialakítását döntő számít.
 
-A dokumentum fog kell borítóján hello a következő Azure hálózati vállalati lehetőségeket:
+A dokumentum tartalma a következő Azure lesz hálózati vállalati lehetőségeket:
 
 -   Alapvető hálózati kapcsolat
 
@@ -75,32 +75,32 @@ A dokumentum fog kell borítóján hello a következő Azure hálózati vállala
 
 ### <a name="basic-network-connectivity"></a>Alapvető hálózati kapcsolat
 
-Hello [Azure Virtual Network](https://docs.microsoft.com/azure/virtual-network/virtual-networks-overview) szolgáltatás lehetővé teszi, hogy Ön toosecurely más Azure-erőforrások tooeach csatlakozzon a virtuális hálózatokkal (VNet). A virtuális hálózat a saját hálózati hello felhőben megjelenítése. Egy virtuális hálózat a logikai elkülönítés hello Azure hálózati infrastruktúra dedikált tooyour előfizetés. Más Vnetekről tooeach elérhetők, és tooyour helyszíni pont-pont VPN hálózatokhoz és dedikált [WAN-kapcsolatok](https://docs.microsoft.com/azure/expressroute/expressroute-introduction).
+A [Azure Virtual Network](https://docs.microsoft.com/azure/virtual-network/virtual-networks-overview) szolgáltatás lehetővé teszi, hogy biztonságosan kapcsolódjanak a Azure-erőforrások egymástól a virtuális hálózatot (VNet). A virtuális hálózat a felhőben saját hálózati ábrázolása. Egy Vnetet az Azure hálózati infrastruktúra előfizetéshez dedikált logikai elkülönítése. Elérhetők Vnetek csatlakoztatják egymáshoz és a pont-pont virtuális magánhálózatok használata a helyszíni hálózatokhoz és a dedikált [WAN-kapcsolatok](https://docs.microsoft.com/azure/expressroute/expressroute-introduction).
 
 ![Alapvető hálózati kapcsolat](media/azure-network-security/azure-network-security-fig-2.png)
 
-Hello ismertetése a virtuális gépek toohost kiszolgálók használhatja az Azure-ban hello kérdés esetén hogyan a virtuális gépek tooa hálózati kapcsolódnak. hello válasz, hogy a virtuális gépek csatlakozni tooan [Azure Virtual Network](https://docs.microsoft.com/azure/virtual-network/virtual-networks-overview).
+A feltétellel, hogy használja a virtuális gépek az Azure-kiszolgálók, a kérdés esetén hogyan virtuális gépek csatlakoznak-e a hálózathoz. A válasz, virtuális gépek csatlakozni egy [Azure Virtual Network](https://docs.microsoft.com/azure/virtual-network/virtual-networks-overview).
 
-Az Azure virtuális hálózatok vannak hello virtuális hálózatok, mint a helyszíni használni a saját virtualizálási platform megoldások, például a Microsoft Hyper-V vagy VMware.
+Egy Azure virtuális hálózatot például a virtuális hálózatok vannak a helyszíni használni a saját virtualizálási platform megoldások, például a Microsoft Hyper-V vagy VMware.
 
 #### <a name="intra-vnet-connectivity"></a>Helyen belüli-VNet-kapcsolatot
 
-Csatlakozhat a más Vnetekről tooeach, erőforrások engedélyezése tooeither VNet toocommunicate egymással keresztül kapcsolódó Vnetek. Valamelyike vagy mindegyike a következő beállítások tooconnect Vnetek tooeach más hello használhatja:
+Kapcsolódás Vnetek egymással, vagy VNet kommunikálhassanak egymással Vnetek csatlakoztatott engedélyezése. Valamelyike vagy mindegyike a következő beállítások segítségével Vnetek csatlakozni egymáshoz:
 
-- **Társviszony-létesítés:** lehetővé teszi, hogy erőforrásokat csatlakoztatott toodifferent Azure Vnetekhez hello belül azonos Azure-beli hely toocommunicate egymással. hello sávszélesség és a késleltetés között vnet hello hello ugyanaz, mintha hello erőforrások csatlakoztatott toohello ugyanazt a virtuális hálózatot. toolearn társviszony-létesítést, kapcsolatos további információkért olvassa el [virtuális hálózati társviszony-létesítés](https://docs.microsoft.com/azure/virtual-network/virtual-network-peering-overview).
+- **Társviszony-létesítés:** lehetővé teszi az erőforrások egymással kommunikálni az Azure ugyanazon a helyen belül különböző Azure Vnetekhez csatlakoztatni. A sávszélesség és a virtuális hálózat között késleltetés megegyezik, mintha az erőforrások csatlakoztatva ugyanazt a virtuális hálózatot. Társviszony-létesítés kapcsolatos további tudnivalókért olvassa el [virtuális hálózati társviszony-létesítés](https://docs.microsoft.com/azure/virtual-network/virtual-network-peering-overview).
 
  ![Társviszony-létesítés](media/azure-network-security/azure-network-security-fig-3.png)
 
-- **VNet – VNet-kapcsolatot:** lehetővé teszi, hogy erőforrásokat csatlakoztatott toodifferent Azure virtuális hálózaton belül hello ugyanazon vagy másik Azure helyét. Ellentétben a társviszony-létesítést, sávszélesség oka Vnetek közötti forgalmat kell áramlása az Azure VPN Gateway.
+- **VNet – VNet-kapcsolatot:** lehetővé teszi, hogy az ugyanazon vagy másik Azure helyek belül különböző Azure VNet kapcsolódó erőforrásokhoz. Ellentétben a társviszony-létesítést, sávszélesség oka Vnetek közötti forgalmat kell áramlása az Azure VPN Gateway.
 
 ![VNet – VNet-kapcsolatot](media/azure-network-security/azure-network-security-fig-4.png)
 
 
-További információk a Vneteket összekötő egy VNet – VNet kapcsolattal, olvassa el a hello toolearn [konfigurálja a VNet – VNet-kapcsolatot cikk](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal?toc=%2fazure%2fvirtual-network%2ftoc.json).
+VNet – VNet-kapcsolatot Vneteket összekötő kapcsolatos további tudnivalókért olvassa el a [konfigurálja a VNet – VNet-kapcsolatot cikk](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal?toc=%2fazure%2fvirtual-network%2ftoc.json).
 
 #### <a name="azure-virtual-network-capabilities"></a>Azure-beli virtuális hálózat képességek:
 
-Ahogy látja, az Azure virtuális hálózat virtuális gépek tooconnect toohello hálózati biztosít, úgy, hogy csatlakozhassanak a tooother hálózati erőforrások biztonságos módon. Hálózati kapcsolat viszont csak hello elején. hello hello Azure Virtual Network szolgáltatás az alábbi képességeket teszi közzé hello Azure Virtual Network security jellemzői:
+Ahogy látja, akkor az Azure virtuális hálózat biztosít a virtuális gépek, hogy más hálózati erőforrásokhoz, biztonságos módon csatlakozhatnak a hálózathoz való kapcsolódáshoz. Hálózati kapcsolat, azonban ez csak a kezdet. Az Azure Virtual Network szolgáltatás az alábbi képességeket teszi közzé az Azure Virtual Network security jellemzői:
 
 -   Elkülönítés
 
@@ -118,76 +118,76 @@ Ahogy látja, az Azure virtuális hálózat virtuális gépek tooconnect toohell
 
 **Elkülönítés**
 
-Vnetek [elkülönített](https://docs.microsoft.com/azure/virtual-network/virtual-networks-overview) egymástól. Létrehozhat külön Vnetek fejlesztési, tesztelési és használata hello azonos üzemi [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) blokkok cím. Ezzel szemben, amelyek különböző CIDR címblokkokat és összekapcsolhatja az hálózatok több Vnetek is létrehozhat. Egy VNet érdekében több alhálózatra is szegmentálhatja.
+Vnetek [elkülönített](https://docs.microsoft.com/azure/virtual-network/virtual-networks-overview) egymástól. Létrehozhat, amelyek ugyanazon fejlesztési, tesztelési és éles külön Vnetek [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) blokkok cím. Ezzel szemben, amelyek különböző CIDR címblokkokat és összekapcsolhatja az hálózatok több Vnetek is létrehozhat. Egy VNet érdekében több alhálózatra is szegmentálhatja.
 
-Azure belső névfeloldást biztosít a virtuális gépek és [Felhőszolgáltatások](https://azure.microsoft.com/services/cloud-services/) szerepkörpéldányokat tooa VNet csatlakoztatva. Konfigurálhatja a virtuális hálózat toouse saját DNS-kiszolgálókat, az Azure belső névfeloldást használata helyett.
+Azure belső névfeloldást biztosít a virtuális gépek és [Felhőszolgáltatások](https://azure.microsoft.com/services/cloud-services/) szerepkörpéldányokat csatlakozik egy Vnetet. Konfigurálhatja egy VNet és a saját DNS-kiszolgálók használata az Azure belső névfeloldást használata helyett.
 
 Minden Azure belül több Vnetek Megvalósíthat [előfizetés](https://docs.microsoft.com/azure/azure-glossary-cloud-terminology?toc=%2fazure%2fvirtual-network%2ftoc.json) és az Azure [régió](https://docs.microsoft.com/azure/azure-glossary-cloud-terminology?toc=%2fazure%2fvirtual-network%2ftoc.json). Minden egyes virtuális hálózat el különítve a más Vnetekről. Minden egyes vnet a következő műveletek végezhetők el:
 
--   Adjon meg egy egyéni privát IP-címtér nyilvános és titkos (az RFC 1918) címeket használnak. Azure rendeli hozzá az erőforrásokhoz csatlakoztatott toohello VNet egy magánhálózati IP-cím hello címterület, rendeli.
+-   Adjon meg egy egyéni privát IP-címtér nyilvános és titkos (az RFC 1918) címeket használnak. Erőforrások Azure rendel a virtuális hálózat egy magánhálózati IP-cím keresztül kapcsolódik a címterület, rendeli.
 
--   Hello VNet be egy vagy több alhálózatból szegmentálni, és hello VNet terület tooeach címalhálózata része lefoglalni.
+-   A VNet szegmentálni be egy vagy több alhálózatból, és foglaljon le a VNet-címterek minden alhálózat egy része.
 
--   Azure által biztosított névfeloldás használata, vagy adja meg az erőforrások használhatják a saját DNS-kiszolgáló csatlakoztatva tooa virtuális hálózat. További információk a névfeloldás a Vneteket, olvassa el a hello toolearn [névfeloldását virtuális gépek és Felhőszolgáltatások](https://docs.microsoft.com/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances).
+-   Azure által biztosított névfeloldás használata, vagy adjon meg egy Vnetet csatlakoztatott a saját DNS-kiszolgáló számára. Névfeloldás a Vnetek kapcsolatos további tudnivalókért olvassa el a [névfeloldását virtuális gépek és Felhőszolgáltatások](https://docs.microsoft.com/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances).
 
 **Internetkapcsolat**
 
-Minden [Azure virtuális gépek (VM)](https://docs.microsoft.com/azure/virtual-machines/windows/) és Felhőszolgáltatások szerepkörpéldányokat csatlakoztatott tooa VNet rendelkezik hozzáférési toohello Internet, alapértelmezés szerint. Bejövő hozzáférést toospecific erőforrások, igény szerint is engedélyezheti. (VM) és Felhőszolgáltatások szerepkörpéldányokat csatlakoztatott tooa VNet rendelkezik hozzáférési toohello Internet, alapértelmezés szerint. Bejövő hozzáférést toospecific erőforrások, igény szerint is engedélyezheti.
+Minden [Azure virtuális gépek (VM)](https://docs.microsoft.com/azure/virtual-machines/windows/) , és csatlakozik egy Vnetet Felhőszolgáltatások szerepkörpéldányok Internet,-hozzáférés alapértelmezés szerint. Bejövő hozzáférés adható konkrét erőforrásokhoz, engedélyezheti igény szerint is. (VM), és csatlakozik egy Vnetet Felhőszolgáltatások szerepkörpéldányok Internet,-hozzáférés alapértelmezés szerint. Bejövő hozzáférés adható konkrét erőforrásokhoz, engedélyezheti igény szerint is.
 
-Tooa VNet összes erőforrások csatlakoztatott kimenő kapcsolat toohello Internet alapértelmezés szerint rendelkezik. hello erőforrás hello magánhálózati IP-címe a forrás hálózati címe (SNAT) tooa nyilvános IP-cím fordította hello Azure-infrastruktúra. Hello alapértelmezett kapcsolat egyéni Útválasztás és a forgalom szűrés alkalmazásával módosíthatja. További információk a kimenő internetkapcsolat működését, olvassa el a hello toolearn [ismertetése az Azure-ban kimenő kapcsolatok](https://docs.microsoft.com/azure/load-balancer/load-balancer-outbound-connections?toc=%2fazure%2fvirtual-network%2ftoc.json).
+Egy Vnetet kapcsolódó összes erőforrásokhoz alapértelmezés szerint kimenő képes kapcsolódni az internetre rendelkeznek. A magánhálózati IP-cím erőforrás hálózati forráscím lefordított (SNAT) által az Azure-infrastruktúra egy nyilvános IP-cím. Egyéni Útválasztás és a forgalom szűrés alkalmazásával módosíthatja az alapértelmezett működését. Kimenő internetkapcsolattal kapcsolatos további tudnivalókért olvassa el a [ismertetése az Azure-ban kimenő kapcsolatok](https://docs.microsoft.com/azure/load-balancer/load-balancer-outbound-connections?toc=%2fazure%2fvirtual-network%2ftoc.json).
 
-toocommunicate bejövő hello Internet, illetve toocommunicate kimenő toohello Internet nélkül SNAT, egy erőforrást egy nyilvános IP-cím rendelendő tooAzure erőforrásokat. További információ a nyilvános IP-címek, olvassa el a hello toolearn [nyilvános IP-címek](https://docs.microsoft.com/azure/virtual-network/virtual-network-public-ip-address).
+Való kommunikációra bejövő Azure-erőforrások az internetről, vagy az internethez nélkül SNAT kimenő kommunikációra, egy erőforrást egy nyilvános IP-címet kell hozzárendelve. Nyilvános IP-címek kapcsolatos további tudnivalókért olvassa el a [nyilvános IP-címek](https://docs.microsoft.com/azure/virtual-network/virtual-network-public-ip-address).
 
 **Az Azure erőforrás-kapcsolat**
 
-[Azure-erőforrások](https://docs.microsoft.com/azure/virtual-network/virtual-networks-overview) például a Felhőszolgáltatások és virtuális gépek is csatlakoztatott toohello ugyanazt a virtuális hálózatot. hello erőforrások képesek-e csatlakozni más tooeach privát IP-címek, még akkor is, ha külön alhálózatokon vannak. Azure biztosít alapértelmezett között alhálózatok, a Vnetek és a helyszíni hálózatokhoz, így nem rendelkezik tooconfigure és útvonalak kezelése.
+[Azure-erőforrások](https://docs.microsoft.com/azure/virtual-network/virtual-networks-overview) például a Felhőszolgáltatások és virtuális gépek is csatlakoztathatók ugyanazt a virtuális hálózatot. Az erőforrások egymást magánhálózati IP-címek is csatlakozhat, ha külön alhálózatokon vannak. Azure biztosít alapértelmezett között alhálózatok, a Vnetek és a helyszíni hálózatokhoz, így nem kell konfigurálnia és felügyelnie az útvonalakat.
 
-Több Azure-erőforrások tooa virtuális hálózat, például a virtuális gépek (VM), a Cloud Services, az App Service Environment-környezetek és a virtuálisgép-méretezési csoportok is elérheti. Virtuális gépek tooa alhálózati történik egy Vneten belül egy adott hálózati csatoló (NIC) keresztül csatlakozni. További információk a hálózati adapterek, olvassa el a hello toolearn [hálózati illesztőt](https://docs.microsoft.com/azure/virtual-network/virtual-network-network-interface).
+Több Azure-erőforrások csatlakozhat a virtuális hálózat, például a virtuális gépek (VM), a Cloud Services, az App Service Environment-környezetek és a virtuálisgép-méretezési készlet. Virtuális gépek csatlakozni egy alhálózatot a hálózati adaptert (NIC) keresztül egy Vneten belül. Hálózati adapter kapcsolatos további tudnivalókért olvassa el a [hálózati illesztőt](https://docs.microsoft.com/azure/virtual-network/virtual-network-network-interface).
 
 **VNet-kapcsolatot**
 
-[Vnetek](https://docs.microsoft.com/azure/virtual-network/virtual-networks-overview) lehet csatlakoztatott tooeach más, erőforrások engedélyezése tooany VNet toocommunicate kapcsolódnak bármilyen olyan erőforrás bármely más virtuális hálózaton.
+[Vnetek](https://docs.microsoft.com/azure/virtual-network/virtual-networks-overview) csatlakozhatnak egymáshoz, csatlakoznak bármely virtuális hálózat bármely más virtuális hálózaton erőforrás kommunikálni erőforrások engedélyezése.
 
-Csatlakozhat a más Vnetekről tooeach, erőforrások engedélyezése tooeither VNet toocommunicate egymással keresztül kapcsolódó Vnetek. Valamelyike vagy mindegyike a következő beállítások tooconnect Vnetek tooeach más hello használhatja:
+Kapcsolódás Vnetek egymással, vagy VNet kommunikálhassanak egymással Vnetek csatlakoztatott engedélyezése. Valamelyike vagy mindegyike a következő beállítások segítségével Vnetek csatlakozni egymáshoz:
 
-- **Társviszony-létesítés:** lehetővé teszi, hogy erőforrásokat csatlakoztatott toodifferent Azure Vnetekhez hello belül azonos Azure-beli hely toocommunicate egymással. hello sávszélesség és a késleltetés között Vnetek van hello ugyanaz, mint ha hello erőforrások csatlakoztatott toohello hello azonos VNet.toolearn társviszony-létesítést, kapcsolatos további információkért olvassa el hello [virtuális hálózati társviszony-létesítés](https://docs.microsoft.com/azure/virtual-network/virtual-network-peering-overview).
+- **Társviszony-létesítés:** lehetővé teszi az erőforrások egymással kommunikálni az Azure ugyanazon a helyen belül különböző Azure Vnetekhez csatlakoztatni. A sávszélesség és a késleltetés között a Vnetek: ugyanaz, mintha csak az azonos VNet.To csatlakoztatva az erőforrások tudhat meg többet társviszony-létesítést, olvassa el a [virtuális hálózati társviszony-létesítés](https://docs.microsoft.com/azure/virtual-network/virtual-network-peering-overview).
 
-- **VNet – VNet-kapcsolatot:** lehetővé teszi, hogy erőforrásokat csatlakoztatott toodifferent Azure virtuális hálózaton belül hello ugyanazon vagy másik Azure helyét. Ellentétben a társviszony-létesítést, sávszélesség oka Vnetek közötti forgalmat kell áramlása az Azure VPN Gateway. További információk a Vneteket összekötő VNet – VNet-kapcsolatot toolearn. toolearn több, olvassa el a hello [VNet – VNet-kapcsolatot konfiguráló](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal?toc=%2fazure%2fvirtual-network%2ftoc.json) .
+- **VNet – VNet-kapcsolatot:** lehetővé teszi, hogy az ugyanazon vagy másik Azure helyek belül különböző Azure VNet kapcsolódó erőforrásokhoz. Ellentétben a társviszony-létesítést, sávszélesség oka Vnetek közötti forgalmat kell áramlása az Azure VPN Gateway. További információt a Vneteket összekötő VNet – VNet-kapcsolatot. További tudnivalókért olvassa el a [VNet – VNet-kapcsolatot konfiguráló](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal?toc=%2fazure%2fvirtual-network%2ftoc.json) .
 
 **Helyszíni kapcsolatok**
 
-A vnetek túl[helyszíni](https://docs.microsoft.com/azure/virtual-network/virtual-networks-overview) keresztül magánhálózati kapcsolatok a hálózati és az Azure között, és a pont-pont VPN-kapcsolaton keresztül hello Internet hálózatok.
+A vnetek való [helyszíni](https://docs.microsoft.com/azure/virtual-network/virtual-networks-overview) hálózatok magánhálózati kapcsolatok a hálózati és az Azure között, vagy az interneten keresztül a pont-pont VPN-kapcsolaton keresztül.
 
-Csatlakozhat a helyszíni hálózati tooa virtuális hálózatot az alábbi beállítások hello tetszőleges kombinációját használja:
+A helyszíni hálózat csatlakozhatnak egy virtuális hálózat használatával tetszőleges kombinációját az alábbiak közül:
 
-- **Pont-pont virtuális magánhálózati (VPN):** egyetlen Számítógéphez csatlakoztatott tooyour hálózati és hello VNet között. A kapcsolat típusa nem nagyszerű, ha Ön most csak az első lépések az Azure-ral, vagy a fejlesztők számára, mert azt igényli, hogy kevéssé vagy egyáltalán ne módosítások meglévő tooyour-hálózati. hello kapcsolat hello Internet hello PC és hello VNet között hello SSTP protokollal tooprovide titkosított kommunikációt használ. pont-pont típusú VPN hello késés is előre nem látható, mivel hello a forgalom halad át hello Internet.
+- **Pont-pont virtuális magánhálózati (VPN):** a egyetlen számítógép csatlakozik a hálózathoz és a virtuális hálózat között. A kapcsolat típusa nem nagyszerű, ha Ön most csak az első lépések az Azure-ral, vagy a fejlesztők számára, mert azt a meglévő hálózati kevéssé vagy egyáltalán ne módosítását igényli. A kapcsolat az SSTP protokoll segítségével, titkosított kommunikációt biztosít a számítógép és a virtuális hálózat között az interneten keresztül. A pont-pont típusú VPN várakozási is előre nem látható, mivel a forgalom halad át az interneten.
 
-- **Telephelyek közötti VPN:** a VPN-eszköz és az Azure VPN-átjáró között. A kapcsolat típusa lehetővé teszi, hogy bármely tooaccess egy Vnetet engedélyezi, hogy a helyi erőforrás. hello kapcsolat az IPsec/IKE VPN, amely titkosított kommunikáció keresztül hello Internet hello Azure VPN gateway a helyszíni eszközök között. a pont-pont kapcsolat hello késés is előre nem látható, mivel hello a forgalom halad át hello Internet.
+- **Telephelyek közötti VPN:** a VPN-eszköz és az Azure VPN-átjáró között. A kapcsolat típusa lehetővé teszi, hogy az összes helyszíni erőforrás is engedélyezni szeretné a virtuális hálózat eléréséhez. A kapcsolat az IPsec/IKE VPN, amely titkosított kommunikációt biztosít az interneten, a helyszíni eszközök és az Azure VPN gateway között. A pont-pont kapcsolat a késési is előre nem látható, mivel a forgalom halad át az interneten.
 
-- **Az Azure ExpressRoute:** hoznak létre egy ExpressRoute-partner keresztül a hálózat és az Azure-ban. Ezt a kapcsolatot a sajátja. Forgalom nem járja hello Internet. az ExpressRoute-kapcsolat hello késés is előre jelezhető, mivel a forgalom nem bejárása hello Internet. További információk az összes hello előző kapcsolati beállítások, olvassa el a hello toolearn [kapcsolat topológiai diagramot](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpngateways?toc=%2fazure%2fvirtual-network%2ftoc.json).
+- **Az Azure ExpressRoute:** hoznak létre egy ExpressRoute-partner keresztül a hálózat és az Azure-ban. Ezt a kapcsolatot a sajátja. Forgalom nem bejárják az interneten. Az ExpressRoute-kapcsolat a késési is előre jelezhető, mivel a forgalom nem haladnak át az interneten. Az előző kapcsolódási beállítás kapcsolatos további tudnivalókért olvassa el a [kapcsolat topológiai diagramot](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpngateways?toc=%2fazure%2fvirtual-network%2ftoc.json).
 
 **Forgalomszűrés**
 
 Virtuális gép és a Felhőszolgáltatások szerepkörpéldányokat [hálózati forgalom](https://docs.microsoft.com/azure/virtual-network/virtual-networks-overview) bejövő és kimenő alapján szűrhetők forrás IP-cím és port, cél IP-cím és port és protokoll.
 
-Egyik vagy mindkét alábbi beállítások hello alhálózatokat közötti hálózati forgalom szűrheti:
+Szűrheti a hálózati forgalom valamelyike vagy mindegyike a következő beállítások segítségével alhálózatok között:
 
-- **Hálózati biztonsági csoportok (NSG):** minden NSG több bejövő és kimenő szabályokat, amelyek lehetővé teszik a forrás és cél IP-cím, port és protokoll toofilter forgalmat is tartalmazhat. Az NSG tooeach egy virtuális hálózati adapter is alkalmazhatja. Az NSG-toohello alhálózatot a hálózati adapter is alkalmazhat, vagy más Azure-erőforrás, csatlakozik-e. További információk az NSG-k, olvassa el a hello toolearn [hálózati biztonsági csoportok](https://docs.microsoft.com/azure/virtual-network/virtual-networks-nsg).
+- **Hálózati biztonsági csoportok (NSG):** minden NSG tartalmazhat több bejövő és kimenő biztonsági szabály lehetővé teszi, hogy a forrás és cél IP-cím, port és protokoll forgalmának szűrésére. Akkor is alkalmazzon NSG-t egyes hálózati adapterek virtuális gépen. Az NSG-t is alkalmazhat az alhálózat egy hálózati Adaptert, vagy más Azure-erőforrás, csatlakozik-e. Ha többet szeretne megtudni az NSG-k, olvassa el a [hálózati biztonsági csoportok](https://docs.microsoft.com/azure/virtual-network/virtual-networks-nsg).
 
-- **Virtuális hálózati berendezések:** egy virtuális hálózati berendezések egy hálózati funkciót, például egy tűzfal végző szoftvert futtató virtuális gép. A hello Azure piactéren elérhető NVAs listájának megtekintése. NVAs is elérhetők, hogy WAN-optimalizálást és az egyéb hálózati forgalom funkciókat biztosít. NVAs általában használt felhasználói vagy a BGP-útvonalakat. Használhatja az NVA toofilter forgalom Vnetek között is.
+- **Virtuális hálózati berendezések:** egy virtuális hálózati berendezések egy hálózati funkciót, például egy tűzfal végző szoftvert futtató virtuális gép. Az Azure piactéren elérhető NVAs listájának megtekintése. NVAs is elérhetők, hogy WAN-optimalizálást és az egyéb hálózati forgalom funkciókat biztosít. NVAs általában használt felhasználói vagy a BGP-útvonalakat. NVA Vnetek közötti forgalom szűrésére is használhatja.
 
 **Útválasztás**
 
 Azure alapértelmezett útválasztás konfigurálása a saját útvonalakat, vagy a hálózati átjáró BGP-útvonalakat segítségével igény szerint felülbírálható.
 
-Az útvonaltáblák, amelyek lehetővé teszik az erőforrások csatlakoztatott tooany alhálózatának bármely virtuális hálózat toocommunicate egymással, alapértelmezés szerint az Azure létrehoz. Megvalósíthat vagy, vagy mindkét a következő beállítások toooverride hello hello alapértelmezett útvonalak Azure-hoz:
+Az útvonaltáblák, amelyek lehetővé teszik az erőforrások csatlakoznak bármely kommunikálhatnak egymással, alapértelmezés szerint a virtuális hálózat egyetlen alhálózatának sem az Azure létrehoz. Megvalósíthat valamelyike vagy mindegyike felülbírálhatja az alapértelmezett útvonalak Azure-hoz létre a következő beállításokat:
 
-- **Felhasználó által definiált útvonalak:** hozhat létre egyéni útvonaltáblák útvonalat, ahol a forgalmat az irányított toofor szabályozó az egyes alhálózatokon. További információk a felhasználó által definiált útvonalak, olvassa el a hello toolearn [felhasználó által definiált útvonalak](https://docs.microsoft.com/azure/virtual-network/virtual-networks-udr-overview).
+- **Felhasználó által definiált útvonalak:** hozhat létre egyéni útvonaltáblák útvonalak adott vezérlőn, ahol továbbítódik a az egyes alhálózatokon. Felhasználó által definiált útvonalak kapcsolatos további tudnivalókért olvassa el a [felhasználó által definiált útvonalak](https://docs.microsoft.com/azure/virtual-network/virtual-networks-udr-overview).
 
-- **BGP-útvonalakat:** Ha a virtuális hálózat tooyour a helyszíni hálózat az Azure VPN-átjáró vagy ExpressRoute kapcsolattal csatlakozik, a BGP-útvonalak tooyour Vnetek kerülhet.
+- **BGP-útvonalakat:** Ha a virtuális hálózat csatlakozni a helyszíni hálózat az Azure VPN-átjáró vagy ExpressRoute kapcsolattal, akkor kerülhet BGP-útvonalakat a Vnetek.
 
-### <a name="hybrid-internet-connectivity-connect-tooan-on-premises-network"></a>Hibrid internetkapcsolat: tooan a helyszíni hálózat
-Csatlakozhat a helyszíni hálózati tooa virtuális hálózatot az alábbi beállítások hello tetszőleges kombinációját használja:
+### <a name="hybrid-internet-connectivity-connect-to-an-on-premises-network"></a>Hibrid internetkapcsolat: egy a helyszíni hálózat
+A helyszíni hálózat csatlakozhatnak egy virtuális hálózat használatával tetszőleges kombinációját az alábbiak közül:
 
 -   Internetkapcsolat
 
@@ -199,53 +199,53 @@ Csatlakozhat a helyszíni hálózati tooa virtuális hálózatot az alábbi beá
 
 #### <a name="internet-connectivity"></a>Internetkapcsolat
 
-Ahogyan neve is jelzi, internetkapcsolattal elérhetővé válnak a munkaterhelések hello Internet, az azzal, hogy Ön teszi közzé a különböző nyilvános végpontok tooworkloads, amely hello virtuális hálózaton belüli élő. Az ilyen terhelések sikerült elérhetővé tehető használatával [internetre terheléselosztó](https://docs.microsoft.com/azure/load-balancer/load-balancer-internet-overview) vagy toohello VM egyszerűen hozzárendelés, egy nyilvános IP-címmel. Ezzel a módszerrel lesz lehetséges a hello Internet toobe képes tooreach hogy, hogy a virtuális gép semmi megadni a gazdagép tűzfalának [hálózati biztonsági csoportok (NSG)](https://docs.microsoft.com/azure/virtual-network/virtual-networks-nsg), és [felhaszn útvonalak](https://docs.microsoft.com/azure/virtual-network/virtual-networks-udr-overview) teszi lehetővé toohappen.
+A neve alapján, mint internetkapcsolat elérhetővé válnak a munkaterhelések az internetről, azzal, hogy Ön teszi közzé a különböző nyilvános végpontok, amely a virtuális hálózaton belüli élő. Az ilyen terhelések sikerült elérhetővé tehető használatával [internetre terheléselosztó](https://docs.microsoft.com/azure/load-balancer/load-balancer-internet-overview) vagy egyszerűen csak egy nyilvános IP-cím hozzárendelése a virtuális Gépet. Ezzel a módszerrel válik lehetővé semmit sem kell tudni érnie a virtuális gép által megadott állomás tűzfal, az Internet [hálózati biztonsági csoportok (NSG)](https://docs.microsoft.com/azure/virtual-network/virtual-networks-nsg), és [felhaszn útvonalak](https://docs.microsoft.com/azure/virtual-network/virtual-networks-udr-overview) lehetővé teszi, hogy megtörténjen-e.
 
-Ebben a forgatókönyvben sikerült teszi közzé, amelyet a toobe nyilvános toohello internetes alkalmazás, és képes tooconnect tooit a kell bárhol, vagy a munkaterhelések hello konfigurációjától függően meghatározott helyeiről.
+Ebben a forgatókönyvben egy alkalmazás, amelyet a nyilvános az internethez, és kapcsolódhatnak ahhoz bárhol, vagy a munkaterhelések konfigurációjától függően meghatározott helyeiről származó teheti ki.
 
 #### <a name="point-to-site-vpn-or-site-to-site-vpn"></a>Pont – hely típusú VPN vagy a telephelyek közötti VPN
-E két esik, az ugyanilyen kategóriájú hello. Mindkét van szükségük a VNet toohave VPN-átjáró és csatlakoztathatja a VPN-ügyfél használata a munkaállomás hello részeként tooit [pont-hely konfigurációs](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal) vagy konfigurálhatja a helyszíni [VPN-eszköz](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpn-devices) toobe képes tooterminate a telephelyek közötti VPN. Ezzel a módszerrel a helyszíni eszközök tooresources hello virtuális hálózaton belül is elérheti.
+Ez a két azonos a kategóriába tartozik. Mindkét van szükségük a virtuális hálózat VPN-átjáró, és kapcsolódhat az segítségével a VPN-ügyfél a munkaállomás részeként a [pont-hely konfigurációs](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal) vagy konfigurálhatja a helyszíni [VPN-eszköz](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpn-devices) tenni a telephelyek közötti VPN leáll. Ezzel a módszerrel a helyszíni eszközök a Vneten belül erőforrások csatlakozhat.
 
-A pont-pont (P2S) konfiguráció lehetővé teszi a biztonságos kapcsolatot létesíthet egy egyéni ügyfél tooa virtuális hálózatban. A pont–hely kapcsolat egy SSTP (Secure Socket Tunneling Protocol) használatával működő VPN-kapcsolat.
+A pont–hely (P2S) konfiguráció lehetővé teszi biztonságos kapcsolat létesítését a virtuális hálózattal egy különálló ügyfélszámítógépről. A pont–hely kapcsolat egy SSTP (Secure Socket Tunneling Protocol) használatával működő VPN-kapcsolat.
 
 ![Pont – hely típusú VPN](media/azure-network-security/azure-network-security-fig-5.png)
 
-Pont – hely kapcsolatok hasznosak, ha azt szeretné, tooconnect tooyour VNet távoli helyről, például otthoni vagy egy konferencia center, vagy ha csak néhány ügyfelek számára, amelyek tooconnect tooa virtuális hálózat.
+Pont – hely kapcsolatok hasznosak, ha szeretne csatlakozni a virtuális hálózat egy távoli helyről, például home vagy egy konferencia center, vagy ha csak néhány ügyfelek számára, amelyek egy virtuális hálózathoz való kapcsolódáshoz.
 
-A pont–hely kapcsolatok nem igényelnek VPN-eszközt vagy nyilvános IP-címet a működéshez. Hello ügyfélszámítógépről hello VPN-kapcsolat létrehozása. Ezért P2S nem ajánlott módja tooconnect tooAzure abban az esetben, ha sok helyszíni eszközök és számítógépek tooyour Azure hálózati állandó kapcsolatot kell.
+A pont–hely kapcsolatok nem igényelnek VPN-eszközt vagy nyilvános IP-címet a működéshez. A VPN-kapcsolatot az ügyfélszámítógépről hozhatja létre. P2S, ezért nem javasolt módon csatlakoztathatják az Azure-bA abban az esetben, ha az Azure-hálózat számos helyszíni eszközök és számítógépek egy állandó kapcsolatot kell.
 
 ![Telephelyek közötti VPN](media/azure-network-security/azure-network-security-fig-6.png)
 
 > [!Note]
-> Pont – hely kapcsolatok kapcsolatos további információkért lásd: hello [pont-pont be v Q](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-howto-point-to-site-classic-azure-portal).
+> Pont – hely kapcsolatok kapcsolatos további információkért tekintse meg a [pont-pont be v Q](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-howto-point-to-site-classic-azure-portal).
 
-Pont-pont VPN gateway-kapcsolattal használt tooconnect a helyszíni hálózati tooan Azure-beli virtuális hálózat (IKEv1 vagy IKEv2) IPsec/IKE VPN-alagúton keresztül.
+A helyek közötti VPN-átjárókapcsolat használatával kapcsolat hozható létre a helyszíni hálózat és egy Azure-beli virtuális hálózat között egy IPsec/IKE (IKEv1 vagy IKEv2) VPN-alagúton keresztül.
 
-Ilyen típusú kapcsolat egy VPN található helyszíni Eszközkezelési, amely rendelkezik egy külsőleg irányuló nyilvános IP-cím tooit igényel. A kapcsolat történik több mint hello Internet, és lehetővé teszi a túl "alagút" egy titkosított hivatkozást a hálózat és az Azure között lévő információkat. Telephelyek közötti VPN egy biztonságos, érett technológia, amely különböző méretű vállalatok által évtizedeken van telepítve. Bújtatás titkosítás használatával történik [IPsec-bújtatásos mód](https://technet.microsoft.com/library/cc786385.aspx).
+Az ilyen típusú kapcsolatokhoz egy helyszíni VPN-eszközre van szükség, amelyhez hozzá van rendelve egy kifelé irányuló, nyilvános IP-cím. Ezt a kapcsolatot az interneten keresztül történik, és lehetővé teszi a "tunnel" információ belül a hálózati és az Azure közötti egy titkosított kapcsolat. Telephelyek közötti VPN egy biztonságos, érett technológia, amely különböző méretű vállalatok által évtizedeken van telepítve. Bújtatás titkosítás használatával történik [IPsec-bújtatásos mód](https://technet.microsoft.com/library/cc786385.aspx).
 
-A megbízható, megbízható és a meghatározott technológiája pedig a telephelyek közötti VPN belül hello alagút forgalmi hello Internet bejárása. Ezenkívül sávszélessége korlátozott viszonylag tooa legfeljebb körülbelül 200 MB/s.
+A megbízható, megbízható és a meghatározott technológiája pedig a telephelyek közötti VPN a belül a alagút forgalmi haladnak át az interneten. Ezenkívül sávszélesség viszonylag korlátozódik legfeljebb körülbelül 200 MB/s.
 
-A létesítmények közötti kapcsolatokat. szükséges egy rendkívüli szintű biztonsági vagy a teljesítmény, azt javasoljuk, hogy a létesítmények közötti kapcsolatot használjon Azure ExpressRoute. ExpressRoute dedikált WAN a helyszíni hely vagy egy Exchange-szolgáltató közötti kapcsolat. Mivel ez egy telco kapcsolat, az adatok nem utazik hello interneten keresztül, így nem kitett toohello internetes adatátvitel járó esetleges kockázatokat.
+A létesítmények közötti kapcsolatokat. szükséges egy rendkívüli szintű biztonsági vagy a teljesítmény, azt javasoljuk, hogy a létesítmények közötti kapcsolatot használjon Azure ExpressRoute. ExpressRoute dedikált WAN a helyszíni hely vagy egy Exchange-szolgáltató közötti kapcsolat. Mivel ez egy telco kapcsolat, a az adatokat az interneten keresztül nem utazik, és ezért nem érhető el az internetes adatátvitel járó esetleges kockázatokat.
 
 > [!Note]
 > További információ a VPN-átjárók tudnivalók [VPN-átjáró](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpngateways).
 
 #### <a name="dedicated-wan-link"></a>Dedikált WAN-kapcsolat
-A Microsoft Azure ExpressRoute lehetővé teszi a helyszíni hálózatokhoz kiterjeszti hello Azure könnyíteni a kapcsolat szolgáltatóját egy dedikált titkos kapcsolaton keresztül.
+A Microsoft Azure ExpressRoute lehetővé teszi a helyszíni hálózatokhoz kiterjeszti az Azure a kapcsolat szolgáltatójánál könnyíteni dedikált titkos kapcsolaton keresztül.
 
-Az ExpressRoute-kapcsolatok ne lépje át hello nyilvános internethez. Ez lehetővé teszi ExpressRoute kapcsolatok toooffer további megbízhatóságát, gyorsabb sebességű, kisebb késések fordulnak elő, és nagyobb biztonságot nyújtana tipikus kapcsolatok hello interneten keresztül.
+Az ExpressRoute-kapcsolatok nem a nyilvános interneten haladnak át. Így az ExpressRoute-kapcsolatok a tipikus internetes kapcsolatoknál megbízhatóbbak, gyorsabbak, gyorsabb a válaszidejük, és biztonságosabbak.
 
 ![ Dedikált WAN-kapcsolat](media/azure-network-security/azure-network-security-fig-7.png)
 
 > [!Note]
-> Információ tooconnect a hálózati tooMicrosoft használatával ExpressRoute, lásd: [ExpressRoute modellek](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpngateways) és [ExpressRoute műszaki áttekintés](https://docs.microsoft.com/azure/expressroute/expressroute-introduction).
+> A Microsoft ExpressRoute segítségével a hálózati csatlakozás információkért lásd: [ExpressRoute modellek](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpngateways) és [ExpressRoute műszaki áttekintés](https://docs.microsoft.com/azure/expressroute/expressroute-introduction).
 
-Mint hello pont-pont VPN-beállításokat, a ExpressRoute is lehetővé teszi tooconnect tooresources, amelyek nem feltétlenül csak egy Vneten belül. Valójában attól függően, hogy hello SKU, csatlakoztathatja too10 Vnetek. Ha hello [prémium szintű bővítmény](https://docs.microsoft.com/azure/expressroute/expressroute-faqs), kapcsolatok tooup too100 Vnetek is előfordulhatnak, attól függően, hogy a sávszélesség. Mi az ilyen típusú kapcsolatokat megjelenését, például, olvasási kapcsolatos további toolearn [kapcsolat topológiai diagramot](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpngateways?toc=%2fazure%2fvirtual-network%2ftoc.json).
+Mint az a pont-pont VPN-beállításokat, ExpressRoute is lehetővé teszi, amelyek nem feltétlenül csak egy virtuális erőforrások eléréséhez. Valójában attól függően, hogy a Termékváltozat csatlakozhat 10 Vnetek. Ha rendelkezik a [prémium szintű bővítmény](https://docs.microsoft.com/azure/expressroute/expressroute-faqs), akár 100 Vnetek kapcsolatokat is előfordulhatnak, attól függően, hogy a sávszélesség. Az ilyen típusú kapcsolatokat keresse meg például kapcsolatos további tudnivalókért olvassa el [kapcsolat topológiai diagramot](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpngateways?toc=%2fazure%2fvirtual-network%2ftoc.json).
 
 ### <a name="security-controls"></a>Biztonsági vezérlőket
-Egy Azure virtuális hálózatra biztosít egy biztonságos, logikai hálózathoz el különítve a többi virtuális hálózatok, amely támogatja több biztonsági vezérlő, amelyet a helyszíni hálózatokhoz. Az ügyfelek létre saját struktúra használatával: alhálózatok – azok a saját privát IP-címtartományt használja, az útvonaltáblák konfigurálása, a hálózati biztonsági csoportok, hozzáférés-vezérlés: listák (ACL), az átjárók és virtuális készülékek toorun a munkaterhelések hello felhőben.
+Egy Azure virtuális hálózatra biztosít egy biztonságos, logikai hálózathoz el különítve a többi virtuális hálózatok, amely támogatja több biztonsági vezérlő, amelyet a helyszíni hálózatokhoz. Az ügyfelek létre saját struktúra használatával: alhálózatok – azok a saját privát IP-címtartományt használja, az útvonaltáblák konfigurálása, a hálózati biztonsági csoportok, hozzáférés-vezérlési listák (ACL), átjárók, és a felhőben való futtatásra a munkaterheléseket a virtuális készülékek.
 
-Az alábbiakban hello az Azure virtuális hálózaton használható biztonsági vezérlők:
+Az Azure virtuális hálózaton használható biztonsági vezérlők a következők:
 
 -   Hálózati hozzáférés-vezérlést
 
@@ -260,16 +260,16 @@ Az alábbiakban hello az Azure virtuális hálózaton használható biztonsági 
 -   Hálózati rendelkezésre állás vezérlő
 
 #### <a name="network-access-controls"></a>Hálózati hozzáférés-vezérlést
-Amíg hello Azure Virtual Network (VNet) Azure hálózatmodell hello legfontosabb feladatai közé tartoznak, és biztosítja a leválasztásra és a védelemre, hello [hálózati biztonsági csoportok (NSG)](https://blogs.msdn.microsoft.com/igorpag/2016/05/14/azure-network-security-groups-nsg-best-practices-and-lessons-learned/) hello fő eszközei használhatja a hálózati forgalom tooenforce és vezérlés hello hálózati szinten szabályokat.
+Amíg az Azure Virtual Network (VNet) Azure hálózatmodell legfontosabb feladatai közé tartoznak, és biztosítja a leválasztásra és a védelemre, a [hálózati biztonsági csoportok (NSG)](https://blogs.msdn.microsoft.com/igorpag/2016/05/14/azure-network-security-groups-nsg-best-practices-and-lessons-learned/) kényszerítése, és szabályozhatja a hálózati forgalomra vonatkozó szabályok hálózati szintű fő eszközei.
 
 ![ Hálózati hozzáférés-vezérlést](media/azure-network-security/azure-network-security-fig-8.png)
 
 
-Hozzáférést lehetővé tevő vagy megtagadására hello futó alkalmazások és szolgáltatások a virtuális hálózaton, az ügyfél hálózatokon keresztül közötti kapcsolatot nyújthassanak, rendszerek közötti kommunikációt, vagy közvetlen Internet-kommunikációt.
+Hozzáférést lehetővé tevő vagy elutasítja a futó alkalmazások és szolgáltatások a virtuális hálózaton, az ügyfél hálózatokon keresztül közötti kapcsolatot nyújthassanak, rendszerek közötti kommunikációt, vagy közvetlen Internet-kommunikációt.
 
-Hello diagramon Vnetek és NSG-ket is találhatók, egy adott rétegben hello Azure átfogó biztonsági verem, ahol az NSG-k, UDR és virtuális hálózati berendezések lehet a használt toocreate biztonsági határokat tooprotect hello alkalmazástelepítések hello védett hálózat.
+A diagramon Vnetek és NSG-ket is találhatók, az Azure teljes biztonsági verem, ahol az NSG-k, UDR és virtuális hálózati berendezések segítségével az alkalmazások központi telepítéseit a védett hálózat védelme érdekében biztonsági határokat hozzon létre egy adott rétegben.
 
-NSG-ket egy 5 rekordos tooevaluate forgalom (és hello szabályokat be hello NSG-t használ):
+NSG-ket egy 5 rekordos segítségével értékelje ki a forgalom (és az konfigurál az NSG-szabályok használnak):
 
 -   [Forrás és cél IP-cím](https://support.microsoft.com/help/969029/the-functionality-for-source-ip-address-selection-in-windows-server-2008-and-in-windows-vista-differs-from-the-corresponding-functionality-in-earlier-versions-of-windows)
 
@@ -277,71 +277,71 @@ NSG-ket egy 5 rekordos tooevaluate forgalom (és hello szabályokat be hello NSG
 
 -   Protokoll: [Transmission Control Protocol (TCP)](https://technet.microsoft.com/library/cc940037.aspx) vagy [User Datagram Protocol (UDP)](https://technet.microsoft.com/library/cc940034.aspx)
 
-Ez azt jelenti, szabályozhatja a hozzáférést egy virtuális és a csoport közötti virtuális gépeket, vagy egy egyetlen virtuális gép tooanother egyetlen virtuális gép, vagy teljes alhálózatok között. Ebben az esetben ne feledje, hogy ez a szűrés, egyszerű csomag Csomagvizsgálat nem teljes. Nincs protokoll érvényesítési vagy hálózati szintek Azonosítói vagy IP-CÍMEK a hálózati biztonsági csoport képességét.
+Ez azt jelenti, szabályozhatja a hozzáférést egy virtuális és a virtuális gépeket, vagy egy másik egyetlen virtuális gép egyetlen virtuális Gépet egy csoportját, vagy teljes alhálózatok között. Ebben az esetben ne feledje, hogy ez a szűrés, egyszerű csomag Csomagvizsgálat nem teljes. Nincs protokoll érvényesítési vagy hálózati szintek Azonosítói vagy IP-CÍMEK a hálózati biztonsági csoport képességét.
 
 Az NSG-t, meg kell ismernie a beépített szabályokat tartalmaz. Ezek a következők:
 
--   **Egy adott virtuális hálózaton belüli összes forgalmat engedélyezi:** hello minden futó virtuális gépek azonos Azure Virtual Network kommunikálhatnak egymással.
+-   **Egy adott virtuális hálózaton belüli összes forgalmat engedélyezi:** minden virtuális gép ugyanazon az Azure Virtual Network kommunikálhatnak egymással.
 
--   **Engedélyezi az Azure terheléselosztási tooinbound:** Ez a szabály lehetővé teszi minden forrás cím tooany célcím-forgalom hello Azure terheléselosztó.
+-   **Engedélyezi a bejövő Azure terheléselosztási:** Ez a szabály lehetővé teszi bármely célcím bármely forráscím-forgalom az Azure load balancer.
 
--   **Az összes bejövő megtagadása:** Ez a szabály blokkolja az összes forgalom forrása hello Internet kifejezetten engedélyezett.
+-   **Az összes bejövő megtagadása:** Ez a szabály blokkolja az összes forgalom az internetről, amely explicit módon engedélyezi hogy forrás.
 
--   **Engedélyezi az összes forgalom kimenő Internet toohello:** Ez a szabály lehetővé teszi, hogy a virtuális gépek tooinitiate kapcsolatok toohello Internet. Ha nem szeretné, hogy ezek a kapcsolatok kezdeményezett, egy szabály tooblock toocreate kell ezeket a kapcsolatokat, vagy kényszerítése a kényszerített bújtatást.
+-   **Az összes forgalom az internethez kimenő forgalom engedélyezése:** Ez a szabály lehetővé teszi, hogy a virtuális gépek Internet kapcsolatokhoz. Ha nem szeretné, hogy ezek a kapcsolatok kezdeményezett, hozzon létre egy szabályt, amely ezeket a kapcsolatokat letiltása vagy kényszerítése a kényszerített bújtatás szeretné.
 
 #### <a name="system-routes-and-user-defined-routes"></a>Rendszerútvonalak és a felhasználó által definiált útvonalak
 
-Amikor az Azure virtuális gépek (VM) tooa virtuális hálózathoz (VNet), azt észleli, hogy hello virtuális gépek automatikusan legyenek-e egymással képes toocommunicate hello hálózaton keresztül. Az átjáró toospecify nem kell annak ellenére, hogy a virtuális gépek hello külön alhálózatokon vannak.
+Virtuális gépek (VM) ad hozzá egy virtuális hálózatot (VNet), az Azure-ban, ha azt észleli, hogy a virtuális gépek képesek kommunikálni egymással a hálózaton keresztül, automatikusan. Nem kell megadni átjárót, akkor sem, ha a virtuális gépek külön alhálózatokon vannak.
 
-hello is igaz hello virtuális gépek toohello közti kommunikációhoz nyilvános interneten, és még akkor is, tooyour a helyszíni hálózatra is, ha egy hibrid kapcsolat az Azure tooyour saját datacenter jelen.
+Ugyanez vonatkozik a virtuális gépek és a nyilvános internet közötti kommunikációra, és akár a helyszíni hálózatra is, ha jelen van egy hibrid kapcsolat az Azure és a saját adatközpont között.
 
 ![Rendszerútvonalak](media/azure-network-security/azure-network-security-fig-9.png)
 
-Kommunikáció ilyen típusú áramlása azért lehetséges, mert az Azure rendszer útvonalak toodefine hogyan IP a forgalom sorát használja. Rendszerútvonalak vezérlő a következő forgatókönyvek hello kommunikáció hello áramlását:
+A kommunikáció ilyen típusú áramlása azért lehetséges, mert az Azure rendszerútvonalak sorát használja az IP-cím adatforgalmának meghatározására. A rendszerútvonalak az alábbi helyzetekben irányítják a kommunikáció áramlását:
 
--   Belül hello ugyanazon az alhálózaton.
+-   Ha ugyanazon az alhálózaton belül történik.
 
--   Az alhálózati tooanother, egy Vneten belül.
+-   Két alhálózat között történik egy virtuális hálózaton belül.
 
--   A virtuális gépek toohello Internet.
+-   Virtuális gépek és az internet között történik.
 
--   Az egy VNet tooanother VNet egy VPN-átjárón keresztül.
+-   Két VNet között történik egy VPN-átjárón keresztül.
 
--   Egy VNet tooanother VNet – VNet-társviszony létesítése – a ([szolgáltatás láncolás](https://docs.microsoft.com/azure/virtual-network/virtual-network-peering-overview)).
+-   Egy vnet és egy másik virtuális hálózaton keresztül a Vnetben társviszony-létesítés ([szolgáltatás láncolás](https://docs.microsoft.com/azure/virtual-network/virtual-network-peering-overview)).
 
--   Virtuális hálózat tooyour a helyi hálózaton keresztül egy VPN-átjárón keresztül.
+-   Egy VNet és a helyszíni hálózat között történik egy VPN-átjárón keresztül.
 
-Sok vállalat rendelkezik szigorú biztonsági, és az összes hálózati csomagok tooenforce adott helyszíni vizsgálata igénylő megfelelőségi követelmények házirendeket. Azure nevű mechanizmust biztosít [kényszerített bújtatás](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-about-forced-tunneling) , amely irányítja a forgalmat a virtuális gépek tooon helyszíni hello egyéni útvonal létrehozása vagy által [Border Gateway Protocol (BGP)](https://docs.microsoft.com/windows-server/remote/remote-access/bgp/border-gateway-protocol-bgp) hirdetmények keresztül Expressroute-on vagy VPN.
+Sok vállalat rendelkezik szigorú biztonsági, és a helyszíni ellenőrzés az összes hálózati csomag kényszerítéséhez adott igénylő megfelelőségi követelmények házirendeket. Azure nevű mechanizmust biztosít [kényszerített bújtatás](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-about-forced-tunneling) , amely irányítja a forgalmat a virtuális gépek helyszíni egyéni útvonal létrehozása vagy által [Border Gateway Protocol (BGP)](https://docs.microsoft.com/windows-server/remote/remote-access/bgp/border-gateway-protocol-bgp) hirdetmények expressroute-on vagy VPN használatával.
 
-Az Azure-ban kényszerített bújtatás konfigurálása virtuális hálózati felhasználó által definiált útvonalak (UDR) keresztül. Irányít át forgalmat tooan helyszíni hely alapértelmezett útvonalat toohello Azure VPN-átjáróként van kifejezve.
+Az Azure-ban kényszerített bújtatás konfigurálása virtuális hálózati felhasználó által definiált útvonalak (UDR) keresztül. Egy helyszíni hely irányít át forgalmat az Azure VPN gatewayhez alapértelmezett útvonalat kifejezve.
 
-hello következő szakaszban azok hello aktuális hello útválasztási táblázathoz és korlátozása útvonalak egy Azure virtuális hálózat:
+A következő szakaszban azok az aktuális útválasztási táblázat és korlátozása útvonalak egy Azure virtuális hálózat:
 
--   Minden egyes virtuális hálózati alhálózat van egy beépített, rendszer-útválasztási táblázatához. hello rendszer útvonaltábla rendelkezik a következő három csoport útvonalak hello:
+-   Minden egyes virtuális hálózati alhálózat van egy beépített, rendszer-útválasztási táblázatához. A rendszer útválasztási táblázatban az útvonalak a következő három csoport rendelkezik:
 
- -  **Helyi VNet útvonalak:** közvetlenül toohello cél virtuális gépek hello az azonos virtuális hálózatban
+ -  **Helyi VNet útvonalak:** közvetlenül és a cél virtuális gépek ugyanabban a virtuális hálózatban
 
- - **A helyi útvonalak:** toohello Azure VPN gateway
+ - **A helyi útvonalak:** számára az Azure VPN gateway
 
- -  **Alapértelmezett útvonal:** közvetlenül toohello Internet. Eldobott csomagok toohello magánhálózati IP-címek nem fedi le hello előző két útvonalak.
+ -  **Alapértelmezett útvonal:** közvetlenül kell az internethez. A privát IP-címek nem fedi le az előző két útvonalakat a csomagok megszakadnak.
 
--   Felhasználó által definiált útvonalak hello számára készült hozzon létre egy útválasztási táblázat tooadd alapértelmezett útvonalat, és társíthatja hello útválasztási táblázat tooyour VNet alhálózati tooenable kényszerített bújtatás ezek alhálózatok.
+-   Felhasználó által definiált útvonalak kiadása létrehoz egy útválasztási táblázatot egy alapértelmezett útvonal hozzáadása, és majd társítsa a virtuális hálózat alhálózathoz ezek alhálózatok kényszerített bújtatás engedélyezése az útválasztási táblázatban.
 
--   Egy "alapértelmezett"nevű hely tooset kell hello létesítmények közötti helyi helyek csatlakoztatott toohello virtuális hálózat között.
+-   Egy "alapértelmezett"nevű hely a létesítmények közötti helyi helyek között a virtuális hálózathoz be kell.
 
 -   A kényszerített bújtatás kell rendelni egy Vnetet, amely egy dinamikus útválasztási VPN-átjáró (nem a statikus átjárók) rendelkezik.
 
-- A kényszerített bújtatás ExpressRoute a mechanizmus révén nincs konfigurálva, de ehelyett szerint engedélyezve van egy alapértelmezett útvonalat hirdet keresztül hello ExpressRoute BGP társviszony-létesítési munkameneteket.
+- A kényszerített bújtatás ExpressRoute a mechanizmus révén nincs konfigurálva, de ehelyett szerint engedélyezve van egy alapértelmezett útvonalat hirdet a ExpressRoute BGP társviszony-létesítési munkameneteket keresztül.
 
 > [!Note]
-> További információkért lásd: hello [ExpressRoute dokumentációja](https://azure.microsoft.com/documentation/services/expressroute/) további információt.
+> További információkért lásd: a [ExpressRoute dokumentációja](https://azure.microsoft.com/documentation/services/expressroute/) további információt.
 
 #### <a name="network-security-appliances"></a>Hálózati biztonsági készülékek
-Amíg a hálózati biztonsági csoportok és felhasználói útvonalakat biztosít egy bizonyos szintű hálózati biztonság: hello hello hálózati és a szállítási réteg [OSI-modell](https://en.wikipedia.org/wiki/OSI_model), toobe olyan helyzetekben, ahol azt szeretné, vagy tooenable kell készül biztonsági magasabb szinten hello hálózati vermet. Ilyen helyzetekben azt javasoljuk, hogy telepít virtuális hálózati biztonsági készülékek Azure partnerei által biztosított.
+Amíg a hálózati biztonsági csoportok és felhasználói útvonalakat biztosít egy bizonyos szintű hálózati biztonság, a hálózati és a szállítási réteg a [OSI-modell](https://en.wikipedia.org/wiki/OSI_model), létezhetnek helyzetek, ahol azt szeretné, vagy a hálózati vermet magasabb szintű biztonsági engedélyezni kell. Ilyen helyzetekben azt javasoljuk, hogy telepít virtuális hálózati biztonsági készülékek Azure partnerei által biztosított.
 
 ![Hálózati biztonsági készülékek](./media/azure-network-security/azure-network-security-fig-10.png)
 
-Az Azure hálózati biztonsági készülékek VNet biztonság növelésével és hálózati funkciók, és számos gyártó hello keresztül elérhető [Azure piactér](https://azuremarketplace.microsoft.com). E virtuális biztonsági készülékek telepített tooprovide lehet:
+Az Azure hálózati biztonsági készülékek VNet biztonság növelésével és hálózati funkciók, és számos gyártó keresztül elérhető a [Azure piactér](https://azuremarketplace.microsoft.com). Adja meg e virtuális biztonsági készülékek telepíthetők:
 
 -   Magas rendelkezésre állású tűzfalak
 
@@ -371,7 +371,7 @@ Az Azure hálózati biztonsági készülékek VNet biztonság növelésével és
 
  ![Application Gateway](./media/azure-network-security/azure-network-security-fig-11.png)
 
-Alkalmazásátjáró lehetővé teszi toooptimize webkiszolgáló farm teljesítmény és rendelkezésre állás kiürítésével a CPU intenzív SSL lezárást toohello az Alkalmazásátjáró (SSL-feladatkiszervezést). Emellett biztosítja az egyéb réteg 7 útválasztási képességeket telepít, például:
+Alkalmazásátjáró lehetővé teszi a webkiszolgáló farm teljesítmény és rendelkezésre állás optimalizálása kiürítésével a CPU intenzív SSL-lezárást az Alkalmazásátjáró (SSL-feladatkiszervezést). Emellett biztosítja az egyéb réteg 7 útválasztási képességeket telepít, például:
 
 -   Ciklikus multiplexelés bejövő forgalom
 
@@ -379,36 +379,36 @@ Alkalmazásátjáró lehetővé teszi toooptimize webkiszolgáló farm teljesít
 
 -   URL-cím elérési út-alapú útválasztási
 
--   Képes toohost mögött egyetlen alkalmazás átjáró több webhelyek
+-   Csak egyetlen alkalmazás átjáró mögötti több webhely képes
 
 
-A [webalkalmazási tűzfal (WAF)](https://docs.microsoft.com/azure/application-gateway/application-gateway-web-application-firewall-overview) hello Alkalmazásátjáró részeként is biztosítja. Ez védelmet biztosít a közös webes biztonsági rések és biztonsági rések tooweb alkalmazások. Alkalmazásátjáró konfigurálhat Internet felé néző átjáró, a belső átjárót, vagy mindkettőt.
+A [webalkalmazási tűzfal (WAF)](https://docs.microsoft.com/azure/application-gateway/application-gateway-web-application-firewall-overview) az Alkalmazásátjáró részeként is biztosítja. Ez biztosít védelmet webalkalmazások számára közös webes biztonsági rések és biztonsági réseket. Alkalmazásátjáró konfigurálhat Internet felé néző átjáró, a belső átjárót, vagy mindkettőt.
 
-Alkalmazás átjáró WAF észlelési vagy megelőzési módban futtatható. Gyakori használati eset rendszergazdák toorun észlelési mód tooobserve forgalmának kártevő minták szolgál. Amennyiben lehetséges észlel, alakítsa tooprevention mód blokkolja a gyanús bejövő forgalmat.
+Alkalmazás átjáró WAF észlelési vagy megelőzési módban futtatható. Gyakori használati eset a rendszergazdák megfigyelni a kártevő minták forgalom észlelési módban való futásra van. Amennyiben lehetséges észlel, szolgáltatják megelőzésére módra blokkolja a gyanús bejövő forgalmat.
 
  ![Application Gateway](./media/azure-network-security/azure-network-security-fig-12.png)
 
-Ezenkívül alkalmazás átjáró WAF segít figyelni a webalkalmazásokat integrálva van a valós idejű WAF-naplót használó támadások ellen [Azure figyelő](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview) és [az Azure Security Center](https://azure.microsoft.com/services/security-center/) tootrack WAF riasztások és egyszerűen figyelheti a trendeket.
+Ezenkívül alkalmazás átjáró WAF segít figyelni a webalkalmazásokat integrálva van a valós idejű WAF-naplót használó támadások ellen [Azure figyelő](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview) és [az Azure Security Center](https://azure.microsoft.com/services/security-center/) nyomon követhető a WAF riasztásokat, és könnyedén figyelheti a trendeket.
 
-hello JSON formátumú napló közvetlenül toohello ügyfél tárfiókjával kerül. Ezek a naplók teljes hozzáféréssel rendelkeznek, és a saját megőrzési házirendeket is alkalmazhat.
+A JSON-formázott napló közvetlenül az ügyfél tárfiókjával kerül. Ezek a naplók teljes hozzáféréssel rendelkeznek, és a saját megőrzési házirendeket is alkalmazhat.
 
-Ezek a naplók is betöltési módja, ha a saját analytics rendszer [Azure napló integrációs](https://aka.ms/AzLog). WAF naplók integrálva vannak [Operations Management Suite (OMS)](https://www.microsoft.com/cloud-platform/operations-management-suite) , hogy használhassa az OMS szolgáltatáshoz tooexecute kifinomult részletes lekérdezéseket.
+Ezek a naplók is betöltési módja, ha a saját analytics rendszer [Azure napló integrációs](https://aka.ms/AzLog). WAF naplók integrálva vannak [Operations Management Suite (OMS)](https://www.microsoft.com/cloud-platform/operations-management-suite) , OMS naplóelemzési segítségével kifinomult részletes lekérdezéseket hajt végre.
 
 #### <a name="azure-web-application-firewall-waf"></a>Az Azure webalkalmazási tűzfal (WAF)
 
-Webalkalmazások egyre közös ismert biztonsági rések, például az SQL injektálási, helyközi parancsfájlok futtatására és más támadásoknak hello jelennek meg a biztonsági rések elleni támadásokat céljainak [OWASP első 10](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project). Megakadályozza az ilyen biztonsági réseket hello alkalmazásban szigorú karbantartási, javítását és hello alkalmazás topológia rétege ellenőrzés szükséges.
+Webalkalmazások egyre közös ismert biztonsági rések, például az SQL injektálási, helyközi parancsfájlok futtatására és más támadásoknak, amelyek megjelennek a biztonsági rések elleni támadásokat céljai a [OWASP első 10](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project). Szigorú karbantartási, javítását és az alkalmazás topológia rétege ellenőrzés megakadályozza az ilyen biztonsági réseket az alkalmazásban van szükség.
 
  ![Az Azure webalkalmazási tűzfal (WAF)](./media/azure-network-security/azure-network-security-fig-13.png)
 
 Egy központi [webalkalmazási tűzfal (WAF)](https://docs.microsoft.com/azure/application-gateway/application-gateway-web-application-firewall-overview) webes támadások ellen, és a biztonságkezelés leegyszerűsíti az alkalmazások módosítása nélkül.
 
-WAF megoldás is reagálhasson tooa biztonsági kockázatot jelentenek gyorsabb által egy ismert biztonsági rések egy központi helyen, és minden egyes webalkalmazás biztonságossá tétele érdekében. Meglévő alkalmazásátjárót könnyen lehet konvertált tooa webes alkalmazás engedélyezve van a tűzfal Alkalmazásátjáró.
+Emellett a WAF-megoldás gyorsabban képes kezelni a biztonsági fenyegetéseket azáltal, hogy kijavítja az ismert biztonsági réseket egy központi helyen, ahelyett hogy az egyes webalkalmazások védelmét biztosítaná. A meglévő alkalmazásátjárókat egyszerűen át lehet alakítani webalkalmazási tűzfallal rendelkező alkalmazásátjárókká.
 
 #### <a name="network-availability-controls"></a>Hálózati rendelkezésre állás vezérlők
 
-Nincsenek más beállítások toodistribute hálózati forgalmat a Microsoft Azure használatával. Ezek a lehetőségek különböző működési elveken alapulnak, különböző funkciókészlettel rendelkeznek és különböző forgatókönyveket támogatnak. Elkülönítve vagy egymással kombinálva egyaránt használhatók.
+A Microsoft Azure-ral többféleképpen lehet elosztani a hálózati forgalmat. Ezek a lehetőségek különböző működési elveken alapulnak, különböző funkciókészlettel rendelkeznek és különböző forgatókönyveket támogatnak. Elkülönítve vagy egymással kombinálva egyaránt használhatók.
 
-Következő vannak hello hálózati rendelkezésre állás vezérlők:
+Az alábbiakban a hálózati rendelkezésre állás vezérlők:
 
 -   Azure Load Balancer
 
@@ -418,46 +418,46 @@ Következő vannak hello hálózati rendelkezésre állás vezérlők:
 
 **Az Azure terheléselosztó**
 
-Magas rendelkezésre állás és a hálózati teljesítményt nyújt tooyour alkalmazások. A réteg 4 (TCP, UDP) terheléselosztó bejövő forgalmat egy elosztott terhelésű készlet definiált kifogástalan szolgáltatáspéldányok között ellátó.
+Magas rendelkezésre állás és a hálózati teljesítményt nyújt az alkalmazások. A réteg 4 (TCP, UDP) terheléselosztó bejövő forgalmat egy elosztott terhelésű készlet definiált kifogástalan szolgáltatáspéldányok között ellátó.
 
  ![Azure Load Balancer](media/azure-network-security/azure-network-security-fig-14.png)
 
 
 Az Azure Load Balancer beállítható úgy, hogy:
 
--   Gépek terhelést elosztani bejövő internetes forgalom toovirtual. Ez a konfiguráció az úgynevezett [internetre terheléselosztási](https://docs.microsoft.com/azure/load-balancer/load-balancer-internet-overview).
+-   Egyenleg bejövő internetes forgalmat a virtuális gépek betölteni. Ez a konfiguráció az úgynevezett [internetre terheléselosztási](https://docs.microsoft.com/azure/load-balancer/load-balancer-internet-overview).
 
 -   Betöltési oszthatja el a forgalmat egy virtuális hálózatban lévő virtuális gépek, virtuális gépek felhőszolgáltatások közötti vagy a helyszíni számítógépek és a létesítmények közötti virtuális hálózatban lévő virtuális gépek között. Ez a konfiguráció az úgynevezett [belső terheléselosztás](https://docs.microsoft.com/azure/load-balancer/load-balancer-internal-overview).
 
--   Külső forgalom tooa adott virtuális gép.
+-   Egy adott virtuális gép a külső forgalom továbbítására.
 
-Hello felhőben található összes erőforrást kell egy nyilvános IP-cím toobe hello Internet elérhető. hello felhő-infrastruktúra az Azure-ban nem elérhető IP-címet használ az erőforrások. Azure nyilvános IP címek toocommunicate toohello Internet hálózati címfordítás (NAT) használ.
+A felhőben található összes erőforrást egy nyilvános IP-címet az internetről elérhetőnek kell lennie kell. A felhőalapú infrastruktúra az Azure-ban nem elérhető IP-címet használ az erőforrások. Azure hálózati címfordítás (NAT) használ a kommunikálnak az interneten a nyilvános IP-címeket.
 
  **Alkalmazásátjáró**
 
- Alkalmazásátjáró hello (réteg 7 hello OSI hálózati referencia-verem) alkalmazás rétegben működik. Úgy működik, mint egy fordított proxy szolgáltatás hello ügyfélkapcsolat leáll, és a továbbítási kérelmek tooback-a befejezési végpontok.
+ Alkalmazásátjáró működik. az alkalmazási rétegre (a OSI hálózati hivatkozás verem réteg 7). Fordított proxyszolgáltatásként működik, az ügyfélkapcsolatok leállítását és a kérelmek háttérvégpontokhoz való továbbítását végzi.
 
  **Forgalomkezelő**
 
-A Microsoft Azure Traffic Manager lehetővé teszi toocontrol hello terjesztési felhasználói forgalomnak a végpontok különböző adatközpontokban. Traffic Manager által támogatott szolgáltatás végpontok közé tartoznak az Azure virtuális gépeken, Web Apps, és a felhőalapú szolgáltatások. A Traffic Manager külső, nem Azure-végpontokkal együtt is használható.
+A Microsoft Azure Traffic Manager szolgáltatás végpontok különböző adatközpontokban felhasználói forgalom terjesztését teszi lehetővé. Traffic Manager által támogatott szolgáltatás végpontok közé tartoznak az Azure virtuális gépeken, Web Apps, és a felhőalapú szolgáltatások. A Traffic Manager külső, nem Azure-végpontokkal együtt is használható.
 
-A TRAFFIC Manager által használt hello tartománynévrendszer (DNS) toodirect ügyfél igényel toohello leginkább megfelelő végpont alapján egy [forgalom-útválasztási módszer](https://docs.microsoft.com/azure/traffic-manager/traffic-manager-routing-methods) és hello végpontok hello állapotát. A TRAFFIC Manager forgalom-útválasztási módszert toosuit különböző alkalmazások igényeihez, végpont állapota számos biztosít [figyelési](https://docs.microsoft.com/azure/traffic-manager/traffic-manager-monitoring), és automatikus feladatátvételt. A TRAFFIC Manager rugalmas toofailure, többek között a hello sikertelen volt-e egy teljes Azure-régióban.
+A TRAFFIC Manager használ a tartománynévrendszer (DNS) át tudja irányítani a legmegfelelőbb végpontra irányuló kéréseket a [forgalom-útválasztási módszer](https://docs.microsoft.com/azure/traffic-manager/traffic-manager-routing-methods) és a végpontok állapotát. A TRAFFIC Manager forgalom-útválasztási módszer különböző különböző alkalmazás igényeinek, végpont állapota megfelelő számos biztosít [figyelési](https://docs.microsoft.com/azure/traffic-manager/traffic-manager-monitoring), és automatikus feladatátvételt. A TRAFFIC Manager esetén is lehetséges legyen, beleértve a teljes Azure-régiót hibája.
 
-Az Azure Traffic Manager lehetővé teszi toocontrol hello terjesztési forgalom között az alkalmazási végpontokat. A végpont bármilyen internetre-szolgáltatott belül vagy kívül Azure.
+Az Azure Traffic Manager lehetővé teszi a forgalom eloszlása vezérelni az alkalmazási végpontokat. A végpont bármilyen internetre-szolgáltatott belül vagy kívül Azure.
 
 A TRAFFIC Manager biztosít két fő előnnyel jár:
 
--   Megfelelően fel számos tooone forgalmat [forgalom-útválasztási módszert](https://docs.microsoft.com/azure/traffic-manager/traffic-manager-routing-methods).
+-   A forgalmat több valamelyikével [forgalom-útválasztási módszert](https://docs.microsoft.com/azure/traffic-manager/traffic-manager-routing-methods).
 
 -   [Folyamatosan figyelje a végpont állapotfigyelő](https://docs.microsoft.com/azure/traffic-manager/traffic-manager-monitoring) és automatikus feladatátvétel, ha a végpontok sikertelen.
 
-Amikor az ügyfél tooconnect tooa szolgáltatás, először azt kell tartoznia hello szolgáltatás tooan IP-cím hello DNS-nevét. hello majd ügyfélprogramja toothat IP-cím tooaccess hello szolgáltatás. A TRAFFIC Manager által használt DNS toodirect ügyfelek toospecific szolgáltatás végpontjait hello forgalom-útválasztási módszer hello szabályok alapján. Az ügyfelek kapcsolódnak kijelölt toohello végpont közvetlenül. A TRAFFIC Manager nincs olyan proxy vagy az átjáró. A TRAFFIC Manager hello ügyfél és a hello szolgáltatás közötti információátadáshoz hello forgalom nem jelenik meg.
+Amikor egy ügyfél próbál kapcsolódni a szolgáltatáshoz, a szolgáltatás DNS-nevét először azt kell tartoznia IP-címet. Az ügyfél ezután kapcsolódik az IP-címet, a szolgáltatás eléréséhez. A TRAFFIC Manager DNS-ügyfelek a forgalom-útválasztási módszer a szabályok adott Szolgáltatásvégpontok használja. Ügyfelek közvetlenül a kijelölt végponthoz kapcsolódni. A TRAFFIC Manager nincs olyan proxy vagy az átjáró. A TRAFFIC Manager nem látja az ügyfél és a szolgáltatás között áthaladó forgalmat.
 
 ### <a name="azure-network-validation"></a>Azure-hálózat ellenőrzése
 
-Azure-hálózat érvényesítésre, amely az Azure-hálózat hello tooensure működik van konfigurálva, és érvényesítési végezhető hello szolgáltatást és alkalmazást elérhető toomonitor hello hálózat használatával. Azure hálózati figyelőt, végezheti el a naplózási formátum és diagnosztikai képességek, amelyek insights toounderstand ellenőrizniük meg a hálózati teljesítmény- és állapot. Ezek a képességek a portálhoz, a PowerShell, a CLI, a Rest API-t és a SDK keresztül érhetők el.
+Azure-hálózat ellenőrzése, hogy győződjön meg arról, hogy az az Azure-hálózatot módon van konfigurálva, és érvényesítési végezhető működik-e a szolgáltatások és a hálózat elérhető szolgáltatások segítségével. Azure hálózati figyelőt, végezheti el a naplózási formátum és diagnosztikai képességek, amelyekkel meg, amelyen a hálózati teljesítmény- és állapot megértése. Ezek a képességek a portálhoz, a PowerShell, a CLI, a Rest API-t és a SDK keresztül érhetők el.
 
-Az Azure Operational biztonsági hivatkozik toohello szolgáltatások, a vezérlők és a szolgáltatások rendelkezésre toousers védelmére az adatok, alkalmazások és egyéb eszközök a Microsoft Azure-ban. Az Azure Operational biztonsági épül egy keretrendszer, amely magában foglalja a hello tapasztalatok teszik a különböző képességeket, amelyek egyedi tooMicrosoft, beleértve a Microsoft biztonságos fejlesztési Életciklussal (SDL), a Microsoft biztonsági válasz Center hello hello keresztül program, és részletes tájékoztatást nyújthatnak a hello számítógépes biztonsági fenyegetésekről alkotott képet.
+Az Azure Operational biztonsági hivatkozik a szolgáltatások, a vezérlők és a felhasználók számára elérhető szolgáltatások védelmére az adatok, alkalmazások és egyéb eszközök a Microsoft Azure-ban. Az Azure Operational biztonsági egy keretrendszer, amely magában foglalja a tapasztalatok teszik ki egy egyedi, a Microsoftnak, beleértve a Microsoft biztonsági fejlesztési életciklus (SDL), a Microsoft biztonsági válasz Center program és részletes tájékoztatást nyújthatnak a számítógépes biztonsági veszélyforrásainak tükrében megfigyelhető a különböző képességeket keresztül épül.
 
 -   [Az Azure Operations Management Suite szolgáltatásban](https://docs.microsoft.com/azure/operations-management-suite/operations-management-suite-overview)
 
@@ -473,36 +473,36 @@ Az Azure Operational biztonsági hivatkozik toohello szolgáltatások, a vezérl
 
 #### <a name="azure-resource-manager"></a>Az Azure erőforrás-kezelő
 
-lehet, hogy hello legfontosabb biztonsági szolgáltatás hello platform hello személyek és a Microsoft Azure-t üzemeltető folyamatok. Ez a szakasz ismerteti a Microsoft globális adatközpont infrastruktúrájában javíthatja és karbantartása a biztonsági, folytonosságának és adatvédelmi funkciókat.
+A személyek és folyamatok, a Microsoft Azure-t üzemeltető is lehet, hogy a legfontosabb, a platform biztonsági szolgáltatás. Ez a szakasz ismerteti a Microsoft globális adatközpont infrastruktúrájában javíthatja és karbantartása a biztonsági, folytonosságának és adatvédelmi funkciókat.
 
-az alkalmazás hello infrastruktúrája általában számos összetevőből áll – például egy virtuális gépből, tárfiókot, és virtuális hálózati vagy egy webalkalmazást, adatbázis, adatbázis-kiszolgáló és harmadik féltől származó szolgáltatással épül fel. Ezeket az összetevőket nem külön entitásokként látja, hanem egyetlen entitás kapcsolódó és egymással összefüggő részeiként. Szeretné, hogy toodeploy, kezelheti és figyelheti azokat csoportként. Az Azure Resource Manager lehetővé teszi a megoldás hello erőforrásokat toowork csoportként.
+Az alkalmazás infrastruktúrája általában számos összetevőből áll – például egy virtuális gépből, tárfiókot, és virtuális hálózati vagy egy webalkalmazást, adatbázis, adatbázis-kiszolgáló és harmadik féltől származó szolgáltatással épül fel. Ezeket az összetevőket nem külön entitásokként látja, hanem egyetlen entitás kapcsolódó és egymással összefüggő részeiként. Csoportként érdemes telepíteni, kezelni és megfigyelni őket. Az Azure Resource Manager lehetővé teszi, hogy a megoldásában az erőforrásokkal egy csoportként dolgozzon.
 
-Telepíteni, frissíteni vagy hello összes erőforrást törli a megoldás egyetlen, koordinált műveletben. A telepítéshez egy sablon használatos, amely különböző, például tesztelési, átmeneti és üzemi környezetben is képes működni. A Resource Manager biztosít biztonsági, naplózási és címkézési szolgáltatásokat toohelp, kezelheti az erőforrásokat a telepítés utáni.
+A megoldás összes erőforrását egyetlen, koordinált műveletben telepítheti, frissítheti vagy törölheti. A telepítéshez egy sablon használatos, amely különböző, például tesztelési, átmeneti és üzemi környezetben is képes működni. A Resource Manager biztonsági, naplózási és címkézési szolgáltatásokat biztosít, hogy segítsen az erőforrások kezelésében a telepítést követően.
 
-**Erőforrás-kezelő használatával hello előnyei**
+**A Resource Manager használatának előnyei**
 
 A Resource Manager számos előnyt kínál:
 
--   Telepíthetik, felügyelhetik és erőforrások hello figyeli, hogy a megoldás egy csoportot, hanem erőforrások különálló kezelése.
+-   A megoldás összes erőforrását egy csoportként telepítheti, felügyelheti és figyelheti meg az erőforrások különálló kezelése helyett.
 
--   Ismételten telepítheti a megoldást hello fejlesztési életciklus során, és lehet abban, hogy az erőforrások telepítése konzisztens lesz.
+-   A megoldást ismételten telepítheti a fejlesztési életciklus során, és biztos lehet abban, hogy az erőforrások telepítése konzisztens lesz.
 
 -   Az infrastruktúrát szkriptek helyett deklaratív sablonok segítségével is kezelheti.
 
--   Megadhatja, hogy hello függőségek között erőforrásokat, hogy azok hello megfelelő sorrendben legyenek telepítve.
+-   Meghatározhatja az erőforrások, hogy azok a megfelelő sorrendben legyenek telepítve közti függőségeket.
 
--   Hozzáférés-vezérlési tooall szolgáltatásokat alkalmazhat az erőforráscsoportban, mivel a szerepköralapú hozzáférés-vezérlést (RBAC) natív módon integrálva hello felügyeleti platform.
+-   Hozzáférés-vezérlést alkalmazhat az összes szolgáltatásra az erőforráscsoportban, mivel a szerepköralapú hozzáférés-vezérlés (RBAC) natív módon integrálva van a felügyeleti platformba.
 
--   Címkékkel láthatja tooresources toologically rendszerezése összes hello erőforrást az előfizetésében.
+-   Címkékkel láthatja el az erőforrásokat, így logikusan rendszerezhető az előfizetés összes erőforrása.
 
 -   Tisztázhatja a szervezete egy címke megosztása erőforrások csoportja számára költségeinek megtekintésével.
 
 > [!Note]
-> Erőforrás-kezelő egy új módon toodeploy biztosít, és a megoldások kezelése. Ha követte hello korábbi telepítési modellt és toolearn hello változásokról, tekintse meg [Understanding Resource Manager üzembe helyezési és a klasszikus üzembe helyezési](https://docs.microsoft.com/azure/azure-resource-manager/resource-manager-deployment-model).
+> A Resource Manager egy új módot kínál a megoldások telepítésére és kezelésére. Ha a korábbi telepítési modellt használta, és további információkat kíván megtudni a változásokról, tekintse meg [A Resource Manager telepítés és a hagyományos telepítés ismertetése](https://docs.microsoft.com/azure/azure-resource-manager/resource-manager-deployment-model) című cikket.
 
 ## <a name="azure-network-logging-and-monitoring"></a>Azure-hálózat naplózás és figyelés
 
-Az Azure számos eszközök toomonitor kínál, megakadályozása, észlelésében és kezelésében toonetwork biztonsági eseményeket. Hello leghatékonyabb eszközök elérhető tooyou milyenek többek között:
+Azure biztosít több segédprogramot is figyelni, megakadályozása, észlelésében és kezelésében a hálózati biztonsági eseményekre. Ez a terület érhető el a leghatékonyabb eszköze többek között:
 
 -   Network Watcher
 
@@ -512,19 +512,19 @@ Az Azure számos eszközök toomonitor kínál, megakadályozása, észleléséb
 
 ### <a name="network-watcher"></a>Hálózati figyelőt
 
-[Hálózati figyelő](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview) -forgatókönyv-alapú figyelési által biztosított hello szolgáltatások a hálózati figyelőt. A szolgáltatás része a csomagrögzítéssel, a következő ugrás, az IP-adatfolyam győződjön meg arról, biztonsági csoport megtekintése, NSG folyamata naplókat. Forgatókönyv szintű figyelési jeleníti meg egy záró tooend ezzel szemben tooindividual hálózati erőforrás figyelési hálózati erőforrásokhoz.
+[Hálózati figyelő](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview) -forgatókönyv-alapú figyelési által biztosított szolgáltatások a hálózati figyelőt. A szolgáltatás része a csomagrögzítéssel, a következő ugrás, az IP-adatfolyam győződjön meg arról, biztonsági csoport megtekintése, NSG folyamata naplókat. Forgatókönyv szintű figyelési jeleníti meg egy végpontok közötti hálózati erőforrások ellentétben egyes hálózati erőforrás-figyelése.
 
  ![Network Watcher](./media/azure-network-security/azure-network-security-fig-15.png)
 
-Hálózati figyelőt regionális szolgáltatás, amely lehetővé teszi, hogy Ön toomonitor és diagnosztizálásához szintjén feltételek egy hálózati forgatókönyv, hogy, és az Azure-ból. Hálózati diagnosztikai és a képi megjelenítés eszközök is elérhetők a hálózati figyelőt segítenek megérteni, diagnosztizálása és szerezhet insights tooyour hálózati az Azure-ban.
+Hálózati figyelőt olyan regionális szolgáltatás, amely lehetővé teszi, hogy figyelése és diagnosztizálása szintjén feltételek egy hálózati forgatókönyv, hogy, és az Azure-ból. Hálózati diagnosztika és a képi megjelenítés eszközök is elérhetők a hálózati figyelőt segítenek megérteni, diagnosztizálása és információt kaphat a hálózathoz, az Azure-ban.
 
-Hálózati figyelőt a következő képességeket hello van:
+Hálózati figyelőt jelenleg a következő képességekkel rendelkezik:
 
 #### <a name="topology"></a>topológia
 
-[Topológia](https://docs.microsoft.com/azure/network-watcher/network-watcher-topology-overview) adja vissza a hálózati erőforrások egy grafikonon egy virtuális hálózatot. hello ábra hello összekapcsolása hello erőforrások toorepresent hello end tooend hálózati kapcsolatot ábrázolja. Hello portálon topológia adja vissza hello erőforrás-objektumból az adott virtuális hálózati alapján. hello kapcsolatok ezek ábrázolva kapcsolaton kívül hello hálózati figyelőt régió, hello erőforrások között, akkor is, ha a hello erőforrás csoport nem jelenik meg. hello portál nézetben visszaadott hello erőforrások hello hálózati összetevők, amelyek grafikon részhalmazát jelentik. toosee hello teljes listájának hálózati erőforrások megtekintéséhez használhatja [PowerShell](https://docs.microsoft.com/azure/network-watcher/network-watcher-topology-powershell) vagy [REST](https://docs.microsoft.com/azure/network-watcher/network-watcher-topology-rest).
+[Topológia](https://docs.microsoft.com/azure/network-watcher/network-watcher-topology-overview) adja vissza a hálózati erőforrások egy grafikonon egy virtuális hálózatot. Az ábra a végpontok közötti hálózati kapcsolatot képviselő erőforrások összekapcsolása ábrázolja. A portálon topológia adja vissza az erőforrás-objektumból az adott virtuális hálózati alapján. A kapcsolatok ezek ábrázolva kapcsolaton kívül a hálózati figyelőt régió erőforrások között, akkor is, ha az erőforrás a csoport nem jelenik meg. Az erőforrások, az eredmény abban a portál nézet a hálózati összetevők, amelyek grafikon részhalmazát jelentik. A hálózati erőforrások teljes listájának megtekintéséhez használja [PowerShell](https://docs.microsoft.com/azure/network-watcher/network-watcher-topology-powershell) vagy [REST](https://docs.microsoft.com/azure/network-watcher/network-watcher-topology-rest).
 
-Erőforrásokat ad vissza, azok között hello kapcsolat két kapcsolatok alapján van modellezve.
+Erőforrásokat ad vissza, a kapcsolatot, akkor a két van modellezve.
 
 - **A befoglaltsági** -virtuális hálózat tartalmaz egy alhálózatot, amely tartalmazza a hálózati adaptert.
 
@@ -532,37 +532,37 @@ Erőforrásokat ad vissza, azok között hello kapcsolat két kapcsolatok alapj�
 
 #### <a name="variable-packet-capture"></a>Változó csomagrögzítéssel
 
-Hálózati figyelő [változó csomagrögzítéssel](https://docs.microsoft.com/azure/network-watcher/network-watcher-packet-capture-overview) lehetővé teszi a virtuális gép toocreate csomag rögzítési munkamenetek tootrack forgalom tooand. Csomagrögzítéssel segít toodiagnose hálózati rendellenességeket mindkét reaktív és proactivity. Egyéb felhasználásra tartalmazzák a hálózati statisztikákat, való információk hálózati behatolások, toodebug ügyfél-kiszolgáló közötti kommunikációt, és még sok más összegyűjtéséhez.
+Hálózati figyelő [változó csomagrögzítéssel](https://docs.microsoft.com/azure/network-watcher/network-watcher-packet-capture-overview) lehetővé teszi a csomag rögzítési munkamenetek nyomon követéséhez forgalma és a virtuális gép létrehozásához. Csomag rögzítési segítségével mindkét hálózati rendellenességeket reaktív diagnosztizálásához és proactivity. Egyéb felhasználásra tartalmazzák a hálózati statisztikákat, hálózati behatolások, ügyfél-kiszolgáló közötti kommunikációt, és még sok más hibakeresési információkat való összegyűjtéséhez.
 
-Csomagrögzítéssel a virtuálisgép-bővítmény hálózati figyelőt keresztül távolról elindult. Ez a funkció megkönnyíti a hello okozta terheket egy csomagrögzítéssel manuálisan virtuális gépen futó hello szükséges, amely értékes időt takaríthat meg. Csomagrögzítéssel hello portál, a PowerShell, a CLI vagy a REST API-n keresztül is elindítható. Például hogyan csomagrögzítéssel is elindítható a virtuális gép a riasztások van.
+Csomagrögzítéssel a virtuálisgép-bővítmény hálózati figyelőt keresztül távolról elindult. Ez a funkció megkönnyíti a csomagrögzítéssel manuálisan futó a használni kívánt virtuális gépet, amely értékes időt takaríthat meg okozta terheket. A portál, a PowerShell, a parancssori felület vagy a REST API-n keresztül is elindítható a csomagrögzítéssel. Például hogyan csomagrögzítéssel is elindítható a virtuális gép a riasztások van.
 
 #### <a name="ip-flow-verify"></a>IP-adatfolyam ellenőrzése
 
-[IP-adatfolyamok ellenőrizze](https://docs.microsoft.com/azure/network-watcher/network-watcher-ip-flow-verify-overview) ellenőrzi, ha egy csomag engedélyezett vagy megtagadott tooor egy virtuális gép 5 rekordos adatok alapján. Ez az információ irányát, protokoll, helyi IP, távoli IP, helyi port és távoli port áll. Ha hello csomagok megtagadta a biztonsági csoport, hello csomagok megtagadva hello szabály hello nevét adja vissza. Minden cél- és IP-választható ki, miközben segít gyorsan diagnosztizálhatja a kapcsolat hibái vagy a toohello rendszergazdák internet pedig vagy toohello helyszíni környezetben.
+[IP-adatfolyamok ellenőrizze](https://docs.microsoft.com/azure/network-watcher/network-watcher-ip-flow-verify-overview) ellenőrzi, ha egy csomag engedélyezett vagy megtagadott vagy a virtuális gép 5 rekordos adatok alapján. Ez az információ irányát, protokoll, helyi IP, távoli IP, helyi port és távoli port áll. Ha a csomagot a rendszer megtagadja egy biztonsági csoport, a szabály, amely megtagadja a csomag nevét adja vissza. Minden cél- és IP-választható ki, miközben a Ez a szolgáltatás segítségével a rendszergazdák gyorsan eseményadatokat kapcsolat a vagy az internethez és a vagy a helyszíni környezetben.
 
-IP-adatfolyamok ellenőrizze a hálózati adaptert egy virtuális gép célozza. Forgalom majd ellenőrizve hello konfigurált beállítások tooor az, hogy a hálózati illesztő alapján. Ezzel a képességgel olyan hasznos, erősítse meg, ha egy szabály a hálózati biztonsági csoport blokkolja a belépési vagy kilépési forgalom tooor virtuális gépről.
+IP-adatfolyamok ellenőrizze a hálózati adaptert egy virtuális gép célozza. Forgalom majd ellenőrizve a konfigurált beállításokat, vagy arról, hogy a hálózati illesztő alapján. Ezzel a képességgel olyan hasznos, erősítse meg, ha egy szabály a hálózati biztonsági csoport blokkolja a belépési vagy kilépési bejövő és kimenő forgalmat a virtuális gép.
 
 #### <a name="next-hop"></a>Következő ugrás
 
-Meghatározza, hogy hello [következő Ugrás](https://docs.microsoft.com/azure/network-watcher/network-watcher-next-hop-overview) a csomagok irányítása a hello Azure hálózati háló, akkor toodiagnose engedélyezése minden felhasználó által definiált útvonalak konfigurálva. A virtuális gépről érkező forgalom mennyiségének tooa cél hello hatékony útvonalak társított hálózati alapján Következő ugrás lekérése hello következő ugrás típusa és a csomagok IP-cím egy adott virtuális gép és a hálózati adaptert. Ez segít toodetermine, ha hello csomagot irányított toohello cél vagy rendszer éppen fekete hello forgalom furatos.
+Meghatározza, hogy a [következő Ugrás](https://docs.microsoft.com/azure/network-watcher/network-watcher-next-hop-overview) így lehetővé teszi bármely diagnosztizálhatja a csomagok irányítása a Azure hálózati hálóban, felhasználó által definiált útvonalak konfigurálva. VM forgalmat elküldi a hatékony társított hálózati útvonalak alapján célhelyét. Következő ugrás lekérése a következő ugrás típusa és a csomagok IP-cím egy adott virtuális gép és a hálózati adaptert. Ez segít meghatározni, ha a csomag van irányítja a cél, vagy éppen fekete forgalom furatos van.
 
-Következő ugrás is hello következő ugrás társított hello útválasztási táblázatot ad vissza. Lekérdezésekor a következő ugrás, ha egy felhasználó által megadott útvonal hello útvonal van meghatározva, az adott útvonal eredmény. Egyéb esetben a következő ugrás "Rendszerútvonal" ad vissza.
+Következő ugrás is a következő ugrás hozzárendelt útválasztási táblázatot ad vissza. Lekérdezésekor a következő ugrás, ha egy felhasználó által megadott útvonalat az útvonal van meghatározva, az adott útvonal eredmény. Egyéb esetben a következő ugrás "Rendszerútvonal" ad vissza.
 
 #### <a name="security-group-view"></a>Biztonsági csoport megtekintése
 
-Lekérdezi a virtuális gép által használt hello hatékony és alkalmazott biztonsági szabályokat. Hálózati biztonsági csoportok társított alhálózati szinten, vagy egy hálózati adapter szintjén. Ha tartozó alhálózati szinten, tooall hello Virtuálisgép-példány hello alhálózati érvényes. Hálózati [biztonsági csoport megtekintése](https://docs.microsoft.com/azure/network-watcher/network-watcher-security-group-view-overview) minden konfigurált hello NSG-ket és egy virtuális gép hello konfigurációs betekintést biztosít a hálózati és alhálózati szinten társított szabályokat adja vissza. Továbbá a hello hatékony biztonsági szabályok visszaadott minden hello hálózati adapterek virtuális gépen. Hálózati biztonsági csoport használatával nézet felmérheti a virtuális gépek, a hálózati biztonsági réseket, például a megnyitott portok. Ha a hálózati biztonsági csoport a várt módon működik alapján is ellenőrzéséhez egy [hello összehasonlítása konfigurálva és hatékony biztonsági szabályok hello](https://docs.microsoft.com/azure/network-watcher/network-watcher-nsg-auditing-powershell).
+Lekérdezi a hatékony és alkalmazott biztonsági szabályokat, amelyek érvényesek a virtuális gép. Hálózati biztonsági csoportok társított alhálózati szinten, vagy egy hálózati adapter szintjén. Hozzárendelt alhálózat szinten, ha az alhálózat összes Virtuálisgép-példányára vonatkozik. Hálózati [biztonsági csoport megtekintése](https://docs.microsoft.com/azure/network-watcher/network-watcher-security-group-view-overview) adja vissza az összes beállított NSG-ket és egy virtuális gépet, a konfiguráció betekintést biztosít a hálózati és alhálózati szinten társított szabályokat. Emellett a hatékony biztonsági szabályok adja vissza minden virtuális gép hálózati adapterei. Hálózati biztonsági csoport használatával nézet felmérheti a virtuális gépek, a hálózati biztonsági réseket, például a megnyitott portok. Ha a hálózati biztonsági csoport a várt módon működik alapján is ellenőrzéséhez egy [a beállított és a hatékony biztonsági szabályok összehasonlítása](https://docs.microsoft.com/azure/network-watcher/network-watcher-nsg-auditing-powershell).
 
 #### <a name="nsg-flow-logging"></a>NSG Flow naplózás
 
- Adatfolyam-naplókat a hálózati biztonsági csoportok lehetővé teszik a toocapture naplók kapcsolódó tootraffic, amelyek számára engedélyezett vagy megtagadott hello szabályok hello csoportban. hello folyamata 5 rekordos információkat – forrás IP-cím, a cél IP-cím, a forrásport, a célport és a protokoll határozzák meg.
+ Adatfolyam-naplókat a hálózati biztonsági csoportok lehetővé teszik a engedélyezett vagy megtagadott a csoport biztonsági szabályai forgalmi naplók rögzítése. A folyamat egy 5 rekordos információkat – a forrás IP-cím, a cél IP-cím, a forrásport, a célport és a protokoll határozzák meg.
 
-[Hálózati biztonsági csoport folyamata naplók](https://docs.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-overview) azon szolgáltatása, amely lehetővé teszi az IP-bemenő és kimenő forgalmat a hálózati biztonsági csoporton keresztül tooview információt hálózati figyelőt.
+[Hálózati biztonsági csoport folyamata naplók](https://docs.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-overview) azon szolgáltatása, amely lehetővé teszi, hogy tekintse meg a hálózati biztonsági csoporton keresztül bemenő és kimenő IP-forgalom hálózati figyelőt.
 
 #### <a name="virtual-network-gateway-and-connection-troubleshooting"></a>Virtuális hálózati átjáró és a kapcsolat hibaelhárítása
 
-Hálózati figyelőt számos lényeges képességét biztosítja, felügyeletében toounderstanding a hálózati erőforrások az Azure-ban. Ezek a képességek egyik erőforrás hibaelhárítás. [Erőforrások hibaelhárítása](https://docs.microsoft.com/azure/network-watcher/network-watcher-troubleshoot-manage-rest) PowerShell, a parancssori felületen vagy a REST API hívása. Meghívásakor, a hálózati figyelőt megvizsgálja a virtuális hálózati átjáró vagy a kapcsolat hello állapotát, és adja vissza az eredményekről.
+Hálózati figyelőt sok képességeket biztosít, a hálózati erőforrások az Azure-ban ismertetése vonatkozik. Ezek a képességek egyik erőforrás hibaelhárítás. [Erőforrások hibaelhárítása](https://docs.microsoft.com/azure/network-watcher/network-watcher-troubleshoot-manage-rest) PowerShell, a parancssori felületen vagy a REST API hívása. Meghívásakor, a hálózati figyelőt megvizsgálja a virtuális hálózati átjáró vagy a kapcsolat állapotát, és visszaadja az eredményekről.
 
-Ez a szakasz végigvezeti hello különböző felügyeleti feladatok, amelyek erőforrás hibaelhárítási aktuálisan elérhető.
+Ez a szakasz végigvezeti Önt a különböző felügyeleti feladatok, amelyek erőforrás hibaelhárítási aktuálisan elérhető.
 
 -   [A virtuális hálózati átjáró hibaelhárítása](https://docs.microsoft.com/azure/network-watcher/network-watcher-troubleshoot-manage-rest)
 
@@ -570,7 +570,7 @@ Ez a szakasz végigvezeti hello különböző felügyeleti feladatok, amelyek er
 
 #### <a name="network-subscription-limits"></a>Hálózati előfizetési korlátozásait
 
-[Előfizetési korlátozásait a hálózati](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview) biztosítanak hello használata hello hálózati erőforrás hello maximális számát a rendelkezésre álló erőforrások elleni régióban előfizetés részleteit.
+[Előfizetési korlátozásait a hálózati](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview) biztosít a hálózati erőforráshoz, a rendelkezésre álló erőforrások maximális számának elleni régióban előfizetés használatának részleteit.
 
 #### <a name="configuring-diagnostics-log"></a>Diagnosztikai naplófájl konfigurálása
 
@@ -578,11 +578,11 @@ Hálózati figyelőt tartalmaz egy [diagnosztikai naplók](https://docs.microsof
 
 ### <a name="network-resource-level-monitoring"></a>Hálózati erőforrás szolgáltatásiszint-figyelés
 
-a következő funkciók hello erőforrás szintű figyelés érhetők el:
+A következő funkciók érhetők el erőforrás-szintű figyelése:
 
 #### <a name="audit-log"></a>Napló
 
-Hálózatok hello konfiguráció részeként műveleteket a rendszer naplózza. Ezek a naplók alapvető tooestablish különböző megfelelőségi vannak. Ezek a naplók megtekinthetők az Azure-portálon hello, vagy visszavonni a Microsoft eszközök, például a Power BI és a külső eszközök használatával. Naplók hello portálon, a PowerShell, a CLI és a Rest API-n keresztül érhetők el.
+A hálózatok konfiguráció részeként műveleteket a rendszer naplózza. Ezek a naplók alapvető különböző megfelelőségi létrehozásához. Ezek a naplók megtekinthetők az Azure portálon, vagy visszavonni a Microsoft eszközök, például a Power BI és a külső eszközök használatával. Naplókat a portálon, a PowerShell, a CLI és a Rest API-n keresztül érhetők el.
 
 > [!Note]
 > A naplókat további információkért lásd: [naplózási műveletek a Resource Manager](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-audit).
@@ -591,14 +591,14 @@ Naplók az összes hálózati erőforrás végzett műveletek érhetők el.
 
 #### <a name="metrics"></a>Mérőszámok
 
-Adatok gyűjtése le TELJESÍTMÉNYMÉRÉSEK és egy meghatározott időtartam során gyűjtött adatait. Adatok gyűjtése le jelenleg elérhető az Alkalmazásátjáró. Metrikák használt tootrigger riasztások küszöbérték alapján lehet. Alapértelmezés szerint az Azure Application Gateway figyeli a hello állapotát a háttér-készletben erőforrásait, és automatikusan eltávolítja az összes erőforrás hello készlet megfelelő állapotúnak számít. Alkalmazásátjáró toomonitor hello sérült példányok folytatódik, és hozzáadja őket biztonsági toohello kifogástalan háttér-készlet, amennyiben azok elérhetővé válnak, és válaszoljon toohealth-vizsgálat. Alkalmazásátjáró küldi hello állapotfigyelő mintavételt a hello ugyanazt a portot definiált hello háttér HTTP-beállítások. Ez a konfiguráció biztosítja, hogy hello mintavételi azonos port, hogy az ügyfelek dolgozna tooconnect toohello háttér hello teszteli.
+Adatok gyűjtése le TELJESÍTMÉNYMÉRÉSEK és egy meghatározott időtartam során gyűjtött adatait. Adatok gyűjtése le jelenleg elérhető az Alkalmazásátjáró. Mérőszámok segítségével aktiváltak riasztásokat küszöbérték alapján. Azure Application Gateway alapértelmezés szerint a háttér-készlet összes erőforrások állapotát figyeli, és automatikusan eltávolítja az összes erőforrást, a készlet megfelelő állapotúnak számít. Alkalmazásátjáró továbbra is figyeli a nem megfelelő példányok, és hozzáadja őket a megfelelő háttér-készlet számára, amennyiben az rendelkezésre állására, és állapotteljesítmény válaszolni. Alkalmazásátjáró küldi az állapot-mintavételi csomagjai a meghatározott a háttér-HTTP-beállítások ugyanazt a portot. Ez a konfiguráció biztosítja, hogy a mintavétel ellenőrzi, hogy az ügyfelek akkor használja a háttérrendszerhez való csatlakozáshoz ugyanazt a portot.
 
 > [!Note]
-> Lásd: [átjáró Alkalmazásdiagnosztika](https://docs.microsoft.com/azure/application-gateway/application-gateway-probe-overview) tooview hogyan metrikák használt toocreate riasztásokat is lehet.
+> Lásd: [átjáró Alkalmazásdiagnosztika](https://docs.microsoft.com/azure/application-gateway/application-gateway-probe-overview) megtekintéséhez, hogyan metrikák értesítések létrehozására használható.
 
 #### <a name="diagnostic-logs"></a>Diagnosztikai naplók
 
-Rendszeres és önkéntes események hálózati erőforrások által létrehozott, és a storage-fiókok, az Event Hubs vagy Naplóelemzési tooan küldött bejelentkezve. Ezek a naplók erőforrás állapotának hello betekintést. Ezek a naplók eszközöket, például a Power BI és a Naplóelemzési tekintheti meg. Hogyan tooview diagnosztikai naplók, látogasson el toolearn [Naplóelemzési](https://docs.microsoft.com/azure/log-analytics/log-analytics-azure-networking-analytics).
+Rendszeres és önkéntes események hálózati erőforrások által létrehozott, és a storage-fiókok, egy Eseményközpontba vagy Naplóelemzési küldött bejelentkezve. Ezek a naplók erőforrás állapotának betekintést. Ezek a naplók eszközöket, például a Power BI és a Naplóelemzési tekintheti meg. Diagnosztikai naplók megtekintése megismeréséhez látogasson el [Naplóelemzési](https://docs.microsoft.com/azure/log-analytics/log-analytics-azure-networking-analytics).
 
 Diagnosztikai naplók érhetők el [terheléselosztó](https://docs.microsoft.com/azure/load-balancer/load-balancer-monitor-log), [hálózati biztonsági csoportok](https://docs.microsoft.com/azure/virtual-network/virtual-network-nsg-manage-log), útvonalakat, és [Alkalmazásátjáró](https://docs.microsoft.com/azure/application-gateway/application-gateway-diagnostics).
 
@@ -606,9 +606,9 @@ Hálózati figyelőt biztosít a diagnosztikai naplók megtekintése. Ez a néze
 
 ### <a name="log-analytics"></a>Log Analytics
 
-[Naplófájl Analytics](https://docs.microsoft.com/azure/log-analytics/log-analytics-overview) szolgáltatás a [Operations Management Suite (OMS)](https://docs.microsoft.com/azure/operations-management-suite/operations-management-suite-overview) , amely figyeli a felhőalapú és helyszíni környezetben toomaintain, azok rendelkezésre állását és teljesítményét. Összegyűjti az több forrás erőforrások a felhőalapú és helyszíni környezetben és az egyéb felügyeleti eszközök tooprovide elemzés által létrehozott adatok.
+[Naplófájl Analytics](https://docs.microsoft.com/azure/log-analytics/log-analytics-overview) szolgáltatás a [Operations Management Suite (OMS)](https://docs.microsoft.com/azure/operations-management-suite/operations-management-suite-overview) , amely figyeli a felhőben és a helyszíni környezetek karbantartásához azok rendelkezésre állását és teljesítményét. A felhőben és a helyszíni környezetben található erőforrások által létrehozott, valamint egyéb figyelési eszközök által biztosított adatokat gyűjtésével biztosítsa elemzést több forráson.
 
-A Naplóelemzési megoldások a hálózatok figyelése az alábbi hello kínálja:
+Naplóelemzési a hálózatok figyeléséhez a következő megoldásokat nyújtja:
 
 -   Hálózati teljesítmény figyelése (NPM)
 
@@ -617,9 +617,9 @@ A Naplóelemzési megoldások a hálózatok figyelése az alábbi hello kínálj
 -   Azure hálózati biztonsági csoport elemzés
 
 #### <a name="network-performance-monitor-npm"></a>Hálózati teljesítmény figyelése (NPM)
-Hello [hálózati Teljesítményfigyelő](https://docs.microsoft.com/azure/log-analytics/log-analytics-network-performance-monitor) felügyeleti megoldás egy olyan hálózati felügyeleti megoldás, amely figyeli a hello állapot, a rendelkezésre állás és a hálózatok elérhetőség.
+A [hálózati Teljesítményfigyelő](https://docs.microsoft.com/azure/log-analytics/log-analytics-network-performance-monitor) felügyeleti megoldás egy olyan hálózati felügyeleti megoldás, amely az állapot, a rendelkezésre állás és a hálózatok reachability figyeli.
 
-Használt toomonitor közötti kapcsolat:
+Közötti kapcsolat figyelésére szolgál:
 
 -   Nyilvános felhő és a helyszíni
 
@@ -630,7 +630,7 @@ Használt toomonitor közötti kapcsolat:
 
 #### <a name="azure-application-gateway-analytics-in-log-analytics"></a>Az Azure alkalmazás átjáró elemzés a naplóelemzési
 
-a következő naplók hello Alkalmazásátjárót támogatja:
+A következő naplók kapcsolódnak Alkalmazásátjárót támogatja:
 
 -   ApplicationGatewayAccessLog
 
@@ -638,26 +638,26 @@ a következő naplók hello Alkalmazásátjárót támogatja:
 
 -   ApplicationGatewayFirewallLog
 
-a következő metrikák hello Alkalmazásátjárót támogatja:
+A következő mérőszámokat Alkalmazásátjárót támogatja:
 
 -   5 perces átviteli sebesség
 
 #### <a name="azure-network-security-group-analytics-in-log-analytics"></a>Az Azure hálózati biztonsági csoport elemzés a naplóelemzési
 
-hello következő naplók kapcsolódnak támogatottak [hálózati biztonsági csoportok](https://docs.microsoft.com/azure/virtual-network/virtual-network-nsg-manage-log):
+A következő naplók kapcsolódnak támogatottak [hálózati biztonsági csoportok](https://docs.microsoft.com/azure/virtual-network/virtual-network-nsg-manage-log):
 
-- **NetworkSecurityGroupEvent:** mely NSG szabályok lettek alkalmazott tooVMs és a MAC-címe alapján példány szerepkörök bejegyzést tartalmaz. Ezek a szabályok hello állapota 60 másodpercenként gyűjti.
+- **NetworkSecurityGroupEvent:** mely NSG-t a szabályok vonatkoznak a virtuális gépek és -példányt szerepkörök a MAC-címe alapján bejegyzést tartalmaz. Ezek a szabályok állapota 60 másodpercenként gyűjti.
 
-- **NetworkSecurityGroupRuleCounter:** Contains bejegyzéseket hányszor minden NSG-szabályok alkalmazott toodeny vagy -kezelési forgalom engedélyezése.
+- **NetworkSecurityGroupRuleCounter:** Contains bejegyzéseket hányszor minden NSG-szabályok forgalom engedélyezése vagy megtagadása vonatkozik.
 
 ## <a name="next-steps"></a>Következő lépések
 Többet szeretne tudni biztonsági ehhez beolvassa a részletes biztonsági témakörök:
 
 -   [Naplóelemzési a hálózati biztonsági csoportokkal (NSG-k)](https://docs.microsoft.com/azure/virtual-network/virtual-network-nsg-manage-log)
 
--   [Hálózati innovációinak adott meghajtó hello felhő megszakítása](https://azure.microsoft.com/blog/networking-innovations-that-drive-the-cloud-disruption/)
+-   [A felhő megszűnésének meghajtó innovációk hálózat](https://azure.microsoft.com/blog/networking-innovations-that-drive-the-cloud-disruption/)
 
--   [SONiC: a hálózati kapcsoló szoftver, amely a rendszert működtet hello Microsoft globális felhő hello](https://azure.microsoft.com/blog/sonic-the-networking-switch-software-that-powers-the-microsoft-global-cloud/)
+-   [SONiC: A hálózati kapcsoló szoftvert, hogy a Microsoft globális felhő powers](https://azure.microsoft.com/blog/sonic-the-networking-switch-software-that-powers-the-microsoft-global-cloud/)
 
 -   [Hogyan hoz létre a Microsoft a gyors és megbízható globális hálózati](https://azure.microsoft.com/blog/how-microsoft-builds-its-fast-and-reliable-global-network/)
 

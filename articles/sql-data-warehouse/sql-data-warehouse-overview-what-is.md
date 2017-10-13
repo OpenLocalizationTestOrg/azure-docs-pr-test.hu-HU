@@ -1,6 +1,6 @@
 ---
-title: aaaWhat az Azure SQL Data Warehouse? | Microsoft Docs
-description: "Vállalati szintű elosztott adatbázis, amely petabájtnyi mennyiségű relációs és nem relációs adatot képes feldolgozni. Hello iparág első felhőalapú adatraktára nő a, és zsugorítása másodpercek alatt szüneteltethető."
+title: Mi az Azure SQL Data Warehouse? | Microsoft Docs
+description: "Vállalati szintű elosztott adatbázis, amely petabájtnyi mennyiségű relációs és nem relációs adatot képes feldolgozni. Ez az iparág első felhőalapú adatraktára, amely másodpercek alatt szüneteltethető, illetve növelhető vagy csökkenthető a mérete."
 services: sql-data-warehouse
 documentationcenter: NA
 author: jrowlandjones
@@ -15,28 +15,28 @@ ms.workload: data-services
 ms.custom: overview
 ms.date: 2/28/2017
 ms.author: jrj;barbkess
-ms.openlocfilehash: 5fefe40879230f123c2e4a90b9c20a35779cf711
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 575c49f83c8845edcea984459f3907490c62d269
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="what-is-azure-sql-data-warehouse"></a>Mi az Azure SQL Data Warehouse?
 Az Azure SQL Data Warehouse egy nagymértékben párhuzamos feldolgozási (MPP) kialakítású, felhőalapú, horizontálisan felskálázható relációs adatbázis, amely nagy mennyiségű adatot képes feldolgozni. 
 
 SQL Data Warehouse:
 
-* Hello SQL Server relációsadatbázis egyesíti az Azure-felhőbe kibővített képességeit. 
+* Egyesíti az SQL Server relációs adatbázist és az Azure-felhő horizontális felskálázhatóságát. 
 * Elválasztja a tárterületet a számítási műveletektől.
 * Lehetővé teszi a számítási műveletek növelését, csökkentését, szüneteltetését vagy folytatását. 
-* Egyesíti a hello Azure platformon keresztül.
+* Integrációt biztosít az Azure platform különböző elemei között.
 * Az SQL Server Transact-SQL (T-SQL) nyelvét és eszközeit használja.
 * Megfelel különböző jogi és vállalati biztonsági követelményeknek (például SOC és ISO).
 
-Ez a cikk ismerteti az SQL Data Warehouse hello funkciói.
+A cikk az SQL Data Warehouse főbb szolgáltatásait ismerteti.
 
 ## <a name="massively-parallel-processing-architecture"></a>Nagymértékben párhuzamos feldolgozási architektúra
-Az SQL Data Warehouse egy nagymértékben párhuzamos feldolgozási (MPP) elosztott adatbázisrendszerre épül. Hello háttérben SQL Data Warehouse között osztja el az adatok sok osztott tárfiók és feldolgozóegység között. hello adatok tárolódnak a prémium szintű helyileg redundáns tárolás réteg fölött, amely dinamikusan csatolt számítási csomópontok-lekérdezéseket hajt végre. SQL Data Warehouse vesz egy "osztani és uralkodj" megközelítés toorunning betölti és összetett lekérdezések. A vezérlő csomópont, terjesztési optimalizálva, és majd átadott tooCompute csomópontok toodo munkavégzést párhuzamosan érkezik kérelem.
+Az SQL Data Warehouse egy nagymértékben párhuzamos feldolgozási (MPP) elosztott adatbázisrendszerre épül. Az SQL Data Warehouse a háttérben számos olyan tárolóban és feldolgozási egységen osztja el az adatokat, amelyek nem osztanak meg semmit. A rendszer az adatokat a helyileg redundáns Premium tárolórétegben tárolja, amelyen a dinamikusan csatolt számítási csomópontok lekérdezéseket hajtanak végre. Az SQL Data Warehouse az „oszd meg és uralkodj” elv alapján futtatja a műveleteket és az összetett lekérdezéseket. A vezérlő csomópont fogadja a kérelmeket, optimalizálja őket az elosztáshoz, majd átadja őket a számítási csomópontoknak a feladatok párhuzamos végrehajtása érdekében.
 
 Az SQL Data Warehouse a tárterület és a számítási műveletek elkülönítésével a következőkre képes:
 
@@ -45,57 +45,57 @@ Az SQL Data Warehouse a tárterület és a számítási műveletek elkülönít�
 * Szüneteltetheti a számítási kapacitást az adatok sérülése nélkül, így csak a tárterületért kell fizetnie.
 * A működési időn belül folytatni tudja a számítási kapacitást.
 
-hello alábbi ábrán látható hello architektúra részletesebben.
+Az architektúrát a következő ábra szemlélteti.
 
 ![Az SQL Data Warehouse architektúrája][1]
 
-**Vezérlő csomópont:** hello vezérlő csomópont kezeli, és optimalizálja a lekérdezések. Hello előtér, amely az összes alkalmazással és kapcsolattal együttműködik. Az SQL Data Warehouse hello vezérlő csomópont SQL Database működteti, és csatlakozás tooit keres, és érzi hello azonos. Hello felszín alatt hello vezérlő csomópont koordinálja az összes hello adatmozgatást és a szükséges számítási toorun párhuzamos lekérdezések elosztott adatokon. Amikor egy T-SQL-lekérdezés tooSQL Data warehouse-ba, hello vezérlő csomópont alakítja külön minden számítási csomópont párhuzamosan futó lekérdezések.
+**Vezérlő csomópont:** a vezérlő csomópont kezeli és optimalizálja a lekérdezéseket. Ez az az előtérbeli rendszer, amely az összes alkalmazással és kapcsolattal együttműködik. Az SQL Data Warehouse szolgáltatásban a vezérlő csomópontot az SQL Database működteti, és ugyanúgy lehet hozzá csatlakozni, mint eddig. A felszín alatt a vezérlő csomópont koordinálja az összes adatáthelyezést és a számítást, ami a párhuzamos lekérdezések elosztott adatokon történő futtatásához szükséges. Amikor T-SQL-lekérdezést küld az SQL Data Warehouse-nak, a vezérlő csomópont külön lekérdezésekké alakítja át, amelyek párhuzamosan fognak futni minden számítási csomóponton.
 
-**Számítási csomópontok:** hello teljesítménye mögött SQL Data Warehouse hello számítási csomópontok állnak. Ezek olyan SQL-adatbázisok, amelyek tárolják az adatokat, és feldolgozzák a lekérdezést. Amikor adatokat, az SQL Data Warehouse hello sorok tooyour számítási csomópontok osztja el. hello számítási csomópontok hello munkavállalók, amely hello párhuzamos lekérdezéseket futtathat az adatokat a rendszer. A feldolgozás után ezek a csomópontok visszaküldik hello eredmények hátsó toohello vezérlő csomópont. toofinish hello lekérdezés, hello vezérlő csomópont aggregátumok hello eredményeit, és vissza hello végeredményt.
+**Számítási csomópontok:** a számítási csomópontok állnak az SQL Data Warehouse teljesítménye mögött. Ezek olyan SQL-adatbázisok, amelyek tárolják az adatokat, és feldolgozzák a lekérdezést. Adatok hozzáadásakor az SQL Data Warehouse a számítási csomópontokra osztja el a sorokat. A párhuzamos lekérdezéseket is a számítási csomópontok futtatják az adatokon. A feldolgozást követően ezek a csomópontok visszaküldik az eredményeket a vezérlő csomópontnak. A lekérdezés befejezéséhez a vezérlő csomópont aggregálja az eredményeket, majd visszaadja a végeredményt.
 
-**Tárolás:** a rendszer az adatokat az Azure Blob szolgáltatásban tárolja. Ha a számítási csomópontok kommunikálnak az adatokkal, írása, és közvetlenül tooand olvasni a blob storage. Az Azure storage átlátható és jelentősen bővíti, mert az SQL Data Warehouse teheti hello azonos. Mivel a számítás és a tárolás nem függ egymástól, az SQL Data Warehouse automatikusan át tudja méretezni a tárolást, külön, a számítás méretezése nélkül, és fordítva. Az Azure Blob storage emellett teljesen hibatűrő, és leegyszerűsíti hello biztonsági mentési és visszaállítási folyamat.
+**Tárolás:** a rendszer az adatokat az Azure Blob szolgáltatásban tárolja. Amikor a számítási csomópontok kommunikálnak az adatokkal, közvetlenül a blobtárolóra írnak és arról olvasnak. Mivel az Azure-tárolót transzparens módon és korlátlanul bővítheti, az SQL Data Warehouse is képes ugyanerre. Mivel a számítás és a tárolás nem függ egymástól, az SQL Data Warehouse automatikusan át tudja méretezni a tárolást, külön, a számítás méretezése nélkül, és fordítva. Az Azure Blob tároló emellett teljesen hibatűrő, és megkönnyíti a biztonsági mentési és helyreállítási folyamatokat.
 
-**Adatátviteli szolgáltatás:** adatok adatátviteli szolgáltatás (DMS) hello csomópontok között mozgatja az adatokat. DMS ad hello számítási csomópontok hozzáférés toodata az összekapcsolásokhoz és az összesítések van szükségük. A DMS nem Azure-szolgáltatás. Windows szolgáltatás, amely az SQL-adatbázis mellett minden hello csomópontján is. A DMS egy háttérfolyamat, amellyel nem lehet közvetlenül kapcsolatba lépni. Vessen egy pillantást lekérdezés tervek toosee esetén DMS-művelet, mert az adatmozgatás szükséges toorun minden egyes párhuzamos lekérdezés.
+**Adatátviteli szolgáltatás:** az adatátviteli szolgáltatás (DMS) az adatok csomópontok közötti áthelyezését végzi. A DMS hozzáférést biztosít a számítási csomópontoknak az összekapcsolásokhoz és az aggregációhoz szükséges adatokhoz. A DMS nem Azure-szolgáltatás. Ez egy Windows-szolgáltatás, amely minden csomóponton együtt fut az SQL Database szolgáltatással. A DMS egy háttérfolyamat, amellyel nem lehet közvetlenül kapcsolatba lépni. Azonban megtekintheti a lekérdezésterveket annak megtekintéséhez, hogy mikor történnek a DMS-műveletek, mivel a lekérdezések párhuzamos futtatásához szükség van az adatmozgatásra.
 
 ## <a name="optimized-for-data-warehouse-workloads"></a>Az adatraktár munkaterhelésére optimalizálva
-hello MPP megközelítést több teljesítményoptimalizálás, beleértve az adatok alapján születik:
+Az MPP megközelítést számos adattárházra vonatkozó teljesítményoptimalizálás segíti, beleértve a következőket:
 
-* Egy elosztott lekérdezésoptimalizáló és az összes adatra vonatkozó összetett statisztikák készlete. Hello szolgáltatást a információk adatok méretével és a terjesztési, mivel felméri az elosztott lekérdezési műveletek költségét hello használata képes toooptimize lekérdezések.
-* Speciális algoritmusok és technikák integrált hello adatok adatátviteli tooefficiently move data szükséges tooperform hello lekérdezés számítási erőforrások között. Ezek az adatátviteli műveletek beépített, és minden optimalizálás toohello adatátviteli szolgáltatás automatikusan megtörténik.
-* Alapértelmezés szerint fürtözött **oszlopcentrikus** indexek. Az Oszlopalapú tárolás használatával az SQL Data Warehouse lekérdezi átlagosan 5 x nagyobb szintű tömörítésre képes azt hagyományos, soros tárolással, és be too10x vagy több lekérdezési teljesítménynövekedést érhet el. Tooscan elemzési lekérdezések nagy mennyiségű sort jobban oszloptárindexekkel használható.
+* Egy elosztott lekérdezésoptimalizáló és az összes adatra vonatkozó összetett statisztikák készlete. Az adatok méretével és a terjesztésével kapcsolatos információk felhasználásával a szolgáltatás képes optimalizálni a lekérdezéseket, mivel felméri az elosztott lekérdezési műveletek költségét.
+* Az adatátviteli folyamatba integrált speciális algoritmusok és technikák hatékonyan mozgatják a lekérdezés végrehajtásához szükséges adatokat a számítási erőforrások között. Ezek az adatátviteli műveletek beépítettek, és minden adatátviteli szolgáltatást érintő optimalizálás automatikusan történik.
+* Alapértelmezés szerint fürtözött **oszlopcentrikus** indexek. Az oszlopalapú tárolás használatával az SQL Data Warehouse akár 5-ször nagyobb szintű tömörítésre is képes, mint a hagyományos, soralapú tárolással, és akár 10-szeres vagy nagyobb lekérdezési teljesítménynövekedést érhet el. A sok sort vizsgáló elemzési lekérdezések jobban működnek az oszlopcentrikus indexekkel.
 
 
 ## <a name="predictable-and-scalable-performance-with-data-warehouse-units"></a>Kiszámítható és méretezhető teljesítmény adattárházegységekkel
-Az SQL Data Warehouse ugyanolyan technológiával készült, mint az SQL Database, így a felhasználók egységes és kiszámítható teljesítményt várhatnak el az elemzési lekérdezéseknél. Felhasználók hozzáadása, illetve a számítási csomópontok kivonás lineárisan látnia toosee teljesítmény skála. Erőforrások tooyour SQL Data Warehouse allokációja másodpercenkénti Adattárházegységek (dwu-k). Dwu-k olyan alapul szolgáló erőforrásokhoz, mint a Processzor, memória, iops-érték, amely hozzá az SQL Data Warehouse tooyour biztosítása. Hello dwu-k számának növelése növeli, erőforrások és teljesítményét. A DWU-k a következőket biztosítják:
+Az SQL Data Warehouse ugyanolyan technológiával készült, mint az SQL Database, így a felhasználók egységes és kiszámítható teljesítményt várhatnak el az elemzési lekérdezéseknél. A felhasználóknak számítaniuk kell a teljesítmény lineáris skálázására a számítási csomópontok hozzáadásával vagy eltávolításával. Az erőforrások SQL Data Warehouse szolgáltatásnak történő kiosztása az adattárházegységekkel (DWU) mérhető. A DWU-val az SQL Data Warehouse számára kiosztott háttérerőforrások, például a processzor, a memória és az IOPS mérhető. A DWU-k számának növelése növeli az erőforrásokat és a teljesítményt. A DWU-k a következőket biztosítják:
 
-* Az adatraktár-anélkül, hogy hello alapul szolgáló hardver- vagy képes tooscale áll.
-* A teljesítmény javítása a DWU szint hello számítási az adatraktár módosítása előtt képes előre jelezni.
-* hello alapul szolgáló hardver- és a példány lehet változtatni vagy át anélkül, hogy az hatással lenne a számítási feladat teljesítményére.
-* A Microsoft hello alapjául szolgáló hello szolgáltatás anélkül, hogy az hatással lenne a számítási feladatok teljesítményére hello javíthatja.
-* Microsoft gyorsan a jobb teljesítmény érdekében az SQL Data Warehouse, úgy, hogy az méretezhető és egyenletesen hatások hello rendszer.
+* Az adattárházak skálázhatók anélkül, hogy aggódni kellene a mögöttes hardver vagy szoftver miatt.
+* A DWU-szintek teljesítményjavulása is előrejelezhető az adattárház számítási kapacitásának módosítása előtt.
+* Meg lehet változtatni vagy át lehet helyezni a példány mögöttes hardverét és szoftverét anélkül, hogy az hatással lenne a számítási feladat teljesítményére.
+* A Microsoft fejlesztheti a szolgáltatás mögöttes architektúráját anélkül, hogy az hatással lenne a számítási feladatok teljesítményére.
+* A Microsoft gyors ütemben fejleszti az SQL Data Warehouse teljesítményét, és gondoskodik a szolgáltatás további méretezhetőségéről, valamint arról, hogy a fejlődés a teljes rendszeren mindenhol tetten érhető legyen.
 
-Az adattárházegységek három mérőszámból álló mértéknek tekinthetők, amelyek szorosan összefüggnek az adattárház számításifeladat-teljesítményével. hello következő terhelési metrika méretezéssel lineárisan hello dwu-k, billentyűt.
+Az adattárházegységek három mérőszámból álló mértéknek tekinthetők, amelyek szorosan összefüggnek az adattárház számításifeladat-teljesítményével. A következő kulcsfontosságú, számítási feladatokra vonatkozó mérőszámok lineárisan skálázódnak a DWU-kkal.
 
 **Vizsgálat/aggregáció:** Egy standard adattárház-lekérdezés, amely számos sort átvizsgál, majd komplex összesítést készít. Ez egy I/O- és processzorigényes művelet.
 
-**Betöltés:** képességét tooingest adatok hello hello szolgáltatásban. A betöltés az Azure Storage Blobból vagy az Azure Data Lake-ből végezhető el a legjobban a PolyBase használatával. Ez a metrika, tervezett toostress hálózati és a CPU aspektusainak hello szolgáltatást.
+**Betöltés:** Az adatok szolgáltatásba történő bevitelének képessége. A betöltés az Azure Storage Blobból vagy az Azure Data Lake-ből végezhető el a legjobban a PolyBase használatával. A mérőszám úgy lett kialakítva, hogy a szolgáltatást a hálózat és a processzor szempontjából emelje ki.
 
-**Tábla létrehozása Select (CTAS):** CTAS méri hello képességét toocopy egy tábla. Ebbe beletartozik az adatok olvasása a tárból, szétosztása a készülék hello hello-csomópont között, és újra írása toostorage. Ez egy processzor-, I/O- és hálózatigényes művelet.
+**Create Table As Select (CTAS):** A CTAS a táblák másolásának képességét méri. Ebbe beletartozik az adatok beolvasása a tárfiókból, az adatok szétosztása a készülék csomópontjai között és az adatok tárfiókba történő újbóli írása. Ez egy processzor-, I/O- és hálózatigényes művelet.
 
 ## <a name="built-on-sql-server"></a>Alapja az SQL Server
-Az SQL Data Warehouse hello SQL Server relációs adatbázis-kezelő alapul, és számos vállalati adatraktáraktól elvárt hello szolgáltatást tartalmazza. Ha már ismeri a T-SQL, a rendszer könnyen tootransfer a Tudásbázis tooSQL Data warehouse-bA. E speciális vagy csak az első lépések, hello dokumentáció hello példák segítenek a kezdésben. Általános azt is gondolja át hello úgy, hogy épülnek hello SQL Data Warehouse nyelvi elemei az alábbiak szerint:
+Az SQL Data Warehouse az SQL Server relációs adatbázismotorján alapul, és számos, a vállalati adatraktáraktól elvárt szolgáltatást tartalmaz. Ha már ismeri a T-SQL nyelvet, könnyűszerrel hasznosíthatja ismereteit az SQL Data Warehouse szolgáltatásban. Függetlenül attól, hogy kezdő vagy haladó, a dokumentációban található példák segítenek a kezdésben. Gondoljon arra, hogyan épülnek fel az SQL Data Warehouse nyelvi elemei:
 
 * Az SQL Data Warehouse számos művelethez a T-SQL szintaxisát használja. Ezenkívül a hagyományos SQL-szerkezetek széles körét támogatja, például a tárolt eljárásokat, a felhasználó által definiált függvényeket, a táblaparticionálást, az indexeket és a rendezéseket.
 * Az SQL Data Warehouse emellett számos újabb SQL Server szolgáltatást is tartalmaz, beleérve a fürtözött **oszlopcentrikus** indexeket, a PolyBase-integrációt és az adatok naplózását (fenyegetésértékeléssel).
-* Bizonyos T-SQL nyelvi elemek, amelyek kevésbé gyakran adatraktározás számítási feladatainál vagy újabb tooSQL kiszolgáló, nem lehet érhető el. További információkért lásd: hello [az áttelepítési dokumentáció][Migration documentation].
+* Előfordulhat, hogy jelenleg nem érhetők el a T-SQL egyes nyelvi elemei, amelyeket ritkán használnak az adatraktározási feladatoknál, vagy amelyek újdonságnak számítanak az SQL Serverben. További információt az [áttelepítési dokumentációban][Migration documentation] talál.
 
-Hello Transact-SQL és az SQL Server, az SQL Data Warehouse, az SQL-adatbázis és a Analytics Platform System szolgáltatás tartománynevük létrehozhat olyan megoldás, amely megfelel az adattárolási igényeinek. Eldöntheti, ahol tookeep az adatok alapján teljesítmény biztonsági, és a méretezési követelmények és adatátviteli különböző rendszerek között szükség szerint.
+A Transact-SQL nyelv és az SQL Server, az SQL Data Warehouse, az SQL Database és az Analytics Platform System egyező szolgáltatásai segítségével olyan megoldást fejleszthet, amely megfelel az adattárolási igényeinek. A teljesítmény, a biztonság és a méretezési követelmények alapján eldöntheti, hol szeretné tárolni az adatait, majd szükség szerint továbbíthatja az adatokat a különböző rendszerek között.
 
 ## <a name="data-protection"></a>Adatvédelem
-Az SQL Data Warehouse minden adatot az Azure Premium helyileg redundáns tárolóban tárol. Több szinkron másolatot hello adatok karbantartása hello helyi data center tooguarantee transzparens adatvédelmet honosított-hibákkal szemben. Emellett az SQL Data Warehouse rendszeres időközönként automatikusan végrehajtja az aktív (nem szüneteltetett) adatbázisok biztonsági mentését az Azure Storage Snapshots használatával. toolearn kapcsolatos biztonsági mentése és visszaállítása működését, tekintse meg a hello [biztonsági mentés és helyreállítás áttekintése][Backup and restore overview].
+Az SQL Data Warehouse minden adatot az Azure Premium helyileg redundáns tárolóban tárol. A rendszer több szinkron másolatot tart az adatokról a helyi adatközpontban, így transzparens adatvédelmet garantál a helyi hibák ellen. Emellett az SQL Data Warehouse rendszeres időközönként automatikusan végrehajtja az aktív (nem szüneteltetett) adatbázisok biztonsági mentését az Azure Storage Snapshots használatával. A biztonsági mentés és a visszaállítás működésének részletes ismertetését [A biztonsági mentés és a visszaállítás áttekintése][Backup and restore overview] című cikkben olvashatja el.
 
 ## <a name="integrated-with-microsoft-tools"></a>Integráció a Microsoft eszközeivel
-Az SQL Data Warehouse együttműködik hello eszközök többsége a felhasználók ismerős lehet az SQL Server kiszolgálót. Ezek az eszközök a következőket foglalják magukban:
+Az SQL Data Warehouse együttműködik számos olyan eszközzel, amelyet az SQL Server felhasználói jól ismernek. Ezek az eszközök a következőket foglalják magukban:
 
 **Hagyományos SQL Server-eszközök:** az SQL Data Warehouse szolgáltatás teljesen integrálható az SQL Server Analysis Services, az Integration Services és a Reporting Services szolgáltatással.
 
@@ -104,17 +104,17 @@ Az SQL Data Warehouse együttműködik hello eszközök többsége a felhasznál
 **Harmadik felektől származó eszközök:** Számos külső eszközszolgáltató tanúsított módon integrálta az eszközeit az SQL Data Warehouse szolgáltatással. A teljes listát lásd: [Az SQL Data Warehouse megoldáspartnerei][SQL Data Warehouse solution partners].
 
 ## <a name="hybrid-data-sources-scenarios"></a>Hibrid adatforrások forgatókönyvei
-A Polybase lehetővé teszi a tooleverage a jól ismert T-SQL-parancsok segítségével különböző forrásokból származó adatok. A Polybase lehetővé teszi, hogy a normál táblákhoz az Azure Blob storage szolgáltatásban tárolt nem relációs adatokat tooquery. Az SQL Data Warehouse Polybase tooquery nem relációs adatokat, vagy tooimport nem relációs adatok használata
+A PolyBase lehetővé teszi a különböző forrásokból származó adatok használatát a jól ismert T-SQL parancsokkal. A PolyBase lehetővé teszi az Azure Blob tárolóban tárolt nem relációs adatok normál táblákhoz hasonló lekérdezését. A PolyBase szolgáltatást akkor használja, ha nem relációs adatokat szeretne lekérdezni vagy nem relációs adatokat szeretne importálni az SQL Data Warehouse szolgáltatásba.
 
-* A polybase külső táblák tooaccess nem relációs adatokat. hello tábla tárolja az SQL Data Warehouse, és SQL használatával végezheti el őket, és eszközök hasonló szokványos relációs adatok elérésére.
-* A PolyBase integrációs szempontból rendszerfüggetlen. Az tesz elérhetővé hello szolgáltatást és funkciót tooall hello adatforrások, hogy az támogatja-e. a Polybase által beolvasott hello adatok különböző formátumokba, beleértve a tagolt fájlokat és az ORC fájlokat is szerepelhet.
-* A PolyBase is használatos storage a HDInsight-fürtök használt tooaccess blobtárolóba lehet. Ez hozzáférést tud biztosítani, hogy toohello ugyanazokat az adatokat a relációs és nem relációs eszközökkel.
+* A PolyBase külső táblák segítségével fér hozzá a nem relációs adatokhoz. A tábladefiníciókat az SQL Data Warehouse tárolja, és az SQL-eszközökkel, illetve a relációs adatok elérésére használt szokásos eszközökkel érheti el őket.
+* A PolyBase integrációs szempontból rendszerfüggetlen. Minden általa támogatott forrás ugyanazokat a szolgáltatásokat és funkciókat érheti el. A PolyBase által beolvasott adatok különböző formátumúak lehetnek, a tagolt fájlokat és az ORC-fájlokat is beleértve.
+* A PolyBase technológiával hozzá lehet férni azokhoz a blobtárolókhoz, amelyet egy HD Insight-fürt tárolóként használ. Így ugyanazokat az adatokat relációs és nem relációs eszközökkel is elérheti.
 
 ## <a name="sla"></a>SLA
-Az SQL Data Warehouse a Microsoft Online Services SLA részeként termékszintű szolgáltatói szerződést biztosít. További információ: [SQL Data Warehouse SLA][SLA for SQL Data Warehouse]. Minden egyéb termékekkel kapcsolatos SLA-információk hello alkalmazásról [szolgáltatói szerződések] Azure lapon, vagy letöltheti a fájlokat a hello [mennyiségi licencelés] [ Volume Licensing] lap. 
+Az SQL Data Warehouse a Microsoft Online Services SLA részeként termékszintű szolgáltatói szerződést biztosít. További információ: [SQL Data Warehouse SLA][SLA for SQL Data Warehouse]. Minden más termék szolgáltatói szerződése a [Szolgáltatói szerződések] Azure-oldalon található, vagy letölthető a [Mennyiségi licencelés][Volume Licensing] oldalról. 
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy jobban megismerte az SQL Data Warehouse, megtudhatja, hogyan tooquickly [SQL Data Warehouse létrehozása] [ create a SQL Data Warehouse] és [mintaadatokat tölthet be][load sample data]. Ha új tooAzure, azt tapasztalhatja hello [Azure szószedet] [ Azure glossary] hasznos, új terminológia észlel. Vagy tekintsen meg néhányat a többi SQL Data Warehouse-erőforrás közül.  
+Most, hogy jobban megismerte az SQL Data Warehouse szolgáltatást, tudjon meg többet az [SQL Data Warehouse gyors létrehozásáról][create a SQL Data Warehouse] és a [mintaadatok betöltéséről][load sample data]. Ha az Azure új felhasználója, hasznosnak találhatja az [Azure szószedetét][Azure glossary], amikor az új fogalmakkal ismerkedik. Vagy tekintsen meg néhányat a többi SQL Data Warehouse-erőforrás közül.  
 
 * [Ügyfelek sikertörténetei]
 * [Blogok]
@@ -152,4 +152,4 @@ Most, hogy jobban megismerte az SQL Data Warehouse, megtudhatja, hogyan tooquick
 [Videók]: https://azure.microsoft.com/documentation/videos/index/?services=sql-data-warehouse
 [SLA for SQL Data Warehouse]: https://azure.microsoft.com/en-us/support/legal/sla/sql-data-warehouse/v1_0/
 [Volume Licensing]: http://www.microsoftvolumelicensing.com/DocumentSearch.aspx?Mode=3&DocumentTypeId=37
-[szolgáltatói szerződések]: https://azure.microsoft.com/en-us/support/legal/sla/
+[Szolgáltatói szerződések]: https://azure.microsoft.com/en-us/support/legal/sla/

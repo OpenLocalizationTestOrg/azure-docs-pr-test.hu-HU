@@ -1,6 +1,6 @@
 ---
-title: "a Mobile Engagement megvalósítási aaaAzure játék alkalmazás"
-description: "Alkalmazás forgatókönyv tooimplement Azure Mobile Engagement játékok"
+title: "Az Azure Mobile Engagement megvalósítási játék alkalmazás"
+description: "Azure Mobile Engagement végrehajtásához szóló forgatókönyvet játékok"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,54 +14,54 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: b82b4a868a33f42e5b759e43e66103556c097f9e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0ca35a3d634db8eb5c63afacba046a35b8a3e7ed
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="implement-mobile-engagement-with-gaming-app"></a>Mobile Engagement az Játékalkalmazásról megvalósítása
 ## <a name="overview"></a>Áttekintés
-Egy játék kezdeti elindította az új alapú halászati role-play/stratégia játék alkalmazás. hello játék már működik, és 6 hónapig. A game hatalmas sikeres, és több millió letöltések rendelkezik pedig hello megőrzési nagyon magas összehasonlított tooother kezdeti játék alkalmazásokat. Hello negyedéves felülvizsgálati értekezleten az érdekelt felek elfogadja tooincrease átlagos bevétel felhasználónként (ARPU) van szükségük. Prémium szintű a játékbeli csomagok elérhetők, különleges ajánlatokat. A game csomagok lehetővé teszik a felhasználók tooupgrade hello Megjelenés és a teljesítmény halászati sorok és lures vagy tackles hello játékban. Azonban a csomag értékesítési nem nagyon alacsony. Úgy döntenek, első tooanalyze hello felhasználói élmény analytics eszközzel, és ezután egy bevonási program tooincrease értékesítési használatával toodevelop speciális Szegmentálás.
+Egy játék kezdeti elindította az új alapú halászati role-play/stratégia játék alkalmazás. A game már működik, és 6 hónapig. A game hatalmas sikeres, és több millió letöltések rendelkezik pedig a megőrzési nagyon magas kezdeti játék alkalmazások képest. A negyedéves felülvizsgálati értekezleten érdekelt felek elfogadja átlagos bevétel felhasználónként (ARPU) növelnie kell azokat. Prémium szintű a játékbeli csomagok elérhetők, különleges ajánlatokat. Ezek a csomagok játék engedélyezése a felhasználók számára a Megjelenés és a teljesítmény halászati sorok és lures vagy a játék tackles frissítése. Azonban a csomag értékesítési nem nagyon alacsony. Úgy döntenek, először a felhasználói élmény analytics eszközzel elemzése, és majd fejlesztése az engagement program értékesítési használatával növelje speciális Szegmentálás.
 
-Hello alapján [Azure Mobile Engagement – első lépések útmutató ajánlott eljárásoknak megfelelő beállításában](mobile-engagement-getting-started-best-practices.md) engagement-stratégia kialakítása.
+Alapján a [Azure Mobile Engagement – első lépések útmutató ajánlott eljárásoknak megfelelő beállításában](mobile-engagement-getting-started-best-practices.md) engagement-stratégia kialakítása.
 
 ## <a name="objectives-and-kpis"></a>Célok és a KPI-k
-Hello játék kulcsfontosságú érintettekkel felel meg. Az összes fogadja el az egyik fő cél - tooincrease prémium csomag értékesítési 15 %-kal. Ezek toomeasure üzleti a fő teljesítménymutatók (KPI-k) és a meghajtó a célkitűzés létrehozása
+A game megfeleljenek a kulcsfontosságú érintettekkel. Az összes fogadja el az egyik fő cél - növeléséhez a prémium csomag értékesítési 15 %. Hoznak létre üzleti a fő teljesítménymutatók (KPI-k) mérték, és a meghajtó ebben a célkitűzésben
 
-* Mely szintjén hello játék ezeket a csomagokat vásárolt?
-* Mi az a hello bevétel felhasználónként, munkamenetenként, heti és havi?
-* Mik azok a hello kedvenc beszerzési típusok?
+* A game milyen szintű a ezeket a csomagokat vásárolt?
+* Mi az a bevétel felhasználónként, munkamenetenként, heti és havi?
+* Mik a kedvenc beszerzési típusok?
 
-Hello 1. rész [Getting Started Guide](mobile-engagement-getting-started-best-practices.md) azt ismerteti, hogyan toodefine hello célkitűzések és a KPI-k. 
+/ 1. rész a [Getting Started Guide](mobile-engagement-getting-started-best-practices.md) ismerteti, hogyan adható meg a célok és a KPI-k. 
 
-Hello üzleti KPI-k már meg van adva hello Mobile termék Manager bevonási KPI-k toodetermine új felhasználói trendek és a megőrzési hoz létre.
+Az üzleti KPI-k már meg van adva a Mobile termék Manager hoz létre új felhasználói trendeket és a megőrzési meghatározásához bevonási KPI-k.
 
-* Megőrzési figyelése és a következő időközönként hello használja: napi, 2 naponta, hetente, havonta, és minden harmadik hónapban
+* Megőrzési figyelése és a következő időszakok használja: napi, 2 naponta, hetente, havonta, és minden harmadik hónapban
 * Aktív felhasználók száma
-* tárolja a hello hello alkalmazás minősítése
+* Az áruházbeli alkalmazás minősítése
 
-A következő műszaki KPI-k hello hello informatikai csapat javaslatai alapján, a következő kérdések tooanswer hello fel lettek hozzáadva:
+Az informatikai csapat javaslatai alapján, a következő műszaki KPI-k lettek hozzáadva a következő kérdések megválaszolásához:
 
 * Mi az a felhasználó elérési út (mely megnyitják, mennyi időt igénybe rajta)
 * Összeomlások vagy munkamenetenként észlelt hibák száma
 * Milyen operációs rendszer verzióit futtatják a felhasználók?
-* Mi az az hello átlagos mérete a képernyő a felhasználók számára?
+* Mi az, hogy a felhasználók számára képernyő átlagos mérete?
 * Milyen típusú internetkapcsolattal rendelkeznek a felhasználók?
 
-Minden KPI-hez tartozó hello Mobile termék Manager hello adatok elemzőnek szüksége van, és hol helyezkedik el saját forgatókönyv határozza meg.
+Minden KPI-hez tartozó Mobile termék megadja az elemzőnek szüksége van, és hol helyezkedik el saját alkalmazástervezési adatokat.
 
 ## <a name="engagement-program-and-integration"></a>Bevonási program és az integráció
-Egy speciális bevonási program létrehozása, előtt hello Mobile projekt igazgató feladata hello projekt rendelkeznie kell egy részletes ismertetése, hogyan és mikor termékek hello felhasználók vannak-e használni.
+Egy speciális bevonási program létrehozása, előtt a mobileszköz projekt igazgató feladata a projekt ismeri részletesen bemutatja, hogyan, és a felhasználók által felhasznált termékek kell rendelkeznie.
 
-Hello Mobile projekt igazgató 3 hónap után összegyűjtötte elég adat tooenhance alkalmazásbeli leküldéses értesítési eladásait. Ezután Tanulja meg, amelyek:
+3 hónap után a mobilalkalmazás-projekt igazgató összegyűjtötte elég adat alkalmazásbeli leküldéses értesítési eladásait javítása érdekében. Ezután Tanulja meg, amelyek:
 
-* hello első beszerzési általában 14 hello szintjén történik. Ezekben az esetekben 90 %-át hello beszerzési új legendary fegyverek $3.
-* Ezekben az esetekben 80 %-át, a felhasználók, akik a beszerzési hello termékkel, és további végzett vásárol.
-* Felhasználók, akik hello szint 20, indítsa el a toospend több mint 10 $vagy hét.
-* A felhasználók általában toobuy prémium csomagok 16, 24 és 32 szinten.
+* Az első beszerzési általában akkor fordul elő, 14 szinten. Ezekben az esetekben 90 %-át a vásárlást új legendary fegyverek $3.
+* Ezekben az esetekben 80 %-át, a felhasználók, akik végzett a vásárlást, a termék folytatni, és ellenőrizze a további vásárol.
+* A szint 20, akik elindíthatók egy több mint 10 $vagy hét.
+* Prémium szintű csomagok szinten 16, 24 és 32 megvásárlása a felhasználók általában.
 
-Köszönjük toothis elemzés, Mobile projekt igazgató hello úgy dönt, toocreate meghatározott leküldéses értesítési sorozatok tooincrease app Sales. Három leküldéses folyamatok, amelyek ezután meghívja hoz: üdvözli a program, értékesítési Program és inaktív Program. További információt talál a toohello [Playbooks](https://github.com/Azure/azure-mobile-engagement-samples/tree/master/Playbooks)![][1]
+Az elemzés környezetnek köszönhetően a mobilalkalmazás-projekt igazgató úgy dönt, hogy létrehozása adott leküldéses értesítési sorozatok app Sales növelése érdekében. Három leküldéses folyamatok, amelyek ezután meghívja hoz: üdvözli a program, értékesítési Program és inaktív Program. További információ a [Playbooks](https://github.com/Azure/azure-mobile-engagement-samples/tree/master/Playbooks)![][1]
 
 <!--Image references-->
 

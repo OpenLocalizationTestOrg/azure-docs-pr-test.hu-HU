@@ -1,6 +1,6 @@
 ---
-title: "MySQL az Azure-adatbázis aaaSSL kapcsolat |} Microsoft Docs"
-description: "Információk az Azure-adatbázis beállítása a MySQL és a társított alkalmazás tooproperly SSL-kapcsolat használata"
+title: "SSL-kapcsolatot a MySQL az Azure-adatbázis |} Microsoft Docs"
+description: "Azure-adatbázis a MySQL és a társított alkalmazások megfelelően használni az SSL-kapcsolatok konfigurálását."
 services: mysql
 author: JasonMAnderson
 ms.author: janders
@@ -9,23 +9,23 @@ manager: jhubbard
 ms.service: mysql-database
 ms.topic: article
 ms.date: 05/10/2017
-ms.openlocfilehash: 6fca7c88fc0f1fd6058d68fcff90fd409abd97a7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4b03b3a2dbfad92cc0cfa84777b38ddff90452cf
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="ssl-connectivity-in-azure-database-for-mysql"></a>SSL-kapcsolatot MySQL az Azure-adatbázis
-MySQL az Azure-adatbázishoz való csatlakozást az adatbázis-kiszolgáló tooclient alkalmazások Secure Sockets Layer (SSL) használatával támogatja. Az adatbázis-kiszolgáló és az ügyfél alkalmazások közötti SSL-kapcsolatok kényszerítése megvédi a "hello középső man" támadások ellen hello adatfolyam hello kiszolgáló és az alkalmazás közötti titkosításával.
+Azure MySQL-adatbázis támogatja az adatbázis-kiszolgáló csatlakozik a Secure Sockets Layer (SSL) használó ügyfélalkalmazások. Az adatbázis-kiszolgáló és az ügyfél alkalmazások közötti SSL-kapcsolatok kényszerítése segít lánctámadások elleni védelem érdekében "man a középső" az adatfolyamot a kiszolgáló és az alkalmazás közötti titkosításával.
 
 ## <a name="default-settings"></a>Alapértelmezett beállítások
-Alapértelmezés szerint hello adatbázis-szolgáltatás kell konfigurált toorequire SSL-kapcsolatok tooMySQL kapcsolódáskor.  Ajánlott, amikor csak lehetséges hello SSL-beállítást a letiltása. 
+Alapértelmezés szerint az adatbázis-szolgáltatás úgy konfigurálni, hogy SSL-kapcsolatok megkövetelése MySQL történő csatlakozás során.  Javasoljuk, ne tiltsa le az SSL-beállítást, amikor csak lehetséges. 
 
-Ha egy új Azure-adatbázist a MySQL-kiszolgálóval hello Azure-portálon keresztül és a parancssori felület, SSL-kapcsolatok végrehajtásának alapértelmezés szerint engedélyezve van. 
+Ha egy új Azure Database az Azure portálon keresztül MySQL-kiszolgáló és a parancssori felület, SSL-kapcsolatok végrehajtásának alapértelmezés szerint engedélyezve van. 
 
-Hasonlóképpen hello "Kapcsolati karakterláncok" beállításokat a kiszolgálón a hello Azure-portálon előre definiált kapcsolati karakterláncok tartalmaznak hello szükséges paraméterek közös nyelvek tooconnect tooyour adatbázis-kiszolgáló SSL-t használ. hello SSL paraméter függ hello összekötő, például "ssl = true" vagy "sslmode = szükséges" vagy "sslmode = szükséges" és egyéb változatok.
+Hasonlóképpen a "Kapcsolati karakterláncok" beállításokat a kiszolgálón az Azure-portálon előre definiált kapcsolati karakterláncok közös nyelvek SSL használatával az adatbázis-kiszolgálóhoz való csatlakozáshoz szükséges paraméterek közé tartoznak. Az SSL-paraméter attól függően változik, az összekötő, például "ssl = true" vagy "sslmode = szükséges" vagy "sslmode = szükséges" és egyéb változatok.
 
-Hogyan tooenable vagy letilthatja az SSL-kapcsolatot, alkalmazások fejlesztése során tanulmányozza a túl toolearn[hogyan tooconfigure SSL](howto-configure-ssl.md).
+Annak megismerése, hogyan engedélyezheti vagy tilthatja le az SSL-kapcsolatot, alkalmazások fejlesztése során, tekintse meg [SSL konfigurálása](howto-configure-ssl.md).
 
 ## <a name="next-steps"></a>Következő lépések
 [Adatkapcsolattárak MySQL az Azure-adatbázis](concepts-connection-libraries.md)

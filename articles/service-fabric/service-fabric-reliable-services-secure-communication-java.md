@@ -1,6 +1,6 @@
 ---
-title: "aaaHelp biztonságos kommunikációs szolgáltatások az Azure Service Fabric |} Microsoft Docs"
-description: "Hogyan toohelp biztonságos kommunikáció megbízható számára, amely áttekintést az Azure Service Fabric-fürt futnak."
+title: "Azure Service Fabric-szolgáltatások biztonságos kommunikáció érdekében |} Microsoft Docs"
+description: "Azure Service Fabric-fürtben lévő futó megbízható szolgáltatások biztonságos kommunikáció érdekében áttekintése."
 services: service-fabric
 documentationcenter: java
 author: PavanKunapareddyMSFT
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 06/30/2017
 ms.author: pakunapa
-ms.openlocfilehash: 14db54d50c35478c1f2c156de0dba36f1427c8cb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c4634e3d8efb1745fffcfe3e647e43d867038716
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="help-secure-communication-for-services-in-azure-service-fabric"></a>Azure Service Fabric-szolgáltatások biztonságos kommunikáció érdekében
 > [!div class="op_single_selector"]
@@ -27,9 +27,9 @@ ms.lasthandoff: 10/06/2017
 >
 
 ## <a name="help-secure-a-service-when-youre-using-service-remoting"></a>Számítógépek biztonságossá tétele a szolgáltatás használatakor a távelérési szolgáltatás
-Fogjuk használni egy meglévő [példa](service-fabric-reliable-services-communication-remoting-java.md) , amely ismerteti, hogyan tooset megbízható szolgáltatások távoli eljáráshívást fel. toohelp biztonságos egy szolgáltatás, a távelérés szolgáltatás használatakor, kövesse az alábbi lépéseket:
+Fogjuk használni egy meglévő [példa](service-fabric-reliable-services-communication-remoting-java.md) , amely ismerteti, hogyan megbízható szolgáltatások távoli eljáráshívást beállítani. Számítógépek biztonságossá tétele a szolgáltatás használatakor a távelérési szolgáltatás, kövesse az alábbi lépéseket:
 
-1. Hozzon létre egy felület `HelloWorldStateless`, meghatározó hello módszereket, amelyek számára a szolgáltatás a távoli eljáráshívás használható. A szolgáltatás által használt `FabricTransportServiceRemotingListener`, amellyel deklarálva van a hello `microsoft.serviceFabric.services.remoting.fabricTransport.runtime` csomag. Ez egy `CommunicationListener` megvalósítása, amely távoli eljáráshívási képességeket biztosít.
+1. Illesztőfelület, hozzon létre `HelloWorldStateless`, amely meghatározza, hogy a módszereket, amelyek számára a szolgáltatás a távoli eljáráshívás használható. A szolgáltatás által használt `FabricTransportServiceRemotingListener`, amely deklarálva van a `microsoft.serviceFabric.services.remoting.fabricTransport.runtime` csomag. Ez egy `CommunicationListener` megvalósítása, amely távoli eljáráshívási képességeket biztosít.
 
     ```java
     public interface HelloWorldStateless extends Service {
@@ -53,11 +53,11 @@ Fogjuk használni egy meglévő [példa](service-fabric-reliable-services-commun
     ```
 2. Adja hozzá a figyelő beállításai és a hitelesítő adatokat.
 
-    Győződjön meg arról, hogy szeretné-e toouse toohelp biztonságos hello fürt összes csomópontjának hello telepítve van a szolgáltatások közötti kommunikáció hello tanúsítvány. Két módon is megadható figyelő beállításai és a hitelesítő adatokat:
+    Győződjön meg arról, hogy a szolgáltatások közötti kommunikáció biztonságossá tételéhez használni kívánt tanúsítvány telepítve van-e a fürt összes csomópontján. Két módon is megadható figyelő beállításai és a hitelesítő adatokat:
 
    1. Adja meg azokat a egy [a konfigurációs csomag](service-fabric-application-model.md):
 
-       Adja hozzá a `TransportSettings` szakasz hello settings.xml fájlban.
+       Adja hozzá a `TransportSettings` szakasz a settings.xml fájlban.
 
        ```xml
        <!--Section name should always end with "TransportSettings".-->
@@ -72,7 +72,7 @@ Fogjuk használni egy meglévő [példa](service-fabric-reliable-services-commun
 
        ```
 
-       Ebben az esetben hello `createServiceInstanceListeners` módszert fog kinézni:
+       Ebben az esetben a `createServiceInstanceListeners` módszert fog kinézni:
 
        ```java
         protected List<ServiceInstanceListener> createServiceInstanceListeners() {
@@ -84,7 +84,7 @@ Fogjuk használni egy meglévő [példa](service-fabric-reliable-services-commun
         }
        ```
 
-        Ha ad hozzá egy `TransportSettings` hello settings.xml fájlban bármely előtag nélkül szakasz `FabricTransportListenerSettings` fog betöltődni ebben a szakaszban ismertetett összes hello beállítás alapértelmezés szerint.
+        Ha ad hozzá egy `TransportSettings` bármely előtag nélkül a settings.xml fájlban szakasz `FabricTransportListenerSettings` betölti alapértelmezés szerint ez a szakasz az összes beállítás.
 
         ```xml
         <!--"TransportSettings" section without any prefix.-->
@@ -92,7 +92,7 @@ Fogjuk használni egy meglévő [példa](service-fabric-reliable-services-commun
             ...
         </Section>
         ```
-        Ebben az esetben hello `CreateServiceInstanceListeners` módszert fog kinézni:
+        Ebben az esetben a `CreateServiceInstanceListeners` módszert fog kinézni:
 
         ```java
         protected List<ServiceInstanceListener> createServiceInstanceListeners() {
@@ -103,9 +103,9 @@ Fogjuk használni egy meglévő [példa](service-fabric-reliable-services-commun
             return listeners;
         }
        ```
-3. Hívható módszerek egy védett szolgáltatásra hello használata helyett hello távoli eljáráshívási verem, használatával `microsoft.serviceFabric.services.remoting.client.ServiceProxyBase` osztály toocreate egy szolgáltatási proxy használata `microsoft.serviceFabric.services.remoting.client.FabricServiceProxyFactory`.
+3. Hívható módszerek biztonságos szolgáltatás használata helyett a távoli eljáráshívás verem használatával a `microsoft.serviceFabric.services.remoting.client.ServiceProxyBase` a szolgáltatásproxy létrehozására, használja az osztály `microsoft.serviceFabric.services.remoting.client.FabricServiceProxyFactory`.
 
-    Ha hello Ügyfélkód egy szolgáltatás részeként fut, betöltheti `FabricTransportSettings` hello settings.xml fájlból. Hozzon létre hasonló toohello szolgáltatás kód TransportSettings szakasz korábbi látható módon. Hajtsa végre a következő módosításokat toohello Ügyfélkód hello:
+    Ha az Ügyfélkód egy szolgáltatás részeként fut, betöltheti `FabricTransportSettings` a settings.xml fájlból. Hozzon létre egy TransportSettings szakaszt, amelyek hasonlóak a szolgáltatáskód hibáit, amint azt korábban. A következő módosításokat az ügyfél kód:
 
     ```java
 

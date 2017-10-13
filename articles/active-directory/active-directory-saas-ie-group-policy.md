@@ -1,6 +1,6 @@
 ---
-title: "Azure hozzáférési Panel bővítményét az Internet Explorer egy csoportházirend-objektummal aaaDeploy |} Microsoft Docs"
-description: "Hogyan toouse csoport házirend toodeploy hello Internet Explorer bővítmény hello saját alkalmazások portálhoz."
+title: "Az Internet Explorer egy csoportházirend-objektummal Azure hozzáférési Panel bővítmény telepítése |} Microsoft Docs"
+description: "Hogyan kell az Internet Explorer bővítményt a saját alkalmazások portál telepítése a csoportházirenddel."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,153 +15,153 @@ ms.date: 08/02/2017
 ms.author: markvi
 ms.reviewer: asteen
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 926f15950bbe81d2fbfe1b0b856470da40880d7d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b402ae326ab34ec71ad9de966e22be00045fee3e
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="how-toodeploy-hello-access-panel-extension-for-internet-explorer-using-group-policy"></a>Hogyan tooDeploy hello hozzáférési Panel bővítményét az Internet Explorer csoportházirend használatával
-Ez az oktatóanyag bemutatja, hogyan toouse csoport házirend tooremotely hello hozzáférési Panel bővítmény Internet Explorer telepítése a felhasználók gépeken. A bővítmény szükség, az Internet Explorer felhasználók, akik toosign szolgáltatással konfigurált alkalmazásokba [jelszó-alapú egyszeri bejelentkezést](active-directory-appssoaccess-whatis.md#password-based-single-sign-on).
+# <a name="how-to-deploy-the-access-panel-extension-for-internet-explorer-using-group-policy"></a>A hozzáférési Panel bővítmény telepítése az Internet Explorer csoportházirend használatával
+Ez az oktatóanyag bemutatja, hogyan távoli telepítése a felhasználók gépeken az Internet Explorer a hozzáférési Panel bővítmény a csoportházirend segítségével. A bővítmény szükség az Internet Explorer felhasználók ki kell jelentkeznie az alkalmazásokat, amelyek használatával vannak konfigurálva [jelszó-alapú egyszeri bejelentkezést](active-directory-appssoaccess-whatis.md#password-based-single-sign-on).
 
-Javasoljuk, hogy a rendszergazdák hello telepítési bővítmény automatizálásához. Ellenkező esetben a felhasználók toodownload rendelkezik, és hello-kiterjesztés telepítése, amelyek nagyon eséllyel fordulnak elő toouser hiba, és rendszergazdai engedélyekkel kell rendelkeznie. Ez az oktatóanyag ismerteti egyik lehetséges módja automatizálása a szoftverek központi telepítése csoportházirend használatával. [További információ a csoportházirend.](https://technet.microsoft.com/windowsserver/bb310732.aspx)
+Javasoljuk, hogy a rendszergazdák a bővítmény telepítésének automatizálását. Ellenkező esetben a felhasználóknak kell töltse le és telepítse a bővítményt, amely vannak téve a felhasználói és rendszergazdai engedélyekkel kell rendelkeznie. Ez az oktatóanyag ismerteti egyik lehetséges módja automatizálása a szoftverek központi telepítése csoportházirend használatával. [További információ a csoportházirend.](https://technet.microsoft.com/windowsserver/bb310732.aspx)
 
-hello hozzáférési Panel bővítmény érhető el is [Chrome](https://go.microsoft.com/fwLink/?LinkID=311859) és [Firefox](https://go.microsoft.com/fwLink/?LinkID=626998), egyike sem szükséges rendszergazdai engedélyek tooinstall.
+A hozzáférési Panel bővítmény érhető el is [Chrome](https://go.microsoft.com/fwLink/?LinkID=311859) és [Firefox](https://go.microsoft.com/fwLink/?LinkID=626998), egyike sem telepítéséhez rendszergazdai jogosultság szükséges.
 
 ## <a name="prerequisites"></a>Előfeltételek
-* Ezzel beállította [Active Directory tartományi szolgáltatások](https://msdn.microsoft.com/library/aa362244%28v=vs.85%29.aspx), és a felhasználók gépek tooyour tartományhoz csatlakozott.
-* Hello "Beállítások módosítása" engedéllyel tooedit hello csoportházirend-objektumot (GPO) kell rendelkeznie. Alapértelmezés szerint a következő biztonsági csoportokat hello tagjai rendelkezik ilyen engedéllyel: tartományi rendszergazdák, a vállalati rendszergazdák és a Csoportházirend-létrehozó tulajdonosok. [Részletek](https://technet.microsoft.com/library/cc781991%28v=ws.10%29.aspx)
+* Ezzel beállította [Active Directory tartományi szolgáltatások](https://msdn.microsoft.com/library/aa362244%28v=vs.85%29.aspx), és a felhasználók gépek csatlakozott a tartományhoz.
+* A csoportházirend-objektum (GPO) szerkesztése "Beállítások módosítása" engedéllyel kell rendelkeznie. Alapértelmezés szerint a következő biztonsági csoportok tagjai ezzel az engedéllyel rendelkeznek: a tartományi rendszergazdák, a vállalati rendszergazdák és a Csoportházirend-létrehozó tulajdonosok. [Részletek](https://technet.microsoft.com/library/cc781991%28v=ws.10%29.aspx)
 
-## <a name="step-1-create-hello-distribution-point"></a>1. lépés: Hello terjesztési pont létrehozása
-Először egy hálózati helyre hello gépek által elérhető, amely a tooremotely telepítés hello bővítmény kívánja hello telepítőcsomag kell elhelyezni. toodo, kövesse az alábbi lépéseket:
+## <a name="step-1-create-the-distribution-point"></a>1. lépés: A terjesztési pont létrehozása
+A telepítőcsomag először a távoli telepítéséhez a bővítményt a gépek által elérhető hálózati helyen kell elhelyezni. Ehhez kövesse az alábbi lépéseket:
 
-1. Jelentkezzen be rendszergazdaként toohello kiszolgáló
-2. A hello **Kiszolgálókezelő** ablakban nyissa meg túl**fájl- és tárolási szolgáltatások**.
+1. Rendszergazdaként jelentkezzen be a kiszolgálóra
+2. Az a **Kiszolgálókezelő** ablakban, keresse fel **fájl- és tárolási szolgáltatások**.
    
     ![Nyissa meg a fájl- és tárolási szolgáltatások](./media/active-directory-saas-ie-group-policy/files-services.png)
-3. Nyissa meg toohello **megosztások** fülre. Kattintson a **feladatok** > **új megosztás...**
+3. Lépjen a **megosztások** fülre. Kattintson a **feladatok** > **új megosztás...**
    
     ![Nyissa meg a fájl- és tárolási szolgáltatások](./media/active-directory-saas-ie-group-policy/shares.png)
-4. Teljes hello **új megosztás varázsló** és set engedélyek tooensure, hogy az elérhető a felhasználók gépek. [További információ a megosztásokat.](https://technet.microsoft.com/library/cc753175.aspx)
-5. Töltse le a Microsoft Windows Installer-csomag (.msi fájlt) a következő hello: [hozzáférési Panel Extension.msi](https://account.activedirectory.windowsazure.com/Applications/Installers/x64/Access Panel Extension.msi)
-6. Másolja a hello telepítő szükséges tooa csomaghely hello megosztáson.
+4. Fejezze be a **új megosztás varázsló** és annak érdekében, hogy az elérhető a felhasználók gépek engedélyek beállítása. [További információ a megosztásokat.](https://technet.microsoft.com/library/cc753175.aspx)
+5. A következő Microsoft Windows Installer (.msi fájlt) csomag: [hozzáférési Panel Extension.msi](https://account.activedirectory.windowsazure.com/Applications/Installers/x64/Access Panel Extension.msi)
+6. Másolja a telepítőcsomag a megosztást a kívánt helyre.
    
-    ![Hello .msi toohello fájlmegosztásról.](./media/active-directory-saas-ie-group-policy/copy-package.png)
-7. Ellenőrizze, hogy az ügyfél gépek képesek tooaccess hello telepítőcsomag hello megosztásból. 
+    ![Az .msi fájlt másolja a megosztásba.](./media/active-directory-saas-ie-group-policy/copy-package.png)
+7. Ellenőrizze, hogy az ügyfél gépek tudja a telepítőcsomag a megosztás eléréséhez. 
 
-## <a name="step-2-create-hello-group-policy-object"></a>2. lépés: Hello csoportházirend-objektum létrehozása
-1. Jelentkezzen be az Active Directory tartományi szolgáltatások (AD DS) telepítése üzemeltető toohello kiszolgálón.
-2. A Kiszolgálókezelő hello, váltson túl**eszközök** > **csoportházirend-kezelő**.
+## <a name="step-2-create-the-group-policy-object"></a>2. lépés: A csoportházirend-objektum létrehozása
+1. Jelentkezzen be a kiszolgálóra, amelyen az Active Directory tartományi szolgáltatások (AD DS) telepítése.
+2. A Kiszolgálókezelőben nyissa meg a **eszközök** > **csoportházirend-kezelő**.
    
-    ![Nyissa meg tooTools > csoport házirend kezelése](./media/active-directory-saas-ie-group-policy/tools-gpm.png)
-3. A bal oldali ablaktáblájában hello hello **csoportházirend-kezelő** ablakban, a szervezeti egység (OU) hierarchia megtekintése, és milyen hatókörben tooapply hello csoportházirend szeretné meghatározni. Dönthet egy kis OU toodeploy tooa toopick néhány felhasználó tesztelési, vagy például előfordulhat, hogy válassza ki a legfelső szintű szervezeti egység toodeploy tooyour teljes szervezet számára.
+    ![Kattintson az eszközök > csoport házirend kezelése](./media/active-directory-saas-ie-group-policy/tools-gpm.png)
+3. A bal oldali ablaktáblán, a **csoportházirend-kezelő** ablakban, a szervezeti egység (OU) hierarchia megtekintése, és határozza meg, melyik hatókörből szeretné alkalmazni a csoportházirend. Például úgy is dönt, hogy válassza ki a telepítendő néhány felhasználó tesztelési kis OU, vagy előfordulhat, hogy válassza ki a legfelső szintű szervezeti egység központi telepítése a teljes szervezet számára.
    
    > [!NOTE]
-   > Volna, például toocreate vagy szerkesztésekor a szervezeti egységekhez (OU-k), hátsó toohello Kiszolgálókezelő váltson, és nyissa meg túl**eszközök** > **Active Directory – felhasználók és számítógépek**.
+   > Ha azt szeretné, hozzon létre vagy szerkessze a szervezeti egységekhez (OU-k), váltson vissza a Kiszolgálókezelőhöz, és navigáljon a **eszközök** > **Active Directory – felhasználók és számítógépek**.
    > 
    > 
 4. Miután kiválasztotta a szervezeti egység, a jobb gombbal kattintson rá, és válassza ki **egy csoportházirend-objektum létrehozása ebben a tartományban, és hivatkozás létrehozása itt...**
    
     ![Hozzon létre egy új csoportházirend-objektum](./media/active-directory-saas-ie-group-policy/create-gpo.png)
-5. A hello **új csoportházirend-objektum** parancssorból, írja be egy nevet a hello új csoportházirend-objektum.
+5. Az a **új csoportházirend-objektum** parancssort, írja be az új csoportházirend-objektum nevét.
    
-    ![Név hello új csoportházirend-objektum](./media/active-directory-saas-ie-group-policy/name-gpo.png)
-6. Kattintson a jobb gombbal hello csoportházirend-objektumot létrehozta, és válassza ki **szerkesztése**.
+    ![Az új csoportházirend-objektum neve](./media/active-directory-saas-ie-group-policy/name-gpo.png)
+6. Kattintson a jobb gombbal a csoportházirend-objektumot létrehozta, és válassza ki **szerkesztése**.
    
-    ![Hello új csoportházirend-objektum szerkesztéséhez](./media/active-directory-saas-ie-group-policy/edit-gpo.png)
+    ![Az új csoportházirend-objektum szerkesztéséhez](./media/active-directory-saas-ie-group-policy/edit-gpo.png)
 
-## <a name="step-3-assign-hello-installation-package"></a>3. lépés: Hello telepítőcsomag hozzárendelése
-1. Határozza meg, hogy szeretné-e toodeploy hello bővítmény alapján **számítógép konfigurációja** vagy **felhasználói konfiguráció**. Használata esetén [számítógép konfigurációja](https://technet.microsoft.com/library/cc736413%28v=ws.10%29.aspx), függetlenül attól, amely a felhasználók jelentkezhetnek be tooit hello számítógépen telepítve van a hello bővítmény. A [felhasználói konfiguráció](https://technet.microsoft.com/library/cc781953%28v=ws.10%29.aspx), felhasználóknál hello bővítmények vannak telepítve, függetlenül azok a számítógépek jelentkeznek be rájuk vonatkozóan.
-2. A bal oldali ablaktáblájában hello hello **Csoportházirendkezelés-szerkesztő** ablakban, a következő mappák elérési útjaiban, attól függően, hogy milyen típusú konfigurációs úgy döntött, hogy hello lépjen tooeither:
+## <a name="step-3-assign-the-installation-package"></a>3. lépés: A telepítési csomag hozzárendelése
+1. Határozza meg, hogy szeretné-e telepíteni a bővítmény alapján **számítógép konfigurációja** vagy **felhasználói konfiguráció**. Használata esetén [számítógép konfigurációja](https://technet.microsoft.com/library/cc736413%28v=ws.10%29.aspx), a bővítmény a bejelentkezett, függetlenül a számítógépen telepítve van. A [felhasználói konfiguráció](https://technet.microsoft.com/library/cc781953%28v=ws.10%29.aspx), felhasználók kiterjesztése a telepítve vannak, függetlenül azok a számítógépek jelentkeznek be őket.
+2. A bal oldali ablaktáblán, a **Csoportházirendkezelés-szerkesztő** ablakban, keresse fel a következő mappák elérési útjaiban, attól függően, hogy milyen típusú konfigurációs úgy döntött, hogy valamelyikét:
    
    * `Computer Configuration/Policies/Software Settings/`
    * `User Configuration/Policies/Software Settings/`
 3. Kattintson a jobb gombbal **Szoftvertelepítés**, majd jelölje be **új** > **csomag...**
    
     ![Hozzon létre egy új telepítési csomag](./media/active-directory-saas-ie-group-policy/new-package.png)
-4. Lépjen toohello megosztott mappa, amely tartalmazza a telepítőcsomag hello a [1. lépés: hello terjesztési pont létrehozása](#step-1-create-the-distribution-point), válasszon hello .msi fájlt, és kattintson a **nyitott**.
+4. Nyissa meg a megosztott mappához, amely tartalmazza a telepítőcsomag a [1. lépés: a terjesztési pont létrehozása](#step-1-create-the-distribution-point), válassza ki az .msi fájlt, és kattintson a **nyitott**.
    
    > [!IMPORTANT]
-   > Ha hello megosztás ugyanazon a kiszolgálón található, győződjön meg arról, hogy Ön keresztül érik el hello .msi hello hálózati fájl elérési útját, nem pedig hello helyi fájl elérési útját.
+   > Ha a megosztás ugyanazon a kiszolgálón található, győződjön meg arról, hogy Ön keresztül érik el az .msi fájl hálózati elérési útját, nem pedig a helyi fájl elérési útját.
    > 
    > 
    
-    ![Válassza ki a telepítőcsomag hello hello megosztott mappából.](./media/active-directory-saas-ie-group-policy/select-package.png)
-5. A hello **szoftver központi telepítése** rákérdezés, jelölje be **hozzárendelt** a központi telepítési módszer. Ezután kattintson az **OK** gombra.
+    ![Válassza ki a telepítési csomagot a megosztott mappából.](./media/active-directory-saas-ie-group-policy/select-package.png)
+5. Az a **szoftver központi telepítése** rákérdezés, jelölje be **hozzárendelt** a központi telepítési módszer. Ezután kattintson az **OK** gombra.
    
     ![Válassza ki a hozzárendelt, majd kattintson az OK gombra.](./media/active-directory-saas-ie-group-policy/deployment-method.png)
 
-hello bővítmény már telepített toohello szervezeti Egységet, verziószámával. [További információ a Csoportházirend szoftver telepítése.](https://technet.microsoft.com/library/cc738858%28v=ws.10%29.aspx)
+A bővítmény már telepítve van a kiválasztott szervezeti Egységhez. [További információ a Csoportházirend szoftver telepítése.](https://technet.microsoft.com/library/cc738858%28v=ws.10%29.aspx)
 
-## <a name="step-4-auto-enable-hello-extension-for-internet-explorer"></a>4. lépés: Automatikus engedélyezése hello az Internet Explorer bővítmény
-Továbbá toorunning hello installer, az Internet Explorer minden bővítmény explicit módon engedélyezni kell ahhoz, hogy kell használni. Hajtsa végre hello lépéseket alatti tooenable hello hozzáférési Panel bővítmény csoportházirend használatával:
+## <a name="step-4-auto-enable-the-extension-for-internet-explorer"></a>4. lépés: Automatikus engedélyezése az Internet Explorer bővítmény
+Mellett a telepítő fut, az Internet Explorer minden bővítmény explicit módon engedélyeznie kell használat előtt. A hozzáférési Panel bővítmény csoportházirenddel engedélyezéséhez az alábbi lépésekkel:
 
-1. A hello **Csoportházirendkezelés-szerkesztő** ablakot, az elérési utak, attól függően, hogy milyen típusú konfigurációs beállítást választja a következő hello lépjen tooeither [3. lépés: hozzárendelése hello telepítőcsomag](#step-3-assign-the-installation-package):
+1. Az a **Csoportházirendkezelés-szerkesztő** ablakban, keresse fel vagy attól függően, hogy milyen típusú konfigurációs beállítást választja, a következő elérési [3. lépés: a telepítési csomag hozzárendelése](#step-3-assign-the-installation-package):
    
    * `Computer Configuration/Policies/Administrative Templates/Windows Components/Internet Explorer/Security Features/Add-on Management`
    * `User Configuration/Policies/Administrative Templates/Windows Components/Internet Explorer/Security Features/Add-on Management`
 2. Kattintson a jobb gombbal **Bővítménylista**, és válassza ki **szerkesztése**.
     ![Bővítménylista szerkesztése.](./media/active-directory-saas-ie-group-policy/edit-add-on-list.png)
-3. A hello **Bővítménylista** ablakban válassza ki **engedélyezve**. Ekkor a hello **beállítások** kattintson **megjelenítése...** .
+3. Az a **Bővítménylista** ablakban válassza ki **engedélyezve**. Ekkor a a **beállítások** kattintson **megjelenítése...** .
    
     ![Kattintson az Engedélyezés parancsra, majd kattintson a megjelenítése...](./media/active-directory-saas-ie-group-policy/edit-add-on-list-window.png)
-4. A hello **tartalom megjelenítése** ablak, hajtsa végre az alábbi lépésekkel hello:
+4. Az a **tartalom megjelenítése** ablak, hajtsa végre a következő lépéseket:
    
-   1. Az első oszlop hello (hello **Azonosítónév** mező), másolja és illessze be a következő Osztályazonosító hello:`{030E9A3F-7B18-4122-9A60-B87235E4F59E}`
-   2. Hello második oszlop (hello **érték** mező), írja be a következő érték hello:`1`
-   3. Kattintson a **OK** tooclose hello **tartalom megjelenítése** ablak.
+   1. Az első oszlop (a **Azonosítónév** mező), másolja és illessze be a következő osztály azonosítója:`{030E9A3F-7B18-4122-9A60-B87235E4F59E}`
+   2. A második oszlopa (a **érték** mező), írja be a következő értéket:`1`
+   3. Kattintson a **OK** bezárásához a **tartalom megjelenítése** ablak.
       
-      ![Töltse ki a fenti hello értékeket.](./media/active-directory-saas-ie-group-policy/show-contents.png)
-5. Kattintson a **OK** tooapply a módosításokat és Bezárás hello **Bővítménylista** ablak.
+      ![Töltse ki a fenti értékek.](./media/active-directory-saas-ie-group-policy/show-contents.png)
+5. Kattintson a **OK** alkalmazza a módosításokat, és zárja be a **Bővítménylista** ablak.
 
-hello bővítményét most engedélyezni kell a kiválasztott hello hello gépek szervezeti Egységet. [Csoport házirend tooenable használatával kapcsolatos további, vagy tiltsa le a gyakori.](https://technet.microsoft.com/library/dn454941.aspx)
+A bővítmény most engedélyezni kell a gépek a kijelölt szervezeti egységen. [Engedélyezheti vagy tilthatja le a gyakori csoportházirend használatával kapcsolatos további tudnivalókért.](https://technet.microsoft.com/library/dn454941.aspx)
 
 ## <a name="step-5-optional-disable-remember-password-prompt"></a>5. lépés (nem kötelező): Prompt "Jelszó megjegyzése" letiltása
-Amikor a felhasználók bejelentkezési toowebsites hello hozzáférési Panel bővítmény használatával, az Internet Explorer előfordulhat, hogy megjelenítése hello következő kérni, azzal a kérdéssel "szeretné toostore jelszavát?"
+Ha a felhasználók jelentkezzen be a hozzáférési Panel kiterjesztéssel webhelyek, az Internet Explorer előfordulhat, hogy megjelenítése a következő megkérdezi "Szeretné tárolni a jelszó?"
 
 ![](./media/active-directory-saas-ie-group-policy/remember-password-prompt.png)
 
-Ha tooprevent kívánja a felhasználók megtekinthessék a kérdéshez, majd lépésekkel hello automatikus kitöltés tooprevent alatt a jelszavak megjegyzése:
+Ha kívánja, hogy a felhasználók ne jelent meg a kérdés, majd automatikusan hajthat végre a jelszavak tárolása megelőzése érdekében az alábbi lépésekkel:
 
-1. A hello **Csoportházirendkezelés-szerkesztő** ablakban, a lenti lépjen toohello elérési út. A konfigurációs beállítás csak érhető el a **felhasználói konfiguráció**.
+1. Az a **Csoportházirendkezelés-szerkesztő** ablakban, keresse fel az alábbi elérési út. A konfigurációs beállítás csak érhető el a **felhasználói konfiguráció**.
    
    * `User Configuration/Policies/Administrative Templates/Windows Components/Internet Explorer/`
-2. Nevű hello beállítás található **hello automatikus kitöltés szolgáltatás a felhasználónevek és jelszavak űrlapokon**.
+2. Találja a beállítást, nevű **kapcsolja be az automatikus kitöltés funkciót a felhasználónevek és jelszavak űrlapokon**.
    
    > [!NOTE]
-   > Active Directory korábbi verzióiban ez a beállítás hello nevű sorolhatja **nem teszik lehetővé az automatikus kitöltés toosave jelszavak**. hello konfigurációs beállítás különbözik a hello beállítása ebben az oktatóanyagban leírt.
+   > Az Active Directory korábbi verzióiban ezt a beállítást, a nevű sorolhatja **nem teszik lehetővé az automatikus kitöltés jelszavak mentése**. A konfigurációs beállítás eltér az ebben az oktatóanyagban leírt beállítások.
    > 
    > 
    
-    ![Ne felejtse el toolook ehhez a felhasználói beállítások szakasz.](./media/active-directory-saas-ie-group-policy/disable-auto-complete.png)
-3. Hello beállítás fölött kattintson jobb gombbal, és válassza ki **szerkesztése**.
-4. Című hello ablakban **hello automatikus kitöltés szolgáltatás a felhasználónevek és jelszavak űrlapokon**, jelölje be **letiltott**.
+    ![Ne felejtse el, keresse meg a felhasználói beállítások alapján.](./media/active-directory-saas-ie-group-policy/disable-auto-complete.png)
+3. Kattintson a jobb gombbal a fenti beállítás, és válassza ki **szerkesztése**.
+4. A ablakban című **kapcsolja be az automatikus kitöltés funkciót a felhasználónevek és jelszavak űrlapokon**, jelölje be **letiltott**.
    
     ![Válassza ki a letiltása](./media/active-directory-saas-ie-group-policy/disable-passwords.png)
-5. Kattintson a **OK** tooapply ezeket a módosításokat és Bezárás hello ablak.
+5. Kattintson a **OK** alkalmazza a módosításokat, és az ablak bezárásához.
 
-Felhasználók többé nem kell tudni toostore hitelesítő adataikat, és automatikusan hajthat végre tooaccess korábban tárolt hitelesítő adatok használata. Azonban ez a házirend lehetővé teszi felhasználók toocontinue toouse más típusú űrlapmezők, például a keresési mezők automatikusan hajthat végre.
+Felhasználók már nem lesz képes tárolni a hitelesítő adatok vagy az automatikus kitöltés használatát, a korábban tárolt hitelesítő adatok eléréséhez. Azonban ez a házirend engedélyezése a felhasználók számára továbbra is használhatja az automatikus kitöltés az űrlap mezőkön, például a keresési mezők más típusú.
 
 > [!WARNING]
-> Ha a házirend engedélyezve van, miután a felhasználók kiválasztott toostore egyes hitelesítő adatokat, ez a házirend lesz *nem* hello már tárolt hitelesítő adatok törlése.
+> Ha a házirend engedélyezve van, miután a felhasználók úgy döntött, hogy néhány házirend ezzel hitelesítő adatok tárolására *nem* már tárolt hitelesítő adatok törlése.
 > 
 > 
 
-## <a name="step-6-testing-hello-deployment"></a>6. lépés: Hello központi telepítés tesztelése
-Lépésekkel hello tooverify alatt Ha hello bővítmény telepítése sikeres volt:
+## <a name="step-6-testing-the-deployment"></a>6. lépés: A központi telepítés tesztelése
+Ha a bővítmény telepítése sikeres volt-e ellenőrizni az alábbi lépésekkel:
 
-1. Ha használatával telepített **számítógép konfigurációja**, jelentkezzen be egy ügyfélszámítógépre, amelyhez tartozik a kiválasztott OU toohello [2. lépés: hello csoportházirend-objektum létrehozása](#step-2-create-the-group-policy-object). Ha használatával telepített **felhasználói konfiguráció**, győződjön meg arról, hogy toosign a toothat szervezeti Egységhez tartozik felhasználóként.
-2. Ez eltarthat néhány bejelentkezési hello csoportházirend modulok toofully frissítés változik-e. tooforce hello frissítés, nyissa meg a **parancssor** ablakot, és futtassa a következő parancs hello:`gpupdate /force`
-3. Hello telepítési tootake hely hello gépet újra kell indítani. Rendszerindítási szokásos hello bővítmény során telepíti jelentősen több időt is igénybe vehet.
-4. Az újraindítás után nyissa meg a **Internet Explorer**. A hello ablak hello jobb felső sarkában kattintson **eszközök** (hello fogaskerék ikonra), majd válassza ki **bővítmények kezelése**.
+1. Ha használatával telepített **számítógép konfigurációja**, jelentkezzen be egy ügyfélszámítógépre, amely a kiválasztott szervezeti Egységhez tartozik [2. lépés: a csoportházirend-objektum létrehozása](#step-2-create-the-group-policy-object). Ha használatával telepített **felhasználói konfiguráció**, ügyeljen arra, hogy jelentkezzen be egy felhasználó számára, hogy a szervezeti Egységhez tartozik.
+2. Modulok a teljes módosul a csoportházirend frissítése néhány bejelentkezési vehet fel a géppel. A frissítés kényszerítéséhez nyisson meg egy **parancssor** ablakot, és futtassa az alábbi parancsot:`gpupdate /force`
+3. Újra kell indítania a gépet, a telepítés kerül sor. Rendszerindítási szokásos közben a bővítmény telepítése jelentősen több időt is igénybe vehet.
+4. Az újraindítás után nyissa meg a **Internet Explorer**. Kattintson az ablak jobb felső sarkában **eszközök** (fogaskerék ikonra), majd válassza ki **bővítmények kezelése**.
    
-    ![Nyissa meg tooTools > Bővítmények kezelése](./media/active-directory-saas-ie-group-policy/manage-add-ons.png)
-5. A hello **bővítmények kezelése** ablakban győződjön meg arról, hogy hello **hozzáférési Panel bővítmény** telepítve van, és hogy a **állapot** túl lett beállítva**engedélyezve**.
+    ![Kattintson az eszközök > Bővítmények kezelése](./media/active-directory-saas-ie-group-policy/manage-add-ons.png)
+5. A a **bővítmények kezelése** ablakban ellenőrizze, hogy a **hozzáférési Panel bővítmény** telepítve van, és hogy a **állapot** értékre lett állítva **engedélyezve**.
    
-    ![Győződjön meg arról, hogy hello hozzáférési Panel bővítmény van telepítve és engedélyezve van.](./media/active-directory-saas-ie-group-policy/verify-install.png)
+    ![Győződjön meg arról, hogy a hozzáférési Panel bővítmény telepítve és engedélyezve van.](./media/active-directory-saas-ie-group-policy/verify-install.png)
 
 ## <a name="related-articles"></a>Kapcsolódó cikkek
 * [Az Azure Active Directory segítségével végzett alkalmazásfelügyeletre vonatkozó cikkek jegyzéke](active-directory-apps-index.md)
 * [Alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md)
-* [Az Internet Explorer hello hozzáférési Panel bővítmény hibaelhárítása](active-directory-saas-ie-troubleshooting.md)
+* [A hozzáférési Panel bővítményét az Internet Explorer hibaelhárítása](active-directory-saas-ie-troubleshooting.md)
 

@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált Egnyte |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és Egnyte között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és Egnyte között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,109 +13,109 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/18/2017
 ms.author: jeedes
-ms.openlocfilehash: d86fa28a1e7b23474cb76c08aef8539acadaf24d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 62d01333b61e73c83588d2d1701c0c300df4ab1c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-egnyte"></a>Oktatóanyag: Azure Active Directoryval integrált Egnyte
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Egnyte az Azure Active Directoryval (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja Egnyte integrálása az Azure Active Directory (Azure AD).
 
-Egnyte integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
+Egnyte integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
 
-- Megadhatja a hozzáférés tooEgnyte rendelkező Azure AD-ben
-- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooEgnyte (egyszeri bejelentkezés) a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
+- Megadhatja a Egnyte hozzáféréssel rendelkező Azure AD-ben
+- Engedélyezheti a felhasználóknak, hogy automatikusan beolvasása bejelentkezett Egnyte (egyszeri bejelentkezés) számára a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-az Azure AD integrálása Egnyte tooconfigure, kell a következő elemek hello:
+Konfigurálása az Azure AD-integrációs Egnyte, a következőkre van szükség:
 
 - Az Azure AD szolgáltatásra
 - Egy Egnyte egyszeri bejelentkezés engedélyezve van az előfizetés
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. Hello gyűjteményből Egnyte hozzáadása
+1. A gyűjteményből Egnyte hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-egnyte-from-hello-gallery"></a>Hello gyűjteményből Egnyte hozzáadása
-tooconfigure hello integrációja Egnyte az Azure AD-be, meg kell tooadd Egnyte hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-egnyte-from-the-gallery"></a>A gyűjteményből Egnyte hozzáadása
+Az Azure AD integrálása a Egnyte konfigurálásához kell hozzáadnia Egnyte a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
 
-**tooadd Egnyte hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
+**A gyűjteményből Egnyte hozzáadásához hajtsa végre az alábbi lépéseket:**
 
-1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
+1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
+2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
+3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
 
     ![Alkalmazások][3]
 
-4. Hello keresési mezőbe, írja be a **Egnyte**.
+4. Írja be a keresőmezőbe, **Egnyte**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-egnyte-tutorial/tutorial_egnyte_search.png)
 
-5. A hello eredmények panelen válassza ki a **Egnyte**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
+5. Az eredmények panelen válassza ki a **Egnyte**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-egnyte-tutorial/tutorial_egnyte_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban konfigurálása, és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon." nevű tesztfelhasználó alapján Egnyte
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó Egnyte tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello Egnyte közötti kapcsolat kapcsolatot kell létrehozni toobe.
+Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó Egnyte a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a Egnyte közötti kapcsolat kapcsolatot kell létrehozni.
 
-Egnyte, rendelje hozzá hello hello értékének **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
+Egnyte, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
 
-tooconfigure és az Azure AD az egyszeri bejelentkezés Egnyte-teszthez, a következő építőelemeket toocomplete hello szüksége:
+Az Azure AD egyszeri bejelentkezést a Egnyte tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-3. **[Egy Egnyte tesztfelhasználó létrehozása](#creating-an-egnyte-test-user)**  -toohave egy megfelelője a Britta Simon a Egnyte, amely a felhasználó csatolt toohello az Azure AD ábrázolása.
-4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+3. **[Egy Egnyte tesztfelhasználó létrehozása](#creating-an-egnyte-test-user)**  - való Britta Simon valami Egnyte, amely csatolva van a felhasználó az Azure AD-ábrázolását.
+4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az Egnyte alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az Egnyte alkalmazásban.
 
-**az Azure AD tooconfigure egyszeri bejelentkezést a Egnyte, hajtsa végre a lépéseket követve hello:**
+**Konfigurálása az Azure AD az egyszeri bejelentkezés Egnyte, hajtsa végre az alábbi lépéseket:**
 
-1. Az Azure portál, a hello hello **Egnyte** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portálon a a **Egnyte** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
+2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-egnyte-tutorial/tutorial_egnyte_samlbase.png)
 
-3. A hello **Egnyte tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
+3. Az a **Egnyte tartomány és az URL-címek** területen tegye a következőket:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-egnyte-tutorial/tutorial_egnyte_url.png)
 
-    A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<companyname>.egnyte.com`
+    Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://<companyname>.egnyte.com`
 
     > [!NOTE] 
-    > Ez az érték nincs valós. Frissítse ezt az értéket hello tényleges bejelentkezési URL-CÍMÉT. Ügyfél [Egnyte ügyfél-támogatási csoport](https://www.egnyte.com/corp/contact_egnyte.html) tooget ezt az értéket. 
+    > Ez az érték nincs valós. Frissítse ezt az értéket a tényleges bejelentkezési URL-címet. Ügyfél [Egnyte ügyfél-támogatási csoport](https://www.egnyte.com/corp/contact_egnyte.html) lekérni ezt az értéket. 
  
-4. A hello **SAML-aláíró tanúsítványa** kattintson **Certificate(Base64)** , és mentse a hello tanúsítványfájlt a számítógépen.
+4. Az a **SAML-aláíró tanúsítványa** kattintson **Certificate(Base64)** , és mentse a tanúsítványfájlt, a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-egnyte-tutorial/tutorial_egnyte_certificate.png) 
 
@@ -123,25 +123,25 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálo
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-egnyte-tutorial/tutorial_general_400.png)
 
-6. A hello **Egnyte konfigurációs** kattintson **konfigurálása Egnyte** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **SAML Entitásazonosító és SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**
+6. A a **Egnyte konfigurációs** kattintson **konfigurálása Egnyte** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **SAML Entitásazonosító és SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-egnyte-tutorial/tutorial_egnyte_configure.png) 
 
-7. Egy másik webes böngészőablakban jelentkezzen tooyour Egnyte vállalati hely rendszergazdaként.
+7. Egy másik webes böngészőablakban jelentkezzen be a Egnyte vállalati webhely rendszergazdaként.
 
 8. Kattintson a **beállítások**.
    
    ![Beállítások](./media/active-directory-saas-egnyte-tutorial/ic787819.png "beállítások")
 
-9. A hello kattintson **beállítások**.
+9. A menüben kattintson a **beállítások**.
 
    ![Beállítások](./media/active-directory-saas-egnyte-tutorial/ic787820.png "beállítások")
 
-10. Kattintson a hello **konfigurációs** fülre, majd **biztonsági**.
+10. Kattintson a **konfigurációs** fülre, majd **biztonsági**.
 
     ![Biztonsági](./media/active-directory-saas-egnyte-tutorial/ic787821.png "biztonsági")
 
-11. A hello **egyszeri bejelentkezés hitelesítési** csoportjában hajtsa végre az alábbi lépésekkel hello:
+11. Az a **egyszeri bejelentkezés hitelesítési** területen tegye a következőket:
 
     ![Egyszeri bejelentkezés hitelesítési](./media/active-directory-saas-egnyte-tutorial/ic787822.png "egyszeri bejelentkezés a hitelesítés")   
     
@@ -149,11 +149,11 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálo
    
     b. Mint **identitásszolgáltató**, jelölje be **AzureAD**.
    
-    c. Beillesztés **SAML-alapú egyszeri bejelentkezési URL-címe** hello Azure-portálon másol **Identity provider bejelentkezési URL-cím** szövegmező.
+    c. Beillesztés **SAML-alapú egyszeri bejelentkezési URL-címe** másolja az Azure-portálon a **Identity provider bejelentkezési URL-cím** szövegmező.
    
-    d. Beillesztés **SAML Entitásazonosító** amely hello az Azure-portálon másolta **Identity provider Entitásazonosító** szövegmező.
+    d. Beillesztés **SAML Entitásazonosító** , amely az Azure portálról másolta a **Identity provider Entitásazonosító** szövegmező.
       
-    e. A base-64 kódolású tanúsítvány megnyitása a Jegyzettömbben az Azure portálról, a vágólapra tartalmának másolása hello letöltött és toohello Beillesztés **szolgáltató identitástanúsítvány** szövegmező.
+    e. A base-64 kódolású tanúsítvány megnyitása a Jegyzettömbben az Azure portálról letöltött, a tartalmának másolása a vágólapra és illessze be azt a **szolgáltató identitástanúsítvány** szövegmező.
    
     f. Mint **alapértelmezett felhasználói hozzárendelésének**, jelölje be **E-mail cím**.
    
@@ -162,87 +162,87 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálo
     h. Kattintson a **Save** (Mentés) gombra.
 
 > [!TIP]
-> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
+Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
+1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-egnyte-tutorial/create_aaduser_01.png) 
 
-2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
+2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-egnyte-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
+3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-egnyte-tutorial/create_aaduser_03.png) 
 
-4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-egnyte-tutorial/create_aaduser_04.png) 
 
-    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
+    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-an-egnyte-test-user"></a>Egy Egnyte tesztfelhasználó létrehozása
 
-az Azure AD tooenable felhasználók toolog a tooEgnyte, akkor ki kell építenie Egnyte be. Egnyte hello esetben egy kézi tevékenység.
+Ahhoz, hogy az Azure AD-felhasználók Egnyte bejelentkezni, akkor ki kell építenie a Egnyte. Egnyte, ha egy kézi tevékenység.
 
-**tooprovision felhasználói fiókok, hajtsa végre hello a következő lépéseket:**
+**A felhasználói fiókok létrehozásához hajtsa végre az alábbi lépéseket:**
 
-1. Jelentkezzen be tooyour **Egnyte** vállalati hely rendszergazdaként.
+1. Jelentkezzen be a **Egnyte** vállalati hely rendszergazdaként.
 
-2. Nyissa meg túl**beállítások \> felhasználók és csoportok**.
+2. Ugrás a **beállítások \> felhasználók és csoportok**.
 
-3. Kattintson a **új felhasználó hozzáadása**, majd válassza ki a hello típus tooadd kívánt felhasználó.
+3. Kattintson a **új felhasználó hozzáadása**, majd válassza ki a hozzáadni kívánt felhasználó típusát.
    
    ![Felhasználók](./media/active-directory-saas-egnyte-tutorial/ic787824.png "felhasználók")
 
-4. A hello **új általános jogú felhasználó** csoportjában hajtsa végre az alábbi lépésekkel hello:
+4. Az a **új általános jogú felhasználó** területen tegye a következőket:
    
    ![Új általános jogú felhasználó](./media/active-directory-saas-egnyte-tutorial/ic787825.png "új általános jogú felhasználó")   
 
-   a. Típus hello **E-mail**, **felhasználónév**, és egyéb részleteket a egy érvényes Azure Active Directory-fióknevet, amelyet tooprovision.
+   a. Típus a **E-mail**, **felhasználónév**, és egyéb részleteket a egy érvényes Azure Active Directory-fióknevet, amelyet kiépítését.
    
    b. Kattintson a **Save** (Mentés) gombra.
     
     >[!NOTE]
-    >hello Azure Active Directory fióktulajdonos e-mailben értesítést fog kapni.
+    >Az Azure Active Directory fióktulajdonos e-mailben értesítést fog kapni.
     >
 
 >[!NOTE]
->Bármely más Egnyte felhasználói fiók létrehozása eszközök vagy Egnyte tooprovision által nyújtott API-k AAD felhasználói fiókokat.
+>Bármely más Egnyte felhasználói fiók létrehozása eszközök vagy rendelkezés AAD felhasználói fiókokhoz Egnyte által nyújtott API-k.
 > 
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
+### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
 
-Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooEgnyte megadásával engedélyeznie.
+Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés Egnyte Azure egyszeri bejelentkezéshez használandó.
 
 ![Felhasználó hozzárendelése][200] 
 
-**tooassign Britta Simon tooEgnyte, hajtsa végre a következő lépéseket hello:**
+**Britta Simon hozzárendelése Egnyte, hajtsa végre az alábbi lépéseket:**
 
-1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Hello alkalmazások listában válassza ki a **Egnyte**.
+2. Az alkalmazások listában válassza ki a **Egnyte**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-egnyte-tutorial/tutorial_egnyte_app.png) 
 
-3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -250,7 +250,7 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáfé
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -258,14 +258,14 @@ Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáfé
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
 
-Ha a hozzáférési Panel hello hello Egnyte csempe gombra kattint, automatikusan bejelentkezett tooyour Egnyte alkalmazás szerezheti be.
-További információ a hozzáférési Panel hello: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md). 
+Ha a hozzáférési panelen Egnyte csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az Egnyte alkalmazására.
+A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>További források
 
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

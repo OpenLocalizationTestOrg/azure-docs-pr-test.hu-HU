@@ -1,4 +1,4 @@
-a gyorsítótár toocreate toohello először bejelentkezik [Azure-portálon](https://portal.azure.com), és kattintson **új** > **adatbázisok** > **Redis Cache**.
+Gyorsítótár létrehozásához jelentkezzen be az [Azure Portalra](https://portal.azure.com), és kattintson az **Új** > **Adatbázisok** > **Redis Cache** lehetőségre.
 
 > [!NOTE]
 > Ha nincs Azure-fiókja, [ingyenesen nyithat egyet](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero) mindössze pár perc alatt.
@@ -8,29 +8,29 @@ a gyorsítótár toocreate toohello először bejelentkezik [Azure-portálon](ht
 ![Új gyorsítótár](media/redis-cache-create/redis-cache-new-cache-menu.png)
 
 > [!NOTE]
-> Ezenkívül toocreating gyorsítótárazza a hello Azure-portálon, is létrehozhat az erőforrás-kezelő használatával sablonok, a PowerShell vagy az Azure parancssori felület.
+> A gyorsítótárak létrehozására az Azure Portalon kívül a Resource Manager-sablonok, a PowerShell vagy az Azure parancssori felület is használható.
 > 
-> * a Resource Manager-sablonok használatával gyorsítótár toocreate lásd [egy sablon használatával Redis gyorsítótár létrehozása](../articles/redis-cache/cache-redis-cache-arm-provision.md).
-> * a gyorsítótár Azure PowerShell használatával toocreate lásd [kezelése Azure Redis Cache az Azure PowerShell](../articles/redis-cache/cache-howto-manage-redis-cache-powershell.md).
-> * a gyorsítótár Azure parancssori felület használatával toocreate lásd [hogyan toocreate és kezelése az Azure Redis Cache hello Azure parancssori felület (CLI) használatával](../articles/redis-cache/cache-manage-cli.md).
+> * A gyorsítótár Resource Manager-sablonokkal való létrehozásához lásd: [Create a Redis cache using a template](../articles/redis-cache/cache-redis-cache-arm-provision.md) (Redis Cache létrehozása sablon használatával).
+> * A gyorsítótár Azure PowerShell használatával való létrehozásához lásd: [Manage Azure Redis Cache with Azure PowerShell](../articles/redis-cache/cache-howto-manage-redis-cache-powershell.md) (Az Azure Redis Cache kezelése az Azure PowerShellel).
+> * A gyorsítótár Azure parancssori felület használatával való létrehozásához lásd: [How to create and manage Azure Redis Cache using the Azure Command-Line Interface (Azure CLI)](../articles/redis-cache/cache-manage-cli.md) (Az Azure Redis Cache létrehozása és kezelése az Azure parancssori felület (Azure CLI) használatával).
 > 
 > 
 
-A hello **új Redis Cache** panelen adja meg a hello hello gyorsítótár kívánt beállításait.
+Az **Új Redis Cache-gyorsítótár** panelen adja meg a gyorsítótár kívánt beállításait.
 
 ![Gyorsítótár létrehozása](media/redis-cache-create/redis-cache-cache-create.png) 
 
-* A **DNS-név**, adjon meg egy egyedi gyorsítótár neve toouse hello gyorsítótár végpontjához. hello gyorsítótár nevének 1 és 63 karakter közötti karakterláncnak kell és csak számokat, betűket és hello `-` karakter. hello gyorsítótár neve nem kezdődhet vagy végződhet hello `-` karakterrel, és egymást követő `-` karakterek nem érvényesek.
-* A **előfizetés**, válassza ki a megjeleníteni kívánt toouse hello gyorsítótár Azure-előfizetés hello. Ha a fiókja csak egyetlen előfizetéssel rendelkezik, akkor lesz automatikusan kiválasztva, és hello **előfizetés** nem jelenik meg a legördülő listán.
-* Az **Erőforráscsoport** listából válasszon ki vagy hozzon létre egy erőforráscsoportot a gyorsítótárhoz. További információkért lásd: [használatával erőforráscsoportokat toomanage az Azure-erőforrások](../articles/azure-resource-manager/resource-group-overview.md). 
-* Használjon **hely** toospecify hello földrajzi hely, ahol a gyorsítótárat üzemeltetni kívánja. Hello legjobb teljesítmény érdekében a Microsoft nyomatékosan javasolja, hogy a hello hello gyorsítótár létrehozása és hello ügyfélalkalmazás ugyanabban a régióban.
-* Használjon **tarifacsomag** tooselect hello szükségeskonfiguráció-gyorsítótár mérete és a szolgáltatásokat.
-* **Redis-fürt** lehetővé teszi a toocreate gyorsítótárak nagyobb, mint 53 GB és tooshard adatok több Redis-csomópont között. További információkért lásd: [hogyan fürtözése a Premium Azure Redis Cache tooconfigure](../articles/redis-cache/cache-how-to-premium-clustering.md).
-* **Redis-adatmegőrzés** hello képességét toopersist kínál a gyorsítótár tooan Azure Storage-fiók. Útmutatás az adatmegőrzés konfigurálásához: [hogyan tooconfigure megőrzését egy prémium szintű Azure Redis Cache](../articles/redis-cache/cache-how-to-premium-persistence.md).
-* **Virtuális hálózati** biztosít magasabb védelmet és elszigeteltséget hozzáférés tooyour gyorsítótár tooonly korlátozásával megadott hello található ügyfelek Azure-beli virtuális hálózathoz. Használhatja a vnet összes hello szolgáltatás, például alhálózatok, hozzáférés-vezérlési házirendeket és egyéb szolgáltatások toofurther korlátozása a hozzáférés tooRedis. További információkért lásd: [hogyan támogatják a virtuális hálózati tooconfigure a Premium Azure Redis Cache](../articles/redis-cache/cache-how-to-premium-vnet.md).
-* A nem SSL hozzáférés alapértelmezés szerint le van tiltva az új gyorsítótárakhoz. tooenable hello nem SSL port, ellenőrzés **6379 (nem SSL-titkosítású) port feloldásához**.
+* A **DNS-név** mezőben adja meg a gyorsítótár végpontjához használandó egyedi nevet. A gyorsítótár nevének 1 és 63 karakter közötti karakterláncnak kell lennie, és kizárólag számokat, betűket és a `-` karaktert tartalmazhatja. A gyorsítótár neve nem kezdődhet a `-` karakterrel, és az egymást követő `-` karakterek nem érvényesek.
+* Az **Előfizetés** mezőben válassza ki a gyorsítótárhoz használni kívánt Azure-előfizetést. Ha a fiókja csak egyetlen előfizetéssel rendelkezik, ez lesz automatikusan kiválasztva, és az **Előfizetés** legördülő lista nem jelenik meg.
+* Az **Erőforráscsoport** listából válasszon ki vagy hozzon létre egy erőforráscsoportot a gyorsítótárhoz. További információk: [Using Resource groups to manage your Azure resources](../articles/azure-resource-manager/resource-group-overview.md) (Erőforráscsoportok használata az Azure-erőforrások kezeléséhez). 
+* A **Hely** beállítás segítségével megadhatja a földrajzi helyet, ahol a gyorsítótárat üzemeltetni kívánja. A legjobb teljesítmény érdekében a Microsoft határozottan javasolja, hogy a gyorsítótárat ugyanabban a régióban hozza létre, mint ahol ügyfélalkalmazás található.
+* A **Tarifacsomag** listából válassza ki a kívánt gyorsítótárméretet és -funkciókat.
+* A **Redis-fürt** használatával 53 GB-nál nagyobb méretű gyorsítótárak hozhatók létre, és részekre bonthatók az adatok több Redis-csomóponton. További információk: [How to configure clustering for a Premium Azure Redis Cache](../articles/redis-cache/cache-how-to-premium-clustering.md) (Fürtözés konfigurálása prémium szintű Azure Redis Cache-gyorsítótárhoz).
+* A **Redis-adatmegőrzés** lehetővé teszi a gyorsítótár adatainak megőrzését egy Azure Storage-fiókban. Útmutató az adatmegőrzés konfigurálásához: [How to configure clustering for a Premium Azure Redis Cache](../articles/redis-cache/cache-how-to-premium-persistence.md) (Adatmegőrzés konfigurálása prémium szintű Azure Redis Cache-gyorsítótárhoz).
+* A **virtuális hálózat** magasabb védelmet és elszigeteltséget biztosít, mivel a gyorsítótárhoz csak az adott Azure virtuális hálózatban található ügyfelek férnek hozzá. Használhatja a VNet összes funkcióját, köztük az alhálózatokat, a hozzáférés-vezérlési házirendeket, és a Redishez való hozzáférést korlátozó többi egyéb funkciókat. További információk: [How to configure clustering for a Premium Azure Redis Cache](../articles/redis-cache/cache-how-to-premium-vnet.md) (Virtuális hálózat támogatásának konfigurálása prémium szintű Azure Redis Cache-gyorsítótárhoz).
+* A nem SSL hozzáférés alapértelmezés szerint le van tiltva az új gyorsítótárakhoz. Nem SSL-port engedélyezéséhez tekintse meg a **6379 számú port zárolásának feloldása (nem SSL titkosított)** részt.
 
-Hello új gyorsítótár beállításainak konfigurálása után kattintson **létrehozása**. Hello gyorsítótár toobe létrehozott néhány percet is igénybe vehet. toocheck hello állapotát, figyelheti a hello kezdőpulton hello előrehaladását. Hello gyorsítótár létrehozása után az új gyorsítótár tartalmaz egy **futtató** állapotát és való használatra kész [alapértelmezett beállítások](../articles/redis-cache/cache-configure.md#default-redis-server-configuration).
+Az új gyorsítótár beállításainak konfigurálása után kattintson a **Létrehozás** lehetőségre. A gyorsítótár létrehozása eltarthat néhány percig. A folyamat állapotát a kezdőpult alján ellenőrizheti. Miután a rendszer létrehozta a gyorsítótárat, az új gyorsítótár **Futó** állapotú, és az [alapértelmezett beállításokkal](../articles/redis-cache/cache-configure.md#default-redis-server-configuration) használatra kész.
 
 ![A gyorsítótár létrejött](media/redis-cache-create/redis-cache-cache-created.png)
 

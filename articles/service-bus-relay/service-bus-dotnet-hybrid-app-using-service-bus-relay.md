@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure WCF továbbító hibrid helyszíni/felhőbeli alkalmazás (.NET) |} Microsoft Docs"
-description: "Megtudhatja, hogyan toocreate egy .NET helyszíni/felhőbeli hibridalkalmazást Azure WCF Relay használatával."
+title: "Azure WCF Relay hibrid helyszíni/felhőbeli alkalmazás (.NET) | Microsoft Docs"
+description: "Ebből a cikkből megtudhatja, hogyan hozhat létre helyszíni/felhőbeli .NET-hibridalkalmazást az Azure WCF Relay használatával."
 services: service-bus-relay
 documentationcenter: .net
 author: sethmanheim
@@ -14,78 +14,78 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 06/14/2017
 ms.author: sethm
-ms.openlocfilehash: aab8b1dbdc85c4edf7b0ccef0921b69524b2d306
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d15c30dad9fb4bbe9082d6a3c72cd20ed42bbc3e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="net-on-premisescloud-hybrid-application-using-azure-wcf-relay"></a>Helyszíni/felhőbeli .NET-hibridalkalmazás az Azure WCF Relay használatával
-## <a name="introduction"></a>Bevezetés
+## <a name="introduction"></a>Introduction (Bevezetés)
 
-Ez a cikk bemutatja, hogyan toobuild hibrid felhő Microsoft Azure és a Visual Studio alkalmazást. hello oktatóanyag feltételezi, hogy rendelkezik-e nincs előzetes tapasztalata az Azure használatával kapcsolatban. 30 percen belül hogy be több Azure-erőforrásokat használó alkalmazások és hello felhőben futó.
+Ez a cikk azt mutatja be, hogyan készíthet felhőbeli hibridalkalmazást a Microsoft Azure és a Visual Studio használatával. Az oktatóanyagban feltételezzük, hogy nincs korábbi tapasztalata az Azure használatával kapcsolatban. 30 percen belül olyan alkalmazással rendelkezhet, amely több, a felhőben működő Azure-erőforrást is használ.
 
 Az oktatóanyagban érintett témák köre:
 
-* Hogyan toocreate vagy alakítása a megjeleníthető meglévő webszolgáltatás egy webes megoldással.
-* Egy Azure alkalmazás és egy webszolgáltatás-bővítmény toouse tooshare hello Azure WCF továbbító szolgáltatásadatok hogyan máshol tárolt.
+* Meglévő webszolgáltatás létrehozása vagy alakítása a használathoz egy webes megoldással.
+* Az Azure WCF Relay szolgáltatás használata az Azure-alkalmazások és a máshol tárolt webszolgáltatások közötti adatmegosztásra.
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
 ## <a name="how-azure-relay-helps-with-hybrid-solutions"></a>Hogyan segít az Azure Relay a hibrid megoldások terén?
 
-Üzleti megoldások általában egyéni kódok tootackle új és egyedi üzleti követelmények és a megoldások és rendszerek már által szolgáltatott létező funkciók álló.
+Az üzleti megoldások általában egyéni kódok kombinációjából állnak, amelyeket az új és egyedi üzleti követelmények és már meglévő megoldások és rendszerek által szolgáltatott létező funkciók kezeléséhez írtak.
 
-Megoldás fejlesztők indító toouse hello felhő könnyebb kezelésére vonatkozó méretkövetelményekhez és alacsonyabb üzemi költségek. Ennek során találnak, hogy szeretnének tooleverage, mivel azok megoldások építőelemeit hello vállalati tűzfalon belül és kívül könnyen meglévő szolgáltatási eszközök elérni hello felhőalapú megoldás. Számos belső szolgáltatás nem épített, illetve, hogy azok könnyen elérhető legyen vállalati hálózat peremhálózaton hello tárolva.
+A megoldások tervezői elkezdték a felhőt használni a méretezési követelmények egyszerűbb kezelése és az alacsonyabb működési költségek érdekében. Mindeközben azt vették észre, hogy a megoldásaik építőelemeként használni kívánt meglévő szolgáltatási eszközök a vállalati tűzfalon belül vannak, és a felhőalapú megoldással nehéz elérni ezeket. Számos belső szolgáltatás nem úgy van felépítve vagy tárolva, hogy könnyen elérhető legyen vállalati hálózat peremén.
 
-[Az Azure továbbítási](https://azure.microsoft.com/services/service-bus/) készült használati eset a meglévő Windows Communication Foundation (WCF) a webszolgáltatások hello és azokat, így biztonságosan elérhetik toosolutions anélkül, hogy hello vállalati peremhálózati kívül található szolgáltatások zavaró módosításokat toohello vállalati hálózati infrastruktúrában. Ilyen relay-szolgáltatások továbbra is megtalálhatóak a meglévő környezeten belül, de azok delegálása figyeli a bejövő munkamenetek és kérések toohello felhőben üzemeltetett továbbítási szolgáltatás. Az Azure Relay ezeket a szolgáltatásokat [közös hozzáférésű jogosultságkód- (SAS-)](../service-bus-messaging/service-bus-sas.md) hitelesítéssel a jogosulatlan hozzáféréssel szemben is védi.
+Az [Azure Relay](https://azure.microsoft.com/services/service-bus/) azon használati esethez lett tervezve, amelynek során a meglévő Windows Communication Foundation- (WCF-) webszolgáltatásokat biztonságosan elérhetik a szervezeti hálózaton kívüli megoldások anélkül, hogy zavaró módosításokat kellene végezni a vállalati hálózat infrastruktúráján. Ezek a Relay-szolgáltatások továbbra is a meglévő környezeten belül vannak tárolva, de átadják a bejövő munkamenetek és a kérések figyelését a felhőn tárolt Relay-szolgáltatásnak. Az Azure Relay ezeket a szolgáltatásokat [közös hozzáférésű jogosultságkód- (SAS-)](../service-bus-messaging/service-bus-sas.md) hitelesítéssel a jogosulatlan hozzáféréssel szemben is védi.
 
 ## <a name="solution-scenario"></a>A megoldás forgatókönyve
-Ebben az oktatóanyagban létrehoz egy ASP.NET-webhely, amely lehetővé teszi a toosee hello Termékleltár oldalán a termékek listáját.
+Az oktatóanyag során létrehoz egy ASP.NET-webhelyet, amelyen láthatja a termékleltár oldalán a termékek listáját.
 
 ![][0]
 
-hello oktatóanyag feltételezi, hogy termékinformációk rendelkezik egy meglévő helyi rendszeren, és használja az Azure továbbítási tooreach el ezt a rendszert. Ezt egy olyan webszolgáltatás szimulálja, amely egyszerű konzolalkalmazásként fut, és a termékek memóriában szereplő készletére épül. Meg kell tudni toorun ezt a konzolalkalmazást a saját számítógépén, és hello webes szerepkör üzembe helyezés Azure. Ezzel a módszerrel látni fogja hogyan hello Azure adatközpontjában futó hello webes szerepkör intéz hívást a számítógépet annak ellenére, hogy a számítógép szinte biztosan legalább egy tűzfal és a hálózati cím címfordítási (NAT-) réteg mögött lesznek tárolva.
+Az oktatóanyag feltételezi, hogy egy meglévő helyi rendszeren elérhetők a termékek adatai, és hogy az Azure Relay közvetítőn keresztül éri el ezt a rendszert. Ezt egy olyan webszolgáltatás szimulálja, amely egyszerű konzolalkalmazásként fut, és a termékek memóriában szereplő készletére épül. Ezt a konzolalkalmazást a saját számítógépén futtathatja, és a webes szerepkört az Azure-ban telepítheti. Így láthatja, hogy az Azure adatközpontjában futó webes szerepkör valójában a számítógéphez intéz hívást, bár a számítógép szinte biztosan legalább egy tűzfal és egy hálózati címfordítási (NAT-) réteg mögött található.
 
-## <a name="set-up-hello-development-environment"></a>Hello fejlesztési környezet beállítása
+## <a name="set-up-the-development-environment"></a>A fejlesztési környezet kialakítása
 
-Mielőtt elkezdené az Azure-alkalmazások fejlesztésével, hello eszközök, és állítsa be a fejlesztési környezetet:
+Az Azure-alkalmazások fejlesztésének megkezdése előtt töltse le az eszközöket és állítsa be a fejlesztési környezetet:
 
-1. Hello Azure SDK telepítse a .NET hello SDK [letöltési oldalon](https://azure.microsoft.com/downloads/).
-2. A hello **.NET** oszlopban kattintson hello verziója [Visual Studio](http://www.visualstudio.com) használ. hello lépéseit az oktatóanyag Visual Studio 2015-öt használja, de ezek a Visual Studio 2017 is működnek.
-3. Ha toorun kéri, vagy hello telepítő mentéséhez, kattintson **futtatása**.
-4. A hello **Webplatform-telepítő**, kattintson a **telepítése** és hello a telepítés folytatásához.
-5. Hello telepítés befejezése után, hogy minden szükséges toostart toodevelop hello alkalmazást. hello SDK olyan eszközöket tartalmaz, amelyekkel könnyedén fejleszthet Azure-alkalmazásokat a Visual Studio.
+1. Telepítse az Azure SDK for .NET-et az SDK [letöltési oldaláról](https://azure.microsoft.com/downloads/).
+2. A **.NET** oszlopban kattintson a használt [Visual Studio](http://www.visualstudio.com)-verzióra. A jelen oktatóanyagban szereplő lépések a Visual Studio 2015-öt használják, de ezek a Visual Studio 2017-ben is működnek.
+3. A telepítő futtatásának vagy mentésének kérdésére válaszolva kattintson a **Futtatás** gombra.
+4. A **Webplatform-telepítőben** kattintson a **Telepítés** gombra, és folytassa a telepítést.
+5. A telepítés végén az alkalmazás fejlesztésének megkezdéséhez szükséges összes eszközzel rendelkezni fog. Az SDK olyan eszközöket tartalmaz, amelyekkel könnyedén fejleszthet Azure-alkalmazásokat a Visual Studióban.
 
 ## <a name="create-a-namespace"></a>Névtér létrehozása
 
-az Azure-továbbítási funkciók toobegin használatával hello, először létre kell hoznia egy szolgáltatásnévteret. A névtér egy hatókörkezelési tárolót biztosít az Azure erőforrásainak címzéséhez az alkalmazáson belül. Hajtsa végre a hello [utasításokat itt](relay-create-namespace-portal.md) toocreate továbbítási névtér.
+A Relay-funkciók Azure-ban való használatához először létre kell hoznia egy szolgáltatásnévteret. A névtér egy hatókörkezelési tárolót biztosít az Azure erőforrásainak címzéséhez az alkalmazáson belül. Relay-névtér létrehozásához kövesse az [itt leírt utasításokat](relay-create-namespace-portal.md).
 
 ## <a name="create-an-on-premises-server"></a>Helyszíni kiszolgáló létrehozása
 
-Először létrehoz egy (utánzatként funkcionáló) helyszíni termékkatalógus-rendszert. Lesz viszonylag egyszerű; Ez egy tényleges helyszíni termékkatalógus-rendszert, hogy toointegrate próbált teljes szolgáltatási felülettel képviselik tekintheti meg.
+Először létrehoz egy (utánzatként funkcionáló) helyszíni termékkatalógus-rendszert. Ez egészen egyszerű lesz. Erre úgy tekinthet, mint ami egy tényleges helyszíni termékkatalógus-rendszert képvisel, integrálni próbált teljes szolgáltatási felülettel.
 
-Ez a projekt egy Visual Studio-Konzolalkalmazás, és használja a hello [Azure Service Bus NuGet-csomag](https://www.nuget.org/packages/WindowsAzure.ServiceBus/) tooinclude hello Service Bus-kódtárak és konfigurációs beállítások.
+Ez a projekt egy Visual Studio-konzolalkalmazás, és az [Azure Service Bus NuGet-csomagot](https://www.nuget.org/packages/WindowsAzure.ServiceBus/) használja a Service Bus-kódtárak és konfigurációs beállítások belefoglalása érdekében.
 
-### <a name="create-hello-project"></a>Hello projekt létrehozása
+### <a name="create-the-project"></a>A projekt létrehozása
 
-1. Rendszergazdai jogosultságokkal indítsa el a Microsoft Visual Studiót. toodo Igen, kattintson a jobb gombbal a hello Visual Studio program ikonjára, és kattintson **Futtatás rendszergazdaként**.
-2. A Visual Studio, a hello **fájl** menüben kattintson a **új**, és kattintson a **projekt**.
-3. Az **Installed Templates** (Telepített sablonok) lap **Visual C#** területén kattintson a **Console App (.NET Framework)** (Konzolalkalmazás (.NET keretrendszer)) elemre. A hello **neve** mezőbe, írja be a hello nevet **ProductsServer**:
+1. Rendszergazdai jogosultságokkal indítsa el a Microsoft Visual Studiót. Ehhez kattintson a jobb gombbal a Visual Studio programikonra, majd kattintson a **Futtatás rendszergazdaként** parancsra.
+2. A Visual Studio programban, a **File** (Fájl) menüben kattintson a **New** (Új) elemre, majd kattintson a **Project** (Projekt) elemre.
+3. Az **Installed Templates** (Telepített sablonok) lap **Visual C#** területén kattintson a **Console App (.NET Framework)** (Konzolalkalmazás (.NET keretrendszer)) elemre. A **Name** (Név) mezőbe írja be a **ProductsServer** nevet:
 
    ![][11]
-4. Kattintson a **OK** toocreate hello **ProductsServer** projekt.
-5. Ha már telepítette a hello NuGet-Csomagkezelőt a Visual Studio, akkor hagyja toohello tovább. Ellenkező esetben látogasson el a [NuGet][NuGet] oldalára, és kattintson az [Install NuGet](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) (NuGet telepítése) parancsra. Hajtsa végre a hello kér tooinstall hello NuGet-Csomagkezelő, majd indítsa újra a Visual Studio.
-6. A Megoldáskezelőben kattintson a jobb gombbal hello **ProductsServer** projektre, majd kattintson a **NuGet-csomagok kezelése**.
-7. Kattintson a hello **Tallózás** lapra, és keresse meg `Microsoft Azure Service Bus`. Jelölje be hello **WindowsAzure.ServiceBus** csomag.
-8. Kattintson a **telepítése**, és el kell fogadnia a használati feltételek hello.
+4. A **ProductsServer** projekt létrehozásához kattintson az **OK** gombra.
+5. Ha már telepítette a NuGet-csomagkezelőt a Visual Studióhoz, hagyja ki a következő lépést. Ellenkező esetben látogasson el a [NuGet][NuGet] oldalára, és kattintson az [Install NuGet](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) (NuGet telepítése) parancsra. Kövesse a NuGet-csomagkezelő telepítésének utasításait, majd indítsa újra a Visual Studiót.
+6. A Megoldáskezelőben kattintson a jobb gombbal a **ProductsServer** projektre, majd kattintson a **Manage NuGet Packages** (NuGet-csomagok kezelése) elemre.
+7. Kattintson a **Browse** (Tallózás) lapra, és keressen a következőre: `Microsoft Azure Service Bus`. Válassza a **WindowsAzure.ServiceBus** csomagot.
+8. Kattintson az **Install** (Telepítés) gombra, és fogadja el a használati feltételeket.
 
    ![][13]
 
-   Vegye figyelembe, hogy hello szükséges ügyfélszerelvények most már hivatkozottak.
-8. Adjon egy új osztályt a termékszerződéshez. A Megoldáskezelőben kattintson a jobb gombbal hello **ProductsServer** projektre, kattintson **Hozzáadás**, és kattintson a **osztály**.
-9. A hello **neve** mezőbe, írja be a hello nevet **ProductsContract.cs**. Ezután kattintson az **Add** (Hozzáadás) gombra.
-10. A **ProductsContract.cs**, hello névtér definícióját cserélje le a következő kódra, amely meghatározza a hello szerződés hello szolgáltatás hello.
+   Vegye figyelembe, hogy a szükséges ügyfélszerelvények most már hivatkozottak.
+8. Adjon egy új osztályt a termékszerződéshez. A Megoldáskezelőben kattintson a jobb gombbal a **ProductsServer** projektre, és kattintson az **Add** (Hozzáadás) parancsra, majd kattintson a **Class** (Osztály) lehetőségre.
+9. A **Name** (Név) mezőbe írja be a **ProductsContract.cs** nevet. Ezután kattintson az **Add** (Hozzáadás) gombra.
+10. A **ProductsContract.cs** fájlban cserélje le a névtér definícióját a következő kódra, amely meghatározza a szolgáltatás szerződését.
 
     ```csharp
     namespace ProductsServer
@@ -94,9 +94,9 @@ Ez a projekt egy Visual Studio-Konzolalkalmazás, és használja a hello [Azure 
         using System.Runtime.Serialization;
         using System.ServiceModel;
 
-        // Define hello data contract for hello service
+        // Define the data contract for the service
         [DataContract]
-        // Declare hello serializable properties.
+        // Declare the serializable properties.
         public class ProductData
         {
             [DataMember]
@@ -107,7 +107,7 @@ Ez a projekt egy Visual Studio-Konzolalkalmazás, és használja a hello [Azure 
             public string Quantity { get; set; }
         }
 
-        // Define hello service contract.
+        // Define the service contract.
         [ServiceContract]
         interface IProducts
         {
@@ -121,7 +121,7 @@ Ez a projekt egy Visual Studio-Konzolalkalmazás, és használja a hello [Azure 
         }
     }
     ```
-11. A productscontract.cs fájlban cserélje le a következő kódra, amely hozzáadja a hello profilszolgáltatást és annak állomását hello hello hello névtér-definíciót.
+11. A ProductsContract.cs fájlban cserélje le a névtér definícióját a következő kódra, amely hozzáadja a profilszolgáltatást és annak állomását.
 
     ```csharp
     namespace ProductsServer
@@ -131,7 +131,7 @@ Ez a projekt egy Visual Studio-Konzolalkalmazás, és használja a hello [Azure 
         using System.Collections.Generic;
         using System.ServiceModel;
 
-        // Implement hello IProducts interface.
+        // Implement the IProducts interface.
         class ProductsService : IProducts
         {
 
@@ -149,8 +149,8 @@ Ez a projekt egy Visual Studio-Konzolalkalmazás, és használja a hello [Azure 
                                          Quantity = "2500"},
                     };
 
-            // Display a message in hello service console application
-            // when hello list of products is retrieved.
+            // Display a message in the service console application
+            // when the list of products is retrieved.
             public IList<ProductData> GetProducts()
             {
                 Console.WriteLine("GetProducts called.");
@@ -161,13 +161,13 @@ Ez a projekt egy Visual Studio-Konzolalkalmazás, és használja a hello [Azure 
 
         class Program
         {
-            // Define hello Main() function in hello service application.
+            // Define the Main() function in the service application.
             static void Main(string[] args)
             {
                 var sh = new ServiceHost(typeof(ProductsService));
                 sh.Open();
 
-                Console.WriteLine("Press ENTER tooclose");
+                Console.WriteLine("Press ENTER to close");
                 Console.ReadLine();
 
                 sh.Close();
@@ -175,7 +175,7 @@ Ez a projekt egy Visual Studio-Konzolalkalmazás, és használja a hello [Azure 
         }
     }
     ```
-12. A Megoldáskezelőben kattintson duplán a hello **App.config** fájl tooopen azt hello Visual Studio szerkesztőjében. Hello hello alján `<system.ServiceModel>` elem (de továbbra is belül `<system.ServiceModel>`), adja hozzá a következő XML-kódot hello. Lehet, hogy tooreplace *yourServiceNamespace* hello nevű a névtér és *yourKey* a hello hello portálról korábban lekért SAS-kulcs:
+12. A Megoldáskezelőben kattintson duplán az **App.config** fájlra a Visual Studio-szerkesztőben való megnyitásához. A `<system.ServiceModel>` elem alján (de még mindig a `<system.ServiceModel>` elemen belül) írja be a következő XML-kódot. Győződjön meg arról, hogy a *yourServiceNamespace* helyett a saját névterét adja meg, és a *yourKey* helyett pedig a portálról korábban lekért SAS-kulcsot.
 
     ```xml
     <system.serviceModel>
@@ -198,7 +198,7 @@ Ez a projekt egy Visual Studio-Konzolalkalmazás, és használja a hello [Azure 
       </behaviors>
     </system.serviceModel>
     ```
-13. Még mindig az App.config fájlban, a hello `<appSettings>` elem, a név felülírandó hello kapcsolódási karakterlánc értéke hello portálról korábban beszerzett hello kapcsolati karakterlánccal.
+13. Még mindig az App.config fájlban, az `<appSettings>` elemben cserélje le a kapcsolati karakterlánc értékét a korábban a portálról beszerzett kapcsolati karakterláncéra.
 
     ```xml
     <appSettings>
@@ -207,40 +207,40 @@ Ez a projekt egy Visual Studio-Konzolalkalmazás, és használja a hello [Azure 
            value="Endpoint=sb://yourNamespace.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=yourKey"/>
     </appSettings>
     ```
-14. Nyomja le az **Ctrl + Shift + B** vagy hello **Build** menüben kattintson a **megoldás fordítása** toobuild hello alkalmazást, és ellenőrizze eddigi munkája pontosságának hello.
+14. Nyomja le a **Ctrl+Shift+B** billentyűkombinációt, vagy a **Build** (Fordítás) menüben kattintson a **Build Solution** (Megoldás létrehozása) elemre, és ellenőrizze az eddigi munkája pontosságát.
 
 ## <a name="create-an-aspnet-application"></a>ASP.NET-alkalmazás létrehozása
 
 Ebben a szakaszban egy egyszerű ASP.NET-alkalmazást fog létrehozni, amely megjeleníti a termékszolgáltatásból lekért adatokat.
 
-### <a name="create-hello-project"></a>Hello projekt létrehozása
+### <a name="create-the-project"></a>A projekt létrehozása
 
 1. Ellenőrizze, hogy a Visual Studio rendszergazdai jogosultságokkal fut-e.
-2. A Visual Studio, a hello **fájl** menüben kattintson a **új**, és kattintson a **projekt**.
-3. Az **Installed Templates** (Telepített sablonok) lap **Visual C#** területén kattintson az **ASP.NET Web Application (.NET Framework)** (ASP.NET-webalkalmazás (.NET keretrendszer)) elemre. Név hello projekt **ProductsPortal**. Ezután kattintson az **OK** gombra.
+2. A Visual Studio programban, a **File** (Fájl) menüben kattintson a **New** (Új) elemre, majd kattintson a **Project** (Projekt) elemre.
+3. Az **Installed Templates** (Telepített sablonok) lap **Visual C#** területén kattintson az **ASP.NET Web Application (.NET Framework)** (ASP.NET-webalkalmazás (.NET keretrendszer)) elemre. Adja a projektnek a **ProductsPortal** nevet. Ezután kattintson az **OK** gombra.
 
    ![][15]
 
-4. A hello **ASP.NET sablonok** hello listájában **új ASP.NET-webalkalmazás** párbeszédpanel, kattintson a **MVC**.
+4. A **New ASP.NET Web Application** (Új ASP.NET-es webalkalmazás) párbeszédpanel **ASP.NET sablonok** listájában kattintson az **MVC** lehetőségre.
 
    ![][16]
 
-6. Kattintson a hello **hitelesítés módosítása** gombra. A hello **hitelesítés módosítása** párbeszédpanelen ellenőrizze, hogy **nem hitelesítési** van kiválasztva, és kattintson **OK**. Ebben az oktatóanyaghoz egy olyan alkalmazást helyezhet üzembe, amelyhez nincs szükség felhasználói bejelentkezésre.
+6. Kattintson a **Change Authentication** (Hitelesítés módosítása) gombra. Győződjön meg róla, hogy a **No Authentication** (Nincs hitelesítés) elem van kiválasztva a **Change Authentication** (Hitelesítés módosítása) párbeszédpanelen, majd kattintson az **OK** gombra. Ebben az oktatóanyaghoz egy olyan alkalmazást helyezhet üzembe, amelyhez nincs szükség felhasználói bejelentkezésre.
 
     ![][18]
 
-7. Vissza a hello **új ASP.NET-webalkalmazás** párbeszédpanel, kattintson a **OK** toocreate hello MVC-alkalmazáshoz.
-8. Most az Azure-erőforrásokat kell konfigurálnia az új webalkalmazáshoz. Hello kövesse hello [tooAzure szakaszban ismertetett közzététele](../app-service-web/app-service-web-get-started-dotnet.md). Ezt követően térjen vissza a toothis oktatóanyag, és folytassa a következő lépésre toohello.
-10. A Megoldáskezelőben kattintson a jobb gombbal a **Models** (Modellek) elemre, kattintson az **Add** (Hozzáadás) parancsra, majd kattintson a **Class** (Osztály) elemre. A hello **neve** mezőbe, írja be a hello nevet **Product.cs**. Ezután kattintson az **Add** (Hozzáadás) gombra.
+7. A **New ASP.NET Web Application** (Új ASP.NET-webalkalmazás) párbeszédpanelen kattintson az **OK** gombra az MVC-alkalmazás létrehozásához.
+8. Most az Azure-erőforrásokat kell konfigurálnia az új webalkalmazáshoz. Kövesse a [cikk Közzététel az Azure platformon szakaszában](../app-service/app-service-web-get-started-dotnet.md) található lépéseket. Ezután térjen vissza ehhez az oktatóanyaghoz, és folytassa a következő lépéssel.
+10. A Megoldáskezelőben kattintson a jobb gombbal a **Models** (Modellek) elemre, kattintson az **Add** (Hozzáadás) parancsra, majd kattintson a **Class** (Osztály) elemre. A **Name** (Név) mezőbe írja be a **Product.cs** nevet. Ezután kattintson az **Add** (Hozzáadás) gombra.
 
     ![][17]
 
-### <a name="modify-hello-web-application"></a>Hello webalkalmazás módosítása
+### <a name="modify-the-web-application"></a>A webalkalmazás módosítása
 
-1. Visual Studio hello Product.cs fájlban cserélje le a következő kód hello hello meglévő névtér-definíciót.
+1. A Visual Studióban a Product.cs fájlban cserélje le a meglévő névtér-definíciót az alábbi kódra.
 
    ```csharp
-    // Declare properties for hello products inventory.
+    // Declare properties for the products inventory.
     namespace ProductsWeb.Models
     {
        public class Product
@@ -251,8 +251,8 @@ Ebben a szakaszban egy egyszerű ASP.NET-alkalmazást fog létrehozni, amely meg
        }
     }
     ```
-2. A Megoldáskezelőben bontsa ki a hello **tartományvezérlők** mappát, majd kattintson duplán a hello **HomeController.cs** tooopen fájl, a Visual Studio.
-3. A **HomeController.cs**, cserélje le a következő kód hello hello meglévő névtér-definíciót.
+2. A Megoldáskezelőben bontsa ki a **Controllers** (Vezérlők) mappát, majd kattintson duplán a **HomeController.cs** fájlra, hogy megnyissa a Visual Studióban.
+3. A **HomeController.cs** fájlban cserélje le a meglévő névtér-definíciót az alábbi kódra.
 
     ```csharp
     namespace ProductsWeb.Controllers
@@ -263,7 +263,7 @@ Ebben a szakaszban egy egyszerű ASP.NET-alkalmazást fog létrehozni, amely meg
 
         public class HomeController : Controller
         {
-            // Return a view of hello products inventory.
+            // Return a view of the products inventory.
             public ActionResult Index(string Identifier, string ProductName)
             {
                 var products = new List<Product>
@@ -273,13 +273,13 @@ Ebben a szakaszban egy egyszerű ASP.NET-alkalmazást fog létrehozni, amely meg
          }
     }
     ```
-4. A Megoldáskezelőben bontsa ki a hello Views\Shared mappát, majd kattintson duplán a **_Layout.cshtml** tooopen azt hello Visual Studio szerkesztőjében.
-5. Összes előfordulását módosítsa **My ASP.NET Application** túl**LITWARE's termékek**.
-6. Távolítsa el a hello **Home**, **kapcsolatos**, és **forduljon** hivatkozásokat. A következő példa hello törölje a kiemelt hello kódot.
+4. A Megoldáskezelőben bontsa ki a Views\Shared (Nézetek\Megosztott) mappát, majd kattintson duplán a **_Layout.cshtml** fájlra, hogy megnyissa a Visual Studio szerkesztőjében.
+5. Módosítsa a **My ASP.NET Application** (Saját ASP.NET-alkalmazás) minden előfordulását **LITWARE's Products** (LITWARE-termékek) értékre.
+6. Távolítsa el a **Home** (Kezdőlap), **About** (Névjegy) és **Contact** (Kapcsolatfelvétel) hivatkozásokat. A következő példában törölje a kiemelt kódot.
 
     ![][41]
 
-7. A Megoldáskezelőben bontsa ki a hello Views\Home mappát, majd kattintson duplán a **Index.cshtml** tooopen azt hello Visual Studio szerkesztőjében. Cserélje le a következő kód hello hello hello fájl teljes tartalmát.
+7. A Megoldáskezelőben bontsa ki a Views\Home (Nézetek\Kezdőlap) mappát, majd kattintson duplán az **Index.cshtml** fájlra, hogy megnyissa a Visual Studio szerkesztőjében. Cserélje le a fájl teljes tartalmát a következő kódra.
 
    ```html
    @model IEnumerable<ProductsWeb.Models.Product>
@@ -314,31 +314,31 @@ Ebben a szakaszban egy egyszerű ASP.NET-alkalmazást fog létrehozni, amely meg
 
    </table>
    ```
-8. munkája pontosságát tooverify hello eddig lenyomhatja **Ctrl + Shift + B** toobuild hello projekt.
+8. Az eddigi munkája pontosságának ellenőrzéséhez lenyomhatja a **Ctrl+Shift+B** billentyűkombinációt a projekt létrehozásához.
 
-### <a name="run-hello-app-locally"></a>Hello alkalmazás helyi futtatása
+### <a name="run-the-app-locally"></a>Az alkalmazás futtatása helyben
 
-Futtassa a hello alkalmazás tooverify a működését.
+Futtassa az alkalmazást a működése ellenőrzéséhez.
 
-1. Győződjön meg arról, hogy **ProductsPortal** hello aktív projekt. Kattintson a jobb gombbal a hello projekt nevére a Megoldáskezelőben, majd válassza **beállítása szerint Startup Project**.
+1. Győződjön meg arról, hogy a **ProductsPortal** az aktív projekt. Kattintson a jobb gombbal a projekt nevére a Megoldáskezelőben, majd válassza a **Set As Startup Project** (Beállítás indítási projektként) lehetőséget.
 2. Nyomja le az **F5** billentyűt a Visual Studióban.
 3. Az alkalmazásának meg kell jelennie egy böngészőben.
 
    ![][21]
 
-## <a name="put-hello-pieces-together"></a>Hello darab hozzáfoghat
+## <a name="put-the-pieces-together"></a>Az egyes alkotórészek összeállítása teljes egésszé
 
-hello tovább hello a helyszíni termékek kiszolgáló az ASP.NET-alkalmazás hello toohook.
+A következő lépés, hogy a helyszíni termékkiszolgálót az ASP.NET-alkalmazáshoz csatlakoztassuk.
 
-1. Ha az még nincs megnyitva, a Visual Studióban nyissa meg újra hello **ProductsPortal** hello létrehozott projekt [ASP.NET-alkalmazás létrehozása](#create-an-aspnet-application) szakasz.
-2. Hasonló toohello lépés hello "Egy helyszíni kiszolgáló létrehozása" szakaszban hozzáadása hello NuGet csomag toohello projekt hivatkozásait. A Megoldáskezelőben kattintson a jobb gombbal hello **ProductsPortal** projektre, majd kattintson a **NuGet-csomagok kezelése**.
-3. Keressen a "Service Bus" és a select hello **WindowsAzure.ServiceBus** elemet. Ezután hello telepítéséhez, és zárja be a párbeszédpanelt.
-4. A Megoldáskezelőben kattintson a jobb gombbal hello **ProductsPortal** projektre, majd kattintson a **Hozzáadás**, majd **meglévő cikk**.
-5. Keresse meg a toohello **ProductsContract.cs** hello fájlt **ProductsServer** konzolos projektet. Kattintson a toohighlight ProductsContract.cs. Kattintson a lefelé mutató nyíl hello tovább túl**Hozzáadás**, majd kattintson a **Hozzáadás hivatkozásként**.
+1. Ha még nincs megnyitva, a Visual Studióban nyissa meg ismét az [ASP.NET-alkalmazás létrehozása](#create-an-aspnet-application) című szakaszban létrehozott **ProductsPortal** projektet.
+2. A „Helyszíni kiszolgáló létrehozása” című szakaszhoz hasonlóan adja a NuGet-csomagot a projekt referenciáihoz. A Megoldáskezelőben kattintson a jobb gombbal a **ProductsPortal** projektre, majd kattintson a **Manage NuGet Packages** (NuGet-csomagok kezelése) lehetőségre.
+3. Keressen a „Service Bus” kifejezésre, és válassza ki az **WindowsAzure.ServiceBus** elemet. Ezután fejezze be a telepítést, és zárja be a párbeszédpanelt.
+4. A Megoldáskezelőben kattintson a jobb gombbal a **ProductsPortal** projektre, majd kattintson az **Add** (Hozzáadás), azután pedig az**Existing Item** (Létező elem) lehetőségre.
+5. Keresse meg a **ProductsContract.cs** fájlt a **ProductsServer** konzolprojektben. Kattintással jelölje ki a ProductsContract.cs fájlt. Kattintson a lefelé mutató nyílra az **Add** (Hozzáadás) elem mellett, majd kattintson az **Add as Link** (Hozzáadás hivatkozásként) parancsra.
 
    ![][24]
 
-6. Most nyissa meg a hello **HomeController.cs** hello Visual Studio-szerkesztőben fájlt, és cserélje le a következő kód hello hello névtér-definíciót. Lehet, hogy tooreplace *yourServiceNamespace* hello nevű a szolgáltatásnévtér és *yourKey* a SAS-kulccsal. Ezzel a lépéssel engedélyezi a hello toocall hello helyszíni ügyfélszolgáltatást, hello hívás hello eredményt ad vissza.
+6. Ezután nyissa meg a **HomeController.cs** fájlt a Visual Studio szerkesztőjében, és a névtér definícióját cserélje az alábbi kódra. Győződjön meg arról, hogy a *yourServiceNamespace* helyett a saját szolgáltatásnévterét adja meg, és a *yourKey* helyett pedig a saját SAS-kulcsát. Így teheti lehetővé, hogy az ügyfél helyszíni szolgáltatásokat hívjon meg, és vissza tudja adni a hívás eredményeit.
 
    ```csharp
    namespace ProductsWeb.Controllers
@@ -352,7 +352,7 @@ hello tovább hello a helyszíni termékek kiszolgáló az ASP.NET-alkalmazás h
 
        public class HomeController : Controller
        {
-           // Declare hello channel factory.
+           // Declare the channel factory.
            static ChannelFactory<IProductsChannel> channelFactory;
 
            static HomeController()
@@ -369,7 +369,7 @@ hello tovább hello a helyszíni termékek kiszolgáló az ASP.NET-alkalmazás h
            {
                using (IProductsChannel channel = channelFactory.CreateChannel())
                {
-                   // Return a view of hello products inventory.
+                   // Return a view of the products inventory.
                    return this.View(from prod in channel.GetProducts()
                                     select
                                         new Product { Id = prod.Id, Name = prod.Name,
@@ -379,83 +379,83 @@ hello tovább hello a helyszíni termékek kiszolgáló az ASP.NET-alkalmazás h
        }
    }
    ```
-7. A Megoldáskezelőben kattintson a jobb gombbal hello **ProductsPortal** (Győződjön meg arról, hogy tooright kattintással hello megoldás, nem hello projekt) megoldás. Kattintson az **Add** (Hozzáadás), majd az **Existing Project** (Meglévő projekt) elemre.
-8. Keresse meg a toohello **ProductsServer** projektre, majd kattintson duplán a hello **ProductsServer.csproj** megoldás fájl tooadd azt.
-9. **ProductsServer** kell futnia ahhoz toodisplay hello adatok **ProductsPortal**. A Megoldáskezelőben kattintson a jobb gombbal hello **ProductsPortal** megoldás, és kattintson **tulajdonságok**. Hello **tulajdonságlapjain** párbeszédpanel.
-10. Kattintson a bal oldali hello, **Startup Project**. Kattintson a jobb oldalon hello, **több kezdőprojekt**. Győződjön meg arról, hogy **ProductsServer** és **ProductsPortal** jelöli, ebben a sorrendben, **Start** mindkét hello művelet állítja be.
+7. A Megoldáskezelőben kattintson a jobb gombbal a **ProductsPortal** megoldásra (ügyeljen arra, hogy a jobb gombbal a megoldásra, és ne a projektre kattintson). Kattintson az **Add** (Hozzáadás), majd az **Existing Project** (Meglévő projekt) elemre.
+8. Keresse meg a **ProductsServer** projektet, és kattintson duplán a **ProductsServer.csproj** megoldásfájlra annak hozzáadásához.
+9. A **ProductsPortal** portálra vonatkozó adatok csak akkor jeleníthetők meg, ha közben fut a **ProductsServer**. A Megoldáskezelőben kattintson a jobb gombbal a **ProductsPortal** megoldásra, majd kattintson a **Properties** (Tulajdonságok) lehetőségre. Megnyílik a **Property Pages** (Tulajdonságlapok) párbeszédpanel.
+10. A bal oldalon kattintson a **Startup Project** (Kezdőprojekt) elemre. A jobb oldalon kattintson a **Multiple startup projects** (Több kezdőprojekt elemre). Győződjön meg arról, hogy a **ProductsServer** és a **ProductsPortal** is megjelenik (ebben a sorrendben), és mindkettőhöz a **Start** (Indítás) művelet legyen beállítva.
 
       ![][25]
 
-11. Még tart a hello **tulajdonságok** párbeszédpanel, kattintson a **projektfüggőségek** a bal oldali hello.
-12. A hello **projektek** listában, kattintson **ProductsServer**. Győződjön meg arról, hogy a **ProductsPortal** nincs kijelölve.
-13. A hello **projektek** listában, kattintson **ProductsPortal**. Győződjön meg arról, hogy a **ProductsServer** ki van jelölve.
+11. Még mindig a **Properties** (Tulajdonságok) párbeszédpanelen maradva kattintson a **Project Dependencies** (Projektfüggőségek) elemre a bal oldalon.
+12. A **Projects** (Projektek) listában kattintson a **ProductsServer** elemre. Győződjön meg arról, hogy a **ProductsPortal** nincs kijelölve.
+13. A **Projects** (Projektek) listában kattintson a **ProductsPortal** elemre. Győződjön meg arról, hogy a **ProductsServer** ki van jelölve.
 
     ![][26]
 
-14. Kattintson a **OK** a hello **tulajdonságlapjain** párbeszédpanel megnyitásához.
+14. A **Property Pages** (Tulajdonságlapok) párbeszédpanelen kattintson az **OK** gombra.
 
-## <a name="run-hello-project-locally"></a>Hello projekt helyi futtatása
+## <a name="run-the-project-locally"></a>A projekt helyi futtatása
 
-tootest hello alkalmazás helyi, a Visual Studio nyomja le az ENTER **F5**. hello helyszíni kiszolgáló (**ProductsServer**) kell először, majd hello **ProductsPortal** alkalmazás elindul egy böngészőablakban. Most, látni fogja, hogy hello Termékleltár hello termék szolgáltatás a helyi rendszer származó adatok sorolja fel.
+Az alkalmazás helyi teszteléséhez nyomja le az **F5** billentyűt a Visual Studióban. Először a helyszíni kiszolgálónak (**ProductsServer**) kell elindulnia, és ezt követően kell megnyílnia a **ProductsPortal** alkalmazásnak egy böngészőablakban. Ezúttal a termék helyszíni rendszeréből származó adatokat fog látni a termékleltárban.
 
 ![][10]
 
-Nyomja le az **frissítése** a hello **ProductsPortal** lap. Minden alkalommal, amikor hello lap frissítésekor, hello kiszolgáló alkalmazása megjelenít egy üzenetet láthatja Ha `GetProducts()` a **ProductsServer** nevezik.
+A **ProductsPortal** oldalon kattintson a **Frissítés** parancsra. Valahányszor frissíti az oldalt, a kiszolgáló alkalmazása megjelenít egy üzenetet, amikor a **ProductsServer** `GetProducts()` funkcióját meghívják.
 
-Zárja be mindkét alkalmazás toohello következő lépés a folytatás előtt.
+Zárja be mindkét alkalmazást, mielőtt a következő lépéssel folytatná.
 
-## <a name="deploy-hello-productsportal-project-tooan-azure-web-app"></a>Hello ProductsPortal projekt tooan Azure webalkalmazás telepítése
+## <a name="deploy-the-productsportal-project-to-an-azure-web-app"></a>A ProductsPortal projekt telepítése egy Azure-webalkalmazásba
 
-következő lépés hello toorepublish hello Azure Web app **ProductsPortal** előtér. A következő hello:
+A következő lépés az Azure-webalkalmazás **ProductsPortal** előtérkiszolgálójának újbóli közzététele. Tegye a következőket:
 
-1. A Megoldáskezelőben kattintson a jobb gombbal hello **ProductsPortal** projektre, majd kattintson az **közzététel**. Kattintson a **közzététel** a hello **közzététel** lap.
+1. A Megoldáskezelőben kattintson a jobb gombbal a **ProductsPortal** projektre, majd kattintson a **Publish** (Közzététel) lehetőségre. Majd a **Publish** (Közzététel) oldalon kattintson a **Publish** (Közzététel) elemre.
 
   > [!NOTE]
-  > Megjelenik egy hibaüzenet jelenik meg a hello böngészőablakot hello **ProductsPortal** webes projekt hello telepítés után automatikusan elindul. Ez egy várható üzenet, és akkor fordul elő, mert hello **ProductsServer** alkalmazás még nem fut..
+  > Előfordulhat, hogy egy hibaüzenet jelenik meg a böngészőablakban, amikor a **ProductsPortal** webprojekt automatikusan elindul a telepítés után. Emiatt nem kell aggódnia, ugyanis az okozza, hogy a **ProductsServer** alkalmazás még nem fut.
 >
 >
 
-2. Másolás hello URL-címe hello üzembe web app alkalmazásban, az szüksége lesz a következő lépésben hello hello URL-CÍMÉT. Az URL-cím is szerezhet be a Visual Studio hello Azure App Service-tevékenység ablakában:
+2. Másolja ki a telepített webalkalmazás URL-címét, mert szükség lesz rá a következő lépésben. Az URL-cím a Visual Studio Azure App Service-tevékenység ablakában is elérhető:
 
   ![][9]
 
-3. Zárja be a hello böngésző ablak toostop hello alkalmazást futtat.
+3. Zárja be a böngészőablakot a futó alkalmazás leállításához.
 
 ### <a name="set-productsportal-as-web-app"></a>A ProductsPortal beállítása webalkalmazásként
 
-Hello felhőben futó hello alkalmazás előtt győződjön meg arról, hogy **ProductsPortal** Visual Studio webalkalmazásként indult el.
+Mielőtt futtatná az alkalmazást a felhőben, győződjön meg arról, hogy a **ProductsPortal** webalkalmazásként indult el a Visual Studióban.
 
-1. A Visual Studióban, kattintson a jobb gombbal hello **ProductsPortal** projektre, majd kattintson **tulajdonságok**.
-2. Kattintson a bal oldali oszlopban hello **webes**.
-3. A hello **művelet indítása** területen kattintson a hello **Start URL-cím** gombra, és hello mezőbe írjon be hello URL-címet a korábban telepített webalkalmazás; például `http://productsportal1234567890.azurewebsites.net/`.
+1. A Visual Studióban kattintson a jobb gombbal a **ProductsPortal** projektre, majd kattintson a **Properties** (Tulajdonságok) lehetőségre.
+2. A bal oldali oszlopban kattintson a **Web** elemre.
+3. A **Start Action** (Művelet indítása) részen kattintson az **Start URL** (URL-cím indítása) gombra, majd írja be a szövegmezőbe a korábban telepített webalkalmazás URL-címét (például: `http://productsportal1234567890.azurewebsites.net/`).
 
     ![][27]
 
-4. A hello **fájl** a Visual Studio menüjében kattintson **összes mentése**.
-5. A Visual Studio hello Build menüben kattintson **Rebuild Solution**.
+4. A Visual Studio **File** (Fájl) menüjében kattintson az **Save All** (Összes mentése) parancsra.
+5. A Visual Studio Build (Fordítás) menüjében kattintson a **Rebuild Solution** (Megoldás újrafordítása) parancsra.
 
-## <a name="run-hello-application"></a>Hello alkalmazás futtatása
+## <a name="run-the-application"></a>Az alkalmazás futtatása
 
-1. Nyomja le az F5 toobuild és hello alkalmazás futtatásához. hello helyszíni kiszolgáló (hello **ProductsServer** Konzolalkalmazás) kell először, majd hello **ProductsPortal** alkalmazás elindul egy böngészőablakban, ahogy az a következő képernyő hello hibaüzenetet. Figyelje meg újra a adott hello Termékleltár hello termék szolgáltatás a helyi rendszer származó adatokat, és jeleníti meg, hogy hello web app alkalmazásban. Hello URL-cím toomake meg arról, hogy ellenőrizze, hogy **ProductsPortal** hello felhőben Azure-webalkalmazás futtatja.
+1. Nyomja le az F5 billentyűt az alkalmazás fordításához és futtatásához. Először a helyszíni kiszolgálónak (**ProductsServer** konzolalkalmazás) kell elindulnia, ezt követően indul el a **ProductsPortal** alkalmazás a böngészőablakban a képernyőképen is látható módon. Figyelje meg, hogy a termék helyszíni rendszeréből származó adatokat láthat a termékleltárban, és ezek az adatok a webalkalmazásban jelennek meg. Ellenőrizze az URL-címet, és győződjön meg arról, hogy a **ProductsPortal** Azure-webalkalmazás fut a felhőben.
 
    ![][1]
 
    > [!IMPORTANT]
-   > Hello **ProductsServer** Konzolalkalmazás fut, és képesnek kell lennie. tooserve hello adatok toohello **ProductsPortal** alkalmazás. Ha hello böngészőben egy hibaüzenet jelenik meg, várjon néhány másodpercet a **ProductsServer** tooload és a következő megjelenítési hello üzenet. Nyomja le az **frissítése** hello böngészőben.
+   > A **ProductsServer** konzolalkalmazásnak futnia kell, és képesnek kell lennie biztosítani az adatokat a **ProductsPortal** alkalmazás számára. Ha a böngészőben egy hibaüzenet jelenik meg, várjon néhány másodpercet, amíg a **ProductsServer** betöltődik, és megjeleníti a következő üzenetet. Ezután kattintson a **Frissítés** gombra a böngészőben.
    >
    >
 
    ![][37]
-2. Vissza a hello böngészőben, nyomja le az **frissítése** a hello **ProductsPortal** lap. Minden alkalommal, amikor hello lap frissítésekor, hello kiszolgáló alkalmazása megjelenít egy üzenetet láthatja Ha `GetProducts()` a **ProductsServer** nevezik.
+2. A **ProductsPortal** böngészőoldalán kattintson a **Frissítés** gombra. Valahányszor frissíti az oldalt, a kiszolgáló alkalmazása megjelenít egy üzenetet, amikor a **ProductsServer** `GetProducts()` funkcióját meghívják.
 
     ![][38]
 
 ## <a name="next-steps"></a>Következő lépések
 
-toolearn Azure továbbítási kapcsolatos további információkért tekintse meg a következő erőforrások hello:  
+A Azure Relay szolgáltatásól a következő forrásanyagokban találhat további információkat:  
 
 * [Mi az az Azure Relay?](relay-what-is-it.md)  
-* [Hogyan toouse továbbítása](service-bus-dotnet-how-to-use-relay.md)  
+* [A Relay használata](service-bus-dotnet-how-to-use-relay.md)  
 
 [0]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/hybrid.png
 [1]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/App2.png

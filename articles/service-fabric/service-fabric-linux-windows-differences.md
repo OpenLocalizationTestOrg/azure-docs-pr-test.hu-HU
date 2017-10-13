@@ -1,6 +1,6 @@
 ---
-title: "a Service Fabric aaaAzure különbségek attól függnek, Linux és a Windows között |} Microsoft Docs"
-description: "Hello Azure Service Fabric előnézete a Linux és a Windows Azure Service Fabric közötti különbségeket."
+title: "Különbségek az Azure Service Fabric Linux- és Windows-verziója között | Microsoft Docs"
+description: "Az Azure Service Fabric Linux- és Windows-verziója közötti különbségek."
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -12,35 +12,27 @@ ms.devlang: dotNet
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 8/9/2017
+ms.date: 09/19/2017
 ms.author: subramar
-ms.openlocfilehash: 7a16a440dfc8d9006e274f46951be1562e6f10d9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 25976ba919454e26f1dd7965de5db7c4f80b9355
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="differences-between-service-fabric-on-linux-preview-and-windows-generally-available"></a>A Service Fabric Linux (előzetes verziójú) és Windows (általánosan elérhető) rendszerhez készült verziója közötti különbségek
+# <a name="differences-between-service-fabric-on-linux-and-windows"></a>A Service Fabric Linux és Windows rendszerhez készült verziója közötti különbségek
 
-Mivel a Service Fabric Linux rendszeren még előzetes verzióban van, ezért néhány szolgáltatás csak Windows rendszeren támogatott, Linuxon nem. Végül hello szolgáltatáskészletek lesz paritásos amikor Linux Service Fabric általánosan elérhetővé válik. A jövőbeli kiadásokban a funkciók eltérései egyre csekélyebbé válnak. hello következő különbségek vannak hello legújabb elérhető kiadásai között (Ez azt jelenti, hogy verziója 5.6 Windows és Linux 5.5-ös verzió): 
+Néhány szolgáltatás csak Windows rendszeren támogatott, Linuxon nem. Idővel ugyanazok a szolgáltatások lesznek elérhetőek, és minden újabb kiadással egyre csökkennek a szolgáltatásbeli különbségek. A legújabb elérhető kiadások (Windows rendszeren 6.0, Linuxon 6.0) között az alábbi eltérések állnak fenn: 
 
-* Reliable Collections (és a Reliable Stateful Services) 
-* ReverseProxy 
-* Önálló telepítő 
-* Jegyzékfájlok XML-sémaérvényesítése 
-* Konzol-átirányítás 
-* hello tartalék Analysis Service (eszközök)
-* Docker compose, kötet- és naplózási illesztők tárolókhoz 
-* Tárolók és szolgáltatások erőforrás-szabályozása 
-* DNS-szolgáltatás
-* Azure Active Directory-támogatás
-* Egyes PowerShell-parancsok parancssori felületi megfelelője 
-* Powershell-parancsokat csak egy részét is futtathatók a Linux-fürt (a kibontott hello a következő szakaszban).
+* Minden programozási modell előzetes verzióként érhető el (Java/C# Reliable Actors, Reliable Stateless Services és Reliable Stateful Services)
+* Az Envoy (ReverseProxy) előzetes verzióként érhető el Linuxon
+* Önálló Linuxos telepítő még nem érhető el Linux rendszeren.
+* Konzolátirányítás (nem támogatott az éles fürtökben sem Linux, sem Windows rendszeren)
+* A Fault Analysis Service (FAS) Linuxon
+* DNS szolgáltatás a Service Fabric-szolgáltatásokhoz (a DNS szolgáltatás a tárolók esetében támogatott a Linuxon)
+* Egyes PowerShell-parancsok parancssori felületi megfelelője (lásd az alábbi listát; a parancsok nagy része csak önálló fürtökre vonatkozik)
 
->[!NOTE]
->A konzolátirányítás nem támogatott éles fürtökben, még Windows rendszeren sem.
-
-A fejlesztői eszközök eltérnek Windows és Linux rendszeren. Windows rendszeren a VisualStudio, a PowerShell, a VSTS és az ETW, míg Linuxon a Yeoman, az Eclipse, a Jenkins és az LTTng érhető el.
+A fejlesztői eszközök eltérnek Windows és Linux rendszeren. Windows rendszeren a Visual Studio, a PowerShell, a VSTS és az ETW, míg Linuxon a Yeoman, az Eclipse, a Jenkins és az LTTng érhető el.
 
 ## <a name="powershell-cmdlets-that-do-not-work-against-a-linux-service-fabric-cluster"></a>PowerShell-parancsmagok, amelyek nem működnek Linux rendszerű Service Fabric-fürtökön
 
@@ -66,7 +58,6 @@ A fejlesztői eszközök eltérnek Windows és Linux rendszeren. Windows rendsze
 * Start-ServiceFabricPartitionRestart
 * Stop-ServiceFabricChaos
 * Stop-ServiceFabricTestCommand
-* Cmd
 * Get-ServiceFabricNodeConfiguration
 * Get-ServiceFabricClusterConfiguration
 * Get-ServiceFabricClusterConfigurationUpgradeStatus
@@ -106,4 +97,4 @@ A fejlesztői eszközök eltérnek Windows és Linux rendszeren. Windows rendsze
 * [Az első Service Fabric Java-alkalmazás létrehozása és üzembe helyezése Linux rendszeren Yeoman használatával](service-fabric-create-your-first-linux-application-with-java.md)
 * [Az első Service Fabric Java-alkalmazás létrehozása és üzembe helyezése Linux rendszeren az Eclipse Service Fabric beépülő modul használatával](service-fabric-get-started-eclipse.md)
 * [Az első CSharp-alkalmazás létrehozása Linuxon](service-fabric-create-your-first-linux-application-with-csharp.md)
-* [Hello Service Fabric CLI toomanage az alkalmazások használata](service-fabric-application-lifecycle-sfctl.md)
+* [A Service Fabric parancssori felület használata az alkalmazások kezeléséhez](service-fabric-application-lifecycle-sfctl.md)

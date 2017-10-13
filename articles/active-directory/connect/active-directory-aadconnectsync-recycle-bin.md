@@ -1,6 +1,6 @@
 ---
 title: "Az Azure AD Connect szinkronizálási szolgáltatás: AD Lomtár engedélyezése |} Microsoft Docs"
-description: "Ez a témakör azt javasolja, hogy az AD Lomtár szolgáltatás az Azure AD Connect hello használatát."
+description: "Ez a témakör azt javasolja, hogy az Azure AD Connect AD Lomtár funkciójának használatát."
 services: active-directory
 keywords: "Az AD Lomtár véletlen törlés, forráshorgony"
 documentationcenter: 
@@ -15,28 +15,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: 2bb4827d677ccecfd8d2861f2a2fcf73b8cc2d95
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: eb455477547f3db8245cf3601576eba9c6fdc56f
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-ad-connect-sync-enable-ad-recycle-bin"></a>Az Azure AD Connect szinkronizálási szolgáltatás: AD Lomtár engedélyezése
-Ajánlott a helyszíni Active könyvtárak, amelyek szinkronizált tooAzure AD hello AD Lomtár funkciót engedélyezni. 
+Javasoljuk, hogy az AD Lomtár funkció engedélyezése a helyszíni Active címtárak, amely szinkronizálva az Azure AD. 
 
-Ha véletlenül törölt egy helyszíni AD-felhasználói objektum és a visszaállítási hello funkcióval, az Azure AD helyreállítja hello megfelelő az Azure AD felhasználói objektum.  Hello AD Lomtár szolgáltatással kapcsolatos további információkért tekintse meg a tooarticle [forgatókönyv áttekintése visszaállítása törölt Active Directory-objektumok](https://technet.microsoft.com/library/dd379542.aspx).
+Ha véletlenül törölt egy helyszíni AD-felhasználói objektum és a visszaállítási funkcióval, az Azure AD helyreállítja a megfelelő Azure AD-felhasználói objektum.  Az AD Lomtár funkció kapcsolatos információkért tekintse meg a cikk [forgatókönyv áttekintése visszaállítása törölt Active Directory-objektumok](https://technet.microsoft.com/library/dd379542.aspx).
 
-## <a name="benefits-of-enabling-hello-ad-recycle-bin"></a>A Lomtár engedélyezése hello AD előnyei
-Ez a szolgáltatás segít az Azure AD felhasználói objektumok visszaállítására hello következő tevékenységek végrehajtásával:
+## <a name="benefits-of-enabling-the-ad-recycle-bin"></a>Az AD Lomtár engedélyezése előnyei
+Ez a szolgáltatás segít az Azure Active Directory-felhasználói objektumok visszaállítása a következő módon:
 
-* Ha véletlenül törölt egy helyszíni AD-felhasználó objektum hello megfelelő az Azure AD felhasználói objektum törli hello a következő szinkronizálási ciklusban. Alapértelmezés szerint az Azure AD tartja hello törölni az Azure AD felhasználói objektum törölt állapotban 30 napig.
+* Ha véletlenül törölt egy helyszíni AD-felhasználó objektumazonosító, a megfelelő Azure AD-felhasználói objektum törli a következő szinkronizálási ciklusban. Alapértelmezés szerint az Azure AD megtartja a törölt felhasználóobjektum az Azure AD 30 napig helyreállíthatóan törölt állapotban.
 
-* Ha a helyszíni AD Lomtár szolgáltatás engedélyezve van, a törölt hello visszaállíthatja a helyszíni AD-felhasználói objektum Forráshorgony értékének módosítása nélkül. Ha hello helyreállítani a helyszíni AD-felhasználói objektum szinkronizálása tooAzure AD, az Azure AD visszaállítja hello megfelelő helyreállíthatóan törölt az Azure AD felhasználói objektum. Forráshorgony attribútum kapcsolatos információkért tekintse meg a tooarticle [az Azure AD Connect: tervezési alapelvek](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect-design-concepts#sourceanchor).
+* Ha a helyszíni AD Recycle Bin szolgáltatás engedélyezve van, a törölt visszaállíthatja a helyszíni AD-felhasználói objektum Forráshorgony értékének módosítása nélkül. Ha a helyreállított a helyszíni AD-felhasználói objektum szinkronizálva az Azure AD, az Azure AD fog visszaállítása a megfelelő helyreállíthatóan törölt az Azure AD felhasználói objektum. Forráshorgony attribútum kapcsolatos információkért tekintse meg a cikk [az Azure AD Connect: tervezési alapelvek](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect-design-concepts#sourceanchor).
 
-* Ha nem rendelkezik a helyszíni AD Recycle Bin szolgáltatás engedélyezve van, előfordulhat, hogy az AD felhasználói objektum tooreplace hello törölt objektum szükséges toocreate. Ha az Azure AD Connect szinkronizálási szolgáltatást konfigurált toouse a rendszer AD attribútum (például az ObjectGuid) hello Forráshorgony attribútuma, hello újonnan létrehozott AD-felhasználói objektum lesz nem rendelkezik hello azonos Forráshorgony érték hello AD felhasználó-objektum törlése. Ha hello újonnan létrehozott AD felhasználói objektum szinkronizált tooAzure AD, az Azure AD létrehoz egy új Azure AD felhasználói objektum visszaállítása helyreállíthatóan törölt hello Azure AD felhasználói objektum helyett.
+* Ha nem rendelkezik a helyszíni AD Lomtár szolgáltatás engedélyezve van, akkor lehet szükség az AD-felhasználói objektum lecseréli a törölt objektum létrehozásához. Ha az Azure AD Connect szinkronizálási szolgáltatást a Forráshorgony attribútum a rendszer AD attribútum (például az ObjectGuid) használatára van konfigurálva, az újonnan létrehozott AD-felhasználói objektum nem lesz Forráshorgony értéke megegyezik az AD felhasználó objektum. Amikor az újonnan létrehozott AD-felhasználói objektum szinkronizálja az Azure AD, az Azure AD létrehoz egy új Azure AD felhasználói objektum helyett a helyreállíthatóan törölt visszaállítása az Azure AD felhasználói objektum.
 
 > [!NOTE]
-> Alapértelmezés szerint az Azure AD tartja törölni az Azure AD felhasználói objektumok helyreállíthatóan törölt állapotban 30 nap elteltével a rendszer véglegesen törli. Azonban a rendszergazdák meggyorsíthatja ilyen objektumok hello törlése. Hello objektumok véglegesen törlődnek, ha azok már nem állíthatók helyre, még akkor is, ha a helyszíni AD Lomtár szolgáltatás engedélyezve van.
+> Alapértelmezés szerint az Azure AD tartja törölni az Azure AD felhasználói objektumok helyreállíthatóan törölt állapotban 30 nap elteltével a rendszer véglegesen törli. Azonban a rendszergazdák az ilyen objektumok a törlés meggyorsíthatja. Az objektumok véglegesen törlődnek, ha azok már nem állíthatók helyre, még akkor is, ha a helyszíni AD Lomtár szolgáltatás engedélyezve van.
 
 
 

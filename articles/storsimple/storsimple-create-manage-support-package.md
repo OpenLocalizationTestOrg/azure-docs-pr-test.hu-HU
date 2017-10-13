@@ -1,6 +1,6 @@
 ---
-title: "a StorSimple támogatási csomag aaaCreate |} Microsoft Docs"
-description: "Ismerje meg, hogyan toocreate, visszafejtése, és a StorSimple eszköz támogatási csomag szerkesztése."
+title: "Hozzon létre egy StorSimple támogatási csomagot |} Microsoft Docs"
+description: "Megtudhatja, hogyan létrehozása és szerkesztése a StorSimple eszköz támogatási csomag visszafejtésére."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,134 +14,134 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/17/2016
 ms.author: alkohli
-ms.openlocfilehash: 209aeee50e823fd2ca96ababd1d0cf3ea9cdad53
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 32d20e7a8adcfc646c592213fe7395b87a93c985
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-and-manage-a-storsimple-support-package"></a>Létrehozását és kezelését egy StorSimple támogatási csomag
 ## <a name="overview"></a>Áttekintés
-A StorSimple támogatási csomag olyan könnyen használható mechanizmus, amely az összes releváns naplók tooassist Microsoft Support gyűjti a hibaelhárításban a StorSimple eszköz probléma merül fel. hello gyűjtött naplók titkosított és tömörített.
+StorSimple támogatási csomag olyan könnyen használható mechanizmus, amely gyűjti az összes vonatkozó naplókat, a StorSimple eszköz problémák elhárítása a Microsoft Support segítésére. A gyűjtött naplók titkosított és tömörített.
 
-Ez az oktatóanyag lépéseit toocreate tartalmazza, és hello támogatási csomag kezelése.
+Ez az oktatóanyag létrehozásához és kezeléséhez a támogatási csomag részletes útmutatást tartalmaz.
 
-## <a name="create-and-upload-a-support-package-in-hello-azure-classic-portal"></a>Hozzon létre, és töltse fel a klasszikus Azure portálon hello támogatási csomag
-Hozzon létre, és töltse fel egy támogatási csomag toohello Microsoft Support webhelyén keresztül hello **karbantartási** hello szolgáltatást a klasszikus Azure portálon hello oldalán.
+## <a name="create-and-upload-a-support-package-in-the-azure-classic-portal"></a>Hozzon létre, és töltse fel a klasszikus Azure portálon támogatási csomag
+Hozzon létre, és töltse fel egy támogatási csomag a Microsoft Support webhelyén keresztül a **karbantartási** a szolgáltatást a klasszikus Azure portálra a lap.
 
 > [!NOTE]
-> hello feltöltés támogatási hitelesítő kulcs szükséges. A támogatási szakértőhöz biztosítania kell a tooyou e-mailben.
+> A feltöltés támogatási hitelesítő kulcs szükséges. A támogatási szakértőhöz biztosítania kell a Önnek e-mailben.
 > 
 > 
 
-Egy titkosított és tömörített támogatási csomagot (.cab fájl) létrehozása és feltöltése toohello támogatási hely. hello támogatási szakértőhöz majd beolvasni a csomag hello hiba elhárításához hello támogatási helyről.
+Egy titkosított és tömörített támogatási csomagot (.cab fájl) létrehozása és a támogatási webhely feltöltött. A támogatási szakember majd beolvasni a csomag a támogatási webhelyről a hiba elhárításához.
 
-Hajtsa végre a következő lépéseket a hello klasszikus portál toocreate egy támogatási csomag hello.
+Hajtsa végre a következő lépéseket a klasszikus portálon hozzon létre egy támogatási csomagot.
 
-#### <a name="toocreate-a-support-package-in-hello-azure-classic-portal"></a>a klasszikus Azure portálon hello támogatási csomag toocreate
+#### <a name="to-create-a-support-package-in-the-azure-classic-portal"></a>Támogatási csomag létrehozása a klasszikus Azure portálon
 1. Válassza ki **eszközök** > **karbantartási**.
-2. A hello **támogatási csomag** szakaszban jelölje be **létrehozása és feltöltése támogatási csomag**.
-3. A hello **létrehozása és feltöltése támogatási csomag** párbeszédpanel mezőbe hello a következő:
+2. Az a **támogatási csomag** szakaszban jelölje be **létrehozása és feltöltése támogatási csomag**.
+3. Az a **létrehozása és feltöltése támogatási csomag** párbeszédpanelen tegye a következőket:
    
     ![Támogatási csomag létrehozása](./media/storsimple-create-manage-support-package/IC740923.png)
    
-   * A hello **támogatási hozzáférési kulcs** szöveg mezőbe írja be a hello hozzáférési kulcsot. A Microsoft támogatási szakértőhöz a hozzáférési kulcs tooyou küldjön e-mailben.
-   * Válassza ki a hello jelölőnégyzetet tooprovide hozzájárulási tooautomatically feltöltés hello támogatási csomag toohello Microsoft Support helyet.
-   * Kattintson a pipa ikonra hello ![Pipa ikon](./media/storsimple-create-manage-support-package/IC740895.png).
+   * Az a **támogatási hozzáférési kulcs** szöveg mezőbe írja be a hozzáférési kulcsot. A Microsoft támogatási szakértőhöz küldjön-e a hitelesítő kulcs Önnek e-mailben.
+   * Jelölje be a jelölőnégyzetet a hozzájárulásukat adják meg a támogatási csomag automatikusan feltölteni a Microsoft Support webhelyén.
+   * Kattintson a pipa ikonra ![Pipa ikon](./media/storsimple-create-manage-support-package/IC740895.png).
 
 ## <a name="manually-create-a-support-package"></a>Manuálisan hozzon létre egy támogatási csomag
-Néhány esetben szüksége lesz toomanually StorSimple hello támogatási csomag a Windows PowerShell segítségével hozzon létre. Példa:
+Bizonyos esetekben lesz szüksége a StorSimple a támogatási csomag a Windows PowerShell segítségével manuálisan létrehozásához. Példa:
 
-* Ha a naplóból tooremove bizalmas adatokat kell fájlok Microsoft Support előzetes toosharing.
-* Ha a probléma miatt tooconnectivity problémák hello csomag feltöltése.
+* Ha el kell távolítania a bizalmas adatokat a naplófájlokból Microsoft Support megosztása előtt.
+* Ha a csatlakozási problémák miatt a csomag feltöltése.
 
-A manuálisan létrehozott támogatási csomag Microsoft Support keresztül e-mailek megoszthatja. Hajtsa végre a következő lépéseket toocreate egy támogatási csomag a Windows PowerShellben a StorSimple hello.
+A manuálisan létrehozott támogatási csomag Microsoft Support keresztül e-mailek megoszthatja. A következő lépésekkel hozzon létre egy támogatási csomag a Windows PowerShell StorSimple.
 
-#### <a name="toocreate-a-support-package-in-windows-powershell-for-storsimple"></a>toocreate egy támogatási csomag a Windows PowerShell-lel
-1. Windows PowerShell-munkamenet hello távoli számítógépen tooconnect tooyour StorSimple eszköz által használt rendszergazdaként toostart adja meg a hello a következő parancsot:
+#### <a name="to-create-a-support-package-in-windows-powershell-for-storsimple"></a>Egy támogatási csomag létrehozása a Windows PowerShell StorSimple
+1. Indítsa el a Windows PowerShell-munkamenetet a távoli számítógépen a StorSimple eszköz való kapcsolódáshoz használt rendszergazdaként, írja be a következő parancsot:
    
     `Start PowerShell`
-2. A Windows PowerShell-munkamenetben hello csatlakozás toohello SSAdmin konzol, az eszköz:
+2. A Windows PowerShell-munkamenetben kapcsolódjon a SSAdmin konzol, az eszköz:
    
-   * Hello parancssorba írja be:
+   * A parancssorba írja be:
      
        `$MS = New-PSSession -ComputerName <IP address for DATA 0> -Credential SSAdmin -ConfigurationName "SSAdminConsole"`
-   * Hello párbeszédpanel adja meg az eszköz rendszergazdai jelszava. hello alapértelmezett jelszava:
+   * A megnyíló párbeszédpanelen írja be az eszköz rendszergazdai jelszava. Az alapértelmezett jelszava:
      
       `Password1`
      
       ![PowerShell-hitelesítő adat párbeszédpanel](./media/storsimple-create-manage-support-package/IC740962.png)
    * Kattintson az **OK** gombra.
-   * Hello parancssorba írja be:
+   * A parancssorba írja be:
      
       `Enter-PSSession $MS`
-3. A megnyitott munkamenetben hello írja be a hello megfelelő parancsot.
+3. A megnyitott munkamenetben adja meg a megfelelő parancsot.
    
    * Jelszóval védett hálózati megosztások adja meg:
      
        `Export-HcsSupportPackage –PackageTag "MySupportPackage" –Credential "Username" -Force`
      
-       Kéri a jelszót, a elérési toohello hálózati megosztott mappából és a titkosítás jelszavát (mert hello támogatási csomag titkosított). Egy támogatási csomag majd hello megadott mappában jön létre.
-   * Az megosztások, amelyek nem jelszóval védett, nem kell hello `-Credential` paraméter. Írja be a következő hello:
+       Kéri a jelszót, a hálózati megosztott mappa, és a titkosítás jelszavát elérési útját (mert a támogatási csomag titkosított). Egy támogatási csomag a megadott mappában létrejön.
+   * Az megosztások, amelyek nem jelszóval védett, nem kell a `-Credential` paraméter. Írja be a következőket:
      
        `Export-HcsSupportPackage –PackageTag "MySupportPackage" -Force`
      
-       hello támogatási csomag mindkét tartományvezérlők hello megadott hálózati megosztott mappában jön létre. Egy titkosított, tömörített fájlt, amely elküldhető tooMicrosoft támogatási hibaelhárítási. További információkért lásd: [forduljon a Microsoft ügyfélszolgálatához](storsimple-contact-microsoft-support.md).
+       A támogatási csomag mindkét vezérlők, a megadott hálózati megosztott mappában jön létre. Egy titkosított, tömörített fájlt, amely a Microsoft Support hibaelhárítási elküldhető. További információkért lásd: [forduljon a Microsoft ügyfélszolgálatához](storsimple-contact-microsoft-support.md).
 
-### <a name="hello-export-hcssupportpackage-cmdlet-parameters"></a>Export-HcsSupportPackage hello parancsmag-paraméterek
-A következő paraméterek hello Export-HcsSupportPackage parancsmaggal hello is használhatja.
+### <a name="the-export-hcssupportpackage-cmdlet-parameters"></a>Az Export-HcsSupportPackage parancsmag-paraméterek
+A következő paraméterek az Export-HcsSupportPackage parancsmag használható.
 
 | Paraméter | Kötelező/választható | Leírás |
 | --- | --- | --- |
-| `-Path` |Szükséges |Hello hálózati megosztott mappa mely hello támogatási csomag helyet adó tooprovide hello helyét használja. |
-| `-EncryptionPassphrase` |Szükséges |Használjon tooprovide egy hozzáférési kódot toohelp hello támogatási csomag titkosításához. |
-| `-Credential` |Optional |Hálózati megosztott mappa hello toosupply hozzáférési hitelesítő adatok használatával. |
-| `-Force` |Optional |Tooskip hello titkosítási jelszót megerősítési lépés használható. |
-| `-PackageTag` |Optional |Használjon toospecify olyan könyvtárat *elérési* mely hello támogatott csomag kerül. hello alapértelmezett érték a [eszköznév]-[aktuális dátumot és time:yyyy-MM-dd-HH-mm-ss]. |
-| `-Scope` |Optional |Adja meg a **fürt** (alapértelmezett) toocreate egy támogatási csomag mindkét vezérlők. Ha azt szeretné, csak az aktuális vezérlő hello toocreate egy csomagot, adjon meg **vezérlő**. |
+| `-Path` |Szükséges |Adja meg a helyét, a hálózati megosztott mappa, amelyben a támogatási csomag kerül segítségével. |
+| `-EncryptionPassphrase` |Szükséges |Használja a jelszó segítségével titkosítja a támogatási csomag szükséges. |
+| `-Credential` |Optional |Használja a hálózati megosztott mappa, a hozzáférési hitelesítő adatok megadását. |
+| `-Force` |Optional |Használja a titkosítási jelszót megerősítési lépés kihagyásához. |
+| `-PackageTag` |Optional |Ezzel adhatja meg a könyvtárat *elérési* , amely a támogatási csomag el van helyezve a. Az alapértelmezett érték a [eszköznév]-[aktuális dátumot és time:yyyy-MM-dd-HH-mm-ss]. |
+| `-Scope` |Optional |Adja meg a **fürt** (alapértelmezett) hozzon létre egy támogatási csomag mindkét vezérlők. Ha azt szeretné, csak az aktuális tartományvezérlő a csomag létrehozásához, adja meg a **vezérlő**. |
 
 ## <a name="edit-a-support-package"></a>Egy támogatási csomag szerkesztése
-Miután létrehozta a támogatási csomag, szükség lehet a tooedit hello csomag tooremove bizalmas adatokat. Ilyen lehet például a kötet, eszköz IP-címek vagy hello naplófájlokból biztonsági másolat neve.
+Miután létrehozta a támogatási csomag, szükség lehet a bizalmas adatokat a csomag szerkesztésével. Ez magában foglalhatja kötetnevek eszköz IP-címek és a naplófájlok biztonsági mentési nevek.
 
 > [!IMPORTANT]
-> Csak akkor szerkeszthető egy támogatási csomag, amelyik a Windows PowerShell segítségével a StorSimple jött létre. Hello StorSimple Manager szolgáltatás a klasszikus Azure portálon létrehozott csomagot nem szerkeszthetők.
+> Csak akkor szerkeszthető egy támogatási csomag, amelyik a Windows PowerShell segítségével a StorSimple jött létre. A StorSimple Manager szolgáltatásban a klasszikus Azure portálon létrehozott csomagot nem szerkeszthetők.
 > 
 > 
 
-tooedit egy támogatási csomag hello Microsoft Support webhelyén, a feltöltés előtt először visszafejtéséhez hello támogatási csomag hello fájlok szerkesztése és újbóli titkosítására a azt. Hajtsa végre a következő lépéseket hello.
+Egy támogatási csomag a Microsoft Support helyen feltöltés előtt szerkesztéséhez először visszafejtése a támogatási csomag, szerkesztheti a fájlokat és újbóli titkosítására a azt. A következő lépésekkel.
 
-#### <a name="tooedit-a-support-package-in-windows-powershell-for-storsimple"></a>tooedit egy támogatási csomag a Windows PowerShell-lel
-1. Egy támogatási csomagot leírtak korábban [toocreate egy támogatási csomag a Windows PowerShell-lel](#to-create-a-support-package-in-windows-powershell-for-storsimple).
-2. [Töltse le a hello parancsfájl](http://gallery.technet.microsoft.com/scriptcenter/Script-to-decrypt-a-a8d1ed65) helyileg az ügyfélen.
-3. Hello Windows PowerShell-modul importálásához. Adja meg a hello elérési toohello helyi mappát, amelyben hello parancsprogram letöltése. tooimport hello modul, írja be:
+#### <a name="to-edit-a-support-package-in-windows-powershell-for-storsimple"></a>A StorSimple egy támogatási csomag a Windows PowerShell szerkesztése
+1. Egy támogatási csomagot leírtak korábban [egy támogatási csomag létrehozása a Windows PowerShell StorSimple](#to-create-a-support-package-in-windows-powershell-for-storsimple).
+2. [Töltse le a parancsfájl](http://gallery.technet.microsoft.com/scriptcenter/Script-to-decrypt-a-a8d1ed65) helyileg az ügyfélen.
+3. A Windows PowerShell-modul importálásához. Adja meg a helyi mappát, amelybe letöltötte a parancsfájl elérési útja. Importálja a modult, írja be a következőt:
    
-    `Import-module <Path toohello folder that contains hello Windows PowerShell script>`
-4. Összes hello fájl *.aes* titkosított és tömörített fájlok. toodecompress és visszafejtése fájlokat, írja be:
+    `Import-module <Path to the folder that contains the Windows PowerShell script>`
+4. A fájlok *.aes* titkosított és tömörített fájlok. Kibontani és fejti vissza a fájlokat, írja be a következőt:
    
-    `Open-HcsSupportPackage <Path toohello folder that contains support package files>`
+    `Open-HcsSupportPackage <Path to the folder that contains support package files>`
    
-    Vegye figyelembe, hogy hello tényleges fájlkiterjesztések jelennek meg az összes hello.
+    Vegye figyelembe, hogy a tényleges kiterjesztések jelennek meg a fájlok.
    
     ![Támogatási csomag szerkesztése](./media/storsimple-create-manage-support-package/IC750706.png)
-5. Amikor hello titkosítási jelszót kéri, adja meg a hello hello támogatási csomag létrehozásakor használt jelszót.
+5. Amikor a rendszer kéri, a titkosítás jelszavát, adja meg a jelszót, amelyet a támogatási csomag létrehozásakor használja.
    
         cmdlet Open-HcsSupportPackage at command pipeline position 1
    
-        Supply values for hello following parameters:EncryptionPassphrase: ****
-6. Keresse meg a hello naplófájlokat tartalmazó toohello mappát. Hello naplófájlok most kibontása és visszafejtése, mert ezek lesz az eredeti fájlkiterjesztés. Módosítsa a fájlok tooremove bármely adatok, például a kötet neve és az eszköz IP-címek, és hello fájlokat menteni.
-7. Bezárás hello fájlok toocompress őket a gzip és az AES-256 titkosítani. Ez a sebesség és a biztonság hello támogatási csomag átvitele a hálózaton keresztül. toocompress és titkosíthatják a fájlokat, írja be a következő hello:
+        Supply values for the following parameters:EncryptionPassphrase: ****
+6. Tallózással keresse meg a naplófájlokat tartalmazó mappát. Mivel a naplófájlok most kibontása és visszafejtése, ezek lesz eredeti fájlkiterjesztés. Módosíthatja bármely adatok, például a kötet neve és az eszköz IP-címek, távolítsa el ezeket a fájlokat, és menti a fájlokat.
+7. Zárja be a fájlok tömörítése a gzip és az AES-256 titkosítani. Ez a sebesség és a biztonság a támogatási csomag átvitele a hálózaton keresztül. Tömöríti, és titkosíthatják a fájlokat, írja be a következőket:
    
-    `Close-HcsSupportPackage <Path toohello folder that contains support package files>`
+    `Close-HcsSupportPackage <Path to the folder that contains support package files>`
    
     ![Támogatási csomag szerkesztése](./media/storsimple-create-manage-support-package/IC750707.png)
-8. Amikor a rendszer kéri, adja meg a titkosítás jelszavát az hello módosított támogatási csomag.
+8. Amikor a rendszer kéri, adja meg a módosított támogatási csomag titkosítás jelszavát.
    
         cmdlet Close-HcsSupportPackage at command pipeline position 1
-        Supply values for hello following parameters:EncryptionPassphrase: ****
-9. Írja le hello új jelszót, úgy, hogy a Microsoft Support kérésekor megoszthatja azt.
+        Supply values for the following parameters:EncryptionPassphrase: ****
+9. Írja le az új jelszót, úgy, hogy a Microsoft Support kérésekor megoszthatja azt.
 
 ### <a name="example-editing-files-in-a-support-package-on-a-password-protected-share"></a>Példa: Egy támogatási csomag jelszóval védett megosztott fájlok szerkesztése
-hello a következő példa bemutatja, hogyan toodecrypt, szerkesztheti, és egy támogatási csomag újbóli titkosítására.
+A következő példa bemutatja, hogyan visszafejtése, szerkesztése és egy támogatási csomag újbóli titkosítására.
 
         PS C:\WINDOWS\system32> Import-module C:\Users\Default\StorSimple\SupportPackage\HCSSupportPackageTools.psm1
 
@@ -149,7 +149,7 @@ hello a következő példa bemutatja, hogyan toodecrypt, szerkesztheti, és egy 
 
         cmdlet Open-HcsSupportPackage at command pipeline position 1
 
-        Supply values for hello following parameters:
+        Supply values for the following parameters:
 
         EncryptionPassphrase: ****
 
@@ -157,13 +157,13 @@ hello a következő példa bemutatja, hogyan toodecrypt, szerkesztheti, és egy 
 
         cmdlet Close-HcsSupportPackage at command pipeline position 1
 
-        Supply values for hello following parameters:
+        Supply values for the following parameters:
 
         EncryptionPassphrase: ****
 
         PS C:\WINDOWS\system32>
 
 ## <a name="next-steps"></a>Következő lépések
-* Ismerje meg, hogyan túl[használata támogatási csomag és az eszköz naplói tootroubleshoot az eszköz telepítési](storsimple-troubleshoot-deployment.md#support-packages-and-device-logs-available-for-troubleshooting).
-* Ismerje meg, hogyan túl[használata hello StorSimple Manager szolgáltatás tooadminister a StorSimple eszköz](storsimple-manager-service-administration.md).
+* Megtudhatja, hogyan [támogatási csomag és eszköznaplók segítségével eszköz hibaelhárítás](storsimple-troubleshoot-deployment.md#support-packages-and-device-logs-available-for-troubleshooting).
+* Megtudhatja, hogyan [felügyelete a StorSimple eszközt a StorSimple Manager szolgáltatás segítségével](storsimple-manager-service-administration.md).
 

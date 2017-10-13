@@ -1,5 +1,5 @@
 ---
-title: "AAA \"Azure Batch-készlet átméretezése befejeződésének eseményét. |} Microsoft dokumentumok\""
+title: "Azure Batch-készlet átméretezése befejeződésének eseményét. |} Microsoft Docs"
 description: "Útmutató a Batch-készlet átméretezése befejeződésének eseményét."
 services: batch
 author: tamram
@@ -12,17 +12,17 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 04/20/2017
 ms.author: tamram
-ms.openlocfilehash: dc64711a01aa4cf6192edba1a2c4cad56f953766
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7072293d98526812cb42ce9c2f8e33bfcafaa149
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="pool-resize-complete-event"></a>Készlet átméretezési befejeződésének eseményét.
 
  Ez az esemény is ki lesz adva a készlet átméretezési rendelkezik befejezése után, illetve nem sikerült.
 
- hello következő példa bemutatja hello törzsét egy alkalmazáskészlet átméretezési befejeződésének eseményét. egy készlet mérete megnövekedett, és sikeresen befejeződött.
+ Az alábbi példában a szervezet egy alkalmazáskészlet átméretezési teljes esemény készlet mérete megnövekedett, és sikeresen befejeződött.
 
 ```
 {
@@ -35,19 +35,19 @@ ms.lasthandoff: 10/06/2017
     "startTime": "2016-09-09T22:13:06.573Z",
     "endTime": "2016-09-09T22:14:01.727Z",
     "result": "Success",
-    "resizeError": "hello operation succeeded"
+    "resizeError": "The operation succeeded"
 }
 ```
 
 |Elem|Típus|Megjegyzések|
 |-------------|----------|-----------|
-|id|Karakterlánc|hello készlet hello azonosítója.|
-|nodeDeallocationOption|Karakterlánc|Itt adhatja meg, ha lehetséges, hogy lehet csomópontokat eltávolítani hello készletből, ha hello készlet méretének csökkentése.<br /><br /> Lehetséges értékek:<br /><br /> **requeue** – leállítja a futó tevékenységeket, és újra a várólistába helyezi őket. hello feladatok hello feladat engedélyezésekor fognak újra futni. Tevékenységek leállítása után rögtön csomópontjának eltávolítására.<br /><br /> **Állítsa le** – az éppen futó feladatok megszakítását. hello tevékenységeket nem futtatja újra. Tevékenységek leállítása után rögtön csomópontjának eltávolítására.<br /><br /> **taskcompletion** – jelenleg futó feladatok toocomplete engedélyezése. Nem ütemez újabb tevékenységeket való várakozás során. Távolítsa el a csomópontok, ha minden feladat befejeződött.<br /><br /> **Retaineddata** – lehetővé teszi a futó feladatok toocomplete, majd várja meg, hogy minden tevékenység adatok megőrzési időszak tooexpire. Nem ütemez újabb tevékenységeket való várakozás során. Csomópontjának eltávolítására, ha az összes feladat megőrzési időszak lejárt.<br /><br /> hello alapértelmezett értéke requeue.<br /><br /> Ha hello mérete növekszik, akkor hello értéke túl**érvénytelen**.|
-|currentDedicated|Int32|számítási csomópontok száma hello rendelve toohello készlet.|
-|targetDedicated|Int32|számítási csomópontok hello készlet igényelt hello száma.|
-|enableAutoScale|logikai érték|Meghatározza, hogy hello mérete automatikusan igazodni adott idő alatt.|
-|isAutoPool|logikai érték|Meghatározza, hogy hello készlet hozott-e a feladat AutoPool mechanizmus révén.|
-|startTime|Dátum és idő|hello hello készlet átméretezése indulásakor.|
-|endTime|Dátum és idő|hello hello készlet átméretezése idő befejeződött.|
-|ResultCode|Karakterlánc|Automatikus oszlopszélesség hello hello eredményét.|
-|resultMessage|Karakterlánc|hello átméretezési hiba tartalmazza a hello hello eredménye.<br /><br /> Ha hello átméretezése sikeresen befejeződött, a művelet sikerült hello állapotok.|
+|id|Karakterlánc|A készlet azonosítóját.|
+|nodeDeallocationOption|Karakterlánc|Itt adhatja meg, ha lehetséges, hogy lehet csomópontokat eltávolítani a készletből, ha a készlet méretének csökkentése.<br /><br /> Lehetséges értékek:<br /><br /> **requeue** – leállítja a futó tevékenységeket, és újra a várólistába helyezi őket. A feladatok a feladat engedélyezésekor fognak újra futni. Tevékenységek leállítása után rögtön csomópontjának eltávolítására.<br /><br /> **Állítsa le** – az éppen futó feladatok megszakítását. A tevékenységeket nem futtatja újra. Tevékenységek leállítása után rögtön csomópontjának eltávolítására.<br /><br /> **taskcompletion** – engedélyezése jelenleg futó feladatok elvégzéséhez. Nem ütemez újabb tevékenységeket való várakozás során. Távolítsa el a csomópontok, ha minden feladat befejeződött.<br /><br /> **Retaineddata** -lehetővé teszi a futó feladatok befejeződését, majd várja meg, hogy minden tevékenység adatmegőrzés időszakait lejár. Nem ütemez újabb tevékenységeket való várakozás során. Csomópontjának eltávolítására, ha az összes feladat megőrzési időszak lejárt.<br /><br /> Az alapértelmezett érték: requeue.<br /><br /> Ha a készlet mérete növekszik, akkor a változó értéke **érvénytelen**.|
+|currentDedicated|Int32|A számítási csomópontok a készlethez rendelt száma.|
+|targetDedicated|Int32|A kért a készlet számítási csomópontok száma.|
+|enableAutoScale|logikai érték|Meghatározza, hogy a készlet mérete automatikusan igazodni adott idő alatt.|
+|isAutoPool|logikai érték|Meghatározza, hogy a készlet egy feladat AutoPool mechanizmus révén hozott-e.|
+|startTime|Dátum és idő|A készlet átméretezése indulásakor.|
+|Befejezés időpontja|Dátum és idő|Az az idő a készlet átméretezése befejeződött.|
+|ResultCode|Karakterlánc|Az átméretezés eredményét.|
+|resultMessage|Karakterlánc|Az átméretezés hiba a az eredmény tartalmazza.<br /><br /> Ha az átméretezés sikeresen befejeződött, hogy a művelet sikeresen befejeződött.|

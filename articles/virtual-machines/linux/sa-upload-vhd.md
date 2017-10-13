@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 2.0 egyéni Linux lemezzel aaaUpload |} Microsoft Docs"
-description: "Hozzon létre, és töltse fel a virtuális merevlemez (VHD) tooAzure hello Resource Manager üzembe helyezési modellben és hello Azure CLI 2.0 használatával"
+title: "Töltse fel az Azure CLI 2.0 egyéni Linux lemezzel |} Microsoft Docs"
+description: "Hozzon létre, és töltse fel a virtuális merevlemez (VHD) a Resource Manager üzembe helyezési modellel és az Azure CLI 2.0 használatával"
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -15,51 +15,51 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: cynthn
-ms.openlocfilehash: cf8556ab4dfe6c4e5eff4e99fe1ddc44393f774c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9159960af396e89f373da711e0cc46fdd996ab83
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="upload-and-create-a-linux-vm-from-custom-disk-with-hello-azure-cli-20"></a>Töltse fel, és a Linux virtuális gép létrehozása az Azure CLI 2.0 hello egyéni lemezről
-Ez a cikk bemutatja, hogyan tooupload egy virtuális merevlemez (VHD) tooan az Azure storage rendelkező fiók hello Azure CLI 2.0, és a Linux virtuális gépek létrehozása a egyéni lemezt. Is elvégezheti ezeket a lépéseket hello [Azure CLI 1.0](upload-vhd-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Ez a funkció lehetővé teszi tooinstall, és egy Linux distro tooyour követelmények konfigurálása, és ezután használja az adott VHD tooquickly létrehozása az Azure virtuális gépek (VM).
+# <a name="upload-and-create-a-linux-vm-from-custom-disk-with-the-azure-cli-20"></a>Töltse fel, és a Linux virtuális gép létrehozása az Azure CLI 2.0 egyéni lemezről
+Ez a cikk bemutatja, hogyan egy virtuális merevlemez (VHD) feltöltése az Azure CLI 2.0 Azure storage-fiók és a Linux virtuális gépek létrehozása a egyéni lemezt. Az [Azure CLI 1.0-s](upload-vhd-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) verziójával is elvégezheti ezeket a lépéseket. Ez a funkció lehetővé teszi telepítése és konfigurálása a Linux distro az igényeinek megfelelően, valamint, hogy a virtuális merevlemez használatával gyorsan hozzon létre az Azure virtuális gépek (VM).
 
-Ez a témakör az hello végső virtuális merevlemezek, de is végrehajthatja a lépések használatával tárfiókok használ [által kezelt lemezeken](upload-vhd.md). 
+Ez a témakör a végső virtuális merevlemezeket használ a storage-fiókok, de ezeket a lépéseket használatával is végrehajthatja [által kezelt lemezeken](upload-vhd.md). 
 
 ## <a name="quick-commands"></a>Gyors parancsok
-Ha tooquickly kell hello feladatnak, a következő szakasz részletek hello hello kiinduló parancsok tooupload egy virtuális merevlemez tooAzure. Részletes információkat és a környezetben az egyes lépések található hello dokumentum többi részén hello, [itt indítása](#requirements).
+Ha szeretné gyorsan a feladatnak a, a következő szakasz részleteit a következő parancsokat a virtuális merevlemez feltöltéséhez az Azure-bA. Részletes információkat és a környezetben az egyes lépések a dokumentum többi részén található [itt indítása](#requirements).
 
-Győződjön meg arról, hogy rendelkezik hello legújabb [Azure CLI 2.0](/cli/azure/install-az-cli2) telepítve, és bejelentkezett tooan Azure-fiók használatával [az bejelentkezési](/cli/azure/#login).
+Győződjön meg arról, hogy rendelkezik-e a legújabb [Azure CLI 2.0](/cli/azure/install-az-cli2) telepítve, és bejelentkezett az Azure-fiók használatával [az bejelentkezési](/cli/azure/#login).
 
-Hello alábbi példák, cserélje le például paraméterek nevei a saját értékeit. Példa paraméter nevekre `myResourceGroup`, `mystorageaccount`, és `mydisks`.
+A következő példákban cserélje le a saját értékeit példa paraméterek nevei. Példa paraméter nevekre `myResourceGroup`, `mystorageaccount`, és `mydisks`.
 
-Először hozzon létre egy erőforráscsoportot a [az csoport létrehozása](/cli/azure/group#create). hello alábbi példa létrehoz egy erőforráscsoportot `myResourceGroup` a hello `WestUs` helye:
+Először hozzon létre egy erőforráscsoportot a [az csoport létrehozása](/cli/azure/group#create). Az alábbi példa létrehoz egy erőforráscsoportot `myResourceGroup` a a `WestUs` helye:
 
 ```azurecli
 az group create --name myResourceGroup --location westus
 ```
 
-Hozzon létre egy tárolási fiók toohold a virtuális lemezek, amelyek [az storage-fiók létrehozása](/cli/azure/storage/account#create). hello alábbi példa létrehoz egy nevű tárfiók `mystorageaccount`:
+Hozzon létre egy tárfiókot, ahhoz, hogy a virtuális lemezek, amelyek [az storage-fiók létrehozása](/cli/azure/storage/account#create). Az alábbi példa létrehoz egy nevű tárfiók `mystorageaccount`:
 
 ```azurecli
 az storage account create --resource-group myResourceGroup --location westus \
   --name mystorageaccount --kind Storage --sku Standard_LRS
 ```
 
-A tárfiók hello elérési kulcsainak listázása [az tárolási fióklista kulcsok](/cli/azure/storage/account/keys#list). Jegyezze fel a `key1`:
+A tárfiók hozzáférési kulcsainak listázása [az tárolási fióklista kulcsok](/cli/azure/storage/account/keys#list). Jegyezze fel a `key1`:
 
 ```azurecli
 az storage account keys list --resource-group myResourceGroup --account-name mystorageaccount
 ```
 
-Hozzon létre egy tárolót a tárfiókon belül hello biztonságitár-kulcs használatával kapott [az tároló létrehozása](/cli/azure/storage/container#create). hello alábbi példa létrehoz egy nevű tárolót `mydisks` hello tárolási értékének használatával `key1`:
+Hozzon létre egy tárolót a tárfiókon belül a biztonságitár-kulcs használatával kapott [az tároló létrehozása](/cli/azure/storage/container#create). Az alábbi példa létrehoz egy nevű tárolót `mydisks` használ a tárolási értékének `key1`:
 
 ```azurecli
 az storage container create --account-name mystorageaccount \
     --account-key key1 --name mydisks
 ```
 
-Végül, töltse fel a létrehozott VHD-toohello tároló [az tárolási blob feltöltése](/cli/azure/storage/blob#upload). Adja meg a hello helyi elérési út tooyour virtuális merevlemez alapján `/path/to/disk/mydisk.vhd`:
+Végezetül a VHD-fájlt feltölti a létrehozott tároló [az tárolási blob feltöltése](/cli/azure/storage/blob#upload). Adja meg a helyi elérési útját a virtuális merevlemez alapján `/path/to/disk/mydisk.vhd`:
 
 ```azurecli
 az storage blob upload --account-name mystorageaccount \
@@ -67,7 +67,7 @@ az storage blob upload --account-name mystorageaccount \
     --file /path/to/disk/mydisk.vhd --name myDisk.vhd
 ```
 
-Adja meg a hello URI tooyour lemez (`--image`) rendelkező [az virtuális gép létrehozása](/cli/azure/vm#create). hello alábbi példakód létrehozza a virtuális gépek nevű `myVM` hello korábban feltöltött virtuális lemez segítségével:
+Adja meg az URI-t a lemez (`--image`) rendelkező [az virtuális gép létrehozása](/cli/azure/vm#create). Az alábbi példakód létrehozza a virtuális gépek nevű `myVM` korábban feltöltött a virtuális lemez segítségével:
 
 ```azurecli
 az vm create --resource-group myResourceGroup --location westus \
@@ -77,32 +77,32 @@ az vm create --resource-group myResourceGroup --location westus \
     --use-unmanaged-disk
 ```
 
-hello céltárfiókot hello ugyanaz, mint ahol a virtuális lemez feltöltött toobe rendelkezik. Továbbá toospecify kell, vagy a vonatkozó választ, minden hello hello szükséges további paraméterek **az virtuális gép létrehozása** parancs például a virtuális hálózat, a nyilvános IP-cím, a felhasználónevet és az SSH-kulcsok. További tudnivalók hello [érhető el erőforrás-kezelő parancssori paraméterek](../azure-cli-arm-commands.md#azure-vm-commands-to-manage-your-azure-virtual-machines).
+A cél tárfiókkal nem lehet ugyanaz, mint ahol a virtuális lemez feltöltött. Is meg kell adni, vagy válasz kér, által igényelt minden további paramétereket a **az virtuális gép létrehozása** parancs például a virtuális hálózat, a nyilvános IP-cím, a felhasználónevet és az SSH-kulcsok. További információ a [érhető el erőforrás-kezelő parancssori paraméterek](../azure-cli-arm-commands.md#azure-vm-commands-to-manage-your-azure-virtual-machines).
 
 ## <a name="requirements"></a>Követelmények
-toocomplete hello lépéseket követve van szüksége:
+A következő lépések elvégzéséhez szüksége:
 
-* **Linux operációs rendszer van telepítve, a .vhd-fájllá** -telepíteni egy [Azure által támogatott Linux-disztribúció](endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) (vagy lásd: [nem támogatott disztribúciókkal kapcsolatos információi](create-upload-generic.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)) tooa hello VHD lévő virtuális lemezek formátumban. Több különféle eszköz toocreate érhetők el a virtuális gép és a virtuális merevlemez:
-  * Telepítse és konfigurálja [QEMU](https://en.wikibooks.org/wiki/QEMU/Installing_QEMU) vagy [KVM](http://www.linux-kvm.org/page/RunningKVM), ügyelve toouse a lemezkép formátumú virtuális Merevlemezt. Ha szükséges, akkor [lemezkép konvertálása](https://en.wikibooks.org/wiki/QEMU/Images#Converting_image_formats) használatával `qemu-img convert`.
+* **Linux operációs rendszer van telepítve, a .vhd-fájllá** -telepíteni egy [Azure által támogatott Linux-disztribúció](endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) (vagy lásd: [nem támogatott disztribúciókkal kapcsolatos információi](create-upload-generic.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)) a virtuális merevlemez virtuális lemezre formátumban. Több különféle eszköz létezik a virtuális gép és a virtuális merevlemez létrehozásához:
+  * Telepítse és konfigurálja [QEMU](https://en.wikibooks.org/wiki/QEMU/Installing_QEMU) vagy [KVM](http://www.linux-kvm.org/page/RunningKVM), ügyelve arra, hogy a virtuális merevlemez használata a képformátum. Ha szükséges, akkor [lemezkép konvertálása](https://en.wikibooks.org/wiki/QEMU/Images#Converting_image_formats) használatával `qemu-img convert`.
   * Is használhatja a Hyper-V [Windows 10](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_install) vagy [Windows Server 2012 vagy 2012 R2](https://technet.microsoft.com/library/hh846766.aspx).
 
 > [!NOTE]
-> hello újabb VHDX formátum nem támogatott az Azure-ban. Amikor létrehoz egy virtuális Gépet, adja meg a virtuális merevlemez hello formátumban. Ha szükséges, VHDX-lemezek tooVHD használatával konvertálhatja [ `qemu-img convert` ](https://en.wikibooks.org/wiki/QEMU/Images#Converting_image_formats) vagy hello [ `Convert-VHD` ](https://technet.microsoft.com/library/hh848454.aspx) PowerShell-parancsmagot. További Azure nem támogatja dinamikus virtuális merevlemezek, feltöltése, ezért meg kell tooconvert ilyen lemezek toostatic VHD-k feltöltés előtt. Használhatja például a [NYISSA meg az Azure virtuális merevlemez segédprogramok](https://github.com/Microsoft/azure-vhd-utils-for-go) tooconvert a dinamikus lemezek a hello folyamat tooAzure feltöltése során.
+> Az újabb VHDX formátum nem támogatott az Azure-ban. Amikor létrehoz egy virtuális Gépet, adja meg a VHD formátumban. Szükség esetén, VHDX-lemezek konvertálása virtuális merevlemez használatával [ `qemu-img convert` ](https://en.wikibooks.org/wiki/QEMU/Images#Converting_image_formats) vagy a [ `Convert-VHD` ](https://technet.microsoft.com/library/hh848454.aspx) PowerShell-parancsmagot. További Azure nem támogatja dinamikus virtuális merevlemezek, feltöltése, ezért ilyen lemezek konvertálása statikus virtuális merevlemezek feltöltés előtt meg kell. Használhatja például a [NYISSA meg az Azure virtuális merevlemez segédprogramok](https://github.com/Microsoft/azure-vhd-utils-for-go) átalakítani a dinamikus lemezek Azure feltöltése során.
 > 
 > 
 
-* Az egyéni lemez alapján létrehozott virtuális gépek kell lennie, hello azonos maga hello lemezként storage-fiók
-  * Hozzon létre egy tárolási fiók és a tároló toohold, az egyéni lemez és a létrehozott virtuális gépek
+* Az egyéni lemez alapján létrehozott virtuális gépek ugyanazt a tárfiókot, magán a lemezen kell lennie
+  * Hozzon létre egy tárfiók és tároló az egyéni lemez és a létrehozott virtuális gépek tárolására
   * Miután létrehozta a virtuális gépek, nyugodtan törölheti a lemezen
 
-Győződjön meg arról, hogy rendelkezik hello legújabb [Azure CLI 2.0](/cli/azure/install-az-cli2) telepítve, és bejelentkezett tooan Azure-fiók használatával [az bejelentkezési](/cli/azure/#login).
+Győződjön meg arról, hogy rendelkezik-e a legújabb [Azure CLI 2.0](/cli/azure/install-az-cli2) telepítve, és bejelentkezett az Azure-fiók használatával [az bejelentkezési](/cli/azure/#login).
 
-Hello alábbi példák, cserélje le például paraméterek nevei a saját értékeit. Példa paraméter nevekre `myResourceGroup`, `mystorageaccount`, és `mydisks`.
+A következő példákban cserélje le a saját értékeit példa paraméterek nevei. Példa paraméter nevekre `myResourceGroup`, `mystorageaccount`, és `mydisks`.
 
 <a id="prepimage"> </a>
 
-## <a name="prepare-hello-disk-toobe-uploaded"></a>Készítse elő a hello lemez toobe feltöltve.
-Azure támogatja a különböző Linux terjesztésekről (lásd: [támogatott Disztribúciókkal](endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)). a következő cikkek hello végigvezetik hogyan tooprepare hello Azure által támogatott különböző Linux-disztribúció:
+## <a name="prepare-the-disk-to-be-uploaded"></a>Készítse elő a feltölteni kívánt lemez
+Azure támogatja a különböző Linux terjesztésekről (lásd: [támogatott Disztribúciókkal](endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)). A következő cikkekben végigvezeti Önt a különböző Linux terjesztésekről Azure által támogatott előkészítése:
 
 * **[CentOS-alapú Disztribúciók](create-upload-centos.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)**
 * **[Debian Linux](debian-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)**
@@ -112,17 +112,17 @@ Azure támogatja a különböző Linux terjesztésekről (lásd: [támogatott Di
 * **[Ubuntu](create-upload-ubuntu.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)**
 * **[Egyéb - nem támogatott Disztribúciókkal](create-upload-generic.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)**
 
-Lásd még: hello  **[Linux telepítési jegyzetek](create-upload-generic.md#general-linux-installation-notes)**  kapcsolatos további általános tippek Linux lemezképek előkészítése az Azure.
+Lásd még: a  **[Linux telepítési jegyzetek](create-upload-generic.md#general-linux-installation-notes)**  kapcsolatos további általános tippek Linux lemezképek előkészítése az Azure-bA.
 
 > [!NOTE]
-> Hello [Azure platformon SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/) Linux operációs rendszert futtató, csak ha egyik hello által támogatott disztribúciók használt hello konfigurációs adatait a támogatott verziók tooVMs érvényes [az Azure által támogatott Linux Azokat a terjesztéseket](endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+> A [Azure platformon SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/) csak akkor, ha a konfigurációs részleteket a támogatott verziók használt egyik a hitelesített terjesztéseket Linuxot futtató virtuális gépek érvényes [az Azure által támogatott Linux Azokat a terjesztéseket](endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 > 
 > 
 
 ## <a name="create-a-resource-group"></a>Hozzon létre egy erőforráscsoportot
-Erőforráscsoportok logikailag összefogni összes hello Azure-erőforrások toosupport a virtuális gépek, például a hello virtuális hálózati és tárolási. További információ erőforráscsoportok, lásd: [erőforráscsoportokat áttekintése](../../azure-resource-manager/resource-group-overview.md). Feltöltése az egyéni lemez és virtuális gépek létrehozását, mielőtt először toocreate nevű erőforráscsoport [az csoport létrehozása](/cli/azure/group#create).
+Erőforráscsoportok logikailag összegyűjteni az Azure erőforrások, például a virtuális hálózati és tárolási a virtuális gép támogatása érdekében. További információ erőforráscsoportok, lásd: [erőforráscsoportokat áttekintése](../../azure-resource-manager/resource-group-overview.md). Feltöltése az egyéni lemez és virtuális gépek létrehozását, mielőtt először hozzon létre egy erőforráscsoportot a [az csoport létrehozása](/cli/azure/group#create).
 
-hello alábbi példa létrehoz egy erőforráscsoportot `myResourceGroup` a hello `westus` helye:
+Az alábbi példa létrehoz egy erőforráscsoportot `myResourceGroup` a a `westus` helye:
 
 ```azurecli
 az group create --name myResourceGroup --location westus
@@ -130,9 +130,9 @@ az group create --name myResourceGroup --location westus
 
 ## <a name="create-a-storage-account"></a>Create a storage account
 
-Hozzon létre egy tárfiókot, az egyéni lemez és virtuális gépek [az storage-fiók létrehozása](/cli/azure/storage/account#create). A virtuális gépeket hoz létre az egyéni lemez kell toobe a nem felügyelt lemezzel hello ugyanazt a tárfiókot, a lemeznek. 
+Hozzon létre egy tárfiókot, az egyéni lemez és virtuális gépek [az storage-fiók létrehozása](/cli/azure/storage/account#create). A virtuális gépeket hoz létre az egyéni lemez kell lenniük, hogy a lemez, ugyanazt a tárfiókot a nem felügyelt lemezzel. 
 
-hello alábbi példa létrehoz egy nevű tárfiók `mystorageaccount` hello erőforráscsoportban korábban hozott létre:
+Az alábbi példa létrehoz egy nevű tárfiók `mystorageaccount` a korábban létrehozott erőforráscsoport:
 
 ```azurecli
 az storage account create --resource-group myResourceGroup --location westus \
@@ -140,15 +140,15 @@ az storage account create --resource-group myResourceGroup --location westus \
 ```
 
 ## <a name="list-storage-account-keys"></a>Tárfiókkulcsok listázása
-Az Azure létrehoz két 512 bites kulcsot minden tárfiók. A hozzáférési kulcsot használnak az toohello tárfiókot, például az írási műveletek toocarry hitelesítésekor. Tudjon meg többet az [kezelése hozzáférési toostorage Itt](../../storage/common/storage-create-storage-account.md#manage-your-storage-account). Megtekintheti a hello hívóbetűk [az tárolási fióklista kulcsok](/cli/azure/storage/account/keys#list).
+Az Azure létrehoz két 512 bites kulcsot minden tárfiók. A tárelérési kulcsok írási műveletek végrehajtására többek között a tárolási fiók hitelesítéséhez használt. Tudjon meg többet az [tárolási itt történő hozzáférés felügyeletéhez](../../storage/common/storage-create-storage-account.md#manage-your-storage-account). Megtekintheti a tárelérési kulcsokat a [az tárolási fióklista kulcsok](/cli/azure/storage/account/keys#list).
 
-Hello elérési kulcsainak megtekintése létrehozott tárfiók hello:
+A létrehozott tárfiók hozzáférési kulcsainak megtekintése:
 
 ```azurecli
 az storage account keys list --resource-group myResourceGroup --account-name mystorageaccount
 ```
 
-hello kimeneti hasonlít:
+Az eredmény az alábbihoz hasonlóan fog kinézni:
 
 ```azurecli
 info:    Executing command storage account keys list
@@ -159,12 +159,12 @@ data:    key1  d4XAvZzlGAgWdvhlWfkZ9q4k9bYZkXkuPCJ15NTsQOeDeowCDAdB80r9zA/tUINAp
 data:    key2  Ww0T7g4UyYLaBnLYcxIOTVziGAAHvU+wpwuPvK4ZG0CDFwu/mAxS/YYvAQGHocq1w7/3HcalbnfxtFdqoXOw8g==  Full
 info:    storage account keys list command OK
 ```
-Jegyezze fel a `key1` még szüksége lesz rájuk toointeract a storage-fiók hello következő lépésben leírtak szerint.
+Jegyezze fel a `key1` , amellyel kommunikálni tud a storage-fiókot a következő lépéseket fogja használni.
 
 ## <a name="create-a-storage-container"></a>A tároló létrehozása
-A hello azonos módon, hogy hozzon létre különböző könyvtárak toologically rendezheti a helyi fájlrendszer, a lemezek létrehozni a tárolási fiók tooorganize tárolókra. A storage-fiók korlátlan számú tárolót tárolhat tartalmazhat. Hozzon létre egy tárolót a [az tároló létrehozása](/cli/azure/storage/container#create).
+Az Ön által létrehozott különböző könyvtárak, hogy logikusan rendszerezhesse az a helyi fájlrendszer ugyanúgy hozzon létre egy tárfiókot, a lemezek rendszerezéséhez tárolókra. A storage-fiók korlátlan számú tárolót tárolhat tartalmazhat. Hozzon létre egy tárolót a [az tároló létrehozása](/cli/azure/storage/container#create).
 
-hello alábbi példa létrehoz egy nevű tárolót `mydisks`:
+Az alábbi példa létrehoz egy nevű tárolót `mydisks`:
 
 ```azurecli
 az storage container create \
@@ -175,7 +175,7 @@ az storage container create \
 ## <a name="upload-vhd"></a>Virtuális merevlemez feltöltéséhez
 Töltsön fel az egyéni lemezzel [az tárolási blob feltöltése](/cli/azure/storage/blob#upload). Töltse fel, és tárolja az egyéni lemezt oldalblobként.
 
-Adja meg a hozzáférési kulcsot a hello tároló hello előző lépésben létrehozott, és ezután hello az elérési út toohello egyéni lemezt a helyi számítógépen:
+Adja meg a hozzáférési kulcsot a tároló létrehozott az előző lépést, és az egyéni lemez elérési útja a helyi számítógépen:
 
 ```azurecli
 az storage blob upload --account-name mystorageaccount \
@@ -183,12 +183,12 @@ az storage blob upload --account-name mystorageaccount \
     --file /path/to/disk/mydisk.vhd --name myDisk.vhd
 ```
 
-## <a name="create-hello-vm"></a>Hello virtuális gép létrehozása
-nem felügyelt lemezzel rendelkező virtuális gép toocreate meg hello URI tooyour lemezt (`--image`) rendelkező [az virtuális gép létrehozása](/cli/azure/vm#create). hello alábbi példakód létrehozza a virtuális gépek nevű `myVM` hello korábban feltöltött virtuális lemez segítségével:
+## <a name="create-the-vm"></a>Virtuális gép létrehozása
+Nem felügyelt lemezzel rendelkező virtuális gép létrehozása, adja meg az URI-t a lemez (`--image`) rendelkező [az virtuális gép létrehozása](/cli/azure/vm#create). Az alábbi példakód létrehozza a virtuális gépek nevű `myVM` korábban feltöltött a virtuális lemez segítségével:
 
-Megadja a hello `--image` paraméterrel [az virtuális gép létrehozása](/cli/azure/vm#create) toopoint tooyour egyéni lemez. Győződjön meg arról, hogy `--storage-account` egyező hello tárfiók a egyéni lemezen tárolja. Nincs toouse hello ugyanabban a tárolóban, egyéni lemez toostore hello a virtuális gépek. Győződjön meg arról, hogy toocreate további tárolókkal hello azonos módon hello korábbi lépéseket az egyéni lemez feltöltés előtt.
+Adja meg, hogy a `--image` paraméterrel [az virtuális gép létrehozása](/cli/azure/vm#create) úgy, hogy az egyéni lemez mutasson. Győződjön meg arról, hogy `--storage-account` megegyezik a tárfiókot, az egyéni lemez tárolására. Nincs a virtuális gépek tárolására használni, az egyéni lemezként ugyanabban a tárolóban. Ügyeljen arra, hogy az egyéni lemez feltöltés előtt hozzon létre semmilyen további tárolókat ugyanúgy, mint a korábbi lépéseket.
 
-hello alábbi példakód létrehozza a virtuális gépek nevű `myVM` a egyéni lemezről:
+Az alábbi példakód létrehozza a virtuális gépek nevű `myVM` a egyéni lemezről:
 
 ```azurecli
 az vm create --resource-group myResourceGroup --location westus \
@@ -198,13 +198,13 @@ az vm create --resource-group myResourceGroup --location westus \
     --use-unmanaged-disk
 ```
 
-Ön továbbra is szükséges toospecify, vagy a választ kér, összes hello hello szükséges további paraméterek **az virtuális gép létrehozása** parancsot például felhasználónév és SSH-kulcsok.
+Meg kell adni, vagy válasz kér, által igényelt minden további paramétereket a **az virtuális gép létrehozása** parancsot például felhasználónév és SSH-kulcsok.
 
 
 ## <a name="resource-manager-template"></a>Resource Manager-sablon
-Az Azure Resource Manager-sablonok a JavaScript Object Notation (JSON) fájlok hello környezet toobuild kívánja. hello sablonok az erőforrás-szolgáltatók toodifferent például számítási és hálózati részletezik. Meglévő sablonok használhatja, vagy a saját írni. Tudjon meg többet az [erőforrás-kezelő és a sablonok használatával](../../azure-resource-manager/resource-group-overview.md).
+Az Azure Resource Manager-sablonok olyan JavaScript Object Notation (JSON), amelyeket a környezet létrehozása build kíván. A sablonok megszakadnak a például számítási és hálózati különböző erőforrás-szolgáltatók. Meglévő sablonok használhatja, vagy a saját írni. Tudjon meg többet az [erőforrás-kezelő és a sablonok használatával](../../azure-resource-manager/resource-group-overview.md).
 
-Hello belül `Microsoft.Compute/virtualMachines` a sablon-szolgáltatót, hogy egy `storageProfile` hello konfigurációs adatait a virtuális gép tartalmazó csomópontot. hello két fő paraméterek tooedit hello `image` és `vhd` URI-azonosítók, amelyek tooyour egyéni és az új virtuális gép virtuális lemezzel. hello következő hello JSON látható az egyéni lemezt használ:
+Belül a `Microsoft.Compute/virtualMachines` a sablon-szolgáltatót, hogy egy `storageProfile` csomópont, amely tartalmazza a konfigurációs részleteket a virtuális gép számára. A két fő paraméterek szerkesztése a `image` és `vhd` URI-azonosítók, amelyek az egyéni és az új virtuális gép virtuális lemezzel. A következő egyéni lemezt használ a JSON példáját mutatja be:
 
 ```json
 "storageProfile": {
@@ -222,16 +222,16 @@ Hello belül `Microsoft.Compute/virtualMachines` a sablon-szolgáltatót, hogy e
           }
 ```
 
-Használhat [a meglévő sablon toocreate egy virtuális Gépet egy egyéni lemezképből](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-from-user-image) vagy foglalkozó témakört [a saját Azure Resource Manager-sablonok készítése](../../azure-resource-manager/resource-group-authoring-templates.md). 
+Használhat [a meglévő sablont, és hozzon létre egy virtuális Gépet egy egyéni lemezképből](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-from-user-image) vagy foglalkozó témakört [a saját Azure Resource Manager-sablonok készítése](../../azure-resource-manager/resource-group-authoring-templates.md). 
 
-Ha egy sablon konfigurálva van, a [az csoport központi telepítésének létrehozása](/cli/azure/group/deployment#create) toocreate a virtuális gépek. Adja meg a JSON-sablon URI hello hello `--template-uri` paraméter:
+Ha egy sablon konfigurálva van, a [az csoport központi telepítésének létrehozása](/cli/azure/group/deployment#create) a virtuális gépek létrehozásához. Adja meg a JSON sablonok az URI a `--template-uri` paraméter:
 
 ```azurecli
 az group deployment create --resource-group myNewResourceGroup \
   --template-uri https://uri.to.template/mytemplate.json
 ```
 
-Ha egy számítógépen helyben tárolt JSON-fájl, használhatja a hello `--template-file` paraméter helyette:
+Ha egy számítógépen helyben tárolt JSON-fájl, használhatja a `--template-file` paraméter helyette:
 
 ```azurecli
 az group deployment create --resource-group myNewResourceGroup \
@@ -240,5 +240,5 @@ az group deployment create --resource-group myNewResourceGroup \
 
 
 ## <a name="next-steps"></a>Következő lépések
-Miután előkészített és feltöltése az egyéni virtuális lemez, akkor további információ [erőforrás-kezelő és a sablonok használatával](../../azure-resource-manager/resource-group-overview.md). Akkor is érdemes lehet túl[hozzá adatlemezt](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) tooyour új virtuális gépeket. Ha a virtuális gépeken futó, hogy kell-e tooaccess alkalmazásai, ne feledje túl[nyisson meg portokat és a végpontok](nsg-quickstart.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Miután előkészített és feltöltése az egyéni virtuális lemez, akkor további információ [erőforrás-kezelő és a sablonok használatával](../../azure-resource-manager/resource-group-overview.md). Is érdemes lehet [hozzá adatlemezt](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) az új virtuális gépek. Ha fut a virtuális gépek elérését igénylő alkalmazások, ügyeljen arra, hogy [nyisson meg portokat és a végpontok](nsg-quickstart.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 

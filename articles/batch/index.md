@@ -1,8 +1,8 @@
 ---
-title: "aaaAzure kötegelt dokumentációja – oktatóanyagok API-referencia |} Microsoft Docs"
-description: "Megtudhatja, hogyan toouse toorun nagyméretű párhuzamos és nagy teljesítményű számítástechnikai alkalmazások hatékonyan kötegelt. Oktatóanyagok, API-referenciák, és egyéb dokumentációk."
+title: "Az Azure Batch dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogy a Batch hogyan használható a nagy léptékű párhuzamos és nagy teljesítményű feldolgozási alkalmazások futtatására. Oktatóanyagok, API-referenciák, és egyéb dokumentációk."
 services: batch
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 25172c7b3462794643d1cba539fcd0d9a6c4c62e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 31e15ecb995f0a5b1164296132db15e8de7e4363
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 #<a name="batch-documentation"></a>Batch – dokumentáció
 
-Ismerje meg, hogyan toouse kötegelt toorun nagyméretű párhuzamos és nagy teljesítményű számítástechnikai alkalmazások hatékonyan a hello felhő. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt, megtudhatja, hogyan toodefine hello Azure számítási erőforrások tooexecute az alkalmazások párhuzamosan vagy léptékű kézzel konfigurálásához, vagy infrastruktúra kezelése nélkül.
+Ismerje meg, hogy a Batch hogyan használható a nagy léptékű párhuzamos és nagy teljesítményű feldolgozási alkalmazások felhőalapú futtatására. Az oktatóanyagok, API-referenciák és egyéb dokumentációk megmutatják önnek, hogy hogyan definiálhat Azure számítási erőforrásokat, amelyek manuális konfigurálás vagy infrastruktúra-kezelés nélkül is párhuzamosan, a megfelelő skálázással futtatják az alkalmazásokat.
 
 <ul class="panelContent cardsFTitle">
     <li>

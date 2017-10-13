@@ -1,5 +1,5 @@
 ---
-title: "a Linux virtuális gépek SAP aaaUsing |} Microsoft Docs"
+title: "A Linux virtuális gépek SAP használatával |} Microsoft Docs"
 description: "Ismerje meg az SAP használatát Linux virtuális gépeken (VM) a Microsoft Azure megoldásban"
 services: virtual-machines-linux,virtual-network,storage
 documentationcenter: saponazure
@@ -16,23 +16,23 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: na
 ms.date: 10/04/2016
 ms.author: sedusch
-ms.openlocfilehash: fd4aad83d99ef5286488aaab6552fd67a5e35a4a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 66eb53f99ce4b30ec283243deb3649c9ca897a2b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="using-sap-on-linux-virtual-machines-in-azure"></a>SAP használata a Linux virtuális gépek Azure-ban
-A felhőalapú informatika egy olyan széles körben használt kifejezés, amely egyre több fontos hello informatikai iparági belül van való kis vállalatok toolarge és multinacionális cég vállalatok fel. A Microsoft Azure Cloud Services Platform széles skálája új lehetőségeket kínál, amelyek Microsoft hello. Most ügyfelek rendszer képes toorapidly kiépítése és deaktiválás rendelkezés alkalmazás Felhőszolgáltatások, mint, hogy ne korlátozott tootechnical vagy költségvetési korlátozások. Helyett befektetés időt és a hardver infrastruktúra, a vállalatok összpontosíthat hello alkalmazás, az üzleti folyamatokat és az előnye az ügyfelek és felhasználók.
+A felhőalapú számítástechnika széles körben használt fogalom, amely egyre fontosabbá válik az informatikai iparágban, a kisvállalatok esetében ugyanúgy, mint a nagy, nemzetközi vállalatok számára. A Microsoft Azure a Microsoft új lehetőségek széles skáláját nyújtó felhőszolgáltatás-platformja. Az ügyfelek most már gyorsan építhetnek ki és vonhatnak ki az üzemből felhőszolgáltatásként rendelkezésre bocsájtott alkalmazásokat, ami azt jelenti, hogy többé nem érvényesülnek a technikai vagy költségvetési korlátozások. A vállalatoknak nem kell időt és forrásokat befektetni a hardverinfrastruktúrába: ehelyett az alkalmazásra, az üzleti folyamatokra és az ügyfeleknek és felhasználóknak nyújtott értékre koncentrálhatnak.
 
-Microsoft Azure virtuális gépekkel Microsoft biztosít az átfogó infrastruktúra (IaaS) szolgáltatás platformként. Az Azure virtuális gépek támogatják az SAP NetWeaver-alapú alkalmazásokat (IaaS). az alábbi hello tanulmányok ismertetik, hogyan tooplan és megvalósítása SAP NetWeaver alapú alkalmazások a Windows virtuális gépek Azure-ban. SAP NetWeaver-alapú alkalmazások valósítja meg a [Windows virtuális gépek](../../virtual-machines-windows-classic-sap-get-started.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
+Microsoft Azure virtuális gépekkel Microsoft biztosít az átfogó infrastruktúra (IaaS) szolgáltatás platformként. Az Azure virtuális gépek támogatják az SAP NetWeaver-alapú alkalmazásokat (IaaS). Az alábbi tanulmányok azt ismertetik, hogyan tervezésével és megvalósításával SAP NetWeaver-alapú alkalmazások a Windows virtuális gépek Azure-ban. SAP NetWeaver-alapú alkalmazások valósítja meg a [Windows virtuális gépek](../../virtual-machines-windows-classic-sap-get-started.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
 
 [!INCLUDE [virtual-machines-common-classic-sap-get-started](../../../../includes/virtual-machines-common-classic-sap-get-started.md)]
 
 ## <a name="sap-netweaver-on-azure-suse-linux-virtual-machines"></a>SAP NetWeaver Azure SUSE Linux virtuális gépeken
-cím: Azure virtuális gépeken Microsoft SUSE Linux SAP NetWeaver aaaTesting
+Cím: A Microsoft Azure SUSE Linux virtuális gépeken SAP NetWeaver tesztelése
 
-Összefoglalás: Nincs hivatalos SAP támogatás a SAP NetWeaver ezen a ponton a időben történő futtatásához Azure Linux virtuális gépeken. Az ügyfelek azonban célszerű toodo néhány tesztelése, vagy vegye fontolóra toorun SAP bemutató vagy képzési rendszerek Azure Linux virtuális gépek mindaddig, amíg nincs szükség az SAP támogatási szolgálatától. Ez a cikk segítségül szolgálhat Azure SUSE Linux virtuális gépek telepítése a futó SAP, valamint módot adnak számukra az alapvető megpróbálkozna sorrendben, tooavoid közös nehézségek.
+Összefoglalás: Nincs hivatalos SAP támogatás a SAP NetWeaver ezen a ponton a időben történő futtatásához Azure Linux virtuális gépeken. Azonban érdemes lehet megtenni, néhány tesztelése, vagy vegye fontolóra SAP bemutató vagy futtatásához képzési rendszerek Azure Linux virtuális gépek mindaddig, amíg nincs szükség az SAP támogatási szolgálatától. Ez a cikk segítségül szolgálhat Azure SUSE Linux virtuális gépek telepítése a futó SAP, és néhány alapvető mutatókat biztosít közös nehézségek elkerülése érdekében.
 
 Frissített: 2015. decemberi
 

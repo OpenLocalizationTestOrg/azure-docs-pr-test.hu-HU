@@ -1,6 +1,6 @@
 ---
-title: "aaaSend események tooAzure Event Hubs Java használatával |} Microsoft Docs"
-description: "Ismerkedés a küldő tooEvent Hubs Java használatával"
+title: "Események küldése az Azure Event Hubs Java használatával |} Microsoft Docs"
+description: "Bevezetés az Event Hubs Java használatával küldése"
 services: event-hubs
 documentationcenter: 
 author: sethmanheim
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: ec537b8849a0cb49855e76c0c0ef4093108fe83c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b31771001989e20b88bc8d7bca1afceb58ec197c
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="send-events-tooazure-event-hubs-using-java"></a>Események küldése tooAzure Event Hubs Java használatával
+# <a name="send-events-to-azure-event-hubs-using-java"></a>Események küldése az Azure Event Hubs Java használatával
 
 ## <a name="introduction"></a>Bevezetés
-Az Event Hubs egy kiválóan méretezhető fogadórendszer, melyek több millió eseményt másodpercenként, egy alkalmazás tooprocess engedélyezése és elemezheti az adatokat a csatlakoztatott eszközök és alkalmazások által létrehozott nagy mennyiségű hello. Miután egy eseményközpontba való összegyűjtését, átalakítás és tárolására is használható adatok bármilyen valós idejű elemzési szolgáltató vagy tárolási fürt használatával.
+Az Event Hubs egy kiválóan méretezhető fogadórendszer, amely is több millió eseményt másodpercenként, az alkalmazás engedélyezése feldolgozni, és elemezze a nagy mennyiségű adatot a csatlakoztatott eszközök és alkalmazások által létrehozott. Miután egy eseményközpontba való összegyűjtését, átalakítás és tárolására is használható adatok bármilyen valós idejű elemzési szolgáltató vagy tárolási fürt használatával.
 
-További információkért lásd: hello [Event Hubs – áttekintés][Event Hubs overview].
+További információkért lásd: a [Event Hubs – áttekintés][Event Hubs overview].
 
-Ez az oktatóanyag bemutatja, hogyan toosend események tooan event hubs egy Java-Konzolalkalmazás használatával. tooreceive események hello Java Event Processor Host szalagtár használata esetén lásd: [Ez a cikk](event-hubs-java-get-started-receive-eph.md), vagy kattintson a hello fogadó megfelelő nyelvi hello bal oldali tábla tartalmának.
+Ez az oktatóanyag bemutatja, hogyan események küldése az eseményközpontba egy Java-Konzolalkalmazás használatával. A Java Event Processor Host szalagtárat használó események fogadásához, lásd: [Ez a cikk](event-hubs-java-get-started-receive-eph.md), vagy kattintson a bal oldali tartalomjegyzék a megfelelő fogadó nyelvet.
 
-A sorrend toocomplete ebben az oktatóanyagban kell a következő hello:
+Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
 
 * A Java-fejlesztőkörnyezet. Ebben az oktatóanyagban feltételezzük, hogy [Eclipse](https://www.eclipse.org/).
 * Aktív Azure-fiók. <br/>Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes fiókot. További információkért lásd: <a href="http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fdevelop%2Fmobile%2Ftutorials%2Fget-started%2F" target="_blank">Ingyenes Azure-fiók létrehozása</a>.
 
-## <a name="send-messages-tooevent-hubs"></a>Üzenetek küldése tooEvent hubok
-hello Java ügyféloldali kódtára a Event Hubs Maven-projektek a hello használható [Maven központi tárházban](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-eventhubs%22). Ebben a könyvtárban az Maven project fájl függőségi deklaráció a következő hello segítségével is hivatkozni:    
+## <a name="send-messages-to-event-hubs"></a>Üzenetek küldése az Event Hubs szolgáltatásnak
+Az Event Hubs Java ügyfélkódtár a Maven-projektek használható a [Maven központi tárházban](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-eventhubs%22). Ebben a könyvtárban, a következő függőségi nyilatkozat az Maven project fájl használatával is hivatkozni:    
 
 ```xml
 <dependency>
@@ -45,11 +45,11 @@ hello Java ügyféloldali kódtára a Event Hubs Maven-projektek a hello haszná
 </dependency>
 ```
 
-A különböző típusú buildkörnyezeteket, explicit módon szerezhet be legfrissebb kiadott hello JAR fájlok hello [Maven központi tárházban](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-eventhubs%22).  
+A különböző típusú buildkörnyezeteket, explicit módon beszerezheti a legfrissebb kiadott JAR fájlok a [Maven központi tárházban](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-eventhubs%22).  
 
-Egyszerű esemény-közzétevő, importálja a hello *com.microsoft.azure.eventhubs* hello Event Hubs ügyfél osztályok és hello csomag *com.microsoft.azure.servicebus* segédprogram osztályok, például a csomag hello Azure Service Bus üzenetküldési ügyfél megosztott közös kivételeket. 
+Egy egyszerű esemény-közzétevő, importálja a *com.microsoft.azure.eventhubs* csomag az Event Hubs ügyfél osztályok és a *com.microsoft.azure.servicebus* segédprogram osztályok esetében például a csomag közös kivételeket, amelyek az Azure Service Bus üzenetküldési ügyfél vannak megosztva. 
 
-A következő minta hello először létre kell hoznia egy új Maven project konzol/rendszerhéj alkalmazáshoz a kedvenc Java fejlesztői környezetben. Hello osztály neve `Send`.     
+A következő mintában először hozzon létre egy új Maven-projektet egy konzol/felületalkalmazáshoz a kedvenc Java-fejlesztőkörnyezetében. Az osztály neve `Send`.     
 
 ```java
 import java.io.IOException;
@@ -67,7 +67,7 @@ public class Send
     {
 ```
 
-Cserélje le a hello névtér és a event hub nevét hello eseményközpont létrehozásakor használt hello értékekkel.
+Cserélje le a névtér és a event hub neve az eseményközpont létrehozásakor használt értékek.
 
 ```java
     final String namespaceName = "----ServiceBusNamespaceName-----";
@@ -77,7 +77,7 @@ Cserélje le a hello névtér és a event hub nevét hello eseményközpont lét
     ConnectionStringBuilder connStr = new ConnectionStringBuilder(namespaceName, eventHubName, sasKeyName, sasKey);
 ```
 
-Ezután hozzon létre egyes számú esemény által karakterlánc átalakítása azokat a UTF-8 bájtos kódolását. Ezután hozzon létre új Event Hubs ügyfél példányt hello kapcsolati karakterlánc, és hello üzenetet küldeni.   
+Ezután hozzon létre egyes számú esemény által karakterlánc átalakítása azokat a UTF-8 bájtos kódolását. Ezután hozzon létre új Event Hubs-ügyfél példányt a kapcsolati karakterláncból, és elküldeni az üzenetet.   
 
 ```java 
 
@@ -92,9 +92,9 @@ Ezután hozzon létre egyes számú esemény által karakterlánc átalakítása
 ``` 
 
 ## <a name="next-steps"></a>Következő lépések
-További információ az Event Hubs érhetők el a következő hivatkozások hello:
+Az alábbi webhelyeken további információt talál az Event Hubsról:
 
-* [Hello EventProcessorHost eseményeket fogadni](event-hubs-java-get-started-receive-eph.md)
+* [Fogadása az EventProcessorHost használatához események](event-hubs-java-get-started-receive-eph.md)
 * [Event Hubs – áttekintés][Event Hubs overview]
 * [Eseményközpont létrehozása](event-hubs-create.md)
 * [Event Hubs – gyakori kérdések](event-hubs-faq.md)

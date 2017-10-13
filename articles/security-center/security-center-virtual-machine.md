@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Security Center és az Azure virtuális gépek |} Microsoft Docs"
-description: "Ez a dokumentum segít toounderstand hogyan az Azure Security Center képes védelme érdekében Azure virtuális gépeken."
+title: "Azure Security Center és Azure-beli virtuális gépek | Microsoft Docs"
+description: "Ebből a dokumentumból megismerheti, hogyan védi az Azure Security Center az Azure-beli virtuális gépeket."
 services: security-center
 documentationcenter: na
 author: YuriDio
@@ -14,92 +14,92 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/24/2017
 ms.author: yurid
-ms.openlocfilehash: d5e80e9341263a57f3100cb032a066f037e913a8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 48314788dbe4618f271f0235f106dbe15ef004b8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-security-center-and-azure-virtual-machines"></a>Az Azure Security Center és az Azure-beli virtuális gépek
-[Az Azure Security Center](https://azure.microsoft.com/services/security-center/) megakadályozása, észlelésében és kezelésében toothreats segít. Az ügyfél összes előfizetésére kiterjedő, integrált biztonsági monitorozást és szabályzatkezelést biztosít, megkönnyíti a nehezen észlelhető fenyegetések azonosítását, és számos biztonsági megoldással együttműködik.
+[Az Azure Security Center](https://azure.microsoft.com/services/security-center/) lehetővé teszi a fenyegetések megelőzését, észlelését és kezelését. Az ügyfél összes előfizetésére kiterjedő, integrált biztonsági monitorozást és szabályzatkezelést biztosít, megkönnyíti a nehezen észlelhető fenyegetések azonosítását, és számos biztonsági megoldással együttműködik.
 
 Ez a cikk ismerteti, hogyan segíthet a Security Center az Azure-beli virtuális gépek (VM) védelmében.
 
 ## <a name="why-use-security-center"></a>Miért használja a Security Centert?
-A Security Center segít megóvni az Azure-beli virtuális gépeken tárolt adatokat azáltal, hogy betekintést biztosít a virtuális gép biztonsági beállításaiba. Amikor a Security Center megvédi a virtuális gépek, a következő képességeket hello érhetők el:
+A Security Center segít megóvni az Azure-beli virtuális gépeken tárolt adatokat azáltal, hogy betekintést biztosít a virtuális gép biztonsági beállításaiba. Ha a Security Center védi a virtuális gépeit, akkor a következő lehetőségek érhetők el:
 
-* Operációs rendszer (az operációs rendszer) biztonsági beállítások hello az ajánlott konfigurálási szabályok
+* Az operációs rendszer (OS) biztonsági beállításai ajánlott konfigurációs szabályokkal
 * Rendszerbiztonság és a hiányzó kritikus frissítések
 * Az Endpoint Protection javaslatai
 * Lemeztitkosítás ellenőrzése
 * Biztonsági rések felmérése és elhárítása
 * Fenyegetések észlelése
 
-Ezenkívül toohelping az Azure virtuális gépek védelme, a Security Center a biztonsági figyelést és Felhőszolgáltatások, alkalmazásszolgáltatások, virtuális hálózatok és több felügyeleti is biztosít. 
+A Security Center az Azure-beli virtuális gépek védelme mellett a Cloud Services, az App Services, a Virtual Networks és mások biztonsági felügyeletében és kezelésében is segítséget nyújt. 
 
 > [!NOTE]
-> Lásd: [Security Center bemutatása tooAzure](security-center-intro.md) Azure Security Centerrel kapcsolatos további toolearn.
+> Az Azure Security Centerrel kapcsolatos további információkért olvassa el [Az Azure Security Center bemutatása](security-center-intro.md)című témakört.
 > 
 > 
 
 ## <a name="prerequisites"></a>Előfeltételek
-az Azure Security Center használatába tooget lesz tooknow kell, és vegye figyelembe a következőket hello:
+Az Azure Security Centert használatának elkezdése előtt tudnia kell és meg kell fontolnia a következőket:
 
-* Rendelkeznie kell egy előfizetési tooMicrosoft Azure. A Security Center ingyenes és standard csomagjairól a [ Security Center díjszabását](https://azure.microsoft.com/pricing/details/security-center/) ismertető oldalon talál további információt.
-* A Security Center bevezetését tervezése című [az Azure Security Center tervezésével és műveletek útmutatója](security-center-planning-and-operations-guide.md) toolearn további tervezési és műveletek használata.
+* Szüksége lesz egy Microsoft Azure-előfizetésre. A Security Center ingyenes és standard csomagjairól a [ Security Center díjszabását](https://azure.microsoft.com/pricing/details/security-center/) ismertető oldalon talál további információt.
+* Tervezze meg a Security Center bevezetését az[Útmutató az Azure Security Center tervezéséhez és működtetéséhez](security-center-planning-and-operations-guide.md) című dokumentum segítségével, amely további információkat nyújt a tervezés és működtetés szempontjairól.
 * További információ a támogatott operációs rendszerekről: [Azure Security Centerhez kapcsolódó gyakori kérdések (GYIK)](security-center-faq.md). 
 
 ## <a name="set-security-policy"></a>Biztonsági házirend beállítása
-Adatok gyűjtemény igényeinek toobe engedélyezve van, úgy, hogy az Azure Security Center képes összegyűjteni hello tooprovide javaslatok és a riasztásokat, amelyek akkor jönnek létre kell konfigurálnia hello biztonsági házirend alapján. A hello alábbi ábrán látható, amely **adatgyűjtés** lett kapcsolva a **a**.
+Engedélyezze az adatgyűjtést, hogy az Azure Security Center összegyűjthesse a szükséges információkat a beállított biztonsági házirend alapján létrehozott javaslatok és riasztások biztosításához. Az alábbi ábrán látható, hogy az **Adatgyűjtés** állapota **Be** van kapcsolva.
 
-A biztonsági házirend szabályozza, amely hello megadott előfizetés vagy az erőforrás-csoporton belüli erőforrások ajánlott hello csoportját határozza meg. Ahhoz, hogy a biztonsági házirend, rendelkeznie kell engedélyezett adatgyűjtés, a Security Center összegyűjti az adatokat a virtuális gépek biztonsági állapotukra biztonsági javaslatokkal, és riasztást küldjön, toothreats tooassess sorrendben. A biztonsági központban állíthatja be a szabályzatokat az Azure-előfizetések vagy erőforráscsoportok tooyour vállalat biztonsági igényeinek és hello szereplő alkalmazások típusának vagy az egyes előfizetések hello adatok érzékenységének megfelelően. 
+A biztonsági szabályzat határozza meg azoknak a vezérlőelemeknek a körét, amelyeket a rendszer az egy adott előfizetésen vagy erőforráscsoporton belüli erőforrásokhoz javasol. A biztonsági házirend engedélyezése előtt engedélyeznie kell az adatgyűjtést. A Security Center összegyűjti az adatokat a virtuális gépekről a biztonsági állapotuk értékeléséhez, a biztonsági javaslatok létrehozásához és a fenyegetésekkel kapcsolatos riasztásokhoz. A Security Centerben a vállalata biztonsági igényeinek és az egyes előfizetésekben szereplő alkalmazások típusának vagy az adatok bizalmasságának megfelelően határozhatja meg az Azure-előfizetésekre vagy -erőforráscsoportokra vonatkozó házirendeket. 
 
 ![Biztonsági házirend](./media/security-center-virtual-machine/security-center-virtual-machine-fig1.png)
 
 > [!NOTE]
-> További információk az egyes toolearn **megakadályozási szabályzat** érhető el, lásd: [biztonsági házirendek beállítása](security-center-policies.md) cikk.
+> További információ az egyes elérhető **Megelőzési házirendekről**: [Biztonsági házirendek beállítása](security-center-policies.md).
 > 
 > 
 
 ## <a name="manage-security-recommendations"></a>Biztonsági javaslatok kezelése
-A Security Center elemzi az Azure-erőforrások biztonsági állapotának hello. A Security Center javaslatokat hoz létre, amikor lehetséges biztonsági réseket észlel. hello javaslatok végigvezetik hello hello szükséges vezérlők konfigurálásának lépésein.
+A Security Center elemzi az Azure-erőforrások biztonsági állapotát. A Security Center javaslatokat hoz létre, amikor lehetséges biztonsági réseket észlel. A javaslatok végigvezetik Önt a szükséges vezérlők konfigurálásának folyamatán.
 
-Miután beállította a biztonsági házirendet, a Security Center elemzi az erőforrások tooidentify potenciális biztonsági réseket hello biztonsági állapotát. hello javaslatok ahol mindegyik sor jelenti-e egy adott javaslat táblázatos formátumban jelennek meg. hello az alábbi táblázat néhány példa a javaslatok az Azure virtuális gépeken, és hogy a minden egyes milyen fogja elvégezni, ha alkalmazza azt. Amikor kiválaszt egy javaslatot, akkor nyújtanak információt, amely bemutatja, hogyan tooimplement hello érték a Security Center.
+Miután beállított egy biztonsági házirendet, a Security Center elemzi az Ön erőforrásainak állapotát, hogy észlelhesse a potenciális biztonsági réseket. A javaslatok egy tábla formájában jelennek meg, amelyben minden egyes sor egy adott javaslatot tartalmaz. Az alábbi táblázatban néhány példa látható az Azure virtuális gépekre vonatkozó javaslatok közül, valamint alkalmazásuk esetén azok működésének leírása. Egy javaslat kiválasztásakor megjelennek annak a Security Centerben történő megvalósításához kapcsolódó információk.
 
 | Ajánlás | Leírás |
 | --- | --- |
-| [Adatgyűjtés engedélyezése az előfizetések számára](security-center-enable-data-collection.md) |Javasolja, hogy kapcsolja be hello biztonsági házirend adatgyűjtés minden egyes előfizetésnél és az összes virtuális gépek (VM) az Ön előfizetéseit. |
-| [Operációs rendszerek sebezhetőségeinek javítása](security-center-remediate-os-vulnerabilities.md) |Az operációs rendszer azon konfigurációinak igazodni ajánlott a konfigurációs szabályok hello javasolja például nem engedélyezik a mentett jelszavak toobe. |
-| [Rendszerfrissítések alkalmazása](security-center-apply-system-updates.md) |Javasolja a hiányzó rendszer biztonsági és kritikus frissítések tooVMs telepíteni. |
-| [Rendszerfrissítések utáni újraindítás](security-center-apply-system-updates.md#reboot-after-system-updates) |Javasolja, hogy indítsa újra a virtuális gép toocomplete hello folyamat a rendszer frissítéseinek alkalmazása. |
-| [Endpoint Protection telepítése](security-center-install-endpoint-protection.md) |Javasolja, hogy mértékben kártevőirtó programok tooVMs (csak Windows virtuális gépek esetén). |
+| [Adatgyűjtés engedélyezése az előfizetések számára](security-center-enable-data-collection.md) |Javasolja, hogy minden egyes előfizetés és virtuális gép (VM) esetében kapcsolja be az adatgyűjtést az előfizetéseinek biztonsági házirendjében. |
+| [Operációs rendszerek sebezhetőségeinek javítása](security-center-remediate-os-vulnerabilities.md) |Javasolja, hogy az operációs rendszer konfigurálását az ajánlott konfigurációs szabályok szerint végezze, például ne engedélyezze a jelszavak mentését. |
+| [Rendszerfrissítések alkalmazása](security-center-apply-system-updates.md) |Javasolja, hogy végezze el a hiányzó rendszerbiztonsági és kritikus frissítések központi telepítését a virtuális gépeken. |
+| [Rendszerfrissítések utáni újraindítás](security-center-apply-system-updates.md#reboot-after-system-updates) |Javasolja, hogy a rendszerfrissítések alkalmazási folyamatának befejezéséhez indítson újra egy virtuális gépet. |
+| [Endpoint Protection telepítése](security-center-install-endpoint-protection.md) |Javasolja, hogy telepítsen kártevőirtó programokat a virtuális gépekre (csak Windows rendszerű virtuális gépek esetében). |
 | [Endpoint Protection állapotriasztások feloldása](security-center-resolve-endpoint-protection-health-alerts.md) |Javasolja, hogy hárítsa el az Endpoint Protection használatával kapcsolatos hibákat. |
-| [Virtuálisgép-ügynök engedélyezése](security-center-enable-vm-agent.md) |Lehetővé teszi, hogy toosee virtuális gépek igénylő hello Virtuálisgép-ügynök. rendelés tooprovision javítás vizsgálatát, Alapterv vizsgálatát, és a kártevőirtó-programok virtuális gépeken hello ügynököt kell telepíteni. Virtuálisgép-ügynök hello alapértelmezés szerint telepítve van a hello Azure Piactérről származó központilag telepített virtuális gépekhez. hello cikk [ügynök és Virtuálisgép-bővítmények – 2. rész](http://azure.microsoft.com/blog/2014/04/15/vm-agent-and-extensions-part-2/) bemutatja, hogyan tooinstall hello Virtuálisgép-ügynök. |
-| [Lemeztitkosítás alkalmazása](security-center-apply-disk-encryption.md) |Javasolja, hogy végezze el a virtuális gép titkosítását az Azure Disk Encryption használatával (Windows és Linux rendszerű virtuális gépek esetében). Titkosítási ajánlott hello az operációs rendszer, mind az adatkötetek a virtuális gépen. |
+| [Virtuálisgép-ügynök engedélyezése](security-center-enable-vm-agent.md) |Lehetővé teszi a virtuálisgép-ügynök alkalmazását igénylő virtuális gépek megtekintését. A virtuálisgép-ügynöknek telepítve kell lennie a virtuális gépeken a javítás- és alapkonfiguráció-keresés, valamint a kártevőirtó programok üzembe helyezéséhez. Az Azure Marketplace-ről üzembe helyezett virtuális gépek esetében a virtuálisgép-ügynök alapértelmezés szerint telepítve van. A virtuálisgép-ügynök telepítéséről a [Virtuális gép-ügynök és -bővítmények – 2. rész](http://azure.microsoft.com/blog/2014/04/15/vm-agent-and-extensions-part-2/) cikkben talál információkat. |
+| [Lemeztitkosítás alkalmazása](security-center-apply-disk-encryption.md) |Javasolja, hogy végezze el a virtuális gép titkosítását az Azure Disk Encryption használatával (Windows és Linux rendszerű virtuális gépek esetében). A titkosítás elvégzése az operációs rendszer és az adatkötetek esetében egyaránt javasolt a virtuális gépen. |
 | [A sebezhetőségi felmérés nincs telepítve](security-center-vulnerability-assessment-recommendations.md) |Javasolja, hogy telepítsen egy biztonsági rések felmérése szolgáló megoldást a virtuális gépére. |
-| [Sebezhetőségek javítása](security-center-vulnerability-assessment-recommendations.md#review-the-recommendation) |Lehetővé teszi a toosee rendszer és az alkalmazás által észlelt biztonsági rések hello biztonsági rés értékelési megoldás a virtuális Gépre telepítve. |
+| [Sebezhetőségek javítása](security-center-vulnerability-assessment-recommendations.md#review-the-recommendation) |Lehetővé teszi a virtuális gépre telepített sebezhetőségfelmérő megoldás által észlelt rendszer- és alkalmazássebezhetőségek megtekintését. |
 
 > [!NOTE]
-> toolearn vonatkozó javaslatokkal kapcsolatban bővebben lásd: [biztonsági javaslatok kezelése](security-center-recommendations.md) cikk.
+> A javaslatokról további információkat a [Biztonsági javaslatok kezelése](security-center-recommendations.md) cikkben talál.
 > 
 > 
 
 ## <a name="monitor-security-health"></a>A biztonsági állapot figyelése
-Miután engedélyezte a [biztonsági házirendek](security-center-policies.md) az előfizetéshez tartozó erőforrásokra, a Security Center elemzi az erőforrások tooidentify potenciális biztonsági réseket hello biztonságát.  Megtekintheti az erőforrások, valamint hello esetleg felmerülő problémákat hello biztonsági állapotát **erőforrás biztonsági állapota** panelen. Amikor rákattint **virtuális gépek** a hello **erőforrás biztonsági** állapota csempe, hello **virtuális gépek** panel nyílik meg a virtuális gépekre vonatkozó javaslatok. 
+Ha bekapcsolja az előfizetéshez tartozó erőforrásokra vonatkozó [biztonsági szabályzatokat](security-center-policies.md), a Security Center elvégzi az erőforrások biztonsági elemzését, és azonosítja a potenciális sebezhető pontokat.  A **Resource Security Health** (Erőforrás biztonsági állapota) panelen megtekintheti az erőforrások biztonsági állapotát, valamint az esetleg felmerülő problémákat. A **Resources security health** (Erőforrás biztonsági állapota) csempe **Virtual machines** (Virtuális gépek) elemére kattintva megnyithatja a **Virtual machines** (Virtuális gépek) panelt, amelyen megtekintheti a virtuális gépekkel kapcsolatos javaslatokat. 
 
 ![Biztonsági állapot](./media/security-center-virtual-machine/security-center-virtual-machine-fig2.png)
 
-## <a name="manage-and-respond-toosecurity-alerts"></a>Kezelésének és megoldásának toosecurity riasztások
-A Security Center automatikusan gyűjti, elemzi és integrálja az Azure-erőforrások, hello és hálózati összekapcsolt partneri megoldások (például tűzfal és az endpoint protection megoldások), naplóadatait toodetect valós fenyegetések és a vakriasztások számának csökkentése érdekében. Használatával a különböző összesítése [az észlelési képességek](security-center-detection-capabilities.md), a Security Center képes toogenerate előrébb biztonsági riasztások toohelp gyorsan hello probléma vizsgálja meg és adja meg a módjára vonatkozó javaslatokkal tooremediate lehetséges támadások.
+## <a name="manage-and-respond-to-security-alerts"></a>A biztonsági riasztások kezelése és a riasztásokra való válaszadás
+A valós fenyegetések észlelése és a téves riasztások számának csökkentése érdekében a Security Center automatikusan elvégzi a naplóadatok összegyűjtését, elemzését és integrálását az Azure-erőforrásokról, a hálózatról és a csatlakoztatott partnermegoldásokból (például tűzfalról és Endpoint Protection-megoldásokból). A Security Center számos [észlelési képesség](security-center-detection-capabilities.md) együttesének használatával képes a rangsorolt biztonsági riasztások létrehozására, amelyek segítségével gyorsan megtörténhet a problémák kivizsgálása, valamint a lehetséges támadások következményeinek javítására vonatkozó javaslattétel.
 
 ![Biztonsági riasztások](./media/security-center-virtual-machine/security-center-virtual-machine-fig3.png)
 
-Válassza ki a biztonsági riasztás toolearn hello esemény, ha vannak ilyenek, lépéseket és mit, melyik hello riasztás kiváltó többet kell tootake tooremediate támadás. A biztonsági riasztások [típus](security-center-alerts-type.md) és dátum szerint vannak csoportosítva.
+Válasszon ki egy biztonsági riasztást, ha többet szeretne megtudni a riasztást kiváltó esemény(ek)ről, és arról, hogy milyen lépéseket kell tennie a támadás elhárítása érdekében. A biztonsági riasztások [típus](security-center-alerts-type.md) és dátum szerint vannak csoportosítva.
 
 ## <a name="see-also"></a>Lásd még:
-További információ a Security Center toolearn hello következő lásd:
+A Security Centerrel kapcsolatos további információkért olvassa el a következőket:
 
-* [Biztonsági szabályzatok beállítása az Azure Security Center](security-center-policies.md) – megtudhatja, hogyan tooconfigure biztonsági házirendek az Azure-előfizetések és az erőforráscsoportokat.
-* [Az Azure Security Centerben riasztások kezelése és válaszol toosecurity](security-center-managing-and-responding-alerts.md) – megtudhatja, hogyan toomanage és válaszoljon toosecurity riasztásokat.
-* [Azure Security Center: GYIK](security-center-faq.md) – gyakran ismételt kérdések hello szolgáltatás használatával kapcsolatban.
+* [Biztonsági szabályzatok beállítása az Azure Security Centerben](security-center-policies.md) – Ez a cikk bemutatja, hogyan konfigurálhat biztonsági házirendeket Azure-előfizetései és -erőforráscsoportjai számára.
+* [Biztonsági riasztások kezelése és válaszadás a riasztásokra az Azure Security Centerben](security-center-managing-and-responding-alerts.md) – A biztonsági riasztások kezelése és az azokra való reagálás.
+* [Azure Security Center – gyakran ismételt kérdések](security-center-faq.md) – Gyakran ismételt kérdések a szolgáltatás használatával kapcsolatban.
 

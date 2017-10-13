@@ -1,5 +1,5 @@
 ---
-title: "aaaMonitor egy Azure Tárolószolgáltatás-fürtöt Sysdig |} Microsoft Docs"
+title: "Azure tárolószolgáltatás-fürt megfigyelése a Sysdig segítségével | Microsoft Docs"
 description: "Azure tárolószolgáltatás-fürt megfigyelése a Sysdig segítségével."
 services: container-service
 documentationcenter: 
@@ -16,42 +16,42 @@ ms.workload: na
 ms.date: 08/08/2016
 ms.author: saudas
 ms.custom: mvc
-ms.openlocfilehash: 72f2d3d6f6885f9876fa158b88aae58b84a4610f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e61001161e632a5d2e513107e30f1eaf06103989
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="monitor-an-azure-container-service-cluster-with-sysdig"></a>Azure tárolószolgáltatás-fürt megfigyelése a Sysdig segítségével
-Ebben a cikkben fogjuk üzembe helyezni Sysdig ügynökök tooall hello ügynök a Azure Tárolószolgáltatási fürt csomópontja. Ehhez a konfiguráláshoz Sysdig-fiókra van szüksége. 
+Ebben a cikkben Sysdig-ügynököket telepítünk az Azure Container Service-fürt összes ügynökcsomópontjára. Ehhez a konfiguráláshoz Sysdig-fiókra van szüksége. 
 
 ## <a name="prerequisites"></a>Előfeltételek
-[Helyezzen üzembe](container-service-deployment.md) és [csatlakoztasson](../container-service-connect.md) egy, az Azure Container Service által konfigurált fürtöt. Fedezze fel hello [Marathon felhasználói felület](container-service-mesos-marathon-ui.md). Nyissa meg túl[http://app.sysdigcloud.com](http://app.sysdigcloud.com) tooset Sysdig felhő fiók létrehozása. 
+[Helyezzen üzembe](container-service-deployment.md) és [csatlakoztasson](../container-service-connect.md) egy, az Azure Container Service által konfigurált fürtöt. Ismerkedjen meg a [Marathon felhasználói felülettel](container-service-mesos-marathon-ui.md). Látogasson el a [http://app.sysdigcloud.com](http://app.sysdigcloud.com) címre egy Sysdig-felhőfiók beállításához. 
 
 ## <a name="sysdig"></a>Sysdig
-Sysdig egy figyelési szolgáltatása lehetővé teszi toomonitor a tárolók a fürtön belül. Sysdig ismert toohelp kaptak, de a alapvető figyelési metrikákat, a CPU, a hálózat, a memória és az i/o is rendelkezik. Sysdig teszi, hogy mely tárolók dolgozik könnyen toosee hello segítségével hardest vagy lényegében hello legtöbb memóriát és CPU. Ez a nézet hello "Overview" szakaszban, amely jelenleg bétaverziójú van. 
+A Sysdig egy olyan megfigyelő szolgáltatás, amelynek a segítségével megfigyelheti a fürtben található tárolókat. A Sysdig a hibaelhárításban nyújtott segítségről ismert, de a processzor, a hálózatkezelés, a memória és az I/O megfigyelésére alkalmas alapvető mérőszámokkal is rendelkezik. A Sysdig megkönnyíti annak áttekintését, hogy mely tárolók működnek a legtöbbet, és melyek használják leginkább a processzort, illetve a legtöbb memóriát. Ez a nézet az „Overview” (Áttekintés) részben található, amelynek jelenleg még csak a bétaverziója érhető el. 
 
 ![Sysdig felhasználói felület](./media/container-service-monitoring-sysdig/sysdig6.png) 
 
 ## <a name="configure-a-sysdig-deployment-with-marathon"></a>Üzemelő Sysdig-példány konfigurálása a Marathonnal
-Ezeket a lépéseket bemutatja, hogyan tooconfigure és Sysdig alkalmazások tooyour fürtben a marathon segítségével telepíthet. 
+Ezek a lépések bemutatják, hogyan konfigurálhat és helyezhet üzembe Sysdig-alkalmazásokat a fürtön a Marathonnal. 
 
-A DC/OS felhasználói felületén keresztül elérni [http://localhost:80 /](http://localhost:80/) egyszer hello DC/OS felhasználói felületének lépjen a toohello "Universe", amelyek a hello bal alsó, és keressen a "Sysdig."
+Nyissa meg a DC/OS felhasználói felületét a [http://localhost:80/](http://localhost:80/) címen keresztül. A DC/OS felhasználói felületen navigáljon a „Universe” elemre, amely a bal alsó részen található, majd keressen rá a „Sysdig” kifejezésre.
 
 ![Sysdig a DC/OS Universe rendszerben](./media/container-service-monitoring-sysdig/sysdig1.png)
 
-Most toocomplete hello konfigurációs egy Sysdig van szüksége a fiók vagy egy ingyenes próbafiók felhő. Miután toohello Sysdig felhő webhelyen jelentkezett, kattintson a felhasználónevére, és hello oldalon kell megjelennie a "hozzáférési kulcsot." 
+A konfiguráció befejezéséhez Sysdig-felhőfiókra vagy ingyenes próbafiókra van szüksége. Miután bejelentkezett a Sysdig felhő webhelyére, kattintson a felhasználónevére, és az oldalon meg kell jelennie a hívóbetűjének („Access Key”). 
 
 ![Sysdig API-kulcs](./media/container-service-monitoring-sysdig/sysdig2.png) 
 
-A hozzáférési kulcsot következő kezdenek hello Sysdig konfigurációs hello DC/OS Universe belül. 
+Ezután írja be a hívóbetűt a DC/OS Universe rendszerben található Sysdig-konfigurációba. 
 
-![A DC/OS Universe hello Sysdig konfiguráció](./media/container-service-monitoring-sysdig/sysdig3.png)
+![Sysdig-konfiguráció a DC/OS Universe rendszerben](./media/container-service-monitoring-sysdig/sysdig3.png)
 
-Most már készen hello példányok too10000000, amikor egy új csomópontot hozzáadják toohello fürt Sysdig automatikusan telepíteni fogja az ügynök toothat új csomópont. Ez az egy átmeneti megoldás toomake meg arról, hogy Sysdig telepíti az új ügynökök tooall hello fürtön belül. 
+Most állítsa a példányszámot 10000000 értékre, hogy amikor új csomópontot ad a fürthöz, a Sysdig mindig automatikusan üzembe helyezzen egy ügynököt az új csomóponthoz. Ez egy ideiglenes megoldás, hogy a Sysdig a fürtben található összes új ügynöknél üzembe legyen helyezve. 
 
-![A DC/OS Universe-példányokat hello Sysdig konfiguráció](./media/container-service-monitoring-sysdig/sysdig4.png)
+![Sysdig-konfiguráció a DC/OS Universe-példányokban](./media/container-service-monitoring-sysdig/sysdig4.png)
 
-Hello csomag telepítése után nyissa meg a visszafelé toohello Sysdig felhasználói felület, és be fog tudni tooexplore hello különböző a szoftverhasználati mérési adatok az hello tárolókat a fürtön belül. 
+Miután telepítette a csomagot, lépjen vissza a Sysdig felhasználói felületére, ahol áttekintheti a fürtben lévő tárolók különböző használati mérőszámait. 
 
 Telepíthet kimondottan a Mesoshoz és a Marathonhoz készült irányítópultokat is az [új irányítópult varázsló](https://app.sysdigcloud.com/#/dashboards/new) segítségével.

@@ -1,6 +1,6 @@
 ---
-title: "jelszó egyszeri bejelentkezés az Azure AD-katalógusában alkalmazás konfigurálása aaaProblem |} Microsoft Docs"
-description: "Hello gyakori problémák személyek arcfelismerési áttekinteni jelszó egyszeri bejelentkezéshez már szereplő alkalmazások számára az Azure AD Application Gallery hello konfigurálása"
+title: "A probléma jelszó egyszeri bejelentkezés az Azure AD-katalógusában alkalmazás konfigurálása |} Microsoft Docs"
+description: "A gyakori problémák személyek arcfelismerési áttekinteni jelszó egyszeri bejelentkezés az Azure AD Application Gallery már szereplő alkalmazások konfigurálása"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,98 +13,98 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 78c37c52453c375bf7ccbca6df5c9008be4ce642
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 58d29996a922fac6d295e753ba5d66d32e745a57
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="problem-configuring-password-single-sign-on-for-an-azure-ad-gallery-application"></a>A probléma jelszó egyszeri bejelentkezés az Azure AD-katalógusában alkalmazás konfigurálása
 
-Ez a cikk segítséget toounderstand hello gyakori problémák személyek arcfelismerési konfigurálásakor **jelszó egyszeri bejelentkezés** Azure AD-katalógusában alkalmazással.
+Ez a cikk segítenek megérteni a gyakori problémák személyek arcfelismerési konfigurálásakor **jelszó egyszeri bejelentkezés** Azure AD-katalógusában alkalmazással.
 
-## <a name="credentials-are-filled-in-but-hello-extension-does-not-submit-them"></a>Kitölti a hitelesítő adatokat, de hello bővítmény elküldeni őket
+## <a name="credentials-are-filled-in-but-the-extension-does-not-submit-them"></a>Kitölti a hitelesítő adatokat, de a bővítmény elküldeni őket
 
-Ez általában akkor fordul elő, ha hello alkalmazás gyártójának módosultak a bejelentkezési lapon nemrég tooadd mező, módosítsa az alapul szolgáló azonosítója használtuk toodetect hello felhasználónév és jelszó megadására, vagy módosítsa a hogyan hello bejelentkezés tapasztalhat az alkalmazásokban működik. Szerencsére sok esetben Microsoft együttműködhet alkalmazás szállítók toorapidly hárítsa el ezeket a problémákat.
+Ez általában akkor fordul elő, ha az alkalmazás gyártójának a bejelentkezési oldalon nemrég mező hozzáadása, módosítása az alapul szolgáló azonosító észleli a felhasználónév és jelszó megadására, vagy módosítsa a módját a bejelentkezési élmény működik az alkalmazásokban használt megváltozott. Szerencsére sok esetben Microsoft együttműködhet alkalmazásszállítók gyorsan a problémák megoldásához.
 
-Míg a Microsoft észlelés, ha ezek Integrációk törés kérjük, de egyes esetekben nem képes toofind technológiák tooautomatically ezeket a problémákat jobb funkcióval, illetve igénybe vehet néhány toofix eltöltött idő Hello esetben ezek Integrációk egyike sem működik megfelelően, ha szeretné Köszönjük támogatási esetet megnyitásakor, így a lehető leggyorsabban kérjük.
+Míg a Microsoft technológiák automatikus észlelés, ha ezek Integrációk törés, de néha jelenleg nem tudjuk azonnal található ezeket a problémákat, vagy azok időigényes lehet kijavítani. Abban az esetben egy ezek integrációja nem működik megfelelően, ha szeretné Köszönjük támogatási esetet megnyitásakor, így a lehető leggyorsabban kérjük.
 
-Továbbá toothis, a **szerepelnek a az alkalmazás gyártójával, ha** **küldje el a módon** , azt is dolgozhat velük toonatively alkalmazását integrálása az Azure Active Directoryban. Hello szállító toohello küldhet [listázása az alkalmazás hello Azure Active Directory alkalmazáskatalógusában](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing) tooget őket elindult.
+Továbbá a **szerepelnek a az alkalmazás gyártójával, ha** **küldje el a módon** , azt is elérheti őket a natív módon integrálja az alkalmazásokban az Azure Active Directoryban. A forgalmazójával küldhet a [listázása az alkalmazást az Azure Active Directory alkalmazáskatalógusában](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing) azokat elindult.
 
-## <a name="credentials-are-filled-in-and-submitted-but-hello-page-indicates-hello-credentials-are-incorrect"></a>Hitelesítő adatok kitöltötte és elküldve, de hello oldal azt jelzi, hogy hello hitelesítő adatok helytelenek
+## <a name="credentials-are-filled-in-and-submitted-but-the-page-indicates-the-credentials-are-incorrect"></a>Hitelesítő adatok kitöltötte és elküldve, de az oldal azt jelzi, hogy a hitelesítő adatok helytelenek
 
-a probléma első ellenőrizze hello következő tooresolve:
+A probléma megoldásához először ellenőrizze a következőket:
 
--   Először próbálja túl hello felhasználó**közvetlenül bejelentkezési toohello alkalmazás webhelyét** számukra tárolt hello hitelesítő adatokkal.
+-   A felhasználó először próbál **jelentkezzen be az alkalmazás webhelyre közvetlenül** számukra tárolt hitelesítő adatokkal.
 
-  * Biztosan működik, ha már rendelkezik a hello kattintson hello felhasználói **hitelesítő adatainak frissítése** hello gombjára **alkalmazás csempe** a hello **alkalmazások** hello szakasza [alkalmazás Hozzáférési Panel](https://myapps.microsoft.com/) tooupdate őket toohello legújabb ismert felhasználónév és jelszó használata.
+  * Ha biztosan működik, akkor meg kell a felhasználót, kattintson a **hitelesítő adatainak frissítése** gombra a a **alkalmazás csempe** a a **alkalmazások** szakasza a [alkalmazás hozzáférési Panel](https://myapps.microsoft.com/) frissíteni a legutóbbi ismert működő felhasználónevet és jelszót.
 
-   * Ha meg, vagy egy másik hozzárendelt rendszergazda hello hitelesítő adatait a felhasználó találja hello felhasználóhoz vagy csoporthoz tartozó alkalmazás-hozzárendelés toohello navigálva **felhasználók és csoportok** hello alkalmazás hello hozzárendelés kiválasztása lapján és hello kattintva **frissítéséhez szükséges hitelesítő adatokat** gombra.
+   * Ha Ön vagy egy másik rendszergazda hozzárendelve a felhasználó hitelesítő adatainak, található a felhasználó vagy csoport alkalmazás hozzárendelése navigáljon a **felhasználók és csoportok** lapon jelölje ki a hozzárendelés, kattintson az alkalmazás a **frissítéséhez szükséges hitelesítő adatokat** gombra.
 
--   Hello felhasználó rendelve a saját hitelesítő adatait, ha rendelkezik hello felhasználói **tekintse meg arról, hogy a jelszavát nem lejárt hello alkalmazásban toobe** , és ha igen, **lejárt jelszófrissítési** toohello bejelentkezéssel az alkalmazás közvetlenül.
+-   Ha a felhasználó a saját hitelesítő adataikat, kérheti a felhasználótól **ellenőrizze, hogy ne feledje, hogy a jelszavát nem járt le az alkalmazás** , és ha igen, **lejárt jelszófrissítési** történő bejelentkezéssel az alkalmazás közvetlenül.
 
-   * Hello jelszó hello alkalmazás frissítését, követően kérelem hello felhasználói tooclick hello **hitelesítő adatainak frissítése** hello gombjára **alkalmazás csempe** a hello **alkalmazások** hello szakasza [alkalmazás hozzáférési Panel](https://myapps.microsoft.com/) tooupdate őket toohello legújabb ismert felhasználónév és jelszó használata.
+   * A jelszó frissítése az alkalmazásban, után kérjen a felhasználótól az a **hitelesítő adatainak frissítése** gombra a **alkalmazás csempe** a a **alkalmazások** szakasza a [alkalmazás hozzáférési Panel](https://myapps.microsoft.com/) frissíteni a legutóbbi ismert működő felhasználónevet és jelszót.
 
-   * Ha meg, vagy egy másik hozzárendelt rendszergazda hello hitelesítő adatait a felhasználó találja hello felhasználóhoz vagy csoporthoz tartozó alkalmazás-hozzárendelés toohello navigálva **felhasználók és csoportok** hello alkalmazás hello hozzárendelés kiválasztása lapján és hello kattintva **frissítéséhez szükséges hitelesítő adatokat** gombra.
+   * Ha Ön vagy egy másik rendszergazda hozzárendelve a felhasználó hitelesítő adatainak, található a felhasználó vagy csoport alkalmazás hozzárendelése navigáljon a **felhasználók és csoportok** lapon jelölje ki a hozzárendelés, kattintson az alkalmazás a **frissítéséhez szükséges hitelesítő adatokat** gombra.
 
--   Hello felhasználó frissítés hello hozzáférési panel böngészőbővítmény rendelkezik hello hello az alábbi lépéseket követve [hogyan tooinstall hello hozzáférési Panel bővítmény](#how-to-install-the-access-panel-browser-extension) szakasz.
+-   A felhasználó a hozzáférési panel bővítmény frissítése az alábbi lépéseket követve a [a hozzáférési Panel bővítmény telepítése](#how-to-install-the-access-panel-browser-extension) szakasz.
 
--   Győződjön meg arról, hogy a bővítmény hello hozzáférési panel fut, és a felhasználó böngészőben engedélyezve-e.
+-   Győződjön meg arról, hogy a hozzáférési panel bővítmény fut, és a felhasználó böngészőben engedélyezve-e.
 
--   Győződjön meg arról, hogy a felhasználók nem próbálja hello hozzáférési panelén közben toohello alkalmazásban toosign **incognito, inPrivate vagy privát mód**. hello hozzáférési panel bővítmény e mód nem támogatott.
+-   Győződjön meg arról, hogy a felhasználók nem próbál bejelentkezni az alkalmazás a hozzáférési panelen igényelheti közben a **incognito, inPrivate vagy privát mód**. A hozzáférési panel bővítmény e mód nem támogatott.
 
-Abban az esetben, ha az nem működik, lehet, hogy olyan módosítás történt hello alkalmazás oldal, amely ideiglenesen megszeg hello alkalmazás integráció az Azure ad-val hello eset. Például okozhatja ezt hello alkalmazás gyártójának vezet be a lapon, amely manuális vs másképpen viselkedik parancsfájl automatikus bemeneti, aminek következtében automatikus integráció, például a saját, toobreak. Szerencsére sok esetben Microsoft együttműködhet alkalmazás szállítók toorapidly hárítsa el ezeket a problémákat.
+Abban az esetben, ha az nem működik, annak oka lehet az eset, hogy olyan módosítás történt az alkalmazás oldal, amely ideiglenesen megszeg az alkalmazások integrálása az Azure ad-val. Például ez akkor fordulhat elő, amikor az alkalmazás gyártójának vezet be a lapon, amely manuális vs másképpen viselkedik parancsfájl automatikus bemeneti, aminek következtében automatikus integrációs, például a saját, hibájához. Szerencsére sok esetben Microsoft együttműködhet alkalmazásszállítók gyorsan a problémák megoldásához.
 
-Míg a Microsoft észlelés, ha ezek Integrációk törés kérjük, de egyes esetekben nem képes toofind technológiák tooautomatically ezeket a problémákat jobb funkcióval, illetve igénybe vehet néhány toofix eltöltött idő Hello esetben ezek Integrációk egyike sem működik megfelelően, ha szeretné Köszönjük támogatási esetet megnyitásakor, így a lehető leggyorsabban kérjük.
+Míg a Microsoft technológiák automatikus észlelés, ha ezek Integrációk törés, de néha jelenleg nem tudjuk azonnal található ezeket a problémákat, vagy azok időigényes lehet kijavítani. Abban az esetben egy ezek integrációja nem működik megfelelően, ha szeretné Köszönjük támogatási esetet megnyitásakor, így a lehető leggyorsabban kérjük.
 
-Továbbá toothis, a **szerepelnek a az alkalmazás gyártójával, ha** **küldje el a módon** , azt is dolgozhat velük toonatively alkalmazását integrálása az Azure Active Directoryban. Hello szállító toohello küldhet [listázása az alkalmazás hello Azure Active Directory alkalmazáskatalógusában](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing) tooget őket elindult.
+Továbbá a **szerepelnek a az alkalmazás gyártójával, ha** **küldje el a módon** , azt is elérheti őket a natív módon integrálja az alkalmazásokban az Azure Active Directoryban. A forgalmazójával küldhet a [listázása az alkalmazást az Azure Active Directory alkalmazáskatalógusában](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing) azokat elindult.
 
-## <a name="hello-extension-works-in-chrome-and-firefox-but-not-in-internet-explorer"></a>hello bővítmény működik a Chrome és a Firefox, de nem az Internet Explorerben
+## <a name="the-extension-works-in-chrome-and-firefox-but-not-in-internet-explorer"></a>A bővítmény a Chrome és a Firefox, de az Internet Explorer nem működik
 
-Ennek oka két fő toothis problémát:
+A probléma két fő oka is van:
 
--   Attól függően, hogy hello biztonsági beállítások engedélyezve van az Internet Explorerben, ha hello webhely nem része egy **megbízható zóna**, néha tiltható le a parancsfájl futtatásának hello alkalmazáshoz.
+-   Attól függően, hogy a biztonsági beállítások engedélyezve van az Internet Explorerben, ha a webhely nem része egy **megbízható zóna**, egyes esetekben a parancsfájl letiltja a végrehajtása az alkalmazáshoz.
 
-  *  tooresolve, ez túl utasítani hello felhasználói**hello alkalmazás webhely hozzáadása** toohello **megbízható helyek** listán belül a **Internet Explorer biztonsági beállításai**. A felhasználók toohello küldhet [hogyan tooadd egy hely toomy megbízható helyek listája](https://answers.microsoft.com/en-us/ie/forum/ie9-windows_7/how-do-i-add-a-site-to-my-trusted-sites-list/98cc77c8-b364-e011-8dfc-68b599b31bf5) cikk részletes utasításokat.
+  *  A probléma megoldásához, kérje meg a felhasználót, hogy **az alkalmazás-webhely hozzáadása** való a **megbízható helyek** listán belül a **Internet Explorer biztonsági beállításai**. A felhasználók számára is elküldheti a [a webhely felvétele a megbízható helyek listájához](https://answers.microsoft.com/en-us/ie/forum/ie9-windows_7/how-do-i-add-a-site-to-my-trusted-sites-list/98cc77c8-b364-e011-8dfc-68b599b31bf5) cikk részletes utasításokat.
 
--   Ritka esetekben előfordulhat, hogy az Internet Explorer biztonsági ellenőrzés néha okozhat hello lap tooload a parancsfájl végrehajtásának hello lassabban.
+-   Ritka esetekben előfordulhat, hogy az Internet Explorer biztonsági ellenőrzés néha okozhat a lapon, mint a parancsfájl végrehajtása lassan töltődik be.
 
-   * Sajnos ez a helyzet eltérőek lehetnek attól függően, hello a böngésző verziója, a számítógép sebességétől vagy a meglátogatott webhely. Ebben az esetben javasoljuk, hogy kijavíthassuk hello integráció az adott alkalmazás támogatási szolgálatához.
+   * Sajnos ez a helyzet eltérőek lehetnek attól függően, hogy a böngésző verziója, a számítógép sebességétől, vagy a meglátogatott webhely. Ebben az esetben javasoljuk, hogy kijavíthassuk a integráció az adott alkalmazás támogatási szolgálatához.
 
-Továbbá toothis, a **szerepelnek a az alkalmazás gyártójával, ha** **küldje el a módon** , azt is dolgozhat velük toonatively alkalmazását integrálása az Azure Active Directoryban. Hello szállító toohello küldhet [listázása az alkalmazás hello Azure Active Directory alkalmazáskatalógusában](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing) tooget őket elindult.
+Továbbá a **szerepelnek a az alkalmazás gyártójával, ha** **küldje el a módon** , azt is elérheti őket a natív módon integrálja az alkalmazásokban az Azure Active Directoryban. A forgalmazójával küldhet a [listázása az alkalmazást az Azure Active Directory alkalmazáskatalógusában](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing) azokat elindult.
 
-## <a name="check-if-hello-applications-login-page-has-changed-recently-or-requires-an-additional-field"></a>Ha hello alkalmazás bejelentkezési lapján mostanában megváltozott, vagy egy további mező szükséges ellenőrzése
+## <a name="check-if-the-applications-login-page-has-changed-recently-or-requires-an-additional-field"></a>Ha az alkalmazás bejelentkezési lapján mostanában megváltozott, vagy egy további mező szükséges ellenőrzése
 
-Ha hello alkalmazás bejelentkezési oldalt a jelentősen megváltozott, néha ennek hatására a integrációja toobreak. Ez például akkor, ha az alkalmazás gyártójának hozzáadja egy bejelentkezési mezőben, a captcha, vagy a multi-factor authentication tootheir észlel. Szerencsére sok esetben Microsoft együttműködhet alkalmazás szállítók toorapidly hárítsa el ezeket a problémákat.
+Ha az alkalmazás bejelentkezési oldalt a jelentősen megváltozott, néha ennek hatására a integrációja megszüntetése. Például akkor, ha az alkalmazás gyártójának hozzáad egy bejelentkezési mező, captcha vagy tapasztalataikat többtényezős hitelesítés. Szerencsére sok esetben Microsoft együttműködhet alkalmazásszállítók gyorsan a problémák megoldásához.
 
-Míg a Microsoft észlelés, ha ezek Integrációk törés kérjük, de egyes esetekben nem képes toofind technológiák tooautomatically ezek problémákkal azonnal. Ellenkező esetben bizonyos idő toofix tartanak. Hello esetben ezek Integrációk egyike sem működik megfelelően, ha szeretné Köszönjük megnyitása támogatási esetet, így a lehető leggyorsabban kérjük.
+Míg a Microsoft automatikus észlelés, ha ezek Integrációk törés kérjük, de egyes esetekben nem azonnal találja a problémák technológiákat. Ellenkező esetben azok időigényes lehet kijavítani. Abban az esetben egy ezek integrációja nem működik megfelelően, ha szeretné Köszönjük megnyitása támogatási esetet, így a lehető leggyorsabban kérjük.
 
-Továbbá toothis, a **szerepelnek a az alkalmazás gyártójával, ha** **küldje el a módon** , azt is dolgozhat velük toonatively alkalmazását integrálása az Azure Active Directoryban. Hello szállító toohello küldhet [listázása az alkalmazás hello Azure Active Directory alkalmazáskatalógusában](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing) tooget őket elindult.
+Továbbá a **szerepelnek a az alkalmazás gyártójával, ha** **küldje el a módon** , azt is elérheti őket a natív módon integrálja az alkalmazásokban az Azure Active Directoryban. A forgalmazójával küldhet a [listázása az alkalmazást az Azure Active Directory alkalmazáskatalógusában](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing) azokat elindult.
 
-## <a name="how-tooinstall-hello-access-panel-browser-extension"></a>Hogyan tooinstall hello hozzáférési Panel bővítmény
+## <a name="how-to-install-the-access-panel-browser-extension"></a>A hozzáférési Panel bővítmény telepítése
 
-tooinstall hello hozzáférési Panel bővítmény, kövesse az alábbi hello lépéseket:
+A hozzáférési Panel bővítmény telepítéséhez kövesse az alábbi lépéseket:
 
-1.  Nyissa meg hello [hozzáférési Panel](https://myapps.microsoft.com) valamelyik hello támogatott böngészők és való bejelentkezést egy **felhasználói** az Azure AD-ben.
+1.  Nyissa meg a [hozzáférési Panel](https://myapps.microsoft.com) valamelyik támogatott böngészők és való bejelentkezést egy **felhasználói** az Azure AD-ben.
 
-2.  Kattintson egy **jelszó-SSO alkalmazás** a hozzáférési Panel hello.
+2.  Kattintson egy **jelszó-SSO alkalmazás** a hozzáférési panelen.
 
-3.  Hello Rákérdezés azzal a kérdéssel tooinstall hello szoftver, válassza ki **telepítés**.
+3.  Válassza ki a szoftver telepítéséhez megkérdezi **telepítés**.
 
-4.  A böngésző alapján kell irányított toohello letöltési hivatkozását. **Adja hozzá** hello bővítmény tooyour böngésző.
+4.  A böngésző alapján kell irányítani a letöltési hivatkozás. **Adja hozzá** az bővítményt, hogy a böngészőben.
 
-5.  Ha a böngésző kéri, válassza ki a tooeither **engedélyezése** vagy **engedélyezése** hello bővítmény.
+5.  Ha a böngésző, válassza ki vagy **engedélyezése** vagy **engedélyezése** a bővítményt.
 
 6.  Korábban telepítve, **indítsa újra a** a böngésző-munkamenetet.
 
-7.  Jelentkezzen be a hozzáférési Panel hello, és tekintse meg, ha **indítása** a jelszó-egyszeri bejelentkezés alkalmazásokhoz
+7.  Jelentkezzen be a hozzáférési panelre, és tekintse meg, ha **indítása** a jelszó-egyszeri bejelentkezés alkalmazásokhoz
 
-Az alábbi hello közvetlen hivatkozások Chrome és Firefox is letöltheti hello bővítmény:
+Az alábbi közvetlen hivatkozások közül a Chrome és Firefox is letöltheti a bővítmény:
 
 -   [Chrome hozzáférési Panel bővítmény](https://chrome.google.com/webstore/detail/access-panel-extension/ggjhpefgjjfobnfoldnjipclpcfbgbhl)
 
 -   [A Firefox hozzáférési Panel bővítmény](https://addons.mozilla.org/firefox/addon/access-panel-extension/)
 
 ## <a name="next-steps"></a>Következő lépések
-[Adja meg az egyszeri bejelentkezés tooyour alkalmazások alkalmazásproxyval](active-directory-application-proxy-sso-using-kcd.md)
+[Adja meg az egyszeri bejelentkezés az alkalmazásokba a Proxy](active-directory-application-proxy-sso-using-kcd.md)
 

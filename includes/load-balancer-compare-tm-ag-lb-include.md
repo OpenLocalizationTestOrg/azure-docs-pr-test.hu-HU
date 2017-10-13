@@ -1,12 +1,12 @@
 ## <a name="load-balancer-differences"></a>Terheléselosztási különbségek
 
-Nincsenek más beállítások toodistribute hálózati forgalmat a Microsoft Azure használatával. Ezek a lehetőségek különböző működési elveken alapulnak, különböző funkciókészlettel rendelkeznek és különböző forgatókönyveket támogatnak. Elkülönítve vagy egymással kombinálva egyaránt használhatók.
+A Microsoft Azure-ral többféleképpen lehet elosztani a hálózati forgalmat. Ezek a lehetőségek különböző működési elveken alapulnak, különböző funkciókészlettel rendelkeznek és különböző forgatókönyveket támogatnak. Elkülönítve vagy egymással kombinálva egyaránt használhatók.
 
-* **Az Azure Load Balancer** hello (réteg 4 hello OSI hálózati referencia-verem) szállítási rétegben működik. Hálózati szintű terjesztési forgalom hello alkalmazás példányai között biztosít az Azure adatközpontba.
-* **Alkalmazásátjáró** hello (réteg 7 hello OSI hálózati referencia-verem) alkalmazás rétegben működik. Úgy működik, mint egy fordított proxy szolgáltatás hello ügyfélkapcsolat leáll, és a továbbítási kérelmek tooback-a befejezési végpontok.
-* **A TRAFFIC Manager** hello DNS szint működik.  DNS válaszok toodirect végfelhasználói forgalom elosztott tooglobally végpontokat használ. Az ügyfelek ezután csatlakoznak toothose végpontok közvetlenül.
+* Az **Azure Load Balancer** a szállítási rétegben működik (4. réteg a hálózatireferencia-veremben). Hálózati szintű forgalomelosztást biztosít az adott alkalmazás ugyanabban az Azure-adatközpontban futó példányai között.
+* Az **Application Gateway** az alkalmazási rétegben működik (7. réteg az OSI hálózatireferencia-veremben). Fordított proxyszolgáltatásként működik, az ügyfélkapcsolatok leállítását és a kérelmek háttérvégpontokhoz való továbbítását végzi.
+* A **Traffic Manager** a DNS szintjén működik.  DNS-válaszokat használva irányítja a végfelhasználói forgalmat a globálisan elosztott végpontok felé. Ezután az ügyfelek közvetlenül a végpontokhoz csatlakoznak.
 
-a következő táblázat hello minden egyes szolgáltatás által kínált hello szolgáltatásokat foglalja össze:
+Az alábbi táblázat az egyes szolgáltatások funkcióit összegzi:
 
 | Szolgáltatás | Azure Load Balancer | Application Gateway | Traffic Manager |
 | --- | --- | --- | --- |
@@ -16,14 +16,14 @@ a következő táblázat hello minden egyes szolgáltatás által kínált hello
 | Vnet-támogatás |Internetes és belső (virtuális hálózati) alkalmazásokhoz egyaránt felhasználható |Internetes és belső (virtuális hálózati) alkalmazásokhoz egyaránt felhasználható |Csak az internetes alkalmazásokat támogatja |
 | Végpontmonitoring |Mintavételen keresztül támogatott |Mintavételen keresztül támogatott |HTTP/HTTPS GET-en keresztül támogatott |
 
-Az Azure Load Balancer és Alkalmazásátjáró útvonal hálózati forgalom tooendpoints, de rendelkezik a különböző használati forgatókönyvek toowhich forgalom toohandle. hello következő táblázat segítségével hello két terheléselosztók hello különbség ismertetése:
+Az Azure Load Balancer és az Application Gateway a végpontok felé irányítja a hálózati forgalmat, de különböző használati forgatókönyvvel rendelkeznek a kezelt forgalom szempontjából. Az alábbi táblázat segít a két terheléselosztó közti különbség megértésében:
 
 | Típus | Azure Load Balancer | Application Gateway |
 | --- | --- | --- |
 | Protokollok |UDP/TCP |HTTP, HTTPS és WebSockets |
 | IP-címfenntartás |Támogatott |Nem támogatott |
 | Terheléselosztási mód |5 rekordos (forrás IP-címe, forrásport, cél IP-címe, célport, protokolltípus) |Ciklikus időszeletelés<br>Útválasztás URL-cím alapján |
-| Terheléselosztási mód (forrás IP-cím/fix kiszolgálású munkamenetek) |2 rekordos (forrás IP-cím és cél IP-cím), 3 rekordos (forrás IP-cím, cél IP-cím és port). Méretezhető felfelé vagy lefelé hello virtuális gépek száma alapján |Cookie-alapú affinitás<br>Útválasztás URL-cím alapján |
+| Terheléselosztási mód (forrás IP-cím/fix kiszolgálású munkamenetek) |2 rekordos (forrás IP-cím és cél IP-cím), 3 rekordos (forrás IP-cím, cél IP-cím és port). Méretezés a virtuális gépek számának megfelelően |Cookie-alapú affinitás<br>Útválasztás URL-cím alapján |
 | Állapotminták |Alapértelmezett: 15 másodperces mintavételi időköz. A rotációból kivéve: 2 folyamatos hiba után. Támogatja a felhasználó által definiált mintavételeket |Üresjárati mintavételi időköz – 30 másodperc. 5 egymásutáni élő forgalmi hiba vagy egyetlen üresjárati módú mintavételi hiba után kivéve. Támogatja a felhasználó által definiált mintavételeket |
 | SSL-kiürítés |Nem támogatott |Támogatott |
 | URL-cím-alapú útválasztás | Nem támogatott | Támogatott|

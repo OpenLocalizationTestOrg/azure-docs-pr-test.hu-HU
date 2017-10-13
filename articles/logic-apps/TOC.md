@@ -7,7 +7,7 @@
 ## [Az első logikai alkalmazás létrehozása](logic-apps-create-a-logic-app.md)
 ## [Sablonok logikai alkalmazásokhoz](logic-apps-use-logic-app-templates.md)
 ## [Logikai alkalmazások létrehozása sablonból](logic-apps-arm-provision.md)
-## [Helyezze át a MABS alkalmazások toologic alkalmazások](logic-apps-move-from-mabs.md)
+## [MABS-alkalmazások áthelyezése a logikai alkalmazásokhoz](logic-apps-move-from-mabs.md)
 
 # Útmutató
 ## Felépítés
@@ -19,8 +19,19 @@
 ### [Kötegelt feldolgozási üzenetek](logic-apps-batch-process-send-receive-messages.md)
 ### [Logikaialkalmazás-definíciók készítése](logic-apps-author-definitions.md)
 ### [Logikai alkalmazások hívása, aktiválása vagy beágyazása](logic-apps-http-endpoint.md)
-### [Egyéni API-k létrehozása logikai alkalmazásokhoz](logic-apps-create-api-app.md)
-### [Egyéni API-k meghívása logikai alkalmazásokhoz](logic-apps-custom-hosted-api.md)
+### Egyéni összekötők fejlesztése
+#### [Egyéni összekötők áttekintése](custom-connector-overview.md)
+#### [Összekötők létrehozása webes API-kból](custom-connector-build-web-api-app-tutorial.md)
+#### [Összekötők védelmének biztosítása az Azure AD-vel](custom-connector-azure-active-directory-authentication.md)
+#### [API-k leírása a Postman használatával](custom-connector-api-postman-collection.md)
+#### [OpenAPI-k kiterjesztése egyéni összekötőkhöz](custom-connector-openapi-extensions.md)
+#### [Összekötő regisztrálása](logic-apps-custom-connector-register.md)
+#### [Összekötő tanúsítása](custom-connector-submit-certification.md)
+#### [Egyéni összekötőkkel kapcsolatos gyakori kérdések](custom-connector-faq.md)
+### Egyéni API-k fejlesztése
+#### [Egyéni API-k létrehozása logikai alkalmazásokhoz](logic-apps-create-api-app.md)
+#### [Egyéni API-k biztonságos hívása](logic-apps-custom-api-authentication.md)
+#### [Egyéni API-k üzembe helyezése és hívása](logic-apps-custom-api-host-deploy-call.md)
 ### [Hibák és kivételek kezelése](logic-apps-exception-handling.md)
 ### [Tartalomtípusok kezelése](logic-apps-content-type.md)
 ### [A logikai alkalmazások védelme](logic-apps-securing-a-logic-app.md)
@@ -32,6 +43,7 @@
 ### [Partnerek](logic-apps-enterprise-integration-partners.md)
 ### [Egyezmények](logic-apps-enterprise-integration-agreements.md)
 ### [B2B feldolgozás](logic-apps-enterprise-integration-b2b.md)
+### [EDI-üzenetek küldése kötegként](logic-apps-scenario-edi-send-batch-messages.md)
 ### [XML-feldolgozás](logic-apps-enterprise-integration-xml.md)
 ### [Egybesimított fájlok feldolgozása](logic-apps-enterprise-integration-flatfile.md)
 ### [XML érvényességének ellenőrzése](logic-apps-enterprise-integration-xml-validation.md)
@@ -46,7 +58,7 @@
 ### [EDIFACT vállalati integrációja](logic-apps-enterprise-integration-edifact.md)
 ### [EDIFACT-kódolás](logic-apps-enterprise-integration-edifact-encode.md)
 ### [EDIFACT-dekódolás](logic-apps-enterprise-integration-edifact-decode.md)
-### [Hogyan toohandle EDIFACT dokumentumokat, hogy UNH2.5 szegmens](logic-apps-enterprise-integration-edifact_inputfile_unh2.5.md)
+### [UNH2.5-szegmenst tartalmazó EDIFACT-dokumentumok kezelése](logic-apps-enterprise-integration-edifact_inputfile_unh2.5.md)
 ### [X12 vállalati integrációja](logic-apps-enterprise-integration-x12.md)
 ### [X12-kódolás](logic-apps-enterprise-integration-x12-encode.md)
 ### [X12-dekódolás](logic-apps-enterprise-integration-x12-decode.md)
@@ -54,7 +66,7 @@
 ### [Hibák és megoldások](logic-apps-enterprise-integration-b2b-list-errors-solutions.md)
 
 ## Helyszíni adatok elérése
-### [Csatlakozás tooon helyszíni adatokhoz](logic-apps-gateway-connection.md)
+### [Csatlakozás helyszíni adatokhoz](logic-apps-gateway-connection.md)
 ### [Adatátjáró telepítése](logic-apps-gateway-install.md)
 
 ## Automatizálás és üzembe helyezés
@@ -73,12 +85,11 @@
 #### [X12-követési séma](logic-apps-track-integration-account-x12-tracking-schema.md)
 #### [Egyéni követési séma](logic-apps-track-integration-account-custom-tracking-schema.md)
 
-## Példák, forgatókönyvek és útmutatók
-### [Áttekintés](logic-apps-examples-and-scenarios.md)
+## [Példák, forgatókönyvek és útmutatók](logic-apps-examples-and-scenarios.md)
 ### [Kiszolgáló nélküli közösségi irányítópult létrehozása](logic-apps-scenario-social-serverless.md)
 ### [Logikai alkalmazások meghívása Azure Functions-függvényekkel](logic-apps-scenario-function-sb-trigger.md)
 ### [Hiba- és kivételkezelés hozzáadása](logic-apps-scenario-error-and-exception-handling.md)
-### [B2B feldolgozás](logic-apps-enterprise-integration-b2b.md)
+### [B2B feldolgozás](logic-apps-enterprise-integration-b2b.md) 
 
 ## Díjszabás és számlázás
 ### [Díjszabás](https://azure.microsoft.com/pricing/details/logic-apps/)
@@ -98,7 +109,7 @@
 ## [Munkafolyamat-definíciós nyelv](logic-apps-workflow-definition-language.md)
 ## [Munkafolyamat-műveletek és eseményindítók](logic-apps-workflow-actions-triggers.md)
 ## [REST API](/rest/api/logic/)
-## [PowerShell](/powershell/module/azurerm.logicapp)
+## [Azure PowerShell](/powershell/module/azurerm.logicapp)
 ## Összekötők: részletes témák
 ### [AS2](logic-apps-enterprise-integration-as2.md)
 ### [Azure Blob Storage](../connectors/connectors-create-api-azureblobstorage.md)

@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált @Task|} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory közötti és @Task."
+description: "Egyszeri bejelentkezés Azure Active Directory közötti konfigurálásával és @Task."
 services: active-directory
 documentationcenter: 
 author: jeevansd
@@ -14,108 +14,108 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/22/2017
 ms.author: jeedes
-ms.openlocfilehash: 0840763622086a02a27cfafff3b741bc66cec498
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ebb19ca6cbaf04106fbce937d95651e709854cfd
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-task"></a>Oktatóanyag: Azure Active Directory integrációja@Task
-hello Ez az oktatóanyag célja tooshow, hogyan toointegrate @Task az Azure Active Directoryval (Azure AD).  
-Integrálása @Task az Azure AD lehetővé teszi a következő előnyöket hello: 
+Ez az oktatóanyag célja mutatjuk be, hogyan integrálható @Task az Azure Active Directoryval (Azure AD).  
+Integrálása @Task az Azure AD lehetővé teszi a következő előnyöket biztosítja: 
 
-* Szabályozhatja, aki hozzáféréssel rendelkezik az Azure AD-bentoo@Task
-* Engedélyezheti a felhasználóknak tooautomatically bejelentkezett too@Task (egyszeri bejelentkezés) a saját Azure AD-fiókok
-* Kezelheti a fiókokat, egy központi helyen - hello a klasszikus Azure portálon
+* Szabályozhatja, aki az Azure AD-ben@Task
+* Engedélyezheti a felhasználók automatikusan el a bejelentkezett @Task (egyszeri bejelentkezés) a saját Azure AD-fiókok
+* Kezelheti a fiókokat, egy központi helyen - a klasszikus Azure portálon
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
-integráció az Azure AD tooconfigure @Task, a következő elemek hello van szüksége:
+Az Azure AD integrálása konfigurálása @Task, a következőkre van szüksége:
 
 * Az Azure AD szolgáltatásra
 * Egy @Task egyszeri bejelentkezés engedélyezve van az előfizetésben
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 > 
 > 
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 * Ne használja az éles környezetben, ha ez nem szükséges.
 * Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/). 
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-hello Ez az oktatóanyag célja tooenable meg tootest az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben.  
-hello forgatókönyv ebben az oktatóanyagban leírt három fő építőelemeket áll:
+Ez az oktatóanyag célja ahhoz, hogy egy tesztkörnyezetben az Azure AD az egyszeri bejelentkezés tesztelése.  
+A forgatókönyv ebben az oktatóanyagban leírt három fő építőelemeket áll:
 
-1. Hozzáadás @Task hello gyűjteményből 
+1. Hozzáadás @Task a gyűjteményből 
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-task-from-hello-gallery"></a>Hozzáadás @Task hello gyűjteményből
-tooconfigure hello integrációja @Task az Azure AD-be kell tooadd @Task hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-task-from-the-gallery"></a>Hozzáadás @Task a gyűjteményből
+Az integráció konfigurálásához @Task az Azure AD hozzá kell adnia @Task a felügyelt SaaS-alkalmazások listájára a gyűjteményből.
 
-**tooadd @Task hello gyűjteményből, hajtsa végre a következő lépéseket hello:**
+**Hozzáadandó @Task a gyűjteményből, hajtsa végre a következő lépéseket:**
 
-1. A hello **a klasszikus Azure portálon**, a hello bal oldali navigációs panelen, kattintson a **Active Directory**. 
+1. Az a **a klasszikus Azure portálon**, a bal oldali navigációs ablaktábláján kattintson **Active Directory**. 
    
     ![Active Directory][1] 
-2. A hello **Directory** listában, jelölje be hello directory kívánt tooenable címtár-integráció.
-3. tooopen hello alkalmazások megtekintése, hello könyvtár nézetben kattintson **alkalmazások** hello felső menüjében.
+2. Az a **Directory** listára, válassza ki a könyvtárat, amelyhez a címtár-integrációs engedélyezni szeretné.
+3. A könyvtár nézetben a alkalmazások nézet megnyitásához kattintson **alkalmazások** a felső menüben.
    
     ![Alkalmazások][2] 
-4. Kattintson a **Hozzáadás** hello lap hello alján.
+4. Kattintson a **Hozzáadás** az oldal alján.
    
     ![Alkalmazások][3] 
-5. A hello **miről szeretne toodo** párbeszédpanel, kattintson **hello gyűjteményből alkalmazás hozzáadása**.
+5. Az a **mi történjen a teendő** párbeszédpanel, kattintson a **hozzáadhat egy alkalmazást a katalógusból**.
    
     ![Alkalmazások][4] 
-6. Hello keresési mezőbe, írja be a  **@Task** .
+6. Írja be a keresőmezőbe,  **@Task** .
    
     ![Alkalmazások][5] 
-7. Hello eredmények ablaktábláján jelöljön ki  **@Task** , és kattintson a **Complete** tooadd hello alkalmazás.
+7. Az eredmények ablaktáblájában válassza  **@Task** , és kattintson a **Complete** hozzáadása az alkalmazáshoz.
    
     ![Alkalmazások][30] 
 
 ## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
-hello ebben a szakaszban célja az, hogyan tooconfigure és tesztelése az Azure AD egyszeri bejelentkezés az tooshow @Task "Britta Simon" nevű tesztfelhasználó alapján.
+Ez a szakasz az a célja, hogy bemutatják az Azure AD egyszeri bejelentkezést, tesztelése és konfigurálása @Task "Britta Simon" nevű tesztfelhasználó alapján.
 
-Az egyszeri bejelentkezés toowork, az Azure AD kell tooknow milyen hello megfelelőjére felhasználó @Task tooan felhasználó Azure AD-ben. Más szóval egy Azure AD-felhasználó és a kapcsolódó felhasználó hello közötti kapcsolat kapcsolatot @Task létrehozott toobe kell.   
-Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** a @Task.
+Az egyszeri bejelentkezés működéséhez, az Azure AD tudnia kell, mely a partner felhasználót a @Task van egy olyan felhasználó számára az Azure ad-ben. Ez azt jelenti, az Azure AD-felhasználó és a kapcsolódó felhasználó a közötti kapcsolat kapcsolatot @Task kell létrehozni.   
+Ez a hivatkozás kapcsolat létesíti értéket rendeli az **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a @Task.
 
-tooconfigure és tesztelése az Azure AD-egyszeri bejelentkezés az @Task, a következő építőelemeket toocomplete hello van szüksége:
+Az Azure AD egyszeri bejelentkezést, tesztelése és konfigurálása a @Task, végre kell hajtania a következő építőelemeket:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-3. **[Létrehozása egy @Tasktest felhasználói](#creating-a-halogen-software-test-user)**  -Britta Simon a megfelelője a toohave @Taskthat rá, hogy az Azure AD csatolt toohello megjelenítése.
-4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+3. **[Létrehozása egy @Tasktest felhasználói](#creating-a-halogen-software-test-user)**  - kell rendelkeznie a Britta Simon valami @Taskthat csatolva van rá, hogy az Azure AD ábrázolása.
+4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD-egyszeri bejelentkezés konfigurálása
-hello ebben a szakaszban célja az Azure AD tooenable egyszeri bejelentkezés a klasszikus Azure portálon hello és tooconfigure egyszeri bejelentkezést a a @Task alkalmazás.
+Ez a szakasz célja az Azure AD az egyszeri bejelentkezés a klasszikus Azure portálon engedélyezése és konfigurálása egyszeri bejelentkezéshez a a @Task alkalmazás.
 
-**az Azure AD az egyszeri bejelentkezés tooconfigure @Task, hajtsa végre az alábbi lépésekkel hello:**
+**Konfigurálhatja az Azure AD egyszeri bejelentkezést a @Task, hajtsa végre a következő lépéseket:**
 
-1. A klasszikus Azure portálon, a hello hello  **@Task**  alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** tooopen hello **konfigurálása egyszeri bejelentkezéshez**  párbeszédpanel.
+1. A klasszikus Azure portálon a a  **@Task**  alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** megnyitásához a **konfigurálása egyszeri bejelentkezéshez** párbeszédpanel.
    
     ![Egyszeri bejelentkezés konfigurálása][6] 
-2. A hello **hogyan szeretné felhasználók toosign a too@Task**  lapon jelölje be **az Azure AD az egyszeri bejelentkezés**, és kattintson a **következő**.
+2. Az a **hová felhasználók jelentkezhetnek be @Task**  lapon jelölje be **az Azure AD az egyszeri bejelentkezés**, és kattintson a **tovább**.
    
     ![Az Azure AD-egyszeri bejelentkezés][7] 
-3. A hello **Alkalmazásbeállítások konfigurálása** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+3. Az a **Alkalmazásbeállítások konfigurálása** párbeszédpanel lapon, a következő lépésekkel:
    
     ![Alkalmazásbeállítások konfigurálása][8] 
    
-     a. A hello **URL-cím bejelentkezési** szövegmezőhöz típus hello URL-címet használják a felhasználók toosign a tooyour @Task alkalmazás (pl.:*https://<Tenant name>.attask-ondemand.com*).
+     a. Az a **URL-cím bejelentkezési** szövegmező, írja be az URL-címet használják-e a felhasználók bejelentkezés a @Task alkalmazás (pl.:*https://<Tenant name>.attask-ondemand.com*).
    
      b. Kattintson a **Tovább** gombra.
-4. A hello **konfigurálása egyszeri bejelentkezéshez, @Task**  kattintson **metaadatok letöltése**, mentse helyileg a számítógépen hello metaadatok fájlt, és kattintson **következő**.
+4. A a **konfigurálása egyszeri bejelentkezéshez, @Task**  kattintson **metaadatok letöltése**, mentse helyileg a számítógépen a metaadatok fájlt, és kattintson a **következő**.
    
     ![Mi az az Azure AD Connect?][9] 
-5. Bejelentkezés tooyour @Task vállalati hely rendszergazdaként.
-6. Nyissa meg túl**egyszeri bejelentkezést a konfigurációs**.
-7. A hello **egyszeri bejelentkezés** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello
+5. Bejelentkezés a @Task vállalati hely rendszergazdaként.
+6. Ugrás a **az egyszeri bejelentkezés beállítása**.
+7. Az a **egyszeri bejelentkezés** párbeszédpanelen hajtsa végre az alábbi lépéseket
    
     ![Egyszeri bejelentkezés konfigurálása][23]
    
@@ -123,118 +123,118 @@ hello ebben a szakaszban célja az Azure AD tooenable egyszeri bejelentkezés a 
    
     b. Válassza ki **Szolgáltatóazonosító szolgáltatás**.
    
-    c. A klasszikus Azure portálon hello, másolja a hello **távoli bejelentkezési URL-cím**, és illessze be hello **bejelentkezési portál URL-cím** szövegmező.
+    c. A klasszikus Azure portálra, másolja a **távoli bejelentkezési URL-cím**, és illessze be azt a **bejelentkezési portál URL-cím** szövegmező.
    
-    d. A klasszikus Azure portálon hello, másolja a hello **egyetlen Sign-Out URL-címe**, majd illessze be hello **Sign-Out URL-cím** szövegmező.
+    d. A klasszikus Azure portálra, másolja a **egyetlen Sign-Out URL-címe**, majd illessze be azt a **Sign-Out URL-cím** szövegmező.
    
-    e. A klasszikus Azure portálon hello, másolja a hello **jelszó URL-cím módosítása**, majd illessze be hello **jelszó URL-cím módosítása** szövegmező.
+    e. A klasszikus Azure portálra, másolja a **jelszó URL-cím módosítása**, majd illessze be azt a **jelszó URL-cím módosítása** szövegmező.
    
     f. Kattintson a **Save** (Mentés) gombra.
-8. Hello a klasszikus Azure portálon, jelölje ki a hello egyszeri bejelentkezés konfigurációs megerősítő, és kattintson a **következő**. 
+8. A klasszikus Azure portálon, válassza ki az egyszeri bejelentkezés konfigurációs megerősítő, és kattintson **következő**. 
    
     ![Mi az az Azure AD Connect?][10]
-9. A hello **az egyszeri bejelentkezés megerősítő** kattintson **Complete**.  
+9. Az a **az egyszeri bejelentkezés megerősítő** kattintson **Complete**.  
    
     ![Mi az az Azure AD Connect?][11]
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-hello ebben a szakaszban célja toocreate hello Britta Simon neve a klasszikus Azure portálon a tesztfelhasználó.  
+Ez a szakasz célja a tesztfelhasználó létrehozása a klasszikus Azure portálon Britta Simon nevezik.  
 
 ![Az Azure AD-felhasználó létrehozása][20]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello **a klasszikus Azure portálon**, a hello bal oldali navigációs panelen, kattintson a **Active Directory**.
+1. Az a **a klasszikus Azure portálon**, a bal oldali navigációs ablaktábláján kattintson **Active Directory**.
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-attask-tutorial/create_aaduser_02.png) 
-2. A hello **Directory** listában, jelölje be hello directory kívánt tooenable címtár-integráció.
-3. toodisplay hello azoknak a felhasználóknak, hello menüben található hello felső részén kattintson **felhasználók**.
+2. Az a **Directory** listára, válassza ki a könyvtárat, amelyhez a címtár-integrációs engedélyezni szeretné.
+3. A felhasználók listájának megjelenítéséhez a felső menüben, kattintson a **felhasználók**.
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-attask-tutorial/create_aaduser_03.png) 
-4. tooopen hello **felhasználó hozzáadása** párbeszédpanelen hello eszköztár hello alján, kattintson a **felhasználó hozzáadása**. 
+4. Lehetőségre a **felhasználó hozzáadása** párbeszédpanel alján, az eszköztárban kattintson **felhasználó hozzáadása**. 
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-attask-tutorial/create_aaduser_04.png) 
-5. A hello **adja meg azt a felhasználó** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello: 
+5. Az a **adja meg azt a felhasználó** párbeszédpanel lapon, a következő lépésekkel: 
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-attask-tutorial/create_aaduser_05.png) 
    
     a. A felhasználó típusát válassza ki az új felhasználót a szervezetében.
    
-    b. A felhasználónév hello **szövegmező**, típus **BrittaSimon**.
+    b. A felhasználó nevében **szövegmező**, típus **BrittaSimon**.
    
     c. Kattintson a **Tovább** gombra.
-6. A hello **felhasználói profil** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello: 
+6. Az a **felhasználói profil** párbeszédpanel lapon, a következő lépésekkel: 
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-attask-tutorial/create_aaduser_06.png) 
    
-    a. A hello **Utónév** szövegmezőhöz típus **Britta**.  
+    a. Az a **Utónév** szövegmezőhöz típus **Britta**.  
    
-    b. A hello **Vezetéknév** szövegmezőhöz típusa, **Simon**.
+    b. Az a **Vezetéknév** szövegmezőhöz típusa, **Simon**.
    
-    c. A hello **megjelenített név** szövegmezőhöz típus **Britta Simon**.
+    c. Az a **megjelenített név** szövegmezőhöz típus **Britta Simon**.
    
-    d. A hello **szerepkör** listáról válassza ki **felhasználói**.
+    d. Az a **szerepkör** listáról válassza ki **felhasználói**.
 
     e. Kattintson a **Tovább** gombra.
 
-7. A hello **ideiglenes jelszó beszerzése** párbeszédpanel lap, kattintson a **létrehozása**.
+7. Az a **ideiglenes jelszó beszerzése** párbeszédpanel lap, kattintson a **létrehozása**.
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-attask-tutorial/create_aaduser_07.png) 
-8. A hello **ideiglenes jelszó beszerzése** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+8. Az a **ideiglenes jelszó beszerzése** párbeszédpanel lapon, a következő lépésekkel:
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-attask-tutorial/create_aaduser_08.png) 
    
-    a. Írja le hello hello értékének **új jelszó**.
+    a. Jegyezze fel az értéket a **új jelszó**.
    
     b. Kattintson a **Befejezés** gombra.   
 
 ### <a name="creating-an-task-test-user"></a>Létrehozása egy @Task tesztfelhasználó számára
-hello ebben a szakaszban célja toocreate Britta Simon nevű felhasználó @Task.
+Ez a szakasz célja Britta Simon nevű felhasználó létrehozásához @Task.
 
-**toocreate Britta Simon nevű felhasználó @Task, hajtsa végre az alábbi lépésekkel hello:**
+**Britta Simon nevű felhasználó létrehozásához @Task, hajtsa végre a következő lépéseket:**
 
-1. Jelentkezzen be tooyour @Task vállalati hely rendszergazdaként.
-2. Hello hello felső menüben kattintson a **személyek**.
+1. Jelentkezzen be a @Task vállalati hely rendszergazdaként.
+2. Kattintson a felső menüben **személyek**.
 3. Kattintson a **új személy**. 
-4. Hello új személy párbeszédpanelen hajtsa végre a lépéseket követve hello:
+4. Új személy párbeszédpanelen hajtsa végre a következő lépéseket:
    
     ![Hozzon létre egy @Task tesztfelhasználó számára][21] 
    
-    a. A hello **Keresztnév** szövegmező, írja be a "Britta".
+    a. Az a **Keresztnév** szövegmező, írja be a "Britta".
    
-    b. A hello **Vezetéknév** szövegmező, írja be a "Simon".
+    b. Az a **Vezetéknév** szövegmező, írja be a "Simon".
    
-    c. A hello **E-mail cím** szövegmező, írja be a Britta Simon e-mail címét az Azure Active Directoryban.
+    c. Az a **E-mail cím** szövegmező, írja be a Britta Simon e-mail címét az Azure Active Directoryban.
    
     d. Kattintson a **személy hozzáadása**.
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
-hello ebben a szakaszban célja tooenabling Britta Simon toouse Azure egyszeri bejelentkezés nyújtó saját too@Task.
+### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
+Ez a szakasz az a célja, hogy Britta Simon szerint saját való hozzáférés biztosítása használandó Azure egyszeri bejelentkezés engedélyezése @Task.
 
 ![Felhasználó hozzárendelése][200] 
 
-**tooassign Britta Simon too@Task, hajtsa végre az alábbi lépésekkel hello:**
+**A Britta Simon hozzárendelni @Task, hajtsa végre a következő lépéseket:**
 
-1. A hello Azure klasszikus portál tooopen hello alkalmazások megtekintése, hello könyvtár nézetben kattintson **alkalmazások** hello felső menüjében.
+1. A klasszikus Azure portálon, a könyvtár nézetben a alkalmazások nézet megnyitásához kattintson **alkalmazások** a felső menüben.
    
     ![Felhasználó hozzárendelése][201] 
-2. Hello alkalmazások listában válassza ki a  **@Task** .
+2. Az alkalmazások listában válassza ki a  **@Task** .
    
     ![Felhasználó hozzárendelése][202] 
-3. Hello hello felső menüben kattintson a **felhasználók**.
+3. Kattintson a felső menüben **felhasználók**.
    
     ![Felhasználó hozzárendelése][203] 
-4. Hello felhasználók listában válassza ki a **Britta Simon**.
-5. Hello alján hello eszköztárában kattintson **hozzárendelése**.
+4. A felhasználók listában válassza ki a **Britta Simon**.
+5. Kattintson az alsó eszköztár **hozzárendelése**.
    
     ![Felhasználó hozzárendelése][205]
 
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
-hello ebben a szakaszban célja tootest az egyszeri bejelentkezés konfigurációs használatával hello a hozzáférési Panel.  
-Amikor rákattint hello @Task csempe az hello hozzáférési panelre, akkor kapja meg automatikusan bejelentkezett tooyour @Task alkalmazás.
+Ez a szakasz célja tesztelése az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen.  
+Ha a @Task csempére a hozzáférési panelen kapja meg automatikusan bejelentkezett a a @Task alkalmazás.
 
 ## <a name="additional-resources"></a>További források
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

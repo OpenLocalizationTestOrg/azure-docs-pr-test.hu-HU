@@ -1,6 +1,6 @@
 ---
-title: "Azure DC/OS-fürtöt aaaManage Marathon felhasználói felület |} Microsoft Docs"
-description: "Tárolók tooan Azure tárolószolgáltatásba hello Marathon webes felhasználói felület segítségével telepítheti."
+title: "A Marathon felhasználói felület Azure DC/OS-fürt kezeléséhez |} Microsoft Docs"
+description: "A cikk azt ismerteti, hogyan telepíthetők tárolók egy Azure tárolószolgáltatásba a Marathon webes felhasználói felület segítségével."
 services: container-service
 documentationcenter: 
 author: dlepow
@@ -16,40 +16,40 @@ ms.workload: na
 ms.date: 04/04/2017
 ms.author: danlep
 ms.custom: mvc
-ms.openlocfilehash: a90180e1b4763e6d2ddfa699ed4b7269f209f728
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b00088bb005519dc5d533433308c0e3e33c7f433
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="manage-an-azure-container-service-dcos-cluster-through-hello-marathon-web-ui"></a>Egy Azure tároló szolgáltatás DC/OS-fürt hello Marathon webes felhasználói felületen keresztül kezeléséhez
-A DC/OS telepítését és skálázását lehetővé fürtözött munkaterhelések, absztrakt módon megjelenítve a mögöttes hardver hello közben környezetet biztosít. A DC/OS fölötti keretrendszer gondoskodik a számítási feladatok ütemezéséről és végrehajtásáról.
+# <a name="manage-an-azure-container-service-dcos-cluster-through-the-marathon-web-ui"></a>Azure Container Service DC/OS-fürt kezelése a Marathon webes felhasználói felületén
+A DC/OS biztosítja a fürtözött feladatok telepítését és skálázását lehetővé tevő környezetet, ugyanakkor absztrakciós rétegként működik a hardver fölött. A DC/OS fölötti keretrendszer gondoskodik a számítási feladatok ütemezéséről és végrehajtásáról.
 
-Számos népszerű számítási elérhetők keretrendszerek, ez a dokumentum ismerteti, hogyan tooget el őket a marathon segítségével tárolók telepítése. 
+Számos népszerű számítási elérhetők keretrendszerek, ez a dokumentum ismerteti a marathon segítségével tárolók üzembe helyezésének első lépései. 
 
 
 ## <a name="prerequisites"></a>Előfeltételek
-A példákban szereplő feladatok elvégzéséhez szüksége lesz egy az Azure tárolószolgáltatásban konfigurált DC/OS-fürtre, Meg kell toohave távoli kapcsolatot toothis fürtöt is. További információ ezekről az elemekről tekintse meg a következő cikkek hello:
+A példákban szereplő feladatok elvégzéséhez szüksége lesz egy az Azure tárolószolgáltatásban konfigurált DC/OS-fürtre, valamint távoli kapcsolatot kell tudnia létesíteni a fürttel. Ezekkel az elemekkel kapcsolatban a következő cikkekben talál további tájékoztatást:
 
 * [Az Azure Container Service-fürt üzembe helyezése](container-service-deployment.md)
-* [Csatlakozás Azure Tárolószolgáltatás-fürt tooan](../container-service-connect.md)
+* [Csatlakozás Azure Container Service-fürthöz](../container-service-connect.md)
 
 > [!NOTE]
-> Ez a cikk feltételezi, hogy az alagutat toohello DC/OS-fürtről a helyi 80-as porton keresztül.
+> Ez a cikk feltételezi, hogy az alagutat a DC/OS-fürtre a helyi 80-as porton keresztül.
 >
 
-## <a name="explore-hello-dcos-ui"></a>DC/OS felhasználói felületének hello felfedezés
-Az egy Secure Shell (SSH) alagút [létrehozott](../container-service-connect.md), keresse meg a toohttp://localhost/. Ez betölti a hello DC/OS webes felhasználói felület, és hello fürt, például a felhasznált erőforrásokat, aktív ügynököket és futó szolgáltatások információkat jeleníti meg.
+## <a name="explore-the-dcos-ui"></a>A DC/OS felhasználói felületének megnyitása
+[Alakítson ki](../container-service-connect.md) egy Secure Shell- (SSH-) alagutat, és nyissa meg a böngészőben a http://localhost/ címet. Ez betölti a DC/OS webes felhasználói felületét, és a fürtre vonatkozó információkat jelenít meg, például a felhasznált erőforrásokat, az aktív ügynököket és a futó szolgáltatásokat.
 
 ![A DC/OS UI felhasználói felülete](./media/container-service-mesos-marathon-ui/dcos2.png)
 
-## <a name="explore-hello-marathon-ui"></a>Marathon felhasználói felület hello felfedezés
-Marathon felhasználói felület toosee hello toohttp://localhost/marathon Tallózás. Ezen a képernyőn elindíthatja egy új tároló vagy egy másik alkalmazás hello Azure tároló szolgáltatás DC/OS-fürtön. A futó tárolókkal és alkalmazásokkal kapcsolatos információkat is láthat.  
+## <a name="explore-the-marathon-ui"></a>A Marathon felhasználói felület megnyitása
+A Marathon felhasználói felület megtekintéséhez keresse meg azt a http://localhost/marathon. Ezen a képernyőn elindíthat egy új tárolót vagy más szolgáltatást az Azure tárolószolgáltatási DC/OS-fürtön. A futó tárolókkal és alkalmazásokkal kapcsolatos információkat is láthat.  
 
 ![Marathon felhasználói felület](./media/container-service-mesos-marathon-ui/dcos3.png)
 
 ## <a name="deploy-a-docker-formatted-container"></a>Docker-formázású tároló üzembe helyezése
-a Marathon, egy új tároló toodeploy kattintson **alkalmazás létrehozása**, és írja be a következő információ be hello űrlap lapok hello:
+Ha új tárolót szeretne üzembe helyezni a Marathon segítségével, kattintson a **Create Application** (Alkalmazás létrehozása) gombra, és adja meg a következő információkat az űrlapon:
 
 | Mező | Érték |
 | --- | --- |
@@ -66,7 +66,7 @@ a Marathon, egy új tároló toodeploy kattintson **alkalmazás létrehozása**,
 
 ![New Application (Új alkalmazás) felhasználói felület – Ports and Service Discovery (Portok és szolgáltatások felderítése)](./media/container-service-mesos-marathon-ui/dcos6.png)
 
-Ha azt szeretné, hogy toostatically térkép hello tárolóportot tooa port hello ügynökön, toouse JSON üzemmódot kell. toodo tehát az túl hello új alkalmazás varázsló kapcsoló**JSON üzemmódot** hello váltása használatával. Írja be a következő hello beállítás hello `portMappings` hello definíciót szakasza. Ebben a példában a hello tároló tooport 80 hello DC/OS-ügynök 80-as porton van kötve. Ennek a módosításnak az elvégzése után visszaválthat a varázsló JSON üzemmódjából.
+Ha statikusan le kívánja képezni a tárolóportot egy az ügynökön lévő portra, akkor a JSON üzemmódot kell használnia. Ehhez váltsa át a New Application (Új alkalmazás) varázslót erre az üzemmódra a **JSON Mode** (JSON üzemmód) váltógombbal. Ezután adja meg a következő beállítást az alkalmazás definíciójának `portMappings` szakaszában. A példa a tároló 80-as portját a DC/OS-ügynök 80-as portjához köti. Ennek a módosításnak az elvégzése után visszaválthat a varázsló JSON üzemmódjából.
 
 ```none
 "hostPort": 80,
@@ -74,42 +74,42 @@ Ha azt szeretné, hogy toostatically térkép hello tárolóportot tooa port hel
 
 ![New Application (Új alkalmazás) felhasználói felület – példa a 80-as portra](./media/container-service-mesos-marathon-ui/dcos13.png)
 
-Ha azt szeretné, hogy tooenable állapotellenőrzést, egy elérési utat meg hello **ellenőrzést** lapon.
+Ha engedélyezni szeretné az állapot-ellenőrzéseket, adjon meg egy útvonalat a **Health Checks** (Állapot-ellenőrzések) lapon.
 
 ![New Application (Új alkalmazás) felhasználói felület – állapot-ellenőrzések](./media/container-service-mesos-marathon-ui/dcos_healthcheck.png)
 
-hello DC/OS-fürtről van telepítve, privát és nyilvános ügynökök vannak beállítva. A hello fürt toobe képes tooaccess alkalmazások hello Internet toodeploy hello alkalmazások tooa nyilvános ügynökre kell. toodo Igen, válassza ki a hello **nem kötelező** hello új alkalmazás varázsló lapja, és írja be **slave_public** a hello **elfogadott erőforrás szerepkörök**.
+A DC/OS-fürt üzembe helyezésekor különféle privát és nyilvános ügynökök is települnek. Ahhoz, hogy a fürt elérhessen alkalmazásokat az internetről, nyilvános ügynökre kell telepíteni az alkalmazást. Ehhez válassza a New Application (Új alkalmazás) varázsló **Optional** (Választható) lapfülét, és írja be a **slave_public** értéket az **Accepted Resource Roles** (Elfogadott erőforrás-szerepkörök) mezőbe.
 
 Ezután kattintson a **Create Application** (Alkalmazás létrehozása) elemre.
 
 ![New Application (Új alkalmazás) felhasználói felület – nyilvános ügynök beállítása](./media/container-service-mesos-marathon-ui/dcos14.png)
 
-Vissza a hello Marathon főoldalára visszatérve hello tároló hello telepítési állapota látható. Kezdetben a **Deploying** (Üzembe helyezés) állapotot fogja látni. A sikeres telepítést követően hello állapotmódosítások túl**futtató**.
+A Marathon főoldalára visszatérve láthatja a tároló üzembe helyezési állapotát. Kezdetben a **Deploying** (Üzembe helyezés) állapotot fogja látni. A sikeres üzembe helyezést követően az állapot **Running** (Fut) állapotra vált.
 
 ![A Marathon főoldala – a tároló üzembe helyezési állapota](./media/container-service-mesos-marathon-ui/dcos7.png)
 
-Amikor hátsó toohello DC/OS webes felhasználói Felületére (http://localhost/), láthatja, hogy hello DC/OS fürtben fut egy feladat (ebben az esetben egy Docker-formázású tároló).
+Amikor visszavált a DC/OS webes felhasználói felületére (http://localhost/), láthatja, hogy a DC/OS-fürtön fut egy feladat (ez esetben egy Docker-formázású tároló).
 
-![A DC/OS webes felhasználói felülete – hello fürtben futó feladat](./media/container-service-mesos-marathon-ui/dcos8.png)
+![DC/OS webes felhasználói felülete – a fürtön futó feladat](./media/container-service-mesos-marathon-ui/dcos8.png)
 
-toosee hello fürtcsomóponton, amely hello feladat fut, kattintson a hello **csomópontok** fülre.
+Ha szeretné megtekinteni azt a fürtcsomópontot, amelyen a feladat fut, kattintson a **Nodes** (Csomópontok) fülre.
 
 ![A DC/OS webes felhasználói felülete – a feladat fürtcsomópontja](./media/container-service-mesos-marathon-ui/dcos9.png)
 
-## <a name="reach-hello-container"></a>Hello tároló elérése
+## <a name="reach-the-container"></a>A tároló elérése
 
-Ebben a példában hello alkalmazás fut egy nyilvános ügynök csomóponton. Hello hello alkalmazás eléri toohello ügynök hello fürt tallózással internet: `http://[DNSPREFIX]agents.[REGION].cloudapp.azure.com`, ahol:
+Ebben a példában az alkalmazás fut egy nyilvános ügynök csomóponton. Keresse meg azt az ügynöknek a fürt eléri az alkalmazást az internetről: `http://[DNSPREFIX]agents.[REGION].cloudapp.azure.com`, ahol:
 
-* **DNSPREFIX** hello hello fürt telepítésekor megadott DNS-előtag van.
-* **A régióban** hello régió, ahol az erőforráscsoport megtalálható.
+* a **DNSPREFIX** a fürt telepítésekor megadott DNS-előtag.
+* a **REGION** az a régió, ahol az erőforráscsoport megtalálható.
 
     ![Internetről érkező Nginx](./media/container-service-mesos-marathon-ui/nginx.png)
 
 
 ## <a name="next-steps"></a>Következő lépések
-* [A DC/OS használata és hello Marathon API](container-service-mesos-marathon-rest.md)
+* [A DC/OS és a Marathon API használata](container-service-mesos-marathon-rest.md)
 
-* Részletes bemutatója a hello Azure Tárolószolgáltatás a Mesos
+* A Mesost használó Azure Container Service részletes bemutatása
 
     > [!VIDEO https://channel9.msdn.com/Events/Microsoft-Azure/AzureCon-2015/ACON203/player]
     > 

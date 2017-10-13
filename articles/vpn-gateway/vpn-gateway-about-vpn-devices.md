@@ -1,6 +1,6 @@
 ---
-title: "aaaAbout VPN-eszközök a létesítmények közötti Azure-kapcsolatok |} Microsoft Docs"
-description: "Ez a cikk a létesítmények közötti S2S VPN Gateway-kapcsolatokhoz használt VPN-eszközöket és IPsec paramétereket ismerteti. Hivatkozásokkal tooconfiguration utasítások és a minták."
+title: "Tudnivalók a létesítmények közötti Azure-kapcsolatokhoz használható VPN-eszközökről | Microsoft Docs"
+description: "Ez a cikk a létesítmények közötti S2S VPN Gateway-kapcsolatokhoz használt VPN-eszközöket és IPsec paramétereket ismerteti. A konfigurációs utasítások és minták a megfelelő hivatkozásokra kattintva érhetők el."
 services: vpn-gateway
 documentationcenter: na
 author: yushwang
@@ -15,27 +15,26 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/14/2017
 ms.author: yushwang;cherylmc
-ms.openlocfilehash: 8b84afbf93d807342ecd56ab369d5909a13343e9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7b7e5f0f089cc87c9e63eee1fd3d29b7a2c0d49f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="about-vpn-devices-and-ipsecike-parameters-for-site-to-site-vpn-gateway-connections"></a>Információk a helyek közötti VPN Gateway-kapcsolatok VPN-eszközeinek IPsec/IKE-paramétereiről
 
-A VPN-eszköz szükség tooconfigure segítségével a VPN-átjáró webhelyek (közötti S2S) létesítmények közötti VPN-kapcsolat. Pont-pont kapcsolatok használt toocreate hibrid megoldás, vagy tetszés szerinti biztonságos kapcsolat a helyszíni hálózatokhoz és a virtuális hálózatok között. Ez a cikk ellenőrzött VPN-eszközök listáját, valamint a VPN-átjárók IPsec-/IKE-paramétereinek listáját tartalmazza.
+Létesítmények közötti, VPN-átjárót használó S2S VPN-kapcsolat konfigurálásához VPN-eszközre van szükség. A helyek közötti kapcsolat segítségével hibrid megoldást hozhat létre, illetve biztonságossá teheti a kapcsolatot a helyszíni és a virtuális hálózatok között. Ez a cikk ellenőrzött VPN-eszközök listáját, valamint a VPN-átjárók IPsec-/IKE-paramétereinek listáját tartalmazza.
 
 > [!IMPORTANT]
-> Ha problémák a helyszíni VPN-eszközök és a VPN-átjárók között tapasztal, tekintse meg a túl[ismert eszköz kompatibilitási problémák](#known).
->
+> Ha problémákat tapasztal a helyszíni VPN-eszközök és a VPN-átjárók közötti kapcsolatban, tekintse meg az [ismert eszközkompatibilitási problémákkal kapcsolatos szakaszt](#known).
 >
 
-### <a name="items-toonote-when-viewing-hello-tables"></a>Elemek toonote hello táblák megtekintésekor:
+### <a name="items-to-note-when-viewing-the-tables"></a>A táblák megtekintésekor figyelembe veendő elemek:
 
-* Az Azure VPN Gateway esetében terminológiai változás történt. Csak a hello neve megváltozott. A funkció nem változik.
+* Az Azure VPN Gateway esetében terminológiai változás történt. Csak a nevek változtak. A funkció nem változik.
   * Statikus útválasztás = Házirendalapú
   * Dinamikus útválasztás = Útvonalalapú
-* HighPerformance VPN gateway és az átjáró RouteBased VPN specifikációk vannak hello azonos, hacsak máshogy nincs jelezve. Például érvényesítve hello VPN-eszközök, amelyek kompatibilisek a RouteBased VPN-átjárók kompatibilisek is hello HighPerformance VPN-átjáró.
+* A nagy teljesítményű (HighPerformance) és az útvonalalapú (RouteBased) VPN-átjárók specifikációi azonosak, hacsak a szöveg másként nem jelzi. Például az útvonalalapú VPN-átjárókkal kompatibilis, ellenőrzött VPN-eszközök a nagy teljesítményű VPN-átjárókkal is kompatibilisek lesznek.
 
 ## <a name="devicetable"></a>Ellenőrzött VPN-eszközök és eszközkonfigurációs útmutatók
 
@@ -43,9 +42,9 @@ A VPN-eszköz szükség tooconfigure segítségével a VPN-átjáró webhelyek (
 > Helyek közötti kapcsolat konfigurálásakor a VPN-eszköz számára egy nyilvános IPv4 IP-címre van szükség.
 >
 
-Eszközszállítói partnereinkkel különböző standard VPN-eszközöket ellenőriztünk. Hello eszközeiről a hello eszközcsaládok hello a következő listában a VPN-átjárók együtt kell működnie. Lásd: [kapcsolatos VPN-átjáró beállítások](vpn-gateway-about-vpn-gateway-settings.md#vpntype) toounderstand hello VPN írja be a hello tooconfigure kívánt VPN-átjáró megoldás (PolicyBased vagy RouteBased) használható.
+Eszközszállítói partnereinkkel különböző standard VPN-eszközöket ellenőriztünk. Az alábbi listában szereplő eszközcsaládokban megtalálható összes eszköz kompatibilis a VPN-átjárókkal. A konfigurálni kívánt VPN Gateway-megoldáshoz használt VPN-típusok (házirendalapú vagy útvonalalapú) megismeréséhez lásd: [Tudnivalók a VPN Gateway beállításairól](vpn-gateway-about-vpn-gateway-settings.md#vpntype).
 
-toohelp a VPN-eszköz beállításához tekintse meg a megfelelő tooappropriate eszköz termékcsalád toohello hivatkozásokat. hello hivatkozások tooconfiguration útmutatást legjobb alapon. A VPN-eszközök támogatásával kapcsolatban lépjen kapcsolatba az eszköze gyártójával.
+A VPN-eszköz konfigurálásához kövesse a megfelelő eszközcsaládhoz tartozó hivatkozásokat. A konfigurációs utasításokra mutató hivatkozásokat képességeinkhez mérten biztosítjuk. A VPN-eszközök támogatásával kapcsolatban lépjen kapcsolatba az eszköze gyártójával.
 
 |**Szállító**          |**Eszközcsalád**     |**Operációs rendszer minimális verziója** |**Házirendalapú konfigurációs utasítások** |**Útválasztó-alapú konfigurációs utasítások** |
 | ---                | ---                  | ---                   | ---            | ---           |
@@ -55,9 +54,9 @@ toohelp a VPN-eszköz beállításához tekintse meg a megfelelő tooappropriate
 | Barracuda Networks, Inc. |Barracuda NextGen tűzfal, X sorozat |Barracuda tűzfal, 6.5-ös verzió |[Konfigurációs útmutató](https://techlib.barracuda.com/BFW/ConfigAzureVPNGateway) |Nem kompatibilis |
 | Brocade            |Vyatta 5400 vRouter   |Virtual Router 6.6R3 GA|[Konfigurációs útmutató](http://www1.brocade.com/downloads/documents/html_product_manuals/vyatta/vyatta_5400_manual/wwhelp/wwhimpl/js/html/wwhelp.htm#href=VPN_Site-to-Site%20IPsec%20VPN/Preface.1.1.html) |Nem kompatibilis |
 | Ellenőrzőpont |Biztonsági átjáró |R77.30 |[Konfigurációs útmutató](https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk101275) |[Konfigurációs útmutató](https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk101275) |
-| Cisco              |ASA       |8.3 |[Konfigurációs minták](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ASA) |Nem kompatibilis |
+| Cisco              |ASA       |8.3<br>8.4+ (IKEv2*) |[Konfigurációs minták](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ASA) |[Konfigurációs útmutató*](vpn-gateway-3rdparty-device-config-cisco-asa.md) |
 | Cisco |ASR |Házirendalapú: IOS 15.1<br>Útvonalalapú: IOS 15.2 |[Konfigurációs minták](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ASR) |[Konfigurációs minták](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ASR) |
-| Cisco |ISR |Házirendalapú: IOS 15.0<br>Útvonalalapú*: IOS 15.1 |[Konfigurációs minták](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ISR) |[Konfigurációs minták*](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ISR) |
+| Cisco |ISR |Házirendalapú: IOS 15.0<br>Útvonalalapú*: IOS 15.1 |[Konfigurációs minták](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ISR) |[Konfigurációs minták**](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ISR) |
 | Citrix |NetScaler MPX, SDX, VPX |10.1-es vagy újabb verzió |[Konfigurációs útmutató](https://docs.citrix.com/en-us/netscaler/11-1/system/cloudbridge-connector-introduction/cloudbridge-connector-azure.html) |Nem kompatibilis |
 | F5 |BIG-IP sorozat |12.0 |[Konfigurációs útmutató](https://devcentral.f5.com/articles/connecting-to-windows-azure-with-the-big-ip) |[Konfigurációs útmutató](https://devcentral.f5.com/articles/big-ip-to-azure-dynamic-ipsec-tunneling) |
 | Fortinet |FortiGate |FortiOS 5.4.2 |  |[Konfigurációs útmutató](http://cookbook.fortinet.com/ipsec-vpn-microsoft-azure-54) |
@@ -68,25 +67,28 @@ toohelp a VPN-eszköz beállításához tekintse meg a megfelelő tooappropriate
 | Juniper |SSG |ScreenOS 6.2 |[Konfigurációs minták](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/SSG) |[Konfigurációs minták](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/SSG) |
 | Microsoft |Útválasztás és távelérés szolgáltatás |Windows Server 2012 |Nem kompatibilis |[Konfigurációs minták](http://go.microsoft.com/fwlink/p/?LinkId=717761) |
 | Open Systems AG |Mission Control biztonsági átjáró |N/A |[Konfigurációs útmutató](https://www.open.ch/_pdf/Azure/AzureVPNSetup_Installation_Guide.pdf) |Nem kompatibilis |
-| Openswan |Openswan |2.6.32 |(Hamarosan elérhető) |Nem kompatibilis |
 | Palo Alto Networks |Az összes PAN-OS rendszert futtató eszköz |PAN-OS<br>Házirendalapú: 6.1.5 vagy újabb<br>Útvonalalapú: 7.1.4 |[Konfigurációs útmutató](https://live.paloaltonetworks.com/t5/Configuration-Articles/How-to-Configure-VPN-Tunnel-Between-a-Palo-Alto-Networks/ta-p/59065) |[Konfigurációs útmutató](https://live.paloaltonetworks.com/t5/Integration-Articles/Configuring-IKEv2-VPN-for-Microsoft-Azure-Environment/ta-p/60340) |
-| SonicWall |TZ sorozat, NSA sorozat<br>SuperMassive sorozat<br>E-Class NSA sorozat |SonicOS 5.8.x<br>SonicOS 5.9.x<br>SonicOS 6.x |[Beállítási útmutató a SonicOS 6.2 rendszerhez](http://documents.software.dell.com/sonicos/6.2/microsoft-azure-configuration-guide?ParentProduct=646)<br>[Beállítási útmutató a SonicOS 5.9 rendszerhez](http://documents.software.dell.com/sonicos/5.9/microsoft-azure-configuration-guide?ParentProduct=850) |[Beállítási útmutató a SonicOS 6.2 rendszerhez](http://documents.software.dell.com/sonicos/6.2/microsoft-azure-configuration-guide?ParentProduct=646)<br>[Beállítási útmutató a SonicOS 5.9 rendszerhez](http://documents.software.dell.com/sonicos/5.9/microsoft-azure-configuration-guide?ParentProduct=850) |
+| SonicWall |TZ sorozat, NSA sorozat<br>SuperMassive sorozat<br>E-Class NSA sorozat |SonicOS 5.8.x<br>SonicOS 5.9.x<br>SonicOS 6.x |Nem támogatott|[Konfigurációs útmutató](https://www.sonicwall.com/en-us/support/knowledge-base/170505320011694) |
 | WatchGuard |Összes |Fireware XTM<br> Házirendalapú: v11.11.x<br>Útvonalalapú: v11.12.x |[Konfigurációs útmutató](http://watchguardsupport.force.com/publicKB?type=KBArticle&SFDCID=kA2F00000000LI7KAM&lang=en_US) |[Konfigurációs útmutató](http://watchguardsupport.force.com/publicKB?type=KBArticle&SFDCID=kA22A000000XZogSAG&lang=en_US)|
 
-(*) Az ISR 7200 sorozatba tartozó útválasztók csak a házirendalapú VPN-eket támogatják.
+> [!NOTE]
+>
+> (*) A CISCO ASA 8.4 és újabb verziói biztosítják az IKEv2-támogatást, valamint képesek csatlakozni egy Azure VPN-átjáróhoz egyéni IPsec/Internetes kulcscsere-házirend és a „UsePolicyBasedTrafficSelectors” beállítás használatával. További információkat [ebben a részletes útmutatóban](vpn-gateway-connect-multiple-policybased-rm-ps.md) olvashat.
+>
+> (**) Az ISR 7200 sorozatba tartozó útválasztók csak a házirendalapú VPN-eket támogatják.
 
 ## <a name="additionaldevices"></a>Nem ellenőrzött VPN-eszközök
 
-Ha nem látja az eszközt, hello érvényesítve VPN eszközök táblázatban, az eszköz még használhatja a pont-pont kapcsolat. További támogatásért és konfigurációs útmutatásért lépjen kapcsolatba az eszköze gyártójával.
+Ha nem látja az eszközt a fenti Ellenőrzött VPN-eszközök táblázatban, attól még az eszköz képes lehet helyek közötti kapcsolat létesítésére. További támogatásért és konfigurációs útmutatásért lépjen kapcsolatba az eszköze gyártójával.
 
 ## <a name="editing"></a>Az eszköz konfigurációs mintáinak szerkesztése
 
-A megadott hello VPN eszköz konfigurációs minta letöltése után tooreplace lesz szüksége néhány hello értékek tooreflect hello a környezetre vonatkozó beállításokat.
+A megadott VPN-eszközkonfigurációs minta letöltését követően egyes értékeket a környezeti beállításoknak megfelelően le kell cserélni.
 
-### <a name="tooedit-a-sample"></a>egy minta tooedit:
+### <a name="to-edit-a-sample"></a>A minta szerkesztéséhez tegye a következőket:
 
-1. Nyissa meg a Jegyzettömbben hello minta.
-2. Keresés és csere összes <*szöveg*> karakterláncok, amelyek a projektjükhöz tooyour környezet hello értékekkel. Lehet, hogy tooinclude < és >. Ha olyan nevet ad meg, választja hello nevének egyedinek kell lennie. Ha egy parancs nem működik, tekintse meg az eszköz gyártói dokumentációját.
+1. Nyissa meg a mintát a Jegyzettömb alkalmazásban.
+2. Keresse meg és cserélje le az összes <*szöveges*> karakterláncot a környezeti beállításokhoz tartozó értékekre. Győződjön meg arról, hogy szerepelnek benne < és > karakterek. A név megadásakor a kiválasztott névnek egyedinek kell lennie. Ha egy parancs nem működik, tekintse meg az eszköz gyártói dokumentációját.
 
 | **Szövegminta** | **Módosítsa a következőre:** |
 | --- | --- |
@@ -99,17 +101,18 @@ A megadott hello VPN eszköz konfigurációs minta letöltése után tooreplace 
 | &lt;SP_AzureNetworkSubnetMask&gt; |Adja meg az alhálózati maszkot. Példa: 255.255.0.0 |
 | &lt;SP_OnPremisesNetworkIpRange&gt; |Adja meg a helyszíni tartományt. Példa: 10.2.1.0 |
 | &lt;SP_OnPremisesNetworkSubnetMask&gt; |Adja meg a helyszíni alhálózati maszkot. Példa: 255.255.255.0 |
-| &lt;SP_AzureGatewayIpAddress&gt; |Ezen információk adott tooyour a virtuális hálózaton, és a kezelési portál hello található, **átjáró IP-cím**. |
-| &lt;SP_PresharedKey&gt; |Ezt az információt adott tooyour virtuális hálózat, és a felügyeleti portálon kezelheti kulcsként hello található. |
+| &lt;SP_AzureGatewayIpAddress&gt; |Ez az információ kifejezetten az Ön virtuális hálózatára vonatkozik, és a felügyeleti portálon az **átjáró IP-címe** név alatt található meg. |
+| &lt;SP_PresharedKey&gt; |Ez az információ kifejezetten az Ön virtuális hálózatára vonatkozik, és a felügyeleti portálon a Kulcskezelés cím alatt található meg. |
 
 ## <a name="ipsec"></a>IPsec/IKE-paraméterek
 
-> [!NOTE]
-> Bár hello a következő táblázatban felsorolt hello értékek által támogatott hello VPN-átjáró, jelenleg nincs az Ön mechanizmus toospecify, vagy válasszon egyedi kombinációja algoritmusok vagy paraméterek hello VPN-átjáró. Meg kell adnia a hello a helyszíni VPN-eszköz korlátozásokat. Ezenfelül az **MSS** korlátozását **1350-re** kell állítani.
-> 
+> [!IMPORTANT]
+> 1. Az alábbi táblázat tartalmazza azon algoritmusok és paraméterek kombinációit, amelyeket az Azure VPN-átjárók alapértelmezés szerint használnak. Az Azure Resource Management üzembehelyezési modelljének használatával létrehozott, útvonalalapú VPN-átjárók esetében minden egyes kapcsolathoz külön egyéni szabályzatok adhatók meg. Részletes útmutatás: [IPsec/Internetes kulcscsere házirendje](vpn-gateway-ipsecikepolicy-rm-powershell.md).
+>
+> 2. Ezenfelül a TCP **MSS** korlátozását **1350-re** kell állítani. Ha a VPN-eszköze nem támogatja az MSS korlátozását, akkor ehelyett beállíthatja az alagútkapcsolaton az **MTU**-t **1400** bájtra.
 >
 
-A következő táblák hello:
+A következő táblázatokban:
 
 * SA = Biztonsági társítás
 * Az IKE 1. fázis másik elnevezése: „Main Mode” (Elsődleges mód)
@@ -139,7 +142,7 @@ A következő táblák hello:
 
 ### <a name ="RouteBasedOffers"></a>Útvonalalapú VPN IPsec biztonsági társítás (IKE – gyors mód SA) ajánlatai
 
-hello következő táblázat felsorolja az IPsec biztonsági Társítás (IKE gyorsmódú) ajánlatokat. Ajánlatok akkor felsorolt hello sorrend figyelembe vételével adott hello ajánlat jelenik meg, vagy elfogadva.
+Az alábbi táblázat felsorolja az IPsec SA (IKE – gyors mód) ajánlatait. Az ajánlatok prioritási sorrendben vannak felsorolva a választáshoz.
 
 #### <a name="azure-gateway-as-initiator"></a>Azure-átjáró, mint kezdeményező
 
@@ -183,20 +186,20 @@ hello következő táblázat felsorolja az IPsec biztonsági Társítás (IKE gy
 | 25|AES128        |SHA256            |14           |
 | 26|3DES          |SHA1              |14           |
 
-* Az IPsec ESP NULL titkosítás útvonalalapú és nagy teljesítményű VPN-átjárók segítségével adható meg. NULL alapú titkosítás nem nyújt védelmet toodata az átvitel során, és csak kell használni, amikor maximális átviteli sebesség és a minimális késés szükség. Ügyfelek előfordulhat, hogy ezzel toouse VNet – VNet kommunikációs helyzetek, vagy amikor titkosítási máshol hello megoldásban végzi.
-* A létesítmények közötti kapcsolathoz hello interneten keresztül hello az alapértelmezett beállításokkal Azure VPN gateway titkosítási és kivonatoló algoritmusok hello táblázatokban tooensure biztonsági a kritikus fontosságú kommunikációhoz a fent felsorolt.
+* Az IPsec ESP NULL titkosítás útvonalalapú és nagy teljesítményű VPN-átjárók segítségével adható meg. A nullalapú titkosítás nem biztosít védelmet az adatok számára az átvitel során, ezért használata csak abban az esetben indokolt, ha maximális átviteli sebességre és minimális késleltetésre van szükség. Az ügyfelek virtuális hálózatok közötti kapcsolatoknál dönthetnek ennek használata mellett, vagy ha más helyen a rendszer titkosítást alkalmaz.
+* A létesítmények közötti internetes kapcsolat esetében az alapértelmezett Azure VPN-átjáróbeállításokat a fenti táblákban található titkosítási és kivonatolási algoritmusokkal használja a kritikus fontosságú kommunikáció biztonságának megteremtéséhez.
 
 ## <a name="known"></a>Ismert eszközkompatibilitási problémák
 
 > [!IMPORTANT]
-> A rendszer hello ismert kompatibilitási problémákkal külső VPN-eszközök és az Azure VPN-átjárók között. hello Azure csapata tooaddress hello az itt felsorolt problémák hello szállítókkal aktívan. Miután hello problémák megoldott, ezen a lapon hello legfrissebb információkkal fog frissülni. Kérjük, időnként látogasson vissza ide.
+> Ezek az ismert kompatibilitási problémák a külső gyártótól származó VPN-eszközök és az Azure VPN-átjárók között merülhetnek fel. Az Azure csapata folyamatosan együttműködik a szállítókkal az itt felsorolt problémák megoldása érdekében. A hibák kijavítása után ez az oldal frissül a legfrissebb információkkal. Kérjük, időnként látogasson vissza ide.
 >
 >
 
 ### <a name="feb-16-2017"></a>2017. február 16.
 
-**Palo Alto hálózatok eszközök előzetes verzió too7.1.4** Azure útvonalalapú VPN: Ha PÁSZTÁZÁS-OS verziója előzetes too7.1.4 VPN-eszközök a Palo Alto hálózatok használ, és a kapcsolat tapasztalt problémák tooAzure útvonalalapú VPN-átjárók, hajtsa végre az alábbi lépésekkel hello:
+**A 7.1.4-esnél korábbi verziójú rendszert futtató Palo Alto Networks-eszközök** Azure útvonalalapú VPN-hez: Ha a Palo Alto Networkstől származó VPN-eszközöket használ a 7.1.4-esnél korábbi PAN-OS verzióval, és problémákat tapasztal, amikor az Azure útvonalalapú VPN-átjárókhoz csatlakozik, hajtsa végre a következő lépéseket:
 
-1. Ellenőrizze a Palo Alto hálózatok eszköz hello belső vezérlőprogram verzióját. Ha a PÁSZTÁZÁS-OS verziója régebbi, mint 7.1.4, frissítse az too7.1.4.
-2. Hello Palo Alto hálózatok eszközön módosítása hello fázis 2 SA (vagy gyors biztonsági Társítás) élettartamát too28, 800 másodperc (8 óra) Ha toohello Azure VPN gatewayhez csatlakozó.
-3. Ha továbbra is problémák, nyissa meg egy támogatási kérést hello Azure-portálon.
+1. Ellenőrizze a Palo Alto Networks-eszköz belső vezérlőprogramjának verzióját. Ha a PAN-OS verziója a 7.1.4-esnél régebbi, frissítsen a 7.1.4-es verzióra.
+2. A Palo Alto Networks-eszközön módosítsa a 2. fázisú biztonsági társítás (Gyorsmódú biztonsági társítás) élettartamát 28 800 másodpercre (8 órára) az Azure-beli VPN-átjáróhoz való csatlakozáskor.
+3. Ha továbbra is csatlakozási problémákat tapasztal, hozzon létre egy támogatási kérést az Azure Portalon.

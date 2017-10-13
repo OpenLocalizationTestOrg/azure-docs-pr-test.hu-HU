@@ -1,6 +1,6 @@
 ---
-title: "Naplóelemzési aaaAnalyze adatok felhasználásának |} Microsoft Docs"
-description: "Naplóelemzési tooview mennyi adatot küldött toohello Naplóelemzés szolgáltatás, és ezért nagy mennyiségű adatok küldési hibáinak elhárítása hello használati irányítópult használja."
+title: "1Az adathasználat elemzése a Log Analyticsben | Microsoft Docs"
+description: "A Log Analytics használati irányítópultjával megtekintheti, hogy mennyi adatot küld a rendszer a Log Analytics szolgáltatásnak, és elháríthatja a nagy mennyiségű adat küldését okozó hibákat."
 services: log-analytics
 documentationcenter: 
 author: MGoedtel
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/21/2017
 ms.author: magoedte
-ms.openlocfilehash: c30373dd6edbe3ff900fbebc865575fee61ce14c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9a4709f298131722e9c473a19f7eee0aebf7e1e6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="analyze-data-usage-in-log-analytics"></a>Az adathasználat elemzése a Log Analyticsben
-A Naplóelemzési összegyűjtött adatok, amelyek számítógépek küldi hello adatok és a különböző típusú hello küldött adatok mennyisége hello kapcsolatos tartalmaz.  Használjon hello **Analytics Naplóhasználatra** irányítópult toosee hello adatok mennyisége toohello Naplóelemzés szolgáltatás küldött. hello irányítópulton látható mennyi adatot gyűjt minden megoldás, és mennyi adatot a számítógépek üzenetet küld.
+A Log Analytics információkat biztosít a gyűjtött adatok mennyiségéről, valamint arról, hogy mely számítógépek küldték az adatokat és milyen típusú adatokat küldtek.  A **Log Analytics használati** irányítópultján megtekintheti, hogy mennyi adatot küld a rendszer a Log Analytics szolgáltatásnak. Az irányítópult megjeleníti, hogy az egyes megoldások mennyi adatot gyűjtenek össze, és a számítógépek mennyi adatot küldenek.
 
-## <a name="understand-hello-usage-dashboard"></a>Hello használati irányítópult ismertetése
-Hello **Naplóelemzési használati** irányítópulton megjelenített hello a következő információkat:
+## <a name="understand-the-usage-dashboard"></a>A használati irányítópult bemutatása
+A **Log Analytics-használat** irányítópult az alábbi információkat jeleníti meg:
 
 - Adatmennyiség
     - Adatmennyiség az idő függvényében (az aktuális időtartomány alapján)
@@ -38,94 +38,94 @@ Hello **Naplóelemzési használati** irányítópulton megjelenített hello a k
     - Automation and Control-csomópontok
     - Biztonsági csomópontok
 - Teljesítmény
-    - Toocollect és index adatok igénybe vett idő
+    - Az adatok gyűjtésével és indexelésével eltelt idő
 - Lekérdezések listája
 
 ![A Használat irányítópult](./media/log-analytics-usage/usage-dashboard01.png)
 
-### <a name="toowork-with-usage-data"></a>a használati adatok toowork
-1. Ha még nem tette meg, jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) használata az Azure-előfizetéshez.
-2. A hello **Hub** menüben kattintson a **további szolgáltatások** hello az erőforrások listájához, írja be a **Naplóelemzési**. Írja be megkezdése előtt, hello szűrők megjelenítése a megadott feltételeknek. Kattintson a **Log Analytics** elemre.  
+### <a name="to-work-with-usage-data"></a>A használati adatok használata
+1. Ha még nem tette meg, jelentkezzen be az [Azure Portalra](https://portal.azure.com) Azure-előfizetésével.
+2. A **központi** menüben kattintson a **További szolgáltatások** elemre, majd az erőforrások listájába írja be a következőt: **Log Analytics**. Ahogy elkezd gépelni, a lista a beírtak alapján szűri a lehetőségeket. Kattintson a **Log Analytics** elemre.  
     ![Azure-központ](./media/log-analytics-usage/hub.png)
-3. Hello **Naplóelemzési** irányítópult a munkaterületek listáját jeleníti meg. Jelöljön ki egy munkaterületet.
-4. A hello *munkaterület* irányítópultján kattintson **Naplóelemzési használati**.
-5. A hello **Analytics Naplóhasználatra** irányítópultján kattintson **idő: utolsó 24 óra** toochange hello alatt az időtartam alatt.  
+3. A **Log Analytics** irányítópultja megjeleníti a munkaterületek listáját. Jelöljön ki egy munkaterületet.
+4. A *munkaterületek* irányítópultján kattintson a **Log Analytics-használat** elemre.
+5. A **Log Analytics-használat** irányítópulton kattintson az **Idő: Elmúlt 24 óra** elemre az időintervallum módosításához.  
     ![időintervallum](./media/log-analytics-usage/time.png)
-6. Nézet hello használati kategória paneleken területek megjelenítő kíváncsiak vagyunk. Válasszon egy panel, és kattintson a bármely elemére a részletesebben tooview [naplófájl-keresési](log-analytics-log-searches.md).  
+6. Tekintse meg a kívánt területeket megjelenítő használatikategória-paneleket. Válasszon ki egy panelt, majd kattintson az egyik elemére további részletek megtekintéséhez a [naplókeresésben](log-analytics-log-searches.md).  
     ![példa adathasználati panelre](./media/log-analytics-usage/blade.png)
-7. Tekintse meg az irányítópult hello napló keresése hello eredmények hello keresési eredményei.  
+7. A Naplók keresése irányítópulton tekintse meg a keresés eredményeit.  
     ![példa használati panelre a naplókeresésben](./media/log-analytics-usage/usage-log-search.png)
 
 ## <a name="create-an-alert-when-data-collection-is-higher-than-expected"></a>Riasztás létrehozása, amikor az adatgyűjtés szintje a vártnál magasabb
-Ez a szakasz ismerteti, hogyan toocreate riasztás, ha:
+Ez a szakasz ismerteti, hogyan hozhat létre riasztást, ha:
 - Az adatmennyiség meghalad egy megadott mennyiséget.
-- Adatmennyiség előre jelzett tooexceed egy megadott időtartamig.
+- Az adatmennyiség várhatóan meghalad egy megadott mennyiséget.
 
-A Log Analytics[-riasztások](log-analytics-alerts-creating.md) keresési lekérdezéseket használnak. hello következő lekérdezés van eredménye 100 GB-nál több adatgyűjtés hello utolsó 24 órában esetén:
+A Log Analytics[-riasztások](log-analytics-alerts-creating.md) keresési lekérdezéseket használnak. A következő lekérdezés akkor ad vissza eredményt, ha több mint 100 GB adat lett összegyűjtve az elmúlt 24 órában:
 
 `Type=Usage QuantityUnit=MBytes IsBillable=true | measure sum(div(Quantity,1024)) as DataGB by Type | where DataGB > 100`
 
-hello következő lekérdezés használja egy egyszerű képlet toopredict Ha több mint 100 GB adatot küld egy napon belül: 
+A következő lekérdezés egy egyszerű képlettel előrejelzi, mikor fog a rendszer egy nap alatt több mint 100 GB adatot küldeni: 
 
 `Type=Usage QuantityUnit=MBytes IsBillable=true | measure sum(div(mul(Quantity,8),1024)) as EstimatedGB by Type | where EstimatedGB > 100`
 
-tooalert másik kötetet, módosítás hello 100 hello lekérdezések toohello számú tooalert kívánt GB.
+Ha más adatmennyiségre szeretne riasztást beállítani, módosítsa a lekérdezésekben a 100 értéket arra a GB mennyiségre, amely esetén riasztást szeretne kapni.
 
-Ismertetett hello lépésekkel [riasztási szabályt létrehozni](log-analytics-alerts-creating.md#create-an-alert-rule) toobe adatok gyűjtése a vártnál nagyobb értesítést.
+A [riasztási szabályok létrehozásával kapcsolatos](log-analytics-alerts-creating.md#create-an-alert-rule) szakaszban leírt lépéseket követve beállíthatja, hogy értesítést kapjon, ha az adatgyűjtés szintje a vártnál magasabb.
 
-Amikor hello első lekérdezés – hello riasztás létrehozása, ha több mint 100 GB adat 24 órában, állítsa be a:
-- **Név** túl*24 órában 100 GB-nál nagyobb adatmennyiség*
-- **Súlyossági** túl*figyelmeztetés*
-- **Keresési lekérdezés** túl`Type=Usage QuantityUnit=MBytes IsBillable=true | measure sum(div(Quantity,1024)) as DataGB by Type | where DataGB > 100`
-- **Időablak** túl*24 óra*.
-- **Riasztási gyakoriságot** toobe egy órával óta hello használati adatok csak óránként egyszer frissíti.
-- **Riasztás alapján** toobe *eredmények száma*
-- **Találatok száma** toobe *nagyobb, mint 0*
+Az első lekérdezéshez tartozó riasztás létrehozásakor – amikor több mint 100 GB adat lett összegyűjtve 24 órán belül, állítsa be a következőket:
+- A **Név** legyen *Több mint 100 GB adatmennyiség 24 órán belül*
+- A **Súlyosság** legyen *Figyelmeztetés*
+- A **Keresési lekérdezés** legyen a következő: `Type=Usage QuantityUnit=MBytes IsBillable=true | measure sum(div(Quantity,1024)) as DataGB by Type | where DataGB > 100`
+- Az **Időtartomány** legyen *24 óra*.
+- A **Riasztási időköz** legyen egy óra, mivel a használati adatok csak óránként egyszer frissülnek.
+- A **Riasztások létrehozása a következő alapján:** értéke legyen az *eredmények száma*
+- Az **Eredmények száma** legyen *Nagyobb, mint 0*
 
-Ismertetett hello lépésekkel [műveletek tooalert szabályok hozzáadása](log-analytics-alerts-actions.md) egy e-mail, a webhook vagy a runbook műveletet a riasztási szabály hello konfigurálása.
+A [műveletek a riasztási szabályokhoz adásával kapcsolatos](log-analytics-alerts-actions.md) részben leírt lépéseket követve konfigurálhat e-mailt, webhookot, vagy runbook-műveletet a riasztási szabályhoz.
 
-Ha hello második lekérdezés – hello riasztás létrehozása során azt előre jelezni fogja a több mint 100 GB adat 24 órában beállítása a:
-- **Név** túl*adatmennyiség várható 100 GB-nál toogreater 24 órában*
-- **Súlyossági** túl*figyelmeztetés*
-- **Keresési lekérdezés** túl`Type=Usage QuantityUnit=MBytes IsBillable=true | measure sum(div(mul(Quantity,8),1024)) as EstimatedGB by Type | where EstimatedGB > 100`
-- **Időablak** túl*3 óra*.
-- **Riasztási gyakoriságot** toobe egy órával óta hello használati adatok csak óránként egyszer frissíti.
-- **Riasztás alapján** toobe *eredmények száma*
-- **Találatok száma** toobe *nagyobb, mint 0*
+A második lekérdezéshez tartozó riasztás létrehozásakor – amikor több mint 100 GB adat összegyűjtése várható 24 órán belül, állítsa be a következőket:
+- A **Név** legyen *Több mint 100 GB várható adatmennyiség 24 órán belül*
+- A **Súlyosság** legyen *Figyelmeztetés*
+- A **Keresési lekérdezés** legyen a következő: `Type=Usage QuantityUnit=MBytes IsBillable=true | measure sum(div(mul(Quantity,8),1024)) as EstimatedGB by Type | where EstimatedGB > 100`
+- Az **Időtartomány** legyen *3 óra*.
+- A **Riasztási időköz** legyen egy óra, mivel a használati adatok csak óránként egyszer frissülnek.
+- A **Riasztások létrehozása a következő alapján:** értéke legyen az *eredmények száma*
+- Az **Eredmények száma** legyen *Nagyobb, mint 0*
 
-Riasztás megjelenésekor kövesse a következő szakasz tootroubleshoot miért használati a vártnál nagyobb hello hello lépéseket.
+Riasztás fogadásakor kövesse a következő szakaszban leírt lépéseket a vártnál magasabb szintű használatot okozó hibák elhárításához.
 
 ## <a name="troubleshooting-why-usage-is-higher-than-expected"></a>A vártnál magasabb szintű használatot okozó hibák elhárítása
-hello használati Irányítópult segítségével tooidentify miért használati (és a költségeket, ezért) nagyobb, mint a várt.
+A használati irányítópult segít azonosítani, miért magasabb szintű a használat (és miért nagyobbak a költségek) a vártnál.
 
 A magasabb szintű használatot a következők okozhatják:
-- Küldési tooLog Analytics vártnál több adat
-- Több csomópontot várt adatok tooLog Analytics küldése
+- A vártnál több adatot küld a rendszer a Log Analytics számára
+- A vártnál több csomópont küld adatokat a Log Analytics számára
 
 ### <a name="check-if-there-is-more-data-than-expected"></a>Annak ellenőrzése, hogy a vártnál több adatot küld-e a rendszer 
-Két fő szakasz hello használati lap, amelyek segítenek azonosítani, hogy mi okozza a legtöbb adatok toobe gyűjtött hello van.
+A használati lap két fő részből áll, amelyek segítségével azonosítható, mi okozza a legtöbb adat gyűjtését.
 
-Hello *adatmennyiség időbeli* diagram hello teljes küldött adatok mennyiségét jeleníti meg, és küld hello számítógépek hello legtöbb adatot. hello diagram hello felső lehetővé teszi toosee, ha az összesített adatok használatának növekvő, állandó vagy csökkenő maradt. a számítógépek listáját hello adatküldés hello legtöbb hello 10 olyan számítógépet jeleníti meg.
+Az *Adatmennyiség az idő függvényében* diagram megjeleníti az elküldött adatok teljes mennyiségét, valamint azokat a számítógépeket, amelyek a legtöbb adatot küldik. A lap tetején lévő diagramról leolvasható, hogy a teljes adathasználat szintje nő, állandó vagy csökken. A számítógépek listája a 10 legtöbb adatot küldő számítógépet jeleníti meg.
 
-Hello *megoldás adatmennyiség* diagram hello minden megoldás és a legtöbb adatokat küldi hello hello megoldások küldött adatok mennyiségét mutatja. hello diagram hello felső hello teljes mennyisége idővel minden megoldás által küldött adatokat jeleníti meg. Ezek az információk lehetővé teszi tooidentify e megoldás további adatait, az adatok, illetve kisebb adatok azonos összeg időbeli hello küld. hello megoldások jeleníti adatküldés hello legtöbb hello 10 megoldások. 
+Az *Adatmennyiség megoldásonként* diagram megjeleníti az egyes megoldások által elküldött adatmennyiséget, valamint a legtöbb adatot küldő megoldásokat. A lap tetején lévő diagram megjeleníti az egyes megoldások által küldött teljes adatmennyiséget az idő függvényében. Ez alapján áttekintheti, hogy az egyes megoldások idővel egyre több adatot, azonos mennyiségű adatot vagy egyre kevesebb adatot küldenek. A megoldások listája a 10 legtöbb adatot küldő megoldást jeleníti meg. 
 
-Ezen a két diagramon megjelenik az összes adat. Néhány adat számlázható, mások pedig ingyenesek. toofocus csak adatokon, amely számlázható, módosítsa a hello keresés lap tooinclude hello lekérdezést `IsBillable=true`.  
+Ezen a két diagramon megjelenik az összes adat. Néhány adat számlázható, mások pedig ingyenesek. Ha csak a számlázható adatokra szeretne összpontosítani, módosítsa a lekérdezést a keresés a következő hozzáadásával: `IsBillable=true`.  
 
 ![adatmennyiség-diagramok](./media/log-analytics-usage/log-analytics-usage-data-volume.png)
 
-Nézze meg hello *adatmennyiség időbeli* diagram. toosee hello megoldások és adattípusok, amelyek küldi hello legtöbb adatokat egy adott számítógépen kattintson a hello hello számítógép nevét. Kattintson az első számítógép hello hello lista hello neve.
+Tekintse meg az *Adatmennyiség az idő függvényében* diagramot. Azon megoldások és adattípusok megtekintéséhez, amelyek a legtöbb adatot küldik egy adott számítógép esetében kattintson a számítógép nevére. Kattintson a listában szereplő első számítógép nevére.
 
-A következő képernyőkép hello, hello *napló felügyeleti / telj* adattípus küldi hello hello legtöbb adataival. 
+A következő képernyőképen az látható, hogy a *Log Management / Perf* adattípus küldi a legtöbb adatot a számítógép esetében. 
 
 ![adatmennyiség egy számítógép esetében](./media/log-analytics-usage/log-analytics-usage-data-volume-computer.png)
 
-Ezután térjen vissza toohello *használati* irányítópult és hello pillantást *megoldás adatmennyiség* diagram. toosee hello számítógépek adatküldés hello legtöbb megoldás, kattintson a hello megoldás hello listában hello nevét. Kattintson a hello első megoldás hello listában hello nevét. 
+Ezután lépjen vissza a *Használat* irányítópultra, és tekintse meg az *Adatmennyiség megoldásonként* diagramot. Azon a számítógépek megtekintéséhez, amelyek a legtöbb adatot küldik egy megoldás esetében, kattintson a listában szereplő megoldás nevére. Kattintson a listában szereplő első megoldás nevére. 
 
-A következő képernyőkép hello, az megerősíti, hogy hello *acmetomcat* számítógép küldi hello hello napló-kezelési megoldás a legtöbb adatot.
+A következő képernyőkép megerősíti, hogy az *acmetomcat* számítógép küldi a legtöbb adatot a naplókezelési megoldás esetében.
 
 ![adatmennyiség egy megoldás esetében](./media/log-analytics-usage/log-analytics-usage-data-volume-solution.png)
 
-Ha szükséges, hajtsa végre a további elemzés tooidentify nagy méretű köteteket tartozó megoldás vagy adatokat. Példák a lekérdezésekre:
+Szükség esetén végezzen további elemzést a megoldásokban vagy adattípusokban található nagy mennyiségek azonosításához. Példák a lekérdezésekre:
 
 + **Biztonsági** megoldás
   - `Type=SecurityEvent | measure count() by EventID`
@@ -143,31 +143,31 @@ Ha szükséges, hajtsa végre a további elemzés tooidentify nagy méretű köt
 + **AzureDiagnostics** adattípus
   - `Type=AzureDiagnostics | measure count() by ResourceProvider, ResourceId`
 
-A következő lépéseket tooreduce hello kötet gyűjtött naplók hello használata:
+A következő lépésekkel csökkentheti a gyűjtött naplók mennyiségét:
 
-| A nagy adatmennyiség forrása | Hogyan tooreduce adatmennyiség |
+| A nagy adatmennyiség forrása | Az adatmennyiség csökkentésének módja |
 | -------------------------- | ------------------------- |
-| Biztonsági események            | Válassza a [gyakori vagy minimális biztonsági események](https://blogs.technet.microsoft.com/msoms/2016/11/08/filter-the-security-events-the-oms-security-collects/) lehetőséget <br> Módosítsa a hello biztonsági naplózási házirend csak akkor szükséges, toocollect eseményeket. Különösen tekintse át a hello kell toocollect eseményei <br> - [szűrőplatform naplózása](https://technet.microsoft.com/library/dd772749(WS.10).aspx) <br> - [beállításjegyzék naplózása](https://docs.microsoft.com/windows/device-security/auditing/audit-registry)<br> - [fájlrendszer naplózása](https://docs.microsoft.com/windows/device-security/auditing/audit-file-system)<br> - [kernelobjektum naplózása](https://docs.microsoft.com/windows/device-security/auditing/audit-kernel-object)<br> - [leírókezelés naplózása](https://docs.microsoft.com/windows/device-security/auditing/audit-handle-manipulation)<br> - [cserélhető tároló naplózása](https://docs.microsoft.com/windows/device-security/auditing/audit-removable-storage) |
-| Teljesítményszámlálók       | Módosítsa a [teljesítményszámlálók konfigurációját](log-analytics-data-sources-performance-counters.md): <br> -Gyűjtemény hello gyakoriságának csökkentése <br> – Csökkentse a teljesítményszámlálók számát |
-| Eseménynaplók                 | Módosítsa az [eseménynaplók konfigurációját](log-analytics-data-sources-windows-events.md): <br> -Csökkentse az összegyűjtött Eseménynapló hello száma <br> – Csak a szükséges eseményszinteket gyűjtse. Ne gyűjtsön például *Tájékoztatás* szintű eseményeket |
-| Rendszernapló                     | Módosítsa a [rendszernapló konfigurációját](log-analytics-data-sources-syslog.md): <br> -Hello számú gyűjtött csökkentése <br> – Csak a szükséges eseményszinteket gyűjtse. Ne gyűjtsön például *Tájékoztatás* vagy *Hibakeresés* szintű eseményeket |
-| AzureDiagnostics           | Az erőforrásnapló-gyűjtés módosítása a következőre: <br> -Csökkentse erőforrások küldési naplók tooLog Analytics hello számát <br> – Csak a szükséges naplókat gyűjtse |
-| Megoldás adatait hello megoldást nem igénylő számítógépek | Használjon [célcsoport-kezelési megoldás](../operations-management-suite/operations-management-suite-solution-targeting.md) szükséges számítógépcsoportok csak toocollect adatait. |
+| Biztonsági események            | Válassza a [gyakori vagy minimális biztonsági események](https://blogs.technet.microsoft.com/msoms/2016/11/08/filter-the-security-events-the-oms-security-collects/) lehetőséget <br> Módosítsa a biztonsági naplózási szabályzatot, hogy csak a szükséges eseményeket gyűjtse be. Tekintse át a következőkhöz való eseménygyűjtés szükségességét: <br> - [szűrőplatform naplózása](https://technet.microsoft.com/library/dd772749(WS.10).aspx) <br> - [beállításjegyzék naplózása](https://docs.microsoft.com/windows/device-security/auditing/audit-registry)<br> - [fájlrendszer naplózása](https://docs.microsoft.com/windows/device-security/auditing/audit-file-system)<br> - [kernelobjektum naplózása](https://docs.microsoft.com/windows/device-security/auditing/audit-kernel-object)<br> - [leírókezelés naplózása](https://docs.microsoft.com/windows/device-security/auditing/audit-handle-manipulation)<br> - [cserélhető tároló naplózása](https://docs.microsoft.com/windows/device-security/auditing/audit-removable-storage) |
+| Teljesítményszámlálók       | Módosítsa a [teljesítményszámlálók konfigurációját](log-analytics-data-sources-performance-counters.md): <br> – Csökkentse a gyűjtés gyakoriságát <br> – Csökkentse a teljesítményszámlálók számát |
+| Eseménynaplók                 | Módosítsa az [eseménynaplók konfigurációját](log-analytics-data-sources-windows-events.md): <br> – Csökkentse a gyűjtött eseménynaplók számát <br> – Csak a szükséges eseményszinteket gyűjtse. Ne gyűjtsön például *Tájékoztatás* szintű eseményeket |
+| Rendszernapló                     | Módosítsa a [rendszernapló konfigurációját](log-analytics-data-sources-syslog.md): <br> – Csökkentse a gyűjtésben részt vevő létesítmények számát <br> – Csak a szükséges eseményszinteket gyűjtse. Ne gyűjtsön például *Tájékoztatás* vagy *Hibakeresés* szintű eseményeket |
+| AzureDiagnostics           | Az erőforrásnapló-gyűjtés módosítása a következőre: <br> – Csökkentse a Log Analytics számára naplókat küldő erőforrások számát <br> – Csak a szükséges naplókat gyűjtse |
+| Megoldásadatok olyan számítógépekről, amelyeknek nincs szükségük a megoldásra | A [megoldáscélzási](../operations-management-suite/operations-management-suite-solution-targeting.md) funkcióval megadhatja, hogy csak a szükséges számítógépcsoportoktól gyűjtsön adatokat. |
 
 ### <a name="check-if-there-are-more-nodes-than-expected"></a>Annak ellenőrzése, hogy a vártnál több csomópont küld-e adatokat
-Ha a hello *csomópontonként (OMS)* IP-címek, akkor van szó, a csomópontok és a megoldások használata hello száma alapján. Láthatja, hogy hány csomópontok minden ajánlat használatban lévő hello *ajánlatok* hello használati irányítópult szakasza.
+Ha a *csomópontonkénti (OMS)* tarifacsomagban van, akkor a díjszabás a használt csomópontok és megoldások számán alapul. A használat adatait megjelenítő irányítópult *Ajánlatok* szakaszában tekintheti meg, hogy az egyes ajánlatok csomópontjaiból mennyi van használatban.
 
 ![A Használat irányítópult](./media/log-analytics-usage/log-analytics-usage-offerings.png)
 
-Kattintson a **összes...**  tooview hello teljes listáját a számítógépek adatküldés hello kijelölt szolgáltatásokat.
+Kattintson **Az összes megjelenítése...** lehetőségre a kiválasztott ajánlat adatait elküldő számítógépek teljes listájának megtekintéséhez.
 
-Használjon [célcsoport-kezelési megoldás](../operations-management-suite/operations-management-suite-solution-targeting.md) szükséges számítógépcsoportok csak toocollect adatait.
+A [megoldáscélzási](../operations-management-suite/operations-management-suite-solution-targeting.md) funkcióval megadhatja, hogy csak a szükséges számítógépcsoportoktól gyűjtsön adatokat.
 
 
 ## <a name="next-steps"></a>Következő lépések
-* Lásd: [Log Analytics-e jelentkezni a keresések](log-analytics-log-searches.md) toolearn toouse hello a keresési nyelv. Keresési lekérdezések tooperform további elemzés hello használati adatok is használhatja.
-* Ismertetett hello lépésekkel [riasztási szabályt létrehozni](log-analytics-alerts-creating.md#create-an-alert-rule) toobe értesíti, ha a keresési feltételek teljesülése esetén
-* Használjon [célcsoport-kezelési megoldás](../operations-management-suite/operations-management-suite-solution-targeting.md) szükséges számítógépcsoportok csak toocollect adatait
+* A keresési nyelv használatával kapcsolatban tekintse meg a [Log Analytics naplókeresési funkciójával](log-analytics-log-searches.md) kapcsolatos cikket. A keresési lekérdezésekkel további elemzéseket végezhet a használati adatokon.
+* A [riasztási szabályok létrehozásával kapcsolatos](log-analytics-alerts-creating.md#create-an-alert-rule) szakaszban leírt lépéseket követve beállíthatja, hogy értesítést kapjon, ha teljesül egy keresési feltétel
+* A [megoldáscélzással](../operations-management-suite/operations-management-suite-solution-targeting.md) megadhatja, hogy a rendszer csak a szükséges számítógépcsoportoktól gyűjtsön adatokat
 * Válassza a [gyakori vagy minimális biztonsági események](https://blogs.technet.microsoft.com/msoms/2016/11/08/filter-the-security-events-the-oms-security-collects/) lehetőséget
 * A [teljesítményszámlálók konfigurációjának](log-analytics-data-sources-performance-counters.md) módosítása
 * Az [eseménynaplók konfigurációjának](log-analytics-data-sources-windows-events.md) módosítása

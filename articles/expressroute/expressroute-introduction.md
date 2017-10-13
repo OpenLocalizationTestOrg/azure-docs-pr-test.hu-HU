@@ -1,6 +1,6 @@
 ---
-title: "ExpressRoute – áttekintés: Kiterjesztése a helyszíni hálózati tooAzure titkos kapcsolaton keresztül |} Microsoft Docs"
-description: "Az ExpressRoute műszaki áttekintés bemutatja ExpressRoute kapcsolat működése tooextend a helyszíni hálózati tooAzure titkos kapcsolaton keresztül."
+title: "Az ExpressRoute áttekintése: A helyszíni hálózat kiterjesztése az Azure-ra privát kapcsolaton keresztül | Microsoft Docs"
+description: "Az ExpressRoute technikai áttekintése ismerteti, hogyan terjeszthető ki a helyszíni hálózatát az Azure-ra egy ExpressRoute-kapcsolattal egy privát kapcsolaton keresztül."
 documentationcenter: na
 services: expressroute
 author: cherylmc
@@ -14,66 +14,66 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/03/2017
 ms.author: cherylmc
-ms.openlocfilehash: 01301e1205c12ecdab34dc9d9b92bc7489e7826c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7390462d79506e63989baadac2b2cee00eef325d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="expressroute-overview"></a>ExpressRoute – áttekintés
-A Microsoft Azure ExpressRoute lehetővé teszi a helyszíni hálózatokhoz kiterjeszti a Microsoft cloud hello könnyíteni a kapcsolat szolgáltatójánál titkos kapcsolaton keresztül. Az ExpressRoute kapcsolatok tooMicrosoft felhőszolgáltatások, például a Microsoft Azure, az Office 365 és a Dynamics 365 hozhatnak létre.
+A Microsoft Azure ExpressRoute használatával kiterjesztheti helyszíni hálózatait a Microsoft-felhőbe egy privát kapcsolaton keresztül, amelyet egy kapcsolatszolgáltató biztosít. Az ExpressRoute használatával kapcsolatokat létesíthet olyan Microsoft-felhőszolgáltatásokkal, mint például a Microsoft Azure, az Office 365 és a Dynamics 365.
 
-A kapcsolatok lehetnek: bármely elemek közötti (IP VPN) hálózat, pontok közötti Ethernet-hálózat vagy egy virtuális keresztkapcsolat egy kapcsolatszolgáltatón keresztül egy közös elhelyezési létesítményben. Az ExpressRoute-kapcsolatok ne lépje át hello nyilvános internethez. Ez lehetővé teszi ExpressRoute kapcsolatok toooffer további megbízhatóságát, gyorsabb sebességű, kisebb késések fordulnak elő, és nagyobb biztonságot nyújtana tipikus kapcsolatok hello interneten keresztül. Információ tooconnect a hálózati tooMicrosoft használatával ExpressRoute, lásd: [ExpressRoute modellek](expressroute-connectivity-models.md).
+A kapcsolatok lehetnek: bármely elemek közötti (IP VPN) hálózat, pontok közötti Ethernet-hálózat vagy egy virtuális keresztkapcsolat egy kapcsolatszolgáltatón keresztül egy közös elhelyezési létesítményben. Az ExpressRoute-kapcsolatok nem a nyilvános interneten haladnak át. Így az ExpressRoute-kapcsolatok a tipikus internetes kapcsolatoknál megbízhatóbbak, gyorsabbak, gyorsabb a válaszidejük, és biztonságosabbak. További információk a hálózat a Microsofthoz való csatlakoztatásáról az ExpressRoute használatával: [ExpressRoute kapcsolati modellek](expressroute-connectivity-models.md).
 
 ![](./media/expressroute-introduction/expressroute-connection-overview.png)
 
 ## <a name="key-benefits"></a>Főbb előnyök
 
-* A helyszíni hálózat és a kapcsolat-szolgáltató használatával a Microsoft Cloud hello 3 összekapcsolását réteg. A kapcsolatok lehetnek: bármely elemek közötti (IPVPN) hálózat, pontok közötti Ethernet-kapcsolat vagy egy virtuális keresztkapcsolat egy Ethernet-adatcserélőn keresztül.
-* Kapcsolat tooMicrosoft felhő szolgáltatásainak minden régióban hello geopolitikai régióban.
-* Globális kapcsolatot tooMicrosoft szolgáltatásainak minden régióban a prémium szintű ExpressRoute-bővítmény.
+* 3 rétegbeli kapcsolatok a helyszíni hálózat és a Microsoft Cloud közt egy kapcsolatszolgáltatón keresztül. A kapcsolatok lehetnek: bármely elemek közötti (IPVPN) hálózat, pontok közötti Ethernet-kapcsolat vagy egy virtuális keresztkapcsolat egy Ethernet-adatcserélőn keresztül.
+* Kapcsolódás a Microsoft-felhőszolgáltatásokhoz az adott geopolitikai régió minden régiójában.
+* Globális kapcsolódás a Microsoft-szolgáltatásokhoz az összes régióban az ExpressRoute prémium bővítmény használatával.
 * Dinamikus útválasztás a hálózata és a Microsoft közt iparági szabványnak megfelelő protokollokon (BGP) keresztül.
 * Beépített redundancia minden társviszony-létesítési helyszínen a nagyobb megbízhatóság érdekében.
 * Kapcsolat-üzemidőre vonatkozó [SLA](https://azure.microsoft.com/support/legal/sla/).
 * QoS-támogatás a Skype Vállalati verziójához.
 
-További információkért lásd: hello [ExpressRoute – gyakori kérdések](expressroute-faqs.md).
+További információ: [ExpressRoute GYIK](expressroute-faqs.md).
 
 ## <a name="features"></a>Szolgáltatások
 
 ### <a name="layer-3-connectivity"></a>3. rétegbeli kapcsolatok
-A Microsoft által használt iparági szabványos dinamikus útválasztási protokoll (BGP) tooexchange irányítja a helyszíni hálózat, a példányok az Azure-ban, és a Microsoft közötti nyilvános címek.  Több BGP-munkamenetet létesítünk a hálózattal, különböző forgalomprofilokkal. További részletek találhatók a hello [ExpressRoute körön és útválasztási tartományok](expressroute-circuit-peerings.md) cikk.
+A Microsoft iparági szabványnak megfelelő dinamikus útválasztási protokollt (BGP) alkalmaz az útvonalak cseréjéhez a helyszíni hálózat, az Azure-ban lévő példányai és a Microsoft nyilvános címek között.  Több BGP-munkamenetet létesítünk a hálózattal, különböző forgalomprofilokkal. További részletek az [ExpressRoute circuit and routing domains](expressroute-circuit-peerings.md) (ExpressRoute-kapcsolatcsoportok és útválasztási tartományok) című cikkben találhatók.
 
 ### <a name="redundancy"></a>Redundancia
-Két kapcsolatok tootwo Microsoft Enterprise peremhálózati útválasztók (MSEEs) hello kapcsolat szolgáltató áll minden ExpressRoute-kapcsolatcsoportot / a hálózati biztonsági. Microsoft kettős BGP kapcsolatot igényel hello kapcsolat szolgáltató vagy a kiszolgálóoldali – egy tooeach MSEE. Úgy is dönthet, nem toodeploy redundáns eszközök / Ethernet áramkörök a végén. Kapcsolat szolgáltatók azonban, hogy a kapcsolatok elküldés tooMicrosoft redundáns módon redundáns eszközök tooensure használja. A redundáns 3. rétegbeli kapcsolatot konfigurációs feltétele az [SLA](https://azure.microsoft.com/support/legal/sla/) toobe érvényes.
+Minden egyes ExpressRoute-kapcsolatcsoport két kapcsolattal rendelkezik két Microsoft Enterprise peremhálózati útválasztóhoz (MSEE) a kapcsolatszolgáltatótól / a hálózata peremétől. A Microsoft kettős BGP-kapcsolatot igényel a kapcsolatszolgáltatótól / az Ön oldaláról – egyet-egyet mindkét MSEE-hez. Dönthet úgy, hogy nem helyez üzembe redundáns eszközöket / Ethernet-kapcsolatcsoportokat az Ön oldalán. A kapcsolatszolgáltatók azonban redundáns eszközöket használnak annak biztosítása érdekében, hogy az Ön kapcsolatai redundáns módon jussanak el a Microsofthoz. Az [SLA](https://azure.microsoft.com/support/legal/sla/) érvényességének előfeltétele a redundáns 3. rétegbeli kapcsolódási konfiguráció.
 
-### <a name="connectivity-toomicrosoft-cloud-services"></a>Kapcsolat tooMicrosoft cloud services csomag
+### <a name="connectivity-to-microsoft-cloud-services"></a>Kapcsolódás a Microsoft-felhőszolgáltatásokhoz
 [!INCLUDE [expressroute-office365-include](../../includes/expressroute-office365-include.md)]
 
-ExpressRoute-kapcsolatok engedélyezése a szolgáltatások a következő hozzáférési toohello:
+Az ExpressRoute-kapcsolatok a következő szolgáltatásokhoz biztosítanak hozzáférést:
 
 * Microsoft Azure-szolgáltatások
 * Microsoft Office 365-szolgáltatások
 * Microsoft Dynamics 365
 
-Hello ellátogathat [ExpressRoute – gyakori kérdések](expressroute-faqs.md) lap ExpressRoute keresztül támogatott szolgáltatások részletes listáját.
+Az ExpressRoute-on keresztül támogatott szolgáltatások részletes listáját az [ExpressRoute – Gyakori kérdések](expressroute-faqs.md) oldalon tekintheti meg.
 
-### <a name="connectivity-tooall-regions-within-a-geopolitical-region"></a>Kapcsolat tooall régiók geopolitikai régión belül
-Az egyik tooMicrosoft a Kapcsolódás a [társviszony-létesítési helyek](expressroute-locations.md) és hozzáférési tooall régiók hello geopolitikai régión belül. 
+### <a name="connectivity-to-all-regions-within-a-geopolitical-region"></a>Kapcsolódás az összes régióhoz egy geopolitikai régión belül
+Csatlakozhat a Microsofthoz a [társviszony-létesítési helyszínek](expressroute-locations.md) egyikén, és elérheti az összes régiót a geopolitikai régióban. 
 
-Például ha az Amszterdami tooMicrosoft ExpressRoute keresztül csatlakoztatott, akkor hozzáférési tooall Microsoft felhőszolgáltatások Észak-Európa és Nyugat-Európa tárolt. Lásd: hello [ExpressRoute partnerek és társviszony-létesítési helye](expressroute-locations.md) hello geopolitikai régiókban, a kapcsolódó Microsoft felhőalapú területeket és a megfelelő ExpressRoute társviszony-létesítési helyek a cikk áttekintése.
+Ha például Amszterdamban csatlakozik a Microsofthoz az ExpressRoute-on keresztül, az Észak-Európában és a Nyugat-Európában üzemeltetett összes Microsoft-felhőszolgáltatáshoz hozzáférhet. A geopolitikai régiók, a hozzájuk rendelt Microsoft felhő-régiók és a megfelelő ExpressRoute társviszony-létesítési helyszínek áttekintését az [ExpressRoute partnerek és társviszony-létesítési helyszínek](expressroute-locations.md) oldalon találja.
 
 ### <a name="global-connectivity-with-expressroute-premium-add-on"></a>Globális kapcsolódás az ExpressRoute prémium bővítmény használatával
-Hello ExpressRoute prémium bővítmény szolgáltatás tooextend kapcsolat geopolitikai határokon keresztül történő engedélyezéséhez. Például ha az Amszterdami ExpressRoute keresztül csatlakoztatott tooMicrosoft, hogy hozzáférési tooall Microsoft felhőszolgáltatások között hello world minden régióban üzemeltetett (a nemzeti felhők ki vannak zárva). Dél-Amerika vagy Ausztrália hello azonos módon férhet hello északi és Nyugat-Európában régiókban telepített szolgáltatások érheti el.
+Az ExpressRoute prémium bővítménnyel kiterjesztheti a kapcsolódási lehetőségeket a geopolitikai határokon túl. Ha például Amsterdamban csatlakozik a Microsofthoz az ExpressRoute-on keresztül, a világszerte az összes régióban (az országos felhők kivételével) üzemeltetett összes Microsoft-felhőszolgáltatáshoz hozzáféréssel fog rendelkezni. A Dél-Amerikában vagy Ausztráliában üzemeltetett szolgáltatásokat ugyanúgy eléri majd, mint az észak- vagy nyugat-európai régióban lévőket.
 
 ### <a name="rich-connectivity-partner-ecosystem"></a>A kapcsolati partnerek gazdag ökoszisztémája
-Az ExpressRoute kapcsolati és SI-partnerek egyre bővülő ökoszisztémájával rendelkezik. Olvassa el a toohello [ExpressRoute szolgáltatók és a helyek](expressroute-locations.md) hello legújabb információt.
+Az ExpressRoute kapcsolati és SI-partnerek egyre bővülő ökoszisztémájával rendelkezik. A legfrissebb információkért lásd az [ExpressRoute-szolgáltatókat és helyeket](expressroute-locations.md) ismertető cikket.
 
-### <a name="connectivity-toonational-clouds"></a>Kapcsolat toonational felhők
-A Microsoft elkülönített felhőkörnyezeteket tart fenn speciális geopolitikai régiók és ügyfélszegmensek számára. Tekintse meg a toohello [ExpressRoute szolgáltatók és a helyek](expressroute-locations.md) lap nemzeti felhők és a szolgáltatók listáját.
+### <a name="connectivity-to-national-clouds"></a>Kapcsolódás országos felhőkhöz
+A Microsoft elkülönített felhőkörnyezeteket tart fenn speciális geopolitikai régiók és ügyfélszegmensek számára. Az országos felhők és szolgáltatók listájáért lásd az [ExpressRoute-szolgáltatókat és -helyeket](expressroute-locations.md) ismertető lapot.
 
 ### <a name="bandwidth-options"></a>Sávszélesség-lehetőségek
-A sávszélességek széles választékához vásárolhat ExpressRoute-kapcsolatcsoportokat. A támogatott sávszélességeket az alábbi lista tartalmazza. A kapcsolat szolgáltató toodetermine hello listáját támogatott sávszélesség ezek biztosítják, hogy toocheck lehet.
+A sávszélességek széles választékához vásárolhat ExpressRoute-kapcsolatcsoportokat. A támogatott sávszélességeket az alábbi lista tartalmazza. Mindenképp egyeztessen kapcsolatszolgáltatójával a támogatott sávszélességekről.
 
 * 50 Mbps
 * 100 Mbps
@@ -85,21 +85,21 @@ A sávszélességek széles választékához vásárolhat ExpressRoute-kapcsolat
 * 10 Gbps
 
 ### <a name="dynamic-scaling-of-bandwidth"></a>Dinamikus sávszélesség-méretezés
-(Az elérhető legjobb alapján) hello ExpressRoute-kapcsolatcsoport sávszélessége növelhető anélkül, hogy a kapcsolatok le tootear. 
+Az ExpressRoute-kapcsolatcsoport sávszélességét (az elérhető legjobb lehetőség alapján) anélkül növelheti, hogy le kellene bontania a kapcsolatokat. 
 
 ### <a name="flexible-billing-models"></a>Rugalmas számlázási modellek
-Kiválaszthatja az Ön számára optimális számlázási modellt. Válasszon az alábbi hello számlázási modellek. További információkért lásd: hello [ExpressRoute – gyakori kérdések](expressroute-faqs.md).
+Kiválaszthatja az Ön számára optimális számlázási modellt. Az alábbi számlázási modellek közül választhat. További információ: [ExpressRoute GYIK](expressroute-faqs.md).
 
-* **Korlátlan adatforgalom**. hello ExpressRoute-kapcsolatcsoportot fel van töltve egy havi díj alapján, és az összes bejövő és kimenő adatforgalom ingyenes legyen. 
-* **Forgalmi díjas adatforgalom**. hello ExpressRoute-kapcsolatcsoportot havi díjért alapján számítjuk fel. Az összes bejövő adatátvitel ingyenes. A kimenő adatátvitel számlázása az átvitt adatok GB-jai alapján történik. Az adatátviteli árak régiónként eltérnek.
-* **ExpressRoute prémium bővítmény**. hello ExpressRoute prémium hello ExpressRoute-kapcsolatcsoportot keresztül az bővítménye. hello ExpressRoute prémium szintű bővítmény hello a következő lehetőségeket biztosítja: 
-  * Az Azure nyilvános és Azure magánhálózati társviszony-létesítés 4000 útvonalak too10, 000 útvonalak a megnövekedett útvonal határértékeit.
-  * Globális kapcsolódás a szolgáltatásokhoz. Létre bármely régióban (kivéve a nemzeti felhők) ExpressRoute-kapcsolatcsoportot lesz hozzáférés tooresources hello world bármely más régió között. Egy Nyugat-Európában létrehozott virtuális hálózat például elérhető egy, a Szilícium-völgyben kiosztott ExpressRoute-kapcsolatcsoportról is.
-  * Virtuális hálózat hivatkozások száma 10 tooa nagyobb korlát, attól függően, hogy a kapcsolatcsoport hello hello sávszélesség ExpressRoute-kapcsolatcsoportot nagyobb száma.
+* **Korlátlan adatforgalom**. Az ExpressRoute-kapcsolatcsoport számlázása havi díj alapján történik, amely az összes bejövő és kimenő adatátvitelt ingyenesen tartalmazza. 
+* **Forgalmi díjas adatforgalom**. Az ExpressRoute-kapcsolatcsoport számlázása havi díj alapján történik. Az összes bejövő adatátvitel ingyenes. A kimenő adatátvitel számlázása az átvitt adatok GB-jai alapján történik. Az adatátviteli árak régiónként eltérnek.
+* **ExpressRoute prémium bővítmény**. Az ExpressRoute prémium az ExpressRoute-kapcsolatcsoport bővítménye. Az ExpressRoute prémium bővítmény az alábbi képességeket biztosítja: 
+  * Az Azure nyilvános és az Azure privát társviszony-létesítés útvonalkorlátja 4000 útvonalról 10 000 útvonalra nő.
+  * Globális kapcsolódás a szolgáltatásokhoz. A bármely régióban (az országos felhők kivételével) létrehozott ExpressRoute-kapcsolatcsoportok a világ bármely más régiójában elérik az erőforrásokat. Egy Nyugat-Európában létrehozott virtuális hálózat például elérhető egy, a Szilícium-völgyben kiosztott ExpressRoute-kapcsolatcsoportról is.
+  * A VNet-hivatkozások száma ExpressRoute-kapcsolatcsoportonként 10-ről egy magasabb korlátra nő a kör sávszélességének függvényében.
 
 ## <a name="faq"></a>GYIK
 
-ExpressRoute kapcsolatos gyakori kérdésekre, lásd: hello [ExpressRoute – gyakori kérdések](expressroute-faqs.md).
+Az ExpressRoute-ra vonatkozó gyakori kérdésekért lásd az [ExpressRoute gyakori kérdéseit](expressroute-faqs.md).
 
 ## <a name="next-steps"></a>Következő lépések
 
@@ -107,9 +107,9 @@ ExpressRoute kapcsolatos gyakori kérdésekre, lásd: hello [ExpressRoute – gy
 * Ismerje meg az ExpressRoute-kapcsolatokat és útválasztási tartományokat. Lásd: [ExpressRoute-kapcsolatcsoportok és útválasztási tartományok](expressroute-circuit-peerings.md).
 * Találjon egy szolgáltatót. Lásd: [ExpressRoute-partnerek és társviszony-létesítési helyszínek](expressroute-locations.md).
 * Ellenőrizze, hogy minden előfeltétel teljesül-e. Lásd: [ExpressRoute-előfeltételek](expressroute-prerequisites.md).
-* Tekintse meg a toohello követelményei [útválasztás](expressroute-routing.md), [NAT](expressroute-nat.md), és [QoS](expressroute-qos.md).
+* Tekintse meg az [Útválasztás](expressroute-routing.md), a [NAT](expressroute-nat.md) és a [QoS](expressroute-qos.md) követelményeit.
 * Az ExpressRoute-kapcsolat konfigurálása.
   * [ExpressRoute-kapcsolatcsoport létrehozása](expressroute-howto-circuit-portal-resource-manager.md)
   * [Az ExpressRoute-kapcsolatcsoport társviszony-létesítésének konfigurálása](expressroute-howto-routing-portal-resource-manager.md)
-  * [Csatlakozás a virtuális hálózati tooan ExpressRoute-kapcsolatcsoportot](expressroute-howto-linkvnet-portal-resource-manager.md)
-* Megismerhet néhány hello más kulcs [hálózati lehetőségeket](../networking/networking-overview.md) Azure.
+  * [Virtuális hálózat összekapcsolása egy ExpressRoute-kapcsolatcsoporttal](expressroute-howto-linkvnet-portal-resource-manager.md)
+* Ebben a dokumentumban az Azure egyéb lényeges [hálózat képességeivel](../networking/networking-overview.md) ismerkedhet meg.

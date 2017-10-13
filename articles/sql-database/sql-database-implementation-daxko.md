@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure SQL adatbázis Azure esettanulmány - Daxko/CSI |} Microsoft Docs"
-description: "Tudnivalók arról, hogyan Daxko/CSI használja-e az SQL-adatbázis tooaccelerate a fejlesztési ciklus és tooenhance az ügyfélszolgálat és teljesítmény"
+title: "Az Azure SQL adatbázis Azure esettanulmány - Daxko/CSI |} Microsoft Docs"
+description: "További tudnivalók: hogyan Daxko/CSI SQL adatbázist használ annak érdekében, a fejlesztési ciklus, és az ügyfélszolgálat és a teljesítmény javítása érdekében"
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -15,83 +15,83 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 01/10/2017
 ms.author: carlrab
-ms.openlocfilehash: 3e3d58a1d9c3c919fc0e4cdb2765f680719c19d9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3e43494721f03ce8e56cb069638ad24df7222386
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="daxkocsi-used-azure-tooaccelerate-its-development-cycle-and-tooenhance-its-customer-services-and-performance"></a>A fejlesztési ciklus és tooenhance Daxko/CSI használja az Azure tooaccelerate az ügyfélszolgálat és teljesítmény
+# <a name="daxkocsi-used-azure-to-accelerate-its-development-cycle-and-to-enhance-its-customer-services-and-performance"></a>Daxko/CSI Azure használni, annak érdekében, a fejlesztési ciklus, valamint az ügyfélszolgálat és a teljesítmény javítása érdekében
 ![Daxko/CSI embléma](./media/sql-database-implementation-daxko/csidaxkologo25.png)
 
-Daxko/CSI szoftver egy ellenőrző tapasztalt: alkalmasságra és újbóli központok az ügyfél alapja gyorsan, növekszik az toohello sikerességének Köszönjük, hogy az átfogó vállalati-szoftveres megoldás, de az IT-infrastruktúra kell, hogy növekvő hello tartása vásárlói bázisunk lett tesztelés hello vállalati informatikai személyzetet tart fenn. hello vállalati egyre növekvő műveletek terhelést jelenthet, különösen a növekvő adatbázisok kezelése által lett korlátozott. Adott műveletek terhelés rosszabb, fejlesztői erőforrások a új kezdeményezések, például az hello vállalati szoftver új mobilitási szolgáltatásai be lett kivágja.
+Daxko/CSI szoftver egy ellenőrző tapasztalt: alkalmasságra és újbóli központok az ügyfél alapja gyorsan, növekszik az környezetnek köszönhetően az átfogó vállalati-szoftveres megoldás, sikeres volt, de tartja az IT-infrastruktúra igényekkel növekvő vevő Alap lett tesztelése a vállalat informatikai személyzetet tart fenn. A vállalat egyre növekvő műveletek terhelést jelenthet, különösen a növekvő adatbázisok kezelése által lett korlátozott. Adott műveletek terhelés rosszabb, fejlesztői erőforrások a új kezdeményezések, például a vállalati szoftver új mobilitási szolgáltatásai be lett kivágja.
 
-TooDavid Molina szerint, igazgató a fejlesztés, Daxko/CSI Azure megadott CSI szoftver modellel hello platform,--szolgáltatás (PaaS), hogy szükséges-e toosimplify adatbázis felügyeleti, méretezhetőség javítása és szabadítható fel az erőforrások toofocus szoftver ops helyett. "Az azure SQL Database volt az USA nagyszerű lehetőséget. Nem rendelkezik egy SQL Server feladatátvevő fürt és az összes hello karbantartása tooworry más infrastruktúrához volt ideális az USA."
+David Molina, igazgató a fejlesztés, Daxko/CSI, megfelelően Azure által biztosított CSI szoftver, amely egyszerűbbé teheti a adatbázis kezelését, méretezhetőség javítása és szoftver összpontosíthat erőforrásokat szabadítson fel kellett platform,--szolgáltatás (PaaS) modell helyett ops. "Az azure SQL Database volt az USA nagyszerű lehetőséget. Nem rendelkezik egy SQL Server, a feladatátvevő fürt és az egyéb infrastruktúra szükséges összes fenntartása foglalkoznia volt ideális az USA."
 
-Mivel az áttelepítést tooAzure, CSI szoftver kell egy műveleti személyzet csak két toomanage a 600 felhasználói adatbázis. hello vállalat az Azure SQL Database rugalmas készletek toomove felhasználói adatbázisokat mérete alapján, és kell használja.
+Az áttelepítést az Azure-ba, mert CSI szoftver kell egy műveleti személyzet csak két kezelheti több mint 600 felhasználói adatbázisokat. A vállalat mérete alapján felhasználói adatbázisok áthelyezése az Azure SQL Database rugalmas készletek használ, és szükséges.
 
-Molina továbbra is fennáll, "ügyfeleink nemez hello azonnal módosítása. Rugalmas készletek előtt alkalmanként rendelkeztek időtúllépések és más olyan problémák kapacitásnövelés időszakokban. Az Azure rugalmas készletek hogy igény szerint kapacitásnövelés, és hibák nélkül hello szoftver."
+Molina továbbra is fennáll, "ügyfeleink nemez a változás azonnal. Rugalmas készletek előtt alkalmanként rendelkeztek időtúllépések és más olyan problémák kapacitásnövelés időszakokban. Az Azure rugalmas készletek hogy igény szerint kapacitásnövelés és hibák nélkül a szoftver."
 
-Ezenkívül tooimproving teljesítmény az ügyfelek, Azure rugalmas készletek felszabadulnak CSI szoftver erőforrások toofocus az új szolgáltatásokat és lehetőségeket, műveletek és a felügyeleti kezelésével helyett. Ezen informatikai erőforrások segített CSI szoftver javítása az ajánlat, SpectrumNG, toohelp vállalati szoftverek Fitnessklub tagok megszólítása, növelje személyzet hatékonyságát, és adjon a munkatársak és a tagok mobil hozzáférés az interaktív feladatok és a valós idejű.
+Ügyfelek, az új szolgáltatásokat és lehetőségeket, műveletek és a felügyeleti kezelésével helyett CSI szoftver erőforrások felszabadulnak Azure rugalmas készletek esetén a teljesítmény fokozása mellett. Ezen informatikai erőforrások segített CSI szoftver növelheti a vállalati szoftverek kínál, SpectrumNG Fitnessklub tagok megszólítása, a munkatársak hatékonyság növelése érdekében, és hozzáférést a munkatársak és tagok mobil interaktív feladatok és a valós idejű értesítések.
 
-Azure is hozzájárult CSI szoftver egyre gyorsabban jelennek meg, és javíthatja a hello fejlesztési és minőségi ág (QA) ciklus automatizálási lehetőségek engedélyezésével. A vállalat hello Azure végrehajtására build kezelők is becsomagolhatja a összetevők hello kattintással gomb. Mivel Molina ismerteti, a "hello kiadási ciklus részeként QA már képes toodeploy tooa tesztkörnyezetben, amely a termelési verem szorosan utánozza az Azure-ban. Telepíthetünk buildek azonnal tooour fejlesztői környezet toovet változik. Ez egy nagy win nekünk, mert nem rendelkeztünk tesztelése előtt, a paritásos."
+Azure is hozzájárult CSI szoftver érdekében, és a fejlesztői és minőségi ág (QA) ciklus automatizálási lehetőségek engedélyezésével. A vállalat az Azure-megvalósításban a build kezelők is becsomagolhatja a egy gombra történő kattintás-összetevők. Leírtak Molina, "a kiadási ciklus részeként QA már tudja telepíteni a egy tesztkörnyezetben, amely a termelési verem szorosan utánozza az Azure-ban. Azt is üzembe helyezheti buildek azonnal a fejlesztői környezet betöltő módosításokat. Ez egy nagy win nekünk, mert nem rendelkeztünk tesztelése előtt, a paritásos."
 
-## <a name="offloading-toohello-cloud"></a>Szervez toohello felhő
-Toohello felhő, mielőtt CSI szoftver kellett sikeresen létrehozott egy helyi adatközpontban Houston a saját több-bérlős infrastruktúra. Hello vállalati kibontva, növekvő növő fáradságot megvásárlásáról kiépítés és karbantartása hello hardvere tapasztalt, és szoftver szükséges toosupport ügyfeleinek. Informatikai személyzeti toohandle műveletek egy másik szűk tooa lassulást új erőforrások kiépítése és terítésével új szolgáltatások toocustomers vezető vált.
+## <a name="offloading-to-the-cloud"></a>A felhő-feladatkiszervezést
+Áthelyezését a felhőbe, mielőtt CSI szoftver kellett sikeresen létrehozott egy helyi adatközpontban Houston a saját több-bérlős infrastruktúra. A vállalat kibontva, mivel azt tapasztalt növekvő növő fáradságot megvásárlásáról kiépítés és karbantartása a hardver- és az ügyfelek támogatásához szükséges összes. Informatikai egy másik új erőforrások kiépítése és az ügyfelek új szolgáltatások végrehajtaná lassulást vezető szűk műveletek kezelésére személyzeti vált.
 
-CSI szoftver vizsgálni felhő beállításait, hogy a terhelést, így kiküszöböli, hogy sikerült összpontosítson, a kód helyett a műveleteket. hello vállalati észlelhető, hogy felső hello szolgáltatók számos csak infrastruktúra,--szolgáltatás (IaaS)-megoldásokat nyújtsanak a nagy informatikai munkatársak toomanage hello IaaS verem továbbra is szükséges. A hello végén CSI megállapította, hogy volt-e a hello Azure PaaS megoldás hello ajánlott az igényeinek megfelelően. Molina ismerteti, "Azure lekérdezi hello hardver- és szoftver hello útból, a szoftver ajánlatokkal közben csökkenhet az informatikai részleg terhelését összpontosíthatunk."
+CSI szoftver vizsgálni felhő beállításait, hogy a terhelést, így kiküszöböli, hogy sikerült összpontosítson, a kód helyett a műveleteket. A vállalat észlelhető, hogy a felső szolgáltatók számos csak infrastruktúra,--szolgáltatás (IaaS)-megoldásokat nyújtsanak a nagy informatikai munkatársak kezelheti az infrastruktúra-szolgáltatási verem továbbra is szükséges. A végén CSI megállapította, hogy volt-e az Azure PaaS megoldás a legmegfelelőbb az igényeinek. Molina ismerteti, "Azure kap a bevezetés, a hardver- és -szoftver, a szoftver ajánlatokkal közben csökkenhet az informatikai részleg terhelését összpontosíthatunk."
 
-## <a name="making-hello-transition-tooazure"></a>Hello áttűnés tooAzure elvégzése
-A PaaS megoldás kiválasztása az Azure, után CSI szoftver megkezdte a háttérrendszer infrastruktúra és az adatbázisok toohello felhő áttelepítése. Előzetes tooAzure SpectrumNG ügyfelek tooinstall egy ügyfélalkalmazást, amely egy Windows Communication Foundation (WCF) szolgáltatással hello háttérben futó közölt szükséges. TooMolina, szerint "bár egyes ügyfelek üzemelteti a saját adatközpontját tartalmát, azt a beépített hello termék toobe több-bérlős ki. A Microsoft üzemeltetett mindent Houston, az adatközpontban hello adattár SQL Server használatával.
+## <a name="making-the-transition-to-azure"></a>Az átmenet tétele az Azure-bA
+A PaaS megoldás kiválasztása az Azure, után CSI szoftver megkezdte a háttér-infrastruktúra és az adatbázisok áttelepítése a felhőbe. Azure, mielőtt SpectrumNG ügyfelek a háttérben futó Windows Communication Foundation (WCF) szolgáltatással közölt ügyfélalkalmazás telepítéséhez szükséges. Megfelelően Molina "bár egyes ügyfelek üzemeltetett mindent saját adatközpontokban azt beépített kell lennie a több-bérlős a terméket. Azt üzemeltetett mindent az adatközpontban Houston, az SQL Server használja adattárként.
 
-"A termék ajánlat is megtalálhatók tag felé néző webes portálon (írt ASP.net), tervezett toobe fehér címkével toomatch hello ügyfél webszolgáltatás, és a SOAP API toosupport hello online lapok és az bármely harmadik fél integrációs lépett."
+"A termék is kínál a tag felé néző webes portálon (írt ASP.net), amely úgy lett kialakítva, hogy fehér címkével kell egyeznie az ügyfél webszolgáltatás és az online lapok és bármely harmadik fél integrációs támogatásához egy SOAP API része."
 
-hello áttelepítési toohello felhő nem vette hosszú hello architektúra. TooMolina szerint, "hello többsége hello erőfeszítéssel foglalkozik módosítja, hogy azt a konfigurációs fájl adatainak, központosított kapcsolat-karakterlánc módosítását, olvassa el és automatizálás hello csomagolása, feltöltése és a megjelent hello módját."
+A felhőre való áttérést nem vette hosszú architektúrájának. Megfelelően Molina, "Többségének részéről az erőfeszítés, módosítja, hogy találtunk konfigurációs fájl adatainak, központosított kapcsolat-karakterlánc módosítását, és a burkolás automatizálása, feltöltése és a megjelent foglalkozik."
 
-toodevelop hello hozza létre az automatizálási, CSI szoftverfejlesztő használt Azure PowerShell és a REST API-k toocreate csomagokat, és feltöltheti ezeket tooa átmeneti környezet kiadás éjszakánként vonatkozó beállítást.
-hello általános átmenet tooan Azure felhő alapú központi telepítési hiba gyorsan és problémamentesen lezajlott hello CSI szoftver IT-részleg. Molina ismerteti, "az összes, azt kellett a béta-környezet hello felhőben hello projekt a három toofour héten belül. Amely nem egy meglepő win nekünk."
+A build automation elkészítéséhez CSI szoftverfejlesztő használt Azure PowerShell és a REST API-csomagokat hozzon létre, és feltölti azokat egy éjszakánként kiadás átmeneti környezete.
+Az Azure felhőalapú központi telepítésének általános átmenet a CSI szoftver IT-részleg gyorsan és problémamentesen lezajlott merült fel. Molina ismerteti, "az összes, azt kellett a béta-környezetekben a felhőben a projekt a három-négy héten belül. Amely nem egy meglepő win nekünk."
 
-Konfigurálás és tesztelés hello környezet, miután CSI szoftver megkezdte áttelepítése ügyfelek. A már használja a CSI szoftvert futtató ügyfelek hello áttűnés majdnem zökkenőmentes volt. Az ügyfelek áttelepítését egy helyi központi telepítéséből, hello áttelepítési toohello felhő további időt vett igénybe, de továbbra is elsősorban problémás szabad ügyfelek és a CSI szoftver.
+Konfigurálása és tesztelése a környezetben, után CSI szoftver megkezdte áttelepítése ügyfelek. A már használja a CSI szoftvert futtató ügyfelek átmenet majdnem zökkenőmentes volt. A felhasználó egy helyi központi telepítéséből áttelepítése esetén a felhőre való áttérést néhány további időt vett, de továbbra is elsősorban problémás szabad ügyfelek és a CSI szoftver.
 
-Új ügyfelek számára, CSI szoftver tartozó informatikai munkatársak használja hello feldolgozási tooon-tábla következő őket tooAzure:
+Új ügyfelek számára, CSI szoftver tartozó informatikai személyzetet tart fenn a következő folyamat a helyi használni, azokat az Azure-bA:
 
-1. Az Azure PowerShell-parancsprogramok használt toospin hello ügyfél; az új adatbázis összes ügyfél el a támogatási réteg tooensure hello áttűnés elég kezdeti adatátviteli sebességét.
-2. Ha lehetséges, akkor CSI szoftver hello Azure SQL varázsló toomove meglévő adatok tooan Azure SQL Database-példányt használ.
-3. Végezetül, a Microsoft SQL Server Integration Services (SSIS) használt tooreconcile hello vagy tooperform ellentmondások bármely adatok karbantartása, mint a szükséges.
+1. Az Azure PowerShell-parancsfájlok használatával az ügyfelek; az új adatbázis léptetési összes ügyfél számára a prémium szintű rétegen átmenet elég kezdeti átviteli sebesség biztosításához indítsa el.
+2. Ha lehetséges, CSI szoftver az Azure SQL áttelepítése varázsló használatával meglévő adatok áthelyezése az Azure SQL Database-példányt.
+3. Microsoft SQL Server Integration Services (SSIS) használt végül egyeztetni az adatok közötti eltéréseket, vagy szükség szerint bármely adatok karbantartást végez.
 
-Ma körülbelül 99 százalékához kiindulási CSI szoftver ügyfelek tárolt Azure-ban (északi központi, Dél központi, kelet és Nyugat) négy regionális üzemeltetésében. Azzal, hogy az adatközpontok egyes ügyfelek földrajzi régióban, késés tartják tooa minimális.
+Ma körülbelül 99 százalékához kiindulási CSI szoftver ügyfelek tárolt Azure-ban (északi központi, Dél központi, kelet és Nyugat) négy regionális üzemeltetésében. Azzal, hogy az adatközpontok egyes ügyfelek földrajzi régióban, késés minimális marad.
 
 ## <a name="azure-elastic-pools-free-up-it-resources"></a>Szabadítson fel informatikai erőforrásra lenne szükség Azure rugalmas készletek
-Az Azure számos szolgáltatást segítettek CSI szoftver shift infrastruktúrájának és műveleteinek célzott toobeing szolgáltatás és a fejlesztői arra irányul, nem. Lehet, hogy a hello legnagyobb előnye a rugalmas készletek lett.
+Az Azure számos szolgáltatást segítettek CSI szoftver shift infrastruktúrájának és műveleteinek arra irányul, hogy a szolgáltatás és a fejlesztői arra irányul, hogy nem. Lehet, hogy a legnagyobb előnye a rugalmas készletek volt.
 
-CSI szoftver készül 550 adatbázisok jelenleg biztosít az ügyfelek. Rugalmas készletek előtt volt nehéz toomanage belül ennyi adatbázisok réteg struktúrában. OPS kezelők kellett tooassign teljesítmény rétegek ügyféllel, amely jelentős IT-erőforrás terhet szükséges hello kapacitásnövelés igényeinek megfelelően. A rugalmas készletek kezelők rendelhet bérlők egy premium vagy a szabványos készlet megfelelő, és majd helyezze át az ügyfelek mérete alapján és kell. Az ügyfelek nemez hello rugalmas készletek hello hatásait szinte azonnal; rugalmas készletek előtt ügyfelek kellett időtúllépések és más olyan problémák kapacitásnövelés kihasználtságú időszakok alatt, de rugalmas készletek ügyfelek fedezheti tevékenység felszakadásáig igény szerint, és toouse SpectrumNG hibák nélkül továbbra.
+CSI szoftver készül 550 adatbázisok jelenleg biztosít az ügyfelek. Rugalmas készletek előtt réteg struktúrán belül ennyi adatbázisok kezelése bonyolult volt. Rendelje hozzá az ügyfelek, amely jelentős IT-erőforrás terhet szükséges kapacitásnövelés igények alapján teljesítmény rétegek kellett OPS kezelők. A rugalmas készletek kezelők rendelhet bérlők egy premium vagy a szabványos készlet megfelelő, és majd helyezze át az ügyfelek mérete alapján és kell. Az ügyfelek nemez eredő a rugalmas készletek szinte azonnal; rugalmas készletek előtt ügyfelek kellett időtúllépések és más olyan problémák kapacitásnövelés kihasználtságú időszakok alatt, de rugalmas készletek ügyfél tevékenység felszakadásáig igény szerint is tapasztalhat, és továbbra is használja a SpectrumNG hibák nélkül.
 
 ## <a name="azure-active-geo-replication-accelerates-reporting"></a>Az Azure aktív georeplikáció felgyorsítják reporting
-Több CSI szoftver ügyfelek Azure aktív georeplikáció előnyeit is tart. Az aktív georeplikáció, toofour be másodlagos adatbázisok olvasható konfigurálható hello ugyanazon vagy másik adatközpont-régiókban. CSI szoftverfrissítési kétféle módon aktív georeplikáció használ: először hello másodlagos adatbázisok találhatók hello eset datacenter kimaradás vagy hello meggátoló tooconnect toohello elsődleges adatbázis; és a második, hello másodlagos adatbázisok olvasható és csak olvasható munkaterhelésekkel, például jelentéskészítéssel feladatok lehetnek használt toooffload. Néhány CSI szoftver a munkafolyamatok reporting juttatás tooaccelerate használják.
+Több CSI szoftver ügyfelek Azure aktív georeplikáció előnyeit is tart. Az aktív georeplikáció akár négy olvasható másodlagos adatbázis konfigurálható az ugyanazon vagy másik adatközpont-régiókban. CSI szoftverfrissítési kétféle módon aktív georeplikáció használ: először a másodlagos adatbázisok elérhetők esetén egy adatközpontban szolgáltatáskimaradás vagy a nem lehet kapcsolódni a az elsődleges adatbázisban. és a második, a másodlagos adatbázisok olvasható, és csak olvasható munkaterhelésekkel, például jelentéskészítéssel feladatok kiszervezéséhez használható. Egyes CSI szoftver ügyfelek a juttatás igénybe annak érdekében, jelentéskészítési munkafolyamatok.
 
 ## <a name="csi-software-application-logic-and-architecture"></a>CSI szoftver úgy az alkalmazáslogikát és architektúra
-SpectrumNG webes szerepkörök használja. Mert hello alkalmazás több-bérlős, a WCF-szolgáltatások használt toohandle hello kezdeti kapcsolatkérelem-ügyfél. Molina állapotok, mint a "hello kérelem azonosítja az egyes ügyfelek, majd révén a us létrehozása egy kapcsolati karakterláncot tootheir adatbázisok toodo kimenő függetlenül meg kell toodo."
+SpectrumNG webes szerepkörök használja. Mivel az alkalmazás több-bérlős, WCF-szolgáltatások a kezdeti kapcsolati kérelmet a ügyfelek kezelésére használt. Molina szerint, mert "a kérelem azonosítja mindegyik ügyfél, amely lehetővé teszi a us létrehozása egy kapcsolati karakterláncot, a hozzájuk tartozó adatbázisok bármit tennie kell tennie."
 
-Hello webes réteg a szolgáltatás, a CSI szoftver kihasználja az Azure automatikus skálázás, napon és időpontban alapján. Állnak rendelkezésre a automatikusan megnövekedett tooaccommodate magasabb használati munkaidőben, minden egyes regionális adatközpontok toohello időzónájának megfelelően. Erőforrások vannak is be tooscale hétvégeken, amikor az ügyfelek igényeinek megfelelően alacsonyabbak.
+A szolgáltatás webes réteghez CSI szoftver kihasználja a Azure automatikus skálázás, alapján napját és időpontját. Rendelkezésre álló erőforrások magasabb használati olyan munkaidőben, automatikusan nagyobb a minden egyes regionális adatközpontok időzónájának megfelelően. Erőforrás is csökkentheti a hétvégekre, amikor az ügyfelek igényeinek megfelelően alacsonyabbak van beállítva.
 
 ![Daxko/CSI architektúrája](./media/sql-database-implementation-daxko/figure1.png)
 
 1. ábra. A felhőalapú szolgáltatások feldolgozói szerepkör Azure SQL Database és félig strukturált adatokból a table storage a strukturált adatok megrajzolja. SpectrumNG felhasználók használják, hogy a felhő-adatszolgáltatások összetevőjének Webes szerepkör.
 
 ## <a name="using-web-apps-and-a-web-plan-tier-for-mobile-apps"></a>Webalkalmazások és webes-terv réteget használó mobilalkalmazásokhoz
-Azure SQL Database CSI szoftver tooenable erőforrásait felszabadulnak használatával új kezdeményezéseket, beleértve a teljes mobilplatformot alapján egy az Azure web apps üzemeltetett egyéni API. hello platform lehetővé teszi a tagok Fitnessklub és személyzet toouse mobileszközök toocheck ütemezéseket, osztályok foglalható le, és üzeneteket fogadni.
+Egy Azure-webalkalmazásokban üzemeltetett egyéni API alapján Azure SQL Database CSI szoftver erőforrások felszabadulnak használatával új kezdeményezéseket, beleértve a teljes mobilplatformot engedélyezéséhez. A platform lehetővé teszi a Fitnessklub tagok és a alkalmazottak mobileszközöket használnak a ütemezések ellenőrzi, osztályok foglalható le, és üzeneteket fogadni.
 
-hello platform használja szolgáltatásorientált architektúra (SOA) tootake adott összetevőt – például egy POS (POS) vagy egy értékesítési rendszer – hello behúzás tooanother webes terven helyezze, és majd lépett fel a szolgáltatás toosupport, hogy az összetevő úgy, hogy minden más, a hello eredeti webes terv. Ez a lehetőség CSI szoftver rengeteg rugalmasságot biztosít, és segít költséges alacsonyan tartása.
+A platform szolgáltatásorientált architektúra (SOA) használja, egy adott összetevőt érvénybe – például egy POS (POS) vagy egy értékesítési rendszer – parancsprogramok áthelyezése egy másik webes tervet, és majd lépett fel, hogy az összetevő támogatásához úgy, hogy minden más, a szolgáltatás a eredeti webes terv. Ez a lehetőség CSI szoftver rengeteg rugalmasságot biztosít, és segít költséges alacsonyan tartása.
 
 ## <a name="azure-lets-csi-software-developers-focus-on-apps-and-services"></a>Azure lehetővé teszi, hogy a szoftver CSI fejlesztők arra utalnak, alkalmazások és szolgáltatások
-Az Azure SQL-adatbázis nem csak egy boon tooSpectrumNG felhasználók, akiknek a hello gyors és megbízható szolgáltatás, egyúttal egy nagy win CSI szoftver informatikai szakemberek és fejlesztők számára. Ops tooAzure hello felhőben történő kiszervezésével a CSI szoftver csökken a terhelés, az erőforrások és infrastruktúra, nagy mértékben az elérését gyorsítja fel a fejlesztési ciklus, és már nincs szüksége a bérlők számára toomicromanage adatbázisok toooptimize teljesítmény.
+Azure SQL-adatbázis nem csupán az SpectrumNG ügyfél számára, akiknek a a gyors és megbízható szolgáltatás egy boon, egyúttal egy nagy win CSI szoftver informatikai szakemberek és fejlesztők számára. Ops Azure felhőben történő kiszervezésével CSI szoftver csökken a terhelés, az erőforrások és infrastruktúra, nagy mértékben az elérését gyorsítja fel a fejlesztési ciklus, és már nem kell micromanage adatbázisokhoz a bérlők a teljesítmény optimalizálása érdekében.
 
 ## <a name="more-information"></a>További információ
-* toolearn Azure rugalmas készletek, kapcsolatos további információkért lásd: [rugalmas készletek](sql-database-elastic-pool.md).
-* További információ az adatbázis-eszközök és a rugalmas méretezést toolearn lásd [skálázáshoz rugalmas adatbáziseszközöket és a rugalmas méretezést](sql-database-elastic-scale-get-started.md).
-* További információ az SQL Server-adatbázis migrálása az toolearn lásd: lásd: [áttelepítése egy SQL Server adatbázis tooAzure](sql-database-cloud-migrate.md).
-* További információ az aktív georeplikáció, toolearn lásd [aktív georeplikáció](sql-database-geo-replication-overview.md).
-* További információ a webes és feldolgozói szerepkörök toolearn lásd [feldolgozói szerepkörök](../fundamentals-introduction-to-azure.md#compute).    
-* További információ az Azure Service Bus toolearn lásd [Azure Service Bus](https://azure.microsoft.com/services/service-bus/).
-* toolearn automatikus méretezése kapcsolatos további információkért lásd: [felhőszolgáltatások skálázás](../cloud-services/cloud-services-how-to-scale.md).
+* Az Azure rugalmas készletek kapcsolatos további információkért lásd: [rugalmas készletek](sql-database-elastic-pool.md).
+* Adatbázis-eszközök és a rugalmas méretezést kapcsolatos további információkért lásd: [skálázáshoz rugalmas adatbáziseszközöket és a rugalmas méretezést](sql-database-elastic-scale-get-started.md).
+* SQL Server-adatbázis migrálása kapcsolatos további információkért lásd: lásd: [egy SQL Server-adatbázis áttelepítése az Azure-bA](sql-database-cloud-migrate.md).
+* Aktív georeplikáció kapcsolatos további információkért lásd: [aktív georeplikáció](sql-database-geo-replication-overview.md).
+* Webes és feldolgozói szerepkörök kapcsolatos további információkért lásd: [feldolgozói szerepkörök](../fundamentals-introduction-to-azure.md#compute).    
+* Azure Service Bus kapcsolatos további információkért lásd: [Azure Service Bus](https://azure.microsoft.com/services/service-bus/).
+* Automatikus méretezése kapcsolatos további információkért lásd: [felhőszolgáltatások skálázás](../cloud-services/cloud-services-how-to-scale.md).
 

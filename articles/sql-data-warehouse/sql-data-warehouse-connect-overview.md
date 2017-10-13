@@ -1,6 +1,6 @@
 ---
-title: az SQL Data Warehouse aaaConnect tooAzure |} Microsoft Docs
-description: "Hogyan toofind hello kiszolgáló nevét és a kapcsolati karakterlánc-az SQL Data Warehouse tooAzure"
+title: "Csatlakozás az Azure SQL Data Warehouse-hoz | Microsoft Docs"
+description: "Az Azure SQL Data Warehouse kiszolgálónevének és kapcsolati karakterláncának lekérdezése"
 services: sql-data-warehouse
 documentationcenter: NA
 author: antvgski
@@ -15,30 +15,30 @@ ms.workload: data-services
 ms.custom: connect
 ms.date: 10/31/2016
 ms.author: anvang;barbkess
-ms.openlocfilehash: f15e098026afb7c5efbbbfaf62b681e8cd7936bc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 72c2b404e66611da421eca0dc30aa71e18c6d120
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="connect-tooazure-sql-data-warehouse"></a>Csatlakozás az SQL Data Warehouse tooAzure
-Ez a cikk segítséget nyújt a csatlakoztatott tooSQL adatraktár lekérése hello első alkalommal.
+# <a name="connect-to-azure-sql-data-warehouse"></a>Csatlakozás az Azure SQL Data Warehouse-hoz
+Ennek a cikknek a segítségével első alkalommal csatlakozhat az SQL Data Warehouse-hoz.
 
 ## <a name="find-your-server-name"></a>A kiszolgálónév lekérdezése
-első lépés tooconnecting tooSQL adatraktár ismerete hello hogyan toofind a kiszolgáló nevét.  Például a hello kiszolgáló nevét a következő példa hello sample.database.windows.net. toofind hello teljes kiszolgálónév:
+Az SQL Data Warehouse-hoz való kapcsolódás első lépése a kiszolgálónév lekérdezési módjának ismerete.  A kiszolgáló neve az alábbi példában sample.database.windows.net. A teljes kiszolgálónév lekérdezése:
 
-1. Nyissa meg toohello [Azure-portálon][Azure portal].
+1. Nyissa meg az [Azure Portalt][Azure portal].
 2. Kattintson az **SQL-adatbázisok** elemre 
-3. Kattintson a kívánt való tooconnect hello adatbázisra.
-4. Keresse meg a teljes kiszolgálónevet hello.
+3. Kattintson arra az adatbázisra, amelyhez csatlakozni kíván.
+4. Keresse meg a teljes kiszolgálónevet.
    
     ![Teljes kiszolgálónév][1]
 
 ## <a name="supported-drivers-and-connection-strings"></a>Támogatott illesztők és kapcsolati karakterláncok
-Az Azure SQL Data Warehouse a következő illesztőprogramokat támogatja: [ADO.NET][ADO.NET], [ODBC][ODBC], [PHP][PHP] és [JDBC][JDBC]. Kattintson az egyik hello megelőző illesztőprogramok toofind hello legújabb verzióra, és a dokumentációt. tooautomatically hello kapcsolati karakterlánc az Ön által használt hello illesztőprogram generálása hello Azure portál, rákattinthat a hello **adatbázis-kapcsolati karakterláncok megjelenítése** az előző példa hello.  A következő néhány példa bemutatja, hogy néz ki a kapcsolati karakterlánc az egyes illesztők esetében.
+Az Azure SQL Data Warehouse a következő illesztőprogramokat támogatja: [ADO.NET][ADO.NET], [ODBC][ODBC], [PHP][PHP] és [JDBC][JDBC]. A legújabb verziók és dokumentációk megkereséséhez kattintson az egyik előző illesztőre. Az Azure Portalból használt illesztőprogram kapcsolati karakterláncának automatikusan létrehozhatja az előző példában szereplő **Adatbázis-kapcsolati karakterláncok megjelenítése** elemre kattintva.  A következő néhány példa bemutatja, hogy néz ki a kapcsolati karakterlánc az egyes illesztők esetében.
 
 > [!NOTE]
-> Fontolja meg, hello kapcsolat időtúllépése too300 másodperc tooallow a kapcsolat toosurvive rövid időszakokra, elérhetetlensége beállítását.
+> Javasoljuk, hogy a kapcsolat időkorlátjának 300 másodpercet adjon meg, hogy a kapcsolat rövid idejű kimaradások esetén is fennmaradjon.
 > 
 > 
 
@@ -54,7 +54,7 @@ Driver={SQL Server Native Client 11.0};Server=tcp:{your_server}.database.windows
 
 ### <a name="php-connection-string-example"></a>Minta PHP kapcsolati karakterlánc
 ```PHP
-Server: {your_server}.database.windows.net,1433 \r\nSQL Database: {your_database}\r\nUser Name: {your_user_name}\r\n\r\nPHP Data Objects(PDO) Sample Code:\r\n\r\ntry {\r\n   $conn = new PDO ( \"sqlsrv:server = tcp:{your_server}.database.windows.net,1433; Database = {your_database}\", \"{your_user_name}\", \"{your_password_here}\");\r\n    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );\r\n}\r\ncatch ( PDOException $e ) {\r\n   print( \"Error connecting tooSQL Server.\" );\r\n   die(print_r($e));\r\n}\r\n\rSQL Server Extension Sample Code:\r\n\r\n$connectionInfo = array(\"UID\" => \"{your_user_name}\", \"pwd\" => \"{your_password_here}\", \"Database\" => \"{your_database}\", \"LoginTimeout\" => 30, \"Encrypt\" => 1, \"TrustServerCertificate\" => 0);\r\n$serverName = \"tcp:{your_server}.database.windows.net,1433\";\r\n$conn = sqlsrv_connect($serverName, $connectionInfo);
+Server: {your_server}.database.windows.net,1433 \r\nSQL Database: {your_database}\r\nUser Name: {your_user_name}\r\n\r\nPHP Data Objects(PDO) Sample Code:\r\n\r\ntry {\r\n   $conn = new PDO ( \"sqlsrv:server = tcp:{your_server}.database.windows.net,1433; Database = {your_database}\", \"{your_user_name}\", \"{your_password_here}\");\r\n    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );\r\n}\r\ncatch ( PDOException $e ) {\r\n   print( \"Error connecting to SQL Server.\" );\r\n   die(print_r($e));\r\n}\r\n\rSQL Server Extension Sample Code:\r\n\r\n$connectionInfo = array(\"UID\" => \"{your_user_name}\", \"pwd\" => \"{your_password_here}\", \"Database\" => \"{your_database}\", \"LoginTimeout\" => 30, \"Encrypt\" => 1, \"TrustServerCertificate\" => 0);\r\n$serverName = \"tcp:{your_server}.database.windows.net,1433\";\r\n$conn = sqlsrv_connect($serverName, $connectionInfo);
 ```
 
 ### <a name="jdbc-connection-string-example"></a>Minta JDBC kapcsolati karakterlánc
@@ -73,11 +73,11 @@ Az SQL Data Warehouse szabványosít néhány beállítást a csatlakozás és a
 | [DATEFIRST][DATEFIRST] |7 |
 
 ## <a name="next-steps"></a>Következő lépések
-tooconnect és a Visual Studio lekérdezés [lekérdezése a Visual Studio][Query with Visual Studio]. További információk a hitelesítési beállítások toolearn lásd [hitelesítési tooAzure SQL Data Warehouse][Authentication tooAzure SQL Data Warehouse].
+A Visual Studióval végzett csatlakozásról és lekérdezésről lásd: [Lekérdezés a Visual Studióval][Query with Visual Studio]. A hitelesítési lehetőségekkel kapcsolatos további információkért lásd: [Authentication to Azure SQL Data Warehouse][Authentication to Azure SQL Data Warehouse] (Hitelesítés az Azure SQL Warehouse-szal).
 
 <!--Articles-->
 [Query with Visual Studio]: ./sql-data-warehouse-query-visual-studio.md
-[Authentication tooAzure SQL Data Warehouse]: ./sql-data-warehouse-authentication.md
+[Authentication to Azure SQL Data Warehouse]: ./sql-data-warehouse-authentication.md
 
 <!--MSDN references-->
 [ADO.NET]: https://msdn.microsoft.com/library/e80y5yhx(v=vs.110).aspx

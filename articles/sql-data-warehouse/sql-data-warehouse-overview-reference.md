@@ -1,5 +1,5 @@
 ---
-title: "adatraktár referencia-témakörökre aaaSQL |} Microsoft Docs"
+title: "Az SQL Data Warehouse referencia-témakörökre |} Microsoft Docs"
 description: "Az SQL Data Warehouse referencia tartalom hivatkozások."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: reference
 ms.date: 10/31/2016
 ms.author: barbkess
-ms.openlocfilehash: 649a0b7da81b6817c435ad820642318a8cbf92d1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c56c1c262aa1a88e3f7a3d6638176cb9f97011d3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="reference-topics-for-sql-data-warehouse"></a>Az SQL Data Warehouse referencia-témakörei
 Ezek a cikkek SQL Data Warehouse referencia jellegű információt tartalmaz.

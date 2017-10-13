@@ -1,6 +1,6 @@
 ---
 pageTitle: Synonyms in Azure Search (preview) | Microsoft Docs
-description: "Hello szinonimák (előzetes verzió) szolgáltatás, hello Azure Search REST API felfedett előzetes dokumentációjában talál."
+description: "A szinonimák (előzetes verzió) szolgáltatás, az Azure Search REST API felfedett előzetes dokumentációjában talál."
 services: search
 documentationCenter: 
 authors: mhko
@@ -13,43 +13,43 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 07/07/2016
 ms.author: nateko
-ms.openlocfilehash: 2695139d2b298fa2e7c1814715fdf96729f594ce
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 739a0ad77c68ea74ec25bc80c7539ac8b3f18201
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="synonyms-in-azure-search-preview"></a>Szinonimák az Azure Search (előzetes verzió)
 
-A keresőmotorok szinonimák egyenértékű feltételeket, amely implicit módon bontsa ki a lekérdezés hello hatókör nélkül adja meg a hello kifejezés tooactually rendelkező hello felhasználói társítani. Például adott hello kifejezés "kutya" és "canine" és "ételadagot", "kutya", "canine" vagy "ételadagot" tartalmazó dokumentumokat szinonimát társítását hello hello-lekérdezés hatókörén belül is tartozik.
+Szinonimák a keresőprogramok, amely implicit módon bontsa ki a lekérdezés hatókörét a felhasználónak nem kell ténylegesen adja meg a kifejezés nem megfelelő használati társítani. Például a kifejezés "kutya" és a szinonima rendelését "canine" és "ételadagot", "kutya" tartalmazó dokumentumokat kap, "canine" vagy "ételadagot" is tartozik a lekérdezés hatókörén belül.
 
-Az Azure Search szinonimát bővítése időben történik. Szinonimát maps tooa szolgáltatás nem működőképes tooexisting műveletekkel adhat hozzá. Hozzáadhat egy **synonymMaps** tulajdonság tooa mező definition toorebuild hello index nélkül. További információkért lásd: [Index frissítése](https://docs.microsoft.com/rest/api/searchservice/update-index).
+Az Azure Search szinonimát bővítése időben történik. Egy szolgáltatás együtt nincs meglévő műveletek megszakadását szinonimát leképezéseket adhat hozzá. Hozzáadhat egy **synonymMaps** anélkül, hogy az index újraépítése mező definíció tulajdonságot. További információkért lásd: [Index frissítése](https://docs.microsoft.com/rest/api/searchservice/update-index).
 
 ## <a name="feature-availability"></a>Szolgáltatások rendelkezésre állása
 
-a szolgáltatás jelenleg a hello szinonimák előzetes megtekintéséhez, és csak a támogatott hello legújabb előzetes api-verzió (api-version = 2016 09-01. dátumú előnézeti). Jelenleg nincs Azure Portal-támogatás. Hello API-verzió van megadva hello kérés, mert már lehetséges toocombine általánosan elérhető (GA) és a hello API-k előzetes ugyanahhoz az alkalmazáshoz. Azonban előnézeti API-k nincsenek az SLA-t és a szolgáltatások módosíthatja, ezért nem javasoljuk azok az éles környezetben.
+A szinonimák funkció jelenleg előzetes verzióban érhetők, és csak akkor támogatott a legújabb előzetes api-verzió (api-version = 2016 09-01. dátumú előnézeti). Jelenleg nincs Azure Portal-támogatás. Az API-verzió van megadva a kérés, mert is lehet kombinálni általánosan elérhető (GA), és ugyanahhoz az alkalmazáshoz az API-k előzetes. Azonban előnézeti API-k nincsenek az SLA-t és a szolgáltatások módosíthatja, ezért nem javasoljuk azok az éles környezetben.
 
-## <a name="how-toouse-synonyms-in-azure-search"></a>Az Azure-ban toouse szinonimák a keresés
+## <a name="how-to-use-synonyms-in-azure-search"></a>Az Azure search szinonimák használata
 
-Az Azure Search szinonimát támogatási alapján határozza meg, és töltse fel a tooyour szolgáltatás szinonimát leképezések. A maps képeznek egy független erőforrás (például az adatforrásokat, illetve indexek), és használhatja a keresési szolgáltatás index bármely kereshető mező.
+Az Azure Search szinonimát támogatása, amely meghatározza, és töltse fel a szolgáltatás a szinonima maps alapul. A maps képeznek egy független erőforrás (például az adatforrásokat, illetve indexek), és használhatja a keresési szolgáltatás index bármely kereshető mező.
 
-Szinonimát képezi le, és indexek egymástól függetlenül megmaradjanak. Miután szinonimát térképre határozza meg, és töltse fel tooyour szolgáltatás, engedélyezheti nevű új tulajdonsággal hozzáadásával hello szinonimát szolgáltatás mező **synonymMaps** hello mező definícióban. Létrehozása, frissítése és törlése egy szinonima térkép azonban mindig a teljes dokumentum művelet, ami azt jelenti, hogy nem hozható létre, frissítése vagy törlése Növekményesen hello szinonimát térkép részeit. Egy Újrabetöltés még egy-egy bejegyzésnek frissítése szükséges.
+Szinonimát képezi le, és indexek egymástól függetlenül megmaradjanak. Miután szinonimát térképre határozza meg, és töltse fel azt a szolgáltatást, a mező szinonimát funkciót nevű új tulajdonsággal hozzáadásával engedélyezheti **synonymMaps** mező definíciójában. Mindig egy teljes-dokumentum művelet, ami azt jelenti, hogy Ön nem létrehozása, frissítése vagy törlése a szinonima térkép részei Növekményesen létrehozása, frissítése és törlése szinonimát térképre. Egy Újrabetöltés még egy-egy bejegyzésnek frissítése szükséges.
 
 Szinonimák beépítése a keresőalkalmazás két lépésből áll:
 
-1.  Szinonimát térkép tooyour keresési szolgáltatás keresztül hello az alábbi API-k hozzáadása.  
+1.  Vegyen fel egy szinonima társítást az alábbi API-k segítségével a keresési szolgáltatáshoz.  
 
-2.  Adja meg a kereshető mező toouse hello szinonimát térkép hello index definícióját.
+2.  Az index definícióját a szinonima térkép használandó kereshető mezők konfigurálására.
 
 ### <a name="synonymmaps-resource-apis"></a>SynonymMaps erőforrás API-k
 
 #### <a name="add-or-update-a-synonym-map-under-your-service-using-post-or-put"></a>Adja hozzá, vagy frissítse a szolgáltatás alatt szinonimát térkép, POST használatával, vagy HELYEZZE.
 
-Szinonimát maps feltöltése toohello szolgáltatás POST vagy PUT keresztül. Minden egyes szabály hello új sor karaktert ("\n") kell elválasztani. Too5, egy ingyenes szolgáltatás szinonimát térképre 000 szabálynál és más termékváltozatok 10 000 szabályokat adhat meg. Minden egyes szabály legfeljebb too20 bővítések tartalmazhat.
+Szinonimát maps feltöltötte-e a szolgáltatás POST vagy PUT keresztül. Minden egyes szabály az új sor karaktert ("\n") kell elválasztani. Legfeljebb 5000 szabálynál szinonimát térkép szabad szolgáltatásban és más termékváltozatok 10 000 szabályokat adhat meg. Minden egyes szabály legfeljebb 20 bővítések rendelkezhet.
 
-Ebben az előzetesben szinonimát leképezéseket formátumúnak kell lennie hello Apache Solr alábbiakban ismertetett. Ha egy meglévő szinonimát szótár más formátumú, és szeretné toouse azt közvetlenül, tudassa velünk, a [UserVoice](https://feedback.azure.com/forums/263029-azure-search).
+Ebben az előzetesben szinonimát maps az alábbiakban ismertetett Apache Solr formátumúnak kell lennie. Ha egy meglévő szinonimát szótár más formátumú, és közvetlenül használja, tudassa velünk, a [UserVoice](https://feedback.azure.com/forums/263029-azure-search).
 
-Létrehozhat új szinonimát leképezés HTTP POST, mint például a következő hello használata:
+Létrehozhat egy új szinonimát leképezés HTTP POST használatával az alábbi példában látható módon:
 
     POST https://[servicename].search.windows.net/synonymmaps?api-version=2016-09-01-Preview
     api-key: [admin key]
@@ -62,7 +62,7 @@ Létrehozhat új szinonimát leképezés HTTP POST, mint például a következő
           Washington, Wash., WA => WA\n"
     }
 
-Azt is megteheti használja a PUT és hello szinonimát leképezésnév meg hello URI. Ha hello szinonimát leképezés nem létezik, a rendszer létrehozza.
+Azt is megteheti PUT használja, és adja meg az URI a szinonima térkép nevét. Ha a szinonima leképezés nem létezik, a rendszer létrehozza.
 
     PUT https://[servicename].search.windows.net/synonymmaps/mysynonymmap?api-version=2016-09-01-Preview
     api-key: [admin key]
@@ -76,14 +76,14 @@ Azt is megteheti használja a PUT és hello szinonimát leképezésnév meg hell
 
 ##### <a name="apache-solr-synonym-format"></a>Apache Solr szinonimát formátumban
 
-hello Solr formátumhoz egyenértékű és explicit szinonimát leképezéseket. Leképezési szabályokat követi toohello nyílt forráskódú szinonimát szűrő megadását Apache Solr, a jelen dokumentumban ismertetett: [SynonymFilter](https://cwiki.apache.org/confluence/display/solr/Filter+Descriptions#FilterDescriptions-SynonymFilter). Az alábbiakban az egyenértékű szinonimák minta szabályt.
+A Solr formátumhoz egyenértékű és explicit szinonimát leképezéseket. A nyílt forráskódú szinonimát szűrő megadását Apache Solr, a jelen dokumentumban ismertetett igazodik leképezési szabályokat: [SynonymFilter](https://cwiki.apache.org/confluence/display/solr/Filter+Descriptions#FilterDescriptions-SynonymFilter). Az alábbiakban az egyenértékű szinonimák minta szabályt.
 ```
               USA, United States, United States of America
 ```
 
-A fenti hello szabálynak, a keresési lekérdezés "USA" túl bont ki "USA" vagy "Az Amerikai Egyesült Államok" vagy "Az Amerikai Egyesült Államok".
+Keresési lekérdezés a fenti a szabály az "USA" bővített "USA" vagy "Az Amerikai Egyesült Államok" vagy "Az Amerikai Egyesült Államok".
 
-Explicit leképezési nyíl megjelölt "= >". Megadása esetén a kifejezés, amely megfelel a hello bal oldalán keresési lekérdezés sorozatát "= >" hello alternatívák hello jobb oldalán a helyébe. Az alábbi hello szabály megadott, keresőkifejezések "Washington", "Wash." vagy a "WA" összes felülíródik túl "WA". Explicit leképezése csak megadott hello irányban vonatkozik, és nem újraírási hello lekérdezés "WA" túl ebben az esetben a "Washington".
+Explicit leképezési nyíl megjelölt "= >". Megadása esetén a kifejezés, amely megfelel a bal oldali keresési lekérdezés sorozatát "= >" váltja fel a alternatívák jobb oldalán. Az alábbi szabály tekintve keresőkifejezések "Washington", "Wash." vagy a "WA" összes felülíródik a "WA". Explicit leképezési csak a megadott irányban vonatkozik, és ebben az esetben nem írja a lekérdezés "Washington" a "WA".
 ```
               Washington, Wash., WA => WA
 ```
@@ -103,9 +103,9 @@ Explicit leképezési nyíl megjelölt "= >". Megadása esetén a kifejezés, am
     DELETE https://[servicename].search.windows.net/synonymmaps/mysynonymmap?api-version=2016-09-01-Preview
     api-key: [admin key]
 
-### <a name="configure-a-searchable-field-toouse-hello-synonym-map-in-hello-index-definition"></a>Adja meg a kereshető mező toouse hello szinonimát térkép hello index definícióját.
+### <a name="configure-a-searchable-field-to-use-the-synonym-map-in-the-index-definition"></a>Az index definícióját a szinonima térkép használandó kereshető mezők konfigurálására.
 
-Új mező tulajdonság **synonymMaps** lehet használt toospecify egy szinonima térkép toouse kereshető mező. Szinonimát maps szolgáltatás szintű erőforrás, és az index hello szolgáltatásban minden mező szerint lehet hivatkozni.
+Új mező tulajdonság **synonymMaps** segítségével adja meg a szinonima térképre használandó kereshető mező. Szinonimát maps szolgáltatás szintű erőforrás, és az index a szolgáltatás alatt futó minden mező szerint lehet hivatkozni.
 
     POST https://[servicename].search.windows.net/indexes?api-version=2016-09-01-Preview
     api-key: [admin key]
@@ -139,29 +139,29 @@ Explicit leképezési nyíl megjelölt "= >". Megadása esetén a kifejezés, am
        ]
     }
 
-**synonymMaps** kereshető mezők hello típusa "Edm.String" vagy "Collection(Edm.String)" adható meg.
+**synonymMaps** adható meg "Edm.String" vagy "Collection(Edm.String)" típusú kereshető mezőt.
 
 > [!NOTE]
-> Ebben az előzetesben mezőben leképezése egy szinonima csak tartozhat. Ha szeretné toouse több szinonimát maps, tudassa velünk, a [UserVoice](https://feedback.azure.com/forums/263029-azure-search).
+> Ebben az előzetesben mezőben leképezése egy szinonima csak tartozhat. Ha több szinonimát maps használni kívánt, tudassa velünk, a [UserVoice](https://feedback.azure.com/forums/263029-azure-search).
 
 ## <a name="impact-of-synonyms-on-other-search-features"></a>Egyéb keresési funkciókat a szinonimák hatása
 
-hello szinonimák szolgáltatás újraírja hello eredeti lekérdezés szinonimák a hello vagy operátor. Emiatt találati kiemelése és profilok pontozási kezeli a hello eredeti kifejezés és szinonimák egyenértékűként.
+A szinonimák szolgáltatás felülírja az eredeti lekérdezés szinonimák a vagy operátorral. Emiatt találati kiemelése és profilok pontozási kezeli az eredeti és a szinonimák egyenértékűként.
 
-Szinonimát szolgáltatás toosearch lekérdezések vonatkozik, és nem vonatkozik a toofilters értékkorlátozást. Ehhez hasonlóan javaslatok csak alapulnak hello eredeti kifejezés; találat szinonimát hello válaszban nem jelennek meg.
+Szinonimát szolgáltatás keresési lekérdezések, és nem vonatkozik a szűrők vagy értékkorlátozást. Ehhez hasonlóan javaslatok alapuló csak az eredeti kifejezés; találat szinonimát a válaszban nem jelennek meg.
 
-Szinonimát bővítések csak akkor érvényesíthetők toowildcard keresőkifejezéseket; előtag, az intelligens egyeztetésű, és a regex feltételek nem bontja ki.
+Szinonimát bővítések nem vonatkoznak a helyettesítő karakteres kifejezést; előtag, az intelligens egyeztetésű, és a regex feltételek nem bontja ki.
 
 ## <a name="tips-for-building-a-synonym-map"></a>Tippek az szinonimát térképre felépítése
 
-- Egy rövid, tetszetős szinonimát leképezés hatékonyabb, mint a lehetséges megfeleltetésekben teljesnek. Túl nagy vagy összetett szótárak tooparse hosszabb ideig eltarthat, és hatással hello lekérdezés-késleltetés, hello lekérdezés toomany szinonimák tárolásához. Ahelyett, hogy a becslés, amellyel feltételek használhatók, kaphat a tényleges feltételek hello keresztül egy [keresési forgalom elemző jelentés](search-traffic-analytics.md).
+- Egy rövid, tetszetős szinonimát leképezés hatékonyabb, mint a lehetséges megfeleltetésekben teljesnek. A túl nagy vagy összetett szótárak elemzése, és ezek befolyásolják a lekérdezés a lekérdezés sok szinonimák való tárolásához hosszabb ideig. Ahelyett, hogy a becslés, amellyel feltételek használhatók, a tényleges feltételeket keresztül kérhet egy [keresési forgalom elemző jelentés](search-traffic-analytics.md).
 
-- Egy előzetes és az érvényesítés a gyakorlatban, engedélyezése, és majd használja, ez a jelentés tooprecisely határozza meg, mely feltételek fog hasznot húzhatnak a szinonima egyezés, és folytassa toouse azt, hogy a szinonima térképre van előállító jobb eredményének ellenőrzése. Hello előre megadott jelentésben, hello tartalmazó csempék éppen "leggyakoribb keresési lekérdezések" és "nulla-eredmény keresési lekérdezések" ad hello szükséges információkat.
+- Egy előzetes és az érvényesítés megadásával, mert engedélyezése, majd használja ez a jelentés pontosan határozza meg, hogy mely feltételeit fog hasznot húzhatnak a szinonima egyezés, és folytassa használni, hogy a szinonima térképre van előállító jobb eredményének ellenőrzése. Az előre meghatározott jelentésben a csempék "leggyakoribb keresési lekérdezések" és "nulla-eredmény keresési lekérdezések" Erre azért van szükség a szükséges információkat.
 
 - Létrehozhat több szinonimát maps keresési alkalmazás (például úgy, hogy ha az alkalmazás támogatja a többnyelvű vásárlói bázisunk nyelv). Jelenleg a mező csak egyikét használhatja őket. A mező synonymMaps tulajdonság bármikor frissítheti.
 
 ## <a name="next-steps"></a>Következő lépések
 
-- Ha egy meglévő index (nem éles) fejlesztői környezetben, kísérletezhet egy kis szótár toosee hogyan szinonimák hello hozzáadása változik hello keresési élményt biztosít, beleértve a profilok pontozási találati kiemelése és javaslatok hatással.
+- Ha egy meglévő index (nem éles) fejlesztői környezetben, hogyan szinonimák hozzáadása módosítja keresési élményt biztosít, beleértve a profilok pontozási gyakorolt megtekintéséhez kattintson a kijelölés kis dictionary és javaslatok kísérletezhet.
 
-- [Engedélyezze a keresési forgalom analytics](search-traffic-analytics.md) használata hello előre Power BI-jelentés mely kifejezések toolearn hello legtöbb, és mely azokat, visszatérési dokumentumot. Hello szótár tooinclude szinonimák rendszer lekérdezések, amelyek az indexben toodocuments feloldása kell volt képes ezek insights felvértezve, vizsgálja felül.
+- [Engedélyezze a keresési forgalom analytics](search-traffic-analytics.md) és az előre definiált Power BI-jelentés segítségével megtudhatja, mely kifejezések a legtöbb, és melyeket térjen vissza a dokumentumot. A szótár kell lennie során az indexben dokumentumok rendszer lekérdezésekhez szinonimák felvenni volt képes ezek insights felvértezve, vizsgálja felül.

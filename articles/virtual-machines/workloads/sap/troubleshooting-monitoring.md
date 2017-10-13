@@ -1,5 +1,5 @@
 ---
-title: "aaaTroubleshooting és a figyelés az SAP HANA (nagy példányok) Azure-on |} Microsoft Docs"
+title: "Hibaelhárítás és megfigyelése az Azure (nagy példányok) SAP HANA |} Microsoft Docs"
 description: "Hibaelhárítás, és figyelje az SAP HANA egy Azure (nagy példány)."
 services: virtual-machines-linux
 documentationcenter: 
@@ -14,39 +14,39 @@ ms.workload: infrastructure
 ms.date: 12/01/2016
 ms.author: rclaus
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 1f1cd35820e227fd99af495431cd4b826aa53600
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ee5be707b443cbe42bf4a492d79390e534d4b91f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tootroubleshoot-and-monitor-sap-hana-large-instances-on-azure"></a>Hogyan tootroubleshoot és a figyelő SAP HANA (nagy példány) az Azure-on
+# <a name="how-to-troubleshoot-and-monitor-sap-hana-large-instances-on-azure"></a>És figyelheti az SAP HANA (nagy példány) az Azure-on
 
 
 ## <a name="monitoring-in-sap-hana-on-azure-large-instances"></a>Az SAP HANA Azure (nagy példányok) figyelése
 
-Az Azure (nagy példányok) SAP HANA ugyanolyan helyzetet teremt, az egyéb IaaS-telepítésből – kell toomonitor milyen operációs rendszer hello és hello alkalmazás ezzel, és hogyan ezeket felhasználhatják a következő erőforrások hello:
+Az Azure (nagy példányok) SAP HANA ugyanolyan helyzetet teremt, az egyéb IaaS-telepítésből – kell figyelnie, az operációs rendszer és az alkalmazás tevékenységétől, és hogyan ezek erőforrást a következő:
 
 - CPU
 - Memory (Memória)
 - Hálózati sávszélesség
 - Lemezterület
 
-Azure virtuális gépekkel van lehetősége, hogy hello erőforrás osztályok fent megnevezett szoftverre-e elegendő, és hogy ezek beolvasása elfogytak toofigure. Íme további információkhoz juthat az egyes hello különböző osztályú:
+Mi a teendő, hogy a fent megnevezett szoftverre erőforrás osztályok-e elegendő, és hogy ezek beolvasása elfogytak van Azure virtuális gépekkel. Íme további információkhoz juthat az egyes a különböző osztályú:
 
-**Processzor-erőforrás-felhasználás:** hello arány SAP HANA elleni bizonyos munkaterhelések meghatározott érvényben levő toomake meg arról, hogy van elég CPU erőforrások elérhető toowork hello a memóriában tárolt adatok keresztül kell lennie. Mindazonáltal néhány esetben előfordulhat HANA igényel, ahol nagy mennyiségű Processzor toomissing indexek vagy hasonló problémák miatt a lekérdezések végrehajtása. Ez azt jelenti, célszerű figyelemmel kísérni hello HANA nagy példány egység, valamint a Processzor-erőforrások hello adott HANA szolgáltatások által használt CPU hálózatierőforrás-fogyasztás.
+**Processzor-erőforrás-felhasználás:** SAP HANA elleni bizonyos munkaterhelések meghatározott aránya érvénybe van léptetve, győződjön meg arról, hogy az elegendő Processzor-erőforrások a memóriában tárolt adatok keresztül elérhető legyen. Mindazonáltal néhány esetben előfordulhat HANA igényel, ahol nagy mennyiségű Processzor végrehajtott lekérdezések hiányzó indexek vagy hasonló hibák miatt. Ez azt jelenti, célszerű figyelemmel kísérni a HANA nagy példány egység, valamint a Processzor-erőforrások, az adott HANA szolgáltatások által használt CPU hálózatierőforrás-fogyasztás.
 
-**Memória-felhasználás:** fontos toomonitor a HANA belül, valamint HANA kívül hello egységen van. Belül HANA hogyan hello adatok nem használ-e rendelés toostay belül szükséges SAP útmutatást méretezése hello memóriája kiosztott HANA figyelése. Szeretné a hello nagy példány szintű toomake, hogy további telepített nem-HANA szoftver nem túl sok memóriát használ, és ezért versenyeznek HANA-memória memória-felhasználás toomonitor.
+**Memória-felhasználás:** fontos, hogy a egységen HANA belül, valamint HANA kívül a figyelheti. Belül HANA hogy az adatok nem használ-e HANA lefoglalt memória ahhoz, hogy az SAP szükséges méretezési útmutatást belül maradnak figyelése. Szeretné a nagy példány szintjén, győződjön meg arról, hogy további telepített nem-HANA szoftver nem túl sok memóriát használ, és ezért versenyeznek HANA-memória memória-felhasználás figyelése.
 
-**Hálózati sávszélességet:** hello Azure VNet átjáró korlátozott sávszélesség az adatok áthelyezése hello Azure virtuális hálózat, ezért hasznos lehet az összes fogadott toomonitor hello adatok hello Azure virtuális gépek a virtuális hálózat toofigure ki, hogy milyen közel a hello Azure toohello határain belül a kiválasztott SKU átjáró. Hello HANA nagy példány egység akkor győződjön meg logika toomonitor bejövő és kimenő hálózati forgalmat is, és adott idő alatt végrehajtott hello kötetek tookeep nyomon.
+**Hálózati sávszélességet:** az Azure virtuális hálózatot átjáró korlátozott sávszélesség az adatok áthelyezése az Azure VNet, akkor célszerű egy Vnetet, hogy milyen közel vannak a kiválasztott Termékváltozat Azure átjáró keretein belül az összes Azure VMs által fogadott adatok figyelésére. A nagy példány HANA egységen akkor értelme bejövő és kimenő hálózati forgalom figyelését is, és a kötetek adott idő alatt végrehajtott nyomon követéséhez.
 
-**Szabad lemezterület:** lemezterület-felhasználást általában növekszik adott idő alatt. Ennek számos oka lehet, de a legtöbb összes: adatmennyiség növekszik, a tranzakciónapló biztonsági mentései, nyomkövetési fájlokat tárolja, és a storage-pillanatfelvételekkel végrehajtása végrehajtását. Ezért fontos toomonitor lemezterület-használat és hello HANA nagy példány egységhez társított hello lemezterület felügyeletét.
+**Szabad lemezterület:** lemezterület-felhasználást általában növekszik adott idő alatt. Ennek számos oka lehet, de a legtöbb összes: adatmennyiség növekszik, a tranzakciónapló biztonsági mentései, nyomkövetési fájlokat tárolja, és a storage-pillanatfelvételekkel végrehajtása végrehajtását. Ezért fontos, a felhasznált lemezterület felügyeletét és kezelését a HANA nagy példány egységhez társított lemezterület.
 
 ## <a name="monitoring-and-troubleshooting-from-hana-side"></a>Figyelés és hibaelhárítás céljából HANA oldaláról
 
-A sorrend tooeffectively elemzése a problémák kapcsolódó tooSAP HANA Azure (nagy példányokat), a hasznos toonarrow le hello okozza a problémát. SAP közzétette dokumentáció toohelp nagy mennyiségű meg.
+Ahhoz, hogy hatékonyan elemezheti Azure (nagy példányok) SAP HANA kapcsolatos problémák, célszerű a probléma okának szűkítéséhez. SAP dokumentációja segít nagy mennyiségű tett közzé.
 
-Vonatkozó gyakran ismételt kérdéseket kapcsolódó tooSAP HANA teljesítmény található SAP megjegyzések következő hello:
+SAP HANA-teljesítménnyel kapcsolatos vonatkozó gyakori kérdések a következő SAP megjegyzések találhatók:
 
 - [SAP Megjegyzés #2222200 – gyakran ismételt kérdések: SAP HANA-hálózat](https://launchpad.support.sap.com/#/notes/2222200)
 - [SAP Megjegyzés #2100040 – gyakran ismételt kérdések: SAP HANA Processzor](https://launchpad.support.sap.com/#/notes/0002100040)
@@ -57,49 +57,49 @@ Vonatkozó gyakran ismételt kérdéseket kapcsolódó tooSAP HANA teljesítmén
 
 **SAP HANA riasztások**
 
-Első lépésként ellenőrizze a hello aktuális SAP HANA riasztások naplókat. Az SAP HANA Studio eszközben lépjen túl**felügyeleti konzol: riasztások: megjelenítése: az összes riasztás**. Ezen a lapon adott értékekre (szabad fizikai memória, a processzorkihasználtság stb.) hello beállítása a minimális és maximális küszöbértékek kívül eső összes SAP HANA riasztások jelennek meg. Alapértelmezés szerint legyenek ellenőrzések automatikus frissítése 15 percenként.
+Első lépésként a naplófájlokban aktuális SAP HANA riasztások. Az SAP HANA Studio eszközben navigáljon **felügyeleti konzol: riasztások: megjelenítése: az összes riasztás**. Ezen a lapon adott értékekre (szabad fizikai memória, a processzorkihasználtság stb.) a set minimális és maximális küszöbértékek kívül eső összes SAP HANA riasztások jelennek meg. Alapértelmezés szerint legyenek ellenőrzések automatikus frissítése 15 percenként.
 
-![Az SAP HANA Studióban, lépjen a konzol tooAdministration: riasztások: megjelenítése: az összes riasztás](./media/troubleshooting-monitoring/image1-show-alerts.png)
+![Az SAP HANA Studio, nyissa meg a felügyeleti konzol: riasztások: megjelenítése: az összes riasztás](./media/troubleshooting-monitoring/image1-show-alerts.png)
 
 **PROCESSZOR**
 
-Tooimproper küszöbérték beállítása miatt kiváltott riasztást a felbontása esetén tooreset toohello alapértelmezett érték vagy egyéb ésszerű küszöbértéket.
+Küszöbérték helytelen beállítás miatt indított riasztást megoldást, hogy visszaállítása az alapértelmezett érték vagy egyéb ésszerű küszöbértéket.
 
-![Új toohello alapértelmezett értékét, vagy egyéb ésszerű küszöbértéket](./media/troubleshooting-monitoring/image2-cpu-utilization.png)
+![Az alapértelmezett érték vagy egyéb ésszerű küszöbértéket](./media/troubleshooting-monitoring/image2-cpu-utilization.png)
 
-a következő figyelmeztetések hello jelezheti CPU erőforrás problémák:
+Az alábbi riasztások utalhat a Processzor-erőforrás problémák:
 
 - Gazdagép CPU-használat (riasztás 5)
 - Legutóbbi mentésipont-művelet (riasztás 28)
 - Mentési pont időtartama (riasztás 54)
 
-Azt tapasztalhatja, hogy magas CPU-felhasználás a SAP HANA-adatbázisból származó hello következő meg:
+Azt tapasztalhatja, hogy magas CPU-felhasználás az SAP HANA-adatbázishoz a következők egyikét:
 
 - Riasztási 5 (gazdagép CPU-használat) jelenik meg, az aktuális és korábbi CPU-használat
-- hello CPU-használat a hello áttekintés képernyő jelenik meg.
+- A megjelenített CPU-használat a az Áttekintés képernyő
 
-![CPU-használat megjelenő hello áttekintés képernyő](./media/troubleshooting-monitoring/image3-cpu-usage.png)
+![CPU-használat jelenik meg az Áttekintés képernyő](./media/troubleshooting-monitoring/image3-cpu-usage.png)
 
-hello terhelés graph magas CPU-felhasználás, vagy a fogyasztás magas lehet, hogy megjelenítése a múltbeli hello:
+A betöltési graph magas CPU-felhasználás, vagy a fogyasztás magas lehet, hogy megjelenítése a múltban:
 
-![hello terhelés graph előfordulhat, hogy megjelenítése magas CPU-felhasználás, vagy magas fogyasztás hello elmúlt](./media/troubleshooting-monitoring/image4-load-graph.png)
+![A betöltési graph előfordulhat, hogy megjelenítése magas CPU-felhasználás, vagy magas fogyasztás az elmúlt](./media/troubleshooting-monitoring/image4-load-graph.png)
 
-Riasztás toohigh Processzor kihasználtsága miatt indított több oka is, de nem kizárólagosan okozhatja: bizonyos tranzakciókat, az adatok betöltése, a feladatok sokáig futnak az SQL-utasításokat vagy hibás lekérdezések teljesítményét (például a BW HANA a függő végrehajtása a kockák).
+Lehetséges okok miatt magas fokú Processzorhasználatot tapasztalható kiváltott riasztást több oka is, de nem kizárólagosan: bizonyos tranzakciókat, az adatok betöltése, a feladatok sokáig futnak az SQL-utasításokat vagy hibás lekérdezések teljesítményét (például a HANA kockák a BW) függő végrehajtását.
 
-Tekintse meg a toohello [SAP HANA-hibaelhárítás: CPU kapcsolódó okoz, és a megoldások](http://help.sap.com/saphelp_hanaplatform/helpdata/en/4f/bc915462db406aa2fe92b708b95189/content.htm?frameset=/en/db/6ca50424714af8b370960c04ce667b/frameset.htm&amp;current_toc=/en/85/d132c3f05e40a2b20c25aa5fd6331b/plain.htm&amp;node_id=46&amp;show_children=false) helyen részletes hibaelhárítási lépéseket.
+Tekintse meg a [SAP HANA-hibaelhárítás: CPU kapcsolódó okoz, és a megoldások](http://help.sap.com/saphelp_hanaplatform/helpdata/en/4f/bc915462db406aa2fe92b708b95189/content.htm?frameset=/en/db/6ca50424714af8b370960c04ce667b/frameset.htm&amp;current_toc=/en/85/d132c3f05e40a2b20c25aa5fd6331b/plain.htm&amp;node_id=46&amp;show_children=false) helyen részletes hibaelhárítási lépéseket.
 
 **Operációs rendszer**
 
-Az egyik legfontosabb hello ellenőrzi, hogy az SAP HANA Linux toomake meg arról, hogy a transzparens túl nagy lapok le vannak tiltva, lásd: [SAP Megjegyzés #2131662 – átlátszó túl nagy lapok (THP) SAP HANA-kiszolgálókon](https://launchpad.support.sap.com/#/notes/2131662).
+A legfontosabb ellenőrzések SAP Hana Linux egyik győződjön meg arról, hogy van-e tiltva átlátszó túl nagy lapok [SAP Megjegyzés #2131662 – átlátszó túl nagy lapok (THP) SAP HANA-kiszolgálókon](https://launchpad.support.sap.com/#/notes/2131662).
 
-- Ellenőrizheti, hogy engedélyezve vannak-e átlátszó túl nagy lapok hello Linux parancs a következő használatával: **/sys/kernel/mm/transparent macskaeledel\_hugepage/engedélyezve**
-- Ha _mindig_ kapcsos zárójelek között, az alábbi, az azt jelenti, hogy engedélyezve vannak-e a hello átlátszó túl nagy lapok: [mindig] madvise soha nem; Ha _soha nem_ szimpla zárójelek között, az alábbi, az azt jelenti, hogy hello átlátszó Túl nagy lapok le vannak tiltva: mindig madvise [soha nem]
+- Ha átlátszó túl nagy lapok engedélyezve vannak-e a következő Linux paranccsal ellenőrizheti: **/sys/kernel/mm/transparent macskaeledel\_hugepage/engedélyezve**
+- Ha _mindig_ szimpla zárójelek között, az alábbi, az azt jelenti, hogy engedélyezve vannak-e a transzparens túl nagy lapok: [mindig] madvise soha nem; Ha _soha nem_ kapcsos zárójelek között, az alábbi, az azt jelenti, hogy van-e tiltva a transzparens túl nagy lapok: mindig madvise [soha nem]
 
-Linux parancs a következő hello semmi sem kell visszaadnia: **rpm - qa |} grep ulimit.** Ha úgy tűnik, _ulimit_ van telepítve, távolítsa el azonnal.
+A következő Linux parancs semmi sem kell visszaadnia: **rpm - qa |} grep ulimit.** Ha úgy tűnik, _ulimit_ van telepítve, távolítsa el azonnal.
 
 **Memória**
 
-Előfordulhat, hogy figyelje meg, hogy hello összeg hello SAP HANA által lefoglalt memória adatbázisa a vártnál nagyobb. a következő figyelmeztetések hello magas memóriahasználatban kapcsolatos hibákat jelzik:
+Azt is láthatja, hogy a SAP HANA-adatbázisból által lefoglalt memória mérete nagyobb, mint a várt. Az alábbi riasztások a magas memóriahasználatban kapcsolatos hibákat jelzik:
 
 - Állomás fizikai memória használata (riasztás 1.)
 - A névkiszolgáló (riasztás 12) memóriahasználata
@@ -108,64 +108,64 @@ Előfordulhat, hogy figyelje meg, hogy hello összeg hello SAP HANA által lefog
 - Memóriahasználat fő tárolási oszlop tárolási táblák (riasztás 45)
 - Futásidejű memóriaképek (riasztás 46)
 
-Tekintse meg a toohello [SAP HANA-hibaelhárítás: memóriával kapcsolatos problémák](http://help.sap.com/saphelp_hanaplatform/helpdata/en/db/6ca50424714af8b370960c04ce667b/content.htm?frameset=/en/59/5eaa513dde43758b51378ab3315ebb/frameset.htm&amp;current_toc=/en/85/d132c3f05e40a2b20c25aa5fd6331b/plain.htm&amp;node_id=26&amp;show_children=false) helyen részletes hibaelhárítási lépéseket.
+Tekintse meg a [SAP HANA-hibaelhárítás: memóriával kapcsolatos problémák](http://help.sap.com/saphelp_hanaplatform/helpdata/en/db/6ca50424714af8b370960c04ce667b/content.htm?frameset=/en/59/5eaa513dde43758b51378ab3315ebb/frameset.htm&amp;current_toc=/en/85/d132c3f05e40a2b20c25aa5fd6331b/plain.htm&amp;node_id=26&amp;show_children=false) helyen részletes hibaelhárítási lépéseket.
 
 **Hálózat**
 
-Tekintse meg a túl[SAP Megjegyzés #2081065 – hibaelhárítás SAP HANA hálózati](https://launchpad.support.sap.com/#/notes/2081065) , és végezze el a hello hálózati hibaelhárítási lépések az SAP Megjegyzés vehető fel.
+Tekintse meg [SAP Megjegyzés #2081065 – hibaelhárítás SAP HANA hálózati](https://launchpad.support.sap.com/#/notes/2081065) , és végezze el a hibaelhárítási SAP Megjegyzés vehető fel a hálózaton.
 
 1. Kiszolgáló és az ügyfél közötti üzenetváltások idő elemzése.
-  A. Hello SQL-parancsfájl futtatása [ _HANA\_hálózati\_ügyfelek_](https://launchpad.support.sap.com/#/notes/1969700)_._
+  A. Az SQL-parancsfájl futtatása [ _HANA\_hálózati\_ügyfelek_](https://launchpad.support.sap.com/#/notes/1969700)_._
   
 2. Elemezze a fürtök csomóponton belüli kommunikációjához kommunikációt.
   A. SQL-parancsfájl futtatása [ _HANA\_hálózati\_szolgáltatások_](https://launchpad.support.sap.com/#/notes/1969700)_._
 
-3. Linux parancs **ifconfig** (hello kimeneti látható, ha a csomag veszteségeiért is megjelenhetnek).
+3. Linux parancs **ifconfig** (a kimeneti látható, ha a csomag veszteségeiért is megjelenhetnek).
 4. Linux parancs **tcpdump parancsot**.
 
-Használja továbbá hello nyílt forráskódú [IPERF](https://iperf.fr/) eszköz (vagy hasonlót) toomeasure alkalmazás valós hálózati teljesítmény.
+Használja továbbá a nyílt forráskódú [IPERF](https://iperf.fr/) eszköz (vagy hasonlót) alkalmazás valós hálózati teljesítmény mérését.
 
-Tekintse meg a toohello [SAP HANA-hibaelhárítás: hálózati teljesítmény és a kapcsolódási problémái vannak](http://help.sap.com/saphelp_hanaplatform/helpdata/en/a3/ccdff1aedc4720acb24ed8826938b6/content.htm?frameset=/en/dc/6ff98fa36541e997e4c719a632cbd8/frameset.htm&amp;current_toc=/en/85/d132c3f05e40a2b20c25aa5fd6331b/plain.htm&amp;node_id=142&amp;show_children=false) helyen részletes hibaelhárítási lépéseket.
+Tekintse meg a [SAP HANA-hibaelhárítás: hálózati teljesítmény és a kapcsolódási problémái vannak](http://help.sap.com/saphelp_hanaplatform/helpdata/en/a3/ccdff1aedc4720acb24ed8826938b6/content.htm?frameset=/en/dc/6ff98fa36541e997e4c719a632cbd8/frameset.htm&amp;current_toc=/en/85/d132c3f05e40a2b20c25aa5fd6331b/plain.htm&amp;node_id=142&amp;show_children=false) helyen részletes hibaelhárítási lépéseket.
 
-**Tárolás**
+**Storage**
 
-Végfelhasználói szempontból egy alkalmazás (vagy hello rendszer egészének) nehézkesen futtatja, nem válaszol vagy is még úgy tűnik, toohang i/o-teljesítménnyel kapcsolatos problémák esetén. A hello **kötetek** lapon a SAP HANA Studio, hogy hello csatolt kötetek, és milyen kötetek minden szolgáltatás által használt.
+Végfelhasználói szempontból egy alkalmazás (vagy a rendszer egészének) nehézkesen futtatja, nem válaszol, vagy még is úgy tűnik, hogy lefagy, ha problémák i/o-teljesítményét. Az a **kötetek** lapon SAP HANA Studio, a megtekintheti, milyen kötetek minden szolgáltatás által használt, és a kapcsolódó kötetek.
 
-![A SAP HANA Studio hello kötetek lapján látható hello csatolt kötetek, és milyen kötetek minden szolgáltatás által használt](./media/troubleshooting-monitoring/image5-volumes-tab-a.png)
+![A SAP HANA Studio kötetek lapján megtekintheti, milyen kötetek minden szolgáltatás által használt, és a kapcsolódó kötetek](./media/troubleshooting-monitoring/image5-volumes-tab-a.png)
 
-Csatlakoztatott kötetek részleteit láthatja hello képernyő alsó részén hello hello kötetek, fájlok és az i/o-statisztikák például.
+Csatlakoztatott kötetek a képernyő alsó részén látható a kötetek, fájlok és az i/o-statisztikák például részleteit.
 
-![Csatlakoztatott kötetek részleteit láthatja hello képernyő alsó részén hello hello kötetek, például fájlok és az i/o-statisztikák](./media/troubleshooting-monitoring/image6-volumes-tab-b.png)
+![Csatlakoztatott kötetek a képernyő alsó részén látható a kötetek, fájlok és az i/o-statisztikák például részleteit](./media/troubleshooting-monitoring/image6-volumes-tab-b.png)
 
-Tekintse meg a toohello [SAP HANA-hibaelhárítás: i/o kapcsolódó okait és megoldásait](http://help.sap.com/saphelp_hanaplatform/helpdata/en/dc/6ff98fa36541e997e4c719a632cbd8/content.htm?frameset=/en/47/4cb08a715c42fe9f7cc5efdc599959/frameset.htm&amp;current_toc=/en/85/d132c3f05e40a2b20c25aa5fd6331b/plain.htm&amp;node_id=55&amp;show_children=false) és [SAP HANA-hibaelhárítás: lemez kapcsolódó okait és megoldásait](http://help.sap.com/saphelp_hanaplatform/helpdata/en/47/4cb08a715c42fe9f7cc5efdc599959/content.htm?frameset=/en/44/3e1db4f73d42da859008df4f69e37a/frameset.htm&amp;current_toc=/en/85/d132c3f05e40a2b20c25aa5fd6331b/plain.htm&amp;node_id=53&amp;show_children=false) helyen részletes hibaelhárítási lépéseket.
+Tekintse meg a [SAP HANA-hibaelhárítás: i/o kapcsolódó okait és megoldásait](http://help.sap.com/saphelp_hanaplatform/helpdata/en/dc/6ff98fa36541e997e4c719a632cbd8/content.htm?frameset=/en/47/4cb08a715c42fe9f7cc5efdc599959/frameset.htm&amp;current_toc=/en/85/d132c3f05e40a2b20c25aa5fd6331b/plain.htm&amp;node_id=55&amp;show_children=false) és [SAP HANA-hibaelhárítás: lemez kapcsolódó okait és megoldásait](http://help.sap.com/saphelp_hanaplatform/helpdata/en/47/4cb08a715c42fe9f7cc5efdc599959/content.htm?frameset=/en/44/3e1db4f73d42da859008df4f69e37a/frameset.htm&amp;current_toc=/en/85/d132c3f05e40a2b20c25aa5fd6331b/plain.htm&amp;node_id=53&amp;show_children=false) helyen részletes hibaelhárítási lépéseket.
 
 **Diagnosztikai eszközök**
 
 Hajtsa végre egy SAP HANA állapot-ellenőrzéssel keresztül HANA\_konfigurációs\_Minichecks. Ez az eszköz, amely kell már merült fel az SAP HANA Studio riasztásként elvégzésével kritikus technikai problémák adja vissza.
 
-Tekintse meg a túl[SAP Megjegyzés #1969700 – SQL utasítás gyűjtemény SAP Hana](https://launchpad.support.sap.com/#/notes/1969700) , és töltse le a hello SQL Statements.zip fájl csatolt toothat megjegyzés. A .zip fájlt hello helyi merevlemezen tárolja.
+Tekintse meg [SAP Megjegyzés #1969700 – SQL utasítás gyűjtemény SAP Hana](https://launchpad.support.sap.com/#/notes/1969700) és töltse le az SQL Statements.zip fájlt, hogy a megjegyzés csatolva. A .zip fájlt a helyi merevlemez-meghajtón tárolja.
 
-Az SAP HANA Studio hello **Rendszerinformáció** lapra, kattintson a jobb gombbal a hello **neve** oszlop, és válassza ki **importálási SQL-utasítások**.
+Az SAP HANA Studio a a **Rendszerinformáció** lapra, kattintson a jobb gombbal a a **neve** oszlop, és válassza ki **importálási SQL-utasítások**.
 
-![Az SAP HANA Studio, a hello Rendszerinformáció lapon kattintson a jobb gombbal a hello neve oszlopban, és válassza ki a importálási SQL-utasítások](./media/troubleshooting-monitoring/image7-import-statements-a.png)
+![Az SAP HANA Studio, a rendszer adatok lapon kattintson a jobb gombbal a neve oszlopban, és válassza ki a importálási SQL-utasítások](./media/troubleshooting-monitoring/image7-import-statements-a.png)
 
-SELECT hello SQL Statements.zip fájlt helyileg tárolja, és importálja a megfelelő SQL-utasítások hello egy mappa. Ezen a ponton hello számos különböző diagnosztikai ellenőrzések az alábbi SQL-utasítások is futtatható.
+Válassza ki a helyileg tárolt SQL Statements.zip fájlt, és importálja a megfelelő SQL-utasítások egy mappa. Ezen a ponton a sok különböző diagnosztikai ellenőrzések futtatható ezen az SQL-utasítások.
 
-Például tootest SAP HANA rendszer replikáció sávszélesség-követelményekkel, kattintson a jobb gombbal hello **sávszélesség** utasítás alapján **replikációs: sávszélesség** válassza ki **nyitott** SQL-konzolon.
+Például SAP HANA rendszer replikáció sávszélesség-követelményekkel teszteléséhez kattintson a jobb gombbal a **sávszélesség** utasítás alapján **replikációs: sávszélesség** válassza ki **nyitott** SQL-konzolon.
 
-hello teljes SQL utasítás megnyitja lehetővé tevő bemeneti paraméterek (módosítása szakaszát) toobe megváltozott, és végrehajthatók.
+A teljes SQL-utasítás megnyílik, lehetővé téve a bemeneti paramétereket (módosítása szakaszát) megváltozott, és akkor hajtja végre.
 
-![hello teljes SQL-utasítás lehetővé tevő bemeneti paraméterek (módosítása szakaszát) megváltozott, és végrehajthatók toobe megnyitása](./media/troubleshooting-monitoring/image8-import-statements-b.png)
+![A teljes SQL-utasítás megnyitása (módosítása szakaszát) megváltozott, és akkor hajtja végre a bemeneti paraméterek engedélyezése](./media/troubleshooting-monitoring/image8-import-statements-b.png)
 
-Egy másik példa: hello utasítások alapján a jobb gombbal kattint **replikációs: áttekintés**. Válassza ki **Execute** hello helyi menüben:
+Az utasítások alapján a jobb gombbal kattint egy másik példa: **replikációs: áttekintés**. Válassza ki **Execute** a helyi menüben:
 
-![Jobb gombbal kattint, a replikációs csoportban hello utasítások egy másik példa: áttekintése. Válassza ki a végrehajtás hello helyi menüből](./media/troubleshooting-monitoring/image9-import-statements-c.png)
+![Jobb gombbal kattint, a replikációs csoportban utasítások egy másik példa: áttekintése. A helyi menüből válassza ki a végrehajtás](./media/troubleshooting-monitoring/image9-import-statements-c.png)
 
 Ennek eredményeként a hibaelhárítási információkat:
 
 ![Ennek eredményeképpen az adatokat, amelyek segítenek a hibaelhárításban](./media/troubleshooting-monitoring/image10-import-statements-d.png)
 
-Hello azonos Hana\_konfigurációs\_Minichecks és az összes ellenőrzés _X_ jeleket a hello _C_ (kritikus) oszlopban.
+Tegye meg ugyanezt a HANA\_konfigurációs\_Minichecks és az összes ellenőrzés _X_ megjelöli a a _C_ (kritikus) oszlopban.
 
 A minta kimenete:
 
@@ -181,11 +181,11 @@ A minta kimenete:
 
 ![HANA\_szolgáltatások\_SAP Hana statisztika szolgáltatás információkat ](./media/troubleshooting-monitoring/image13-services-statistics.png)
 
-**HANA\_konfigurációs\_áttekintése\_Rev110 +** hello SAP HANA-példány általános tájékoztatást.
+**HANA\_konfigurációs\_áttekintése\_Rev110 +** általános tudnivalók az SAP HANA-példányon.
 
-![HANA\_konfigurációs\_áttekintése\_Rev110 + hello SAP HANA-példányon általános információk](./media/troubleshooting-monitoring/image14-configuration-overview.png)
+![HANA\_konfigurációs\_áttekintése\_Rev110 + általános tudnivalók az SAP HANA-példányon](./media/troubleshooting-monitoring/image14-configuration-overview.png)
 
-**HANA\_konfigurációs\_paraméterek\_Rev70 +** toocheck SAP HANA-paraméterekhez.
+**HANA\_konfigurációs\_paraméterek\_Rev70 +** SAP HANA-paraméterekhez kereséséhez.
 
-![HANA\_konfigurációs\_paraméterek\_Rev70 + toocheck SAP HANA-paraméterek](./media/troubleshooting-monitoring/image15-configuration-parameters.png)
+![HANA\_konfigurációs\_paraméterek\_Rev70 + SAP HANA-paraméterekhez ellenőrzése](./media/troubleshooting-monitoring/image15-configuration-parameters.png)
 

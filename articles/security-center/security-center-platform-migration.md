@@ -1,6 +1,6 @@
 ---
-title: "Biztonsági központ Platform áttelepítési aaaAzure |} Microsoft Docs"
-description: "Ez a dokumentum ismerteti az egyes módosítások toohello módja az Azure Security Center adatok gyűjtése."
+title: "Az Azure Security Center platform migrációja| Microsoft Docs"
+description: "Ez a dokumentum az Azure Security Center adatgyűjtési módjának néhány változását ismerteti."
 services: security-center
 documentationcenter: na
 author: YuriDio
@@ -14,53 +14,53 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/24/2017
 ms.author: yurid
-ms.openlocfilehash: 28cb8d85912a3f62941cf113da51070081b5eda2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5ddf71dcd9c5a2b03e3b1441d8c9b4d91b6bad12
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-security-center-platform-migration"></a>Az Azure Security Center platform migrációja
 
-Korai. június 2017 verziótól kezdve az Azure Security Center bevezeti a fontos változások toohello módon biztonsági adatok gyűjtése és tárolni.  Ezek a változások zárolásának feloldása új szolgáltatásokat, például a hello képességét tooeasily keresési biztonsági adatokat, és más Azure kezelési és -szolgáltatások figyelésének jobban igazodik.
+2017 júniusának elejével kezdődően az Azure Security Center fontos változásokat vezet be a biztonsági adatok gyűjtési és tárolási módjával kapcsolatban.  Ezek a változások új képességek zárolását oldják fel, például a biztonsági adatok könnyen kereshetővé válnak, és a szolgáltatás jobban fog igazodni más Azure felügyeleti és figyelési szolgáltatásokhoz.
 
 > [!NOTE]
-> hello platform áttelepítési kell nincs hatással az éles erőforrások, és semmilyen művelet nem szükséges a oldaláról.
+> A platform migrációja nem érinti az éles erőforrásait, és az Ön részéről nincs szükség beavatkozásra.
 
 
 ## <a name="whats-happening-during-this-platform-migration"></a>Mi történik a platform migrációja során?
 
-Korábban a Security Center használt hello Azure Figyelőügynök toocollect biztonsági adatokat a virtuális gépek. Ez magában foglalja a biztonsági konfigurációkat, amelyek használt tooidentify biztonsági rések, és a biztonsági események, amelyek használt toodetect fenyegetésekkel kapcsolatos információkat. Ezeket az adatokat az Azure Storage-fiókjában tároltuk.
+Régebben a Security Center az Azure Monitoring Agent ügynököt használta a biztonsági adatok virtuális gépekről való gyűjtésére. Ez magában foglal biztonsági konfigurációkra vonatkozó adatokat, amelyek a biztonsági rések azonosítására és biztonsági eseményeket, amelyek a veszélyek észlelésére használatosak. Ezeket az adatokat az Azure Storage-fiókjában tároltuk.
 
-Továbbítja, a Security Center használja a Microsoft Monitoring Agent – hello Ez az Operations Management Suite hello és Naplóelemzés szolgáltatás által használt ugyanannak az ügynöknek hello. Ez az ügynök gyűjtött adatokat tárolja vagy egy meglévő *Naplóelemzési* [munkaterület](../log-analytics/log-analytics-manage-access.md) társított Azure-előfizetése vagy egy új munkaterületek, figyelembe véve a fiók hello földrajzi hely, a virtuális gép hello .
+A későbbiekben a Security Center a Microsoft Monitoring Agent ügynököt használja – ez ugyanaz az ügynök, amelyet az Operations Management Suite és a Log Analytics szolgáltatás használ. Az ettől az ügynöktől gyűjtött adatok tárolása vagy egy már meglévő, az Azure-előfizetéséhez társított *Log Analytics*-[munkaterületen](../log-analytics/log-analytics-manage-access.md) történik, vagy új munkaterülete(ke)n, a virtuális gép földrajzi helyének figyelembevételével.
 
 ## <a name="agent"></a>Ügynök
 
-Hello áttűnés részeként hello a Microsoft Monitoring Agent (a [Windows](../log-analytics/log-analytics-windows-agents.md) vagy [Linux](../log-analytics/log-analytics-linux-agents.md)) telepítve van, ahol jelenleg folyik adatgyűjtés Azure virtuális gépeken.  Ha a virtuális gép már van telepítve, a Microsoft Monitoring Agent hello hello Security Center aktuális hello használja az ügynök telepítése.
+Az átmenet részeként a Microsoft Monitoring Agent ([Windows](../log-analytics/log-analytics-windows-agents.md) vagy [Linux](../log-analytics/log-analytics-linux-agents.md) rendszerhez) minden olyan Azure virtuális gépre telepítve lesz, amelyről jelenleg adatgyűjtés folyik.  Ha a virtuális gépre már telepítve van a Microsoft Monitoring Agent, a Security Center a jelenleg telepített ügynököt fogja használni.
 
-Mindkét ügynökök egy adott időn belül (általában néhány nap múlva), a futtatandó párhuzamos tooensure adatok zökkenőmentes átmenet adatvesztés nélkül. Ez lehetővé teszi a Microsoft, amely új adatok adatcsatorna hello toovalidate működőképességét megszűnő hello aktuális folyamat használata előtt. Egyszer ellenőrzött hello Azure Figyelőügynök törlődni fog a virtuális gépek. Az Ön részéről nincs szükség beavatkozásra. Az összes ügyfél migrálásának befejeződéséről e-mailben fog értesítést kapni.
+Egy ideig (általában néhány napig), mindkét ügynök futni fog párhuzamosan, hogy biztosított legyen az adatveszteség nélküli, zökkenőmentes átmenet. Ez lehetővé teszi a Microsoft számára, hogy a jelenlegi adatcsatorna használatának megszüntetése előtt ellenőrizze az új adatcsatorna működését. Az ellenőrzést követően az Azure Monitoring Agent el lesz távolítva a virtuális gépeiről. Az Ön részéről nincs szükség beavatkozásra. Az összes ügyfél migrálásának befejeződéséről e-mailben fog értesítést kapni.
  
-Nem ajánlott, hogy manuálisan távolítsa el hello Azure Figyelőügynök hello áttelepítéskor mint okozhat a biztonsági adatok hézagok meghatározása érdekében. Ha további segítségre van szüksége, forduljon a [Microsoft támogatási és ügyfélszolgálatához](https://support.microsoft.com/contactus/). 
+Az Azure Monitoring Agent migráció közbeni manuális eltávolítása nem ajánlott, mert rések keletkezhetnek a biztonsági adatokban. Ha további segítségre van szüksége, forduljon a [Microsoft támogatási és ügyfélszolgálatához](https://support.microsoft.com/contactus/). 
 
-a Microsoft figyelési ügynök a Windows hello használata TCP 443-as portot, olvassa el szükséges [Azure Security Center hibaelhárítási útmutató](security-center-troubleshooting-guide.md) további információt.
+A Windowshoz készült Microsoft Monitoring Agent megköveteli a 443-as port használatát, további információért olvassa el az [Azure Security Center Hibaelhárítási útmutatóját](security-center-troubleshooting-guide.md).
 
 
 > [!NOTE] 
-> Mivel a Microsoft Monitoring Agent hello felhasználhatja más Azure felügyeleti és -szolgáltatások figyelésének hello ügynök nem lesz eltávolítva automatikusan kikapcsolása esetén a Security Center adatgyűjtés. Azonban kézzel hello ügynököt eltávolíthatja szükség esetén.
+> Mivel a Microsoft Monitoring Agent ügynököt az Azure más felügyeleti és figyelési szolgáltatásai is használhatják, az ügynök nem lesz automatikusan eltávolítva, amikor kikapcsolja az adatgyűjtést a Security Centerben. Szükség esetén azonban manuálisan eltávolíthatja az ügynököt.
 
 ## <a name="workspace"></a>Munkaterület
 
-Microsoft Monitoring Agent (nevében biztonsági központ) vannak tárolva egy meglévő Log Analyticshez hello gyűjtött adatokat a fent ismertetettek szerint, munkaterületek társított Azure-előfizetése vagy egy új munkaterületek, figyelembe véve a fiók hello földrajzi hely meghatározásának a virtuális gép hello.
+Az előzőekben leírtaknak megfelelően a Microsoft Monitoring Agenttől (a Security Center számára) gyűjtött adatokat a rendszer vagy az Azure-előfizetéséhez társított, már meglévő Log Analytics-munkaterület(ek)en tárolja, vagy új munkaterület(ek)en, a virtuális gép földrajzi helyének figyelembevételével.
 
-Hello Azure-portálhoz böngészhet a toosee a Naplóelemzési munkaterület, így azokat a Security Center által létrehozott listáját. Az új munkaterületekhez kapcsolódó erőforráscsoport fog létrejönni. Mindkettő ezt az elnevezési konvenciót követi:
+Az Azure Portalon tallózással megkeresheti Log Analytics-munkahelyeinek listáját, beleértve a Security Center által létrehozottakat is. Az új munkaterületekhez kapcsolódó erőforráscsoport fog létrejönni. Mindkettő ezt az elnevezési konvenciót követi:
 
 - Munkaterület: *AlapértelmezettMunkaterület-[előfizetés-azonosító]-[geo]*
 - Erőforráscsoport: *AlapértelmezettErőforráscsoport-[geo]* 
  
-A Security Center által létrehozott munkaterületeken az adatok 30 napig őrződnek meg. Meglévő munkaterületek megőrzési hello munkaterület árképzési szint alapul.
+A Security Center által létrehozott munkaterületeken az adatok 30 napig őrződnek meg. A meglévő munkaterületeknél a megőrzési idő a munkaterület tarifacsomagjától függ.
 
 > [!NOTE]
-> A Security Center által korábban gyűjtött adatok a Storage-fiók(ok)ban maradnak. Hello áttelepítés befejezése után törölheti a Storage-fiókok.
+> A Security Center által korábban gyűjtött adatok a Storage-fiók(ok)ban maradnak. A migráció befejeződése után ezeket a Storage-fiókokat törölheti.
 
 ### <a name="oms-security-solution"></a>OMS biztonsági megoldás 
 
@@ -69,12 +69,12 @@ Azok számára a meglévő ügyfelek számára, akiknél nincs telepítve az OMS
 
 ## <a name="other-updates"></a>Egyéb frissítések
 
-Hello platform áttelepítési együtt azt állapotmodelljeiig, néhány további kisebb frissítéseit:
+A platformmigrálással összefüggésben néhány további kisebb frissítést bocsátunk ki:
 
-- További operációsrendszer-verziók lesznek támogatva. Hello tartalmazó lista [Itt](security-center-faq.md#virtual-machines).
-- a program hello lista az operációs rendszer biztonsági rések bontja ki. Hello tartalmazó lista [Itt](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335).
+- További operációsrendszer-verziók lesznek támogatva. Tekintse meg a listát [itt](security-center-faq.md#virtual-machines).
+- Az operációs rendszerek sebezhetőségeinek listája bővülni fog. Tekintse meg a listát [itt](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335).
 - A [Díjszabás](https://azure.microsoft.com/pricing/details/security-center/) óránkénti arányosítású lesz (régebben napi volt), ami bizonyos ügyfeleknél költségmegtakarítást fog eredményezni.
-- Adatgyűjtés lesz szükséges, és automatikusan engedélyezi az ügyfelek a hello Standard tarifacsomagot.
+- A standard tarifacsomagú ügyfelek számára az adatgyűjtés kötelező és automatikusan engedélyezett lesz.
 - Az Azure Security Center meg fogja kezdeni az olyan kártevőirtó megoldások észlelését, amelyek nem az Azure-bővítményeken keresztül lettek telepítve. Elsőként a Symantec Endpoint Protection és a Defender for Windows 2016 lesz elérhető.
-- Megelőzési házirendekhez és értesítések csak is konfigurálható: hello *előfizetés* szint, de az árképzés továbbra is be lehet állítani hello *erőforráscsoport* szint
+- A megelőzési szabályzatok és az értesítések csak az *Előfizetés* szintjén konfigurálhatók, de a díjszabás az *Erőforráscsoport* szintjén is beállítható
 

@@ -1,5 +1,5 @@
 ---
-title: "Diagnosztika 1.2-es konfigurációs séma aaaAzure |} Microsoft Docs"
+title: "Az Azure Diagnostics 1.2-es konfigurációs séma |} Microsoft Docs"
 description: "CSAK akkor érvényes, ha Azure virtuális gépek, a virtuálisgép-méretezési csoportok, a Service Fabric vagy a Cloud Services Azure SDK 2.5 használ."
 services: monitoring-and-diagnostics
 documentationcenter: .net
@@ -14,23 +14,23 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 05/15/2017
 ms.author: robb
-ms.openlocfilehash: 31559317b696556a64b51b58800b176ade9a4679
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1e9cc6d0950945df8c4fba74d8e1f6196be224f0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-diagnostics-12-configuration-schema"></a>Az Azure Diagnostics 1.2-es konfigurációs séma
 > [!NOTE]
-> Az Azure Diagnostics hello használt toocollect teljesítményszámlálók és más Azure virtuális gépek, a virtuálisgép-méretezési csoportok, a Service Fabric és a Felhőszolgáltatások statisztikáit.  Ezen a lapon csak fontos, ha ilyen szolgáltatást használ.
+> Az Azure Diagnostics teljesítményszámlálók és más statisztika gyűjthet az Azure virtuális gépek, a virtuálisgép-méretezési csoportok, a Service Fabric és a Cloud Services összetevő.  Ezen a lapon csak fontos, ha ilyen szolgáltatást használ.
 >
 
 Az Azure Diagnostics más Microsoft-diagnosztika termékekkel, például Azure figyelő, az Application Insights és Naplóelemzési szolgál.
 
-A séma definiálja az hello a lehetséges értékek hello diagnosztikai figyelő indításakor használhatja tooinitialize diagnosztikai beállításait.  
+A séma definiálja az a lehetséges értékek segítségével diagnosztikai konfigurációs beállítások inicializálása a diagnosztikai figyelő indításakor.  
 
 
- Töltse le a hello nyilvános konfigurációs fájl sémadefiníciót a következő hello a következő PowerShell-parancs futtatásával:  
+ Töltse le a nyilvános konfigurációs fájl sémadefiníciót hajtja végre a következő PowerShell-parancsot:  
 
 ```PowerShell  
 (Get-AzureServiceAvailableExtension -ExtensionName 'PaaSDiagnostics' -ProviderNamespace 'Microsoft.Azure.Diagnostics').PublicConfigurationSchema | Out-File –Encoding utf8 -FilePath 'C:\temp\WadConfig.xsd'  
@@ -38,8 +38,8 @@ A séma definiálja az hello a lehetséges értékek hello diagnosztikai figyel�
 
  Azure Diagnostics használatával kapcsolatos további információkért lásd: [Azure Cloud Services diagnosztika engedélyezésével](http://azure.microsoft.com/documentation/articles/cloud-services-dotnet-diagnostics/).  
 
-## <a name="example-of-hello-diagnostics-configuration-file"></a>Hello diagnosztika konfigurációs fájl példa  
- a következő példa hello mutatja egy tipikus diagnosztika konfigurációs fájlt:  
+## <a name="example-of-the-diagnostics-configuration-file"></a>A diagnosztika konfigurációs fájl példa  
+ A következő példa bemutatja egy tipikus diagnosztika konfigurációs fájlt:  
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>  
@@ -91,116 +91,116 @@ A séma definiálja az hello a lehetséges értékek hello diagnosztikai figyel�
 ```  
 
 ## <a name="diagnostics-configuration-namespace"></a>Diagnosztikai konfiguráció Namespace  
- hello XML-névtér hello diagnosztika konfigurációs fájl van:  
+ A diagnosztika konfigurációs fájl XML-névtere van:  
 
 ```  
 http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration  
 ```  
 
 ## <a name="publicconfig-element"></a>PublicConfig elem  
- Legfelső szintű elem hello diagnosztika konfigurációs fájl. hello következő táblázatban hello elemek hello konfigurációs fájl.  
+ Legfelső szintű elem a diagnosztika konfigurációs fájl. A következő táblázat ismerteti az elemek a konfigurációs fájl.  
 
 |Elem neve|Leírás|  
 |------------------|-----------------|  
-|**WadCfg**|Kötelező. Hello telemetriai adatok toobe konfigurációs beállításainak összegyűjtése.|  
-|**StorageAccount**|hello Azure Storage fiók toostore hello adatait a hello neve. Ez is adható meg paraméterként hello Set-AzureServiceDiagnosticsExtension parancsmag végrehajtása közben.|  
-|**LocalResourceDirectory**|hello Figyelőügynök toostore eseményadatok használják hello virtuális gép toobe hello könyvtárához. Ha nem, hello alapértelmezett címtár használatos:<br /><br /> A munkavégző vagy webes szerepkör:`C:\Resources\<guid>\directory\<guid>.<RoleName.DiagnosticStore\`<br /><br /> A virtuális gép:`C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\<WADVersion>\WAD<WADVersion>`<br /><br /> Szükséges attribútumok pedig a következők:<br /><br /> -                      **elérési út** – hello Azure Diagnostics által használt hello rendszer toobe könyvtárába.<br /><br /> -                      **expandEnvironment** -szabályozza, hogy a környezeti változók vannak bontva hello elérési útja.|  
+|**WadCfg**|Szükséges. Konfigurációs beállításait a telemetriai adatok összegyűjtésére.|  
+|**StorageAccount**|Az adatok tárolásához Azure Storage-fiók neve. Ez is adható meg paraméterként a Set-AzureServiceDiagnosticsExtension parancsmag végrehajtása közben.|  
+|**LocalResourceDirectory**|A könyvtár a figyelési ügynök eseményadatok tárolására használt virtuális gépen. Ha nem be van állítva, az alapértelmezett mappát használja:<br /><br /> A munkavégző vagy webes szerepkör:`C:\Resources\<guid>\directory\<guid>.<RoleName.DiagnosticStore\`<br /><br /> A virtuális gép:`C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\<WADVersion>\WAD<WADVersion>`<br /><br /> Szükséges attribútumok pedig a következők:<br /><br /> -                      **elérési út** – a rendszer Azure Diagnostics által használandó könyvtárához.<br /><br /> -                      **expandEnvironment** -szabályozza, hogy az elérési útban környezeti változók bontva.|  
 
 ## <a name="wadcfg-element"></a>WadCFG elem  
-Meghatározza a hello telemetriai adatok toobe gyűjtött beállításait. a következő táblázat hello gyermekelemek ismerteti:  
+A telemetriai adatok összegyűjtésére konfigurációs beállításokat határoz meg. A következő táblázat a gyermekelemek:  
 
 |Elem neve|Leírás|  
 |------------------|-----------------|  
-|**DiagnosticMonitorConfiguration**|Kötelező. Nem kötelező attribútumok pedig a következők:<br /><br /> -                     **overallQuotaInMB** -Azure Diagnostics által gyűjtött diagnosztikai adatok különböző típusú hello maximális memóriamennyiség helyi, amelyeket a hello lehet használni. hello alapértéke 5120MB.<br /><br /> -                     **useProxyServer** -konfigurálása Azure Diagnostics toouse hello proxykiszolgáló beállításait az Internet Explorer beállításainak megfelelően.|  
-|**CrashDumps**|Az összeomlási memóriaképek gyűjtésének engedélyezése. Nem kötelező attribútumok pedig a következők:<br /><br /> -                     **containerName** -használt toostore összeomlási memóriaképek hello blob tárolóhoz az Azure Storage-fiók toobe hello neve.<br /><br /> -                     **crashDumpType** -konfigurálja az Azure Diagnostics toocollect Mini vagy teljes összeomlási memóriaképek.<br /><br /> -                     **directoryQuotaPercentage**-hello százaléka konfigurálja **overallQuotaInMB** lefoglalva a virtuális gép hello összeomlási memóriaképek toobe.|  
-|**DiagnosticInfrastructureLogs**|Az Azure diagnosztikai által létrehozott naplók gyűjtésének engedélyezése. hello diagnosztikai infrastruktúra naplók hibaelhárítási hello diagnosztika rendszert illeti hasznosak. Nem kötelező attribútumok pedig a következők:<br /><br /> -                     **scheduledTransferLogLevelFilter** -hello minimális súlyossági szintet az összegyűjtött hello naplók konfigurálja.<br /><br /> -                     **scheduledTransferPeriod** -ütemezett átvitelek toostorage hello időközétől perc legközelebbi toohello kerekíti. hello értéke egy [XML "Duration adattípusú."](http://www.w3schools.com/schema/schema_dtypes_date.asp)|  
-|**Könyvtárak**|Lehetővé teszi, hogy hello egy könyvtár tartalmának hello gyűjteménye, IIS sikertelen volt a hozzáférési kérelem naplók és/vagy az IIS-naplókba. Nem kötelező attribútum:<br /><br /> **scheduledTransferPeriod** -ütemezett átvitelek toostorage hello időközétől perc legközelebbi toohello kerekíti. hello értéke egy [XML "Duration adattípusú."](http://www.w3schools.com/schema/schema_dtypes_date.asp)|  
+|**DiagnosticMonitorConfiguration**|Szükséges. Nem kötelező attribútumok pedig a következők:<br /><br /> -                     **overallQuotaInMB** -Azure Diagnostics által gyűjtött, amelyeket lehet használni a különböző típusú diagnosztikai adatok helyi lemezterület maximális mennyisége. Az alapértelmezett érték 5120MB.<br /><br /> -                     **useProxyServer** -Azure Diagnostics konfigurálja a proxykiszolgáló beállításait használni az Internet Explorer beállításainak megfelelően.|  
+|**CrashDumps**|Az összeomlási memóriaképek gyűjtésének engedélyezése. Nem kötelező attribútumok pedig a következők:<br /><br /> -                     **containerName** -a blob tároló összeomlási memóriaképek tárolására használható az Azure Storage-fiók nevét.<br /><br /> -                     **crashDumpType** -konfigurálja az Azure diagnosztikai gyűjtéséhez Mini vagy teljes összeomlási memóriaképek.<br /><br /> -                     **directoryQuotaPercentage**-százaléka konfigurálja **overallQuotaInMB** kell lefoglalni, az összeomlási memóriaképek a virtuális Gépen.|  
+|**DiagnosticInfrastructureLogs**|Az Azure diagnosztikai által létrehozott naplók gyűjtésének engedélyezése. A diagnosztikai infrastruktúra naplók hasznosak a diagnosztika rendszer magát a hibaelhárításhoz. Nem kötelező attribútumok pedig a következők:<br /><br /> -                     **scheduledTransferLogLevelFilter** -konfigurálja a minimális súlyossági szintet a gyűjtött naplók.<br /><br /> -                     **scheduledTransferPeriod** -tároló ütemezett átvitelek között felfelé kerekítve a legközelebbi perc. Az érték egy [XML "Duration adattípusú."](http://www.w3schools.com/schema/schema_dtypes_date.asp)|  
+|**Könyvtárak**|Lehetővé teszi, hogy egy könyvtárat, az IIS nem tudta belépési kérelem naplók és/vagy IIS-napló tartalmát gyűjteménye. Nem kötelező attribútum:<br /><br /> **scheduledTransferPeriod** -tároló ütemezett átvitelek között felfelé kerekítve a legközelebbi perc. Az érték egy [XML "Duration adattípusú."](http://www.w3schools.com/schema/schema_dtypes_date.asp)|  
 |**EtwProviders**|Konfigurálja az EventSource ETW-eseményeinek gyűjtése és/vagy a szolgáltatók ETW Manifest alapján.|  
-|**Metrikák**|Ez az elem toogenerate gyors lekérdezéseket optimalizált teljesítményt számláló tábla lehetővé teszi. Minden teljesítményszámláló hello definiált **PerformanceCounters** elem hello metrikák tábla hozzáadása toohello teljesítményszámláló tábla tárolja. Kötelező attribútum:<br /><br /> **resourceId** -Ez az erőforrás-azonosítója hello hello Azure Diagnostics meg tudja telepít virtuális gép. Első hello **resourceID** a hello [Azure-portálon](https://portal.azure.com). Válassza ki **Tallózás** -> **erőforráscsoportok** -> **< név\>**. Hello kattintson **tulajdonságok** csempén, és másolja hello érték hello **azonosító** mező.|  
-|**PerformanceCounters**|Lehetővé teszi, hogy a teljesítményszámlálók hello gyűjteménye. Nem kötelező attribútum:<br /><br /> **scheduledTransferPeriod** -ütemezett átvitelek toostorage hello időközétől perc legközelebbi toohello kerekíti. Az érték egy [XML "Duration adattípus".](http://www.w3schools.com/schema/schema_dtypes_date.asp)|  
-|**WindowsEventLog**|Lehetővé teszi, hogy hello gyűjtemény a Windows eseménynaplóiban keresse meg. Nem kötelező attribútum:<br /><br /> **scheduledTransferPeriod** -ütemezett átvitelek toostorage hello időközétől perc legközelebbi toohello kerekíti. Az érték egy [XML "Duration adattípus".](http://www.w3schools.com/schema/schema_dtypes_date.asp)|  
+|**Metrikák**|Ez az elem lehetővé teszi a gyors lekérdezéseket optimalizált teljesítményt számláló tábla létrehozásához. Minden, a megadott teljesítményszámláló a **PerformanceCounters** elem a metrikák tábla mellett a teljesítményszámláló tábla tárolja. Kötelező attribútum:<br /><br /> **resourceId** -Ez az erőforrás-azonosítója, a virtuális gép Azure Diagnostics meg tudja telepít. Beolvasása a **resourceID** a a [Azure-portálon](https://portal.azure.com). Válassza ki **Tallózás** -> **erőforráscsoportok** -> **< név\>**. Kattintson a **tulajdonságok** csempére, majd másolja az értéket a **azonosító** mező.|  
+|**PerformanceCounters**|Lehetővé teszi, hogy a teljesítményszámlálók gyűjteményét. Nem kötelező attribútum:<br /><br /> **scheduledTransferPeriod** -tároló ütemezett átvitelek között felfelé kerekítve a legközelebbi perc. Az érték egy [XML "Duration adattípus".](http://www.w3schools.com/schema/schema_dtypes_date.asp)|  
+|**WindowsEventLog**|Lehetővé teszi a gyűjteményt, a Windows eseménynaplóiban keresse meg. Nem kötelező attribútum:<br /><br /> **scheduledTransferPeriod** -tároló ütemezett átvitelek között felfelé kerekítve a legközelebbi perc. Az érték egy [XML "Duration adattípus".](http://www.w3schools.com/schema/schema_dtypes_date.asp)|  
 
 ## <a name="crashdumps-element"></a>CrashDumps elem  
- Lehetővé teszi, hogy összeomlási memóriaképek gyűjteménye. a következő táblázat hello gyermekelemek ismerteti:  
+ Lehetővé teszi, hogy összeomlási memóriaképek gyűjteménye. A következő táblázat a gyermekelemek:  
 
 |Elem neve|Leírás|  
 |------------------|-----------------|  
-|**CrashDumpConfiguration**|Kötelező. Kötelező attribútum:<br /><br /> **Folyamatnév** – hello hello folyamat összeomlási adja az Azure Diagnostics toocollect kívánt nevét.|  
-|**crashDumpType**|Konfigurálja az Azure Diagnostics toocollect mini vagy teljes összeomlási memóriaképeket.|  
-|**directoryQuotaPercentage**|Konfigurálja a hello százalékos aránya **overallQuotaInMB** lefoglalva a virtuális gép hello összeomlási memóriaképek toobe.|  
+|**CrashDumpConfiguration**|Szükséges. Kötelező attribútum:<br /><br /> **Folyamatnév** -nevét a folyamat kívánt Azure Diagnostics meg tudja gyűjteni az összeomlási memóriaképet.|  
+|**crashDumpType**|Konfigurálja az Azure Diagnostics mini vagy teljes összeomlási memóriaképek összegyűjtése.|  
+|**directoryQuotaPercentage**|Konfigurálja a százaléka **overallQuotaInMB** kell lefoglalni, az összeomlási memóriaképek a virtuális Gépen.|  
 
 ## <a name="directories-element"></a>Könyvtárak elem  
- Lehetővé teszi, hogy hello egy könyvtár tartalmának hello gyűjteménye, IIS sikertelen volt a hozzáférési kérelem naplók és/vagy az IIS-naplókba. a következő táblázat hello gyermekelemek ismerteti:  
+ Lehetővé teszi, hogy egy könyvtárat, az IIS nem tudta belépési kérelem naplók és/vagy IIS-napló tartalmát gyűjteménye. A következő táblázat a gyermekelemek:  
 
 |Elem neve|Leírás|  
 |------------------|-----------------|  
-|**Adatforrások**|Könyvtárak toomonitor listáját.|  
-|**FailedRequestLogs**|Ez az elem beleértve hello konfigurációban lehetővé teszi, hogy a sikertelen kérelmek tooan IIS webhelyet vagy alkalmazást kapcsolatos információkat naplózza gyűjteménye. Engedélyeznie kell a nyomkövetést **rendszer. Webkiszolgáló** a **Web.config**.|  
-|**IISLogs**|Ez az elem beleértve hello konfigurációban lehetővé teszi, hogy az IIS-naplók hello gyűjtésének:<br /><br /> **containerName** -használt toostore hello IIS naplók az Azure Storage-fiók toobe hello blob tárolóhoz hello neve.|  
+|**Adatforrások**|Figyelendő könyvtárainak listáját.|  
+|**FailedRequestLogs**|Többek között az elem a konfigurációban lehetővé teszi, hogy az IIS-webhelyet vagy alkalmazást a sikertelen kérelmek kapcsolatos információkat naplózza gyűjteménye. Engedélyeznie kell a nyomkövetést **rendszer. Webkiszolgáló** a **Web.config**.|  
+|**IISLogs**|Többek között az elem a konfigurációban lehetővé teszi, hogy az IIS-naplók a gyűjteményben:<br /><br /> **containerName** – az Azure Storage-fiók használható az IIS-napló tárolására a blob tároló nevét.|  
 
 ## <a name="datasources-element"></a>Adatforrások elem  
- Könyvtárak toomonitor listáját. a következő táblázat hello gyermekelemek ismerteti:  
+ Figyelendő könyvtárainak listáját. A következő táblázat a gyermekelemek:  
 
 |Elem neve|Leírás|  
 |------------------|-----------------|  
-|**DirectoryConfiguration**|Kötelező. Kötelező attribútum:<br /><br /> **containerName** -fiók használt toobe toostore hello naplófájlok hello blob tároló az Azure Storage hello neve.|  
+|**DirectoryConfiguration**|Szükséges. Kötelező attribútum:<br /><br /> **containerName** -a blob tároló a naplófájlok tárolására szolgáló használható az Azure Storage-fiók nevét.|  
 
 ## <a name="directoryconfiguration-element"></a>DirectoryConfiguration elem  
- **DirectoryConfiguration** tartalmazhatják vagy hello **abszolút** vagy **LocalResource** elem, de soha sem egyszerre mindkettőre. a következő táblázat hello gyermekelemek ismerteti:  
+ **DirectoryConfiguration** vagy előfordulhat, hogy tartalmazza a **abszolút** vagy **LocalResource** elem, de soha sem egyszerre mindkettőre. A következő táblázat a gyermekelemek:  
 
 |Elem neve|Leírás|  
 |------------------|-----------------|  
-|**Abszolút**|hello abszolút elérési út toohello directory toomonitor. a következő attribútumok hello szükség:<br /><br /> -                     **Elérési út** -abszolút elérési út toohello directory toomonitor hello.<br /><br /> -                      **expandEnvironment** -konfigurálható, hogy az elérési út környezeti változókat levő figyelő kibontva látható.|  
-|**LocalResource**|hello elérési útja relatív tooa helyi erőforrás toomonitor. Szükséges attribútumok pedig a következők:<br /><br /> -                     **Név** -hello hello directory toomonitor tartalmazó helyi erőforrás<br /><br /> -                     **relativePath** -elérési út relatív tooName hello directory toomonitor tartalmazó hello|  
+|**Abszolút**|A figyelni kívánt könyvtár abszolút elérési útja A következő attribútumok szükségesek:<br /><br /> -                     **Elérési út** -a figyelni kívánt könyvtár abszolút elérési útja.<br /><br /> -                      **expandEnvironment** -konfigurálható, hogy az elérési út környezeti változókat levő figyelő kibontva látható.|  
+|**LocalResource**|Az elérési út a figyelheti a helyi erőforrás viszonyítva. Szükséges attribútumok pedig a következők:<br /><br /> -                     **Név** -a helyi erőforrást, amely tartalmazza a figyelni kívánt könyvtár<br /><br /> -                     **relativePath** – a relatív nevét, amely tartalmazza a figyelni kívánt könyvtár elérési útja|  
 
 ## <a name="etwproviders-element"></a>EtwProviders elem  
- Konfigurálja az EventSource ETW-eseményeinek gyűjtése és/vagy a szolgáltatók ETW Manifest alapján. a következő táblázat hello gyermekelemek ismerteti:  
+ Konfigurálja az EventSource ETW-eseményeinek gyűjtése és/vagy a szolgáltatók ETW Manifest alapján. A következő táblázat a gyermekelemek:  
 
 |Elem neve|Leírás|  
 |------------------|-----------------|  
-|**EtwEventSourceProviderConfiguration**|Konfigurálja az előállított eseményeinek gyűjtése [EventSource osztály](http://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource\(v=vs.110\).aspx). Kötelező attribútum:<br /><br /> **szolgáltató** -hello EventSource esemény hello osztály neve.<br /><br /> Nem kötelező attribútumok pedig a következők:<br /><br /> -                     **scheduledTransferLogLevelFilter** -hello minimális súlyossági szint tootransfer tooyour tárfiók.<br /><br /> -                     **scheduledTransferPeriod** -ütemezett átvitelek toostorage hello időközétől perc legközelebbi toohello kerekíti. Az érték egy [XML-időtartam adattípust](http://www.w3schools.com/schema/schema_dtypes_date.asp).|  
-|**EtwManifestProviderConfiguration**|Kötelező attribútum:<br /><br /> **szolgáltató** -hello hello eseményszolgáltató GUID azonosítója<br /><br /> Nem kötelező attribútumok pedig a következők:<br /><br /> - **scheduledTransferLogLevelFilter** -hello minimális súlyossági szint tootransfer tooyour tárfiók.<br /><br /> -                     **scheduledTransferPeriod** -ütemezett átvitelek toostorage hello időközétől perc legközelebbi toohello kerekíti. Az érték egy [XML-időtartam adattípust](http://www.w3schools.com/schema/schema_dtypes_date.asp).|  
+|**EtwEventSourceProviderConfiguration**|Konfigurálja az előállított eseményeinek gyűjtése [EventSource osztály](http://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource\(v=vs.110\).aspx). Kötelező attribútum:<br /><br /> **szolgáltató** -az EventSource esemény osztály neve.<br /><br /> Nem kötelező attribútumok pedig a következők:<br /><br /> -                     **scheduledTransferLogLevelFilter** – a minimális súlyossági szintet a tárfiók át.<br /><br /> -                     **scheduledTransferPeriod** -tároló ütemezett átvitelek között felfelé kerekítve a legközelebbi perc. Az érték egy [XML-időtartam adattípust](http://www.w3schools.com/schema/schema_dtypes_date.asp).|  
+|**EtwManifestProviderConfiguration**|Kötelező attribútum:<br /><br /> **szolgáltató** -esemény szolgáltatójának a GUID-azonosító<br /><br /> Nem kötelező attribútumok pedig a következők:<br /><br /> - **scheduledTransferLogLevelFilter** – a minimális súlyossági szintet a tárfiók át.<br /><br /> -                     **scheduledTransferPeriod** -tároló ütemezett átvitelek között felfelé kerekítve a legközelebbi perc. Az érték egy [XML-időtartam adattípust](http://www.w3schools.com/schema/schema_dtypes_date.asp).|  
 
 ## <a name="etweventsourceproviderconfiguration-element"></a>EtwEventSourceProviderConfiguration elem  
- Konfigurálja az előállított eseményeinek gyűjtése [EventSource osztály](http://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource\(v=vs.110\).aspx). a következő táblázat hello gyermekelemek ismerteti:  
+ Konfigurálja az előállított eseményeinek gyűjtése [EventSource osztály](http://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource\(v=vs.110\).aspx). A következő táblázat a gyermekelemek:  
 
 |Elem neve|Leírás|  
 |------------------|-----------------|  
-|**DefaultEvents**|Nem kötelező attribútum:<br /><br /> **eventDestination** – hello hello tábla toostore hello események neve|  
-|**Esemény**|Kötelező attribútum:<br /><br /> **azonosító** -hello esemény hello azonosítója.<br /><br /> Nem kötelező attribútum:<br /><br /> **eventDestination** – hello hello tábla toostore hello események neve|  
+|**DefaultEvents**|Nem kötelező attribútum:<br /><br /> **eventDestination** -tárolja az eseményeket az a táblázat neve|  
+|**Esemény**|Kötelező attribútum:<br /><br /> **azonosító** -esemény azonosítója.<br /><br /> Nem kötelező attribútum:<br /><br /> **eventDestination** -tárolja az eseményeket az a táblázat neve|  
 
 ## <a name="etwmanifestproviderconfiguration-element"></a>EtwManifestProviderConfiguration elem  
- a következő táblázat hello gyermekelemek ismerteti:  
+ A következő táblázat a gyermekelemek:  
 
 |Elem neve|Leírás|  
 |------------------|-----------------|  
-|**DefaultEvents**|Nem kötelező attribútum:<br /><br /> **eventDestination** – hello hello tábla toostore hello események neve|  
-|**Esemény**|Kötelező attribútum:<br /><br /> **azonosító** -hello esemény hello azonosítója.<br /><br /> Nem kötelező attribútum:<br /><br /> **eventDestination** – hello hello tábla toostore hello események neve|  
+|**DefaultEvents**|Nem kötelező attribútum:<br /><br /> **eventDestination** -tárolja az eseményeket az a táblázat neve|  
+|**Esemény**|Kötelező attribútum:<br /><br /> **azonosító** -esemény azonosítója.<br /><br /> Nem kötelező attribútum:<br /><br /> **eventDestination** -tárolja az eseményeket az a táblázat neve|  
 
 ## <a name="metrics-element"></a>Metrikák elem  
- Lehetővé teszi a toogenerate gyors lekérdezéseket optimalizált teljesítményt számláló tábla. a következő táblázat hello gyermekelemek ismerteti:  
+ Lehetővé teszi a gyors lekérdezéseket optimalizált teljesítményt számláló tábla létrehozásához. A következő táblázat a gyermekelemek:  
 
 |Elem neve|Leírás|  
 |------------------|-----------------|  
-|**MetricAggregation**|Kötelező attribútum:<br /><br /> **scheduledTransferPeriod** -ütemezett átvitelek toostorage hello időközétől perc legközelebbi toohello kerekíti. Az érték egy [XML-időtartam adattípust](http://www.w3schools.com/schema/schema_dtypes_date.asp).|  
+|**MetricAggregation**|Kötelező attribútum:<br /><br /> **scheduledTransferPeriod** -tároló ütemezett átvitelek között felfelé kerekítve a legközelebbi perc. Az érték egy [XML-időtartam adattípust](http://www.w3schools.com/schema/schema_dtypes_date.asp).|  
 
 ## <a name="performancecounters-element"></a>PerformanceCounters elem  
- Lehetővé teszi, hogy a teljesítményszámlálók hello gyűjteménye. a következő táblázat hello gyermekelemek ismerteti:  
+ Lehetővé teszi, hogy a teljesítményszámlálók gyűjteményét. A következő táblázat a gyermekelemek:  
 
 |Elem neve|Leírás|  
 |------------------|-----------------|  
-|**PerformanceCounterConfiguration**|a következő attribútumok hello szükség:<br /><br /> -                     **counterSpecifier** – hello hello teljesítményszámláló nevét. Például: `\Processor(_Total)\% Processor Time`. a gazdagépen hello paranccsal teljesítményszámlálók listája tooget `typeperf`.<br /><br /> -                     **sampleRate** -milyen gyakran hello számláló kell mintát venni.<br /><br /> Nem kötelező attribútum:<br /><br /> **egység** -hello mértékegység hello számláló.|  
+|**PerformanceCounterConfiguration**|A következő attribútumok szükségesek:<br /><br /> -                     **counterSpecifier** -teljesítményszámláló nevét. Például: `\Processor(_Total)\% Processor Time`. Teljesítmény listájának beolvasása a gazdagépen futó számlálók futtassa a parancsot `typeperf`.<br /><br /> -                     **sampleRate** -gyakoriságát. a számláló mintát venni.<br /><br /> Nem kötelező attribútum:<br /><br /> **egység** -számláló mértékegysége.|  
 
 ## <a name="performancecounterconfiguration-element"></a>PerformanceCounterConfiguration elem  
- a következő táblázat hello gyermekelemek ismerteti:  
+ A következő táblázat a gyermekelemek:  
 
 |Elem neve|Leírás|  
 |------------------|-----------------|  
-|**Megjegyzés**|Kötelező attribútum:<br /><br /> **displayName** -hello számláló hello megjelenített neve<br /><br /> Nem kötelező attribútum:<br /><br /> **területi beállítás** -területi toouse hello hello számlálónév megjelenítésekor|  
+|**Megjegyzés**|Kötelező attribútum:<br /><br /> **displayName** -számláló megjelenített neve<br /><br /> Nem kötelező attribútum:<br /><br /> **területi beállítás** -a területi beállítás jelenjen meg a számláló neve|  
 
 ## <a name="windowseventlog-element"></a>WindowsEventLog elem  
- a következő táblázat hello gyermekelemek ismerteti:  
+ A következő táblázat a gyermekelemek:  
 
 |Elem neve|Leírás|  
 |------------------|-----------------|  
-|**Adatforrás**|Windows-eseménynaplók toocollect hello. Kötelező attribútum:<br /><br /> **név** -leíró hello windows események toobe hello XPath-lekérdezés gyűjtött. Példa:<br /><br /> `Application!*[System[(Level >= 3)]], System!*[System[(Level <=3)]], System!*[System[Provider[@Name='Microsoft Antimalware']]], Security!*[System[(Level >= 3]]`<br /><br /> toocollect összes esemény, adja meg "*".|
+|**Adatforrás**|A Windows eseménynaplóiban gyűjtéséhez. Kötelező attribútum:<br /><br /> **név** – a windows-eseményeket tudjon gyűjteni leíró XPath-lekérdezést. Példa:<br /><br /> `Application!*[System[(Level >= 3)]], System!*[System[(Level <=3)]], System!*[System[Provider[@Name='Microsoft Antimalware']]], Security!*[System[(Level >= 3]]`<br /><br /> Minden eseményt gyűjt, adja meg a "*".|

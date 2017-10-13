@@ -1,6 +1,6 @@
 ---
-title: "az Azure Logic Apps aaaRSS összekötő |} Microsoft Docs"
-description: "Az Azure App service Logic Apps alkalmazások létrehozása RSS-összekötő lehetővé teszi, hogy a felhasználók toopublish hello és lekérhetnek hírcsatornaelemeket. Lehetővé teszi hello felhasználók tootrigger műveletek új elem hírcsatorna közzétett toohello esetén."
+title: "RSS-összekötő az Azure Logic Apps |} Microsoft Docs"
+description: "Az Azure App service Logic Apps alkalmazások létrehozása RSS-összekötő lehetővé teszi, hogy a felhasználók közzétehetnek és lekérhetnek hírcsatornaelemeket. Azt is lehetővé teszi a felhasználók műveleteket indítsanak, ha egy új elemet tesznek közzé a hírcsatornán."
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,24 +15,24 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 08/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 973ce930f5fa7226a918feebe0f9addef14f34e6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 308d78550e9e60303b70d591eb4e6bfff3e49ce7
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="get-started-with-hello-rss-connector"></a>Hello RSS-összekötő az első lépései
-RSS egy népszerű webes szindikálási formátumának toopublish gyakran frissülnek a tartalom – például a blogbejegyzések és híreket.  Sok tartalom közzétevői adjon meg egy RSS-hírcsatorna tooallow felhasználók toosubscribe tooit.  Információk és eseményindító adatfolyamok hírcsatorna új elemeket az RSS-hírcsatorna közzétételekor hello RSS-összekötő tooretrieve használja.
+# <a name="get-started-with-the-rss-connector"></a>Az RSS-összekötő az első lépései
+RSS gyakran frissített tartalom – például a blogbejegyzések és híreket közzététele egy népszerű webes szindikálási formátumát mutatja be.  Sok tartalom közzétevői adja meg a felhasználók arra RSS-hírcsatorna.  Az RSS-összekötő segítségével adatcsatorna információkat és eseményindító adatfolyamok beolvasása új elemeket az RSS-hírcsatorna közzétételekor.
 
 Most hozzon létre egy Logic app kezdheti, lásd: [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-a-connection-toorss"></a>Egy kapcsolat tooRSS létrehozása
-> [!INCLUDE [Steps toocreate a connection tooan RSS feed](../../includes/connectors-create-api-rss.md)]
+## <a name="create-a-connection-to-rss"></a>RSS-kapcsolat létrehozása
+> [!INCLUDE [Steps to create a connection to an RSS feed](../../includes/connectors-create-api-rss.md)]
 > 
 
 ## <a name="connector-specific-details"></a>Összekötő-specifikus részletei
 
-Bármely eseményindítók és hello swagger definiált műveletek megtekintése, és semmilyen határnak hello a Lásd még: [connector részleteket](/connectors/rss/).
+Bármely eseményindítók és a swagger definiált műveletek megtekintése, és semmilyen határnak a Lásd még: a [connector részleteket](/connectors/rss/).
 
 ## <a name="more-connectors"></a>További összekötők
-Lépjen vissza toohello [API-k lista](apis-list.md).
+Lépjen vissza a [API-k lista](apis-list.md).

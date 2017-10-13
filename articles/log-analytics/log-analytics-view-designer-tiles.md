@@ -1,6 +1,6 @@
 ---
-title: "az OMS szolgáltatáshoz Nézettervező aaaTile referencia |} Microsoft Docs"
-description: "A Naplóelemzési Nézettervező lehetővé teszi a toocreate egyéni nézetek hello OMS hello OMS-tárházban található adatok különböző képi tartalmazó. Ez a cikk ismerteti a hello-beállítások az egyes hello csempék toouse érhető el az egyéni nézetekben hivatkozást."
+title: "Hivatkozás csempéjén adatforrásnézet-tervezőből az OMS szolgáltatáshoz |} Microsoft Docs"
+description: "A Naplóelemzési adatforrásnézet-tervezőből lehetővé teszi egyéni nézeteket hozhat létre, amelyek tartalmazzák az OMS-tárházban található adatok különböző képi OMS-konzolon. Ez a cikk ismerteti a beállítások az egyes a csempék, hogy az egyéni nézetek használható hivatkozást."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,168 +14,168 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: bwren
-ms.openlocfilehash: 4706abb16b8a3719f5dbe8c89cd61739391ab8f7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2bce5c63b4c6edd3753f1b234cc4f493dcf53dea
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="log-analytics-view-designer-tile-reference"></a>Napló Analytics Nézettervező csempe leírása
-a Log Analyticshez Nézettervező hello lehetővé teszi a toocreate egyéni nézetek hello OMS hello OMS-tárházban található adatok különböző képi tartalmazó. Ez a cikk ismerteti a hello-beállítások az egyes hello csempék toouse érhető el az egyéni nézetekben hivatkozást.
+Az adatforrásnézet-tervezőből a Naplóelemzési lehetővé teszi egyéni nézeteket hozhat létre, amelyek tartalmazzák az OMS-tárházban található adatok különböző képi OMS-konzolon. Ez a cikk ismerteti a beállítások az egyes a csempék, hogy az egyéni nézetek használható hivatkozást.
 
 Az adatforrásnézet-tervezőből elérhető további cikkeit a következők:
 
-* [Megtekintheti a tervező](log-analytics-view-designer.md) -hello adatforrásnézet-tervezőből és eljárások létrehozásának és szerkesztésének egyéni nézetek áttekintése.
-* [A képi megjelenítés része hivatkozás](log-analytics-view-designer-parts.md) -hivatkozás hello-beállítások az egyes hello tartalmazó csempék éppen úgy az egyéni nézetekben elérhető toouse.
+* [Megtekintheti a tervező](log-analytics-view-designer.md) -adatforrásnézet-tervezőből és létrehozásának és szerkesztésének egyéni nézetek eljárások áttekintését.
+* [A képi megjelenítés része hivatkozás](log-analytics-view-designer-parts.md) -hivatkozás a beállítások az egyes a csempék, hogy az egyéni nézetek használható.
 
 >[!NOTE]
-> Ha a munkaterületet frissített toohello [új Log Analytics lekérdezési nyelv](log-analytics-log-search-upgrade.md), akkor minden nézetben lekérdezések úgy kell megírni, a hello [új lekérdezési nyelv](https://go.microsoft.com/fwlink/?linkid=856078).  Bármely hello munkaterület verziófrissítése előtt létrehozott nézetek lesz konvertálva automtically.
+> Ha a munkaterületet lett frissítve a [új Log Analytics lekérdezési nyelv](log-analytics-log-search-upgrade.md), akkor minden nézetben lekérdezések úgy kell megírni, a [új lekérdezési nyelv](https://go.microsoft.com/fwlink/?linkid=856078).  A munkaterület verziófrissítése előtt készült nézetekkel lesz automtically alakítja át.
 
-hello következő táblázatban hello különböző típusú csempék hello adatforrásnézet-tervezőből érhető el.  hello az alábbi részekben csempe típusonként részletek és azok tulajdonságait.
+Az alábbi táblázat a különböző típusú csempe érhető el az adatforrásnézet-tervezőből.  Az alábbi részek ismertetik a csempe típusonként részletek és azok tulajdonságait.
 
 | Mozaik elrendezés | Leírás |
 |:--- |:--- |
 | [Szám](#number-tile) |Egyetlen szám megjelenítő lekérdezésből rekordok száma. |
 | [Két szám](#two-numbers-tile) |Két egyetlen szám megjelenítő számát is két különböző lekérdezéseket bejegyzéseit. |
-| [Fánk](#donut-tile) |Fánk diagram hello center összefoglaló érték lekérdezés alapján. |
+| [Fánk](#donut-tile) |Fánk a diagram a központ összefoglaló érték lekérdezés alapján. |
 | [Vonaldiagram & kihívás](#line-chart-amp-callout-tile) |A lekérdezés és összefoglaló értékkel felirat alapján vonaldiagram. |
 | [Vonaldiagram](#line-chart-tile) |A vonaldiagram lekérdezés alapján. |
 | [Két ütemtervek](#two-timelines-tile) |Oszlopdiagram két adatsorozattal egyes külön lekérdezés alapján. |
 
 ## <a name="number-tile"></a>Szám csempe
-Hello **szám** csempe érkező napló lekérdezés és a címkék száma hello megjelenítő egyetlen számot jeleníti meg.
+A **szám** csempe egyetlen számot megjelenítő napló lekérdezés és a címkék rekordok számát jeleníti meg.
 
 ![Szám csempe](media/log-analytics-view-designer/tile-number.png)
 
 | Beállítás | Leírás |
 |:--- |:--- |
-| Név |Szöveg toodisplay hello hello tetején csempére. |
-| Leírás |Szöveg toodisplay hello csempe neve alatt. |
+| Név |A csempe tetején megjelenő szöveg. |
+| Leírás |A csempe neve alatt megjelenő szöveg. |
 | **Mozaik elrendezés** | |
-| Jelmagyarázat |Szöveg toodisplay hello érték alatti. |
-| Lekérdezés |Lekérdezés toorun.  hello lekérdezés által visszaadott rekordok számát hello hello száma jelenik meg. |
+| Jelmagyarázat |Az érték alatt megjelenő szöveg. |
+| Lekérdezés |A lekérdezés futtatásához.  A lekérdezés által visszaadott rekordok számát a száma jelenik meg. |
 | **Speciális** |**> Adatfolyamot ellenőrzése** |
-| Engedélyezve |Válassza ki, ha adatfolyam ellenőrzési hello csempe engedélyezni kell.  Ez egy másik üzenetet biztosít, ha adatokat hello csempe nem érhető el.  Ez az üzenet általánosan használt tooprovide hello ideiglenes időszak, amikor hello nézet van telepítve, és a rendelkezésre álló adatok származnak. |
-| Lekérdezés |Lekérdezési toorun toocheck, ha az adatok hello nézet érhető el.  Ha hello lekérdezés eredménytelen, majd egy üzenet jelenik meg hello fő lekérdezésből hello érték helyett. |
-| Üzenet |Üzenet toodisplay Ha hello adatfolyam ellenőrzési lekérdezés adatot nem ad vissza.  Ha megadja, hogy nincs üzenet *végrehajtása Assessment* jelenik meg. |
+| Engedélyezve |Válassza ki, ha adatfolyam ellenőrzési engedélyezni kell a csempe.  Ez egy másik üzenetet biztosít, ha adatokat csempe nem érhető el.  Ez általában segítségével adja meg egy üzenetet az ideiglenes időszakban, amikor a nézet van telepítve, és a rendelkezésre álló adatok származnak. |
+| Lekérdezés |Ellenőrizze, hogy a nézet érhető el-e adatok futtatásához lekérdezése.  Ha a lekérdezés eredménytelen, majd egy üzenet jelenik meg az érték a fő lekérdezés helyett. |
+| Üzenet |Ha az adatfolyam ellenőrzési lekérdezés visszaadja az adatot nem megjelenítendő üzenetet.  Ha megadja, hogy nincs üzenet *végrehajtása Assessment* jelenik meg. |
 
 
 ## <a name="two-numbers-tile"></a>Két szám csempéje
-Hello **két szám** csempe megjeleníti a két szám megjelenítő hello az egyes bejegyzések két különböző naplófájl-lekérdezések és a címkék száma.
+A **két szám** csempe megjeleníti az egyes rekordok két különböző naplófájl-lekérdezések és a címkék száma megjelenítő két számot.
 
 ![Két szám csempéje](media/log-analytics-view-designer/tile-two-numbers.png)
 
 | Beállítás | Leírás |
 |:--- |:--- |
-| Név |Szöveg toodisplay hello hello tetején csempére. |
-| Leírás |Szöveg toodisplay hello csempe neve alatt. |
+| Név |A csempe tetején megjelenő szöveg. |
+| Leírás |A csempe neve alatt megjelenő szöveg. |
 | **Első csempe** | |
-| Jelmagyarázat |Szöveg toodisplay hello érték alatti. |
-| Lekérdezés |Lekérdezés toorun.  hello lekérdezés által visszaadott rekordok számát hello hello száma jelenik meg. |
+| Jelmagyarázat |Az érték alatt megjelenő szöveg. |
+| Lekérdezés |A lekérdezés futtatásához.  A lekérdezés által visszaadott rekordok számát a száma jelenik meg. |
 | **Második csempe** | |
-| Jelmagyarázat |Szöveg toodisplay hello érték alatti. |
-| Lekérdezés |Lekérdezés toorun.  hello lekérdezés által visszaadott rekordok számát hello hello száma jelenik meg. |
+| Jelmagyarázat |Az érték alatt megjelenő szöveg. |
+| Lekérdezés |A lekérdezés futtatásához.  A lekérdezés által visszaadott rekordok számát a száma jelenik meg. |
 | **Speciális** |**> Adatfolyamot ellenőrzése** |
-| Engedélyezve |Válassza ki, ha adatfolyam ellenőrzési hello csempe engedélyezni kell.  Ez egy másik üzenetet biztosít, ha adatokat hello csempe nem érhető el.  Ez az üzenet általánosan használt tooprovide hello ideiglenes időszak, amikor hello nézet van telepítve, és a rendelkezésre álló adatok származnak. |
-| Lekérdezés |Lekérdezési toorun toocheck, ha az adatok hello nézet érhető el.  Ha hello lekérdezés eredménytelen, majd egy üzenet jelenik meg hello fő lekérdezésből hello érték helyett. |
-| Üzenet |Üzenet toodisplay Ha hello adatfolyam ellenőrzési lekérdezés adatot nem ad vissza.  Ha megadja, hogy nincs üzenet *végrehajtása Assessment* jelenik meg. |
+| Engedélyezve |Válassza ki, ha adatfolyam ellenőrzési engedélyezni kell a csempe.  Ez egy másik üzenetet biztosít, ha adatokat csempe nem érhető el.  Ez általában segítségével adja meg egy üzenetet az ideiglenes időszakban, amikor a nézet van telepítve, és a rendelkezésre álló adatok származnak. |
+| Lekérdezés |Ellenőrizze, hogy a nézet érhető el-e adatok futtatásához lekérdezése.  Ha a lekérdezés eredménytelen, majd egy üzenet jelenik meg az érték a fő lekérdezés helyett. |
+| Üzenet |Ha az adatfolyam ellenőrzési lekérdezés visszaadja az adatot nem megjelenítendő üzenetet.  Ha megadja, hogy nincs üzenet *végrehajtása Assessment* jelenik meg. |
 
 
 ## <a name="donut-tile"></a>Fánk csempe
-Hello **fánk** csempe egy egyetlen napló lekérdezésben érték oszlop összesített számát jeleníti meg.  hello fánk grafikusan hello felső három rekordok eredményeit jeleníti meg.
+A **fánk** csempe egy egyetlen napló lekérdezésben érték oszlop összesített számát jeleníti meg.  A fánk grafikusan felső három rekord eredményeit jeleníti meg.
 
 ![Fánk csempe](media/log-analytics-view-designer/tile-donut.png)
 
 | Beállítás | Leírás |
 |:--- |:--- |
-| Név |Szöveg toodisplay hello hello tetején csempére. |
-| Leírás |Szöveg toodisplay hello csempe neve alatt. |
+| Név |A csempe tetején megjelenő szöveg. |
+| Leírás |A csempe neve alatt megjelenő szöveg. |
 | **Fánk** | |
-| Lekérdezés |Lekérdezés toorun hello fánk a.  hello első tulajdonság szöveges érték, és hello második tulajdonság numerikus értéknek kell lennie.  Ez általában az hello használó lekérdezések **mérték** kulcsszó toosummarize eredmények. |
+| Lekérdezés |Futtassa a fánk a lekérdezést.  Az első tulajdonság egy szöveges értéket, a második tulajdonság numerikus értéknek kell lennie.  Ez általában az a lekérdezés, amely használja a **mérték** , hogy összesítse a eredmények kulcsszó. |
 | **Fánk** |**> Center** |
-| Szöveg |Szöveg toodisplay alatt hello fánk hello értéket. |
-| Művelet |hello művelet tooperform hello érték tulajdonság toosummarize tooa egyetlen értékét.<br><br>-Összeg: Hello értékek hello tulajdonság értéke az összes rekord hozzáadása.<br>-Százalékos: Hello tulajdonság értéke képest toohello rekordokból összesítve hello értékek százalékos összegzi az összes rekord értékeit. |
-| Center művelet során használt eredményt értékek |Opcionálisan kattintson hello pluszjel tooadd egy vagy több értéket.  hello lekérdezési eredmények hello lesz korlátozott toorecords értékekkel hello tulajdonság.  Ha nincs érték ad hozzá, mint minden rekordot szerepelnek hello lekérdezés. |
+| Szöveg |A fánk értéket alatt megjelenő szöveg. |
+| Művelet |A value tulajdonság egyetlen értéket az összesítendő végrehajtani a műveletet.<br><br>-Összeg: Adja meg a értéket az összes rekord tulajdonság értékét.<br>-Százalékos: Százalékos összegzett értékek rekordból összehasonlítva az összes rekord összegzett értékekkel tulajdonság értékét. |
+| Center művelet során használt eredményt értékek |Opcionálisan kattintson a plusz jelre hozzáadása egy vagy több értéket.  A lekérdezés eredményeit rögzíti a megadott tulajdonságértéket korlátozódik.  Ha nincs érték ad hozzá, mint a lekérdezésben szereplő összes rekordok. |
 | **Fánk** |**> További beállítások** |
-| Színek |hello szín toodisplay az egyes hello három felső tulajdonságot.  Toospecify alternatív színek adott tulajdonságértékek, majd használja leképezési speciális színét. |
-| Speciális szín leképezése |Megjeleníti egy adott tulajdonságértékeket színét.  Ha hello megadott érték a hello felső három, majd hello másodlagos színt helyett hello szabványos szín jelenik meg.  Ha hello tulajdonság nem szerepel a hello felső három, akkor a hello szín nem jelenik meg. |
+| Színek |Az egyes a három legfontosabb tulajdonságainak megjelenítéséhez színét.  Ha meg szeretné határozni adott tulajdonságértékek másodlagos színt, majd használja speciális szín leképezése. |
+| Speciális szín leképezése |Megjeleníti egy adott tulajdonságértékeket színét.  Ha a megadott érték az első három, majd a másodlagos színt jelenik meg a standard szín helyett.  Ha a tulajdonság nem az első három, majd a szín nem jelenik meg. |
 | **Speciális** |**> Adatfolyamot ellenőrzése** |
-| Engedélyezve |Válassza ki, ha adatfolyam ellenőrzési hello csempe engedélyezni kell.  Ez egy másik üzenetet biztosít, ha adatokat hello csempe nem érhető el.  Ez az üzenet általánosan használt tooprovide hello ideiglenes időszak, amikor hello nézet van telepítve, és a rendelkezésre álló adatok származnak. |
-| Lekérdezés |Lekérdezési toorun toocheck, ha az adatok hello nézet érhető el.  Ha hello lekérdezés eredménytelen, majd egy üzenet jelenik meg hello fő lekérdezésből hello érték helyett. |
-| Üzenet |Üzenet toodisplay Ha hello adatfolyam ellenőrzési lekérdezés adatot nem ad vissza.  Ha megadja, hogy nincs üzenet *végrehajtása Assessment* jelenik meg. |
+| Engedélyezve |Válassza ki, ha adatfolyam ellenőrzési engedélyezni kell a csempe.  Ez egy másik üzenetet biztosít, ha adatokat csempe nem érhető el.  Ez általában segítségével adja meg egy üzenetet az ideiglenes időszakban, amikor a nézet van telepítve, és a rendelkezésre álló adatok származnak. |
+| Lekérdezés |Ellenőrizze, hogy a nézet érhető el-e adatok futtatásához lekérdezése.  Ha a lekérdezés eredménytelen, majd egy üzenet jelenik meg az érték a fő lekérdezés helyett. |
+| Üzenet |Ha az adatfolyam ellenőrzési lekérdezés visszaadja az adatot nem megjelenítendő üzenetet.  Ha megadja, hogy nincs üzenet *végrehajtása Assessment* jelenik meg. |
 
 
 ## <a name="line-chart-tile"></a>Sor diagram csempe
-Hello **vonaldiagram** csempe egy grafikonon napló lekérdezésből több adatsorozattal adott idő alatt.  
+A **vonaldiagram** csempe egy grafikonon napló lekérdezésből több adatsorozattal adott idő alatt.  
 
 ![Vonaldiagram & kihívás csempe](media/log-analytics-view-designer/tile-line-chart.png)
 
 | Beállítás | Leírás |
 |:--- |:--- |
-| Név |Szöveg toodisplay hello hello tetején csempére. |
-| Leírás |Szöveg toodisplay hello csempe neve alatt. |
+| Név |A csempe tetején megjelenő szöveg. |
+| Leírás |A csempe neve alatt megjelenő szöveg. |
 | **Vonaldiagram** | |
-| Lekérdezés |Lekérdezés toorun hello sor a diagramon.  hello első tulajdonság szöveges érték, és hello második tulajdonság numerikus értéknek kell lennie.  Ez általában az hello használó lekérdezések **mérték** kulcsszó toosummarize eredmények.  Ha hello lekérdezés használ hello **időköz** kulcsszót, majd hello hello diagram x tengelyéhez fogja használni az adott időszakban.  Ha hello lekérdezés nem tartalmazza a hello **időköz** kulcsszót, majd óránként intervallumok használt x tengely hello. |
+| Lekérdezés |A lekérdezés a vonaldiagram fussanak.  Az első tulajdonság egy szöveges értéket, a második tulajdonság numerikus értéknek kell lennie.  Ez általában az a lekérdezés, amely használja a **mérték** , hogy összesítse a eredmények kulcsszó.  Ha a lekérdezés használ a **időköz** kulcsszót, majd az x tengely a diagram fogja használni az adott időszakban.  Ha a lekérdezés nem tartalmazza a **időköz** kulcsszót, majd óránként intervallumok x tengelyéhez szolgálnak. |
 | **Vonaldiagram** |**> Y tengely** |
-| A Logaritmikus skála használata |Válassza ki a toouse hello y tengely a Logaritmikus skála. |
-| egység |Hello lekérdezés által visszaadott hello értékek hello egységeket adjon meg.  Ez az információ használt toodisplay címkék hello értéktípusok jelző hello diagram és opcionálisan hello értékek alakításának.  Hello **egységtípus** hello egység hello kategória határozza meg, és határozza meg a hello **aktuális egységtípus** elérhető értékek.  Ha válasszon ki egy értéket **átalakítása** hello numerikus értékek hello konvertálja, majd **aktuális egység** írja be a toohello **átalakítása** típusa. |
-| Egyéni felirat |Szöveg toodisplay hello Y tengely következő toohello címke hello egység típushoz.  Ha nincs címke van megadva, akkor csak a hello egységtípus jelenik meg. |
+| A Logaritmikus skála használata |A Logaritmikus skála tengely használata mellett dönt. |
+| egység |Adja meg a lekérdezés által visszaadott értékek használt mértékegységet.  Ezt az információt a diagram, amely jelzi, az értéktípusokat és opcionálisan az értékek alakításának feliratok megjelenítéséhez használatos.  A **egységtípus** egység kategória határozza meg, és határozza meg a **aktuális egységtípus** elérhető értékek.  Ha válasszon ki egy értéket **átalakítása** konvertálja a numerikus értéket, majd a **aktuális egység** típus a **átalakítása** típusa. |
+| Egyéni felirat |Az Y tengely egységtípus felirat mellett megjelenő szöveg.  Ha nincs címke van megadva, akkor csak a egységtípus jelenik meg. |
 | **Speciális** |**> Adatfolyamot ellenőrzése** |
-| Engedélyezve |Válassza ki, ha adatfolyam ellenőrzési hello csempe engedélyezni kell.  Ez egy másik üzenetet biztosít, ha adatokat hello csempe nem érhető el.  Ez az üzenet általánosan használt tooprovide hello ideiglenes időszak, amikor hello nézet van telepítve, és a rendelkezésre álló adatok származnak. |
-| Lekérdezés |Lekérdezési toorun toocheck, ha az adatok hello nézet érhető el.  Ha hello lekérdezés eredménytelen, majd egy üzenet jelenik meg hello fő lekérdezésből hello érték helyett. |
-| Üzenet |Üzenet toodisplay Ha hello adatfolyam ellenőrzési lekérdezés adatot nem ad vissza.  Ha megadja, hogy nincs üzenet *végrehajtása Assessment* jelenik meg. |
+| Engedélyezve |Válassza ki, ha adatfolyam ellenőrzési engedélyezni kell a csempe.  Ez egy másik üzenetet biztosít, ha adatokat csempe nem érhető el.  Ez általában segítségével adja meg egy üzenetet az ideiglenes időszakban, amikor a nézet van telepítve, és a rendelkezésre álló adatok származnak. |
+| Lekérdezés |Ellenőrizze, hogy a nézet érhető el-e adatok futtatásához lekérdezése.  Ha a lekérdezés eredménytelen, majd egy üzenet jelenik meg az érték a fő lekérdezés helyett. |
+| Üzenet |Ha az adatfolyam ellenőrzési lekérdezés visszaadja az adatot nem megjelenítendő üzenetet.  Ha megadja, hogy nincs üzenet *végrehajtása Assessment* jelenik meg. |
 
 
 ## <a name="line-chart--callout-tile"></a>Sor diagram & kihívás csempe
-Hello **diagram & kihívás sor** csempe egy grafikonon napló lekérdezésből több adatsorozattal időt és az összesített érték egy kihívás keresztül.  
+A **diagram & kihívás sor** csempe egy grafikonon napló lekérdezésből több adatsorozattal időt és az összesített érték egy kihívás keresztül.  
 
 ![Vonaldiagram & kihívás csempe](media/log-analytics-view-designer/tile-line-chart-callout.png)
 
 | Beállítás | Leírás |
 |:--- |:--- |
-| Név |Szöveg toodisplay hello hello tetején csempére. |
-| Leírás |Szöveg toodisplay hello csempe neve alatt. |
+| Név |A csempe tetején megjelenő szöveg. |
+| Leírás |A csempe neve alatt megjelenő szöveg. |
 | **Vonaldiagram** | |
-| Lekérdezés |Lekérdezés toorun hello sor a diagramon.  hello első tulajdonság szöveges érték, és hello második tulajdonság numerikus értéknek kell lennie.  Ez általában az hello használó lekérdezések **mérték** kulcsszó toosummarize eredmények.  Ha hello lekérdezés használ hello **időköz** kulcsszót, majd hello hello diagram x tengelyéhez fogja használni az adott időszakban.  Ha hello lekérdezés nem tartalmazza a hello **időköz** kulcsszót, majd óránként intervallumok használt x tengely hello. |
+| Lekérdezés |A lekérdezés a vonaldiagram fussanak.  Az első tulajdonság egy szöveges értéket, a második tulajdonság numerikus értéknek kell lennie.  Ez általában az a lekérdezés, amely használja a **mérték** , hogy összesítse a eredmények kulcsszó.  Ha a lekérdezés használ a **időköz** kulcsszót, majd az x tengely a diagram fogja használni az adott időszakban.  Ha a lekérdezés nem tartalmazza a **időköz** kulcsszót, majd óránként intervallumok x tengelyéhez szolgálnak. |
 | **Vonaldiagram** |**> Kihívás** |
-| Kihívás |Cím szöveg toodisplay hello kihívás érték felett. |
-| Az adatsorozat neve |Hello adatsorozat toouse hello kihívás értékhez tulajdonság értéke.  Adatsorozatok valósul meg, ha minden hello lekérdezésből rekordjai. |
-| Művelet |hello művelet tooperform hello érték toosummarize tooa egyetlen tulajdonságértéket hello kihívás a.<br>-Átlagos: Az összes rekord hello értéket átlaga.<br><br>-Számláló: Hello lekérdezés által visszaadott összes rekord száma.<br>-Utolsó minta: Hello utolsó időköze hello diagram szereplő értéket.<br>-Maximális: Hello diagram szereplő hello időközök maximális értéket.<br>-Min: Hello diagram szereplő hello időszakok közül a minimális érték.<br>– Összeg: Az összes rekord hello értéket összege. |
+| Kihívás |A képfelirat érték felett megjelenő cím szöveg. |
+| Az adatsorozat neve |A képfelirat érték használandó adatsorozat tulajdonság értéke.  Adatsorozatok valósul meg, ha a lekérdezés összes rekordot szolgálnak. |
+| Művelet |A value tulajdonság egyetlen értéket a kihívás az összesítendő végrehajtani a műveletet.<br>-Átlagos: Az értéket az összes rekord átlaga.<br><br>-Szám: A lekérdezés által visszaadott összes rekord száma.<br>-Utolsó minta: Az utolsó időköze a diagramban szereplő értéket.<br>-Maximális: A diagramban szereplő időszakok közül a maximális érték.<br>-Min: A diagramban szereplő időszakok közül a minimális érték.<br>-Összeg: Az értéket az összes rekord összege. |
 | **Vonaldiagram** |**> Y tengely** |
-| A Logaritmikus skála használata |Válassza ki a toouse hello y tengely a Logaritmikus skála. |
-| egység |Hello lekérdezés által visszaadott hello értékek hello egységeket adjon meg.  Ez az információ használt toodisplay címkék hello értéktípusok jelző hello diagram és opcionálisan hello értékek alakításának.  Hello **egységtípus** hello egység hello kategória határozza meg, és határozza meg a hello **aktuális egységtípus** elérhető értékek.  Ha válasszon ki egy értéket **átalakítása** hello numerikus értékek hello konvertálja, majd **aktuális egység** írja be a toohello **átalakítása** típusa. |
-| Egyéni felirat |Szöveg toodisplay hello Y tengely következő toohello címke hello egység típushoz.  Ha nincs címke van megadva, akkor csak a hello egységtípus jelenik meg. |
+| A Logaritmikus skála használata |A Logaritmikus skála tengely használata mellett dönt. |
+| egység |Adja meg a lekérdezés által visszaadott értékek használt mértékegységet.  Ezt az információt a diagram, amely jelzi, az értéktípusokat és opcionálisan az értékek alakításának feliratok megjelenítéséhez használatos.  A **egységtípus** egység kategória határozza meg, és határozza meg a **aktuális egységtípus** elérhető értékek.  Ha válasszon ki egy értéket **átalakítása** konvertálja a numerikus értéket, majd a **aktuális egység** típus a **átalakítása** típusa. |
+| Egyéni felirat |Az Y tengely egységtípus felirat mellett megjelenő szöveg.  Ha nincs címke van megadva, akkor csak a egységtípus jelenik meg. |
 | **Speciális** |**> Adatfolyamot ellenőrzése** |
-| Engedélyezve |Válassza ki, ha adatfolyam ellenőrzési hello csempe engedélyezni kell.  Ez egy másik üzenetet biztosít, ha adatokat hello csempe nem érhető el.  Ez az üzenet általánosan használt tooprovide hello ideiglenes időszak, amikor hello nézet van telepítve, és a rendelkezésre álló adatok származnak. |
-| Lekérdezés |Lekérdezési toorun toocheck, ha az adatok hello nézet érhető el.  Ha hello lekérdezés eredménytelen, majd egy üzenet jelenik meg hello fő lekérdezésből hello érték helyett. |
-| Üzenet |Üzenet toodisplay Ha hello adatfolyam ellenőrzési lekérdezés adatot nem ad vissza.  Ha megadja, hogy nincs üzenet *végrehajtása Assessment* jelenik meg. |
+| Engedélyezve |Válassza ki, ha adatfolyam ellenőrzési engedélyezni kell a csempe.  Ez egy másik üzenetet biztosít, ha adatokat csempe nem érhető el.  Ez általában segítségével adja meg egy üzenetet az ideiglenes időszakban, amikor a nézet van telepítve, és a rendelkezésre álló adatok származnak. |
+| Lekérdezés |Ellenőrizze, hogy a nézet érhető el-e adatok futtatásához lekérdezése.  Ha a lekérdezés eredménytelen, majd egy üzenet jelenik meg az érték a fő lekérdezés helyett. |
+| Üzenet |Ha az adatfolyam ellenőrzési lekérdezés visszaadja az adatot nem megjelenítendő üzenetet.  Ha megadja, hogy nincs üzenet *végrehajtása Assessment* jelenik meg. |
 
 
 ## <a name="two-timelines-tile"></a>Két ütemtervek csempe
-Hello **két ütemtervek** csempe megjeleníti a két naplófájl-lekérdezések eredményének hello oszlopdiagramok idővel.  Valamennyi adatsorozatnál felirat jelenik meg.  
+A **két ütemtervek** csempe oszlopdiagramok idővel két naplófájl lekérdezések eredményeit jeleníti meg.  Valamennyi adatsorozatnál felirat jelenik meg.  
 
 ![Két ütemtervek csempe](media/log-analytics-view-designer/tile-two-timelines.png)
 
 | Beállítás | Leírás |
 |:--- |:--- |
-| Név |Szöveg toodisplay hello hello tetején csempére. |
-| Leírás |Szöveg toodisplay hello csempe neve alatt. |
+| Név |A csempe tetején megjelenő szöveg. |
+| Leírás |A csempe neve alatt megjelenő szöveg. |
 | Első diagram | |
-| Jelmagyarázat |Szöveg toodisplay hello kihívás hello első sorozata alapján. |
-| Szín |Hello oszlopokhoz hello első sorozat toouse színét. |
-| A diagram lekérdezés |Lekérdezés toorun hello első adatsorozathoz.  hello számát hello rekordok időbeli minden időközhöz hello diagram oszlop szerint fog megjelenni. |
-| Művelet |hello művelet tooperform hello érték toosummarize tooa egyetlen tulajdonságértéket hello kihívás a.<br><br>-Átlagos: Az összes rekord hello értéket átlaga.<br>-Számláló: Hello lekérdezés által visszaadott összes rekord száma.<br>-Utolsó minta: Hello utolsó időköze hello diagram szereplő értéket.<br>-Maximális: Hello diagram szereplő hello időközök maximális értéket. |
+| Jelmagyarázat |Az első adatsorozathoz kihívás alatt megjelenő szöveg. |
+| Szín |Az első adatsorozat oszlopok használandó szín. |
+| A diagram lekérdezés |A lekérdezés futtatásához az első adatsorozathoz.  A diagram oszlopokat meghatározott keresztül minden időközhöz rekordok száma. |
+| Művelet |A value tulajdonság egyetlen értéket a kihívás az összesítendő végrehajtani a műveletet.<br><br>-Átlagos: Az értéket az összes rekord átlaga.<br>-Szám: A lekérdezés által visszaadott összes rekord száma.<br>-Utolsó minta: Az utolsó időköze a diagramban szereplő értéket.<br>-Maximális: A diagramban szereplő időszakok közül a maximális érték. |
 | **Második diagram** | |
-| Jelmagyarázat |Szöveg toodisplay hello kihívás hello második sorozata alapján. |
-| Szín |Hello oszlopokhoz hello második sorozat toouse színét. |
-| A diagram lekérdezés |Lekérdezés toorun hello második adatsorozathoz.  hello számát hello rekordok időbeli minden időközhöz hello diagram oszlop szerint fog megjelenni. |
-| Művelet |hello művelet tooperform hello érték toosummarize tooa egyetlen tulajdonságértéket hello kihívás a.<br><br>-Átlagos: Az összes rekord hello értéket átlaga.<br>-Számláló: Hello lekérdezés által visszaadott összes rekord száma.<br>-Utolsó minta: Hello utolsó időköze hello diagram szereplő értéket.<br>-Maximális: Hello diagram szereplő hello időközök maximális értéket. |
+| Jelmagyarázat |A második adatsor kihívás alatt megjelenő szöveg. |
+| Szín |A második sorozat oszlopok használandó szín. |
+| A diagram lekérdezés |A lekérdezés futtatásához, a második adatsorozathoz.  A diagram oszlopokat meghatározott keresztül minden időközhöz rekordok száma. |
+| Művelet |A value tulajdonság egyetlen értéket a kihívás az összesítendő végrehajtani a műveletet.<br><br>-Átlagos: Az értéket az összes rekord átlaga.<br>-Szám: A lekérdezés által visszaadott összes rekord száma.<br>-Utolsó minta: Az utolsó időköze a diagramban szereplő értéket.<br>-Maximális: A diagramban szereplő időszakok közül a maximális érték. |
 | **Speciális** |**> Adatfolyamot ellenőrzése** |
-| Engedélyezve |Válassza ki, ha adatfolyam ellenőrzési hello csempe engedélyezni kell.  Ez egy másik üzenetet biztosít, ha adatokat hello csempe nem érhető el.  Ez az üzenet általánosan használt tooprovide hello ideiglenes időszak, amikor hello nézet van telepítve, és a rendelkezésre álló adatok származnak. |
-| Lekérdezés |Lekérdezési toorun toocheck, ha az adatok hello nézet érhető el.  Ha hello lekérdezés eredménytelen, majd egy üzenet jelenik meg hello fő lekérdezésből hello érték helyett. |
-| Üzenet |Üzenet toodisplay Ha hello adatfolyam ellenőrzési lekérdezés adatot nem ad vissza.  Ha megadja, hogy nincs üzenet *végrehajtása Assessment* jelenik meg. |
+| Engedélyezve |Válassza ki, ha adatfolyam ellenőrzési engedélyezni kell a csempe.  Ez egy másik üzenetet biztosít, ha adatokat csempe nem érhető el.  Ez általában segítségével adja meg egy üzenetet az ideiglenes időszakban, amikor a nézet van telepítve, és a rendelkezésre álló adatok származnak. |
+| Lekérdezés |Ellenőrizze, hogy a nézet érhető el-e adatok futtatásához lekérdezése.  Ha a lekérdezés eredménytelen, majd egy üzenet jelenik meg az érték a fő lekérdezés helyett. |
+| Üzenet |Ha az adatfolyam ellenőrzési lekérdezés visszaadja az adatot nem megjelenítendő üzenetet.  Ha megadja, hogy nincs üzenet *végrehajtása Assessment* jelenik meg. |
 
 
 ## <a name="next-steps"></a>Következő lépések
-* További tudnivalók [keresések jelentkezzen](log-analytics-log-searches.md) toosupport hello lekérdezések a csempéket.
-* Adja hozzá [képi megjelenítés részek](log-analytics-view-designer-parts.md) tooyour egyéni nézetet.
+* További tudnivalók [keresések jelentkezzen](log-analytics-log-searches.md) csempéiben lévő lekérdezések támogatásához.
+* Adja hozzá [képi megjelenítés részek](log-analytics-view-designer-parts.md) a egyéni nézetben.

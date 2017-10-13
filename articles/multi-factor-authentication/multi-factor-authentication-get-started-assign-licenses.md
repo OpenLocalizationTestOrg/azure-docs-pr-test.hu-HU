@@ -1,6 +1,6 @@
 ---
-title: az Azure MFA aaaAssign icenses |} Microsoft Docs
-description: "Ismerje meg, hogyan tooassign felhasználói licencek, a Microsoft Azure multi-factor Authentication."
+title: "Azure MFA-licencek kiosztása | Microsoft Docs"
+description: "Megtudhatja, hogyan rendelhet felhasználói licenceket a Microsoft Azure Multi-Factor Authentication hitelesítéshez."
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -16,26 +16,26 @@ ms.author: kgremban
 ms.reviewer: yossib
 ms.custom: it-pro
 ROBOTS: NOINDEX
-ms.openlocfilehash: ca324eb4d6622fdad8bd3d74b7e1595919e36535
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 45522bf526c4aeab1d6ccc8891a55a0436ff9320
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="assigning-an-azure-mfa-azure-ad-premium-or-enterprise-mobility-license-toousers"></a>Az Azure MFA-, prémium szintű Azure AD, vagy vállalati mobilitási licenc toousers hozzárendelése
-Ha az Azure MFA, prémium szintű Azure AD vagy a nagyvállalati mobilitási csomag licencet vásárolt, nem kell a multi-factor Auth provider toocreate. Miután hello licencek hozzárendelése tooyour felhasználók, megkezdheti a multi-factor Authentication engedélyezésük.
+# <a name="assigning-an-azure-mfa-azure-ad-premium-or-enterprise-mobility-license-to-users"></a>Azure MFA, Azure AD Prémium vagy Nagyvállalati mobilitási licenc hozzárendelése felhasználókhoz
+Ha Azure MFA, Azure AD Prémium vagy Nagyvállalati mobilitási csomag licenceket vásárolt, nem kell létrehoznia Multi-Factor Auth szolgáltatót. Miután hozzárendelte a licenceket a felhasználókhoz, elkezdheti az engedélyezésüket az MFA-hoz.
 
-## <a name="tooassign-a-license"></a>a licenc tooassign
-1. Jelentkezzen be toohello [a klasszikus Azure portálon](https://manage.windowsazure.com) rendszergazdaként.
-2. Hello bal oldalon válassza ki a **Active Directory**.
-3. Hello Active Directory lapján kattintson duplán a megegyező tooenable kívánja hello felhasználók hello könyvtárat.
-4. Hello hello directory oldal tetején, válassza ki a **licencek**.
+## <a name="to-assign-a-license"></a>Licenc hozzárendelése
+1. Jelentkezzen be a [klasszikus Azure portálra](https://manage.windowsazure.com) rendszergazdaként.
+2. A bal oldalon válassza az **Active Directory** elemet.
+3. Az Active Directory lapon kattintson duplán arra a könyvtárra, amelyben az engedélyezni kívánt felhasználók találhatók.
+4. A könyvtárlap tetején válassza a **Licencek** elemet.
    ![Licencek hozzárendelése](./media/multi-factor-authentication-get-started-assign-licenses/assign1.png)
-5. Hello licencek lapon jelölje be **Azure multi-factor Authentication**, **Active Directory Premium**, vagy **nagyvállalati mobilitási csomag**.  Ha csak eggyel rendelkezik, akkor azt a rendszer automatikusan bejelöli.
-6. Hello a hello lap alján, kattintson **hozzárendelése**.
+5. A Licencek lapon válassza az **Azure Multi-Factor Authentication**, a **Prémium szintű Active Directory** vagy a **Nagyvállalati mobilitási csomag** lehetőséget.  Ha csak eggyel rendelkezik, akkor azt a rendszer automatikusan bejelöli.
+6. Kattintson a lap alján található **Hozzárendelés** gombra.
    ![Licencek hozzárendelése](./media/multi-factor-authentication-get-started-assign-licenses/assign3.png)
-7. A felmerül hello párbeszédpanelen kattintson a Tovább toohello felhasználók vagy csoportok tooassign licenceket szeretne.  Egy zöld pipának kell megjelennie.
-8. Kattintson a hello pipa ikon toosave hello módosítások.
+7. A megjelenő mezőben kattintson azon felhasználók vagy csoportok mellé, amelyekhez licenceket szeretne rendelni.  Egy zöld pipának kell megjelennie.
+8. Kattintson a pipa ikonra a módosítások mentéséhez.
    ![Licencek hozzárendelése](./media/multi-factor-authentication-get-started-assign-licenses/assign4.png)
 9. Ekkor egy üzenet jelenik meg amely tartalmazza, hány licenc lett hozzárendelve, és hány hozzárendelése sikertelen.  Kattintson az **OK** gombra.
    ![Licencek hozzárendelése](./media/multi-factor-authentication-get-started-assign-licenses/assign5.png)

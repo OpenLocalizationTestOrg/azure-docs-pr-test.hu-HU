@@ -1,6 +1,6 @@
 ---
-title: "SQL virtuális gépek (erőforrás-kezelő) aaaAutomate fájlkezelési feladatai |} Microsoft Docs"
-description: "Ez a témakör ismerteti, hogyan toomanage hello SQL Server agent-kiterjesztés, automatizálja az adott SQL Server felügyeleti feladatokat. Ezek közé tartoznak az automatikus biztonsági mentés, automatikus javítás és az Azure Key Vault-integráció. Ez a témakör hello erőforrás-kezelő telepítési módot használ."
+title: "SQL virtuális gépeken (erőforrás-kezelő) felügyeleti feladatok automatizálására |} Microsoft Docs"
+description: "Ez a témakör az SQL Server agent-kiterjesztés, automatizálja az adott SQL Server felügyeleti feladatok kezelését ismerteti. Ezek közé tartoznak az automatikus biztonsági mentés, automatikus javítás és az Azure Key Vault-integráció. Ez a témakör a Resource Manager telepítési módot használ."
 services: virtual-machines-windows
 documentationcenter: 
 author: rothja
@@ -16,38 +16,38 @@ ms.workload: iaas-sql-server
 ms.date: 08/07/2017
 ms.author: jroth
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: ae917612c4af59f12c0b083440673bdc555e9d56
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7152d184bb6d1d4b81aeb47e2c7c9160ada36023
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="automate-management-tasks-on-azure-virtual-machines-with-hello-sql-server-agent-extension-resource-manager"></a>SQL Server Agent bővítmény (erőforrás-kezelő) hello Azure virtuális gépeken felügyeleti műveletek automatizálása
+# <a name="automate-management-tasks-on-azure-virtual-machines-with-the-sql-server-agent-extension-resource-manager"></a>Azure virtuális gépeken kiterjesztésű SQL Server Agent (erőforrás-kezelő) felügyeleti feladatok automatizálásához
 > [!div class="op_single_selector"]
 > * [Resource Manager](virtual-machines-windows-sql-server-agent-extension.md)
 > * [Klasszikus](../classic/sql-server-agent-extension.md)
 > 
 > 
 
-SQL Server infrastruktúra-szolgáltatási ügynök Extension (SQLIaaSExtension) hello futó Azure virtuális gépek tooautomate felügyeleti feladatok. Ez a témakör áttekintést hello szolgáltatások hello bővítményt, valamint utasításokat a telepítési, állapot és eltávolítási által támogatott.
+Az SQL Server IaaS ügynök Extension (SQLIaaSExtension) fut az Azure virtuális gépeken felügyeleti feladatok automatizálására. Ez a témakör a bővítményt, valamint a vonatkozó telepítési, állapot és eltávolítási utasításokat támogatja a szolgáltatások áttekintését.
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-rm-include.md)]
 
-tooview hello klasszikus ebben a cikkben forduljon [SQL Server Agent bővítmény SQL Server VMs Classic](../classic/sql-server-agent-extension.md).
+Ez a cikk a klasszikus verzióra megtekintése: [SQL Server Agent bővítmény SQL Server VMs Classic](../classic/sql-server-agent-extension.md).
 
 ## <a name="supported-services"></a>Támogatott szolgáltatások
-SQL Server infrastruktúra-szolgáltatási ügynök bővítmény hello felügyeleti feladatok a következő hello támogatja:
+Az SQL Server IaaS ügynöke bővítmény a következő felügyeleti feladatokat támogatja:
 
 | Felügyeleti szolgáltatás | Leírás |
 | --- | --- |
-| **SQL automatikus biztonsági mentés** |Automatikusan hello ütemezés a biztonsági mentések az összes olyan adatbázis hello alapértelmezett példány az SQL Server a virtuális gép hello. További információkért lásd: [automatikus biztonsági mentés az SQL Server az Azure virtuális gépek (erőforrás-kezelő)](virtual-machines-windows-sql-automated-backup.md). |
-| **SQL automatikus javítás** |Konfigurálja a karbantartási időszak során mely frissítések VM is igénybe vehet tooyour helyezze el, a munkaterhelés csúcsidőben frissítések elkerülése érdekében. További információkért lásd: [automatikus javítás az SQL Server az Azure virtuális gépek (erőforrás-kezelő)](virtual-machines-windows-sql-automated-patching.md). |
-| **Azure Key Vault-integráció** |Lehetővé teszi, hogy tooautomatically telepítse és konfigurálja az Azure Key Vault az az SQL Server virtuális gép. További információkért lásd: [konfigurálása Azure Key Vault-integráció az SQL Server Azure virtuális gépeken (erőforrás-kezelő)](virtual-machines-windows-ps-sql-keyvault.md). |
+| **SQL automatikus biztonsági mentés** |Automatizálja az ütemezés a biztonsági mentések az összes olyan adatbázis az alapértelmezett példány az SQL Server, a virtuális gépen. További információkért lásd: [automatikus biztonsági mentés az SQL Server az Azure virtuális gépek (erőforrás-kezelő)](virtual-machines-windows-sql-automated-backup.md). |
+| **SQL automatikus javítás** |Konfigurálja a karbantartási időszak során, ami a virtuális gép kerül sor frissítéseire, a munkaterheléshez csúcsidőben frissítések elkerülése érdekében. További információkért lásd: [automatikus javítás az SQL Server az Azure virtuális gépek (erőforrás-kezelő)](virtual-machines-windows-sql-automated-patching.md). |
+| **Azure Key Vault-integráció** |Lehetővé teszi, hogy automatikusan telepítse és konfigurálja az Azure Key Vault az SQL Server virtuális gép. További információkért lásd: [konfigurálása Azure Key Vault-integráció az SQL Server Azure virtuális gépeken (erőforrás-kezelő)](virtual-machines-windows-ps-sql-keyvault.md). |
 
-Amikor telepítve és fut, hello SQL Server infrastruktúra-szolgáltatási ügynök bővítmény elérhetővé teszi ezeket a felügyeleti funkciókat hello SQL Server panelen hello virtuális gép hello Azure portálon, és Azure PowerShell használatával az SQL Server piactéren elérhető rendszerkép és keresztül Az Azure PowerShell hello bővítmény manuális telepítésekor. 
+Miután telepített és futó, az SQL Server IaaS ügynöke bővítmény elérhetővé teszi ezeket a felügyeleti szolgáltatásokat az SQL Server panelen, a virtuális gép az Azure portál és az SQL Server piactéren elérhető rendszerkép Azure PowerShell használatával, és Azure szolgáltatáson keresztül A bővítmény manuális telepítésekor PowerShell. 
 
 ## <a name="prerequisites"></a>Előfeltételek
-Követelmények toouse hello SQL Server IaaS ügynök bővítményt a virtuális gépen:
+A virtuális gép az SQL Server IaaS ügynöke bővítmény használatára vonatkozó követelményeket:
 
 **Operációs rendszer**:
 
@@ -63,46 +63,46 @@ Követelmények toouse hello SQL Server IaaS ügynök bővítményt a virtuális
 
 **Az Azure PowerShell**:
 
-* [Töltse le és konfigurálja a hello legújabb Azure PowerShell-parancsok](/powershell/azure/overview)
+* [Töltse le és konfigurálja a legújabb Azure PowerShell-parancsok](/powershell/azure/overview)
 
 ## <a name="installation"></a>Telepítés
-hello SQL Server virtuális gép a gyűjtemény lemezképei kiépítése a rendszer automatikusan telepíti az SQL Server infrastruktúra-szolgáltatási ügynök bővítmény hello. Ha tooreinstall hello bővítmény manuálisan az SQL Server virtuális gépeken egyik van szüksége, használja a következő PowerShell-paranccsal hello:
+Az SQL Server IaaS ügynöke bővítmény automatikusan települ, amikor egy SQL Server virtuális gép gyűjtemény lemezképet. Ha szeretné manuálisan újra a bővítményt a virtuális gépeken SQL Server egyik, használja a következő PowerShell-parancsot:
 
 ```powershell
 Set-AzureRmVMSqlServerExtension -ResourceGroupName "resourcegroupname" -VMName "vmname" -Name "SQLIaasExtension" -Version "1.2" -Location "East US 2"
 ```
 
-Akkor is lehetséges tooinstall hello SQL Server infrastruktúra-szolgáltatási ügynök kiterjesztés csak az operációs rendszer Windows Server virtuális géphez. Ez csak akkor támogatott, ha manuálisan is, hogy a gép van telepítve az SQL Server. Majd a telepítés hello bővítmény használatával manuálisan hello azonos **Set-AzureVMSqlServerExtension** PowerShell-parancsmagot.
+Akkor is telepíteni az SQL Server infrastruktúra-szolgáltatási ügynök kiterjesztés csak az operációs rendszer Windows Server virtuális géphez. Ez csak akkor támogatott, ha manuálisan is, hogy a gép van telepítve az SQL Server. Majd telepítse a bővítmény manuálisan azonos **Set-AzureVMSqlServerExtension** PowerShell-parancsmagot.
 
 > [!NOTE]
-> Ha manuálisan telepíti az SQL Server infrastruktúra-szolgáltatási ügynök bővítmény hello egy csak az operációs rendszer Windows Server virtuális gépen, nem kezelheti hello SQL Server-konfigurációs beállítások hello Azure-portálon keresztül. Ebben a forgatókönyvben módosítania kell az összes a PowerShell használatával.
+> Ha manuálisan telepíti az SQL Server IaaS ügynöke bővítmény egy csak az operációs rendszer Windows Server virtuális gépen, az SQL Server-konfigurációs beállítások, az Azure portálon keresztül nem kezelheti. Ebben a forgatókönyvben módosítania kell az összes a PowerShell használatával.
 
 ## <a name="status"></a>status
-Egyirányú tooverify, hogy telepítve van-e a hello bővítmény hello Azure Portal tooview hello ügynök állapotát. Válassza ki **összes beállítás** a hello virtuális gépek paneljét, és kattintson a **bővítmények**. Megtekintheti az hello **SQLIaaSExtension** felsorolt bővítmény.
+Egy győződjön meg arról, hogy telepítve van-e a bővítmény módja az ügynök állapotát megtekintheti az Azure portálon. Válassza ki **összes beállítás** a virtuális gépek paneljét, majd a **bővítmények**. Megjelenik a **SQLIaaSExtension** felsorolt bővítmény.
 
 ![SQL Server IaaS-ügynök bővítmény Azure-portálon](./media/virtual-machines-windows-sql-server-agent-extension/azure-rm-sql-server-iaas-agent-portal.png)
 
-Is használhatja a hello **Get-AzureVMSqlServerExtension** Azure Powershell-parancsmagot.
+Használhatja a **Get-AzureVMSqlServerExtension** Azure Powershell-parancsmagot.
 
     Get-AzureRmVMSqlServerExtension -VMName "vmname" -ResourceGroupName "resourcegroupname"
 
-előző parancs hello megerősíti, hogy hello ügynök telepítve van, és az általános állapotadatokat szolgáltat. Automatikus biztonsági mentés és javításokkal bizonyos állapot információt a következő parancsok hello is lekérdezni.
+Az előző parancs megerősíti, hogy az ügynök telepítve van, és az általános állapotadatokat szolgáltat. Adott állapotinformációról automatikus biztonsági mentés és a javítás az alábbi parancsokkal is beszerezheti.
 
     $sqlext = Get-AzureRmVMSqlServerExtension -VMName "vmname" -ResourceGroupName "resourcegroupname"
     $sqlext.AutoPatchingSettings
     $sqlext.AutoBackupSettings
 
 ## <a name="removal"></a>Eltávolítás
-Hello Azure portál, eltávolíthatja hello bővítmény hello három pont a hello kattintva **bővítmények** panelen található a virtuálisgép-tulajdonságokat. Kattintson a **törlése**.
+Az Azure portálon, eltávolíthatja a bővítményt a három pont parancsával a **bővítmények** panelen található a virtuálisgép-tulajdonságokat. Kattintson a **törlése**.
 
-![Távolítsa el a hello SQL Server infrastruktúra-szolgáltatási ügynök bővítmény Azure-portálon](./media/virtual-machines-windows-sql-server-agent-extension/azure-rm-sql-server-iaas-agent-uninstall.png)
+![Távolítsa el az SQL Server IaaS-ügynök bővítmény Azure-portálon](./media/virtual-machines-windows-sql-server-agent-extension/azure-rm-sql-server-iaas-agent-uninstall.png)
 
-Is használhatja a hello **Remove-AzureRmVMSqlServerExtension** Powershell-parancsmagot.
+Használhatja a **Remove-AzureRmVMSqlServerExtension** Powershell-parancsmagot.
 
     Remove-AzureRmVMSqlServerExtension -ResourceGroupName "resourcegroupname" -VMName "vmname" -Name "SQLIaasExtension"
 
 ## <a name="next-steps"></a>Következő lépések
-Hello bővítmény által támogatott hello szolgáltatást használatának megkezdéséhez. További részletekért lásd: hello hivatkozott hello témakörök [támogatott szolgáltatások](#supported-services) című szakaszát.
+A bővítmény által támogatott szolgáltatások használatának megkezdéséhez. A hivatkozott témakörökben talál további részleteket a [támogatott szolgáltatások](#supported-services) című szakaszát.
 
 További információ az SQL Servert futtató Azure virtuális gépeken: [SQL Server Azure virtuális gépek – áttekintés](virtual-machines-windows-sql-server-iaas-overview.md).
 

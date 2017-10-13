@@ -1,6 +1,6 @@
 ---
-title: "aaaChanges toohello az Azure AD v2.0-végponttól |} Microsoft Docs"
-description: "Toohello app model v2.0 nyilvános előzetes protokollok végrehajtott módosítások leírását."
+title: "Az Azure AD v2.0-végponttól vált |} Microsoft Docs"
+description: "Az app model v2.0 nyilvános előzetes verzió protokollok végzett módosításokat leírását."
 services: active-directory
 documentationcenter: 
 author: dstrockis
@@ -15,28 +15,28 @@ ms.topic: article
 ms.date: 09/16/2016
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: d7b28a481e12d5dbbc4a10110193bdbd754f4929
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ae73833a68db14804dc40eaf07ff7d3effaa9052
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="important-updates-toohello-v20-authentication-protocols"></a>Fontos frissítések toohello v2.0 hitelesítési protokollok
-Figyelmet fejlesztők! Hello keresztül következő két héten frissítjük néhány frissítések tooour v2.0 hitelesítési protokollok, amelyek a módosítások a próbaidőszak alatt írt alkalmazások számára megtörje jelentheti.  
+# <a name="important-updates-to-the-v20-authentication-protocols"></a>Fontos frissítések a v2.0-hitelesítési protokollok
+Figyelmet fejlesztők! A következő két hétben frissítjük néhány frissítések az lehet, hogy olyan módosításokat a próbaidőszak alatt írt alkalmazások számára megtörje, amely a v2.0-hitelesítési protokollok számára.  
 
 ## <a name="who-does-this-affect"></a>Aki befolyásolja ez?
-Toouse hello v2.0 írt alkalmazások összevont hitelesítési végpontot
+A v2.0 használandó írt alkalmazások összevont hitelesítési végpontot
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/authorize
 ```
 
-További információ a v2.0-végponttól hello található [Itt](active-directory-appmodel-v2-overview.md).
+További információ a v2.0-végpontra található [Itt](active-directory-appmodel-v2-overview.md).
 
-Ha már létrehozta a buildet hello v2.0-végponttól használatával kódolás közvetlenül toohello v2.0 protokoll, az alkalmazások bármely az OpenID Connect vagy OAuth webes middlewares használatával, vagy más 3. fél szalagtárak tooperform hitelesítést használ, érdemes tootest előkészítve a projektek és később Ha a szükséges módosításokat.
+A v2.0-végpontra használatával kódolás közvetlenül a v2.0 protokoll az alkalmazás létrehozása, ha bármely az OpenID Connect vagy OAuth webes middlewares használatával, vagy más 3. fél könyvtárak segítségével végezhet hitelesítést, akkor kell készíteni a projektek teszteléséhez, és végezze el a szükséges módosításokat.
 
 ## <a name="who-doesnt-this-affect"></a>Ki nem ez hatással van?
-Hello éles Azure AD hitelesítési végpont, elleni írt alkalmazások
+Az éles Azure AD hitelesítési végpont, elleni írt alkalmazások
 
 ```
 https://login.microsoftonline.com/common/oauth2/authorize
@@ -44,11 +44,11 @@ https://login.microsoftonline.com/common/oauth2/authorize
 
 Ez a protokoll köve van beállítva, és fog nem léptek fel a módosításokat.
 
-Továbbá ha az alkalmazás **csak** az ADAL-könyvtár tooperform hitelesítést használ, toochange semmit nem kell.  ADAL rendelkezik védett hello módosításokat az alkalmazását.  
+Továbbá ha az alkalmazás **csak** használja az ADAL-könyvtár végezzen hitelesítést, nem kell bármit módosíthat.  ADAL rendelkezik az alkalmazás a módosításokat a védett.  
 
-## <a name="what-are-hello-changes"></a>Mik azok a hello módosításait?
-### <a name="removing-hello-x5t-value-from-jwt-headers"></a>Hello x5t érték eltávolítása a JWT fejlécek
-hello v2.0-végponttól használ JWT-jogkivonatokat széles körben, tartalmazó kapcsolódó metaadatokkal kapcsolatos hello token paraméterek fejlécszakasza.  Ha dekódolása hello fejléc az aktuális JWTs közül az egyik, találjuk hasonlót:
+## <a name="what-are-the-changes"></a>Mik a módosításokat?
+### <a name="removing-the-x5t-value-from-jwt-headers"></a>A x5t érték eltávolítása a JWT fejlécek
+A v2.0-végpontra használ JWT-jogkivonatokat széles körben, tartalmazó vonatkozó metaadatokat a jogkivonatot a paraméterek fejlécszakasza.  Ha dekódolni a fejléc az aktuális JWTs közül az egyik, találjuk hasonlót:
 
 ```
 { 
@@ -59,23 +59,23 @@ hello v2.0-végponttól használ JWT-jogkivonatokat széles körben, tartalmazó
 }
 ```
 
-Ha mindkét hello "x5t" és "kid" Tulajdonságok hello nyilvános kulcsának azonosítása, amely kell használt toovalidate hello jogkivonat aláírása, lekért hello OpenID Connect metaadat-végpontjához.
+Ahol a "x5t" és a "kid" tulajdonság azonosítása a nyilvános kulcs ellenőrzése a jogkivonat aláírása, mert beolvasta az OpenID Connect metaadat-végpontjához használandó.
 
-Itt hajtunk hello módosítása tooremove hello "x5t" tulajdonság értéke.  Azonos mechanizmusok toovalidate jogkivonatokat, de a szoftverlicenceknek csak hello "kid" tulajdonság tooretrieve hello megfelelő nyilvános kulccsal, mint a megadott hello OpenID Connect protokoll toouse hello folytathatja. 
+Itt hajtunk módosítása, hogy távolítsa el a "x5t" tulajdonságot.  Előfordulhat, hogy továbbra is használhatja ugyanazt a mechanizmust érvényesíthet jogkivonatokat, de csak a "kid" tulajdonság beolvasása a megfelelő nyilvános kulccsal, az OpenID Connect protokoll megadott szoftverlicenceknek. 
 
 > [!IMPORTANT]
-> **A feladat: Győződjön meg arról, hogy az alkalmazás nem függ a hello x5t érték hello megléte.**
+> **A feladat: Győződjön meg arról, hogy az alkalmazás nem létezik-e a x5t érték függ.**
 > 
 > 
 
 ### <a name="removing-profileinfo"></a>Profile_info eltávolítása
-Korábban, hello v2.0-végponttal rendelkezik lett visszaadni a base64-kódolású JSON-objektum nevű token válaszok `profile_info`.  Amikor olyan hozzáférési jogkivonatot kérnek hello v2.0-végpontra vonatkozó kérelmet küld:
+Korábban, a v2.0-végponttal rendelkezik lett visszaadni a base64-kódolású JSON-objektum nevű token válaszok `profile_info`.  Amikor olyan hozzáférési jogkivonatot kérnek a v2.0-végpontra vonatkozó kérelmet küld:
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/token
 ```
 
-hello válasz JSON-objektum a következő hello jelenne meg:
+A válasz a következő JSON-objektum jelenne meg:
 
 ```
 { 
@@ -88,9 +88,9 @@ hello válasz JSON-objektum a következő hello jelenne meg:
 }
 ```
 
-Hello `profile_info` hello hello alkalmazás – a megjelenített név, Utónév, Vezetéknév, e-mail cím, azonosítója, és így tovább a bejelentkezett felhasználó értéket tartalmaz információt.  Elsősorban, hello `profile_info` token-gyorsítótárazási volt használva, és megjeleníti a célra.
+A `profile_info` érték található információ a felhasználó, aki regisztrált a alkalmazásba – a megjelenített név, Utónév, Vezetéknév, e-mail cím, azonosítója, és így tovább.  Elsősorban a `profile_info` token-gyorsítótárazási volt használva, és megjeleníti a célra.
 
-Most megszüntetjük hello `profile_info` érték –, de ne aggódjon, Microsoft továbbra is ad az információk toodevelopers némileg eltérő helyen.  Ahelyett, hogy `profile_info`, hello v2.0-végponttól most visszaállítja egy `id_token` minden token válaszként:
+Most megszüntetjük a `profile_info` érték –, de ne aggódjon, azt az adatokat továbbra is ad át a fejlesztőkig némileg eltérő helyen.  Ahelyett, hogy `profile_info`, a v2.0-végpontra most visszaállítja egy `id_token` minden token válaszként:
 
 ```
 { 
@@ -103,17 +103,17 @@ Most megszüntetjük hello `profile_info` érték –, de ne aggódjon, Microsof
 }
 ```
 
-Előfordulhat, hogy dekódolása és elemezni a hello id_token tooretrieve hello profile_info kapott adatokat.  hello id_token egy JSON webes jogkivonat (JWT), az OpenID Connect által megadott tartalom.  hello kódot úgy legyen nagyon hasonló – tooextract hello közel egyszerűen szegmens (hello törzs) hello id_token és base64 dekódolni a tooaccess hello JSON-objektum belül.
+Előfordulhat, hogy dekódolni, és elemezni a id_token profile_info kapott adatokat beolvasni.  A id_token egy JSON webes jogkivonat (JWT), az OpenID Connect által megadott tartalom.  A kód minderre, legyen nagyon hasonló –, egyszerűen vissza kell fejteni a id_token a középső szegmens (szervezet), és base64 dekódolni a belül a JSON-objektum eléréséhez.
 
-Hello keresztül következő két héten kell kódaláírással az alkalmazás tooretrieve hello felhasználói adatok vagy hello `id_token` vagy `profile_info`; attól jelen.  Ily módon módosításkor hello az alkalmazás zökkenőmentesen kezelni tud a hello áttűnés `profile_info` túl`id_token` megszakítás nélkül.
+A következő két hétben kódaláírással kell az alkalmazásnak, hogy a felhasználói adatok lekérését vagy a `id_token` vagy `profile_info`; attól jelen.  Ily módon, ha módosítás történik, az alkalmazás zökkenőmentesen kezelni tud a átállás `profile_info` való `id_token` megszakítás nélkül.
 
 > [!IMPORTANT]
-> **A feladat: Győződjön meg arról, hogy az alkalmazás nem függ a hello hello megléte `profile_info` érték.**
+> **A feladat: Győződjön meg arról, hogy az alkalmazás nem függ a megléte a `profile_info` érték.**
 > 
 > 
 
 ### <a name="removing-idtokenexpiresin"></a>Id_token_expires_in eltávolítása
-Hasonló túl`profile_info`, is megszüntetjük hello `id_token_expires_in` válaszok paraméter.  Korábban, a hello v2.0-végpontra vonatkozó értéket visszaadnia `id_token_expires_in` minden egyes id_token válasz, például egy engedélyezés válaszul együtt:
+Hasonló `profile_info`, is megszüntetjük a `id_token_expires_in` válaszok paraméter.  Korábban, a a v2.0-végpontra vonatkozó értéket visszaadnia `id_token_expires_in` minden egyes id_token válasz, például egy engedélyezés válaszul együtt:
 
 ```
 https://myapp.com?id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsI...&id_token_expires_in=3599...
@@ -132,15 +132,15 @@ Vagy a token válasz:
 }
 ```
 
-Hello `id_token_expires_in` érték azt jelentené hello hány másodpercig hello id_token érvényes marad.  Most, megszüntetjük hello `id_token_expires_in` teljesen érték.  Ehelyett használhat hello OpenID Connect standard `nbf` és `exp` jogcímek egy id_token tooexamine hello érvényességét.  Lásd: hello [v2.0 jogkivonat referenciái](active-directory-v2-tokens.md) jogcímek olvashat.
+A `id_token_expires_in` érték azt jelzi másodpercben a id_token érvényes marad.  Most, megszüntetjük a `id_token_expires_in` teljesen érték.  Ehelyett használhat az OpenID Connect szabvány `nbf` és `exp` jogcímeket kell vizsgálni egy id_token érvényességét.  Tekintse meg a [v2.0 jogkivonat referenciái](active-directory-v2-tokens.md) jogcímek olvashat.
 
 > [!IMPORTANT]
-> **A feladat: Győződjön meg arról, hogy az alkalmazás nem függ a hello hello megléte `id_token_expires_in` érték.**
+> **A feladat: Győződjön meg arról, hogy az alkalmazás nem függ a megléte a `id_token_expires_in` érték.**
 > 
 > 
 
-### <a name="changing-hello-claims-returned-by-scopeopenid"></a>Hatókör által visszaadott hello jogcímek módosítása = openid
-Ez a változás legjelentősebb – hello ténylegesen, az hatással szinte minden hello v2.0-végponttól alkalmazó alkalmazásban.  Sok alkalmazások küldési kérelmek toohello v2.0-végponttól hello segítségével `openid` hatókörét, például:
+### <a name="changing-the-claims-returned-by-scopeopenid"></a>A jogcímek hatókör által visszaadott módosítása = openid
+Ez a változás valójában a legjelentősebb – lesz, az hatással szinte minden a v2.0-végpontra alkalmazó alkalmazásban.  Számos alkalmazás kérelmeket küldeni a v2.0-végpontot a a `openid` hatókörét, például:
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
@@ -151,9 +151,9 @@ client_id=...
 &scope=openid offline_access https://outlook.office.com/mail.read
 ```
 
-Ma, ha engedélyezi a hello felhasználói a hello kapcsolatos jóváhagyásról `openid` hatókör, az alkalmazás fogadása számos olyan információt hello felhasználóról id_token eredő hello.  Ezek a jogcímek tartalmazhatják a neve, elsődleges felhasználónév, e-mail címét, objektumazonosító: és több.
+Ma, amikor a felhasználó engedélyezi a hozzájárulási a `openid` hatókör, az alkalmazás a felhasználó adatai rengeteg hasznos fogadása az eredményül kapott id_token.  Ezek a jogcímek tartalmazhatják a neve, elsődleges felhasználónév, e-mail címét, objektumazonosító: és több.
 
-Ez a frissítés, azt módosítani hello információt, hogy hello `openid` hatókör számára biztosítja a alkalmazást a hozzáférést, az OpenID Connect specification hello toobetter comform.  Hello `openid` hatókör fog csak felhasználónak lehetővé teszi az alkalmazás toosign hello és hello felhasználó alkalmazásspecifikus azonosítót kap, hello `sub` hello id_token minősítése.  jogcím szerepel egy id_token hello rendelkező csak hello `openid` nyújtott lesz nem tartalmaz személyazonosításra alkalmas adatok.  Példa id_token jogcímeket a következők:
+Ez a frissítés azt módosítani az adatokat, amelyek a `openid` hatókör számára biztosítja az alkalmazás eléréséhez, jobb comform az OpenID Connect meghatározásával.  A `openid` hatókör fog csak lehetővé teszi az alkalmazásnak a felhasználó bejelentkezni, és egy alkalmazás-specifikus azonosítót a felhasználó kap a `sub` a id_token a jogcímek.  A jogcímek, az csak egy id_token a `openid` nyújtott lesz nem tartalmaz személyazonosításra alkalmas adatok.  Példa id_token jogcímeket a következők:
 
 ```
 { 
@@ -169,12 +169,12 @@ Ez a frissítés, azt módosítani hello információt, hogy hello `openid` hat�
 }
 ```
 
-Tooobtain személyes azonosításra alkalmas adatokat (PII) hello felhasználóról az alkalmazásban, az alkalmazás fogja kell hello felhasználói toorequest további engedélyek.  Vezetjük be két új hatókört támogatása a hello OpenID Connect spec – hello `email` és `profile` hatókörök – amelyek toodo így.
+Ha azt szeretné, személyazonosításra alkalmas adatokat (PII) beszerzése a felhasználóról az alkalmazásban, az alkalmazás további engedélyek kéréséhez a felhasználónak a kell.  Az OpenID Connect spec – vezetjük be két új hatókört támogatása a `email` és `profile` hatókörök – ami lehetővé teszi.
 
-* Hello `email` hatóköre nagyon egyszerű – lehetővé teszi az alkalmazás hozzáférési toohello felhasználó elsődleges e-mail címét keresztül hello `email` hello id_token a jogcímek.  Vegye figyelembe, hogy hello `email` jogcím nem mindig kerül be a id_tokens – csak akkor lesz része Ha hello profil érhető el.
-* Hello `profile` objektumazonosító hatókör számára biztosítja az alkalmazás hozzáférési tooall más hello felhasználó – a neve, az elsődleges felhasználónév alapvető információkat, és így tovább.
+* A `email` hatóköre nagyon egyszerű – az alkalmazás eléréséhez a felhasználó elsődleges e-mail címéhez keresztül lehetővé teszi a `email` a id_token a jogcímek.  Vegye figyelembe, hogy a `email` jogcím nem mindig kerül be a id_tokens – csak akkor lesz része ha rendelkezésre áll a profil.
+* A `profile` objektumazonosító hatókör számára biztosítja az alkalmazás eléréséhez a felhasználó – a neve, az elsődleges felhasználónév, minden más alapvető adatait, és így tovább.
 
-Ez lehetővé teszi, hogy toocode minimális nyilvánosságra módon – az alkalmazás megkérheti hello felhasználói adatokat, hogy az alkalmazás futtatásához szükséges toodo feladata elvégzéséhez egyszerűen hello készlete esetében.  Ha azt szeretné, hogy az alkalmazás jelenleg fogadó felhasználói adatok teljes készletét hello első toocontinue, a hitelesítési kérések bele kell foglalni a három hatóköröket:
+Ez lehetővé teszi, hogy az alkalmazás minimális nyilvánosságra módon code – kérje meg a felhasználó csak a készlethez, hogy az alkalmazás a feladat elvégzéséhez szükséges információk.  Ha folytatja a az alkalmazás jelenleg fogadó felhasználói adatok teljes készletének első, a hitelesítési kérések bele kell foglalni a három hatóköröket:
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
@@ -185,55 +185,55 @@ client_id=...
 &scope=openid profile email offline_access https://outlook.office.com/mail.read
 ```
 
-Az alkalmazás megkezdődhet az hello küldése `email` és `profile` azonnal hatókörök és hello v2.0-végponttól elfogadja a két hatóköröket és megkezdéséhez engedélyek kér a felhasználóktól, szükség esetén.  Azonban a hello hello hello értelmezésének változása `openid` hatókör nem lépnek érvénybe néhány hétig.
+Az alkalmazás megkezdődhet az küldése a `email` és `profile` hatókörök azonnal, és a v2.0-végpontra a két hatóköröket elfogadja és engedélyek kér a felhasználóktól, szükség esetén megkezdéséhez.  Azonban az értelmezési módosítása a `openid` hatókör nem lépnek érvénybe néhány hétig.
 
 > [!IMPORTANT]
-> **A feladat: hello hozzáadása `profile` és `email` hatóköröket, ha az alkalmazás használatához hello felhasználó adatait.**  Vegye figyelembe, hogy adal-t fog tartalmazni mindkét engedéllyel a kérelmek alapértelmezés szerint. 
+> **A feladat: vegye fel a `profile` és `email` hatóköröket, ha az alkalmazás csak a felhasználó adatait.**  Vegye figyelembe, hogy adal-t fog tartalmazni mindkét engedéllyel a kérelmek alapértelmezés szerint. 
 > 
 > 
 
-### <a name="removing-hello-issuer-trailing-slash"></a>Hello kibocsátó záró perjelet eltávolítása.
-Korábban a v2.0-végponttól hello jogkivonatok megjelenő hello kibocsátó érték tartott hello képernyő
+### <a name="removing-the-issuer-trailing-slash"></a>A záró perjelet kibocsátó eltávolítása.
+Korábban a kibocsátó érték, amely megjelenik a v2.0-végpontra a jogkivonatok volt
 
 ```
 https://login.microsoftonline.com/{some-guid}/v2.0/
 ```
 
-Ha hello guid lett hello tenantId hello jogkivonatot kibocsátó hello Azure AD-bérlő.  A módosítások hello kibocsátó érték válik.
+Ha a guid volt a tenantId az Azure AD-bérlő a jogkivonatot kibocsátó.  A módosítások a kibocsátó érték válik.
 
 ```
 https://login.microsoftonline.com/{some-guid}/v2.0 
 ```
 
-mindkét jogkivonatokat, hello OpenID Connect felderítési dokumentumban.
+mindkét jogkivonatokat, az OpenID Connect felderítési dokumentumban.
 
 > [!IMPORTANT]
-> **A feladat: Győződjön meg arról, hogy az alkalmazás fogad hello kibocsátó érték vagy záró perjelet anélkül kibocsátó érvényesítése során.**
+> **A feladat: Győződjön meg arról, hogy az alkalmazás és a záró perjelet anélkül kibocsátó értékét fogadja a kibocsátó érvényesítése során.**
 > 
 > 
 
 ## <a name="why-change"></a>Miért is megváltozik?
-hello elsődleges kifejlesztésének vezet be, ezeket a módosításokat az OpenID Connect szabvány hello megfelelő toobe.  Mivel OpenID Connect megfelelő, a Microsoft identity szolgáltatásokkal és az egyéb identitás-szolgáltatások hello iparági integrálásával toominimize különbségei Reméljük.  Szeretnénk tooenable fejlesztők toouse a kedvenc nyílt forráskódú hitelesítési tárakat tooalter hello szalagtárak tooaccommodate Microsoft különbségek nélkül.
+Ezek a változások bevezetéséről az elsődleges kifejlesztésének meg kell felelnie az OpenID Connect szabvány.  Mivel OpenID Connect megfelelő, Reméljük, a Microsoft identity szolgáltatásokkal és az egyéb identitás-szolgáltatások az iparág integrálásával közötti különbségek minimalizálása érdekében.  A fejlesztők a kedvenc nyílt forráskódú hitelesítési könyvtárat használja anélkül, hogy módosítják a könyvtárak Microsoft különbségek befogadásához szeretnénk.
 
 ## <a name="what-can-you-do"></a>Mire szolgál?
-Mai megkezdheti a fent leírt hello végrehajtott módosítások elvégzése.  Azonnal kell:
+Mai megkezdheti a fent leírt módosításokat végzett.  Azonnal kell:
 
-1. **Távolítsa el az összes függőségét hello `x5t` fejléc paraméter.**
-2. **A hello áttűnés kezelésére `profile_info` túl`id_token` token válaszokban.**
-3. **Távolítsa el az összes függőségét hello `id_token_expires_in` válasz paraméter.**
-4. **Adja hozzá a hello `profile` és `email` hatókörök tooyour alkalmazást, ha az alkalmazás alapszintű felhasználói információra van szüksége.**
+1. **Távolítsa el a függőségeket a a `x5t` fejléc paraméter.**
+2. **Áttérés kezelésére `profile_info` való `id_token` token válaszokban.**
+3. **Távolítsa el a függőségeket a a `id_token_expires_in` válasz paraméter.**
+4. **Adja hozzá a `profile` és `email` hatóköröket az alkalmazáshoz, ha az alkalmazás alapszintű felhasználói információra van szüksége.**
 5. **Fogadja el vagy záró perjelet anélkül jogkivonatokba kibocsátó értékeket.**
 
-A [v2.0 protokoll dokumentációját](active-directory-v2-protocols.md) már be van frissített tooreflect ezeket a változásokat, így használhatja referenciaként létrehozásában, frissítse a kódot.
+A [v2.0 protokoll dokumentációját](active-directory-v2-protocols.md) már frissítették a változásoknak, így használhatja referenciaként létrehozásában, frissítse a kódot.
 
-Ha hello hatókörön hello változások további kérdése van, adjon érzi, hogy szabad tooreach toous a Twitteren, out @AzureAD.
+Ha módosításait hatókörön további kérdése van, küldje el nyugodtan érheti el nekünk a Twitteren: @AzureAD.
 
 ## <a name="how-often-will-protocol-changes-occur"></a>Milyen gyakran történik a protokoll módosításait?
-Bármely további megtörje változik toohello hitelesítési protokollok nem várható.  Ezeket a módosításokat, azokat egy kiadási szándékosan azt vannak kötegelése, így nem kell a frissítési folyamat az ilyen típusú toogo újra bármikor elérhető.  Természetesen folytatjuk tooadd szolgáltatások toohello v2.0 hitelesítési szolgáltatás, amely kihasználhatja az összevont van, de ezeket a módosításokat adalékanyag és nem a meglévő kódot sortörés.
+A hitelesítési protokollok működéséhez minden további megtörje vált nem várható.  Ezeket a módosításokat, azokat egy kiadási szándékosan azt vannak kötegelése, így nem kell végighaladnia az ilyen típusú frissítési folyamat újra bármikor elérhető.  Természetesen segítségével szolgáltatásokat adhat a v2.0 összevont hitelesítési szolgáltatás, amely kihasználhatja a rendszer a Folytatás, de ezeket a módosításokat kell adalékanyag és nem a meglévő kódot sortörés.
 
-Végül tapasztalatairól toosay Köszönjük, hogy dolgot kipróbálásánál hello próbaidőszak alatt.  hello elemzések és a korai támogatók véleményeket hasznos információt eddigi, és Reméljük, hogy a vélemények és ötleteket tooshare fogja folytatni.
+Végül szeretnénk dolgot próbálhatja ki a próbaidőszak alatt Köszönjük, hogy fel.  Az elemzések és a korai támogatók véleményeket hasznos információt eddigi, és Reméljük, megoszthatja vélemények és ötleteket fogja folytatni.
 
 Örömmel kódolási!
 
-a Microsoft Identity osztás hello
+A Microsoft Identity osztály
 

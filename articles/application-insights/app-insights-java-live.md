@@ -1,5 +1,5 @@
 ---
-title: "aaaApplication Insights Java webes alkalmazásokat, amelyek már élő"
+title: "Az Application Insights Java webes alkalmazásokhoz, amelyek még élő"
 description: "A kiszolgálón már futó webalkalmazás figyelése"
 services: application-insights
 documentationcenter: java
@@ -13,46 +13,46 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/10/2016
 ms.author: bwren
-ms.openlocfilehash: 2b01cd61657522ccf1d2d97b2a29cdeb08ec9a18
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a2731e3e44f8f3d104d8abc7dbe71fe3a4c3a690
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="application-insights-for-java-web-apps-that-are-already-live"></a>Az Application Insights Java webes alkalmazásokhoz, amelyek még élő
 
 
-Ha már a J2EE kiszolgálón futó webalkalmazás, figyelés megkezdése a [Application Insights](app-insights-overview.md) hello nélkül kell toomake módosítások code vagy fordítsa újra a projektet. Ezzel a lehetőséggel, HTTP-kérelmek küldött tooyour server, a nem kezelt kivételek és a teljesítményszámlálók adatainak beolvasása.
+Ha már a J2EE kiszolgálón futó webalkalmazás, figyelés megkezdése a [Application Insights](app-insights-overview.md) kód módosításokat, vagy a projekt újrafordítása szükségessége nélkül. Ezzel a kapcsolóval akkor a kiszolgáló, a nem kezelt kivételek és a teljesítményszámlálók elküldött HTTP-kérelmek adatainak beolvasása.
 
-Szüksége lesz egy előfizetés túl[Microsoft Azure](https://azure.com).
+Ehhez egy [Microsoft Azure](https://azure.com)-előfizetésre van szüksége.
 
 > [!NOTE]
-> Ezen az oldalon hello eljárás hello SDK tooyour webalkalmazás futásidejű ad hozzá. A futásidejű instrumentation akkor hasznos, ha nem szeretné, hogy tooupdate vagy építse újra a forráskódot. De ha lehetséges, javasoljuk, hogy [hello SDK toohello forráskód hozzáadása](app-insights-java-get-started.md) helyette. Amely esetén több lehetősége is van például kód tootrack felhasználói tevékenység írása.
+> Az eljárás ezen az oldalon az SDK hozzáadása a webes alkalmazás futásidőben. A futásidejű instrumentation akkor hasznos, ha nem szeretné frissíteni, vagy építse újra a forráskódot. De ha lehetséges, javasoljuk, hogy [adja hozzá az SDK forráskódja](app-insights-java-get-started.md) helyette. Amely több lehetőséget biztosít kódot ír, például felhasználói tevékenységek nyomon követésére.
 > 
 > 
 
 ## <a name="1-get-an-application-insights-instrumentation-key"></a>1. Application Insights-kialakítási kulcs beszerzése
-1. Jelentkezzen be toohello [Microsoft Azure-portálon](https://portal.azure.com)
-2. Hozzon létre egy új Application Insights-erőforrást, és állítsa be a hello alkalmazás típusú tooJava webes alkalmazást.
+1. Jelentkezzen be a [Microsoft Azure-portálon](https://portal.azure.com)
+2. Hozzon létre egy új Application Insights-erőforrást, és állítsa be az alkalmazás típusának Java-webalkalmazáshoz.
    
     ![Adjon meg egy nevet, válassza ki a Java webalkalmazást, és kattintson a Létrehozás gombra.](./media/app-insights-java-live/02-create.png)
 
-    hello erőforrás néhány másodpercen belül jön létre.
+    Az erőforrás néhány másodpercen belül jön létre.
 
-4. Nyissa meg a hello új erőforrás és a rendszerállapot-kulcs beszerzése. Szüksége lesz toopaste ezt a kulcsot a kód projektben hamarosan.
+4. Nyissa meg az új erőforrást, és a rendszerállapot-kulcs beszerzése. Ezt a kulcsot nemsokára a kódprojektbe kell illesztenie.
    
-    ![Hello új erőforrás-áttekintés kattintson a tulajdonságok és hello Instrumentation kulcs másolása](./media/app-insights-java-live/03-key.png)
+    ![Az új erőforrás áttekintésében kattintson a Tulajdonságok gombra, és másolja le a kialakítási kulcsot](./media/app-insights-java-live/03-key.png)
 
-## <a name="2-download-hello-sdk"></a>2. Hello SDK letöltése
-1. Töltse le a hello [Javához készült Application Insights SDK](https://aka.ms/aijavasdk). 
-2. A kiszolgálón bontsa ki a hello SDK tartalma toohello könyvtárát, amelyből a projekt bináris be van töltve. Ha Tomcat használata esetén ez a könyvtár általában kell a`webapps/<your_app_name>/WEB-INF/lib`
+## <a name="2-download-the-sdk"></a>2. Az SDK letöltése
+1. Töltse le a [Javához készült Application Insights SDK-t](https://aka.ms/aijavasdk). 
+2. A kiszolgálón bontsa ki az SDK tartalma, amelyből be vannak töltve a projekt bináris fájlokat a könyvtárba. Ha Tomcat használata esetén ez a könyvtár általában kell a`webapps/<your_app_name>/WEB-INF/lib`
 
-Ne feledje, hogy toorepeat ez összes server-példányt, és az egyes alkalmazásokhoz.
+Vegye figyelembe, hogy meg kell ismételni ezt összes server-példányt, és az egyes alkalmazásokhoz.
 
 ## <a name="3-add-an-application-insights-xml-file"></a>3. Az Application Insights XML-fájl hozzáadása
-Hozzon létre ApplicationInsights.xml hello SDK hozzá hello mappában. Kerüljenek, a következő XML hello.
+Hozzon létre a mappában, az SDK hozzá ApplicationInsights.xml. Helyezze be a következő XML.
 
-Helyettesítő hello instrumentation kulcs portáltól kapott hello Azure-portálon.
+Helyettesítse be az Azure Portalról kapott kialakítási kulcsot.
 
 ```XML
 
@@ -60,7 +60,7 @@ Helyettesítő hello instrumentation kulcs portáltól kapott hello Azure-portá
     <ApplicationInsights xmlns="http://schemas.microsoft.com/ApplicationInsights/2013/Settings" schemaVersion="2014-05-30">
 
 
-      <!-- hello key from hello portal: -->
+      <!-- The key from the portal: -->
 
       <InstrumentationKey>** Your instrumentation key **</InstrumentationKey>
 
@@ -74,7 +74,7 @@ Helyettesítő hello instrumentation kulcs portáltól kapott hello Azure-portá
       </TelemetryModules>
 
       <!-- Events correlation (not required for bare API) -->
-      <!-- These initializers add context data tooeach event -->
+      <!-- These initializers add context data to each event -->
 
       <TelemetryInitializers>
         <Add   type="com.microsoft.applicationinsights.web.extensibility.initializers.WebOperationIdTelemetryInitializer"/>
@@ -87,14 +87,14 @@ Helyettesítő hello instrumentation kulcs portáltól kapott hello Azure-portá
     </ApplicationInsights>
 ```
 
-* minden telemetriai tétel együtt küldött hello instrumentation kulcs, és közli az Application Insights toodisplay legyen az erőforrás.
-* hello HTTP-kérelem összetevő nem kötelező megadni. Automatikusan elküldi a telemetriai kérelem és válasz alkalommal toohello portál.
-* Korrelációs események egy hozzáadása toohello HTTP-kérelem összetevő. Hozzárendel egy azonosító tooeach kérelem hello kiszolgáló által fogadott, és felveszi ezt az azonosítót telemetriai adatot tulajdonság tooevery elemként hello tulajdonság "Operation.Id". Állítsa be a szűrőt minden kérelemhez társított toocorrelate hello telemetriai lehetővé teszi [diagnosztikai keresési](app-insights-diagnostic-search.md).
+* A kialakítási kulcsot a telemetria minden elemével megkapja, és ez közli az Application Insights eszközzel, hogy megjelenítse azt az erőforrásban.
+* A HTTP-kérelemösszetevő nem kötelező. Automatikusan telemetriát küld a kérelmekkel és válaszidőkkel kapcsolatban a portálra.
+* Az eseménykorreláció a HTTP-kérelemösszetevő további eleme. Azonosítót rendel a kiszolgáló által fogadott összes kérelemhez, és az azonosítót „Operation.Id” tulajdonságként hozzáadja a telemetria minden eleméhez. Ez lehetővé teszi, hogy minden kérelemhez társított úgy, hogy egy szűrőt telemetriai adatok összefüggéseket [diagnosztikai keresési](app-insights-diagnostic-search.md).
 
 ## <a name="4-add-an-http-filter"></a>4. HTTP-szűrő hozzáadása
-Keresse meg, és nyissa meg a projekt, és a következő kódrészletét hello webalkalmazás csomópont alatt, ahol az alkalmazás szűrőit egyesítési hello hello web.xml fájlt.
+Keresse meg és nyissa meg a web.xml fájlt a projektben, és a webalkalmazás csomópont alatt, ahol az alkalmazás szűrők vannak konfigurálva a következő kódrészletét egyesíteni.
 
-hello szűrő tooget hello legpontosabb eredmények leképezéshez előtt az összes többi szűrőt.
+A legpontosabb eredmények érdekében le kell képezni a szűrőt az összes többi szűrő előtt.
 
 ```XML
 
@@ -111,29 +111,29 @@ hello szűrő tooget hello legpontosabb eredmények leképezéshez előtt az ös
 ```
 
 ## <a name="5-check-firewall-exceptions"></a>5. Ellenőrizze a tűzfal kivételei közé
-Szükség lehet túl[értéke kivételeket toosend kimenő adatok](app-insights-ip-addresses.md).
+Szükség lehet [kimenő adatküldés kivételeket](app-insights-ip-addresses.md).
 
 ## <a name="6-restart-your-web-app"></a>6. A webalkalmazás újraindítása
 ## <a name="7-view-your-telemetry-in-application-insights"></a>7. A telemetria megtekintése az Application Insights szolgáltatásban
-Térjen vissza az Application Insights-erőforrás tooyour [Microsoft Azure-portálon](https://portal.azure.com).
+Térjen vissza az Application Insights-erőforráshoz a [Microsoft Azure Portalon](https://portal.azure.com).
 
-Telemetriai adatainak HTTP-kérelmek hello áttekintése panelen jelenik meg. (Ha nincsenek ott, várjon néhány másodpercig, majd kattintson a Frissítés gombra.)
+Telemetriai adatainak HTTP-kérelmek az Áttekintés panel jelenik meg. (Ha nincsenek ott, várjon néhány másodpercig, majd kattintson a Frissítés gombra.)
 
 ![mintaadatok](./media/app-insights-java-live/5-results.png)
 
-Kattintson a diagram toosee keresztül metrikák részletes. 
+Részletesebb mérőszámokért kattintson bármelyik diagramra. 
 
 ![](./media/app-insights-java-live/6-barchart.png)
 
-És egy kérelem hello tulajdonságainak megtekintésekor láthatja hello telemetriai események például a kérelmek és kivételek társítva.
+És egy kérelem tulajdonságainak megtekintésekor láthatja a telemetriai események például a kérelmek és kivételek társítva.
 
 ![](./media/app-insights-java-live/7-instance.png)
 
 [További információk a metrikákról.](app-insights-metrics-explorer.md)
 
 ## <a name="next-steps"></a>Következő lépések
-* [Adja hozzá a telemetriai adatok tooyour weblapok](app-insights-javascript.md) toomonitor nézetek és a felhasználó metrikák lapon.
-* [Webalkalmazás-tesztek beállítása](app-insights-monitor-web-app-availability.md) toomake meg arról, hogy az alkalmazás élő és rugalmas marad.
+* [Telemetriai adatok felvétele a weblapok](app-insights-javascript.md) figyelő Lapmegtekintések és felhasználói metrikákat.
+* [Webalkalmazás-tesztek beállítása](app-insights-monitor-web-app-availability.md) győződjön meg arról, az alkalmazás marad élő és rugalmas.
 * [Naplózási nyomkövetés rögzítése](app-insights-java-trace-logs.md)
-* [Keresést az események és a naplók](app-insights-diagnostic-search.md) toohelp problémák diagnosztizálásához.
+* [Keresést az események és a naplók](app-insights-diagnostic-search.md) problémák diagnosztizálásához.
 

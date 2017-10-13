@@ -1,6 +1,6 @@
 ---
-title: "Linux virtuális gép az Azure kiterjesztése aaaOMS |} Microsoft Docs"
-description: "A Linux virtuális gépet egy virtuálisgép-bővítmény használatával hello OMS-ügynököt telepíteni."
+title: "Virtuálisgép-bővítmény OMS Azure Linux |} Microsoft Docs"
+description: "A Linux virtuális gépet egy virtuálisgép-bővítmény használatával az OMS-ügynök telepítése."
 services: virtual-machines-linux
 documentationcenter: 
 author: neilpeterson
@@ -15,23 +15,23 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 04/26/2017
 ms.author: nepeters
-ms.openlocfilehash: 0fc8003d1fae6c043eef18ae78d12f9304b70832
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 138fc8c98ea6f409b28407b20851c96ecc618b09
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="oms-virtual-machine-extension-for-linux"></a>Linux OMS virtuálisgép-bővítmény
 
 ## <a name="overview"></a>Áttekintés
 
-Az Operations Management Suite (OMS) figyelési riasztási és riasztási szervizelési képességeket biztosít a felhő között és a helyszíni eszközök. hello OMS-ügynököt a virtuálisgép-bővítmény Linux közzétett és a Microsoft támogatja. hello bővítmény hello OMS-ügynököt telepít Azure virtuális gépeken, és regisztrálja a virtuális gépek be egy meglévő OMS-munkaterület. Ez a dokumentum részletek hello támogatott platformokat, a konfigurációk és a központi telepítési beállítások hello OMS virtuálisgép-bővítmény Linux.
+Az Operations Management Suite (OMS) figyelési riasztási és riasztási szervizelési képességeket biztosít a felhő között és a helyszíni eszközök. Az OMS-ügynököt Linux virtuálisgép-bővítmény közzétett és a Microsoft támogatja. A bővítmény, az OMS-ügynököt telepít Azure virtuális gépeken, és regisztrálja a virtuális gépek be egy meglévő OMS-munkaterület. Ez a dokumentum részletesen a támogatott platformok, a konfigurációk és a Linux virtuálisgép-bővítmény OMS vonatkozó telepítési lehetőségeket.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
 ### <a name="operating-system"></a>Operációs rendszer
 
-hello OMS-ügynököt bővítmény futtatható a Linux terjesztéseket ellen.
+Az OMS-ügynököt bővítmény futtatható a Linux terjesztéseket ellen.
 
 | Disztribúció | Verzió |
 |---|---|
@@ -44,11 +44,11 @@ hello OMS-ügynököt bővítmény futtatható a Linux terjesztéseket ellen.
 
 ### <a name="internet-connectivity"></a>Internetkapcsolat
 
-hello Linux kiterjesztése OMS-ügynököt kell lennie, hogy hello a cél virtuális gép csatlakoztatott toohello internet. 
+Az OMS-ügynököt bővítmény Linux megköveteli, hogy a cél virtuális gép csatlakozik az internethez. 
 
 ## <a name="extension-schema"></a>A séma kiterjesztése
 
-hello következő JSON látható hello OMS-ügynököt bővítmény hello sémáját. hello bővítmény hello munkaterület azonosítója és munkaterület hello cél OMS-munkaterület; a kulcs szükséges. Ezeket az értékeket az hello OMS-portálon található. Hello munkaterületkulcsot bizalmas adatokat kell kezelni, mert azt egy védett beállítás konfigurációban kell tárolni. Azure virtuális gépekre vonatkozó beállításával bővítmény védett adatok titkosítva, és csak visszafejteni hello cél virtuális gépen. Vegye figyelembe, hogy **workspaceId** és **workspaceKey** -és nagybetűk.
+A következő JSON jeleníti meg az OMS-ügynököt bővítmény sémáját. A bővítmény szükséges a munkaterület azonosítója és a cél OMS-munkaterület; kulcsát Ezeket az értékeket az OMS-portálon található. A munkaterület-kulcs bizalmas adatokat kell kezelni, mert azt egy védett beállítás konfigurációban kell tárolni. Az Azure Virtuálisgép-bővítmény védett beállítás adatokat titkosít, és csak visszafejti a cél virtuális gépen. Vegye figyelembe, hogy **workspaceId** és **workspaceKey** -és nagybetűk.
 
 ```json
 {
@@ -87,11 +87,11 @@ hello következő JSON látható hello OMS-ügynököt bővítmény hello sémá
 
 ## <a name="template-deployment"></a>Sablonalapú telepítés
 
-Az Azure Virtuálisgép-bővítmények az Azure Resource Manager-sablonok is telepíthető. Sablonok ideálisak, például a bevezetési tooOMS feladás egy vagy több központi telepítési beállításokra van szükség egy vagy több virtuális gépek telepítése során. Egy minta Resource Manager-sablon, amely tartalmazza az OMS-ügynök Virtuálisgép-bővítmény hello hello található [Azure Quick Start gyűjtemény](https://github.com/Azure/azure-quickstart-templates/tree/master/201-oms-extension-ubuntu-vm). 
+Az Azure Virtuálisgép-bővítmények az Azure Resource Manager-sablonok is telepíthető. Sablonok bevezetése az OMS-be például a feladás egy vagy több központi telepítési beállításokra van szükség egy vagy több virtuális gépek telepítése során ideális. Az OMS-ügynök Virtuálisgép-bővítmény tartalmazó minta Resource Manager sablon megtalálható a [Azure Quick Start gyűjtemény](https://github.com/Azure/azure-quickstart-templates/tree/master/201-oms-extension-ubuntu-vm). 
 
-egy virtuálisgép-bővítmény hello JSON konfigurációja ágyazott hello virtuálisgép-erőforrást, vagy hello gyökér- vagy legfelső szintű erőforrás-kezelő JSON-sablon elhelyezve. hello JSON konfigurációs hello elhelyezését hello értéket hello erőforrás neve és típusa befolyásolja. További információkért lásd: [nevét és típusát gyermekerőforrásait beállítása](../../azure-resource-manager/resource-manager-template-child-resource.md). 
+A JSON-konfiguráció a virtuálisgép-bővítmény a virtuálisgép-erőforrás ágyazhatók egymásba, vagy elhelyezve, a gyökér vagy a legfelső szintű erőforrás-kezelő JSON-sablon. A JSON-konfiguráció elhelyezési erőforrás nevét és típusát. értéke befolyásolja. További információkért lásd: [nevét és típusát gyermekerőforrásait beállítása](../../azure-resource-manager/resource-manager-template-child-resource.md). 
 
-hello alábbi példa azt feltételezi, hogy hello OMS bővítmény hello virtuálisgép-erőforrás van beágyazva. Ha hello bővítmény erőforrás beágyazási, hello JSON hello kerül `"resources": []` objektum hello virtuális gép.
+Az alábbi példa azt feltételezi, hogy a virtuálisgép-erőforrást az OMS-bővítmény van beágyazva. A bővítmény erőforrás beágyazási, amikor bekerül a JSON a `"resources": []` objektum a virtuális gép.
 
 ```json
 {
@@ -116,7 +116,7 @@ hello alábbi példa azt feltételezi, hogy hello OMS bővítmény hello virtuá
 }
 ```
 
-Hello bővítmény JSON hello gyökerében hello sablon elhelyezésekor hello erőforrás neve tartalmaz egy hivatkozást toohello szülő virtuális gép, és hello típus hello beágyazott konfigurációs tükrözi.  
+A bővítmény JSON elhelyezésekor a sablon gyökerében, az erőforrás nevét a szülő virtuális gép egy hivatkozást tartalmaz, és a típus beágyazott konfigurációját tükrözi.  
 
 ```json
 {
@@ -143,7 +143,7 @@ Hello bővítmény JSON hello gyökerében hello sablon elhelyezésekor hello er
 
 ## <a name="azure-cli-deployment"></a>Az Azure CLI-telepítés
 
-hello Azure CLI használt toodeploy hello OMS-ügynök VM bővítmény tooan meglévő virtuális gép is lehet. Cserélje le a hello OMS kulcs és az OMS-azonosító az OMS-munkaterület együtt. 
+Az Azure CLI segítségével az OMS-ügynök Virtuálisgép-bővítmény telepítése egy meglévő virtuális gépre. Cserélje le az OMS-kulcsot és az OMS-azonosító az OMS-munkaterület szerintiek. 
 
 ```azurecli
 az vm extension set \
@@ -159,13 +159,13 @@ az vm extension set \
 
 ### <a name="troubleshoot"></a>Hibaelhárítás
 
-A bővítmény központi telepítések hello állapotával kapcsolatos információkat lehet adatokat beolvasni a hello Azure-portálon, és hello Azure parancssori felület használatával. egy adott virtuális Gépet, futtassa a következő parancs használatával hello kiterjesztéseinek toosee hello telepítési állapota hello Azure parancssori felület.
+Bővítmény központi telepítések állapotára vonatkozó lehet adatokat beolvasni az Azure-portálon, és az Azure parancssori felület használatával. A megadott virtuális gépek bővítmények központi telepítési állapotának megtekintéséhez a következő parancsot az Azure parancssori felület használatával.
 
 ```azurecli
 az vm extension list --resource-group myResourceGroup --vm-name myVM -o table
 ```
 
-Bővítmény végrehajtási kimeneti van naplózott toohello következő fájl:
+A következő fájl kerül a bővítmény végrehajtás kimenetének:
 
 ```
 /opt/microsoft/omsagent/bin/stdout
@@ -175,15 +175,15 @@ Bővítmény végrehajtási kimeneti van naplózott toohello következő fájl:
 
 | Hibakód: | Jelentése | Lehetséges művelet |
 | :---: | --- | --- |
-| 10 | Virtuális gép már csatlakoztatott tooan OMS-munkaterület | tooconnect hello VM toohello munkaterület hello bővítmény sémában megadott stopOnMultipleConnections toofalse állítsa nyilvános beállításai, vagy távolítsa el ezt a tulajdonságot. Ez a virtuális gép lekérdezi számlázva után az egyes munkaterületeken van csatlakoztatva. |
-| 11 | Érvénytelen a megadott konfigurációs toohello bővítmény | Kövesse az előző példák tooset a telepítéshez szükséges minden tulajdonság értékével hello. |
-| 12 | hello dpkg Csomagkezelő zárolva van | Győződjön meg arról, hogy minden dpkg frissítési műveletek hello gépen végzett, és próbálkozzon újra. |
-| 20 | Túl korán nevű engedélyezése | [Frissítés hello Azure Linux ügynök](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/update-agent) toohello elérhető legújabb verzióra. |
-| 51 | A bővítmény nem támogatott a hello virtuális gép operációs rendszer | |
-| 55 | Nem lehet kapcsolódni a Microsoft Operations Management Suite szolgáltatás toohello | Ellenőrizze, hogy hello rendszernek van-e Internet-hozzáféréssel, vagy adtak meg, hogy érvényes HTTP-proxy. Ezenkívül ellenőrizze a helyességét hello hello munkaterület azonosítója. |
+| 10 | Virtuális gép már csatlakoztatva van egy OMS-munkaterület | A virtuális gép csatlakozik a bővítmény sémában megadott munkaterület, stopOnMultipleConnections értéke HAMIS, a nyilvános beállításai, vagy távolítsa el ezt a tulajdonságot. Ez a virtuális gép lekérdezi számlázva után az egyes munkaterületeken van csatlakoztatva. |
+| 11 | A bővítmény megadott Érvénytelen konfiguráció | Kövesse a fenti példákban beállítása a telepítéshez szükséges minden tulajdonság értékével. |
+| 12 | A dpkg package manager zárolva van | Győződjön meg arról, hogy minden dpkg frissítési műveletek a számítógépen végzett, és próbálkozzon újra. |
+| 20 | Túl korán nevű engedélyezése | [Az Azure Linux ügynök frissítése](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/update-agent) az elérhető legújabb verzióra. |
+| 51 | Ezt a bővítményt a virtuális gép operációs rendszer nem támogatott | |
+| 55 | Nem lehet kapcsolódni a Microsoft Operations Management Suite szolgáltatással | Ellenőrizze, hogy a rendszernek van-e Internet-hozzáféréssel, vagy adtak meg, hogy érvényes HTTP-proxy. Ezenkívül ellenőrizze a helyességét a munkaterület azonosítóját. |
 
-További hibaelhárítási információért hello található [OMS-ügynök-az-Linux hibaelhárítási útmutatója](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/Troubleshooting.md#).
+További hibaelhárítási információért található meg a [OMS-ügynök-az-Linux hibaelhárítási útmutatója](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/Troubleshooting.md#).
 
 ### <a name="support"></a>Támogatás
 
-Ha ez a cikk bármely pontján további segítségre van szüksége, forduljon az Azure szakértői hello hello [MSDN Azure és a Stack Overflow fórumok](https://azure.microsoft.com/en-us/support/forums/). Másik lehetőségként is fájl az Azure támogatási incidens. Nyissa meg toohello [az Azure támogatási webhelyén](https://azure.microsoft.com/en-us/support/options/) válassza ki a Get-támogatást. Támogatja az Azure használatával kapcsolatos információkért olvassa el a hello [Microsoft Azure-támogatás – gyakori kérdések](https://azure.microsoft.com/en-us/support/faq/).
+Ha ez a cikk bármely pontján további segítségre van szüksége, forduljon az Azure-szakértők a a [MSDN Azure és a Stack Overflow fórumok](https://azure.microsoft.com/en-us/support/forums/). Másik lehetőségként is fájl az Azure támogatási incidens. Lépjen a [az Azure támogatási webhelyén](https://azure.microsoft.com/en-us/support/options/) válassza ki a Get-támogatási szolgálathoz. Támogatja az Azure használatával kapcsolatos információkért olvassa el a [Microsoft Azure-támogatás – gyakori kérdések](https://azure.microsoft.com/en-us/support/faq/).

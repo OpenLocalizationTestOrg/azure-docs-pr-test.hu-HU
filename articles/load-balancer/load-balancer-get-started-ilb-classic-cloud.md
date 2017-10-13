@@ -1,9 +1,9 @@
 ---
-title: "Azure-szolgáltatásokhoz belső terheléselosztót aaaCreate |} Microsoft Docs"
-description: "Ismerje meg, hogyan toocreate egy belső terheléselosztó hello klasszikus üzembe helyezési modellben a PowerShell használatával"
+title: "Belső terheléselosztó létrehozása az Azure Cloud Serviceshez | Microsoft Docs"
+description: "Ismerje meg, hogyan hozható létre belső terheléselosztó a PowerShell használatával a klasszikus üzembehelyezési modellben"
 services: load-balancer
 documentationcenter: na
-author: kumudd
+author: KumudD
 manager: timlt
 tags: azure-service-management
 ms.assetid: 57966056-0f46-4f95-a295-483ca1ad135d
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: fe7975bca7bec3248626b0ad0fad6823e278ade2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6616c26ede13919b94a098dc38bdd6e2f0fc0b5b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-creating-an-internal-load-balancer-classic-for-cloud-services"></a>Bevezetés a belső terheléselosztó (klasszikus) felhőszolgáltatásokhoz történő létrehozásába
 
@@ -28,32 +28,32 @@ ms.lasthandoff: 10/06/2017
 > * [Felhőszolgáltatások](../load-balancer/load-balancer-get-started-ilb-classic-cloud.md)
 
 > [!IMPORTANT]
-> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md).  Ez a cikk hello klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén hello Resource Manager modellt használja. Ismerje meg, hogyan túl[hello Resource Manager modellt használja a következő lépésekkel](load-balancer-get-started-ilb-arm-ps.md).
+> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md).  Ez a cikk a klasszikus üzembehelyezési modellt ismerteti. A Microsoft azt javasolja, hogy az új telepítések esetén a Resource Manager modellt használja. Ismerje meg, [hogyan hajthatja végre ezeket a lépéseket a Resource Manager-modell használatával](load-balancer-get-started-ilb-arm-ps.md).
 
 ## <a name="configure-internal-load-balancer-for-cloud-services"></a>Belső terheléselosztó konfigurálása a felhőszolgáltatásokhoz
 
-A belső terheléselosztó használata virtuális gépek és felhőszolgáltatások esetén egyaránt támogatott. Belső terheléselosztó a végpont egy felhőalapú szolgáltatás, amely a regionális virtuális hálózatokon kívül létrehozott lesz csak a felhőszolgáltatáshoz hello belülről érhetők el.
+A belső terheléselosztó használata virtuális gépek és felhőszolgáltatások esetén egyaránt támogatott. Egy regionális virtuális hálózaton kívül eső felhőszolgáltatásban létrehozott belső terheléselosztói végpont csak az adott felhőszolgáltatásban érhető el.
 
-belső terheléselosztó-konfiguráció hello beállítása hello létrehozása hello hello felhőalapú szolgáltatás, az első központi telepítése során, ahogy az alábbi minta hello toobe rendelkezik.
+A belső terheléselosztó konfigurációját be kell állítania az alábbi mintában látható módon, amikor az első telepítést létrehozza a felhőszolgáltatásban.
 
 > [!IMPORTANT]
-> Egy előfeltétel toorun hello lépéseket toohave hello felhő üzembe helyezése már létrehozott egy virtuális hálózathoz. Virtuális hálózat neve és az alhálózati név toocreate hello belső terheléselosztás hello kell.
+> Az alábbi lépések futtatásának előfeltétele, hogy a felhőtelepítéshez már létre legyen hozva egy virtuális hálózat. A belső terheléselosztás létrehozásához szüksége lesz a virtuális hálózat és az alhálózat nevére.
 
 ### <a name="step-1"></a>1. lépés
 
-Nyissa meg a felhő üzembe helyezése a Visual Studio hello szolgáltatás konfigurációs fájlját (.cscfg), és adja hozzá a következő szakasz toocreate hello belső terheléselosztás, a hello utolsó hello "`</Role>`" hello hálózati konfigurációs elemet.
+Nyissa meg a felhőtelepítéshez szükséges szolgáltatáskonfigurációs fájlt (.cscfg) a Visual Studióban, és a hálózat konfigurálásához adja hozzá a következő szakaszt az utolsó „`</Role>`” elem alatt, hogy létrehozhassa a belső terheléselosztást.
 
 ```xml
 <NetworkConfiguration>
     <LoadBalancers>
-    <LoadBalancer name="name of hello load balancer">
+    <LoadBalancer name="name of the load balancer">
         <FrontendIPConfiguration type="private" subnet="subnet-name" staticVirtualNetworkIPAddress="static-IP-address"/>
     </LoadBalancer>
     </LoadBalancers>
 </NetworkConfiguration>
 ```
 
-Adjunk hello hálózati konfigurációs fájl tooshow megjelenését hello értékeit. Hello példában feltételezzük létrehozott egy "test_vnet" meghívva egy alhálózat 10.0.0.0/24 test_subnet és egy statikus IP-cím 10.0.0.4 nevű Vnetet. hello terheléselosztó testLB lesznek elnevezve.
+Adja meg a hálózat konfigurációs fájljához szükséges értékeket, hogy lássa, hogyan fog kinézni. A példában feltételeztük, létrehozott egy „test_vnet” nevű virtuális hálózatot, amely egy test_subnet nevű 10.0.0.0/24 alhálózatot tartalmaz, és a statikus IP-címe 10.0.0.4. A terheléselosztó elnevezése testLB lesz.
 
 ```xml
 <NetworkConfiguration>
@@ -65,11 +65,11 @@ Adjunk hello hálózati konfigurációs fájl tooshow megjelenését hello ért�
 </NetworkConfiguration>
 ```
 
-Hello load balancer séma kapcsolatos további információkért lásd: [Hozzáadás terheléselosztó](https://msdn.microsoft.com/library/azure/dn722411.aspx).
+A terheléselosztó sémájával kapcsolatos további információkért lásd: [Add load balancer](https://msdn.microsoft.com/library/azure/dn722411.aspx) (Terheléselosztó hozzáadása).
 
 ### <a name="step-2"></a>2. lépés
 
-Hello szolgáltatás definíciós (.csdef) fájl tooadd végpontok toohello belső terheléselosztás módosítása. hello szolgáltatásdefiníciós fájl hello szerepkör példányok toohello belső terheléselosztás ad hozzá, hello néhány percet a szerepkör példánya jön létre.
+Ha végpontokat szeretne hozzáadni a belső terheléselosztáshoz, módosítsa a szolgáltatásdefiníciós fájlt (.csdef). Szerepkörpéldány létrehozásakor a szolgáltatásdefiníciós fájl hozzáadja a szerepkörpéldányokat a belső terheléselosztáshoz.
 
 ```xml
 <WorkerRole name="worker-role-name" vmsize="worker-role-size" enableNativeCodeExecution="[true|false]">
@@ -79,7 +79,7 @@ Hello szolgáltatás definíciós (.csdef) fájl tooadd végpontok toohello bels
 </WorkerRole>
 ```
 
-Következő hello ugyanaz a fenti példa hello értékei adjuk hozzá hello értékek toohello szolgáltatásdefiníciós fájlban.
+A fenti példa értékeit felhasználva adja hozzá az értékeket a szolgáltatásdefiníciós fájlhoz.
 
 ```xml
 <WorkerRole name="WorkerRole1" vmsize="A7" enableNativeCodeExecution="[true|false]">
@@ -89,7 +89,7 @@ Következő hello ugyanaz a fenti példa hello értékei adjuk hozzá hello ért
 </WorkerRole>
 ```
 
-hello hálózati forgalom használ a 80-as portot a bejövő kérelmeket küldő tooworker szerepkörpéldányokat is 80-as porton hello testLB terheléselosztó segítségével elosztott terhelésű lesz.
+A hálózati forgalom terhelésének elosztása a testLB terheléselosztóval végezhető el, ehhez a 80-as portot kell használni a bejövő kérelmek fogadásához, valamint a feldolgozói szerepkörpéldányokra való küldést szintén a 80-as porton keresztül kell végezni.
 
 ## <a name="next-steps"></a>Következő lépések
 

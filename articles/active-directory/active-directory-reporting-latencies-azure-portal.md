@@ -1,6 +1,6 @@
 ---
-title: "az Active Directory jelentéskészítési késések aaaAzure |} Microsoft Docs"
-description: "További tudnivalók: hello mennyi ideig tart a jelentési események tooshow mentése az Azure-portálon"
+title: "Azure Active Directory jelentéskészítés késések |} Microsoft Docs"
+description: "További tudnivalók az jelentési eseményeket az Azure-portálon jelenik meg a szükséges idő"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,27 +15,27 @@ ms.workload: identity
 ms.date: 07/15/2017
 ms.author: markvi;dhanyahk
 ms.reviewer: dhanyahk
-ms.openlocfilehash: eee959331262ba59b313dd038cb54699dbef48a4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 93cb0baeab8f13f81257ed1bd32ed08561c54b72
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="azure-active-directory-reporting-latencies"></a>Azure Active Directory jelentéskészítés késések
 
-A [reporting](active-directory-preview-explainer.md) hello Azure Active Directory, az beszerzése toodetermine hogyan működik a környezetében szükséges összes hello információkat. a jelentéskészítési adatok tooshow fel a hello Azure-portálon is várakozási időt hello mennyisége. 
+A [reporting](active-directory-preview-explainer.md) az Azure Active Directoryban, meg kell határoznia, hogyan működik a környezet összes információt lekérni. Mennyi ideig tart a jelentési adatok jelennek meg az Azure-portálon késés is nevezik. 
 
-Ez a témakör felsorolja hello késési adatok hello jelentéskészítési kategóriából hello Azure-portálon. 
+Ez a témakör ismerteti az Azure portálon található összes jelentési kategóriák késési adatok. 
 
 
 ## <a name="activity-reports"></a>Tevékenységjelentések
 
 Nincsenek Tevékenységjelentés két terület:
 
-- **Bejelentkezési tevékenységek** – kezelt alkalmazások és a felhasználói bejelentkezési tevékenységek hello használatával kapcsolatos információért
+- **Bejelentkezési tevékenységek** – A felügyelt alkalmazások használatával és a felhasználók bejelentkezési tevékenységeivel kapcsolatos információk
 - **Naplók** – Rendszertevékenység információk a felhasználó- és csoportfelügyeletre, valamint a felügyelt alkalmazásokra és a címtártevékenységekre vonatkozóan
 
-a következő táblázat hello hello késési adatok Tevékenységjelentések sorolja fel.
+A következő táblázat a késési adatok Tevékenységjelentések.
 
 | Jelentés | Minimális | Átlagos | Maximális |
 | :-- | --- | --- | --- |
@@ -43,17 +43,17 @@ a következő táblázat hello hello késési adatok Tevékenységjelentések so
 | Bejelentkezések               | 15 perc  | 15 perc | 2 óra *   |
 
 >[!NOTE]
-> Néhány bejelentkezések tevékenységre vonatkozó adatok az örökölt office-alkalmazások érkező hello adatok tooshow végzi a jelentéseket a too8 óráig is eltarthat. 
+> Egyes örökölt Office-alkalmazások bejelentkezési tevékenységeinek adatai esetében akár 8 órát is igénybe vehet, amíg a naplóadatok megjelennek. 
 
 
 ## <a name="security-reports"></a>Biztonsági jelentések
 
 Nincsenek biztonsági reporting két terület:
 
-- **Kockázatos bejelentkezések** -kockázatos bejelentkezés egy bejelentkezési kísérlet, amely előfordulhat, hogy nincs egy felhasználói fiókot hello jogos tulajdonosa, aki elvégezte mutatója. 
+- **Kockázatos bejelentkezések** – A kockázatos bejelentkezés egy olyan bejelentkezési kísérletet jelöl, amelyet elképzelhető, hogy olyan személy hajtott végre, aki nem a felhasználói fiók jogos tulajdonosa. 
 - **Kockázatosként megjelölt felhasználók** – A kockázatos felhasználó egy olyan felhasználói fiókot jelöl, amelynek elképzelhető, hogy sérült a biztonsága. 
 
-a következő táblázat hello hello késési adatok biztonsági jelentések sorolja fel.
+A következő táblázat a késési adatok biztonsági jelentések.
 
 | Jelentés | Minimális | Átlagos | Maximális |
 | :-- | --- | --- | --- |
@@ -62,16 +62,16 @@ a következő táblázat hello hello késési adatok biztonsági jelentések sor
 
 ## <a name="risk-events"></a>Kockázati események
 
-Az Azure Active Directory adaptív gépi tanulási a algoritmusok és heurisztikus toodetect gyanús műveleteket kapcsolódó tooyour felhasználói fiókokat használ. Minden észlelt gyanús művelet egy rekord hívott kockázat esemény van tárolva.
+Az Azure Active Directory adaptív gépi tanulási algoritmusok és heurisztikus használja, amely kapcsolódik a felhasználói fiókok gyanús tevékenységek észlelése. Minden észlelt gyanús művelet egy rekord hívott kockázat esemény van tárolva.
 
-a következő táblázat hello hello késési adatok kockázati események sorolja fel.
+A következő táblázat a késési adatok kockázati eseményekről.
 
 | Jelentés | Minimális | Átlagos | Maximális |
 | :-- | --- | --- | --- |
 | Névtelen IP-címről történő bejelentkezések |5 perc |15 perc |2 óra |
 | Ismeretlen helyekről történt bejelentkezések |5 perc |15 perc |2 óra |
 | Felhasználók, akiknek kiszivárogtak a hitelesítő adatai |2 óra |4 óra |8 óra |
-| Lehetetlen odautazás tooatypical helyek |5 perc |1 óra |8 óra  |
+| Bejelentkezés szokatlan helyekről |5 perc |1 óra |8 óra  |
 | Bejelentkezések fertőzött eszközökről |2 óra |4 óra |8 óra  |
 | Bejelentkezések gyanús tevékenységeket mutató IP-címekkel |2 óra |4 óra |8 óra  |
 
@@ -79,14 +79,14 @@ a következő táblázat hello hello késési adatok kockázati események sorol
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ha azt szeretné, hogy az Azure-portálon hello hello tevékenység jelentésekkel kapcsolatos további tooknow, lásd:
+Ha azt szeretné, további információkat az Azure-portálon a Tevékenységjelentések, lásd:
 
-- [Bejelentkezési tevékenység jelentések hello Azure Active Directory portálon](active-directory-reporting-activity-sign-ins.md)
-- [Naplózási Tevékenységjelentések hello Azure Active Directory portálon](active-directory-reporting-activity-audit-logs.md)
+- [Bejelentkezési tevékenység jelentések az Azure Active Directory portálon](active-directory-reporting-activity-sign-ins.md)
+- [Naplózási Tevékenységjelentések az Azure Active Directory portálon](active-directory-reporting-activity-audit-logs.md)
 
-Ha azt szeretné, hogy az Azure-portálon hello hello biztonsági jelentésekkel kapcsolatos további tooknow, lásd:
+Ha azt szeretné, további információkat a biztonsági jelentések az Azure portálon, lásd:
 
-- [A kockázat biztonsági jelentés hello Azure Active Directory portálon felhasználója](active-directory-reporting-security-user-at-risk.md)
-- [Kockázatos bejelentkezések jelentés hello Azure Active Directory portálon](active-directory-reporting-security-risky-sign-ins.md)
+- [Kockázati biztonsági jelentést az Azure Active Directory portálon a felhasználók](active-directory-reporting-security-user-at-risk.md)
+- [Az Azure Active Directory portálon kockázatos bejelentkezések jelentés](active-directory-reporting-security-risky-sign-ins.md)
 
-Ha azt szeretné, hogy a kockázati eseményekről további tooknow, [Azure Active Directory kockázati események](active-directory-reporting-risk-events.md).
+Ha azt szeretné, további információkat a kockázati eseményekről, lásd: [Azure Active Directory kockázati események](active-directory-reporting-risk-events.md).

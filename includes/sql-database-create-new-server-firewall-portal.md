@@ -4,31 +4,31 @@ includes/sql-database-create-new-server-firewall-portal.md
 
 Latest Freshness check:  2016-11-28 , rickbyh.
 
-As of circa 2016-04-11, hello following topics might include this include:
+As of circa 2016-04-11, the following topics might include this include:
 articles/sql-database/sql-database-get-started.md
 articles/sql-database/sql-database-configure-firewall-settings
 articles/sql-data-warehouse-get-started-provision.md
 
 -->
-### <a name="create-a-server-level-firewall-rule-in-hello-azure-portal"></a>Hozzon létre egy kiszolgálószintű tűzfalszabályt hello Azure-portálon
+### <a name="create-a-server-level-firewall-rule-in-the-azure-portal"></a>Kiszolgálószintű tűzfalszabály létrehozása az Azure Portalon
 
-1. Kattintson a hello SQL server panelen, a beállítások **tűzfal** tooopen hello tűzfal panel hello SQL Server.
+1. Az SQL Server tűzfalához tartozó panel megnyitásához kattintson a Beállítások terület alatt található **Tűzfal** elemre az SQL Server paneljén.
 
     <!-- ![sql server firewall](../articles/sql-database/media/sql-database-get-started/sql-server-firewall.png) -->
 
-2. Tekintse át a hello ügyfél IP-cím jelenik meg, és ellenőrizze, hogy ez az IP-cím a hello internetkapcsolat, és egy böngészőt, a (kérje meg, "Mi az az IP-cím). Időnként előfordulhat, hogy az IP-címek nem egyeznek.
+2. Ellenőrizze a megjelenő ügyfél IP-címet, és egy internetes böngészőben győződjön meg róla, hogy valóban ez az Ön által használt IP-cím (vannak olyan weboldalak, amelyek megadják ezt az információt). Időnként előfordulhat, hogy az IP-címek nem egyeznek.
 
     <!-- ![your IP address](../articles/sql-database/media/sql-database-get-started/your-ip-address.png) -->
 
-3. Feltételezve, hogy hello IP-címek egyeznek, kattintson a **ügyfél IP-cím hozzáadása** hello eszköztáron.
+3. Amennyiben az IP-címek egyeznek, kattintson az **Ügyfél IP-címének hozzáadása** elemre az eszköztárban.
 
     ![ügyfél IP-címének hozzáadása](../articles/sql-data-warehouse/media/sql-data-warehouse-get-started-provision/add-client-ip.png)
 
     > [!NOTE]
-    > SQL-adatbázis tűzfala hello hello server tooa egyetlen IP-címet vagy egy teljes címtartományt nyithatja meg. Nyitó hello tűzfala lehetővé teszi, hogy az SQL-rendszergazdák és felhasználók toologin tooany adatbázis hello server toowhich rendelkeznek érvényes hitelesítő adatokat.
+    > Az SQL Database-tűzfalat a kiszolgálón egyetlen IP-cím vagy egy teljes IP-címtartomány előtt is megnyithatja. A tűzfal megnyitását követően az SQL-rendszergazdák és -felhasználók a kiszolgáló bármely olyan adatbázisába bejelentkezhetnek, amelyhez érvényes hitelesítő adatokkal rendelkeznek.
     >
 
-4. Kattintson a **mentése** hello eszköztár toosave a kiszolgálószintű tűzfalszabály, majd **OK**.
+4. A kiszolgálószintű tűzfalszabály mentéséhez kattintson a **Mentés** gombra az eszköztárban, majd kattintson az **OK** gombra.
 
     ![ügyfél IP-címének hozzáadása](../articles/sql-database/media/sql-database-get-started-portal/server-firewall-rule.png)
 

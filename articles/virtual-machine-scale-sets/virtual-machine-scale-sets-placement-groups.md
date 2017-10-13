@@ -1,6 +1,6 @@
 ---
-title: "a nagy Azure virtuálisgép-méretezési csoportok aaaWorking |} Microsoft Docs"
-description: "Mit kell tooknow toouse nagyméretű Azure virtuális gép skálázása beállítása"
+title: "Nagyméretű Azure-beli virtuálisgép-méretezési csoportok használata | Microsoft Docs"
+description: "Tudnivalók a nagyméretű Azure-beli virtuálisgép-méretezési csoportok használatáról"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gbowerman
@@ -13,54 +13,54 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 2/7/2017
+ms.date: 9/1/2017
 ms.author: guybo
-ms.openlocfilehash: a39aab25925d7fc50763f0a20148b1f2213b492f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 12303e4283de3d179590e599d4d2fe8f14167eda
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="working-with-large-virtual-machine-scale-sets"></a>Nagyméretű virtuálisgép-méretezési csoportok használata
-Mostantól létrehozhat Azure [virtuálisgép-méretezési csoportok](/azure/virtual-machine-scale-sets/) too1, 000 virtuális gép mentése kapacitással. A jelen dokumentum egy _nagy virtuálisgép-méretezési csoport_ egy méretezési készletben képes mint 100 virtuális gépek toogreater skálázás típusúként van definiálva. Ezt a képességet a méretezési csoport egyik tulajdonsága adja meg (_singlePlacementGroup=False_). 
+Mostantól akár 1000 virtuális gép kapacitású Azure [virtuálisgép-méretezési csoportokat](/azure/virtual-machine-scale-sets/) is létrehozhat. Ebben a dokumentumban a _nagyméretű virtuálisgép-méretezési csoport_ egy 100 virtuális gépnél nagyobb skálázásra képes méretezési csoportként van meghatározva. Ezt a képességet a méretezési csoport egyik tulajdonsága adja meg (_singlePlacementGroup=False_). 
 
-Nagy méretű bizonyos elemeinek állítja be, például a terhelést és a tartalék tartományok eltérően viselkednek tooa szabványos méretezési készlet. Ez a dokumentum nagy méretű méretezési csoportok hello jellemzőit ismerteti, és leírja, milyen kell tooknow toosuccessfully használhatja azokat az alkalmazásokban. 
+A nagyméretű méretezési csoportok bizonyos szempontból, például a terheléselosztást és tartalék tartományokat illetően eltérően viselkednek, mint a standard méretezési csoportok. Ez a dokumentum bemutatja a nagyméretű méretezési csoportok jellemzőit, és azt, hogy mit kell tudni az alkalmazásokban történő sikeres használatukhoz. 
 
-Nagy léptékű felhőalapú infrastruktúra üzembe helyezéséhez egy általánosan használt megközelítés olyan toocreate _skálázási egységek_, például hozzon létre több virtuális gépek méretezési készletek több Vnetek és a storage-fiókok. Ez a megközelítés biztosítja egyszerűbb felügyeleti képest toosingle virtuális gépek, és hasznos a számos olyan alkalmazás, különösképpen más rakatolható összetevők, például a virtuális hálózatok és a végpontok igénylő több méretezési egységeket. Ha az alkalmazás egy nagy fürtön azonban, célszerű egyetlen méretezési beállítása a too1, 000 virtuális gépek egyszerűbb toodeploy. A példaforgatókönyvek központosított big data-alapú üzemelő példányokat, vagy a munkavégző csomópontok nagy készleteinek egyszerű kezelését igénylő számítási grideket tartalmaznak. Virtuálisgép-méretezési készlet együtt [adatlemezt csatolni](virtual-machine-scale-sets-attached-disks.md), nagy méretű méretezési csoportok lehetővé teszik a toodeploy egy skálázható infrastruktúrája magok ezer és petabájt is, mint egyetlen műveletben.
+Általánosan használt megközelítés a nagyméretű felhőinfrastruktúrák üzembe helyezéséhez a _skálázási egységek_ készletének létrehozása, például több virtuálisgép-skálázási egység létrehozása több VNET-en és tárfiókon. Ez a megközelítés könnyebb kezelhetőséget biztosít az egyszeres virtuális gépekhez képest, a több skálázási egység pedig számos alkalmazás esetében hasznos, különösen azoknál, amelyeknél egyéb halmozható összetevőkre van szükség, például több a virtuális hálózatnál és a végpontoknál. Ha az alkalmazáshoz egyetlen nagyméretű fürtre van szükség, egyszerűbb lehet az akár 1000 virtuális gépet tartalmazó egyetlen skálázási egység üzembe helyezése. A példaforgatókönyvek központosított big data-alapú üzemelő példányokat, vagy a munkavégző csomópontok nagy készleteinek egyszerű kezelését igénylő számítási grideket tartalmaznak. A [csatlakoztatott adatlemezekkel](virtual-machine-scale-sets-attached-disks.md) rendelkező virtuálisgép-méretezési csoporttal kombinálva a nagyméretű méretezési csoportok lehetővé teszik olyan méretezhető infrastruktúra üzembe helyezését egyetlen műveletben, amely több ezernyi magból és petabájtos méretű tárolóegységekből áll.
 
 ## <a name="placement-groups"></a>Elhelyezési csoportok 
-Milyen részekből egy _nagy_ méretezési készletben különleges nincs hello virtuális gépeinek számával, hanem hello száma _elhelyezési csoportok_ tartalmaz. Elhelyezési csoport olyan szerkezet hasonló tooan Azure rendelkezésre állási, a saját tartalék tartományok és a frissítési tartományok. A méretezési csoport alapértelmezés szerint egy legfeljebb 100 virtuális gép méretű elhelyezési csoportból áll. Ha egy méretezési nevű _singlePlacementGroup_ értéke too_false_, hello méretezési több elhelyezési csoport állhat, és 0 – 1000 tartománnyal rendelkező virtuális gépeket. Ha az alapértelmezett értéke toohello beállítása _igaz_, a méretezési egyetlen elhelyezési csoport áll, és 0 – 100 tartománnyal rendelkező virtuális gépeket.
+A _nagyméretű_ méretezési csoportot nem a virtuális gépek, hanem a tartalmazott _elhelyezési csoportok_ száma teszi különlegessé. Az elhelyezési csoport egy, az Azure rendelkezésre állási csoporthoz hasonló konstrukció, saját tartalék tartománnyal és frissítési tartománnyal. A méretezési csoport alapértelmezés szerint egy legfeljebb 100 virtuális gép méretű elhelyezési csoportból áll. Ha a _singlePlacementGroup_ nevű méretezésicsoport-tulajdonság _hamis_ értékre van állítva, a méretezési csoport több elhelyezési csoportból állítható össze, és 0–1000 virtuális gépből állhat. Ha csoport az alapértelmezett _igaz_ érték van beállítva, a méretezési csoport egyetlen elhelyezési csoportból és 0–100 virtuális gépből áll.
 
 ## <a name="checklist-for-using-large-scale-sets"></a>Ellenőrzőlista a nagyméretű méretezési csoportok használatához
-toodecide, hogy az alkalmazás képes hatékony felhasználása nagy méretű méretezési csoportok, fontolja meg a követelményeknek hello:
+Annak eldöntéséhez, hogy az alkalmazás hatékony tudja-e használni a nagyméretű méretezési csoportokat, vegye fontolóra a következő követelményeket:
 
-- A nagyméretű méretezési csoportokhoz az Azure Managed Disks szükséges. Azokhoz a méretezési csoportokhoz, amelyeket nem a Managed Disksszel hoztak létre, több tárfiókra van szükség (egyre minden 20 virtuális géphez). Nagy méretű méretezési csoportok kizárólag a storage-fiókok korlátozza a storage management terhelés, és tooavoid hello kockázatát előfizetés rendszert futtató felügyelt lemezek tooreduce tervezett toowork. Nem kezelt lemezek használja, a méretezési esetén korlátozott too100 virtuális gépek.
-- Méretezési készlet létrehozása az Azure piactéren elérhető rendszerkép too1, 000 virtuális gépek költenie.
-- Egyéni képek (VM-lemezképekkel hoz létre, és töltse fel saját maga) alapján létrehozott méretezési csoportok jelenleg legfeljebb too100 virtuális gépeket.
-- Réteg-4 terheléselosztás hello Azure terheléselosztó és még nem támogatott a méretezési készlet több elhelyezési csoport alkotja. Azure Load Balancer győződjön meg arról, hogy hello méretezési készletben toouse hello szüksége van konfigurált toouse egyetlen elhelyezési csoport, amely hello alapértelmezett beállítás.
-- Az összes méretezési csoportok réteg-7 terheléselosztás és hello Azure Application Gateway esetén támogatott.
-- A méretezési van definiálva, egyetlen alhálózattal – ellenőrizze, hogy az alhálózat rendelkezik egy megfelelő méretű címtartománnyal kell hello virtuális gépek. Alapértelmezés szerint olyan méretezési overprovisions (hoz létre további virtuális gépek központi telepítéskor vagy kiterjesztése, amely nem a van szó) tooimprove telepítési megbízhatóságát és teljesítményét. Lehetővé teszi egy cím lemezterület 20 % nagyobb, mint a virtuális gépek azt tervezi, hogy tooscale hello száma.
-- Ha azt tervezi, toodeploy sok virtuális gép, a számítási core kvótakorlát esetleg toobe nőtt.
-- A tartalék tartományok és a frissítési tartományok csak az elhelyezési csoporton belül konzisztensek. Ez az architektúra nem változtatja meg a hello teljes méretű rendelkezésre állási csoportban, virtuális gépek különböző fizikai hardver egyenlően elosztott, akkor viszont azt jelenti, hogy ha két virtuális gépek vannak a másik hardverekhez, tooguarantee kell gondoskodjon arról, hogy azok különböző hiba a tartományok hello elhelyezési ugyanabban a csoportban. Tartalék tartomány és elhelyezési Csoportazonosító látható hello _nézet példány_ a skála beállítása a virtuális gép. A Virtuálisgép-méretezési csoport példányait tartalmazó nézetet hello megtekintheti a hello [Azure erőforrás-kezelő](https://resources.azure.com/).
+- A nagyméretű méretezési csoportokhoz az Azure Managed Disks szükséges. Azokhoz a méretezési csoportokhoz, amelyeket nem a Managed Disksszel hoztak létre, több tárfiókra van szükség (egyre minden 20 virtuális géphez). A nagyméretű méretezési csoportokat arra tervezték, hogy kizárólag a Managed Disksszel működjenek annak érdekében, hogy csökkenjen a tárolókezelés munkaterhelése, és hogy megszűnjön a tárfiókhoz tartozó előfizetés-korlát elérésének veszélye. Ha nem használja a Managed Diskst, a méretezési csoport legfeljebb 100 virtuális gép méretű lehet.
+- Az Azure Marketplace rendszerképekből létrehozott méretezési csoportok akár 1000 virtuális gépig skálázhatók.
+- Az egyéni rendszerképekből (olyan virtuálisgép-rendszerképek, amelyeket a felhasználó maga hoz létre és tölt fel) létrehozott méretezési csoportok akár 300 virtuális gépig skálázhatók.
+- A 4. rétegbeli terheléselosztás az Azure Load Balancerrel még nem támogatott a több elhelyezési csoportból álló méretezési csoportok esetén. Ha az Azure Load Balancert szeretné használni, győződjön meg róla, hogy a méretezési csoport egyetlen elhelyezési csoport használatára van konfigurálva, ami az alapértelmezett beállítás is.
+- A 7. rétegbeli terheléselosztás az Azure Application Gatewayjel minden méretezési csoporthoz támogatott.
+- A méretezési csoport egyetlen alhálózattal van meghatározva – győződjön meg róla, hogy az alhálózat megfelelő méretű névtérrel rendelkezik minden virtuális géphez. A méretezési csoport alapértelmezés szerint a szükségesnél több erőforrást hoz létre (további virtuális gépeket hoz létre az üzembe helyezés során vagy a felskálázáskor, amelyek nem járnak többletköltséggel), hogy javítsa az üzembe helyezés megbízhatóságát és teljesítményét. Lehetővé teszi egy címtér számára, hogy 20%-kal nagyobb legyen, mint a virtuális gépek száma, amelyekhez skálázni szeretne.
+- Ha több virtuális gépet tervez üzembe helyezni, a Számítási magkvóta korlátozásának emelése lehet szükséges.
+- A tartalék tartományok és a frissítési tartományok csak az elhelyezési csoporton belül konzisztensek. Ez az architektúra nem módosítja a méretezési csoport általános elérhetőségét, mivel a virtuális gépek egyenlően vannak elosztva a különböző fizikai hardvereken, de azt jelenti, hogy ha biztosítania kell, hogy két virtuális gép különböző hardveren legyen, meg kell győződnie arról, hogy különböző tartalék tartományban találhatók ugyanabban az elhelyezési csoportban. A tartalék tartomány és az elhelyezési csoport azonosítója a méretezési csoport virtuális gépének _példány nézetében_ tekinthető meg. A méretezési csoport virtuális gépének példány nézetét az [Azure Resource Explorerben](https://resources.azure.com/) tekintheti meg.
 
 
 ## <a name="creating-a-large-scale-set"></a>Nagyméretű méretezési csoport létrehozása
-Amikor létrehoz egy méretezési hello Azure-portálon a készletben, engedélyezheti annak tooscale toomultiple elhelyezési csoportok által hello beállítása _korlát tooa egyetlen elhelyezési csoport_ beállítás too_False_ a hello _alapjai_ panelen. Ez a beállítás set too_False_ megadhatja egy _száma példány_ too1, 000 magasabb érték esetén a.
+A méretezési csoport létrehozásakor az Azure Portalon engedélyezheti, hogy a csoport több elhelyezési csoporthoz skálázódjon, ehhez az _Alapvető beállítások_ panel _Korlátozás egyetlen elhelyezési csoportra_ lehetőségénél a _Hamis_ értéket kell beállítania. Ha a beállítás _Hamis_ értékre van állítva, megadhat egy legfeljebb 1000 értékű _Példányszám_ értéket.
 
 ![](./media/virtual-machine-scale-sets-placement-groups/portal-large-scale.png)
 
-Létrehozhat egy nagy Virtuálisgép-méretezési hello segítségével [Azure CLI](https://github.com/Azure/azure-cli) _az vmss létrehozása_ parancsot. Ez a parancs beállítja az intelligens alapértelmezett beállításokat, például az alhálózat méretét hello alapján _példányszám_ argumentum:
+Létrehozhat egy nagyméretű méretezési csoportot az [Azure CLI](https://github.com/Azure/azure-cli) _az vmss create_ parancsával. Ez a parancs az intelligens alapértelmezett beállításokat (például a _példányszám_ argumentumon alapuló alhálózat méretét) adja meg:
 
 ```bash
 az group create -l southcentralus -n biginfra
 az vmss create -g biginfra -n bigvmss --image ubuntults --instance-count 1000
 ```
-Vegye figyelembe, hogy hello _vmss létrehozása_ parancs bizonyos konfigurációs értékeket alapértelmezés szerint, ha nem adja meg azokat. toosee hello elérhető beállításokat lehet felülbírálni, próbálja meg:
+Ügyeljen arra, hogy a _vmss create_ parancs alapértelmezett értékeket használ egyes konfigurációs értékek esetében, ha nem határozza meg azokat. Az elérhető és felülbírálható beállítások megtekintéséhez használja a következő parancsot:
 ```bash
 az vmss create --help
 ```
 
-Ha állítja be az Azure Resource Manager-sablon létrehozása nagy méretű hoz létre, győződjön meg arról hello sablon Azure felügyelt lemezek alapuló méretezési készletet hoz létre. Beállíthatja a hello _singlePlacementGroup_ tulajdonság too_false_ a hello _tulajdonságok_ hello szakasza _Microsoft.Compute/virtualMAchineScaleSets_ erőforrás. hello következő JSON-töredéket mutatja egy méretezési sablon beállítása, beleértve a hello 1000 Virtuálisgép-kapacitást és hello hello elejére _"singlePlacementGroup": hamis_ beállítást:
+Ha egy Azure Resource Manager-sablon összeállításával hoz létre nagyméretű méretezési csoportot, győződjön meg róla, hogy a sablon az Azure Managed Disksen alapuló méretezési csoportot hoz létre. Beállíthatja a _singlePlacementGroup_ tulajdonságot _hamis_ értékre a _Microsoft.Compute/virtualMAchineScaleSets_ erőforrás _tulajdonságok_ szakaszában. Az alábbi JSON-töredék ábrázolja egy méretezési csoport sablon kezdetét, az 1000 virtuálisgép-kapacitást és a _"singlePlacementGroup" : hamis_ beállítást is beleértve:
 ```json
 {
   "type": "Microsoft.Compute/virtualMachineScaleSets",
@@ -77,12 +77,12 @@ Ha állítja be az Azure Resource Manager-sablon létrehozása nagy méretű hoz
       "mode": "Automatic"
     }
 ```
-Túl nagy méretű átfogó példát a sablon beállítása tudnivalókat[https://github.com/gbowerman/azure-myriad/blob/master/bigtest/bigbottle.json](https://github.com/gbowerman/azure-myriad/blob/master/bigtest/bigbottle.json).
+A nagyméretű méretezésicsoport-sablon teljes példájáért lásd: [https://github.com/gbowerman/azure-myriad/blob/master/bigtest/bigbottle.json](https://github.com/gbowerman/azure-myriad/blob/master/bigtest/bigbottle.json).
 
-## <a name="converting-an-existing-scale-set-toospan-multiple-placement-groups"></a>Egy meglévő méretezési konvertálása beállítása toospan több elhelyezési csoportok
-egy meglévő Virtuálisgép-méretezési készlet képes mint 100 virtuális gépek toomore skálázás toomake, kell toochange hello _singplePlacementGroup_ tulajdonság too_false_ hello méretezési modell beállítása. Tesztelheti a hello e tulajdonság módosítása [Azure erőforrás-kezelő](https://resources.azure.com/). Méretezési készlet, jelölje be található _szerkesztése_ , és módosítsa a hello _singlePlacementGroup_ tulajdonság. Ha nem látja ezt a tulajdonságot, akkor lehetséges, hogy látja hello méretezési készletben hello Microsoft.Compute API egy régebbi verziója.
+## <a name="converting-an-existing-scale-set-to-span-multiple-placement-groups"></a>Meglévő méretezési csoportok konvertálása, hogy több elhelyezési csoportra terjedjenek ki
+Ahhoz, hogy egy már meglévő virtuálisgép-méretezési csoport több mint 100 virtuális géphez skálázódhasson, a _singplePlacementGroup_ tulajdonságot _hamis_ értékre kell állítani a méretezésicsoport-modellben. Az [Azure Resource Explorerrel](https://resources.azure.com/) tesztelheti ennek a tulajdonságnak a módosítását. Keressen egy már létező méretezési csoportot, válassza a _Szerkesztés_ lehetőséget, majd módosítsa a _singlePlacementGroup_ tulajdonságot. Ha nem látja ezt a tulajdonságot, előfordulhat, hogy a Microsoft.Compute API egy régebbi változatával tekinti meg a méretezési csoportot.
 
 >[!NOTE] 
-Módosíthatja a skála állítható be egy egyetlen elhelyezési csoport egyetlen (hello alapértelmezett viselkedés) tooa több elhelyezési csoportok támogató támogató, de hello megfordítva már nem lehet konvertálni. Ezért tudja, hogy hello tulajdonságok nagy méretű készlet átalakítás előtt. Különösen ellenőrizze, hogy nem kell hello Azure terheléselosztó a terheléselosztási réteg-4.
+Módosíthat egy méretezési csoportot, hogy ne csak (az alapértelmezett működés szerinti) egy, hanem több elhelyezési csoportot támogasson, de ennek fordítottjára nincs lehetőség. Ezért a konvertálás előtt győződjön meg róla, hogy tisztában van a nagyméretű méretezési csoportok tulajdonságaival. Különösen ügyeljen arra, hogy ne legyen szüksége a 4. rétegbeli terheléselosztásra az Azure Load Balancerrel.
 
 

@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/06/2016
 ms.author: swkrish
-ms.openlocfilehash: 4bb7ec6ec67d3368a0e36c098f290f582510714a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 81af4536fc223319369aff262d42149cfbf1a1e9
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="troubleshoot-creating-an-azure-active-directory-or-azure-active-directory-b2c-tenant"></a>Hibaelhárítás az Azure Active Directory vagy az Azure Active Directory B2C-bérlő létrehozása 
 
 ## <a name="create-an-azure-ad-tenant"></a>Az Azure AD-bérlő létrehozása
-Ha nem hozható létre az Azure Active Directory (Azure AD) bérlő hello első kísérlet alkalmával, próbálkozzon újra. Ha hello a probléma továbbra is fennáll, forduljon az Azure támogatási szolgálatához.
+Ha az Azure Active Directory (Azure AD) bérlő nem hozható létre az első kísérlet alkalmával, próbálkozzon újra. Ha a probléma továbbra is fennáll, forduljon az Azure támogatási szolgálatához.
 
 ## <a name="create-an-azure-ad-b2c-tenant"></a>Azure AD B2C bérlő létrehozása
-Ha hibát tapasztal amikor Ön [hozzon létre egy Azure Active Directory B2C (Azure AD B2C) bérlő](active-directory-b2c-get-started.md), próbálja meg az alábbi beállítások hello:
+Ha hibát tapasztal amikor Ön [hozzon létre egy Azure Active Directory B2C (Azure AD B2C) bérlő](active-directory-b2c-get-started.md), próbálja meg a következő beállításokat:
 
-* Ha hello Azure AD B2C bérlő nem jelenik meg a bérlők listáját, próbálja meg újra toocreate hello bérlői.
-* Hello Azure AD B2C bérlő jelenik meg a bérlők listáját, és hello a következő hibaüzenet jelenik meg, ha hello bérlői törölje és hozza létre újra:
+* Ha az Azure AD B2C bérlő nem jelenik meg a bérlők listáját, újra megpróbálja létrehozni a bérlőt.
+* Az Azure AD B2C bérlő jelenik meg a bérlők listáját, és a következő hibaüzenet jelenik meg, ha a bérlő törölje és hozza létre újra:
 
-    "Nem hajtható végre hello B2C-bérlő"contosob2c"hello létrehozását. Látogasson el a [hivatkozás](http://go.microsoft.com/fwlink/?LinkID=624192&clcid=0x409) további útmutatást. "
-* Nincs ismert problémák Ha töröl egy meglévő Azure AD B2C-bérlőben és hozza létre újból hello segítségével ugyanazon a néven. Amikor létrehoz egy új Azure AD B2C-bérlő, a másik tartománynevet kell használnia.
+    "Nem tudta befejezni a B2C-bérlő"contosob2c"létrehozását. Látogasson el a [hivatkozás](http://go.microsoft.com/fwlink/?LinkID=624192&clcid=0x409) további útmutatást. "
+* Vannak ismert problémák törölje a meglévő Azure AD B2C-bérlő és hozza létre újból a ugyanazon a néven. Amikor létrehoz egy új Azure AD B2C-bérlő, a másik tartománynevet kell használnia.
 * Ha ezek a megoldások nem működnek, lépjen kapcsolatba az Azure támogatási szolgálatához. További információkért lásd: [fájl támogatási kérelmek az Azure AD B2C](active-directory-b2c-support.md).
 

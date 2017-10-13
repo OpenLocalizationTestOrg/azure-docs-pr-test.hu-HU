@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure AD v2 iOS Getting Started - használata |} Microsoft Docs"
+title: "Az Azure AD v2 iOS Getting Started - használata |} Microsoft Docs"
 description: "Hogyan iOS (Swift) alkalmazások Azure Active Directory-v2 végpontja hozzáférési jogkivonatok igénylő API meghívása"
 services: active-directory
 documentationcenter: dev-center-name
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
-ms.openlocfilehash: 22e67850e2e0b14b6d68815d8f23e18ce2e878ac
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2ac1117a31a101705539a1f75520ce8de43809a2
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-## <a name="use-hello-microsoft-authentication-library-msal-tooget-a-token-for-hello-microsoft-graph-api"></a>Hello Microsoft hitelesítési könyvtár (MSAL) tooget jogkivonat használata hello Microsoft Graph API-val
+## <a name="use-the-microsoft-authentication-library-msal-to-get-a-token-for-the-microsoft-graph-api"></a>A Microsoft hitelesítési könyvtár (MSAL) segítségével szolgáltatáshitelesítést egy token a Microsoft Graph API-hoz.
 
-Nyissa meg `ViewController.swift` , és cserélje le a hello kódot:
+Nyissa meg `ViewController.swift` , és cserélje le a kódot:
 
 ```swift
 import UIKit
@@ -42,16 +42,16 @@ class ViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate 
     @IBOutlet weak var loggingText: UITextView!
     @IBOutlet weak var signoutButton: UIButton!
 
-     // This button will invoke hello call toohello Microsoft Graph API. It uses the
-     // built in Swift libraries toocreate a connection.
+     // This button will invoke the call to the Microsoft Graph API. It uses the
+     // built in Swift libraries to create a connection.
     
     @IBAction func callGraphButton(_ sender: UIButton) {
         
         
         do {
             
-            // We check toosee if we have a current logged in user. If we don't, then we need toosign someone in.
-            // We throw an interactionRequired so that we trigger hello interactive signin.
+            // We check to see if we have a current logged in user. If we don't, then we need to sign someone in.
+            // We throw an interactionRequired so that we trigger the interactive signin.
             
             if  try self.applicationContext.users().isEmpty {
                 throw NSError.init(domain: "MSALErrorDomain", code: MSALErrorCode.interactionRequired.rawValue, userInfo: nil)
@@ -77,8 +77,8 @@ class ViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate 
             }
         }  catch let error as NSError {
             
-            // interactionRequired means we need tooask hello user toosign-in. This usually happens
-            // when hello user's Refresh Token is expired or if hello user has changed their password
+            // interactionRequired means we need to ask the user to sign-in. This usually happens
+            // when the user's Refresh Token is expired or if the user has changed their password
             // among other possible reasons.
             
             if error.code == MSALErrorCode.interactionRequired.rawValue {
@@ -99,9 +99,9 @@ class ViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate 
             
         } catch {
             
-            // This is hello catch all error.
+            // This is the catch all error.
             
-            self.loggingText.text = "Unable tooacquire token. Got error: \(error)"
+            self.loggingText.text = "Unable to acquire token. Got error: \(error)"
             
         }
     }
@@ -113,7 +113,7 @@ class ViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate 
              // Initialize a MSALPublicClientApplication with a given clientID and authority
             self.applicationContext = try MSALPublicClientApplication.init(clientId: kClientID, authority: kAuthority)
         } catch {
-            self.loggingText.text = "Unable toocreate Application Context. Error: \(error)"
+            self.loggingText.text = "Unable to create Application Context. Error: \(error)"
         }
     }
 
@@ -135,33 +135,33 @@ class ViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate 
 <!--start-collapse-->
 ### <a name="more-information"></a>További információ
 #### <a name="getting-a-user-token-interactively"></a>A felhasználói token első interaktív módon
-Hívása hello `acquireToken` egy böngésző ablak arra kéri a módszer eredményezi a felhasználó toosign hello. Alkalmazások általában egy felhasználó toosign az interaktív hello tooaccess van szükségük, amikor első alkalommal védett erőforrás, vagy sikertelen, ha egy figyelő művelet tooacquire jogkivonat (pl. hello jelszó lejárt).
+Hívja a `acquireToken` módszer eredményezi egy böngészőablakban, jelentkezzen be a felhasználótól. Az alkalmazásoknak általában egy felhasználó a védett erőforrások eléréséhez szükséges először interaktív bejelentkezéshez, vagy ha egy figyelő művelet szerezzen be egy tokent sikertelen (pl. a jelszó lejárt).
 
 #### <a name="getting-a-user-token-silently"></a>A felhasználói token első beavatkozás nélkül
-Hello `acquireTokenSilent` metódus kezeli a token kérése és -megújítás felhasználói beavatkozás nélkül. Után `acquireToken` hajtanak végre hello első alkalommal `acquireTokenSilent` hello általánosan használt módszer tooobtain használt a jogkivonatokat tooaccess későbbi hívások - erőforrások védelmét szolgálja hívások toorequest vagy megújítása jogkivonatok beavatkozás nélkül történik.
+A `acquireTokenSilent` metódus kezeli a token kérése és -megújítás felhasználói beavatkozás nélkül. Miután `acquireToken` végrehajtása az első alkalommal `acquireTokenSilent` az beszerzése a jogkivonatokat, mivel kérelmezése vagy megújítása jogkivonatok hívásainak beavatkozás nélkül történik a további hívások - védett erőforrások eléréséhez használt általánosan használt módszer.
 
-Végül `acquireTokenSilent` sikertelen lesz, – pl. hello felhasználó rendelkezik-e kijelentkezteti, vagy egy másik eszközön a jelszó megváltozott. Amikor MSAL azt észleli, hogy hello probléma oldható meg azzal, hogy egy interaktív műveletet, akkor következik be egy `MSALErrorCode.interactionRequired` kivétel. Az alkalmazás kezeli ezt a kivételt, két módon:
+Végül `acquireTokenSilent` sikertelen lesz, – például a felhasználó rendelkezik-e kijelentkezteti, vagy egy másik eszközön a jelszó megváltozott. Amikor MSAL azt észleli, hogy a probléma megoldásához érdemes egy interaktív műveletet igénylő, akkor következik be egy `MSALErrorCode.interactionRequired` kivétel. Az alkalmazás kezeli ezt a kivételt, két módon:
 
-1.  Hívás elleni `acquireToken` azonnal, mely eredmények arra kéri a hello a felhasználó toosign. Ebben a mintában általában az online alkalmazások használják, ha nincs kapcsolat nélküli tartalom hello alkalmazásban hello felhasználó számára elérhető. az interaktív telepítő által létrehozott hello mintaalkalmazás használja ezt a mintát: tekintheti meg a művelet hello hello alkalmazás végrehajtása első alkalommal. Felhasználó nem használta a hello alkalmazást, mert `applicationContext.users().first` fogja tartalmazni null értékű, és egy ` MSALErrorCode.interactionRequired ` kivételt fog jelezni. hello hello mintában kód, majd leírók kivétel hello meghívásával `acquireToken` hello felhasználói toosign a kérdés eredményez.
+1.  Hívás elleni `acquireToken` azonnal, ennek eredményeképpen a felhasználótól a bejelentkezéshez. Ebben a mintában általában az online alkalmazások használják, ha nincs kapcsolat nélküli tartalom az alkalmazásban a felhasználó számára elérhető. A mintaalkalmazás az interaktív telepítő által létrehozott használja ezt a mintát: tekintheti meg a kérelem végrehajtása az első művelet időben. Mivel a felhasználó nem használta az alkalmazás `applicationContext.users().first` fogja tartalmazni null értékű, és egy ` MSALErrorCode.interactionRequired ` kivételt fog jelezni. A kód a minta majd kezeli a kivételt meghívásával `acquireToken` eredményezve jelentkezzen be a felhasználótól.
 
-2.  Alkalmazások is készíthet, amelyek egy interaktív bejelentkezés szükség, hogy hello felhasználó kiválaszthatja a hello megfelelő időben toosign, vagy megpróbálhatja hello alkalmazás jelzést toohello felhasználó `acquireTokenSilent` egy későbbi időpontban. Ez általában akkor használatos, amikor hello felhasználói alatt megszakad nélkül tudja használni hello alkalmazás vonatkozó egyéb funkciók – például érhető el kapcsolat nélküli tartalmat hello alkalmazásban. Ebben az esetben hello felhasználói dönthet, ha szeretnék toosign tooaccess hello védett erőforrás, vagy toorefresh hello elavult információkat vagy eldöntheti, hogy az alkalmazás tooretry `acquireTokenSilent` amikor hálózati átmenetileg nem érhető el állapota után állítják vissza.
+2.  Alkalmazások is végezhet egy visual arra utal, hogy a felhasználót, hogy egy interaktív bejelentkezés szükség, hogy a felhasználó kiválaszthatja a megfelelő időben való bejelentkezéshez, vagy az alkalmazás újra `acquireTokenSilent` egy későbbi időpontban. Ez általában akkor használatos, amikor a felhasználó éppen megszakad nélkül tudja használni az alkalmazás egyéb funkciók – például nincs offline tartalma elérhető az alkalmazásban. Ebben az esetben a felhasználó eldöntheti, ha szeretne jelentkezzen be a védett erőforrások eléréséhez, vagy frissítse a elavult adatait, vagy eldöntheti, hogy az alkalmazást, majd ismételje meg `acquireTokenSilent` amikor hálózati átmenetileg nem érhető el állapota után állítják vissza.
 
 <!--end-collapse-->
 
-## <a name="call-hello-microsoft-graph-api-using-hello-token-you-just-obtained"></a>Csak kapott hello tokent hello Microsoft Graph API hívása
+## <a name="call-the-microsoft-graph-api-using-the-token-you-just-obtained"></a>A Microsoft Graph API használatával csak megszerzett jogkivonattal hívható
 
-Adja hozzá az alábbi új módszer hello túl`ViewController.swift`. Ez a módszer akkor használható toomake egy `GET` hello Microsoft Graph API segítségével kérelmet egy *HTTP Authorization fejlécet*:
+Adja hozzá az új metódust alatt `ViewController.swift`. Ez a módszer biztosítja a `GET` kérelmet a Microsoft Graph API segítségével egy *HTTP Authorization fejlécet*:
 
 ```swift
 func getContentWithToken() {
     
     let sessionConfig = URLSessionConfiguration.default
     
-    // Specify hello Graph API endpoint
+    // Specify the Graph API endpoint
     let url = URL(string: kGraphURI)
     var request = URLRequest(url: url!)
     
-    // Set hello Authorization header for hello request. We use Bearer tokens, so we specify Bearer + hello token we got from hello result
+    // Set the Authorization header for the request. We use Bearer tokens, so we specify Bearer + the token we got from the result
     request.setValue("Bearer \(self.accessToken)", forHTTPHeaderField: "Authorization")
     let urlSession = URLSession(configuration: sessionConfig, delegate: self, delegateQueue: OperationQueue.main)
     
@@ -178,20 +178,20 @@ func getContentWithToken() {
 <!--start-collapse-->
 ### <a name="making-a-rest-call-against-a-protected-api"></a>Így egy REST-hívást ellen védett API
 
-A mintaalkalmazás az hello `getContentWithToken()` metódus használt toomake HTTP `GET` egy jogkivonat és majd visszatérési hello tartalom toohello hívó igénylő védett erőforrás kérelmet. Ez a módszer szerzett hello token helyez hello *HTTP Authorization fejlécet*. Ez a minta hello erőforrás hello Microsoft Graph API *me* végpont – hello felhasználói profil adatait jeleníti meg.
+Ebben a minta az alkalmazásban a `getContentWithToken()` módszer használható HTTP `GET` kérelem ellen védett erőforrás jogkivonat szükséges, és térjen vissza a tartalom a hívó. Ez a módszer hozzáadja a megszerzett lexikális elem szerepel a *HTTP Authorization fejlécet*. Ez a minta az erőforrás a Microsoft Graph API *me* végpont – amely a felhasználói profil adatait jeleníti meg.
 <!--end-collapse-->
 
 ## <a name="set-up-sign-out"></a>Kijelentkezési beállítása
 
-Adja hozzá a következő metódus túl hello`ViewController.swift` toosign hello felhasználói ki:
+Adja hozzá a következő metódust `ViewController.swift` a felhasználó kijelentkezik:
 
 ```swift 
 @IBAction func signoutButton(_ sender: UIButton) {
 
     do {
         
-        // Removes all tokens from hello cache for this application for hello provided user
-        // first parameter:   hello user tooremove from hello cache
+        // Removes all tokens from the cache for this application for the provided user
+        // first parameter:   The user to remove from the cache
         
         try self.applicationContext.remove(self.applicationContext.users().first)
         self.signoutButton.isEnabled = false;
@@ -204,14 +204,14 @@ Adja hozzá a következő metódus túl hello`ViewController.swift` toosign hell
 <!--start-collapse-->
 ### <a name="more-info-on-sign-out"></a>További információ a kijelentkezési
 
-Hello `signoutButton` metódus hello felhasználó eltávolítása hello MSAL felhasználói gyorsítótár – ez gyakorlatilag jelzi a MSAL tooforget hello aktuális felhasználó, egy későbbi kérés tooacquire jogkivonat csak sikeres lesz, ha azt toobe interaktív.
+A `signoutButton` metódus eltávolítja a felhasználót a MSAL felhasználói gyorsítótárból – Ez hatékonyan jelzi az aktuális felhasználó törlésére, így a későbbi kérelmek egy jogkivonat csak akkor sikeres, ha történik, hogy interaktív MSAL.
 
-Bár ez a példa hello alkalmazás támogatja az egy-egy felhasználóhoz, MSAL támogatja-e a forgatókönyvekben, ahol több fiók is bejelentkezhet a következő hello ugyanannyi időt vesz igénybe – példa, hogy e-mail alkalmazást ahol a felhasználó rendelkezik-e a több fiók.
+Bár ez a példa az alkalmazás támogatja az egy-egy felhasználóhoz, MSAL szituációkat ahol több fiók is bejelentkezhet a egyszerre – Ha a felhasználó rendelkezik-e a több fiók például e-mail alkalmazást.
 <!--end-collapse-->
 
-## <a name="register-hello-callback"></a>Hello visszahívási regisztrálása
+## <a name="register-the-callback"></a>A visszahívási regisztrálása
 
-Miután hello felhasználó hitelesíti magát, a hello böngésző hello felhasználói hátsó toohello alkalmazás irányítja át. Lépésekkel hello tooregister alatt a visszahívási:
+Miután a felhasználó hitelesíti magát, a böngésző átirányítja a felhasználót az alkalmazásnak. A visszahívási regisztrálni az alábbi lépésekkel:
 
 1.  Nyissa meg `AppDelegate.swift` és MSAL importálása:
 
@@ -221,13 +221,13 @@ import MSAL
 <!-- Workaround for Docs conversion bug -->
 <ol start="2">
 <li>
-Adja hozzá a következő metódus tooyour hello <code>AppDelegate</code> toohandle visszahívások osztályban:
+Adja hozzá a következő metódust a <code>AppDelegate</code> osztály visszahívások kezeléséhez:
 </li>
 </ol>
 
 ```swift
-// @brief Handles inbound URLs. Checks if hello URL matches hello redirect URI for a pending AppAuth
-// authorization request and if so, will look for hello code in hello response.
+// @brief Handles inbound URLs. Checks if the URL matches the redirect URI for a pending AppAuth
+// authorization request and if so, will look for the code in the response.
 
 func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
     

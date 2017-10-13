@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure AD v2 ASP.NET Web Server bevezetés - teszt |} Microsoft Docs"
+title: "Az Azure AD v2 ASP.NET Web Server első lépések – tesztelése |} Microsoft Docs"
 description: "A Microsoft bejelentkezés végrehajtási egy ASP.NET-megoldás a hagyományos böngészőalapú webalkalmazás a szabványos OpenID Connect"
 services: active-directory
 documentationcenter: dev-center-name
@@ -15,54 +15,54 @@ ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: 99c7525b9146605142180962fc2a61b3c953c064
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 00cb963e85111274c36c3a84489894811ad2dabd
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 ## <a name="test-your-code"></a>Tesztelheti a kódját
 
-Nyomja le az `F5` toorun a projektre a Visual Studióban. hello böngésző megnyitja és közvetlen, túl*http://localhost: {port}* ahol láthatja hello *jelentkezzen be Microsoft* gombra. Lépjen tovább, és kattintson rá a toosign.
+Nyomja le az `F5` a projektet a Visual Studio futtatásához. A böngészőben megnyitja és, hogy közvetlen *http://localhost: {port}* ahol láthatja a *jelentkezzen be Microsoft* gombra. Lépjen tovább, és kattintson rá a bejelentkezéshez.
 
-Ha most készen áll a tootest, munkahelyi vagy iskolai (az Azure Active Directory), vagy egy személyes (live.com, outlook.com) toosign a fiókot használja. 
+Amikor készen áll a tesztelése, használatával munkahelyi vagy iskolai (az Azure Active Directory) vagy egy személyes (live.com, outlook.com) fiók jelentkezzen be. 
 
 ![Jelentkezzen be Microsoft-böngészőablakot](media/active-directory-serversidewebapp-aspnetwebappowin-test/aspnetbrowsersignin.png)
 
 ![Jelentkezzen be Microsoft-böngészőablakot](media/active-directory-serversidewebapp-aspnetwebappowin-test/aspnetbrowsersignin2.png)
 
 #### <a name="expected-results"></a>Kívánt eredmény elérése érdekében
-Bejelentkezéskor a hello felhasználói párt átirányított toohello kezdőlap a webhely, amely hello hello Microsoft alkalmazásregisztrációs portálra az alkalmazás regisztrációs adatait a megadott HTTPS URL-címet. Ezen a lapon látható most *Hello {felhasználó}* és egy hivatkozás toosign kibővített, és a hivatkozás toosee hello felhasználói jogcímek – amely egy hivatkozás toohello engedélyezés vezérlő korábban létrehozott-e.
+Bejelentkezés, miután a felhasználó a kezdőlapot, a webhely, amely a HTTPS URL-címét, a Microsoft alkalmazás-regisztrálási portál alkalmazás regisztrációs adatait a megadott átirányítási. Ezen a lapon látható most *Hello {felhasználó}* és kijelentkezési mutató hivatkozást, és egy hivatkozásra kattintva megtekintheti az a felhasználói jogcímek – ami az engedélyezés vezérlő mutató hivatkozást a korábban létrehozott-e.
 
 ### <a name="see-users-claims"></a>Tekintse meg a felhasználói jogcímek
-Válassza ki a hello hivatkozás toosee hello felhasználói jogcímeket. A részletes útmutatást toohello tartományvezérlő, és tekintse meg, hogy csak hitelesített elérhető toousers.
+Válassza ki a hivatkozásra kattintva tekintse meg a felhasználói jogcímeket. A részletes útmutatást a tartományvezérlő, tekintse meg, hogy csak hitelesített felhasználók számára elérhető.
 
 #### <a name="expected-results"></a>Kívánt eredmény elérése érdekében
- Hello alaptulajdonságait hello bejelentkezett felhasználó tartalmazó táblát kell megjelennie:
+ A bejelentkezett felhasználó alaptulajdonságait tartalmazó táblát kell megjelennie:
 
 | Tulajdonság | Érték | Leírás|
 |---|---|---|
-| Név | {Felhasználó teljes neve} | hello felhasználói vezeték- és keresztneve
-|Felhasználónév | <span>user@domain.com</span>| hello felhasználónév használt tooidentify hello bejelentkezett felhasználó
-| Tárgy| {Tulajdonos}|Egy karakterlánc toouniquely hello felhasználói bejelentkezési hello weben azonosításához.|
-| Bérlőazonosító| {Guid}| A *guid* toouniquely hello felhasználó Azure Active Directory szervezetet képviseljék.|
+| Név | {Felhasználó teljes neve} | A felhasználó nagyapja vezeték- és keresztneve
+|Felhasználónév | <span>user@domain.com</span>| A felhasználó azonosítására használt felhasználónév
+| Tárgy| {Tulajdonos}|A karakterlánc egyedi azonosítására a weben a felhasználói bejelentkezés|
+| Bérlőazonosító| {Guid}| A *guid* a felhasználó Azure Active Directory szervezeti egyedileg ábrázolásához.|
 
 Ezenkívül megjelenik egy táblázatot, beleértve az összes felhasználó szerepel a hitelesítési kérelmet. Egy azonosító Token és magyarázat minden jogcím listáját lásd: a [cikk](https://docs.microsoft.com/azure/active-directory/develop/active-directory-token-and-claims "lista a jogcímek a lexikális elem azonosítója").
 
 
 ### <a name="test-accessing-a-method-that-has-an-authorize-attribute-optional"></a>Egy metódust, amelynek elérésekor teszt egy *[engedélyezés]* attribútum (nem kötelező)
-Ebben a lépésben tesztelni elérése során hello hitelesített vezérlő névtelen felhasználóként:<br/>
-Válassza ki a hello hivatkozás toosign kibővített hello felhasználó- és kijelentkezési folyamat teljes hello.<br/>
-A böngészőben, a parancssorba írja be a http://localhost: {port} / hitelesített tooaccess a tartományvezérlő által védett hello `[Authorize]` attribútum
+Ebben a lépésben tesztelni a hitelesített vezérlő névtelen felhasználóként elérésekor:<br/>
+Válassza ki a Kijelentkezés hivatkozásra a felhasználó, és kijelentkezési folyamat befejezéséhez.<br/>
+A böngészőben, a parancssorba írja be a http://localhost: {port} / hitelesített a tartományvezérlő által védett eléréséhez a `[Authorize]` attribútum
 
 #### <a name="expected-results"></a>Kívánt eredmény elérése érdekében
-Nincs szükség tooauthenticate toosee hello nézet hello kérdés kell kapnia.
+A parancssorba, nincs szükség, hogy a nézet hitelesítést kell kapnia.
 
 ## <a name="additional-information"></a>További információ
 
 <!--start-collapse-->
 ### <a name="protect-your-entire-web-site"></a>A teljes webhelyet védelme
-tooprotect a teljes webhelyet hello hozzáadása `AuthorizeAttribute` túl`GlobalFilters` a `Global.asax` `Application_Start` módszert:
+A teljes webhelyet védelme érdekében vegye fel a `AuthorizeAttribute` való `GlobalFilters` a `Global.asax` `Application_Start` módszert:
 
 ```csharp
 GlobalFilters.Filters.Add(new AuthorizeAttribute());
@@ -73,13 +73,13 @@ GlobalFilters.Filters.Add(new AuthorizeAttribute());
 <br/>
 
 > [!NOTE]
-> **Hogyan tooyour alkalmazásban csak egy szervezet toosign toorestrict felhasználók**
+> **Jelentkezzen be az alkalmazás csak egy szervezet a felhasználók korlátozása**
 
-> Alapértelmezés szerint személyes fiókok (például outlook.com, live.com, és egyéb), valamint a vállalat vagy szervezet, amely az Azure Active Directoryval integrált munkahelyi és iskolai fiókok is bejelentkezhet tooyour alkalmazás. 
+> Alapértelmezés szerint személyes fiókok (például outlook.com, live.com és mások), valamint a munkahelyi és iskolai fiókok bármely vállalat vagy szervezet, amely az Azure Active Directoryval integrált is bejelentkezhet az alkalmazásba. 
 
-> Ha azt szeretné, hogy az alkalmazás tooaccept bejelentkezések csak egy Azure Active Directory szervezeti, cserélje le a hello `Tenant` paramétere *web.config* a `Common` toohello bérlő neve hello szervezet – példa *contoso.onmicrosoft.com*. Ezt követően módosíthatja a hello `ValidateIssuer` argumentumának a *OWIN indítási osztály* túl`true`.
+> Ha azt szeretné, hogy az alkalmazás csak egy Azure Active Directory szervezeti bejelentkezések fogadására, cserélje le a `Tenant` paraméterének *web.config* a `Common` a bérlő neve a szervezet – példa, *contoso.onmicrosoft.com*. Ezt követően módosíthatja a `ValidateIssuer` argumentumának a *OWIN indítási osztály* való `true`.
 
-> tooallow felhasználók közül csak bizonyos szervezetekkel meg `ValidateIssuer` tootrue és -felhasználási hello `ValidIssuers` paraméter toospecify szervezetek listáját.
+> Engedélyezi a felhasználók csak bizonyos szervezetekkel listája, állítsa `ValidateIssuer` true, és használja a `ValidIssuers` paraméter adja meg a szervezetek listáját.
 
-> Egy másik lehetőség van egyéni módszer tooimplement toovalidate hello kiállítók IssuerValidator paraméter használatával. További információ `TokenValidationParameters`, lásd: [ez](https://msdn.microsoft.com/library/system.identitymodel.tokens.tokenvalidationparameters.aspx "TokenValidationParameters MSDN-cikk") MSDN-cikk tárgyalja.
+> Egy másik lehetőség, hogy a kiállítók IssuerValidator paraméter használatával érvényesítéséhez egyéni módszer alkalmazza. További információ `TokenValidationParameters`, lásd: [ez](https://msdn.microsoft.com/library/system.identitymodel.tokens.tokenvalidationparameters.aspx "TokenValidationParameters MSDN-cikk") MSDN-cikk tárgyalja.
 

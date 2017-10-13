@@ -1,9 +1,9 @@
 ---
-title: "Azure Automation-fiók konfigurációja aaaValidate |} Microsoft Docs"
-description: "Ez a cikk ismerteti, hogyan tooconfirm hello konfigurálása az Automation-fiók helyesen beállítva."
+title: "Azure Automation-fiók konfigurációjának ellenőrzése | Microsoft Docs"
+description: "Ez a cikk azt ismerteti, hogyan lehet ellenőrizni, hogy az Automation-fiók konfigurációja megfelelő-e."
 services: automation
 documentationcenter: 
-author: mgoedtel
+author: eslesar
 manager: carmonm
 editor: 
 ms.assetid: 
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/07/2017
 ms.author: magoedte
-ms.openlocfilehash: 3a990dcc6661cf67c4b62592ce03d55a3791053a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 55f5d5524019ac63565e5ddd1f47dbdd65f05065
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="test-azure-automation-run-as-account-authentication"></a>Azure Automation futtató fiók hitelesítésének tesztelése
-Automation-fiók sikeres létrehozását követően hajthat végre egy egyszerű tesztelési tooconfirm tud toosuccessfully hitelesítéséhez az Azure Resource Manager vagy az Azure klasszikus üzembe helyezési használják az újonnan létrehozott vagy frissített Automation futtató fiókot.    
+Az Automation-fiók sikeres létrehozását követően végrehajthat egy egyszerű tesztet annak megállapítására, hogy az újonnan létrehozott vagy frissített Automation futtató fiók alkalmas-e a sikeres hitelesítésre az Azure Resource Managerben vagy a klasszikus Azure üzembe helyezési modellben.    
 
 ## <a name="automation-run-as-authentication"></a>Hitelesítés Automation futtató fiókkal
-Túl használja az alábbi hello mintakód[létrehozhat egy PowerShell](automation-creating-importing-runbook.md) tooverify hitelesítéssel hello fiókként, az egyéni runbookok tooauthenticate is futnak, és erőforrás-kezelő erőforrások az Automation-fiók kezelése.   
+Az alábbi mintakód segítségével egy [PowerShell-runbook létrehozásával](automation-creating-importing-runbook.md) ellenőrizheti a futtató fiókkal történő hitelesítést, valamint az egyéni runbookokban hitelesítheti és kezelheti a Resource Manager-erőforrásokat az Automation-fiókkal.   
 
     $connectionName = "AzureRunAsConnection"
     try
     {
-        # Get hello connection "AzureRunAsConnection "
+        # Get the connection "AzureRunAsConnection "
         $servicePrincipalConnection=Get-AutomationConnection -Name $connectionName         
 
-        "Logging in tooAzure..."
+        "Logging in to Azure..."
         Add-AzureRmAccount `
            -ServicePrincipal `
            -TenantId $servicePrincipalConnection.TenantId `
@@ -64,50 +64,50 @@ Túl használja az alábbi hello mintakód[létrehozhat egy PowerShell](automati
        Write-Output ("")
     } 
 
-Figyelje meg a hitelesítéséhez szeretne használni, a parancsmag hello hello runbook - **Add-AzureRmAccount**, használ hello *ServicePrincipalCertificate* paraméterhalmaz.  Ez a szolgáltatásnév segítségével, és nem hitelesítő adatokkal végzi el a hitelesítést.  
+Figyelje meg, hogy a forgatókönyvben való hitelesítést biztosító parancsmag, (**Add-AzureRmAccount**) a *ServicePrincipalCertificate* paraméterkészletet használja.  Ez a szolgáltatásnév segítségével, és nem hitelesítő adatokkal végzi el a hitelesítést.  
 
-Amikor Ön [hello runbook futtatásához](automation-starting-a-runbook.md#starting-a-runbook-with-the-azure-portal) toovalidate a Futtatás mint fiók egy [runbook-feladat](automation-runbook-execution.md) van létrehozása hello feladat panelen jelenik meg, és hello feladatállapot hello jelenik meg **feladat összegzése**csempére. hello feladat állapota elindul *várakozik* azt jelzi, hogy a forgatókönyv-feldolgozók hello felhő toobecome érhető el a vár. Ezután ez az objektum túl*indítása* dolgozó jogcímek hello feladatot, amikor, majd *futtató* amikor hello runbook ténylegesen elindul.  Hello runbook-feladat befejezése után kell állapota látható **befejezve**.
+Amikor [futtatja a runbookot](automation-starting-a-runbook.md#starting-a-runbook-with-the-azure-portal) a futtató fiók érvényesítéséhez, létrejön egy [runbook-feladat](automation-runbook-execution.md), megjelenik a Feladat panel, a feladat állapota pedig megjelenik a **Feladat összegzése** csempén. A feladat állapota kezdetben *Várólistán*, azt mutatva, hogy egy felhőben lévő forgatókönyv-feldolgozó elérhetővé válására vár. Ezután *Indítás* állapotúra változik, ha egy feldolgozó elvállalja a feladatot, majd *Fut* állapotúra, amikor a forgatókönyv elkezd futni.  Ha befejeződik a forgatókönyv-feladat, normál esetben a **Befejezve** állapotnak kell megjelennie.
 
-toosee hello hello runbook részletes eredményét, kattintson a hello **kimeneti** csempére.  A hello **kimeneti** panelen megtekintheti az sikeresen hitelesítette és az előfizetésében szereplő összes erőforráscsoport összes erőforrás listáját adja vissza.  
+Ha szeretné megtekinteni a forgatókönyv részletes eredményeit, kattintson a **Kimenet** csempére.  A **Kimenet** panelen azt kell látnia, hogy a runbook sikeresen elvégezte a hitelesítést, és visszaadta az előfizetésben elérhető összes erőforráscsoport listáját.  
 
-Ne feledje azonban tooremove hello kódblokkot hello Megjegyzés kezdve `#Get all ARM resources from all resource groups` amikor hello kód felhasználhatja a runbookok.
+Ne felejtse el eltávolítani a `#Get all ARM resources from all resource groups` megjegyzéssel kezdődő kódblokkot, amikor újból felhasználja a kódot a runbookokban.
 
 ## <a name="classic-run-as-authentication"></a>Hitelesítés klasszikus futtató fiókkal
-Túl használja az alábbi hello mintakód[létrehozhat egy PowerShell](automation-creating-importing-runbook.md) tooverify használatával hello klasszikus fiókként, az egyéni runbookok tooauthenticate is futnak, és kezelheti az erőforrásokat hello klasszikus üzembe helyezési modellben.  
+Az alábbi mintakód segítségével egy [PowerShell-runbook létrehozásával](automation-creating-importing-runbook.md) ellenőrizheti a klasszikus futtató fiókkal történő hitelesítést, valamint az egyéni runbookokban hitelesítheti és kezelheti az erőforrásokat a klasszikus üzemi modellben.  
 
     $ConnectionAssetName = "AzureClassicRunAsConnection"
-    # Get hello connection
+    # Get the connection
     $connection = Get-AutomationConnection -Name $connectionAssetName        
 
-    # Authenticate tooAzure with certificate
+    # Authenticate to Azure with certificate
     Write-Verbose "Get connection asset: $ConnectionAssetName" -Verbose
     $Conn = Get-AutomationConnection -Name $ConnectionAssetName
     if ($Conn -eq $null)
     {
-       throw "Could not retrieve connection asset: $ConnectionAssetName. Assure that this asset exists in hello Automation account."
+       throw "Could not retrieve connection asset: $ConnectionAssetName. Assure that this asset exists in the Automation account."
     }
 
     $CertificateAssetName = $Conn.CertificateAssetName
-    Write-Verbose "Getting hello certificate: $CertificateAssetName" -Verbose
+    Write-Verbose "Getting the certificate: $CertificateAssetName" -Verbose
     $AzureCert = Get-AutomationCertificate -Name $CertificateAssetName
     if ($AzureCert -eq $null)
     {
-       throw "Could not retrieve certificate asset: $CertificateAssetName. Assure that this asset exists in hello Automation account."
+       throw "Could not retrieve certificate asset: $CertificateAssetName. Assure that this asset exists in the Automation account."
     }
 
-    Write-Verbose "Authenticating tooAzure with certificate." -Verbose
+    Write-Verbose "Authenticating to Azure with certificate." -Verbose
     Set-AzureSubscription -SubscriptionName $Conn.SubscriptionName -SubscriptionId $Conn.SubscriptionID -Certificate $AzureCert
     Select-AzureSubscription -SubscriptionId $Conn.SubscriptionID
     
-    #Get all VMs in hello subscription and return list with name of each
+    #Get all VMs in the subscription and return list with name of each
     Get-AzureVM | ft Name
 
-Amikor Ön [hello runbook futtatásához](automation-starting-a-runbook.md#starting-a-runbook-with-the-azure-portal) toovalidate a Futtatás mint fiók egy [runbook-feladat](automation-runbook-execution.md) van létrehozása hello feladat panelen jelenik meg, és hello feladatállapot hello jelenik meg **feladat összegzése**csempére. hello feladat állapota elindul *várakozik* azt jelzi, hogy a forgatókönyv-feldolgozók hello felhő toobecome érhető el a vár. Ezután ez az objektum túl*indítása* dolgozó jogcímek hello feladatot, amikor, majd *futtató* amikor hello runbook ténylegesen elindul.  Hello runbook-feladat befejezése után kell állapota látható **befejezve**.
+Amikor [futtatja a runbookot](automation-starting-a-runbook.md#starting-a-runbook-with-the-azure-portal) a futtató fiók érvényesítéséhez, létrejön egy [runbook-feladat](automation-runbook-execution.md), megjelenik a Feladat panel, a feladat állapota pedig megjelenik a **Feladat összegzése** csempén. A feladat állapota kezdetben *Várólistán*, azt mutatva, hogy egy felhőben lévő forgatókönyv-feldolgozó elérhetővé válására vár. Ezután *Indítás* állapotúra változik, ha egy feldolgozó elvállalja a feladatot, majd *Fut* állapotúra, amikor a forgatókönyv elkezd futni.  Ha befejeződik a forgatókönyv-feladat, normál esetben a **Befejezve** állapotnak kell megjelennie.
 
-toosee hello hello runbook részletes eredményét, kattintson a hello **kimeneti** csempére.  A hello **kimeneti** panelen megtekintheti az sikeresen hitelesítette és által az előfizetés üzembe helyezett VMName minden Azure virtuális gépek listáját adja vissza.  
+Ha szeretné megtekinteni a forgatókönyv részletes eredményeit, kattintson a **Kimenet** csempére.  A **Kimenet** panelen azt kell látnia, hogy a runbook sikeresen elvégezte a hitelesítést, és visszaadta az előfizetésben telepített Azure-beli virtuális gépek a virtuális gépek neve szerinti listáját.  
 
-Ne feledje azonban tooremove hello parancsmag **Get-AzureVM** amikor hello kód felhasználhatja a runbookok.
+Ne felejtse el eltávolítani a **Get-AzureVM** parancsmagot, amikor újból felhasználja a kódot a runbookban.
 
 ## <a name="next-steps"></a>Következő lépések
-* a PowerShell-forgatókönyvek, használatába tooget lásd [az első PowerShell runbook](automation-first-runbook-textual-powershell.md).
-* toolearn grafikus szerzői kapcsolatos további információkért lásd: [grafikus készítése az Azure Automationben](automation-graphical-authoring-intro.md).
+* A PowerShell-forgatókönyvek használatának megismeréséhez tekintse meg a következőt: [Az első PowerShell-runbookom](automation-first-runbook-textual-powershell.md).
+* További információk a grafikus létrehozásról: [Grafikus létrehozás az Azure Automationben](automation-graphical-authoring-intro.md).

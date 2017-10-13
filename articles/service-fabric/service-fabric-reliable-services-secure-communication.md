@@ -1,6 +1,6 @@
 ---
-title: "aaaHelp biztonságos kommunikációs szolgáltatások az Azure Service Fabric |} Microsoft Docs"
-description: "Hogyan toohelp biztonságos kommunikáció megbízható számára, amely áttekintést az Azure Service Fabric-fürt futnak."
+title: "Azure Service Fabric-szolgáltatások biztonságos kommunikáció érdekében |} Microsoft Docs"
+description: "Azure Service Fabric-fürtben lévő futó megbízható szolgáltatások biztonságos kommunikáció érdekében áttekintése."
 services: service-fabric
 documentationcenter: .net
 author: suchiagicha
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 04/20/2017
 ms.author: suchiagicha
-ms.openlocfilehash: 15201eb503322b17db329b319f1f42860b0f0c6b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 53119244f8f09c0c6c43f43761af1cc074f8d0af
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="help-secure-communication-for-services-in-azure-service-fabric"></a>Azure Service Fabric-szolgáltatások biztonságos kommunikáció érdekében
 > [!div class="op_single_selector"]
@@ -27,12 +27,12 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-A biztonság az egyik legfontosabb szempontja hello kommunikációra. hello Reliable Services alkalmazás-keretrendszer tartalmaz néhány előre elkészített kommunikációs verem és tooimprove biztonsági használt eszközök. Ez a cikk arról, hogyan tooimprove biztonsági használatakor távoli eljáráshívási szolgáltatás és a Windows Communication Foundation (WCF) kommunikációs verem hello-kiszolgálóhoz.
+A biztonság az egyik legfontosabb szempontja a kommunikáció. A Reliable Services alkalmazás-keretrendszer tartalmaz néhány előre elkészített kommunikációs verem és eszközöket, amelyek a biztonság növelése érdekében használhatja. Ez a cikk beszél biztonsági javítására, ha a szolgáltatás távoli eljáráshívás és a Windows Communication Foundation (WCF) kommunikációs verem használata.
 
 ## <a name="help-secure-a-service-when-youre-using-service-remoting"></a>Számítógépek biztonságossá tétele a szolgáltatás használatakor a távelérési szolgáltatás
-Használunk, egy meglévő [példa](service-fabric-reliable-services-communication-remoting.md) , amely ismerteti, hogyan tooset megbízható szolgáltatások távoli eljáráshívást fel. toohelp biztonságos egy szolgáltatás, a távelérés szolgáltatás használatakor, kövesse az alábbi lépéseket:
+Egy meglévő használjuk [példa](service-fabric-reliable-services-communication-remoting.md) , amely ismerteti, hogyan megbízható szolgáltatások távoli eljáráshívást beállítani. Számítógépek biztonságossá tétele a szolgáltatás használatakor a távelérési szolgáltatás, kövesse az alábbi lépéseket:
 
-1. Hozzon létre egy felület `IHelloWorldStateful`, meghatározó hello módszereket, amelyek számára a szolgáltatás a távoli eljáráshívás használható. A szolgáltatás által használt `FabricTransportServiceRemotingListener`, amellyel deklarálva van a hello `Microsoft.ServiceFabric.Services.Remoting.FabricTransport.Runtime` névtér. Ez egy `ICommunicationListener` megvalósítása, amely távoli eljáráshívási képességeket biztosít.
+1. Illesztőfelület, hozzon létre `IHelloWorldStateful`, amely meghatározza, hogy a módszereket, amelyek számára a szolgáltatás a távoli eljáráshívás használható. A szolgáltatás által használt `FabricTransportServiceRemotingListener`, amely deklarálva van a `Microsoft.ServiceFabric.Services.Remoting.FabricTransport.Runtime` névtér. Ez egy `ICommunicationListener` megvalósítása, amely távoli eljáráshívási képességeket biztosít.
 
     ```csharp
     public interface IHelloWorldStateful : IService
@@ -57,9 +57,9 @@ Használunk, egy meglévő [példa](service-fabric-reliable-services-communicati
     ```
 2. Adja hozzá a figyelő beállításai és a hitelesítő adatokat.
 
-    Győződjön meg arról, hogy szeretné-e toouse toohelp biztonságos hello fürt összes csomópontjának hello telepítve van a szolgáltatások közötti kommunikáció hello tanúsítvány. Két módon is megadható figyelő beállításai és a hitelesítő adatokat:
+    Győződjön meg arról, hogy a szolgáltatások közötti kommunikáció biztonságossá tételéhez használni kívánt tanúsítvány telepítve van-e a fürt összes csomópontján. Két módon is megadható figyelő beállításai és a hitelesítő adatokat:
 
-   1. Adja meg azokat közvetlenül a hello szolgáltatás kódot:
+   1. Adja meg azokat közvetlenül a szolgáltatás-kódban:
 
        ```csharp
        protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -94,7 +94,7 @@ Használunk, egy meglévő [példa](service-fabric-reliable-services-communicati
        ```
    2. Adja meg azokat a egy [a konfigurációs csomag](service-fabric-application-model.md):
 
-       Adja hozzá a `TransportSettings` szakasz hello settings.xml fájlban.
+       Adja hozzá a `TransportSettings` szakasz a settings.xml fájlban.
 
        ```xml
        <Section Name="HelloWorldStatefulTransportSettings">
@@ -110,7 +110,7 @@ Használunk, egy meglévő [példa](service-fabric-reliable-services-communicati
        </Section>
        ```
 
-       Ebben az esetben hello `CreateServiceReplicaListeners` módszert fog kinézni:
+       Ebben az esetben a `CreateServiceReplicaListeners` módszert fog kinézni:
 
        ```csharp
        protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -124,7 +124,7 @@ Használunk, egy meglévő [példa](service-fabric-reliable-services-communicati
        }
        ```
 
-        Ha ad hozzá egy `TransportSettings` hello settings.xml fájlban szakasz `FabricTransportRemotingListenerSettings ` fog betöltődni ebben a szakaszban ismertetett összes hello beállítás alapértelmezés szerint.
+        Ha ad hozzá egy `TransportSettings` szakasz a settings.xml fájlban `FabricTransportRemotingListenerSettings ` betölti alapértelmezés szerint ez a szakasz az összes beállítás.
 
         ```xml
         <!--"TransportSettings" section .-->
@@ -132,7 +132,7 @@ Használunk, egy meglévő [példa](service-fabric-reliable-services-communicati
             ...
         </Section>
         ```
-        Ebben az esetben hello `CreateServiceReplicaListeners` módszert fog kinézni:
+        Ebben az esetben a `CreateServiceReplicaListeners` módszert fog kinézni:
 
         ```csharp
         protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -145,7 +145,7 @@ Használunk, egy meglévő [példa](service-fabric-reliable-services-communicati
             };
         }
         ```
-3. Hívható módszerek egy védett szolgáltatásra hello használata helyett hello távoli eljáráshívási verem, használatával `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxy` osztály toocreate egy szolgáltatási proxy használata `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxyFactory`. Adjon át `FabricTransportRemotingSettings`, amely tartalmazza `SecurityCredentials`.
+3. Hívható módszerek biztonságos szolgáltatás használata helyett a távoli eljáráshívás verem használatával a `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxy` a szolgáltatásproxy létrehozására, használja az osztály `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxyFactory`. Adjon át `FabricTransportRemotingSettings`, amely tartalmazza `SecurityCredentials`.
 
     ```csharp
 
@@ -175,7 +175,7 @@ Használunk, egy meglévő [példa](service-fabric-reliable-services-communicati
 
     ```
 
-    Ha hello Ügyfélkód egy szolgáltatás részeként fut, betöltheti `FabricTransportRemotingSettings` hello settings.xml fájlból. Hozzon létre hasonló toohello szolgáltatás kód HelloWorldClientTransportSettings szakasz korábbi látható módon. Hajtsa végre a következő módosításokat toohello Ügyfélkód hello:
+    Ha az Ügyfélkód egy szolgáltatás részeként fut, betöltheti `FabricTransportRemotingSettings` a settings.xml fájlból. Hozzon létre egy HelloWorldClientTransportSettings szakaszt, amelyek hasonlóak a szolgáltatáskód hibáit, amint azt korábban. A következő módosításokat az ügyfél kód:
 
     ```csharp
     ServiceProxyFactory serviceProxyFactory = new ServiceProxyFactory(
@@ -188,11 +188,11 @@ Használunk, egy meglévő [példa](service-fabric-reliable-services-communicati
 
     ```
 
-    Hello ügyfél nem fut a szolgáltatás részeként, ha egy client_name.settings.xml fájlt létrehozhatja a hello azonos helyet, ahol hello client_name.exe. Ezután hozzon létre egy TransportSettings szakaszt, az adott fájlban.
+    Ha az ügyfél nem fut a szolgáltatás részeként, ugyanazon a helyen, ahol a client_name.exe az client_name.settings.xml fájlt is létrehozhat. Ezután hozzon létre egy TransportSettings szakaszt, az adott fájlban.
 
-    Hasonló toohello szolgáltatást, ha ad hozzá egy `TransportSettings` ügyfél settings.xml/client_name.settings.xml szakasz `FabricTransportRemotingSettings` ebben a szakaszban ismertetett összes hello-beállítások alapértelmezés szerint tölti be.
+    Hasonló a szolgáltatáshoz való hozzáadásakor a `TransportSettings` ügyfél settings.xml/client_name.settings.xml szakasz `FabricTransportRemotingSettings` tölt be az összes beállítás alapértelmezés szerint ebben a szakaszban ismertetett.
 
-    Ebben az esetben hello korábbi kód még tovább egyszerűsített:  
+    Ebben az esetben a korábbi kód még tovább egyszerűsített:  
 
     ```csharp
 
@@ -204,9 +204,9 @@ Használunk, egy meglévő [példa](service-fabric-reliable-services-communicati
     ```
 
 ## <a name="help-secure-a-service-when-youre-using-a-wcf-based-communication-stack"></a>Számítógépek biztonságossá tétele a szolgáltatás egy WCF-alapú kommunikációs verem használatakor
-Egy meglévő használjuk [példa](service-fabric-reliable-services-communication-wcf.md) , amely azt ismerteti, hogyan tooset egy WCF-alapú kommunikáció verem megbízható szolgáltatásokhoz. toohelp biztonságos egy szolgáltatás, amikor egy WCF-alapú kommunikációs verem használja, kövesse az alábbi lépéseket:
+Egy meglévő használjuk [példa](service-fabric-reliable-services-communication-wcf.md) , amely elmagyarázza, hogyan állíthat be egy WCF-alapú kommunikációs verem megbízható szolgáltatásokhoz. Számítógépek biztonságossá tétele a szolgáltatás egy WCF-alapú kommunikációs verem használatakor, kövesse az alábbi lépéseket:
 
-1. Hello szolgáltatás toohelp biztonságos hello WCF kommunikációs figyelő szüksége (`WcfCommunicationListener`) az Ön által létrehozott. toodo, módosítsa a hello `CreateServiceReplicaListeners` metódust.
+1. A szolgáltatás kell biztonságossá tétele a WCF-kommunikáció figyelő (`WcfCommunicationListener`) az Ön által létrehozott. Ehhez az szükséges, módosítsa a `CreateServiceReplicaListeners` metódust.
 
     ```csharp
     protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -227,7 +227,7 @@ Egy meglévő használjuk [példa](service-fabric-reliable-services-communicatio
             listenerBinding: GetNetTcpBinding(),
             endpointResourceName:"WcfServiceEndpoint");
 
-        // Add certificate details in hello ServiceHost credentials.
+        // Add certificate details in the ServiceHost credentials.
         wcfCommunicationListener.ServiceHost.Credentials.ServiceCertificate.SetCertificate(
             StoreLocation.LocalMachine,
             StoreName.My,
@@ -243,7 +243,7 @@ Egy meglévő használjuk [példa](service-fabric-reliable-services-communicatio
         return b;
     }
     ```
-2. Hello ügyfél hello `WcfCommunicationClient` osztály a létrehozott hello előző [példa](service-fabric-reliable-services-communication-wcf.md) változatlan marad. De csak akkor toooverride hello `CreateClientAsync` metódusában `WcfCommunicationClientFactory`:
+2. Az ügyfél a `WcfCommunicationClient` osztály, amely jött létre az előző [példa](service-fabric-reliable-services-communication-wcf.md) változatlan marad. Felül kell bírálni, de a `CreateClientAsync` metódusában `WcfCommunicationClientFactory`:
 
     ```csharp
     public class SecureWcfCommunicationClientFactory<TServiceContract> : WcfCommunicationClientFactory<TServiceContract> where TServiceContract : class
@@ -277,8 +277,8 @@ Egy meglévő használjuk [példa](service-fabric-reliable-services-communicatio
             {
                 channelFactory = new ChannelFactory<TServiceContract>(this.clientBinding, endpointAddress);
             }
-            // Add certificate details toohello ChannelFactory credentials.
-            // These credentials will be used by hello clients created by
+            // Add certificate details to the ChannelFactory credentials.
+            // These credentials will be used by the clients created by
             // SecureWcfCommunicationClientFactory.  
             channelFactory.Credentials.ClientCertificate.SetCertificate(
                 StoreLocation.LocalMachine,
@@ -293,7 +293,7 @@ Egy meglévő használjuk [példa](service-fabric-reliable-services-communicatio
     }
     ```
 
-    Használjon `SecureWcfCommunicationClientFactory` toocreate kommunikációs WCF-ügyfél (`WcfCommunicationClient`). Módszerekkel hello ügyfél tooinvoke szolgáltatás.
+    Használjon `SecureWcfCommunicationClientFactory` WCF kommunikációs ügyfelet létrehozni a (`WcfCommunicationClient`). Az ügyfél segítségével szolgáltatás metódusok.
 
     ```csharp
     IServicePartitionResolver partitionResolver = ServicePartitionResolver.GetDefault();

@@ -1,25 +1,25 @@
 ---
-title: "aaaAzure portál dokumentációja – oktatóanyagok API-referencia |} Microsoft Docs"
-description: "Megtudhatja, hogyan toodeploy és kezelheti az erőforrásokat a hello Azure-portálon. Oktatóanyagok, API-referenciák, és egyéb dokumentációk."
-services: 
+title: "Az Azure Portal dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Megtudhatja, hogyan helyezheti üzembe és kezelheti az erőforrásokat az Azure Portalon. Oktatóanyagok, API-referenciák, és egyéb dokumentációk."
+services: azure portal
 documentationcenter: 
-author: squillace
-manager: timlt
+author: czeumault
+manager: carolz
 editor: 
 tags: 
 ms.assetid: 3e12c488-9c8c-4d0d-9b07-e018dec42fc6
-ms.service: value
+ms.service: azure-portal
 ms.devlang: na
-ms.topic: article
+ms.topic: landing-page
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/22/2017
-ms.author: tysonn
-ms.openlocfilehash: 10dbec2bab5c5f1de29a3125aeeb33f80d722282
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: carolz
+ms.openlocfilehash: 9b4352dbbec053ccc4a681886d86582adddf132c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-portal-documentation"></a>Azure Portal-dokumentáció
-Hello szolgáltatásainak megismerése hello Azure-portálon toodeploy erőforrásokat használhatja. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt, megtudhatja, hogyan toodeploy, kezelése és figyelése Azure-erőforrások.
+Ismerje meg azokat a funkciókat, amelyekkel erőforrásokat helyezhet üzembe az Azure Portalon. Oktatóanyagok, API-referenciák és egyéb dokumentáció, amelyekből megtudhatja, hogyan helyezheti üzembe, kezelheti és monitorozhatja Azure-erőforrásait.

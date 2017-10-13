@@ -1,8 +1,8 @@
-hello következő táblázatban hello átjárótípusok és hello becsült összesített átviteli Gateway SKU. Ez a táblázat toohello Resource Manager és klasszikus üzembe helyezési modellre vonatkozik. 
+Az alábbi táblázatban az átjárótípusok és azok becsült összesített átviteli sebessége tekinthető meg az átjárók termékváltozata alapján. Ez a tábla a Resource Manager és klasszikus üzembe helyezési modellre vonatkozik. 
 
 A díjszabás a különböző átjáró-termékváltozatok esetében nem változik. További információkért lásd: [VPN Gateway-díjszabás](https://azure.microsoft.com/pricing/details/vpn-gateway).
 
-Vegye figyelembe, hogy hello UltraPerformance gateway SKU nem szerepel ebben a táblában. Hello UltraPerformance SKU kapcsolatos információkért lásd: hello [ExpressRoute](../articles/expressroute/expressroute-about-virtual-network-gateways.md) dokumentációját.
+Vegye figyelembe, hogy az UltraPerformance átjáró-termékváltozat nem szerepel ebben a táblázatban. Az UltraPerformance termékváltozattal kapcsolatos információkért lásd az [ExpressRoute](../articles/expressroute/expressroute-about-virtual-network-gateways.md) dokumentációját.
 
 |  | **VPN Gateway teljesítménye (1)** | **VPN Gateway IPsec-alagútjainak maximális száma (2)** | **ExpressRoute-átjáró teljesítménye** | **VPN Gateway és ExpressRoute párhuzamos használata** |
 | --- | --- | --- | --- | --- |
@@ -11,14 +11,14 @@ Vegye figyelembe, hogy hello UltraPerformance gateway SKU nem szerepel ebben a t
 | **Nagy teljesítményű termékváltozat (4)** |200 Mbps |30 |2000 Mbps |Igen |
 
 
-(1) hello VPN átviteli egy durva hello mérések közötti hello a Vnetek alapján becsült érték azonos Azure-régiót. Nincs a létesítmények közötti kapcsolatok garantált átviteli hello interneten keresztül. Hello lehetséges maximális átviteli mérési.
+(1)A VPN teljesítménye hozzávetőleges becslés az ugyanazon Azure-régióban található virtuális hálózatok közötti mérések alapján. Nem garantált, hogy ezt a teljesítményt fogja tapasztalni a létesítmények közötti internetes kapcsolatok során. Ez a maximális mérhető teljesítmény.
 
-(2) alagutak száma hello tooRouteBased VPN hivatkozik. A házirendalapú VPN csak egyetlen, helyek közötti VPN-alagutat támogat.
+(2)Az alagutak száma az útvonalalapú VPN-ekre utal. A házirendalapú VPN csak egyetlen, helyek közötti VPN-alagutat támogat.
 
-(3) BGP hello alapszintű Termékváltozat nem támogatott.
+(3) a BGP az alapszintű termékváltozathoz nem támogatott.
 
-(4) Ez a termékváltozat nem támogatja a házirendalapú VPN-eket. Alapszintű Termékváltozat hello csak azok támogatottak.
+(4) Ez a termékváltozat nem támogatja a házirendalapú VPN-eket. Ezek csak az alapszintű termékváltozat esetén támogatottak.
 
-(5) Ez a termékváltozat nem támogatja az aktív/aktív módú S2S VPN Gateway-kapcsolatokat. Aktív-aktív HighPerformance SKU hello támogatott.
+(5) Ez a termékváltozat nem támogatja az aktív/aktív módú S2S VPN Gateway-kapcsolatokat. Az aktív/aktív mód csak a nagy teljesítményű termékváltozat esetén támogatott.
 
 (6) elavult alapszintű Termékváltozat ExpressRoute való használatra.

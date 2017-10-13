@@ -1,6 +1,6 @@
 ---
-title: "az Azure Search aaaData feltöltés |} Microsoft Docs"
-description: Ismerje meg, hogyan tooupload adatok tooan az Azure Search index.
+title: "Adatfeltöltés az Azure Search szolgáltatásba | Microsoft Docs"
+description: "Megismerkedhet az adatfeltöltéssel az Azure Search szolgáltatás indexébe."
 services: search
 documentationcenter: 
 author: ashmaka
@@ -15,13 +15,13 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 05/01/2017
 ms.author: ashmaka
-ms.openlocfilehash: a95eae94f72c1d0926804ff7e1152f21773fcabf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5a601b75ec67824e72d8736bc3c45f8e1231ca86
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="upload-data-tooazure-search"></a>Töltse fel az adatok tooAzure keresése
+# <a name="upload-data-to-azure-search"></a>Adatfeltöltés az Azure Search szolgáltatásba
 > [!div class="op_single_selector"]
 > * [Áttekintés](search-what-is-data-import.md)
 > * [.NET](search-import-data-dotnet.md)
@@ -29,31 +29,31 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Nincsenek két módon toopopulate egy index ugyanezzel az adatokat. hello első lehetőség az adatok manuális küldését hello Azure Search használatával hello indexbe [REST API](search-import-data-rest-api.md) vagy [.NET SDK](search-import-data-dotnet.md). hello második lehetőség van túl[egy támogatott adatforrásra pont](search-indexer-overview.md) tooyour index, és automatikusan hello adatok bekérésére Azure Search segítségével.
+Az index adatokkal történő feltöltésére kétféle módszer létezik. Az első lehetőség az adatok manuális elküldése az indexbe az Azure Search [REST API](search-import-data-rest-api.md)-jának vagy [.NET SDK](search-import-data-dotnet.md)-jának használatával. A második lehetőség egy [támogatott adatforrás átirányítása](search-indexer-overview.md) az indexbe, majd az adatok automatikus lekérésének engedélyezése az Azure Search számára.
 
-## <a name="push-data-tooan-index"></a>Leküldéses az tooan indexe
-Ez a megközelítés hivatkozik az adatok tooAzure keresési toomake küldése tooprogrammatically elérhetővé a kereséshez. Az alkalmazások (például operations toobe dinamikus készlet adatbázisok szinkronban kell keresni) nagyon alacsony késési követelményekkel rendelkező hello leküldési modelljével egyetlen választása esetén.
+## <a name="push-data-to-an-index"></a>Adatok elküldése egy indexbe
+Ez a megközelítés a programozás útján az Azure Search szolgáltatásba történő adatküldésre hivatkozik, amelynek révén azt kereshetővé teszi. Nagyon alacsony késleltetési követelményekkel rendelkező alkalmazások esetében (ha például arra van szükség, hogy a keresési műveletek szinkronizálva legyenek a dinamikus leltáradatbázissal) kizárólag a leküldéses modell használható.
 
-Használhatja a hello [REST API](https://docs.microsoft.com/rest/api/searchservice/AddUpdate-or-Delete-Documents) vagy [.NET SDK](search-import-data-dotnet.md) toopush adatok tooan index. Jelenleg nincs hello portálon előtte adatot eszköz támogatása.
+Az adatokat az indexbe a [REST API](https://docs.microsoft.com/rest/api/searchservice/AddUpdate-or-Delete-Documents) vagy a [.NET SDK](search-import-data-dotnet.md) használatával küldheti el. A portálon keresztül történő adatleküldéshez jelenleg nincsenek támogató eszközök.
 
-Ez a módszer nem rugalmasabb, mint hello lekéréses modell, mert is tölthet fel dokumentumokat, külön-külön és kötegek (mentése kötegelt vagy 16 MB too1000, korlát átlépése következik be előbb). hello leküldési modelljével is lehetővé teszi tooupload dokumentumok tooAzure keresési függetlenül adatai.
+Ez a megközelítés rugalmasabb a lekéréses modellnél, mivel dokumentumokat feltölthet egyedileg, illetve kötegek formájában is (kötegenként legfeljebb 1000 darabot vagy 16 MB-t, amelyik a kisebb). A leküldéses modell az Azure Search szolgáltatásba történő dokumentumfeltöltést – annak helyétől függetlenül – szintén lehetővé teszi.
 
-Azure Search azt értelmezni tudja hello adatformátum JSON, és hello dataset található összes dokumentum rendelkeznie kell a sémát indexeli definiált toofields megfeleltetni mezőt. 
+Az Azure Search által felismert adatformátum a JSON, és az adatkészletben lévő mindegyik dokumentumnak rendelkeznie kell az indexsémában meghatározott mezőkre leképezhető mezőkkel. 
 
 ## <a name="pull-data-into-an-index"></a>Adatok lekérése indexbe
-hello lekéréses modell bejárásokat egy támogatott adatforrásra, és automatikusan feltölti a hello adatok az indexbe. Az Azure Search szolgáltatásban ez a képesség az *indexelőkön* keresztül valósul meg, ami jelenleg a [Blob Storage](search-howto-indexing-azure-blob-storage.md), a [Table Storage](search-howto-indexing-azure-tables.md), az [Azure Cosmos DB](http://aka.ms/documentdb-search-indexer), az [Azure SQL Database és az Azure virtuális gépekhez készült SQL Server](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md) számára érhető el. 
+A lekéréses modell feltérképezi a támogatott adatforrást, majd automatikusan feltölti az adatokat az indexbe. Az Azure Search szolgáltatásban ez a képesség az *indexelőkön* keresztül valósul meg, ami jelenleg a [Blob Storage](search-howto-indexing-azure-blob-storage.md), a [Table Storage](search-howto-indexing-azure-tables.md), az [Azure Cosmos DB](http://aka.ms/documentdb-search-indexer), az [Azure SQL Database és az Azure virtuális gépekhez készült SQL Server](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md) számára érhető el. 
 
-Indexelők egy index tooa adatforrás csatlakoztatása (általában egy tábla, nézet vagy ezzel egyenértékű struktúra), és képezze le a forrás mezők tooequivalent mezők hello index. Végrehajtásakor hello sorhalmaz automatikusan átalakított tooJSON és betölti a megadott index hello. Összes indexelő támogatja az ütemezést, így megadható, hogy milyen gyakran hello adatok toobe frissíteni. A legtöbb indexelők adja meg a változások követését, ha az adatforrás hello támogatja. Változások követése és a törlések tooexisting dokumentumok továbbá toorecognizing új dokumentumok, indexelők eltávolítása hello kell tooactively az indexben hello adatok kezelésére. 
+Az indexelők indexeket csatlakoztatnak az adatforrásokhoz (általában táblákhoz, nézetekhez vagy ezekkel egyenértékű struktúrákhoz), és leképezik a forrásmezőket a megfelelő mezőkre az indexben. A végrehajtás során a sorkészlet automatikusan át lesz alakítva JSON formátumba, és be lesz töltve a meghatározott indexbe. Minden indexelő támogatja az ütemezést, így meghatározhatja, hogy az adatok milyen gyakran legyenek frissítve. A legtöbb indexelő biztosít változáskövetési funkciókat, ha az adatforrás támogatja azokat. Az új dokumentumok felismerésén kívül az indexelők a meglévő dokumentumok módosításainak és a törléseinek nyomon követésével küszöbölik ki az aktív adatkezelés szükségességét az indexben. 
 
-Az indexelő funkció ki van téve, a hello [Azure-portálon](search-import-data-portal.md), hello [REST API](/rest/api/searchservice/Indexer-operations), és hello [.NET SDK](/dotnet/api/microsoft.azure.search.indexersoperations). 
+Az indexelő funkció az [Azure Portalon](search-import-data-portal.md), a [REST API](/rest/api/searchservice/Indexer-operations) és a [.NET SDK](/dotnet/api/microsoft.azure.search.indexersoperations) részeként van közzétéve. 
 
-Egy előny toousing hello portál, hogy Azure Search általában generálhat egy alapértelmezett sémát indexeli az Ön által hello forrás adatkészlet hello metaadatait. Amíg hello index dolgoz fel, melyik hello után csak a séma módosításokat engedélyezett azok, amelyek nem igényelnek újraindexelés hello létrehozott index módosíthatja. Ha azt szeretné, hogy toomake hatás hello módosítások közvetlenül hello séma, kellene toorebuild hello index. 
+A portál használatának egyik előnye, hogy az Azure Search általában képes létrehozni egy alapértelmezett indexsémát a forrásadatkészlet metaadatainak kiolvasásával. A létrehozott indexet annak feldolgozásáig módosíthatja, azt követően azonban csak azok a sémamódosítások engedélyezettek, amelyekhez újraindexelés nem szükséges. Ha a végrehajtani kívánt módosítások közvetlen hatással vannak a sémára, újra kell építenie az indexet. 
 
-Miután elkészült hello index, használhatja **keresési ablak** a hello portál parancssáv ellenőrzési lépésben.
+Az index feltöltése után a **Keresési ablak** használható ellenőrzésre a portál parancssorában.
 
 ## <a name="query-an-index-using-search-explorer"></a>Index lekérdezése a Keresési ablak használatával
 
-A gyors tooperform hello dokumentumfeltöltés előzetes ellenőrzése toouse **keresési ablak** hello portálon. hello explorer lehetővé teszi egy index lekérdezése nélkül toowrite összes kódot. hello keresési élményt biztosít a alapul alapértelmezett beállítások, például hello [egyszerű Szintaxishiba](/rest/api/searchservice/simple-query-syntax-in-azure-search) és az alapértelmezett [searchMode lekérdezésparaméter](/rest/api/searchservice/search-documents). Eredményeinek JSON-ban, hogy a teljes dokumentum hello vizsgálhatja meg.
+A dokumentumfeltöltés előzetes gyors ellenőrzésére használhatja a portálon a **Keresési ablakot**. A keresési ablak segítségével bármiféle kód írása nélkül kérdezheti le az indexeket. A keresési funkció alapértelmezett beállításokon alapul, mint az [egyszerű szintaxis](/rest/api/searchservice/simple-query-syntax-in-azure-search) és az alapértelmezett [searchMode lekérdezési paraméter](/rest/api/searchservice/search-documents). A rendszer az eredményeket JSON-formátumban adja vissza, így a teljes dokumentum vizsgálható.
 
 > [!TIP]
-> Számos [Azure Search-Kódminták](https://github.com/Azure-Samples/?utf8=%E2%9C%93&query=search) közé tartozik a beágyazott vagy azonnal elérhetők legyenek adatkészletek ajánlat egy egyszerűen tooget elindult. hello portal minta indexelő és adatforrás ("realestate-us-minta" nevű) kis ingatlan dataset álló is biztosít. Hello előre konfigurált indexelő hello minta az adatforrásban való futtatásakor az index létrehozása és lekérdezhető keresési ablak, vagy írhat kódot dokumentumok betöltését.
+> Számos [Azure Search kódminta](https://github.com/Azure-Samples/?utf8=%E2%9C%93&query=search) tartalmaz beágyazott vagy használatra kész adatkészleteket, így segítséget nyújt az első lépésekhez. A portál emellett egy mintaindexelőt és egy adatforrást is kínál, amely egy kisméretű ingatlan-adatkészletet tartalmaz („realestate-us-sample” néven). Amikor futtatja az előre konfigurált indexelőt a mintaadatforráson, a rendszer egy indexet hoz létre, és feltölti dokumentumokkal, amelyek a Keresési ablakban vagy egy erre írt kóddal lekérdezhetők.

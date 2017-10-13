@@ -1,6 +1,6 @@
 ---
-title: "Első lépések AD Windows Phone aaaAzure |} Microsoft Docs"
-description: "Hogyan toobuild egy Windows Phone-alkalmazás, amely integrálható a bejelentkezéshez az Azure AD és az Azure AD védett OAuth protokollt használó API-k."
+title: "Ismerkedés az Azure AD-Windows Phone |} Microsoft Docs"
+description: "Hogyan hozható létre, amely integrálható az Azure ad-val jelentkezzen be, és meghívja az Azure AD egy Windows Phone-alkalmazás OAuth protokollt használó API-k védett."
 services: active-directory
 documentationcenter: windows
 author: jmprieur
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: jmprieur
 ms.custom: aaddev
-ms.openlocfilehash: e766bfcdfae10483772154f4b5facdec05fc846f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 03c4b6d225dce99d79ef6c1ba2af43af8dea3eae
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="integrate-azure-ad-with-a-windows-phone-app"></a>Azure AD integrálása a Windows Phone-alkalmazás
 [!INCLUDE [active-directory-devquickstarts-switcher](../../../includes/active-directory-devquickstarts-switcher.md)]
@@ -29,69 +29,69 @@ ms.lasthandoff: 10/06/2017
 > [!NOTE]
 > A Windows Phone 8.1-es és korábbi verziójú projektek nem támogatottak a Visual Studio 2017-ben.  További információ: [A Visual Studio 2017 platform célcsoportkezelése és kompatibilitása](https://www.visualstudio.com/en-us/productinfo/vs2017-compatibility-vs).
 
-Ha a Windows Phone 8.1-alkalmazást, az Azure AD teszi egyszerű és magától értetődő, az Ön tooauthenticate a felhasználókat az Active Directory-fiókokat.  Emellett lehetővé teszi az alkalmazás toosecurely használatához minden webes API-t az Azure AD által védett, például Office 365 API-k hello vagy hello Azure API.
+Ha a Windows Phone 8.1-alkalmazást, az Azure AD segítségével egyszerű és magától értetődő, hogy a felhasználókat az Active Directory-fiókok hitelesítéséhez.  Emellett lehetővé teszi az alkalmazás minden webes API-t az Azure AD, például az Office 365 API-k vagy az Azure API által védett biztonságosan felhasználását.
 
 > [!NOTE]
-> A fenti ADAL v2.0 használja.  Hello legújabb technológiát, célszerű lehet tooinstead próbálkozzon a [Windows Universal oktatóanyagot ADAL v3.0 használatával](active-directory-devquickstarts-windowsstore.md).  Ha valóban egy alkalmazást a Windows Phone 8.1-es, ez a hello megfelelő hely.  ADAL v2.0 továbbra is teljes mértékben támogatja, és hello fejlesztését alkalmazások agianst Windows Phone 8.1-es ajánlott módja használja az Azure AD.
+> A fenti ADAL v2.0 használja.  A legújabb technológiák, érdemes lehet helyette próbálkozzon az [Windows Universal oktatóanyagot ADAL v3.0 használatával](active-directory-devquickstarts-windowsstore.md).  Ha valóban egy alkalmazást a Windows Phone 8.1-es, ez az a megfelelő helyen.  ADAL v2.0 továbbra is teljes mértékben támogatja, és az ajánlott módszer a Windows Phone 8.1-es alkalmazások agianst fejlődő használja az Azure AD.
 > 
 > 
 
-A .NET natív ügyfelek számára, amelyek tooaccess védett erőforrások az Azure AD hello Active Directory Authentication Library vagy adal-t biztosít.  ADAL meg azzal a céllal életben toomake megkönnyítik az alkalmazás tooget hozzáférési jogkivonatok.  toodemonstrate milyen könnyű van, itt azt fogja létrehozása egy "Directory keresővel" Windows Phone 8.1-alkalmazást, amely:
+A .NET natív ügyfelek esetében a védett erőforrások eléréséhez szükséges az Azure AD az Active Directory Authentication Library, vagy az adal-t biztosít.  ADAL meg azzal a céllal életben megkönnyíti a hozzáférési jogkivonatok lekérésére, ha az alkalmazásban.  Annak bemutatásához, milyen könnyű van, itt azt fogja össze egy "Directory keresővel" Windows Phone 8.1-alkalmazást, amely:
 
-* Lekérdezi hozzáférési jogkivonatainak hello segítségével a hello Azure AD Graph API felület meghívásakor [OAuth 2.0 hitelesítési protokoll](https://msdn.microsoft.com/library/azure/dn645545.aspx).
+* Lekérdezi hozzáférési jogkivonatok hívásakor az Azure AD Graph API segítségével a [OAuth 2.0 hitelesítési protokoll](https://msdn.microsoft.com/library/azure/dn645545.aspx).
 * Megkeresi a megadott egyszerű felhasználónév a felhasználók számára.
 * Kimenő felhasználók jeleket.
 
-toobuild hello teljes működő alkalmazást kell:
+A teljes működő alkalmazás létrehozásához szüksége:
 
 1. Az alkalmazás regisztrálása az Azure ad-val.
 2. Telepítése és konfigurálása adal-t.
-3. Használja az Azure AD ADAL tooget jogkivonatokat.
+3. Adal-t használó tokenek lekérni az Azure AD.
 
-elindult, tooget [töltse le a projekt vázát](https://github.com/AzureADQuickStarts/NativeClient-WindowsPhone/archive/skeleton.zip) vagy [letöltése befejeződött hello minta](https://github.com/AzureADQuickStarts/NativeClient-WindowsPhone/archive/complete.zip).  Egy Visual Studio 2013 megoldást.  Biztosítani kell, amelyben felhasználók létrehozása és egy alkalmazás regisztrálása az Azure AD-bérlő.  Ha még nem rendelkezik a bérlő [megtudhatja, hogyan egy tooget](active-directory-howto-tenant.md).
+A kezdéshez [töltse le a projekt vázát](https://github.com/AzureADQuickStarts/NativeClient-WindowsPhone/archive/skeleton.zip) vagy [töltse le az elkészült mintát](https://github.com/AzureADQuickStarts/NativeClient-WindowsPhone/archive/complete.zip).  Egy Visual Studio 2013 megoldást.  Biztosítani kell, amelyben felhasználók létrehozása és egy alkalmazás regisztrálása az Azure AD-bérlő.  Ha még nem rendelkezik a bérlő [beszerzéséről egy](active-directory-howto-tenant.md).
 
-## <a name="1-register-hello-directory-searcher-application"></a>1. Hello Directory keresővel alkalmazás regisztrálása
-tooenable a tooget alkalmazási jogkivonatok, először tooregister azt az Azure ad bérlői, és biztosítson számára engedély tooaccess hello Azure AD Graph API:
+## <a name="1-register-the-directory-searcher-application"></a>1. A könyvtár keresővel alkalmazás regisztrálása
+Ahhoz, hogy az alkalmazás a jogkivonatok lekérésére, először regisztrálja az Azure AD-bérlőben, és adja meg azt az Azure AD Graph API hozzáférése:
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
-2. Hello felső sávon, kattintson a fiókjában, és a hello **Directory** menüben válassza ki, hol kívánja tooregister, az alkalmazás hello Active Directory-bérlő.
-3. Kattintson a **több szolgáltatások** a bal oldali navigációs hello, és válassza a **Azure Active Directory**.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+2. A felső eszköztáron kattintson a fiókhoz, majd a a **Directory** menüben válassza ki az Active Directory-bérlőt, ahová be szeretné-e az alkalmazás regisztrálásához.
+3. Kattintson a **több szolgáltatások** a bal oldali navigációs válassza **Azure Active Directory**.
 4. Kattintson a **App regisztrációk** válassza **Hozzáadás**.
-5. Hello utasításokat követve, és hozzon létre egy új **natív ügyfélalkalmazás**.
-  * Hello **neve** hello az alkalmazás ismerteti, az alkalmazás tooend-felhasználók
-  * Hello **átirányítási Uri-** protokollt és a karakterlánc kombinációját, hogy az Azure AD tooreturn token válaszokat fogja használni.  Például a lépést, adjon meg egy helyőrzőt értéket `http://DirectorySearcher`.  Később lesz lecserélni ezt az értéket.
-6. Miután végrehajtotta a regisztráció, AAD fogja hozzárendelni az alkalmazás egy egyedi azonosítót.  Ez az érték kell a következő szakaszok hello, ezért másolja hello alkalmazás lapján.
-7. A hello **beállítások** lapon, válassza ki **szükséges engedélyek** válassza **Hozzáadás**. Jelölje be hello **Microsoft Graph** , hello API, és adja hozzá a hello **címtáradatok olvasása** engedélyt a **delegált engedélyek**.  Ez lehetővé teszi az alkalmazás tooquery hello Graph API a felhasználók számára.
+5. Kövesse az utasításokat, és hozzon létre egy új **natív ügyfélalkalmazás**.
+  * A **neve** az alkalmazás ismerteti az alkalmazást a végfelhasználók számára
+  * A **átirányítási Uri-** protokollt és a karakterlánc kombinációját, amely az Azure AD vissza a token válaszokat fogja használni.  Például a lépést, adjon meg egy helyőrzőt értéket `http://DirectorySearcher`.  Később lesz lecserélni ezt az értéket.
+6. Miután végrehajtotta a regisztráció, AAD fogja hozzárendelni az alkalmazás egy egyedi azonosítót.  Ez az érték kell a következő szakaszokban lévő, másolja az alkalmazás lapján.
+7. Az a **beállítások** lapon, válassza ki **szükséges engedélyek** válassza **Hozzáadás**. Válassza ki a **Microsoft Graph** az API-t, és adja hozzá a **címtáradatok olvasása** engedélyt a **delegált engedélyek**.  Ez lehetővé teszi az alkalmazás lekérdezése a Graph API-t a felhasználók számára.
 
 ## <a name="2-install--configure-adal"></a>2. Telepítése és konfigurálása adal-t
-Most, hogy az Azure AD-alkalmazás, telepítse az adal-t, és az identitás-kapcsolódó kód írása.  Ahhoz, hogy képes toocommunicate ADAL toobe az Azure AD-val, tooprovide kell azt bizonyos információkat az alkalmazás regisztrációját.
+Most, hogy az Azure AD-alkalmazás, telepítse az adal-t, és az identitás-kapcsolódó kód írása.  Ahhoz, hogy az adal-t tudjanak kommunikálni az Azure AD meg kell biztosítania, bizonyos információkat az alkalmazás regisztrációját.
 
-* Első lépésként hozzáadása ADAL toohello DirectorySearcher projekt hello Csomagkezelő konzol használatával.
+* Kezdje az adal-t ad hozzá a DirectorySearcher projekt a Csomagkezelő konzol használatával.
 
 ```
 PM> Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory
 ```
 
-* Hello DirectorySearcher projektben nyissa meg `MainPage.xaml.cs`.  Cserélje le a hello hello értékek `Config Values` régió tooreflect hello értékei a bemenő hello Azure portálon.  A kód minden alkalommal ADAL hivatkozik ezeket az értékeket.
-  * Hello `tenant` hello tartománya, akkor az Azure AD-bérlőn, pl.: contoso.onmicrosoft.com
-  * Hello `clientId` hello clientId hello portálról másolta az alkalmazás van.
-* A Windows Phone-alkalmazás most kell toodiscover hello visszahívási uri.  Állítson be egy töréspontot a sort a hello `MainPage` módszert:
+* A DirectorySearcher projektben nyissa meg a `MainPage.xaml.cs`.  Cserélje le az értékeket a `Config Values` régió be az Azure-portálra megadott értékeknek megfelelően.  A kód minden alkalommal ADAL hivatkozik ezeket az értékeket.
+  * A `tenant` a tartományt az Azure AD-bérlőn, pl.: contoso.onmicrosoft.com
+  * A `clientId` ClientID-azonosítóját az alkalmazás a portálról másolt van.
+* Most meg kell a Windows Phone-alkalmazás visszahívási URI-jának felderítése.  Ez a sor állítson be egy töréspontot a `MainPage` módszert:
 
 ```
 redirectURI = Windows.Security.Authentication.Web.WebAuthenticationBroker.GetCurrentApplicationCallbackUri();
 ```
-* Hello alkalmazás futtatását, és másolja fenntartott hello értékének `redirectUri` amikor hello töréspont elérte-e.  Az alábbiakhoz hasonlóan
+* Futtassa az alkalmazást, és másolja fenntartott értékének `redirectUri` amikor a töréspont elérte-e.  Az alábbiakhoz hasonlóan
 
 ```
 ms-app://s-1-15-2-1352796503-54529114-405753024-3540103335-3203256200-511895534-1429095407/
 ```
 
-* Vissza a hello **konfigurálása** hello Azure felügyeleti portálon, az alkalmazás lapján cserélje le a hello hello értékének **RedirectUri** ezzel az értékkel.  
+* Vissza a **konfigurálása** fülre az alkalmazás az Azure felügyeleti portálján, cserélje le a a **RedirectUri** ezzel az értékkel.  
 
-## <a name="3-use-adal-tooget-tokens-from-aad"></a>3. Használja az ADAL tooGet jogkivonatok az aad-ben
-hello alapelv ADAL mögött, hogy a hozzáférési tokent kell, ha egyszerűen meghívja `authContext.AcquireToken(…)`, és ADAL rest hello.  
+## <a name="3-use-adal-to-get-tokens-from-aad"></a>3. Adal-t használó tokenek lekérése az aad-ben
+Az alapelv ADAL mögött, hogy a hozzáférési tokent kell, ha egyszerűen meghívja `authContext.AcquireToken(…)`, és a többi adal-t.  
 
-* első lépés hello tooinitialize van az alkalmazás `AuthenticationContext` -ADAL tartozó elsődleges osztály.  Ez az adott át ADAL hello koordinátát kell toocommunicate az Azure ad-val, és mondja el, hogyan toocache jogkivonatokat.
+* Az első lépés az, hogy az alkalmazás inicializálása `AuthenticationContext` -ADAL tartozó elsődleges osztály.  Ez az adott át adal-t a koordináták kommunikálni az Azure AD, és mondja el, akkor jogkivonatok gyorsítótárazásának kell.
 
 ```C#
 public MainPage()
@@ -103,15 +103,15 @@ public MainPage()
 }
 ```
 
-* Keresse meg hello `Search(...)` metódus, amely fog kell meghívni, ha hello felhasználói cliks hello hello alkalmazás felhasználói felületén a "Search" gombra.  Ez a módszer egy GET kérelmet toohello Azure AD Graph API tooquery teszi a felhasználók számára, akiknek UPN keresőkifejezéssel megadott hello kezdődik.  Rendelés tooquery hello Graph API-val, a tooinclude egy access_token a hello szükség van, de `Authorization` hello fejlécének kérelem - Ez az adal-t honnan.
+* Keresse meg a `Search(...)` metódus, amely akkor kell meghívni, amikor a felhasználó cliks a "Search" gombra az alkalmazás felhasználói felületén.  Ez a módszer az Azure AD Graph API lekérdezéshez GET kérés teszi a felhasználók számára, amelyek egyszerű felhasználónév a megadott keresési kifejezés kezdődik.  Ahhoz, hogy a Graph API lekérdezni, meg kell adnia egy access_token a, de a `Authorization` fejlécet a kérelem - ezt az adal-t honnan.
 
 ```C#
 private async void Search(object sender, RoutedEventArgs e)
 {
     ...
 
-    // Try tooget a token without triggering any user prompt.
-    // ADAL will check whether hello requested token is in ADAL's token cache or can otherwise be obtained without user interaction.
+    // Try to get a token without triggering any user prompt.
+    // ADAL will check whether the requested token is in ADAL's token cache or can otherwise be obtained without user interaction.
     AuthenticationResult result = await authContext.AcquireTokenSilentAsync(graphResourceId, clientId);
     if (result != null && result.Status == AuthenticationStatus.Success)
     {
@@ -121,64 +121,64 @@ private async void Search(object sender, RoutedEventArgs e)
     else
     {
         // Acquiring a token without user interaction was not possible.
-        // Trigger an authentication experience and specify that once a token has been obtained hello QueryGraph method should be called
+        // Trigger an authentication experience and specify that once a token has been obtained the QueryGraph method should be called
         authContext.AcquireTokenAndContinue(graphResourceId, clientId, redirectURI, QueryGraph);
     }
 }
 ```
-* Interaktív hitelesítésre szükség, ha adal-t fogja használni a Windows Phone webes hitelesítés Broker (WAB) és [folytatási modell](http://www.cloudidentity.com/blog/2014/06/16/adal-for-windows-phone-8-1-deep-dive/) toodisplay hello Azure AD Bejelentkezés lapon.  Hello felhasználó jelentkezik be, amikor a toopass ADAL hello eredmények hello WAB egymásra kell.  Ez az lehető legegyszerűbb hello végrehajtási `ContinueWebAuthentication` felület:
+* Interaktív hitelesítésre szükség, ha adal-t fogja használni a Windows Phone webes hitelesítés Broker (WAB) és [folytatási modell](http://www.cloudidentity.com/blog/2014/06/16/adal-for-windows-phone-8-1-deep-dive/) az Azure AD bejelentkezési megjeleníteni.  Amikor a felhasználó bejelentkezik, az alkalmazás ADAL továbbítani kell a WAB interakció eredményeit.  Ez az végrehajtási egyszerűen a `ContinueWebAuthentication` felület:
 
 ```C#
-// This method is automatically invoked when hello application
+// This method is automatically invoked when the application
 // is reactivated after an authentication interaction through WebAuthenticationBroker.
 public async void ContinueWebAuthentication(WebAuthenticationBrokerContinuationEventArgs args)
 {
-    // pass hello authentication interaction results tooADAL, which will
-    // conclude hello token acquisition operation and invoke hello callback specified in AcquireTokenAndContinue.
+    // pass the authentication interaction results to ADAL, which will
+    // conclude the token acquisition operation and invoke the callback specified in AcquireTokenAndContinue.
     await authContext.ContinueAcquireTokenAsync(args);
 }
 ```
 
-* Most azt is, hogy idő toouse hello `AuthenticationResult` adott vissza tooyour alkalmazás adal-t.  A hello `QueryGraph(...)` visszahívási, csatolja hello access_token toohello GET kérést hello Authorization fejlécet szerezte be:
+* Mostantól az időpontok a `AuthenticationResult` , amely az alkalmazás adal-t küld vissza.  Az a `QueryGraph(...)` visszahívási, csatlakoztassa a access_token szerezte be a GET-kérés hitelesítési fejlécéhez a:
 
 ```C#
 private async void QueryGraph(AuthenticationResult result)
 {
     if (result.Status != AuthenticationStatus.Success)
     {
-        MessageDialog dialog = new MessageDialog(string.Format("If hello error continues, please contact your administrator.\n\nError: {0}\n\nError Description:\n\n{1}", result.Error, result.ErrorDescription), "Sorry, an error occurred while signing you in.");
+        MessageDialog dialog = new MessageDialog(string.Format("If the error continues, please contact your administrator.\n\nError: {0}\n\nError Description:\n\n{1}", result.Error, result.ErrorDescription), "Sorry, an error occurred while signing you in.");
         await dialog.ShowAsync();
     }
 
-    // Add hello access token toohello Authorization Header of hello call toohello Graph API, and call hello Graph API.
+    // Add the access token to the Authorization Header of the call to the Graph API, and call the Graph API.
     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", result.AccessToken);
 
     ...
 }
 ```
-* Is használhatja a hello `AuthenticationResult` toodisplay információt az alkalmazásban hello felhasználói objektum. A hello `QueryGraph(...)` metódust, használjon hello eredmény tooshow hello felhasználó azonosítója hello oldalon:
+* Használhatja a `AuthenticationResult` objektum információt szeretne megjeleníteni a felhasználó az alkalmazásban. Az a `QueryGraph(...)` metódust, az eredmény segítségével az oldalon a felhasználói azonosító megjelenítése:
 
 ```C#
-// Update hello Page UI toorepresent hello signed in user
+// Update the Page UI to represent the signed in user
 ActiveUser.Text = result.UserInfo.DisplayableId;
 ```
-* Végezetül kívül, valamint az alkalmazás ADAL toosign hello felhasználói is használhatja.  Amikor hello felhasználó hello "Kijelentkezés" gombra kattint, szeretnénk, hogy a következő hívás túl hello tooensure`AcquireTokenSilentAsync(...)` sikertelen lesz.  Ez az adal-t, az egyszerű módon, ha hello token gyorsítótár kiürítése:
+* Adal-t használó végül jelentkezzen ki, valamint az alkalmazás a felhasználó.  Amikor a felhasználó a "Sign Out" gombra kattint, annak érdekében, hogy a következő hívást szeretnénk `AcquireTokenSilentAsync(...)` sikertelen lesz.  Ez az adal-t, az egyszerű módon, ha a token gyorsítótár kiürítése:
 
 ```C#
 private void SignOut()
 {
-    // Clear session state from hello token cache.
+    // Clear session state from the token cache.
     authContext.TokenCache.Clear();
 
     ...
 }
 ```
 
-Gratulálunk! Ön most Windows Phone-alkalmazás, amely rendelkezik hello képességét tooauthenticate felhasználók, biztonságosan hívja a webes API-k, az OAuth 2.0 verziót használja, és működik alapszintű hello felhasználó adatainak beolvasása.  Ha még nem tette meg, most az hello idő toopopulate a bérlő az egyes felhasználók.  Futtassa a DirectorySearcher alkalmazást, és jelentkezzen be valamelyik azoknak a felhasználóknak.  Az egyszerű Felhasználónevük alapján más felhasználók kereséséhez.  Hello-alkalmazások bezárása, és futtassa újból.  Figyelje meg, hogyan hello felhasználói munkamenet nem módosulnak.  Jelentkezzen ki, és jelentkezzen be egy másik felhasználó.
+Gratulálunk! Most működik Windows Phone-alkalmazást, amely képes a felhasználók hitelesítésére, biztonságosan hívja a webes API-k, az OAuth 2.0 verziót használja, és a felhasználó alapszintű adatainak beolvasása.  Ha még nem tette meg, most már az egyes felhasználóival a bérlő feltölti idő.  Futtassa a DirectorySearcher alkalmazást, és jelentkezzen be valamelyik azoknak a felhasználóknak.  Az egyszerű Felhasználónevük alapján más felhasználók kereséséhez.  Zárja be az alkalmazást, és futtassa újból.  Figyelje meg, hogyan az ügyfél helye változatlan marad.  Jelentkezzen ki, és jelentkezzen be egy másik felhasználó.
 
-ADAL teszi, hogy könnyen tooincorporate mindezeket a funkciókat az alkalmazásba közös identitás.  Azt gondoskodik az összes hello dirty munkahelyi meg - gyorsítótár kezelése, az OAuth-protokoll támogatása, bemutató hello felhasználó egy bejelentkezési felhasználói felület, lejárt jogkivonatokat, és több frissítése a.  Valóban tooknow szüksége egy egyetlen API-hívással `authContext.AcquireToken*(…)`.
+Az adal TÁRAT megkönnyíti, hogy átfogó mindezeket a közös identitás funkciókat az alkalmazásba.  Ez gondoskodik a dirty munkát meg - gyorsítótár kezelése, az OAuth-protokoll támogatása, a felhasználó egy bejelentkezési felhasználói felület, lejárt jogkivonatokat, és több frissítése a bemutató.  Biztosan tudni, hogy szüksége egy egyetlen API-hívással `authContext.AcquireToken*(…)`.
 
-Megadott befejeződött hello mintát (a konfigurációs értékek nélkül) referenciaként [Itt](https://github.com/AzureADQuickStarts/NativeClient-WindowsPhone/archive/complete.zip).  Most már továbbléphet tooadditional identitás forgatókönyvek.  Érdemes lehet tootry:
+Az elkészült mintát (a konfigurációs értékek nélkül) referenciaként biztosított [Itt](https://github.com/AzureADQuickStarts/NativeClient-WindowsPhone/archive/complete.zip).  Most már továbbléphet további identitás forgatókönyvek.  Előfordulhat, hogy ki szeretné próbálni:
 
 [.NET webes API-k, az Azure ad-vel biztonságos >>](active-directory-devquickstarts-webapi-dotnet.md)
 

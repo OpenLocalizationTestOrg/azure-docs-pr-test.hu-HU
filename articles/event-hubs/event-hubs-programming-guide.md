@@ -1,6 +1,6 @@
 ---
-title: "az Azure Event Hubs aaaProgramming útmutató |} Microsoft Docs"
-description: "Az Azure Event Hubs hello Azure .NET SDK használatával írhat kódot."
+title: "Az Azure Event Hubs programozási útmutatója | Microsoft Docs"
+description: "Az Azure Event Hubs az Azure .NET SDK használatával írhat kódot."
 services: event-hubs
 documentationcenter: na
 author: sethmanheim
@@ -14,135 +14,135 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 08/17/2017
 ms.author: sethm
-ms.openlocfilehash: 43bebd126c2311af9e3daeb52324132b66cf0884
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 405ec2b27b488b570c4a5c86e4950ff98233360e
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="event-hubs-programming-guide"></a>Event Hubs programozási útmutató
 
-A cikk ismerteti az Azure Event Hubs és hello Azure .NET SDK használatával programozás olyan gyakori forgatókönyveket tartalmaz. A témakör feltételezi az Event Hubs szolgáltatással kapcsolatos előzetes ismeretek meglétét. Az Event Hubs fogalmi áttekintése, lásd: hello [Event Hubs – áttekintés](event-hubs-what-is-event-hubs.md).
+A cikk ismerteti az Azure Event Hubs és az Azure .NET SDK használatával programozás olyan gyakori forgatókönyveket tartalmaz. A témakör feltételezi az Event Hubs szolgáltatással kapcsolatos előzetes ismeretek meglétét. Az Event Hubs fogalmi áttekintése: [Event Hubs – áttekintés](event-hubs-what-is-event-hubs.md).
 
 ## <a name="event-publishers"></a>Esemény-közzétevők
 
-Események tooan eseményközpont vagy HTTP POST használatával vagy egy AMQP 1.0-kapcsolaton keresztül küld. mely toouse választott hello és mikor hello adott forgatókönyv határozza függ. Az AMQP 1.0-kapcsolatok mérése közvetített kapcsolatként történik a Service Bus szolgáltatásban, és az olyan forgatókönyvekben megfelelőbbek, ahol gyakoriak a nagyobb üzenetmennyiségek és alacsony késés szükséges, mivel ezek állandó üzenetkezelési csatornát biztosítanak.
+Az eseményközpontok felé, vagy a HTTP POST használatával vagy egy AMQP 1.0-kapcsolaton keresztül küldött események. A választott használandó és mikor függ az adott forgatókönyv határozza meg. Az AMQP 1.0-kapcsolatok mérése közvetített kapcsolatként történik a Service Bus szolgáltatásban, és az olyan forgatókönyvekben megfelelőbbek, ahol gyakoriak a nagyobb üzenetmennyiségek és alacsony késés szükséges, mivel ezek állandó üzenetkezelési csatornát biztosítanak.
 
-Létrehozásához és kezeléséhez az Event Hubs használatával hello [NamespaceManager][] osztály. Hello .NET felügyelt API-k, amikor elsődleges hello hoz létre az adatok tooEvent közzétételéhez hubok hello [EventHubClient](/dotnet/api/microsoft.servicebus.messaging.eventhubclient) és [EventData][] osztályok. [EventHubClient][] hello amelyben az események küldhetők toohello event hubs AMQP kommunikációs csatornát biztosít. Hello [EventData][] osztály egy eseményt képvisel, és használt toopublish üzenetek tooan eseményközpontot. Ez az osztály hello törzs, bizonyos metaadatait és fejléc-információit hello esemény tartalmazza. Egyéb tulajdonságokkal is bővül toohello [EventData][] objektumot, ahogy keresztülhalad az eseményközpontban.
+Az Event Hubs a [NamespaceManager][] osztály használatával hozható létre és felügyelhető. A .NET által felügyelt API-k használatakor az adatoknak az Event Hubs számára történő közzétételére szolgáló elsődleges szerkezetek az [EventHubClient](/dotnet/api/microsoft.servicebus.messaging.eventhubclient) és az [EventData][] osztály. [EventHubClient][] biztosít, amelyben az események küldhetők az event hubs AMQP kommunikációs csatornát. A [EventData][] osztály egy eseményt képvisel, és üzeneteket az eseményközpontba közzétételére szolgál. Ez az osztály az esemény törzsét, bizonyos metaadatait és fejléc-információit tartalmazza. Más tulajdonságokkal is bővül a [EventData][] objektumot, ahogy keresztülhalad az eseményközpontban.
 
 ## <a name="get-started"></a>Bevezetés
 
-amely támogatja az Event Hubs hello .NET-osztályok a Microsoft.ServiceBus.dll szerelvényben hello szerepelnek. Ennek legegyszerűbb módja tooreference hello Service Bus API és tooconfigure hello az alkalmazás az összes Service Bus-függőséggel hello toodownload hello [Service Bus NuGet-csomag](https://www.nuget.org/packages/WindowsAzure.ServiceBus). Másik lehetőségként használhatja a hello [Csomagkezelő konzol](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) a Visual Studióban. toodo tehát adja ki a következő parancs a hello hello [Csomagkezelő konzol](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) ablakban:
+Az Event Hubs szolgáltatást támogató .NET-osztályok a Microsoft.ServiceBus.dll szerelvényben találhatók. A Service Bus API-ra való hivatkozásnak és az alkalmazás az összes Service Bus-függőséggel való konfigurálásának a legegyszerűbb módja, ha letölti a [Service Bus NuGet-csomagot](https://www.nuget.org/packages/WindowsAzure.ServiceBus). Használhatja a Visual Studio [Csomagkezelő konzolját](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) is. Ehhez adja ki a következő parancsot a [Csomagkezelő konzol](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) ablakában:
 
 ```
 Install-Package WindowsAzure.ServiceBus
 ```
 
 ## <a name="create-an-event-hub"></a>Eseményközpont létrehozása
-Használhatja a hello [NamespaceManager][] toocreate Event Hubs osztályban. Példa:
+A [NamespaceManager][] osztályt használhatja az eseményközpontok létrehozásához. Példa:
 
 ```csharp
 var manager = new Microsoft.ServiceBus.NamespaceManager("mynamespace.servicebus.windows.net");
 var description = manager.CreateEventHub("MyEventHub");
 ```
 
-A legtöbb esetben ajánlott, hogy használja-e hello [CreateEventHubIfNotExists][] módszerek tooavoid kivételek generálása, ha hello szolgáltatás újraindul. Példa:
+A legtöbb esetben ajánlott a [CreateEventHubIfNotExists][] metódusok használata a kivételek elkerülése érdekében, ha a szolgáltatás újraindul. Példa:
 
 ```csharp
 var description = manager.CreateEventHubIfNotExists("MyEventHub");
 ```
 
-Minden Event Hubs létrehozási művelet, beleértve a [CreateEventHubIfNotExists][], szükséges **kezelése** hello névtérben engedélyeit. Ha azt szeretné, hogy a közzétevő vagy felhasználó alkalmazások toolimit hello engedélyeit, elkerülheti ezeket létrehozásiművelet-hívásokat az éles kódban hitelesítő adatok korlátozott engedélyekkel való használatakor.
+Minden Event Hubs létrehozási művelet, beleértve a [CreateEventHubIfNotExists][] műveletet is, **Kezelés** jogosultságokat igényel az adott névtérben. Amennyiben a közzétevő vagy felhasználó alkalmazások jogosultságait korlátozni kívánja, elkerülheti ezeket a létrehozásiművelet-hívásokat az éles kódban, ha korlátozott jogosultságokkal rendelkező hitelesítési adatokat használ.
 
-Hello [EventHubDescription](/dotnet/api/microsoft.servicebus.messaging.eventhubdescription) osztály tartalmazza az eseményközpontban, beleértve a hello engedélyezési szabályokat, hello üzenetek megőrzési idejét, partíciók azonosítóit, állapota és az elérési utat. Ez az osztály tooupdate hello metaadatok eseményközpontban is használhatja.
+A [EventHubDescription](/dotnet/api/microsoft.servicebus.messaging.eventhubdescription) osztály tartalmazza az eseményközpontban, beleértve az engedélyezési szabályokat, az üzenetek megőrzési idejét, partíciók azonosítóit, állapota és az elérési utat. Ez az osztály használatával frissítse a metaadatokat az eseményközpontban.
 
 ## <a name="create-an-event-hubs-client"></a>Event Hubs-ügyfél létrehozása
-hello az elsődleges osztály az Event Hubs kommunikáció [Microsoft.ServiceBus.Messaging.EventHubClient][EventHubClient]. Ez az osztály küldői és fogadói képességeket is biztosít. Ez az osztály hello használatával példányosítható [létrehozása](/dotnet/api/microsoft.servicebus.messaging.eventhubclient.create) módszer, ahogy az alábbi példa hello.
+Az elsődleges osztály az Event Hubs kommunikáció [Microsoft.ServiceBus.Messaging.EventHubClient][EventHubClient]. Ez az osztály küldői és fogadói képességeket is biztosít. Az osztály a [Create](/dotnet/api/microsoft.servicebus.messaging.eventhubclient.create) metódus használatával példányosítható, ahogy az alábbi példában látható.
 
 ```csharp
 var client = EventHubClient.Create(description.Path);
 ```
 
-Ez a módszer hello Service Bus kapcsolati információit használja hello App.config fájlban, hello `appSettings` szakasz. Hello példát `appSettings` XML toostore hello Service Bus kapcsolati információit használja, hello hello dokumentációjában [Microsoft.ServiceBus.Messaging.EventHubClient.Create(System.String)](/dotnet/api/microsoft.servicebus.messaging.eventhubclient#Microsoft_ServiceBus_Messaging_EventHubClient_Create_System_String_) metódust.
+Ez a metódus a Service Bus szolgáltatásnak az App.config fájl `appSettings` szakaszában található kapcsolati információit használja. A Service Bus kapcsolati információit tároló `appSettings` XML egy példájáért tekintse meg a [Microsoft.ServiceBus.Messaging.EventHubClient.Create(System.String)](/dotnet/api/microsoft.servicebus.messaging.eventhubclient#Microsoft_ServiceBus_Messaging_EventHubClient_Create_System_String_) metódus dokumentációját.
 
-Másik lehetőség is toocreate hello ügyfél egy kapcsolati karakterláncból. Ez a beállítás jól működik, ha Azure feldolgozói szerepköröket használ mert hello konfigurációs tulajdonságok hello dolgozó hello karakterláncot tárolhatja. Példa:
+Egy másik lehetőség az ügyfél létrehozása egy kapcsolati karakterláncból. Ez a lehetőség akkor működik jól, ha Azure feldolgozói szerepköröket használ, mivel a karakterláncot tárolhatja a feldolgozó konfigurációs tulajdonságaiban. Példa:
 
 ```csharp
 EventHubClient.CreateFromConnectionString("your_connection_string");
 ```
 
-hello kapcsolati karakterlánc formátuma azonos hello korábbi metódusok App.config fájlt hello megjelenő hello lehet:
+A kapcsolati karakterlánc formátumba megegyezik a korábbi metódusok App.config fájljában használt formátummal:
 
 ```
 Endpoint=sb://[namespace].servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[key]
 ```
 
-Végezetül fontos is lehetséges toocreate egy [EventHubClient][] objektum egy [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory) példány, ahogy az alábbi példa hello.
+Végül, [EventHubClient][] objektum létrehozható [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory) példányból is, amint az alábbi példában látható.
 
 ```csharp
 var factory = MessagingFactory.CreateFromConnectionString("your_connection_string");
 var client = factory.CreateEventHubClient("MyEventHub");
 ```
 
-Fontos, hogy további toonote [EventHubClient][] egy üzenetkezelési gyár példányából létrehozott objektumokat szeretné újrafelhasználni hello ugyanazt az alapul szolgáló TCP-kapcsolatot. Ezért ezek az objektumok ügyféloldali korláttal rendelkeznek majd az átvitelre vonatkozóan. Hello [létrehozása](/dotnet/api/microsoft.servicebus.messaging.eventhubclient#Microsoft_ServiceBus_Messaging_EventHubClient_Create_System_String_) metódus újból felhasználja az üzenetkezelési gyárat. Amennyiben nagyon nagy átviteli kapacitás szükséges egyetlen küldőtől, létrehozhat több üzenetkezelési gyárat, illetve egy [EventHubClient][] objektumot mindegyik üzenetkezelési gyárból.
+Fontos megjegyezni, hogy az üzenetkezelési gyár példányából létrehozott további [EventHubClient][] objektumok ugyanazt az alapul szolgáló TCP-kapcsolatot használják majd. Ezért ezek az objektumok ügyféloldali korláttal rendelkeznek majd az átvitelre vonatkozóan. A [Create](/dotnet/api/microsoft.servicebus.messaging.eventhubclient#Microsoft_ServiceBus_Messaging_EventHubClient_Create_System_String_) metódus újból felhasználja az üzenetkezelési gyárat. Amennyiben nagyon nagy átviteli kapacitás szükséges egyetlen küldőtől, létrehozhat több üzenetkezelési gyárat, illetve egy [EventHubClient][] objektumot mindegyik üzenetkezelési gyárból.
 
-## <a name="send-events-tooan-event-hub"></a>Események tooan eseményközpont küldése
-Küldött események tooan eseményközpont hozzon létre egy [EventData][] példányt, és küldje el azt keresztül hello [küldése](/dotnet/api/microsoft.servicebus.messaging.eventhubclient#Microsoft_ServiceBus_Messaging_EventHubClient_Send_Microsoft_ServiceBus_Messaging_EventData_) metódust. Ez a metódus egyetlen veszi [EventData][] példányparamétert és szinkron módon elküldi azt tooan eseményközpontot.
+## <a name="send-events-to-an-event-hub"></a>Események küldése az event hubs
+Események küldött hozzon létre egy eseményközpontba egy [EventData][] példányt, és küldje el azt a [küldése](/dotnet/api/microsoft.servicebus.messaging.eventhubclient#Microsoft_ServiceBus_Messaging_EventHubClient_Send_Microsoft_ServiceBus_Messaging_EventData_) metódust. Ez a metódus egyetlen veszi [EventData][] példányparamétert és szinkron módon elküldi azt az eseményközpontba.
 
 ## <a name="event-serialization"></a>Eseményszerializáció
-Hello [EventData][] osztályt [négy túlterhelt konstruktorral](/dotnet/api/microsoft.servicebus.messaging.eventdata#constructors_) , amely számos paraméter, például egy objektumot és szerializálót, egy bájttömböt vagy adatfolyam igénybe vehet. Az is lehetséges tooinstantiate hello [EventData][] osztály, és állítsa be ezt követően hello törzs adatfolyam. Amikor a JSON-t használ [EventData][], használhat **Encoding.UTF8.GetBytes()** tooretrieve hello bájttömböt a JSON-kódolású karakterlánc.
+Az [EventData][] osztály [négy túlterhelt konstruktorral](/dotnet/api/microsoft.servicebus.messaging.eventdata#constructors_) rendelkezik, amelyek különféle paramétereket vesznek fel, például egy objektumot és egy szerializálót, egy bájttömböt vagy egy streamet. Az [EventData][] osztály példányosítható is, és törzsstream beállítható ezt követően. Ha JSON-t használ az [EventData][] osztállyal, az **Encoding.UTF8.GetBytes()** használatával kérheti le a bájttömböt a JSON-kódolású karakterlánchoz.
 
 ## <a name="partition-key"></a>Partíciókulcs
-Hello [EventData][] osztály rendelkezik egy [PartitionKey][] tulajdonság, amely lehetővé teszi a hello küldő toospecify egy értéket, amely kivonatolt tooproduce egy partíció-hozzárendelés. A partíciókulcsok használatával biztosítja, hogy az összes hello események ugyanazzal a kulccsal küldött hello toohello azonos hello eseményközpont partíciójához. Az általános partíciókulcsok többek közt a felhasználói munkamenetek azonosítói és az egyedi küldőazonosítók. Hello [PartitionKey][] tulajdonság megadása nem kötelező, és megadható a hello használatakor [Microsoft.ServiceBus.Messaging.EventHubClient.Send(Microsoft.ServiceBus.Messaging.EventData)](/dotnet/api/microsoft.servicebus.messaging.eventhubclient#Microsoft_ServiceBus_Messaging_EventHubClient_Send_Microsoft_ServiceBus_Messaging_EventData_) vagy [Microsoft.ServiceBus.Messaging.EventHubClient.SendAsync(Microsoft.ServiceBus.Messaging.EventData)](/dotnet/api/microsoft.servicebus.messaging.eventhubclient#Microsoft_ServiceBus_Messaging_EventHubClient_SendAsync_Microsoft_ServiceBus_Messaging_EventData_) módszerek. Ha nem ad meg értéket [PartitionKey][], küldött események olyan elosztott toopartitions egy Ciklikus időszeleteléses modell használatával.
+Az [EventData][] osztály a [PartitionKey][] tulajdonsággal rendelkezik, amelynek segítségével a küldő meghatározhat egy értéket, amelynek kivonatolásával létrehozható egy partíció-hozzárendelés. A partíciókulcsok használatával ugyanazzal a kulccsal rendelkező események küldött egyazon partícióra kerüljenek a központ biztosítja. Az általános partíciókulcsok többek közt a felhasználói munkamenetek azonosítói és az egyedi küldőazonosítók. A [PartitionKey][] tulajdonság nem kötelező, és a [Microsoft.ServiceBus.Messaging.EventHubClient.Send(Microsoft.ServiceBus.Messaging.EventData)](/dotnet/api/microsoft.servicebus.messaging.eventhubclient#Microsoft_ServiceBus_Messaging_EventHubClient_Send_Microsoft_ServiceBus_Messaging_EventData_) vagy a [Microsoft.ServiceBus.Messaging.EventHubClient.SendAsync(Microsoft.ServiceBus.Messaging.EventData)](/dotnet/api/microsoft.servicebus.messaging.eventhubclient#Microsoft_ServiceBus_Messaging_EventHubClient_SendAsync_Microsoft_ServiceBus_Messaging_EventData_) metódus használatakor adható meg. Ha nem ad meg értéket a [PartitionKey][] számára, a küldött események elosztása a partíciókra ciklikus időszeleteléses modell használatával fog történni.
 
 ### <a name="availability-considerations"></a>Rendelkezésre állási szempontok
 
-A partíciós kulcs használata nem kötelező, és gondosan érdemes-e egy toouse. Sok esetben a partíciókulcsok használatával akkor hasznos, ha fontos esemény rendezés. A partíciós kulcs használata esetén ezek a partíciók egycsomópontos rendelkezésre szükség, és kiesések is időbeli; például, ha a számítási csomópontok újraindítás és a javítás. Ha el a Partícióazonosító és adott partíció valamilyen okból kifolyólag nem érhető el, egy kísérlet tooaccess hello adatok partícióban sikertelen lesz. Ha magas rendelkezésre állású legfontosabb, nem ad meg partíciókulcsot; Ebben az esetben eseményeket a rendszer küld toopartitions a fentiekben ismertetett hello Ciklikus időszeleteléses modell használatával. Ebben a forgatókönyvben teszi rendelkezésre állási (nincs Partícióazonosító) és a konzisztencia (rögzítési események tooa Partícióazonosító) között kifejezett választást.
+A partíciós kulcs használata nem kötelező, és meg kell alaposan fontolja meg, hogy használhatja-e. Sok esetben a partíciókulcsok használatával akkor hasznos, ha fontos esemény rendezés. A partíciós kulcs használata esetén ezek a partíciók egycsomópontos rendelkezésre szükség, és kiesések is időbeli; például, ha a számítási csomópontok újraindítás és a javítás. Ilyen el a Partícióazonosító és adott partíció valamilyen okból kifolyólag nem érhető el, ha az adott partíció adatainak elérésére tett kísérlet sikertelen lesz. Ha magas rendelkezésre állású legfontosabb, nem ad meg partíciókulcsot; Ebben az esetben a fentiekben említett Ciklikus időszeleteléses modell használatával partíciók események kapnak. Ebben a forgatókönyvben teszi rendelkezésre állási (nincs Partícióazonosító) és (a Partícióazonosító események rögzítése) konzisztencia között kifejezett választást.
 
-Egy másik szempont kezeli a késlelteti az események feldolgozásával. Bizonyos esetekben az lehet, hogy jobb toodrop adatokat, és próbálja megismételni mint tootry és tartani a feldolgozás, amely további alárendelt feldolgozási késedelmeket okozhat. Például a tőzsdei árfolyamjelző jobb toowait teljes legfrissebb adatokat, de egy élő vagy gyors, hello adatokat ahelyett, hogy kellene VOIP a forgatókönyv akkor is, ha nem, akkor a teljes.
+Egy másik szempont kezeli a késlelteti az események feldolgozásával. Bizonyos esetekben előfordulhat, hogy célszerű dobja el az adatokat, és próbálkozzon újra, mint próbálja és feldolgozási tartani, amely potenciálisan okozhat további alárendelt feldolgozási késedelmeket. Például a tőzsdei árfolyamjelző célszerűbb várja meg a teljes legfrissebb adatokat, de egy élő vagy gyors, az adatok ahelyett, hogy kellene VOIP a forgatókönyv, még akkor is, ha nem, akkor a teljes.
 
-A rendelkezésre állási lehetőségekért megadott forgatókönyvekben választása hello következő hibakezelés stratégiák egyikét:
+A rendelkezésre állási lehetőségekért megadott forgatókönyvekben választása a következő hiba egyik kezelési stratégiák:
 
 - Leállítás (olvasásakor az Event Hubs dolgot megoldásáig leállítás)
 - Közvetlen (üzenetek nem fontos, dobja el őket)
-- Ismételje meg a (újrapróbálkozási hello üzenetek ismertető fér el)
-- [Kézbesítetlen levelek](../service-bus-messaging/service-bus-dead-letter-queues.md) (használja a várólistára vagy egy másik event hub toodead betűs csak hello üzenetek nem tudta feldolgozni)
+- Ismételje meg a (az üzenetek ismertető elférjen újrapróbálkozási)
+- [Kézbesítetlen levelek](../service-bus-messaging/service-bus-dead-letter-queues.md) (várólista használja, vagy egy másik eseményközpontnak azon halott levél csak azokat az üzeneteket nem tudta feldolgozni)
 
-További információt és kapcsolatos hello kompromisszumot között rendelkezésre állás és a konzisztencia döntéseken: [rendelkezésre állását és az Event Hubs következetes](event-hubs-availability-and-consistency.md). 
+További információt és rendelkezésre állás és a konzisztencia közötti kompromisszumot kapcsolatos döntéseken: [rendelkezésre állását és az Event Hubs következetes](event-hubs-availability-and-consistency.md). 
 
 ## <a name="batch-event-send-operations"></a>Kötegelt eseményküldési műveletek
-Az események kötegekben való küldésével jelentősen növelhető az átvitel. Hello [SendBatch](/dotnet/api/microsoft.servicebus.messaging.eventhubclient#Microsoft_ServiceBus_Messaging_EventHubClient_SendBatch_System_Collections_Generic_IEnumerable_Microsoft_ServiceBus_Messaging_EventData__) metódus egy **IEnumerable** típusú paramétert [EventData][] és küld hello atomi művelet toohello eseményközpontban, egész köteget.
+Az események kötegekben való küldésével jelentősen növelhető az átvitel. A [SendBatch](/dotnet/api/microsoft.servicebus.messaging.eventhubclient#Microsoft_ServiceBus_Messaging_EventHubClient_SendBatch_System_Collections_Generic_IEnumerable_Microsoft_ServiceBus_Messaging_EventData__) metódus egy **IEnumerable** típusú paramétert [EventData][] és az egész köteget elemi műveletként az event hubs küld.
 
 ```csharp
 public void SendBatch(IEnumerable<EventData> eventDataList);
 ```
 
-Vegye figyelembe, hogy a kötegek nem haladhatja meg az esemény hello 256 KB-os korlátját. Emellett a hello kötegben lévő egyes üzenetek hello használ ugyanazzal a közzétevői identitással. Hello felelőssége, hogy a kötegelt hello hello küldő tooensure nem haladja meg a maximális eseményméret hello. Ha mégis meghaladja, az ügyfél **Küldési** hibát jelez.
+Vegye figyelembe, hogy a kötegek mérete egyenként nem haladhatja meg az események 256 KB-os korlátját. Továbbá a kötegben lévő egyes üzenetek ugyanazzal a közzétevői identitással rendelkezik majd. A küldő felelőssége annak biztosítása, hogy a köteg mérete nem haladja meg az események maximális méretét. Ha mégis meghaladja, az ügyfél **Küldési** hibát jelez.
 
 ## <a name="send-asynchronously-and-send-at-scale"></a>Aszinkron küldés és nagy léptékű küldés
-Események tooan eseményközpont aszinkron módon is küldhet. Aszinkron küldés növelheti a hello sebesség, amellyel az ügyfél akkor tudja toosend események. Mindkét hello [küldése](/dotnet/api/microsoft.servicebus.messaging.eventhubclient#Microsoft_ServiceBus_Messaging_EventHubClient_Send_Microsoft_ServiceBus_Messaging_EventData_) és [SendBatch](/dotnet/api/microsoft.servicebus.messaging.eventhubclient#Microsoft_ServiceBus_Messaging_EventHubClient_SendBatch_System_Collections_Generic_IEnumerable_Microsoft_ServiceBus_Messaging_EventData__) metódus egyaránt elérhetők aszinkron verzióban, amely vissza egy [feladat](https://msdn.microsoft.com/library/system.threading.tasks.task.aspx) objektum. Ezzel a technikával növelhető az átvitel, amíg azt is eredményezheti, hogy hello ügyfél toocontinue toosend események hello Event Hubs szolgáltatás leszabályozta, és a hello ügyfél hibába ütközhet, vagy üzenetek veszhetnek eredményezhet közben is ha nem megfelelően megvalósított. Ezenkívül használhatja a hello [RetryPolicy](/dotnet/api/microsoft.servicebus.messaging.cliententity#Microsoft_ServiceBus_Messaging_ClientEntity_RetryPolicy) hello toocontrol ügyfél újrapróbálkozási beállításainak tulajdonságát.
+Is küldhet események eseményközpontokba való aszinkron módon történik. Az aszinkron küldés növelheti az ügyfelek üzenetküldési sebességét. A [Send](/dotnet/api/microsoft.servicebus.messaging.eventhubclient#Microsoft_ServiceBus_Messaging_EventHubClient_Send_Microsoft_ServiceBus_Messaging_EventData_) és a [SendBatch](/dotnet/api/microsoft.servicebus.messaging.eventhubclient#Microsoft_ServiceBus_Messaging_EventHubClient_SendBatch_System_Collections_Generic_IEnumerable_Microsoft_ServiceBus_Messaging_EventData__) metódus egyaránt elérhetők aszinkron verzióban, amely egy [Task](https://msdn.microsoft.com/library/system.threading.tasks.task.aspx) objektumot ad vissza. Jóllehet ezzel a technikával növelhető az átvitel, ugyanakkor azt is eredményezheti, hogy az ügyfél továbbra is küldi az eseményeket, miután az Event Hubs szolgáltatás leszabályozta, és így az ügyfél hibába ütközhet, vagy üzenetek veszhetnek el, ha a megvalósítás helytelenül ment végbe. Emellett használhatja a [RetryPolicy](/dotnet/api/microsoft.servicebus.messaging.cliententity#Microsoft_ServiceBus_Messaging_ClientEntity_RetryPolicy) tulajdonságot az ügyfélen az ügyfél újrapróbálkozási beállításainak vezérlésére.
 
 ## <a name="create-a-partition-sender"></a>Partícióküldő létrehozása
-Bár a leggyakrabban használt toosend események tooan event hubs nem tartozik partíciós kulcs, bizonyos esetekben érdemes lehet toosend események közvetlenül az adott partíció tooa. Példa:
+Bár a leggyakrabban használt üzenetküldési nem tartozik partíciós kulcs az eseményközpontok felé, bizonyos esetekben előfordulhat, hogy kívánt események küldése közvetlenül egy adott partícióra. Példa:
 
 ```csharp
 var partitionedSender = client.CreatePartitionedSender(description.PartitionIds[0]);
 ```
 
-[CreatePartitionedSender](/dotnet/api/microsoft.servicebus.messaging.eventhubclient#Microsoft_ServiceBus_Messaging_EventHubClient_CreatePartitionedSender_System_String_) adja vissza egy [EventHubSender](/dotnet/api/microsoft.servicebus.messaging.eventhubsender) toopublish események tooa adott event hub partíció használt objektum.
+[CreatePartitionedSender](/dotnet/api/microsoft.servicebus.messaging.eventhubclient#Microsoft_ServiceBus_Messaging_EventHubClient_CreatePartitionedSender_System_String_) adja vissza egy [EventHubSender](/dotnet/api/microsoft.servicebus.messaging.eventhubsender) használható események közzétételére egy adott esemény hub partíció objektum.
 
 ## <a name="event-consumers"></a>Eseményfelhasználók
-Az Event Hubs két elsődleges modellel rendelkezik az események felhasználásához: közvetlen fogadók és a magasabb szintű absztrakciók, például az [EventProcessorHost][]. Közvetlen fogadók felelőssége saját hozzáférés toopartitions egy fogyasztói csoporton belül összehangolását.
+Az Event Hubs két elsődleges modellel rendelkezik az események felhasználásához: közvetlen fogadók és a magasabb szintű absztrakciók, például az [EventProcessorHost][]. A közvetlen fogadók felelőssége koordinálni a saját hozzáférésüket az egyes partíciókhoz egy adott felhasználói csoportban.
 
 ### <a name="direct-consumer"></a>Közvetlen felhasználó
-hello legközvetlenebb módja tooread egy partícióról egy fogyasztói csoporton belül toouse hello [EventHubReceiver](/dotnet/apie/microsoft.servicebus.messaging.eventhubreceiver) osztály. Ez az osztály példánya egy toocreate, használnia kell hello példányának [EventHubConsumerGroup](/dotnet/api/microsoft.servicebus.messaging.eventhubconsumergroup) osztály. A következő példa hello hello Partícióazonosító kötelező hello hello felhasználói csoport fogadójának létrehozásakor.
+Az adott felhasználói csoportban lévő egyes partíciók olvasásának legközvetlenebb módja az [EventHubReceiver](/dotnet/apie/microsoft.servicebus.messaging.eventhubreceiver) osztály használata. Az osztály egy példányának létrehozásához az [EventHubConsumerGroup](/dotnet/api/microsoft.servicebus.messaging.eventhubconsumergroup) osztály egy példányát kell használni. A következő példában a felhasználói csoport fogadójának létrehozásakor a partícióazonosítót kell megadni.
 
 ```csharp
 EventHubConsumerGroup group = client.GetDefaultConsumerGroup();
 var receiver = group.CreateReceiver(client.GetRuntimeInformation().PartitionIds[0]);
 ```
 
-Hello [CreateReceiver](/dotnet/api/microsoft.servicebus.messaging.eventhubconsumergroup#methods_summary) metódus több túlterheléssel rendelkezik, amelyek megkönnyítése hello olvasó vezérlését. Ezek a metódusok lehetnek egy eltolás megadása karakterlánc vagy időbélyeg, és hello toospecify képességét, hogy tooinclude a megadott eltolás a hello adatfolyam, vagy azt követően indítsa el. Hello fogadó létrehozása után megkezdheti az eseményeket a hello objektumot adott vissza. Hello [Receive](/dotnet/api/microsoft.servicebus.messaging.eventhubreceiver#methods_summary) metódus négy túlterheléssel rendelkezik, hogy a vezérlő hello fogadási művelet paramétereit, például a kötegméretet és a várakozási időt. Használhat ezen módszerek tooincrease hello átviteli felhasználóinak aszinkron verzióinak hello. Példa:
+A [CreateReceiver](/dotnet/api/microsoft.servicebus.messaging.eventhubconsumergroup#methods_summary) metódus több túlterheléssel rendelkezik, amelyek segítik a létrehozni kívánt olvasó vezérlését. Ezek a metódusok lehetnek egy eltolás megadása karakterlánc vagy időbélyeg használatával, valamint annak megadása, hogy a megadott eltolást tartalmazza-e a visszaadott stream, vagy azután kezdődjön. Miután létrehozta a fogadót, máris fogadhatja az eseményeket a visszaadott objektumon. A [Receive](/dotnet/api/microsoft.servicebus.messaging.eventhubreceiver#methods_summary) metódus négy túlterheléssel rendelkezik, amelyek a fogadási művelet paramétereit szabályozzák, például a kötegméretet és a várakozási időt. A metódusok aszinkron verzióinak használatával itt is növelhető a felhasználók átvitele. Példa:
 
 ```csharp
 bool receive = true;
@@ -156,36 +156,36 @@ while(receive)
 }
 ```
 
-A tekintetben tooa adott partíciók hello üzenetek fogadása hello ahhoz, amelyben toohello eseményközpontba lettek küldve. hello eltolás egy karakterlánc-token használt tooidentify partícióra üzenet.
+Adott partíciók vonatkozásában az üzenetek fogadása ugyanabban a sorrendben, amelyben lettek küldve az eseményközpontba. Az eltolás egy karakterlánc-token, amely egy adott üzenetet azonosít a partíción.
 
-Vegye figyelembe, hogy egy felhasználói csoportban egy adott partíció egy adott pillanatban nem rendelkezhet 5-nél több egyidejű olvasóval. Mivel az olvasók csatlakoznak vagy lecsatlakoznak, a munkamenetek aktívak maradhatnak hello szolgáltatás észleli, hogy lecsatlakoztak több percig. Ebben az időszakban tooa partíció újracsatlakozás meghiúsulhat. Átfogó példát írása a közvetlen fogadóknak az Event Hubs számára, lásd: hello [Event Hubs közvetlen fogadók](https://code.msdn.microsoft.com/Event-Hub-Direct-Receivers-13fa95c6) minta.
+Vegye figyelembe, hogy egy felhasználói csoportban egy adott partíció egy adott pillanatban nem rendelkezhet 5-nél több egyidejű olvasóval. Ahogy az olvasók csatlakoznak vagy lecsatlakoznak, a munkameneteik néhány percig még aktívak maradhatnak, mielőtt a szolgáltatás észleli, hogy lecsatlakoztak. Ezen időtartam során a partícióra való újracsatlakozás meghiúsulhat. Átfogó példát a közvetlen fogadóknak az Event Hubs írása, tekintse meg a [Event Hubs közvetlen fogadók](https://code.msdn.microsoft.com/Event-Hub-Direct-Receivers-13fa95c6) minta.
 
 ### <a name="event-processor-host"></a>Event Processor Host
-Hello [EventProcessorHost][] osztály Eseményközpontokból származó adatokat dolgozza fel. Ez a megvalósítás kell használni, amikor hello .NET platformon hoz létre eseményolvasókat. Az [EventProcessorHost][] egy szálbiztos, több folyamatot lehetővé tevő, biztonságos futtatókörnyezetet biztosít az eseményfeldolgozói megvalósításokhoz, ami lehetővé teszi az ellenőrzőpontok használatát és a partícióbérlés-kezelést is.
+Az [EventProcessorHost][] osztály az eseményközpontokból származó adatokat dolgozza fel. Akkor használja ezt a megvalósítást, ha a .NET platformon hoz létre eseményolvasókat. Az [EventProcessorHost][] egy szálbiztos, több folyamatot lehetővé tevő, biztonságos futtatókörnyezetet biztosít az eseményfeldolgozói megvalósításokhoz, ami lehetővé teszi az ellenőrzőpontok használatát és a partícióbérlés-kezelést is.
 
-toouse hello [EventProcessorHost][] osztály, Megvalósíthat [IEventProcessor](/dotnet/api/microsoft.servicebus.messaging.ieventprocessor). Ez a felület három metódust tartalmaz:
+Az [EventProcessorHost][] osztály használatához megvalósítható az [IEventProcessor](/dotnet/api/microsoft.servicebus.messaging.ieventprocessor). Ez a felület három metódust tartalmaz:
 
 * [OpenAsync](/dotnet/api/microsoft.servicebus.messaging.ieventprocessor#Microsoft_ServiceBus_Messaging_IEventProcessor_OpenAsync_Microsoft_ServiceBus_Messaging_PartitionContext_)
 * [CloseAsync](/dotnet/api/microsoft.servicebus.messaging.ieventprocessor#Microsoft_ServiceBus_Messaging_IEventProcessor_CloseAsync_Microsoft_ServiceBus_Messaging_PartitionContext_Microsoft_ServiceBus_Messaging_CloseReason_)
 * [ProcessEventsAsync](/dotnet/api/microsoft.servicebus.messaging.ieventprocessor#Microsoft_ServiceBus_Messaging_IEventProcessor_ProcessEventsAsync_Microsoft_ServiceBus_Messaging_PartitionContext_System_Collections_Generic_IEnumerable_Microsoft_ServiceBus_Messaging_EventData__)
 
-toostart Eseményfeldolgozási, példányosítható [EventProcessorHost][], az eseményközpont hello megfelelő paraméterek megadása. Majd, meghívják [RegisterEventProcessorAsync](/dotnet/api/microsoft.servicebus.messaging.eventprocessorhost#Microsoft_ServiceBus_Messaging_EventProcessorHost_RegisterEventProcessorAsync__1) tooregister a [IEventProcessor](/dotnet/api/microsoft.servicebus.messaging.ieventprocessor) hello futásidejű végrehajtása. Ezen a ponton a hello állomás megpróbál tooacquire a címbérlet a "mohó" algoritmus használatával hello eseményközpont minden partícióján. Ezek a bérletek egy adott időtartamra szólnak, és azt követően meg kell újítani őket. Ahogy újabb csomópontok worker-példány ebben az esetben ismét online elérhető, azok helyezze, bérletfoglalásokat végeznek, és idővel hello terhelés átvált csomópontok között, mindegyik kísérletek tooacquire több bérletet.
+Az események feldolgozásának indításához példányosítható [EventProcessorHost][], így a megfelelő paramétereket az eseményközpont. Ezután a [RegisterEventProcessorAsync](/dotnet/api/microsoft.servicebus.messaging.eventprocessorhost#Microsoft_ServiceBus_Messaging_EventProcessorHost_RegisterEventProcessorAsync__1) meghívásával regisztrálja az [IEventProcessor](/dotnet/api/microsoft.servicebus.messaging.ieventprocessor) megvalósítást a futtatókörnyezetben. Ezen a ponton az állomás megpróbál bérletet a "mohó" algoritmus segítségével eseményközpont minden partícióján szerezni. Ezek a bérletek egy adott időtartamra szólnak, és azt követően meg kell újítani őket. Ahogy újabb csomópontok, esetünkben feldolgozópéldányok válnak online állapotúvá, bérletfoglalásokat végeznek, és idővel a terhelés elmozdul a csomópontok között, ahogy egyre több bérletet próbálnak szerezni.
 
 ![Event Processor Host](./media/event-hubs-programming-guide/IC759863.png)
 
-Idővel kialakul egy egyensúlyi állapot. A dinamikus képességnek a segítségével processzoralapú automatikus skálázás alkalmazott toobe tooconsumers a felfelé és lefelé méretezéshez egyaránt. Az Event Hubs nem rendelkeznek közvetlen megoldással az üzenetek számlálásához, mert átlagos processzorhasználat gyakran hello legjobb mechanizmus toomeasure hátsó vége vagy felhasználói lépték megállapítására. Ha a közzétevők idővel képes a fogyasztók-nál több esemény toopublish, hello Processzor növelésével feldolgozópéldányok számának automatikus skálázása használt toocause lehet.
+Idővel kialakul egy egyensúlyi állapot. Ennek a dinamikus képességnek a segítségével processzoralapú automatikus skálázás alkalmazható a felhasználókra felfelé és lefelé méretezéshez egyaránt. Mivel az eseményközpontok nem rendelkeznek közvetlen megoldással az üzenetek számlálásához, az átlagos processzorhasználat gyakran a legjobb módszer a háttérrendszeri vagy felhasználói lépték megállapítására. Ha a közzétevők idővel több eseményt tesznek közzé, mint amennyit a felhasználók fel tudnak dolgozni, a felhasználókon a processzor növelésével indítható el a feldolgozópéldányok számának automatikus skálázása.
 
-Hello [EventProcessorHost][] osztály megvalósít továbbá egy Azure storage-alapú ellenőrzőpont-kezelési mechanizmust. A mechanizmus tárolók hello eltolás partíciónkénti alapon, így mindegyik felhasználó megállapíthatja, hogy milyen hello hello előző felhasználó utolsó ellenőrzőpontja volt. Ahogy a partíciók váltanak között a bérletek csomópontok, ez az hello szinkronizálási mechanizmus, amely elősegíti a terhelés áthelyezését.
+Az [EventProcessorHost][] osztály megvalósít továbbá egy Azure Storage-alapú ellenőrzőpont-kezelési mechanizmust is. A mechanizmus az eltolást partíciónkénti alapon tárolja, így mindegyik felhasználó megállapíthatja, hogy melyik volt az előző felhasználó utolsó ellenőrzőpontja. Ahogy a partíciók váltanak a csomópontok között a bérletek használatával, ez a szinkronizálási mechanizmus az, amely leginkább támogatja a terhelés áthelyezését.
 
 ## <a name="publisher-revocation"></a>Közzétevők visszavonása
-Ezenkívül toohello speciális futásidejű szolgáltatásai [EventProcessorHost][], az Event Hubs lehetővé teszi, hogy a rendelés tooblock adott közzétevők esemény tooan eseményközpont küldjenek a közzétevők visszavonását. Ezek a szolgáltatások akkor igazán hasznosak, ha egy közzétevői token biztonsága sérült, vagy egy szoftverfrissítés okozza-e őket toobehave helytelenül eljárva. Ezekben a helyzetekben hello közzétevő identitása, SAS-token részét képező blokkolható az események közzététele.
+A speciális futásidejű szolgáltatásai mellett [EventProcessorHost][], az Event Hubs lehetővé teszi, hogy a közzétevők visszavonásával ahhoz, hogy adott közzétevők közzétételét egy eseményközpontba blokkolása. Ezek a szolgáltatások akkor igazán hasznosak, ha egy közzétevői token biztonsága sérült, vagy egy szoftverfrissítés eredményeként nem megfelelően működik. Ilyen helyzetekben a közzétevő identitása (amely a SAS-token részét képezi) blokkolható az események közzétételének a megakadályozásához.
 
-További információ a közzétevők visszavonásával és hogyan toosend közzétevőként, tooEvent hubok: hello [Event Hubs nagy méretezési biztonságos közzétételi](https://code.msdn.microsoft.com/Service-Bus-Event-Hub-99ce67ab) minta.
+A közzétevők visszavonásával és az eseményközpontokba közzétevőként való küldés módjával kapcsolatban a [Event Hubs Large Scale Secure Publishing](https://code.msdn.microsoft.com/Service-Bus-Event-Hub-99ce67ab) (Event Hubs nagyléptékű biztonságos közzététele) mintában tekinthet meg további információt.
 
 ## <a name="next-steps"></a>Következő lépések
-További információ az Event Hubs-forgatókönyvekkel toolearn látogasson el ezeket a hivatkozásokat:
+Az Event Hubs-forgatókönyvekkel kapcsolatos további információkért látogasson el a következő hivatkozásokra:
 
-* [Event Hubs API overview](event-hubs-api-overview.md) (Event Hubs API – áttekintés)
+* [Event Hubs API – áttekintés](event-hubs-api-overview.md)
 * [Mi az az Event Hubs](event-hubs-what-is-event-hubs.md)
 * [Rendelkezésre állás és konzisztencia az Event Hubsban](event-hubs-availability-and-consistency.md)
 * [Event Processor Host – API-referencia](/dotnet/api/microsoft.servicebus.messaging.eventprocessorhost)

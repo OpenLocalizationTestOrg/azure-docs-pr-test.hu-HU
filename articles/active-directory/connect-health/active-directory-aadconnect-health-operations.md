@@ -1,5 +1,5 @@
 ---
-title: Active Directory Connect Health operations aaaAzure
+title: "Az Azure Active Directory Connect Health üzemeltetése"
 description: "Ez a cikk ismerteti a további műveleteket, miután telepítette az Azure AD Connect Health végrehajtható."
 services: active-directory
 documentationcenter: 
@@ -13,17 +13,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 1dddcee0bca3150ce08621c045a92a1b3ad9df30
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 06afc6b4149ea1590a2994d1638d6979a89035e3
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-active-directory-connect-health-operations"></a>Az Azure Active Directory Connect Health üzemeltetése
-Ez a témakör ismerteti a hello különböző műveleteket hajthat végre Azure Active Directory (Azure AD) Connect Health használatával.
+Ez a témakör ismerteti a különböző műveletek Azure Active Directory (Azure AD) Connect Health használatával végezheti el.
 
 ## <a name="enable-email-notifications"></a>E-mail értesítések engedélyezése
-Hello Azure AD Connect Health szolgáltatás toosend értesítő konfigurálhatja, ha a riasztás azt jelzi, hogy a identitás-infrastruktúra nem működik megfelelően. Ez akkor fordul elő, amikor a rendszer riasztást állít elő, ha meg oldva.
+Konfigurálhatja az Azure AD Connect Health szolgáltatás e-mail értesítést, ha a riasztás azt jelzi, hogy a identitás-infrastruktúra nem működik megfelelően. Ez akkor fordul elő, amikor a rendszer riasztást állít elő, ha meg oldva.
 
 ![Képernyőfelvétel az Azure AD Connect Health e-mail értesítési beállítások](./media/active-directory-aadconnect-health/email_noti_discover.png)
 
@@ -32,118 +32,118 @@ Hello Azure AD Connect Health szolgáltatás toosend értesítő konfigurálhatj
 >
 >
 
-### <a name="tooenable-azure-ad-connect-health-email-notifications"></a>tooenable az Azure AD Connect Health értesítő e-mailek
-1. Nyissa meg hello **riasztások** tooreceive e-mail-értesítések kívánt hello szolgáltatás paneljét.
-2. Hello műveletsávon kattintson **értesítési beállításainak**.
-3. Hello e-mail értesítési kapcsoló válassza **ON**.
-4. Jelölje be a hello jelölőnégyzetet, ha azt szeretné, hogy az összes globális rendszergazdák tooreceive értesítő e-mailek.
-5. Ha azt szeretné, hogy tooreceive értesítő e-mailek, más e-mail címet, adja meg azokat a hello **további e-mailek címzettjeinek** mezőbe. tooremove egy e-mail címet a listából, kattintson a jobb gombbal a hello bejegyzést, és válassza ki **törlése**.
-6. toofinalize hello módosításait, kattintson a **mentése**. Módosítások mentése után csak lépnek érvénybe.
+### <a name="to-enable-azure-ad-connect-health-email-notifications"></a>Az Azure AD Connect Health e-mail értesítések engedélyezése
+1. Nyissa meg a **riasztások** legyen az e-mail értesítéseket kapjanak, a szolgáltatás paneljét.
+2. Az műveletsávon kattintson **értesítési beállításainak**.
+3. Válassza az e-mail értesítési kapcsoló **ON**.
+4. Jelölje be a jelölőnégyzetet, ha azt szeretné, hogy az összes globális rendszergazdák e-mail értesítéseket.
+5. Ha szeretne kapni az értesítő e-mailek, más e-mail címet, adja meg azokat a **további e-mailek címzettjeinek** mezőbe. Az e-mail címének eltávolításához ebből a listából, kattintson a jobb gombbal az bejegyzést, és válassza ki **törlése**.
+6. A módosítások véglegesítéséhez, kattintson a **mentése**. Módosítások mentése után csak lépnek érvénybe.
 
 ## <a name="delete-a-server-or-service-instance"></a>Egy kiszolgáló vagy a szolgáltatás példány törlése
 
-Bizonyos esetekben érdemes lehet a figyelt kiszolgáló tooremove. Mi szüksége tooknow tooremove hello Azure AD Connect Health szolgáltatás kiszolgáló.
+Bizonyos esetekben érdemes a figyelt kiszolgáló eltávolítása. Itt van szüksége lehet az Azure AD Connect Health szolgáltatás eltávolít egy kiszolgálót.
 
-Ha egy kiszolgálót törölni, hello következő figyelembe venni:
+Amikor egy kiszolgáló törölni, vegye figyelembe a következőket:
 
-* Ez a művelet leáll, a kiszolgáló további adatok begyűjtését. A kiszolgáló szolgáltatás figyelése hello törlődik. Ez a művelet után nem képes tooview új riasztások, figyelés, vagy esetleg használati analitikai adatok ehhez a kiszolgálóhoz.
-* Ez a művelet nem távolítja el a Health Agent hello a kiszolgálóról. Ha a lépés végrehajtása előtt nem távolította az hello rendszerállapot-ügynöke, hibák kapcsolódó toohello rendszerállapot-ügynöke jelenhet meg hello kiszolgálón.
-* Ez a művelet nem törli a kiszolgálóról már begyűjtött hello adatok. El az adatok összhangban hello Azure adatmegőrzési házirend törlése.
-* Ez a művelet elvégzése után ha szeretné toostart figyelési hello ugyanarra a kiszolgálóra ebben az esetben kell távolítsa el, majd telepítse újra a Health Agent hello ezen a kiszolgálón.
+* Ez a művelet leáll, a kiszolgáló további adatok begyűjtését. Ez a kiszolgáló törlődik a figyelési szolgáltatásból. Ez a művelet után áll nem tudja megtekinteni az új riasztások, a figyelés, vagy a használati analitikai adatok ehhez a kiszolgálóhoz.
+* Ez a művelet nem távolítja el a Health Agent ügynököt a kiszolgálóról. Ha nem távolította el a Health Agent ügynököt a lépés végrehajtása előtt, láthatja a rendszerállapot-ügynöke, a kiszolgálón kapcsolatos hibákat.
+* Ez a művelet nem törli az erről a kiszolgálóról már begyűjtött adatokat. El az adatok törlése az Azure adatmegőrzési házirend szerint.
+* Ez a művelet elvégzése után Ha el szeretné indítani a figyelést ugyanazon a kiszolgálón újra, akkor távolítsa el és telepítse újra a Health Agent ügynököt a kiszolgálón.
 
-### <a name="toodelete-a-server-from-hello-azure-ad-connect-health-service"></a>toodelete hello Azure AD Connect Health szolgáltatás kiszolgáló
+### <a name="to-delete-a-server-from-the-azure-ad-connect-health-service"></a>Kiszolgáló törlése az Azure AD Connect Health szolgáltatás
 Az Azure AD Connect Health Active Directory összevonási szolgáltatások (AD FS) és az Azure AD Connect (Sync):
 
-1. Nyissa meg hello **Server** hello a panel **kiszolgálólista** panel hello server name toobe kiválasztásával eltávolítja.
-2. A hello **Server** paneljén hello műveletsávon kattintson **törlése**.
-3. Győződjön meg róla, írja be a hello kiszolgálónév hello megerősítése mezőben.
+1. Nyissa meg a **Server** a panel a **kiszolgálólista** panel eltávolítani kívánt kiszolgáló nevét kiválasztva.
+2. Az a **Server** paneljén műveletsávon kattintson **törlése**.
+3. Erősítse meg a megerősítő mezőbe, írja be a kiszolgáló nevét.
 4. Kattintson a **Törlés** gombra.
 
 Az Azure AD Connect Health az Azure Active Directory tartományi szolgáltatások:
 
-1. Nyissa meg hello **tartományvezérlők** irányítópult.
-2. Jelölje be hello tartomány a tartományvezérlő toobe eltávolítva.
-3. Hello műveletsávon kattintson **törli a kijelölt**.
-4. Erősítse meg a hello művelet toodelete hello kiszolgáló.
+1. Nyissa meg a **tartományvezérlők** irányítópult.
+2. Válassza ki az eltávolítani kívánt tartományvezérlő.
+3. Az műveletsávon kattintson **törli a kijelölt**.
+4. Erősítse meg a műveletet, a kiszolgáló törlése.
 5. Kattintson a **Törlés** gombra.
 
 ### <a name="delete-a-service-instance-from-azure-ad-connect-health-service"></a>A szolgáltatáspéldány törlése az Azure AD Connect Health szolgáltatással
-Bizonyos esetekben érdemes lehet egy szolgáltatáspéldány tooremove. Ez mit kell tooknow tooremove szolgáltatás példány hello Azure AD Connect Health szolgáltatásból.
+Bizonyos esetekben előfordulhat, hogy eltávolítani kívánt egy szolgáltatáspéldány. Ez egy szolgáltatáspéldány eltávolítása az Azure AD Connect Health szolgáltatásnak tudnia kell.
 
-Amikor a szolgáltatáspéldány törölni, hello következő figyelembe venni:
+Amikor a szolgáltatáspéldány törölni, vegye figyelembe a következőket:
 
-* Ez a művelet eltávolítja hello aktuális szolgáltatáspéldányt hello szolgáltatás figyelése.
-* Ez a művelet nem távolítja el hello rendszerállapot-ügynöke bármelyik hello kiszolgálók, a szolgáltatáspéldány részeként volt figyelése. Ha a lépés végrehajtása előtt nem távolította az hello rendszerállapot-ügynöke, hibák kapcsolódó toohello rendszerállapot-ügynöke jelenhet meg hello kiszolgálókon.
-* A szolgáltatáspéldány összes adat törlődik a hello Azure adatmegőrzési házirend szerint.
-* A művelet végrehajtása után toostart hello szolgáltatás figyelése, távolítsa el, majd telepítse újra a Health Agent hello hello minden olyan kiszolgálón. A művelet végrehajtása után ha azt szeretné, hogy a figyelést ugyanazon a kiszolgálón újra, távolítsa el, telepítse újra, és regisztrálja hello toostart hello rendszerállapot-ügynöke ezen a kiszolgálón.
+* Ez a művelet eltávolítja az aktuális szolgáltatáspéldányt a figyelési szolgáltatásból.
+* Ez a művelet nem távolítja el a Health Agent eltávolítása a szolgáltatáspéldány részeként volt figyelt kiszolgálók. Ha nem távolította el a Health Agent ügynököt a lépés végrehajtása előtt, láthatja a Health Agent ügynököt a kiszolgálón kapcsolatos hibákat.
+* A szolgáltatáspéldány összes adat törlődik az Azure adatmegőrzési házirend szerint.
+* A művelet végrehajtása után Ha el szeretné indítani a figyelést a szolgáltatáshoz, távolítsa el, és telepítse újra a Health Agent ügynököt a kiszolgálón. A művelet végrehajtása után ha szeretné figyelni újra ugyanarra a kiszolgálóra, távolítsa el, telepítse újra, és regisztrálja a rendszerállapot-ügynöke ezen a kiszolgálón.
 
-#### <a name="toodelete-a-service-instance-from-hello-azure-ad-connect-health-service"></a>a szolgáltatáspéldány hello Azure AD Connect Health szolgáltatásból toodelete
-1. Nyissa meg hello **szolgáltatás** hello a panel **lista** hello szolgáltatás azonosítója (farm neve), amelyet az tooremove kiválasztásával panelen.
-2. A hello **Server** paneljén hello műveletsávon kattintson **törlése**.
-3. Erősítse meg a hello megerősítő mezőbe írja be a hello szolgáltatás nevét (például: sts.contoso.com).
+#### <a name="to-delete-a-service-instance-from-the-azure-ad-connect-health-service"></a>A szolgáltatáspéldány törlése az Azure AD Connect Health szolgáltatás
+1. Nyissa meg a **szolgáltatás** a panel a **lista** ; ehhez válassza a szolgáltatás azonosítója (farm neve), amely az eltávolítani kívánt panel.
+2. Az a **Server** paneljén műveletsávon kattintson **törlése**.
+3. Erősítse meg a megerősítést kérő párbeszédpanelen írja be a szolgáltatás nevét (például: sts.contoso.com).
 4. Kattintson a **Törlés** gombra.
    <br><br>
 
 [//]: # (Start of RBAC section)
 ## <a name="manage-access-with-role-based-access-control"></a>Hozzáférés kezelése a szerepköralapú hozzáférés-vezérlés
-[Szerepköralapú hozzáférés-vezérlés (RBAC)](../role-based-access-control-configure.md) az Azure AD Connect Health biztosít hozzáférést toousers és a globális rendszergazdák eltérő csoportok. Az RBAC szerepkörök szánt toohello felhasználókat és csoportokat hozzárendeli, és lehetővé teszi a toolimit hello globális rendszergazdák a címtáron belül.
+[Szerepköralapú hozzáférés-vezérlés (RBAC)](../role-based-access-control-configure.md) az Azure AD Connect Health hozzáférést biztosít a felhasználók és csoportok globális rendszergazdák eltérő. Az RBAC szerepkört rendel hozzá a kívánt felhasználók számára csoportok és a globális rendszergazdák a címtáron belül korlátozni mechanizmust biztosít.
 
 ### <a name="roles"></a>Szerepkörök
-Az Azure AD Connect Health támogatja a következő beépített szerepkörök hello:
+Az Azure AD Connect Health támogatja a következő beépített szerepkörök:
 
 | Szerepkör | Engedélyek |
 | --- | --- |
-| Tulajdonos |Tulajdonosai *hozzáférésének kezelése olyan* (például hozzárendelése egy szerepkörhöz tooa felhasználó vagy csoport), *összes információját megjeleníthetik* (például a riasztás megtekintése) hello portálról, és *beállításainak módosítása* () például e-mail értesítések) az Azure AD Connect Health belül. <br>Alapértelmezés szerint az Azure AD globális rendszergazdák vannak hozzárendelve ehhez a szerepkörhöz, és ez nem módosítható. |
-| Közreműködő |A közreműködők is *összes adatot megjeleníthetik* (például a riasztás megtekintése) hello portálról, és *beállításainak módosítása* (például e-mail értesítések) az Azure AD Connect Health belül. |
-| Olvasó |Olvasók is *összes információját megjeleníthetik* (például a riasztás megtekintése) az Azure AD Connect Health belül hello portálról. |
+| Tulajdonos |Tulajdonosai *hozzáférésének kezelése olyan* (például szerepkör hozzárendelése egy felhasználóhoz vagy csoporthoz), *összes információját megjeleníthetik* (például a riasztás megtekintése) a portálról, és *beállításainak módosítása* (például e-mail értesítések) az Azure AD Connect Health belül. <br>Alapértelmezés szerint az Azure AD globális rendszergazdák vannak hozzárendelve ehhez a szerepkörhöz, és ez nem módosítható. |
+| Közreműködő |A közreműködők is *összes információját megjeleníthetik* (például a riasztás megtekintése) a portálról, és *beállításainak módosítása* (például e-mail értesítések) az Azure AD Connect Health belül. |
+| Olvasó |Olvasók is *összes információját megjeleníthetik* (például a riasztás megtekintése) az Azure AD Connect Health belül a portálról. |
 
-Minden más szerepkörök (például felhasználói rendszergazdák vagy a DevTest Labs felhasználók) belül az Azure AD Connect Health, nincs hatása tooaccess rendelkezik, akkor is, ha hello szerepkörök hello portál élmény érhető el.
+Minden más szerepkörök (például felhasználói rendszergazdák vagy a DevTest Labs felhasználók) befolyásolni eléréséhez belül az Azure AD Connect Health, akkor is, ha a szerepkörök elérhető a portál élményt nyújt.
 
 ### <a name="access-scope"></a>Hozzáférési hatókör
 Az Azure AD Connect Health által támogatott két szintű hozzáférés-kezelés:
 
-* **Minden szolgáltatáspéldány**: Ez az elérési út a legtöbb esetben ajánlott hello. Azt szabályozza a hozzáférést minden szolgáltatáspéldány (például AD FS-farm) az Azure AD Connect Health által figyelt összes szerepkör-típusa.
-* **Szolgáltatáspéldány**: bizonyos esetekben szükség lehet a felhasználóiszerepkör-típusokhoz vagy egy szolgáltatás példánya alapján toosegregate hozzáférést. Ebben az esetben hozzáférését hello szolgáltatás példány szintjén kezelheti.  
+* **Minden szolgáltatáspéldány**: a legtöbb esetben ajánlott elérési útja. Azt szabályozza a hozzáférést minden szolgáltatáspéldány (például AD FS-farm) az Azure AD Connect Health által figyelt összes szerepkör-típusa.
+* **Szolgáltatáspéldány**: bizonyos esetekben szükség lehet elkülönítse alapú felhasználóiszerepkör-típusokhoz vagy egy szolgáltatáspéldány való hozzáférést. Ebben az esetben a szolgáltatás példányszintű hozzáférését kezelheti.  
 
-Engedélyt kap, ha a felhasználó hozzáfér hello directory vagy a szolgáltatás szintű példányt.
+Engedélyt kap, ha a felhasználó hozzáfér a könyvtár vagy a szolgáltatás szintű példányt.
 
-### <a name="allow-users-or-groups-access-tooazure-ad-connect-health"></a>Lehetővé teszi a felhasználók vagy csoportok hozzáférés tooAzure AD Connect Health
-hello következő lépések bemutatják, hogyan férnek hozzá az tooallow.
-#### <a name="step-1-select-hello-appropriate-access-scope"></a>1. lépés: Hello megfelelő hozzáférési hatókör kiválasztása
-egy felhasználó hozzáférést hello tooallow *minden szolgáltatáspéldány* szintű Azure AD Connect Health, nyissa meg hello Azure AD Connect Health fő paneljén belül.<br>
+### <a name="allow-users-or-groups-access-to-azure-ad-connect-health"></a>Engedélyezi a hozzáférést az Azure AD Connect Health
+A következő lépések bemutatják, hogyan teszi lehetővé a hozzáférést.
+#### <a name="step-1-select-the-appropriate-access-scope"></a>1. lépés: Válassza ki a megfelelő hozzáférési hatókör
+A felhasználói hozzáférést, a *minden szolgáltatáspéldány* belül az Azure AD Connect Health szinten, nyissa meg az Azure AD Connect Health fő panelje.<br>
 
 #### <a name="step-2-add-users-and-groups-and-assign-roles"></a>2. lépés: Felhasználók és csoportok hozzáadása, és szerepkörök hozzárendelése
-1. A hello **konfigurálása** kattintson **felhasználók**.<br>
+1. Az a **konfigurálása** kattintson **felhasználók**.<br>
    ![Képernyőfelvétel az Azure AD Connect Health RBAC fő panelen a kijelölt felhasználókkal](./media/active-directory-aadconnect-health/RBAC_main_blade.png)
 2. Válassza a **Hozzáadás** lehetőséget.
-3. A hello **Szerepkörválasztás** ablaktáblán válassza ki a megfelelő szerepkör (például **tulajdonos**).<br>
+3. Az a **Szerepkörválasztás** ablaktáblán válassza ki a megfelelő szerepkör (például **tulajdonos**).<br>
    ![Képernyőfelvétel az Azure AD Connect Health RBAC felhasználók ablak](./media/active-directory-aadconnect-health/RBAC_add.png)
-4. Írja be a hello név vagy azonosító hello célzott felhasználó vagy csoport. Választhatja ki egy vagy több felhasználók vagy csoportok: hello ugyanannyi időt vesz igénybe. Kattintson a **Kiválasztás** gombra.
+4. Írja be a nevet vagy a célzott felhasználó vagy csoport azonosítója. Választhat egy vagy több felhasználók vagy csoportok egyszerre. Kattintson a **Kiválasztás** gombra.
    ![Képernyőfelvétel az Azure AD Connect Health RBAC felhasználók ablak](./media/active-directory-aadconnect-health/RBAC_select_users.png)
 5. Kattintson az **OK** gombra.<br>
-6. Szerepkör-hozzárendelés hello befejezése után hello felhasználók és csoportok szerepelnek hello listán.<br>
+6. A szerepkör-hozzárendelés befejezése után a felhasználók és csoportok szerepelnek a listán.<br>
    ![Képernyőfelvétel az Azure AD Connect Health RBAC felhasználók-ablakot, kiemelve az új felhasználók](./media/active-directory-aadconnect-health/RBAC_user_list.png)
 
-Most hello felsorolt felhasználók és csoportok fér hozzá, szerepkört tootheir alapján történik.
+Most már a listán szereplő felhasználók és csoportok hozzáféréssel rendelkezik, a hozzárendelt szerepköröknek megfelelően.
 
 > [!NOTE]
-> * Globális rendszergazdák mindig rendelkezik teljes körű hozzáférési tooall hello műveleteket, de a globális rendszergazdai fiókok nem szerepelnek a listán megelőző hello.
-> * hello felhasználók meghívása nem támogatja az Azure AD Connect Health belül.
+> * Globális rendszergazdák mindig rendelkezik teljes körű hozzáférés az összes műveletet, de a globális rendszergazdai fiókok nincsenek jelen az előző listában.
+> * A felhasználók meghívása nem támogatja az Azure AD Connect Health belül.
 >
 >
 
-#### <a name="step-3-share-hello-blade-location-with-users-or-groups"></a>3. lépés: Megosztás hello panel helye a felhasználók vagy csoportok
+#### <a name="step-3-share-the-blade-location-with-users-or-groups"></a>3. lépés: A panel helye megoszthatja a felhasználók vagy csoportok
 1. Engedélyek hozzárendelése után a felhasználó hozzáférhet-e az Azure AD Connect Health címen [Itt](http://aka.ms/aadconnecthealth).
-2. Hello paneljén hello felhasználói rögzíthető hello panelen, vagy azt, toohello irányítópult különböző részeit. Egyszerűen kattintson a hello **PIN-kód toodashboard** ikonra.<br>
+2. A panelen a felhasználó rögzíthető a panelen, illetve a különböző részeit, az irányítópult megnyitásához. Egyszerűen kattintson a **rögzítés az irányítópulton** ikonra.<br>
    ![Képernyőfelvétel az Azure AD Connect Health RBAC PIN-kód panelen, a rögzítés ikonja kiemelve](./media/active-directory-aadconnect-health/RBAC_pin_blade.png)
 
 > [!NOTE]
-> Hello olvasó szerepkörrel rendelkező felhasználók nem tud tooget az Azure AD Connect Health kiterjesztést a hello Azure piactéren. hello felhasználói hello szükséges "create" művelet toodo ezért nem lehet végrehajtani. hello felhasználói toohello panel által megelőző hivatkozást fog toohello elérheti. Későbbi használatra hello felhasználói hello panel toohello irányítópult is rögzítheti.
+> Az olvasó szerepkörrel rendelkező felhasználó nincs az Azure AD Connect Health-bővítmény beolvasása az Azure piactérről. A felhasználó nem hajtható végre a "create" ehhez a művelethez szükséges. A felhasználó elérheti a panel nyissa meg az előző kapcsolat. Későbbi használatra a felhasználó rögzíthet az irányítópultra panel.
 >
 >
 
 ### <a name="remove-users-or-groups"></a>Felhasználók vagy csoportok eltávolítása
-Eltávolíthatja, egy felhasználóhoz vagy csoporthoz hozzáadott tooAzure AD Connect Health RBAC. Egyszerűen kattintson a jobb gombbal a hello felhasználót vagy csoportot, és válassza **eltávolítása**.<br>
+Eltávolíthatja a felhasználó vagy egy csoportot az Azure AD Connect Health RBAC hozzáadni. Egyszerűen kattintson a jobb gombbal a felhasználót vagy csoportot, és válassza **eltávolítása**.<br>
 ![Képernyőfelvétel az Azure AD Connect Health RBAC felhasználók-ablakot, távolítsa el a kijelölt](./media/active-directory-aadconnect-health/RBAC_remove.png)
 
 [//]: # (End of RBAC section)

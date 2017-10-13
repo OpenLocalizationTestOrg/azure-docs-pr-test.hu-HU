@@ -1,7 +1,7 @@
 ---
 title: "Alkalmazások, engedélyek és jóváhagyás az Azure Active Directoryban | Microsoft Docs"
-description: "Az Azure AD Connect integrálja a helyszíni címtárakat az Azure Active Directoryval. Ez lehetővé teszi az Azure ad-vel integrált Office 365, az Azure és az SaaS-alkalmazásokhoz közös identitás tooprovide."
-keywords: "Bevezetés tooAzure AD, alkalmazások, mi az az Azure AD Connect, az active directory telepítése"
+description: "Az Azure AD Connect integrálja a helyszíni címtárakat az Azure Active Directoryval. Így közös identitást biztosíthat az Azure AD-vel integrált Office 365-, Azure- és SaaS-alkalmazásokhoz."
+keywords: "az Azure AD bemutatása, alkalmazások, mi az Azure AD Connect, az Active Directory telepítése"
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -17,96 +17,96 @@ ms.date: 07/31/2017
 ms.author: billmath
 ms.reviewer: jesakowi
 ms.custom: oldportal;it-pro;
-ms.openlocfilehash: af0c2669199736fdb41e85876a7e3a7064e80770
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6f6baf5e1538fb280a899065c64ca5688473c04a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="apps-permissions-and-consent-in-azure-active-directory"></a>Alkalmazások, engedélyek és jóváhagyás az Azure Active Directoryban
-Az Azure Active Directoryban hozzáadhat alkalmazásokat tooyour könyvtárat.  hello alkalmazások alkalmazás hello típusától függően változhat.  klasszikus portál hello tooview alkalmazások jelöljön ki egy könyvtárat, és alkalmazások kiválasztása.
+Az Azure Active Directoryban hozzáadhat alkalmazásokat a címtárhoz.  Az alkalmazások az alkalmazás típusától függően eltérőek lehetnek.  Az alkalmazások megtekintéséhez a klasszikus portálon válasszon ki egy címtárat, és válasszon alkalmazásokat.
 
 ![](media/active-directory-apps-permissions-consent/apps1.png)
 
 > [!IMPORTANT]
-> A Microsoft azt javasolja, hogy a hello használata az Azure AD kezelése [az Azure AD felügyeleti központban](https://aad.portal.azure.com) hello az Azure portál használata helyett hello hivatkozott ebben a cikkben a klasszikus Azure portálon.
+> A Microsoft javasolja, hogy az Azure Portalon található [Azure AD felügyeleti központból](https://aad.portal.azure.com) kezelje az Azure AD-t az ebben a cikkben javasolt klasszikus Azure portál helyett.
 
 ## <a name="types-of-apps"></a>Alkalmazástípusok
 
 1. **Egybérlős alkalmazások** </br>
-    - **Single-bérlői alkalmazások** -nevezik tooas üzletági (LOB) alkalmazások. Ez az hello esetben, ha valaki a szervezeten belüli házon belül fejlesztett alkalmazásokra saját alkalmazás, kíván tenni a felhasználók a hello szervezet toobe képes toosign toohello alkalmazásban.
+    - **Egybérlős alkalmazások** – Gyakran üzletági (line-of-business, LOB) alkalmazásokként utalnak rájuk. Ilyen alkalmazásról akkor beszélünk, amikor egy szervezet saját alkalmazást fejleszt, és azt szeretné, hogy a felhasználói be tudjanak rá jelentkezni.
     ![](media/active-directory-apps-permissions-consent/apps2.png)
-    - **Alkalmazás Proxy alkalmazások** – Ha az Azure AD alkalmazás Proxy, helyszíni alkalmazás teszi ki a single-bérlői alkalmazások, a bérlő által (hozzáadása toohello App proxyszolgáltatás) regisztrálva van. Ez az alkalmazás képviseli a helyszíni alkalmazást minden felhőbeli interakció (például hitelesítés) során. (Az alkalmazásproxy használatához Basic vagy magasabb szintű Azure AD-licenc szükséges.)
+    - **Alkalmazásproxy-alkalmazások** – Amikor közzétesz egy helyszíni alkalmazást az Azure AD-alkalmazásproxyval, egy egybérlős alkalmazást regisztrál a bérlőben (az alkalmazásproxy-szolgáltatás mellett). Ez az alkalmazás képviseli a helyszíni alkalmazást minden felhőbeli interakció (például hitelesítés) során. (Az alkalmazásproxy használatához Basic vagy magasabb szintű Azure AD-licenc szükséges.)
 
 
 2. **Több-bérlős alkalmazások**
-    - **Több-bérlős alkalmazásokhoz, amelyek mások is** - hasonló túl "single-bérlői alkalmazások, a szervezet házon belül fejlesztett alkalmazásokra". hello fő (mellett hello alkalmazás maga a logikai hello) különbség, hogy a felhasználók a többi bérlőtől is is hozzájárulás tooand bejelentkezési toohello alkalmazásban.</br>
+    - **Mások által jóváhagyott több-bérlős alkalmazások** – hasonlók, mint „a szervezet által fejlesztett egybérlős alkalmazások”. A fő különbség (az alkalmazás belső logikáján kívül) az, hogy más bérlők felhasználói is jóváhagyhatják az alkalmazást, és be is jelentkezhetnek.</br>
     ![](media/active-directory-apps-permissions-consent/apps4.png)
-    - **Mások által fejlesztett több-bérlős alkalmazások, amelyeket a Contoso jóváhagyhat**. (Röviden „jóváhagyott alkalmazások”.) Ez a "több-bérlős alkalmazások a szervezet házon belül fejlesztett alkalmazásokra" hello tükrözés oldalán. Ha egy másik szervezet egy több-bérlős alkalmazást fejleszt, a szervezet felhasználói hozzájárulás toohello alkalmazás, és tooit bejelentkezés.
-    - **Belső Microsoft-alkalmazások** – A Microsoft szolgáltatásait képviselő alkalmazások. Hello tényt, hogy regisztrál hello szolgáltatás célja a hozzájárulásukat adják. Nincs néha különleges UX és egyes belső alkalmazások logikát, gyakran használt szabályzatok hozzáférés toohello alkalmazások körül kialakítása során.</br>
+    - **Mások által fejlesztett több-bérlős alkalmazások, amelyeket a Contoso jóváhagyhat**. (Röviden „jóváhagyott alkalmazások”.) Ezen alkalmazások a „szervezet által fejlesztett több-bérlős alkalmazások” ellentettjei. Ha egy másik szervezet fejleszt egy több-bérlős alkalmazást, az Ön üzleti szervezetének felhasználói jóváhagyhatják az alkalmazást, és be is jelentkezhetnek.
+    - **Belső Microsoft-alkalmazások** – A Microsoft szolgáltatásait képviselő alkalmazások. Az alkalmazások használatát a szolgáltatásra való regisztrációval lehet jóváhagyni. Néha különleges felhasználói felület és logika jellemez bizonyos belső alkalmazásokat, amelyeknek a hatása az alkalmazások hozzáférésére vonatkozó szabályzatokban is érvényesül.</br>
     ![](media/active-directory-apps-permissions-consent/apps3.png)
-    - **Előzetesen beépített alkalmazások** -hello Azure AD-Alkalmazásgyűjtemény, amely is hozzáadhat az elérhető alkalmazások tooyour directory tooprovide egyszeri bejelentkezés (és egyes esetekben kiépítése) toopopular SaaS-alkalmazásokhoz.
-    - **Azure AD egyszeri bejelentkezés**: „Valódi” egyszeri bejelentkezés (SSO) olyan alkalmazások számára, amelyek integrálhatók az Azure AD-vel egy támogatott bejelentkezési protokollon, például az SAML 2.0-n vagy az OpenID Connecten keresztül. hello varázsló bemutatja, hogyan állítsa be azt.
-    - **Jelszó az egyszeri bejelentkezés**: az Azure AD biztonságosan tárolja a hello app hello felhasználói hitelesítő adatokat, és hello hitelesítő adatok vannak "be a nézetmodellbe" hello bejelentkezési űrlap hello Azure AD alkalmazás-hozzáférés bővítmény által. Ez a bejelentkezési módszer „jelszótárolásként” is ismert.
+    - **Előre integrált alkalmazások** – Az Azure AD alkalmazáskatalógusában elérhető alkalmazások, amelyeket hozzáadhat a címtárhoz, hogy egyszeri bejelentkezést (és esetenként jogosultságkiosztást) biztosíthasson a népszerű SaaS-alkalmazásokhoz.
+    - **Azure AD egyszeri bejelentkezés**: „Valódi” egyszeri bejelentkezés (SSO) olyan alkalmazások számára, amelyek integrálhatók az Azure AD-vel egy támogatott bejelentkezési protokollon, például az SAML 2.0-n vagy az OpenID Connecten keresztül. A varázsló végigvezeti ennek beállításán.
+    - **Jelszavas egyszeri bejelentkezés**: Az Azure AD biztonságosan tárolja a felhasználó alkalmazásra vonatkozó hitelesítő adatait, amelyeket az Azure AD App Access böngészőbővítmény ad meg a bejelentkezési űrlapon. Ez a bejelentkezési módszer „jelszótárolásként” is ismert.
 
 ## <a name="permissions"></a>Engedélyek
 
-Az alkalmazás regisztrálásakor hello felhasználói hello app regisztrációs (Ez azt jelenti, hogy hello fejlesztői) végrehajtása határozza meg, melyik engedélyek hello alkalmazásnak kell elérnie, és mely erőforrásokat. (hello erőforrásokat, maguk is, más alkalmazások meghatározva.) Például valaki a mail olvasó alkalmazás elkészítése volna állapotban, hogy az alkalmazás engedélyre van szüksége, hello "Postaládák hello bejelentkezett felhasználó nevében" hello "Office 365 Exchange online-hoz" erőforrás a:
+Egy alkalmazás regisztrálásakor az alkalmazásregisztrációt végrehajtó felhasználó (vagyis a fejlesztő) határozza meg azon engedélyeket és erőforrásokat, amelyeket az alkalmazásnak el kell érnie. (Maguk az erőforrások más alkalmazásokként vannak meghatározva.) Egy levélolvasó alkalmazás fejlesztője megadhatja például, hogy az alkalmazásnak a „Postaládák elérése bejelentkezett felhasználóként” engedélyre van szüksége az „Office 365 Exchange Online” erőforrásban:
     
 ![](media/active-directory-apps-permissions-consent/apps6.png)
 
-Ahhoz, hogy egy alkalmazás (hello ügyfél) toorequest (hello erőforrás) egy másik alkalmazás egy bizonyos engedélyt hello fejlesztői hello erőforrás alkalmazás létező hello engedélyek határozza meg. A példánkban a Microsoft hello tulajdonos hello "Office 365 Exchange online-hoz" erőforrás alkalmazás definiált "Postaládák hello bejelentkezett felhasználó nevében" nevű engedély.
+Ahhoz, hogy egy alkalmazás (az ügyfél) adott engedélyt igényelhessen egy másik alkalmazástól (az erőforrástól), az erőforrás-alkalmazás fejlesztője határozza meg a meglévő engedélyeket. A példánkban a Microsoft, az „Office 365 Exchange Online” erőforrás-alkalmazás tulajdonosa meghatározta a „Postaládák elérése bejelentkezett felhasználóként” nevű engedélyt.
 
-Engedélyek meghatározásakor hello alkalmazás fejlesztőjének definiálnia kell, ha hello engedéllyel is kell átadni kívánt hozzájárult e, vagy ha a rendszergazda jóváhagyását igényli. Ez lehetővé teszi a fejlesztők tooallow felhasználók tooconsent a saját tooapps csak a bizalmas alacsony engedéllyel a kért, de a rendszergazdák tooconsent toomore bizalmas engedély szükséges. Például az erőforrás alkalmazás "Azure Active Directory" hello, definiálva van, így a felhasználó be tudja hozzájárulás egy tooapps, korlátozott csak olvasási engedéllyel a kért.  A teljes olvasási és minden írási engedélyhez azonban rendszergazdai jóváhagyás szükséges.
+Az engedélyek meghatározásakor az alkalmazás fejlesztőjének meg kell adnia, hogy az engedélyt jóvá lehet-e hagyni, vagy pedig rendszergazdai jóváhagyásra van-e szükség. A fejlesztők így lehetővé tehetik a felhasználók számára alacsony szintű engedélyeket kérő alkalmazásaik jóváhagyását, magasabb szintű engedélyek esetén pedig rendszergazdai jóváhagyást követelhetnek meg. Az „Azure Active Directory” erőforrás-alkalmazás például úgy lett meghatározva, hogy a felhasználók maguk is jóváhagyhatják az alkalmazásokat, ha csak korlátozott írásvédett engedélyeket kérnek.  A teljes olvasási és minden írási engedélyhez azonban rendszergazdai jóváhagyás szükséges.
 
-Mivel a natív ügyfelek nincsenek hitelesítve, a natív ügyfélalkalmazásként meghatározott alkalmazások csak delegált engedélyeket kérhetnek. Ez azt jelenti, hogy a tokenek beszerzését egy tényleges felhasználónak kell intéznie. A webes alkalmazásoknak és webes API-knak (bizalmas ügyfeleknek) mindig hitelesíteniük kell az Azure AD-vel, amikor hozzáférési tokent igényelnek. Tehát ezenkívül hello lehetőségét csak alkalmazás engedéllyel rendelkeznek. Ha például egy háttér-szolgáltatás tooauthenticate tooanother háttérszolgáltatásnak szüksége van. A csak az alkalmazásra vonatkozó engedélyeket kérő alkalmazások mindig rendszergazdai jóváhagyást igényelnek.
+Mivel a natív ügyfelek nincsenek hitelesítve, a natív ügyfélalkalmazásként meghatározott alkalmazások csak delegált engedélyeket kérhetnek. Ez azt jelenti, hogy a tokenek beszerzését egy tényleges felhasználónak kell intéznie. A webes alkalmazásoknak és webes API-knak (bizalmas ügyfeleknek) mindig hitelesíteniük kell az Azure AD-vel, amikor hozzáférési tokent igényelnek. Ezek az ügyfelek csak az alkalmazásra vonatkozó engedélyeket is kérhetnek. Ilyen eset például, amikor egy háttérszolgáltatásnak hitelesítenie kell magát egy másik háttérszolgáltatás előtt. A csak az alkalmazásra vonatkozó engedélyeket kérő alkalmazások mindig rendszergazdai jóváhagyást igényelnek.
 
 Összefoglalva:
 
 
 
-- Egy alkalmazás (ügyfél) szerint hello engedélyek más alkalmazások (erőforrások) szükséges.
-- (Erőforrás) alkalmazás-állapotok az engedélyeit olyan kitett tooother alkalmazások (ügyfelek).
+- Az alkalmazás (ügyfél) határozza meg azon engedélyeket, amelyekre szüksége van a többi alkalmazáshoz (erőforráshoz).
+- Az alkalmazás (erőforrás) határozza meg, hogy milyen engedélyek tehetők közzé a többi alkalmazás (ügyfél) számára.
 - Az engedély lehet csak az alkalmazásra vonatkozó vagy delegált engedély is.
 - A delegált engedély megjelölhető „felhasználói jóváhagyást engedélyező” vagy „rendszergazdai jóváhagyást igénylő” engedélyként.
-- Egy alkalmazás viselkedhet ügyfélként (azáltal, hogy kell-e engedélyekkel tooa erőforrás), egy erőforrást (is deklarálni kell jogosultságokat az érheti el), vagy mindkettőt.
+- Egy alkalmazás működhet ügyfélként (ha kijelenti, hogy engedélyekre van szüksége egy erőforráshoz), erőforrásként (ha megnevezi az általa közzétett engedélyeket) vagy mindkettőként.
 
 ## <a name="controls"></a>Vezérlők
 
-hello hello különböző felügyeleti vezérlő érhető el ez a viselkedés az listája látható. Üdvözöljük a rendszergazdákat vezérlők is elérhetők a klasszikus portálon hello konfigurálása hello könyvtára alatt tárolja.
+Alább az ilyen működési módokhoz elérhető különböző rendszergazdai vezérlők listája látható. A rendszergazdai vezérlők a klasszikus portálon a címtár konfigurálási szakaszánál érhetők el.
 
 ![](media/active-directory-apps-permissions-consent/apps7.png)
 
-A hello Azure portál, a **kezelése**, **felhasználói beállítások**.
+Az Azure Portalon a vezérlőket a **Felhasználói beállítások** **Kezelés** menüpontjában találja meg.
 
 ![](media/active-directory-apps-permissions-consent/apps11.png)
 
 
 
-- Szabályozhatja, hogy a felhasználók is hozzájárulás tooapps:
+- Szabályozhatja, hogy a felhasználók jóváhagyhatnak-e alkalmazásokat:
 
-Válassza hello klasszikus portál **felhasználók adhat alkalmazások engedélyek tooaccess adataikat.**
-![](media/active-directory-apps-permissions-consent/apps8.png)
+A klasszikus portálon válassza a **Users may give applications permissions to access their data**
+![](media/active-directory-apps-permissions-consent/apps8.png) (A felhasználók engedélyt adhatnak az alkalmazásoknak az adataik elérésére) elemet.
 
-Hello Azure-portálon, válassza ki **felhasználók engedélyezhetik alkalmazások tooaccess adataikat**.
+Az Azure Portalon válassza **A felhasználók engedélyezhetik alkalmazások számára az adataikhoz való hozzáférést** elemet.
 ![](media/active-directory-apps-permissions-consent/apps12.png)
 
 
 
-- Szabályozhatja, hogy a felhasználók regisztrálhatják saját single-bérlő LOB-alkalmazások: A klasszikus portál select hello **felhasználók hozzáadhatnak integrált alkalmazások.**
-![](media/active-directory-apps-permissions-consent/apps9.png)
+- Szabályozhatja, hogy a felhasználók regisztrálhatják-e saját egybérlős LOB-alkalmazásaikat. A klasszikus portálon válassza a **Users may add integrated applications**
+![](media/active-directory-apps-permissions-consent/apps9.png) (A felhasználók hozzáadhatnak integrált alkalmazásokat) elemet.
 
-Hello Azure-portálon, válassza ki **felhasználók engedélyezhetik alkalmazások tooaccess adataikat**.
+Az Azure Portalon válassza **A felhasználók engedélyezhetik alkalmazások számára az adataikhoz való hozzáférést** elemet.
 ![](media/active-directory-apps-permissions-consent/apps13.png)
 
 >[!NOTE]
->Akkor is, ha engedélyezi a felhasználók tooregister single-bérlő LOB-alkalmazások, nincsenek toowhat regisztrálható korlátozások.  
+>A regisztrálható alkalmazások köre még akkor is korlátozva van, ha engedélyezi a felhasználók számára az egybérlős LOB-alkalmazások regisztrálását.  
 >A korlátozások vonatkoznak például olyan fejlesztőkre, akik nem címtár-rendszergazdák.
 >
 >- A felhasználók nem alakíthatnak át egy egybérlős alkalmazást több-bérlőssé.
->- Amikor regisztrál egy bérlői LOB-alkalmazások, felhasználók csak alkalmazás engedélyek tooother alkalmazások nem igényelhetnek.
->- Amikor regisztrál egy bérlői LOB-alkalmazások, a felhasználók nem kérik delegált jogosultságokkal sikeresen telepítették tooother alkalmazások, ha ezeket az engedélyeket a rendszergazda jóváhagyását van szükség.
->- Felhasználók, amelyek még nincsenek tulajdonosainak módosítások tooapps nem hajtható végre.
+>- Egybérlős LOB-alkalmazások regisztrálásakor a felhasználók nem kérhetnek csak az alkalmazásra vonatkozó engedélyeket más alkalmazásokhoz.
+>- Egybérlős LOB-alkalmazások regisztrálásakor a felhasználók nem kérhetnek delegált engedélyeket más alkalmazásokhoz, ha az engedélyekhez rendszergazdai jóváhagyásra van szükség.
+>- A felhasználók nem módosíthatnak olyan alkalmazásokat, amelyeknek nem a tulajdonosaik.
 
 
 
@@ -114,24 +114,24 @@ Hello Azure-portálon, válassza ki **felhasználók engedélyezhetik alkalmazá
 
 
 
-- Szabályozhatja, hogy az alkalmazások milyen feltételek esetén férhetők hozzá (azaz feltételes hozzáférést is megadhat). Ügyeljen arra, hogy ez toohello ügyfélalkalmazás és toohello erőforrás alkalmazás is vonatkozik. Igen fel hogy feltételes hozzáférési szabályzatot, amely szerint a "Office 365 Exchange online-hoz" hello alkalmazást csak a számítógépek, amelyek megfelelő érhető el.  Ez a házirend is fog indítsa, amikor egy felhasználó megpróbál egy Online engedélyek tooExchange kérő ügyfélalkalmazás toouse.
+- Szabályozhatja, hogy az alkalmazások milyen feltételek esetén férhetők hozzá (azaz feltételes hozzáférést is megadhat). Ügyeljen arra, hogy ez az ügyfélalkalmazásra és az erőforrás-alkalmazásra egyaránt vonatkozik. Tegyük fel például, hogy olyan feltételes hozzáférési szabályzatot állít be, amely alapján az „Office 365 Exchange Online” alkalmazás csak a szabályzatnak megfelelő gépekről érhető el.  A szabályzat akkor is érvényesül, ha egy felhasználó olyan ügyfélalkalmazást próbál használni, amely engedélyeket kért az Exchange Online-hoz.
 
 
 
-- Lehetősége van, amelybe alkalmazások hozzájárult, melyeket használt tooand volt látható.
+- Láthatja, hogy mely alkalmazásokat hagytak jóvá, és mely alkalmazásokat használják éppen.
 
-1.  Amikor a felhasználó hozzájárul tooan alkalmazás, egy szolgáltatásnév objektum hello bérlő jön létre. Szolgáltatásnév létrehozása hello ellenőrzési jelentés tartalmazza.
-2.  Felhasználói bejelentkezési tevékenység jelentések meg, melyik alkalmazás hello felhasználó próbál bejelentkezni. 
+1.  Amikor egy felhasználó jóváhagy egy alkalmazást, a rendszer létrehoz egy ServicePrincipal objektumot a bérlőben. A ServicePrincipal létrehozásának ténye megjelenik a naplózási jelentésben.
+2.  A felhasználói bejelentkezési tevékenységről szóló jelentések tájékoztatják arról, hogy a felhasználó mely alkalmazásba jelentkezik be. 
 
 ## <a name="example"></a>Példa
 
-Tegyük fel megtudhatja, hogy észrevette a bérlő felhasználói bejelentkezés hello "Office 365-höz FabrikamMail" alkalmazást. A „FabrikamMail” egy levélolvasó alkalmazás Android rendszerhez, amelyet a „Fabrikam, Inc.” tett közzé. Ez beleesik hello "több-bérlős alkalmazásokhoz, amelyek Contoso is más develop".
+Példaként a „FabrikamMail for Office 365” alkalmazást használjuk. Ön észleli, hogy a bérlő felhasználói bejelentkeznek az alkalmazásba. A „FabrikamMail” egy levélolvasó alkalmazás Android rendszerhez, amelyet a „Fabrikam, Inc.” tett közzé. Az alkalmazás így a „mások által fejlesztett több-bérlős alkalmazások, amelyeket a Contoso jóváhagyhat” típusba tartozik.
 
-Ha tooconsent a felhasználók számára engedélyezett, akkor töltse le hozzájárulás kérése hello első bejelentkezéskor:![](media/active-directory-apps-permissions-consent/apps14.png)
+Ha a felhasználók számára engedélyezett a jóváhagyás, a rendszer a jóváhagyásukat kéri az első bejelentkezéskor: ![](media/active-directory-apps-permissions-consent/apps14.png)
 
-Hozzáférés-postaládáit"érték hello felhasználók számára is elérhető hozzájárulási karakterlánc hello"Postaládák hello bejelentkezett felhasználó nevében"engedélyt"Office 365 Exchange online-hoz"(Ez azt jelenti, hogy az Exchange) tesz elérhetővé.
+Az „Access your mailboxes” (Postaládák hozzáférése) az „Office 365 Exchange Online” (vagyis az Exchange) által közzétett „Postaládák elérése bejelentkezett felhasználóként” engedély felhasználóknak megjelenő jóváhagyási karakterlánca.
 
-Az Exchange (hello erőforrás), amelyhez hozzá lett adva a regisztráció során az Office 365 hello szolgáltatásnév objektum szervezetifiók hello engedélyek tekintheti meg. Az eltolásokat tekintheti hello szolgáltatásnév objektum hello app "példányának" az Ön bérlőjében, különböző beállítások és konfigurációk rögzítése használt.  Erre úgy tekinthet hello segítségével `Get-AzureADServicePrincipal` a PowerShellben.
+Az engedélyeket az Exchange (az erőforrás) ServicePrincipal objektumának ellenőrzésével tekintheti meg. Az objektum hozzáadására az Office 365-re való regisztráláskor került sor. A ServicePrincipal objektumot tekintheti az alkalmazás különböző beállítások és konfigurációk rögzítésére szolgáló egyik „példányának” a bérlőben.  Az objektumot a `Get-AzureADServicePrincipal` paranccsal tekintheti meg a PowerShellben.
 
     PS C:\> Get-AzureADServicePrincipal -ObjectId 383f7b97-6754-4d3d-9474-3908ebcba1c6 | fl *
     
@@ -151,12 +151,12 @@ Az Exchange (hello erőforrás), amelyhez hozzá lett adva a regisztráció sor�
     LogoutUrl                 : 
     Oauth2Permissions         : {...
                                 , class OAuth2Permission {
-                                  AdminConsentDescription : Allows hello app toohave hello same access toomailboxes as hello signed-in user via Exchange Web Services.
-                                  AdminConsentDisplayName : Access mailboxes as hello signed-in user via Exchange Web Services
+                                  AdminConsentDescription : Allows the app to have the same access to mailboxes as the signed-in user via Exchange Web Services.
+                                  AdminConsentDisplayName : Access mailboxes as the signed-in user via Exchange Web Services
                                   Id                      : 3b5f3d61-589b-4a3c-a359-5dd4b5ee5bd5
                                   IsEnabled               : True
                                   Type                    : User
-                                  UserConsentDescription  : Allows hello app full access tooyour mailboxes on your behalf.
+                                  UserConsentDescription  : Allows the app full access to your mailboxes on your behalf.
                                   UserConsentDisplayName  : Access your mailboxes
                                   Value                   : full_access_as_user
                                 },
@@ -169,7 +169,7 @@ Az Exchange (hello erőforrás), amelyhez hozzá lett adva a regisztráció sor�
                                 00000002-0000-0ff1-ce00-000000000000/*.outlook.com...}
     Tags                      : {}
 
-Amikor hello felhasználó kattint az "Elfogadás" hozzájárulási indítható. Először egy szolgáltatásnév objektum "Office 365-höz FabrikamMail" hello bérlő jön létre. hello szolgáltatásnév a következőhöz hasonló:
+Ha a felhasználó az „Accept” (Elfogadás) gombra kattint, a rendszer kezdeményezi a jóváhagyást. Először is létrehozza a „FabrikamMail for Office 365” ServicePrincipal objektumát a bérlőben. A ServicePrincipal nagyjából így néz ki:
 
     PS C:\> Get-AzureADServicePrincipal -SearchString "FabrikamMail for Office 365" | fl *
     
@@ -195,14 +195,14 @@ Amikor hello felhasználó kattint az "Elfogadás" hozzájárulási indítható.
     ServicePrincipalNames     : {aba7c072-2267-4031-8960-e7a2db6e0590}
     Tags                      : {WindowsAzureActiveDirectoryIntegratedApp}
 
-Küldőnek tooan app kapcsolatot hoz létre Oauth2PermissionGrant hello következő között:
+Az alkalmazás jóváhagyása egy Oauth2PermissionGrant hivatkozást hoz létre az alábbiak között:
   
-- hello felhasználói objektum
-- hello ügyfélalkalmazások ServicePrincipalName (SPN)
-- hello erőforrás alkalmazások ServicePrincipalName (SPN)
-- engedélyek hello erőforrás alkalmazásban.  
+- a felhasználói objektum;
+- az ügyfélalkalmazás ServicePrincipalName (SPN) eleme;
+- az erőforrás-alkalmazás ServicePrincipalName (SPN) eleme;
+- az erőforrás-alkalmazásban található engedélyek.  
 
-FabrikamMail hello esetben azt a következőhöz hasonló:
+A FabrikamMail esetében ez nagyjából a következők szerint néz ki:
 
     PS C:\> Get-AzureADUserOAuth2PermissionGrant -ObjectId ddiggle@aadpremiumlab.onmicrosoft.com | fl *
     
@@ -215,7 +215,7 @@ FabrikamMail hello esetben azt a következőhöz hasonló:
     Scope       : full_access_as_user
     StartTime   : 01/01/0001 12:00:00 AM
 
-(**ClientId** FabrikamMail a szolgáltatás egyszerű objektum azonosítója (hello egy újonnan létrehozott kapott), **PrincipalId** hello felhasználói objektum azonosítója (hello felhasználó átadni kívánt hozzájárult e), **ResourceId**Exchange a szolgáltatás egyszerű Objektumazonosító, a hatókör lett átadni kívánt hozzájárult e Exchange hello engedélyre).
+(A **ClientId** a FabrikamMail ServicePrincipal objektumának azonosítója (amelyet a rendszer éppen létrehozott), a **PrincipalId** a felhasználói objektum azonosítója (a jóváhagyást adó felhasználóé), a **ResourceId** az Exchange ServicePrincipal objektumának azonosítója, a Scope pedig az Exchange azon engedélye, amelyet a felhasználó jóváhagy.)
 
-Ha a felhasználók nem írhatják tooconsent, látnak, amely szerint az engedélyt képernyő szükség.
+Ha a felhasználók nem adhatnak maguktól jóváhagyást, egy olyan képernyő jelenik meg, amely közli, hogy engedélyre van szükség.
 

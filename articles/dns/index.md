@@ -1,8 +1,8 @@
 ---
-title: "DNS-dokumentáció – oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
-description: "Megtudhatja, hogyan toomanage a DNS-rekordok Azure tartománynévrendszer használatával. Dokumentációja bemutatja hogyan tooset és DNS-zónák és rekordok tartománynevek kezelése."
+title: "Az Azure DNS dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogyan kezelheti DNS-rekordjait az Azure Domain Name System segítségével. A dokumentáció bemutatja, hogyan állíthatja be és felügyelheti a tartománynevek DNS-zónáit és -rekordjait."
 services: dns
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 64804b1d6cbfefdeab3f9a79bca26848e37e64f3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a138c9ea62ffa599529081cf792bc81663069bf1
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="dns-documentation"></a>DNS – dokumentáció
 
-Ismerje meg, hogyan toomanage a DNS-rekordok segítségével Azure Domain Name System, a tároló szolgáltatás. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt mutatja be tooset és DNS-zónák és rekordok tartománynevek kezelése.
+Ismerje meg, hogyan kezelheti DNS-rekordjait az Azure Domain Name System üzemeltetési szolgáltatás segítségével. Az oktatóanyagok, API-referenciák és az egyéb dokumentáció bemutatják, hogyan állíthatja be és felügyelheti a tartománynevek DNS-zónáit és -rekordjait.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -52,7 +52,7 @@ Ismerje meg, hogyan toomanage a DNS-rekordok segítségével Azure Domain Name S
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Ismerkedés az Azure DNS hello Azure portál használatával</h3>
+                        <h3>Bevezetés az Azure DNS Azure Portallal való használatába</h3>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@ Ismerje meg, hogyan toomanage a DNS-rekordok segítségével Azure Domain Name S
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Ismerkedés az Azure DNS hello Azure parancssori felület használatával</h3>
+                        <h3>Bevezetés az Azure DNS az Azure parancssori felülettel való használatába</h3>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 ---
-title: "aaaProblems konfigurálása az Azure AD-alkalmazásproxy hello \"szövegrészt"
-description: "Problémák konfigurálása az Azure AD-alkalmazásproxy hello \"szövegrészt"
+title: "A problémák konfigurálása az Azure AD-alkalmazásproxy\""
+description: "A problémák konfigurálása az Azure AD-alkalmazásproxy\""
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -12,42 +12,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 7b54c3c8703266fb34b7ad50336391dd892b4391
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a2cd51279476f0964164705cf60b9b4e177972fd
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="problems-configuring-hello-azure-ad-application-proxy"></a>Problémák az Azure AD-alkalmazásproxy hello konfigurálása
+# <a name="problems-configuring-the-azure-ad-application-proxy"></a>Problémák az Azure AD-alkalmazásproxy konfigurálásánál
 
 
 
-## <a name="i-can-load-my-application-but-something-on-hello-page-looks-broken"></a>Képes betölteni a saját alkalmazás, de valami hello oldalon keres megszakadt
-  hello következő dokumentumok segítségével tooresolve hello ebbe a kategóriába tartozó kapcsolatos leggyakoribb hibák némelyike.
-  * [Toomy alkalmazás is jelenik meg, de nem megfelelően jelennek meg a hello alkalmazás lapja](https://docs.microsoft.com/azure/active-directory/application-proxy-page-appearance-broken-problem/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
-  * [Toomy alkalmazás is jelenik meg, de hello alkalmazás tooload túl sokáig tart](https://docs.microsoft.com/azure/active-directory/application-proxy-page-load-speed-problem/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
-  * [Toomy alkalmazás is jelenik meg, de hello alkalmazáslap hello mutató hivatkozások nem működnek.](https://docs.microsoft.com/azure/active-directory/application-proxy-page-links-broken-problem/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+## <a name="i-can-load-my-application-but-something-on-the-page-looks-broken"></a>Képes betölteni a saját alkalmazás, de valamit a lapon a következőhöz megszakadt
+  Az alábbi dokumentum segíthet a kategóriába tartozó leggyakoribb problémák megoldásában.
+  * [Hozzáférek az alkalmazáshoz, de az alkalmazás oldala nem megfelelően jelenik meg](https://docs.microsoft.com/azure/active-directory/application-proxy-page-appearance-broken-problem/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+  * [Hozzáférek az alkalmazáshoz, de az alkalmazás betöltése túl sokáig tart](https://docs.microsoft.com/azure/active-directory/application-proxy-page-load-speed-problem/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+  * [Hozzáférek az alkalmazáshoz, de az alkalmazás oldalán található hivatkozások nem működnek](https://docs.microsoft.com/azure/active-directory/application-proxy-page-links-broken-problem/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
 
 ## <a name="im-having-a-connectivity-problem-my-application"></a>Problémáim vannak csatlakozási probléma a alkalmazás
-  hello következő dokumentumok segítségével tooresolve hello ebbe a kategóriába tartozó kapcsolatos leggyakoribb hibák némelyike.
-  * [Az alkalmazáshoz nem tudom, hogy milyen portokat tooopen](https://docs.microsoft.com/azure/active-directory/application-proxy-connectivity-ports-how-to/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+  Az alábbi dokumentum segíthet a kategóriába tartozó leggyakoribb problémák megoldásában.
+  * [Nem tudom, milyen portokat nyissak meg az alkalmazáshoz](https://docs.microsoft.com/azure/active-directory/application-proxy-connectivity-ports-how-to/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
   * [Problémát tapasztalok, mert az alkalmazáshoz tartozó összekötőcsoportban nem volt működő összekötő](https://docs.microsoft.com/azure/active-directory/application-proxy-connectivity-no-working-connector/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
 
-## <a name="im-having-a-problem-configuring-hello-azure-ad-application-proxy-in-hello-admin-portal"></a>A probléma konfigurálása hello Azure AD alkalmazásproxy problémáim hello felügyeleti portál
-  hello következő dokumentumok segítségével tooresolve hello ebbe a kategóriába tartozó kapcsolatos leggyakoribb hibák némelyike.
+## <a name="im-having-a-problem-configuring-the-azure-ad-application-proxy-in-the-admin-portal"></a>A probléma az Azure AD-alkalmazásproxy a felügyeleti portál konfigurálása
+  Az alábbi dokumentum segíthet a kategóriába tartozó leggyakoribb problémák megoldásában.
   * [Problémát tapasztalok egy alkalmazásproxy-alkalmazás konfigurálásánál](https://docs.microsoft.com/azure/active-directory/application-proxy-config-how-to/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
-  * [Nem tudom, hogy hogyan tooconfigure egyszeri bejelentkezés toomy application Proxy alkalmazás](https://docs.microsoft.com/azure/active-directory/application-proxy-config-sso-how-to/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+  * [Nem tudom, hogy kell beállítani az egyszeri bejelentkezést az alkalmazásproxy-alkalmazáshoz](https://docs.microsoft.com/azure/active-directory/application-proxy-config-sso-how-to/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
   * [Problémát tapasztalok, amikor alkalmazást hozok létre a felügyeleti portálon](https://docs.microsoft.com/azure/active-directory/application-proxy-config-problem/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
 
-## <a name="im-having-a-problem-setting-up-back-end-authentication-toomy-application"></a>Problémáim egy tudja beállítani a háttér-hitelesítés toomy alkalmazás
-  hello következő dokumentumok segítségével tooresolve hello ebbe a kategóriába tartozó kapcsolatos leggyakoribb hibák némelyike.
-  * [Nem tudom hogyan tooconfigure Kerberos által korlátozott delegálás](https://docs.microsoft.com/azure/active-directory/application-proxy-back-end-kerberos-constrained-delegation-how-to/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
-  * [Nem tudom hogyan tooconfigure PingAccess saját alkalmazás](https://docs.microsoft.com/azure/active-directory/application-proxy-back-end-ping-access-how-to/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+## <a name="im-having-a-problem-setting-up-back-end-authentication-to-my-application"></a>Saját alkalmazás lépett egy tudja beállítani a háttér-hitelesítés
+  Az alábbi dokumentum segíthet a kategóriába tartozó leggyakoribb problémák megoldásában.
+  * [Nem tudom, hogy kell konfigurálni a Kerberos általi korlátozott delegálást](https://docs.microsoft.com/azure/active-directory/application-proxy-back-end-kerberos-constrained-delegation-how-to/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+  * [Nem tudom, hogy kell konfigurálni az alkalmazást a PingAccess segítségével ](https://docs.microsoft.com/azure/active-directory/application-proxy-back-end-ping-access-how-to/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
 
-## <a name="im-having-a-problem-when-signing-in-toomy-application"></a>Probléma lépett toomy alkalmazás bejelentkezéskor
-  hello következő dokumentumok segítségével tooresolve hello ebbe a kategóriába tartozó kapcsolatos leggyakoribb hibák némelyike.
+## <a name="im-having-a-problem-when-signing-in-to-my-application"></a>Probléma lépett az alkalmazásban történő bejelentkezéskor
+  Az alábbi dokumentum segíthet a kategóriába tartozó leggyakoribb problémák megoldásában.
   * ["Can't Access this Corporate Application" (Nem lehet hozzáférni ehhez a céges alkalmazáshoz) hibaüzenet jelenik meg](https://docs.microsoft.com/azure/active-directory/application-proxy-sign-in-bad-gateway-timeout-error/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
 
-## <a name="im-having-a-problem-with-hello-application-proxy-agent-connector"></a>A probléma az alkalmazásproxy-összekötő ügynök hello
-  hello következő dokumentumok segítségével tooresolve hello ebbe a kategóriába tartozó kapcsolatos leggyakoribb hibák némelyike.
-  * [Problémáim hello alkalmazásproxy-összekötő ügynök telepítésével kapcsolatos problémák](https://docs.microsoft.com/azure/active-directory/application-proxy-connector-installation-problem/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+## <a name="im-having-a-problem-with-the-application-proxy-agent-connector"></a>Az alkalmazásproxy-ügynök összekötő probléma lépett
+  Az alábbi dokumentum segíthet a kategóriába tartozó leggyakoribb problémák megoldásában.
+  * [Problémát tapasztalok az alkalmazásproxy-ügynök összekötőjének telepítésénél](https://docs.microsoft.com/azure/active-directory/application-proxy-connector-installation-problem/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)

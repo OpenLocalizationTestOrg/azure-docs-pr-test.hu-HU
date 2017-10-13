@@ -1,5 +1,5 @@
 ---
-title: az Azure Data Lake Store aaaEncryption |} Microsoft Docs
+title: "Titkosítás az Azure Data Lake Store-ban | Microsoft Docs"
 description: "A titkosítás és a kulcsrotálás működésének megismerése az Azure Data Lake Store-ban"
 services: data-lake-store
 documentationcenter: 
@@ -14,127 +14,127 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 4/14/2017
 ms.author: yagupta
-ms.openlocfilehash: a9f3a2dce8232deba93005594d1e6a21e9c0cbee
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 20444d368c568ee716ff242e33323b91ffd198eb
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="encryption-of-data-in-azure-data-lake-store"></a>Az adatok titkosítása az Azure Data Lake Store-ban
 
-A titkosítás az Azure Data Lake Store-ban segíti az adatok védelmét, vállalati biztonsági szabályzatok implementálását és az előírt megfelelőségi követelmények teljesítését. Ez a cikk hello kialakítás áttekintése, és megvalósítási hello műszaki szempontjait és.
+A titkosítás az Azure Data Lake Store-ban segíti az adatok védelmét, vállalati biztonsági szabályzatok implementálását és az előírt megfelelőségi követelmények teljesítését. Ez a cikk áttekintést nyújt a kialakításról, és ismerteti az implementálás egyes technikai aspektusait.
 
 A Data Lake Store az adatok titkosítását inaktív adatok és adatátvitel esetén egyaránt támogatja. Inaktív adatok esetén a Data Lake Store csak az alapértelmezés szerinti, átlátható titkosítást támogatja. Kicsit részletesebben kifejtve ez az alábbiakat jelenti:
 
-* **Az alapértelmezés szerint**: egy új Data Lake Store-fiók létrehozásakor hello alapértelmezett beállítás engedélyezi-e a titkosítás. Ezt követően Data Lake Store-ban tárolt adatok mindig titkosított előzetes toostoring állandó adathordozón. Ez a hello működés az összes adat, és fiók létrehozása után nem módosítható.
-* **Transzparens**: Data Lake Store automatikusan adatok előzetes toopersisting, és fogadott adatok előzetes tooretrieval titkosítása. hello titkosítási és konfigurált hello Data Lake Store szint: egy rendszergazda felügyeli. Nincs módosításai toohello adatok API-k eléréséhez. Ezért a titkosítás miatt nincs szükség módosításokra a Data Lake Store-ral kommunikáló alkalmazásokban és szolgáltatásokban.
+* **Alapértelmezés szerint bekapcsolva**: Új Data Lake Store-fiók létrehozásakor az alapértelmezés szerinti beállítás engedélyezi a titkosítást. Ezután a Data Lake Store-ban tárolt adatokat a rendszer mindig titkosítja, mielőtt állandó adathordozón tárolná. Minden adatnál ez lesz a viselkedés, és ez nem módosítható egy fiók létrehozása után.
+* **Transzparens**: A Data Lake Store automatikusan titkosítja az adatokat a tárolás előtt, és mindig visszafejti az adatokat lekérés előtt. A titkosítást egy rendszergazda konfigurálja és felügyeli a Data Lake Store szintjén. Az adathozzáférési API-k nem módosulnak. Ezért a titkosítás miatt nincs szükség módosításokra a Data Lake Store-ral kommunikáló alkalmazásokban és szolgáltatásokban.
 
-Az átvitt adatok (azaz a mozgásban lévő adatok) titkosítása is mindig a Data Lake Store-ban történik. Ezenkívül tooencrypting előzetes toostoring toopersistent adathordozók, hello adatok is minden esetben biztosítva átvitel közben HTTPS használatával. HTTPS hello egyetlen protokoll, amely Data Lake Store REST felületeihez hello támogatott. hello következő ábra bemutatja, hogyan lesz titkosítva az adatok a Data Lake Store:
+Az átvitt adatok (azaz a mozgásban lévő adatok) titkosítása is mindig a Data Lake Store-ban történik. Amellett, hogy az adatok titkosítása az állandó adathordozón való tárolás előtt történik meg, az átvitt adatok is mindig titkosítva vannak HTTPS segítségével. A HTTPS az egyetlen olyan protokoll, amely támogatott a Data Lake Store REST-felületeihez. Az alábbi ábra bemutatja, hogy a Data Lake Store hogyan titkosítja az adatokat.
 
 ![A Data Lake Store-ban végbemenő adattitkosítás ábrája](./media/data-lake-store-encryption/fig1.png)
 
 
 ## <a name="set-up-encryption-with-data-lake-store"></a>Titkosítás beállítása a Data Lake Store-ral
 
-A Data Lake Store titkosításának beállítása mindig a fiók létrehozása során történik, és alapértelmezés szerint minden esetben engedélyezve van. Hello kulcsok kezelése, saját magának, vagy engedélyezze a Data Lake Store toomanage meg (Ez az alapértelmezett hello) őket.
+A Data Lake Store titkosításának beállítása mindig a fiók létrehozása során történik, és alapértelmezés szerint minden esetben engedélyezve van. A kulcsokat kezelheti saját maga, vagy hagyhatja, hogy a Data Lake Store kezelje őket Ön helyett (ez az alapértelmezett beállítás).
 
 További részletekért lásd [az első lépéseket](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-get-started-portal).
 
 ## <a name="how-encryption-works-in-data-lake-store"></a>A titkosítás működésének megismerése a Data Lake Store-ban
 
-hello következőket ismerteti hogyan toomanage fő titkosítási kulcsokat, és elmagyarázza, hello három különböző típusú kulcsokat használhatja a Data Lake Store az adattitkosítás.
+A következőkben megismerheti a titkosítási főkulcsok kezelésének módját és a Data Lake Store-ban adattitkosításhoz használható három különböző kulcstípust.
 
 ### <a name="master-encryption-keys"></a>Titkosítási főkulcsok
 
-A Data Lake Store a titkosítási főkulcsok (Master Encryption Key, MEK) kezelését kétféle módon biztosítja. Most feltételezik hello fő titkosítási kulcs hello legfelső szintű kulcs. Hozzáférés toohello fő titkosítási kulcsa szükséges toodecrypt Data Lake Store-ban tárolt adatokat.
+A Data Lake Store a titkosítási főkulcsok (Master Encryption Key, MEK) kezelését kétféle módon biztosítja. Jelen esetben azt feltételezzük, hogy a titkosítási főkulcs a legfelső szintű kulcs. A Data Lake Store-ban tárolt adatok visszafejtéséhez szükség van a titkosítási főkulcsra.
 
-hello fő titkosítási kulcsát kezelésére szolgáló hello két módok a következők:
+A titkosítási főkulcs kezelésének kétféle módja a következő:
 
 *   Szolgáltatás által kezelt kulcsok
 *   Felhasználó által kezelt kulcsok
 
-Mindkét üzemmódban hello fő titkosítási kulcsát az Azure Key Vault elhelyezésével védett. Key Vault szolgáltatás, amely toosafeguard használt titkosítási kulcsok Azure rendkívül biztonságos teljes körűen felügyelt szolgáltatás. További információkért lásd a [Key Vaultról](https://azure.microsoft.com/services/key-vault) szóló cikket.
+A titkosítási főkulcs mindkét mód esetében az Azure Key Vaultban van biztonságosan tárolva. A Key Vault az Azure teljes körűen felügyelt, magas biztonsági szinten lévő szolgáltatása, amely biztosítja a titkosítási kulcsok védelmét. További információkért lásd a [Key Vaultról](https://azure.microsoft.com/services/key-vault) szóló cikket.
 
-Itt található hello két módja hello MEKs kezelése által biztosított képességek rövid összehasonlítása.
+Az alábbiakban röviden összehasonlítjuk a kétféle mód MEK-kezelési képességét.
 
 |  | Szolgáltatás által kezelt kulcsok | Felhasználó által kezelt kulcsok |
 | --- | --- | --- |
-|Hogyan történik az adatok tárolása?|Mindig titkosított előzetes toobeing tárolja.|Mindig titkosított előzetes toobeing tárolja.|
-|Hol tárolja a titkosítási kulcs hello?|Key Vault|Key Vault|
-|Bármely titkosítási kulcsok hello találhatók törölje esnek Key Vault? |Nem|Nem|
-|Hello MEK lekérhetők Key Vault?|Nem. Hello MEK Key Vault van tárolva, után csak használat titkosításához és visszafejtéséhez.|Nem. Hello MEK Key Vault van tárolva, után csak használat titkosításához és visszafejtéséhez.|
-|Hello Key Vault-példány és hello MEK tulajdonosára?|hello Data Lake Store szolgáltatás|Saját tartozik, a saját Azure-előfizetés hello Key Vault példány. a Key Vault MEK hello szoftveres vagy hardveres kezelhető.|
-|Vissza tudja vonni hozzáférés toohello MEK a hello Data Lake Store szolgáltatást?|Nem|Igen. Hozzáférés-vezérlési listák a Key Vault kezeléséhez, és hozzáférést vezérlő bejegyzések toohello szolgáltatás identitásának hello Data Lake Store szolgáltatás eltávolítása.|
-|Végleg törölhetők hello MEK?|Nem|Igen. Key Vault hello MEK töröl, hello hello Data Lake Store-fiók adatait nem lehet visszafejteni, bárki, beleértve a hello Data Lake Store szolgáltatást. <br><br> Ha explicit módon biztonsági másolatából hello MEK előzetes toodeleting azt a Key Vault, hello MEK visszaállítható, és hello majd lehessen helyreállítani. Azonban nem biztonsági másolatából hello MEK előzetes toodeleting azt a Key Vault, ha a Data Lake Store-fiók hello hello adatok soha nem visszafejthető ezt követően.|
+|Hogyan történik az adatok tárolása?|Mindig titkosítva a tárolást megelőzően.|Mindig titkosítva a tárolást megelőzően.|
+|Hol történik a titkosítási főkulcs tárolása?|Key Vault|Key Vault|
+|Létezik-e titkosítatlanul, a Key Vaulton kívül tárolt titkosítási kulcs? |Nem|Nem|
+|Beolvasható a MEK a Key Vaultba?|Nem. A MEK a Key Vaultban történő tárolása után kizárólag titkosításra és visszafejtésre használható.|Nem. A MEK a Key Vaultban történő tárolása után kizárólag titkosításra és visszafejtésre használható.|
+|Kié a Key Vault-példány és a titkosítási főkulcs?|A Data Lake Store szolgáltatás|A Key Vault-példány az Öné, és az Ön Azure-előfizetéséhez tartozik. A Key Vaultban lévő MEK szoftver vagy hardver által felügyelt lehet.|
+|Visszavonható a Data Lake Store szolgáltatáshoz tartozó MEK hozzáférése?|Nem|Igen. Az ügyfelek kezelhetik a Key Vault hozzáférés-vezérlési listáit, és eltávolíthatják a Data Lake Store szolgáltatáshoz tartozó szolgáltatásidentitás hozzáférés-vezérlési bejegyzéseit.|
+|Törölhető véglegesen a titkosítási főkulcs?|Nem|Igen. Ha az ügyfél törli a MEK-et a Key Vaultból, a Data Lake Store-fiók adatait senki nem tudja majd visszafejteni, még a Data Lake Store szolgáltatás sem. <br><br> Ha készült kifejezett biztonsági mentés a MEK-ről a Key Vaultból történő törlést megelőzően, akkor a kulcs, majd pedig az adatok visszaállíthatók. Ha azonban nem készült biztonsági mentés a MEK-ről a Key Vaultból történő törlést megelőzően, akkor a Data Lake Store-fiók adatait a továbbiakban soha nem lehet már visszafejteni.|
 
 
-Ezt a különbséget a vezérelt hello MEK kezelő és hello Key Vault példány, amelyben található, hello tervezési hello részeinek van hello azonos mindkét módnál.
+Ezen, a MEK kezelőjét és a Key Vault-példány elhelyezkedését illető eltérésen kívül a kialakítás a két mód esetében megegyezik.
 
-Ha úgy dönt, hello hello mód fő titkosítási kulcsok fontos tooremember hello következő:
+A titkosítási főkulcsok kezelési módjának megválasztásakor fontos szem előtt tartani a következőket:
 
-*   Kiválaszthatja, hogy toouse ügyfél felügyelt kulcsok vagy felügyelt kulcsai amikor Data Lake Store-fiók.
-*   Data Lake Store-fiók üzembe helyezése után hello módja nem módosítható.
+*   A Data Lake Store-fiók létrehozásakor kiválaszthatja, hogy felhasználó által vagy a szolgáltatás által kezelt kulcsokat kíván-e használni.
+*   Ez a mód a Data Lake Store-fiókok üzembe helyezése után nem módosítható.
 
 ### <a name="encryption-and-decryption-of-data"></a>Adattitkosítás és -visszafejtés
 
-Háromféle hello kialakításában adattitkosítási kulcsokat van. hello a következő táblázat az összefoglalást tartalmazza:
+Az adattitkosítás során háromféle kulcsot használunk. A következő táblázat az összefoglalást tartalmazza:
 
 | Kulcs                   | Rövidítés | Társítva ezzel: | Tárolási hely                             | Típus       | Megjegyzések                                                                                                   |
 |-----------------------|--------------|-----------------|----------------------------------------------|------------|---------------------------------------------------------------------------------------------------------|
 | Titkosítási főkulcs | MEK          | Data Lake Store-fiók | Key Vault                              | Aszimmetrikus | Kezelheti a Data Lake Store, vagy Ön is.                                                              |
-| Adattitkosítási kulcs   | DEK          | Data Lake Store-fiók | Állandó tároló, a Data Lake Store szolgáltatás által kezelve | Szimmetrikus  | hello adattitkosítási kulcs hello MEK titkosítja. hello titkosított adattitkosítási kulcs mi állandó adathordozón tárolódik. |
-| Blokktitkosítási kulcs  | BEK          | Egy adatblokk | None                                         | Szimmetrikus  | hello BEK hello adattitkosítási kulcs és hello adatblokk származik.                                                      |
+| Adattitkosítási kulcs   | DEK          | Data Lake Store-fiók | Állandó tároló, a Data Lake Store szolgáltatás által kezelve | Szimmetrikus  | A DEK titkosítását a MEK végzi. A szolgáltatás a titkosított DEK-et tárolja az állandó adathordozón. |
+| Blokktitkosítási kulcs  | BEK          | Egy adatblokk | None                                         | Szimmetrikus  | A blokktitkosítási kulcsot az adattitkosítási kulcsból és az adatblokkból származtatjuk.                                                      |
 
-hello a következő ábra azt mutatja be, ezek a fogalmak:
+Az alapelveket a következő ábra mutatja be:
 
 ![Adattitkosítási kulcsok](./media/data-lake-store-encryption/fig2.png)
 
-#### <a name="pseudo-algorithm-when-a-file-is-toobe-decrypted"></a>Amikor egy fájl visszafejtése toobe pszeudo algoritmust:
-1.  Annak ellenőrzése, hogy hello Data Lake Store-fiókot az adattitkosítási kulcs hello gyorsítótárazott és készen áll a használatra.
-    - Ha nem, olvassa el a hello adattitkosítási kulcs titkosítása a állandó tároló, és elküldi a tooKey tároló toobe visszafejteni. Gyorsítótár hello adattitkosítási kulcs visszafejtése a memóriában. Már most már készen áll a toouse.
-2.  A minden hello fájlban adatblokk:
-    - Állandó tároló hello titkosított adatblokk olvasni.
-    - Az adattitkosítási kulcs hello BEK hello és hello titkosított adatblokk létrehozása.
-    - Hello BEK toodecrypt adatok felhasználásával.
+#### <a name="pseudo-algorithm-when-a-file-is-to-be-decrypted"></a>A fájl visszafejtésekor használatos pszeudoalgoritmus:
+1.  Ellenőrizze, hogy a Data Lake Store-fiók adattitkosítási kulcsa gyorsítótárazva van-e és használatra kész-e.
+    - Ha nem, olvassa ki a titkosított adattitkosítási kulcsot az állandó tárolóból, és visszafejtésre küldje el a Key Vaultba. Gyorsítótárazza a visszafejtett adattitkosítási kulcsot. A fájl ezzel használatra kész.
+2.  A fájl minden adatblokkja esetében:
+    - Olvassa ki a titkosított adatblokkot az állandó tárolóból.
+    - Hozza létre a blokktitkosítási kulcsot az adattitkosítási kulcsból és a titkosított adatblokkból.
+    - A blokktitkosítási kulcs használatával fejtse vissza az adatokat.
 
 
-#### <a name="pseudo-algorithm-when-a-block-of-data-is-toobe-encrypted"></a>Amikor egy adatblokk pszeudo algoritmus toobe titkosítva:
-1.  Annak ellenőrzése, hogy hello Data Lake Store-fiókot az adattitkosítási kulcs hello gyorsítótárazott és készen áll a használatra.
-    - Ha nem, olvassa el a hello adattitkosítási kulcs titkosítása a állandó tároló, és elküldi a tooKey tároló toobe visszafejteni. Gyorsítótár hello adattitkosítási kulcs visszafejtése a memóriában. Már most már készen áll a toouse.
-2.  Hozzon létre egy egyedi BEK a hello adatblokk hello adattitkosítási kulcsot.
-3.  Hello adatblokk hello BEK, az AES-256 titkosítás titkosítására.
-4.  Hello titkosított adatblokk adatok tárolása az állandó tároló.
+#### <a name="pseudo-algorithm-when-a-block-of-data-is-to-be-encrypted"></a>Az adatblokk titkosításakor használatos pszeudoalgoritmus:
+1.  Ellenőrizze, hogy a Data Lake Store-fiók adattitkosítási kulcsa gyorsítótárazva van-e és használatra kész-e.
+    - Ha nem, olvassa ki a titkosított adattitkosítási kulcsot az állandó tárolóból, és visszafejtésre küldje el a Key Vaultba. Gyorsítótárazza a visszafejtett adattitkosítási kulcsot. A fájl ezzel használatra kész.
+2.  Hozzon létre egy egyedi blokktitkosítási kulcsot az adatblokk számára az adattitkosítási kulcsból.
+3.  AES-256 titkosítással végezze el a blokktitkosítási kulccsal ellátott adatblokk titkosítását.
+4.  A titkosított adatblokk az állandó tárolóban lesz tárolva.
 
 > [!NOTE] 
-> A megfelelő teljesítmény érdekében hello hello az adattitkosítási kulcs törlése gyorsítótárban való rövid ideig, és ezt követően azonnal törli. Állandó adathordozón mindig tárolt hello MEK titkosítja.
+> A titkosítatlan adattitkosítási kulcsot a rendszer a teljesítmény javítása érdekében egy rövid időre gyorsítótárazza a memóriában, és annak elteltével azonnal törli azt. Az állandó adathordozón a tárolás mindig a titkosítási főkulcs által titkosítva történik.
 
 ## <a name="key-rotation"></a>Kulcsrotálás
 
-Ha az ügyfél által felügyelt kulcsokat használ, forgathatók hello MEK. Hogyan tooset ügyfél által felügyelt kulcsokkal, Data Lake Store-fiók létrehozásához: toolearn [bevezetés](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-get-started-portal).
+Felhasználó által kezelt kulcsok használata esetén a titkosítási főkulcs rotálható. A Data Lake Store-fiók felhasználó által kezelt kulcsokkal történő beállításáért lásd [az első lépéseket](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-get-started-portal).
 
 ### <a name="prerequisites"></a>Előfeltételek
 
-Hello Data Lake Store-fiók beállításakor kiválasztott toouse saját kulcsok. Ez a beállítás nem módosítható, hello fiók létrehozása után. hello következő lépések azt feltételezik, hogy felhasználó által felügyelt kulcsokat használ (Ez azt jelenti, választott saját kulcsok a Key Vault).
+A Data Lake Store-fiók beállításánál a saját kulcsok használatát választotta. A fiók létrehozása után ez a beállítás már nem módosítható. Az alábbi lépések során azt feltételezzük, hogy felhasználó által kezelt (tehát a Key Vaultból saját maga által kiválasztott) kulcsokat használ.
 
-Vegye figyelembe, hogy ha hello alapértelmezett beállítások használata titkosításhoz, a mindig adattitkosítás kezeli a Data Lake Store kulcsok használatával. Ezt a beállítást nem kell hello képességét toorotate kulcsok, Data Lake Store kezeli őket.
+Vegye figyelembe, hogy az alapértelmezett titkosítási beállítások használatakor az adatok titkosítása mindig a Data Lake Store által kezelt kulcsokkal történik. Ez esetben nincs lehetőség a kulcsok rotálására, mivel azokat a Data Lake Store kezeli.
 
-### <a name="how-toorotate-hello-mek-in-data-lake-store"></a>Hogyan toorotate hello MEK Data Lake Store-ban
+### <a name="how-to-rotate-the-mek-in-data-lake-store"></a>A titkosítási főkulcs rotálása a Data Lake Store-ban
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/).
-2. Keresse meg, amely tárolja a kulcsokat, a Data Lake Store-fiókjához társított toohello Key Vault példány. Válassza a **Kulcsok** elemet.
+1. Jelentkezzen be az [Azure portálra](https://portal.azure.com/).
+2. Nyissa meg a Data Lake Store-fiókhoz társított kulcsokat tároló Key Vaultot. Válassza a **Kulcsok** elemet.
 
     ![Képernyőkép a Key Vaultról](./media/data-lake-store-encryption/keyvault.png)
 
-3.  Válassza ki a Data Lake Store-fiókjához társított hello kulcsot, és ez a kulcs új verziót hoz létre. Vegye figyelembe, hogy Data Lake Store jelenleg csak kulcs Elforgatás tooa új verzióját támogatja egy kulcsot. Nem támogatja a forgó tooa másik kulcsot.
+3.  Válassza ki a Data Lake Store-fiókhoz társított kulcsot, és hozza létre annak egy új verzióját. A Data Lake Store kizárólag az új kulcsverzióra történő kulcsrotálást támogatja. A más kulcsra történő kulcsrotálás nem támogatott.
 
    ![Képernyőkép a Kulcsok ablakról, amelyen az Új verzió elem van kiemelve](./media/data-lake-store-encryption/keynewversion.png)
 
-4.  Keresse meg a Data Lake Store tárfiók toohello, és válassza ki **titkosítási**.
+4.  Nyissa meg a Data Lake Store-tárfiókot, és válassza a **Titkosítás** elemet.
 
     ![Képernyőkép a Data Lake Store-tárfiók ablakról, amelyen a Titkosítás van kiemelve](./media/data-lake-store-encryption/select-encryption.png)
 
-5.  Egy üzenet értesíti hello kulcs kulcs új verziója érhető el. Kattintson a **elforgatása kulcs** tooupdate hello kulcs toohello új verziója.
+5.  Megjelenik egy tájékoztató üzenet arról, hogy a kulcs egy új verziója érhető el. A kulcs új verzióra történő frissítéséhez kattintson a **Kulcs rotálása** lehetőségre.
 
     ![Képernyőkép a Data Lake Store ablakról, amelyen az üzenet és a Kulcs rotálása van kiemelve](./media/data-lake-store-encryption/rotatekey.png)
 
-Ez a művelet gyorsabban kevesebb mint két perc alatt, és nincs lejáró tookey Elforgatás várható állásidő nélkül. Hello művelet befejezése után új verziójának hello hello kulcs használatban van.
+Ez a művelet kevesebb mint két percet vehet igénybe, és a kulcsrotálás nem jár várt leállással. A művelet befejezését követően a kulcs új verziója lesz használatban.

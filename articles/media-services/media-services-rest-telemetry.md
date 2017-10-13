@@ -1,6 +1,6 @@
 ---
-title: Azure Media Services REST telemetriai adatok aaaConfiguring |} Microsoft Docs
-description: "A cikkből megtudhatja, hogyan toouse hello Azure Media Services telemetriai REST API használatával."
+title: "Azure Media Services telemetriai konfigurálása többi |} Microsoft Docs"
+description: "A cikkből megtudhatja, hogyan használható az Azure Media Services telemetriai REST API használatával."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: d0b6798c49be756fcebecf2e1e6ea497edd27cf0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7d785c6eb9a9e16ae4853cded3c7c142080c7a09
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="configuring-azure-media-services-telemetry-with-rest"></a>Azure Media Services telemetriai többi konfigurálása
 
-Ez a témakör általános lépéseket, amelyek esetleg hello Azure Media Services (AMS) telemetriai REST API használatával konfigurálásakor. 
+Ez a témakör általános lépéseket, amelyek lehet, hogy az Azure Media Services (AMS) telemetriai REST API használatával konfigurálásakor. 
 
 >[!NOTE]
->A hello részletesen ismerteti, mit AMS telemetriai adatokat, és hogyan tooconsume, lásd: hello [áttekintése](media-services-telemetry-overview.md) témakör.
+>Mi részletes leírását az AMS telemetriai adatok és hogyan szokásokra is, lásd: a [áttekintése](media-services-telemetry-overview.md) témakör.
 
-Ebben a témakörben ismertetett hello lépések a következők:
+Ebben a témakörben ismertetett lépések a következők:
 
-- A Media Services-fiókhoz kapcsolódó hello storage-fiók beolvasása
-- Hello értesítési végpontjainak beolvasása
+- A Media Services-fiókhoz kapcsolódó tárfiók beolvasása
+- Az értesítési végpont beolvasásakor
 - Egy értesítési végpont létrehozása a figyelésre. 
 
-    toocreate egy értesítési végpont beállítása hello EndPointType tooAzureTable (2) és toohello tárolási tábla (például https://telemetryvalidationstore.table.core.windows.net/) endPontAddress beállítása.
+    Értesítési végpont létrehozásához állítsa a EndPointType AzureTable (2) és a tárolási tábla (például https://telemetryvalidationstore.table.core.windows.net/) értékűre endPontAddress.
   
-- Hello figyelési konfigurációk beolvasása
+- A figyelési konfigurációk beolvasása
 
-    Figyelési konfiguráció létrehozása beállítások hello szolgáltatási azt szeretné, hogy toomonitor. Legfeljebb egy engedélyezett figyelési konfigurációs beállításokat. 
+    Figyelési konfiguráció létrehozása a figyelni kívánt szolgáltatások beállításait. Legfeljebb egy engedélyezett figyelési konfigurációs beállításokat. 
 
 - A figyelési konfiguráció hozzáadása
 
 
  
-## <a name="get-hello-storage-account-associated-with-a-media-services-account"></a>A Media Services-fiókhoz kapcsolódó hello storage-fiók beszerzése
+## <a name="get-the-storage-account-associated-with-a-media-services-account"></a>A Media Services-fiókhoz kapcsolódó storage-fiók beszerzése
 
 ###<a name="request"></a>Kérés
 
@@ -71,7 +71,7 @@ Ebben a témakörben ismertetett hello lépések a következők:
     
     {"d":{"results":[{"__metadata":{"id":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/StorageAccounts('telemetryvalidationstore')","uri":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/StorageAccounts('telemetryvalidationstore')","type":"Microsoft.Cloud.Media.Vod.Rest.Data.Models.StorageAccount"},"Name":"telemetryvalidationstore","IsDefault":true,"BytesUsed":null}]}}
 
-## <a name="get-hello-notification-endpoints"></a>Hello értesítési végpontjainak beolvasása
+## <a name="get-the-notification-endpoints"></a>Az értesítési végpontjainak beolvasása
 
 ###<a name="request"></a>Kérés
 
@@ -125,7 +125,7 @@ Ebben a témakörben ismertetett hello lépések a következők:
     }
 
 >[!NOTE]
->Ne feledje toochange hello "https://telemetryvalidationstore.table.core.windows.net" érték tooyour tárfiók.
+>Ne feledje módosítani a "https://telemetryvalidationstore.table.core.windows.net" értéket a tárfiókhoz.
 
 ###<a name="response"></a>Válasz
 
@@ -146,7 +146,7 @@ Ebben a témakörben ismertetett hello lépések a következők:
     
     {"d":{"__metadata":{"id":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/NotificationEndPoints('nb%3Anepid%3AUUID%3A76bb4faf-ea29-4815-840a-9a8e20102fc4')","uri":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/NotificationEndPoints('nb%3Anepid%3AUUID%3A76bb4faf-ea29-4815-840a-9a8e20102fc4')","type":"Microsoft.Cloud.Media.Vod.Rest.Data.Models.NotificationEndPoint"},"Id":"nb:nepid:UUID:76bb4faf-ea29-4815-840a-9a8e20102fc4","Name":"monitoring","Created":"\/Date(1449033042667)\/","EndPointAddress":"https://telemetryvalidationstore.table.core.windows.net/","EndPointType":2}}
  
-## <a name="get-hello-monitoring-configurations"></a>Hello figyelési konfigurációk beolvasása
+## <a name="get-the-monitoring-configurations"></a>A figyelési konfigurációk beolvasása
 
 ### <a name="request"></a>Kérés
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Active Directory hibrid identitáskezelési elrendezésével kapcsolatos szempontok - tartalomkezelési követelmények meghatározása |} Microsoft Docs"
-description: "Hogyan toodetermine hello a vállalat követelményeinek tartalomkezelési betekintést nyújt. Általában amikor egy felhasználó rendelkezik-e a saját eszköz ő lehet is több hitelesítő adatokat, amelyek függően, hogy használó toohello alkalmazás váltakozó lesz. Fontos toodifferentiate is, hogy mely tartalmak lett létrehozva, és a vállalati hitelesítő adatok használatával létrehozott ők hello személyes hitelesítő adataival. A megoldást kell a felhőalapú szolgáltatások tooprovide képes toointeract egy zökkenőmentes élményt toohello végfelhasználói közben az adatvédelem biztosításához és az adatszivárgás elleni hello növelhető."
+title: "Az Azure Active Directory hibrid identitáskezelési elrendezésével kapcsolatos szempontok - tartalomkezelési követelmények meghatározása |} Microsoft Docs"
+description: "Annak megállapítása, az üzleti tartalomkezelési követelményeit betekintést nyújt. Általában amikor egy felhasználó rendelkezik-e a saját eszköz ő lehet is több hitelesítő adatokat, amelyek alapján az alkalmazás, amely használja a fog váltakozó. Fontos megkülönböztetéséhez tartalmat lett létrehozva, és a vállalati hitelesítő adatok használatával létrehozott megfelelően személyes hitelesítő adataival. A megoldást kell is használhassák a felhőalapú szolgáltatások zökkenőmentes élményt biztosíthat a végfelhasználó közben az adatvédelem biztosításához a, és növeli az adatszivárgás elleni védelem."
 documentationcenter: 
 services: active-directory
 author: billmath
@@ -14,50 +14,50 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 607d366633c37b65ec5cf8ae5c64d73ca1cc96b7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 840de1e1fcba74285788d51d8f544375f0affa77
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="determine-content-management-requirements-for-your-hybrid-identity-solution"></a>A hibrid identitáskezelési megoldás tartalomkezelési követelmények meghatározása
-Hello tartalomkezelési követelményeinek ismertetése számára az üzleti előfordulhat, hogy közvetlen befolyásolhatják, mely hibrid identitáskezelési megoldás toouse meg. A hello elterjedése több eszközök és felhasználók toobring hello képességét a saját eszközeiket ([BYOD](http://aka.ms/byodcg)), hello vállalati védelmét kell beállítani, hogy hozzáadják saját adataikat, de azt is kell módosulna felhasználók adatait. Általában amikor egy felhasználó rendelkezik-e a saját eszköz ő lehet is több hitelesítő adatokat, amelyek függően, hogy használó toohello alkalmazás váltakozó lesz. Fontos toodifferentiate is, hogy mely tartalmak lett létrehozva, és a vállalati hitelesítő adatok használatával létrehozott ők hello személyes hitelesítő adataival. A megoldást kell a felhőalapú szolgáltatások tooprovide képes toointeract egy zökkenőmentes élményt toohello végfelhasználói közben az adatvédelem biztosításához és az adatszivárgás elleni hello növelhető. 
+A Tartalomkezelés felméréséről a vállalati közvetlen hatással lehet a döntést mely hibrid identitáskezelési megoldás használata. A több eszközre és a felhasználók a saját eszközeik elterjedése rendelkező ([BYOD](http://aka.ms/byodcg)), a vállalat a saját adatok kell védeni, de azt is kell módosulna felhasználók adatait. Általában amikor egy felhasználó rendelkezik-e a saját eszköz ő lehet is több hitelesítő adatokat, amelyek alapján az alkalmazás, amely használja a fog váltakozó. Fontos megkülönböztetéséhez tartalmat lett létrehozva, és a vállalati hitelesítő adatok használatával létrehozott megfelelően személyes hitelesítő adataival. A megoldást kell is használhassák a felhőalapú szolgáltatások zökkenőmentes élményt biztosíthat a végfelhasználó közben az adatvédelem biztosításához a, és növeli az adatszivárgás elleni védelem. 
 
-A megoldást fog javítható a rendelés tooprovide tartalomkezelési különböző technikai vezérlőkkel, az alábbi hello ábrán látható módon:
+A megoldást fogja javítható, különböző technikai vezérlőkkel ahhoz, hogy adja meg a tartalom kezelésére, az alábbi ábrán látható módon:
 
 ![](./media/hybrid-id-design-considerations/securitycontrols.png)
 
 **Az identitás-kezelő rendszer használni fogja biztonsági vezérlők**
 
-Tartalomkezelési követelményeit fogja használni, általában az identitás felügyeleti rendszer hello a következő területeken:
+A Tartalomkezelés követelmények fogja használni, általában az identitás-kezelő rendszer a következő területeken:
 
-* Adatvédelem: olyan erőforráshoz és alkalmazása hello megfelelő vezérlők toomaintain integritási birtokló hello felhasználói azonosító.
-* Adatok besorolása: azonosítsa a hello felhasználót vagy csoportot és szintű hozzáférés tooan objektum tooits besorolás alapján történik. 
-* Az Adatszivárgás adatvédelem: biztonsági vezérlők tooavoid adatszivárgás védelmét kell toointeract hello identitás rendszer toovalidate hello felhasználó identitásával. Ez fontos is ellenőrzési célból naplózását.
+* Adatvédelem: erőforrás birtokló felhasználó azonosítására, és alkalmazza a megfelelő vezérlők egységének fenntartására szolgáló módszert.
+* Adatok besorolása: azonosítsa a felhasználót vagy csoportot, és megfelelően a besorolását objektumhoz hozzáférési szintjét. 
+* Az Adatszivárgás adatvédelem: biztonsági vezérlők védelmét az adatok kiszivárgásának elkerülésére kell interakciót folytatni a rendszer ellenőrzi a felhasználó identitását. Ez fontos is ellenőrzési célból naplózását.
 
 > [!NOTE]
 > Olvasási [felhő készítve az adatok besorolását](http://download.microsoft.com/download/0/A/3/0A3BE969-85C5-4DD2-83B6-366AA71D1FE3/Data-Classification-for-Cloud-Readiness.pdf) további információt az ajánlott eljárásokról és útmutatást az adatok besorolása érdekében.
 > 
 > 
 
-Ha a hibrid identitáskezelési megoldás tervezésének részeként győződjön meg arról, hogy a következő hello a kérdések és válaszok tooyour szervezet igényeinek megfelelően:
+Ha a hibrid identitáskezelési megoldás tervezésének részeként győződjön meg arról, hogy a szervezet igényeinek megfelelően a következő kérdéseket válaszok:
 
-* Nem rendelkezik a vállalata biztonsági vezérlők hely tooenforce adatvédelem?
-  * Ha igen, azokat a vezérlőelemeket lesz a hello hibrid identitáskezelési megoldás, hogy-e folyamatban tooadopt képes toointegrate?
+* A vállalat rendelkezik biztonsági vezérlő érvényesítését adatvédelem?
+  * Ha igen, azokat a vezérlőelemeket lesz képes a hibrid identitáskezelési megoldás, amely fogad el kívánja integrálni?
 * A vállalat használ az adatok besorolásával?
-  * Ha igen, van hello aktuális megoldás képes toointegrate hello hibrid identitáskezelési megoldás, hogy-e folyamatban tooadopt?
+  * Ha igen, van az aktuális megoldás képes a hibrid identitáskezelési megoldás, amely fogad el kívánja integrálni?
 * Rendelkezik a vállalata jelenleg bármely, a megoldás az adatok kiszivárgásának? 
-  * Ha igen, van hello aktuális megoldás képes toointegrate hello hibrid identitáskezelési megoldás, hogy-e folyamatban tooadopt?
-* A vállalatának meg kell tooaudit hozzáférés tooresources?
+  * Ha igen, van az aktuális megoldás képes a hibrid identitáskezelési megoldás, amely fogad el kívánja integrálni?
+* A vállalati erőforrásokhoz való hozzáférés naplózása nem kell?
   * Ha igen, milyen típusú erőforrásokat?
   * Ha igen, milyen szintű adatokat szükség?
-  * Ha igen, ahol hello napló kell lennie? A helyszíni vagy felhőben hello?
-* A vállalatának meg kell tooencrypt a bizalmas adatok (taj számok esetében, hitelkártyaszámok stb) tartalmazó e-mailek?
-* A vállalatának meg kell tooencrypt összes dokumentumok/tartalma a külső üzleti partnerek megosztott?
-* A vállalatának meg kell tooenforce vállalati házirendek-e-mailek bizonyos típusú (nincs válasz mindenkinek végezni, ne továbbítsa)?
+  * Ha igen, ahol a biztonsági naplóban találhatók kell? A helyszíni vagy a felhőben?
+* Vállalatának meg kell a bizalmas adatok (taj számok esetében, hitelkártyaszámok stb) tartalmazó e-mailek titkosításához?
+* Nem a vállalat titkosítania kell az összes dokumentumok/tartalma a külső üzleti partnerek megosztott?
+* A vállalatának meg kell bizonyos típusú e-maileket a vállalati házirendeknek az érvényesítését (nincs válasz mindenkinek végezni, ne továbbítsa)?
 
 > [!NOTE]
-> Győződjön meg arról, hogy tootake megjegyzések minden válaszról és hello válasz hello logikája ismertetése. [Data Protection stratégia meghatározása](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md) hello lehetőségeit és az egyes lehetőségek előnyeit és hátrányait ismerteti.  Ezen kérdések mely leginkább megfelelő lehetőséget az üzleti megválaszolása szükséges.
+> Ügyeljen arra, hogy minden válaszról jegyzeteket, és megismerheti a válaszok indokait. [Data Protection stratégia meghatározása](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md) ismerteti a rendelkezésre álló lehetőségeket, illetve az egyes lehetőségek előnyeit és hátrányait.  Ezen kérdések mely leginkább megfelelő lehetőséget az üzleti megválaszolása szükséges.
 > 
 > 
 

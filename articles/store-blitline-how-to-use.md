@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toouse Blitline kép feldolgozásra - Azure szolgáltatás útmutató"
-description: "Ismerje meg, hogyan toouse hello Blitline szolgáltatást az Azure-alkalmazások tooprocess képek."
+title: "Hogyan Blitline használandó kép feldolgozása - Azure szolgáltatás útmutató"
+description: "Megtudhatja, hogyan használhatja az Azure alkalmazáshoz tartozó képek feldolgozásához Blitline szolgáltatást."
 services: 
 documentationcenter: .net
 author: blitline-dev
@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/09/2014
 ms.author: support@blitline.com
-ms.openlocfilehash: 328fd177e25f45f29f8ad8e142d02b46017a858e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1d90599e028b3407a513b04b878e3aefc39928a2
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toouse-blitline-with-azure-and-azure-storage"></a>Hogyan toouse Blitline Azure és az Azure tárolással
-Ez az útmutató alapján meghatározható, hogyan tooaccess Blitline szolgáltatásokat, és hogyan toosubmit feladatok tooBlitline.
+# <a name="how-to-use-blitline-with-azure-and-azure-storage"></a>Az Azure és az Azure Storage Blitline használata
+Ez az útmutató alapján meghatározható, Blitline szolgáltatások eléréséhez és az Blitline feladatok elküldéséhez.
 
 ## <a name="what-is-blitline"></a>Mi az a Blitline?
-Blitline a felhő alapú lemezkép feldolgozási szolgáltatás, amely egy azon részét, hogy toobuild volna áron hello ár vállalati szintű kép feldolgozását, saját magának.
+Blitline a felhő alapú lemezkép feldolgozási szolgáltatás, amely biztosít a vállalati szintű kép feldolgozását építheti fel saját maga szeretné költség ár töredéke alatt.
 
-hello tény, hogy lemezkép nincs feldolgozva többször, általában az újonnan létrehozott minden webhely hello alapoktól. A Microsoft vegye figyelembe, ez mivel azt létrehozott őket egy millió alkalommal túl. Egy nap döntöttünk, hogy lehet, hogy a rendszer idő azt csak erre mindenki számára. Tudjuk, hogyan toodo azt, akkor gyors és hatékony, és mentse mindenki működni a hello addig toodo.
+Az a tény, hogy lemezkép nincs feldolgozva többször, általában az újonnan létrehozott minden webhely az alapoktól. A Microsoft vegye figyelembe, ez mivel azt létrehozott őket egy millió alkalommal túl. Egy nap döntöttünk, hogy lehet, hogy a rendszer idő azt csak erre mindenki számára. Tudjuk, hogyan kell tenni, akkor gyors és hatékony, és időközben mentése mindenki munkahelyi.
 
 További információkért lásd: [http://www.blitline.com](http://www.blitline.com).
 
 ## <a name="what-blitline-is-not"></a>Mi Blitline nincs...
-tooclarify mi Blitline a hasznos, ez gyakran könnyebb tooidentify Blitline nem mire soron előtt.
+Elmagyarázza, mit Blitline hasznos, ha, nem gyakran könnyebben azonosíthatja a Blitline nem mire soron előtt.
 
-* Blitline nincs HTML widgeteket tooupload képek. Lemezképeket nyilvánosan vagy Blitline tooreach érhető el a korlátozott engedélyekkel kell rendelkeznie.
+* Blitline nincs HTML widgeteket, hogy a képek feltöltése. Lemezképeket nyilvánosan vagy az elérni kívánt Blitline érhető el a korlátozott engedélyekkel kell rendelkeznie.
 * Blitline nem végez feldolgozást, például a Aviary.com élő kép
-* Blitline nem fogadja el a képek feltöltését, közvetlenül nem lehet leküldéssel terjeszteni a képek tooBlitline. Kell küldje le őket tooAzure tároló vagy más helyen Blitline támogatja, és majd kérje meg a Blitline, ahol toogo megkapja őket.
+* Blitline nem fogadja el a képek feltöltését, nem lehet leküldéssel terjeszteni a képek a Blitline közvetlenül. Kell küldje le őket az Azure Storage vagy más helyen Blitline támogatja, és azokat hol Blitline beállítják.
 * Blitline nagymértékben párhuzamos, és nem végez semmilyen szinkron feldolgozásra. Ezért meg kell biztosítják a postback_url, és azt segítségével megállapíthatja, hogy ha igazolnia befejezése feldolgozásra.
 
 ## <a name="create-a-blitline-account"></a>Blitline-fiók létrehozása
 [!INCLUDE [blitline-signup](../includes/blitline-signup.md)]
 
-## <a name="how-toocreate-a-blitline-job"></a>Hogyan toocreate Blitline feladat
-Blitline JSON-toodefine hello műveleteket, amelyeket a lemezkép tootake használja. Ez a JSON néhány egyszerű mezők tevődik össze.
+## <a name="how-to-create-a-blitline-job"></a>Egy Blitline feladat létrehozása
+Blitline JSON használja a műveletek végrehajtása a lemezkép kívánt adhatók meg. Ez a JSON néhány egyszerű mezők tevődik össze.
 
-hello legegyszerűbb például a következőképpen történik:
+A legegyszerűbb például a következőképpen történik:
 
         json : '{
        "application_id": "MY_APP_ID",
@@ -56,17 +56,17 @@ hello legegyszerűbb például a következőképpen történik:
        } ]
     }'
 
-Itt a "src" lemezkép kezeléséért JSON tudunk "... boys.jpeg" és a lemezkép too240x140 majd átméretezése.
+Itt a "src" lemezkép kezeléséért JSON tudunk "... boys.jpeg", majd a majd módosítsa az adott 240 x 140 lemezképet.
 
-hello Alkalmazásazonosító valami megtalálja a **KAPCSOLATINFORMÁCIÓ** vagy **kezelése** Azure fülre. A titkos azonosítója, amely lehetővé teszi a Blitline toorun feladatok is.
+Alkalmazásazonosító valami megtalálja a **KAPCSOLATINFORMÁCIÓ** vagy **kezelése** Azure fülre. A titkos azonosítója, amely lehetővé teszi a Blitline feladatok futtatása is.
 
-"Mentés" paraméter hello hol szeretné tooput hello kép után azt feldolgozta azonosítja. A trivial esetben még nem meghatározott egyet. Ha nincs megadva helykód Blitline fogja tárolni, helyileg (és ideiglenesen) egy egyedi felhő helyen. A hely, ahonnan hello JSON Blitline által visszaadott, amikor hello Blitline képes tooget lesz. hello "lemezképpel" azonosító szükség esetén és tooyou mentésekor tooidentify az adott képet.
+A "Mentés" paraméter azonosítja, ahol el szeretné helyezni a kép, ha azt feldolgozta kapcsolatos információkat. A trivial esetben még nem meghatározott egyet. Ha nincs megadva helykód Blitline fogja tárolni, helyileg (és ideiglenesen) egy egyedi felhő helyen. Erre a helyre beszerezni a JSON Blitline által visszaadott, amikor a Blitline lehet. A "lemezképpel" azonosító szükséges, ezért Önnek mentésekor azonosításához az adott képet ad vissza.
 
-További információ a hello található *funkciók* támogatjuk itt: <http://www.blitline.com/docs/functions>
+További információt talál arról a *funkciók* támogatjuk itt: <http://www.blitline.com/docs/functions>
 
-Is találhat hello kapcsolatos feladat beállítások itt: <http://www.blitline.com/docs/api>
+A feladat beállítások itt dokumentációjában talál: <http://www.blitline.com/docs/api>
 
-Ha elvégezte a JSON toodo van szüksége **POST** azt túl`http://api.blitline.com/job`
+Ha elvégezte a JSON csak annyit kell tennie az **POST** úgy, hogy`http://api.blitline.com/job`
 
 Az alábbihoz hasonló JSON vissza jelenik meg:
 
@@ -82,10 +82,10 @@ Az alábbihoz hasonló JSON vissza jelenik meg:
     }
 
 
-Igen, akkor Blitline megkapta a kérelmet, azt állította a feldolgozási sorban, és befejezését követően érhető el lesz-e a lemezkép hello: **https://s3.amazonaws.com/dev.blitline/2011110722/YOUR\_APP\_azonosítója /CK3f0xBF_2bV6wf7gEZE8w.jpg**
+Igen, akkor Blitline megkapta a kérelmet, azt állította a feldolgozási sorban, és befejezését követően a kép lesz elérhető legyen a következőn: **https://s3.amazonaws.com/dev.blitline/2011110722/YOUR\_APP\_azonosítója / CK3f0xBF_2bV6wf7gEZE8w.jpg**
 
-## <a name="how-toosave-an-image-tooyour-azure-storage-account"></a>Hogyan toosave egy kép tooyour Azure Storage-fiókban
-Ha egy Azure Storage-fiókot, könnyedén lehet Blitline leküldéses feldolgozott hello képek az Azure-tárolóba. Egy "azure_destination" hozzáadásával meghatározása a hello helyét és a Blitline toopush engedélyeit.
+## <a name="how-to-save-an-image-to-your-azure-storage-account"></a>A képfájl mentése az Azure Storage-fiókhoz
+Ha egy Azure Storage-fiókot, könnyedén lehet Blitline a feldolgozott képek leküldéses az Azure-tárolóba. Egy "azure_destination" hozzáadásával határozza meg a hely és a Blitline, amelyekkel a.
 
 Például:
 
@@ -105,20 +105,20 @@ Például:
        }'
 
 
-Hello CAPITALIZED értékeket a saját kitöltésével elküldheti a JSON toohttp://api.blitline.com/job és hello "src" kép életlenítés szűrő dolgoz fel, és majd leküldött tooyou Azure cél.
+A saját CAPITALIZED értékek kitöltésével elküldheti a http://api.blitline.com/job a JSON és a "src" kép rendszer dolgozza fel a szűrőéhez, majd majd leküldött Azure célhelyre.
 
 ### <a name="please-note"></a>Megjegyzés:
-hello SAS hello teljes SAS URL-cím, beleértve a célfájl hello hello fájlnevet kell tartalmaznia.
+A biztonsági Társítások teljes SAS URL-címét, beleértve a fájlnevet a célfájl kell tartalmaznia.
 
 Példa:
 
     http://blitline.blob.core.windows.net/sample/image.jpg?sr=b&sv=2012-02-12&st=2013-04-12T03%3A18%3A30Z&se=2013-04-12T04%3A18%3A30Z&sp=w&sig=Bte2hkkbwTT2sqlkkKLop2asByrE0sIfeesOwj7jNA5o%3D
 
 
-Is olvasható Blitline tartozó Azure Storage docs legújabb kiadása hello [Itt](http://www.blitline.com/docs/azure_storage).
+A legújabb kiadása Blitline tartozó Azure Storage docs is olvasható [Itt](http://www.blitline.com/docs/azure_storage).
 
 ## <a name="next-steps"></a>Következő lépések
-Látogasson el az egyéb funkciókkal kapcsolatos blitline.com tooread:
+Látogasson el az egyéb funkciókkal kapcsolatos olvasni blitline.com:
 
 * Blitline API-végpont Docs <http://www.blitline.com/docs/api>
 * Blitline API-függvények <http://www.blitline.com/docs/functions>

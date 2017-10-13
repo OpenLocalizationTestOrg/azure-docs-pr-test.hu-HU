@@ -1,6 +1,6 @@
 ---
-title: "mentése az Azure Data Catalog szabályoz címkézésre hello üzleti szószedet aaaSet |} Microsoft Docs"
-description: "Hogyan-tooarticle kijelölő hello üzleti szószedet az Azure Data Catalog meghatározása és a segítségével egy közös üzleti szószedet tootag regisztrált adategységeket."
+title: "Állítsa be az üzleti szószedet, az Azure Data Catalog szerinti címkézését szabályozott |} Microsoft Docs"
+description: "Az üzleti szószedet az Azure Data Catalog kiemelés meghatározása és a segítségével egy közös üzleti szószedet címkéhez útmutató cikk regisztrált adategységek keresése."
 services: data-catalog
 documentationcenter: 
 author: steelanddata
@@ -15,71 +15,71 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/15/2017
 ms.author: maroche
-ms.openlocfilehash: c9adf663bd08ac3c0c7b5d3551e6af409fe69ebc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 83ca3b2d89a335a5fd6dddeaca7c11f6d0492234
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="set-up-hello-business-glossary-for-governed-tagging"></a>A címkézés szabályozott hello üzleti szószedet beállítása
+# <a name="set-up-the-business-glossary-for-governed-tagging"></a>A címkézés szabályozott az üzleti szószedet beállítása
 ## <a name="introduction"></a>Bevezetés
-Az Azure Data Catalog adatforrás felderítés lehetővé teszi, így akkor is könnyen megtalálhatóvá és értelmezhetővé hello adatforrások tooperform elemzés kell, és döntéseket. Ezeket a képességeket hello legnagyobb hatást ellenőrizze, ha található, és elérhető adatforrások legszélesebb skáláját hello ismertetése.
+Az Azure Data Catalog lehetővé teszi, hogy az adatforrás felderítés, így könnyen felderítése és értelmezni azon adatforrásokat, amelyek elemzést és döntéseket kell. Ezeket a képességeket a legnagyobb mértékben ellenőrizze, ha található, és elérhető adatforrások legszélesebb skáláját ismertetése.
 
-Egy Data Catalog szolgáltatás, amely elősegíti a eszközök adatok megértése címkézés van. Címkézés használatával is társíthat kulcsszavak egy eszköz vagy egy oszlop, így pedig könnyebb toodiscover hello eszköz keresést, vagy keresse meg. Címkézés is segítségével megismerheti, további könnyen hello környezet és a leképezés hello eszköz.
+Egy Data Catalog szolgáltatás, amely elősegíti a eszközök adatok megértése címkézés van. Címkézés használatával is társíthat kulcsszavak egy eszköz vagy egy oszlop, amely viszont megkönnyíti a keresést, vagy keresse meg az eszköz felderítése. Címkézés is segítségével megismerheti, további egyszerűen a környezet és az eszköz leképezés.
 
 Azonban címkézés néha problémákat okozhat saját. Néhány példa a problémák, amelyek címkézése a következők:
 
-* hello használja az egyes eszközök rövidítések és mások bővített szöveg. Ez inkonzisztenciát hátráltatja hello felderítési eszközök, annak ellenére, hogy hello leképezés lett tootag hello eszközök hello azonos címkével.
-* Ez azt jelenti, attól függően, hogy a környezetben esetleges változásait. Például a címke neve *bevétel* az ügyfél az adatkészlet jelentheti ügyfél bevétel, de hello a negyedéves értékesítési dataset azonos címkével jelentheti negyedéves bevétel hello vállalat számára.  
+* Egyes eszközök rövidítések és mások bővített szöveg használatát. Ez inkonzisztenciája miatt az eszközök, a felderítés akadályozza meg, annak ellenére, hogy a célt az volt, hogy az eszközök címkét a azonos címkével.
+* Ez azt jelenti, attól függően, hogy a környezetben esetleges változásait. Például a címke neve *bevétel* az ügyfél az adatkészlet jelentheti ügyfél bevétel, de a negyedéves értékesítési dataset azonos címkével negyedéves bevétel jelentheti a vállalat számára.  
 
-toohelp cím ezeket és más hasonló kihívás, a Data Catalog egy üzleti szószedetet tartalmaz.
+Ezeket és más hasonló kihívást érdekében a Data Catalog egy üzleti szószedetet tartalmaz.
 
-Hello Data Catalog üzleti szószedet segítségével egy szervezet üzleti feltételek és a definíciók toocreate egy közös üzleti szószedet is dokumentum. A cégirányítási hello szervezet lehetővé teszi a használati adatok konzisztenciáját. Miután egy kifejezés hello üzleti szószedet van definiálva, rendelhető hozzá tooa adategységet hello katalógusban. Ez a megközelítés *szabályozott címkézés*, van ugyanezt a megközelítést, a címkézés hello.
+A Data Catalog üzleti szószedet segítségével egy szervezet üzleti kifejezések és meghatározások létrehozása egy közös üzleti szószedet is dokumentum. A cégirányítási lehetővé teszi, hogy következetes használati adatok a teljes szervezetben. Miután az üzleti szószedet definiálva van egy kifejezés, hozzárendelhető egy adategységhez a katalógusban. Ez a megközelítés *szabályozott címkézés*, ugyanezt a megközelítést, mint a címkézés van.
 
 ## <a name="glossary-availability-and-privileges"></a>Szószedet rendelkezésre állás és a jogosultságokat
-hello üzleti szószedet csak a Standard Edition Azure Data Catalog hello érhető el. hello a Data Catalog szabad Edition nem tartalmazza a termékben, és nem biztosít képességek az irányadó címkézésre.
+Az üzleti szószedet csak a Standard Edition Azure Data Catalog érhető el. A Data Catalog szabad Edition nem tartalmazza a termékben, és nem biztosít képességek az irányadó címkézésre.
 
-Hello üzleti szószedet hello keresztül érheti el **szószedet** hello Data Catalog portal navigációs menü lehetőséget.  
+Az üzleti szószedet keresztül érheti el a **szószedet** lehetőséget a Data Catalog-portál navigációs menüjében.  
 
-![Hello üzleti szószedet elérése](./media/data-catalog-how-to-business-glossary/01-portal-menu.png)
+![Az üzleti szószedet elérése](./media/data-catalog-how-to-business-glossary/01-portal-menu.png)
 
-Katalógus-rendszergazdák és a Rendszergazdák szerepkör hozhat létre, hello szószedet szerkesztése és törlése hello üzleti szószedet szószedet feltételeit. A Data Catalog senki hello kifejezés definíciókat és címke eszközök szószedet kifejezéseivel jelölhetik tekintheti meg.
+Katalógus-rendszergazdák és a szószedet-Rendszergazdák szerepkör tagjai létrehozása, szerkesztése és törlése az üzleti szószedet szószedet feltételeit. A Data Catalog senki kifejezés definíciókat és címke eszközök szószedet kifejezéseivel jelölhetik megtekintheti.
 
 ![Egy új szószedetben hozzáadása](./media/data-catalog-how-to-business-glossary/02-new-term.png)
 
 ## <a name="creating-glossary-terms"></a>SZÓJEGYZÉK létrehozása
-Katalógus-rendszergazdák és rendszergazdák szószedet kattintva hozhat létre szószedetben hello **új kifejezés** gombra. Minden egyes szószedetben hello a következő mezőket tartalmazza:
+Katalógus-rendszergazdák és rendszergazdák szószedet kattintva hozhat létre Szójegyzék a **új kifejezés** gombra. Minden egyes szószedetben a következő mezőket tartalmazza:
 
-* Hello kifejezés egy üzleti definíciója.
-* Egy leírást, amely rögzíti a hello szánt hello eszköz vagy az oszlop használatát vagy az üzleti szabályok
-* A legtöbb kapcsolatos hello kifejezés hello ismerő résztvevők listáját
-* hello szülő kifejezés, amely meghatározza, melyik hello a kifejezés szerveződik hello hierarchia
+* A kifejezés egy üzleti definíciója.
+* Egy leírást, amely rögzíti a tervezett használattól vagy az eszköz vagy az oszlop üzleti szabályok
+* Az érdekelt felek, akik a legtöbb tudni kifejezés listáját
+* A szülő kifejezés, amely meghatározza a hierarchia kifejezés vannak rendezve
 
 ## <a name="glossary-term-hierarchies"></a>Szószedet kifejezés hierarchiák
-Hello Data Catalog üzleti szószedet segítségével egy szervezet az üzleti szószedet leírhatja kifejezések hierarchikus, és létrehozhat egy besorolási feltételek az üzleti elnevezési rendszert jobban jelölő.
+A Data Catalog üzleti szószedet segítségével egy szervezet az üzleti szószedet leírhatja kifejezések hierarchikus, és létrehozhat egy besorolási feltételek az üzleti elnevezési rendszert jobban jelölő.
 
-Egy kifejezés egyedinek kell lennie a hierarchiában megadott mértékét. Duplikált nevek használata nem engedélyezett. A hierarchia szintjének Nincs korlát toohello száma, de a hierarchiában van gyakran több könnyen érthető amikor három szintje vagy kevesebb.
+Egy kifejezés egyedinek kell lennie a hierarchiában megadott mértékét. Duplikált nevek használata nem engedélyezett. A hierarchia szintjének száma nincs korlátozva, de a hierarchiában van gyakran több könnyen érthető amikor három szintje vagy kevesebb.
 
-hello üzleti szószedet hierarchiái hello használata nem kötelező. Hangpostaüzenetek hello szülő kifejezés mező üresen szószedetben feltételek simán (nem hierarchikus) listájának a hello szószedet hoz létre.  
+Az üzleti szószedet hierarchiái használata nem kötelező. SZÓJEGYZÉK a szülő kifejezés mező üresen hagyja listát hoz létre (nem hierarchikus) simán kifejezések a szószedet a.  
 
 ## <a name="tagging-assets-with-glossary-terms"></a>Szószedet kifejezéseivel jelölhetik eszközök címkézése
-Után szószedetben hello katalógus belül, az eszközök címkézése hello élménye nem optimalizált toosearch hello szószedet, mert az a felhasználó beír egy címkét. hello Data Catalog-portált a megfelelő szószedet feltételek toochoose listáját jeleníti meg. Ha hello felhasználó kijelöli a a szószedetben hello listából, hello kifejezés toohello eszköz van adva egy címkét (más néven a szószedet címkével). hello felhasználó is választhat toocreate új címke írja be a keresőkifejezést, amely nincs hello szószedet (más néven a felhasználói kód).
+Után Szójegyzék a katalógus belül, a címkézés eszközök élménye megfelelően lett optimalizálva a felhasználó beír egy címkét a szószedet keresési. A Data Catalog-portál választhat egyező szószedetben listáját jeleníti meg. Ha a felhasználó kijelöli a szószedetben a listából, kifejezés hozzáadódik az eszköz (más néven a szószedet címkével) címkeként. A felhasználó is választhat egy új címke létrehozásához írja be a keresőkifejezést, amely nem szerepel a szószedet (más néven a felhasználói kód).
 
 ![Egy felhasználó címkével és két szószedet címkék címkézett adategységet](./media/data-catalog-how-to-business-glossary/03-tagged-asset.png)
 
 > [!NOTE]
-> Felhasználói címkék hello, csak a támogatott címke típusú hello a Data Catalog ingyenes kiadásra.
+> Felhasználói címke található a Data Catalog szabad Edition támogatott címke csak ilyen típusú.
 >
 >
 
 ### <a name="hover-behavior-on-tags"></a>Vigye a címkék viselkedése
-A Data Catalog-portál hello hello címkék kétféle vizuálisan önálló, és jelen különböző rámutatáskor viselkedések. Ha egy felhasználó címke mutat, láthatja a hello címke szövegét és hello felhasználó vagy felhasználók, akik hello címke hozzáadása. Ha egy szószedet címke mutat, is látni hello definíciójának hello szószedet és a hivatkozás tooopen hello üzleti szószedet tooview hello teljes definíciójának hello.
+A Data Catalog-portálon a címkék kétféle vizuálisan önálló, és jelen különböző rámutatáskor viselkedések. Ha egy felhasználó címke mutat, láthatja a címke szövegét és a felhasználó vagy felhasználók, akik jelentek meg a címke. Ha egy szószedet címke mutat, is látja a szószedetben és a hivatkozások megnyithassanak az üzleti szószedet a teljes definíciójának megtekintése.
 
 ### <a name="search-filters-for-tags"></a>A címkék keresési szűrők
 Szószedet címkék és a felhasználói címkék nem kereshető is, és alkalmazhatja azokat a keresési szűrőként.
 
 ## <a name="summary"></a>Összefoglalás
-Hello üzleti szószedet Azure Data Catalog, és a címkézést, lehetővé teszi, hogy szabályozott hello segítségével azonosíthatja, kezelése és egységes módon adategységeket. hello üzleti szószedet előléptetheti hello üzleti szószedet szervezet tagjai tudomást. hello szószedet is támogatja a rögzítés jelentéssel bíró metaadatok, amely egyszerűbbé teszi az eszköz felderítése és értelmezését.
+Az üzleti szószedet az Azure Data Catalog, és lehetővé teszi, hogy az irányadó címkézést használva, azonosítására, kezelése és egységes módon adategységeket. Az üzleti szószedet előléptetheti az üzleti szószedet szervezet tagjai tudomást. A szószedet is támogatja a rögzítés jelentéssel bíró metaadatok, amely egyszerűbbé teszi az eszköz felderítése és értelmezését.
 
 ## <a name="next-steps"></a>Következő lépések
 * [Üzleti szószedet műveletek REST API dokumentációja](https://msdn.microsoft.com/library/mt708855.aspx)

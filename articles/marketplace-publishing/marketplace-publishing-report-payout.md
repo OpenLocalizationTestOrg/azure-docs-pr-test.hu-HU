@@ -1,6 +1,6 @@
 ---
-title: "aaaUnderstand hello Azure piactér kifizetés reporting |} Microsoft Docs"
-description: "Megtudhatja, hogyan tooreview és a betöltési hello Azure piactér kifizetés jelentés."
+title: "Az Azure piactér kifizetés reporting megértése |} Microsoft Docs"
+description: "Ismerje meg, hogyan lehet áttekinteni és az Azure piactér kifizetés jelentés betöltési."
 services: marketplace-publishing
 documentationcenter: na
 author: v-jeana
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: v-jeana; hascipio; v-dabosl
-ms.openlocfilehash: 2bc21fad1805c0ead80c3f8a56128c789e17798e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5a89e9ba4376d0c4f49feb3783692e28a28902a2
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="understand-your-azure-marketplace-payout-reports"></a>Az Azure piactér kifizetés jelentések ismertetése
 ## <a name="access-and-view-your-payout-reports"></a>Hozzáférés és a kifizetés jelentések megtekintése
-Amíg azt átmenet tooDev Center egyes kifizetés jelentések érhetők el hello fejlesztői központ következő https://dev.windows.com/en-us míg mások is találhatók meg a közzétételi Portáljára https://publish.windowsazure.com.
+Amíg a Microsoft fejlesztői központban átmenet néhány kifizetés jelentések érhetők el a Dev Center webhely https://dev.windows.com/en-us, míg mások is találhatók meg a közzétételi Portáljára https://publish.windowsazure.com.
 
 Kifizetés reporting most rendelkezésre áll a **Dev Center webhely** bármely piactér ajánlatokról társított modern payouts; ez jelenleg tartalmazza:
 
@@ -32,12 +32,12 @@ Kifizetés reporting most rendelkezésre áll a **Dev Center webhely** bármely 
 
 Kifizetés reporting marad a **közzétételi Portáljára** számára:
 
-* Adatok és a fejlesztői szolgáltatások kínált webes közvetlen (amely a továbbra is hello örökölt kifizetés rendszer) alatt.
+* Adatok és a fejlesztői szolgáltatások kínált webes közvetlen (amely a továbbra is a hagyományos kifizetés rendszer) alatt.
 
-Jelentések elérhető 45 nap után zárja be a hello hello negyedév, és bármely visszatérítés kell számítani.
+Jelentések negyedév lezárása után rendelkezésre álló 45 nap, és bármely visszatérítés kell számítani.
 
 ### <a name="access-payout-reports-in-dev-center"></a>A fejlesztői központjában Access kifizetés jelentések
-1. Keresse meg a tooDev Center https://dev.windows.com/en-us címen.
+1. Https://dev.windows.com/en-us, navigáljon a fejlesztői központban.
 2. Kattintson a **irányítópult**.
 
     ![LandingPageDashboardHighlight][1]
@@ -46,34 +46,34 @@ Jelentések elérhető 45 nap után zárja be a hello hello negyedév, és bárm
     ![DashboardPayoutSummary][2]
 
 ## <a name="view-your-payout-reports-in-dev-center"></a>A fejlesztői központjában kifizetés jelentések megtekintése
-hello kifizetés jelentés negyedév negyedévben történt összes tranzakció rögzíti.
+A negyedév kifizetés jelentés negyedévben történt összes tranzakció rögzíti.
 
-* hello fenntartott összeg bármely hello jövőbeli fizetési ciklus (pl. ezt a mennyiséget áthelyezése a következő hónap tooupcoming fizetési hello) kívül van keletkezhetnek kifizetések jelöl.  Ez a mennyiség általában $0 lesz (kivéve, ha az ügyfél és az előzetes fizet).
-* Kattintson a közeljövőben fizetési hello vagy a legutóbbi fizetési **részleteinek megtekintéséhez** toosee e payouts Megjegyzés hivatkozásokat tartalmaz.
-* Kattintson a **fizetési utasítások** tooview hello részleteket az alkalmazás vagy termék folytatódik.
-* Kattintson a hello **nézet** toosee egyéni utasítások hivatkozásra.
+* A fenntartott mennyiség azt jelzi, hogy a jövőbeli fizetési ciklus (pl. ezt a mennyiséget helyezi át a következő hónap jövőbeli fizetési) kívül van keletkezhetnek fizetési.  Ez a mennyiség általában $0 lesz (kivéve, ha az ügyfél és az előzetes fizet).
+* A közeljövőben fizetési vagy a legutóbbi fizetési **részleteinek megtekintéséhez** hivatkozásokra, hogy ezek payouts megjegyzést.
+* Kattintson a **fizetési utasítások** alkalmazás vagy termék a hibákra vonatkozó részletes adatainak megtekintéséhez.
+* Kattintson a **nézet** hivatkozásra kattintva megtekintheti az egyes utasításokat.
 
     ![PayoutSummaryUpcomingMostRecentLinksStatement][3]
-* Használjon hello **halad lebontása** szűrése hello egyedi utasítás tooview hello alján több apps/termékek ha vannak ilyenek.
+* Használja a **halad lebontása** szűrő az egyes utasítás több apps/termék megtekintéséhez, ha vannak ilyenek alján.
 
     ![PayoutSummaryPaymentStatementsFilterControl][4]
 
 ## <a name="view-your-payout-reports-in-publishing-portal"></a>A közzétételi Portáljára a kifizetés jelentések megtekintése
-hello kifizetés jelentés negyedév negyedévben történt összes tranzakció rögzíti.
+A negyedév kifizetés jelentés negyedévben történt összes tranzakció rögzíti.
 
-1. Keresse meg a közzétételi portáljára toohello https://publish.windowsazure.com:.
-2. A hello **közzétevők** kattintson **kifizetés jelentések**.
-3. Kattintson a hello legördülő toodisplay minden elérhető negyedéves kifizetés jelentést.
+1. Keresse meg a közzétételi portálon, a https://publish.windowsazure.com.
+2. Az a **közzétevők** kattintson **kifizetés jelentések**.
+3. Kattintson a legördülő listán a negyedéves kifizetés összes elérhető jelentések megjelenítéséhez.
 
     ![accessingpayoutreport][5]
 
 ### <a name="read-your-payout-reports"></a>Kifizetés jelentések olvasása
-hello kifizetés jelentés negyedév negyedévben történt összes tranzakció rögzíti.
+A negyedév kifizetés jelentés negyedévben történt összes tranzakció rögzíti.
 
-* Ha tooa adott negyedév kapcsolódó tételek keres, jelölje ki a hello kifizetés jelentést hello legördülő lista az adott negyedévre. Például ha érdekli a 2015. áprilisi tooJune tételek, válassza ki adott dátumtartományon belül az hello legördülő.
-* Ha a keresett tooa adott negyedév kapcsolódó payouts részleteit, jelölje ki a hello kifizetés jelentést hello ezt követő negyedév. Például ha érdekli a 2015. áprilisi tooJune hello payouts, az összegeket jelenik hello későbbi kifizetés jelentésben a 2015. július tooSeptember.
+* Ha egy adott negyedév kapcsolódó tételek keres, válassza ki a kifizetés jelentést, hogy a legördülő lista a negyedév. Például ha érdekli tételek a 2015. június áprilisban, választhat adott dátumtartományon belül a legördülő listán.
+* Ha egy adott negyedév kapcsolódó payouts részleteit keres, válassza ki a kifizetés jelentést az ezt követő negyedév. Például ha érdekli a payouts a 2015. június áprilisban, ezek az összegek megjelennek a későbbi kifizetés jelentés júliusi a 2015. szeptember.
   ![readingpayoutreport][6]
-* hello pénzügyi összefoglaló panel kategória kiegyensúlyozza kreditek és tartozik jeleníti meg.
+* A pénzügyi összefoglaló panelen látható kiegyensúlyozza, kreditek, tartozik kategória szerint.
 * Tételek megjelenítése az egyes tranzakciók.
 
 ## <a name="definitions"></a>Meghatározások
@@ -86,11 +86,11 @@ hello kifizetés jelentés negyedév negyedévben történt összes tranzakció 
 ![ledgerdefinitions][8]
 
 ## <a name="payout-questions"></a>Kifizetés kérdések
-Ha kapcsolatos kérdése van tooyour payouts, forduljon a terméktámogatási csapathoz.
+Ha a payouts kapcsolatos kérdése van, forduljon a támogatási csapat.
 
 ![payoutquestions][9]
 
-1. Keresse meg a toohello támogatási lapokat.
+1. Nyissa meg a támogatási lapokat.
 2. Válassza ki **Payouts**.
 3. Válassza ki **kifizetés kapcsolódó lekérdezések**.
 4. Kattintson a **indítási kérésre**.

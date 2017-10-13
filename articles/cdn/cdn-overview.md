@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure CDN áttekintése |} Microsoft Docs"
-description: "Ismerje meg, milyen hello Azure tartalom Delivery Network (CDN) van, és hogyan toouse azt toodeliver a tartalmak nagy sávszélességű blobok és a statikus tartalom gyorsítótárazása révén."
+title: "Az Azure CDN áttekintése | Microsoft Docs"
+description: "Megismerheti, mi is az az Azure Content Delivery Network (CDN), valamint hogyan használható a tartalmak nagy sávszélességű kézbesítéséhez a blobok és a statikus tartalom gyorsítótárazása révén."
 services: cdn
 documentationcenter: 
 author: smcevoy
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 02/08/2017
 ms.author: v-semcev
-ms.openlocfilehash: e0230a6e107969b845985f2f4d357bf93cd40d42
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 909c4dc3feaeaedf56ecacc78f4b7e0e15d98875
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="overview-of-hello-azure-content-delivery-network-cdn"></a>Hello Azure Content Delivery Network (CDN) áttekintése
+# <a name="overview-of-the-azure-content-delivery-network-cdn"></a>Az Azure Content Delivery Network (CDN) áttekintése
 > [!NOTE]
-> Ez a dokumentum ismerteti, milyen hello Azure Content Delivery Network (CDN) van, hogyan működik és minden egyes Azure CDN termék hello funkcióit.  Ha tooskip szeretné ezeket az információkat, és hogyan egyenes tooa oktatóanyag lépjen a CDN-végpontok toocreate lásd: [az Azure CDN](cdn-create-new-endpoint.md).  Ha azt szeretné, hogy a jelenlegi CDN-csomóponti helyek listája toosee, [Azure CDN POP-helyek](cdn-pop-locations.md).
+> Ez a dokumentum bemutatja, hogy mi is az az Azure Content Delivery Network (CDN), ismerteti a rendszer működését, valamint az egyes Azure CDN-termékek funkcióit.  Ha ki szeretné hagyni ezeket az információkat, és rögtön a CDN-végpontok létrehozásáról szóló oktatóanyaggal szeretné kezdeni, akkor tekintse meg [Az Azure CDN szolgáltatás használata](cdn-create-new-endpoint.md) című cikket.  Ha meg szeretné tekinteni a jelenlegi CDN-csomópontok helyének listáját, olvassa el az [Azure CDN POP-helyek](cdn-pop-locations.md) című cikket.
 > 
 > 
 
-hello Azure tartalom Delivery Network (CDN) gyorsítótárba helyezi azt a statikus webtartalmakat stratégiailag kiválasztott helyeken tooprovide maximális átviteli sebesség tartalom toousers kézbesítéséhez.  hello CDN tartalmak nagy sávszélességű kézbesítéséhez között hello world hello tartalom fizikai csomópontokon gyorsítótárazásával globális megoldást kínál a fejlesztők. 
+Az Azure Content Delivery Network (CDN) a statikus webtartalmakat stratégiailag kiválasztott helyeken gyorsítótárazza, így maximális átviteli sebességgel tudja kézbesíteni a tartalmakat a felhasználók számára.  A CDN a tartalmakat világszerte fizikai csomópontokon gyorsítótárazva globális megoldást kínál a fejlesztők számára a tartalmak nagy sávszélességű kézbesítéséhez. 
 
-hello CDN toocache webhely eszközök használatának hello előnyei a következők:
+A webhelyek objektumainak CDN használatával történő gyorsítótárazása a következő előnyökkel jár:
 
-* Jobb teljesítmény és felhasználói élmény a végfelhasználók számára, különösen akkor, ha tooload tartalom alkalmazásokat használ, amelyben a kiszolgálóval végzett több adatváltásra is szükséges.
-* Nagy méretű méretezési toobetter leíró azonnali nagy terhelés, például a termék hello elején indítsa el az eseményt.
-* Felhasználói kérelmek elosztásával és a tartalom peremhálózati kiszolgálókról, amelyet kevesebb adatforgalom toohello forrása.
+* Jobb teljesítmény és felhasználói élmény a végfelhasználók számára – különösen az alkalmazások használata esetén, amikor a tartalom betöltéséhez a kiszolgálóval végzett több adatváltásra is szükség van.
+* A teljesítmény könnyedén méretezhető az azonnali nagy terheléshez, például a termékbevezetési események kezdetén fellépő magas igényekhez.
+* A felhasználói kérelmek elosztásával és a tartalom peremhálózati kiszolgálókról történő szolgáltatásával csökken a forrásra jutó forgalom.
 
 ## <a name="how-it-works"></a>Működés
 ![A CDN áttekintése](./media/cdn-overview/cdn-overview.png)
 
-1. A felhasználó (Anna) fájlt (más néven objektumot) kérelmez egy speciális tartománynevet (pl. `<endpointname>.azureedge.net`) tartalmazó URL-cím használatával.  DNS hello kérelem toohello legjobban teljesítő pont nyújtó jelenléti (POP) helyre irányítja.  Általában ez a hello toohello-felhasználó földrajzilag legközelebb elhelyezkedő jelenléti pont.
-2. Ha hello POP hello peremhálózati kiszolgálóinak gyorsítótárában nem rendelkezik hello fájl, a hello peremhálózati kiszolgáló lekéri a hello fájl hello a forrásból.  hello forrás lehet az Azure Web Apps, Azure Cloud Service, Azure Storage-fiók vagy bármilyen nyilvánosan elérhető webkiszolgáló.
-3. hello forrás visszaküldi hello fájl toohello biztonsági kiszolgálón, beleértve a hello fájl idő élettartamát (TTL) leíró nem kötelező HTTP-fejlécek.
-4. hello peremhálózati kiszolgáló gyorsítótárazza a hello fájlt, és hello fájl toohello eredeti kérelmezőnek (Anna) adja vissza.  hello fájl hello TTL lejárata marad hello peremhálózati kiszolgáló gyorsítótárában.  Ha hello forrás nem ad meg Élettartamot, hello alapértelmezett élettartam (TTL) hét nap.
-5. További felhasználók előfordulhat, hogy akkor kérelem hello azonos fájlt, azonos URL-címet használ, és is irányított toothat azonos POP.
-6. Hello TTL hello fájl még nem járt le, ha hello biztonsági kiszolgáló hello fájl hello gyorsítótárból adja vissza.  Az eredmény nagyobb sebesség, dinamikusabb működés, vagyis összességében jobb felhasználói élmény.
+1. A felhasználó (Anna) fájlt (más néven objektumot) kérelmez egy speciális tartománynevet (pl. `<endpointname>.azureedge.net`) tartalmazó URL-cím használatával.  A DNS a kérelmet a legjobb teljesítményt nyújtó jelenléti pontra (POP) irányítja.  Általában ez a felhasználóhoz földrajzilag legközelebb elhelyezkedő jelenléti pont.
+2. Ha a jelenléti pont peremhálózati kiszolgálóinak gyorsítótárában nem található meg a fájl, akkor a peremhálózati kiszolgáló lekéri a fájlt a forrásból.  A forrás lehet az Azure Web Apps, az Azure Cloud Service, Azure Storage-fiók vagy bármilyen nyilvánosan elérhető webkiszolgáló.
+3. A forrás visszaküldi a fájlt a peremhálózati kiszolgálóra, belefoglalva a fájl élettartamát (TTL) leíró nem kötelező HTTP-fejléceket is.
+4. A peremhálózati kiszolgáló gyorsítótárazza a fájlt, és visszaadja az eredeti kérelmezőnek (Anna).  A fájl gyorsítótárazva marad a peremhálózati kiszolgálón, amíg a TTL le nem jár.  Ha a forrás nem adott meg TTL-t, akkor az alapértelmezett TTL hét nap.
+5. További felhasználók is lekérhetik ugyanazt a fájlt ugyanazzal az URL-címmel, és a rendszer őket is ugyanarra a jelenléti pontra irányíthatja.
+6. Amennyiben a fájl élettartama még nem járt le, a peremhálózati kiszolgáló a fájlt a gyorsítótárból adja vissza.  Az eredmény nagyobb sebesség, dinamikusabb működés, vagyis összességében jobb felhasználói élmény.
 
 ## <a name="azure-cdn-features"></a>Az Azure CDN szolgáltatásai
-Három Azure CDN termék áll rendelkezésre: az **Akamai Azure CDN Standard**, a **Verizon Azure CDN Standard** és a **Verizon Azure CDN Premium**.  hello alábbi táblázat az egyes termékek hello szolgáltatásokat.
+Három Azure CDN termék áll rendelkezésre: az **Akamai Azure CDN Standard**, a **Verizon Azure CDN Standard** és a **Verizon Azure CDN Premium**.  A következő táblázat felsorolja az egyes termékek szolgáltatásait.
 
 |  | Akamai Standard | Verizon Standard | Verizon Premium |
 | --- | --- | --- | --- |
@@ -74,7 +74,7 @@ Három Azure CDN termék áll rendelkezésre: az **Akamai Azure CDN Standard**, 
 | [Valós idejű statisztikák](cdn-real-time-stats.md) | | |**&amp;#x2713;;** |
 | [Valós idejű riasztások](cdn-real-time-alerts.md) | | |**&amp;#x2713;;** |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  __Könnyű használat__ |
-| Egyszerű integráció az Azure-szolgáltatásokkal – például a [Storage](cdn-create-a-storage-account-with-cdn.md), a [Cloud Services](cdn-cloud-service-with-cdn.md), a [Web Apps](../app-service-web/app-service-web-tutorial-content-delivery-network.md) és a [Media Services](../media-services/media-services-portal-manage-streaming-endpoints.md) szolgáltatással. |**&amp;#x2713;;** |**&amp;#x2713;;** |**&amp;#x2713;;** |
+| Egyszerű integráció az Azure-szolgáltatásokkal – például a [Storage](cdn-create-a-storage-account-with-cdn.md), a [Cloud Services](cdn-cloud-service-with-cdn.md), a [Web Apps](../app-service/app-service-web-tutorial-content-delivery-network.md) és a [Media Services](../media-services/media-services-portal-manage-streaming-endpoints.md) szolgáltatással. |**&amp;#x2713;;** |**&amp;#x2713;;** |**&amp;#x2713;;** |
 | Felügyelet [REST API](https://msdn.microsoft.com/library/mt634456.aspx), [.NET](cdn-app-dev-net.md), [Node.js](cdn-app-dev-node.md) vagy [PowerShell](cdn-manage-powershell.md) használatával. |**&amp;#x2713;;** |**&amp;#x2713;;** |**&amp;#x2713;;** |
 | [Testreszabható, szabályalapú tartalomkézbesítési motor](cdn-rules-engine.md) | | |**&amp;#x2713;;** |
 | Gyorsítótár-/fejlécbeállítások (a [szabálymotorral](cdn-rules-engine.md)) | | |**&amp;#x2713;;** |
@@ -85,18 +85,18 @@ Három Azure CDN termék áll rendelkezésre: az **Akamai Azure CDN Standard**, 
 
 
 > [!TIP]
-> Van olyan szolgáltatás, az Azure CDN toosee szeretné?  [Küldjön visszajelzést!](https://feedback.azure.com/forums/169397-cdn) 
+> Van olyan szolgáltatás, amelyet szívesen látna az Azure CDN rendszerben?  [Küldjön visszajelzést!](https://feedback.azure.com/forums/169397-cdn) 
 > 
 > 
 
 ## <a name="next-steps"></a>Következő lépések
-a CDN, használatába tooget lásd: [az Azure CDN](cdn-create-new-endpoint.md).
+A CDN használatbavételének első lépéseiért tekintse meg [Az Azure CDN szolgáltatás használata](cdn-create-new-endpoint.md) című cikket.
 
-Ha Ön már CDN-ügyfél, kezelheti a CDN-végpontokat keresztül hello [Microsoft Azure-portálon](https://portal.azure.com) vagy [PowerShell](cdn-manage-powershell.md).
+Ha Ön már meglévő CDN-ügyfél, a CDN-végpontjait már a [Microsoft Azure Portal](https://portal.azure.com) vagy a [PowerShell](cdn-manage-powershell.md) használatával is kezelheti.
 
-toosee CDN hello a művelet, tekintse meg a hello [videót a Build 2016 munkamenet](https://azure.microsoft.com/documentation/videos/build-2016-leveraging-the-new-azure-cdn-apis-to-build-wicked-fast-applications/).
+Ha működés közben szeretné látni a CDN-t, tekintse meg a [Build 2016 konferencián elhangzott előadásunk videófelvételét](https://azure.microsoft.com/documentation/videos/build-2016-leveraging-the-new-azure-cdn-apis-to-build-wicked-fast-applications/).
 
-Megtudhatja, hogyan tooautomate Azure CDN rendelkező [.NET](cdn-app-dev-net.md) vagy [Node.js](cdn-app-dev-node.md).
+Ismerje meg, hogyan automatizálhatja az Azure CDN-t a [.NET](cdn-app-dev-net.md) vagy a [Node.js](cdn-app-dev-node.md) segítségével.
 
 Díjszabási információkért tekintse meg [A tartalomkézbesítési hálózat (CDN) díjszabása](https://azure.microsoft.com/pricing/details/cdn/) című cikket.
 

@@ -1,6 +1,6 @@
 ---
-title: "a virtuális gép (klasszikus) aaaMove vagy Felhőszolgáltatások szerepkör példány tooa másik alhálózat - Azure PowerShell |} Microsoft Docs"
-description: "Megtudhatja, hogyan toomove (klasszikus) virtuális gépek és Felhőszolgáltatások szerepkör-példányok tooa másik alhálózat PowerShell használatával."
+title: "A virtuális gép (klasszikus) vagy a Cloud Services szerepkör-példány áthelyezése egy másik alhálózat - Azure PowerShell |} Microsoft Docs"
+description: "Megtudhatja, hogyan helyezi át a virtuális gépek (klasszikus) és a Felhőszolgáltatások szerepkörpéldányokat egy másik alhálózat PowerShell használatával."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,30 +15,30 @@ ms.workload: infrastructure-services
 ms.date: 03/22/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c8d2de56f42a91be4a665414ea9641ffd46588fd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b094f8338394ef2e84cad3070936d715411326a4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="move-a-vm-classic-or-cloud-services-role-instance-tooa-different-subnet-using-powershell"></a>Helyezze át a virtuális gép (klasszikus) vagy Felhőszolgáltatások szerepkör példány tooa másik alhálózat PowerShell használatával
-Használható PowerShell toomove a virtuális gépek (klasszikus) az egyik alhálózat tooanother hello ugyanazt a virtuális hálózatot (VNet). Szerepkörpéldányokat áthelyezhető hello CSCFG-fájl szerkesztése, hanem a PowerShell használatával.
+# <a name="move-a-vm-classic-or-cloud-services-role-instance-to-a-different-subnet-using-powershell"></a>A virtuális gép (klasszikus) vagy a Cloud Services szerepkör példány áthelyezése egy másik alhálózat PowerShell használatával
+PowerShell használatával helyezze át a virtuális gépek (klasszikus) egy alhálózatból másik ugyanazt a virtuális hálózatot (VNet). Szerepkörpéldányokat helyezheti át a szolgáltatáskonfigurációs SÉMA fájl szerkesztése, hanem a PowerShell használatával.
 
 > [!NOTE]
-> Ez a cikk ismerteti, hogyan toomove virtuális gépek telepítve hello klasszikus telepítési modell használatával.
+> Ez a cikk ismerteti, hogyan kívánja áthelyezni a virtuális gépek telepítése csak a klasszikus üzembe helyezési modell használatával.
 > 
 > 
 
-Miért helyezze át a virtuális gépek tooanother alhálózati? Alhálózati áttelepítés akkor hasznos, ha hello régebbi alhálózati túl kicsi, és nem bonthatók ki lejáró futtató virtuális gépek alhálózat tooexisting. Ebben az esetben hozzon létre egy új, nagyobb alhálózatot, és át hello virtuális gépek toohello új alhálózatot, majd áttelepítés befejezése után törölheti a régi üres alhálózati hello.
+Miért virtuális gépek áthelyezése egy másik alhálózat? Alhálózati áttelepítés akkor hasznos, ha a régebbi alhálózati túl kicsi, és nem bonthatók ki meglévő futó virtuális gépeinek alhálózat miatt. Ebben az esetben hozzon létre egy új, nagyobb alhálózatot, és telepítse át a virtuális gépeket az új alhálózatot, majd áttelepítés befejezése után törölheti a régi üres alhálózat.
 
-## <a name="how-toomove-a-vm-tooanother-subnet"></a>Hogyan toomove tooanother alhálózatot
-a virtuális gépek toomove futtassa az alábbi példában hello használata sablonként hello Set-AzureSubnet PowerShell-parancsmagot. Hello az alábbi példában szereplő azt áthelyezi TestVM a jelen alhálózatból tooSubnet-2. Lehet, hogy tooedit hello példa tooreflect a környezetben. Vegye figyelembe, hogy amikor hello frissítés-AzureVM parancsmag egy eljárás részeként futtatja, mindig újra lesz indítva a virtuális gép hello frissítési folyamat részeként.
+## <a name="how-to-move-a-vm-to-another-subnet"></a>A virtuális gép áthelyezése egy másik alhálózat
+Helyezze át a virtuális Gépet, futtassa a Set-AzureSubnet PowerShell-parancsmag, az alábbi példában egy sablon használatával. Az alábbi példa azt áthelyezi TestVM a jelen alhálózatból az alhálózat-2. Ne felejtse el szerkeszteni a példa a környezetnek megfelelően. Vegye figyelembe, hogy amikor a frissítés-AzureVM parancsmag egy eljárás részeként futtatja, mindig újra lesz indítva a virtuális Gépet a frissítési folyamat részeként.
 
     Get-AzureVM –ServiceName TestVMCloud –Name TestVM `
     | Set-AzureSubnet –SubnetNames Subnet-2 `
     | Update-AzureVM
 
-Ha a virtuális Géphez megadott egy statikus belső magánhálózati IP-címe, akkor kell tooclear beállítás hello VM tooa új alhálózat áthelyezés előtt. Ebben az esetben használja a hello következő:
+Ha megadott egy statikus belső magánhálózati IP-címe a virtuális Gépet, törölje ezt a beállítást, mielőtt a virtuális gép áthelyezése egy új alhálózatot kell. Ebben az esetben az alábbi parancsokat használja:
 
     Get-AzureVM -ServiceName TestVMCloud -Name TestVM `
     | Remove-AzureStaticVNetIP `
@@ -47,8 +47,8 @@ Ha a virtuális Géphez megadott egy statikus belső magánhálózati IP-címe, 
     | Set-AzureSubnet -SubnetNames Subnet-2 `
     | Update-AzureVM
 
-## <a name="toomove-a-role-instance-tooanother-subnet"></a>egy szerepkör-példány tooanother alhálózati toomove
-egy szerepkör példánya toomove hello CSCFG-fájl szerkesztése. Hello az alábbi példában szereplő azt áthelyezi "Role0"-beli virtuális hálózaton *VNETName* a jelen alhálózatból túl*alhálózat-2*. Hello szerepkör példánya már telepítve lett, mert hello alhálózati név csak módosítani fogjuk alhálózat-2 =. Lehet, hogy tooedit hello példa tooreflect a környezetben.
+## <a name="to-move-a-role-instance-to-another-subnet"></a>A szerepkör példánya áthelyezése egy másik alhálózat
+Helyezze át a szerepkör-példányt, szerkessze a CSCFG-fájl. Az alábbi példa azt áthelyezi "Role0"-beli virtuális hálózaton *VNETName* a jelen alhálózatból az *alhálózat-2*. A szerepkör példánya már telepítve lett, mert az alhálózat neve csak módosítani fogjuk alhálózat-2 =. Ne felejtse el szerkeszteni a példa a környezetnek megfelelően.
 
     <NetworkConfiguration>
         <VirtualNetworkSite name="VNETName" />

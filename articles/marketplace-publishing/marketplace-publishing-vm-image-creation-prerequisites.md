@@ -1,6 +1,6 @@
 ---
-title: "egy virtuálisgép-lemezkép az Azure piactér hello létrehozása aaaTechnical előfeltételei |} Microsoft Docs"
-description: "A létrehozása és telepítése a virtuális gép lemezképének toohello Azure piactér mások hello követelmények megértése érdekében toopurchase."
+title: "Hozzon létre egy virtuálisgép-lemezkép az Azure piactéren műszaki előfeltételei |} Microsoft Docs"
+description: "A létrehozása és telepítése a virtuálisgép-lemezkép megvásárlásához mások az Azure piactéren vonatkozó követelmények megértése érdekében."
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: Azure
 ms.workload: na
 ms.date: 04/29/2016
 ms.author: hascipio; v-divte
-ms.openlocfilehash: fcae4d9e052581e3c1dfe7962e6d50ec31040419
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: af3e2ad623d8d7bfafe676411f9ae3fbee78aab8
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="technical-prerequisites-for-creating-a-virtual-machine-image-for-hello-azure-marketplace"></a>A virtuálisgép-lemezkép az Azure piactér hello létrehozása műszaki előfeltételei
-Hello folyamat megkezdése előtt alaposan és megértettem, hogy hol és miért minden egyes lépést. Amennyire csak lehetséges, meg kell készítse elő a vállalati adatok és egyéb adatokat, töltse le a szükséges eszközök, és/vagy technikai összetevő létrehozása hello ajánlat létrehozási folyamat megkezdése előtt. Ezek az elemek egyértelműen kiderül, hogy ez a cikk áttekintése kell lennie.  
+# <a name="technical-prerequisites-for-creating-a-virtual-machine-image-for-the-azure-marketplace"></a>Hozzon létre egy virtuálisgép-lemezkép az Azure piactéren műszaki előfeltételei
+A folyamat megkezdése előtt alaposan és megértettem, hogy hol és miért minden egyes lépést. Amennyire csak lehetséges, meg kell készítse elő a vállalati adatok és egyéb adatokat, töltse le a szükséges eszközök, és/vagy technikai összetevő létrehozása az ajánlat létrehozási folyamat megkezdése előtt. Ezek az elemek egyértelműen kiderül, hogy ez a cikk áttekintése kell lennie.  
 
 ## <a name="download-needed-tools--applications"></a>Töltse le a szükséges eszközök és alkalmazások
-A következő elemek készen áll a hello folyamat megkezdése előtt hello kell rendelkezniük:
+Készen áll a megkezdése előtt a következő elemeket kell rendelkezniük:
 
-* Attól függően, hogy milyen operációs rendszert céloz meg, a telepítés hello [Azure PowerShell-parancsmagok](https://www.microsoft.com/web/handlers/webpi.ashx/getinstaller/WindowsAzurePowershellGet.3f.3f.3fnew.appids) vagy [Linux parancssori felület eszköz](https://go.microsoft.com/fwlink/?LinkId=253472&clcid=0x409) a hello [Azure letölti](https://azure.microsoft.com/downloads/) lap.
+* Attól függően, hogy milyen operációs rendszert céloz meg, telepítse a [Azure PowerShell-parancsmagok](https://www.microsoft.com/web/handlers/webpi.ashx/getinstaller/WindowsAzurePowershellGet.3f.3f.3fnew.appids) vagy [Linux parancssori felület eszköz](https://go.microsoft.com/fwlink/?LinkId=253472&clcid=0x409) a a [Azure letölti](https://azure.microsoft.com/downloads/) lap.
 * Telepítse az Azure Storage Explorer a Codeplex webhelyen.
-* Töltse le, és telepítse a hello hitelesítő vizsgálati eszköz az Azure hitelesített:
-  * [http://go.microsoft.com/fwlink/?LinkId=526913](http://go.microsoft.com/fwlink/?LinkID=526913). Szüksége van egy Windows-alapú számítógép toorun hello hitelesítő eszközt. Ha nem rendelkezik egy Windows-alapú számítógép elérhető, futtathatja a Windows-alapú virtuális gépek használata az Azure-ban hello eszközt.
+* Töltse le, és a hitelesítésszolgáltató vizsgálati eszköz telepítése az Azure hitelesített:
+  * [http://go.microsoft.com/fwlink/?LinkId=526913](http://go.microsoft.com/fwlink/?LinkID=526913). A hitelesítésszolgáltató eszköz futtatásához Windows-alapú számítógépre van szüksége. Ha nem rendelkezik egy Windows-alapú számítógép elérhető, futtathatja az eszközt a Windows-alapú virtuális gépek használata az Azure-ban.
 
 ## <a name="platforms-supported"></a>Támogatott platformok
-Virtuális gépek Azure-alapú Windows vagy Linux fejleszthet. Hello közzétételi folyamat – például létrehozhat egy Azure-kompatibilis virtuális merevlemez (VHD) – használja a különböző eszközök és lépések attól függően, hogy milyen operációs rendszert használ egyes elemei:  
+Virtuális gépek Azure-alapú Windows vagy Linux fejleszthet. A közzétételi folyamat – például létrehozhat egy Azure-kompatibilis virtuális merevlemez (VHD) – használja a különböző eszközök és lépések attól függően, hogy milyen operációs rendszert használ egyes elemei:  
 
-* Ha Linux használ, tekintse meg a "Hozzon létre egy Azure-kompatibilis VHD-t (Linux-alapú)" című toohello hello [virtuális gép lemezképének közzétételi útmutató](marketplace-publishing-vm-image-creation.md).
-* Ha Windows használ, tekintse meg a toohello "Hozzon létre egy Azure-kompatibilis VHD-t (Windows-alapú)" szakasza hello [virtuális gép lemezképének közzétételi útmutató](marketplace-publishing-vm-image-creation.md).
+* Ha Linux használ, tekintse át a "Hozzon létre egy Azure-kompatibilis VHD-t (Linux-alapú)" részt a a [virtuális gép lemezképének közzétételi útmutató](marketplace-publishing-vm-image-creation.md).
+* Ha Windows használ, tekintse át a "Hozzon létre egy Azure-kompatibilis VHD-t (Windows-alapú)" részt a a [virtuális gép lemezképének közzétételi útmutató](marketplace-publishing-vm-image-creation.md).
 
 > [!NOTE]
-> El kell érni tooa Windows-alapú gép:
+> A Windows-alapú gép elérésére lesz szüksége:
 > 
-> * Hello hitelesítő érvényesítési eszköz futtatásához.
-> * Hello megosztott virtuális merevlemez hozzáférési aláírás URL-címe hello VHD hitelesítő küldésének létrehozása.
+> * A hitelesítésszolgáltató érvényesítési eszköz futtatásához.
+> * Hozzon létre a virtuális merevlemez hitelesítő küldése a megosztott virtuális merevlemez hozzáférési aláírás URL-CÍMÉT.
 > 
 > 
 
 ## <a name="develop-your-vhd"></a>A virtuális merevlemez fejlesztése
-Azure virtuális merevlemezek hello felhőalapú vagy helyszíni fejleszthet:
+Azure virtuális merevlemezek, a felhőben, vagy a helyszíni fejleszthet:
 
 * Felhőalapú fejlesztési azt jelenti, hogy minden fejlesztési lépést távolról elvégzett rezidens Azure virtuális Merevlemezt.
-* A helyi fejlesztési letöltése a virtuális merevlemez és a fájlrendszersérülések segítségével helyszíni infrastruktúra van szükség. Bár ez lehetséges, nem ajánlott. Vegye figyelembe, hogy Windows vagy SQL fejleszti a helyszíni meg toohave hello vonatkozó helyszíni licenckulcsot. Nem tartalmaznak, vagy az SQL Server telepítése a virtuális gép létrehozása után. Az ajánlat is hello Azure-portálon a jóváhagyott SQL kép kell alapozni. Ha úgy dönt, hogy a helyszíni toodevelop, néhány lépést működnek, mint ha volt fejlesztése hello felhőben kell elvégeznie. A releváns információt [hozzon létre egy helyszíni Virtuálisgép-lemezkép](marketplace-publishing-vm-image-creation-on-premise.md).
+* A helyi fejlesztési letöltése a virtuális merevlemez és a fájlrendszersérülések segítségével helyszíni infrastruktúra van szükség. Bár ez lehetséges, nem ajánlott. Vegye figyelembe, hogy fejleszti a Windows vagy SQL helyszíni szükséges hozzá a megfelelő helyszíni licenckulcsot. Nem tartalmaznak, vagy az SQL Server telepítése a virtuális gép létrehozása után. Az ajánlat is jóváhagyott SQL lemezkép az Azure portálról kell alapozni. Ha úgy dönt, hogy a helyszíni fejlesztése, néhány lépést működnek, mint ha volt fejlesztése a felhőben kell elvégeznie. A releváns információt [hozzon létre egy helyszíni Virtuálisgép-lemezkép](marketplace-publishing-vm-image-creation-on-premise.md).
 
 [link-acct-creation]:marketplace-publishing-accounts-creation-registration.md

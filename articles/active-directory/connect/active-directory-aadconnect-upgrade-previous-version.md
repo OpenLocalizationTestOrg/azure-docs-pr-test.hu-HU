@@ -1,6 +1,6 @@
 ---
 title: "Az Azure AD Connect: Frissítés egy korábbi verzióról |} Microsoft Docs"
-description: "Hello különböző módszereket tooupgrade toohello legújabb kiadása Azure Active Directory Connect, beleértve a helyben frissítés és egy mozgó áttelepítési ismerteti."
+description: "Az Azure Active Directory Connect, beleértve a helyben frissítés és egy mozgó áttelepítési legújabb kiadására történő frissítése a különböző módszereket ismerteti."
 services: active-directory
 documentationcenter: 
 author: AndKjell
@@ -14,104 +14,104 @@ ms.tgt_pltfrm: na
 ms.workload: Identity
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 57bd5b094654e4983cafa303b6f3daecadafb01c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 52fd9375c71c42feaf87f4a0f4220e1cb3889e63
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="azure-ad-connect-upgrade-from-a-previous-version-toohello-latest"></a>Az Azure AD Connect: Frissítés a legújabb egy korábbi verziója toohello
-Ez a témakör ismerteti a használható tooupgrade az Azure Active Directory (Azure AD) Connect telepítési toohello legújabb kiadásának hello különböző módszereket. Azt javasoljuk, hogy őrizze meg az Azure AD Connect hello kiadásainak aktuális. Hello hello lépéseket is használhat [áttelepítési éppen](#swing-migration) szakaszában, amikor olyan jelentős konfigurációs módosítást hajt végre.
+# <a name="azure-ad-connect-upgrade-from-a-previous-version-to-the-latest"></a>Az Azure AD Connect: Frissítés egy korábbi verziójáról a legújabb verzióra
+Ez a témakör ismerteti a különböző módszereket, amelyek az Azure Active Directory (Azure AD) Connect telepítés frissítése a legújabb verzióra. Azt javasoljuk, hogy őrizze meg az Azure AD Connect kiadásainak aktuális. Is használhatja a lépéseket a [áttelepítési éppen](#swing-migration) szakaszában, amikor olyan jelentős konfigurációs módosítást hajt végre.
 
-Ha azt szeretné, hogy a Dirsync szolgáltatásról tooupgrade, [Azure AD Szinkronizáló eszközéről (DirSync) verzióról](active-directory-aadconnect-dirsync-upgrade-get-started.md) helyette.
+Ha azt szeretné, a frissítésre a Dirsyncről, lásd: [Azure AD Szinkronizáló eszközéről (DirSync) verzióról](active-directory-aadconnect-dirsync-upgrade-get-started.md) helyette.
 
-Nincsenek használható az Azure AD Connect tooupgrade néhány különböző stratégiákat.
+Nincsenek használhatja az Azure AD Connect frissítése néhány különböző stratégiákat.
 
 | Módszer | Leírás |
 | --- | --- |
-| [Automatikus frissítés](active-directory-aadconnect-feature-automatic-upgrade.md) |Ez a hello legegyszerűbb módszer az expressz telepítési rendelkező ügyfelek esetén. |
-| [Frissítés helyben](#in-place-upgrade) |Ha egy önálló kiszolgáló, frissítheti a hello telepítési helyben hello ugyanarra a kiszolgálóra. |
-| [Áttelepítési éppen](#swing-migration) |Két kiszolgálóval készítse elő hello hello új kiadás vagy konfigurációs kiszolgálók, és módosítsa a hello aktív kiszolgáló, amikor készen áll. |
+| [Automatikus frissítés](active-directory-aadconnect-feature-automatic-upgrade.md) |Ez az a legegyszerűbb módszer az expressz telepítési rendelkező ügyfelek esetén. |
+| [Frissítés helyben](#in-place-upgrade) |Ha egy önálló kiszolgáló, frissítheti a telepítési helyben ugyanazon a kiszolgálón. |
+| [Áttelepítési éppen](#swing-migration) |Két kiszolgáló előkészítése az új kiadási vagy konfigurációs kiszolgálón, és módosítsa az aktív kiszolgáló, amikor készen áll. |
 
-Engedélyek információkért lásd: hello [a frissítéshez szükséges engedélyek](active-directory-aadconnect-accounts-permissions.md#upgrade).
+Engedélyek információkért lásd: a [a frissítéshez szükséges engedélyek](active-directory-aadconnect-accounts-permissions.md#upgrade).
 
 > [!NOTE]
-> Az új Azure AD Connect kiszolgáló toostart szinkronizálási módosítások tooAzure AD engedélyezése után meg kell állítja vissza a DirSync vagy az Azure AD Sync toousing. Alacsonyabb verziójúra változtatása az Azure AD Connect toolegacy ügyfelekről, beleértve a DirSync és Azure AD Sync programot, nem támogatott, és az Azure ad-ben például adatvesztés tooissues vezethet.
+> Az új Azure AD Connect kiszolgáló elindítani a változások az Azure AD szinkronizálása engedélyezését, meg kell állítja vissza a DirSync vagy az Azure AD Sync használatával. Az Azure AD Connect a régi ügyfelek, beleértve a DirSync és Azure AD Sync programot, alacsonyabb verziójúra változtatása nem támogatott, és az Azure ad-ben például adatvesztés vezethet.
 
 ## <a name="in-place-upgrade"></a>Frissítés helyben
 Egy frissítés tér át Azure AD Sync vagy az Azure AD Connect működik. A Dirsync szolgáltatásról áthelyezésére vagy megoldás a Forefront Identity Manager (FIM) + Azure AD-összekötő nem működik.
 
-Ez a módszer használata ajánlott, ha egy önálló kiszolgáló és kisebb, mint körülbelül 100 000 objektumok. A módosításokat toohello out-of-box szinkronizálási szabályok vonatkoznak, ha egy teljes importálást és teljes szinkronizálást fordulhat elő, hello frissítés után. Ez a módszer biztosítja, hogy hello új konfigurációt alkalmazott tooall meglévő objektumok hello rendszerben. Ehhez a futtató órára is szükség lehet néhány, attól függően, hogy hello hello szinkronizálási motor hatókörében lévő objektumok száma. hello normál különbözeti szinkronizálás Feladatütemező (amely alapértelmezés szerint 30 percenként szinkronizál) fel van függesztve, de a jelszó-szinkronizálás továbbra is. Érdemes valamilyen módon hello helybeni frissítést a hétvégén. Ha hello új Azure AD Connect kiadással módosítások toohello out-of-box konfigurálásra, majd normál különbözeti importálás/szinkronizálási indítása helyette.  
+Ez a módszer használata ajánlott, ha egy önálló kiszolgáló és kisebb, mint körülbelül 100 000 objektumok. Ha nincsenek out-of-box szinkronizálási szabályok módosításait, a teljes importálás és a teljes szinkronizálás történik a frissítés után. Ez a módszer biztosítja, hogy az új konfigurációt alkalmaz az összes meglévő objektumokat a rendszer. Ehhez a futtató órára is szükség lehet néhány, attól függően, hogy a szinkronizálási motor hatókörében lévő objektumok száma. A normál különbözeti szinkronizálás ütemező (amely alapértelmezés szerint 30 percenként szinkronizál) fel van függesztve, de a jelszó-szinkronizálás továbbra is. Érdemes lehet a helyi frissítés a hétvégén. Ha az az új Azure AD Connect a out-of-box konfigurációban nem történtek változások kiadási, majd a normál különbözeti importálás vagy szinkronizálás, ehelyett elindítja.  
 ![Frissítés helyben](./media/active-directory-aadconnect-upgrade-previous-version/inplaceupgrade.png)
 
-Ha végrehajtott módosítások toohello out-of-box szinkronizálási szabályokat, majd ezek a szabályok állítja vissza toohello alapértelmezett konfigurációja a frissítés. arról, hogy a konfigurációs tárolódik a frissítések közötti toomake győződjön meg arról, hogy módosítania folyamatban ismertetett módon [ajánlott eljárások a hello alapértelmezett konfiguráció módosítása](active-directory-aadconnectsync-best-practices-changing-default-configuration.md).
+Ha a out-of-box szinkronizálási szabályok végrehajtott módosításokat, majd ezek a szabályok állítja vissza az alapértelmezett konfiguráció, a frissítés. Győződjön meg arról, hogy a frissítések közötti tárolódik a konfigurációt, győződjön meg arról, hogy módosítania folyamatban ismertetett módon [gyakorlati tanácsok az alapértelmezett konfiguráció módosításának](active-directory-aadconnectsync-best-practices-changing-default-configuration.md).
 
-Helybeni verziófrissítés során előfordulhat módosítások bevezetett meghatározott szinkronizálási tevékenységeket (beleértve a teljes importálás és a teljes szinkronizálás lépést) toobe végrehajtása a frissítés befejezése után. toodefer ilyen tevékenységek, tekintse meg a toosection [hogyan toodefer teljes szinkronizálás a frissítés után](#how-to-defer-full-synchronization-after-upgrade).
+Helybeni verziófrissítés során előfordulhat bevezetett változások, a frissítés befejezése után hajtható végre a meghatározott szinkronizálási tevékenység (beleértve a teljes importálás és a teljes szinkronizálás lépést) szükséges. Az ilyen tevékenységek késleltető, tekintse át a részt [hogyan késlelteti a frissítés után teljes szinkronizálást](#how-to-defer-full-synchronization-after-upgrade).
 
 ## <a name="swing-migration"></a>Párhuzamos migrálás
-Ha egy összetett üzembe helyezése vagy több objektumot, nem célszerű toodo hello élő rendszer helyben frissítés lehet. Egyes ügyfelek esetén ez a folyamat eltarthat több nap –, és ebben az időszakban nem változáskülönbözeteit feldolgozása. Is használhatja ezt a módszert a toomake jelentős módosításokat tooyour konfigurációjának megtervezése és tootry ahhoz, azok közben leküldött toohello felhő ki őket.
+Ha egy összetett üzembe helyezése vagy több objektumot, egy frissítés az élő rendszeren ehhez nem célszerű lehet. Egyes ügyfelek esetén ez a folyamat eltarthat több nap –, és ebben az időszakban nem változáskülönbözeteit feldolgozása. Is használhatja ezt a módszert, ha azt tervezi, hogy a konfiguráció jelentős változtatásokat, és próbálja ki őket ahhoz, azok még leküldeni a felhő szeretné.
 
-módszer forgatókönyvek esetén ajánlott hello toouse mozgó áttelepítés. (Legalább) két kiszolgáló – egy aktív kiszolgáló és egy átmeneti kiszolgálón van szüksége. (lásd az alábbi képen hello teli kék vonallal) hello aktív kiszolgáló felelős hello aktív üzemi terhelés. hello új kiadás vagy konfigurációs kiszolgálóhoz (lila szaggatott vonallal) átmeneti hello kész. Amikor teljesen készen áll, a kiszolgáló akkor aktív. hello előző aktív kiszolgáló, amely most hello régi verziója vagy a konfigurációs telepítve van, a kiszolgáló átmeneti hello történik, és frissítése.
+Ezek a forgatókönyvek az ajánlott módszer, hogy egy mozgó áttelepítési használja. (Legalább) két kiszolgáló – egy aktív kiszolgáló és egy átmeneti kiszolgálón van szüksége. (Lásd az alábbi képen látható teli kék vonallal) az aktív kiszolgáló felelős a aktív üzemi terhelés. Az átmeneti kiszolgálón (látható lila szaggatott vonallal) az új kiadási vagy konfigurációs kész. Amikor teljesen készen áll, a kiszolgáló akkor aktív. A korábbi aktív kiszolgáló, amely mostantól a régi verziója vagy a konfigurációs telepítve van, az átmeneti kiszolgálóra történik, és frissítése.
 
-két kiszolgáló hello különböző verzióit is használhatják. Például hello aktív kiszolgáló toodecommission megtervezni használhatja az Azure AD Sync, és új átmeneti kiszolgálón hello használhatja az Azure AD Connect. Ha mozgó áttelepítési toodevelop egy új konfigurációt, az a jó ötlet toohave hello ugyanezen verziókban a hello két kiszolgálóval.  
+A két kiszolgáló különböző verzióit is használhatják. Például az aktív kiszolgáló, amely le szeretné szerelni használhatja az Azure AD Sync, és az új átmeneti kiszolgálón használhatja az Azure AD Connect. Ha mozgó áttelepítés használatával fejlesztése a konfigurációt, célszerű egyeznie kell a két kiszolgálón.  
 ![Átmeneti kiszolgáló](./media/active-directory-aadconnect-upgrade-previous-version/stagingserver1.png)
 
 > [!NOTE]
-> Egyes ügyfelek előnyben részesítik a három vagy négy toohave kiszolgálók ehhez a forgatókönyvhöz. Kiszolgáló átmeneti hello frissítésekor a biztonsági kiszolgáló nem rendelkezik [vész-helyreállítási](active-directory-aadconnectsync-operations.md#disaster-recovery). Három vagy négy kiszolgálókkal előkészítheti a hello új verziójára, amely biztosítja, hogy nincs-e mindig egy átmeneti kiszolgálón, amely készen áll a tootake keresztül elsődleges vagy készenléti állapotban lévő kiszolgálók egy csoportja.
+> Egyes ügyfelek előnyben részesítik a három vagy négy kiszolgáló ehhez a forgatókönyvhöz. Az átmeneti kiszolgáló frissítve van, ha nem rendelkezik egy biztonsági kiszolgáló [vész-helyreállítási](active-directory-aadconnectsync-operations.md#disaster-recovery). Három vagy négy kiszolgálókkal készítse elő az új verzióra, amely biztosítja, hogy nincs-e mindig egy átmeneti kiszolgálón, amely kész átvenni az elsődleges vagy készenléti állapotban lévő kiszolgálók egy csoportja.
 
-Ezeket a lépéseket az Azure AD Sync vagy az Azure AD-összekötő FIM kiegészítve megoldás toomove is együttműködik. Ezeket a lépéseket a Dirsync nem működnek, de ugyanazon mozgó áttelepítési metódust használ (más néven párhuzamos üzembe helyezés) lépések DirSync hello [frissítés Azure Active Directory-szinkronizálás (DirSync)](active-directory-aadconnect-dirsync-upgrade-get-started.md).
+Ezeket a lépéseket az Azure AD Sync vagy az Azure AD-összekötő FIM kiegészítve megoldás mozgatása is működik. Ezeket a lépéseket a Dirsync nem működnek, de a azonos mozgó áttelepítés (más néven párhuzamos üzembe helyezés) lépésben DirSync módja a [frissítés Azure Active Directory-szinkronizálás (DirSync)](active-directory-aadconnect-dirsync-upgrade-get-started.md).
 
-### <a name="use-a-swing-migration-tooupgrade"></a>Egy mozgó áttelepítési tooupgrade használata
-1. Ha a kiszolgálók és a terv tooonly ellenőrizze a konfiguráció módosítása az Azure AD Connect használ, ellenőrizze, hogy az aktív kiszolgáló és az átmeneti kiszolgálón egyaránt használatával hello ugyanazt a verziót. Amelyek révén könnyebben toocompare különbségek később. Ha az Azure AD-Szinkronizálóról frissít, ezeket a kiszolgálókat különböző verziói működnek. Ha frissít, az Azure AD Connect egy korábbi verziójából származó, a rendszer egy jó ötlet toostart hello két kiszolgálókkal, amelyek segítségével hello ugyanazt a verziót, de ez nem szükséges.
-2. Ha egy egyéni konfigurációt végrehajtott, és az átmeneti kiszolgálón nincs, lépésekkel hello alatt [egyéni konfiguráció áthelyezése hello aktív kiszolgáló toohello kiszolgáló átmeneti](#move-custom-configuration-from-active-to-staging-server).
-3. Ha frissít, az Azure AD Connect egy korábbi kiadásáról, frissítse az hello átmeneti server toohello legújabb verzióra. Ha az Azure AD-Szinkronizálóról telepít át, majd az Azure AD Connect telepítése az átmeneti kiszolgálón.
-4. Lehetővé teszik a hello szinkronizálási motor futtatása teljes importálást és teljes szinkronizálást az átmeneti kiszolgálón.
-5. Győződjön meg az adott hello új konfiguráció nem következtében a nem várt módosítások a "Hitelesítés" hello lépések segítségével [ellenőrizze hello konfigurációs kiszolgáló](active-directory-aadconnectsync-operations.md#verify-the-configuration-of-a-server). Ha valami nem a várt, helyes-e, futtassa a hello importálás és szinkronizálás, és ellenőrizze a hello adatokat, amíg azt megfelelőnek tűnik, hello lépéseket követve.
-6. Kiszolgáló toobe hello aktív kiszolgáló átmeneti hello váltani. Ez az utolsó lépés hello "Kapcsoló aktív kiszolgáló" a [ellenőrizze hello konfigurációs kiszolgáló](active-directory-aadconnectsync-operations.md#verify-the-configuration-of-a-server).
-7. Ha a frissítés során az Azure AD Connect frissítése van a most átmeneti mód toohello legújabb kiadásának hello kiszolgáló. Hajtsa végre az azonos előtt tooget hello adatok és a frissített konfigurációs lépések hello. Ha frissített az Azure AD-Szinkronizálóról, ezután kapcsolja ki a és a régi kiszolgáló leszerelése.
+### <a name="use-a-swing-migration-to-upgrade"></a>Egy mozgó áttelepítés használatával frissíti
+1. Ha használja az Azure AD Connect mindkét kiszolgálón, és csak feltétlenül a konfiguráció módosítása, ellenőrizze, hogy az aktív kiszolgáló és az átmeneti kiszolgálón egyaránt ugyanazon verzióját használja. Amely megkönnyíti a különbségek később. Ha az Azure AD-Szinkronizálóról frissít, ezeket a kiszolgálókat különböző verziói működnek. Ha frissít, az Azure AD Connect egy korábbi verziójából származó, érdemes indítsa el a két kiszolgáló, amely ugyanazon verzióját használja, de ez nem szükséges.
+2. Ha egy egyéni konfigurációt végrehajtott, és az átmeneti kiszolgálón nincs, kövesse a [az aktív kiszolgáló egyéni konfigurációs áthelyezése az átmeneti kiszolgálón](#move-custom-configuration-from-active-to-staging-server).
+3. Ha az Azure AD Connect egy korábbi kiadásáról frissít, a átmeneti kiszolgáló frissítése a legújabb verzióra. Ha az Azure AD-Szinkronizálóról telepít át, majd az Azure AD Connect telepítése az átmeneti kiszolgálón.
+4. Lehetővé teszik a szinkronizálási motor teljes importálást és teljes szinkronizálást a átmeneti kiszolgálón futnak.
+5. Győződjön meg, hogy az új konfigurációt a "Hitelesítés" lépések segítségével nem okozhat váratlan módosításokat az [ellenőrizze a kiszolgáló konfigurációja](active-directory-aadconnectsync-operations.md#verify-the-configuration-of-a-server). Ha valami nem a várt módon, javítsa ki, futtassa az importálás és szinkronizálás, és ellenőrizze az adatokat, amíg azt megfelelőnek tűnik, a lépéseket követve.
+6. Váltás az aktív kiszolgáló átmeneti kiszolgálón. Ez az utolsó lépésben "Kapcsoló aktív kiszolgáló" a [ellenőrizze a kiszolgáló konfigurációja](active-directory-aadconnectsync-operations.md#verify-the-configuration-of-a-server).
+7. Ha az Azure AD Connect frissít, frissítse a kiszolgálót, amelyik most már a legújabb verzióra átmeneti módban. Ugyanazokat a lépéseket, mielőtt az adatok és a frissített konfiguráció. Ha frissített az Azure AD-Szinkronizálóról, ezután kapcsolja ki a és a régi kiszolgáló leszerelése.
 
-### <a name="move-a-custom-configuration-from-hello-active-server-toohello-staging-server"></a>Egyéni konfiguráció áthelyezése hello aktív toohello átmeneti kiszolgálót.
-Ha végrehajtott konfigurációs módosításokat toohello aktív kiszolgáló, szükség toomake meg arról, hogy azonos hello változtatások kiszolgáló átmeneti alkalmazott toohello. Ennek toohelp helyezi át, használhatja a hello [az Azure AD Connect konfigurációs dokumentáló](https://github.com/Microsoft/AADConnectConfigDocumenter).
+### <a name="move-a-custom-configuration-from-the-active-server-to-the-staging-server"></a>Az aktív kiszolgáló egyéni konfigurációs áthelyezése az átmeneti kiszolgálón
+Ha az aktív kiszolgáló végrehajtott konfigurációs módosításokat, győződjön meg arról, hogy az azonos módosításai érvényesek lesznek a átmeneti kiszolgálón szeretné. Az áthelyezés érdekében használhatja a [az Azure AD Connect konfigurációs dokumentáló](https://github.com/Microsoft/AADConnectConfigDocumenter).
 
-Áthelyezheti hello egyéni szinkronizálási szabályokat, hogy a PowerShell használatával létrehozott. Telepítenie kell az egyéb módosítások hello ugyanúgy egyaránt rendszerek, és nem telepíthető át hello módosításokat. Hello [konfigurációs dokumentáló](https://github.com/Microsoft/AADConnectConfigDocumenter) hello két rendszerek toomake meg arról, hogy azok egyezését összehasonlításával nyújt segítséget. Ebben a szakaszban található hello lépéseket automatizálását is segíthetnek hello eszköz.
+Áthelyezheti az egyéni szinkronizálási szabályokat, hogy a PowerShell használatával létrehozott. Telepítenie kell az egyéb módosítások ugyanúgy mindkét rendszeren, és nem telepíthető át a módosításokat. A [konfigurációs dokumentáló](https://github.com/Microsoft/AADConnectConfigDocumenter) segítségével összehasonlítja a két rendszer számára, győződjön meg arról, hogy azok egyezését. Az eszköz is segíthetnek az ebben a szakaszban található lépéseket automatizálását.
 
-Tooconfigure hello következőkre lesz szüksége dolgot hello azonos módon mindkét kiszolgálón:
+Mindkét kiszolgálón ugyanúgy konfigurálja a következőket kell:
 
-* Kapcsolat toohello azonos erdőben
+* Az azonos erdők kapcsolat
 * Bármely tartomány és szervezeti egységek szűrése
-* hello azonos választható funkciók, például a jelszó-szinkronizálás és jelszóvisszaíró
+* A választható szolgáltatásait, például a jelszó-szinkronizálás és jelszóvisszaíró
 
 **Helyezze át az egyéni szinkronizálási szabályok**  
-toomove egyéni szinkronizálási szabályait, hello a következő:
+Egyéni szinkronizálási szabályok áthelyezni, tegye a következőket:
 
 1. Nyissa meg **szinkronizálási szabályok szerkesztő** az aktív kiszolgálón.
-2. Jelöljön ki egy egyéni szabályt. Kattintson a **exportálása**. Ekkor megjelenik a Jegyzettömb ablak. Hello ideiglenes fájl mentése PS1 kiterjesztéssel. Így egy PowerShell-parancsfájlt. Hello PS1 fájl toohello kiszolgáló átmeneti másolja.  
+2. Jelöljön ki egy egyéni szabályt. Kattintson a **exportálása**. Ekkor megjelenik a Jegyzettömb ablak. Az ideiglenes fájl mentése PS1 kiterjesztéssel. Így egy PowerShell-parancsfájlt. Az átmeneti kiszolgálón másolja a PS1 fájlnevet.  
    ![Szinkronizálási szabály exportálása](./media/active-directory-aadconnect-upgrade-previous-version/exportrule.png)
-3. hello összekötő GUID kiszolgáló átmeneti hello eltérő, és akkor kell megváltoztatnia. tooget hello GUID, indítsa el **szinkronizálási szabályok szerkesztő**, válasszon egyet a hello out-of-box szabályok azonos rendszer csatlakozott, majd kattintson az adott jelentik hello **exportálása**. Cserélje le a kiszolgáló átmeneti hello GUID hello hello GUID az a PS1 fájlnevet.
-4. A PowerShell-parancssorból futtassa a hello PS1 fájlt. Ez server átmeneti hello hello egyéni szinkronizálási szabályt hoz létre.
+3. Az összekötő GUID azonosítója nem egyezik a átmeneti kiszolgálón, és akkor kell megváltoztatnia. Ahhoz, hogy a GUID, indítsa el a **szinkronizálási szabályok szerkesztő**, válasszon egyet a out-of-box szabályokat, amelyek megfelelnek az adott csatlakoztatott rendszer, majd kattintson a **exportálása**. Az a PS1 fájlnevet a globálisan egyedi Azonosítót cserélje le a GUID-Azonosítójának a átmeneti kiszolgálón.
+4. Egy PowerShell-parancssorba futtassa a PS1 fájlnevet. Ez az egyéni szinkronizálási szabályt a átmeneti kiszolgálón hoz létre.
 5. Ismételje meg ezt az egyéni szabályok.
 
-## <a name="how-toodefer-full-synchronization-after-upgrade"></a>Hogyan toodefer teljes szinkronizálás a frissítés után
-Helybeni verziófrissítés során előfordulhat bevezetett változások meghatározott szinkronizálási tevékenységeket (beleértve a teljes importálás és a teljes szinkronizálás lépést) toobe végre igénylő. Például összekötő séma módosításához **teljes importálás** lépés és out-of-box szinkronizálási szabály módosításához **teljes szinkronizálás** lépést végre a fertőzött összekötők toobe. A frissítés során az Azure AD Connect meghatározza, hogy milyen szinkronizálási tevékenységek szükségesek, és rögzíti őket *felülbírálások*. A következő szinkronizálási ciklusban hello hello szinkronizálási Feladatütemező szerzi be ezeket a felülbírálásokat, és végrehajtja azokat. Felülbírálás sikeresen végre, ha eltávolítják azt.
+## <a name="how-to-defer-full-synchronization-after-upgrade"></a>Hogyan késlelteti a frissítés után teljes szinkronizálást
+Helybeni verziófrissítés során előfordulhat módosítások bevezetett (beleértve a teljes importálás és a teljes szinkronizálás lépést) adott szinkronizálási műveleteket hajthatnak végre. Például összekötő séma módosításához **teljes importálás** lépés és out-of-box szinkronizálási szabály módosításához **teljes szinkronizálás** lépéssel hajtható végre az érintett összekötőt. A frissítés során az Azure AD Connect meghatározza, hogy milyen szinkronizálási tevékenységek szükségesek, és rögzíti őket *felülbírálások*. A következő szinkronizálási ciklusban a szinkronizálás Feladatütemező szerzi be ezeket a felülbírálásokat, és végrehajtja azokat. Felülbírálás sikeresen végre, ha eltávolítják azt.
 
-Előfordulhat, hogy esetekben nem célszerű a felülbírálások tootake hely közvetlenül a frissítés után. Például számos szinkronizált objektummal rendelkezik, és azt szeretné, a szinkronizálás lépéseket toooccur munkaidő után. Ezek a felülbírálások tooremove:
+Előfordulhat, hogy esetekben nem célszerű ezeket a felülbírálásokat közvetlenül a frissítés után kerül sor. Például számos szinkronizált objektummal rendelkezik, és azt szeretné, hogy szinkronizálás lépések munkaidő után következik be. Ezeket a felülbírálásokat eltávolítása:
 
-1. A frissítés során **, törölje a jelet** beállítás hello **hello szinkronizálási folyamat indítása, ha a konfiguráció befejezése**. Ezzel letiltja a hello szinkronizálási Feladatütemező, és megakadályozza, hogy a szinkronizálási ciklust megakadályozhat automatikusan hello felülbírálások eltávolítása előtt.
+1. A frissítés során **, törölje a jelet** beállítás **a szinkronizálási folyamat indítása, ha a konfiguráció befejezése**. Ezzel letiltja a a szinkronizálási Feladatütemező, és megakadályozza, hogy a szinkronizálási ciklust megakadályozhat automatikusan előtt a rendszer eltávolítja a felülbírálások.
 
    ![DisableFullSyncAfterUpgrade](./media/active-directory-aadconnect-upgrade-previous-version/disablefullsync01.png)
 
-2. Frissítés befejezése után futtassa a következő parancsmag toofind, mely a felülbírálások hozzá vannak adva hello:`Get-ADSyncSchedulerConnectorOverride | fl`
+2. Frissítés befejezése után futtassa az alábbi parancsmagot, hogy megtudja, milyen felülbírálások lettek hozzáadva:`Get-ADSyncSchedulerConnectorOverride | fl`
 
    >[!NOTE]
-   > hello felülbírálások connector-specifikus. Hello a következő példa, a teljes importálás és a teljes szinkronizálás lépést hozzáadott tooboth hello a helyszíni AD-összekötő és az Azure AD-összekötőt.
+   > A felülbírálások connector-specifikus. A következő példában a teljes importálás és a teljes szinkronizálás lépést lettek hozzáadva mind a helyszíni AD-összekötő és az Azure AD-összekötőt.
 
    ![DisableFullSyncAfterUpgrade](./media/active-directory-aadconnect-upgrade-previous-version/disablefullsync02.png)
 
-3. Jegyezze fel, amelyek hozzá vannak adva hello meglévő felülbírálások.
+3. Jegyezze fel a meglévő felülbírálások hozzáadott.
    
-4. tooremove hello felülbírálja a teljes importálás és a teljes szinkronizálás egy tetszőleges összekötőn, futtassa a következő parancsmag hello:`Set-ADSyncSchedulerConnectorOverride -ConnectorIdentifier <Guid-of-ConnectorIdentifier> -FullImportRequired $false -FullSyncRequired $false`
+4. A felülbírálásokat is teljes importálást és teljes szinkronizálást egy tetszőleges összekötőn eltávolításához futtassa a következő parancsmagot:`Set-ADSyncSchedulerConnectorOverride -ConnectorIdentifier <Guid-of-ConnectorIdentifier> -FullImportRequired $false -FullSyncRequired $false`
 
-   tooremove hello felülbírálások összekötők, a következő PowerShell-parancsfájl hello hajtható végre:
+   Távolítsa el az összes összekötőt a felülbírálások, hajtsa végre a következő PowerShell-parancsfájlt:
 
    ```
    foreach ($connectorOverride in Get-ADSyncSchedulerConnectorOverride)
@@ -120,12 +120,12 @@ Előfordulhat, hogy esetekben nem célszerű a felülbírálások tootake hely k
    }
    ```
 
-5. tooresume hello Feladatütemező, futtassa a következő parancsmag hello:`Set-ADSyncScheduler -SyncCycleEnabled $true`
+5. Az ütemező folytatásához futtassa az alábbi parancsmagot:`Set-ADSyncScheduler -SyncCycleEnabled $true`
 
    >[!IMPORTANT]
-   > Ne felejtse el tooexecute szükséges hello szinkronizálásának lépései legkorábbi tetszés. Manuálisan hajtható végre ezeket a lépéseket hello Synchronization Service Manager használatával, vagy hello felülbírálások vissza a hello Set-ADSyncSchedulerConnectorOverride parancsmag használatával adja hozzá.
+   > Ne felejtse el a szükséges szinkronizálásának lépései legkorábbi tetszés hajtható végre. Manuálisan hajtható végre ezeket a lépéseket a Synchronization Service Manager használatával, vagy adja hozzá a felülbírálások biztonsági másolatot, a Set-ADSyncSchedulerConnectorOverride parancsmaggal.
 
-tooadd hello felülbírálja a teljes importálás és a teljes szinkronizálás egy tetszőleges összekötőn, futtassa a következő parancsmag hello:`Set-ADSyncSchedulerConnectorOverride -ConnectorIdentifier <Guid> -FullImportRequired $true -FullSyncRequired $true`
+A teljes importálás és a teljes szinkronizálás felülbírálásokat egy tetszőleges összekötő hozzáadásához futtassa az alábbi parancsmagot:`Set-ADSyncSchedulerConnectorOverride -ConnectorIdentifier <Guid> -FullImportRequired $true -FullSyncRequired $true`
 
 ## <a name="next-steps"></a>Következő lépések
 További információ [a helyszíni identitások integrálása az Azure Active Directoryval](active-directory-aadconnect.md).

@@ -1,8 +1,8 @@
 ---
-title: "Media Services dokumentációjában - oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
-description: "Ismerje meg, hogyan toosecurely videolejátszás igény szerinti és élő közvetítés minőségű Media Services egy bővíthető felhő platform. Oktatóanyagok, API-referenciák és egyebek."
+title: "Az Azure Media Services dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg, hogyan streamelhet biztonságosan igény szerinti vagy élő, médiaszínvonalú videókat a Media Services bővíthető felhőalapú platform használatával. Oktatóanyagok, API-referenciák és egyebek."
 services: media-services
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: c36b7dbf14434e7aadc38f2c74ca7d3830a1bd3f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 809595570f1c82ff6ff99bc15bf813560510e7f2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="media-services-documentation"></a>Media Services – dokumentáció
 
-Megtudhatja, hogyan toostream szórás minőségű videó Media Services egy bővíthető felhő platform. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt bemutatják, hogyan toosecurely igény biztosíthat élő és video- vagy adatfolyamok toomillions felhasználók méretezhető.
+Ismerje meg, hogyan streamelhet médiaszínvonalú videókat a Media Services bővíthető felhőalapú platform használatával. Az oktatóanyagok, API-referenciák és az egyéb dokumentációk bemutatják, hogyan közvetíthet biztonságosan igény szerinti vagy élő videó- és audióstreameket akár felhasználók millióira méretezhetően is.
 
 <ul class="panelContent cardsFTitle">
      <li>
@@ -70,7 +70,7 @@ Megtudhatja, hogyan toostream szórás minőségű videó Media Services egy bő
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Ismerkedés az Azure Media Services hello Azure portál használatával</h3>
+                        <h3>Bevezetés az Azure Media Services Azure Portallal való használatába</h3>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@ Megtudhatja, hogyan toostream szórás minőségű videó Media Services egy bő
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Hozzon létre egy Azure Media Services-fiók hello Azure portál használatával</h3>
+                        <h3>Azure Media Services-fiók létrehozása az Azure Portal használatával</h3>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@ Megtudhatja, hogyan toostream szórás minőségű videó Media Services egy bő
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Hello Azure portál használatával elindított szállító tartalmának lekérdezése</h3>
+                        <h3>Tartalomtovábbítás az Azure Portal használatával</h3>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 ---
-title: "aaaFind tevékenység jelentései hello Azure portálon |} Microsoft Docs"
-description: "Ismerje meg, hogyan toofind Azure Active Directory-tevékenység jelentései hello Azure-portálon."
+title: "Az Azure portálon található Tevékenységjelentések |} Microsoft Docs"
+description: "Útmutató: Azure Active Directory Tevékenységjelentések az Azure portálon található."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,19 +15,19 @@ ms.workload: identity
 ms.date: 07/19/2017
 ms.author: dhanyahk;markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: f8d7a968403e10ccc5319f27fedad38b1553ded0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f1875582476c3817b9eb0082b6548cc15043cb98
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="find-activity-reports-in-hello-azure-portal"></a>Tevékenységjelentések található hello Azure-portálon
+# <a name="find-activity-reports-in-the-azure-portal"></a>Az Azure portálon található Tevékenységjelentések
 
-Ha hello Azure klasszikus portál toohello az Azure-portálon, kap egy új tevékenységi naplóit Azure Active Directory (Azure AD) nézze meg. Az egy nemrég végrehajtott [blogbejegyzés](https://blogs.technet.microsoft.com/enterprisemobility/2016/11/08/azuread-weve-just-turned-on-detailed-auditing-and-sign-in-logs-in-the-new-azure-portal/), azt ismertetik, hogyan láthatja, tevékenység dolgozik a hello Azure-portálon hello erőforrás hello környezetében naplózza. Ez a cikk azt ismerteti hogyan toofind jelent a hello hello Azure-portálon a klasszikus Azure portálon használt.
+Ha a klasszikus Azure portálon az Azure portálra, kap egy új Azure Active Directory (Azure AD) tevékenységi naplóit pillantást. Az egy nemrég végrehajtott [blogbejegyzés](https://blogs.technet.microsoft.com/enterprisemobility/2016/11/08/azuread-weve-just-turned-on-detailed-auditing-and-sign-in-logs-in-the-new-azure-portal/), azt ismertetik, hogyan láthatja, tevékenység naplózza az Azure-portálon dolgoznak erőforrás környezetében. Ez a cikk azt ismerteti, hogyan használt jelentéseket a klasszikus Azure-portálon az Azure portálon található.
 
 ## <a name="whats-new"></a>Újdonságok
 
-A klasszikus Azure portálon hello jelentések kategóriába oszthatók:
+A klasszikus Azure portálon jelentések kategóriába oszthatók:
 
 1.  Biztonsági jelentések
 2.  Tevékenységjelentések
@@ -35,13 +35,13 @@ A klasszikus Azure portálon hello jelentések kategóriába oszthatók:
 
 ### <a name="activity-and-integrated-app-reports"></a>Tevékenység és integrált alkalmazás jelentések
 
-Környezetfüggő jelentéseihez hello Azure-portálon, a meglévő jelentések egyesülnek egyetlen nézetben. Egyetlen, a mögöttes API hello adatok toohello nézetét biztosítja.
+Környezetfüggő jelentéskészítés az Azure portálon, a meglévő jelentések egyesülnek egyetlen nézetben. Egyetlen, a nézet az adatokat az alapul szolgáló API nyújt.
 
-e nézet, a hello toosee **Azure Active Directory** panel alatt **tevékenység**, jelölje be **naplók**.
+Ebben a nézetben tekintheti meg a **Azure Active Directory** panel alatt **tevékenység**, jelölje be **naplók**.
 
 ![Naplók](./media/active-directory-reporting-migration/482.png "Naplók")
 
-a következő jelentések hello ebben a nézetben van összevonva:
+Az alábbi jelentések az ebben a nézetben van összevonva:
 
 -   Ellenőrzési jelentés
 -   Jelszó-visszaállítási tevékenység
@@ -53,25 +53,25 @@ a következő jelentések hello ebben a nézetben van összevonva:
 -   Alkalmazás-kiépítési hibák
 
 
-Alkalmazás használati jelentés hello bővült, és szerepel a hello **bejelentkezések** nézet. e nézet, a hello toosee **Azure Active Directory** panel alatt **tevékenység**, jelölje be **bejelentkezések**.
+Az alkalmazás használati jelentés bővült, és szerepel a **bejelentkezések** nézet. Ebben a nézetben tekintheti meg a **Azure Active Directory** panel alatt **tevékenység**, jelölje be **bejelentkezések**.
 
 ![Bejelentkezések nézet](./media/active-directory-reporting-migration/483.png "bejelentkezések megtekintése")
 
-Hello **bejelentkezések** nézet tartalmazza az összes felhasználói bejelentkezéseket. Használhatja az információk tooget alkalmazás használati adatait. Is megtekintheti az alkalmazásadatok használati hello **vállalati alkalmazások** áttekintése, a hello **kezelése** szakasz.
+A **bejelentkezések** nézet tartalmazza az összes felhasználói bejelentkezéseket. Ez az információ segítségével alkalmazás használati adatok. Az alkalmazás használati adatai is megtekintheti a **vállalati alkalmazások** áttekintése, a a **kezelése** szakasz.
 
 ![Vállalati alkalmazások](./media/active-directory-reporting-migration/484.png "vállalati alkalmazások")
 
 ## <a name="access-a-specific-report"></a>Hozzáférés egy adott jelentés
 
-Bár az Azure-portálon hello egyetlen nézetben kínál, is vessen egy pillantást konkrét jelentéseket.
+Bár az Azure-portálon egyetlen nézetben kínál, is vessen egy pillantást konkrét jelentéseket.
 
 ### <a name="audit-logs"></a>Naplók
 
-A válasz toocustomer visszajelzést hello Azure-portálon, használhatja a speciális szűrési tooaccess hello kívánt adatokat is. Használhat egy szűrő egy *tevékenységkategóriákkal*, hello különböző típusú tevékenység sorolja fel, amelyek naplózza az Azure AD-ben. toonarrow eredmények toowhat keres, kiválaszthatja, hogy egy kategóriát.
+Az ügyfelek visszajelzései alapján, az Azure portálon használhatja a speciális szűrési férhetnek hozzá a kívánt adathoz. Használhat egy szűrő egy *tevékenységkategóriákkal*, amely felsorolja a különböző típusú tevékenység naplózza az Azure AD-ben. Éppen megtekintett eredmények szűkítéséhez is válasszon egy kategóriát.
 
-Például ha érdekli, csak a tevékenységek kapcsolódó tooself-szolgáltatás jelszó-átállításra, választhat hello **önkiszolgáló jelszókezelés** kategóriát. hello kategóriák látja dolgozik hello erőforrás alapulnak.  
+Például ha érdekli, csak az önkiszolgáló jelszó-átállításra kapcsolatos tevékenységeit, választhatja a **önkiszolgáló jelszókezelés** kategóriát. A kategóriák, megjelenik az erőforrás-használata alapulnak.  
 
-![Kategória beállítások hello szűrő naplók lapon](./media/active-directory-reporting-migration/06.png "hello szűrő naplók lapon kategória beállításai")
+![A szűrő naplók oldalon kategória beállítások](./media/active-directory-reporting-migration/06.png "szűrő Naplók lapján található kategória beállítások")
 
 Tevékenységkategóriák a következők:
 
@@ -82,7 +82,7 @@ Tevékenységkategóriák a következők:
 
 ### <a name="application-usage"></a>Az alkalmazás használatának
 
-az összes olyan alkalmazáshoz, vagy egy önálló alkalmazás, az alkalmazások használatára vonatkozó a részletek tooview **tevékenység**, jelölje be **bejelentkezések**. toonarrow hello eredmény elérése érdekében szűrheti a felhasználó vagy alkalmazás nevét.
+Az összes olyan alkalmazáshoz, vagy egy önálló alkalmazás, az alkalmazás használati adatainak megtekintéséhez az **tevékenység**, jelölje be **bejelentkezések**. Az eredmények szűkítéséhez szűrheti a felhasználó vagy alkalmazás nevét.
 
 ![Szűrő bejelentkezési események lapot](./media/active-directory-reporting-migration/07.png "bejelentkezési események szűrése lap")
 
@@ -90,32 +90,32 @@ az összes olyan alkalmazáshoz, vagy egy önálló alkalmazás, az alkalmazáso
 
 #### <a name="azure-ad-anomalous-activity-reports"></a>Az Azure AD rendellenes tevékenységet jelentések
 
-Az Azure AD rendellenes tevékenységet biztonsági jelentéseit a klasszikus Azure portálon hello konszolidált tooprovide volt, egy, a központi nézettel. Ebben a nézetben látható az összes biztonsági kockázati eseményekről, hogy az Azure AD képesek észlelni és jelentést.
+Az Azure AD rendellenes tevékenységet biztonsági biztosítja, hogy a központi nézet egy, az engedélyezés jelentéseit a klasszikus Azure portálon. Ebben a nézetben látható az összes biztonsági kockázati eseményekről, hogy az Azure AD képesek észlelni és jelentést.
 
-hello a következő táblázat felsorolja a hello Azure AD rendellenes tevékenységet biztonsági jelentések és a megfelelő kockázat eseménytípusok hello Azure-portálon.
+A következő tábla listák az Azure AD rendellenes tevékenységet biztonsági jelentések, és a kockázati esemény típusával azonos Azure-portálon.
 
 | Az Azure AD rendellenes tevékenységgel kapcsolatos jelentés |  Identity protection kockázati esemény típusa|
 | :--- | :--- |
 | Felhasználók, akiknek kiszivárogtak a hitelesítő adatai | Kiszivárgott hitelesítő adatok |
-| Rendszertelen bejelentkezési tevékenység | Lehetetlen odautazás tooatypical helyek |
+| Rendszertelen bejelentkezési tevékenység | Bejelentkezés szokatlan helyekről |
 | Bejelentkezések potenciálisan fertőzött eszközökről | Bejelentkezések fertőzött eszközökről|
 | Bejelentkezések ismeretlen forrásokról | Névtelen IP-címről történő bejelentkezések |
 | Bejelentkezések gyanús tevékenységeket mutató IP-címekkel | Bejelentkezések gyanús tevékenységeket mutató IP-címekkel |
 | - | Ismeretlen helyekről történt bejelentkezések |
 
-az Azure AD rendellenes tevékenységet biztonsági következő hello jelentések nem tartoznak kockázati események hello Azure-portálon:
+A következő Azure AD rendellenes tevékenységet biztonsági jelentések nem tartoznak kockázati eseményekről az Azure-portálon:
 
 * Több hibát követő bejelentkezések
 * Bejelentkezések különböző földrajzi régiókból
 
-Ezek a jelentések továbbra is elérhetőek hello a klasszikus Azure portálon, de azok elavulttá válik a jövőbeli hello valamikor.
+Ezek a jelentések továbbra is elérhetők, a klasszikus Azure portálon, de azok a jövőben elavulttá válik.
 
 További információkért tekintse át [Az Azure Active Directory kockázati eseményeivel](active-directory-identity-protection-risk-events.md) foglalkozó cikket.  
 
 
 #### <a name="detected-risk-events"></a>Észlelt kockázati események
 
-Hello Azure-portálon, Ön hozzáférhet hello észlelt kockázati események kapcsolatos jelentéseket **Azure Active Directory** panel alatt **biztonsági**. A következő jelentések hello észlelt kockázati események követi:   
+Az Azure-portálon hozzáférhet észlelt kockázati események jelentéseket a a **Azure Active Directory** panel alatt **biztonsági**. Az alábbi jelentések észlelt kockázati események követi:   
 
 - Felhasználók veszélyben
 - Kockázatos bejelentkezések
@@ -124,19 +124,19 @@ Hello Azure-portálon, Ön hozzáférhet hello észlelt kockázati események ka
 
 Biztonsági jelentésekkel kapcsolatos további információkért lásd:
 
-- [A kockázat biztonsági jelentés hello Azure Active Directory portálon felhasználója](active-directory-reporting-security-user-at-risk.md)
-- [Kockázatos bejelentkezések jelentés hello Azure Active Directory portálon](active-directory-reporting-security-risky-sign-ins.md)
+- [Kockázati biztonsági jelentést az Azure Active Directory portálon a felhasználók](active-directory-reporting-security-user-at-risk.md)
+- [Az Azure Active Directory portálon kockázatos bejelentkezések jelentés](active-directory-reporting-security-risky-sign-ins.md)
 
 
-## <a name="activity-reports-in-hello-azure-classic-portal-vs-hello-azure-portal"></a>Tevékenységjelentések a hello hello Azure-portál és a klasszikus Azure portálon
+## <a name="activity-reports-in-the-azure-classic-portal-vs-the-azure-portal"></a>Az Azure-portál és a klasszikus Azure portálon Tevékenységjelentések
 
-hello ebben a szakaszban szereplő táblázat hello a klasszikus Azure portálon a meglévő jelentéseken. Azt is bemutatja, hogyan férhetnek hello ugyanazokat az információkat a hello Azure-portálon.
+Ez a szakasz a táblázat meglévő jelentések a klasszikus Azure portálon. Azt is bemutatja, hogyan férhetnek ugyanazokat az információkat az Azure portálon.
 
-minden tooview adatok, a hello naplózása **Azure Active Directory** panelen, a **tevékenység**, lépjen túl**a naplók**.
+Összes naplózási adatok megtekintéséhez a **Azure Active Directory** panelen, a **tevékenység**, és **naplók**.
 
 ![Naplók](./media/active-directory-reporting-migration/61.png "Naplók")
 
-| klasszikus Azure portál                 | az Azure-portálon hello toofind                                                         |
+| klasszikus Azure portál                 | Az Azure portálon található                                                         |
 | ---                                  | ---                                                                        |
 | Naplók                           | A **Tevékenységkategóriákkal**, jelölje be **Core Directory**.                       |
 | Jelszó-visszaállítási tevékenység              | A **Tevékenységkategóriákkal**, jelölje be **önkiszolgáló jelszókezelés**. |
@@ -147,11 +147,11 @@ minden tooview adatok, a hello naplózása **Azure Active Directory** panelen, a
 | Alkalmazás-kiépítési hibák          | A **Tevékenységkategóriákkal**, jelölje be **fiók a felhasználók átadása**.        |
 | Office365 csoport nevének módosítása         | A **Tevékenységkategóriákkal**, jelölje be **önkiszolgáló jelszókezelés**. A **tevékenység erőforrástípus**, jelölje be **csoport**. A **tevékenység forrása**, jelölje be **Office 365-csoportok**.|
 
-tooview hello **Alkalmazáshasználat** jelentésére hello **Azure Active Directory** panel alatt **kezelése**, jelölje be **vállalati alkalmazások**, majd válassza ki **bejelentkezések**.
+Megtekintéséhez a **Alkalmazáshasználat** jelentés, az a **Azure Active Directory** panelen, a **kezelése**, jelölje be **vállalati alkalmazások**, Válassza ki és **bejelentkezések**.
 
 
 ![Vállalati alkalmazások bejelentkezések jelentés](./media/active-directory-reporting-migration/199.png "vállalati alkalmazások bejelentkezések jelentés")
 
 ## <a name="next-steps"></a>Következő lépések
 
-Jelentéskészítési áttekintését lásd: hello [Azure Active Directory reporting](active-directory-reporting-azure-portal.md).
+A jelentéskészítés áttekintéséért lásd: [Jelentéskészítés az Azure Active Directoryban](active-directory-reporting-azure-portal.md).

@@ -1,6 +1,6 @@
 ---
-title: "aaaDefinine és az Azure mikroszolgáltatások állapot kezelése |} Microsoft Docs"
-description: "Hogyan toodefine és kezelheti a Service Fabric szolgáltatás állapota"
+title: "Definine és az Azure mikroszolgáltatások állapot kezelése |} Microsoft Docs"
+description: "Hogyan határozhatja meg és kezelheti a Service Fabric szolgáltatás állapota"
 services: service-fabric
 documentationcenter: .net
 author: masnider
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: 4a24696da71753d0f343a86df3556b5b7c964834
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2f7835fab175bdb7ef7ce3894cab9e09a39457f3
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="service-state"></a>Szolgáltatás állapota
-**Szolgáltatás állapota** toohello a memóriában vagy a lemez adatokkal, hogy a szolgáltatás futtatásához szükséges toofunction hivatkozik. Ez magában foglalja, például hello adatstruktúrák és tagváltozók hello szolgáltatás olvas és ír toodo munkahelyi. Attól függően, hogy hogyan hello szolgáltatás tervezett azt is tartalmazhatnak fájlokat vagy más erőforrásokat, amelyek tárolása a lemezen. Hello fájlok, például egy adatbázis toostore adatok és a tranzakciós naplók használna.
+**Szolgáltatás állapota** a memóriában vagy lemez-adatokat a szolgáltatás működéséhez szükséges. Ez magában foglalja, például adatstruktúrák és tagváltozók, amely a szolgáltatás olvas és ír működnek. Attól függően, hogy a szolgáltatás tervezett azt is tartalmazhatnak fájlokat vagy más erőforrásokat, amelyek tárolása a lemezen. Például a fájlok egy adatbázis használna adatok és a tranzakciós naplók tárolásához.
 
 Példa szolgáltatásként Mérlegeljük, egy Számológép. Egy egyszerű számológép szolgáltatás időt vesz igénybe a két szám, és az összegét adja vissza. Magában foglalja a számítást, nem tagváltozók és egyéb adatait.
 
-Most pedig nézzük meg ugyanazon Számológép hello, de egy további módszer tárolásához és hello utolsó sum visszaadó kiszámította. Ez a szolgáltatás jelenleg állapot-nyilvántartó. Állapotalapú alkalmazások és szolgáltatások azt jelenti, hogy néhány állapotát, írja az toowhen kiszámítja új összege, és ha tegye fel azt tooreturn hello utolsó számított összege olvas tartalmaz.
+Most pedig nézzük meg az azonos Számológép, de egy további módszer tárolásához és az utolsó összeg visszaadó kiszámította. Ez a szolgáltatás jelenleg állapot-nyilvántartó. Állapotalapú alkalmazások és szolgáltatások azt jelenti, hogy néhány állapotba, ha kiszámítja új összege, és amikor kérje meg, hogy térjen vissza a legutóbbi számított összege olvas ír tartalmaz.
 
-Az Azure Service Fabric hello első szolgáltatás állapotmentes szolgáltatások neve. második hello szolgáltatást egy állapotalapú szolgáltatás neve.
+Az Azure Service Fabric az első szolgáltatás állapotmentes szolgáltatások neve. A második szolgáltatás egy állapotalapú szolgáltatás neve.
 
 ## <a name="storing-service-state"></a>Tárolja a szolgáltatás állapota
-Állam vagy externalized vagy közös elhelyezésű hello kóddal, amely van hello állapot kezelésére. Állapot externalization általában egy külső adatbázis használatával hajtható végre, vagy egyéb adatok tárolására, hogy fut a különböző gépeken hello hálózaton keresztül, vagy a folyamaton kívüli hello egyazon számítógépen. A Számológép példánkban hello adattár lehet egy SQL database vagy az Azure Table-tároló példányát. Minden kérelem toocompute hello sum frissítést végez ezeken az adatokon, és toohello szolgáltatás tooreturn hello értéket eredményez hello aktuális érték hello áruházból lehívott alatt álló kérelmek. 
+Állam vagy externalized vagy közösen elhelyezett a kódot, amely az az állapot kezelésére. Állapot externalization általában egy külső adatbázis vagy más adattárolóbeli tárolására, a hálózaton keresztül, vagy ugyanazon a számítógépen a folyamaton kívüli különböző gépeken futó használatával hajtható végre. A Számológép példánkban az adattár lehet egy SQL database vagy az Azure Table-tároló példányát. Az összeg kiszámításához kérelmek frissítést végez ezeken az adatokon, és a szolgáltatás arra kéri, hogy az érték eredményt az áruházból lehívott éppen aktuális értéke. 
 
-Állapot is is elhelyezhető hello kóddal, amely kezeli a hello állapotát. Ez a modell használatával a Service Fabric állapotalapú szolgáltatások általában készített. A Service Fabric hello infrastruktúra tooensure, hogy magas rendelkezésre áll, következetes és tartós ebben az állapotban, és könnyedén méretezhető, hogy hello szolgáltatások beépített ily módon biztosít.
+Lehet, hogy állapota is együtt a kódot, amely kezeli a állapotát. Ez a modell használatával a Service Fabric állapotalapú szolgáltatások általában készített. Győződjön meg arról, hogy a magas rendelkezésre áll, következetes és tartós ebben az állapotban, és, hogy a szolgáltatások beépített ily módon egyszerűen méretezhető infrastruktúrát biztosít a Service Fabric.
 
 ## <a name="next-steps"></a>Következő lépések
-A Service Fabric fogalmakat további információkért tekintse meg a következő cikkek hello:
+A Service Fabric fogalmakat további információkért tekintse meg a következő cikkeket:
 
 * [A Service Fabric-szolgáltatások rendelkezésre állása](service-fabric-availability-services.md)
 * [Méretezhetőséget biztosít a Service Fabric-szolgáltatások](service-fabric-concepts-scalability.md)

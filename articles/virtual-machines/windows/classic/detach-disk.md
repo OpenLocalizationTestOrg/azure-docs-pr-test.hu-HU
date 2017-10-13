@@ -1,6 +1,6 @@
 ---
-title: "a Windows virtuális lemez aaaDetach |} Microsoft Docs"
-description: "Ismerje meg, hogy toodetach egy lemezt a virtuális gép az Azure-ban hello klasszikus üzembe helyezési modellben."
+title: "A lemezt leválasztani a virtuális gép Windows |} Microsoft Docs"
+description: "Ismerje meg a lemezt leválasztani a virtuális gép az Azure-ban a klasszikus üzembe helyezési modellben."
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,19 +15,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/24/2017
 ms.author: cynthn
-ms.openlocfilehash: 6f4fda46b13ec83aed6051dd3c6459a9979de131
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 650c7e10150b95a6ad7cd455746f7c1d77b9b34c
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-toodetach-a-disk-from-a-windows-virtual-machine"></a>Hogyan toodetach egy lemezt a Windows virtuális gép
+# <a name="how-to-detach-a-disk-from-a-windows-virtual-machine"></a>Lemez leválasztása windowsos virtuális gépről
 > [!IMPORTANT]
-> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../resource-manager-deployment-model.md). Ez a cikk hello klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén hello Resource Manager modellt használja. Hogyan használatával toodetach hello erőforrás-kezelő információt objektummodell [Itt](../../virtual-machines-windows-detach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../resource-manager-deployment-model.md). Ez a cikk a klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén a Resource Manager modellt használja. A Resource Manager modellt használó lemez leválasztása kapcsolatos információkért lásd: [Itt](../../virtual-machines-windows-detach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 [!INCLUDE [howto-detach-disk-windows-linux](../../../../includes/howto-detach-disk-windows-linux.md)]
 
 ## <a name="additional-resources"></a>További források
 [Lemez és virtuális merevlemezek a virtuális gépek](../about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-[Hogyan tooattach az adatok lemezre tooa Windows rendszerű virtuális gép](attach-disk.md)
+[Hogyan lehet adatlemezt csatolni egy Windows rendszerű virtuális gép](attach-disk.md)

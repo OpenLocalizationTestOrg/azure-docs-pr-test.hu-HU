@@ -1,6 +1,6 @@
 ---
 title: "Az Azure AD Connect: Deklaratív kiépítés kifejezéseinek |} Microsoft Docs"
-description: "Hello deklaratív kiépítés kifejezéseinek ismerteti."
+description: "A deklaratív kiépítés kifejezéseinek ismerteti."
 services: active-directory
 documentationcenter: 
 author: andkjell
@@ -14,59 +14,59 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 516bcf1991c608d33aefc19551254d8b2bfc024f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e3a03a97b10e04fb85261620879b2102e1db8465
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-ad-connect-sync-understanding-declarative-provisioning-expressions"></a>Azure AD Connect szinkronizálása: deklaratív kiépítés kifejezések ismertetése
-Azure AD Connect szinkronizálása épít deklaratív kiépítés először a Forefront Identity Manager 2010 verzióban jelent. Tooimplement lehetővé teszi a teljes identity integration üzleti logika nélkül hello kell toowrite lefordított kódot.
+Azure AD Connect szinkronizálása épít deklaratív kiépítés először a Forefront Identity Manager 2010 verzióban jelent. Lehetővé teszi a teljes identity integration üzleti logika lefordított kód írása nélkül végrehajtásához.
 
-Nagyon fontos részét képezik deklaratív kiépítés hello kifejezés nyelvi attribútumfolyamok használatban. hello nyelvét része a Microsoft® Visual Basic® Applications (VBA). Ezen a nyelven a Microsoft Office szolgál, és a VBScript élménye rendelkező felhasználók is felismeri azt. Deklaratív kiépítés kifejezés nyelvi hello csak funkciókat használ, és nem strukturált nyelvet. Nincsenek módszerek vagy utasításokat. Ehelyett beágyazott függvények tooexpress program folyamata.
+Nagyon fontos részét képezik deklaratív kiépítés megegyezik kifejezés attribútumfolyamok szerepel. A használt nyelv része a Microsoft® Visual Basic® Applications (VBA). Ezen a nyelven a Microsoft Office szolgál, és a VBScript élménye rendelkező felhasználók is felismeri azt. A deklaratív kiépítés kifejezés nyelvi csak funkciókat használ, és nem strukturált nyelvet. Nincsenek módszerek vagy utasításokat. Funkciók helyette beágyazott express program folyamokhoz.
 
-További részletekért lásd: [üdvözli a Visual Basic toohello az alkalmazások nyelvi referencia az Office 2013](https://msdn.microsoft.com/library/gg264383.aspx).
+További részletekért lásd: [üdvözli a Visual Basic for Applications nyelvi referencia az Office 2013](https://msdn.microsoft.com/library/gg264383.aspx).
 
-hello attribútumok vannak erős típusmegadású. Egy függvény csak a megfelelő típusú hello attribútumokat fogad el. Egyúttal kis-és nagybetűket. Mind a nevét, és az attribútumok nevében kell rendelkeznie a megfelelő kis-és nagybetűk, vagy hiba történt.
+Az attribútumok vannak erős típusmegadású. A függvény csak a megfelelő típusú attribútumokat fogad el. Egyúttal kis-és nagybetűket. Mind a nevét, és az attribútumok nevében kell rendelkeznie a megfelelő kis-és nagybetűk, vagy hiba történt.
 
 ## <a name="language-definitions-and-identifiers"></a>Nyelvi definíciókat és -azonosítók
 * Funkciók argumentumokat szögletes zárójelbe követ nevet adni: (1 argumentum, N argumentum) függvénynév.
 * Attribútumok szögletes zárójelbe azonosítja: [attributeName]
 * Paraméterek százalékjelek azonosítja: % ParameterName %
 * A karakterlánckonstansokat ajánlatok tette: például "Contoso" (Megjegyzés: Egyenes idézőjel kell használnia. "", illetve nem idézőjelek között "")
-* Numerikus értékek szerint van megadva, ajánlatok és várt toobe decimális nélkül. Hexadecimális értékek fűzve előtagként & H. Például a 98052 & HFF
+* Numerikus értékek nélkül idézőjelek között kifejezett és várhatóan decimális. Hexadecimális értékek fűzve előtagként & H. Például a 98052 & HFF
 * Logikai értékek szerint van megadva, az állandókat: True, False.
 * Beépített állandók és literálok szerint van megadva. csak a nevükkel: NULL, CRLF, IgnoreThisFlow
 
 ### <a name="functions"></a>Functions
-Deklaratív kiépítés számos funkciók tooenable hello lehetőségét tootransform attribútum értékeket használja. Ezeket a funkciókat, hello eredménye egy függvényből tooanother függvénynek átadott egymásba.
+Deklaratív kiépítés használja sok funkciók engedélyezéséhez attribútumértékek átalakítás lehetőségét. Ezek a funkciók egymásba, az eredmény egy függvényből másik függvény kerül átadásra.
 
 `Function1(Function2(Function3()))`
 
-hello funkciók teljes listája megtalálható hello [hivatkozás működéséhez](active-directory-aadconnectsync-functions-reference.md).
+A funkciók teljes listája megtalálható a [hivatkozás működéséhez](active-directory-aadconnectsync-functions-reference.md).
 
 ### <a name="parameters"></a>Paraméterek
-A paraméter PowerShell használó rendszergazda vagy egy összekötő van definiálva. Paraméterek általában tartalmaznak, amelyek eltérnek a rendszer toosystem értékek, például hello hello tartományfelhasználói hello neve található. Ezek a paraméterek attribútumfolyamok használható.
+A paraméter PowerShell használó rendszergazda vagy egy összekötő van definiálva. Paraméterek általában tartalmaznak, amelyek különböző operációs rendszerek közötti értékek, például található, a tartomány a felhasználó nevét. Ezek a paraméterek attribútumfolyamok használható.
 
-hello Active Directory-összekötő megadott hello paraméterek bejövő szinkronizálási szabályok a következő:
+Az Active Directory-összekötő előírt bejövő szinkronizálási szabályok a következő paraméterekkel:
 
 | Paraméter neve | Megjegyzés |
 | --- | --- |
-| Domain.Netbios |Hello tartomány jelenleg importált, például FABRIKAMSALES NetBIOS formátuma |
-| Domain.FQDN |Hello tartomány jelenleg importált, például sales.fabrikam.com FQDN-formátumban |
-| Domain.LDAP |LDAP-formátum hello tartomány jelenleg importált, például a tartományvezérlő értékesítés, DC = fabrikam, DC = = com |
-| Forest.Netbios |Hello erdő neve jelenleg importált, például FABRIKAMCORP NetBIOS formátuma |
-| Forest.FQDN |Hello erdő nevének jelenleg importált, fabrikam.com például FQDN-formátumban |
-| Forest.LDAP |LDAP-formátum hello erdő nevének jelenleg importált, például: DC = fabrikam, DC = com |
+| Domain.Netbios |A tartomány jelenleg importált, például FABRIKAMSALES NetBIOS formátuma |
+| Domain.FQDN |A tartomány jelenleg importált, például sales.fabrikam.com FQDN-formátumban |
+| Domain.LDAP |LDAP-formátum jelenleg importált, a tartomány például DC értékesítés, DC = fabrikam, DC = = com |
+| Forest.Netbios |Az erdő nevének jelenleg importált, például FABRIKAMCORP NetBIOS formátuma |
+| Forest.FQDN |Az erdő nevének jelenleg importált, fabrikam.com például az FQDN-formátumban |
+| Forest.LDAP |LDAP formátuma az erdő nevének jelenleg importált, például: DC = fabrikam, DC = com |
 
-hello rendszer biztosít hello követően paraméter, amely használt tooget hello azonosítója hello Connector jelenleg fut:  
+A rendszer biztosítja a következő paraméter, amely lekérni a folyamatban az összekötő azonosítója:  
 `Connector.ID`
 
-Íme egy példa a hello metaverzum-attribútum tartomány hello tartomány hello felhasználói hello netbios-nevét feltöltő:  
+Íme egy példa a metaverse attribútum tartomány a felhasználó a tartomány netbios-nevét feltöltő:  
 `domain` <- `%Domain.Netbios%`
 
 ### <a name="operators"></a>Operátorok
-hello alábbi operátorok használhatók:
+Az alábbi operátorok használhatók:
 
 * **Összehasonlítás**: <, < =, <>, =, >, > =
 * **Matematikai**: +, -, \*, -
@@ -74,20 +74,20 @@ hello alábbi operátorok használhatók:
 * **Logikai**: & & (és). (vagy)
 * **Kiértékelési sorrend**:)
 
-Operátorok kiértékelt bal oldali tooright és hello prioritású kiértékelése. Ez azt jelenti, hogy hello \* (szorzója) nem kerül kiértékelésre, mielőtt - (kivonás). 2\*(5 + 3) rendszer nem hello ugyanaz, mint 2\*5 + 3. hello zárójelek közé (-) használt toochange hello kiértékelési sorrend amikor bal oldali tooright kiértékelési sorrend nem megfelelő.
+Operátorok értékeli ki a rendszer balról jobbra, és értékelési azonos prioritású. Ez azt jelenti, hogy a \* (szorzója) nem kerül kiértékelésre, mielőtt - (kivonás). 2\*(5 + 3) célja nem ugyanaz, mint 2\*5 + 3. A zárójelek () segítségével a kiértékelési sorrend módosításakor balról jobbra kiértékelési sorrend nem megfelelő.
 
 ## <a name="multi-valued-attributes"></a>Többértékű attribútumok
-hello funkciók is egyértékű és többértékű attribútumok is működik. Többértékű attribútumok hello függvény minden egyes értékhez keresztül működik, és érvényes hello olyan funkciókat tooevery érték.
+A funkciók is egyértékű és többértékű attribútumok is működik. Többértékű attribútumok a függvény minden egyes értékhez keresztül működik, és ugyanazt a funkciót alkalmazza minden egyes értékhez.
 
 Példa:  
-`Trim([proxyAddresses])`Minden hello proxyAddress attribútum értékének Trim tegye.  
-`Word([proxyAddresses],1,"@") & "@contoso.com"`Minden értékekre, egy @-sign, cserélje le a hello tartomány @contoso.com.  
-`IIF(InStr([proxyAddresses],"SIP:")=1,NULL,[proxyAddresses])`Keresse meg hello SIP-cím, és távolítsa el azt a hello értékeket.
+`Trim([proxyAddresses])`Minden a proxyAddress attribútum értékének Trim tegye.  
+`Word([proxyAddresses],1,"@") & "@contoso.com"`Minden értékekre, egy @-sign, cserélje le a tartomány @contoso.com.  
+`IIF(InStr([proxyAddresses],"SIP:")=1,NULL,[proxyAddresses])`Keresse meg a SIP-cím, és távolítsa el az értékeket.
 
 ## <a name="next-steps"></a>Következő lépések
-* További információk a hello konfigurációs modell [ismertetése deklaratív kiépítés](active-directory-aadconnectsync-understanding-declarative-provisioning.md).
-* Lásd: hogyan deklaratív használt out-of-box a [ismertetése hello alapértelmezett konfiguráció](active-directory-aadconnectsync-understanding-default-configuration.md).
-* Tekintse meg, hogyan toomake egy gyakorlati módosítani, használja a deklaratív kiépítés [hogyan toomake egy módosítás toohello alapértelmezett konfiguráció](active-directory-aadconnectsync-change-the-configuration.md).
+* További információk a konfigurációs modell [ismertetése deklaratív kiépítés](active-directory-aadconnectsync-understanding-declarative-provisioning.md).
+* Lásd: hogyan deklaratív kiépítés használt out-of-box a [az alapértelmezett konfiguráció ismertetése](active-directory-aadconnectsync-understanding-default-configuration.md).
+* Lásd: how to gyakorlati módosítja a deklaratív kiépítés használatával [hogyan lehet módosítani az alapértelmezett konfiguráció](active-directory-aadconnectsync-change-the-configuration.md).
 
 **Áttekintő témakör**
 

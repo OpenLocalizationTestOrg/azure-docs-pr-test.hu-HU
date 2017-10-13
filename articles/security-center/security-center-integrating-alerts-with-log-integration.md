@@ -1,5 +1,5 @@
 ---
-title: "aaaIntegrating Azure Security Center riasztásait az Azure-ral jelentkezzen integrációs |} Microsoft Docs"
+title: "Azure Security Center riasztásait integrálása az Azure naplóelemzés integrációs |} Microsoft Docs"
 description: "Ez a cikk segít a Security Center riasztásait integrálása az Azure naplóelemzés integráció az első lépései."
 services: security-center
 documentationcenter: na
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/23/2017
 ms.author: terrylan
-ms.openlocfilehash: 2649036ee990bf0f48fa0cb35c7495ac932c29ed
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d13e5b87c446e587091551b22d80fe568d5d8093
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="integrating-azure-security-center-alerts-with-azure-log-integration"></a>Azure Security Center riasztásait integrálása az Azure naplóelemzés integráció
-Számos biztonsági műveletek és incidensekre adott reakciók csapatok támaszkodniuk biztonsági adatai és az esemény felügyeleti SIEM-megoldás a kiindulási pontjaként triaging és biztonsági riasztások kivizsgálásának hello. Az Azure napló integráció integrálható Azure Security Center riasztásait az SIEM-megoldás.
+Számos biztonsági műveletek és incidensekre adott reakciók csapatok támaszkodnak biztonsági adatai és az esemény felügyeleti SIEM-megoldás triaging és biztonsági riasztások kivizsgálásának kiindulási pontként. Az Azure napló integráció integrálható Azure Security Center riasztásait az SIEM-megoldás.
 
 Azure naplóelemzés integrációs jelenleg a HP ArcSight Splunk és az IBM QRadar támogatja.
 
 ## <a name="what-logs-can-i-integrate"></a>Milyen naplókat is integrálhatja?
 Azure kiterjedt naplózás minden szolgáltatás eredményez. Ezek a naplók kategóriába sorolni:
 
-* **Ellenőrzés/Management-naplók** , amelyek biztosítják hello láthatósága Azure Resource Manager LÉTREHOZNI, UPDATE és DELETE műveletek. A vezérlő vezérlősík események illesztett hello Azure tevékenységi naplóit a
-* **Az adatnaplók Vezérlősík** , amelyek biztosítják, hogy egy Azure-erőforrás használatakor kiváltott hello események láthatósága. Példa: hello Windows Eseménynapló, ahol letölthető biztonsági eseményadatok hello Eseménynapló használatával biztonsági csatorna. Adatok vezérlősík események (amely a virtuális gép vagy az Azure-szolgáltatások által előállított) által az Azure diagnosztikai naplók illesztett.
+* **Ellenőrzés/Management-naplók** , amelyek biztosítják, hogy az Azure Resource Manager LÉTREHOZNI, UPDATE és DELETE műveletek láthatósága. A vezérlő vezérlősík események illesztett az Azure tevékenység található
+* **Az adatnaplók Vezérlősík** , amelyek biztosítják, hogy az egy Azure-erőforrás használatakor kiváltott események láthatósága. Példa: a Windows eseménynaplóban, ahol letölthető biztonsági események adatait az Eseménynapló használatával biztonsági csatorna. Adatok vezérlősík események (amely a virtuális gép vagy az Azure-szolgáltatások által előállított) által az Azure diagnosztikai naplók illesztett.
 
-Azure naplóelemzés integrációs jelenleg hello integrációja támogatja:
+Azure naplóelemzés integrációs jelenleg integrálása támogatja:
 
 * Az Azure virtuális gép naplók
 * Az Azure felügyeleti naplók
@@ -40,10 +40,10 @@ Azure naplóelemzés integrációs jelenleg hello integrációja támogatja:
 ## <a name="install-azure-log-integration"></a>Azure naplóelemzés integráció telepítése
 Töltse le [Azure naplóelemzés integrációs](https://www.microsoft.com/download/details.aspx?id=53324).
 
-hello Azure naplóelemzés integrációs szolgáltatás gyűjt telemetrikus adatokat hello számítógép, amelyen telepítve van.  Az összegyűjtött telemetrikus adatok van:
+Az Azure naplóelemzés integrációs szolgáltatás telemetriai adatokat gyűjt a számítógépről, amelyen telepítve van.  Az összegyűjtött telemetrikus adatok van:
 
 * Az Azure naplóelemzés integráció során bekövetkező kivételek
-* Hello számáról, lekérdezések és a feldolgozott események metrikák
+* A lekérdezések és a feldolgozott események száma kapcsolatos metrikákat
 * Mely Azlog.exe kapcsolatos parancssori kapcsolók használt statisztikák
 
 > [!NOTE]
@@ -52,40 +52,40 @@ hello Azure naplóelemzés integrációs szolgáltatás gyűjt telemetrikus adat
 >
 
 ## <a name="integrate-azure-audit-logs-and-security-center-alerts"></a>Az Azure naplói és a Security Center riasztások integrálása
-1. A parancssor megnyitása hello és **cd** történő **c:\Program Files\Microsoft Azure napló integrációs**.
-2. Futtassa a hello **azlog createazureid** parancs toocreate egy [Azure Active Directory szolgáltatás egyszerű](../active-directory/active-directory-application-objects.md) hello Azure Active Directory (AD) a bérlők üzemeltető hello Azure-előfizetések.
+1. Nyissa meg a parancssort és **cd** történő **c:\Program Files\Microsoft Azure napló integrációs**.
+2. Futtassa a **azlog createazureid** parancs futtatásával hozzon létre egy [Azure Active Directory szolgáltatás egyszerű](../active-directory/active-directory-application-objects.md) az az Azure Active Directory (AD) bérlők, amely az Azure-előfizetések tárolni.
 
     Az Azure bejelentkezési kéri.
 
    > [!NOTE]
-   > Hello előfizetés hello előfizetés tulajdonosának vagy társadminisztrátorának kell lennie.
+   > Az előfizetés az előfizetés tulajdonosa vagy társadminisztrátorának kell lennie.
    >
    >
 
-    Hitelesítési tooAzure az Azure AD segítségével történik.  Hello Azure AD identity arra, hogy hozzáférési tooread az Azure-előfizetések az Azure naplóelemzés integráció egyszerű szolgáltatás létrehozása hoz létre.
-3. Futtatás hello **azlog engedélyezik <SubscriptionID>**  parancs tooassign olvasási hozzáférésének hello előfizetés toohello egyszerű szolgáltatásnév a 2. Ha nem adja meg a **SubscriptionID**, akkor hello szolgáltatás egyszerű hozzárendelt hello olvasó szerepkört tooall előfizetések toowhich rendelkezik hozzáféréssel.
+    Hitelesítés az Azure-bA az Azure AD segítségével történik.  Az Azure naplóelemzés integráció egyszerű szolgáltatás létrehozása hoz létre az Azure AD identity arra, hogy az Azure-előfizetések olvasási hozzáférést.
+3. Futtassa a **azlog engedélyezik <SubscriptionID>**  parancs az előfizetés olvasási hozzáférés hozzárendelése a szolgáltatás egyszerű, a 2. Ha nem adja meg a **SubscriptionID**, akkor a szolgáltatás egyszerű szerepét az olvasó rendelkezik hozzáféréssel előfizetéseken.
 
    > [!NOTE]
-   > Hello futtatásakor figyelmeztetések jelenhetnek **engedélyezik** parancs hello után azonnal **createazureid** parancsot. Néhány hello Azure AD-fiók létrehozásakor, és ha hello fiók használható közötti késés van. Ha hello futtatása után nagyjából 10 másodpercet vár **createazureid** parancs toorun hello **engedélyezik** parancsot, majd a figyelmeztetések nem szabadna megjelennie.
+   > Figyelmeztetések jelenhet meg, ha futtatja a **engedélyezik** parancs után azonnal a **createazureid** parancsot. Néhány történő létrehozásakor a Azure AD-fiókot, és ha a fiók használható közötti késés van. Ha futtatása után nagyjából 10 másodpercet vár a **createazureid** parancsot kell futtatni a **engedélyezik** parancsot, majd a figyelmeztetések nem szabadna megjelennie.
    >
    >
-4. Ellenőrizze, hogy a következő mappák tooconfirm, amely a naplófájlok JSON hello hello vannak:
+4. Ellenőrizze, győződjön meg arról, hogy a naplófájlok JSON vannak-e a következő mappák:
 
    * **c:\Users\azlog\AzureResourceManagerJson**
    * **c:\Users\azlog\AzureResourceManagerJsonLD**
-5. Ellenőrizze a következő mappák tooconfirm, amely a Security Center riasztásait szerepel azokat hello:
+5. Ellenőrizze a következő mappák győződjön meg arról, hogy létezik-e a Security Center riasztásait a bennük foglalt:
 
    * **c:\Users\azlog\ AzureSecurityCenterJson**
    * **c:\Users\azlog\AzureSecurityCenterJsonLD**
-6. Konfigurálja a hello SIEM fájl továbbító összekötő toohello megfelelő mappát. hello eljárás hello SIEM módjától függően változik.
+6. A megfelelő mappát a SIEM fájl továbbító összekötőt konfigurálja. Az eljárás használ SIEM függően változik.
 
 ## <a name="next-steps"></a>Következő lépések
-További információ az Azure tevékenységi naplóit és erőforrástulajdonság-meghatározások toolearn lásd:
+Azure tevékenységi naplóit és erőforrástulajdonság-meghatározások kapcsolatos további információkért lásd:
 
 * [Auditálási műveletek a Resource Managerben](../azure-resource-manager/resource-group-audit.md)
 
-További információ a Security Center toolearn hello következő lásd:
+A Security Centerrel kapcsolatos további információkért olvassa el a következőket:
 
-* [Az Azure Security Centerben riasztások kezelése és válaszol toosecurity](security-center-managing-and-responding-alerts.md) – további hogyan toomanage és válaszoljon toosecurity riasztásokat.
-* [Azure Security Center: GYIK](security-center-faq.md) – gyakran ismételt kérdések hello szolgáltatás használatával kapcsolatban.
-* [Az Azure biztonsági blog](http://blogs.msdn.com/b/azuresecurity/) – hello legújabb Azure biztonsági hírek és információ lekérése.
+* [Kezelése és válaszadás a biztonsági riasztásokra az Azure Security Center](security-center-managing-and-responding-alerts.md) – útmutató kezelése és válaszadás a biztonsági riasztásokra.
+* [Azure Security Center FAQ](security-center-faq.md) (Azure Security Center: Gyakran ismételt kérdések) – Válaszok a szolgáltatás használatára vonatkozó gyakori kérdésekre.
+* [Az Azure biztonsági blog](http://blogs.msdn.com/b/azuresecurity/) – a legújabb Azure biztonsági híreket és információkat.

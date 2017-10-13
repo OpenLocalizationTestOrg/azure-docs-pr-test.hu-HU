@@ -1,6 +1,6 @@
 ---
-title: "aaaUse a StorSimple 8000 series eszköz összefoglaló |} Microsoft Docs"
-description: "Hello StorSimple szolgáltatás összefoglaló panel ismerteti és bemutatja hogyan toouse azt a StorSimple megoldásban toomonitor hello állapotát."
+title: "A StorSimple 8000 series eszköz használata összefoglaló |} Microsoft Docs"
+description: "Ismerteti a StorSimple szolgáltatás összefoglaló panelre, és ismerteti a StorSimple megoldásban állapotának figyelése céljából."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,77 +14,77 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/27/2017
 ms.author: alkohli
-ms.openlocfilehash: ec1d971a8656df0be6eb1e3ec2603d97737ff070
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d987a4ae170f21532a886552cbe1eb5a0d25fc3f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-service-summary-blade-for-storsimple-8000-series-device"></a>A StorSimple 8000 series eszköz hello szolgáltatás összefoglaló panel használata
+# <a name="use-the-service-summary-blade-for-storsimple-8000-series-device"></a>A szolgáltatás összefoglaló panelre a StorSimple 8000 series eszköz használata
 
 ## <a name="overview"></a>Áttekintés
 
-hello StorSimple Device Manager szolgáltatás összefoglaló panel összegzését jeleníti meg az összes hello eszközök, amelyek csatlakoztatott toohello StorSimple Device Manager szolgáltatást, a rendszergazda figyelmet igénylő eszközök kiemelve. Ez az oktatóanyag hello szolgáltatás összefoglaló panel vezet be, hello irányítópult tartalom és funkcióját ismerteti, és azokat hello feladatokat hajthat végre ezen a lapon.
+A StorSimple Device Manager szolgáltatás összefoglaló panel összegzését jeleníti meg az eszközök csatlakoznak a StorSimple Device Manager szolgáltatás, a rendszergazda figyelmet igénylő eszközök kiemelve. Ez az oktatóanyag vezet be a szolgáltatás összefoglaló panelre, ismerteti az irányítópult-tartalom és a függvény, és azokat a feladatokat hajthat végre ezen a lapon.
 
 ![Szolgáltatás összegzése](./media/storsimple-8000-service-dashboard/service-summary1.png)
 
 
 ## <a name="management-commands"></a>Felügyeleti parancsok
 
-Hello StorSimple szolgáltatás összefoglaló panelen látható hello-beállítások az StorSimple Device Manager szolgáltatás és a hello StorSimple 8000 series eszközök regisztrált toothis szolgáltatás kezeléséhez. Hello parancsok hello panelről és hello bal oldalán hello tetején megjelenik.
+A StorSimple szolgáltatás összefoglaló panelen látható a StorSimple eszköz Manager szolgáltatás és a StorSimple 8000 sorozat eszközeire, a szolgáltatásra regisztrált kezelésére szolgáló beállítások. A parancsok látja a panelt és bal oldalán látható.
 
 ![Parancssáv](./media/storsimple-8000-service-dashboard/service-summary2.png)
 
-E beállítások tooperform, különféle műveleteket, mint hozzá megosztások vagy kötetek vagy a figyelő hello hello StorSimple eszközökön futó feladatok használja.
+Adja hozzá ezeket a beállításokat, például a különböző műveletek végrehajtásához, megosztások vagy kötetek vagy a figyelő a StorSimple eszközön futó feladatok a különböző használja.
 
 
 ## <a name="essentials"></a>Alapvető erőforrások
 
-hello essentials terület hello fontos tulajdonságok, mint például a hello erőforráscsoport, a hely és az előfizetés, amelyben a StorSimple Device Manager készült rögzíti.
+Az essentials területen rögzíti a fontos tulajdonságok, mint például az erőforráscsoportot, helyét és előfizetés, amelyben a StorSimple Device Manager készült.
 
 ![Alapvető erőforrások](./media/storsimple-8000-service-dashboard/service-summary3.png)
 
 ## <a name="storsimple-device-manager-service-summary"></a>StorSimple Device Manager szolgáltatás összegzése
 
-* Hello **riasztások** keresőnézeti csempéje hello összes aktív riasztás pillanatképet minden eszközön, a riasztás súlyosságát szerint csoportosítva.
+* A **riasztások** csempe biztosít az összes aktív riasztás pillanatképet minden eszközön, a riasztás súlyosságát szerint csoportosítva.
 
     ![Riasztások csempe](./media/storsimple-8000-service-dashboard/service-summary4.png)
 
-    Gombra kattintva hello csempe megnyitja hello **riasztások** panelen kattintson az egyes riasztási tooview további riasztás részletes adatait, hogy, ahol többek között a javasolt műveletek. Hello riasztás is törölheti, ha hello problémát sikerült megoldani.
+    A csempére kattintva megnyithatja a **riasztások** panel, ahol egyéni riasztást, hogy a riasztással kapcsolatos további részletek megtekintéséhez kattintson többek között a javasolt műveletek. A riasztás is törölheti, ha a probléma megoldódott.
 
     ![Kattintson a riasztások csempe](./media/storsimple-8000-service-dashboard/service-summary8.png)
 
-* Hello **kapacitás** csempe megjeleníti látható hello elsődleges tároló kiépített és a fennmaradó közötti összes eszközök relatív toohello teljes tárterület érhető el az összes eszközön. **Kiépített** toohello összeg elő és használatra, tároló hivatkozik **fennmaradó** maradt kapacitás, amelyek az összes eszközön létesíthetők toohello hivatkozik.
+* A **kapacitás** csempe megjeleníti a kiépített és a fennmaradó relatív a teljes tárterület érhető el az összes eszközön van minden eszközön elsődleges tárterület megjelenítése. **Kiépített** hivatkozik, amely készített, és használatra, tárolókapacitást **fennmaradó** hivatkozik, amely az összes eszközön létesíthetők kapacitása.
 
     ![A kapacitás csempe](./media/storsimple-8000-service-dashboard/service-summary6.png)
 
-    Hello **fennmaradó rétegzett** kapacitása hello elérhető kapacitás, amelyek többek között a felhőbe, miközben hello létesíthetők **fennmaradó helyi** hello lemezek fennmaradó hello kapacitás toohello csatlakoztatva A StorSimple 8000 sorozat eszközeire.
+    A **fennmaradó rétegzett** kapacitása a rendelkezésre álló kapacitásból, amelyek többek között a felhő, létesíthetők közben a **fennmaradó helyi** a kapacitás, a StorSimple 8000 csatlakoztatott lemezek fennmaradó sorozat eszközeire.
 
 
-* A hello **használati** diagram, hello vonatkozó mérőszámok láthatja az eszközökhöz. Az összes eszközökön, és az eszközök által használt keresztül hello elmúlt 7 nap, hello alapértelmezett időszak hello felhőtárhelyére használt elsődleges tároló hello tekintheti meg. 
+* Az a **használati** diagram, a kapcsolódó metrikák láthatja az eszközökhöz. Megtekintheti az összes eszközön használt elsődleges tárhely és az elmúlt 7 napban, az alapértelmezett időszak eszközök által használt felhőbeli tárhelyhez. 
 
     ![Használata csempe](./media/storsimple-8000-service-dashboard/service-summary7.png) 
 
-    egy másik idő méretezési toochoose hello használata **szerkesztése** hello diagram hello jobb felső sarkában található beállítás.
+    Válasszon egy másik időskálára, használja a **szerkesztése** a diagram jobb felső sarokban lehetőséget.
 
      ![Kattintson a használata csempe](./media/storsimple-8000-service-dashboard/service-summary10.png)
 
      ![A diagram adatok exportálása](./media/storsimple-8000-service-dashboard/service-summary11.png)
 
-* Hello **eszközök** csempe a StorSimple 8000 series eszközök a StorSimple eszköz állapot szerint csoportosítva hello száma összegzését tartalmazza. 
+* A **eszközök** csempe a StorSimple 8000 series eszközök a StorSimple eszköz állapot szerint csoportosítva száma összegzését tartalmazza. 
 
     ![Eszközök csempe](./media/storsimple-8000-service-dashboard/service-summary5.png)
 
-    Kattintson a csempére tooopen hello **eszközök** panel listában, és kattintson az egyes eszközök toodrill hello eszköz összefoglaló adott toohello eszközbe. Egy adott eszköz összefoglaló paneljéről eszközspecifikus műveletek is elvégezheti. További információ a hello eszköz összefoglaló panelen, lépjen az túl[eszköz összefoglaló panel](storsimple-8000-device-dashboard.md).
+    Kattintson a csempére kattintva nyissa meg a **eszközök** panel listára, majd elemezze az eszközhöz tartozó eszközök összegzése az egyes eszköz. Egy adott eszköz összefoglaló paneljéről eszközspecifikus műveletek is elvégezheti. Az eszköz összefoglaló panel kapcsolatos további információkért látogasson el [eszköz összefoglaló panel](storsimple-8000-device-dashboard.md).
 
     ![Kattintson az eszközök csempe](./media/storsimple-8000-service-dashboard/service-summary9.png)
 
-## <a name="view-hello-activity-logs"></a>Hello tevékenység naplók megtekintése
+## <a name="view-the-activity-logs"></a>A tevékenység naplók megtekintése
 
-a StorSimple Device Manager belül elvégzett különféle műveleteket tooview hello kattintson hello **tevékenységi naplóit** hello bal oldalán a StorSimple szolgáltatás összefoglaló panelen található hivatkozásra kattintva. Ezzel megnyitná toohello **tevékenységi naplóit** panel, ahol láthatja hello végrehajtott legutóbbi műveletek összegzését.
+A különböző műveletek a StorSimple Device Manager belül elvégzett megtekintéséhez kattintson a **tevékenységi naplóit** hivatkozás a StorSimple szolgáltatás összefoglaló panel bal oldalán. Ehhez szükséges, hogy a **tevékenységi naplóit** panel, ahol láthatja a legutóbbi műveletek összegzését.
 
 ![Tevékenységnaplók](./media/storsimple-8000-service-dashboard/activity-logs1.png)
 ## <a name="next-steps"></a>Következő lépések
 
-* További tudnivalók túl[használata hello StorSimple Device Manager szolgáltatás tooadminister a StorSimple eszköz](storsimple-8000-manager-service-administration.md).
+* További tudnivalók a [felügyelete a StorSimple eszközt a StorSimple Device Manager szolgáltatással](storsimple-8000-manager-service-administration.md).
 

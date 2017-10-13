@@ -1,6 +1,6 @@
 ---
-title: "aaaEncrypting a tartalmaknak a tárolás titkosítása AMS REST API használatával"
-description: "Megtudhatja, hogyan tooencrypt a tartalmaknak a tárolás titkosítása AMS REST API-k használatával."
+title: "A tartalom titkosított a tárolás titkosítása AMS REST API használatával"
+description: "Ismerje meg, hogy a tartalom titkosítása a tárolás titkosítása AMS REST API-k használatával."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,58 +14,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: d5f8cb8dd1dcded76c9fededccc772d8102ccbad
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1979f5bf5e8cab88dab5fba49018afacf24504b3
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="encrypting-your-content-with-storage-encryption"></a>A tárolás titkosítása tartalom titkosítása
 
-Lehetőleg tooencrypt a tartalomhoz helyileg az AES-256 algoritmussal titkosítási bit, és azt a rendszer hol tárolja tárolás titkosítása tooAzure feltöltése.
+Helyileg az AES-256 bites titkosítás használata a tartalom titkosításához, és ezután töltse fel az Azure Storage azt tárolására szolgáló titkosítása erősen ajánlott.
 
-Ez a cikk áttekintést AMS tárolás titkosítása, és bemutatja, hogyan tooupload hello tárolási titkosított tartalom:
+Ez a cikk áttekintést AMS tárolás titkosítása, és bemutatja, hogyan töltse fel a tárolási titkosított tartalom:
 
 * Hozzon létre egy tartalomkulcsot.
-* Hozzon létre egy eszközt. Állítsa be a hello AssetCreationOption tooStorageEncryption hello eszköz létrehozásakor.
+* Hozzon létre egy eszközt. Állítsa be a AssetCreationOption StorageEncryption, amikor az eszköz hoz létre.
   
-     Titkosított eszközök kapcsolódó tartalom toobe rendelkezik.
-* Hivatkozás hello tartalom kulcs toohello eszköz.  
-* Állítsa be hello titkosítási kapcsolatos paramétereket az hello AssetFile entitásokra.
+     Titkosított eszközök tartalomkulcs társítani kell rendelkeznie.
+* A tartalomkulcs csatolása az eszközhöz.  
+* Állítsa be a titkosítás kapcsolatos AssetFile entitásokat paramétereket.
 
 ## <a name="considerations"></a>Megfontolandó szempontok 
 
-Ha azt szeretné, hogy a tároló titkosított eszköz toodeliver, konfigurálnia kell a hello adategység továbbítási házirendjét. Mielőtt az eszköz továbbítható, hello adatfolyam-kiszolgáló eltávolítása hello tárolás titkosítása és adatfolyamokat a tartalom hello segítségével megadott továbbítási házirendjét. További információkért lásd: [konfigurálása az adategység továbbítási házirendjeit](media-services-rest-configure-asset-delivery-policy.md).
+Ha egy tárolási titkosított eszköz kézbesíteni szeretné, konfigurálnia kell az adategység továbbítási házirendjét. Mielőtt az eszköz továbbítható, a streamelési kiszolgáló a tárolás titkosítása eltávolítja, és az adatfolyamokat, a tartalom a megadott objektumtovábbítási szabályzat segítségével. További információkért lásd: [konfigurálása az adategység továbbítási házirendjeit](media-services-rest-configure-asset-delivery-policy.md).
 
 A Media Services entitások elérésekor be kell meghatározott fejlécmezők és értékek a HTTP-kérelmekre. További információkért lásd: [a Media Services REST API fejlesztési telepítő](media-services-rest-how-to-use.md). 
 
-## <a name="connect-toomedia-services"></a>Connect tooMedia szolgáltatások
+## <a name="connect-to-media-services"></a>Kapcsolódás a Media Services szolgáltatáshoz
 
-Hogyan tooconnect toohello AMS API-ról: kapcsolatos [hozzáférés hello Azure Media Services API az Azure AD-alapú hitelesítés](media-services-use-aad-auth-to-access-ams-api.md). 
+Az AMS API-hoz kapcsolódáshoz információkért lásd: [elérni az Azure Media Services API-t az Azure AD-alapú hitelesítés](media-services-use-aad-auth-to-access-ams-api.md). 
 
 >[!NOTE]
->Toohttps://media.windows.net sikeres csatlakozás után kapni fog egy másik Media Services URI megadása 301 átirányítást. Meg kell nyitnia a további hívások toohello új URI.
+>Sikeresen csatlakoztassa a https://media.windows.net, adja meg egy másik Media Services URI 301 átirányítást fog kapni. Meg kell nyitnia az új URI későbbi hívásokat.
 
 ## <a name="storage-encryption-overview"></a>Tárolás titkosítási – áttekintés
-hello AMS tárolás titkosítása vonatkozik **AES-Parancsra** mód titkosítási toohello teljes fájlt.  AES-Parancsra módja a blokktitkosításon, amelyek titkosíthatják a tetszőleges hosszúságú adatok kitöltési szükségessége nélkül. Egy számláló blokkot, amelynek hello AES algoritmus és XOR-ing hello kimenet az AES hello adatok tooencrypt titkosításával működik, illetve visszafejteni.  hello számláló blokk használt összeállított hello InitializationVector toobytes 0 too7 hello számláló értékének hello értékének másolásával és a 8 bájtos too15 hello számláló értékének toozero. Hello 16 bájtos számláló blokk, 8 bájtos too15 (azaz hello legkisebb helyiértékű bájt) kell használni, mint egy egyszerű 64 bites előjel nélküli egész szám, amely minden ezt követő adatblokk adatfeldolgozási eggyel növekszik, és van hálózati tartani. Figyelje meg, hogy ha az egész hello maximális értékének elérésekor (0xFFFFFFFFFFFFFFFF) majd növekvő hello blokk számláló toozero (8 bájtos too15) visszaállítja az nem befolyásolja a többi hello hello számláló (vagyis 0 bájt too7) 64 bites.   Rendelés toomaintain hello biztonsági hello AES-Parancsra mód titkosítási, hello InitializationVector érték egy adott kulcsazonosító minden tartalomkulcsot az egyes fájlok egyedinek kell lennie, és fájlok legfeljebb 2 ^ 64 blokkok hossza.  Ez a tooensure, hogy a számláló értéke soha nem használja fel újra egy adott kulccsal. Hello Parancsra móddal kapcsolatos további információkért lásd: [a wiki lapon](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#CTR) (hello wikicikket használ hello kifejezés "Nonce" helyett "InitializationVector").
+Az AMS tárolás titkosítása vonatkozik **AES-Parancsra** mód a titkosítás a teljes fájlt.  AES-Parancsra módja a blokktitkosításon, amelyek titkosíthatják a tetszőleges hosszúságú adatok kitöltési szükségessége nélkül. Egy számláló blokkot, amelynek a AES algoritmust, majd a XOR-ing AES kimenete az adatok titkosítására vagy visszafejtésére titkosításával működik.  A számláló blokk használt összeállított úgy, hogy a számláló értéke 0 és 7 bájtja a InitializationVector értékét, és a számláló értéke 8-15 bájtja értéke nulla. A 16 bájtos számláló blokk bájt 8-15 (azaz a legkisebb helyiértékű bájt) kell használni, mint egy egyszerű 64 bites előjel nélküli egész szám, amely minden ezt követő adatblokk eggyel növeli dolgoz fel, és hálózati maradnak. Vegye figyelembe, hogy a beállítást, ha az egész eléri a maximális értéket (0xFFFFFFFFFFFFFFFF) alaphelyzetbe állítását növekvő a blokk számláló nulla (bájt 8-15) nem befolyásolja a többi 64 bites a számláló (azaz a 0 és 7 bájt).   Ahhoz, hogy az AES-Parancsra mód titkosítási biztonságának fenntartásához, egy adott kulcs azonosítót minden tartalomkulcsot InitializationVector értékét kell minden egyes fájl egyedi, és fájlok legfeljebb 2 ^ 64 blokkok hossza.  Ez azért szükséges, hogy a számláló értéke nem fel újra egy adott kulccsal. A Parancsra móddal kapcsolatos további információkért lásd: [a wiki lapon](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#CTR) (a a wikicikket "Nonce" helyett "InitializationVector" kifejezést használja).
 
-Használjon **tárolás titkosítása** tooencrypt a tiszta tartalom helyileg az AES-256 algoritmussal bit a titkosítási, majd töltse fel tooAzure helyén tárolás titkosítása. Storage-titkosítással védett adategységek automatikusan titkosítás és egy titkosított fájl rendszer előzetes tooencoding, és ha szükséges újra titkosítani előzetes toouploading egy új kimeneti eszközként helyezve. hello elsődleges használati eset a tárolás titkosítása akkor, ha azt szeretné, hogy a jó minőségű bemeneti médiafájljait erős titkosítással, rest-lemezen toosecure.
+Használjon **tárolás titkosítása** a tiszta tartalom helyileg használatával az AES-256 bit a titkosítási és majd töltse fel az Azure Storage helyén titkosítása. Storage-titkosítással védett adategységek automatikusan a titkosítás és helyezni egy titkosított fájlrendszerbe kódolás előtt, és egy új kimeneti eszközként feltöltés előtt esetleg újra titkosítja. A tárolás titkosítása elsődleges használati eset az, amikor biztonságossá tételéhez a kiváló minőségű bemeneti médiafájljait erős titkosítással aktívan a lemezen.
 
-A sorrend toodeliver tárolási titkosított eszköz konfigurálnia kell hello adategység továbbítási házirendjét, a Media Services tudja, hogyan szeretné toodeliver a tartalom. Mielőtt az eszköz továbbítható, hello adatfolyam-kiszolgáló eltávolítása hello tárolás titkosítása és adatfolyamokat a tartalom hello segítségével megadott továbbítási házirendjét (például AES, általános titkosítás vagy titkosítás nélkül).
+A tárolási titkosított eszköz kezelni, konfigurálnia kell az adategység továbbítási házirendjét, a Media Services tudja, hogyan kívánja a tartalom. Mielőtt az eszköz továbbítható, a streamelési kiszolgáló eltávolítja a tárolás titkosítása, és az adatfolyamokat a tartalmat a megadott továbbítási házirendjét (például AES, általános titkosítás vagy titkosítás nélkül) használatával.
 
 ## <a name="create-contentkeys-used-for-encryption"></a>A titkosításhoz használt ContentKeys létrehozása
-Titkosított eszközök tárolás titkosítása kulcshoz tartozó toobe rendelkezik. Hello tartalom kulcs toobe titkosítja az eszköz fájlok hello létrehozása előtt létre kell hoznia. Ez a szakasz ismerteti, hogyan toocreate egy tartalomkulcsot.
+A titkosított eszközökre kell lennie a tárolási titkosítási kulcs. A tartalomkulcs használt titkosítási az adategység-fájloknak létrehozása előtt létre kell hoznia. Ez a szakasz ismerteti, hogyan hozzon létre egy tartalomkulcsot.
 
-hello az alábbiakban általános lépésekkel végezhető tartalomkulcs fog társítani eszközök titkosított toobe generálásához. 
+Az alábbi lépések általános generálásához tartalomkulcs, amely a titkosítani kívánt eszközök fog társítani. 
 
 1. A tárolás titkosítása véletlenszerűen 32 bájtos AES kulcs létrehozása. 
    
-    Ez az objektum, amely azt jelenti, hogy a hozzárendelt összes fájl hello tartalomkulcsot lesz az adott eszközre fog kell toouse hello azonos tartalomkulcsot a visszafejtés során. 
-2. Hello hívás [GetProtectionKeyId](https://docs.microsoft.com/rest/api/media/operations/rest-api-functions#getprotectionkeyid) és [GetProtectionKey](https://msdn.microsoft.com/library/azure/jj683097.aspx#getprotectionkey) módszerek tooget hello kell lennie a használt tooencrypt megfelelő X.509-tanúsítvány a tartalomkulcsot.
-3. Hello nyilvános kulcsával hello X.509 tanúsítvány a tartalom kulcs titkosításához. 
+    Ez lesz a tartalomkulcsot az adategységhez, ami azt jelenti, hogy az adott eszközhöz hozzárendelt összes fájl szükség lesz az azonos tartalomkulcsot a visszafejtés során. 
+2. Hívja a [GetProtectionKeyId](https://docs.microsoft.com/rest/api/media/operations/rest-api-functions#getprotectionkeyid) és [GetProtectionKey](https://msdn.microsoft.com/library/azure/jj683097.aspx#getprotectionkey) módszerek megszerezni a helyes X.509-tanúsítvány használatával titkosítja a tartalomkulcsot.
+3. A tartalomkulcs X.509-tanúsítvány nyilvános kulcsával titkosítja. 
    
-   Media Services .NET SDK RSA végrehajtásakor hello titkosítási OAEP típusú használ.  Láthatja, hogy a .NET típusú példát a hello [EncryptSymmetricKeyData függvény](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs).
-4. Hozzon létre egy ellenőrzőösszeget hello kulcsazonosító és tartalomkulcsot számítja. .NET típusú példát a következő hello kiszámítja a hello kulcsazonosító hello GUID része hello ellenőrzőösszeg és hello törölje tartalomkulcsot.
+   Media Services .NET SDK RSA-t használ a OAEP típusú végrehajtásakor a titkosítást.  A .NET példáját láthatja az [EncryptSymmetricKeyData függvény](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs).
+4. Hozzon létre egy ellenőrzőösszeget számítja ki a kulcs azonosítója és a tartalomkulcsot. A következő .NET típusú példát a GUID része a kulcsazonosító és egyértelműen tartalomkulcsot ellenőrzőösszeg számítja ki.
 
         public static string CalculateChecksum(byte[] contentKey, Guid keyId)
         {
@@ -74,8 +74,8 @@ hello az alábbiakban általános lépésekkel végezhető tartalomkulcs fog tá
 
             byte[] encryptedKeyId = null;
 
-            // Checksum is computed by AES-ECB encrypting hello KID
-            // with hello content key.
+            // Checksum is computed by AES-ECB encrypting the KID
+            // with the content key.
             using (AesCryptoServiceProvider rijndael = new AesCryptoServiceProvider())
             {
                 rijndael.Mode = CipherMode.ECB;
@@ -93,22 +93,22 @@ hello az alábbiakban általános lépésekkel végezhető tartalomkulcs fog tá
             return Convert.ToBase64String(retVal);
         }
 
-1. Hozzon létre hello tartalomkulcsot hello **EncryptedContentKey** (átalakítás toobase64 kódolású karakterlánc) **ProtectionKeyId**, **ProtectionKeyType**,  **ContentKeyType**, és **ellenőrzőösszeg** értékeket az előző lépésben kapott.
+1. Hozzon létre a tartalomkulcsot a a **EncryptedContentKey** (karakterlánccá base64-kódolású), **ProtectionKeyId**, **ProtectionKeyType**, **ContentKeyType**, és **ellenőrzőösszeg** értékeket az előző lépésben kapott.
 
-    A tárolás titkosítása hello következő tulajdonságok tartozhatnak hello kérés törzsében.
+    A tárolás titkosítását a következő tulajdonságok tartozhatnak a kérés törzsében.
 
     Kérelem törzse tulajdonság    | Leírás
     ---|---
-    Azonosító | hello ContentKey azonosítója, amely azt készítése ragozott formáival használatával a következő hello formázásához "nb:kid:UUID:<NEW GUID>".
-    ContentKeyType | Ez az hello kulcs tartalomtípus a tartalom kulcs egész szám lehet. Azt adja át a tárolás titkosítása hello értéke 1.
-    EncryptedContentKey | Létrehozhatunk egy új tartalom kulcs értéke pedig 256 bites (32 bájt) értéket. hello kulcs Titkosított hello tárolási titkosítási X.509 tanúsítvány, amely által egy HTTP GET kérelem hello GetProtectionKeyId és GetProtectionKey metódusok végrehajtása nem beolvasni a Microsoft Azure Media Services használatával. Tegyük fel, tekintse meg a következő kód .NET hello: hello **EncryptSymmetricKeyData** definiált metódus [Itt](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs).
-    ProtectionKeyId | Ez az hello védelmi hello storage encryption X.509 tanúsítvány, de a használt tooencrypt azonosítója a tartalomkulcsot.
-    ProtectionKeyType | Ez az hello titkosítási típus hello védelmi kulcs, de a használt tooencrypt hello tartalomkulcsot. Ez az érték a fenti példában StorageEncryption(1).
-    Ellenőrzőösszeg |hello MD5 számított ellenőrzőösszege hello tartalomkulcsot. Hello tartalmat azonosító hello tartalomkulcsot titkosításával számítja ki. hello példakód bemutatja, hogyan toocalculate hello ellenőrzőösszeg.
+    Azonosító | A ContentKey azonosítója, amely azt ragozott formáival létrehozása a következő formátumban "nb:kid:UUID:<NEW GUID>".
+    ContentKeyType | Ez az a tartalom írja be a tartalom kulcs egész szám lehet. Az érték 1 storage-titkosítás továbbítja azt.
+    EncryptedContentKey | Létrehozhatunk egy új tartalom kulcs értéke pedig 256 bites (32 bájt) értéket. A kulcs titkosított a tárolási titkosítási X.509 tanúsítvány, amely által egy HTTP GET kérelem végrehajtása a GetProtectionKeyId és GetProtectionKey metódusok nem beolvasni a Microsoft Azure Media Services használatával. Tegyük fel, tekintse meg a következő .NET-kódot: a **EncryptSymmetricKeyData** definiált metódus [Itt](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs).
+    ProtectionKeyId | Ez az a védelmi tároló titkosítási X.509-tanúsítvány, amely a tartalom kulcs titkosításához használt kulcs azonosítója.
+    ProtectionKeyType | Ez egy, a védelem a tartalom kulcs titkosításához használt kulcs a titkosítási típus. Ez az érték a fenti példában StorageEncryption(1).
+    Ellenőrzőösszeg |Az MD5 számított ellenőrzőösszeg a tartalomkulcsot. A tartalom azonosítója a tartalom kulccsal titkosítja számítja ki. A mintakód bemutatja, hogyan ellenőrzőösszeg számítása.
 
 
-### <a name="retrieve-hello-protectionkeyid"></a>Hello ProtectionKeyId beolvasása
-hello a következő példa bemutatja, hogyan tooretrieve hello ProtectionKeyId, egy tanúsítvány-ujjlenyomat, hello tanúsítványt kell használni a tartalom kulcs titkosításához. Hajtsa végre a lépés toomake meg arról, hogy már rendelkezik a megfelelő tanúsítvánnyal hello a számítógépen.
+### <a name="retrieve-the-protectionkeyid"></a>A ProtectionKeyId beolvasása
+A következő példa bemutatja, hogyan beolvasni a ProtectionKeyId, egy tanúsítvány-ujjlenyomat, a tanúsítványt a tartalomkulcsot titkosításakor kell használnia. Hajtsa végre ezt a lépést, győződjön meg arról, hogy már rendelkezik a megfelelő tanúsítvány a gépen.
 
 A kérelem:
 
@@ -138,8 +138,8 @@ Válasz:
 
     {"odata.metadata":"https://wamsbayclus001rest-hs.cloudapp.net/api/$metadata#Edm.String","value":"7D9BB04D9D0A4A24800CADBFEF232689E048F69C"}
 
-### <a name="retrieve-hello-protectionkey-for-hello-protectionkeyid"></a>A hello ProtectionKeyId ProtectionKey hello beolvasása
-hello következő példa bemutatja, hogyan tooretrieve hello X.509-tanúsítvány hello ProtectionKeyId kapott hello előző lépésben.
+### <a name="retrieve-the-protectionkey-for-the-protectionkeyid"></a>A ProtectionKey lekérdezni a ProtectionKeyId
+A következő példa bemutatja, hogyan lehet lekérni az X.509-tanúsítvány a ProtectionKeyId az előző lépésben kapott.
 
 A kérelem:
 
@@ -172,12 +172,12 @@ Válasz:
     {"odata.metadata":"https://wamsbayclus001rest-hs.cloudapp.net/api/$metadata#Edm.String",
     "value":"MIIDSTCCAjGgAwIBAgIQqf92wku/HLJGCbMAU8GEnDANBgkqhkiG9w0BAQQFADAuMSwwKgYDVQQDEyN3YW1zYmx1cmVnMDAxZW5jcnlwdGFsbHNlY3JldHMtY2VydDAeFw0xMjA1MjkwNzAwMDBaFw0zMjA1MjkwNzAwMDBaMC4xLDAqBgNVBAMTI3dhbXNibHVyZWcwMDFlbmNyeXB0YWxsc2VjcmV0cy1jZXJ0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzR0SEbXefvUjb9wCUfkEiKtGQ5Gc328qFPrhMjSo+YHe0AVviZ9YaxPPb0m1AaaRV4dqWpST2+JtDhLOmGpWmmA60tbATJDdmRzKi2eYAyhhE76MgJgL3myCQLP42jDusWXWSMabui3/tMDQs+zfi1sJ4Ch/lm5EvksYsu6o8sCv29VRwxfDLJPBy2NlbV4GbWz5Qxp2tAmHoROnfaRhwp6WIbquk69tEtu2U50CpPN2goLAqx2PpXAqA+prxCZYGTHqfmFJEKtZHhizVBTFPGS3ncfnQC9QIEwFbPw6E5PO5yNaB68radWsp5uvDg33G1i8IT39GstMW6zaaG7cNQIDAQABo2MwYTBfBgNVHQEEWDBWgBCOGT2hPhsvQioZimw8M+jOoTAwLjEsMCoGA1UEAxMjd2Ftc2JsdXJlZzAwMWVuY3J5cHRhbGxzZWNyZXRzLWNlcnSCEKn/dsJLvxyyRgmzAFPBhJwwDQYJKoZIhvcNAQEEBQADggEBABcrQPma2ekNS3Wc5wGXL/aHyQaQRwFGymnUJ+VR8jVUZaC/U/f6lR98eTlwycjVwRL7D15BfClGEHw66QdHejaViJCjbEIJJ3p2c9fzBKhjLhzB3VVNiLIaH6RSI1bMPd2eddSCqhDIn3VBN605GcYXMzhYp+YA6g9+YMNeS1b+LxX3fqixMQIxSHOLFZ1G/H2xfNawv0VikH3djNui3EKT1w/8aRkUv/AAV0b3rYkP/jA1I0CPn0XFk7STYoiJ3gJoKq9EMXhit+Iwfz0sMkfhWG12/XO+TAWqsK1ZxEjuC9OzrY7pFnNxs4Mu4S8iinehduSpY+9mDd3dHynNwT4="}
 
-### <a name="create-hello-content-key"></a>Hello tartalomkulcs létrehozása
-Hello X.509 tanúsítvány lekérése és használja a nyilvános kulcs tooencrypt a tartalomkulcsot, akkor létre kell hoznia egy **ContentKey** entitás és a tulajdonság értékek ennek megfelelően beállítva.
+### <a name="create-the-content-key"></a>A tartalomkulcs létrehozása
+Az X.509 tanúsítvány lekérése és a tartalom kulcs titkosításához használt nyilvános kulcsát, akkor létre kell hoznia egy **ContentKey** entitás és a tulajdonság értékek ennek megfelelően beállítva.
 
-Hello tartalom hello típus kulcs létrehozása, hogy kell-e állítva mikor hello értékek egyike. Hello tárolás titkosítását, ha a hello értéke "1". 
+A tartalom létrehozása a értékeket, hogy kell-e állítva mikor kulcs egy típus. Esetén a tárolás titkosítása értéke "1". 
 
-a következő példa azt mutatja meg hogyan hello toocreate egy **ContentKey** rendelkező egy **ContentKeyType** beállítása a tárolás titkosítása ("1") és hello **ProtectionKeyType** beállítása túl "0" amely védelmi kulcs azonosítója hello tooindicate hello X.509 tanúsítvány ujjlenyomata.  
+A következő példa bemutatja, hogyan hozhat létre egy **ContentKey** rendelkező egy **ContentKeyType** tárolás titkosítása ("1") beállítása és a **ProtectionKeyType** azt jelzi, hogy a védelem kulcs azonosítója az X.509 tanúsítvány ujjlenyomata "0" értékre állítva.  
 
 Kérés
 
@@ -227,7 +227,7 @@ Válasz:
     "Checksum":"calculated checksum"}
 
 ## <a name="create-an-asset"></a>Egy eszköz létrehozása
-a következő példa azt mutatja meg hogyan hello toocreate eszközként.
+A következő példa bemutatja, hogyan hozzon létre egy eszközt.
 
 **HTTP-kérelem**
 
@@ -245,7 +245,7 @@ a következő példa azt mutatja meg hogyan hello toocreate eszközként.
 
 **HTTP-válasz**
 
-Ha sikeres, hello következő adja vissza:
+Ha sikeres, a következő adja vissza:
 
     HTP/1.1 201 Created
     Cache-Control: no-cache
@@ -273,8 +273,8 @@ Ha sikeres, hello következő adja vissza:
        "StorageAccountName":"storagetestaccount001"
     }
 
-## <a name="associate-hello-contentkey-with-an-asset"></a>Egy eszköz hello ContentKey társítása
-Miután létrehozta a hello ContentKey, társíthatja hello $links művelettel, az eszköz a hello a következő példában látható módon:
+## <a name="associate-the-contentkey-with-an-asset"></a>Egy eszköz a ContentKey társítása
+Miután létrehozta a ContentKey, rendelje hozzá azt az objektumot az $links művelet használatával a következő példában látható módon:
 
 A kérelem:
 
@@ -295,11 +295,11 @@ Válasz:
     HTTP/1.1 204 No Content 
 
 ## <a name="create-an-assetfile"></a>Hozzon létre egy AssetFile
-Hello [AssetFile](https://docs.microsoft.com/rest/api/media/operations/assetfile) entitás egy blob-tárolóban tárolt video- vagy fájlt jelöli. Egy eszköz fájl mindig társítva van egy eszköz, és egy eszköz egy vagy több eszköz fájlt tartalmaz. hello Media Services kódoló feladat sikertelen lesz, ha egy eszköz fájl objektumhoz nincs társítva egy digitális fájlhoz egy blob-tárolóban.
+A [AssetFile](https://docs.microsoft.com/rest/api/media/operations/assetfile) entitás egy blob-tárolóban tárolt video- vagy fájlt jelöli. Egy eszköz fájl mindig társítva van egy eszköz, és egy eszköz egy vagy több eszköz fájlt tartalmaz. A Media Services kódoló feladat sikertelen lesz, ha egy eszköz fájl objektumhoz nincs társítva egy digitális fájlhoz egy blob-tárolóban.
 
-Vegye figyelembe, hogy hello **AssetFile** példány és a hello tényleges media fájl is két különböző objektum. hello AssetFile példány hello media fájlról metaadatot tartalmaz, amíg hello médiafájl tartalmaz hello tényleges médiatartalmakat.
+Vegye figyelembe, hogy a **AssetFile** példány és a tényleges médiafájl két különböző objektum. A AssetFile példány media fájl metaadatainak tartalmaz, míg a médiafájl tartalmazza a tényleges médiatartalmakat.
 
-Miután a digitális adathordozójának fájl feltöltése a blob-tárolóba, szüksége lesz a hello **EGYESÍTÉSE** HTTP kérelem tooupdate hello AssetFile a adatainak media (ebben a témakörben nem látható). 
+A digitális adathordozójának fájl feltöltése a blob-tárolóba, után fogja használni a **EGYESÍTÉSE** HTTP-kérelem a AssetFile frissítheti a adatainak media (ebben a témakörben nem látható). 
 
 **HTTP-kérelem**
 

@@ -1,6 +1,6 @@
 ---
-title: "SQL-adatbázis gyűrűpuffer kód aaaXEvent |} Microsoft Docs"
-description: "A Transact-SQL kódminta, amely gyors és egyszerű hello gyűrűpuffer célként, az Azure SQL Database használatának köszönhetően biztosít."
+title: "SQL-adatbázis XEvent gyűrűpuffer kód |} Microsoft Docs"
+description: "Egy egyszerű és gyors gyűrűpuffer célként, az Azure SQL Database használata által készített Transact-SQL kódminta biztosít."
 services: sql-database
 documentationcenter: 
 author: MightyPen
@@ -16,33 +16,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/03/2017
 ms.author: genemi
-ms.openlocfilehash: 21df748d9999d6837d2b5bbe4a3f47fb351b4633
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6fbefe151901ac3b15d93712422878fc4d6206f1
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="ring-buffer-target-code-for-extended-events-in-sql-database"></a>Az SQL-adatbázis kiterjesztett események puffer cél kódját gyűrű
 
 [!INCLUDE [sql-database-xevents-selectors-1-include](../../includes/sql-database-xevents-selectors-1-include.md)]
 
-A teljes kódminta hello legegyszerűbb gyorsan toocapture jelentés adatai és a kiterjesztett esemény egy teszt során használni szeretne. hello legegyszerűbb bővítettesemény adatok célja hello [gyűrűpuffer cél](http://msdn.microsoft.com/library/ff878182.aspx).
+A rögzítési jelentés adatai és a kiterjesztett esemény egy teszt során gyors legegyszerűbben teljes kódminta használni szeretne. A bővítettesemény-adatok legegyszerűbb célja a [gyűrűpuffer cél](http://msdn.microsoft.com/library/ff878182.aspx).
 
 Ebből a témakörből megismerheti a Transact-SQL kódminta, amely:
 
-1. Táblázat létrehozása az adatok toodemonstrate.
+1. Táblázatot hoz létre a adataival, hogy mutassa be.
 2. Hoz létre egy munkamenetet egy meglévő kiterjesztett esemény, nevezetesen **sqlserver.sql_statement_starting**.
    
-   * hello esemény egy adott frissítés karakterlánc korlátozott tooSQL utasítások: **PÉLDÁUL a "frissítés tabEmployee %" utasítás**.
-   * Úgy dönt, toosend hello kimeneti hello esemény tooa TARGET típusú gyűrűpuffer, nevezetesen **package0.ring_buffer**.
-3. Hello esemény-munkamenet indítása.
+   * Az esemény egy adott frissítés karakterláncot tartalmazó SQL-utasítások korlátozódik: **PÉLDÁUL a "frissítés tabEmployee %" utasítás**.
+   * Úgy dönt, hogy a kimenet az esemény küldése gyűrűpuffer, típusú cél nevezetesen **package0.ring_buffer**.
+3. Az esemény-munkamenet indítása.
 4. Néhány egyszerű frissítés az SQL-utasítások ad ki.
-5. Kibocsát egy SQL SELECT utasítás tooretrieve esemény kimenete hello gyűrűpuffer.
+5. Problémák esemény kimeneti lekérése gyűrűpuffer tartalmazó SQL SELECT utasításhoz.
    
    * **sys.dm_xe_database_session_targets** és egyéb dinamikus felügyeleti nézetek (dinamikus felügyeleti nézetek).
-6. Leállítja a hello esemény-munkamenet.
-7. Elhagyta hello gyűrűpuffer célként, toorelease erőforrásait.
-8. Hello esemény-munkamenet és hello bemutató táblázat esik.
+6. Az esemény-munkamenet leállítása.
+7. Csökken a gyűrűpuffer célként, az erőforrások kijelölése.
+8. Az esemény-munkamenet és bemutató táblázat esik.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
@@ -51,14 +51,14 @@ Ebből a témakörből megismerheti a Transact-SQL kódminta, amely:
   
   * Igény szerint is [hozzon létre egy **AdventureWorksLT** mintaadatbázis](sql-database-get-started.md) perc múlva.
 * SQL Server Management Studio (ssms.exe) ideális esetben a havi frissítés letöltéséhez. 
-  Letöltheti a legújabb ssms.exe hello származó:
+  Letöltheti a legújabb ssms.exe:
   
   * Című témakör [töltse le az SQL Server Management Studio](http://msdn.microsoft.com/library/mt238290.aspx).
-  * [Egy közvetlen hivatkozást toohello letölthető.](http://go.microsoft.com/fwlink/?linkid=616025)
+  * [A letöltés egy közvetlen hivatkozást.](http://go.microsoft.com/fwlink/?linkid=616025)
 
 ## <a name="code-sample"></a>Kódminta
 
-Nagyon kis módosítással hello következő gyűrűpuffer kódminta futtatható Azure SQL Database vagy a Microsoft SQL Server. hello különbség hello jelenléte hello csomópont "ír elé _adatbázis" hello nevű egyes dinamikus felügyeleti nézetek (dinamikus felügyeleti nézetek), 5. lépésben hello FROM záradékban használt. Példa:
+Nagyon kis módosítással a következő gyűrűpuffer kódminta futtatható Azure SQL Database vagy a Microsoft SQL Server. A különbség a csomópont "ír elé _adatbázis" nevében egyes dinamikus felügyeleti nézetek (dinamikus felügyeleti nézetek), 5. lépésben a FROM záradékban használt jelenlétét. Példa:
 
 * sys.dm_xe**ír elé _adatbázis**_session_targets
 * sys.dm_xe_session_targets
@@ -220,13 +220,13 @@ GO
 
 ## <a name="ring-buffer-contents"></a>Kör puffer tartalma
 
-Ssms.exe toorun hello kódminta használtuk.
+Ssms.exe segítségével futtathatja a kódot.
 
-tooview hello eredmény elérése érdekében azt kattintott hello cella hello oszlopfejléc szerint **target_data_XML**.
+Az eredmények megtekintéséhez azt kattintott a cella az az oszlop fejlécére **target_data_XML**.
 
-Majd hello eredménypanelen azt hello cella hello oszlopfejléc szerint **target_data_XML**. Kattintson ssms.exe mely hello a hello eredmény cella tartalma jelent meg, XML-fájlt egy másik lapon létre.
+Az eredmények ablaktábláján jelenleg kattintott a cella az az oszlop fejlécére, majd **target_data_XML**. Kattintson egy másik fájl lapon létre ssms.exe, amelyben az eredmény cella tartalmát jelent meg, XML formátumban.
 
-a következő blokk hello hello kimeneti látható. A jelek hosszú, de csak a két  **<event>**  elemek.
+A kimenet látható a következő blokkot. A jelek hosszú, de csak a két  **<event>**  elemek.
 
 &nbsp;
 
@@ -320,7 +320,7 @@ SELECT 'AFTER__Updates', EmployeeKudosCount, * FROM tabEmployee;
 
 #### <a name="release-resources-held-by-your-ring-buffer"></a>A gyűrűpuffer birtokában kiadás erőforrások
 
-Amikor elkészült, a kör pufferrel, távolítsa el, és a vállalati erőforrások kiadási egy **ALTER** hello következő, például:
+Amikor elkészült, a kör pufferrel, távolítsa el, és a vállalati erőforrások kiadási egy **ALTER** , például a következőket:
 
 ```sql
 ALTER EVENT SESSION eventsession_gm_azuresqldb51
@@ -330,7 +330,7 @@ GO
 ```
 
 
-az esemény-munkamenet hello definíciójának frissítése, de nem szakad meg. Később hello gyűrűpuffer tooyour esemény-munkamenet egy másik példánya is hozzáadhat:
+Az esemény-munkamenet definíciójának frissítése, de nem szakad meg. Később gyűrűpuffer egy másik példánya is hozzáadhat az esemény-munkamenethez:
 
 ```sql
 ALTER EVENT SESSION eventsession_gm_azuresqldb51
@@ -345,11 +345,11 @@ ALTER EVENT SESSION eventsession_gm_azuresqldb51
 
 ## <a name="more-information"></a>További információ
 
-az Azure SQL Database-kiterjesztett események hello elsődleges témakör van:
+Az Azure SQL Database-kiterjesztett események elsődleges témakör van:
 
 * [Kiterjesztett esemény szempontok az SQL-adatbázis](sql-database-xevent-db-diff-from-svr.md), amely az ellenkezőjét szemlélteti a kiterjesztett az eseményeket, amelyek eltérnek a Microsoft SQL Server és az Azure SQL Database egyes funkcióit.
 
-Más kód a minta témakörök kiterjesztett események hello hivatkozásokat a következő webhelyen érhetők el. Azonban rendszeresen ellenőrizni kell a minta toosee e hello minta Microsoft SQL Server és az Azure SQL Database célozza. Ezután eldöntheti, hogy másodlagos változtatások-e a szükséges toorun hello minta.
+Más kód a minta témakörök kiterjesztett események a következő hivatkozások webhelyen érhetők el. Azonban rendszeresen ellenőrizni kell a minta megtekintéséhez, hogy a minta irányul-e a Microsoft SQL Server és az Azure SQL Database. Ezután eldöntheti, hogy kisebb módosításokat a minta futtatásához szükség van-e.
 
 * Az Azure SQL Database kódminta: [Eseményfájlt cél kódot az SQL-adatbázis kiterjesztett események](sql-database-xevent-code-event-file.md)
 
@@ -357,5 +357,5 @@ Más kód a minta témakörök kiterjesztett események hello hivatkozásokat a 
 ('lock_acquired' event.)
 
 - Code sample for SQL Server: [Determine Which Queries Are Holding Locks](http://msdn.microsoft.com/library/bb677357.aspx)
-- Code sample for SQL Server: [Find hello Objects That Have hello Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
+- Code sample for SQL Server: [Find the Objects That Have the Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
 -->

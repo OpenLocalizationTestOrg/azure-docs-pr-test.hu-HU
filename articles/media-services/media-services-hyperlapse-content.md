@@ -1,6 +1,6 @@
 ---
-title: "az Azure Media Hyperlapse médiafájlok aaaHyperlapse |} Microsoft Docs"
-description: "Az Azure Media Hyperlapse zökkenőmentes idő letelt videók első, aki vagy művelet – kamera tartalmat hoz létre. Ez a témakör bemutatja, hogyan toouse Media Indexer."
+title: "Médiafájlok feldolgozása az Azure Media hyperlapse használatával |} Microsoft Docs"
+description: "Az Azure Media Hyperlapse zökkenőmentes idő letelt videók első, aki vagy művelet – kamera tartalmat hoz létre. Ez a témakör bemutatja, hogyan Media Indexer használatára."
 services: media-services
 documentationcenter: 
 author: asolanki
@@ -14,37 +14,37 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/02/2017
 ms.author: adsolank
-ms.openlocfilehash: 85bb07206d0ca2f5b2fd0767e6ed4904195d3ab6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 02f634c2af04b6b372642ab0e6a17a5d29f16450
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="hyperlapse-media-files-with-azure-media-hyperlapse"></a>Médiafájlok feldolgozása az Azure Media hyperlapse használatával
-Az Azure Media Hyperlapse egy Media processzor (MP), amely zökkenőmentes idő letelt videók hoz első, aki vagy művelet – kamera tartalomról.  felhőalapú testvér túl hello[Microsoft Research asztali Hyperlapse Pro és Hyperlapse Mobile phone-alapú](http://aka.ms/hyperlapse), az Azure Media Services Microsoft Hyperlapse hello jelentős mértékű az Azure Media Services Media hello használja A platform toohorizontally feldolgozási méretezhető és tömeges parallelize Hyperlapse feldolgozása.
+Az Azure Media Hyperlapse egy Media processzor (MP), amely zökkenőmentes idő letelt videók hoz első, aki vagy művelet – kamera tartalomról.  A felhő alapú testvérének [Microsoft Research asztali Hyperlapse Pro és Hyperlapse Mobile phone-alapú](http://aka.ms/hyperlapse), az Azure Media Services Microsoft Hyperlapse használja az Azure Media Services Media feldolgozása a jelentős mértékű vízszintes skálázása és parallelize platform tömeges Hyperlapse feldolgozása.
 
 > [!IMPORTANT]
-> Microsoft Hyperlapse tervezett toowork ajánlott a mozgóátlag fényképezőgép az első, aki a tartalomhoz.  Bár továbbra is-kamerák felvételei is működik, hello teljesítményének és minőségének hello Azure Media Hyperlapse Media processzor nem garantálható tartalmat más típusú.  További információk az Azure Media Services Microsoft Hyperlapse toolearn és néhány Mintavideók megtekintéséhez tekintse meg a hello [bevezető blogbejegyzés](http://aka.ms/azurehyperlapseblog) a hello nyilvános előzetes verziójához.
+> Microsoft Hyperlapse legmegfelelőbb első, aki a tartalomhoz a mozgóátlag fényképezőgép célja.  Bár továbbra is-kamerák felvételei is működik, a teljesítmény és az Azure Media Hyperlapse Media processzor-minőségi nem garantálható tartalmat más típusú.  További információk a Microsoft Hyperlapse az Azure Media Services, és tekintse meg néhány Mintavideók, tekintse meg a [bevezető blogbejegyzés](http://aka.ms/azurehyperlapseblog) a nyilvános előzetes verziójához.
 > 
 > 
 
-Egy Azure Media Hyperlapse feladat végrehajtásához szükséges, adjon meg egy MP4, MOV vagy WMV objektumfájlt egy konfigurációs fájl, amely meghatározza, melyik keretek videó idő letelt és toowhat sebesség együtt (pl. első 10 000 keretet 2 x).  hello eredménye egy stabil és az idő letelt verzióinak hello bemeneti videó.
+Egy Azure Media Hyperlapse feladat végrehajtásához szükséges, adjon meg egy MP4, MOV vagy WMV objektumfájlt együtt, amely meghatározza, melyik keretek videó idő letelt konfigurációs fájlt, és milyen sebességgel (pl. első 10 000 keretet 2 x).  Az eredménye egy stabil és az idő letelt verzióinak a bemeneti videó.
 
-Lásd: hello Azure Media Hyperlapse legújabb [Media Services blogok](https://azure.microsoft.com/blog/topics/media-services/).
+A legújabb Azure Media Hyperlapse frissítéseket, lásd: [Media Services blogok](https://azure.microsoft.com/blog/topics/media-services/).
 
 ## <a name="hyperlapse-an-asset"></a>Hyperlapse egy eszköz
-Először be kell tooupload a kívánt bemeneti fájl tooAzure Media Services.  További részletek toolearn hello fogalmakat feltöltése és tartalomkezelés, olvassa el a hello [tartalomkezelési cikk](media-services-portal-vod-get-started.md).
+Először szüksége lesz Azure Media Services töltse fel a kívánt bemeneti fájl.  Adminisztrációjával kapcsolatos feltöltését és kielégíteni tartalomkezelési fogalmak kapcsolatos további tudnivalókért olvassa el a [tartalomkezelési cikk](media-services-portal-vod-get-started.md).
 
 ### <a id="configuration"></a>Hyperlapse konfigurációs beállításkészlet
-Ha a tartalom a Media Services-fiókját, szüksége lesz a konfigurációs készlet tooconstruct.  a következő táblázat hello hello felhasználó által megadott mezőket ismerteti:
+Ha a tartalom a Media Services-fiókját, szüksége lesz a konfigurációs készlet létrehozásához.  Az alábbi táblázat ismerteti a felhasználó által megadott mezőket:
 
 | Mező | Leírás |
 | --- | --- |
-| StartFrame |hello keret, mely hello Microsoft Hyperlapse feldolgozási el kell kezdődnie. |
-| NumFrames |keretek tooprocess hello száma |
-| Gyorsaság |hello tényező, mely toospeed hello bemeneti videó fel. |
+| StartFrame |A keret, amelyre a Microsoft Hyperlapse feldolgozási el kell kezdődnie. |
+| NumFrames |Keretek feldolgozni száma |
+| Gyorsaság |A tényező, amellyel a bemeneti videó felgyorsítása érdekében. |
 
-hello az alábbiakban látható egy példa egy szabványos konfigurációs fájl XML- és a JSON:
+A következő egy példa egy szabványos konfigurációs fájl XML- és a JSON:
 
 **XML-készletet:**
 
@@ -74,14 +74,14 @@ hello az alábbiakban látható egy példa egy szabványos konfigurációs fájl
         }
     }
 
-### <a id="sample_code"></a>Az AMS .NET SDK hello Microsoft Hyperlapse
-hello következő metódus feltölt egy médiafájlt eszközként, és létrehoz egy feladatot az Azure Media Hyperlapse Media processzor hello.
+### <a id="sample_code"></a>Microsoft Hyperlapse az AMS .NET SDK-val
+A következő metódus feltölt egy médiafájlt eszközként, és létrehoz egy feladatot az Azure Media Hyperlapse Media processzorral rendelkező.
 
 > [!NOTE]
-> Már rendelkezik a egy CloudMediaContext ez kód toowork a hello neve "context" hatókörébe.  További információk a, olvasási hello toolearn [tartalomkezelési cikk](media-services-dotnet-get-started.md).
+> Egy CloudMediaContext már rendelkezik a neve "context" a kód működéséhez a hatókörben.  Ezzel kapcsolatos további tudnivalókért olvassa el a [tartalomkezelési cikk](media-services-dotnet-get-started.md).
 > 
 > [!NOTE]
-> hello karakterlánc "hyperConfig" argumentum egy szabványos konfigurációs készlet JSON vagy a fent leírt módon XML várt toobe.
+> A karakterlánc-argumentum "hyperConfig" kellene lennie a szabványos konfigurációs készlet JSON vagy XML fent leírt módon.
 > 
 > 
 
@@ -148,7 +148,7 @@ hello következő metódus feltölt egy médiafájlt eszközként, és létrehoz
                                                  CancellationToken.None);
             progressJobTask.Wait();
 
-            // If job state is Error, hello event handling
+            // If job state is Error, the event handling
             // method for job progress should log errors.  Here we check
             // for error state and exit if needed.
             if (job.State == JobState.Error)

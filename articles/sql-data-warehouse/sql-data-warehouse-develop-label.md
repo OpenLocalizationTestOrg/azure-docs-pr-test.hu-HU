@@ -1,6 +1,6 @@
 ---
-title: "aaaUse felirataihoz, ha az SQL Data Warehouse tooinstrument lekérdezések |} Microsoft Docs"
-description: "Tippek az Azure SQL Data Warehouse adattárházzal történő, megoldások címkék tooinstrument lekérdezések használatát."
+title: "Az eszköz-lekérdezésekre címkék használata az SQL Data Warehouse |} Microsoft Docs"
+description: "Tippek az eszköz lekérdezések címkék használata az Azure SQL Data Warehouse adattárházzal történő, megoldások."
 services: sql-data-warehouse
 documentationcenter: NA
 author: jrowlandjones
@@ -15,13 +15,13 @@ ms.workload: data-services
 ms.custom: queries
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: 82e7ea98e1417134227f1d7c529fdaf2f1df3853
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9e75bbe528a427724a623305fbd45e2277e9d0af
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-labels-tooinstrument-queries-in-sql-data-warehouse"></a>Az SQL Data Warehouse címkék tooinstrument lekérdezések használata
+# <a name="use-labels-to-instrument-queries-in-sql-data-warehouse"></a>Az eszköz-lekérdezésekre címkék használata az SQL Data Warehouse
 Az SQL Data Warehouse nevű lekérdezés címkék elvét támogatja. Mielőtt a felhasználó bármely mélysége be most tekintse meg egy példát:
 
 ```sql
@@ -31,11 +31,11 @@ OPTION (LABEL = 'My Query Label')
 ;
 ```
 
-Utolsó sor hello karakterlánc "Saját lekérdezés címke" toohello lekérdezés címkéket. Ez az különösen hasznos, mert hello címke lekérdezés állítására hello dinamikus felügyeleti nézetek használatával. Ez a probléma lekérdezéseket mechanizmus tootrack ad, és hogy a toohelp is azonosíthatja az ETL futtatása során.
+Utolsó sor címkéket a lekérdezés a "Saját lekérdezés címke" karakterlánc. Ez az különösen hasznos, mert a címke a lekérdezés-tudja a dinamikus felügyeleti nézetek használatával. Ez ad egy olyan mechanizmus, nyomon követheti a probléma lekérdezések és azonosításához az ETL futtatása során.
 
-Jó elnevezési valóban itt segít. Például alábbihoz hasonló "projekt: eljárás: utasítás: COMMENT" segítene toouniquely hello lekérdezés az összes hello kód a verziókövetési rendszerrel többek között azonosítása.
+Jó elnevezési valóban itt segít. Például alábbihoz hasonló "projekt: eljárás: utasítás: COMMENT" segítene a lekérdezést a verziókövetési a kód között egyedi azonosításához.
 
-használhatja a következő lekérdezés használó hello felirat toosearch hello dinamikus felügyeleti nézetek:
+Címke szerinti kereséshez a következő lekérdezés a dinamikus felügyeleti nézetekkel használó használhatja:
 
 ```sql
 SELECT  *
@@ -45,7 +45,7 @@ WHERE   r.[label] = 'My Query Label'
 ```
 
 > [!NOTE]
-> Fontos, hogy burkolása szögletes zárójelbe vagy dupla idézőjelbe hello word címke lekérdezésekor. Címke egy fenntartott szó, és fogja a hiba oka, hogy nem lettek tagolva.
+> Fontos, hogy burkolása szögletes zárójelek között vagy a word címke dupla idézőjelbe lekérdezésekor. Címke egy fenntartott szó, és fogja a hiba oka, hogy nem lettek tagolva.
 > 
 > 
 

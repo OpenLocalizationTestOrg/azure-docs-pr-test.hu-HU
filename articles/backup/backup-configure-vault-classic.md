@@ -1,6 +1,6 @@
 ---
-title: "Windows server vagy a munkaállomás tooAzure (klasszikus modell) mentése aaaBack |} Microsoft Docs"
-description: "A biztonsági mentés Windows kiszolgálókat vagy ügyfeleket tooa mentési tárolóból, amelyben az Azure-ban. Halad át a fájlok és mappák tooa védelméhez alapjai Backup-tárolóban hello Azure Backup szolgáltatás ügynökének használatával."
+title: "Készítsen biztonsági másolatot a Windows server vagy az Azure-ba (klasszikus modell) munkaállomás |} Microsoft Docs"
+description: "Windows Server-kiszolgálók biztonsági mentési vagy ügyfelek számára, hogy a mentési tárolóban az Azure-ban. Nyissa meg a fájlok és mappák a mentési tárolóba védelméhez az Azure Backup szolgáltatás ügynökének használatával alapjai keresztül."
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -15,150 +15,150 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/11/2017
 ms.author: markgal;trinadhk;
-ms.openlocfilehash: c8f2a9bed1e5885f5c272c65b9282ededc05850a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a8daa6a4655b72936b6299c0fa5b80459ffa5da3
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="back-up-a-windows-server-or-workstation-tooazure-using-hello-classic-portal"></a>Készítsen biztonsági másolatot a Windows server vagy a munkaállomás tooAzure hello klasszikus portál használatával
+# <a name="back-up-a-windows-server-or-workstation-to-azure-using-the-classic-portal"></a>Biztonsági másolatot készíthet a Windows server és a munkaállomás Azure klasszikus portál használatával
 > [!div class="op_single_selector"]
 > * [Klasszikus portál](backup-configure-vault-classic.md)
 > * [Azure Portal](backup-configure-vault.md)
 >
 >
 
-Ez a cikk a toofollow tooprepare a környezetre van szükség, és készítsen biztonsági másolatot a Windows server (vagy munkaállomás) tooAzure hello eljárásokat ismerteti. A biztonsági mentési megoldások telepítésének szempontjai is magában foglalja. Ha szeretné használni az Azure biztonsági mentés közben a hello először, ebben a cikkben gyorsan végigvezeti hello folyamatán.
+Ez a cikk az Azure-bA az eljárásokat, kövesse a környezet előkészítése és a biztonsági másolatot készíthet a Windows server (és munkaállomások) ismerteti. A biztonsági mentési megoldások telepítésének szempontjai is magában foglalja. Ha szeretné használni az Azure biztonsági mentés közben először, ebben a cikkben gyorsan végigvezeti a folyamatot.
 
-Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: Resource Manager és klasszikus. Ez a cikk hello klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén hello Resource Manager modellt használja.
+Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: Resource Manager és klasszikus. Ez a cikk a klasszikus üzembehelyezési modellt ismerteti. A Microsoft azt javasolja, hogy az új telepítések esetén a Resource Manager modellt használja.
 
 ## <a name="before-you-start"></a>Előkészületek
-egy kiszolgáló vagy az ügyfél tooAzure tooback, kell az Azure-fiók. Ha még nincs fiókja, létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/free/) néhány percig.
+Biztonsági mentése a kiszolgáló vagy az ügyfél az Azure-ba, az Azure-fiók szükséges. Ha még nincs fiókja, létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/free/) néhány percig.
 
 ## <a name="create-a-backup-vault"></a>Backup-tároló létrehozása
-fájlok és mappák kiszolgálói vagy ügyfél tooback, toocreate egy mentési tárolót, ahová toostore hello adatokat hello földrajzi régióban kell.
+Fájlok és mappák biztonsági mentése egy kiszolgáló vagy az ügyfél, hozzon létre egy mentési tárolót, hol szeretné tárolni az adatokat a földrajzi régióban kell.
 
 > [!IMPORTANT]
-> 2017. március-től kezdődően már nem használható hello klasszikus portál toocreate mentési tárolókban.
+> 2017 márciusától már nem hozhat létre Backup-tárolókat a klasszikus portálon.
 >
-> Most már frissítheti a mentési tárolók tooRecovery szolgáltatások tárolókban. További információkért lásd: hello cikk [frissíteni a biztonsági mentési tároló tooa Recovery Services-tároló](backup-azure-upgrade-backup-to-recovery-services.md). A Microsoft tooupgrade támogatja a mentési tárolókat tooRecovery szolgáltatások tárolók.<br/> **2017. október 15**, akkor nem fog tudni toouse PowerShell toocreate mentési tárolókban. <br/> **2017. november 1-től kezdődően**:
->- A többi biztonsági mentési tárolók lesz automatikusan frissített tooRecovery szolgáltatások tárolók.
->- Ön nem fogja tudni tooaccess a biztonsági mentési adatok hello a klasszikus portálon. Ehelyett használjon hello Azure portál tooaccess a biztonsági mentési adatok a Recovery Services-tárolók.
+> A biztonsági mentési tárakról mostantól lehetőség van helyreállítási tárakra váltani. A részletekről bővebben az [Váltás biztonsági mentési tárolóról Recovery Services-tárolóra](backup-azure-upgrade-backup-to-recovery-services.md) című cikkben olvashat. A Microsoft azt javasolja, hogy a biztonsági mentési tárolóról váltson Recovery Services-tárolóra.<br/> **2017. október 15-től** a PowerShell a továbbiakban nem használható Backup-tárolók létrehozására. <br/> **2017. november 1-től kezdődően**:
+>- A rendszer automatikusan elvégzi valamennyi megmaradó biztonsági mentési tároló átváltását Recovery Services-tárolókra.
+>- A klasszikus portálon nem lehet majd hozzáférni a biztonsági másolati adatokhoz. Helyette az Azure Portal segítségével férhet hozzá a Recovery Services-tárolókban található biztonsági mentési adatokhoz.
 >
 
 
-## <a name="download-hello-vault-credential-file"></a>Hello tárolói hitelesítő adatok fájlját letöltése
-hello a helyi számítógépen kell toobe biztonsági mentését adatok tooAzure is azelőtt hitelesíthetők, a mentési tárolóban. hello hitelesítési sorrendekben *hitelesítő adatokat tároló*. hello tárolói hitelesítő adatok fájlját letöltődik a klasszikus portálon hello egy biztonságos csatornán keresztül. hello tanúsítvány titkos kulcsa nem maradnak hello portálon vagy hello szolgáltatást.
+## <a name="download-the-vault-credential-file"></a>Töltse le a tárolói hitelesítő adatok fájlját
+A helyszíni gépre kell hitelesíteni a mentési tárolóban előtt az adatok biztonsági másolatát is az Azure-bA. A hitelesítési sorrendekben *hitelesítő adatokat tároló*. A tárolói hitelesítő adatok fájlját letöltődik a klasszikus portálon egy biztonságos csatornán keresztül. A tanúsítvány titkos kulcsa nem maradnak a portálon vagy a szolgáltatás.
 
-### <a name="toodownload-hello-vault-credential-file-tooa-local-machine"></a>toodownload hello tárolói hitelesítő adatok fájl tooa helyi számítógép
-1. Hello bal oldali navigációs ablaktábláján kattintson **Recovery Services**, majd válassza ki a létrehozott hello mentési tároló.
+### <a name="to-download-the-vault-credential-file-to-a-local-machine"></a>Töltse le a tárolói hitelesítő adatok fájlját egy helyi számítógép számára
+1. A bal oldali navigációs ablaktáblán kattintson **Recovery Services**, majd válassza ki a mentési tároló, amely létrehozta.
 
     ![IR befejezve](./media/backup-configure-vault-classic/rs-left-nav.png)
-2. Hello gyors kezdés lapon kattintson **letöltési tárolói hitelesítő adatokat**.
+2. Kattintson a gyors üzembe helyezés lap **letöltési tárolói hitelesítő adatokat**.
 
-   hello klasszikus portál hello tároló nevére és hello aktuális dátum együttes használatával hoz létre a tároló hitelesítő adatait. hello tárolói hitelesítő adatok fájlja csak hello regisztrációs munkamenet során használt, és 48 óra múlva lejár.
+   A klasszikus portálon, a tároló nevét és az aktuális dátumot együttes használatával hoz létre a tároló hitelesítő adatait. A tároló hitelesítési adatait tartalmazó fájlt csak a regisztrációs munkamenet során használt, és 48 óra múlva lejár.
 
-   hello tárolói hitelesítő adatok fájlját hello portal letölthetők.
-3. Kattintson a **mentése** toodownload hello tárolói hitelesítő adatok fájl toohello Letöltések mappába hello helyi fiók. Igény szerint kiválaszthatja **Mentés másként** a hello **mentése** menü toospecify hello tárolói hitelesítő adatok fájlját helyét.
+   A tároló hitelesítő adatait tartalmazó fájlt a portálról letölthető.
+3. Kattintson a **mentése** letölteni a tároló hitelesítő adatait tartalmazó fájlt a helyi fiók a Letöltések mappába. Igény szerint kiválaszthatja **Mentés másként** a a **mentése** menüre kattintva adjon meg egy helyet a tárolói hitelesítő adatok fájlját.
 
    > [!NOTE]
-   > Ellenőrizze, hogy hello tárolói hitelesítő adatok fájlját az egy helyre mentik el, hogy a számítógép elérhető. Ha egy fájl megosztás vagy kiszolgálói üzenetblokk tárolódik, ellenőrizze, hogy rendelkezik-e hello engedélyek tooaccess azt.
+   > Ellenőrizze, hogy a tároló hitelesítő adatait tartalmazó fájlt van egy helyre mentik el, hogy a számítógép elérhető. Ha egy fájl megosztás vagy kiszolgálói üzenetblokk tárolva van, győződjön meg arról, hogy rendelkezik-e az engedélyeket az eléréséhez.
    >
    >
 
-## <a name="download-install-and-register-hello-backup-agent"></a>Letöltése, telepítése és regisztrálása hello Backup szolgáltatás ügynöke
-Miután létrehozta a mentési tároló hello és letöltési hello tárolói hitelesítő adatok fájlját, az ügynököt telepíteni kell a Windows-alapú gépek minden egyes.
+## <a name="download-install-and-register-the-backup-agent"></a>Letöltése, telepítése és regisztrálása a Backup szolgáltatás ügynöke
+Miután a mentési tároló létrehozása, és töltse le a tárolói hitelesítő adatok fájlját, egy ügynököt telepíteni kell a Windows-alapú gépek minden egyes.
 
-### <a name="toodownload-install-and-register-hello-agent"></a>toodownload, telepítése, és hello ügynök regisztrálása
-1. Kattintson a **Recovery Services**, majd válassza ki, hogy szeretné-e a kiszolgálóval tooregister hello mentési tároló.
-2. A hello gyors kezdés lapon kattintson a hello ügynök **ügynök Windows vagy a System Center Data Protection Manager vagy a Windows ügyfél**. Ezután kattintson a **Save** (Mentés) gombra.
+### <a name="to-download-install-and-register-the-agent"></a>Letöltéséhez, telepítéséhez, és az ügynök regisztrálása
+1. Kattintson a **Recovery Services**, majd válassza ki a mentési tároló, amelyet szeretne regisztrálni egy kiszolgálóval.
+2. A gyors kezdés lapon kattintson az ügynök **ügynök Windows vagy a System Center Data Protection Manager vagy a Windows ügyfél**. Ezután kattintson a **Save** (Mentés) gombra.
 
     ![Ügynök mentése](./media/backup-configure-vault-classic/agent.png)
-3. Miután sikeresen letöltötte a hello MARSagentinstaller.exe fájlt, kattintson **futtatása** (vagy kettős kattintással **MARSAgentInstaller.exe** hello mentett helyről).
-4. Válassza ki a hello telepítési mappa és a gyorsítótár mappája hello ügynök számára szükséges, és kattintson a **következő**. hello gyorsítótár helyét adja meg, hogy egyenlő szabad terület tooat rendelkeznie kell legalább 5 százalékát hello biztonsági mentési adatokat.
-5. Folytatás tooconnect toohello interneten keresztül hello alapértelmezett proxybeállításokat.             Használatakor a proxy server tooconnect toohello Internet, hello Proxy konfigurálása lapon válassza ki a hello **egyéni proxybeállításainak használata** jelölje be a jelölőnégyzetet, és írja be a hello proxy kiszolgáló adatait. Ha egy hitelesített proxykiszolgálót használ, írja be a hello felhasználói nevet és jelszót adatait, és kattintson **következő**.
-6. Kattintson a **telepítése** toobegin hello az ügynök telepítése. hello Backup szolgáltatás ügynökének telepíti a .NET-keretrendszer 4.5 és Windows PowerShell (Ha még nincs telepítve) toocomplete hello telepítését.
-7. Hello ügynök telepítése után kattintson **tooRegistration folytatható** toocontinue hello a munkafolyamathoz.
-8. Keresse meg hello tároló azonosítás lapja, tooand válassza hello tárolói hitelesítő adatok fájlját korábban letöltött.
+3. Miután letöltötte a MARSagentinstaller.exe fájlt, kattintson **futtatása** (vagy kettős kattintással **MARSAgentInstaller.exe** a mentett helyről).
+4. Válassza ki a telepítési mappa és a gyorsítótár mappája, amelyek szükségesek az ügynök, és kattintson a **következő**. A gyorsítótár helyét adja meg, hogy a biztonsági mentési adatok legalább 5 százalékának megfelelő szabad helynek kell lennie.
+5. Továbbra is az interneten keresztül az alapértelmezett proxybeállítások csatlakozni.             Ha proxykiszolgálót segítségével csatlakozni az internethez, a proxykonfiguráció lapon válassza ki a **egyéni proxybeállításainak használata** jelölje be a jelölőnégyzetet, és írja be a proxy-kiszolgáló adatait. Ha egy hitelesített proxykiszolgálót használ, írja be a felhasználói nevet és jelszót adatait, és kattintson **következő**.
+6. Kattintson a **telepítése** az ügynök telepítésére. A Backup szolgáltatás ügynökének telepíti a .NET-keretrendszer 4.5 és Windows PowerShell (Ha még nincs telepítve) a telepítés befejezéséhez.
+7. Az ügynök telepítése után kattintson **továbblépni a regisztrációra** a munkafolyamat folytatásához.
+8. A tárolót azonosító lapon keresse meg és jelölje ki a korábban letöltött tárolói hitelesítő adatok fájlját.
 
-    csak 48 órán hello portálról nincs letöltve hello tárolói hitelesítő adatok fájlját esetén érvényes. Ha hibát észlel a ezen a lapon (például "tárolói hitelesítő adatok megadott fájlja lejárt"), toohello portálon bejelentkezhet, és töltse le ismét hello tárolói hitelesítő adatok fájlját.
+    Csak 48 órán át, a portál letöltése után a tárolói hitelesítő adatok fájlját esetén érvényes. Ha hibát észlel a ezen a lapon (például "tárolói hitelesítő adatok megadott fájlja lejárt"), jelentkezzen be a portálra, és töltse le újból a tároló hitelesítő adatait tartalmazó fájlt.
 
-    Győződjön meg arról, hogy hello tárolói hitelesítő adatok fájlját elérhető hello telepítő alkalmazás által elérhető helyen. Ha a hozzáféréssel kapcsolatos hibákat tapasztal, másolja a hello tárolói hitelesítő adatok tooa ideiglenes helye a hello azonos számítógéphez, és próbálja megismételni a műveletet hello.
+    Győződjön meg arról, hogy a tároló hitelesítő adatait tartalmazó fájlt érhető el egy olyan helyre, a telepítő alkalmazás elérhető legyen. Ha a hozzáféréssel kapcsolatos hibákat tapasztal, másolja a tároló hitelesítő adatait tartalmazó fájlt egy ideiglenes helyre ugyanazon a számítógépen, és próbálja megismételni a műveletet.
 
-    Ha például a "érvénytelen tárolóban megadott hitelesítő adatok" a tárolói hitelesítő adatok hiba merül fel, hello fájl sérült, vagy nem rendelkezik hello hello helyreállítási szolgáltatáshoz tartozó legújabb hitelesítő adatokat. Zónák hello egy új tárolói hitelesítő adatok fájlját letöltése hello portálról. Ez a hiba akkor is előfordulhat, ha egy felhasználó a hello **letöltési tárolóhitelesítő adatokat** beállítás többször gyors egymásutánban. Ebben az esetben csak hello utolsó tárolói hitelesítő adatok fájlját esetén érvényes.
-9. Az oldalon hello titkosítási beállítás egy hozzáférési kódot létrehozni, vagy adjon meg egy jelszót (minimum 16 karakter). Ne felejtse el toosave hello jelszót biztonságos helyen.
-10. Kattintson a **Befejezés** gombra. Kiszolgáló regisztrálása varázsló hello hello-kiszolgáló regisztrálása biztonsági mentéssel.
+    Ha a tároló hitelesítő adat hiba, például "érvénytelen megadott tárolói hitelesítő adatok", a fájl sérült, vagy nem nem rendelkezik a legújabb hitelesítő adatokat a helyreállítási szolgáltatáshoz tartozó. Próbálja megismételni a műveletet, miután egy új tárolói hitelesítő adatok fájlját letöltése a portálról. Ez a hiba akkor is előfordulhat, ha a felhasználó kattint a **letöltési tárolóhitelesítő adatokat** beállítás többször gyors egymásutánban. Ebben az esetben csak az utolsó tárolói hitelesítő adatok fájlját esetén érvényes.
+9. A titkosítási beállítás lapon egy jelszót létrehozni, vagy adjon meg egy jelszót (minimum 16 karakter). Ne felejtse el a hozzáférési kód mentse egy biztonságos helyre.
+10. Kattintson a **Befejezés** gombra. A kiszolgáló regisztrálása varázsló regisztrálja a kiszolgáló biztonsági mentése.
 
     > [!WARNING]
-    > Ha elveszíti vagy elfelejti hello jelszót, a Microsoft nem segítséget hello biztonsági mentési adatokat. Ön a tulajdonosa hello titkosítási jelszó, és a Microsoft nem látnak bele, amelyekkel hello jelszót. Hello fájlt menteni egy biztonságos helyre, mert lesz szükség a helyreállítási művelet során.
+    > Ha elveszíti vagy elfelejti a jelszót, a Microsoft nem helyreállíthatja a biztonsági mentési adatokat. Ön a tulajdonosa a titkosítási jelszót, és a Microsoft nem látnak bele a jelszót, amelyet használhat. Mentse a fájlt egy biztonságos helyre, mert lesz szükség a helyreállítási művelet során.
     >
     >
 
-11. Hello titkosítási kulcs beállítása után hagyja hello **indítsa el a Microsoft Azure Recovery Services Agent** jelölőnégyzetet, és kattintson a **Bezárás**.
+11. A titkosítási kulcs beállítása után hagyja a **indítsa el a Microsoft Azure Recovery Services Agent** jelölőnégyzetet, és kattintson a **Bezárás**.
 
-## <a name="complete-hello-initial-backup"></a>Teljes hello kezdeti biztonsági másolatot
-hello kezdeti biztonsági másolatot a két fő feladatokból áll:
+## <a name="complete-the-initial-backup"></a>Végezze el a kezdeti biztonsági másolatot
+A kezdeti biztonsági mentésbe két fő feladat tartozik:
 
-* Hello biztonsági mentési ütemezés létrehozása
-* Fájlok és mappák biztonsági mentése a hello első alkalommal
+* A biztonsági mentési ütemezés létrehozása
+* Fájlok és mappák biztonsági mentése az első alkalommal
 
-A biztonsági mentési házirend hello hello kezdeti biztonsági mentés befejezése után is használhatja, ha szüksége van toorecover hello adatok biztonsági mentési pontok hoz létre. a biztonsági mentési házirend hello ezt a meghatározott hello ütemezés szerint végzi.
+A biztonsági mentési házirendet a kezdeti biztonsági mentés befejezése után is használhatja, ha az adatok helyreállítása kell biztonsági mentési pontok hoz létre. A biztonsági mentési házirend ezt az Ön által meghatározott ütemezés szerint végzi.
 
-### <a name="tooschedule-hello-backup"></a>tooschedule hello biztonsági mentése
-1. Nyissa meg a Microsoft Azure Backup szolgáltatás ügynökének hello. (Az nyílik meg automatikusan Ha hello hagyta **indítsa el a Microsoft Azure Recovery Services Agent** jelölőnégyzet be van jelölve hello kiszolgáló regisztrálása varázsló bezárásakor.) A megkereséséhez keressen rá a gépen a **Microsoft Azure Backup** kifejezésre.
+### <a name="to-schedule-the-backup"></a>A biztonsági mentés ütemezése
+1. Nyissa meg a Microsoft Azure Backup szolgáltatás ügynöke. (Az nyílik meg automatikusan, ha a **indítsa el a Microsoft Azure Recovery Services Agent** jelölőnégyzet be van jelölve, a kiszolgáló regisztrálása varázsló bezárásakor.) A megkereséséhez keressen rá a gépen a **Microsoft Azure Backup** kifejezésre.
 
-    ![Indítsa el a hello Azure Backup szolgáltatás ügynöke](./media/backup-configure-vault-classic/snap-in-search.png)
-2. Hello Backup szolgáltatás ügynökének, kattintson **biztonsági mentés ütemezése**.
+    ![Indítsa el az Azure Backup szolgáltatás ügynöke](./media/backup-configure-vault-classic/snap-in-search.png)
+2. Kattintson a Backup szolgáltatás ügynökének **biztonsági mentés ütemezése**.
 
     ![Windows Server biztonsági mentés ütemezése](./media/backup-configure-vault-classic/schedule-backup-close.png)
-3. A hello bevezetés hello ütemezett biztonsági mentés varázsló lapján, kattintson a **következő**.
-4. Kattintson hello elemek kijelölése tooBackup lap **elemek hozzáadása**.
-5. Válassza ki a hello fájlok és mappák tooback szeretné, hogy fel, és kattintson a **gépházban**.
+3. A Biztonsági mentés ütemezése varázsló Első lépések oldalán kattintson a **Tovább** gombra.
+4. Az Elemek kijelölése biztonsági mentéshez oldalon kattintson az **Elemek hozzáadása** lehetőségre.
+5. Jelölje ki azokat a fájlokat és mappákat, amelyekről biztonsági másolatot szeretne készíteni, majd kattintson az **OK** gombra.
 6. Kattintson a **Tovább** gombra.
-7. A hello **adja meg a biztonsági mentés ütemezése** adja meg azokat a hello **biztonsági mentés ütemezése** kattintson **következő**.
+7. A **Biztonsági mentés ütemezésének megadása** lapon határozza meg a **biztonsági mentés ütemezését**, és kattintson a **Tovább** gombra.
 
     Napi (legfeljebb napi háromszori) vagy heti biztonsági mentéseket ütemezhet.
 
     ![Windows Server biztonsági mentés elemei](./media/backup-configure-vault-classic/specify-backup-schedule-close.png)
 
    > [!NOTE]
-   > Hogyan toospecify hello biztonsági mentés ütemezése kapcsolatos további információkért lásd: hello cikk [használata Azure biztonsági mentési tooreplace a szalag infrastruktúra](backup-azure-backup-cloud-as-tape.md).
+   > A biztonsági mentés ütemezésének meghatározásával kapcsolatos további információért tekintse meg a [Use Azure Backup to replace your tape infrastructure](backup-azure-backup-cloud-as-tape.md) (Az Azure Backup használata a szalagos infrastruktúra lecseréléséhez) című cikket.
    >
    >
 
-8. A hello **válassza ki az adatmegőrzési** lapra, jelölje be hello **adatmegőrzési** a hello biztonsági másolatot.
+8. A **Megőrzési házirend kiválasztása** oldalon válassza ki a biztonsági másolat **megőrzési házirendjét**.
 
-    hello adatmegőrzési, amelynek hello biztonsági másolatot a rendszer hello időtartamát határozza meg. Ahelyett, hogy csak adja meg az összes biztonsági mentési pont "egyszerű policy", a másik adatmegőrzési hello biztonsági mentés esetén alapján is megadhat. Hello napi, heti, havi és éves megőrzési házirendek toomeet módosíthatja az igényeinek.
-9. Hello kezdeti biztonsági mentési típusának kiválasztása lapon válassza a hello kezdeti biztonsági mentés típusát. Hagyja hello beállítást **automatikusan hello hálózaton keresztül** kiválasztva, és kattintson **következő**.
+    A megőrzési házirend határozza meg a biztonsági másolat tárolásának időtartamát. Ahelyett, hogy mindegyik biztonsági mentési ponthoz „lapos házirendet” határozna meg, különböző megőrzési házirendeket határozhat meg a biztonsági másolat készítésének ideje alapján. Igényei szerint módosíthatja a napi, heti, havi és évi megőrzési házirendeket.
+9. A Kezdeti biztonsági mentés típusának kiválasztása oldalon válassza ki a kezdeti biztonsági mentés típusát. Hagyja bejelölve az **Automatikusan a hálózaton keresztül** beállítást, majd kattintson a **Tovább** gombra.
 
-    Biztonsági másolatot készíthet automatikusan hello hálózaton keresztül, vagy a biztonsági mentést készíthet offline állapotba. hello a cikk hátralévő része a biztonsági mentési automatikusan hello folyamatot írja le. Ha jobban szeret toodo offline biztonsági másolat, tekintse át a hello cikk [az Azure Backup Offline biztonsági másolat munkafolyamat](backup-azure-backup-import-export.md) további információt.
-10. A hello megerősítése lapon tekintse át hello adatokat, és kattintson **Befejezés**.
-11. Hello biztonsági mentési ütemezés létrehozása hello varázsló befejezése után kattintson **Bezárás**.
+    Automatikusan készíthet biztonsági másolatot a hálózaton keresztül, vagy offline készíthet biztonsági másolatot. Ezen cikk többi része az automatikus biztonsági mentés folyamatát írja le. Ha offline biztonsági mentést szeretne végezni, további információért tekintse meg az [Offline backup workflow in Azure Backup](backup-azure-backup-import-export.md) (Offline biztonsági mentési munkafolyamat az Azure Backupban) című cikket.
+10. A Jóváhagyás lapon ellenőrizze az információkat, majd kattintson a **Befejezés** gombra.
+11. Miután a varázsló befejezte a biztonsági mentési ütemezés létrehozását, kattintson a **Bezárás** gombra.
 
 ### <a name="enable-network-throttling-optional"></a>(Választható)-szabályozás engedélyezése
-hello Backup szolgáltatás ügynökének biztosít a hálózati sávszélesség-szabályozás. Szabályozza, hogyan adatátvitel során használt hálózati sávszélesség-szabályozás. Ez a vezérlő akkor lehet hasznos, ha tooback adatokat kell munkaidőben, de nem hello biztonsági mentési folyamat toointerfere a más internetes forgalmat. Sávszélesség-szabályozás tooback vonatkozik fel, és állítsa vissza a tevékenységeket.
+A Backup szolgáltatás ügynökének biztosít a hálózati sávszélesség-szabályozás. Szabályozza, hogyan adatátvitel során használt hálózati sávszélesség-szabályozás. Ez a vezérlő akkor lehet hasznos, ha biztonsági kell során az adatokat munkaidő, de nem szeretné a biztonsági mentési folyamat zavarja a más internetes forgalmat. Sávszélesség-szabályozás biztonsági mentése és visszaállítása tevékenységek vonatkozik.
 
-**tooenable hálózati sávszélesség-szabályozás**
+**Hálózati sávszélesség-szabályozás engedélyezése**
 
-1. Hello Backup szolgáltatás ügynökének, kattintson **tulajdonságainak módosítása**.
+1. Kattintson a Backup szolgáltatás ügynökének **tulajdonságainak módosítása**.
 
     ![Tulajdonságainak módosítása](./media/backup-configure-vault-classic/change-properties.png)
-2. A hello **sávszélesség-szabályozási** lapra, jelölje be hello **engedélyezi az internetes sávszélesség szabályozásának a biztonsági mentési műveleteknél** jelölőnégyzetet.
+2. Az a **sávszélesség-szabályozási** lapon jelölje be a **engedélyezi az internetes sávszélesség szabályozásának a biztonsági mentési műveleteknél** jelölőnégyzetet.
 
     ![Hálózati sávszélesség-szabályozás](./media/backup-configure-vault-classic/throttling-dialog.png)
-3. Miután engedélyezte a sávszélesség-szabályozás, adja meg a biztonsági mentési adatátvitel során sávszélesség engedélyezett hello **időpontokat a munkaidőhöz** és **munkaidőn kívüli**.
+3. Miután engedélyezte a sávszélesség-szabályozás, adja meg az engedélyezett sávszélesség vonatkozó biztonsági mentési adatátvitel során **időpontokat a munkaidőhöz** és **munkaidőn kívüli**.
 
-    hello sávszélesség értékek 512 kilobit / másodperc (Kbps) kezdődik, és lépjen be too1, 023 megabájt / másodperc (MBps). Is kijelölése hello kezdő és a Befejezés **időpontokat a munkaidőhöz**, és a hello hét mely napján figyelembe vett munkanapok. Óra között útmutatóul szolgálnak a kijelölt munkahelyi kívül óra munkaórákon kívüli időre.
+    A sávszélesség értékek 512 kilobit / másodperc (Kbps) kezdődik, és folytathatja a legfeljebb 1,023 megabájt / másodperc (MBps). Is kijelölni a kezdő és a Befejezés **időpontokat a munkaidőhöz**, és a hét melyik napjain figyelembe vett munkanapok. Óra között útmutatóul szolgálnak a kijelölt munkahelyi kívül óra munkaórákon kívüli időre.
 4. Kattintson az **OK** gombra.
 
-### <a name="tooback-up-now"></a>most már be tooback
-1. Hello Backup szolgáltatás ügynökének, kattintson **biztonsági másolat készítése most** toocomplete hello kezdeti összehangolása hello hálózaton keresztül.
+### <a name="to-back-up-now"></a>Biztonsági mentése
+1. Kattintson a Backup szolgáltatás ügynökének **biztonsági másolat készítése most** befejeződik, a kezdeti összehangolása a hálózaton keresztül.
 
     ![Windows Server biztonsági másolat készítése](./media/backup-configure-vault-classic/backup-now.png)
-2. A hello megerősítése lapon, amely a biztonsági mentést most varázsló hello hello beállítások áttekintése hello gép tooback fogja használni. Ezután kattintson a **Biztonsági mentés** gombra.
-3. Kattintson a **Bezárás** tooclose hello varázsló. Ha ezt teszi hello biztonsági mentési folyamat befejezése előtt, hello varázsló toorun hello háttérben folytatódik.
+2. A Jóváhagyás lapon tekintse át azokat a beállításokat, amelyeket a Biztonsági másolat készítése varázsló a gép biztonsági mentéséhez fog használni. Ezután kattintson a **Biztonsági mentés** gombra.
+3. A varázsló bezárásához kattintson a **Bezárás** gombra. Ha ezt a biztonsági mentési folyamat befejezése előtt teszi, a varázsló továbbra is fut a háttérben.
 
-Hello kezdeti biztonsági mentés befejezése után hello **feladata befejezve** állapota megjelenik hello biztonsági mentés konzolban.
+A kezdeti biztonsági mentés befejezése után a **Feladat befejezve** állapot jelenik meg a biztonsági mentési konzolon.
 
 ![IR befejezve](./media/backup-configure-vault-classic/ircomplete.png)
 
@@ -168,5 +168,5 @@ Hello kezdeti biztonsági mentés befejezése után hello **feladata befejezve**
 Virtuális gépek vagy más munkaterhelések biztonsági mentésével kapcsolatos további információkért lásd:
 
 * [Készítsen biztonsági másolatot IaaS virtuális gépeket](backup-azure-vms-prepare.md)
-* [Készítsen biztonsági másolatot a Microsoft Azure Backup Server munkaterhelések tooAzure](backup-azure-microsoft-azure-backup.md)
-* [Készítsen biztonsági másolatot a dpm-mel munkaterhelések tooAzure](backup-azure-dpm-introduction.md)
+* [-Munkaterhelések biztonsági mentése az Azure-ba, a Microsoft Azure Backup Server](backup-azure-microsoft-azure-backup.md)
+* [-Munkaterhelések biztonsági mentése az Azure-ba, a dpm-mel](backup-azure-dpm-introduction.md)

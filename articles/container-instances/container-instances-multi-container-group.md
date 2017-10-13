@@ -1,5 +1,5 @@
 ---
-title: "Tároló példányok - többszörös a tárolócsoport aaaAzure |} Az Azure Docs"
+title: "Azure-tároló példányokon - többszörös a tárolócsoport |} Az Azure Docs"
 description: "Azure-tároló példányokon - többszörös a tárolócsoport"
 services: container-instances
 documentationcenter: 
@@ -17,25 +17,25 @@ ms.workload: na
 ms.date: 07/26/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: 976f578cd2a9bf7f05ab97f24662139bb72062ea
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 140f58582645ea32f77e901eb13364ed145bbecf
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="deploy-a-container-group"></a>A tároló csoport telepítése
 
-Az Azure tároló példányok több tároló telepítését használatával egyetlen állomásra hello telepítésének támogatása egy *a tárolócsoport*. Ez akkor hasznos, ha egy alkalmazás oldalkocsi naplózási, figyelési vagy bármely egyéb konfigurációs felépítése amikor egy szolgáltatás kell egy második csatolt folyamat. 
+Azure-tároló példányokon alakzatot használatával egyetlen állomásra több tároló telepítését támogatja a *a tárolócsoport*. Ez akkor hasznos, ha egy alkalmazás oldalkocsi naplózási, figyelési vagy bármely egyéb konfigurációs felépítése amikor egy szolgáltatás kell egy második csatolt folyamat. 
 
 Ez a dokumentum végigvezeti egy egyszerű több tároló oldalkocsi konfigurációs Azure Resource Manager-sablonnal futtatása.
 
-## <a name="configure-hello-template"></a>Hello sablon konfigurálása
+## <a name="configure-the-template"></a>A sablon konfigurálása
 
-Hozzon létre egy fájlt `azuredeploy.json` és a következő json másolási hello bele. 
+Hozzon létre egy fájlt `azuredeploy.json` és a következő json másolása. 
 
-Ebben a mintában a tároló két tárolók és a nyilvános IP-cím van definiálva. hello első tároló hello csoport internet felé néző alkalmazást futtat. hello második tároló, hello oldalkocsi, lehetővé teszi egy HTTP-kérelem toohello fő webes alkalmazások hello csoport helyi hálózaton keresztül. 
+Ebben a mintában a tároló két tárolók és a nyilvános IP-cím van definiálva. A csoport első tároló internet felé néző alkalmazás fut. A második tároló, a oldalkocsi egy HTTP kérést küld az elsődleges webes alkalmazás a csoporthoz tartozó helyi hálózaton keresztül. 
 
-Oldalkocsi példában lehet bővített tootrigger riasztást, ha egy HTTP-válaszkód eltérő 200 OK kapott. 
+Ebben a példában oldalkocsi figyelmeztetést jelenít meg, ha egy HTTP-válaszkód eltérő 200 OK kapott lehetett kibontani. 
 
 ```json
 {
@@ -109,7 +109,7 @@ Oldalkocsi példában lehet bővített tootrigger riasztást, ha egy HTTP-válas
   }
 ```
 
-egy tároló titkos kép beállításjegyzék toouse egy objektum toohello json-dokumentum formátuma a következő hello adja hozzá.
+Egy tároló titkos kép beállításjegyzék használatát, az objektum hozzáadása a json-dokumentum, az alábbi formátumban.
 
 ```json
 "imageRegistryCredentials": [
@@ -121,15 +121,15 @@ egy tároló titkos kép beállításjegyzék toouse egy objektum toohello json-
 ]
 ```
 
-## <a name="deploy-hello-template"></a>Hello sablon üzembe helyezése
+## <a name="deploy-the-template"></a>A sablon üzembe helyezése
 
-Hozzon létre egy erőforráscsoportot hello [az csoport létrehozása](/cli/azure/group#create) parancsot.
+Hozzon létre egy erőforráscsoportot az [az group create](/cli/azure/group#create) paranccsal.
 
 ```azurecli-interactive
 az group create --name myResourceGroup --location westus
 ```
 
-A hello hello sablon üzembe helyezése [az csoport központi telepítésének létrehozása](/cli/azure/group/deployment#create) parancsot.
+A sablon üzembe helyezése a [az csoport központi telepítésének létrehozása](/cli/azure/group/deployment#create) parancsot.
 
 ```azurecli-interactive
 az group deployment create --name myContainerGroup --resource-group myResourceGroup --template-file azuredeploy.json
@@ -139,7 +139,7 @@ Néhány másodpercen belül egy kezdeti választ kap az Azure-ból.
 
 ## <a name="view-deployment-state"></a>Központi telepítés állapotának megtekintése
 
-hello központi telepítését, használatát hello tooview hello állapotának `az container show` parancsot. Ez a kiépített hello mely hello keresztül érhetők el az alkalmazás nyilvános IP-címet adja vissza.
+A központi telepítési állapotának megtekintéséhez használja a `az container show` parancsot. Ez visszaad, amelyben az alkalmazás elérhető kiosztott nyilvános IP-cím.
 
 ```azurecli-interactive
 az container show --name myContainerGroup --resource-group myResourceGroup -o table
@@ -155,7 +155,7 @@ myContainerGroup  myResourceGrou2  Succeeded            microsoft/aci-tutorial-s
 
 ## <a name="view-logs"></a>Naplók megtekintése   
 
-Hello napló kimeneti hello segítségével a tároló megtekintése `az container logs` parancsot. Hello `--container-name` argumentum meghatározza, melyik toopull naplók hello tárolót. Ebben a példában a hello első tároló van megadva. 
+A kimenet egy tároló használatával megtekintheti a `az container logs` parancsot. A `--container-name` argumentum meghatározza a tároló, amelyből való lekérésére naplókat. Ebben a példában az első tároló van megadva. 
 
 ```azurecli-interactive
 az container logs --name myContainerGroup --container-name aci-tutorial-app --resource-group myResourceGroup
@@ -171,7 +171,7 @@ istening on port 80
 ::1 - - [27/Jul/2017:17:35:38 +0000] "HEAD / HTTP/1.1" 200 1663 "-" "curl/7.54.0"
 ```
 
-toosee hello hello ügyféloldali-car tároló naplózza, hello futtatása azonos parancs megadásával hello második tároló neve.
+A kiszolgálóoldali-car tároló a naplók megtekintéséhez futtassa a ugyanazzal a paranccsal a második tároló nevének megadását.
 
 ```azurecli-interactive
 az container logs --name myContainerGroup --container-name aci-tutorial-sidecar --resource-group myResourceGroup
@@ -193,11 +193,11 @@ Last-Modified: Sun, 16 Jul 2017 02:08:22 GMT
 Date: Mon, 17 Jul 2017 18:27:36 GMT
 ```
 
-Ahogy látja, az hello oldalkocsi, hogy így egy HTTP-kérelem toohello fő webes alkalmazások hello csoport helyi hálózati tooensure, hogy fut-e keresztül rendszeres időközönként.
+Ahogy látja, a oldalkocsi HTTP-kérelem, hogy így rendszeres időközönként a fő webalkalmazásnak a csoporthoz tartozó helyi hálózaton keresztül annak érdekében, hogy fut-e.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ez a dokumentum egy Azure-tárolót példány több tároló üzembe helyezéséhez szükséges hello lépéseket mutatja be. Az end tooend Azure tároló példányok tapasztalhat lásd: hello Azure tároló példányok oktatóanyag.
+Ez a dokumentum egy Azure-tárolót több tároló példány telepítéséhez szükséges lépéseket mutatja be. Egy teljes körű Azure tároló példányok élmény érdekében tekintse meg az Azure-tároló példányok.
 
 > [!div class="nextstepaction"]
 > [Azure tároló példányok oktatóanyag]:./container-instances-tutorial-prepare-app.md

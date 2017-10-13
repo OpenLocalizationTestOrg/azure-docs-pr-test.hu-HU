@@ -1,6 +1,6 @@
 ---
-title: "Hozzáférés-vezérlés (Java) aaaHow toouse |} Microsoft Docs"
-description: "Megtudhatja, hogyan toodevelop és -felhasználási hozzáférés-vezérlés: a Java az Azure-ban."
+title: "Hozzáférés-vezérlés (Java) használatával |} Microsoft Docs"
+description: "Megtudhatja, hogyan fejleszthet és hozzáférés-vezérlés használata Javával az Azure-ban."
 services: active-directory
 documentationcenter: java
 author: rmcmurray
@@ -15,163 +15,163 @@ ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
 ms.custom: aaddev
-ms.openlocfilehash: cbbce3b1a05eabf3b86a8cb91db1bde92dbb8960
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 698403d181e1fee09bb4692290c92203ded97ba4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooauthenticate-web-users-with-azure-access-control-service-using-eclipse"></a>Hogyan tooAuthenticate Azure Access Control Service használatával Eclipse webes felhasználók
-Ez az útmutató bemutatja, hogyan toouse hello belül hello Azure eszköztára Eclipse Azure Access Control Service (ACS). Az ACS további információkért lásd: hello [további lépések](#next_steps) szakasz.
+# <a name="how-to-authenticate-web-users-with-azure-access-control-service-using-eclipse"></a>Hogyan hitelesítheti az Eclipse használata Azure hozzáférés-vezérlési szolgáltatásban webes felhasználók
+Ez az útmutató bemutatja, hogyan használható az Azure Access Control Service (ACS) az Azure-eszközkészlet belül az eclipse-ben. Az ACS további információkért lásd: a [további lépések](#next_steps) szakasz.
 
 > [!NOTE]
-> hello Azure Access Services vezérlő szűrő egy közösségi technológiai előzetes. Kiadás előtti szoftverként azt van hivatalosan Microsoft nem támogatja.
+> Az Azure Access Services vezérlő szűrő egy közösségi technológiai előzetes. Kiadás előtti szoftverként azt van hivatalosan Microsoft nem támogatja.
 > 
 > 
 
 ## <a name="what-is-acs"></a>Mi az az ACS?
-Legtöbb fejlesztő nem identity szakértők és általában nem szeretné töltött idő fejlesztését hitelesítési és engedélyezési mechanizmusok az alkalmazások és szolgáltatások számára. ACS egy Azure-szolgáltatás, amely egyszerűen azok a felhasználók, akik tooaccess a webes alkalmazások és szolgáltatások anélkül, hogy a kód toofactor összetett hitelesítés logika.
+Legtöbb fejlesztő nem identity szakértők és általában nem szeretné töltött idő fejlesztését hitelesítési és engedélyezési mechanizmusok az alkalmazások és szolgáltatások számára. ACS az Azure-szolgáltatások, amelyek egyszerű megoldás a felhasználók, akik a webalkalmazások és szolgáltatások eléréséhez tényező összetett hitelesítés logika a kód nélkül hitelesítésére.
 
-az ACS hello a következő funkciók érhetők el:
+A következő funkciók érhetők el az ACS szolgáltatásban:
 
 * Integráció a Windows Identity Foundation (WIF).
 * Beleértve a Windows Live ID, Google, Yahoo!-s és Facebook a népszerű webes Identitásszolgáltatók (IP-címek) támogatása.
 * Támogatás az Active Directory összevonási szolgáltatások (AD FS) 2.0-s.
-* Egy nyitott Data protokoll (OData)-alapú szolgáltatás, amely szoftveres hozzáférést biztosít az tooACS beállításait.
-* A felügyeleti portál, amely lehetővé teszi, hogy a rendszergazdai hozzáférés toohello ACS-beállításokat.
+* Egy nyitott Data protokoll (OData)-alapú szolgáltatás, amely szoftveres hozzáférést biztosít az ACS-beállításokat.
+* A felügyeleti portál, amely lehetővé teszi az ACS-beállításokat rendszergazdai jogosultságokkal.
 
 ACS kapcsolatos további információkért lásd: [Access Control Service 2.0][Access Control Service 2.0].
 
 ## <a name="concepts"></a>Alapelvek
-Az Azure ACS hello rendszerbiztonsági tagok a jogcímalapú identitás - egy egységes módszer toocreating hitelesítési mechanizmusok, helyileg futó alkalmazásokhoz vagy hello felhőben épül. Jogcímalapú identitás közös lehetőséget biztosít az alkalmazások és szolgáltatások tooacquire a identitás felhasználókról van szükségük a szervezet más, és az hello Internet belül.
+Az Azure ACS a rendszerbiztonsági tagok a jogcímalapú identitás - hitelesítési mechanizmusok helyileg futó alkalmazásokhoz vagy a felhőben létrehozása egységes megközelítésének épül. Jogcímalapú identitás közös biztosítja az alkalmazások és szolgáltatások szerezhető az azonosító információ van szükségük a szervezet más, és az interneten lévő felhasználók számára.
 
-Ez az útmutató toocomplete hello feladatokat, tisztában kell lennie a következő fogalmak hello:
+Az útmutató a feladatok végezhetők, tisztában kell lennie a következő fogalmak:
 
-**Ügyfél** -hello környezetében ez hogyan tooguide, ez az kísérel meg toogain hozzáférés tooyour webalkalmazás böngészőt.
+**Ügyfél** -Ez az útmutató útmutató keretében, ez az próbál hozzáférni a webes alkalmazás böngészőt.
 
-**Függő entitásonkénti (RP) alkalmazás** -alkalmazás egy függő Entitás egy webhelyre vagy szolgáltatásba, amelyek a hitelesítési tooone külső hatóság outsources. Az azonosító egy zsargon azt tegyük fel például, hogy hello RP megbízhatónak tekinti az adott szolgáltatót. Ez az útmutató ismerteti, hogyan tooconfigure az alkalmazás tootrust ACS.
+**Függő entitásonkénti (RP) alkalmazás** -alkalmazás egy függő Entitás egy webhelyre vagy szolgáltatásba, amely egy külső szolgáltatónak hitelesítési outsources. Az azonosító egy zsargon azt tegyük fel például, hogy a függő Entitás megbízhatóságai adott szolgáltatót. Ez az útmutató ismerteti, hogyan konfigurálhatja a megbízhatósági ACS az alkalmazást.
 
-**Token** -jogkivonat általában egy felhasználó sikeres hitelesítés után kiadott biztonsági adatok gyűjteménye. Tartalmaz egy *jogcímek*, hello attribútumait hitelesítette a felhasználót. A jogcím jelenthet a felhasználó nevét, egy felhasználói szerepkör azonosítójának tartozik, a felhasználó élettartama, és így tovább. A jogkivonat általában digitális aláírással, ami azt jelenti, hogy mindig azok termékekre hátsó tooits kibocsátó, és a benne lévő tartalom ne lehessen illetéktelenül. Egy felhasználói kap hozzáférést tooa RP alkalmazást hello RP alkalmazás megbízhatónak hatóságnak érvényes jogkivonat segítségével.
+**Token** -jogkivonat általában egy felhasználó sikeres hitelesítés után kiadott biztonsági adatok gyűjteménye. Tartalmaz egy *jogcímek*, a hitelesített felhasználó attribútuma. A jogcím jelenthet a felhasználó nevét, egy felhasználói szerepkör azonosítójának tartozik, a felhasználó élettartama, és így tovább. A jogkivonat általában digitális aláírással, ami azt jelenti, azt is mindig forrása lehet vissza a kiállítójának, és a benne lévő tartalom ne lehessen illetéktelenül. Egy felhasználó hozzáfér egy függő Entitás alkalmazás segítségével egy szervezet, amely megbízik a függő Entitás alkalmazás által kiállított érvényes jogkivonat.
 
-**Identity Provider (IP)** -egy IP-cím egy szervezet, amely hitelesíti a felhasználói identitások és biztonsági jogkivonatokat bocsát ki. tényleges munka hello jogkivonatok kiállításának valósul meg, ha egy különleges biztonsági jogkivonat szolgáltatás (STS) nevű szolgáltatás. IP-címek tipikus például Windows Live ID, Facebook-on, üzleti felhasználói tárolóhelyekkel (például az Active Directory), és így tovább.
-Ha ACS konfigurált tootrust olyan IP-címet, hello rendszer fogadja el, és ellenőrizze, hogy az IP által kiállított jogkivonatokat. ACS is megbízhat több IP-cím egyszerre, ami azt jelenti, hogy amikor az alkalmazás ACS megbízhatónak tekinti, azonnal kínálhat az alkalmazás tooall hello hitelesített felhasználó az összes hello IP-címeket, hogy az ACS megbízhatónak tekinti az Ön nevében.
+**Identity Provider (IP)** -egy IP-cím egy szervezet, amely hitelesíti a felhasználói identitások és biztonsági jogkivonatokat bocsát ki. A tényleges munkát jogkivonatok kiállítása történik, ha egy különleges biztonsági jogkivonat szolgáltatás (STS) nevű szolgáltatás. IP-címek tipikus például Windows Live ID, Facebook-on, üzleti felhasználói tárolóhelyekkel (például az Active Directory), és így tovább.
+ACS megbízható IP-címre van beállítva, amikor a rendszer elfogadja, és ellenőrizze, hogy az IP által kiállított jogkivonatokat. ACS is megbízhat több IP-cím egyszerre, ami azt jelenti, hogy amikor az alkalmazás ACS megbízhatónak tekinti, azonnal kínálhat az alkalmazás összes IP-címekről a hitelesített felhasználók számára, hogy az ACS megbízik az Ön nevében.
 
 **Összevonási szolgáltató (pi)** -IP-címek közvetlen ismerő felhasználók, és azokat a hitelesítő adataik használatával hitelesíti és mi tudják róluk kapcsolatos jogcímeket kiadni. Egy összevonási szolgáltató (pi) egy eltérő jellegű hatóság: ahelyett, hogy közvetlenül a felhasználók hitelesítéséhez, úgy működik, mint egy közvetítő és a brókerek hitelesítési között egy függő Entitás és egy vagy több IP-címek. IP-címek és a FPs ki biztonsági jogkivonatokat, így mindkettő használja a biztonsági jogkivonat szolgáltatás (STS). ACS egy pi.
 
-**ACS Jogcímszabály-motor** -használt tootransform bejövő jogkivonatokat a megbízható IP-címek tootokens azt jelentette, hogy hello függő Entitás által felhasznált toobe egyszerű formájában van szerkezetbe hello logika jogcím-átalakítási szabályok. ACS funkciókat a jogcímszabály-motor, amely gondoskodik, függetlenül a függő Entitás megadott átalakítása logika alkalmazását.
+**ACS Jogcímszabály-motor** -használatával a megbízható IP-címekről jogkivonatok azt jelentette, hogy a függő Entitás által a bejövő jogkivonatokat logika van szerkezetbe egyszerű jogcím-átalakítási szabályok formájában. ACS funkciókat a jogcímszabály-motor, amely gondoskodik, függetlenül a függő Entitás megadott átalakítása logika alkalmazását.
 
-**Az ACS-Namespace** -egy névtér, a beállítások sorolására használó ACS legfelső szintű partíciójának. Egy névtér, amely tárolja a megbízható IP-címek listáját, hello RP alkalmazásokat tooserve, várt hello szabályok hello szabály motor tooprocess bejövő jogkivonatokat, és így tovább. Egy névtér elérhetővé teszi a különböző végpontok, amelyek lesznek hello alkalmazás és a fejlesztői tooget ACS tooperform funkciójához használják.
+**Az ACS-Namespace** -egy névtér, a beállítások sorolására használó ACS legfelső szintű partíciójának. Egy névtér, amely tárolja az IP-címek megbízik, a kívánja szolgáltatni RP alkalmazások listáját, a szabályokat, hogy a szabály várt motornak, hogy a bejövő jogkivonatokat feldolgozni, és így tovább. Egy névtér, amely az alkalmazás és a fejlesztői megszerezni az ACS működéséhez használható különböző végpontok mutatja.
 
-hello alábbi ábrán láthatók az ACS-hitelesítés működéséről webes alkalmazásokkal együtt:
+Az alábbi ábrán láthatók az ACS-hitelesítés működéséről webes alkalmazásokkal együtt:
 
 ![ACS folyamatábrája][acs_flow]
 
-1. hello ügyfél (ebben az esetben a böngésző) kér hello RP oldal.
-2. Hello kérelem még nem hitelesíthetők, mert a hello RP átirányítja hello felhasználói toohello hatóság megbízhatónak Ez az ACS. hello ACS hello felhasználói IP-címe az e RP megadott hello választható mutatja be. hello felhasználó hello megfelelő IP választ.
-3. hello ügyfél böngészik toohello IP hitelesítési lapot, és megkéri a hello felhasználói toolog a.
-4. Hello ügyfél (például hitelesítőadatok meg legyenek adva hello identitás) hitelesítése után hello IP kibocsát egy biztonsági jogkivonatot.
-5. A biztonsági jogkivonat kiállító, után hello IP átirányítja hello ügyfél tooACS, és hello ügyfél küldi hello által kiadott biztonsági jogkivonat hello IP tooACS.
-6. ACS hello biztonsági jogkivonat kiállító hello IP, bemeneti adatokat hello identitás hello ACS szabálymotor be ez a token jogcímek hello kimeneti identitási jogcímek kiszámítja és kiad egy új biztonsági jogkivonatot, amely tartalmazza a kimeneti jogcímek ellenőrzi.
-7. ACS hello ügyfél toohello RP irányítja át. hello ügyfél küldi hello ACS toohello függő Entitás által kiadott új biztonsági jogkivonatot. hello RP ellenőrzi az ACS által kibocsátott hello biztonsági jogkivonat aláírása hello, ez a token hello jogcímek ellenőrzi, és adja vissza az eredetileg kért hello lapot.
+1. Az ügyfél (ebben az esetben egy böngésző) oldal kéri le az erőforrás-Szolgáltatónál.
+2. Mivel a kérelem még nem hitelesíthetők, a függő Entitás átirányítja a felhasználót a szolgáltatónak megbízhatónak, amely olyan ACS. Az ACS a felhasználó megadja a függő Entitás számára megadott IP-címek a választható. A felhasználó kiválasztja a megfelelő IP.
+3. Az ügyfél az IP-címekhez hitelesítési oldalra jut, és megkérdezi a felhasználót, hogy jelentkezzen be.
+4. Az ügyfél hitelesítése (például a hitelesítőadatok meg legyenek adva identitás), az IP-cím kibocsát egy biztonsági jogkivonatot.
+5. Után egy biztonsági jogkivonatot kibocsátó, az IP-cím ACS átirányítja az ügyfelet, és az ügyfél elküldi az ACS az Identitásszolgáltató által kiadott biztonsági jogkivonat.
+6. ACS ellenőrzi az IP-bemenetek identitásának Ez a token-be az ACS szabálymotor jogcímek kiszámítja a kimeneti identitási jogcímek és kiad egy új biztonsági jogkivonatot, amely tartalmazza a kimeneti jogcímek által kiadott biztonsági jogkivonat.
+7. ACS átirányítja az ügyfelet az erőforrás-Szolgáltatónál. Az ügyfél elküldi az új biztonsági jogkivonatot az ACS által kiállított, az erőforrás-Szolgáltatónál. A függő Entitás ellenőrzi az ACS által kiadott biztonsági jogkivonat aláírása, ellenőrzi a jogkivonatában lévő jogcímeket, és visszaadja az eredetileg kért lapot.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ez az útmutató toocomplete hello feladatokat, szüksége lesz a hello következő:
+Ez az útmutató a feladatok elvégzéséhez a következőkre lesz szüksége:
 
 * A Java fejlesztői készlet (JDK), v 1.6 vagy újabb.
 * Java EE-fejlesztőknek IDE Holdas Indigo vagy újabb. Ez letölthető <http://www.eclipse.org/downloads/>. 
 * A Java-alapú webkiszolgáló vagy a kiszolgáló, például az Apache Tomcat, GlassFish, JBoss alkalmazáskiszolgáló vagy Jetty terjesztési.
 * Azure-előfizetéssel, amely szerezhető: a <http://www.microsoft.com/windowsazure/offers/>.
-* hello Azure eszközkészlet eclipse-ben a 2014. április kiadás vagy újabb. További információkért lásd: [telepítése hello Azure eszköztára Eclipse](http://msdn.microsoft.com/library/windowsazure/hh690946.aspx).
-* Egy X.509 tanúsítvány toouse az alkalmazással. Szüksége lesz a tanúsítvány nyilvános tanúsítvány (.cer), mind a személyes információcsere (. PFX) formátumú. (Ez a tanúsítvány létrehozásához beállítások előnyben, annak leírását az oktatóanyag későbbi részében).
-* Hello Azure ismeretét számítási megvitatni emulátor és a központi telepítési módszerek [egy Hello World alkalmazásról az Azure létrehozása az eclipse-ben](http://msdn.microsoft.com/library/windowsazure/hh690944.aspx).
+* Az eclipse-ben az Azure eszközkészlet 2014. április kiadás vagy újabb. További információkért lásd: [az eclipse-ben az Azure eszközkészlet telepítésével](http://msdn.microsoft.com/library/windowsazure/hh690946.aspx).
+* Egy X.509 tanúsítvány az alkalmazás használata. Szüksége lesz a tanúsítvány nyilvános tanúsítvány (.cer), mind a személyes információcsere (. PFX) formátumú. (Ez a tanúsítvány létrehozásához beállítások előnyben, annak leírását az oktatóanyag későbbi részében).
+* A tesztkörnyezet a Azure számítási megvitatni emulátor és a központi telepítési módszerek [egy Hello World alkalmazás létrehozása az Azure az eclipse-ben](http://msdn.microsoft.com/library/windowsazure/hh690944.aspx).
 
 ## <a name="create-an-acs-namespace"></a>Hozzon létre egy ACS-Namespace
-az Azure Access Control Service (ACS) használatával toobegin létre kell hoznia egy ACS-névtér. hello névteret biztosít az alkalmazáson belül az ACS-erőforrások címzéshez egyedi hatókör.
+Az Azure Access Control Service (ACS) használatának megkezdéséhez létre kell hoznia egy ACS-névtér. A névteret biztosít az alkalmazáson belül az ACS-erőforrások címzéshez egyedi hatókör.
 
-1. Jelentkezzen be a hello [Azure felügyeleti portálon][Azure Management Portal].
+1. Jelentkezzen be a [Azure felügyeleti portálján][Azure Management Portal].
 2. Kattintson a **Active Directory**. 
-3. toocreate egy új hozzáférés-vezérlés névtér esetén kattintson **új**, kattintson a **alkalmazásszolgáltatások**, kattintson a **hozzáférés-vezérlés**, és kattintson a **Gyorslétrehozás** . 
-4. Adja meg a hello névtér nevét. Azure ellenőrzi, hogy hello neve egyedi.
-5. Válassza ki a hello régióban mely hello névtér használják. A hello legjobb teljesítmény érdekében használjon hello régióban, amelyben a az alkalmazás telepítéséhez.
-6. Ha egynél több előfizetéssel rendelkezik, válassza ki a megjeleníteni kívánt toouse hello ACS névtér hello előfizetést.
+3. Egy új hozzáférés-vezérlés névtér létrehozásához kattintson a **új**, kattintson a **alkalmazásszolgáltatások**, kattintson a **hozzáférés-vezérlés**, és kattintson a **Gyorslétrehozás**. 
+4. Adja meg a névtér nevét. Azure ellenőrzi, hogy a név egyedi.
+5. Válassza ki a régiót, amelyben a névtér használható. A legjobb teljesítmény érdekében régiót kell használnia, amelyben a az alkalmazás telepítéséhez.
+6. Ha egynél több előfizetéssel rendelkezik, válassza ki az ACS-névtér esetében használni kívánt előfizetést.
 7. Kattintson a **Create** (Létrehozás) gombra.
 
-Azure hoz létre, és aktiválja a hello névtér. Várjon, amíg a hello hello új névtér állapota **aktív** folytatása előtt. 
+Azure hoz létre, és aktiválja a névteret. Várjon, amíg az új névtér állapota **aktív** folytatása előtt. 
 
 ## <a name="add-identity-providers"></a>Identitás-szolgáltatóktól hozzáadása
-Ez a feladat hozzáadja IP-címek toouse hitelesítéshez RP az alkalmazáshoz. Bemutatási célokra Ez a feladat azt mutatja, hogyan Windows Live olyan IP-címet, de tooadd sikerült használják hello hello ACS felügyeleti portál szereplő IP-címek valamelyikét.
+Ebben a feladatban vegye fel a hitelesítéshez RP az alkalmazáshoz használandó IP-címek. Bemutatási célokra Ez a feladat bemutatja, hogyan adja hozzá a Windows Live olyan IP-címet, de az IP-címek az ACS felügyeleti portálon felsorolt bármelyikét használhatja.
 
-1. A hello [Azure felügyeleti portálon][Azure Management Portal], kattintson a **Active Directory**, jelöljön ki egy hozzáférés-vezérlés névteret, és kattintson a **kezelése**. Megnyílik a hello ACS felügyeleti portálon.
-2. Hello ACS felügyeleti portál hello bal oldali navigációs ablaktábláján kattintson **identitás-szolgáltatóktól**.
-3. A Windows Live ID alapértelmezés szerint engedélyezve van, és nem törölhető. Ez az oktatóanyag céljából csak az Windows Live ID szolgál. Azonban erre a képernyőre, ahol hello kattintva hozzáadhatja más IP-címek **Hozzáadás** gombra.
+1. Az a [Azure felügyeleti portálon][Azure Management Portal], kattintson a **Active Directory**, jelöljön ki egy hozzáférés-vezérlés névteret, és kattintson a **kezelése**. Megnyitja az ACS felügyeleti portálján.
+2. Az ACS felügyeleti portál bal oldali navigációs ablaktábláján kattintson **identitás-szolgáltatóktól**.
+3. A Windows Live ID alapértelmezés szerint engedélyezve van, és nem törölhető. Ez az oktatóanyag céljából csak az Windows Live ID szolgál. Ezen a képernyőn, azonban ha kattintva hozzáadhatja más IP-címek, a **Hozzáadás** gombra.
 
-A Windows Live ID engedélyezve van, egy IP-Címek használhatók a ACS névterét. Ezt követően adja meg a Java-alkalmazásokra (újabb toobe), egy függő Entitás.
+A Windows Live ID engedélyezve van, egy IP-Címek használhatók a ACS névterét. Ezt követően adja meg a Java-alkalmazásokra (a később létrehozott), egy függő Entitás.
 
 ## <a name="add-a-relying-party-application"></a>Függő entitás alkalmazás felvétele
-Ebben a feladatban konfigurálja ACS toorecognize a Java-webalkalmazás érvényes RP-alkalmazásként.
+Ebben a feladatban konfigurálja ACS ismeri fel a Java-webalkalmazás érvényes RP-alkalmazásként.
 
-1. A hello ACS felügyeleti portál, kattintson **függő entitás alkalmazásai számára**.
-2. A hello **függő entitás alkalmazásai számára** kattintson **Hozzáadás**.
-3. A hello **függő entitás alkalmazás hozzáadása** lapon, a következő hello:
+1. Az ACS felügyeleti portál, kattintson a **függő entitás alkalmazásai számára**.
+2. Az a **függő entitás alkalmazásai számára** kattintson **Hozzáadás**.
+3. Az a **függő entitás alkalmazás hozzáadása** lapján tegye a következőket:
    
-   1. A **neve**, hello RP hello nevét. Ez az oktatóanyag céljából, írja be a következőt **Azure Web Apps**.
+   1. A **neve**, írja be a függő Entitás nevét. Ez az oktatóanyag céljából, írja be a következőt **Azure Web Apps**.
    2. A **mód**, jelölje be **adja meg a beállításokat manuálisan**.
-   3. A **tartomány**, típus hello URI toowhich hello biztonsági jogkivonatot az ACS által kibocsátott vonatkozik. Ez a feladat, írja be a következőt **8080 /**.
+   3. A **tartomány**, írja be az URI, amely az ACS által kiadott biztonsági jogkivonat vonatkozik. Ez a feladat, írja be a következőt **8080 /**.
       ![Függő entitás realm compute emulator használható][relying_party_realm_emulator]
-   4. A **visszatérési URL-** típus hello URL-cím toowhich ACS hello biztonsági jogkivonatot ad vissza. Ez a feladat, írja be a következőt **http://localhost:8080/MyACSHelloWorld/index.jsp**
+   4. A **visszatérési URL-** URL-címét, amelyhez az ACS a biztonsági jogkivonatot ad vissza. Ez a feladat, írja be a következőt **http://localhost:8080/MyACSHelloWorld/index.jsp**
       ![függő entitás URL-cím használható compute emulator adja vissza.][relying_party_return_url_emulator]
-   5. Fogadja el a hello mezők hello többi hello alapértelmezett értékeket.
+   5. Fogadja el a többi mezőt az alapértelmezett értékeket.
 4. Kattintson a **Save** (Mentés) gombra.
 
-Ezzel sikeresen beállította a Java-webalkalmazás hello Azure compute emulator futtatáskor (: 8080 /) toobe egy függő Entitás az ACS-névtérben. Ezután hozzon létre hello szabályok, amelyek ACS hello RP tooprocess jogcímeket használ.
+Ezzel sikeresen beállította a Java-webalkalmazás az Azure compute emulator futtatáskor (: 8080 /) kell lennie egy függő Entitás az ACS-névtérben. Ezután hozzon létre a szabályokat, amelyek ACS használatával feldolgozhatja a jogcímeket a függő Entitás számára.
 
 ## <a name="create-rules"></a>Szabályok létrehozása
-Ebben a feladatban hello szabályok, amelyek meghatározzák a jogcímek az IP-címek tooyour RP átadott hogyan határozza meg. A jelen útmutató hello célra azt egyszerűen beállítja a ACS toocopy hello bemeneti jogcímtípusokat és -értékek közvetlenül a hello kimeneti jogkivonatot, nélkül szűrését, és módosítja azokat.
+Ebben a feladatban határozza meg a szabályokat, amelyek meghatározzák a jogcímek átadott hogyan IP-címekről a függő Entitás. Ez az útmutató céljából azt egyszerűen konfigurálja ACS nélkül történő másolását a bemeneti jogcímek adattípusokat és az értékeket közvetlenül a kimeneti jogkivonatot szűrését, és módosítja azokat.
 
-1. A hello ACS felügyeleti portál fő lapján, kattintson **csoportok szabály**.
-2. A hello **csoportok** kattintson **Szabálycsoportja alapértelmezett Azure webalkalmazás**.
-3. A hello **szabály csoport szerkesztése** kattintson **Generate**.
-4. A hello **szabályok létrehozása: alapértelmezett szabály csoport Azure webalkalmazás** lapon, győződjön meg arról, a Windows Live ID be van jelölve, majd kattintson **Generate**.    
-5. A hello **szabály csoport szerkesztése** kattintson **mentése**.
+1. Az ACS felügyeleti portál fő lapján kattintson a **csoportok szabály**.
+2. Az a **csoportok** kattintson **Szabálycsoportja alapértelmezett Azure webalkalmazás**.
+3. Az a **szabály csoport szerkesztése** kattintson **Generate**.
+4. Az a **szabályok létrehozása: alapértelmezett szabály csoport Azure webalkalmazás** lapon, győződjön meg arról, a Windows Live ID be van jelölve, majd kattintson **Generate**.    
+5. Az a **szabály csoport szerkesztése** kattintson **mentése**.
 
-## <a name="upload-a-certificate-tooyour-acs-namespace"></a>A tanúsítványnévtéren tooyour ACS feltöltése
-Ebben a feladatban feltöltése egy. PFX-tanúsítvány, amely lesz használt toosign jogkivonat-kérelmeket hozta létre a ACS névterét.
+## <a name="upload-a-certificate-to-your-acs-namespace"></a>A ACS névterét tanúsítvány feltöltése
+Ebben a feladatban feltöltése egy. PFX-tanúsítvány, amely aláírásához hozta létre a ACS névterét a jogkivonat-kérelmeket.
 
-1. A hello ACS felügyeleti portál fő lapján, kattintson **tanúsítványok és kulcsok**.
-2. A hello **tanúsítványok és kulcsok** kattintson **Hozzáadás** fent **jogkivonat-aláíró**.
-3. A hello **hozzáadása jogkivonat-aláíró tanúsítvány és kulcs** lap:
-   1. A hello **használt** területen kattintson **függő alkalmazás** válassza **Azure Web Apps** (amely a korábban állítja be a függő entitás alkalmazás hello neve).
-   2. A hello **típus** szakaszban jelölje be **X.509 tanúsítvány**.
-   3. A hello **tanúsítvány** szakaszt, hello Tallózás gombra, és keresse meg, hogy szeretné-e toouse toohello X.509 tanúsítvány fájl. Ez lesz a. PFX-fájlt. Jelölje ki azt a hello fájl **nyissa meg**, és írja be a hello hello tanúsítvány jelszava **jelszó** szövegmezőben. Vegye figyelembe, hogy a tesztelési célokra, előfordulhat, hogy önkiszolgáló-signed-tanúsítványt használ. toocreate egy önaláírt tanúsítványt használjon hello **új** hello gombjára **ACS könyvtára** párbeszédpanelen (a későbbiekben olvashat), vagy használja a hello **encutil.exe** hello azeszközt[projekt webhely] [ project website] a Javához készült Azure Starter Kit hello.
-   4. Győződjön meg arról, hogy **elsődleges ellenőrizze** be van jelölve. A **hozzáadása jogkivonat-aláíró tanúsítvány és kulcs** lap alábbihoz hasonló toohello következő.
+1. Az ACS felügyeleti portál fő lapján kattintson a **tanúsítványok és kulcsok**.
+2. Az a **tanúsítványok és kulcsok** kattintson **Hozzáadás** fent **jogkivonat-aláíró**.
+3. Az a **hozzáadása jogkivonat-aláíró tanúsítvány és kulcs** lap:
+   1. A a **használt** területen kattintson **függő alkalmazás** válassza **Azure Web Apps** (amely a korábban állítja be a függő entitás alkalmazás neve).
+   2. Az a **típus** szakaszban jelölje be **X.509 tanúsítvány**.
+   3. Az a **tanúsítvány** szakaszt, kattintson a Tallózás gombra, és keresse meg a használni kívánt X.509 tanúsítvány fájlt. Ez lesz a. PFX-fájlt. Válassza ki a fájlt, kattintson **nyitott**, és írja be a tanúsítvány jelszavát az a **jelszó** szövegmezőben. Vegye figyelembe, hogy a tesztelési célokra, előfordulhat, hogy önkiszolgáló-signed-tanúsítványt használ. Önaláírt tanúsítvány létrehozásához használja a **új** gombra a **ACS könyvtára** párbeszédpanelen (a későbbiekben olvashat), vagy használja a **encutil.exe** segédprogram a a[projekt webhely] [ project website] Javához készült Azure Starter Kit.
+   4. Győződjön meg arról, hogy **elsődleges ellenőrizze** be van jelölve. A **hozzáadása jogkivonat-aláíró tanúsítvány és kulcs** oldal az alábbihoz hasonlóan kell kinéznie.
        ![Jogkivonat-aláíró tanúsítvány hozzáadása][add_token_signing_cert]
-   5. Kattintson a **mentése** toosave beállításainak és Bezárás hello **hozzáadása jogkivonat-aláíró tanúsítvány és kulcs** lap.
+   5. Kattintson a **mentése** mentse a beállításokat, és zárja be a **hozzáadása jogkivonat-aláíró tanúsítvány és kulcs** lap.
 
-Ezt követően ellenőrizze, hogy szüksége lesz tooconfigure a Java webes alkalmazás toouse ACS hello alkalmazásintegráció lapjáról, és másolja hello URI információk hello.
+Ezután tekintse át az adatokat az alkalmazások integrálása lapon, és másolja az URI, szüksége lesz a Java-webalkalmazás ACS használata.
 
-## <a name="review-hello-application-integration-page"></a>Áttekintés hello alkalmazásintegráció lap
-Található összes hello információt és hello kód szükséges tooconfigure a Java webes alkalmazás (függő Entitás alkalmazás hello) toowork az ACS használatával az ACS felügyeleti portál hello hello alkalmazásintegráció oldalán. Szüksége lesz ezeket az információkat a Java-webalkalmazás az összevont hitelesítés konfigurálásakor.
+## <a name="review-the-application-integration-page"></a>Olvassa el a alkalmazásintegráció oldalt.
+Található összes adatot és a kódot kell konfigurálni a Java-alkalmazásokra (a függő Entitás alkalmazás) működéséhez az ACS használatával az ACS felügyeleti portálra az alkalmazások integrálása oldalán. Szüksége lesz ezeket az információkat a Java-webalkalmazás az összevont hitelesítés konfigurálásakor.
 
-1. A hello ACS felügyeleti portál, kattintson **alkalmazásintegráció**.  
-2. A hello **alkalmazásintegráció** kattintson **bejelentkezési oldalak**.
-3. A hello **bejelentkezési oldal integrációs** kattintson **Azure Web Apps**.
+1. Az ACS felügyeleti portál, kattintson a **alkalmazásintegráció**.  
+2. Az a **alkalmazásintegráció** kattintson **bejelentkezési oldalak**.
+3. Az a **bejelentkezési oldal integrációs** kattintson **Azure Web Apps**.
 
-A hello **bejelentkezési oldal integrációs: Azure Web Apps** hello URL-címe a lap **1. lehetőség: hivatkozás tooan ACS által szolgáltatott bejelentkezési oldal** fogja használni a Java-alkalmazásokra. Ez az érték akkor hello Azure Access Control szolgáltatások szűrő könyvtár tooyour Java-alkalmazások hozzáadásakor.
+A a **bejelentkezési oldal integrációs: Azure Web Apps** lapon, az URL-címe a **1. lehetőség: az ACS által szolgáltatott bejelentkezési lapra mutató hivatkozás** a Java-webalkalmazás fogja használni. Ha az Azure Access Control szolgáltatások szűrő könyvtár hozzáadása a Java-alkalmazások kell ezt az értéket.
 
 ## <a name="create-a-java-web-application"></a>Java-webalkalmazás létrehozása
-1. Eclipse-ben belül hello menüben kattintson **fájl**, kattintson a **új**, és kattintson a **dinamikus webes projekt**. (Ha nem lát **dinamikus webes projekt** kattintás után az elérhető projektek tulajdonosaként **fájl**, **új**, majd hello a következő: kattintson a **fájl**, kattintson a **új**, kattintson **projekt**, bontsa ki a **webes**, kattintson a **dinamikus webes projekt**, és kattintson a  **Ezután**.) Ez az oktatóanyag céljából, nevet hello projektnek **MyACSHelloWorld**. (Ellenőrizze a nevet használja, ez az oktatóanyag következő lépései a WAR-fájl MyACSHelloWorld nevű toobe várt). A képernyő jelenik meg hasonló toohello következő:
+1. Belül eclipse-ben a menüben kattintson **fájl**, kattintson a **új**, és kattintson a **dinamikus webes projekt**. (Ha nem lát **dinamikus webes projekt** kattintás után az elérhető projektek tulajdonosaként **fájl**, **új**, majd tegye a következőket: kattintson a **fájl**, kattintson a **új**, kattintson **projekt**, bontsa ki a **webes**, kattintson a **dinamikus webes projekt**, és kattintson a  **Ezután**.) Ebben az oktatóanyagban a nevet a projektnek **MyACSHelloWorld**. (Ellenőrizze a nevet használja, ez az oktatóanyag következő lépései a WAR-fájlt, hogy az elnevezésük MyACSHelloWorld várt). A képernyő jelenik meg a következőhöz hasonló:
    
     ![ACS exampple Hello World projekt létrehozása][create_acs_hello_world]
    
     Kattintson a **Befejezés** gombra.
 2. A Eclipse Project Explorer nézet, bontsa ki a **MyACSHelloWorld**. Kattintson a jobb gombbal a **WebContent** (Webes tartalom), majd a **New** (Új) elemre, és végül a **JSP File** (JSP-fájl) elemre.
-3. A hello **új JSP-fájl** párbeszédpanelen nevű hello fájl **index.jsp**. Tartsa hello szülőmappa MyACSHelloWorld/WebContent, mint ahogy az alábbi hello:
+3. Az a **új JSP-fájl** párbeszédpanelen, a fájl neve **index.jsp**. Tartsa a szülőmappa MyACSHelloWorld/WebContent, mint ahogy az a következő:
    
     ![ACS például JSP-fájl hozzáadása][add_jsp_file_acs]
    
     Kattintson a **Tovább** gombra.
-4. A hello **JSP-sablon kiválasztása** párbeszédpanelen válassza **új JSP-fájl (html)** kattintson **Befejezés**.
-5. Hello index.jsp fájl megnyitásakor az eclipse-ben, adja hozzá a szöveg toodisplay **Hello ACS World!** hello meglévő belül `<body>` elemet. A frissített `<body>` tartalom hello következő jelennek meg:
+4. Az a **JSP-sablon kiválasztása** párbeszédpanelen válassza **új JSP-fájl (html)** kattintson **Befejezés**.
+5. Ha megnyílt az index.jsp fájl az eclipse-ben, adja hozzá a megjelenítendő szöveg **Hello ACS World!** a már meglévő `<body>` elemhez. A frissített `<body>` tartalma megjelenjen-e az alábbiak szerint:
    
         <body>
           <b><% out.println("Hello ACS World!"); %></b>
@@ -179,87 +179,87 @@ A hello **bejelentkezési oldal integrációs: Azure Web Apps** hello URL-címe 
    
     Mentse az index.jsp.
 
-## <a name="add-hello-acs-filter-library-tooyour-application"></a>Hello ACS szűrő könyvtár tooyour alkalmazás hozzáadása
+## <a name="add-the-acs-filter-library-to-your-application"></a>Az ACS-szűrő könyvtár hozzáadása az alkalmazáshoz
 1. A Project Explorer Eclipse meg, kattintson a jobb gombbal **MyACSHelloWorld**, kattintson **Build elérési**, és kattintson a **Build elérési konfigurálása**.
-2. A hello **Java Build elérési** párbeszédpanel, kattintson hello **szalagtárak** lapon.
+2. Az a **Java Build elérési** párbeszédpanel, kattintson a **szalagtárak** fülre.
 3. Kattintson a **könyvtár hozzáadása**.
-4. Kattintson a **Azure hozzáférést vezérlő Services szűrés (MS nyitott műszaki)** majd **következő**. Hello **Azure Access Control szolgáltatások szűrő** párbeszédpanel jelenik meg.  (hello **hely** mező lehet egy másik elérési utat, attól függően, hogy a telepítési eclipse-ben, és hello verziószáma eltérő, attól függően, hogy a szoftverfrissítések lehet.)
+4. Kattintson a **Azure hozzáférést vezérlő Services szűrés (MS nyitott műszaki)** majd **következő**. A **Azure Access Control szolgáltatások szűrő** párbeszédpanel jelenik meg.  (A **hely** mező lehet egy másik elérési utat, attól függően, hogy a telepítési eclipse-ben, és lehet, hogy a verziószám különböző, attól függően, hogy a szoftverfrissítések.)
    
     ![Az ACS-szűrő könyvtár hozzáadása][add_acs_filter_lib]
-5. Egy böngészőben megnyitva toohello **bejelentkezési oldal integrációs** hello felügyeleti portál másolási hello URL-címe a hello oldalán **1. lehetőség: hivatkozás tooan ACS által szolgáltatott bejelentkezési oldal** mezőben, majd illessze be hello **ACS hitelesítési végpont** hello Eclipse párbeszédpanel mezőjében.
-6. Egy böngészőben megnyitva toohello **függő entitás alkalmazás szerkesztése** hello felügyeleti portál másolási hello URL-címe a hello oldalán **tartomány** mezőben, majd illessze be hello **függő entitás Realm**  hello Eclipse párbeszédpanel mezőjében.
-7. Hello belül **biztonsági** hello Eclipse párbeszédpanel, ha azt szeretné, hogy egy meglévő tanúsítvány toouse részén kattintson **Tallózás**, keresse meg a toohello tanúsítvány toouse szeretne, válassza ki azt, és kattintson  **Nyissa meg**. Vagy, ha azt szeretné, hogy toocreate egy új tanúsítványt, kattintson a **új** toodisplay hello **új tanúsítvány** párbeszédpanelen, majd adja meg a hello jelszó hello .cer fájl neve és hello .pfx-fájlt az új hello neve tanúsítvány.
-8. Ellenőrizze **beágyazási hello tanúsítvány hello WAR-fájlt a**. Az ilyen módon beágyazási hello tanúsítvány megtalálható a környezetben anélkül, hogy Ön toomanually célútvonallal összetevőt. (Ha inkább kell tárolnia a tanúsítványt kívülről a WAR-fájl, sikerült szerepkör összetevőjeként hello tanúsítvány hozzáadása és törölje a jelet **beágyazási hello tanúsítvány hello WAR-fájlt a**.)
-9. [Választható] Tartsa **szükséges HTTPS-kapcsolatok** be van jelölve. Ha ezt a beállítást, szüksége lesz tooaccess az alkalmazás hello HTTPS protokoll használatával. Ha nem szeretné toorequire HTTPS-kapcsolatok, törölje ezt a beállítást.
-10. A központi telepítés toohello számítási emulátor, a **Azure ACS szűrő** beállítások hasonló toohello következő fog kinézni.
+5. Egy böngészővel nyitva a **bejelentkezési oldal integrációs** oldalán a kezelési portálon, a Másolás az URL-cím szerepel a **1. lehetőség: az ACS által szolgáltatott bejelentkezési lapra mutató hivatkozás** mezőben, majd illessze be azt a **ACS Hitelesítési végpont** mezőjét az Eclipse-párbeszédpanel.
+6. Egy böngészővel nyitva a **függő entitás alkalmazás szerkesztése** oldalán a kezelési portálon, a Másolás az URL-cím szerepel a **tartomány** mezőben, majd illessze be azt a **függő entitás Realm**mezőjét az Eclipse-párbeszédpanel.
+7. Belül a **biztonsági** az Eclipse-párbeszédpanel, ha azt szeretné, hogy egy meglévő tanúsítványt, kattintson a szakasz **Tallózás**, keresse meg a tanúsítványt szeretné használni, válassza ki azt, és kattintson **megnyitása**. Ha hozzon létre egy új tanúsítványt szeretne, kattintson a **új** megjelenítéséhez a **új tanúsítvány** párbeszédpanelen adja meg a jelszót, a .cer fájl neve és az új tanúsítvány PFX-fájljának nevét.
+8. Ellenőrizze **a tanúsítvány beágyazása a WAR-fájlt**. Az ilyen módon a tanúsítvány beágyazás tartalmazza azt a központi telepítés anélkül, hogy kézzel adjon hozzá egy összetevő. (Ha inkább kell tárolnia a tanúsítványt kívülről a WAR-fájl, sikerült felvenni a tanúsítványt egy szerepkör-összetevő és törölje a jelet **a tanúsítvány beágyazása a WAR-fájlt**.)
+9. [Választható] Tartsa **szükséges HTTPS-kapcsolatok** be van jelölve. Állítja ezt a beállítást, ha szüksége lesz a HTTPS protokoll használatával az alkalmazás eléréséhez. Ha nem szeretné, hogy HTTPS-kapcsolatok megkövetelése, törölje ezt a beállítást.
+10. A compute emulator üzembe helyezése a **Azure ACS szűrő** beállítások az alábbihoz hasonlóan fog kinézni.
     
-    ![A központi telepítés toohello Azure ACS szűrő beállításának számítási emulátor][add_acs_filter_lib_emulator]
+    ![A compute emulator üzembe helyezése az Azure ACS szűrő beállításai][add_acs_filter_lib_emulator]
 11. Kattintson a **Befejezés** gombra.
 12. Kattintson a **Igen** amikor az egy párbeszédpanel, amely arról tájékoztat, hogy egy web.xml fájl jön létre.
-13. Kattintson a **OK** tooclose hello **Java Build elérési** párbeszédpanel.
+13. Kattintson a **OK** bezárásához a **Java Build elérési** párbeszédpanel.
 
-## <a name="deploy-toohello-compute-emulator"></a>Toohello compute emulator telepítése
+## <a name="deploy-to-the-compute-emulator"></a>A compute emulator telepítése
 1. A Project Explorer Eclipse meg, kattintson a jobb gombbal **MyACSHelloWorld**, kattintson a **Azure**, és kattintson a **az Azure-csomag**.
 2. A **projektnevet**, típus **MyAzureACSProject** kattintson **következő**.
-3. Válassza ki a JDK és az alkalmazáskiszolgálóhoz. (Ezeket a lépéseket a hello részletesen ismertetett [egy Hello World alkalmazásról az Azure létrehozása az eclipse-ben](http://msdn.microsoft.com/library/windowsazure/hh690944.aspx) oktatóanyag).
+3. Válassza ki a JDK és az alkalmazáskiszolgálóhoz. (A részletes leírása az alábbi lépéseket a [egy Hello World alkalmazás létrehozása az Azure az eclipse-ben](http://msdn.microsoft.com/library/windowsazure/hh690944.aspx) oktatóanyag).
 4. Kattintson a **Befejezés** gombra.
-5. Kattintson a hello **Azure emulátorban futtatása** gombra.
-6. A Java-webalkalmazás hello compute emulator a elindulása után zárja be a böngésző minden példányát (úgy, hogy a jelenlegi böngésző-munkamenetek ne zavarja meg az ACS-bejelentkezés tesztelése).
-7. Futtassa az alkalmazást megnyitásával <8080/MyACSHelloWorld/> a böngésző (vagy <https://localhost:8080/MyACSHelloWorld/> Ha bejelölte **szükséges HTTPS-kapcsolatok** ). A rendszer kéri a Windows Live ID bejelentkezési azonosítóhoz, akkor kell toohello visszatérési URL-cím függő entitás alkalmazás megadott kerül.
-8. Amikor befejezte az alkalmazást, kattintson a hello **visszaállítása Azure Emulátorban** gombra.
+5. Kattintson a **Azure emulátorban futtatása** gombra.
+6. A Java-webalkalmazás a compute emulator a elindulása után zárja be a böngésző minden példányát (úgy, hogy a jelenlegi böngésző-munkamenetek ne zavarja meg az ACS-bejelentkezés tesztelése).
+7. Futtassa az alkalmazást megnyitásával <8080/MyACSHelloWorld/> a böngésző (vagy <https://localhost:8080/MyACSHelloWorld/> Ha bejelölte **szükséges HTTPS-kapcsolatok** ). A rendszer kéri a Windows Live ID bejelentkezési azonosítóhoz, akkor meg kell fordítani a függő entitás-alkalmazáshoz megadott visszatérési URL-cím.
+8. Amikor befejezte az alkalmazást, kattintson a **visszaállítása Azure Emulátorban** gombra.
 
-## <a name="deploy-tooazure"></a>TooAzure telepítése
-toodeploy tooAzure, szüksége lesz toochange hello függő entitás realm, és térjen vissza URL-címet a ACS névterét.
+## <a name="deploy-to-azure"></a>Üzembe helyezés az Azure-ban
+Telepítse az Azure, lesz szüksége a függő entitás realm módosításához, és visszatérési URL-cím az ACS-névtérhez.
 
-1. Hello Azure felügyeleti portálon, a hello belül **függő entitás alkalmazás szerkesztése** lapján módosíthatja **tartomány** toobe hello webhely URL-CÍMÉT a telepített. Cserélje le **példa** az üzembe helyezéshez megadott hello DNS-névvel.
+1. Az Azure felügyeleti portálon a a **függő entitás alkalmazás szerkesztése** lapján módosíthatja **tartomány** kell lennie a telepített hely URL-CÍMÉT. Cserélje le **példa** a az üzembe helyezéshez megadott DNS-névvel.
    
     ![Függő entitás realm üzemi használatra][relying_party_realm_production]
-2. Módosítsa **visszatérési URL-** toobe hello URL-cím, az alkalmazás. Cserélje le **példa** az üzembe helyezéshez megadott hello DNS-névvel.
+2. Módosítsa **visszatérési URL-** kell lennie az alkalmazás URL-CÍMÉT. Cserélje le **példa** a az üzembe helyezéshez megadott DNS-névvel.
    
     ![Függő entitás visszatérési URL-cím üzemi használatra][relying_party_return_url_production]
-3. Kattintson a **mentése** toosave a frissített függő entitás realm, és térjen vissza URL-cím módosítása.
-4. Tartsa hello **bejelentkezési oldal integrációs** lapon nyissa meg a böngészőben, hamarosan szüksége toocopy belőle.
+3. Kattintson a **mentése** a frissített függő entitás realm mentéséhez, és térjen vissza az URL-cím módosításokat.
+4. Tartsa a **bejelentkezési oldal integrációs** lapon nyissa meg a böngészőben, a másoláshoz hamarosan szüksége lesz.
 5. A Project Explorer Eclipse meg, kattintson a jobb gombbal **MyACSHelloWorld**, kattintson **Build elérési**, és kattintson a **Build elérési konfigurálása**.
-6. Kattintson a hello **szalagtárak** lapra, majd **Azure Access Control szolgáltatások szűrő**, és kattintson a **szerkesztése**.
-7. Egy böngészőben megnyitva toohello **bejelentkezési oldal integrációs** hello felügyeleti portál másolási hello URL-címe a hello oldalán **1. lehetőség: hivatkozás tooan ACS által szolgáltatott bejelentkezési oldal** mezőben, majd illessze be hello **ACS hitelesítési végpont** hello Eclipse párbeszédpanel mezőjében.
-8. Egy böngészőben megnyitva toohello **függő entitás alkalmazás szerkesztése** hello felügyeleti portál másolási hello URL-címe a hello oldalán **tartomány** mezőben, majd illessze be hello **függő entitás Realm**  hello Eclipse párbeszédpanel mezőjében.
-9. Hello belül **biztonsági** hello Eclipse párbeszédpanel, ha azt szeretné, hogy egy meglévő tanúsítvány toouse részén kattintson **Tallózás**, keresse meg a toohello tanúsítvány toouse szeretne, válassza ki azt, és kattintson  **Nyissa meg**. Vagy, ha azt szeretné, hogy toocreate egy új tanúsítványt, kattintson a **új** toodisplay hello **új tanúsítvány** párbeszédpanelen, majd adja meg a hello jelszó hello .cer fájl neve és hello .pfx-fájlt az új hello neve tanúsítvány.
-10. Tartsa **beágyazási hello tanúsítvány hello WAR-fájlt a** be van jelölve, feltéve, hogy azt szeretné, hogy tooembed hello tanúsítványt hello WAR-fájlt.
-11. [Választható] Tartsa **szükséges HTTPS-kapcsolatok** be van jelölve. Ha ezt a beállítást, szüksége lesz tooaccess az alkalmazás hello HTTPS protokoll használatával. Ha nem szeretné toorequire HTTPS-kapcsolatok, törölje ezt a beállítást.
-12. A központi telepítési tooAzure az Azure ACS szűrési beállítások hasonló toohello következő fog kinézni.
+6. Kattintson a **szalagtárak** lapra, majd **Azure Access Control szolgáltatások szűrő**, és kattintson a **szerkesztése**.
+7. Egy böngészővel nyitva a **bejelentkezési oldal integrációs** oldalán a kezelési portálon, a Másolás az URL-cím szerepel a **1. lehetőség: az ACS által szolgáltatott bejelentkezési lapra mutató hivatkozás** mezőben, majd illessze be azt a **ACS Hitelesítési végpont** mezőjét az Eclipse-párbeszédpanel.
+8. Egy böngészővel nyitva a **függő entitás alkalmazás szerkesztése** oldalán a kezelési portálon, a Másolás az URL-cím szerepel a **tartomány** mezőben, majd illessze be azt a **függő entitás Realm**mezőjét az Eclipse-párbeszédpanel.
+9. Belül a **biztonsági** az Eclipse-párbeszédpanel, ha azt szeretné, hogy egy meglévő tanúsítványt, kattintson a szakasz **Tallózás**, keresse meg a tanúsítványt szeretné használni, válassza ki azt, és kattintson **megnyitása**. Ha hozzon létre egy új tanúsítványt szeretne, kattintson a **új** megjelenítéséhez a **új tanúsítvány** párbeszédpanelen adja meg a jelszót, a .cer fájl neve és az új tanúsítvány PFX-fájljának nevét.
+10. Tartsa **a tanúsítvány beágyazása a WAR-fájlt** be van jelölve, feltéve, hogy a tanúsítvány beágyazása a WAR-fájlt szeretne.
+11. [Választható] Tartsa **szükséges HTTPS-kapcsolatok** be van jelölve. Állítja ezt a beállítást, ha szüksége lesz a HTTPS protokoll használatával az alkalmazás eléréséhez. Ha nem szeretné, hogy HTTPS-kapcsolatok megkövetelése, törölje ezt a beállítást.
+12. Azure üzembe helyezése Azure ACS szűrési beállítások az alábbihoz hasonlóan fog kinézni.
     
     ![Éles környezet az Azure ACS szűrő beállításai][add_acs_filter_lib_production]
-13. Kattintson a **Befejezés** tooclose hello **szerkesztése könyvtár** párbeszédpanel.
-14. Kattintson a **OK** tooclose hello **MyACSHelloWorld tulajdonságainak** párbeszédpanel.
-15. Az eclipse-ben, kattintson a hello **közzététele a felhőalapú tooAzure** gombra. Válasz toohello kér, hasonló módon végezhető el hello **toodeploy az alkalmazás tooAzure** hello szakasza [egy Hello World alkalmazásról az Azure létrehozása az eclipse-ben](http://msdn.microsoft.com/library/windowsazure/hh690944.aspx) témakör. 
+13. Kattintson a **Befejezés** bezárásához a **szerkesztése könyvtár** párbeszédpanel.
+14. Kattintson a **OK** bezárásához a **MyACSHelloWorld tulajdonságainak** párbeszédpanel.
+15. Az eclipse-ben, kattintson a **Publish Azure felhőbe** gombra. Kövesse a megjelenő utasításokat, hasonló módon végezhető el a **az Azure-bA az alkalmazás közzétételéhez** szakasza a [egy Hello World alkalmazás létrehozása az Azure az eclipse-ben](http://msdn.microsoft.com/library/windowsazure/hh690944.aspx) témakör. 
 
-Miután a webes alkalmazás telepítve van, zárjon be minden nyitott böngésző-munkamenetet, futtassa a webes alkalmazás és a rendszer kéri a toosign be Windows Live ID hitelesítő adataival, követ toohello küldi el a függő entitás alkalmazás URL-címe térjen vissza.
+A webes alkalmazás telepítése után zárjon be minden nyitott böngésző-munkamenetek, a webes alkalmazás futtatására és a bejelentkezés Windows Live ID hitelesítő adataival, majd küldi el a függő entitás alkalmazás visszatérési URL-CÍMÉT a rendszer kéri.
 
-Ha végzett toodelete hello központi telepítés használatával az ACS Hello World alkalmazásról, ne feledje (áttekintheti, hogyan toodelete hello a központi telepítés [egy Hello World alkalmazásról az Azure létrehozása az eclipse-ben](http://msdn.microsoft.com/library/windowsazure/hh690944.aspx) témakör).
+Ha végzett használatával az ACS Hello World alkalmazásról, fontos, hogy törölje a központi telepítést (megismerheti a központi telepítés törlése a [egy Hello World alkalmazás létrehozása az Azure az eclipse-ben](http://msdn.microsoft.com/library/windowsazure/hh690944.aspx) témakör).
 
 ## <a name="next_steps"></a>Következő lépések
-A Security Assertion Markup Language (SAML) ACS tooyour alkalmazás által visszaadott hello vizsgálata, lásd: [hogyan tooview SAML hello Azure Access Control Service által visszaadott][How tooview SAML returned by hello Azure Access Control Service]. toofurther ACS azon funkcióit és az összetettebb forgatókönyveket tooexperiment című [Access Control Service 2.0][Access Control Service 2.0].
+Lásd: a vizsgálat, a Security Assertion Markup Language (SAML) az alkalmazáshoz az ACS által visszaadott [SAML megtekintése a Azure Access Control szolgáltatás által visszaadott][How to view SAML returned by the Azure Access Control Service]. További megismerkedhet az ACS azon funkcióit és kifinomultabb forgatókönyvek kísérletezhet, olvassa el [Access Control Service 2.0][Access Control Service 2.0].
 
-Emellett a példában hello **beágyazási hello tanúsítvány hello WAR-fájlt a** lehetőséget. Ez a beállítás teszi egyszerű toodeploy hello tanúsítványt. Ha ehelyett tookeep az aláíró tanúsítványban elkülönül a WAR-fájlt, használhatja a következő eljárás hello:
+Emellett ebben a példában használt a **a tanúsítvány beágyazása a WAR-fájlt** lehetőséget. Ez a beállítás leegyszerűsíti a tanúsítvány telepítéséhez. Ha ehelyett meg szeretné tartani az aláíró tanúsítványban elkülönül a WAR-fájlt, használhatja a következő eljárást:
 
-1. Hello belül **biztonsági** hello szakasza **Azure Access Control szolgáltatások szűrő** párbeszédpanel, írja be **${env. JAVA_HOME}/MyCert.cer** és törölje a jelet **beágyazási hello tanúsítvány hello WAR-fájlt a**. (Beállítása mycert.cer Ha a tanúsítvány neve eltér.) Kattintson a **Befejezés** tooclose hello párbeszédpanel.
-2. Másolás hello tanúsítványt a központi telepítésben összetevőjeként: bontsa ki a Eclipse Project Explorer **MyAzureACSProject**, kattintson a jobb gombbal **WorkerRole1**, kattintson a **tulajdonságok** , bontsa ki a **Azure szerepkör**, és kattintson a **összetevők**.
+1. Belül a **biztonsági** szakasza a **Azure Access Control szolgáltatások szűrő** párbeszédpanel, írja be **${env. JAVA_HOME}/MyCert.cer** és törölje a jelet **a tanúsítvány beágyazása a WAR-fájlt**. (Beállítása mycert.cer Ha a tanúsítvány neve eltér.) Kattintson a **Befejezés** bezárhatja a párbeszédpanelt.
+2. Másolja a tanúsítványt a központi telepítésben összetevőjeként: bontsa ki a Eclipse Project Explorer **MyAzureACSProject**, kattintson a jobb gombbal **WorkerRole1**, kattintson a **tulajdonságok**, Bontsa ki a **Azure szerepkör**, és kattintson a **összetevők**.
 3. Kattintson az **Add** (Hozzáadás) parancsra.
-4. Hello belül **összetevő felvétele** párbeszédpanel:
+4. Belül a **összetevő felvétele** párbeszédpanel:
    
-   1. A hello **importálási** szakasz:
-      1. Használjon hello **fájl** gomb toonavigate toohello tanúsítványt toouse. 
+   1. Az a **importálási** szakasz:
+      1. Használja a **fájl** gombra kattintva keresse meg a használni kívánt tanúsítványt. 
       2. A **metódus**, jelölje be **másolási**.
-   2. A **mint neve**, kattintson a hello szövegmezőbe, és fogadja el hello alapértelmezett nevet.
-   3. A hello **telepítés** szakasz:
+   2. A **mint neve**, kattintson a szövegmezőbe, és fogadja el az alapértelmezett nevet.
+   3. Az a **telepítés** szakasz:
       1. A **metódus**, jelölje be **másolási**.
-      2. A **toodirectory**, típus **JAVA_HOME %**.
-   4. A **összetevő felvétele** párbeszédpanel alábbihoz hasonló toohello következő.
+      2. A **könyvtárba**, típus **JAVA_HOME %**.
+   4. A **összetevő felvétele** párbeszédpanelen a következőhöz hasonlóan kell kinéznie.
       
        ![Tanúsítvány-összetevő hozzáadása][add_cert_component]
    5. Kattintson az **OK** gombra.
 
-Ezen a ponton a tanúsítvány szerepel a központi telepítés. Vegye figyelembe, függetlenül attól, hogy hello tanúsítvány beágyazása hello WAR-fájlt, vagy adja hozzá azt egy összetevő tooyour telepítési, telepíteni kell, amely tooupload hello tanúsítványnévtéren tooyour hello leírtak [tooyour ACS névtértanúsítványfeltöltése] [ Upload a certificate tooyour ACS namespace] szakasz.
+Ezen a ponton a tanúsítvány szerepel a központi telepítés. Ne feledje, hogy függetlenül attól, hogy a tanúsítvány beágyazása a WAR-fájlt, vagy összetevőjeként hozzáadása a központi telepítés, a tanúsítvány feltöltése a névtérhez, lásd: a [tanúsítvány feltöltése a ACS névterét] [ Upload a certificate to your ACS namespace] szakasz.
 
 [What is ACS?]: #what-is
 [Concepts]: #concepts
@@ -269,15 +269,15 @@ Ezen a ponton a tanúsítvány szerepel a központi telepítés. Vegye figyelemb
 [Add Identity Providers]: #add-IP
 [Add a Relying Party Application]: #add-RP
 [Create Rules]: #create-rules
-[Upload a certificate tooyour ACS namespace]: #upload-certificate
-[Review hello Application Integration Page]: #review-app-int
+[Upload a certificate to your ACS namespace]: #upload-certificate
+[Review the Application Integration Page]: #review-app-int
 [Configure Trust between ACS and Your ASP.NET Web Application]: #config-trust
-[Add hello ACS Filter library tooyour application]: #add_acs_filter_library
-[Deploy toohello compute emulator]: #deploy_compute_emulator
-[Deploy tooAzure]: #deploy_azure
+[Add the ACS Filter library to your application]: #add_acs_filter_library
+[Deploy to the compute emulator]: #deploy_compute_emulator
+[Deploy to Azure]: #deploy_azure
 [Next steps]: #next_steps
 [project website]: http://wastarterkit4java.codeplex.com/releases/view/61026
-[How tooview SAML returned by hello Azure Access Control Service]: active-directory-java-view-saml-returned-by-access-control.md
+[How to view SAML returned by the Azure Access Control Service]: active-directory-java-view-saml-returned-by-access-control.md
 [Access Control Service 2.0]: http://go.microsoft.com/fwlink/?LinkID=212360
 [Windows Identity Foundation]: http://www.microsoft.com/download/en/details.aspx?id=17331
 [Windows Identity Foundation SDK]: http://www.microsoft.com/download/en/details.aspx?id=4451

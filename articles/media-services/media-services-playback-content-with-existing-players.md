@@ -1,6 +1,6 @@
 ---
-title: "meglévő játékosok tooplayback a tartalom - Azure aaaUse |} Microsoft Docs"
-description: "Ez a témakör a meglévő játékosok használható tooplayback a tartalmat."
+title: "Meglévő játékosok lejátszásához használjon a tartalom - Azure |} Microsoft Docs"
+description: "Ez a témakör felsorolja a meglévő játékosok használható lejátszásához a tartalmat."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: juliako
-ms.openlocfilehash: 54817345a19a9d3b18f1e7b352c3342043a569b2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 48f373b013b1192c353352b801876d706d91dd28
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="playing-your-content-with-existing-players"></a>A meglévő játékosokkal tartalom lejátszása
-Az Azure Media Services számos népszerű formátumban, például a Smooth Streaming, HTTP Live Streaming és MPEG-Dash támogatja. Ez a témakör mutató használható tootest fogadhassák tooexisting játékosok.
+Az Azure Media Services számos népszerű formátumban, például a Smooth Streaming, HTTP Live Streaming és MPEG-Dash támogatja. Ez a témakör mutat meglévő játékosok fogadhassák teszteléséhez használható.
 
-### <a name="hello-azure-portal-media-services-content-player"></a>hello Azure-portálon a Media Services content player
-Hello **Azure** portálon talál egy tartalomlejátszót használható tootest a videót.
+### <a name="the-azure-portal-media-services-content-player"></a>Az Azure portál Media Services content player
+A **Azure** portálon talál egy tartalomlejátszót, amelyek segítségével tesztelheti a videót.
 
-Kattintson a hello szükséges videó (Győződjön meg arról, hogy volt [közzétett](media-services-portal-publish.md)) hello kattintson **lejátszása** hello portal hello alján gombra.
+Kattintson a kívánt videóra (Győződjön meg arról, hogy volt [közzétett](media-services-portal-publish.md)), és kattintson a **lejátszása** gomb a portál alján.
 
 Vegye figyelembe a következőket:
 
-* Hello **MEDIA SERVICES CONTENT PLAYER** hello alapértelmezett streamvégpontból játssza le. Ha azt szeretné, hogy egy nem alapértelmezett streamvégpontból tooplay, használjon másik lejátszót. Például [Azure Media Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html).
+* A **MEDIA SERVICES CONTENT PLAYER** (Media Services tartalomlejátszó) az alapértelmezett streamvégpontból játssza le a fájlokat. Ha egy nem alapértelmezett streamvégpontból szeretne lejátszani valamit, használjon másik lejátszót. Például [Azure Media Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html).
 
 ![AMSPlayer][AMSPlayer]
 
 ### <a name="azure-media-player"></a>Azure Media Player
-Használjon [Azure Media Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html) tooplayback a tartalom hello a következő formátumok valamelyikében (egyszerű vagy védett):
+Használjon [Azure Media Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html) lejátszásához a tartalom (egyszerű vagy védett) a következő formátumban:
 
 * Smooth Streaming
 * MPEG DASH
@@ -59,13 +59,13 @@ Használjon [Azure Media Player](http://amsplayer.azurewebsites.net/azuremediapl
 [http://dashif.org](http://dashif.org)
 
 ### <a name="other"></a>Egyéb
-tootest HLS URL-címeket is használhatja:
+Tesztelése HLS URL-címeket is használhatja:
 
 * **Safari** iOS-eszközön vagy
 * **3ivx HLS Player** Windows rendszeren.
 
 ## <a name="developing-video-players"></a>Videó játékosok fejlesztése
-Hogyan toodevelop saját játékosok: információ [videó játékosok fejlesztése](media-services-develop-video-players.md)
+A saját játékosok fejlesztésével kapcsolatos további információkért lásd: [videó játékosok fejlesztése](media-services-develop-video-players.md)
 
 ## <a name="media-services-learning-paths"></a>Media Services képzési tervek
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

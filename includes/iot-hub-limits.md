@@ -1,4 +1,4 @@
-hello következő táblázatban hello különböző szolgáltatási szinteket (S1, S2, S3, F1) társított hello korlátok. Az egyes hello költség információt *egység* minden egyes rétegben, lásd: [IoT Hub árképzési](https://azure.microsoft.com/pricing/details/iot-hub/).
+Az alábbi táblázat a különböző szolgáltatásszintek korlátait tartalmazza (S1, S2, S3, F1). Az egyes szintek *egységeihez* tartozó költségekről további információt az [IoT Hub Díjszabás](https://azure.microsoft.com/pricing/details/iot-hub/) című oldalon talál.
 
 | Erőforrás | S1 – Standard | S2 – Standard | S3 – Standard | F1 – Ingyenes |
 | --- | --- | --- | --- | --- |
@@ -10,7 +10,7 @@ hello következő táblázatban hello különböző szolgáltatási szinteket (S
 > 
 > 
 
-hello alábbi táblázat hello korlátokkal tooIoT Hub erőforrások:
+Az alábbi táblázat az IoT Hub-erőforrásokra vonatkozó korlátokat tartalmazza:
 
 | Erőforrás | Korlát |
 | --- | --- |
@@ -24,8 +24,8 @@ hello alábbi táblázat hello korlátokkal tooIoT Hub erőforrások:
 | A felhőből egy eszközre irányuló üzenet maximális mérete |64 KB |
 | A felhőből egy eszközre irányuló üzenetek maximális élettartama |2 nap |
 | A felhőből egy eszközre történő kézbesítések maximális száma <br/> üzenet |100 |
-| A felhőből egy eszközre irányuló üzenetre válaszoló <br/> a válaszüzenet tooa felhő eszközre |100 |
-| A felhőből egy eszközre irányuló üzenetre válaszoló <br/> válaszüzenet tooa felhő eszközre |2 nap |
+| A felhőből egy eszközre irányuló üzenetre válaszoló <br/> visszajelzési üzenetek maximális kézbesítésszáma |100 |
+| A felhőből egy eszközre irányuló üzenetre válaszoló <br/> visszajelzési üzenetek maximális élettartama |2 nap |
 | Ikereszköz maximális mérete <br/> (címkék, jelentett tulajdonságok és kívánt tulajdonságok) | 8 KB |
 | Az ikereszköz karakterláncértékének maximális mérete | 512 bájt |
 | Az ikereszközben található objektum maximális mélysége | 5 |
@@ -41,9 +41,9 @@ hello alábbi táblázat hello korlátokkal tooIoT Hub erőforrások:
 
 
 > [!NOTE]
-> Jelenleg a maximális szám hello tooa egyetlen IoT-központ eszközökön is elérheti az 500 000 értéket. Ha azt szeretné, tooincrease ezt a határt, forduljon a [Microsoft Support](https://azure.microsoft.com/en-us/support/options/).
+> Csatlakozhat egy IoT-központ eszközök maximális számát jelenleg 500 000 értéket. Ha azt szeretné, a korlát növeléséhez, forduljon a [Microsoft Support](https://azure.microsoft.com/en-us/support/options/).
 
-hello IoT-központ szolgáltatás azelőtt gyorsítja fel kérelmeket, a következő kvóták hello túllépése esetén:
+Az IoT Hub szolgáltatás szabályozza a kéréseket az alábbi kvóták átlépése esetén:
 
 | Szabályozás | Kötegenkénti érték |
 | --- | --- |

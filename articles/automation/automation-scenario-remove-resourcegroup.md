@@ -1,9 +1,9 @@
 ---
-title: "Az erőforráscsoportok aaaAutomate eltávolítása |} Microsoft Docs"
-description: "Egy Azure Automation-forgatókönyv többek között a runbookok tooremove PowerShell munkafolyamat-verziójának minden erőforráscsoportokat az előfizetésben."
+title: "Erőforráscsoportok eltávolításának automatizálása | Microsoft Docs"
+description: "Egy Azure Automation-forgatókönyv PowerShell-munkafolyamati verziója, amely az előfizetéséhez tartozó összes erőforráscsoport eltávolítására szolgáló forgatókönyveket tartalmaz."
 services: automation
 documentationcenter: 
-author: MGoedtel
+author: eslesar
 manager: jwhit
 editor: 
 ms.assetid: b848e345-fd5d-4b9d-bc57-3fe41d2ddb5c
@@ -14,56 +14,56 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 09/26/2016
 ms.author: magoedte
-ms.openlocfilehash: d7ff8064842385d57b0eebdf7b263150c958255f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8b23e55a597f293b17183e80eea6c2763aabe9ba
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-automation-scenario---automate-removal-of-resource-groups"></a>Azure Automation-forgatókönyv – erőforráscsoportok eltávolításának automatizálása
-Számos ügyfél hoz létre több erőforráscsoportot. Vannak, amelyeket éles alkalmazások felügyeletéhez, és vannak, amelyeket fejlesztési, tesztelési és átmeneti környezetként használnak. Az alábbi források hello telepítés automatizálásáról egyetlen művelet, de tudja toodecommission hello gombra kattintással erőforráscsoport folyamatban egy másik. Az Azure Automation használatával leegyszerűsítheti ezt a gyakori felügyeleti feladatot. Bizonyulhat hasznosnak, ha Azure-előfizetés, amely rendelkezik a költségkeret maximumát olyan tag ajánlat MSDN vagy a Microsoft Partner hálózati Cloud Essentials program hello keresztül dolgozik.
+Számos ügyfél hoz létre több erőforráscsoportot. Vannak, amelyeket éles alkalmazások felügyeletéhez, és vannak, amelyeket fejlesztési, tesztelési és átmeneti környezetként használnak. Az ilyen erőforrások üzembe helyezésének automatizálása egy dolog, az erőforráscsoportok egyetlen kattintással történő üzemen kívül helyezése viszont egy teljesen más kérdés. Az Azure Automation használatával leegyszerűsítheti ezt a gyakori felügyeleti feladatot. Egy ilyen megoldás hasznos lehet, ha egy tagoknak szóló ajánlat (pl. MSDN vagy a Microsoft Partner Network Cloud Essentials programja) keretein belül egy költségkerettel rendelkező Azure-előfizetést használ.
 
-Ez a forgatókönyv egy PowerShell-forgatókönyv alapul, és tervezett tooremove egy vagy több erőforrás csoportokba az előfizetésből. hello alapértelmezett hello runbook lehet tootest a folytatás előtt. Ez biztosítja, hogy nem véletlenül hello erőforráscsoport előtt törölnie készen toocomplete Ön ezt az eljárást.   
+Ez a forgatókönyv egy PowerShell-forgatókönyvön alapul, és arra szolgál, hogy egy vagy több megadott erőforráscsoportot távolítson el az előfizetésből. A forgatókönyv az alapértelmezett beállítás szerint tesztet hajt végre a továbblépés előtt. Így nem fogja véletlenül az erőforráscsoport törlését kezdeményezni, mielőtt teljes mértékben megbizonyosodna arról, hogy készen áll az eljárás végrehajtására.   
 
-## <a name="getting-hello-scenario"></a>Első hello forgatókönyv
-Ebben a forgatókönyvben áll egy PowerShell-forgatókönyv, amely letölthető hello [PowerShell-galériában](https://www.powershellgallery.com/packages/Remove-ResourceGroup/1.0/DisplayScript). Közvetlenül a hello is importálhat [forgatókönyvek](automation-runbook-gallery.md) a hello Azure-portálon.<br><br>
+## <a name="getting-the-scenario"></a>A forgatókönyv beszerzése
+Ez a forgatókönyv egy PowerShell-forgatókönyvet tartalmaz, amelyet a [PowerShell-katalógusból](https://www.powershellgallery.com/packages/Remove-ResourceGroup/1.0/DisplayScript) tölthet le. Közvetlenül a [forgatókönyv-katalógusból](automation-runbook-gallery.md) is importálhatja az Azure Portalon.<br><br>
 
 | Forgatókönyv | Leírás |
 | --- | --- |
-| Remove-ResourceGroup |Egy vagy több Azure erőforráscsoport-sablonok és a kapcsolódó erőforrások eltávolítása hello előfizetésből. |
+| Remove-ResourceGroup |Eltávolít egy vagy több Azure-erőforráscsoportot és a kapcsolódó forrásait az előfizetésből. |
 
 <br>
-a következő bemeneti paraméterek hello Ez a forgatókönyv meghatározása:
+Ehhez a forgatókönyvhöz a következő bemeneti paraméterek vannak meghatározva:
 
 | Paraméter | Leírás |
 | --- | --- |
-| NameFilter (kötelező) |Adja meg egy nevet szűrő toolimit hello erőforráscsoportok, melyet törlése. Vesszővel tagolt listaként több értéket is megadhat.<br>hello szűrő nem kis-és nagybetűket, és bármely erőforráscsoport hello karakterláncot tartalmazó karakterláncnak. |
-| PreviewMode (választható) |Hello runbook toosee mely csoportok törlése akkor történik meg, de nincs művelet végrehajtása.<br>hello alapértelmezett érték a **igaz** toohelp elkerülése érdekében egy véletlen törlés vagy további erőforráscsoportok átadott toohello runbook. |
+| NameFilter (kötelező) |Megad egy névszűrőt a törölni kívánt erőforráscsoportok korlátozására. Vesszővel tagolt listaként több értéket is megadhat.<br>A szűrő nem különbözteti meg a kis- és nagybetűket, így a karakterláncot tartalmazó bármely erőforráscsoport esetében egyezést fog mutatni. |
+| PreviewMode (választható) |Végrehajtja a forgatókönyvet, hogy láthassa, mely erőforráscsoportok törlődnének, de nem végzi el a műveletet.<br>Az alapértelmezett érték az **igaz**, így elkerülhető, hogy véletlenül törlődjön a forgatókönyvnek továbbadott egy vagy több erőforráscsoport. |
 
 ## <a name="install-and-configure-this-scenario"></a>A forgatókönyv telepítése és konfigurálása
 ### <a name="prerequisites"></a>Előfeltételek
-Ez a forgatókönyv a hello használatával hitelesít [Azure-beli futtató fiók](automation-sec-configure-azure-runas-account.md).    
+Ez a forgatókönyv az [Azure-beli futtató fiók](automation-sec-configure-azure-runas-account.md) használatával végez hitelesítést.    
 
-### <a name="install-and-publish-hello-runbooks"></a>Telepítse és runbookokat hello közzététele
-Hello runbook letöltését követően importálhatja azt a hello eljárás használatával [runbook eljárások importálása](automation-creating-importing-runbook.md#importing-a-runbook-from-a-file-into-azure-automation). Hello runbook közzététele, miután sikeresen importálta az Automation-fiók be.
+### <a name="install-and-publish-the-runbooks"></a>A forgatókönyv telepítése és közzététele
+A forgatókönyvet letöltése után a [forgatókönyvek importálási eljárásait](automation-creating-importing-runbook.md#importing-a-runbook-from-a-file-into-azure-automation) ismertető témakörben leírtak szerint importálhatja. Miután sikerrel importálta az Automation-fiókba, tegye közzé a forgatókönyvet.
 
-## <a name="using-hello-runbook"></a>Hello runbook használatával
-hello lépések végigvezeti a runbook és megismerni működésének súgó hello végrehajtását. Csak tesztelni fogja hello runbook ebben a példában nem tényleges a hello erőforráscsoport törlése.  
+## <a name="using-the-runbook"></a>A forgatókönyv használata
+A következő lépések végigvezetik a forgatókönyv végrehajtásán, és megismertetik annak működésével. Ebben a példában csak a forgatókönyv tesztelését hajtja végre, az erőforráscsoportot valójában nem törli.  
 
-1. Hello Azure-portálon, nyissa meg az Automation-fiók, és kattintson a **Runbookok**.
-2. Jelölje be hello **Remove-ResourceGroup** runbook kattintson **Start**.
-3. Hello runbook indításakor hello **runbook meghívása** panel nyílik meg, és konfigurálhatja hello paramétereit. Írja be a hello nevét az erőforráscsoportok tesztelési használnia, és hatására nem árt, ha véletlenül törli az előfizetésben.<br> ![A Remove-ResouceGroup paraméterei](media/automation-scenario-remove-resourcegroup/remove-resourcegroup-input-parameters.png)
+1. Az Azure Portalon nyissa meg Automation-fiókját, majd kattintson a **Forgatókönyvek** elemre.
+2. Válassza a **Remove-ResourceGroup** forgatókönyvet, majd kattintson az **Indítás** gombra.
+3. A forgatókönyv elindításakor megnyílik a **Forgatókönyv indítása** panel, amelyen konfigurálhatja a paramétereket. Adja meg az előfizetéséhez tartozó erőforráscsoportok nevét, amelyekkel tesztet hajthat végre, és amelyek véletlen törlése nem okoz problémát.<br> ![A Remove-ResouceGroup paraméterei](media/automation-scenario-remove-resourcegroup/remove-resourcegroup-input-parameters.png)
 
    > [!NOTE]
-   > Győződjön meg arról, hogy **Previewmode** értéke túl**igaz** hello törlése tooavoid kiválasztott erőforrás-csoportok.  **Megjegyzés:** , hogy ez a forgatókönyv nem távolítja el, amely tartalmazza ezt a runbookot futtató hello Automation-fiók hello erőforráscsoportot.  
+   > A kiválasztott erőforráscsoport(ok) törlésének elkerülése érdekében győződjön meg arról, hogy a **Previewmode** beállítás értéke **true** (igaz).  **Vegye figyelembe**, hogy ez a forgatókönyv nem távolítja el a forgatókönyvet futtató Automation-fiókot tartalmazó erőforráscsoportot.  
    >
    >
-4. Miután konfigurálta az összes hello paraméterértékeket, kattintson a **OK**, és hello runbook a végrehajtási, várósorba kerülnek.  
+4. Miután konfigurálta az összes paraméter értékét, kattintson az **OK** gombra, és a forgatókönyv a végrehajtási várólistára kerül.  
 
-hello tooview hello részleteit **Remove-ResourceGroup** hello Azure portálon, válassza a runbook-feladat **feladatok** hello runbookban. hello feladat összegzése hello bemeneti paraméterek megjelenítése és hello kimeneti adatfolyam továbbá toogeneral információ hello feladat és összes kivétel történt.<br> ![A Remove-ResourceGroup forgatókönyv-feladat állapota](media/automation-scenario-remove-resourcegroup/remove-resourcegroup-runbook-job-status.png).
+Ha meg szeretné tekinteni a **Remove-ResourceGroup** forgatókönyv-feladatot az Azure Portalon, válassza a forgatókönyv **Feladatok** elemét. A feladat összegzésében megtekinthetők a bemeneti paraméterek, a kimeneti stream, valamint a feladattal kapcsolatos általános információk és az előforduló kivételek.<br> ![A Remove-ResourceGroup forgatókönyv-feladat állapota](media/automation-scenario-remove-resourcegroup/remove-resourcegroup-runbook-job-status.png).
 
-Hello **feladat összegzése** hello kimeneti, figyelmeztető és adatfolyamok üzeneteit tartalmazza. Válassza ki **kimeneti** tooview részletes eredményeinek hello a runbook végrehajtása.<br> ![A Remove-ResourceGroup forgatókönyv kimeneti eredményei](media/automation-scenario-remove-resourcegroup/remove-resourcegroup-runbook-job-output.png)
+A **Feladat összegzése** a kimeneti, figyelmeztető és hibastreamek üzeneteit tartalmazza. A forgatókönyv végrehajtásának részletes eredményeinek megtekintéséhez válassza a **Kimenet** elemet.<br> ![A Remove-ResourceGroup forgatókönyv kimeneti eredményei](media/automation-scenario-remove-resourcegroup/remove-resourcegroup-runbook-job-output.png)
 
 ## <a name="next-steps"></a>Következő lépések
-* a saját runbook létrehozásához tooget lásd: [létrehozása vagy importálása az Azure Automationben runbook](automation-creating-importing-runbook.md).
-* a PowerShell-munkafolyamati forgatókönyvek használatába tooget lásd: [az első PowerShell-munkafolyamati forgatókönyv](automation-first-runbook-textual.md).
+* A saját forgatókönyvek létrehozására vonatkozó első lépések leírását a [Forgatókönyv létrehozása vagy importálása az Azure Automationben](automation-creating-importing-runbook.md) témakör ismerteti.
+* A PowerShell-alapú munkafolyamat-forgatókönyvekre vonatkozó első lépések leírását [Az első PowerShell-alapú munkafolyamat-forgatókönyvem](automation-first-runbook-textual.md) témakör ismerteti.

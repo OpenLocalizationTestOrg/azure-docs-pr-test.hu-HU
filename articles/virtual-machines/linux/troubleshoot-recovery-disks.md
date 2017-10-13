@@ -1,6 +1,6 @@
 ---
-title: "a Linux virtuális gép hibaelhárítás az Azure CLI 2.0 hello aaaUse |} Microsoft Docs"
-description: "Ismerje meg, hogyan Linux virtuális gép problémák használatával csatlakozó hello OS lemez tooa helyreállítási virtuális gép tootroubleshoot hello Azure CLI 2.0"
+title: "A Linux virtuális gép és az Azure CLI 2.0 hibaelhárítási használata |} Microsoft Docs"
+description: "Ismerje meg, az operációs rendszer lemezének csatlakozva egy helyreállítási virtuális gépet az Azure CLI 2.0 Linux virtuális gép kapcsolatos problémák elhárítása"
 services: virtual-machines-linux
 documentationCenter: 
 authors: iainfoulds
@@ -13,72 +13,72 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 02/16/2017
 ms.author: iainfou
-ms.openlocfilehash: 776d61b61280f46e3699157addcdb1e7dfb6818e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7a28accce1bd328b2b486b588c44d91b03e42122
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="troubleshoot-a-linux-vm-by-attaching-hello-os-disk-tooa-recovery-vm-with-hello-azure-cli-20"></a>Linux virtuális gép operációs rendszer hello lemez tooa helyreállítási virtuális Gépet hello Azure CLI 2.0 csatolásával hibaelhárítása
-Ha a Linux virtuális gép (VM) rendszerindító vagy a lemez hibát tapasztal, szükség lehet a tooperform hibaelhárítási hello virtuális merevlemezen magát. Ilyenek például a bejegyzés érvénytelen lenne `/etc/fstab` , amely megakadályozza hello méretű képes tooboot sikeresen. Ez a cikk részletek hogyan toouse hello Azure CLI 2.0 tooconnect a virtuális merevlemez lemez tooanother Linux virtuális gép toofix ki a hibákat, majd hozza létre újból az eredeti virtuális gép. Is elvégezheti ezeket a lépéseket hello [Azure CLI 1.0](troubleshoot-recovery-disks-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+# <a name="troubleshoot-a-linux-vm-by-attaching-the-os-disk-to-a-recovery-vm-with-the-azure-cli-20"></a>Linux virtuális gép által a operációsrendszer-lemez csatolása a helyreállítási virtuális Gépet az Azure CLI 2.0 hibaelhárítása
+Ha a Linux virtuális gép (VM) rendszerindító vagy a lemez hibát tapasztal, szükség lehet végezze el a virtuális merevlemez hibaelhárítási lépéseket. Ilyenek például a bejegyzés érvénytelen lenne `/etc/fstab` , amely megakadályozza a virtuális gép rendszerindító sikeresen megtörtént. Ez a cikk részletezi az Azure CLI 2.0 másik Linux virtuális gép, javítsa ki a hibákat, majd hozza létre újból az eredeti virtuális gép csatlakozni a virtuális merevlemez használata. Az [Azure CLI 1.0-s](troubleshoot-recovery-disks-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) verziójával is elvégezheti ezeket a lépéseket.
 
 
 ## <a name="recovery-process-overview"></a>Helyreállítási folyamat áttekintése
-hibaelhárítási folyamatának hello a következőképpen történik:
+A hibaelhárítási folyamat a következő:
 
-1. Törölje a hello VM észlelt problémák, hello virtuális merevlemezek tartása.
-2. Csatolja, és a csatlakoztatási hello virtuális merevlemez tooanother Linux virtuális gép hibaelhárítási célból.
-3. Csatlakoztassa a VM hibaelhárítási toohello. Szerkesztheti a fájlokat, vagy futtassa az olyan eszközöket toofix problémák hello eredeti virtuális merevlemez.
-4. Válassza le a lemezképet, és válassza le hello virtuális merevlemezt a virtuális gép hibakeresési hello.
-5. Hello eredeti virtuális merevlemez virtuális gép létrehozása.
+1. Törölje a virtuális gép problémák észlelése, a virtuális merevlemezek tartása.
+2. Csatolja, és csatlakoztassa a virtuális merevlemez egy másik Linux VM hibaelhárítási célból.
+3. Kapcsolódjon a hibaelhárítást végző virtuális gépre. Szerkesztheti a fájlokat, vagy futtassa a problémák megoldásával kapcsolatban az eredeti virtuális merevlemez olyan eszközöket.
+4. Válassza le a virtuális merevlemezt a hibaelhárító virtuális gépről.
+5. Az eredeti virtuális merevlemez virtuális gép létrehozása.
 
-tooperform ezek a hibaelhárítási lépéseket, hello legújabb kell [Azure CLI 2.0](/cli/azure/install-az-cli2) telepítve, és bejelentkezett tooan Azure-fiók használatával [az bejelentkezési](/cli/azure/#login).
+Hajtsa végre az alábbi lépéseket, a legújabb kell [Azure CLI 2.0](/cli/azure/install-az-cli2) telepítve, és bejelentkezett az Azure-fiók használatával [az bejelentkezési](/cli/azure/#login).
 
-Hello alábbi példák cserélje le a paraméter nevét a saját értékeit. Példa paraméter nevek a következők `myResourceGroup`, `mystorageaccount`, és `myVM`.
+A következő példákban cserélje le a saját értékeit paraméterek nevei. Példa paraméter nevek a következők `myResourceGroup`, `mystorageaccount`, és `myVM`.
 
 
 ## <a name="determine-boot-issues"></a>Határozza meg a rendszerindítási problémák
-Vizsgálja meg a hello soros kimeneti toodetermine miért a virtuális gép nem tud tooboot megfelelően. Ilyenek például a bejegyzés érvénytelen `/etc/fstab`, vagy az alapul szolgáló virtuális merevlemez alatt töröltek vagy áthelyeztek hello.
+Vizsgálja meg a soros kimenete annak megállapításához, miért a virtuális gép nem végezhetnek rendszerindítást megfelelően. Ilyenek például a bejegyzés érvénytelen `/etc/fstab`, vagy az alapul szolgáló virtuális merevlemezek áthelyezése vagy törölhetők.
 
-Hello rendszerindító naplófájlok rendelkező [az virtuális gép rendszerindítási-diagnosztika get-rendszerindítási-naplófájl](/cli/azure/vm/boot-diagnostics#get-boot-log). hello alábbi példa lekérése hello soros kimeneti hello nevű virtuális gép `myVM` nevű hello erőforráscsoportban `myResourceGroup`:
+A rendszerindító naplófájlok rendelkező [az virtuális gép rendszerindítási-diagnosztika get-rendszerindítási-naplófájl](/cli/azure/vm/boot-diagnostics#get-boot-log). Az alábbi példa lekérdezi a soros kimeneti nevű virtuális gép `myVM` az erőforráscsoport neve `myResourceGroup`:
 
 ```azurecli
 az vm boot-diagnostics get-boot-log --resource-group myResourceGroup --name myVM
 ```
 
-Tekintse át a hello soros kimeneti toodetermine miért hello virtuális gép nem tud tooboot. Ha soros kimeneti hello nem ad meg semmilyen arra utal, hogy, szükség lehet a naplófájlokat tooreview `/var/log` után hello virtuális géphez csatlakoztatott merevlemez VM hibaelhárítási tooa.
+Tekintse át a soros kimenetet meghatározni, miért a virtuális gép rendszerindító sikertelenek lesznek. A soros kimeneti bármely arra utal, hogy nem ad meg, ha szeretne nézze meg a naplófájlokat `/var/log` után a virtuális merevlemez, egy hibaelhárítási Virtuálisgép kapcsolódik.
 
 
 ## <a name="view-existing-virtual-hard-disk-details"></a>Meglévő virtuális merevlemez részleteinek megtekintése
-A virtuális merevlemez (VHD) tooanother VM csatolhat, meg kell tooidentify hello hello operációsrendszer-lemez URI Azonosítóját. 
+A virtuális merevlemez (VHD) egy másik virtuális gép csatolhat, mielőtt kell azonosítani az URI-azonosítója az operációsrendszer-lemezképet. 
 
-Tekintse meg a virtuális Gépet a [az vm megjelenítése](/cli/azure/vm#show). Használjon hello `--query` jelző tooextract hello URI toohello OS lemezre. hello alábbi példa lekérdezi hello nevű virtuális gép lemezeinek adatai `myVM` nevű hello erőforráscsoportban `myResourceGroup`:
+Tekintse meg a virtuális Gépet a [az vm megjelenítése](/cli/azure/vm#show). Használja a `--query` jelzőjét, hogy az URI-t az operációs rendszer lemezének kibontásához. Az alábbi példa lekérdezi a nevű virtuális gép lemezeinek adatai `myVM` az erőforráscsoport neve `myResourceGroup`:
 
 ```azurecli
 az vm show --resource-group myResourceGroup --name myVM \
     --query [storageProfile.osDisk.vhd.uri] --output tsv
 ```
 
-hello URI túl hasonló**https://mystorageaccount.blob.core.windows.net/vhds/myVM.vhd**.
+Az URI hasonlít **https://mystorageaccount.blob.core.windows.net/vhds/myVM.vhd**.
 
 ## <a name="delete-existing-vm"></a>Meglévő virtuális gép törlése
-A virtuális merevlemezek és a virtuális gépek az Azure-erőforrások két különböző típusa. A virtuális merevlemez hello operációs rendszert illeti, alkalmazások és konfigurációk tárolására. hello virtuális gépért csak metaadatokat, amelyek hello vagy a hely határozza meg, és hivatkozik arra az erőforrások, például egy virtuális merevlemezt vagy virtuális hálózati kártya (NIC). Minden virtuális merevlemez rendelkezik-e létrehozásakor kell csatolni a címbérlet tooa virtuális gép. Bár adatlemezt csatolni, és leválasztott hello virtuális gép futása közben is, hello operációsrendszer-lemez nem választható le, kivéve, ha a virtuális gép erőforrásához hello törlődik. hello bérleti tooassociate hello OS lemezt a virtuális gépek továbbra is, akkor is, ha ezt a virtuális Gépet felszabadított és leállított állapotban van.
+A virtuális merevlemezek és a virtuális gépek az Azure-erőforrások két különböző típusa. A virtuális merevlemez, az operációs rendszert illeti, alkalmazások és konfigurációk tárolására. A virtuális gép magát a csak metaadatokat, amelyek a méretét vagy a hely határozza meg, és hivatkozik arra az erőforrások, például egy virtuális merevlemezt vagy virtuális hálózati kártya (NIC). Minden virtuális merevlemez létrehozásakor kell a virtuális Géphez csatlakozik, a címbérlet rendelkezik. Bár az adatlemezek akkor is csatlakoztathatók és leválaszthatók, amikor a virtuális gép üzemel, az operációs rendszer merevlemeze nem csatlakoztatható le, hacsak nem törli a VM-erőforrást. A bérlet továbbra is fennáll, az operációs rendszer lemezének társítandó egy virtuális Gépet, akkor is, ha ezt a virtuális Gépet felszabadított és leállított állapotban van.
 
-első lépés toorecover hello a virtuális gép toodelete hello VM erőforrás magát. Virtuális gép törlése hello hello virtuális merevlemezek elhagyja a tárfiókban lévő. Hello a virtuális gép törlődik, miután hello virtuális merevlemez tooanother VM tootroubleshoot csatolja, és hárítsa el a hello hibákat.
+Az első lépés a virtuális gép helyreállításához, hogy törli a virtuális gép erőforrásához magát. A virtuális gép törlésével a virtuális merevlemezek a tárfiókban maradnak. A virtuális gép törlését követően a virtuális merevlemez csatlakoztatása egy másik virtuális géphez, és javítsa ki a hibákat.
 
-Törölje a virtuális gép hello [az virtuális gép törlése](/cli/azure/vm#delete). a következő példa törlések hello hello nevű virtuális gép `myVM` nevű hello erőforráscsoportból `myResourceGroup`:
+Törölje a virtuális Géphez a [az vm törlése](/cli/azure/vm#delete). A következő példa törli a virtuális gép nevű `myVM` az erőforráscsoportból nevű `myResourceGroup`:
 
 ```azurecli
 az vm delete --resource-group myResourceGroup --name myVM 
 ```
 
-Várjon, amíg hello virtuális gép törlése előtt hello virtuális merevlemez tooanother virtuális gép csatlakoztatása befejeződött. hello virtuális merevlemezt, amely társítja azt hello VM hello bérlete hello virtuális merevlemez tooanother VM előtt kiadott toobe kell.
+Várjon, amíg a virtuális gép törlése a virtuális merevlemez egy másik virtuális géphez csatolása előtt befejeződött. A virtuális merevlemezen, amely a virtuális Gépet társít a címbérlet kell helyezni, előtt a virtuális merevlemez egy másik virtuális géphez.
 
 
-## <a name="attach-existing-virtual-hard-disk-tooanother-vm"></a>Meglévő virtuális merevlemez tooanother VM csatolása
-A hello ezután néhány lépést, akkor egy másik virtuális gép hibaelhárítási célból. Hello VM toobrowse hibaelhárítási meglévő virtuális merevlemez toothis csatolja, és hello lemez tartalmának szerkesztéséhez. Ez a folyamat toocorrect lehetővé teszi bármely konfigurációs hibák vagy a felülvizsgálati további alkalmazások vagy a rendszer naplófájljait, például. Válasszon, vagy hozzon létre egy másik virtuális gép toouse hibaelhárítási célból.
+## <a name="attach-existing-virtual-hard-disk-to-another-vm"></a>Meglévő virtuális merevlemez egy másik virtuális géphez csatolása
+A következő néhány lépést, a másik virtuális gép a hibaelhárításhoz használja. A meglévő virtuális merevlemez csatlakoztatása a hibaelhárítási virtuális géppel, keresse meg és a lemez tartalmának szerkesztéséhez. Ez a folyamat teszi javíthatja az esetleges konfigurációs hibákat, vagy tekintse át például további alkalmazás vagy a rendszer naplófájljait. Válassza ki vagy hozzon létre egy másik virtuális Gépet a hibaelhárításhoz használja.
 
-Hello meglévő virtuális merevlemez csatlakoztatása [nem felügyelt az virtuálisgép-lemez csatolása](/cli/azure/vm/unmanaged-disk#attach). Hello meglévő virtuálismerevlemez-fájl csatolása, adja meg a hello URI toohello lemez előző hello beolvasott `az vm show` parancsot. hello alábbi példa csatolja egy meglévő virtuális merevlemez toohello nevű virtuális gép hibakeresési `myVMRecovery` nevű hello erőforráscsoportban `myResourceGroup`:
+A meglévő virtuális merevlemez csatlakoztatása [nem felügyelt az virtuálisgép-lemez csatolása](/cli/azure/vm/unmanaged-disk#attach). A meglévő virtuális merevlemez csatolása, adja meg az URI-t a lemezt az előző kapott `az vm show` parancsot. Az alábbi példa csatolja a létező virtuális merevlemezt a hibaelhárítási nevű virtuális gép `myVMRecovery` az erőforráscsoport neve `myResourceGroup`:
 
 ```azurecli
 az vm unmanaged-disk attach --resource-group myResourceGroup --vm-name myVMRecovery \
@@ -86,18 +86,18 @@ az vm unmanaged-disk attach --resource-group myResourceGroup --vm-name myVMRecov
 ```
 
 
-## <a name="mount-hello-attached-data-disk"></a>Hello csatolt adatlemez csatlakoztatása
+## <a name="mount-the-attached-data-disk"></a>A csatolt adatlemez csatlakoztatása
 
 > [!NOTE]
-> hello következő példák részletesen hello lépéseit egy Ubuntu virtuális gép. Red Hat Enterprise Linux és SUSE, például a különböző Linux distro használata hello naplófájl helye és `mount` parancsok kissé eltérő lehet. A parancsok hello megfelelő változásokat az adott distro a tekintse meg a toohello dokumentációját.
+> A következő példák részletesen az Ubuntu virtuális gép indításához szükséges lépéseket. Red Hat Enterprise Linux és SUSE, például a különböző Linux distro használata a naplófájl helyét és `mount` parancsok kissé eltérő lehet. Tekintse meg az adott distro a parancsok a megfelelő változásokat a dokumentációját.
 
-1. SSH tooyour hibaelhárítási hello megfelelő hitelesítő adatokat használó virtuális gépek. Ha a lemez hello első adatok csatlakoztatott lemez tooyour VM hibaelhárítási, hello lemez valószínűleg csatlakozik-e meg a túl`/dev/sdc`. Használjon `dmseg` tooview csatlakoztatott lemezekkel:
+1. SSH-kapcsolatot a hibaelhárítási virtuális Gépet a megfelelő hitelesítő adatokkal. Ha ezt a lemezt az első adatok lemezt, a hibaelhárítási Virtuálisgép kapcsolódik, a lemez valószínűleg csatlakozik-e `/dev/sdc`. Használjon `dmseg` csatlakoztatott lemezek megtekintéséhez:
 
     ```bash
     dmesg | grep SCSI
     ```
 
-    hello hasonló toohello a következő példa a kimenetre:
+    A kimenet a következő példához hasonló:
 
     ```bash
     [    0.294784] SCSI subsystem initialized
@@ -107,53 +107,53 @@ az vm unmanaged-disk attach --resource-group myResourceGroup --vm-name myVMRecov
     [ 1828.162306] sd 5:0:0:0: [sdc] Attached SCSI disk
     ```
 
-    A fenti példa hello, hello operációsrendszer-lemez jelenleg `/dev/sda` hello ideiglenes lemez megadott összes virtuális Géphez és `/dev/sdb`. Ha több adatlemezek, hogy legyen `/dev/sdd`, `/dev/sde`, és így tovább.
+    A fenti példában az operációsrendszer-lemezképet jelenleg `/dev/sda` és az egyes virtuális gépek a megadott ideiglenes lemez `/dev/sdb`. Ha több adatlemezek, hogy legyen `/dev/sdd`, `/dev/sde`, és így tovább.
 
-2. Hozzon létre egy könyvtárat toomount a meglévő virtuális merevlemez. hello alábbi példa létrehoz egy könyvtárat nevű `troubleshootingdisk`:
+2. Hozzon létre egy könyvtárat, a meglévő virtuális merevlemez csatlakoztatása. Az alábbi példa létrehoz egy könyvtárat nevű `troubleshootingdisk`:
 
     ```bash
     sudo mkdir /mnt/troubleshootingdisk
     ```
 
-3. Ha több partíciót a meglévő virtuális merevlemezen, csatlakoztassa a szükséges hello partíció. hello alábbi példa csatlakoztatja, elsődleges partíció első hello `/dev/sdc1`:
+3. Ha több partíciót a meglévő virtuális merevlemezen, csatlakoztassa a szükséges partíciót. Az alábbi példa csatlakoztatja, az első elsődleges partíció `/dev/sdc1`:
 
     ```bash
     sudo mount /dev/sdc1 /mnt/troubleshootingdisk
     ```
 
     > [!NOTE]
-    > Ajánlott toomount adatlemezek virtuális gépeken Azure használatával hello univerzálisan egyedi azonosító (UUID) hello virtuális merevlemez. A jelen rövid hibaelhárítási esetben csatlakoztatását a hello virtuális merevlemez segítségével hello UUID nincs szükség. Azonban a normál használja, a Szerkesztés `/etc/fstab` toomount virtuális merevlemezek helyett eszköznév UUID okozhat hello VM toofail tooboot.
+    > Ajánlott eljárás az adatlemezek csatlakoztatása az Azure-ban univerzálisan egyedi azonosítóját (UUID) a virtuális merevlemez virtuális gépeken. A jelen rövid hibaelhárítási esetben csatlakoztatni a virtuális merevlemez használatával UUID nincs szükség. Azonban a normál használja, a Szerkesztés `/etc/fstab` csatlakoztatni a virtuális merevlemezek UUID helyett eszköznév okozhat a virtuális gépek a rendszerindítás.
 
 
 ## <a name="fix-issues-on-original-virtual-hard-disk"></a>Az eredeti virtuális merevlemez kapcsolatos problémák megoldása
-Hello meglévő virtuális merevlemezzel csatlakoztatva is képes lemezvizsgálatok elvégzésére bármely karbantartási és hibaelhárítási lépéseket, igény szerint. Egyszer foglalkoztak hello problémák, folytassa a következő lépéseket hello.
+A meglévő virtuális merevlemezzel csatlakoztatva is képes lemezvizsgálatok elvégzésére bármely karbantartási és hibaelhárítási lépéseket, igény szerint. Miután végzett a hibák javításával, folytassa az alábbi lépésekkel.
 
 
 ## <a name="unmount-and-detach-original-virtual-hard-disk"></a>Válassza le a lemezképet, és válassza le az eredeti virtuális merevlemez
-Ha a hibák fakadó problémák megoldásával válassza le, és hello meglévő virtuális merevlemez válassza le a hibaelhárítási virtuális Gépet. Nem használhat a virtuális merevlemez más virtuális gép hello virtuális merevlemez toohello hibaelhárítás a virtuális gép csatlakoztatása hello bérleti kiadásáig.
+Ha a hibák fakadó problémák megoldásával válassza le, és a meglévő virtuális merevlemez válassza le a hibaelhárítási virtuális Gépet. A virtuális merevlemez nem használható a többi virtuális Géphez, amíg a címbérlet, a virtuális merevlemez csatolását a hibaelhárítási VM.
 
-1. A hello a virtuális gép hibakeresési SSH munkamenet tooyour leválasztása hello létező virtuális merevlemezt. Először kívül hello szülőkönyvtárában a csatlakoztatási pont módosítása:
+1. Az SSH-munkamenetet a hibaelhárítási virtuális gépre, a leválasztani a meglévő virtuális merevlemez. Először módosítsa a csatlakoztatási pont szülőkönyvtárában kívül:
 
     ```bash
     cd /
     ```
 
-    Most leválasztása hello létező virtuális merevlemezt. hello alábbi példa leválasztja hello eszközéből `/dev/sdc1`:
+    Most leválasztani a meglévő virtuális merevlemez. Az alábbi példa leválasztja az eszköz `/dev/sdc1`:
 
     ```bash
     sudo umount /dev/sdc1
     ```
 
-2. Most válassza le a hello hello virtuális gép a virtuális merevlemezt. Lépjen ki a virtuális gép hibakeresési hello SSH-munkamenet tooyour. Lista hello csatolt virtuális gép és hibaelhárítási adatokat lemezek tooyour [az virtuálisgép-lemez nem felügyelt lista](/cli/azure/vm/unmanaged-disk#list). hello alábbi példa listák hello adatlemezt csatolni toohello nevű virtuális gép `myVMRecovery` nevű hello erőforráscsoportban `myResourceGroup`:
+2. Most válassza le a virtuális merevlemezt a virtuális gépről. Kilépés az SSH-munkamenetet a hibaelhárítási virtuális Gépet. A mellékelt adatok a hibaelhárítási tulajdonsággal rendelkező virtuális lemezein listában [az virtuálisgép-lemez nem felügyelt lista](/cli/azure/vm/unmanaged-disk#list). Az alábbi példa felsorolja a adatok nevű virtuális gép csatlakoztatott lemezei `myVMRecovery` az erőforráscsoport neve `myResourceGroup`:
 
     ```azurecli
     azure vm unmanaged-disk list --resource-group myResourceGroup --vm-name myVMRecovery \
         --query '[].{Disk:vhd.uri}' --output table
     ```
 
-    Vegye figyelembe a meglévő virtuális merevlemez hello nevét. Például egy lemez neve hello hello URI-jának **https://mystorageaccount.blob.core.windows.net/vhds/myVM.vhd** van **myVHD**. 
+    Vegye figyelembe a meglévő virtuális merevlemez nevét. Például az egy lemez neve az URI-azonosítójú **https://mystorageaccount.blob.core.windows.net/vhds/myVM.vhd** van **myVHD**. 
 
-    Válassza le a virtuális gép hello adatlemezét [nem felügyelt az virtuálisgép-lemez leválasztása](/cli/azure/vm/unmanaged-disk#detach). hello alábbi példa leválasztja nevű hello lemez `myVHD` hello nevű virtuális gép a `myVMRecovery` a hello `myResourceGroup` erőforráscsoport:
+    Válassza le a lemezt a virtuális gép adatok [nem felügyelt az virtuálisgép-lemez leválasztása](/cli/azure/vm/unmanaged-disk#detach). Az alábbi példa leválasztja a lemezt nevű `myVHD` nevű virtuális gép `myVMRecovery` a a `myResourceGroup` erőforráscsoport:
 
     ```azurecli
     az vm unmanaged-disk detach --resource-group myResourceGroup --vm-name myVMRecovery \
@@ -162,11 +162,11 @@ Ha a hibák fakadó problémák megoldásával válassza le, és hello meglévő
 
 
 ## <a name="create-vm-from-original-hard-disk"></a>Virtuális gép eredeti merevlemez létrehozása
-toocreate egy virtuális Gépet az eredeti virtuális merevlemez használata [Azure Resource Manager sablon](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-specialized-vhd). hello tényleges JSON-sablon jelenleg a következő hivatkozás hello:
+Egy virtuális Gépet hozhat létre az eredeti virtuális merevlemez [Azure Resource Manager sablon](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-specialized-vhd). A tényleges JSON-sablon jelenleg a következő hivatkozásra:
 
 - https://RAW.githubusercontent.com/Azure/Azure-quickstart-Templates/Master/201-VM-specialized-VHD/azuredeploy.JSON
 
-hello sablon telepíti a virtuális gépek virtuális merevlemez URI hello hello a korábbi parancsot. A hello sablon üzembe helyezése [az csoport központi telepítésének létrehozása](/cli/azure/group/deployment#create). Adja meg a hello URI tooyour eredeti VHD és adja meg hello az operációs rendszer típusát, a Virtuálisgép-méretet és a virtuális gép nevét az alábbiak szerint:
+A sablont egy virtuális Gépet a virtuális merevlemez URI a korábbi parancs használatával telepíti. A sablon telepítéséhez [az csoport központi telepítésének létrehozása](/cli/azure/group/deployment#create). Adja meg az URI az eredeti virtuális Merevlemezt, majd adja meg az operációsrendszer-típus, a Virtuálisgép-méretet és a virtuális gép nevét az alábbiak szerint:
 
 ```azurecli
 az group deployment create --resource-group myResourceGroup --name myDeployment \
@@ -178,11 +178,11 @@ az group deployment create --resource-group myResourceGroup --name myDeployment 
 ```
 
 ## <a name="re-enable-boot-diagnostics"></a>Engedélyezze újra a rendszerindítási diagnosztika
-Hello létező virtuális merevlemezt a virtuális Gépet hoz létre, ha rendszerindítási diagnosztika automatikusan nem lehet engedélyezni. A rendszerindítási diagnosztika engedélyezése [az virtuális gép rendszerindítási-diagnosztika engedélyezése](/cli/azure/vm/boot-diagnostics#enable). hello következő példa engedélyezi hello hello nevű virtuális gép diagnosztikai kiterjesztés `myDeployedVM` nevű hello erőforráscsoportban `myResourceGroup`:
+Amikor a virtuális Gépet hoz létre a meglévő virtuális merevlemez, rendszerindítási diagnosztika automatikusan nem lehet engedélyezni. A rendszerindítási diagnosztika engedélyezése [az virtuális gép rendszerindítási-diagnosztika engedélyezése](/cli/azure/vm/boot-diagnostics#enable). A következő példában engedélyezzük a diagnosztikai kiterjesztés nevű virtuális gép `myDeployedVM` az erőforráscsoport neve `myResourceGroup`:
 
 ```azurecli
 az vm boot-diagnostics enable --resource-group myResourceGroup --name myDeployedVM
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-Ha a Kapcsolódás a virtuális gép tooyour problémát tapasztal, tekintse meg [hibaelhárítása SSH kapcsolatok tooan Azure virtuális gép](troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). A virtuális gépen futó alkalmazások elérésével problémákkal kapcsolatban lásd: [alkalmazás csatlakozási problémák a Linux virtuális gép](../windows/troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Ha a virtuális Géphez való kapcsolódás problémát tapasztal, tekintse meg [hibaelhárítása SSH kapcsolatok egy Azure virtuális gépre](troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). A virtuális gépen futó alkalmazások elérésével problémákkal kapcsolatban lásd: [alkalmazás csatlakozási problémák a Linux virtuális gép](../windows/troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).

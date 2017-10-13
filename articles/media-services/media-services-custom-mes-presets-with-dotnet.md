@@ -1,6 +1,6 @@
 ---
-title: "aaaCustomizing Media Encoder Standard készletek |} Microsoft Docs"
-description: "Ez a témakör bemutatja, hogyan tooperform speciális Media Encoder Standard feladat készletek testreszabásával kódolást. hello a témakör bemutatja, hogyan toouse Media Services .NET SDK toocreate kódolással feladatot, és a feladat. Azt is bemutatja, hogyan egyéni toosupply készletek toohello kódolási feladat."
+title: "Media Encoder Standard készletek testreszabása |} Microsoft Docs"
+description: "Ez a témakör azt ismerteti, hogyan kódolásra speciális Media Encoder Standard feladat készletek testreszabásával. A témakör bemutatja, hogyan kódolási feladat és feladat létrehozása a Media Services .NET SDK használatával. Azt is bemutatja, hogyan fogja tartalmazni az egyéni készletek a kódolási feladat."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: juliako
-ms.openlocfilehash: fa8c3bef63b0c1ecc88a6b8874ecbff3a8028a57
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b4d25f07349043da8cb745930fde3371c98f9960
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="customizing-media-encoder-standard-presets"></a>Testreszabás Media Encoder Standard készletek
 
 ## <a name="overview"></a>Áttekintés
 
-Ez a témakör bemutatja, hogyan tooperform speciális kódolása a Media Encoder Standard (MES) használatával egyéni készletet. hello témakör .NET toocreate használ, egy kódolási feladat és egy feladatot, amely végrehajtja ezt a feladatot.  
+Ez a témakör bemutatja, hogyan végrehajtásához advanced kódolása a Media Encoder Standard (MES) egy egyéni készlettel. A témakör .NET használatával hozzon létre egy kódolási feladat és egy feladatot, amely végrehajtja ezt a feladatot.  
 
-Ebben a témakörben láthatja, hogyan toocustomize alapul véve egy készletet hello [H264 Multiple Bitrate 720p](media-services-mes-preset-H264-Multiple-Bitrate-720p.md) előre definiált és csökkentése hello száma. Hello [Media Encoder Standard testreszabása készletek](media-services-advanced-encoding-with-mes.md) a témakörben bemutatjuk egyéni készletek, amelyek speciális kódolási feladatok használt tooperform lehetnek.
+Ebben a témakörben egy előre definiált egyéni megtételével megjelenik a [H264 Multiple Bitrate 720p](media-services-mes-preset-H264-Multiple-Bitrate-720p.md) beállított és a rétegek számának csökkentését. A [Media Encoder Standard testreszabása készletek](media-services-advanced-encoding-with-mes.md) a témakörben bemutatjuk egyéni készletek speciális kódolási feladatok végrehajtásához használható.
 
 ## <a id="customizing_presets"></a>Egy MES készletet testreszabása
 
 ### <a name="original-preset"></a>Eredeti készlet
 
-Mentés hello JSON definiált hello [H264 Multiple Bitrate 720p](media-services-mes-preset-H264-Multiple-Bitrate-720p.md) néhány .JSON kiterjesztésű kiterjesztésű fájl témakörében. Például **CustomPreset_JSON.json**.
+A JSON-ban meghatározott mentése a [H264 Multiple Bitrate 720p](media-services-mes-preset-H264-Multiple-Bitrate-720p.md) néhány .JSON kiterjesztésű kiterjesztésű fájl témakörében. Például **CustomPreset_JSON.json**.
 
 ### <a name="customized-preset"></a>Testreszabott beállítások
 
-Nyissa meg hello **CustomPreset_JSON.json** fájlt, és távolítsa el az első három rétegek **H264Layers** , a fájl néz ki.
+Nyissa meg a **CustomPreset_JSON.json** fájlt, és távolítsa el az első három rétegek **H264Layers** , a fájl néz ki.
 
     
     {  
@@ -111,24 +111,24 @@ Nyissa meg hello **CustomPreset_JSON.json** fájlt, és távolítsa el az első 
 
 ## <a id="encoding_with_dotnet"></a>A Media Services .NET SDK kódolás
 
-a következő példakód hello Media Services .NET SDK tooperform hello feladatok a következő használja:
+Az alábbi példakód Media Services .NET SDK-t használja a következő feladatok végezhetők el:
 
 - Hozzon létre egy kódolási feladat.
-- Egy hivatkozási toohello Media Encoder Standard encoder beolvasása.
-- Egyéni JSON beállított hello előző szakaszban létrehozott hello betölteni. 
+- A Media Encoder Standard encoder mutató hivatkozás beszerzése.
+- Az egyéni JSON-készlet, amely az előző szakaszban létrehozott betöltéséhez. 
   
-        // Load hello JSON from hello local file.
+        // Load the JSON from the local file.
         string configuration = File.ReadAllText(fileName);  
 
-- Adjon hozzá egy kódolási feladat toohello feladat. 
-- Adjon meg bemeneti hello eszköz toobe kódolású.
-- Hozzon létre egy kimeneti eszköz, amely kódolású hello eszköz fogja tartalmazni.
-- Adjon hozzá egy esemény kezelő toocheck hello feladat előrehaladását.
-- Hello feladat küldése
+- Egy kódolási feladat hozzáadása a projekthez. 
+- Adja meg a bemeneti eszköz kódolni kell.
+- Hozzon létre egy kimeneti eszközt, amely tartalmazza majd a kódolt objektumhoz.
+- Adjon hozzá egy eseménykezelő, ellenőrizze a feladat előrehaladását.
+- A feladat elküldéséhez.
    
 #### <a name="create-and-configure-a-visual-studio-project"></a>Egy Visual Studio-projekt létrehozása és konfigurálása
 
-A fejlesztési környezet kialakítása és feltöltése hello app.config fájl kapcsolatadatok, a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-use.md). 
+Állítsa be a fejlesztési környezetet, és töltse fel az app.config fájlt a kapcsolatadatokkal a [.NET-keretrendszerrel történő Media Services-fejlesztést](media-services-dotnet-how-to-use.md) ismertető dokumentumban leírtak szerint. 
 
 #### <a name="example"></a>Példa   
 
@@ -143,7 +143,7 @@ A fejlesztési környezet kialakítása és feltöltése hello app.config fájl 
     {
         class Program
         {
-        // Read values from hello App.config file.
+        // Read values from the App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -168,7 +168,7 @@ A fejlesztési környezet kialakítása és feltöltése hello app.config fájl 
             // Get an uploaded asset.
             var asset = _context.Assets.FirstOrDefault();
 
-            // Encode and generate hello output using custom presets.
+            // Encode and generate the output using custom presets.
             EncodeToAdaptiveBitrateMP4Set(asset);
 
             Console.ReadLine();
@@ -178,11 +178,11 @@ A fejlesztési környezet kialakítása és feltöltése hello app.config fájl 
         {
             // Declare a new job.
             IJob job = _context.Jobs.Create("Media Encoder Standard Job");
-            // Get a media processor reference, and pass tooit hello name of hello 
-            // processor toouse for hello specific task.
+            // Get a media processor reference, and pass to it the name of the 
+            // processor to use for the specific task.
             IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-            // Load hello XML (or JSON) from hello local file.
+            // Load the XML (or JSON) from the local file.
             string configuration = File.ReadAllText("CustomPreset_JSON.json");
 
             // Create a task
@@ -191,11 +191,11 @@ A fejlesztési környezet kialakítása és feltöltése hello app.config fájl 
             configuration,
             TaskOptions.None);
 
-            // Specify hello input asset toobe encoded.
+            // Specify the input asset to be encoded.
             task.InputAssets.Add(asset);
-            // Add an output asset toocontain hello results of hello job. 
+            // Add an output asset to contain the results of the job. 
             // This output is specified as AssetCreationOptions.None, which 
-            // means hello output asset is not encrypted. 
+            // means the output asset is not encrypted. 
             task.OutputAssets.AddNew("Output asset",
             AssetCreationOptions.None);
 

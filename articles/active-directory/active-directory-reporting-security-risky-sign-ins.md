@@ -1,6 +1,6 @@
 ---
-title: "aaaRisky bejelentkezések jelentés hello Azure Active Directory portálon |} Microsoft Docs"
-description: "További tudnivalók: hello kockázatos bejelentkezések jelentés hello Azure Active Directory portálon"
+title: "Kockázatos bejelentkezésekre vonatkozó jelentések az Azure Active Directory portálon | Microsoft Docs"
+description: "Tudnivalók a kockázatos bejelentkezésekre vonatkozó jelentésekről az Azure Active Directory portálon"
 services: active-directory
 author: MarkusVi
 manager: femila
@@ -13,56 +13,56 @@ ms.workload: identity
 ms.date: 08/24/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: d8df5cafea6b38f3e364c24a6aff599abe088e88
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 45a6f63bd920c9a70c25b8dfae084ea030256cf4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="risky-sign-ins-report-in-hello-azure-active-directory-portal"></a>Kockázatos bejelentkezések jelentés hello Azure Active Directory portálon
+# <a name="risky-sign-ins-report-in-the-azure-active-directory-portal"></a>Kockázatos bejelentkezésekre vonatkozó jelentések az Azure Active Directory portálon
 
-Hello biztonsági jelentések segítségével az Azure Active Directory (Azure AD) akkor is kaphat a hello valószínűségértékének inverzét feltört felhasználói fiókok a környezetben. 
+Az Azure Active Directory (Azure AD) biztonsági jelentéseivel megtudhatja, hogy a környezetben mekkora valószínűséggel sérült egyes felhasználói fiókok biztonsága. 
 
-Az Azure AD kapcsolódó tooyour felhasználói fiókok gyanús műveleteket észleli. A rendszer minden egyes észlelt tevékenység esetében létrehoz egy *kockázati esemény* nevű rekordot. További részletek: [Az Azure Active Directory kockázati eseményei](active-directory-identity-protection-risk-events.md). 
+Az Azure AD észleli a felhasználói fiókokhoz kapcsolódó gyanús tevékenységeket. A rendszer minden egyes észlelt tevékenység esetében létrehoz egy *kockázati esemény* nevű rekordot. További részletek: [Az Azure Active Directory kockázati eseményei](active-directory-identity-protection-risk-events.md). 
 
-hello észlelt kockázati események használt toocalculate:
+A rendszer az észlelt kockázati eseményeket a következők kiszámítására használja:
 
-- **Kockázatos bejelentkezések** -kockázatos bejelentkezés egy bejelentkezési kísérlet, amely előfordulhat, hogy nincs egy felhasználói fiókot hello jogos tulajdonosa, aki elvégezte mutatója. További részletek: [Kockázatos bejelentkezések](active-directory-identityprotection.md#risky-sign-ins). 
+- **Kockázatos bejelentkezések** – A kockázatos bejelentkezés egy olyan bejelentkezési kísérletet jelöl, amelyet elképzelhető, hogy olyan személy hajtott végre, aki nem a felhasználói fiók jogos tulajdonosa. További részletek: [Kockázatos bejelentkezések](active-directory-identityprotection.md#risky-sign-ins). 
 
 - **Kockázatosként megjelölt felhasználók** – A kockázatos felhasználó egy olyan felhasználói fiókot jelöl, amelynek elképzelhető, hogy sérült a biztonsága. További részletek: [Kockázatosként megjelölt felhasználók](active-directory-identityprotection.md#users-flagged-for-risk).  
 
-A [hello Azure-portálon](https://portal.azure.com), hello biztonsági jelentések hello található **Azure Active Directory** hello paneljén **biztonsági** szakasz. 
+Az [Azure Portalon](https://portal.azure.com) a biztonsági jelentések az **Azure Active Directory** panel **Biztonság** szakaszában találhatók. 
 
 ![Kockázatos bejelentkezések](./media/active-directory-reporting-security-risky-sign-ins/10.png)
 
 
-## <a name="what-azure-ad-license-do-you-need-tooaccess-a-security-report"></a>Milyen az Azure AD licencet kell tooaccess biztonsági jelentést?  
+## <a name="what-azure-ad-license-do-you-need-to-access-a-security-report"></a>Milyen Azure AD-licencre van szükség a biztonsági jelentések eléréséhez?  
 
 Az Azure Active Directory minden kiadása biztosítja a kockázatos bejelentkezések jelentéseit.  
-Azonban a jelentések részletességét hello szintű platformjától függően eltérő hello verziója esetén: 
+A jelentések részletességi szintje azonban különbözik a kiadások között: 
 
-- A hello **Azure Active Directory szabad és alapszintű kiadásai**, kockázatos bejelentkezések listájának már beolvasása. 
+- Már az **Azure Active Directory ingyenes és alapszintű kiadásaiban** is szerepel a kockázatos bejelentkezések listája. 
 
-- Hello **Azure Active Directory Premium 1** edition kiterjeszti a modell is így már tooexamine néhány hello az alapul szolgáló kockázati eseményekről, amelyek az egyes jelentések vonatkozóan nem észlelhetők. 
+- Az **Azure Active Directory 1. prémium** kiadása kibővíti ezt a modellt, mert lehetővé teszi azt is, hogy megvizsgáljon néhány, az egyes jelentésekhez észlelt mögöttes kockázatos eseményt. 
 
-- Hello **Azure Active Directory Premium 2** kiadás hello a leginkább részletes információk minden alapul szolgáló kockázati eseményekről, és emellett lehetővé teszi a tooconfigure biztonsági házirendek, amelyek automatikusan reagálnak tooconfigured tartalmazza kockázati szintek.
+- Az **Azure Active Directory 2. prémium** kiadása nyújtja a legrészletesebb információkat minden mögöttes kockázatos eseményről, és lehetővé teszi olyan biztonsági szabályzatok konfigurálását, amelyek automatikusan, a konfigurált kockázati szinteknek megfelelően válaszolnak.
 
 
 
 ## <a name="azure-active-directory-free-and-basic-edition"></a>Azure Active Directory – ingyenes és alapszintű kiadások
 
-Azure Active Directory ingyenes hello és alapszintű kiadásai biztosít kockázatos bejelentkezések észlelt listáját a felhasználók számára. Ez a jelentés a következőket listázza:
+Az Azure Active Directory ingyenes és alapszintű kiadása biztosít egy listát, amely az észlelt kockázatos bejelentkezéseket tartalmazza a felhasználókra vonatkozóan. Ez a jelentés a következőket listázza:
 
-- **Felhasználói** – hello hello bejelentkezési művelet során használt hello felhasználó neve
-- **IP** -hello használt tooconnect tooAzure Active Directory hello eszköz IP-címe
-- **Hely** -hello helyet használja az Active Directory tooconnect tooAzure
-- **Bejelentkezés idejét** -hello idő, amikor hello bejelentkezés történt meg
-- **Állapot** -hello hello bejelentkezés állapota
+- **Felhasználó** – A bejelentkezési művelet során használt felhasználónév
+- **IP** – Az Azure Active Directoryhoz való csatlakozáshoz használt eszköz IP-címe
+- **Hely** – Az Azure Active Directoryhoz való csatlakozáshoz használt hely
+- **Bejelentkezés ideje** – A bejelentkezés végrehajtásának időpontja
+- **Állapot** – A bejelentkezés állapota
 
 
 ![Kockázatos bejelentkezések](./media/active-directory-reporting-security-risky-sign-ins/01.png)
 
-A vizsgálni hello kockázatos bejelentkezés alapján, megadhatja a visszajelzés tooAzure Active Directory-hello műveletek a következő formában:
+A kockázatos bejelentkezéssel kapcsolatos vizsgálata alapján visszajelzést küldhet az Azure Active Directorynak az alábbi műveletek formájában:
 
 - Feloldás
 - Megjelölés téves riasztásként
@@ -76,7 +76,7 @@ További részletek: [Kockázati események manuális lezárása](active-directo
 Ez a jelentés a következő lehetőségeket kínálja:
 
 - Erőforrások keresése
-- Hello jelentés adatok letöltése
+- A jelentésadatok letöltése
 
 
 ![Kockázatos bejelentkezések](./media/active-directory-reporting-security-risky-sign-ins/93.png)
@@ -84,11 +84,11 @@ Ez a jelentés a következő lehetőségeket kínálja:
 
 ## <a name="azure-active-directory-premium-editions"></a>Azure Active Directory – prémium szintű kiadások
 
-hello kockázatos bejelentkezések jelentés hello Azure Active Directory prémium kiadásaiban biztosítja:
+Az Azure Active Directory prémium szintű kiadásaiban a kockázatos bejelentkezési jelentések a következőket tartalmazzák:
 
-- Hello kapcsolatos információk összesítése [eseménytípusok kockázati](active-directory-identity-protection-risk-events.md) észlelt
+- Összesített adatok az észlelt [kockázati események típusairól](active-directory-identity-protection-risk-events.md)
 
-- Egy beállítás toodownload hello jelentés
+- Lehetőség a jelentés letöltésére
 
 
 ![Kockázatos bejelentkezések](./media/active-directory-reporting-security-risky-sign-ins/456.png)
@@ -96,9 +96,9 @@ hello kockázatos bejelentkezések jelentés hello Azure Active Directory prémi
 
 Egy kockázati esemény kiválasztásakor megkapja az esemény részletes jelentési nézetét, amely a következőket teszi lehetővé:
 
-- Egy beállítás tooconfigure egy [felhasználói kockázat szervizelési házirend](active-directory-identityprotection.md#user-risk-security-policy)  
+- Egy [felhasználóikockázat-csökkentési szabályzat](active-directory-identityprotection.md#user-risk-security-policy) konfigurálását  
 
-- Tekintse át a hello észlelési ütemtervét hello kockázat esemény  
+- A kockázati esemény észlelési idővonalának áttekintését  
 
 - Azon felhasználók listájának áttekintését, amelyeknél a rendszer kockázati esemény észlelt
 
@@ -109,20 +109,20 @@ Egy kockázati esemény kiválasztásakor megkapja az esemény részletes jelent
 
 Egy felhasználó kiválasztásakor megkapja a felhasználó részletes jelentési nézetét, amely a következőket teszi lehetővé:
 
-- Nyissa meg a hello összes bejelentkezések megtekintése
+- Az Összes bejelentkezés nézet megnyitását
 
-- Hello felhasználói jelszó alaphelyzetbe állítása
+- A felhasználói jelszó alaphelyzetbe állítását
 
 - Az összes esemény elvetését
 
-- Vizsgálja meg a hello felhasználóhoz jelentett kockázati eseményekről. 
+- A felhasználóhoz kapcsolódó, jelentett kockázati események vizsgálatát. 
 
 
 ![Kockázatos bejelentkezések](./media/active-directory-reporting-security-risky-sign-ins/324.png)
 
 
-a kockázat esemény tooinvestigate válasszon egyet a hello listából.  
-Ekkor megnyílik a hello **részletek** panel kockázat eseményhez. A hello **részletek** panelen hello beállítás tooeither rendelkezik [kézzel zárja be a kockázati események](active-directory-identityprotection.md#closing-risk-events-manually) vagy egy manuális lezárt kockázat esemény újraaktiválásához. 
+Egy kockázati esemény vizsgálatához válassza ki azt a listából.  
+Ekkor megnyílik az eseményre vonatkozó **Részletek** panel. A **Részletek** panelen [manuálisan bezárhatja a kockázati eseményeket](active-directory-identityprotection.md#closing-risk-events-manually) vagy újra aktiválhatja a manuálisan bezárt kockázati eseményeket. 
 
 
 ![Kockázatos bejelentkezések](./media/active-directory-reporting-security-risky-sign-ins/325.png)

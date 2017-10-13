@@ -1,7 +1,7 @@
-telepítés közben egy erőforrás tootag hozzáadása hello `tags` elem toohello erőforrás telepít. Adja meg a hello címke nevét és értékét.
+Ha üzembe helyezés közben szeretne címkével ellátni egy erőforrást, adja hozzá a `tags` elemet ahhoz az erőforráshoz, amelyet éppen üzembe helyez. Adja meg a címke nevét és értékét.
 
-### <a name="apply-a-literal-value-toohello-tag-name"></a>Alkalmazza a literálérték toohello címke nevét
-hello alábbi példa bemutatja a tárfiók két címkét (`Dept` és `Environment`) tooliteral értékek meg:
+### <a name="apply-a-literal-value-to-the-tag-name"></a>Szövegkonstansérték alkalmazása a címkenévre
+Az alábbi példában egy tárfiók látható két címkével (`Dept` és `Environment`), amelyek szövegkonstansértékre vannak beállítva:
 
 ```json
 {
@@ -27,8 +27,8 @@ hello alábbi példa bemutatja a tárfiók két címkét (`Dept` és `Environmen
 }
 ```
 
-### <a name="apply-an-object-toohello-tag-element"></a>Egy objektum toohello címke elem alkalmazása
-Határozzon meg egy objektum paramétert, amely több címkék tárolja, és az adott objektum toohello címke elemet. Hello objektum minden egyes tulajdonság egy külön címkét hello erőforrás lesz. hello alábbi példa paraméterének nevű `tagValues` , amely alkalmazott toohello címke elem..
+### <a name="apply-an-object-to-the-tag-element"></a>Objektum alkalmazása a címkeelemre
+Megadhat olyan objektumparamétert, amely több címkét tartalmaz, majd alkalmazhatja azt az objektumot a címkeelemre. Az objektum minden tulajdonsága az erőforrás külön címkéjévé válik. Az alábbi példa egy `tagValues` nevű paramétert tartalmaz, amely a címkeelemre van alkalmazva.
 
 ```json
 {
@@ -60,9 +60,9 @@ Határozzon meg egy objektum paramétert, amely több címkék tárolja, és az 
 }
 ```
 
-### <a name="apply-a-json-string-toohello-tag-name"></a>Alkalmazza a JSON karakterlánc toohello címke nevét
+### <a name="apply-a-json-string-to-the-tag-name"></a>JSON-karakterlánc alkalmazása a címkenévre
 
-toostore sok egyetlen címkében alakul hello értéket jelölő JSON karakterláncnak. hello teljes JSON-karakterláncban tárolja egy címke, amely nem lehet hosszabb 256 karakternél. hello alábbi példa egy egyetlen címkét tartalmaz nevű `CostCenter` JSON karakterláncból több értéket tartalmaz, amelyek:  
+Ha több értéket szeretne tárolni egyetlen címkében, alkalmazzon a megfelelő értékeket képviselő JSON-karakterláncot. A teljes JSON-karakterlánc egyetlen címkeként tárolódik, amelynek hossza nem lépheti túl a 256 karaktert. Az alábbi példában egy `CostCenter` nevű címke szerepel, amely egy JSON-karakterlánc számos értékét tartalmazza:  
 
 ```json
 {

@@ -15,24 +15,24 @@ ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: d33f02822097aa7f83042606ba46fd533e85ac23
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 05dd28bf850a84ff4644c46a45bd941b7c6e7d01
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="introduction-toohello-azure-ad-connect-synchronization-service-manager-ui"></a>Az Azure AD Connect Synchronization Service Manager felhasználói felületének bemutatása toohello
+# <a name="introduction-to-the-azure-ad-connect-synchronization-service-manager-ui"></a>Bevezetés az Azure ad Connect szinkronizálási szolgáltatás kezelő felhasználói felületén
 
 ![Szinkronizálás a Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/ssmui.png)
 
-Hello **Synchronization Service Managert** felhasználói felület fejlettebb hello szinkronizálási motor és toosee hello működési szempontok hello szolgáltatás aspektusainak használt tooconfigure.
+A **Synchronization Service Managert** felhasználói felület segítségével konfigurálhatja a szinkronizálási motor további beállításait, és tekintse meg a szolgáltatás részleteivel szolgál.
 
-Hello megkezdése **Synchronization Service Managert** felhasználói felülete hello a start menü. A neve **szinkronizálási szolgáltatás** és hello található **az Azure AD Connect** csoport.  
+Elindítja a **Synchronization Service Managert** felhasználói felület a start menüből. A neve **szinkronizálási szolgáltatás** és megtalálhatók a **az Azure AD Connect** csoport.  
 ![Szinkronizálás a Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/startmenu.png)
 
-Ez a témakör további információk a felhasználói felület hello hello különböző lapjaira toolearn hello tetején hello hivatkozásaira kattint.
+Ez a témakör további információt a a felhasználói felületének más lapjaira tetején hivatkozásokra kattintva.
 
 ## <a name="next-steps"></a>Következő lépések
-További tudnivalók hello [az Azure AD Connect szinkronizálási szolgáltatás](active-directory-aadconnectsync-whatis.md) konfigurációs.
+További információ a [az Azure AD Connect szinkronizálási szolgáltatás](active-directory-aadconnectsync-whatis.md) konfigurációs.
 
 További információ: [Helyszíni identitások integrálása az Azure Active Directoryval](active-directory-aadconnect.md).

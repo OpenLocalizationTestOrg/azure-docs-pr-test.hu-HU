@@ -1,6 +1,6 @@
 ---
-title: "a Web Apps aaaGet elindítva, az Azure Mobile Engagement |} Microsoft Docs"
-description: "Megtudhatja, hogyan toouse Azure Mobile Engagement az elemzések és leküldéses értesítések a Web Apps."
+title: "Ismerkedés az Azure Mobile Engagement webalkalmazásokkal való használatával | Microsoft Docs"
+description: "Ismerje meg, hogyan használható az Azure Mobile Engagement a webalkalmazásokhoz kapcsolódó elemzésekkel és leküldéses értesítésekkel."
 services: mobile-engagement
 documentationcenter: Mobile
 author: piyushjo
@@ -14,52 +14,52 @@ ms.devlang: js
 ms.topic: hero-article
 ms.date: 06/01/2016
 ms.author: piyushjo
-ms.openlocfilehash: a84c96cac13bf3b85e72aef55da5c91693e1766c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: abcb04e4e0a3ae4fdba3a4ded20b3846ac3b21e6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-azure-mobile-engagement-for-web-apps"></a>Ismerkedés az Azure Mobile Engagement Web webalkalmazásokkal való használatával
 [!INCLUDE [Hero tutorial switcher](../../includes/mobile-engagement-hero-tutorial-switcher.md)]
 
-Ez a témakör bemutatja, hogyan toouse Azure Mobile Engagement toounderstand a webes alkalmazások használatáról.
+Ebben a témakörben elsajátíthatja, hogy miként használható az Azure Mobile Engagement a webalkalmazások használatának megértéséhez.
 
 > [!NOTE]
-> hello Azure Mobile Engagement szolgáltatás március 2018 rendszerből, és jelenleg csak a rendelkezésre álló tooexisting ügyfelek. További információkért lásd: [Mobile Engagement](https://azure.microsoft.com/en-us/services/mobile-engagement/).
+> Az Azure Mobile Engagement szolgáltatást 2018 márciusától megszüntetjük, és jelenleg csak meglévő ügyfelek számára érhető el. További információkért lásd: [Mobile Engagement](https://azure.microsoft.com/en-us/services/mobile-engagement/).
 
-Ez az oktatóanyag hello következő szükséges:
+Az oktatóanyaghoz az alábbiakra lesz szükség:
 
 * Visual Studio 2015 vagy bármely másik választott szerkesztő
 * [Web SDK](http://aka.ms/P7b453)
 
-A webszolgáltatási SDK jelenleg előzetes verzióban érhető és csak hello pillanatban támogatja az elemzés és még nem támogatja a küldő böngésző vagy alkalmazásbeli leküldéses értesítéseket. 
+Ez a Web SDK egy előzetes verzió, és kizárólag az elemzést támogatja, böngészőn vagy alkalmazáson belüli leküldéses értesítésék küldését nem. 
 
 > [!NOTE]
-> toocomplete ebben az oktatóanyagban rendelkeznie kell egy aktív Azure-fiókra. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-web-app-get-started).
+> Az oktatóanyag elvégzéséhez egy aktív Azure-fiókra lesz szüksége. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-web-app-get-started).
 > 
 > 
 
 ## <a name="setup-mobile-engagement-for-your-web-app"></a>A Mobile Engagement beállítása a webalkalmazáshoz
 [!INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-## <a id="connecting-app"></a>Csatlakozás az alkalmazás toohello Mobile Engagement háttérrendszeréhez
-Ez az oktatóanyag egy "alapszintű integrációt," hello minimálisan szükséges toocollect adatok pedig mutat.
+## <a id="connecting-app"></a>Az alkalmazás csatlakoztatása a Mobile Engagement háttérrendszeréhez
+Ez az oktatóanyag egy „alapszintű integrációt” mutat be, ami minimálisan szükséges az adatok gyűjtéséhez.
 
-Létre fogunk hozni egy alapszintű webalkalmazást a Visual Studio toodemonstrate hello integrációja, ha a Visual Studio kívül is létre webes alkalmazásokkal együtt hello lépések végrehajtásával. 
+Létre fogunk hozni egy alapszintű alkalmazást a Visual Studio segítségével az integráció bemutatásához, a műveleti lépéseket azonban A Visual Studión kívül létrehozott webalkalmazásokon is követheti. 
 
 ### <a name="create-a-new-web-app"></a>Új webalkalmazás létrehozása
-hello következő lépések azt feltételezik hello Visual Studio 2015 használatát, ha hello lépések hasonlóak a Visual Studio korábbi verzióiban. 
+A következő lépések a Visual Studio 2015 használatát feltételezik, de a lépések a Visual Studio korábbi verziói esetén is hasonlóak. 
 
-1. Indítsa el a Visual Studio és a hello **Home** képernyőn válassza ki **új projekt**.
-2. Hello előugró ablakban válassza **webes** -> **ASP.Net Web Application**. Töltse ki a hello app **neve**, **hely** és **megoldás neve**, és kattintson a **OK**.
-3. A hello **válasszon olyan sablont,** előugró ablakban válasszon **üres** alatt **ASP.Net 4.5 sablonok** kattintson **OK**. 
+1. Indítsa el a Visual Studiót, és a **Kezdőképernyőn** válassza a **New Project** (Új projekt) lehetőséget.
+2. Az előugró ablakban válassza a **Web** -> **ASP.Net Web Application** (ASP.NET-webalkalmazás) lehetőséget. Adja meg az alkalmazás **Name** (Név), **Location** (Hely) és **Solution name** (Megoldás neve) adatait, majd kattintson az **OK** gombra.
+3. A **Select a template** (Sablon kiválasztása) előugró ablakban válassza az **Empty** (Üres) lehetőséget az **ASP.Net 4.5 Templates** (ASP.Net 4.5-sablonok) területen, majd kattintson az **OK** gombra. 
 
-Most létrehozott egy új üres webalkalmazás projekt amelybe integrálni fogjuk a hello Azure Mobile Engagement webes SDK-t.
+Most létrehozott egy új üres webalkalmazás-projektet, amelybe integrálni fogjuk az Azure Mobile Engagement Web SDK-t.
 
-### <a name="connect-your-app-toomobile-engagement-backend"></a>Csatlakozás az alkalmazás tooMobile Engagement háttérrendszeréhez
-1. Hozzon létre egy új nevű **javascript** a megoldásban, és adja hozzá a hello webes SDK JS fájl **azure-engagement.js** bele. 
-2. Adjon hozzá egy új fájlt nevű **main.js** hello a következő kódot a javascript mappában. Győződjön meg arról, hogy tooupdate hello kapcsolati karakterláncot. Ez `azureEngagement` objektum használt tooaccess webes SDK módszerek lesz. 
+### <a name="connect-your-app-to-mobile-engagement-backend"></a>Az alkalmazás csatlakoztatása a Mobile Engagement háttérrendszeréhez
+1. A saját megoldásában hozzon létre egy **javascript** nevű új mappát, majd vegye fel abba az **azure-engagement.js** nevű Web SDK JS-fájlt. 
+2. A javascript mappához a következő kóddal adjon hozzá egy **main.js** nevű új fájlt. Győződjön meg arról, hogy frissítette a kapcsolati karakterláncot. A rendszer ezt az `azureEngagement` objektumot használja a Web SDK-metódusokhoz történő hozzáféréshez. 
    
         var azureEngagement = {
             debug: true,
@@ -69,14 +69,14 @@ Most létrehozott egy új üres webalkalmazás projekt amelybe integrálni fogju
     ![Visual Studio .js fájlokkal][1]
 
 ## <a name="enable-real-time-monitoring"></a>Valós idejű figyelés engedélyezése
-Rendelés toostart adatküldés és annak biztosítására, hogy hello felhasználók aktív, a el kell küldenie a Mobile Engagement háttérrendszeréhez legalább egy tevékenység toohello. A webalkalmazás kontextusában hello tevékenység egy olyan weblap. 
+Az adatok küldésének megkezdéséhez és annak biztosításához, hogy a felhasználók aktívak, legalább egy tevékenységet el kell küldenie a Mobile Engagement háttérrendszere számára. A webalkalmazás kontextusában a tevékenységek weblapok. 
 
-1. Hozzon létre egy új lapot nevű **home.html** a megoldás és a webalkalmazás azt hello kiindulási lapon. 
-2. Hello két JavaScript-kódok hello következő hello törzs címkén belül hozzáadásával a lap korábbi részében hozzáadott tartalmazza. 
+1. A saját megoldásában hozzon létre egy **home.html** nevű új lapot, majd állítsa be azt a webalkalmazás kezdőlapjaként. 
+2. A következők a törzscímkébe illesztésével foglalja bele a korábban ezen a lapon hozzáadott két javascriptet. 
    
         <script type="text/javascript" src="javascript/main.js"></script>
         <script type="text/javascript" src="javascript/azure-engagement.js"></script>
-3. Hello törzs címke toocall EngagementAgent tartozó frissítése `startActivity` módszer
+3. Az EngagementAgent `startActivity` metódusának meghívásához frissítse a törzscímkét
    
         <body onload="engagement.agent.startActivity('Home')">
 4. A **home.html** lapnak így kell kinéznie
@@ -97,7 +97,7 @@ Rendelés toostart adatküldés és annak biztosítására, hogy hello felhaszn�
   ![][2]
 
 ## <a name="extend-analytics"></a>Az elemzés kiterjesztése
-Itt érhetők el minden hello módszerek jelenleg elemzéséhez használható webes SDK-val:
+Az alábbiakban látható az összes jelenleg elérhető, elemzési célra használható Web SDK-metódus:
 
 1. Tevékenységek/weblapok:
    

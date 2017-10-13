@@ -1,6 +1,6 @@
 ---
-title: "az Azure Resource Manager aaaDeployment műveletek |} Microsoft Docs"
-description: "Ismerteti, hogyan tooview Azure Resource Manager üzembe helyezési műveleteket a hello portálon, a PowerShell, a Azure CLI és a REST API-t."
+title: "Az Azure Resource Manager üzembe helyezési műveleteinek |} Microsoft Docs"
+description: "Útmutató megtekintéséhez az Azure Resource Manager üzembe helyezési műveleteket a portál, a PowerShell, az Azure CLI és a REST API-t."
 services: azure-resource-manager,virtual-machines
 documentationcenter: 
 tags: top-support-issue
@@ -15,65 +15,65 @@ ms.tgt_pltfrm: vm-multiple
 ms.workload: infrastructure
 ms.date: 01/13/2017
 ms.author: tomfitz
-ms.openlocfilehash: ba4823ca73caca83dfc07c99d736344ef8b7b54d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fb6b3b357fd1f66184e480115a9c863ba31ac193
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="view-deployment-operations-with-azure-resource-manager"></a>Az Azure Resource Manager központi telepítési műveletek megtekintése
 
 
-Hello műveleteket a központi telepítés hello Azure-portálon keresztül tekintheti meg. Előfordulhat, hogy tervezheti meg hello műveletek megtekintése hiba beérkezése után üzembe helyezése során, ez a cikk foglalkozik, amelyek nem tudták műveletek megtekintése. hello portál egy felületet biztosít, amely lehetővé teszi a tooeasily keresés hello hibákat, és határozza meg a lehetséges javításokat.
+A műveletek a központi telepítés az Azure portálon keresztül tekintheti meg. Előfordulhat, hogy tervezheti meg a műveletek megtekintése hiba beérkezése után üzembe helyezése során, ez a cikk foglalkozik, amelyek nem tudták műveletek megtekintése. A portál, amely lehetővé teszi, hogy könnyedén megtalálhatja a hibák, és határozza meg a lehetséges javítások felületet biztosít.
 
 [!INCLUDE [resource-manager-troubleshoot-introduction](../../includes/resource-manager-troubleshoot-introduction.md)]
 
 ## <a name="portal"></a>Portál
-toosee hello telepítési műveleteit, a lépéseket követve hello használata:
+Üzembe helyezési műveleteinek megtekintéséhez tegye a következőket:
 
-1. Hello erőforráscsoport hello telepítési részt figyelje meg hello hello utolsó központi telepítésének állapotát tartalmazza. Kiválaszthatja a állapot tooget további részleteket.
+1. Az erőforráscsoport részt vesz a telepítés figyelje meg a legutóbbi központi telepítés állapotát. Ez az állapot részleteinek kiválasztása
    
     ![Központi telepítési állapota](./media/resource-manager-deployment-operations/deployment-status.png)
-2. Hello legutóbbi központi telepítés előzményei láthatja. Válassza ki a sikertelen hello telepítést.
+2. Megjelenik a legutóbbi központi telepítés előzményei. Válassza ki a telepítést, melyeknél nem sikerült.
    
     ![Központi telepítési állapota](./media/resource-manager-deployment-operations/select-deployment.png)
-3. Válassza ki a hello hivatkozás toosee miért leírása hello központi telepítése nem sikerült. A hello alábbi rendszerképek közül hello DNS-rekord nem egyedi.  
+3. Válassza ki a hivatkozásra kattintva megtekintheti a központi telepítés sikertelenségének leírását. Az alábbi ábrán a DNS-rekord nem egyedi.  
    
     ![sikertelen központi telepítés megtekintése](./media/resource-manager-deployment-operations/view-error.png)
    
-    Ez a hibaüzenet kell lennie ahhoz, akkor a hibaelhárítás toobegin. Azonban ha olvashat arról, hogy mely feladatok befejeződtek, megtekintheti hello műveletek ahogy az alábbi lépésekkel hello.
-4. Összes hello telepítési művelet megtekintheti a hello **telepítési** panelen. Válassza ki a bármilyen műveletet toosee további részleteket.
+    Ez a hibaüzenet jelenik meg a hibaelhárítás elegendő kell lennie. Azonban ha kapcsolatos további részleteket kell mely feladatok befejeződtek, megtekintheti a műveleteket, ahogy az az alábbi lépéseket.
+4. Megtekintheti az összes üzembe helyezési műveleteinek a **telepítési** panelen. Válassza ki a bármilyen műveletet további részletek megtekintéséhez.
    
     ![műveletek megtekintése](./media/resource-manager-deployment-operations/view-operations.png)
    
-    Ebben az esetben láthatja, hogy hello tárfiókot, a virtuális hálózat és a rendelkezésre állási csoport sikeresen létrehozva. hello nyilvános IP-címet nem sikerült, és más erőforrások nem megkísérelte.
-5. Kiválasztásával megtekintheti a hello telepítéshez események **események**.
+    Ebben az esetben láthatja, hogy a tárfiókot, a virtuális hálózat és a rendelkezésre állási csoport sikeresen létrehozva. A nyilvános IP-címet nem sikerült, és más erőforrások nem megkísérelte.
+5. Kiválasztásával megtekintheti a központi telepítés események **események**.
    
     ![események megtekintése](./media/resource-manager-deployment-operations/view-events.png)
-6. Hello központi telepítés összes hello eseményeket, és válassza ki a közül legalább egy további részleteket. Figyelje meg a korrelációs azonosító túl hello. Ez az érték akkor lehet hasznos, amikor a központi telepítés a technikai támogatási szolgálathoz tootroubleshoot olyan.
+6. A központi telepítés az eseményeket, és válassza ki a közül legalább egy további részleteket. Figyelje meg, túl a korrelációs azonosítót. Ez az érték akkor lehet hasznos, amikor olyan központi telepítés hibaelhárítása a technikai támogatási szolgálathoz.
    
     ![események](./media/resource-manager-deployment-operations/see-all-events.png)
 
 ## <a name="powershell"></a>PowerShell
-1. tooget hello összesített állapotát a központi telepítés használata hello **Get-AzureRmResourceGroupDeployment** parancsot. 
+1. Ahhoz, hogy a központi telepítés összesített állapotát, használja a **Get-AzureRmResourceGroupDeployment** parancsot. 
 
   ```powershell
   Get-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup
   ```
 
-   Vagy csak a sikertelen telepítések hello eredményeket szűrheti is.
+   Vagy csak a sikertelen telepítések az eredményeket szűrheti is.
 
   ```powershell
   Get-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup | Where-Object ProvisioningState -eq Failed
   ```
    
-2. Minden központi telepítési több műveletet tartalmaz. Egyes műveletek hello telepítési folyamat azon lépése jelöli. hibás telepítés okát toodiscover, általában szükséges hello üzembe helyezési műveletek toosee adatait. Hello műveletek hello állapotát megtekintheti **Get-AzureRmResourceGroupDeploymentOperation**.
+2. Minden központi telepítési több műveletet tartalmaz. Minden műveletet a telepítési folyamat azon lépése jelöli. Annak megállapításához, hogy mi a probléma telepítés, általában szüksége üzembe helyezési műveleteinek kapcsolatos részletek megtekintéséhez. Láthatja, hogy a műveletek állapotának **Get-AzureRmResourceGroupDeploymentOperation**.
 
   ```powershell 
   Get-AzureRmResourceGroupDeploymentOperation -ResourceGroupName ExampleGroup -DeploymentName vmDeployment
   ```
 
-    Több művelet található a következő formátum hello mindegyiknél visszaadó:
+    Több művelet található a következő formátumban mindegyiknél visszaadó:
 
   ```powershell
   Id             : /subscriptions/{guid}/resourceGroups/ExampleGroup/providers/Microsoft.Resources/deployments/Microsoft.Template/operations/A3EB2DA598E0A780
@@ -85,13 +85,13 @@ toosee hello telepítési műveleteit, a lépéseket követve hello használata:
                    serviceRequestId:0196828d-8559-4bf6-b6b8-8b9057cb0e23...}
   ```
 
-3. tooget további információt a sikertelen műveleteket műveletek hello tulajdonságainak lekérése **sikertelen** állapotát.
+3. Ahhoz, hogy további információt a sikertelen műveleteket, a műveletek tulajdonságainak lekérése **sikertelen** állapotát.
 
   ```powershell
   (Get-AzureRmResourceGroupDeploymentOperation -DeploymentName Microsoft.Template -ResourceGroupName ExampleGroup).Properties | Where-Object ProvisioningState -eq Failed
   ```
    
-    Összes sikertelen műveleteket hello minden valamelyik a következő formátum hello visszaadó:
+    Amely adja vissza a sikertelen műveleteket a mindegyiknél a következő formátumban:
 
   ```powershell
   provisioningOperation : Create
@@ -107,8 +107,8 @@ toosee hello telepítési műveleteit, a lépéseket követve hello használata:
                           resourceType=Microsoft.Network/publicIPAddresses; resourceName=myPublicIP}
   ```
 
-    Megjegyzés: hello serviceRequestId és hello trackingId hello a művelethez. hello serviceRequestId akkor lehet hasznos, amikor a központi telepítés a technikai támogatási szolgálathoz tootroubleshoot olyan. A következő lépés toofocus hello egy adott művelethez a hello trackingId fogja használni.
-4. tooget hello állapotüzenetét egy adott sikertelen művelettel, a következő parancs használata hello:
+    Vegye figyelembe a serviceRequestId és a trackingId a művelethez. A serviceRequestId akkor lehet hasznos, amikor olyan központi telepítés hibaelhárítása a technikai támogatási szolgálathoz. Szüksége lesz a trackingId a következő lépésben egy adott művelethez összpontosíthat.
+4. Ahhoz, hogy egy adott sikertelen művelettel állapotüzenetet, használja a következő parancsot:
 
   ```powershell
   ((Get-AzureRmResourceGroupDeploymentOperation -DeploymentName Microsoft.Template -ResourceGroupName ExampleGroup).Properties | Where-Object trackingId -eq f4ed72f8-4203-43dc-958a-15d041e8c233).StatusMessage.error
@@ -121,9 +121,9 @@ toosee hello telepítési műveleteit, a lépéseket követve hello használata:
   ----           -------                                                                        -------
   DnsRecordInUse DNS record dns.westus.cloudapp.azure.com is already used by another public IP. {}
   ```
-4. Minden központi telepítési műveletet az Azure-ban kérés- és tartalmát tartalmazza. hello kérelem tartalma az Ön által küldött tooAzure üzembe helyezése során (például hozzon létre egy virtuális Gépet, az operációsrendszer-lemez és az egyéb erőforrások). hello válasz tartalma az Azure által küldött vissza a központi telepítési kérelemből. A telepítés során használhatja **DeploymentDebugLogLevel** paramenter toospecify, hogy a kérés vagy válasz hello hello naplóba kerülnek. 
+4. Minden központi telepítési műveletet az Azure-ban kérés- és tartalmát tartalmazza. A kérelem tartalma az Ön által küldött Azure üzembe helyezése során (például hozzon létre egy virtuális Gépet, az operációsrendszer-lemez és az egyéb erőforrások). A válasz tartalma az Azure által küldött vissza a központi telepítési kérelemből. A telepítés során használhatja **DeploymentDebugLogLevel** paramenter adhatja meg, hogy a kérelem és/vagy a válasz a naplóba kerülnek. 
 
-  Ezt az információt lekérni hello naplót, és mentse helyileg a hello a következő PowerShell-parancsok használatával:
+  Ez az információ lekérése a naplót, és mentse helyileg a következő PowerShell-parancsok használatával:
 
   ```powershell
   (Get-AzureRmResourceGroupDeploymentOperation -DeploymentName "TestDeployment" -ResourceGroupName "Test-RG").Properties.request | ConvertTo-Json |  Out-File -FilePath <PathToFile>
@@ -133,13 +133,13 @@ toosee hello telepítési műveleteit, a lépéseket követve hello használata:
 
 ## <a name="azure-cli"></a>Azure CLI
 
-1. Első hello a központi telepítés általános állapota a hello **azure-csoportok telepítési megjelenítése** parancsot.
+1. Az alkalmazáspéldány általános állapotának lekérése a **azure-csoportok telepítési megjelenítése** parancsot.
 
   ```azurecli
   azure group deployment show --resource-group ExampleGroup --name ExampleDeployment --json
   ```
   
-  Visszaadott értékek hello egyik hello **correlationId**. Ez az érték használható tootrack kapcsolatos eseményeket, és az is lehet hasznos, ha használata a technikai támogatási szolgálathoz tootroubleshoot a központi telepítés.
+  A visszaadott értékek közül egy a **correlationId**. Ez az érték a kapcsolódó események nyomon követésére szolgál, és hasznos lehet, amikor olyan központi telepítés hibaelhárítása a technikai támogatási szolgálathoz.
 
   ```azurecli
   "properties": {
@@ -147,7 +147,7 @@ toosee hello telepítési műveleteit, a lépéseket követve hello használata:
     "correlationId": "4002062a-a506-4b5e-aaba-4147036b771a",
   ```
 
-2. toosee hello műveletek üzembe helyezés esetén használja:
+2. A központi telepítés műveletek megjelenítéséhez használja:
 
   ```azurecli
   azure group deployment operation list --resource-group ExampleGroup --name ExampleDeployment --json
@@ -155,13 +155,13 @@ toosee hello telepítési műveleteit, a lépéseket követve hello használata:
 
 ## <a name="rest"></a>REST
 
-1. A központi telepítés hello adatainak beolvasása [sablon-üzembehelyezés adatainak beolvasása](https://docs.microsoft.com/rest/api/resources/deployments#Deployments_Get) műveletet.
+1. A központi telepítés adatainak beolvasása a [sablon-üzembehelyezés adatainak beolvasása](https://docs.microsoft.com/rest/api/resources/deployments#Deployments_Get) műveletet.
 
   ```http
   GET https://management.azure.com/subscriptions/{subscription-id}/resourcegroups/{resource-group-name}/providers/microsoft.resources/deployments/{deployment-name}?api-version={api-version}
   ```
 
-    Hello válaszként, vegye figyelembe különösen hello **provisioningState**, **correlationId**, és **hiba** elemek. Hello **correlationId** használt tootrack kapcsolatos eseményeket, és az is lehet hasznos, ha használata a technikai támogatási szolgálathoz tootroubleshoot a központi telepítés.
+    A válaszban, vegye figyelembe különösen a **provisioningState**, **correlationId**, és **hiba** elemek. A **correlationId** kapcsolódó események nyomon követésére szolgál, és hasznos lehet, amikor olyan központi telepítés hibaelhárítása a technikai támogatási szolgálathoz.
 
   ```json
   { 
@@ -178,13 +178,13 @@ toosee hello telepítési műveleteit, a lépéseket követve hello használata:
   }
   ```
 
-2. Telepítési műveletek hello adatainak beolvasása [összes sablon telepítési művelet](https://docs.microsoft.com/rest/api/resources/deployments#Deployments_List) műveletet. 
+2. Az üzembe helyezési műveletek adatainak beolvasása a [összes sablon telepítési művelet](https://docs.microsoft.com/rest/api/resources/deployments#Deployments_List) műveletet. 
 
   ```http
   GET https://management.azure.com/subscriptions/{subscription-id}/resourcegroups/{resource-group-name}/providers/microsoft.resources/deployments/{deployment-name}/operations?$skiptoken={skiptoken}&api-version={api-version}
   ```
    
-    hello válasz tartalmazza a kérés vagy válasz információk alapján hello megadott **debugSetting** tulajdonság üzembe helyezése során.
+    A válasz alapján megadva a kérelem és/vagy válasz információkat tartalmaz a **debugSetting** tulajdonság üzembe helyezése során.
 
   ```json
   {
@@ -213,7 +213,7 @@ toosee hello telepítési műveleteit, a lépéseket követve hello használata:
 
 
 ## <a name="next-steps"></a>Következő lépések
-* Segítség az adott telepítési hibáinak megoldása: [gyakori hibák feloldása, amikor üzembe helyezése az Azure Resource Manager erőforrások tooAzure](resource-manager-common-deployment-errors.md).
-* hello tevékenység használatáról toolearn naplózza toomonitor más típusú műveleteket című [tevékenység megtekintése naplózza toomanage Azure erőforrások](resource-group-audit.md).
-* toovalidate a központi telepítés előtt futtatnia kell, lásd: [Azure Resource Manager sablonnal erőforráscsoport telepítése](resource-group-template-deploy.md).
+* Segítség az adott telepítési hibáinak megoldása: [gyakori hibák feloldása, amikor erőforrásokat üzembe helyezi az Azure-bA az Azure Resource Manager](resource-manager-common-deployment-errors.md).
+* A tevékenység-naplók segítségével figyelheti a más típusú műveleteket, lásd: [tevékenységi naplóit Azure-erőforrások kezeléséhez megtekintése](resource-group-audit.md).
+* A telepítés előtt futtatnia kell az ellenőrzéséhez tekintse meg a [Azure Resource Manager sablonnal erőforráscsoport telepítése](resource-group-template-deploy.md).
 

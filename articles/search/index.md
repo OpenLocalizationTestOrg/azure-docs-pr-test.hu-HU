@@ -1,8 +1,8 @@
 ---
-title: "aaaAzure keresési dokumentációja – oktatóanyagok API-referencia |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooadd hatékony keresési lehetőségekről, beleértve a figyelése, toocustom web- vagy mobilalkalmazás. API-referenciák és egyéb dokumentációk."
+title: "Az Azure Search dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Tekintse meg, hogy az egyéni webes és mobilalkalmazások hogyan bővíthetők erőteljes keresési képességekkel és tevékenységfigyeléssel. API-referenciák és egyéb dokumentációk."
 services: search
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 2ef61d7bf68e94c4429ba1b13709ee9b31093b71
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9debfb5c55332836ff721aae08c7d45c811444f9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-search-documentation"></a>Azure Search-dokumentáció
 
-Ismerje meg, hogyan tooadd keresési képességek tooyour egyéni web- vagy Azure keresési, egy felügyelt felhőalapú keresőszolgáltatás mobilalkalmazások. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt, megmutatva, hogyan tooadd méretezhető teljes szöveges keresés több nyelven, földrajzi térbeli keresési, szűrési és jellemzőalapú navigációs, begépelt lekérdezések találati kiemelve, illetve egyéni lekérdezések.
+Tekintse meg, hogy az Azure Search felügyelt felhőalapú keresési szolgáltatással hogyan bővítheti keresési képességekkel az egyéni web- vagy mobilalkalmazását. Az oktatóanyagok, API-referenciák és egyéb dokumentációk bemutathatják, hogy használhatja a méretezhető, több nyelvű teljes szöveges keresést, a földrajzi keresést, a szűrést és a jellemzőalapú navigációt, a szövegkiegészítéses lekérdezéseket, a találatok kiemelését és az egyéni elemzőket.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ Ismerje meg, hogyan tooadd keresési képességek tooyour egyéni web- vagy Azur
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Ismerkedés az Azure Search hello Azure-portál használatával</h3>
+                        <h3>Ismerkedés az Azure Search Azure Portallal való használatával</h3>
                     </div>
                 </div>
             </div>

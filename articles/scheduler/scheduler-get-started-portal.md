@@ -1,5 +1,5 @@
 ---
-title: "az Azure portál Azure Scheduler használatába aaaGet |} Microsoft Docs"
+title: "Ismerkedés az Azure Portal Azure Scheduler szolgáltatásával | Microsoft Docs"
 description: "Ismerkedés az Azure portál Azure Scheduler szolgáltatásával"
 services: scheduler
 documentationcenter: .NET
@@ -14,33 +14,33 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 08/10/2016
 ms.author: deli
-ms.openlocfilehash: 58255c0ad19da65932f8b1d36cb8fef1ff6e651b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3861ee121ed1c4d086ea81640e84d924d7d17ea1
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-azure-scheduler-in-azure-portal"></a>Ismerkedés az Azure portál Azure Scheduler szolgáltatásával
-Azure Scheduler könnyen toocreate ütemezett feladatok is. Ebben az oktatóanyagban megtudhatja, hogyan toocreate egy feladatot. Megismerkedhet a Scheduler megfigyelési és felügyeleti képességeivel is.
+Az Azure Scheduler szolgáltatásban egyszerűen hozhat létre ütemezett feladatokat. Ezen oktatóanyag segítségével elsajátíthatja egy feladat létrehozásának műveletét. Megismerkedhet a Scheduler megfigyelési és felügyeleti képességeivel is.
 
 ## <a name="create-a-job"></a>Feladat létrehozása
-1. Jelentkezzen be a túl[Azure-portálon](https://portal.azure.com/).  
-2. Kattintson a **+ új** > típus *Feladatütemező* hello keresőmezőbe > válassza **Feladatütemező** eredmények > kattintson **létrehozása**.
+1. Jelentkezzen be az [Azure portálra](https://portal.azure.com/).  
+2. Kattintson az **+Új** lehetőségre, írja be a *Scheduler* kifejezést a keresőmezőbe, majd válassza ki a **Scheduler** elemet az eredmények között, végül pedig kattintson a **Létrehozás** gombra.
    
     ![][marketplace-create]
-3. Hozzunk létre egy olyan feladatot, amely egy GET kéréssel egyszerűen rákeres a http://www.microsoft.com/ webhelyre. A hello **ütemezési feladat** képernyőn, írja be a következő információ hello:
+3. Hozzunk létre egy olyan feladatot, amely egy GET kéréssel egyszerűen rákeres a http://www.microsoft.com/ webhelyre. A **Scheduler-feladat** képernyőn adja meg a következő információkat:
    
    1. **Név:**`getmicrosoft`  
    2. **Előfizetés:** Az Ön Azure-előfizetése   
    3. **Feladatgyűjtemény:** Válasszon ki egy létező feladatgyűjteményt, vagy kattintson az **Új létrehozása** lehetőségre, és adjon meg egy nevet.
-4. A következő **műveleti beállítások**, adja meg a következő értékek hello:
+4. Ezt követően határozza meg a következő értékeket a **Művelet beállításai** területen:
    
    1. **Művelettípus:**` HTTP`  
    2. **Módszer:**`GET`  
    3. **URL-cím:**` http://www.microsoft.com`  
       
       ![][action-settings]
-5. Végül határozzon meg egy ütemezést. hello feladat egyszeri feladat sikerült kell definiálni, de most az ismétlődési ütemezés szerint válasszon:
+5. Végül határozzon meg egy ütemezést. A feladat egyszeriként is megadható, most azonban vegyünk fel egy ismétlődési ütemezést:
    
    1. **Ismétlődés**: `Recurring`
    2. **Indítás**: A mai dátum
@@ -51,7 +51,7 @@ Azure Scheduler könnyen toocreate ütemezett feladatok is. Ebben az oktatóanya
 6. Kattintson a  **Create** (Létrehozás) gombra
 
 ## <a name="manage-and-monitor-jobs"></a>Feladatok kezelése és figyelése
-Ha egy feladat jön létre, hello fő Azure irányítópult jelenik meg. Kattintson a hello feladat és egy új ablakban nyílik meg a következő lapokon hello:
+A létrehozott feladatok megjelennek az Azure fő irányítópultján. A feladatra kattintva egy új ablak nyílik meg a következő lapokkal:
 
 1. Tulajdonságok  
 2. Művelet beállításai  
@@ -62,34 +62,34 @@ Ha egy feladat jön létre, hello fő Azure irányítópult jelenik meg. Kattint
    ![][job-overview]
 
 ### <a name="properties"></a>Tulajdonságok
-A csak olvasható tulajdonságok hello felügyeleti metaadatok hello Feladatütemező feladat ismertetik.
+A Scheduler-feladathoz tartozó metaadatok kezelését ezen írásvédett tulajdonságok írják le.
 
    ![][job-properties]
 
 ### <a name="action-settings"></a>Művelet beállításai
-Egy feladat hello kattintva **feladatok** képernyő segítségével beállíthatja, hogy a feladat tooconfigure. Ez lehetővé teszi a Speciális beállítások konfigurálása, ha nem adja meg azokat a hello gyors létrehozása varázsló.
+Az adott feladat konfigurálásához kattintson rá a **Feladatok** képernyőn. Ha a gyorslétrehozási varázslóban ezt nem tette meg, itt lehetősége van speciális beállítások konfigurálására.
 
-Az összes művelet esetében hello újrapróbálkozási házirendje és hello hiba művelet módosíthatja.
+Az újrapróbálkozási házirend és a hibakezelési művelet módosítására az összes művelettípus esetében lehetőség van.
 
-A HTTP és HTTPS Feladatművelet típusú módosíthatja hello metódus tooany engedélyezett HTTP-műveletet. Előfordulhat, hogy is hozzáadhat, törlése, vagy módosítsa a hello fejlécek és alapszintű hitelesítési adatokat.
+A HTTP- és a HTTPS-feladatok művelettípusai esetében a módszer bármely engedélyezett HTTP-parancsra módosítható. Lehetőség van továbbá a fejlécek és az egyszerű hitelesítési adatok hozzáadására, törlésére vagy módosítására is.
 
-A tároló várólista művelet típusú hello tárfiók, üzenetsornév, SAS-jogkivonat és body módosíthatja.
+Tárolásisor-művelettípusok esetében módosítható a tárfiók, az üzenetsor neve, az SAS-token és a törzs.
 
-A service bus művelet típusú hello névtér, témakör/várólista elérési útja, hitelesítési beállítások, átviteli típust, üzenet- és az üzenet törzse módosíthatja.
+Service Bus művelettípusok esetében módosítható a névtér, a témakör/üzenetsor elérési útvonala, a hitelesítési beállítások, az átvitel típusa, az üzenettulajdonságok és az üzenettörzs.
 
    ![][job-action-settings]
 
 ### <a name="schedule"></a>Ütemezés
-Ez lehetővé teszi a hello ütemezést konfigurálja újra, ha azt szeretné, hogy toochange hello ütemezés hello létrehozott gyors létrehozása varázsló.
+Ha módosítani kívánja a gyorslétrehozási varázslóban létrehozott ütemezést, itt újrakonfigurálhatja azt.
 
-Ez az egy lehetőség toobuild [ütemezése összetett és speciális ismétlődési a feladatban](scheduler-advanced-complexity.md)
+Ez lehetőséget ad [komplex és speciális, ismétlődő ütemezések létrehozására a feladathoz](scheduler-advanced-complexity.md).
 
-Módosíthatja a hello kezdő dátum és idő, illetve ismétlődő ütemezésekhez és hello lejárati dátuma és ideje (ha hello feladat ismétlődő.)
+Módosítható a kezdési dátum és időpont, az ismétlődési ütemezés, valamint a befejezési dátum és időpont (amennyiben a feladat ismétlődő jellegű).
 
    ![][job-schedule]
 
 ### <a name="history"></a>Előzmények
-Hello **előzmények** lap megjeleníti a minden feladat végrehajtása a kiválasztott metrikák hello rendszer hello kijelölt feladat. A metrikák a Feladatütemező hello állapotának valós idejű értékeit tartalmazza:
+Az adott feladathoz a rendszerben elérhető valamennyi feladat-végrehajtási mód kiválasztott adatai megjelennek az **Előzmények** lapon. Ezen adatok segítségével valós időben értékelhető a Scheduler szolgáltatás állapota:
 
 1. status  
 2. Részletek  
@@ -100,12 +100,12 @@ Hello **előzmények** lap megjeleníti a minden feladat végrehajtása a kivál
    
    ![][job-history]
 
-Rákattinthat a futtatási tooview a **előzmények részletek**, beleértve a hello teljes válasz minden végrehajtásra. Ezen a párbeszédpanelen is lehetővé teszi toocopy hello válasz toohello vágólapra.
+Az adott futtatásra kattintva megtekintheti annak **Előzményadatait**, beleértve a teljes választ minden végrehajtás esetében. Ezen párbeszédpanelről lehetőség van a válasz vágólapra másolására is.
 
    ![][job-history-details]
 
 ### <a name="users"></a>Felhasználók
-Az Azure Szerepköralapú hozzáférés-vezérlés (RBAC) részletesen beállítható hozzáférés-vezérlést biztosít az Azure Scheduler szolgáltatáshoz. Hogyan toouse hello felhasználók lapon tekintse meg a túl toolearn[átruházásához hozzáférés-vezérlés](../active-directory/role-based-access-control-configure.md)
+Az Azure Szerepköralapú hozzáférés-vezérlés (RBAC) részletesen beállítható hozzáférés-vezérlést biztosít az Azure Scheduler szolgáltatáshoz. A Felhasználók lap használatának elsajátításához lásd: [Azure szerepköralapú hozzáférés-vezérlés](../active-directory/role-based-access-control-configure.md)
 
 ## <a name="see-also"></a>Lásd még:
  [A Scheduler ismertetése](scheduler-intro.md)
@@ -114,7 +114,7 @@ Az Azure Szerepköralapú hozzáférés-vezérlés (RBAC) részletesen beállít
 
  [Csomagok és számlázás az Azure Schedulerben](scheduler-plans-billing.md)
 
- [Hogyan ütemezi a toobuild összetett és speciális ismétlődési és Azure-ütemező](scheduler-advanced-complexity.md)
+ [Komplex és speciális, ismétlődő ütemezések létrehozása az Azure Scheduler használatával](scheduler-advanced-complexity.md)
 
  [A Scheduler REST API-jának leírása](https://msdn.microsoft.com/library/mt629143)
 

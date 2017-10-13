@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate és kezelése az Azure virtuális gép használata a C# |} Microsoft Docs"
-description: "C# és az Azure Resource Manager toodeploy használja a virtuális gép és annak támogató erőforrásokat."
+title: "Létrehozását és kezelését egy Azure virtuális gépen a C# használatával |} Microsoft Docs"
+description: "C# és az Azure Resource Manager segítségével telepítheti a virtuális gép és annak támogató erőforrásokat."
 services: virtual-machines-windows
 documentationcenter: 
 author: davidmu1
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: davidmu
-ms.openlocfilehash: 8beeabde731bbaa25e68d2b9c5abbf71acbe377f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5d9021c2f65b70e36d5ea82992c9fb9d2d6d394a
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="create-and-manage-windows-vms-in-azure-using-c"></a>Létrehozása és kezelése Windows-alapú virtuális gépek az Azure-ban C# #
 
@@ -27,27 +27,27 @@ Egy [Azure virtuális gép](overview.md?toc=%2fazure%2fvirtual-machines%2fwindow
 
 > [!div class="checklist"]
 > * Visual Studio-projekt létrehozása
-> * Hello csomag telepítése
+> * A csomag telepítése
 > * Hitelesítő adatok létrehozása
 > * Erőforrások létrehozása
 > * Felügyeleti feladatok végrehajtása
 > * Erőforrások törlése
-> * Hello alkalmazás futtatása
+> * Az alkalmazás futtatása
 
-Körülbelül 20 percet toodo szükséges lépéseket.
+A lépések elvégzéséhez körülbelül 20 percet vesz igénybe.
 
 ## <a name="create-a-visual-studio-project"></a>Visual Studio-projekt létrehozása
 
-1. Ha még nem tette meg, telepítse [Visual Studio](https://docs.microsoft.com/visualstudio/install/install-visual-studio). Válassza ki **.NET asztali fejlesztési** hello munkaterhelések lap, és kattintson a **telepítése**. Az összefoglaló hello, láthatja, hogy **.NET-keretrendszer 4-4.6 Fejlesztőeszközök** automatikusan ki van jelölve meg. Ha már telepítette a Visual Studio, a Visual Studio indítója hello segítségével hello .NET munkaterhelés is hozzáadhat.
+1. Ha még nem tette meg, telepítse [Visual Studio](https://docs.microsoft.com/visualstudio/install/install-visual-studio). Válassza ki **.NET asztali fejlesztési** a munkaterhelések lapot, és kattintson a **telepítése**. Az összegzés láthatja, hogy **.NET-keretrendszer 4-4.6 Fejlesztőeszközök** automatikusan ki van jelölve meg. Ha már telepítette a Visual Studio, a .NET alkalmazások és szolgáltatások segítségével a Visual Studio indítója adhat meg.
 2. A Visual Studióban kattintson **fájl** > **új** > **projekt**.
-3. A **sablonok** > **Visual C#**, jelölje be **Konzolalkalmazás (.NET-keretrendszer)**, adja meg *myDotnetProject* hello neveként hello projekt, hello projekt, jelölje be hello helyét, és kattintson a **OK**.
+3. A **sablonok** > **Visual C#**, jelölje be **Konzolalkalmazás (.NET-keretrendszer)**, adja meg *myDotnetProject* a projekt nevét, válassza ki a projekt helyét, és kattintson **OK**.
 
-## <a name="install-hello-package"></a>Hello csomag telepítése
+## <a name="install-the-package"></a>A csomag telepítése
 
-NuGet-csomagok olyan hello legegyszerűbb módja tooinstall hello könyvtárak kell toofinish ezeket a lépéseket. tooget hello szalagtárak, amelyekre szüksége van a Visual Studio, hajtsa végre ezeket a lépéseket:
+NuGet-csomagok használata a lépések végrehajtása szükséges kódtárak telepítése a legegyszerűbb. Ahhoz, hogy a Visual Studio szükséges könyvtárak, hajtsa végre ezeket a lépéseket:
 
 1. Kattintson a **eszközök** > **Nuget-Csomagkezelő**, és kattintson a **Csomagkezelő konzol**.
-2. Hello konzolján futtassa az alábbi parancsot:
+2. Ezt a parancsot a konzolon:
 
     ```
     Install-Package Microsoft.Azure.Management.Fluent
@@ -55,11 +55,11 @@ NuGet-csomagok olyan hello legegyszerűbb módja tooinstall hello könyvtárak k
 
 ## <a name="create-credentials"></a>Hitelesítő adatok létrehozása
 
-Ez a lépés megkezdése előtt győződjön meg arról, hogy rendelkezik-e hozzáférési tooan [Active Directory szolgáltatás egyszerű](../../azure-resource-manager/resource-group-create-service-principal-portal.md). Is rögzíteni kell hello Alkalmazásazonosító, hello hitelesítési kulcs és hello Bérlőazonosító, amelyekre szüksége van egy későbbi lépésben.
+Ez a lépés megkezdése előtt győződjön meg arról, hogy rendelkezik-e a hozzáférést egy [Active Directory szolgáltatás egyszerű](../../azure-resource-manager/resource-group-create-service-principal-portal.md). Is rögzíteni kell az alkalmazás Azonosítóját, a hitelesítési kulcs és a bérlő azonosítója, amelyekre szüksége van egy későbbi lépésben.
 
-### <a name="create-hello-authorization-file"></a>Hello engedélyezési fájl létrehozása
+### <a name="create-the-authorization-file"></a>Az engedélyezési fájl létrehozása
 
-1. A Megoldáskezelőben kattintson a jobb gombbal *myDotnetProject* > **Hozzáadás** > **új elem**, majd válassza ki **szövegfájl** a *Visual C# elemek*. Nevű hello fájl *azureauth.properties*, és kattintson a **Hozzáadás**.
+1. A Megoldáskezelőben kattintson a jobb gombbal *myDotnetProject* > **Hozzáadás** > **új elem**, majd válassza ki **szövegfájl** a *Visual C# elemek*. A fájl neve *azureauth.properties*, és kattintson a **Hozzáadás**.
 2. Adja hozzá a engedélyezési tulajdonságok:
 
     ```
@@ -73,18 +73,18 @@ Ez a lépés megkezdése előtt győződjön meg arról, hogy rendelkezik-e hozz
     graphURL=https://graph.windows.net/
     ```
 
-    Cserélje le  **&lt;előfizetés-azonosító&gt;**  az előfizetés-azonosítóval rendelkező  **&lt;alkalmazásazonosító&gt;**  a hello Active Directory-alkalmazás azonosítóval  **&lt;hitelesítési kulcs&gt;**  hello alkalmazás kulccsal, és  **&lt;bérlőazonosító&gt;**  hello bérlővel azonosítója.
+    Cserélje le  **&lt;előfizetés-azonosító&gt;**  az előfizetés-azonosítóval rendelkező  **&lt;alkalmazásazonosító&gt;**  való a Active Directory-azonosítót,  **&lt;hitelesítési kulcs&gt;**  az alkalmazás kulccsal és  **&lt;bérlőazonosító&gt;**  a bérlő azonosítója.
 
-3. Hello azureauth.properties fájl mentéséhez. 
-4. A Windows hello teljes elérési útja tooauthorization létrehozott fájl AZURE_AUTH_LOCATION nevű környezeti változó értéke. Például hello a következő PowerShell-parancs használható:
+3. Mentse a azureauth.properties fájlt. 
+4. A létrehozott engedélyezési fájl teljes elérési útja AZURE_AUTH_LOCATION nevű Windows környezeti változó értéke. Például a következő PowerShell-parancs használható:
 
     ```
     [Environment]::SetEnvironmentVariable("AZURE_AUTH_LOCATION", "C:\Visual Studio 2017\Projects\myDotnetProject\myDotnetProject\azureauth.properties", "User")
     ```
 
-### <a name="create-hello-management-client"></a>Hello felügyeleti ügyfél létrehozása
+### <a name="create-the-management-client"></a>A felügyeleti ügyfél létrehozása
 
-1. Nyissa meg a Program.cs fájl hello hello projekthez létrehozott, és adja hozzá ezek az utasítások toohello meglévő utasítások segítségével a hello fájl felső:
+1. Nyissa meg a Program.cs fájlra a projekthez létrehozott, és adja hozzá ezeket a fájl felső utasítást, hogy a meglévő utasítás használatával:
 
     ```
     using Microsoft.Azure.Management.Compute.Fluent;
@@ -94,7 +94,7 @@ Ez a lépés megkezdése előtt győződjön meg arról, hogy rendelkezik-e hozz
     using Microsoft.Azure.Management.ResourceManager.Fluent.Core;
     ```
 
-2. toocreate hello felügyeleti ügyfél, a kód toohello fő metódus hozzáadása:
+2. Hozzon létre a felügyeleti ügyfél, vegye fel ezt a kódot a fő metódus:
 
     ```
     var credentials = SdkContext.AzureCredentialsFactory
@@ -109,11 +109,11 @@ Ez a lépés megkezdése előtt győződjön meg arról, hogy rendelkezik-e hozz
 
 ## <a name="create-resources"></a>Erőforrások létrehozása
 
-### <a name="create-hello-resource-group"></a>Hello erőforráscsoport létrehozása
+### <a name="create-the-resource-group"></a>Az erőforráscsoport létrehozása
 
 Minden erőforrás tartalmaznia kell egy [erőforráscsoport](../../azure-resource-manager/resource-group-overview.md).
 
-toospecify értékei alkalmazás hello és hello erőforráscsoport létrehozása, a kód toohello fő metódus hozzáadása:
+Adja meg az alkalmazás az értékét, és az erőforráscsoport létrehozásához adja hozzá ezt a kódot a fő metódus:
 
 ```
 var groupName = "myResourceGroup";
@@ -126,11 +126,11 @@ var resourceGroup = azure.ResourceGroups.Define(groupName)
     .Create();
 ```
 
-### <a name="create-hello-availability-set"></a>Hello rendelkezésre állási csoport létrehozása
+### <a name="create-the-availability-set"></a>A rendelkezésre állási csoport létrehozása
 
-[Rendelkezésre állási készletek](tutorial-availability-sets.md) könnyebben meg az alkalmazás által használt toomaintain hello virtuális gépeket.
+[Rendelkezésre állási készletek](tutorial-availability-sets.md) megkönnyíti, hogy a virtuális gépeket, amelyet az alkalmazás karbantartása.
 
-toocreate hello rendelkezésre állási beállítása, a kód toohello fő metódus hozzáadása:
+A rendelkezésre állási csoport létrehozása, vegye fel ezt a kódot a fő metódus:
 
 ```
 Console.WriteLine("Creating availability set...");
@@ -141,11 +141,11 @@ var availabilitySet = azure.AvailabilitySets.Define("myAVSet")
     .Create();
 ```
 
-### <a name="create-hello-public-ip-address"></a>Hello nyilvános IP-cím létrehozása
+### <a name="create-the-public-ip-address"></a>A nyilvános IP-cím létrehozása
 
-A [nyilvános IP-cím](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) szükséges toocommunicate hello virtuális gép van.
+A [nyilvános IP-cím](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) kommunikálni a virtuális gép van szükség.
 
-toocreate hello nyilvános IP-cím hello virtuális géphez, a kód toohello fő metódus hozzáadása:
+A nyilvános IP-cím a virtuális gép létrehozása, vegye fel ezt a kódot a fő metódus:
    
 ```
 Console.WriteLine("Creating public IP address...");
@@ -156,11 +156,11 @@ var publicIPAddress = azure.PublicIPAddresses.Define("myPublicIP")
     .Create();
 ```
 
-### <a name="create-hello-virtual-network"></a>Hello virtuális hálózat létrehozása
+### <a name="create-the-virtual-network"></a>A virtuális hálózat létrehozása
 
 Az alhálózat szerepelnie kell egy virtuális gépet egy [virtuális hálózati](../../virtual-network/virtual-networks-overview.md).
 
-toocreate egy alhálózatot és egy virtuális hálózatot, adja hozzá a kódot toohello fő metódus:
+Hozzon létre egy alhálózatot és egy virtuális hálózatot, vegye fel ezt a kódot a fő metódus:
 
 ```
 Console.WriteLine("Creating virtual network...");
@@ -172,11 +172,11 @@ var network = azure.Networks.Define("myVNet")
     .Create();
 ```
 
-### <a name="create-hello-network-interface"></a>Hello hálózati illesztő létrehozása
+### <a name="create-the-network-interface"></a>A hálózati illesztő létrehozása
 
-A virtuális gép egy hálózati illesztő toocommunicate hello virtuális hálózaton kell.
+A virtuális gépek kell a hálózati adaptert a virtuális hálózaton való kommunikációhoz.
 
-egy adott hálózati csatoló toocreate a kód toohello fő metódus hozzáadása:
+Hozzon létre egy hálózati adapter, vegye fel ezt a kódot a fő metódus:
 
 ```
 Console.WriteLine("Creating network interface...");
@@ -190,11 +190,11 @@ var networkInterface = azure.NetworkInterfaces.Define("myNIC")
     .Create();
  ```
 
-### <a name="create-hello-virtual-machine"></a>Hello virtuális gép létrehozása
+### <a name="create-the-virtual-machine"></a>A virtuális gép létrehozása
 
-Most, hogy a létrehozott összes hello erőforrások támogatása, létrehozhat egy virtuális gépet.
+Most, hogy létrehozta a támogató erőforrásokat, létrehozhat egy virtuális gépet.
 
-toocreate hello virtuális gépet, a kód toohello fő metódus hozzáadása:
+A virtuális gép létrehozásához, vegye fel ezt a kódot a fő metódus:
 
 ```
 Console.WriteLine("Creating virtual machine...");
@@ -212,11 +212,11 @@ azure.VirtualMachines.Define(vmName)
 ```
 
 > [!NOTE]
-> Ebben az oktatóanyagban létrehoz egy virtuális gépet, hello Windows Server operációs rendszer verziója. További információ az egyéb rendszerképek kiválasztásáról toolearn lásd: [keresse meg és válassza ki azokat a Windows PowerShell és az Azure parancssori felület hello Azure virtuális gép lemezképeket](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+> Ebben az oktatóanyagban létrehoz egy virtuális gépet, a Windows Server operációs rendszer verziója. Más rendszerképek kiválasztásáról kapcsolatos további információkért lásd: [keresse meg és válassza ki azokat a Windows PowerShell és az Azure CLI Azure virtuális gép lemezképeket](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 > 
 >
 
-Ha azt szeretné, hogy a meglévő lemez Piactéri rendszerkép helyett toouse, használja ezt a kódot:
+Ha szeretné használni a meglévő lemez Piactéri rendszerkép helyett, használja ezt a kódot:
 
 ```
 var managedDisk = azure.Disks.Define("myosdisk")
@@ -239,20 +239,20 @@ azure.VirtualMachines.Define("myVM")
 
 ## <a name="perform-management-tasks"></a>Felügyeleti feladatok végrehajtása
 
-A virtuális gépek hello életciklusa során szükség lehet a toorun felügyeleti feladatokhoz, mint az indítása, leállítása vagy egy virtuális gép törlése. Emellett érdemes lehet toocreate kód tooautomate ismétlődő vagy összetett feladatokat.
+A virtuális gépek életciklusa folyamán érdemes lehet indítása, leállítása vagy törlése a virtuális gépek például a felügyeleti feladatok futtatásához. Emellett érdemes bonyolult vagy ismétlődő feladatok automatizálásához kódot létrehozni.
 
-Ha kell toodo minden virtuális gép hello, tooget egy példányát kell:
+Amikor kell tennie semmit a virtuális gép, egy példányát kell:
 
 ```
 var vm = azure.VirtualMachines.GetByResourceGroup(groupName, vmName);
 ```
 
-### <a name="get-information-about-hello-vm"></a>Hello virtuális gép adatainak beolvasása
+### <a name="get-information-about-the-vm"></a>A virtuális gép adatainak beolvasása
 
-hello virtuális gép, tooget adatait a kód toohello fő metódus hozzáadása:
+Ahhoz, hogy a virtuális gép adatait, a fő metódus adja hozzá ezt a kódot:
 
 ```
-Console.WriteLine("Getting information about hello virtual machine...");
+Console.WriteLine("Getting information about the virtual machine...");
 Console.WriteLine("hardwareProfile");
 Console.WriteLine("   vmSize: " + vm.Size);
 Console.WriteLine("storageProfile");
@@ -313,87 +313,87 @@ foreach (InstanceViewStatus stat in vm.InstanceView.Statuses)
     Console.WriteLine("  level: " + stat.Level);
     Console.WriteLine("  displayStatus: " + stat.DisplayStatus);
 }
-Console.WriteLine("Press enter toocontinue...");
+Console.WriteLine("Press enter to continue...");
 Console.ReadLine();
 ```
 
-### <a name="stop-hello-vm"></a>Hello VM leállítása
+### <a name="stop-the-vm"></a>A virtuális gép leállítása
 
-Állítsa le a virtuális gépet és a beállítások megtartásához, de továbbra is toobe felszámított, vagy állítsa le a virtuális gépet, és azt felszabadítani. Ha egy virtuális gép fel van szabadítva, vele társított összes erőforrás is felszabadított és számlázási végpontjainak.
+Állítsa le a virtuális gépet és a beállítások megőrzése, de továbbra is azt számlázni, vagy állítsa le a virtuális gépet, és azt felszabadítani. Ha egy virtuális gép fel van szabadítva, vele társított összes erőforrás is felszabadított és számlázási végpontjainak.
 
-toostop hello virtuális gép felszabadítása, nélkül adja hozzá a kódot toohello fő metódus:
+A virtuális gép leállítása nélkül felszabadítása azt, vegye fel ezt a kódot a fő metódus:
 
 ```
 Console.WriteLine("Stopping vm...");
 vm.PowerOff();
-Console.WriteLine("Press enter toocontinue...");
+Console.WriteLine("Press enter to continue...");
 Console.ReadLine();
 ```
 
-Ha azt szeretné, hogy toodeallocate hello virtuális gép, módosítsa a hello kikapcsolt hívás toothis kódot:
+Ha a virtuális gép felszabadítása, módosítsa ezt a kódot kikapcsolt hívása:
 
 ```
 vm.Deallocate();
 ```
 
-### <a name="start-hello-vm"></a>Indítsa el a virtuális gép hello
+### <a name="start-the-vm"></a>Indítsa el a virtuális Gépet
 
-toostart hello virtuális gépet, a kód toohello fő metódus hozzáadása:
+Indítsa el a virtuális gépet, vegye fel ezt a kódot a fő metódus:
 
 ```
 Console.WriteLine("Starting vm...");
 vm.Start();
-Console.WriteLine("Press enter toocontinue...");
+Console.WriteLine("Press enter to continue...");
 Console.ReadLine();
 ```
 
-### <a name="resize-hello-vm"></a>Automatikus oszlopszélesség hello méretű VM
+### <a name="resize-the-vm"></a>A virtuális gép átméretezésével
 
 Telepítési sok szempontját figyelembe kell venni, amikor eldönti, a virtuális gép méretét. További információkért lásd: [Virtuálisgép-méretek](sizes.md).  
 
-hello virtuális gép, toochange mérete a kód toohello fő metódus hozzáadása:
+Ha módosítani szeretné a virtuális gép méretét, adja hozzá ezt a kódot a fő metódus:
 
 ```
 Console.WriteLine("Resizing vm...");
 vm.Update()
     .WithSize(VirtualMachineSizeTypes.StandardDS2) 
     .Apply();
-Console.WriteLine("Press enter toocontinue...");
+Console.WriteLine("Press enter to continue...");
 Console.ReadLine();
 ```
 
-### <a name="add-a-data-disk-toohello-vm"></a>Adja hozzá a adatok lemez toohello méretű VM
+### <a name="add-a-data-disk-to-the-vm"></a>Adatlemez hozzáadása a virtuális gép
 
-tooadd adatok lemez toohello virtuális gép, a kód toohello fő metódus tooadd, amely 2 GB-nál, 0 és a gyorsítótárazási ReadWrite a logikai egység han adatlemez hozzáadása:
+Adatlemez hozzáadása a virtuális gépet, adja hozzá ezt a kódot a fő metódus, amely 2 GB-nál, 0 és a gyorsítótárazási ReadWrite a logikai egység han adatlemez hozzáadása:
 
 ```
-Console.WriteLine("Adding data disk toovm...");
+Console.WriteLine("Adding data disk to vm...");
 vm.Update()
     .WithNewDataDisk(2, 0, CachingTypes.ReadWrite) 
     .Apply();
-Console.WriteLine("Press enter toodelete resources...");
+Console.WriteLine("Press enter to delete resources...");
 Console.ReadLine();
 ```
 
 ## <a name="delete-resources"></a>Erőforrások törlése
 
-Mivel az Azure-ban használt erőforrásokhoz van szó, még mindig célszerű toodelete erőforrásokat, amelyek már nem szükséges. Ha azt szeretné, hogy toodelete hello virtuális gépek és erőforrások támogató összes hello, minden toodo van hello erőforrás csoport törlése.
+Mivel az Azure-ban használt erőforrásokhoz van szó, ajánlott mindig törli az erőforrást, amely már nem szükséges. Ha törölni szeretné a virtuális gépek és a támogató erőforrásokat, meg kell nyitnia csak törölje a csoportot.
 
-toodelete hello erőforrás csoportjában adja hozzá a kódot toohello fő metódus:
+Törölje a csoportot, vegye fel ezt a kódot a fő metódus:
 
 ```
 azure.ResourceGroups.DeleteByName(groupName);
 ```
 
-## <a name="run-hello-application"></a>Hello alkalmazás futtatása
+## <a name="run-the-application"></a>Az alkalmazás futtatása
 
-Akkor kell a konzol alkalmazás toorun teljesen a start toofinish körülbelül öt percet is igénybe vehet. 
+Öt perc a konzol alkalmazás teljesen futtatásához indítás kell vennie a befejezéshez. 
 
-1. toorun hello konzolalkalmazást, kattintson a **Start**.
+1. Futtassa a konzolalkalmazást, kattintson a **Start**.
 
-2. Ahhoz, hogy nyomja le az ENTER **Enter** toostart törlése erőforrásokat, készíthet néhány perc múlva hello erőforrások tooverify hello létrehozását a hello Azure-portálon. Kattintson a hello telepítési toosee telepítésére vonatkozó állapotadatok hello.
+2. Ahhoz, hogy nyomja le az ENTER **Enter** erőforrások törlése elindításához eltarthat néhány percig az Azure-portálon az erőforrások létrehozásának ellenőrzése. Kattintson a telepítés állapota a telepítéssel kapcsolatos információk megjelenítéséhez.
 
 ## <a name="next-steps"></a>Következő lépések
-* Kihasználhatja a egy sablon toocreate használatával egy virtuális gép hello témakörben található információk alapján [központi telepítése egy Azure virtuális gépen a C# és a Resource Manager-sablon használatával](csharp-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
-* További információ hello [Azure-könyvtárakban .NET](https://docs.microsoft.com/dotnet/azure/?view=azure-dotnet).
+* Sablon használatával hozhat létre egy virtuális gép található információk segítségével előnyeit [központi telepítése egy Azure virtuális gépen a C# és a Resource Manager-sablon használatával](csharp-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+* További információ a [Azure-könyvtárakban .NET](https://docs.microsoft.com/dotnet/azure/?view=azure-dotnet).
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Cosmos DB .NET SDK & erőforrások |} Microsoft Docs"
-description: "Tudnivalók az hello .NET API és az SDK kiadási dátum, használatból való kivonást dátumok és módosítások hello Azure Cosmos DB .NET SDK verziói között."
+title: "Az Azure Cosmos DB .NET SDK & erőforrások |} Microsoft Docs"
+description: "Tudnivalók a .NET API és SDK, beleértve a kiadási dátum, használatból való kivonást dátumok és az Azure Cosmos DB .NET SDK verziói között végrehajtott módosításokat."
 services: cosmos-db
 documentationcenter: .net
 author: rnagpal
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 08/11/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 0ec30e0130067a9b8d4c9176cf7465bac8925bf9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 317792e04244a96cf8e47bc7e4a7f633f7a6d8c3
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="azure-cosmos-db-net-sdk-download-and-release-notes"></a>Az Azure DB .NET SDK Cosmos: Töltse le és kibocsátási megjegyzések
 > [!div class="op_single_selector"]
@@ -43,7 +43,7 @@ ms.lasthandoff: 10/06/2017
 
 <tr><td>**Példák**</td><td>[.NET-Kódminták](documentdb-dotnet-samples.md)</td></tr>
 
-<tr><td>**Első lépések**</td><td>[Ismerkedés az Azure Cosmos DB .NET SDK hello](documentdb-get-started.md)</td></tr>
+<tr><td>**Első lépések**</td><td>[Ismerkedés az Azure Cosmos DB .NET SDK-val](documentdb-get-started.md)</td></tr>
 
 <tr><td>**Webes alkalmazás oktatóanyag**</td><td>[Webalkalmazás fejlesztése a Azure Cosmos DB](documentdb-dotnet-application.md)</td></tr>
 
@@ -54,15 +54,15 @@ ms.lasthandoff: 10/06/2017
 
 ### <a name="a-name11701170"></a><a name="1.17.0"/>1.17.0 
 
-* Mint a lekérdezési eredmények tooa adott partíciótartomány kulcs-érték hatókörének egy FeedOption PartitionKeyRangeId támogatása. 
-* Egy ChangeFeedOption toostart időnek az elteltével hello módosítások keres, StartTime támogatása.
+* Mint a lekérdezési eredmények kulcs adott partíció tartományértéke hatókörének egy FeedOption PartitionKeyRangeId támogatása. 
+* StartTime, keressen a módosítások idő lejárta után egy ChangeFeedOption támogatása.
 
 ### <a name="a-name11611161"></a><a name="1.16.1"/>1.16.1
-* Rögzített hello JsonSerializable osztály, amely a verem túlcsordulás kivételt okozhat problémát.
+* Rögzített problémát okozhat a verem túlcsordulásos kivétel JsonSerializable osztályból.
 
 ### <a name="a-name11601160"></a><a name="1.16.0"/>1.16.0
-*   Megtörtént egy probléma javítása újrafordítás hello alkalmazásra, amely egy nem kötelező paraméter a hello DocumentClient konstruktor JsonSerializerSettings toohello bevezetése miatt a szükséges.
-* Megjelölt hello DocumentClient konstruktor elavult, amely szükséges JsonSerializerSettings ConnectionPolicy és ConsistencyLevel paraméterek alapértelmezett értékét az utolsó paraméter tooallow hello történő átadásakor JsonSerializerSettings paraméterben.
+*   Megtörtént egy probléma javítása, az alkalmazás, egy nem kötelező paraméter a DocumentClient konstruktorban JsonSerializerSettings bevezetése miatt újrafordítás szükségesek.
+* A DocumentClient konstruktor elavultként megjelölve, hogy az utolsó paraméter alapértelmezett értéke ConnectionPolicy lehetővé és ConsistencyLevel paraméterek szükséges JsonSerializerSettings történő átadásakor JsonSerializerSettings paraméterben.
 
 ### <a name="a-name11501150"></a><a name="1.15.0"/>1.15.0
 *   Támogatása az egyéni JsonSerializerSettings megadása közben példányának [DocumentClient](/dotnet/api/microsoft.azure.documents.client.documentclient?view=azure-dotnet).
@@ -73,9 +73,9 @@ ms.lasthandoff: 10/06/2017
 ### <a name="a-name11401140"></a><a name="1.14.0"/>1.14.0
 *   Egy új konzisztenciaszint támogatása ConsistentPrefix nevezik.
 *   Az egyes partíciók lekérdezési metrikák támogatása.
-*   Támogatja a hello folytatási kód lekérdezések hello mérete korlátozza.
+*   Támogatja a lekérdezések a folytatási kód mérete korlátozza.
 *   Sikertelen kérelmek nyomkövetése részletesebb támogatása.
-*   Hello SDK végzett néhány teljesítménynövekedést.
+*   Az SDK-val végzett néhány teljesítménynövekedést.
 
 ### <a name="a-name11341134"></a><a name="1.13.4"/>1.13.4
 * Gyakorlatilag ugyanaz, mint a 1.13.3. Néhány belső módosítja.
@@ -84,96 +84,96 @@ ms.lasthandoff: 10/06/2017
 * Gyakorlatilag ugyanaz, mint a 1.13.2. Néhány belső módosítja.
 
 ### <a name="a-name11321132"></a><a name="1.13.2"/>1.13.2
-* Megtörtént egy probléma javítása, amelyik mellőzve hello PartitionKey értéket összesítő lekérdezések FeedOptions megadott.
+* Megtörtént egy probléma javítása, amely figyelmen kívül hagyta a megadott FeedOptions összesített lekérdezések PartitionKey érték.
 * Megtörtént egy probléma javítása átlátszó kezelésében, partíció felügyeleti közepes repülési kereszt-partíció Order By lekérdezés végrehajtása közben.
 
 ### <a name="a-name11311131"></a><a name="1.13.1"/>1.13.1
-* Rögzített egyes hello aszinkron API-k használatakor az ASP.NET környezet belül holtpont okozó problémát.
+* Rögzített egyes az async API-k használatakor az ASP.NET környezet belül holtpont okozó problémát.
 
 ### <a name="a-name11301130"></a><a name="1.13.0"/>1.13.0
-* Kijavítja a toomake SDK több rugalmas tooautomatic feladatátvételi bizonyos körülmények között.
+* Kijavítja a SDK rugalmasabb, így az Automatikus feladatátvétel bizonyos körülmények között.
 
 ### <a name="a-name11221122"></a><a name="1.12.2"/>1.12.2
-* Javítsa ki a WebException alkalmanként okozó hibát: hello távoli név nem sikerült feloldani.
-* Hozzáadott hello támogatása típusos dokumentumok közvetlenül olvasásakor új túlterhelések tooReadDocumentAsync API hozzáadásával.
+* Javítsa ki a WebException alkalmanként okozó hibát: A távoli név nem sikerült feloldani.
+* Támogatása a típusos dokumentumok közvetlenül olvasásakor ReadDocumentAsync API új túlterhelések hozzáadásával.
 
 ### <a name="a-name11211121"></a><a name="1.12.1"/>1.12.1
 * LINQ támogatása (COUNT, MIN, MAX, SUM és átlagos) összesítési lekérdezések.
-* Javítsa ki a hello ConnectionPolicy objektum eseménykezelő hello használata okozza a problémát.
+* Javítsa ki a problémát az az oka eseménykezelő ConnectionPolicy objektum.
 * Javítsa ki a hibát, amelynek UpsertAttachmentAsync lett nem működik ETag használatakor.
 * Javítsa ki a hibát, amelynek több partíciót az order by lekérdezés folytatási nem dolgozott rendezéskor karakterláncmező.
 
 ### <a name="a-name11201120"></a><a name="1.12.0"/>1.12.0
 * Összesítési lekérdezéseket (COUNT, MIN, MAX, SUM és átlagos) támogatása. Lásd: [összesítési támogatási](documentdb-sql-query.md#Aggregates).
-* A particionált gyűjtemények 10,100 RU/mp too2500 RU/mp a minimális átviteli szintűre csökkent.
+* Minimális átviteli sebességet 2500 RU/mp 10,100 RU/mp a particionált gyűjtemények szintűre csökkent.
 
 ### <a name="a-name11141114"></a><a name="1.11.4"/>1.11.4
-* Egy hiba, amelynek hello kereszt-partíció lekérdezések némelyike nem került sor a hello 32 bites gazdafolyamat javítása.
-* Javítsa ki a hibát, amelynek hello munkamenet tároló nem frissítése hello tokenhez tartozó átjáró módban.
+* Javítsa ki a hibát, amelynek a kereszt-partíció lekérdezések némelyike nem került sor a 32 bites állomás folyamatban.
+* Javítsa ki a hibát, amelynek a munkamenet-tároló nem frissítése a tokenhez tartozó átjáró módban.
 * Javítsa ki a hibát, amelynek UDF hívások leképezése a lekérdezés nem működött, bizonyos esetekben.
-* Ügyfél oldali teljesítmény javítását hello növelése írási és olvasási hello kapacitásának.
+* Ügyféloldali teljesítményt javítások növelésében az olvasási és írási kérelmeket.
 
 ### <a name="a-name11131113"></a><a name="1.11.3"/>1.11.3
-* Javítsa ki a hibát, amelynek hello munkamenet tároló nem frissítése a sikertelen kérelmek hello tokenhez.
-* A 32 bites gazdafolyamat hello SDK toowork támogatása. Vegye figyelembe, hogy több partíció lekérdezések használatakor, 64 bites állomás feldolgozása ajánlott javítja a teljesítményt.
+* Javítsa ki a hibát, amelynek a munkamenet-tároló nem frissítése a sikertelen kérelmek lexikális eleme.
+* Az SDK 32 bites gazdafolyamat működni támogatása. Vegye figyelembe, hogy több partíció lekérdezések használatakor, 64 bites állomás feldolgozása ajánlott javítja a teljesítményt.
 * Javítja a teljesítményt nagy számú partíciós kulcs értékét IN kifejezésben lekérdezések érintő forgatókönyvek.
-* Hello ResourceResponse a különböző erőforrás kvótájának statisztikák töltődik fel tagokkal, a PopulateQuotaInfo kérelem beállítás kiolvasni kérelmek dokumentumgyűjteményt.
+* Az olvasási kérésekre, amikor PopulateQuotaInfo kérelem beállítás dokumentumgyűjteményt ResourceResponse a különböző erőforrás kvótájának statisztikák feltöltve.
 
 ### <a name="a-name11111111"></a><a name="1.11.1"/>1.11.1
-* Hello 1.11.0 bevezetett CreateDocumentCollectionIfNotExistsAsync API kisebb teljesítményének javítása.
-* Teljesítmény – javítás az SDK hello az egyidejű kérelmek magas fokú forgatókönyveit.
+* Kis teljesítmény javítása a 1.11.0 bevezetett CreateDocumentCollectionIfNotExistsAsync API.
+* Teljesítmény javítás az SDK az egyidejű kérelmek magas fokú forgatókönyveit.
 
 ### <a name="a-name11101110"></a><a name="1.11.0"/>1.11.0
-* Új osztályok és módszerek tooprocess hello támogatása [adatcsatorna módosítása](change-feed.md) dokumentumok egy gyűjteményen belül.
+* Támogatja az új osztályok és feldolgozni módszereket a [adatcsatorna módosítása](change-feed.md) dokumentumok egy gyűjteményen belül.
 * Kereszt-partíciólekérdezés folytatási és néhány teljesítmény fejleszthetjük tovább a kereszt-partíció lekérdezések támogatása.
 * CreateDatabaseIfNotExistsAsync és CreateDocumentCollectionIfNotExistsAsync metódusok hozzáadásával.
 * LINQ rendszer funkciók támogatása: IsDefined, IsNull és IsPrimitive.
-* Javítsa ki az automatikus binplacing Microsoft.Azure.Documents.ServiceInterop.dll és DocumentDB.Spatial.Sql.dll szerelvények tooapplication a bin mappa project.json tooling rendelkező projektek hello Nuget-csomag használata esetén.
+* Javítsa ki az automatikus binplacing Microsoft.Azure.Documents.ServiceInterop.dll és DocumentDB.Spatial.Sql.dll szerelvények az alkalmazás bin mappát, amelyek project.json tooling projektek a Nuget-csomag használata esetén.
 * Támogatja az ügyfél oldali ETW nyomkövetési adatokat a hibakeresés forgatókönyvek hasznosak lehetnek, amelyek kibocsátó.
 
 ### <a name="a-name11001100"></a><a name="1.10.0"/>1.10.0
 * A particionált gyűjtemények hozzáadott közvetlen kapcsolat támogatása.
-* A kötött elavulási konzisztencia szint hello teljesítménye javult.
+* A kötött elavulási konzisztencia szint javítja a teljesítményt.
 * A hozzáadott sokszög és LineString adattípusok indexelő házirend geokerítések térbeli lekérdezéseket a gyűjtemény meg.
 * LINQ támogatása StringEnumConverter, IsoDateTimeConverter és UnixDateTimeConverter predikátumok részére történő lefordításakor.
 * Különböző SDK hibajavításokat tartalmaz.
 
 ### <a name="a-name195195"></a><a name="1.9.5"/>1.9.5
-* Megtörtént egy probléma javítása, hogy a következő NotFoundException okozta hello: hello olvassa el a munkamenet nem érhető el hello bemeneti munkameneti jogkivonat. Ez a kivétel történt bizonyos esetekben hello olvasás-régió, egy földrajzilag elosztott fiók lekérdezésekor.
-* Elérhetőségi hello hello ResourceResponse osztályt, amely lehetővé teszi, hogy a közvetlen hozzáférést toohello alapul szolgáló adatfolyamon választ a ResponseStream tulajdonságot.
+* Megtörtént egy probléma javítása, ami miatt a következő NotFoundException: az olvasási munkamenet nem érhető el a bemeneti munkameneti jogkivonat. A kivétel történt bizonyos esetekben egy földrajzilag elosztott fiók olvasás-régió lekérdezésekor.
+* A ResponseStream tulajdonság a ResourceResponse osztály, amely lehetővé teszi a közvetlen hozzáférés az alapul szolgáló adatfolyamba választ kitéve.
 
 ### <a name="a-name194194"></a><a name="1.9.4"/>1.9.4
-* Módosított hello ResourceResponse, FeedResponse, StoredProcedureResponse és MediaResponse osztályok tooimplement hello megfelelő nyilvános csatoló, így azokat a központi telepítés (TDD) alapú teszteléséhez kell mocked.
+* A megfelelő nyilvános felület megvalósítása, így azokat a központi telepítés (TDD) alapú teszteléséhez kell mocked ResourceResponse, FeedResponse, StoredProcedureResponse és MediaResponse osztályok módosítani.
 * Rögzített egyéni JsonSerializerSettings objektumot a szerializálási adatok használata esetén egy nem megfelelően formázott partíció kulcs fejléc okozó problémát.
 
 ### <a name="a-name193193"></a><a name="1.9.3"/>1.9.3
-* Megtörtént egy probléma javítása, ami hosszú ideig futó lekérdezések toofail a következő hiba miatt: engedélyezési jogkivonat érvénytelen hello a jelenlegi időpontnál.
-* Rögzített eltávolított problémát hello az eredeti SqlParameterCollection közötti partíció felső/szerint lekérdezések.
+* Megtörtént egy probléma javítása, amelyek hosszú ideig futó lekérdezések sikertelen a következő hiba miatt: engedélyezési lexikális elem nem érvényes az aktuális időpontban.
+* Megtörtént egy probléma javítása, az eredeti SqlParameterCollection közötti partíció felső/szerint lekérdezések megszűnt.
 
 ### <a name="a-name192192"></a><a name="1.9.2"/>1.9.2
 * Támogatja a particionált gyűjtemények párhuzamos lekérdezések.
 * Támogatja a particionált gyűjtemények ORDER BY és a felső lekérdezések partíció közötti.
-* Rögzített hello hivatkozások tooDocumentDB.Spatial.Sql.dll és Microsoft.Azure.Documents.ServiceInterop.dll által igényelt való hivatkozáskor Azure Cosmos DB projektben egy hivatkozás toohello Azure Cosmos DB Nuget csomag hiányzik.
-* Rögzített hello képességét toouse paraméterek különböző típusú LINQ a felhasználó által definiált függvények használata esetén. 
-* Rögzített globálisan replikált fiókok programhiba, ahol alatt álló Upsert hívások volt irányított tooread helyek írási helyek helyett.
-* A hozzáadott metódusok toohello IDocumentClient felület, amely hiányzik: 
+* A hiányzó hivatkozások DocumentDB.Spatial.Sql.dll és Microsoft.Azure.Documents.ServiceInterop.dll által igényelt való hivatkozáskor az Azure Cosmos DB-projektek az Azure Cosmos DB Nuget-csomag hivatkozást rögzített.
+* Rögzített különböző típusú paramétereket használhatja, amikor a felhasználó által definiált függvények LINQ használatával. 
+* Rögzített globálisan replikált fiókok programhiba, ahol Upsert hívások olvassa el a helyek helyett írási helyek volt irányítja.
+* A hozzáadott módszerek a IDocumentClient felületre hiányzik: 
   * UpsertAttachmentAsync metódus azon definícióváltozatát, mediaStream és paraméterekként beállítások
   * CreateAttachmentAsync metódus azon definícióváltozatát, beállítások, mint egy paraméter
   * CreateOfferQuery metódus, amely querySpec paramétert fogad.
-* Lezáratlan nyilvános osztályok, hello IDocumentClient felületen elérhetővé tett tárolókra.
+* Lezáratlan nyilvános osztályok, a IDocumentClient felületen elérhetővé tett tárolókra.
 
 ### <a name="a-name180180"></a><a name="1.8.0"/>1.8.0
-* Több területi adatbázis fiókok hozzáadott hello támogatása.
-* Próbálkozzon újra a szabályozottan halmozott kérelmek támogatása.  Felhasználói testre szabhatja az újrapróbálkozások számát hello és hello maximális várakozási idő hello ConnectionPolicy.RetryOptions tulajdonság megadásával.
-* Egy új IDocumentClient felületet, amely meghatározza az összes DocumenClient tulajdonságai és metódusai hello aláírások hozzá.  Ez a változás részeként is megváltozott, IQueryable és IOrderedQueryable toomethods létrehoz a hello DocumentClient osztály kiterjesztésmetódusok.
-* Konfigurációs beállítás tooset hello ServicePoint.ConnectionLimit egy adott Azure Cosmos DB-végpont Uri hozzá.  Használja a ConnectionPolicy.MaxConnectionLimit toochange hello alapértelmezett értéket, amely too50 van beállítva.
+* Több területi adatbázis fiókok támogatása.
+* Próbálkozzon újra a szabályozottan halmozott kérelmek támogatása.  Felhasználó a ConnectionPolicy.RetryOptions tulajdonság megadásával testre szabhatja az újrapróbálkozások száma és a maximális várakozási idő.
+* Egy új IDocumentClient felületet, amely meghatározza az összes DocumenClient tulajdonságai és metódusai aláírásai hozzá.  Ez a változás részeként, hogy az IQueryable és IOrderedQueryable létesíthet a DocumentClient osztály metódusai kiterjesztésmetódusok megváltozik.
+* A hozzáadott konfigurációs beállítást egy adott Azure Cosmos DB-végpont Uri ServicePoint.ConnectionLimit beállításához.  ConnectionPolicy.MaxConnectionLimit segítségével módosíthatja az alapértelmezett érték 50 értékre van állítva.
 * Elavult IPartitionResolver és a megvalósítása.  IPartitionResolver támogatása elavult. Magasabb tárolási és átviteli particionált gyűjtemények használata ajánlott.
 
 ### <a name="a-name171171"></a><a name="1.7.1"/>1.7.1
-* Hozzáadott egy túlterhelési tooUri alapú ExecuteStoredProcedureAsync metódus azon definícióváltozatát, RequestOptions paramétert.
+* Hozzáadott URI túlterhelés alapú ExecuteStoredProcedureAsync metódus azon definícióváltozatát, RequestOptions paramétert.
 
 ### <a name="a-name170170"></a><a name="1.7.0"/>1.7.0
-* Időigényessé toolive (TTL) dokumentumok támogatása.
+* A hozzáadott idő live (TTL)-támogatás a dokumentumok.
 
 ### <a name="a-name163163"></a><a name="1.6.3"/>1.6.3
 * A .NET SDK Nuget csomagban programhiba rögzíteni csomagolás egy Azure Cloud Service megoldás részeként.
@@ -182,24 +182,24 @@ ms.lasthandoff: 10/06/2017
 * Megvalósított [particionált gyűjtemények](partition-data.md) és [felhasználói teljesítményszintet](performance-levels.md). 
 
 ### <a name="a-name153153"></a><a name="1.5.3"/>1.5.3
-* **[Rögzített]**  Lekérdezése Azure Cosmos DB végpont jelez: "System.Net.Http.HttpRequestException: Hiba történt a tartalom tooa adatfolyam másolása".
+* **[Rögzített]**  Lekérdezése Azure Cosmos DB végpont jelez: "System.Net.Http.HttpRequestException: Hiba történt egy adatfolyamba történő tartalommásoláskor".
 
 ### <a name="a-name152152"></a><a name="1.5.2"/>1.5.2
 * Bővített LINQ támogatja, beleértve az új operátorok lapozási, a feltételes kifejezések és összehasonlító között.
-  * Operátor tooenable válasszon felső viselkedés LINQ a hálózatról
-  * CompareTo operátor tooenable karakterlánc tartomány módon történő összehasonlítása
+  * Engedélyezni a felső válassza ki a "LINQ" operátor igénybe
+  * CompareTo operátor karakterlánc tartomány összehasonlítása
   * Feltételes (?) és a coalesce operátorok (?)
 * **[Rögzített]**  ArgumentOutOfRangeException modell leképezése egyesítésekor Where-a LINQ lekérdezés. [#81](https://github.com/Azure/azure-documentdb-dotnet/issues/81)
 
 ### <a name="a-name151151"></a><a name="1.5.1"/>1.5.1
-* **[Rögzített]**  Ha válassza nincs hello utolsó kifejezés hello LINQ szolgáltatónál feltételezve, hogy nincs leképezés, és válasszon előállított * nem megfelelő.  [#58](https://github.com/Azure/azure-documentdb-dotnet/issues/58)
+* **[Rögzített]**  Ha válassza nincs utolsó kifejezés a LINQ szolgáltatónál feltételezve, hogy nincs leképezés, és válasszon előállított * nem megfelelő.  [#58](https://github.com/Azure/azure-documentdb-dotnet/issues/58)
 
 ### <a name="a-name150150"></a><a name="1.5.0"/>1.5.0
 * Megvalósított Upsert, UpsertXXXAsync hozzáadott metódusok
 * Minden olyan kérelem esetében a teljesítménnyel kapcsolatos fejlesztések
 * LINQ szolgáltatónál támogatása feltételes, coalesce, és karakterláncokat CompareTo módszerei
-* **[Rögzített]**  LINQ-szolgáltató--> megvalósítása tartalmazza a lista toogenerate metódusa azonos SQL hello az IEnumerable és tömb
-* **[Rögzített]**  BackoffRetryUtility használja ismét egy új újrapróbálkozáskor létrehozása helyett azonos HttpRequestMessage hello
+* **[Rögzített]**  LINQ-szolgáltató--> metódus megvalósítása tartalmaz listán az azonos SQL létrehozásához az IEnumerable és tömb
+* **[Rögzített]**  BackoffRetryUtility használja az ugyanazon HttpRequestMessage újra egy új újrapróbálkozáskor létrehozása helyett
 * **[Elavult]**  UriFactory.CreateCollection--> UriFactory.CreateDocumentCollection használja
 
 ### <a name="a-name141141"></a><a name="1.4.1"/>1.4.1
@@ -207,8 +207,8 @@ ms.lasthandoff: 10/06/2017
 
 ### <a name="a-name140140"></a><a name="1.4.0"/>1.4.0
 * Azonosító-alapú útválasztási hozzáadva
-  * Az azonosító-alapú erőforrás hivatkozásokat hozhat létre új UriFactory segítő tooassist
-  * A DocumentClient tootake az URI új túlterhelések
+  * Új UriFactory segítő segít hozhat létre, azonosító-alapú erőforrás-hivatkozások
+  * Az URI érvénybe DocumentClient be új túlterhelések
 * A hozzáadott IsValid() és a földrajzi LINQ IsValidDetailed()
 * Fokozott LINQ szolgáltatónál támogatják:
   * **Matematikai** -Abs, ARCCOS, ARCSIN, Atan Cos Exp, emelet, napló, Log10, Pow, ciklikus, bejelentkezési, EG, Sqrt, Tan, felső határának Truncate
@@ -228,17 +228,17 @@ ms.lasthandoff: 10/06/2017
 
 ### <a name="a-name120120"></a><a name="1.2.0"/>1.2.0
 * Függőség hozzáadta a Newtonsoft.Json v5.0.7.
-* Order By toosupport elvégzett módosításokat:
+* Végrehajtott módosítások Order By támogatásához:
   
   * Támogatott a LINQ szolgáltatók OrderBy() vagy OrderByDescending()
-  * Order By IndexingPolicy toosupport 
+  * Order By támogatásához IndexingPolicy 
     
     **Lehetséges használhatatlanná tévő változást** 
     
-    Ha a meglévő kódot, hogy rendelkezések gyűjteményeket, amelyek egyéni indexelési házirendet, a meglévő kódot kell toobe toosupport hello új IndexingPolicy osztály frissítése. Ha még nincs egyéni indexelési házirendet, majd a módosítás nem hatása a felhasználókra.
+    Ha a meglévő kódot, hogy rendelkezések gyűjteményeket, amelyek egyéni indexelési házirendet, majd a meglévő kódot frissíteni kell az új IndexingPolicy osztály támogatásához. Ha még nincs egyéni indexelési házirendet, majd a módosítás nem hatása a felhasználókra.
 
 ### <a name="a-name110110"></a><a name="1.1.0"/>1.1.0
-* Támogatása az adatok particionálása hello új HashPartitionResolver és RangePartitionResolver osztályok és hello IPartitionResolver használatával.
+* Támogatja a particionálás adatokat az új HashPartitionResolver és RangePartitionResolver osztályok és az IPartitionResolver használatával.
 * A hozzáadott DataContract szerializálása.
 * A hozzáadott GUID támogatja a LINQ szolgáltatónál.
 * A hozzáadott UDF LINQ támogatja.
@@ -247,11 +247,11 @@ ms.lasthandoff: 10/06/2017
 * GA SDK
 
 ## <a name="release--retirement-dates"></a>Kiadás & használatból való kivonást dátumok
-A Microsoft biztosít értesítési legalább **12 hónapon keresztül** előre kivonása az SDK-t rendelés toosmooth hello átmenet tooa vagy újabb támogatott verzióra.
+A Microsoft biztosít értesítési legalább **12 hónapon keresztül** SDK eltávolítása érdekében vagy újabb támogatott verzióra való áttérés előtt.
 
-Új szolgáltatásait és funkcióit és optimalizálás csak hozzáadott toohello aktuális SDK-t, így javasolt, hogy Ön mindig frissítési toohello SDK legújabb lehető leghamarabb. 
+Új szolgáltatásait és funkcióit és optimalizálás csak hozzá az aktuális SDK, így javasoljuk, hogy mindig a legújabb SDK verzióra frissít legkorábban lehető. 
 
-A kérelmek tooAzure hello szolgáltatás elutasítja a Cosmos DB kivont SDK használatával.
+A szolgáltatás bármely Azure Cosmos DB kivont SDK használatával kérelmeket visszautasítja.
 
 <br/>
 
@@ -301,5 +301,5 @@ A kérelmek tooAzure hello szolgáltatás elutasítja a Cosmos DB kivont SDK has
 [!INCLUDE [cosmos-db-sdk-faq](../../includes/cosmos-db-sdk-faq.md)]
 
 ## <a name="see-also"></a>Lásd még:
-toolearn Cosmos DB kapcsolatos további információkért lásd: [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) szolgáltatás lapján. 
+A Cosmos DB kapcsolatos további információkért lásd: [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) szolgáltatás lapján. 
 

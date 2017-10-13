@@ -1,6 +1,6 @@
 ---
-title: "Hitelesítés és az Azure MFA kiszolgáló aaaRADIUS |} Microsoft Docs"
-description: "Ez a hello Azure multi-factor authentication oldal, amely segíti a RADIUS-hitelesítés és az Azure multi-factor Authentication kiszolgáló üzembe helyezése."
+title: "RADIUS-hitelesítés és Azure MFA-kiszolgáló | Microsoft Docs"
+description: "Ez az Azure Multi-Factor Authentication-oldal segítséget nyújt a RADIUS-hitelesítés és az Azure Multi-Factor Authentication-kiszolgáló telepítéséhez."
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -11,69 +11,74 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/26/2017
+ms.date: 08/25/2017
 ms.author: kgremban
-ms.reviewer: yossib
+ms.reviewer: 
 ms.custom: H1Hack27Feb2017, it-pro
-ms.openlocfilehash: dac061b83f2657c67192a7aa9c5de63ffeffaaa8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4dfa56ba6f80193e643965b97b6439c62f7873e0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="integrate-radius-authentication-with-azure-multi-factor-authentication-server"></a>RADIUS-hitelesítés integrálása az Azure Multi-Factor Authentication-kiszolgálóval
-Azure MFA kiszolgáló tooenable szakasza hello RADIUS-hitelesítés használatára, és konfigurálja a RADIUS-hitelesítés. RADIUS, egy szabványos protokoll tooaccept hitelesítési kérelmek és tooprocess ezeket a kérelmeket. hello Azure multi-factor Authentication kiszolgáló RADIUS-kiszolgálóként működik. Szúrja be a RADIUS-ügyfél (VPN-készülék) és a hitelesítési célpont, legyen az Active Directory (AD), az LDAP-címtárhoz vagy egy másik RADIUS kiszolgáló tooadd Azure multi-factor Authentication között. Azure multi-factor Authentication (MFA) toofunction konfigurálnia kell hello Azure MFA kiszolgáló így képes legyen kommunikálni mind a hello ügyfélkiszolgálókkal, mind a hello hitelesítési célpont. hello Azure MFA kiszolgáló fogadja a RADIUS-ügyfelek kérelmeit, ellenőrzi a célon hello hitelesítés hitelesítő adatait, Azure multi-factor Authentication ad, és elküldi egy válasz hátsó toohello RADIUS-ügyfél. hello hitelesítési kérelem csak akkor sikeres, ha hello elsődleges hitelesítési és hello Azure multi-factor Authentication hitelesítés is sikeres.
+
+A RADIUS egy szabványos protokoll hitelesítési kérések fogadására és feldolgozására. Az Azure Multi-Factor Authentication-kiszolgáló RADIUS-kiszolgálóként is használható. A kétlépéses ellenőrzés hozzáadásához szúrja be a kiszolgálót a RADIUS-ügyfél (VPN-berendezés) és a hitelesítési cél közé. A hitelesítési cél Active Directory, LDAP-címtár vagy egy másik RADIUS-kiszolgáló is lehet. Az Azure Multi-Factor Authentication (MFA) működéséhez az Azure MFA-kiszolgálót úgy kell konfigurálni, hogy az ügyfélkiszolgálókkal és a hitelesítési céllal is tudjon kommunikálni. Az Azure MFA-kiszolgáló fogadja a RADIUS-ügyfél kéréseit, ellenőrzi a hitelesítő adatokat a hitelesítési célon, Azure Multi-Factor Authenticationt biztosít és választ küld a RADIUS-ügyfélnek. A hitelesítés csak akkor sikeres, ha az elsődleges hitelesítés és az Azure Multi-Factor Authentication is sikeres.
 
 > [!NOTE]
-> hello MFA kiszolgáló a PAP (jelszó-hitelesítési protokoll) és MSCHAPv2 csak támogatja (a Microsoft kérdés-kézfogás típusú hitelesítési protokoll) RADIUS protokollal, ha a RADIUS-kiszolgálóként.  Más protokoll, EAP (extensible authentication protocol), például is használható, ha hello multi-factor Authentication kiszolgáló RADIUS proxyként tooanother RADIUS-kiszolgálóként, amely támogatja az adott protokollhoz működik.
+> Az MFA-kiszolgáló csak a PAP (Password Authentication Protocol) és az MSCHAPv2 (Microsoft Challenge-Handshake Authentication Protocol) RADIUS-protokollt támogatja, ha RADIUS-kiszolgálóként működik.  Egyéb protokollok, például az EAP (Extensible Authentication Protocol), akkor használhatók, ha az MFA-kiszolgáló egy másik olyan RADIUS-kiszolgáló RADIUS-proxyjaként működik, amely támogatja az adott protokollt.
 >
-> Ebben a konfigurációban egyirányú SMS és az OATH jogkivonatok óta hello multi-factor Authentication kiszolgáló nem indítható el egy sikeres RADIUS kérdés-válasz alternatív protokollok használatával nem használhatók.
+> Ebben a konfigurációban az egyirányú SMS és OATH tokenek nem működnek, mivel az MFA-kiszolgáló nem tud sikeres RADIUS kérdés-választ kezdeményezni más protokollok használatával.
 
 ![Radius-hitelesítés](./media/multi-factor-authentication-get-started-server-rdg/radius.png)
 
 ## <a name="add-a-radius-client"></a>RADIUS-ügyfél hozzáadása
-tooconfigure RADIUS-hitelesítés, a telepítés hello Azure multi-factor Authentication kiszolgáló a Windows server. Ha egy Active Directory-környezetbe, hello server illesztett toohello tartomány hello hálózaton belül kell lennie. A következő eljárás tooconfigure hello Azure multi-factor Authentication kiszolgáló hello használata:
+A RADIUS-hitelesítés konfigurálásához telepítse az Azure Multi-Factor Authentication-kiszolgálót egy Windows-kiszolgálóra. Ha Active Directory-környezetet használ, a kiszolgálót a hálózaton belüli tartományhoz kell csatlakoztatni. Az Azure Multi-Factor Authentication-kiszolgáló konfigurálásához kövesse az alábbi eljárást:
 
-1. Hello Azure multi-factor Authentication kiszolgáló kattintson hello RADIUS-hitelesítés ikonra a bal oldali menü hello.
-2. Ellenőrizze a hello **RADIUS-hitelesítés engedélyezése** jelölőnégyzetet.
-3. Hello ügyfelek lapon módosítsa a hello hitelesítési és nyilvántartási portokat lehetőséget, ha hello Azure MFA RADIUS szolgáltatás toolisten kell a RADIUS-kéréseket nem szabványos porton.
+1. Az Azure Multi-Factor Authentication-kiszolgálón kattintson a bal oldali menüben lévő RADIUS-hitelesítés ikonra.
+2. Jelölje be a **RADIUS-hitelesítés engedélyezése** jelölőnégyzetet.
+3. Az Ügyfelek lapon módosítsa a hitelesítési és a nyilvántartási portokat, ha az Azure MFA RADIUS szolgáltatásnak nem szabványos portokon kell figyelnie a RADIUS-kéréseket.
 4. Kattintson az **Add** (Hozzáadás) parancsra.
-5. Adja meg a hello IP-cím hello készülék/Server toohello Azure multi-factor Authentication kiszolgáló, az alkalmazás neve (nem kötelező) és egy közös titkot hitelesíti magát.
+5. Adja meg az Azure Multi-Factor Authentication-kiszolgálón hitelesítendő készülék/kiszolgáló IP-címét, egy alkalmazásnevet (nem kötelező) és egy közös titkos kulcsot.
 
-  hello alkalmazásnév Azure multi-factor Authentication-jelentésekben jelenik meg, és előfordulhat, hogy SMS vagy mobilalkalmazás hitelesítési üzenet jelenjen meg.
+  Az alkalmazásnév megjelenik a jelentésekben, illetve megjelenhet az SMS-es vagy mobilalkalmazásos hitelesítési üzenetekben.
 
-  hello megosztott titkos igények toobe hello, azonos az mindkét hello Azure multi-factor Authentication kiszolgáló és a készülék/kiszolgáló.
+  A közös titkos kulcsnak azonosnak kell lennie az Azure Multi-Factor Authentication-kiszolgálón és a készüléken/kiszolgálón.
 
-6. Ellenőrizze a hello **multi-factor Authentication felhasználói egyeztetés megkövetelése** mezőben, ha az összes felhasználót törölték, vagy importálja a hello kiszolgáló és a tulajdonos toomulti kétfaktoros hitelesítést. Ha a felhasználók jelentős számú nem még importálva lettek hello kiszolgálón és/vagy a kétlépéses ellenőrzés alól, hagyja bejelölve hello mezőt.
-7. Ellenőrizze a hello **engedélyezése tartalék OATH token** mezőben, ha szeretné, hogy toouse OATH PIN-kódok mobileszközös ellenőrzés alkalmazásokból, a tartalék toohello sávon kívüli telefonhívás, SMS- vagy leküldéses értesítési.
+6. Jelölje be a **Multi-Factor Authentication felhasználói egyeztetés megkövetelése** jelölőnégyzetet, ha az összes felhasználót importálta a kiszolgálóra, és többtényezős hitelesítést alkalmaz rajtuk. Ha jelentős számú felhasználó még nincs importálva a kiszolgálóra vagy mentesül a kétlépéses ellenőrzés alól, ne jelölje be a jelölőnégyzetet.
+7. Jelölje be a **Tartalék OATH token engedélyezése** jelölőnégyzetet, ha mobil hitelesítő alkalmazásokból származó OATH PIN-kódokat szeretné biztonsági mentési módszerként használni.
 8. Kattintson az **OK** gombra.
 
-Ismételje meg a 4 – 8 tooadd annyi további RADIUS-ügyfelek csak szeretne.
+Szükség esetén a 4–8. lépés megismétlésével további RADIUS-ügyfeleket adhat hozzá.
 
 ## <a name="configure-your-radius-client"></a>RADIUS-ügyfél konfigurálása
 
-1. Kattintson a hello **cél** fülre.
-2. Ha hello Azure MFA kiszolgáló telepítve van egy tartományhoz csatlakoztatott kiszolgálóra végzi az Active Directory környezetben, válassza ki a Windows-tartományhoz.
+1. Kattintson a **Cél** fülre.
+2. Ha az Azure MFA-kiszolgáló tartományhoz csatlakoztatott kiszolgálón van telepítve Active Directory-környezetben, válasszon egy Windows-tartományt.
 3. Ha a felhasználókat egy LDAP-címtár alapján kell hitelesíteni, válassza az **LDAP-kötést**.
 
-  toouse LDAP-kötés, hello címtár-integráció ikonra, és hello-beállítások lapon hello LDAP-konfiguráció szerkesztése, így hello Server köthető tooyour directory. LDAP konfigurálására vonatkozó útmutatásokat hello található [LDAP-Proxy konfigurációs útmutató](multi-factor-authentication-get-started-server-ldap.md).
+  Válassza a Címtár-integráció ikont, és szerkessze úgy az LDAP-konfigurációt a Beállítások lapon, hogy a kiszolgáló kötést hozhasson létre a címtárával. Az LDAP konfigurálásával kapcsolatos utasításokat az [LDAP-proxy konfigurációs útmutatójában](multi-factor-authentication-get-started-server-ldap.md) talál.
 
 4. Ha a felhasználókat egy másik RADIUS-kiszolgálón kell hitelesíteni, válassza a RADIUS-kiszolgáló(k) lehetőséget.
-5. Kattintson a **Hozzáadás** tooconfigure hello server toowhich hello Azure MFA kiszolgáló lesz proxy hello RADIUS-kérelmeket.
-6. A hello RADIUS-kiszolgáló hozzáadása párbeszédpanelen adja meg a hello IP-címe hello RADIUS-kiszolgáló és egy közös titkot.
+5. Kattintson a **Hozzáadás** gombra, és konfigurálja azt a kiszolgálót, amelynek a kiszolgáló proxykapcsolaton keresztül átadja a RADIUS-kéréseket.
+6. A RADIUS-kiszolgáló hozzáadása párbeszédpanelen adja meg a RADIUS-kiszolgáló IP-címét és egy közös titkos kulcsot.
 
-  hello megosztott titkos igények toobe hello, ugyanazokat a mindkét hello Azure multi-factor Authentication kiszolgáló és a RADIUS-kiszolgáló. Ha különböző portok hello RADIUS-kiszolgáló által használt, módosítsa a hello hitelesítési és nyilvántartási portot.
+  A közös titkos kulcsnak azonosnak kell lennie az Azure Multi-Factor Authentication- és a RADIUS-kiszolgálón. Módosítsa a hitelesítési portot és a nyilvántartási portot, ha a RADIUS-kiszolgáló eltérő portokat használ.
 
 7. Kattintson az **OK** gombra.
-8. Adja hozzá hello Azure MFA kiszolgáló RADIUS-ügyfél a hello más RADIUS-kiszolgáló így tooit hello Azure MFA kiszolgáló által küldött kérések tud feldolgozni. Ugyanazt a közös titkos kulcs hello Azure multi-factor Authentication kiszolgálón konfigurált hello használata.
+8. Adja hozzá az Azure MFA-kiszolgálót egy RADIUS-ügyfélként a másik RADIUS-kiszolgálón, hogy fel tudja dolgozni az Azure MFA-kiszolgálóról érkező hozzáférési kéréseket. Ugyanazt a közös titkos kulcsot használja, amelyet az Azure Multi-Factor Authentication-kiszolgálón konfigurált.
 
-Ismételje meg ezeket a lépéseket tooadd több RADIUS-kiszolgálók, és konfigurálja a mely hello Azure MFA kiszolgáló meg kell hívnia az azokat a hello hello sorrendben **fel** és **le** gombokat.
+További RADIUS-kiszolgálók hozzáadásához ismételje meg ezeket a lépéseket. A **Feljebb** és **Lejjebb** gombokkal konfigurálhatja a sorrendet, amely alapján az Azure MFA-kiszolgáló meghívja a kiszolgálókat.
 
-Ezzel befejezte a hello Azure multi-factor Authentication kiszolgáló konfigurációja. hello kiszolgáló most a RADIUS-hozzáférési kérelmeket hello konfigurált ügyfelek figyeli hello konfigurált portokon.   
+Sikeresen konfigurálta az Azure Multi-Factor Authentication-kiszolgálót. A kiszolgáló mostantól fogadja a konfigurált ügyfelek RADIUS hozzáférési kéréseit a beállított portokon.   
 
 ## <a name="radius-client-configuration"></a>A RADIUS-ügyfél konfigurálása
-tooconfigure hello RADIUS-ügyfél, használja a hello irányelveket:
+A RADIUS-ügyfél konfigurálásához kövesse az alábbi útmutatást:
 
-* Konfigurálja a készülék/kiszolgáló tooauthenticate keresztül RADIUS toohello Azure multi-factor Authentication kiszolgáló IP-cím, más hello RADIUS-kiszolgálóként fog működni.
-* Ugyanazt a közös titkos kulcsot, korábban konfigurált hello használata.
-* Hello RADIUS időtúllépés too30-60 másodperc konfigurálja, hogy ne legyen idő toovalidate hello felhasználói hitelesítő adatok, hajtsa végre a kétlépéses ellenőrzést, a választ kapnak és majd válaszolnia toohello RADIUS hozzáférési kérelem.
+* Konfigurálja a RADIUS-on keresztül hitelesítendő berendezést/kiszolgálót azon Azure Multi-Factor Authentication-kiszolgáló IP-címével, amely a RADIUS-kiszolgálóként fog működni.
+* Használja a korábban konfigurált közös titkos kulcsot.
+* A RADIUS-időtúllépést állítsa 30–60 másodpercre, hogy elegendő idő álljon rendelkezésre a felhasználó hitelesítő adatainak ellenőrzésére, a kétlépéses hitelesítés végrehajtására, a válasz fogadására és a RADIUS hozzáférési kérés megválaszolására.
+
+## <a name="next-steps"></a>Következő lépések
+
+Ismerkedjen meg a [RADIUS-hitelesítés integrálásával](multi-factor-authentication-nps-extension.md), ha rendelkezik Azure Multi-Factor Authenticationnel a felhőben. 

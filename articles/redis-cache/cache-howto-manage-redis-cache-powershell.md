@@ -1,6 +1,6 @@
 ---
-title: Azure Redis Cache az Azure PowerShell aaaManage |} Microsoft Docs
-description: "Megtudhatja, hogyan tooperform felügyeleti feladatokat az Azure Redis Cache Azure PowerShell használatával."
+title: "Azure Redis gyorsítótár Azure PowerShell kezelése |} Microsoft Docs"
+description: "Útmutató az Azure PowerShell Azure Redis Cache felügyeleti feladatokat hajthat végre."
 services: redis-cache
 documentationcenter: 
 author: steved0x
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: sdanie
-ms.openlocfilehash: 1d526ce65c4bc05345cd6c3ff370211ed562cab4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0a5c95eab3fd01f611fc049e80c5c506857e0b81
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="manage-azure-redis-cache-with-azure-powershell"></a>Azure Redis gyorsítótár Azure PowerShell kezelése
 > [!div class="op_single_selector"]
@@ -27,51 +27,51 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Ez a témakör bemutatja, hogyan tooperform gyakori feladatokat, például egy létrehozása, frissítése és az Azure Redis Cache példány méretezése hogyan tooregenerate kulcsot, és hogyan a gyorsítótárak tooview információt. Azure Redis Cache PowerShell-parancsmagok teljes listáját lásd: [Azure Redis Cache parancsmagok](https://msdn.microsoft.com/library/azure/mt634513.aspx).
+Ez a témakör bemutatja, hogyan végrehajtásához gyakori feladatokat, mint létrehozása, frissítése, és a méret az Azure Redis Cache példányt, a tárelérési kulcsok újragenerálása, és tekintse meg a gyorsítótárak. Azure Redis Cache PowerShell-parancsmagok teljes listáját lásd: [Azure Redis Cache parancsmagok](https://msdn.microsoft.com/library/azure/mt634513.aspx).
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]
 
-Hello klasszikus üzembe helyezési modellel kapcsolatos további információkért lásd: [Azure Resource Manager és klasszikus üzembe helyezési: üzembe helyezési modellel megértéséhez, valamint az erőforrások állapotát hello](../azure-resource-manager/resource-manager-deployment-model.md#classic-deployment-characteristics).
+A klasszikus üzembe helyezési modellel kapcsolatos további információkért lásd: [Azure Resource Manager és klasszikus üzembe helyezési: üzembe helyezési modellek és az erőforrások állapotát](../azure-resource-manager/resource-manager-deployment-model.md#classic-deployment-characteristics).
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ha már telepítette az Azure PowerShell, rendelkeznie kell Azure PowerShell 1.0.0 verzió vagy újabb. Ellenőrizheti a hello Azure PowerShell ezzel a paranccsal hello Azure PowerShell parancssorban telepített verzióját.
+Ha már telepítette az Azure PowerShell, rendelkeznie kell Azure PowerShell 1.0.0 verzió vagy újabb. Ellenőrizheti az Azure PowerShell ezzel a paranccsal, az Azure PowerShell-parancssorba telepített verzióját.
 
     Get-Module azure | format-table version
 
 
-Először be kell jelentkeznie tooAzure ezzel a paranccsal.
+Először be kell jelentkezni Azure ezzel a paranccsal.
 
     Login-AzureRmAccount
 
-A Microsoft Azure-bejelentkezés hello párbeszédpanel hello e-mail címet az Azure-fiókjával, és a hozzá tartozó jelszó megadása
+A Microsoft Azure bejelentkezési párbeszédpanelen adja meg az e-mail cím, az Azure-fiókjával, és a hozzá tartozó jelszó.
 
-Ezután ha több Azure-előfizetéssel rendelkezik, meg kell tooset az Azure-előfizetéshez. az aktuális előfizetések listája toosee futtassa ezt a parancsot.
+Ezután ha több Azure-előfizetéssel rendelkezik, be kell az Azure-előfizetéshez. Az aktuális előfizetések listájának megtekintéséhez futtassa ezt a parancsot.
 
     Get-AzureRmSubscription | sort SubscriptionName | Select SubscriptionName
 
-toospecify hello előfizetés, futtassa a következő parancs hello. A következő példa hello, hello előfizetés neve: `ContosoSubscription`.
+Adja meg az előfizetést, futtassa a következő parancsot. A következő példában az előfizetés neve: `ContosoSubscription`.
 
     Select-AzureRmSubscription -SubscriptionName ContosoSubscription
 
-A Windows PowerShell használhatja az Azure Resource Manager eszközzel, hello következőkre lesz szüksége:
+A Windows PowerShell használhatja az Azure Resource Manager, a következők szükségesek:
 
-* Windows PowerShell 3.0 vagy 4.0-s verzióját. a Windows Powershellt, írja be a toofind hello verziója:`$PSVersionTable` , és ellenőrizze a hello értékének `PSVersion` 3.0 vagy 4.0-s verzióját. tooinstall kompatibilitását, lásd: [Windows Management Framework 3.0](http://www.microsoft.com/download/details.aspx?id=34595) vagy [Windows Management Framework 4.0](http://www.microsoft.com/download/details.aspx?id=40855).
+* Windows PowerShell 3.0 vagy 4.0-s verzióját. A Windows PowerShell verziója található, írja be a következőt:`$PSVersionTable` , és ellenőrizze a értékének `PSVersion` 3.0 vagy 4.0-s verzióját. Telepítsen egy kompatibilis verziót, lásd: [Windows Management Framework 3.0](http://www.microsoft.com/download/details.aspx?id=34595) vagy [Windows Management Framework 4.0](http://www.microsoft.com/download/details.aspx?id=40855).
 
-tooget részletes a jelen oktatóanyag esetében használja a Get-Help parancsmagot hello látni a parancsmag súgóját.
+Ebben az oktatóanyagban látja parancsmagokhoz részletes segítséget kérhet, használja a Get-Help parancsmagot.
 
     Get-Help <cmdlet-name> -Detailed
 
-Hello például tooget súgóját `New-AzureRmRedisCache` parancsmag, típus:
+Segítség a példában a `New-AzureRmRedisCache` parancsmag, típus:
 
     Get-Help New-AzureRmRedisCache -Detailed
 
-### <a name="how-tooconnect-tooother-clouds"></a>Hogyan tooconnect tooother felhők
-Alapértelmezett hello Azure környezetben az `AzureCloud`, amely jelöli hello globális Azure felhőben példány. tooconnect tooa másik példányt, használjon hello `Add-AzureRmAccount` hello parancsot `-Environment` vagy -`EnvironmentName` hello kívánt környezet vagy a környezet nevű parancssori kapcsolóval.
+### <a name="how-to-connect-to-other-clouds"></a>Más felhők csatlakoztatása
+Az Azure alapértelmezés szerint a környezete `AzureCloud`, amely globális Azure felhőben példányt jelenti. Szeretne csatlakozni egy másik példányt, használja a `Add-AzureRmAccount` parancsot a `-Environment` vagy -`EnvironmentName` parancssori kapcsolóval a kívánt környezetre vagy a környezet neve.
 
-rendelkezésre álló környezetekben, futtassa a hello toosee hello listája `Get-AzureRmEnvironment` parancsmag.
+Rendelkezésre álló környezeteket listájának megtekintéséhez futtassa a `Get-AzureRmEnvironment` parancsmag.
 
-### <a name="tooconnect-toohello-azure-government-cloud"></a>tooconnect toohello Azure Government felhő
-tooconnect toohello Azure Government felhő, hello a következő parancsok egyikét használhatja.
+### <a name="to-connect-to-the-azure-government-cloud"></a>Az Azure Government felhőbe való kapcsolódáshoz
+Az Azure Government felhő csatlakozni, használja a következő parancsok egyikét.
 
     Add-AzureRMAccount -EnvironmentName AzureUSGovernment
 
@@ -79,15 +79,15 @@ vagy
 
     Add-AzureRmAccount -Environment (Get-AzureRmEnvironment -Name AzureUSGovernment)
 
-hello Azure Government felhőbe, a gyorsítótárhoz toocreate hello alábbi helyek egyikét használhatja.
+A gyorsítótár Azure Government felhőalapú létrehozásához használja az alábbi helyek egyikét.
 
 * USGov Virginia
 * USGov Iowa
 
-Hello Azure Government felhő kapcsolatos további információkért lásd: [a Microsoft Azure Government](https://azure.microsoft.com/features/gov/) és [Microsoft Azure Government – útmutató fejlesztőknek](../azure-government-developer-guide.md).
+Az Azure Government felhő kapcsolatos további információkért lásd: [a Microsoft Azure Government](https://azure.microsoft.com/features/gov/) és [Microsoft Azure Government – útmutató fejlesztőknek](../azure-government-developer-guide.md).
 
-### <a name="tooconnect-toohello-azure-china-cloud"></a>tooconnect toohello Azure Kína felhő
-tooconnect toohello Azure Kína felhő, hello a következő parancsok egyikét használhatja.
+### <a name="to-connect-to-the-azure-china-cloud"></a>Az Azure Kína felhőbe való kapcsolódáshoz
+Az Azure Kína felhő csatlakozni, használja a következő parancsok egyikét.
 
     Add-AzureRMAccount -EnvironmentName AzureChinaCloud
 
@@ -95,15 +95,15 @@ vagy
 
     Add-AzureRmAccount -Environment (Get-AzureRmEnvironment -Name AzureChinaCloud)
 
-hello Azure Kína felhőbe, a gyorsítótárhoz toocreate hello alábbi helyek egyikét használhatja.
+A gyorsítótár Azure Kína felhőalapú létrehozásához használja az alábbi helyek egyikét.
 
 * Kelet-Kína
 * Észak-Kína
 
-Hello Azure Kína felhő kapcsolatos további információkért lásd: [AzureChinaCloud Azure Kínában a 21Vianet által működtetett](http://www.windowsazure.cn/).
+Az Azure Kína felhő kapcsolatos további információkért lásd: [AzureChinaCloud Azure Kínában a 21Vianet által működtetett](http://www.windowsazure.cn/).
 
-### <a name="tooconnect-toomicrosoft-azure-germany"></a>tooconnect tooMicrosoft Azure-Németország
-tooconnect tooMicrosoft németországi Azure hello a következő parancsok egyikét használhatja.
+### <a name="to-connect-to-microsoft-azure-germany"></a>Csatlakozni a Microsoft Azure-Németország
+A Microsoft Azure Németország csatlakozni, használja a következő parancsok egyikét.
 
     Add-AzureRMAccount -EnvironmentName AzureGermanCloud
 
@@ -112,7 +112,7 @@ vagy
 
     Add-AzureRmAccount -Environment (Get-AzureRmEnvironment -Name AzureGermanCloud)
 
-egy Microsoft Azure Németországban gyorsítótár toocreate hello alábbi helyek egyikét használhatja.
+A Microsoft Azure Németországban a gyorsítótár létrehozásához használja az alábbi helyek egyikét.
 
 * Közép-Németország
 * Északkelet-Németország
@@ -120,51 +120,51 @@ egy Microsoft Azure Németországban gyorsítótár toocreate hello alábbi hely
 A Microsoft Azure Németország kapcsolatos további információkért lásd: [Microsoft Azure Németország](https://azure.microsoft.com/overview/clouds/germany/).
 
 ### <a name="properties-used-for-azure-redis-cache-powershell"></a>Azure Redis Cache PowerShell használt tulajdonságok
-a következő táblázat hello tulajdonságok és a gyakran használt paraméterek létrehozása és kezelése az Azure Redis Cache példányt az Azure PowerShell leírását tartalmazza.
+A következő táblázat a tulajdonságok és a gyakran használt paraméterek létrehozása és kezelése az Azure Redis Cache példányt az Azure PowerShell leírását tartalmazza.
 
 | Paraméter | Leírás | Alapértelmezett |
 | --- | --- | --- |
-| Név |Hello gyorsítótár neve | |
-| Hely |Hello gyorsítótár helye | |
-| erőforráscsoport-név |Az erőforráscsoport neve mely toocreate hello gyorsítótárban | |
-| Méret |hello hello gyorsítótár méretét. Érvényes értékek a következők: P1, P2, P3, P4, C0, C1, C2, C3, C4, C5, C6, 250MB, 1 GB-os, 2.5 GB, 6 GB, 13 GB, 26 GB, 53 GB |1 GB |
-| ShardCount |a prémium szintű gyorsítótár engedélyezve fürtözési létrehozásakor szilánkok toocreate hello száma. Érvényes értékek a következők: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 | |
-| SKU |Megadja a hello hello gyorsítótár Termékváltozat. Érvényes értékek a következők: Basic, Standard, Premium |Standard |
-| RedisConfiguration |Határozza meg a Redis-konfigurációs beállításokat. Minden beállítás a részletekért lásd: hello következő [RedisConfiguration tulajdonságok](#redisconfiguration-properties) tábla. | |
-| enableNonSslPort |Azt jelzi, hogy engedélyezve van-e hello nem SSL port. |False (Hamis) |
+| Név |A gyorsítótár neve | |
+| Hely |A gyorsítótár helye | |
+| erőforráscsoport-név |Az erőforráscsoport neve, amelyben a gyorsítótár létrehozásához | |
+| Méret |A gyorsítótár méretét. Érvényes értékek a következők: P1, P2, P3, P4, C0, C1, C2, C3, C4, C5, C6, 250MB, 1 GB-os, 2.5 GB, 6 GB, 13 GB, 26 GB, 53 GB |1 GB |
+| ShardCount |A szilánkok létrehozása, ha egy prémium szintű gyorsítótár létrehozása fürtözési engedélyezett száma. Érvényes értékek a következők: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 | |
+| SKU |Megadja a gyorsítótár a Termékváltozat. Érvényes értékek a következők: Basic, Standard, Premium |Standard |
+| RedisConfiguration |Határozza meg a Redis-konfigurációs beállításokat. Az egyes beállítások, lásd a következő [RedisConfiguration tulajdonságok](#redisconfiguration-properties) tábla. | |
+| enableNonSslPort |Azt jelzi, hogy engedélyezve van-e a nem SSL port. |False (Hamis) |
 | MaxMemoryPolicy |Ez a paraméter elavult – használja inkább a RedisConfiguration. | |
-| StaticIP |Esetén a VNETEN belül a gyorsítótárhoz, adja meg egy egyedi IP-cím hello gyorsítótár hello IP-alhálózatot. Ha nem ad meg, egy választja meg hello alhálózatból. | |
-| Alhálózat |Esetén a VNETEN belül a gyorsítótárhoz, mely toodeploy hello gyorsítótárban a hello alhálózati hello nevét adja meg. | |
-| VirtualNetwork |Ha a gyorsítótár a VNETEN belül üzemeltető hello erőforrás Azonosítóját adja meg hello virtuális Hálózatot, mely toodeploy hello gyorsítótárában. | |
-| keyType |Meghatározza, mely a hozzáférési kulcsot tooregenerate hívóbetűk megújításakor. Érvényes értékek a következők: elsődleges, másodlagos | |
+| StaticIP |Esetén a VNETEN belül a gyorsítótárhoz, adja meg egy egyedi IP-cím az alhálózat, a gyorsítótár. Ha nem ad meg, egy választja meg az alhálózatból. | |
+| Alhálózat |Esetén a VNETEN belül a gyorsítótár, a neve, amelyben a gyorsítótár telepítendő alhálózat. | |
+| VirtualNetwork |Esetén a VNETEN belül a gyorsítótár, a virtuális Hálózatot, amelyben a gyorsítótár telepítendő erőforrás Azonosítóját adja meg. | |
+| keyType |Megadja, mely újragenerálni a hozzáférési kulcsok megújításakor elérési kulcsot. Érvényes értékek a következők: elsődleges, másodlagos | |
 
 ### <a name="redisconfiguration-properties"></a>RedisConfiguration tulajdonságai
 | Tulajdonság | Leírás | Árképzési szintek |
 | --- | --- | --- |
 | rekordadatbázis biztonsági mentés engedélyezve |E [Redis-adatmegőrzés](cache-how-to-premium-persistence.md) engedélyezve van |Csak a prémium |
-| rekordadatbázis-storage-kapcsolat-karakterlánc |kapcsolati karakterlánc toohello tárfiók hello [Redis-adatmegőrzés](cache-how-to-premium-persistence.md) |Csak a prémium |
-| biztonsági mentés-gyakori rekordadatbázis |biztonsági mentési gyakorisága hello [Redis-adatmegőrzés](cache-how-to-premium-persistence.md) |Csak a prémium |
-| maxmemory fenntartott |Konfigurálja a hello [fenntartott memória](cache-configure.md#maxmemory-policy-and-maxmemory-reserved) nem gyorsítótár folyamatok |Standard és Premium |
-| maxmemory-házirend |Konfigurálja a hello [kiürítés házirend](cache-configure.md#maxmemory-policy-and-maxmemory-reserved) hello gyorsítótár |Minden tarifacsomagok |
+| rekordadatbázis-storage-kapcsolat-karakterlánc |A kapcsolati karakterláncot a tárfiók [Redis-adatmegőrzés](cache-how-to-premium-persistence.md) |Csak a prémium |
+| biztonsági mentés-gyakori rekordadatbázis |A biztonsági mentési gyakorisága [Redis-adatmegőrzés](cache-how-to-premium-persistence.md) |Csak a prémium |
+| maxmemory fenntartott |Konfigurálja a [fenntartott memória](cache-configure.md#maxmemory-policy-and-maxmemory-reserved) nem gyorsítótár folyamatok |Standard és Premium |
+| maxmemory-házirend |Konfigurálja a [kiürítés házirend](cache-configure.md#maxmemory-policy-and-maxmemory-reserved) a gyorsítótár |Minden tarifacsomagok |
 | értesítés-kulcstérértesítések használatával-események |Konfigurálja az [kulcstérértesítések használatával értesítések](cache-configure.md#keyspace-notifications-advanced-settings) |Standard és Premium |
 | kivonat-max-ziplist-bejegyzések |Konfigurálja az [memóriaoptimalizálási](http://redis.io/topics/memory-optimization) kis összesített adatok esetében |Standard és Premium |
 | kivonat-max-ziplist-értéke |Konfigurálja az [memóriaoptimalizálási](http://redis.io/topics/memory-optimization) kis összesített adatok esetében |Standard és Premium |
 | set-maximális-intset-bejegyzések |Konfigurálja az [memóriaoptimalizálási](http://redis.io/topics/memory-optimization) kis összesített adatok esetében |Standard és Premium |
 | zset-maximális-ziplist-bejegyzések |Konfigurálja az [memóriaoptimalizálási](http://redis.io/topics/memory-optimization) kis összesített adatok esetében |Standard és Premium |
 | zset-maximális-ziplist-érték |Konfigurálja az [memóriaoptimalizálási](http://redis.io/topics/memory-optimization) kis összesített adatok esetében |Standard és Premium |
-| adatbázisok |Konfigurálja az adatbázisok hello számát. Ez a tulajdonság csak a gyorsítótár létrehozásakor konfigurálható. |Standard és Premium |
+| adatbázisok |Konfigurálja az adatbázisok számát. Ez a tulajdonság csak a gyorsítótár létrehozásakor konfigurálható. |Standard és Premium |
 
-## <a name="toocreate-a-redis-cache"></a>egy Redis gyorsítótárhoz toocreate
-Új Azure Redis Cache példány hello használatával hozhatók létre [New-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) parancsmag.
+## <a name="to-create-a-redis-cache"></a>A Redis Cache létrehozása
+Új Azure Redis Cache példány használatával hozhatók létre a [New-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) parancsmag.
 
 > [!IMPORTANT]
-> hello első alkalommal hoz létre a Redis gyorsítótár hello Azure-portál használatával előfizetés hello portal regisztrálja hello `Microsoft.Cache` adott előfizetéshez tartozó névtér. Ha úgy próbálja toocreate hello először Redis gyorsítótár a PowerShell használatával előfizetés, először regisztrálnia kell a névtér a következő parancs; hello használata például más parancsmagok `New-AzureRmRedisCache` és `Get-AzureRmRedisCache` sikertelen.
+> A Redis gyorsítótár hoz létre egy előfizetést az Azure-portált használja, először a portál regisztrálja a `Microsoft.Cache` adott előfizetéshez tartozó névtér. Ha az első Redis gyorsítótár létrehozása a PowerShell használatával előfizetés, először regisztrálnia kell, hogy a következő paranccsal; névtér például más parancsmagok `New-AzureRmRedisCache` és `Get-AzureRmRedisCache` sikertelen.
 > 
 > `Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.Cache"`
 > 
 > 
 
-toosee használható paramétereket, és azok leírásait tartalmazza a listájának `New-AzureRmRedisCache`- ben futtassa hello következő parancsot.
+A használható paramétereket, és azok leírásait tartalmazza a lista `New-AzureRmRedisCache`, a következő parancsot.
 
     PS C:\> Get-Help New-AzureRmRedisCache -detailed
 
@@ -183,31 +183,31 @@ toosee használható paramétereket, és azok leírásait tartalmazza a listáj�
 
 
     DESCRIPTION
-        hello New-AzureRmRedisCache cmdlet creates a new redis cache.
+        The New-AzureRmRedisCache cmdlet creates a new redis cache.
 
 
     PARAMETERS
         -Name <String>
-            Name of hello redis cache toocreate.
+            Name of the redis cache to create.
 
         -ResourceGroupName <String>
-            Name of resource group in which toocreate hello redis cache.
+            Name of resource group in which to create the redis cache.
 
         -Location <String>
-            Location in which toocreate hello redis cache.
+            Location in which to create the redis cache.
 
         -RedisVersion <String>
             RedisVersion is deprecated and will be removed in future release.
 
         -Size <String>
-            Size of hello redis cache. hello default value is 1GB or C1. Possible values are P1, P2, P3, P4, C0, C1, C2, C3,
+            Size of the redis cache. The default value is 1GB or C1. Possible values are P1, P2, P3, P4, C0, C1, C2, C3,
             C4, C5, C6, 250MB, 1GB, 2.5GB, 6GB, 13GB, 26GB, 53GB.
 
         -Sku <String>
-            Sku of redis cache. hello default value is Standard. Possible values are Basic, Standard and Premium.
+            Sku of redis cache. The default value is Standard. Possible values are Basic, Standard and Premium.
 
         -MaxMemoryPolicy <String>
-            hello 'MaxMemoryPolicy' setting has been deprecated. Please use 'RedisConfiguration' setting tooset
+            The 'MaxMemoryPolicy' setting has been deprecated. Please use 'RedisConfiguration' setting to set
             MaxMemoryPolicy. e.g. -RedisConfiguration @{"maxmemory-policy" = "allkeys-lru"}
 
         -RedisConfiguration <Hashtable>
@@ -216,14 +216,14 @@ toosee használható paramétereket, és azok leírásait tartalmazza a listáj�
             hash-max-ziplist-value, set-max-intset-entries, zset-max-ziplist-entries, zset-max-ziplist-value, databases.
 
         -EnableNonSslPort <Boolean>
-            EnableNonSslPort is used by Azure Redis Cache. If no value is provided, hello default value is false and the
+            EnableNonSslPort is used by Azure Redis Cache. If no value is provided, the default value is false and the
             non-SSL port will be disabled. Possible values are true and false.
 
         -ShardCount <Integer>
-            hello number of shards toocreate on a Premium Cluster Cache.
+            The number of shards to create on a Premium Cluster Cache.
 
         -VirtualNetwork <String>
-            hello exact ARM resource ID of hello virtual network toodeploy hello redis cache in. Example format: /subscriptions/{
+            The exact ARM resource ID of the virtual network to deploy the redis cache in. Example format: /subscriptions/{
             subid}/resourceGroups/{resourceGroupName}/providers/Microsoft.ClassicNetwork/VirtualNetworks/{vnetName}
 
         -Subnet <String>
@@ -233,38 +233,38 @@ toosee használható paramétereket, és azok leírásait tartalmazza a listáj�
             Required when deploying a redis cache inside an existing Azure Virtual Network.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-a gyorsítótár alapértelmezett paraméterek, futtassa a következő parancs hello toocreate.
+A gyorsítótár létrehozásához alapértelmezett paraméterekkel rendelkező, a következő parancsot.
 
     New-AzureRmRedisCache -ResourceGroupName myGroup -Name mycache -Location "North Central US"
 
-`ResourceGroupName`, `Name`, és `Location` kötelező paraméterek tartoznak, de hello rest opcionálisak, az alapértelmezett értékek szerint vannak. Hello előző parancs futtatása hoz létre egy Standard Termékváltozat Azure Redis Cache példány hello megadott nevét, helyét és erőforráscsoport, 1 GB méretű hello nem SSL port le van tiltva van.
+`ResourceGroupName`, `Name`, és `Location` kötelező paraméterek tartoznak, de a többi opcionálisak, az alapértelmezett értékek szerint vannak. Az előző parancs futtatása hoz létre egy Standard Termékváltozat Azure Redis Cache példány a megadott név, hely és erőforráscsoport, amely 1 GB méretű és a nem SSL port le van tiltva.
 
-a prémium szintű gyorsítótár toocreate P1 (6 GB - 60 GB), (13 GB - 130 GB), P2 méretet adjon meg P3 (26 GB - 260 GB), vagy P4 (53 GB - 530 GB). Fürtszolgáltatás, tooenable hello segítségével a shard számot megadnia `ShardCount` paraméter. hello alábbi példa hoz létre egy premium P1 gyorsítótár 3 szilánkok. Premium P1 gyorsítótár 6 GB-nál, és mivel azt a három szilánkok hello teljes mérete adott 18 GB (3 x 6 GB).
+A prémium gyorsítótár létrehozásához adjon meg egy mérete P1 (6 GB - 60 GB), P2 (13 GB - 130 GB), P3 (26 GB - 260 GB), vagy P4 (53 GB - 530 GB). Fürtszolgáltatás engedélyezéséhez használatával megad egy shard száma a `ShardCount` paraméter. A következő példa egy premium P1 gyorsítótár 3 szilánkok hoz létre. Premium P1 gyorsítótár 6 GB-nál, és mivel azt a három szilánkok adott teljes mérete 18 GB (3 x 6 GB).
 
     New-AzureRmRedisCache -ResourceGroupName myGroup -Name mycache -Location "North Central US" -Sku Premium -Size P1 -ShardCount 3
 
-hello toospecify értékeinek `RedisConfiguration` paraméter, tegye a hello értékek belül `{}` kulcs/érték párok, például `@{"maxmemory-policy" = "allkeys-random", "notify-keyspace-events" = "KEA"}`. hello alábbi példakód létrehozza szabványos 1 GB-os gyorsítótár `allkeys-random` maxmemory a beállított házirend- és kulcstérértesítések használatával értesítések `KEA`. További információkért lásd: [kulcstérértesítések használatával értesítések (Speciális beállítások)](cache-configure.md#keyspace-notifications-advanced-settings) és [memória házirendek](cache-configure.md#memory-policies).
+Az értékek megadása a `RedisConfiguration` paraméter, tegye az értékek belül `{}` kulcs/érték párok, például `@{"maxmemory-policy" = "allkeys-random", "notify-keyspace-events" = "KEA"}`. Az alábbi példakód létrehozza a szabványos 1 GB-os gyorsítótár `allkeys-random` maxmemory a beállított házirend- és kulcstérértesítések használatával értesítések `KEA`. További információkért lásd: [kulcstérértesítések használatával értesítések (Speciális beállítások)](cache-configure.md#keyspace-notifications-advanced-settings) és [memória házirendek](cache-configure.md#memory-policies).
 
     New-AzureRmRedisCache -ResourceGroupName myGroup -Name mycache -Location "North Central US" -RedisConfiguration @{"maxmemory-policy" = "allkeys-random", "notify-keyspace-events" = "KEA"}
 
 <a name="databases"></a>
 
-## <a name="tooconfigure-hello-databases-setting-during-cache-creation"></a>tooconfigure hello adatbázisok beállítása a gyorsítótár létrehozása közben
-Hello `databases` beállítást csak a gyorsítótár létrehozása közben lehet megadni. hello alábbi példa létrehoz egy prémium P3 (26 GB-os) gyorsítótárat hello segítségével 48 adatbázisok [New-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) parancsmag.
+## <a name="to-configure-the-databases-setting-during-cache-creation"></a>A gyorsítótár létrehozása során beállítás-adatbázisok konfigurálása
+A `databases` beállítást csak a gyorsítótár létrehozása közben lehet megadni. Az alábbi példakód létrehozza a prémium P3 (26 GB-os) gyorsítótárat használ 48 adatbázisok a [New-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) parancsmag.
 
     New-AzureRmRedisCache -ResourceGroupName myGroup -Name mycache -Location "North Central US" -Sku Premium -Size P3 -RedisConfiguration @{"databases" = "48"}
 
-További információ a hello `databases` tulajdonság, lásd: [Azure Redis Cache alapértelmezett kiszolgálókonfiguráció](cache-configure.md#default-redis-server-configuration). További létrehozásával kapcsolatos információkat hello gyorsítótár [New-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) parancsmag, tekintse meg az előző hello [toocreate egy Redis gyorsítótárhoz](#to-create-a-redis-cache) szakasz.
+További információ a `databases` tulajdonság, lásd: [Azure Redis Cache alapértelmezett kiszolgálókonfiguráció](cache-configure.md#default-redis-server-configuration). További létrehozásával kapcsolatos információkat a gyorsítótár használata a [New-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) parancsmag, tekintse meg az előző [Redis gyorsítótár létrehozásához](#to-create-a-redis-cache) szakasz.
 
-## <a name="tooupdate-a-redis-cache"></a>a Redis gyorsítótár tooupdate
-Azure Redis Cache példány frissítése hello segítségével [Set-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634518.aspx) parancsmag.
+## <a name="to-update-a-redis-cache"></a>A Redis gyorsítótár frissítése
+Azure Redis Cache példány frissítése használatával a [Set-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634518.aspx) parancsmag.
 
-toosee használható paramétereket, és azok leírásait tartalmazza a listájának `Set-AzureRmRedisCache`- ben futtassa hello következő parancsot.
+A használható paramétereket, és azok leírásait tartalmazza a lista `Set-AzureRmRedisCache`, a következő parancsot.
 
     PS C:\> Get-Help Set-AzureRmRedisCache -detailed
 
@@ -280,24 +280,24 @@ toosee használható paramétereket, és azok leírásait tartalmazza a listáj�
         <Integer>] [<CommonParameters>]
 
     DESCRIPTION
-        hello Set-AzureRmRedisCache cmdlet sets redis cache parameters.
+        The Set-AzureRmRedisCache cmdlet sets redis cache parameters.
 
     PARAMETERS
         -Name <String>
-            Name of hello redis cache tooupdate.
+            Name of the redis cache to update.
 
         -ResourceGroupName <String>
-            Name of hello resource group for hello cache.
+            Name of the resource group for the cache.
 
         -Size <String>
-            Size of hello redis cache. hello default value is 1GB or C1. Possible values are P1, P2, P3, P4, C0, C1, C2, C3,
+            Size of the redis cache. The default value is 1GB or C1. Possible values are P1, P2, P3, P4, C0, C1, C2, C3,
             C4, C5, C6, 250MB, 1GB, 2.5GB, 6GB, 13GB, 26GB, 53GB.
 
         -Sku <String>
-            Sku of redis cache. hello default value is Standard. Possible values are Basic, Standard and Premium.
+            Sku of redis cache. The default value is Standard. Possible values are Basic, Standard and Premium.
 
         -MaxMemoryPolicy <String>
-            hello 'MaxMemoryPolicy' setting has been deprecated. Please use 'RedisConfiguration' setting tooset
+            The 'MaxMemoryPolicy' setting has been deprecated. Please use 'RedisConfiguration' setting to set
             MaxMemoryPolicy. e.g. -RedisConfiguration @{"maxmemory-policy" = "allkeys-lru"}
 
         -RedisConfiguration <Hashtable>
@@ -306,48 +306,48 @@ toosee használható paramétereket, és azok leírásait tartalmazza a listáj�
             hash-max-ziplist-value, set-max-intset-entries, zset-max-ziplist-entries, zset-max-ziplist-value.
 
         -EnableNonSslPort <Boolean>
-            EnableNonSslPort is used by Azure Redis Cache. hello default value is null and no change will be made toothe
+            EnableNonSslPort is used by Azure Redis Cache. The default value is null and no change will be made to the
             currently configured value. Possible values are true and false.
 
         -ShardCount <Integer>
-            hello number of shards toocreate on a Premium Cluster Cache.
+            The number of shards to create on a Premium Cluster Cache.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-Hello `Set-AzureRmRedisCache` parancsmag lehetnek többek között használt tooupdate tulajdonságok `Size`, `Sku`, `EnableNonSslPort`, és hello `RedisConfiguration` értékeket. 
+A `Set-AzureRmRedisCache` parancsmag segítségével, mint tulajdonságainak frissítése `Size`, `Sku`, `EnableNonSslPort`, és a `RedisConfiguration` értékeket. 
 
-hello frissítések hello hello Redis Cache-maxmemory-házirend a következő parancs nevű myCache.
+A következő parancsot a maxmemory-házirend a Redis gyorsítótár myCache nevű frissíti.
 
     Set-AzureRmRedisCache -ResourceGroupName "myGroup" -Name "myCache" -RedisConfiguration @{"maxmemory-policy" = "allkeys-random"}
 
 <a name="scale"></a>
 
-## <a name="tooscale-a-redis-cache"></a>a Redis gyorsítótár tooscale
-`Set-AzureRmRedisCache`az Azure Redis cache példány amikor hello lehet használt tooscale `Size`, `Sku`, vagy `ShardCount` tulajdonság módosítását mutatjuk be. 
+## <a name="to-scale-a-redis-cache"></a>A Redis gyorsítótár méretezése
+`Set-AzureRmRedisCache`az Azure Redis Cache-gyorsítótár méretezési használható példány, ha a `Size`, `Sku`, vagy `ShardCount` tulajdonság módosítását mutatjuk be. 
 
 > [!NOTE]
-> Skálázás a PowerShell használatával gyorsítótár tulajdonos toohello azonos korlátok és útmutatók a gyorsítótár, a méretezés hello Azure-portálon. Másik tarifacsomagra vált a következő korlátozások hello tooa méretezheti.
+> Skálázás a PowerShell használatával gyorsítótár az azonos korlátok és útmutatók méretezés a gyorsítótár Azure-portálról. A következő korlátozásokkal egy másik tarifacsomagra méretezheti.
 > 
-> * A magasabb árképzési szint tooa, alacsonyabb árképzési szint nem lehet méretezni.
-> * Nem lehet méretezni a egy **prémium** gyorsítótár le tooa **szabványos** vagy egy **alapvető** gyorsítótár.
-> * Nem lehet méretezni a egy **szabványos** gyorsítótár le tooa **alapvető** gyorsítótár.
-> * A méretezheti egy **alapvető** tooa gyorsítótár **szabványos** gyorsítótár, de nem módosíthatja a hello mérete: hello ugyanannyi időt vesz igénybe. Ha különböző méretű van szüksége, a későbbi skálázási művelet szükséges toohello mérete teheti meg.
-> * Nem lehet méretezni a egy **alapvető** gyorsítótár közvetlenül tooa **prémium** gyorsítótár. Kell méretezni a **alapvető** túl**szabványos** egy skálázási műveletet, majd a **szabványos** túl**prémium** a későbbi skálázás a műveletet.
-> * Nem lehet méretezni a nagyobb méretű le toohello **C0 csomag (250 MB)** méretét.
+> * Egy alacsonyabb tarifacsomagra, méretezhető nem a magasabb szintű tarifacsomagban használható.
+> * Nem lehet méretezni a egy **prémium** le a gyorsítótár egy **szabványos** vagy egy **alapvető** gyorsítótár.
+> * Nem lehet méretezni a egy **szabványos** le a gyorsítótár egy **alapvető** gyorsítótár.
+> * A méretezheti a **alapvető** gyorsítótárba egy **szabványos** gyorsítótár, de nem módosíthatja a méretét egyszerre. Ha különböző méretű van szüksége, végezhet egy későbbi skálázási műveletet, hogy a kívánt méretet.
+> * Nem lehet méretezni a egy **alapvető** gyorsítótár közvetlenül egy **prémium** gyorsítótár. Kell méretezni a **alapvető** való **szabványos** egy skálázási műveletet, majd a **szabványos** való **prémium** a későbbi skálázás a műveletet.
+> * A nagyobb méretű le nem lehet méretezni a **C0 csomag (250 MB)** méretét.
 > 
-> További információkért lásd: [hogyan tooScale Azure Redis Cache-gyorsítótár](cache-how-to-scale.md).
+> További információkért lásd: [Scale Azure Redis Cache hogyan](cache-how-to-scale.md).
 > 
 > 
 
-hello következő példa bemutatja, hogyan tooscale gyorsítótár nevű `myCache` tooa 2,5 GB gyorsítótár. Vegye figyelembe, hogy ez a parancs az alapszintű vagy Standard gyorsítótár is működik-e.
+A következő példa bemutatja, hogyan nevű gyorsítótár méretezési `myCache` 2,5 GB gyorsítótárhoz. Vegye figyelembe, hogy ez a parancs az alapszintű vagy Standard gyorsítótár is működik-e.
 
     Set-AzureRmRedisCache -ResourceGroupName myGroup -Name myCache -Size 2.5GB
 
-Ez a parancs kiadása után hello gyorsítótár hello állapotának ad vissza (hasonló toocalling `Get-AzureRmRedisCache`). Vegye figyelembe, hogy hello `ProvisioningState` van `Scaling`.
+Ez a parancs kiadása után a gyorsítótár állapotának ad vissza (hívása hasonló `Get-AzureRmRedisCache`). Vegye figyelembe, hogy a `ProvisioningState` van `Scaling`.
 
     PS C:\> Set-AzureRmRedisCache -Name myCache -ResourceGroupName myGroup -Size 2.5GB
 
@@ -376,14 +376,14 @@ Ez a parancs kiadása után hello gyorsítótár hello állapotának ad vissza (
     TenantSettings     : {}
     ShardCount         :
 
-Hello skálázás művelet befejeződése után hello `ProvisioningState` túl változik`Succeeded`. Ha egy későbbi skálázási művelet, például módosítása az alapvető tooStandard és hello méretét, majd módosítja toomake kell várnia kell addig, amíg hello korábbi művelet befejeződik, vagy egy hiba hasonló toohello következő.
+Ha a méretezési művelet befejeződött, a `ProvisioningState` vált `Succeeded`. Ha meg kell győződnie egy későbbi skálázási művelet, például a Standard módosítása az alapszintű és a méretet, majd módosítja meg kell várnia, amíg az előző művelet befejeződik, vagy az alábbihoz hasonló hibaüzenetet kap.
 
-    Set-AzureRmRedisCache : Conflict: hello resource '...' is not in a stable state, and is currently unable tooaccept hello update request.
+    Set-AzureRmRedisCache : Conflict: The resource '...' is not in a stable state, and is currently unable to accept the update request.
 
-## <a name="tooget-information-about-a-redis-cache"></a>a Redis gyorsítótár tooget információ
-Információ a gyorsítótár hello kérheti le [Get-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634514.aspx) parancsmag.
+## <a name="to-get-information-about-a-redis-cache"></a>A Redis gyorsítótár kapcsolatos adatok
+Információ a gyorsítótár kérheti le a [Get-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634514.aspx) parancsmag.
 
-toosee használható paramétereket, és azok leírásait tartalmazza a listájának `Get-AzureRmRedisCache`- ben futtassa hello következő parancsot.
+A használható paramétereket, és azok leírásait tartalmazza a lista `Get-AzureRmRedisCache`, a következő parancsot.
 
     PS C:\> Get-Help Get-AzureRmRedisCache -detailed
 
@@ -391,46 +391,46 @@ toosee használható paramétereket, és azok leírásait tartalmazza a listáj�
         Get-AzureRmRedisCache
 
     SYNOPSIS
-        Gets details about a single cache or all caches in hello specified resource group or all caches in hello current
+        Gets details about a single cache or all caches in the specified resource group or all caches in the current
         subscription.
 
     SYNTAX
         Get-AzureRmRedisCache [-Name <String>] [-ResourceGroupName <String>] [<CommonParameters>]
 
     DESCRIPTION
-        hello Get-AzureRmRedisCache cmdlet gets hello details about a cache or caches depending on input parameters. If both
+        The Get-AzureRmRedisCache cmdlet gets the details about a cache or caches depending on input parameters. If both
         ResourceGroupName and Name parameters are provided then Get-AzureRmRedisCache will return details about the
         specific cache name provided.
 
-        If only ResourceGroupName is provided than it will return details about all caches in hello specified resource group.
+        If only ResourceGroupName is provided than it will return details about all caches in the specified resource group.
 
-        If no parameters are given than it will return details about all caches hello current subscription.
+        If no parameters are given than it will return details about all caches the current subscription.
 
     PARAMETERS
         -Name <String>
-            hello name of hello cache. When this parameter is provided along with ResourceGroupName, Get-AzureRmRedisCache
-            returns hello details for hello cache.
+            The name of the cache. When this parameter is provided along with ResourceGroupName, Get-AzureRmRedisCache
+            returns the details for the cache.
 
         -ResourceGroupName <String>
-            hello name of hello resource group that contains hello cache or caches. If ResourceGroupName is provided with Name
-            then Get-AzureRmRedisCache returns hello details of hello cache specified by Name. If only hello ResourceGroup
-            parameter is provided, then details for all caches in hello resource group are returned.
+            The name of the resource group that contains the cache or caches. If ResourceGroupName is provided with Name
+            then Get-AzureRmRedisCache returns the details of the cache specified by Name. If only the ResourceGroup
+            parameter is provided, then details for all caches in the resource group are returned.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-hello az aktuális előfizetést, minden gyorsítótárak tooreturn információ futtatása `Get-AzureRmRedisCache` paraméter nélkül.
+A jelenlegi előfizetés az összes gyorsítótárak vonatkozó adatokat ad vissza, futtassa a `Get-AzureRmRedisCache` paraméter nélkül.
 
     Get-AzureRmRedisCache
 
-egy adott erőforráscsoportban található összes gyorsítótárak tooreturn információ futtatása `Get-AzureRmRedisCache` a hello `ResourceGroupName` paraméter.
+Egy adott erőforráscsoportban található összes gyorsítótárak vonatkozó adatokat ad vissza, futtassa a `Get-AzureRmRedisCache` rendelkező a `ResourceGroupName` paraméter.
 
     Get-AzureRmRedisCache -ResourceGroupName myGroup
 
-tooreturn információk egy adott gyorsítótárral, futtassa `Get-AzureRmRedisCache` a hello `Name` hello nevét, valamint hello gyorsítótár hello tartalmazó paraméter `ResourceGroupName` , hogy a gyorsítótár tartalmazó hello erőforráscsoport paraméterrel.
+Egy adott gyorsítótár vonatkozó adatokat ad vissza, futtassa a `Get-AzureRmRedisCache` rendelkező a `Name` a nevét, a gyorsítótár tartalmazó paraméter és a `ResourceGroupName` , hogy a gyorsítótár tartalmazó erőforráscsoportot paraméterrel.
 
     PS C:\> Get-AzureRmRedisCache -Name myCache -ResourceGroupName myGroup
 
@@ -456,10 +456,10 @@ tooreturn információk egy adott gyorsítótárral, futtassa `Get-AzureRmRedisC
     TenantSettings     : {}
     ShardCount         :
 
-## <a name="tooretrieve-hello-access-keys-for-a-redis-cache"></a>tooretrieve hello a Redis gyorsítótár elérési kulcsainak
-tooretrieve hello hozzáférési kulcsainak listázása a gyorsítótár, a hello használhatja [Get-AzureRmRedisCacheKey](https://msdn.microsoft.com/library/azure/mt634516.aspx) parancsmag.
+## <a name="to-retrieve-the-access-keys-for-a-redis-cache"></a>A Redis gyorsítótár elérési kulcsainak beolvasása
+A gyorsítótár elérési kulcsainak lekéréséhez használja a [Get-AzureRmRedisCacheKey](https://msdn.microsoft.com/library/azure/mt634516.aspx) parancsmag.
 
-toosee használható paramétereket, és azok leírásait tartalmazza a listájának `Get-AzureRmRedisCacheKey`- ben futtassa hello következő parancsot.
+A használható paramétereket, és azok leírásait tartalmazza a lista `Get-AzureRmRedisCacheKey`, a következő parancsot.
 
     PS C:\> Get-Help Get-AzureRmRedisCacheKey -detailed
 
@@ -467,39 +467,39 @@ toosee használható paramétereket, és azok leírásait tartalmazza a listáj�
         Get-AzureRmRedisCacheKey
 
     SYNOPSIS
-        Gets hello accesskeys for hello specified redis cache.
+        Gets the accesskeys for the specified redis cache.
 
 
     SYNTAX
         Get-AzureRmRedisCacheKey -Name <String> -ResourceGroupName <String> [<CommonParameters>]
 
     DESCRIPTION
-        hello Get-AzureRmRedisCacheKey cmdlet gets hello access keys for hello specified cache.
+        The Get-AzureRmRedisCacheKey cmdlet gets the access keys for the specified cache.
 
     PARAMETERS
         -Name <String>
-            Name of hello redis cache.
+            Name of the redis cache.
 
         -ResourceGroupName <String>
-            Name of hello resource group for hello cache.
+            Name of the resource group for the cache.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-a gyorsítótár, a hívás hello kulcsok tooretrieve hello `Get-AzureRmRedisCacheKey` parancsmag és a gyorsítótár hello nevű fázis hello hello gyorsítótár tartalmazó hello erőforráscsoport nevét.
+A gyorsítótár kulcsok lekéréséhez hívja meg a `Get-AzureRmRedisCacheKey` parancsmag, és adja át a gyorsítótár nevében, amely tartalmazza a gyorsítótár az erőforráscsoport nevét.
 
     PS C:\> Get-AzureRmRedisCacheKey -Name myCache -ResourceGroupName myGroup
 
     PrimaryKey   : b2wdt43sfetlju4hfbryfnregrd9wgIcc6IA3zAO1lY=
     SecondaryKey : ABhfB757JgjIgt785JgKH9865eifmekfnn649303JKL=
 
-## <a name="tooregenerate-access-keys-for-your-redis-cache"></a>a Redis gyorsítótár elérési kulcsainak tooregenerate
-tooregenerate hello hozzáférési kulcsainak listázása a gyorsítótár, a hello használhatja [New-AzureRmRedisCacheKey](https://msdn.microsoft.com/library/azure/mt634512.aspx) parancsmag.
+## <a name="to-regenerate-access-keys-for-your-redis-cache"></a>A Redis gyorsítótár elérési kulcsainak újbóli
+A gyorsítótár elérési kulcsainak újragenerálása, használhatja a [New-AzureRmRedisCacheKey](https://msdn.microsoft.com/library/azure/mt634512.aspx) parancsmag.
 
-toosee használható paramétereket, és azok leírásait tartalmazza a listájának `New-AzureRmRedisCacheKey`- ben futtassa hello következő parancsot.
+A használható paramétereket, és azok leírásait tartalmazza a lista `New-AzureRmRedisCacheKey`, a következő parancsot.
 
     PS C:\> Get-Help New-AzureRmRedisCacheKey -detailed
 
@@ -507,49 +507,49 @@ toosee használható paramétereket, és azok leírásait tartalmazza a listáj�
         New-AzureRmRedisCacheKey
 
     SYNOPSIS
-        Regenerates hello access key of a redis cache.
+        Regenerates the access key of a redis cache.
 
     SYNTAX
         New-AzureRmRedisCacheKey -Name <String> -ResourceGroupName <String> -KeyType <String> [-Force] [<CommonParameters>]
 
     DESCRIPTION
-        hello New-AzureRmRedisCacheKey cmdlet regenerate hello access key of a redis cache.
+        The New-AzureRmRedisCacheKey cmdlet regenerate the access key of a redis cache.
 
     PARAMETERS
         -Name <String>
-            Name of hello redis cache.
+            Name of the redis cache.
 
         -ResourceGroupName <String>
-            Name of hello resource group for hello cache.
+            Name of the resource group for the cache.
 
         -KeyType <String>
-            Specifies whether tooregenerate hello primary or secondary access key. Possible values are Primary or Secondary.
+            Specifies whether to regenerate the primary or secondary access key. Possible values are Primary or Secondary.
 
         -Force
-            When hello Force parameter is provided, hello specified access key is regenerated without any confirmation prompts.
+            When the Force parameter is provided, the specified access key is regenerated without any confirmation prompts.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-tooregenerate hello elsődleges vagy másodlagos kulcsot a gyorsítótár, a hívás hello `New-AzureRmRedisCacheKey` parancsmag és a hello adjon át name, erőforráscsoportot, majd adja meg `Primary` vagy `Secondary` a hello `KeyType` paraméter. A következő példa hello hello másodlagos hozzáférési kulcsot a gyorsítótár újbóli létrehozása.
+Újragenerálja az elsődleges vagy másodlagos kulcsot a gyorsítótárhoz, hívja meg a `New-AzureRmRedisCacheKey` parancsmag és a neve, az erőforráscsoport, adjon át, és adja meg `Primary` vagy `Secondary` a a `KeyType` paraméter. A következő példában a másodlagos hozzáférési kulcsot a gyorsítótár újbóli létrehozása.
 
     PS C:\> New-AzureRmRedisCacheKey -Name myCache -ResourceGroupName myGroup -KeyType Secondary
 
     Confirm
-    Are you sure you want tooregenerate Secondary key for redis cache 'myCache'?
+    Are you sure you want to regenerate Secondary key for redis cache 'myCache'?
     [Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"): Y
 
 
     PrimaryKey   : b2wdt43sfetlju4hfbryfnregrd9wgIcc6IA3zAO1lY=
     SecondaryKey : c53hj3kh4jhHjPJk8l0jji785JgKH9865eifmekfnn6=
 
-## <a name="toodelete-a-redis-cache"></a>a Redis gyorsítótár toodelete
-a Redis gyorsítótár toodelete hello használata [Remove-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634515.aspx) parancsmag.
+## <a name="to-delete-a-redis-cache"></a>A Redis gyorsítótár törlése
+A Redis gyorsítótár törléséhez használja a [Remove-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634515.aspx) parancsmag.
 
-toosee használható paramétereket, és azok leírásait tartalmazza a listájának `Remove-AzureRmRedisCache`- ben futtassa hello következő parancsot.
+A használható paramétereket, és azok leírásait tartalmazza a lista `Remove-AzureRmRedisCache`, a következő parancsot.
 
     PS C:\> Get-Help Remove-AzureRmRedisCache -detailed
 
@@ -563,46 +563,46 @@ toosee használható paramétereket, és azok leírásait tartalmazza a listáj�
         Remove-AzureRmRedisCache -Name <String> -ResourceGroupName <String> [-Force] [-PassThru] [<CommonParameters>
 
     DESCRIPTION
-        hello Remove-AzureRmRedisCache cmdlet removes a redis cache if it exists.
+        The Remove-AzureRmRedisCache cmdlet removes a redis cache if it exists.
 
     PARAMETERS
         -Name <String>
-            Name of hello redis cache tooremove.
+            Name of the redis cache to remove.
 
         -ResourceGroupName <String>
-            Name of hello resource group of hello cache tooremove.
+            Name of the resource group of the cache to remove.
 
         -Force
-            When hello Force parameter is provided, hello cache is removed without any confirmation prompts.
+            When the Force parameter is provided, the cache is removed without any confirmation prompts.
 
         -PassThru
-            By default Remove-AzureRmRedisCache removes hello cache and does not return any value. If hello PassThru par
-            is provided then Remove-AzureRmRedisCache returns a boolean value indicating hello success of hello operatio
+            By default Remove-AzureRmRedisCache removes the cache and does not return any value. If the PassThru par
+            is provided then Remove-AzureRmRedisCache returns a boolean value indicating the success of the operatio
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-A következő példa hello, hello nevű gyorsítótár `myCache` törlődnek.
+A következő példában a gyorsítótár nevű `myCache` törlődnek.
 
     PS C:\> Remove-AzureRmRedisCache -Name myCache -ResourceGroupName myGroup
 
     Confirm
-    Are you sure you want tooremove redis cache 'myCache'?
+    Are you sure you want to remove redis cache 'myCache'?
     [Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"): Y
 
 
-## <a name="tooimport-a-redis-cache"></a>a Redis gyorsítótár tooimport
-Adatok importálása az Azure Redis Cache példány hello segítségével `Import-AzureRmRedisCache` parancsmag.
+## <a name="to-import-a-redis-cache"></a>A Redis gyorsítótár importálása
+Adatok importálása az Azure Redis Cache példány használatával a `Import-AzureRmRedisCache` parancsmag.
 
 > [!IMPORTANT]
 > Importálási/exportálási lehetőség csak a [prémium csomagban](cache-premium-tier-intro.md) gyorsítótárazza. Importálási/exportálási kapcsolatos további információkért lásd: [importálhat és exportálhat adatokat az Azure Redis Cache](cache-how-to-import-export-data.md).
 > 
 > 
 
-toosee használható paramétereket, és azok leírásait tartalmazza a listájának `Import-AzureRmRedisCache`- ben futtassa hello következő parancsot.
+A használható paramétereket, és azok leírásait tartalmazza a lista `Import-AzureRmRedisCache`, a következő parancsot.
 
     PS C:\> Get-Help Import-AzureRmRedisCache -detailed
 
@@ -610,7 +610,7 @@ toosee használható paramétereket, és azok leírásait tartalmazza a listáj�
         Import-AzureRmRedisCache
 
     SYNOPSIS
-        Import data from blobs tooAzure Redis Cache.
+        Import data from blobs to Azure Redis Cache.
 
 
     SYNTAX
@@ -619,50 +619,50 @@ toosee használható paramétereket, és azok leírásait tartalmazza a listáj�
 
 
     DESCRIPTION
-        hello Import-AzureRmRedisCache cmdlet imports data from hello specified blobs into Azure Redis Cache.
+        The Import-AzureRmRedisCache cmdlet imports data from the specified blobs into Azure Redis Cache.
 
 
     PARAMETERS
         -Name <String>
-            hello name of hello cache.
+            The name of the cache.
 
         -ResourceGroupName <String>
-            hello name of hello resource group that contains hello cache.
+            The name of the resource group that contains the cache.
 
         -Files <String[]>
-            SAS urls of blobs whose content should be imported into hello cache.
+            SAS urls of blobs whose content should be imported into the cache.
 
         -Format <String>
-            Format for hello blob.  Currently "rdb" is hello only supported, with other formats expected in hello future.
+            Format for the blob.  Currently "rdb" is the only supported, with other formats expected in the future.
 
         -Force
-            When hello Force parameter is provided, import will be performed without any confirmation prompts.
+            When the Force parameter is provided, import will be performed without any confirmation prompts.
 
         -PassThru
-            By default Import-AzureRmRedisCache imports data in cache and does not return any value. If hello PassThru
-            parameter is provided then Import-AzureRmRedisCache returns a boolean value indicating hello success of the
+            By default Import-AzureRmRedisCache imports data in cache and does not return any value. If the PassThru
+            parameter is provided then Import-AzureRmRedisCache returns a boolean value indicating the success of the
             operation.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 
-hello következő parancs importál adatokat hello blob az Azure Redis Cache hello SAS URI megadva.
+A következő parancsot a blobból az Azure Redis Cache SAS URI-azonosítóval megadott importálja az adatokat.
 
     PS C:\>Import-AzureRmRedisCache -ResourceGroupName "resourceGroupName" -Name "cacheName" -Files @("https://mystorageaccount.blob.core.windows.net/mycontainername/blobname?sv=2015-04-05&sr=b&sig=caIwutG2uDa0NZ8mjdNJdgOY8%2F8mhwRuGNdICU%2B0pI4%3D&st=2016-05-27T00%3A00%3A00Z&se=2016-05-28T00%3A00%3A00Z&sp=rwd") -Force
 
-## <a name="tooexport-a-redis-cache"></a>a Redis gyorsítótár tooexport
-Az Azure Redis Cache példány hello segítségével exportálhatja az adatokat `Export-AzureRmRedisCache` parancsmag.
+## <a name="to-export-a-redis-cache"></a>A Redis gyorsítótár exportálása
+Adatok exportálása az Azure Redis Cache példány használatával a `Export-AzureRmRedisCache` parancsmag.
 
 > [!IMPORTANT]
 > Importálási/exportálási lehetőség csak a [prémium csomagban](cache-premium-tier-intro.md) gyorsítótárazza. Importálási/exportálási kapcsolatos további információkért lásd: [importálhat és exportálhat adatokat az Azure Redis Cache](cache-how-to-import-export-data.md).
 > 
 > 
 
-toosee használható paramétereket, és azok leírásait tartalmazza a listájának `Export-AzureRmRedisCache`- ben futtassa hello következő parancsot.
+A használható paramétereket, és azok leírásait tartalmazza a lista `Export-AzureRmRedisCache`, a következő parancsot.
 
     PS C:\> Get-Help Export-AzureRmRedisCache -detailed
 
@@ -670,7 +670,7 @@ toosee használható paramétereket, és azok leírásait tartalmazza a listáj�
         Export-AzureRmRedisCache
 
     SYNOPSIS
-        Exports data from Azure Redis Cache tooa specified container.
+        Exports data from Azure Redis Cache to a specified container.
 
 
     SYNTAX
@@ -679,51 +679,51 @@ toosee használható paramétereket, és azok leírásait tartalmazza a listáj�
 
 
     DESCRIPTION
-        hello Export-AzureRmRedisCache cmdlet exports data from Azure Redis Cache tooa specified container.
+        The Export-AzureRmRedisCache cmdlet exports data from Azure Redis Cache to a specified container.
 
 
     PARAMETERS
         -Name <String>
-            hello name of hello cache.
+            The name of the cache.
 
         -ResourceGroupName <String>
-            hello name of hello resource group that contains hello cache.
+            The name of the resource group that contains the cache.
 
         -Prefix <String>
-            Prefix toouse for blob names.
+            Prefix to use for blob names.
 
         -Container <String>
             SAS url of container where data should be exported.
 
         -Format <String>
-            Format for hello blob.  Currently "rdb" is hello only supported, with other formats expected in hello future.
+            Format for the blob.  Currently "rdb" is the only supported, with other formats expected in the future.
 
         -PassThru
-            By default Export-AzureRmRedisCache does not return any value. If hello PassThru parameter is provided
-            then Export-AzureRmRedisCache returns a boolean value indicating hello success of hello operation.
+            By default Export-AzureRmRedisCache does not return any value. If the PassThru parameter is provided
+            then Export-AzureRmRedisCache returns a boolean value indicating the success of the operation.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 
-hello következő parancs exportál adatokat az Azure Redis Cache példány hello SAS URI azonosítója által megadott hello tárolóba.
+A következő parancsot a tárolóba, a SAS URI azonosítója által megadott Azure Redis Cache-példányról exportálja az adatokat.
 
         PS C:\>Export-AzureRmRedisCache -ResourceGroupName "resourceGroupName" -Name "cacheName" -Prefix "blobprefix"
         -Container "https://mystorageaccount.blob.core.windows.net/mycontainer?sv=2015-04-05&sr=c&sig=HezZtBZ3DURmEGDduauE7
         pvETY4kqlPI8JCNa8ATmaw%3D&st=2016-05-27T00%3A00%3A00Z&se=2016-05-28T00%3A00%3A00Z&sp=rwdl"
 
-## <a name="tooreboot-a-redis-cache"></a>a Redis gyorsítótár tooreboot
-Az Azure Redis Cache példány hello segítségével újraindíthatja `Reset-AzureRmRedisCache` parancsmag.
+## <a name="to-reboot-a-redis-cache"></a>Újraindítja a Redis gyorsítótár
+Az Azure Redis Cache példány használt újraindíthatja a `Reset-AzureRmRedisCache` parancsmag.
 
 > [!IMPORTANT]
 > Újraindítás lehetőség csak a [prémium csomagban](cache-premium-tier-intro.md) gyorsítótárazza. A gyorsítótár újraindítás kapcsolatos további információkért lásd: [felügyeleti gyorsítótár - újraindítás](cache-administration.md#reboot).
 > 
 > 
 
-toosee használható paramétereket, és azok leírásait tartalmazza a listájának `Reset-AzureRmRedisCache`- ben futtassa hello következő parancsot.
+A használható paramétereket, és azok leírásait tartalmazza a lista `Reset-AzureRmRedisCache`, a következő parancsot.
 
     PS C:\> Get-Help Reset-AzureRmRedisCache -detailed
 
@@ -740,49 +740,49 @@ toosee használható paramétereket, és azok leírásait tartalmazza a listáj�
 
 
     DESCRIPTION
-        hello Reset-AzureRmRedisCache cmdlet reboots hello specified node(s) of an Azure Redis Cache instance.
+        The Reset-AzureRmRedisCache cmdlet reboots the specified node(s) of an Azure Redis Cache instance.
 
 
     PARAMETERS
         -Name <String>
-            hello name of hello cache.
+            The name of the cache.
 
         -ResourceGroupName <String>
-            hello name of hello resource group that contains hello cache.
+            The name of the resource group that contains the cache.
 
         -RebootType <String>
-            Which node tooreboot. Possible values are "PrimaryNode", "SecondaryNode", "AllNodes".
+            Which node to reboot. Possible values are "PrimaryNode", "SecondaryNode", "AllNodes".
 
         -ShardId <Integer>
-            Which shard tooreboot when rebooting a premium cache with clustering enabled.
+            Which shard to reboot when rebooting a premium cache with clustering enabled.
 
         -Force
-            When hello Force parameter is provided, reset will be performed without any confirmation prompts.
+            When the Force parameter is provided, reset will be performed without any confirmation prompts.
 
         -PassThru
-            By default Reset-AzureRmRedisCache does not return any value. If hello PassThru parameter is provided
-            then Reset-AzureRmRedisCache returns a boolean value indicating hello success of hello operation.
+            By default Reset-AzureRmRedisCache does not return any value. If the PassThru parameter is provided
+            then Reset-AzureRmRedisCache returns a boolean value indicating the success of the operation.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 
-hello parancsban újraindulása mindkét csomópontjának megadott hello gyorsítótár.
+A következő parancsot a megadott gyorsítótár mindkét csomópont újraindul.
 
         PS C:\>Reset-AzureRmRedisCache -ResourceGroupName "resourceGroupName" -Name "cacheName" -RebootType "AllNodes"
         -Force
 
 
 ## <a name="next-steps"></a>Következő lépések
-További információ a Windows PowerShell használatával az Azure-toolearn a következő erőforrások hello lásd:
+Windows PowerShell használatával az Azure-ral kapcsolatos további tudnivalókért lásd a következőket:
 
 * [Az Azure Redis Cache parancsmag dokumentációja az MSDN webhelyen](https://msdn.microsoft.com/library/azure/mt634513.aspx)
-* [Az Azure Resource Manager parancsmagjainak](http://go.microsoft.com/fwlink/?LinkID=394765): hello Azure Resource Manager modul toouse hello használható parancsmagok megismerése.
-* [Erőforrás segítségével csoportosítja toomanage az Azure-erőforrások](../azure-resource-manager/resource-group-template-deploy-portal.md): megtudhatja, hogyan toocreate és kezelheti a hello Azure-portálon az erőforráscsoportokat.
+* [Az Azure Resource Manager parancsmagjainak](http://go.microsoft.com/fwlink/?LinkID=394765): bemutatják, hogyan használhatja a parancsmagok az Azure erőforrás-kezelő modulban.
+* [Erőforráscsoportok használata az Azure-erőforrások kezeléséhez](../azure-resource-manager/resource-group-template-deploy-portal.md): megtudhatja, hogyan hozhatja létre és kezelheti az erőforráscsoportok az Azure portálon.
 * [Az Azure blog](http://blogs.msdn.com/windowsazure): az Azure-ban új szolgáltatásainak megismerése.
 * [A Windows PowerShell blog](http://blogs.msdn.com/powershell): a Windows PowerShell új szolgáltatásainak megismerése.
-* ["Hey, Scripting Guy!" Blog](http://blogs.technet.com/b/heyscriptingguy/): hello Windows PowerShell-Közösség valós tippek és trükkök az beszerzése.
+* ["Hey, Scripting Guy!" Blog](http://blogs.technet.com/b/heyscriptingguy/): a Windows PowerShell-Közösség valós tippek és trükkök az beszerzése.
 

@@ -1,9 +1,9 @@
 ---
 layout: LandingPage
-description: "Ismerje meg, hogyan toosynchronize könyvtárak és engedélyezése egyszeri bejelentkezés. Dokumentációja bemutatja, hogyan toointegrate identitáskezelési képességeit teljes készlete."
-title: "Active Directory dokumentációjának - oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
+description: "Ismerje meg, hogyan szinkronizálhatja a címtárakat és engedélyezheti az egyszeri bejelentkezést. A dokumentáció bemutatja, hogyan integrálhatja identitáskezelési megoldások teljes palettáját."
+title: "Az Azure Active Directory dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
 services: active-directory
-author: carolz
+author: czeumault
 manager: carolz
 ms.assetid: 
 ms.service: active-directory
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: a99aa3cc979a518c5b53cb1540f037b6776fb157
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a0a9b69824829d0b7a07583210eaddb1f39bcf88
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-active-directory-documentation"></a>Azure Active Directory-dokumentáció
 
-Ismerje meg, hogyan toosynchronize könyvtárak és engedélyezése egyszeri bejelentkezés az Azure Active Directoryval (Azure AD). Oktatóanyagok API hivatkozásokat és egyéb dokumentációt, megtudhatja, hogyan toointegrate identitás felügyeleti képességeket telepít, például a többtényezős hitelesítés, az eszközregisztráció, a szerepköralapú hozzáférés-vezérlő, és a biztonsági figyelés és a riasztás.
+Ismerje meg, hogyan szinkronizálhatja a címtárakat és engedélyezheti az egyszeri bejelentkezést az Azure Active Directory (Azure AD) használatával. Az oktatóanyagok, API-referenciák és az egyéb dokumentáció bemutatják, hogyan integrálhatja az identitáskezelési képességeket, beleértve a többtényezős hitelesítést, az eszközregisztrációt, a szerepköralapú hozzáférés-vezérlést, valamint a biztonsági figyelést és riasztásokat.
 
 <ul class="panelContent cardsFTitle">
     <li>

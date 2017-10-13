@@ -1,6 +1,6 @@
 ---
-title: "aaaManage Azure DC/OS fürtben a Marathon REST API-hoz |} Microsoft Docs"
-description: "Tárolók tooan Azure tároló szolgáltatás DC/OS-fürt üzembe hello Marathon REST API használatával."
+title: "A Marathon REST API-t Azure DC/OS-fürt kezeléséhez |} Microsoft Docs"
+description: "Tárolók telepítése egy Azure tároló szolgáltatás DC/OS fürtben a Marathon REST API használatával."
 services: container-service
 documentationcenter: 
 author: dlepow
@@ -17,35 +17,35 @@ ms.workload: na
 ms.date: 04/04/2017
 ms.author: danlep
 ms.custom: mvc
-ms.openlocfilehash: d926b9b90f5d4eda85a015d9ea0d96fea2c4b566
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 65f8e0170fa7b89162e811a1d5dd58775fd20d7b
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="dcos-container-management-through-hello-marathon-rest-api"></a>A DC/OS hello Marathon REST API-tárolók kezelése
-A DC/OS telepítését és skálázását lehetővé fürtözött munkaterhelések, absztrakt módon megjelenítve a mögöttes hardver hello közben környezetet biztosít. A DC/OS fölötti keretrendszer gondoskodik a számítási feladatok ütemezéséről és végrehajtásáról. Bár számos népszerű számítási elérhetők keretrendszerek, ez a dokumentum beolvasása létrehozásán és skálázásán üzemelő tárolópéldányokat a Marathon REST API hello lépésekhez. 
+# <a name="dcos-container-management-through-the-marathon-rest-api"></a>A Marathon REST API-t a DC/OS-tárolók kezelése
+A DC/OS biztosítja a fürtözött feladatok telepítését és skálázását lehetővé tevő környezetet, ugyanakkor absztrakciós rétegként működik a hardver fölött. A DC/OS fölötti keretrendszer gondoskodik a számítási feladatok ütemezéséről és végrehajtásáról. Bár számos népszerű számítási elérhetők keretrendszerek, ez a dokumentum beolvasása elkezdésének létrehozásán és skálázásán üzemelő tárolópéldányokat a Marathon REST API használatával. 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-A példákban szereplő feladatok elvégzéséhez szüksége lesz egy az Azure tárolószolgáltatásban konfigurált DC/OS-fürtre, Meg kell toohave távoli kapcsolatot toothis fürtöt is. További információ ezekről az elemekről tekintse meg a következő cikkek hello:
+A példákban szereplő feladatok elvégzéséhez szüksége lesz egy az Azure tárolószolgáltatásban konfigurált DC/OS-fürtre, valamint távoli kapcsolatot kell tudnia létesíteni a fürttel. Ezekkel az elemekkel kapcsolatban a következő cikkekben talál további tájékoztatást:
 
 * [Azure Container Service-fürt üzembe helyezése](container-service-deployment.md)
-* [Csatlakozás Azure Tárolószolgáltatás-fürt tooan](../container-service-connect.md)
+* [Csatlakozás Azure Container Service-fürthöz](../container-service-connect.md)
 
-## <a name="access-hello-dcos-apis"></a>Hozzáférés hello DC/OS API-k
-Után csatlakoztatott toohello Azure Tárolószolgáltatási fürthöz, a DC/OS hello és a kapcsolódó REST API-k elérheti http://localhost-porton keresztül. Ebben a dokumentumban a hello példák feltételezik, hogy, hogy az alagutat a 80-as porton. Például hello Marathon végpontok címen érhető el URI-azonosítók kezdve `http://localhost/marathon/v2/`. 
+## <a name="access-the-dcos-apis"></a>Hozzáférés a DC/OS API-k
+Miután csatlakozott az Azure tárolószolgáltatás-fürthöz, a DC/OS-t és a megfelelő REST API-kat a http://localhost:local-port címen érheti el. Az ebben a dokumentumban szereplő példák azt feltételezik, hogy az alagutat a 80-as porton keresztül hozta létre. Például a Marathon végpontok címen érhető el URI-azonosítók kezdve `http://localhost/marathon/v2/`. 
 
-További információ a hello különböző API-k: hello Mesosphere dokumentációjában hello [Marathon API](https://mesosphere.github.io/marathon/docs/rest-api.html) és a [Chronos API](https://mesos.github.io/chronos/docs/api.html), és az Apache dokumentációjában hello [Mesos Scheduler API-RÓL ](http://mesos.apache.org/documentation/latest/scheduler-http-api/).
+A [Marathon API-ról](https://mesosphere.github.io/marathon/docs/rest-api.html) és a [Chronos API-ról](https://mesos.github.io/chronos/docs/api.html) a Mesosphere dokumentációjában, a [Mesos Scheduler API-ról](http://mesos.apache.org/documentation/latest/scheduler-http-api/) pedig az Apache dokumentációjában talál további információt.
 
 ## <a name="gather-information-from-dcos-and-marathon"></a>Információgyűjtés a DC/OS-ről és a Marathonról
-Tárolók toohello DC/OS-fürt központi telepítése érdekében hello DC/OS fürtben, például hello neveket és hello DC/OS-ügynökök állapotának néhány információt gyűjteni. Igen, a lekérdezési hello toodo `master/slaves` hello DC/OS REST API végpontja. Ha minden megfelelően működik, az hello lekérdezés az egyes DC/OS-ügynökök és több tulajdonságok listáját adja vissza.
+Mielőtt tárolókat a DC/OS-fürtről telepít, a DC/OS-fürtről, például nevét és a DC/OS-ügynökök állapotának néhány információt gyűjteni. Ehhez kérdezze le a DC/OS REST API fő- és alárendelt kiszolgálóinak (`master/slaves`) végpontját. Ha minden megfelelően működik, a lekérdezés a DC/OS-ügynökök listáját és az ügynökök különböző tulajdonságait adja vissza.
 
 ```bash
 curl http://localhost/mesos/master/slaves
 ```
 
-Most, használja a hello Marathon `/apps` végpont toocheck az aktuális alkalmazás központi telepítések toohello DC/OS-fürtről. Ha ez egy új fürt, akkor az alkalmazásoknál egy üres tömb jelenik meg.
+A DC/OS-fürtben üzembe helyezett alkalmazások lekérdezéséhez használja a Marathon `/apps` végpontot. Ha ez egy új fürt, akkor az alkalmazásoknál egy üres tömb jelenik meg.
 
 ```bash
 curl localhost/marathon/v2/apps
@@ -54,7 +54,7 @@ curl localhost/marathon/v2/apps
 ```
 
 ## <a name="deploy-a-docker-formatted-container"></a>Docker-formázású tároló üzembe helyezése
-Docker-formátumú tárolók Marathon REST API hello telepítése hello szánt központi telepítését ismertető JSON-fájl használatával. hello következő minta Nginx tároló tooa titkos ügynököt telepít hello fürtben. 
+A JSON-fájl, amely leírja a kívánt üzembe helyezéssel segítségével telepítheti Docker-formátumú tárolók Marathon REST API-n keresztül. Az alábbi minta egy titkos ügynököt a fürt egy Nginx tároló telepíti. 
 
 ```json
 {
@@ -75,42 +75,42 @@ Docker-formátumú tárolók Marathon REST API hello telepítése hello szánt k
 }
 ```
 
-egy Docker-formázású tároló toodeploy hello JSON fájlt tárolja elérhető helyen. Ezt követően toodeploy hello tároló, futtassa a következő parancs hello. Adja meg hello hello JSON-fájl nevét (`marathon.json` ebben a példában).
+Egy Docker-formátumú tároló üzembe helyezéséhez tárolja elérhető helyen a JSON-fájlt. Ezt követően a tároló üzembe helyezéséhez futtassa az alábbi parancsot. Adja meg a JSON-fájl nevét (`marathon.json` ebben a példában).
 
 ```bash
 curl -X POST http://localhost/marathon/v2/apps -d @marathon.json -H "Content-type: application/json"
 ```
 
-hello hasonló toohello következő kimenete:
+A kimenet a következő példához hasonló:
 
 ```json
 {"version":"2015-11-20T18:59:00.494Z","deploymentId":"b12f8a73-f56a-4eb1-9375-4ac026d6cdec"}
 ```
 
-Ha az alkalmazásokat a marathonban, az új alkalmazás megjelenik hello kimeneti.
+Ha ezt követően lekérdezi az alkalmazásokat a Marathonban, az eredmények között megjelenik az új alkalmazás is.
 
 ```bash
 curl localhost/marathon/v2/apps
 ```
 
-## <a name="reach-hello-container"></a>Hello tároló elérése
+## <a name="reach-the-container"></a>A tároló elérése
 
-Ellenőrizheti, hogy Nginx fut a tárolóban lévő titkos ügynökök hello hello fürt egyik hello. toofind hello állomás és port hello tárolót futtató marathonban az éppen futó feladatok hello: 
+Ellenőrizheti, hogy a Nginx tároló fut. a titkos ügynököket a fürt egyik. A gazdagép és a port, amelyen fut a tárolóban található, marathonban a futó feladatok: 
 
 ```bash
 curl localhost/marathon/v2/tasks
 ```
 
-Keresse meg a hello értéket `host` hello kimenet (egy IP-hasonló túl`10.32.0.x`), és hello értékének `ports`.
+Keresse meg az értéket a `host` kimenet (hasonló IP-cím `10.32.0.x`), és az értéke `ports`.
 
 
-Egy SSH terminál kapcsolat (ez nem egy bújtatott kapcsolat) toohello felügyeleti FQDN hello fürt ellenőrizze. A csatlakozás után ellenőrizze a következő kérelmet, és a megfelelő értékeket hello hello `host` és `ports`:
+Egy terminál SSH-kapcsolat (nem bújtatott kapcsolat) Ellenőrizze a fürt FQDN-felügyelet. A csatlakozás után ellenőrizze a következő kérelmet, és a megfelelő értékeket `host` és `ports`:
 
 ```bash
 curl http://host:ports
 ```
 
-hello Nginx server kimenet hasonló toohello következő:
+A Nginx server kimenete az alábbihoz hasonló:
 
 ![Nginx-tárolójából.](./media/container-service-mesos-marathon-rest/nginx.png)
 
@@ -118,16 +118,16 @@ hello Nginx server kimenet hasonló toohello következő:
 
 
 ## <a name="scale-your-containers"></a>A tárolók skálázása
-Alkalmazások központi telepítésének hello Marathon API tooscale kimenő vagy skálája használhatja. Hello előző példában üzembe helyezett egy alkalmazáspéldányt az alkalmazások. Skálázzunk ez toothree alkalmazáspéldányra ki. toodo Igen, egy JSON-fájl létrehozása a következő JSON-szöveg hello használatával, és tárolja elérhető helyen.
+A Marathon API segítségével horizontális felskálázás vagy méretezni az alkalmazások központi telepítéseit. Az előző példában üzembe helyezett egy alkalmazáspéldányt. Ezt most skálázhatja három alkalmazáspéldányra. Ehhez hozzon létre egy JSON-fájlt az alábbi JSON-szöveg használatával, és tárolja elérhető helyen.
 
 ```json
 { "instances": 3 }
 ```
 
-A bújtatott kapcsolat létrehozásakor futtassa a következő parancs tooscale hello alkalmazás kimenő hello.
+A bújtatott kapcsolat létrehozásakor futtassa a következő parancsot az alkalmazás horizontális.
 
 > [!NOTE]
-> hello URI a http://localhost/marathon/v2/apps/ hello alkalmazás tooscale hello azonosítója követ. Ha itt használ hello Nginx mintát, hello URI http://localhost/marathon/v2/apps/nginx lesz.
+> Az URI a http://localhost/marathon/v2/apps/ cím, amelyet a skálázandó alkalmazás azonosítója követ. Ha az itt szerepelő Nginx mintát használja, akkor az URI a http://localhost/marathon/v2/apps/nginx cím lesz.
 > 
 > 
 
@@ -135,7 +135,7 @@ A bújtatott kapcsolat létrehozásakor futtassa a következő parancs tooscale 
 curl http://localhost/marathon/v2/apps/nginx -H "Content-type: application/json" -X PUT -d @scale.json
 ```
 
-Végezetül lekérdezési hello Marathon-végpont alkalmazások. Láthatja majd, hogy most már három Nginx-tároló létezik.
+Végül kérdezze le az alkalmazásokat a Marathon végponton. Láthatja majd, hogy most már három Nginx-tároló létezik.
 
 ```bash
 curl localhost/marathon/v2/apps
@@ -144,13 +144,13 @@ curl localhost/marathon/v2/apps
 ## <a name="equivalent-powershell-commands"></a>Egyenértékű PowerShell-parancsok
 Ugyanezeket a műveleteket elvégezheti Windows rendszerben is a PowerShell-parancsok használatával.
 
-toogather információ hello DC/OS fürtben, mint az ügynökök nevét és állapotát, futtassa a következő parancs hello:
+Gyűjtsön információt a DC/OS fürtben, mint az ügynökök nevét és állapotát, a következő parancsot:
 
 ```powershell
 Invoke-WebRequest -Uri http://localhost/mesos/master/slaves
 ```
 
-Docker-formátumú tárolók Marathon telepítése hello szánt központi telepítését ismertető JSON-fájl használatával. hello következő minta telepíti a kötelező hello DC/OS ügynök tooport 80 hello tároló 80-as portja hello Nginx-tároló.
+A Docker-formátumú tárolók Marathon segítségével való üzembe helyezéséhez egy olyan JSON-fájlt kell használnia, amelyben megadhatja a kívánt üzembe helyezéssel kapcsolatos információkat. Az alábbi példában, amely egy Nginx-tároló üzembe helyezését szemlélteti, a DC/OS-ügynök 80-as portja a tároló 80-as portjával van összekötve.
 
 ```json
 {
@@ -171,22 +171,22 @@ Docker-formátumú tárolók Marathon telepítése hello szánt központi telep�
 }
 ```
 
-egy Docker-formázású tároló toodeploy hello JSON fájlt tárolja elérhető helyen. Ezt követően toodeploy hello tároló, futtassa a következő parancs hello. Adja meg a hello elérési toohello JSON-fájl (`marathon.json` ebben a példában).
+Egy Docker-formátumú tároló üzembe helyezéséhez tárolja elérhető helyen a JSON-fájlt. Ezt követően a tároló üzembe helyezéséhez futtassa az alábbi parancsot. Adja meg a JSON-fájl elérési útját (`marathon.json` ebben a példában).
 
 ```powershell
 Invoke-WebRequest -Method Post -Uri http://localhost/marathon/v2/apps -ContentType application/json -InFile 'c:\marathon.json'
 ```
 
-Az alkalmazások központi telepítéseit is hello Marathon API tooscale kimenő vagy skálája használható. Hello előző példában üzembe helyezett egy alkalmazáspéldányt az alkalmazások. Skálázzunk ez toothree alkalmazáspéldányra ki. toodo Igen, egy JSON-fájl létrehozása a következő JSON-szöveg hello használatával, és tárolja elérhető helyen.
+A Marathon API-t az üzemelő alkalmazáspéldányok horizontális skálázására is használhatja. Az előző példában üzembe helyezett egy alkalmazáspéldányt. Ezt most skálázhatja három alkalmazáspéldányra. Ehhez hozzon létre egy JSON-fájlt az alábbi JSON-szöveg használatával, és tárolja elérhető helyen.
 
 ```json
 { "instances": 3 }
 ```
 
-Futtassa a következő parancs tooscale hello alkalmazás kimenő hello:
+A következő parancsot az alkalmazás horizontális:
 
 > [!NOTE]
-> hello URI a http://localhost/marathon/v2/apps/ hello alkalmazás tooscale hello azonosítója követ. Ha itt használ hello Nginx-mintát, hello URI http://localhost/marathon/v2/apps/nginx lesz.
+> Az URI a http://localhost/marathon/v2/apps/ cím, amelyet a skálázandó alkalmazás azonosítója követ. Ha az Nginx-mintát használja, akkor az URI a http://localhost/marathon/v2/apps/nginx cím lesz.
 > 
 > 
 
@@ -195,6 +195,6 @@ Invoke-WebRequest -Method Put -Uri http://localhost/marathon/v2/apps/nginx -Cont
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-* [Tudjon meg többet a Mesos HTTP-végpontokról hello](http://mesos.apache.org/documentation/latest/endpoints/)
-* [Tudjon meg többet a Marathon REST API hello](https://mesosphere.github.io/marathon/docs/rest-api.html)
+* [További tudnivalók a Mesos HTTP-végpontokról](http://mesos.apache.org/documentation/latest/endpoints/)
+* [További tudnivalók a Marathon REST API](https://mesosphere.github.io/marathon/docs/rest-api.html)
 

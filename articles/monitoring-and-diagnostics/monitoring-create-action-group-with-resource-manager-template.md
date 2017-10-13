@@ -1,6 +1,6 @@
 ---
-title: "a Resource Manager-sablonok aaaCreate művelet csoportok |} Microsoft Docs"
-description: "Ismerje meg, hogyan toocreate művelet szerint kell csoportosítani a Azure Resource Manager-sablonnal."
+title: "A művelet csoportok létrehozása a Resource Manager-sablonok |} Microsoft Docs"
+description: "Útmutató: egy művelet csoport létrehozása az Azure Resource Manager-sablon használatával."
 author: anirudhcavale
 manager: orenr
 editor: 
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: ancav
-ms.openlocfilehash: 9902b33cad99bd99b3deda0cf6f4ff12278c89c3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 76bf353cac13f1c2169380f8dd3c1e163d4f3f41
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-an-action-group-with-a-resource-manager-template"></a>A művelet-csoport létrehozása a Resource Manager-sablon
-Ez a cikk bemutatja, hogyan toouse egy [Azure Resource Manager sablon](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authoring-templates) tooconfigure művelet csoportok. Sablonok segítségével automatikusan állíthatja be, amelyek felhasználhatók a meghatározott típusú riasztások művelet csoportok. E művelet csoportok győződjön meg arról, hogy az összes hello megfelelő felek értesítést kap figyelmeztetést.
+Ez a cikk bemutatja, hogyan használható egy [Azure Resource Manager sablon](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authoring-templates) művelet csoportok konfigurálásához. Sablonok segítségével automatikusan állíthatja be, amelyek felhasználhatók a meghatározott típusú riasztások művelet csoportok. E művelet csoportok győződjön meg arról, hogy a helyes felek értesítést kap figyelmeztetést.
 
-hello alapvető lépések a következők:
+Az alapvető lépések a következők:
 
-1. Hozzon létre egy sablont, amely leírja, hogyan toocreate hello művelet csoport JSON-fájlként.
+1. Hozzon létre egy sablont, amely ismerteti, hogyan lehet létrehozni a műveleti csoportot JSON-fájlként.
 
-2. Hello sablon üzembe helyezése a [bármely olyan telepítési módszerrel](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy).
+2. A sablon telepítéséhez használatával [bármely olyan telepítési módszerrel](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy).
 
-Azt írja le, hogyan toocreate a Resource Manager-sablon esetében a művelet csoportosítani, amelyben hello művelet definíciók is változtatható hello sablonban. Azt ismerteti, hogyan toocreate egy sablont, amely hello webhook konfigurációs adatok bemeneti paraméterek hello sablon telepítésekor.
+Először azt ismerteti, hogyan egy művelet csoport, hol találhatók a művelet definíciók kódolva a sablon a Resource Manager-sablonok létrehozásához. Második azt ismertetik, amelyek bemeneti paraméterként webhook konfigurációs adatokat fogad a sablon telepítésekor sablon létrehozásához.
 
 ## <a name="resource-manager-templates-for-an-action-group"></a>Egy művelet csoport Resource Manager-sablonok
 
-egy művelet csoport Resource Manager sablonnal toocreate, hello típusú erőforrás létrehozása `Microsoft.Insights/actionGroups`. Majd adja meg az összes kapcsolódó tulajdonságok. Az alábbiakban a két minta sablonok művelet-csoport létrehozása.
+Művelet-csoport létrehozása a Resource Manager sablonnal, hozzon létre egy erőforrást a típusú `Microsoft.Insights/actionGroups`. Majd adja meg az összes kapcsolódó tulajdonságok. Az alábbiakban a két minta sablonok művelet-csoport létrehozása.
 
 ```json
 {
@@ -43,13 +43,13 @@ egy művelet csoport Resource Manager sablonnal toocreate, hello típusú erőfo
     "actionGroupName": {
       "type": "string",
       "metadata": {
-        "description": "Unique name (within hello Resource Group) for hello Action group."
+        "description": "Unique name (within the Resource Group) for the Action group."
       }
     },
     "actionGroupShortName": {
       "type": "string",
       "metadata": {
-        "description": "Short name (maximum 12 characters) for hello Action group."
+        "description": "Short name (maximum 12 characters) for the Action group."
       }
     }
   },
@@ -114,13 +114,13 @@ egy művelet csoport Resource Manager sablonnal toocreate, hello típusú erőfo
     "actionGroupName": {
       "type": "string",
       "metadata": {
-        "description": "Unique name (within hello Resource Group) for hello Action group."
+        "description": "Unique name (within the Resource Group) for the Action group."
       }
     },
     "actionGroupShortName": {
       "type": "string",
       "metadata": {
-        "description": "Short name (maximum 12 characters) for hello Action group."
+        "description": "Short name (maximum 12 characters) for the Action group."
       }
     },
     "webhookReceiverName": {
@@ -171,4 +171,4 @@ egy művelet csoport Resource Manager sablonnal toocreate, hello típusú erőfo
 ## <a name="next-steps"></a>Következő lépések
 * További információ [művelet csoportok](monitoring-action-groups.md).
 * További információ [riasztások](monitoring-overview-alerts.md).
-* Megtudhatja, hogyan tooadd [Resource Manager sablonnal riasztások](monitoring-create-activity-log-alerts-with-resource-manager-template.md).
+* Ismerje meg, hogyan adhat [Resource Manager sablonnal riasztások](monitoring-create-activity-log-alerts-with-resource-manager-template.md).

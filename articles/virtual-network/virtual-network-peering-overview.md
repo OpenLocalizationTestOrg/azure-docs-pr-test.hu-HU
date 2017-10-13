@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure virtuális hálózati társviszony-létesítés |} Microsoft Docs"
+title: "Társviszony kialakítása virtuális hálózatok között az Azure-ban | Microsoft Docs"
 description: "Tudnivalók az Azure-beli virtuális hálózatok közötti társviszony-létesítésről"
 services: virtual-network
 documentationcenter: na
@@ -12,80 +12,125 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 07/17/2017
-ms.author: narayan
-ms.openlocfilehash: 46a14b416a7d4389f79a3cd7c55e388b5d312577
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.date: 09/25/2017
+ms.author: narayan;anavin
+ms.openlocfilehash: 082cd8a6cf50f76c89fe5995047396c734f83034
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="virtual-network-peering"></a>Társviszony létesítése virtuális hálózatok között
-Virtuális hálózati társviszony-létesítési lehetővé teszi, hogy Ön tooconnect két virtuális hálózatok hello ugyanabban a régióban keresztül hello Azure hálózat. Ha nincsenek társviszonyban, hello két virtuális hálózatok egy kapcsolat célokra jelennek meg. a rendszer továbbra is kezeli, külön erőforrások hello két virtuális hálózatok, de hello virtuális hálózatok társítottak, azonban a virtuális gépek kommunikálhatnak egymással közvetlenül, magánhálózati IP-címek használatával.
 
-hello forgalom hello virtuális gépek közötti társítottak, virtuális hálózatok hello Azure-infrastruktúra, lényegében ugyanúgy hello virtuális gépek közötti továbbítódik áthalad ugyanazt a virtuális hálózatot. Hello segítségével a virtuális hálózati társviszony-létesítés előnyei a következők:
+Az [Azure Virtual Network (VNet)](virtual-networks-overview.md) az Ön saját hálózati területe az Azure-ban, amely révén biztonságosan csatlakoztathatja egymáshoz az Azure-erőforrásokat.
 
+A virtuális hálózatok közötti társviszony lehetővé teszi a virtuális hálózatok zökkenőmentes összekapcsolását. A társviszony kialakítását követően a virtuális hálózatok a csatlakozás szempontjából egyetlen hálózatnak látszanak. A virtuális társhálózatokba tartozó virtuális gépek közvetlenül kommunikálhatnak egymással.
+A virtuális társhálózatokba tartozó virtuális gépek közötti forgalmat lényegében ugyanúgy továbbítja a rendszer a Microsoft gerincinfrastruktúráján keresztül, ahogyan az azonos virtuális hálózatba tartozó virtuális gépek közötti forgalmat, kizárólag *magánhálózati* IP-címeken keresztül.
+
+>[!IMPORTANT]
+> Eltérő Azure-régiókban található virtuális hálózatok között is kialakítható társviszony. Ez a szolgáltatás jelenleg előzetes kiadásban elérhető. [Regisztrálhatja előfizetését az előzetes kiadásra](virtual-network-create-peering.md). Az azonos régióban lévő virtuális hálózatok közötti társviszony kialakítása általánosan elérhető.
+>
+
+A virtuális társhálózatok használatának előnyei:
+
+* A virtuális társhálózatok közötti forgalom teljesen privát. Ez a forgalom a Microsoft gerinchálózatán halad át, és a nyilvános internetet vagy átjárókat nem érinti.
 * Kis késésű, nagy sávszélességű kapcsolat jön létre eltérő virtuális hálózatokba tartozó erőforrások között.
-* hello képességét toouse erőforrások, például hálózati berendezéseket és VPN-átjárók átvitel pontként peered virtuális hálózatban.
-* hello képességét toopeer két létrehozott virtuális hálózatokat keresztül hello Azure Resource Manager üzembe helyezési modellben vagy egy virtuális hálózati toopeer létrehozott erőforrás-kezelő tooa hello klasszikus telepítési modell használatával létrehozott virtuális hálózaton keresztül. Olvasási hello [megértéséhez Azure üzembe helyezési modellel](../azure-resource-manager/resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-network%2ftoc.json) cikk toolearn hello különbségei hello két Azure üzembe helyezési modellel kapcsolatos további.
+* A virtuális társhálózatok erőforrásai egymás között használhatóak.
+* A virtuális hálózatok társításával adatok továbbíthatóak Azure-előfizetések, üzemi modellek és Azure-régiók között (előzetes verzió).
+* Létrehozható társviszony az Azure Resource Managerrel létrehozott virtuális hálózatok között, vagy egy, a Resource Managerrel létrehozott virtuális hálózat és egy, a klasszikus üzemi modellel létrehozott virtuális hálózat között. A két Azure üzembehelyezési modell közti különbségekkel kapcsolatos további információkért olvassa el [Az Azure üzemi modelljeinek megismerése](../azure-resource-manager/resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-network%2ftoc.json) című cikket.
 
 ## <a name="requirements-constraints"></a>Követelmények és korlátozások
 
-* hello társítottak, virtuális hálózatok már léteznie kell hello azonos Azure-régiót. Különböző Azure-régióban lévő virtuális hálózatok [VPN Gateway](../vpn-gateway/vpn-gateway-about-vpngateways.md?toc=%2fazure%2fvirtual-network%2ftoc.json#V2V) használatával kapcsolhatók össze.
-* hello virtuális hálózatok társítottak, rendelkeznie kell egymást nem átfedő IP-címterületeken.
-* Miután egy virtuális hálózat társviszonyba lépett egy másik virtuális hálózattal, nem adható hozzá és nem törölhető belőle címtér.
-* A virtuális hálózati társviszony két virtuális hálózat között jön létre. A társviszonyok nem adódnak tovább tranzitív módon. Például ha virtualNetworkA nincsenek társviszonyban, a virtualNetworkB, és virtualNetworkB nincsenek társviszonyban, a virtualNetworkC, virtualNetworkA van *nem* társviszonyban toovirtualNetworkC.
-* Akkor is partnert hosszú szintű jogosultságokkal rendelkező felhasználóként két különböző előfizetésekhez, meglévő virtuális hálózatok (lásd: [konkrét engedélyeket](create-peering-different-deployment-models-subscriptions.md#permissions)) együtt előfizetések engedélyezi hello társviszony-létesítést, és hello előfizetések társított toohello azonos Az Azure Active Directory-bérlő. Használhatja a [VPN-átjáró](../vpn-gateway/vpn-gateway-about-vpngateways.md?toc=%2fazure%2fvirtual-network%2ftoc.json#V2V) tooconnect virtuális hálózatok előfizetésekhez tartozó toodifferent Active Directory-bérlő.
-* Virtuális hálózatok is társítottak, ha mindkét keresztül hello Resource Manager üzembe helyezési modellben jönnek létre, vagy ha egy virtuális hálózat létrehozása révén hello Resource Manager üzembe helyezési modellben, és más hello hello klasszikus telepítési modell használatával jön létre. Két, hello klasszikus telepítési modell használatával létrehozott virtuális hálózatokat társviszonyban tooeach más, azonban nem lehet. Használhatja a [VPN-átjáró](../vpn-gateway/vpn-gateway-about-vpngateways.md?toc=%2fazure%2fvirtual-network%2ftoc.json#V2V) tooconnect két hello klasszikus telepítési modell használatával létrehozott virtuális hálózatokat.
-* Bár a virtuális gépek nincsenek társviszonyban, virtuális hálózatok közötti hello kommunikáció nincs további sávszélesség-korlátozás van, nincs maximális hálózati sávszélesség még mindig érvényes hello virtuális gép méretétől függően. További információk a különböző virtuális gépek méretét, olvassa el a hello maximális hálózati sávszélességének toolearn [Windows](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-network%2ftoc.json) vagy [Linux](../virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-network%2ftoc.json) virtuális gép méretének cikkeket.
-* Az Azure által a virtuális gépekre vonatkozóan biztosított belső DNS-névfeloldás nem működik két társviszonyban álló virtuális hálózat között. A virtuális gépek feloldható hello helyi virtuális hálózaton belül csak belső DNS-nevek rendelkeznek. Ugyanakkor csatlakozó virtuális gépek toopeered virtuális hálózatok konfigurálása a virtuális hálózat DNS-kiszolgálóként. További tudnivalókért olvassa el a hello [névfeloldáshoz a saját DNS-kiszolgáló](virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server) cikk.
+* Az azonos régiókban lévő virtuális hálózatok közötti társviszony kialakítása általánosan elérhető. Az eltérő régiókban lévő virtuális hálózatok közötti társviszony kialakítása jelenleg előzetes kiadásban érhető el az USA nyugati középső régiójában, a Közép-Kanada régióban és az USA 2. nyugati régiójában. [Regisztrálhatja az előfizetését az előzetes verzióra.](virtual-network-create-peering.md)
+    > [!WARNING]
+    > Az ezzel a forgatókönyvvel létrehozott virtuális társhálózatok rendelkezésre állása és megbízhatósága eltérő lehet az általánosan elérhető kiadások forgatókönyveitől. Előfordulhat, hogy a virtuális társhálózatok korlátozott képességekkel rendelkeznek, vagy nem érhetőek el minden Azure-régióban. A szolgáltatás rendelkezésre állásával és állapotával kapcsolatos legfrissebb értesítésekért tekintse meg az [Azure virtuális hálózati frissítésekkel kapcsolatos](https://azure.microsoft.com/updates/?product=virtual-network) oldalát.
 
-![Társviszony létesítése virtuális hálózatok között alapszinten](./media/virtual-networks-peering-overview/figure01.png)
+* A virtuális társhálózatok IP-címterei nem fedhetik egymást.
+* Miután egy virtuális hálózat és egy másik virtuális hálózat között társviszony jött létre, nem adható hozzá és nem törölhető belőle címtér.
+* A virtuális hálózati társviszony két virtuális hálózat között jön létre. A társviszonyok nem adódnak tovább tranzitív módon. Ha például az A virtuális hálózat társviszonyban áll a B virtuális hálózattal, és a B hálózat társviszonyban áll a C virtuális hálózattal, az *nem* jelenti azt, hogy az A virtuális hálózat társviszonyban van a C virtuális hálózattal.
+* Társviszonyt létesíthet két különböző előfizetésben található virtuális hálózat között, ha a társviszony-létesítést mindkét előfizetés esetében engedélyezi egy rendszergazdai engedéllyel rendelkező felhasználó (lásd a [konkrét engedélyeket](create-peering-different-deployment-models-subscriptions.md#permissions)), és az előfizetések ugyanahhoz az Azure Active Directory-bérlőhöz vannak társítva. Különböző Active Directory-bérlőkhöz társított előfizetésekben található virtuális hálózatok között [VPN Gateway](../vpn-gateway/vpn-gateway-about-vpngateways.md?toc=%2fazure%2fvirtual-network%2ftoc.json#V2V) segítségével létesíthető társviszony.
+* A virtuális hálózatok társviszonyba állíthatók, ha mindkettő a Resource Manager-alapú üzemi modellel lett létrehozva, vagy ha az egyik virtuális hálózat a Resource Manager-alapú üzemi modellel, a másik pedig a klasszikus üzemi modellel lett létrehozva. Klasszikus üzemi modellel létrehozott virtuális hálózatok között azonban nem létesíthető társviszony. [VPN-átjáróval](../vpn-gateway/vpn-gateway-about-vpngateways.md?toc=%2fazure%2fvirtual-network%2ftoc.json#V2V) összeköthetőek a klasszikus üzemi modellel létrehozott virtuális hálózatok.
+* Bár a virtuális társhálózatokba tartozó virtuális gépek kommunikációjára nem vonatkoznak külön sávszélesség-korlátozások, a virtuális gépekre méretalapú sávszélességkorlát érvényes. Ha többet szeretne megtudni a különböző méretű virtuális gépek maximális hálózati sávszélességével kapcsolatban, olvassa el a [windowsos](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-network%2ftoc.json) vagy a [linuxos](../virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-network%2ftoc.json) virtuális gépek méretéről szóló cikkeket.
+
+     ![Társviszony létesítése virtuális hálózatok között alapszinten](./media/virtual-networks-peering-overview/figure03.png)
 
 ## <a name="connectivity"></a>Kapcsolatok
-Miután két virtuális hálózatok társviszonyban van, vagy virtuális hálózatán lévő erőforrásokat közvetlenül kapcsolódhatnak hello társviszonyban virtuális hálózatán lévő erőforrásokat. hello két virtuális hálózat is létezik a teljes IP-szintű kapcsolat.
 
-hello hálózati késés a két virtuális gépek nincsenek társviszonyban, virtuális hálózatok közötti oda-vissza hello ugyanaz, mint egy virtuális hálózaton belül oda-vissza. hello hálózati teljesítményt hello sávszélesség hello virtuális gép esetén arányos tooits mérete engedélyezett alapul. Nem áll rendelkezésre további korlátozás hello társviszony-létesítés sávszélességét.
+Ha társviszony jött létre a virtuális hálózatok között, akkor a virtuális hálózatokba tartozó erőforrások közvetlenül tudnak kommunikálni a virtuális társhálózat erőforrásaival.
 
-virtuális gépek nincsenek társviszonyban, virtuális hálózatok közötti hello forgalom közvetlenül hello Azure háttér-infrastruktúra, nem az átjárón keresztül továbbít.
+Az azonos régióban lévő virtuális társhálózaton belüli virtuális gépek közötti hálózati késés megegyezik az egyetlen virtuális hálózaton belüli hálózati késéssel. A hálózat átbocsátóképessége attól függ, hogy milyen, a virtuális gépek méretével arányos sávszélesség van engedélyezve. A társviszonyon belül más korlátozás nem vonatkozik a sávszélességre.
 
-Virtuális gépek csatlakoztatott tooa virtuális hozzáférhet hello belső elosztott terhelésű végpont hello társviszonyban virtuális hálózatban. Hálózati biztonsági csoportok vagy a virtuális hálózati tooblock hozzáférési tooother virtuális hálózatok, vagy az alhálózatok, a alkalmazhatók, ha szükséges.
+A virtuális társhálózatok közötti forgalom közvetlenül a Microsoft gerincinfrastruktúráján halad át, nem pedig átjárón vagy a nyilvános interneten.
 
-Amikor konfigurálja a virtuális hálózati társviszony-létesítést, nyissa meg, vagy zárja be a hello hálózati biztonsági csoportszabályok hello virtuális hálózatok között. Nyissa meg a teljes kapcsolat társítottak, virtuális hálózatok közötti (amely hello alapértelmezett beállítás), ha hálózati biztonsági csoportok toospecific alhálózatok és virtuális gépek tooblock alkalmazni, vagy adott megtagadja. További részletek toolearn hálózati biztonsági csoportok, olvassa el a hello [hálózati biztonsági csoportok – áttekintés](virtual-networks-nsg.md) cikk.
+Az egyik virtuális hálózatba tartozó virtuális gépek elérhetik az azonos régióban lévő virtuális társhálózat belső terheléselosztóit. A belső terheléselosztók támogatása nem terjed ki a globális virtuális társhálózatokra az előzetes kiadásban. A globális virtuális társhálózatok általánosan elérhető kiadásában a belső terheléselosztók is támogatottak lesznek.
+
+Szükség esetén bármelyik virtuális hálózatban alkalmazhatók hálózati biztonsági csoportok más virtuális hálózatok vagy alhálózatok elérésének blokkolására.
+Virtuális hálózatok társviszonyának konfigurálásakor megnyithatja vagy lezárhatja a hálózati biztonsági csoportszabályokat a virtuális hálózatok között. Ha a virtuális társhálózatok között teljes körű kapcsolatot nyit (ez az alapértelmezett beállítás), akkor a hálózati biztonsági csoportok segítségével konkrét alhálózatokra vagy virtuális gépekre vonatkozóan blokkolhatja vagy megtagadhatja a megadott típusú hozzáférést. A hálózati biztonsági csoportokról további információt tartalmaz a [Hálózati biztonsági csoportok áttekintése](virtual-networks-nsg.md) című cikk.
 
 ## <a name="service-chaining"></a>Szolgáltatásláncolás
-Felhasználó által definiált útvonalak adott pont toovirtual gépeket konfigurálhat a virtuális hálózatok társviszonyban, "a következő ugrás" IP cím tooenable szolgáltatás láncolás hello. Szolgáltatás-láncolás lehetővé teszi, hogy Ön toodirect érkező forgalom egy virtuális hálózati tooa virtuális készülék egy felhasználó által definiált útvonalak peered virtuális hálózatot.
 
-Hub és küllős típus környezetekben, ahol hello hub tárolhatja, például a hálózati virtuális készülék összetevőket is hatékonyan hozhat létre. Az összes hello küllős virtuális hálózatot is majd társkapcsolatot létesíteni hello hub virtuális hálózat. Virtuális készülékek hálózati hello hub virtuális hálózaton futó keresztül áramolhasson az adatforgalom. Virtuális hálózati társviszony-létesítés rövid, lehetővé teszi a hello következő ugrás IP-címét a felhasználó által definiált hello útvonal toobe hello IP-címe hello társviszonyban virtuális hálózatban lévő virtuális gép. További információk a felhasználó által definiált útvonalak, olvassa el a hello toolearn [felhasználó által definiált útvonalak áttekintése](virtual-networks-udr-overview.md) cikk.
+Konfigurálhatók olyan útvonalak, amelyekben a társviszonyban álló virtuális hálózatba tartozó virtuális gépek vannak megadva a „következő ugrás” IP-címeként, lehetővé téve a szolgáltatásláncolást. A szolgáltatásláncolás lehetővé teszi a forgalomnak a felhasználó által meghatározott útvonalon történő átirányítását egy virtuális hálózatból a virtuális társhálózatban működő virtuális berendezésre.
+
+Jó eredménnyel alakíthat ki csillagpontos típusú környezetet is, amelyben a csillag középponti hálózatában infrastrukturális összetevők (például virtuális hálózati berendezések) működhetnek. Az ágakon lévő virtuális hálózatok társhálózatai lehetnek a középponti hálózatnak. Az adatforgalom áthaladhat a középponti virtuális hálózatban futó virtuális hálózati berendezéseken. A virtuális hálózatok közötti társhálózati viszonnyal lehetőség nyílik arra, hogy a felhasználó által definiált útvonalon egy virtuális társhálózat egyik virtuális gépének IP-címe legyen a következő ugrás IP-címe. A felhasználó által megadott útvonalakkal kapcsolatos további információkat talál a [felhasználó által megadott útvonalakat áttekintő](virtual-networks-udr-overview.md) cikkben. További információ a [küllős hálózati topológiák](/azure/architecture/reference-architectures/hybrid-networking/hub-spoke?toc=%2fazure%2fvirtual-network%2ftoc.json#virtual network-peering) létrehozásáról
 
 ## <a name="gateways-and-on-premises-connectivity"></a>Átjárók és kapcsolat helyszíni rendszerekkel
-Minden virtuális hálózathoz, függetlenül attól, hogy nincsenek társviszonyban egy másik virtuális hálózathoz, továbbra is saját átjárót, és tooconnect tooan a helyszíni hálózat használni. Beállíthatja úgy is [virtuális hálózat – virtuális hálózati kapcsolatok](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md?toc=%2fazure%2fvirtual-network%2ftoc.json) átjáró, használatával, annak ellenére, hogy a virtuális hálózatok hello társviszonyban van.
 
-Ha mindkét lehetőséget a virtuális hálózati összekapcsolhatóság vannak beállítva, hello hello virtuális hálózatok közötti forgalom hello társviszony-létesítési konfiguráció keresztül (Ez azt jelenti, hogy a hello, Azure gerincét).
+Minden virtuális hálózatnak – függetlenül attól, hogy társviszonyban áll-e más virtuális hálózattal – lehet saját átjárója, és használhatja egy helyi hálózathoz való csatlakozásra. A [virtuális hálózatok közötti kapcsolat](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md) is konfigurálható átjárók segítségével, még abban az esetben is, ha a virtuális hálózatok társviszonyban állnak.
 
-Virtuális hálózatok vannak társviszonyban, amikor beállíthatja úgy is hello átjáró hello virtuális hálózaton nincsenek társviszonyban, a helyszíni hálózati átvitel során pont tooan. Ebben az esetben a hello virtuális hálózat által használt távoli átjáró nem lehet saját átjáró. Egy virtuális hálózatnak csak egy átjárója lehet. hello átjáró lehet egy helyi vagy távoli átjáró (hello társviszonyban virtuális hálózat), ahogy az alábbi képen hello:
+Ha a virtuális hálózatok mindkét összekapcsolási módszere konfigurálva van, a virtuális hálózatok közötti forgalom a társhálózati konfiguráción keresztül (vagyis az Azure gerinchálózatán keresztül) zajlik.
 
-![Átvitel virtuális társhálózat esetén](./media/virtual-networks-peering-overview/figure02.png)
+Ha egyazon régióban lévő virtuális hálózatok között társhálózati viszony van, a virtuális társhálózatban működő átjáró is konfigurálható átviteli pontként a helyi hálózat felé. Ebben az esetben a távoli átjárót használó virtuális hálózatnak nem lehet saját átjáróra. Egy virtuális hálózatnak csak egy átjárója lehet. Az átjáró lehet helyi vagy távoli (virtuális társhálózatban működő), amint a következő képen látható:
 
-Átjáró átvitel nem támogatott hello segítségével különböző üzembe helyezési modellel létrehozott virtuális hálózatok közötti társviszony-létesítési kapcsolatban. Mindkét virtuális hálózat hello társviszony-létesítési kapcsolatban kell létrehozott erőforrás-kezelő egy átjáró átvitel toowork.
+![virtuális társhálózatok közötti átvitel](./media/virtual-networks-peering-overview/figure04.png)
 
-Virtuális hálózatok hello egyetlen Azure ExpressRoute-kapcsolat által megosztott társviszonyban van, amikor hello adatforgalom végighalad hello társviszony-létesítési kapcsolat (Ez azt jelenti, hogy a hello, Azure hálózat). A virtuális hálózati tooconnect toohello helyszíni kapcsolatok továbbra is használhatja helyi átjárók. Közös átjárót is használhat, és átvitel konfigurálásával létesíthet kapcsolatot a helyszíni rendszerrel.
+Az átjáróval történő adatátvitel nem támogatott abban az esetben, ha olyan virtuális hálózatok állnak egymással társviszonyban, amelyek különböző üzemi modellel vagy eltérő régiókban lettek létrehozva. Ahhoz, hogy az átjárón át történő átvitel működjön, a társviszonyban álló virtuális hálózatokat a Resource Manager-alapú üzemi modellel kell létrehozni, és mindkettőnek ugyanabban a régióban kell lennie. A globális virtuális társhálózatok jelenleg nem támogatják az átjáróval történő adatátvitelt.
 
-## <a name="provisioning"></a>Kiépítés
-A virtuális hálózatok közötti társviszony-létesítés jogosultsághoz van kötve. Hello VirtualNetworks wsrmp funkcióhoz. A felhasználói jogok tooauthorize társviszony-létesítés adható meg. Egy felhasználó, aki rendelkezik olvasási és írási hozzáférése toohello virtuális hálózati automatikusan örökli ezeket a jogokat.
+Ha két, ugyanazon az Azure ExpressRoute-kapcsolaton osztozó virtuális hálózatot állítanak társviszonyba, akkor a társhálózaton (vagyis az Azure gerinchálózatán) keresztül áramlik közöttük a forgalom. Az egyes virtuális hálózatok helyi átjárói ennek ellenére használhatók arra, hogy kapcsolatot létesítsenek a helyszíni kapcsolatcsoporttal. Közös átjárót is használhat, és átvitel konfigurálásával létesíthet kapcsolatot a helyszíni rendszerrel.
 
-Egy felhasználó vagy rendszergazda vagy a kiemelt felhasználó hello társviszony-létesítési képességeit egy másik virtuális hálózati társviszony-létesítési műveletet is kezdeményezhető. Társviszony egyező kérelem esetén a másik oldalon hello, és egyéb követelmények teljesülése esetén hello társviszony-létesítés jön létre.
+## <a name="permissions"></a>Engedélyek
+
+A virtuális hálózatok közötti társviszony-létesítés jogosultsághoz van kötve. Külön funkció a VirtualNetworks névtérben. A felhasználók egy külön engedély megadásával jogosíthatók fel a társviszony-létesítésre. A virtuális hálózathoz írási-olvasási hozzáféréssel rendelkező felhasználó automatikusan örökli ezeket a jogokat.
+
+Olyan felhasználó kezdeményezhet társviszony-létesítési műveletet egy másik virtuális hálózattal, aki rendszergazda, vagy fel van jogosítva a társviszony-létesítésre. A minimálisan szükséges jogosultság a Hálózati közreműködő. Ha a másik oldalon is van egy ennek megfelelő társviszony-létesítési kérelem, és ha teljesül a többi követelmény, létrejön a társviszony.
+
+Például ha a myvirtual networkA és a myvirtual networkB nevű virtuális hálózatokat kapcsolja össze, a fióknak az alábbi minimális szintű szerepkörökkel vagy engedélyekkel kell rendelkeznie az egyes virtuális hálózatok esetében:
+
+|Virtuális hálózat|Üzemi modell|Szerepkör|Engedélyek|
+|---|---|---|---|
+|myvirtual networkA|Resource Manager|[Hálózati közreműködő](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor)|Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write|
+| |Klasszikus|[Klasszikus hálózati közreműködő](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#classic-network-contributor)|N/A|
+|myvirtual networkB|Resource Manager|[Hálózati közreműködő](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor)|Microsoft.Network/virtualNetworks/peer|
+||Klasszikus|[Klasszikus hálózati közreműködő](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#classic-network-contributor)|Microsoft.ClassicNetwork/virtualNetworks/peer|
+
+## <a name="monitor"></a>Figyelés
+
+Két, Resource Managerrel létrehozott virtuális hálózat közötti társviszony létrehozása esetén mindkét érintett virtuális hálózathoz konfigurálni kell egy társítást.
+Nyomon követheti a társítási kapcsolat állapotát. A társítás állapota a következők egyike lehet:
+
+* **Kezdeményezve**: Amikor létrehozza a társítást az első virtuális hálózatról a második virtuális hálózatra, a társítás állapota Kezdeményezve lesz.
+
+* **Csatlakoztatva**: Amikor létrehozza a társítást a második virtuális hálózatról az első virtuális hálózatra, a társítás állapota Csatlakoztatva lesz. Ekkor látható, hogy az első virtuális hálózat társítási állapota Kezdeményezve értékről Csatlakoztatva értékre változott. A társviszony létesítése nem történik meg sikeresen, amíg mindkét virtuális hálózat állapota Csatlakoztatva értékűre nem változik.
+
+* **Leválasztva**: Ha a kapcsolat létrejötte után valamelyik társítási kapcsolat törlődik, a társítás Leválasztva állapotúra változik.
+
+## <a name="troubleshoot"></a>Hibaelhárítás
+
+A társviszony kapcsolatokon áthaladó forgalommal kapcsolatos hibák elhárításához [ellenőrizze az érvényes útvonalakat.](virtual-network-routes-troubleshoot-portal.md)
+
+A virtuális társhálózatokban lévő virtuális gépek kapcsolatának ellenőrzéséhez használhatja a Network Watcher [kapcsolat-ellenőrzési funkcióját](../network-watcher/network-watcher-connectivity-portal.md). A kapcsolat-ellenőrzés megmutatja, hogy a forrás virtuális gép hálózati adaptere milyen útvonalon kapcsolódik közvetlenül a cél virtuális gép hálózati adapteréhez.
 
 ## <a name="limits"></a>Korlátok
-Nincsenek korlátozások hello esetében, amelyek jogosultak a egyetlen virtuális hálózat számára. További információkért tekintse át a hello [Azure hálózati korlátok](../azure-subscription-service-limits.md#networking-limits).
+
+Az egy virtuális hálózat esetében létesíthető társviszonyok mennyiségére korlátozás vonatkozik. A társviszonyok alapértelmezett száma 50. Növelheti a társviszonyok számát. Erről az [Azure hálózati korlátozásait](../azure-subscription-service-limits.md#networking-limits) ismertető cikk nyújt részletesebb tájékoztatást.
 
 ## <a name="pricing"></a>Díjszabás
-Egy névleges díj vonatkozik a társhálózati viszonyt használó bejövő és kimenő forgalomra. További információkért lásd: hello [árképzést ismertető oldalra](https://azure.microsoft.com/pricing/details/virtual-network).
+
+Egy névleges díj vonatkozik a társviszony-kapcsolatot használó bejövő és kimenő forgalomra. További tájékoztatás a [díjszabási lapon](https://azure.microsoft.com/pricing/details/virtual-network) olvasható.
 
 ## <a name="next-steps"></a>Következő lépések
 
-* Végezzen el egy oktatóanyagot a virtuális hálózatok közötti társviszony létesítéséhez. Virtuális hálózati társviszony-létesítés jön létre, hello létre azonos virtuális hálózatok között, vagy meglévő különböző üzembe helyezési modellel hello ugyanazon vagy másik előfizetést. A következő forgatókönyvek hello egyike egy oktatóanyag elvégzéséhez:
- 
+* Végezzen el egy oktatóanyagot a virtuális hálózatok közötti társviszony létesítéséhez. A virtuális hálózatok közötti társviszony az azonos vagy eltérő előfizetésekben lévő, azonos vagy eltérő üzembehelyezési modelleken keresztül létrehozott virtuális hálózatok között jön létre. Végezzen el egy oktatóanyagot a következő forgatókönyvek egyikéhez:
+
     |Azure üzembehelyezési modell  | Előfizetés  |
     |---------|---------|
     |Mindkét Resource Manager |[Ugyanaz](virtual-network-create-peering.md)|
@@ -93,5 +138,5 @@ Egy névleges díj vonatkozik a társhálózati viszonyt használó bejövő és
     |Egy Resource Manager, egy klasszikus     |[Ugyanaz](create-peering-different-deployment-models.md)|
     | |[Különböző](create-peering-different-deployment-models-subscriptions.md)|
 
-* Megtudhatja, hogyan toocreate egy [küllős hálózati topológia](/azure/architecture/reference-architectures/hybrid-networking/hub-spoke?toc=%2fazure%2fvirtual-network%2ftoc.json#vnet-peering) 
-* További tudnivalók az összes [virtuális hálózati társviszony-létesítési beállításait, és hogyan toochange őket](virtual-network-manage-peering.md)
+* További információ a [küllős hálózati topológiák](/azure/architecture/reference-architectures/hybrid-networking/hub-spoke?toc=%2fazure%2fvirtual-network%2ftoc.json#virtual network-peering) létrehozásáról.
+* További információ az összes [virtuális hálózati társviszony beállításról és azok módosításáról](virtual-network-manage-peering.md)

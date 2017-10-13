@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory automatikus felhasználói fiók kiépítése tooSaaS alkalmazások Reporting |} Microsoft Docs"
-description: "Megtudhatja, hogyan toocheck hello automatikus felhasználói fiók kiépítése a feladatok állapotát, és hogyan tootroubleshoot hello kiépítés az egyéni felhasználók számára."
+title: "Az Azure Active Directory automatikus felhasználói fiók kiépítése SaaS-alkalmazásokhoz való Reporting |} Microsoft Docs"
+description: "Útmutató: automatikus felhasználói fiók kiépítése feladatok állapotának ellenőrzését, és egyéni felhasználók számára a kiépítés elhárítása."
 services: active-directory
 documentationcenter: 
 author: asmalser-msft
@@ -14,120 +14,120 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/12/2017
 ms.author: asmalser-msft
-ms.openlocfilehash: 5dcf9e5dbaacf3a2c81183c5d81e331858671b86
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 86b9a3d93745045904c6038583b9bc6ebac5667e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-reporting-on-automatic-user-account-provisioning"></a>Oktatóanyag: Jelentések automatikus felhasználói fiók kiépítése
 
 
-Az Azure Active Directory tartalmaz egy [szolgáltatás kiépítését felhasználói fiók](active-directory-saas-app-provisioning.md) , amelynek segítségével automatizálhatja hello kiépítés való üzembe helyezési SaaS-alkalmazásokhoz és más rendszerek végpont identitás-életciklus hello célra felhasználói fiókok felügyeleti. Az Azure AD támogatja az összes hello alkalmazások és a rendszeren a "Kiemelt" szakasz hello hello összekötők kiépítés előre integrált felhasználói [az Azure AD application gallery](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/category/azure-active-directory-apps?page=1&subcategories=featured).
+Az Azure Active Directory tartalmaz egy [szolgáltatás kiépítését felhasználói fiók](active-directory-saas-app-provisioning.md) , amelynek segítségével automatizálhatja az üzembe helyezési megszüntetést felhasználói fiókok SaaS-alkalmazásokhoz és más rendszerek végpont identitás életciklus-kezelési célból. Az Azure AD az összes, az alkalmazások és a "Kiemelt" szakaszában rendszerek összekötők kiépítés előre integrált felhasználói támogatja a [az Azure AD application gallery](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/category/azure-active-directory-apps?page=1&subcategories=featured).
 
-Ez a cikk ismerteti, hogyan toocheck hello állapotának kiépítés feladatokat azok megadása után működik, és hogyan tootroubleshoot hello kiépítése egyes felhasználókat és csoportokat.
+Ez a cikk ismerteti, hogyan feladatok kiépítése után azok beállított állapotának ellenőrzése és hibaelhárítása az egyes felhasználók és csoportok kiépítését.
 
 ## <a name="overview"></a>Áttekintés
 
-Üzembe helyezési összekötők elsősorban beállítása és hello segítségével konfigurálható: [Azure felügyeleti portálján](https://portal.azure.com), következő hello által [biztosított dokumentáció](active-directory-saas-tutorial-list.md) ahol felhasználóifiók-létesítési hello alkalmazáshoz van szükség. Konfigurálni és futtatni, ha egy alkalmazás feladatok kiépítés jelenthetők a két módszer egyikével:
+Üzembe helyezési összekötők elsősorban állíthatók be, és a használatával konfigurálhatók a [Azure felügyeleti portálján](https://portal.azure.com), követve a [biztosított dokumentáció](active-directory-saas-tutorial-list.md) az alkalmazáshoz, ahol felhasználói fiók kiépítése van szükség. Konfigurálni és futtatni, ha egy alkalmazás feladatok kiépítés jelenthetők a két módszer egyikével:
 
-* **Azure felügyeleti portálján** -Ez a cikk elsődlegesen ismerteti jelentések adatainak lekérése hello [Azure felügyeleti portálján](https://portal.azure.com), amely biztosítja, hogy mind a kiépítés összefoglaló jelentést, valamint részletes kiépítése a naplók egy adott alkalmazáshoz.
+* **Azure felügyeleti portálján** -Ez a cikk elsődlegesen ismerteti a jelentés-adatok beolvasása a [Azure felügyeleti portálján](https://portal.azure.com), amely biztosítja, mind a kiépítés összefoglaló jelentést, valamint részletes kiépítés naplók egy adott alkalmazáshoz.
 
-* **Naplózási API** -Azure Active Directory is biztosít a naplózási API lehetővé teszi a programozott beolvasása a hello részletes kiépítés naplók. Lásd: [Azure Active Directory naplózási API-referencia](active-directory-reporting-api-audit-reference.md) a dokumentáció adott toousing az API. Amíg ez a cikk nem kifejezetten megírásának módját toouse hello API, azt hello naplóban rögzített események kiépítés hello típusú adatok találhatók.
+* **Naplózási API** -Azure Active Directory is biztosít egy naplózási API-t, amely lehetővé teszi a programozott lekérése a részletes telepítési naplókat. Lásd: [Azure Active Directory naplózási API-referencia](active-directory-reporting-api-audit-reference.md) az API-jával vonatkozó dokumentációt. Amíg ez a cikk kifejezetten foglalkozik az API-t használja, azt a biztonsági naplóban rögzített események kiépítés típusú adatok találhatók.
 
 ### <a name="definitions"></a>Meghatározások
 
-Ebben a cikkben az alábbi feltételeket, az alábbiakban meghatározott hello:
+Ebben a cikkben az alábbiakban meghatározott a következő feltételeket:
 
-* **Forrás-rendszer** -hello tárház, amely az Azure AD létesítési szolgáltatás hello szinkronizálja. Az Azure Active Directory hello forrásrendszerben hello többségének előre integrálva az összekötők kiépítés, azonban nincsenek kivételek (például: Workday bejövő szinkronizálás).
+* **Forrás-rendszer** -a tárház, amely szinkronizálja az Azure AD szolgáltatás kiépítését. Az Azure Active Directory a forrásrendszerben többségének előre integrálva az összekötők kiépítés, azonban bizonyos kivételek vannak (Példa: Workday bejövő szinkronizálás).
 
-* **Cél rendszer** -hello tárház, amely az Azure AD létesítési szolgáltatás hello szinkronizálja. Ez általában az SaaS-alkalmazás (példák: Salesforce, a ServiceNow, a Google Apps, a Dropbox vállalati), azonban bizonyos esetekben lehet például az Active Directory egy a helyszíni rendszer (Példa: Workday bejövő szinkronizálási tooActive Directory).
+* **Cél rendszer** -a tárház, amely szinkronizálja az Azure AD szolgáltatás kiépítését. Ez általában az SaaS-alkalmazás (példák: Salesforce, a ServiceNow, a Google Apps, a Dropbox vállalati), azonban bizonyos esetekben lehet például az Active Directory egy a helyszíni rendszer (Példa: Workday bejövő szinkronizálás Active Directory).
 
 
-## <a name="getting-provisioning-reports-from-hello-azure-management-portal"></a>Kiépítés hello Azure felügyeleti portálról jelentések beolvasása
+## <a name="getting-provisioning-reports-from-the-azure-management-portal"></a>Jelentéseit az Azure felügyeleti portálján a kiépítés beolvasása
 
-kiépítési információinak jelentés egy adott alkalmazás tooget hello indításával start [Azure felügyeleti portálján](https://portal.azure.com) és böngészés toohello vállalati alkalmazás, amelynek kiépítés van konfigurálva. Például ha a felhasználók tooLinkedIn jogosultságszint-emelés kiépíteni, hello navigációs elérési toohello alkalmazás részletei a következő:
+Az beszerzése kiépítésére jelentési adatok egy adott alkalmazáshoz, indítsa el, indítsa el a [Azure felügyeleti portálján](https://portal.azure.com) és a vállalati alkalmazás, amelynek kiépítés van konfigurálva alkulcsot. Például ha a felhasználók számára LinkedIn jogosultságszint-emelés kiépíteni, a navigációs mutató az alkalmazás részletes adatainak elérési út:
 
 **Az Azure Active Directory > Vállalati alkalmazások > összes alkalmazás > LinkedIn jogosultságszint-emelés**
 
-Itt hello kiépítési összefoglaló jelentést és hello létesítési naplókat, mind az alábbiakban.
+Itt végezheti el a kiépítési összefoglaló jelentést és a telepítési naplók, mind az alábbiakban.
 
 
 ### <a name="provisioning-summary-report"></a>Üzembe helyezési összegzési jelentése
 
-hello kiépítés összefoglaló jelentést is elérhetővé válik a hello **kiépítési** megadott alkalmazás lapján. Hello szinkronizálás részletei szakasz alatt található **beállítások**, és biztosítja a következő információ hello:
+A létesítési összefoglaló jelentést is elérhetővé válik a a **kiépítési** megadott alkalmazás lapján. A szinkronizálás részletei szakasz alatt található **beállítások**, és a következő adatokat tartalmazza:
 
-* azon felhasználók száma hello és / csoportok, amely nincs szinkronizálva, és jelenleg a hatókör hello forrás és cél rendszer hello között történő üzembe helyezéséhez.
+* A felhasználók száma összesen és a / csoportok, amely nincs szinkronizálva, és jelenleg a hatókör között a forrás és a cél rendszerhez történő üzembe helyezéséhez.
 
-* hello utolsó hello időszinkronizálást futtatták. Minden 20-40 perc, a teljes szinkronizálás befejeződése után általában történjen szinkronizálás.
+* A szinkronizálás a legutóbbi alkalommal volt futtatva. Minden 20-40 perc, a teljes szinkronizálás befejeződése után általában történjen szinkronizálás.
 
 * Egy kezdeti teljes szinkronizálás befejeződött-e.
 
-* -E a kiépítési folyamat hello karanténba helyezés került, és milyen hello hello karantén állapotának oka, hogy pl. (toocommunicate a célrendszeren miatt tooinvalid rendszergazdai hitelesítő adatokat. hiba)
+* -E a telepítési folyamat karanténba helyezés került-e, és mi az a karanténba helyezett állapotának oka, hogy pl. (nem sikerült kommunikálni a célrendszeren érvénytelen rendszergazdai hitelesítő adatok miatt)
 
-kiépítés összesítő jelentés hello kell hello első helyi rendszergazdák megjelenését toocheck a hello kiosztási feladatának hello működési állapotát.
+A létesítési összefoglaló jelentést kell lennie az első hely rendszergazdák tekintse meg a kiosztási feladatának működési állapotának az ellenőrzéséhez.
 
  ![Összegzési jelentése](./media/active-directory-saas-provisioning-reporting/summary_report.PNG)
 
 ### <a name="provisioning-audit-logs"></a>Telepítési naplófájlok
-Hello szolgáltatás kiépítését által végzett tevékenységek tárolja, amely hello Azure AD naplókat, amelyen megtekinthetők az hello **naplók** lapon a hello **fiók** kategóriát. Naplózott esemény tevékenységtípusok a következők:
+A létesítési szolgáltatás által végzett tevékenységek tárolja, amely az Azure AD naplókat, amely tekintheti meg a **naplók** lap a **fiók** kategóriát. Naplózott esemény tevékenységtípusok a következők:
 
-* **Események importálása** -"importálás" esemény rögzítése minden alkalommal, amikor hello Azure AD létesítési szolgáltatás lekérdezi egy adott felhasználó vagy csoport kapcsolatos információkat a forrásrendszerben vagy a célrendszeren. A szinkronizálás során felhasználók lekért hello forrásrendszerben először "importálása" események rögzített hello eredményekkel. hello beolvasott hello felhasználók egyező azonosítójú lekérdezést végzett hello cél rendszer toocheck majd vannak, ha vannak ilyenek, "importálása" események is rögzített hello eredményekkel. Ezeket az eseményeket rögzítse az összes csatlakoztatott felhasználói attribútumokat és azok értékei, hello esemény hello idején hello Azure AD létesítési szolgáltatás által látott volt. 
+* **Események importálása** -"importálás" esemény rögzítése minden alkalommal, amikor az Azure AD szolgáltatás kiépítését kapcsolatos egyéni felhasználó vagy csoport adatait kérdezi le a forrásrendszerben, vagy a célrendszeren. A szinkronizálás során felhasználókat a rendszer beolvassa az a forrásrendszerben először "importálása" események rögzített eredményekkel. A lekérdezett felhasználók egyező azonosítójú majd megkérdezi a szemben a célrendszeren ellenőrizze, hogy léteznek, a eredményekkel "importálása" eseményként is rögzíti. Ezeket az eseményeket rögzítse az összes csatlakoztatott felhasználói attribútumokat és azok értékei, az Azure AD szolgáltatás kiépítését az esemény időpontjában által látott volt. 
 
-* **Szinkronizálási szabály események** – hello attribútum leképezési szabályokat hello eredményeit jelentés ezeket az eseményeket, és bármelyik konfigurált hatókörének meghatározásához szűrők, felhasználói adatok importálása és hello forrása és célja rendszerekből kiértékelése után. Például ha egy felhasználó a forrásrendszerben akkor számít elértnek toobe hatókörében történő üzembe helyezéséhez, és feltételezett toonot hello célrendszerben létezik, majd ez az esemény azt jelzi, hogy a felhasználó hello kiépítendő hello célrendszerben. 
+* **Szinkronizálási szabály események** - attribútum leképezési szabályok eredményeit jelentés ezeket az eseményeket, és minden konfigurált hatókörének meghatározásához szűrők, felhasználói adatok importálása és a forrás és cél rendszerekből kiértékelése után. Például ha egy felhasználó a forrásrendszerben kialakítási hatókörben kell tekinteni, és nem megfelelőnek nem létezik a célrendszeren, akkor ezt az eseményt, amely rögzíti a felhasználó megkapják a célrendszeren. 
 
-* **Események exportálását** -"export" esemény rögzítése minden alkalommal, amikor üzembe helyezési hello Azure AD szolgáltatás egy felhasználói fiókot vagy csoportot objektum tooa célrendszeren írja. Ezeket az eseményeket rögzítse az összes felhasználói attribútumokat és azok értékei, írt által hello Azure AD létesítési szolgáltatás hello esemény hello idején. Ha hello felhasználói fiókot vagy csoportot objektum toohello célrendszeren írása közben hiba történt, akkor megjelenik itt.
+* **Események exportálását** -"export" esemény minden alkalommal, amikor az Azure AD szolgáltatás kiépítését egy felhasználói fiókot vagy csoportot objektum ír a rendszer rögzíti. Ezeket az eseményeket rögzítse az összes felhasználói attribútumokat és azok értékei, írt az Azure ad szolgáltatás kiépítését az esemény időpontjában. Hiba történt a felhasználói fiók vagy csoport objektum írása a célrendszeren, ha megjelenik itt.
 
-* **Feldolgozni az eseményeket a letéti** -folyamat escrows fordulhat elő, ha hello szolgáltatás kiépítését közben művelet hiba lép fel, és tooretry hello művelet vissza az indító intervallumban idő kezdődik. Egy "letéti" esemény rögzítése minden alkalommal, amikor a telepítési művelet lett visszavonva.
+* **Feldolgozni az eseményeket a letéti** -folyamat escrows fordulhat elő, ha a létesítési szolgáltatás közben művelet hiba lép fel, és próbálja megismételni a műveletet időt időközönkénti biztonsági ki elkezdi. Egy "letéti" esemény rögzítése minden alkalommal, amikor a telepítési művelet lett visszavonva.
 
-Amikor megtekint egy adott felhasználó létesítési eseményeket, a hello események általában történik, az itt megadott sorrendben:
+Ha egyéni események kiépítés, az események általában fordulhat elő, az itt megadott sorrendben:
 
-1. Importálás esemény: felhasználói hello forrásrendszerben kéri le a rendszer.
+1. Importálás esemény: felhasználói a forrásrendszerben kéri le a rendszer.
 
-2. Importálás esemény: cél rendszer lekérdezett toocheck hello beolvasott hello felhasználó létezésének ellenőrzésével.
+2. Importálás esemény: célrendszeren le kell kérdezni a lekért felhasználói meglétének ellenőrzése.
 
-3. Szinkronizálási szabály esemény: a forrás-és cél felhasználó adatait rendszer összehasonlítja a konfigurált hello attribútum leképezési szabályok és a hatókör szűrők toodetermine Mi a teendő, ha van ilyen kell elvégezni.
+3. Szinkronizálási szabály esemény: a forrás-és cél felhasználó adatait rendszer összehasonlítja a megadott attribútum leképezési szabályok és hatókörére szűrő segítségével meghatározhatja, mi a teendő, ha van ilyen kell elvégezni.
 
-4. Esemény exportálása: Ha hello szinkronizálási szabály eseményt meghatározni, hogy egy műveletet kell végrehajtani (pl. hozzáadás, frissítés, Törlés), majd hello művelet eredményeinek hello tárolja, amely az Exportálás esemény.
+4. Esemény exportálása: Ha a szinkronizálási szabály eseményt meghatározni, hogy egy műveletet kell végrehajtani (pl. hozzáadás, frissítés, Törlés), majd a művelet eredményét tárolja, amely az Exportálás esemény.
 
 ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-provisioning-reporting/audit_logs.PNG)
 
 
 ### <a name="looking-up-provisioning-events-for-a-specific-user"></a>Kiépítés események egy adott felhasználó keresése
 
-hello leggyakoribb használati eset a naplók kiépítés hello toocheck hello előkészítési állapotát az egyes felhasználói fiókkal. egy adott felhasználó létesítési események utolsó hello mentése toolook:
+A telepítési naplók a leggyakrabban használt használati eset egyedi felhasználói fiókot a kiépítési állapotának. Kereshet egy adott felhasználó utolsó létesítési események:
 
-1. Nyissa meg toohello **naplók** szakasz.
+1. Lépjen a **naplók** szakasz.
 
-2. A hello **kategória** menü **fiók**.
+2. Az a **kategória** menü **fiók**.
 
-3. A hello **dátumtartomány** menü, azt szeretné, hogy toosearch, jelölje be hello dátumtartományt
+3. Az a **dátumtartomány** menüben válassza ki a keresendő, dátumtartomány
 
-4. A hello **keresési** sáv, adja meg a toosearch kívánja hello felhasználó hello felhasználói Azonosítóját. hello azonosító érték formátuma bármilyen kiválasztott hello elsődleges egyező azonosító hello attribútum leképezési konfigurációban (pl. userPrincipalName vagy alkalmazott azonosítóját), meg kell egyeznie. hello azonosító értékének megadása kötelező, fog megjelenni a hello cél(ok) oszlop.
+4. Az a **keresési** sáv, adja meg a keresni kívánt felhasználó felhasználói Azonosítóját. Azonosító érték formátuma függetlenül van kiválasztva, mint az elsődleges egyező azonosító attribútum leképezési konfigurációjában (pl. userPrincipalName vagy alkalmazott azonosítószámát) meg kell egyeznie. Az azonosító értékének megadása kötelező a cél(ok) oszlopban látható lesz.
 
-5. Nyomja le az Enter toosearch. először az eredmény hello megtartott legutóbbi események kiépítés.
+5. Nyomja le az Enter kereséséhez. Először az eredmény a legutóbbi létesítési események.
 
-6. Ha események ad vissza, vegye figyelembe a hello tevékenységtípusok, és hogy azok sikeres vagy sikertelen volt. Ha nincs találat, majd akkor hello felhasználó nem létezik, vagy még nem észlelt által hello létesítésének folyamatát kell használnia, ha a teljes szinkronizálás még nem fejeződött be.
+6. Ha események ad vissza, vegye figyelembe a tevékenység típusát, és hogy azok sikeres vagy sikertelen volt. Ha nincs találat, majd az azt jelenti, hogy a felhasználó nem létezik, vagy nem még felderítette a telepítési folyamatot, ha a teljes szinkronizálás még nem fejeződött be.
 
-7. Kattintson az egyes események kiterjesztett tooview részleteit, beleértve az összes felhasználó tulajdonság lekérése, értékeli ki, vagy hello esemény részeként írása.
+7. Kattintson az egyes események megtekintéséhez kiterjesztett adatait, többek között az összes felhasználó tulajdonságai beolvasni, értékeli ki, vagy az esemény-ként.
 
 
-### <a name="tips-for-viewing-hello-provisioning-audit-logs"></a>Tippek az hello kiépítés naplók megtekintése
+### <a name="tips-for-viewing-the-provisioning-audit-logs"></a>Tippek a telepítési naplók megtekintése
 
-Az olvashatóság érdekében ajánlott a hello Azure-portálon, válassza ki a hello **oszlopok** gombra, majd válassza ki a következő oszlopot:
+Az olvashatóság érdekében ajánlott az Azure portálon, válassza ki a **oszlopok** gombra, majd válassza ki a következő oszlopot:
 
-* **Dátum** -látható hello dátum hello esemény történt.
-* **Cél(ok)** -hello alkalmazást és egy felhasználói Azonosítót, amelyek hello témák hello esemény mutatja.
-* **Tevékenység** -hello tevékenységtípus, korábban leírt módon.
-* **Állapot** – akár hello esemény sikeres volt-e.
-* **Állapotok** – Mi történt a kiépítés esemény hello összegzését.
+* **Dátum** -dátumát jeleníti meg az esemény történt.
+* **Cél(ok)** -jeleníti meg az alkalmazás és egy felhasználói Azonosítót, amely az esemény vonatkoznak.
+* **Tevékenység** -tevékenységtípus, korábban leírt módon.
+* **Állapot** - e az esemény sikeres volt-e.
+* **Állapotok** – Mi történt az üzembe helyezési eseményben összegzését.
 
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
 
-kiépítés összegző jelentés és a naplózási naplók hello segíti a rendszergazdák különböző felhasználói fiók kiépítése kapcsolatos problémák elhárítása kulcsfontosságú szerepet játszanak.
+Az üzembe helyezési összegző jelentés és naplózási naplókat segíti a rendszergazdák különböző felhasználói fiók kiépítése kapcsolatos problémák elhárítása kulcsfontosságú szerepet játszanak.
 
-Kapcsolatos útmutatás a forgatókönyv-alapú tootroubleshoot automatikus felhasználók átadásához, lásd: [problémák konfigurálása és a felhasználók tooan alkalmazás kiépítés](active-directory-application-provisioning-content-map.md).
+Forgatókönyv-alapú bemutató elhárításáról automatikus a felhasználók átadása, lásd: [problémák konfigurálása, és üzembe helyezését a felhasználók számára az alkalmazás](active-directory-application-provisioning-content-map.md).
 
 
 ## <a name="additional-resources"></a>További források

@@ -1,6 +1,6 @@
 ---
-title: a VPN Gateway-kapcsolatot aaaVerify |} Microsoft Docs
-description: "Ez a cikk bemutatja, hogyan tooverify a virtuális hálózat VPN Gateway-kapcsolatot."
+title: "A VPN-átjáró kapcsolat ellenőrzése |} Microsoft Docs"
+description: "Ez a cikk bemutatja, hogyan ellenőrizheti egy virtuális hálózat VPN Gateway-kapcsolatot."
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/16/2017
 ms.author: cherylmc
-ms.openlocfilehash: 0d3da94a76b36251d629f82b1575328c7ac10b26
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b2d702ecdd5e1fca342e7c84c6e75339097f0bcd
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="verify-a-vpn-gateway-connection"></a>A VPN-átjáró kapcsolat ellenőrzése
 
-Ez a cikk bemutatja, hogyan tooverify hello klasszikus és Resource Manager üzembe helyezési modellel VPN gateway-kapcsolattal.
+Ez a cikk bemutatja, hogyan ellenőrizheti a klasszikus és Resource Manager üzembe helyezési modellel VPN gateway-kapcsolattal.
 
 ## <a name="azure-portal"></a>Azure Portal
 
@@ -31,13 +31,13 @@ Ez a cikk bemutatja, hogyan tooverify hello klasszikus és Resource Manager üze
 
 ## <a name="powershell"></a>PowerShell
 
-a VPN gateway-kapcsolatot az erőforrás-kezelő telepítési hello tooverify modell a PowerShell használatával, hello hello legújabb verziójának telepítéséhez [Azure Resource Manager PowerShell-parancsmagok](/powershell/azure/overview).
+Ha ellenőrizni szeretné a Resource Manager üzembe helyezési modellel PowerShell segítségével a VPN gateway-kapcsolattal, telepítse a legújabb verzióját a [Azure Resource Manager PowerShell-parancsmagok](/powershell/azure/overview).
 
 [!INCLUDE [PowerShell](../../includes/vpn-gateway-verify-connection-ps-rm-include.md)]
 
 ## <a name="azure-cli"></a>Azure CLI
 
-a VPN gateway-kapcsolatot az erőforrás-kezelő telepítési hello tooverify modellhez tartozó Azure parancssori felület használatával, hello hello legújabb verziójának telepítéséhez [parancssori felület parancsait](https://docs.microsoft.com/cli/azure/install-azure-cli) (2.0-s vagy újabb).
+Ellenőrizze a Resource Manager üzembe helyezési modellel, az Azure parancssori felület használatával a VPN gateway-kapcsolattal, telepítse a legújabb verzióját a [parancssori felület parancsait](https://docs.microsoft.com/cli/azure/install-azure-cli) (2.0-s vagy újabb).
 
 [!INCLUDE [CLI](../../includes/vpn-gateway-verify-connection-cli-rm-include.md)]
 
@@ -48,10 +48,10 @@ a VPN gateway-kapcsolatot az erőforrás-kezelő telepítési hello tooverify mo
 
 ## <a name="powershell-classic"></a>PowerShell (klasszikus)
 
-a VPN gateway-kapcsolatot a hello klasszikus telepítési modell powershellel, tooverify hello hello Azure PowerShell-parancsmagok legújabb verzióját telepítse. Lehet, hogy toodownload és a telepítés hello [szolgáltatásfelügyelet](https://docs.microsoft.com/powershell/azure/install-azure-ps?view=azuresmps-3.7.0) modul. Használja a "Hozzáadás-AzureAccount" toolog toohello klasszikus üzembe helyezési modellben.
+Ellenőrizze a klasszikus üzembe helyezési modell PowerShell segítségével a VPN gateway-kapcsolatot, telepítse az Azure PowerShell-parancsmagok legújabb verzióját. Ügyeljen arra, hogy töltse le és telepítse a [szolgáltatásfelügyelet](https://docs.microsoft.com/powershell/azure/install-azure-ps?view=azuresmps-3.7.0) modul. Jelentkezzen be a klasszikus üzembe helyezési modellel a "Hozzáadás-AzureAccount" segítségével.
 
 [!INCLUDE [Classic PowerShell](../../includes/vpn-gateway-verify-connection-ps-classic-include.md)]
 
 ## <a name="next-steps"></a>Következő lépések
 
-* Virtuális gépek tooyour virtuális hálózatokat adhat hozzá. A lépésekért lásd: [Virtuális gép létrehozása](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+* A virtuális hálózatokhoz hozzáadhat virtuális gépeket. A lépésekért lásd: [Virtuális gép létrehozása](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).

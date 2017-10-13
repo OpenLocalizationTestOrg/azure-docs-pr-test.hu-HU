@@ -2,28 +2,28 @@
 
 ### <a name="before-you-begin"></a>Előkészületek
 
-Győződjön meg arról, hogy rendelkezik-e elemek a konfigurációs megkezdése előtt a következő hello.
+A konfigurálás megkezdése előtt győződjön meg arról, hogy rendelkezik a következőkkel.
 
 * Azure-előfizetés. Ha még nincs Azure-előfizetése, aktiválhatja [MSDN-előfizetői előnyeit](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/), vagy regisztrálhat egy [ingyenes fiókot](https://azure.microsoft.com/pricing/free-trial/).
-* Tooinstall hello legújabb verziójára hello Azure Resource Manager PowerShell-parancsmagok van szüksége. További információkért lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azureps-cmdlets-docs).
+* Telepítse a legújabb verziót az Azure Resource Manager PowerShell-parancsmagokat kell. További információt [az Azure PowerShell telepítésével és konfigurálásával](/powershell/azureps-cmdlets-docs) foglalkozó témakörben talál.
 
-### <a name="sign-in-tooyour-azure-account"></a>Jelentkezzen be tooyour Azure-fiók
+### <a name="sign-in-to-your-azure-account"></a>Jelentkezzen be az Azure-fiókjába
 
-Nyissa meg a PowerShell-konzolt, és csatlakozzon a tooyour fiók. További információkért lásd: [PowerShell használata a Resource Manager](../articles/azure-resource-manager/powershell-azure-resource-manager.md).
+Nyissa meg a PowerShell konzolt, és csatlakozzon a fiókjához. További információkért lásd: [PowerShell használata a Resource Manager](../articles/azure-resource-manager/powershell-azure-resource-manager.md).
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-### <a name="select-hello-subscription"></a>Válassza ki a hello előfizetés
+### <a name="select-the-subscription"></a>Válassza ki az előfizetést
  
-Hello előfizetések hello fiók ellenőrzése.
+Keresse meg a fiókot az előfizetésekben.
 
 ```powershell
 Get-AzureRmSubscription
 ```
 
-Válassza ki, amely az Azure-előfizetések toouse.
+Válassza ki, hogy melyik Azure előfizetést fogja használni.
 
 ```powershell
 Select-AzureRmSubscription -SubscriptionName "your_subscription_name"
@@ -31,7 +31,7 @@ Select-AzureRmSubscription -SubscriptionName "your_subscription_name"
 
 ### <a name="create-a-resource-group"></a>Hozzon létre egy erőforráscsoportot
 
-Az Azure Resource Manager megköveteli, hogy minden erőforráscsoport megadjon egy helyet. Ezen a helyen az erőforráscsoport erőforrások lesz hello alapértelmezett helye. Azonban mivel minden DNS-erőforrás globális, nem pedig regionális, hello választás az erőforráscsoport helye nincs hatással van az Azure DNS szolgáltatásra.
+Az Azure Resource Manager megköveteli, hogy minden erőforráscsoport megadjon egy helyet. Ez a hely lesz az erőforráscsoport erőforrásainak alapértelmezett helye. Mivel azonban minden DNS-erőforrás globális, nem pedig regionális, az erőforráscsoport kiválasztott helye nincs hatással az Azure DNS szolgáltatásra.
 
 Ezt a lépést kihagyhatja, ha egy meglévő erőforráscsoportot használ.
 
@@ -41,7 +41,7 @@ New-AzureRmResourceGroup -Name MyAzureResourceGroup -location "West US"
 
 ### <a name="register-resource-provider"></a>Erőforrás-szolgáltató regisztrálása
 
-hello Azure DNS-szolgáltatás hello Microsoft.Network erőforrás-szolgáltató kezeli. Az Azure-előfizetéssel kell regisztrált toouse az erőforrás-szolgáltató Azure DNS használata előtt. Ez a műveletet minden egyes előfizetés esetén csak egyszer kell elvégezni.
+Az Azure DNS szolgáltatást a Microsoft.Network erőforrás-szolgáltató kezeli. Az Azure DNS használatbavétele előtt az Azure-előfizetést regisztrálni kell ennek az erőforrás-szolgáltatónak a használatához. Ez a műveletet minden egyes előfizetés esetén csak egyszer kell elvégezni.
 
 ```powershell
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network

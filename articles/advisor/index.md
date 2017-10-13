@@ -1,8 +1,8 @@
 ---
-title: "aaaAzure Advisor dokumentációja – oktatóanyag |} Microsoft Docs"
+title: "Az Azure Advisor dokumentációja – oktatóanyagok | Microsoft Docs"
 description: 
 services: advisor
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 1a1f8280c89b4e38af8c9cb2f5e55486a78186d3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 30d8d4f3565fcc5e4c5c514a74f94c3ce24819e6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-advisor-documentation"></a>Azure Advisor-dokumentáció
 
-Az Azure Advisor, amelynek segítségével személyre szabott felhő tanácsadó kövesse az ajánlott eljárások toooptimize az Azure-környezetekhez. A program elemzi az erőforrás-konfigurációs és -használati telemetriákat, Megoldások toohelp hello teljesítmény javítása érdekében biztonsági, és a teljes Azure lehetőségek tooreduce közben az erőforrások magas rendelkezésre állású töltenek az javasolja.
+Az Azure Advisor egy személyre szabott felhőtanácsadó, amely segít az ajánlott eljárások alkalmazásában az Azure-környezetek optimalizálása érdekében. A program elemzi az erőforrás-konfigurációs és -használati telemetriákat, és a teljesítményt, a biztonságot és az erőforrások magas rendelkezésre állását elősegítő megoldásokat javasol, valamint az Azure-költségek csökkentésére törekszik.
 
 <ul class="panelContent cardsFTitle">
     <li>

@@ -1,6 +1,6 @@
 ---
-title: "felhasználói beavatkozás nélkül erőforrások biztonságba helyezése az Azure AD aaaUse v2.0 tooaccess |} Microsoft Docs"
-description: "A webalkalmazások Azure AD hello végrehajtásának hello OAuth 2.0 hitelesítési protokoll használatával."
+title: "Az Azure AD v2.0 használják a felhasználói beavatkozás nélkül biztonságos erőforrások eléréséhez |} Microsoft Docs"
+description: "A webalkalmazások Azure AD végrehajtása az OAuth 2.0 hitelesítési protokoll használatával."
 services: active-directory
 documentationcenter: 
 author: dstrockis
@@ -15,61 +15,61 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: 0003ec836d633a5466c48033adedac1108f27203
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 93b54c3fc4397573f77b2e157c6f1866786690da
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# Az Azure Active Directory v2.0 és hello OAuth 2.0 ügyfél hitelesítő adatai
-Használhatja a hello [OAuth 2.0 ügyfél hitelesítő adatai megadják](http://tools.ietf.org/html/rfc6749#section-4.4), más néven *két Egyszárú OAuth*, tooaccess webkiszolgáló által szolgáltatott erőforrások alkalmazás hello identitásával. Gyakran engedélyezze az ilyen típusú kiszolgálók – olyan műveleteket, amelyek kell hello háttérben futnak, a felhasználó azonnali közreműködése nélkül szolgál. Ilyen típusú alkalmazások gyakran történik a hivatkozott tooas *démonok* vagy *szolgáltatásfiókok*.
+# Az Azure Active Directory v2.0 és az OAuth 2.0 ügyfél hitelesítő adatok folyamata
+Használhatja a [OAuth 2.0 ügyfél hitelesítő adatai megadják](http://tools.ietf.org/html/rfc6749#section-4.4), más néven *két Egyszárú OAuth*, az alkalmazáshoz a webkiszolgáló által szolgáltatott erőforrások eléréséhez. Gyakran engedélyezze az ilyen típusú kiszolgálók – olyan műveleteket, amelyek kell a háttérben futnak, a felhasználó azonnali közreműködése nélkül szolgál. Ilyen típusú alkalmazások gyakran nevezik *démonok* vagy *szolgáltatásfiókok*.
 
 > [!NOTE]
-> hello v2.0-végpontra nem támogatja, minden Azure Active Directory forgatókönyvek és funkciók. toodetermine kell használnia a hello v2.0-végpontra, hogy olvassa el [v2.0 korlátozások](active-directory-v2-limitations.md).
+> A v2.0-végpontra nem támogatja, minden Azure Active Directory forgatókönyvek és funkciók. Annak megállapításához, hogy a v2.0-végponttal kell használnia, olvassa el [v2.0 korlátozások](active-directory-v2-limitations.md).
 >
 >
 
-A több tipikus hello *három Egyszárú OAuth*, ügyfélalkalmazás rendelt engedélyek tooaccess erőforrás egy adott felhasználó nevében. hello engedély delegált hello felhasználói toohello alkalmazás, általában során hello [hozzájárulás](active-directory-v2-scopes.md) folyamat. Azonban az ügyfél-hitelesítő adatok folyamata hello, engedélyekkel közvetlenül toohello alkalmazás saját magát. Amikor hello alkalmazás megjeleníti a token tooa erőforrás, hello erőforrás hello alkalmazás maga engedélyezési tooperform egy művelettel rendelkezik, és nem hello rendelkezik engedélyezési érvénybe lépteti.
+A tipikus több *három Egyszárú OAuth*, ügyfélalkalmazás engedélyt elért egy erőforrást egy adott felhasználó nevében. Az engedély delegált a felhasználótól az alkalmazást, általában során a [hozzájárulás](active-directory-v2-scopes.md) folyamat. Azonban az ügyfél-hitelesítő adatok folyamatában jogosultságokkal közvetlenül magának az alkalmazásnak. Ha az alkalmazás megadja egy erőforrást, az erőforrás jogkivonat érvényesíti, amely az alkalmazás maga engedélyezési végrehajtani a műveletet, és hogy a nem a felhasználó rendelkezik-e engedélyezési.
 
 ## Protokoll diagramja
-hello teljes ügyfél-hitelesítő adatok folyamata hasonló toohello következő diagram keres. Azt ismertetik hello lépéseket a cikk későbbi részében.
+A teljes ügyfél-hitelesítő adatok folyamata a következő ábra hasonlít. Azt írja le a cikk lépéseit.
 
 ![Ügyfél hitelesítő adatai](../../media/active-directory-v2-flows/convergence_scenarios_client_creds.png)
 
 ## Közvetlen engedélyezési beolvasása
-Az alkalmazások általában kap közvetlen engedélyezési tooaccess erőforrás az alábbi két módszer egyikével: hello erőforrás: hozzáférés-vezérlési listaként (ACL) vagy alkalmazás engedély-hozzárendelést az Azure Active Directory (Azure AD) révén. Két módszer közül hello leggyakoribb Azure AD-ben, és az ügyfelek és az erőforrásokat, hajtsa végre az ügyfél-hitelesítő adatok folyamata hello ajánlott azokat. Egy erőforrás választhat tooauthorize az ügyfelek más módon azonban. Minden erőforrás server választható hello metódus, amely hello legtöbb az alkalmazás.
+Az alkalmazások általában kap közvetlen engedélyezési elért egy erőforrást az alábbi két módszer egyikével: az erőforráscsoportok hozzáférés-vezérlési listaként (ACL) vagy alkalmazás engedély-hozzárendelést az Azure Active Directory (Azure AD) révén. Két módszer közül a leggyakrabban használt Azure AD-ben, és azt javasoljuk azok az ügyfelek és az erőforrásokat, hajtsa végre az ügyfél hitelesítő adatok folyamata. Egy erőforrás azonban engedélyezi az ügyfeleknek más módon választhat. Minden erőforrás-kiszolgáló a módszert, amelyet az alkalmazás számára a legtöbb legjobb választhat.
 
 ### Hozzáférés-vezérlési listák
-Egy erőforrás-szolgáltató kényszerítése előfordulhat, hogy egy jogosultsági ellenőrzés, hogy tudja, és engedélyezi a hozzáférést a valamilyen konkrét szintje Alkalmazásazonosítók listája alapján. Amikor hello erőforrás jogkivonatot kap hello v2.0-végpontra, dekódolása hello jogkivonatot, és hello ügyfél Alkalmazásazonosító kinyerése hello `appid` és `iss` jogcímeket. Ezután összeveti a hozzáférés-vezérlési Listában, amely a karbantartott hello alkalmazást. hozzáférés-vezérlési lista granularitási hello és metódus erőforrások közötti jelentősen változhat.
+Egy erőforrás-szolgáltató kényszerítése előfordulhat, hogy egy jogosultsági ellenőrzés, hogy tudja, és engedélyezi a hozzáférést a valamilyen konkrét szintje Alkalmazásazonosítók listája alapján. Amikor az erőforrás egy tokent kap a v2.0-végpontra, dekódolni a jogkivonatot, és bontsa ki az ügyfél Alkalmazásazonosítót a a `appid` és `iss` jogcímeket. Ezután összeveti a hozzáférés-vezérlési Listában, amely a karbantartott alkalmazást. A hozzáférés-vezérlési lista granularitási és metódus változhat, jelentősen erőforrások között.
 
-Gyakori használati eset egy hozzáférés-vezérlési lista toorun teszteli, webalkalmazás, vagy egy webes API toouse. hello Web API előfordulhat, hogy engedélyezze a teljes körű engedélyekkel tooa adott ügyfél csak egy részét. toorun végpont teszteket a hello API, hozzon létre szerez be a v2.0-végponttól hello származó jogkivonatokat, majd elküldi azokat toohello API teszt ügyfél. hello API majd ellenőrzések hello ACL hello a teszt teljes hozzáférési toohello API teljes funkció ügyfél alkalmazás azonosítója. Ha ilyen típusú hozzáférés-vezérlési lista használja, ne feledje toovalidate, nem csak a hívó hello `appid` érték. Is ellenőrzi, hogy hello `iss` hello token értéke megbízható.
+Gyakori használati eset, hogy használja a hozzáférés-vezérlési Listában webalkalmazás vagy egy webes API tesztek futtatásához. A Web API előfordulhat, hogy a teljes körű engedélyeket csak egy részhalmazát jogot konkrét ügyfélhez. Az API-végpontok közötti meghagy, hozzon létre teszt ügyfél szerez be a v2.0-végpontra származó jogkivonatokat, majd elküldi azokat az API-t. Az API-t ellenőrzi az ACL teljes körű hozzáférés az API-t teljes funkciót az a teszt ügyfél Azonosítóját. Ha ilyen típusú hozzáférés-vezérlési lista használata esetén ügyeljen arra, hogy nem csak a hívó érvényesítése `appid` érték. Is ellenőrzi, hogy a `iss` a token értéke megbízható.
 
-Ez a hitelesítési típus közös démonok és fogyasztói személyes Microsoft-fiókkal rendelkező felhasználók tulajdonában lévő tooaccess adatokat igénylő szolgáltatásfiókokat. A szervezet tulajdonában lévő adatokat azt javasoljuk, hogy hello szükséges engedélyezési Alkalmazásengedélyek keresztül kap.
+Ez a hitelesítési típus közös démonok és szolgáltatásfiókokat, el kell érniük a fogyasztói személyes Microsoft-fiókkal rendelkező felhasználók tulajdonában lévő adatokat. A szervezet tulajdonában lévő adatokat azt javasoljuk, hogy alkalmazás-engedélyek szükséges engedélyt kapott.
 
 ### Alkalmazásengedélyek
-Hozzáférés-vezérlési listák helyett használhat API-k tooexpose alkalmazás engedélyekkel. Egy alkalmazás engedélyt tooan alkalmazás egy szervezet rendszergazdája, és a használt csak tooaccess adatok tartozhat, hogy a szervezet és az alkalmazottait. Például a Microsoft Graph több alkalmazás engedélyek toodo hello következő mutatja:
+Hozzáférés-vezérlési listák helyett API-k segítségével teszi közzé az alkalmazást engedélyekkel. Egy alkalmazás engedélyt kap egy alkalmazás egy szervezet rendszergazdája, és csak az adott szervezet és az alkalmazottak tulajdonában lévő adatokat eléréséhez használható. Például a Microsoft Graph több alkalmazás engedélyek a következő mutatja:
 
 * E-mailek olvasása az összes postaládában
 * E-mailek olvasása és írása az összes postaládában
 * E-mailek küldése bármely felhasználó nevében
 * Címtáradatok olvasása
 
-Alkalmazásengedélyek kapcsolatos további információkért lépjen túl[Microsoft Graph](https://graph.microsoft.io).
+Alkalmazásengedélyek kapcsolatos további információkért látogasson el [Microsoft Graph](https://graph.microsoft.io).
 
-az alkalmazás toouse Alkalmazásengedélyek hello hello következő szakaszokban arról lesz szó lépéseket.
+Alkalmazásengedélyek az alkalmazás használatához hajtsa végre a lépéseket, a következő szakaszokban arról lesz szó.
 
-#### Hello app regisztrációs portálon hello engedélyek kéréséhez
-1. Nyissa meg a hello tooyour alkalmazás [alkalmazásregisztrációs portálra](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), vagy [hozzon létre egy alkalmazást](active-directory-v2-app-registration.md), ha még nem tette meg. Toouse szüksége lesz legalább egy alkalmazás titkos kulcs az alkalmazás létrehozásakor.
-2. Keresse meg a hello **közvetlen Alkalmazásengedélyek** szakaszt, és adja hozzá a hello az engedélyeket, az alkalmazás használatához.
-3. **Mentés** hello alkalmazás regisztrációja.
+#### Az alkalmazás regisztrációs portálon engedélyek kéréséhez
+1. Keresse fel az alkalmazást a [alkalmazásregisztrációs portálra](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), vagy [hozzon létre egy alkalmazást](active-directory-v2-app-registration.md), ha még nem tette meg. Szüksége lesz legalább egy alkalmazás titkos kulcs használatára, az alkalmazás létrehozásakor.
+2. Keresse meg a **közvetlen Alkalmazásengedélyek** szakaszt, és adja meg az alkalmazáshoz szükséges engedélyeket.
+3. **Mentés** az alkalmazás regisztrálása.
 
-#### Ajánlott: Bejelentkezési hello felhasználói tooyour alkalmazásban
-Általában Alkalmazásengedélyek használó alkalmazások készítéséhez hello alkalmazás megköveteli lapon vagy a mely hello admin jóvá hello app engedélyek nézetben. Ezen a lapon lehet hello app bejelentkezési folyamata, hello app beállításokban része, vagy egy dedikált "Csatlakozás" folyamat lehet. Sok esetben érdemes a hello app tooshow a "Csatlakozás" nézetben, csak azt követően a felhasználó a munkahelyi vagy iskolai Microsoft-fiókkal van bejelentkezve.
+#### Ajánlott: Beléptetni a felhasználót az alkalmazáshoz
+Általában Alkalmazásengedélyek használó alkalmazás építésekor szükséges az alkalmazáshoz egy lap vagy nézet, amelyen a rendszergazda az Alkalmazásengedélyek jóváhagyja. Ezen a lapon lehet az alkalmazás bejelentkezési folyamata, az alkalmazás beállításokban része, vagy egy dedikált "Csatlakozás" folyamat lehet. Sok esetben érdemes ezt az alkalmazást a "Csatlakozás" nézet csak, miután egy felhasználó a munkahelyi vagy iskolai Microsoft-fiókkal van bejelentkezve.
 
-Tooyour alkalmazásban hello felhasználó bejelentkezik, ha hello szervezet kiválaszthat toowhich hello felhasználói előtt tegye fel hello felhasználói tooapprove hello Alkalmazásengedélyek tartozik. Bár nem feltétlenül szükséges, ez segíthet a felhasználók intuitívabb környezetet. toosign hello felhasználó, hajtsa végre a [v2.0 protokoll oktatóanyagok](active-directory-v2-protocols.md).
+Ha bejelentkezik a felhasználó az alkalmazáshoz, a szervezet, amelyhez a felhasználó tartozik, kérje meg, hogy az Alkalmazásengedélyek jóváhagyása előtt azonosíthatja. Bár nem feltétlenül szükséges, ez segíthet a felhasználók intuitívabb környezetet. Írja alá a felhasználót, hajtsa végre a [v2.0 protokoll oktatóanyagok](active-directory-v2-protocols.md).
 
-#### Hello engedélyeket kérhet a directory-rendszergazda
-Amikor készen áll a toorequest engedélyek hello szervezetének rendszergazdájával, átirányítja a hello felhasználói toohello v2.0 *rendszergazda jóváhagyását végpont*.
+#### Az engedélyeket kérhet a directory-rendszergazda
+Amikor készen áll a szervezet felügyeleti engedélyeket kérhet, akkor is átirányítja a felhasználót a v2.0 *rendszergazda jóváhagyását végpont*.
 
 ```
 // Line breaks are for legibility only.
@@ -81,7 +81,7 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 ```
 
 ```
-// Pro tip: Try pasting hello following request in a browser!
+// Pro tip: Try pasting the following request in a browser!
 ```
 
 ```
@@ -90,15 +90,15 @@ https://login.microsoftonline.com/common/adminconsent?client_id=6731de76-14a6-49
 
 | Paraméter | Az állapot | Leírás |
 | --- | --- | --- |
-| Bérlői |Szükséges |hello directory-bérlőt, amelyet toorequest engedélyt. Ez lehet GUID vagy rövid név formátumban. Ha nem tudja hello bérlői felhasználói tartozik azt szeretné, hogy azok jelentkezzen be minden bérlő, használjon toolet tooand `common`. |
-| client_id |Szükséges |hello alkalmazás azonosító adott hello [alkalmazásregisztrációs portálra](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) tooyour app rendelve. |
-| redirect_uri |Szükséges |hello átirányítási URI, ahol azt szeretné, hogy az alkalmazás toohandle küldött hello válasz toobe. Az pontosan egyeznie kell hello átirányítási URI-azonosítók regisztrált hello portálon, azzal a különbséggel, hogy az URL-kódolású kell lennie, és további szegmenst veheti fel. |
-| state |Ajánlott |Egy érték, amely része a hello kérelem hello token válaszul is visszaadott. Bármely, a kívánt tartalmat karakterlánc lehet. hello állapota hello felhasználói állapot hello alkalmazásban használt tooencode információ hello hitelesítési kérelem történt, például hello lap vagy amilyenek korábban voltak a megtekintése előtt. |
+| Bérlői |Szükséges |A directory-bérlőt, amelyet az engedélyt. Ez lehet GUID vagy rövid név formátumban. Ha nem biztos lehet bérlői a felhasználó tagja, és azt szeretné, hogy azok jelentkezzen be minden bérlő, használjon, amely `common`. |
+| client_id |Szükséges |Az alkalmazás azonosítója, amely a [alkalmazásregisztrációs portálra](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) az alkalmazáshoz hozzárendelni. |
+| redirect_uri |Szükséges |Az átirányítási URI, ha azt szeretné, hogy a válasz küldését az alkalmazások kezeléséhez. Az pontosan egyeznie kell az átirányítási URI-k, a portál regisztrált azzal a különbséggel, hogy az URL-kódolású kell lennie, és további szegmenst veheti fel. |
+| state |Ajánlott |Egy érték, amely megtalálható a kérelem a biztonságijogkivonat-válaszban is visszaadott. Bármely, a kívánt tartalmat karakterlánc lehet. Az állapot az alkalmazás a felhasználói állapot információt kódolásához, előtt a hitelesítési kérést, például az oldal vagy nézet, amilyenek korábban voltak a használatos. |
 
-Ezen a ponton az Azure AD kényszeríti annak engedélyezése, hogy csak a bérlői rendszergazda toocomplete hello kérelmet tud bejelentkezni. hello rendszergazda összes hello közvetlen Alkalmazásengedélyek kért az alkalmazáshoz a hello app regisztrációs portál tooapprove meg kell adnia.
+Ezen a ponton az Azure AD kényszeríti annak engedélyezése, hogy csak a bérlői rendszergazda jelentkezhetnek be a kérés teljesítéséhez. A rendszergazda jóváhagyása az alkalmazást az app-regisztrálási portál a kért közvetlen alkalmazás engedélyeket kell adnia.
 
 ##### A sikeres válasz
-Üdvözöljük a rendszergazdákat jóvá hello engedélyek az alkalmazáshoz, ha a sikeres válasz hello néz ki:
+Ha a rendszergazda engedélyeit, az alkalmazás jóváhagyása, a sikeres válasz jelenik meg:
 
 ```
 GET http://localhost/myapp/permissions?tenant=a8990e1f-ff32-408a-9f8e-78d3b9139b95&state=state=12345&admin_consent=True
@@ -106,12 +106,12 @@ GET http://localhost/myapp/permissions?tenant=a8990e1f-ff32-408a-9f8e-78d3b9139b
 
 | Paraméter | Leírás |
 | --- | --- | --- |
-| Bérlői |hello directory-bérlő tartozik, amely engedéllyel rendelkezik az alkalmazás hello, amely azt kérte, GUID formátumban. |
-| state |Egy érték, amely része a hello kérelem hello token válaszul is visszaadott. Bármely, a kívánt tartalmat karakterlánc lehet. hello állapota hello felhasználói állapot hello alkalmazásban használt tooencode információ hello hitelesítési kérelem történt, például hello lap vagy amilyenek korábban voltak a megtekintése előtt. |
-| admin_consent |Állítsa be a túl**igaz**. |
+| Bérlői |A directory-bérlőhöz, amely engedéllyel rendelkezik az alkalmazás a kért, GUID formátumban. |
+| state |Egy érték, amely megtalálható a kérelem a biztonságijogkivonat-válaszban is visszaadott. Bármely, a kívánt tartalmat karakterlánc lehet. Az állapot az alkalmazás a felhasználói állapot információt kódolásához, előtt a hitelesítési kérést, például az oldal vagy nézet, amilyenek korábban voltak a használatos. |
+| admin_consent |Beállítása **igaz**. |
 
 ##### Hibaválaszba
-Üdvözöljük a rendszergazdákat nem hagyja jóvá az alkalmazás hello engedélyek, ha a hello válasz néz sikertelen volt:
+Ha a rendszergazda nem hagyja jóvá az engedélyeket az alkalmazáshoz, a sikertelen válasz jelenik meg:
 
 ```
 GET http://localhost/myapp/permissions?error=permission_denied&error_description=The+admin+canceled+the+request
@@ -119,13 +119,13 @@ GET http://localhost/myapp/permissions?error=permission_denied&error_description
 
 | Paraméter | Leírás |
 | --- | --- | --- |
-| error |Egy hiba kód karakterlánc használható tooclassify típusok hibákat, és amelyek tooreact tooerrors használhatja. |
-| error_description |Egy adott hibaüzenet, melyek segíthetnek hello hiba okának azonosításához. |
+| error |Egy hiba kód karakterlánc, amely segítségével besorolni a hibákat, és amely hibák reagálni használhatja. |
+| error_description |Egy adott hibaüzenet, amelyik segíthet a hiba alapvető oka azonosítása. |
 
-A sikeres válasz a hello alkalmazás üzembe helyezési végpont már fogadását követően az alkalmazás köszönhetően a kért hello közvetlen Alkalmazásengedélyek. Most hello erőforrás, amelyet egy jogkivonatot kérhet.
+Miután az alkalmazás üzembe helyezési végpont már a sikeres válasz érkezett, az alkalmazás köszönhetően a kért közvetlen Alkalmazásengedélyek. Most már a kívánt erőforráshoz tartozó jogkivonatot kérhet.
 
 ## A jogkivonat beolvasása
-Ha hello szükséges engedélyezési jut hozzá az alkalmazáshoz, lépjen a hozzáférési tokenek beszerzése API-k esetében. hello ügyfél hitelesítő adatok megadása a jogkivonat tooget küldése egy POST kérést toohello `/token` v2.0-végponttal:
+Miután az alkalmazás jut hozzá a szükséges engedélyt, folytatásához a hozzáférési tokenek beszerzése API-k esetében. Ahhoz, hogy a jogkivonatot az ügyfél hitelesítő adatok megadása, küldött POST kérelmet a `/token` v2.0-végponttal:
 
 ### Először. eset: egy közös titkot a hozzáférési token kérelem
 
@@ -143,9 +143,9 @@ curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'client_id=
 
 | Paraméter | Az állapot | Leírás |
 | --- | --- | --- |
-| client_id |Szükséges |hello alkalmazás azonosító adott hello [alkalmazásregisztrációs portálra](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) tooyour app rendelve. |
-| Hatókör |Szükséges |hello értéket kapott hello `scope` a kérésben paraméternek kell lennie a hello erőforrás-azonosítója (alkalmazás azonosítója URI) kívánt, a hello elhelyezni hello erőforrás `.default` utótag. Például hello Microsoft Graph hello értéke `https://graph.microsoft.com/.default`. Ez az érték tájékoztatja arról, hogy az összes hello közvetlen alkalmazás engedélyek beállítása az alkalmazáshoz konfigurált, azt kell ki hello kívánt hello erőforrás társított megfelelően a jogkivonat toouse hello v2.0-végponttól. |
-| client_secret |Szükséges |az alkalmazás hello app regisztrációs portálon létrehozott Alkalmazáskulcsot hello. |
+| client_id |Szükséges |Az alkalmazás azonosítója, amely a [alkalmazásregisztrációs portálra](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) az alkalmazáshoz hozzárendelni. |
+| Hatókör |Szükséges |Átadott értéknek a `scope` a kérésben paraméternek kell lennie az erőforrás-azonosító (alkalmazás azonosítója URI), a kívánt, elhelyezni az erőforrás a `.default` utótag. A Microsoft Graph például értéke `https://graph.microsoft.com/.default`. Ez az érték tájékoztatja arról, hogy minden közvetlen alkalmazás engedélyeit az alkalmazás már konfigurálta, akkor kell ki a használni kívánt erőforráshoz tartozó megfelelően a jogkivonat a v2.0-végponttól. |
+| client_secret |Szükséges |Az alkalmazás az app-regisztrációs portálon létrehozott Alkalmazáskulcsot. |
 | grant_type |Szükséges |Kell `client_credentials`. |
 
 ### A második esetben: hozzáférési jogkivonat kérelem tanúsítvánnyal
@@ -160,13 +160,13 @@ scope=https%3A%2F%2Fgraph.microsoft.com%2F.default&client_id=97e0a5b7-d745-40b6-
 
 | Paraméter | Az állapot | Leírás |
 | --- | --- | --- |
-| client_id |Szükséges |hello alkalmazás azonosító adott hello [alkalmazásregisztrációs portálra](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) tooyour app rendelve. |
-| Hatókör |Szükséges |hello értéket kapott hello `scope` a kérésben paraméternek kell lennie a hello erőforrás-azonosítója (alkalmazás azonosítója URI) kívánt, a hello elhelyezni hello erőforrás `.default` utótag. Például hello Microsoft Graph hello értéke `https://graph.microsoft.com/.default`. Ez az érték tájékoztatja arról, hogy az összes hello közvetlen alkalmazás engedélyek beállítása az alkalmazáshoz konfigurált, azt kell ki hello kívánt hello erőforrás társított megfelelően a jogkivonat toouse hello v2.0-végponttól. |
-| client_assertion_type |Szükséges |hello értéknek kell lennie`urn:ietf:params:oauth:client-assertion-type:jwt-bearer` |
-| client_assertion |Szükséges | Egy helyességi feltétel (egy JSON Web Token), hogy toocreate van szüksége, és a jel hello a tanúsítványok, az alkalmazás hitelesítő adatként regisztrálva. További információ a [tanúsítvány a hitelesítő adatok](active-directory-certificate-credentials.md) toolearn hogyan tooregister hello helyességi feltétel a tanúsítvány és hello formátuma.|
+| client_id |Szükséges |Az alkalmazás azonosítója, amely a [alkalmazásregisztrációs portálra](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) az alkalmazáshoz hozzárendelni. |
+| Hatókör |Szükséges |Átadott értéknek a `scope` a kérésben paraméternek kell lennie az erőforrás-azonosító (alkalmazás azonosítója URI), a kívánt, elhelyezni az erőforrás a `.default` utótag. A Microsoft Graph például értéke `https://graph.microsoft.com/.default`. Ez az érték tájékoztatja arról, hogy minden közvetlen alkalmazás engedélyeit az alkalmazás már konfigurálta, akkor kell ki a használni kívánt erőforráshoz tartozó megfelelően a jogkivonat a v2.0-végponttól. |
+| client_assertion_type |Szükséges |Az értéknek kell lennie`urn:ietf:params:oauth:client-assertion-type:jwt-bearer` |
+| client_assertion |Szükséges | Egy helyességi feltétel (egy JSON Web Token) hozzon létre, és írja alá a tanúsítványt igénylő regisztrálta hitelesítő adatként az alkalmazáshoz. További információ a [tanúsítvány a hitelesítő adatok](active-directory-certificate-credentials.md) megtudhatja, hogyan kell regisztrálni a tanúsítványt, és a helyességi feltétel formátuma.|
 | grant_type |Szükséges |Kell `client_credentials`. |
 
-Figyelje meg, hogy hello paraméterei szinte hello ugyanaz, mint hello hello kérelem által megosztott titkot azzal a különbséggel, hogy hello client_secret paraméter helyébe két paramétert: egy client_assertion_type és client_assertion.
+Figyelje meg, hogy a paraméterek megegyeznek-szinte közös titkos kulcs kérése gazdabuszadaptereken azzal a különbséggel, hogy a client_secret paraméter helyébe két paramétert: egy client_assertion_type és client_assertion.
 
 ### A sikeres válasz
 A sikeres válasz így néz ki:
@@ -181,9 +181,9 @@ A sikeres válasz így néz ki:
 
 | Paraméter | Leírás |
 | --- | --- |
-| access_token |hello kért hozzáférési jogkivonat. hello alkalmazást a védett erőforrások, például a Web API tooa token tooauthenticate toohello használhatja. |
-| token_type |Azt jelzi, hogy hello token objektumtípus-érték. csak olyan típusú, amely az Azure AD által támogatott hello `bearer`. |
-| expires_in |Mennyi ideig hello hozzáférési jogkivonat érvénytelen (másodpercben). |
+| access_token |A kért hozzáférési jogkivonat. Az alkalmazás a token használatával hitelesíteni a védett erőforrások, például egy webes API. |
+| token_type |A jogkivonat típusa értékét jelöli. Az egyetlen típus, amely az Azure AD által támogatott `bearer`. |
+| expires_in |Mennyi ideig a hozzáférési jogkivonat érvénytelen (másodpercben). |
 
 ### Hibaválaszba
 Egy hiba történt egy válasz így néz ki:
@@ -191,7 +191,7 @@ Egy hiba történt egy válasz így néz ki:
 ```
 {
   "error": "invalid_scope",
-  "error_description": "AADSTS70011: hello provided value for hello input parameter 'scope' is not valid. hello scope https://foo.microsoft.com/.default is not valid.\r\nTrace ID: 255d1aef-8c98-452f-ac51-23d051240864\r\nCorrelation ID: fb3d2015-bc17-4bb9-bb85-30c5cf1aaaa7\r\nTimestamp: 2016-01-09 02:02:12Z",
+  "error_description": "AADSTS70011: The provided value for the input parameter 'scope' is not valid. The scope https://foo.microsoft.com/.default is not valid.\r\nTrace ID: 255d1aef-8c98-452f-ac51-23d051240864\r\nCorrelation ID: fb3d2015-bc17-4bb9-bb85-30c5cf1aaaa7\r\nTimestamp: 2016-01-09 02:02:12Z",
   "error_codes": [
     70011
   ],
@@ -203,15 +203,15 @@ Egy hiba történt egy válasz így néz ki:
 
 | Paraméter | Leírás |
 | --- | --- |
-| error |Egy hiba kód karakterlánc, amely a előforduló hibákat, és tooreact tooerrors tooclassify típusok használhatók. |
-| error_description |Egy adott hibaüzenet, amelyek segíthetnek hello hitelesítési hiba okának azonosításához. |
+| error |Egy hiba kód karakterlánc, amely a besorolására a felmerülő hibákat, és reagálni hibákat is használhatja. |
+| error_description |Egy adott hibaüzenet, amelyek segíthetnek a hitelesítési hiba okának azonosításához. |
 | error_codes |Diagnosztika segíthet STS-specifikus hibakódok listáját. |
-| időbélyeg |hello idő hello hiba lépett fel. |
-| trace_id |Hello kérelem, amelyek segíthetnek a diagnosztika egyedi azonosítója. |
-| correlation_id |Hello kérelem, amelyek segíthetnek a diagnosztika összetevői között egyedi azonosítója. |
+| időbélyeg |Az az idő, a hiba történt. |
+| trace_id |A kérelem, amelyek segíthetnek a diagnosztika egyedi azonosítója. |
+| correlation_id |A kérelemhez, amely segíthet diagnosztika összetevői között egyedi azonosítója. |
 
 ## Használja a tokent
-Most, hogy jut hozzá a jogkivonatot, használja a hello token toomake kérelmek toohello erőforrás. Amikor hello-token érvényessége lejár, ismételje meg a hello kérelem toohello `/token` végpont tooacquire egy friss hozzáférési jogkivonat.
+Most, hogy jut hozzá a jogkivonatot, a jogkivonat segítségével küld kérelmeket az erőforráshoz. Amikor a jogkivonat lejár, ismételje meg a kérést a `/token` végpont egy friss hozzáférési jogkivonat beszerzése.
 
 ```
 GET /v1.0/me/messages
@@ -220,7 +220,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik5HVEZ2ZEstZn
 ```
 
 ```
-// Pro tip: Try hello following command! (Replace hello token with your own.)
+// Pro tip: Try the following command! (Replace the token with your own.)
 ```
 
 ```
@@ -228,4 +228,4 @@ curl -X GET -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dC
 ```
 
 ## Kódminta
-egy alkalmazás például, hogy megvalósítja hello rendszergazda jóváhagyását végpont használatával ügyfél-hitelesítő adatok megadása hello toosee tekintse meg a [v2.0 démon kódminta](https://github.com/Azure-Samples/active-directory-dotnet-daemon-v2).
+Egy alkalmazás például, hogy az ügyfél hitelesítő adatai megadják a rendszergazda használatával valósít meg hozzájárulás végpont, olvassa el a [v2.0 démon kódminta](https://github.com/Azure-Samples/active-directory-dotnet-daemon-v2).

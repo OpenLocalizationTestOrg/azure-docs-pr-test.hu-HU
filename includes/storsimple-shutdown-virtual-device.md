@@ -1,5 +1,5 @@
-#### <a name="tooshut-down-a-virtual-device"></a>tooshut le a virtuális eszköz
-1. Jelentkezzen be a kezelési portál toohello.
-2. Kattintson a **virtuális gépek**, majd válassza ki hello virtuális eszköz és.
+#### <a name="to-shut-down-a-virtual-device"></a>Virtuális eszköz leállítása
+1. Jelentkezzen be a felügyeleti portálra.
+2. Kattintson a **Virtual Machines** lehetőségre, majd válasszon ki egy virtuális eszközt.
 3. Kattintson a **Leállítás** elemre.
 

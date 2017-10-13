@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Cosmos DB Node.js API SDK & erőforrások |} Microsoft Docs"
-description: "Tudnivalók az hello Node.js API és az SDK kiadási dátum, használatból való kivonást dátumok és módosítások hello Azure Cosmos DB Node.js SDK verziói között."
+title: "Azure Cosmos DB Node.js API, az SDK és az erőforrások |} Microsoft Docs"
+description: "Tudnivalók a Node.js API és SDK, beleértve a kiadási dátum, használatból való kivonást dátumok és az Azure Cosmos DB Node.js SDK verziói között végrehajtott módosításokat."
 services: cosmos-db
 documentationcenter: nodejs
 author: rnagpal
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 08/14/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: d450b9a9ea7b0f4717ddae8940121fc458ea3744
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4376a5c07b5f00311ce0fe3c0056efdf79c273f9
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="azure-cosmos-db-nodejs-sdk-release-notes-and-resources"></a>Azure Cosmos DB Node.js SDK: A kibocsátási megjegyzések és erőforrások
 > [!div class="op_single_selector"]
@@ -43,11 +43,11 @@ ms.lasthandoff: 10/06/2017
 
 <tr><td>**SDK telepítési utasításokat**</td><td>[Telepítési utasításokat](http://azure.github.io/azure-documentdb-node/)</td></tr>
 
-<tr><td>**Közreműködési lehetőségek tooSDK**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-node/tree/master/source)</td></tr>
+<tr><td>**Hozzájárul az SDK**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-node/tree/master/source)</td></tr>
 
 <tr><td>**Példák**</td><td>[NODE.js-Kódminták](documentdb-nodejs-samples.md)</td></tr>
 
-<tr><td>**Első lépéseket ismertető oktatóanyag**</td><td>[Ismerkedés a Node.js SDK hello](documentdb-nodejs-get-started.md)</td></tr>
+<tr><td>**Első lépéseket ismertető oktatóanyag**</td><td>[Ismerkedés a Node.js SDK-val](documentdb-nodejs-get-started.md)</td></tr>
 
 <tr><td>**Webes alkalmazás oktatóanyag**</td><td>[Azure Cosmos DB használata Node.js-webalkalmazás létrehozása](documentdb-nodejs-application.md)</td></tr>
 
@@ -66,8 +66,8 @@ ms.lasthandoff: 10/06/2017
 
 ### <a name="1.12.1"/>1.12.1</a>
 * Rögzített programhiba executeStoredProcedure ahol érintett dokumentumok kellett speciális Unicode-karaktereket (LS, PS).
-* Unicode-karaktereket a hello partíciókulcs-dokumentumok kezelése hiba kijavítva.
-* Gyűjtemények létrehozása hello neve adathordozó rögzített támogatása. Github probléma #114.
+* A partíciókulcs az Unicode karaktereket tartalmazó dokumentumok kezelése hiba kijavítva.
+* Gyűjtemények létrehozása a név adathordozó rögzített támogatása. Github probléma #114.
 * Engedély engedélyezési jogkivonat rögzített támogatása. Github probléma #178.
 
 ### <a name="1.12.0"/>1.12.0</a>
@@ -76,19 +76,19 @@ ms.lasthandoff: 10/06/2017
 * Egy Unicode támogatási hiba kijavítva. GitHub probléma #171.
 
 ### <a name="1.11.0"/>1.11.0</a>
-* Összesítési lekérdezéseket (COUNT, MIN, MAX, SUM és átlagos) hozzáadott hello támogatása.
-* A hozzáadott hello beállítás párhuzamossági a partíció lekérdezések közötti mértékű vezérlése.
-* Hozzáadott hello beállítás SSL ellenőrzési letiltását Azure Cosmos DB emulatorban futtatásakor.
-* A particionált gyűjtemények 10,100 RU/mp too2500 RU/mp a minimális átviteli szintűre csökkent.
-* Rögzített hello folytatási token hiba egypartíciós gyűjtemény. Github probléma #107.
-* Rögzített hello executeStoredProcedure hiba egyetlen param 0 foglalkoznak. Github probléma #155.
+* Összesítési lekérdezéseket (COUNT, MIN, MAX, SUM és átlagos) támogatása.
+* A beállítás párhuzamossági a partíció lekérdezések közötti mértékű vezérlése hozzá.
+* A kívánt beállítást SSL ellenőrzési letiltása Azure Cosmos DB emulatorban futtatásakor hozzá.
+* Minimális átviteli sebességet 2500 RU/mp 10,100 RU/mp a particionált gyűjtemények szintűre csökkent.
+* A folytatási egypartíciós gyűjtemény token hiba kijavítva. Github probléma #107.
+* Rögzített 0 kezelése, egyetlen param executeStoredProcedure hibát. Github probléma #155.
 
 ### <a name="1.10.2"/>1.10.2</a>
-* Rögzített felhasználói ügynök fejléc tooinclude hello SDK-verzió.
+* Rögzített felhasználói ügynök fejléc az SDK-verzió.
 * Kisebb kód karbantartása.
 
 ### <a name="1.10.1"/>1.10.1</a>
-* SSL-ellenőrzés letiltása, hello SDK tootarget hello emulator(hostname=localhost) használatakor.
+* SSL-ellenőrzés letiltása, ha az SDK használatával a emulator(hostname=localhost) céloz.
 * Támogatja a tárolt eljárás végrehajtása során parancsfájl naplózásának engedélyezéséről.
 
 ### <a name="1.10.0"/>1.10.0</a>
@@ -96,27 +96,27 @@ ms.lasthandoff: 10/06/2017
 * FELSŐ/ORDER BY lekérdezések a particionált gyűjtemények támogatása.
 
 ### <a name="1.9.0"/>1.9.0</a>
-* Szabályozottan halmozott kérelmek hozzáadott újrapróbálkozási házirend támogatása. (A szabályozottan halmozott kérelmek egy kérelem aránya túl nagy kivétel, hibakód 429 kapnak.) Alapértelmezés szerint Azure Cosmos DB újrapróbálja kilenc alkalommal az egyes kérelmek 429. Hibakód: a rendszer észlelt, amikor hello retryAfter idő hello válaszfejléc érvényesítenie. A rögzített újrapróbálkozási időköz most már beállítható hello RetryOptions tulajdonság részeként hello ConnectionPolicy objektum Ha azt szeretné, hogy a kiszolgáló által visszaadott hello újrapróbálkozások között tooignore hello retryAfter idő. Azure Cosmos-adatbázis most megvárja, legfeljebb 30 másodpercig minden egyes kérelemhez (függetlenül újrapróbálkozások száma) leszabályozta, és hibakód 429 hello választ ad vissza. Most is a hello RetryOptions tulajdonság azon objektumhoz, ConnectionPolicy felülbírálható.
-* Cosmos DB most adja vissza x-ms-szabályozási--újrapróbálkozások és x-ms-throttle-retry-wait-time-ms, hello válaszfejlécek minden kérelem toodenote hello késleltetési száma és hello összesített ideje hello kérelem hello újrapróbálkozások között várt próbálkozzon újra.
-* hello RetryOptions osztály adott, az ilyen hello RetryOptions tulajdonság hello ConnectionPolicy osztály, amely használt toooverride néhány hello alapértelmezett újrapróbálkozási beállítások.
+* Szabályozottan halmozott kérelmek hozzáadott újrapróbálkozási házirend támogatása. (A szabályozottan halmozott kérelmek egy kérelem aránya túl nagy kivétel, hibakód 429 kapnak.) Alapértelmezés szerint Azure Cosmos DB újrapróbálja kilenc alkalommal az egyes kérelmek 429. Hibakód: a rendszer észlelt, amikor az retryAfter idő a válaszfejlécet érvényesítenie. A rögzített újrapróbálkozási időköz most már beállítható a RetryOptions tulajdonság részeként a ConnectionPolicy objektum Ha azt szeretné, figyelmen kívül hagyja a próbálkozások közötti kiszolgáló által visszaadott retryAfter idő. Azure Cosmos-adatbázis most megvárja, legfeljebb 30 másodpercig (függetlenül újrapróbálkozások száma) leszabályozta, és visszaadja a választ 429. Hibakód: minden egyes kérelemhez. Most is felülbírálható lesz a RetryOptions tulajdonságban ConnectionPolicy objektumon.
+* Cosmos DB most adja vissza x-ms-szabályozási--újrapróbálkozások és x-ms-throttle-retry-wait-time-ms a válaszfejlécek minden kérelemben a késleltetési jelöléséhez újra számát és a próbálkozások közötti várta a kérelem összesített idő szerint.
+* A RetryOptions osztály adott, az ilyen a ConnectionPolicy osztály, amely felülbírálhatja az alapértelmezett beállítások némelyike használható a RetryOptions tulajdonsága.
 
 ### <a name="1.8.0"/>1.8.0</a>
-* Több területi adatbázis fiókok hozzáadott hello támogatása.
+* Több területi adatbázis fiókok támogatása.
 
 ### <a name="1.7.0"/>1.7.0</a>
-* Hozzáadott hello idő tooLive(TTL) szolgáltatás dokumentumok támogatása.
+* Idő a Live(TTL) szolgáltatás dokumentumok támogatása.
 
 ### <a name="1.6.0"/>1.6.0</a>
 * Megvalósított [particionált gyűjtemények](partition-data.md) és [felhasználói teljesítményszintet](performance-levels.md).
 
 ### <a name="1.5.6"/>1.5.6</a>
-* Rögzített RangePartitionResolver.resolveForRead hiba, ha azt lett nem ad vissza hivatkozások miatt hibás concat tooa eredmények.
+* Javított RangePartitionResolver.resolveForRead hibát, ahol azt lett nem ad vissza hivatkozások eredmények rossz concat miatt.
 
 ### <a name="1.5.5"/>1.5.5</a>
 * Rögzített hashParitionResolver resolveForRead(): Ha nincs megadva partíciókulcs kivétel, helyett sorolja fel az összes regisztrált hivatkozások kiváltása volt.
 
 ### <a name="1.5.4"/>1.5.4</a>
-* Kijavítja a hibát [#100](https://github.com/Azure/azure-documentdb-node/issues/100) -HTTPS-ügynök dedikált: elkerülése hello globális ügynök Azure Cosmos DB célokra módosítása. Használja a dedikált ügynököt az összes hello lib kérelmek.
+* Kijavítja a hibát [#100](https://github.com/Azure/azure-documentdb-node/issues/100) -HTTPS-ügynök dedikált: elkerülése érdekében a globális ügynök Azure Cosmos DB célokra módosítása. Használja a dedikált ügynököt az összes a lib kérelmek.
 
 ### <a name="1.5.3"/>1.5.3</a>
 * Kijavítja a hibát [#81](https://github.com/Azure/azure-documentdb-node/issues/81) - megfelelően kötőjelek az adathordozó-azonosítók kezelésére.
@@ -125,7 +125,7 @@ ms.lasthandoff: 10/06/2017
 * Kijavítja a hibát [#95](https://github.com/Azure/azure-documentdb-node/issues/95) -EventEmitter figyelő szivárgás lépett fel, figyelmeztetés.
 
 ### <a name="1.5.1"/>1.5.1</a>
-* Kijavítja a hibát [#92](https://github.com/Azure/azure-documentdb-node/issues/90) -nevezze át a mappát kivonatoló toohash rendszerek kis-és nagybetűket.
+* Kijavítja a hibát [#92](https://github.com/Azure/azure-documentdb-node/issues/90) -nevezze át a mappát kivonat kivonatoló rendszerek kis-és nagybetűket.
 
 ### <a name="1.5.0"/>1.5.0</a>
 * Horizontális segítséget nyújt kivonatoló & tartomány partíció feloldókat hozzáadásával.
@@ -134,11 +134,11 @@ ms.lasthandoff: 10/06/2017
 * Upsert megvalósításához. Új upsertXXX metódusai documentClient.
 
 ### <a name="1.3.0"/>1.3.0</a>
-* Kihagyott toobring verziószámok Csomagjától az igazítását.
+* Kihagyott verziószámok átveendő Csomagjától összehangolás.
 
 ### <a name="1.2.2"/>1.2.2</a>
-* Vegyes Q kihasználásának köszönhetően akár még a burkoló toonew tárházba.
-* Frissítse az npm beállításjegyzék toopackage fájlt.
+* Vegyes Q kihasználásának köszönhetően akár még a burkoló új tárházba.
+* Frissítse az npm beállításjegyzék csomagfájlt.
 
 ### <a name="1.2.1"/>1.2.1</a>
 * Megvalósítja-alapú útválasztási azonosítója.
@@ -146,20 +146,20 @@ ms.lasthandoff: 10/06/2017
 
 ### <a name="1.2.0"/>1.2.0</a>
 * A földrajzi index támogatása.
-* Ellenőrzi az összes erőforrás id tulajdonság. Erőforrások azonosító nem tartalmazhat?, /, #, & #47; & #47; karaktereket vagy záró szóközt.
-* Hozzáadja az új fejléc "index átalakítása folyamatban" tooResourceResponse.
+* Ellenőrzi az összes erőforrás id tulajdonság. Erőforrások azonosító nem tartalmazhat?, /, #, &#47; &#47; karaktereket vagy záró szóközt.
+* Új fejléc "index átalakítása folyamatban" hozzáadása ResourceResponse.
 
 ### <a name="1.1.0"/>1.1.0</a>
 * V2 indexelési házirendet alkalmazza.
 
 ### <a name="1.0.3"/>1.0.3</a>
-* A probléma [#40](https://github.com/Azure/azure-documentdb-node/issues/40) - eslint megvalósítása és grunt hello core-konfigurációja és SDK készletéről.
+* A probléma [#40](https://github.com/Azure/azure-documentdb-node/issues/40) - eslint megvalósítása és a core-konfigurációja grunt és SDK készletéről.
 
 ### <a name="1.0.2"/>1.0.2</a>
 * A probléma [#45](https://github.com/Azure/azure-documentdb-node/issues/45) -tett burkoló nem tartalmazza a hiba: a fejlécben.
 
 ### <a name="1.0.1"/>1.0.1</a>
-* Az ütközések kezelésére képes tooquery megvalósított readConflicts, readConflictAsync és queryConflicts hozzáadásával.
+* Az ütközések readConflicts, readConflictAsync és queryConflicts hozzáadásával lekérdezés megvalósított képessége.
 * Frissített API dokumentációját.
 * A probléma [#41](https://github.com/Azure/azure-documentdb-node/issues/41) -client.createDocumentAsync hiba.
 
@@ -167,11 +167,11 @@ ms.lasthandoff: 10/06/2017
 * GA SDK.
 
 ## <a name="release--retirement-dates"></a>Kiadás & használatból való kivonást dátumok
-A Microsoft biztosít értesítési legalább **12 hónapon keresztül** előre kivonása az SDK-t rendelés toosmooth hello átmenet tooa vagy újabb támogatott verzióra.
+A Microsoft biztosít értesítési legalább **12 hónapon keresztül** SDK eltávolítása érdekében vagy újabb támogatott verzióra való áttérés előtt.
 
-Új szolgáltatásait és funkcióit és optimalizálás csak hozzáadott toohello aktuális SDK-t, így javasolt, hogy Ön mindig frissítési toohello SDK legújabb lehető leghamarabb.
+Új szolgáltatásait és funkcióit és optimalizálás csak hozzá az aktuális SDK, így javasoljuk, hogy mindig a legújabb SDK verzióra frissít legkorábban lehető.
 
-TooCosmos DB kivont SDK használatával van kérelmet vissza kell utasítani, hello szolgáltatás.
+A Cosmos DB használatával kivont SDK kell elutasította a szolgáltatás.
 
 <br/>
 
@@ -210,5 +210,5 @@ TooCosmos DB kivont SDK használatával van kérelmet vissza kell utasítani, he
 [!INCLUDE [cosmos-db-sdk-faq](../../includes/cosmos-db-sdk-faq.md)]
 
 ## <a name="see-also"></a>Lásd még:
-toolearn Cosmos DB kapcsolatos további információkért lásd: [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) szolgáltatás lapján.
+A Cosmos DB kapcsolatos további információkért lásd: [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) szolgáltatás lapján.
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaHosting névkeresési DNS zónák az Azure DNS |} Microsoft Docs"
-description: "Ismerje meg, hogyan toouse Azure DNS toohost hello névkeresési DNS-címkeresési zónák az IP-címtartományokhoz"
+title: "Üzemeltetési névkeresési DNS zónák az Azure DNS |} Microsoft Docs"
+description: "A névkeresési DNS-címkeresési zónák az IP-címtartományok tárolásához Azure DNS használata"
 services: dns
 documentationcenter: na
 author: jtuliani
@@ -12,49 +12,49 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/29/2017
 ms.author: jonatul
-ms.openlocfilehash: 24feb8ef1c75a7d91938867f348fed1190046e4e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3e10b25d2f9b91c96af2958fef6dc6a4fdbff301
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="hosting-reverse-dns-lookup-zones-in-azure-dns"></a>Az Azure DNS-névkeresési DNS-címkeresési zónák üzemeltetéséhez
 
-Ez a cikk azt ismerteti, hogyan toohost hello névkeresési DNS-keresési a hozzárendelt IP-címtartományokhoz az Azure DNS-zónák. hello névkeresési zóna által képviselt hello IP-címtartományok hozzárendelése tooyour a szervezeten belül, általában az Internetszolgáltató által.
+Ez a cikk azt ismerteti, hogyan a hozzárendelt IP-címtartományokhoz az Azure DNS-névkeresési DNS-címkeresési zónák üzemeltetésére. Az IP-címtartományai a névkeresési zóna által képviselt kell rendelni a szervezetben, általában az Internetszolgáltató által.
 
-tooconfigure névkeresési DNS az Azure tulajdonában lévő IP-cím tooyour Azure-szolgáltatások című [hello névkeresési konfigurálásához hello IP-címek lefoglalt tooyour Azure szolgáltatás](dns-reverse-dns-for-azure-services.md).
+Az Azure service rendelt Azure tulajdonában lévő IP-cím címfeloldási DNS konfigurálásával kapcsolatban lásd: [konfigurálása az Azure service lefoglalt IP-címek névkeresési](dns-reverse-dns-for-azure-services.md).
 
 A cikk elolvasása előtt meg kell ismernie a [címfeloldási DNS- és támogatás az Azure-ban – áttekintés](dns-reverse-dns-overview.md).
 
-Ez a cikk bemutatja, hogyan hello lépéseket toocreate az első névkeresési DNS-zóna és a rekord hello Azure portál Azure PowerShell, az Azure CLI 1.0 vagy az Azure CLI 2.0 használatával.
+Ez a cikk végigvezeti a az első névkeresési DNS-zóna létrehozása, és jegyezze fel az Azure portál, Azure PowerShell, az Azure CLI 1.0 vagy az Azure CLI 2.0 használatával.
 
 ## <a name="create-a-reverse-lookup-dns-zone"></a>A névkeresési DNS-zóna létrehozása
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com)
-1. Hello központ menüben kattintson, majd **új** > **hálózati** >, majd **DNS-zóna** tooopen hello **hozzon létre DNS-zóna**panelen.
+1. Jelentkezzen be a [Azure-portálon](https://portal.azure.com)
+1. A központ menüben kattintson, majd **új** > **hálózati** >, majd **DNS-zóna** megnyitásához a **hozzon létre DNS-zóna** panelen.
 
    ![DNS-zóna](./media/dns-reverse-dns-hosting/figure1.png)
 
-1. A hello **hozzon létre DNS-zóna** panelen, a DNS-zóna neve. hello zóna neve hello kialakított az IPv4 és IPv6-előtagok másképp van. Vagy hello utasításokat a [IPV4](#ipv4) vagy [IPv6](#ipv6) tooname a zónát. Ha végzett a kattintson **létrehozása** toocreate hello zóna.
+1. Az a **hozzon létre DNS-zóna** panelen, a DNS-zóna neve. A zóna nevét kialakított az IPv4 és IPv6-előtagok másképp van. Vagy az utasításokat a [IPV4](#ipv4) vagy [IPv6](#ipv6) a zóna nevét. Ha végzett a kattintson **létrehozása** a zóna létrehozása.
 
 ### <a name="ipv4"></a>IPv4-alapú
 
-egy IPv4-névkeresési zóna neve hello hello IP-címtartomány, amely alapul. Nem lehet a következő formátumban hello: `<IPv4 network prefix in reverse order>.in-addr.arpa`. Tekintse meg a [címfeloldási DNS- és támogatás az Azure-ban – áttekintés](dns-reverse-dns-overview.md#ipv4).
+Egy IPv4 névkeresési zóna neve az IP-címtartományt, amely alapul. A következő formátumúnak kell lennie: `<IPv4 network prefix in reverse order>.in-addr.arpa`. Tekintse meg a [címfeloldási DNS- és támogatás az Azure-ban – áttekintés](dns-reverse-dns-overview.md#ipv4).
 
 > [!NOTE]
-> Az Azure DNS-classless névkeresési DNS-címkeresési zónák létrehozásakor használnia kell a kötőjel (`-`) helyett egy perjel ("/") hello zóna nevét.
+> Az Azure DNS-classless névkeresési DNS-címkeresési zónák létrehozásakor használnia kell a kötőjel (`-`) helyett egy perjel ("/") a zóna nevét.
 >
-> Például a hello IP-címtartomány 192.0.2.128/26, kell használnia `128-26.2.0.192.in-addr.arpa` hello zóna neve helyett `128/26.2.0.192.in-addr.arpa`.
+> Például az IP-címtartomány 192.0.2.128/26 kell használnia `128-26.2.0.192.in-addr.arpa` ahelyett, hogy a zóna neveként `128/26.2.0.192.in-addr.arpa`.
 >
-> Ennek az az oka, mind támogatottak hello DNS szabványokkal, DNS-zónák tartalmazó hello perjel (`/`) karakter használata nem támogatott Azure DNS-ben.
+> Ennek az az oka, mind támogatottak, a DNS-szabványokban, DNS-zónák neve a perjel (`/`) karakter használata nem támogatott Azure DNS-ben.
 
-hello következő példa bemutatja, hogyan toocreate egy osztály C fordított nevű DNS-zóna `2.0.192.in-addr.arpa` az Azure DNS hello Azure-portálon keresztül:
+A következő példa bemutatja, hogyan hozzon létre egy C osztályú címfeloldási DNS-zóna nevű `2.0.192.in-addr.arpa` az Azure DNS az Azure-portálon:
 
  ![DNS-zóna létrehozása](./media/dns-reverse-dns-hosting/figure2.png)
 
-hello "Erőforráscsoport helye" hello erőforrásnak hello helyét határozza meg, és nincs hatással van a hello DNS-zónát. mindig "global" Hello DNS-zóna helyét, és nem jelenik meg.
+Az "erőforráscsoport helye" határozza meg az erőforrásnak a helyét, és nincs hatással van a DNS-zónát. A DNS-zóna helye mindig "global", és nem jelenik meg.
 
-hello következő példák azt szemléltetik, hogyan toocomplete ennek a feladatnak az Azure PowerShell és az Azure parancssori felület hello:
+Az alábbi példák bemutatják, hogyan lehet elvégezni ezt a feladatot az Azure PowerShell és az Azure parancssori felület:
 
 #### <a name="powershell"></a>PowerShell
 
@@ -76,16 +76,16 @@ az network dns zone create -g MyResourceGroup -n 2.0.192.in-addr.arpa
 
 ### <a name="ipv6"></a>IPv6
 
-egy IPv6-névkeresési zóna neve hello hello a következő formátumban kell lennie: `<IPv6 network prefix in reverse order>.ip6.arpa`.  Tekintse meg a [címfeloldási DNS- és támogatás az Azure-ban – áttekintés](dns-reverse-dns-overview.md#ipv6).
+Egy IPv6-névkeresési zóna neve a következő formátumban kell lennie: `<IPv6 network prefix in reverse order>.ip6.arpa`.  Tekintse meg a [címfeloldási DNS- és támogatás az Azure-ban – áttekintés](dns-reverse-dns-overview.md#ipv6).
 
 
-hello következő példa bemutatja, hogyan toocreate egy IPv6 névkeresési DNS-zóna nevű `0.0.0.0.d.c.b.a.8.b.d.0.1.0.0.2.ip6.arpa` az Azure DNS hello Azure-portálon keresztül:
+A következő példa bemutatja, hogyan hozzon létre egy IPv6 névkeresési DNS-zóna nevű `0.0.0.0.d.c.b.a.8.b.d.0.1.0.0.2.ip6.arpa` az Azure DNS az Azure-portálon:
 
  ![DNS-zóna létrehozása](./media/dns-reverse-dns-hosting/figure3.png)
 
-hello "Erőforráscsoport helye" hello erőforrásnak hello helyét határozza meg, és nincs hatással van a hello DNS-zónát. mindig "global" Hello DNS-zóna helyét, és nem jelenik meg.
+Az "erőforráscsoport helye" határozza meg az erőforrásnak a helyét, és nincs hatással van a DNS-zónát. A DNS-zóna helye mindig "global", és nem jelenik meg.
 
-hello következő példák azt szemléltetik, hogyan toocomplete ennek a feladatnak az Azure PowerShell és az Azure parancssori felület hello:
+Az alábbi példák bemutatják, hogyan lehet elvégezni ezt a feladatot az Azure PowerShell és az Azure parancssori felület:
 
 #### <a name="powershell"></a>PowerShell
 
@@ -107,29 +107,29 @@ az network dns zone create -g MyResourceGroup -n 0.0.0.0.d.c.b.a.8.b.d.0.1.0.0.2
 
 ## <a name="delegate-a-reverse-dns-lookup-zone"></a>A címfeloldási DNS-zóna delegálása
 
-A címfeloldási DNS-zóna hozunk létre, gondoskodnia kell hello zóna hello szülőzónában van átadva. DNS-delegálás lehetővé teszi, hogy a hello DNS nevét feloldási folyamat toofind hello üzemeltető névkiszolgálókat a címfeloldási DNS-zóna. Ez lehetővé teszi, hogy ezen kiszolgálók tooanswer DNS fordított névlekérdezései hello IP-címek a címtartomány.
+A címfeloldási DNS-zóna hozunk létre, győződjön meg arról, hogy a zóna van átadva a szülőzónában. DNS-delegálás lehetővé teszi, hogy a DNS-név feloldási folyamat keresése a névkeresési DNS-címkeresési zónát üzemeltető névkiszolgálókat. Ez lehetővé teszi, hogy ezek névkiszolgálók megválaszolni a DNS-névkeresési lekérdezések a címtartomány IP-címek.
 
-Címkeresési zónák, DNS-zóna delegálása hello folyamatán ismertetett [delegálása a tartományi tooAzure DNS](dns-delegate-domain-azure-dns.md). A delegálás névkeresési zónák hello működik ugyanúgy. hello egyetlen különbség, hogy kell-e tooconfigure hello névkiszolgálók a hello a tartományregisztráló neve helyett az IP-címtartományt biztosító Internetszolgáltató.
+Címkeresési zónák, DNS-zóna delegálása folyamata ismertetett [tartomány delegálása az Azure DNS-](dns-delegate-domain-azure-dns.md). A delegálás névkeresési zónák ugyanúgy működik. Az egyetlen különbség, hogy szeretné-e a Névkiszolgálók állítson be a tartományregisztrálójához neve helyett az IP-címtartományt biztosító Internetszolgáltató.
 
 ## <a name="create-a-dns-ptr-record"></a>DNS PTR-rekord létrehozása
 
 ### <a name="ipv4"></a>IPv4-alapú
 
-hello alábbi példa bemutatja, hogyan PTR típusú rekord létrehozása az Azure DNS-névkeresési DNS-zóna hello folyamatán. Más rekordtípusokhoz és toomodify meglévő rekordokat: [kezelése DNS-rekordok és a rekordhalmazok hello Azure-portálon](dns-operations-recordsets-portal.md).
+A következő példa bemutatja, hogyan PTR típusú rekord létrehozása az Azure DNS-névkeresési DNS-zóna folyamatán. Más rekordtípusok és meglévő rekordok módosítása esetén lásd [a DNS-rekordok és -rekordhalmazok az Azure Portallal való kezelésével kapcsolatos](dns-operations-recordsets-portal.md) témakört.
 
-1.  Hello hello tetején **DNS-zóna** panelen válassza **+ rekordhalmaz** tooopen hello **adja hozzá a rekordhalmaz** panelen.
+1.  A **DNS-zóna** panel tetején válassza a **+ Rekordhalmaz** elemet a **Rekordhalmaz hozzáadása** panel megnyitásához.
 
  ![DNS-zóna](./media/dns-reverse-dns-hosting/figure4.png)
 
-1. A hello **adja hozzá a rekordhalmaz** panelen. 
-1. Válassza ki **PTR** hello record "**típus**" menü.  
-1. hello hello rekordhalmaz nevét PTR-rekordot kell toobe hello többi hello IPv4-cím fordított sorrendben. Ebben a példában hello első három oktettjének már fel vannak töltve hello Zónanév (.2.0.192) részeként. Ezért csak hello utolsó oktett hello neve mezőben van megadva. Például nevezze el az volt a rekordhalmaz "**15**" amelynek IP-cím 192.0.2.15 erőforrás.  
-1. A hello "**tartománynév**" mezőbe írja be a hello teljesen minősített tartománynevét (FQDN) használatával hello IP hello erőforrás.
-1. Válassza ki **OK** hello panel toocreate hello DNS-rekord hello alján.
+1. Az a **adja hozzá a rekordhalmaz** panelen. 
+1. Válassza ki **PTR** a rekordból "**típus**" menü.  
+1. A PTR típusú rekord rekordhalmaz nevét kell lennie a IPv4-címét a többi fordított sorrendben. Ebben a példában az első három oktettjének már fel vannak töltve a zóna nevét (.2.0.192) részeként. Ezért csak az utolsó oktett van megadva a neve mezőben. Például nevezze el az volt a rekordhalmaz "**15**" amelynek IP-cím 192.0.2.15 erőforrás.  
+1. Az a "**tartománynév**" mezőbe írja be a teljesen minősített tartománynevét (FQDN) az erőforrás, az IP-cím használatával.
+1. Válassza a panel alján található **OK** gombot a DNS-rekord létrehozásához.
 
  ![rekordhalmaz hozzáadása](./media/dns-reverse-dns-hosting/figure5.png)
 
-hello következő példákban hogyan toocomplete PowerShell és hello AzureCLI ezt a feladatot:
+A következő példák hogyan befejezheti a feladatot a PowerShell és a AzureCLI:
 
 #### <a name="powershell"></a>PowerShell
 
@@ -150,21 +150,21 @@ azure network dns record-set add-record MyResourceGroup 2.0.192.in-addr.arpa 15 
 
 ### <a name="ipv6"></a>IPv6
 
-hello a következő példa bemutatja, hogyan hello új "PTR" rekord létrehozásának folyamatán. Más rekordtípusokhoz és toomodify meglévő rekordokat: [kezelése DNS-rekordok és a rekordhalmazok hello Azure-portálon](dns-operations-recordsets-portal.md).
+A következő példa bemutatja, hogyan új "PTR" rekord létrehozásának folyamatán. Más rekordtípusok és meglévő rekordok módosítása esetén lásd [a DNS-rekordok és -rekordhalmazok az Azure Portallal való kezelésével kapcsolatos](dns-operations-recordsets-portal.md) témakört.
 
-1. Hello hello tetején **DNS-zóna panel**, jelölje be **+ rekordhalmaz** tooopen hello **adja hozzá a rekordhalmaz** panelen.
+1. Felső részén a **DNS-zóna panel**, jelölje be **+ rekordhalmaz** megnyitásához a **adja hozzá a rekordhalmaz** panelen.
 
   ![DNS-zónák panel](./media/dns-reverse-dns-hosting/figure6.png)
 
-2. A hello **adja hozzá a rekordhalmaz** panelen. 
-3. Válassza ki **PTR** hello record "**típus**" menü.  
-4. hello hello rekordhalmaz nevét PTR-rekordot kell toobe hello többi hello IPv6-cím fordított sorrendben. Nem minden nulla tömörítési tartalmaznia kell. Ebben a példában hello első 64 bites hello IPv6 már fel van töltve hello Zónanév (0.0.0.0.c.d.b.a.8.b.d.0.1.0.0.2.ip6.arpa) részeként. Ezért csak hello utolsó 64 bites hello neve mezőben megadva. hello hello IP-cím utolsó 64 bites időszak használata hello elválasztó mindegyik hexadecimális szám között fordított sorrendben kerülnek. Például nevezze el az volt a rekordhalmaz "**e.5.0.4.9.f.a.1.c.b.0.1.4.2.5.f**" amelynek IP-cím 2001:0db8:abdc:0000:f524:10bc:1af9:405e erőforrás.  
-5. A hello "**tartománynév**" mezőbe írja be a hello teljesen minősített tartománynevét (FQDN) használatával hello IP hello erőforrás.
-6. Válassza ki **OK** hello panel toocreate hello DNS-rekord hello alján.
+2. Az a **adja hozzá a rekordhalmaz** panelen. 
+3. Válassza ki **PTR** a rekordból "**típus**" menü.  
+4. A PTR típusú rekord rekordhalmaz nevét kell lennie a IPv6-címet a többi fordított sorrendben. Nem minden nulla tömörítési tartalmaznia kell. Ebben a példában az első 64 bit, az IPv6-már fel vannak töltve a zóna nevét (0.0.0.0.c.d.b.a.8.b.d.0.1.0.0.2.ip6.arpa) részeként. Ezért csak az utolsó 64 bites megadva, a név mezőben. Az IP-cím utolsó 64 bites időszak használja, mint az elválasztó mindegyik hexadecimális szám között fordított sorrendben kerülnek. Például nevezze el az volt a rekordhalmaz "**e.5.0.4.9.f.a.1.c.b.0.1.4.2.5.f**" amelynek IP-cím 2001:0db8:abdc:0000:f524:10bc:1af9:405e erőforrás.  
+5. Az a "**tartománynév**" mezőbe írja be a teljesen minősített tartománynevét (FQDN) az erőforrás, az IP-cím használatával.
+6. Válassza a panel alján található **OK** gombot a DNS-rekord létrehozásához.
 
 ![Adja hozzá a rekordhalmaz panel](./media/dns-reverse-dns-hosting/figure7.png)
 
-hello következő példákban hogyan toocomplete PowerShell és hello AzureCLI ezt a feladatot:
+A következő példák hogyan befejezheti a feladatot a PowerShell és a AzureCLI:
 
 #### <a name="powershell"></a>PowerShell
 
@@ -186,7 +186,7 @@ azure network dns record-set add-record MyResourceGroup 0.0.0.0.c.d.b.a.8.b.d.0.
 
 ## <a name="view-records"></a>A rekordok megtekintése
 
-tooview hello rekordok hozott létre, keresse meg a DNS-zónát tooyour hello Azure-portálon. A hello alacsonyabb hello részét **DNS-zóna** panelen láthatja hello rekordok hello DNS-zónához. Hello alapértelmezett NS és SOA típusú rekordok, minden zóna jöttek létre, és a létrehozott új rekordok kell megjelennie.
+A létrehozott rekordok megtekintéséhez keresse meg a DNS-zónát az Azure portálon. Az alsó részén a **DNS-zóna** panelen láthatja, hogy a rekordokat a DNS-zónához. Meg kell jelennie az alapértelmezett NS és SOA típusú rekordoknak, amelyek minden zónában létrejönnek, valamint az összes új létrehozott rekordnak.
 
 ### <a name="ipv4"></a>IPv4-alapú
 
@@ -194,7 +194,7 @@ DNS zóna panelen IPv4 PTR-rekordok:
 
 ![DNS-zónák panel](./media/dns-reverse-dns-hosting/figure8.png)
 
-hello alábbi példák megjelenítése hogyan tooview hello PTR rögzíti a PowerShell használatával vagy az Azure parancssori felület hello:
+A következő példák szemléltetik a PowerShell vagy az Azure parancssori felület használatával PTR-rekordok megtekintése:
 
 #### <a name="powershell"></a>PowerShell
 
@@ -220,7 +220,7 @@ DNS zóna panelen IPv6 PTR-rekordok:
 
 ![DNS-zónák panel](./media/dns-reverse-dns-hosting/figure9.png)
 
-Az alábbiakban hello hogyan tooview hello rögzíti a PowerShell és hello AzureCLI példák:
+A következő példák a PowerShell és a AzureCLI a rekordok megtekintése:
 
 #### <a name="powershell"></a>PowerShell
 
@@ -244,26 +244,26 @@ Get-AzureRmDnsRecordSet -ZoneName 0.0.0.0.c.d.b.a.8.b.d.0.1.0.0.2.ip6.arpa -Reso
 
 ### <a name="can-i-host-reverse-dns-lookup-zones-for-my-isp-assigned-ip-blocks-on-azure-dns"></a>Képes-e üzemeltetni névkeresési DNS-címkeresési zónák az Internetszolgáltató által hozzárendelt IP-címblokkok az Azure DNS szolgáltatásra?
 
-Igen. Hello (ARPA) névkeresési zónák az Azure DNS-ben a saját IP-címtartományok teljes mértékben támogatott.
+Igen. A névkeresési (ARPA) a saját IP-címtartományok, az Azure DNS-zónákat üzemeltető teljes mértékben támogatott.
 
-Hozzon létre hello névkeresési zónát az Azure DNS-amint ez a cikk azt, majd az Internetszolgáltató túl együttműködve[delegált hello zóna](dns-domain-delegation.md).  Hello PTR-rekordok kezelhetők az egyes névkeresési a hello módon egyéb bejegyzéstípusokat.
+A névkeresési zóna létrehozása az Azure DNS-amint ez a cikk azt, akkor az Internetszolgáltatótól működik [delegálása a zóna](dns-domain-delegation.md).  A PTR rekordok minden névkeresési ugyanúgy, mint más rekordtípusokhoz majd felügyelheti.
 
 ### <a name="how-much-does-hosting-my-reverse-dns-lookup-zone-cost"></a>A fordított DNS keresési zónához költségének üzemeltető mennyi használ?
 
-Hello címfeloldási DNS-zóna üzemeltető, az az Internetszolgáltató által hozzárendelt IP-Címblokk az Azure DNS-rendszer díjakon [Azure DNS normál díjszabás](https://azure.microsoft.com/pricing/details/dns/).
+A címfeloldási DNS-zóna üzemeltető, az az Internetszolgáltató által hozzárendelt IP-Címblokk az Azure DNS-rendszer díjakon [Azure DNS normál díjszabás](https://azure.microsoft.com/pricing/details/dns/).
 
 ### <a name="can-i-host-reverse-dns-lookup-zones-for-both-ipv4-and-ipv6-addresses-in-azure-dns"></a>IPv4 és IPv6 címek az Azure DNS-névkeresési DNS-címkeresési zónák is futtatni?
 
-Igen. Ez a cikk azt ismerteti, hogyan toocreate IPv4 és IPv6 névkeresési DNS zónák Azure DNS-ben.
+Igen. Ez a cikk ismerteti az IPv4 és IPv6 névkeresési DNS-címkeresési zónák létrehozása az Azure DNS-ben.
 
 ### <a name="can-i-import-an-existing-reverse-dns-lookup-zone"></a>Beimportálhatok egy meglévő címfeloldási DNS-zóna?
 
-Igen. Hello Azure CLI tooimport meglévő DNS-zóna Azure DNS-ben is használhatja. Ez a módszer a címkeresési zónák és a névkeresési zóna listáját.
+Igen. Az Azure CLI segítségével importálja a meglévő DNS-zónákat az Azure DNS-ben. Ez a módszer a címkeresési zónák és a névkeresési zóna listáját.
 
-További információkért lásd: [importálásának és exportálásának használatával DNS zóna fájlt hello Azure CLI](dns-import-export.md).
+További információkért lásd: [importálása és exportálása a DNS-zónafájlját az Azure parancssori felület használatával](dns-import-export.md).
 
 ## <a name="next-steps"></a>Következő lépések
 
 A címfeloldási DNS-további információkért lásd: [Wikipedia névkeresési DNS](http://en.wikipedia.org/wiki/Reverse_DNS_lookup).
 <br>
-Ismerje meg, hogyan túl[címfeloldási DNS-rekordjait az Azure-szolgáltatások kezelése](dns-reverse-dns-for-azure-services.md).
+Megtudhatja, hogyan [címfeloldási DNS-rekordjait az Azure-szolgáltatások kezelése](dns-reverse-dns-for-azure-services.md).

@@ -1,6 +1,6 @@
 ---
-title: "Windows Azure Virtuálisgép-lemezképek csomagoló aaaHow toocreate |} Microsoft Docs"
-description: "Megtudhatja, hogyan toouse csomagoló toocreate lemezképek a Windows virtuális gépek Azure-ban"
+title: "Windows Azure Virtuálisgép-lemezképek létrehozása a csomagoló |} Microsoft Docs"
+description: "Csomagoló használata Windows virtuális gépek létrehozását az Azure-ban"
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 08/18/2017
 ms.author: iainfou
-ms.openlocfilehash: d310fae3becb453b52d21281cb8ac53fa14a3fc2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 11a4a4d65be09e6c518836c25bb455a6df738dcb
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-toouse-packer-toocreate-windows-virtual-machine-images-in-azure"></a>Hogyan toouse csomagoló toocreate Windows rendszerű virtuális gép lemezképek az Azure-ban
-Minden virtuális gép (VM) az Azure-ban, amely meghatározza a Windows terjesztési hello és operációsrendszer-verzió lemezkép jön létre. Lemezképek előre telepített alkalmazások és konfigurációk tartalmazhatnak. hello Azure piactér sok első és a külső képek biztosít a leggyakrabban használt operációs rendszer, és alkalmazás környezetekben, vagy létrehozhat saját szabott egyéni lemezképek tooyour igényeinek. Ez a cikk részletesen hogyan toouse hello forrás eszköz megnyitásához [csomagoló](https://www.packer.io/) toodefine és -buildek egyéni lemezképek az Azure-ban.
+# <a name="how-to-use-packer-to-create-windows-virtual-machine-images-in-azure"></a>Windows virtuális gép képek létrehozása az Azure-ban a csomagoló segítségével
+Minden virtuális gép (VM) az Azure-ban, amely meghatározza a Windows terjesztési és az operációs rendszer verziója lemezkép jön létre. Lemezképek előre telepített alkalmazások és konfigurációk tartalmazhatnak. Az Azure piactéren sok első és a külső képek biztosít a leggyakrabban használt operációs rendszer, és alkalmazás környezetekben, vagy a saját egyéni lemezképek igényeinek igazított hozhat létre. Ez a cikk részletesen a nyílt forráskódú eszköz [csomagoló](https://www.packer.io/) definiálására és egyéni lemezképeket az Azure-ban.
 
 
 ## <a name="create-azure-resource-group"></a>Azure erőforráscsoport létrehozása
-Hello létrehozási folyamat során a csomagoló ideiglenes Azure-erőforrások létrehozza a, hello forrás Virtuálisgép-buildekről nyújtanak. amely a forrás virtuális gép képként használatra toocapture, meg kell adnia egy erőforráscsoportot. hello hello csomagoló felépítési folyamat kimenetét tárolja Ez az erőforráscsoport.
+A létrehozási folyamat során a csomagoló ideiglenes Azure-erőforrások létrehozza a, a forrás Virtuálisgép-buildekről nyújtanak. A forrás virtuális gép képként rögzíti, meg kell határoznia egy erőforráscsoportot. Ez az erőforráscsoport tárolja a csomagoló felépítési folyamat kimenetét.
 
-Hozzon létre egy erőforráscsoportot a [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup). hello alábbi példa létrehoz egy erőforráscsoportot *myResourceGroup* a hello *eastus* helye:
+Hozzon létre egy erőforráscsoportot a [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup). Az alábbi példa létrehoz egy erőforráscsoportot *myResourceGroup* a a *eastus* helye:
 
 ```powershell
 $rgName = "myResourceGroup"
@@ -36,9 +36,9 @@ New-AzureRmResourceGroup -Name $rgName -Location $location
 ```
 
 ## <a name="create-azure-credentials"></a>Az Azure hitelesítő adatok létrehozása
-Csomagoló egyszerű szolgáltatás használatával végzi a hitelesítést. Egy Azure szolgáltatás egyszerű egy biztonsági azonosító, amely alkalmazások, szolgáltatások és automatizálási eszközökkel, például a csomagoló használható. Szabályozza, és adja meg hello engedélyek, mivel toowhat műveletek hello szolgáltatás egyszerű hajthat végre az Azure-ban.
+Csomagoló egyszerű szolgáltatás használatával végzi a hitelesítést. Egy Azure szolgáltatás egyszerű egy biztonsági azonosító, amely alkalmazások, szolgáltatások és automatizálási eszközökkel, például a csomagoló használható. Szabályozza, és adja meg az engedélyeket, hogy milyen műveletek a szolgáltatás egyszerű hajthat végre az Azure-ban.
 
-Az egyszerű szolgáltatás létrehozása [New-AzureRmADServicePrincipal](/powershell/module/azurerm.resources/new-azurermadserviceprincipal) és engedélyeket rendelhet a hello szolgáltatás egyszerű toocreate és erőforrások kezelése [New-AzureRmRoleAssignment](/powershell/module/azurerm.resources/new-azurermroleassignment):
+Az egyszerű szolgáltatás létrehozása [New-AzureRmADServicePrincipal](/powershell/module/azurerm.resources/new-azurermadserviceprincipal) és engedélyeket a szolgáltatás egyszerű létrehozása és erőforrások kezelése [New-AzureRmRoleAssignment](/powershell/module/azurerm.resources/new-azurermroleassignment):
 
 ```powershell
 $sp = New-AzureRmADServicePrincipal -DisplayName "Azure Packer IKF" -Password "P@ssw0rd!"
@@ -46,7 +46,7 @@ Sleep 20
 New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $sp.ApplicationId
 ```
 
-tooauthenticate tooAzure szükség tooobtain rendelkező Azure a bérlők és az előfizetés azonosítói [Get-AzureRmSubscription](/powershell/module/azurerm.profile/get-azurermsubscription):
+A hitelesítéshez az Azure-ba is be kell szereznie a Azure bérlői és előfizetés-azonosító a [Get-AzureRmSubscription](/powershell/module/azurerm.profile/get-azurermsubscription):
 
 ```powershell
 $sub = Get-AzureRmSubscription
@@ -54,23 +54,23 @@ $sub.TenantId
 $sub.SubscriptionId
 ```
 
-A két azonosító hello tovább használható.
+A két azonosító használja a következő lépésben.
 
 
 ## <a name="define-packer-template"></a>Adja meg a csomagoló sablon
-toobuild képek létrehozása sablon JSON-fájlként. Hello sablonban szerkesztők megadhatja, és végrehajtott tényleges hello provisioners létrehozása folyamatban. Csomagoló rendelkezik egy [Azure webhelykiépítőt](https://www.packer.io/docs/builders/azure.html) , amely lehetővé teszi, hogy toodefine Azure erőforrások, például hello szolgáltatás egyszerű hitelesítő adatait az előző lépésben hello létrehozott.
+Lemezképeket, létrehozhat egy sablon JSON-fájlként. A sablon megadása a létrehozói és a tényleges felépítési folyamat végrehajtott provisioners. Csomagoló rendelkezik egy [Azure webhelykiépítőt](https://www.packer.io/docs/builders/azure.html) , amely lehetővé teszi, hogy adható meg az Azure-erőforrások, például a szolgáltatás egyszerű létrehozott hitelesítő adatok az előző lépésben.
 
-Hozzon létre egy fájlt *windows.json* és a Beillesztés hello a következő tartalmat. Adja meg a saját értékeit hello következő:
+Hozzon létre egy fájlt *windows.json* , majd illessze be a következő tartalmat. Adja meg a saját értékeket a következő:
 
-| Paraméter                           | Ha tooobtain |
+| Paraméter                           | Beszerzési helyét |
 |-------------------------------------|----------------------------------------------------|
 | *client_id*                         | Nézet szolgáltatás résztvevő-azonosító az`$sp.applicationId` |
 | *client_secret*                     | A megadott jelszó`$securePassword` |
 | *tenant_id*                         | A kimeneti `$sub.TenantId` parancs |
 | *ELŐFIZETÉS_AZONOSÍTÓJA*                   | A kimeneti `$sub.SubscriptionId` parancs |
 | *object_id*                         | A nézet szolgáltatás egyszerű objektum azonosítója:`$sp.Id` |
-| *managed_image_resource_group_name* | Hello első lépésben létrehozott erőforráscsoport nevét |
-| *managed_image_name*                | A létrehozott hello felügyelt lemezképet neve |
+| *managed_image_resource_group_name* | Az első lépésben létrehozott erőforráscsoport nevét |
+| *managed_image_name*                | A felügyelt lemezképe létrehozott nevét |
 
 ```json
 {
@@ -116,19 +116,19 @@ Hozzon létre egy fájlt *windows.json* és a Beillesztés hello a következő t
 }
 ```
 
-Ez a sablon összeállít egy Windows Server 2016 virtuális Gépet, telepíti az IIS szolgáltatást, majd használatúvá hello Sysprep rendelkező virtuális gépet.
+Ez a sablon összeállít egy Windows Server 2016 virtuális Gépet, telepíti az IIS szolgáltatást, majd a virtuális Gépet a Sysprep használatúvá.
 
 
 ## <a name="build-packer-image"></a>Csomagoló lemezkép
-Ha még nincs telepítve a helyi számítógépre csomagoló [hello csomagoló telepítési utasításokat követve](https://www.packer.io/docs/install/index.html).
+Ha még nincs telepítve a helyi számítógépre csomagoló [csomagoló telepítési utasításokat](https://www.packer.io/docs/install/index.html).
 
-Megadásával hozhat létre hello kép a csomagoló sablonfájl az alábbiak szerint:
+Megadásával hozhat létre a lemezképet a csomagoló sablonfájl az alábbiak szerint:
 
 ```bash
 ./packer build windows.json
 ```
 
-A parancsok megelőző hello hello kimeneti példát a következőképpen történik:
+A kimenet a fenti parancsok például a következőképpen történik:
 
 ```bash
 azure-arm output will be in this color.
@@ -147,25 +147,25 @@ azure-arm output will be in this color.
 ==> azure-arm: Deploying deployment template ...
 ==> azure-arm:  -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
 ==> azure-arm:  -> DeploymentName    : ‘pkrdppq0mthtbtt’
-==> azure-arm: Getting hello certificate’s URL ...
+==> azure-arm: Getting the certificate’s URL ...
 ==> azure-arm:  -> Key Vault Name        : ‘pkrkvpq0mthtbtt’
 ==> azure-arm:  -> Key Vault Secret Name : ‘packerKeyVaultSecret’
 ==> azure-arm:  -> Certificate URL       : ‘https://pkrkvpq0mthtbtt.vault.azure.net/secrets/packerKeyVaultSecret/8c7bd823e4fa44e1abb747636128adbb'
-==> azure-arm: Setting hello certificate’s URL ...
+==> azure-arm: Setting the certificate’s URL ...
 ==> azure-arm: Validating deployment template ...
 ==> azure-arm:  -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
 ==> azure-arm:  -> DeploymentName    : ‘pkrdppq0mthtbtt’
 ==> azure-arm: Deploying deployment template ...
 ==> azure-arm:  -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
 ==> azure-arm:  -> DeploymentName    : ‘pkrdppq0mthtbtt’
-==> azure-arm: Getting hello VM’s IP address ...
+==> azure-arm: Getting the VM’s IP address ...
 ==> azure-arm:  -> ResourceGroupName   : ‘packer-Resource-Group-pq0mthtbtt’
 ==> azure-arm:  -> PublicIPAddressName : ‘packerPublicIP’
 ==> azure-arm:  -> NicName             : ‘packerNic’
 ==> azure-arm:  -> Network Connection  : ‘PublicEndpoint’
 ==> azure-arm:  -> IP Address          : ‘40.76.55.35’
-==> azure-arm: Waiting for WinRM toobecome available...
-==> azure-arm: Connected tooWinRM!
+==> azure-arm: Waiting for WinRM to become available...
+==> azure-arm: Connected to WinRM!
 ==> azure-arm: Provisioning with Powershell...
 ==> azure-arm: Provisioning with shell script: /var/folders/h1/ymh5bdx15wgdn5hvgj1wc0zh0000gn/T/packer-powershell-provisioner902510110
     azure-arm: #< CLIXML
@@ -174,7 +174,7 @@ azure-arm output will be in this color.
     azure-arm: ------- -------------- ---------      --------------
     azure-arm: True    No             Success        {Common HTTP Features, Default Document, D...
     azure-arm: <Objs Version=“1.1.0.1” xmlns=“http://schemas.microsoft.com/powershell/2004/04"><Obj S=“progress” RefId=“0"><TN RefId=“0”><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N=“SourceId”>1</I64><PR N=“Record”><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj></Objs>
-==> azure-arm: Querying hello machine’s properties ...
+==> azure-arm: Querying the machine’s properties ...
 ==> azure-arm:  -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
 ==> azure-arm:  -> ComputeName       : ‘pkrvmpq0mthtbtt’
 ==> azure-arm:  -> Managed OS Disk   : ‘/subscriptions/guid/resourceGroups/packer-Resource-Group-pq0mthtbtt/providers/Microsoft.Compute/disks/osdisk’
@@ -190,11 +190,11 @@ azure-arm output will be in this color.
 ==> azure-arm:  -> Image Location            : ‘eastus’
 ==> azure-arm: Deleting resource group ...
 ==> azure-arm:  -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
-==> azure-arm: Deleting hello temporary OS disk ...
+==> azure-arm: Deleting the temporary OS disk ...
 ==> azure-arm:  -> OS Disk : skipping, managed disk was used...
 Build ‘azure-arm’ finished.
 
-==> Builds finished. hello artifacts of successful builds are:
+==> Builds finished. The artifacts of successful builds are:
 --> azure-arm: Azure.ResourceManagement.VMImage:
 
 ManagedImageResourceGroupName: myResourceGroup
@@ -202,17 +202,17 @@ ManagedImageName: myPackerImage
 ManagedImageLocation: eastus
 ```
 
-A csomagoló toobuild hello VM, futtassa a hello provisioners és hello központi telepítés tisztításának néhány percet vesz igénybe.
+A virtuális gép létrehozása, a provisioners futtatására, és a központi telepítés tisztítása csomagoló néhány percet vesz igénybe.
 
 
 ## <a name="create-vm-from-azure-image"></a>Kép: Azure virtuális gép létrehozása
-Állítsa a rendszergazda felhasználónevét és jelszavát hello rendelkező virtuális gépek [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential).
+Állítsa a Rendszergazda felhasználónévvel és jelszóval rendelkező virtuális gépek [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential).
 
 ```powershell
 $cred = Get-Credential
 ```
 
-Mostantól létrehozhat egy virtuális Gépet a lemezkép [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm). hello alábbi példakód létrehozza a virtuális gépek nevű *myVM* a *myPackerImage*.
+Mostantól létrehozhat egy virtuális Gépet a lemezkép [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm). Az alábbi példakód létrehozza a virtuális gépek nevű *myVM* a *myPackerImage*.
 
 ```powershell
 # Create a subnet configuration
@@ -264,7 +264,7 @@ $nic = New-AzureRmNetworkInterface `
     -PublicIpAddressId $publicIP.Id `
     -NetworkSecurityGroupId $nsg.Id
 
-# Define hello image created by Packer
+# Define the image created by Packer
 $image = Get-AzureRMImage -ImageName myPackerImage -ResourceGroupName $rgName
 
 # Create a virtual machine configuration
@@ -276,11 +276,11 @@ Add-AzureRmVMNetworkInterface -Id $nic.Id
 New-AzureRmVM -ResourceGroupName $rgName -Location $location -VM $vmConfig
 ```
 
-Néhány perc toocreate hello VM vesz igénybe.
+A virtuális gép létrehozásához néhány percet vesz igénybe.
 
 
 ## <a name="test-vm-and-iis"></a>Virtuális gép és az IIS tesztelése
-Hello nyilvános IP-címet a virtuális gép az beszerzése [Get-AzureRmPublicIPAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress). hello alábbi példa beszerzi hello IP-címet *myPublicIP* korábban létrehozott:
+A nyilvános IP-címet a virtuális gép az beszerzése [Get-AzureRmPublicIPAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress). Az alábbi példa beolvassa az IP-címek *myPublicIP* korábban létrehozott:
 
 ```powershell
 Get-AzureRmPublicIPAddress `
@@ -288,12 +288,12 @@ Get-AzureRmPublicIPAddress `
     -Name "myPublicIP" | select "IpAddress"
 ```
 
-Majd tooa webböngészőben hello nyilvános IP-címet adhat meg.
+Beírhatja a nyilvános IP-címet a webböngésző.
 
 ![Alapértelmezett IIS-webhely](./media/build-image-with-packer/iis.png) 
 
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben a példában a csomagoló toocreate Virtuálisgép-lemezkép már telepített IIS szolgáltatást használta. A Virtuálisgép-lemezkép meglévő központi telepítési munkafolyamatai, például az alkalmazás tooVMs hello Team Services, Ansible, Chef vagy Puppet lemezkép alapján létrehozott toodeploy együtt használható.
+Ebben a példában a csomagoló már telepített IIS szolgáltatást egy Virtuálisgép-lemezkép létrehozásához használt. A Virtuálisgép-lemezkép mellett a meglévő központi telepítési munkafolyamatai, például segítségével telepítse az alkalmazást az Team Services, Ansible, Chef vagy Puppet lemezkép alapján létrehozott virtuális gépek.
 
 További példa csomagoló sablonokat más Windows disztribúciókkal, lásd: [a GitHub-tárház](https://github.com/hashicorp/packer/tree/master/examples/azure).

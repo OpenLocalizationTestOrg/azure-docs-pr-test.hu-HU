@@ -1,22 +1,22 @@
 ## <a name="create-a-device-identity"></a>Eszközidentitás létrehozása
-Ebben a szakaszban egy .NET-Konzolalkalmazás, amely létrehoz egy eszközidentitás hello identitásjegyzékhez a az IoT hub létrehozása. Egy eszköz nem lehet kapcsolódni a tooIoT hub, kivéve, ha azt egy bejegyzéssel rendelkezik hello identitásjegyzékhez. További információ a hello hello "Identitásjegyzékhez" című szakaszában talál [IoT Hub fejlesztői útmutató][lnk-devguide-identity]. A konzol alkalmazás futtatásakor egy eszköz egyedi Azonosítót hoz létre, és az, hogy az eszköz használhatja tooidentify magát, eszköz-felhő küld a kulcs üzenetek tooIoT Hub. Az eszközazonosítókban különbözőnek számítanak a kis- és nagybetűk.
+Ebben a szakaszban egy .NET-konzolalkalmazást fog létrehozni, amely egy eszközidentitást hoz létre az IoT Hub identitásjegyzékében. Egy eszköz csak akkor tud csatlakozni az IoT Hubhoz, ha be van jegyezve az identitásjegyzékbe. További információkért lásd az [IoT Hub fejlesztői útmutatójának][lnk-devguide-identity] „Identitásjegyzék” című szakaszát. A konzolalkalmazás egy egyedi eszközazonosítót állít elő a futtatásakor, valamint egy kulcsot, amellyel az eszköz azonosítani tudja magát, amikor az eszközről a felhőbe irányuló üzeneteket küld az IoT Hubnak. Az eszközazonosítókban különbözőnek számítanak a kis- és nagybetűk.
 
-1. A Visual Studio, a Visual C# klasszikus Windows asztal projekt tooa új megoldás hozzáadása hello segítségével **Konzolalkalmazás (.NET-keretrendszer)** projektsablon. Győződjön meg arról, hogy hello .NET-keretrendszer 4.5.1 vagy újabb. Név hello projekt **CreateDeviceIdentity** és name hello megoldás **IoTHubGetStarted**.
+1. A Visual Studióban adjon hozzá egy Visual C# Windows klasszikus asztalialkalmazás-projektet az új megoldáshoz a **Console App (.NET Framework)** (Konzolalkalmazás (.NET-keretrendszer)) projektsablonnal. A Microsoft .NET-keretrendszer 4.5.1-es vagy újabb verzióját használja. Adja a projektnek a **CreateDeviceIdentity** nevet, a megoldásnak pedig az **IoTHubGetStarted** nevet.
    
     ![Új Visual C# Windows klasszikus asztalialkalmazás-projekt][10]
-2. A Megoldáskezelőben kattintson a jobb gombbal hello **CreateDeviceIdentity** projektre, és kattintson a **NuGet-csomagok kezelése**.
-3. A hello **NuGet-Csomagkezelő** ablakban válassza ki **Tallózás**, keressen **microsoft.azure.devices**, jelölje be **telepítése** tooinstall Hello **Microsoft.Azure.Devices** csomagot, majd fogadja el hello használati feltételeket. Ez az eljárás tölti le, telepíti, és hozzáad egy hivatkozást toohello [Azure IoT szolgáltatás SDK] [ lnk-nuget-service-sdk] NuGet csomag és annak függőségeit.
+2. A Solution Explorerben (Megoldáskezelőben) kattintson a jobb gombbal az **CreateDeviceIdentity** projektre, majd kattintson a **Manage NuGet Packages** (NuGet-csomagok kezelése) parancsra.
+3. A **NuGet Package Manager** (NuGet-csomagkezelő) ablakban válassza a **Browse** (Tallózás) lehetőséget, keresse meg a **microsoft.azure.devices** csomagot, válassza a **Install** (Telepítés) lehetőséget a **Microsoft.Azure.Devices** csomag telepítéséhez, és fogadja el a használati feltételeket. Ez az eljárás letölti és telepíti az [Azure IoT Service SDK][lnk-nuget-service-sdk] (Azure IoT szolgáltatás SDK) NuGet-csomagot és annak függőségeit, valamint hozzáad egy rá mutató hivatkozást is.
    
     ![NuGet Package Manager (NuGet-csomagkezelő) ablak][11]
-4. Adja hozzá a következő hello `using` hello hello tetején utasítások **Program.cs** fájlt:
+4. Adja hozzá a következő `using` utasításokat a **Program.cs** fájl elejéhez:
    
         using Microsoft.Azure.Devices;
         using Microsoft.Azure.Devices.Common.Exceptions;
-5. Adja hozzá a következő mezők toohello hello **Program** osztály. Hello helyőrző értékét lecserélheti egy hello hello hub hello előző szakaszban létrehozott IoT-központ kapcsolati karakterláncot.
+5. Adja hozzá a **Program** osztályhoz a következő mezőket: A helyőrző értékét cserélje le az előző szakaszban létrehozott IoT Hub kapcsolati karakterláncra.
    
         static RegistryManager registryManager;
         static string connectionString = "{iot hub connection string}";
-6. Adja hozzá a következő metódus toohello hello **Program** osztály:
+6. Adja hozzá a **Program** osztályhoz a következő módszert:
    
         private static async Task AddDeviceAsync()
         {
@@ -33,20 +33,20 @@ Ebben a szakaszban egy .NET-Konzolalkalmazás, amely létrehoz egy eszközidenti
             Console.WriteLine("Generated device key: {0}", device.Authentication.SymmetricKey.PrimaryKey);
         }
    
-    Ez a metódus egy eszközidentitást hoz létre a **myFirstDevice** azonosítóval. (Ha az eszköz azonosító már létezik hello identitásjegyzékhez, hello kód egyszerűen hello meglévő eszköz adatainak beolvasása.) hello app majd hello elsődleges kulcs az identitásukat jeleníti meg. Ez a kulcs hello szimulált eszköz, alkalmazás tooconnect tooyour IoT-központ használható.
+    Ez a metódus egy eszközidentitást hoz létre a **myFirstDevice** azonosítóval. (Ha ez az eszköz már létezik az identitásjegyzékben, a kód egyszerűen lekéri a meglévő eszközinformációkat.) Az alkalmazás ezután megjeleníti az identitáshoz tartozó elsődleges kulcsot. Ezt a kulcsot a szimulált eszközalkalmazásban használja az IoT Hubhoz való csatlakozáshoz.
 [!INCLUDE [iot-hub-pii-note-naming-device](iot-hub-pii-note-naming-device.md)]
 
-7. Végül adja hozzá a következő sorokat toohello hello **fő** módszert:
+7. Végül adja a következő sorokat a **Main** metódushoz:
    
         registryManager = RegistryManager.CreateFromConnectionString(connectionString);
         AddDeviceAsync().Wait();
         Console.ReadLine();
-8. Az alkalmazás futtatásához, és jegyezze fel a hello eszközkulcs.
+8. Futtassa az alkalmazást, és jegyezze fel az eszköz kulcsát.
    
-    ![Hello alkalmazás által létrehozott eszközkulcs][12]
+    ![Az alkalmazás által előállított eszközkulcs][12]
 
 > [!NOTE]
-> az IoT-központ identitásjegyzékhez hello csak eszköz identitások tooenable biztonságos hozzáférést toohello IoT-központ tárolja. Eszköz azonosítók és kulcsok toouse hitelesítő adatokat, valamint az engedélyezett vagy letiltott jelző használható toodisable hozzáférést egy adott eszköz tárol. Ha az alkalmazásnak toostore más eszközre vonatkozó metaadatok, akkor az alkalmazás-specifikus tárolási használjon. További információkért lásd az [Azure IoT Hub fejlesztői útmutatóját][lnk-devguide-identity].
+> Az IoT Hub-identitásjegyzék csak az IoT Hub biztonságos elérésének biztosításához tárolja az eszközidentitásokat. Az eszközazonosítókat és kulcsokat biztonsági hitelesítő adatokként tárolja, valamint tartalmaz egy engedélyezve/letiltva jelzőt, amellyel letilthatja egy adott eszköz hozzáférését. Ha az alkalmazásnak más eszközspecifikus metaadatokat kell tárolnia, egy alkalmazásspecifikus tárolót kell használnia. További információkért lásd az [Azure IoT Hub fejlesztői útmutatóját][lnk-devguide-identity].
 > 
 > 
 

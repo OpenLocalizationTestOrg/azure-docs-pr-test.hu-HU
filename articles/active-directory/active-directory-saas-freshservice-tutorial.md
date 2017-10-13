@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált Freshservice |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és Freshservice között."
+description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és Freshservice között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,111 +13,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/16/2017
 ms.author: jeedes
-ms.openlocfilehash: d73624b87d058f66885ae72fda69a0aacc89c1ee
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d32775fa91d3a49da1ef55e57d1d38990fa09346
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-freshservice"></a>Oktatóanyag: Azure Active Directoryval integrált Freshservice
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Freshservice az Azure Active Directoryval (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja Freshservice integrálása az Azure Active Directory (Azure AD).
 
-Freshservice integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
+Freshservice integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
 
-- Megadhatja a hozzáférés tooFreshservice rendelkező Azure AD-ben
-- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooFreshservice (egyszeri bejelentkezés) a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
+- Megadhatja a Freshservice hozzáféréssel rendelkező Azure AD-ben
+- Engedélyezheti a felhasználóknak, hogy automatikusan beolvasása bejelentkezett Freshservice (egyszeri bejelentkezés) számára a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
 
-Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-az Azure AD integrálása Freshservice tooconfigure, kell a következő elemek hello:
+Konfigurálása az Azure AD-integrációs Freshservice, a következőkre van szükség:
 
 - Az Azure AD szolgáltatásra
 - Egy Freshservice egyszeri bejelentkezés engedélyezve van az előfizetésben
 
 > [!NOTE]
-> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
+> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
 
-Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
+Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
 
-1. Hello gyűjteményből Freshservice hozzáadása
+1. A gyűjteményből Freshservice hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-freshservice-from-hello-gallery"></a>Hello gyűjteményből Freshservice hozzáadása
-tooconfigure hello integrációja Freshservice az Azure AD-be, meg kell tooadd Freshservice hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
+## <a name="adding-freshservice-from-the-gallery"></a>A gyűjteményből Freshservice hozzáadása
+Az Azure AD integrálása a Freshservice konfigurálásához kell hozzáadnia Freshservice a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
 
-**tooadd Freshservice hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
+**A gyűjteményből Freshservice hozzáadásához hajtsa végre az alábbi lépéseket:**
 
-1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
+1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
+2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
+3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
 
     ![Alkalmazások][3]
 
-4. Hello keresési mezőbe, írja be a **Freshservice**.
+4. Írja be a keresőmezőbe, **Freshservice**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-freshservice-tutorial/tutorial_freshservice_search.png)
 
-5. A hello eredmények panelen válassza ki a **Freshservice**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
+5. Az eredmények panelen válassza ki a **Freshservice**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-freshservice-tutorial/tutorial_freshservice_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon" nevű tesztfelhasználó alapján Freshservice.
 
-Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó Freshservice tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello Freshservice közötti kapcsolat kapcsolatot kell létrehozni toobe.
+Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó Freshservice a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a Freshservice közötti kapcsolat kapcsolatot kell létrehozni.
 
-Freshservice, rendelje hozzá hello hello értékének **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
+Freshservice, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
 
-tooconfigure és az Azure AD az egyszeri bejelentkezés Freshservice-teszthez, a következő építőelemeket toocomplete hello szüksége:
+Az Azure AD egyszeri bejelentkezést a Freshservice tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
-3. **[Freshservice tesztfelhasználó létrehozása](#creating-a-freshservice-test-user)**  -toohave egy megfelelője a Britta Simon a Freshservice, amely a felhasználó csatolt toohello az Azure AD ábrázolása.
-4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
+3. **[Freshservice tesztfelhasználó létrehozása](#creating-a-freshservice-test-user)**  - való Britta Simon valami Freshservice, amely csatolva van a felhasználó az Azure AD-ábrázolását.
+4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az Freshservice alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az Freshservice alkalmazásban.
 
-**az Azure AD tooconfigure egyszeri bejelentkezést a Freshservice, hajtsa végre a lépéseket követve hello:**
+**Konfigurálása az Azure AD az egyszeri bejelentkezés Freshservice, hajtsa végre az alábbi lépéseket:**
 
-1. Az Azure portál, a hello hello **Freshservice** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portálon a a **Freshservice** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
+2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-freshservice-tutorial/tutorial_freshservice_samlbase.png)
 
-3. A hello **Freshservice tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
+3. Az a **Freshservice tartomány és az URL-címek** területen tegye a következőket:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-freshservice-tutorial/tutorial_freshservice_url.png)
 
-    a. A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<democompany>.freshservice.com`
+    a. Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://<democompany>.freshservice.com`
 
-    b. A hello **azonosító** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<democompany>.freshservice.com`
+    b. Az a **azonosító** szövegmező, adja meg a következő minta használatával URL-címe:`https://<democompany>.freshservice.com`
 
     > [!NOTE] 
-    > Ezek az értékek nincsenek valós. Frissítse a bejelentkezési URL-cím és azonosító a hello tényleges értékek. Ügyfél [Freshservice ügyfél-támogatási csoport](https://support.freshservice.com/) tooget ezeket az értékeket. 
+    > Ezek az értékek nincsenek valós. Frissítheti ezeket az értékeket a tényleges bejelentkezési URL-cím és azonosítója. Ügyfél [Freshservice ügyfél-támogatási csoport](https://support.freshservice.com/) beolvasni ezeket az értékeket. 
  
-4. A hello **SAML-aláíró tanúsítványa** területen másolása **UJJLENYOMAT** tanúsítvány értékét.
+4. A a **SAML-aláíró tanúsítványa** területen másolása **UJJLENYOMAT** tanúsítvány értékét.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-freshservice-tutorial/tutorial_freshservice_certificate.png) 
 
@@ -125,21 +125,21 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálo
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-freshservice-tutorial/tutorial_general_400.png)
 
-6. A hello **Freshservice konfigurációs** kattintson **konfigurálása Freshservice** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **Sign-Out URL-címet, és a SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**
+6. A a **Freshservice konfigurációs** kattintson **konfigurálása Freshservice** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **Sign-Out URL-címet, és a SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-freshservice-tutorial/tutorial_freshservice_configure.png) 
 
-7. Egy másik webes böngészőablakban jelentkezzen tooyour Freshservice vállalati hely rendszergazdaként.
+7. Egy másik webes böngészőablakban jelentkezzen be a Freshservice vállalati webhely rendszergazdaként.
 
-8. Hello hello felső menüben kattintson a **Admin**.
+8. Kattintson a felső menüben **Admin**.
    
     ![Felügyeleti](./media/active-directory-saas-freshservice-tutorial/ic790814.png "rendszergazda")
 
-9. A hello **Ügyfélportálra**, kattintson a **biztonsági**.
+9. Az a **Ügyfélportálra**, kattintson a **biztonsági**.
    
     ![Biztonsági](./media/active-directory-saas-freshservice-tutorial/ic790815.png "biztonsági")
 
-10. A hello **biztonsági** csoportjában hajtsa végre az alábbi lépésekkel hello:
+10. Az a **biztonsági** területen tegye a következőket:
    
     ![Egyszeri bejelentkezés](./media/active-directory-saas-freshservice-tutorial/ic790816.png "egyszeri bejelentkezés")
    
@@ -147,62 +147,62 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálo
 
     b. Válassza ki **SAML SSO**.
 
-    c. A hello **SAML bejelentkezési URL-cím** szövegmezőhöz Beillesztés hello értékének **SAML-alapú egyszeri bejelentkezési URL-címe** ami Azure-portálon másolta.
+    c. Az a **SAML bejelentkezési URL-cím** szövegmezőhöz illessze be az értékét **SAML-alapú egyszeri bejelentkezési URL-címe** ami Azure-portálon másolta.
 
-    d. A hello **kijelentkezési URL-cím** szövegmezőhöz Beillesztés hello értékének **Sign-Out URL-cím** ami Azure-portálon másolta.
+    d. Az a **kijelentkezési URL-cím** szövegmezőhöz illessze be az értékét **Sign-Out URL-cím** ami Azure-portálon másolta.
 
-    e. A **biztonsági tanúsítvány-ujjlenyomat** szövegmezőhöz Beillesztés hello **UJJLENYOMAT** érték tanúsítvány, amely az Azure-portálon másolta.
+    e. A **biztonsági tanúsítvány-ujjlenyomat** szövegmező, illessze be a **UJJLENYOMAT** érték tanúsítvány, amely az Azure-portálon másolta.
 
     f. Kattintson a **mentése**
    
 > [!TIP]
-> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
+Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
+**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
 
-1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
+1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-freshservice-tutorial/create_aaduser_01.png) 
 
-2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
+2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-freshservice-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
+3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-freshservice-tutorial/create_aaduser_03.png) 
 
-4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
+4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-freshservice-tutorial/create_aaduser_04.png) 
 
-    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
+    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-freshservice-test-user"></a>Freshservice tesztfelhasználó létrehozása
 
-az Azure AD tooenable felhasználók toolog a tooFreshService, akkor ki kell építenie FreshService be. FreshService hello esetben egy kézi tevékenység.
+Ahhoz, hogy az Azure AD-felhasználók FreshService bejelentkezni, akkor ki kell építenie a FreshService. FreshService, ha egy kézi tevékenység.
 
-**tooprovision egy felhasználói fiókot, hajtsa végre a következő lépéseket hello:**
+**Felhasználói fiók létrehozásához hajtsa végre az alábbi lépéseket:**
 
-1. Jelentkezzen be tooyour **FreshService** vállalati hely rendszergazdaként.
+1. Jelentkezzen be a **FreshService** vállalati hely rendszergazdaként.
 
-2. Hello hello felső menüben kattintson a **Admin**.
+2. Kattintson a felső menüben **Admin**.
    
     ![Felügyeleti](./media/active-directory-saas-freshservice-tutorial/ic790814.png "rendszergazda")
 
-3. A hello **felhasználókezelés** kattintson **engedélyezését**.
+3. Az a **felhasználókezelés** kattintson **engedélyezését**.
    
     ![Engedélyezését](./media/active-directory-saas-freshservice-tutorial/ic790818.png "engedélyezését")
 
@@ -210,35 +210,35 @@ az Azure AD tooenable felhasználók toolog a tooFreshService, akkor ki kell ép
    
     ![Új engedélyezését](./media/active-directory-saas-freshservice-tutorial/ic790819.png "új engedélyezését")
 
-5. A hello **új kérelmező** csoportjában hajtsa végre az alábbi lépésekkel hello:
+5. Az a **új kérelmező** területen tegye a következőket:
    
     ![Új kérelmező](./media/active-directory-saas-freshservice-tutorial/ic790820.png "új kérelmező")   
 
-    a. Adja meg a hello **Utónév** és **E-mail** tooprovision hello a kívánt fiók érvényes Azure Active Directory attribútumok kapcsolódó szövegmezőből.
+    a. Adja meg a **Utónév** és **E-mail** egy érvényes Azure Active Directory-fiókot szeretné azokat a kapcsolódó szövegmezők rendelkezés attribútumait.
 
     b. Kattintson a **Save** (Mentés) gombra.
    
     >[!NOTE]
-    >hello Azure Active Directory fióktulajdonos kap egy e-mailt egy hivatkozás tooconfirm hello fiókot is beleértve, mielőtt aktívvá válik
+    >Az Azure Active Directory fióktulajdonos kap egy e-mailt, mielőtt aktívvá válik, győződjön meg arról, hogy a fiók hivatkozással
     >  
 
 >[!NOTE]
->Bármely más FreshService felhasználói fiók létrehozása eszközök vagy FreshService tooprovision által nyújtott API-k AAD felhasználói fiókokat.
+>Bármely más FreshService felhasználói fiók létrehozása eszközök vagy rendelkezés AAD felhasználói fiókokhoz FreshService által nyújtott API-k.
 >  
 
 ![Felhasználó hozzárendelése][200] 
 
-**tooassign Britta Simon tooFreshservice, hajtsa végre a következő lépéseket hello:**
+**Britta Simon hozzárendelése Freshservice, hajtsa végre az alábbi lépéseket:**
 
-1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Hello alkalmazások listában válassza ki a **Freshservice**.
+2. Az alkalmazások listában válassza ki a **Freshservice**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-freshservice-tutorial/tutorial_freshservice_app.png) 
 
-3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -246,7 +246,7 @@ az Azure AD tooenable felhasználók toolog a tooFreshService, akkor ki kell ép
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -254,13 +254,13 @@ az Azure AD tooenable felhasználók toolog a tooFreshService, akkor ki kell ép
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-hello ebben a szakaszban célja tootest az egyszeri bejelentkezés konfigurációs használatával hello a hozzáférési Panel.
+Ez a szakasz célja tesztelése az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen.
 
-Ha a hozzáférési Panel hello hello Freshservice csempe gombra kattint, automatikusan bejelentkezett tooyour Freshservice alkalmazás szerezheti be.
+Ha a hozzáférési panelen Freshservice csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az Freshservice alkalmazására.
 
 ## <a name="additional-resources"></a>További források
 
-* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
+* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

@@ -1,16 +1,16 @@
 |Paraméter neve| Típus | Leírás| Lehetséges értékek|
 |-|-|-|-|
-| /ServerMode|Kötelező|Adja meg e két hello konfigurációs és a folyamat kiszolgálón kell telepíteni, vagy csak a hello folyamatkiszolgáló|CS<br>PS|
-|/InstallLocation|Kötelező|hello mappa mely hello összetevőinek telepítése| Egyetlen mappa hello számítógépen|
-|/MySQLCredsFilePath|Kötelező|hello fájl elérési útját, mely hello MySQL a kiszolgáló hitelesítő adatok tárolása|hello fájlnak kell lennie az alább megadott hello formátumban|
-|/VaultCredsFilePath|Kötelező|hello fájl elérési útját hello tárolói hitelesítő adatok|Érvényes fájlelérési út|
-|/EnvType|Kötelező|Típusát, amelyet az tooprotect környezete |VMware<br>NonVMware|
-|/PSIP|Kötelező|Hello NIC toobe replikációs adatátvitelhez használt IP-címe| Bármilyen érvényes IP-cím|
-|/CSIP|Kötelező|mely hello a konfigurációs kiszolgáló figyel a következőn hello NIC hello IP-címe| Bármilyen érvényes IP-cím|
-|/PassphraseFilePath|Kötelező|hello jelszót fájl teljes elérési útja toolocation hello|Érvényes fájlelérési út|
-|/BypassProxy|Optional|Megadja, hogy hello konfigurációs kiszolgáló kapcsolódik tooAzure proxy nélkül|toodo Venu Ez az érték lekérése|
-|/ProxySettingsFilePath|Optional|Proxybeállítások (hello alapértelmezett proxy igényel hitelesítést, vagy egy egyéni proxy)|hello fájl az alább megadott hello formátumban kell megadni|
-|DataTransferSecurePort|Optional|A replikált adatok használt hello PSIP toobe lévő portszám| Érvényes portszám (az alapértelmezett érték 9433)|
+| /ServerMode|Kötelező|Megadja, hogy a konfigurációs és folyamatkiszolgálót is, vagy csak a folyamatkiszolgálót kell-e telepíteni.|CS<br>PS|
+|/InstallLocation|Kötelező|Az összetevők telepítési mappája| A számítógép bármely mappája|
+|/MySQLCredsFilePath|Kötelező|A fájl elérési útja, amelyen a MySQL-kiszolgáló hitelesítő adatai tárolva vannak|A fájlnak az alább megadott formátumúnak kell lennie|
+|/VaultCredsFilePath|Kötelező|A tároló hitelesítőadat-fájljának elérési útja|Érvényes fájlelérési út|
+|/EnvType|Kötelező|A védeni kívánt környezet típusa |VMware<br>NonVMware|
+|/PSIP|Kötelező|A replikációs adatátvitelhez használni kívánt hálózati adapter IP-címe| Bármilyen érvényes IP-cím|
+|/CSIP|Kötelező|Annak a hálózati adapternek az IP-címe, amelyen a konfigurációs kiszolgáló figyel| Bármilyen érvényes IP-cím|
+|/PassphraseFilePath|Kötelező|A jelszófájl teljes elérési útja|Érvényes fájlelérési út|
+|/BypassProxy|Optional|Megadja, hogy a konfigurációs kiszolgáló proxy nélkül csatlakozik az Azure-hoz.|Az érték beszerzése innen: Venu|
+|/ProxySettingsFilePath|Optional|Proxybeállítások (Az alapértelmezett proxyhoz hitelesítés vagy egyéni proxy szükséges).|A fájlnak az alább megadott formátumúnak kell lennie|
+|DataTransferSecurePort|Optional|Az adatreplikációhoz használni kívánt PSIP-port száma| Érvényes portszám (az alapértelmezett érték 9433)|
 |/SkipSpaceCheck|Optional|Gyorsítótárlemez terület-ellenőrzésének kihagyása| |
 |/AcceptThirdpartyEULA|Kötelező|Ez a jelölő a külső féltől származó végfelhasználói licencszerződés elfogadását jelzi| |
 |/ShowThirdpartyEULA|Optional|Külső felektől származó végfelhasználói licenszszerződés megjelenítése. Bemenetként való megadása esetén figyelmen kívül hagyja a többi paramétert.| |

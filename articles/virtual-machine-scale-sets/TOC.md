@@ -2,7 +2,7 @@
 ## [Mik a virtuálisgép-méretezési csoportok?](virtual-machine-scale-sets-overview.md)
 
 # Első lépések
-## [A méretezési hello portálon készletben telepítése](virtual-machine-scale-sets-portal-create.md)
+## [Méretezési csoport üzembe helyezése az Azure Portalon](virtual-machine-scale-sets-portal-create.md)
 ## [Méretezési csoport üzembe helyezése a PowerShell-lel vagy az Azure CLI-vel](virtual-machine-scale-sets-create.md)
 ## [Automatikus méretezést végző alkalmazás üzembe helyezése sablon használatával](virtual-machine-scale-sets-deploy-scaling-app-template.md)
 
@@ -17,28 +17,28 @@
 ### [Vendégalapú automatikus méretezés használata Linux rendszerű méretezésicsoport-sablonnal](virtual-machine-scale-sets-mvss-guest-based-autoscale-linux.md)
 
 ## Üzembe helyezés
-### [Hello portállal létrehozása](virtual-machine-scale-sets-portal-create.md)
+### [Létrehozás az Azure Portalon](virtual-machine-scale-sets-portal-create.md)
 ### [Létrehozás a Visual Studióval](virtual-machine-scale-sets-vs-create.md)
-### [Létrehozás a PowerShell-lel vagy az Azure CLI-vel](virtual-machine-scale-sets-create.md)
+### [Létrehozás az Azure PowerShell-lel vagy az Azure CLI-vel](virtual-machine-scale-sets-create.md)
 ### [Méretezési csoport a Managed Disksszel](virtual-machine-scale-sets-managed-disks.md)
 ### [Linux rendszerű méretezési csoport automatikus skálázással](virtual-machine-scale-sets-linux-autoscale.md)
 ### [Windows rendszerű méretezési csoport automatikus skálázással](virtual-machine-scale-sets-windows-autoscale.md)
 ### [Méretezésicsoport-alkalmazások](virtual-machine-scale-sets-deploy-app.md)
 ### [Adatlemezek használata méretezési csoportokkal](virtual-machine-scale-sets-attached-disks.md)
 ### [Nagyméretű méretezési csoportokkal végzett munka](virtual-machine-scale-sets-placement-groups.md)
-### [A méretezési készlet sablon toouse kezelt lemez konvertálása](virtual-machine-scale-sets-convert-template-to-md.md)
+### [Méretezési csoport sablonjának konvertálása felügyelt lemez használatához](virtual-machine-scale-sets-convert-template-to-md.md)
 
 
 
 ## Kezelés
-### [Windows rendszerű méretezési csoport PowerShell-lel](virtual-machine-scale-sets-windows-manage.md)
+### [Windows rendszerű méretezési csoport Azure PowerShell-lel](virtual-machine-scale-sets-windows-manage.md)
 ### [Automatikus méretezés és méretezési csoportok](virtual-machine-scale-sets-autoscale-overview.md)
 ### [Automatikus skálázás haladó szinten](../monitoring-and-diagnostics/insights-advanced-autoscale-virtual-machine-scale-sets.md)
 ### [Függőleges méretezés méretezési csoportban](virtual-machine-scale-sets-vertical-scale-reprovision.md)
 ### [Méretezésicsoport-frissítések](virtual-machine-scale-sets-upgrade-scale-set.md)
 ### [DSC és méretezési csoportok használata](virtual-machine-scale-sets-dsc.md)
 ### [Méretezési csoportok hálózatkezelése](virtual-machine-scale-sets-networking.md)
-### [A sablon toomanaged lemezek konvertálása](virtual-machine-scale-sets-convert-template-to-md.md)
+### [Sablon konvertálása felügyelt lemezhez](virtual-machine-scale-sets-convert-template-to-md.md)
 
 ## Hibaelhárítás
 ### [Automatikus méretezés](virtual-machine-scale-sets-troubleshoot.md)
@@ -47,7 +47,7 @@
 ### [Méretezési csoport – gyakran ismételt kérdések](virtual-machine-scale-sets-faq.md)
 
 # Referencia
-## [PowerShell](/powershell/azure/overview)
+## [Azure PowerShell](/powershell/azure/overview)
 ## [Azure CLI](../virtual-machines/azure-cli-arm-commands.md)
 ## [REST](/rest/api/virtualmachinescalesets/)
 

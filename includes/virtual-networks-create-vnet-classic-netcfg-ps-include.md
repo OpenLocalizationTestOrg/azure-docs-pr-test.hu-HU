@@ -1,10 +1,10 @@
-## <a name="how-toocreate-a-virtual-network-using-a-network-config-file-from-powershell"></a>Hogyan toocreate egy virtuális hálózatot használ a hálózati konfigurációs fájl PowerShell
-Azure használ egy xml-fájl toodefine minden virtuális hálózatok elérhető tooa előfizetés. Letölteni a fájlt, toomodify szerkesztheti vagy törölje a meglévő virtuális hálózatot, majd hozzon létre új virtuális hálózatok. Ebben az oktatóanyagban elsajátíthatja, hogyan toodownload ezt a fájlt, említett tooas hálózati konfigurációját (vagy netcfg) fájl, és új virtuális hálózat toocreate szerkesztésére. toolearn hello hálózati konfigurációs fájl bővebben lásd: hello [Azure-beli virtuális hálózat konfigurációs séma](https://msdn.microsoft.com/library/azure/jj157100.aspx).
+## <a name="how-to-create-a-virtual-network-using-a-network-config-file-from-powershell"></a>PowerShell a hálózati konfigurációs fájl használatával egy virtuális hálózat létrehozása
+Azure előfizetés az összes rendelkezésre álló virtuális hálózatok megadása egy XML-fájlt használja. Letölteni a fájlt, módosítása vagy törlése a meglévő virtuális hálózatok szerkesztheti, majd hozzon létre új virtuális hálózatok. Ebből az oktatóanyagból megtudhatja, hogyan letölteni a fájlt, a hálózati konfiguráció (vagy netcfg) fájl, a továbbiakban, és új virtuális hálózat létrehozása szerkesztésére. A hálózati konfigurációs fájl kapcsolatos további tudnivalókért tekintse meg a [Azure-beli virtuális hálózat konfigurációs séma](https://msdn.microsoft.com/library/azure/jj157100.aspx).
 
-a virtuális hálózati PowerShell, a következő lépéseket teljes hello segítségével netcfg fájlt tartalmazó toocreate:
+Virtuális hálózat létrehozása a PowerShell használatával netcfg fájllal, végezze el a következő lépéseket:
 
-1. Ha még sosem használta az Azure PowerShell, teljes hello hello szükséges lépések [hogyan tooInstall és konfigurálása az Azure PowerShell](/powershell/azureps-cmdlets-docs) cikk, majd jelentkezzen be tooAzure, és jelölje ki az előfizetését.
-2. Hello Azure PowerShell-konzolon, használja a hello **Get-AzureVnetConfig** parancsmag toodownload hello hálózati konfigurációs fájl tooa könyvtár hello a következő parancs futtatásával a számítógépen: 
+1. Ha még sosem használta az Azure PowerShell, hajtsa végre a a [telepítése és konfigurálása az Azure PowerShell](/powershell/azureps-cmdlets-docs) cikk, majd jelentkezzen be az Azure-ba, és jelölje ki az előfizetését.
+2. Az Azure PowerShell-konzolon, használja a **Get-AzureVnetConfig** parancsmag használatával töltheti le a hálózati konfigurációs fájlt a számítógépen egy könyvtár a következő parancs futtatásával: 
    
    ```powershell
    Get-AzureVNetConfig -ExportToFile c:\azure\NetworkConfig.xml
@@ -18,8 +18,8 @@ a virtuális hálózati PowerShell, a következő lépéseket teljes hello segí
       <?xml version="1.0" encoding="utf-8"?>...
       ```
 
-3. Nyissa meg a bármely XML vagy szöveges szerkesztő alkalmazással 2. lépésben mentett hello fájlt, és keressen a hello  **<VirtualNetworkSites>**  elemet. Ha olyan hálózatra, már létrehozott, minden egyes hálózati jelenik meg a saját  **<VirtualNetworkSite>**  elemet.
-4. toocreate hello virtuális hálózati ebben a forgatókönyvben leírtak hozzáadása XML alábbi csak, hello hello  **<VirtualNetworkSites>**  elem:
+3. Nyissa meg a bármely XML vagy szöveges szerkesztő alkalmazással 2. lépésben mentett fájlt, és keresse meg a  **<VirtualNetworkSites>**  elemet. Ha olyan hálózatra, már létrehozott, minden egyes hálózati jelenik meg a saját  **<VirtualNetworkSite>**  elemet.
+4. Ebben a forgatókönyvben a virtuális hálózat létrehozásához adja hozzá a következő XML alatt csak a  **<VirtualNetworkSites>**  elem:
 
    ```xml
         <VirtualNetworkSite name="TestVNet" Location="East US">
@@ -37,8 +37,8 @@ a virtuális hálózati PowerShell, a következő lépéseket teljes hello segí
         </VirtualNetworkSite>
    ```
    
-5. Mentse a hello hálózati konfigurációs fájlt.
-6. Hello Azure PowerShell-konzolon, használja a hello **Set-AzureVnetConfig** parancsmag tooupload hello hálózati konfigurációs fájl hello a következő parancs futtatásával: 
+5. Mentse a hálózati konfigurációs fájlt.
+6. Az Azure PowerShell-konzolon, használja a **Set-AzureVnetConfig** parancsmaggal töltse fel a hálózati konfigurációs fájlt a következő parancs futtatásával: 
    
    ```powershell
    Set-AzureVNetConfig -ConfigurationPath c:\azure\NetworkConfig.xml
@@ -52,15 +52,15 @@ a virtuális hálózati PowerShell, a következő lépéseket teljes hello segí
       Set-AzureVNetConfig  <Id>                                 Succeeded 
       ```
    
-   Ha **OperationStatus** nem *sikeres* hello adott vissza a kimeneti, a hibák és a Kész lépés 6 hello XML-fájl ismételt ellenőrzéséhez.
+   Ha **OperationStatus** nem *sikeres* visszaadott kimenet, ellenőrizze az XML-fájl, a hibák és a Kész lépés 6 újra.
 
-7. Hello Azure PowerShell-konzolon, használja a hello **Get-AzureVnetSite** parancsmag tooverify, amely az új hálózati hello hozzá lett adva hello a következő parancs futtatásával: 
+7. Az Azure PowerShell-konzolon, használja a **Get-AzureVnetSite** parancsmag segítségével győződjön meg arról, hogy az új hálózati lett-e hozzáadva a következő parancs futtatásával: 
 
    ```powershell
    Get-AzureVNetSite -VNetName TestVNet
    ```
    
-   a visszaadott hello (rövidített) kimenete a következő szöveg hello tartalmazza:
+   A visszaadott (rövidített) parancs kimenete a következő szöveget:
   
       ```
       AddressSpacePrefixes : {192.168.0.0/16}

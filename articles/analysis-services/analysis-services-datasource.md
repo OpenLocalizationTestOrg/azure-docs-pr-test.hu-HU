@@ -1,5 +1,5 @@
 ---
-title: "az Azure Analysis Services támogatott aaaData források |} Microsoft Docs"
+title: "Az Azure Analysis Services támogatott adatforrások |} Microsoft Docs"
 description: "Az Azure Analysis Services adatmodellekben támogatott adatforrások ismerteti."
 services: analysis-services
 documentationcenter: 
@@ -15,16 +15,16 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: owend
-ms.openlocfilehash: 2902d7d3c3bcf086419822fa826193bd247bde61
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8bd6c3b5a923ce2f3cd0f60af82e59c5cc27cbb4
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="data-sources-supported-in-azure-analysis-services"></a>Az Azure Analysis Services támogatott adatforrások
-Azure Analysis Services-kiszolgálók hello felhőben és a szervezet helyszíni összekötő toodata források támogatja. További támogatott adatforrások közé éppen felvett összes hello idő. Gyakran ellátogatnia webhelyünkre. 
+Azure Analysis Services-kiszolgálók esetén támogatja az adatforrások a felhőben és a szervezet helyszíni csatlakozik. További támogatott adatforrások folyamatosan felvétel alatt. Gyakran ellátogatnia webhelyünkre. 
 
-a következő adatforrások hello jelenleg támogatottak:
+A következő adatforrások jelenleg támogatottak:
 
 | Felhő  |
 |---|
@@ -46,15 +46,15 @@ a következő adatforrások hello jelenleg támogatottak:
 \*A táblázatos 1 400 modellek csak. 
 
 > [!IMPORTANT]
-> Összekötő tooon helyszíni adatok források szükséges egy [helyszíni adatátjáró](analysis-services-gateway.md) környezetét a számítógépen.
+> A helyszíni adatforrásokhoz való csatlakozás igényel egy [helyszíni adatátjáró](analysis-services-gateway.md) környezetét a számítógépen.
 
 ## <a name="data-providers"></a>Adatszolgáltatók
 
-Az Azure Analysis Services adatmodellekben különféle adatszolgáltatóktól igényelhet, toocertain adatforrások kapcsolódáskor. Bizonyos esetekben csatlakozás toodata adatforrások, például az SQL Server Native Client (SQLNCLI11) natív szolgáltatók használata táblázatos modellek hibát adhat vissza.
+Az Azure Analysis Services adatmodellekben szükség lehet különböző adatszolgáltatók, egyes adatforrásokhoz való kapcsolódáskor. Bizonyos esetekben csatlakozás az adatforrásokhoz, például az SQL Server Native Client (SQLNCLI11) natív szolgáltatók használata táblázatos modellek hibát adhat vissza.
 
-Például az Azure SQL Database forrás tooa felhőbeli adatát csatlakozó adatmodellekben, natív szolgáltatók eltérő SQLOLEDB használatakor hibaüzenet jelenhet: **"hello provider" "SQLNCLI11.1" nincs regisztrálva.** Vagy, ha a kapcsolódó tooon helyi adatforrások, a modell DirectQuery natív szolgáltatók használatakor hibaüzenet jelenhet: **"hiba történt a sorkészlet OLE DB létrehozásakor. Helytelen szintaxis a(z) "KORLÁTJA" közelében "**.
+Egy felhőbeli adatát csatlakozó adatmodellekben forrás például az Azure SQL Database, ha eltérő SQLOLEDB natív szolgáltatók használatához hibaüzenet jelenhet: **"a provider" "SQLNCLI11.1" nincs regisztrálva.** Vagy, ha egy DirectQuery modell csatlakozik a helyi adatforrások, ha natív szolgáltatók hibaüzenet jelenhet: **"hiba történt a sorkészlet OLE DB létrehozásakor. Helytelen szintaxis a(z) "KORLÁTJA" közelében "**.
 
-a következő adatforrás szolgáltatók hello a memóriában vagy a DirectQuery-modellekre adatok támogatottak, ha a kapcsolódó toodata hello felhő vagy a helyszíni adatforrások:
+A következő adatforrás-szolgáltatók támogatottak a memóriában vagy a DirectQuery-modellekre adatok a felhőben, vagy a helyszíni adatforrások való csatlakozáskor:
 
 ### <a name="cloud"></a>Felhő
 | **Adatforrás** | **Memóriabeli** | **DirectQuery** |
@@ -79,16 +79,16 @@ a következő adatforrás szolgáltatók hello a memóriában vagy a DirectQuery
 > 
 > 
 
-Egy helyi SQL Server Analysis Services táblázatos modell tooAzure Analysis Services áttelepítésekor lehet szükséges toochange hello szolgáltató.
+Amikor telepít egy helyi SQL Server Analysis Services táblázatos modell Azure Analysis Services, akkor lehet szükség módosítani a szolgáltatót.
 
-**toospecify egy adatforrás-szolgáltatója**
+**Egy adatforrás-szolgáltatója megadása**
 
 1. Az SSDT > **táblázatos modell Explorer** > **adatforrások**, kattintson a jobb gombbal az adatforrás-kapcsolat, és kattintson a **adatforrás szerkesztése**.
-2. A **kapcsolat szerkesztése**, kattintson a **speciális** tooopen hello előzetes tulajdonságai ablakban.
-3. A **speciális tulajdonságok** > **szolgáltatók**, majd válassza ki a megfelelő szolgáltató hello.
+2. A **kapcsolat szerkesztése**, kattintson a **speciális** a Speciális tulajdonságok ablak megnyitásához.
+3. A **speciális tulajdonságok** > **szolgáltatók**, majd válassza ki a megfelelő szolgáltatót.
 
 ## <a name="impersonation"></a>A megszemélyesítés
-Bizonyos esetekben egy másik megszemélyesítési fiókhoz szükséges toospecify lehet. Megszemélyesítési fiókhoz SSDT vagy SSMS adható meg.
+Bizonyos esetekben elképzelhető különböző megszemélyesítési fiókot szeretne megadni. Megszemélyesítési fiókhoz SSDT vagy SSMS adható meg.
 
 A helyszíni adatforrások:
 
@@ -100,6 +100,6 @@ Felhő adatforrások:
 * Ha az SQL-hitelesítést használ, a megszemélyesítési szolgáltatás fióknak kell lennie.
 
 ## <a name="next-steps"></a>Következő lépések
-Ha a helyszíni adatforrások, lehet, hogy tooinstall hello [helyszíni átjáró](analysis-services-gateway.md).   
-További információ az SSDT vagy SSMS, a kiszolgáló kezelése toolearn lásd [kezelheti a kiszolgálót](analysis-services-manage.md).
+Ha a helyszíni adatforrások, ügyeljen arra, hogy telepítse a [helyszíni átjáró](analysis-services-gateway.md).   
+A kiszolgáló SSDT vagy SSMS kezelésével kapcsolatos további tudnivalókért lásd: [kezelheti a kiszolgálót](analysis-services-manage.md).
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaUse Azure kötegelt API-k és eszközök toodevelop nagyméretű párhuzamos feldolgozást végző megoldások |} Microsoft Docs"
-description: "További tudnivalók a hello API-k és eszközök megoldások hello Azure Batch szolgáltatás érhető el."
+title: "Azure Batch API-k és eszközök használata nagyméretű párhuzamos feldolgozási megoldások kifejlesztéséhez | Microsoft Docs"
+description: "Megismerheti az Azure Batch szolgáltatással történő megoldásfejlesztéshez elérhető API-kat és eszközöket."
 services: batch
 author: tamram
 manager: timlt
@@ -8,33 +8,33 @@ ms.service: batch
 ms.topic: get-started-article
 ms.date: 03/08/2017
 ms.author: tamram
-ms.openlocfilehash: ca75a1a63b3e7e6b0805e79a63685bc49aaaca8f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9a5bbb1ecd3886a1453986c2deadb7b35e54b67b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="overview-of-batch-apis-and-tools"></a>A Batch API-k és eszközök áttekintése
 
-Azure kötegelt párhuzamos munkaterhelések feldolgozása általában történik programozott módon hello egyikével [kötegelt API-k](#batch-development-apis). Az ügyfél alkalmazás vagy szolgáltatás hello kötegelt API-k toocommunicate használható hello Batch-szolgáltatás. A kötegelt API-k hello, létrehozása és kezelése a számítási csomópontok készleteinek virtuális gépek vagy felhőszolgáltatások. Feladatok és a feladatok toorun meg azokat a csomópontokat, majd ütemezhet. 
+A párhuzamos számítási feladatok Azure Batch használatával végzett feldolgozása általában programozott módon történik az egyik [Batch API-val](#batch-development-apis). Az Ön által készített ügyfélalkalmazások vagy szolgáltatások a Batch API-k használatával kommunikálhatnak a Batch szolgáltatással. A Batch API-kkal számítási csomópontok készletét, virtuális gépeket vagy felhőszolgáltatásokat hozhat létre és felügyelhet. Ezt követően pedig a feladatok és tevékenységek ütemezésével futtathatja őket ezeken a csomópontokon. 
 
-Nagyméretű munkaterhelések feldolgozni a szervezet számára, vagy adja meg a szolgáltatás előtérbeli tooyour ügyfelek, hogy futtathatók feladatok és feladatokhoz – igény szerint vagy ütemezett--a egy, több száz vagy akár több ezer hatékony. Az Azure Batch szolgáltatást a nagyobb munkafolyamatok részeként is felügyelheti olyan eszközökkel, mint például az [Azure Data Factory](../data-factory/data-factory-data-processing-using-batch.md?toc=%2fazure%2fbatch%2ftoc.json).
+Hatékonyan dolgozhat fel nagyméretű számítási feladatokat a szervezet számára, vagy szolgáltatási előtérrendszert nyújthat az ügyfeleknek, hogy feladatokat és tevékenységeket futtathassanak – igény szerint vagy ütemterv alapján – egyetlen, több száz vagy akár több ezer csomóponton. Az Azure Batch szolgáltatást a nagyobb munkafolyamatok részeként is felügyelheti olyan eszközökkel, mint például az [Azure Data Factory](../data-factory/v1/data-factory-data-processing-using-batch.md?toc=%2fazure%2fbatch%2ftoc.json).
 
 > [!TIP]
-> Amikor készen áll a kötegelt API toohello toodig a hello részletesebb ismeretének jellemzőkkel biztosít, tekintse meg a hello [Batch funkcióinak áttekintése a fejlesztők](batch-api-basics.md).
+> Amikor készen áll a Batch API megismerésére, az általa nyújtott szolgáltatások alaposabb elsajátítása érdekében tekintse meg [Az Azure Batch funkcióinak áttekintése](batch-api-basics.md) című témakört.
 > 
 > 
 
 ## <a name="azure-accounts-for-batch-development"></a>A Batch-fejlesztéshez szükséges Azure-fiókok
-Amikor kötegelt megoldások fejlesztése, a következő fiókokat a Microsoft Azure-ban hello fogja használni.
+Batch-megoldások fejlesztésekor a következő fiókokat fogja használni a Microsoft Azure-ban.
 
 * **Azure-fiók és -előfizetés** – Ha még nincs Azure-előfizetése, aktiválhatja [MSDN-előfizetői előnyeit][msdn_benefits], vagy regisztrálhat egy [ingyenes Azure-fiókot][free_account]. Fiók létrehozásakor a rendszer egy alapértelmezett előfizetést hoz létre.
-* **Batch-fiók** – Az Azure Batch-erőforrások, például a készletek, számítási csomópontok, feladatok és tevékenységek, egy Batch-fiókkal vannak társítva. Ha az alkalmazás elleni hello Batch szolgáltatás kérést, hello Azure Batch-fiók neve, a hello hello fiók URL-CÍMÉT és a hívóbetű hello kérelem hitelesíti. Is [Batch-fiók létrehozása](batch-account-create-portal.md) a hello Azure-portálon.
-* **Storage-fiók** – A Batch beépített támogatást kínál az [Azure Storage][azure_storage] fájljainak használatához. Szinte minden kötegelt forgatókönyv Azure Blob Storage tárolót használja, előkészítési hello programok, amelyek a feladatok futnak, és azokat feldolgozó hello adatok, és általuk létrehozott kimeneti adatok hello tárolására. a tárfiók toocreate lásd: [tudnivalók az Azure storage-fiókok](../storage/common/storage-create-storage-account.md).
+* **Batch-fiók** – Az Azure Batch-erőforrások, például a készletek, számítási csomópontok, feladatok és tevékenységek, egy Batch-fiókkal vannak társítva. Amikor az alkalmazás egy kérelmet továbbít a Batch szolgáltatás felé, a hitelesítést az Azure Batch-fiók, a fiók URL-címe és egy hozzáférési kulcs használatával hajtja végre a szolgáltatás. Az Azure Portalon [hozhat létre Batch-fiókot](batch-account-create-portal.md).
+* **Storage-fiók** – A Batch beépített támogatást kínál az [Azure Storage][azure_storage] fájljainak használatához. Szinte mindegyik Batch-forgatókönyv az Azure Blob Storage-ot használja a tevékenységek által futtatott programok és feldolgozott adatok átmeneti tárolásához, valamint a tevékenységek által létrehozott kimeneti adatok tárolásához. A Storage-fiók létrehozásával kapcsolatban tekintse meg a [Tudnivalók az Azure Storage-fiókokról](../storage/common/storage-create-storage-account.md) című témakört.
 
 ## <a name="batch-service-apis"></a>A Batch szolgáltatás API-jai
 
-Az alkalmazások és szolgáltatások is közvetlen REST API-hívás vagy egy vagy több ügyfél szalagtárak toorun következő hello és kezelhet a Azure Batch számítási feladatait.
+Az alkalmazások és szolgáltatások közvetlen REST API-hívásokat hajthatnak végre, illetve a következő ügyfélkódtárak legalább egyikének használatával futtathatják és kezelhetik az Azure Batch számítási feladatait.
 
 | API | API-referencia | Letöltés | Oktatóanyag | Kódminták | További információ |
 | --- | --- | --- | --- | --- | --- |
@@ -46,7 +46,7 @@ Az alkalmazások és szolgáltatások is közvetlen REST API-hívás vagy egy va
 
 ## <a name="batch-management-apis"></a>Batch Management API-k
 
-hello Azure Resource Manager API-khoz, kötegelt tooBatch fiókok programozott hozzáférést biztosítanak. Ezen API-k használatával programozott módon kezelheti a Batch-fiókokat, a kvótákat és az alkalmazáscsomagokat.  
+A Batch Azure Resource Manager API-jai programozott hozzáférést biztosítanak a Batch-fiókokhoz. Ezen API-k használatával programozott módon kezelheti a Batch-fiókokat, a kvótákat és az alkalmazáscsomagokat.  
 
 | API | API-referencia | Letöltés | Oktatóanyag | Kódminták |
 | --- | --- | --- | --- | --- |
@@ -55,30 +55,30 @@ hello Azure Resource Manager API-khoz, kötegelt tooBatch fiókok programozott h
 
 ## <a name="batch-command-line-tools"></a>A Batch parancssori eszközei
 
-A parancssori eszközök biztosítanak hello ugyanezeket a funkciókat, mint a Batch szolgáltatás és a kötegelt API-val hello: 
+Ezek a parancssori eszközök ugyanazt a funkcionalitást biztosítják, mint a Batch szolgáltatás API-jai és a Batch Management API-k: 
 
-* [PowerShell-parancsmagok kötegelt][batch_ps]: hello Azure Batch-parancsmagok a hello [Azure PowerShell](/powershell/azure/overview) modul lehetővé teszik a toomanage kötegelt erőforrások az PowerShell.
-* [Az Azure CLI](/cli/azure/overview): hello Azure parancssori felület (CLI) a kommunikáció számos Azure-szolgáltatásokkal, beleértve a hello Batch szolgáltatás és a Batch szolgáltatás felületparancsokat biztosító platformfüggetlen eszközkészlet. Lásd: [kezelése kötegelt erőforrások az Azure CLI](batch-cli-get-started.md) kötegelt hello Azure CLI használatáról további információt.
+* [Batch PowerShell-parancsmagok][batch_ps]: Az [Azure PowerShell](/powershell/azure/overview) modulban található Azure Batch-parancsmagokkal felügyelheti a Batch-erőforrásokat a PowerShell használatával.
+* [Azure CLI](/cli/azure/overview): Az Azure parancssori felület (Azure CLI) egy többplatformos eszközkészlet, amely rendszerhéjparancsokat biztosít sok Azure-szolgáltatással, például a Batch szolgáltatással és a Batch Management szolgáltatással való interakcióhoz. Az Azure CLI a Batch szolgáltatással való használatával kapcsolatos további információkért lásd: [Batch-erőforrások kezelése az Azure CLI-vel](batch-cli-get-started.md).
 
 ## <a name="other-tools-for-application-development"></a>Egyéb alkalmazásfejlesztési eszközök
 
 Íme néhány további eszköz, amelyek hasznosak lehetnek a Batch-alkalmazások és -szolgáltatások létrehozása és hibakeresése során.
 
-* [Azure-portálon][portal]: hozhat létre, figyeléséhez és törölhet kötegelt készletek, feladatok és feladatokat a hello Azure portál kötegelt paneleken. Az ezekhez és más erőforrások hello állapot információk is megtekinthetők, amíg a feladatok futtatásához, és még letölteni fájlokat hello számítási csomópontok a készletek. Letöltheti például egy sikertelen feladat `stderr.txt` fájlját a hibaelhárítás során. Emellett letöltheti használt toolog toocompute csomópontok távoli asztal (RDP) fájlok.
-* [Azure Batch Explorer][batch_explorer]: kötegelt Explorer hasonló kötegelt erőforrás felügyeleti funkciókat kínál, hello Azure-portálon, azonban a Windows megjelenítési alaprendszer (WPF) ügyfélalkalmazás önálló. Hello Batch .NET minta alkalmazásokban érhető el a [GitHub][github_samples], a Visual Studio 2015-öt vagy újabb összeállítani, és használhatja azt toobrowse és hello erőforrások kezelése a Batch-fiók, amíg a most kialakított és hibakeresése a kötegelt megoldások. Feladat megtekintése, a készlet és a feladat részletei, töltse le a fájlokat a számítási csomópontok és toonodes távoli csatlakozás kötegelt Explorer letöltheti a távoli asztal (RDP) fájlok használatával.
-* [A Microsoft Azure Tártallózó][storage_explorer]: közben nem feltétlenül egy Azure Batch eszköz, a Tártallózó hello egy másik értékes eszközt toohave addig, amíg a fejlesztés és a kötegelt megoldások hibakeresés.
+* [Azure Portal][portal]: Batch-készleteket, -feladatokat és -tevékenységeket hozhat létre, figyelhet meg és törölhet az Azure Portal Batch-paneljein. Megtekintheti ezen és más erőforrások állapotinformációit a feladatok futtatásakor, és fájlokat is letölthet a készletekben található számítási csomópontokról. Letöltheti például egy sikertelen feladat `stderr.txt` fájlját a hibaelhárítás során. Távoli asztali (RDP-) fájlokat is letölthet, amelyekkel bejelentkezhet a számítási csomópontokba.
+* [Azure Batch Explorer][batch_explorer]: A Batch Explorer hasonló Batch-erőforráskezelő funkciókat nyújt, mint az Azure Portal, de egy különálló Windows megjelenítési alaprendszer (WPF) ügyfélalkalmazás részeként. A [GitHubon][github_samples] elérhető egyik Batch .NET mintaalkalmazás, amelyet a Visual Studio 2015-ös vagy újabb verziójával építhet ki, majd a használatával megkeresheti és felügyelheti az erőforrásokat a Batch-fiókban a Batch-megoldások fejlesztésekor és hibakeresésekor. Megtekintheti a feladatok, készletek és tevékenységek részleteit, fájlokat tölthet le a számítási csomópontokról, és távolról csatlakozhat csomópontokhoz a Batch Explorerrel letölthető távoli asztali (RDP-) fájlokkal.
+* [Microsoft Azure Storage Explorer][storage_explorer]: Bár nem kimondottan Azure Batch-eszköz, a Storage Explorer egy másik értékes eszköz a Batch-megoldások fejlesztésekor és hibakeresésekor.
 
 ## <a name="additional-resources"></a>További források
 
-- toolearn kapcsolatos események naplózása a kötegelt alkalmazásból, lásd: [diagnosztikai kipróbálási és a Batch-megoldások figyelési események naplózása](batch-diagnostics.md). A Batch szolgáltatás hello által kiváltott események referenciáért lásd: [kötegelt elemzés](batch-analytics.md).
+- A Batch-alkalmazás eseményeinek naplózásával kapcsolatos információkért lásd: [Események naplózása Batck-alkalmazások diagnosztikai kiértékeléséhez és figyeléséhez](batch-diagnostics.md). A Batch-szolgáltatás által létrehozott események referenciájáért lásd:[Batch-elemzés](batch-analytics.md).
 - A számítási csomópontok környezeti változóival kapcsolatos információért lásd: [Azure Batch számítási csomópont környezeti változói](batch-compute-node-environment-variables.md).
 
 ## <a name="next-steps"></a>Következő lépések
 
-* Olvasási hello [Batch funkcióinak áttekintése a fejlesztők](batch-api-basics.md), bárki toouse kötegelt előkészítése alapvető információkat. hello cikkben Batch szolgáltatás erőforrásokhoz, mint a készletek, a csomópontok, a feladatok, és a feladatok és a hello részletesebb információkat is használhatja a kötegelt kérelem felépítésekor sok API-funkciókat.
-* [Hello Azure Batch könyvtár az első lépései a .NET-keretrendszerhez készült](batch-dotnet-get-started.md) toolearn hogyan toouse C# és hello Batch .NET könyvtár tooexecute egy egyszerű munkaterhelés közös kötegelt munkafolyamattal. Ez a cikk a hogyan toouse hello Batch szolgáltatás tanulása közben első nem egyike lehet. Szerepel továbbá egy [Python verzió](batch-python-tutorial.md) hello oktatóanyag.
-* Töltse le a hello [minták a Githubon code] [ github_samples] toosee, hogyan lehet a C# mind a Python kommunikáljanak a kötegelt tooschedule és a folyamat minta munkaterhelések.
-* Tekintse meg a hello [kötegelt képzési terv] [ learning_path] tooget felmérheti, hello erőforrások tooyou érhető el, ha Ön további kötegelt toowork.
+* Olvassa el [Az Azure Batch funkcióinak áttekintése](batch-api-basics.md) című témakört, amely hasznos információkkal szolgál a Batch használatára készülőknek. A cikk a Batch szolgáltatás erőforrásainak, például a készleteknek, csomópontoknak, feladatoknak, tevékenységeknek és sok olyan API funkciónak a részletesebb információit tartalmazza, amelyeket a Batch-alkalmazás kiépítésekor használhat.
+* [Ismerkedjen meg az Azure Batch .NET-es kódtárával](batch-dotnet-get-started.md), hogy megtudja, hogyan használhatja a C# nyelvet és a Batch .NET-es kódtárat egy egyszerű számítási feladat végrehajtásához egy általános Batch-munkafolyamattal. Ennek a cikknek az áttekintése legyen az egyik első lépés, amikor igyekszik elsajátítani a Batch használatát. Az oktatóanyagnak [Python verziója](batch-python-tutorial.md) is van.
+* Töltse le a [GitHubon található kódmintákat][github_samples], hogy lássa, hogyan használható a C# és a Python a Batch eszközzel a mintául szolgáló számítási feladatok ütemezése és feldolgozása során.
+* Tekintse meg a [Batch képzési tervet][learning_path], amelyben megismerheti a Batch használatának elsajátítása során igénybe vehető erőforrásokat.
 
 
 [azure_storage]: https://azure.microsoft.com/services/storage/

@@ -1,6 +1,6 @@
 ---
-title: "a VMware tooAzure replikáció hálózati aaaPlan |} Microsoft Docs"
-description: "Ez a cikk ismerteti, amelyek hálózati tooAzure VMware virtuális gépek replikálása esetén szükséges tervezési"
+title: "A VMware Azure replikáció hálózati terv |} Microsoft Docs"
+description: "Ez a cikk ismerteti az alaphálózati topológia tervezése szükséges, ha VMware virtuális gépek replikálása Azure-bA"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,67 +14,67 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: 2b4f385c768cc7f5e98abae0afb8258b00f3724f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f164ac68ba6ec650bb3996b4aa870e1b98533a23
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="step-4-plan-networking-for-vmware-tooazure-replication"></a>4. lépés: A VMware tooAzure replikációs hálózat tervezése
+# <a name="step-4-plan-networking-for-vmware-to-azure-replication"></a>4. lépés: Azure replikációs VMware a hálózat megtervezése
 
-Ez a cikk összegzi a tervezési szempontok, ha replikálása a helyszíni VMware virtuális gépek tooAzure hello használata hálózati [Azure Site Recovery](site-recovery-overview.md) szolgáltatás.
+Ez a cikk hálózati tervezési szempontok, ha replikálása a helyszíni VMware virtuális gépek az Azure használatát foglalja össze a [Azure Site Recovery](site-recovery-overview.md) szolgáltatás.
 
-Ez a cikk hello alján a megjegyzéseket, vagy kérdései vannak a hello [Azure Recovery Services fórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Megjegyzéseket a cikk alján tehet, kérdéseket pedig az [Azure Recovery Services fórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) teheti fel.
 
 
-## <a name="connect-tooreplica-vms"></a>Csatlakozás tooreplica virtuális gépek
+## <a name="connect-to-replica-vms"></a>A replika virtuális gépek csatlakozni
 
-A replikációs és feladatátvételi stratégiát megtervezésekor fontos kérdések hello egyik hogyan tooconnect toohello Azure virtuális gép a feladatátvételt követően. Számos több lehetősége a replika Azure virtuális gépek hálózati stratégia tervezésekor.
+A replikációs és feladatátvételi stratégiát tervezésekor az alábbiakhoz hasonló fontos kérdések egyike csatlakoztatása az Azure virtuális gép a feladatátvételt követően. Számos több lehetősége a replika Azure virtuális gépek hálózati stratégia tervezésekor.
 
-- **Különböző IP-cím**: kiválaszthatja toouse egy másik IP-címtartomány a hello replikált Azure Virtuálisgép-hálózatot. Ez a forgatókönyv hello a virtuális gép a feladatátvételt követően lekérdezi a egy új IP-címet, és DNS-frissítés szükséges.
-- **Tartsa meg az IP-cím**: érdemes toouse hello azonos IP-címtartomány, mint a helyszíni elsődleges hely, hello Azure-hálózatot a feladatátvételt követően. Egyszerűbbé teszi a ugyanazon IP-címeket való tartása hello hello helyreállítási csökkentésével kapcsolatos probléma hálózati feladatátvételt követően. Azonban ha tooAzure replikál, szüksége lesz tooupdate útvonalak hello új hellyel hello IP-címek a feladatátvételt követően. 
+- **Különböző IP-cím**: egy másik IP-címtartományt használja a replikált Azure Virtuálisgép-hálózat állítható be. Ebben a forgatókönyvben a virtuális Gépet egy új IP-cím beolvasása feladatátvétel után, és egy DNS-frissítés szükséges.
+- **Tartsa meg az IP-cím**: Előfordulhat, hogy szeretné használják az azonos IP-címtartományt, amely a helyszíni elsődleges hely, a feladatátvételt követően az Azure-hálózatot. Megőrzi az azonos IP-cím címek egyszerűbbé teszi a helyreállítást csökkentésével hálózattal kapcsolatos problémákat a feladatátvételt követően. Azonban ha az Azure-bA replikál, szüksége lesz az útvonalak frissítése az új hellyel a IP-címek a feladatátvételt követően. 
 
 
 ## <a name="retain-ip-addresses"></a>Tartsa meg az IP-címek
 
-A Site Recovery biztosít hello funkció tooretain rögzített IP-címek, amikor tooAzure egy alhálózat feladatátvételi feladatátvétele.
+A Site Recovery biztosít a funkció megőrzését rögzített IP oldja meg, amikor az Azure-ba, az alhálózati feladatátvevő feladatátvétele.
 
-Alhálózati feladatátvétellel egy bizonyos alhálózat jelen webhely 1 vagy 2. hely, de soha nem mindkét helyen egyszerre. Rendelés toomaintain hello IP-címterének hello esemény a feladatátvétel, a programozott módon el rendezése hello útválasztó infrastruktúra toomove hello alhálózatok az egyik hely tooanother. A feladatátvételi hello alhálózatok áthelyezése az hello társított védett virtuális gépek. hello fő hátránya, hogy a hello esetre, ha nem, akkor toomove hello teljes alhálózattal rendelkezik.
+Alhálózati feladatátvétellel egy bizonyos alhálózat jelen webhely 1 vagy 2. hely, de soha nem mindkét helyen egyszerre. Ahhoz, hogy a feladatátvétel esetén az IP-címtér kezelése, programozott módon el rendezése az útválasztó-infrastruktúra az alhálózatok áthelyezése egyik helyről egy másikra. A feladatátvételi az alhálózatok a társított védett virtuális gépek áthelyezése. A fő hátránya, hogy hiba esetén, hogy a teljes alhálózat áthelyezése.
 
 
 ### <a name="failover-example"></a>Feladatátvétel – példa
 
-Egy példa a feladatátvevő tooAzure vizsgáljuk meg.
+Nézzük például feladatátvétel az Azure-bA.
 
 - Egy ficticious vállalati, a Woodgrove Bank üzemeltető üzleti alkalmazások helyszíni infrastruktúra van. A mobilalkalmazás Azure üzemelteti.
-- Hello a helyszíni peremhálózati hálózati és hello Azure-beli virtuális hálózat közötti pont-pont (VPN) kapcsolatot biztosít a Woodgrove Bank virtuális gépeket az Azure és a helyszíni kiszolgálók közötti kapcsolatot.
-- A VPN azt jelenti, hogy a vállalati virtuális hálózat az Azure-ban hello jelenik meg a helyszíni hálózat kiterjesztése.
-- Woodgrove toouse Site Recovery tooreplicate helyszíni munkaterhelések tooAzure szeretne.
- - Woodgrove toodeal az alkalmazások és konfigurációk, amely IP-címek kódolt függ, és így kell tooretain IP-címek az alkalmazásuk kezelésére feladatátvételi tooAzure után van.
- - Woodgrove rendelkezik hozzárendelt IP-címek tartomány 172.16.1.0/24 172.16.2.0/24 tooits erőforrásaihoz, az Azure-ban.
+- A helyszíni peremhálózati hálózat és az Azure virtuális hálózat közötti pont-pont (VPN) kapcsolatot biztosít a Woodgrove Bank virtuális gépeket az Azure és a helyszíni kiszolgálók közötti kapcsolatot.
+- A VPN-t, az azt jelenti, hogy a vállalat virtuális hálózat az Azure-ban jelenik meg a helyszíni hálózat kiterjesztése.
+- Woodgrove szeretné replikálni a helyszíni munkaterhelések az Azure Site Recovery segítségével.
+ - Woodgrove rendelkezik az alkalmazások és konfigurációk, amely IP-címek kódolt függ, és így meg kell őriznie az IP-címet az alkalmazások az Azure-bA a feladatátvételt követően kezelésére.
+ - Woodgrove tartomány 172.16.1.0/24, Azure-beli erőforrásaihoz 172.16.2.0/24 rendelkezik hozzárendelt IP-címeket.
 
 
-A Woodgrove toobe képes tooreplicate a virtuális gépek tooAzure, miközben megtartja hello IP-címek ez milyen hello vállalatának szüksége toodo:
+A Woodgrove tenni a virtuális gépek replikálása az Azure-ba, megtartja az IP-címek, itt meg Mi az a vállalati kell tennie:
 
-1. Hozzon létre egy Azure virtuális hálózatra. Hello kiterjesztése a helyszíni hálózat, így az alkalmazások zökkenőmentesen feladatátvétel kell tenni.
-2. Azure lehetővé teszi, hogy Ön tooadd pont-pont VPN-kapcsolatot, továbbá toopoint-hely kapcsolatot toohello létrehozott virtuális hálózatokat az Azure-ban.
-3. Hello pont-pont kapcsolat beállításakor a hello Azure hálózati, csak akkor, ha hello IP-címtartomány eltér a helyi IP-címtartomány hello irányítani tudja forgalom toohello helyszíni hely (helyi hálózati).
-    - Ennek az az oka Azure felhőbe archivált alhálózatok nem támogatja. Ezért ha alhálózati 192.168.1.0/24 helyi, nem adhat hozzá egy helyi hálózati 192.168.1.0/24 hello Azure-hálózatot a.
-    - Ez elvárható, hiszen az Azure nem tudja, hogy nincs aktív virtuális gépek szerepelnek hello alhálózati, és csak a vész-helyreállítási hello alhálózaton kerül létrehozásra.
-    - toobe képes toocorrectly hálózati forgalom kívül egy Azure-hálózat hello alhálózatai hello és hello helyi-hálózat nem ütköznek.
+1. Hozzon létre egy Azure virtuális hálózatra. A helyszíni hálózat kiterjesztése kell, hogy az alkalmazások zökkenőmentesen feladatátvétel.
+2. Azure-helyek VPN-kapcsolat, az Azure-ban létrehozott virtuális hálózatok pont – hely kapcsolat mellett hozzáadását teszi lehetővé.
+3. A pont-pont kapcsolat az Azure-hálózat beállítása során Ön irányíthatja a forgalmat a helyszíni helyre (helyi hálózati) csak akkor, ha az IP-címtartomány eltér a helyi IP-címtartományt.
+    - Ennek az az oka Azure felhőbe archivált alhálózatok nem támogatja. Ezért ha alhálózati 192.168.1.0/24 helyi, nem adhat hozzá egy helyi hálózati 192.168.1.0/24 az Azure-hálózat.
+    - Ez elvárható, hiszen az Azure nem tudja, hogy nincs aktív virtuális gépek nincsenek-e az alhálózatot, és csak a vész-helyreállítási létre az alhálózatot.
+    - A fogja tudni megfelelően irányítható a hálózati forgalom kívül az Azure-hálózatot a hálózati és a helyi hálózat alhálózatai nem ütköznek-e.
 
 ![Alhálózati feladatátvétel előtt](./media/site-recovery-network-design/network-design7.png)
 
 ### <a name="before-failover"></a>Feladatátvétel előtt
 
-1. Hozzon létre egy további hálózati (például a helyreállítási hálózati). Ez az hello hálózati amely átadja a virtuális gépek jönnek létre.
-2. egy feladatátvétel után a virtuális gép tulajdonságai hello őrzi meg, hogy a virtuális gépek IP-cím hello tooensure > **konfigurálása**, adja meg az azonos IP-cím virtuális gép rendelkezik a helyszínen, majd kattintson a hello hello **mentése**.
-3. Hello VM feladatátvételt, ha az Azure Site Recovery rendeli a megadott IP-cím tooit hello.
+1. Hozzon létre egy további hálózati (például a helyreállítási hálózati). Ez az a hálózaton található, amely átadja a virtuális gépek jönnek létre.
+2. Győződjön meg arról, hogy az IP-címet a virtuális gépek a feladatátvétel után a virtuális gép tulajdonságai őrzi meg a > **konfigurálása**, adja meg, hogy a virtuális gép rendelkezik-e a helyszíni ugyanazt a címet, és kattintson a **mentése**.
+3. A virtuális gép feladatátvételt, ha az Azure Site Recovery rendeli hozzá a megadott IP-cím.
 
     ![Hálózat tulajdonságai](./media/site-recovery-network-design/network-design8.png)
 
-4. Miután a feladatátvétel eseményindító aktiválódik, és hello virtuális gépeket hoz létre az Azure-ban szükséges hello IP-címmel, toohello hálózati használatával csatlakoztathatja a [tooVnet kapcsolatcsoporttal](../vpn-gateway/virtual-networks-configure-vnet-to-vnet-connection.md). Ez a művelet parancsfájlalapú lehet.
-5. Útvonalak toobe megfelelően módosítják, tooreflect kell, hogy a 192.168.1.0/24 tooAzure most már át lett helyezve.
+4. Miután a feladatátvétel eseményindító aktiválódik, és a virtuális gépeket az Azure-hoz létre a szükséges IP-címmel, csatlakozhat a hálózati használatával egy [kapcsolatcsoporttal Vnet](../vpn-gateway/virtual-networks-configure-vnet-to-vnet-connection.md). Ez a művelet parancsfájlalapú lehet.
+5. Útvonalak megfelelően módosítani kell, hogy tükrözze a 192.168.1.0/24 most áthelyezte az Azure kell.
 
     ![Alhálózati feladatátvételt követően](./media/site-recovery-network-design/network-design9.png)
 
@@ -84,8 +84,8 @@ Ha a fenti módon még nem rendelkezik az Azure-hálózatot, létrehozhat egy-he
 
 ## <a name="change-ip-addresses"></a>IP-címek módosítása
 
-Ez [blogbejegyzés](http://azure.microsoft.com/blog/2014/09/04/networking-infrastructure-setup-for-microsoft-azure-as-a-disaster-recovery-site/) azt ismerteti, hogyan tooset be hello Azure hálózati infrastruktúra, ha már nincs szükség tooretain IP-címek a feladatátvételt követően. Ez a kezdődik-e az alkalmazás leírása, néz ki, hogyan tooset a hálózatkezelés a helyszíni és az Azure-ban, és folyamat végén a feladatátvételeket a futtatásával kapcsolatos információkat.  
+Ez [blogbejegyzés](http://azure.microsoft.com/blog/2014/09/04/networking-infrastructure-setup-for-microsoft-azure-as-a-disaster-recovery-site/) ismerteti, hogyan állíthatja be az Azure hálózati infrastruktúra, ha már nincs szükség IP-címek megőrizni a feladatátvételt követően. Az kezdődik-e az alkalmazás leírása, hogyan állíthatja be a helyszíni hálózat és az Azure-ban megvizsgálja, és folyamat végén a feladatátvételeket a futtatásával kapcsolatos információkat.  
 
 ## <a name="next-steps"></a>Következő lépések
 
-Nyissa meg túl[5. lépés: Azure előkészítése](vmware-walkthrough-prepare-azure.md)
+Ugrás a [5. lépés: Azure előkészítése](vmware-walkthrough-prepare-azure.md)

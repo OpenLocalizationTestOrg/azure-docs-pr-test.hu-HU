@@ -1,5 +1,5 @@
 ---
-title: "aaaGet Azure Service Bus-üzenetsorok használatába |} Microsoft Docs"
+title: "Bevezetés az Azure Service Bus által kezelt üzenetsorok használatába | Microsoft Docs"
 description: "Írjon egy Service Bus üzenetkezelési sorokat használó C# konzolalkalmazást."
 services: service-bus-messaging
 documentationcenter: .net
@@ -14,59 +14,59 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 06/26/2017
 ms.author: sethm
-ms.openlocfilehash: eaa362ab0eabd2427977398c1deab5dc00105ae9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 99a377db6341d90d263b98e14227db61dd9beabd
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-service-bus-queues"></a>Bevezetés a Service Bus által kezelt üzenetsorok használatába
 [!INCLUDE [service-bus-selector-queues](../../includes/service-bus-selector-queues.md)]
 
 ## <a name="what-will-be-accomplished"></a>Az oktatóanyag célja
-Ez az oktatóanyag ismerteti a lépéseket követve hello:
+Ez az oktatóanyag a következő lépéseken vezet végig:
 
-1. Hozzon létre egy Service Bus-névtér, hello Azure-portál használatával.
-2. Hozzon létre egy Service Bus-üzenetsorba, hello Azure-portál használatával.
-3. A konzol alkalmazás toosend egy üzenetet ír.
-4. A konzol alkalmazás tooreceive hello hello előző lépésben küldött üzenetek írni.
+1. Service Bus-névtér létrehozása az Azure Portal használatával.
+2. Service Bus-üzenetsor létrehozása az Azure Portal használatával.
+3. Konzolalkalmazás írása üzenetküldési céllal.
+4. Írjon egy konzolalkalmazást az előző lépésben elküldött üzenetek fogadásához.
 
 ## <a name="prerequisites"></a>Előfeltételek
-1. [Visual Studio 2015 vagy újabb](http://www.visualstudio.com). az oktatóanyagban szereplő példák hello használja a Visual Studio 2017.
+1. [Visual Studio 2015 vagy újabb](http://www.visualstudio.com). A jelen oktatóanyag példái a Visual Studio 2017-et használják.
 2. Azure-előfizetés.
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-## <a name="1-create-a-namespace-using-hello-azure-portal"></a>1. Hello Azure-portál használatával névtér létrehozása
-Ha már létrehozott egy Service Bus üzenetkezelés névtér, jump toohello [hello Azure-portál használatával várólista létrehozása](#2-create-a-queue-using-the-azure-portal) szakasz.
+## <a name="1-create-a-namespace-using-the-azure-portal"></a>1. Névtér létrehozása az Azure Portal használatával
+Ha a Service Bus Messaging-névteret már létrehozta, folytassa az [Üzenetsor létrehozása az Azure Portal használatával](#2-create-a-queue-using-the-azure-portal) című szakasszal.
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
-## <a name="2-create-a-queue-using-hello-azure-portal"></a>2. Létrehoz egy sort hello Azure-portál használatával
-Ha már létrehozott egy Service Bus-üzenetsorba, jump toohello [küldési üzenetek toohello sor](#3-send-messages-to-the-queue) szakasz.
+## <a name="2-create-a-queue-using-the-azure-portal"></a>2. Üzenetsor létrehozása az Azure Portal használatával
+Ha a Service Bus-üzenetsort már létrehozta, ugorjon az [Üzenetek küldése az üzenetsorba](#3-send-messages-to-the-queue) szakaszra.
 
 [!INCLUDE [service-bus-create-queue-portal](../../includes/service-bus-create-queue-portal.md)]
 
-## <a name="3-send-messages-toohello-queue"></a>3. Üzenetek toohello várólista küldése
-toosend üzenetek toohello várólista, azt írni egy C#-konzolalkalmazást a Visual Studio használatával.
+## <a name="3-send-messages-to-the-queue"></a>3. Üzenetek küldése az üzenetsorba
+A Visual Studio használatával C# konzolalkalmazást írunk az üzenetek üzenetsorba való küldéséhez.
 
 ### <a name="create-a-console-application"></a>Konzolalkalmazás létrehozása
 
 Indítsa el a Visual Studiót, majd hozzon létre egy új **Konzolalkalmazás (.NET-keretrendszer)** projektet.
 
-### <a name="add-hello-service-bus-nuget-package"></a>Hello Service Bus NuGet-csomag hozzáadása
-1. Kattintson a jobb gombbal az újonnan létrehozott hello projektet, és válassza ki **NuGet-csomagok kezelése**.
-2. Hello kattintson **Tallózás** lapra, keressen rá **Microsoft Azure Service Bus**, majd válassza ki a hello **WindowsAzure.ServiceBus** elemet. Kattintson a **telepítése** toocomplete hello telepítését, majd zárja be a párbeszédpanelt.
+### <a name="add-the-service-bus-nuget-package"></a>A Service Bus NuGet-csomag hozzáadása
+1. Kattintson a jobb gombbal az újonnan létrehozott projektre, és válassza a **Manage Nuget Packages** (NuGet-csomagok kezelése) lehetőséget.
+2. Kattintson a **Browse** (Tallózás) fülre, és keressen a **Microsoft Azure Service Bus** kifejezésre, majd válassza ki a **WindowsAzure.ServiceBus** elemet. Kattintson a **Telepítés** gombra a telepítés befejezéséhez, majd zárja be a párbeszédpanelt.
    
     ![NuGet-csomag kiválasztása][nuget-pkg]
 
-### <a name="write-some-code-toosend-a-message-toohello-queue"></a>Néhány kódot toosend toohello üzenet-várólista írása
-1. Adja hozzá a következő hello `using` hello Program.cs fájl elejéhez utasítás toohello.
+### <a name="write-some-code-to-send-a-message-to-the-queue"></a>Írjon egy kódrészletet egy üzenet küldéséhez az üzenetsorba
+1. Adja hozzá az alábbi `using` utasítást a Program.cs fájl elejéhez.
    
     ```csharp
     using Microsoft.ServiceBus.Messaging;
     ```
-2. Adja hozzá a következő kód toohello hello `Main` metódust. Set hello `connectionString` változó toohello kapcsolati karakterlánc, amikor kapja meg, amikor hello névtér létrehozása, és állítsa be `queueName` toohello várólista hello várólista létrehozásakor használt név.
+2. Adja hozzá a következő kódot a `Main` metódushoz: A `connectionString` változó értékének állítsa be a névtér létrehozásakor kapott kapcsolati karakterláncot, `queueName` értékének pedig az üzenetsor létrehozásakor használt üzenetsornevet.
    
     ```csharp
     var connectionString = "<your connection string>";
@@ -79,7 +79,7 @@ Indítsa el a Visual Studiót, majd hozzon létre egy új **Konzolalkalmazás (.
 
     client.Send(message);
 
-    Console.WriteLine("Message successfully sent! Press ENTER tooexit program");
+    Console.WriteLine("Message successfully sent! Press ENTER to exit program");
     Console.ReadLine();
     ```
    
@@ -109,25 +109,25 @@ Indítsa el a Visual Studiót, majd hozzon létre egy új **Konzolalkalmazás (.
 
                 client.Send(message);
 
-                Console.WriteLine("Message successfully sent! Press ENTER tooexit program");
+                Console.WriteLine("Message successfully sent! Press ENTER to exit program");
                 Console.ReadLine();
             }
         }
     }
     ```
-3. Hello program futtatása, és ellenőrizze a hello Azure-portálon: kattintson a sor hello névtér nevére hello **áttekintése** panelen. hello várólista **Essentials** panel jelenik meg. Figyelje meg, hogy hello **aktív üzenetek száma** értéket kell 1. Minden egyes futtatásakor hello küldő alkalmazás köszönőüzenetei, lekérdezése nélkül ez az érték 1 nő. Vegye figyelembe, hogy hello hello várólista aktuális méretét növeli-e minden alkalommal hello alkalmazás bővíti ezenkívül toohello üzenet-várólista.
+3. Futtassa a programot, és ellenőrizze az Azure Portalon: kattintson az üzenetsor nevére a névtér **Áttekintés** paneljén. Megjelenik az üzenetsor **Essentials** (Alapok) panelje. Vegye figyelembe, hogy az **Aktív üzenetek száma** értékének ekkor 1-nek kell lennie. Minden alkalommal, amikor a küldő alkalmazást futtatja, és nem kapja meg az üzeneteket, ez az érték 1-el nő. Azt is vegye figyelembe, hogy az üzenetsor jelenlegi mérete minden alkalommal növekszik, amikor az alkalmazás egy üzenetet ad hozzá az üzenetsorhoz.
    
       ![Üzenet mérete][queue-message]
 
-## <a name="4-receive-messages-from-hello-queue"></a>4. Üzenetek fogadása hello üzenetsorból
+## <a name="4-receive-messages-from-the-queue"></a>4. Üzenet fogadása az üzenetsorból
 
-1. tooreceive köszönőüzenetei csak küldte, hozzon létre egy új konzolalkalmazást, és adja hozzá egy hivatkozást toohello Service Bus NuGet-csomagot, hasonló toohello előző küldő alkalmazás.
-2. Adja hozzá a következő hello `using` hello Program.cs fájl elejéhez utasítás toohello.
+1. Az imént elküldött üzenetek fogadásához hozzon létre egy új konzolalkalmazást, majd vegyen fel egy hivatkozást a Service Bus NuGet-csomagjába, hasonlóan az előző küldő alkalmazáshoz.
+2. Adja hozzá az alábbi `using` utasítást a Program.cs fájl elejéhez.
    
     ```csharp
     using Microsoft.ServiceBus.Messaging;
     ```
-3. Adja hozzá a következő kód toohello hello `Main` metódust. Set hello `connectionString` változó toohello kapcsolati karakterlánc lett kapja meg, amikor hello névtér létrehozása, és állítsa be `queueName` toohello várólista hello várólista létrehozásakor használt név.
+3. Adja hozzá a következő kódot a `Main` metódushoz: A `connectionString` változó értékének állítsa be a névtér létrehozásakor kapott kapcsolati karakterláncot, a `queueName` értékének pedig az üzenetsor létrehozásakor használt üzenetsornevet.
    
     ```csharp
     var connectionString = "<your connection string>";
@@ -141,7 +141,7 @@ Indítsa el a Visual Studiót, majd hozzon létre egy új **Konzolalkalmazás (.
       Console.WriteLine(String.Format("Message id: {0}", message.MessageId));
     });
    
-    Console.WriteLine("Press ENTER tooexit program");
+    Console.WriteLine("Press ENTER to exit program");
     Console.ReadLine();
     ```
    
@@ -168,13 +168,13 @@ Indítsa el a Visual Studiót, majd hozzon létre egy új **Konzolalkalmazás (.
             Console.WriteLine(String.Format("Message id: {0}", message.MessageId));
           });
 
-          Console.WriteLine("Press ENTER tooexit program");   
+          Console.WriteLine("Press ENTER to exit program");   
           Console.ReadLine();
         }
       }
     }
     ```
-4. Hello program futtatása, és hello portal ismételt ellenőrzéséhez. Figyelje meg, hogy hello **aktív üzenetek száma** és **aktuális** értékek most: 0.
+4. Futtassa a programot, majd ellenőrizze ismét a portálon. Figyelje meg, hogy az **Active Message Count** (Aktív üzenetek száma) és a **Current** (Jelenlegi) értéke most 0.
    
     ![Várólista hossza][queue-message-receive]
 
@@ -182,7 +182,7 @@ Gratulálunk! Ezzel létrehozott egy üzenetsort, illetve küldött és fogadott
 
 ## <a name="next-steps"></a>Következő lépések
 
-Tekintse meg a [minták a GitHub-tárházban](https://github.com/Azure/azure-service-bus/tree/master/samples) , amelyek bemutatják, hogy néhány hello fejlettebb funkciókat a Service Bus üzenetkezelés.
+Tekintse meg a [GitHub-tárunkat, ahol további példákat talál](https://github.com/Azure/azure-service-bus/tree/master/samples), amelyek a Service Bus üzenetkezelési szolgáltatásának néhány speciális funkcióját mutatják be.
 
 <!--Image references-->
 

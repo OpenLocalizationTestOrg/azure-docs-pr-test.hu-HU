@@ -1,27 +1,27 @@
-a az alkalmazás-előfizetési tooenable kell toocreate a regisztrációs szabályzatban. Ez a házirend sikeres regisztrációra a fogyasztók nyissa meg regisztráció során, és hello tartalmát alkalmazás hello jogkivonatokat fogad hello szolgáltatásokat ismerteti.
+Az alkalmazásba való regisztráció engedélyezéséhez létre kell hoznia egy regisztrálási szabályzatot. Ez a szabályzat írja le, hogy mit tapasztalnak a felhasználók a regisztráció során, valamint megadja azokat a jogkivonatokat, amelyeket az alkalmazás fogad a sikeres regisztrálásokkor.
 
 [!INCLUDE [active-directory-b2c-portal-navigate-b2c-service](active-directory-b2c-portal-navigate-b2c-service.md)]
 
 Kattintson a **Regisztrálási szabályzatok** lehetőségre.
 
-Kattintson a **+ Hozzáadás** hello panel hello tetején.
+A panel tetején kattintson a **+Add** (+Hozzáadás) lehetőségre.
 
-Hello **neve** határozza meg, amelyet az alkalmazás hello előfizetési házirend neve. Adja meg például a következőt: **SiUp**.
+A **Név** az alkalmazása által használt regisztrálási szabályzat nevét határozza meg. Adja meg például a következőt: **SiUp**.
 
 Kattintson az **Identitásszolgáltatók** lehetőségre, és válassza a **Regisztráció e-mail-címmel** elemet. Azt is megteheti, hogy közösségi identitásszolgáltatókat választ ki, ha ezek már be vannak állítva. Kattintson az **OK** gombra.
 
-Kattintson a **Regisztrálási attribútumok** lehetőségre. Itt választhatja ki attribútumok megjeleníteni kívánt toocollect hello fogyasztói a regisztráció során. Válassza ki például az **Ország/régió**, a **Megjelenítendő név** és az **Irányítószám** attribútumokat. Kattintson az **OK** gombra.
+Kattintson a **Regisztrálási attribútumok** lehetőségre. Itt választhatja meg, milyen attribútumokat kell a felhasználóknak megadniuk a regisztráció során. Válassza ki például az **Ország/régió**, a **Megjelenítendő név** és az **Irányítószám** attribútumokat. Kattintson az **OK** gombra.
 
-Kattintson az **Alkalmazásjogcímek** elemre. Itt választhatja ki jogcímeket visszaadott hello jogkivonatokba kívánt küldött vissza tooyour alkalmazás után egy sikeres bejelentkezési élmény. Válassza például a **Megjelenítendő név**, az **Identitásszolgáltató**, az **Irányítószám**, az **Új felhasználó** és a **Felhasználó objektumazonosítója** lehetőségeket.
+Kattintson az **Alkalmazásjogcímek** elemre. Itt kiválaszthatja azokat a jogcímeket, amelyeket szeretne szerepeltetni a sikeres regisztráció után az alkalmazásnak visszaküldött hitelesítő jogkivonatokban. Válassza például a **Megjelenítendő név**, az **Identitásszolgáltató**, az **Irányítószám**, az **Új felhasználó** és a **Felhasználó objektumazonosítója** lehetőségeket.
 
-Kattintson a **Create** (Létrehozás) gombra. létrehozott hello házirend jelenik meg **B2C_1_SiUp** (hello **B2C\_1\_**  töredék automatikusan fel lesz véve) a hello **előfizetési házirendek** panelen.
+Kattintson a **Create** (Létrehozás) gombra. Az újonnan létrehozott szabályzat **B2C_1_SiUp** néven jelenik meg (a **B2C\_1\_** részt a rendszer automatikusan adja hozzá) a **Regisztrálási szabályzatok** panelen.
 
-Nyissa meg a házirend-hello kattintva **B2C_1_SiUp**.
+Nyissa meg a szabályzatot azzal, hogy a **B2C_1_SiUp** elemre kattint.
 
-Válassza ki **Contoso B2C alkalmazás** a hello **alkalmazások** legördülő és `https://localhost:44321/` a hello **válasz URL-CÍMEN / átirányítási URI-** legördülő listán.
+Válassza ki a **Contoso B2C-alkalmazást** az **Alkalmazások**, illetve a `https://localhost:44321/` elemet a **Válasz URL-cím/Átirányítási URI** legördülő menüben.
 
-Kattintson a **Futtatás most** parancsra. Egy új böngészőlapon nyílik meg, és hello végfelhasználói élmény iratkozik fel az alkalmazás segítségével futtathatja.
+Kattintson a **Futtatás most** parancsra. Megnyílik egy böngészőablak, ahol ellenőrizheti, hogyan működik az alkalmazás regisztrációs felhasználói folyamata.
 
 > [!NOTE]
-> Foglalja el tooa perc, a házirend létrehozásához, és frissíti a tootake hatása.
+> A szabályzat létrehozása és a frissítések érvénybe lépése akár egy percig is eltarthat.
 >

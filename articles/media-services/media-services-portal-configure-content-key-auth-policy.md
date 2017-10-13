@@ -1,6 +1,6 @@
 ---
-title: "Azure-portálon aaaConfigure Tartalomkulcs hitelesítési szabályzatának használatával hello |} Microsoft Docs"
-description: "Megtudhatja, hogyan tooconfigure a tartalomkulcs az engedélyezési házirend."
+title: "Az Azure portál használatával Tartalomkulcs hitelesítési szabályzatának konfigurálása |} Microsoft Docs"
+description: "Útmutató: a tartalomkulcs hitelesítési szabályzatának konfigurálása."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,60 +14,60 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: 157fb691b7f71f4889228817e1dc64555e327d48
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5a35c7255a1c30a693862589c14f6a22a1900790
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="configure-content-key-authorization-policy"></a>Konfigurálja a Tartalomkulcs-hitelesítési házirend
 [!INCLUDE [media-services-selector-content-key-auth-policy](../../includes/media-services-selector-content-key-auth-policy.md)]
 
 ## <a name="overview"></a>Áttekintés
-A Microsoft Azure Media Services lehetővé teszi a toodeliver MPEG-DASH, Smooth Streaming vagy HTTP-Live-Streaming (HLS) streamjeit az Advanced Encryption Standard (AES) (a 128 bites titkosítási kulcsok használatával) vagy [Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/). AMS azt is lehetővé teszi, hogy a akkor toodeliver DASH-streameket Widevine DRM titkosítva. Mind a PlayReady, mind a Widevine titkosítása hello Common Encryption (ISO/IEC 23001-7 CENC) megadását.
+A Microsoft Azure Media Services lehetővé teszi, hogy MPEG-DASH, Smooth Streaming vagy HTTP-Live-Streaming (HLS) streamjeit az Advanced Encryption Standard (AES) (a 128 bites titkosítási kulcsok használatával) vagy [Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/). AMS azt is lehetővé teszi, hogy a Widevine DRM titkosított DASH-streameket. Mind a PlayReady, mind a Widevine titkosítása a Common Encryption (ISO/IEC 23001-7 CENC) szabvány specifikációi szerint történik.
 
-A Media Services is biztosít a **kulcs/Licenctovábbítási szolgáltatása** , amelyekről az ügyfelek AES-kulcsok úgy szerezheti be, vagy a PlayReady vagy Widevine-licencek tooplay hello titkosított tartalmat.
+A Media Services is biztosít a **kulcs/Licenctovábbítási szolgáltatása** , amelyekről az ügyfelek úgy szerezheti be AES-kulcsok vagy a PlayReady vagy Widevine-licencek számára, hogy a titkosított tartalmat.
 
-Ez a témakör bemutatja, hogyan toouse hello Azure portál tooconfigure hello tartalomkulcs-hitelesítési szabályzatot. hello kulcs később használható toodynamically a tartalmak titkosításához. Vegye figyelembe, hogy jelenleg titkosíthatja hello a következő formátumban: HLS, MPEG DASH vagy Smooth Streaming. Progresszív letöltés nem titkosítható.
+Ez a témakör bemutatja, hogyan használható az Azure-portálon konfigurálja a tartalomkulcs-hitelesítési házirendet. A kulcs később használható a dinamikusan titkosítani. Vegye figyelembe, hogy jelenleg titkosíthatja a következő adatfolyam-formátumok: HLS, MPEG DASH vagy Smooth Streaming. Progresszív letöltés nem titkosítható.
 
-Amikor egy player olyan adatfolyamra, amely dinamikusan titkosított toobe van beállítva, a Media Services által használt konfigurált hello kulcs toodynamically titkosítása a tartalmat, AES vagy DRM titkosítással történik. toodecrypt hello stream, hello player fog igényelni hello kulcs hello kulcs kézbesítési szolgáltatásból. hello felhasználónak van-e toodecide engedélyezett tooget hello kulcs, hello szolgáltatás értékeli az hello kulcshoz megadott hello engedélyezési házirendeket.
+Amikor egy player olyan adatfolyamra, amely dinamikusan legyen titkosítva van beállítva, a Media Services a konfigurált kulcs segítségével dinamikusan titkosítani az AES vagy DRM titkosítással. Az adatfolyam visszafejtése, a Windows Media player a kulcs kézbesítési szolgáltatás fog igényelni a kulcsot. Döntse el, hogy a felhasználó jogosult-e a kulcs eléréséhez, hogy a szolgáltatás értékeli az engedélyezési házirendeket, amelyek a kulcshoz megadott.
 
-Ha a terv toohave több tartalomkulcs, és szeretné, hogy toospecify egy **kulcs/Licenctovábbítási szolgáltatása** eltérő hello Media Services kulcs kézbesítési szolgáltatás URL-CÍMÉT használja a Media Services .NET SDK-t vagy a REST API-k.
+Ha azt tervezi, hogy több tartalomkulcs esetleg adjon meg egy **kulcs/Licenctovábbítási szolgáltatása** eltérő a Media Services kulcs kézbesítési szolgáltatás URL-CÍMÉT használja a Media Services .NET SDK-t vagy a REST API-k.
 
 [Media Services .NET SDK használatával Tartalomkulcs hitelesítési szabályzatának konfigurálása](media-services-dotnet-configure-content-key-auth-policy.md)
 
 [Media Services REST API használatával Tartalomkulcs hitelesítési szabályzatának konfigurálása](media-services-rest-configure-content-key-auth-policy.md)
 
 ### <a name="some-considerations-apply"></a>Vegye figyelembe a következőket:
-* Az AMS-fiók létrehozásakor egy **alapértelmezett** adatfolyam-továbbítási végpontra tooyour fiók kerül hello **leállítva** állapotát. a dinamikus csomagolás és a dinamikus titkosítás, az adatfolyam-továbbítási végpontjának tartalmat, és hajtsa végre a megfelelő előnyeit streaming toostart toobe rendelkezik hello **futtató** állapotát. 
+* Az AMS-fiók létrehozásakor egy **alapértelmezett** adatfolyam-továbbítási végpontra a fiókja hozzáadódik a **leállítva** állapotát. Start streaming a tartalmat, és használja fel a dinamikus csomagolás és a dinamikus titkosítás, az adatfolyam-továbbítási végpontjának tartalmaznia kell a **futtató** állapotát. 
 * Az eszköz tartalmaznia kell egy adaptív sávszélességű MP4 vagy Smooth Streaming-fájlsorozattá készletét. További információkért lásd: [kódolása egy eszköz](media-services-encode-asset.md).
-* hello kulcs kézbesítési szolgáltatás 15 percig gyorsítótárazza a ContentKeyAuthorizationPolicy és a kapcsolódó objektumok (házirend-beállítások és korlátozásai).  Ha hozzon létre egy ContentKeyAuthorizationPolicy és toouse "Token" korlátozás, adja meg, majd tesztelje, és frissítse a hello házirend túl "nyissa meg" korlátozás, mielőtt hello kapcsolók toohello "Megnyitás" házirendverzió hello házirend nagyjából 15 percig tart.
+* A kulcs kézbesítési szolgáltatás 15 percig gyorsítótárazza a ContentKeyAuthorizationPolicy és a kapcsolódó objektumok (házirend-beállítások és korlátozásai).  Ha létrehoz egy ContentKeyAuthorizationPolicy, és adja meg, hogy a "Token" korlátozás, tesztelje azt, és majd a házirend "Megnyitás" korlátozás, előtt a házirend vált, a "Megnyitás" verziójának a házirend nagyjából 15 percig tart.
 
-## <a name="how-to-configure-hello-key-authorization-policy"></a>Hogyan: hello hitelesítési házirend konfigurálása
-tooconfigure hello hitelesítési szabályzatot, jelölje be hello **TARTALOMVÉDELEM** lap.
+## <a name="how-to-configure-the-key-authorization-policy"></a>Útmutató: a hitelesítési házirend konfigurálása
+A hitelesítési házirend konfigurálásához jelölje ki a **TARTALOMVÉDELEM** lap.
 
-A Media Services szolgáltatásban több különböző módot is beállíthat, amelynek segítségével a rendszer hitelesítheti a kulcskérelmet küldő felhasználókat. hello tartalomkulcs-hitelesítési házirend rendelkezhet **nyissa meg a**, **token**, vagy **IP** engedélyezési korlátozások (**IP** konfigurálható REST- vagy .NET SDK-val).
+A Media Services szolgáltatásban több különböző módot is beállíthat, amelynek segítségével a rendszer hitelesítheti a kulcskérelmet küldő felhasználókat. A tartalomkulcs-hitelesítési házirend rendelkezhet **nyissa meg a**, **token**, vagy **IP** engedélyezési korlátozások (**IP** konfigurálható REST- vagy .NET SDK-val).
 
 ### <a name="open-restriction"></a>Nyissa meg a szoftverkorlátozó
-Hello **nyissa meg a** korlátozás azt jelenti, hogy hello rendszer hello kulcs tooanyone kulcs kérést fog továbbítani. Ez a korlátozás tesztelési célokra hasznos lehet.
+A **nyissa meg a** korlátozás azt jelenti, hogy a rendszer számára, akik egy kulcs kérést fog továbbítani a kulcsot. Ez a korlátozás tesztelési célokra hasznos lehet.
 
 ![OpenPolicy][open_policy]
 
 ### <a name="token-restriction"></a>Token korlátozása
-toochoose hello token korlátozott házirend, nyomja meg az hello **TOKEN** gombra.
+A token korlátozott házirend kiválasztásához nyomja le az **TOKEN** gombra.
 
-Hello **token** korlátozott házirend által kiadott tokennek kell fűzni a **Secure Token Service** (STS). A Media Services hello támogatja a jogkivonatokat **Simple Web Tokens** ([SWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2)) formátumú és **JSON Web Token** (JWT) formátumú. További információ: [JWT jogkivonat hitelesítési](http://www.gtrifonov.com/2015/01/03/jwt-token-authentication-in-azure-media-services-and-dynamic-encryption/).
+A **token** korlátozott házirend által kiadott tokennek kell fűzni a **Secure Token Service** (STS). A Media Services tokeneket támogatja a **Simple Web Tokens** ([SWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2)) formátumú és **JSON Web Token** (JWT) formátumú. További információ: [JWT jogkivonat hitelesítési](http://www.gtrifonov.com/2015/01/03/jwt-token-authentication-in-azure-media-services-and-dynamic-encryption/).
 
-Nem biztosít a Media Services **Token szolgáltatások biztonságos**. Hozzon létre egy egyéni STS, vagy használja a Microsoft Azure ACS tooissue jogkivonatokat. hello STS kell lennie a megadott hello aláírt jogkivonat konfigurált toocreate hello token korlátozás a konfigurációban megadott kulcs és a probléma jogcímeket. hello Media Services kulcs kézbesítési szolgáltatás visszaadható hello titkosítási kulcs toohello ügyfél Ha hello jogkivonat érvényes, és hello hello jogkivonatában lévő jogcímeket egyeznek hello tartalomkulcsot konfigurálva. További információkért lásd: [használata Azure ACS tooissue jogkivonatok](http://mingfeiy.com/acs-with-key-services).
+Nem biztosít a Media Services **Token szolgáltatások biztonságos**. Hozzon létre egy egyéni STS, vagy probléma jogkivonatokat a Microsoft Azure ACS kihasználja. Az STS be kell állítani a megadott kulcs és a probléma JOGCÍMEKKEL, amely a token korlátozás konfigurációjában megadott aláírt jogkivonat létrehozásához. A Media Services kulcs kézbesítési szolgáltatás a titkosítási kulcs visszatér az ügyfélhez, ha a jogkivonat érvényes, és a jogkivonatában lévő jogcímeket megegyezzenek a tartalomkulcsot. További információkért lásd: [használata Azure ACS probléma jogkivonatokat a](http://mingfeiy.com/acs-with-key-services).
 
-Hello konfigurálásakor **TOKEN** korlátozott házirend, meg kell adni az értékeket **ellenőrző kulcs**, **kibocsátó** és **célközönség**. hello elsődleges hitelesítési kulcsot tartalmazó hello kulcsfontosságú, hogy hello token lett aláírva, illetve kibocsátó hello biztonságos biztonságijogkivonat-szolgáltatás által kiállított hello jogkivonat. hello célközönség (más néven hatókör) hello token hello célját ismerteti, vagy hello erőforrás hello token engedélyezi a hozzáférést. hello Media Services kulcs kézbesítési szolgáltatás ellenőrzi, hogy ezek az értékek hello token értékekre, hello hello sablont.
+Konfigurálásakor a **TOKEN** korlátozott házirend, meg kell adni az értékeket **ellenőrző kulcs**, **kibocsátó** és **célközönség**. Az elsődleges hitelesítési kulcs, amely a token aláírt kulcsot tartalmazza, a kibocsátó a biztonságos biztonságijogkivonat-szolgáltatás, amely kibocsátja a jogkivonatot. A célközönség (más néven hatókör) ismerteti a jogkivonat a leképezést, vagy az erőforrás a token engedélyezi a hozzáférést. A Media Services kulcs kézbesítési szolgáltatás ellenőrzi, hogy ezek az értékek a token egyeznek-e a sablonban szereplő értékeket.
 
 ### <a name="playready"></a>PlayReady
-Ha az a tartalmak védelmére **PlayReady**, egy hello dolog van szüksége az engedélyezési házirendben toospecify hello PlayReady licencsablon definiáló XML-karakterlánc. Alapértelmezés szerint a következő házirend hello van beállítva:
+Ha az a tartalmak védelmére **PlayReady**, az egyikét meg kell adni a hitelesítési házirend-e a PlayReady licencsablon definiáló XML-karakterlánc. Alapértelmezés szerint állítsa be a következő házirendet:
 
 <PlayReadyLicenseResponseTemplate xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/PlayReadyTemplate/v1"><LicenseTemplates> <PlayReadyLicenseTemplate> <AllowTestDevices>igaz</AllowTestDevices> <ContentKey i:type="ContentEncryptionKeyFromHeader" /> <LicenseType>Nonpersistent</LicenseType> <PlayRight> <AllowPassingVideoContentToUnknownOutput>engedélyezett</AllowPassingVideoContentToUnknownOutput> </PlayRight> </PlayReadyLicenseTemplate> </LicenseTemplates></PlayReadyLicenseResponseTemplate>
 
-Kattinthat a hello **importálni a házirend XML-** gombra, és adjon meg egy másik-XML fájlok, amelyek megfelel a megadott XML-séma toohello [Itt](media-services-playready-license-template-overview.md).
+Kattintson a **importálni a házirend XML-** gombra, és adja meg a különböző XML, amely megfelel a megadott XML-séma [Itt](media-services-playready-license-template-overview.md).
 
 ## <a name="next-step"></a>Következő lépés
 Tekintse át a Media Services képzési terveket.

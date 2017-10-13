@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooactivate vagy deaktiválása |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooactivate szerepkörök az emelt szintű identitások hello Azure Privileged Identity Management alkalmazással."
+title: "Aktiválása vagy deaktiválása |} Microsoft Docs"
+description: "Útmutató a kiemelt jogosultságú identitások az Azure Privileged Identity Management alkalmazással szerepkörök aktiválása."
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -15,60 +15,60 @@ ms.workload: identity
 ms.date: 02/14/2017
 ms.author: billmath
 ms.custom: pim
-ms.openlocfilehash: 8c68ad69e4b006263bbb8a1cfc7ed3dba974e1db
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a143fd78eae52fda0cbadb7e74fd8209f24629a1
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooactivate-or-deactivate-roles-in-azure-ad-privileged-identity-management"></a>Hogyan tooactivate és szerepkörök az Azure AD Privileged Identity Management inaktiválása
-Az Azure Active Directory (AD) Privileged Identity Management egyszerűbbé teszi a hogyan kezelhetik a vállalatok számára az Azure AD privileged access tooresources és más Microsoft online szolgáltatások, például az Office 365-öt vagy a Microsoft Intune.  
+# <a name="how-to-activate-or-deactivate-roles-in-azure-ad-privileged-identity-management"></a>Aktiválása vagy inaktiválása szerepkörök az Azure AD Privileged Identity Management
+Az Azure Active Directory (AD) Privileged Identity Management egyszerűbbé teszi a hogyan kezelhetik a vállalatok számára az erőforrások az Azure AD és más Microsoft online szolgáltatások, például az Office 365-öt vagy a Microsoft Intune privilegizált hozzáférést.  
 
-Ha Ön történtek egy rendszergazdai szerepkör esetében, amely azt jelenti, hogy ha tooperform privilegizált műveleteket kell, hogy a szerepkör aktiválhatja jogosult. Például ha alkalmanként kezelheti az Office 365-szolgáltatások, a szervezet kiemelt szerepkörű rendszergazda nem tehetik meg állandó globális rendszergazda, mivel ez a szerepkör túl befolyásolja az egyéb szolgáltatások. Helyette akkor Ön jogosult az Azure AD-szerepkörök, például az Exchange Online rendszergazdai. Kérhet tooactivate szerepkörhöz a jogosultságokat igényel, és ezzel meglesz felügyeleti vezérlő egy előre meghatározott időszak.
+Ha Ön történtek egy rendszergazdai szerepkör esetében, amely azt jelenti, hogy ez a szerepkör aktiválhatja, ha privilegizált műveletek elvégzéséhez szüksége jogosult. Például ha alkalmanként kezelheti az Office 365-szolgáltatások, a szervezet kiemelt szerepkörű rendszergazda nem tehetik meg állandó globális rendszergazda, mivel ez a szerepkör túl befolyásolja az egyéb szolgáltatások. Helyette akkor Ön jogosult az Azure AD-szerepkörök, például az Exchange Online rendszergazdai. Ez a szerepkör aktiválása, ha a jogosultságokat igényel, és ezzel meglesz felügyeleti vezérlő egy előre meghatározott időszak kérhet.
 
-Ez a cikk az Azure AD Privileged Identity Management (PIM) szerepkörük a rendszergazdák, akik tooactivate számára. Az bemutatja, hogyan hello lépéseket tooactivate szerepkör hello engedélyekre van szükség, és inaktiválása hello szerepkör, amikor elkészült. Emellett a kiemelt szerepkörű rendszergazda megkövetelheti jóváhagyási tooactivate szerepkör (előzetes verzió). További információ [PIM jóváhagyási munkafolyamatok](./privileged-identity-management/azure-ad-pim-approval-workflow.md) itt.
+Ez a cikk a rendszergazdák, akik aktiválja a szerepkört az Azure AD Privileged Identity Management (PIM) számára van. Végigvezeti a lépéseken, a szerepkör aktiválása, ha a engedélyekre van szükség, és a szerepkör inaktiválása, amikor elkészült. Ezenkívül kiemelt szerepkörű rendszergazda megkövetelheti jóváhagyás aktiválja a szerepkört (előzetes verzió). További információ [PIM jóváhagyási munkafolyamatok](./privileged-identity-management/azure-ad-pim-approval-workflow.md) itt.
 
-## <a name="add-hello-privileged-identity-management-application"></a>Hello Privileged Identity Management alkalmazás felvétele
-Hello Azure AD Privileged Identity Management alkalmazásával hello [Azure-portálon](https://portal.azure.com/) toorequest szerepkör aktiválásának, még akkor is, ha egy másik portál vagy PowerShell toooperate fog. Ha nem hello Azure AD Privileged Identity Management alkalmazás az Azure-portál, hajtsa végre a ezek lépések tooget elindult.
+## <a name="add-the-privileged-identity-management-application"></a>A Privileged Identity Management alkalmazás felvétele
+Az Azure AD Privileged Identity Management alkalmazást használja a [Azure-portálon](https://portal.azure.com/) egy szerepkör aktiválás kéréséhez, még akkor is, ha egy másik portál vagy PowerShell fog működni fog. Ha az Azure AD Privileged Identity Management alkalmazás nem rendelkezik az Azure-portál, kövesse az alábbi lépéseket a kezdéshez.
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/).
-2. Válassza ki a felhasználónév hello jobb felső sarokban a hello Azure-portálon, és ahol lesz, jelölje be hello directory működik.
-3. Válassza ki **további szolgáltatások** és hello szűrő szövegmező toosearch a **Azure AD Privileged Identity Management**.
-4. Ellenőrizze **PIN-kód toodashboard** majd **létrehozása**. Megnyílik a Privileged Identity Management alkalmazás hello.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com/).
+2. Jelölje be az Azure-portálon, és válassza ki a könyvtárat, ahol meg fog jobb felső sarokban a felhasználónevére működik.
+3. Válassza a **További szolgáltatások** lehetőséget, és a Szűrők szövegmezővel keresse meg az **Azure AD Privileged Identity Management** alkalmazást.
+4. Jelölje be a **Rögzítés az irányítópulton** jelölőnégyzetet, majd kattintson a **Létrehozás** gombra. Megnyílik a Privileged Identity Management alkalmazás.
 
 ## <a name="activate-a-role"></a>A szerepkör aktiválása
-Ha tootake szerepkör van szüksége, aktiválás kérhet hello kiválasztásával **saját szerepkörök** hello Azure AD Privileged Identity Management alkalmazás navigációs beállítás bal oldali navigációs oszlop.
+Amikor kell venni a szerepkör, aktiválás kérhet kiválasztásával a **saját szerepkörök** navigációs beállítása az Azure AD Privileged Identity Management alkalmazás bal oldali navigációs oszlop.
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/) és select hello Azure AD Privileged Identity Management képet.
-2. Válassza ki **a szerepkörök**. A hozzárendelt jogosult szerepkörök listáját hello oldal hello tetején csoportosítási hello jelennek meg.
-3. Válassza ki a szerepkör tooactivate.
-4. Válassza ki **aktiválása**. Hello **szerepkör aktiválás kéréséhez** panel jelenik meg.
-5. Egyes szerepkörökhöz szükség a multi-factor Authentication (MFA) hello szerepkör aktiválása előtt. Csak akkor kell tooauthenticate munkamenetenként egyszer.
+1. Jelentkezzen be a [Azure-portálon](https://portal.azure.com/) és az Azure AD Privileged Identity Management csempe kiválasztása.
+2. Válassza ki **a szerepkörök**. A hozzárendelt jogosult szerepkörök listáját a csoportosítás a lap tetején jelenik meg.
+3. Válassza ki a szerepkör aktiválásához.
+4. Válassza ki **aktiválása**. A **szerepkör aktiválás kéréséhez** panel jelenik meg.
+5. Egyes szerepkörökhöz szükség a multi-factor Authentication (MFA), a szerepkör aktiválása előtt. Csak akkor kell munkamenetenként egyszer hitelesítéséhez.
    
     ![Ellenőrizze az MFA Használatát, mielőtt szerepkör aktiválása – képernyőkép][2]
-6. Hello aktiválási kérelmet küldjön hello okát hello szövegmezőbe írja be.  Egyes szerepkörökhöz szükség toosupply egy hiba történt a hibajegy száma.
-7. Kattintson az **OK** gombra.  Hello szerepkör nem jóváhagyás megkövetelése, ha már aktiválva van, és hello szerepkör aktív szerepkörök (közvetlenül alatt hello lista jogosult szerepkör-hozzárendelések) hello listája jelenik meg. Ha hello [szerepkör jóváhagyást igényel](./privileged-identity-management/azure-ad-pim-approval-workflow.md) tooactivate, egy bejelentési értesítést röviden megjelennek hello jobb felső sarkában a böngésző tájékoztat hello kérelem jóváhagyásra van.
+6. A szövegmezőbe írja be az aktiválási kérelem okát.  Egyes szerepkörökhöz szükség, amelyen meg kell adnia egy hiba történt a hibajegy száma.
+7. Kattintson az **OK** gombra.  Ha a szerepkör nem jóváhagyást igényelnek, most már aktiválva van, és a szerepkör (közvetlenül alatt a megfelelő szerepkör-hozzárendelések listáját) aktív szerepkörök listája jelenik meg. Ha a [szerepkör jóváhagyást igényel](./privileged-identity-management/azure-ad-pim-approval-workflow.md) aktiválásához egy bejelentési értesítést röviden jelennek meg a böngészőt, hogy értesítést küld a kérés van függőben lévő jóváhagyási jobb felső sarkában.
 
     ![Értesítés - képernyőkép váró kérelem][3]
 
 ## <a name="deactivate-a-role"></a>Deaktiválása
 Ha a szerepkör aktiválása után azt automatikusan inaktiválja az időkorlátot (jogosult időtartama) elérésekor.
 
-Korai fejezze be a rendszergazdai feladatok elvégzéséhez, ha manuálisan hello Azure AD Privileged Identity Management alkalmazás szerepet is inaktiválhatók.  Válassza ki **saját szerepkörök**, végzett hello szerepkör kiválasztása származó hello **aktív szerepkör-hozzárendelések** csoportosítási, majd válassza **Deactivate**.  
+Ha a rendszergazdai feladatok elvégzéséhez korai végrehajtani, is inaktiválhatók manuálisan az Azure AD Privileged Identity Management alkalmazás szerepet.  Válassza ki **saját szerepkörök**, válassza ki a szerepkört végzett a használatával a **aktív szerepkör-hozzárendelések** csoportosítási, majd válassza **Deactivate**.  
 
 ## <a name="cancel-a-pending-request"></a>Megszakítja a függőben lévő kérelem
-A hello esemény nem igényel, amelyhez jóváhagyás szükséges szerepkör aktiválásának, bármikor előfordulhat, hogy megszakítja a függőben lévő kérelem. Egyszerűen válassza hello **saját szerepkörök** hello Azure AD Privileged Identity Management alkalmazás navigációs beállítás bal oldali navigációs oszlop.
+Abban az esetben, ha nincs szüksége, amelyhez jóváhagyás szükséges szerepkör aktiválásának, bármikor előfordulhat, hogy megszakítja a függőben lévő kérelem. Egyszerűen jelölje be a **saját szerepkörök** navigációs beállítása az Azure AD Privileged Identity Management alkalmazás bal oldali navigációs oszlop.
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/) és select hello Azure AD Privileged Identity Management képet.
-2. Válassza ki **a szerepkörök**. A hozzárendelt jogosult szerepkörök listáját hello oldal hello tetején csoportosítási hello jelennek meg.
+1. Jelentkezzen be a [Azure-portálon](https://portal.azure.com/) és az Azure AD Privileged Identity Management csempe kiválasztása.
+2. Válassza ki **a szerepkörök**. A hozzárendelt jogosult szerepkörök listáját a csoportosítás a lap tetején jelenik meg.
 3. Szerepkör kiválasztása.
-4. Jelölje be hello **jóváhagyásra váró rendszer aktiválási** fejléc hello szerepkör aktiválása részletei panelen.
-5. Válassza ki **Mégse** hello hello tetején **jóváhagyásra váró** panelen.
+4. Válassza ki a **jóváhagyásra váró rendszer aktiválási** fejléc, a részletek panelen szerepkör aktiválása.
+5. Válassza ki **Mégse** tetején a **jóváhagyásra váró** panelen.
 
    ![Megszakítja a függőben lévő kérelem képernyőképe][4]
 
 ## <a name="next-steps"></a>Következő lépések
-Ha szeretné használni az Azure AD Privileged Identity Management többet, hello következő hivatkozásokat kell további információt.
+Ha szeretné használni az Azure AD Privileged Identity Management többet, az alábbi hivatkozások rendelkezik további információt.
 
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 

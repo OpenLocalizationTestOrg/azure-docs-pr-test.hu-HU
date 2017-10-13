@@ -1,6 +1,6 @@
 ---
-title: "Hadoop-fürtök aaaMonitor a Hdinsightban az Ambari API - hello Azure |} Microsoft Docs"
-description: "Használjon hello Apache Ambari API-k létrehozása, kezelése és figyelése a Hadoop-fürtök. Intuitív operátori eszközök és API-k elrejtése hello Hadoop összetettségét."
+title: "Az Ambari API-jával - Azure hdinsight Hadoop-fürtök figyelése |} Microsoft Docs"
+description: "Az Apache Ambari API-k létrehozása, kezelése és figyelése a Hadoop-fürtök használja. Intuitív operátori eszközök és API-k elrejtése a Hadoop összetettségét."
 services: hdinsight
 documentationcenter: 
 tags: azure-portal
@@ -16,53 +16,53 @@ ms.topic: article
 ms.date: 04/07/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-ms.openlocfilehash: d61a8aae5ddfcd7d44f2e4cc899e0a4da5e5fdcc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b6fc2098027690eb76b69b1427f0e9541b8a7a69
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="monitor-hadoop-clusters-in-hdinsight-using-hello-ambari-api"></a>Hello Ambari API segítségével hdinsight Hadoop-fürtök figyelése
-Ismerje meg, hogyan toomonitor HDInsight clusters Ambari API-k használatával.
+# <a name="monitor-hadoop-clusters-in-hdinsight-using-the-ambari-api"></a>A HDInsight-beli Hadoop-fürtök figyelése az Ambari API használatával
+Ismerje meg, hogy a HDInsight-fürtök figyelése az Ambari API-k használatával.
 
 > [!NOTE]
-> a cikkben szereplő információkat hello elsősorban a Windows-alapú HDInsight-fürtök, amely hello Ambari REST API-t egy csak olvasható verziója van. Linux-alapú fürtök esetében lásd: [kezelése Hadoop fürtök az Ambari segítségével](hdinsight-hadoop-manage-ambari.md).
+> A cikkben szereplő információkat elsősorban a Windows-alapú HDInsight-fürtök az Ambari REST API egy csak olvasható verziója van. Linux-alapú fürtök esetében lásd: [kezelése Hadoop fürtök az Ambari segítségével](hdinsight-hadoop-manage-ambari.md).
 > 
 > 
 
 ## <a name="what-is-ambari"></a>Mi az az Ambari?
-[Apache Ambari] [ ambari-home] kiépítésére, kezelésére és Apache Hadoop-fürtök ellenőrzésére szolgál. Operátori eszközök intuitív gyűjteményét és egy robusztus API-k, amelyek elfedik hello Hadoop összetettségét, és a fürtök működését hello egyszerűsítése tartalmaz. API-k hello kapcsolatos további információkért lásd: [Ambari API-referencia][ambari-api-reference]. 
+[Apache Ambari] [ ambari-home] kiépítésére, kezelésére és Apache Hadoop-fürtök ellenőrzésére szolgál. Operátori eszközök intuitív gyűjteményét és egy robusztus API-készletet foglal magában, amelyek elfedik a Hadoop összetettségét, és leegyszerűsítik a fürtök működését. Az API-k kapcsolatos további információkért lásd: [Ambari API-referencia][ambari-api-reference]. 
 
-A HDInsight jelenleg csak hello Ambari a figyelési funkció támogatja. Ambari API 1.0 HDInsight 3.0-s és a 2.1-es verziójú fürtöket támogatja. Ez a cikk ismerteti a HDInsight-fürtökön 3.1 és 2.1 elérése során Ambari API-k. hello hello két fő különbség az, hogy néhány hello összetevőjét megváltoztak hello bevezetése új képességeket nyújtanak (például előzmények feladatkiszolgáló hello). 
+A HDInsight jelenleg csak az Ambari figyelési funkció támogatja. Ambari API 1.0 HDInsight 3.0-s és a 2.1-es verziójú fürtöket támogatja. Ez a cikk ismerteti a HDInsight-fürtökön 3.1 és 2.1 elérése során Ambari API-k. A legfontosabb különbség a kettő között, hogy egyes összetevői új képességeket nyújtanak (például előzmények feladatkiszolgáló) bevezetésével megváltoztak. 
 
 **Előfeltételek**
 
-Ez az oktatóanyag elkezdéséhez a következő elemek hello kell rendelkeznie:
+Az oktatóanyag elkezdéséhez az alábbiakkal kell rendelkeznie:
 
 * **Munkaállomás Azure PowerShell-lel**.
-* (Választható) [cURL][curl]. tooinstall, lásd: [kiadások és letöltéseket tartalmazó oldalon cURL][curl-download].
+* (Választható) [cURL][curl]. A telepítéshez lásd: [kiadások és letöltéseket tartalmazó oldalon cURL][curl-download].
   
   > [!NOTE]
-  > Ha használja a hello cURL-parancsot a Windows rendszerben egyetlen idézőjelek hello beállítás értékek helyett használjon idézőjelek közé.
+  > Ha használja a cURL-parancsot a Windows rendszerben egyetlen idézőjelek beállítás értékek helyett használjon idézőjelek közé.
   > 
   > 
-* **Egy Azure HDInsight fürt**. Fürtök kiépítése kapcsolatos útmutatásért lásd: [használatának megkezdésében a HDInsight] [ hdinsight-get-started] vagy [Provision HDInsight clusters][hdinsight-provision]. A következő adatok toogo hello oktatóanyag hello lesz szüksége:
+* **Egy Azure HDInsight fürt**. Fürtök kiépítése kapcsolatos útmutatásért lásd: [használatának megkezdésében a HDInsight] [ hdinsight-get-started] vagy [Provision HDInsight clusters][hdinsight-provision]. A következő adatokat az oktatóanyag teljesítéséhez szüksége:
   
   | Fürt tulajdonság | Az Azure PowerShell változó neve | Érték | Leírás |
   | --- | --- | --- | --- |
-  |   A HDInsight-fürt neve |$clusterName | |a HDInsight-fürt hello neve. |
-  |   Fürt felhasználónév |$clusterUsername | |A megadott fürtnév felhasználói hello fürt létrehozásának. |
+  |   A HDInsight-fürt neve |$clusterName | |A HDInsight-fürt neve. |
+  |   Fürt felhasználónév |$clusterUsername | |Fürt felhasználónevet megadva, a fürt létrehozásakor. |
   |   Fürt jelszó |$clusterPassword | |Fürt felhasználói jelszavát. |
 
 [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
 
 ## <a name="jump-start"></a>Feladat gyors végrehajtásának megkönnyítésére
-Számos módon toouse Ambari toomonitor a HDInsight-fürtök.
+Számos módon figyelheti a HDInsight-fürtök az Ambari használatával.
 
 **Azure PowerShell használata**
 
-Azure PowerShell-parancsfájl a következő hello lekérdezi, hello MapReduce feladatot követő *HDInsight 3.5 fürtben.*  hello fő különbség, hogy azt lekéréses ezen adatok hello YARN szerviz (hanem MapReduce).
+A következő Azure PowerShell-parancsfájl lekérdezi a MapReduce feladatot követő *HDInsight 3.5 fürtben.*  A fő különbség, hogy azt le ezeket a részleteket a YARN szerviz (hanem MapReduce).
 
     $clusterName = "<HDInsightClusterName>"
     $clusterUsername = "<HDInsightClusterUsername>"
@@ -78,7 +78,7 @@ Azure PowerShell-parancsfájl a következő hello lekérdezi, hello MapReduce fe
 
     $response.metrics.'yarn.queueMetrics'
 
-a következő PowerShell-parancsfájl hello lekérdezi, hello MapReduce feladatot követő *HDInsight 2.1-fürtben lévő*:
+A következő PowerShell-parancsfájl lekérdezi a MapReduce-feladatok követő adatait *HDInsight 2.1-fürtben lévő*:
 
     $clusterName = "<HDInsightClusterName>"
     $clusterUsername = "<HDInsightClusterUsername>"
@@ -94,17 +94,17 @@ a következő PowerShell-parancsfájl hello lekérdezi, hello MapReduce feladato
 
     $response.metrics.'mapred.JobTracker'
 
-hello kimenete:
+A kimenete:
 
 ![Jobtracker kimeneti][img-jobtracker-output]
 
 **A cURL használata**
 
-hello alábbi példa lekérdezi fürtinformációkat cURL használatával:
+Az alábbi példa fürtinformációkat lekérdezi a cURL használatával:
 
     curl -u <username>:<password> -k https://<ClusterName>.azurehdinsight.net:443/ambari/api/v1/clusters/<ClusterName>.azurehdinsight.net
 
-hello kimenete:
+A kimenete:
 
     {"href":"https://hdi0211v2.azurehdinsight.net/ambari/api/v1/clusters/hdi0211v2.azurehdinsight.net/",
      "Clusters":{"cluster_name":"hdi0211v2.azurehdinsight.net","version":"2.1.3.0.432823"},
@@ -121,12 +121,12 @@ hello kimenete:
         "Hosts":{"cluster_name":"hdi0211v2.azurehdinsight.net",
                  "host_name":"headnode0.{ClusterDNS}.azurehdinsight.net"}}]}
 
-**Hello 10/8/2014 kiadásban**:
+**A 10/8/2014 kiadásban**:
 
-Ha hello Ambari használatával végpont, "https://{clusterDns}.azurehdinsight.net/ambari/api/v1/clusters/{clusterDns}.azurehdinsight.net/services/{servicename}/components/{componentname}" hello *gazdaszámítógép_neve* mező hello teljesen minősített tartománynevét (FQDN) hello csomópont hello állomás neve helyett adja vissza. Hello 10/8/2014 kiadásban, mielőtt ez a példa adott vissza egyszerűen "**headnode0**". Hello 10/8/2014 kiadásban után kapott hello FQDN "**headnode0. { ClusterDNS} .azurehdinsight .net**", hello előző példában látható módon. Ez a változás történt szükséges toofacilitate forgatókönyvek, ahol több fürt típust (például a HBase és a Hadoop) is telepíthető egy virtuális hálózathoz (VNET). Ez történik, például a HBase a háttér-platformként a Hadoop használatakor.
+Az Ambari végpont használatakor "https://{clusterDns}.azurehdinsight.net/ambari/api/v1/clusters/{clusterDns}.azurehdinsight.net/services/{servicename}/components/{componentname}", a *gazdaszámítógép_neve* mező a gazdagép neve helyett a csomópont teljesen minősített tartománynevét (FQDN) adja vissza. A 10/8/2014 kiadásban előtt ebben a példában adott vissza egyszerűen "**headnode0**". 10/8/2014 megjelenése után az FQDN első "**headnode0. { ClusterDNS} .azurehdinsight .net**", az előző példában látható módon. Ez a módosítás lehetővé teszi a forgatókönyvekben, ahol több fürt típust (például a HBase és a Hadoop) is telepíthető egy virtuális hálózathoz (VNET) szükséges. Ez történik, például a HBase a háttér-platformként a Hadoop használatakor.
 
 ## <a name="ambari-monitoring-apis"></a>Ambari API-k figyelése
-hello alábbi táblázat néhány hello leggyakoribb Ambari figyelési API-hívásokat. Hello API kapcsolatos további információkért lásd: [Ambari API-referencia][ambari-api-reference].
+Az alábbi táblázatban a leggyakrabban használt Ambari API-hívások figyelési némelyike. A API-val kapcsolatos további információkért lásd: [Ambari API-referencia][ambari-api-reference].
 
 | A figyelő API-hívás | URI | Leírás |
 | --- | --- | --- |
@@ -144,9 +144,9 @@ hello alábbi táblázat néhány hello leggyakoribb Ambari figyelési API-hív�
 | Konfigurációs adatok beolvasása. |`/api/v1/clusters/<ClusterName>.azurehdinsight.net/configurations?type=<ConfigType>&tag=<VersionName>` |Config típusok: core-webhely, hdfs-webhely, mapred-helyet, hive-hely |
 
 ## <a name="next-steps"></a>Következő lépések
-Most megtanulta, hogyan toouse Ambari API figyelési hívja. toolearn több, lásd:
+Most megtanulhatta, hogyan használható az Ambari API-hívások figyelése. További tudnivalókért lásd:
 
-* [Azure-portálon hello HDInsight-fürtök kezelése][hdinsight-admin-portal]
+* [Az Azure portál használata a HDInsight-fürtök kezelése][hdinsight-admin-portal]
 * [Az Azure PowerShell HDInsight-fürtök kezelése][hdinsight-admin-powershell]
 * [Parancssori felület használata a HDInsight-fürtök kezelése][hdinsight-admin-cli]
 * [HDInsight-dokumentáció][hdinsight-documentation]

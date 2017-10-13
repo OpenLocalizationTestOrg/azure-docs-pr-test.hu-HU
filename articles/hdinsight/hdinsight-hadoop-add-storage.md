@@ -1,6 +1,6 @@
 ---
-title: "aaaAdd további az Azure storage-fiókok tooHDInsight |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooadd további az Azure storage accounts tooan meglévő HDInsight-fürtre."
+title: "További Azure storage-fiókok hozzáadása HDInsight |} Microsoft Docs"
+description: "Ismerje meg, hogy további Azure storage-fiókok hozzáadása egy meglévő HDInsight-fürtre."
 services: hdinsight
 documentationCenter: 
 author: Blackmist
@@ -15,75 +15,75 @@ ms.workload: big-data
 ms.date: 08/04/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-ms.openlocfilehash: ce5acfa4b61bf7e83b1fb374d64a1eaa3182fbec
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0853e8605e07c28867676e9c13b89263ade67c88
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="add-additional-storage-accounts-toohdinsight"></a>További tárhely fiókok tooHDInsight hozzáadása
+# <a name="add-additional-storage-accounts-to-hdinsight"></a>HDInsight további storage-fiókok hozzáadása
 
-Ismerje meg, hogyan toouse parancsfájl műveletek tooadd további az Azure storage accounts tooHDInsight. hello jelen dokumentumban leírt lépések hozzáadása a tárolási fiók tooan meglévő Linux-alapú HDInsight-fürtre.
+A Parancsfájlműveletek segítségével további Azure storage-fiókok hozzáadása HDInsight útmutató. A jelen dokumentumban leírt lépések tárfiók hozzáadása egy meglévő Linux-alapú HDInsight-fürthöz.
 
 > [!IMPORTANT]
-> a dokumentumban szereplő információk hello tárgya további tárhely tooa fürt hozzáadása után lett létrehozva. A storage-fiókok hozzáadása a fürt létrehozása során további információkért lásd: [állítsa be a HDInsight Hadoop, Spark, Kafka és több fürt](hdinsight-hadoop-provision-linux-clusters.md).
+> A jelen dokumentumban szereplő információk további tárhely hozzáadása a fürt létrehozása után van. A storage-fiókok hozzáadása a fürt létrehozása során további információkért lásd: [állítsa be a HDInsight Hadoop, Spark, Kafka és több fürt](hdinsight-hadoop-provision-linux-clusters.md).
 
 ## <a name="how-it-works"></a>Működés
 
-Ezt a parancsfájlt hello a következő paramétereket fogadja:
+Ezt a parancsfájlt a következő paramétereket fogadja:
 
-* __Az Azure storage-fiók neve__: hello hello tárolási fiók tooadd toohello HDInsight-fürt nevét. Hello parancsprogram futtatása után HDInsight olvashat és írhat adatokat tárolja ezt a tárfiókot.
+* __Az Azure storage-fiók neve__: a HDInsight-fürt hozzáadása a tárfiók nevét. A parancsfájl futtatása után HDInsight olvashat és írhat adatokat tárolja ezt a tárfiókot.
 
-* __Azure storage-fiók kulcs__: egy kulcs, amely engedélyezi a hozzáférést toohello tárfiók.
+* __Azure storage-fiók kulcs__: A kulcs, amely hozzáférést biztosít a tárfiókhoz.
 
-* __-p__ (nem kötelező): Ha meg van adva, hello kulcs nem titkosított, és egyszerű szövegként hello core-site.xml fájl tárolja.
+* __-p__ (nem kötelező): Ha meg van adva, a kulcs nem titkosított, és egyszerű szövegként a core-site.xml fájlban tárolja.
 
-A feldolgozás során hello parancsfájl hello a következő műveleteket hajtja végre:
+A feldolgozás során a parancsfájl a következő műveleteket hajtja végre:
 
-* Ha hello tárfiók már létezik a hello fürt hello core-site.xml konfigurációjában, hello parancsfájl kilép, és nincs több teendő történik.
+* Ha a tárfiók már létezik a core-site.xml konfigurációban a fürt számára, a parancsfájl kilép, és nincs több teendő történik.
 
-* Ellenőrzi, hogy hello storage-fiók létezik-e, és hello kulcs segítségével férhetők el.
+* Ellenőrzi, hogy a storage-fiók létezik-e, és a kulcs segítségével férhetők el.
 
-* Hello kulcs hello fürt hitelesítő adat segítségével titkosítja.
+* Titkosítja a kulcsot, a fürt hitelesítő adatokkal.
 
-* Hello tárolási fiók toohello core-site.xml fájl hozzáadása.
+* A storage-fiók hozzáadása a core-site.xml fájl módosítása.
 
-* Leállítja és újraindítja hello Oozie, YARN, MapReduce2 és HDFS szolgáltatásokat. Ezek a szolgáltatások indítása és leállítása lehetővé teszi, hogy azok toouse hello új tárfiókot.
+* Leállítja és újraindítja a Oozie, YARN, MapReduce2 és HDFS szolgáltatásokat. Ezek a szolgáltatások indítása és leállítása lehetővé teszi az új tárfiókot használja.
 
 > [!WARNING]
-> A storage-fiók egy másik helyen található mint hello HDInsight-fürt használata nem támogatott.
+> A storage-fiók egy másik helyen, mint a HDInsight-fürt használata nem támogatott.
 
-## <a name="hello-script"></a>hello parancsfájl
+## <a name="the-script"></a>A parancsfájl
 
 __Parancsfájl-hely__: [https://hdiconfigactions.blob.core.windows.net/linuxaddstorageaccountv01/add-storage-account-v01.sh](https://hdiconfigactions.blob.core.windows.net/linuxaddstorageaccountv01/add-storage-account-v01.sh)
 
 __Követelmények__:
 
-* hello parancsfájl kell alkalmazni a hello __Átjárócsomópontokat__.
+* A parancsfájl azon kell alkalmazni a __Átjárócsomópontokat__.
 
-## <a name="toouse-hello-script"></a>toouse hello parancsfájl
+## <a name="to-use-the-script"></a>A parancsfájl használata
 
-Ezt a parancsfájlt a hello Azure-portálon az Azure PowerShell is használható, vagy Azure CLI 1.0 hello. További információkért lásd: hello [testreszabása Linux-alapú HDInsight-fürtök használata parancsfájlművelet](hdinsight-hadoop-customize-cluster-linux.md#apply-a-script-action-to-a-running-cluster) dokumentum.
+Ez a parancsfájl az Azure portál, Azure PowerShell vagy az Azure CLI 1.0 használható. További információkért lásd: a [testreszabása Linux-alapú HDInsight-fürtök használata parancsfájlművelet](hdinsight-hadoop-customize-cluster-linux.md#apply-a-script-action-to-a-running-cluster) dokumentum.
 
 > [!IMPORTANT]
-> Ha hello itt hello testreszabási dokumentumban ismertetett lépéseket, használja ezt a parancsfájlt a következő információk tooapply hello:
+> A testreszabási dokumentumban leírt lépések használata esetén olvassa el következő alkalmazni ezt a parancsfájlt:
 >
-> * Cserélje le a példa parancsfájlművelet URI hello URI ehhez a parancsprogramhoz (https://hdiconfigactions.blob.core.windows.net/linuxaddstorageaccountv01/add-storage-account-v01.sh).
-> * Cserélje le a példa paramétereket hello az Azure storage fióknevet és kulcsot hello tárolási fiók toobe hozzáadott toohello fürt. Ha az Azure portál használatával hello, ezeket a paramétereket szóközzel kell elválasztani.
-> * Nem kell toomark ezt a parancsfájlt, __megőrzött__, azt közvetlenül hello Ambari konfigurációs hello fürt frissítéséhez.
+> * Cserélje le ezt a parancsfájlt (https://hdiconfigactions.blob.core.windows.net/linuxaddstorageaccountv01/add-storage-account-v01.sh) URI-JÁNAK bármely példa parancsfájlművelet URI.
+> * A példa paramétereket cserélje le a az Azure storage-fiók nevét és a kulcsot a tárfiók hozzá kell adni a fürthöz. Az Azure portál használatával, ha ezeket a paramétereket szóközzel kell elválasztani.
+> * Nem kell megjelölni a parancsprogramot __megőrzött__, ahogy azt közvetlenül frissíti az Ambari konfigurációját a fürt számára.
 
 ## <a name="known-issues"></a>Ismert problémák
 
 ### <a name="storage-accounts-not-displayed-in-azure-portal-or-tools"></a>Nem jelenik meg az Azure portálon vagy az eszközök a Storage-fiókok
 
-Amikor megtekinti hello HDInsight fürthöz hello Azure-portálon, válassza a hello __Storage-fiókok__ bejegyzésre az __tulajdonságok__ nem jelennek meg a parancsfájlművelet hozzáadva storage-fiókok. Az Azure PowerShell és az Azure parancssori felület ne jelenjen meg hello további tárfiók vagy.
+A HDInsight-fürthöz az Azure portálon megtekintésekor kiválasztása a __Tárfiókok__ bejegyzésre az __tulajdonságok__ nem jelennek meg a parancsfájlművelet hozzáadva storage-fiókok. Az Azure PowerShell és az Azure parancssori felület ne jelenjen meg a további tárfiók vagy.
 
-hello tárolással kapcsolatos nem jelenik meg, mert hello parancsfájl csak módosítja hello fürt hello core-site.xml konfigurációjában. Ezeket az információkat nem használja az Azure felügyeleti API-k használatával hello fürt információk beolvasása.
+A tárolással kapcsolatos nem jelenik meg, mert a parancsfájl csak módosítja a core-site.xml konfigurációját a fürtben. Ezeket az információkat nem használja az Azure felügyeleti API-k használata a fürt-adatok beolvasása.
 
-tooview tárfiókadatok hozzáadott toohello fürt ezt a parancsfájlt használja hello Ambari REST API használatával. A következő parancsok tooretrieve hello ezt az információt használja a fürt:
+A parancsfájl a fürthöz hozzáadott tárfiókadatok megtekintéséhez használja az Ambari REST API-t. Az alábbi parancsokat használja ezt az információt talál a fürt beolvasásához:
 
 ```PowerShell
-$creds = Get-Credential -UserName "admin" -Message "Enter hello cluster login credentials"
+$creds = Get-Credential -UserName "admin" -Message "Enter the cluster login credentials"
 $resp = Invoke-WebRequest -Uri "https://$clusterName.azurehdinsight.net/api/v1/clusters/$clusterName/configurations/service_config_versions?service_name=HDFS&service_config_version=1" `
     -Credential $creds
 $respObj = ConvertFrom-Json $resp.Content
@@ -91,62 +91,62 @@ $respObj.items.configurations.properties."fs.azure.account.key.$storageAccountNa
 ```
 
 > [!NOTE]
-> Állítsa be `$clusterName` toohello hello HDInsight-fürt nevét. Állítsa be `$storageAccountName` toohello hello storage-fiók nevét. Amikor a rendszer kéri, adja meg a hello fürt bejelentkezési (rendszergazda) és jelszavát.
+> Állítsa be `$clusterName` a HDInsight-fürt nevére. Állítsa be `$storageAccountName` a tárfiók nevére. Amikor a rendszer kéri, adja meg a fürt bejelentkezési (rendszergazda) és a jelszót.
 
 ```Bash
 curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" | jq '.items[].configurations[].properties["fs.azure.account.key.$STORAGEACCOUNTNAME.blob.core.windows.net"] | select(. != null)'
 ```
 
 > [!NOTE]
-> Állítsa be `$PASSWORD` toohello fürt (rendszergazda) bejelentkezési fiók jelszavát. Állítsa be `$CLUSTERNAME` toohello hello HDInsight-fürt nevét. Állítsa be `$STORAGEACCOUNTNAME` toohello hello storage-fiók nevét.
+> Állítsa be `$PASSWORD` az a fürt (rendszergazda) bejelentkezési fiók jelszavát. Állítsa be `$CLUSTERNAME` a HDInsight-fürt nevére. Állítsa be `$STORAGEACCOUNTNAME` a tárfiók nevére.
 >
-> Ez a példa [curl (http://curl.haxx.se/)](http://curl.haxx.se/) és [jq (https://stedolan.github.io/jq/)](https://stedolan.github.io/jq/) tooretrieve és elemzési JSON-adatokat.
+> Ez a példa [curl (http://curl.haxx.se/)](http://curl.haxx.se/) és [jq (https://stedolan.github.io/jq/)](https://stedolan.github.io/jq/) beolvasása és elemzése JSON-adatokat.
 
-Ha ezzel a paranccsal cserélje le __CLUSTERNAME__ hello nevű hello HDInsight-fürt. Cserélje le __jelszó__ hello fürt hello HTTP bejelentkezési jelszót. Cserélje le __STORAGEACCOUNT__ hello nevű hello tárfiók hozzáadása parancsfájlművelet használatával. Ez a parancs által visszaadott adatokat a következő szöveg hasonló toohello jelenik meg:
+Ha ezzel a paranccsal cserélje le __CLUSTERNAME__ a HDInsight-fürt nevét. Cserélje le __jelszó__ a fürt HTTP bejelentkezési jelszavával. Cserélje le __STORAGEACCOUNT__ parancsfájlművelet segítségével adhatók hozzá a tárfiók nevével. Ez a parancs által visszaadott információ jelenik meg az alábbihoz hasonló:
 
     "MIIB+gYJKoZIhvcNAQcDoIIB6zCCAecCAQAxggFaMIIBVgIBADA+MCoxKDAmBgNVBAMTH2RiZW5jcnlwdGlvbi5henVyZWhkaW5zaWdodC5uZXQCEA6GDZMW1oiESKFHFOOEgjcwDQYJKoZIhvcNAQEBBQAEggEATIuO8MJ45KEQAYBQld7WaRkJOWqaCLwFub9zNpscrquA2f3o0emy9Vr6vu5cD3GTt7PmaAF0pvssbKVMf/Z8yRpHmeezSco2y7e9Qd7xJKRLYtRHm80fsjiBHSW9CYkQwxHaOqdR7DBhZyhnj+DHhODsIO2FGM8MxWk4fgBRVO6CZ5eTmZ6KVR8wYbFLi8YZXb7GkUEeSn2PsjrKGiQjtpXw1RAyanCagr5vlg8CicZg1HuhCHWf/RYFWM3EBbVz+uFZPR3BqTgbvBhWYXRJaISwssvxotppe0ikevnEgaBYrflB2P+PVrwPTZ7f36HQcn4ifY1WRJQ4qRaUxdYEfzCBgwYJKoZIhvcNAQcBMBQGCCqGSIb3DQMHBAhRdscgRV3wmYBg3j/T1aEnO3wLWCRpgZa16MWqmfQPuansKHjLwbZjTpeirqUAQpZVyXdK/w4gKlK+t1heNsNo1Wwqu+Y47bSAX1k9Ud7+Ed2oETDI7724IJ213YeGxvu4Ngcf2eHW+FRK"
 
-Ez a szöveg látható egy példa egy titkosított kulcsot, amely tooaccess hello storage-fiók.
+Ez a szöveg egy titkosított kulcsot, amely a tárfiók eléréséhez használt példája.
 
-### <a name="unable-tooaccess-storage-after-changing-key"></a>Nem lehet tooaccess tárolási kulcs módosítása után
+### <a name="unable-to-access-storage-after-changing-key"></a>Nem érhető el tárhely kulcs módosítása után
 
-Ha módosítja egy hello kulcsának, HDInsight már nem tud hozzáférni a hello tárfiók. HDInsight kulcs gyorsítótárazott másolatának hello core-site.xml hello fürt használja. A gyorsítótárban található példányát a frissített toomatch hello új kulcsot kell lennie.
+Ha módosítja a tárfiók kulcsa, HDInsight már nem tud hozzáférni a tárfiókhoz. HDInsight a core-site.xml kulcs gyorsítótárazott másolatának a fürt használja. A gyorsítótárban található példányát frissíteni kell, hogy meg az új.
 
-Hello parancsfájlművelet újra fut does __nem__ hello kulcs frissíti hello parancsfájl toosee ellenőrzi, hogy hello storage-fiókhoz tartozó bejegyzés már létezik. Ha már létezik egy bejegyzést, tegye a módosításokat.
+A parancsfájlművelet újra fut does __nem__ frissíti a kulcsot, a parancsfájl ellenőrzi, hogy ha egy bejegyzést a tárfiók már létezik. Ha már létezik egy bejegyzést, tegye a módosításokat.
 
-a probléma megoldásához toowork, el kell távolítania hello meglévő bejegyzés hello tárfiók. A következő lépéseket tooremove hello meglévő bejegyzés hello használata:
+Ez a probléma megoldása érdekében el kell távolítania a meglévő bejegyzést a tárfiók. Az alábbi lépések segítségével távolítsa el a meglévő bejegyzést:
 
-1. Egy böngészőben nyissa meg a hello Ambari webes felhasználói felületén a HDInsight-fürthöz. hello URI https://CLUSTERNAME.azurehdinsight.net. Cserélje le __CLUSTERNAME__ hello néven a fürt.
+1. Egy webböngészőben nyissa meg az Ambari webes felhasználói felülete a HDInsight-fürthöz. Az URI https://CLUSTERNAME.azurehdinsight.net. Cserélje le a __CLUSTERNAME__ elemet a fürt nevére.
 
-    Amikor a rendszer kéri, adja meg bejelentkezési felhasználói hello HTTP és a jelszavát a fürt.
+    Amikor a rendszer kéri, adja meg a bejelentkezési felhasználói HTTP és a jelszót a fürt számára.
 
-2. Szolgáltatások hello bal oldali hello lap hello listában jelölje ki __HDFS__. Válassza ki hello __Configs__ hello center hello lap lapján.
+2. Válassza ki a listáról a lap bal oldalon található szolgáltatások __HDFS__. Válassza ki a __Configs__ fülre az oldal közepére.
 
-3. A hello __szűrő...__  mezőbe írja be az érték __fs.azure.account__. Ez visszaad minden további tárfiókok toohello fürt hozzáadott bejegyzéseket. Két különböző bejegyzések; __keyprovider__ és __kulcs__. Mindkettő rendelkezik hello tárfiók hello kulcsnév részeként hello nevére.
+3. Az a __szűrő...__  mezőbe írja be az érték __fs.azure.account__. Ez visszaad minden további tárfiókok a fürthöz hozzáadott bejegyzéseket. Két különböző bejegyzések; __keyprovider__ és __kulcs__. Mindkettő rendelkezik a kulcsnév részeként a tárfiók nevét.
 
-    hello bejegyzések a következők példa egy nevű tárfiók __mystorage__:
+    A bejegyzések a következők példa egy nevű tárfiók __mystorage__:
 
         fs.azure.account.keyprovider.mystorage.blob.core.windows.net
         fs.azure.account.key.mystorage.blob.core.windows.net
 
-4. Miután azonosította hello kulcsokat hello tooremove van szüksége, a vörös hello '-' ikon toohello sarkában hello bejegyzés toodelete azt. Ezután használja az hello __mentése__ toosave gombra a módosítások.
+4. Miután azonosította a kulcsokat a tárfiók, el kell távolítania, használja a vörös "-" jobb oldalán a bejegyzés törli-e ikon. Ezután a __mentése__ gombra a módosítások mentéséhez.
 
-5. Módosítások mentése után hello parancsfájl művelet tooadd hello tárfiókot és az új kulcs értéke toohello fürt használja.
+5. Miután menti, a parancsfájl művelettel új kulcs értékét és a tárolási fiók hozzáadása a fürthöz.
 
 ### <a name="poor-performance"></a>Gyenge teljesítményt
 
-Ha hello tárfiók mint hello HDInsight-fürt egy másik régióban, gyenge teljesítményt tapasztalhat. Egy másik régióban küld a hálózati forgalom, hello regionális Azure adatközponton kívül és keresztben elérése során adatokat a nyilvános internethez, ami vethet fel késés hello.
+Ha a tárfiók egy másik régióban, mint a HDInsight-fürthöz, gyenge teljesítményt tapasztalhat. Egy másik régióban található adatokhoz hozzáférő elküldi a hálózati forgalom, a regionális Azure adatközponton kívül és vethet fel várakozási ideje a nyilvános interneten keresztül történő.
 
 > [!WARNING]
-> A storage-fiók egy másik régióban, mint a HDInsight-fürt hello használata nem támogatott.
+> A storage-fiók egy másik régióban, mint a HDInsight-fürt használata nem támogatott.
 
 ### <a name="additional-charges"></a>További díjak
 
-Ha hello tárfiók más régióban, mint a HDInsight-fürt hello, további kilépő díjak Észreveheti az Azure számlázás a. Egy kimenő kell fizetni akkor érvényes, ha az adatok egy regionális adatközpont hagyja. Ez a díj lesz alkalmazva, akkor is, ha egy másik Azure-adatközpont egy másik régióban szánt hello forgalmat.
+Ha a tárfiók egy másik régióban, mint a HDInsight-fürthöz, további kilépő díjak Észreveheti az Azure számlázás a. Egy kimenő kell fizetni akkor érvényes, ha az adatok egy regionális adatközpont hagyja. Ez a díj lesz alkalmazva, akkor is, ha a forgalom egy másik Azure-adatközpont egy másik régióban szánt.
 
 > [!WARNING]
-> A storage-fiók egy másik régióban, mint a HDInsight-fürt hello használata nem támogatott.
+> A storage-fiók egy másik régióban, mint a HDInsight-fürt használata nem támogatott.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Megtanulta, hogyan tooadd további tárfiókok tooan meglévő HDInsight-fürtre. A Parancsfájlműveletek további információkért lásd: [testreszabása Linux-alapú HDInsight-fürtök parancsfájlművelet használatával](hdinsight-hadoop-customize-cluster-linux.md)
+Megtanulhatta, további tárfiókok hozzáadásáról meglévő HDInsight-fürtre. A Parancsfájlműveletek további információkért lásd: [testreszabása Linux-alapú HDInsight-fürtök parancsfájlművelet használatával](hdinsight-hadoop-customize-cluster-linux.md)

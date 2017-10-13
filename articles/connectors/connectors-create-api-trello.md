@@ -1,6 +1,6 @@
 ---
-title: "az Azure Logic Apps aaaTrello összekötő |} Microsoft Docs"
-description: "Az Azure App service Logic Apps alkalmazások létrehozása Trello lehetővé teszi az perspektíva összes projektet, munkahelyi és az otthoni keresztül.  Egy egyszerű, szabad, rugalmas és látványosan toomanage a projektek és rendszerezése semmit.  A modulok, a listák és a kártyák tooTrello toomanage csatlakoztatásának"
+title: "Az Azure Logic Apps Trello összekötő |} Microsoft Docs"
+description: "Az Azure App service Logic Apps alkalmazások létrehozása Trello lehetővé teszi az perspektíva összes projektet, munkahelyi és az otthoni keresztül.  A program egy egyszerű, szabad, rugalmasan és arra a projektek kezelését és gyors semmit.  A modulok, listák és kártyák kezelését Trello kapcsolódni"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,32 +15,32 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 08/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 08aaea394c790ac41632490b7bbc84dcdfbab9da
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 526a14710f24ee4a4b61a11873aa6caa0b47dc10
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="get-started-with-hello-trello-connector"></a>Hello Trello összekötő az első lépései
-Trello lehetővé teszi az perspektíva összes projektet, munkahelyi és az otthoni keresztül.  Egy egyszerű, szabad, rugalmas és látványosan toomanage a projektek és rendszerezése semmit.  Csatlakozás tooTrello toomanage a modulok, listák és kártyák.
+# <a name="get-started-with-the-trello-connector"></a>A Trello összekötő az első lépései
+Trello lehetővé teszi az perspektíva összes projektet, munkahelyi és az otthoni keresztül.  A program egy egyszerű, szabad, rugalmasan és arra a projektek kezelését és gyors semmit.  A modulok, listák és kártyák kezelését Trello csatlakozni.
 
 Hozzon létre egy logic app; első lépései Lásd: [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-a-connection-tootrello"></a>Egy kapcsolat tooTrello létrehozása
-toocreate a Logic apps a Trello, először létre kell hoznia egy **kapcsolat**, és adja meg a következő tulajdonságok hello hello részleteit:
+## <a name="create-a-connection-to-trello"></a>Kapcsolatot létesíthet Trello
+A Logic apps a Trello, először hozzon létre egy **kapcsolat**, és adja meg a következő tulajdonságokkal:
 
 | Tulajdonság | Szükséges | Leírás |
 | --- | --- | --- |
 | Token |Igen |Adja meg a Trello hitelesítő adatok |
 
-Hello kapcsolat létrehozása után tooexecute hello műveletek használják, és a hello eseményindítók figyelésére.
+Miután létrehozta a kapcsolatot, a műveletek végrehajtásához, és figyeljen az eseményindítók a használhatja.
 
-> [!INCLUDE [Steps toocreate a connection tooTrello](../../includes/connectors-create-api-trello.md)]
+> [!INCLUDE [Steps to create a connection to Trello](../../includes/connectors-create-api-trello.md)]
 > 
 
 ## <a name="connector-specific-details"></a>Összekötő-specifikus részletei
 
-Bármely eseményindítók és hello swagger definiált műveletek megtekintése, és semmilyen határnak hello a Lásd még: [connector részleteket](/connectors/trello/).
+Bármely eseményindítók és a swagger definiált műveletek megtekintése, és semmilyen határnak a Lásd még: a [connector részleteket](/connectors/trello/).
 
 ## <a name="more-connectors"></a>További összekötők
-Lépjen vissza toohello [API-k lista](apis-list.md).
+Lépjen vissza a [API-k lista](apis-list.md).

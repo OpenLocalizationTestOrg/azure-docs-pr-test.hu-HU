@@ -1,8 +1,8 @@
 ---
-title: "VPN-átjáró dokumentáció – oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
-description: "Ismerje meg, hogyan tooconfigure virtuális magánhálózati (VPN) átjárók toomanage forgalom felhő virtuális hálózatok és a helyszíni vagy felhőalapú Vnetek között."
+title: "Az Azure VPN Gateway dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
+description: "Ismerje meg a virtuális magánhálózat (VPN) átjáróinak konfigurálását, hogy irányítani tudja a forgalmat a felhőben működő virtuális hálózat, helyszíni hálózat vagy a felhőben futó VNetek között."
 services: vpn-gateway
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: a518f39e0cb8761e239d0c033a7801803edfd0a7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 61273e472dd0d0727df40984ad277aaf4c244611
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="vpn-gateway-documentation"></a>A VPN Gateway dokumentációja
 
-Megtudhatja, hogyan tooconfigure VPN-átjáró, a titkos virtuális hálózati átjáró. Dokumentációja bemutatja, hogyan toosend közötti hálózati forgalom az Azure virtuális hálózatok és a helyszíni helyek vagy más Azure virtuális hálózatokról (Vnetekről).
+Ismerje meg a VPN Gateway virtuális magánhálózati átjáró konfigurálásának módszereit. A dokumentációból megtudhatja, hogyan irányíthatja a hálózati forgalmat az Azure virtuális hálózatok és a helyszíni vagy más Azure virtuális hálózatok (VNetek) között.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -88,7 +88,7 @@ Megtudhatja, hogyan tooconfigure VPN-átjáró, a titkos virtuális hálózati �
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Első lépések hello Azure-portál használatával webhelyek kapcsolat létrehozása</h3>
+                        <h3>Bevezetés a helyek közötti kapcsolatok létrehozásába az Azure Portalon</h3>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@ Megtudhatja, hogyan tooconfigure VPN-átjáró, a titkos virtuális hálózati �
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Egy pont – hely kapcsolat hello Azure-portál használatával létrehozásához</h3>
+                        <h3>Bevezetés a pont-hely kapcsolatok létrehozásába az Azure Portalon</h3>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@ Megtudhatja, hogyan tooconfigure VPN-átjáró, a titkos virtuális hálózati �
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Első lépések hello Azure-portál használatával VNet – VNet kapcsolat létrehozása</h3>
+                        <h3>Bevezetés a virtuális hálózatok közötti kapcsolatok létrehozásába az Azure Portalon</h3>
                     </div>
                 </div>
             </div>

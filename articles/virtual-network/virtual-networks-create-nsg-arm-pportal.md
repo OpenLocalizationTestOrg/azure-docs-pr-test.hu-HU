@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate hálózati biztonsági csoport – az Azure portálon |} Microsoft Docs"
-description: "Megtudhatja, hogyan toocreate és központi telepítése a hálózati biztonsági csoportok hello Azure-portál használatával."
+title: "Hozzon létre a hálózati biztonsági csoport – az Azure portálon |} Microsoft Docs"
+description: "Megtudhatja, hogyan hozhat létre és telepíthet a hálózati biztonsági csoportok az Azure portál használatával."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,13 +16,13 @@ ms.workload: infrastructure-services
 ms.date: 02/04/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f74ecc7db06bb69f2041aa64d7b38b63eb379a70
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 865032f350735d35668bb199ccf1ef3f0fae81de
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="create-network-security-groups-using-hello-azure-portal"></a>Hozza létre a hálózati biztonsági csoportokat hello Azure-portál használatával
+# <a name="create-network-security-groups-using-the-azure-portal"></a>Hozza létre a hálózati biztonsági csoportokat az Azure portál használatával
 
 [!INCLUDE [virtual-networks-create-nsg-selectors-arm-include](../../includes/virtual-networks-create-nsg-selectors-arm-include.md)]
 
@@ -30,68 +30,68 @@ ms.lasthandoff: 10/06/2017
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-Ez a cikk ismerteti a hello Resource Manager üzembe helyezési modellben. Emellett [NSG-k létrehozása hello klasszikus üzembe helyezési modellel](virtual-networks-create-nsg-classic-ps.md).
+Ez a cikk a Resource Manager-alapú üzemi modellt ismerteti. Emellett [NSG-k létrehozása a klasszikus üzembe helyezési modellel](virtual-networks-create-nsg-classic-ps.md).
 
 [!INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
-hello minta az alábbi parancsok várt már létrehozott egy egyszerű környezetben PowerShell fenti hello forgatókönyv alapján. Ha toorun hello parancsok ebben a dokumentumban megjelenített, először létre hello tesztkörnyezetben üzembe helyezésével [sablon](http://github.com/telmosampaio/azure-templates/tree/master/201-IaaS-WebFrontEnd-SQLBackEnd), kattintson a **tooAzure telepítése**, cserélje le a hello alapértelmezett paraméterértékek Ha szükséges, és kövesse az utasításokat hello a hello portálon. hello használata alatt lépések **RG-NSG** , hello tanúsítványsablon-nevet, hello erőforrás csoport hello állított be.
+A minta az alábbi parancsok várt már létrehozott egy egyszerű környezetben PowerShell a fenti forgatókönyv alapján. Ha szeretné a parancsokat a jelen dokumentum megjelenített, először összeállítása a tesztkörnyezetben üzembe helyezésével [sablon](http://github.com/telmosampaio/azure-templates/tree/master/201-IaaS-WebFrontEnd-SQLBackEnd), kattintson a **az Azure telepítéséhez**, cserélje le az alapértelmezett paraméterértékek, ha szükséges, és kövesse az utasításokat a portálon. Az alábbi használata lépéseket **RG-NSG** az erőforráscsoport a sablon telepítve van a neveként.
 
-## <a name="create-hello-nsg-frontend-nsg"></a>NSG-előtérbeli NSG hello létrehozása
-toocreate hello **NSG-előtérbeli** NSG hello forgatókönyv a fenti ábrán kövesse az alábbi hello lépéseket.
+## <a name="create-the-nsg-frontend-nsg"></a>Az NSG-előtérbeli NSG létrehozása
+Létrehozásához a **NSG-előtérbeli** NSG látható a fenti forgatókönyvben kövesse az alábbi lépéseket.
 
-1. Egy böngészőből keresse meg a toohttp://portal.azure.com, és ha szükséges, jelentkezzen be az Azure-fiókjával.
+1. Egy böngészőből keresse fel a http://portal.azure.com címet, majd jelentkezzen be az Azure-fiókjával, ha szükséges.
 2. Kattintson a **Tallózás >** > **hálózati biztonsági csoportok**.
    
     ![Azure portál – NSG-k](./media/virtual-networks-create-nsg-arm-pportal/figure11.png)
-3. A hello **hálózati biztonsági csoportok** panelen kattintson a **Hozzáadás**.
+3. Az a **hálózati biztonsági csoportok** panelen kattintson a **Hozzáadás**.
    
     ![Azure portál – NSG-k](./media/virtual-networks-create-nsg-arm-pportal/figure12.png)
-4. A hello **hálózati biztonsági csoport létrehozása** panelen, hozzon létre egy NSG nevű *NSG-előtér* a hello *RG-NSG* erőforráscsoportban, és kattintson **létrehozása**.
+4. Az a **hálózati biztonsági csoport létrehozása** panelen, hozzon létre egy NSG nevű *NSG-előtér* a a *RG-NSG* erőforráscsoportban, és kattintson **létrehozása**.
    
     ![Azure portál – NSG-k](./media/virtual-networks-create-nsg-arm-pportal/figure13.png)
 
 ## <a name="create-rules-in-an-existing-nsg"></a>Szabályok létrehozása egy létező NSG-ben
-egy meglévő NSG hello Azure-portálon a toocreate szabályait kövesse hello lépéseket.
+Azure-portálról egy meglévő NSG-szabályok létrehozására, kövesse az alábbi lépéseket.
 
 1. Kattintson a **Tallózás >** > **hálózati biztonsági csoportok**.
-2. Az NSG-k hello listájában kattintson **NSG-előtérbeli** > **bejövő biztonsági szabályok**
+2. Az NSG-ket, kattintson a **NSG-előtérbeli** > **bejövő biztonsági szabályok**
    
     ![Azure portál – NSG-előtér](./media/virtual-networks-create-nsg-arm-pportal/figure2.png)
-3. Hello listájában **bejövő biztonsági szabályok**, kattintson a **Hozzáadás**.
+3. A közül **bejövő biztonsági szabályok**, kattintson a **Hozzáadás**.
    
     ![Azure portál – szabály hozzáadása](./media/virtual-networks-create-nsg-arm-pportal/figure3.png)
-4. A hello **Hozzáadás bejövő biztonsági szabály** panelen nevű szabályt létrehozni *web-szabály* prioritását *200* keresztül hozzáférést *TCP* tooport *80* tooany VM bármelyik forrás-, és kattintson a **OK**. Figyelje meg, hogy ezek a beállítások a legtöbb alapértelmezett értékei lesznek már.
+4. A a **Hozzáadás bejövő biztonsági szabály** panelen nevű szabályt létrehozni *web-szabály* prioritását *200* keresztül hozzáférést *TCP* portra *80* e bármelyik virtuális Gépet a forrás-, és kattintson **OK**. Figyelje meg, hogy ezek a beállítások a legtöbb alapértelmezett értékei lesznek már.
    
     ![Azure portál – szabálybeállításai](./media/virtual-networks-create-nsg-arm-pportal/figure4.png)
-5. Néhány másodpercen belül megjelenik hello NSG hello új szabályt.
+5. Néhány másodpercen belül megjelenik az új szabály az NSG.
    
     ![Azure portál – új szabály](./media/virtual-networks-create-nsg-arm-pportal/figure5.png)
-6. Ismételje meg a too6 toocreate egy bejövő forgalomra vonatkozó szabály nevű *rdp-szabály* prioritással *250* keresztül hozzáférést *TCP* tooport *3389-es* a forrás virtuális gép tooany.
+6. Ismételje meg a 6-hozzon létre egy bejövő forgalomra vonatkozó szabály nevű *rdp-szabály* prioritással *250* keresztül hozzáférést *TCP* portra *3389-es* forrásból bármely virtuális géphez.
 
-## <a name="associate-hello-nsg-toohello-frontend-subnet"></a>Társítsa a hello NSG toohello FrontEnd alhálózathoz
+## <a name="associate-the-nsg-to-the-frontend-subnet"></a>NSG hozzárendelése az előtérben levő alhálózathoz
 1. Kattintson a **Tallózás >** > **erőforráscsoportok** > **RG-NSG**.
-2. A hello **RG-NSG** paneljén kattintson **...**   >  **TestVNet**.
+2. Az a **RG-NSG** paneljén kattintson **...**   >  **TestVNet**.
    
     ![Azure portál – TestVNet](./media/virtual-networks-create-nsg-arm-pportal/figure14.png)
-3. A hello **beállítások** panelen kattintson a **alhálózatok** > **előtér** > **hálózati biztonsági csoport**  >  **NSG-előtérbeli**.
+3. Az a **beállítások** panelen kattintson a **alhálózatok** > **előtér** > **hálózati biztonsági csoport** > **NSG-előtér**.
    
     ![Azure portál – az alhálózati beállítások](./media/virtual-networks-create-nsg-arm-pportal/figure15.png)
-4. A hello **előtér** panelen kattintson a **mentése**.
+4. Az a **előtér** panelen kattintson a **mentése**.
    
     ![Azure portál – az alhálózati beállítások](./media/virtual-networks-create-nsg-arm-pportal/figure16.png)
 
-## <a name="create-hello-nsg-backend-nsg"></a>Hello NSG NSG-háttéralkalmazás létrehozása
-toocreate hello **NSG-háttérrendszer** NSG és társítsa azt toohello **háttér** alhálózati, hajtsa végre hello alábbi lépéseket.
+## <a name="create-the-nsg-backend-nsg"></a>Az NSG-háttérrendszer NSG létrehozása
+Létrehozásához a **NSG-háttérrendszer** NSG-t, és rendelje hozzá azt a **háttér** alhálózati, kövesse az alábbi lépéseket.
 
-1. Ismétlődő hello szükséges lépések [létrehozás hello NSG-előtérbeli NSG](#Create-the-NSG-FrontEnd-NSG) toocreate egy NSG nevű *NSG-háttérrendszer*
-2. Ismétlődő hello szükséges lépések [egy meglévő NSG-szabályok létrehozására](#Create-rules-in-an-existing-NSG) toocreate hello **bejövő** hello az alábbi táblázatban a szabályok.
+1. Ismételje meg a [létrehozása az NSG-előtérbeli NSG](#Create-the-NSG-FrontEnd-NSG) létrehozni egy NSG nevű *NSG-háttérrendszer*
+2. Ismételje meg a [egy meglévő NSG-szabályok létrehozására](#Create-rules-in-an-existing-NSG) létrehozásához a **bejövő** szabályok az alábbi táblázatban.
    
    | Bejövő forgalomra vonatkozó szabály | Kimenő forgalomra vonatkozó szabály |
    | --- | --- |
    | ![Azure portál – bejövő forgalomra vonatkozó szabály](./media/virtual-networks-create-nsg-arm-pportal/figure17.png) |![Azure portál – kimenő forgalomra vonatkozó szabály](./media/virtual-networks-create-nsg-arm-pportal/figure18.png) |
-3. Ismétlődő hello szükséges lépések [hello NSG toohello FrontEnd alhálózathoz társítása](#Associate-the-NSG-to-the-FrontEnd-subnet) tooassociate hello **NSG-háttérrendszer** NSG toohello **háttér** alhálózat.
+3. Ismételje meg a [társít a NSG a FrontEnd alhálózathoz](#Associate-the-NSG-to-the-FrontEnd-subnet) társítja a **NSG-háttérrendszer** NSG a **háttér** alhálózati.
 
 ## <a name="next-steps"></a>Következő lépések
-* Ismerje meg, hogyan túl[meglévő NSG-k kezelése](virtual-network-manage-nsg-arm-portal.md)
+* Megtudhatja, hogyan [meglévő NSG-k kezelése](virtual-network-manage-nsg-arm-portal.md)
 * [Naplózás engedélyezése](virtual-network-nsg-manage-log.md) az NSG-ket.
 

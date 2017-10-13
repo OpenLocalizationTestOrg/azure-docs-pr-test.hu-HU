@@ -1,6 +1,6 @@
 ---
-title: "aaaPersist feladat- és kimeneti tooAzure tárolás az Azure Batch szolgáltatás API hello |} Microsoft Docs"
-description: "Ismerje meg, hogyan toouse Batch szolgáltatás API toopersist kötegelt feladat és a feladat kimenetét tooAzure tároló."
+title: "Megőrizni a feladat- és kimeneti Azure Storage Azure Batch szolgáltatás API-val |} Microsoft Docs"
+description: "Megtudhatja, hogyan használja a Batch szolgáltatás API megőrizni a kötegelt feladat és a feladat kimenete Azure Storage."
 services: batch
 author: tamram
 manager: timlt
@@ -12,49 +12,49 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 06/16/2017
 ms.author: tamram
-ms.openlocfilehash: 71b3f7c0dda2d2a9d8eb3eef83229873c70ca22c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2530b7c20347b9fb58aee4dfe693847cf3911741
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="persist-task-data-tooazure-storage-with-hello-batch-service-api"></a>Feladat adatok tooAzure tárolási hello Batch szolgáltatás API megőrzése
+# <a name="persist-task-data-to-azure-storage-with-the-batch-service-api"></a>Azure Storage szolgáltatás kötegelt API-val feladat adatok megőrzése
 
 [!INCLUDE [batch-task-output-include](../../includes/batch-task-output-include.md)]
 
-Verziójával 2017-05-01-től kezdődően hello Batch szolgáltatás API támogatja tárolásakor kimeneti adatok tooAzure tároló és a készletek hello virtuálisgép-konfiguráció futó feladat manager feladatok. Ha hozzáad egy feladatot, hello feladat kimenetének hello célját az Azure Storage megadhatja egy tárolót. hello Batch szolgáltatás ezután ír a kimeneti adatok toothat tároló, hello feladat befejezésekor.
+2017-05-01 verziójától kezdve, a Batch szolgáltatás API támogatja tárolásakor kimeneti adatok Azure Storage és a virtuálisgép-konfiguráció készletek futó feladat manager feladatok. Ha hozzáad egy feladatot, a feladat kimenete a cél az Azure Storage megadhatja egy tárolót. A Batch szolgáltatás majd ír kimeneti adatokat tároló, amikor a feladat már befejeződött.
 
-Egy előny toousing hello Batch szolgáltatás API toopersist feladat kimenetének, ezért nincs szükség a feladat hello toomodify hello alkalmazás fut. Ehelyett néhány egyszerű módosítások tooyour ügyfélalkalmazást, az hello kód által létrehozott hello tevékenység kimenete hello feladat is megmaradnak.   
+A Batch szolgáltatás API használatával megőrizni a feladat kimenete előnye, hogy nem kell módosítani, hogy a feladat fut. alkalmazást. Néhány egyszerű módosításokkal az ügyfélalkalmazáshoz, ehelyett a kód, amely létrehozza a feladat kimenete a feladat megőrzéséhez is.   
 
-## <a name="when-do-i-use-hello-batch-service-api-toopersist-task-output"></a>Ha használja a Batch szolgáltatás API hello toopersist feladat kimenetének?
+## <a name="when-do-i-use-the-batch-service-api-to-persist-task-output"></a>Ha használja a Batch szolgáltatás API megőrizni a feladat kimenete?
 
-Az Azure Batch szolgáltatás több mint egyirányú toopersist feladat kimenete. Hello Batch szolgáltatás API használata egy kényelmes módszert alkalmaz, amely a legjobb olyan környezethez a legalkalmasabb toothese forgatókönyvek van:
+Az Azure Batch megőrizni a feladat kimenete egynél több módot nyújt. A Batch szolgáltatás API használata egy kényelmes módszert alkalmaz, amely leginkább megfelelő a következő használati helyzetekben:
 
-- Azt szeretné, toowrite kód toopersist tevékenység kimenete az ügyfélalkalmazásban hello alkalmazás, amely a feladat futásának módosítása nélkül.
-- Azt szeretné, hogy a kötegelt és feladat manager feladatok hello virtuálisgép-konfiguráció létre készletek toopersist kimenetét.
-- Azt szeretné, hogy toopersist kimeneti tooan Azure Storage-tárolóban egy tetszőleges nevet.
-- Azt szeretné, hogy toopersist kimeneti tooan Azure Storage nevű tárolót függően toohello [kötegelt fájl egyezmények standard](https://github.com/Azure/azure-sdk-for-net/tree/vs17Dev/src/SDKs/Batch/Support/FileConventions#conventions). 
+- Szeretné megőrizni az ügyfél alkalmazáson belül a feladat kimenete az alkalmazást, amely a feladat futásának módosítása nélkül kód írása.
+- Szeretné megőrizni a kötegelt és létrehozni a virtuális gép konfigurációs készletek feladat manager feladatok kimenete.
+- Szeretné megőrizni a kimenet egy Azure Storage-tárolóban egy tetszőleges nevet.
+- Szeretné megőrizni a kimenet a következők szerint az Azure Storage tárolót a [kötegelt fájl egyezmények standard](https://github.com/Azure/azure-sdk-for-net/tree/vs17Dev/src/SDKs/Batch/Support/FileConventions#conventions). 
 
-Ha a forgatókönyv eltér a fent felsorolt, szükség lehet tooconsider másik módszert. Például hello Batch szolgáltatás API jelenleg nem támogatja az adatfolyam kimeneti tooAzure tárolási hello feladat futása közben. kimeneti toostream, érdemes lehet hello kötegelt fájl egyezmények szalagtár használata esetén elérhető, a .NET-hez. A többi nyelvet kell tooimplement saját megoldás. Más beállításokat a tárolásakor feladat kimenetének további információkért lásd: [Persist feladat- és kimeneti tooAzure tárolási](batch-task-output.md). 
+Ha adott esetben eltér a fent felsorolt, esetleg érdemes lehet egy másik módszert. Például a Batch szolgáltatás API jelenleg nem támogatja az adatfolyam kimeneti Azure Storage a feladat futása közben. A kimeneti adatfolyam érdekében a kötegelt fájl egyezmények szalagtár használata esetén elérhető, a .NET-hez. Egyéb nyelvek lesz szüksége a saját megoldás megvalósítási. Más beállításokat a tárolásakor feladat kimenetének további információkért lásd: [megőrizni a feladat- és kimeneti Azure Storage](batch-task-output.md). 
 
 ## <a name="create-a-container-in-azure-storage"></a>A tároló létrehozása az Azure Storage
 
-toopersist tevékenység kimeneti tooAzure tárolási, meg kell toocreate olyan tároló, amely a kimeneti fájlok hello célhelyként szolgál. Hello tároló létrehozása, a feladat a feladat mentése előtt minél futtatása előtt. toocreate hello tároló, használjon hello megfelelő Azure Storage ügyféloldali kódtára vagy SDK-val. Azure Storage API-k kapcsolatos további információkért lásd: hello [Azure Storage-dokumentációt](https://docs.microsoft.com/azure/storage/).
+A feladat kimenetének Azure Storage megőrizni, szüksége létrehozni egy tárolót, amely a kimeneti fájlok célhelyként szolgál. A tároló létrehozása, a feladat a feladat mentése előtt minél futtatása előtt. A tároló létrehozásához használja a megfelelő Azure Storage ügyféloldali kódtár vagy az SDK-val. Azure Storage API-k kapcsolatos további információkért tekintse meg a [Azure Storage-dokumentációt](https://docs.microsoft.com/azure/storage/).
 
-Például, ha az alkalmazás írása C# nyelven íródtak, használja a hello [Azure Storage ügyféloldali kódtára a .NET](https://www.nuget.org/packages/WindowsAzure.Storage/). a következő példa azt mutatja meg hogyan hello toocreate egy tárolót:
+Például, ha az alkalmazás írása C# nyelven íródtak, használja a [Azure Storage ügyféloldali kódtára a .NET](https://www.nuget.org/packages/WindowsAzure.Storage/). A következő példa bemutatja, hogyan hozhat létre tárolót:
 
 ```csharp
 CloudBlobContainer container = storageAccount.CreateCloudBlobClient().GetContainerReference(containerName);
 await conainer.CreateIfNotExists();
 ```
 
-## <a name="get-a-shared-access-signature-for-hello-container"></a>A közös hozzáférésű jogosultságkód hello tároló beolvasása
+## <a name="get-a-shared-access-signature-for-the-container"></a>A tároló egy közös hozzáférésű jogosultságkódot beolvasása
 
-Hello tároló létrehozása után beolvasása a közös hozzáférésű jogosultságkód (SAS) írási toohello tárolóval. SAS-kód toohello tároló delegált hozzáférést biztosít. hello SAS hozzáférést biztosít az egy megadott készlet azon engedélyek és a megadott időtartam alatt. hello Batch szolgáltatás tárolóval írási engedélyek toowrite tevékenység kimeneti toohello SAS kell. További információ a SAS: [használata közös hozzáférésű jogosultságkód \(SAS\) az Azure Storage](../storage/common/storage-dotnet-shared-access-signature-part-1.md).
+Miután létrehozta a tárolót, lekérése a közös hozzáférésű jogosultságkód (SAS) írási hozzáféréssel a tárolóhoz. SAS-kód a tároló delegált hozzáférést biztosít. A SAS hozzáférést biztosít az egy megadott készlet azon engedélyek és a megadott időtartam alatt. A Batch szolgáltatás írási engedélyekkel a feladat kimenetének írni a tároló SAS-kód szükséges. További információ a SAS: [használata közös hozzáférésű jogosultságkód \(SAS\) az Azure Storage](../storage/common/storage-dotnet-shared-access-signature-part-1.md).
 
-Amikor egy SAS hello Azure Storage API-k használata, hello API SAS token karakterláncot ad vissza. A lexikális elem karakterlánca hello SAS, beleértve a hello engedélyek és hello keresztül mely hello SAS érvényességi időtartama az összes paramétereket tartalmaz. toouse hello SAS tooaccess az Azure Storage tárolója, meg kell tooappend hello SAS-token karakterlánc toohello erőforrás URI azonosítója. hello erőforrás URI, együtt hello hozzáfűzi a SAS-jogkivonat, hitelesített hozzáférést tooAzure tárolási biztosít.
+Ha az Azure Storage API-kkal SAS-kód lekérése, a API SAS token karakterláncot ad vissza. A lexikális elem karakterlánca a SAS, beleértve az engedélyeket és a SAS érvényességi időtartama összes paramétereket tartalmaz. A SAS használatával érhető el egy Azure Storage-tároló, meg kell a SAS-token karakterlánc hozzáfűzése az erőforrás URI azonosítója. Az erőforrás URI azonosítója, együtt a hozzáfűzött SAS-jogkivonat hitelesített hozzáférést biztosít az Azure Storage.
 
-hello alábbi példa bemutatja, hogyan a csak írható SAS tooget token-karakterlánc hello tároló, majd hozzáfűzi hello SAS toohello tároló URI:
+A következő példa bemutatja, hogyan kérhet egy csak írható SAS-token karakterlánc ahhoz a tárolóhoz, majd a biztonsági Társítások hozzáfűzi a tároló URI:
 
 ```csharp
 string containerSasToken = container.GetSharedAccessSignature(new SharedAccessBlobPolicy()
@@ -68,9 +68,9 @@ string containerSasUrl = container.Uri.AbsoluteUri + containerSasToken;
 
 ## <a name="specify-output-files-for-task-output"></a>Adja meg a feladat kimenete a kimeneti fájlok
 
-egy feladatot, kimeneti fájlok toospecify, hozzon létre egy gyűjteményt a [eredményfájl](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfile) objektumokat, és rendelje hozzá toohello [CloudTask.OutputFiles](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudtask.outputfiles#Microsoft_Azure_Batch_CloudTask_OutputFiles) tulajdonság hello feladat létrehozásakor. 
+Adja meg a kimeneti fájlokat egy tevékenység, hozzon létre egy gyűjteményt a [eredményfájl](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfile) objektumokat, majd rendelje hozzá a [CloudTask.OutputFiles](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudtask.outputfiles#Microsoft_Azure_Batch_CloudTask_OutputFiles) tulajdonságot, ha a feladat létrehozásához. 
 
-hello alábbi .NET példakód feladatot hoz létre, amely véletlenszerű számok tooa fájlt ír `output.txt`. hello parancs létrehozza a kimeneti fájl `output.txt` toobe toohello tároló írása. hello példa is hoz létre a kimeneti fájlok bármely naplófájlok hello fájlminta megfelelő `std*.txt` (_pl._, `stdout.txt` és `stderr.txt`). hello létrehozott SAS hello tároló URL-címet korábban hello tároló van szükség. hello Batch szolgáltatás hello SAS tooauthenticate hozzáférés toohello tárolót használja: 
+A .NET alábbi példakód létrehoz egy feladatot, amely véletlenszerű számok nevű fájlba írja `output.txt`. A parancs létrehozza a kimeneti fájl `output.txt` kellene írni a tárolóhoz. A példa is hoz létre a kimeneti fájlok bármely naplófájlok, amely megfelel a fájl mintának `std*.txt` (_pl._, `stdout.txt` és `stderr.txt`). A tároló URL-cím az SA-k létrejött a tároló korábban szükséges. A Batch szolgáltatás a SAS használatával hitelesíti a tárolóhoz való hozzáférést: 
 
 ```csharp
 new CloudTask(taskId, "cmd /v:ON /c \"echo off && set && (FOR /L %i IN (1,1,100000) DO (ECHO !RANDOM!)) > output.txt\"")
@@ -98,99 +98,99 @@ new CloudTask(taskId, "cmd /v:ON /c \"echo off && set && (FOR /L %i IN (1,1,1000
 
 ### <a name="specify-a-file-pattern-for-matching"></a>Az egyező fájl minta
 
-Kimeneti fájl megadása esetén használható hello [OutputFile.FilePattern](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfile.filepattern#Microsoft_Azure_Batch_OutputFile_FilePattern) tulajdonság toospecify egy fájl mintát egyeztetéséhez. hello fájlminta előfordulhat, hogy felel meg, nulla fájlok, egyetlen fájl vagy a hello feladat által létrehozott fájlokat.
+Kimeneti fájlt ad meg, ha a [OutputFile.FilePattern](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfile.filepattern#Microsoft_Azure_Batch_OutputFile_FilePattern) az egyező fájl minta tulajdonságot. A fájlminta előfordulhat, hogy felel meg, nulla fájlok, egyetlen fájl vagy a fájlokat, a feladat által létrehozott.
 
-Hello **FilePattern** tulajdonság támogatja a szabványos fájlrendszere helyettesítő karaktereket, mint `*` (a nem rekurzív megegyezik) és `**` (a rekurzív megegyezik). Például adja meg a fenti hello kódminta hello fájl mintát toomatch `std*.txt` nem rekurzív módon: 
+A **FilePattern** tulajdonság támogatja a szabványos fájlrendszere helyettesítő karaktereket, mint `*` (a nem rekurzív megegyezik) és `**` (a rekurzív megegyezik). Például adja meg a fenti kódminta egyező fájlminta `std*.txt` nem rekurzív módon: 
 
 `filePattern: @"..\std*.txt"`
 
-tooupload egyetlen fájl, a fájl minta nem használható helyettesítő adható meg. Például adja meg a fenti hello kódminta hello fájl mintát toomatch `output.txt`:
+Egyetlen fájl feltöltéséhez, adja meg a fájl minta nem használható helyettesítő. Például adja meg a fenti kódminta egyező fájlminta `output.txt`:
 
 `filePattern: @"output.txt"`
 
 ### <a name="specify-an-upload-condition"></a>Adjon meg egy feltöltési állapot
 
-Hello [OutputFileUploadOptions.UploadCondition](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfileuploadoptions.uploadcondition#Microsoft_Azure_Batch_OutputFileUploadOptions_UploadCondition) tulajdonság lehetővé teszi a kimeneti fájlok feltételes feltöltése. Egy általános forgatókönyv tooupload egy fájlt, ha hello feladat sikeres, és egy másik készlet fájlok akkor, ha nem sikerül. Előfordulhat például tooupload részletes naplófájlok azt szeretné, csak akkor, ha hello feladat sikertelen lesz, és egy nem nulla kilépési kód kilép. Hasonlóképpen érdemes lehet tooupload eredmény fájlok csak hello feladat sikeres, ha azokat a fájlokat esetleg hiányzik vagy nem teljes, ha hello feladat sikertelen.
+A [OutputFileUploadOptions.UploadCondition](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfileuploadoptions.uploadcondition#Microsoft_Azure_Batch_OutputFileUploadOptions_UploadCondition) tulajdonság lehetővé teszi a kimeneti fájlok feltételes feltöltése. Egy általános forgatókönyv egy fájlt, ha a feladat sikeres, és egy másik készlet fájlok feltöltéséhez, ha a hiba. Érdemes lehet például részletes naplófájlok feltöltéséhez, csak akkor, ha a feladat sikertelen lesz, és egy nem nulla kilépési kód kilép. Hasonlóképpen érdemes lehet eredmény fájlok feltöltése csak akkor, ha a feladat sikeres, ezeket a fájlokat esetleg hiányzik vagy nem teljes, ha a feladat sikertelen.
 
-hello fenti beállítja hello **UploadCondition** tulajdonság túl**TaskCompletion**. A beállítással megadható, hogy hello fájl feltöltése után hello feladatok, függetlenül hello kilépési kód hello értékének toobe. 
+A fenti készletek kódminta a **UploadCondition** tulajdonságot **TaskCompletion**. Ez a beállítás megadja, hogy a fájl tölthető fel a kilépési kód értékétől függetlenül a feladatok befejezése után. 
 
 `uploadCondition: OutputFileUploadCondition.TaskCompletion`
 
-Egyéb beállításokat, lásd: hello [OutputFileUploadCondition](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.common.outputfileuploadcondition) felsorolás.
+Egyéb beállításokat, tekintse meg a [OutputFileUploadCondition](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.common.outputfileuploadcondition) felsorolás.
 
-### <a name="disambiguate-files-with-hello-same-name"></a>Elem egyértelműségének biztosításához hello fájlok ugyanazzal a névvel
+### <a name="disambiguate-files-with-the-same-name"></a>Ilyen nevű fájlok félreérthetőség megszüntetéséhez
 
-hello feladatok feladatokban hello rendelkező fájlokat is eredményezhet, ugyanazzal a névvel. Például `stdout.txt` és `stderr.txt` feladatokban futó minden feladatot hoz létre. Mivel minden tevékenység saját környezetében fut, ezek a fájlok hello csomópont fájlrendszeren nem ütköznek. Azonban a megosztott tároló több feladatok tooa fájlok feltöltésekor lesz szüksége hello toodisambiguate fájlok ugyanazzal a névvel.
+A feladatok a feladatok készíthet a névvel rendelkező fájlokat. Például `stdout.txt` és `stderr.txt` feladatokban futó minden feladatot hoz létre. Mivel minden tevékenység saját környezetében fut, ezeket a fájlokat a fájlrendszerben a csomópont nem ütköznek. Azonban a megosztott tárolóhoz több feladat fájlok feltöltésekor lesz szüksége a félreérthetőség megszüntetéséhez azonos nevű fájlt.
 
-Hello [OutputFileBlobContainerDestination.Path](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfileblobcontainerdestination.path#Microsoft_Azure_Batch_OutputFileBlobContainerDestination_Path) tulajdonság határozza meg a cél blob hello vagy virtuális könyvtárat a kimeneti fájlokat. Használhatja a hello **elérési** tulajdonság tooname hello blob vagy virtuális könyvtárat úgy, hogy a kimeneti hello az Azure Storage egyedileg megnevezett ugyanazzal a névvel rendelkező fájlok. Hello feladat azonosítójával hello elérési út egy jó módszer tooensure egyedi nevek és könnyebb a fájlok azonosításához.
+A [OutputFileBlobContainerDestination.Path](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfileblobcontainerdestination.path#Microsoft_Azure_Batch_OutputFileBlobContainerDestination_Path) tulajdonság határozza meg a cél blob vagy virtuális könyvtárat a kimeneti fájlokat. Használhatja a **elérési** tulajdonság a blob vagy virtuális könyvtárat úgy, hogy ugyanazzal a névvel a fájlok az Azure Storage egyedi neve. A tevékenység azonosítója az elérési út használata egy jó módszer egyedi nevek és könnyebb a fájlok azonosításához.
 
-Ha hello **FilePattern** tulajdonsága tooa helyettesítő karakteres kifejezést, majd az összes, amely megfelel a mintának hello fájljai feltöltött toohello hello által megadott virtuális könyvtár **elérési** tulajdonság. Például ha hello tároló van `mycontainer`, hello tevékenység azonosítója `mytask`, és hello fájl minta `..\std*.txt`, majd hello abszolút URI-azonosítók toohello kimeneti fájlok az Azure Storage hasonló lesz:
+Ha a **FilePattern** tulajdonsága helyettesítő karakteres kifejezést, majd az összes fájl, amely megfelel a mintának feltöltötte-e a megadott virtuális könyvtár a **elérési** tulajdonság. Például, ha a tároló `mycontainer`, a feladat-azonosító `mytask`, és a fájl minta `..\std*.txt`, akkor az Azure Storage kimeneti fájlokat abszolút URI-azonosítók hasonló lesz:
 
 ```
 https://myaccount.blob.core.windows.net/mycontainer/mytask/stderr.txt
 https://myaccount.blob.core.windows.net/mycontainer/mytask/stdout.txt
 ```
 
-Ha hello **FilePattern** tulajdonság set toomatch egyetlen fájlnév, ami azt jelenti, nem tartalmaz helyettesítő karaktereket, majd hello hello értékének **elérési** tulajdonság határozza meg a hello teljesen minősített blob neve . Ha várhatóan több feladat egyetlen fájl ütközik elnevezési, szerepeltesse hello virtuális könyvtár nevét hello hello fájl neve toodisambiguate részeként azokat a fájlokat. Például set hello **elérési** tulajdonság tooinclude hello tevékenység azonosítója, hello elválasztó karaktert (általában egy perjel) és hello fájlnév:
+Ha a **FilePattern** tulajdonsága egyezik egyetlen fájlnév, ami azt jelenti, nem tartalmaz helyettesítő karaktereket, majd az értékét a **elérési** tulajdonság határozza meg a teljesen minősített blob neve. Ha várhatóan több feladat egyetlen fájl ütközik elnevezési, majd adja meg a félreérthetőség megszüntetéséhez azokat a fájlokat a fájlnév részét képező virtuális könyvtár nevét. Például a **elérési** tulajdonság a tevékenység azonosítója, az elválasztó karaktert (általában egy perjel) és a fájl nevét:
 
 `path: taskId + @"/output.txt"`
 
-hello abszolút URI-azonosítók toohello kimeneti fájlok feladatok számú hasonló lesz:
+Az abszolút URI-azonosítók a kimeneti fájlok feladatokhoz hasonló lesz:
 
 ```
 https://myaccount.blob.core.windows.net/mycontainer/task1/output.txt
 https://myaccount.blob.core.windows.net/mycontainer/task2/output.txt
 ```
 
-További információ a virtuális könyvtárak az Azure Storage: [hello a tárolóban lévő blobok listázása](../storage/blobs/storage-dotnet-how-to-use-blobs.md#list-the-blobs-in-a-container).
+További információ a virtuális könyvtárak az Azure Storage: [a tárolóban lévő blobok listázása](../storage/blobs/storage-dotnet-how-to-use-blobs.md#list-the-blobs-in-a-container).
 
 
 ## <a name="diagnose-file-upload-errors"></a>Fájl feltöltése hibák
 
-Ha feltöltése a kimeneti fájlok tooAzure tárolási sikertelen, akkor hello feladat áthelyezi toohello **befejezve** állapotát és hello [TaskExecutionInformation.FailureInformation](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.taskexecutioninformation.failureinformation#Microsoft_Azure_Batch_TaskExecutionInformation_FailureInformation) tulajdonság értéke. Vizsgálja meg a hello **FailureInformation** tulajdonság toodetermine milyen hiba történt. Íme például, ha hello tároló nem található a fájl feltöltése előforduló hiba: 
+Ha kimeneti fájlok feltöltése az Azure Storage nem sikerül, akkor a feladat áthelyezése a **befejezve** állapot és a [TaskExecutionInformation.FailureInformation](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.taskexecutioninformation.failureinformation#Microsoft_Azure_Batch_TaskExecutionInformation_FailureInformation) tulajdonság értéke. Vizsgálja meg a **FailureInformation** tulajdonság határozza meg, milyen hiba történt. Például itt található, amely a fájl feltöltése akkor fordul elő, ha a tároló nem található. hiba: 
 
 ```
 Category: UserError
 Code: FileUploadContainerNotFound
-Message: One of hello specified Azure container(s) was not found while attempting tooupload an output file
+Message: One of the specified Azure container(s) was not found while attempting to upload an output file
 ```
 
-Minden fájl feltöltése a Batch ír két naplófájl fájlok toohello számítási csomópont `fileuploadout.txt` és `fileuploaderr.txt`. A napló fájlok toolearn egy adott hibával kapcsolatos további ellenőrizheti. Azokban az esetekben, ahol hello fájl feltöltése soha nem kíséreltek meg, például mert maga hello feladat futtatása nem sikerült majd a naplófájlok nem létezik.
+Minden fájl feltöltése a Batch ír két naplófájljait a számítási csomópont `fileuploadout.txt` és `fileuploaderr.txt`. További információt a konkrét hiba ezekben a naplófájlokban ellenőrizheti. Azokban az esetekben, ahol a fájl feltöltése soha nem kíséreltek meg, például mert maga a feladat futtatása nem sikerült majd a naplófájlok nem létezik.
 
 ## <a name="diagnose-file-upload-performance"></a>Diagnosztizálhatja fájl feltöltése
 
-Hello `fileuploadout.txt` fájl feltöltési folyamatáról naplózza. Láthatja, hogy a fájl toolearn további információk a fájlfeltöltések mennyi ideig tart. Ne feledje, hogy nincsenek sok tényezőkről tooupload teljesítmény, beleértve hello csomópont, más tevékenység hello csomóponton hello feltöltés, a hello időpontjában hello méretét, hogy hello céltároló van hello hello Batch-készlet és ugyanabban a régióban, hogy hány csomópontra van Feltöltés toohello tárfiók: hello azonos időben, és így tovább.
+A `fileuploadout.txt` fájl feltöltési folyamatáról naplózza. Ez a fájl, ha többet szeretne arról, hogy mennyi ideig tart a fájlfeltöltéseket ellenőrizheti. Ne feledje, hogy a teljesítmény, például a csomópont, más tevékenység a csomóponton a feltöltés időpontjában mérete, a céltároló ugyanabban a régióban, mint a Batch-készlet, hány csomópontok a stora feltöltő-e feltölteni számos meghatározó tényező GE fiók ugyanannyi időt vesz igénybe, és így tovább.
 
-## <a name="use-hello-batch-service-api-with-hello-batch-file-conventions-standard"></a>Hello kötegelt fájl egyezmények szabványos hello Batch szolgáltatás API használata
+## <a name="use-the-batch-service-api-with-the-batch-file-conventions-standard"></a>A Batch szolgáltatás API használata a kötegelt fájl egyezmények standard
 
-Megőrizni a feladat kimenete a Batch szolgáltatás API hello, amikor a célként megadott tároló nevére, és blobok azonban van lehetősége. Másik lehetőségként tooname őket toohello szerint [kötegelt fájl egyezmények standard](https://github.com/Azure/azure-sdk-for-net/tree/vs17Dev/src/SDKs/Batch/Support/FileConventions#conventions). hello fájl egyezmények standard hello céltárolója és a megadott kimeneti fájl alapján hello nevei hello feladat- és az Azure Storage blob hello nevét határozza meg. Ha hello fájl egyezmények szabványos kimeneti fájlok elnevezési, akkor a kimeneti fájlok megtekintését a hello [Azure-portálon](https://portal.azure.com).
+Megőrizni a feladat kimenete a Batch szolgáltatás API-t, ha a cél tároló nevére, és blobok azonban van lehetősége. Ahhoz, hogy megnevezzen őket is beállíthatja a [kötegelt fájl egyezmények standard](https://github.com/Azure/azure-sdk-for-net/tree/vs17Dev/src/SDKs/Batch/Support/FileConventions#conventions). A fájl egyezmények standard céltárolója és az Azure Storage blob a megadott kimeneti fájl nevét a feladat- és alapján nevét határozza meg. Ha a fájl egyezmények standard kimeneti fájlok elnevezési, akkor a kimeneti fájlok megtekintését a rendszer a [Azure-portálon](https://portal.azure.com).
 
-Fejlesztői C# nyelven íródtak, módszerekkel hello hello épített [kötegelt fájl egyezmények .NET-keretrendszerhez készült](https://www.nuget.org/packages/Microsoft.Azure.Batch.Conventions.Files). Ezt a szalagtárat a tárolók és a blob-elérési útnak megfelelően nevű meg hello hoz létre. Például hívása hello API tooget hello megfelelő hello tároló nevét, a hello feladatnév alapján:
+A C# fejleszt, ha a beépített módszereket használhatják-e a [kötegelt fájl egyezmények .NET-keretrendszerhez készült](https://www.nuget.org/packages/Microsoft.Azure.Batch.Conventions.Files). Ezt a szalagtárat létrehozza a megfelelően elnevezett tároló és a blob elérési út. Például hívása az API-t a helyes nevét, a tároló, a feladat neve alapján:
 
 ```csharp
 string containerName = job.OutputStorageContainerName();
 ```
 
-Használhatja a hello [CloudJobExtensions.GetOutputStorageContainerUrl](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.conventions.files.cloudjobextensions.getoutputstoragecontainerurl) metódus tooreturn közös hozzáférésű jogosultságkód (SAS) URL-Címeket használt toowrite toohello tároló. Ezután adja át a biztonsági Társítások toohello [OutputFileBlobContainerDestination](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfileblobcontainerdestination) konstruktor.
+Használhatja a [CloudJobExtensions.GetOutputStorageContainerUrl](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.conventions.files.cloudjobextensions.getoutputstoragecontainerurl) vissza egy közös hozzáférésű jogosultságkód (SAS) URL-címet, a tárolóhoz írásához használt módszer. A SAS-t, majd átadhatók a [OutputFileBlobContainerDestination](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfileblobcontainerdestination) konstruktor.
 
-Ha C# nyelven fejleszt, szüksége lesz tooimplement hello fájl egyezmények standard saját maga.
+C# nyelven fejleszt, ha szüksége lesz a saját maga a fájl egyezmények standard végrehajtásához.
 
 ## <a name="code-sample"></a>Kódminta
 
-Hello [PersistOutputs] [ github_persistoutputs] mintaprojektet egyike hello [Azure Batch-Kódminták] [ github_samples] a Githubon. A Visual Studio megoldás bemutatja, hogyan toouse hello kötegelt ügyféloldali kódtára a .NET toopersist tevékenység kimeneti toodurable tároló. toorun hello mintát, kövesse az alábbi lépéseket:
+A [PersistOutputs] [ github_persistoutputs] mintaprojektet egyike a [Azure Batch-Kódminták] [ github_samples] a Githubon. A Visual Studio megoldás bemutatja, hogyan kell a kötegelt ügyféloldali kódtára a .NET használatával továbbra is fennáll feladatkimenet tartós tárhelyre. A minta futtatásához kövesse az alábbi lépéseket:
 
-1. Nyissa meg hello projektre a **Visual Studio 2015-ös vagy újabb**.
-2. A kötegelt és a tárolási **fiók hitelesítő adatait** túl**AccountSettings.settings** hello Microsoft.Azure.Batch.Samples.Common projektben.
-3. **Build** (de ne futtassa) hello megoldás. Ha a rendszer kéri, állítsa vissza a NuGet-csomagok.
-4. Használjon hello Azure portál tooupload egy [alkalmazáscsomag](batch-application-packages.md) a **PersistOutputsTask**. Hello tartalmaznak `PersistOutputsTask.exe` és a függő szerelvényeket hello .zip-csomagja, hello alkalmazás azonosítója túl "PersistOutputsTask" és az alkalmazás hello Csomagverzió túl "1.0".
-5. **Start** (Futtatás) hello **PersistOutputs** projekt.
-6. Amikor a kért toochoose hello adatmegőrzési technológia toouse futó hello minta be **2** toorun hello mintákkal hello Batch szolgáltatás API toopersist feladat kimenete.
-7. Ha szükséges, újrafuttatása hello minta, írja be **3** toopersist kimeneti hello Batch szolgáltatás API, és is tooname hello tároló és a blob elérési utat célként toohello szabványos fájl konvenciók szerint.
+1. Nyissa meg a projektet a **Visual Studio 2015-ös vagy újabb**.
+2. A kötegelt és a tárolási **fiók hitelesítő adatait** való **AccountSettings.settings** a Microsoft.Azure.Batch.Samples.Common projektben.
+3. **Build** (de ne futtassa) a megoldás. Ha a rendszer kéri, állítsa vissza a NuGet-csomagok.
+4. Töltse fel az Azure-portál használatával egy [alkalmazáscsomag](batch-application-packages.md) a **PersistOutputsTask**. Tartalmazza a `PersistOutputsTask.exe` és a függő szerelvényeket a .zip-csomagja "PersistOutputsTask" az alkalmazás-Azonosítót, és az alkalmazáscsomag verzióját "1.0".
+5. **Start** (Futtatás) a **PersistOutputs** projekt.
+6. Amikor a rendszer kéri a minta futtatásához használni, adja meg a adatmegőrzési technológiát válasszon **2** a Batch szolgáltatás API használatával megőrizni a feladat kimenete a minta futtatásához.
+7. Ha szükséges, a minta futtatásához újra, írja be **3** megőrizni a kimenet a Batch szolgáltatás API-t és a tároló és a blob elérési utat célként a fájl egyezmények szabvány neve.
 
 ## <a name="next-steps"></a>Következő lépések
 
-- A .NET-hez lévő objektumán feladat kimenetének hello fájl egyezmények könyvtárhoz további információkért lásd: [megőrizni a feladat- és adatok tooAzure tárolási hello kötegelt fájl egyezmények könyvtárhoz tartozó .NET toopersist ](batch-task-output-file-conventions.md).
-- Más megoldások a kimeneti adatait az Azure Batch információkért lásd: [Persist feladat- és kimeneti tooAzure tárolási](batch-task-output.md).
+- A .NET-hez lévő objektumán feladat kimenete a fájl egyezmények könyvtárhoz további információkért lásd: [megőrizni a feladat- és adatok Azure Storage a kötegelt fájl egyezmények .NET-keretrendszerhez készült megőrizni ](batch-task-output-file-conventions.md).
+- Más megoldások a kimeneti adatait az Azure Batch információkért lásd: [megőrizni a feladat- és kimeneti Azure Storage](batch-task-output.md).
 
 [github_persistoutputs]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/PersistOutputs
 [github_samples]: https://github.com/Azure/azure-batch-samples

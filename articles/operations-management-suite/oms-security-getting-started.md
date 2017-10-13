@@ -1,6 +1,6 @@
 ---
-title: "az Operations Management Suite biztonsági és naplózási megoldás lépései aaaGetting |} Microsoft Docs"
-description: "A dokumentum segítségével Operations Management Suite biztonsági és hitelesítési megoldás képességek toomonitor a hibrid felhő használatába, tooget."
+title: "Az Operations Management Suite biztonsági és auditálási megoldás használatának első lépései | Microsoft Docs"
+description: "Ez a dokumentum segít használatba venni az Operations Management Suite biztonsági és auditálási megoldás hibrid felhők figyelésére szolgáló képességeit."
 services: operations-management-suite
 documentationcenter: na
 author: YuriDio
@@ -15,43 +15,43 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/18/2017
 ms.author: yurid
-ms.openlocfilehash: 5cb3e5dbb3e60f9702a34c9413ddc1bf2b14b411
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: eb5283c8f32fddaa8a20a565e4b877821de979a4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="getting-started-with-operations-management-suite-security-and-audit-solution"></a>Az Operations Management Suite biztonsági és auditálási megoldás használatának első lépései
 Ez a dokumentum végigkalauzolja Önt az egyes beállításokon, így segít gyorsan használatba venni az Operations Management Suite (OMS) biztonsági és auditálási megoldás képességeit.
 
 ## <a name="what-is-oms"></a>Mi az az OMS?
-A Microsoft Operations Management Suite (OMS) a Microsoft felhőalapú informatikai felügyeleti megoldása, amely segít a helyszíni és a felhőalapú infrastruktúra kezelésében és védelmében. További információ az OMS hello a cikk elolvasása [Operations Management Suite](https://technet.microsoft.com/library/mt484091.aspx).
+A Microsoft Operations Management Suite (OMS) a Microsoft felhőalapú informatikai felügyeleti megoldása, amely segít a helyszíni és a felhőalapú infrastruktúra kezelésében és védelmében. Az OMS termékkel kapcsolatos további információkért tekintse meg az [Operations Management Suite](https://technet.microsoft.com/library/mt484091.aspx) című cikket.
 
 ## <a name="oms-security-and-audit-dashboard"></a>Az OMS biztonsági és auditálási irányítópultja
-hello OMS biztonsági, naplózási megoldást nyújt átfogó képet kaphat a szervezet informatikai biztonságot beépített keresési lekérdezések a jelentős figyelmet igénylő problémák. Hello **biztonsági és naplózási** irányítópult hello kezdőképernyő minden kapcsolódó toosecurity az OMS Szolgáltatáshoz. A számítógépek biztonsági állapotának hello magas szintű betekintést biztosít. Is hello képességét tooview összes események az elmúlt 24 óra, 7 nap hello vagy bármely más egyéni időkereten belül. tooaccess hello **biztonsági és naplózási** irányítópult, kövesse az alábbi lépéseket:
+Az OMS biztonsági és naplózási megoldás a figyelmet igénylő jelentős problémákat feltáró beépített keresési lekérdezések révén átfogó képet nyújt a szervezet informatikai biztonsági állapotáról. A **Security and Audit** (Biztonsági és naplózás) irányítópult az OMS rendszerben a biztonsággal kapcsolatos összes tényezőt megjelenítő kezdőoldal. Magas szintű betekintést tesz lehetővé a számítógépek biztonsági állapotába. Olyan funkciót is kínál, amellyel megjeleníthető az elmúlt 24 óra, 7 nap vagy bármely más egyéni időszak összes eseménye. A **Security and Audit** (Biztonság és auditálás) irányítópult megnyitásához kövesse az alábbi lépéseket:
 
-1. A hello **a Microsoft Operations Management Suite** fő irányítópultján kattintson **beállítások** csempe az hello balra.
-2. A hello **beállítások** panelen, a **megoldások** kattintson **biztonsági és naplózási** lehetőséget.
-3. Hello **biztonsági és naplózási** irányítópult jelenik meg:
+1. A **Microsoft Operations Management Suite** fő irányítópultján kattintson a **Settings** (Beállítások) csempére a bal oldalon.
+2. A **Settings** (Beállítások) panel **Solutions** (Megoldások) területén kattintson a **Security and Audit** (Biztonság és auditálás) lehetőségre.
+3. Megjelenik a **Security and Audit** (Biztonság és auditálás) irányítópult:
    
     ![Az OMS biztonsági és auditálási irányítópultja](./media/oms-security-getting-started/oms-getting-started-fig1-ga.png)
 
-Ha nincs OMS által figyelt eszközök fér hozzá ehhez az irányítópulthoz hello először, hello csempék nem tölti fel hello ügynöktől kapott adatokat. Hello ügynök telepítése után is igénybe vehet néhány alkalommal toopopulate, ezért megjelenő kezdetben előfordulhat, hogy hiányzik néhány adat, azok továbbra is feltölteni toohello felhő.  Ebben az esetben is normál toosee néhány tartalmazó csempék éppen úgy anyagi adatok nélkül. Olvasási [csatlakozás Windows rendszerű számítógépek közvetlenül tooOMS](https://technet.microsoft.com/library/mt484108.aspx) további információt a tooinstall OMS-ügynököt a Windows rendszerben és [csatlakozás Linux számítógépek tooOMS](https://technet.microsoft.com/library/mt622052.aspx) további információt a tooperform ezt a feladatot Linux rendszereken.
+Ha első alkalommal nyitja meg ezt az irányítópultot, és még nem rendelkezik az OMS használatával figyelt eszközökkel, akkor a csempéken nem jelennek meg az ügynöktől kapott adatok. Az ügynök telepítése után eltarthat egy ideig a csempék adatokkal való feltöltése, ezért az először megjelenő adatok hiányosak lehetnek (mivel az adatok felhőbe való feltöltése ilyenkor még folyamatban van).  Ebben az esetben normális jelenség, hogy egyes csempéken nem jelennek meg lényeges adatok. Az OMS-ügynök Windows rendszerekre telepítésével kapcsolatos további információkért olvassa el a [Windows rendszerű számítógépek közvetlen csatlakoztatás a Log Analytics rendszerhez](https://technet.microsoft.com/library/mt484108.aspx) című, az OMS-ügynök Linux rendszerekre telepítésével kapcsolatos további információkért pedig a [Linux rendszerű számítógépek közvetlen csatlakoztatás a Log Analytics rendszerhez](https://technet.microsoft.com/library/mt622052.aspx) című cikket.
 
 > [!NOTE]
-> hello ügynök hello aktuális eseményeket, amelyek engedélyezve vannak, például a számítógép nevét, IP-cím és a felhasználói név alapján hello adatokat gyűjt. Nem gyűjt azonban dokumentumokat vagy fájlokat, adatbázisneveket, illetve személyes adatokat.   
+> Az ügynök összegyűjti az adatokat – például a számítógép nevét, az IP-címet és a felhasználó nevét – az aktuális és engedélyezett események alapján. Nem gyűjt azonban dokumentumokat vagy fájlokat, adatbázisneveket, illetve személyes adatokat.   
 > 
 > 
 
-A megoldások az ügyfelek fontos kihívásaira választ adó logikai, megjelenítési és adatgyűjtési szabályok gyűjteményei. A Biztonság és auditálás is egy ilyen megoldás, további megoldásokat pedig külön adhat hozzá a rendszerhez. A cikk elolvasása hello [megoldások hozzáadása](https://technet.microsoft.com/library/mt674635.aspx) további információt a tooadd egy új megoldás.
+A megoldások az ügyfelek fontos kihívásaira választ adó logikai, megjelenítési és adatgyűjtési szabályok gyűjteményei. A Biztonság és auditálás is egy ilyen megoldás, további megoldásokat pedig külön adhat hozzá a rendszerhez. Az új megoldások hozzáadásával kapcsolatban olvassa el a [megoldások hozzáadását ismertető](https://technet.microsoft.com/library/mt674635.aspx) cikket.
 
-hello OMS biztonsági és naplózási irányítópult négy fő kategóriába vannak rendezve:
+Az OMS biztonsági és auditálási irányítópultja négy fő kategória alapján van felosztva:
 
-* **Biztonsági tartományok**: Ez a terület a képes toofurther lesz felfedezés biztonsági rekordok időbeli, kártevő assessment hozzáférni, felmérési és a hálózati biztonság, a identitás- és hozzáférés adatait, a számítógépek biztonsági események frissítse, és gyorsan hozzáférés tooAzure Security Center irányítópultjának.
-* **Jelentős problémák**: Ez a beállítás lehetővé teszi a tooquickly aktív problémák hello számának meghatározása, és ezek a problémák súlyosságát hello.
-* **Észlelések (előzetes verzió)**: lehetővé teszi a biztonsági riasztások megjelenítése, hogy elvégezze a erőforrásokon által tooidentify támadási mintákat.
-* **A fenyegetés Eszközintelligencia**: lehetővé teszi tooidentify támadási mintákat által kimenő kártékony IP-forgalom, hello rosszindulatú fenyegetés típusa és megjelenítő, ha ezeket az IP-címekről érkező kiszolgálók száma hello megjelenítése. 
-* **Általános biztonsági lekérdezések**: ezt a lehetőséget biztosít a leggyakrabban használt biztonsági hello listáját, lekérdezi a használható toomonitor a környezetben. Lekérdezések egyikében kattintáskor hello nyílik **keresési** panel hello eredményekkel ehhez a lekérdezéshez.
+* **Security Domains** (Biztonsági tartományok): ezen a területen vizsgálhatja meg alaposabban a biztonsági rekordok időbeli megoszlását, itt férhet hozzá a kártevők felméréséhez, a frissítések felméréséhez, a biztonsági eseményekkel rendelkező számítógépekhez, valamint innen férhet hozzá gyorsan az Azure Security Center irányítópultjához.
+* **Notable Issues** (Jelentős problémák): e lehetőség segítségével gyorsan meghatározhatja az aktív problémák számát, valamint a problémák súlyosságát.
+* **Detections (Preview)** (Észlelések (előnézet)): lehetővé teszi a támadási minták azonosítását az erőforrásokkal fellépő biztonsági riasztások képi megjelenítése révén.
+* **Threat Intelligence**(Fenyegetések felderítése): lehetővé teszi a támadási minták felderítését a rosszindulatú kimenő forgalommal rendelkező összes kiszolgálónak, a rosszindulatú fenyegetések típusának, valamint egy IP-címeket ábrázoló térképnek a képi megjelenítésével. 
+* **Common security queries** (Gyakori biztonsági lekérdezések): e beállítás listát jelenít meg azokról leggyakoribb biztonsági lekérdezésekről, amelyek használatával Ön figyelheti a környezetét. Amikor egy ilyen lekérdezésre kattint, megnyílik a **Search** (Keresés) panel az adott lekérdezés eredményeivel.
 
 > [!NOTE]
 > Ha további információkat szeretne arról, hogyan védi meg az OMS az adatait, olvassa el az OMS használatával végzett adatvédelmet ismertető cikket.
@@ -59,24 +59,24 @@ hello OMS biztonsági és naplózási irányítópult négy fő kategóriába va
 > 
 
 ## <a name="security-domains"></a>Biztonsági tartományok
-Források követésével esetén fontos toobe képes tooquickly hozzáférés hello aktuális állapotát a környezetében. Azonban akkor is fontos toobe képes tootrack hátsó események, a hello múltbeli, hogy mi történik a környezetében bizonyos időpontban időben jobban megértheti tooa okozhat. 
+Az erőforrások figyelésekor fontos, hogy gyorsan hozzá tudjon férni a környezet aktuális állapotához. Fontos azonban az is, hogy vissza tudja követni a múltban előforduló eseményeket, és ennek révén jobban meg tudja érteni, hogy mi történik a környezetben egy adott időpontban. 
 
 > [!NOTE]
-> Az adatmegőrzés toohello OMS tarifacsomagot alapján történik. További információt a Microsoft hello [a Microsoft Operations Management Suite](https://www.microsoft.com/server-cloud/operations-management-suite/pricing.aspx) árképzést ismertető oldalra.
+> Az adatmegőrzés az OMS-díjcsomag szerint alakul. További információkért keresse fel a [Microsoft Operations Management Suite](https://www.microsoft.com/server-cloud/operations-management-suite/pricing.aspx) árképzését ismertető oldalt.
 > 
 > 
 
-Incidens válasz és a törvényszéki nyomozások forgatókönyvek közvetlenül előnyösek, hello eredmények hello elérhető **biztonsági rekordok időbeli megoszlása** csempére.
+Az incidensekre adott válaszok és a törvényszéki vizsgálati forgatókönyvek esetén közvetlenül megmutatkoznak a **Security Records over Time** (Biztonsági rekordok időbeli megoszlása) csempén rendelkezésre álló adatok előnyei.
 
 ![Biztonsági rekordok időbeli megoszlása](./media/oms-security-getting-started/oms-getting-started-fig2.JPG)
 
-Erre a csempére kattintva hello **keresési** panel nyílik, egy lekérdezés eredményt megjelenítő **biztonsági események** (típus = SecurityEvents) adatok alapján hello elmúlt hét napban, alább látható módon:
+Amikor erre a csempére kattint, megnyílik a **Search** (Keresés) panel, és megjelenik rajta a **Security Events** (Biztonsági események) lekérdezés (Type=SecurityEvents) eredménye az elmúlt hét nap adatai alapján, az alább látható módon:
 
 [!include[log-analytics-log-search-nextgeneration](../../includes/log-analytics-log-search-nextgeneration.md)]
 
 ![Biztonsági rekordok időbeli megoszlása](./media/oms-security-getting-started/oms-getting-started-fig3.JPG)
 
-hello keresési eredmény belül két ablaktábla található osztják: hello bal oldali ablaktáblán lehetővé teszi az információkat a hello található, amelyen ezek az események találhatók, hello számát, amelyet észlelt a rendszer ezeket a számítógépeket és hello típusát hello számítógépek biztonsági események száma tevékenységek. jobb oldali hello biztosít hello teljes eredmények és hello biztonsági események hello számítógép nevét és az esemény tevékenységet időrendi nézetben. Is **további megjelenítése** tooview több ezt az eseményt, például hello eseményadatok, hello eseményazonosító és hello eseményforrás vonatkozó részletek.
+A keresési eredmények két panelre vannak osztva: a bal oldali panelen a talált biztonsági események, az eseményekkel rendelkező számítógépek, az e számítógépen felderített fiókok száma, valamint a tevékenységek típusa látható lebontva. A jobb oldali panelen látható az összes eredmény, valamint a biztonsági események időrendi nézete, a számítógép nevével és az esemény tevékenységével együtt. A **Show More** (Továbbiak megjelenítése) lehetőségre kattintva az esemény további részleteit, például az esemény adatait, az esemény azonosítóját, valamint az esemény forrását tekintheti meg.
 
 > [!NOTE]
 > Az OMS keresési lekérdezéseivel kapcsolatos további információkért olvassa el az [OMS keresési referenciáját bemutató cikket](https://technet.microsoft.com/library/mt450427.aspx).
@@ -84,23 +84,23 @@ hello keresési eredmény belül két ablaktábla található osztják: hello ba
 > 
 
 ### <a name="antimalware-assessment"></a>Kártevőirtók felmérése
-A beállítás engedélyezi, hogy Ön tooquickly számítógépeket azonosító nem megfelelő védelemmel és számítógépekkel a kártevő szoftver által kerülnek veszélybe. Hello felhő feldolgozásra kártevő értékelési állapotát és a figyelt hello kiszolgálókon észlelt fenyegetéssel olvassa el, és majd hello az adatok küldése toohello OMS szolgáltatáshoz. Kiszolgálók észlelt fenyegetésekkel és a kiszolgálók nem megfelelő védelemmel láthatók érhető el a hello kattintás után hello kártevő assessment irányítópult **kártevőirtó Assessment** csempére. 
+Ezzel a funkcióval gyorsan azonosíthatja a nem megfelelő védelemmel rendelkező számítógépeket, valamint azokat, amelyek egy kártevő miatt vannak veszélyben. A rendszer beolvassa a figyelt kiszolgálókról a kártevők felmérésének állapotát, valamint az észlelt fenyegetéseket, majd az adatokat elküldi a felhőben működő OMS szolgáltatásnak feldolgozásra. Az észlelt fenyegetésekkel rendelkező, illetve a nem megfelelő védelmet élvező kiszolgálók megjelennek a kártevőfelmérési irányítópulton, amelyet az **Antimalware Assessment** (Kártevőirtók felmérése) csempére kattintva nyithat meg. 
 
 ![kártevők felmérése](./media/oms-security-getting-started/oms-getting-started-fig4-ga.png)
 
-Csakúgy, mint bármilyen más elérhető OMS-irányítópulton élő csempét rajta kattintáskor hello **keresési** panel nyílik meg hello lekérdezés eredménye. Ezt a beállítást, ha a hello kattint a **jelentést nem készítő** lehetőség alatt **védelmi állapot**, hello lekérdezés eredményét, amely tartalmazza a egyetlen bejegyzés, amely tartalmazza a hello számítógép neve és az osztályozás, mint hogy alább látható:
+Akárcsak az OMS irányítópultján rendelkezésre álló többi élő csempe esetén, erre a csempére rákattintva a **Search** (Keresés) panel nyílik meg a lekérdezés eredményével. E beállítás esetén, ha a **Not Reporting** (Nincs jelentéskészítés) lehetőségre kattint a **Protection Status** (Védelem állapota) területen, akkor az alábbi módon ez az egy bejegyzés jelenik meg, amely tartalmazza a számítógép nevét és a hozzá tartozó rangot:
 
 ![keresési eredmény](./media/oms-security-getting-started/oms-getting-started-fig5.png)
 
 > [!NOTE]
-> *dimenziószáma* egy besorolási jogosultságot ad az üdvözlő védelmi állapotának tooreflect hello (a, kikapcsolva, frissítése, stb.) és az észlelt fenyegetéseket. Egy szám segít toomake tervezni, amelynek, amely.
+> A *rang* olyan helyezés, amelyet a rendszer a védelem állapota (bekapcsolt, kikapcsolt, frissített stb.), illetve a talált fenyegetések alapján állapít meg. Ennek számszerűsítése segíti az összesítést.
 > 
 > 
 
-Ha hello számítógépnév gombra kattint, akkor hello időrendi nézetben hello védelemben ehhez a számítógéphez. Ez nagyon fontos forgatókönyvek esetén a felhasználónak kell toounderstand Ha hello kártevőirtó korábban volt telepítve, és bármikor el lett távolítva.   
+Ha a számítógép nevére kattint, akkor időrend szerinti nézetben jelenik meg a számítógép védelmi állapota. Ez azokban az esetekben nagyon hasznos, amikor azt kell felismerni, hogy a kártevőirtót korábban telepítették, majd egy későbbi időpontban eltávolították.   
 
 ### <a name="update-assessment"></a>Frissítések felmérése
-A beállítás lehetővé teszi, hogy Ön tooquickly meghatározásához hello teljes terheléshez toopotential biztonsági problémákat, és kell-e, vagy hogyan kritikus ezeket a frissítéseket a környezethez. OMS biztonsági és naplózási megoldás csak olyan hello képi megjelenítés ezeket a frissítéseket, az adatok valóságosak hello származik [frissítési megoldások](oms-solution-update-management.md), amely egy másik modul OMS belül. Itt egy példát hello frissíti:
+Ez a funkció lehetővé teszi a potenciális biztonsági problémáknak való teljes kitettség gyors meghatározását, valamint annak megállapítását, hogy ezek a frissítések fontosak-e, és ha igen, mennyire fontosak a környezet szempontjából. Az OMS biztonsági és auditálási megoldás csak a frissítések képi megjelenítését biztosítja, a tényleges adatok az OMS rendszeren belüli másik, [Frissítéskezelési megoldások](oms-solution-update-management.md) nevű modulból származnak. Alább látható egy példa a frissítésekre:
 
 ![rendszerfrissítések](./media/oms-security-getting-started/oms-getting-started-fig6-new.png)
 
@@ -110,93 +110,93 @@ A beállítás lehetővé teszi, hogy Ön tooquickly meghatározásához hello t
 > 
 
 ### <a name="identity-and-access"></a>Identitás és hozzáférés
-Hello vezérlő kell lennie a vállalati, az identitás védelme kell lennie a legnagyobb prioritással. Elmúlt hello történtek körül szervezetek kialakítását, és ezeket kialakítását volt egy hello elsődleges defenzív határokat, ma további alkalmazások áthelyezése toohello felhőalapú és több adat hello identitás lesz hello új szegélyhálózati. 
+Az identitásnak kell lennie a vállalat vezérlősíkjának, és az identitás védelmének kell kapnia a legmagasabb prioritást. Míg a múltban a szervezetek körüli szegélyhálózatok szolgáltak az egyik elsődleges védelmi vonalként, napjainkban egyre több adat és alkalmazás kerül a felhőbe, így az identitás lépett a szegélyhálózatok helyére. 
 
 > [!NOTE]
-> jelenleg hello adatok csak biztonsági események bejelentkezési adatok (event ID 4624) hello jövőbeli Office365 bejelentkezések alapján történik, és az Azure AD-adatokat is szerepelnek.
+> jelenleg az adatok csak a biztonsági események bejelentkezési adatain (4624-es eseményazonosító) alapulnak, a jövőben azonban az Office365-bejelentkezések és az Azure AD-adatok is bekerülnek a felhasznált adatok körébe.
 > 
 > 
 
-Az identitás-tevékenységek figyelése, képes tootake megelőző jellegű lépéseket fogja incidens időt vesz igénybe, hely vagy reaktív műveletek toostop támadás kísérlet előtt. Hello **identitások és hozzáférések** irányítópult biztosít a identitás állapota, beleértve a fiókokat, amelyek ki lettek zárva, próbálkozások során használt hello felhasználói fiók a sikertelen kísérletek toolog hello számát áttekintése fiók megváltozott, vagy alaphelyzetbe állítja a jelszót, és jelenleg bejelentkezett fiókok számát. 
+Az identitástevékenységek figyelésével proaktívan fog tudni cselekedni, mielőtt az incidens bekövetkezne, illetve reaktív tevékenységekkel leállíthatja a támadási kísérleteket. Az **Identity and Access** (Identitás és hozzáférés) irányítópult áttekintést biztosít az identitás állapotáról, többek között a sikertelen bejelentkezési kísérletekről, az e kísérletekhez használt felhasználói fiókról, a kizárt fiókokról, a módosított vagy visszaállított jelszavú fiókokról, valamint az aktuálisan bejelentkezett fiókok számáról. 
 
-Kattintva hello **identitások és hozzáférések** csempe jelenik meg a következő irányítópult hello:
+Az **Identity and Access** (Identitás és hozzáférés) csempére kattintva a következő irányítópultot láthatja:
 
 ![identitás és hozzáférés](./media/oms-security-getting-started/oms-getting-started-fig7-ga.png)
 
-hello információk érhetők el az irányítópulton azonnal segít a tooidentify lehetséges gyanús tevékenységet. Például vannak 338 kísérletek toolog **rendszergazda** és a 100 %-át ezeket a kísérleteket nem sikerült. Ezt a fiók ellen intézett találgatásos támadás okozhatja. Ha rákattint az ezt a fiókot akkor lesz tájékoztatást kaphat, amelyek segítséget nyújthatnak toodetermine hello célerőforrása a potenciális támadási:
+Az ezen az irányítópulton rendelkezésre álló információk azonnali segítséget nyújtanak a potenciális gyanús tevékenységek azonosításához. Láthatja például, hogy 338 kísérlet történt a **Administrator** (Rendszergazda) felhasználóval megkísérelt bejelentkezésre, és e kísérletek 100%-a sikertelen volt. Ezt a fiók ellen intézett találgatásos támadás okozhatja. Ha rákattint a fiókra, további információk jelennek meg, amelyek segíthetnek meghatározni e potenciális támadás célerőforrását:
 
 ![keresési eredmények](./media/oms-security-getting-started/oms-getting-started-fig8.JPG)
 
-hello részletes jelentés fontos információkat tartalmaz az esemény, például: hello célszámítógépen, hello típusa (az az eset hálózati bejelentkezés) bejelentkezési, hello tevékenység (az az eset esemény 4625) és egyes kísérlet átfogó ütemtervet. 
+A részletes jelentés fontos információkat tartalmaz erről az eseményről, többek között megadja a célszámítógépet, a bejelentkezés típusát (ebben az esetben hálózati bejelentkezésről van szó), a tevékenységet (ebben az esetben 4625-ös számú esemény), valamint egy átfogó idősort minden egyes kísérlethez. 
 
 ### <a name="computers"></a>Számítógépek
-Ez a csempe lehet használt tooaccess biztonsági események aktívan rendelkező számítógépeket. A csempén kattintva biztonsági események és események száma hello rendelkező számítógépek hello listája jelenik meg minden olyan számítógépen:
+Ezzel a csempével tekintheti meg az összes olyan számítógépet, amely aktív biztonsági eseményekkel rendelkezik. Amikor erre a csempére kattint, megjelenik a biztonsági eseményekkel rendelkező számítógépek listája, valamint az események száma az egyes számítógépek esetén:
 
 ![Számítógépek](./media/oms-security-getting-started/oms-getting-started-fig9.JPG)
 
-Minden olyan számítógépen kattintson a vizsgálat folytatása, és tekintse át a hello biztonsági eseményeket, amelyek volt megjelölve.
+A vizsgálatot úgy folytathatja, hogy rákattint az egyes számítógépekre, és áttekinti a megjelölt biztonsági eseményeket.
 
 ### <a name="threat-intelligence"></a>Fenyegetések felderítése
 
-Hello Fenyegetésfelderítési adataival beállítás OMS biztonsági és a naplózási használatával a rendszergazdák biztonsági fenyegetések ellen hello környezetben, például azonosíthatja, azonosítja, hogy egy adott számítógép egy botnet része. Számítógépek egy botnet csomópontjának válhat, a támadók törvénytelenül telepítésekor kártevők, amelyek a számítógép toohello parancs és a vezérlő titokban csatlakozik. A szolgáltatás emellett az illegális kommunikációs csatornákról, például a darknetekről érkező potenciális fenyegetéseket is azonosítani tudja. Olvasásával Fenyegetésfelderítési adataival kapcsolatos további [figyelési és válaszol toosecurity riasztásokat az Operations Management Suite biztonsági és naplózási megoldás](oms-security-responding-alerts.md) cikk.
+Az OMS biztonsági és auditálási megoldásban elérhető fenyegetésfelderítési szolgáltatással az informatikai rendszergazdák azonosíthatják a környezetre leselkedő biztonsági fenyegetéseket, például ha egy adott számítógép egy botnet része. A számítógépek akkor válhatnak egy botnet csomópontjává, ha a támadók illetéktelenül kártevőket telepítenek a számítógépére, amelyek titokban csatlakoztatják a gépet a vezérlőrendszerhez. A szolgáltatás emellett az illegális kommunikációs csatornákról, például a darknetekről érkező potenciális fenyegetéseket is azonosítani tudja. A fenyegetésfelderítéssel kapcsolatos további információért olvassa el [A biztonsági riasztások figyelése és megválaszolása az Operations Management Suite biztonsági és auditálási megoldásban](oms-security-responding-alerts.md) című cikket.
 
 Bizonyos esetekben észlelhet egy potenciálisan kártékony IP-címet, amelyhez az egyik felügyelt számítógépről fértek hozzá:
 
 ![fenyegetésfelderítési leképezés](./media/oms-security-responding-alerts/oms-security-responding-alerts-fig6.png)
 
-Ezt a figyelmeztetést, míg mások belül hello ugyanilyen kategóriájú, OMS biztonsági keresztül, ami által előállított [Microsoft Fenyegetésfelderítési adataival](https://youtu.be/O4WtxgUrDc8). hello Fenyegetésfelderítési adataival adatok van a Microsoft által gyűjtött, valamint származó vezető fenyegetés eszközintelligencia szolgáltatók. Az adatok gyakran frissül, és leírtakon toofast áthelyezése fenyegetéseket. Tooits jellege miatt azt kombinálni kell egyéb információforrásokat biztonsági közben [kivizsgálása](https://blogs.technet.microsoft.com/msoms/2016/12/08/investigating-suspicious-activity-in-a-hybrid-cloud-with-oms-security/) egy biztonsági riasztást. 
+Ezt és a kategóriába tartozó többi riasztást az OMS Security hozta létre a [Microsoft fenyegetésfelderítő](https://youtu.be/O4WtxgUrDc8) segítségével. A Fenyegetésfelderítő adatait a Microsoft maga gyűjti össze, illetve a vezető fenyegetésfelderítési szolgáltatóktól vásárolja. Ezeket az adatokat rendszeresen frissítik és a gyorsan változó fenyegetésekhez igazítják. A biztonsági riasztások [vizsgálata](https://blogs.technet.microsoft.com/msoms/2016/12/08/investigating-suspicious-activity-in-a-hybrid-cloud-with-oms-security/) közben az adatokat jellegükből adódóan érdemes összevonni más biztonságinformáció-forrásokkal. 
 
 ### <a name="baseline-assessment"></a>Az alapkonfiguráció értékelése
 
 A Microsoft a világszerte elhelyezkedő iparági és kormányzati szervezetekkel közösen olyan Windows-konfigurációt határoz meg, amely nagy biztonságú kiszolgálók üzembe helyezését teszi lehetővé. Ez a konfiguráció beállításkulcsokból, auditálási szabályzatok beállításaiból és biztonsági szabályzatok beállításaiból áll, valamint a Microsoft ajánlott értékeit tartalmazza ezekhez a beállításokhoz. Ez a szabályzathalmaz biztonsági alapkonfigurációként ismert. A beállítással kapcsolatos további információkért olvassa el [Az alapkonfiguráció értékelése az Operations Management Suite biztonsági és auditálási megoldásában](oms-security-baseline.md) című cikket.
 
 ### <a name="azure-security-center"></a>Azure Security Center
-Ez a csempe tulajdonképpen egy helyi tooaccess Azure Security Center irányítópultjának. Ha további információkat szeretne megtudni erről a megoldásról, olvassa el [Az Azure Security Center használatának első lépései](../security-center/security-center-get-started.md) című cikket.
+Ez a csempe gyakorlatilag az Azure Security Center irányítópultjának megnyitására szolgáló parancsikon. Ha további információkat szeretne megtudni erről a megoldásról, olvassa el [Az Azure Security Center használatának első lépései](../security-center/security-center-get-started.md) című cikket.
 
 ## <a name="notable-issues"></a>Jelentős problémák
-hello fő ezen beállítások csoportja célja tooprovide hello problémákat, amelyek azt a környezetben, azokat a kritikus, figyelmeztetés és tájékoztató kategorizálását által gyors áttekintést. hello aktív probléma típusa csempe ezeknek a problémáknak képi megjelenítés, de nem teszi lehetővé róluk, részletesebben tooexplore toouse hello alsó részén található, amely hello neve hello probléma (név), hogy hány objektumok rendelkeztek (DARABSZÁM) ehhez a csempéhez kell, és mennyire fontos, (SÚLYOSSÁG).
+E beállításcsoport elsődleges célja, hogy gyors áttekintést nyújtson az Ön környezetében fennálló problémákról úgy, hogy a problémákat kritikusként, figyelmeztetésként vagy tájékoztató jellegűként sorolja be. Az Active issue type (Aktív probléma típusa) csempe biztosítja e problémák képi megjelenítését, azonban nem teszi lehetővé a velük kapcsolatos további részletek megtekintését – ehhez a csempe alsó részét kell használni, ahol látható a probléma neve (NAME), a probléma által érintett objektumok száma (COUNT), valamint a probléma súlyossága (SEVERITY).
 
 ![Jelentős problémák](./media/oms-security-getting-started/oms-getting-started-fig10.JPG)
 
-Láthatja, hogy ezek a problémák már volt tárgyalt hello különböző területei **biztonsági tartományok** csoport, amely ebben a nézetben hello szándékával megerősíti: megjelenítése hello legfontosabb problémák egyetlen helyéről a környezetben.
+Láthatja, hogy e problémákat a **Security Domains** (Biztonsági tartományok) csoport különböző területei már lefedték, ez pedig tovább erősíti, hogy e nézet célja a környezet legfontosabb problémáinak megjelenítése egyetlen helyen.
 
 ## <a name="detections-preview"></a>Észlelések (előnézet)
-hello fő ezt a beállítást célja tooallow informatikai tooquickly azonosítani a potenciális fenyegetések tootheir környezet keresztül és a fenyegetést hello súlyossága.
+E beállítás elsődleges célja, hogy lehetővé tegye az informatikai részleg számára a környezetre leselkedő potenciális fenyegetések felismerését az észlelések számának és súlyosságának alapján.
 
 ![Fenyegetések felderítése](./media/oms-security-getting-started/oms-getting-started-fig12.png)
 
-Ez a beállítás használata során egy [incidensválasz-vizsgálat](https://blogs.msdn.microsoft.com/azuresecurity/2016/11/30/investigating-suspicious-activity-in-a-hybrid-cloud-with-oms-security/) tooperform hello értékelési és hello támadás kapcsolatos további információkhoz.
+Ez a beállítás az [incidensre adott válasz vizsgálatának](https://blogs.msdn.microsoft.com/azuresecurity/2016/11/30/investigating-suspicious-activity-in-a-hybrid-cloud-with-oms-security/) során is használható az értékelés végrehajtására, valamint a támadásra vonatkozó további információk lekérésére.
 
 > [!NOTE]
-> További információt a toouse OMS az Incidensmegoldási, ezt a videót: [hogyan tooLeverage hello Azure Security Center & a Microsoft Operations Management Suite egy Incidensmegoldási](https://channel9.msdn.com/Blogs/Taste-of-Premier/ToP1703).
+> Ha további információkat szeretne megtudni arról, hogyan használható az OMS incidensekre való válaszadáshoz, tekintse meg a következő videót: [How to Leverage the Azure Security Center & Microsoft Operations Management Suite for an Incident Response](https://channel9.msdn.com/Blogs/Taste-of-Premier/ToP1703) (Hogyan használható az Azure Security Center és Microsoft Operations Management Suite egy incidensre adott válaszlépések során?).
 > 
 > 
 
 ## <a name="threat-intelligence"></a>Fenyegetések felderítése
-az eszközintelligencia szakasz biztonsági és hitelesítési megoldás hello visualizes hello támadási mintákat többféle módon új fenyegetés hello: hello kártékony IP kimenő forgalmat bonyolító kiszolgálók száma, a kártevő-fenyegetés típusát és helyét megjelenítő hello ezeket az IP-címek érkező. Hello térkép kommunikál, és kattintson az IP-címek hello további információt.
+A Biztonság és auditálás megoldás új fenyegetésfelderítési szakaszában számos módon jeleníthetők meg a támadási minták: megjeleníthető például a rosszindulatú kimenő IP-forgalmat generáló kiszolgálók száma, a rosszindulatú fenyegetések típusa, valamint egy, az IP-címeket ábrázoló térkép is. A térkép interaktív, azaz az IP-címekre kattintva további információk jelennek meg.
 
-Sárga pushpins hello térképen azt jelzi, hogy kártékony IP-címekről érkező bejövő forgalmat. Nincs ritka kiszolgálókat, amelyek kitett toohello toosee bejövő rosszindulatú internetforgalom, de javasoljuk, hogy tekintse át a kísérletek toomake meg arról, hogy az egyik se sikeres volt. Ezek a jelzők az IIS-naplókon, valamint a WireData- és Windows tűzfal-naplókon alapulnak.  
+A térképen sárga gombostűk jelzik a rosszindulatú IP-címekről érkező forgalom forrását. Nem szokatlan jelenség, hogy az internetre csatlakozó kiszolgálók beérkező rosszindulatú forgalomnak vannak kitéve, mégis ajánlott áttekinteni a kísérleteket, és meggyőződni róla, hogy egyikük sem volt sikeres. Ezek a jelzők az IIS-naplókon, valamint a WireData- és Windows tűzfal-naplókon alapulnak.  
 
 ![Fenyegetések felderítése](./media/oms-security-getting-started/oms-getting-started-fig11-ga.png)
 
 ## <a name="common-security-queries"></a>Gyakori biztonsági lekérdezések
-hello listáját általános biztonsági lekérdezések érhető el, toorapidly hozzáférés erőforrás információk hasznosak lehetnek, és a környezet igényeinek megfelelően testre szabhatja. E gyakori lekérdezések a következők:
+A gyakori biztonsági lekérdezések rendelkezésre álló listája hasznosnak bizonyulhat az erőforrások adataihoz való gyors hozzáféréshez, valamint ezen adatok környezeti igények szerinti testreszabásához. E gyakori lekérdezések a következők:
 
 * Minden biztonsági tevékenység
-* Biztonsági tevékenységek hello számítógép "computer01.contoso.com" (a név felülírandó a saját gép nevével)
-* Biztonsági tevékenységek hello számítógép "computer01.contoso.com" fiók "Rendszergazda" (a név felülírandó a saját gép és fiók nevével)
+* Biztonsági tevékenységek a gépnév01.contoso.com nevű gépen (a név felülírandó a saját gép nevével)
+* Biztonsági tevékenységek a gépnév01.contoso.com nevű gépen a Rendszergazda fiókban (a név felülírandó a saját gép és fiók nevével)
 * Bejelentkezési tevékenységek gépenként
 * Fiókok, amelyekből leállították a Microsoft Antimalware-t bármely gépen
-* Számítógépek, amelyeken leállították a Microsoft antimalware folyamatot hello
+* Gépek, amelyeken leállították a Microsoft Antimalware folyamatot
 * Gépek, amelyeken futtatták a hash.exe fájlt (a név felülírandó a megfelelő folyamat nevével)
 * Az összes elindított folyamat
 * Bejelentkezési tevékenységek fiókonként
-* Fiókok, amelyekből távolról bejelentkeztek hello számítógép "computer01.contoso.com" (a név felülírandó a saját gép nevével)
+* Fiókok, amelyekből távolról bejelentkeztek a gépnév01.contoso.com nevű gépre (a név felülírandó a saját gép nevével)
 
 ## <a name="see-also"></a>Lásd még:
-Ebben a dokumentumban volt bevezetett tooOMS biztonsági, naplózási megoldást. További információ az OMS biztonsági toolearn tekintse meg a következő cikkek hello:
+E dokumentumban az OMS biztonsági és auditálási megoldást mutattuk be. Az OMS által nyújtott védelemmel kapcsolatos további információkat a következő cikkek tartalmaznak:
 
 * [Az Operations Management Suite (OMS) áttekintése](operations-management-suite-overview.md)
-* [Figyelés és a válaszoló tooSecurity riasztásait az Operations Management Suite biztonsági és naplózási megoldás](oms-security-responding-alerts.md)
+* [A biztonsági riasztások figyelése és megválaszolása az Operations Management Suite biztonsági és auditálási megoldásban](oms-security-responding-alerts.md)
 * [Az erőforrások figyelése az Operations Management Suite biztonsági és auditálási megoldásban](oms-security-monitoring-resources.md)
 

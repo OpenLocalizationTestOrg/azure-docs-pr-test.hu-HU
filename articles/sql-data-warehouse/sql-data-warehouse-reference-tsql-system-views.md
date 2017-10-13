@@ -1,6 +1,6 @@
 ---
-title: "adatraktár rendszernézetek aaaSQL |} Microsoft Docs"
-description: "Hivatkozások toosystem nézetek tartalom az SQL Data Warehouse."
+title: "Az SQL Data Warehouse rendszernézetek |} Microsoft Docs"
+description: "Rendszer mutató hivatkozásokat tartalmaz az SQL Data Warehouse megtekinti a tartalmat."
 services: sql-data-warehouse
 documentationcenter: NA
 author: kevinvngo
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: reference
 ms.date: 07/12/2017
 ms.author: kevin;barbkess
-ms.openlocfilehash: bd4d7184f6c95b37fe16b897c44c46000bbb2746
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a9327388f8789e548610a7d4f140c492afd88fef
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="system-views"></a>Rendszernézetek
 ## <a name="sql-data-warehouse-catalog-views"></a>Az SQL Data Warehouse katalógusnézetekre
@@ -61,8 +61,8 @@ ms.lasthandoff: 10/06/2017
 * [sys.dm_pdw_wait_stats](http://msdn.microsoft.com/library/mt203909.aspx)
 * [sys.dm_pdw_waits](http://msdn.microsoft.com/library/mt203909.aspx)
 
-## <a name="sql-server-dmvs-applicable-toosql-data-warehouse"></a>SQL Server dinamikus felügyeleti nézetek alkalmazható tooSQL Data warehouse-bA
-hello következő dinamikus felügyeleti nézetek alkalmazható tooSQL Data warehouse-ba, de toohello csatlakozva kell végrehajtani **fő** adatbázis.
+## <a name="sql-server-dmvs-applicable-to-sql-data-warehouse"></a>Dinamikus SQL Server felügyeleti alkalmazható az SQL Data Warehouse-nézetek
+A következő dinamikus felügyeleti nézetek SQL Data Warehouse alkalmazható, de csatlakozva kell végrehajtani a **fő** adatbázis.
 
 * [sys.database_service_objectives](https://msdn.microsoft.com/library/mt712619.aspx)
 * [sys.dm_operation_status](https://msdn.microsoft.com/library/dn270022.aspx)
@@ -135,18 +135,18 @@ hello következő dinamikus felügyeleti nézetek alkalmazható tooSQL Data ware
 * [sys.Views](http://msdn.microsoft.com/library/ms190334.aspx)
 
 ## <a name="sql-server-dmvs-available-in-sql-data-warehouse"></a>SQL Server dinamikus felügyeleti nézetek érhető el az SQL Data Warehouse
-SQL Data Warehouse számos hello SQL Server dinamikus felügyeleti nézetekkel (dinamikus felügyeleti nézetek) tesz elérhetővé. Ezek a nézetek, amikor az SQL Data Warehouse lekérdezett jelentik a hello terjesztéseket futó SQL-adatbázisok hello állapotát.
+Az SQL Data Warehouse az SQL Server dinamikus felügyeleti nézetekkel (dinamikus felügyeleti nézetek) számos tesz elérhetővé. Ezek a nézetek, amikor az SQL Data Warehouse lekérdezett jelentik az SQL-adatbázisok a disztribúciók futó állapotát.
 
-Mivel az SQL Data Warehouse a Microsoft MPP technológiára épül, mind az SQL Data Warehouse és az Analytics Platform System Parallel Data Warehouse (PDW) használata hello azonos rendszernézetek.
+Az SQL Data Warehouse a Microsoft MPP technológiára épül, mert az SQL Data Warehouse és a Parallel Data Warehouse Analytics Platform System (PDW) a azonos rendszer nézeteket használ.
 
-Ezért ezek DMV mindegyikén egy adott pdw_node_id nevű oszlop. Ez a hello számítási csomópont hello hello azonosítója. A PDW hello számítási csomópont fogalma erősebb hello architektúra. Az SQL Data Warehouse hello architektúra támaszkodik részletesebben hello terjesztéseket.
+Ezért ezek DMV mindegyikén egy adott pdw_node_id nevű oszlop. Ez az azonosítóját, a számítási csomópont. A PDW a számítási csomópont fogalma erősebb architektúrájának. Az SQL Data Warehouse architektúrája támaszkodik részletesebben a terjesztéseket.
 
 > [!NOTE]
-> toouse ezek megtekintéséhez "pdw_nodes_" beszúrása hello neve, ahogy az a következő táblázat hello.
+> A nézet használatához beilleszteni "pdw_nodes_" a neve, a következő táblázatban látható módon.
 > 
 > 
 
-| Az SQL Data Warehouse DMV neve | Hivatkozás tooSQL Server Transact-SQL a témakör az MSDN webhelyen |
+| Az SQL Data Warehouse DMV neve | SQL Server Transact-SQL című Témakörét csatolása |
 |:--- |:--- |
 | sys.dm_pdw_nodes_db_column_store_row_group_physical_stats | [sys.dm_db_column_store_row_group_physical_stats](/sql/relational-databases/system-dynamic-management-views/sys-dm-db-column-store-row-group-physical-stats-transact-sql)| 
 | sys.dm_pdw_nodes_db_column_store_row_group_operational_stats | [sys.dm_db_column_store_row_group_operational_stats](/sql/relational-databases/system-dynamic-management-views/sys-dm-db-column-store-row-group-operational-stats-transact-sql)| 

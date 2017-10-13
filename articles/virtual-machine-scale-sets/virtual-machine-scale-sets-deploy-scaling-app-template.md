@@ -1,6 +1,6 @@
 ---
-title: "egy alkalmazásét az egy Azure virtuálisgép-méretezési csoport aaaDeploy |} Microsoft Docs"
-description: "Ismerje meg, hogy egy egyszerű automatikus skálázás alkalmazás beállítása az Azure Resource Manager-sablonnal virtuálisgép-méretezési toodeploy."
+title: "Alkalmazás üzembe helyezése Azure virtuálisgép-méretezési csoportban | Microsoft Docs"
+description: "Elsajátíthatja, hogyan lehet üzembe helyezni egy automatikus méretezést végző egyszerű alkalmazást egy virtuálisgép-méretezési csoportban egy Azure Resource Manager-sablon használatával."
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: rwike77
@@ -15,25 +15,25 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/24/2017
 ms.author: ryanwi
-ms.openlocfilehash: 6fccc310312cabfcdddfcbcd2d154fc5cc440417
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 07883a33382cc660b043c99872312a9e77228253
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="deploy-an-autoscaling-app-using-a-template"></a>Automatikus méretezést végző alkalmazás üzembe helyezése sablon használatával
 
-[Az Azure Resource Manager-sablonok](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#template-deployment) vannak egy kiváló módja toodeploy kapcsolódó erőforrások csoportja. Ez az oktatóanyag épül [központi telepítése egy egyszerű méretezési](virtual-machine-scale-sets-mvss-start.md) , és bemutatja, hogyan toodeploy egy egyszerű automatikus skálázás alkalmazás szinten állíthatja Azure Resource Manager-sablonnal.  Automatikus skálázás a PowerShell, a parancssori felületen vagy a hello portál is állíthat be. További információért lásd az [automatikus méretezést áttekintő](virtual-machine-scale-sets-autoscale-overview.md) témakört.
+Az [Azure Resource Manager-sablonok](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#template-deployment) remek megoldást kínálnak egymáshoz kapcsolódó erőforráscsoportok üzembe helyezésére. Ez az oktatóanyag az [egyszerű méretezési csoport üzembe helyezését](virtual-machine-scale-sets-mvss-start.md) ismertető cikkre épít, és bemutatja, hogyan lehet üzembe helyezni egy automatikus méretezést végző egyszerű alkalmazást egy méretezési csoportban Azure Resource Manager-sablon használatával.  Az automatikus méretezést a PowerShell, a CLI vagy a portál használatával is beállíthatja. További információért lásd az [automatikus méretezést áttekintő](virtual-machine-scale-sets-autoscale-overview.md) témakört.
 
 ## <a name="two-quickstart-templates"></a>Két gyorsindítási sablon
-Amikor üzembe helyez egy méretezési csoportot, egy [virtuálisgép-bővítmény](../virtual-machines/virtual-machines-windows-extensions-features.md) segítségével új szoftvereket telepíthet a platformlemezképre. A virtuálisgép-bővítmény egy kisméretű alkalmazás, amely üzembe helyezés utáni konfigurációs és automatizálási feladatokat biztosít az Azure-beli virtuális gépeken, például lehetővé teszi egy alkalmazás üzembe helyezését. Két különböző minta sablonok találhatók: [Azure/azure-gyors üzembe helyezés-sablonok](https://github.com/Azure/azure-quickstart-templates) amely megjelenítése toodeploy alakzatot egy méretezési kérelmet automatikus skálázás beállításának módját Virtuálisgép-bővítmények használatával.
+Amikor üzembe helyez egy méretezési csoportot, egy [virtuálisgép-bővítmény](../virtual-machines/virtual-machines-windows-extensions-features.md) segítségével új szoftvereket telepíthet a platformlemezképre. A virtuálisgép-bővítmény egy kisméretű alkalmazás, amely üzembe helyezés utáni konfigurációs és automatizálási feladatokat biztosít az Azure-beli virtuális gépeken, például lehetővé teszi egy alkalmazás üzembe helyezését. Az [Azure/azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) sablonok két különböző mintasablont kínálnak, amelyek bemutatják, hogyan lehet üzembe helyezni egy automatikus méretezést végző alkalmazást egy méretezési csoportban virtuálisgép-bővítmények használatával.
 
 ### <a name="python-http-server-on-linux"></a>Python HTTP-kiszolgáló Linux rendszeren
-Hello [Python HTTP-kiszolgáló Linux](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) mintasablon egy Linux-méretezési csoport egy egyszerű automatikus skálázás alkalmazást telepíti.  [Bottle](http://bottlepy.org/docs/dev/), a Python webes keretrendszer, és egy egyszerű HTTP-kiszolgáló hello méretezési készletben, Virtuálisgép-bővítmény egyéni parancsfájl használata a virtuális gépek vannak telepítve. hello méretezési beállítani méretezik minden virtuális gép közötti átlagos CPU-felhasználás nagyobb, mint 60 % és arányosan csökken, ha hello átlagos processzorkihasználtság 30 %-nál kisebb.
+A [Python HTTP-kiszolgáló Linux rendszeren](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) mintasablon egy automatikus méretezést végző egyszerű alkalmazást helyez üzembe, amely egy Linux rendszerű méretezési csoporton fut.  A sablon egy egyéni virtuálisgép-szkriptbővítmény segítségével a méretezési csoport minden virtuális gépén üzembe helyezi a [Bottle](http://bottlepy.org/docs/dev/) Python webes keretrendszert és egy egyszerű HTTP-kiszolgálót. A méretezési csoport akkor skálázódik fel, ha az átlagos processzorhasználat az összes virtuális gépen meghaladja a 60%-ot, és akkor skálázódik le, ha az átlagos processzorhasználat 30% alá esik.
 
-Ezenkívül toohello méretezési erőforrás, hello *azuredeploy.json* mintasablon is deklarálja a virtuális hálózati, a nyilvános IP-cím, a terheléselosztó és az automatikus skálázási beállításokat erőforrások.  Az erőforrások sablonban való létrehozásával kapcsolatos további információkért lásd [a Linux rendszerű méretezési csoporttal és az automatikus méretezéssel](virtual-machine-scale-sets-linux-autoscale.md) foglalkozó cikket.
+A méretezésicsoport-erőforrás mellett az *azuredeploy.json* mintasablon a virtuális hálózat, nyilvános IP-cím, terheléselosztó és automatikus méretezési beállítások erőforrásokat is deklarálja.  Az erőforrások sablonban való létrehozásával kapcsolatos további információkért lásd [a Linux rendszerű méretezési csoporttal és az automatikus méretezéssel](virtual-machine-scale-sets-linux-autoscale.md) foglalkozó cikket.
 
-A hello *azuredeploy.json* sablon, hello `extensionProfile` hello tulajdonságának `Microsoft.Compute/virtualMachineScaleSets` erőforrás egy egyéni parancsprogramok futtatására szolgáló bővítmény határozza meg. `fileUris`hello parancsfájl(ok) helyet határoz meg. Ebben az esetben két fájl: *workserver.py*, amely megadja, hogy egy egyszerű HTTP-kiszolgáló és *installserver.sh*, amely telepíti a Bottle, és elindítja hello HTTP-kiszolgáló. `commandToExecute`Adja meg a hello parancs toorun hello méretezési csoport telepítése után.
+Az *azuredeploy.json* sablonban a `extensionProfile` erőforrás `Microsoft.Compute/virtualMachineScaleSets` tulajdonsága egy egyéni szkriptbővítményt határoz meg. A `fileUris` a szkript(ek) helyét határozza meg. Ebben az esetben két fájlról van szó, az egyik a *workserver.py*, amely egy egyszerű HTTP-kiszolgálót határoz meg, és az *installserver.sh*, amely telepíti a Bottle keretrendszert és elindítja a HTTP-kiszolgálót. A `commandToExecute` a méretezési csoport üzembe helyezése után futtatandó parancsot határozza meg.
 
 ```json
           "extensionProfile": {
@@ -59,11 +59,11 @@ A hello *azuredeploy.json* sablon, hello `extensionProfile` hello tulajdonságá
 ```
 
 ### <a name="aspnet-mvc-application-on-windows"></a>ASP.NET MVC alkalmazás a Windows rendszeren
-Hello [ASP.NET MVC alkalmazás Windows](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) mintasablon telepíti egy egyszerű ASP.NET MVC alkalmazást az IIS-ben futó Windows-méretezési készlet.  IIS hello MVC alkalmazás telepítve van a hello segítségével [PowerShell célállapot-konfiguráló (DSC)](virtual-machine-scale-sets-dsc.md) Virtuálisgép-bővítmény.  hello méretezési beállítása méretezik (a Virtuálisgép-példány egyszerre), ha a processzorkihasználtság 50 %-nál nagyobb 5 percig. 
+Az [ASP.NET MVC alkalmazás a Windows rendszeren](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) mintasablon egy egyszerű ASP.NET MVC alkalmazást helyez üzembe, amely az IIS-ben, egy Windows rendszerű méretezési csoporton fut.  Az IIS-t és az MVC alkalmazást a sablon a [PowerShell Desired State Configuration (DSC)](virtual-machine-scale-sets-dsc.md) virtuálisgép-bővítmény használatával helyezi üzembe.  A méretezési csoport akkor skálázódik fel (egyszerre egy virtuálisgép-példányonként), ha a processzorhasználat 5 percen át 50% fölött van. 
 
-Ezenkívül toohello méretezési erőforrás, hello *azuredeploy.json* mintasablon is deklarálja a virtuális hálózati, a nyilvános IP-cím, a terheléselosztó és az automatikus skálázási beállításokat erőforrások. Ez a sablon az alkalmazásfrissítés módját is bemutatja.  Az erőforrások sablonban való létrehozásával kapcsolatos további információkért lásd [a Windows rendszerű méretezési csoporttal és az automatikus méretezéssel](virtual-machine-scale-sets-windows-autoscale.md) foglalkozó cikket.
+A méretezésicsoport-erőforrás mellett az *azuredeploy.json* mintasablon a virtuális hálózat, nyilvános IP-cím, terheléselosztó és automatikus méretezési beállítások erőforrásokat is deklarálja. Ez a sablon az alkalmazásfrissítés módját is bemutatja.  Az erőforrások sablonban való létrehozásával kapcsolatos további információkért lásd [a Windows rendszerű méretezési csoporttal és az automatikus méretezéssel](virtual-machine-scale-sets-windows-autoscale.md) foglalkozó cikket.
 
-A hello *azuredeploy.json* sablon, hello `extensionProfile` hello tulajdonságának `Microsoft.Compute/virtualMachineScaleSets` erőforrás megadja egy [kívánt állapot konfigurációs (szolgáltatása DSC)](virtual-machine-scale-sets-dsc.md) -kiterjesztésen, amely telepíti az IIS és az alapértelmezett a webalkalmazás a WebDeploy-csomagból.  Hello *IISInstall.ps1* parancsfájl hello virtuális gépre telepíti az IIS szolgáltatást, és hello található *DSC* mappát.  hello MVC webalkalmazás megtalálható hello *WebDeploy* mappa.  hello elérési utak toohello telepítési parancsfájlt és hello webalkalmazás definiált hello `powershelldscZip` és `webDeployPackage` hello paramétereiben *azuredeploy.parameters.json* fájlt. 
+Az *azuredeploy.json* sablonban a `extensionProfile` erőforrás `Microsoft.Compute/virtualMachineScaleSets` tulajdonsága egy [Desired State Configuration (DSC)](virtual-machine-scale-sets-dsc.md) bővítményt határoz meg, amely telepíti az IIS-t és egy WebDeploy csomagból származó alapértelmezett webalkalmazást.  A *DSC* mappában található *IISInstall.ps1* szkript telepíti az IIS-t a virtuális gépre.  Az MVC webalkalmazás a *WebDeploy* mappában található.  A telepítési szkript és a webalkalmazás elérési útja az *azuredeploy.parameters.json* fájl `powershelldscZip` és `webDeployPackage` paraméterében van meghatározva. 
 
 ```json
           "extensionProfile": {
@@ -93,11 +93,11 @@ A hello *azuredeploy.json* sablon, hello `extensionProfile` hello tulajdonságá
           }
 ```
 
-## <a name="deploy-hello-template"></a>Hello sablon üzembe helyezése
-hello legegyszerűbb módja toodeploy hello [Python HTTP-kiszolgáló Linux](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) vagy [ASP.NET MVC alkalmazás Windows](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) sablon toouse hello **tooAzure telepítése** hello található gomb hello readme fájlokban a Githubon.  PowerShell vagy Azure CLI toodeploy hello minta sablonokat is használhat.
+## <a name="deploy-the-template"></a>A sablon üzembe helyezése
+A [Python HTTP-kiszolgáló Linux rendszeren](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) vagy az [ASP.NET MVC alkalmazás a Windows rendszeren](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) sablon üzembe helyezésének legegyszerűbb módja a GitHub információs fájljaiban található **Deploy to Azure** (Üzembe helyezés az Azure-ban) gomb használata.  A mintasablonokat a PowerShell vagy az Azure CLI segítségével is üzembe helyezheti.
 
 ### <a name="powershell"></a>PowerShell
-Másolás hello [Python HTTP-kiszolgáló Linux](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) vagy [ASP.NET MVC alkalmazás Windows](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) hello GitHub tárház tooa mappa fájljait a helyi számítógépen.  Nyissa meg hello *azuredeploy.parameters.json* fájl- és frissítési hello alapértelmezett értékekkel rendelkező hello `vmssName`, `adminUsername`, és `adminPassword` paraméterek. Hello túl a következő PowerShell-parancsfájl mentése*deploy.ps1* hello a mappában, amelyben hello *azuredeploy.json* sablont. toodeploy hello minta futtatása sablon hello *deploy.ps1* parancsfájlt a PowerShell-parancsablakot.
+Másolja át a [Python HTTP-kiszolgáló Linux rendszeren](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) vagy az [ASP.NET MVC alkalmazás a Windows rendszeren](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) fájljait a GitHub-adattárból a helyi számítógép egyik mappájába.  Nyissa meg az *azuredeploy.parameters.json* fájlt, és frissítse a `vmssName`, `adminUsername` és `adminPassword` paraméterek alapértelmezett értékeit. Mentse a következő PowerShell-szkriptet a *deploy.ps1* fájlba, ugyanabba a mappába, amelyben az *azuredeploy.json* sablon található. A mintasablon üzembe helyezéséhez futtassa a *deploy.ps1* szkriptet egy PowerShell-parancsablakból.
 
 ```powershell
 param(
@@ -163,7 +163,7 @@ if($resourceProviders.length) {
 $resourceGroup = Get-AzureRmResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue
 if(!$resourceGroup)
 {
-    Write-Host "Resource group '$resourceGroupName' does not exist. toocreate a new resource group, please enter a location.";
+    Write-Host "Resource group '$resourceGroupName' does not exist. To create a new resource group, please enter a location.";
     if(!$resourceGroupLocation) {
         $resourceGroupLocation = Read-Host "resourceGroupLocation";
     }
@@ -174,7 +174,7 @@ else{
     Write-Host "Using existing resource group '$resourceGroupName'";
 }
 
-# Start hello deployment
+# Start the deployment
 Write-Host "Starting deployment...";
 if(Test-Path $parametersFilePath) {
     New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath -TemplateParameterFile $parametersFilePath;
@@ -191,7 +191,7 @@ IFS=$'\n\t'
 
 # -e: immediately exit if any command has a non-zero exit status
 # -o: prevents errors in a pipeline from being masked
-# IFS new value is less likely toocause confusing bugs when looping arrays or arguments (e.g. $@)
+# IFS new value is less likely to cause confusing bugs when looping arrays or arguments (e.g. $@)
 
 usage() { echo "Usage: $0 -i <subscriptionId> -g <resourceGroupName> -n <deploymentName> -l <resourceGroupLocation>" 1>&2; exit 1; }
 
@@ -238,12 +238,12 @@ if [[ -z "$deploymentName" ]]; then
 fi
 
 if [[ -z "$resourceGroupLocation" ]]; then
-    echo "Enter a location below toocreate a new resource group else skip this"
+    echo "Enter a location below to create a new resource group else skip this"
     echo "ResourceGroupLocation:"
     read resourceGroupLocation
 fi
 
-#templateFile Path - template file toobe used
+#templateFile Path - template file to be used
 templateFilePath="template.json"
 
 if [ ! -f "$templateFilePath" ]; then
@@ -264,7 +264,7 @@ if [ -z "$subscriptionId" ] || [ -z "$resourceGroupName" ] || [ -z "$deploymentN
     usage
 fi
 
-#login tooazure using your credentials
+#login to azure using your credentials
 az account show 1> /dev/null
 
 if [ $? != 0 ];
@@ -272,7 +272,7 @@ then
     az login
 fi
 
-#set hello default subscription id
+#set the default subscription id
 az account set --name $subscriptionId
 
 set +e

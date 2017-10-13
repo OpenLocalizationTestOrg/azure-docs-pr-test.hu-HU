@@ -1,6 +1,6 @@
 ---
-title: "aaaCapacity és teljesítmény-megoldás az Azure Naplóelemzés |} Microsoft Docs"
-description: "Használjon hello kapacitás és a teljesítmény megoldás Naplóelemzési toohelp megismerte a hello kapacitás, a Hyper-V-kiszolgálók."
+title: "Az Azure Naplóelemzés kapacitást és teljesítményt megoldás |} Microsoft Docs"
+description: "Log Analytics a kapacitást és teljesítményt megoldás segítségével megismerheti a kapacitás, a Hyper-V-kiszolgálók."
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: banders
-ms.openlocfilehash: c47bb1e8bb9d4460b0241e89a616f3b356844b08
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5ca005127721092b8efcf0ac83cc967ab15fe72d
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="plan-hyper-v-virtual-machine-capacity-with-hello-capacity-and-performance-solution-preview"></a>Tervezze meg a Hyper-V virtuális gép kapacitásának hello kapacitást és teljesítményt megoldás (előzetes verzió)
+# <a name="plan-hyper-v-virtual-machine-capacity-with-the-capacity-and-performance-solution-preview"></a>Hyper-V virtuális gép Kapacitástervezés a kapacitást és teljesítményt megoldás (előzetes verzió)
 
 ![Kapacitást és teljesítményt szimbólum](./media/log-analytics-capacity/capacity-solution.png)
 
-Hello kapacitás is használhatja, és ismernie Naplóelemzési toohelp teljesítmény megoldás hello kapacitás, a Hyper-V-kiszolgálók. hello megoldás azáltal, hogy bemutatja a Hyper-V környezetben betekintést hello teljes kihasználtság (Processzor, memória és lemez) hello állomások, és azokat Hyper-V gazdagépeken futó virtuális gépek hello biztosít. Metrikák Processzor, memória és a lemezek gyűjtése történt a gazdagépeken és a rajtuk futó hello virtuális gépek között.
+A Naplóelemzési a kapacitást és teljesítményt megoldás segítségével megismerheti a kapacitás, a Hyper-V-kiszolgálók. A megoldás jelenít meg a teljes kihasználtság (Processzor, memória és lemez) a gazdagépek és azokat Hyper-V gazdagépeken futó virtuális gépeket a Hyper-V környezetben betekintést nyújt. Metrikák Processzor, memória és a lemezek gyűjtése történt a gazdagépek és a rajtuk futó virtuális gépek között.
 
-hello megoldást:
+A megoldás:
 
 -   A legkisebb és legnagyobb Processzor- és memóriafelhasználását gazdagépei láthatók
 -   A legkisebb és legnagyobb Processzor- és memóriafelhasználását jeleníti meg a virtuális gépek
 -   Virtuális gépek biztosítanak legnagyobb és legkisebb iops-érték és az átvitel mellett látható
 -   Jeleníti meg, amely mely állomásokon futó virtuális gépek
--   Hello felső lemezek nagy átviteli sebességgel, IOPS, és a késés fürt megosztott kötetei jeleníti meg
-- Lehetővé teszi az toocustomize és szűrő csoportok alapján
+-   A felső lemez is van a magas teljesítmény, a iops-érték és a késleltetés jeleníti meg a fürt megosztott kötete
+- Lehetővé teszi testre szabhatja, és a csoportok szűrése
 
 > [!NOTE]
-> hello kapacitást és teljesítményt megoldást kínál kapacitás felügyeleti korábbi verziójának hello szükséges a System Center Operations Manager és a System Center Virtual Machine Manager. A frissített megoldás azok nem rendelkezik.
+> A kapacitást és teljesítményt megoldást kínál kapacitás Management korábbi verziója szükséges a System Center Operations Manager és a System Center Virtual Machine Manager. A frissített megoldás azok nem rendelkezik.
 
 
 ## <a name="connected-sources"></a>Összekapcsolt források
 
-a következő táblázat hello hello csatlakoztatott adatforrások, ez a megoldás által támogatott ismerteti.
+Az alábbi táblázat áttekintést nyújt az ebben a megoldásban támogatott összekapcsolt forrásokról.
 
 | Összekapcsolt forrás | Támogatás | Leírás |
 |---|---|---|
-| [Windows-ügynökök](log-analytics-windows-agents.md) | Igen | hello megoldás kapacitást és teljesítményt adatok információt gyűjt a Windows-ügynökök. |
-| [Linux-ügynökök](log-analytics-linux-agents.md) | Nem    | hello megoldás nem kapacitást és teljesítményt adatok információkat gyűjtsön a közvetlen Linux-ügynököt.|
-| [SCOM felügyeleti csoport](log-analytics-om-agents.md) | Igen |hello megoldás kapacitás és teljesítményadatokat gyűjt az ügynökök a csatlakoztatott SCOM felügyeleti csoport. Az SCOM-ügynököt tooOMS hello közvetlen kapcsolatra szükség. Adattárból hello felügyeleti csoport toohello OMS adat továbbítódik.|
+| [Windows-ügynökök](log-analytics-windows-agents.md) | Igen | A megoldás kapacitást és teljesítményt adatok információt gyűjt a Windows-ügynökök. |
+| [Linux-ügynökök](log-analytics-linux-agents.md) | Nem    | A megoldás nem kapacitást és teljesítményt adatok információkat gyűjtsön a közvetlen Linux-ügynököt.|
+| [SCOM felügyeleti csoport](log-analytics-om-agents.md) | Igen |A megoldás kapacitás és teljesítményadatokat gyűjt az ügynökök a csatlakoztatott SCOM felügyeleti csoport. Nincs szükség az SCOM-ügynököt a közvetlen kapcsolat az OMS Szolgáltatáshoz. Az adatok a felügyeleti csoportból az OMS-tárházba lesznek továbbítva.|
 | [Azure Storage-fiók](log-analytics-azure-storage.md) | Nem | Az Azure storage nem tartalmazza a kapacitást és teljesítményt adatait.|
 
 ## <a name="prerequisites"></a>Előfeltételek
@@ -57,51 +57,51 @@ a következő táblázat hello hello csatlakoztatott adatforrások, ez a megold�
 
 ## <a name="configuration"></a>Konfiguráció
 
-Hajtsa végre a következő lépés tooadd hello kapacitást és teljesítményt megoldás tooyour munkaterület hello.
+Hajtsa végre a következő lépés a kapacitást és teljesítményt megoldás hozzáadása a munkaterületen.
 
-- Adja hozzá a kapacitás hello és teljesítmény megoldás tooyour OMS-munkaterület hello eljárással ismertetett [hozzáadni a Naplóelemzési megoldásokat az hello megoldások gyűjtemény](log-analytics-add-solutions.md).
+- A kapacitást és teljesítményt megoldás hozzáadása az OMS-munkaterület ismertetett eljárással [hozzáadni a Naplóelemzési megoldások a megoldások gyűjteményből](log-analytics-add-solutions.md).
 
 ## <a name="management-packs"></a>Felügyeleti csomagok
 
-Ha az SCOM felügyeleti csoport csatlakoztatott tooyour OMS-munkaterület, majd a következő felügyeleti csomagok hello esetén telepítve lesz scom hozzá ehhez a megoldáshoz. Ezek a felügyeleti csomagok nem igényelnek további konfigurációs vagy karbantartási feladatokat.
+Ha az SCOM felügyeleti csoport az OMS-munkaterület csatlakozik, majd a következő felügyeleti csomagokat telepíti scom ebben a megoldásban hozzáadásakor. Ezek a felügyeleti csomagok nem igényelnek további konfigurációs vagy karbantartási feladatokat.
 
 - Microsoft.IntelligencePacks.CapacityPerformance
 
-hello 1201 esemény hasonlít:
+A 1201 esemény hasonlít:
 
 
 ```
 New Management Pack with id:"Microsoft.IntelligencePacks.CapacityPerformance", version:"1.10.3190.0" received.
 ```
 
-Hello kapacitást és teljesítményt megoldás frissítésekor hello verziószám változik.
+Amikor a kapacitást és teljesítményt megoldás frissül, a verziószám változik.
 
-A megoldás felügyeleti csomagok frissítésének további információkért lásd: [csatlakozás az Operations Manager tooLog Analytics](log-analytics-om-agents.md).
+A megoldási felügyeleti csomagok frissítéseivel kapcsolatban lásd: [Az Operations Manager csatlakoztatása a Log Analyticshez](log-analytics-om-agents.md).
 
-## <a name="using-hello-solution"></a>Hello megoldással
+## <a name="using-the-solution"></a>A megoldás használata
 
-Hello kapacitást és teljesítményt megoldás tooyour munkaterület hozzáadásakor hello kapacitást és teljesítményt kerül toohello áttekintő irányítópulthoz. Ez a csempe hello jelenleg aktív Hyper-V gazdagépek és hello száma volt figyelni a időszak kijelölt hello időpontig aktív virtuális gépek számát jeleníti meg.
+A kapacitást és teljesítményt megoldás a munkaterülethez való hozzáadásakor a kapacitást és teljesítményt hozzáadódik az áttekintő irányítópulthoz. Ez a csempe megjeleníti a jelenleg aktív Hyper-V-gazdagépek számát, és volt figyeli az adott időszakban aktív virtuális gépek száma a kijelölt.
 
 ![Kapacitást és teljesítményt csempe](./media/log-analytics-capacity/capacity-tile.png)
 
 
 ### <a name="review-utilization"></a>Tekintse át a kihasználtság
 
-Kattintson a hello kapacitás és teljesítmény csempe tooopen hello kapacitást és teljesítményt irányítópultot. hello irányítópult szerepel a következő táblázat hello hello oszlopa. Minden oszlop megjeleníti, hogy az oszlop feltételek hello megadva hatókör és a kívánt időtartományt tooten elemet be. A napló keresési, amely visszaadja az összes rekord kattintva futtathatja **láthatja az összes** hello oszlop vagy hello oszlop fejlécére kattintva hello alján.
+Kattintson a kapacitást és teljesítményt csempére a kapacitást és teljesítményt irányítópult megnyitásához. Az irányítópulton az alábbi táblázatban felsorolt oszlopok találhatóak. Mindegyik oszlopban legfeljebb tíz olyan elem jelenik meg, amely megfelel a megadott hatóköri és időtartományi kritériumoknak. Az oszlop alján található **Az összes megtekintése** elemre vagy az oszlop fejlécére kattintva az összes rekordot megjelenítő keresést végezhet a naplóban.
 
 - **Gazdagépek**
-    - **A gazdagép CPU-felhasználás** egy tendenciagrafikont hoz létre a számítógépek hello CPU-felhasználását és a gazdagépekhez, a kijelölt időszakban hello alapján listáját jeleníti meg. Vigye hello sor diagram tooview részletek az adott időben. Kattintson a további részleteket a naplófájl-keresési hello diagram tooview. Kattintson a bármely állomás neve tooopen napló keresés, és tekintse meg CPU teljesítményszámláló adatait üzemeltetett virtuális gépek esetén.
-    - **Gazdagép memóriahasználata** egy tendenciagrafikont hoz létre hello memóriahasználata számítógépek és a gazdagépekhez, a kijelölt időszakban hello alapján listáját jeleníti meg. Vigye hello sor diagram tooview részletek az adott időben. Kattintson a további részleteket a naplófájl-keresési hello diagram tooview. Kattintson a bármely állomás neve tooopen napló keresési és memória teljesítményszámláló adatait üzemeltetett virtuális gépek esetén.
-- **Virtuális gépek**
-    - **VM CPU-felhasználás** egy tendenciagrafikont hoz létre a virtuális gépek hello CPU-kihasználtsági és a virtuális gépek, a kijelölt időszakban hello alapján listáját jeleníti meg. Vigye hello sor diagram tooview részletek az adott időben a hello felső 3 virtuális gép. Kattintson a további részleteket a naplófájl-keresési hello diagram tooview. Kattintson a virtuális gép neve tooopen napló keresési és hello VM összesített CPU számláló részleteinek megtekintése.
-    - **Virtuális gép memória-felhasználás** egy tendenciagrafikont hoz létre a virtuális gépek memóriahasználata hello és virtuális gépek, a kijelölt időszakban hello alapján listáját jeleníti meg. Vigye hello sor diagram tooview részletek az adott időben a hello felső 3 virtuális gép. Kattintson a további részleteket a naplófájl-keresési hello diagram tooview. Kattintson a virtuális gép neve tooopen napló keresési és hello VM összesített memória számláló részleteinek megtekintése.
-    - **Virtuális gép összes lemez IOPS** mutatja egy tendenciagrafikont hoz létre az hello teljes IOPS lemez a virtuális gépek és a virtuális gépek hello IOPS minden, a listája alapján hello kijelölt időszakban. Vigye hello sor diagram tooview részletek az adott időben a hello felső 3 virtuális gép. Kattintson a további részleteket a naplófájl-keresési hello diagram tooview. Kattintson a bármely virtuális gép neve tooopen napló keresési és összesített lemez IOPS számláló hello virtuális gép adatait.
-    - **Virtuális gép teljes lemez átviteli sebesség** egy tendenciagrafikont hoz létre a virtuális gépek és a hello a lemez teljes átviteli az egyes virtuális gépek listájának, alapján hello hello a lemez teljes átviteli kijelölt időszakra vonatkozóan tartalmazza. Vigye hello sor diagram tooview részletek az adott időben a hello felső 3 virtuális gép. Kattintson a további részleteket a naplófájl-keresési hello diagram tooview. Kattintson a virtuális gép neve tooopen napló keresési és hello VM összesített a lemez teljes átviteli sebesség számláló részleteinek megtekintése.
+    - **A gazdagép CPU-felhasználás** egy tendenciagrafikont hoz létre a CPU-felhasználást a számítógépek és a gazdagépet, a kijelölt időszakot listáját jeleníti meg. Mutasson a vonaldiagram időben adott részleteinek megtekintése. Kattintson a diagram megtekintheti annak további részleteit a napló keresési. Kattintson a napló keresési megnyithatja és megtekintheti a CPU teljesítményszámláló adatait üzemeltetett virtuális gépek egyetlen állomás nevét.
+    - **Gazdagép memóriahasználata** egy tendenciagrafikont hoz létre a számítógépek memóriahasználata és a gazdagépet, a kijelölt időszakot listáját jeleníti meg. Mutasson a vonaldiagram időben adott részleteinek megtekintése. Kattintson a diagram megtekintheti annak további részleteit a napló keresési. Kattintson a napló keresési megnyithatja és megtekintheti a memória teljesítményszámláló adatait üzemeltetett virtuális gépek egyetlen állomás nevét.
+- **Virtual Machines**
+    - **VM CPU-felhasználás** egy tendenciagrafikont hoz létre a processzorkihasználtság, virtuális gépek és virtuális gépek, a kijelölt időszakot alapuló listáját jeleníti meg. Mutasson a vonaldiagram meg az adott időben a felső 3 virtuális gépek számára. Kattintson a diagram megtekintheti annak további részleteit a napló keresési. Kattintson a napló keresési megnyithatja és megtekintheti a összesített CPU teljesítményszámláló adatait a virtuális gép egyetlen virtuális gép nevét.
+    - **Virtuális gép memória-felhasználás** egy tendenciagrafikont hoz létre a virtuális gépek memóriahasználata és a virtuális gépek, a kijelölt időszakot alapuló listáját jeleníti meg. Mutasson a vonaldiagram meg az adott időben a felső 3 virtuális gépek számára. Kattintson a diagram megtekintheti annak további részleteit a napló keresési. Kattintson az egyik virtuális gép nevére, és nyissa meg a keresési napló és a virtuális gép összesített memória számláló részleteinek megtekintése.
+    - **Virtuális gép összes lemez IOPS** egy tendenciagrafikont hoz létre a teljes lemez a virtuális gépek IOPS és az IOPS, az egyes, a virtuális gépek listáját jeleníti meg a kijelölt időszakot alapján. Mutasson a vonaldiagram meg az adott időben a felső 3 virtuális gépek számára. Kattintson a diagram megtekintheti annak további részleteit a napló keresési. Kattintson az egyik virtuális gép nevére, és nyissa meg a naplófájl-keresési és összesített lemez IOPS számláló a virtuális gép részletei.
+    - **Virtuális gép teljes lemez átviteli sebesség** egy tendenciagrafikont hoz létre az a lemez teljes átviteli sebesség a virtuális gépek és a virtuális gépek minden egyes, a lemez teljes átviteli sebesség a listáját jeleníti meg a kijelölt időszakot alapján. Mutasson a vonaldiagram meg az adott időben a felső 3 virtuális gépek számára. Kattintson a diagram megtekintheti annak további részleteit a napló keresési. Kattintson a napló keresési megnyithatja és megtekintheti a összesített a lemez teljes átviteli sebesség teljesítményszámláló adatait a virtuális gép egyetlen virtuális gép nevét.
 - **A fürt megosztott kötetei**
-    - **Teljes átviteli sebesség** hello összege is beolvassa, és a fürtözött megosztott köteteket jeleníti meg.
-    - **Teljes IOPS** bemeneti/kimeneti műveletek másodpercenkénti száma a fürtözött megosztott kötetek hello összegét mutatja.
-    - **Teljes késést** hello teljes késést jeleníti meg a fürt megosztott kötetei.
-- **Gazdagép sűrűség** hello felső csempe hello gazdagépek és virtuális gépek rendelkezésre toohello megoldás teljes számát jeleníti meg. Kattintson a hello felső csempe tooview további részletek a naplóban keresési. Is felsorolja az összes gazdagép és virtuális gépek hello száma. Kattintson egy gazdagép toodrill be egy naplófájl-keresési hello VM eredményez.
+    - **Teljes átviteli sebesség** mindkét olvasások összegét mutatja, és a fürt megosztott kötetei azt.
+    - **Teljes IOPS** a fürtözött megosztott kötetek bemeneti/kimeneti műveletek száma másodpercenként összegzése látható.
+    - **Teljes késést** mutatja be a teljes késést fürtözött megosztott köteteket.
+- **Gazdagép sűrűség** az első csempe a gazdagépek és virtuális gépek érhető el, a megoldásra mutató teljes számát mutatja. Kattintson a felső csempe a naplófájl-keresési további részletek megtekintéséhez. Minden gazdagép és virtuális gépek számát is tartalmazza. Kattintson egy gazdagépet a virtuális gép eredményezi, a naplófájl-keresési elemezze a.
 
 
 ![Irányítópult állomások panel](./media/log-analytics-capacity/dashboard-hosts.png)
@@ -111,14 +111,14 @@ Kattintson a hello kapacitás és teljesítmény csempe tooopen hello kapacitás
 
 ### <a name="evaluate-performance"></a>Teljesítmény kiértékelése
 
-Éles környezetekhez egy szervezet tooanother nagymértékben eltérnek. Emellett kapacitást és teljesítményt munkaterhelések függhet hogyan a virtuális gépek futnak, és Ön normál érdemes. Speciális eljárásokat toohelp mérni a teljesítmény akkor valószínűleg nem vonatkozik a tooyour környezetben. Így több épülő általánosítva van jobban olyan környezethez a legalkalmasabb toohelp. A Microsoft számos közzéteszi az előírásoknak megfelelő útmutató cikkek toohelp mérni a teljesítményt.
+A termelési számítási környezetek eltérőek jelentősen egy szervezet. Emellett kapacitást és teljesítményt munkaterhelések függhet hogyan a virtuális gépek futnak, és Ön normál érdemes. Speciális eljárásokat segítséget mérték teljesítmény akkor valószínűleg nem vonatkozik a környezetben. Így több általánosítva előíró útmutatás a jobban illeszkedik segítségével. A Microsoft tesz közzé az előírásoknak megfelelő útmutató cikkek segítségével különböző mérni a teljesítményt.
 
-toosummarize, hello megoldás kapacitás és teljesítményadatokat gyűjt a különböző forrásokból, beleértve a teljesítményszámlálókat. Az, hogy a különböző felületek hello megoldásban bemutatott kapacitást és teljesítményt adatokat, és hasonlítsa össze a következő hello eredmények toothose [teljesítménye méri a Hyper-V](https://msdn.microsoft.com/library/cc768535.aspx) cikk. Bár a hello cikk régebben lett közzétéve, hello metrikákat, szempontok és irányelveket még érvényesek. hello cikk tooother hasznos források hivatkozásait tartalmazza.
+Összefoglalva, a megoldás kapacitás és teljesítményadatokat gyűjt a különböző forrásokból, beleértve a teljesítményszámlálókat. Az, hogy a különböző felületek, a megoldás bemutatott kapacitást és teljesítményt adatokat, és hasonlítsa össze azokat a az eredményeket a [teljesítménye méri a Hyper-V](https://msdn.microsoft.com/library/cc768535.aspx) cikk. A cikk régebben lett közzétéve, bár a metrikákat, szempontok és irányelveket még érvényesek. Egyéb hasznos források mutató hivatkozásokat tartalmaz.
 
 
 ## <a name="sample-log-searches"></a>Naplókeresési minták
 
-a következő táblázat hello biztosít a kapacitást és teljesítményt adatokat gyűjt, és ez a megoldás által kiszámított minta napló keres.
+A következő táblázat a kapacitást és teljesítményt adatokat gyűjt, és ez a megoldás által kiszámított minta napló keres.
 
 | Lekérdezés | Leírás |
 |---|---|
@@ -131,7 +131,7 @@ a következő táblázat hello biztosít a kapacitást és teljesítményt adato
 | Minden CSV-k között teljes késést bontása | <code> Type=Perf ObjectName="Capacity and Performance" (CounterName="CSV Read Latency" OR CounterName="CSV Write Latency") &#124; top 2500 &#124; measure avg(CounterValue) by CounterName, InstanceName interval 1HOUR</code> |
 
 >[!NOTE]
-> Ha a munkaterületet frissített toohello [új Log Analytics lekérdezési nyelv](log-analytics-log-search-upgrade.md), majd a fenti lekérdezések hello megváltozna toohello következő.
+> Ha a munkaterülete frissítve lett az [új Log Analytics lekérdezési nyelvre](log-analytics-log-search-upgrade.md), akkor a fenti lekérdezések a következők szerint módosulnak.
 
 > | Lekérdezés | Leírás |
 |:--- |:--- |
@@ -145,4 +145,4 @@ a következő táblázat hello biztosít a kapacitást és teljesítményt adato
 
 
 ## <a name="next-steps"></a>Következő lépések
-* Használjon [Log Analytics-e jelentkezni a keresések](log-analytics-log-searches.md) tooview részletesebb kapacitását és teljesítményét.
+* Használjon [Log Analytics-e jelentkezni a keresések](log-analytics-log-searches.md) kapacitást és teljesítményt részletes adatainak megtekintéséhez.

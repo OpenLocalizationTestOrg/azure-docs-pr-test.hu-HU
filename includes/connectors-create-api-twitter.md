@@ -1,18 +1,18 @@
 ### <a name="prerequisites"></a>Előfeltételek
 * Twitter-fiók 
 
-A Twitter-fiók a logikai alkalmazás használata előtt engedélyeznie kell a hello logic app tooconnect tooyour Twitter-fiók. Szerencsére ehhez egyszerűen a a logikai alkalmazásban a hello Azure portálon. 
+A Twitter-fiók a logikai alkalmazás használata előtt engedélyeznie kell a logikai alkalmazást, a Twitter-fiók való kapcsolódáshoz. Szerencsére ehhez egyszerűen a a logikai alkalmazásban, az Azure portálon. 
 
-Az alábbiakban hello lépéseket tooauthorize a logic app tooconnect tooyour Twitter-fiók:
+A Logic Apps alkalmazást, a Twitter-fiók való csatlakozáshoz engedélyezni lépései a következők:
 
-1. toocreate egy kapcsolat tooTwitter hello logic app Designer kiválasztása **megjelenítése Microsoft felügyelt API-k** hello a legördülő listából, majd adja meg *Twitter* hello Keresés mezőbe. Hello eseményindító vagy lesz, például a toouse művelet kiválasztása:  
+1. A logic app designer Twitter, kapcsolat létrehozásához válassza **megjelenítése Microsoft felügyelt API-k** a legördülő listában adja meg *Twitter* be a keresőmezőbe. Válassza ki az eseményindító vagy művelet fogjuk használni kívánt:  
    ![Kép: a 0 Twitter kapcsolat](./media/connectors-create-api-twitter/twitter-0.png)
-2. Bármely kapcsolatok tooTwitter előtt még nem hozott létre, ha később is lesz felszólító tooprovide Twitter hitelesítő adatait. Ezeket a hitelesítő adatokat kell használt tooauthorize a logic app tooconnect számára, és a Twitter-fiók adatok eléréséhez:  
+2. Ha még nem hozott létre előtt Twitter fennálló kapcsolatokat, a rendszer Twitter hitelesítő adatok megadása fog kérni. Ezek a hitelesítő adatok engedélyezik a Logic Apps alkalmazást való kapcsolódáshoz használandó, és a Twitter-fiók adatok eléréséhez:  
    ![Kép: Csatlakozás 1 Twitter](./media/connectors-create-api-twitter/twitter-1.png)  
-3. Adja meg a Twitter-felhasználó nevét és jelszavát tooauthorize a Logic Apps alkalmazást:  
+3. A Twitter-felhasználónevet és jelszót kell megadniuk a Logic Apps alkalmazást engedélyezése:  
    ![Kép: Csatlakozás 2 Twitter](./media/connectors-create-api-twitter/twitter-2.png)  
 4. Erősítse meg az Ön jogosultságait:  
    ![Kép: csatlakozás 3 Twitter](./media/connectors-create-api-twitter/twitter-3.png)  
-5. Figyelje meg hello kapcsolat létrejött, és most a Logic Apps alkalmazást az egyéb hello szabad tooproceed szükséges lépések:  
+5. Figyelje meg, a kapcsolat létrejött, és szabadon most folytatja a Logic Apps alkalmazást más lépéseket:  
    ![Kép: csatlakozás 4 Twitter](./media/connectors-create-api-twitter/twitter-4.png)
 

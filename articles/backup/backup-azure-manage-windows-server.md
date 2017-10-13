@@ -1,6 +1,6 @@
 ---
-title: "aaaManage az Azure recovery services-tárolók és a kiszolgálók |} Microsoft Docs"
-description: "Az oktatóanyag toolearn hogyan toomanage az Azure recovery services-tárolók és a kiszolgálók használata."
+title: "Az Azure recovery services-tárolók és a kiszolgálók felügyeletére |} Microsoft Docs"
+description: "Ez az oktatóanyag segítségével megtudhatja, hogyan az Azure recovery services-tárolók és a kiszolgálók kezelésére."
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: markgal
-ms.openlocfilehash: b4c35c86faa0828b3c63a13b85c095c0cbaba50e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5922e308f5c205a07bd329c28322ae82cea0e1fa
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="monitor-and-manage-azure-recovery-services-vaults-and-servers-for-windows-machines"></a>Windows-gépek Azure Recovery Services-tárolóinak és -kiszolgálóinak figyelése és kezelése
 > [!div class="op_single_selector"]
@@ -27,52 +27,52 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-Ebben a cikkben találhat hello áttekintést hello Azure portál és hello Microsoft Azure biztonságimásolat-készítő ügynök keresztül elérhető biztonsági mentési figyelő és a felügyeleti feladatokat. Ez a cikk azt feltételezi, hogy már rendelkezik Azure-előfizetéssel, és legalább egy Recovery Services-tároló létrehozása.
+Ebben a cikkben az Azure-portál és a Microsoft Azure Backup szolgáltatás ügynöke elérhető biztonsági mentési figyelő és a felügyeleti feladatok áttekintést találhat. Ez a cikk azt feltételezi, hogy már rendelkezik Azure-előfizetéssel, és legalább egy Recovery Services-tároló létrehozása.
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]
 
 
 ## <a name="open-a-recovery-services-vault"></a>Nyissa meg a Recovery Services-tároló
 
-hello Recovery Services-tároló irányítópult látható hello részleteit, illetve a Recovery Services-tároló attribútumait.
+A Recovery Services-tároló irányítópult látható a részleteit, illetve a Recovery Services-tároló attribútumait.
 
-1. Jelentkezzen be toohello [Azure Portal](https://portal.azure.com/) használata az Azure-előfizetéshez.
-2. Hello központ menüben kattintson a **több szolgáltatások**.
+1. Jelentkezzen be a [Azure Portal](https://portal.azure.com/) használata az Azure-előfizetéshez.
+2. A központ menüben kattintson a **több szolgáltatások**.
 
     ![Recovery Services-tárolók 1.lépés listájának megnyitása](./media/backup-azure-manage-windows-server/open-rs-vault-list.png) <br/>
 
-3. Azt szeretné, hogy tooopen Recovery Services-tároló. A hello párbeszédpanelen kezdje el begépelni **Recovery Services**. Írja be megkezdése előtt, hello listát szűrheti a megadott feltételeknek. Kattintson a **Recovery Services-tárolók** toodisplay hello listája Recovery Services-tárolók az előfizetésben.
+3. Nyissa meg a Recovery Services-tároló szeretné. A párbeszédpanelen, kezdje el begépelni **Recovery Services**. Ahogy elkezd gépelni, a lista a beírtak alapján szűri a lehetőségeket. Kattintson a **Recovery Services-tárolók** megjelenítse a Recovery Services-tárolók az előfizetésben.
 
     ![Recovery Services-tároló létrehozása – 1. lépés](./media/backup-azure-manage-windows-server/browse-to-rs-vaults-2.png) <br/>
 
-    Recovery Services-tárolók hello listáját nyitja meg.
+    A Recovery Services-tárolók listáját nyitja meg.
 
     ![Recovery Services-tároló létrehozása – 1. lépés](./media/backup-azure-manage-windows-server/list-of-rs-vaults.png) <br/>
 
-4. Tárolók hello listában jelölje ki azt szeretné, hogy tooopen Recovery Services-tároló hello hello neve. hello Recovery Services-tároló irányítópult panel nyílik meg.
+4. Tárolók a listából válassza ki a megnyitni kívánt Recovery Services-tároló nevét. Ekkor megnyílik a Recovery Services-tároló irányítópult panel.
 
     ![helyreállítási szolgáltatások tároló irányítópult](./media/backup-azure-manage-windows-server/rs-vault-blade.png) <br/>
 
-    Most, hogy a Recovery Services-tároló hello nyitotta meg, próbálkozzon a hello figyelés vagy a felügyeleti feladatokat.
+    Most, hogy a Recovery Services-tároló nyitotta meg, próbálkozzon a figyelést, vagy a felügyeleti feladatokat a.
 
 ## <a name="monitor-backup-jobs-and-alerts"></a>A figyelő biztonsági mentési feladatok és riasztások
 
-Feladatok figyelése és hello riasztásait Recovery Services tároló irányítópult, ahol láthatja:
+Figyelheti a feladatok és riasztások az irányítópultról Recovery Services tárolóban, ahol láthatja:
 
 * Biztonsági mentési riasztás részletei
-* Fájlok és mappák, valamint a védett hello felhőben Azure virtuális gépeken
+* Fájlok és mappák, valamint az Azure virtuális gép a felhőben védelme
 * Teljes Azure-ban felhasznált tárterület
 * Biztonsági mentési feladat állapota
 
 ![Biztonsági mentési irányítópult feladatok](./media/backup-azure-manage-windows-server/dashboard-tiles.png)
 
-Hello információt az egyes ezen csempék kattintva megnyílik a hello társított panel, ahol a kapcsolódó feladatok kezelése.
+Minden egyes ezen csempék az információk kattintva megnyílik a társított panel, ahol a kapcsolódó feladatok kezelése.
 
-Az irányítópult hello hello elejéhez:
+Az irányítópult tetején:
 
 * Beállítások hozzáférést biztosít az elérhető biztonsági mentési feladatokat.
-* Biztonsági mentés - segítségével biztonsági mentést új fájlok és mappák (vagy Azure virtuális gépeken) toohello Recovery Services-tároló.
-* Törlés – ha egy helyreállítási szolgáltatások tároló már nem használja, törölheti azt toofree tárolási helyet. Törlése csak akkor engedélyezett, miután az összes védett kiszolgálók, hogy törölték a hello tárolójából.
+* A biztonsági mentés - biztonsági másolatot készíteni az új fájlok és mappák (vagy Azure virtuális gépek) számára a Recovery Services-tároló segítségével.
+* Törlés – a recovery services-tároló már nem használatos, ha törlése tárhely felszabadítása érdekében. Törlés csak akkor engedélyezett, miután az összes védett kiszolgálón, hogy törölték a tárolóból.
 
 ![Biztonsági mentési irányítópult feladatok](./media/backup-azure-manage-windows-server/dashboard-tasks.png)
 
@@ -80,24 +80,24 @@ Az irányítópult hello hello elejéhez:
 | Riasztási szint | Értesítések küldése |
 | --- | --- |
 | Kritikus |Sikertelen biztonsági mentéshez, helyreállítási hiba |
-| Figyelmeztetés |A biztonsági mentés befejeződött, de figyelmeztetéseket generált (Ha kevesebb mint száz fájlok nem készül biztonsági mentés toocorruption problémák miatt, és több mint egymillió fájlok sikeresen biztonsági mentése) |
+| Figyelmeztetés |A biztonsági mentés befejeződött, de figyelmeztetéseket generált (Ha kevesebb mint száz fájlok nem készül biztonsági mentés okozta problémák miatt, és több mint egymillió fájlok sikeresen biztonsági mentése) |
 | Tájékoztató |None |
 
 ## <a name="manage-backup-alerts"></a>Biztonsági riasztások kezelése
-Hello kattintson **biztonsági mentési riasztások** csempe tooopen hello **biztonsági mentési riasztások** panel és kezelheti a riasztásokat.
+Kattintson a **biztonsági mentési riasztások** csempére kattintva nyissa meg a **biztonsági mentési riasztások** panel és kezelheti a riasztásokat.
 
 ![Biztonsági mentési riasztás](./media/backup-azure-manage-windows-server/manage-backup-alerts.png)
 
-hello biztonsági riasztások csempe megjeleníti hello száma:
+A biztonsági riasztások csempén a számát mutatja:
 
 * kritikus riasztás feloldva a legutóbbi 24 órában
 * az elmúlt 24 órában feloldatlan figyelmeztető riasztások
 
-Kattintson a valamennyi kapcsolatot tart toohello **biztonsági mentési riasztások** szűrt láthassák ezeket a riasztásokat (kritikus vagy figyelmeztetési) panelen.
+Kattintson a valamennyi kapcsolatot tart, hogy a **biztonsági mentési riasztások** szűrt láthassák ezeket a riasztásokat (kritikus vagy figyelmeztetési) panelen.
 
-A hello biztonsági riasztások panel hogy:
+A biztonsági mentési riasztások paneljéről meg:
 
-* Válassza ki a riasztások hello megfelelő adatokat tooinclude.
+* Válassza ki a megfelelő információkkal együtt a riasztásokat.
 
     ![Oszlopok kiválasztása](./media/backup-azure-manage-windows-server/choose-alerts-colunms.png)
 * Riasztások szűrése a súlyosság, állapota és a kezdő és záró időpont.
@@ -107,90 +107,90 @@ A hello biztonsági riasztások panel hogy:
 
     ![Riasztások szűrése](./media/backup-azure-manage-windows-server/configure-notifications.png)
 
-Ha **/ riasztási** hello választotta **értesítendő** gyakoriság nincs csoportosítás vagy e-mailek csökkenése történik. Minden egyes riasztás 1 értesítési eredményez. Ez az alapértelmezett beállítás hello és hello feloldási e-mailt is küld azonnal.
+Ha **/ riasztási** választotta a **értesítendő** gyakoriság nincs csoportosítás vagy e-mailek csökkenése történik. Minden egyes riasztás 1 értesítési eredményez. Ez az alapértelmezett beállítás, és a feloldási e-mailt is küld azonnal.
 
-Ha **óránkénti kivonatoló** hello választotta **értesítendő** egy e-mailt küld toohello felhasználói közölve, hogy van a gyakoriság feloldatlan új riasztások jönnek létre hello az elmúlt egy óra. A feloldási e-mail által kiküldött hello óra hello végén.
+Ha **óránkénti kivonatoló** választotta a **értesítendő** egy e-mailt küld a felhasználó közölve, hogy van a gyakoriság feloldatlan új riasztások jönnek létre az elmúlt órában. A feloldási e-mailt küld az órát végén.
 
-Is elküldi a riasztásokat a következő súlyossági szintek hello:
+Is elküldi a riasztásokat a következő súlyossági szintek:
 
 * Kritikus
 * Figyelmeztetés
 * Információ
 
-Hello hello riasztás inaktiválja **inaktiválása** hello feladat részletei panel gombjára. Kattintva inaktiválása, megadhatja a feloldási megjegyzések.
+A riasztás inaktiválja a **inaktiválása** gombot a projekt részleteit megjelenítő panelen. Kattintva inaktiválása, megadhatja a feloldási megjegyzések.
 
-Hello oszlopok kiválasztása tooappear kívánt hello hello riasztás részeként **oszlopok kiválasztása** gombra.
+Úgy dönt, hogy az oszlopok, akkor jelenik meg a riasztás részeként a **oszlopok kiválasztása** gombra.
 
 > [!NOTE]
-> A hello **beállítások** panelen, kezelheti a biztonsági mentési riasztás kiválasztásával **figyelés és jelentéskészítés > riasztások és események > biztonsági mentésekkel kapcsolatos riasztások** , majd kattintson **szűrő** vagy  **Értesítések konfigurálása**.
+> Az a **beállítások** panelen kezelheti a biztonsági mentési riasztás kiválasztásával **figyelés és jelentéskészítés > riasztások és események > biztonsági mentésekkel kapcsolatos riasztások** , majd kattintson **szűrő** vagy  **Értesítések konfigurálása**.
 >
 >
 
 ## <a name="manage-backup-items"></a>Biztonsági mentés elemek kezelése
-A helyi biztonsági kezelése mostantól elérhető hello felügyeleti portálon. Hello irányítópult hello biztonsági mentés területen hello **biztonsági másolati elemei** csempe megjeleníti hello biztonsági mentési elemszáma védett toohello tárolóban.
+A helyi biztonsági kezelése már elérhető a felügyeleti portálon. A biztonsági mentés szakaszában az irányítópulton a **biztonsági másolati elemei** csempe a tárolóba védett biztonsági másolati elemei számát jeleníti meg.
 
-Kattintson a **-mappákban** a biztonsági mentés elemek csempe hello.
+Kattintson a **-mappákban** a biztonsági mentés elemeknél csempére.
 
 ![Biztonsági másolati elemei csempe](./media/backup-azure-manage-windows-server/backup-items-tile.png)
 
-hello biztonsági másolati elemei panel nyílik meg hello szűrése minden felsorolt elem biztonsági másolat megtapasztalhatja tooFile-mappa.
+A biztonsági másolati elemei panel nyílik meg a szűrő beállítása fájlok és mappák, ahol minden egyes konkrét biztonsági másolat felsorolt elem látható.
 
 ![Biztonsági másolati elemei](./media/backup-azure-manage-windows-server/backup-item-list.png)
 
-Ha egy biztonsági mentési cikket hello listából válassza ki, hello alapvető adatait, hogy az elem látható.
+Ha egy adott biztonsági mentési elemet a listáról válassza ki, alapvető részletes adatainak megadása, hogy az elem látható.
 
 > [!NOTE]
-> A hello **beállítások** panelen, kezelheti a fájlok és mappák kiválasztásával **védett elemek > biztonsági mentés elemek** és jelölje be **-mappákban** hello a legördülő menü.
+> Az a **beállítások** panelen, kezelheti a fájlok és mappák kiválasztásával **védett elemek > biztonsági mentés elemek** és jelölje be **-mappákban** a legördülő menüből.
 >
 >
 
 ![A beállítások biztonsági másolati elemei](./media/backup-azure-manage-windows-server/backup-files-and-folders.png)
 
 ## <a name="manage-backup-jobs"></a>Biztonsági mentési feladatok kezelése
-Mind a helyszíni (ha hello helyszíni kiszolgáló biztonsági másolatot készít a tooAzure), és az Azure biztonsági mentések tartozó biztonsági mentési feladatok hello irányítópult láthatók.
+Biztonsági mentés mind a helyszíni feladatokat, (Ha a helyszíni kiszolgáló biztonsági mentése az Azure-bA), és az Azure biztonsági mentések láthatók az irányítópulton.
 
-A biztonsági mentés szakasz hello irányítópult hello hello biztonsági mentési feladat csempe feladatok hello számát jeleníti meg:
+Az irányítópult a biztonsági mentés területen a biztonsági mentési feladat csempe feladatok számát jeleníti meg:
 
 * folyamatban van
-* nem sikerült hello utolsó 24 órában.
+* nem sikerült az elmúlt 24 órában.
 
-toomanage a biztonsági mentési feladatok kattintson hello **biztonsági mentési feladatok** csempe, amely hello biztonsági mentési feladatok paneljének megnyitása.
+A biztonsági mentési feladatok kezeléséhez kattintson a **biztonsági mentési feladatok** csempe, amely a biztonsági mentési feladatok paneljének megnyitása.
 
 ![A beállítások biztonsági másolati elemei](./media/backup-azure-manage-windows-server/backup-jobs.png)
 
-Hello információk érhetők el a biztonsági mentési feladatok panelről hello hello módosítása **oszlopok kiválasztása** hello oldal hello tetején gombra.
+A biztonsági mentési feladatok panelről a rendelkezésre álló információk módosítása a **oszlopok kiválasztása** gombra az oldal tetején.
 
-Használjon hello **szűrő** gomb tooselect fájlok és mappák és az Azure virtuális gép biztonsági mentése között.
+Használja a **szűrő** gombra, majd a fájlok és mappák és az Azure virtuális gép biztonsági mentése között.
 
-Ha nem látja a biztonsági mentés fájlokat és mappákat, kattintson a **szűrő** hello lap, és válassza ki a hello tetején gomb **fájlok és mappák** hello elemtípus menüből.
+Ha nem látja a biztonsági mentés fájlokat és mappákat, kattintson a **szűrő** gombbal és válassza ki **fájlok és mappák** a elemtípus menüből.
 
 > [!NOTE]
-> A hello **beállítások** panelen kiválasztásával kezelheti a biztonsági mentési feladatok **figyelés és jelentéskészítés > feladatok > biztonsági mentési feladatok** és jelölje be **-mappákban** hello legördülő menüből menüre.
+> Az a **beállítások** panelen kiválasztásával kezelheti a biztonsági mentési feladatok **figyelés és jelentéskészítés > feladatok > biztonsági mentési feladatok** és jelölje be **-mappákban** a legördülő menüben menü.
 >
 >
 
 ## <a name="monitor-backup-usage"></a>Biztonsági másolat használatának figyelése
-A biztonsági mentés szakasz hello irányítópult hello hello biztonsági mentés használata csempe az Azure-ban felhasznált hello tárhely jeleníti meg. Tárhelyhasználatot biztosított:
+Az irányítópult a biztonsági mentés területen a biztonsági mentés használata csempe az Azure-ban felhasznált tárhely jeleníti meg. Tárhelyhasználatot biztosított:
 
-* A felhőalapú LRS storage használata hello tárolóhoz társított
-* A felhőalapú Georedundáns tárolás használata hello tárolóhoz társított
+* A tárolóhoz rendelt felhőalapú LRS-tároló használata
+* A felhőalapú Georedundáns tárolás használata a tárolóhoz rendelt
 
 ## <a name="manage-your-production-servers"></a>Az üzemi kiszolgálók kezelése
-toomanage az üzemi kiszolgálók kattintson **beállítások**.
+Az üzemi kiszolgálók kezeléséhez kattintson **beállítások**.
 
 Kattintson a kezelés **biztonsági infrastruktúra > az üzemi kiszolgálók**.
 
-hello az üzemi kiszolgálók panel listák az összes rendelkezésre álló üzemi kiszolgáló. Kattintson az adott kiszolgálón az hello lista tooopen hello kiszolgáló adatait.
+A rendelkezésre álló üzemi kiszolgálók az üzemi kiszolgálók panel listáját. Kattintson egy kiszolgálón nyissa meg a részletek a listában.
 
 ![Védett elemek](./media/backup-azure-manage-windows-server/production-server-list.png)
 
 
-## <a name="open-hello-azure-backup-agent"></a>Nyissa meg hello Azure Backup szolgáltatás ügynöke
-Nyissa meg hello **Microsoft Azure Backup szolgáltatás ügynökének** (rákeresve a gépen található *a Microsoft Azure Backup szolgáltatás*).
+## <a name="open-the-azure-backup-agent"></a>Nyissa meg az Azure Backup szolgáltatás ügynöke
+Nyissa meg a **Microsoft Azure Backup szolgáltatás ügynökének** (rákeresve a gépen található *a Microsoft Azure Backup szolgáltatás*).
 
 ![Windows Server biztonsági mentés ütemezése](./media/backup-azure-manage-windows-server/snap-in-search.png)
 
-A hello **műveletek** hello sarkában hello biztonságimásolat-készítő ügynök konzolon elérhető hajt végre a következő felügyeleti feladatok hello:
+Az a **műveletek** érhető el a biztonságimásolat-készítő ügynök konzol jobb akkor hajtsa végre az alábbi felügyeleti feladatokat:
 
 * Kiszolgáló regisztrálása
 * Biztonsági mentés ütemezése
@@ -200,65 +200,65 @@ A hello **műveletek** hello sarkában hello biztonságimásolat-készítő ügy
 ![A Microsoft Azure Backup szolgáltatás ügynöke konzol műveletek](./media/backup-azure-manage-windows-server/console-actions.png)
 
 > [!NOTE]
-> túl**adatok helyreállítása**, lásd: [fájlok tooa Windows server vagy Windows-ügyfélszámítógép visszaállítása](backup-azure-restore-windows-server.md).
+> A **adatok helyreállítása**, lásd: [fájlokat állíthatja vissza a Windows server vagy a Windows-ügyfélszámítógép](backup-azure-restore-windows-server.md).
 >
 >
 
-## <a name="modify-hello-backup-schedule"></a>Hello biztonsági mentési ütemezés módosítása
-1. A Microsoft Azure Backup szolgáltatás ügynökének hello kattintson **biztonsági mentés ütemezése**.
+## <a name="modify-the-backup-schedule"></a>A biztonsági mentési ütemezés módosítása
+1. Kattintson a Microsoft Azure Backup szolgáltatás ügynökének **biztonsági mentés ütemezése**.
 
     ![Windows Server biztonsági mentés ütemezése](./media/backup-azure-manage-windows-server/schedule-backup.png)
-2. A hello **ütemezett biztonsági mentés varázsló** hello hagyja **módosítása toobackup elemek vagy időpontok szerepelnek** jelölőnégyzetet és kattintson **következő**.
+2. Az a **ütemezett biztonsági mentés varázsló** hagyja a **biztonsági másolati elemei vagy időpontok szerepelnek módosítása** jelölőnégyzetet és kattintson **következő**.
 
     ![Windows Server biztonsági mentés ütemezése](./media/backup-azure-manage-windows-server/modify-or-stop-a-scheduled-backup.png)
-3. Ha szeretné, hogy tooadd, vagy módosítsa az elemeket, hello **elemek kijelölése tooBackup** képernyőn kattintson **elemek hozzáadása**.
+3. Ha szeretné-e hozzáadása vagy módosítása elemek, a a **elemek kijelölése biztonsági mentéshez** képernyőn kattintson **elemek hozzáadása**.
 
-    Azt is beállíthatja **kizárások beállításai** hello varázslóban ezen a lapon. Ha azt szeretné, hogy tooexclude fájlok vagy fájltípusok olvasási hozzáadására szolgáló eljárást hello [kizárások beállításai](#manage-exclusion-settings).
-4. Válassza ki a hello fájlok és mappák tooback szeretné, hogy fel, és kattintson a **gépházban**.
+    Azt is beállíthatja **kizárások beállításai** ezen a lapon, a varázslóban. Ha ki szeretné zárni a fájlok vagy fájltípusok olvassa el, hogyan adhat hozzá [kizárások beállításai](#manage-exclusion-settings).
+4. Válassza ki a fájlok és mappák biztonsági mentése, és kattintson a kívánt **gépházban**.
 
     ![Windows Server biztonsági mentés ütemezése](./media/backup-azure-manage-windows-server/add-items-modify.png)
-5. Adja meg a hello **biztonsági mentés ütemezése** kattintson **következő**.
+5. Adja meg a **biztonsági mentés ütemezése** kattintson **következő**.
 
     (A 3-szor naponkénti maximum) napi vagy heti biztonsági mentései is ütemezheti.
 
     ![Windows Server biztonsági mentés elemei](./media/backup-azure-manage-windows-server/specify-backup-schedule-modify-close.png)
 
    > [!NOTE]
-   > Adja meg a hello biztonsági mentés ütemezése esetén, tekintse meg a részletes [cikk](backup-azure-backup-cloud-as-tape.md).
+   > Adja meg a biztonsági mentés ütemezése esetén, tekintse meg a részletes [cikk](backup-azure-backup-cloud-as-tape.md).
    >
 
-6. Jelölje be hello **adatmegőrzési** hello biztonsági másolatot, majd kattintson **következő**.
+6. Válassza ki a **adatmegőrzési** a biztonsági másolatot, majd kattintson a **következő**.
 
     ![Windows Server biztonsági mentés elemei](./media/backup-azure-manage-windows-server/select-retention-policy-modify.png)
-7. A hello **megerősítő** képernyőn hello információk áttekintése, és kattintson a **Befejezés**.
-8. Miután hello varázsló létrehozta a hello **biztonsági mentés ütemezése**, kattintson a **Bezárás**.
+7. Az a **megerősítő** képernyőn tekintse át az adatokat, és kattintson a **Befejezés**.
+8. Miután a varázsló befejezi a **biztonsági mentés ütemezése**, kattintson a **Bezárás**.
 
-    Védelmi módosítása, után ellenőrizheti, hogy biztonsági mentések váltanak ki megfelelően fog toohello által **feladatok** lapra, és erősítse meg, hogy a módosítások megjelennek hello biztonsági mentési feladatok.
+    Védelmi módosítása, után ellenőrizheti, hogy biztonsági mentést a megfelelő váltanak a **feladatok** lapra, és erősítse meg, hogy a módosítások megjelennek a biztonsági mentési feladatok.
 
 ## <a name="enable-network-throttling"></a>Hálózati sávszélesség-szabályozás engedélyezése
 
-hello Azure Backup szolgáltatás ügynökének a sávszélesség-szabályozási fülre, amely lehetővé teszi a hálózati sávszélesség használatának adatátvitel során toocontrol biztosít. Ez a vezérlő akkor lehet hasznos, ha tooback adatokat kell munkaidőben, de nem hello biztonsági mentési folyamat toointerfere a más internetes forgalmat. Sávszélesség-szabályozás adatok átvitel mentése tooback vonatkozik, és állítsa vissza a tevékenységek.  
+Az Azure Backup szolgáltatás ügynökének biztosítja a sávszélesség-szabályozási fülre, amely lehetővé teszi, hogy vezérlését a hálózati sávszélesség használatának adatátvitel során. Ez a vezérlő akkor lehet hasznos, ha biztonsági kell során az adatokat munkaidő, de nem szeretné a biztonsági mentési folyamat zavarja a más internetes forgalmat. Átviteli biztonsági mentése és visszaállítása a tevékenységek adatok szabályozás vonatkozik.  
 
-sávszélesség-szabályozás tooenable:
+Elemre a szabályozás engedélyezéséhez:
 
-1. A hello **Backup szolgáltatás ügynökének**, kattintson a **tulajdonságainak módosítása**.
-2. A hello ** szabályozás lapra, válassza ki **engedélyezi az internetes sávszélesség szabályozásának a biztonsági mentési műveleteknél**.
+1. Az a **Backup szolgáltatás ügynökének**, kattintson a **tulajdonságainak módosítása**.
+2. Az a ** szabályozás lapra, válassza ki **engedélyezi az internetes sávszélesség szabályozásának a biztonsági mentési műveleteknél**.
 
     ![Hálózati sávszélesség-szabályozás](./media/backup-azure-manage-windows-server/throttling-dialog.png)
 
-    Miután engedélyezte a sávszélesség-szabályozás, adja meg a biztonsági mentési adatátvitel során sávszélesség engedélyezett hello **időpontokat a munkaidőhöz** és **munkaidőn kívüli**.
+    Miután engedélyezte a sávszélesség-szabályozás, adja meg a megengedett sávszélesség vonatkozó biztonsági mentési adatátvitel során **időpontokat a munkaidőhöz** és **munkaidőn kívüli**.
 
-    hello sávszélesség értékek kezdődjenek 512 kilobájt / másodperc (Kbps), és lépjen be too1023 megabájt / másodperc (Mbps). Is kijelölése hello kezdő és a Befejezés **időpontokat a munkaidőhöz**, és hello hét mely napján minősülnek munkahelyi nap. hello kívül időpontokat a munkaidőhöz kijelölt hello ideje figyelembe vett toobe munkaidőn kívüli órákra.
+    A sávszélesség értékek kezdődjenek 512 kilobájt / másodperc (Kbps), és folytathatja a legfeljebb 1023 megabájt / másodperc (Mbps). Is kijelölni a kezdő és a Befejezés **időpontokat a munkaidőhöz**, és a hét melyik napjain minősülnek munkahelyi nap. A megadott munkaidőn kívül idő tekinthető munkaidőn kívüli időszakra.
 3. Kattintson az **OK** gombra.
 
 ## <a name="manage-exclusion-settings"></a>Kizárási beállításainak kezelése
-1. Nyissa meg hello **Microsoft Azure Backup szolgáltatás ügynökének** (a gép kereséssel megtalálja *a Microsoft Azure Backup szolgáltatás*).
+1. Nyissa meg a **Microsoft Azure Backup szolgáltatás ügynökének** (a gép kereséssel megtalálja *a Microsoft Azure Backup szolgáltatás*).
 
     ![Windows Server biztonsági mentés ütemezése](./media/backup-azure-manage-windows-server/snap-in-search.png)
-2. A Microsoft Azure Backup szolgáltatás ügynökének hello kattintson **biztonsági mentés ütemezése**.
+2. Kattintson a Microsoft Azure Backup szolgáltatás ügynökének **biztonsági mentés ütemezése**.
 
     ![Windows Server biztonsági mentés ütemezése](./media/backup-azure-manage-windows-server/schedule-backup.png)
-3. Az ütemezett biztonsági mentés varázsló hello hagyja hello **módosítása toobackup elemek vagy időpontok szerepelnek** jelölőnégyzetet és kattintson **következő**.
+3. A biztonsági mentés ütemezése varázsló hagyja a a **biztonsági másolati elemei vagy időpontok szerepelnek módosítása** jelölőnégyzetet és kattintson **következő**.
 
     ![Windows Server biztonsági mentés ütemezése](./media/backup-azure-manage-windows-server/modify-or-stop-a-scheduled-backup.png)
 4. Kattintson a **kizárások beállításai**.
@@ -267,10 +267,10 @@ sávszélesség-szabályozás tooenable:
 5. Kattintson a **adja hozzá a kizárási**.
 
     ![Windows Server biztonsági mentés ütemezése](./media/backup-azure-manage-windows-server/add-exclusion.png)
-6. Adja meg hello helyét, és kattintson a **OK**.
+6. Válassza ki azt a helyet, és kattintson a **OK**.
 
     ![Windows Server biztonsági mentés ütemezése](./media/backup-azure-manage-windows-server/exclusion-location.png)
-7. Hello fájlkiterjesztés hozzáadása a hello **Fájltípus** mező.
+7. Adja hozzá a fájl kiterjesztése a **Fájltípus** mező.
 
     ![Windows Server biztonsági mentés ütemezése](./media/backup-azure-manage-windows-server/exclude-file-type.png)
 
@@ -278,44 +278,44 @@ sávszélesség-szabályozás tooenable:
 
     ![Windows Server biztonsági mentés ütemezése](./media/backup-azure-manage-windows-server/exclude-mp3.png)
 
-    tooadd egy másik kiterjesztést, kattintson a **Kizárás hozzáadása** , és adja meg egy másik típus fájlnévkiterjesztés (.jpeg-bővítmény hozzáadása).
+    Egy másik bővítmény hozzáadásához kattintson **Kizárás hozzáadása** , és adja meg egy másik típus fájlnévkiterjesztés (.jpeg-bővítmény hozzáadása).
 
     ![Windows Server biztonsági mentés ütemezése](./media/backup-azure-manage-windows-server/exclude-jpg.png)
-8. Ha az összes hello bővítmény felvett, kattintson **OK**.
-9. Ütemezett biztonsági mentés varázsló hello keresztül kattintva továbbra is **következő** amíg hello **visszaigazolási lapja**, kattintson a **Befejezés**.
+8. Ha a bővítményeket adott hozzá, kattintson **OK**.
+9. A biztonsági mentés ütemezése varázsló segítségével kattintva folytatni **következő** mindaddig, amíg a **visszaigazolási lapja**, kattintson a **Befejezés**.
 
     ![Windows Server biztonsági mentés ütemezése](./media/backup-azure-manage-windows-server/finish-exclusions.png)
 
 ## <a name="frequently-asked-questions"></a>Gyakori kérdések
-**1. KÉRDÉS. hello biztonsági mentési feladat állapotüzenet látható módon fejezte be hello Azure Backup szolgáltatás ügynöke, miért nem az beszerzése kerülnek azonnal portálon?**
+**1. KÉRDÉS. A biztonsági mentési feladat állapota: módon fejezte be az Azure Backup szolgáltatás ügynöke, miért nem az beszerzése kerülnek azonnal portálon?**
 
-1. válasz Nincs maximális késleltetés 15 perc közötti hello biztonsági mentési feladat állapotát a következő tükrözi hello Azure Backup szolgáltatás ügynöke és hello Azure-portálon.
+1. válasz Nincs maximális késleltetés 15 perc között a biztonsági mentési feladat állapotát a következő megjelenik az Azure Backup szolgáltatás ügynöke és az Azure-portálon.
 
-**Q.2, amikor egy biztonsági mentési feladat sikertelen lesz, hogy mennyi ideig tart tooraise riasztást?**
+**Q.2, amikor egy biztonsági mentési feladat sikertelen lesz, mennyi ideig tart a riasztást?**
 
-Riasztás A.2 hello Azure sikertelen biztonsági mentéshez, 20 perc belül következik be.
+A.2 riasztás jelenik meg, az Azure biztonsági mentési hiba 20 perc belül.
 
 **3. NEGYEDÉVÉBEN. Ha egy e-mailt nem küldi el, ha értesítések beállítása eset van?**
 
-3. válasz Amikor hello értesítés nem lesz elküldve a rendelés tooreduce hello riasztási zaj az alábbiakban hello esetekben:
+3. válasz Az alábbiakban az esetekben, amikor az értesítés nem lesz elküldve riasztás zaj csökkentése érdekében:
 
-* Ha az értesítések beállítása óránkénti, és az következik be van-e és hello órán belül megoldott riasztás
+* Ha az értesítések beállítása óránkénti, és az következik be van-e és órán belül megoldott riasztás
 * Feladat megszakadt.
 * Második biztonsági mentési feladat sikertelen volt, mert az eredeti biztonsági mentési feladat van folyamatban.
 
 ## <a name="troubleshooting-monitoring-issues"></a>Figyelési problémák elhárítása
-**Probléma:** feladatok és/vagy hello Azure Backup szolgáltatás ügynökének származó riasztások nem jelennek meg hello portálon.
+**Probléma:** feladatok és/vagy az Azure Backup szolgáltatás ügynökének származó riasztások nem jelennek meg a portálon.
 
-**Hibaelhárítási lépések:** folyamat hello ```OBRecoveryServicesManagementAgent```, küld hello feladat és riasztás adatok toohello Azure Backup szolgáltatás. Ez a folyamat állapottal alkalmanként vagy -leállítás.
+**Hibaelhárítási lépések:** a folyamat ```OBRecoveryServicesManagementAgent```, a feladat és riasztás adatokat küld az Azure Backup szolgáltatás. Ez a folyamat állapottal alkalmanként vagy -leállítás.
 
-1. tooverify hello folyamat nem fut, nyissa meg a **Feladatkezelő** , és ellenőrizze, hogy hello ```OBRecoveryServicesManagementAgent``` folyamat fut.
-2. Feltételezve, hogy hello folyamat nem fut, nyissa meg a **Vezérlőpult** , és keresse meg a szolgáltatás hello listája. Indítsa el, vagy indítsa újra a **Microsoft Azure Recovery Services Management Agent**.
+1. Ellenőrizze, hogy a folyamat nem fut, nyissa meg a **Feladatkezelő** és ellenőrizze, hogy a ```OBRecoveryServicesManagementAgent``` folyamat fut.
+2. Feltételezve, hogy a folyamat nem fut, nyissa meg a **Vezérlőpult** , és keresse meg a szolgáltatások listájában. Indítsa el, vagy indítsa újra a **Microsoft Azure Recovery Services Management Agent**.
 
-    További információért keresse meg a hello naplózásra kerül:<br/>
+    További információért keresse meg a naplózásra kerül:<br/>
    `<AzureBackup_agent_install_folder>\Microsoft Azure Recovery Services Agent\Temp\GatewayProvider*`Példa:<br/>
    `C:\Program Files\Microsoft Azure Recovery Services Agent\Temp\GatewayProvider0.errlog`
 
 ## <a name="next-steps"></a>Következő lépések
 * [Windows Server vagy a Windows ügyfél visszaállítása az Azure-ból](backup-azure-restore-windows-server.md)
-* További információ az Azure Backup szolgáltatásban toolearn lásd [Azure biztonsági mentés áttekintése](backup-introduction-to-azure-backup.md)
-* A Microsoft hello [Azure biztonsági mentés fórum](http://go.microsoft.com/fwlink/p/?LinkId=290933)
+* Azure biztonsági mentés kapcsolatos további információkért lásd: [Azure biztonsági mentés áttekintése](backup-introduction-to-azure-backup.md)
+* Látogasson el a [Azure biztonsági mentési fórum](http://go.microsoft.com/fwlink/p/?LinkId=290933)

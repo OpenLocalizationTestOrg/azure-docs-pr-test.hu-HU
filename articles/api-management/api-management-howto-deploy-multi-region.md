@@ -1,6 +1,6 @@
 ---
-title: "aaaDeploy Azure API Management-szolgáltatások toomultiple Azure régiók |} Microsoft Docs"
-description: "Ismerje meg, hogyan toodeploy az Azure API Management szolgáltatás példány toomultiple Azure régióban."
+title: "Azure API Management-szolgáltatások telepítése több Azure-régiók |} Microsoft Docs"
+description: "Ismerje meg, hogyan lehet telepíteni az Azure API Management szolgáltatáspéldány több Azure-régiók."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,54 +14,54 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 04a3e762261237d73a769320a21363f99f1d20cb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1c39fee739c2f5fd4b928e1e76e1ea57f072b5f8
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toodeploy-an-azure-api-management-service-instance-toomultiple-azure-regions"></a>Hogyan toodeploy az Azure API Management szolgáltatás példány toomultiple Azure régiók
-Az API Management támogatja több területi környezetben, amely lehetővé teszi, hogy az API-közzétevők toodistribute egyetlen API management szolgáltatás tetszőleges számú kívánt Azure-régiók között. Ezzel csökkenthető a kérelem által érzékelt késleltetés földrajzilag elosztott API fogyasztók és a szolgáltatás rendelkezésre állása is támogatja, ha egy régió tartozik offline állapotba kerül. 
+# <a name="how-to-deploy-an-azure-api-management-service-instance-to-multiple-azure-regions"></a>Az Azure API Management szolgáltatáspéldány üzembe helyezése több Azure-régiók
+Az API Management több területi környezetben, amely lehetővé teszi, hogy egyetlen API management szolgáltatás szét a kívánt Azure-régiók tetszőleges számú API közzétevők támogatja. Ezzel csökkenthető a kérelem által érzékelt késleltetés földrajzilag elosztott API fogyasztók és a szolgáltatás rendelkezésre állása is támogatja, ha egy régió tartozik offline állapotba kerül. 
 
-Amikor egy API-kezelés szolgáltatás a kezdetben létrejön, csak az egyik tartalmaz [egység] [ unit] és egy önálló, elsődleges régió hello van kijelölve Azure régióban található. További régiókban hello Azure portálon keresztül egyszerűen lehet hozzáadni. Az API Management átjárókiszolgáló telepített tooeach régió, és hívás forgalom lesz irányított toohello legközelebbi átjáró. Ha egy régiót offline állapotba kerül, hello akkor kimenő forgalomról automatikusan újra irányított toohello következő legközelebbi átjáró. 
+Amikor egy API-kezelés szolgáltatás a kezdetben létrejön, csak az egyik tartalmaz [egység] [ unit] és egy egyetlen Azure-régió, amelyhez az elsődleges régióban kijelölt fájlcsoportban helyezkedik el. További régiókban könnyen felveheti az Azure portálon keresztül. Az API Management átjárókiszolgáló minden régió telepít, és hívás forgalmat a rendszer a legközelebbi átjáró irányítsa. Ha egy régiót offline állapotba kerül, akkor kimenő forgalomról automatikusan újra irányított, a következő legközelebbi átjáró. 
 
 > [!IMPORTANT]
-> Több területi telepítési csak érhető el hello  **[prémium] [ Premium]**  réteg.
+> Több területi telepítési érhető el csak a  **[prémium] [ Premium]**  réteg.
 > 
 > 
 
-## <a name="add-region"></a>Központi telepítése egy API-kezelés szolgáltatás példány tooa új terület
+## <a name="add-region"></a>API-kezelés szolgáltatás példányt telepítése egy új régióban
 > [!NOTE]
-> Ha még nem hozott létre az API Management szolgáltatáspéldány, lásd: [hozzon létre egy API-kezelés szolgáltatás példányt] [ Create an API Management service instance] a hello [Ismerkedés az Azure API Management] [ Get started with Azure API Management] oktatóanyag.
+> Ha még nem hozott létre API Management szolgáltatáspéldányt, tekintse meg az [Ismerkedés az Azure API Management szolgáltatással][Get started with Azure API Management] oktatóanyag [API Management szolgáltatáspéldány létrehozása][Create an API Management service instance] című szakaszát.
 > 
 > 
 
-Hello Azure portálon lépjen a toohello **és az árképzés** az API Management szolgáltatáspéldány a lap. 
+Az Azure portálon keresse meg a **és az árképzés** az API Management szolgáltatáspéldány a lap. 
 
 ![Skála lap][api-management-scale-service]
 
-toodeploy tooa új régió, kattintson a **+ Hozzáadás régió** hello eszköztáron.
+Egy új régió telepíteni, kattintson a **+ Hozzáadás régió** az eszköztáron.
 
 ![Adja hozzá a régió][api-management-add-region]
 
-Hello legördülő listából válassza ki a hello helyét, és állítsa be a hello hello csúszkával egységek száma.
+A legördülő listából válassza ki a helyet, és állítsa be a csúszkával egységek száma.
 
 ![Adja meg a egység][api-management-select-location-units]
 
-Kattintson a **Hozzáadás** tooplace hello helyek tábla választását. 
+Kattintson a **Hozzáadás** helyezhető el a kiválasztott a helyek táblában. 
 
-Ismételje meg ezt a folyamatot, amíg a konfigurált összes hellyel rendelkezik, és kattintson a **mentése** hello eszköztár toostart hello központi telepítési folyamat során.
+Ismételje meg ezt a folyamatot, amíg a konfigurált összes hellyel rendelkezik, és kattintson a **mentése** a telepítési folyamat elindításához az eszköztáron.
 
 ## <a name="remove-region"></a>Egy API-kezelés szolgáltatás példány törlése
-Hello Azure portálon lépjen a toohello **és az árképzés** az API Management szolgáltatáspéldány a lap. 
+Az Azure portálon keresse meg a **és az árképzés** az API Management szolgáltatáspéldány a lap. 
 
 ![Skála lap][api-management-scale-service]
 
-Milyen hello hely tooremove nyissa meg a hello helyi menü használatával hello **...**  hello tábla jobb oldali végén hello gombra. Jelölje be hello **törlése** lehetőséget.
+Szeretné eltávolítani a helyet nyissa meg a helyi menü használatával a **...**  gomb a tábla jobb oldali végén. Válassza ki a **törlése** lehetőséget.
 
 ![Távolítsa el a régió][api-management-remove-region]
 
-Hello törlés jóváhagyásához, és kattintson a **mentése** tooapply hello módosításokat.
+A törlés jóváhagyásához, és kattintson a **mentése** a módosítások életbe léptetéséhez.
 
 [api-management-management-console]: ./media/api-management-howto-deploy-multi-region/api-management-management-console.png
 
@@ -73,7 +73,7 @@ Hello törlés jóváhagyásához, és kattintson a **mentése** tooapply hello 
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance
 [Get started with Azure API Management]: api-management-get-started.md
 
-[Deploy an API Management service instance tooa new region]: #add-region
+[Deploy an API Management service instance to a new region]: #add-region
 [Delete an API Management service instance from a region]: #remove-region
 
 [unit]: http://azure.microsoft.com/pricing/details/api-management/

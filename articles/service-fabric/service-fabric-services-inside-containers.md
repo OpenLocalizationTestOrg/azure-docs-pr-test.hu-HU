@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toocontainerize az Azure Service Fabric mikroszolgáltatások (előzetes verzió)"
-description: "Azure Service Fabric új funkciók toocontainerize hozzáadta a Service Fabric mikroszolgáltatások létrehozására. Ez a szolgáltatás jelenleg előzetes kiadásban elérhető."
+title: "Hogyan containerize az Azure Service Fabric mikroszolgáltatások (előzetes verzió)"
+description: "Az Azure Service Fabric hozzá van adva a Service Fabric mikroszolgáltatások containerize érdekében új funkciókat. Ez a szolgáltatás jelenleg előzetes kiadásban elérhető."
 services: service-fabric
 documentationcenter: .net
 author: anmolah
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/04/2017
 ms.author: anmola
-ms.openlocfilehash: 6edaff73c0828707c7fa736669ba8084663d31ed
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6f8ad0bad8d1ae861e6b72f7e1a32ab0675813c2
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="how-toocontainerize-your-service-fabric-reliable-services-and-reliable-actors-preview"></a>Hogyan toocontainerize a Service Fabric megbízható Services és Reliable Actors (előzetes verzió)
+# <a name="how-to-containerize-your-service-fabric-reliable-services-and-reliable-actors-preview"></a>Hogyan containerize a Service Fabric Reliable Services és Reliable Actors (előzetes verzió)
 
 A Service Fabric containerizing Service Fabric mikroszolgáltatások (Reliable Services és megbízható alapú aktorszolgáltatások) támogatja. További információkért lásd: [service fabric-tárolók](service-fabric-containers-overview.md).
 
 
- Ez a funkció jelenleg előzetes verzióban érhető, és ez a cikk ismerteti a különböző lépéseket tooget hello egy tároló-keretrendszeren belül fut. a szolgáltatás.  
+ Ez a funkció jelenleg előzetes verzióban érhető, és ez a cikk lépéseit a különböző egy tároló-keretrendszeren belül fut. a szolgáltatás eléréséhez.  
 
 > [!NOTE]
 > Ez a funkció jelenleg előzetes verzióban érhető és éles környezetben nem támogatott. Jelenleg ez a funkció csak akkor működik a Windows.
 
-## <a name="steps-toocontainerize-your-service-fabric-application"></a>Lépések toocontainerize a Service Fabric-alkalmazás
+## <a name="steps-to-containerize-your-service-fabric-application"></a>A Service Fabric-alkalmazás containerize lépései
 
 1. A Visual Studióban nyissa meg a Service Fabric-alkalmazás.
 
-2. Osztály hozzáadása [SFBinaryLoader.cs](https://github.com/Azure/service-fabric-scripts-and-templates/blob/master/code/SFBinaryLoaderForContainers/SFBinaryLoader.cs) tooyour projekt. Ez az osztály a hello kód egy segítő toocorrectly terhelés hello Service Fabric futásidejű bináris fájljai az alkalmazáson belüli esetén egy tároló-keretrendszeren belül fut..
+2. Osztály hozzáadása [SFBinaryLoader.cs](https://github.com/Azure/service-fabric-scripts-and-templates/blob/master/code/SFBinaryLoaderForContainers/SFBinaryLoader.cs) a projekthez. Ez az osztály a kód a Service Fabric futásidejű bináris fájljai az alkalmazáson belüli megfelelően betölteni, ha egy tároló keretrendszeren belül fut. segítő.
 
-3. Az egyes kód szeretné toocontainerize, inicializálási hello betöltő hello program belépési ponton. Adja hozzá a hello statikus konstruktor a következő kód részlet tooyour program belépési pont fájl hello látható.
+3. Minden egyes szeretné containerize, a program belépési betöltő inicializálása kódcsomag mutat. Adja hozzá a statikus konstruktor a következő kódrészletet a belépési pont programfájl látható.
 
   ```csharp
   namespace MyApplication
@@ -49,41 +49,41 @@ A Service Fabric containerizing Service Fabric mikroszolgáltatások (Reliable S
           }
 
           /// <summary>
-          /// This is hello entry point of hello service host process.
+          /// This is the entry point of the service host process.
           /// </summary>
           private static void Main()
           {
   ```
 
-4. Build és [csomag](service-fabric-package-apps.md#Package-App) a projekthez. toobuild hozzon létre egy csomagot, majd kattintson a jobb gombbal a projektre a Solution Explorer hello és válassza ki a hello **csomag** parancsot.
+4. Build és [csomag](service-fabric-package-apps.md#Package-App) a projekthez. Építsenek, és hozzon létre egy csomagot, kattintson a jobb gombbal a projektre a Megoldáskezelőben, és válassza ki a **csomag** parancsot.
 
-5. Minden kódcsomag toocontainerize, PowerShell-parancsfájl futtatása hello kell [CreateDockerPackage.ps1](https://github.com/Azure/service-fabric-scripts-and-templates/blob/master/scripts/CodePackageToDockerPackage/CreateDockerPackage.ps1). hello használata a következőképpen történik:
+5. A minden kódcsomag kell containerize, a PowerShell-parancsprogrammal [CreateDockerPackage.ps1](https://github.com/Azure/service-fabric-scripts-and-templates/blob/master/scripts/CodePackageToDockerPackage/CreateDockerPackage.ps1). A használati a következőképpen történik:
   ```powershell
-    $codePackagePath = 'Path toohello code package toocontainerize.'
-    $dockerPackageOutputDirectoryPath = 'Output path for hello generated docker folder.'
-    $applicationExeName = 'Name of hello ode package executable.'
+    $codePackagePath = 'Path to the code package to containerize.'
+    $dockerPackageOutputDirectoryPath = 'Output path for the generated docker folder.'
+    $applicationExeName = 'Name of the ode package executable.'
     CreateDockerPackage.ps1 -CodePackageDirectoryPath $codePackagePath -DockerPackageOutputDirectoryPath $dockerPackageOutputDirectoryPath -ApplicationExeName $applicationExeName
  ```
-  hello parancsfájl mappát hoz létre, $dockerPackageOutputDirectoryPath Docker-összetevők. Módosítsa a generált hello Dockerfile tooexpose bármely portokat, futtassa a telepítő parancsfájlok stb. a igények alapján.
+  A parancsfájl létrehoz egy mappát, $dockerPackageOutputDirectoryPath Docker-összetevők. A generált Dockerfile teszi közzé a portokat, futtassa a telepítő parancsfájlok stb. a igények alapján módosíthatja.
 
-6. Ezután kell túl[build](service-fabric-get-started-containers.md#Build-Containers) és [leküldéses](service-fabric-get-started-containers.md#Push-Containers) a Docker-tároló csomag tooyour tárház.
+6. Ezután meg kell [build](service-fabric-get-started-containers.md#Build-Containers) és [leküldéses](service-fabric-get-started-containers.md#Push-Containers) a Docker-tároló csomag a tárházhoz.
 
-7. Módosítása hello ApplicationManifest.xml és ServiceManifest.xml tooadd a tároló kép, tárház, beállításjegyzék-hitelesítés, és port-állomás leképezés. A hello jegyzékfájlokban módosítását, lásd: [hozzon létre egy Azure Service Fabric-tároló alkalmazás](service-fabric-get-started-containers.md). kód-Csomagdefiníció hello a hello service manifest igényeinek toobe írni a megfelelő tároló-lemezképet. Győződjön meg arról, hogy toochange hello BelépésiPont-tooa ContainerHost típusa.
+7. A tároló kép, a tárház információkat, a beállításjegyzék-hitelesítés és a port-állomás leképezés hozzáadása ApplicationManifest.xml és ServiceManifest.xml módosíthatók. A jegyzékfájlokban módosítása, lásd: [hozzon létre egy Azure Service Fabric-tároló alkalmazás](service-fabric-get-started-containers.md). A kód Csomagdefiníció a szolgáltatás jegyzékben meg kell írni a megfelelő tároló-lemezképet. Győződjön meg arról, hogy a belépési pont módosítása ContainerHost típusra.
 
   ```xml
 <!-- Code package is your service executable. -->
 <CodePackage Name="Code" Version="1.0.0">
   <EntryPoint>
-    <!-- Follow this link for more information about deploying Windows containers tooService Fabric: https://aka.ms/sfguestcontainers -->
+    <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
     <ContainerHost>
       <ImageName>myregistry.azurecr.io/samples/helloworldapp</ImageName>
     </ContainerHost>
   </EntryPoint>
-  <!-- Pass environment variables tooyour container: -->    
+  <!-- Pass environment variables to your container: -->    
 </CodePackage>
   ```
 
-8. Hello port-állomás leképezés a replikátor és a szolgáltatási végpont hozzáadása. Mindkét ezeket a portokat a Service Fabric által kiosztott futásidőben, mivel hello ContainerPort toozero toouse hello hozzárendelt leképezés port van beállítva.
+8. A port-állomás társítását a replikátor és a szolgáltatási végpont hozzáadása. Mindkét ezeket a portokat a Service Fabric által kiosztott futásidőben, mivel a ContainerPort értéke nulla esetén pedig a hozzárendelt portot használja a leképezés.
 
  ```xml
 <Policies>
@@ -94,7 +94,7 @@ A Service Fabric containerizing Service Fabric mikroszolgáltatások (Reliable S
 </Policies>
  ```
 
-9. tootest az alkalmazás toodeploy kell azt tooa fürt, amely 5.7-es vagy újabb verziót futtat. Továbbá tooedit kell, és frissítse hello fürt beállítások tooenable ezt az előzetes funkciót. Ezen hello lépésekkel [cikk](service-fabric-cluster-fabric-settings.md) tooadd hello beállítás látható a következő.
+9. Ez az alkalmazás teszteléséhez kell központilag telepítenie kell egy fürt, amely 5.7-es vagy újabb verziót futtat. Emellett meg kell módosítsa és frissítse a fürt beállításait a előzetes funkció engedélyezése érdekében. Ezen lépések [cikk](service-fabric-cluster-fabric-settings.md) a következő látható beállítás hozzáadásához.
 ```
       {
         "name": "Hosting",
@@ -106,10 +106,10 @@ A Service Fabric containerizing Service Fabric mikroszolgáltatások (Reliable S
         ]
       }
 ```
-10. Következő [telepítése](service-fabric-deploy-remove-applications.md) hello alkalmazás csomag toothis fürt szerkeszteni.
+10. Következő [telepítése](service-fabric-deploy-remove-applications.md) a szerkesztett alkalmazáscsomag ehhez a fürthöz.
 
 Most rendelkeznie kell egy indexelése Service Fabric-alkalmazás fut a fürtön.
 
 ## <a name="next-steps"></a>Következő lépések
 * További információk a [tárolók futtatásáról a Service Fabricban](service-fabric-get-started-containers.md).
-* További tudnivalók a Service Fabric hello [alkalmazás-életciklus](service-fabric-application-lifecycle.md).
+* További információk a Service Fabric [alkalmazásainak élettartamáról](service-fabric-application-lifecycle.md).
