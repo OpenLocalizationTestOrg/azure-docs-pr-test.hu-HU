@@ -1,0 +1,87 @@
+---
+title: "Ismerkedés a termelési környezetben végzett teszteléssel a Web Apps használatával"
+description: "A teszt termelési (TiP) szolgáltatásban az Azure App Service Web Apps megismerése."
+services: app-service\web
+documentationcenter: 
+author: cephalin
+manager: erikre
+editor: 
+ms.assetid: 4623468d-886e-4203-8012-8f86deb2790b
+ms.service: app-service-web
+ms.workload: web
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 01/13/2016
+ms.author: cephalin
+ms.openlocfilehash: 9f38b635140cacf0513c75385bce3c110a930969
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 07/11/2017
+---
+# <a name="get-started-with-test-in-production-for-web-apps"></a><span data-ttu-id="4d481-103">Ismerkedés a termelési környezetben végzett teszteléssel a Web Apps használatával</span><span class="sxs-lookup"><span data-stu-id="4d481-103">Get started with test in production for Web Apps</span></span>
+<span data-ttu-id="4d481-104">Éles környezetben vizsgálat, vagy a webes alkalmazás használatával élő felhasználói forgalom, élő-vizsgálat a vizsgálat stratégia, amely alkalmazás a fejlesztők egyre integrálja a [gyors fejlesztési](https://en.wikipedia.org/wiki/Agile_software_development) módszert.</span><span class="sxs-lookup"><span data-stu-id="4d481-104">Testing in production, or live-testing your web app using live customer traffic, is a test strategy that app developers increasingly integrate into their [agile development](https://en.wikipedia.org/wiki/Agile_software_development) methodology.</span></span> <span data-ttu-id="4d481-105">Lehetővé teszi az alkalmazások élő felhasználói forgalom minőségének tesztelése az éles környezetben, egy tesztkörnyezetben szintetizált adatok szemben.</span><span class="sxs-lookup"><span data-stu-id="4d481-105">It enables you to test the quality of your apps with live user traffic in your production environment, as opposed to synthesized data in a test environment.</span></span> <span data-ttu-id="4d481-106">Jelentkezik, mintha az új alkalmazás valódi felhasználók számára, akkor is tájékoztatni az alkalmazás esetleg szembesülhetnek, ha telepítve van a tényleges problémákat.</span><span class="sxs-lookup"><span data-stu-id="4d481-106">By exposing your new app to real users, you can be informed on the real problems your app may face once it is deployed.</span></span> <span data-ttu-id="4d481-107">A funkciót, a teljesítmény és az alkalmazások frissítése a kötet, a sebesség és a felhasználó forgalmat, amely akkor soha nem hozzávetőleges, tesztelési környezetben számos elleni értékének ellenőrizheti.</span><span class="sxs-lookup"><span data-stu-id="4d481-107">You can verify the functionality, performance, and value of your app updates against the volume, velocity, and variety of real user traffic, which you can never approximate in a test environment.</span></span>
+
+## <a name="traffic-routing-in-app-service-web-apps"></a><span data-ttu-id="4d481-108">Forgalom-útválasztási az App Service Web Apps</span><span class="sxs-lookup"><span data-stu-id="4d481-108">Traffic Routing in App Service Web Apps</span></span>
+<span data-ttu-id="4d481-109">A forgalom útválasztásához szolgáltatásával [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714), megadhatja, hogy egy vagy több élő felhasználói forgalom egy része [üzembe helyezési](web-sites-staged-publishing.md), és az alkalmazás a [Azure Application Insights](/services/application-insights/) vagy [Azure HDInsight](/services/hdinsight/), vagy egy külső eszköz, például [New Relic](/marketplace/partners/newrelic/newrelic/) a módosítás érvényesítéséhez.</span><span class="sxs-lookup"><span data-stu-id="4d481-109">With the Traffic Routing feature in [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714), you can direct a portion of live user traffic to one or more [deployment slots](web-sites-staged-publishing.md), and then analyze your app with [Azure Application Insights](/services/application-insights/) or [Azure HDInsight](/services/hdinsight/), or a third-party tool like [New Relic](/marketplace/partners/newrelic/newrelic/) to validate your change.</span></span> <span data-ttu-id="4d481-110">Az App Service például is valósítja meg az alábbi esetekben:</span><span class="sxs-lookup"><span data-stu-id="4d481-110">For example, you can implement the following scenarios with App Service:</span></span>
+
+* <span data-ttu-id="4d481-111">Működési hibák fel, és a szűk keresztmetszetek a frissítések helyi szintű telepítését megelőzően a rögzítési ponthoz</span><span class="sxs-lookup"><span data-stu-id="4d481-111">Discover functional bugs or pinpoint performance bottlenecks in your updates prior to site-wide deployment</span></span>
+* <span data-ttu-id="4d481-112">Hajtsa végre a "ellenőrzött teszt járatok" módosítás használhatóság metrikákat a béta alkalmazások szolgáltatásigényeit:</span><span class="sxs-lookup"><span data-stu-id="4d481-112">Perform "controlled test flights" of your changes by measuring usability metrics on the beta app</span></span>
+* <span data-ttu-id="4d481-113">Legfeljebb egy új frissítési fokozatosan hatékonyságának, és szabályosan biztonsági az aktuális verzióra hiba esetén</span><span class="sxs-lookup"><span data-stu-id="4d481-113">Gradually ramp up to a new update, and gracefully back down to the current version if an error occurs</span></span> 
+* <span data-ttu-id="4d481-114">Az alkalmazás üzleti eredmények történő futtatásával optimalizálják [A / B tesztek](https://en.wikipedia.org/wiki/A/B_testing) vagy [multivariate tesztek](https://en.wikipedia.org/wiki/Multivariate_testing_in_marketing) több üzembe helyezési pontokon</span><span class="sxs-lookup"><span data-stu-id="4d481-114">Optimize your app's business results by running [A/B tests](https://en.wikipedia.org/wiki/A/B_testing) or [multivariate tests](https://en.wikipedia.org/wiki/Multivariate_testing_in_marketing) in multiple deployment slots</span></span>
+
+### <a name="requirements-for-using-traffic-routing-in-web-apps"></a><span data-ttu-id="4d481-115">A Web Apps a forgalom útválasztásához használatának követelményei</span><span class="sxs-lookup"><span data-stu-id="4d481-115">Requirements for using Traffic Routing in Web Apps</span></span>
+* <span data-ttu-id="4d481-116">A webalkalmazás futtatásához **szabványos** vagy **prémium** szintet, mert az több üzembe helyezési tárhely szükséges.</span><span class="sxs-lookup"><span data-stu-id="4d481-116">Your web app must run in **Standard** or **Premium** tier, as it is required for multiple deployment slots.</span></span>
+* <span data-ttu-id="4d481-117">Ahhoz, hogy a megfelelő működés érdekében a forgalom útválasztásához engedélyezni kell a felhasználó böngészőben a cookie-k van szükség.</span><span class="sxs-lookup"><span data-stu-id="4d481-117">In order to work properly, Traffic Routing requires cookies to be enabled in the users' browser.</span></span> <span data-ttu-id="4d481-118">Forgalom-útválasztás rögzítése élettartama egy üzembe helyezési pont az ügyfél böngészője az ügyfél-munkamenet cookie-kat használ.</span><span class="sxs-lookup"><span data-stu-id="4d481-118">Traffic Routing uses cookies to pin a client browser to a deployment slot for the life the client session.</span></span>
+* <span data-ttu-id="4d481-119">Forgalom-útválasztás szituációkat speciális tipp Azure PowerShell-parancsmagokkal.</span><span class="sxs-lookup"><span data-stu-id="4d481-119">Traffic Routing supports advanced TiP scenarios through Azure PowerShell cmdlets.</span></span>
+
+## <a name="route-traffic-segment-to-a-deployment-slot"></a><span data-ttu-id="4d481-120">Útvonal forgalom szegmens egy üzembe helyezési tárhelyet</span><span class="sxs-lookup"><span data-stu-id="4d481-120">Route traffic segment to a deployment slot</span></span>
+<span data-ttu-id="4d481-121">Minden tipp forgatókönyv alapvető szinten a működés közbeni forgalom előre definiált százalékos egy nem éles üzembe helyezési tárhelyet a továbbítani.</span><span class="sxs-lookup"><span data-stu-id="4d481-121">At the basic level in every TiP scenario, you route a predefined percentage of your live traffic to a non-production deployment slot.</span></span> <span data-ttu-id="4d481-122">Ehhez kövesse az alábbi lépéseket:</span><span class="sxs-lookup"><span data-stu-id="4d481-122">To do this, follow the steps below:</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="4d481-123">Az itt lépéseket feltételezi, hogy már rendelkezik egy [nem éles üzembe helyezési pont](web-sites-staged-publishing.md) és a kívánt webszolgáltatás alkalmazástartalom már [telepített](web-sites-deploy.md) rá.</span><span class="sxs-lookup"><span data-stu-id="4d481-123">The steps here assumes that you already have a [non-production deployment slot](web-sites-staged-publishing.md) and that the desired web app content is already [deployed](web-sites-deploy.md) to it.</span></span>
+> 
+> 
+
+1. <span data-ttu-id="4d481-124">Jelentkezzen be a [Azure-portálon](https://portal.azure.com/).</span><span class="sxs-lookup"><span data-stu-id="4d481-124">Log into the [Azure Portal](https://portal.azure.com/).</span></span>
+2. <span data-ttu-id="4d481-125">A webalkalmazás panelen kattintson **beállítások** > **a forgalom útválasztásához**.</span><span class="sxs-lookup"><span data-stu-id="4d481-125">In your web app's blade, click **Settings** > **Traffic Routing**.</span></span>
+   ![](./media/app-service-web-test-in-production/01-traffic-routing.png)
+3. <span data-ttu-id="4d481-126">Válassza ki a tárolóhely irányíthatja a forgalmat és a teljes forgalom felügyelni, majd kattintson az kívánt **mentése**.</span><span class="sxs-lookup"><span data-stu-id="4d481-126">Select the slot that you want to route traffic to and the percentage of the total traffic you desire, then click **Save**.</span></span>
+   
+    ![](./media/app-service-web-test-in-production/02-select-slot.png)
+4. <span data-ttu-id="4d481-127">Nyissa meg a telepített környezet tárolóhelye paneljét.</span><span class="sxs-lookup"><span data-stu-id="4d481-127">Go to the deployment slot's blade.</span></span> <span data-ttu-id="4d481-128">Most látnia kell azt a csatlakoztatott élő forgalmat.</span><span class="sxs-lookup"><span data-stu-id="4d481-128">You should now see live traffic being routed to it.</span></span>
+   
+    ![](./media/app-service-web-test-in-production/03-traffic-routed.png)
+
+<span data-ttu-id="4d481-129">Miután beállította a forgalom útválasztásához, megadott ügyfeleinek százalékos aránya véletlenszerűen továbbítja a nem éles tárolóhelyre.</span><span class="sxs-lookup"><span data-stu-id="4d481-129">Once Traffic Routing is configured, the specified percentage of clients will be randomly routed to your non-production slot.</span></span> <span data-ttu-id="4d481-130">Fontos azonban vegye figyelembe, hogy amennyiben az ügyfél automatikusan történik egy adott helyre, akkor lesz "rögzítve" adott helyre, hogy ügyfél munkamenet során.</span><span class="sxs-lookup"><span data-stu-id="4d481-130">However, it is important to note that once a client is automatically routed to a specific slot, it will be "pinned" to that slot for the life of that client session.</span></span> <span data-ttu-id="4d481-131">Ez történik a cookie-k segítségével rögzítheti a felhasználói munkamenet.</span><span class="sxs-lookup"><span data-stu-id="4d481-131">This done using a cookie to pin the user session.</span></span> <span data-ttu-id="4d481-132">A HTTP-kérelmek vizsgálja meg, ha megtalálja a `TipMix` cookie-k minden későbbi kérés.</span><span class="sxs-lookup"><span data-stu-id="4d481-132">If you inspect the HTTP requests, you will find a `TipMix` cookie in every subsequent request.</span></span>
+
+![](./media/app-service-web-test-in-production/04-tip-cookie.png)
+
+## <a name="force-client-requests-to-a-specific-slot"></a><span data-ttu-id="4d481-133">Egy adott helyre ügyfélkérelmek kényszerítése</span><span class="sxs-lookup"><span data-stu-id="4d481-133">Force client requests to a specific slot</span></span>
+<span data-ttu-id="4d481-134">Automatikus forgalom az útválasztáson kívül az App Service képes kérelmek adott helyre is.</span><span class="sxs-lookup"><span data-stu-id="4d481-134">In addition to automatic traffic routing, App Service is able to route requests to a specific slot.</span></span> <span data-ttu-id="4d481-135">Ez akkor hasznos, ha azt szeretné, hogy a felhasználók tudja irányítani a vagy lemondja a béta-alkalmazás.</span><span class="sxs-lookup"><span data-stu-id="4d481-135">This is useful when you want your users to be able to opt-into or opt-out of your beta app.</span></span> <span data-ttu-id="4d481-136">Ehhez használja a `x-ms-routing-name` lekérdezési paraméter.</span><span class="sxs-lookup"><span data-stu-id="4d481-136">To do this, you use the `x-ms-routing-name` query parameter.</span></span>
+
+<span data-ttu-id="4d481-137">A felhasználók számára egy adott tárhely használatával átirányítása `x-ms-routing-name`, meg kell győződnie arról, hogy a tárolóhely már hozzá van adva a forgalom útválasztásához listájához.</span><span class="sxs-lookup"><span data-stu-id="4d481-137">To reroute users to a specific slot using `x-ms-routing-name`, you must make sure that the slot is already added to the Traffic Routing list.</span></span> <span data-ttu-id="4d481-138">Szeretné továbbítani a tárhely explicit módon, mert nem számít, beállíthatja a tényleges útválasztási százalék.</span><span class="sxs-lookup"><span data-stu-id="4d481-138">Since you want to route to a slot explicitly, the actual routing percentage you set doesn't matter.</span></span> <span data-ttu-id="4d481-139">Ha azt szeretné, hogy összeállíthatnak egy "béta link", amellyel a felhasználók a béta alkalmazás eléréséhez.</span><span class="sxs-lookup"><span data-stu-id="4d481-139">If you want, you can craft a "beta link" that users can click to access the beta app.</span></span>
+
+![](./media/app-service-web-test-in-production/06-enable-x-ms-routing-name.png)
+
+### <a name="opt-users-out-of-beta-app"></a><span data-ttu-id="4d481-140">Részvétel a felhasználók beta alkalmazásból</span><span class="sxs-lookup"><span data-stu-id="4d481-140">Opt users out of beta app</span></span>
+<span data-ttu-id="4d481-141">Ahhoz, hogy a felhasználók tilthatják le a béta-alkalmazás, például helyezhet el ezt a hivatkozást a weblapon:</span><span class="sxs-lookup"><span data-stu-id="4d481-141">To let users opt out of your beta app, for example, you can put this link in your web page:</span></span>
+
+    <a href="<webappname>.azurewebsites.net/?x-ms-routing-name=self">Go back to production app</a>
+
+<span data-ttu-id="4d481-142">A karakterlánc `x-ms-routing-name=self` határozza meg az éles webalkalmazásra.</span><span class="sxs-lookup"><span data-stu-id="4d481-142">The string `x-ms-routing-name=self` specifies the production slot.</span></span> <span data-ttu-id="4d481-143">Ha az ügyfél böngészője a hivatkozás megnyitásához nem csak azt átirányítja az éles webalkalmazásra, de minden későbbi kérés fogja tartalmazni az `x-ms-routing-name=self` , amely rögzíti az éles tárolóhelyre munkamenet cookie-k.</span><span class="sxs-lookup"><span data-stu-id="4d481-143">Once the client browser access the link, not only is it redirected to the production slot, but every subsequent request will contain the `x-ms-routing-name=self` cookie that pins the session to the production slot.</span></span>
+
+![](./media/app-service-web-test-in-production/05-access-production-slot.png)
+
+### <a name="opt-users-in-to-beta-app"></a><span data-ttu-id="4d481-144">Részt vesz a béta-alkalmazás és a felhasználóknak</span><span class="sxs-lookup"><span data-stu-id="4d481-144">Opt users in to beta app</span></span>
+<span data-ttu-id="4d481-145">Így a felhasználók részt vevő a béta-alkalmazásba, állítsa be ugyanazon lekérdezési paraméter nem éles tárhely nevét:</span><span class="sxs-lookup"><span data-stu-id="4d481-145">To let users opt in to your beta app, set the same query parameter to the name of the non-production slot, for example:</span></span>
+
+        <webappname>.azurewebsites.net/?x-ms-routing-name=staging
+
+## <a name="more-resources"></a><span data-ttu-id="4d481-146">További erőforrások</span><span class="sxs-lookup"><span data-stu-id="4d481-146">More resources</span></span>
+* [<span data-ttu-id="4d481-147">Átmeneti környezet az Azure App Service web Apps beállítása</span><span class="sxs-lookup"><span data-stu-id="4d481-147">Set up staging environments for web apps in Azure App Service</span></span>](web-sites-staged-publishing.md)
+* [<span data-ttu-id="4d481-148">Kiszámítható módon tudja az Azure-ban egy összetett alkalmazás központi telepítése</span><span class="sxs-lookup"><span data-stu-id="4d481-148">Deploy a complex application predictably in Azure</span></span>](app-service-deploy-complex-application-predictably.md)
+* [<span data-ttu-id="4d481-149">Agilis szoftverfejlesztői az Azure App Service</span><span class="sxs-lookup"><span data-stu-id="4d481-149">Agile software development with Azure App Service</span></span>](app-service-agile-software-development.md)
+* [<span data-ttu-id="4d481-150">DevOps környezetek hatékony használata a webalkalmazások</span><span class="sxs-lookup"><span data-stu-id="4d481-150">Use DevOps environments effectively for your web apps</span></span>](app-service-web-staged-publishing-realworld-scenarios.md)
+

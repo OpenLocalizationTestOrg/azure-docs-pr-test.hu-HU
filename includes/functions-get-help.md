@@ -1,0 +1,5 @@
+### <a name="need-some-help"></a><span data-ttu-id="c999f-101">Segítségre van szüksége?</span><span class="sxs-lookup"><span data-stu-id="c999f-101">Need some help?</span></span>
+<span data-ttu-id="c999f-102">Kérdéseit felteheti az Azure fórumain.</span><span class="sxs-lookup"><span data-stu-id="c999f-102">Post questions in the Azure forums.</span></span><span data-ttu-id="c999f-103"> - [Az MSDN webhelyén](http://go.microsoft.com/fwlink/?LinkId=780719)</span><span class="sxs-lookup"><span data-stu-id="c999f-103"> - [Visit MSDN](http://go.microsoft.com/fwlink/?LinkId=780719)</span></span>
+
+<span data-ttu-id="c999f-104">Kérdéseit jelölje meg az `azure-functions` kulcsszóval.</span><span class="sxs-lookup"><span data-stu-id="c999f-104">Tag questions with the keyword `azure-functions`.</span></span><span data-ttu-id="c999f-105"> - [Látogasson el a Stack overflow webhelyre](http://stackoverflow.com/questions/tagged/azure-functions)</span><span class="sxs-lookup"><span data-stu-id="c999f-105"> - [Visit Stack Overflow](http://stackoverflow.com/questions/tagged/azure-functions)</span></span>
+

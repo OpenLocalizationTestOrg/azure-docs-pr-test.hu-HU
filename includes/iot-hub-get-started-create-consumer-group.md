@@ -1,0 +1,10 @@
+## <a name="add-a-consumer-group-to-your-iot-hub"></a><span data-ttu-id="5a463-101">Az IoT hub egy felhasználói csoport hozzáadása</span><span class="sxs-lookup"><span data-stu-id="5a463-101">Add a consumer group to your IoT hub</span></span>
+
+<span data-ttu-id="5a463-102">Alkalmazások az fogyasztói csoportok segítségével olvasnak be adatokat Azure IoT-központot.</span><span class="sxs-lookup"><span data-stu-id="5a463-102">Consumer groups are used by applications to pull data from Azure IoT Hub.</span></span> <span data-ttu-id="5a463-103">Ebben az oktatóanyagban létrehoz egy felhasználói csoport adatokat olvasni az IoT hub elkövetkező Azure szolgáltatás által használandó.</span><span class="sxs-lookup"><span data-stu-id="5a463-103">In this tutorial, you create a consumer group to be used by a coming Azure service to read data from your IoT hub.</span></span>
+
+<span data-ttu-id="5a463-104">Egy felhasználói csoport hozzáadása az IoT hub, kövesse az alábbi lépéseket:</span><span class="sxs-lookup"><span data-stu-id="5a463-104">To add a consumer group to your IoT hub, follow these steps:</span></span>
+
+1. <span data-ttu-id="5a463-105">Az [Azure Portalon](https://ms.portal.azure.com/) nyissa meg az IoT Hubot.</span><span class="sxs-lookup"><span data-stu-id="5a463-105">In the [Azure portal](https://ms.portal.azure.com/), open your IoT hub.</span></span>
+2. <span data-ttu-id="5a463-106">A bal oldali ablaktáblán kattintson **végpontok**, jelölje be **események** a középső panelen adjon meg egy nevet a **fogyasztói csoportok** a jobb oldali ablaktáblán, majd **mentése** .</span><span class="sxs-lookup"><span data-stu-id="5a463-106">In the left pane, click **Endpoints**, select **Events** on the middle pane, enter a name under **Consumer groups** on the right pane, and then click **Save**.</span></span>
+
+   ![Az IoT hub egy felhasználói csoport létrehozása](../articles/iot-hub/media/iot-hub-create-consumer-group/1_iot-hub-create-consumer-group-azure.png)

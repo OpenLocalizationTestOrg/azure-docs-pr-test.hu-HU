@@ -1,0 +1,10 @@
+
+| <span data-ttu-id="753c6-101">Számítási lehetőségek</span><span class="sxs-lookup"><span data-stu-id="753c6-101">Compute Options</span></span> | <span data-ttu-id="753c6-102">Célközönség</span><span class="sxs-lookup"><span data-stu-id="753c6-102">Audience</span></span> |
+| --- | --- |
+| <span data-ttu-id="753c6-103">[App Service][lnk_app]</span><span class="sxs-lookup"><span data-stu-id="753c6-103">[App Service][lnk_app]</span></span> |<span data-ttu-id="753c6-104">Méretezhető web-, mobil-, API- és logikai alkalmazások minden eszközhöz</span><span class="sxs-lookup"><span data-stu-id="753c6-104">Scalable Web Apps, Mobile Apps, API Apps, and Logic Apps for any device</span></span> |
+| <span data-ttu-id="753c6-105">[Cloud Services][lnk_cloud]</span><span class="sxs-lookup"><span data-stu-id="753c6-105">[Cloud Services][lnk_cloud]</span></span> |<span data-ttu-id="753c6-106">Magas rendelkezésre állású, méretezhető n szintű felhőalapú alkalmazások, amelyek jobb vezérlést biztosítanak az operációs rendszer felett</span><span class="sxs-lookup"><span data-stu-id="753c6-106">Highly available, scalable n-tier cloud apps with more control of the OS</span></span> |
+| <span data-ttu-id="753c6-107">[Virtual Machines][lnk_vm]</span><span class="sxs-lookup"><span data-stu-id="753c6-107">[Virtual Machines][lnk_vm]</span></span> |<span data-ttu-id="753c6-108">Személyre szabott Windows és Linux rendszerű virtuális gépek, amelyek teljes körű vezérlést biztosítanak az operációs rendszer felett</span><span class="sxs-lookup"><span data-stu-id="753c6-108">Customized Windows and Linux VMs with complete control of the OS</span></span> |
+
+[lnk_app]: ../articles/app-service-web/app-service-web-overview.md
+[lnk_vm]:../articles/virtual-machines/windows/overview.md
+[lnk_cloud]: ../articles/cloud-services/cloud-services-choose-me.md

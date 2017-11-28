@@ -1,0 +1,14 @@
+### <a name="prerequisites"></a><span data-ttu-id="834ec-101">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="834ec-101">Prerequisites</span></span>
+* <span data-ttu-id="834ec-102">Egy [RSS](https://wikipedia.org/wiki/RSS) fiók</span><span class="sxs-lookup"><span data-stu-id="834ec-102">An [RSS](https://wikipedia.org/wiki/RSS) account</span></span>  
+
+<span data-ttu-id="834ec-103">RSS-fiókját a logikai alkalmazás használata előtt engedélyeznie kell a logikai alkalmazást az RSS-fiókjához. Szerencsére ehhez egyszerűen a a logikai alkalmazásban, az Azure portálon.</span><span class="sxs-lookup"><span data-stu-id="834ec-103">Before you can use your RSS account in a Logic app, you must authorize the Logic app to connect to your RSS account.Fortunately, you can do this easily from within your Logic app on the Azure Portal.</span></span>  
+
+<span data-ttu-id="834ec-104">A Logic Apps alkalmazást RSS fiókjához történő engedélyezéséhez lépései a következők:</span><span class="sxs-lookup"><span data-stu-id="834ec-104">Here are the steps to authorize your Logic app to connect to your RSS account:</span></span>  
+
+1. <span data-ttu-id="834ec-105">RSS-, VPN-kapcsolat létrehozásához a Logic app tervezőben, válassza ki a **megjelenítése Microsoft felügyelt API-k** a legördülő listában adja meg *RSS* be a keresőmezőbe.</span><span class="sxs-lookup"><span data-stu-id="834ec-105">To create a connection to RSS, in the Logic app designer, select **Show Microsoft managed APIs** in the drop down list then enter *RSS* in the search box.</span></span> <span data-ttu-id="834ec-106">Válassza ki az eseményindító vagy művelet fogjuk használni kívánt:</span><span class="sxs-lookup"><span data-stu-id="834ec-106">Select the trigger or action you'll like to use:</span></span>  
+   <span data-ttu-id="834ec-107">![RSS kapcsolat létrehozását lépést](./media/connectors-create-api-rss/rss-1.png)</span><span class="sxs-lookup"><span data-stu-id="834ec-107">![RSS connection creation step](./media/connectors-create-api-rss/rss-1.png)</span></span>  
+2. <span data-ttu-id="834ec-108">Válassza ki **hozható létre kapcsolat** :</span><span class="sxs-lookup"><span data-stu-id="834ec-108">Select **Create connection** :</span></span>  
+   <span data-ttu-id="834ec-109">![RSS kapcsolat létrehozását lépést](./media/connectors-create-api-rss/rss-2.png)</span><span class="sxs-lookup"><span data-stu-id="834ec-109">![RSS connection creation step](./media/connectors-create-api-rss/rss-2.png)</span></span>  
+3. <span data-ttu-id="834ec-110">Figyelje meg, a kapcsolat létrejött, és szabadon most folytatja a Logic Apps alkalmazást más lépéseket:</span><span class="sxs-lookup"><span data-stu-id="834ec-110">Notice the connection has been created and you are now free to proceed with the other steps in your Logic app:</span></span>  
+   ![RSS kapcsolat létrehozását lépést](./media/connectors-create-api-rss/rss-3.png)  
+

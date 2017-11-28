@@ -1,0 +1,6 @@
+<span data-ttu-id="e1c06-101">Az [az network vpn-connection show](/cli/azure/network/vpn-connection#show) paranccsal ellenőrizheti, sikeres volt-e a kapcsolat.</span><span class="sxs-lookup"><span data-stu-id="e1c06-101">You can verify that your connection succeeded by using the [az network vpn-connection show](/cli/azure/network/vpn-connection#show) command.</span></span> <span data-ttu-id="e1c06-102">A példában a „--name” a tesztelni kívánt kapcsolat nevére utal.</span><span class="sxs-lookup"><span data-stu-id="e1c06-102">In the example, '--name' refers to the name of the connection that you want to test.</span></span> <span data-ttu-id="e1c06-103">Ha a kapcsolat létrehozás alatt áll, a kapcsolat állapota „Connecting”.</span><span class="sxs-lookup"><span data-stu-id="e1c06-103">When the connection is in the process of being established, its connection status shows 'Connecting'.</span></span> <span data-ttu-id="e1c06-104">Ha a kapcsolat létrejött, az állapot „Connected” értékűre változik.</span><span class="sxs-lookup"><span data-stu-id="e1c06-104">Once the connection is established, the status changes to 'Connected'.</span></span>
+
+```azurecli
+az network vpn-connection show --name VNet1toSite2 --resource-group TestRG1
+```
+

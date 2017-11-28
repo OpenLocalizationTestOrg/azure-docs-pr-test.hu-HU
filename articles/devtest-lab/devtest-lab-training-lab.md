@@ -1,0 +1,104 @@
+---
+title: "Azure DevTest Labs használatát képzés |} Microsoft Docs"
+description: "Útmutató: Azure DevTest Labs képzési helyzetekben használhatja."
+services: devtest-lab,virtual-machines
+documentationcenter: na
+author: steved0x
+manager: douge
+editor: 
+ms.assetid: 57ff4e30-7e33-453f-9867-e19b3fdb9fe2
+ms.service: devtest-lab
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/12/2016
+ms.author: sdanie
+ms.openlocfilehash: a85999b7963e9a07d3f91ec47f298f91439c0808
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 07/11/2017
+---
+# <a name="use-azure-devtest-labs-for-training"></a><span data-ttu-id="cab68-103">Azure DevTest Labs használatát képzés</span><span class="sxs-lookup"><span data-stu-id="cab68-103">Use Azure DevTest Labs for training</span></span>
+<span data-ttu-id="cab68-104">Az Azure DevTest Labs segítségével fejlesztési és tesztelési célú túl sok főbb forgatókönyvek megvalósításához.</span><span class="sxs-lookup"><span data-stu-id="cab68-104">Azure DevTest Labs can be used to implement many key scenarios in addition to dev/test.</span></span> <span data-ttu-id="cab68-105">Ezek a forgatókönyvek egyik beállíthat egy tesztkörnyezetet képzési.</span><span class="sxs-lookup"><span data-stu-id="cab68-105">One of those scenarios is to set up a lab for training.</span></span> <span data-ttu-id="cab68-106">Az Azure DevTest Labs létrehozhat egy tesztkörnyezetet, ahol megadhatja az egyéni sablonok, amelyek minden tanuló képzési azonos és elkülönített környezetek létrehozása teszi lehetővé.</span><span class="sxs-lookup"><span data-stu-id="cab68-106">Azure DevTest Labs allows you to create a lab where you can provide custom templates that each trainee can use to create identical and isolated environments for training.</span></span> <span data-ttu-id="cab68-107">Annak érdekében, hogy képzési környezetekben minden egyes tanuló rendelkezésére csak akkor, ha szüksége van rájuk, és tartalmaznak elég erőforrások – például a virtuális gépek - képzés szükséges házirendeket is alkalmazhat.</span><span class="sxs-lookup"><span data-stu-id="cab68-107">You can apply policies to ensure that training environments are available to each trainee only when they need them and contain enough resources - such as virtual machines - required for the training.</span></span> <span data-ttu-id="cab68-108">Végül könnyedén megoszthatja a labor képzésben, amelyek az egy kattintással eléréséhez.</span><span class="sxs-lookup"><span data-stu-id="cab68-108">Finally, you can easily share the lab with trainees, which they can access in one click.</span></span>
+
+![DevTest Labs használatát képzés](./media/devtest-lab-training-lab/devtest-lab-training.png)
+
+<span data-ttu-id="cab68-110">Azure DevTest Labs megfelel a következő tartson képzéseket minden virtuális környezetben szükséges:</span><span class="sxs-lookup"><span data-stu-id="cab68-110">Azure DevTest Labs meets the following requirements that are required to conduct training in any virtual environment:</span></span> 
+
+* <span data-ttu-id="cab68-111">Képzésben más képzésben által létrehozott virtuális gépek nem látható.</span><span class="sxs-lookup"><span data-stu-id="cab68-111">Trainees cannot see VMs created by other trainees</span></span>
+* <span data-ttu-id="cab68-112">Minden képzési gép azonosnak kell lennie.</span><span class="sxs-lookup"><span data-stu-id="cab68-112">Every training machine should be identical</span></span>
+* <span data-ttu-id="cab68-113">Képzésben gyorsan építhető ki a képzés környezetek</span><span class="sxs-lookup"><span data-stu-id="cab68-113">Trainees can quickly provision their training environments</span></span>
+* <span data-ttu-id="cab68-114">Biztosítsa, hogy a képzésben nem olvasható be a további virtuális gépek van szükségük a képzés és is virtuális gépek leállítása, ha azok nem használja őket, mint a költségek szabályozásához</span><span class="sxs-lookup"><span data-stu-id="cab68-114">Control cost by ensuring that trainees cannot get more VMs than they need for the training and also shutdown VMs when they are not using them</span></span>
+* <span data-ttu-id="cab68-115">Egyszerűen megoszthatja a képzés labor minden tanuló a</span><span class="sxs-lookup"><span data-stu-id="cab68-115">Easily share the training lab with each trainee</span></span>
+* <span data-ttu-id="cab68-116">A képzési labor újra és újra felhasználhatja</span><span class="sxs-lookup"><span data-stu-id="cab68-116">Reuse the training lab again and again</span></span>
+
+<span data-ttu-id="cab68-117">Ebből a cikkből megismerheti a korábban ismertetett képzési követelmények és a részletes lépéseket, amelyek követésével beállíthat egy tesztkörnyezetet képzési használható különböző Azure DevTest Labs szolgáltatásairól.</span><span class="sxs-lookup"><span data-stu-id="cab68-117">In this article, you learn about various Azure DevTest Labs features that can be used to meet the previously described training requirements and detailed steps that you can follow to set up a lab for training.</span></span>  
+
+## <a name="implementing-training-with-azure-devtest-labs"></a><span data-ttu-id="cab68-118">Az Azure DevTest Labs végrehajtási képzési</span><span class="sxs-lookup"><span data-stu-id="cab68-118">Implementing training with Azure DevTest Labs</span></span>
+1. <span data-ttu-id="cab68-119">**A labor létrehozása**</span><span class="sxs-lookup"><span data-stu-id="cab68-119">**Create the lab**</span></span> 
+   
+    <span data-ttu-id="cab68-120">Labs szerepelnek a Azure DevTest Labs szolgáltatásban.</span><span class="sxs-lookup"><span data-stu-id="cab68-120">Labs are the starting point in Azure DevTest Labs.</span></span> <span data-ttu-id="cab68-121">Labor létrehozása után feladatokat hajthat végre olyan, laborteszteket, az ad felhasználók (képzésben) házirendek beállítása a kapcsolatos költségek szabályozását, gyorsan hozhat létre Virtuálisgép-lemezképeket, és több megadása.</span><span class="sxs-lookup"><span data-stu-id="cab68-121">Once you create a lab, you can perform tasks such as add users (trainees) to the lab, set policies to control costs, define VM images that can create quickly, and more.</span></span>   
+   
+    <span data-ttu-id="cab68-122">Az alábbi táblázatban szereplő hivatkozásokra kattintva, ahol további:</span><span class="sxs-lookup"><span data-stu-id="cab68-122">Learn more by clicking on the links in the following table:</span></span>
+   
+   | <span data-ttu-id="cab68-123">Tevékenység</span><span class="sxs-lookup"><span data-stu-id="cab68-123">Task</span></span> | <span data-ttu-id="cab68-124">Ismertetett témák</span><span class="sxs-lookup"><span data-stu-id="cab68-124">What you learn</span></span> |
+   | --- | --- |
+   | [<span data-ttu-id="cab68-125">Labor létrehozása a Azure DevTest Labs szolgáltatásban</span><span class="sxs-lookup"><span data-stu-id="cab68-125">Create a lab in Azure DevTest Labs</span></span>](devtest-lab-create-lab.md) |<span data-ttu-id="cab68-126">Útmutató a labor létrehozása a Azure DevTest Labs szolgáltatásban az Azure portálon.</span><span class="sxs-lookup"><span data-stu-id="cab68-126">Learn how to create a lab in Azure DevTest Labs in the Azure portal.</span></span> |
+2. <span data-ttu-id="cab68-127">**Előre elkészített piactéren elérhető rendszerkép és az egyéni lemezképek használatával percek alatt képzési virtuális gépek létrehozása**</span><span class="sxs-lookup"><span data-stu-id="cab68-127">**Create training VMs in minutes using ready-made marketplace images and custom images**</span></span> 
+   
+    <span data-ttu-id="cab68-128">Válasszon az előre elkészített képek széles képek az Azure piactéren, és elérhetővé teszi azokat a laborkörnyezetben képzésben.</span><span class="sxs-lookup"><span data-stu-id="cab68-128">You can pick ready-made images from a wide variety of images in the Azure Marketplace and make them available for the trainees in the lab.</span></span> <span data-ttu-id="cab68-129">Ha az előre elkészített lemezképeket nem megfelelnek az elvárásainak, hozzon létre egy virtuális gép egy előre elkészített lemezképet használja az Azure piactérről, amelyekre szüksége van a képzési és a virtuális gép mentése az, amikor egyéni lemezképként az összes szoftver telepítése, amikor egyéni kép is létrehozhat.</span><span class="sxs-lookup"><span data-stu-id="cab68-129">If the ready-made images don't meet your requirements, you can create a custom image by creating a lab VM using a ready-made image from Azure Marketplace, installing all the software that you need for the training, and saving the VM as custom image in the lab.</span></span> 
+   
+    <span data-ttu-id="cab68-130">Az alábbi táblázatban szereplő hivatkozásokra kattintva, ahol további:</span><span class="sxs-lookup"><span data-stu-id="cab68-130">Learn more by clicking on the links in the following table:</span></span>
+   
+   | <span data-ttu-id="cab68-131">Tevékenység</span><span class="sxs-lookup"><span data-stu-id="cab68-131">Task</span></span> | <span data-ttu-id="cab68-132">Ismertetett témák</span><span class="sxs-lookup"><span data-stu-id="cab68-132">What you learn</span></span> |
+   | --- | --- |
+   | [<span data-ttu-id="cab68-133">Azure piactéren elérhető rendszerkép konfigurálása</span><span class="sxs-lookup"><span data-stu-id="cab68-133">Configure Azure Marketplace images</span></span>](devtest-lab-configure-marketplace-images.md) |<span data-ttu-id="cab68-134">Megtudhatja, hogyan zajlik engedélyezett Azure piactéren elérhető rendszerkép; érdemes a képzés elérhetővé teszi a kiválasztható elemek csak a képeket.</span><span class="sxs-lookup"><span data-stu-id="cab68-134">Learn how you can whitelist Azure Marketplace images; making available for selection only the images you want for the training.</span></span> |
+   | [<span data-ttu-id="cab68-135">Egyéni lemezkép létrehozása</span><span class="sxs-lookup"><span data-stu-id="cab68-135">Create a custom image</span></span>](devtest-lab-create-template.md) |<span data-ttu-id="cab68-136">Hozzon létre egy egyéni lemezképet előre telepíteni a szoftvert, a képzési, hogy képzésben gyorsan létre tud hozni egy virtuális Gépet, az egyéni lemezkép használata szükséges.</span><span class="sxs-lookup"><span data-stu-id="cab68-136">Create a custom image by pre-installing the software you need for the training so that trainees can quickly create a VM using the custom image.</span></span> |
+3. <span data-ttu-id="cab68-137">**A képzési gépek újrafelhasználható sablonok létrehozása**</span><span class="sxs-lookup"><span data-stu-id="cab68-137">**Create reusable templates for training machines**</span></span> 
+   
+    <span data-ttu-id="cab68-138">Az Azure DevTest Labs képlet egy virtuális gép létrehozásához használt alapértelmezett tulajdonság értékek listáját.</span><span class="sxs-lookup"><span data-stu-id="cab68-138">A formula in Azure DevTest Labs is a list of default property values used to create a VM.</span></span> <span data-ttu-id="cab68-139">Képlet létrehozhatja a laborban lemezkép, a Virtuálisgép-méretet (kombinációja Processzor és memória szempontjából) és egy virtuális hálózatot válassza háttérszínnek.</span><span class="sxs-lookup"><span data-stu-id="cab68-139">You can create a formula in the lab by picking an image, a VM size (a combination of CPU and RAM), and a virtual network.</span></span> <span data-ttu-id="cab68-140">Minden tanuló tekintse meg a képlet a laborkörnyezetben, és a virtuális gépek létrehozására használható.</span><span class="sxs-lookup"><span data-stu-id="cab68-140">Each trainee can see the formula in the lab and use it to create a VM.</span></span> 
+   
+    <span data-ttu-id="cab68-141">Az alábbi táblázatban szereplő hivatkozásokra kattintva, ahol további:</span><span class="sxs-lookup"><span data-stu-id="cab68-141">Learn more by clicking on the links in the following table:</span></span>
+   
+   | <span data-ttu-id="cab68-142">Tevékenység</span><span class="sxs-lookup"><span data-stu-id="cab68-142">Task</span></span> | <span data-ttu-id="cab68-143">Ismertetett témák</span><span class="sxs-lookup"><span data-stu-id="cab68-143">What you learn</span></span> |
+   | --- | --- |
+   | [<span data-ttu-id="cab68-144">Virtuális gépek létrehozása a DevTest Labs képletek kezelése</span><span class="sxs-lookup"><span data-stu-id="cab68-144">Manage DevTest Labs formulas to create VMs</span></span>](devtest-lab-manage-formulas.md) |<span data-ttu-id="cab68-145">Ismerje meg, hogyan is létrehozhat egy képletet fel egy lemezképet, a Virtuálisgép-méretet (Processzor és memória szempontjából kombinációja) és a virtuális hálózat.</span><span class="sxs-lookup"><span data-stu-id="cab68-145">Learn how you can create a formula by picking up an image, VM size (combination of CPU and RAM), and a virtual network.</span></span> |
+4. <span data-ttu-id="cab68-146">**Költségek szabályozása**</span><span class="sxs-lookup"><span data-stu-id="cab68-146">**Control costs**</span></span>
+   
+    <span data-ttu-id="cab68-147">Az Azure DevTest Labs lehetővé teszi, hogy meg kell adnia egy házirendet a laborban a laborban vizsgában létrehozott virtuális gépek maximális számának megadásához.</span><span class="sxs-lookup"><span data-stu-id="cab68-147">Azure DevTest Labs allows you to set a policy in the lab to specify the maximum number of VMs that can be created by a trainee in the lab.</span></span> 
+   
+    <span data-ttu-id="cab68-148">Ha többnapos képzési céljából, és szeretné, hogy a virtuális gépek leállítása a nap adott időpontban, és automatikusan indítsa újra őket a következő napon, egyszerűen hajthatja végre, hogy az automatikus rendszerleállítást beállításával, és automatikusan elinduló házirendek a tesztkörnyezetben.</span><span class="sxs-lookup"><span data-stu-id="cab68-148">If you are conducting multi-day training and want to stop all the VMs at a particular time of the day and then automatically restart them the following day, you can easily accomplish that by setting auto-shutdown and auto-start policies in the lab.</span></span> 
+   
+    <span data-ttu-id="cab68-149">Végezetül betanítás törölheti a virtuális gépek egyszerre egy PowerShell-parancsfájl futtatásával.</span><span class="sxs-lookup"><span data-stu-id="cab68-149">Finally, when training is complete you can delete all the VMs at once by running a single PowerShell script.</span></span> 
+   
+    <span data-ttu-id="cab68-150">Az alábbi táblázatban szereplő hivatkozásokra kattintva, ahol további:</span><span class="sxs-lookup"><span data-stu-id="cab68-150">Learn more by clicking on the links in the following table:</span></span>
+   
+   | <span data-ttu-id="cab68-151">Tevékenység</span><span class="sxs-lookup"><span data-stu-id="cab68-151">Task</span></span> | <span data-ttu-id="cab68-152">Ismertetett témák</span><span class="sxs-lookup"><span data-stu-id="cab68-152">What you learn</span></span> |
+   | --- | --- |
+   | [<span data-ttu-id="cab68-153">Laborszabályzatok definiálása</span><span class="sxs-lookup"><span data-stu-id="cab68-153">Define lab policies</span></span>](devtest-lab-set-lab-policy.md) |<span data-ttu-id="cab68-154">A labor házirendek beállításával kapcsolatos költségek szabályozását.</span><span class="sxs-lookup"><span data-stu-id="cab68-154">Control costs by setting policies in the lab.</span></span> |
+   | [<span data-ttu-id="cab68-155">Törölje a labor virtuális gépeken, egy PowerShell-parancsfájl használatával</span><span class="sxs-lookup"><span data-stu-id="cab68-155">Delete all the lab VMs using a PowerShell script</span></span>](devtest-lab-faq.md#how-can-i-automate-the-process-of-deleting-all-the-vms-in-my-lab) |<span data-ttu-id="cab68-156">Egyetlen művelettel összes labs törlése, a képzési befejezésekor.</span><span class="sxs-lookup"><span data-stu-id="cab68-156">Delete all the labs in one operation when the training is complete.</span></span> |
+5. <span data-ttu-id="cab68-157">**A labor megosztása minden tanuló**</span><span class="sxs-lookup"><span data-stu-id="cab68-157">**Share the lab with each trainee**</span></span>
+   
+    <span data-ttu-id="cab68-158">Labs közvetlenül elérhetők a képzésben közösen-kapcsolaton keresztül.</span><span class="sxs-lookup"><span data-stu-id="cab68-158">Labs can be directly accessed using a link that you share with your trainees.</span></span> <span data-ttu-id="cab68-159">A képzésben nem is kell rendelkezik Azure-fiókkal, mindaddig, amíg azok rendelkeznek egy [Microsoft-fiók](devtest-lab-faq.md#what-is-a-microsoft-account).</span><span class="sxs-lookup"><span data-stu-id="cab68-159">Your trainees don't even have to have an Azure account, as long as they have a [Microsoft account](devtest-lab-faq.md#what-is-a-microsoft-account).</span></span> <span data-ttu-id="cab68-160">Képzésben más képzésben által létrehozott virtuális gépek nem látható.</span><span class="sxs-lookup"><span data-stu-id="cab68-160">Trainees cannot see VMs created by other trainees.</span></span>  
+   
+    <span data-ttu-id="cab68-161">Az alábbi táblázatban szereplő hivatkozásokra kattintva, ahol további:</span><span class="sxs-lookup"><span data-stu-id="cab68-161">Learn more by clicking on the links in the following table:</span></span>
+   
+   | <span data-ttu-id="cab68-162">Tevékenység</span><span class="sxs-lookup"><span data-stu-id="cab68-162">Task</span></span> | <span data-ttu-id="cab68-163">Ismertetett témák</span><span class="sxs-lookup"><span data-stu-id="cab68-163">What you learn</span></span> |
+   | --- | --- |
+   | [<span data-ttu-id="cab68-164">Vizsgában hozzáadása egy laborhoz a Azure DevTest Labs szolgáltatásban</span><span class="sxs-lookup"><span data-stu-id="cab68-164">Add a trainee to a lab in Azure DevTest Labs</span></span>](devtest-lab-add-devtest-user.md) |<span data-ttu-id="cab68-165">Az Azure portál segítségével képzésben hozzá a képzés tesztkörnyezet.</span><span class="sxs-lookup"><span data-stu-id="cab68-165">Use the Azure portal to add trainees to your training lab.</span></span> |
+   | [<span data-ttu-id="cab68-166">A PowerShell parancsfájl használatával labor képzésben hozzáadása</span><span class="sxs-lookup"><span data-stu-id="cab68-166">Add trainees to the lab using a PowerShell script</span></span>](devtest-lab-add-devtest-user.md#add-an-external-user-to-a-lab-using-powershell) |<span data-ttu-id="cab68-167">PowerShell használatával automatizálhatja a képzés laborkörnyezetben hozzáadását képzésben.</span><span class="sxs-lookup"><span data-stu-id="cab68-167">Use PowerShell to automate adding trainees to your training lab.</span></span> |
+   | [<span data-ttu-id="cab68-168">Szerezzen be egy hivatkozást a laborkörnyezetben</span><span class="sxs-lookup"><span data-stu-id="cab68-168">Get a link to the lab</span></span>](devtest-lab-faq.md#how-do-i-share-a-direct-link-to-my-lab) |<span data-ttu-id="cab68-169">Ismerje meg, hogyan labor közvetlenül elérhető hivatkozás segítségével.</span><span class="sxs-lookup"><span data-stu-id="cab68-169">Learn how a lab can be directly accessed via a hyperlink.</span></span> |
+6. <span data-ttu-id="cab68-170">**A labor újra és újra felhasználhatja**</span><span class="sxs-lookup"><span data-stu-id="cab68-170">**Reuse the lab again and again**</span></span> 
+   
+    <span data-ttu-id="cab68-171">Labor létrehozása, egyéni beállításokat, beleértve a Resource Manager-sablonok létrehozásával, és újra és újra létre azonos labs segítségével automatizálható.</span><span class="sxs-lookup"><span data-stu-id="cab68-171">You can automate lab creation, including custom settings, by creating a Resource Manager template and using it to create identical labs again and again.</span></span> 
+   
+    <span data-ttu-id="cab68-172">Az alábbi táblázatban szereplő hivatkozásokra kattintva, ahol további:</span><span class="sxs-lookup"><span data-stu-id="cab68-172">Learn more by clicking on the links in the following table:</span></span>
+   
+   | <span data-ttu-id="cab68-173">Tevékenység</span><span class="sxs-lookup"><span data-stu-id="cab68-173">Task</span></span> | <span data-ttu-id="cab68-174">Ismertetett témák</span><span class="sxs-lookup"><span data-stu-id="cab68-174">What you learn</span></span> |
+   | --- | --- |
+   | [<span data-ttu-id="cab68-175">A Resource Manager sablonnal labor létrehozása</span><span class="sxs-lookup"><span data-stu-id="cab68-175">Create a lab using a Resource Manager template</span></span>](devtest-lab-faq.md#how-do-i-create-a-lab-from-an-azure-resource-manager-template) |<span data-ttu-id="cab68-176">Hozzon létre labs Azure DevTest Labs Resource Manager-sablonok használatával.</span><span class="sxs-lookup"><span data-stu-id="cab68-176">Create labs in Azure DevTest Labs using Resource Manager templates.</span></span> |
+
+[!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
+

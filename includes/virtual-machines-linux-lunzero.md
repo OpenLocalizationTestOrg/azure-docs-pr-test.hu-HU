@@ -1,0 +1,21 @@
+<span data-ttu-id="0fd95-101">Amikor adatlemezt ad hozzá egy Linux virtuális gép, esetleg felmerülő problémákat, ha a lemez nem létezik: LUN 0.</span><span class="sxs-lookup"><span data-stu-id="0fd95-101">When adding data disks to a Linux VM, you may encounter errors if a disk does not exist at LUN 0.</span></span> <span data-ttu-id="0fd95-102">Ha egy lemez segítségével manuálisan hozzáadni a `azure vm disk attach-new` parancsot, és adja meg a LUN-t (`--lun`) ahelyett, hogy engedélyezi a megfelelő logikai meghatározásához az Azure platformon, mi gondoskodunk, hogy a lemez már létezik / LUN azonosítójú 0 van jelen.</span><span class="sxs-lookup"><span data-stu-id="0fd95-102">If you are adding a disk manually using the `azure vm disk attach-new` command and you specify a LUN (`--lun`) rather than allowing the Azure platform to determine the appropriate LUN, take care that a disk already exists / will exist at LUN 0.</span></span> 
+
+<span data-ttu-id="0fd95-103">Vegye figyelembe a következő példa egy kódrészletet a kimenetét megjelenítő `lsscsi`:</span><span class="sxs-lookup"><span data-stu-id="0fd95-103">Consider the following example showing a snippet of the output from `lsscsi`:</span></span>
+
+```bash
+[5:0:0:0]    disk    Msft     Virtual Disk     1.0   /dev/sdc 
+[5:0:0:1]    disk    Msft     Virtual Disk     1.0   /dev/sdd 
+```
+
+<span data-ttu-id="0fd95-104">A két adatlemezek lehet létrehozni a LUN 0 és LUN-1 (az első oszlop a `lsscsi` részletek kimeneti `[host:channel:target:lun]`).</span><span class="sxs-lookup"><span data-stu-id="0fd95-104">The two data disks exist at LUN 0 and LUN 1 (the first column in the `lsscsi` output details `[host:channel:target:lun]`).</span></span> <span data-ttu-id="0fd95-105">Mindkét lemeznek kell lennie a accessbile a virtuális Gépen belül.</span><span class="sxs-lookup"><span data-stu-id="0fd95-105">Both disks should be accessbile from within the VM.</span></span> <span data-ttu-id="0fd95-106">Ha az első lemezt lehet hozzáadni a logikai egység 1 és a második lemezről LUN 2 manuálisan kellett megadott, a virtuális Gépen belül nem jelenhet meg a lemezeket megfelelően.</span><span class="sxs-lookup"><span data-stu-id="0fd95-106">If you had manually specified the first disk to be added at LUN 1 and the second disk at LUN 2, you may not see the disks correctly from within your VM.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="0fd95-107">Az Azure `host` érték 5 ezekben a példákban, de ez eltérhetnek attól függően, hogy a tároló típusa szerinti választja.</span><span class="sxs-lookup"><span data-stu-id="0fd95-107">The Azure `host` value is 5 in these examples, but this may vary depending on the type of storage you select.</span></span>
+> 
+> 
+
+<span data-ttu-id="0fd95-108">Ez lemez azonban nem egy Azure probléma, de a, amelyben a Linux kernel követi a SCSI-specifikációk módját.</span><span class="sxs-lookup"><span data-stu-id="0fd95-108">This disk behavior is not an Azure problem, but the way in which the Linux kernel follows the SCSI specifications.</span></span> <span data-ttu-id="0fd95-109">A Linux kernel a SCSI-buszhoz csatlakoztatott eszközöket keres, ha egy eszköz kell található LUN azonosítójú 0 ahhoz, hogy a rendszer folytatja a további eszközök keresése.</span><span class="sxs-lookup"><span data-stu-id="0fd95-109">When the Linux kernel scans the SCSI bus for attached devices, a device must be found at LUN 0 in order for the system to continue scanning for additional devices.</span></span> <span data-ttu-id="0fd95-110">Ilyen:</span><span class="sxs-lookup"><span data-stu-id="0fd95-110">As such:</span></span>
+
+* <span data-ttu-id="0fd95-111">Tekintse át a kimenetet a `lsscsi` ellenőrzése, hogy rendelkezik-e a lemez 0 LUN azonosítójú adatlemez hozzáadása után.</span><span class="sxs-lookup"><span data-stu-id="0fd95-111">Review the output of `lsscsi` after adding a data disk to verify that you have a disk at LUN 0.</span></span>
+* <span data-ttu-id="0fd95-112">Ha a lemez nem jelenik meg helyesen a virtuális Gépen belül, a lemez LUN azonosítójú 0 meglétének ellenőrzése.</span><span class="sxs-lookup"><span data-stu-id="0fd95-112">If your disk does not show up correctly within your VM, verify a disk exists at LUN 0.</span></span>
+

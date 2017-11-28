@@ -1,0 +1,59 @@
+---
+title: "a kiszolgáló tűzfalszabályainak MySQL adatbázis aaaAzure |} Microsoft Docs"
+description: "A témakör ismerteti a tűzfalszabályok a MySQL-kiszolgálóhoz tartozó Azure-adatbázis."
+services: mysql
+author: v-chenyh
+ms.author: v-chenyh
+manager: jhubbard
+editor: jasonwhowell
+ms.service: mysql-database
+ms.topic: article
+ms.date: 05/10/2017
+ms.openlocfilehash: 1f85310385da947b6c492aa6aa21c1b885c2a97d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 10/06/2017
+---
+# <a name="azure-database-for-mysql-server-firewall-rules"></a><span data-ttu-id="3fdfe-103">Kiszolgáló tűzfalszabályainak MySQL Azure-adatbázis</span><span class="sxs-lookup"><span data-stu-id="3fdfe-103">Azure Database for MySQL server firewall rules</span></span>
+<span data-ttu-id="3fdfe-104">Tűzfalak tooyour adatbázis-kiszolgáló minden hozzáférés tiltása, amíg megadhatja, hogy mely számítógépek rendelkeznek engedéllyel.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-104">Firewalls prevent all access tooyour database server until you specify which computers have permission.</span></span> <span data-ttu-id="3fdfe-105">hello tűzfal engedélyezi a hozzáférést toohello kiszolgáló IP-cím az egyes kérelmek származó hello alapján.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-105">hello firewall grants access toohello server based on hello originating IP address of each request.</span></span>
+
+<span data-ttu-id="3fdfe-106">tooconfigure tűzfalszabályok elfogadható IP-címek tartományát adja meg a tűzfal létrehozása.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-106">tooconfigure your firewall, you create firewall rules that specify ranges of acceptable IP addresses.</span></span> <span data-ttu-id="3fdfe-107">Hello kiszolgálószintű tűzfal-szabályokat hozhat létre.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-107">You can create firewall rules at hello server level.</span></span>
+
+<span data-ttu-id="3fdfe-108">**Tűzfal-szabályok:** ezek a szabályok engedélyezése az ügyfelek tooaccess MySQL-kiszolgáló a teljes Azure-adatbázis, ez azt jelenti, hogy az összes hello adatbázis belül hello azonos logikai kiszolgáló.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-108">**Firewall rules:** These rules enable clients tooaccess your entire Azure Database for MySQL server, that is, all hello databases within hello same logical server.</span></span> <span data-ttu-id="3fdfe-109">Kiszolgálószintű tűzfal-szabályokat hello Azure-portál használatával vagy az Azure parancssori felület parancsait konfigurálhatja.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-109">Server-level firewall rules can be configured by using hello Azure portal or using Azure CLI commands.</span></span> <span data-ttu-id="3fdfe-110">szabályok toocreate kiszolgálószintű tűzfal, hello előfizetés tulajdonosának vagy egy előfizetés közreműködőjének kell lennie.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-110">toocreate server-level firewall rules, you must be hello subscription owner or a subscription contributor.</span></span>
+
+## <a name="firewall-overview"></a><span data-ttu-id="3fdfe-111">Tűzfal áttekintése</span><span class="sxs-lookup"><span data-stu-id="3fdfe-111">Firewall overview</span></span>
+<span data-ttu-id="3fdfe-112">Az összes adatbázis hozzáférés tooyour Azure adatbázis MySQL-kiszolgáló alapértelmezés szerint hello tűzfal blokkolja.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-112">All database access tooyour Azure Database for MySQL server is blocked by hello firewall by default.</span></span> <span data-ttu-id="3fdfe-113">toobegin a kiszolgálót egy másik számítógépre, a használatával kell toospecify egy vagy több kiszolgálószintű tűzfal szabályok tooenable tooyour kiszolgáló.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-113">toobegin using your server from another computer, you need toospecify one or more server-level firewall rules tooenable access tooyour server.</span></span> <span data-ttu-id="3fdfe-114">Hello tűzfal szabályok toospecify mely IP-címtartományt a hello Internet tooallow használja.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-114">Use hello firewall rules toospecify which IP address ranges from hello Internet tooallow.</span></span> <span data-ttu-id="3fdfe-115">Hello tűzfalszabályok ne legyenek hatással Access toohello magát az Azure portál.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-115">Access toohello Azure portal website itself is not impacted by hello firewall rules.</span></span>
+
+<span data-ttu-id="3fdfe-116">A kapcsolódási kísérletek hello Internet, és Azure először haladnak keresztül hello tűzfal ahhoz, azok képes elérni az Azure-adatbázis MySQL-adatbázis, ahogy az ábra a következő hello:</span><span class="sxs-lookup"><span data-stu-id="3fdfe-116">Connection attempts from hello Internet and Azure must first pass through hello firewall before they can reach your Azure Database for MySQL database, as shown in hello following diagram:</span></span>
+
+![Példa áramló hello tűzfal működése](./media/concepts-firewall-rules/1-firewall-concept.png)
+
+## <a name="connecting-from-hello-internet"></a><span data-ttu-id="3fdfe-118">A hello Internet csatlakoztatása</span><span class="sxs-lookup"><span data-stu-id="3fdfe-118">Connecting from hello Internet</span></span>
+<span data-ttu-id="3fdfe-119">Kiszolgálószintű tűzfal-szabályokat alkalmazni tooall adatbázisok hello Azure adatbázis MySQL-kiszolgáló.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-119">Server-level firewall rules apply tooall databases on hello Azure Database for MySQL server.</span></span>
+
+<span data-ttu-id="3fdfe-120">Ha hello IP-cím hello kérelem hello kiszolgálószintű tűzfal szabályokban megadott hello tartományok egyikébe esik, hello kapcsolat kapnak.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-120">If hello IP address of hello request is within one of hello ranges specified in hello server-level firewall rules, hello connection is granted.</span></span>
+
+<span data-ttu-id="3fdfe-121">Ha hello IP-cím hello kérelem nincs belül hello tartományok hello adatbázis szintű valamelyikében vagy megadott kiszolgálószintű tűzfal-szabályok, hello kapcsolódási kérelem sikertelen lesz.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-121">If hello IP address of hello request is not within hello ranges specified in any of hello database-level or server-level firewall rules, hello connection request fails.</span></span>
+
+## <a name="programmatically-managing-firewall-rules"></a><span data-ttu-id="3fdfe-122">Tűzfalszabályok szoftveres kezelése</span><span class="sxs-lookup"><span data-stu-id="3fdfe-122">Programmatically managing firewall rules</span></span>
+<span data-ttu-id="3fdfe-123">Emellett Azure-portálon, a szabályok lehetnek tűzfal toohello felügyelt programozott módon az Azure parancssori felület használatával.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-123">In addition toohello Azure portal, firewall rules can be managed programmatically using Azure CLI.</span></span> <span data-ttu-id="3fdfe-124">Lásd még: [hozzon létre és kezelheti az Azure-adatbázis MySQL tűzfalszabályok Azure parancssori felület használatával](./howto-manage-firewall-using-cli.md)</span><span class="sxs-lookup"><span data-stu-id="3fdfe-124">See also [Create and manage Azure Database for MySQL firewall rules using Azure CLI](./howto-manage-firewall-using-cli.md)</span></span>
+
+## <a name="troubleshooting-hello-database-firewall"></a><span data-ttu-id="3fdfe-125">Hello adatbázis tűzfal hibaelhárítása</span><span class="sxs-lookup"><span data-stu-id="3fdfe-125">Troubleshooting hello database firewall</span></span>
+<span data-ttu-id="3fdfe-126">Vegye figyelembe a következő pontokat, amikor hozzáférési toohello Microsoft Azure-adatbázis MySQL-kiszolgáló szolgáltatás nem a várt módon működnek várt hello:</span><span class="sxs-lookup"><span data-stu-id="3fdfe-126">Consider hello following points when access toohello Microsoft Azure Database for MySQL server service does not behave as you expect:</span></span>
+
+* <span data-ttu-id="3fdfe-127">**Módosítások toohello engedélyezési lista rendelkezik még nincsenek érvényben:** lehet, mint amennyit egy 5 perces késleltetést használ az Azure-adatbázis toohello MySQL-kiszolgáló tűzfal konfigurációs tootake hatás módosítja.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-127">**Changes toohello allow list have not taken effect yet:** There may be as much as a five-minute delay for changes toohello Azure Database for MySQL Server firewall configuration tootake effect.</span></span>
+
+* <span data-ttu-id="3fdfe-128">**hello bejelentkezési nincs engedélyezve, vagy helytelen jelszót használt:** egy bejelentkezési nincs engedélye az hello Azure Database-kiszolgáló vagy hello használt jelszó MySQL helytelen az, ha hello Azure-adatbázis kapcsolati toohello MySQL server megtagadva.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-128">**hello login is not authorized or an incorrect password was used:** If a login does not have permissions on hello Azure Database for MySQL server or hello password used is incorrect, hello connection toohello Azure Database for MySQL server is denied.</span></span> <span data-ttu-id="3fdfe-129">Csak egy tűzfal-beállítás létrehozásához biztosít az ügyfelek számára egy lehetőség tooattempt tooyour server; kapcsolódás minden ügyfél hello szükséges biztonsági adatokat kell megadni.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-129">Creating a firewall setting only provides clients with an opportunity tooattempt connecting tooyour server; each client must provide hello necessary security credentials.</span></span>
+
+* <span data-ttu-id="3fdfe-130">**Dinamikus IP-cím:** Ha az internethez, a dinamikus IP-címzést és tapasztal hello tűzfalon keresztül történt, próbálkozzon a következő megoldások hello egyikét:</span><span class="sxs-lookup"><span data-stu-id="3fdfe-130">**Dynamic IP address:** If you have an Internet connection with dynamic IP addressing and you are having trouble getting through hello firewall, you could try one of hello following solutions:</span></span>
+
+* <span data-ttu-id="3fdfe-131">Kérje meg az internetszolgáltató (ISP) hello IP-címtartomány hozzárendelt tooyour ügyfélszámítógépek számára, hogy hozzáférési hello Azure adatbázis MySQL-kiszolgáló, és adja hozzá a hello IP-címtartomány tűzfal szabály.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-131">Ask your Internet Service Provider (ISP) for hello IP address range assigned tooyour client computers that access hello Azure Database for MySQL server, and then add hello IP address range as a firewall rule.</span></span>
+
+* <span data-ttu-id="3fdfe-132">Első statikus IP-címzés helyette az ügyfélszámítógépek számára, és adja hozzá a hello IP-címek, tűzfal-szabályokat.</span><span class="sxs-lookup"><span data-stu-id="3fdfe-132">Get static IP addressing instead for your client computers, and then add hello IP addresses as firewall rules.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="3fdfe-133">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="3fdfe-133">Next steps</span></span>
+
+<span data-ttu-id="3fdfe-134">[Hozzon létre és kezelheti az Azure-adatbázis MySQL tűzfalszabályok hello Azure-portál használatával](./howto-manage-firewall-using-portal.md)
+[hozzon létre és kezelheti az Azure-adatbázis MySQL tűzfalszabályok Azure parancssori felület használatával](./howto-manage-firewall-using-cli.md)</span><span class="sxs-lookup"><span data-stu-id="3fdfe-134">[Create and manage Azure Database for MySQL firewall rules using hello Azure portal](./howto-manage-firewall-using-portal.md)
+[Create and manage Azure Database for MySQL firewall rules using Azure CLI](./howto-manage-firewall-using-cli.md)</span></span>

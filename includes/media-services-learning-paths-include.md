@@ -1,0 +1,4 @@
+<span data-ttu-id="a6ccf-101">Az Azure Media Services képzési terveket itt tekintheti meg:</span><span class="sxs-lookup"><span data-stu-id="a6ccf-101">You can view Azure Media Services learning paths here:</span></span>
+
+* [<span data-ttu-id="a6ccf-102">Media Services élő közvetítési munkafolyamat</span><span class="sxs-lookup"><span data-stu-id="a6ccf-102">Media Services Live Streaming Workflow</span></span>](https://azure.microsoft.com/documentation/learning-paths/media-services-streaming-live/)
+* [<span data-ttu-id="a6ccf-103">Media Services igény szerinti közvetítési munkafolyamat</span><span class="sxs-lookup"><span data-stu-id="a6ccf-103">Media Services on Demand Streaming Workflow</span></span>](https://azure.microsoft.com/documentation/learning-paths/media-services-streaming-on-demand/)

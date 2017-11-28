@@ -1,0 +1,53 @@
+---
+title: "Azure Batch-készlet átméretezése befejeződésének eseményét. |} Microsoft Docs"
+description: "Útmutató a Batch-készlet átméretezése befejeződésének eseményét."
+services: batch
+author: tamram
+manager: timlt
+ms.assetid: 
+ms.service: batch
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: vm-windows
+ms.workload: big-compute
+ms.date: 04/20/2017
+ms.author: tamram
+ms.openlocfilehash: 7072293d98526812cb42ce9c2f8e33bfcafaa149
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 07/11/2017
+---
+# <a name="pool-resize-complete-event"></a><span data-ttu-id="c45c9-103">Készlet átméretezési befejeződésének eseményét.</span><span class="sxs-lookup"><span data-stu-id="c45c9-103">Pool resize complete event</span></span>
+
+ <span data-ttu-id="c45c9-104">Ez az esemény is ki lesz adva a készlet átméretezési rendelkezik befejezése után, illetve nem sikerült.</span><span class="sxs-lookup"><span data-stu-id="c45c9-104">This event is emitted when a pool resize has completed or failed.</span></span>
+
+ <span data-ttu-id="c45c9-105">Az alábbi példában a szervezet egy alkalmazáskészlet átméretezési teljes esemény készlet mérete megnövekedett, és sikeresen befejeződött.</span><span class="sxs-lookup"><span data-stu-id="c45c9-105">The following example shows the body of a pool resize complete event for a pool that increased in size and completed successfully.</span></span>
+
+```
+{
+    "id": "p_1_0_01503750-252d-4e57-bd96-d6aa05601ad8",
+    "nodeDeallocationOption": "invalid",
+    "currentDedicated": 4,
+    "targetDedicated": 4,
+    "enableAutoScale": false,
+    "isAutoPool": false,
+    "startTime": "2016-09-09T22:13:06.573Z",
+    "endTime": "2016-09-09T22:14:01.727Z",
+    "result": "Success",
+    "resizeError": "The operation succeeded"
+}
+```
+
+|<span data-ttu-id="c45c9-106">Elem</span><span class="sxs-lookup"><span data-stu-id="c45c9-106">Element</span></span>|<span data-ttu-id="c45c9-107">Típus</span><span class="sxs-lookup"><span data-stu-id="c45c9-107">Type</span></span>|<span data-ttu-id="c45c9-108">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="c45c9-108">Notes</span></span>|
+|-------------|----------|-----------|
+|<span data-ttu-id="c45c9-109">id</span><span class="sxs-lookup"><span data-stu-id="c45c9-109">id</span></span>|<span data-ttu-id="c45c9-110">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="c45c9-110">String</span></span>|<span data-ttu-id="c45c9-111">A készlet azonosítóját.</span><span class="sxs-lookup"><span data-stu-id="c45c9-111">The id of the pool.</span></span>|
+|<span data-ttu-id="c45c9-112">nodeDeallocationOption</span><span class="sxs-lookup"><span data-stu-id="c45c9-112">nodeDeallocationOption</span></span>|<span data-ttu-id="c45c9-113">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="c45c9-113">String</span></span>|<span data-ttu-id="c45c9-114">Itt adhatja meg, ha lehetséges, hogy lehet csomópontokat eltávolítani a készletből, ha a készlet méretének csökkentése.</span><span class="sxs-lookup"><span data-stu-id="c45c9-114">Specifies when nodes may be removed from the pool, if the pool size is decreasing.</span></span><br /><br /> <span data-ttu-id="c45c9-115">Lehetséges értékek:</span><span class="sxs-lookup"><span data-stu-id="c45c9-115">Possible values are:</span></span><br /><br /> <span data-ttu-id="c45c9-116">**requeue** – leállítja a futó tevékenységeket, és újra a várólistába helyezi őket.</span><span class="sxs-lookup"><span data-stu-id="c45c9-116">**requeue** – Terminate running tasks and requeue them.</span></span> <span data-ttu-id="c45c9-117">A feladatok a feladat engedélyezésekor fognak újra futni.</span><span class="sxs-lookup"><span data-stu-id="c45c9-117">The tasks will run again when the job is enabled.</span></span> <span data-ttu-id="c45c9-118">Tevékenységek leállítása után rögtön csomópontjának eltávolítására.</span><span class="sxs-lookup"><span data-stu-id="c45c9-118">Remove nodes as soon as tasks have been terminated.</span></span><br /><br /> <span data-ttu-id="c45c9-119">**Állítsa le** – az éppen futó feladatok megszakítását.</span><span class="sxs-lookup"><span data-stu-id="c45c9-119">**terminate** – Terminate running tasks.</span></span> <span data-ttu-id="c45c9-120">A tevékenységeket nem futtatja újra.</span><span class="sxs-lookup"><span data-stu-id="c45c9-120">The tasks will not run again.</span></span> <span data-ttu-id="c45c9-121">Tevékenységek leállítása után rögtön csomópontjának eltávolítására.</span><span class="sxs-lookup"><span data-stu-id="c45c9-121">Remove nodes as soon as tasks have been terminated.</span></span><br /><br /> <span data-ttu-id="c45c9-122">**taskcompletion** – engedélyezése jelenleg futó feladatok elvégzéséhez.</span><span class="sxs-lookup"><span data-stu-id="c45c9-122">**taskcompletion** – Allow currently running tasks to complete.</span></span> <span data-ttu-id="c45c9-123">Nem ütemez újabb tevékenységeket való várakozás során.</span><span class="sxs-lookup"><span data-stu-id="c45c9-123">Schedule no new tasks while waiting.</span></span> <span data-ttu-id="c45c9-124">Távolítsa el a csomópontok, ha minden feladat befejeződött.</span><span class="sxs-lookup"><span data-stu-id="c45c9-124">Remove nodes when all tasks have completed.</span></span><br /><br /> <span data-ttu-id="c45c9-125">**Retaineddata** -lehetővé teszi a futó feladatok befejeződését, majd várja meg, hogy minden tevékenység adatmegőrzés időszakait lejár.</span><span class="sxs-lookup"><span data-stu-id="c45c9-125">**Retaineddata** -  Allow currently running tasks to complete, then wait for all task data retention periods to expire.</span></span> <span data-ttu-id="c45c9-126">Nem ütemez újabb tevékenységeket való várakozás során.</span><span class="sxs-lookup"><span data-stu-id="c45c9-126">Schedule no new tasks while waiting.</span></span> <span data-ttu-id="c45c9-127">Csomópontjának eltávolítására, ha az összes feladat megőrzési időszak lejárt.</span><span class="sxs-lookup"><span data-stu-id="c45c9-127">Remove nodes when all task retention periods have expired.</span></span><br /><br /> <span data-ttu-id="c45c9-128">Az alapértelmezett érték: requeue.</span><span class="sxs-lookup"><span data-stu-id="c45c9-128">The default value is requeue.</span></span><br /><br /> <span data-ttu-id="c45c9-129">Ha a készlet mérete növekszik, akkor a változó értéke **érvénytelen**.</span><span class="sxs-lookup"><span data-stu-id="c45c9-129">If the pool size is increasing then the value is set to **invalid**.</span></span>|
+|<span data-ttu-id="c45c9-130">currentDedicated</span><span class="sxs-lookup"><span data-stu-id="c45c9-130">currentDedicated</span></span>|<span data-ttu-id="c45c9-131">Int32</span><span class="sxs-lookup"><span data-stu-id="c45c9-131">Int32</span></span>|<span data-ttu-id="c45c9-132">A számítási csomópontok a készlethez rendelt száma.</span><span class="sxs-lookup"><span data-stu-id="c45c9-132">The number of compute nodes currently assigned to the pool.</span></span>|
+|<span data-ttu-id="c45c9-133">targetDedicated</span><span class="sxs-lookup"><span data-stu-id="c45c9-133">targetDedicated</span></span>|<span data-ttu-id="c45c9-134">Int32</span><span class="sxs-lookup"><span data-stu-id="c45c9-134">Int32</span></span>|<span data-ttu-id="c45c9-135">A kért a készlet számítási csomópontok száma.</span><span class="sxs-lookup"><span data-stu-id="c45c9-135">The number of compute nodes that are requested for the pool.</span></span>|
+|<span data-ttu-id="c45c9-136">enableAutoScale</span><span class="sxs-lookup"><span data-stu-id="c45c9-136">enableAutoScale</span></span>|<span data-ttu-id="c45c9-137">logikai érték</span><span class="sxs-lookup"><span data-stu-id="c45c9-137">Bool</span></span>|<span data-ttu-id="c45c9-138">Meghatározza, hogy a készlet mérete automatikusan igazodni adott idő alatt.</span><span class="sxs-lookup"><span data-stu-id="c45c9-138">Specifies whether the pool size automatically adjusts over time.</span></span>|
+|<span data-ttu-id="c45c9-139">isAutoPool</span><span class="sxs-lookup"><span data-stu-id="c45c9-139">isAutoPool</span></span>|<span data-ttu-id="c45c9-140">logikai érték</span><span class="sxs-lookup"><span data-stu-id="c45c9-140">Bool</span></span>|<span data-ttu-id="c45c9-141">Meghatározza, hogy a készlet egy feladat AutoPool mechanizmus révén hozott-e.</span><span class="sxs-lookup"><span data-stu-id="c45c9-141">Specifies whether the pool was created via a job's AutoPool mechanism.</span></span>|
+|<span data-ttu-id="c45c9-142">startTime</span><span class="sxs-lookup"><span data-stu-id="c45c9-142">startTime</span></span>|<span data-ttu-id="c45c9-143">Dátum és idő</span><span class="sxs-lookup"><span data-stu-id="c45c9-143">DateTime</span></span>|<span data-ttu-id="c45c9-144">A készlet átméretezése indulásakor.</span><span class="sxs-lookup"><span data-stu-id="c45c9-144">The time the pool resize started.</span></span>|
+|<span data-ttu-id="c45c9-145">Befejezés időpontja</span><span class="sxs-lookup"><span data-stu-id="c45c9-145">endTime</span></span>|<span data-ttu-id="c45c9-146">Dátum és idő</span><span class="sxs-lookup"><span data-stu-id="c45c9-146">DateTime</span></span>|<span data-ttu-id="c45c9-147">Az az idő a készlet átméretezése befejeződött.</span><span class="sxs-lookup"><span data-stu-id="c45c9-147">The time the pool resize completed.</span></span>|
+|<span data-ttu-id="c45c9-148">ResultCode</span><span class="sxs-lookup"><span data-stu-id="c45c9-148">resultCode</span></span>|<span data-ttu-id="c45c9-149">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="c45c9-149">String</span></span>|<span data-ttu-id="c45c9-150">Az átméretezés eredményét.</span><span class="sxs-lookup"><span data-stu-id="c45c9-150">The result of the resize.</span></span>|
+|<span data-ttu-id="c45c9-151">resultMessage</span><span class="sxs-lookup"><span data-stu-id="c45c9-151">resultMessage</span></span>|<span data-ttu-id="c45c9-152">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="c45c9-152">String</span></span>|<span data-ttu-id="c45c9-153">Az átméretezés hiba a az eredmény tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="c45c9-153">The resize error includes the details of the result.</span></span><br /><br /> <span data-ttu-id="c45c9-154">Ha az átméretezés sikeresen befejeződött, hogy a művelet sikeresen befejeződött.</span><span class="sxs-lookup"><span data-stu-id="c45c9-154">If the resize completed successfully it states that the operation succeeded.</span></span>|

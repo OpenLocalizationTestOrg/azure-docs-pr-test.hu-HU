@@ -1,0 +1,4 @@
+> [!TIP]
+>
+> <span data-ttu-id="5fc5b-101">Ha le szeretné használni a HTTP- vagy a WebHook kötések, tervezze meg, amely a nem megfelelő példánylétrehozás okozhatja port Erőforrásfogyás elkerülése érdekében `HttpClient`.</span><span class="sxs-lookup"><span data-stu-id="5fc5b-101">If you plan to use the HTTP or WebHook bindings, plan to avoid port exhaustion that can be caused by improper instantiation of `HttpClient`.</span></span> <span data-ttu-id="5fc5b-102">További információkért tekintse át a [helytelen példánylétrehozás antipattern](https://docs.microsoft.com/en-us/azure/architecture/antipatterns/improper-instantiation/).</span><span class="sxs-lookup"><span data-stu-id="5fc5b-102">For more information, review the article [Improper Instantiation antipattern](https://docs.microsoft.com/en-us/azure/architecture/antipatterns/improper-instantiation/).</span></span>
+>

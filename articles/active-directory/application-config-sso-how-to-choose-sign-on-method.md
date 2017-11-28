@@ -1,0 +1,84 @@
+---
+title: "aaaHow toodetermine milyen egyszeri bejelentkezést metódus toouse |} Microsoft Docs"
+description: "Hello egyszeri bejelentkezés módot támogat az Azure AD megértése és hogyan toopick, mely egy toochoose az alkalmazás hello szüksége."
+services: active-directory
+documentationcenter: 
+author: ajamess
+manager: femila
+ms.assetid: 
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/11/2017
+ms.author: asteen
+ms.openlocfilehash: 64f0bc1dc8281d1ab8222fd50eaceaf710704886
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 10/06/2017
+---
+# <a name="how-toodetermine-what-single-sign-on-method-toouse"></a><span data-ttu-id="8b4e4-103">Hogyan toodetermine milyen egyszeri bejelentkezést metódus toouse</span><span class="sxs-lookup"><span data-stu-id="8b4e4-103">How toodetermine what single-sign on method toouse</span></span>
+
+<span data-ttu-id="8b4e4-104">Ez a cikk segítséget toounderstand hello egyszeri bejelentkezés módot támogat az Azure AD és hogyan toopick, mely egy toochoose az alkalmazás hello szüksége.</span><span class="sxs-lookup"><span data-stu-id="8b4e4-104">This article help you toounderstand hello single sign-on modes supported by Azure AD and how toopick which one toochoose for hello application you are interested in.</span></span>
+
+## <a name="single-sign-on-and-provisioning-modes-supported-by-specific-application-types"></a><span data-ttu-id="8b4e4-105">Egyszeri bejelentkezés és a létesítési módot támogat. az adott alkalmazást típusok</span><span class="sxs-lookup"><span data-stu-id="8b4e4-105">Single sign-on and provisioning modes supported by specific application types</span></span>
+
+<span data-ttu-id="8b4e4-106">hello az alábbi táblázat hello különböző egyszeri bejelentkezést és a létesítési módot támogat az egyes alkalmazástípusok fent hello által.</span><span class="sxs-lookup"><span data-stu-id="8b4e4-106">hello table below describes hello different single sign-on and provisioning modes supported by each of hello above application types.</span></span> <span data-ttu-id="8b4e4-107">Használhatja a tábla toohelp toounderstand, melyik alkalmazás szüksége tooadd toosupport adott cél.</span><span class="sxs-lookup"><span data-stu-id="8b4e4-107">You can use this table toohelp you toounderstand which application you need tooadd toosupport a specific goal.</span></span>
+
+  ![Ázsia és a csendes típusai tábla](./media/application-tables/table1.png)
+
+## <a name="how-toochoose-a-single-sign-on-mode"></a><span data-ttu-id="8b4e4-109">Hogyan toochoose a egyszeri bejelentkezés módját</span><span class="sxs-lookup"><span data-stu-id="8b4e4-109">How toochoose a single sign-on mode</span></span>
+
+<span data-ttu-id="8b4e4-110">hello támogatott **egyszeri bejelentkezés** módjainak Azure AD-alkalmazások az alábbiak.</span><span class="sxs-lookup"><span data-stu-id="8b4e4-110">hello supported **single sign-on** modes for Azure AD applications are listed below.</span></span>
+
+-   <span data-ttu-id="8b4e4-111">**Az Azure AD az egyszeri bejelentkezés le van tiltva** – válassza ki az Azure AD az egyszeri bejelentkezés le van tiltva **egyszeri bejelentkezés mód** Ha még nem áll készen toointegrate ehhez az alkalmazáshoz az egyszeri bejelentkezés az Azure ad-vel, vagy egyszerűen csak tesztelés kimenő</span><span class="sxs-lookup"><span data-stu-id="8b4e4-111">**Azure AD single sign-on disabled** – choose Azure AD single sign-on disabled **single sign-on mode** if you are not yet ready toointegrate this application with single sign-on with Azure AD, or are simply testing it out</span></span>
+
+-   <span data-ttu-id="8b4e4-112">**Bejelentkezés kapcsolódó** – hello válasszon [társított bejelentkezés](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work) **egyszeri bejelentkezés mód** Ha valamelyik alkalmazásnál, amely a már meglévő egyszeri bejelentkezési megoldással már csatlakoztatva van, vagy ha csak a felhasználók a hivatkozás egy egyszerű toopublish azok [alkalmazás hozzáférési Panel](https://docs.microsoft.com/azure/active-directory/active-directory-saas-access-panel-introduction) vagy [Office 365 alkalmazásindító](https://login.microsoftonline.com/common/oauth2/authorize?response_mode=form_post&response_type=id_token&scope=openid&nonce=d508a995-f6d6-4b8a-81b8-825c71f1be46.636253878097046923&state=https%3a%2f%2fsupport.office.com%2farticle%2fMeet-the-Office-365-app-launcher-79f12104-6fed-442f-96a0-eb089a3f476a%3fui%3den-US%26rs%3den-US%26ad%3dUS&client_id=4b233688-031c-404b-9a80-a4f3f2351f90&redirect_uri=https%3a%2f%2fsupport.office.com%2fauth%2fsignin&login_hint=asteen%40microsoft.com&prompt=none)</span><span class="sxs-lookup"><span data-stu-id="8b4e4-112">**Linked Sign-on** – choose hello [Linked Sign-on](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work) **single sign-on mode** if you have an application that is already connected with an existing single sign-on solution, or if you just want toopublish a simple link for your users in their [Application Access Panel](https://docs.microsoft.com/azure/active-directory/active-directory-saas-access-panel-introduction) or [Office 365 application launcher](https://login.microsoftonline.com/common/oauth2/authorize?response_mode=form_post&response_type=id_token&scope=openid&nonce=d508a995-f6d6-4b8a-81b8-825c71f1be46.636253878097046923&state=https%3a%2f%2fsupport.office.com%2farticle%2fMeet-the-Office-365-app-launcher-79f12104-6fed-442f-96a0-eb089a3f476a%3fui%3den-US%26rs%3den-US%26ad%3dUS&client_id=4b233688-031c-404b-9a80-a4f3f2351f90&redirect_uri=https%3a%2f%2fsupport.office.com%2fauth%2fsignin&login_hint=asteen%40microsoft.com&prompt=none)</span></span>
+
+-   <span data-ttu-id="8b4e4-113">**Jelszó alapú bejelentkezés** – hello válasszon [jelszóalapú bejelentkezés](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work) **egyszeri bejelentkezés mód** Ha az alkalmazás Renderelés egy HTML-felhasználónév és jelszó mezőt, és azt szeretné, hogy toostore, felhasználónév és jelszó biztonságosan toobe újból később toohello alkalmazás</span><span class="sxs-lookup"><span data-stu-id="8b4e4-113">**Password-based Sign-on** – choose hello [Password-based Sign-on](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work) **single sign-on mode** if your application renders an HTML username and password field and you want toostore that username and password securely toobe replayed toohello application later</span></span>
+
+-   <span data-ttu-id="8b4e4-114">**SAML-alapú bejelentkezés** – hello válasszon [SAML-alapú bejelentkezés](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work) mód, ha az alkalmazás hello SAML vagy az OpenID Connect protokollt támogatja, vagy azt szeretné, hogy toobe képes toomap felhasználók egyszeri bejelentkezés toospecific alkalmazás szerepkörök alapján a SAML meghatározott szabályok jogcímek *(**Megjegyzés:** Ez a beállítás nem érhető el, ha hello alkalmazásproxy úgy van konfigurálva, az alkalmazás) *</span><span class="sxs-lookup"><span data-stu-id="8b4e4-114">**SAML-based Sign-on** – choose hello [SAML-based Sign-on](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work) single-sign on mode if your application supports hello SAML or OpenID Connect protocols, or you want toobe able toomap users toospecific application roles based on rules you define in your SAML claims *(**Note:** this option is not available when hello application proxy is configured for an application)*</span></span>
+
+-   <span data-ttu-id="8b4e4-115">**Fejléc-alapú bejelentkezés** – válassza ezt a [fejléc-alapú bejelentkezés](https://docs.microsoft.com/azure/active-directory/application-proxy-ping-access#what-is-pingaccess-for-azure-ad) egyetlen bejelentkezés módja Ha valamely alkalmazás használatával, amely támogatja a HTTP-fejléc PingAccess alapján kívánja tooperform egyszeri bejelentkezést a túl hitelesítés *(**Megjegyzés:** ezt a beállítást csak érhető el, ha egy alkalmazás hello proxy és PingAccess van konfigurálva) *</span><span class="sxs-lookup"><span data-stu-id="8b4e4-115">**Header-based Sign-on** – choose this [Header-based Sign-on](https://docs.microsoft.com/azure/active-directory/application-proxy-ping-access#what-is-pingaccess-for-azure-ad) single sign-on mode if you have an application using PingAccess that supports HTTP-header based authentication that you wish tooperform single-sign on too*(**Note:** this option is only available when hello application proxy and PingAccess is configured for an application)*</span></span>
+
+-   <span data-ttu-id="8b4e4-116">**Integrált Windows-hitelesítés** – hello válasszon [integrált Windows-hitelesítés](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-sso-using-kcd) túl a kívánja tooperform egyszeri bejelentkezést a helyszíni WIA alkalmazás kitettségének üzemmódot egyszeri bejelentkezés*()*  *Megjegyzés:** ezt a beállítást csak érhető el, ha egy alkalmazás hello alkalmazásproxy van konfigurálva) *</span><span class="sxs-lookup"><span data-stu-id="8b4e4-116">**Integrated Windows Authentication** – choose hello [Integrated Windows Authentication](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-sso-using-kcd) single-sign on mode when exposing an on-premises WIA application that you wish tooperform single-sign on too*(**Note:** this option is only available when hello application proxy is configured for an application)*</span></span>
+
+## <a name="single-sign-on-modes-for-custom-developed-applications"></a><span data-ttu-id="8b4e4-117">Egyszeri bejelentkezés módjainak egyéni által fejlesztett alkalmazások</span><span class="sxs-lookup"><span data-stu-id="8b4e4-117">Single sign-on modes for custom-developed applications</span></span>
+
+<span data-ttu-id="8b4e4-118">Egyéni hello használatával fejlesztett alkalmazások rendelkeznek [egyéni által fejlesztett alkalmazás](#_Custom-Developed_Applications) élmény is további egyszeri bejelentkezés módot támogat fent nem említett.</span><span class="sxs-lookup"><span data-stu-id="8b4e4-118">Applications you have custom developed through hello [Custom-developed application](#_Custom-Developed_Applications) experience also support additional single sign-on modes not listed above.</span></span> <span data-ttu-id="8b4e4-119">Ezek a következők:</span><span class="sxs-lookup"><span data-stu-id="8b4e4-119">These include:</span></span>
+
+-   <span data-ttu-id="8b4e4-120">[OAuth 2.0](https://docs.microsoft.com/azure/active-directory/develop/active-directory-protocols-oauth-code) bejelentkezés alapján</span><span class="sxs-lookup"><span data-stu-id="8b4e4-120">[OAuth 2.0](https://docs.microsoft.com/azure/active-directory/develop/active-directory-protocols-oauth-code) based sign-on</span></span>
+
+-   <span data-ttu-id="8b4e4-121">[OpenID Connect 1.0](https://docs.microsoft.com/azure/active-directory/develop/active-directory-protocols-openid-connect-code) bejelentkezés alapján</span><span class="sxs-lookup"><span data-stu-id="8b4e4-121">[OpenID Connect 1.0](https://docs.microsoft.com/azure/active-directory/develop/active-directory-protocols-openid-connect-code) based sign-on</span></span>
+
+-   <span data-ttu-id="8b4e4-122">[WS-Federation 1.2](http://docs.oasis-open.org/wsfed/federation/v1.2/os/ws-federation-1.2-spec-os.html) bejelentkezés alapján</span><span class="sxs-lookup"><span data-stu-id="8b4e4-122">[WS-Federation 1.2](http://docs.oasis-open.org/wsfed/federation/v1.2/os/ws-federation-1.2-spec-os.html) based sign-on</span></span>
+
+-   <span data-ttu-id="8b4e4-123">[SAML 2.0](https://docs.microsoft.com/azure/active-directory/develop/active-directory-saml-protocol-reference) bejelentkezés alapján</span><span class="sxs-lookup"><span data-stu-id="8b4e4-123">[SAML 2.0](https://docs.microsoft.com/azure/active-directory/develop/active-directory-saml-protocol-reference) based sign-on</span></span>
+
+<span data-ttu-id="8b4e4-124">Olvasási hello [Azure Active Directory fejlesztői útmutatója](https://docs.microsoft.com/azure/active-directory/develop/active-directory-developers-guide) toolearn hogyan egyéni által fejlesztett toocreate alkalmazást, amely támogatja ezeket egyszeri bejelentkezési módok többet.</span><span class="sxs-lookup"><span data-stu-id="8b4e4-124">Read hello [Azure Active Directory developer’s guide](https://docs.microsoft.com/azure/active-directory/develop/active-directory-developers-guide) toolearn more about how toocreate a custom-developed application which supports these single sign-on modes.</span></span>
+
+## <a name="how-tooset-an-applications-single-sign-on-mode"></a><span data-ttu-id="8b4e4-125">Hogyan tooset alkalmazás csomagazonosítóját egyszeri bejelentkezés mód</span><span class="sxs-lookup"><span data-stu-id="8b4e4-125">How tooset an application’s single sign-on mode</span></span>
+
+<span data-ttu-id="8b4e4-126">tooset alkalmazás **egyszeri bejelentkezés** mód, kövesse az alábbi hello utasítások:</span><span class="sxs-lookup"><span data-stu-id="8b4e4-126">tooset an application’s **single sign-on** mode, follow hello instructions below:</span></span>
+
+1.  <span data-ttu-id="8b4e4-127">Nyitott hello [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazda** vagy **Co-rendszergazda segítségét.**</span><span class="sxs-lookup"><span data-stu-id="8b4e4-127">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
+
+2.  <span data-ttu-id="8b4e4-128">Nyissa meg hello **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** hello fő bal oldali navigációs menü hello alján.</span><span class="sxs-lookup"><span data-stu-id="8b4e4-128">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
+
+3.  <span data-ttu-id="8b4e4-129">Írja be a **"Azure Active Directory**" hello szűrő keresési mezőbe, és válassza hello **Azure Active Directory** elemet.</span><span class="sxs-lookup"><span data-stu-id="8b4e4-129">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
+
+4.  <span data-ttu-id="8b4e4-130">Kattintson a **vállalati alkalmazások** hello Azure Active Directory bal oldali navigációs menüjében.</span><span class="sxs-lookup"><span data-stu-id="8b4e4-130">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
+
+5.  <span data-ttu-id="8b4e4-131">Kattintson a **összes alkalmazás** tooview az alkalmazások listáját.</span><span class="sxs-lookup"><span data-stu-id="8b4e4-131">click **All Applications** tooview a list of all your applications.</span></span>
+
+   * <span data-ttu-id="8b4e4-132">Ha hello alkalmazás jelenik itt meg nem látja, akkor hello **szűrő** hello hello tetején vezérlő **összes alkalmazások listáját** és set hello **megjelenítése** beállítás túl **Minden alkalmazást.**</span><span class="sxs-lookup"><span data-stu-id="8b4e4-132">If you do not see hello application you want show up here, use hello **Filter** control at hello top of hello **All Applications List** and set hello **Show** option too**All Applications.**</span></span>
+
+6.  <span data-ttu-id="8b4e4-133">Válassza ki a kívánt tooconfigure egyszeri bejelentkezés hello alkalmazás</span><span class="sxs-lookup"><span data-stu-id="8b4e4-133">Select hello application you want tooconfigure single sign-on</span></span>
+
+7.  <span data-ttu-id="8b4e4-134">Amikor hello alkalmazás betölt, kattintson a **egyszeri bejelentkezés** hello alkalmazás bal oldali navigációs menüjében.</span><span class="sxs-lookup"><span data-stu-id="8b4e4-134">Once hello application loads, click **Single sign-on** from hello application’s left hand navigation menu.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="8b4e4-135">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="8b4e4-135">Next steps</span></span>
+[<span data-ttu-id="8b4e4-136">Adja meg az egyszeri bejelentkezés tooyour alkalmazások alkalmazásproxyval</span><span class="sxs-lookup"><span data-stu-id="8b4e4-136">Provide single sign-on tooyour apps with Application Proxy</span></span>](active-directory-application-proxy-sso-using-kcd.md)
+

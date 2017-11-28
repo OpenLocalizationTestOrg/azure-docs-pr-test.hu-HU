@@ -1,0 +1,8 @@
+
+<span data-ttu-id="c795e-101">Ha üzembe kívánja helyezni ezeket az erőforrásokat az Azure-ban, be kell jelentkeznie az Azure-ba, és az Azure Resource Manager modult kell használnia.</span><span class="sxs-lookup"><span data-stu-id="c795e-101">To deploy the resources to Azure, you must be logged in to your Azure account and you must use the Azure Resource Manager module.</span></span> <span data-ttu-id="c795e-102">További információ az Azure Resource Manager Azure PowerShell-lel vagy Azure CLI-vel való használatáról:</span><span class="sxs-lookup"><span data-stu-id="c795e-102">To learn about using Azure Resource Manager with either Azure PowerShell or Azure CLI, see:</span></span>
+
+* [<span data-ttu-id="c795e-103">Az Azure PowerShell használata az Azure Resource Managerrel</span><span class="sxs-lookup"><span data-stu-id="c795e-103">Using Azure PowerShell with Azure Resource Manager</span></span>](../articles/azure-resource-manager/powershell-azure-resource-manager.md)
+* <span data-ttu-id="c795e-104">[A maces, linuxos és windowsos Azure CLI használata az Azure Resource Managerrel](../articles/azure-resource-manager/xplat-cli-azure-resource-manager.md).</span><span class="sxs-lookup"><span data-stu-id="c795e-104">[Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management](../articles/azure-resource-manager/xplat-cli-azure-resource-manager.md).</span></span>
+
+<span data-ttu-id="c795e-105">A következő példák feltételezik, hogy a fiókjában már létezik egy erőforráscsoport a megadott névvel.</span><span class="sxs-lookup"><span data-stu-id="c795e-105">The following examples assume you already have a resource group in your account with the specified name.</span></span> 
+

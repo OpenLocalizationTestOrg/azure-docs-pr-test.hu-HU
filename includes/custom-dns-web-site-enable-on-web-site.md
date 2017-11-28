@@ -1,0 +1,22 @@
+<span data-ttu-id="2ffe9-101">Miután a tartománynév a rekordjainak propagálása, azokat a webalkalmazás kell hozzárendelni.</span><span class="sxs-lookup"><span data-stu-id="2ffe9-101">After the records for your domain name have propagated, you must associate them with your Web App.</span></span> <span data-ttu-id="2ffe9-102">Az alábbi lépések segítségével engedélyezze a tartománynév, a webböngésző segítségével.</span><span class="sxs-lookup"><span data-stu-id="2ffe9-102">Use the following steps to enable the domain names using your web browser.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="2ffe9-103">TXT rekordot a DNS-rendszerében propagálásához az előző lépésekben létrehozott némi időt is igénybe vehet.</span><span class="sxs-lookup"><span data-stu-id="2ffe9-103">It can take some time for TXT records created in the previous steps to propagate through the DNS system.</span></span> <span data-ttu-id="2ffe9-104">Mindaddig, amíg a TXT-rekord propagálása a tartomány neve nem lehet hozzáadni a webes alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="2ffe9-104">You cannot add the domain name of to your web app until the TXT record has propagated.</span></span> <span data-ttu-id="2ffe9-105">Ha egy A rekordot használ, nem adhat az A rekord tartománynév a webalkalmazáshoz mindaddig, amíg az előző lépésben létrehozott TXT-rekord propagálása.</span><span class="sxs-lookup"><span data-stu-id="2ffe9-105">If you are using an A record, you cannot add the A record domain name to your web app until the TXT record created in the previous step has propagated.</span></span>
+> 
+> <span data-ttu-id="2ffe9-106">A szolgáltatás használhatja például a <a href="http://www.digwebinterface.com/">http://www.digwebinterface.com/</a> annak ellenőrzéséhez, hogy a TXT-rekord érhető el.</span><span class="sxs-lookup"><span data-stu-id="2ffe9-106">You can use a service such as <a href="http://www.digwebinterface.com/">http://www.digwebinterface.com/</a> to verify that the TXT record is available.</span></span>
+> 
+> 
+
+1. <span data-ttu-id="2ffe9-107">A böngészőben nyissa meg a [Azure Portal](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="2ffe9-107">In your browser, open the [Azure Portal](https://portal.azure.com).</span></span>
+2. <span data-ttu-id="2ffe9-108">Az a **webalkalmazások** lapra, kattintson a webalkalmazás nevét, majd **egyéni tartományok**</span><span class="sxs-lookup"><span data-stu-id="2ffe9-108">In the **Web Apps** tab, click the name of your web app, and then select **Custom domains**</span></span>
+   
+    ![](./media/custom-dns-web-site/dncmntask-cname-6.png)
+3. <span data-ttu-id="2ffe9-109">Az a **egyéni tartományok** panelen kattintson a **állomásnév hozzáadása**.</span><span class="sxs-lookup"><span data-stu-id="2ffe9-109">In the **Custom domains** blade, click **Add hostname**.</span></span>
+4. <span data-ttu-id="2ffe9-110">Használja a **állomásnév** szövegmezőbe írja be a tartomány társítása a webalkalmazás számára.</span><span class="sxs-lookup"><span data-stu-id="2ffe9-110">Use the **Hostname** text boxes to enter the domain names to associate with this web app.</span></span>
+   
+    ![](./media/custom-dns-web-site/add-custom-domain.png)
+5. <span data-ttu-id="2ffe9-111">Kattintson a **érvényesítése**.</span><span class="sxs-lookup"><span data-stu-id="2ffe9-111">Click **Validate**.</span></span>
+6. <span data-ttu-id="2ffe9-112">Gomb megnyomásakor **ellenőrzése** Azure lesz indítsa tartományok ellenőrzésének munkafolyamat.</span><span class="sxs-lookup"><span data-stu-id="2ffe9-112">Upon clicking **Validate** Azure will kick off Domain Verification workflow.</span></span> <span data-ttu-id="2ffe9-113">Ez ellenőrzi, hogy a tartomány tulajdonosa, valamint állomásnév rendelkezésre állás és a jelentés sikeres vagy az előírásoknak megfelelő guidence a hiba megoldásával kapcsolatos hiba részleteit.</span><span class="sxs-lookup"><span data-stu-id="2ffe9-113">This will check for Domain ownership as well as Hostname availability and report success or detailed error with prescriptive guidence on how to fix the error.</span></span>    
+
+<span data-ttu-id="2ffe9-114">Ezen a ponton meg kell tudni adja meg az egyéni tartománynév a böngészőben, és tekintse meg, hogy sikeresen tart, a webes alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="2ffe9-114">At this point, you should be able to enter the custom domain name in your browser and see that it successfully takes you to your web app.</span></span>
+

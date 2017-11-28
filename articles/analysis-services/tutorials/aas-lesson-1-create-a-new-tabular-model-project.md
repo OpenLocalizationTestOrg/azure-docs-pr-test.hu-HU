@@ -1,0 +1,89 @@
+---
+title: "Azure Analysis Services-oktatóanyag – 1. lecke: Új táblázatosmodell-projekt létrehozása | Microsoft Docs"
+description: "A lecke az új Azure Analysis Services-oktatóprojektek létrehozását ismerteti."
+services: analysis-services
+documentationcenter: 
+author: minewiskan
+manager: erikre
+editor: 
+tags: 
+ms.assetid: 
+ms.service: analysis-services
+ms.devlang: NA
+ms.topic: get-started-article
+ms.tgt_pltfrm: NA
+ms.workload: na
+ms.date: 06/01/2017
+ms.author: owend
+ms.openlocfilehash: ebd160372fc75c6d0fc323be9e948fa2475b71cf
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 08/29/2017
+---
+# <a name="lesson-1-create-a-tabular-model-project"></a><span data-ttu-id="c3643-103">1. lecke: Táblázatosmodell-projekt létrehozása</span><span class="sxs-lookup"><span data-stu-id="c3643-103">Lesson 1: Create a tabular model project</span></span>
+
+[!INCLUDE[analysis-services-appliesto-aas-sql2017-later](../../../includes/analysis-services-appliesto-aas-sql2017-later.md)]
+
+<span data-ttu-id="c3643-104">Ebben a leckében az SQL Server Data Tools (SSDT) használatával hozhat létre új táblázatosmodell-projektet az 1400-as kompatibilitási szinten.</span><span class="sxs-lookup"><span data-stu-id="c3643-104">In this lesson, you use SQL Server Data Tools (SSDT) to create a new tabular model project at the 1400 compatibility level.</span></span> <span data-ttu-id="c3643-105">A projekt létrehozása után megkezdheti az adatok hozzáadását és a modell létrehozását.</span><span class="sxs-lookup"><span data-stu-id="c3643-105">Once your new project is created, you can begin adding data and authoring your model.</span></span> <span data-ttu-id="c3643-106">Ez a lecke röviden bemutatja az SSDT táblázatosmodell-létrehozási környezetét is.</span><span class="sxs-lookup"><span data-stu-id="c3643-106">This lesson also gives you a brief introduction to the tabular model authoring environment in SSDT.</span></span>  
+  
+<span data-ttu-id="c3643-107">A lecke elvégzésének várható időtartama: **10 perc**.</span><span class="sxs-lookup"><span data-stu-id="c3643-107">Estimated time to complete this lesson: **10 minutes**</span></span>  
+  
+## <a name="prerequisites"></a><span data-ttu-id="c3643-108">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="c3643-108">Prerequisites</span></span>  
+<span data-ttu-id="c3643-109">Ez a témakör a táblázatos modellek létrehozását ismertető oktatóanyag első leckéje.</span><span class="sxs-lookup"><span data-stu-id="c3643-109">This topic is the first lesson in a tabular model authoring tutorial.</span></span> <span data-ttu-id="c3643-110">A lecke elvégzéséhez néhány előfeltételnek teljesülnie kell.</span><span class="sxs-lookup"><span data-stu-id="c3643-110">To complete this lesson, there are several prerequisites you need to have in-place.</span></span> <span data-ttu-id="c3643-111">További információ: [Azure Analysis Services – Adventure Works-oktatóanyag](../tutorials/aas-adventure-works-tutorial.md).</span><span class="sxs-lookup"><span data-stu-id="c3643-111">To learn more, see [Azure Analysis Services - Adventure Works tutorial](../tutorials/aas-adventure-works-tutorial.md).</span></span>  
+  
+## <a name="create-a-new-tabular-model-project"></a><span data-ttu-id="c3643-112">Új táblázatosmodell-projekt létrehozása</span><span class="sxs-lookup"><span data-stu-id="c3643-112">Create a new tabular model project</span></span>  
+  
+#### <a name="to-create-a-new-tabular-model-project"></a><span data-ttu-id="c3643-113">Új táblázatosmodell-projekt létrehozása</span><span class="sxs-lookup"><span data-stu-id="c3643-113">To create a new tabular model project</span></span>  
+  
+1.  <span data-ttu-id="c3643-114">Az SSDT **Fájl** menüjében kattintson az **Új** > **Projekt** elemre.</span><span class="sxs-lookup"><span data-stu-id="c3643-114">In SSDT, on the **File** menu, click **New** > **Project**.</span></span>  
+  
+2.  <span data-ttu-id="c3643-115">Az **Új projekt** párbeszédpanelen bontsa ki a **Telepítve** > **Üzleti intelligencia** > **Analysis Services** elemet, majd kattintson az **Analysis Services rendszerbeli táblázatos projekt** elemre.</span><span class="sxs-lookup"><span data-stu-id="c3643-115">In the **New Project** dialog box, expand **Installed** > **Business Intelligence** > **Analysis Services**, and then click **Analysis Services Tabular Project**.</span></span>  
+  
+3.  <span data-ttu-id="c3643-116">A **Név** mezőbe gépelje be az **AW internetes értékesítés** nevet, majd adja meg a projektfájlok helyét.</span><span class="sxs-lookup"><span data-stu-id="c3643-116">In  **Name**, type **AW Internet Sales**, and then specify a location for the project files.</span></span>  
+  
+    <span data-ttu-id="c3643-117">Alapértelmezés szerint a **Megoldás neve** megegyezik a projekt nevével, de megadhat más megoldásnevet is.</span><span class="sxs-lookup"><span data-stu-id="c3643-117">By default, **Solution Name** is the same as the project name; however, you can type a different solution name.</span></span>  
+  
+4.  <span data-ttu-id="c3643-118">Kattintson az **OK** gombra.</span><span class="sxs-lookup"><span data-stu-id="c3643-118">Click **OK**.</span></span>  
+  
+5.  <span data-ttu-id="c3643-119">A **Táblázatos modell tervezője** párbeszédpanelen válassza az **Integrált munkaterület** lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="c3643-119">In the **Tabular model designer** dialog box, select **Integrated workspace**.</span></span>  
+  
+    <span data-ttu-id="c3643-120">A modell létrehozása során a munkaterület egy táblázatos modelladatbázist futtat, amelynek a neve megegyezik a projektével.</span><span class="sxs-lookup"><span data-stu-id="c3643-120">The workspace hosts a tabular model database with the same name as the project during model authoring.</span></span> <span data-ttu-id="c3643-121">Az integrált munkaterület azt jelenti, hogy az SSDT egy beépített példányt használ, így nem kell telepítenie egy különálló Analysis Services-kiszolgálópéldányt csak a modell létrehozásához.</span><span class="sxs-lookup"><span data-stu-id="c3643-121">Integrated workspace means SSDT uses a built-in instance, eliminating the need to install a separate Analysis Services server instance just for model authoring.</span></span>
+      
+6.  <span data-ttu-id="c3643-122">A **Kompatibilitási szint** mezőben válassza az **SQL Server 2017 / Azure Analysis Services (1400)** lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="c3643-122">In **Compatibility level**, select **SQL Server 2017 / Azure Analysis Services (1400)**.</span></span>   
+ 
+    ![aas-lesson1-tmd](../tutorials/media/aas-lesson1-tmd.png)
+      
+    <span data-ttu-id="c3643-124">Ha nem látja az SQL Server 2017 / Azure Analysis Services (1400) lehetőséget a Kompatibilitási szint listában, akkor nem az SSDT legújabb verzióját használja.</span><span class="sxs-lookup"><span data-stu-id="c3643-124">If you don’t see SQL Server 2017 / Azure Analysis Services (1400) in the Compatibility level listbox, you’re not using the latest version of SQL Server Data Tools.</span></span> <span data-ttu-id="c3643-125">A legújabb verzió beszerzése: [Az SQL Server Data Tools telepítése](https://docs.microsoft.com/sql/ssdt/download-sql-server-data-tools-ssdt).</span><span class="sxs-lookup"><span data-stu-id="c3643-125">To get the latest version, see [Install SQL Server Data tools](https://docs.microsoft.com/sql/ssdt/download-sql-server-data-tools-ssdt).</span></span>  
+      
+  
+## <a name="understanding-the-ssdt-tabular-model-authoring-environment"></a><span data-ttu-id="c3643-126">Az SSDT táblázatosmodell-létrehozási környezetének megismerése</span><span class="sxs-lookup"><span data-stu-id="c3643-126">Understanding the SSDT tabular model authoring environment</span></span>  
+<span data-ttu-id="c3643-127">Az új táblázatosmodell-projekt létrehozása után szánjon néhány percet az SSDT táblázatosmodell-létrehozási környezetének felfedezésére.</span><span class="sxs-lookup"><span data-stu-id="c3643-127">Now that you’ve created a new tabular model project, let’s take a moment to explore the tabular model authoring environment in SSDT.</span></span>  
+  
+<span data-ttu-id="c3643-128">A létrehozott projekt megnyílik az SSDT-ben.</span><span class="sxs-lookup"><span data-stu-id="c3643-128">After your project is created, it opens in SSDT.</span></span> <span data-ttu-id="c3643-129">A jobb oldalon, a **Táblázatosmodell-tallózóban** láthatja a modellben található objektumok fanézetét.</span><span class="sxs-lookup"><span data-stu-id="c3643-129">On the right side, in **Tabular Model Explorer**, you see a tree view of the objects in your model.</span></span> <span data-ttu-id="c3643-130">Mivel még nem importált adatokat, a mappák üresek.</span><span class="sxs-lookup"><span data-stu-id="c3643-130">Since you haven't yet imported data, the folders are empty.</span></span> <span data-ttu-id="c3643-131">A jobb gombbal egy objektummappára kattintva műveleteket hajthat végre, a menüsorhoz hasonló módon.</span><span class="sxs-lookup"><span data-stu-id="c3643-131">You can right-click an object folder to perform actions, similar to the menu bar.</span></span> <span data-ttu-id="c3643-132">Az oktatóanyag elvégzése során a Táblázatosmodell-tallózóval navigálhat a modellprojekt különböző objektumai között.</span><span class="sxs-lookup"><span data-stu-id="c3643-132">As you step through this tutorial, you use the Tabular Model Explorer to navigate different objects in your model project.</span></span>
+
+![aas-lesson1-tme](../tutorials/media/aas-lesson1-tme.png)
+
+<span data-ttu-id="c3643-134">Kattintson a **Megoldáskezelő** fülre. Itt láthatja a **Model.bim** fájlt.</span><span class="sxs-lookup"><span data-stu-id="c3643-134">Click the **Solution Explorer** tab. Here, you see your **Model.bim** file.</span></span> <span data-ttu-id="c3643-135">Ha nem látható a tervezőablak a bal oldalon (egy üres ablak a Model.bim lappal), a **Megoldáskezelő** **AW Internetes értékesítés projekt** területén kattintson duplán a **Model.bim** fájlra.</span><span class="sxs-lookup"><span data-stu-id="c3643-135">If you don’t see the designer window to the left (the empty window with the Model.bim tab), in **Solution Explorer**, under **AW Internet Sales Project**, double-click the **Model.bim** file.</span></span> <span data-ttu-id="c3643-136">A Model.bim fájl tartalmazza a modellprojekt metaadatait.</span><span class="sxs-lookup"><span data-stu-id="c3643-136">The Model.bim file contains the metadata for your model project.</span></span> 
+
+![aas-lesson1-se](../tutorials/media/aas-lesson1-se.png)
+  
+<span data-ttu-id="c3643-138">Kattintson a **Model.bim** fájlra.</span><span class="sxs-lookup"><span data-stu-id="c3643-138">Click **Model.bim**.</span></span> <span data-ttu-id="c3643-139">A **Tulajdonságok** ablakban megtekintheti a modell tulajdonságait. Ezek közül is a legfontosabb a **DirectQuery mód** tulajdonság.</span><span class="sxs-lookup"><span data-stu-id="c3643-139">In the **Properties** window, you see the model properties, most important of which is the **DirectQuery Mode** property.</span></span> <span data-ttu-id="c3643-140">Ez a tulajdonság határozza meg, hogy a modell üzembe helyezése Memóriában tárolt (Ki) vagy DirectQuery módban (Be) történik.</span><span class="sxs-lookup"><span data-stu-id="c3643-140">This property specifies if the model is deployed in In-Memory mode (Off) or DirectQuery mode (On).</span></span> <span data-ttu-id="c3643-141">A jelen oktatóanyagban Memóriában tárolt módban fogja létrehozni és üzembe helyezni a modellt.</span><span class="sxs-lookup"><span data-stu-id="c3643-141">For this tutorial, you author and deploy your model in In-Memory mode.</span></span>
+
+![aas-lesson1-properties](../tutorials/media/aas-lesson1-properties.png)
+  
+<span data-ttu-id="c3643-143">Modellprojekt létrehozásakor bizonyos modelltulajdonságok beállítása automatikusan megtörténik az **Eszközök** menü **Beállítások** párbeszédpaneljén megadható Adatmodellezési beállításoknak megfelelően.</span><span class="sxs-lookup"><span data-stu-id="c3643-143">When you create a model project, certain model properties are set automatically according to the Data Modeling settings that can be specified in the **Tools** menu > **Options** dialog box.</span></span> <span data-ttu-id="c3643-144">Az Adatok biztonsági mentése, a Munkaterület megőrzése és a Munkaterület-kiszolgáló tulajdonságok azt adják meg, milyen módon és hol történjen a munkaterület-adatbázis (a modell-létrehozási adatbázis) biztonsági mentése, memóriában való megőrzése és felépítése.</span><span class="sxs-lookup"><span data-stu-id="c3643-144">Data Backup, Workspace Retention, and Workspace Server properties specify how and where the workspace database (your model authoring database) is backed up, retained in-memory, and built.</span></span> <span data-ttu-id="c3643-145">Szükség esetén később módosíthatja ezeket a beállításokat, de egyelőre hagyja őket változatlanul.</span><span class="sxs-lookup"><span data-stu-id="c3643-145">You can change these settings later if necessary, but for now, leave these properties as they are.</span></span>  
+
+<span data-ttu-id="c3643-146">A **Megoldáskezelő** területén kattintson a jobb gombbal az **AW internetes értékesítés** projektre, majd kattintson a **Tulajdonságok** elemre.</span><span class="sxs-lookup"><span data-stu-id="c3643-146">In **Solution Explorer**, right-click **AW Internet Sales** (project), and then click **Properties**.</span></span> <span data-ttu-id="c3643-147">Megnyílik az **AW internetes értékesítés tulajdonságlapjai** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="c3643-147">The **AW Internet Sales Property Pages** dialog box appears.</span></span> <span data-ttu-id="c3643-148">Néhány tulajdonságot ezek közül a modell üzembe helyezése során adhat meg.</span><span class="sxs-lookup"><span data-stu-id="c3643-148">You set some of these properties later when you deploy your model.</span></span>  
+  
+<span data-ttu-id="c3643-149">Az SSDT telepítésekor a Visual Studio-környezet több új menüelemmel bővült.</span><span class="sxs-lookup"><span data-stu-id="c3643-149">When you installed SSDT, several new menu items were added to the Visual Studio environment.</span></span> <span data-ttu-id="c3643-150">Kattintson a **Modell** menüre.</span><span class="sxs-lookup"><span data-stu-id="c3643-150">Click the **Model** menu.</span></span> <span data-ttu-id="c3643-151">Itt importálhat adatokat, frissítheti a munkaterület adatait, az Excelben navigálhat a modellben, létrehozhat perspektívákat és szerepköröket, kiválaszthatja a modellnézetet, valamint számítási beállításokat adhat meg.</span><span class="sxs-lookup"><span data-stu-id="c3643-151">From here, you can import data, refresh workspace data, browse your model in Excel, create perspectives and roles, select the model view, and set calculation options.</span></span> <span data-ttu-id="c3643-152">Kattintson a **Tábla** menüre.</span><span class="sxs-lookup"><span data-stu-id="c3643-152">Click the **Table** menu.</span></span> <span data-ttu-id="c3643-153">Itt kapcsolatokat hozhat létre és kezelhet, megadhatja a dátumtáblázat beállításait, partíciókat hozhat létre és szerkesztheti a tábla beállításait.</span><span class="sxs-lookup"><span data-stu-id="c3643-153">From here, you can create and manage relationships, specify date table settings, create partitions, and edit table properties.</span></span> <span data-ttu-id="c3643-154">Ha az **Oszlop** menüre kattint, hozzáadhat és törölhet oszlopokat a táblából, rögzítheti az oszlopokat, és megadhatja a rendezési sorrendet.</span><span class="sxs-lookup"><span data-stu-id="c3643-154">If you click the **Column** menu, you can add and delete columns in a table, freeze columns, and specify sort order.</span></span> <span data-ttu-id="c3643-155">Az SSDT további gombokat ad hozzá a menüsorhoz is.</span><span class="sxs-lookup"><span data-stu-id="c3643-155">SSDT also adds some buttons to the bar.</span></span> <span data-ttu-id="c3643-156">A leghasznosabb ezek közül az AutoSzum funkció, amellyel standard összesítésmérték hozható létre egy kijelölt oszlophoz.</span><span class="sxs-lookup"><span data-stu-id="c3643-156">Most useful is the AutoSum feature to create a standard aggregation measure for a selected column.</span></span> <span data-ttu-id="c3643-157">Az eszköztár többi gombja gyors hozzáférést biztosít a gyakran használt funkciókhoz és parancsokhoz.</span><span class="sxs-lookup"><span data-stu-id="c3643-157">Other toolbar buttons provide quick access to frequently used features and commands.</span></span>  
+  
+<span data-ttu-id="c3643-158">Fedezze fel a táblázatos modellek létrehozásával kapcsolatos különféle funkciók párbeszédpaneljeit és helyét.</span><span class="sxs-lookup"><span data-stu-id="c3643-158">Explore some of the dialogs and locations for various features specific to authoring tabular models.</span></span> <span data-ttu-id="c3643-159">Habár néhány elem egyelőre nem aktív, jó képet kaphat a táblázatosmodell-létrehozási környezetről.</span><span class="sxs-lookup"><span data-stu-id="c3643-159">While some items are not yet active, you can get a good idea of the tabular model authoring environment.</span></span>  
+  
+
+## <a name="whats-next"></a><span data-ttu-id="c3643-160">A következő lépések</span><span class="sxs-lookup"><span data-stu-id="c3643-160">What's next?</span></span>
+<span data-ttu-id="c3643-161">[2. lecke: Az adatok beszerzése](../tutorials/aas-lesson-2-get-data.md).</span><span class="sxs-lookup"><span data-stu-id="c3643-161">[Lesson 2: Get data](../tutorials/aas-lesson-2-get-data.md).</span></span>
+
+  
+  
+  

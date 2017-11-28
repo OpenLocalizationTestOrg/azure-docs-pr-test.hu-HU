@@ -1,0 +1,17 @@
+> [!div class="op_single_selector"]
+> * [<span data-ttu-id="8621e-101">Eszköz: Node.js Szolgáltatás: Node.js.</span><span class="sxs-lookup"><span data-stu-id="8621e-101">Device: Node.js Service: Node.js</span></span>](../articles/iot-hub/iot-hub-node-node-device-management-get-started.md)
+> * [<span data-ttu-id="8621e-102">Eszköz: Node.js Szolgáltatás: C#</span><span class="sxs-lookup"><span data-stu-id="8621e-102">Device: Node.js Service: C#</span></span>](../articles/iot-hub/iot-hub-csharp-node-device-management-get-started.md)
+> * [<span data-ttu-id="8621e-103">Eszköz: Java szolgáltatás: Java</span><span class="sxs-lookup"><span data-stu-id="8621e-103">Device: Java Service: Java</span></span>](../articles/iot-hub/iot-hub-java-java-device-management-getstarted.md)
+
+<span data-ttu-id="8621e-104">Háttér-alkalmazások használhatják Azure IoT Hub primitívek, például a [eszköz iker] [ lnk-devtwin] és [módszerek közvetlen][lnk-c2dmethod], a távolról start és eszköz figyelése felügyeleti műveleteket.</span><span class="sxs-lookup"><span data-stu-id="8621e-104">Back-end apps can use Azure IoT Hub primitives, such as [device twin][lnk-devtwin] and [direct methods][lnk-c2dmethod], to remotely start and monitor device management actions on devices.</span></span> <span data-ttu-id="8621e-105">Az oktatóanyag bemutatja, hogyan egy háttér-alkalmazást és egy eszköz alkalmazásának együttműködése hogyan kezdeményezésére és figyelésére a távoli eszköz IoT-központ használatával újra kell indítani.</span><span class="sxs-lookup"><span data-stu-id="8621e-105">This tutorial shows you how a back-end app and a device app can work together to initiate and monitor a remote device reboot using IoT Hub.</span></span>
+
+<span data-ttu-id="8621e-106">A közvetlen módszer segítségével eszköz felügyeleti műveletek (például újraindítás, a gyári beállítások visszaállítása és a belső vezérlőprogram frissítése) kezdeményez egy háttér-alkalmazást a felhőben.</span><span class="sxs-lookup"><span data-stu-id="8621e-106">Use a direct method to initiate device management actions (such as reboot, factory reset, and firmware update) from a back-end app in the cloud.</span></span> <span data-ttu-id="8621e-107">Az eszköz felelős:</span><span class="sxs-lookup"><span data-stu-id="8621e-107">The device is responsible for:</span></span>
+
+* <span data-ttu-id="8621e-108">A metódus kérelmet küldött az IoT-központ kezelő.</span><span class="sxs-lookup"><span data-stu-id="8621e-108">Handling the method request sent from IoT Hub.</span></span>
+* <span data-ttu-id="8621e-109">Kezdeményezi a megfelelő eszközre vonatkozó művelet az eszközön.</span><span class="sxs-lookup"><span data-stu-id="8621e-109">Initiating the corresponding device-specific action on the device.</span></span>
+* <span data-ttu-id="8621e-110">Állapot frissítéseket biztosító *tulajdonságok jelentett* az IoT hubhoz.</span><span class="sxs-lookup"><span data-stu-id="8621e-110">Providing status updates through *reported properties* to IoT Hub.</span></span>
+
+<span data-ttu-id="8621e-111">A felhő egy háttér-alkalmazás használatával az eszköz felügyeleti művelet haladásával eszköz iker lekérdezéseket futtathat.</span><span class="sxs-lookup"><span data-stu-id="8621e-111">You can use a back-end app in the cloud to run device twin queries to report on the progress of your device management actions.</span></span>
+
+[lnk-devtwin]: ../articles/iot-hub/iot-hub-devguide-device-twins.md
+[lnk-c2dmethod]: ../articles/iot-hub/iot-hub-devguide-direct-methods.md
