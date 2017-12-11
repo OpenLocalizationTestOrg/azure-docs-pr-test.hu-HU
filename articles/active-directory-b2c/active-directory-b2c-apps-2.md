@@ -14,13 +14,14 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 12/06/2016
 ms.author: dastrock
-ms.openlocfilehash: 51001feb17ae99d3bd391a9f980d514e07f97099
-ms.sourcegitcommit: dfd6f46af588d4cd9b7a11a026dd66612ce37a4e
+ms.openlocfilehash: 6dd3864fb8f08e92231e04c5b1ed546760ec3526
+ms.sourcegitcommit: 70b1af4ad0b53009cb30aadc54e9609134aa0d72
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 12/11/2017
 ---
 # <a name="azure-active-directory-b2c-types-of-applications"></a>Azure Active Directory B2C: Alkalmazások típusai
+Fájl prehandoff a sorhoz módosítása.
 Az Azure Active Directory (Azure AD) B2C számos különböző modern alkalmazásarchitektúrához használható hitelesítést tartalmaz. Ezek mindegyike az iparági szabványnak számító [OAuth 2.0](active-directory-b2c-reference-protocols.md) vagy [OpenID Connect](active-directory-b2c-reference-protocols.md) protokollon alapul. Ebben a dokumentumban röviden leírjuk, hogy milyen típusú alkalmazásokat hozhat létre. Mindez független a programozási nyelvtől vagy a használt platformtól. A cikk segíthet az összetettebb feladatok megértésében, ezért érdemes elolvasni, mielőtt nekifog [az alkalmazások létrehozásának](active-directory-b2c-overview.md#get-started).
 
 ## <a name="the-basics"></a>Az alapok
